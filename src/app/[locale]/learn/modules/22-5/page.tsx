@@ -93,6 +93,33 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Worked Example: Moonrise in Corseaux', hi: 'कार्यान्वित उदाहरण: कोर्सो में चन्द्रोदय', sa: 'कार्यान्वित उदाहरण: कोर्सो में चन्द्रोदय' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>2 अप्रैल, 2026 को कोर्सो, स्विट्ज़रलैण्ड (46.47°N, 6.80°E) के लिए चन्द्रोदय गणित करें। चरण 1: मध्यरात्रि UT से प्रत्येक 5 मिनट पर चन्द्र स्थलकेन्द्रीय ऊँचाई गणित करें। चरण 2: मान लें मिनट 700 (11:40 UT) पर ऊँचाई = -1.2° और मिनट 705 (11:45 UT) पर +0.3°। चन्द्रोदय इस खिड़की में है। चरण 3: द्विआधारी खोज — मध्यबिन्दु 702.5 पर ऊँचाई = -0.4°, अतः उदय 702.5 और 705 के बीच। अगला मध्यबिन्दु 703.75 पर ऊँचाई = +0.05°, अतः उदय 702.5 और 703.75 के बीच। 15 पुनरावृत्तियों बाद: मिनट ≈ 703.1, अर्थात 11:43 UT = 13:43 CEST। प्रोकेराला से सत्यापित करें — अन्तर 1-2 मिनट के भीतर होना चाहिए।</> : <>Compute moonrise for April 2, 2026 at Corseaux, Switzerland (46.47°N, 6.80°E). Step 1: Compute the Moon&apos;s topocentric altitude every 5 minutes from midnight UT. Step 2: Suppose at minute 700 (11:40 UT) the altitude is -1.2° and at minute 705 (11:45 UT) it is +0.3°. The moonrise is within this window. Step 3: Binary search — midpoint at 702.5 gives altitude -0.4°, so the rise is between 702.5 and 705. Next midpoint at 703.75 gives +0.05°, so between 702.5 and 703.75. After 15 iterations: minute ≈ 703.1, meaning 11:43 UT = 13:43 CEST. Verify against Prokerala — the difference should be within 1-2 minutes.</>}</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>इस प्रक्रिया को ध्यान से देखें: हमने 60-पद चन्द्र स्थिति ~303 बार (288 अन्वेषण + 15 शोधन) गणित की। प्रत्येक गणना में 60 ज्या मूल्यांकन, क्षैतिज निर्देशांक रूपान्तरण, और लम्बन सुधार सम्मिलित है। कुल: लगभग 18,000 ज्या मूल्यांकन। फिर भी आधुनिक JavaScript इंजन पर यह ~50ms में पूर्ण होता है — मानव रूप से अदृश्य।</> : <>Observe this process closely: we computed the 60-term Moon position ~303 times (288 scans + 15 refinements). Each computation involves 60 sine evaluations, a horizontal coordinate conversion, and a parallax correction. Total: approximately 18,000 sine evaluations. Yet on a modern JavaScript engine this completes in ~50ms — imperceptible to humans.</>}</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Additional Misconceptions', hi: 'अतिरिक्त भ्रान्तियाँ', sa: 'अतिरिक्त भ्रान्तियाँ' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;चन्द्रोदय सदैव सूर्यास्त के बाद होता है।&quot; यह केवल पूर्णिमा के निकट सत्य है। अमावस्या के निकट चन्द्रोदय सूर्योदय के समय होता है। शुक्ल पक्ष में चन्द्रोदय दोपहर बाद से रात तक होता है। कृष्ण पक्ष में मध्यरात्रि के बाद से सुबह तक। चन्द्रोदय का समय तिथि से सीधे जुड़ा है — हमारे पंचांग इंजन में दोनों एक ही चन्द्र-सूर्य ज्यामिति से निकलते हैं।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Moonrise always occurs after sunset.&quot; This is only true near full moon. Near new moon, moonrise occurs around sunrise. During Shukla Paksha (waxing), moonrise progresses from afternoon toward night. During Krishna Paksha (waning), from after midnight toward morning. The moonrise time is directly linked to the tithi — both emerge from the same Moon-Sun geometry in our Panchang engine.</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;सूर्योदय सूत्र को चन्द्रोदय के लिए पुनः उपयोग किया जा सकता है — बस सूर्य की स्थिति को चन्द्र स्थिति से बदलें।&quot; यह ~30 मिनट तक गलत परिणाम देता है क्योंकि (1) चन्द्रमा गणना के दौरान महत्त्वपूर्ण रूप से चलता है, (2) लम्बन 400 गुना बड़ा है, और (3) उदय सीमा भिन्न है (-0.3° बनाम -0.8333°)। पुनरावृत्तीय स्कैन+बाइनरी सर्च आवश्यक है।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;The sunrise formula can be reused for moonrise — just substitute the Moon&apos;s position for the Sun&apos;s.&quot; This gives results wrong by up to ~30 minutes because (1) the Moon moves significantly during the calculation, (2) parallax is 400x larger, and (3) the rise threshold is different (-0.3° vs -0.8333°). The iterative scan + binary search approach is necessary.</>}</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Cross-References', hi: 'सम्बन्धित मॉड्यूल', sa: 'सम्बन्धित मॉड्यूल' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed">{isHi ? <>चन्द्र भोगांश कैसे गणित होता है इसके लिए <span className="text-gold-light">मॉड्यूल 22.3 (चन्द्र भोगांश)</span> देखें। सूर्योदय के सरल घण्टा-कोण दृष्टिकोण के लिए <span className="text-gold-light">मॉड्यूल 22.4 (सूर्योदय/सूर्यास्त)</span> देखें। दिनांक-से-JD रूपान्तरण के लिए <span className="text-gold-light">मॉड्यूल 22.1 (जूलियन दिवस)</span> देखें। करवा चौथ और शरद पूर्णिमा जैसे त्योहारों में चन्द्रोदय के महत्त्व को समझने के लिए <span className="text-gold-light">मॉड्यूल 5 (तिथि)</span> देखें।</> : <>For how the Moon&apos;s longitude is computed, see <span className="text-gold-light">Module 22.3 (Moon Longitude)</span>. For the simpler hour-angle approach used for sunrise, see <span className="text-gold-light">Module 22.4 (Sunrise/Sunset)</span>. For date-to-JD conversion, see <span className="text-gold-light">Module 22.1 (Julian Day)</span>. To understand the significance of moonrise in festivals like Karva Chauth and Sharad Purnima, see <span className="text-gold-light">Module 5 (Tithi)</span>.</>}</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module22_5Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

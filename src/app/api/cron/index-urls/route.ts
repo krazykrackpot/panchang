@@ -14,9 +14,8 @@ import { NextResponse } from 'next/server';
 import { CITIES } from '@/lib/constants/cities';
 import { submitUrlsToIndexNow } from '@/lib/seo/indexnow';
 
-// The 4 active locales served by this app.
-// sa/te/kn/mr/gu/mai are NOT active — see CLAUDE.md feedback_four_locales.md
-const ACTIVE_LOCALES = ['en', 'hi', 'ta', 'bn'] as const;
+// The 7 active locales served by this app (expanded Apr 30 2026).
+const ACTIVE_LOCALES = ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn'] as const;
 
 export async function GET(request: Request) {
   // Verify cron secret — same auth pattern used by all other cron routes

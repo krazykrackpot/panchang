@@ -87,6 +87,34 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Vara in Chart Interpretation and Daily Practice</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">Beyond muhurta, the birth vara (weekday of birth) carries significance in natal astrology. A person born on Thursday (Guruvara) is said to have a natural affinity with Jupiter&apos;s qualities — wisdom, generosity, and spiritual inclination. Birth on Saturday (Shanivara) suggests a person who will face Saturn&apos;s lessons early but develop remarkable resilience. While birth vara alone is not a dominant factor in chart reading, experienced astrologers note it as a subtle colouring that aligns with the chart&apos;s broader themes.</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">In daily practice, vara awareness guides simple but effective timing decisions. Starting a new course of study on Wednesday (Mercury&apos;s day) aligns the activity with its natural planetary ruler. Visiting a temple on the day of your Ishta Devata&apos;s ruling planet — Hanuman on Tuesday, Shani Dev on Saturday, Lakshmi on Friday — is a widespread tradition rooted in vara logic. These are not superstitions but practical applications of the principle that planetary energies cycle through the week in a predictable, mathematically derived sequence.</p>
+        <p className="text-text-secondary text-sm leading-relaxed">The vara also determines the sequence of Choghadiya periods. The eight Choghadiya segments (Udveg, Char, Labh, Amrit, Kaal, Shubh, Rog, Chal) rotate in a fixed order, but the starting Choghadiya changes based on the vara. This means the distribution of auspicious and inauspicious 90-minute blocks through the day shifts predictably with each weekday — another layer of temporal quality that practitioners use for fine-grained timing.</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Practical Application: Weekly Remedies by Vara</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Sunday (Ravivara):</span> Offer water to the Sun at sunrise. Wear ruby or red clothing. Donate wheat. Best for government-related work, leadership decisions, and health matters related to the heart or eyes.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Monday (Somavara):</span> Fast or eat only white foods. Offer milk to Shiva Linga. Best for domestic decisions, travel planning, and matters involving women or the public.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Thursday (Guruvara):</span> Wear yellow. Donate turmeric or bananas. Visit a temple. The most universally auspicious day for education, marriage discussions, financial planning, and spiritual practices.</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Saturday (Shanivara):</span> Donate black sesame seeds or mustard oil. Serve the underprivileged. Best for discipline-oriented activities, clearing debts, removing obstacles, and iron-related work. Not inherently &quot;bad&quot; — simply demanding of correct alignment.</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Cross-References</h4>
+        <p className="text-text-secondary text-xs leading-relaxed">To explore how Vara combines with other Panchang elements, see <span className="text-gold-light">Module 7.1 (Yoga)</span> for the Sun-Moon combination yogas, <span className="text-gold-light">Module 7.2 (Karana)</span> for half-tithi subdivisions, and <span className="text-gold-light">Module 8.1 (Muhurta Basics)</span> for how all five Panchang limbs integrate into muhurta selection. The <span className="text-gold-light">Module 7.4 (Hora derivation)</span> provides the mathematical proof of why the weekday sequence follows from the Chaldean order.</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module7_3Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

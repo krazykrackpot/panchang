@@ -9,7 +9,7 @@ const isDev = process.env.NODE_ENV === 'development';
 // Other locales still route fine (on-demand SSR) but aren't pre-built.
 export const visibleLocales: Locale[] = isDev
   ? ['en', 'hi', 'sa', 'ta', 'te', 'bn', 'kn', 'mr', 'gu', 'mai']
-  : ['en', 'hi', 'ta', 'te', 'bn'];
+  : ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn'];
 
 export const localeNames: { en: string; [key: string]: string | undefined } = {
   en: 'English',

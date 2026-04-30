@@ -91,6 +91,34 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Worked Example: Step-by-Step Sun Position', hi: 'कार्यान्वित उदाहरण: चरणबद्ध सूर्य स्थिति', sa: 'कार्यान्वित उदाहरण: चरणबद्ध सूर्य स्थिति' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>2 अप्रैल, 2026 मध्याह्न UT के लिए गणना करें (JD = 2461132.0, T = 0.26246): L₀ = 280.466° + 36000.770° × 0.26246 = 280.466° + 9448.5° = 9728.97° → 8.97° (mod 360°)। M = 357.529° + 35999.050° × 0.26246 = 357.529° + 9448.2° = 9805.73° → 85.73°। ये &quot;माध्य&quot; मान हैं — अभी तक कोई सुधार नहीं।</> : <>Let us compute for April 2, 2026 noon UT (JD = 2461132.0, T = 0.26246): L₀ = 280.466° + 36000.770° x 0.26246 = 280.466° + 9448.5° = 9728.97° reduced to 8.97° (mod 360°). M = 357.529° + 35999.050° x 0.26246 = 357.529° + 9448.2° = 9805.73° reduced to 85.73°. These are the &quot;mean&quot; values — no corrections yet.</>}</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>केन्द्र समीकरण: C = 1.915° × sin(85.73°) + 0.020° × sin(171.46°) + 0.000289° × sin(257.19°) = 1.915° × 0.9972 + 0.020° × 0.1484 + 0.000289° × (-0.974) = 1.910° + 0.003° - 0.000° = 1.913°। सत्य भोगांश = 8.97° + 1.913° = 10.88°। Ω = 125.04° - 1934.136° × 0.26246 = -382.7° → 337.3° (mod 360°)। दृश्य भोगांश = 10.88° - 0.00569° - 0.00478° × sin(337.3°) = 10.88° - 0.006° + 0.002° = 10.876°।</> : <>Equation of Center: C = 1.915° x sin(85.73°) + 0.020° x sin(171.46°) + 0.000289° x sin(257.19°) = 1.915° x 0.9972 + 0.020° x 0.1484 + 0.000289° x (-0.974) = 1.910° + 0.003° - 0.000° = 1.913°. True longitude = 8.97° + 1.913° = 10.88°. Omega = 125.04° - 1934.136° x 0.26246 = -382.7° reduced to 337.3° (mod 360°). Apparent longitude = 10.88° - 0.00569° - 0.00478° x sin(337.3°) = 10.88° - 0.006° + 0.002° = 10.876°.</>}</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>निरयन रूपान्तरण: लाहिरी अयनांश 2026 के लिए ≈ 24.22°। निरयन भोगांश = 10.876° - 24.22° = -13.34° → 346.66° (mod 360°)। यह मीन राशि (330°-360°) में लगभग 16.66° है — सूर्य मीन में, जो अप्रैल आरम्भ के लिए सही है (सूर्य लगभग 14 अप्रैल को मेष प्रवेश करता है)। प्रोकेराला से सत्यापित करें!<br/><br/>यह उदाहरण दर्शाता है कि कैसे सूत्र वास्तविक कुण्डली प्राचलों से जुड़ते हैं — सूर्य की राशि, जो भाव स्वामित्व, बल, और दशा अवधि निर्धारित करती है।</> : <>Sidereal conversion: Lahiri Ayanamsha for 2026 is approximately 24.22°. Sidereal longitude = 10.876° - 24.22° = -13.34° reduced to 346.66° (mod 360°). This is approximately 16.66° in Pisces (330°-360°) — the Sun is in Pisces, which is correct for early April (the Sun enters Aries around April 14). Verify against Prokerala!<br/><br/>This example shows how the formula connects to real chart parameters — the Sun&apos;s rashi placement, which determines house lordship, dignity, and dasha periods.</>}</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Additional Misconceptions', hi: 'अतिरिक्त भ्रान्तियाँ', sa: 'अतिरिक्त भ्रान्तियाँ' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;सायन और निरयन राशिचक्र प्रतिद्वन्द्वी पद्धतियाँ हैं — एक सही है, दूसरी गलत।&quot; दोनों खगोलीय रूप से वैध हैं। सायन सूर्य की स्थिति विषुव से मापता है (ऋतु-आधारित)। निरयन स्थिर तारों से मापता है। वे भिन्न प्रश्नों के उत्तर देते हैं। पश्चिमी ज्योतिष ऋतुओं (सायन) पर आधारित है; वैदिक ज्योतिष नक्षत्र पृष्ठभूमि (निरयन) पर।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Tropical and sidereal zodiacs are rival systems — one is right, the other wrong.&quot; Both are astronomically valid. Tropical measures the Sun&apos;s position from the equinox (season-based). Sidereal measures from the fixed stars. They answer different questions. Western astrology is based on seasons (tropical); Vedic astrology on the stellar backdrop (sidereal).</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;अयनांश एक स्थिर संख्या है।&quot; अयनांश प्रतिवर्ष ~50.3 कला-सेकण्ड बढ़ता है (पुरस्सरण चक्र ~25,772 वर्ष)। 2000 में यह ~23.85° था; 2026 में ~24.22°। शताब्दी में ~0.37° बदलता है। कुण्डली सॉफ़्टवेयर को प्रत्येक तिथि के लिए सटीक अयनांश गणित करना चाहिए, स्थिर मान प्रयोग नहीं करना चाहिए।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Ayanamsha is a fixed number.&quot; Ayanamsha increases by ~50.3 arcseconds per year (precession cycle ~25,772 years). In 2000 it was ~23.85°; in 2026 it is ~24.22°. It changes by ~0.37° per century. Kundali software must compute the exact ayanamsha for each date, not use a fixed value.</>}</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Cross-References', hi: 'सम्बन्धित मॉड्यूल', sa: 'सम्बन्धित मॉड्यूल' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed">{isHi ? <>JD और T चर कैसे गणित होते हैं इसके लिए <span className="text-gold-light">मॉड्यूल 22.1 (जूलियन दिवस)</span> देखें। चन्द्र स्थिति (60 पदों सहित) के लिए <span className="text-gold-light">मॉड्यूल 22.3 (चन्द्र भोगांश)</span> देखें। यह सूर्य स्थिति सूर्योदय/सूर्यास्त गणना में कैसे प्रयुक्त होती है इसके लिए <span className="text-gold-light">मॉड्यूल 22.4 (सूर्योदय/सूर्यास्त)</span> देखें। राशि प्लेसमेंट का ज्योतिषीय अर्थ समझने के लिए <span className="text-gold-light">मॉड्यूल 4 (राशि)</span> देखें।</> : <>For how JD and the T variable are computed, see <span className="text-gold-light">Module 22.1 (Julian Day)</span>. For the Moon&apos;s position (with 60 terms), see <span className="text-gold-light">Module 22.3 (Moon Longitude)</span>. For how this Sun position feeds into sunrise/sunset calculations, see <span className="text-gold-light">Module 22.4 (Sunrise/Sunset)</span>. For the astrological meaning of rashi placements, see <span className="text-gold-light">Module 4 (Rashis)</span>.</>}</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module22_2Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

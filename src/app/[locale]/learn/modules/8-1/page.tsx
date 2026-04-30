@@ -87,7 +87,37 @@ function Page3() {
   );
 }
 
-export default function Module8_1Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Activity-Specific Panchang Rules</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">Different activities demand different Panchang configurations. Classical texts like the Muhurta Chintamani and Dharmasindhu specify precise requirements for each category of event. Understanding these rules transforms abstract Panchang knowledge into practical timing wisdom.</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3"><span className="text-gold-light font-medium">Marriage (Vivaha):</span> Requires a &quot;Dhruva&quot; (fixed) or &quot;Mridhu&quot; (soft) nakshatra — Rohini, Uttara Phalguni, Uttara Ashadha, or Uttara Bhadrapada are ideal. Tithi must not be Rikta (4th, 9th, 14th) or Amavasya. The yoga must be auspicious. Vishti karana is absolutely prohibited. Additionally, the Lagna (rising sign at the muhurta moment) must be strong and free from malefic aspects — this goes beyond the five Panchang elements into chart-based muhurta selection.</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3"><span className="text-gold-light font-medium">Travel (Yatra):</span> Ashwini, Mrigashira, Pushya, Hasta, Anuradha, and Revati nakshatras are favoured. Monday, Wednesday, Thursday, and Friday are preferred varas. Avoid Vishti karana and Rahu Kaal during departure. The direction of travel also matters — classical texts specify auspicious departure directions for each vara.</p>
+        <p className="text-text-secondary text-sm leading-relaxed"><span className="text-gold-light font-medium">Business Launch:</span> The 2nd, 3rd, 5th, 7th, 10th, 11th, and 13th tithis are preferred. Thursday and Friday are ideal varas. Pushya nakshatra is considered the single best nakshatra for business beginnings. Siddhi yoga or Siddha yoga adds extra potency. The launch time should avoid Rahu Kaal and Yamaganda entirely.</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Example: Finding a Wedding Date</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Task:</span> Find a suitable wedding date in April 2026 for a location in Switzerland.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Step 1 — Scan Nakshatras:</span> Look for days when the Moon is in a marriage-suitable nakshatra (Rohini, Mrigashira, Magha, Uttara Phalguni, Hasta, Swati, Anuradha, Uttara Ashadha, Uttara Bhadrapada, Revati).</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Step 2 — Check Vara:</span> Among those dates, keep only Monday, Wednesday, Thursday, or Friday.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Step 3 — Verify Tithi:</span> Eliminate dates with Rikta tithi (4th, 9th, 14th), Amavasya, or Purnima.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Step 4 — Check Yoga and Karana:</span> Eliminate dates with Vyatipata, Vaidhriti, or Vishti karana.</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Step 5 — Fine-tune:</span> Among surviving dates, select the specific hour that avoids Rahu Kaal and maximizes auspicious hora. Our Muhurta AI engine automates all five steps, ranking candidate windows by composite score.</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Cross-References</h4>
+        <p className="text-text-secondary text-xs leading-relaxed">For deeper understanding of individual Panchang elements, explore: <span className="text-gold-light">Module 5 (Tithi)</span> for the 30 lunar phases, <span className="text-gold-light">Module 6 (Nakshatra)</span> for the 27 stellar mansions, <span className="text-gold-light">Module 7.1 (Yoga)</span> for Sun-Moon combinations, <span className="text-gold-light">Module 7.2 (Karana)</span> for half-tithi divisions, and <span className="text-gold-light">Module 7.3 (Vara)</span> for weekday astrology. The <span className="text-gold-light">Muhurta AI tool</span> in our app implements all these rules computationally.</p>
+      </section>
+    </div>
+  );
 }
 
+export default function Module8_1Page() {
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
+}

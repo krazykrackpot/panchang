@@ -13,6 +13,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Calendar, Clock, MapPin, Sun, Moon, ChevronDown, ChevronRight, Info, BookOpen, Sparkles, Leaf, CheckCircle } from 'lucide-react';
 import VratFollowButton from '@/components/vrat/VratFollowButton';
+import { getSmartaVaishnavNote } from '@/lib/calendar/smarta-vaishnava-notes';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 

@@ -26,11 +26,19 @@ export const PAGE_META: Record<string, PageMeta> = {
       en: 'Daily Panchang — Tithi, Nakshatra, Yoga, Karana Today',
       hi: 'आज का पंचांग — तिथि, नक्षत्र, योग, करण',
       sa: 'दैनिकपञ्चाङ्गम् — तिथिः नक्षत्रं योगः करणम्',
+      gu: 'આજનું પંચાંગ — તિથિ, નક્ષત્ર, યોગ | Dekho Panchang',
+      kn: 'ಇಂದಿನ ಪಂಚಾಂಗ — ತಿಥಿ, ನಕ್ಷತ್ರ, ಯೋಗ | Dekho Panchang',
+      te: 'నేటి పంచాంగం — తిథి, నక్షత్రం, యోగం | Dekho Panchang',
+      bn: 'আজকের পঞ্চাঙ্গ — তিথি, নক্ষত্র, যোগ | Dekho Panchang',
     },
     description: {
       en: 'Accurate daily Panchang with Tithi, Nakshatra, Yoga, Karana, Rahu Kalam, sunrise/sunset for any location worldwide. Computed from classical Vedic algorithms.',
       hi: 'विश्व भर में किसी भी स्थान के लिए सटीक दैनिक पंचांग — तिथि, नक्षत्र, योग, करण, राहु काल, सूर्योदय/सूर्यास्त।',
       sa: 'विश्वस्य कस्यापि स्थानस्य कृते सम्यक् दैनिकपञ्चाङ्गम् — तिथिः नक्षत्रं योगः करणम्।',
+      gu: 'ગુજરાત અને વિશ્વ ભરમાં કોઈ પણ સ્થળ માટે સચોટ દૈનિક પંચાંગ — તિથિ, નક્ષત્ર, યોગ, કરણ, રાહુ કાળ.',
+      kn: 'ವಿಶ್ವದ ಯಾವುದೇ ಸ್ಥಳಕ್ಕೆ ನಿಖರ ದೈನಂದಿನ ಪಂಚಾಂಗ — ತಿಥಿ, ನಕ್ಷತ್ರ, ಯೋಗ, ಕರಣ, ರಾಹು ಕಾಲ.',
+      te: 'ప్రపంచంలో ఎక్కడైనా ఖచ్చితమైన రోజువారీ పంచాంగం — తిథి, నక్షత్రం, యోగం, కరణం, రాహు కాలం.',
+      bn: 'বিশ্বের যেকোনো স্থানের জন্য সঠিক দৈনিক পঞ্চাঙ্গ — তিথি, নক্ষত্র, যোগ, করণ, রাহু কাল.',
     },
     keywords: ['panchang today', 'daily panchang', 'tithi today', 'nakshatra today', 'rahu kalam', 'hindu calendar'],
   },
@@ -659,6 +667,22 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: 'Complete Bengali Panjika guide — 12 months from Boishakh to Choitro, Durga Puja schedule, Poila Boishakh, Kali Puja, Saraswati Puja, and how Bengali calendar differs from other systems.', hi: 'सम्पूर्ण बंगाली पंजिका — बैशाख से चैत्र तक 12 मास, दुर्गा पूजा, पहला बैशाख, काली पूजा, सरस्वती पूजा।', sa: 'সম্পূর্ণ বাংলা পঞ্জিকা — বৈশাখ থেকে চৈত্র।' },
     keywords: ['bengali calendar', 'bangla panjika', 'bengali months', 'durga puja', 'poila boishakh', 'kali puja', 'saraswati puja', 'বাংলা পঞ্জিকা', 'বাংলা ক্যালেন্ডার'],
   },
+  '/calendar/regional/gujarati': {
+    // Gujarati script (ગુજરાતી) in title makes this result stand out for Gujarati-script searchers
+    title: {
+      en: 'ગુજરાતી પંચાંગ (Gujarati Calendar) 2026 — તિથિ, તહેવાર, એકાદશી | Dekho Panchang',
+      hi: 'ગુજરાતી પંચાંગ (गुजराती कैलेंडर) 2026 — तिथि, त्योहार, एकादशी | Dekho Panchang',
+      sa: 'ગુજરાતી પંચાંગ 2026 — गुजरातपञ्चाङ्गम् पर्वाणि च।',
+      gu: 'ગુજરાતી પંચાંગ 2026 — તિથિ, નક્ષત્ર, વ્રત અને ગુજરાતી તહેવારો | Dekho Panchang',
+    },
+    description: {
+      en: 'Complete Gujarati Panchang — Vikram Samvat calendar, Uttarayan (Makar Sankranti), Navratri, Diwali & Bestu Varas (Gujarati New Year), Janmashtami. Tithi, Ekadashi, and key festival dates for the Gujarati community worldwide.',
+      hi: 'सम्पूर्ण गुजराती पंचांग — विक्रम सम्वत, उत्तरायण, नवरात्रि, दीवाली और बेस्तु वारस (गुजराती नव वर्ष), जन्माष्टमी। विश्व भर के गुजराती समुदाय के लिए तिथि, एकादशी और मुख्य त्योहारों की तारीखें।',
+      sa: 'सम्पूर्णगुजरातपञ्चाङ्गम् — विक्रमसम्वत् उत्तरायणम् नवरात्रिः दीपावली बेस्तुवारस् च।',
+      gu: 'ગુજરાત અને વિશ્વભરના ગુજરાતી સમુદાય માટે સંપૂર્ણ વૈદિક પંચાંગ. વિક્રમ સંવત, તિથિ, નવરાત્રિ, દિવાળી, જન્માષ્ટમી તારીખો.',
+    },
+    keywords: ['gujarati panchang', 'gujarati calendar 2026', 'vikram samvat', 'uttarayan', 'navratri gujarat', 'bestu varas', 'gujarati new year', 'diwali 2026', 'ગુજરાતી પંચાંગ', 'gujarati tithi today'],
+  },
   '/about': {
     title: { en: 'About Dekho Panchang — Vedic Astronomy Made Accessible', hi: 'देखो पंचांग के बारे में', sa: 'देखोपञ्चाङ्गस्य विषये' },
     description: { en: 'Dekho Panchang brings the precision of Vedic astronomical calculations to the modern web. Built with pure mathematics, no external APIs.', hi: 'देखो पंचांग वैदिक खगोलीय गणनाओं की सटीकता को आधुनिक वेब पर लाता है।', sa: 'देखोपञ्चाङ्गं वैदिकखगोलगणनानां सम्यक्तां आधुनिकजालपृष्ठे आनयति।' },
@@ -1025,6 +1049,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: { en: 'Kundali Matching — How Guna Milan Works', hi: 'कुण्डली मिलान — गुण मिलान कैसे काम करता है', sa: 'कुण्डलीमेलनम् — गुणमेलनं कथं कार्यं करोति' },
     description: { en: 'Learn the 8-factor Ashta Kuta Guna Milan system for marriage compatibility — Varna, Vashya, Tara, Yoni, Graha Maitri, Gana, Bhakoot, Nadi, and Nadi Dosha.', hi: 'विवाह अनुकूलता के लिए अष्ट कूट गुण मिलान — वर्ण, वश्य, तारा, योनि, ग्रह मैत्री, गण, भकूट, नाड़ी।', sa: 'विवाहानुकूलतायां अष्टकूटगुणमेलनम्।' },
     keywords: ['kundali matching', 'guna milan', 'ashta kuta', 'marriage compatibility astrology'],
+  },
+  '/learn/smarta-vaishnava': {
+    title: { en: 'Smarta & Vaishnava Calendar Systems — When Festivals Differ', hi: 'स्मार्त एवं वैष्णव पंचांग पद्धति — त्योहारों में अंतर कब', sa: 'स्मार्तवैष्णवपञ्चाङ्गपद्धती — पर्वसु भेदः कदा' },
+    description: { en: 'Why Smarta and Vaishnava traditions sometimes observe the same festival on different days. Udaya Tithi vs Viddha rejection, Ekadashi Parana rules, and regional variations explained.', hi: 'स्मार्त और वैष्णव परम्पराएँ एक ही त्योहार अलग-अलग दिन क्यों मनाती हैं। उदय तिथि, विद्धा अस्वीकृति, एकादशी पारण नियम।', sa: 'स्मार्तवैष्णवपरम्परयोः एकस्मिन् पर्वणि भिन्नदिनानि कुतः।' },
+    keywords: ['smarta vaishnava', 'festival date difference', 'udaya tithi', 'viddha tithi', 'ekadashi rules', 'dharmasindhu nirnayasindhu'],
   },
   '/learn/vara': {
     title: { en: 'Vara — The 7 Weekdays in Vedic Astrology', hi: 'वार — वैदिक ज्योतिष में 7 दिन', sa: 'वाराः — वैदिकज्योतिषे सप्तदिनानि' },

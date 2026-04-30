@@ -214,7 +214,7 @@ export default function RetrogradePage() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 overflow-x-hidden">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
           <span className="text-gold-gradient">
@@ -418,7 +418,7 @@ export default function RetrogradePage() {
         const PLANET_LABELS_HI: Record<number, string> = { 6: 'शनि', 4: 'बृहस्पति', 2: 'मंगल', 5: 'शुक्र', 3: 'बुध' };
 
         return (
-          <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/12 p-4 sm:p-6 mb-8">
+          <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/12 p-4 sm:p-6 mb-8 overflow-x-auto">
             <h3 className="text-gold-light text-sm font-bold mb-1">
               {tl({ en: '${year} Retrograde & Combustion Timeline', hi: '${year} वक्री और अस्त समयरेखा', sa: '${year} वक्री और अस्त समयरेखा', ta: '${year} Retrograde & Combustion Timeline', te: '${year} Retrograde & Combustion Timeline', bn: '${year} Retrograde & Combustion Timeline', kn: '${year} Retrograde & Combustion Timeline', gu: '${year} Retrograde & Combustion Timeline', mai: '${year} वक्री और अस्त समयरेखा', mr: '${year} वक्री और अस्त समयरेखा' }, locale)}
             </h3>
@@ -427,6 +427,7 @@ export default function RetrogradePage() {
             </p>
 
             {/* Month axis */}
+            <div className="min-w-[400px]">
             <div className="relative h-5 mb-1 ml-16 sm:ml-20">
               {MONTHS.map((m, i) => (
                 <span key={m} className="absolute text-[9px] text-gray-600 font-mono" style={{ left: `${(i / 12) * 100}%` }}>
@@ -483,7 +484,7 @@ export default function RetrogradePage() {
                                 <span className={`text-[9px] font-bold ${isRetro ? 'text-red-400' : 'text-orange-400'}`}>
                                   {isRetro ? 'Retrograde' : 'Combust'}
                                 </span>
-                                <span className="text-[9px] text-gray-400 ml-1">{ev.startDate} → {ev.endDate}</span>
+                                <span className="text-[11px] sm:text-[9px] text-gray-400 ml-1">{ev.startDate} → {ev.endDate}</span>
                               </div>
                             </div>
                           </div>
@@ -504,6 +505,7 @@ export default function RetrogradePage() {
               <span className="flex items-center gap-1"><span className="w-3 h-2 rounded-sm bg-red-500/70" /><span className="text-gray-500">{msg('retrogradeLabel', locale)}</span></span>
               <span className="flex items-center gap-1"><span className="w-3 h-2 rounded-sm bg-orange-500/60" /><span className="text-gray-500">{msg('combustLabel', locale)}</span></span>
               {year === new Date().getFullYear() && <span className="flex items-center gap-1"><span className="w-px h-3 bg-gold-primary/80" /><span className="text-gold-primary/70">NOW</span></span>}
+            </div>
             </div>
           </div>
         );

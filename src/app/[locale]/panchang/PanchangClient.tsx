@@ -1337,7 +1337,7 @@ export default function PanchangClient() {
 
           {/* ═══ MEGA CARD GRID — tarot-style cards linking to subpages ═══ */}
           {/* Row 1: 5 cards — reordered by locale */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-5 my-14 auto-rows-fr">
+          <div className="grid grid-cols-1 min-[400px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-5 my-14 auto-rows-fr">
             {reorderCards([
               {
                 href: '/panchang/auspicious',
@@ -1404,7 +1404,7 @@ export default function PanchangClient() {
           </div>
 
           {/* Row 2: 5 cards — reordered by locale */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-5 -mt-8 mb-14 auto-rows-fr">
+          <div className="grid grid-cols-1 min-[400px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-5 -mt-8 mb-14 auto-rows-fr">
             {reorderCards([
               {
                 href: '/panchang/planets',

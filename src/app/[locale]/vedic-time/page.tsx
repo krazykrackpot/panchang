@@ -337,7 +337,7 @@ export default function VedicTimePage() {
   ] : [];
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 overflow-x-hidden">
       {/* Header */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-10">
         <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
@@ -642,7 +642,7 @@ export default function VedicTimePage() {
                   ? (t('dinamana5Kalas', locale))
                   : (t('ratrimana5Kalas', locale))}
               </div>
-              <div className="grid grid-cols-5 gap-2">
+              <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
                 {(vedic.isDaytime ? DINAMANA_KALAS : RATRIMANA_KALAS).map((kala, i) => {
                   const isActive = vedic.kalaName?.en === kala.en;
                   return (

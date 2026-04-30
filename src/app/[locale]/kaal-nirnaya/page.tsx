@@ -1046,7 +1046,7 @@ export default function KaalNirnayaPage() {
 
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full text-sm min-w-[480px]">
               <thead>
                 <tr className="border-b border-gold-primary/20 bg-gold-primary/5">
                   <th className="text-left px-5 py-4 text-gold-primary text-xs uppercase tracking-wider font-bold">

@@ -433,7 +433,7 @@ export default function HoroscopePage() {
           )}
 
           {/* Sign grid */}
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mb-8">
+          <div className="grid grid-cols-2 min-[400px]:grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mb-8">
             {RASHIS.map((r) => {
               const isUserSign = birthRashi === r.id;
               return (

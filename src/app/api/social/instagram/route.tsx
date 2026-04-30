@@ -26,7 +26,8 @@ const UJJAIN_LAT = 23.1765;
 const UJJAIN_LNG = 75.7885;
 const UJJAIN_TZ = 'Asia/Kolkata';
 
-const SIZE = { width: 1080, height: 1080 };
+const SIZE_SQUARE = { width: 1080, height: 1080 };
+const SIZE_SHORTS = { width: 1080, height: 1920 };
 
 const COLORS = {
   bg: '#0a0e27',
@@ -615,8 +616,11 @@ export async function GET(request: NextRequest) {
         });
     }
 
+    const format = searchParams.get('format');
+    const size = format === 'shorts' ? SIZE_SHORTS : SIZE_SQUARE;
+
     return new ImageResponse(element, {
-      ...SIZE,
+      ...size,
     });
   } catch (err) {
     console.error('[instagram] Image generation failed:', err);

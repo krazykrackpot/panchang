@@ -39,9 +39,9 @@ Updated: 2026-04-30
 - [x] Create YouTube @DekhoPanchang — done, keywords set
 - [x] Update Organization schema `sameAs` — Twitter + YouTube live
 - [x] New ॐ icon across all sizes (favicon, PWA, app icons)
+- [x] Product Hunt — launched
 - [ ] Create Instagram @dekhopanchang (business account)
-- [ ] Create Facebook Page
-- [ ] Submit to directories: Google Business, Product Hunt, AlternativeTo, Saashub, ToolFinder
+- [ ] Submit to: Google Business, AlternativeTo, SaasHub, ToolPilot
 
 ### Recurring (~10 min/week)
 - [ ] Reddit: r/hinduism, r/india, r/astrology — genuine answers with links

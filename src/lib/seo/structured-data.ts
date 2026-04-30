@@ -142,7 +142,7 @@ export function generateOrganizationLD(): object {
       'https://twitter.com/dekhopanchang',
       'https://www.instagram.com/dekhopanchang/',
       'https://www.facebook.com/dekhopanchang',
-      'https://www.youtube.com/@dekhopanchang',
+      'https://www.youtube.com/@DekhoPanchang',
     ].filter(Boolean),
   };
 }

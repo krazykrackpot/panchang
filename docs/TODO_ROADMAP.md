@@ -34,13 +34,14 @@ Updated: 2026-04-30
 
 ## Remaining — Manual Actions (NOT code)
 
-### One-Time Setup (~45 min total)
-- [ ] Create Twitter/X @dekhopanchang → add API keys to Vercel env
+### One-Time Setup
+- [x] Create Twitter/X @dekhopanchang — done, auto-posting live
+- [x] Create YouTube @DekhoPanchang — done, keywords set
+- [x] Update Organization schema `sameAs` — Twitter + YouTube live
+- [x] New ॐ icon across all sizes (favicon, PWA, app icons)
 - [ ] Create Instagram @dekhopanchang (business account)
 - [ ] Create Facebook Page
-- [ ] Create YouTube channel
 - [ ] Submit to directories: Google Business, Product Hunt, AlternativeTo, Saashub, ToolFinder
-- [ ] Update Organization schema `sameAs` with real social URLs
 
 ### Recurring (~10 min/week)
 - [ ] Reddit: r/hinduism, r/india, r/astrology — genuine answers with links
@@ -52,6 +53,9 @@ Updated: 2026-04-30
 ### Infrastructure
 - [ ] **Hetzner migration** — €7/mo vs $20/mo Vercel Pro. Plan at `docs/INFRASTRUCTURE.md`. Do after 1-2 months stable.
 - [ ] **Vercel tier evaluation** — check CPU usage mid-May. If under limits, consider downgrading to free.
+
+### Security
+- [ ] **Security headers** — CSP (Content-Security-Policy) for XSS protection, HSTS (Strict-Transport-Security), X-Frame-Options/COOP for clickjacking, Trusted Types for DOM XSS. Add via `next.config.ts` headers or Vercel config.
 
 ### SEO
 - [ ] **GSC review** — ~May 28. 6 weeks of data needed. Decide which programmatic pages to keep/prune. Current: 1% CTR, position 18.7.

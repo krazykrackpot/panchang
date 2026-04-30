@@ -14,6 +14,8 @@ const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { dateToJD, calculateTithi, moonLongitude, toSidereal, getNakshatraNumber, getRashiNumber } from '@/lib/ephem/astronomical';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { useLocationStore } from '@/stores/location-store';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 
 const TITHI_NAMES: LocaleText[] = [
   { en: 'Pratipada (1)', hi: 'प्रतिपदा (1)', sa: 'प्रतिपदा (१)', mai: 'प्रतिपदा (१)', mr: 'प्रतिपदा (१)', ta: 'பிரதிபதை (1)', te: 'ప్రతిపద (1)', bn: 'প্রতিপদ (১)', kn: 'ಪ್ರತಿಪದ (1)', gu: 'પ્રતિપદા (1)' },
@@ -56,7 +58,8 @@ function findTithiDateInYear(tithiNum: number, paksha: 'shukla' | 'krishna', yea
   for (let month = 1; month <= 12; month++) {
     const daysInMonth = new Date(year, month, 0).getDate();
     for (let day = 1; day <= daysInMonth; day++) {
-      const tzOffset = -(new Date().getTimezoneOffset() / 60);
+      const timezone = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+      const tzOffset = getUTCOffsetForDate(year, month, day, timezone);
       const jd = dateToJD(year, month, day, 12 - tzOffset); // noon local time in UT
       const tithi = calculateTithi(jd);
       const actualTithiNum = tithi.number;

@@ -80,9 +80,15 @@ export default function InauspiciousTimingsPage() {
             const city = data.address?.city || data.address?.town || data.address?.village || data.address?.county || '';
             const country = data.address?.country || '';
             const name = [city, country].filter(Boolean).join(', ') || `${latitude.toFixed(2)}N, ${longitude.toFixed(2)}E`;
-            setLocation({ lat: latitude, lng: longitude, name, tz: -new Date().getTimezoneOffset() / 60 });
+            const browserTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+            const now = new Date();
+            const tz = getUTCOffsetForDate(now.getUTCFullYear(), now.getUTCMonth() + 1, now.getUTCDate(), browserTimezone);
+            setLocation({ lat: latitude, lng: longitude, name, tz });
           } catch {
-            setLocation({ lat: latitude, lng: longitude, name: `${latitude.toFixed(2)}N, ${longitude.toFixed(2)}E`, tz: -new Date().getTimezoneOffset() / 60 });
+            const browserTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+            const now = new Date();
+            const tz = getUTCOffsetForDate(now.getUTCFullYear(), now.getUTCMonth() + 1, now.getUTCDate(), browserTimezone);
+            setLocation({ lat: latitude, lng: longitude, name: `${latitude.toFixed(2)}N, ${longitude.toFixed(2)}E`, tz });
           }
           setDetectingLocation(false);
         },

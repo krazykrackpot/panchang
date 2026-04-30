@@ -7,6 +7,8 @@ import GoldDivider from '@/components/ui/GoldDivider';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { RASHIS } from '@/lib/constants/rashis';
 import { dateToJD, sunLongitude, toSidereal, normalizeDeg, getRashiNumber, formatDegrees } from '@/lib/ephem/astronomical';
+import { useLocationStore } from '@/stores/location-store';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import { Link } from '@/lib/i18n/navigation';
 import { Shield, Zap } from 'lucide-react';
@@ -325,7 +327,8 @@ export default function UpagrahaPage() {
 
   const upagrahas = useMemo(() => {
     const [y, m, d] = dateStr.split('-').map(Number);
-    const tzOffset = -(new Date().getTimezoneOffset() / 60);
+    const timezone = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+    const tzOffset = getUTCOffsetForDate(y, m, d, timezone);
     const jd = dateToJD(y, m, d, 12 - tzOffset);
     return computeUpagrahas(jd);
   }, [dateStr]);

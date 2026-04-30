@@ -31,8 +31,8 @@ export function generateVarshaphal(birthData: BirthData, year: number): Varshaph
   const varshaphalBirthData: BirthData = {
     ...birthData,
     name: `Varshaphal ${year}`,
-    date: `${srDate.getFullYear()}-${String(srDate.getMonth() + 1).padStart(2, '0')}-${String(srDate.getDate()).padStart(2, '0')}`,
-    time: `${String(srDate.getHours()).padStart(2, '0')}:${String(srDate.getMinutes()).padStart(2, '0')}`,
+    date: `${srDate.getUTCFullYear()}-${String(srDate.getUTCMonth() + 1).padStart(2, '0')}-${String(srDate.getUTCDate()).padStart(2, '0')}`,
+    time: `${String(srDate.getUTCHours()).padStart(2, '0')}:${String(srDate.getUTCMinutes()).padStart(2, '0')}`,
   };
   const varshaphalChart = generateKundali(varshaphalBirthData);
 

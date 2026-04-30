@@ -31,9 +31,9 @@ export default function PanchangWidget() {
     navigator.geolocation.getCurrentPosition(
       async (pos) => {
         try {
-          const tz = -(new Date().getTimezoneOffset() / 60);
+          const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
           const now = new Date();
-          const res = await fetch(`/api/panchang?lat=${pos.coords.latitude}&lng=${pos.coords.longitude}&tz=${tz}&year=${now.getFullYear()}&month=${now.getMonth() + 1}&day=${now.getDate()}`);
+          const res = await fetch(`/api/panchang?lat=${pos.coords.latitude}&lng=${pos.coords.longitude}&timezone=${encodeURIComponent(timezone)}&year=${now.getFullYear()}&month=${now.getMonth() + 1}&day=${now.getDate()}`);
           if (res.ok) setData(await res.json());
           else setError(true);
         } catch { setError(true); }

@@ -1,10 +1,11 @@
 /**
  * Service Worker — Dekho Panchang PWA
- * v4: Offline HTML page, Rahu Kaal shortcut, panchang API SWR, stronger precache
- * Strategies: Static=CacheFirst, Learn=StaleWhileRevalidate, API=NetworkFirst, Panchang=SWR
+ * v5: Improved panchang API caching with date-aware keys, offline panchang support
+ * Strategies: Static=CacheFirst, Learn=StaleWhileRevalidate, API=NetworkFirst, Panchang=CacheFirst(1hr)
  */
-var CV = 'dp-v4';
+var CV = 'dp-v5';
 var CS = CV + '-static', CP = CV + '-pages', CA = CV + '-api';
+var CPANCH = 'dp-panchang-v1';
 
 // Max entries per cache to prevent unbounded growth
 var MAX_PAGES = 80, MAX_API = 40;
@@ -29,7 +30,7 @@ self.addEventListener('install', function(e) {
 self.addEventListener('activate', function(e) {
   e.waitUntil(caches.keys().then(function(ks) {
     return Promise.all(ks.filter(function(k) {
-      return k.startsWith('dp-') && k !== CS && k !== CP && k !== CA;
+      return k.startsWith('dp-') && k !== CS && k !== CP && k !== CA && k !== CPANCH;
     }).map(function(k) { return caches.delete(k); }));
   }));
   self.clients.claim();
@@ -45,17 +46,40 @@ self.addEventListener('message', function(event) {
 self.addEventListener('fetch', function(e) {
   var r = e.request, u = new URL(r.url);
   if (r.method !== 'GET' || !u.protocol.startsWith('http')) return;
-  // Panchang API — StaleWhileRevalidate: show cached today's data instantly, refresh in background
-  // Daily panchang data is safe to serve stale (same day); kundali is person-specific so stays network-only
+  // Panchang API — CacheFirst with 1-hour expiry
+  // Panchang data for today doesn't change, so cached responses are safe to serve.
+  // Cache key includes the full URL (with query params like date/lat/lng) so different
+  // dates or locations get separate cache entries.
   if (u.pathname === '/api/panchang') {
     e.respondWith(
-      caches.open(CA).then(function(cache) {
+      caches.open(CPANCH).then(function(cache) {
         return cache.match(r).then(function(cached) {
-          var fetchPromise = fetch(r).then(function(response) {
-            if (response.ok) cache.put(r, response.clone());
+          if (cached) {
+            // Check if cached within last hour
+            var cachedAt = cached.headers.get('sw-cached-at');
+            if (cachedAt && Date.now() - parseInt(cachedAt) < 3600000) {
+              return cached;
+            }
+          }
+          return fetch(r).then(function(response) {
+            if (response.ok) {
+              // Clone before consuming, add timestamp header for expiry check
+              var body = response.clone().body;
+              var headers = new Headers(response.headers);
+              headers.set('sw-cached-at', String(Date.now()));
+              var cachedResponse = new Response(body, {
+                status: response.status,
+                statusText: response.statusText,
+                headers: headers
+              });
+              cache.put(r, cachedResponse);
+              trimCache(cache, MAX_API);
+            }
             return response;
-          }).catch(function() { return cached || new Response('{"error":"offline"}', {status:503, headers:{'Content-Type':'application/json'}}); });
-          return cached || fetchPromise;
+          }).catch(function() {
+            // Offline: serve stale cache (even if >1hr old) or error
+            return cached || new Response('{"error":"offline"}', {status: 503, headers: {'Content-Type': 'application/json'}});
+          });
         });
       })
     );

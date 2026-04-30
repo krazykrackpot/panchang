@@ -12,6 +12,8 @@ interface BeforeInstallPromptEvent extends Event {
 
 const DISMISS_KEY = 'pwa-install-dismissed-at';
 const DISMISS_DURATION = 7 * 24 * 60 * 60 * 1000; // 7 days
+const VISIT_COUNT_KEY = 'pwa-install-page-visits';
+const MIN_VISITS_BEFORE_PROMPT = 2;
 
 export default function InstallPrompt() {
   const locale = useLocale();
@@ -26,6 +28,7 @@ export default function InstallPrompt() {
     const { outcome } = await deferredPrompt.current.userChoice;
     if (outcome === 'accepted') {
       setShow(false);
+      try { localStorage.removeItem(VISIT_COUNT_KEY); } catch { /* localStorage unavailable */ }
     }
     deferredPrompt.current = null;
   }, []);
@@ -33,7 +36,7 @@ export default function InstallPrompt() {
   const handleDismiss = useCallback(() => {
     setShow(false);
     deferredPrompt.current = null;
-    try { localStorage.setItem(DISMISS_KEY, Date.now().toString()); } catch {}
+    try { localStorage.setItem(DISMISS_KEY, Date.now().toString()); } catch { /* localStorage unavailable */ }
   }, []);
 
   useEffect(() => {
@@ -45,7 +48,16 @@ export default function InstallPrompt() {
     try {
       const d = localStorage.getItem(DISMISS_KEY);
       if (d && Date.now() - parseInt(d) < DISMISS_DURATION) return;
-    } catch {}
+    } catch { /* localStorage unavailable */ }
+
+    // Track page visits — only show prompt after user has visited 2+ pages
+    let visits = 0;
+    try {
+      visits = parseInt(localStorage.getItem(VISIT_COUNT_KEY) || '0', 10) + 1;
+      localStorage.setItem(VISIT_COUNT_KEY, String(visits));
+    } catch { /* localStorage unavailable */ }
+
+    const hasEnoughVisits = visits >= MIN_VISITS_BEFORE_PROMPT;
 
     // iOS detection
     const ua = navigator.userAgent;
@@ -56,22 +68,23 @@ export default function InstallPrompt() {
     const handler = (e: Event) => {
       e.preventDefault();
       deferredPrompt.current = e as BeforeInstallPromptEvent;
-      setTimeout(() => { if (deferredPrompt.current) setShow(true); }, 30000);
+      // Show immediately if user has visited enough pages, otherwise wait
+      if (hasEnoughVisits) {
+        setShow(true);
+      }
     };
     window.addEventListener('beforeinstallprompt', handler);
     const installedHandler = () => setShow(false);
     window.addEventListener('appinstalled', installedHandler);
 
-    // iOS: show manual prompt after 60s
-    let iosTimer: ReturnType<typeof setTimeout>;
-    if (iOS) {
-      iosTimer = setTimeout(() => setShow(true), 60000);
+    // iOS: show manual prompt after enough visits (no beforeinstallprompt on iOS)
+    if (iOS && hasEnoughVisits) {
+      setShow(true);
     }
 
     return () => {
       window.removeEventListener('beforeinstallprompt', handler);
       window.removeEventListener('appinstalled', installedHandler);
-      if (iosTimer) clearTimeout(iosTimer);
     };
   }, []);
 

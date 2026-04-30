@@ -37,30 +37,30 @@
     {
       "name": "Today's Panchang",
       "short_name": "Panchang",
-      "description": "View today's Tithi, Nakshatra, Muhurta and Rahu Kaal",
       "url": "/en/panchang",
-      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+      "description": "View today's tithi, nakshatra, yoga, and auspicious times",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "Rahu Kaal Now",
       "short_name": "Rahu Kaal",
-      "description": "Check today's Rahu Kaal timing for your location",
       "url": "/en/rahu-kaal",
-      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+      "description": "Check today's Rahu Kaal timing",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "Generate Kundali",
       "short_name": "Kundali",
-      "description": "Create a Vedic birth chart with 20+ analysis tabs",
       "url": "/en/kundali",
-      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+      "description": "Create your Vedic birth chart",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "Festival Calendar",
-      "short_name": "Festivals",
-      "description": "Browse Hindu festivals, vrats and auspicious dates",
-      "url": "/en/calendar",
-      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+      "name": "Choghadiya",
+      "short_name": "Choghadiya",
+      "url": "/en/choghadiya",
+      "description": "Today's auspicious time periods",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     }
   ],
   "categories": ["lifestyle", "education"],

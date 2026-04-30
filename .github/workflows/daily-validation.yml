@@ -1,0 +1,32 @@
+name: Daily Panchang Validation
+
+on:
+  schedule:
+    # 02:00 UTC daily — after YouTube Short (01:00) and Twitter post (00:30)
+    - cron: '0 2 * * *'
+  workflow_dispatch: # Manual trigger from GitHub UI
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: TypeScript check
+        run: npx tsc --noEmit -p tsconfig.build-check.json
+
+      - name: Run full test suite (3000+ tests)
+        run: npx vitest run
+
+      - name: Daily panchang validation (540 points + festivals + tithi tables)
+        run: npx tsx scripts/daily-validation.ts

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f0d48a"/>
+      <stop offset="50%" stop-color="#d4a853"/>
+      <stop offset="100%" stop-color="#8a6d2b"/>
+    </linearGradient>
+    <radialGradient id="bgGlow" cx="50%" cy="42%" r="50%">
+      <stop offset="0%" stop-color="#1a0a3e" stop-opacity="0.6"/>
+      <stop offset="60%" stop-color="#0a0e27" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="omGlow" cx="50%" cy="45%" r="35%">
+      <stop offset="0%" stop-color="#d4a853" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#d4a853" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="textGlow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="112" fill="#0a0e27"/>
+  <rect width="512" height="512" rx="112" fill="url(#bgGlow)"/>
+
+  <!-- Subtle outer ring -->
+  <circle cx="256" cy="240" r="200" fill="none" stroke="url(#gold)" stroke-width="1.5" opacity="0.08"/>
+
+  <!-- Inner glow behind ॐ -->
+  <circle cx="256" cy="240" r="150" fill="url(#omGlow)"/>
+
+  <!-- ॐ symbol — large, bold, glowing gold -->
+  <text x="256" y="320" text-anchor="middle" font-size="300" font-weight="bold" fill="url(#gold)" font-family="serif" filter="url(#textGlow)">ॐ</text>
+
+  <!-- Decorative star dots -->
+  <circle cx="380" cy="72" r="8" fill="#f0d48a" opacity="0.5"/>
+  <circle cx="410" cy="110" r="5" fill="#d4a853" opacity="0.35"/>
+  <circle cx="120" cy="90" r="6" fill="#f0d48a" opacity="0.3"/>
+  <circle cx="400" cy="380" r="4" fill="#d4a853" opacity="0.2"/>
+  <circle cx="100" cy="400" r="5" fill="#f0d48a" opacity="0.25"/>
+
+  <!-- Bottom accent line -->
+  <rect x="160" y="430" width="192" height="10" rx="5" fill="url(#gold)" opacity="0.3"/>
+
+  <!-- Tiny "DEKHO PANCHANG" text at bottom -->
+  <text x="256" y="470" text-anchor="middle" font-size="28" fill="#d4a853" opacity="0.4" font-family="sans-serif" letter-spacing="8" font-weight="600">DEKHO PANCHANG</text>
+</svg>

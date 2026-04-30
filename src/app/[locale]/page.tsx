@@ -630,7 +630,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div className="flex flex-wrap gap-2.5 justify-center stagger-children">
           {SECONDARY_TOOLS.map((tool) => (
             <Link key={tool.href} href={tool.href} className="group">
-              <div className={`rounded-xl bg-gradient-to-br ${tool.gradient} border ${tool.border} px-4 py-2.5 transition-all duration-200 group-hover:-translate-y-0.5`}>
+              <div className={`rounded-xl bg-gradient-to-br ${tool.gradient} border ${tool.border} px-4 py-3 transition-all duration-200 group-hover:-translate-y-0.5`}>
                 <span className="text-text-secondary group-hover:text-text-primary text-sm font-medium transition-colors" style={bf}>
                   {L(tool.label, locale)}
                 </span>

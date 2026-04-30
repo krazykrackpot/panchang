@@ -833,7 +833,7 @@ export default function MatchingPage() {
                                             <div className="w-2 h-2 rounded-full bg-gold-primary/15 mt-1.5" />
                                           )}
                                         </div>
-                                        <span className={`text-[9px] leading-tight text-center max-w-[70px] ${isBoy || isGirl ? 'text-text-primary font-semibold' : 'text-text-secondary/40'}`}>
+                                        <span className={`text-[11px] leading-tight text-center max-w-[70px] ${isBoy || isGirl ? 'text-text-primary font-semibold' : 'text-text-secondary/40'}`}>
                                           {label.split(' (')[0]}
                                         </span>
                                       </div>

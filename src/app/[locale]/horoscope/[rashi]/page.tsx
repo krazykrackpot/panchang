@@ -352,19 +352,19 @@ export default function RashiHoroscopePage() {
             {/* Rashi quick facts */}
             <div className="grid grid-cols-3 gap-3 mt-6">
               <div className="bg-white/5 rounded-lg p-3 text-center">
-                <p className="text-[10px] text-text-secondary uppercase tracking-wider">{L.ruledBy}</p>
+                <p className="text-[11px] text-text-secondary uppercase tracking-wider">{L.ruledBy}</p>
                 <p className="text-gold-light text-sm font-semibold mt-1" style={bodyFont}>
                   {tl(rashi.rulerName, locale)}
                 </p>
               </div>
               <div className="bg-white/5 rounded-lg p-3 text-center">
-                <p className="text-[10px] text-text-secondary uppercase tracking-wider">{L.element}</p>
+                <p className="text-[11px] text-text-secondary uppercase tracking-wider">{L.element}</p>
                 <p className="text-gold-light text-sm font-semibold mt-1" style={bodyFont}>
                   {tl(rashi.element, locale)}
                 </p>
               </div>
               <div className="bg-white/5 rounded-lg p-3 text-center">
-                <p className="text-[10px] text-text-secondary uppercase tracking-wider">{L.quality}</p>
+                <p className="text-[11px] text-text-secondary uppercase tracking-wider">{L.quality}</p>
                 <p className="text-gold-light text-sm font-semibold mt-1" style={bodyFont}>
                   {tl(rashi.quality, locale)}
                 </p>

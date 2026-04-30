@@ -225,7 +225,8 @@ export default function TithiMonthGrid({ year, month, days, locale, onDayClick }
   }
 
   return (
-    <div className="rounded-2xl overflow-hidden border border-gold-primary/20 bg-[#060818] shadow-xl shadow-black/30">
+    <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+    <div className="min-w-[700px] sm:min-w-0 rounded-2xl overflow-hidden border border-gold-primary/20 bg-[#060818] shadow-xl shadow-black/30">
       {/* Day name headers */}
       <div className="grid grid-cols-7 bg-gradient-to-r from-[#1a1040] via-[#15103a] to-[#1a1040] border-b border-gold-primary/15">
         {dayNames.map((name, i) => (
@@ -354,6 +355,7 @@ export default function TithiMonthGrid({ year, month, days, locale, onDayClick }
           })}
         </div>
       ))}
+    </div>
     </div>
   );
 }

@@ -29,7 +29,7 @@ export default function DashboardTabs({ tabs, defaultTab }: DashboardTabsProps) 
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-4 py-2 rounded-full text-sm whitespace-nowrap transition-all ${
+              className={`px-4 py-2.5 rounded-full text-sm whitespace-nowrap transition-all ${
                 activeTab === tab.id
                   ? 'bg-[#d4a853]/20 text-[#f0d48a] border border-[#d4a853]/40 font-semibold'
                   : 'text-[#8a8478] border border-white/[0.06] hover:border-[#d4a853]/20 hover:text-[#e6e2d8]'

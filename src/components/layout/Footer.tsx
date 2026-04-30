@@ -98,12 +98,12 @@ export default function Footer() {
               <h3 className="text-gold-primary text-xs font-bold uppercase tracking-widest mb-4">
                 {t(section.title, locale)}
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-text-secondary text-xs hover:text-gold-light transition-colors"
+                      className="text-text-secondary text-xs hover:text-gold-light transition-colors py-1 inline-block"
                     >
                       {t(link.label, locale)}
                     </Link>
@@ -123,20 +123,20 @@ export default function Footer() {
             <span className="text-text-secondary text-xs">&copy; 2026</span>
           </div>
 
-          <div className="flex items-center gap-4 text-xs text-text-secondary">
-            <Link href="/about" className="hover:text-gold-light transition-colors">
+          <div className="flex flex-wrap items-center gap-4 text-xs text-text-secondary">
+            <Link href="/about" className="hover:text-gold-light transition-colors py-1 inline-block">
               {t({ en: 'About', hi: 'परिचय', ta: 'பற்றி', bn: 'সম্পর্কে' }, locale)}
             </Link>
-            <Link href="/about/methodology" className="hover:text-gold-light transition-colors">
+            <Link href="/about/methodology" className="hover:text-gold-light transition-colors py-1 inline-block">
               {t({ en: 'Methodology', hi: 'गणना पद्धति', ta: 'முறையியல்', bn: 'পদ্ধতি' }, locale)}
             </Link>
-            <Link href="/about#contact" className="hover:text-gold-light transition-colors">
+            <Link href="/about#contact" className="hover:text-gold-light transition-colors py-1 inline-block">
               {t({ en: 'Contact', hi: 'संपर्क', ta: 'தொடர்பு', bn: 'যোগাযোগ' }, locale)}
             </Link>
-            <Link href="/privacy" className="hover:text-gold-light transition-colors">
+            <Link href="/privacy" className="hover:text-gold-light transition-colors py-1 inline-block">
               {t({ en: 'Privacy', hi: 'गोपनीयता', ta: 'தனியுரிமை', bn: 'গোপনীয়তা' }, locale)}
             </Link>
-            <Link href="/terms" className="hover:text-gold-light transition-colors">
+            <Link href="/terms" className="hover:text-gold-light transition-colors py-1 inline-block">
               {t({ en: 'Terms', hi: 'शर्तें', ta: 'விதிமுறைகள்', bn: 'শর্তাবলী' }, locale)}
             </Link>
           </div>

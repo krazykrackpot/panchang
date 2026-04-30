@@ -451,7 +451,7 @@ export default function CalendarPage() {
       <div className="flex justify-center gap-1 mb-4">
         <button
           onClick={() => { setViewMode('western'); setSelectedMonth(null); trackCalendarViewed({ view: 'western', month: selectedMonth ?? 0, year }); }}
-          className={`px-4 py-2 rounded-l-xl text-xs font-bold transition-all border ${
+          className={`px-4 py-2.5 rounded-l-xl text-xs font-bold transition-all border ${
             viewMode === 'western'
               ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
               : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
@@ -461,7 +461,7 @@ export default function CalendarPage() {
         </button>
         <button
           onClick={() => { setViewMode('lunar'); setSelectedMonth(null); trackCalendarViewed({ view: 'lunar', month: selectedMonth ?? 0, year }); }}
-          className={`px-4 py-2 text-xs font-bold transition-all border ${
+          className={`px-4 py-2.5 text-xs font-bold transition-all border ${
             viewMode === 'lunar'
               ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
               : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
@@ -471,7 +471,7 @@ export default function CalendarPage() {
         </button>
         <button
           onClick={() => { const m = new Date().getMonth(); setViewMode('grid'); setSelectedMonth(m); trackCalendarViewed({ view: 'grid', month: m, year }); }}
-          className={`px-4 py-2 rounded-r-xl text-xs font-bold transition-all border flex items-center gap-1.5 ${
+          className={`px-4 py-2.5 rounded-r-xl text-xs font-bold transition-all border flex items-center gap-1.5 ${
             viewMode === 'grid'
               ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
               : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
@@ -486,7 +486,7 @@ export default function CalendarPage() {
       <div className="flex flex-wrap justify-center gap-2 mb-6">
         <button
           onClick={() => setSelectedMonth(null)}
-          className={`px-3 py-2 rounded-xl text-xs font-bold transition-all border ${
+          className={`px-3 py-2.5 rounded-xl text-xs font-bold transition-all border ${
             selectedMonth === null
               ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
               : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
@@ -499,7 +499,7 @@ export default function CalendarPage() {
             <button
               key={i}
               onClick={() => setSelectedMonth(selectedMonth === i ? null : i)}
-              className={`px-3 py-2 rounded-xl text-xs font-bold transition-all border ${
+              className={`px-3 py-2.5 rounded-xl text-xs font-bold transition-all border ${
                 selectedMonth === i
                   ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
                   : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
@@ -513,7 +513,7 @@ export default function CalendarPage() {
             <button
               key={i}
               onClick={() => setSelectedMonth(selectedMonth === i ? null : i)}
-              className={`px-3 py-2 rounded-xl text-xs font-bold transition-all border ${
+              className={`px-3 py-2.5 rounded-xl text-xs font-bold transition-all border ${
                 selectedMonth === i
                   ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
                   : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
@@ -531,7 +531,7 @@ export default function CalendarPage() {
           <button
             key={f.key}
             onClick={() => setFilter(f.key)}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all border ${
+            className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all border ${
               filter === f.key
                 ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
                 : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'

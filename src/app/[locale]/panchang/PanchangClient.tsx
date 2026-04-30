@@ -470,8 +470,14 @@ export default function PanchangClient() {
 
       <div ref={panchangContentRef}>
       {loading ? (
-        <div className="flex items-center justify-center py-20">
+        <div className="min-h-[600px] flex flex-col items-center justify-center gap-4 py-20">
           <div className="animate-spin rounded-full h-12 w-12 border-2 border-gold-primary border-t-transparent" />
+          {/* Skeleton grid matching the 5 panchang cards to prevent CLS */}
+          <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mt-8 opacity-20">
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className="aspect-[2/3] rounded-2xl bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/5 animate-pulse" />
+            ))}
+          </div>
         </div>
       ) : panchang ? (
         <>

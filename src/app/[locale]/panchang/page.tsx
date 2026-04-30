@@ -20,7 +20,12 @@ import PanchangClient from './PanchangClient';
 // Server-side panchang computation
 // ---------------------------------------------------------------------------
 
-async function getServerPanchang(): Promise<{ panchang: PanchangData | null; locationName: string }> {
+interface ServerPanchangResult {
+  panchang: PanchangData | null;
+  location: { lat: number; lng: number; name: string; timezone: string } | null;
+}
+
+async function getServerPanchang(): Promise<ServerPanchangResult> {
   try {
     const hdrs = await headers();
     const geoLat = hdrs.get('x-vercel-ip-latitude');
@@ -40,12 +45,12 @@ async function getServerPanchang(): Promise<{ panchang: PanchangData | null; loc
       const day = now.getDate();
       const tzOffset = getUTCOffsetForDate(year, month, day, timezone);
       const panchang = computePanchang({ year, month, day, lat, lng, tzOffset, timezone, locationName });
-      return { panchang, locationName };
+      return { panchang, location: { lat, lng, name: locationName, timezone } };
     }
   } catch {
     // Geo headers unavailable (local dev) — fallback below
   }
-  return { panchang: null, locationName: '' };
+  return { panchang: null, location: null };
 }
 
 // ---------------------------------------------------------------------------
@@ -128,7 +133,7 @@ function PanchangSEOBlock({
 
 export default async function PanchangPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const { panchang } = await getServerPanchang();
+  const { panchang, location: serverLocation } = await getServerPanchang();
 
   return (
     <>
@@ -141,10 +146,14 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
       )}
 
       {/* Interactive client component: takes over for full functionality.
-          min-h reserves space to prevent CLS (0.912 measured by Lighthouse)
-          while client JS hydrates and renders the 5 panchang cards + sections. */}
+          Server panchang data is passed as props so the page renders immediately
+          without waiting for client-side geo detection + API fetch (LCP fix).
+          min-h reserves space to prevent CLS while client JS hydrates. */}
       <div className="min-h-[800px] sm:min-h-[600px]">
-        <PanchangClient />
+        <PanchangClient
+          serverPanchang={panchang}
+          serverLocation={serverLocation}
+        />
       </div>
     </>
   );

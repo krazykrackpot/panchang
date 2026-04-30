@@ -169,7 +169,14 @@ function InsightBlock({ insight }: { insight: PanchangInsight | undefined }) {
   );
 }
 
-export default function PanchangClient() {
+interface PanchangClientProps {
+  /** Server-computed panchang from Vercel geo headers — eliminates LCP waterfall */
+  serverPanchang?: PanchangData | null;
+  /** Server-resolved location from Vercel geo headers */
+  serverLocation?: { lat: number; lng: number; name: string; timezone: string } | null;
+}
+
+export default function PanchangClient({ serverPanchang, serverLocation }: PanchangClientProps) {
   const t = useTranslations('panchang');
   const tNav = useTranslations('nav');
   const locale = useLocale() as Locale;
@@ -180,9 +187,15 @@ export default function PanchangClient() {
 
   const { tradition, setTradition } = usePreferenceStore();
 
-  const [panchang, setPanchang] = useState<PanchangData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [location, setLocation] = useState<LocationData>({ lat: 0, lng: 0, name: '', tz: 0, ianaTimezone: '' });
+  // Initialize from server data when available — renders panchang on first paint (no loading spinner)
+  const [panchang, setPanchang] = useState<PanchangData | null>(serverPanchang ?? null);
+  const [loading, setLoading] = useState(!serverPanchang);
+  const [location, setLocation] = useState<LocationData>(() => {
+    if (serverLocation) {
+      return { lat: serverLocation.lat, lng: serverLocation.lng, name: serverLocation.name, tz: 0, ianaTimezone: serverLocation.timezone };
+    }
+    return { lat: 0, lng: 0, name: '', tz: 0, ianaTimezone: '' };
+  });
   const [showLocationSearch, setShowLocationSearch] = useState(false);
   const [detectingLocation, setDetectingLocation] = useState(false);
 

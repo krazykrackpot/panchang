@@ -419,26 +419,50 @@ export default function HoroscopePage() {
             </div>
           )}
 
+          {/* Moon sign banner — shown when user has birth data */}
+          {birthRashi > 0 && birthRashi <= 12 && (
+            <div className="mb-6 flex items-center gap-3 rounded-xl bg-gold-primary/8 border border-gold-primary/20 px-4 py-3">
+              <RashiIconById id={birthRashi} size={28} />
+              <p className="text-sm text-gold-light" style={bodyFont}>
+                {lk === 'hi'
+                  ? <>आपकी चन्द्र राशि है <strong>{RASHIS[birthRashi - 1]?.name.hi}</strong></>
+                  : <>Based on your birth chart, your Moon sign is <strong>{RASHIS[birthRashi - 1]?.name.en}</strong></>
+                }
+              </p>
+            </div>
+          )}
+
           {/* Sign grid */}
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mb-8">
-            {RASHIS.map((r) => (
-              <div
-                key={r.id}
-                className={`transition-all rounded-xl ${
-                  selectedSign === r.id
-                    ? 'ring-2 ring-gold-primary/60 ring-offset-2 ring-offset-[#0a0e27]'
-                    : ''
-                }`}
-              >
-                <TarotCard
-                  size="full"
-                  icon={<RashiIconById id={r.id} size={64} />}
-                  title={(r.name[lk] ?? r.name.en) as string}
-                  subtitle={(r.element[lk] ?? r.element.en) as string}
-                  onClick={() => handleSelect(r.id)}
-                />
-              </div>
-            ))}
+            {RASHIS.map((r) => {
+              const isUserSign = birthRashi === r.id;
+              return (
+                <div
+                  key={r.id}
+                  className={`relative transition-all rounded-xl ${
+                    selectedSign === r.id
+                      ? 'ring-2 ring-gold-primary/60 ring-offset-2 ring-offset-[#0a0e27]'
+                      : isUserSign
+                      ? 'ring-2 ring-gold-primary/40 ring-offset-1 ring-offset-[#0a0e27]'
+                      : ''
+                  }`}
+                >
+                  {/* "Your Sign" badge */}
+                  {isUserSign && (
+                    <span className="absolute -top-2 left-1/2 -translate-x-1/2 z-10 whitespace-nowrap rounded-full bg-gold-primary px-2 py-0.5 text-[9px] font-bold text-bg-primary leading-none">
+                      {lk === 'hi' ? 'आपकी राशि' : 'Your Sign'}
+                    </span>
+                  )}
+                  <TarotCard
+                    size="full"
+                    icon={<RashiIconById id={r.id} size={64} />}
+                    title={(r.name[lk] ?? r.name.en) as string}
+                    subtitle={(r.element[lk] ?? r.element.en) as string}
+                    onClick={() => handleSelect(r.id)}
+                  />
+                </div>
+              );
+            })}
           </div>
 
           {/* Loading state */}

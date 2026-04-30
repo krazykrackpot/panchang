@@ -45,6 +45,13 @@ export interface DailyHoroscope {
   luckyColor: LocaleText;
   luckyNumber: number;
   luckyTime: string;          // e.g. "10:00 AM - 12:00 PM"
+  // Present only when birth nakshatra was supplied (Tara Bala personalization)
+  taraBala?: {
+    taraGroup: number;        // 0-8 (Janma through Parama Mitra)
+    taraName: string;         // e.g. "Sampat"
+    isAuspicious: boolean;
+    modifier: number;         // actual score delta applied (+0.5 / -0.5 / 0)
+  };
 }
 
 export interface DailyEngineInput {
@@ -192,6 +199,25 @@ const TIME_SLOTS = [
 ];
 
 // ─────────────────────────────────────────────────────────────
+// Tara Bala scoring
+// ─────────────────────────────────────────────────────────────
+// Tara number = (currentNakshatra - birthNakshatra + 27) % 27, 0-indexed tara group = floor(tara / 3)
+// Groups (0=Janma, 2=Vipath, 4=Pratyari, 6=Naidhana) are inauspicious → -5 score modifier
+// Groups (1=Sampat, 3=Kshema, 5=Sadhaka, 7=Mitra, 8=Parama Mitra) are auspicious → +5 modifier
+const INAUSPICIOUS_TARA_GROUPS = new Set([0, 2, 4, 6]);
+const AUSPICIOUS_TARA_GROUPS   = new Set([1, 3, 5, 7, 8]);
+const TARA_NAMES = ['Janma', 'Sampat', 'Vipath', 'Kshema', 'Pratyari', 'Sadhaka', 'Naidhana', 'Mitra', 'Parama Mitra'];
+
+function taraBalaModifier(currentNakshatra: number, birthNakshatra: number): number {
+  // Both are 1-indexed (1-27); convert to 0-indexed for the formula
+  const tara = (currentNakshatra - birthNakshatra + 27) % 27;
+  const group = Math.floor(tara / 3);
+  if (AUSPICIOUS_TARA_GROUPS.has(group))   return  5;
+  if (INAUSPICIOUS_TARA_GROUPS.has(group)) return -5;
+  return 0;
+}
+
+// ─────────────────────────────────────────────────────────────
 // Main engine
 // ─────────────────────────────────────────────────────────────
 export function generateDailyHoroscope(input: DailyEngineInput): DailyHoroscope {
@@ -285,7 +311,12 @@ export function generateDailyHoroscope(input: DailyEngineInput): DailyHoroscope 
     areas.finance.score * 0.20 +
     areas.spirituality.score * 0.15
   );
-  const overallScore = Math.max(1, Math.min(10, Math.round(overallRaw * 10) / 10));
+
+  // Tara Bala refinement: when birth nakshatra is provided, apply ±5 modifier
+  // to the raw per-area scores (on 1-100 scale → ±0.5 on 1-10 scale).
+  // Modifier is applied before final clamp so it can shift borderline days.
+  const taraMod = input.nakshatra ? taraBalaModifier(currentNakshatraId, input.nakshatra) / 10 : 0;
+  const overallScore = Math.max(1, Math.min(10, Math.round((overallRaw + taraMod) * 10) / 10));
 
   // Overall tier for insight
   const overallTier = scoreToTier(overallScore);
@@ -307,6 +338,19 @@ export function generateDailyHoroscope(input: DailyEngineInput): DailyHoroscope 
     ? { en: rashi.name.en, hi: rashi.name.hi }
     : { en: 'Unknown', hi: 'अज्ञात', sa: 'अज्ञात', mai: 'अज्ञात', mr: 'अज्ञात', ta: 'அறியாத', te: 'తెలియని', bn: 'অজানা', kn: 'ಅಜ್ಞಾತ', gu: 'અજ્ઞાત' };
 
+  // Build Tara Bala metadata when birth nakshatra was supplied
+  let taraBala: DailyHoroscope['taraBala'];
+  if (input.nakshatra) {
+    const tara = (currentNakshatraId - input.nakshatra + 27) % 27;
+    const group = Math.floor(tara / 3);
+    taraBala = {
+      taraGroup: group,
+      taraName: TARA_NAMES[group] ?? 'Janma',
+      isAuspicious: AUSPICIOUS_TARA_GROUPS.has(group),
+      modifier: taraMod,
+    };
+  }
+
   return {
     date,
     moonSign,
@@ -323,5 +367,6 @@ export function generateDailyHoroscope(input: DailyEngineInput): DailyHoroscope 
     luckyColor,
     luckyNumber,
     luckyTime,
+    ...(taraBala ? { taraBala } : {}),
   };
 }

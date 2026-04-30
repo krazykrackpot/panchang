@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Loader2, Briefcase, Heart, Activity, IndianRupee, Sparkles, ArrowLeft, ChevronRight } from 'lucide-react';
+import { Loader2, Briefcase, Heart, Activity, IndianRupee, Sparkles, ArrowLeft, ChevronRight, Star } from 'lucide-react';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { RASHIS } from '@/lib/constants/rashis';
 import { getRashiBySlug } from '@/lib/constants/rashi-slugs';
@@ -12,8 +12,10 @@ import { Link } from '@/lib/i18n/navigation';
 import ShareButton from '@/components/ui/ShareButton';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale, getHeadingFont, getBodyFont, dataLocale } from '@/lib/utils/locale-fonts';
+import { useBirthDataStore } from '@/stores/birth-data-store';
 import type { Locale } from '@/types/panchang';
 import type { DailyHoroscope } from '@/lib/horoscope/daily-engine';
+import type { KundaliData } from '@/types/kundali';
 
 // ---------------------------------------------------------------------------
 // Labels
@@ -41,6 +43,12 @@ const LABELS = {
     ctaDesc: 'Generate your Kundali to unlock daily predictions tailored to your exact birth chart.',
     ctaButton: 'Generate Kundali',
     loading: 'Calculating your horoscope...',
+    personalizedFor: 'Personalized for you',
+    basedOnBirthChart: 'Based on your birth chart',
+    personalizedLoading: 'Reading your chart...',
+    taraBala: 'Tara Bala',
+    taraAuspicious: 'Auspicious nakshatra transit',
+    taraInauspicious: 'Challenging nakshatra transit',
   },
   hi: {
     backToAll: 'सभी राशियाँ',
@@ -64,6 +72,12 @@ const LABELS = {
     ctaDesc: 'अपनी सटीक जन्म कुण्डली के अनुरूप दैनिक भविष्यवाणी पाने के लिए कुण्डली बनाएँ।',
     ctaButton: 'कुण्डली बनाएँ',
     loading: 'आपका राशिफल गणना हो रहा है...',
+    personalizedFor: 'आपके लिए व्यक्तिगत',
+    basedOnBirthChart: 'आपकी जन्म कुण्डली के आधार पर',
+    personalizedLoading: 'आपकी कुण्डली पढ़ी जा रही है...',
+    taraBala: 'तारा बल',
+    taraAuspicious: 'शुभ नक्षत्र गोचर',
+    taraInauspicious: 'चुनौतीपूर्ण नक्षत्र गोचर',
   },
 };
 
@@ -82,6 +96,66 @@ const AREA_COLORS: Record<string, string> = {
   finance: 'from-amber-400 to-yellow-600',
   spirituality: 'from-purple-400 to-violet-600',
 };
+
+// ---------------------------------------------------------------------------
+// Chart snapshot extraction (mirrors PersonalizedHoroscope.tsx logic)
+// ---------------------------------------------------------------------------
+interface ChartSnapshot {
+  ascendantSign: number;
+  moonSign: number;
+  currentMahaDasha: string;
+  currentAntarDasha: string;
+  savTable: number[];
+  keyYogas: string[];
+  keyDoshas: string[];
+  name: string;
+}
+
+function extractSnapshot(kundali: KundaliData): ChartSnapshot {
+  const now = new Date();
+  const moonPlanet = kundali.planets.find((p) => p.planet.id === 1);
+
+  let mahaDasha = 'Unknown';
+  let antarDasha = 'Unknown';
+  for (const d of kundali.dashas) {
+    if (d.level === 'maha' && new Date(d.startDate) <= now && now <= new Date(d.endDate)) {
+      mahaDasha = d.planetName.en;
+      if (d.subPeriods) {
+        for (const sub of d.subPeriods) {
+          if (new Date(sub.startDate) <= now && now <= new Date(sub.endDate)) {
+            antarDasha = sub.planetName.en;
+            break;
+          }
+        }
+      }
+      break;
+    }
+  }
+
+  const keyYogas: string[] = [];
+  if (kundali.yogasComplete) {
+    for (const y of kundali.yogasComplete) {
+      if ((y as { present?: boolean }).present && keyYogas.length < 3) {
+        keyYogas.push((y as { name?: { en?: string } }).name?.en || 'Yoga');
+      }
+    }
+  }
+
+  const keyDoshas: string[] = [];
+  if ('mangalDosha' in kundali && kundali.mangalDosha) keyDoshas.push('Mangal Dosha');
+  if ('kalaSarpa' in kundali && kundali.kalaSarpa) keyDoshas.push('Kala Sarpa');
+
+  return {
+    name: '',
+    ascendantSign: kundali.ascendant.sign,
+    moonSign: moonPlanet?.sign || 1,
+    currentMahaDasha: mahaDasha,
+    currentAntarDasha: antarDasha,
+    savTable: kundali.ashtakavarga?.reducedSavTable || kundali.ashtakavarga?.savTable || new Array(12).fill(25),
+    keyYogas,
+    keyDoshas,
+  };
+}
 
 function scoreColor(score: number): string {
   if (score >= 7) return 'text-emerald-400';
@@ -102,6 +176,14 @@ function scoreLabel(score: number, locale: string): string {
   return tl({ en: 'Challenging', hi: 'चुनौतीपूर्ण', sa: 'कठिनः' }, locale);
 }
 
+interface PersonalizedForecast {
+  date: string;
+  forecast: string;
+  moonTransitHouse: number;
+  moonTransitSign: number;
+  dasha: { maha: string; antar: string };
+}
+
 export default function RashiHoroscopePage() {
   const locale = useLocale() as Locale;
   const params = useParams();
@@ -114,26 +196,83 @@ export default function RashiHoroscopePage() {
   const bodyFont = getBodyFont(locale);
   const L = isHi ? LABELS.hi : LABELS.en;
 
+  // Birth data store (localStorage) — only available client-side
+  const { birthRashi, birthNakshatra, loadFromStorage } = useBirthDataStore();
+  useEffect(() => { loadFromStorage(); }, [loadFromStorage]);
+
+  // True when the user is viewing their own sign page
+  const isOwnSign = rashi != null && birthRashi === rashi.id && birthRashi > 0;
+
   const [horoscope, setHoroscope] = useState<DailyHoroscope | null>(null);
   const [loading, setLoading] = useState(true);
   const [date, setDate] = useState('');
 
+  // Tier 3: personalized forecast panel
+  const [personalForecast, setPersonalForecast] = useState<PersonalizedForecast | null>(null);
+  const [personalLoading, setPersonalLoading] = useState(false);
+
+  // Fetch generic daily horoscope — append nakshatra when on own sign (Tier 2)
   useEffect(() => {
     if (!rashi) return;
     const now = new Date();
     const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
     setDate(today);
 
+    // Build URL — nakshatra param is appended when viewing own sign with known birth nakshatra
+    // URL params take priority over cached state (URL is the source of truth for rashi)
+    let url = `/api/horoscope/daily?moonSign=${rashi.id}&date=${today}`;
+    if (birthRashi === rashi.id && birthNakshatra > 0) {
+      url += `&nakshatra=${birthNakshatra}`;
+    }
+
     setLoading(true);
-    fetch(`/api/horoscope/daily?moonSign=${rashi.id}&date=${today}`)
+    fetch(url)
       .then(res => {
         if (res.ok) return res.json();
         throw new Error('Failed');
       })
       .then((data: DailyHoroscope) => setHoroscope(data))
-      .catch(err => console.error('Failed to fetch daily horoscope:', err))
+      .catch(err => console.error('[horoscope/rashi] Failed to fetch daily horoscope:', err))
       .finally(() => setLoading(false));
-  }, [rashi]);
+  }, [rashi, birthRashi, birthNakshatra]);
+
+  // Tier 3: load kundali from sessionStorage and fetch personalized forecast
+  useEffect(() => {
+    if (!isOwnSign) return;
+
+    let kundali: KundaliData | null = null;
+    try {
+      const raw = sessionStorage.getItem('kundali-data');
+      if (raw) kundali = JSON.parse(raw) as KundaliData;
+    } catch {
+      // sessionStorage unavailable or parse error — skip personalization
+    }
+
+    if (!kundali) return;
+
+    const snapshot = extractSnapshot(kundali);
+    setPersonalLoading(true);
+
+    fetch('/api/horoscope/personalized', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chart: snapshot,
+        lat: 0,
+        lng: 0,
+        locale,
+      }),
+    })
+      .then(res => {
+        if (res.ok) return res.json();
+        throw new Error(`HTTP ${res.status}`);
+      })
+      .then((data: PersonalizedForecast) => setPersonalForecast(data))
+      .catch(err => console.error('[horoscope/personalized] Failed to fetch personalized forecast:', err))
+      .finally(() => setPersonalLoading(false));
+  // Run after isOwnSign is stable (depends on birthRashi store being loaded)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOwnSign]);
 
   if (!rashi) {
     return (
@@ -196,6 +335,13 @@ export default function RashiHoroscopePage() {
                 <p className="text-gold-light text-lg mb-1" style={headingFont}>{L.horoscopeToday}</p>
                 <p className="text-text-secondary text-sm" style={bodyFont}>{L.subtitle}</p>
                 {date && <p className="text-gold-dark text-xs mt-2">{date}</p>}
+                {/* Tier 2: "Personalized for you" badge — shown when user is on their own sign */}
+                {isOwnSign && (
+                  <span className="inline-flex items-center gap-1.5 mt-3 rounded-full bg-gold-primary/15 border border-gold-primary/30 px-3 py-1 text-xs font-semibold text-gold-light">
+                    <Star className="w-3 h-3 fill-gold-primary text-gold-primary" />
+                    {L.personalizedFor}
+                  </span>
+                )}
               </div>
             </div>
 
@@ -228,6 +374,40 @@ export default function RashiHoroscopePage() {
               <Loader2 className="w-8 h-8 animate-spin text-gold-primary mx-auto mb-3" />
               <p className="text-text-secondary text-sm" style={bodyFont}>{L.loading}</p>
             </div>
+          )}
+
+          {/* Tier 3: Personalized Insight panel — shown when user has kundali data in sessionStorage */}
+          {isOwnSign && (personalLoading || personalForecast) && (
+            <motion.div
+              initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+              className="mb-6 rounded-2xl border border-gold-primary/30 bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] p-5">
+              <div className="flex items-center gap-2 mb-3">
+                <Sparkles className="w-4 h-4 text-gold-primary" />
+                <p className="text-xs font-semibold text-gold-dark uppercase tracking-wider">
+                  {L.basedOnBirthChart}
+                </p>
+              </div>
+              {personalLoading && (
+                <div className="flex items-center gap-2 text-text-secondary text-sm">
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span style={bodyFont}>{L.personalizedLoading}</span>
+                </div>
+              )}
+              {personalForecast && !personalLoading && (
+                <>
+                  {/* Dasha context badge */}
+                  {personalForecast.dasha?.maha && (
+                    <span className="inline-flex items-center gap-1 mb-3 rounded-full bg-purple-600/20 border border-purple-500/25 px-3 py-1 text-xs font-medium text-purple-300">
+                      {isHi ? 'दशा' : 'Dasha'}: {personalForecast.dasha.maha}
+                      {personalForecast.dasha.antar ? ` / ${personalForecast.dasha.antar}` : ''}
+                    </span>
+                  )}
+                  <p className="text-text-primary text-sm leading-relaxed" style={bodyFont}>
+                    {personalForecast.forecast}
+                  </p>
+                </>
+              )}
+            </motion.div>
           )}
 
           {/* Horoscope result */}
@@ -275,6 +455,22 @@ export default function RashiHoroscopePage() {
                     {horoscope.insight[lk]}
                   </p>
                 </div>
+
+                {/* Tier 2: Tara Bala indicator — shown when score was personalized with birth nakshatra */}
+                {horoscope.taraBala && (
+                  <div className={`flex items-center gap-2 mb-5 rounded-lg px-3 py-2 text-xs font-medium border ${
+                    horoscope.taraBala.isAuspicious
+                      ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300'
+                      : 'bg-red-500/10 border-red-500/20 text-red-300'
+                  }`}>
+                    <Star className={`w-3.5 h-3.5 ${horoscope.taraBala.isAuspicious ? 'fill-emerald-400 text-emerald-400' : 'fill-red-400 text-red-400'}`} />
+                    <span>
+                      {L.taraBala}: <strong>{horoscope.taraBala.taraName}</strong>
+                      {' — '}
+                      {horoscope.taraBala.isAuspicious ? L.taraAuspicious : L.taraInauspicious}
+                    </span>
+                  </div>
+                )}
 
                 {/* Lucky trio */}
                 <div className="grid grid-cols-3 gap-3">

@@ -41,6 +41,8 @@ const LOCATIONS = [
   { name: 'Singapore', lat: 1.3521, lng: 103.8198, tz: 'Asia/Singapore' },
   { name: 'SaoPaulo', lat: -23.5505, lng: -46.6333, tz: 'America/Sao_Paulo' },
   { name: 'Reykjavik', lat: 64.1466, lng: -21.9426, tz: 'Atlantic/Reykjavik' },
+  { name: 'Helsinki', lat: 60.1699, lng: 24.9384, tz: 'Europe/Helsinki' },
+  { name: 'Anchorage', lat: 61.2181, lng: -149.9003, tz: 'America/Anchorage' },
 ];
 
 const YEARS = [2025, 2026, 2027];
@@ -72,20 +74,38 @@ for (const year of YEARS) {
         let ok = true;
         const issues: string[] = [];
 
-        // Skip polar edge cases (Reykjavik midnight sun / polar night)
-        if (loc.name !== 'Reykjavik') {
+        // Polar locations (|lat| > 60°): wider thresholds for midnight sun / polar night.
+        // Near summer solstice, sunrise can be 01:00-03:00 and sunset can wrap past midnight.
+        // Near winter solstice, sunrise can be 10:00+ and sunset 14:00-.
+        const isPolar = Math.abs(loc.lat) > 60;
+        // High-latitude non-polar (50-60°): winter days can be < 8h (e.g., London 7h50m Dec 21)
+        const isHighLat = Math.abs(loc.lat) > 50;
+
+        if (isPolar) {
+          // Polar: just verify sunrise is a valid time string, tithi exists, no crash
+          if (!p.sunrise || p.sunrise === '--:--') { ok = false; issues.push('no sunrise'); }
+          if (!p.sunset || p.sunset === '--:--') { ok = false; issues.push('no sunset'); }
+        } else {
           if (srDec < 3 || srDec > 10) { ok = false; issues.push(`SR=${p.sunrise} out of 3-10`); }
           if (ssDec < 14 || ssDec > 22) { ok = false; issues.push(`SS=${p.sunset} out of 14-22`); }
-          if (ssDec - srDec < 7) { ok = false; issues.push(`day=${(ssDec - srDec).toFixed(1)}h`); }
+          const minDay = isHighLat ? 7 : 8; // London winter = 7h50m
+          if (ssDec - srDec < minDay) { ok = false; issues.push(`day=${(ssDec - srDec).toFixed(1)}h < ${minDay}h`); }
           if (ssDec <= srDec) { ok = false; issues.push('SS<=SR'); }
         }
 
+        // Rahu Kaal sanity — for polar, just check it's not negative duration
         const rkDur = rkE - rkS;
-        if (loc.name !== 'Reykjavik') {
+        if (isPolar) {
+          // In polar cases, Rahu Kaal might wrap past midnight — just check duration is positive
+          // when accounting for wrap: if rkE < rkS, actual duration = rkE + 24 - rkS
+          const adjustedDur = rkDur < 0 ? rkDur + 24 : rkDur;
+          if (adjustedDur < 0.5 || adjustedDur > 4) { ok = false; issues.push(`RK dur=${adjustedDur.toFixed(1)}h`); }
+        } else {
           if (rkS < srDec - 0.1 || rkE > ssDec + 0.1) { ok = false; issues.push('RK outside day'); }
           if (rkDur < 0.5 || rkDur > 3) { ok = false; issues.push(`RK dur=${rkDur.toFixed(1)}h`); }
         }
 
+        // Pancha anga must always be present regardless of latitude
         if (!p.tithi?.name?.en || !p.tithi?.paksha) { ok = false; issues.push('no tithi'); }
         if (!p.nakshatra?.name?.en) { ok = false; issues.push('no nakshatra'); }
         if (!p.yoga?.name?.en) { ok = false; issues.push('no yoga'); }
@@ -106,12 +126,11 @@ if (failures.length) {
   console.log('\nFAILURES:');
   failures.forEach(f => console.log(`  ${f}`));
 }
-// Allow up to 6 polar edge-case failures (Reykjavik summer + London winter short day)
-if (failed > 6) {
-  console.error(`\n❌ TOO MANY FAILURES (${failed} > 6 allowed polar edge cases)`);
+if (failed > 0) {
+  console.error(`\n❌ ${failed} FAILURES`);
   exitCode = 1;
 } else {
-  console.log('\n✅ Sunrise/Sunset validation PASSED');
+  console.log('\n✅ Sunrise/Sunset validation PASSED — all 540 points');
 }
 
 // ══════════════════════════════════════════════════════════════

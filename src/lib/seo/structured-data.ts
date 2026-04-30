@@ -257,6 +257,63 @@ export function generateEventLD(opts: {
   };
 }
 
+/**
+ * Generate expertise-focused JSON-LD for dosha, remedies, and health-related pages.
+ * Signals E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) to Google.
+ *
+ * Uses SpecialAnnouncement-like patterns with author credentials and citation references.
+ * Applicable to: dosha pages, remedies, medical astrology, health-related learn pages.
+ */
+export function generateExpertiseArticleLD(opts: {
+  title: string;
+  description: string;
+  url: string;
+  locale: string;
+  /** Classical source texts referenced (e.g., "Brihat Parashara Hora Shastra Chapter 81") */
+  citations?: string[];
+  /** Specific area of expertise */
+  expertise?: string[];
+}): object {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: opts.title,
+    description: opts.description,
+    url: opts.url,
+    inLanguage: opts.locale,
+    isAccessibleForFree: true,
+    author: {
+      '@type': 'Person',
+      name: 'Aditya Kumar',
+      url: `${BASE_URL}/about`,
+      knowsAbout: opts.expertise ?? [
+        'Vedic Astrology (Jyotish)',
+        'Brihat Parashara Hora Shastra',
+        'Dosha Analysis',
+        'Vedic Remedial Measures',
+      ],
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Dekho Panchang',
+      url: BASE_URL,
+      logo: { '@type': 'ImageObject', url: `${BASE_URL}/apple-touch-icon.png` },
+    },
+    ...(opts.citations?.length
+      ? {
+          citation: opts.citations.map((c) => ({
+            '@type': 'CreativeWork',
+            name: c,
+          })),
+        }
+      : {}),
+    about: (opts.expertise ?? ['Vedic Astrology']).map((topic) => ({
+      '@type': 'Thing',
+      name: topic,
+    })),
+  };
+}
+
 export function generateWebSiteLD(): object {
   return {
     '@context': 'https://schema.org',

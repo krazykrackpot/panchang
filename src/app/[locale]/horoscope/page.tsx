@@ -585,6 +585,8 @@ export default function HoroscopePage() {
           )}
         </div>
       </section>
+
+      <RelatedLinks type="learn" links={getLearnLinksForTool('/horoscope')} locale={locale} />
     </div>
   );
 }

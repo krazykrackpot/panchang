@@ -984,6 +984,8 @@ export default function MedicalAstrologyPage() {
             </motion.div>
           )}
         </AnimatePresence>
+
+        <RelatedLinks type="learn" links={getLearnLinksForTool('/medical-astrology')} locale={locale} />
       </div>
     </main>
   );

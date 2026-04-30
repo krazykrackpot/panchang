@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
-import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
+import { generateToolLD, generateBreadcrumbLD, generateExpertiseArticleLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -16,10 +16,19 @@ export default async function Layout({ children, params }: { children: React.Rea
     `https://dekhopanchang.com/${locale}/medical-astrology`,
   );
   const breadcrumbLD = generateBreadcrumbLD(`/${locale}/medical-astrology`, locale);
+  const expertiseLD = generateExpertiseArticleLD({
+    title: 'Medical Astrology (Chikitsa Jyotish) — Prakriti & Body Map',
+    description: 'Vedic medical astrology analysis covering Ayurvedic constitution (Prakriti), body vulnerability mapping, health timeline, and disease susceptibility patterns.',
+    url: `https://dekhopanchang.com/${locale}/medical-astrology`,
+    locale,
+    citations: ['Brihat Parashara Hora Shastra — Disease Chapter', 'Charaka Samhita — Prakriti Classification', 'Jataka Parijata — Medical Indicators'],
+    expertise: ['Medical Astrology (Chikitsa Jyotish)', 'Ayurvedic Constitution (Prakriti)', 'Planetary Health Indicators', 'Vedic Disease Analysis'],
+  });
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(toolLD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(expertiseLD) }} />
       {children}
     </>
   );

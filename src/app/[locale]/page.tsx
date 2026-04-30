@@ -546,7 +546,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               </linearGradient>
             </defs>
             {/* Outer rashi ring — bold gold */}
-            <circle cx="100" cy="100" r="92" stroke="#f0d48a" strokeWidth="2" strokeOpacity="0.55" />
+            <circle cx="100" cy="100" r="92" stroke="#d4a853" strokeWidth="1.5" strokeOpacity="0.35" />
             <circle cx="100" cy="100" r="72" stroke="#d4a853" strokeWidth="0.5" strokeOpacity="0.1" />
             {/* 12 rashi segments with element-colored fills */}
             {Array.from({ length: 12 }, (_, i) => {

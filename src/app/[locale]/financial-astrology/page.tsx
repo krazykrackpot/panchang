@@ -324,6 +324,8 @@ export default function FinancialAstrologyPage() {
           <DisclaimerBanner text={result?.disclaimer || L(locale, 'disclaimer')} />
         </div>
       )}
+
+      <RelatedLinks type="learn" links={getLearnLinksForTool('/financial-astrology')} locale={locale} />
     </div>
   );
 }

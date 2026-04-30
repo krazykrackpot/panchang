@@ -40,8 +40,9 @@ Updated: 2026-04-30
 - [x] Update Organization schema `sameAs` — Twitter + YouTube live
 - [x] New ॐ icon across all sizes (favicon, PWA, app icons)
 - [x] Product Hunt — launched
+- [x] Google Business Profile — Ujjain, MP
 - [ ] Create Instagram @dekhopanchang (business account)
-- [ ] Submit to: Google Business, AlternativeTo, SaasHub, ToolPilot
+- [ ] Submit to: AlternativeTo, SaasHub, ToolPilot
 
 ### Recurring (~10 min/week)
 - [ ] Reddit: r/hinduism, r/india, r/astrology — genuine answers with links

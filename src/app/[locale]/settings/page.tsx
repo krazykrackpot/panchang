@@ -760,7 +760,7 @@ export default function SettingsPage() {
                 type="text"
                 value={profile.display_name}
                 onChange={(e) => setProfile({ ...profile, display_name: e.target.value })}
-                className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/70 focus:border-gold-primary/40 focus:outline-none text-sm"
+                className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/70 focus:border-gold-primary/40 focus:outline-none text-base sm:text-sm"
                 placeholder="Enter your full name"
               />
             </div>
@@ -772,7 +772,7 @@ export default function SettingsPage() {
                 type="date"
                 value={profile.date_of_birth}
                 onChange={(e) => setProfile({ ...profile, date_of_birth: e.target.value })}
-                className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary focus:border-gold-primary/40 focus:outline-none text-sm [color-scheme:dark]"
+                className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary focus:border-gold-primary/40 focus:outline-none text-base sm:text-sm [color-scheme:dark]"
               />
             </div>
 
@@ -784,7 +784,7 @@ export default function SettingsPage() {
                 value={profile.birth_time_known ? profile.time_of_birth : '12:00'}
                 onChange={(e) => setProfile({ ...profile, time_of_birth: e.target.value })}
                 disabled={!profile.birth_time_known}
-                className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary focus:border-gold-primary/40 focus:outline-none text-sm disabled:opacity-40 [color-scheme:dark]"
+                className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary focus:border-gold-primary/40 focus:outline-none text-base sm:text-sm disabled:opacity-40 [color-scheme:dark]"
               />
               <label className="flex items-center gap-2 mt-2 cursor-pointer">
                 <input
@@ -845,7 +845,7 @@ export default function SettingsPage() {
               <select
                 value={profile.ayanamsha}
                 onChange={(e) => setProfile({ ...profile, ayanamsha: e.target.value })}
-                className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary focus:border-gold-primary/40 focus:outline-none text-sm [color-scheme:dark]"
+                className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary focus:border-gold-primary/40 focus:outline-none text-base sm:text-sm [color-scheme:dark]"
               >
                 {AYANAMSHA_OPTIONS.map((opt) => (
                   <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -919,7 +919,7 @@ export default function SettingsPage() {
                   const newLocale = e.target.value;
                   router.push(`/${newLocale}/settings`);
                 }}
-                className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary focus:border-gold-primary/40 focus:outline-none text-sm [color-scheme:dark]"
+                className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary focus:border-gold-primary/40 focus:outline-none text-base sm:text-sm [color-scheme:dark]"
               >
                 {LANGUAGE_OPTIONS.map((opt) => (
                   <option key={opt.value} value={opt.value}>{opt.label}</option>

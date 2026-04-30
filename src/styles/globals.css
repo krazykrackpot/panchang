@@ -390,6 +390,13 @@ html[lang="sa"] a {
   hyphens: auto;
 }
 
+/* Mobile touch: remove 300ms tap delay on interactive elements */
+button,
+a,
+[role="button"] {
+  touch-action: manipulation;
+}
+
 /* Selection color */
 ::selection {
   background-color: rgba(212, 168, 83, 0.3);

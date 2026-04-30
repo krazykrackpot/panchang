@@ -137,7 +137,7 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       onSubmit={handleSubmit}
-      className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 max-w-2xl mx-auto"
+      className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 sm:p-6 md:p-8 max-w-2xl mx-auto"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Name */}
@@ -163,7 +163,7 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
                 key={opt.value}
                 type="button"
                 onClick={() => setFormData({ ...formData, relationship: opt.value })}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
+                className={`px-4 py-2.5 sm:px-3 sm:py-1.5 rounded-lg text-sm sm:text-xs font-medium border transition-all ${
                   formData.relationship === opt.value
                     ? 'bg-gold-primary/20 border-gold-primary/50 text-gold-light'
                     : 'border-gold-primary/15 text-text-secondary hover:border-gold-primary/30 hover:text-text-primary'

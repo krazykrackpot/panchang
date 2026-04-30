@@ -92,6 +92,16 @@ export default function Navbar() {
   // Auto-detect location on mount
   useEffect(() => { locationStore.detect(); }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
+
   const ritualsLabel = msg('rituals', locale);
 
   const navItems: NavItem[] = [
@@ -196,20 +206,20 @@ export default function Navbar() {
 
         {/* Mobile menu */}
         {isOpen && (
-          <div className="lg:hidden py-4 border-t border-gold-primary/10 max-h-[80vh] overflow-y-auto">
+          <div className="lg:hidden py-4 border-t border-gold-primary/10 max-h-[80vh] overflow-y-auto overscroll-contain">
             <div className="flex flex-col gap-1">
               {hydrated && user && (
                 <>
                   <Link
                     href="/dashboard"
-                    className="text-gold-light hover:text-gold-primary transition-colors px-3 py-2 text-sm font-semibold"
+                    className="text-gold-light hover:text-gold-primary transition-colors px-3 py-3 text-sm font-semibold"
                     onClick={() => setIsOpen(false)}
                   >
                     {locale === 'sa' ? 'मम पटलम्' : msg('myDashboard', locale)}
                   </Link>
                   <Link
                     href="/dashboard/family"
-                    className="text-gold-light/70 hover:text-gold-primary transition-colors px-3 py-2 text-sm pl-6"
+                    className="text-gold-light/70 hover:text-gold-primary transition-colors px-3 py-3 text-sm pl-6"
                     onClick={() => setIsOpen(false)}
                   >
                     {locale === 'hi' ? 'परिवार' : locale === 'ta' ? 'குடும்பம்' : locale === 'bn' ? 'পরিবার' : 'Family'}
@@ -249,7 +259,7 @@ export default function Navbar() {
                   <Link
                     key={item.href}
                     href={item.href!}
-                    className="text-text-secondary hover:text-gold-light transition-colors px-3 py-2 text-sm font-medium"
+                    className="text-text-secondary hover:text-gold-light transition-colors px-3 py-3 text-sm font-medium"
                     onClick={() => setIsOpen(false)}
                   >
                     {item.label}

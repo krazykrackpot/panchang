@@ -65,7 +65,7 @@ export default function UserMenu() {
       <>
         <button
           onClick={() => setShowAuth(true)}
-          className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium border border-gold-primary/30 text-gold-light rounded-lg hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300 whitespace-nowrap"
+          className="flex items-center gap-1.5 px-3 py-2.5 sm:py-1.5 text-sm font-medium border border-gold-primary/30 text-gold-light rounded-lg hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300 whitespace-nowrap"
           aria-label="Sign in"
         >
           <User className="w-3.5 h-3.5 shrink-0" />
@@ -82,7 +82,7 @@ export default function UserMenu() {
     <div ref={ref} className="relative">
       <button
         onClick={() => setMenuOpen(!menuOpen)}
-        className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium border border-gold-primary/20 text-gold-light rounded-lg hover:bg-gold-primary/10 transition-all"
+        className="flex items-center gap-2 px-3 py-2.5 sm:py-1.5 text-sm font-medium border border-gold-primary/20 text-gold-light rounded-lg hover:bg-gold-primary/10 transition-all"
         aria-expanded={menuOpen}
         aria-haspopup="true"
       >
@@ -105,21 +105,21 @@ export default function UserMenu() {
           </div>
           <a
             href={`/${locale}/profile`}
-            className="flex items-center gap-2 px-4 py-2 text-sm text-text-secondary hover:text-gold-light hover:bg-gold-primary/10 transition-colors"
+            className="flex items-center gap-2 px-4 py-3 sm:py-2 text-sm text-text-secondary hover:text-gold-light hover:bg-gold-primary/10 transition-colors"
           >
             <User className="w-3.5 h-3.5" />
             {isDevanagariLocale(locale) ? (locale === 'sa' ? 'मम कुण्डली' : 'मेरी कुंडली') : 'My Profile'}
           </a>
           <a
             href={`/${locale}/settings`}
-            className="flex items-center gap-2 px-4 py-2 text-sm text-text-secondary hover:text-gold-light hover:bg-gold-primary/10 transition-colors"
+            className="flex items-center gap-2 px-4 py-3 sm:py-2 text-sm text-text-secondary hover:text-gold-light hover:bg-gold-primary/10 transition-colors"
           >
             <Settings className="w-3.5 h-3.5" />
             {tl({ en: 'Settings', hi: 'सेटिंग्स', sa: 'सेटिंग्स' }, locale)}
           </a>
           <button
             onClick={() => { signOut(); setMenuOpen(false); }}
-            className="flex items-center gap-2 w-full text-left px-4 py-2 text-sm text-text-secondary hover:text-red-400 hover:bg-red-500/10 transition-colors"
+            className="flex items-center gap-2 w-full text-left px-4 py-3 sm:py-2 text-sm text-text-secondary hover:text-red-400 hover:bg-red-500/10 transition-colors"
           >
             <LogOut className="w-3.5 h-3.5" />
             Sign Out

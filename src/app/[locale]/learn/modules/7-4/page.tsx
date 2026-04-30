@@ -106,6 +106,44 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>The Hora in Practical Muhurta Selection</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">The hora system is not merely a theoretical derivation — it is a practical timing tool used daily by millions. Each of the 24 horas in a day carries the energy of its ruling planet, and practitioners select activities to align with the appropriate hora. The duration of each hora is not a fixed 60 minutes. Because the Vedic day begins at sunrise (not midnight), the daytime is divided into 12 equal horas from sunrise to sunset, and the nighttime into 12 equal horas from sunset to next sunrise. In summer at mid-latitudes, a daytime hora might last 80 minutes while a nighttime hora lasts only 40 minutes. This unequal division is called &quot;temporal hours&quot; and differs from the equal 60-minute hours used in modern timekeeping.</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">For example, in Corseaux on April 2, 2026: sunrise ~07:10, sunset ~19:50. Day length = 12h 40m = 760 minutes. Each daytime hora = 760/12 = 63.3 minutes. Night length = 11h 20m = 680 minutes. Each nighttime hora = 680/12 = 56.7 minutes. Wednesday starts with Mercury hora at sunrise (07:10). The Mercury hora runs until 07:10 + 63.3 min = 08:13. Then Moon hora until 09:17, then Saturn until 10:20, then Jupiter until 11:23, and so on through the Chaldean sequence.</p>
+        <p className="text-text-secondary text-sm leading-relaxed">This unequal hora duration creates a subtle but important effect: during summer, beneficial daytime horas are longer (more time to act), while during winter they are shorter. The converse holds for nighttime horas. Ancient astrologers considered this seasonally-adjusted timing to be more &quot;natural&quot; than fixed hours, as it respects the actual rhythm of light and darkness at each location.</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Myth:</span> &quot;The Hora system is unique to India.&quot; The identical 24-hora planetary-hour system appears in Hellenistic astrology (Paulus Alexandrinus, 4th century CE), medieval European astrology, and Islamic astronomical texts. Whether it originated in Babylon, India, or Egypt — or arose independently in multiple places — is debated, but the mathematical structure is universal.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Myth:</span> &quot;Each hora is exactly one hour (60 minutes).&quot; This is only true at the equinoxes when day and night are equal. At other times of year, daytime horas and nighttime horas have different lengths. Our app computes the exact unequal hora durations based on the actual sunrise and sunset for the user&apos;s location, ensuring accurate hora boundaries year-round.</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Myth:</span> &quot;The &apos;jump of 3&apos; is a coincidence that happens to work.&quot; It is a strict mathematical necessity. For any system with P planets and H hours per day, the daily ruler advances by (H mod P) positions. Since H=24 and P=7, the advance is always 3. If there were 25 hours in a day, the advance would be 4, producing a different weekday sequence. If there were 8 visible planets, the entire system would restructure. The 7-day week is not culturally arbitrary — it is the unique mathematical consequence of 7 visible planets and 24 hours.</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Practical Application: Choosing the Right Hora</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Sun hora:</span> Government work, meeting authority figures, medical treatments, gaining recognition. Avoid for secret activities.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Moon hora:</span> Travel, meeting people, public relations, agriculture, water-related activities. Best for activities involving the public.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Mars hora:</span> Surgery, sports, property purchase, military matters, courage-demanding actions. Avoid for peaceful negotiations.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Mercury hora:</span> Business communication, contracts, learning, writing, trade. The best hora for intellectual work.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Jupiter hora:</span> Spiritual practices, teaching, legal matters, charity, religious ceremonies. The most universally auspicious hora.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Venus hora:</span> Marriage, romance, arts, music, luxury purchases, beauty treatments. Best for all pleasurable activities.</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Saturn hora:</span> Discipline, penance, dealing with servants, mining, agriculture, removal of obstacles. Powerful for karmic work.</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Cross-References</h4>
+        <p className="text-text-secondary text-xs leading-relaxed">For how Vara combines with Nakshatra and Tithi for muhurta selection, see <span className="text-gold-light">Module 7.3 (Vara)</span> and <span className="text-gold-light">Module 8.1 (Muhurta)</span>. For the astronomical computation of sunrise and sunset (which determines hora durations), see <span className="text-gold-light">Module 22.4 (Sunrise/Sunset)</span>. For the Choghadiya system (another time-division scheme based on Vara), see <span className="text-gold-light">Module 8.2 (Choghadiya)</span>. Our app&apos;s <span className="text-gold-light">Hora Calculator</span> tool provides real-time hora boundaries for any location worldwide.</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module7_4Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

@@ -101,6 +101,33 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Worked Example: EoT for April 2, 2026', hi: 'कार्यान्वित उदाहरण: 2 अप्रैल 2026 के लिए EoT', sa: 'कार्यान्वित उदाहरण: 2 अप्रैल 2026 के लिए EoT' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>2 अप्रैल, 2026 के लिए (T = 0.26246): L₀ ≈ 8.97° (mod 360), M ≈ 85.73°। ε ≈ 23.44°, y = tan²(23.44°/2) = tan²(11.72°) = 0.04304। e = 0.01671। तिर्यकता पद: y × sin(2 × 8.97°) = 0.04304 × sin(17.94°) = 0.04304 × 0.308 = 0.01326 rad। उत्केन्द्रता पद: -2 × 0.01671 × sin(85.73°) = -0.03342 × 0.9972 = -0.03333 rad। मिनटों में बदलें: EoT ≈ (0.01326 - 0.03333) × (180/π) × 4 = (-0.02007) × 229.18 = -4.6 मिनट।</> : <>For April 2, 2026 (T = 0.26246): L₀ ≈ 8.97° (mod 360), M ≈ 85.73°. Obliquity ε ≈ 23.44°, y = tan²(23.44°/2) = tan²(11.72°) = 0.04304. Eccentricity e = 0.01671. Obliquity term: y x sin(2 x 8.97°) = 0.04304 x sin(17.94°) = 0.04304 x 0.308 = 0.01326 rad. Eccentricity term: -2 x 0.01671 x sin(85.73°) = -0.03342 x 0.9972 = -0.03333 rad. Convert to minutes: EoT ≈ (0.01326 - 0.03333) x (180/pi) x 4 = (-0.02007) x 229.18 = -4.6 minutes.</>}</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>अर्थ: 2 अप्रैल को धूपघड़ी घड़ी से लगभग 4.6 मिनट पीछे है — सौर मध्याह्न 12:04:36 माध्य सौर समय पर आता है। कोर्सो के लिए, देशान्तर सुधार (6.80°E बनाम 15°E) 32.8 मिनट जोड़ता है, और CEST (UTC+2) 60 मिनट जोड़ता है। अन्तिम सौर मध्याह्न ≈ 12:00 + 32.8 + 4.6 + 60 = 13:37 CEST। यह &quot;दोपहर&quot; का सूर्य वास्तव में दोपहर 1:37 बजे अपने उच्चतम बिन्दु पर है!<br/><br/>यह गणना स्पष्ट करती है कि EoT को नज़रअन्दाज़ करने पर ~4.6 मिनट की सूर्योदय त्रुटि होती — जो राहु काल और सभी होरा सीमाओं को प्रभावित करती।</> : <>Interpretation: on April 2, the sundial is about 4.6 minutes behind the clock — solar noon falls at 12:04:36 mean solar time. For Corseaux, the longitude correction (6.80°E vs 15°E) adds 32.8 minutes, and CEST (UTC+2) adds 60 minutes. Final solar noon ≈ 12:00 + 32.8 + 4.6 + 60 = 13:37 CEST. The &quot;noon&quot; Sun is actually at its highest point at 1:37 PM!<br/><br/>This calculation makes clear why ignoring EoT would cause a ~4.6 minute sunrise error — cascading into Rahu Kaal and all hora boundaries.</>}</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Additional Misconceptions', hi: 'अतिरिक्त भ्रान्तियाँ', sa: 'अतिरिक्त भ्रान्तियाँ' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;एनालेम्मा एक सैद्धान्तिक अवधारणा है — वास्तव में कोई इसे नहीं देखता।&quot; वास्तव में, कई फोटोग्राफरों ने पूरे वर्ष एक ही समय पर एक ही स्थान से बहु-प्रदर्शन चित्र लेकर एनालेम्मा को दस्तावेज़ित किया है। परिणामी अंक-8 आकृति EoT का प्रत्यक्ष दृश्य प्रमाण है। प्राचीन धूपघड़ी निर्माता भी एनालेम्मा जानते थे — परिष्कृत धूपघड़ियों पर अंकित सुधार तालिकाएँ इसकी पुष्टि करती हैं।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;The analemma is a theoretical concept — nobody actually observes it.&quot; In fact, many photographers have documented the analemma by taking multiple-exposure photographs from the same location at the same clock time throughout the year. The resulting figure-8 is direct visual evidence of the EoT. Ancient sundial makers also knew the analemma — correction tables engraved on sophisticated sundials confirm this.</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;दिवालोक बचत समय (DST) EoT का भाग है।&quot; DST एक राजनीतिक/प्रशासनिक घड़ी समायोजन है — इसका खगोलशास्त्र से कोई सम्बन्ध नहीं। EoT पूर्णतया भौतिक है: कक्षीय उत्केन्द्रता और अक्षीय झुकाव। हमारा इंजन EoT और DST/समयक्षेत्र सुधार को अलग-अलग लागू करता है, फिर अन्तिम प्रदर्शन समय प्राप्त करने के लिए संयोजित करता है।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Daylight saving time (DST) is part of the EoT.&quot; DST is a political/administrative clock adjustment — it has nothing to do with astronomy. The EoT is purely physical: orbital eccentricity and axial tilt. Our engine applies EoT and DST/timezone corrections separately, then combines them to arrive at the final display time.</>}</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Cross-References', hi: 'सम्बन्धित मॉड्यूल', sa: 'सम्बन्धित मॉड्यूल' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed">{isHi ? <>EoT सूर्योदय/सूर्यास्त गणना में कैसे प्रयुक्त होता है इसके लिए <span className="text-gold-light">मॉड्यूल 22.4 (सूर्योदय/सूर्यास्त)</span> देखें। सूर्य भोगांश गणना (जो L₀ और M प्रदान करती है) के लिए <span className="text-gold-light">मॉड्यूल 22.2 (सूर्य भोगांश)</span> देखें। JD और T चर की मूल बातों के लिए <span className="text-gold-light">मॉड्यूल 22.1 (जूलियन दिवस)</span> देखें। अभिजित मुहूर्त, होरा और राहु काल कैसे सूर्योदय पर निर्भर करते हैं, इसके लिए <span className="text-gold-light">मॉड्यूल 8.1 (मुहूर्त)</span> देखें।</> : <>For how EoT feeds into sunrise/sunset computation, see <span className="text-gold-light">Module 22.4 (Sunrise/Sunset)</span>. For the Sun longitude calculation that provides L₀ and M, see <span className="text-gold-light">Module 22.2 (Sun Longitude)</span>. For the fundamentals of JD and T, see <span className="text-gold-light">Module 22.1 (Julian Day)</span>. For how Abhijit Muhurta, Hora, and Rahu Kaal depend on sunrise, see <span className="text-gold-light">Module 8.1 (Muhurta)</span>.</>}</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module22_6Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

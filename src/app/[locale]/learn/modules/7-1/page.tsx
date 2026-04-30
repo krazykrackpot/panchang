@@ -99,6 +99,33 @@ function Page3() {
   );
 }
 
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Yoga Duration and Transition Boundaries</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">Unlike the calendar day which has a fixed 24-hour duration, a yoga&apos;s duration varies considerably. The combined angular speed of the Sun (~1°/day) and Moon (~13.2°/day) averages ~14.2°/day. Since each yoga spans 13.333°, the average duration is 13.333° / 14.2° x 24 hours ≈ 22.5 hours. However, the Moon&apos;s speed varies from ~11.5° to ~15.4°/day due to its elliptical orbit. This means yoga durations range from approximately 18 to 27 hours — a spread of nearly 50%.</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">This variability has important practical consequences. A short yoga (~18 hours) might begin and end within the same calendar day, meaning two different yogas could be active at different times. A long yoga (~27 hours) spans more than a full day, so the same yoga is active for two consecutive sunrises. When consulting the Panchang, always check the yoga transition time, not just the yoga name. Our app displays both the active yoga and its start/end times for exactly this reason.</p>
+        <p className="text-text-secondary text-sm leading-relaxed">Finding the exact yoga transition time requires iterative computation. We need to find the moment when (Sun sidereal longitude + Moon sidereal longitude) mod 360° crosses a 13.333° boundary. Since both bodies move at variable speeds, there is no closed-form solution — we use the same binary search technique applied to tithi boundaries: bracket the crossing in a 30-minute scan, then refine with 15 iterations of bisection to achieve sub-second precision.</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Practical Application: Yoga-Based Daily Planning</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Morning check:</span> Consult the Panchang to see which yoga is active at sunrise. If it is Siddhi, Shubha, or Shiva, the day carries a naturally auspicious energy — a good day for important meetings, financial decisions, or ceremonies. If Vyatipata or Vaidhriti is active, consider postponing new initiatives to the next day.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Transition awareness:</span> If the yoga transitions during working hours (say, from Shubha to Vishkambha at 2 PM), schedule important actions in the morning under the favorable yoga. The transition itself is considered a sensitive moment — avoid beginning anything in the 30 minutes surrounding the changeover.</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Yoga + Nakshatra synergy:</span> When a favorable yoga coincides with a favorable nakshatra, the combined effect is amplified. For example, Siddhi yoga + Pushya nakshatra creates one of the most auspicious windows possible — suitable for virtually any positive endeavor. Classical texts call these &quot;Maha Yogas&quot; (great combinations) that override minor negative factors elsewhere in the Panchang.</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Cross-References</h4>
+        <p className="text-text-secondary text-xs leading-relaxed">For related Panchang elements, see <span className="text-gold-light">Module 7.2 (Karana)</span> for half-tithi divisions, <span className="text-gold-light">Module 7.3 (Vara)</span> for weekday astrology, and <span className="text-gold-light">Module 8.1 (Muhurta)</span> for how all five limbs integrate. For the computational details of how the Sun and Moon positions are determined (which underlie yoga calculation), see <span className="text-gold-light">Module 22.2 (Sun)</span> and <span className="text-gold-light">Module 22.3 (Moon)</span>. For the distinction between Panchang yoga and chart-based yogas (like Gajakesari or Raja Yoga), see <span className="text-gold-light">Module 10 (Yogas in Charts)</span>.</p>
+      </section>
+    </div>
+  );
+}
+
 export default function Module7_1Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

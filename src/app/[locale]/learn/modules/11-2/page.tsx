@@ -99,7 +99,41 @@ function Page3() {
   );
 }
 
-export default function Module11_2Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Worked Example: Yogini Dasha Calculation', hi: 'कार्यान्वित उदाहरण: योगिनी दशा गणना', sa: 'कार्यान्वित उदाहरण: योगिनी दशा गणना' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>जन्म नक्षत्र: पुनर्वसु (नक्षत्र संख्या 7)। सूत्र: (7 + 3) / 8 = 10 / 8 = 1 शेष 2। शेषफल 2 = पिंगला (सूर्य, 2 वर्ष)। अतः जातक पिंगला योगिनी से आरम्भ करता है, फिर धन्या (3 वर्ष), भ्रामरी (4), भद्रिका (5), उल्का (6), सिद्धा (7), संकटा (8), मंगला (1) — और चक्र दोहराता है। जातक के शेष नक्षत्र पाद (4 में से) के अनुपात में पहली दशा का शेष भाग गणित होता है, ठीक विंशोत्तरी की तरह।</> : <>Birth nakshatra: Punarvasu (nakshatra number 7). Formula: (7 + 3) / 8 = 10 / 8 = 1 remainder 2. Remainder 2 = Pingala (Sun, 2 years). So the native starts with Pingala Yogini, then Dhanya (3 years), Bhramari (4), Bhadrika (5), Ulka (6), Siddha (7), Sankata (8), Mangala (1) — and the cycle repeats. The remaining portion of the first dasha is computed proportional to the balance of the birth nakshatra pada (out of 4), exactly as in Vimshottari.</>}</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>व्यावहारिक अनुप्रयोग: मान लें जातक 30 वर्ष की आयु में है। पिंगला (2) + धन्या (3) + भ्रामरी (4) + भद्रिका (5) + उल्का (6) = 20 वर्ष, फिर सिद्धा (7) = 27 वर्ष, संकटा (8) = 35 वर्ष। 30 वर्ष में जातक संकटा (राहु) योगिनी में है — अपरम्परागत पथ, जुनून, और कभी-कभी बाधाओं का काल। यदि विंशोत्तरी भी राहु-सम्बन्धित काल दिखाती है, तो भविष्यवाणी विश्वास बढ़ता है।</> : <>Practical application: Suppose the native is 30 years old. Pingala (2) + Dhanya (3) + Bhramari (4) + Bhadrika (5) + Ulka (6) = 20 years, then Siddha (7) = 27 years, Sankata (8) = 35 years. At age 30, the native is in Sankata (Rahu) Yogini — a period of unconventional paths, obsession, and sometimes obstacles. If Vimshottari also shows a Rahu-related period, predictive confidence increases.</>}</p>
+      </section>
+
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Char Dasha: Worked Example', hi: 'चर दशा: कार्यान्वित उदाहरण', sa: 'चर दशा: कार्यान्वित उदाहरण' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>वृषभ लग्न की कुण्डली। शुक्र (वृषभ और तुला का स्वामी) तुला (6वाँ भाव) में है। चर दशा क्रम: वृषभ से आरम्भ (विषम राशि, अतः आगे गिनें)। वृषभ का स्वामी शुक्र तुला में — वृषभ से तुला तक 6 राशियाँ = 6 वर्ष। अगली: मिथुन — स्वामी बुध कुम्भ (9वाँ) में। मिथुन से कुम्भ = 9 राशियाँ = 9 वर्ष। अगली: कर्क (सम राशि, पीछे गिनें) — स्वामी चन्द्रमा मकर में। कर्क से मकर पीछे = 7 राशियाँ = 7 वर्ष। इस प्रकार प्रत्येक राशि का अद्वितीय काल बनता है।</> : <>Chart with Taurus ascendant. Venus (lord of Taurus and Libra) is in Libra (6th house). Char Dasha sequence: start from Taurus (odd sign, so count forward). Taurus lord Venus is in Libra — Taurus to Libra is 6 signs = 6 years. Next: Gemini — lord Mercury is in Aquarius (9th). Gemini to Aquarius = 9 signs = 9 years. Next: Cancer (even sign, count backward) — lord Moon is in Capricorn. Cancer to Capricorn backward = 7 signs = 7 years. Each sign thus gets a unique period duration.</>}</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Additional Misconceptions', hi: 'अतिरिक्त भ्रान्तियाँ', sa: 'अतिरिक्त भ्रान्तियाँ' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;योगिनी दशा केवल स्त्रियों के लिए है क्योंकि &apos;योगिनी&apos; स्त्रीलिंग है।&quot; यह पूर्णतया असत्य है। आठ योगिनियाँ ब्रह्माण्डीय ऊर्जाओं का प्रतिनिधित्व करती हैं, न कि लिंग-विशिष्ट शक्तियों का। योगिनी दशा पुरुषों और स्त्रियों दोनों पर समान रूप से लागू होती है।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Yogini Dasha is only for women because &apos;Yogini&apos; is feminine.&quot; This is completely false. The eight Yoginis represent cosmic energies, not gender-specific forces. Yogini Dasha applies equally to men and women.</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;चर दशा में हमेशा लग्न राशि से आरम्भ करें।&quot; आरम्भिक राशि इस पर निर्भर करती है कि लग्न विषम या सम राशि है, और कुछ विद्वान मानते हैं कि आरम्भ 9वें या 10वें भाव से होना चाहिए। जैमिनी सूत्रों की व्याख्या विद्वानों के बीच भिन्न है — यह जैमिनी ज्योतिष के सबसे विवादित क्षेत्रों में से एक है।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Char Dasha always starts from the lagna sign.&quot; The starting sign depends on whether the lagna is an odd or even sign, and some scholars argue the start should be from the 9th or 10th house. Interpretation of Jaimini Sutras varies among scholars — this is one of the most debated areas in Jaimini astrology.</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">{isHi ? 'भ्रान्ति:' : 'Misconception:'}</span> {isHi ? <>&quot;यदि तीनों दशा पद्धतियाँ असहमत हों तो भविष्यवाणी असम्भव है।&quot; असहमति अनिश्चितता का संकेत करती है, असम्भवता का नहीं। व्यवहार में, प्रत्येक पद्धति का अपना शोर-स्तर है। दो पद्धतियों की सहमति पहले से उच्च विश्वास देती है; तीनों की सहमति असाधारण है किन्तु आवश्यक नहीं।</> : <>&quot;If all three dasha systems disagree, prediction is impossible.&quot; Disagreement signals uncertainty, not impossibility. In practice, each system has its own noise level. Agreement of two systems already gives high confidence; three-way agreement is exceptional but not required.</>}</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Cross-References', hi: 'सम्बन्धित मॉड्यूल', sa: 'सम्बन्धित मॉड्यूल' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed">{isHi ? <>विंशोत्तरी दशा के विस्तृत अध्ययन के लिए <span className="text-gold-light">मॉड्यूल 11.1 (विंशोत्तरी दशा)</span> देखें। दशा + गोचर एकीकरण के लिए <span className="text-gold-light">मॉड्यूल 11.3 (भविष्यवाणी विधि)</span> देखें। जैमिनी कारक और राशि दृष्टि के लिए <span className="text-gold-light">मॉड्यूल 14 (जैमिनी ज्योतिष)</span> देखें। नक्षत्र-आधारित दशा गणना के लिए <span className="text-gold-light">मॉड्यूल 6 (नक्षत्र)</span> देखें।</> : <>For detailed study of Vimshottari Dasha, see <span className="text-gold-light">Module 11.1 (Vimshottari Dasha)</span>. For dasha + transit integration, see <span className="text-gold-light">Module 11.3 (Predictive Methodology)</span>. For Jaimini karakas and sign aspects, see <span className="text-gold-light">Module 14 (Jaimini Astrology)</span>. For nakshatra-based dasha calculation, see <span className="text-gold-light">Module 6 (Nakshatras)</span>.</>}</p>
+      </section>
+    </div>
+  );
 }
 
+export default function Module11_2Page() {
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
+}

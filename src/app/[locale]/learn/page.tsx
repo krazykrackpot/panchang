@@ -79,6 +79,7 @@ export default function LearnPage() {
       { name: { en: 'Smarta & Vaishnava', hi: 'स्मार्त और वैष्णव', sa: 'स्मार्तवैष्णवौ' }, href: '/learn/smarta-vaishnava' },
       { name: { en: 'Transit Guide', hi: 'गोचर', sa: 'गोचरः' }, href: '/learn/transit-guide' },
       { name: { en: 'Eclipses (Grahan)', hi: 'ग्रहण', sa: 'ग्रहणम्' }, href: '/learn/eclipses' },
+      { name: { en: 'Chandra Darshan', hi: 'चन्द्र दर्शन', sa: 'चन्द्रदर्शनम्' }, href: '/learn/chandra-darshan' },
     ]},
     { label: { en: 'Kundali & Prediction', hi: 'कुण्डली एवं भविष्यवाणी', sa: 'कुण्डली भविष्यवाणी च' }, refs: [
       { name: { en: 'Planets', hi: 'ग्रह स्थिति', sa: 'ग्रहस्थितयः' }, href: '/learn/planets' },

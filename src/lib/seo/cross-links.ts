@@ -49,6 +49,11 @@ export const TOOL_TO_LEARN: Record<string, CrossLinkEntry[]> = {
     { label: 'Learn Hora', href: '/learn/hora', description: 'Planetary hour system' },
     { label: 'Learn Muhurtas', href: '/learn/muhurtas', description: 'Auspicious timing theory' },
   ],
+  '/chandra-darshan': [
+    { label: 'Learn Chandra Darshan', href: '/learn/chandra-darshan', description: 'Moon sighting science' },
+    { label: 'Learn Tithis', href: '/learn/tithis', description: 'Lunar day theory' },
+    { label: 'Learn Masa', href: '/learn/masa', description: 'Lunar months' },
+  ],
   '/sign-calculator': [
     { label: 'Learn Rashis', href: '/learn/rashis', description: '12 zodiac signs' },
     { label: 'Learn Nakshatras', href: '/learn/nakshatras', description: '27 lunar mansions' },

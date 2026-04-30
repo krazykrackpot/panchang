@@ -638,6 +638,33 @@ function LiveSkySVG() {
   );
 }
 
+/* 21. Chandra Darshan — Thin crescent Moon above western horizon */
+function ChandraDarshanSVG() {
+  return (
+    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+      <defs>
+        <linearGradient id="cd1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
+        <radialGradient id="cd1g" cx="50%" cy="70%" r="50%"><stop offset="0%" stopColor="#d4a853" stopOpacity="0.15" /><stop offset="100%" stopColor="#d4a853" stopOpacity="0" /></radialGradient>
+      </defs>
+      {/* Sky glow */}
+      <circle cx="32" cy="32" r="28" fill="url(#cd1g)" />
+      {/* Horizon line */}
+      <line x1="4" y1="48" x2="60" y2="48" stroke="url(#cd1)" strokeWidth="1.2" opacity="0.35" />
+      {/* Thin crescent Moon */}
+      <circle cx="32" cy="26" r="10" fill="none" stroke="url(#cd1)" strokeWidth="2" opacity="0.7" />
+      <path d="M 32,16 A 10,10 0 0,1 32,36 A 7,10 0 0,0 32,16" fill="url(#cd1)" opacity="0.4" />
+      {/* Moon glow */}
+      <circle cx="32" cy="26" r="14" fill="url(#cd1)" opacity="0.05" />
+      {/* Stars */}
+      {[[12, 14, 0.8], [50, 18, 0.6], [18, 36, 0.5], [48, 38, 0.7], [8, 28, 0.4], [56, 28, 0.5], [26, 42, 0.4], [40, 10, 0.6]].map(([cx, cy, rr], i) => (
+        <circle key={i} cx={cx} cy={cy} r={rr} fill="#f0d48a" opacity={0.15 + i * 0.03} />
+      ))}
+      {/* Horizon silhouette bumps */}
+      <path d="M 4,48 Q 12,44 20,48 Q 28,45 36,48 Q 44,43 52,48 Q 56,46 60,48" fill="none" stroke="url(#cd1)" strokeWidth="0.8" opacity="0.2" />
+    </svg>
+  );
+}
+
 /* ════════════════════════════════════════════════════════════════════
    DATA: 4 rows × 5 cards
    ════════════════════════════════════════════════════════════════════ */
@@ -700,6 +727,7 @@ function buildRows(locale: Locale, isDevanagari: boolean): RowDef[] {
         { href: '/nadi-jyotish', title: loc('Nadi Jyotish', 'नाडी ज्योतिष', 'நாடி ஜோதிடம்', 'নাড়ী জ্যোতিষ'), subtitle: loc('Palm-Leaf Traditions', 'ताड़पत्र परम्परा', 'ஓலைச்சுவடி மரபு', 'তালপাতা ঐতিহ্য'), description: loc('Ancient leaf inscriptions', 'प्राचीन पत्र लिपि', 'பண்டைய ஓலைச்சுவடிகள்', 'প্রাচীন পত্র লিপি'), glowColor: '#2dd4bf', svg: <NadiSVG /> },
         { href: '/lunar-calendar', title: loc('Lunar Calendar', 'चान्द्र पंचांग', 'சந்திர நாள்காட்டி', 'চান্দ্র পঞ্জিকা'), subtitle: loc('Tithi \u00b7 Masa \u00b7 Paksha', 'तिथि \u00b7 मास \u00b7 पक्ष', 'திதி \u00b7 மாதம் \u00b7 பக்ஷம்', 'তিথি \u00b7 মাস \u00b7 পক্ষ'), description: loc('Moon phase panchang', 'चन्द्र कला पंचांग', 'நிலவு நிலை பஞ்சாங்கம்', 'চন্দ্র কলা পঞ্চাঙ্গ'), glowColor: '#d4a853', svg: <LunarCalendarSVG /> },
         { href: '/sky', title: loc('Live Sky', 'आकाश दर्शन', 'வான காட்சி', 'আকাশ দর্শন'), subtitle: loc('Real-time Positions', 'वास्तविक समय स्थिति', 'நேரடி நிலைகள்', 'রিয়েল-টাইম অবস্থান'), description: loc('Graha positions now', 'ग्रह स्थिति अभी', 'கிரக நிலைகள் இப்போது', 'গ্রহ অবস্থান এখন'), glowColor: '#38bdf8', svg: <LiveSkySVG /> },
+        { href: '/chandra-darshan', title: loc('Chandra Darshan', 'चन्द्र दर्शन', 'சந்திர தரிசனம்', 'চন্দ্র দর্শন'), subtitle: loc('Moon Sighting', 'नव चन्द्र दृश्यता', 'நிலவு பார்வை', 'চাঁদ দেখা'), description: loc('New crescent visibility', 'नव चन्द्र दृश्यता गणना', 'புதிய பிறை தெரிவுநிலை', 'নতুন চাঁদের দৃশ্যতা'), glowColor: '#e2e8f0', svg: <ChandraDarshanSVG /> },
       ],
     },
   ];

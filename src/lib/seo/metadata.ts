@@ -578,6 +578,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: 'Calculate planetary hours (Hora) for any day and location. Know which planet rules each hour for muhurta selection and daily planning.', hi: 'किसी भी दिन और स्थान के लिए ग्रह होरा गणना करें। मुहूर्त चयन और दैनिक योजना के लिए प्रत्येक घंटे का ग्रह स्वामी जानें।', sa: 'कस्यापि दिनस्य स्थानस्य च कृते ग्रहहोरां गणयतु। मुहूर्तचयनाय दैनिकयोजनायै च प्रत्येकघण्टायाः ग्रहस्वामिनं जानीयात्।' },
     keywords: ['hora', 'planetary hours', 'hora calculator', 'graha hora', 'planetary hour ruler', 'best time for activity'],
   },
+  '/chandra-darshan': {
+    title: { en: 'Chandra Darshan Today — Moon Sighting Calculator', hi: 'चन्द्र दर्शन — नव चन्द्र दृश्यता गणक', sa: 'चन्द्रदर्शनम् — नवचन्द्रदृश्यतागणकम्' },
+    description: { en: 'Is the new crescent Moon visible tonight? Calculate Moon age, elongation, and visibility conditions for your location. Includes upcoming Chandra Darshan dates for 6 months.', hi: 'क्या आज रात नव चन्द्रमा दृश्य है? अपने स्थान के लिए चन्द्र आयु, दूरी और दृश्यता स्थितियों की गणना करें।', sa: 'किम् अद्य रात्रौ नवचन्द्रः दृश्यते? स्वस्थानस्य कृते चन्द्रवयः दूरी दृश्यतास्थितिश्च गणयतु।' },
+    keywords: ['chandra darshan', 'moon sighting', 'new moon visibility', 'hilal', 'crescent moon', 'moon age calculator'],
+  },
   '/kaal-nirnaya': {
     title: { en: 'Kaal Nirnaya — Hindu Time Reckoning', hi: 'काल निर्णय — हिन्दू कालगणना', sa: 'कालनिर्णयः — हिन्दूकालगणना' },
     description: { en: 'Hindu time reckoning system — Kali Ahargana, Vikram Samvat, Shaka Samvat, Julian Day, and astronomical time calculations.', hi: 'कलि अहर्गण, विक्रम संवत्, शक संवत्, जूलियन दिन सहित हिन्दू कालगणना।', sa: 'कल्यहर्गणं विक्रमसंवत् शकसंवत् जूलियनदिनं सहितं हिन्दूकालगणना।' },
@@ -1298,6 +1303,13 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: { en: 'Timeline of India\'s Mathematical & Astronomical Contributions', hi: 'भारत के गणितीय और खगोलशास्त्रीय योगदानों की समयरेखा', sa: 'भारतस्य गणितखगोलयोगदानानां कालसूची' },
     description: { en: 'Interactive timeline from Shulba Sutras (800 BCE) to Kerala School (1600 CE) — 2400 years of Indian mathematical and astronomical breakthroughs.', hi: 'शुल्ब सूत्र (800 BCE) से केरल स्कूल (1600 CE) तक — 2400 वर्षों की भारतीय गणित और खगोलशास्त्र उपलब्धियों की समयरेखा।', sa: 'शुल्बसूत्रेभ्यः (800 BCE) केरलविद्यापीठपर्यन्तम् (1600 CE) — 2400 वर्षाणां भारतीयगणितखगोलशास्त्रसिद्धीनां कालसूची।' },
     keywords: ['indian mathematics timeline', 'indian astronomy history', 'ancient indian science', 'mathematical contributions india'],
+  },
+
+  // ─── Chandra Darshan ──────────────────────────────────────
+  '/learn/chandra-darshan': {
+    title: { en: 'Chandra Darshan — Science of New Moon Sighting | Dekho Panchang', hi: 'चन्द्र दर्शन — नव चन्द्र दर्शन का विज्ञान | Dekho Panchang', sa: 'चन्द्रदर्शनम् — नवचन्द्रदर्शनविज्ञानम् | Dekho Panchang' },
+    description: { en: 'Learn the art and science of Chandra Darshan — how Moon age, elongation, and altitude determine crescent visibility. Covers Hindu, Islamic (Hilal), and historical traditions.', hi: 'चन्द्र दर्शन की कला और विज्ञान सीखें — चन्द्र आयु, दूरी और ऊँचाई कैसे दृश्यता निर्धारित करती है। हिन्दू, इस्लामी (हिलाल) और ऐतिहासिक परम्पराएँ।', sa: 'चन्द्रदर्शनस्य कलां विज्ञानं च अधिगच्छतु — चन्द्रवयः दूरी उन्नतिश्च कथं दृश्यतां निर्धारयन्ति।' },
+    keywords: ['chandra darshan', 'moon sighting science', 'hilal visibility', 'crescent moon', 'shukla dwitiya', 'moon age elongation'],
   },
 
   // ─── Panchak & Holashtak ───────────────────────────────────

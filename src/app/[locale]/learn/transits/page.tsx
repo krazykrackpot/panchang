@@ -6,7 +6,11 @@ import { Link } from '@/lib/i18n/navigation';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/transits.json';
-import { getHeadingFont } from '@/lib/utils/locale-fonts';
+import { getHeadingFont, isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { TRANSIT_ARTICLES } from '@/lib/content/transit-articles';
+import { GrahaIconById } from '@/components/icons/GrahaIcons';
+import { RashiIconById } from '@/components/icons/RashiIcons';
+import { RASHIS } from '@/lib/constants/rashis';
 
 const t = (key: string, locale: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 
@@ -48,9 +52,18 @@ const FURTHER_LINKS = [
   { href: '/learn/birth-chart', labelKey: 'fl4' },
 ];
 
+const PLANET_COLORS: Record<number, string> = {
+  0: '#FF9500', 1: '#C0C0C0', 2: '#F87171', 3: '#50C878',
+  4: '#FFD700', 5: '#FF69B4', 6: '#6B8DD6', 7: '#B8860B', 8: '#808080',
+};
+
 export default function TransitsPage() {
   const locale = useLocale();
   const headingFont = getHeadingFont(locale);
+  const isDevanagari = isDevanagariLocale(locale);
+  const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
+  const loc = (locale === 'hi' ? 'hi' : 'en') as 'en' | 'hi';
+  const articles = Object.values(TRANSIT_ARTICLES);
 
   return (
     <article className="max-w-4xl mx-auto px-4 py-12 space-y-2">
@@ -183,6 +196,76 @@ export default function TransitsPage() {
           </ul>
         </div>
       </LessonSection>
+
+      {/* ═══ Transit Articles Index ═══ */}
+      {articles.length > 0 && (
+        <LessonSection title={locale === 'hi' ? 'गोचर विश्लेषण लेख' : 'Transit Analysis Articles'}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+            {articles.map((article) => {
+              const toRashi = RASHIS.find(r => r.id === article.toSignId);
+              const fromRashi = RASHIS.find(r => r.id === article.fromSignId);
+              const planetColor = PLANET_COLORS[article.planetId] || '#FFD700';
+              const overview = article.overview[loc] || article.overview.en;
+              const excerpt = overview.slice(0, 160).trimEnd() + '…';
+              return (
+                <Link
+                  key={article.slug}
+                  href={`/learn/transits/${article.slug}` as '/learn/transits/jupiter-in-cancer-2026'}
+                  className="group block rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 hover:border-gold-primary/40 p-5 transition-all duration-200"
+                >
+                  {/* Planet + sign icons */}
+                  <div className="flex items-center gap-2 mb-3">
+                    <GrahaIconById id={article.planetId} size={36} />
+                    {fromRashi && (
+                      <>
+                        <span className="text-text-secondary/40 text-xs mx-1">→</span>
+                        <RashiIconById id={article.toSignId} size={28} />
+                      </>
+                    )}
+                    <span
+                      className="ml-auto text-xs font-mono px-2 py-0.5 rounded-full border"
+                      style={{ color: planetColor, borderColor: `${planetColor}33` }}
+                    >
+                      {article.duration.split('(')[0].trim()}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3
+                    className="text-gold-light font-bold text-sm leading-snug mb-1 group-hover:text-gold-primary transition-colors"
+                    style={headingFont}
+                  >
+                    {article.title[loc] || article.title.en}
+                  </h3>
+
+                  {/* From → To */}
+                  {fromRashi && toRashi && (
+                    <p className="text-text-secondary/60 text-xs mb-2" style={bodyFont}>
+                      {fromRashi.name[loc] || fromRashi.name.en}
+                      {' → '}
+                      {toRashi.name[loc] || toRashi.name.en}
+                      {' · '}
+                      {new Date(article.exactDate).toLocaleDateString(
+                        locale === 'hi' ? 'hi-IN' : 'en-US',
+                        { day: 'numeric', month: 'short', year: 'numeric' },
+                      )}
+                    </p>
+                  )}
+
+                  {/* Excerpt */}
+                  <p className="text-text-secondary text-xs leading-relaxed line-clamp-3" style={bodyFont}>
+                    {excerpt}
+                  </p>
+
+                  <span className="mt-3 inline-block text-gold-primary/60 text-xs group-hover:text-gold-primary transition-colors">
+                    {locale === 'hi' ? 'पूरा लेख पढ़ें →' : 'Read full article →'}
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+        </LessonSection>
+      )}
 
       {/* Further learning */}
       <LessonSection title={t('furtherTitle', locale)}>

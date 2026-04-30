@@ -56,7 +56,10 @@ export default function ShareButton({ title, text, url, locale, variant = 'inlin
   const panelRef = useRef<HTMLDivElement>(null);
   const l = (obj: LocaleText) => obj[locale] || obj.en;
 
-  const shareUrl = url || (typeof window !== 'undefined' ? window.location.href : '');
+  // Use state for the URL to avoid hydration mismatch (server has no window.location)
+  const [clientUrl, setClientUrl] = useState('');
+  useEffect(() => { if (!url) setClientUrl(window.location.href); }, [url]);
+  const shareUrl = url || clientUrl;
 
   // Detect native Web Share API support (typically mobile)
   useEffect(() => {

@@ -341,8 +341,14 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
 
   // ── Derived data for hero card ──
   const yogasActive = tip.yogas.filter(y => y.present).length;
-  const strongPlanets = tip.strengthOverview.filter(s => s.strength >= 100);
-  const weakPlanets = tip.strengthOverview.filter(s => s.strength < 80);
+  const strongPlanets = tip.strengthOverview.filter(s => {
+    const ratio = (s as any).ratio as number | undefined;
+    return ratio !== undefined ? ratio >= 1.5 : s.strength >= 80;
+  });
+  const weakPlanets = tip.strengthOverview.filter(s => {
+    const ratio = (s as any).ratio as number | undefined;
+    return ratio !== undefined ? ratio < 1.0 : s.strength < 50;
+  });
   const strongestPlanet = tip.strengthOverview.reduce((a, b) => a.strength > b.strength ? a : b, tip.strengthOverview[0]);
   const presentDoshas = tip.doshas.filter(d => d.present);
 

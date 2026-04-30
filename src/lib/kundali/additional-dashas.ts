@@ -5,6 +5,7 @@ import type { LocaleText } from '@/types/panchang';
  */
 
 import type { PlanetPosition } from '@/types/kundali';
+import { RASHIS } from '@/lib/constants/rashis';
 
 type Tri = LocaleText;
 
@@ -16,14 +17,8 @@ export interface RasiDashaEntry {
   endDate: string;
 }
 
-const RASHI_NAMES: Tri[] = [
-  { en: 'Aries', hi: 'मेष', sa: 'मेषः' },{ en: 'Taurus', hi: 'वृषभ', sa: 'वृषभः' },
-  { en: 'Gemini', hi: 'मिथुन', sa: 'मिथुनम्' },{ en: 'Cancer', hi: 'कर्क', sa: 'कर्कः' },
-  { en: 'Leo', hi: 'सिंह', sa: 'सिंहः' },{ en: 'Virgo', hi: 'कन्या', sa: 'कन्या' },
-  { en: 'Libra', hi: 'तुला', sa: 'तुला' },{ en: 'Scorpio', hi: 'वृश्चिक', sa: 'वृश्चिकः' },
-  { en: 'Sagittarius', hi: 'धनु', sa: 'धनुः' },{ en: 'Capricorn', hi: 'मकर', sa: 'मकरः' },
-  { en: 'Aquarius', hi: 'कुम्भ', sa: 'कुम्भः' },{ en: 'Pisces', hi: 'मीन', sa: 'मीनः' },
-];
+// Derive rashi names from canonical source (src/lib/constants/rashis.ts)
+const RASHI_NAMES: Tri[] = RASHIS.map(r => r.name);
 
 // Dignity constants — canonical source: @/lib/constants/dignities
 import {

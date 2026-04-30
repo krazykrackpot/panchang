@@ -89,29 +89,49 @@ export function calculateDashas(
   return dashas;
 }
 
-function calculateAntarDasha(mahaLordIndex: number, startDate: Date, totalYears: number): DashaPeriod[] {
+/**
+ * Level names for reference:
+ *   1 = Mahadasha, 2 = Antardasha, 3 = Pratyantardasha,
+ *   4 = Sookshma Dasha, 5 = Prana Dasha
+ *
+ * The algorithm is identical at every level: subdivide the parent period
+ * proportionally by the 9-planet Vimshottari year ratios, starting from
+ * the parent's lord. Recursion depth is capped at level 5.
+ */
+const MAX_DASHA_DEPTH = 5;
+
+function calculateSubPeriods(parentLordIndex: number, startDate: Date, totalYears: number, depth: number): DashaPeriod[] {
+  if (depth > MAX_DASHA_DEPTH) return [];
+
   const subPeriods: DashaPeriod[] = [];
   let currentDate = new Date(startDate.getTime());
 
   for (let i = 0; i < 9; i++) {
-    const antarLordIndex = (mahaLordIndex + i) % 9;
-    const antarLord = DASHA_SEQUENCE[antarLordIndex];
-    const mahaLord = DASHA_SEQUENCE[mahaLordIndex];
-
-    // Antar dasha duration (BPHS): (antarLord.years / TOTAL_DASHA_YEARS) × totalYears
-    // Equivalent to the 2-step form: (mahaYears × antarYears / 120) / mahaYears × totalYears
-    const scaledYears = (antarLord.years * totalYears) / TOTAL_DASHA_YEARS;
-
+    const lordIndex = (parentLordIndex + i) % 9;
+    const lord = DASHA_SEQUENCE[lordIndex];
+    const scaledYears = (lord.years * totalYears) / TOTAL_DASHA_YEARS;
     const endDate = addYearsToDate(currentDate, scaledYears);
 
+    // Only recurse to deeper levels for Pratyantardasha and below when periods
+    // are long enough to be meaningful (> 1 day = ~0.00274 years)
+    const children = (depth < MAX_DASHA_DEPTH && scaledYears > 0.003)
+      ? calculateSubPeriods(lordIndex, currentDate, scaledYears, depth + 1)
+      : undefined;
+
     subPeriods.push({
-      planet: antarLord.planet,
+      planet: lord.planet,
       startDate: new Date(currentDate.getTime()),
       endDate,
       years: scaledYears,
+      ...(children?.length ? { subPeriods: children } : {}),
     });
     currentDate = endDate;
   }
 
   return subPeriods;
+}
+
+// Backward-compatible wrapper
+function calculateAntarDasha(mahaLordIndex: number, startDate: Date, totalYears: number): DashaPeriod[] {
+  return calculateSubPeriods(mahaLordIndex, startDate, totalYears, 2);
 }

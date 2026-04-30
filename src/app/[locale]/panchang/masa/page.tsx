@@ -312,43 +312,122 @@ function MasaCalendarTable({ locale, headingFont }: { locale: Locale; headingFon
               </tr>
             </thead>
             <tbody>
-              {months.map((m, i) => {
-                const start = new Date(m.startDate);
-                const end = new Date(m.endDate);
-                const days = Math.round((end.getTime() - start.getTime()) / 86400000);
-                const isCurrent = todayStr >= m.startDate && todayStr < m.endDate;
-                const monthName = locale === 'hi' ? m.hi : m.en;
+              {(() => {
+                // For Purnimant: expand Adhika+Nija into 3-layer sandwich rows.
+                // Ported from commit da335420 (PanchangClient sandwich logic).
+                interface DisplayRow {
+                  n: number | string; en: string; hi: string;
+                  startDate: string; endDate: string; ritu: Record<string, string>;
+                  isAdhika: boolean; sandwichLayer?: 'top' | 'filling' | 'bottom';
+                }
+                const rows: DisplayRow[] = [];
+                const skipNext = new Set<number>();
+                const amantData = system === 'purnimant' ? computeHinduMonths(calYear) : [];
 
-                return (
-                  <tr
-                    key={`${m.n}-${m.startDate}`}
-                    className={`border-b border-gold-primary/5 transition-colors hover:bg-gold-primary/5 ${
-                      isCurrent ? 'bg-gold-primary/10' : ''
-                    } ${m.isAdhika ? 'bg-violet-500/5' : ''}`}
-                  >
-                    <td className="py-3 px-4 text-text-secondary/50 text-xs">{m.n}</td>
-                    <td className="py-3 px-4" style={headingFont}>
-                      <span className={`font-bold ${m.isAdhika ? 'text-violet-300 italic' : 'text-gold-light'}`}>
-                        {m.isAdhika ? (isEn ? `Adhika ${monthName}` : `अधिक ${monthName}`) : monthName}
-                      </span>
-                      {isCurrent && (
-                        <span className="ml-2 text-[10px] px-2 py-0.5 rounded-full bg-gold-primary/25 text-gold-light font-bold uppercase tracking-wider animate-pulse">
-                          {isEn ? 'NOW' : 'अभी'}
+                for (let idx = 0; idx < months.length; idx++) {
+                  if (skipNext.has(idx)) continue;
+                  const m = months[idx];
+                  const nextM = months[idx + 1];
+
+                  if (system === 'purnimant' && m.isAdhika && nextM && !nextM.isAdhika) {
+                    // Sandwich: Nija Krishna → Adhika → Nija Shukla
+                    const baseName = m.en.replace('Adhika ', '');
+                    const baseHi = m.hi.replace('अधिक ', '');
+                    // Find the Amant Adhika month for Amavasya boundaries
+                    const amAdhika = amantData.find(a => a.isAdhika);
+                    const adhikaStart = amAdhika?.startDate || m.startDate;
+                    const adhikaEnd = amAdhika?.endDate || m.endDate;
+
+                    // Layer 1: Nija Krishna Paksha (Purnima → Amavasya)
+                    rows.push({
+                      n: '', en: `${baseName} Krishna`, hi: `${baseHi} कृष्ण`,
+                      startDate: m.startDate, endDate: adhikaStart,
+                      ritu: m.ritu as Record<string, string>, isAdhika: false, sandwichLayer: 'top',
+                    });
+                    // Layer 2: Adhika full month (Amavasya → Amavasya)
+                    rows.push({
+                      n: '', en: m.en, hi: m.hi,
+                      startDate: adhikaStart, endDate: adhikaEnd,
+                      ritu: m.ritu as Record<string, string>, isAdhika: true, sandwichLayer: 'filling',
+                    });
+                    // Layer 3: Nija Shukla Paksha (Amavasya → Purnima)
+                    rows.push({
+                      n: '', en: `${baseName} Shukla`, hi: `${baseHi} शुक्ल`,
+                      startDate: adhikaEnd, endDate: nextM.endDate,
+                      ritu: nextM.ritu as Record<string, string>, isAdhika: false, sandwichLayer: 'bottom',
+                    });
+                    skipNext.add(idx + 1);
+                  } else {
+                    rows.push({
+                      n: m.n, en: m.en, hi: m.hi,
+                      startDate: m.startDate, endDate: m.endDate,
+                      ritu: m.ritu as Record<string, string>, isAdhika: m.isAdhika,
+                    });
+                  }
+                }
+
+                // Renumber after sandwich expansion
+                let counter = 1;
+                for (const r of rows) {
+                  if (r.sandwichLayer === 'filling') r.n = '';
+                  else r.n = counter++;
+                }
+
+                return rows.map((r) => {
+                  const start = new Date(r.startDate);
+                  const end = new Date(r.endDate);
+                  const days = Math.max(1, Math.round((end.getTime() - start.getTime()) / 86400000));
+                  const isCurrent = todayStr >= r.startDate && todayStr < r.endDate;
+                  const monthName = locale === 'hi' ? r.hi : r.en;
+                  const layerStyle = r.sandwichLayer === 'top' ? 'border-l-3 border-l-amber-500/40'
+                    : r.sandwichLayer === 'filling' ? 'border-l-3 border-l-violet-500/60 bg-violet-500/[0.03]'
+                    : r.sandwichLayer === 'bottom' ? 'border-l-3 border-l-amber-500/40'
+                    : '';
+
+                  return (
+                    <tr
+                      key={`${r.n}-${r.startDate}`}
+                      className={`border-b border-gold-primary/5 transition-colors hover:bg-gold-primary/5 ${
+                        isCurrent ? 'bg-gold-primary/10' : ''
+                      } ${r.isAdhika && !r.sandwichLayer ? 'bg-violet-500/5' : ''} ${layerStyle}`}
+                    >
+                      <td className="py-3 px-4 text-text-secondary/50 text-xs">{r.n}</td>
+                      <td className="py-3 px-4" style={headingFont}>
+                        <span className={`font-bold ${
+                          r.isAdhika ? 'text-violet-300 italic' :
+                          r.sandwichLayer ? 'text-amber-300' : 'text-gold-light'
+                        }`}>
+                          {monthName}
                         </span>
-                      )}
-                      {m.isAdhika && (
-                        <span className="ml-2 text-[10px] px-2 py-0.5 rounded-full bg-violet-500/20 text-violet-300 font-bold">
-                          {isEn ? 'ADHIKA' : 'अधिक'}
-                        </span>
-                      )}
-                    </td>
-                    <td className="py-3 px-4 text-text-primary font-mono text-xs">{formatMonthDate(m.startDate, locale)}</td>
-                    <td className="py-3 px-4 text-text-primary font-mono text-xs">{formatMonthDate(m.endDate, locale)}</td>
-                    <td className="py-3 px-4 text-text-secondary text-xs">{tl(m.ritu, locale)}</td>
-                    <td className="py-3 px-4 text-center text-text-secondary/60 text-xs">{days}</td>
-                  </tr>
-                );
-              })}
+                        {isCurrent && (
+                          <span className="ml-2 text-[10px] px-2 py-0.5 rounded-full bg-gold-primary/25 text-gold-light font-bold uppercase tracking-wider animate-pulse">
+                            {isEn ? 'NOW' : 'अभी'}
+                          </span>
+                        )}
+                        {r.isAdhika && (
+                          <span className="ml-2 text-[10px] px-2 py-0.5 rounded-full bg-violet-500/20 text-violet-300 font-bold">
+                            {isEn ? 'INTERCALARY' : 'अधिक'}
+                          </span>
+                        )}
+                        {r.sandwichLayer === 'top' && (
+                          <span className="ml-2 text-[10px] px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-400">
+                            {isEn ? 'Nija (waning)' : 'निज (कृष्ण)'}
+                          </span>
+                        )}
+                        {r.sandwichLayer === 'bottom' && (
+                          <span className="ml-2 text-[10px] px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-400">
+                            {isEn ? 'Nija (waxing)' : 'निज (शुक्ल)'}
+                          </span>
+                        )}
+                      </td>
+                      <td className="py-3 px-4 text-text-primary font-mono text-xs">{formatMonthDate(r.startDate, locale)}</td>
+                      <td className="py-3 px-4 text-text-primary font-mono text-xs">{formatMonthDate(r.endDate, locale)}</td>
+                      <td className="py-3 px-4 text-text-secondary text-xs">{tl(r.ritu, locale)}</td>
+                      <td className="py-3 px-4 text-center text-text-secondary/60 text-xs">{days}</td>
+                    </tr>
+                  );
+                });
+              })()}
             </tbody>
           </table>
         </div>

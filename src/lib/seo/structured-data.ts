@@ -142,9 +142,7 @@ export function generateOrganizationLD(): object {
       'https://twitter.com/dekhopanchang',
       'https://www.instagram.com/dekhopanchang/',
       'https://www.facebook.com/dekhopanchang',
-      // Add more as accounts are created — Google ignores dead links in sameAs
-      // 'https://www.youtube.com/@dekhopanchang',
-      // 'https://github.com/dekhopanchang',
+      'https://www.youtube.com/@dekhopanchang',
     ].filter(Boolean),
   };
 }

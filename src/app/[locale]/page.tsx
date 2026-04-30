@@ -531,7 +531,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   return (
     <div className="relative">
       {/* ═══ HERO: Mantras + CTAs ═══ */}
-      <section className="relative pt-16 pb-12 sm:pt-20 sm:pb-16 px-4">
+      <section className="relative pt-16 pb-4 sm:pt-20 sm:pb-6 px-4">
         {/* Background: radial gold glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-gold-primary/5 via-transparent to-gold-dark/3 blur-3xl" />
 
@@ -572,7 +572,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </section>
 
       {/* ═══ TODAY'S PANCHANG — immediately after hero ═══ */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 yantra-bg">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-10 yantra-bg">
         <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8" style={hf}>
           <span className="text-gold-gradient">{t('todayPanchang')}</span>
         </h2>

@@ -6,6 +6,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Loader2 } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import PrintButton from '@/components/ui/PrintButton';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import LocationSearch from '@/components/ui/LocationSearch';
 import ChartNorth from '@/components/kundali/ChartNorth';
 import { NakshatraIcon } from '@/components/icons/PanchangIcons';
@@ -1059,6 +1061,9 @@ export default function MatchingPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* SEO cross-links */}
+      <RelatedLinks type="learn" links={getLearnLinksForTool('/matching')} locale={locale} />
     </div>
   );
 }

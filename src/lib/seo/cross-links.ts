@@ -21,6 +21,20 @@ export interface CrossLinkEntry {
  * Key = tool route (without locale prefix).
  */
 export const TOOL_TO_LEARN: Record<string, CrossLinkEntry[]> = {
+  '/panchang': [
+    { label: 'Learn Tithis', href: '/learn/tithis', description: 'Lunar day theory' },
+    { label: 'Learn Nakshatras', href: '/learn/nakshatras', description: '27 lunar mansions' },
+    { label: 'Learn Muhurtas', href: '/learn/muhurtas', description: 'Auspicious timing theory' },
+    { label: 'Learn Yogas', href: '/learn/yogas', description: 'Luni-solar combinations' },
+    { label: 'Learn Karanas', href: '/learn/karanas', description: 'Half-tithi divisions' },
+  ],
+  '/kundali': [
+    { label: 'Learn Kundali', href: '/learn/kundali', description: 'Birth chart fundamentals' },
+    { label: 'Learn Dashas', href: '/learn/dashas', description: 'Planetary period systems' },
+    { label: 'Learn Yogas', href: '/learn/yogas', description: 'Planetary combinations' },
+    { label: 'Learn Doshas', href: '/learn/doshas', description: 'Afflictions in a chart' },
+    { label: 'Learn Shadbala', href: '/learn/shadbala', description: 'Six-fold strength' },
+  ],
   '/rahu-kaal': [
     { label: 'Learn Muhurtas', href: '/learn/muhurtas', description: 'Auspicious timing theory' },
     { label: 'Learn Hora', href: '/learn/hora', description: 'Planetary hour system' },

@@ -19,6 +19,8 @@ import ConvergenceSummary from '@/components/kundali/ConvergenceSummary';
 import GoldDivider from '@/components/ui/GoldDivider';
 import ShareButton from '@/components/ui/ShareButton';
 import PrintButton from '@/components/ui/PrintButton';
+import RelatedLinks from '@/components/ui/RelatedLinks';
+import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import { Download, Save, Check, ScrollText, Sparkles, Share2, X, ArrowRightLeft } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
@@ -3635,6 +3637,9 @@ export default function KundaliPage() {
 
         </motion.div>
       )}
+
+      {/* SEO cross-links */}
+      <RelatedLinks type="learn" links={getLearnLinksForTool('/kundali')} locale={locale} />
     </div>
   );
 }

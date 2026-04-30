@@ -52,7 +52,18 @@ const nextConfig: NextConfig = {
     root: __dirname,
   },
   experimental: {
-    optimizePackageImports: ['lucide-react', 'framer-motion'],
+    // Tree-shake barrel exports — reduces unused JS shipped to client
+    optimizePackageImports: [
+      'lucide-react',
+      'framer-motion',
+      'd3',
+      'd3-scale',
+      'd3-shape',
+      'd3-selection',
+      '@supabase/supabase-js',
+    ],
+    // Optimize CSS chunking — splits CSS by route for smaller critical CSS
+    cssChunking: 'strict',
   },
   images: {
     formats: ['image/avif', 'image/webp'],

@@ -165,6 +165,19 @@ export function resolveTimezone(tz: string | number, year: number, month: number
  * The birth location's coordinates determine the timezone — never the browser.
  */
 export async function resolveTimezoneFromCoords(lat: number, lng: number): Promise<string> {
+  // Method 1: Browser's Intl API — instant, no network call.
+  // When coordinates come from browser geolocation, the browser's timezone
+  // is the correct timezone for those coordinates.
+  if (typeof window !== 'undefined' && typeof Intl !== 'undefined') {
+    try {
+      const browserTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      if (browserTz && browserTz !== 'UTC') return browserTz;
+    } catch { /* Intl not available */ }
+  }
+
+  // Method 2: External API — resolves timezone for arbitrary coordinates.
+  // Needed when coordinates don't match the user's browser timezone
+  // (e.g., searching for panchang in Delhi while sitting in Switzerland).
   try {
     const res = await fetch(
       `https://timeapi.io/api/timezone/coordinate?latitude=${lat}&longitude=${lng}`,
@@ -174,10 +187,13 @@ export async function resolveTimezoneFromCoords(lat: number, lng: number): Promi
       const data = await res.json();
       if (data.timeZone) return data.timeZone;
     }
-  } catch { /* API failed — use fallback */ }
+  } catch { /* API failed — use longitude fallback */ }
 
-  // Fallback: estimate from longitude
-  const offsetHours = Math.round(lng / 15);
+  // Method 3: Longitude-based estimate (last resort).
+  // Known weakness: Europe west of 7.5°E rounds to UTC+0 but is actually CET (UTC+1).
+  // Special-case European longitudes where CET/CEST applies.
+  const isEurope = lng >= -10 && lng <= 15 && lat >= 35 && lat <= 72;
+  const offsetHours = isEurope ? 1 : Math.round(lng / 15);
   const OFFSET_TO_IANA: Record<string, string> = {
     '-12': 'Etc/GMT+12', '-11': 'Pacific/Midway', '-10': 'Pacific/Honolulu',
     '-9': 'America/Anchorage', '-8': 'America/Los_Angeles', '-7': 'America/Denver',

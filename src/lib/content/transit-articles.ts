@@ -640,6 +640,546 @@ Debt and financial obligations become more manageable. If loans, EMIs, or accumu
     ],
     retrogradeNote: 'Jupiter stations retrograde around February 25, 2027 at approximately 18° Leo and continues retrograde motion into Virgo, turning direct around June 22, 2027 at ~10° Virgo. The retrograde period within Leo (late February through mid-April) is a time for consolidation rather than expansion. Leadership roles assumed during the direct phase are tested and refined. Creative projects deepen in quality even as external progress slows. Financial decisions benefit from extra deliberation. Jupiter retrograde is not malefic — it is a natural pause that ensures your growth is sustainable rather than over-extended.',
   },
+
+  'rahu-in-capricorn-2026': {
+    slug: 'rahu-in-capricorn-2026',
+    planetId: 7,
+    fromSignId: 11,
+    toSignId: 10,
+    year: 2026,
+    exactDate: '2026-12-06',
+    endDate: '2028-06-15',
+    duration: '~18 months (December 6, 2026 – June 2028)',
+    publishDate: '2026-11-15',
+    title: {
+      en: 'Rahu in Capricorn 2026–28: Effects on All 12 Moon Signs',
+      hi: 'राहु मकर राशि में 2026–28: सभी 12 चन्द्र राशियों पर प्रभाव',
+    },
+    metaDescription: {
+      en: 'Rahu enters Capricorn on December 6, 2026 — Saturn\'s sign of cold ambition. Learn how this 18-month transit of power, career obsession, and karmic reckoning affects your Moon sign.',
+      hi: 'राहु 6 दिसम्बर 2026 को मकर राशि में प्रवेश करेगा — शनि की महत्वाकांक्षा की राशि में। जानें कि यह 18 माह का गोचर आपकी चन्द्र राशि को कैसे प्रभावित करेगा।',
+    },
+    overview: {
+      en: `On December 6, 2026, Rahu — the north lunar node, the shadow planet of insatiable desire — leaves Aquarius and enters Capricorn, Saturn's earth sign of structure, discipline, and relentless ambition. Rahu will remain in Capricorn for approximately eighteen months, until June 2028. This is not a gentle transit. Rahu in Capricorn is the executive who sleeps four hours a night, the politician who remembers every favor owed, the entrepreneur who builds empires and forgets to call home. It amplifies everything Capricorn represents — career, hierarchy, institutional power, pragmatism — and strips away the pretense of modesty.
+
+The reason this transit hits so hard is the natural affinity between Rahu and Saturn. Classical texts note that Rahu behaves like Saturn — both are karmic enforcers, both deal in consequences, both operate on long timescales. When Rahu occupies Saturn's own sign, these qualities are not merely present but dominant. The desire for status, recognition, and material security becomes an all-consuming drive. People who have been quietly building careers may find themselves thrust into positions of unexpected authority. Those who have been cutting corners will find that Capricorn's structural integrity demands a reckoning.
+
+The last time Rahu occupied Capricorn was approximately 2008–2009 — the period of the global financial crisis, when institutional structures that appeared invincible were exposed as hollow. Rahu in Capricorn does not create or destroy institutions; it reveals whether they are built on substance or illusion. The same principle applies to individual careers: if your professional position is grounded in genuine competence and ethical conduct, Rahu amplifies your authority. If it rests on appearances, networking without substance, or borrowed credibility, this transit exposes the gap.
+
+Rahu always moves retrograde — backward through the zodiac — which gives this transit an inherently revisionary quality. You are not building something entirely new; you are revisiting old ambitions, unfinished career arcs, and power dynamics you thought you had resolved. The karmic dimension is inescapable. Rahu's transits are never purely material — they carry the weight of past-life patterns, compulsive behaviors, and desires so deep they feel like instinct rather than choice. The eighteen months ahead will teach you the difference between ambition that serves your dharma and ambition that merely feeds your ego.`,
+      hi: `6 दिसम्बर 2026 को राहु — उत्तर चन्द्र पात, अतृप्त इच्छा का छाया ग्रह — कुम्भ राशि छोड़कर मकर राशि में प्रवेश करता है, शनि की पृथ्वी राशि जो अनुशासन, संरचना और अदम्य महत्वाकांक्षा का प्रतीक है। राहु लगभग अठारह माह तक, जून 2028 तक मकर में रहेगा। यह कोई सौम्य गोचर नहीं है। मकर में राहु वह अधिकारी है जो रात में चार घण्टे सोता है, वह राजनेता जो हर एहसान याद रखता है, वह उद्यमी जो साम्राज्य बनाता है और घर फ़ोन करना भूल जाता है।
+
+इस गोचर के इतने प्रभावशाली होने का कारण राहु और शनि के बीच स्वाभाविक सम्बन्ध है। शास्त्रीय ग्रन्थ बताते हैं कि राहु शनि के समान व्यवहार करता है — दोनों कार्मिक प्रवर्तक हैं, दोनों परिणामों से निपटते हैं, दोनों दीर्घकालिक समयावधि पर कार्य करते हैं। जब राहु शनि की अपनी राशि में बैठता है, तो ये गुण केवल उपस्थित नहीं बल्कि प्रभावी होते हैं। प्रतिष्ठा, मान्यता और भौतिक सुरक्षा की इच्छा एक सर्वग्राही अभियान बन जाती है।
+
+पिछली बार राहु मकर में लगभग 2008-2009 में था — वैश्विक वित्तीय संकट का काल, जब अजेय प्रतीत होने वाली संस्थागत संरचनाएँ खोखली सिद्ध हुईं। मकर में राहु संस्थाओं को बनाता या नष्ट नहीं करता; वह प्रकट करता है कि वे सार पर बनी हैं या भ्रम पर। यही सिद्धान्त व्यक्तिगत कैरियर पर लागू होता है।
+
+राहु सदैव वक्री गति से चलता है — राशिचक्र में पीछे की ओर — जो इस गोचर को एक स्वाभाविक रूप से पुनरीक्षात्मक गुण प्रदान करता है। आप कुछ पूर्णतः नया नहीं बना रहे; आप पुरानी महत्वाकांक्षाओं, अधूरे कैरियर पथों, और उन शक्ति गतिकी को पुनः देख रहे हैं जिन्हें आपने हल मान लिया था। कार्मिक आयाम अनिवार्य है। आगे के अठारह माह आपको सिखाएँगे कि धर्म की सेवा करने वाली महत्वाकांक्षा और केवल अहंकार को पोषित करने वाली महत्वाकांक्षा में क्या अन्तर है।`,
+    },
+    generalThemes: [
+      { en: 'Career obsession — sudden promotions, corporate power grabs, and an all-consuming drive to climb the professional ladder', hi: 'कैरियर का जुनून — अचानक पदोन्नति, कॉर्पोरेट सत्ता अधिग्रहण, और व्यावसायिक सीढ़ी चढ़ने की सर्वग्राही प्रेरणा' },
+      { en: 'Institutional upheaval — government restructuring, corporate scandals, and the exposure of hollow structures built on appearances rather than substance', hi: 'संस्थागत उथल-पुथल — सरकारी पुनर्गठन, कॉर्पोरेट घोटाले, और दिखावे पर बनी खोखली संरचनाओं का भण्डाफोड़' },
+      { en: 'Burnout and workaholism — the shadow side of Rahu\'s relentless ambition; the body demands rest that the mind refuses to grant', hi: 'थकान और कार्य-व्यसन — राहु की अथक महत्वाकांक्षा का छाया पक्ष; शरीर विश्राम माँगता है जो मन देने से इनकार करता है' },
+      { en: 'Karmic reckoning in authority — leaders face consequences for past decisions; those who led with integrity are rewarded, those who didn\'t are exposed', hi: 'अधिकार में कार्मिक हिसाब — नेता पिछले निर्णयों के परिणाम भुगतते हैं; जिन्होंने सत्यनिष्ठा से नेतृत्व किया उन्हें पुरस्कृत किया जाता है' },
+      { en: 'Material pragmatism over idealism — practical results matter more than noble intentions; Rahu in Capricorn judges you by what you built, not what you planned', hi: 'आदर्शवाद पर भौतिक व्यावहारिकता — व्यावहारिक परिणाम उदात्त इरादों से अधिक महत्वपूर्ण; मकर में राहु आपको बनाए गए से आँकता है, योजना से नहीं' },
+      { en: 'Father figures and authority relationships — complex karmic patterns with father, boss, or government surface for resolution', hi: 'पितृ-तुल्य व्यक्ति और अधिकार सम्बन्ध — पिता, बॉस, या सरकार के साथ जटिल कार्मिक प्रतिरूप समाधान के लिए सामने आते हैं' },
+    ],
+    moonSignEffects: [
+      // 1. Aries (Mesha) — Rahu in 10th house
+      {
+        rashiId: 1,
+        house: 10,
+        headline: 'Career Earthquake — Sudden Rise or Reckoning',
+        body: `Rahu transits your tenth house — the house of career, public reputation, and authority. For Aries Moon natives, this is the most career-intensive eighteen months in the entire Rahu cycle. The tenth house is Rahu's preferred domain in many respects: this is where the shadow planet's hunger for status, recognition, and worldly power finds its most direct expression.
+
+Expect your professional trajectory to accelerate in ways that feel slightly surreal. Promotions arrive ahead of schedule. Responsibilities land on your desk that would normally go to someone with a decade more experience. You may find yourself speaking to audiences, managing teams, or making decisions at a level that surprises even you. Rahu in the tenth doesn't ask whether you feel ready — it throws you into the deep end and rewards those who swim.
+
+The shadow side is real and must be watched. Rahu's ambition has no natural brake pedal. You can become so consumed by career advancement that your health, relationships, and inner life wither. The temptation to cut ethical corners — to take credit for others' work, to play political games, to sacrifice principle for promotion — is strong during this transit. Capricorn's Saturn rulership will eventually hold you accountable for every shortcut. The careers that collapse most dramatically under Rahu in the tenth are the ones built on manipulation rather than merit. Build on substance, and Rahu will elevate you to heights you hadn't imagined possible.`,
+        dosAndDonts: [
+          'Do accept leadership opportunities even if they feel premature — Rahu rewards boldness in the 10th',
+          'Do maintain ethical boundaries rigorously — shortcuts are tempting but Saturn eventually audits every one',
+          'Don\'t sacrifice family and health for career — burnout during this transit is a genuine risk',
+          'Don\'t let sudden power change how you treat subordinates — Rahu observes how you handle authority',
+        ],
+        remedy: 'Recite "Om Raam Rahave Namaha" 108 times on Saturdays; donate dark-colored blankets to the homeless',
+      },
+      // 2. Taurus (Vrishabha) — Rahu in 9th house
+      {
+        rashiId: 2,
+        house: 9,
+        headline: 'Unconventional Faith and Foreign Fortune',
+        body: `Rahu transits your ninth house — the house of dharma, fortune, father, guru, and long-distance travel. For Taurus Moon natives, this is a deeply unsettling yet ultimately productive transit. The ninth house represents everything you believe about the world — your faith, your philosophy, your sense of cosmic order. Rahu here doesn't destroy those beliefs; it forces you to examine whether they are genuinely yours or simply inherited.
+
+Foreign connections become prominent and often life-changing. You may travel to distant countries, take an overseas assignment, or begin working with international clients in a way that reshapes your worldview. Immigration or visa matters that have been stuck may suddenly move — though Rahu's movement is rarely straightforward, so expect complications alongside progress. The foreign element brings growth precisely because it pulls you out of Taurus's comfort-loving default.
+
+Your relationship with father figures, gurus, and authority becomes complicated. You may question a teacher you previously accepted without reservation, or discover that a mentor's guidance was more self-serving than you realized. This is Rahu's gift disguised as disruption: it strips away false teachers so genuine wisdom can enter. If you find a spiritual path or philosophical framework during this transit that survives Rahu's scrutiny, it will be the real thing — not a comforting illusion but a practice that holds up under pressure.`,
+        dosAndDonts: [
+          'Do explore foreign cultures, philosophies, and spiritual traditions outside your comfort zone',
+          'Do question inherited beliefs — not to destroy faith but to find one that is genuinely yours',
+          'Don\'t blindly follow a new guru or ideology that appears during this transit — Rahu can glamorize charlatans',
+          'Don\'t neglect your relationship with your father — karmic patterns here demand conscious attention',
+        ],
+        remedy: 'Feed birds on Saturdays, especially crows; donate to an educational institution serving underprivileged students',
+      },
+      // 3. Gemini (Mithuna) — Rahu in 8th house
+      {
+        rashiId: 3,
+        house: 8,
+        headline: 'Deep Transformation and Hidden Power',
+        body: `Rahu transits your eighth house — the house of sudden change, hidden wealth, occult knowledge, longevity, and other people's money. For Gemini Moon natives, this is one of the more intense Rahu placements, and intensity is not a word Gemini uses lightly. The eighth house operates beneath the surface, and Rahu's presence here pulls you into depths you might prefer to avoid.
+
+Financial matters involving others become prominent. Inheritance, insurance claims, shared investments, your spouse's income, and tax matters all carry Rahu's amplifying energy. Unexpected money may arrive from sources you hadn't considered — a forgotten policy, a legal settlement, or an investment that suddenly appreciates. Conversely, watch for financial entanglements where the terms are unclear. Rahu in the eighth can bring gain, but it can also create obligations you didn't intend.
+
+The transformative dimension of this transit is its most significant feature. You undergo a psychological or circumstantial shift that changes how you understand yourself. A secret comes to light — about yourself, about someone close to you, about a situation you thought you understood. Gemini's natural lightness is forced to reckon with heavy truths. This is uncomfortable, but it is also the transit that produces genuine depth in a sign that sometimes skims surfaces. Research, investigation, and occult or psychological studies are powerfully favored. Your analytical mind, applied to hidden subjects, produces insights that surprise you with their precision.`,
+        dosAndDonts: [
+          'Do pursue deep research, therapy, or psychological self-investigation — Rahu sharpens eighth-house perception',
+          'Do review financial instruments — insurance, wills, joint accounts — and clarify all terms',
+          'Don\'t ignore health symptoms — the eighth house governs longevity, and Rahu amplifies what you neglect',
+          'Don\'t enter financial arrangements with unclear terms — Rahu in the 8th punishes vagueness',
+        ],
+        remedy: 'Recite the Maha Mrityunjaya Mantra on Saturdays; donate to hospice or palliative care organizations',
+      },
+      // 4. Cancer (Karka) — Rahu in 7th house
+      {
+        rashiId: 4,
+        house: 7,
+        headline: 'Obsessive Partnerships and Karmic Relationships',
+        body: `Rahu transits your seventh house — the house of marriage, partnerships, and public dealing. For Cancer Moon natives, this transit brings relationships that feel fated, magnetic, and slightly overwhelming. Rahu in the seventh draws partners who are unusual, foreign, or outside your normal social circle. The attraction is powerful — often irrationally so — because Rahu operates through desire rather than reason.
+
+If you are single, you may meet someone who fascinated you from the first conversation. The connection feels deeper than mere attraction; there is a karmic quality, as though you are continuing something that began long before this lifetime. This person may be from a different culture, significantly older or younger, or from a background that your family wouldn't immediately approve. Rahu in the seventh doesn't care about social conventions — it cares about karmic completion.
+
+For those already married, this transit tests the partnership. Rahu amplifies whatever is already present: if the marriage is strong, it intensifies the bond; if fractures exist, they become impossible to ignore. A spouse may undergo their own professional or personal transformation, which changes the dynamic between you. Business partnerships carry similar intensity. Deals proposed during this transit are rarely simple — they involve complex terms, unusual partners, and stakes that feel higher than normal. The key with Rahu in the seventh is discrimination: not every magnetic connection is healthy, and not every intense proposal is wise. Let the initial fascination settle before committing.`,
+        dosAndDonts: [
+          'Do remain open to unconventional partnerships — Rahu brings growth through unfamiliar connections',
+          'Do examine existing relationships honestly — what you avoid now will be forced into the open later',
+          'Don\'t rush into marriage or business partnerships based on intense initial attraction alone',
+          'Don\'t ignore your instincts when a partner or deal feels too good to be true — Rahu glamorizes',
+        ],
+        remedy: 'Worship Durga on Saturdays; keep a piece of gomed (hessonite) in your bedroom after consulting an astrologer',
+      },
+      // 5. Leo (Simha) — Rahu in 6th house
+      {
+        rashiId: 5,
+        house: 6,
+        headline: 'Crushing Competition and Unconventional Healing',
+        body: `Rahu transits your sixth house — the house of enemies, disease, debt, and daily work. For Leo Moon natives, this is one of the more favorable Rahu placements. The sixth house is an upachaya (growth house), and malefics like Rahu actually perform well here — they direct their aggressive energy toward defeating obstacles rather than creating them. Rahu in the sixth is the corporate warrior, the litigator who never loses, the strategist who outmaneuvers every opponent.
+
+Your competitive edge sharpens dramatically. Legal disputes, workplace rivalries, competitive examinations, and professional contests all trend in your favor. Enemies who have been undermining you find their tactics backfiring. If you have been in a prolonged struggle — a lawsuit, a territorial dispute at work, a conflict with a neighbor or relative — Rahu in the sixth provides the ruthless pragmatism needed to end it decisively.
+
+Health takes an unusual trajectory. Rahu here can bring unconventional healing — alternative medicine, experimental treatments, or dietary changes that produce results where conventional approaches stalled. Conversely, stress-related health issues need watching. Rahu's intensity in the sixth house means you push yourself harder than your body wants to go. The very competitiveness that wins professional battles can become self-destructive if turned inward. Exercise as a stress outlet, not just as a performance metric, is essential. Debt matters resolve, often through aggressive negotiation or a lump-sum settlement that clears accumulated obligations.`,
+        dosAndDonts: [
+          'Do pursue competitive opportunities with full intensity — Rahu in the 6th is your secret weapon',
+          'Do explore alternative healing modalities if conventional treatment has stalled',
+          'Don\'t let competitive drive become personal cruelty — defeat opponents, don\'t destroy them',
+          'Don\'t ignore stress signals from your body — Rahu pushes past healthy limits',
+        ],
+        remedy: 'Donate medicines to the needy on Saturdays; keep a small piece of lead in your workplace',
+      },
+      // 6. Virgo (Kanya) — Rahu in 5th house
+      {
+        rashiId: 6,
+        house: 5,
+        headline: 'Unconventional Creativity and Karmic Children',
+        body: `Rahu transits your fifth house — the house of creativity, children, romance, intellect, and poorva punya. For Virgo Moon natives, this is one of the more psychologically complex Rahu placements. The fifth house governs what you create — whether children, art, ideas, or speculative ventures — and Rahu here adds an obsessive, unconventional quality to every act of creation.
+
+Creative output during this transit is unlike anything you normally produce. Virgo's analytical precision combines with Rahu's boundary-breaking energy to generate ideas that are original, occasionally controversial, and almost always ahead of their time. If you work in any creative field — technology, design, writing, music, or entrepreneurship — expect to produce your most distinctive work. The catch: it may not be immediately appreciated. Rahu's creations often make more sense in retrospect.
+
+Matters related to children carry karmic weight. If you are trying to conceive, the process may involve unexpected twists — fertility treatments, adoption considerations, or a pregnancy that arrives at an inconvenient time but proves to be exactly right. Existing children may exhibit unusual talents or challenging behaviors that demand a parenting approach you hadn't planned. Romance takes an intense, slightly obsessive quality. New relationships that begin under Rahu in the fifth feel consuming and transformative. Speculative investments attract you, but Rahu's fifth-house energy can make you overconfident — calculated risks, not gambles.`,
+        dosAndDonts: [
+          'Do pursue creative projects that feel risky or unconventional — Rahu rewards originality in the 5th',
+          'Do pay attention to your children\'s unusual needs or talents — karmic patterns are active',
+          'Don\'t gamble with money you cannot afford to lose — Rahu inflates speculative confidence',
+          'Don\'t dismiss unconventional romantic connections — but don\'t rush commitment either',
+        ],
+        remedy: 'Donate to children\'s charities on Saturdays; recite Saraswati mantra for clarity in creative work',
+      },
+      // 7. Libra (Tula) — Rahu in 4th house
+      {
+        rashiId: 7,
+        house: 4,
+        headline: 'Disrupted Roots and Restless Homes',
+        body: `Rahu transits your fourth house — the house of home, mother, emotional security, and landed property. For Libra Moon natives, this is one of the more uncomfortable Rahu placements because it disturbs the very foundation you stand on. The fourth house is where you feel safe, and Rahu is the planet that makes safety feel insufficient.
+
+Expect changes in your living situation. You may relocate — perhaps to a foreign country or an unfamiliar city — or undergo significant renovations that temporarily upend your domestic routine. Property matters carry both opportunity and complication: you may acquire real estate, but the process involves unexpected obstacles, legal tangles, or financing that doesn't proceed as planned. Rahu in the fourth brings properties that are unusual in some way — a foreign home, an unconventional layout, or a deal with complex terms.
+
+Your relationship with your mother or maternal figures undergoes a karmic review. Old emotional patterns — dependency, resentment, guilt, or unspoken expectations — surface for examination. This is not comfortable, but it is necessary. Rahu forces you to see the relationship as it actually is, not as childhood memory has painted it. The psychological dimension of this transit is profound: you may question the emotional programming you received in childhood and begin rewriting scripts that no longer serve you. Inner restlessness is the hallmark of this placement — a feeling that nowhere is quite home. Rather than fighting this, use it as fuel for genuine self-inquiry.`,
+        dosAndDonts: [
+          'Do embrace necessary relocations — Rahu in the 4th brings growth through uprooting',
+          'Do address unresolved emotional patterns with your mother or family of origin',
+          'Don\'t rush property purchases without thorough due diligence — hidden complications are likely',
+          'Don\'t medicate inner restlessness with material comforts — sit with the discomfort and learn from it',
+        ],
+        remedy: 'Offer water to the Moon on Monday nights; keep a coconut wrapped in white cloth at home and replace it monthly',
+      },
+      // 8. Scorpio (Vrishchika) — Rahu in 3rd house
+      {
+        rashiId: 8,
+        house: 3,
+        headline: 'Fearless Communication and Bold Ventures',
+        body: `Rahu transits your third house — the house of courage, communication, siblings, short travel, and initiative. For Scorpio Moon natives, this is one of the most empowering Rahu placements. The third house is another upachaya where malefic planets thrive, and Rahu here gives you a voice that cuts through noise, a courage that borders on recklessness, and a willingness to take initiatives that others find daunting.
+
+Your communication style becomes magnetic and unusually persuasive. Whether you write, speak, negotiate, or simply converse, words carry a hypnotic intensity that is characteristically Rahu. This is the transit to launch a media venture, publish provocative ideas, start a podcast with real edge, or pitch proposals that your conventional self would have softened. Scorpio's depth combined with Rahu's boundary-crossing produces communication that is memorable — sometimes uncomfortably so.
+
+Sibling relationships take on karmic dimensions. A brother or sister may need your help in ways that test your boundaries, or a long-dormant rivalry may reignite. Short travel increases dramatically and often leads to unexpected opportunities — a weekend trip produces a business contact; a training program opens a career door. Your willpower and raw courage reach a peak. Decisions that previously felt paralyzingly risky now feel merely challenging. The danger is overconfidence: Rahu in the third can make you so bold that you forget to calculate the odds. Channel this energy into ventures where courage genuinely matters, and you will look back on these eighteen months as the period when you stopped hesitating and started doing.`,
+        dosAndDonts: [
+          'Do launch bold communication ventures — content, media, writing, public speaking',
+          'Do take calculated risks on projects requiring nerve — your courage is at an eighteen-year peak',
+          'Don\'t let boldness become recklessness — Rahu\'s courage needs Scorpio\'s strategic calculation',
+          'Don\'t ignore sibling relationships — karmic debts are being settled in the 3rd house',
+        ],
+        remedy: 'Donate stationery and books to underprivileged students on Saturdays; wear a dark green thread on the right wrist',
+      },
+      // 9. Sagittarius (Dhanu) — Rahu in 2nd house
+      {
+        rashiId: 9,
+        house: 2,
+        headline: 'Unconventional Wealth and Disrupted Values',
+        body: `Rahu transits your second house — the house of accumulated wealth, family, speech, and values. For Sagittarius Moon natives, this transit brings an unusual relationship with money: income may arrive from unexpected or unconventional sources — foreign earnings, digital assets, technology-driven income streams, or professions your family doesn't quite understand. Rahu in the second house doesn't care about traditional wealth-building; it finds money in the margins.
+
+Your speech patterns shift. The expansive, philosophical Sagittarian voice acquires a more provocative, contrarian edge. You may find yourself saying things that surprise you — opinions that challenge consensus, language that is blunter than your usual diplomatic default. This can be powerfully effective in negotiations, sales, or any profession where directness creates trust. It can also alienate people who expect the familiar, affable Sagittarius. Watch the line between refreshing honesty and unnecessary provocation.
+
+Family dynamics undergo karmic review. Your relationship with money, food, and the values you were raised with comes under scrutiny. You may discover that financial habits inherited from your family no longer serve you, or that dietary patterns you've followed since childhood need fundamental revision. The second house governs what you consume — food, information, substances — and Rahu here can create compulsive consumption patterns. The antidote is consciousness: notice what you are drawn to consume and ask whether it nourishes or merely fills.`,
+        dosAndDonts: [
+          'Do explore unconventional income streams — Rahu rewards innovation in the 2nd house',
+          'Do examine your relationship with money and inherited financial habits',
+          'Don\'t let provocative speech damage relationships you value — directness is useful, cruelty is not',
+          'Don\'t develop compulsive eating, spending, or consumption habits — Rahu amplifies appetite',
+        ],
+        remedy: 'Donate food to the hungry on Saturdays; keep a coin from a foreign country in your wallet',
+      },
+      // 10. Capricorn (Makara) — Rahu in 1st house (LAGNA!)
+      {
+        rashiId: 10,
+        house: 1,
+        headline: 'Identity Upheaval — Rahu Over Your Head',
+        body: `Rahu transits your first house — your own sign. For Capricorn Moon natives, this is the most personally disruptive transit in the eighteen-year Rahu cycle. Your identity, self-image, physical appearance, and the way the world perceives you undergo a transformation that feels both exhilarating and destabilizing. You are not the same person at the end of this transit as you were at the beginning, and the change is visible to everyone around you.
+
+Your ambition reaches a fever pitch. Capricorn already carries the zodiac's most formidable work ethic; add Rahu's insatiable hunger and you become a force that is difficult to compete with or to live with. Career advancement comes, but at a cost measured in sleep, relationships, and inner peace. You may adopt a dramatically different personal style — a new look, a new public persona, or a complete rebranding that reflects who you are becoming rather than who you have been. People who knew you well may feel they no longer recognize you.
+
+The first-house Rahu transit is fundamentally about authenticity versus persona. Rahu amplifies your public image, but the image it creates may not match your inner reality. The gap between how others see you and how you feel inside can become a source of existential anxiety. The resolution is not to suppress the transformation but to ensure it is rooted in genuine self-knowledge rather than mere ambition. The Capricorn natives who navigate this transit most successfully are the ones who use Rahu's energy to become more fully themselves — not a better-packaged version for public consumption, but a truer version that no longer needs packaging.`,
+        dosAndDonts: [
+          'Do embrace personal reinvention — Rahu in the 1st demands that you evolve, not just achieve',
+          'Do maintain a grounding practice — meditation, exercise, time in nature — to counterbalance Rahu\'s intensity',
+          'Don\'t lose yourself in the persona Rahu creates — stay connected to who you are beneath the ambition',
+          'Don\'t neglect health — Rahu over the ascendant can bring mysterious or hard-to-diagnose conditions',
+        ],
+        remedy: 'Recite "Om Raam Rahave Namaha" 108 times daily; wear gomed (hessonite) after consulting an astrologer; donate dark blankets on Saturdays',
+      },
+      // 11. Aquarius (Kumbha) — Rahu in 12th house
+      {
+        rashiId: 11,
+        house: 12,
+        headline: 'Foreign Lands, Hidden Expenses, and Spiritual Obsession',
+        body: `Rahu transits your twelfth house — the house of losses, foreign lands, isolation, sleep, and spiritual liberation. For Aquarius Moon natives, this is one of the more psychologically demanding Rahu placements. The twelfth house dissolves boundaries, and Rahu — a planet that feeds on intensity — finds itself in a space that demands surrender rather than conquest.
+
+Foreign connections become dominant. You may relocate abroad, take an international assignment, or begin a relationship with someone from a distant culture. Immigration processes advance, though Rahu's involvement means nothing proceeds without complication. Expenditure increases, sometimes dramatically — medical bills, legal fees, travel costs, or financial obligations you didn't anticipate. The twelfth house does not steal from you; it redirects your resources toward things your soul needs more than your bank account does.
+
+Sleep and dreams become vivid and occasionally disturbing. You may develop insomnia or, conversely, sleep excessively as an escape from waking intensity. Rahu in the twelfth can produce fascination with altered states — meditation, lucid dreaming, psychedelic experiences, or intense spiritual practice. The danger is escapism disguised as spirituality. Genuine twelfth-house work involves releasing control and accepting what comes; Rahu's obsessive nature wants to control even the release. The Aquarius natives who benefit most from this transit are the ones who learn to let go — of money, of outcomes, of the need to understand everything — and trust that what remains after Rahu's passage is what genuinely belongs to them.`,
+        dosAndDonts: [
+          'Do pursue international opportunities — Rahu in the 12th opens foreign doors',
+          'Do invest in genuine spiritual practice — not as escapism but as honest inner work',
+          'Don\'t resist necessary expenditures — fighting the 12th house creates more loss',
+          'Don\'t use substances, excessive sleep, or "spiritual" experiences to avoid dealing with reality',
+        ],
+        remedy: 'Donate dark-colored cloth to ashrams or hospices on Saturdays; practice 20 minutes of silent meditation daily',
+      },
+      // 12. Pisces (Meena) — Rahu in 11th house
+      {
+        rashiId: 12,
+        house: 11,
+        headline: 'Amplified Gains and Unconventional Networks',
+        body: `Rahu transits your eleventh house — the house of gains, income, social networks, and the fulfillment of desires. For Pisces Moon natives, this is among the most materially favorable Rahu placements. The eleventh house is an upachaya where Rahu operates with particular effectiveness, and the gains it produces tend to be substantial, unconventional, and slightly surprising in their origin.
+
+Income increases through channels you hadn't planned for. Technology-driven revenue, foreign clients, unusual business models, or income from fields that didn't exist a few years ago — Rahu in the eleventh finds money at the frontier. Your social network expands dramatically, and the new connections are not your usual crowd. You meet people from different industries, cultures, and social strata who introduce you to opportunities your existing circle could never have provided.
+
+Aspirations that have been dormant reactivate with Rahu's obsessive energy. A goal you set years ago — financial independence, a specific social position, a philanthropic ambition — suddenly feels achievable and urgent. The eleventh house fulfills desires, and Rahu amplifies both the desire and the fulfillment. The shadow side: Rahu's gains can be morally ambiguous. Money arrives, but the source or the method may not align with Pisces's naturally ethical instincts. The natives who navigate this transit best are those who maintain their moral compass while accepting that Rahu's gifts don't come in neat, conventional packages. Accept the abundance, but keep your ethics non-negotiable.`,
+        dosAndDonts: [
+          'Do expand your network aggressively — Rahu in the 11th rewards unconventional connections',
+          'Do pursue ambitious financial goals — this is your strongest material window in the Rahu cycle',
+          'Don\'t compromise ethical standards for material gain — Rahu tests your integrity through abundance',
+          'Don\'t neglect old friends while chasing new networks — the 11th house values loyalty',
+        ],
+        remedy: 'Donate to technological or digital education initiatives on Saturdays; feed stray dogs near your home',
+      },
+    ],
+    keyDates: [
+      { date: '2026-12-06', event: 'Rahu enters Capricorn', significance: 'The transit begins. Career and institutional themes intensify immediately. The first three months set the tone for the entire eighteen-month period.' },
+      { date: '2027-03-05', event: 'Solar eclipse in Pisces (Rahu-influenced)', significance: 'Rahu causes eclipses — this solar eclipse triggers sudden events related to your Rahu house placement. Decisions made near eclipses carry disproportionate long-term consequences.' },
+      { date: '2027-05-15', event: 'Rahu-Saturn conjunction in Capricorn (approximate)', significance: 'Saturn transits its own sign while Rahu occupies it — doubled karmic pressure on career, structure, and institutional authority. A stress test for professional foundations.' },
+      { date: '2027-09-17', event: 'Lunar eclipse in Pisces-Virgo axis', significance: 'Eclipse season reactivates Rahu\'s themes. Hidden matters surface; financial or relationship truths that were buried come to light.' },
+      { date: '2028-03-01', event: 'Final direct station period before exit', significance: 'The last major activation window. Unresolved Rahu-in-Capricorn themes demand final attention. Career decisions made now have lasting consequences.' },
+      { date: '2028-06-15', event: 'Rahu exits Capricorn, enters Sagittarius', significance: 'Transit ends. The career and authority themes that dominated eighteen months begin to settle. Integration phase begins — what you built under Rahu must now be maintained by your own effort.' },
+    ],
+  },
+
+  'ketu-in-cancer-2026': {
+    slug: 'ketu-in-cancer-2026',
+    planetId: 8,
+    fromSignId: 5,
+    toSignId: 4,
+    year: 2026,
+    exactDate: '2026-12-06',
+    endDate: '2028-06-15',
+    duration: '~18 months (December 6, 2026 – June 2028)',
+    publishDate: '2026-11-15',
+    title: {
+      en: 'Ketu in Cancer 2026–28: Effects on All 12 Moon Signs',
+      hi: 'केतु कर्क राशि में 2026–28: सभी 12 चन्द्र राशियों पर प्रभाव',
+    },
+    metaDescription: {
+      en: 'Ketu enters Cancer on December 6, 2026 — the Moon\'s sign of emotional security. Learn how this 18-month transit of spiritual detachment, family karma, and emotional liberation affects your Moon sign.',
+      hi: 'केतु 6 दिसम्बर 2026 को कर्क राशि में प्रवेश करेगा — चन्द्रमा की भावनात्मक सुरक्षा की राशि में। जानें कि यह 18 माह का आध्यात्मिक वैराग्य का गोचर आपकी चन्द्र राशि को कैसे प्रभावित करेगा।',
+    },
+    overview: {
+      en: `On December 6, 2026, Ketu — the south lunar node, the shadow planet of detachment, past-life wisdom, and spiritual liberation — enters Cancer, the Moon's own sign. This is one of the most emotionally challenging transits in the entire nodal cycle, because Ketu is the planet that severs attachment, and Cancer is the sign that lives for attachment. Home, mother, emotional security, nourishment, traditions, roots — everything Cancer holds sacred, Ketu examines with the dispassionate eye of a renunciant who has already moved beyond.
+
+This does not mean you lose your home or your mother. Ketu is subtler than that. What it does is create a strange emotional distance from things that previously felt essential. The house that used to feel like a sanctuary starts feeling like a stage set. The comfort food that once soothed now tastes hollow. The family traditions you performed without thinking suddenly seem like rituals whose meaning has evaporated. Ketu in Cancer forces the question: do you cling to emotional security because it genuinely nourishes you, or because you are afraid of what lies on the other side of letting go?
+
+The answer to that question is the spiritual gift of this transit. Ketu doesn't take things away to punish — it removes what you have outgrown so that something deeper can emerge. The Cancer native who has built an identity entirely around family, home, and emotional caretaking may find that identity dissolving — not because those things were wrong, but because they were incomplete. What replaces the old emotional scaffolding is a more resilient inner security that does not depend on external circumstances. You learn to feel at home inside yourself.
+
+The last time Ketu occupied Cancer was approximately 2008–2009, the same period as the Rahu-in-Capricorn financial crisis. While Rahu was exposing institutional hollowness, Ketu was quietly teaching millions of people that emotional security cannot be found in material prosperity alone. The homes, families, and lifestyles that felt permanent were revealed as impermanent. The lesson was not despair but liberation: when you stop clinging, you discover that what truly matters cannot be taken from you.`,
+      hi: `6 दिसम्बर 2026 को केतु — दक्षिण चन्द्र पात, वैराग्य, पूर्वजन्म ज्ञान और आध्यात्मिक मुक्ति का छाया ग्रह — कर्क राशि में प्रवेश करता है, चन्द्रमा की अपनी राशि। यह सम्पूर्ण राहु-केतु चक्र के सबसे भावनात्मक रूप से चुनौतीपूर्ण गोचरों में से एक है, क्योंकि केतु आसक्ति को काटने वाला ग्रह है, और कर्क वह राशि है जो आसक्ति के लिए जीती है। घर, माता, भावनात्मक सुरक्षा, पोषण, परम्पराएँ, जड़ें — जो कुछ भी कर्क पवित्र मानता है, केतु उसे एक संन्यासी की निर्लिप्त दृष्टि से परीक्षित करता है।
+
+इसका अर्थ यह नहीं है कि आप अपना घर या अपनी माँ खो देंगे। केतु उससे अधिक सूक्ष्म है। यह उन चीज़ों से एक विचित्र भावनात्मक दूरी बनाता है जो पहले आवश्यक लगती थीं। जो घर कभी आश्रय लगता था वह एक मंच-सज्जा लगने लगता है। जो परम्पराएँ आप बिना सोचे निभाते थे वे अचानक ऐसे अनुष्ठान लगने लगते हैं जिनका अर्थ वाष्पित हो गया है।
+
+इस प्रश्न का उत्तर ही इस गोचर का आध्यात्मिक उपहार है। केतु दण्डित करने के लिए नहीं छीनता — यह उसे हटाता है जिससे आप आगे बढ़ चुके हैं ताकि कुछ गहरा उभर सके। पुरानी भावनात्मक संरचना के स्थान पर एक अधिक सुदृढ़ आन्तरिक सुरक्षा आती है जो बाह्य परिस्थितियों पर निर्भर नहीं करती। आप अपने भीतर घर अनुभव करना सीखते हैं।
+
+पिछली बार केतु कर्क में लगभग 2008-2009 में था — मकर में राहु के वैश्विक वित्तीय संकट का वही काल। जबकि राहु संस्थागत खोखलापन उजागर कर रहा था, केतु चुपचाप लाखों लोगों को सिखा रहा था कि भावनात्मक सुरक्षा केवल भौतिक समृद्धि में नहीं मिल सकती। जब आप चिपकना बन्द करते हैं, तो आप खोजते हैं कि जो वास्तव में महत्वपूर्ण है वह आपसे छीना नहीं जा सकता।`,
+    },
+    generalThemes: [
+      { en: 'Emotional detachment from comfort zones — the things that used to feel like home begin to feel like limitations that must be outgrown', hi: 'सुविधा क्षेत्रों से भावनात्मक वैराग्य — जो चीज़ें घर जैसी लगती थीं वे सीमाएँ लगने लगती हैं जिन्हें पार करना आवश्यक है' },
+      { en: 'Mother and family karma — unresolved patterns with mother figures surface for healing; the relationship shifts from dependency to conscious choice', hi: 'माता और पारिवारिक कर्म — माता-तुल्य व्यक्तियों के साथ अनसुलझे प्रतिरूप उपचार के लिए सामने आते हैं; सम्बन्ध निर्भरता से सचेत चुनाव में बदलता है' },
+      { en: 'Spiritual breakthroughs through emotional pain — Ketu in Cancer produces its deepest insights precisely when comfort is withdrawn', hi: 'भावनात्मक पीड़ा के माध्यम से आध्यात्मिक सफलताएँ — कर्क में केतु अपनी गहनतम अन्तर्दृष्टि तब उत्पन्न करता है जब सुविधा वापस ले ली जाती है' },
+      { en: 'Property and home changes — relocations, selling ancestral property, or a feeling that your current home no longer fits who you are becoming', hi: 'सम्पत्ति और गृह परिवर्तन — स्थानान्तरण, पैतृक सम्पत्ति बेचना, या यह अनुभव कि वर्तमान घर अब आपके बनते व्यक्तित्व से मेल नहीं खाता' },
+      { en: 'Past-life emotional patterns completing — relationships and attachments that feel "ancient" reach their natural conclusion', hi: 'पूर्वजन्म के भावनात्मक प्रतिरूपों का पूर्ण होना — जो सम्बन्ध और आसक्तियाँ "प्राचीन" लगती हैं वे अपने स्वाभाविक अन्त पर पहुँचती हैं' },
+      { en: 'Intuition sharpens as emotional noise quiets — Ketu in Cancer strips away sentimental confusion and reveals what you truly feel versus what you think you should feel', hi: 'भावनात्मक शोर शान्त होने पर अन्तर्ज्ञान तीव्र होता है — कर्क में केतु भावुक भ्रम को हटाता है और प्रकट करता है कि आप वास्तव में क्या अनुभव करते हैं' },
+    ],
+    moonSignEffects: [
+      // 1. Aries (Mesha) — Ketu in 4th house
+      {
+        rashiId: 1,
+        house: 4,
+        headline: 'Letting Go of False Security',
+        body: `Ketu transits your fourth house — the house of home, mother, inner peace, and emotional foundations. For Aries Moon natives, this transit creates a peculiar sense of estrangement from your own comfort zones. The apartment that felt perfect last year now feels like a cage. The family routines that once anchored you start to feel performative. Something inside you is outgrowing its container, and the container is your emotional life.
+
+This is not a transit of catastrophic loss — it is a transit of quiet release. You may relocate, sell a property, or simply redecorate in a way that signals a new chapter. Your relationship with your mother enters a phase where old roles dissolve. The dynamic that defined your childhood — whether it was warmth, conflict, dependency, or distance — loosens its grip. This can feel like loss, but it is actually liberation. You are being freed to relate to your mother as an adult, not as a child replaying ancient scripts.
+
+The inner dimension is the most important. Ketu in the fourth strips away the emotional padding that Aries uses to avoid stillness. You may find meditation easier than ever — not because your mind quiets, but because the things that used to disturb your peace simply matter less. Academic focus improves paradoxically: by caring less about results, you study with more genuine absorption. The key to navigating this transit is to let go willingly. What Ketu takes by force is painful; what you release consciously is liberating.`,
+        dosAndDonts: [
+          'Do let go of living situations that no longer serve your growth — Ketu rewards conscious release',
+          'Do invest in meditation and inner work — the fourth house is the seat of the soul, and Ketu deepens access',
+          'Don\'t cling to nostalgic attachment — Ketu in the 4th is asking you to outgrow, not to mourn',
+          'Don\'t suppress the grief that arises — feel it fully, then let it pass',
+        ],
+        remedy: 'Offer milk to a Shiva lingam on Mondays; keep a small silver item at home for lunar stability',
+      },
+      // 2. Taurus (Vrishabha) — Ketu in 3rd house
+      {
+        rashiId: 2,
+        house: 3,
+        headline: 'Effortless Courage and Quiet Mastery',
+        body: `Ketu transits your third house — the house of courage, communication, siblings, and initiative. For Taurus Moon natives, this is one of the more manageable Ketu placements. The third house is an upachaya, and Ketu here operates with a kind of detached mastery — you find yourself performing acts of courage or communication without the usual anxiety, not because you have conquered fear but because Ketu has made the stakes feel less personal.
+
+Your communication style shifts toward economy and precision. Where you might normally deliberate at length before speaking, Ketu in the third produces a stripped-down directness that surprises you. You say what needs to be said without embellishment. In writing, your prose becomes leaner. In negotiations, you find yourself less attached to outcomes, which paradoxically makes you more effective. The counterpart who expects you to be emotionally invested encounters a calm they don't know how to handle.
+
+Sibling relationships carry a karmic completion quality. You may feel less emotionally entangled with a brother or sister — not in a cold way, but in a way that acknowledges the relationship without being defined by it. Short trips decrease or become less eventful. Skills you developed in past lives may surface with surprising fluency — a musical instrument feels familiar the first time you pick it up, a craft comes naturally, or a foreign language clicks faster than it should.`,
+        dosAndDonts: [
+          'Do trust the skills that arise spontaneously — Ketu in the 3rd activates past-life competence',
+          'Do communicate with directness — Ketu removes the need for diplomatic padding',
+          'Don\'t force yourself to be more social or communicative than feels natural — Ketu values economy',
+          'Don\'t ignore a sibling who reaches out — karmic threads deserve conscious acknowledgment',
+        ],
+        remedy: 'Donate to animal shelters on Tuesdays; recite Ganesh mantra for clarity in communication',
+      },
+      // 3. Gemini (Mithuna) — Ketu in 2nd house
+      {
+        rashiId: 3,
+        house: 2,
+        headline: 'Detachment from Material Security',
+        body: `Ketu transits your second house — the house of wealth, family, speech, and values. For Gemini Moon natives, this is a transit that loosens your grip on financial security and inherited values — not by taking things away, but by making you question why you held them so tightly. The savings account that represented safety starts to feel like a number. The family traditions that defined your identity start to feel like someone else's choices that you adopted without examination.
+
+Financial patterns shift. Income may become irregular — not necessarily reduced, but less predictable. You spend on things that don't make logical sense: a spiritual retreat, a charitable donation that exceeds your usual comfort zone, an experience rather than an asset. Ketu in the second is teaching you that security is an inner state, not an account balance. This is genuinely disorienting for a sign that processes the world through information and logic. The lesson is not to become financially reckless but to notice how much emotional weight you have placed on material certainty.
+
+Your speech becomes unusually quiet or detached. The witty, verbose Gemini voice tones down. You find yourself speaking less but meaning more. In social situations, you may feel like an observer rather than a participant — present but not performing. Family meals and gatherings lose their charge; you attend, but the emotional investment is lighter. The gift hidden in this discomfort is clarity: when you stop needing family approval, you can finally see your family as they are, and love them freely.`,
+        dosAndDonts: [
+          'Do examine your relationship with money — are you saving from wisdom or from fear?',
+          'Do simplify your diet and consumption habits — Ketu in the 2nd rewards austerity',
+          'Don\'t panic at financial irregularity — Ketu teaches that true security is internal',
+          'Don\'t cut off family communication — detachment means freedom, not abandonment',
+        ],
+        remedy: 'Donate food to the elderly on Tuesdays; recite "Om Namah Shivaya" 108 times daily',
+      },
+      // 4. Cancer (Karka) — Ketu in 1st house (LAGNA!)
+      {
+        rashiId: 4,
+        house: 1,
+        headline: 'The Great Dissolution — Ketu Over Your Identity',
+        body: `Ketu transits your first house — your own sign. For Cancer Moon natives, this is the most personally transformative transit in the entire eighteen-year Ketu cycle. While Rahu in Capricorn drives your seventh house toward obsessive partnership, Ketu over your head dissolves the very sense of self you have constructed around emotional security, caretaking, and belonging.
+
+Your self-image becomes unfamiliar. The person you see in the mirror looks the same, but something behind the eyes has shifted. You feel less defined by your emotions — the mood swings that once seemed central to your identity flatten out. This is not depression; it is Ketu's detachment working on the most fundamental level. You are being separated from an outdated version of yourself so a truer version can emerge. The process is disorienting, and it is also profoundly liberating.
+
+Physical health may present with vague, hard-to-diagnose symptoms. Ketu in the first house creates disconnection between mind and body — you may ignore physical signals because you feel detached from the body itself. This is the one area where Ketu's detachment is genuinely dangerous: pay attention to health symptoms even when they don't feel urgent. Spiritually, this is the most productive transit you can experience. Meditation deepens effortlessly. Past-life memories or intuitive flashes arrive without warning. You discover that beneath the personality you assembled from family conditioning and emotional habit, there is a quieter, vaster self that has been waiting.`,
+        dosAndDonts: [
+          'Do embrace the identity shift — resistance prolongs the discomfort, surrender accelerates the growth',
+          'Do establish a daily spiritual practice — Ketu in the 1st is the most powerful meditation transit possible',
+          'Don\'t ignore health symptoms — Ketu creates mind-body disconnection that can mask illness',
+          'Don\'t cling to the old self-image — it is being replaced, not destroyed',
+        ],
+        remedy: 'Worship Lord Ganesha on Tuesdays; wear cat\'s eye (lehsunia) only after consulting an experienced astrologer; donate to spiritual organizations',
+      },
+      // 5. Leo (Simha) — Ketu in 12th house
+      {
+        rashiId: 5,
+        house: 12,
+        headline: 'Spiritual Liberation and the Surrender of Ego',
+        body: `Ketu transits your twelfth house — the house of moksha, foreign lands, isolation, and the dissolution of material identity. For Leo Moon natives, this is a profoundly spiritual transit, though it may not feel that way at first. Ketu is the planet of liberation, and the twelfth house is the house of liberation. Together, they create a double-dose of dissolution that can feel like losing your footing — or like being released from chains you didn't know you were wearing.
+
+Expenditure increases in ways that feel meaningful rather than wasteful. You may spend on pilgrimages, retreats, charitable work, or healing treatments for yourself or others. Money that flows out during this transit tends to generate karmic returns that are invisible to accounting but palpable to the soul. Foreign connections deepen — you may feel more at home in another country than in the place you were born.
+
+Sleep and dreams become a primary channel of insight. You may experience dreams that feel like memories — not fantasies but recollections of experiences that seem to predate this lifetime. Meditation becomes not just a practice but a need, like breathing. Leo's natural desire for recognition and applause quiets. You find yourself less interested in performing for an audience and more interested in understanding who you are when no one is watching. This is Ketu's deepest gift in the twelfth: it liberates you from the tyranny of needing to be seen, and reveals that the self that observes is more real than the self that performs.`,
+        dosAndDonts: [
+          'Do invest seriously in spiritual practice — this is the most naturally moksha-oriented transit you can receive',
+          'Do accept foreign or isolating experiences as growth opportunities',
+          'Don\'t fight the pull toward solitude — Leo needs to learn that alone is not lonely',
+          'Don\'t spend recklessly, but don\'t resist spending that genuinely serves spiritual growth',
+        ],
+        remedy: 'Donate to ashrams or monasteries on Tuesdays; practice silence for one hour daily; visit a pilgrimage site',
+      },
+      // 6. Virgo (Kanya) — Ketu in 11th house
+      {
+        rashiId: 6,
+        house: 11,
+        headline: 'Detachment from Gains and Social Ambition',
+        body: `Ketu transits your eleventh house — the house of gains, income, social networks, and the fulfillment of desires. For Virgo Moon natives, this transit creates a curious relationship with success: the gains arrive, but the satisfaction doesn't. You achieve goals you set years ago and feel a flatness where you expected elation. This is not failure — it is Ketu teaching you that fulfillment does not live where you have been looking for it.
+
+Income may become irregular or arrive from unexpected, unconventional sources. Your social network shifts: old connections lose their relevance, and new ones feel meaningful but impermanent. You may withdraw from professional associations, social media, or networking events that previously felt essential to your career. This withdrawal is not self-sabotage; it is a recalibration. Ketu in the eleventh asks whether your social life serves your growth or merely your anxiety about being left out.
+
+Elder siblings or older friends may play a less prominent role in your life — not through conflict but through a natural drifting apart that both parties accept. Long-held aspirations complete in a muted way: the goal is achieved, the checkbox is ticked, and you realize the wanting was more vivid than the having. This transit's purpose is not to make you indifferent to success but to free you from the compulsive need for it. When you stop needing external validation, you discover what you actually want — and it is usually simpler, quieter, and more genuine than the ambitious targets Virgo habitually sets.`,
+        dosAndDonts: [
+          'Do let go of social obligations that drain more than they nourish',
+          'Do examine your aspirations — which ones are genuinely yours, and which did you absorb from others?',
+          'Don\'t interpret reduced social engagement as failure — Ketu in the 11th is a conscious simplification',
+          'Don\'t abandon financial discipline — irregular income requires more careful management, not less',
+        ],
+        remedy: 'Donate to elderly care organizations on Tuesdays; offer sesame seeds to a sacred fire',
+      },
+      // 7. Libra (Tula) — Ketu in 10th house
+      {
+        rashiId: 7,
+        house: 10,
+        headline: 'Career Detachment and the Search for Meaning',
+        body: `Ketu transits your tenth house — the house of career, public reputation, and authority. For Libra Moon natives, this is one of the more professionally disorienting transits in the Ketu cycle. The tenth house defines how the world sees you, and Ketu here creates a disconnect between your professional persona and your inner truth. You may achieve career milestones during this period and feel nothing — or you may lose interest in a career that once defined you.
+
+Professional recognition becomes less motivating. Promotions, titles, and public acknowledgment arrive or recede, but neither triggers the emotional response you expect. This is not burnout — it is Ketu dissolving your attachment to career identity. The Libra native who has built an entire self-concept around professional accomplishment finds that the concept is being quietly dismantled. What replaces it is a more authentic relationship with work: you do it because it matters, not because it proves you matter.
+
+Your relationship with authority figures — bosses, mentors, government — becomes less charged. Where you might previously have been anxious about their approval or resentful of their power, Ketu creates equanimity. You neither seek their blessing nor fear their judgment. This detachment can be professionally useful — colleagues and superiors respond differently to someone who is genuinely unattached to outcomes. Paradoxically, career advancement sometimes accelerates when you stop trying so hard.`,
+        dosAndDonts: [
+          'Do let go of career goals that no longer align with your genuine values',
+          'Do consider whether your current professional path reflects who you are or who you were told to be',
+          'Don\'t make impulsive career changes during Ketu\'s transit — detachment is not the same as rejection',
+          'Don\'t ignore professional obligations just because they feel less meaningful — fulfill commitments, then reassess',
+        ],
+        remedy: 'Donate to veterans or public service organizations on Tuesdays; practice karma yoga — work without attachment to results',
+      },
+      // 8. Scorpio (Vrishchika) — Ketu in 9th house
+      {
+        rashiId: 8,
+        house: 9,
+        headline: 'Questioning Dharma and the Guru Within',
+        body: `Ketu transits your ninth house — the house of dharma, fortune, father, guru, and higher learning. For Scorpio Moon natives, this transit creates a philosophical earthquake. The ninth house holds your beliefs about meaning, justice, and cosmic order — and Ketu does not leave beliefs unexamined. Faith that was inherited rather than earned comes under intense scrutiny. The guru you followed without question now seems more human than divine. The religious practices that once provided comfort now feel hollow unless you reinvest them with conscious intention.
+
+This is not a loss of faith — it is its refinement. Ketu in the ninth strips away spiritual materialism, guru dependency, and philosophical certainty that substitutes for genuine understanding. What remains after the stripping is leaner, more honest, and infinitely more durable. You may leave a spiritual community, break with a teacher, or simply stop performing religious rituals mechanically. Each of these is a graduation, not a failure.
+
+Your relationship with your father enters a phase of karmic resolution. Old grievances may dissolve — not through dramatic confrontation but through a quiet realization that holding onto them no longer serves you. Long-distance travel may decrease, or it may increase but feel less transformative than you expected. Academic pursuits carry a detached quality: you study not for credentials or social standing but because the subject genuinely interests you. Fortune becomes irregular — luck is present but unpredictable, as though the universe is teaching you to act without relying on favorable outcomes.`,
+        dosAndDonts: [
+          'Do question beliefs and practices that feel performative — Ketu rewards genuine seeking over habitual devotion',
+          'Do allow your relationship with your father to evolve naturally — forcing resolution is counterproductive',
+          'Don\'t abandon all spiritual practice — refine it, don\'t discard it',
+          'Don\'t mistake Ketu\'s skepticism for nihilism — questioning faith is the first step toward deeper faith',
+        ],
+        remedy: 'Read sacred texts with fresh eyes on Tuesdays — not for answers but for better questions; donate religious books to libraries',
+      },
+      // 9. Sagittarius (Dhanu) — Ketu in 8th house
+      {
+        rashiId: 9,
+        house: 8,
+        headline: 'Transformation Without Drama',
+        body: `Ketu transits your eighth house — the house of transformation, hidden knowledge, longevity, and sudden change. For Sagittarius Moon natives, this is one of the more mystically potent Ketu placements. The eighth house is the domain of secrets, death and rebirth, and occult knowledge, and Ketu — a planet that has already "been there" in past lives — navigates this territory with eerie familiarity.
+
+Transformation happens, but without the melodrama that the eighth house usually brings. Where Rahu in the eighth produces crises that force change, Ketu produces a quiet shedding — old identities fall away like dry leaves, and you barely notice until you look back and realize you are fundamentally different. Psychological patterns that have driven you for decades lose their power. Fears that once paralyzed you become manageable, not because you conquered them but because they simply stopped mattering.
+
+Research, occult studies, and deep psychological work are unusually productive. You may develop intuitive abilities — a sense for hidden dynamics in relationships or situations that proves uncannily accurate. Financial matters involving others (inheritance, insurance, joint accounts) resolve with less friction than expected. Health-wise, Ketu in the eighth provides a strange protection: crisis is averted not through dramatic intervention but through quiet course-correction. The Sagittarius tendency to expand and reach outward gives way, temporarily, to a deeper inward exploration that produces wisdom your sign typically seeks in books and foreign lands but finds, during this transit, inside your own psyche.`,
+        dosAndDonts: [
+          'Do pursue occult studies, depth psychology, or meditation practices that involve inner exploration',
+          'Do allow old identities and fears to dissolve without trying to replace them immediately',
+          'Don\'t ignore recurring health patterns — Ketu in the 8th resolves gently, but only if you pay attention',
+          'Don\'t resist the quieting of your normally expansive energy — the inward turn is temporary and productive',
+        ],
+        remedy: 'Recite Maha Mrityunjaya Mantra on Tuesdays; donate to hospice or end-of-life care organizations',
+      },
+      // 10. Capricorn (Makara) — Ketu in 7th house
+      {
+        rashiId: 10,
+        house: 7,
+        headline: 'Partnership Karma and Detached Relating',
+        body: `Ketu transits your seventh house — the house of marriage, partnerships, and one-to-one relationships. For Capricorn Moon natives, this transit creates emotional distance in your closest partnerships — not hostility or abandonment, but a pervasive sense that you and your partner are operating on different frequencies. While Rahu in your first house pushes you toward personal reinvention, Ketu in the seventh loosens the relational bonds you have relied on for stability.
+
+If you are married, your spouse may seem less central to your daily experience. You still love them, but the emotional charge of the relationship dims. Conversations that once felt intimate become functional. This is not a signal to end the marriage — it is Ketu teaching you that your partner is a companion, not a life support system. The relationships that survive this transit emerge stronger because they are built on genuine choice rather than emotional dependency.
+
+For single Capricorn natives, this transit can make partnership feel less urgent. The drive to find a mate quiets, and you discover that being alone is not the emergency your culture told you it was. New relationships that begin during Ketu in the seventh often carry a karmic, past-life quality — the person feels familiar in a way that defies the brevity of your acquaintance. Business partnerships may dissolve or restructure during this period, usually without rancor. The key to this transit is non-attachment: hold your partnerships lightly, love fully, and accept that Ketu is teaching both you and your partner to stand independently before standing together.`,
+        dosAndDonts: [
+          'Do give your partner space — Ketu in the 7th asks for independence within intimacy',
+          'Do examine whether you stay in partnerships from genuine love or from fear of being alone',
+          'Don\'t mistake Ketu\'s detachment for a mandate to end relationships — distance is not rejection',
+          'Don\'t start new business partnerships without very clear terms — Ketu creates ambiguity in the 7th',
+        ],
+        remedy: 'Worship Lord Shiva and Parvati together on Mondays for partnership harmony; donate white items to couples in need',
+      },
+      // 11. Aquarius (Kumbha) — Ketu in 6th house
+      {
+        rashiId: 11,
+        house: 6,
+        headline: 'Effortless Victory and Dissolving Enemies',
+        body: `Ketu transits your sixth house — the house of enemies, disease, debt, and daily work. For Aquarius Moon natives, this is one of the most favorable Ketu placements in the entire cycle. The sixth house is where obstacles live, and Ketu — the planet of dissolution — dissolves them with minimal effort. Enemies lose interest in opposing you. Health issues that have been chronic quietly improve. Debts become manageable or are cleared through unexpected means.
+
+The mechanism is characteristically Ketu: nothing dramatic happens. Your workplace rival doesn't confront you — they simply stop being relevant. The chronic pain you have carried for years doesn't vanish overnight — it gradually fades until one day you realize it has been weeks since you noticed it. Legal disputes settle without the courtroom drama you anticipated. Ketu in the sixth wins not through force but through rendering opposition irrelevant.
+
+Your daily work routine undergoes a spiritual recalibration. Tasks that once felt burdensome now feel neutral — you do them without the emotional charge that makes work feel like suffering. This detachment from daily grind is not apathy; it is Ketu showing you that most of what you consider "struggle" is actually resistance you create with your own emotional investment. Service work — helping the sick, the poor, or those in distress — becomes unexpectedly fulfilling. Ketu in the sixth excels at selfless service because the self is already quiet.`,
+        dosAndDonts: [
+          'Do let enemies and obstacles dissolve naturally — Ketu in the 6th does not require aggressive action',
+          'Do address chronic health issues with alternative or holistic approaches — Ketu responds to subtle healing',
+          'Don\'t create new conflicts during this transit — Ketu dissolves existing enemies but doesn\'t protect against new ones',
+          'Don\'t resist the simplification of your daily routine — less struggle does not mean less meaning',
+        ],
+        remedy: 'Feed stray animals on Tuesdays; donate to medical charities; recite "Om Ketave Namaha" 108 times',
+      },
+      // 12. Pisces (Meena) — Ketu in 5th house
+      {
+        rashiId: 12,
+        house: 5,
+        headline: 'Detached Creativity and Children\'s Karma',
+        body: `Ketu transits your fifth house — the house of creativity, children, romance, and past-life merit. For Pisces Moon natives, this transit strips your creative process of its usual emotional intensity and replaces it with something cleaner — a creativity that arises from emptiness rather than from feeling. The results can be genuinely remarkable: art, writing, or problem-solving that is uncannily precise because it is uncontaminated by the artist's ego.
+
+Your relationship with children shifts. If you have children, you may feel less emotionally entangled with their outcomes — their grades, their choices, their moods — which paradoxically makes you a better parent. You offer guidance without anxiety, support without control, love without possession. If you are trying to conceive, Ketu in the fifth can create delays or detours — adoption, fertility treatments, or a pregnancy that arrives at an unexpected time. The karmic dimension is unmistakable: children who arrive or become prominent during this transit carry past-life significance.
+
+Romance loses its usual intensity. New relationships lack the consuming passion that Pisces typically craves, feeling instead like calm, companionable connections. This can disappoint if you measure love by its voltage, but Ketu is teaching you that the quietest love is often the most real. Speculative ventures lose their appeal — the stock market, gambling, or high-risk investments feel less interesting, which is actually Ketu protecting you from losses. The creative and romantic detachment of this transit is not numbness; it is the stillness from which genuine inspiration and genuine love eventually emerge.`,
+        dosAndDonts: [
+          'Do create from a place of emptiness rather than emotional urgency — the results will be your most original work',
+          'Do parent with detachment — which is not the same as indifference but means trusting your children\'s paths',
+          'Don\'t speculate or gamble during this transit — Ketu in the 5th removes the instinct that keeps you safe',
+          'Don\'t chase romantic intensity — accept quieter connections as potentially deeper ones',
+        ],
+        remedy: 'Recite Saraswati mantra on Tuesdays; donate to children\'s welfare organizations; offer sesame oil lamps at a Ketu shrine',
+      },
+    ],
+    keyDates: [
+      { date: '2026-12-06', event: 'Ketu enters Cancer', significance: 'The transit begins simultaneously with Rahu entering Capricorn. Emotional detachment themes activate across all Moon signs. The first three months establish the karmic patterns that will play out over eighteen months.' },
+      { date: '2027-03-05', event: 'Solar eclipse in Pisces (nodal axis activated)', significance: 'Eclipses intensify Ketu\'s dissolving effect. Family secrets may surface, emotional patterns reach a breaking point, and spiritual breakthroughs become possible for those who have been doing inner work.' },
+      { date: '2027-06-20', event: 'Ketu conjunct Moon in Cancer (approximate)', significance: 'The most emotionally intense point of the transit. Moon-Ketu conjunction triggers deep emotional purging — old grief, childhood patterns, and mother-related karma surface with unusual clarity.' },
+      { date: '2027-09-17', event: 'Lunar eclipse on Pisces-Virgo axis', significance: 'Second eclipse season reactivates Ketu\'s themes. What was released in March now shows its consequences — usually more positive than anticipated.' },
+      { date: '2028-03-15', event: 'Final activation before Ketu exits Cancer', significance: 'Last major window for completing emotional and family karma. Relationships and attachments that have been slowly releasing reach their final form.' },
+      { date: '2028-06-15', event: 'Ketu exits Cancer, enters Gemini', significance: 'Transit ends. The emotional detachment that dominated eighteen months begins to integrate. You discover what remains when Ketu\'s dissolution is complete — and it is usually more than you feared and less than you clung to.' },
+    ],
+  },
 };
 
 /** Get all published article slugs (for sitemap and index pages) */

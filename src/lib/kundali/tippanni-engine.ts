@@ -8,6 +8,7 @@ import type { Locale } from '@/types/panchang';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { LAGNA_DEEP } from './tippanni-lagna';
+import { getLifeStageContext } from './life-stage';
 import { generateDashaSynthesis } from '@/lib/tippanni/dasha-synthesis';
 import { PLANET_HOUSE_DEPTH, DIGNITY_EFFECTS, DASHA_EFFECTS } from './tippanni-planets';
 import { BPHS_PLANET_IN_HOUSE } from '@/lib/constants/bphs-planet-in-house';
@@ -982,16 +983,46 @@ function generateStrengthOverview(kundali: KundaliData, locale: Locale): Strengt
 // ===== MAIN EXPORT =====
 
 export function generateTippanni(kundali: KundaliData, locale: Locale): TippanniContent {
+  const lifeAreas = generateLifeAreas(kundali, locale);
+
+  // ── Life stage: reorder and reframe life areas based on user's age ──
+  let lifeStageInfo: TippanniContent['lifeStage'];
+  if (kundali.birthData?.date) {
+    const birthDate = new Date(kundali.birthData.date + 'T00:00:00');
+    if (!isNaN(birthDate.getTime())) {
+      const ctx = getLifeStageContext(birthDate);
+      lifeStageInfo = {
+        age: ctx.age,
+        stage: ctx.stage,
+        headline: locale === 'hi' ? ctx.headline.hi : ctx.headline.en,
+        priorityOrder: ctx.priorityOrder,
+        remedyNote: locale === 'hi' ? ctx.remedyPreference.note.hi : ctx.remedyPreference.note.en,
+      };
+
+      // Prepend stage-specific framing to each life area summary
+      for (const key of ctx.priorityOrder) {
+        const area = lifeAreas[key as keyof typeof lifeAreas];
+        if (area && ctx.framing[key as keyof typeof ctx.framing]) {
+          const framing = locale === 'hi'
+            ? ctx.framing[key as keyof typeof ctx.framing].hi
+            : ctx.framing[key as keyof typeof ctx.framing].en;
+          area.summary = `${framing} ${area.summary}`;
+        }
+      }
+    }
+  }
+
   return {
     yearPredictions: generateYearPredictions(kundali, locale),
     personality: generatePersonality(kundali, locale),
     planetInsights: generatePlanetInsights(kundali, locale),
     yogas: generateYogas(kundali, locale),
     doshas: generateDoshas(kundali, locale),
-    lifeAreas: generateLifeAreas(kundali, locale),
+    lifeAreas,
     dashaInsight: generateDashaInsight(kundali, locale),
     remedies: generateRemedies(kundali, locale),
     strengthOverview: generateStrengthOverview(kundali, locale),
     dashaSynthesis: generateDashaSynthesis(kundali, locale),
+    lifeStage: lifeStageInfo,
   };
 }

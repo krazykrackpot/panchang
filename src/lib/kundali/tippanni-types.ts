@@ -148,6 +148,17 @@ export interface YearPredictionSection {
   keyAdvice: string;
 }
 
+/** Life stage context — adapts tippanni to user's current phase of life */
+export interface LifeStageInfo {
+  age: number;
+  stage: string;
+  headline: string;
+  /** Life area keys in priority order for this stage */
+  priorityOrder: string[];
+  /** Remedy preference note */
+  remedyNote: string;
+}
+
 export interface TippanniContent {
   yearPredictions: YearPredictionSection;
   personality: PersonalitySection;
@@ -158,6 +169,9 @@ export interface TippanniContent {
   dashaInsight: DashaInsightSection;
   remedies: RemedySection;
   strengthOverview: StrengthEntry[];
+
+  /** Life stage context — reorders and reframes content based on user's age */
+  lifeStage?: LifeStageInfo;
 
   dashaSynthesis?: DashaSynthesis;
   convergence?: ConvergenceResult | null;

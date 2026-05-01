@@ -912,6 +912,33 @@ export default function PanchangClient({ serverPanchang, serverLocation }: Panch
                       <div className="text-gold-light font-semibold mt-0.5" style={headingFont}>{tl(panchang.purnimantMasa || panchang.masa)}</div>
                     </div>
                   </div>
+                  {/* Festival indicator on tithi card */}
+                  {panchang.festivals && panchang.festivals.length > 0 && (
+                    <div className="mt-3 pt-3 border-t border-gold-primary/10 space-y-1.5">
+                      {panchang.festivals.slice(0, 2).map((fest, fi) => (
+                        <div
+                          key={fi}
+                          className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs ${
+                            fest.type === 'major'
+                              ? 'bg-gold-primary/15 border border-gold-primary/25'
+                              : 'bg-violet-500/10 border border-violet-500/15'
+                          }`}
+                        >
+                          <span className={`text-sm ${fest.type === 'major' ? '' : 'opacity-70'}`}>
+                            {fest.type === 'major' ? '✦' : '◇'}
+                          </span>
+                          <span className={`font-bold truncate ${fest.type === 'major' ? 'text-gold-light' : 'text-violet-300/80'}`}>
+                            {tl(fest.name)}
+                          </span>
+                        </div>
+                      ))}
+                      {panchang.festivals.length > 2 && (
+                        <div className="text-text-secondary/40 text-[10px] text-center">
+                          +{panchang.festivals.length - 2} {locale === 'hi' ? 'और' : 'more'}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </motion.div>
 
                 {/* ── NAKSHATRA CARD ── */}

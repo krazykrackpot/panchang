@@ -976,64 +976,35 @@ function buildReportHtml(
   <!-- COVER PAGE -->
   <!-- ════════════════════════════════════════════════════════════ -->
   <div class="cover">
-    <!-- Swastika (red) — sacred Hindu symbol of auspiciousness -->
-    <div style="text-align:center; margin-bottom:12px;">
-      <svg width="48" height="48" viewBox="0 0 100 100" style="display:inline-block;">
-        <g fill="#C41E3A" stroke="#C41E3A" stroke-width="2">
-          <!-- Central cross -->
-          <rect x="42" y="10" width="16" height="80" rx="2"/>
-          <rect x="10" y="42" width="80" height="16" rx="2"/>
-          <!-- Four arms (clockwise) -->
-          <rect x="58" y="10" width="28" height="12" rx="2"/>
-          <rect x="78" y="42" width="12" height="28" rx="2"/>
-          <rect x="14" y="78" width="28" height="12" rx="2"/>
-          <rect x="10" y="30" width="12" height="28" rx="2"/>
-          <!-- Four dots in quadrants -->
-          <circle cx="30" cy="30" r="4"/>
-          <circle cx="70" cy="30" r="4"/>
-          <circle cx="30" cy="70" r="4"/>
-          <circle cx="70" cy="70" r="4"/>
+    <!-- Swastika (red) — elegant traditional design with curved arms -->
+    <div style="text-align:center; margin-bottom:16px;">
+      <svg width="56" height="56" viewBox="0 0 120 120" style="display:inline-block;">
+        <g fill="none" stroke="#C41E3A" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Vertical bar -->
+          <line x1="60" y1="15" x2="60" y2="105"/>
+          <!-- Horizontal bar -->
+          <line x1="15" y1="60" x2="105" y2="60"/>
+          <!-- Four clockwise arms -->
+          <line x1="60" y1="15" x2="90" y2="15"/>
+          <line x1="105" y1="60" x2="105" y2="30"/>
+          <line x1="60" y1="105" x2="30" y2="105"/>
+          <line x1="15" y1="60" x2="15" y2="90"/>
         </g>
+        <!-- Four auspicious dots (tilak) -->
+        <circle cx="38" cy="38" r="4" fill="#C41E3A"/>
+        <circle cx="82" cy="38" r="4" fill="#C41E3A"/>
+        <circle cx="38" cy="82" r="4" fill="#C41E3A"/>
+        <circle cx="82" cy="82" r="4" fill="#C41E3A"/>
       </svg>
     </div>
 
-    <!-- Shree Ganesh invocation -->
+    <!-- Shree Ganesh — use the Om/Ganesh symbol character + elegant Devanagari rendering -->
     <div style="text-align:center; margin-bottom:8px;">
-      <svg width="64" height="64" viewBox="0 0 100 100" style="display:inline-block;">
-        <!-- Stylized Ganesh silhouette -->
-        <g fill="#C41E3A" opacity="0.85">
-          <!-- Head (round) -->
-          <circle cx="50" cy="30" r="18"/>
-          <!-- Crown -->
-          <polygon points="35,16 50,4 65,16" fill="#C41E3A"/>
-          <!-- Large ears -->
-          <ellipse cx="28" cy="28" rx="10" ry="14" fill="#C41E3A"/>
-          <ellipse cx="72" cy="28" rx="10" ry="14" fill="#C41E3A"/>
-          <!-- Trunk (curved to left) -->
-          <path d="M50,48 Q45,56 38,62 Q34,66 38,68 Q42,70 46,64 Q50,58 50,48" fill="#C41E3A" stroke="#C41E3A" stroke-width="1"/>
-          <!-- Body -->
-          <ellipse cx="50" cy="65" rx="20" ry="18" fill="#C41E3A"/>
-          <!-- Belly -->
-          <ellipse cx="50" cy="68" rx="14" ry="12" fill="#fff" opacity="0.15"/>
-          <!-- Arms -->
-          <path d="M30,55 Q22,50 18,42" stroke="#C41E3A" stroke-width="6" fill="none" stroke-linecap="round"/>
-          <path d="M70,55 Q78,50 82,42" stroke="#C41E3A" stroke-width="6" fill="none" stroke-linecap="round"/>
-          <!-- Modak in right hand -->
-          <circle cx="82" cy="40" r="5" fill="#C41E3A"/>
-          <!-- Feet -->
-          <ellipse cx="38" cy="84" rx="8" ry="4" fill="#C41E3A"/>
-          <ellipse cx="62" cy="84" rx="8" ry="4" fill="#C41E3A"/>
-        </g>
-        <!-- Eyes -->
-        <circle cx="43" cy="28" r="2" fill="#fff"/>
-        <circle cx="57" cy="28" r="2" fill="#fff"/>
-        <!-- Tusk -->
-        <path d="M54,36 Q56,42 58,38" stroke="#fff" stroke-width="1.5" fill="none"/>
-      </svg>
+      <div style="font-size: 64px; color: #C41E3A; line-height: 1; margin-bottom: 4px;">&#x0950;</div>
     </div>
 
-    <!-- Ganesh Mantra in Devanagari -->
-    <div style="font-family: 'Tiro Devanagari Sanskrit', 'Noto Sans Devanagari', serif; color: #C41E3A; font-size: 18px; font-weight: 700; text-align: center; letter-spacing: 2px; margin-bottom: 16px;">
+    <!-- Ganesh Mantra in Devanagari — classy serif script -->
+    <div style="font-family: 'Tiro Devanagari Sanskrit', 'Noto Sans Devanagari', serif; color: #C41E3A; font-size: 20px; font-weight: 700; text-align: center; letter-spacing: 3px; margin-bottom: 20px; line-height: 1.6;">
       ॥ श्री गणेशाय नमः ॥
     </div>
 

@@ -1,0 +1,17 @@
+Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday. You say these every day. But WHY are they in this order? It's not random. It's a 4,000-year-old astronomical code — and India cracked it.
+
+Ancient astronomers could see 7 moving objects in the sky — the Sun, Moon, and 5 visible planets. They ranked them by orbital speed, from slowest to fastest: Saturn at 29 years. Jupiter at 12. Mars at 2. The Sun at 1 year. Venus at 225 days. Mercury at 88 days. And the Moon at just 27 days.
+
+Here's where it gets brilliant. They assigned each HOUR of the day to one of these 7 planets, cycling through them in orbital speed order. Hour 1 of Saturday — Saturn. Hour 2 — Jupiter. Hour 3 — Mars. And so on, cycling through all 7, three full times through 24 hours, with 3 left over.
+
+Now the key insight: the planet that rules the FIRST hour of the day gives that day its name. Saturday starts with Saturn. Count 24 hours through the sequence — hour 25 — the first hour of the NEXT day — lands on the Sun. That's Sunday.
+
+Count another 24 — you land on the Moon. Monday. Then Mars — Tuesday. Mercury — Wednesday. Jupiter — Thursday. Venus — Friday. And back to Saturn — Saturday.
+
+There's an elegant shortcut. In the orbital speed list, skip every 2 planets: Saturn — skip Jupiter, Mars — land on Sun. Skip Venus, Mercury — land on Moon. The weekday order is the orbital speed order with every 3rd planet selected.
+
+This system spread everywhere — and the proof is in the languages. In Sanskrit: Ravivāsaraḥ — Ravi means Sun. Somavāsaraḥ — Soma means Moon. In French: Lundi — from Luna. Mardi — from Mars. In Japanese: Nichiyōbi — Nichi means Sun. Every culture, same planets, same order.
+
+This 4,000-year-old system isn't just history — it's still alive. Right now, this hour is ruled by a specific planet. That planet influences which activities are auspicious. We compute your personal Hora table — showing which planet rules each hour of your day, for your location — at Dekho Panchang.
+
+Explore 4,000 years of astronomical wisdom. Dekho Panchang — where ancient science meets modern computation.

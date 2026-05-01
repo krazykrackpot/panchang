@@ -96,6 +96,7 @@ const LifeReadingDashboard = dynamic(() => import('@/components/kundali/LifeRead
 const DomainDeepDive = dynamic(() => import('@/components/kundali/DomainDeepDive'), { ssr: false });
 const KeyDatesTimeline = dynamic(() => import('@/components/kundali/KeyDatesTimeline'), { ssr: false });
 const QuestionEntry = dynamic(() => import('@/components/kundali/QuestionEntry'), { ssr: false });
+const SummaryView = dynamic(() => import('@/components/kundali/SummaryView'), { ssr: false });
 const TrajectoryCard = dynamic(() => import('@/components/kundali/TrajectoryCard'), { ssr: false });
 const VedicProfileComponent = dynamic(() => import('@/components/kundali/VedicProfile'), { ssr: false });
 const BirthPosterCard = dynamic(() => import('@/components/shareable/BirthPosterCard'), { ssr: false });
@@ -453,7 +454,7 @@ export default function KundaliPage() {
   const [transitData, setTransitData] = useState<{ planets: { id: number; name: LocaleText; rashi: number; longitude: number; isRetrograde: boolean }[] } | null>(null);
 
   // Personal Pandit dashboard state
-  const [view, setView] = useState<'dashboard' | 'deepDive' | 'technical' | 'questionEntry'>('dashboard');
+  const [view, setView] = useState<'summary' | 'dashboard' | 'deepDive' | 'technical' | 'questionEntry'>('summary');
   const [activeDomain, setActiveDomain] = useState<DomainType | null>(null);
   const [personalReading, setPersonalReading] = useState<PersonalReading | null>(null);
   const [keyDates, setKeyDates] = useState<KeyDate[]>([]);
@@ -469,19 +470,9 @@ export default function KundaliPage() {
 
   /** After synthesizing a reading, check if user previously chose a focus domain. */
   const resolveInitialView = useCallback(() => {
-    const saved = getSavedQuestionChoice();
-    if (saved) {
-      setQuestionAnswered(true);
-      if (saved === 'all') {
-        setView('dashboard');
-      } else {
-        setActiveDomain(saved as DomainType);
-        setView('deepDive');
-      }
-    } else {
-      // No choice yet — show question entry overlay
-      setView('questionEntry');
-    }
+    // Unified reading is always the default — no question entry needed
+    setView('summary');
+    setQuestionAnswered(true);
   }, []);
 
   // On mount: URL query params take priority over sessionStorage. This lets
@@ -984,7 +975,7 @@ export default function KundaliPage() {
                 </button>
               )}
               <button
-                onClick={() => { setKundali(null); setEditing(false); setPersonalReading(null); setView('dashboard'); }}
+                onClick={() => { setKundali(null); setEditing(false); setPersonalReading(null); setView('summary'); }}
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
               >
                 {locale === 'en' || isTamil ? 'New Chart' : 'नया चार्ट'}
@@ -1246,6 +1237,21 @@ export default function KundaliPage() {
             );
           })()}
 
+          {/* ===== UNIFIED TIPPANNI / LIFE SUMMARY ===== */}
+          {tip && view === 'summary' && (
+            <SummaryView
+              tip={tip}
+              personalReading={personalReading}
+              keyDates={keyDates}
+              locale={locale}
+              onDeepDive={(domain) => {
+                setActiveDomain(domain as DomainType);
+                setView('deepDive');
+              }}
+              onTechnical={() => setView('technical')}
+            />
+          )}
+
           {/* ===== LAYER 0: QUESTION ENTRY OVERLAY ===== */}
           {personalReading && view === 'questionEntry' && (
             <QuestionEntry
@@ -1253,7 +1259,7 @@ export default function KundaliPage() {
               onSelect={(choice) => {
                 setQuestionAnswered(true);
                 if (choice === 'all') {
-                  setView('dashboard');
+                  setView('summary');
                 } else {
                   setActiveDomain(choice as DomainType);
                   setView('deepDive');
@@ -1320,7 +1326,7 @@ export default function KundaliPage() {
               locale={locale}
               onBack={() => {
                 setActiveDomain(null);
-                setView('dashboard');
+                setView('summary');
               }}
               aiReading={aiReadingHook.getReading(activeDomain)}
               aiLoading={aiReadingHook.loading}
@@ -1339,14 +1345,14 @@ export default function KundaliPage() {
           {/* ===== LAYER 3: TECHNICAL TABS (existing) ===== */}
           {(view === 'technical' || !personalReading) && (
           <>
-            {/* Back to dashboard button */}
-            {personalReading && (
+            {/* Back to summary button */}
+            {tip && (
               <button
-                onClick={() => setView('dashboard')}
+                onClick={() => setView('summary')}
                 className="inline-flex items-center gap-1.5 text-gold-primary text-sm hover:text-gold-light mb-4 transition-colors"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-                {locale === 'en' || String(locale) === 'ta' ? 'Back to Life Reading' : 'जीवन पठन पर वापस'}
+                {locale === 'en' || String(locale) === 'ta' ? 'Back to Life Summary' : 'जीवन सारांश पर वापस'}
               </button>
             )}
 

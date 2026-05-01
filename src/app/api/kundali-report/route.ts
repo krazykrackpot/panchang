@@ -142,10 +142,34 @@ function ratingStars(rating: number): string {
   return s;
 }
 
-// ── North Indian diamond chart rendered as HTML/CSS table ─────
-// House layout for North Indian chart (house numbers 1-12 mapped to grid cells)
-// The North Indian diamond is a 4x4 grid where the central 2x2 is for the title.
-// Houses are arranged clockwise starting from top-center.
+// ── North Indian diamond chart rendered as SVG ───────────────
+// Classic diamond layout: outer square + inner rotated square (diamond) with
+// diagonal lines creating 12 triangular houses. Coordinates scaled to a
+// 400×400 viewBox, adapted from the app's ChartNorth.tsx (500×500) layout.
+//
+// House positions (clockwise from top, 1=Ascendant at top center):
+//   1: top-center diamond   2: upper-left triangle   3: left-upper triangle
+//   4: left-center diamond  5: lower-left triangle   6: bottom-left triangle
+//   7: bottom-center diamond  8: bottom-right triangle  9: right-lower triangle
+//  10: right-center diamond  11: right-upper triangle  12: upper-right triangle
+
+// Centroid positions for text in each of the 12 triangular houses (400×400 viewBox)
+// Derived from ChartNorth.tsx HOUSE_PATHS scaled from 500→400 (×0.8, offset adjusted)
+const HOUSE_CENTROIDS: Record<number, { cx: number; cy: number; sx: number; sy: number }> = {
+  1:  { cx: 200, cy: 106, sx: 200, sy: 50 },
+  2:  { cx: 110, cy: 50,  sx: 74,  sy: 34 },
+  3:  { cx: 50,  cy: 110, sx: 34,  sy: 74 },
+  4:  { cx: 106, cy: 200, sx: 50,  sy: 200 },
+  5:  { cx: 50,  cy: 290, sx: 34,  sy: 326 },
+  6:  { cx: 110, cy: 350, sx: 74,  sy: 366 },
+  7:  { cx: 200, cy: 294, sx: 200, sy: 350 },
+  8:  { cx: 290, cy: 350, sx: 326, sy: 366 },
+  9:  { cx: 350, cy: 290, sx: 366, sy: 326 },
+  10: { cx: 294, cy: 200, sx: 350, sy: 200 },
+  11: { cx: 350, cy: 110, sx: 366, sy: 74 },
+  12: { cx: 290, cy: 50,  sx: 326, sy: 34 },
+};
+
 function renderNorthChart(kundali: KundaliData): string {
   // Map each house to its planets
   const housePlanets: Record<number, string[]> = {};
@@ -156,67 +180,71 @@ function renderNorthChart(kundali: KundaliData): string {
     housePlanets[p.house].push(`${abbr}${retro}`);
   }
 
-  // North Indian chart: fixed house positions in a 4x4 grid
-  // Grid layout (house number):
-  //     12   1   2   3
-  //     11  [center]  4
-  //     10  [center]  5
-  //      9   8   7   6
-  const cells: { row: number; col: number; house: number }[] = [
-    // Top row
-    { row: 0, col: 0, house: 12 },
-    { row: 0, col: 1, house: 1 },
-    { row: 0, col: 2, house: 2 },
-    { row: 0, col: 3, house: 3 },
-    // Middle rows
-    { row: 1, col: 0, house: 11 },
-    { row: 1, col: 3, house: 4 },
-    { row: 2, col: 0, house: 10 },
-    { row: 2, col: 3, house: 5 },
-    // Bottom row
-    { row: 3, col: 0, house: 9 },
-    { row: 3, col: 1, house: 8 },
-    { row: 3, col: 2, house: 7 },
-    { row: 3, col: 3, house: 6 },
-  ];
-
-  const grid: string[][] = Array.from({ length: 4 }, () => Array(4).fill(''));
-
-  for (const c of cells) {
-    const h = c.house;
+  // Build planet text elements for each house
+  let planetTexts = '';
+  for (let h = 1; h <= 12; h++) {
+    const pos = HOUSE_CENTROIDS[h];
+    const planets = housePlanets[h];
     const houseData = kundali.houses[h - 1];
     const signNum = houseData?.sign ?? h;
-    const planets = housePlanets[h].join(' ');
     const isAsc = h === 1;
-    grid[c.row][c.col] = `<td class="chart-cell${isAsc ? ' asc-cell' : ''}">
-      <div class="house-num">${signNum}</div>
-      <div class="house-planets">${esc(planets)}</div>
-    </td>`;
-  }
 
-  // Center cells
-  grid[1][1] = '';
-  grid[1][2] = '';
-  grid[2][1] = '';
-  grid[2][2] = '';
+    // Sign number label (small, gold, positioned near the edge of the triangle)
+    planetTexts += `<text x="${pos.sx}" y="${pos.sy}" text-anchor="middle" dominant-baseline="middle" font-size="9" font-weight="700" fill="${isAsc ? '#d4a853' : '#b89a3e'}" font-family="'Cinzel', serif">${signNum}</text>`;
 
-  let tableHtml = '<table class="ni-chart"><tbody>';
-  for (let r = 0; r < 4; r++) {
-    tableHtml += '<tr>';
-    for (let c = 0; c < 4; c++) {
-      if (r >= 1 && r <= 2 && c >= 1 && c <= 2) {
-        if (r === 1 && c === 1) {
-          tableHtml += '<td colspan="2" rowspan="2" class="chart-center"><div class="chart-title">Rashi<br/>Chart</div></td>';
-        }
-        // skip other center cells
-      } else {
-        tableHtml += grid[r][c];
+    if (planets.length > 0) {
+      // Render planets near the centroid; stack vertically if many
+      const lineHeight = 11;
+      // Split into rows of up to 3 abbreviations each
+      const rows: string[] = [];
+      for (let i = 0; i < planets.length; i += 3) {
+        rows.push(planets.slice(i, i + 3).join(' '));
+      }
+      const startY = pos.cy - ((rows.length - 1) * lineHeight) / 2;
+      for (let ri = 0; ri < rows.length; ri++) {
+        planetTexts += `<text x="${pos.cx}" y="${startY + ri * lineHeight}" text-anchor="middle" dominant-baseline="middle" font-size="9.5" font-weight="600" fill="#333" font-family="'Inter', sans-serif">${esc(rows[ri])}</text>`;
       }
     }
-    tableHtml += '</tr>';
   }
-  tableHtml += '</tbody></table>';
-  return tableHtml;
+
+  return `<svg viewBox="0 0 400 400" width="300" height="300" style="display:block; margin:0 auto;" role="img" aria-label="North Indian diamond birth chart">
+  <!-- Outer square border -->
+  <rect x="4" y="4" width="392" height="392" fill="#fdfcf9" stroke="#d4a853" stroke-width="2" rx="3"/>
+  <!-- Inner double border -->
+  <rect x="8" y="8" width="384" height="384" fill="none" stroke="#d4a85340" stroke-width="0.5" rx="2"/>
+
+  <!-- Inner diamond (rotated square) -->
+  <polygon points="200,24 376,200 200,376 24,200" fill="none" stroke="#d4a853" stroke-width="1.5"/>
+
+  <!-- Diagonal lines from corners to center — creating 12 triangular houses -->
+  <line x1="24" y1="24" x2="200" y2="200" stroke="#b89a3e" stroke-width="0.8"/>
+  <line x1="376" y1="24" x2="200" y2="200" stroke="#b89a3e" stroke-width="0.8"/>
+  <line x1="24" y1="376" x2="200" y2="200" stroke="#b89a3e" stroke-width="0.8"/>
+  <line x1="376" y1="376" x2="200" y2="200" stroke="#b89a3e" stroke-width="0.8"/>
+
+  <!-- Faint cross lines (horizontal + vertical midpoints) — optional classical touch -->
+  <line x1="24" y1="200" x2="376" y2="200" stroke="#d4a853" stroke-width="0.3" opacity="0.2"/>
+  <line x1="200" y1="24" x2="200" y2="376" stroke="#d4a853" stroke-width="0.3" opacity="0.2"/>
+
+  <!-- Ascendant highlight on house 1 (top center triangle) -->
+  <polygon points="200,24 112,112 200,200 288,112" fill="#f8f0d8" opacity="0.5"/>
+
+  <!-- ASC label -->
+  <text x="200" y="14" text-anchor="middle" font-size="8" font-weight="600" fill="#8B6914" letter-spacing="2" font-family="'Cinzel', serif">ASC</text>
+
+  <!-- Center label -->
+  <text x="200" y="195" text-anchor="middle" font-size="11" font-weight="600" fill="#8B6914" font-family="'Cinzel', serif">Rashi</text>
+  <text x="200" y="210" text-anchor="middle" font-size="11" font-weight="600" fill="#8B6914" font-family="'Cinzel', serif">Chart</text>
+
+  <!-- Diamond vertex dots -->
+  <circle cx="200" cy="24" r="2" fill="#d4a853" opacity="0.7"/>
+  <circle cx="376" cy="200" r="2" fill="#d4a853" opacity="0.7"/>
+  <circle cx="200" cy="376" r="2" fill="#d4a853" opacity="0.7"/>
+  <circle cx="24" cy="200" r="2" fill="#d4a853" opacity="0.7"/>
+
+  <!-- House sign numbers and planet abbreviations -->
+  ${planetTexts}
+</svg>`;
 }
 
 // ── Dasha timeline ────────────────────────────────────────────
@@ -710,47 +738,17 @@ function buildReportHtml(
     .retro-badge { background: #6366f1; color: #fff; }
     .combust-badge { background: #f59e0b; color: #fff; }
 
-    /* ── North Indian chart ── */
+    /* ── North Indian chart (SVG diamond) ── */
     .chart-wrapper {
       display: flex;
       gap: 24px;
       align-items: flex-start;
       flex-wrap: wrap;
     }
-    .ni-chart {
-      border-collapse: collapse;
-      width: 280px;
-      margin: 8px auto;
+    .chart-svg-wrap {
+      flex-shrink: 0;
     }
-    .ni-chart td {
-      border: 1.5px solid #d4a853;
-      width: 70px;
-      height: 60px;
-      text-align: center;
-      vertical-align: middle;
-      padding: 3px;
-      font-size: 9px;
-    }
-    .chart-cell { background: #fdfcf9; }
-    .asc-cell { background: #f8f0d8; }
-    .chart-center {
-      background: #f8f5eb;
-      font-family: 'Cinzel', serif;
-      color: #8B6914;
-    }
-    .chart-title { font-size: 12px; font-weight: 600; }
-    .house-num {
-      font-size: 8px;
-      color: #8B6914;
-      font-weight: 700;
-      margin-bottom: 2px;
-    }
-    .house-planets {
-      font-size: 9.5px;
-      font-weight: 600;
-      color: #333;
-      line-height: 1.3;
-    }
+    /* old table chart styles removed — SVG diamond uses inline styles */
 
     /* ── Chart key info ── */
     .chart-key {

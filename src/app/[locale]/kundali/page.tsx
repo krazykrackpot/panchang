@@ -18,10 +18,10 @@ import BirthForm from '@/components/kundali/BirthForm';
 import ConvergenceSummary from '@/components/kundali/ConvergenceSummary';
 import GoldDivider from '@/components/ui/GoldDivider';
 import ShareButton from '@/components/ui/ShareButton';
-import PrintButton from '@/components/ui/PrintButton';
+// PrintButton removed — consolidated into DownloadReportButton (full HTML report via /api/kundali-report)
 import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
-import { Download, Save, Check, ScrollText, Sparkles, Share2, X, ArrowRightLeft } from 'lucide-react';
+import { Save, Check, ScrollText, Sparkles, Share2, X, ArrowRightLeft } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { generateKundaliPrintHtml } from '@/lib/pdf/kundali-pdf';
@@ -990,18 +990,6 @@ export default function KundaliPage() {
                 <ScrollText className="w-4 h-4" />
                 {locale === 'en' || isTamil ? 'Generate Patrika' : 'पत्रिका बनाएं'}
               </button>
-              <button
-                onClick={async () => {
-                  const { exportKundaliPDF } = await import('@/lib/export/pdf-kundali');
-                  const tip = generateTippanni(kundali, locale);
-                  exportKundaliPDF(kundali, locale as Locale, tip);
-                }}
-                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
-                aria-label="Download PDF report"
-              >
-                <Download className="w-4 h-4" />
-                PDF Report
-              </button>
               <DownloadReportButton
                 birthData={{
                   name: kundali.birthData.name,
@@ -1013,12 +1001,6 @@ export default function KundaliPage() {
                   place: kundali.birthData.place,
                 }}
                 locale={locale}
-              />
-              <PrintButton
-                contentHtml={generateKundaliPrintHtml(kundali, locale as 'en' | 'hi' | 'sa')}
-                title={`Kundali — ${kundali.birthData.name}`}
-                label={locale === 'en' || isTamil ? 'Print' : 'प्रिंट'}
-                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
               />
               <ShareableKundaliCard kundali={kundali} locale={locale as Locale} />
               <ShareButton

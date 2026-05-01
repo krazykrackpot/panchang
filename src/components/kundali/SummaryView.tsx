@@ -27,6 +27,7 @@ import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
 
 const KeyDatesTimeline = dynamic(() => import('./KeyDatesTimeline'), { ssr: false });
+const PersonalMonthCalendar = dynamic(() => import('./PersonalMonthCalendar'), { ssr: false });
 const TrajectoryCard = dynamic(() => import('./TrajectoryCard'), { ssr: false });
 const ChartNorth = dynamic(() => import('./ChartNorth'), { ssr: false });
 
@@ -491,6 +492,42 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
           </div>
         )}
       </section>
+
+      {/* ═══ YOUR PERSONAL MONTH — color-coded daily quality ═══ */}
+      {kundali && (
+        <section className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/35 via-[#1a1040]/45 to-[#0a0e27] border border-gold-primary/12 p-5 sm:p-6">
+          <h2 className="text-lg sm:text-xl text-gold-light font-bold mb-4" style={headingFont}>
+            {isHi ? 'आपका व्यक्तिगत मास' : 'Your Personal Month'}
+          </h2>
+          <PersonalMonthCalendar
+            snapshot={{
+              moonSign: kundali.planets.find(p => p.planet.id === 1)?.sign || 1,
+              moonNakshatra: (() => {
+                const moon = kundali.planets.find(p => p.planet.id === 1);
+                if (!moon) return 1;
+                const sidLng = ((moon.longitude - (kundali.ayanamshaValue || 24.18)) % 360 + 360) % 360;
+                return Math.floor(sidLng / (360 / 27)) + 1;
+              })(),
+              moonNakshatraPada: (() => {
+                const moon = kundali.planets.find(p => p.planet.id === 1);
+                if (!moon) return 1;
+                const sidLng = ((moon.longitude - (kundali.ayanamshaValue || 24.18)) % 360 + 360) % 360;
+                const nakDeg = sidLng % (360 / 27);
+                return Math.floor(nakDeg / (360 / 27 / 4)) + 1;
+              })(),
+              sunSign: kundali.planets.find(p => p.planet.id === 0)?.sign || 1,
+              ascendantSign: kundali.ascendant.sign,
+              planetPositions: kundali.planets,
+              dashaTimeline: kundali.dashas,
+              sadeSati: (kundali as unknown as Record<string, unknown>).sadeSati ?? null,
+            }}
+            lat={kundali.birthData.lat}
+            lng={kundali.birthData.lng}
+            timezone={kundali.birthData.timezone}
+            locale={locale}
+          />
+        </section>
+      )}
 
       {/* ═══ READING TRAJECTORY (logged-in users with history) ═══ */}
       {trajectory && isLoggedIn && trajectory.domains.some(d => d.sparkline.length >= 2) && (

@@ -976,25 +976,26 @@ function buildReportHtml(
   <!-- COVER PAGE -->
   <!-- ════════════════════════════════════════════════════════════ -->
   <div class="cover">
-    <!-- Swastika (red) — elegant traditional design with curved arms -->
+    <!-- Swastika (red, larger) — proper Hindu Swastika: equal cross with RIGHT-angled clockwise arms -->
     <div style="text-align:center; margin-bottom:16px;">
-      <svg width="56" height="56" viewBox="0 0 120 120" style="display:inline-block;">
-        <g fill="none" stroke="#C41E3A" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
-          <!-- Vertical bar -->
-          <line x1="60" y1="15" x2="60" y2="105"/>
-          <!-- Horizontal bar -->
-          <line x1="15" y1="60" x2="105" y2="60"/>
-          <!-- Four clockwise arms -->
-          <line x1="60" y1="15" x2="90" y2="15"/>
-          <line x1="105" y1="60" x2="105" y2="30"/>
-          <line x1="60" y1="105" x2="30" y2="105"/>
-          <line x1="15" y1="60" x2="15" y2="90"/>
-        </g>
-        <!-- Four auspicious dots (tilak) -->
-        <circle cx="38" cy="38" r="4" fill="#C41E3A"/>
-        <circle cx="82" cy="38" r="4" fill="#C41E3A"/>
-        <circle cx="38" cy="82" r="4" fill="#C41E3A"/>
-        <circle cx="82" cy="82" r="4" fill="#C41E3A"/>
+      <svg width="80" height="80" viewBox="0 0 100 100" style="display:inline-block;">
+        <!-- The proper Hindu Swastika is a + cross where each arm bends RIGHT (clockwise) at the tip -->
+        <path d="
+          M 45,10 L 55,10 L 55,45 L 90,45 L 90,55 L 55,55 L 55,90 L 45,90 L 45,55 L 10,55 L 10,45 L 45,45 Z
+        " fill="#C41E3A"/>
+        <!-- Top arm bends RIGHT -->
+        <rect x="55" y="10" width="25" height="10" fill="#C41E3A"/>
+        <!-- Right arm bends DOWN -->
+        <rect x="80" y="55" width="10" height="25" fill="#C41E3A"/>
+        <!-- Bottom arm bends LEFT -->
+        <rect x="20" y="80" width="25" height="10" fill="#C41E3A"/>
+        <!-- Left arm bends UP -->
+        <rect x="10" y="15" width="10" height="25" fill="#C41E3A"/>
+        <!-- Four auspicious dots -->
+        <circle cx="33" cy="33" r="3.5" fill="#C41E3A"/>
+        <circle cx="67" cy="33" r="3.5" fill="#C41E3A"/>
+        <circle cx="33" cy="67" r="3.5" fill="#C41E3A"/>
+        <circle cx="67" cy="67" r="3.5" fill="#C41E3A"/>
       </svg>
     </div>
 

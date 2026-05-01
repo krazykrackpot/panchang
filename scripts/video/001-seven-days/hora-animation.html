@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hora Mechanism — Cinematic Animation</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@400;600;700;900&family=Noto+Sans+Devanagari:wght@400;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1920px; height: 1080px;
+    background: #0a0e27;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ═══ Background stars ═══ */
+  .star {
+    position: absolute; border-radius: 50%; background: #f0d48a;
+    animation: twinkle 3s ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.1; } 50% { opacity: 0.5; }
+  }
+
+  /* ═══ Planet badge ═══ */
+  .planet-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 64px; height: 64px; border-radius: 50%;
+    font-size: 20px; font-weight: 900;
+    border: 3px solid; transition: all 0.3s;
+  }
+  .planet-badge.large {
+    width: 100px; height: 100px; font-size: 28px;
+  }
+  .planet-badge.mega {
+    width: 160px; height: 160px; font-size: 44px; border-width: 4px;
+  }
+
+  /* Planet theme colors */
+  .p-saturn  { color: #94a3b8; border-color: #64748b; background: rgba(148,163,184,0.1); }
+  .p-jupiter { color: #eab308; border-color: #a16207; background: rgba(234,179,8,0.1); }
+  .p-mars    { color: #ef4444; border-color: #b91c1c; background: rgba(239,68,68,0.1); }
+  .p-sun     { color: #f59e0b; border-color: #d97706; background: rgba(245,158,11,0.1); }
+  .p-venus   { color: #ec4899; border-color: #be185d; background: rgba(236,72,153,0.1); }
+  .p-mercury { color: #34d399; border-color: #059669; background: rgba(52,211,153,0.1); }
+  .p-moon    { color: #60a5fa; border-color: #2563eb; background: rgba(96,165,250,0.1); }
+
+  .p-sun.active     { box-shadow: 0 0 40px rgba(245,158,11,0.5); }
+  .p-moon.active    { box-shadow: 0 0 40px rgba(96,165,250,0.5); }
+  .p-mars.active    { box-shadow: 0 0 40px rgba(239,68,68,0.5); }
+  .p-mercury.active { box-shadow: 0 0 40px rgba(52,211,153,0.5); }
+  .p-jupiter.active { box-shadow: 0 0 40px rgba(234,179,8,0.5); }
+  .p-venus.active   { box-shadow: 0 0 40px rgba(236,72,153,0.5); }
+  .p-saturn.active  { box-shadow: 0 0 40px rgba(148,163,184,0.5); }
+
+  /* ═══ Scenes ═══ */
+  .scene {
+    position: absolute; top: 0; left: 0;
+    width: 1920px; height: 1080px;
+    display: none; padding: 60px 80px;
+  }
+  .scene.active { display: block; }
+
+  .scene-title {
+    font-family: 'Cinzel', serif;
+    font-size: 52px; font-weight: 900;
+    color: #f0d48a; text-align: center;
+    text-shadow: 0 0 40px rgba(240,212,138,0.2);
+    margin-bottom: 50px;
+  }
+  .scene-subtitle {
+    font-size: 24px; color: #8a8478; text-align: center;
+    margin-top: -30px; margin-bottom: 40px;
+  }
+
+  /* ═══ Scene A: The 24-Hour Grid ═══ */
+  #sceneA .hora-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 8px;
+    max-width: 1200px; margin: 0 auto;
+  }
+  #sceneA .hora-cell {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 4px;
+    padding: 10px; border-radius: 12px;
+    border: 2px solid rgba(212,168,83,0.1);
+    background: rgba(26,16,64,0.3);
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  #sceneA .hora-cell.revealed {
+    opacity: 1;
+  }
+  #sceneA .hora-cell.highlight {
+    border-color: rgba(245,158,11,0.6);
+    background: rgba(245,158,11,0.08);
+    transform: scale(1.08);
+  }
+  #sceneA .hora-cell .hour-num {
+    font-size: 14px; color: #8a8478; font-weight: 600;
+  }
+  #sceneA .hora-cell .planet-dot {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 900;
+    border: 2px solid;
+  }
+  #sceneA .cycle-label {
+    grid-column: 1 / -1;
+    text-align: center; font-size: 18px; color: #d4a853;
+    padding: 8px; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  /* ═══ Scene B: The Overflow Reveal ═══ */
+  #sceneB {
+    display: none; flex-direction: column;
+    align-items: center; justify-content: center;
+  }
+  #sceneB .counter {
+    font-size: 200px; font-weight: 900;
+    font-family: 'Cinzel', serif;
+    color: #f0d48a;
+    text-shadow: 0 0 80px rgba(240,212,138,0.4);
+    line-height: 1;
+  }
+  #sceneB .counter-label {
+    font-size: 36px; color: #8a8478; margin-top: 20px;
+  }
+  #sceneB .reveal-planet {
+    margin-top: 40px; opacity: 0;
+    transition: all 0.5s;
+  }
+  #sceneB .reveal-planet.show {
+    opacity: 1; transform: scale(1);
+  }
+  #sceneB .reveal-day {
+    font-size: 120px; font-weight: 900;
+    font-family: 'Cinzel', serif;
+    margin-top: 30px; opacity: 0;
+    transition: all 0.8s;
+  }
+  #sceneB .reveal-day.show {
+    opacity: 1;
+  }
+
+  /* ═══ Scene C: The Full Sequence ═══ */
+  #sceneC .sequence {
+    display: flex; gap: 20px;
+    justify-content: center; align-items: center;
+    flex-wrap: wrap;
+    max-width: 1600px; margin: 40px auto;
+  }
+  #sceneC .seq-item {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 12px;
+    opacity: 0; transform: translateY(30px);
+    transition: all 0.6s;
+  }
+  #sceneC .seq-item.show {
+    opacity: 1; transform: translateY(0);
+  }
+  #sceneC .seq-day {
+    font-size: 28px; font-weight: 700;
+  }
+  #sceneC .seq-arrow {
+    font-size: 48px; color: #d4a853; opacity: 0.4;
+    align-self: center;
+  }
+  #sceneC .seq-hora {
+    font-size: 16px; color: #8a8478;
+  }
+
+  /* ═══ Scene D: Skip-3 Pattern ═══ */
+  #sceneD .speed-list {
+    display: flex; flex-direction: column;
+    gap: 16px; align-items: center;
+    margin: 40px auto; max-width: 600px;
+  }
+  #sceneD .speed-item {
+    display: flex; align-items: center; gap: 20px;
+    width: 100%; padding: 16px 30px;
+    border-radius: 16px; border: 2px solid rgba(212,168,83,0.1);
+    background: rgba(26,16,64,0.2);
+    font-size: 28px; font-weight: 700;
+    transition: all 0.5s;
+  }
+  #sceneD .speed-item.picked {
+    border-color: rgba(240,212,138,0.5);
+    background: rgba(240,212,138,0.08);
+    transform: scale(1.05) translateX(60px);
+  }
+  #sceneD .speed-item.skipped {
+    opacity: 0.2; transform: scale(0.95);
+  }
+  #sceneD .skip-arrow {
+    position: absolute; right: -80px;
+    font-size: 36px; color: #d4a853; opacity: 0;
+    transition: all 0.3s;
+  }
+  #sceneD .skip-arrow.show { opacity: 1; }
+
+  /* ═══ Controls ═══ */
+  #controls {
+    position: fixed; bottom: 20px; right: 20px;
+    background: rgba(0,0,0,0.8); padding: 12px 20px;
+    border-radius: 12px; color: #f0d48a; font-size: 14px;
+    z-index: 1000; display: flex; gap: 16px; align-items: center;
+  }
+  #controls button {
+    background: rgba(240,212,138,0.15); border: 1px solid rgba(240,212,138,0.3);
+    color: #f0d48a; padding: 8px 16px; border-radius: 8px; cursor: pointer;
+    font-weight: 600; font-size: 14px;
+  }
+  #controls button:hover { background: rgba(240,212,138,0.3); }
+</style>
+</head>
+<body>
+
+<!-- Background stars -->
+<script>
+  for (let i = 0; i < 80; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.cssText = `left:${Math.random()*1920}px; top:${Math.random()*1080}px; width:${1+Math.random()*2}px; height:${1+Math.random()*2}px; animation-delay:${Math.random()*3}s;`;
+    document.body.appendChild(star);
+  }
+</script>
+
+<!-- ═══ SCENE A: 24-Hour Hora Grid — Saturn's Day ═══ -->
+<div id="sceneA" class="scene active">
+  <div class="scene-title">Saturday — Hour by Hour</div>
+  <div class="scene-subtitle">Each hour assigned to a planet in orbital speed order</div>
+  <div class="hora-grid" id="horaGrid"></div>
+</div>
+
+<!-- ═══ SCENE B: The Overflow — Hour 25 Reveal ═══ -->
+<div id="sceneB" class="scene">
+  <div class="scene-title">What Planet Rules Hour 25?</div>
+  <div class="counter" id="counter">24</div>
+  <div class="counter-label" id="counterLabel">hours in Saturday</div>
+  <div class="reveal-planet" id="revealPlanet">
+    <div class="planet-badge mega p-sun active">☉</div>
+  </div>
+  <div class="reveal-day" id="revealDay" style="color: #f59e0b;">SUNDAY</div>
+</div>
+
+<!-- ═══ SCENE C: Full 7-Day Sequence ═══ -->
+<div id="sceneC" class="scene">
+  <div class="scene-title">The Complete Sequence</div>
+  <div class="scene-subtitle">Hour 1 of each day → the day's name</div>
+  <div class="sequence" id="sequence"></div>
+</div>
+
+<!-- ═══ SCENE D: Skip-3 Shortcut ═══ -->
+<div id="sceneD" class="scene">
+  <div class="scene-title">The Elegant Shortcut</div>
+  <div class="scene-subtitle">Skip every 2 planets in the speed ranking</div>
+  <div class="speed-list" id="speedList"></div>
+</div>
+
+<!-- Controls -->
+<div id="controls">
+  <span id="sceneLabel">Scene A</span>
+  <button onclick="prevScene()">← Prev</button>
+  <button onclick="nextScene()">Next →</button>
+  <button onclick="playAnimation()">▶ Play</button>
+  <span style="opacity:0.5">|</span>
+  <span style="opacity:0.5; font-size:12px;">Space/Arrow = advance</span>
+</div>
+
+<script>
+  const PLANETS = [
+    { name: 'Saturn',  abbr: 'Sa', symbol: '♄', cls: 'p-saturn',  color: '#94a3b8', day: 'SATURDAY' },
+    { name: 'Jupiter', abbr: 'Ju', symbol: '♃', cls: 'p-jupiter', color: '#eab308', day: 'THURSDAY' },
+    { name: 'Mars',    abbr: 'Ma', symbol: '♂', cls: 'p-mars',    color: '#ef4444', day: 'TUESDAY' },
+    { name: 'Sun',     abbr: 'Su', symbol: '☉', cls: 'p-sun',     color: '#f59e0b', day: 'SUNDAY' },
+    { name: 'Venus',   abbr: 'Ve', symbol: '♀', cls: 'p-venus',   color: '#ec4899', day: 'FRIDAY' },
+    { name: 'Mercury', abbr: 'Me', symbol: '☿', cls: 'p-mercury', color: '#34d399', day: 'WEDNESDAY' },
+    { name: 'Moon',    abbr: 'Mo', symbol: '☽', cls: 'p-moon',    color: '#60a5fa', day: 'MONDAY' },
+  ];
+
+  // The weekday sequence (starting from Saturday)
+  const WEEKDAY_ORDER = [0, 3, 6, 2, 5, 1, 4]; // Sa, Su, Mo, Ma, Me, Ju, Ve
+
+  // ═══ SCENE A: Build the 24-hour grid ═══
+  const grid = document.getElementById('horaGrid');
+  // Cycle labels
+  const cycles = ['CYCLE 1 (Hours 1–7)', 'CYCLE 2 (Hours 8–14)', 'CYCLE 3 (Hours 15–21)', 'OVERFLOW (Hours 22–24)'];
+  for (let c = 0; c < 4; c++) {
+    const label = document.createElement('div');
+    label.className = 'cycle-label';
+    label.textContent = cycles[c];
+    label.style.opacity = '0';
+    label.dataset.cycle = c;
+    grid.appendChild(label);
+
+    const count = c < 3 ? 7 : 3; // 7 per full cycle, 3 overflow
+    for (let h = 0; h < (c < 3 ? 7 : 4); h++) { // 4th slot in overflow = "→ Hour 25"
+      const hourNum = c * 7 + h + 1;
+      const pIdx = (c * 7 + h) % 7;
+      const cell = document.createElement('div');
+      cell.className = 'hora-cell';
+      cell.dataset.hour = hourNum;
+
+      if (c === 3 && h === 3) {
+        // The 25th hour — special
+        cell.innerHTML = `
+          <div class="hour-num" style="color: #f59e0b;">H25 →</div>
+          <div class="planet-dot ${PLANETS[3].cls}" style="border-color: #f59e0b; box-shadow: 0 0 20px rgba(245,158,11,0.4);">
+            <span style="font-size: 18px;">☉</span>
+          </div>
+          <div style="font-size: 11px; color: #f59e0b; font-weight: 900;">NEXT DAY</div>
+        `;
+        cell.style.borderColor = 'rgba(245,158,11,0.5)';
+        cell.style.background = 'rgba(245,158,11,0.06)';
+      } else if (hourNum <= 24) {
+        cell.innerHTML = `
+          <div class="hour-num">H${hourNum}</div>
+          <div class="planet-dot ${PLANETS[pIdx].cls}">
+            ${PLANETS[pIdx].abbr}
+          </div>
+        `;
+      }
+      grid.appendChild(cell);
+    }
+  }
+
+  // ═══ SCENE C: Build sequence ═══
+  const seq = document.getElementById('sequence');
+  WEEKDAY_ORDER.forEach((pIdx, i) => {
+    if (i > 0) {
+      const arrow = document.createElement('span');
+      arrow.className = 'seq-arrow';
+      arrow.textContent = '→';
+      seq.appendChild(arrow);
+    }
+    const item = document.createElement('div');
+    item.className = 'seq-item';
+    item.innerHTML = `
+      <div class="planet-badge large ${PLANETS[pIdx].cls}">${PLANETS[pIdx].symbol}</div>
+      <div class="seq-day" style="color: ${PLANETS[pIdx].color};">${PLANETS[pIdx].day}</div>
+      <div class="seq-hora">Hour ${1 + i * 24} of the week</div>
+    `;
+    seq.appendChild(item);
+  });
+
+  // ═══ SCENE D: Build skip-3 list ═══
+  const speedList = document.getElementById('speedList');
+  const skipOrder = [0, 3, 6, 2, 5, 1, 4]; // Sa→Su→Mo→Ma→Me→Ju→Ve
+  PLANETS.forEach((p, i) => {
+    const item = document.createElement('div');
+    item.className = 'speed-item';
+    item.style.position = 'relative';
+    const isDay = skipOrder.indexOf(i) !== -1;
+    item.innerHTML = `
+      <div class="planet-badge ${p.cls}">${p.symbol}</div>
+      <span style="color: ${p.color}; flex: 1;">${p.name}</span>
+      ${isDay ? `<span style="color: #f0d48a; font-size: 20px;">${p.day}</span>` : ''}
+    `;
+    item.dataset.planetIdx = i;
+    speedList.appendChild(item);
+  });
+
+  // ═══ ANIMATION ENGINE ═══
+  const scenes = ['sceneA', 'sceneB', 'sceneC', 'sceneD'];
+  let currentScene = 0;
+
+  function showScene(idx) {
+    document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
+    document.getElementById(scenes[idx]).classList.add('active');
+    document.getElementById(scenes[idx]).style.display = 'flex';
+    document.getElementById('sceneLabel').textContent = `Scene ${String.fromCharCode(65 + idx)}`;
+    currentScene = idx;
+  }
+
+  function nextScene() { showScene((currentScene + 1) % scenes.length); }
+  function prevScene() { showScene((currentScene - 1 + scenes.length) % scenes.length); }
+
+  async function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  async function playAnimation() {
+    // Scene A: Reveal hours one by one
+    showScene(0);
+    const cells = document.querySelectorAll('#sceneA .hora-cell');
+    const labels = document.querySelectorAll('#sceneA .cycle-label');
+    let labelIdx = 0;
+
+    for (let i = 0; i < cells.length; i++) {
+      // Show cycle label at the right time
+      if (i === 0) { labels[0].style.opacity = '1'; }
+      if (i === 7) { labels[1].style.opacity = '1'; labelIdx = 1; }
+      if (i === 14) { labels[2].style.opacity = '1'; labelIdx = 2; }
+      if (i === 21) { labels[3].style.opacity = '1'; labelIdx = 3; }
+
+      cells[i].classList.add('revealed');
+      await sleep(120);
+    }
+
+    // Highlight the H25 cell
+    await sleep(500);
+    cells[cells.length - 1].classList.add('highlight');
+    await sleep(1500);
+
+    // Scene B: Counter reveal
+    showScene(1);
+    const counter = document.getElementById('counter');
+    const label = document.getElementById('counterLabel');
+    const planet = document.getElementById('revealPlanet');
+    const day = document.getElementById('revealDay');
+
+    counter.textContent = '24';
+    label.textContent = 'hours in Saturday...';
+    await sleep(1200);
+
+    counter.textContent = '25';
+    label.textContent = 'the FIRST hour of the NEXT day';
+    counter.style.color = '#f59e0b';
+    counter.style.textShadow = '0 0 100px rgba(245,158,11,0.6)';
+    await sleep(800);
+
+    planet.classList.add('show');
+    await sleep(800);
+
+    day.classList.add('show');
+    await sleep(2000);
+
+    // Scene C: Full sequence
+    showScene(2);
+    const items = document.querySelectorAll('#sceneC .seq-item');
+    const arrows = document.querySelectorAll('#sceneC .seq-arrow');
+    for (let i = 0; i < items.length; i++) {
+      items[i].classList.add('show');
+      await sleep(400);
+      if (i < arrows.length) {
+        arrows[i].style.opacity = '0.6';
+        await sleep(200);
+      }
+    }
+    await sleep(2000);
+
+    // Scene D: Skip-3 pattern
+    showScene(3);
+    const speedItems = document.querySelectorAll('#sceneD .speed-item');
+    await sleep(800);
+
+    // Animate the skip pattern
+    const picked = [0, 3, 6, 2, 5, 1, 4]; // indices of weekday planets in the speed list
+    const skipped = new Set();
+    for (const idx of [0, 1, 2, 3, 4, 5, 6]) {
+      if (!picked.includes(idx) || picked.indexOf(idx) > 0) {
+        // Will be determined by the pick sequence
+      }
+    }
+
+    // Simple version: highlight picked, dim skipped
+    for (const pIdx of picked) {
+      speedItems[pIdx].classList.add('picked');
+      // Dim the ones between
+      for (let j = 0; j < 7; j++) {
+        if (!picked.slice(0, picked.indexOf(pIdx) + 1).includes(j)) {
+          // Don't dim yet
+        }
+      }
+      await sleep(600);
+    }
+    // Dim non-picked
+    for (let j = 0; j < 7; j++) {
+      if (picked.indexOf(j) === -1) {
+        // All are picked in weekday system — skip this
+      }
+    }
+  }
+
+  // Keyboard controls
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextScene(); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); prevScene(); }
+    else if (e.key === 'p' || e.key === 'P') { playAnimation(); }
+  });
+</script>
+
+</body>
+</html>

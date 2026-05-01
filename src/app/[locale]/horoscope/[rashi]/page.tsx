@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Loader2, Briefcase, Heart, Activity, IndianRupee, Sparkles, ArrowLeft, ChevronRight, Star } from 'lucide-react';
+import { Loader2, Briefcase, Heart, Activity, IndianRupee, Sparkles, ArrowLeft, ChevronRight, Star, Compass, Shield, CheckCircle, XCircle, Globe } from 'lucide-react';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { RASHIS } from '@/lib/constants/rashis';
 import { getRashiBySlug } from '@/lib/constants/rashi-slugs';
@@ -50,6 +50,22 @@ const LABELS = {
     taraBala: 'Tara Bala',
     taraAuspicious: 'Auspicious nakshatra transit',
     taraInauspicious: 'Challenging nakshatra transit',
+    transitImpact: 'Transit Impact',
+    moonIn: 'Moon in',
+    houseLabel: 'house from your sign',
+    jupiterIn: 'Jupiter in',
+    saturnIn: 'Saturn in',
+    rahuIn: 'Rahu in',
+    luckyDirection: 'Lucky Direction',
+    remedies: 'Remedies for Today',
+    mantra: 'Mantra',
+    practicalRemedy: 'Practical Remedy',
+    compatibilityToday: 'Best Compatibility Today',
+    dosTitle: "Do's",
+    dontsTitle: "Don'ts",
+    dosAndDonts: "Do's & Don'ts",
+    weeklyLink: 'See Weekly Forecast',
+    sadeSatiLink: 'Check Sade Sati Status',
   },
   hi: {
     backToAll: 'सभी राशियाँ',
@@ -79,6 +95,22 @@ const LABELS = {
     taraBala: 'तारा बल',
     taraAuspicious: 'शुभ नक्षत्र गोचर',
     taraInauspicious: 'चुनौतीपूर्ण नक्षत्र गोचर',
+    transitImpact: 'ग्रह गोचर प्रभाव',
+    moonIn: 'चन्द्र',
+    houseLabel: 'भाव आपकी राशि से',
+    jupiterIn: 'बृहस्पति',
+    saturnIn: 'शनि',
+    rahuIn: 'राहु',
+    luckyDirection: 'शुभ दिशा',
+    remedies: 'आज के उपाय',
+    mantra: 'मंत्र',
+    practicalRemedy: 'व्यावहारिक उपाय',
+    compatibilityToday: 'आज सर्वोत्तम अनुकूलता',
+    dosTitle: 'करें',
+    dontsTitle: 'न करें',
+    dosAndDonts: 'क्या करें और क्या न करें',
+    weeklyLink: 'साप्ताहिक राशिफल देखें',
+    sadeSatiLink: 'साढ़े साती स्थिति जाँचें',
   },
 };
 
@@ -156,6 +188,15 @@ function extractSnapshot(kundali: KundaliData): ChartSnapshot {
     keyYogas,
     keyDoshas,
   };
+}
+
+function getOrdinalSuffix(n: number): string {
+  if (n >= 11 && n <= 13) return 'th';
+  const lastDigit = n % 10;
+  if (lastDigit === 1) return 'st';
+  if (lastDigit === 2) return 'nd';
+  if (lastDigit === 3) return 'rd';
+  return 'th';
 }
 
 function scoreColor(score: number): string {
@@ -476,8 +517,8 @@ export default function RashiHoroscopePage() {
                   </div>
                 )}
 
-                {/* Lucky trio */}
-                <div className="grid grid-cols-3 gap-3">
+                {/* Lucky quartet */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   <div className="bg-white/5 rounded-lg p-3 text-center">
                     <p className="text-[10px] text-text-secondary uppercase tracking-wider">{L.luckyColor}</p>
                     <p className="text-gold-light text-sm font-semibold mt-1" style={bodyFont}>
@@ -492,6 +533,14 @@ export default function RashiHoroscopePage() {
                     <p className="text-[10px] text-text-secondary uppercase tracking-wider">{L.luckyTime}</p>
                     <p className="text-gold-light text-sm font-semibold mt-1">{horoscope.luckyTime}</p>
                   </div>
+                  {horoscope.luckyDirection && (
+                    <div className="bg-white/5 rounded-lg p-3 text-center">
+                      <p className="text-[10px] text-text-secondary uppercase tracking-wider">{L.luckyDirection}</p>
+                      <p className="text-gold-light text-sm font-semibold mt-1" style={bodyFont}>
+                        {horoscope.luckyDirection[lk]}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -529,6 +578,159 @@ export default function RashiHoroscopePage() {
                     </div>
                   );
                 })}
+              </div>
+
+              {/* Transit Impact Summary */}
+              {horoscope.transitSummary && (
+                <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Globe className="w-5 h-5 text-gold-primary" />
+                    <h3 className="text-gold-light text-base font-bold" style={headingFont}>{L.transitImpact}</h3>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="bg-white/5 rounded-lg p-3">
+                      <p className="text-[10px] text-text-secondary uppercase tracking-wider">{L.moonIn}</p>
+                      <p className="text-gold-light text-sm font-semibold mt-0.5" style={bodyFont}>
+                        {horoscope.transitSummary.moonTransitSignName[lk]}
+                      </p>
+                      <p className="text-text-secondary text-[10px] mt-0.5">
+                        {horoscope.transitSummary.moonHouseFromNatal}{isHi ? 'वाँ' : getOrdinalSuffix(horoscope.transitSummary.moonHouseFromNatal)} {L.houseLabel}
+                      </p>
+                    </div>
+                    <div className="bg-white/5 rounded-lg p-3">
+                      <p className="text-[10px] text-text-secondary uppercase tracking-wider">{L.jupiterIn}</p>
+                      <p className="text-gold-light text-sm font-semibold mt-0.5" style={bodyFont}>
+                        {horoscope.transitSummary.jupiterSignName[lk]}
+                      </p>
+                      <p className="text-text-secondary text-[10px] mt-0.5">
+                        {horoscope.transitSummary.jupiterHouse}{isHi ? 'वाँ' : getOrdinalSuffix(horoscope.transitSummary.jupiterHouse)} {L.houseLabel}
+                      </p>
+                    </div>
+                    <div className="bg-white/5 rounded-lg p-3">
+                      <p className="text-[10px] text-text-secondary uppercase tracking-wider">{L.saturnIn}</p>
+                      <p className="text-gold-light text-sm font-semibold mt-0.5" style={bodyFont}>
+                        {horoscope.transitSummary.saturnSignName[lk]}
+                      </p>
+                      <p className="text-text-secondary text-[10px] mt-0.5">
+                        {horoscope.transitSummary.saturnHouse}{isHi ? 'वाँ' : getOrdinalSuffix(horoscope.transitSummary.saturnHouse)} {L.houseLabel}
+                      </p>
+                    </div>
+                    <div className="bg-white/5 rounded-lg p-3">
+                      <p className="text-[10px] text-text-secondary uppercase tracking-wider">{L.rahuIn}</p>
+                      <p className="text-gold-light text-sm font-semibold mt-0.5" style={bodyFont}>
+                        {horoscope.transitSummary.rahuSignName[lk]}
+                      </p>
+                      <p className="text-text-secondary text-[10px] mt-0.5">
+                        {horoscope.transitSummary.rahuHouse}{isHi ? 'वाँ' : getOrdinalSuffix(horoscope.transitSummary.rahuHouse)} {L.houseLabel}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Do's and Don'ts */}
+              {horoscope.dosAndDonts && (
+                <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Shield className="w-5 h-5 text-gold-primary" />
+                    <h3 className="text-gold-light text-base font-bold" style={headingFont}>{L.dosAndDonts}</h3>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-2">{L.dosTitle}</p>
+                      <ul className="space-y-2">
+                        {horoscope.dosAndDonts.dos.map((d, i) => (
+                          <li key={i} className="flex items-start gap-2 text-sm text-text-primary">
+                            <CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                            <span style={bodyFont}>{d[lk]}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="text-red-400 text-xs font-semibold uppercase tracking-wider mb-2">{L.dontsTitle}</p>
+                      <ul className="space-y-2">
+                        {horoscope.dosAndDonts.donts.map((d, i) => (
+                          <li key={i} className="flex items-start gap-2 text-sm text-text-primary">
+                            <XCircle className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
+                            <span style={bodyFont}>{d[lk]}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Compatibility + Remedies row */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Compatibility of the day */}
+                {horoscope.compatibility && horoscope.compatibility.length > 0 && (
+                  <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Heart className="w-4 h-4 text-pink-400" />
+                      <h3 className="text-gold-light text-sm font-bold" style={headingFont}>{L.compatibilityToday}</h3>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {horoscope.compatibility.map((signId) => {
+                        const compRashi = RASHIS[signId - 1];
+                        if (!compRashi) return null;
+                        return (
+                          <Link key={signId} href={`/horoscope/${compRashi.slug}` as '/horoscope'}
+                            className="flex items-center gap-1.5 bg-white/5 hover:bg-white/10 rounded-lg px-3 py-1.5 transition-colors">
+                            <RashiIconById id={signId} size={16} />
+                            <span className="text-gold-light text-xs font-medium" style={bodyFont}>
+                              {tl(compRashi.name, locale)}
+                            </span>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {/* Remedies for the day */}
+                {horoscope.remedy && (
+                  <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Sparkles className="w-4 h-4 text-purple-400" />
+                      <h3 className="text-gold-light text-sm font-bold" style={headingFont}>{L.remedies}</h3>
+                    </div>
+                    <div className="space-y-3">
+                      <div>
+                        <p className="text-[10px] text-gold-dark uppercase tracking-wider font-semibold">{L.mantra}</p>
+                        <p className="text-gold-light text-sm font-medium mt-0.5" style={bodyFont}>
+                          {horoscope.remedy.mantra[lk]}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-[10px] text-gold-dark uppercase tracking-wider font-semibold">{L.practicalRemedy}</p>
+                        <p className="text-text-primary text-xs leading-relaxed mt-0.5" style={bodyFont}>
+                          {horoscope.remedy.practical[lk]}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Cross-links */}
+              <div className="flex flex-wrap gap-3 justify-center">
+                <Link href={`/horoscope/${rashiSlug}/weekly` as '/horoscope'}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/5 border border-gold-primary/15 hover:border-gold-primary/30 text-gold-light text-sm transition-all" style={bodyFont}>
+                  <Compass className="w-4 h-4" />
+                  {L.weeklyLink}
+                </Link>
+                <Link href="/kundali"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/5 border border-gold-primary/15 hover:border-gold-primary/30 text-gold-light text-sm transition-all" style={bodyFont}>
+                  <Star className="w-4 h-4" />
+                  {L.ctaButton}
+                </Link>
+                <Link href="/sade-sati"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/5 border border-gold-primary/15 hover:border-gold-primary/30 text-gold-light text-sm transition-all" style={bodyFont}>
+                  <Shield className="w-4 h-4" />
+                  {L.sadeSatiLink}
+                </Link>
               </div>
 
               {/* Share */}

@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Loader2, Briefcase, Heart, Activity, IndianRupee, Sparkles, Users } from 'lucide-react';
+import { Loader2, Briefcase, Heart, Activity, IndianRupee, Sparkles, Users, Globe, Star, ChevronRight } from 'lucide-react';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { RASHIS } from '@/lib/constants/rashis';
 import { Link } from '@/lib/i18n/navigation';
@@ -257,6 +257,11 @@ export default function HoroscopePage() {
   const [date, setDate] = useState('');
   const autoFetched = useRef(false);
 
+  // Cosmic weather: fetch all 12 sign scores to find featured sign and get transit data
+  const [allScores, setAllScores] = useState<{ id: number; score: number }[]>([]);
+  const [cosmicTransit, setCosmicTransit] = useState<DailyHoroscope['transitSummary'] | null>(null);
+  const cosmicFetched = useRef(false);
+
   // Load birth data from localStorage on mount
   const { birthRashi, birthName, loadFromStorage } = useBirthDataStore();
   useEffect(() => { loadFromStorage(); }, [loadFromStorage]);
@@ -292,8 +297,37 @@ export default function HoroscopePage() {
   // Compute today's date string
   useEffect(() => {
     const now = new Date();
-    setDate(`${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`);
+    const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    setDate(today);
   }, []);
+
+  // Fetch all 12 signs for cosmic weather (scores + transit data from sign 1)
+  useEffect(() => {
+    if (!date || cosmicFetched.current) return;
+    cosmicFetched.current = true;
+    (async () => {
+      try {
+        const results = await Promise.all(
+          RASHIS.map(r =>
+            fetch(`/api/horoscope/daily?moonSign=${r.id}&date=${date}`)
+              .then(res => res.ok ? res.json() as Promise<DailyHoroscope> : null)
+              .catch(() => null)
+          )
+        );
+        const scores = results
+          .filter((r): r is DailyHoroscope => r !== null)
+          .map(r => ({ id: r.moonSign, score: r.overallScore }));
+        setAllScores(scores);
+        // Use Aries (first) result to get transit positions (same for all signs)
+        const ariesResult = results[0];
+        if (ariesResult?.transitSummary) {
+          setCosmicTransit(ariesResult.transitSummary);
+        }
+      } catch (err) {
+        console.error('[horoscope/hub] Failed to fetch cosmic weather:', err);
+      }
+    })();
+  }, [date]);
 
   // Auto-select user's birth rashi and fetch horoscope on first load
   useEffect(() => {
@@ -432,6 +466,48 @@ export default function HoroscopePage() {
             </div>
           )}
 
+          {/* Cosmic Weather Banner */}
+          {cosmicTransit && allScores.length > 0 && (
+            <div className="mb-8 bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] border border-gold-primary/20 rounded-2xl p-5 md:p-6">
+              <div className="flex items-center gap-2 mb-3">
+                <Globe className="w-5 h-5 text-gold-primary" />
+                <h2 className="text-gold-light text-base font-bold" style={headingFont}>
+                  {isHi ? 'आज का ब्रह्माण्डीय मौसम' : "Today's Cosmic Weather"}
+                </h2>
+              </div>
+              <p className="text-text-primary text-sm leading-relaxed mb-4" style={bodyFont}>
+                {isHi
+                  ? `चन्द्रमा ${cosmicTransit.moonTransitSignName.hi || cosmicTransit.moonTransitSignName.en} में गोचर कर रहा है। बृहस्पति ${cosmicTransit.jupiterSignName.hi || cosmicTransit.jupiterSignName.en} में और शनि ${cosmicTransit.saturnSignName.hi || cosmicTransit.saturnSignName.en} में स्थित है।`
+                  : `The Moon transits through ${cosmicTransit.moonTransitSignName.en} today. Jupiter is in ${cosmicTransit.jupiterSignName.en} and Saturn in ${cosmicTransit.saturnSignName.en}.`
+                }
+              </p>
+              {/* Featured sign of the day */}
+              {(() => {
+                const featured = [...allScores].sort((a, b) => b.score - a.score)[0];
+                if (!featured) return null;
+                const fRashi = RASHIS[featured.id - 1];
+                if (!fRashi) return null;
+                return (
+                  <div className="flex items-center gap-3 bg-emerald-500/8 border border-emerald-500/15 rounded-xl px-4 py-3">
+                    <Star className="w-5 h-5 text-emerald-400 fill-emerald-400" />
+                    <div className="flex-1">
+                      <p className="text-emerald-300 text-xs font-semibold uppercase tracking-wider">
+                        {isHi ? 'आज की विशेष राशि' : 'Featured Sign of the Day'}
+                      </p>
+                      <p className="text-gold-light text-sm font-bold mt-0.5" style={bodyFont}>
+                        {(fRashi.name[lk] ?? fRashi.name.en) as string} ({fRashi.name.en}) — {featured.score}/10
+                      </p>
+                    </div>
+                    <Link href={`/horoscope/${fRashi.slug}` as '/horoscope'}
+                      className="text-gold-primary hover:text-gold-light transition-colors">
+                      <ChevronRight className="w-5 h-5" />
+                    </Link>
+                  </div>
+                );
+              })()}
+            </div>
+          )}
+
           {/* Sign grid */}
           <div className="grid grid-cols-2 min-[400px]:grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mb-8">
             {RASHIS.map((r) => {
@@ -457,7 +533,11 @@ export default function HoroscopePage() {
                     size="full"
                     icon={<RashiIconById id={r.id} size={64} />}
                     title={(r.name[lk] ?? r.name.en) as string}
-                    subtitle={(r.element[lk] ?? r.element.en) as string}
+                    subtitle={(() => {
+                      const signScore = allScores.find(s => s.id === r.id);
+                      if (signScore) return `${signScore.score}/10`;
+                      return (r.element[lk] ?? r.element.en) as string;
+                    })()}
                     onClick={() => handleSelect(r.id)}
                   />
                 </div>

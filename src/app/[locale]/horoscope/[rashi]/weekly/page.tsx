@@ -49,6 +49,11 @@ const LABELS = {
     ctaTitle: 'Get personalized horoscope',
     ctaDesc: 'Generate your Kundali to unlock predictions tailored to your exact birth chart.',
     ctaButton: 'Generate Kundali',
+    keyDates: 'Key Dates This Week',
+    challengingDays: 'Challenging Days',
+    strongDays: 'Strong Days',
+    dailyLink: 'See Today\'s Horoscope',
+    transitOverview: 'Transit Overview',
   },
   hi: {
     backToAll: 'सभी राशियाँ',
@@ -76,6 +81,11 @@ const LABELS = {
     ctaTitle: 'व्यक्तिगत राशिफल प्राप्त करें',
     ctaDesc: 'अपनी सटीक जन्म कुण्डली के अनुरूप भविष्यवाणी पाने के लिए कुण्डली बनाएँ।',
     ctaButton: 'कुण्डली बनाएँ',
+    keyDates: 'इस सप्ताह की प्रमुख तिथियाँ',
+    challengingDays: 'चुनौतीपूर्ण दिन',
+    strongDays: 'प्रबल दिन',
+    dailyLink: 'आज का राशिफल देखें',
+    transitOverview: 'गोचर अवलोकन',
   },
 };
 
@@ -102,6 +112,15 @@ const DAY_NAMES_EN = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'F
 const DAY_NAMES_HI = ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'];
 const DAY_ABBR_EN = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const DAY_ABBR_HI = ['रवि', 'सोम', 'मंगल', 'बुध', 'गुरु', 'शुक्र', 'शनि'];
+
+function getOrdinalSuffix(n: number): string {
+  if (n >= 11 && n <= 13) return 'th';
+  const lastDigit = n % 10;
+  if (lastDigit === 1) return 'st';
+  if (lastDigit === 2) return 'nd';
+  if (lastDigit === 3) return 'rd';
+  return 'th';
+}
 
 function scoreColor(score: number): string {
   if (score >= 7) return 'text-emerald-400';
@@ -505,6 +524,88 @@ export default function WeeklyHoroscopePage() {
                 ) : (
                   <p className="text-text-secondary text-sm italic" style={bodyFont}>{L.noLuckyDays}</p>
                 )}
+              </div>
+
+              {/* Key Dates — strong and challenging days with context */}
+              <div className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+                <h2 className="text-gold-light text-lg font-bold mb-4" style={headingFont}>{L.keyDates}</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Strong days (score >= 6.5) */}
+                  <div>
+                    <p className="text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-2">{L.strongDays}</p>
+                    <div className="space-y-2">
+                      {horoscopes.filter(h => h.overallScore >= 6.5).length > 0 ? (
+                        horoscopes.filter(h => h.overallScore >= 6.5).map(h => (
+                          <div key={h.date} className="flex items-center gap-2 bg-emerald-500/8 border border-emerald-500/15 rounded-lg px-3 py-2">
+                            <TrendingUp className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                            <div className="flex-1 min-w-0">
+                              <p className="text-gold-light text-xs font-semibold" style={bodyFont}>
+                                {getDayName(h.date, isHi)} <span className="text-text-secondary">({formatDate(h.date)})</span>
+                              </p>
+                              <p className="text-text-secondary text-[10px] truncate" style={bodyFont}>{h.insight[lk]}</p>
+                            </div>
+                            <span className="text-emerald-400 text-xs font-bold">{h.overallScore}</span>
+                          </div>
+                        ))
+                      ) : (
+                        <p className="text-text-secondary text-xs italic" style={bodyFont}>
+                          {isHi ? 'कोई विशेष प्रबल दिन नहीं' : 'No standout strong days'}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  {/* Challenging days (score < 4.5) */}
+                  <div>
+                    <p className="text-red-400 text-xs font-semibold uppercase tracking-wider mb-2">{L.challengingDays}</p>
+                    <div className="space-y-2">
+                      {horoscopes.filter(h => h.overallScore < 4.5).length > 0 ? (
+                        horoscopes.filter(h => h.overallScore < 4.5).map(h => (
+                          <div key={h.date} className="flex items-center gap-2 bg-red-500/8 border border-red-500/15 rounded-lg px-3 py-2">
+                            <TrendingDown className="w-3.5 h-3.5 text-red-400 flex-shrink-0" />
+                            <div className="flex-1 min-w-0">
+                              <p className="text-gold-light text-xs font-semibold" style={bodyFont}>
+                                {getDayName(h.date, isHi)} <span className="text-text-secondary">({formatDate(h.date)})</span>
+                              </p>
+                              <p className="text-text-secondary text-[10px] truncate" style={bodyFont}>{h.insight[lk]}</p>
+                            </div>
+                            <span className="text-red-400 text-xs font-bold">{h.overallScore}</span>
+                          </div>
+                        ))
+                      ) : (
+                        <p className="text-text-secondary text-xs italic" style={bodyFont}>
+                          {isHi ? 'कोई चुनौतीपूर्ण दिन नहीं' : 'No especially challenging days'}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Transit overview for the week */}
+              {horoscopes[0]?.transitSummary && (
+                <div className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+                  <h2 className="text-gold-light text-lg font-bold mb-3" style={headingFont}>{L.transitOverview}</h2>
+                  <p className="text-text-primary text-sm leading-relaxed" style={bodyFont}>
+                    {isHi
+                      ? `बृहस्पति ${horoscopes[0].transitSummary.jupiterSignName.hi || horoscopes[0].transitSummary.jupiterSignName.en} में आपके ${horoscopes[0].transitSummary.jupiterHouse}वें भाव में गोचर कर रहा है। शनि ${horoscopes[0].transitSummary.saturnSignName.hi || horoscopes[0].transitSummary.saturnSignName.en} में ${horoscopes[0].transitSummary.saturnHouse}वें भाव में स्थित है।`
+                      : `Jupiter transits through ${horoscopes[0].transitSummary.jupiterSignName.en} in your ${horoscopes[0].transitSummary.jupiterHouse}${getOrdinalSuffix(horoscopes[0].transitSummary.jupiterHouse)} house. Saturn is in ${horoscopes[0].transitSummary.saturnSignName.en} in your ${horoscopes[0].transitSummary.saturnHouse}${getOrdinalSuffix(horoscopes[0].transitSummary.saturnHouse)} house.`
+                    }
+                  </p>
+                </div>
+              )}
+
+              {/* Cross-links */}
+              <div className="flex flex-wrap gap-3 justify-center">
+                <Link href={`/horoscope/${rashiSlug}` as '/horoscope'}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/5 border border-gold-primary/15 hover:border-gold-primary/30 text-gold-light text-sm transition-all" style={bodyFont}>
+                  <Calendar className="w-4 h-4" />
+                  {L.dailyLink}
+                </Link>
+                <Link href="/kundali"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/5 border border-gold-primary/15 hover:border-gold-primary/30 text-gold-light text-sm transition-all" style={bodyFont}>
+                  <Star className="w-4 h-4" />
+                  {L.ctaButton}
+                </Link>
               </div>
 
               {/* Share */}

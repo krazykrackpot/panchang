@@ -1,6 +1,7 @@
 // src/lib/tippanni/convergence/types.ts
 
-import type { LocaleText} from '@/types/panchang';
+import type { LocaleText } from '@/types/panchang';
+import type { LifeStage } from '@/lib/kundali/life-stage';
 
 // ─── Enums ───────────────────────────────────────────────────────────────────
 
@@ -34,6 +35,8 @@ export interface RelationshipMap {
 }
 
 export interface ConvergenceInput {
+  age?: number;
+  stage?: LifeStage;
   ascendant: number;
   moonSign: number;
   planets: {

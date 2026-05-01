@@ -12,6 +12,7 @@ import type { Tri } from './utils';
 import { triLocale } from './utils';
 import type { RemedySection, RemedyItem } from '@/lib/kundali/tippanni-types';
 import { GRAHAS } from '@/lib/constants/grahas';
+import type { LifeStage } from '@/lib/kundali/life-stage';
 
 export interface PlanetRemedyFull {
   gemstone: {
@@ -236,7 +237,8 @@ export function getRemediesForWeakPlanets(
   planets: PlanetPosition[],
   shadbala: ShadBala[],
   ascSign: number,
-  locale: Locale
+  locale: Locale,
+  stage?: LifeStage,
 ): RemedySection {
   const gemstones: RemedyItem[] = [];
   const mantras: RemedyItem[] = [];
@@ -292,6 +294,46 @@ export function getRemediesForWeakPlanets(
         ? `व्रत: ${triLocale(remedy.fasting, 'hi')}। दान: ${triLocale(remedy.charity.items, 'hi')} — ${triLocale(remedy.charity.day, 'hi')} को। रंग: ${triLocale(remedy.color, 'hi')}। दिशा: ${triLocale(remedy.direction, 'hi')}।`
         : `Fast: ${triLocale(remedy.fasting, 'en')}. Donate: ${triLocale(remedy.charity.items, 'en')} on ${triLocale(remedy.charity.day, 'en')}. Wear ${triLocale(remedy.color, 'en')} colors. Face ${triLocale(remedy.direction, 'en')} for meditation.`,
     });
+  }
+
+  // ── Stage-aware sorting and fasting advisory ──
+  if (stage) {
+    // Import stage remedy preferences from life-stage.ts is avoided at runtime;
+    // instead, we use a static preference map matching the STAGE_REMEDIES structure.
+    const STAGE_PREFERRED: Record<LifeStage, string[]> = {
+      student:      ['mantra', 'study', 'charity', 'fasting'],
+      early_career: ['mantra', 'gemstone', 'charity', 'fasting'],
+      householder:  ['puja', 'gemstone', 'charity', 'yantra'],
+      established:  ['charity', 'puja', 'mantra', 'lifestyle'],
+      elder:        ['mantra', 'puja', 'lifestyle', 'charity'],
+      sage:         ['mantra', 'meditation', 'charity', 'lifestyle'],
+    };
+    const preferred = STAGE_PREFERRED[stage] || [];
+
+    // Sort each remedy array: items whose category-keyword appears earlier in `preferred` rank higher
+    const sortByPreference = (items: RemedyItem[], categoryKeywords: string[]) => {
+      items.sort((a, b) => {
+        const aIdx = categoryKeywords.findIndex(kw => a.name.toLowerCase().includes(kw) || a.description.toLowerCase().includes(kw));
+        const bIdx = categoryKeywords.findIndex(kw => b.name.toLowerCase().includes(kw) || b.description.toLowerCase().includes(kw));
+        return (aIdx === -1 ? 999 : aIdx) - (bIdx === -1 ? 999 : bIdx);
+      });
+    };
+
+    sortByPreference(gemstones, preferred);
+    sortByPreference(mantras, preferred);
+    sortByPreference(practices, preferred);
+
+    // For elder/sage stages, append fasting advisory to fasting-related practice items
+    if (stage === 'elder' || stage === 'sage') {
+      const fastingAdvisory = locale === 'hi'
+        ? ' ध्यान दें: इस आयु में कठोर व्रत की अनुशंसा नहीं है। हल्का भोजन या फलाहार पर्याप्त है — चिकित्सक से परामर्श लें।'
+        : ' Note: Strict fasting is not recommended at this stage of life. Light meals or fruit-based fasting is sufficient — consult your physician.';
+      for (const item of practices) {
+        if (item.description.toLowerCase().includes('fast') || item.description.toLowerCase().includes('व्रत')) {
+          item.description += fastingAdvisory;
+        }
+      }
+    }
   }
 
   return { gemstones, mantras, practices };

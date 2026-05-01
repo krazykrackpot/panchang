@@ -8,8 +8,11 @@ import type { Locale } from '@/types/panchang';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { LAGNA_DEEP } from './tippanni-lagna';
-import { getLifeStageContext } from './life-stage';
+import { getLifeStageContext, type LifeStageContext } from './life-stage';
+import { LAGNA_STAGE_CONTEXT } from './lagna-stage-context';
 import { generateDashaSynthesis } from '@/lib/tippanni/dasha-synthesis';
+import { classifyYoga, getYogaRelevance, getYogaStageSuffix } from '@/lib/tippanni/yoga-stage-context';
+import { getDashaStageAdvice, type DignityLevel } from '@/lib/tippanni/dasha-stage-advice';
 import { PLANET_HOUSE_DEPTH, DIGNITY_EFFECTS, DASHA_EFFECTS } from './tippanni-planets';
 import { BPHS_PLANET_IN_HOUSE } from '@/lib/constants/bphs-planet-in-house';
 import { YOGA_CITATIONS } from '@/lib/constants/bphs-yogas';
@@ -170,7 +173,7 @@ function t(locale: Locale, en: string, hi: string, _sa?: string): string {
   return locale === 'hi' ? hi : en;
 }
 
-function generatePersonality(kundali: KundaliData, locale: Locale): PersonalitySection {
+function generatePersonality(kundali: KundaliData, locale: Locale, stageCtx?: LifeStageContext): PersonalitySection {
   const ascSign = kundali.ascendant.sign;
   const lagna = LAGNA_DEEP[ascSign];
   const rashi = RASHIS[ascSign - 1];
@@ -246,7 +249,7 @@ function generatePersonality(kundali: KundaliData, locale: Locale): PersonalityS
     }
   }
 
-  return {
+  const personality: PersonalitySection = {
     lagna: {
       title: t(locale, `${rashi.name.en} Ascendant (${rashi.name.hi} Lagna)`, `${rashi.name.hi} लग्न`, `${rashi.name.sa} लग्नम्`),
       content: lagnaContent,
@@ -264,6 +267,16 @@ function generatePersonality(kundali: KundaliData, locale: Locale): PersonalityS
     },
     summary,
   };
+
+  // Attach life-stage-specific personality context from LAGNA_STAGE_CONTEXT
+  if (stageCtx) {
+    const lagnaStage = LAGNA_STAGE_CONTEXT[kundali.ascendant.sign]?.[stageCtx.stage];
+    if (lagnaStage) {
+      personality.currentRelevance = locale === 'hi' ? lagnaStage.hi : lagnaStage.en;
+    }
+  }
+
+  return personality;
 }
 
 function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetInsight[] {
@@ -393,7 +406,7 @@ function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetIns
   });
 }
 
-function generateYogas(kundali: KundaliData, locale: Locale): YogaInsight[] {
+function generateYogas(kundali: KundaliData, locale: Locale, stageCtx?: LifeStageContext): YogaInsight[] {
   let yogaInsights: YogaInsight[];
 
   // Use yogasComplete (150+ properly computed yogas) when available
@@ -457,6 +470,22 @@ function generateYogas(kundali: KundaliData, locale: Locale): YogaInsight[] {
         }
       }
     }
+  }
+
+  // ── Life-stage enrichment: age relevance, stage context, and sorting ──
+  if (stageCtx) {
+    for (const yoga of yogaInsights) {
+      const category = classifyYoga(yoga.name);
+      yoga.ageRelevance = getYogaRelevance(category, stageCtx.stage);
+      yoga.stageContext = getYogaStageSuffix(category, stageCtx.stage, locale);
+    }
+    // Sort by effective weight: (strength multiplier) * (ageRelevance) descending
+    const strengthMultiplier = (s: string) => s === 'Strong' ? 3 : s === 'Moderate' ? 2 : 1;
+    yogaInsights.sort((a, b) => {
+      const wa = strengthMultiplier(a.strength) * (a.ageRelevance || 1);
+      const wb = strengthMultiplier(b.strength) * (b.ageRelevance || 1);
+      return wb - wa;
+    });
   }
 
   return yogaInsights;
@@ -824,7 +853,7 @@ function generateLifeAreas(kundali: KundaliData, locale: Locale): LifeAreaSectio
   };
 }
 
-function generateDashaInsight(kundali: KundaliData, locale: Locale): DashaInsightSection {
+function generateDashaInsight(kundali: KundaliData, locale: Locale, stageCtx?: LifeStageContext): DashaInsightSection {
   const now = new Date();
   let currentMaha = '';
   let currentMahaAnalysis = '';
@@ -927,10 +956,44 @@ function generateDashaInsight(kundali: KundaliData, locale: Locale): DashaInsigh
     }
   }
 
+  // ── Life-stage dasha advice: replace/enhance advice with stage-conditioned version ──
+  if (stageCtx && currentMaha) {
+    const dashaLordEntry = kundali.dashas.find(d => {
+      const s = new Date(d.startDate); const e = new Date(d.endDate);
+      return now >= s && now <= e;
+    });
+    if (dashaLordEntry) {
+      const dlPlanetName = dashaLordEntry.planet; // English name e.g. "Sun"
+      const PLANET_NAME_TO_ID_STAGE: Record<string, number> = { Sun: 0, Moon: 1, Mars: 2, Mercury: 3, Jupiter: 4, Venus: 5, Saturn: 6, Rahu: 7, Ketu: 8 };
+      const dlIdStage = PLANET_NAME_TO_ID_STAGE[dlPlanetName];
+      if (dlIdStage !== undefined) {
+        // Determine dignity level from planet's position data
+        const dlPlanet = kundali.planets.find(p => p.planet.id === dlIdStage);
+        let dignity: DignityLevel = 'neutral';
+        if (dlPlanet) {
+          if (dlPlanet.isExalted || dlPlanet.isOwnSign) {
+            dignity = 'strong';
+          } else if (dlPlanet.isDebilitated) {
+            dignity = 'weak';
+          } else if (kundali.fullShadbala) {
+            const sb = kundali.fullShadbala.find(s => s.planetId === dlIdStage);
+            if (sb) {
+              dignity = sb.strengthRatio >= 1.0 ? 'strong' : 'weak';
+            }
+          }
+        }
+        const stageAdvice = getDashaStageAdvice(dlPlanetName, dignity, stageCtx.stage, locale);
+        if (stageAdvice) {
+          currentMahaAnalysis += '\n\n' + stageAdvice;
+        }
+      }
+    }
+  }
+
   return { currentMaha, currentMahaAnalysis, currentAntar, currentAntarAnalysis, upcoming };
 }
 
-function generateRemedies(kundali: KundaliData, locale: Locale): RemedySection {
+function generateRemedies(kundali: KundaliData, locale: Locale, stageCtx?: LifeStageContext): RemedySection {
   // Build a synthetic ShadBala[] from fullShadbala so the remedies function gets real data.
   // The remedies function checks totalStrength < 40 to identify weak planets.
   // With fullShadbala, we map strengthRatio to that scale: ratio < 1.0 → weak (totalStrength ~30).
@@ -942,7 +1005,7 @@ function generateRemedies(kundali: KundaliData, locale: Locale): RemedySection {
         sthanaBala: 0, digBala: 0, kalaBala: 0, cheshtaBala: 0, naisargikaBala: 0, drikBala: 0,
       }))
     : kundali.shadbala;
-  return getRemediesForWeakPlanets(kundali.planets, shadbalaForRemedies, kundali.ascendant.sign, locale);
+  return getRemediesForWeakPlanets(kundali.planets, shadbalaForRemedies, kundali.ascendant.sign, locale, stageCtx?.stage);
 }
 
 function generateStrengthOverview(kundali: KundaliData, locale: Locale): StrengthEntry[] {
@@ -985,27 +1048,28 @@ function generateStrengthOverview(kundali: KundaliData, locale: Locale): Strengt
 export function generateTippanni(kundali: KundaliData, locale: Locale): TippanniContent {
   const lifeAreas = generateLifeAreas(kundali, locale);
 
-  // ── Life stage: reorder and reframe life areas based on user's age ──
+  // ── Compute life stage context once, pass to all sub-generators ──
+  let stageCtx: LifeStageContext | undefined;
   let lifeStageInfo: TippanniContent['lifeStage'];
   if (kundali.birthData?.date) {
     const birthDate = new Date(kundali.birthData.date + 'T00:00:00');
     if (!isNaN(birthDate.getTime())) {
-      const ctx = getLifeStageContext(birthDate);
+      stageCtx = getLifeStageContext(birthDate);
       lifeStageInfo = {
-        age: ctx.age,
-        stage: ctx.stage,
-        headline: locale === 'hi' ? ctx.headline.hi : ctx.headline.en,
-        priorityOrder: ctx.priorityOrder,
-        remedyNote: locale === 'hi' ? ctx.remedyPreference.note.hi : ctx.remedyPreference.note.en,
+        age: stageCtx.age,
+        stage: stageCtx.stage,
+        headline: locale === 'hi' ? stageCtx.headline.hi : stageCtx.headline.en,
+        priorityOrder: stageCtx.priorityOrder,
+        remedyNote: locale === 'hi' ? stageCtx.remedyPreference.note.hi : stageCtx.remedyPreference.note.en,
       };
 
       // Prepend stage-specific framing to each life area summary
-      for (const key of ctx.priorityOrder) {
+      for (const key of stageCtx.priorityOrder) {
         const area = lifeAreas[key as keyof typeof lifeAreas];
-        if (area && ctx.framing[key as keyof typeof ctx.framing]) {
+        if (area && stageCtx.framing[key as keyof typeof stageCtx.framing]) {
           const framing = locale === 'hi'
-            ? ctx.framing[key as keyof typeof ctx.framing].hi
-            : ctx.framing[key as keyof typeof ctx.framing].en;
+            ? stageCtx.framing[key as keyof typeof stageCtx.framing].hi
+            : stageCtx.framing[key as keyof typeof stageCtx.framing].en;
           area.summary = `${framing} ${area.summary}`;
         }
       }
@@ -1013,14 +1077,14 @@ export function generateTippanni(kundali: KundaliData, locale: Locale): Tippanni
   }
 
   return {
-    yearPredictions: generateYearPredictions(kundali, locale),
-    personality: generatePersonality(kundali, locale),
+    yearPredictions: generateYearPredictions(kundali, locale, stageCtx),
+    personality: generatePersonality(kundali, locale, stageCtx),
     planetInsights: generatePlanetInsights(kundali, locale),
-    yogas: generateYogas(kundali, locale),
+    yogas: generateYogas(kundali, locale, stageCtx),
     doshas: generateDoshas(kundali, locale),
     lifeAreas,
-    dashaInsight: generateDashaInsight(kundali, locale),
-    remedies: generateRemedies(kundali, locale),
+    dashaInsight: generateDashaInsight(kundali, locale, stageCtx),
+    remedies: generateRemedies(kundali, locale, stageCtx),
     strengthOverview: generateStrengthOverview(kundali, locale),
     dashaSynthesis: generateDashaSynthesis(kundali, locale),
     lifeStage: lifeStageInfo,

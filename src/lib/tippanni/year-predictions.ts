@@ -11,6 +11,8 @@ import type { YearPredictionSection, YearEvent, QuarterForecast } from '@/lib/ku
 import { getPlanetaryPositions, dateToJD, toSidereal, getRashiNumber } from '@/lib/ephem/astronomical';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
+import type { LifeStageContext } from '@/lib/kundali/life-stage';
+import { getStageTransitEffect, JUPITER_STAGE_EFFECTS, SATURN_STAGE_EFFECTS, RAHU_KETU_STAGE_EFFECTS } from './stage-transit-effects';
 
 function t(locale: Locale, en: string, hi: string, _sa?: string): string {
   // 'sa' (Sanskrit) retired — _sa param kept for call-site compat but ignored
@@ -447,7 +449,8 @@ function generateKeyAdvice(events: YearEvent[], locale: Locale): string {
 
 export function generateYearPredictions(
   kundali: KundaliData,
-  locale: Locale
+  locale: Locale,
+  stageCtx?: LifeStageContext,
 ): YearPredictionSection {
   const year = new Date().getFullYear();
 
@@ -495,6 +498,37 @@ export function generateYearPredictions(
   // D. Dasha transitions
   const dashaEvents = findDashaTransitions(kundali.dashas, locale);
   events.push(...dashaEvents);
+
+  // D2. Stage-aware transit text overlay — replace generic descriptions with
+  // life-stage-conditioned text when stageCtx is available
+  if (stageCtx) {
+    for (const event of events) {
+      if (event.type === 'jupiter_transit') {
+        const houseFromMoon = houseFromSign(transits.jupiterSign, natalMoonSign);
+        const stageText = getStageTransitEffect(JUPITER_STAGE_EFFECTS, houseFromMoon, stageCtx.stage);
+        if (stageText.en) {
+          event.description = locale === 'hi' ? stageText.hi : stageText.en;
+        }
+      } else if (event.type === 'sade_sati') {
+        // Saturn transit: use house from Moon for lookup
+        const saturnHouse = houseFromSign(transits.saturnSign, natalMoonSign);
+        const stageText = getStageTransitEffect(SATURN_STAGE_EFFECTS, saturnHouse, stageCtx.stage);
+        if (stageText.en) {
+          event.description = locale === 'hi' ? stageText.hi : stageText.en;
+        }
+      } else if (event.type === 'rahu_ketu') {
+        const rahuHouseFromAsc = houseFromSign(transits.rahuSign, ascSign);
+        const ketuHouseFromAsc = houseFromSign(transits.ketuSign, ascSign);
+        const low = Math.min(rahuHouseFromAsc, ketuHouseFromAsc);
+        const high = Math.max(rahuHouseFromAsc, ketuHouseFromAsc);
+        const axisKey = `${low}-${high}`;
+        const stageText = getStageTransitEffect(RAHU_KETU_STAGE_EFFECTS, axisKey, stageCtx.stage);
+        if (stageText.en) {
+          event.description = locale === 'hi' ? stageText.hi : stageText.en;
+        }
+      }
+    }
+  }
 
   // E. Quarterly forecasts
   const quarters = buildQuarterlyForecasts(events, transits.saturnSign, transits.jupiterSign, natalMoonSign, locale);

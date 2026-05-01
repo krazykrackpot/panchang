@@ -2,6 +2,7 @@
 
 import { evaluateCondition } from './evaluator';
 import { getPlanetWeight } from './utils';
+import { getThemeWeight } from '@/lib/tippanni/stage-weights';
 import type { ConvergencePattern, ConvergenceInput, MatchedPattern, PatternCondition } from './types';
 
 // ── Weight resolution ─────────────────────────────────────────────────────────
@@ -132,9 +133,14 @@ export function scorePattern(
   // Step 6: ashtakavarga modifier
   const ashtakavargaModifier = computeAshtakavargaModifier(conditions, matchedFlags, input);
 
+  // Step 6b: life-stage theme weight (when stage is available)
+  const stageModifier = input.stage
+    ? getThemeWeight(pattern.theme, input.stage)
+    : 1.0;
+
   // Step 7: final score
   const finalScore =
-    pattern.significance * conditionWeightSum * matchRatio * ashtakavargaModifier;
+    pattern.significance * conditionWeightSum * matchRatio * ashtakavargaModifier * stageModifier;
 
   // Step 8: return MatchedPattern
   return {

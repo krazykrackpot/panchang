@@ -555,6 +555,27 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
         </div>
       )}
 
+      {/* ===== LIFE STAGE HEADLINE BANNER ===== */}
+      {tip.lifeStage && (
+        <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-10 h-10 rounded-full bg-gold-primary/15 flex items-center justify-center shrink-0">
+              <svg className="w-5 h-5 text-gold-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-lg text-gold-light font-bold" style={headingFont}>
+                {tip.lifeStage.stage.charAt(0).toUpperCase() + tip.lifeStage.stage.slice(1)} {isEn ? 'Phase' : 'अवस्था'} &bull; {isEn ? `Age ${tip.lifeStage.age}` : `आयु ${tip.lifeStage.age}`}
+              </h3>
+            </div>
+          </div>
+          <p className="text-text-primary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+            {tip.lifeStage.headline}
+          </p>
+        </div>
+      )}
+
       <SectionDivider />
       {/* ===== YEAR PREDICTIONS (at top — most immediately relevant) ===== */}
       <YearPredictionsSection tip={tip} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} tTip={tTip} />
@@ -590,6 +611,16 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
           {tip.personality.summary && (
             <div className="p-4 bg-gold-primary/10 rounded-lg border border-gold-primary/20">
               <p className="text-gold-light text-sm font-medium leading-relaxed">{tip.personality.summary}</p>
+            </div>
+          )}
+          {tip.personality.currentRelevance && (
+            <div className="p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-dark/20">
+              <p className="text-gold-dark text-xs uppercase tracking-wider mb-2 font-semibold">
+                {isEn ? 'What This Means for You Now' : 'आपके लिए अभी'}
+              </p>
+              <p className="text-text-primary text-sm leading-relaxed pl-3 border-l-2 border-gold-dark/30" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                {tip.personality.currentRelevance}
+              </p>
             </div>
           )}
         </div>
@@ -716,6 +747,9 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
                   </div>
                 </div>
                 <p className="text-text-secondary text-sm">{yoga.description}</p>
+                {yoga.stageContext && (
+                  <p className="text-xs text-gold-dark italic mt-1">{yoga.stageContext}</p>
+                )}
               </motion.div>
               <AnimatePresence>
                 {expandedYoga === i && yoga.implications && (
@@ -835,24 +869,39 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
           {locale === 'en' || isTamil ? 'Life Area Prognosis' : isDevanagari ? 'जीवन क्षेत्र पूर्वानुमान' : 'जीवनक्षेत्रपूर्वानुमानम्'}
         </h3>
         <div className="space-y-4">
-          {(['career', 'wealth', 'marriage', 'health', 'education'] as const).map((key) => {
-            const area = tip.lifeAreas[key];
-            return (
-              <div key={key} className="p-4 rounded-lg bg-bg-primary/30 border border-gold-primary/10">
-                <div className="flex items-center justify-between mb-3">
-                  <h4 className="text-gold-primary font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{area.label}</h4>
-                  <div className="flex items-center gap-1">
-                    {Array.from({ length: 10 }, (_, i) => (
-                      <div key={i} className={`w-2.5 h-2.5 rounded-full ${i < area.rating ? 'bg-gold-primary' : 'bg-gold-primary/10'}`} />
-                    ))}
-                    <span className="text-gold-light text-xs ml-1 font-mono">{area.rating}/10</span>
+          {(() => {
+            const defaultOrder: (keyof typeof tip.lifeAreas)[] = ['career', 'wealth', 'marriage', 'health', 'education'];
+            const orderedKeys: (keyof typeof tip.lifeAreas)[] = tip.lifeStage?.priorityOrder
+              ? (tip.lifeStage.priorityOrder
+                  .filter((k): k is keyof typeof tip.lifeAreas => k in tip.lifeAreas)
+                  .concat(defaultOrder.filter(k => !tip.lifeStage!.priorityOrder.includes(k))))
+              : defaultOrder;
+            return orderedKeys.map((key, idx) => {
+              const area = tip.lifeAreas[key];
+              return (
+                <div key={key} className="p-4 rounded-lg bg-bg-primary/30 border border-gold-primary/10">
+                  {idx === 0 && tip.lifeStage && (
+                    <div className="mb-2">
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-gold-primary/15 text-gold-primary border border-gold-primary/20 font-medium">
+                        {isEn ? 'Most relevant for you now' : 'आपके लिए सबसे प्रासंगिक'}
+                      </span>
+                    </div>
+                  )}
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-gold-primary font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{area.label}</h4>
+                    <div className="flex items-center gap-1">
+                      {Array.from({ length: 10 }, (_, i) => (
+                        <div key={i} className={`w-2.5 h-2.5 rounded-full ${i < area.rating ? 'bg-gold-primary' : 'bg-gold-primary/10'}`} />
+                      ))}
+                      <span className="text-gold-light text-xs ml-1 font-mono">{area.rating}/10</span>
+                    </div>
                   </div>
+                  <p className="text-text-secondary text-sm mb-2">{area.summary}</p>
+                  {area.details && <p className="text-text-secondary/70 text-xs leading-relaxed">{area.details}</p>}
                 </div>
-                <p className="text-text-secondary text-sm mb-2">{area.summary}</p>
-                {area.details && <p className="text-text-secondary/70 text-xs leading-relaxed">{area.details}</p>}
-              </div>
-            );
-          })}
+              );
+            });
+          })()}
         </div>
       </section>
 
@@ -1393,6 +1442,16 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
       {(tip.remedies.gemstones.length > 0 || tip.remedies.mantras.length > 0) && (
         <section className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
           <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>{tTip('remedies')}</h3>
+          {tip.lifeStage?.remedyNote && (
+            <div className="mb-6 p-4 rounded-lg border border-amber-500/20 bg-amber-500/5 flex items-start gap-3">
+              <svg className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p className="text-text-primary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                {tip.lifeStage.remedyNote}
+              </p>
+            </div>
+          )}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {tip.remedies.gemstones.length > 0 && (
               <div>

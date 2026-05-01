@@ -31,6 +31,7 @@ export interface PersonalitySection {
   moonSign: InterpBlock;
   sunSign: InterpBlock;
   summary: string;
+  currentRelevance?: string; // life-stage-specific personality context
 }
 
 export interface InterpBlock {
@@ -60,6 +61,8 @@ export interface YogaInsight {
   description: string;
   implications: string;
   strength: 'Strong' | 'Moderate' | 'Weak';
+  ageRelevance?: number;     // 0.5 to 1.5 multiplier from life stage
+  stageContext?: string;     // 1-2 sentence contextualizer for user's life stage
   classicalReferences?: ClassicalReferencesSection | null;
 }
 

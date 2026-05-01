@@ -9,6 +9,7 @@ import GoldDivider from '@/components/ui/GoldDivider';
 import InfoBlock from '@/components/ui/InfoBlock';
 import ShareButton from '@/components/ui/ShareButton';
 import PrintButton from '@/components/ui/PrintButton';
+import MonthlyPDFButton from '@/components/panchang/MonthlyPDFButton';
 import { Download } from 'lucide-react';
 import { TithiIcon, NakshatraIcon, YogaIcon, KaranaIcon, VaraIcon, MuhurtaIcon, GrahanIcon, RashiIcon, MasaIcon, SamvatsaraIcon, SunriseIcon, SunsetIcon, MoonriseIcon, RituIcon, AyanaIcon } from '@/components/icons/PanchangIcons';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
@@ -513,6 +514,14 @@ export default function PanchangClient({ serverPanchang, serverLocation }: Panch
                 title={`Panchang — ${panchang.date}`}
                 label={msg('print', locale)}
                 className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-md border border-gold-primary/15 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all"
+              />
+              <MonthlyPDFButton
+                year={selectedDate ? parseInt(selectedDate.split('-')[0]) : new Date().getFullYear()}
+                month={selectedDate ? parseInt(selectedDate.split('-')[1]) : (new Date().getMonth() + 1)}
+                lat={location.lat}
+                lng={location.lng}
+                timezone={location.ianaTimezone}
+                locationName={location.name}
               />
               <ShareButton
                 title={`Panchang — ${panchang.date}`}

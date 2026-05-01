@@ -13,6 +13,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Calendar, Clock, MapPin, Sun, Moon, ChevronDown, ChevronRight, Info, BookOpen, Sparkles, Leaf, CheckCircle } from 'lucide-react';
 import VratFollowButton from '@/components/vrat/VratFollowButton';
+import WhatsAppShareButton from '@/components/ui/WhatsAppShareButton';
 import { getSmartaVaishnavNote } from '@/lib/calendar/smarta-vaishnava-notes';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
@@ -341,6 +342,11 @@ export default async function FestivalCityPage({
               <VratFollowButton slug={slug} name={festivalNameEn} size="md" />
             </div>
           )}
+          <div className="pt-2">
+            <WhatsAppShareButton
+              text={`${festivalNameEn} in ${cityNameEn} on ${formatDate(festivalDate, 'en')}.${pujaMuhurat ? ` Puja muhurta: ${pujaMuhurat.start}\u2013${pujaMuhurat.end}.` : ''} Check full details:`}
+            />
+          </div>
         </div>
 
         <div className="border-t border-gold-primary/15" />

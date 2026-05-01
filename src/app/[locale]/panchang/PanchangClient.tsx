@@ -42,6 +42,7 @@ import LearnLink from '@/components/ui/LearnLink';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl as _tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
+import WhatsAppShareButton from '@/components/ui/WhatsAppShareButton';
 import PMSG from '@/messages/pages/panchang-inline.json';
 import { usePreferenceStore, type TraditionPreference } from '@/stores/preference-store';
 import { HORA_PLANET_ACTIVITIES, computeHoraTable } from '@/lib/panchang/hora-engine';
@@ -528,6 +529,12 @@ export default function PanchangClient({ serverPanchang, serverLocation }: Panch
                 text={`Today's Panchang — ${panchang.tithi?.name?.[locale] || panchang.tithi?.name?.en || ''}, ${panchang.nakshatra?.name?.[locale] || panchang.nakshatra?.name?.en || ''}, ${panchang.yoga?.name?.[locale] || panchang.yoga?.name?.en || ''} | dekhopanchang.com`}
                 url={`https://dekhopanchang.com/${locale}/panchang`}
                 locale={locale}
+              />
+              <WhatsAppShareButton
+                text={`Today's Panchang \u2014 Tithi: ${_tl(panchang.tithi.name, locale)}, Nakshatra: ${_tl(panchang.nakshatra.name, locale)}, Sunrise: ${panchang.sunrise}. Full details:`}
+                url={`https://dekhopanchang.com/${locale}/panchang`}
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-md border border-[#25D366]/20 text-[#25D366] hover:bg-[#25D366]/10 transition-all"
+                label={isDevanagari ? 'WhatsApp' : 'WhatsApp'}
               />
               <button
                 onClick={async () => {

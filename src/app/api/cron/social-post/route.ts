@@ -6,6 +6,7 @@ import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/f
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { NAKSHATRA_DETAILS } from '@/lib/constants/nakshatra-details';
 import { YOGAS } from '@/lib/constants/yogas';
+import { TRANSIT_ARTICLES } from '@/lib/content/transit-articles';
 
 /**
  * Cron endpoint: posts daily panchang to Twitter/X.
@@ -265,7 +266,30 @@ function composeEducationalTweet(
       ]);
     }
 
-    case 4: { // Thursday — Guru's Day
+    case 4: { // Thursday — Guru's Day (with transit article promotion when available)
+      // Check for upcoming transit articles to promote (within 60 days)
+      const today = new Date();
+      const upcomingArticle = Object.values(TRANSIT_ARTICLES).find(a => {
+        const transitDate = new Date(a.exactDate);
+        const daysUntil = Math.ceil((transitDate.getTime() - today.getTime()) / 86400000);
+        return daysUntil > 0 && daysUntil <= 60;
+      });
+
+      if (upcomingArticle) {
+        const daysUntil = Math.ceil((new Date(upcomingArticle.exactDate).getTime() - today.getTime()) / 86400000);
+        return truncateTweet([
+          `\u{1FA90} ${upcomingArticle.title.en.split(':')[0]}`,
+          '',
+          `${daysUntil} days until this major transit.`,
+          '',
+          `Read our full analysis for all 12 Moon signs:`,
+          `dekhopanchang.com/en/learn/transits/${upcomingArticle.slug}`,
+          '',
+          tags,
+        ]);
+      }
+
+      // Fallback: Guru facts
       const fact = GURU_FACTS[dayOfYear % GURU_FACTS.length];
       return truncateTweet([
         '\u{1FA90} Guruvar Wisdom',

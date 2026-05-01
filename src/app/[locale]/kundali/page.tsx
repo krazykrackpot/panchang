@@ -444,7 +444,7 @@ export default function KundaliPage() {
     }
     setSaving(false);
   };
-  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas' | 'sadesati' | 'patrika' | 'timeline' | 'remedies' | 'sudarshana' | 'nadi' | 'blueprint' | 'bhavachalit' | 'ayanamsha' | 'kp'>('chart');
+  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas' | 'sadesati' | 'patrika' | 'timeline' | 'remedies' | 'sudarshana' | 'nadi' | 'blueprint' | 'bhavachalit' | 'ayanamsha' | 'kp'>('chart');
   const [selectedHouse, setSelectedHouse] = useState<number | null>(null);
   const [selectedPlanet, setSelectedPlanet] = useState<number | null>(null);
   const [activeChart, setActiveChart] = useState<string>('D1');
@@ -454,7 +454,7 @@ export default function KundaliPage() {
   const [transitData, setTransitData] = useState<{ planets: { id: number; name: LocaleText; rashi: number; longitude: number; isRetrograde: boolean }[] } | null>(null);
 
   // Personal Pandit dashboard state
-  const [view, setView] = useState<'summary' | 'dashboard' | 'deepDive' | 'technical' | 'questionEntry'>('summary');
+  const [view, setView] = useState<'summary' | 'deepDive' | 'technical'>('summary');
   const [activeDomain, setActiveDomain] = useState<DomainType | null>(null);
   const [personalReading, setPersonalReading] = useState<PersonalReading | null>(null);
   const [keyDates, setKeyDates] = useState<KeyDate[]>([]);
@@ -1252,72 +1252,7 @@ export default function KundaliPage() {
             />
           )}
 
-          {/* ===== LAYER 0: QUESTION ENTRY OVERLAY ===== */}
-          {personalReading && view === 'questionEntry' && (
-            <QuestionEntry
-              locale={locale}
-              onSelect={(choice) => {
-                setQuestionAnswered(true);
-                if (choice === 'all') {
-                  setView('summary');
-                } else {
-                  setActiveDomain(choice as DomainType);
-                  setView('deepDive');
-                }
-              }}
-            />
-          )}
-
-          {/* ===== LAYER 1: PERSONAL PANDIT DASHBOARD ===== */}
-          {personalReading && view === 'dashboard' && (
-            <>
-              {/* Vedic Profile — narrative synthesis above Key Dates */}
-              {vedicProfile && (
-                <VedicProfileComponent profile={vedicProfile} locale={locale} />
-              )}
-              {/* Key Dates — prominent above domain cards */}
-              {keyDates.length > 0 && (
-                <div className="mb-8 p-5 rounded-2xl bg-gradient-to-br from-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10">
-                  <KeyDatesTimeline dates={keyDates} locale={locale} />
-                </div>
-              )}
-              {/* Reading Trajectory — only show when there's meaningful data (2+ months of history) */}
-              {trajectoryHook.trajectory && user && trajectoryHook.trajectory.domains.some(d => d.sparkline.length >= 2) && (
-                <div className="mb-8">
-                  <TrajectoryCard
-                    trajectory={trajectoryHook.trajectory}
-                    locale={locale}
-                  />
-                </div>
-              )}
-              {/* Change focus button */}
-              <div className="flex justify-end mb-4">
-                <button
-                  type="button"
-                  onClick={() => {
-                    clearQuestionChoice();
-                    setQuestionAnswered(false);
-                    setView('questionEntry');
-                  }}
-                  className="inline-flex items-center gap-1.5 text-text-secondary text-xs hover:text-gold-light transition-colors cursor-pointer"
-                >
-                  <svg viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5" aria-hidden="true">
-                    <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
-                  </svg>
-                  {locale === 'en' || String(locale) === 'ta' ? 'Change focus' : 'फोकस बदलें'}
-                </button>
-              </div>
-              <LifeReadingDashboard
-                reading={personalReading}
-                locale={locale}
-                onDomainClick={(domain: DomainType) => {
-                  setActiveDomain(domain);
-                  setView('deepDive');
-                }}
-                onToggleTechnical={() => setView('technical')}
-              />
-            </>
-          )}
+          {/* QuestionEntry and Dashboard views removed — Summary replaces both */}
 
           {/* ===== LAYER 2: DOMAIN DEEP DIVE ===== */}
           {personalReading && view === 'deepDive' && activeDomain && kundali && (
@@ -1399,7 +1334,7 @@ export default function KundaliPage() {
                   { key: 'planets' as const, label: t('planetPositions') },
                   { key: 'dasha' as const, label: t('dashaTimeline') },
                   { key: 'ashtakavarga' as const, label: t('ashtakavarga') },
-                  { key: 'tippanni' as const, label: t('tippanni') },
+                  // Tippanni tab removed — content is in the Summary view
                   { key: 'varga' as const, label: locale === 'en' || isTamil ? 'Varga Analysis' : 'वर्ग विश्लेषण' },
                   { key: 'chat' as const, label: locale === 'en' || isTamil ? 'Chat' : 'चैट' },
                   { key: 'graha' as const, label: locale === 'en' || isTamil ? 'Graha' : 'ग्रह' },
@@ -2807,26 +2742,7 @@ export default function KundaliPage() {
           )}
 
           {/* ===== TIPPANNI TAB ===== */}
-          {activeTab === 'tippanni' && (
-            <div className="space-y-5">
-              <div className="rounded-2xl bg-gradient-to-br from-gold-primary/8 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 p-5 sm:p-6">
-                <h3 className="text-gold-light text-lg font-bold mb-3" style={headingFont}>
-                  {locale === 'en' || isTamil ? 'Tippanni: Your Chart\'s Story in Plain Language' : 'टिप्पणी: सरल भाषा में आपकी कुण्डली की कहानी'}
-                </h3>
-                <p className="text-text-secondary text-sm leading-relaxed">
-                  {locale === 'en' || isTamil
-                    ? 'Tippanni is the interpretive commentary — what all those planetary positions, yogas, and dashas actually mean for your personality, relationships, career, and spiritual path. Instead of reading raw numbers, this section translates your chart into a narrative: who you are, what drives you, where your strengths lie, and what challenges you\'re likely to face. Everything below is generated from YOUR specific chart — no generic horoscope filler.'
-                    : 'टिप्पणी व्याख्यात्मक टीका है — वे सब ग्रह स्थितियाँ, योग और दशाएँ आपके व्यक्तित्व, सम्बन्धों, कैरियर और आध्यात्मिक मार्ग के लिए वास्तव में क्या अर्थ रखती हैं। कच्चे आँकड़ों के बजाय, यह खण्ड आपकी कुण्डली को कथा में अनुवादित करता है। नीचे सब कुछ आपकी विशिष्ट कुण्डली से उत्पन्न है — कोई सामान्य राशिफल नहीं।'}
-                </p>
-              </div>
-              <TippanniTab kundali={kundali} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} tTip={tTip} />
-              <div className="text-center">
-                <a href={`/${locale}/learn/tippanni`} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gold-primary/10 border border-gold-primary/20 text-gold-light text-sm font-medium hover:bg-gold-primary/20 transition-colors">
-                  {locale === 'en' || isTamil ? 'Deep Dive: How Tippanni Works →' : 'विस्तृत अध्ययन: टिप्पणी कैसे कार्य करती है →'}
-                </a>
-              </div>
-            </div>
-          )}
+          {/* Tippanni tab removed — content is in the Summary view */}
 
           {/* ===== VARGA ANALYSIS TAB ===== */}
           {activeTab === 'varga' && (

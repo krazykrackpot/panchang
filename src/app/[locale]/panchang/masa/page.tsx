@@ -33,132 +33,107 @@ const MASA_DETAILS: { gregApprox: string; nakshatraLink: string }[] = [
 const rituColors = ['#4ade80', '#f97316', '#3b82f6', '#eab308', '#a78bfa', '#60a5fa'];
 
 /* ------------------------------------------------------------------ */
-/*  AnimatedAnnualWheel                                               */
+/*  Annual Cycle — bold 12-segment wheel with season bands             */
 /* ------------------------------------------------------------------ */
-function AnimatedAnnualWheel({ locale }: { locale: Locale }) {
-  const isDevanagari = isDevanagariLocale(locale);
-  const CX = 250;
-  const CY = 250;
 
-  /* ---------- helpers ---------- */
-  function describeArc(
-    cx: number, cy: number, r: number,
-    startDeg: number, endDeg: number,
-  ): string {
+const RITU_COLORS = ['#4ade80', '#4ade80', '#f97316', '#f97316', '#3b82f6', '#3b82f6', '#eab308', '#eab308', '#a78bfa', '#a78bfa', '#60a5fa', '#60a5fa'];
+const RITU_BG = ['rgba(74,222,128,0.08)', 'rgba(74,222,128,0.08)', 'rgba(249,115,22,0.08)', 'rgba(249,115,22,0.08)', 'rgba(59,130,246,0.08)', 'rgba(59,130,246,0.08)', 'rgba(234,179,8,0.08)', 'rgba(234,179,8,0.08)', 'rgba(167,139,250,0.08)', 'rgba(167,139,250,0.08)', 'rgba(96,165,250,0.08)', 'rgba(96,165,250,0.08)'];
+
+function AnimatedAnnualWheel({ locale }: { locale: Locale }) {
+  const CX = 300;
+  const CY = 300;
+  const R_OUTER = 260;
+  const R_INNER = 140;
+  const R_MID = (R_OUTER + R_INNER) / 2;
+  const R_RITU = 120;
+
+  function arcPath(cx: number, cy: number, r: number, startDeg: number, endDeg: number): string {
     const toRad = (d: number) => ((d - 90) * Math.PI) / 180;
     const x1 = cx + r * Math.cos(toRad(startDeg));
     const y1 = cy + r * Math.sin(toRad(startDeg));
     const x2 = cx + r * Math.cos(toRad(endDeg));
     const y2 = cy + r * Math.sin(toRad(endDeg));
-    const largeArc = endDeg - startDeg > 180 ? 1 : 0;
-    return `M ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2}`;
+    const large = endDeg - startDeg > 180 ? 1 : 0;
+    return `M ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2}`;
   }
 
-  /* ---------- concentric ring radii ---------- */
-  const ringRadii = [110, 155, 185, 220];
+  function segmentPath(cx: number, cy: number, rOuter: number, rInner: number, startDeg: number, endDeg: number): string {
+    const toRad = (d: number) => ((d - 90) * Math.PI) / 180;
+    const ox1 = cx + rOuter * Math.cos(toRad(startDeg));
+    const oy1 = cy + rOuter * Math.sin(toRad(startDeg));
+    const ox2 = cx + rOuter * Math.cos(toRad(endDeg));
+    const oy2 = cy + rOuter * Math.sin(toRad(endDeg));
+    const ix1 = cx + rInner * Math.cos(toRad(endDeg));
+    const iy1 = cy + rInner * Math.sin(toRad(endDeg));
+    const ix2 = cx + rInner * Math.cos(toRad(startDeg));
+    const iy2 = cy + rInner * Math.sin(toRad(startDeg));
+    return `M ${ox1} ${oy1} A ${rOuter} ${rOuter} 0 0 1 ${ox2} ${oy2} L ${ix1} ${iy1} A ${rInner} ${rInner} 0 0 0 ${ix2} ${iy2} Z`;
+  }
 
   return (
     <motion.svg
-      viewBox="0 0 500 500"
-      className="w-full max-w-lg"
-      initial={{ opacity: 0, rotate: -30 }}
-      animate={{ opacity: 1, rotate: 0 }}
-      transition={{ duration: 1.2, ease: 'easeOut' }}
+      viewBox="0 0 600 600"
+      className="w-full max-w-xl mx-auto"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
     >
-      {/* ---- Animated concentric rings ---- */}
-      {ringRadii.map((r, i) => (
-        <motion.circle
-          key={`ring-${i}`}
-          cx={CX}
-          cy={CY}
-          fill="none"
-          stroke="rgba(212,168,83,0.1)"
-          strokeWidth="1"
-          initial={{ r: 0 }}
-          animate={{ r }}
-          transition={{ duration: 1.0, delay: 0.15 * i, ease: 'easeOut' }}
-        />
-      ))}
+      <defs>
+        <radialGradient id="wheelGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#f0d48a" stopOpacity="0.06" />
+          <stop offset="100%" stopColor="#f0d48a" stopOpacity="0" />
+        </radialGradient>
+        <filter id="goldGlow">
+          <feGaussianBlur stdDeviation="4" result="blur" />
+          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+        <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" />
+        </linearGradient>
+      </defs>
 
-      {/* ---- Outer ring : 6 Ritu (season) arcs ---- */}
-      {RITU_NAMES.map((ritu, i) => {
-        const startDeg = i * 60;
-        const endDeg = (i + 1) * 60;
-        const midRad = ((i * 60 + 30) - 90) * Math.PI / 180;
-        const arcPath = describeArc(CX, CY, 185, startDeg, endDeg);
-        /* Calculate approximate arc length for strokeDasharray */
-        const arcLen = (Math.PI * 185 * 60) / 180;
-        const textX = CX + 200 * Math.cos(midRad);
-        const textY = CY + 200 * Math.sin(midRad);
+      {/* Background glow */}
+      <circle cx={CX} cy={CY} r={R_OUTER + 20} fill="url(#wheelGlow)" />
+
+      {/* 12 month segments — bold filled wedges */}
+      {MASA_NAMES.map((masa, i) => {
+        const startDeg = i * 30;
+        const endDeg = (i + 1) * 30;
+        const midRad = ((startDeg + endDeg) / 2 - 90) * Math.PI / 180;
+        const textR = R_MID;
+        const textX = CX + textR * Math.cos(midRad);
+        const textY = CY + textR * Math.sin(midRad);
+        const rotDeg = (startDeg + endDeg) / 2;
+        // Flip text for bottom half so it reads left-to-right
+        const flip = rotDeg > 90 && rotDeg < 270;
 
         return (
-          <g key={`ritu-${i}`}>
-            {/* Animated arc drawing */}
+          <g key={`seg-${i}`}>
+            {/* Filled segment */}
             <motion.path
-              d={arcPath}
-              fill="none"
-              stroke={rituColors[i]}
-              strokeWidth="30"
-              opacity="0.15"
-              strokeDasharray={arcLen}
-              strokeDashoffset={arcLen}
-              initial={{ strokeDashoffset: arcLen }}
-              animate={{ strokeDashoffset: 0 }}
-              transition={{ duration: 1.0, delay: 0.6 + i * 0.12, ease: 'easeInOut' }}
-            />
-            {/* Season label */}
-            <motion.text
-              x={textX}
-              y={textY}
-              fill={rituColors[i]}
-              fontSize="8"
-              textAnchor="middle"
-              dominantBaseline="middle"
-              transform={`rotate(${i * 60}, ${textX}, ${textY})`}
+              d={segmentPath(CX, CY, R_OUTER, R_INNER, startDeg, endDeg)}
+              fill={RITU_BG[i]}
+              stroke={RITU_COLORS[i]}
+              strokeWidth="1.5"
+              strokeOpacity="0.3"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 1.2 + i * 0.08 }}
-            >
-              {tl(ritu, locale)}
-            </motion.text>
-          </g>
-        );
-      })}
-
-      {/* ---- Inner ring : 12 Masa divisions ---- */}
-      {MASA_NAMES.map((masa, i) => {
-        const angle = (i * 30 - 90) * Math.PI / 180;
-        const midAngle = ((i * 30 + 15) - 90) * Math.PI / 180;
-        const x1 = CX + 110 * Math.cos(angle);
-        const y1 = CY + 110 * Math.sin(angle);
-        const x2 = CX + 155 * Math.cos(angle);
-        const y2 = CY + 155 * Math.sin(angle);
-        const textX = CX + 133 * Math.cos(midAngle);
-        const textY = CY + 133 * Math.sin(midAngle);
-
-        return (
-          <g key={`masa-${i}`}>
-            {/* Spoke line */}
-            <motion.line
-              x1={CX} y1={CY} x2={x2} y2={y2}
-              stroke="rgba(212,168,83,0.15)"
-              strokeWidth="0.5"
-              initial={{ x1: CX, y1: CY, x2: CX, y2: CY }}
-              animate={{ x1, y1, x2, y2 }}
-              transition={{ duration: 0.6, delay: 0.8 + i * 0.04 }}
+              transition={{ duration: 0.4, delay: 0.1 + i * 0.06 }}
+              className="hover:brightness-150 transition-all cursor-default"
             />
-            {/* Masa label (gold) */}
+            {/* Month name — bold, readable */}
             <motion.text
               x={textX}
               y={textY}
               fill="#f0d48a"
-              fontSize="7"
+              fontSize="13"
+              fontWeight="bold"
               textAnchor="middle"
               dominantBaseline="middle"
-              transform={`rotate(${i * 30}, ${textX}, ${textY})`}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 1.0 + i * 0.05 }}
+              transform={`rotate(${flip ? rotDeg + 180 : rotDeg}, ${textX}, ${textY})`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.4 + i * 0.05 }}
             >
               {tl(masa, locale)}
             </motion.text>
@@ -166,69 +141,68 @@ function AnimatedAnnualWheel({ locale }: { locale: Locale }) {
         );
       })}
 
-      {/* ---- Orbiting sun indicator (golden dot, ~60s) ---- */}
-      <motion.circle
-        r="6"
-        fill="#fbbf24"
-        filter="url(#sunGlow)"
-        initial={{ offsetDistance: '0%' }}
-        animate={{
-          cx: [
-            CX + 170 * Math.cos(-Math.PI / 2),
-            CX + 170 * Math.cos(-Math.PI / 2 + Math.PI / 2),
-            CX + 170 * Math.cos(-Math.PI / 2 + Math.PI),
-            CX + 170 * Math.cos(-Math.PI / 2 + (3 * Math.PI) / 2),
-            CX + 170 * Math.cos(-Math.PI / 2 + 2 * Math.PI),
-          ],
-          cy: [
-            CY + 170 * Math.sin(-Math.PI / 2),
-            CY + 170 * Math.sin(-Math.PI / 2 + Math.PI / 2),
-            CY + 170 * Math.sin(-Math.PI / 2 + Math.PI),
-            CY + 170 * Math.sin(-Math.PI / 2 + (3 * Math.PI) / 2),
-            CY + 170 * Math.sin(-Math.PI / 2 + 2 * Math.PI),
-          ],
-        }}
-        transition={{
-          duration: 60,
-          repeat: Infinity,
-          ease: 'linear',
-        }}
-      />
-      {/* Glow filter for sun */}
-      <defs>
-        <filter id="sunGlow">
-          <feGaussianBlur stdDeviation="3" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
+      {/* 6 Ritu labels — inside the inner circle */}
+      {RITU_NAMES.map((ritu, i) => {
+        const midDeg = i * 60 + 30;
+        const midRad = (midDeg - 90) * Math.PI / 180;
+        const textX = CX + R_RITU * Math.cos(midRad);
+        const textY = CY + R_RITU * Math.sin(midRad);
+        const flip = midDeg > 90 && midDeg < 270;
 
-      {/* ---- Animated center labels ---- */}
-      <motion.text
-        x={CX} y={CY - 10}
-        fill="#f0d48a"
-        fontSize="12"
-        textAnchor="middle"
-        fontFamily="var(--font-heading)"
-        initial={{ opacity: 0, y: CY }}
-        animate={{ opacity: 1, y: CY - 10 }}
-        transition={{ duration: 0.8, delay: 1.4 }}
-      >
+        return (
+          <motion.text
+            key={`ritu-${i}`}
+            x={textX}
+            y={textY}
+            fill={rituColors[i]}
+            fontSize="10"
+            fontWeight="bold"
+            textAnchor="middle"
+            dominantBaseline="middle"
+            opacity="0.7"
+            transform={`rotate(${flip ? midDeg + 180 : midDeg}, ${textX}, ${textY})`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.7 }}
+            transition={{ duration: 0.4, delay: 0.8 + i * 0.1 }}
+          >
+            {tl(ritu, locale)}
+          </motion.text>
+        );
+      })}
+
+      {/* Outer ring */}
+      <circle cx={CX} cy={CY} r={R_OUTER} fill="none" stroke="url(#goldGrad)" strokeWidth="2" opacity="0.4" />
+      {/* Inner ring */}
+      <circle cx={CX} cy={CY} r={R_INNER} fill="none" stroke="url(#goldGrad)" strokeWidth="1.5" opacity="0.3" />
+
+      {/* Center — golden moon+sun symbol */}
+      <circle cx={CX} cy={CY} r="45" fill="#0a0e27" stroke="url(#goldGrad)" strokeWidth="2" />
+      {/* Sun */}
+      <circle cx={CX - 8} cy={CY - 4} r="14" fill="none" stroke="#d4a853" strokeWidth="1.5" opacity="0.7" />
+      {Array.from({ length: 8 }, (_, i) => {
+        const a = (i * 45) * Math.PI / 180;
+        return <line key={i} x1={CX - 8 + 16 * Math.cos(a)} y1={CY - 4 + 16 * Math.sin(a)} x2={CX - 8 + 20 * Math.cos(a)} y2={CY - 4 + 20 * Math.sin(a)} stroke="#d4a853" strokeWidth="1" strokeLinecap="round" opacity="0.5" />;
+      })}
+      {/* Moon crescent */}
+      <circle cx={CX + 10} cy={CY + 2} r="10" fill="none" stroke="#f0d48a" strokeWidth="1.5" opacity="0.6" />
+      <circle cx={CX + 14} cy={CY - 1} r="8" fill="#0a0e27" />
+
+      {/* Center text */}
+      <text x={CX} y={CY + 32} fill="#d4a853" fontSize="8" textAnchor="middle" opacity="0.5" fontWeight="bold" letterSpacing="2">
         {tl({ en: 'LUNISOLAR', hi: 'चान्द्र-सौर', sa: 'चान्द्रसौरम्', ta: 'சந்திர-சூரிய', te: 'చాంద్ర-సౌర', bn: 'চান্দ্র-সৌর', kn: 'ಚಾಂದ್ರ-ಸೌರ', gu: 'ચાન્દ્ર-સૌર', mai: 'चान्द्र-सौर', mr: 'चांद्र-सौर' }, locale)}
-      </motion.text>
-      <motion.text
-        x={CX} y={CY + 8}
-        fill="rgba(212,168,83,0.5)"
-        fontSize="9"
-        textAnchor="middle"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 1.6 }}
-      >
-        {tl({ en: '12 Months x 6 Seasons', hi: '12 मास x 6 ऋतु', sa: 'द्वादशमासाः × षड्ऋतवः', ta: '12 மாதங்கள் × 6 பருவங்கள்', te: '12 నెలలు × 6 ఋతువులు', bn: '12 মাস × 6 ঋতু', kn: '12 ತಿಂಗಳು × 6 ಋತುಗಳು', gu: '12 માસ × 6 ઋતુ', mai: '12 मास × 6 ऋतु', mr: '12 महिने × 6 ऋतू' }, locale)}
-      </motion.text>
+      </text>
+
+      {/* Orbiting golden sun dot */}
+      <motion.circle
+        r="5"
+        fill="#fbbf24"
+        filter="url(#goldGlow)"
+        animate={{
+          cx: Array.from({ length: 13 }, (_, i) => CX + (R_MID + 10) * Math.cos((i * 30 - 90) * Math.PI / 180)),
+          cy: Array.from({ length: 13 }, (_, i) => CY + (R_MID + 10) * Math.sin((i * 30 - 90) * Math.PI / 180)),
+        }}
+        transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
+      />
     </motion.svg>
   );
 }

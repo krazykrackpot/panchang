@@ -3,12 +3,38 @@ import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { generateEventLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 
 export function generateStaticParams() {
   return Object.keys(FESTIVAL_DETAILS).map(slug => ({ slug }));
 }
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
+
+/** Find the next occurrence date for a festival (current year or next) */
+function getNextFestivalDate(slug: string): { date: string; year: number } | null {
+  try {
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    // Check current year first, then next 3 years
+    for (const year of [currentYear, currentYear + 1, currentYear + 2, currentYear + 3]) {
+      // Use Ujjain coordinates (traditional Indian prime meridian)
+      const festivals = generateFestivalCalendarV2(year, 23.1765, 75.7885, 'Asia/Kolkata');
+      const match = festivals.find(f => f.slug === slug);
+      if (match && (year > currentYear || match.date >= now.toISOString().slice(0, 10))) {
+        return { date: match.date, year };
+      }
+    }
+  } catch { /* Festival computation may fail for some slugs */ }
+  return null;
+}
+
+/** Format date as "May 7, 2027" */
+function formatFestivalDate(dateStr: string): string {
+  const [y, m, d] = dateStr.split('-').map(Number);
+  const date = new Date(Date.UTC(y, m - 1, d));
+  return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
@@ -21,8 +47,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const loc = locale as 'en' | 'hi' | 'sa';
   const name = festival.name[loc] || festival.name.en;
   const nameEn = festival.name.en;
-  const title = `${name} — Date, Puja Vidhi & Significance | Dekho Panchang`;
-  const description = `${nameEn}: ${festival.significance.en}`.slice(0, 160);
+
+  // Compute the actual date for the title
+  const nextDate = getNextFestivalDate(slug);
+  const dateStr = nextDate ? formatFestivalDate(nextDate.date) : '';
+  const yearStr = nextDate ? String(nextDate.year) : '';
+
+  // Title with actual date: "Diwali 2027 — October 29 | Puja Time & Significance"
+  const title = nextDate
+    ? `${name} ${yearStr} — ${dateStr} | Puja Time & Significance | Dekho Panchang`
+    : `${name} — Date, Puja Vidhi & Significance | Dekho Panchang`;
+  const description = nextDate
+    ? `${nameEn} ${yearStr} falls on ${dateStr}. Exact Puja Muhurat, Tithi timing, and significance. ${festival.significance.en}`.slice(0, 160)
+    : `${nameEn}: ${festival.significance.en}`.slice(0, 160);
 
   return {
     title,

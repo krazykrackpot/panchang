@@ -29,6 +29,26 @@ import {
 // ─────────────────────────────────────────────────────────────
 // Public types
 // ─────────────────────────────────────────────────────────────
+export interface TransitSummary {
+  moonTransitSign: number;    // current Moon sign 1-12
+  moonTransitSignName: LocaleText;
+  moonHouseFromNatal: number; // house 1-12 from natal Moon
+  jupiterSign: number;        // 1-12
+  jupiterSignName: LocaleText;
+  jupiterHouse: number;       // house from natal Moon
+  saturnSign: number;         // 1-12
+  saturnSignName: LocaleText;
+  saturnHouse: number;        // house from natal Moon
+  rahuSign: number;           // 1-12
+  rahuSignName: LocaleText;
+  rahuHouse: number;          // house from natal Moon
+}
+
+export interface DailyRemedy {
+  mantra: LocaleText;
+  practical: LocaleText;
+}
+
 export interface DailyHoroscope {
   date: string;
   moonSign: number;          // 1-12
@@ -45,6 +65,14 @@ export interface DailyHoroscope {
   luckyColor: LocaleText;
   luckyNumber: number;
   luckyTime: string;          // e.g. "10:00 AM - 12:00 PM"
+  luckyDirection: LocaleText;
+  transitSummary: TransitSummary;
+  compatibility: number[];    // array of moon sign IDs (1-12) most compatible today
+  remedy: DailyRemedy;
+  dosAndDonts: {
+    dos: LocaleText[];
+    donts: LocaleText[];
+  };
   // Present only when birth nakshatra was supplied (Tara Bala personalization)
   taraBala?: {
     taraGroup: number;        // 0-8 (Janma through Parama Mitra)
@@ -197,6 +225,143 @@ const TIME_SLOTS = [
   '12:00 PM - 2:00 PM', '2:00 PM - 4:00 PM', '4:00 PM - 6:00 PM',
   '6:00 PM - 8:00 PM', '8:00 PM - 10:00 PM',
 ];
+
+// ─────────────────────────────────────────────────────────────
+// Lucky directions
+// ─────────────────────────────────────────────────────────────
+const LUCKY_DIRECTIONS: BilingualText[] = [
+  { en: 'East', hi: 'पूर्व' },
+  { en: 'West', hi: 'पश्चिम' },
+  { en: 'North', hi: 'उत्तर' },
+  { en: 'South', hi: 'दक्षिण' },
+  { en: 'North-East', hi: 'ईशान' },
+  { en: 'South-East', hi: 'आग्नेय' },
+  { en: 'South-West', hi: 'नैऋत्य' },
+  { en: 'North-West', hi: 'वायव्य' },
+];
+
+// ─────────────────────────────────────────────────────────────
+// Mantras per sign lord (deterministic)
+// ─────────────────────────────────────────────────────────────
+const SIGN_LORD_MANTRAS: Record<string, BilingualText[]> = {
+  Sun: [
+    { en: 'Om Surya Namah', hi: 'ॐ सूर्य नमः' },
+    { en: 'Om Adityaya Namah', hi: 'ॐ आदित्याय नमः' },
+  ],
+  Moon: [
+    { en: 'Om Chandraya Namah', hi: 'ॐ चन्द्राय नमः' },
+    { en: 'Om Som Somaya Namah', hi: 'ॐ सोम सोमाय नमः' },
+  ],
+  Mars: [
+    { en: 'Om Mangalaya Namah', hi: 'ॐ मंगलाय नमः' },
+    { en: 'Om Kram Krim Kraum Bhaumaya Namah', hi: 'ॐ क्रां क्रीं क्रौं भौमाय नमः' },
+  ],
+  Mercury: [
+    { en: 'Om Budhaya Namah', hi: 'ॐ बुधाय नमः' },
+    { en: 'Om Bram Brim Braum Budhaya Namah', hi: 'ॐ ब्रां ब्रीं ब्रौं बुधाय नमः' },
+  ],
+  Jupiter: [
+    { en: 'Om Brihaspataye Namah', hi: 'ॐ बृहस्पतये नमः' },
+    { en: 'Om Gram Grim Graum Gurave Namah', hi: 'ॐ ग्रां ग्रीं ग्रौं गुरवे नमः' },
+  ],
+  Venus: [
+    { en: 'Om Shukraya Namah', hi: 'ॐ शुक्राय नमः' },
+    { en: 'Om Dram Drim Draum Shukraya Namah', hi: 'ॐ द्रां द्रीं द्रौं शुक्राय नमः' },
+  ],
+  Saturn: [
+    { en: 'Om Shanicharaya Namah', hi: 'ॐ शनैश्चराय नमः' },
+    { en: 'Om Pram Prim Praum Shanaye Namah', hi: 'ॐ प्रां प्रीं प्रौं शनये नमः' },
+  ],
+};
+
+// Practical remedies pool per overall tier
+const PRACTICAL_REMEDIES: Record<QualityTier, BilingualText[]> = {
+  good: [
+    { en: 'Donate food to the needy to amplify today\'s positive energy.', hi: 'सकारात्मक ऊर्जा बढ़ाने के लिए ज़रूरतमंदों को भोजन दान करें।' },
+    { en: 'Offer water to a Tulsi plant before sunrise to strengthen your aura.', hi: 'अपनी आभा को मज़बूत करने के लिए सूर्योदय से पहले तुलसी को जल अर्पित करें।' },
+    { en: 'Wear your lucky color today to maximize the day\'s auspicious energy.', hi: 'आज अपना शुभ रंग पहनें ताकि दिन की शुभ ऊर्जा अधिकतम हो।' },
+  ],
+  mixed: [
+    { en: 'Light a ghee diya in the evening to stabilize the day\'s mixed energy.', hi: 'दिन की मिश्रित ऊर्जा को स्थिर करने के लिए शाम को घी का दीया जलाएं।' },
+    { en: 'Chant the recommended mantra 11 times during your lucky time slot.', hi: 'शुभ समय में सुझाए गए मंत्र का 11 बार जप करें।' },
+    { en: 'Take a few minutes for deep breathing meditation to center yourself.', hi: 'अपने आप को केंद्रित करने के लिए कुछ मिनट गहरी साँस ध्यान करें।' },
+  ],
+  challenging: [
+    { en: 'Avoid starting new ventures today. Focus on completing existing tasks.', hi: 'आज नए कार्य शुरू करने से बचें। मौजूदा कार्यों को पूरा करने पर ध्यान दें।' },
+    { en: 'Feed black sesame seeds to birds to mitigate challenging planetary energy.', hi: 'चुनौतीपूर्ण ग्रह ऊर्जा को कम करने के लिए पक्षियों को काले तिल खिलाएं।' },
+    { en: 'Spend time near water — a river, lake, or even a fountain — to calm restless energy.', hi: 'बेचैन ऊर्जा को शांत करने के लिए पानी के पास समय बिताएं — नदी, झील या फव्वारा।' },
+  ],
+};
+
+// ─────────────────────────────────────────────────────────────
+// Do's and Don'ts based on overall tier + seed variation
+// ─────────────────────────────────────────────────────────────
+const DOS_POOL: Record<QualityTier, BilingualText[]> = {
+  good: [
+    { en: 'Start new projects or ventures you have been planning.', hi: 'नई परियोजनाएँ या योजनाएँ शुरू करें जो आप सोच रहे थे।' },
+    { en: 'Make important financial decisions or investments.', hi: 'महत्वपूर्ण वित्तीय निर्णय या निवेश करें।' },
+    { en: 'Have meaningful conversations with loved ones.', hi: 'प्रियजनों से सार्थक बातचीत करें।' },
+    { en: 'Express gratitude and acknowledge others\' contributions.', hi: 'कृतज्ञता व्यक्त करें और दूसरों के योगदान को स्वीकार करें।' },
+    { en: 'Sign contracts or finalize deals if pending.', hi: 'यदि लंबित हैं तो अनुबंधों पर हस्ताक्षर करें या सौदे पक्के करें।' },
+  ],
+  mixed: [
+    { en: 'Focus on routine tasks and clearing your backlog.', hi: 'नियमित कार्यों और बकाया काम पर ध्यान दें।' },
+    { en: 'Organize your workspace and plan for the week ahead.', hi: 'अपने कार्यक्षेत्र को व्यवस्थित करें और आगामी सप्ताह की योजना बनाएँ।' },
+    { en: 'Spend quality time with family in the evening.', hi: 'शाम को परिवार के साथ अच्छा समय बिताएँ।' },
+    { en: 'Practice patience in all professional interactions.', hi: 'सभी पेशेवर बातचीत में धैर्य रखें।' },
+    { en: 'Review finances but postpone major transactions.', hi: 'वित्त की समीक्षा करें लेकिन बड़े लेन-देन को टालें।' },
+  ],
+  challenging: [
+    { en: 'Practice extra caution while traveling.', hi: 'यात्रा करते समय अतिरिक्त सावधानी बरतें।' },
+    { en: 'Meditate or do yoga to maintain inner calm.', hi: 'आंतरिक शांति बनाए रखने के लिए ध्यान या योग करें।' },
+    { en: 'Finish pending work rather than starting anything new.', hi: 'कुछ नया शुरू करने की बजाय लंबित कार्य पूरे करें।' },
+    { en: 'Be mindful of your words in conversations.', hi: 'बातचीत में अपने शब्दों के प्रति सजग रहें।' },
+    { en: 'Spend time in nature to recharge your energy.', hi: 'अपनी ऊर्जा को पुनर्जीवित करने के लिए प्रकृति में समय बिताएँ।' },
+  ],
+};
+
+const DONTS_POOL: Record<QualityTier, BilingualText[]> = {
+  good: [
+    { en: 'Don\'t let overconfidence lead to carelessness.', hi: 'अति-आत्मविश्वास को लापरवाही में न बदलने दें।' },
+    { en: 'Don\'t ignore health routines even on a good day.', hi: 'अच्छे दिन में भी स्वास्थ्य दिनचर्या की अनदेखी न करें।' },
+    { en: 'Don\'t make impulsive purchases despite positive energy.', hi: 'सकारात्मक ऊर्जा के बावजूद आवेगपूर्ण खरीदारी न करें।' },
+  ],
+  mixed: [
+    { en: 'Don\'t take on more commitments than you can handle.', hi: 'जितना संभाल सकते हैं उससे अधिक प्रतिबद्धताएँ न लें।' },
+    { en: 'Don\'t engage in arguments — save debates for another day.', hi: 'बहस में न पड़ें — वाद-विवाद दूसरे दिन के लिए रखें।' },
+    { en: 'Don\'t lend or borrow money today if avoidable.', hi: 'यदि संभव हो तो आज पैसे उधार न दें या लें।' },
+  ],
+  challenging: [
+    { en: 'Don\'t start any important new project today.', hi: 'आज कोई भी महत्वपूर्ण नई परियोजना शुरू न करें।' },
+    { en: 'Don\'t make hasty decisions about relationships.', hi: 'रिश्तों के बारे में जल्दबाज़ी में निर्णय न लें।' },
+    { en: 'Don\'t invest in speculative assets today.', hi: 'आज सट्टेबाज़ी वाली संपत्तियों में निवेश न करें।' },
+    { en: 'Don\'t confront authority figures — diplomacy is key.', hi: 'अधिकारियों से टकराव न करें — कूटनीति ज़रूरी है।' },
+  ],
+};
+
+// ─────────────────────────────────────────────────────────────
+// Compatibility: friendly signs for Moon transit house
+// Signs whose lord is friendly with Moon's current transit sign lord
+// ─────────────────────────────────────────────────────────────
+function getCompatibleSigns(moonSign: number, currentMoonSign: number, seed: number): number[] {
+  // Signs in trine (5, 9) and same element are most compatible
+  const trines = [
+    ((moonSign - 1 + 4) % 12) + 1,  // 5th from natal
+    ((moonSign - 1 + 8) % 12) + 1,  // 9th from natal
+  ];
+  // Signs whose lord is friend of current Moon sign lord
+  const currentLord = SIGN_LORD[currentMoonSign];
+  const friendlySigns = Object.entries(SIGN_LORD)
+    .filter(([, lord]) => FRIENDS[currentLord]?.includes(lord) || lord === currentLord)
+    .map(([id]) => Number(id))
+    .filter(id => id !== moonSign);
+
+  // Combine and deduplicate, pick top 3
+  const all = [...new Set([...trines, ...friendlySigns])].filter(id => id !== moonSign);
+  // Deterministic shuffle using seed
+  all.sort((a, b) => ((a * seed) % 17) - ((b * seed) % 17));
+  return all.slice(0, 3);
+}
 
 // ─────────────────────────────────────────────────────────────
 // Tara Bala scoring
@@ -352,6 +517,62 @@ export function generateDailyHoroscope(input: DailyEngineInput): DailyHoroscope 
     };
   }
 
+  // Lucky direction (deterministic from seed + moonSign)
+  const luckyDirection = pick(LUCKY_DIRECTIONS, seed, moonSign * 5 + weekday * 3);
+
+  // Transit summary: where slow planets currently sit relative to natal Moon
+  const jupRashi = RASHIS[jupSign - 1];
+  const satRashi = RASHIS[satSign - 1];
+  const rahRashi = RASHIS[rahSign - 1];
+  const moonTransitRashi = RASHIS[currentMoonSign - 1];
+
+  const transitSummary: TransitSummary = {
+    moonTransitSign: currentMoonSign,
+    moonTransitSignName: moonTransitRashi
+      ? { en: moonTransitRashi.name.en, hi: moonTransitRashi.name.hi }
+      : { en: 'Unknown', hi: 'अज्ञात' },
+    moonHouseFromNatal: houseFromMoon,
+    jupiterSign: jupSign,
+    jupiterSignName: jupRashi
+      ? { en: jupRashi.name.en, hi: jupRashi.name.hi }
+      : { en: 'Unknown', hi: 'अज्ञात' },
+    jupiterHouse: ((jupSign - moonSign + 12) % 12) + 1,
+    saturnSign: satSign,
+    saturnSignName: satRashi
+      ? { en: satRashi.name.en, hi: satRashi.name.hi }
+      : { en: 'Unknown', hi: 'अज्ञात' },
+    saturnHouse: ((satSign - moonSign + 12) % 12) + 1,
+    rahuSign: rahSign,
+    rahuSignName: rahRashi
+      ? { en: rahRashi.name.en, hi: rahRashi.name.hi }
+      : { en: 'Unknown', hi: 'अज्ञात' },
+    rahuHouse: ((rahSign - moonSign + 12) % 12) + 1,
+  };
+
+  // Compatibility: signs most aligned today
+  const compatibility = getCompatibleSigns(moonSign, currentMoonSign, seed);
+
+  // Remedy: mantra for sign lord + practical tip based on overall tier
+  const signLord = SIGN_LORD[moonSign] || 'Sun';
+  const mantraPool = SIGN_LORD_MANTRAS[signLord] || SIGN_LORD_MANTRAS['Sun'];
+  const mantra = pick(mantraPool, seed, moonSign);
+  const practical = pick(PRACTICAL_REMEDIES[overallTier], seed, weekday * 3);
+  const remedy: DailyRemedy = { mantra, practical };
+
+  // Do's and Don'ts (2-3 each, deterministic)
+  const dosPool = DOS_POOL[overallTier];
+  const dontsPool = DONTS_POOL[overallTier];
+  const dos: LocaleText[] = [
+    pick(dosPool, seed, 0),
+    pick(dosPool, seed, 7),
+  ];
+  // Add a third "do" for good days
+  if (overallTier === 'good') dos.push(pick(dosPool, seed, 13));
+  const donts: LocaleText[] = [
+    pick(dontsPool, seed, 1),
+    pick(dontsPool, seed, 11),
+  ];
+
   return {
     date,
     moonSign,
@@ -368,6 +589,11 @@ export function generateDailyHoroscope(input: DailyEngineInput): DailyHoroscope 
     luckyColor,
     luckyNumber,
     luckyTime,
+    luckyDirection,
+    transitSummary,
+    compatibility,
+    remedy,
+    dosAndDonts: { dos, donts },
     ...(taraBala ? { taraBala } : {}),
   };
 }

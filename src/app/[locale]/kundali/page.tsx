@@ -61,6 +61,7 @@ import { findDashaSandhiPeriods } from '@/lib/kundali/dasha-sandhi';
 import { assembleBirthPosterData } from '@/lib/shareable/birth-poster';
 import { generateCosmicBlueprint, type CosmicBlueprint } from '@/lib/kundali/archetype-engine';
 import { getNarayanaInterpretation } from '@/lib/constants/narayana-interpretations';
+import DownloadReportButton from '@/components/kundali/DownloadReportButton';
 
 // Dynamic imports — only loaded after chart generation or on specific tab activation
 const ChartNorth = dynamic(() => import('@/components/kundali/ChartNorth'), { ssr: false });
@@ -1001,6 +1002,18 @@ export default function KundaliPage() {
                 <Download className="w-4 h-4" />
                 PDF Report
               </button>
+              <DownloadReportButton
+                birthData={{
+                  name: kundali.birthData.name,
+                  date: kundali.birthData.date,
+                  time: kundali.birthData.time,
+                  lat: kundali.birthData.lat,
+                  lng: kundali.birthData.lng,
+                  timezone: kundali.birthData.timezone,
+                  place: kundali.birthData.place,
+                }}
+                locale={locale}
+              />
               <PrintButton
                 contentHtml={generateKundaliPrintHtml(kundali, locale as 'en' | 'hi' | 'sa')}
                 title={`Kundali — ${kundali.birthData.name}`}

@@ -988,15 +988,15 @@ function buildReportHtml(
           <!-- Central cross: vertical and horizontal bars -->
           <rect x="43" y="8" width="14" height="84"/>
           <rect x="8" y="43" width="84" height="14"/>
-          <!-- Clockwise arms: each tip bends 90° in clockwise direction -->
+          <!-- Clockwise arms: each tip bends 90° in clockwise direction (longer) -->
           <!-- Top tip → bends RIGHT -->
-          <rect x="57" y="8" width="28" height="14"/>
+          <rect x="57" y="8" width="38" height="14"/>
           <!-- Right tip → bends DOWN -->
-          <rect x="78" y="57" width="14" height="28"/>
+          <rect x="78" y="57" width="14" height="38"/>
           <!-- Bottom tip → bends LEFT -->
-          <rect x="15" y="78" width="28" height="14"/>
+          <rect x="5" y="78" width="38" height="14"/>
           <!-- Left tip → bends UP -->
-          <rect x="8" y="15" width="14" height="28"/>
+          <rect x="8" y="5" width="14" height="38"/>
         </g>
         <!-- Four auspicious dots (one in each quadrant) -->
         <circle cx="32" cy="32" r="4" fill="#C41E3A"/>

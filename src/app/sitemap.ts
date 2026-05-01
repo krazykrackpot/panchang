@@ -126,6 +126,13 @@ const routes = [
   '/learn/panchak',
   '/learn/holashtak',
   '/learn/doshas-detailed',
+  '/learn/sarvartha-siddhi-yoga',
+  '/learn/amrit-siddhi-yoga',
+  '/learn/ravi-pushya-yoga',
+  '/learn/guru-pushya-yoga',
+  '/learn/dwipushkar-yoga',
+  '/learn/tripushkar-yoga',
+  '/learn/siddha-yoga',
   // Learn Contributions (India's mathematical & astronomical heritage)
   '/learn/contributions/zero',
   '/learn/contributions/pi',

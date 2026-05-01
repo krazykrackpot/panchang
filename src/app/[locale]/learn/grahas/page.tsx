@@ -43,7 +43,7 @@ const PLANET_DETAILS: Record<number, {
     dignity: { en: 'Exalted in Taurus (3°), Debilitated in Scorpio (3°)', hi: 'वृषभ 3° में उच्च, वृश्चिक 3° में नीच', sa: 'वृषभे 3° उच्चः, वृश्चिके 3° नीचः' },
     signifies: { en: 'Mind, emotions, mother, public, liquids, travel, silver', hi: 'मन, भावनाएँ, माता, जनता, तरल पदार्थ, यात्रा', sa: 'मनः, भावाः, माता, जनता, द्रवपदार्थाः, यात्रा' },
     exaltDeg: 'Taurus 3°', debilDeg: 'Scorpio 3°',
-    moolatrikona: { en: 'Taurus 4°-30°', hi: 'वृषभ 4°-30°', sa: 'वृषभ 4°-30°', mai: 'वृषभ 4°-30°', mr: 'वृषभ 4°-30°', ta: 'ரிஷபம் 4°-30°', te: 'వృషభం 4°-30°', bn: 'বৃষ 4°-30°', kn: 'ವೃಷಭ 4°-30°', gu: 'વૃષભ 4°-30°' },
+    moolatrikona: { en: 'Taurus 4°-20°', hi: 'वृषभ 4°-20°', sa: 'वृषभ 4°-20°', mai: 'वृषभ 4°-20°', mr: 'वृषभ 4°-20°', ta: 'ரிஷபம் 4°-20°', te: 'వృషభం 4°-20°', bn: 'বৃষ 4°-20°', kn: 'ವೃಷಭ 4°-20°', gu: 'વૃષભ 4°-20°' },
     ownSigns: { en: 'Cancer', hi: 'कर्क', sa: 'कर्क', mai: 'कर्क', mr: 'कर्क', ta: 'கடகம்', te: 'కర్కాటకం', bn: 'কর্কট', kn: 'ಕರ್ಕಾಟಕ', gu: 'કર્ક' },
     combustionDeg: '12°',
     karakatva: { en: 'Mind (Manas), mother, queen, public opinion, water, milk, pearl, silver, left eye, Monday, northwest direction, white things', hi: 'मन, माता, रानी, जनमत, जल, दूध, मोती, चाँदी, बायाँ नेत्र, सोमवार', sa: 'मन, माता, रानी, जनमत, जल, दूध, मोती, चाँदी, बायाँ नेत्र, सोमवार', mai: 'मन, माता, रानी, जनमत, जल, दूध, मोती, चाँदी, बायाँ नेत्र, सोमवार', mr: 'मन, माता, रानी, जनमत, जल, दूध, मोती, चाँदी, बायाँ नेत्र, सोमवार', ta: 'மனம் (மனஸ்), தாய், அரசி, பொது கருத்து, நீர், பால், முத்து, வெள்ளி, இடது கண், திங்கள், வடமேற்கு திசை, வெண்மையான பொருட்கள்', te: 'మనస్సు (మనస్), తల్లి, రాణి, ప్రజాభిప్రాయం, నీరు, పాలు, ముత్యం, వెండి, ఎడమ కన్ను, సోమవారం, వాయువ్య దిక్కు, తెల్లని వస్తువులు', bn: 'মন (মনস), মাতা, রানী, জনমত, জল, দুধ, মুক্তা, রূপা, বাম চোখ, সোমবার, উত্তর-পশ্চিম দিক, সাদা বস্তু', kn: 'ಮನಸ್ಸು (ಮನಸ್), ತಾಯಿ, ರಾಣಿ, ಜನಾಭಿಪ್ರಾಯ, ನೀರು, ಹಾಲು, ಮುತ್ತು, ಬೆಳ್ಳಿ, ಎಡ ಕಣ್ಣು, ಸೋಮವಾರ, ವಾಯವ್ಯ ದಿಕ್ಕು, ಬಿಳಿ ವಸ್ತುಗಳು', gu: 'મન (મનસ), માતા, રાણી, જનમત, જળ, દૂધ, મોતી, ચાંદી, ડાબી આંખ, સોમવાર, વાયવ્ય દિશા, સફેદ વસ્તુઓ' },
@@ -83,7 +83,7 @@ const PLANET_DETAILS: Record<number, {
     dignity: { en: 'Exalted in Pisces (27°), Debilitated in Virgo (27°)', hi: 'मीन 27° में उच्च, कन्या 27° में नीच', sa: 'मीने 27° उच्चः, कन्यायां 27° नीचः' },
     signifies: { en: 'Love, beauty, luxury, art, spouse, vehicles, diamonds', hi: 'प्रेम, सौन्दर्य, विलासिता, कला, जीवनसाथी, वाहन', sa: 'प्रेम, सौन्दर्यं, विलासः, कला, पत्नी, वाहनानि' },
     exaltDeg: 'Pisces 27°', debilDeg: 'Virgo 27°',
-    moolatrikona: { en: 'Libra 0°-15°', hi: 'तुला 0°-15°', sa: 'तुला 0°-15°', mai: 'तुला 0°-15°', mr: 'तुला 0°-15°', ta: 'துலாம் 0°-15°', te: 'తులా 0°-15°', bn: 'তুলা 0°-15°', kn: 'ತುಲಾ 0°-15°', gu: 'તુલા 0°-15°' },
+    moolatrikona: { en: 'Libra 0°-5°', hi: 'तुला 0°-5°', sa: 'तुला 0°-5°', mai: 'तुला 0°-5°', mr: 'तुला 0°-5°', ta: 'துலாம் 0°-5°', te: 'తులా 0°-5°', bn: 'তুলা 0°-5°', kn: 'ತುಲಾ 0°-5°', gu: 'તુલા 0°-5°' },
     ownSigns: { en: 'Taurus, Libra', hi: 'वृषभ, तुला', sa: 'वृषभ, तुला', mai: 'वृषभ, तुला', mr: 'वृषभ, तुला', ta: 'ரிஷபம், துலாம்', te: 'వృషభం, తులా', bn: 'বৃষ, তুলা', kn: 'ವೃಷಭ, ತುಲಾ', gu: 'વૃષભ, તુલા' },
     combustionDeg: '8° (10° if retro)',
     karakatva: { en: 'Spouse (wife), love, beauty, art, music, luxury, vehicles, diamond, semen, southeast direction, Friday, perfume, flowers', hi: 'पत्नी, प्रेम, सौन्दर्य, कला, संगीत, विलास, वाहन, हीरा, शुक्रवार, सुगन्ध, पुष्प', sa: 'पत्नी, प्रेम, सौन्दर्य, कला, संगीत, विलास, वाहन, हीरा, शुक्रवार, सुगन्ध, पुष्प', mai: 'पत्नी, प्रेम, सौन्दर्य, कला, संगीत, विलास, वाहन, हीरा, शुक्रवार, सुगन्ध, पुष्प', mr: 'पत्नी, प्रेम, सौन्दर्य, कला, संगीत, विलास, वाहन, हीरा, शुक्रवार, सुगन्ध, पुष्प', ta: 'மனைவி, காதல், அழகு, கலை, இசை, ஆடம்பரம், வாகனங்கள், வைரம், விந்து, தென்கிழக்கு திசை, வெள்ளி, நறுமணம், மலர்கள்', te: 'భార్య, ప్రేమ, అందం, కళ, సంగీతం, విలాసం, వాహనాలు, వజ్రం, వీర్యం, ఆగ్నేయ దిక్కు, శుక్రవారం, సుగంధం, పుష్పాలు', bn: 'স্ত্রী, প্রেম, সৌন্দর্য, কলা, সংগীত, বিলাস, যানবাহন, হীরা, বীর্য, দক্ষিণ-পূর্ব দিক, শুক্রবার, সুগন্ধি, ফুল', kn: 'ಪತ್ನಿ, ಪ್ರೇಮ, ಸೌಂದರ್ಯ, ಕಲೆ, ಸಂಗೀತ, ವಿಲಾಸ, ವಾಹನಗಳು, ವಜ್ರ, ವೀರ್ಯ, ಆಗ್ನೇಯ ದಿಕ್ಕು, ಶುಕ್ರವಾರ, ಸುಗಂಧ, ಹೂಗಳು', gu: 'પત્ની, પ્રેમ, સૌંદર્ય, કલા, સંગીત, વિલાસ, વાહનો, હીરો, વીર્ય, અગ્નિ દિશા, શુક્રવાર, સુગંધ, ફૂલો' },
@@ -134,11 +134,11 @@ const FRIENDSHIP_TABLE = [
 /* ── Dignity table ────────────────────────────────────────────────── */
 const DIGNITY_TABLE = [
   { planet: 'Sun', exalt: 'Aries 10°', moola: 'Leo 0°-20°', own: 'Leo', debil: 'Libra 10°' },
-  { planet: 'Moon', exalt: 'Taurus 3°', moola: 'Taurus 4°-30°', own: 'Cancer', debil: 'Scorpio 3°' },
+  { planet: 'Moon', exalt: 'Taurus 3°', moola: 'Taurus 4°-20°', own: 'Cancer', debil: 'Scorpio 3°' },
   { planet: 'Mars', exalt: 'Capricorn 28°', moola: 'Aries 0°-12°', own: 'Aries, Scorpio', debil: 'Cancer 28°' },
   { planet: 'Mercury', exalt: 'Virgo 15°', moola: 'Virgo 16°-20°', own: 'Gemini, Virgo', debil: 'Pisces 15°' },
   { planet: 'Jupiter', exalt: 'Cancer 5°', moola: 'Sagittarius 0°-10°', own: 'Sagittarius, Pisces', debil: 'Capricorn 5°' },
-  { planet: 'Venus', exalt: 'Pisces 27°', moola: 'Libra 0°-15°', own: 'Taurus, Libra', debil: 'Virgo 27°' },
+  { planet: 'Venus', exalt: 'Pisces 27°', moola: 'Libra 0°-5°', own: 'Taurus, Libra', debil: 'Virgo 27°' },
   { planet: 'Saturn', exalt: 'Libra 20°', moola: 'Aquarius 0°-20°', own: 'Capricorn, Aquarius', debil: 'Aries 20°' },
 ];
 

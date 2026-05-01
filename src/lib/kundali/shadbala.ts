@@ -1,4 +1,4 @@
-import { normalizeDeg, lahiriAyanamsha } from '@/lib/ephem/astronomical';
+import { normalizeDeg, lahiriAyanamsha, sunLongitude, toSidereal, dateToJD } from '@/lib/ephem/astronomical';
 import { getSunTimes } from '@/lib/astronomy/sunrise';
 import {
   MOOLATRIKONA,
@@ -105,9 +105,9 @@ const NAISARGIKA: Record<number, number> = {
   6: 8.57,
 };
 
-/** Minimum required Rupas for each planet */
+/** Minimum required Rupas for each planet (BPHS Ch.27 Sl.31) */
 const MIN_REQUIRED: Record<number, number> = {
-  0: 5.0,
+  0: 6.5,  // Sun: 390 virupas = 6.5 rupas (BPHS Ch.27 Sl.31)
   1: 6.0,
   2: 5.0,
   3: 7.0,
@@ -421,16 +421,57 @@ function tribhagaBala(
 }
 
 function abdaBala(p: PlanetInput, birthDateObj: Date): number {
-  // Year lord = lord of the weekday of Jan 1 of the birth year (Gregorian approx of Mesha Sankranti)
-  const jan1 = new Date(Date.UTC(birthDateObj.getUTCFullYear(), 0, 1));
-  const yearLordIdx = WEEKDAY_LORD[jan1.getUTCDay()];
+  // Year lord = lord of the weekday of Mesha Sankranti (Sun enters sidereal Aries)
+  // Binary search for the JD when sidereal Sun longitude crosses 0° in the birth year.
+  // Search window: March 1 to May 1 (Mesha Sankranti always falls ~April 13-15).
+  const year = birthDateObj.getUTCFullYear();
+  let lo = dateToJD(year, 3, 1);   // March 1
+  let hi = dateToJD(year, 5, 1);   // May 1
+
+  // Binary search: find JD where sidereal Sun longitude crosses from ~359° to ~0°
+  // We look for the point where sidereal Sun is closest to 0° (entering Aries)
+  for (let i = 0; i < 30; i++) { // 30 iterations gives sub-second precision
+    const mid = (lo + hi) / 2;
+    const sidSun = toSidereal(sunLongitude(mid), mid);
+    // If sidSun > 180°, Sun hasn't reached 0° yet (it's still in late Pisces ~350-359°)
+    // If sidSun < 180°, Sun has already passed 0° (it's in early Aries ~0-10°)
+    if (sidSun > 180) {
+      lo = mid; // Sun still in Pisces, move forward
+    } else {
+      hi = mid; // Sun already in Aries, move backward
+    }
+  }
+
+  const meshaSankrantiJD = (lo + hi) / 2;
+  // Weekday: 0=Sun, 1=Mon, ..., 6=Sat (Lesson O)
+  const weekday = Math.floor(meshaSankrantiJD + 1.5) % 7;
+  const yearLordIdx = WEEKDAY_LORD[weekday];
   return p.id === yearLordIdx ? 15 : 0;
 }
 
-function masaBala(p: PlanetInput, birthDateObj: Date): number {
-  // Month lord = lord of weekday of 1st day of birth Gregorian month (approx of Vedic lunar month start)
-  const monthStart = new Date(Date.UTC(birthDateObj.getUTCFullYear(), birthDateObj.getUTCMonth(), 1));
-  const monthLordIdx = WEEKDAY_LORD[monthStart.getUTCDay()];
+function masaBala(p: PlanetInput, birthDateObj: Date, planets: PlanetInput[], julianDay: number): number {
+  // Month lord = lord of the weekday of the most recent New Moon (Amanta lunar month start).
+  // Approximate the tithi number from Moon-Sun elongation, then go back to Pratipada (tithi 1).
+  // Moon-Sun elongation: each tithi = 12° of elongation.
+  const sunPlanet = planets.find((pl) => pl.id === 0);
+  const moonPlanet = planets.find((pl) => pl.id === 1);
+
+  if (sunPlanet && moonPlanet) {
+    const elongation = normalizeDeg(moonPlanet.longitude - sunPlanet.longitude);
+    // Current tithi number (1-30): each tithi = 12°
+    const tithiIndex = Math.floor(elongation / 12); // 0-29
+    // Days since New Moon ≈ tithiIndex (each tithi ≈ 1 day on average)
+    // Go back to approximate New Moon date
+    const newMoonJD = julianDay - tithiIndex;
+    // Weekday of the New Moon: 0=Sun, 1=Mon, ..., 6=Sat (Lesson O)
+    const weekday = Math.floor(newMoonJD + 1.5) % 7;
+    const monthLordIdx = WEEKDAY_LORD[weekday];
+    return p.id === monthLordIdx ? 30 : 0;
+  }
+
+  // Fallback: use birth date's own weekday
+  const weekday = Math.floor(julianDay + 1.5) % 7; // 0=Sun (Lesson O)
+  const monthLordIdx = WEEKDAY_LORD[weekday];
   return p.id === monthLordIdx ? 30 : 0;
 }
 
@@ -562,7 +603,7 @@ function computeKalaBala(
   const pk = pakshaBala(p, sunLong, moonLong);
   const tb = tribhagaBala(p, birthHour, isDayBirth, sunriseHour, sunsetHour);
   const ab = abdaBala(p, input.birthDateObj);
-  const mb = masaBala(p, input.birthDateObj);
+  const mb = masaBala(p, input.birthDateObj, planets, input.julianDay);
   const vb = varaBala(p, input.julianDay);
   const hb = horaBala(p, birthHour, input.julianDay, sunriseHour);
   const ayanamsha = lahiriAyanamsha(input.julianDay);

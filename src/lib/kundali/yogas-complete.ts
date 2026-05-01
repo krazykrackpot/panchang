@@ -385,18 +385,22 @@ function detectMoonBasedYogas(planets: PlanetData[]): YogaComplete[] {
   });
 
   // 13. Chandra Mangala
-  const cmPresent = inSameHouse(moon, getP(planets, 2));
+  // Conjunction (same house) OR mutual 7th aspect
+  const mars = getP(planets, 2);
+  const cmConjunct = inSameHouse(moon, mars);
+  const cmMutualAspect = houseOffset(moon.house, mars.house) === 7;
+  const cmPresent = cmConjunct || cmMutualAspect;
   results.push({
     id: 'chandra_mangala',
     name: { en: 'Chandra Mangala Yoga', hi: 'चन्द्र मंगल योग', sa: 'चन्द्रमङ्गलयोगः' },
     category: 'moon_based',
     isAuspicious: true,
     present: cmPresent,
-    strength: cmPresent ? 'Moderate' : 'Weak',
+    strength: cmPresent ? (cmConjunct ? 'Strong' : 'Moderate') : 'Weak',
     formationRule: {
-      en: 'Moon and Mars in the same house',
-      hi: 'चन्द्र और मंगल एक ही भाव में',
-      sa: 'चन्द्रकुजौ एकभावस्थौ',
+      en: 'Moon and Mars conjunct or in mutual 7th aspect',
+      hi: 'चन्द्र और मंगल एक ही भाव में या परस्पर सप्तम दृष्टि',
+      sa: 'चन्द्रकुजौ एकभावस्थौ सप्तमदृष्ट्या वा',
     },
     description: {
       en: 'Moon-Mars conjunction bestows wealth through enterprise, courage, and determination.',
@@ -406,8 +410,9 @@ function detectMoonBasedYogas(planets: PlanetData[]): YogaComplete[] {
   });
 
   // 14. Shakata
-  const shakatOffset = houseOffset(moon.house, jupiter.house);
-  const shakatPresent = shakatOffset === 6 || shakatOffset === 8;
+  // Moon in 6th, 8th, or 12th from Jupiter (all three are inauspicious placements)
+  const shakatOffset = houseOffset(jupiter.house, moon.house);
+  const shakatPresent = shakatOffset === 6 || shakatOffset === 8 || shakatOffset === 12;
   results.push({
     id: 'shakata',
     name: { en: 'Shakata Yoga', hi: 'शकट योग', sa: 'शकटयोगः' },
@@ -416,14 +421,14 @@ function detectMoonBasedYogas(planets: PlanetData[]): YogaComplete[] {
     present: shakatPresent,
     strength: shakatPresent ? 'Moderate' : 'Weak',
     formationRule: {
-      en: 'Jupiter in 6th or 8th house from Moon',
-      hi: 'चन्द्र से छठे या आठवें भाव में बृहस्पति',
-      sa: 'चन्द्रात् षष्ठे अष्टमे वा गुरुः',
+      en: 'Moon in 6th, 8th, or 12th house from Jupiter',
+      hi: 'बृहस्पति से छठे, आठवें या बारहवें भाव में चन्द्र',
+      sa: 'गुरोः षष्ठे अष्टमे द्वादशे वा चन्द्रः',
     },
     description: {
-      en: 'Jupiter in 6/8 from Moon causes fluctuating fortunes and instability.',
-      hi: 'चन्द्र से 6/8 में बृहस्पति। भाग्य में उतार-चढ़ाव और अस्थिरता का संकेत।',
-      sa: 'चन्द्रात् षष्ठाष्टमे गुरुः। भाग्ये उत्थानपतने अस्थिरतां च सूचयति।',
+      en: 'Moon in 6/8/12 from Jupiter causes fluctuating fortunes and instability.',
+      hi: 'बृहस्पति से 6/8/12 में चन्द्र। भाग्य में उतार-चढ़ाव और अस्थिरता का संकेत।',
+      sa: 'गुरोः षष्ठाष्टमद्वादशे चन्द्रः। भाग्ये उत्थानपतने अस्थिरतां च सूचयति।',
     },
   });
 
@@ -737,12 +742,16 @@ function detectRajaYogas(planets: PlanetData[], ascSign: number): YogaComplete[]
     },
   });
 
-  // 27. Gauri
+  // 27. Gauri (Phaladeepika)
+  // Correct rule: Moon in own or exalted sign in the 9th house,
+  // Jupiter aspects the Lagna (house 1) via conjunction or special aspects (5th, 7th, 9th FROM Jupiter),
+  // and 9th lord is in own/exalted (dignity).
   const moonInOwnExalted = moon.isOwnSign || moon.isExalted;
-  const moonInKendra = KENDRA.includes(moon.house);
-  // Jupiter aspects: conjunction (1) + Jupiter's special aspects (5th, 7th, 9th FROM Jupiter)
-  const jupAspectsMoon = [1, 5, 7, 9].includes(houseOffset(jupiter.house, moon.house));
-  const gauriPresent = moonInOwnExalted && moonInKendra && jupAspectsMoon;
+  const moonIn9th = moon.house === 9;
+  // Jupiter aspects Lagna (house 1): conjunction (houseOffset=1) or special aspects (5th, 7th, 9th FROM Jupiter)
+  const jupAspectsLagna = [1, 5, 7, 9].includes(houseOffset(jupiter.house, 1));
+  const ninthLordDignified = nlP2.isOwnSign || nlP2.isExalted;
+  const gauriPresent = moonInOwnExalted && moonIn9th && jupAspectsLagna && ninthLordDignified;
   results.push({
     id: 'gauri',
     name: { en: 'Gauri Yoga', hi: 'गौरी योग', sa: 'गौरीयोगः' },
@@ -751,14 +760,14 @@ function detectRajaYogas(planets: PlanetData[], ascSign: number): YogaComplete[]
     present: gauriPresent,
     strength: gauriPresent ? 'Strong' : 'Weak',
     formationRule: {
-      en: 'Moon in own/exalted sign in Kendra, aspected by Jupiter',
-      hi: 'चन्द्र स्वराशि/उच्च में केन्द्र में, बृहस्पति की दृष्टि',
-      sa: 'चन्द्रः स्वोच्चे केन्द्रे गुरुदृष्टियुक्तः',
+      en: 'Moon in own/exalted in 9th house, Jupiter aspects Lagna, 9th lord dignified',
+      hi: 'चन्द्र स्वराशि/उच्च 9वें भाव में, बृहस्पति लग्न पर दृष्टि, नवमेश बली',
+      sa: 'चन्द्रः स्वोच्चे नवमे गुरुः लग्नं पश्यति नवमेशः बली',
     },
     description: {
-      en: 'Dignified Moon in Kendra with Jupiter aspect grants beauty, devotion, and auspiciousness.',
-      hi: 'चन्द्र बली केन्द्र में गुरु दृष्टि सहित। सौन्दर्य, भक्ति और शुभत्व।',
-      sa: 'चन्द्रः बली केन्द्रे गुरुदृष्ट्या। सौन्दर्यं भक्तिं शुभत्वं च ददाति।',
+      en: 'Moon dignified in 9th with Jupiter aspecting Lagna and strong 9th lord grants beauty, devotion, and auspiciousness.',
+      hi: 'चन्द्र बली 9वें में, गुरु लग्न पर दृष्टि। सौन्दर्य, भक्ति और शुभत्व।',
+      sa: 'चन्द्रः बली नवमे गुरुदृष्ट्या लग्ने। सौन्दर्यं भक्तिं शुभत्वं च ददाति।',
     },
   });
 
@@ -836,8 +845,17 @@ function detectRajaYogas(planets: PlanetData[], ascSign: number): YogaComplete[]
     },
   });
 
-  // 31. Bheri
-  const bheriPresent = (nlP2.isOwnSign || nlP2.isExalted) && KENDRA.includes(getP(planets, 5).house);
+  // 31. Bheri (BPHS Ch.36)
+  // Correct rule: Lagna lord, Jupiter (id=4), and Venus (id=5) must all be in
+  // mutual kendras (each in a kendra house from the others), AND 9th lord must be strong.
+  const jupiterBheri = getP(planets, 4);
+  const venusBheri = getP(planets, 5);
+  // Check all three are in kendra from each other
+  const llJupKendra = KENDRA.includes(houseOffset(llP.house, jupiterBheri.house));
+  const llVenKendra = KENDRA.includes(houseOffset(llP.house, venusBheri.house));
+  const jupVenKendra = KENDRA.includes(houseOffset(jupiterBheri.house, venusBheri.house));
+  const ninthLordStrong = nlP2.isOwnSign || nlP2.isExalted;
+  const bheriPresent = llJupKendra && llVenKendra && jupVenKendra && ninthLordStrong;
   results.push({
     id: 'bheri',
     name: { en: 'Bheri Yoga', hi: 'भेरी योग', sa: 'भेरीयोगः' },
@@ -846,9 +864,9 @@ function detectRajaYogas(planets: PlanetData[], ascSign: number): YogaComplete[]
     present: bheriPresent,
     strength: bheriPresent ? 'Strong' : 'Weak',
     formationRule: {
-      en: '9th lord in own/exalted sign and Venus in Kendra',
-      hi: 'नवमेश स्वराशि/उच्च में और शुक्र केन्द्र में',
-      sa: 'नवमेशः स्वोच्चे शुक्रः केन्द्रे च',
+      en: 'Lagna lord, Jupiter, Venus in mutual kendras; 9th lord in own/exalted',
+      hi: 'लग्नेश, बृहस्पति, शुक्र परस्पर केन्द्र में; नवमेश स्वराशि/उच्च',
+      sa: 'लग्नेशगुरुशुक्राः परस्परकेन्द्रे; नवमेशः स्वोच्चे',
     },
     description: {
       en: 'Bheri Yoga bestows material comforts, devotion, and a virtuous family life.',
@@ -884,24 +902,31 @@ function detectRajaYogas(planets: PlanetData[], ascSign: number): YogaComplete[]
     },
   });
 
-  // 33. Pushkala
-  const pushPresent = KENDRA.includes(llP.house) && KENDRA.includes(moon.house);
+  // 33. Pushkala (Phaladeepika)
+  // Correct rule: Lagna lord and Moon-sign lord in conjunction or mutual 7th aspect,
+  // AND a benefic (Jupiter/Venus/Mercury) is in the Lagna (house 1).
+  const moonSignLord = signLord(moon.sign);
+  const moonSignLordP = getP(planets, moonSignLord);
+  const pushLordsRelated = inSameHouse(llP, moonSignLordP) ||
+    houseOffset(llP.house, moonSignLordP.house) === 7;
+  const beneficInLagna = planets.some(p => p.house === 1 && [3, 4, 5].includes(p.id)); // Mercury, Jupiter, Venus
+  const pushPresent = pushLordsRelated && beneficInLagna;
   results.push({
     id: 'pushkala',
     name: { en: 'Pushkala Yoga', hi: 'पुष्कल योग', sa: 'पुष्कलयोगः' },
     category: 'raja',
     isAuspicious: true,
     present: pushPresent,
-    strength: pushPresent ? 'Moderate' : 'Weak',
+    strength: pushPresent ? 'Strong' : 'Weak',
     formationRule: {
-      en: 'Lagna lord and Moon both in Kendra houses',
-      hi: 'लग्नेश और चन्द्र दोनों केन्द्र भावों में',
-      sa: 'लग्नेशः चन्द्रश्च उभौ केन्द्रभावेषु',
+      en: 'Lagna lord and Moon-sign lord conjunct/mutual aspect, benefic in Lagna',
+      hi: 'लग्नेश और चन्द्र-राशि-स्वामी युति/परस्पर दृष्टि, लग्न में शुभ ग्रह',
+      sa: 'लग्नेशः चन्द्रराशीशश्च युत्या दृष्ट्या वा, लग्ने शुभग्रहः',
     },
     description: {
-      en: 'Lagna lord and Moon in Kendra grant popularity, wealth, and a commanding presence.',
-      hi: 'लग्नेश और चन्द्र केन्द्र में। लोकप्रियता, धन और प्रभावशाली व्यक्तित्व।',
-      sa: 'लग्नेशः चन्द्रश्च केन्द्रे। लोकप्रियतां धनं प्रभावशालिव्यक्तित्वं च।',
+      en: 'Lagna lord and Moon-sign lord related with a benefic in Lagna grants popularity, wealth, and a commanding presence.',
+      hi: 'लग्नेश-चन्द्रराशीश सम्बन्ध और लग्न में शुभ ग्रह। लोकप्रियता, धन और प्रभावशाली व्यक्तित्व।',
+      sa: 'लग्नेश-चन्द्रराशीशयोः सम्बन्धः लग्ने शुभग्रहश्च। लोकप्रियतां धनं प्रभावशालिव्यक्तित्वं च।',
     },
   });
 
@@ -1140,65 +1165,87 @@ function detectAdditionalAuspiciousYogas(planets: PlanetData[], ascSign: number)
     },
   });
 
-  // 42. Dhana Yoga
-  const dhanaPresent = [2, 11].includes(jupiter.house) || [2, 11].includes(venus.house);
+  // 42. Dhana Yoga (BPHS Ch.42)
+  // PRIMARY: Lord of 2nd and lord of 11th must be related (conjunction or mutual 7th aspect).
+  // Also: lord of 5th conjunct lord of 9th forms a secondary Dhana Yoga.
+  // SECONDARY (weaker): Jupiter or Venus in 2nd or 11th house.
+  const secondLordDhana = signLord(houseSign(2));
+  const eleventhLordDhana = signLord(houseSign(11));
+  const secondLordP = getP(planets, secondLordDhana);
+  const eleventhLordP = getP(planets, eleventhLordDhana);
+  const fifthLordDhana = signLord(houseSign(5));
+  const ninthLordDhana = signLord(houseSign(9));
+  const fifthLordDP = getP(planets, fifthLordDhana);
+  const ninthLordDP = getP(planets, ninthLordDhana);
+  // Primary: 2nd lord and 11th lord conjunct or in mutual 7th aspect
+  const dhanaLordRelated = inSameHouse(secondLordP, eleventhLordP) ||
+    houseOffset(secondLordP.house, eleventhLordP.house) === 7;
+  // Secondary: 5th lord conjunct 9th lord
+  const dhana59 = inSameHouse(fifthLordDP, ninthLordDP);
+  // Tertiary (weaker): Jupiter or Venus in 2nd or 11th
+  const dhanaBeneficInWealth = [2, 11].includes(jupiter.house) || [2, 11].includes(venus.house);
+  const dhanaPresent = dhanaLordRelated || dhana59 || dhanaBeneficInWealth;
+  const dhanaStrength: 'Strong' | 'Moderate' | 'Weak' = dhanaLordRelated ? 'Strong' : (dhana59 ? 'Strong' : (dhanaBeneficInWealth ? 'Moderate' : 'Weak'));
   results.push({
     id: 'dhana_yoga',
     name: { en: 'Dhana Yoga', hi: 'धन योग', sa: 'धनयोगः' },
     category: 'wealth',
     isAuspicious: true,
     present: dhanaPresent,
-    strength: dhanaPresent ? 'Moderate' : 'Weak',
+    strength: dhanaStrength,
     formationRule: {
-      en: 'Jupiter or Venus in 2nd or 11th house',
-      hi: 'बृहस्पति या शुक्र दूसरे या ग्यारहवें भाव में',
-      sa: 'गुरुः शुक्रः वा द्वितीये एकादशे वा',
+      en: 'Lord of 2nd and lord of 11th conjunct/mutual aspect; or 5th lord conjunct 9th lord; or Jupiter/Venus in 2nd/11th',
+      hi: 'द्वितीयेश और एकादशेश युति/परस्पर दृष्टि; या पंचमेश-नवमेश युति; या गुरु/शुक्र 2/11 में',
+      sa: 'द्वितीयेश-एकादशेशौ युत्या परस्परदृष्ट्या वा; पञ्चमेश-नवमेशौ युतौ; गुरुशुक्रौ द्वितीयैकादशे वा',
     },
     description: {
-      en: 'Greater benefic in wealth houses bestows financial abundance and material prosperity.',
-      hi: 'शुभ ग्रह धन भावों में। आर्थिक समृद्धि और भौतिक सम्पन्नता।',
-      sa: 'शुभग्रहः धनभावे। आर्थिकसमृद्धिं भौतिकसम्पन्नतां च ददाति।',
+      en: 'Lords of wealth houses (2nd, 11th) related by conjunction or aspect bestow financial abundance and material prosperity.',
+      hi: 'धन भावों (2, 11) के स्वामी युति या दृष्टि से सम्बन्धित। आर्थिक समृद्धि और भौतिक सम्पन्नता।',
+      sa: 'धनभावेशौ युत्या दृष्ट्या वा सम्बद्धौ। आर्थिकसमृद्धिं भौतिकसम्पन्नतां च ददाति।',
     },
   });
 
-  // 43. Viparita Raja Yoga
-  // Classical rule (BPHS Ch.41, Phaladeepika Ch.6): the lords of houses 6, 8,
-  // and 12 (dusthanas) must (a) be placed IN dusthana houses AND (b) exchange
-  // signs with each other.
-  //
-  // HISTORICAL BUG (now fixed): only the sign-exchange condition was checked.
-  // The prerequisite — that each involved lord must actually be LOCATED in a
-  // dusthana house (6, 8, or 12) — was missing entirely.  Without it, two
-  // dusthana lords in, say, houses 1 and 5 but in each other's signs would
-  // incorrectly trigger the yoga, which is a false positive.
+  // 43. Viparita Raja Yoga (BPHS Ch.41)
+  // Correct rule: Lord of 6th/8th/12th placed in ANY other dusthana (6/8/12).
+  // Three sub-types:
+  //   Harsha: 6th lord in 8th or 12th
+  //   Sarala: 8th lord in 6th or 12th
+  //   Vimala: 12th lord in 6th or 8th
+  // Sign exchange is NOT required — only placement in another dusthana.
   const sixthLord = signLord(houseSign(6));
   const eighthLord = signLord(houseSign(8));
   const twelfthLord = signLord(houseSign(12));
   const d6 = getP(planets, sixthLord);
   const d8 = getP(planets, eighthLord);
   const d12 = getP(planets, twelfthLord);
-  const DUSTHANAS = new Set([6, 8, 12]);
-  // Sign exchange AND both lords physically placed in dusthana houses
-  const vipPresent =
-    (d6.sign === houseSign(8) && d8.sign === houseSign(6) && DUSTHANAS.has(d6.house) && DUSTHANAS.has(d8.house)) ||
-    (d6.sign === houseSign(12) && d12.sign === houseSign(6) && DUSTHANAS.has(d6.house) && DUSTHANAS.has(d12.house)) ||
-    (d8.sign === houseSign(12) && d12.sign === houseSign(8) && DUSTHANAS.has(d8.house) && DUSTHANAS.has(d12.house));
+  // Harsha: 6th lord in 8th or 12th house
+  const harsha = d6.house === 8 || d6.house === 12;
+  // Sarala: 8th lord in 6th or 12th house
+  const sarala = d8.house === 6 || d8.house === 12;
+  // Vimala: 12th lord in 6th or 8th house
+  const vimala = d12.house === 6 || d12.house === 8;
+  const vipPresent = harsha || sarala || vimala;
+  const vipSubTypes: string[] = [];
+  if (harsha) vipSubTypes.push('Harsha');
+  if (sarala) vipSubTypes.push('Sarala');
+  if (vimala) vipSubTypes.push('Vimala');
+  const vipStrength: 'Strong' | 'Moderate' | 'Weak' = vipSubTypes.length >= 2 ? 'Strong' : (vipPresent ? 'Moderate' : 'Weak');
   results.push({
     id: 'viparita_raja',
     name: { en: 'Viparita Raja Yoga', hi: 'विपरीत राज योग', sa: 'विपरीतराजयोगः' },
     category: 'raja',
     isAuspicious: true,
     present: vipPresent,
-    strength: vipPresent ? 'Strong' : 'Weak',
+    strength: vipStrength,
     formationRule: {
-      en: '6th, 8th, or 12th lords exchange signs with each other',
-      hi: '6, 8, या 12वें भाव के स्वामी परस्पर राशि परिवर्तन',
-      sa: 'षष्ठाष्टमद्वादशेशाः परस्परं राशिपरिवर्तनं कुर्वन्ति',
+      en: `Dusthana lord (6th/8th/12th) in another dusthana${vipPresent ? ' — ' + vipSubTypes.join(', ') : ''}`,
+      hi: 'दुस्थान स्वामी (6/8/12) अन्य दुस्थान में',
+      sa: 'दुस्थानेशः अन्यदुस्थाने स्थितः',
     },
     description: {
-      en: 'Dusthana lords exchanging signs create unexpected rise through adversity and enemies turning allies.',
-      hi: 'दुस्थान स्वामियों का राशि परिवर्तन। विपरीत परिस्थितियों से अप्रत्याशित उत्थान।',
-      sa: 'दुस्थानेशानां राशिपरिवर्तनम्। विपरीतस्थित्या अप्रत्याशितम् उत्थानम्।',
+      en: 'Dusthana lords placed in other dusthanas create unexpected rise through adversity and enemies turning allies.',
+      hi: 'दुस्थान स्वामी अन्य दुस्थान में। विपरीत परिस्थितियों से अप्रत्याशित उत्थान।',
+      sa: 'दुस्थानेशाः अन्यदुस्थानेषु। विपरीतस्थित्या अप्रत्याशितम् उत्थानम्।',
     },
   });
 
@@ -1273,9 +1320,16 @@ function detectAdditionalAuspiciousYogas(planets: PlanetData[], ascSign: number)
   });
 
   // 46. Saraswati Yoga
+  // Classical rule: Mercury, Jupiter, Venus all in Kendra, Trikona, or 2nd house,
+  // AND Jupiter must be in own, exalted, or friendly sign.
   const sarIds = [3, 4, 5]; // Mercury, Jupiter, Venus
   const sarHouses = [...KENDRA, ...TRIKONA, 2];
-  const sarPresent = sarIds.every(id => sarHouses.includes(getP(planets, id).house));
+  const sarAllWellPlaced = sarIds.every(id => sarHouses.includes(getP(planets, id).house));
+  // Jupiter dignity check: own signs (Sagittarius=9, Pisces=12), exalted (Cancer=4),
+  // or friendly signs (Aries=1, Leo=5, Scorpio=8)
+  const jupSar = getP(planets, 4);
+  const jupDignifiedForSar = jupSar.isOwnSign || jupSar.isExalted || [1, 5, 8].includes(jupSar.sign);
+  const sarPresent = sarAllWellPlaced && jupDignifiedForSar;
   results.push({
     id: 'saraswati',
     name: { en: 'Saraswati Yoga', hi: 'सरस्वती योग', sa: 'सरस्वतीयोगः' },
@@ -1284,14 +1338,14 @@ function detectAdditionalAuspiciousYogas(planets: PlanetData[], ascSign: number)
     present: sarPresent,
     strength: sarPresent ? 'Strong' : 'Weak',
     formationRule: {
-      en: 'Jupiter, Venus, Mercury all in Kendra, Trikona, or 2nd house',
-      hi: 'बृहस्पति, शुक्र, बुध सभी केन्द्र, त्रिकोण या दूसरे भाव में',
-      sa: 'गुरुशुक्रबुधाः सर्वे केन्द्रे त्रिकोणे द्वितीये वा',
+      en: 'Jupiter, Venus, Mercury in Kendra/Trikona/2nd; Jupiter in own/exalted/friendly sign',
+      hi: 'बृहस्पति, शुक्र, बुध केन्द्र/त्रिकोण/2 में; बृहस्पति स्व/उच्च/मित्र राशि में',
+      sa: 'गुरुशुक्रबुधाः केन्द्रत्रिकोणद्वितीये; गुरुः स्वोच्चमित्रराशौ',
     },
     description: {
-      en: 'All three wisdom planets well-placed grant exceptional learning, artistry, and eloquence.',
-      hi: 'तीनों ज्ञान ग्रह सुस्थित। असाधारण विद्या, कला और वाक्पटुता।',
-      sa: 'त्रयो ज्ञानग्रहाः सुस्थिताः। असाधारणविद्यां कलां वाक्पटुतां च ददाति।',
+      en: 'All three wisdom planets well-placed with dignified Jupiter grant exceptional learning, artistry, and eloquence.',
+      hi: 'तीनों ज्ञान ग्रह सुस्थित, गुरु बली। असाधारण विद्या, कला और वाक्पटुता।',
+      sa: 'त्रयो ज्ञानग्रहाः सुस्थिताः गुरुः बली। असाधारणविद्यां कलां वाक्पटुतां च ददाति।',
     },
   });
 
@@ -2046,58 +2100,33 @@ function detectExtendedMoonYogas(planets: PlanetData[]): YogaComplete[] {
     results.push({ id: 'amala', category: 'other', isAuspicious: true, present: true, strength: 'Moderate', name: { en: 'Amala Yoga', hi: 'अमल योग', sa: 'अमलयोगः' }, formationRule: { en: `Benefic (${beneficIn10th.map(p => ['Sun','Moon','Mars','Mer','Jup','Ven','Sat','Rah','Ket'][p.id]).join(', ')}) in 10th from Moon`, hi: `शुभ ग्रह चंद्र से 10वें भाव में`, sa: '' }, description: { en: 'Spotless/pure yoga — unblemished reputation, ethical character, lasting fame through virtuous deeds, respected career.', hi: 'निर्मल योग — निष्कलंक प्रतिष्ठा, नैतिक चरित्र, सद्गुणों से यश।', sa: '' } });
   }
 
-  // Pushkala Yoga — Moon in sign of ascendant lord + aspected by ascendant lord
-  // Simplified: Moon conjunct ascendant lord
-  // More tractable: Moon + Venus in same house
-  if (inSameHouse(moon, venus)) {
-    results.push({ id: 'pushkala', category: 'other', isAuspicious: true, present: true, strength: 'Moderate', name: { en: 'Pushkala Yoga', hi: 'पुष्कल योग', sa: 'पुष्कलयोगः' }, formationRule: { en: 'Moon conjunct Venus', hi: 'चंद्र-शुक्र युति', sa: '' }, description: { en: 'Abundant yoga — emotional richness, artistic talent, beauty, popularity, sweet speech, love of luxury and comfort.', hi: 'पुष्कल योग — भावनात्मक समृद्धि, कलात्मक प्रतिभा, सौंदर्य, लोकप्रियता।', sa: '' } });
-  }
+  // Pushkala Yoga — REMOVED duplicate.
+  // Correct detection is in detectRajaYogas() at id='pushkala' (Phaladeepika rule).
+  // This simplified Moon+Venus version was wrong and produced duplicate entries.
 
-  // Chandra-Mangal Yoga — Moon + Mars conjunction
-  if (inSameHouse(moon, mars)) {
-    results.push({ id: 'chandra_mangal', category: 'wealth', isAuspicious: true, present: true, strength: 'Moderate', name: { en: 'Chandra-Mangal Yoga', hi: 'चंद्र-मंगल योग', sa: 'चन्द्रमङ्गलयोगः' }, formationRule: { en: 'Moon conjunct Mars', hi: 'चंद्र-मंगल युति', sa: '' }, description: { en: 'Wealth through courage and initiative — self-made prosperity, business acumen, emotional drive channeled into material success.', hi: 'चंद्र-मंगल योग — साहस और पहल से धन, स्वनिर्मित समृद्धि, व्यापार कौशल।', sa: '' } });
-  }
+  // Chandra-Mangal Yoga — REMOVED duplicate.
+  // Correct detection (conjunction + mutual 7th aspect) is in detectMoonBasedYogas() at id='chandra_mangala'.
 
-  // Saraswati Yoga — Mercury, Venus, Jupiter in kendras/trikonas
-  const svjInKendraTrikona = [mercury, venus, jupiter].filter(p => [...KENDRA, ...TRIKONA].includes(p.house));
-  if (svjInKendraTrikona.length === 3) {
-    results.push({ id: 'saraswati', category: 'other', isAuspicious: true, present: true, strength: 'Strong', name: { en: 'Saraswati Yoga', hi: 'सरस्वती योग', sa: 'सरस्वतीयोगः' }, formationRule: { en: 'Mercury, Venus, Jupiter all in kendras/trikonas', hi: 'बुध, शुक्र, गुरु सभी केंद्र/त्रिकोण में', sa: '' }, description: { en: 'Goddess of learning yoga — exceptional intellect, mastery of arts and sciences, eloquent speech, scholarly achievements, literary fame.', hi: 'सरस्वती योग — असाधारण बुद्धि, कला-विज्ञान में निपुणता, विद्वत्तापूर्ण उपलब्धियाँ।', sa: '' } });
-  }
+  // Saraswati Yoga — REMOVED duplicate.
+  // Correct detection (with Jupiter dignity check) is in detectAdditionalAuspiciousYogas() at id='saraswati'.
 
-  // Lakshmi Yoga — Lord of 9th in kendra + strong
-  // Simplified: Jupiter in kendra (Jupiter natural 9th lord significator)
-  if (KENDRA.includes(jupiter.house) && (jupiter.isExalted || jupiter.isOwnSign)) {
-    results.push({ id: 'lakshmi', category: 'wealth', isAuspicious: true, present: true, strength: 'Strong', name: { en: 'Lakshmi Yoga', hi: 'लक्ष्मी योग', sa: 'लक्ष्मीयोगः' }, formationRule: { en: 'Jupiter exalted/own sign in kendra', hi: 'गुरु उच्च/स्वराशि केंद्र में', sa: '' }, description: { en: 'Goddess of wealth yoga — great fortune, prosperity, noble character, spiritual wealth alongside material abundance.', hi: 'लक्ष्मी योग — महान भाग्य, समृद्धि, उदार चरित्र, भौतिक और आध्यात्मिक धन।', sa: '' } });
-  }
+  // Lakshmi Yoga — REMOVED duplicate.
+  // The correct detection (9th lord in own/exalted in kendra/trikona) is in
+  // detectRajaYogas() at id='lakshmi'. This simplified version fired whenever
+  // Jupiter was exalted/own in kendra, regardless of whether Jupiter was
+  // actually the 9th lord — producing false positives and duplicate entries.
 
-  // Durdhura Yoga — planets (not Sun) in 2nd and 12th from Moon
-  const secondFromMoon = (moon.house % 12) + 1;
-  const twelfthFromMoon = ((moon.house - 2 + 12) % 12) + 1;
-  const planetsIn2nd = planets.filter(p => p.id !== 0 && p.id !== 1 && p.id <= 6 && p.house === secondFromMoon);
-  const planetsIn12th = planets.filter(p => p.id !== 0 && p.id !== 1 && p.id <= 6 && p.house === twelfthFromMoon);
-  if (planetsIn2nd.length > 0 && planetsIn12th.length > 0) {
-    results.push({ id: 'durdhura', category: 'other', isAuspicious: true, present: true, strength: 'Moderate', name: { en: 'Durdhura Yoga', hi: 'दुर्धुरा योग', sa: 'दुर्धुरायोगः' }, formationRule: { en: 'Planets (not Sun) on both sides of Moon', hi: 'चंद्र के दोनों ओर ग्रह (सूर्य नहीं)', sa: '' }, description: { en: 'Moon flanked by planets — generous nature, wealth, vehicles, lasting fame, commands respect. Better than Sunapha alone.', hi: 'दुर्धुरा योग — उदार प्रकृति, धन, वाहन, स्थायी यश, सम्मान।', sa: '' } });
-  }
+  // Durdhura Yoga — REMOVED duplicate.
+  // Correct detection is in detectMoonBasedYogas() at id='durdhara'.
 
-  // Sunapha Yoga — planet (not Sun) in 2nd from Moon
-  if (planetsIn2nd.length > 0 && planetsIn12th.length === 0) {
-    results.push({ id: 'sunapha', category: 'other', isAuspicious: true, present: true, strength: 'Moderate', name: { en: 'Sunapha Yoga', hi: 'सुनफा योग', sa: 'सुनफायोगः' }, formationRule: { en: 'Planet(s) in 2nd from Moon, none in 12th', hi: 'चंद्र से 2वें में ग्रह, 12वें में नहीं', sa: '' }, description: { en: 'Self-made wealth yoga — earns through own intelligence and effort, good reputation, comfortable life.', hi: 'सुनफा योग — स्वबुद्धि और प्रयास से धन, अच्छी प्रतिष्ठा।', sa: '' } });
-  }
+  // Sunapha Yoga — REMOVED duplicate.
+  // Correct detection is in detectMoonBasedYogas() at id='sunapha'.
 
-  // Anapha Yoga — planet (not Sun) in 12th from Moon
-  if (planetsIn12th.length > 0 && planetsIn2nd.length === 0) {
-    results.push({ id: 'anapha', category: 'other', isAuspicious: true, present: true, strength: 'Moderate', name: { en: 'Anapha Yoga', hi: 'अनफा योग', sa: 'अनफायोगः' }, formationRule: { en: 'Planet(s) in 12th from Moon, none in 2nd', hi: 'चंद्र से 12वें में ग्रह, 2वें में नहीं', sa: '' }, description: { en: 'Inherited/family wealth yoga — well-dressed, good health, comfortable lifestyle from family background.', hi: 'अनफा योग — पारिवारिक पृष्ठभूमि से सुख, अच्छा स्वास्थ्य, सुविधाजनक जीवन।', sa: '' } });
-  }
+  // Anapha Yoga — REMOVED duplicate.
+  // Correct detection is in detectMoonBasedYogas() at id='anapha'.
 
-  // Vasumati Yoga — all benefics in upachaya houses (3, 6, 10, 11) from Moon
-  const beneficIds = [3, 4, 5]; // Mercury, Jupiter, Venus
-  const allBeneficsUpachayaFromMoon = beneficIds.every(bid => {
-    const offset = houseOffset(moon.house, getP(planets, bid).house);
-    return [3, 6, 10, 11].includes(offset);
-  });
-  if (allBeneficsUpachayaFromMoon) {
-    results.push({ id: 'vasumati', category: 'wealth', isAuspicious: true, present: true, strength: 'Strong', name: { en: 'Vasumati Yoga', hi: 'वसुमती योग', sa: 'वसुमतीयोगः' }, formationRule: { en: 'All benefics in upachaya (3/6/10/11) from Moon', hi: 'सभी शुभ चंद्र से उपचय (3/6/10/11) में', sa: '' }, description: { en: 'Earth-goddess yoga — immense wealth accumulation, properties, business empires, growing fortune with age.', hi: 'वसुमती योग — अपार धन संचय, संपत्ति, उम्र के साथ बढ़ता भाग्य।', sa: '' } });
-  }
+  // Vasumati Yoga — REMOVED duplicate.
+  // Correct detection is in detectRajaYogas() at id='vasumati'.
 
   // Chandradhi Yoga — benefics in 6th, 7th, 8th from Moon
   const b6 = planets.filter(p => isBenefic(p.id) && houseOffset(moon.house, p.house) === 6);
@@ -2155,31 +2184,15 @@ function detectClassicalPlanetYogas(planets: PlanetData[], ascSign: number): Yog
     results.push({ id: 'akhanda_samrajya', category: 'raja', isAuspicious: true, present: true, strength: 'Strong', name: { en: 'Akhanda Samrajya Yoga', hi: 'अखंड साम्राज्य योग', sa: 'अखण्डसाम्राज्ययोगः' }, formationRule: { en: 'Jupiter lords 2nd/5th/11th and is in kendra from Moon', hi: 'गुरु 2/5/11 स्वामी + चंद्र से केंद्र में', sa: '' }, description: { en: 'Undivided empire yoga — vast authority, territory expands, power remains unchallenged, great fame across regions.', hi: 'अखंड साम्राज्य योग — विशाल अधिकार, अविवादित शक्ति, व्यापक यश।', sa: '' } });
   }
 
-  // Kahala Yoga — Lord of 4th and Jupiter in mutual kendras + lagna lord strong
-  const lord4Id = signLord(((ascSign - 1 + 3) % 12) + 1);
-  const lord4 = getP(planets, lord4Id);
-  if (KENDRA.includes(houseOffset(lord4.house, jupiter.house)) && (lagnaP.isExalted || lagnaP.isOwnSign)) {
-    results.push({ id: 'kahala', category: 'raja', isAuspicious: true, present: true, strength: 'Moderate', name: { en: 'Kahala Yoga', hi: 'कहल योग', sa: 'कहलयोगः' }, formationRule: { en: '4th lord & Jupiter in mutual kendras, lagna lord strong', hi: '4 स्वामी व गुरु परस्पर केंद्र, लग्नेश बलवान', sa: '' }, description: { en: 'Bold/audacious yoga — courageous leader, heads an army or organization, stubborn but successful, respected.', hi: 'कहल योग — साहसी नेता, संगठन प्रमुख, हठी पर सफल।', sa: '' } });
-  }
+  // Kahala Yoga — REMOVED duplicate.
+  // Correct detection is in detectRajaYogas() at id='kahala'.
 
-  // Shankha Yoga — Lords of 5th and 6th in mutual kendras
-  const lord5Id = signLord(((ascSign - 1 + 4) % 12) + 1);
-  const lord6Id = signLord(((ascSign - 1 + 5) % 12) + 1);
-  const lord5 = getP(planets, lord5Id);
-  const lord6 = getP(planets, lord6Id);
-  if (KENDRA.includes(houseOffset(lord5.house, lord6.house)) || KENDRA.includes(houseOffset(lord6.house, lord5.house))) {
-    if (lagnaP.isExalted || lagnaP.isOwnSign || KENDRA.includes(lagnaP.house)) {
-      results.push({ id: 'shankha', category: 'other', isAuspicious: true, present: true, strength: 'Moderate', name: { en: 'Shankha Yoga', hi: 'शंख योग', sa: 'शंखयोगः' }, formationRule: { en: '5th and 6th lords in mutual kendras, lagna lord strong', hi: '5 व 6 स्वामी परस्पर केंद्र, लग्नेश बलवान', sa: '' }, description: { en: 'Conch yoga — long life, good character, righteous, learned, enjoys all comforts, fond of relatives.', hi: 'शंख योग — दीर्घ आयु, सच्चरित्र, धार्मिक, विद्वान।', sa: '' } });
-    }
-  }
+  // Shankha Yoga — REMOVED duplicate.
+  // Correct detection is in detectRajaYogas() at id='shankha'.
 
-  // Bheri Yoga — Lord of 9th strong + all planets in 1/2/7/12
-  const lord9Id = signLord(((ascSign - 1 + 8) % 12) + 1);
-  const lord9 = getP(planets, lord9Id);
-  const planetsIn1_2_7_12 = planets.filter(p => p.id <= 6 && [1, 2, 7, 12].includes(p.house));
-  if ((lord9.isExalted || lord9.isOwnSign) && planetsIn1_2_7_12.length >= 5) {
-    results.push({ id: 'bheri', category: 'other', isAuspicious: true, present: true, strength: 'Moderate', name: { en: 'Bheri Yoga', hi: 'भेरी योग', sa: 'भेरीयोगः' }, formationRule: { en: '9th lord strong + most planets in 1/2/7/12', hi: '9 स्वामी बलवान + अधिकांश ग्रह 1/2/7/12 में', sa: '' }, description: { en: 'Drum yoga — long life, freedom from disease, religious and charitable, wealthy, commands respect.', hi: 'भेरी योग — दीर्घ आयु, निरोगी, धार्मिक, दानशील, धनवान।', sa: '' } });
-  }
+  // Bheri Yoga — REMOVED duplicate.
+  // Correct detection (BPHS Ch.36: lagna lord, Jupiter, Venus in mutual kendras + 9th lord strong)
+  // is in detectRajaYogas() at id='bheri'.
 
   // Veshi Yoga — already detected in the main sun-based yoga section (id: 'veshi').
   // We still compute planetIn2ndFromSun because Ubhayachari Yoga needs it below.

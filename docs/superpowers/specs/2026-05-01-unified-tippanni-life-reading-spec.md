@@ -1,8 +1,8 @@
 # Unified Tippanni / Life Summary — Granular Spec
 
 **Date:** 2026-05-01  
-**Status:** Draft → User Review  
-**Principle:** NOTHING IS DELETED. Two engines remain. One unified reading experience.
+**Status:** FINAL — User Approved Direction  
+**Principle:** Two engines remain. One unified reading experience. Redundant UI removed AFTER verification.
 
 ---
 
@@ -306,7 +306,7 @@ New flow:
 
 ## Navigation Changes
 
-### Before (current)
+### Before (current — 4 views)
 
 ```
 Generate Kundali
@@ -316,50 +316,92 @@ Generate Kundali
     → Toggle Technical (25 tabs including tippanni)
 ```
 
-### After (proposed)
+### After (3 views)
 
 ```
 Generate Kundali
-  → Summary View (unified reading — scrollable, layered)
-    → Any domain card → Deep Dive (unchanged)
-    → "Technical Analysis" button → Technical View (25 tabs — unchanged)
-    → Every section has [▸ expand] for classical depth
+  → Summary (THE reading — unified tippanni + life reading, scrollable)
+    → Any domain card → Deep Dive (single domain, unchanged)
+    → "Technical Analysis" button → Technical View
+  
+Technical View:
+  Charts, planet tables, shadbala, ashtakavarga, varga, Jaimini, KP,
+  avasthas, argala, sphutas, bhavabala, bhava chalit, sudarshana, nadi,
+  ayanamsha, dasha timeline, life timeline, patrika, blueprint, chat
+  (NO tippanni tab — its content is in the Summary)
 ```
 
-**QuestionEntry is REMOVED** as the default. The summary IS the answer to every question. If users want to jump to a specific domain, the domain cards in Section 5 serve that purpose.
+**View states:** `'summary' | 'deepDive' | 'technical'`
+- `questionEntry` — REMOVED (Summary replaces it)
+- `dashboard` — REMOVED (Summary replaces it)
+- `tippanni` tab in technical — REMOVED (Summary contains all its content)
 
-**QuestionEntry PRESERVED** as an optional re-entry point (accessible via a "Change Focus" button on the summary).
+**ELI5 mode:** Toggle available on Summary view (simplified version of the unified reading).
+
+**AI Chat:** Remains in Technical view (it needs the full kundali context).
+
+**PDF/Patrika:** Header buttons remain (unchanged). PDF exports from the Summary data.
+
+---
+
+## Two-Phase Implementation
+
+### Phase 1: Build Summary (ADDITIVE — nothing removed yet)
+
+Build the SummaryView. Add `'summary'` as a new view state alongside the existing ones. Set as default. Verify every piece of information from Tippanni and Domain Synthesis appears in the Summary. All old views still accessible for comparison.
+
+### Phase 2: Cleanup (AFTER Phase 1 verification)
+
+Once verified that Summary contains EVERYTHING:
+1. Remove `questionEntry` view (no longer default)
+2. Remove `dashboard` view (replaced by Summary)
+3. Remove `tippanni` tab from Technical view tab strip
+4. Remove `LifeReadingDashboard` component usage from kundali page
+5. Delete view state options: `'questionEntry' | 'dashboard'`
+6. Component FILES are NOT deleted — only their usage in kundali/page.tsx is removed. They may be used elsewhere (PDF export, saved chart preview, etc.)
+
+**Phase 2 happens in a SEPARATE commit** so it can be reverted independently if anything is missing.
 
 ---
 
 ## What Changes vs What Stays
 
-### Changes (UI only — NO engine changes)
+### Phase 1 Changes (ADDITIVE only — NO engine changes)
 
 | Change | Type | Risk |
 |--------|------|------|
 | New `SummaryView` component | New component | Zero — additive |
-| Default view: `'summary'` instead of `'questionEntry'` | State change | Low — one line |
+| New `SummaryDomainCard` component | New component | Zero — additive |
+| New `SummaryCurrentPeriod` component | New component | Zero — additive |
+| New `SummaryRemedies` component | New component | Zero — additive |
+| Add `'summary'` view state, set as default | State change | Low — one line |
 | Summary renders sections from both `tip` and `personalReading` | Composition | Low — reads existing data |
-| Tippanni sections shown in summary with [expand] | UI reuse | Low — same data |
-| Domain cards enriched with Tippanni evidence | UI composition | Low — additive |
 
-### Stays (ABSOLUTELY UNTOUCHED)
+### Phase 2 Changes (AFTER verification)
+
+| Change | Type | Risk |
+|--------|------|------|
+| Remove `questionEntry` view | Removal | Low — Summary replaces |
+| Remove `dashboard` view | Removal | Low — Summary replaces |
+| Remove `tippanni` from technical tab strip | Removal | Low — Summary contains all |
+| Remove `LifeReadingDashboard` from kundali page | Removal | Low — Summary replaces |
+
+### NEVER TOUCHED (in either phase)
 
 | Preserved | Why |
 |-----------|-----|
-| `tippanni-engine.ts` | No computation changes |
-| `domain-synthesis/synthesizer.ts` | No computation changes |
-| All 25 technical tabs | Unchanged, still accessible |
-| `TippanniTab.tsx` | Still renders in technical view |
-| `LifeReadingDashboard.tsx` | Still renders in dashboard view (accessible via toggle) |
-| `DomainDeepDive.tsx` | Still accessible from domain cards |
-| All tippanni data files | No content changes |
-| All domain synthesis data files | No content changes |
-| All test files | No engine changes = no test changes |
+| `tippanni-engine.ts` | Computation engine — never changed |
+| `domain-synthesis/synthesizer.ts` | Computation engine — never changed |
+| `TippanniTab.tsx` FILE | May be used by PDF export, other pages |
+| `LifeReadingDashboard.tsx` FILE | May be used elsewhere |
+| `DomainDeepDive.tsx` | Still used from Summary domain cards |
+| All tippanni data files | Content unchanged |
+| All domain synthesis data files | Content unchanged |
+| All test files | No engine changes → no test changes |
 | Festival/calendar/panchang systems | Completely untouched |
 | Adhik Masa logic | Completely untouched |
 | Swiss Eph sunrise engine | Completely untouched |
+| Technical tabs (23 remaining) | Charts, planet tables, dasha, shadbala, etc. |
 
 ---
 
@@ -412,13 +454,14 @@ No new computations. No new API calls. Pure UI composition of existing data.
 
 | Risk | Mitigation |
 |------|-----------|
-| Adhik Masa logic lost (happened before) | NO festival/calendar/panchang code touched |
-| Tippanni data lost | TippanniTab.tsx untouched — still renders in technical view |
-| Domain synthesis data lost | LifeReadingDashboard untouched — accessible via toggle |
-| Score confusion (two ratings for same domain) | Domain Synthesis = primary. Tippanni = "Classical Assessment" label in expandable |
-| Page becomes too long | Progressive disclosure — sections are collapsed by default, expand on click |
-| Performance (rendering both systems) | Both are already computed at page level. SummaryView just reads the data. |
-| 3005 tests break | No engine changes → no test changes |
+| Adhik Masa logic lost (happened before) | NO festival/calendar/panchang code touched. Not even in the same directory. |
+| Information lost in Summary | Phase 1 INFORMATION AUDIT (step 13): side-by-side checklist before Phase 2 |
+| Phase 2 removes something needed | Phase 2 is a separate commit. `git revert` restores old views instantly. |
+| Score confusion (two ratings for same domain) | Domain Synthesis = primary rating displayed. Tippanni = "Classical Assessment" in expandable evidence — clearly labeled. |
+| Page becomes too long | Progressive disclosure — sections are compact by default, [▸ expand] for depth |
+| Performance (rendering both systems) | Both are already computed at page level (`useMemo`). SummaryView just reads the data. Zero new computation. |
+| 3005 tests break | No engine changes → no test changes. Verified TWICE (after Phase 1 and Phase 2). |
+| Component files deleted accidentally | Phase 2 does NOT delete component files — only removes their usage from kundali page. Files stay for PDF export, other pages. |
 
 ---
 
@@ -426,20 +469,50 @@ No new computations. No new API calls. Pure UI composition of existing data.
 
 - Does NOT merge the two computation engines into one
 - Does NOT change any scoring algorithm
-- Does NOT delete any component, file, or data
-- Does NOT modify any existing view — only ADDS a new one
+- Does NOT delete any computation file (tippanni-engine.ts, synthesizer.ts, etc.)
+- Does NOT delete any component FILE — only removes rendering from kundali page in Phase 2
 - Does NOT touch festivals, panchang, calendar, or any non-kundali code
 - Does NOT require any new API endpoints or database changes
+- Does NOT change the kundali API response shape
+- Does NOT affect PDF export, saved charts, or chart sharing
 
 ---
 
 ## Implementation Order
 
-1. Create `SummaryView.tsx` (reads existing data, renders 8 sections)
-2. Create sub-components (`SummaryDomainCard`, `SummaryCurrentPeriod`, `SummaryRemedies`)
-3. Add `'summary'` view state to kundali page, set as default
-4. Test: generate kundali, verify all 8 sections render with correct data
-5. Test: verify technical view still works with all 25 tabs
-6. Test: verify DomainDeepDive still works from domain card clicks
-7. Run full test suite (3005 tests should pass unchanged)
-8. Browser verification across 3 different birth dates / ages
+### Phase 1: Build (ADDITIVE)
+
+1. Create `SummaryView.tsx` — the unified reading component (reads existing data, renders 8 sections with progressive disclosure)
+2. Create `SummaryDomainCard.tsx` — domain card with Domain Synthesis rating + narrative + timeline + remedies + Tippanni classical evidence expandable
+3. Create `SummaryCurrentPeriod.tsx` — merged dasha insight + year predictions + key dates
+4. Create `SummaryRemedies.tsx` — merged planet-centric + domain-centric remedies + action plan
+5. Add `'summary'` view state to kundali page, set as default
+6. ELI5 toggle on Summary view
+
+### Phase 1: Verify
+
+7. Generate kundali for a young person (born 2004) — verify all 8 sections render, life stage framing correct
+8. Generate kundali for a middle-aged person (born 1985) — verify domain ordering, dasha content
+9. Generate kundali for an elder (born 1958) — verify health-first ordering, remedy advisory
+10. Verify technical view still works with all tabs (click through each)
+11. Verify DomainDeepDive still works from domain card clicks
+12. Run full test suite (3005 tests must pass unchanged)
+13. **INFORMATION AUDIT:** Side-by-side comparison — open old TippanniTab and new Summary. Checklist every data point that appears in old but not in new. Fix gaps before Phase 2.
+
+### Phase 2: Cleanup (SEPARATE COMMIT)
+
+14. Remove `questionEntry` view code from kundali page
+15. Remove `dashboard` view code from kundali page  
+16. Remove `tippanni` from technical tab strip (tab still exists in code, just not rendered)
+17. Update view state type: `'summary' | 'deepDive' | 'technical'`
+18. Final browser verification — Summary is the default, Technical works, Deep Dive works
+19. Run full test suite again
+
+### Rollback plan
+
+If Phase 2 reveals missing information:
+- `git revert` the Phase 2 commit
+- Fix the gaps in Phase 1
+- Re-attempt Phase 2
+
+Phase 1 and Phase 2 are ALWAYS separate commits.

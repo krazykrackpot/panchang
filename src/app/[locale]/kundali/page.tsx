@@ -1243,6 +1243,8 @@ export default function KundaliPage() {
               tip={tip}
               personalReading={personalReading}
               keyDates={keyDates}
+              trajectory={trajectoryHook.trajectory}
+              isLoggedIn={!!user}
               locale={locale}
               onDeepDive={(domain) => {
                 setActiveDomain(domain as DomainType);

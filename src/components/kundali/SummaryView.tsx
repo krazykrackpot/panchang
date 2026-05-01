@@ -12,7 +12,7 @@
  */
 
 import { useState } from 'react';
-import { useLocale } from 'next-intl';
+import dynamic from 'next/dynamic';
 import { BookOpen, ChevronDown, ChevronUp, Sparkles, Shield, TrendingUp, AlertTriangle } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import SummaryDomainCard from './SummaryDomainCard';
@@ -21,9 +21,12 @@ import SummaryRemedies from './SummaryRemedies';
 import type { TippanniContent, YogaInsight, DoshaInsight } from '@/lib/kundali/tippanni-types';
 import type { PersonalReading } from '@/lib/kundali/domain-synthesis/types';
 import type { KeyDate } from '@/lib/kundali/domain-synthesis/key-dates';
-import type { Locale } from '@/lib/i18n/config';
+import type { FullTrajectory } from '@/lib/kundali/domain-synthesis/trajectory';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
+
+const KeyDatesTimeline = dynamic(() => import('./KeyDatesTimeline'), { ssr: false });
+const TrajectoryCard = dynamic(() => import('./TrajectoryCard'), { ssr: false });
 
 // ── Domain key to Tippanni life area key mapping ──
 const DOMAIN_TO_TIPPANNI: Record<string, 'career' | 'wealth' | 'marriage' | 'health' | 'education'> = {
@@ -39,12 +42,14 @@ interface SummaryViewProps {
   tip: TippanniContent;
   personalReading: PersonalReading | null;
   keyDates?: KeyDate[];
+  trajectory?: FullTrajectory | null;
+  isLoggedIn?: boolean;
   locale: string;
   onDeepDive?: (domain: string) => void;
   onTechnical?: () => void;
 }
 
-export default function SummaryView({ tip, personalReading, keyDates, locale, onDeepDive, onTechnical }: SummaryViewProps) {
+export default function SummaryView({ tip, personalReading, keyDates, trajectory, isLoggedIn, locale, onDeepDive, onTechnical }: SummaryViewProps) {
   const isHi = isDevanagariLocale(locale);
   const headingFont = getHeadingFont(locale);
   const bodyFont = getBodyFont(locale) || {};
@@ -273,6 +278,20 @@ export default function SummaryView({ tip, personalReading, keyDates, locale, on
           })}
         </div>
       </section>
+
+      {/* ═══ KEY DATES TIMELINE ═══ */}
+      {keyDates && keyDates.length > 0 && (
+        <section className="p-5 rounded-2xl bg-gradient-to-br from-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10">
+          <KeyDatesTimeline dates={keyDates} locale={locale} />
+        </section>
+      )}
+
+      {/* ═══ READING TRAJECTORY (logged-in users with history) ═══ */}
+      {trajectory && isLoggedIn && trajectory.domains.some(d => d.sparkline.length >= 2) && (
+        <section>
+          <TrajectoryCard trajectory={trajectory} locale={locale} />
+        </section>
+      )}
 
       <GoldDivider />
 

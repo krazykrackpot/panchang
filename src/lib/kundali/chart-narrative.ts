@@ -19,6 +19,8 @@
 import type { KundaliData, PlanetPosition } from '@/types/kundali';
 import type { LifeStageContext } from './life-stage';
 import type { TippanniContent } from './tippanni-types';
+import { NAKSHATRAS } from '@/lib/constants/nakshatras';
+import { NAKSHATRA_DETAILS } from '@/lib/constants/nakshatra-details';
 
 export interface ChartThread {
   /** Theme this thread addresses */
@@ -112,7 +114,15 @@ export function buildChartNarrative(
   if (currentDasha) {
     const dashaLord = currentDasha.planet;
     const dashaAnalysis = tippanni.dashaInsight.currentMahaAnalysis || '';
-    const yearHighlight = tippanni.yearPredictions.events?.[0]?.description || '';
+
+    // Collect ALL major transits this year — name them specifically
+    const transitEvents = (tippanni.yearPredictions.events || [])
+      .filter(e => e.type === 'jupiter_transit' || e.type === 'sade_sati' || e.type === 'rahu_ketu')
+      .map(e => e.title)
+      .slice(0, 3);
+    const transitSummary = transitEvents.length > 0
+      ? transitEvents.join(', ')
+      : '';
 
     // Find if dasha lord connects to any yoga or life area
     const dashaYogaLink = tippanni.yogas.find(y =>
@@ -122,7 +132,7 @@ export function buildChartNarrative(
     threads.push({
       theme: 'timing',
       weight: 8.5,
-      factors: [`${dashaLord} Mahadasha active`, yearHighlight ? 'Major transit this year' : ''].filter(Boolean),
+      factors: [`${dashaLord} Mahadasha active`, transitSummary || ''].filter(Boolean),
       narrative: {
         en: `You are currently in ${dashaLord} Mahadasha — this planetary period defines the dominant energy of your life right now. ${dashaYogaLink ? `Crucially, ${dashaLord} is connected to your ${dashaYogaLink.name} yoga, meaning this dasha period ACTIVATES that yoga's promise.` : ''} ${dashaAnalysis ? dashaAnalysis.split('.').slice(0, 2).join('.') + '.' : `${dashaLord}'s placement and dignity shape what unfolds during this period.`}`,
         hi: `आप वर्तमान में ${currentDasha.planetName?.hi || dashaLord} महादशा में हैं — यह ग्रह काल अभी आपके जीवन की प्रमुख ऊर्जा निर्धारित करता है। ${dashaYogaLink ? `महत्वपूर्ण बात — ${currentDasha.planetName?.hi || dashaLord} आपके ${dashaYogaLink.name} योग से जुड़ा है, अर्थात् यह दशा उस योग के वादे को सक्रिय करती है।` : ''} ${dashaLord} की स्थिति और गरिमा इस काल में जो प्रकट होता है उसे आकार देती है।`,
@@ -174,6 +184,59 @@ export function buildChartNarrative(
       action: {
         en: `Don't overlook ${hiddenStrength.name} — it quietly supports your bigger ambitions.`,
         hi: `${hiddenStrength.name} को नज़रअन्दाज़ न करें — यह चुपचाप आपकी बड़ी महत्वाकांक्षाओं का समर्थन करता है।`,
+      },
+    });
+  }
+
+  // ── Thread: Birth Nakshatra — character foundation ──
+  const moon = kundali.planets.find(p => p.planet.id === 1);
+  if (moon) {
+    // Moon's nakshatra is stored on the planet's grahaDetails or can be derived from longitude
+    // PlanetPosition doesn't have nakshatra directly — derive from sidereal longitude
+    const moonSidLng = moon.longitude - (kundali.ayanamshaValue || 24.18);
+    const normalizedLng = ((moonSidLng % 360) + 360) % 360;
+    const nakId = Math.floor(normalizedLng / (360 / 27)) + 1;
+    const nak = NAKSHATRAS[nakId - 1];
+    const nakDetails = NAKSHATRA_DETAILS.find(d => d.id === nakId);
+    const nakName = nak ? nak.name.en : `Nakshatra ${nakId}`;
+    const nakNameHi = nak ? nak.name.hi : `नक्षत्र ${nakId}`;
+    const nakDeity = nak ? nak.deity.en : '';
+    const nakNature = nak ? nak.nature.en : '';
+    const nakRuler = nak ? nak.ruler : '';
+    const isGandaMoola = [1, 10, 19, 6, 15, 24].includes(nakId); // Ashwini, Magha, Moola, Ardra, Swati, Shatabhisha — junction nakshatras
+    const isMoola = nakId === 19; // Moola specifically
+
+    let nakNarrative = `Your birth nakshatra is ${nakName} — ruled by ${nakRuler}, with ${nakDeity} as its deity. This nakshatra's ${nakNature} nature shapes your emotional core and instinctive reactions.`;
+    let nakNarrativeHi = `आपका जन्म नक्षत्र ${nakNameHi} है — ${nakRuler} द्वारा शासित। यह नक्षत्र आपके भावनात्मक मूल और सहज प्रतिक्रियाओं को आकार देता है।`;
+
+    if (nakDetails) {
+      nakNarrative += ` ${nakDetails.characteristics.en.split('.')[0]}.`;
+    }
+
+    if (isMoola) {
+      nakNarrative += ' Moola nakshatra borns carry a transformative intensity — they are natural investigators who dig to the root of everything. The deity Nirriti (goddess of destruction) grants the power to tear down and rebuild. This can manifest as spiritual depth, research ability, or periodic upheavals that lead to profound growth.';
+      nakNarrativeHi += ' मूल नक्षत्र में जन्मे लोग परिवर्तनकारी तीव्रता रखते हैं — वे स्वाभाविक अन्वेषक हैं जो हर चीज़ की जड़ तक जाते हैं। देवी निर्ऋति विनाश और पुनर्निर्माण की शक्ति प्रदान करती हैं।';
+    } else if (isGandaMoola) {
+      nakNarrative += ' As a Ganda Moola nakshatra, your birth carries junction energy — a transition point between elemental forces. Classical texts recommend specific shanti pujas, but this energy also grants unusual resilience and the ability to navigate transformational life changes.';
+      nakNarrativeHi += ' गण्ड मूल नक्षत्र के रूप में, आपका जन्म संधि ऊर्जा वहन करता है। शास्त्र विशेष शान्ति पूजा की अनुशंसा करते हैं, लेकिन यह ऊर्जा असाधारण लचीलापन भी प्रदान करती है।';
+    }
+
+    threads.push({
+      theme: 'nakshatra',
+      weight: isMoola ? 7.5 : isGandaMoola ? 6.5 : 5.5,
+      factors: [`${nakName} nakshatra`, nakRuler ? `${nakRuler} ruled` : ''].filter(Boolean),
+      narrative: { en: nakNarrative, hi: nakNarrativeHi },
+      action: {
+        en: isMoola
+          ? `Moola's transformative power is your gift — channel it into deep study, research, or spiritual practice rather than resisting change.`
+          : isGandaMoola
+            ? `Consider Ganda Moola shanti puja if not already done. Your junction energy is a strength when consciously directed.`
+            : `Connect with ${nakName}'s deity ${nakDeity} through regular acknowledgment — this strengthens your emotional foundation.`,
+        hi: isMoola
+          ? `मूल की परिवर्तनकारी शक्ति आपकी भेंट है — इसे गहन अध्ययन, शोध या आध्यात्मिक साधना में लगाएँ।`
+          : isGandaMoola
+            ? `यदि पहले नहीं किया तो गण्ड मूल शान्ति पूजा पर विचार करें। आपकी संधि ऊर्जा सचेत रूप से निर्देशित होने पर शक्ति है।`
+            : `${nakNameHi} के देवता ${nak?.deity.hi || ''} से नियमित जुड़ाव रखें — यह आपकी भावनात्मक नींव मजबूत करता है।`,
       },
     });
   }

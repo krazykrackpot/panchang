@@ -1,390 +1,252 @@
 'use client';
 
-import { tl } from '@/lib/utils/trilingual';
 import { useState } from 'react';
 import { useLocale } from 'next-intl';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Layers, Crosshair, BookOpen, FlaskConical, Scale, Clock } from 'lucide-react';
+import { Layers, ArrowLeft } from 'lucide-react';
+import GoldDivider from '@/components/ui/GoldDivider';
+import InfoBlock from '@/components/ui/InfoBlock';
+import LessonSection from '@/components/learn/LessonSection';
 import { Link } from '@/lib/i18n/navigation';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { computeNadiAmsha } from '@/lib/kundali/nadi-amsha';
 
-// ─── Inline LABELS ───────────────────────────────────────────────────────────
-const LABELS: Record<string, { en: string; hi: string }> = {
-  title: {
-    en: 'Nadi Amsha (D-150)',
-    hi: 'नाडी अंश (डी-150)',
-  },
-  subtitle: {
-    en: 'The Finest Divisional Chart in Vedic Astrology',
-    hi: 'वैदिक ज्योतिष का सूक्ष्मतम वर्ग चार्ट',
-  },
-  introTitle: {
-    en: 'What is Nadi Amsha?',
-    hi: 'नाडी अंश क्या है?',
-  },
-  introP1: {
-    en: 'Nadi Amsha is the 150th divisional chart (D-150) in Vedic astrology — the finest division of the zodiac used in classical Jyotish. Each of the 12 signs (30 degrees) is divided into 150 equal parts, making each Nadi Amsha span exactly 0.2 degrees, or 12 arc-minutes.',
-    hi: 'नाडी अंश वैदिक ज्योतिष का 150वाँ विभागीय चार्ट (D-150) है — शास्त्रीय ज्योतिष में राशिचक्र का सूक्ष्मतम विभाजन। प्रत्येक 12 राशियों (30 अंश) को 150 समान भागों में विभाजित किया जाता है, जिससे प्रत्येक नाडी अंश ठीक 0.2 अंश या 12 कला-मिनट का होता है।',
-  },
-  introP2: {
-    en: 'The name "Nadi" connects this chart to the ancient Nadi astrology tradition of South India, where palm-leaf manuscripts describe individual destinies with extraordinary precision. The D-150 chart embodies this same quest for granularity — at 0.2 degrees per division, even twins born minutes apart can have different Nadi Amsha placements.',
-    hi: '"नाडी" नाम इस चार्ट को दक्षिण भारत की प्राचीन नाडी ज्योतिष परम्परा से जोड़ता है, जहाँ ताड़पत्र पाण्डुलिपियाँ असाधारण सटीकता से व्यक्तिगत भाग्य का वर्णन करती हैं। D-150 चार्ट सूक्ष्मता की इसी खोज का प्रतिनिधित्व करता है — प्रति विभाजन 0.2 अंश पर, मिनटों के अन्तर से जन्मे जुड़वाँ बच्चों की भी अलग-अलग नाडी अंश स्थितियाँ हो सकती हैं।',
-  },
-  introP3: {
-    en: 'Classical sources for D-150 include the Tajika Neelakanthi and the Chandra Kala Nadi. While Parashara mentions divisional charts up to D-60 (Shashtiamsha) in detail, the Nadi tradition extended this framework to 150 divisions to capture the most subtle karmic imprints of the soul.',
-    hi: 'D-150 के शास्त्रीय स्रोतों में ताजिक नीलकण्ठी और चन्द्रकला नाडी शामिल हैं। जबकि पराशर ने D-60 (षष्ट्यंश) तक विभागीय चार्ट का विस्तृत वर्णन किया है, नाडी परम्परा ने आत्मा के सूक्ष्मतम कार्मिक संस्कारों को पकड़ने के लिए इसे 150 विभाजनों तक विस्तारित किया।',
-  },
-  calcTitle: {
-    en: 'Calculation Method',
-    hi: 'गणना विधि',
-  },
-  calcStep1Title: {
-    en: 'Step 1: Find the degree within the sign',
-    hi: 'चरण 1: राशि के अन्दर अंश ज्ञात करें',
-  },
-  calcStep1: {
-    en: 'Given a planet\'s sidereal longitude, subtract the sign boundary. For example, a planet at 15\u00b024\' Aries: the degree within Aries = 15.4\u00b0 (since 24\' = 0.4\u00b0).',
-    hi: 'ग्रह की निरयन देशान्तर से राशि सीमा घटाएँ। उदाहरण: मेष में 15\u00b024\' पर ग्रह: मेष के अन्दर अंश = 15.4\u00b0 (क्योंकि 24\' = 0.4\u00b0)।',
-  },
-  calcStep2Title: {
-    en: 'Step 2: Multiply by 5 to get the Nadi Amsha number',
-    hi: 'चरण 2: नाडी अंश संख्या प्राप्त करने के लिए 5 से गुणा करें',
-  },
-  calcStep2: {
-    en: 'Each Nadi Amsha spans 0.2\u00b0, so dividing the degree by 0.2 (or equivalently multiplying by 5) gives the index. For 15.4\u00b0: floor(15.4 \u00d7 5) + 1 = floor(77) + 1 = 78th Nadi Amsha.',
-    hi: 'प्रत्येक नाडी अंश 0.2\u00b0 का होता है, अतः अंश को 0.2 से भाग (या 5 से गुणा) करने से सूचकांक मिलता है। 15.4\u00b0 के लिए: floor(15.4 \u00d7 5) + 1 = floor(77) + 1 = 78वाँ नाडी अंश।',
-  },
-  calcStep3Title: {
-    en: 'Step 3: Map to the Nadi sign',
-    hi: 'चरण 3: नाडी राशि में मैप करें',
-  },
-  calcStep3: {
-    en: 'The 150 divisions cycle through the 12 signs repeatedly (150 / 12 = 12 full cycles + 6 remainder). For ODD signs (Aries, Gemini, Leo, etc.): count forward from Aries. For EVEN signs (Taurus, Cancer, Virgo, etc.): count backward from Pisces. The 78th Nadi Amsha in Aries (odd sign): (78-1) mod 12 = 5, so sign index 5+1 = 6 = Virgo.',
-    hi: '150 विभाजन 12 राशियों में चक्रीय रूप से दोहराए जाते हैं (150 / 12 = 12 पूर्ण चक्र + 6 शेष)। विषम राशियों (मेष, मिथुन, सिंह आदि) के लिए: मेष से आगे गिनें। सम राशियों (वृषभ, कर्क, कन्या आदि) के लिए: मीन से पीछे गिनें। मेष (विषम राशि) में 78वाँ नाडी अंश: (78-1) mod 12 = 5, अतः राशि सूचकांक 5+1 = 6 = कन्या।',
-  },
-  workedTitle: {
-    en: 'Worked Example',
-    hi: 'हल किया हुआ उदाहरण',
-  },
-  workedDesc: {
-    en: 'Planet at 15\u00b024\' Aries (sidereal longitude 15.4\u00b0)',
-    hi: 'मेष में 15\u00b024\' पर ग्रह (निरयन देशान्तर 15.4\u00b0)',
-  },
-  tableTitle: {
-    en: 'First 12 Nadi Divisions of Aries',
-    hi: 'मेष की प्रथम 12 नाडी विभाजन',
-  },
-  significanceTitle: {
-    en: 'Why Such Fine Divisions Matter',
-    hi: 'इतने सूक्ष्म विभाजन क्यों महत्वपूर्ण हैं',
-  },
-  sigTwin: {
-    en: 'Twin Differentiation',
-    hi: 'जुड़वाँ विभेदन',
-  },
-  sigTwinDesc: {
-    en: 'Standard divisional charts (D-1 through D-9) often show identical placements for twins born within 10-15 minutes. D-150 changes sign every 48 seconds of arc — roughly every 3.2 seconds of clock time at the equator. This makes it the only varga capable of reliably distinguishing twin charts.',
-    hi: 'मानक विभागीय चार्ट (D-1 से D-9) प्रायः 10-15 मिनट के अन्तर से जन्मे जुड़वाँ बच्चों के लिए समान स्थितियाँ दिखाते हैं। D-150 प्रत्येक 48 कला-सेकण्ड — भूमध्य रेखा पर लगभग प्रत्येक 3.2 घड़ी-सेकण्ड — पर राशि बदलता है। यह एकमात्र वर्ग है जो जुड़वाँ चार्ट को विश्वसनीय रूप से अलग कर सकता है।',
-  },
-  sigKarma: {
-    en: 'Subtle Karmic Imprints',
-    hi: 'सूक्ष्म कार्मिक संस्कार',
-  },
-  sigKarmaDesc: {
-    en: 'While D-1 shows the broad life pattern and D-9 reveals the soul\'s deeper purpose, D-150 captures the finest karmic threads — past-life tendencies so subtle that they manifest as unconscious habits, inexplicable attractions, and seemingly random talents. Each planet\'s Nadi Amsha sign reveals a specific domain of past-life mastery or debt.',
-    hi: 'जबकि D-1 व्यापक जीवन पैटर्न दिखाता है और D-9 आत्मा के गहरे उद्देश्य को प्रकट करता है, D-150 सूक्ष्मतम कार्मिक धागों को पकड़ता है — पूर्वजन्म की इतनी सूक्ष्म प्रवृत्तियाँ जो अचेतन आदतों, अकथनीय आकर्षणों और प्रतीत होने वाली यादृच्छिक प्रतिभाओं के रूप में प्रकट होती हैं।',
-  },
-  sigNaadi: {
-    en: 'Connection to Naadi Astrology',
-    hi: 'नाडी ज्योतिष से सम्बन्ध',
-  },
-  sigNaadiDesc: {
-    en: 'The Naadi tradition of Tamil Nadu uses palm-leaf manuscripts (attributed to sages like Brighu, Agastya, and Vasishtha) that predict individual lives with astonishing specificity. While their exact computational method remains debated, the precision of D-150 aligns naturally with their granularity — and many modern practitioners use D-150 as the computational analog of what the Naadi sages perceived intuitively.',
-    hi: 'तमिलनाडु की नाडी परम्परा ताड़पत्र पाण्डुलिपियों (ऋषि भृगु, अगस्त्य और वसिष्ठ को श्रेय) का उपयोग करती है जो आश्चर्यजनक विशिष्टता से व्यक्तिगत जीवन की भविष्यवाणी करती हैं। जबकि उनकी सटीक गणना विधि पर बहस जारी है, D-150 की सटीकता स्वाभाविक रूप से उनकी सूक्ष्मता से मेल खाती है।',
-  },
-  sigVsD60: {
-    en: 'D-150 vs D-60 (Shashtiamsha)',
-    hi: 'D-150 बनाम D-60 (षष्ट्यंश)',
-  },
-  sigVsD60Desc: {
-    en: 'D-60 divides each sign into 60 parts (0.5\u00b0 each) and is widely used for karmic analysis. D-150 provides 2.5 times the resolution. Where D-60 might place two planets in the same division, D-150 separates them — revealing finer distinctions in karmic inheritance. However, this extreme precision demands correspondingly accurate birth times.',
-    hi: 'D-60 प्रत्येक राशि को 60 भागों (0.5\u00b0 प्रत्येक) में विभाजित करता है और कार्मिक विश्लेषण के लिए व्यापक रूप से उपयोग किया जाता है। D-150 2.5 गुना अधिक विभेदन प्रदान करता है। जहाँ D-60 दो ग्रहों को एक ही विभाजन में रख सकता है, D-150 उन्हें अलग करता है। हालाँकि, इस अत्यधिक सटीकता के लिए तदनुरूप सटीक जन्म समय आवश्यक है।',
-  },
-  interpTitle: {
-    en: 'Interpretation Principles',
-    hi: 'व्याख्या सिद्धान्त',
-  },
-  interpDignity: {
-    en: 'Planet Dignity in Nadi Amsha',
-    hi: 'नाडी अंश में ग्रह गरिमा',
-  },
-  interpDignityDesc: {
-    en: 'A planet that lands in its own sign or exaltation sign in D-150 carries exceptionally deep karmic merit. Conversely, debilitation in D-150 points to a very specific past-life weakness. Because D-150 is so fine-grained, these dignities represent the most nuanced layer of a planet\'s total strength — they are the "last decimal place" of Vimshopaka Bala.',
-    hi: 'D-150 में अपनी या उच्च राशि में स्थित ग्रह असाधारण रूप से गहरा कार्मिक पुण्य रखता है। इसके विपरीत, D-150 में नीच राशि एक बहुत विशिष्ट पूर्वजन्म की दुर्बलता की ओर इशारा करती है। चूँकि D-150 इतना सूक्ष्म है, ये गरिमाएँ ग्रह की कुल शक्ति की सबसे सूक्ष्म परत का प्रतिनिधित्व करती हैं।',
-  },
-  interpWhen: {
-    en: 'When to Use D-150 vs Other Vargas',
-    hi: 'D-150 बनाम अन्य वर्गों का उपयोग कब करें',
-  },
-  interpWhenDesc: {
-    en: 'Use D-150 when (a) birth time is known to the second, (b) you need to differentiate twins, (c) other vargas show near-identical charts and you need a tiebreaker, or (d) investigating deep karmic patterns not visible in D-9 or D-60. Do NOT rely on D-150 when birth time has more than \u00b12 minutes of uncertainty — the 0.2\u00b0 divisions make it meaningless with approximate times.',
-    hi: 'D-150 का उपयोग करें जब (क) जन्म समय सेकण्ड तक ज्ञात हो, (ख) जुड़वाँ बच्चों को अलग करना हो, (ग) अन्य वर्ग लगभग समान चार्ट दिखाएँ, या (घ) D-9 या D-60 में दिखाई न देने वाले गहरे कार्मिक पैटर्न की जाँच हो। जब जन्म समय में \u00b12 मिनट से अधिक अनिश्चितता हो तो D-150 पर निर्भर न रहें।',
-  },
-  interpVimshopaka: {
-    en: 'Integration with Vimshopaka Strength',
-    hi: 'विम्शोपक बल के साथ एकीकरण',
-  },
-  interpVimshopakaDesc: {
-    en: 'In the Shodasha Varga scheme (16 divisional charts), D-150 is not included in the standard Vimshopaka calculation. However, some practitioners use it as a supplementary dignity check — if a planet is strong in Vimshopaka but debilitated in D-150, they note a subtle karmic weakness. The Nadi Amsha acts as a final filter of spiritual quality.',
-    hi: 'षोडश वर्ग योजना (16 विभागीय चार्ट) में D-150 मानक विम्शोपक गणना में शामिल नहीं है। हालाँकि, कुछ अभ्यासकर्ता इसे पूरक गरिमा जाँच के रूप में उपयोग करते हैं — यदि कोई ग्रह विम्शोपक में बलवान पर D-150 में नीच है, तो वे एक सूक्ष्म कार्मिक दुर्बलता नोट करते हैं।',
-  },
-  classicalTitle: {
-    en: 'Classical Text References',
-    hi: 'शास्त्रीय ग्रन्थ सन्दर्भ',
-  },
-  classicalTajika: {
-    en: 'Tajika Neelakanthi',
-    hi: 'ताजिक नीलकण्ठी',
-  },
-  classicalTajikaDesc: {
-    en: 'The Tajika Neelakanthi, composed by Neelakantha in the 16th century, is one of the primary sources that discusses the 150-fold division. While Tajika texts are often associated with Perso-Arabic annual chart techniques (Varshaphal), Neelakantha\'s treatment of sub-divisions draws on the Nadi tradition and provides the computational framework used today.',
-    hi: '16वीं शताब्दी में नीलकण्ठ द्वारा रचित ताजिक नीलकण्ठी, 150 गुना विभाजन पर चर्चा करने वाले प्राथमिक स्रोतों में से एक है। जबकि ताजिक ग्रन्थ प्रायः फ़ारसी-अरबी वार्षिक चार्ट तकनीकों (वर्षफल) से जुड़े हैं, नीलकण्ठ का उप-विभाजनों का उपचार नाडी परम्परा पर आधारित है।',
-  },
-  classicalNadi: {
-    en: 'The Nadi Tradition',
-    hi: 'नाडी परम्परा',
-  },
-  classicalNadiDesc: {
-    en: 'The Chandra Kala Nadi (attributed to sage Achyuta) and the Brighu Nandi Nadi are palm-leaf compilations from Tamil Nadu that describe individual destinies based on extremely fine planetary positions. The Brighu Nandi Nadi specifically correlates planetary positions at the sub-degree level with life events — a methodology that maps naturally onto D-150 divisions. Modern scholars consider D-150 the mathematical formalization of what these Nadi texts describe qualitatively.',
-    hi: 'चन्द्रकला नाडी (ऋषि अच्युत को श्रेय) और भृगु नन्दी नाडी तमिलनाडु की ताड़पत्र संकलन हैं जो अत्यन्त सूक्ष्म ग्रह स्थितियों के आधार पर व्यक्तिगत भाग्य का वर्णन करती हैं। भृगु नन्दी नाडी विशेष रूप से उप-अंश स्तर पर ग्रह स्थितियों को जीवन की घटनाओं से सम्बन्धित करती है — एक पद्धति जो D-150 विभाजनों से स्वाभाविक रूप से मेल खाती है।',
-  },
-  modernTitle: {
-    en: 'Modern Research & Applications',
-    hi: 'आधुनिक शोध और अनुप्रयोग',
-  },
-  modernRectification: {
-    en: 'Birth Time Rectification',
-    hi: 'जन्म समय शोधन',
-  },
-  modernRectificationDesc: {
-    en: 'Because D-150 changes sign every ~48 seconds of arc (~3.2 seconds of clock time), it provides the most sensitive test for birth time accuracy. Practitioners rectify birth times by checking whether D-150 placements match known life events. If the D-150 ascendant aligns with the person\'s karmic themes better at time T+30s than at T, the rectified time is preferred.',
-    hi: 'चूँकि D-150 प्रत्येक ~48 कला-सेकण्ड (~3.2 घड़ी-सेकण्ड) पर राशि बदलता है, यह जन्म समय की सटीकता के लिए सबसे संवेदनशील परीक्षण प्रदान करता है। अभ्यासकर्ता यह जाँच कर जन्म समय शोधित करते हैं कि D-150 स्थितियाँ ज्ञात जीवन घटनाओं से मेल खाती हैं या नहीं।',
-  },
-  modernComputational: {
-    en: 'Computational Challenges',
-    hi: 'गणनात्मक चुनौतियाँ',
-  },
-  modernComputationalDesc: {
-    en: 'At 0.2\u00b0 per division (720 arc-seconds), even small errors in planetary longitude become significant. The Moon moves ~0.5\u00b0/hour, meaning its Nadi Amsha changes roughly every 24 minutes. For slow planets like Saturn (~0.03\u00b0/day), the Nadi Amsha is stable for about 6.7 hours. Accurate ephemeris data and precise ayanamsha values are essential — using Lahiri vs Krishnamurti ayanamsha can shift D-150 placements by several divisions.',
-    hi: 'प्रति विभाजन 0.2\u00b0 (720 कला-सेकण्ड) पर, ग्रह देशान्तर में छोटी त्रुटियाँ भी महत्वपूर्ण हो जाती हैं। चन्द्रमा ~0.5\u00b0/घण्टा चलता है, अर्थात् इसका नाडी अंश लगभग प्रत्येक 24 मिनट में बदलता है। शनि जैसे मन्द ग्रहों (~0.03\u00b0/दिन) के लिए, नाडी अंश लगभग 6.7 घण्टे तक स्थिर रहता है।',
-  },
-  modernStatistical: {
-    en: 'Statistical Studies',
-    hi: 'सांख्यिकीय अध्ययन',
-  },
-  modernStatisticalDesc: {
-    en: 'Rigorous statistical validation of D-150 remains limited, primarily due to the birth-time precision required. Studies by K.N. Rao\'s school and the Nadi tradition practitioners in Chennai have shown correlations between D-150 planet dignities and major life themes, but sample sizes remain small. The chart\'s primary value remains in individual case studies where precise birth time is confirmed through multiple events.',
-    hi: 'D-150 का कठोर सांख्यिकीय सत्यापन सीमित है, मुख्य रूप से आवश्यक जन्म-समय सटीकता के कारण। K.N. राव के विद्यालय और चेन्नई के नाडी परम्परा के अभ्यासकर्ताओं के अध्ययनों ने D-150 ग्रह गरिमाओं और प्रमुख जीवन विषयों के बीच सम्बन्ध दिखाए हैं, परन्तु नमूना आकार छोटे रहते हैं।',
-  },
-  comparisonTitle: {
-    en: 'Divisional Chart Comparison',
-    hi: 'विभागीय चार्ट तुलना',
-  },
-  divisionWheel: {
-    en: 'Division Wheel: Aries (First 30 Nadi Divisions)',
-    hi: 'विभाजन चक्र: मेष (प्रथम 30 नाडी विभाजन)',
-  },
-  liveCalcTitle: {
-    en: 'Live Calculator',
-    hi: 'लाइव कैलकुलेटर',
-  },
-  liveCalcDesc: {
-    en: 'Enter a sidereal longitude to see its Nadi Amsha placement:',
-    hi: 'नाडी अंश स्थिति देखने के लिए निरयन देशान्तर दर्ज करें:',
-  },
-  linksTitle: {
-    en: 'Explore Further',
-    hi: 'और जानें',
-  },
-};
+// ─── Bilingual helper ──────────────────────────────────────────────────────
+const tl = (obj: { en: string; hi: string }, locale: string) =>
+  locale === 'hi' ? obj.hi : obj.en;
 
-const t = (key: string, locale: string) => {
-  const obj = LABELS[key];
-  if (!obj) return key;
-  return (obj as Record<string, string>)[locale] || obj.en;
-};
-
-// ─── Sign Names ─────────────────────────────────────────────────────────────
-const SIGN_NAMES = [
-  { en: 'Aries', hi: 'मेष', sa: 'मेषम्' },
-  { en: 'Taurus', hi: 'वृषभ', sa: 'वृषभम्' },
-  { en: 'Gemini', hi: 'मिथुन', sa: 'मिथुनम्' },
-  { en: 'Cancer', hi: 'कर्क', sa: 'कर्कटम्' },
-  { en: 'Leo', hi: 'सिंह', sa: 'सिंहम्' },
-  { en: 'Virgo', hi: 'कन्या', sa: 'कन्या' },
-  { en: 'Libra', hi: 'तुला', sa: 'तुला' },
-  { en: 'Scorpio', hi: 'वृश्चिक', sa: 'वृश्चिकम्' },
-  { en: 'Sagittarius', hi: 'धनु', sa: 'धनुः' },
-  { en: 'Capricorn', hi: 'मकर', sa: 'मकरम्' },
-  { en: 'Aquarius', hi: 'कुम्भ', sa: 'कुम्भम्' },
-  { en: 'Pisces', hi: 'मीन', sa: 'मीनम्' },
+// ─── Sign Names ────────────────────────────────────────────────────────────
+const SIGN_NAMES: { en: string; hi: string }[] = [
+  { en: 'Aries', hi: 'मेष' }, { en: 'Taurus', hi: 'वृषभ' },
+  { en: 'Gemini', hi: 'मिथुन' }, { en: 'Cancer', hi: 'कर्क' },
+  { en: 'Leo', hi: 'सिंह' }, { en: 'Virgo', hi: 'कन्या' },
+  { en: 'Libra', hi: 'तुला' }, { en: 'Scorpio', hi: 'वृश्चिक' },
+  { en: 'Sagittarius', hi: 'धनु' }, { en: 'Capricorn', hi: 'मकर' },
+  { en: 'Aquarius', hi: 'कुम्भ' }, { en: 'Pisces', hi: 'मीन' },
 ];
 
-// ─── Comparison Table Data ──────────────────────────────────────────────────
-const COMPARISON_DATA = [
-  { varga: 'D-1', name: 'Rashi', span: '30\u00b0', parts: 1, use: 'Overall life pattern, personality, health' },
-  { varga: 'D-9', name: 'Navamsha', span: '3\u00b020\'', parts: 9, use: 'Marriage, dharma, soul purpose' },
-  { varga: 'D-60', name: 'Shashtiamsha', span: '0\u00b030\'', parts: 60, use: 'Past-life karma, deep analysis' },
-  { varga: 'D-150', name: 'Nadi Amsha', span: '0\u00b012\'', parts: 150, use: 'Finest karma, twin differentiation, rectification' },
-];
-
-// ─── First 12 Nadi Divisions for Aries ──────────────────────────────────────
+// ─── First 12 Nadi Divisions for Aries ─────────────────────────────────────
 const ARIES_TABLE = Array.from({ length: 12 }, (_, i) => {
   const num = i + 1;
   const startDeg = (i * 0.2).toFixed(1);
   const endDeg = ((i + 1) * 0.2).toFixed(1);
-  const result = computeNadiAmsha(i * 0.2 + 0.001); // tiny offset to land inside the segment
-  return {
-    num,
-    range: `${startDeg}\u00b0 \u2013 ${endDeg}\u00b0`,
-    sign: SIGN_NAMES[result.nadiSign - 1],
-  };
+  const result = computeNadiAmsha(i * 0.2 + 0.001);
+  return { num, range: `${startDeg}\u00b0 \u2013 ${endDeg}\u00b0`, sign: SIGN_NAMES[result.nadiSign - 1] };
 });
 
-// ─── Worked Example ─────────────────────────────────────────────────────────
-const WORKED = computeNadiAmsha(15.4);
+// ─── Comparison Table ──────────────────────────────────────────────────────
+const COMPARISON_DATA = [
+  { varga: 'D-1', name: { en: 'Rashi', hi: 'राशि' }, span: '30\u00b0', arc: '1800\'', use: { en: 'Overall life pattern, personality, health', hi: 'समग्र जीवन पैटर्न, व्यक्तित्व, स्वास्थ्य' } },
+  { varga: 'D-9', name: { en: 'Navamsha', hi: 'नवांश' }, span: '3\u00b020\'', arc: '200\'', use: { en: 'Marriage, dharma, soul purpose', hi: 'विवाह, धर्म, आत्मा का उद्देश्य' } },
+  { varga: 'D-60', name: { en: 'Shashtiamsha', hi: 'षष्ट्यंश' }, span: '0\u00b030\'', arc: '30\'', use: { en: 'Past-life karma, deep analysis', hi: 'पूर्वजन्म कर्म, गहन विश्लेषण' } },
+  { varga: 'D-150', name: { en: 'Nadi Amsha', hi: 'नाडी अंश' }, span: '0\u00b012\'', arc: '12\'', use: { en: 'Finest karma, twin differentiation, rectification', hi: 'सूक्ष्मतम कर्म, जुड़वाँ विभेदन, शोधन' } },
+];
 
-// ─── Section Wrapper ────────────────────────────────────────────────────────
-function Section({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  return (
-    <motion.section
-      initial={{ opacity: 0, y: 15 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 space-y-4 ${className}`}
-    >
-      {children}
-    </motion.section>
-  );
-}
+// ─── Planet Karmic Themes for Section 7 ────────────────────────────────────
+const PLANET_KARMIC: { planet: { en: string; hi: string }; theme: { en: string; hi: string } }[] = [
+  {
+    planet: { en: 'Sun', hi: 'सूर्य' },
+    theme: {
+      en: 'Soul\'s core mission from past lives. The D-150 sign of the Sun reveals what you were born to become at the deepest level -- the essential dharmic identity your soul chose before incarnation. If the Sun\'s Nadi sign matches its D-1 sign, the soul\'s purpose is clear and reinforced. A different sign suggests the surface personality (D-1) masks a deeper karmic identity that emerges in the second half of life.',
+      hi: 'पूर्वजन्मों से आत्मा का मूल मिशन। सूर्य की D-150 राशि प्रकट करती है कि आप गहनतम स्तर पर क्या बनने के लिए जन्मे हैं। यदि सूर्य की नाडी राशि D-1 राशि से मेल खाती है, तो आत्मा का उद्देश्य स्पष्ट है।',
+    },
+  },
+  {
+    planet: { en: 'Moon', hi: 'चन्द्रमा' },
+    theme: {
+      en: 'Emotional karmic baggage. The Moon\'s Nadi Amsha reveals what feelings you carry from before -- the unconscious emotional patterns that drive your reactions before the rational mind engages. Moon in a water Nadi sign (Cancer/Scorpio/Pisces) indicates deep intuitive inheritance. In fire signs, past-life emotional trauma drives present-life courage.',
+      hi: 'भावनात्मक कार्मिक बोझ। चन्द्रमा का नाडी अंश प्रकट करता है कि आप पिछले जन्मों से कौन सी भावनाएँ लेकर आए हैं -- अचेतन भावनात्मक पैटर्न जो तर्कशील मन से पहले आपकी प्रतिक्रियाओं को चलाते हैं।',
+    },
+  },
+  {
+    planet: { en: 'Mars', hi: 'मंगल' },
+    theme: {
+      en: 'Action patterns from past lives. Mars in D-150 shows how you instinctively fight, pursue, and assert yourself -- patterns so deep they feel like physical memory. Mars in Aries Nadi = warrior soul reborn. Mars in Libra Nadi = past-life conflict resolution through diplomacy. Mars in Scorpio Nadi = occult warrior with surgical precision.',
+      hi: 'पूर्वजन्मों से क्रिया पैटर्न। D-150 में मंगल दिखाता है कि आप सहज रूप से कैसे लड़ते, अनुसरण करते और स्वयं को स्थापित करते हैं -- इतने गहरे पैटर्न कि वे शारीरिक स्मृति जैसे लगते हैं।',
+    },
+  },
+  {
+    planet: { en: 'Mercury', hi: 'बुध' },
+    theme: {
+      en: 'Intellectual karma -- what knowledge you brought with you. Mercury\'s Nadi sign reveals the domain where your mind was trained in previous incarnations. Mercury in Gemini Nadi = master communicator across lifetimes. Mercury in Virgo Nadi = analytical precision from past-life scientific work. Mercury in Pisces Nadi = intuitive knowledge that bypasses logic.',
+      hi: 'बौद्धिक कर्म -- आप कौन सा ज्ञान लेकर आए। बुध की नाडी राशि उस क्षेत्र को प्रकट करती है जहाँ पिछले जन्मों में आपका मन प्रशिक्षित था।',
+    },
+  },
+  {
+    planet: { en: 'Jupiter', hi: 'गुरु' },
+    theme: {
+      en: 'Dharmic path -- what wisdom tradition your soul belongs to. Jupiter\'s D-150 sign reveals your deepest philosophical and spiritual orientation, often manifesting as an inexplicable pull toward a specific tradition, teacher, or school of thought. Jupiter in Sagittarius Nadi = the eternal teacher. Jupiter in Pisces Nadi = mystical devotee across lifetimes.',
+      hi: 'धार्मिक पथ -- आपकी आत्मा किस ज्ञान परम्परा से सम्बन्धित है। गुरु की D-150 राशि आपकी गहनतम दार्शनिक और आध्यात्मिक अभिमुखता प्रकट करती है।',
+    },
+  },
+  {
+    planet: { en: 'Venus', hi: 'शुक्र' },
+    theme: {
+      en: 'Relationship karma -- who you\'ve loved before and how. Venus in D-150 reveals the pattern of love, beauty, and pleasure that your soul has cultivated across incarnations. Venus in Taurus Nadi = sensual mastery and material beauty. Venus in Scorpio Nadi = tantric transformation through intimacy. Venus in Pisces Nadi = divine love transcending the personal.',
+      hi: 'सम्बन्ध कर्म -- आपने पहले किससे और कैसे प्रेम किया। D-150 में शुक्र प्रेम, सौन्दर्य और आनन्द का वह पैटर्न प्रकट करता है जो आपकी आत्मा ने जन्मों में विकसित किया है।',
+    },
+  },
+  {
+    planet: { en: 'Saturn', hi: 'शनि' },
+    theme: {
+      en: 'Karmic debts -- what you must work through in this lifetime. Saturn\'s Nadi Amsha is arguably the most important D-150 placement. It shows the specific area where the soul carries unfinished business, unlearned lessons, and unpaid debts. Saturn in Capricorn Nadi = karmic responsibility through worldly achievement. Saturn in Cancer Nadi = emotional debts around nurturing and family.',
+      hi: 'कार्मिक ऋण -- इस जन्म में आपको क्या पूरा करना है। शनि का नाडी अंश सम्भवतः सबसे महत्वपूर्ण D-150 स्थिति है। यह उस विशिष्ट क्षेत्र को दिखाता है जहाँ आत्मा अधूरे कार्य और अनसीखे पाठ लेकर आई है।',
+    },
+  },
+  {
+    planet: { en: 'Rahu', hi: 'राहु' },
+    theme: {
+      en: 'Obsessive karmic desire -- what your soul craves to experience. Rahu in D-150 amplifies the area of life where the soul feels an insatiable hunger born from past-life deprivation. Rahu in Leo Nadi = craving for recognition never received. Rahu in Aquarius Nadi = desperate need to belong to a community. This is the karmic itch that drives worldly ambition.',
+      hi: 'जुनूनी कार्मिक इच्छा -- आपकी आत्मा क्या अनुभव करना चाहती है। D-150 में राहु जीवन के उस क्षेत्र को बढ़ाता है जहाँ आत्मा पूर्वजन्म की वंचना से उत्पन्न अतृप्त भूख अनुभव करती है।',
+    },
+  },
+  {
+    planet: { en: 'Ketu', hi: 'केतु' },
+    theme: {
+      en: 'Karmic mastery -- what you\'ve already perfected and must release. Ketu\'s D-150 sign shows the domain where the soul has achieved completion in past lives. The challenge is not to develop this area further, but to let go of attachment to it. Ketu in Sagittarius Nadi = past-life guru who must now be a student. Ketu in Virgo Nadi = analytical mastery that must yield to faith.',
+      hi: 'कार्मिक निपुणता -- आपने क्या पूर्ण किया है और क्या छोड़ना है। केतु की D-150 राशि उस क्षेत्र को दिखाती है जहाँ आत्मा ने पूर्वजन्मों में पूर्णता प्राप्त की है। चुनौती इसे और विकसित करना नहीं, बल्कि इससे मोह छोड़ना है।',
+    },
+  },
+  {
+    planet: { en: 'Ascendant (Lagna)', hi: 'लग्न' },
+    theme: {
+      en: 'The karmic lens through which the world sees you. The Ascendant\'s Nadi Amsha reveals the soul\'s chosen interface with the material world -- the karmic costume it wears for this incarnation. When the D-150 Ascendant sign differs from the D-1 Ascendant, the person often feels a disconnect between how others perceive them and who they truly are at the soul level.',
+      hi: 'कार्मिक लेंस जिसके माध्यम से संसार आपको देखता है। लग्न का नाडी अंश भौतिक संसार के साथ आत्मा के चुने हुए इण्टरफेस को प्रकट करता है -- इस अवतार के लिए पहनी गई कार्मिक वेशभूषा।',
+    },
+  },
+];
 
-// ─── SVG Division Wheel ─────────────────────────────────────────────────────
-function DivisionWheel() {
-  const cx = 150, cy = 150, r = 120, innerR = 70;
-  const colors = [
-    '#ef4444', '#f97316', '#eab308', '#22c55e', '#14b8a6', '#3b82f6',
-    '#8b5cf6', '#ec4899', '#f43f5e', '#06b6d4', '#84cc16', '#a855f7',
-  ];
+// ─── Element Analysis Data ─────────────────────────────────────────────────
+const ELEMENT_DATA: { element: { en: string; hi: string }; signs: { en: string; hi: string }; theme: { en: string; hi: string }; color: string }[] = [
+  {
+    element: { en: 'Fire', hi: 'अग्नि' },
+    signs: { en: 'Aries, Leo, Sagittarius', hi: 'मेष, सिंह, धनु' },
+    theme: { en: 'Karmic lessons around action, identity, and ego. The soul has been developing willpower, courage, and the ability to initiate across lifetimes. Excess fire = past-life impulsiveness needing temperance.', hi: 'क्रिया, पहचान और अहंकार के कार्मिक पाठ। आत्मा जन्मों में इच्छाशक्ति और साहस विकसित कर रही है।' },
+    color: 'border-red-500/30',
+  },
+  {
+    element: { en: 'Earth', hi: 'पृथ्वी' },
+    signs: { en: 'Taurus, Virgo, Capricorn', hi: 'वृषभ, कन्या, मकर' },
+    theme: { en: 'Lessons around material world, patience, and structure. The soul is learning to build lasting value, work with physical reality, and develop discipline. Excess earth = past-life materialism needing spiritual awakening.', hi: 'भौतिक संसार, धैर्य और संरचना के पाठ। आत्मा स्थायी मूल्य निर्माण और अनुशासन सीख रही है।' },
+    color: 'border-emerald-500/30',
+  },
+  {
+    element: { en: 'Air', hi: 'वायु' },
+    signs: { en: 'Gemini, Libra, Aquarius', hi: 'मिथुन, तुला, कुम्भ' },
+    theme: { en: 'Lessons around communication, relationships, and ideas. The soul is learning to connect, negotiate, and think abstractly. Excess air = past-life detachment from emotional reality needing grounding.', hi: 'संचार, सम्बन्धों और विचारों के पाठ। आत्मा जुड़ना, बातचीत करना और अमूर्त सोचना सीख रही है।' },
+    color: 'border-cyan-500/30',
+  },
+  {
+    element: { en: 'Water', hi: 'जल' },
+    signs: { en: 'Cancer, Scorpio, Pisces', hi: 'कर्क, वृश्चिक, मीन' },
+    theme: { en: 'Lessons around emotions, intuition, and spirituality. The soul is developing empathy, psychic sensitivity, and the ability to surrender. Excess water = past-life emotional overwhelm needing boundaries.', hi: 'भावनाओं, अन्तर्ज्ञान और आध्यात्मिकता के पाठ। आत्मा सहानुभूति और आत्मसमर्पण विकसित कर रही है।' },
+    color: 'border-violet-500/30',
+  },
+];
 
-  const slices = Array.from({ length: 30 }, (_, i) => {
-    const startAngle = (i / 30) * 2 * Math.PI - Math.PI / 2;
-    const endAngle = ((i + 1) / 30) * 2 * Math.PI - Math.PI / 2;
-    const signIdx = i % 12;
-    const x1 = cx + r * Math.cos(startAngle);
-    const y1 = cy + r * Math.sin(startAngle);
-    const x2 = cx + r * Math.cos(endAngle);
-    const y2 = cy + r * Math.sin(endAngle);
-    const ix1 = cx + innerR * Math.cos(startAngle);
-    const iy1 = cy + innerR * Math.sin(startAngle);
-    const ix2 = cx + innerR * Math.cos(endAngle);
-    const iy2 = cy + innerR * Math.sin(endAngle);
-    const d = `M${ix1},${iy1} L${x1},${y1} A${r},${r} 0 0,1 ${x2},${y2} L${ix2},${iy2} A${innerR},${innerR} 0 0,0 ${ix1},${iy1}`;
-    return (
-      <path key={i} d={d} fill={`${colors[signIdx]}20`} stroke={colors[signIdx]} strokeWidth={0.5} opacity={0.7}>
-        <title>Nadi {i + 1}: {SIGN_NAMES[signIdx].en}</title>
-      </path>
-    );
-  });
+// ─── D-150 Conjunction Pairs ───────────────────────────────────────────────
+const CONJUNCTION_PAIRS: { pair: { en: string; hi: string }; meaning: { en: string; hi: string } }[] = [
+  { pair: { en: 'Sun-Moon', hi: 'सूर्य-चन्द्र' }, meaning: { en: 'Unified sense of purpose and emotion. The conscious will and unconscious feeling are aligned at the karmic level -- a rare inner harmony suggesting the soul has resolved the ego-emotion split in past lives.', hi: 'उद्देश्य और भावना की एकता। चेतन इच्छा और अचेतन भावना कार्मिक स्तर पर संरेखित हैं।' } },
+  { pair: { en: 'Mars-Venus', hi: 'मंगल-शुक्र' }, meaning: { en: 'Intense past-life romantic or sexual connection. The soul carries powerful attraction-repulsion patterns in relationships. This conjunction in D-150 often indicates that the native will meet a partner who feels deeply familiar.', hi: 'तीव्र पूर्वजन्म रोमांटिक सम्बन्ध। आत्मा सम्बन्धों में शक्तिशाली आकर्षण-विकर्षण पैटर्न रखती है।' } },
+  { pair: { en: 'Jupiter-Saturn', hi: 'गुरु-शनि' }, meaning: { en: 'The great karmic tension between expansion and restriction. The soul is working on balancing optimism with discipline, faith with doubt, growth with consolidation. This is the most common D-150 conjunction indicating a mature soul.', hi: 'विस्तार और प्रतिबन्ध के बीच महान कार्मिक तनाव। आत्मा आशावाद और अनुशासन को सन्तुलित करने पर काम कर रही है।' } },
+  { pair: { en: 'Sun-Saturn', hi: 'सूर्य-शनि' }, meaning: { en: 'Authority karma. The soul has experienced both power and powerlessness in past lives. This lifetime demands earning authority through sustained effort rather than inheriting or seizing it.', hi: 'अधिकार कर्म। आत्मा ने पूर्वजन्मों में शक्ति और शक्तिहीनता दोनों अनुभव की हैं।' } },
+  { pair: { en: 'Mercury-Jupiter', hi: 'बुध-गुरु' }, meaning: { en: 'The scholar-sage conjunction. Past-life teaching and learning are deeply intertwined. The native has an instinctive ability to translate complex wisdom into accessible knowledge.', hi: 'विद्वान-ऋषि युति। पूर्वजन्म का शिक्षण और अध्ययन गहराई से गुंथे हुए हैं।' } },
+  { pair: { en: 'Rahu-Ketu axis', hi: 'राहु-केतु अक्ष' }, meaning: { en: 'Always opposite by definition, but their D-150 signs reveal the precise axis of karmic evolution. The Rahu Nadi sign shows what the soul hungers for; the Ketu Nadi sign shows what it must release. The element balance between these two signs is the soul\'s central lesson.', hi: 'परिभाषा के अनुसार सदा विपरीत, परन्तु उनकी D-150 राशियाँ कार्मिक विकास की सटीक धुरी प्रकट करती हैं।' } },
+];
 
-  return (
-    <svg viewBox="0 0 300 300" className="w-full max-w-[300px] mx-auto">
-      <defs>
-        <radialGradient id="wheelGlow">
-          <stop offset="0%" stopColor="#d4a853" stopOpacity="0.15" />
-          <stop offset="100%" stopColor="#0a0e27" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <circle cx={cx} cy={cy} r={r + 5} fill="url(#wheelGlow)" />
-      {slices}
-      <circle cx={cx} cy={cy} r={innerR} fill="#0a0e27" stroke="#d4a853" strokeWidth={0.5} opacity={0.5} />
-      <text x={cx} y={cy - 8} textAnchor="middle" fill="#f0d48a" fontSize="11" fontWeight="bold">ARIES</text>
-      <text x={cx} y={cy + 8} textAnchor="middle" fill="#8a8478" fontSize="9">30 of 150</text>
-      <text x={cx} y={cy + 20} textAnchor="middle" fill="#8a8478" fontSize="8">divisions</text>
-    </svg>
-  );
-}
+// ─── FAQ Data ──────────────────────────────────────────────────────────────
+const FAQ: { q: { en: string; hi: string }; a: { en: string; hi: string } }[] = [
+  {
+    q: { en: 'Is D-150 the same as Nadi astrology from palm-leaf manuscripts?', hi: 'क्या D-150 ताड़पत्र पाण्डुलिपियों की नाडी ज्योतिष के समान है?' },
+    a: { en: 'Related but different. Nadi astrology (palm-leaf readings) is a tradition of individual prophecy attributed to ancient sages, preserved on palm leaves in Tamil Nadu. D-150 (Nadi Amsha) is a mathematical divisional chart that shares the same philosophical foundation -- extreme precision in planetary positions. Many modern practitioners consider D-150 the computational formalization of what the Nadi sages perceived intuitively. However, a palm-leaf Nadi reading and a D-150 chart analysis are distinct practices with different methodologies.', hi: 'सम्बन्धित परन्तु भिन्न। नाडी ज्योतिष (ताड़पत्र पठन) प्राचीन ऋषियों को श्रेय दी गई व्यक्तिगत भविष्यवाणी की परम्परा है। D-150 (नाडी अंश) एक गणितीय विभागीय चार्ट है जो समान दार्शनिक आधार साझा करता है।' },
+  },
+  {
+    q: { en: 'My birth time is recorded to the nearest 5 minutes. Can I use D-150?', hi: 'मेरा जन्म समय 5 मिनट तक दर्ज है। क्या मैं D-150 उपयोग कर सकता हूँ?' },
+    a: { en: 'For slow-moving planets (Jupiter, Saturn, Rahu, Ketu), a 5-minute error barely affects D-150 positions -- Saturn\'s Nadi Amsha is stable for about 6.7 hours. For the Moon (which changes Nadi Amsha roughly every 24 minutes), a 5-minute uncertainty means your D-150 Moon could be off by one or two divisions. For the Ascendant, which changes D-150 sign every ~48 seconds of clock time, a 5-minute error makes the D-150 Ascendant unreliable. Use D-150 for slow planets, but treat fast-moving positions with caution unless you rectify first.', hi: 'मन्द गति ग्रहों (गुरु, शनि, राहु, केतु) के लिए, 5 मिनट की त्रुटि D-150 स्थितियों को मुश्किल से प्रभावित करती है। चन्द्रमा के लिए, 5 मिनट की अनिश्चितता का अर्थ है कि D-150 चन्द्र एक-दो विभाजन गलत हो सकता है। लग्न के लिए, 5 मिनट की त्रुटि D-150 लग्न को अविश्वसनीय बनाती है।' },
+  },
+  {
+    q: { en: 'How does D-150 differ from D-60 (Shashtiamsha)?', hi: 'D-150 D-60 (षष्ट्यंश) से कैसे भिन्न है?' },
+    a: { en: 'D-60 divides each sign into 60 parts (0.5 degrees each) and is the finest division mentioned by Parashara in BPHS. It is widely used for karmic analysis and contributes to Vimshopaka Bala. D-150 provides 2.5 times the resolution (0.2 degrees per division) and comes from the Nadi tradition rather than Parashara. D-60 is more established in mainstream practice; D-150 is more specialized but offers unmatched precision for twin differentiation and birth time rectification.', hi: 'D-60 प्रत्येक राशि को 60 भागों (0.5 अंश प्रत्येक) में विभाजित करता है और BPHS में पराशर द्वारा उल्लिखित सूक्ष्मतम विभाजन है। D-150 2.5 गुना अधिक विभेदन प्रदान करता है और नाडी परम्परा से आता है।' },
+  },
+  {
+    q: { en: 'Can D-150 predict specific events?', hi: 'क्या D-150 विशिष्ट घटनाओं की भविष्यवाणी कर सकता है?' },
+    a: { en: 'D-150 is best understood as a karmic fingerprint rather than a predictive tool. It reveals deep soul-level patterns, tendencies, and themes -- not specific events with dates. For timing, traditional methods (Vimshottari Dasha, transits) remain primary. D-150 adds depth to interpretation by showing WHY certain patterns manifest -- the karmic background behind the events D-1 and D-9 describe.', hi: 'D-150 को भविष्यसूचक उपकरण के बजाय कार्मिक फिंगरप्रिंट के रूप में समझना सबसे अच्छा है। यह गहरे आत्मा-स्तर के पैटर्न और विषय प्रकट करता है -- तिथियों सहित विशिष्ट घटनाएँ नहीं।' },
+  },
+  {
+    q: { en: 'Why is D-150 not included in Vimshopaka Bala?', hi: 'D-150 विम्शोपक बल में क्यों शामिल नहीं है?' },
+    a: { en: 'Vimshopaka Bala uses the Shodasha Varga (16 charts) or Shad Varga (6 charts) schemes defined by Parashara. D-150 comes from the Nadi tradition, which developed separately. Some practitioners use D-150 as a supplementary dignity check alongside Vimshopaka -- if a planet is strong in standard Vimshopaka but debilitated in D-150, they note a subtle karmic weakness. This approach bridges the two traditions without modifying the classical framework.', hi: 'विम्शोपक बल पराशर द्वारा परिभाषित षोडश वर्ग (16 चार्ट) या षड् वर्ग (6 चार्ट) योजनाओं का उपयोग करता है। D-150 नाडी परम्परा से आता है, जो अलग से विकसित हुई।' },
+  },
+  {
+    q: { en: 'Should I prioritize D-150 over D-9 (Navamsha)?', hi: 'क्या मुझे D-9 (नवांश) पर D-150 को प्राथमिकता देनी चाहिए?' },
+    a: { en: 'No. D-9 is the single most important divisional chart after D-1 and should always be analyzed first. D-150 is a specialized tool for specific questions (twin analysis, karmic depth, rectification). Think of it this way: D-1 is the novel, D-9 is the themes and moral of the story, D-60 is the author\'s notes, and D-150 is the DNA of the ink used to write it.', hi: 'नहीं। D-9 D-1 के बाद सबसे महत्वपूर्ण विभागीय चार्ट है और हमेशा पहले विश्लेषित किया जाना चाहिए। D-150 विशिष्ट प्रश्नों के लिए एक विशेष उपकरण है।' },
+  },
+];
 
-// ─── Expandable Section ─────────────────────────────────────────────────────
-function ExpandableCard({ title, icon: Icon, color, children }: {
-  title: string; icon: React.ComponentType<{ className?: string }>; color: string; children: React.ReactNode;
-}) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className={`rounded-xl border ${color} overflow-hidden`}>
-      <button
-        onClick={() => setOpen(o => !o)}
-        className="w-full flex items-center gap-3 p-4 text-left hover:bg-gold-primary/5 transition-colors"
-      >
-        <Icon className="w-5 h-5 text-gold-primary shrink-0" />
-        <span className="text-gold-light font-bold text-sm flex-1">{title}</span>
-        <ChevronDown className={`w-4 h-4 text-text-secondary transition-transform ${open ? 'rotate-180' : ''}`} />
-      </button>
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="overflow-hidden"
-          >
-            <div className="px-4 pb-4 space-y-3 text-text-secondary text-sm leading-relaxed">
-              {children}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
+// ─── Labels ────────────────────────────────────────────────────────────────
+const L: Record<string, { en: string; hi: string }> = {
+  back: { en: 'Learn', hi: 'सीखें' },
+  title: { en: 'Nadi Amsha (D-150)', hi: 'नाडी अंश (डी-150)' },
+  subtitle: { en: 'The Finest Divisional Chart in Vedic Astrology', hi: 'वैदिक ज्योतिष का सूक्ष्मतम वर्ग चार्ट' },
+};
 
-// ═══════════════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════════════════
 // MAIN PAGE
-// ═══════════════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════════════════
 
 export default function LearnNadiAmshaPage() {
   const locale = useLocale();
-  const l = (key: string) => t(key, locale);
   const isHi = isDevanagariLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   // Live calculator state
-  const [inputDeg, setInputDeg] = useState('15.4');
+  const [inputDeg, setInputDeg] = useState('45.39375');
   const parsedDeg = parseFloat(inputDeg);
   const isValidDeg = !isNaN(parsedDeg) && parsedDeg >= 0 && parsedDeg < 360;
   const liveResult = isValidDeg ? computeNadiAmsha(parsedDeg) : null;
 
+  // Worked example: Sun at 15 23' 45" Taurus = 30 + 15 + 23/60 + 45/3600 = 45.39583...
+  const workedLong = 45 + 23 / 60 + 45 / 3600; // 45.39583...
+  const workedResult = computeNadiAmsha(workedLong);
+
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10 space-y-8">
+    <div className="max-w-4xl mx-auto px-4 py-10 space-y-2">
+      {/* Back link */}
+      <Link href="/learn" className="inline-flex items-center gap-1.5 text-text-secondary hover:text-gold-light transition-colors text-sm mb-4">
+        <ArrowLeft className="w-4 h-4" />
+        {tl(L.back, locale)}
+      </Link>
+
       {/* ═══ Hero ═══ */}
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center space-y-3">
+      <div className="text-center space-y-3 mb-8">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-primary/10 border border-gold-primary/30 text-gold-primary text-xs uppercase tracking-widest font-bold">
           <Layers className="w-4 h-4" />
           D-150
         </div>
         <h1 className="text-3xl sm:text-4xl font-bold text-gold-light" style={headingFont}>
-          {l('title')}
+          {tl(L.title, locale)}
         </h1>
-        <p className="text-text-secondary text-lg max-w-2xl mx-auto">{l('subtitle')}</p>
-      </motion.div>
+        <p className="text-text-secondary text-lg max-w-2xl mx-auto">{tl(L.subtitle, locale)}</p>
+      </div>
 
-      {/* ═══ Introduction ═══ */}
-      <Section>
-        <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{l('introTitle')}</h2>
-        <p className="text-text-secondary text-sm leading-relaxed">{l('introP1')}</p>
-        <p className="text-text-secondary text-sm leading-relaxed">{l('introP2')}</p>
-        <p className="text-text-secondary text-sm leading-relaxed">{l('introP3')}</p>
+      {/* ═══ Section 1: What is Nadi Amsha? ═══ */}
+      <LessonSection number={1} title={tl({ en: 'What is Nadi Amsha?', hi: 'नाडी अंश क्या है?' }, locale)}>
+        <p>
+          {tl({
+            en: 'Nadi Amsha is the 150th divisional chart (D-150) in Vedic astrology -- the finest subdivision of the zodiac used in classical Jyotish. Each of the 12 signs (30 degrees) is divided into 150 equal parts, making each Nadi Amsha span exactly 0.2 degrees, or 12 arc-minutes. Across the full zodiac, this creates 1,800 unique divisions.',
+            hi: 'नाडी अंश वैदिक ज्योतिष का 150वाँ विभागीय चार्ट (D-150) है -- शास्त्रीय ज्योतिष में राशिचक्र का सूक्ष्मतम विभाजन। प्रत्येक 12 राशियों (30 अंश) को 150 समान भागों में विभाजित किया जाता है, जिससे प्रत्येक नाडी अंश ठीक 0.2 अंश या 12 कला-मिनट का होता है। पूर्ण राशिचक्र में यह 1,800 अद्वितीय विभाजन बनाता है।',
+          }, locale)}
+        </p>
+        <p>
+          {tl({
+            en: 'To understand the progression: D-1 (Rashi chart) shows you the broad canvas of life. D-9 (Navamsha) reveals the soul\'s dharmic purpose. D-60 (Shashtiamsha) captures past-life karma at a medium resolution. D-150 (Nadi Amsha) is the ultimate close-up -- like taking the pulse of the chart at the subtlest possible level. The word "Nadi" itself means pulse or channel, reflecting this diagnostic precision.',
+            hi: 'क्रम को समझने के लिए: D-1 (राशि चार्ट) जीवन का व्यापक कैनवास दिखाता है। D-9 (नवांश) आत्मा के धार्मिक उद्देश्य को प्रकट करता है। D-60 (षष्ट्यंश) मध्यम विभेदन पर पूर्वजन्म कर्म को पकड़ता है। D-150 (नाडी अंश) सूक्ष्मतम स्तर पर चार्ट की नाड़ी लेने जैसा है। "नाडी" शब्द का अर्थ ही नाड़ी या चैनल है।',
+          }, locale)}
+        </p>
+        <p>
+          {tl({
+            en: 'The origin of D-150 lies in the Nadi system of South Indian palm-leaf manuscripts. Traditions like Brighu Nandi Nadi, Dhruva Nadi, and Chandra Kala Nadi describe individual destinies with extraordinary specificity -- predicting names of spouses, number of children, and specific career events. While the exact computational methods of these ancient seers remain debated, D-150 is considered by modern practitioners to be the mathematical formalization of their intuitive precision.',
+            hi: 'D-150 की उत्पत्ति दक्षिण भारतीय ताड़पत्र पाण्डुलिपियों की नाडी प्रणाली में है। भृगु नन्दी नाडी, ध्रुव नाडी, और चन्द्रकला नाडी जैसी परम्पराएँ असाधारण विशिष्टता से व्यक्तिगत भाग्य का वर्णन करती हैं। D-150 को आधुनिक अभ्यासकर्ता उनकी सहज सटीकता का गणितीय औपचारिकीकरण मानते हैं।',
+          }, locale)}
+        </p>
         <div className="grid grid-cols-3 gap-3 pt-2">
           {[
             { label: { en: 'Divisions per sign', hi: 'प्रति राशि विभाजन' }, value: '150' },
@@ -393,57 +255,186 @@ export default function LearnNadiAmshaPage() {
           ].map((item, i) => (
             <div key={i} className="text-center p-3 rounded-xl bg-bg-primary/50 border border-gold-primary/10">
               <div className="text-gold-primary text-xl font-bold font-mono">{item.value}</div>
-              <div className="text-text-tertiary text-xs mt-1">{tl(item.label, locale)}</div>
+              <div className="text-text-secondary text-xs mt-1">{tl(item.label, locale)}</div>
             </div>
           ))}
         </div>
-      </Section>
+      </LessonSection>
 
-      {/* ═══ Calculation Method ═══ */}
-      <Section>
-        <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{l('calcTitle')}</h2>
-        {[
-          { title: l('calcStep1Title'), body: l('calcStep1'), step: 1 },
-          { title: l('calcStep2Title'), body: l('calcStep2'), step: 2 },
-          { title: l('calcStep3Title'), body: l('calcStep3'), step: 3 },
-        ].map((s) => (
-          <div key={s.step} className="flex gap-4 p-4 rounded-xl bg-bg-primary/50 border border-gold-primary/8">
-            <div className="shrink-0 w-8 h-8 rounded-full bg-gold-primary/15 border border-gold-primary/30 flex items-center justify-center text-gold-primary text-sm font-bold">
-              {s.step}
+      <GoldDivider />
+
+      {/* ═══ Section 2: The Mathematics ═══ */}
+      <LessonSection number={2} title={tl({ en: 'The Mathematics', hi: 'गणित' }, locale)} variant="formula">
+        <p>
+          {tl({
+            en: 'The computation of Nadi Amsha is elegant in its simplicity. Given a planet\'s sidereal longitude, the formula involves three steps:',
+            hi: 'नाडी अंश की गणना अपनी सरलता में सुन्दर है। ग्रह के निरयन देशान्तर से, सूत्र में तीन चरण हैं:',
+          }, locale)}
+        </p>
+
+        <div className="bg-bg-primary/80 border border-gold-primary/15 rounded-xl p-4 font-mono text-sm space-y-2">
+          <div className="text-gold-light">
+            {tl({ en: '// Step 1: Find degree within sign', hi: '// चरण 1: राशि के अन्दर अंश ज्ञात करें' }, locale)}
+          </div>
+          <div className="text-text-primary">signIndex = floor(longitude / 30)</div>
+          <div className="text-text-primary">degreeInSign = longitude - (signIndex * 30)</div>
+          <div className="text-gold-light mt-3">
+            {tl({ en: '// Step 2: Compute Nadi number (1-150)', hi: '// चरण 2: नाडी संख्या (1-150) गणना करें' }, locale)}
+          </div>
+          <div className="text-text-primary">nadiNumber = floor(degreeInSign * 5) + 1</div>
+          <div className="text-gold-light mt-3">
+            {tl({ en: '// Step 3: Map to sign (odd signs forward, even reverse)', hi: '// चरण 3: राशि में मैप करें (विषम आगे, सम उल्टा)' }, locale)}
+          </div>
+          <div className="text-text-primary">{'if (oddSign): nadiSign = ((nadiNumber - 1) % 12) + 1'}</div>
+          <div className="text-text-primary">{'if (evenSign): nadiSign = 12 - ((nadiNumber - 1) % 12)'}</div>
+        </div>
+
+        <p className="text-text-secondary text-sm">
+          {tl({
+            en: 'Why 150? Because 150 = 5 x 30 -- each degree of the zodiac contains exactly 5 Nadi divisions, and each nakshatra pada (3\u00b020\' = 3.333\u00b0) contains approximately 16.67 Nadi divisions. The factor of 5 makes the arithmetic clean while providing extreme granularity.',
+            hi: 'क्यों 150? क्योंकि 150 = 5 x 30 -- राशिचक्र के प्रत्येक अंश में ठीक 5 नाडी विभाजन हैं, और प्रत्येक नक्षत्र पाद (3\u00b020\' = 3.333\u00b0) में लगभग 16.67 नाडी विभाजन हैं।',
+          }, locale)}
+        </p>
+
+        {/* Worked Example */}
+        <div className="p-4 rounded-xl bg-gradient-to-r from-gold-primary/8 to-transparent border border-gold-primary/20 mt-4">
+          <div className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-3">
+            {tl({ en: 'Worked Example: Sun at 15\u00b023\'45" of Taurus', hi: 'हल किया हुआ उदाहरण: सूर्य वृषभ में 15\u00b023\'45"' }, locale)}
+          </div>
+          <div className="space-y-2 text-sm">
+            <div className="text-text-secondary">
+              {tl({ en: 'Sidereal longitude = 30\u00b0 (Aries) + 15\u00b023\'45" = 45.39583\u00b0', hi: 'निरयन देशान्तर = 30\u00b0 (मेष) + 15\u00b023\'45" = 45.39583\u00b0' }, locale)}
             </div>
-            <div>
-              <div className="text-gold-light text-sm font-bold mb-1">{s.title}</div>
-              <div className="text-text-secondary text-sm leading-relaxed">{s.body}</div>
+            <div className="text-text-secondary">
+              {tl({ en: 'signIndex = floor(45.396 / 30) = 1 (Taurus, even sign)', hi: 'राशि सूचकांक = floor(45.396 / 30) = 1 (वृषभ, सम राशि)' }, locale)}
+            </div>
+            <div className="text-text-secondary">
+              {tl({ en: 'degreeInSign = 45.396 - 30 = 15.396\u00b0', hi: 'राशि में अंश = 45.396 - 30 = 15.396\u00b0' }, locale)}
+            </div>
+            <div className="text-text-secondary">
+              {tl({ en: 'nadiNumber = floor(15.396 * 5) + 1 = floor(76.98) + 1 = 77 + 1 = 78', hi: 'नाडी संख्या = floor(15.396 * 5) + 1 = floor(76.98) + 1 = 77 + 1 = 78' }, locale)}
+            </div>
+            <div className="text-text-secondary">
+              {tl({ en: 'Taurus is even, so reverse: nadiSign = 12 - ((78-1) % 12) = 12 - 5 = 7 (Libra)', hi: 'वृषभ सम है, अतः उल्टा: नाडी राशि = 12 - ((78-1) % 12) = 12 - 5 = 7 (तुला)' }, locale)}
             </div>
           </div>
-        ))}
-      </Section>
-
-      {/* ═══ Worked Example ═══ */}
-      <Section>
-        <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{l('workedTitle')}</h2>
-        <div className="p-4 rounded-xl bg-gradient-to-r from-gold-primary/8 to-transparent border border-gold-primary/20">
-          <div className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-3">{l('workedDesc')}</div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
             {[
-              { label: { en: 'Sign', hi: 'राशि' }, value: tl(SIGN_NAMES[WORKED.signIndex], locale) },
-              { label: { en: 'Degree in sign', hi: 'राशि में अंश' }, value: `${WORKED.degreeInSign.toFixed(1)}\u00b0` },
-              { label: { en: 'Nadi Amsha #', hi: 'नाडी अंश #' }, value: `${WORKED.nadiAmshaNumber}` },
-              { label: { en: 'Nadi Sign', hi: 'नाडी राशि' }, value: tl(SIGN_NAMES[WORKED.nadiSign - 1], locale) },
+              { label: { en: 'Sign', hi: 'राशि' }, value: tl(SIGN_NAMES[workedResult.signIndex], locale) },
+              { label: { en: 'Degree in sign', hi: 'राशि में अंश' }, value: `${workedResult.degreeInSign.toFixed(2)}\u00b0` },
+              { label: { en: 'Nadi #', hi: 'नाडी #' }, value: `${workedResult.nadiAmshaNumber}` },
+              { label: { en: 'Nadi Sign', hi: 'नाडी राशि' }, value: tl(SIGN_NAMES[workedResult.nadiSign - 1], locale) },
             ].map((item, i) => (
               <div key={i} className="text-center p-3 rounded-lg bg-bg-primary/60 border border-gold-primary/10">
                 <div className="text-gold-light text-lg font-bold font-mono">{item.value}</div>
-                <div className="text-text-tertiary text-xs mt-1">{tl(item.label, locale)}</div>
+                <div className="text-text-secondary text-xs mt-1">{tl(item.label, locale)}</div>
               </div>
             ))}
           </div>
         </div>
-      </Section>
+      </LessonSection>
 
-      {/* ═══ Aries Table ═══ */}
-      <Section>
-        <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{l('tableTitle')}</h2>
+      <GoldDivider />
+
+      {/* ═══ Section 3: Nadi Amsha vs Other Vargas ═══ */}
+      <LessonSection number={3} title={tl({ en: 'Nadi Amsha vs Other Vargas', hi: 'नाडी अंश बनाम अन्य वर्ग' }, locale)}>
+        <p>
+          {tl({
+            en: 'If D-1 is a satellite photo of a city, D-9 is a neighborhood map, D-60 is a street-level view, and D-150 is a fingerprint scan of one person. Each level of magnification reveals details invisible at coarser resolutions:',
+            hi: 'यदि D-1 शहर की उपग्रह तस्वीर है, D-9 मोहल्ले का नक्शा है, D-60 सड़क-स्तर का दृश्य है, तो D-150 एक व्यक्ति का फिंगरप्रिंट स्कैन है।',
+          }, locale)}
+        </p>
         <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-gold-primary/20">
+                {[
+                  tl({ en: 'Varga', hi: 'वर्ग' }, locale),
+                  tl({ en: 'Name', hi: 'नाम' }, locale),
+                  tl({ en: 'Span', hi: 'विस्तार' }, locale),
+                  tl({ en: 'Primary Use', hi: 'मुख्य उपयोग' }, locale),
+                ].map((h) => (
+                  <th key={h} className="text-left text-gold-dark text-xs uppercase tracking-widest py-2 px-3">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {COMPARISON_DATA.map((row) => (
+                <tr key={row.varga} className={`border-b border-gold-primary/6 ${row.varga === 'D-150' ? 'bg-gold-primary/8' : ''}`}>
+                  <td className="py-2 px-3 text-gold-primary font-bold font-mono">{row.varga}</td>
+                  <td className="py-2 px-3 text-text-primary">{tl(row.name, locale)}</td>
+                  <td className="py-2 px-3 text-text-secondary font-mono">{row.span}</td>
+                  <td className="py-2 px-3 text-text-secondary text-xs">{tl(row.use, locale)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-text-secondary text-sm">
+          {tl({
+            en: 'D-150 matters most in three scenarios: twin studies (where coarser charts show identical placements), birth time rectification (where the extreme sensitivity acts as a diagnostic tool), and advanced karmic analysis (where D-9 and D-60 show ambiguous patterns that D-150 can resolve).',
+            hi: 'D-150 तीन परिदृश्यों में सबसे अधिक महत्वपूर्ण है: जुड़वाँ अध्ययन, जन्म समय शोधन, और उन्नत कार्मिक विश्लेषण जहाँ D-9 और D-60 अस्पष्ट पैटर्न दिखाते हैं।',
+          }, locale)}
+        </p>
+      </LessonSection>
+
+      <GoldDivider />
+
+      {/* ═══ Section 4: Birth Time Sensitivity ═══ */}
+      <LessonSection number={4} title={tl({ en: 'Birth Time Sensitivity', hi: 'जन्म समय संवेदनशीलता' }, locale)} variant="highlight">
+        <p>
+          {tl({
+            en: 'The extreme precision of D-150 is both its strength and its limitation. Here is how quickly each divisional chart\'s Ascendant changes sign:',
+            hi: 'D-150 की अत्यधिक सटीकता उसकी शक्ति भी है और सीमा भी। यहाँ बताया गया है कि प्रत्येक विभागीय चार्ट का लग्न कितनी जल्दी राशि बदलता है:',
+          }, locale)}
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {[
+            { varga: 'D-1', time: { en: '~2 hours', hi: '~2 घण्टे' }, color: 'text-emerald-400' },
+            { varga: 'D-9', time: { en: '~13 minutes', hi: '~13 मिनट' }, color: 'text-cyan-400' },
+            { varga: 'D-60', time: { en: '~2 minutes', hi: '~2 मिनट' }, color: 'text-amber-400' },
+            { varga: 'D-150', time: { en: '~48 seconds', hi: '~48 सेकण्ड' }, color: 'text-red-400' },
+          ].map((item) => (
+            <div key={item.varga} className="text-center p-3 rounded-xl bg-bg-primary/50 border border-gold-primary/10">
+              <div className="text-gold-primary text-sm font-bold font-mono">{item.varga}</div>
+              <div className={`${item.color} text-lg font-bold mt-1`}>{tl(item.time, locale)}</div>
+            </div>
+          ))}
+        </div>
+        <p>
+          {tl({
+            en: 'The D-150 Ascendant changes sign every approximately 48 seconds of clock time. This means a birth time must be accurate to plus or minus 1 minute for the D-150 Ascendant to be reliable. Hospital-recorded times, which are typically rounded to the nearest 5-minute interval, make the D-150 Ascendant unreliable -- though slow planets (Saturn, Jupiter, Rahu, Ketu) are barely affected because they move fractions of a degree per day.',
+            hi: 'D-150 लग्न लगभग प्रत्येक 48 सेकण्ड पर राशि बदलता है। इसका अर्थ है कि D-150 लग्न विश्वसनीय होने के लिए जन्म समय +/- 1 मिनट तक सटीक होना चाहिए। अस्पताल में दर्ज समय, जो आमतौर पर 5-मिनट तक पूर्णांकित होता है, D-150 लग्न को अविश्वसनीय बनाता है।',
+          }, locale)}
+        </p>
+        <p>
+          {tl({
+            en: 'This is precisely why Nadi readers in South India traditionally ask for the exact birth second. Rectification techniques -- using known life events to verify and adjust the birth time -- become essential for serious D-150 work. The process involves checking whether major life events (marriage, children, career changes) align with the karmic themes indicated by the D-150 positions at a proposed birth time.',
+            hi: 'यही कारण है कि दक्षिण भारत में नाडी पाठक परम्परागत रूप से जन्म का सटीक सेकण्ड पूछते हैं। शोधन तकनीकें -- ज्ञात जीवन घटनाओं का उपयोग करके जन्म समय की जाँच और समायोजन -- गम्भीर D-150 कार्य के लिए आवश्यक हो जाती हैं।',
+          }, locale)}
+        </p>
+      </LessonSection>
+
+      <GoldDivider />
+
+      {/* ═══ Section 5: The 150 Nadi Divisions -- Structure ═══ */}
+      <LessonSection number={5} title={tl({ en: 'The 150 Nadi Divisions -- Structure', hi: '150 नाडी विभाजन -- संरचना' }, locale)}>
+        <p>
+          {tl({
+            en: 'Each sign contains 150 Nadis numbered 1 through 150. These 150 map cyclically to the 12 signs: Nadi 1 maps to Aries (for odd signs) or Pisces (for even signs), Nadi 2 to the next sign, and so on. The pattern repeats 12 full times (12 x 12 = 144) with 6 remaining divisions, creating 12.5 complete cycles within each sign.',
+            hi: 'प्रत्येक राशि में 1 से 150 तक संख्यांकित 150 नाडी होती हैं। ये 150 चक्रीय रूप से 12 राशियों में मैप होती हैं: नाडी 1 मेष (विषम राशियों के लिए) या मीन (सम राशियों के लिए) में, नाडी 2 अगली राशि में, इत्यादि। पैटर्न 12 पूर्ण बार दोहराता है।',
+          }, locale)}
+        </p>
+        <p>
+          {tl({
+            en: 'The direction of cycling is crucial and follows Parashara\'s varga rule: odd signs (Aries, Gemini, Leo, Libra, Sagittarius, Aquarius) count forward from Aries to Pisces. Even signs (Taurus, Cancer, Virgo, Scorpio, Capricorn, Pisces) count backward from Pisces to Aries. This alternating pattern ensures that each Nadi Amsha is unique across the zodiac.',
+            hi: 'चक्रीय दिशा महत्वपूर्ण है और पराशर के वर्ग नियम का पालन करती है: विषम राशियाँ मेष से मीन तक आगे गिनती हैं। सम राशियाँ मीन से मेष तक पीछे गिनती हैं।',
+          }, locale)}
+        </p>
+
+        {/* First 12 Nadi table */}
+        <div className="overflow-x-auto mt-4">
+          <div className="text-gold-light text-sm font-bold mb-2">{tl({ en: 'First 12 Nadi Divisions of Aries (Odd Sign, Forward Cycle)', hi: 'मेष की प्रथम 12 नाडी विभाजन (विषम राशि, आगे का चक्र)' }, locale)}</div>
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gold-primary/20">
@@ -463,125 +454,279 @@ export default function LearnNadiAmshaPage() {
             </tbody>
           </table>
         </div>
-        <p className="text-text-tertiary text-xs italic">
-          {tl({ en: 'Note the forward cycle Aries \u2192 Pisces for odd signs. Even signs (Taurus, Cancer...) reverse: Pisces \u2192 Aries.', hi: 'ध्यान दें विषम राशियों के लिए आगे का चक्र मेष \u2192 मीन। सम राशियाँ (वृषभ, कर्क...) उलटा: मीन \u2192 मेष।' }, locale)}
+        <p className="text-text-secondary text-xs italic">
+          {tl({
+            en: 'Note the forward cycle Aries, Taurus, Gemini... for Aries (odd sign). For Taurus (even sign), the same 12 divisions would run Pisces, Aquarius, Capricorn... in reverse.',
+            hi: 'ध्यान दें मेष (विषम राशि) के लिए आगे का चक्र। वृषभ (सम राशि) के लिए, वही 12 विभाजन मीन, कुम्भ, मकर... उल्टे क्रम में चलेंगे।',
+          }, locale)}
         </p>
-      </Section>
+      </LessonSection>
 
-      {/* ═══ Significance ═══ */}
-      <Section>
-        <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{l('significanceTitle')}</h2>
+      <GoldDivider />
+
+      {/* ═══ Section 6: How to Read Nadi Amsha Positions ═══ */}
+      <LessonSection number={6} title={tl({ en: 'How to Read Nadi Amsha Positions', hi: 'नाडी अंश स्थितियाँ कैसे पढ़ें' }, locale)}>
+        <p>
+          {tl({
+            en: 'Reading D-150 positions follows a systematic five-step process that builds from individual placements to pattern recognition:',
+            hi: 'D-150 स्थितियाँ पढ़ना एक व्यवस्थित पाँच-चरणीय प्रक्रिया का अनुसरण करता है:',
+          }, locale)}
+        </p>
         <div className="space-y-3">
-          <ExpandableCard title={l('sigTwin')} icon={Crosshair} color="border-cyan-500/20">
-            <p>{l('sigTwinDesc')}</p>
-          </ExpandableCard>
-          <ExpandableCard title={l('sigKarma')} icon={Layers} color="border-violet-500/20">
-            <p>{l('sigKarmaDesc')}</p>
-          </ExpandableCard>
-          <ExpandableCard title={l('sigNaadi')} icon={BookOpen} color="border-amber-500/20">
-            <p>{l('sigNaadiDesc')}</p>
-          </ExpandableCard>
-          <ExpandableCard title={l('sigVsD60')} icon={Scale} color="border-emerald-500/20">
-            <p>{l('sigVsD60Desc')}</p>
-          </ExpandableCard>
-        </div>
-      </Section>
-
-      {/* ═══ Interpretation Principles ═══ */}
-      <Section>
-        <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{l('interpTitle')}</h2>
-        <div className="space-y-4">
           {[
-            { t: l('interpDignity'), d: l('interpDignityDesc'), color: 'border-l-amber-500' },
-            { t: l('interpWhen'), d: l('interpWhenDesc'), color: 'border-l-cyan-500' },
-            { t: l('interpVimshopaka'), d: l('interpVimshopakaDesc'), color: 'border-l-violet-500' },
-          ].map((item, i) => (
-            <div key={i} className={`pl-4 border-l-2 ${item.color} space-y-1`}>
-              <h3 className="text-gold-light text-sm font-bold">{item.t}</h3>
-              <p className="text-text-secondary text-sm leading-relaxed">{item.d}</p>
+            {
+              step: 1,
+              title: { en: 'Note the planet\'s D-150 sign', hi: 'ग्रह की D-150 राशि नोट करें' },
+              desc: { en: 'Compute using the formula above. This sign represents the karmic domain where the planet operates at the subtlest level.', hi: 'ऊपर के सूत्र का उपयोग करके गणना करें। यह राशि उस कार्मिक क्षेत्र का प्रतिनिधित्व करती है जहाँ ग्रह सूक्ष्मतम स्तर पर कार्य करता है।' },
+            },
+            {
+              step: 2,
+              title: { en: 'Compare with D-1 sign', hi: 'D-1 राशि से तुलना करें' },
+              desc: { en: 'Same sign = reinforced themes (the visible personality matches the karmic blueprint). Different sign = karmic tension (the soul\'s deep pattern differs from its surface expression, creating an inner complexity others may not see).', hi: 'समान राशि = प्रबलित विषय। भिन्न राशि = कार्मिक तनाव (आत्मा का गहरा पैटर्न सतही अभिव्यक्ति से भिन्न है)।' },
+            },
+            {
+              step: 3,
+              title: { en: 'Check the D-150 sign\'s lord', hi: 'D-150 राशि के स्वामी की जाँच करें' },
+              desc: { en: 'The lord of the Nadi sign becomes a hidden karmic ruler for that planet. If Mars is in Pisces Nadi, Jupiter (lord of Pisces) becomes Mars\'s hidden karmic controller -- action guided by wisdom and faith at the deepest level.', hi: 'नाडी राशि का स्वामी उस ग्रह का छिपा कार्मिक शासक बन जाता है।' },
+            },
+            {
+              step: 4,
+              title: { en: 'Look for D-150 conjunctions', hi: 'D-150 युतियाँ देखें' },
+              desc: { en: 'Multiple planets in the same Nadi sign create karmic bonds between their themes. Even if they are in different D-1 signs, sharing a D-150 sign means their karmic stories are intertwined.', hi: 'एक ही नाडी राशि में अनेक ग्रह उनके विषयों के बीच कार्मिक बन्धन बनाते हैं।' },
+            },
+            {
+              step: 5,
+              title: { en: 'Check element balance', hi: 'तत्व सन्तुलन जाँचें' },
+              desc: { en: 'Count how many D-150 positions fall in fire, earth, air, and water signs. The dominant element reveals the soul\'s primary karmic learning arena (see Section 8 below).', hi: 'गिनें कि कितनी D-150 स्थितियाँ अग्नि, पृथ्वी, वायु और जल राशियों में हैं। प्रमुख तत्व आत्मा का प्राथमिक कार्मिक शिक्षा क्षेत्र प्रकट करता है।' },
+            },
+          ].map((item) => (
+            <div key={item.step} className="flex gap-4 p-4 rounded-xl bg-bg-primary/50 border border-gold-primary/8">
+              <div className="shrink-0 w-8 h-8 rounded-full bg-gold-primary/15 border border-gold-primary/30 flex items-center justify-center text-gold-primary text-sm font-bold">
+                {item.step}
+              </div>
+              <div>
+                <div className="text-gold-light text-sm font-bold mb-1">{tl(item.title, locale)}</div>
+                <div className="text-text-secondary text-sm leading-relaxed">{tl(item.desc, locale)}</div>
+              </div>
             </div>
           ))}
         </div>
-      </Section>
 
-      {/* ═══ Classical References ═══ */}
-      <Section>
-        <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{l('classicalTitle')}</h2>
+        {/* Worked reading example */}
+        <div className="p-4 rounded-xl bg-gradient-to-r from-violet-500/8 to-transparent border border-violet-500/20 mt-4">
+          <div className="text-violet-300 text-xs uppercase tracking-widest font-bold mb-2">
+            {tl({ en: 'Example Reading', hi: 'उदाहरण पठन' }, locale)}
+          </div>
+          <p className="text-text-secondary text-sm leading-relaxed">
+            {tl({
+              en: 'Moon at 12\u00b015\'30" in Cancer (D-1 sign = Cancer). Nadi computation: degreeInSign = 12.258\u00b0, nadiNumber = floor(12.258 * 5) + 1 = 62. Cancer is even, so nadiSign = 12 - ((62-1) % 12) = 12 - 1 = 11 = Aquarius. Reading: The Moon\'s emotional core (Cancer in D-1) is karmically wired for community service and humanitarian ideals (Aquarius in D-150). Saturn (lord of Aquarius) becomes the hidden karmic ruler of emotions -- discipline and detachment underpin what appears to be pure nurturing.',
+              hi: 'चन्द्रमा कर्क में 12\u00b015\'30" (D-1 राशि = कर्क)। नाडी गणना: राशि में अंश = 12.258\u00b0, नाडी संख्या = 62। कर्क सम है, अतः नाडी राशि = 11 = कुम्भ। पठन: चन्द्रमा का भावनात्मक मूल (D-1 में कर्क) कार्मिक रूप से सामुदायिक सेवा और मानवतावादी आदर्शों (D-150 में कुम्भ) से जुड़ा है।',
+            }, locale)}
+          </p>
+        </div>
+      </LessonSection>
+
+      <GoldDivider />
+
+      {/* ═══ Section 7: Planet-by-Planet Karmic Themes ═══ */}
+      <LessonSection number={7} title={tl({ en: 'Planet-by-Planet Karmic Themes in D-150', hi: 'D-150 में ग्रह-दर-ग्रह कार्मिक विषय' }, locale)} variant="highlight">
+        <p>
+          {tl({
+            en: 'Each planet\'s D-150 placement reveals a specific dimension of past-life karma. While the D-1 placement shows how the planet operates in this life, the D-150 placement shows why -- the karmic backstory:',
+            hi: 'प्रत्येक ग्रह की D-150 स्थिति पूर्वजन्म कर्म का एक विशिष्ट आयाम प्रकट करती है। जबकि D-1 स्थिति दिखाती है कि ग्रह इस जन्म में कैसे कार्य करता है, D-150 दिखाता है क्यों:',
+          }, locale)}
+        </p>
+        <div className="space-y-4">
+          {PLANET_KARMIC.map((item, i) => (
+            <div key={i} className="p-4 rounded-xl bg-bg-primary/50 border border-gold-primary/8">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-7 h-7 rounded-full bg-gold-primary/15 border border-gold-primary/30 flex items-center justify-center text-gold-primary text-xs font-bold shrink-0">
+                  {i < 9 ? i : 'L'}
+                </span>
+                <h4 className="text-gold-light font-bold text-sm">{tl(item.planet, locale)}</h4>
+              </div>
+              <p className="text-text-secondary text-sm leading-relaxed">{tl(item.theme, locale)}</p>
+            </div>
+          ))}
+        </div>
+      </LessonSection>
+
+      <GoldDivider />
+
+      {/* ═══ Section 8: Element Analysis in D-150 ═══ */}
+      <LessonSection number={8} title={tl({ en: 'Element Analysis in D-150', hi: 'D-150 में तत्व विश्लेषण' }, locale)}>
+        <p>
+          {tl({
+            en: 'After computing D-150 positions for all planets and the Ascendant, count how many fall in each element. The dominant element reveals the soul\'s primary arena of karmic learning:',
+            hi: 'सभी ग्रहों और लग्न के लिए D-150 स्थितियाँ गणना करने के बाद, गिनें कि प्रत्येक तत्व में कितने हैं। प्रमुख तत्व आत्मा के कार्मिक शिक्षा का प्राथमिक क्षेत्र प्रकट करता है:',
+          }, locale)}
+        </p>
+        <div className="space-y-3">
+          {ELEMENT_DATA.map((elem, i) => (
+            <div key={i} className={`p-4 rounded-xl border ${elem.color} bg-bg-primary/40`}>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-gold-light font-bold text-sm">{tl(elem.element, locale)}</span>
+                <span className="text-text-secondary text-xs">({tl(elem.signs, locale)})</span>
+              </div>
+              <p className="text-text-secondary text-sm leading-relaxed">{tl(elem.theme, locale)}</p>
+            </div>
+          ))}
+        </div>
+        <p className="text-text-secondary text-sm mt-2">
+          {tl({
+            en: 'A mixed elemental distribution (no single element dominant) indicates the soul is working on multiple karmic fronts simultaneously -- a complex, multi-threaded incarnation with diverse lessons to learn.',
+            hi: 'मिश्रित तात्विक वितरण (कोई एकल तत्व प्रमुख नहीं) इंगित करता है कि आत्मा एक साथ अनेक कार्मिक मोर्चों पर काम कर रही है -- विविध पाठों वाला एक जटिल अवतार।',
+          }, locale)}
+        </p>
+      </LessonSection>
+
+      <GoldDivider />
+
+      {/* ═══ Section 9: D-150 Conjunctions (Karmic Bonds) ═══ */}
+      <LessonSection number={9} title={tl({ en: 'D-150 Conjunctions (Karmic Bonds)', hi: 'D-150 युतियाँ (कार्मिक बन्धन)' }, locale)}>
+        <p>
+          {tl({
+            en: 'When two planets share the same D-150 sign, their karmic themes are intertwined at the deepest level. This is a D-150 conjunction -- even if the planets are in completely different signs in D-1. A D-150 conjunction means the soul has woven these two planetary energies together across lifetimes:',
+            hi: 'जब दो ग्रह एक ही D-150 राशि साझा करते हैं, तो उनके कार्मिक विषय गहनतम स्तर पर आपस में गुंथे होते हैं। यह D-150 युति है -- भले ही ग्रह D-1 में पूर्णतः भिन्न राशियों में हों:',
+          }, locale)}
+        </p>
+        <div className="space-y-3">
+          {CONJUNCTION_PAIRS.map((item, i) => (
+            <div key={i} className="pl-4 border-l-2 border-l-gold-primary/30 space-y-1">
+              <h4 className="text-gold-light text-sm font-bold">{tl(item.pair, locale)}</h4>
+              <p className="text-text-secondary text-sm leading-relaxed">{tl(item.meaning, locale)}</p>
+            </div>
+          ))}
+        </div>
+      </LessonSection>
+
+      <GoldDivider />
+
+      {/* ═══ Section 10: Nadi Astrology Traditions ═══ */}
+      <LessonSection number={10} title={tl({ en: 'Nadi Astrology Traditions', hi: 'नाडी ज्योतिष परम्पराएँ' }, locale)}>
+        <p>
+          {tl({
+            en: 'The D-150 chart sits within a broader ecosystem of Nadi astrology traditions, primarily from South India. Understanding these traditions provides context for why D-150 matters:',
+            hi: 'D-150 चार्ट नाडी ज्योतिष परम्पराओं के व्यापक पारिस्थितिकी तन्त्र में स्थित है, मुख्य रूप से दक्षिण भारत से:',
+          }, locale)}
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
-            { t: l('classicalTajika'), d: l('classicalTajikaDesc'), icon: BookOpen },
-            { t: l('classicalNadi'), d: l('classicalNadiDesc'), icon: BookOpen },
+            {
+              name: { en: 'Brighu Nandi Nadi', hi: 'भृगु नन्दी नाडी' },
+              desc: { en: 'One of the oldest Nadi traditions, attributed to Sage Brighu (the father of Shukracharya). It correlates sub-degree planetary positions with specific life events -- names of family members, career changes, and health conditions. The BNN system specifically uses planet-in-sign combinations at extreme precision, making D-150 its natural mathematical analog.', hi: 'सबसे प्राचीन नाडी परम्पराओं में से एक, ऋषि भृगु (शुक्राचार्य के पिता) को श्रेय। यह उप-अंश ग्रह स्थितियों को विशिष्ट जीवन घटनाओं से सम्बन्धित करती है।' },
+            },
+            {
+              name: { en: 'Dhruva Nadi', hi: 'ध्रुव नाडी' },
+              desc: { en: 'Focuses on the timing of events rather than their nature. Uses planetary positions at extreme precision to determine when major life transitions will occur. The Dhruva system is particularly strong for predicting marriage timing, career shifts, and health crises.', hi: 'घटनाओं की प्रकृति के बजाय उनके समय पर केन्द्रित है। प्रमुख जीवन परिवर्तनों का समय निर्धारित करने के लिए अत्यधिक सटीक ग्रह स्थितियों का उपयोग करती है।' },
+            },
+            {
+              name: { en: 'Chandra Kala Nadi', hi: 'चन्द्रकला नाडी' },
+              desc: { en: 'Attributed to Sage Achyuta, this tradition uses the Moon\'s position as the primary reference point. The Moon\'s nakshatra pada and sub-degree position determine the reading. D-150 of the Moon is particularly significant in this system, as the Chandra Kala Nadi essentially reads the Moon\'s karmic fingerprint.', hi: 'ऋषि अच्युत को श्रेय, यह परम्परा चन्द्रमा की स्थिति को प्राथमिक सन्दर्भ बिन्दु के रूप में उपयोग करती है। D-150 में चन्द्रमा इस प्रणाली में विशेष रूप से महत्वपूर्ण है।' },
+            },
+            {
+              name: { en: 'Palm-Leaf Libraries', hi: 'ताड़पत्र पुस्तकालय' },
+              desc: { en: 'Physical collections of palm-leaf manuscripts exist in Vaitheeswaran Koil, Thanjavur, and other locations in Tamil Nadu. Seekers visit these libraries, provide their thumb impression, and a reader locates their specific leaf. The academic debate about authenticity continues, but the tradition\'s precision in matching life details remains remarkable regardless of one\'s position on origins.', hi: 'ताड़पत्र पाण्डुलिपियों के भौतिक संग्रह वैथीश्वरन कोइल, तंजावूर और तमिलनाडु के अन्य स्थानों में मौजूद हैं। प्रामाणिकता पर शैक्षिक बहस जारी है, परन्तु जीवन विवरणों के मिलान में परम्परा की सटीकता उल्लेखनीय है।' },
+            },
           ].map((item, i) => (
             <div key={i} className="p-4 rounded-xl bg-bg-primary/50 border border-gold-primary/10 space-y-2">
-              <div className="flex items-center gap-2">
-                <item.icon className="w-4 h-4 text-gold-primary" />
-                <h3 className="text-gold-light text-sm font-bold">{item.t}</h3>
-              </div>
-              <p className="text-text-secondary text-xs leading-relaxed">{item.d}</p>
+              <h4 className="text-gold-light text-sm font-bold">{tl(item.name, locale)}</h4>
+              <p className="text-text-secondary text-xs leading-relaxed">{tl(item.desc, locale)}</p>
             </div>
           ))}
         </div>
-      </Section>
+      </LessonSection>
 
-      {/* ═══ Modern Research ═══ */}
-      <Section>
-        <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{l('modernTitle')}</h2>
-        <div className="space-y-3">
-          <ExpandableCard title={l('modernRectification')} icon={Clock} color="border-cyan-500/20">
-            <p>{l('modernRectificationDesc')}</p>
-          </ExpandableCard>
-          <ExpandableCard title={l('modernComputational')} icon={FlaskConical} color="border-orange-500/20">
-            <p>{l('modernComputationalDesc')}</p>
-          </ExpandableCard>
-          <ExpandableCard title={l('modernStatistical')} icon={Scale} color="border-emerald-500/20">
-            <p>{l('modernStatisticalDesc')}</p>
-          </ExpandableCard>
+      <GoldDivider />
+
+      {/* ═══ Section 11: Practical Applications ═══ */}
+      <LessonSection number={11} title={tl({ en: 'Practical Applications', hi: 'व्यावहारिक अनुप्रयोग' }, locale)}>
+        <div className="space-y-4">
+          {[
+            {
+              title: { en: 'Twin Differentiation', hi: 'जुड़वाँ विभेदन' },
+              desc: { en: 'D-150 is the ONLY chart that reliably distinguishes twins born minutes apart. Standard charts (D-1 through D-9) often show identical placements for twins born within 10-15 minutes. D-150, with its 48-second sensitivity, captures the subtle differences that explain why twins with "identical" charts often have markedly different temperaments, careers, and life trajectories.', hi: 'D-150 एकमात्र चार्ट है जो मिनटों के अन्तर से जन्मे जुड़वाँ बच्चों को विश्वसनीय रूप से अलग करता है।' },
+              color: 'border-l-cyan-500',
+            },
+            {
+              title: { en: 'Birth Time Rectification', hi: 'जन्म समय शोधन' },
+              desc: { en: 'Because D-150 changes so rapidly, it provides the most sensitive test for birth time accuracy. Practitioners check whether the D-150 positions at a proposed time align with the person\'s known life themes. If shifting the birth time by 30 seconds produces a D-150 Ascendant that better matches the person\'s karmic patterns, the rectified time is preferred.', hi: 'चूँकि D-150 इतनी तीव्रता से बदलता है, यह जन्म समय सटीकता के लिए सबसे संवेदनशील परीक्षण प्रदान करता है।' },
+              color: 'border-l-amber-500',
+            },
+            {
+              title: { en: 'Karmic Counseling', hi: 'कार्मिक परामर्श' },
+              desc: { en: 'Understanding past-life patterns helps make better choices in the present. If Saturn\'s D-150 placement indicates karmic debts around family nurturing (Saturn in Cancer Nadi), a counselor can guide the person toward consciously developing those qualities rather than unconsciously repeating old avoidance patterns.', hi: 'पूर्वजन्म के पैटर्न समझना वर्तमान में बेहतर निर्णय लेने में सहायता करता है।' },
+              color: 'border-l-violet-500',
+            },
+            {
+              title: { en: 'Relationship Analysis', hi: 'सम्बन्ध विश्लेषण' },
+              desc: { en: 'Comparing D-150 positions between partners reveals karmic bonds that transcend the current lifetime. If two people share the same D-150 sign for Venus, their love karma is deeply intertwined -- they have likely been romantic partners before. Conversely, opposing D-150 signs for Saturn can indicate karmic debts that must be resolved through the relationship.', hi: 'साथियों के बीच D-150 स्थितियों की तुलना कार्मिक बन्धनों को प्रकट करती है जो वर्तमान जन्म से परे हैं।' },
+              color: 'border-l-rose-500',
+            },
+            {
+              title: { en: 'Spiritual Guidance', hi: 'आध्यात्मिक मार्गदर्शन' },
+              desc: { en: 'D-150 shows which spiritual practice suits your soul at the deepest level. Jupiter\'s Nadi sign reveals the wisdom tradition the soul resonates with. Ketu\'s Nadi sign shows past-life spiritual mastery. Together, they paint a picture of the soul\'s spiritual journey across incarnations.', hi: 'D-150 दिखाता है कि कौन सा आध्यात्मिक अभ्यास गहनतम स्तर पर आपकी आत्मा के अनुकूल है।' },
+              color: 'border-l-emerald-500',
+            },
+          ].map((item, i) => (
+            <div key={i} className={`pl-4 border-l-2 ${item.color} space-y-1`}>
+              <h4 className="text-gold-light text-sm font-bold">{tl(item.title, locale)}</h4>
+              <p className="text-text-secondary text-sm leading-relaxed">{tl(item.desc, locale)}</p>
+            </div>
+          ))}
         </div>
-      </Section>
+      </LessonSection>
 
-      {/* ═══ Comparison Table ═══ */}
-      <Section>
-        <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{l('comparisonTitle')}</h2>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-gold-primary/20">
-                {['Varga', 'Name', 'Span', 'Parts', 'Primary Use'].map((h) => (
-                  <th key={h} className="text-left text-gold-dark text-xs uppercase tracking-widest py-2 px-3">{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {COMPARISON_DATA.map((row) => (
-                <tr key={row.varga} className={`border-b border-gold-primary/6 ${row.varga === 'D-150' ? 'bg-gold-primary/8' : ''}`}>
-                  <td className="py-2 px-3 text-gold-primary font-bold font-mono">{row.varga}</td>
-                  <td className="py-2 px-3 text-text-primary">{row.name}</td>
-                  <td className="py-2 px-3 text-text-secondary font-mono">{row.span}</td>
-                  <td className="py-2 px-3 text-text-secondary font-mono">{row.parts}</td>
-                  <td className="py-2 px-3 text-text-secondary text-xs">{row.use}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <GoldDivider />
+
+      {/* ═══ Section 12: Common Misconceptions ═══ */}
+      <LessonSection number={12} title={tl({ en: 'Common Misconceptions', hi: 'आम भ्रांतियाँ' }, locale)}>
+        <div className="space-y-4">
+          {[
+            {
+              myth: { en: '"D-150 is too fine to be useful"', hi: '"D-150 इतना सूक्ष्म है कि उपयोगी नहीं"' },
+              truth: { en: 'Wrong. It is the MOST useful chart for karmic analysis, twin differentiation, and birth time rectification. Its fine resolution is not a weakness -- it is the entire point. Just as a microscope is not "too powerful" for biology, D-150 is not "too fine" for karmic astrology.', hi: 'गलत। यह कार्मिक विश्लेषण, जुड़वाँ विभेदन और जन्म समय शोधन के लिए सबसे उपयोगी चार्ट है।' },
+            },
+            {
+              myth: { en: '"You need the exact birth second"', hi: '"आपको सटीक जन्म सेकण्ड चाहिए"' },
+              truth: { en: 'Not entirely. For slow planets like Saturn (D-150 stable for ~6.7 hours), Jupiter (~2.4 hours), and Rahu/Ketu (~9.3 hours), even a 5-minute birth time uncertainty is negligible. Only the Ascendant and Moon require second-level accuracy. A practical approach: use D-150 of slow planets with confidence, and treat fast-body positions as tentative until rectified.', hi: 'पूर्णतः नहीं। शनि जैसे मन्द ग्रहों के लिए (~6.7 घण्टे तक D-150 स्थिर), 5 मिनट की अनिश्चितता नगण्य है। केवल लग्न और चन्द्रमा को सेकण्ड-स्तर की सटीकता चाहिए।' },
+            },
+            {
+              myth: { en: '"Nadi Amsha is the same as Nadi astrology"', hi: '"नाडी अंश और नाडी ज्योतिष एक ही है"' },
+              truth: { en: 'Related but different systems. Nadi astrology refers to the palm-leaf manuscript tradition of individual prophecy. Nadi Amsha (D-150) is a mathematical divisional chart. They share a philosophical foundation -- extreme precision in planetary positions -- but are distinct practices with different methodologies.', hi: 'सम्बन्धित परन्तु भिन्न प्रणालियाँ। नाडी ज्योतिष ताड़पत्र पाण्डुलिपि परम्परा को संदर्भित करती है। नाडी अंश (D-150) गणितीय विभागीय चार्ट है।' },
+            },
+            {
+              myth: { en: '"Only Sun and Moon matter in D-150"', hi: '"D-150 में केवल सूर्य और चन्द्रमा मायने रखते हैं"' },
+              truth: { en: 'All planets carry karmic themes in D-150. Saturn\'s D-150 placement is arguably the most important (karmic debts), while Jupiter\'s reveals the dharmic path. Rahu and Ketu\'s D-150 signs show the axis of karmic evolution. Ignoring outer planets in D-150 is like reading only the first chapter of a novel.', hi: 'D-150 में सभी ग्रह कार्मिक विषय रखते हैं। शनि की D-150 स्थिति सम्भवतः सबसे महत्वपूर्ण है। बाह्य ग्रहों की उपेक्षा करना उपन्यास का केवल पहला अध्याय पढ़ने जैसा है।' },
+            },
+            {
+              myth: { en: '"D-150 predictions are deterministic"', hi: '"D-150 की भविष्यवाणियाँ नियतिवादी हैं"' },
+              truth: { en: 'D-150 shows tendencies, not fixed fate. It reveals the karmic soil from which this life grows -- but what you plant, water, and nurture remains a matter of free will and conscious choice. The chart describes the terrain; you choose the path through it.', hi: 'D-150 प्रवृत्तियाँ दिखाता है, नियत भाग्य नहीं। यह उस कार्मिक मिट्टी को प्रकट करता है जिसमें यह जीवन बढ़ता है -- परन्तु आप क्या रोपते हैं यह स्वतन्त्र इच्छा का विषय है।' },
+            },
+          ].map((item, i) => (
+            <div key={i} className="p-4 rounded-xl bg-bg-primary/50 border border-gold-primary/8">
+              <div className="text-gold-light text-sm font-bold mb-1">{tl(item.myth, locale)}</div>
+              <p className="text-text-secondary text-sm leading-relaxed">{tl(item.truth, locale)}</p>
+            </div>
+          ))}
         </div>
-      </Section>
+      </LessonSection>
 
-      {/* ═══ Division Wheel ═══ */}
-      <Section>
-        <h2 className="text-xl font-bold text-gold-light text-center" style={headingFont}>{l('divisionWheel')}</h2>
-        <DivisionWheel />
-        <p className="text-text-tertiary text-xs text-center italic">
-          {tl({ en: 'Each colored slice represents one Nadi Amsha. Colors cycle through 12 signs (Aries=red, Taurus=orange, ... Pisces=purple).', hi: 'प्रत्येक रंगीन खण्ड एक नाडी अंश का प्रतिनिधित्व करता है। रंग 12 राशियों में चक्रीय रूप से दोहराते हैं।' }, locale)}
+      <GoldDivider />
+
+      {/* ═══ Section 13: Live Calculator ═══ */}
+      <LessonSection number={13} title={tl({ en: 'Live Calculator', hi: 'लाइव कैलकुलेटर' }, locale)} variant="formula">
+        <p>
+          {tl({
+            en: 'Enter any sidereal longitude (0-360) to see its Nadi Amsha placement instantly:',
+            hi: 'नाडी अंश स्थिति तुरन्त देखने के लिए कोई भी निरयन देशान्तर (0-360) दर्ज करें:',
+          }, locale)}
         </p>
-      </Section>
-
-      {/* ═══ Live Calculator ═══ */}
-      <Section>
-        <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{l('liveCalcTitle')}</h2>
-        <p className="text-text-secondary text-sm">{l('liveCalcDesc')}</p>
         <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-end">
           <div className="space-y-1.5">
-            <label className="text-text-tertiary text-xs uppercase tracking-widest">{tl({ en: 'Sidereal Longitude', hi: 'निरयन देशान्तर' }, locale)}</label>
+            <label className="text-text-secondary text-xs uppercase tracking-widest">
+              {tl({ en: 'Sidereal Longitude', hi: 'निरयन देशान्तर' }, locale)}
+            </label>
             <div className="flex gap-2 items-center">
               <input
                 type="number"
@@ -592,16 +737,11 @@ export default function LearnNadiAmshaPage() {
                 onChange={(e) => setInputDeg(e.target.value)}
                 className="w-32 px-3 py-2 rounded-lg bg-bg-primary border border-gold-primary/20 text-gold-light font-mono text-sm focus:border-gold-primary/50 outline-none"
               />
-              <span className="text-text-tertiary text-sm">{'\u00b0'}</span>
+              <span className="text-text-secondary text-sm">{'\u00b0'}</span>
             </div>
           </div>
           {liveResult && (
-            <motion.div
-              key={`${liveResult.nadiAmshaNumber}-${liveResult.nadiSign}`}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="flex gap-3 flex-wrap"
-            >
+            <div className="flex gap-3 flex-wrap">
               {[
                 { label: { en: 'Sign', hi: 'राशि' }, value: tl(SIGN_NAMES[liveResult.signIndex], locale) },
                 { label: { en: 'Deg in sign', hi: 'राशि अंश' }, value: `${liveResult.degreeInSign.toFixed(2)}\u00b0` },
@@ -610,23 +750,41 @@ export default function LearnNadiAmshaPage() {
               ].map((item, i) => (
                 <div key={i} className="text-center px-3 py-2 rounded-lg bg-gold-primary/8 border border-gold-primary/15">
                   <div className="text-gold-light text-sm font-bold font-mono">{item.value}</div>
-                  <div className="text-text-tertiary text-[10px] mt-0.5">{tl(item.label, locale)}</div>
+                  <div className="text-text-secondary text-[10px] mt-0.5">{tl(item.label, locale)}</div>
                 </div>
               ))}
-            </motion.div>
+            </div>
           )}
         </div>
-      </Section>
+      </LessonSection>
 
-      {/* ═══ Links ═══ */}
-      <Section className="text-center">
-        <h3 className="text-gold-light font-bold text-lg" style={headingFont}>{l('linksTitle')}</h3>
+      <GoldDivider />
+
+      {/* ═══ Section 14: FAQ ═══ */}
+      <LessonSection number={14} title={tl({ en: 'Frequently Asked Questions', hi: 'अक्सर पूछे जाने वाले प्रश्न' }, locale)}>
+        <div className="space-y-3">
+          {FAQ.map((item, i) => (
+            <InfoBlock key={i} id={`faq-${i}`} title={tl(item.q, locale)}>
+              <p>{tl(item.a, locale)}</p>
+            </InfoBlock>
+          ))}
+        </div>
+      </LessonSection>
+
+      <GoldDivider />
+
+      {/* ═══ Cross-Links ═══ */}
+      <div className="text-center space-y-4 py-4">
+        <h3 className="text-gold-light font-bold text-lg" style={headingFont}>
+          {tl({ en: 'Explore Further', hi: 'और जानें' }, locale)}
+        </h3>
         <div className="flex flex-wrap justify-center gap-3">
           {[
-            { href: '/kundali' as const, label: { en: 'Generate Kundali', hi: 'कुण्डली बनाएं' } },
+            { href: '/kundali' as const, label: { en: 'Generate Your Kundali (includes D-150)', hi: 'कुण्डली बनाएँ (D-150 सहित)' } },
             { href: '/learn/vargas' as const, label: { en: 'Divisional Charts (Vargas)', hi: 'विभागीय चार्ट (वर्ग)' } },
-            { href: '/learn/shadbala' as const, label: { en: 'Shadbala (Strength)', hi: 'षड्बल (शक्ति)' } },
-            { href: '/learn/avasthas' as const, label: { en: 'Planetary Avasthas', hi: 'ग्रह अवस्थाएँ' } },
+            { href: '/learn/nakshatras' as const, label: { en: 'Nakshatra System', hi: 'नक्षत्र प्रणाली' } },
+            { href: '/learn/dashas' as const, label: { en: 'Dashas (Timing of Karma)', hi: 'दशाएँ (कर्म का समय)' } },
+            { href: '/learn/doshas' as const, label: { en: 'Doshas (Karmic Debts)', hi: 'दोष (कार्मिक ऋण)' } },
           ].map((link) => (
             <Link key={link.href} href={link.href}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium">
@@ -634,7 +792,7 @@ export default function LearnNadiAmshaPage() {
             </Link>
           ))}
         </div>
-      </Section>
+      </div>
     </div>
   );
 }

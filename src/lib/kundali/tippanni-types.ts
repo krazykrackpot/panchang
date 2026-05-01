@@ -176,6 +176,9 @@ export interface TippanniContent {
   /** Life stage context — reorders and reframes content based on user's age */
   lifeStage?: LifeStageInfo;
 
+  /** Unified chart narrative — the "pandit's opening statement" weaving top threads */
+  chartNarrative?: import('./chart-narrative').UnifiedNarrative;
+
   dashaSynthesis?: DashaSynthesis;
   convergence?: ConvergenceResult | null;
 

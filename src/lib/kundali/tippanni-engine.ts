@@ -13,6 +13,7 @@ import { LAGNA_STAGE_CONTEXT } from './lagna-stage-context';
 import { generateDashaSynthesis } from '@/lib/tippanni/dasha-synthesis';
 import { classifyYoga, getYogaRelevance, getYogaStageSuffix } from '@/lib/tippanni/yoga-stage-context';
 import { getDashaStageAdvice, type DignityLevel } from '@/lib/tippanni/dasha-stage-advice';
+import { buildChartNarrative } from './chart-narrative';
 import { PLANET_HOUSE_DEPTH, DIGNITY_EFFECTS, DASHA_EFFECTS } from './tippanni-planets';
 import { BPHS_PLANET_IN_HOUSE } from '@/lib/constants/bphs-planet-in-house';
 import { YOGA_CITATIONS } from '@/lib/constants/bphs-yogas';
@@ -1076,7 +1077,7 @@ export function generateTippanni(kundali: KundaliData, locale: Locale): Tippanni
     }
   }
 
-  return {
+  const result: TippanniContent = {
     yearPredictions: generateYearPredictions(kundali, locale, stageCtx),
     personality: generatePersonality(kundali, locale, stageCtx),
     planetInsights: generatePlanetInsights(kundali, locale),
@@ -1089,4 +1090,15 @@ export function generateTippanni(kundali: KundaliData, locale: Locale): Tippanni
     dashaSynthesis: generateDashaSynthesis(kundali, locale),
     lifeStage: lifeStageInfo,
   };
+
+  // Build unified chart narrative AFTER all sections are generated
+  // (it reads from the completed tippanni to weave threads together)
+  try {
+    result.chartNarrative = buildChartNarrative(kundali, result, locale, stageCtx);
+  } catch {
+    // Narrative is non-critical — never block the tippanni on a narrative failure
+    console.error('[tippanni] Chart narrative generation failed');
+  }
+
+  return result;
 }

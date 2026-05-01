@@ -556,6 +556,41 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
       )}
 
       {/* ===== LIFE STAGE HEADLINE BANNER ===== */}
+      {/* ═══ UNIFIED CHART NARRATIVE — the pandit's opening statement ═══ */}
+      {tip.chartNarrative && (
+        <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] border border-gold-primary/20 p-6 sm:p-8 space-y-5">
+          {/* Headline */}
+          <h2 className="text-xl sm:text-2xl text-gold-light font-bold leading-tight" style={headingFont}>
+            {isEn ? tip.chartNarrative.headline.en : tip.chartNarrative.headline.hi}
+          </h2>
+
+          {/* Narrative threads */}
+          <div className="space-y-4">
+            {tip.chartNarrative.threads.map((thread, i) => (
+              <div key={i} className="border-l-2 border-gold-primary/30 pl-4">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-xs text-gold-dark uppercase tracking-widest font-semibold">{thread.theme}</span>
+                  <span className="text-xs text-text-secondary">{thread.factors.slice(0, 2).join(' + ')}</span>
+                </div>
+                <p className="text-text-primary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {isEn ? thread.narrative.en : thread.narrative.hi}
+                </p>
+                <p className="text-gold-primary/80 text-xs mt-1 font-medium">
+                  {isEn ? thread.action.en : thread.action.hi}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Synthesis */}
+          <div className="pt-3 border-t border-gold-primary/10">
+            <p className="text-text-secondary text-sm leading-relaxed italic" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+              {isEn ? tip.chartNarrative.synthesis.en : tip.chartNarrative.synthesis.hi}
+            </p>
+          </div>
+        </div>
+      )}
+
       {tip.lifeStage && (
         <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
           <div className="flex items-center gap-3 mb-3">

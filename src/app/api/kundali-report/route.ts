@@ -718,6 +718,11 @@ function buildReportHtml(
     .pada-cell, .house-cell { text-align: center; }
     .dignity-exalted { color: #16a34a; font-weight: 700; }
     .dignity-debilitated { color: #dc2626; font-weight: 700; }
+    .dignity-own { color: #2563eb; font-weight: 700; }
+    .legend { background: #faf8f0; border: 1px solid #e5e0d0; border-radius: 6px; padding: 10px 14px; margin-top: 12px; font-size: 9px; color: #666; line-height: 1.8; }
+    .legend-title { font-weight: 700; color: #8B6914; font-size: 10px; margin-bottom: 4px; }
+    .legend-item { display: inline-block; margin-right: 16px; }
+    .legend-swatch { display: inline-block; width: 10px; height: 10px; border-radius: 2px; vertical-align: middle; margin-right: 4px; }
     .dignity-own { color: #d97706; font-weight: 600; }
     .asc-row { background: #f8f5eb !important; }
     .empty-text { color: #bbb; font-style: italic; }
@@ -1140,6 +1145,14 @@ function buildReportHtml(
         ${planetRows}
       </tbody>
     </table>
+    <div class="legend">
+      <div class="legend-title">Legend</div>
+      <span class="legend-item"><span class="retro-badge" style="vertical-align:middle;font-size:8px;padding:1px 4px">R</span> Retrograde — planet appears to move backward</span>
+      <span class="legend-item"><span class="combust-badge" style="vertical-align:middle;font-size:8px;padding:1px 4px">C</span> Combust — planet too close to the Sun, weakened</span><br/>
+      <span class="legend-item"><span class="legend-swatch" style="background:#16a34a"></span> <strong style="color:#16a34a">Exalted</strong> — planet in its strongest sign</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#2563eb"></span> <strong style="color:#2563eb">Own Sign</strong> — planet in the sign it rules</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#dc2626"></span> <strong style="color:#dc2626">Debilitated</strong> — planet in its weakest sign</span>
+    </div>
   </div>
 
   <!-- ════════════════════════════════════════════════════════════ -->
@@ -1182,6 +1195,12 @@ function buildReportHtml(
     <h2>6. Doshas (Afflictions)</h2>
     <p class="section-intro">Doshas are planetary afflictions that may influence certain areas of life. Their effects can be mitigated through specific remedies and awareness.</p>
     ${doshasHtml}
+    <div class="legend">
+      <div class="legend-title">Severity Legend</div>
+      <span class="legend-item"><span class="legend-swatch" style="background:#dc2626"></span> <strong>Severe</strong> — significant impact, remedies strongly recommended</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#f59e0b"></span> <strong>Moderate</strong> — noticeable effects, remedies helpful</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#16a34a"></span> <strong>Mild / Cancelled</strong> — dosha present but neutralized by cancellation conditions</span>
+    </div>
   </div>
 
   <!-- ════════════════════════════════════════════════════════════ -->
@@ -1202,6 +1221,11 @@ function buildReportHtml(
       </thead>
       <tbody>${dashaRows}</tbody>
     </table>
+    <div class="legend">
+      <div class="legend-title">Legend</div>
+      <span class="legend-item"><span class="active-badge" style="font-size:8px;padding:1px 6px;vertical-align:middle">ACTIVE</span> Currently running Mahadasha period</span>
+      <span class="legend-item"><span class="active-badge sub" style="font-size:8px;padding:1px 6px;vertical-align:middle">NOW</span> Currently running Antardasha (sub-period)</span>
+    </div>
   </div>
 
   <!-- ════════════════════════════════════════════════════════════ -->
@@ -1241,6 +1265,12 @@ function buildReportHtml(
       </thead>
       <tbody>${strengthRows}</tbody>
     </table>
+    <div class="legend">
+      <div class="legend-title">Strength Scale</div>
+      <span class="legend-item"><span class="legend-swatch" style="background:#16a34a"></span> <strong>Strong</strong> (≥70%) — planet delivers its significations powerfully</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#f59e0b"></span> <strong>Moderate</strong> (40-70%) — planet functions adequately</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#dc2626"></span> <strong>Weak</strong> (&lt;40%) — planet struggles to deliver results, remedies recommended</span>
+    </div>
   </div>
 
   <!-- ════════════════════════════════════════════════════════════ -->

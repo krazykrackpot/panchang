@@ -335,25 +335,59 @@ function computeDigBala(p: PlanetInput, ascendantDeg: number): number {
 // III. Kala Bala
 // ---------------------------------------------------------------------------
 
-function natonnataBala(p: PlanetInput, isDayBirth: boolean): number {
+/**
+ * Natonnata Bala — graduated diurnal/nocturnal strength (BPHS Ch.27).
+ *
+ * Uses a sinusoidal curve rather than a binary 60/0 toggle:
+ * - Day-strong planets (Sun, Jupiter, Saturn): strength rises from 0 at sunrise
+ *   to 60 at local noon, then falls back to 0 at sunset. During night = 0.
+ * - Night-strong planets (Moon, Mars, Venus): strength rises from 0 at sunset
+ *   to 60 at local midnight, then falls back to 0 at sunrise. During day = 0.
+ * - Mercury (Mishra — both day and night strong): always 60.
+ *
+ * Formula: 60 × sin(π × fraction), where fraction is the position within
+ * the day or night period (0 at start, 0.5 at midpoint, 1 at end).
+ * This matches B.V. Raman's and Sanjay Rath's graduated interpretation.
+ */
+function natonnataBala(
+  p: PlanetInput,
+  isDayBirth: boolean,
+  birthHour: number,
+  sunriseHour: number,
+  sunsetHour: number,
+): number {
   // Mercury is always fully strong (60 Shashtiamsas) regardless of birth time.
   // Classical source: BPHS Ch.27 — "Budha is Mishra (both day and night strong)."
   if (p.id === 3) return 60;
 
-  // Diurnal (day-strong) planets: Sun(0), Jupiter(4), Saturn(6).
-  // They receive full 60 Shashtiamsas at day births, 0 at night.
-  //
-  // Nocturnal (night-strong) planets: Moon(1), Mars(2), Venus(5).
-  // They receive full 60 Shashtiamsas at night births, 0 at day.
-  //
-  // HISTORICAL BUG (now fixed): the list was [0,4,5] — Venus(5) was in the
-  // day-strong group and Saturn(6) was missing entirely.  Venus is nocturnal
-  // (BPHS Ch.27: "Shukra is Ratri-bali"), and Saturn is diurnal ("Shani is
-  // Diva-bali").  This inflated Venus's kalaBala for day births and deflated
-  // Saturn's, distorting the total Shadbala ranking.
+  // Day-strong: Sun(0), Jupiter(4), Saturn(6)
+  // Night-strong: Moon(1), Mars(2), Venus(5)
   const dayStrong = [0, 4, 6]; // Sun, Jupiter, Saturn
-  if (isDayBirth) return dayStrong.includes(p.id) ? 60 : 0;
-  return dayStrong.includes(p.id) ? 0 : 60;
+  const isDayPlanet = dayStrong.includes(p.id);
+
+  if (isDayPlanet) {
+    if (!isDayBirth) return 0;
+    // Fraction through the day: 0 at sunrise, 0.5 at noon, 1 at sunset
+    const dayDuration = sunsetHour - sunriseHour;
+    if (dayDuration <= 0) return 0; // edge case: polar regions
+    const fraction = (birthHour - sunriseHour) / dayDuration;
+    // Clamp to [0,1] for safety, then apply sine curve
+    const clamped = Math.max(0, Math.min(1, fraction));
+    return Math.round(60 * Math.sin(Math.PI * clamped) * 100) / 100;
+  } else {
+    // Night-strong planet
+    if (isDayBirth) return 0;
+    // Fraction through the night: 0 at sunset, 0.5 at midnight, 1 at sunrise
+    const nightDuration = 24 - (sunsetHour - sunriseHour);
+    if (nightDuration <= 0) return 0; // edge case: polar regions
+    // Elapsed time since sunset (handles midnight wrap)
+    const nightElapsed = birthHour >= sunsetHour
+      ? birthHour - sunsetHour
+      : birthHour + (24 - sunsetHour);
+    const fraction = nightElapsed / nightDuration;
+    const clamped = Math.max(0, Math.min(1, fraction));
+    return Math.round(60 * Math.sin(Math.PI * clamped) * 100) / 100;
+  }
 }
 
 function pakshaBala(p: PlanetInput, sunLong: number, moonLong: number): number {
@@ -599,7 +633,7 @@ function computeKalaBala(
   const sunLong = sunPlanet ? sunPlanet.longitude : 0;
   const moonLong = moonPlanet ? moonPlanet.longitude : 0;
 
-  const nn = natonnataBala(p, isDayBirth);
+  const nn = natonnataBala(p, isDayBirth, birthHour, sunriseHour, sunsetHour);
   const pk = pakshaBala(p, sunLong, moonLong);
   const tb = tribhagaBala(p, birthHour, isDayBirth, sunriseHour, sunsetHour);
   const ab = abdaBala(p, input.birthDateObj);
@@ -647,9 +681,29 @@ function computeKalaBala(
  * Stationary (speed ≈ 0): 30 virupas in both modes (BPHS: stationary = half strength).
  * Direct: speed/avg_speed * 30, capped at 60 (faster = stronger in direct motion).
  */
-function computeCheshtaBala(p: PlanetInput, ay: number, mode: 'bphs_strict' | 'graduated' = 'bphs_strict'): number {
-  // Sun & Moon: cheshtaBala = ayanaBala (no planetary motion component)
-  if (p.id === 0 || p.id === 1) return ay;
+function computeCheshtaBala(
+  p: PlanetInput,
+  ay: number,
+  planets: PlanetInput[],
+  mode: 'bphs_strict' | 'graduated' = 'bphs_strict',
+): number {
+  // Sun: Cheshta Bala = Ayana Bala (BPHS Ch.27)
+  if (p.id === 0) return ay;
+
+  // Moon: Cheshta Bala = Paksha Bala (BPHS Ch.27, majority interpretation:
+  // Sanjay Rath, PVR Narasimha Rao, B.V. Raman).
+  // Paksha Bala = Moon-Sun elongation mapped to 0-60:
+  //   Shukla (waxing): elongation / 3  (0 at Amavasya → 60 at Purnima)
+  //   Krishna (waning): (360 - elongation) / 3  (60 at Purnima → 0 at Amavasya)
+  if (p.id === 1) {
+    const sunP = planets.find(pp => pp.id === 0);
+    if (!sunP) return ay; // fallback if Sun not found
+    const elongation = ((p.longitude - sunP.longitude) % 360 + 360) % 360;
+    const pakshaValue = elongation <= 180
+      ? elongation / 3       // Shukla: 0→60
+      : (360 - elongation) / 3; // Krishna: 60→0
+    return Math.min(60, Math.max(0, pakshaValue));
+  }
 
   // Stationary: near-zero speed (turning retrograde or direct)
   if (Math.abs(p.speed) < 0.001) return 30;
@@ -762,7 +816,7 @@ export function calculateFullShadbala(input: ShadBalaInput, options?: ShadBalaOp
     const kala = computeKalaBala(p, input, planets, yuddhaBalaMap);
     const ayanamsha = lahiriAyanamsha(input.julianDay);
     const ay = ayanaBala(p, ayanamsha);
-    const cheshtaBala = r2(computeCheshtaBala(p, ay, options?.cheshtaBalaMode || 'bphs_strict'));
+    const cheshtaBala = r2(computeCheshtaBala(p, ay, planets, options?.cheshtaBalaMode || 'bphs_strict'));
     const naisargikaBala = NAISARGIKA[p.id];
     // Pass all 9 planets so Rahu/Ketu contribute their aspects as malefics
     const drikBala = r2(computeDrikBala(p, input.planets));

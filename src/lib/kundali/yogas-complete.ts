@@ -82,6 +82,24 @@ function isMalefic(id: number): boolean {
   return MALEFICS.includes(id);
 }
 
+/** Check if two planets aspect each other (including special aspects of Mars, Jupiter, Saturn) */
+function planetsAspectEachOther(p1: PlanetData, p2: PlanetData): boolean {
+  const offset12 = houseOffset(p1.house, p2.house);
+  const offset21 = houseOffset(p2.house, p1.house);
+  // Universal 7th aspect
+  if (offset12 === 7 || offset21 === 7) return true;
+  // Mars special aspects (4th, 8th FROM Mars)
+  if (p1.id === 2 && [4, 8].includes(offset12)) return true;
+  if (p2.id === 2 && [4, 8].includes(offset21)) return true;
+  // Jupiter special aspects (5th, 9th FROM Jupiter)
+  if (p1.id === 4 && [5, 9].includes(offset12)) return true;
+  if (p2.id === 4 && [5, 9].includes(offset21)) return true;
+  // Saturn special aspects (3rd, 10th FROM Saturn)
+  if (p1.id === 6 && [3, 10].includes(offset12)) return true;
+  if (p2.id === 6 && [3, 10].includes(offset21)) return true;
+  return false;
+}
+
 /** Check if longitude a is between rahu and ketu going forward */
 function isLongBetween(lon: number, fromLon: number, toLon: number): boolean {
   // Check if lon is in the arc from fromLon to toLon going forward (increasing)
@@ -362,9 +380,12 @@ function detectMoonBasedYogas(planets: PlanetData[]): YogaComplete[] {
 
   // 12. Kemadruma — no planets in 2nd/12th from Moon, Moon not in Kendra,
   // AND Moon not conjunct any planet (conjunction = same house, cancels Kemadruma)
+  // AND Jupiter not aspecting Moon (Jupiter's special aspects: 1st/5th/7th/9th from Jupiter)
   const moonConjunct = planets.some(p => p.id !== 1 && p.house === moon.house);
+  const jupFromMoonKem = houseOffset(moon.house, jupiter.house);
+  const jupiterAspectsMoon = [1, 5, 7, 9].includes(jupFromMoonKem);
   const kemPresent = secondFromMoon.length === 0 && twelfthFromMoon.length === 0
-    && !KENDRA.includes(moon.house) && !moonConjunct;
+    && !KENDRA.includes(moon.house) && !moonConjunct && !jupiterAspectsMoon;
   results.push({
     id: 'kemadruma',
     name: { en: 'Kemadruma Yoga', hi: 'केमद्रुम योग', sa: 'केमद्रुमयोगः' },
@@ -448,13 +469,25 @@ function detectSunBasedYogas(planets: PlanetData[]): YogaComplete[] {
 
   // 15. Budhaditya
   const baPresent = sun.sign === mercury.sign;
+  // Combustion check: Mercury within 14° (direct) or 12° (retrograde) of Sun weakens the yoga
+  const baSepDeg = Math.abs(sun.longitude - mercury.longitude);
+  const baSeparation = Math.min(baSepDeg, 360 - baSepDeg);
+  const baCombOrb = mercury.isRetrograde ? 12 : 14;
+  const baIsCombust = baSeparation < baCombOrb;
+  // Strength: combust = Weak, close but not combust = Moderate, well-separated = Strong
+  let baStrength: 'Strong' | 'Moderate' | 'Weak' = 'Weak';
+  if (baPresent) {
+    if (baIsCombust) baStrength = 'Weak';
+    else if (baSeparation < baCombOrb + 5) baStrength = 'Moderate';
+    else baStrength = 'Strong';
+  }
   results.push({
     id: 'budhaditya',
     name: { en: 'Budhaditya Yoga', hi: 'बुधादित्य योग', sa: 'बुधादित्ययोगः' },
     category: 'sun_based',
     isAuspicious: true,
     present: baPresent,
-    strength: baPresent ? 'Moderate' : 'Weak',
+    strength: baStrength,
     formationRule: {
       en: 'Sun and Mercury in the same sign',
       hi: 'सूर्य और बुध एक ही राशि में',
@@ -588,10 +621,12 @@ function detectRajaYogas(planets: PlanetData[], ascSign: number): YogaComplete[]
     },
   });
 
-  // 21. Vasumati — ALL benefics must occupy Upachaya houses (3,6,10,11) from Lagna
-  // Classical: requires all natural benefics in Upachaya from Ascendant (house 1)
-  const vasPresent = BENEFICS.every(id => {
-    const off = houseOffset(1, getP(planets, id).house);
+  // 21. Vasumati — ALL benefics (Mercury, Jupiter, Venus — exclude Moon as reference)
+  // must occupy Upachaya houses (3,6,10,11) from Moon.
+  // Classical rule per BPHS: benefics in upachaya FROM MOON.
+  const vasBeneficIds = [3, 4, 5]; // Mercury, Jupiter, Venus (exclude Moon itself)
+  const vasPresent = vasBeneficIds.every(id => {
+    const off = houseOffset(moon.house, getP(planets, id).house);
     return UPACHAYA.includes(off);
   });
   results.push({
@@ -891,14 +926,14 @@ function detectRajaYogas(planets: PlanetData[], ascSign: number): YogaComplete[]
     present: mbPresent,
     strength: mbPresent ? 'Strong' : 'Weak',
     formationRule: {
-      en: 'Lagna lord, Sun, Moon all in odd signs (male chart)',
-      hi: 'लग्नेश, सूर्य, चन्द्र सभी विषम राशि में (पुरुष कुण्डली)',
-      sa: 'लग्नेशः सूर्यः चन्द्रश्च सर्वे ओजराशिषु (पुरुषजातके)',
+      en: 'Ascendant, Sun, Moon all in odd signs (male chart)',
+      hi: 'लग्न, सूर्य, चन्द्र सभी विषम राशि में (पुरुष कुण्डली)',
+      sa: 'लग्नं सूर्यः चन्द्रश्च सर्वे ओजराशिषु (पुरुषजातके)',
     },
     description: {
-      en: 'Great fortune yoga — Sun, Moon, and Lagna lord in odd signs grant extraordinary luck.',
-      hi: 'महाभाग्य योग — सूर्य, चन्द्र, लग्नेश विषम राशि में। असाधारण भाग्य।',
-      sa: 'महाभाग्ययोगः — सूर्यचन्द्रलग्नेशाः ओजराशिषु। असाधारणं भाग्यम्।',
+      en: 'Great fortune yoga — Sun, Moon, and Ascendant in odd signs grant extraordinary luck.',
+      hi: 'महाभाग्य योग — सूर्य, चन्द्र, लग्न विषम राशि में। असाधारण भाग्य।',
+      sa: 'महाभाग्ययोगः — सूर्यचन्द्रलग्नम् ओजराशिषु। असाधारणं भाग्यम्।',
     },
   });
 
@@ -1132,6 +1167,8 @@ function detectAdditionalAuspiciousYogas(planets: PlanetData[], ascSign: number)
   const moon = getP(planets, 1);
 
   // 41. Raja Yoga (generic: Kendra lord + Trikona lord conjunct or mutual aspect)
+  // Uses planetsAspectEachOther() which includes Mars (4th/8th), Jupiter (5th/9th),
+  // and Saturn (3rd/10th) special aspects in addition to universal 7th aspect.
   const kendraLords = KENDRA.map(h => signLord(houseSign(h)));
   const trikonaLords = TRIKONA.map(h => signLord(houseSign(h)));
   let rajaPresent = false;
@@ -1141,8 +1178,8 @@ function detectAdditionalAuspiciousYogas(planets: PlanetData[], ascSign: number)
       const klP = getP(planets, kl);
       const tlP = getP(planets, tl);
       if (inSameHouse(klP, tlP)) { rajaPresent = true; break; }
-      // Mutual aspect: 7th from each other
-      if (houseOffset(klP.house, tlP.house) === 7) { rajaPresent = true; break; }
+      // Mutual aspect including special aspects of Mars, Jupiter, Saturn
+      if (planetsAspectEachOther(klP, tlP)) { rajaPresent = true; break; }
     }
     if (rajaPresent) break;
   }
@@ -1299,18 +1336,23 @@ function detectAdditionalAuspiciousYogas(planets: PlanetData[], ascSign: number)
   // 45. Dharma-Karmadhipati Yoga
   const ninthLord = signLord(houseSign(9));
   const tenthLord = signLord(houseSign(10));
-  const dkPresent = inSameHouse(getP(planets, ninthLord), getP(planets, tenthLord));
+  const lord9P = getP(planets, ninthLord);
+  const lord10P = getP(planets, tenthLord);
+  // Conjunction (same house) OR mutual aspect (including special aspects of Mars/Jupiter/Saturn)
+  const dkConjunct = inSameHouse(lord9P, lord10P);
+  const dkMutualAspect = planetsAspectEachOther(lord9P, lord10P);
+  const dkPresent = dkConjunct || dkMutualAspect;
   results.push({
     id: 'dharma_karmadhipati',
     name: { en: 'Dharma-Karmadhipati Yoga', hi: 'धर्म-कर्माधिपति योग', sa: 'धर्मकर्माधिपतियोगः' },
     category: 'raja',
     isAuspicious: true,
     present: dkPresent,
-    strength: dkPresent ? 'Strong' : 'Weak',
+    strength: dkPresent ? (dkConjunct ? 'Strong' : 'Moderate') : 'Weak',
     formationRule: {
-      en: '9th lord and 10th lord in the same house',
-      hi: 'नवमेश और दशमेश एक ही भाव में',
-      sa: 'नवमेशदशमेशौ एकभावस्थौ',
+      en: '9th lord and 10th lord conjunct or in mutual aspect',
+      hi: 'नवमेश और दशमेश युति या परस्पर दृष्टि में',
+      sa: 'नवमेशदशमेशौ युत्या परस्परदृष्ट्या वा',
     },
     description: {
       en: 'Union of dharma and karma lords grants righteous career, high status, and spiritual authority.',
@@ -1398,19 +1440,18 @@ function detectOtherYogas(planets: PlanetData[], ascSign: number): YogaComplete[
     },
   });
 
-  // 49. Kendradhipati Dosha
+  // 49. Kendradhipati Dosha — BPHS: a natural benefic that OWNS a kendra loses
+  // its beneficence.  Placement in that kendra is NOT required — ownership alone
+  // triggers the dosha.  All four natural benefics are checked: Moon (1),
+  // Mercury (3), Jupiter (4), Venus (5).
   let kdPresent = false;
-  const naturalBenefics = [4, 5]; // Jupiter, Venus
-  for (const bId of naturalBenefics) {
-    const p = getP(planets, bId);
-    for (const kh of KENDRA) {
-      const ks = houseSign(kh);
-      if (signLord(ks) === bId && p.house === kh) {
-        kdPresent = true;
-        break;
-      }
+  const naturalBeneficsKd = [1, 3, 4, 5]; // Moon, Mercury, Jupiter, Venus
+  for (const bId of naturalBeneficsKd) {
+    const ownedKendras = KENDRA.filter(kh => signLord(houseSign(kh)) === bId);
+    if (ownedKendras.length > 0) {
+      kdPresent = true;
+      break;
     }
-    if (kdPresent) break;
   }
   results.push({
     id: 'kendradhipati_dosha',
@@ -1420,9 +1461,9 @@ function detectOtherYogas(planets: PlanetData[], ascSign: number): YogaComplete[
     present: kdPresent,
     strength: kdPresent ? 'Moderate' : 'Weak',
     formationRule: {
-      en: 'Natural benefic (Jupiter/Venus) owns a Kendra house and is placed in that Kendra',
-      hi: 'प्राकृतिक शुभ ग्रह (गुरु/शुक्र) केन्द्र का स्वामी और उसी केन्द्र में',
-      sa: 'नैसर्गिकशुभग्रहः (गुरुः/शुक्रः) केन्द्राधिपतिः तस्मिन्नेव केन्द्रे स्थितः',
+      en: 'Natural benefic (Moon/Mercury/Jupiter/Venus) owns a Kendra house',
+      hi: 'प्राकृतिक शुभ ग्रह (चन्द्र/बुध/गुरु/शुक्र) केन्द्र का स्वामी',
+      sa: 'नैसर्गिकशुभग्रहः (चन्द्र/बुध/गुरु/शुक्र) केन्द्राधिपतिः',
     },
     description: {
       en: 'Natural benefic owning a Kendra loses beneficence, becoming functionally neutral or harmful.',

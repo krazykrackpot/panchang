@@ -109,23 +109,32 @@ export async function GET(request: Request) {
       tweetText = composeEducationalTweet(istDayOfWeek, panchang, dayOfYear);
     }
 
-    // Fetch panchang card image and upload to Twitter for visual tweets
-    let mediaId: string | null = null;
+    // Fetch multiple card images and upload to Twitter (up to 4 per tweet)
+    const mediaIds: string[] = [];
     try {
-      const imgBuffer = await fetchPanchangImage();
-      if (imgBuffer) {
-        mediaId = await uploadMediaToTwitter(imgBuffer);
+      // Image 1: Daily panchang card (always)
+      const panchangImg = await fetchSocialImage('panchang');
+      if (panchangImg) {
+        const id = await uploadMediaToTwitter(panchangImg);
+        if (id) mediaIds.push(id);
+      }
+      // Image 2: Nakshatra spotlight (today's nakshatra)
+      const nkImg = await fetchSocialImage(`nakshatra&id=${panchang.nakshatra?.id || 1}`);
+      if (nkImg) {
+        const id = await uploadMediaToTwitter(nkImg);
+        if (id) mediaIds.push(id);
       }
     } catch (err) {
-      console.error('[social-post] Image attach failed (posting text-only):', err);
+      console.error('[social-post] Image attach failed (posting with what we have):', err);
     }
 
-    const tweetResult = await postToTwitter(tweetText, mediaId);
+    const tweetResult = await postToTwitter(tweetText, mediaIds.length > 0 ? mediaIds : null);
 
     return NextResponse.json({
       posted: !!tweetResult,
       tweetId: tweetResult?.id || null,
-      hasImage: !!mediaId,
+      hasImage: mediaIds.length > 0,
+      imageCount: mediaIds.length,
       date: todayStr,
       dayOfWeek: istDayOfWeek,
       textLength: tweetText.length,
@@ -550,12 +559,12 @@ async function uploadMediaToTwitter(imageBuffer: Buffer): Promise<string | null>
 /**
  * Fetch the panchang card image from our own Instagram image API.
  */
-async function fetchPanchangImage(): Promise<Buffer | null> {
+async function fetchSocialImage(typeParams: string): Promise<Buffer | null> {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
-    const res = await fetch(`${baseUrl}/api/social/instagram?type=panchang`);
+    const res = await fetch(`${baseUrl}/api/social/instagram?type=${typeParams}`);
     if (!res.ok) {
-      console.error('[social-post] Image fetch failed:', res.status);
+      console.error('[social-post] Image fetch failed:', res.status, typeParams);
       return null;
     }
     return Buffer.from(await res.arrayBuffer());
@@ -565,7 +574,7 @@ async function fetchPanchangImage(): Promise<Buffer | null> {
   }
 }
 
-async function postToTwitter(text: string, mediaId?: string | null): Promise<{ id: string } | null> {
+async function postToTwitter(text: string, mediaIds?: string[] | null): Promise<{ id: string } | null> {
   const TWITTER_API_KEY = process.env.TWITTER_API_KEY?.trim();
   const TWITTER_API_SECRET = process.env.TWITTER_API_SECRET?.trim();
   const TWITTER_ACCESS_TOKEN = process.env.TWITTER_ACCESS_TOKEN?.trim();
@@ -593,7 +602,7 @@ async function postToTwitter(text: string, mediaId?: string | null): Promise<{ i
     },
     body: JSON.stringify({
       text,
-      ...(mediaId ? { media: { media_ids: [mediaId] } } : {}),
+      ...(mediaIds && mediaIds.length > 0 ? { media: { media_ids: mediaIds } } : {}),
     }),
   });
 

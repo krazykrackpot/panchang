@@ -363,6 +363,18 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
           <div className="text-text-secondary text-xs mt-2">{_tl(panchang.vara.ruler, locale)}</div>
         </div>
       </div>
+
+      {/* ── SPECIAL AUSPICIOUS YOGAS (compact) ── */}
+      {panchang.specialYogas && panchang.specialYogas.filter(y => y.isActive).length > 0 && (
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
+          <span className="text-gold-primary text-xs font-semibold">✦</span>
+          {panchang.specialYogas.filter(y => y.isActive).map((yoga, i) => (
+            <span key={i} className="text-gold-light text-xs font-bold auspicious-glow px-2 py-0.5 rounded-full border border-gold-primary/20 bg-gold-primary/5" style={hf}>
+              {_tl(yoga.name, locale)}
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

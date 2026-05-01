@@ -370,6 +370,7 @@ function composeTweet(data: {
   rahuKaalStart: string;
   rahuKaalEnd: string;
   festivals: { name: string; type: string }[];
+  specialYogas?: string[];
   panchakWarning?: string;
   holashtakWarning?: string;
 }): string {
@@ -397,6 +398,9 @@ function composeTweet(data: {
   lines.push('');
   lines.push(`\u2600\uFE0F ${data.sunrise} \u2014 \u{1F319} ${data.sunset}`);
   lines.push(`\u26A0\uFE0F Rahu Kaal: ${data.rahuKaalStart}\u2013${data.rahuKaalEnd}`);
+  if (data.specialYogas && data.specialYogas.length > 0) {
+    lines.push(`\u2726 ${data.specialYogas.join(' \u00b7 ')}`);
+  }
   if (data.panchakWarning) {
     lines.push(`\u26A0\uFE0F ${data.panchakWarning}`);
   }

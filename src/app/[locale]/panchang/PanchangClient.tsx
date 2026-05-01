@@ -1544,6 +1544,33 @@ export default function PanchangClient({ serverPanchang, serverLocation }: Panch
             />
           </div>
 
+          {/* ═══ SPECIAL AUSPICIOUS YOGAS — highlight when active ═══ */}
+          {panchang.specialYogas && panchang.specialYogas.filter(y => y.isActive).length > 0 && (
+            <div className="mb-10">
+              <h3 className="text-lg font-bold text-gold-gradient mb-4 text-center" style={headingFont}>
+                {isDevanagari ? '✦ विशेष शुभ योग ✦' : '✦ Special Auspicious Yogas ✦'}
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {panchang.specialYogas.filter(y => y.isActive).map((yoga, i) => (
+                  <div
+                    key={i}
+                    className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/25 rounded-xl p-4 auspicious-glow"
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-gold-light text-lg">✦</span>
+                      <span className="text-gold-light font-bold text-sm" style={headingFont}>
+                        {tl(yoga.name)}
+                      </span>
+                    </div>
+                    <p className="text-text-secondary text-xs leading-relaxed">
+                      {tl(yoga.description)}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* ═══ PANCHAK & HOLASHTAK WARNINGS ═══ */}
           {(panchang.panchakInfo?.isActive || panchang.holashtak?.isActive) && (
             <div className="space-y-4 mb-10">

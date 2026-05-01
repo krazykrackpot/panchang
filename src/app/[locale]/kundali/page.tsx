@@ -1246,6 +1246,7 @@ export default function KundaliPage() {
               trajectory={trajectoryHook.trajectory}
               isLoggedIn={!!user}
               locale={locale}
+              kundali={kundali ?? undefined}
               onDeepDive={(domain) => {
                 setActiveDomain(domain as DomainType);
                 setView('deepDive');

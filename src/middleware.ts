@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const LOCALES = ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn'] as const;
+const LOCALES = ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai'] as const;
 // Retired locales — 301 redirect to /en/ equivalent so Google stops crawling them
-const RETIRED_LOCALES = ['sa', 'mr', 'mai'] as const;
+const RETIRED_LOCALES = ['sa', 'mr'] as const;
 const DEFAULT_LOCALE = 'en';
 
 /**

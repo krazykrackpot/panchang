@@ -14,14 +14,13 @@ import { locales } from '@/lib/i18n/config';
 /**
  * Locales submitted to the sitemap for crawl.
  *
- * Only en + hi are submitted as sitemap entries. The other 5 active locales
- * (ta, te, bn, gu, kn) appear in hreflang alternates so Google groups them
- * as a single international site — but we don't queue them for crawl until
- * the domain earns more authority.
+ * en + hi + mai are submitted as sitemap entries. mai (Maithili) added back
+ * after GSC data showed strong organic traffic from Maithili daily pages.
+ * Other active locales (ta, te, bn, gu, kn) appear in hreflang alternates.
  *
- * sa, mr, mai were retired (Apr 2026) — middleware 301-redirects them to /en/.
+ * sa, mr retired (Apr 2026) — middleware 301-redirects them to /en/.
  */
-const sitemapLocales: ReadonlyArray<typeof locales[number]> = ['en', 'hi'];
+const sitemapLocales: ReadonlyArray<typeof locales[number]> = ['en', 'hi', 'mai'];
 
 // All routes in the app
 const routes = [

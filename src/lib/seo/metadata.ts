@@ -564,9 +564,9 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['ashtamangala prashna', 'kerala astrology', 'horary divination'],
   },
   '/rahu-kaal': {
-    title: { en: 'Rahu Kaal Today — Exact Time for Your City | Dekho Panchang', hi: 'आज का राहु काल — आपके शहर का सटीक समय | Dekho Panchang', sa: 'अद्य राहुकालः — स्वनगरस्य यथार्थ समयः' },
-    description: { en: 'Today\'s Rahu Kaal start and end times for 55 cities worldwide. Computed from precise sunrise/sunset calculations, not fixed tables.', hi: 'आज का राहु काल 55 शहरों के लिए सटीक समय — सूर्योदय/सूर्यास्त पर आधारित गणना, न कि निश्चित तालिका।', sa: 'विश्वस्य पञ्चपञ्चाशत्नगरेषु अद्यतनराहुकालस्य आरम्भ-समाप्तिसमयौ। सटीकसूर्योदय-सूर्यास्तगणनाभिः, न निश्चिततालिकाभिः।' },
-    keywords: ['rahu kaal today', 'rahu kalam', 'rahukaal timings', 'inauspicious time today', 'rahu kaal by city'],
+    title: { en: 'Rahu Kaal Today — Exact Start & End Time | Free, No Ads | Dekho Panchang', hi: 'आज का राहु काल — सटीक समय | मुफ़्त, विज्ञापन रहित | Dekho Panchang', sa: 'अद्य राहुकालः — यथार्थसमयः', mai: 'आइ के राहु काल — सटीक समय | मुफ़्त' },
+    description: { en: 'Check today\'s Rahu Kaal, Yamaganda & Gulika Kaal times for your city. Computed from Swiss Ephemeris sunrise — accurate to the minute. Also: Choghadiya, Hora, activities to avoid. Free, no ads, 7 languages.', hi: 'आज का राहु काल, यमगण्ड और गुलिक काल — आपके शहर के लिए सटीक समय। स्विस एफेमेरिस सूर्योदय से गणना — मिनट-स्तरीय सटीकता। साथ में: चौघड़िया, होरा, वर्जित कार्य। मुफ़्त, विज्ञापन रहित।', sa: 'अद्य राहुकालस्य यमगण्डस्य गुलिककालस्य च समयाः।' },
+    keywords: ['rahu kaal today', 'rahu kalam today', 'rahukaal timings', 'inauspicious time today', 'rahu kaal by city', 'rahu kaal time', 'today rahu kaal', 'आज का राहु काल'],
   },
   '/choghadiya': {
     title: { en: 'Choghadiya Today — Auspicious & Inauspicious Time Slots', hi: 'आज का चौघड़िया — शुभ और अशुभ समय', sa: 'अद्य चौघड़िया — शुभाशुभकालः' },

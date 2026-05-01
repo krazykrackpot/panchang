@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = isDiaspora
     ? `${festivalNameEn} ${year} ${cityNameEn} — Date, Puja Time | Dekho Panchang`
     : `${festivalNameEn} ${year} — Exact Date & Puja Time in ${cityNameEn} | Dekho Panchang`;
-  const description = `${festivalNameEn} ${year} in ${cityNameEn}: exact Tithi, Muhurta, Lakshmi Puja timing computed from Vedic algorithms. City-specific accuracy for ${cityNameEn}${cityData.state ? `, ${cityData.state}` : ''}.`.slice(0, 155);
+  const description = `${festivalNameEn} ${year} in ${cityNameEn}: exact Tithi date, Puja Muhurta, sunrise & Rahu Kaal. Swiss Ephemeris accuracy. Free, no ads. ${cityNameEn}${cityData.state ? `, ${cityData.state}` : ''} specific.`.slice(0, 160);
 
   const url = `${BASE_URL}/${locale}/festivals/${slug}/${year}/${city}`;
 

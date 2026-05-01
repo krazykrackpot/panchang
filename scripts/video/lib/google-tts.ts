@@ -29,16 +29,16 @@ interface VoiceConfig {
 
 const VOICES: Record<string, VoiceConfig> = {
   en: {
-    languageCode: 'en-IN',
-    name: 'en-IN-Wavenet-D', // Male, Indian English, deep and authoritative
-    label: 'English (Indian)',
-    speakingRate: 0.92, // slightly slower for educational content
+    languageCode: 'en-GB',
+    name: 'en-GB-News-L', // Male, British News anchor — deep, dramatic, authoritative
+    label: 'English (British News)',
+    speakingRate: 0.95,
   },
   hi: {
     languageCode: 'hi-IN',
-    name: 'hi-IN-Wavenet-C', // Male, Hindi, clear and warm
+    name: 'hi-IN-Wavenet-C', // Male, Hindi Wavenet — clear, enthusiastic pitch
     label: 'Hindi',
-    speakingRate: 0.90,
+    speakingRate: 0.95,
   },
   ta: {
     languageCode: 'ta-IN',

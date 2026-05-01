@@ -5,11 +5,13 @@ import { AlertTriangle, ChevronDown, ChevronUp, Sparkles, Shield, BookOpen } fro
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RASHIS } from '@/lib/constants/rashis';
 import { EXALTATION_SIGNS, DEBILITATION_SIGNS, OWN_SIGNS } from '@/lib/constants/dignities';
+import { NADI_TABLE, NADI_GROUP_DESCRIPTIONS } from '@/lib/constants/nadi-reference';
 import { calculateNadiAmsha } from '@/lib/kundali/nadi-amsha';
 import type { NadiAmshaPosition } from '@/lib/kundali/nadi-amsha';
 import type { KundaliData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
+import { Link } from '@/lib/i18n/navigation';
 
 const PLANET_COLORS: Record<number, string> = {
   0: 'text-amber-400', 1: 'text-slate-300', 2: 'text-red-400', 3: 'text-emerald-400',
@@ -116,12 +118,20 @@ export default function NadiAmshaTab({ kundali, locale }: Props) {
   const isTamil = String(locale) === 'ta';
   const isLatin = locale === 'en' || isTamil;
   const [expandedPlanet, setExpandedPlanet] = useState<number | null>(null);
+  const [showReference, setShowReference] = useState(false);
+  const [expandedGroup, setExpandedGroup] = useState<number | null>(null);
 
   const nadiChart = useMemo(() => calculateNadiAmsha(kundali), [kundali]);
 
   const allPositions: NadiAmshaPosition[] = useMemo(
     () => [nadiChart.ascendantNadi, ...nadiChart.positions],
     [nadiChart]
+  );
+
+  // Collect all Nadi numbers present in this chart for highlighting in the reference table
+  const chartNadiNumbers = useMemo(
+    () => new Set(allPositions.map(p => p.nadiAmshaNumber)),
+    [allPositions]
   );
 
   const toggle = (pid: number) => {
@@ -263,11 +273,17 @@ export default function NadiAmshaTab({ kundali, locale }: Props) {
         <h3 className="text-gold-light font-semibold text-sm">
           {isLatin ? 'What is Nadi Amsha (D-150)?' : 'नाडी अंश (D-150) क्या है?'}
         </h3>
-        <p className="text-sm text-text-secondary leading-relaxed">
-          {isLatin
-            ? 'Nadi Amsha is the 150th divisional chart (D-150) — the finest subdivision in Vedic astrology. Each zodiac sign (30\u00B0) is divided into 150 equal parts of 0.2\u00B0 (12 arc-minutes) each. At this microscopic level, even twins born minutes apart can have different Nadi positions, revealing unique karmic signatures invisible in coarser charts like D-1 (Rashi) or D-9 (Navamsha).'
-            : 'नाडी अंश 150वां विभागीय चार्ट (D-150) है — वैदिक ज्योतिष में सबसे सूक्ष्म विभाजन। प्रत्येक राशि (30\u00B0) को 0.2\u00B0 (12 कला-मिनट) के 150 समान भागों में विभाजित किया जाता है। इस सूक्ष्म स्तर पर, मिनटों के अन्तर से जन्मे जुड़वाँ बच्चों की भी अलग-अलग नाडी स्थितियाँ हो सकती हैं।'}
-        </p>
+        <div className="flex items-center justify-between">
+          <p className="text-sm text-text-secondary leading-relaxed flex-1">
+            {isLatin
+              ? 'Nadi Amsha is the 150th divisional chart (D-150) — the finest subdivision in Vedic astrology. Each zodiac sign (30\u00B0) is divided into 150 equal parts of 0.2\u00B0 (12 arc-minutes) each. At this microscopic level, even twins born minutes apart can have different Nadi positions, revealing unique karmic signatures invisible in coarser charts like D-1 (Rashi) or D-9 (Navamsha).'
+              : 'नाडी अंश 150वां विभागीय चार्ट (D-150) है — वैदिक ज्योतिष में सबसे सूक्ष्म विभाजन। प्रत्येक राशि (30\u00B0) को 0.2\u00B0 (12 कला-मिनट) के 150 समान भागों में विभाजित किया जाता है। इस सूक्ष्म स्तर पर, मिनटों के अन्तर से जन्मे जुड़वाँ बच्चों की भी अलग-अलग नाडी स्थितियाँ हो सकती हैं।'}
+          </p>
+        </div>
+        <Link href="/learn/nadi-amsha" className="text-xs text-gold-primary/70 hover:text-gold-light flex items-center gap-1 mt-1">
+          <BookOpen className="w-3 h-3" />
+          {isLatin ? 'Detailed guide to Nadi Amsha \u2192' : '\u0928\u093E\u0921\u0940 \u0905\u0902\u0936 \u0915\u0940 \u0935\u093F\u0938\u094D\u0924\u0943\u0924 \u091C\u093E\u0928\u0915\u093E\u0930\u0940 \u2192'}
+        </Link>
         <div className="grid sm:grid-cols-3 gap-3 text-xs">
           <div className="bg-gold-primary/5 rounded-lg p-3 border border-gold-primary/10">
             <p className="text-gold-light font-medium mb-1">{isLatin ? 'Nadi Number (1-150)' : 'नाडी संख्या (1-150)'}</p>
@@ -704,6 +720,146 @@ export default function NadiAmshaTab({ kundali, locale }: Props) {
           );
         })}
       </div>
+
+      {/* ======== COMPLETE 150 NADI REFERENCE ======== */}
+      <NadiReferenceTable
+        isLatin={isLatin}
+        locale={locale}
+        showReference={showReference}
+        setShowReference={setShowReference}
+        expandedGroup={expandedGroup}
+        setExpandedGroup={setExpandedGroup}
+        chartNadiNumbers={chartNadiNumbers}
+      />
+    </div>
+  );
+}
+
+// ─── Nadi Reference Table (extracted for clarity) ─────────────────────────
+
+const SIGN_NAMES_SHORT: Record<number, { en: string; hi: string }> = {
+  1: { en: 'Ari', hi: 'मेष' }, 2: { en: 'Tau', hi: 'वृष' },
+  3: { en: 'Gem', hi: 'मिथ' }, 4: { en: 'Can', hi: 'कर्क' },
+  5: { en: 'Leo', hi: 'सिंह' }, 6: { en: 'Vir', hi: 'कन्या' },
+  7: { en: 'Lib', hi: 'तुला' }, 8: { en: 'Sco', hi: 'वृश्चि' },
+  9: { en: 'Sag', hi: 'धनु' }, 10: { en: 'Cap', hi: 'मकर' },
+  11: { en: 'Aqu', hi: 'कुम्भ' }, 12: { en: 'Pis', hi: 'मीन' },
+};
+
+const ELEMENT_BADGE: Record<string, string> = {
+  fire: 'text-orange-400 bg-orange-500/10',
+  earth: 'text-emerald-400 bg-emerald-500/10',
+  air: 'text-sky-400 bg-sky-500/10',
+  water: 'text-blue-400 bg-blue-500/10',
+};
+
+function NadiReferenceTable({
+  isLatin, locale, showReference, setShowReference, expandedGroup, setExpandedGroup, chartNadiNumbers,
+}: {
+  isLatin: boolean;
+  locale: Locale;
+  showReference: boolean;
+  setShowReference: (v: boolean) => void;
+  expandedGroup: number | null;
+  setExpandedGroup: (v: number | null) => void;
+  chartNadiNumbers: Set<number>;
+}) {
+  const signName = (id: number) => isLatin ? SIGN_NAMES_SHORT[id]?.en : SIGN_NAMES_SHORT[id]?.hi;
+
+  return (
+    <div className="rounded-xl border border-gold-primary/15 bg-bg-secondary/40 overflow-hidden">
+      <button
+        onClick={() => setShowReference(!showReference)}
+        className="w-full flex items-center justify-between px-5 py-4 hover:bg-gold-primary/5 transition-colors"
+      >
+        <span className="text-gold-light font-bold text-sm">
+          {isLatin ? 'Complete 150 Nadi Reference' : '\u0938\u092E\u094D\u092A\u0942\u0930\u094D\u0923 150 \u0928\u093E\u0921\u0940 \u0938\u0928\u094D\u0926\u0930\u094D\u092D'}
+        </span>
+        <ChevronDown className={`w-4 h-4 text-gold-primary/60 transition-transform ${showReference ? 'rotate-180' : ''}`} />
+      </button>
+      {showReference && (
+        <div className="px-5 pb-5 space-y-3">
+          <p className="text-text-secondary text-xs">
+            {isLatin
+              ? 'All 150 Nadi divisions grouped by their 12-Nadi cycles. Rows highlighted in gold appear in this chart.'
+              : '\u0938\u092D\u0940 150 \u0928\u093E\u0921\u0940 \u0935\u093F\u092D\u093E\u091C\u0928 12-\u0928\u093E\u0921\u0940 \u091A\u0915\u094D\u0930\u094B\u0902 \u0926\u094D\u0935\u093E\u0930\u093E \u0938\u092E\u0942\u0939\u093F\u0924\u0964 \u0938\u094D\u0935\u0930\u094D\u0923 \u092A\u0902\u0915\u094D\u0924\u093F\u092F\u093E\u0901 \u0907\u0938 \u0915\u0941\u0923\u094D\u0921\u0932\u0940 \u092E\u0947\u0902 \u0939\u0948\u0902\u0964'}
+          </p>
+
+          {NADI_GROUP_DESCRIPTIONS.map((gd) => {
+            const isExpanded = expandedGroup === gd.group;
+            const groupNadis = NADI_TABLE.filter(n => n.group === gd.group);
+            const hasChartPlanet = groupNadis.some(n => chartNadiNumbers.has(n.number));
+
+            return (
+              <div key={gd.group} className={`rounded-lg border ${hasChartPlanet ? 'border-gold-primary/30' : 'border-gold-primary/10'} overflow-hidden`}>
+                <button
+                  onClick={() => setExpandedGroup(isExpanded ? null : gd.group)}
+                  className="w-full flex items-center justify-between px-4 py-2.5 hover:bg-gold-primary/5 transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-gold-primary font-mono text-xs font-bold w-8">{gd.range}</span>
+                    <span className="text-text-secondary text-xs">{gd.description}</span>
+                    {hasChartPlanet && (
+                      <span className="text-[10px] text-gold-light bg-gold-primary/15 px-1.5 py-0.5 rounded-full font-medium">
+                        {isLatin ? 'in chart' : '\u091A\u093E\u0930\u094D\u091F'}
+                      </span>
+                    )}
+                  </div>
+                  <ChevronDown className={`w-3.5 h-3.5 text-gold-primary/50 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                </button>
+                {isExpanded && (
+                  <div className="overflow-x-auto border-t border-gold-primary/10">
+                    <table className="w-full text-xs">
+                      <thead>
+                        <tr className="border-b border-gold-primary/10 bg-bg-primary/30">
+                          <th className="text-left px-3 py-1.5 text-gold-dark font-semibold">#</th>
+                          <th className="text-left px-3 py-1.5 text-gold-dark font-semibold">{isLatin ? 'Degrees' : '\u0905\u0902\u0936'}</th>
+                          <th className="text-center px-3 py-1.5 text-gold-dark font-semibold">{isLatin ? 'Odd\u2192' : '\u0935\u093F\u0937\u092E\u2192'}</th>
+                          <th className="text-center px-3 py-1.5 text-gold-dark font-semibold">{isLatin ? 'Even\u2192' : '\u0938\u092E\u2192'}</th>
+                          <th className="text-center px-3 py-1.5 text-gold-dark font-semibold">{isLatin ? 'Element' : '\u0924\u0924\u094D\u0935'}</th>
+                          <th className="text-left px-3 py-1.5 text-gold-dark font-semibold hidden sm:table-cell">{isLatin ? 'Quality' : '\u0917\u0941\u0923'}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {groupNadis.map((nadi) => {
+                          const inChart = chartNadiNumbers.has(nadi.number);
+                          return (
+                            <tr
+                              key={nadi.number}
+                              className={`border-b border-gold-primary/5 ${inChart ? 'bg-gold-primary/10' : 'hover:bg-gold-primary/5'} transition-colors`}
+                            >
+                              <td className={`px-3 py-1.5 font-mono ${inChart ? 'text-gold-light font-bold' : 'text-gold-primary/70'}`}>
+                                {nadi.number}
+                              </td>
+                              <td className="px-3 py-1.5 text-text-secondary font-mono">
+                                {nadi.degreeStart.toFixed(2)}&deg;&ndash;{nadi.degreeEnd.toFixed(2)}&deg;
+                              </td>
+                              <td className="px-3 py-1.5 text-center text-text-primary">
+                                {signName(nadi.signForward)}
+                              </td>
+                              <td className="px-3 py-1.5 text-center text-text-primary">
+                                {signName(nadi.signReverse)}
+                              </td>
+                              <td className="px-3 py-1.5 text-center">
+                                <span className={`inline-block px-1.5 py-0.5 rounded text-[10px] font-medium ${ELEMENT_BADGE[nadi.element]}`}>
+                                  {nadi.element}
+                                </span>
+                              </td>
+                              <td className="px-3 py-1.5 text-text-secondary hidden sm:table-cell max-w-xs truncate">
+                                {nadi.quality}
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

@@ -9,6 +9,7 @@ import LessonSection from '@/components/learn/LessonSection';
 import { Link } from '@/lib/i18n/navigation';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { computeNadiAmsha } from '@/lib/kundali/nadi-amsha';
+import { NADI_TABLE, NADI_GROUP_DESCRIPTIONS } from '@/lib/constants/nadi-reference';
 
 // ─── Bilingual helper ──────────────────────────────────────────────────────
 const tl = (obj: { en: string; hi: string }, locale: string) =>
@@ -196,6 +197,9 @@ export default function LearnNadiAmshaPage() {
   const locale = useLocale();
   const isHi = isDevanagariLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
+
+  // Reference table state
+  const [expandedRefGroup, setExpandedRefGroup] = useState<number | null>(null);
 
   // Live calculator state
   const [inputDeg, setInputDeg] = useState('45.39375');
@@ -460,6 +464,74 @@ export default function LearnNadiAmshaPage() {
             hi: 'ध्यान दें मेष (विषम राशि) के लिए आगे का चक्र। वृषभ (सम राशि) के लिए, वही 12 विभाजन मीन, कुम्भ, मकर... उल्टे क्रम में चलेंगे।',
           }, locale)}
         </p>
+
+        {/* Complete 150 Nadi Reference — grouped by cycle */}
+        <div className="mt-6 space-y-2">
+          <div className="text-gold-light text-sm font-bold">
+            {tl({ en: 'Complete 150 Nadi Reference (by cycle)', hi: 'सम्पूर्ण 150 नाडी सन्दर्भ (चक्रानुसार)' }, locale)}
+          </div>
+          <p className="text-text-secondary text-xs mb-3">
+            {tl({
+              en: 'Click any group to expand and see individual Nadi divisions with their degree ranges, sign mappings, elements, and karmic qualities.',
+              hi: 'प्रत्येक समूह पर क्लिक करके अंश सीमा, राशि मैपिंग, तत्व और कार्मिक गुण देखें।',
+            }, locale)}
+          </p>
+          {NADI_GROUP_DESCRIPTIONS.map((gd) => {
+            const isOpen = expandedRefGroup === gd.group;
+            const groupNadis = NADI_TABLE.filter(n => n.group === gd.group);
+            return (
+              <div key={gd.group} className="rounded-lg border border-gold-primary/10 overflow-hidden">
+                <button
+                  onClick={() => setExpandedRefGroup(isOpen ? null : gd.group)}
+                  className="w-full flex items-center justify-between px-4 py-2.5 hover:bg-gold-primary/5 transition-colors text-left"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-gold-primary font-mono text-xs font-bold w-14">{tl({ en: `Nadi ${gd.range}`, hi: `नाडी ${gd.range}` }, locale)}</span>
+                    <span className="text-text-secondary text-xs">{gd.description}</span>
+                  </div>
+                  <svg className={`w-3.5 h-3.5 text-gold-primary/50 transition-transform ${isOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                </button>
+                {isOpen && (
+                  <div className="overflow-x-auto border-t border-gold-primary/10">
+                    <table className="w-full text-xs">
+                      <thead>
+                        <tr className="border-b border-gold-primary/10 bg-bg-primary/30">
+                          <th className="text-left px-3 py-1.5 text-gold-dark font-semibold">#</th>
+                          <th className="text-left px-3 py-1.5 text-gold-dark font-semibold">{tl({ en: 'Degrees', hi: 'अंश' }, locale)}</th>
+                          <th className="text-center px-3 py-1.5 text-gold-dark font-semibold">{tl({ en: 'Odd sign', hi: 'विषम' }, locale)}</th>
+                          <th className="text-center px-3 py-1.5 text-gold-dark font-semibold">{tl({ en: 'Even sign', hi: 'सम' }, locale)}</th>
+                          <th className="text-center px-3 py-1.5 text-gold-dark font-semibold">{tl({ en: 'Element', hi: 'तत्व' }, locale)}</th>
+                          <th className="text-left px-3 py-1.5 text-gold-dark font-semibold hidden sm:table-cell">{tl({ en: 'Karmic Quality', hi: 'कार्मिक गुण' }, locale)}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {groupNadis.map((nadi) => (
+                          <tr key={nadi.number} className="border-b border-gold-primary/5 hover:bg-gold-primary/5 transition-colors">
+                            <td className="px-3 py-1.5 font-mono text-gold-primary/70">{nadi.number}</td>
+                            <td className="px-3 py-1.5 text-text-secondary font-mono">{nadi.degreeStart.toFixed(2)}&deg;&ndash;{nadi.degreeEnd.toFixed(2)}&deg;</td>
+                            <td className="px-3 py-1.5 text-center text-text-primary">{tl(SIGN_NAMES[nadi.signForward - 1], locale)}</td>
+                            <td className="px-3 py-1.5 text-center text-text-primary">{tl(SIGN_NAMES[nadi.signReverse - 1], locale)}</td>
+                            <td className="px-3 py-1.5 text-center">
+                              <span className={`inline-block px-1.5 py-0.5 rounded text-[10px] font-medium ${
+                                nadi.element === 'fire' ? 'text-orange-400 bg-orange-500/10' :
+                                nadi.element === 'earth' ? 'text-emerald-400 bg-emerald-500/10' :
+                                nadi.element === 'air' ? 'text-sky-400 bg-sky-500/10' :
+                                'text-blue-400 bg-blue-500/10'
+                              }`}>
+                                {nadi.element}
+                              </span>
+                            </td>
+                            <td className="px-3 py-1.5 text-text-secondary hidden sm:table-cell">{nadi.quality}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </LessonSection>
 
       <GoldDivider />
@@ -772,6 +844,16 @@ export default function LearnNadiAmshaPage() {
       </LessonSection>
 
       <GoldDivider />
+
+      {/* ═══ Generate Your Chart CTA ═══ */}
+      <div className="text-center py-6">
+        <Link
+          href="/kundali"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-primary/15 border border-gold-primary/30 text-gold-light font-bold text-sm hover:bg-gold-primary/25 transition-colors"
+        >
+          {tl({ en: 'Generate your D-150 Nadi Amsha chart', hi: 'अपना D-150 नाडी अंश चार्ट बनाएँ' }, locale)} &rarr;
+        </Link>
+      </div>
 
       {/* ═══ Cross-Links ═══ */}
       <div className="text-center space-y-4 py-4">

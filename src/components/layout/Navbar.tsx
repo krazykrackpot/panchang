@@ -120,8 +120,8 @@ export default function Navbar() {
         <div className="flex items-center h-16">
           {/* Left — Logo */}
           <Link href="/" className="flex items-center gap-2.5 group shrink-0">
-            <div className="relative w-10 h-10">
-              <svg viewBox="0 0 32 32" className="w-10 h-10 group-hover:scale-105 transition-transform" aria-hidden="true">
+            <div className="relative w-12 h-12">
+              <svg viewBox="0 0 32 32" className="w-12 h-12 group-hover:scale-105 transition-transform" aria-hidden="true">
                 <defs>
                   <linearGradient id="nav-om-g" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
                     <stop offset="0%" stopColor="#f0d48a" />

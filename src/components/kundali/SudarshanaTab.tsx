@@ -3,10 +3,11 @@
 import { useState, useMemo } from 'react';
 import { tl } from '@/lib/utils/trilingual';
 import { RASHIS } from '@/lib/constants/rashis';
-import { GRAHA_ABBREVIATIONS } from '@/lib/constants/grahas';
-import { generateSudarshana, type RingData } from '@/lib/kundali/sudarshana';
+import { GRAHA_ABBREVIATIONS, GRAHAS } from '@/lib/constants/grahas';
+import { generateSudarshana, type RingData, type RingSegment } from '@/lib/kundali/sudarshana';
 import type { DetailedRingAnalysis } from '@/lib/kundali/sudarshana-interpretation';
 import type { KundaliData } from '@/types/kundali';
+import { dateToJD, getPlanetaryPositions, toSidereal, lahiriAyanamsha, getRashiNumber } from '@/lib/ephem/astronomical';
 
 interface SudarshanaTabProps {
   kundali: KundaliData;
@@ -68,11 +69,47 @@ export default function SudarshanaTab({ kundali, locale }: SudarshanaTabProps) {
   const defaultAge = Math.max(1, Math.min(120, now.getFullYear() - birthYear));
 
   const [age, setAge] = useState(defaultAge);
+  const [showTransits, setShowTransits] = useState(false);
 
   const data = useMemo(
     () => generateSudarshana(kundali, age),
     [kundali, age],
   );
+
+  // Compute transit planet positions for birth date + age years
+  const transitPlanets = useMemo(() => {
+    if (!showTransits) return null;
+    try {
+      const birthDate = kundali.birthData.date; // ISO date string
+      const [y, m, d] = birthDate.split('-').map(Number);
+      // Target date = birth + age years (use ms arithmetic per CLAUDE.md rule P)
+      const birthMs = Date.UTC(y, m - 1, d, 12);
+      const targetMs = birthMs + age * 365.25 * 24 * 60 * 60 * 1000;
+      const targetDate = new Date(targetMs);
+      const tYear = targetDate.getUTCFullYear();
+      const tMonth = targetDate.getUTCMonth() + 1;
+      const tDay = targetDate.getUTCDate();
+      const jd = dateToJD(tYear, tMonth, tDay, 12);
+      const positions = getPlanetaryPositions(jd);
+      const ayanamsha = lahiriAyanamsha(jd);
+
+      // Map each planet to its sidereal rashi
+      return positions.map((p, i) => {
+        const sidLng = toSidereal(p.longitude, jd, ayanamsha);
+        const rashi = getRashiNumber(sidLng);
+        const graha = GRAHAS[i];
+        return {
+          id: i,
+          abbr: GRAHA_ABBREVIATIONS[i] || graha?.name?.en?.slice(0, 2) || `P${i}`,
+          name: graha?.name || { en: `Planet ${i}`, hi: `ग्रह ${i}`, sa: `ग्रह ${i}` },
+          rashi,
+        };
+      });
+    } catch {
+      console.error('[sudarshana] Transit computation failed for age', age);
+      return null;
+    }
+  }, [showTransits, age, kundali.birthData.date]);
 
   return (
     <div className="space-y-6">
@@ -98,14 +135,28 @@ export default function SudarshanaTab({ kundali, locale }: SudarshanaTabProps) {
         </details>
       </div>
 
-      {/* Age slider */}
+      {/* Age slider + Transit toggle */}
       <div className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/15 rounded-2xl px-6 py-4">
         <div className="flex items-center justify-between mb-2">
           <span className="text-text-secondary text-sm">{isEn ? 'Age' : 'आयु'}</span>
           <span className="text-gold-light font-bold text-lg">{age}</span>
-          <span className="text-text-secondary text-xs">
-            {isEn ? `Year ${data.birthYear + age}` : `वर्ष ${data.birthYear + age}`}
-          </span>
+          <div className="flex items-center gap-3">
+            <span className="text-text-secondary text-xs">
+              {isEn ? `Year ${data.birthYear + age}` : `वर्ष ${data.birthYear + age}`}
+            </span>
+            <button
+              onClick={() => setShowTransits(!showTransits)}
+              className={`px-3 py-1 rounded-lg text-xs font-medium transition-all ${
+                showTransits
+                  ? 'bg-emerald-500/20 border border-emerald-500/40 text-emerald-400'
+                  : 'bg-white/5 border border-white/10 text-text-secondary hover:text-gold-light hover:border-gold-primary/30'
+              }`}
+            >
+              {showTransits
+                ? (isEn ? '● Transits ON' : '● गोचर चालू')
+                : (isEn ? '○ Show Transits' : '○ गोचर दिखाएँ')}
+            </button>
+          </div>
         </div>
         <input
           type="range"
@@ -133,6 +184,7 @@ export default function SudarshanaTab({ kundali, locale }: SudarshanaTabProps) {
             chandraRing={data.chandraRing}
             suryaRing={data.suryaRing}
             locale={locale}
+            transitPlanets={transitPlanets}
           />
         </div>
       </div>
@@ -494,11 +546,13 @@ function SudarshanaChakra({
   chandraRing,
   suryaRing,
   locale,
+  transitPlanets,
 }: {
   lagnaRing: RingData;
   chandraRing: RingData;
   suryaRing: RingData;
   locale: string;
+  transitPlanets?: { id: number; abbr: string; rashi: number }[] | null;
 }) {
   return (
     <svg
@@ -591,6 +645,40 @@ function SudarshanaChakra({
           </text>
         );
       })}
+
+      {/* Transit planet overlay — rendered on the outer ring with distinct style */}
+      {transitPlanets && transitPlanets.length > 0 && (() => {
+        // Place transit planets on the outer ring based on their rashi position
+        const lagnaStart = lagnaRing.startSign;
+        const transitR = OUTER_R - 25; // slightly inside the outer ring boundary
+
+        return (
+          <g>
+            {transitPlanets.map((tp) => {
+              // Calculate which segment this transit planet falls in
+              const houseIndex = ((tp.rashi - lagnaStart + 12) % 12);
+              const segAngle = (2 * Math.PI) / 12;
+              const startAngle = houseIndex * segAngle - Math.PI / 2;
+              const midAngle = startAngle + segAngle / 2;
+              const dx = CX + transitR * Math.cos(midAngle);
+              const dy = CY + transitR * Math.sin(midAngle);
+              const tColor = PLANET_COLORS[tp.id] || '#60a5fa';
+
+              return (
+                <g key={`transit-${tp.id}`}>
+                  {/* Dashed circle outline — distinct from solid natal dots */}
+                  <circle cx={dx} cy={dy} r={7} fill="none" stroke={tColor} strokeWidth={2} strokeDasharray="3 2" opacity={0.85} />
+                  <circle cx={dx} cy={dy} r={3} fill={tColor} opacity={0.6} />
+                  {/* "T:" prefix label */}
+                  <text x={dx} y={dy + 18} textAnchor="middle" fill={tColor} fontSize={10} fontWeight="600" opacity={0.8}>
+                    T:{tp.abbr}
+                  </text>
+                </g>
+              );
+            })}
+          </g>
+        );
+      })()}
 
       {/* Center label */}
       <text x={CX} y={CY - 12} textAnchor="middle" fill="rgba(212,168,83,0.7)" fontSize={18} fontWeight="bold" letterSpacing={4}>

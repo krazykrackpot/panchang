@@ -56,7 +56,7 @@ Updated: 2026-04-30
 - [ ] **Vercel tier evaluation** — check CPU usage mid-May. If under limits, consider downgrading to free.
 
 ### Security
-- [ ] **Security headers** — CSP (Content-Security-Policy) for XSS protection, HSTS (Strict-Transport-Security), X-Frame-Options/COOP for clickjacking, Trusted Types for DOM XSS. Add via `next.config.ts` headers or Vercel config.
+- [x] **Security headers** — All 7 headers live: CSP, HSTS (1yr+preload), X-Frame-Options, X-Content-Type-Options, Referrer-Policy, COOP, Permissions-Policy. Verified in production.
 
 ### SEO
 - [ ] **GSC review** — ~May 28. 6 weeks of data needed. Decide which programmatic pages to keep/prune. Current: 1% CTR, position 18.7.

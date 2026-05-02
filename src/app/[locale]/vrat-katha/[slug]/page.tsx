@@ -26,6 +26,9 @@ const LABELS = {
     hi: 'एक पवित्र ग्रन्थ है जिसे उसके पारम्परिक रूप में पढ़ना चाहिए। प्रामाणिक पूर्ण पाठ के लिए अपने पारिवारिक पण्डित या विश्वसनीय प्रकाशन से परामर्श करें।',
   },
   relatedPages: { en: 'Related on Dekho Panchang', hi: 'सम्बन्धित पृष्ठ' },
+  samagri: { en: 'Puja Materials (Samagri)', hi: 'पूजन सामग्री' },
+  completeKatha: { en: 'Complete Katha', hi: 'सम्पूर्ण कथा' },
+  relatedAartis: { en: 'Related Aartis', hi: 'सम्बन्धित आरती' },
 };
 
 export default function VratKathaPage() {
@@ -176,11 +179,94 @@ export default function VratKathaPage() {
           </div>
         </motion.section>
 
+        {/* Samagri (Puja Materials) */}
+        {katha.samagri && (
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="mb-10"
+          >
+            <h2 className={`text-2xl font-bold text-gold-light mb-4 ${isDev ? 'font-devanagari-heading' : ''}`}>
+              {L('samagri')}
+            </h2>
+            <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-6">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {(isDev ? katha.samagri.hi : katha.samagri.en).map((item, i) => (
+                  <li key={i} className={`flex items-center gap-2 text-text-primary text-sm ${isDev ? 'font-devanagari-body' : ''}`}>
+                    <span className="text-gold-primary flex-shrink-0">&#10022;</span> {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.section>
+        )}
+
+        {/* Chapters */}
+        {katha.chapters && katha.chapters.length > 0 && (
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35 }}
+            className="mb-10"
+          >
+            <h2 className={`text-2xl font-bold text-gold-light mb-6 ${isDev ? 'font-devanagari-heading' : ''}`}>
+              {L('completeKatha')}
+            </h2>
+            <div className="space-y-4">
+              {katha.chapters.map((ch) => (
+                <details
+                  key={ch.number}
+                  open={ch.number === 1}
+                  className="rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] overflow-hidden"
+                >
+                  <summary className="px-6 py-4 cursor-pointer flex items-center gap-3 hover:bg-gold-primary/5 transition-colors">
+                    <span className="text-gold-primary font-mono text-sm">{ch.number}</span>
+                    <span className={`text-gold-light font-bold ${isDev ? 'font-devanagari-heading' : ''}`}>
+                      {isDev ? ch.title.hi : ch.title.en}
+                    </span>
+                  </summary>
+                  <div className="px-6 pb-6 pt-2">
+                    <p className={`text-text-primary leading-relaxed whitespace-pre-line ${isDev ? 'font-devanagari-body' : ''}`}>
+                      {isDev ? ch.content.hi : ch.content.en}
+                    </p>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </motion.section>
+        )}
+
+        {/* Related Aartis */}
+        {katha.relatedAartis && katha.relatedAartis.length > 0 && (
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="mb-10"
+          >
+            <h2 className={`text-2xl font-bold text-gold-light mb-4 ${isDev ? 'font-devanagari-heading' : ''}`}>
+              {L('relatedAartis')}
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {katha.relatedAartis.map(aartiSlug => (
+                <Link
+                  key={aartiSlug}
+                  href={`/devotional/aarti/${aartiSlug}`}
+                  className="px-4 py-2 rounded-lg bg-gold-primary/10 border border-gold-primary/20 text-gold-light text-sm hover:bg-gold-primary/20 transition-colors"
+                >
+                  {aartiSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
+                </Link>
+              ))}
+            </div>
+          </motion.section>
+        )}
+
         {/* Katha Note */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
+          transition={{ delay: 0.45 }}
           className="rounded-2xl border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] p-6 sm:p-8 mb-10"
         >
           <div className="flex gap-3">
@@ -196,7 +282,7 @@ export default function VratKathaPage() {
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.35 }}
+          transition={{ delay: 0.5 }}
           className="mb-10"
         >
           <h3 className={`text-lg font-bold text-gold-light mb-4 ${isDev ? 'font-devanagari-heading' : ''}`}>

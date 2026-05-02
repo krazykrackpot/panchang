@@ -14,6 +14,7 @@ import { computePersonalizedDay } from './personal-panchang';
 import type { UserSnapshot, PersonalizedDay } from './types';
 import { generateDailyVibe, type DailyVibeData } from '@/lib/shareable/daily-vibe';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { VARA_QUALITY } from '@/lib/constants/grahas';
 import type { PanchangData } from '@/types/panchang';
 
 export interface MonthDayResult {
@@ -37,6 +38,10 @@ export interface MonthDayResult {
   tithi: string;
   /** Nakshatra name at sunrise */
   nakshatra: string;
+  /** Vara quality */
+  varaQuality: string;
+  /** Vara best for */
+  varaBestFor: string;
   /** Key highlights for the day */
   highlights: string[];
   /** Is today */
@@ -124,10 +129,14 @@ export function generateMonthlyCalendar(
       // Non-critical
     }
 
-    // Combine scores: 60% personal + 40% universal panchang
+    // Vara quality score (Muhurta Chintamani classification)
+    const varaQ = VARA_QUALITY[weekday];
+    const varaScore = varaQ?.score ?? 50;
+
+    // Combine scores: 50% personal + 30% universal panchang + 20% vara
     const personalScore = personal ? qualityToScore(personal.dayQuality) : 50;
     const universalScore = vibe?.energyScore ?? 50;
-    const combinedScore = Math.round(personalScore * 0.6 + universalScore * 0.4);
+    const combinedScore = Math.round(personalScore * 0.5 + universalScore * 0.3 + varaScore * 0.2);
 
     // Derive quality label from combined score
     const quality = scoreToQuality(combinedScore);
@@ -155,6 +164,8 @@ export function generateMonthlyCalendar(
         ? { house: personal.chandraBala.houseFromMoon, favorable: personal.chandraBala.isFavorable }
         : { house: 0, favorable: false },
       panchangEnergy: universalScore,
+      varaQuality: varaQ?.quality.en || 'Mixed',
+      varaBestFor: varaQ?.bestFor.en || '',
       tithi: panchang.tithi?.name?.en || '',
       nakshatra: panchang.nakshatra?.name?.en || '',
       highlights,

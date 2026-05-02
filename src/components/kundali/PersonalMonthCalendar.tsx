@@ -223,6 +223,12 @@ export default function PersonalMonthCalendar({ snapshot, lat, lng, timezone, lo
                 {isHi ? 'भाव' : 'House'} {selectedDay.chandraBala.house} {selectedDay.chandraBala.favorable ? '✓' : '✗'}
               </p>
             </div>
+            <div className="rounded-lg bg-white/[0.03] p-2 col-span-2">
+              <span className="text-text-secondary/60">{isHi ? 'वार गुण' : 'Vara Quality'}</span>
+              <p className={`font-medium ${selectedDay.varaQuality === 'Auspicious' || selectedDay.varaQuality === 'Most Auspicious' ? 'text-emerald-400' : selectedDay.varaQuality === 'Caution' ? 'text-amber-400' : 'text-gold-primary'}`}>
+                {selectedDay.varaQuality} {selectedDay.varaBestFor ? `— ${selectedDay.varaBestFor}` : ''}
+              </p>
+            </div>
           </div>
 
           {selectedDay.highlights.length > 0 && (

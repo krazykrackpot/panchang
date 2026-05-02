@@ -16,6 +16,30 @@ export const GRAHA_ABBREVIATIONS: Record<number, string> = {
   0: 'Su', 1: 'Mo', 2: 'Ma', 3: 'Me', 4: 'Ju', 5: 'Ve', 6: 'Sa', 7: 'Ra', 8: 'Ke',
 };
 
+/**
+ * Vara (weekday) data with quality classification per Muhurta Chintamani + Dharmasindhu.
+ *
+ * quality: universal auspiciousness for general new ventures
+ * bestFor/avoidFor: activity-specific guidance
+ * score: 0-100 universal vara quality for scoring
+ * rulerPlanetId: planet ID (0=Sun..6=Saturn) for birth chart integration
+ */
+export const VARA_QUALITY: Record<number, {
+  quality: { en: string; hi: string };
+  score: number;
+  rulerPlanetId: number;
+  bestFor: { en: string; hi: string };
+  avoidFor: { en: string; hi: string };
+}> = {
+  0: { quality: { en: 'Mixed', hi: 'मिश्र' }, score: 50, rulerPlanetId: 0, bestFor: { en: 'Government work, authority, medicine, fire rituals', hi: 'सरकारी कार्य, अधिकार, औषधि, अग्नि कर्म' }, avoidFor: { en: 'Travel, marriage, new partnerships', hi: 'यात्रा, विवाह, नई साझेदारी' } },
+  1: { quality: { en: 'Auspicious', hi: 'शुभ' }, score: 70, rulerPlanetId: 1, bestFor: { en: 'Travel, new clothes, agriculture, water-related, devotion', hi: 'यात्रा, नए वस्त्र, कृषि, जल सम्बन्धी, भक्ति' }, avoidFor: { en: 'Surgery, conflict', hi: 'शल्य चिकित्सा, विवाद' } },
+  2: { quality: { en: 'Caution', hi: 'सावधानी' }, score: 30, rulerPlanetId: 2, bestFor: { en: 'Land purchase, surgery, courage, competition, Hanuman puja', hi: 'भूमि क्रय, शल्य, साहस, प्रतियोगिता, हनुमान पूजा' }, avoidFor: { en: 'Marriage, new ventures, travel', hi: 'विवाह, नया उद्यम, यात्रा' } },
+  3: { quality: { en: 'Auspicious', hi: 'शुभ' }, score: 70, rulerPlanetId: 3, bestFor: { en: 'Education, business, communication, writing, contracts', hi: 'शिक्षा, व्यापार, संवाद, लेखन, अनुबन्ध' }, avoidFor: { en: 'Agriculture, long-term commitments', hi: 'कृषि, दीर्घकालिक प्रतिबद्धताएँ' } },
+  4: { quality: { en: 'Most Auspicious', hi: 'सर्वश्रेष्ठ शुभ' }, score: 80, rulerPlanetId: 4, bestFor: { en: 'Marriage, learning, rituals, investments, new ventures, teaching', hi: 'विवाह, शिक्षा, अनुष्ठान, निवेश, नया उद्यम, शिक्षण' }, avoidFor: { en: 'Surgery, harsh actions', hi: 'शल्य, कठोर कार्य' } },
+  5: { quality: { en: 'Auspicious', hi: 'शुभ' }, score: 70, rulerPlanetId: 5, bestFor: { en: 'Marriage, art, music, luxury, romance, beauty', hi: 'विवाह, कला, संगीत, विलास, प्रणय, सौन्दर्य' }, avoidFor: { en: 'Surgery, conflict, fire-related', hi: 'शल्य, विवाद, अग्नि कार्य' } },
+  6: { quality: { en: 'Caution', hi: 'सावधानी' }, score: 30, rulerPlanetId: 6, bestFor: { en: 'Iron/oil work, service to elderly, Saturn remedies, chronic treatment', hi: 'लोहा/तेल कार्य, वृद्ध सेवा, शनि उपाय, दीर्घ चिकित्सा' }, avoidFor: { en: 'Marriage, new ventures, travel, ceremonies', hi: 'विवाह, नया उद्यम, यात्रा, शुभ संस्कार' } },
+};
+
 export const VARA_DATA = [
   { day: 0, name: { en: 'Sunday', hi: 'रविवार', sa: 'रविवासरः', ta: 'ஞாயிறு', te: 'ఆదివారం', bn: 'রবিবার', kn: 'ಭಾನುವಾರ', mr: 'रविवार', gu: 'રવિવાર', mai: 'रविवार' }, ruler: { en: 'Sun', hi: 'सूर्य', sa: 'सूर्यः', ta: 'சூரியன்', te: 'సూర్యుడు', bn: 'সূর্য', kn: 'ಸೂರ್ಯ', mr: 'सूर्य', gu: 'સૂર્ય', mai: 'सूर्य' } },
   { day: 1, name: { en: 'Monday', hi: 'सोमवार', sa: 'सोमवासरः', ta: 'திங்கள்', te: 'సోమవారం', bn: 'সোমবার', kn: 'ಸೋಮವಾರ', mr: 'सोमवार', gu: 'સોમવાર', mai: 'सोमवार' }, ruler: { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्रः', ta: 'சந்திரன்', te: 'చంద్రుడు', bn: 'চন্দ্র', kn: 'ಚಂದ್ರ', mr: 'चन्द्र', gu: 'ચંદ્ર', mai: 'चन्द्र' } },

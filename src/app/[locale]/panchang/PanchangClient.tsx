@@ -1351,9 +1351,9 @@ export default function PanchangClient({ serverPanchang, serverLocation }: Panch
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.16 }}
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center">
                   <div className="flex justify-center mb-2"><Sun className="w-10 h-10 text-gold-primary" /></div>
-                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{msg('dayDuration', locale)}</div>
+                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{msg('dayDuration', locale)}{locale === 'en' ? ' (दिनमान)' : ''}</div>
                   <div className="text-gold-light font-bold text-lg font-mono mt-1">{panchang.dinamana || '—'}</div>
-                  <div className="text-text-secondary text-xs mt-1.5 uppercase tracking-wider">{msg('nightLabel', locale)}: <span className="font-mono text-text-primary">{panchang.ratrimana || '—'}</span></div>
+                  <div className="text-text-secondary text-xs mt-1.5 uppercase tracking-wider">{msg('nightLabel', locale)}{locale === 'en' ? ' (रात्रिमान)' : ''}: <span className="font-mono text-text-primary">{panchang.ratrimana || '—'}</span></div>
                 </motion.div>
 
                 {/* Madhyahna */}

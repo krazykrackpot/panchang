@@ -206,6 +206,16 @@ const SHANI_FACTS = [
 // Educational tweet composer (day-of-week rotation)
 // ──────────────────────────────────────────────────────────────
 
+/** Build a compact panchang header that goes on EVERY tweet */
+function panchangHeader(panchang: PanchangData, dateStr: string): string[] {
+  const L = (obj: LocaleText) => obj.en;
+  return [
+    `\u{1F64F} ${dateStr}`,
+    `${L(panchang.tithi.name)} \u00b7 ${L(panchang.nakshatra.name)} \u00b7 ${L(panchang.vara.name)}`,
+    `\u26A0\uFE0F Rahu Kaal ${panchang.rahuKaal.start}\u2013${panchang.rahuKaal.end}`,
+  ];
+}
+
 function composeEducationalTweet(
   dayOfWeek: number,
   panchang: PanchangData,
@@ -213,52 +223,17 @@ function composeEducationalTweet(
 ): string {
   const L = (obj: LocaleText) => obj.en;
   const tags = getTempleHashtags(dayOfYear);
+  const today = new Date();
+  const dateStr = today.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' });
+  const header = panchangHeader(panchang, dateStr);
 
   switch (dayOfWeek) {
-    case 0: { // Sunday — Learn Module Teaser
+    case 0: { // Sunday — Panchang + Learn fact
       const fact = LEARN_FACTS[dayOfYear % LEARN_FACTS.length];
       return truncateTweet([
-        '\u{1F4A1} Jyotish Insight',
+        ...header,
         '',
-        fact,
-        '',
-        'Learn more \u2192 dekhopanchang.com/en/learn',
-        '',
-        tags,
-      ]);
-    }
-
-    case 2: { // Tuesday — Nakshatra Spotlight
-      const nk = panchang.nakshatra;
-      const detail = NAKSHATRA_DETAILS.find(d => d.id === nk.id);
-      const meaning = detail ? L(detail.meaning) : '';
-      const nkData = NAKSHATRAS.find(n => n.id === nk.id);
-      const nature = nkData ? L(nkData.nature) : '';
-      return truncateTweet([
-        `\u2726 Nakshatra of the Day: ${L(nk.name)}`,
-        '',
-        `Deity: ${L(nk.deity)} | Ruler: ${nk.ruler}`,
-        `Nature: ${nature}`,
-        '',
-        meaning,
-        '',
-        `dekhopanchang.com/en/panchang/nakshatra/${nk.id}`,
-        '',
-        tags,
-      ]);
-    }
-
-    case 3: { // Wednesday — Yoga/Tithi
-      const yoga = panchang.yoga;
-      const yogaData = YOGAS.find(y => y.number === yoga.number);
-      const yogaMeaning = yogaData ? L(yogaData.meaning) : '';
-      const yogaNature = yogaData ? yogaData.nature : '';
-      return truncateTweet([
-        `\u{1F52E} Today's Yoga: ${L(yoga.name)} (${yogaMeaning})`,
-        '',
-        `Nature: ${yogaNature}`,
-        '',
-        `Tithi: ${L(panchang.tithi.name)}`,
+        `\u{1F4A1} ${fact}`,
         '',
         'dekhopanchang.com/en/panchang',
         '',
@@ -266,77 +241,105 @@ function composeEducationalTweet(
       ]);
     }
 
-    case 4: { // Thursday — Guru's Day (with transit article promotion when available)
-      // Check for upcoming transit articles to promote (within 60 days)
-      const today = new Date();
+    case 2: { // Tuesday — Panchang + Nakshatra Deep Dive
+      const nk = panchang.nakshatra;
+      const detail = NAKSHATRA_DETAILS.find(d => d.id === nk.id);
+      const meaning = detail ? L(detail.meaning) : '';
+      return truncateTweet([
+        ...header,
+        '',
+        `\u2726 ${L(nk.name)} Nakshatra`,
+        `Deity: ${L(nk.deity)} | Ruler: ${nk.ruler}`,
+        meaning ? `\u2192 ${meaning}` : '',
+        '',
+        'dekhopanchang.com/en/panchang',
+        '',
+        tags,
+      ].filter(Boolean));
+    }
+
+    case 3: { // Wednesday — Panchang + Yoga meaning
+      const yoga = panchang.yoga;
+      const yogaData = YOGAS.find(y => y.number === yoga.number);
+      const yogaMeaning = yogaData ? L(yogaData.meaning) : '';
+      const yogaNature = yogaData ? yogaData.nature : '';
+      return truncateTweet([
+        ...header,
+        '',
+        `\u{1F52E} Yoga: ${L(yoga.name)}${yogaMeaning ? ` (${yogaMeaning})` : ''}`,
+        yogaNature ? `Nature: ${yogaNature}` : '',
+        '',
+        'dekhopanchang.com/en/panchang',
+        '',
+        tags,
+      ].filter(Boolean));
+    }
+
+    case 4: { // Thursday — Panchang + Guru/Transit
+      const todayDate = new Date();
       const upcomingArticle = Object.values(TRANSIT_ARTICLES).find(a => {
         const transitDate = new Date(a.exactDate);
-        const daysUntil = Math.ceil((transitDate.getTime() - today.getTime()) / 86400000);
+        const daysUntil = Math.ceil((transitDate.getTime() - todayDate.getTime()) / 86400000);
         return daysUntil > 0 && daysUntil <= 60;
       });
 
       if (upcomingArticle) {
-        const daysUntil = Math.ceil((new Date(upcomingArticle.exactDate).getTime() - today.getTime()) / 86400000);
+        const daysUntil = Math.ceil((new Date(upcomingArticle.exactDate).getTime() - todayDate.getTime()) / 86400000);
         return truncateTweet([
-          `\u{1FA90} ${upcomingArticle.title.en.split(':')[0]}`,
+          ...header,
           '',
+          `\u{1FA90} ${upcomingArticle.title.en.split(':')[0]}`,
           `${daysUntil} days until this major transit.`,
           '',
-          `Read our full analysis for all 12 Moon signs:`,
           `dekhopanchang.com/en/learn/transits/${upcomingArticle.slug}`,
           '',
           tags,
         ]);
       }
 
-      // Fallback: Guru facts
       const fact = GURU_FACTS[dayOfYear % GURU_FACTS.length];
       return truncateTweet([
-        '\u{1FA90} Guruvar Wisdom',
+        ...header,
         '',
-        fact,
+        `\u{1FA90} ${fact}`,
         '',
-        'Transit analysis \u2192 dekhopanchang.com/en/transits',
+        'dekhopanchang.com/en/panchang',
         '',
         tags,
       ]);
     }
 
-    case 5: { // Friday — Matching/Compatibility
+    case 5: { // Friday — Panchang + Compatibility tip
       const fact = MATCHING_FACTS[dayOfYear % MATCHING_FACTS.length];
       return truncateTweet([
-        '\u{1F495} Compatibility Insight',
+        ...header,
         '',
-        fact,
+        `\u{1F495} ${fact}`,
         '',
-        'Try matching \u2192 dekhopanchang.com/en/matching',
+        'dekhopanchang.com/en/matching',
         '',
         tags,
       ]);
     }
 
-    case 6: { // Saturday — Saturn/Remedy
+    case 6: { // Saturday — Panchang + Shani wisdom
       const fact = SHANI_FACTS[dayOfYear % SHANI_FACTS.length];
       return truncateTweet([
-        '\u{1FA94} Shanivar Wisdom',
+        ...header,
         '',
-        fact,
+        `\u{1FA94} ${fact}`,
         '',
-        'Check your Sade Sati \u2192 dekhopanchang.com/en/sade-sati',
+        'dekhopanchang.com/en/sade-sati',
         '',
         tags,
       ]);
     }
 
     default: {
-      // Fallback (should not happen — day 1/Monday handled in GET)
-      const fact = LEARN_FACTS[dayOfYear % LEARN_FACTS.length];
       return truncateTweet([
-        '\u{1F4A1} Jyotish Insight',
+        ...header,
         '',
-        fact,
-        '',
-        'Learn more \u2192 dekhopanchang.com/en/learn',
+        'dekhopanchang.com/en/panchang',
         '',
         tags,
       ]);

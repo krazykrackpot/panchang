@@ -121,6 +121,39 @@ function PanchangSEOBlock({
         );
       })()}
 
+      {/* Direct answer statements for featured snippet capture */}
+      {panchang.tithi?.name && panchang.nakshatra?.name && (() => {
+        const tithiName = locale === 'hi' ? panchang.tithi.name.hi : panchang.tithi.name.en;
+        const nakName = locale === 'hi' ? panchang.nakshatra.name.hi : panchang.nakshatra.name.en;
+        const yogaName = locale === 'hi' ? panchang.yoga?.name?.hi : panchang.yoga?.name?.en;
+        const varaName = locale === 'hi' ? panchang.vara?.name?.hi : panchang.vara?.name?.en;
+        const nkActivity = getNakshatraActivity(panchang.nakshatra.id);
+        const isAuspicious = nkActivity && nkActivity.goodFor.length >= 3;
+        const auspLabel = isAuspicious
+          ? (locale === 'hi' ? 'शुभ' : 'auspicious')
+          : (locale === 'hi' ? 'सामान्य' : 'moderately auspicious');
+
+        return (
+          <div className="mt-3 mb-3 text-text-secondary/80 text-xs leading-relaxed space-y-1.5">
+            <p>
+              {locale === 'hi'
+                ? `आज की तिथि ${tithiName} है, नक्षत्र ${nakName} है, और योग ${yogaName || '—'} है। आज ${varaName || '—'} है।`
+                : `Today's Tithi is ${tithiName}, Nakshatra is ${nakName}, and Yoga is ${yogaName || '—'}. Today is ${varaName || '—'}.`}
+            </p>
+            <p>
+              {locale === 'hi'
+                ? `आज का दिन ${auspLabel} है। ${nakName} नक्षत्र ${nkActivity ? (nkActivity.goodFor.map(g => g.hi).join(', ') || 'सामान्य कार्यों') : 'सामान्य कार्यों'} के लिए अनुकूल है।`
+                : `Today is ${auspLabel}. ${nakName} Nakshatra favors ${nkActivity ? (nkActivity.goodFor.map(g => g.en).join(', ') || 'general activities') : 'general activities'}.`}
+            </p>
+            <p>
+              {locale === 'hi'
+                ? `राहु काल ${panchang.rahuKaal?.start || '—'} से ${panchang.rahuKaal?.end || '—'} तक है — इस अवधि में शुभ कार्य टालें।`
+                : `Rahu Kaal is from ${panchang.rahuKaal?.start || '—'} to ${panchang.rahuKaal?.end || '—'} — avoid starting auspicious activities during this period.`}
+            </p>
+          </div>
+        );
+      })()}
+
       <div className="border-t border-gold-primary/8" />
     </section>
   );
@@ -135,8 +168,63 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
   const { locale } = await params;
   const { panchang, location: serverLocation } = await getServerPanchang();
 
+  // VideoObject schema — links to daily YouTube Short for Google Video/Discover
+  const today = new Date();
+  const dateStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+  const videoLd = {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: `Daily Panchang — ${panchang?.tithi?.name?.en || 'Vedic Calendar'} | ${dateStr}`,
+    description: `Today's Vedic Panchang: ${panchang?.tithi?.name?.en || ''}, ${panchang?.nakshatra?.name?.en || ''}, ${panchang?.yoga?.name?.en || ''}. Rahu Kaal ${panchang?.rahuKaal?.start || ''}-${panchang?.rahuKaal?.end || ''}.`,
+    thumbnailUrl: 'https://dekhopanchang.com/icon-512.png',
+    uploadDate: dateStr,
+    contentUrl: `https://www.youtube.com/@DekhoPanchang`,
+    embedUrl: `https://www.youtube.com/@DekhoPanchang`,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Dekho Panchang',
+      logo: { '@type': 'ImageObject', url: 'https://dekhopanchang.com/icon-512.png' },
+    },
+  };
+
+  // Dynamic FAQ schema with today's actual panchang values
+  const faqLd = panchang ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: `What is today's Tithi?`,
+        acceptedAnswer: { '@type': 'Answer', text: `Today's Tithi is ${panchang.tithi?.name?.en || '—'}.` },
+      },
+      {
+        '@type': 'Question',
+        name: `What is today's Nakshatra?`,
+        acceptedAnswer: { '@type': 'Answer', text: `Today's Nakshatra is ${panchang.nakshatra?.name?.en || '—'}.` },
+      },
+      {
+        '@type': 'Question',
+        name: `What is Rahu Kaal today?`,
+        acceptedAnswer: { '@type': 'Answer', text: `Rahu Kaal today is from ${panchang.rahuKaal?.start || '—'} to ${panchang.rahuKaal?.end || '—'}. Avoid starting auspicious activities during this period.` },
+      },
+      {
+        '@type': 'Question',
+        name: `Is today auspicious?`,
+        acceptedAnswer: { '@type': 'Answer', text: `Today is ${panchang.vara?.name?.en || '—'} with ${panchang.tithi?.name?.en || '—'} Tithi and ${panchang.nakshatra?.name?.en || '—'} Nakshatra. The Yoga is ${panchang.yoga?.name?.en || '—'}. Check the detailed muhurta timings for specific activities.` },
+      },
+    ],
+  } : null;
+
   return (
     <>
+      {/* VideoObject JSON-LD — Google Video/Discover feed */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoLd) }} />
+
+      {/* Dynamic FAQ JSON-LD for featured snippet capture */}
+      {faqLd && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+      )}
+
       {/* SEO block: server-rendered, fully crawlable by Google */}
       {panchang && (
         <PanchangSEOBlock

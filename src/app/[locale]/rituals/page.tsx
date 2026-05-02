@@ -313,8 +313,39 @@ function MuhurtaAiSVG() {
   );
 }
 
+/* 7. Vrat Katha — Sacred scroll with Om */
+function VratKathaSVG() {
+  return (
+    <svg viewBox="0 0 64 64" width={160} height={160} aria-hidden="true">
+      <defs>
+        <radialGradient id="vk1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#f472b6" stopOpacity="0.25" /><stop offset="100%" stopColor="#f472b6" stopOpacity="0" /></radialGradient>
+        <linearGradient id="vk1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f9a8d4" /><stop offset="50%" stopColor="#f472b6" /><stop offset="100%" stopColor="#be185d" /></linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="28" fill="url(#vk1g)" />
+      {/* Scroll body */}
+      <rect x="14" y="12" width="36" height="40" rx="2" fill="url(#vk1)" fillOpacity="0.08" stroke="url(#vk1)" strokeWidth="2" />
+      {/* Top scroll roll */}
+      <ellipse cx="32" cy="12" rx="20" ry="3.5" fill="url(#vk1)" fillOpacity="0.15" stroke="url(#vk1)" strokeWidth="1.5" />
+      {/* Bottom scroll roll */}
+      <ellipse cx="32" cy="52" rx="20" ry="3.5" fill="url(#vk1)" fillOpacity="0.15" stroke="url(#vk1)" strokeWidth="1.5" />
+      {/* Text lines */}
+      <line x1="20" y1="22" x2="44" y2="22" stroke="url(#vk1)" strokeWidth="1.5" opacity="0.4" strokeLinecap="round" />
+      <line x1="20" y1="28" x2="40" y2="28" stroke="url(#vk1)" strokeWidth="1.5" opacity="0.3" strokeLinecap="round" />
+      <line x1="20" y1="34" x2="44" y2="34" stroke="url(#vk1)" strokeWidth="1.5" opacity="0.4" strokeLinecap="round" />
+      <line x1="20" y1="40" x2="38" y2="40" stroke="url(#vk1)" strokeWidth="1.5" opacity="0.3" strokeLinecap="round" />
+      <line x1="20" y1="46" x2="42" y2="46" stroke="url(#vk1)" strokeWidth="1.5" opacity="0.35" strokeLinecap="round" />
+      {/* Om symbol in center */}
+      <text x="32" y="36" textAnchor="middle" fontSize="14" fill="url(#vk1)" opacity="0.5" fontWeight="bold">&#x0950;</text>
+      {/* Sparkle dots */}
+      <circle cx="10" cy="18" r="1.5" fill="#f472b6" opacity="0.5" />
+      <circle cx="54" cy="14" r="1" fill="#f9a8d4" opacity="0.4" />
+      <circle cx="52" cy="48" r="1.5" fill="#f472b6" opacity="0.3" />
+    </svg>
+  );
+}
+
 /* ════════════════════════════════════════════════════════════════════
-   DATA: 2 rows x 3 cards
+   DATA: 2 rows x 3-4 cards
    ════════════════════════════════════════════════════════════════════ */
 
 interface CardDef {
@@ -338,6 +369,7 @@ function buildRows(isDevanagari: boolean): RowDef[] {
       cards: [
         { href: '/puja', title: 'Puja Vidhi', subtitle: 'Sacred Worship Guide', description: 'Step-by-step puja procedures', glowColor: '#d4a853', svg: <PujaVidhiSVG /> },
         { href: '/vrat-calendar', title: 'Vrat Calendar', subtitle: 'Fasting Schedule', description: 'Monthly vrat dates & rules', glowColor: '#8b5cf6', svg: <VratCalendarSVG /> },
+        { href: '/vrat-katha/ekadashi', title: isDevanagari ? 'व्रत कथा' : 'Vrat Katha', subtitle: isDevanagari ? 'पवित्र कथाएँ' : 'Sacred Stories', description: isDevanagari ? '10 व्रत कथाएँ — एकादशी, सत्यनारायण आदि' : '10 vrat stories — Ekadashi, Satyanarayan & more', glowColor: '#f472b6', svg: <VratKathaSVG /> },
         { href: '/sankalpa', title: 'Sankalpa', subtitle: 'Sacred Resolve', description: 'Generate your puja sankalpa', glowColor: '#22d3ee', svg: <SankalpaSVG /> },
       ],
     },

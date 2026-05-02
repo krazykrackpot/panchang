@@ -1387,13 +1387,16 @@ export default function PanchangClient({ serverPanchang, serverLocation }: Panch
               className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border p-4 text-center hover:border-gold-primary/40 transition-all group block ${balamResult ? (balamResult.chandrabalam.favorable ? 'border-emerald-500/25' : 'border-red-500/25') : 'border-gold-primary/12'}`}>
               <div className="flex justify-center mb-1.5"><Moon className="w-8 h-8 text-gold-primary group-hover:scale-110 transition-transform" /></div>
               <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{isDevanagari ? 'चन्द्रबल' : 'Chandrabalam'}</div>
-              {balamResult ? (
-                <div className={`text-sm font-bold mt-1 ${balamResult.chandrabalam.favorable ? 'text-emerald-400' : 'text-red-400'}`}>
-                  {balamResult.chandrabalam.favorable
-                    ? (isDevanagari ? '✓ शुभ' : '✓ Favorable')
-                    : (isDevanagari ? '✗ अशुभ' : '✗ Unfavorable')}
-                </div>
-              ) : null}
+              {balamResult && birthRashi > 0 ? (() => {
+                const rashiName = RASHIS[birthRashi - 1] ? tl(RASHIS[birthRashi - 1].name) : '';
+                return (
+                  <div className={`text-sm font-bold mt-1 ${balamResult.chandrabalam.favorable ? 'text-emerald-400' : 'text-red-400'}`}>
+                    {balamResult.chandrabalam.favorable
+                      ? (isDevanagari ? `✓ शुभ (${rashiName})` : `✓ Favorable (${rashiName})`)
+                      : (isDevanagari ? `✗ अशुभ (${rashiName})` : `✗ Unfavorable (${rashiName})`)}
+                  </div>
+                );
+              })() : null}
               <div className="text-text-secondary text-[10px] mt-0.5">
                 {isDevanagari ? 'सभी 12 राशियाँ \u2192' : 'All 12 signs \u2192'}
               </div>
@@ -1403,18 +1406,21 @@ export default function PanchangClient({ serverPanchang, serverLocation }: Panch
               className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border p-4 text-center hover:border-gold-primary/40 transition-all group block ${balamResult ? (balamResult.tarabalam.favorable ? 'border-emerald-500/25' : 'border-red-500/25') : 'border-gold-primary/12'}`}>
               <div className="flex justify-center mb-1.5"><Sparkles className="w-8 h-8 text-gold-primary group-hover:scale-110 transition-transform" /></div>
               <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{isDevanagari ? 'ताराबल' : 'Tarabalam'}</div>
-              {balamResult ? (
-                <>
-                  <div className={`text-sm font-bold mt-1 ${balamResult.tarabalam.favorable ? 'text-emerald-400' : 'text-red-400'}`}>
-                    {balamResult.tarabalam.favorable
-                      ? (isDevanagari ? '✓ शुभ' : '✓ Favorable')
-                      : (isDevanagari ? '✗ अशुभ' : '✗ Unfavorable')}
-                  </div>
-                  <div className="text-text-secondary/60 text-[9px] mt-0.5">
-                    {tl(balamResult.tarabalam.taraName)}
-                  </div>
-                </>
-              ) : null}
+              {balamResult && birthNakshatra > 0 ? (() => {
+                const nakName = NAKSHATRAS[birthNakshatra - 1] ? tl(NAKSHATRAS[birthNakshatra - 1].name) : '';
+                return (
+                  <>
+                    <div className={`text-sm font-bold mt-1 ${balamResult.tarabalam.favorable ? 'text-emerald-400' : 'text-red-400'}`}>
+                      {balamResult.tarabalam.favorable
+                        ? (isDevanagari ? `✓ शुभ (${nakName})` : `✓ Favorable (${nakName})`)
+                        : (isDevanagari ? `✗ अशुभ (${nakName})` : `✗ Unfavorable (${nakName})`)}
+                    </div>
+                    <div className="text-text-secondary/60 text-[9px] mt-0.5">
+                      {tl(balamResult.tarabalam.taraName)}
+                    </div>
+                  </>
+                );
+              })() : null}
               <div className="text-text-secondary text-[10px] mt-0.5">
                 {isDevanagari ? 'सभी 27 नक्षत्र \u2192' : 'All 27 nakshatras \u2192'}
               </div>

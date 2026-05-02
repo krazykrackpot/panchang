@@ -1,7 +1,6 @@
 import type { MetadataRoute } from 'next';
-// getAllCitySlugs removed — only top 15 cities submitted to sitemap now (see SITEMAP_CITY_SLUGS below).
-// All 55 city panchang pages remain functional; we just stop asking Google to crawl
-// the long tail until the domain earns more crawl authority.
+// City pages: Tier 1+2 (~250 cities) in sitemap. Tier 3 discovered via internal "nearby cities" links.
+import { getCitiesByTier, getTier1And2Cities } from '@/lib/constants/cities-extended';
 import { getAllPairSlugs } from '@/lib/constants/rashi-slugs';
 import { getMuhurtaTypeSlugs } from '@/lib/constants/muhurta-types';
 import { getTransitArticleSlugs } from '@/lib/content/transit-articles';
@@ -220,6 +219,7 @@ const routes = [
   '/dates/chaturthi',
   '/dates/ganda-mool',
   // Vrat Kathas
+  '/vrat-katha',
   '/vrat-katha/ekadashi',
   '/vrat-katha/satyanarayan',
   '/vrat-katha/karva-chauth',
@@ -429,17 +429,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Removed from sitemap — redirects burn crawl budget without adding indexable content.
   // Google discovers these via internal links and follows the redirect chain naturally.
 
-  // City panchang pages — top 15 only (same set as festival SEO cities).
-  // All 55 city pages remain live; we just stop submitting the long tail to sitemap.
-  const SITEMAP_CITY_SLUGS = [
-    'delhi', 'mumbai', 'bangalore', 'chennai', 'kolkata', 'hyderabad',
-    'pune', 'ahmedabad', 'jaipur', 'lucknow', 'varanasi', 'patna',
-    'bhopal', 'chandigarh', 'new-york',
-  ];
-  for (const slug of SITEMAP_CITY_SLUGS) {
-    addEntries(entries, `/panchang/${slug}`, {
+  // City panchang pages — Tier 1 (priority 0.8, daily) + Tier 2 (priority 0.5, weekly).
+  // Tier 3 cities are NOT in sitemap — discovered via "nearby cities" internal links.
+  for (const city of getCitiesByTier(1)) {
+    addEntries(entries, `/panchang/${city.slug}`, {
       changeFrequency: 'daily',
       priority: 0.8,
+    });
+  }
+  for (const city of getCitiesByTier(2)) {
+    addEntries(entries, `/panchang/${city.slug}`, {
+      changeFrequency: 'weekly',
+      priority: 0.5,
     });
   }
 
@@ -476,11 +477,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'guru-purnima', 'vasant-panchami', 'holika-dahan', 'hartalika-teej',
     'chhath-puja', 'makar-sankranti',
   ];
-  const festivalSeoCities = [
-    'delhi', 'mumbai', 'bangalore', 'chennai', 'kolkata', 'hyderabad',
-    'pune', 'ahmedabad', 'jaipur', 'lucknow', 'varanasi', 'patna',
-    'bhopal', 'chandigarh', 'new-york',
-  ];
+  // Top 50 cities by population (Tier 1) for festival × city SEO
+  const festivalSeoCities = getCitiesByTier(1).slice(0, 50).map(c => c.slug);
   // Only current + next year — 2025 is past, 2028/2029 are too far out.
   // Expand yearly as time passes.
   const festivalSeoYears = [2026, 2027];
@@ -537,10 +535,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'july', 'august', 'september', 'october', 'november', 'december',
   ];
   const muhurtaYears = [2026, 2027];
-  const muhurtaCities = [
-    'delhi', 'mumbai', 'bangalore', 'chennai', 'kolkata',
-    'hyderabad', 'pune', 'ahmedabad', 'jaipur', 'new-york',
-  ];
+  // Top 20 cities for muhurta SEO (keeping it smaller than festival to manage URL count)
+  const muhurtaCities = getCitiesByTier(1).slice(0, 20).map(c => c.slug);
   for (const mActivity of muhurtaActivitySlugs) {
     for (const mYear of muhurtaYears) {
       for (const mMonth of muhurtaMonths) {

@@ -369,7 +369,7 @@ function buildRows(isDevanagari: boolean): RowDef[] {
       cards: [
         { href: '/puja', title: 'Puja Vidhi', subtitle: 'Sacred Worship Guide', description: 'Step-by-step puja procedures', glowColor: '#d4a853', svg: <PujaVidhiSVG /> },
         { href: '/vrat-calendar', title: 'Vrat Calendar', subtitle: 'Fasting Schedule', description: 'Monthly vrat dates & rules', glowColor: '#8b5cf6', svg: <VratCalendarSVG /> },
-        { href: '/vrat-katha/ekadashi', title: isDevanagari ? 'व्रत कथा' : 'Vrat Katha', subtitle: isDevanagari ? 'पवित्र कथाएँ' : 'Sacred Stories', description: isDevanagari ? '10 व्रत कथाएँ — एकादशी, सत्यनारायण आदि' : '10 vrat stories — Ekadashi, Satyanarayan & more', glowColor: '#f472b6', svg: <VratKathaSVG /> },
+        { href: '/vrat-katha', title: isDevanagari ? 'व्रत कथा' : 'Vrat Katha', subtitle: isDevanagari ? 'विधि एवं संदर्भ' : 'Vidhi & Reference', description: isDevanagari ? '10 व्रत — विधि, फल, समय एवं महत्व' : '10 vrats — vidhi, benefits, timing & significance', glowColor: '#f472b6', svg: <VratKathaSVG /> },
         { href: '/sankalpa', title: 'Sankalpa', subtitle: 'Sacred Resolve', description: 'Generate your puja sankalpa', glowColor: '#22d3ee', svg: <SankalpaSVG /> },
       ],
     },

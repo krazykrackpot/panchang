@@ -937,7 +937,7 @@ export default function PujaVidhiPage() {
                 <div>
                   <div className="text-gold-light text-sm font-bold">{kathaTitle}</div>
                   <div className="text-text-secondary text-xs">
-                    {locale === 'hi' ? 'सम्पूर्ण कथा, विधि और फल पढ़ें' : 'Read the complete story, method, and benefits'}
+                    {locale === 'hi' ? 'व्रत विधि, फल और कब करें — पढ़ें' : 'Vrat vidhi, benefits & when to observe'}
                   </div>
                 </div>
               </div>

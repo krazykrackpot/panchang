@@ -480,13 +480,16 @@ function computeNamedMuhurtas(
   sandhyaKaal: { morning: { start: string; end: string }; evening: { start: string; end: string } };
   nishitaKaal: { start: string; end: string };
 } {
-  // Brahma Muhurta: 2 NIGHT muhurtas before sunrise.
-  // Night muhurta = nightDuration / 15 (NOT fixed 48 min).
-  // At high latitudes with short nights, Brahma Muhurta starts closer to sunrise.
-  const nightDurationHrs = 24 - (sunsetUT - sunriseUT);
-  const nightMuhurtaDur = nightDurationHrs / 15; // hours per night muhurta
-  const brahmaStart = sunriseUT - 2 * nightMuhurtaDur;
-  const brahmaEnd = sunriseUT - nightMuhurtaDur;
+  // Night muhurta = nightDuration / 15 (variable, used by the 15-muhurta system).
+  // Kept here for reference; other named muhurtas may need it.
+  // const nightDurationHrs = 24 - (sunsetUT - sunriseUT);
+  // const nightMuhurtaDur = nightDurationHrs / 15;
+
+  // Brahma Muhurta is a SPECIAL CASE: always fixed 96 min before sunrise,
+  // ends 48 min before sunrise — per Dharmasindhu and all major panchang
+  // references (Drik Panchang, Prokerala). NOT derived from variable night muhurta.
+  const brahmaStart = sunriseUT - 96 / 60;
+  const brahmaEnd = sunriseUT - 48 / 60;
 
   // Fixed durations per Dharmasindhu:
   //   Godhuli  = ±12 min around sunset

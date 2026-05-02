@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import { Sunrise, Sunset, Clock, MapPin, Calendar, ArrowRight, ChevronRight } from 'lucide-react';
-import { getCityBySlug, getAllCitySlugs, getPopularCities } from '@/lib/constants/cities';
+import { getCityBySlugExtended, getCitiesByTier, getNearbyCities } from '@/lib/constants/cities-extended';
 import { computePanchang, type PanchangInput } from '@/lib/ephem/panchang-calc';
 import { generateDailyArticle, type ArticleCityConfig } from '@/lib/horoscope/daily-article';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -18,14 +18,18 @@ const msg = (key: string, locale: string) => tl((M as unknown as Record<string, 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
 // ──────────────────────────────────────────────────────────────
-// Static params — pre-generate all city pages
+// ISR — Tier 2/3 cities generated on first visit, cached 1 hour
 // ──────────────────────────────────────────────────────────────
 
+export const revalidate = 3600;
+export const dynamicParams = true;
+
 export function generateStaticParams() {
-  const slugs = getAllCitySlugs();
-  const locales = ['en', 'hi', 'sa'];
+  // Only pre-render Tier 1 cities (existing 55) × en/hi to keep build time fast
+  const tier1Slugs = getCitiesByTier(1).map(c => c.slug);
+  const locales = ['en', 'hi'];
   return locales.flatMap(locale =>
-    slugs.map(city => ({ locale, city }))
+    tier1Slugs.map((city: string) => ({ locale, city }))
   );
 }
 
@@ -39,7 +43,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string; city: string }>;
 }): Promise<Metadata> {
   const { locale, city: citySlug } = await params;
-  const city = getCityBySlug(citySlug);
+  const city = getCityBySlugExtended(citySlug);
   if (!city) return {};
 
   const isHi = isDevanagariLocale(locale);
@@ -154,7 +158,7 @@ export default async function CityPanchangPage({
   params: Promise<{ locale: string; city: string }>;
 }) {
   const { locale, city: citySlug } = await params;
-  const city = getCityBySlug(citySlug);
+  const city = getCityBySlugExtended(citySlug);
   if (!city) notFound();
 
   const loc = (locale || 'en') as Locale;
@@ -208,8 +212,8 @@ export default async function CityPanchangPage({
   const latStr = `${Math.abs(city.lat).toFixed(2)}°${latDir}`;
   const lngStr = `${Math.abs(city.lng).toFixed(2)}°${lngDir}`;
 
-  // Popular cities for cross-linking (exclude current)
-  const popularCities = getPopularCities(16).filter(c => c.slug !== citySlug);
+  // Nearby cities for cross-linking (geographically nearest, better for SEO crawl graph)
+  const popularCities = getNearbyCities(citySlug, 15);
 
   // Structured data for SEO
   const jsonLd = {

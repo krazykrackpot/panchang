@@ -88,3 +88,14 @@ export function getPopularCities(n: number = 12): CityData[] {
     .sort((a, b) => (b.population ?? 0) - (a.population ?? 0))
     .slice(0, n);
 }
+
+// Re-export extended city database for pages that need 800+ cities
+export {
+  ALL_CITIES,
+  getCityBySlugExtended,
+  getAllCitySlugsExtended,
+  getCitiesByTier,
+  getTier1And2Cities,
+  getNearbyCities,
+} from './cities-extended';
+export type { CityDataWithTier } from './cities-extended';

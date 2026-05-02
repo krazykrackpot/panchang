@@ -544,9 +544,9 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['upagraha', 'shadow planets', 'dhuma', 'vyatipata', 'upaketu'],
   },
   '/devotional': {
-    title: { en: 'Daily Devotional — Puja Recommendations', hi: 'दैनिक भक्ति — पूजा अनुशंसाएं', sa: 'दैनिकभक्तिः — पूजानुशंसाः' },
-    description: { en: 'Personalized daily devotional recommendations based on current Panchang — deity worship, mantras, and rituals for today.', hi: 'वर्तमान पंचांग के आधार पर व्यक्तिगत दैनिक भक्ति अनुशंसाएं।', sa: 'वर्तमानपञ्चाङ्गाधारेण व्यक्तिगतदैनिकभक्त्यनुशंसाः।' },
-    keywords: ['daily puja', 'today puja', 'devotional', 'hindu worship'],
+    title: { en: 'Devotional Library — Aarti, Chalisa, Stotram, Mantra with Meaning', hi: 'भक्ति संग्रह — आरती, चालीसा, स्तोत्र, मन्त्र अर्थ सहित', sa: 'भक्तिसंग्रहः — आरती चालीसा स्तोत्रं मन्त्रं अर्थसहितम्' },
+    description: { en: 'Complete collection of Hindu aartis, chalisas, stotrams and mantras — full Devanagari text, English transliteration, meaning, and significance. Hanuman Chalisa, Gayatri Mantra, Vishnu Sahasranama and 50+ sacred texts.', hi: 'हिन्दू आरती, चालीसा, स्तोत्र और मन्त्रों का सम्पूर्ण संग्रह — पूर्ण देवनागरी पाठ, अंग्रेजी लिप्यन्तरण, अर्थ और महत्व।', sa: 'हिन्दूआरती-चालीसा-स्तोत्र-मन्त्राणां सम्पूर्णसंग्रहः।' },
+    keywords: ['aarti', 'chalisa', 'stotram', 'mantra', 'hanuman chalisa', 'gayatri mantra', 'vishnu sahasranama', 'hindu devotional', 'aarti lyrics hindi', 'chalisa in hindi'],
   },
   '/puja': {
     title: { en: 'Puja Vidhi — Step-by-Step Hindu Worship Guides', hi: 'पूजा विधि — हिन्दू पूजा मार्गदर्शिका', sa: 'पूजाविधिः — हिन्दूपूजामार्गदर्शिका' },

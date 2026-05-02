@@ -5,6 +5,7 @@ import type { MetadataRoute } from 'next';
 import { getAllPairSlugs } from '@/lib/constants/rashi-slugs';
 import { getMuhurtaTypeSlugs } from '@/lib/constants/muhurta-types';
 import { getTransitArticleSlugs } from '@/lib/content/transit-articles';
+import { ALL_DEVOTIONAL_ITEMS } from '@/lib/content/devotional-content';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
@@ -551,6 +552,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         }
       }
     }
+  }
+
+  // Devotional content pages (/devotional/{type}/{slug})
+  for (const item of ALL_DEVOTIONAL_ITEMS) {
+    addEntries(entries, `/devotional/${item.type}/${item.slug}`, {
+      changeFrequency: 'monthly',
+      priority: item.slug === 'hanuman-chalisa' ? 0.9 : 0.7,
+    });
   }
 
   return entries;

@@ -121,9 +121,15 @@ export async function generateDailyShort(): Promise<ShortVideoResult> {
     const dateStr = today.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
     const dateHi = today.toLocaleDateString('hi-IN', { month: 'long', day: 'numeric', year: 'numeric' });
 
+    // Day-specific tags for YouTube discovery
+    const dayNames = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+    const dayName = dayNames[today.getDay()];
+    const monthName = today.toLocaleDateString('en-US', { month: 'long' }).toLowerCase();
+    const year = today.getFullYear();
+
     return {
       videoBuffer,
-      title: `Today's Panchang — ${dateStr} | आज का पंचांग #Shorts`,
+      title: `Today's Panchang — ${dateStr} | आज का पंचांग | तिथि नक्षत्र राहु काल #Shorts`,
       description: [
         `📅 Daily Vedic Panchang for ${dateStr} (${dateHi})`,
         '',
@@ -134,17 +140,45 @@ export async function generateDailyShort(): Promise<ShortVideoResult> {
         `🌐 Full interactive panchang: ${BASE_URL}/en/panchang`,
         `📊 Generate your Kundali: ${BASE_URL}/en/kundali`,
         `🤖 AI Muhurta Scanner: ${BASE_URL}/en/muhurta-ai`,
+        `📱 Rahu Kaal Today: ${BASE_URL}/en/rahu-kaal`,
+        `📅 Festival Calendar: ${BASE_URL}/en/calendar`,
         '',
         'Computed for Ujjain — the traditional prime meridian of Hindu astronomy (Surya Siddhanta).',
+        'Swiss Ephemeris precision — not approximations.',
+        '',
+        '🌍 Available in 7 languages: English, हिन्दी, தமிழ், తెలుగు, বাংলা, ગુજરાતી, ಕನ್ನಡ',
+        `🌐 Website: ${BASE_URL}`,
         '',
         '#Panchang #VedicAstrology #Jyotish #HinduCalendar #Tithi #Nakshatra',
         '#RahuKaal #DekhoPanchang #DailyPanchang #Astrology #Shorts',
+        '#पंचांग #राशिफल #ज्योतिष #तिथि #नक्षत्र #राहुकाल',
+        '#పంచాంగం #ராசிபலன் #পঞ্চাঙ্গ #પંચાંગ #ಪಂಚಾಂಗ',
       ].join('\n'),
       tags: [
-        'panchang', 'panchang today', 'aaj ka panchang', 'vedic astrology',
-        'jyotish', 'tithi today', 'nakshatra today', 'hindu calendar',
-        'rahu kaal today', 'dekho panchang', 'daily panchang',
-        'horoscope', 'astrology shorts', 'hindu panchang',
+        // Core — high volume
+        'panchang', 'panchang today', 'today panchang', 'aaj ka panchang',
+        'daily panchang', 'hindu panchang', 'vedic panchang',
+        // Rahu Kaal — your top search query
+        'rahu kaal', 'rahu kaal today', 'rahu kalam today', 'rahu time today',
+        // Tithi/Nakshatra
+        'tithi today', 'tithi aaj', 'nakshatra today', 'today tithi',
+        // Astrology
+        'vedic astrology', 'jyotish', 'hindu astrology', 'indian astrology',
+        // Calendar/Festivals
+        'hindu calendar', 'hindu calendar 2026', 'festival calendar',
+        // Kundali
+        'kundali', 'birth chart', 'horoscope', 'rashifal', 'rashifal today',
+        // Hindi tags — massive search volume in India
+        'आज का पंचांग', 'पंचांग', 'राशिफल', 'तिथि', 'नक्षत्र', 'राहु काल',
+        'ज्योतिष', 'कुण्डली', 'मुहूर्त',
+        // Regional language tags
+        'పంచాంగం', 'ராசி பலன்', 'পঞ্চাঙ্গ', 'પંચાંગ', 'ಪಂಚಾಂಗ',
+        // Day/date specific (rotate for freshness)
+        `panchang ${dayName}`, `${monthName} ${year} panchang`,
+        // Brand
+        'dekho panchang',
+        // Shorts discovery
+        'astrology shorts', 'panchang shorts',
       ],
     };
   } finally {

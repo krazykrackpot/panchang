@@ -28,11 +28,11 @@ const CATEGORY_LABELS: Record<string, { en: string; hi: string; icon: string }> 
 };
 
 const VERDICT_CONFIG: Record<string, { color: string; bg: string; border: string; icon: typeof CheckCircle; label: { en: string; hi: string } }> = {
-  yes: { color: 'text-emerald-400', bg: 'bg-emerald-500/15', border: 'border-emerald-500/30', icon: CheckCircle, label: { en: 'Yes — Favorable', hi: 'हाँ — अनुकूल' } },
-  likely: { color: 'text-emerald-400/80', bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', icon: CheckCircle, label: { en: 'Likely — Most factors support', hi: 'सम्भावित — अधिकतर कारक अनुकूल' } },
-  mixed: { color: 'text-gold-primary', bg: 'bg-gold-primary/10', border: 'border-gold-primary/20', icon: MinusCircle, label: { en: 'Mixed — Some support, some resist', hi: 'मिश्रित — कुछ अनुकूल, कुछ प्रतिकूल' } },
-  unlikely: { color: 'text-amber-400', bg: 'bg-amber-500/10', border: 'border-amber-500/20', icon: XCircle, label: { en: 'Challenging — Effort needed', hi: 'चुनौतीपूर्ण — प्रयास आवश्यक' } },
-  challenging: { color: 'text-red-400', bg: 'bg-red-500/10', border: 'border-red-500/20', icon: XCircle, label: { en: 'Difficult — Remedies recommended', hi: 'कठिन — उपाय आवश्यक' } },
+  yes: { color: 'text-emerald-400', bg: 'bg-emerald-500/15', border: 'border-emerald-500/30', icon: CheckCircle, label: { en: 'Favorable conditions', hi: 'अनुकूल स्थितियाँ' } },
+  likely: { color: 'text-emerald-400/80', bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', icon: CheckCircle, label: { en: 'Generally supportive', hi: 'सामान्यतः सहायक' } },
+  mixed: { color: 'text-gold-primary', bg: 'bg-gold-primary/10', border: 'border-gold-primary/20', icon: MinusCircle, label: { en: 'Mixed indicators', hi: 'मिश्रित संकेत' } },
+  unlikely: { color: 'text-amber-400', bg: 'bg-amber-500/10', border: 'border-amber-500/20', icon: XCircle, label: { en: 'Challenging — effort needed', hi: 'चुनौतीपूर्ण — प्रयास आवश्यक' } },
+  challenging: { color: 'text-red-400', bg: 'bg-red-500/10', border: 'border-red-500/20', icon: XCircle, label: { en: 'Obstacles present — remedies help', hi: 'बाधाएँ विद्यमान — उपाय सहायक' } },
 };
 
 interface QuestionAnswerPanelProps {

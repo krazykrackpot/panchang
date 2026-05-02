@@ -23,6 +23,14 @@ export interface QuestionDef {
   id: string;
   category: 'marriage' | 'career' | 'wealth' | 'health' | 'education' | 'children' | 'spiritual' | 'general';
   question: { en: string; hi: string };
+  /**
+   * Question type determines answer framing:
+   * - 'yesno': "Will I...?" → verdict (favorable/mixed/challenging)
+   * - 'when': "When will...?" → timing-focused, no yes/no verdict
+   * - 'what': "What should...?" → guidance-focused
+   * - 'how': "How is...?" → assessment, not yes/no
+   */
+  type: 'yesno' | 'when' | 'what' | 'how';
   /** Which domain reading to pull from */
   domain?: string;
   /** Houses to examine (1-indexed) */
@@ -37,171 +45,29 @@ export interface QuestionDef {
 
 export const QUESTIONS: QuestionDef[] = [
   // ── Marriage & Relationships ──
-  {
-    id: 'marriage_this_year',
-    category: 'marriage',
-    question: { en: 'Will I get married this year?', hi: 'क्या मेरा विवाह इस वर्ष होगा?' },
-    domain: 'marriage',
-    houses: [7, 2, 11],
-    planets: [5, 4, 1], // Venus, Jupiter, Moon
-    favorableYogaCategories: ['marriage', 'raja'],
-    adverseDoshas: ['mangal_dosha', 'kaal_sarpa'],
-  },
-  {
-    id: 'marriage_when',
-    category: 'marriage',
-    question: { en: 'When will I get married?', hi: 'मेरा विवाह कब होगा?' },
-    domain: 'marriage',
-    houses: [7, 2, 11],
-    planets: [5, 4, 1],
-    favorableYogaCategories: ['marriage'],
-    adverseDoshas: ['mangal_dosha'],
-  },
-  {
-    id: 'relationship_stability',
-    category: 'marriage',
-    question: { en: 'Is my relationship/marriage stable?', hi: 'क्या मेरा रिश्ता/विवाह स्थिर है?' },
-    domain: 'marriage',
-    houses: [7, 4, 8],
-    planets: [5, 1, 6], // Venus, Moon, Saturn
-    favorableYogaCategories: ['marriage'],
-    adverseDoshas: ['mangal_dosha', 'shrapit_dosha'],
-  },
+  { id: 'marriage_this_year', type: 'yesno', category: 'marriage', question: { en: 'Will I get married this year?', hi: 'क्या मेरा विवाह इस वर्ष होगा?' }, domain: 'marriage', houses: [7, 2, 11], planets: [5, 4, 1], favorableYogaCategories: ['marriage', 'raja'], adverseDoshas: ['mangal_dosha', 'kaal_sarpa'] },
+  { id: 'marriage_when', type: 'when', category: 'marriage', question: { en: 'When will I get married?', hi: 'मेरा विवाह कब होगा?' }, domain: 'marriage', houses: [7, 2, 11], planets: [5, 4, 1], favorableYogaCategories: ['marriage'], adverseDoshas: ['mangal_dosha'] },
+  { id: 'relationship_stability', type: 'how', category: 'marriage', question: { en: 'Is my relationship/marriage stable?', hi: 'क्या मेरा रिश्ता/विवाह स्थिर है?' }, domain: 'marriage', houses: [7, 4, 8], planets: [5, 1, 6], favorableYogaCategories: ['marriage'], adverseDoshas: ['mangal_dosha', 'shrapit_dosha'] },
   // ── Career ──
-  {
-    id: 'career_change',
-    category: 'career',
-    question: { en: 'Should I change jobs this year?', hi: 'क्या मुझे इस वर्ष नौकरी बदलनी चाहिए?' },
-    domain: 'career',
-    houses: [10, 6, 7],
-    planets: [0, 6, 3], // Sun, Saturn, Mercury
-    favorableYogaCategories: ['raja', 'career'],
-    adverseDoshas: [],
-  },
-  {
-    id: 'career_promotion',
-    category: 'career',
-    question: { en: 'Will I get promoted?', hi: 'क्या मुझे पदोन्नति मिलेगी?' },
-    domain: 'career',
-    houses: [10, 11, 9],
-    planets: [0, 4, 6], // Sun, Jupiter, Saturn
-    favorableYogaCategories: ['raja', 'career'],
-    adverseDoshas: [],
-  },
-  {
-    id: 'start_business',
-    category: 'career',
-    question: { en: 'Is this a good time to start a business?', hi: 'क्या यह व्यापार शुरू करने का अच्छा समय है?' },
-    domain: 'career',
-    houses: [10, 7, 11, 2],
-    planets: [3, 4, 0], // Mercury, Jupiter, Sun
-    favorableYogaCategories: ['raja', 'dhana'],
-    adverseDoshas: ['kaal_sarpa'],
-  },
+  { id: 'career_change', type: 'yesno', category: 'career', question: { en: 'Should I change jobs this year?', hi: 'क्या मुझे इस वर्ष नौकरी बदलनी चाहिए?' }, domain: 'career', houses: [10, 6, 7], planets: [0, 6, 3], favorableYogaCategories: ['raja', 'career'], adverseDoshas: [] },
+  { id: 'career_promotion', type: 'yesno', category: 'career', question: { en: 'Will I get promoted?', hi: 'क्या मुझे पदोन्नति मिलेगी?' }, domain: 'career', houses: [10, 11, 9], planets: [0, 4, 6], favorableYogaCategories: ['raja', 'career'], adverseDoshas: [] },
+  { id: 'start_business', type: 'yesno', category: 'career', question: { en: 'Is this a good time to start a business?', hi: 'क्या यह व्यापार शुरू करने का अच्छा समय है?' }, domain: 'career', houses: [10, 7, 11, 2], planets: [3, 4, 0], favorableYogaCategories: ['raja', 'dhana'], adverseDoshas: ['kaal_sarpa'] },
   // ── Wealth ──
-  {
-    id: 'wealth_this_year',
-    category: 'wealth',
-    question: { en: 'Will I make money this year?', hi: 'क्या इस वर्ष धन लाभ होगा?' },
-    domain: 'wealth',
-    houses: [2, 11, 5, 9],
-    planets: [4, 5, 3], // Jupiter, Venus, Mercury
-    favorableYogaCategories: ['dhana', 'wealth'],
-    adverseDoshas: ['daridra_yoga'],
-  },
-  {
-    id: 'invest_now',
-    category: 'wealth',
-    question: { en: 'Should I invest or buy property now?', hi: 'क्या अभी निवेश या सम्पत्ति खरीदनी चाहिए?' },
-    domain: 'wealth',
-    houses: [4, 2, 11],
-    planets: [4, 6, 2], // Jupiter, Saturn, Mars
-    favorableYogaCategories: ['dhana'],
-    adverseDoshas: [],
-  },
+  { id: 'wealth_this_year', type: 'how', category: 'wealth', question: { en: 'How are my finances this year?', hi: 'इस वर्ष मेरी आर्थिक स्थिति कैसी रहेगी?' }, domain: 'wealth', houses: [2, 11, 5, 9], planets: [4, 5, 3], favorableYogaCategories: ['dhana', 'wealth'], adverseDoshas: ['daridra_yoga'] },
+  { id: 'invest_now', type: 'yesno', category: 'wealth', question: { en: 'Should I invest or buy property now?', hi: 'क्या अभी निवेश या सम्पत्ति खरीदनी चाहिए?' }, domain: 'wealth', houses: [4, 2, 11], planets: [4, 6, 2], favorableYogaCategories: ['dhana'], adverseDoshas: [] },
   // ── Health ──
-  {
-    id: 'health_this_year',
-    category: 'health',
-    question: { en: 'How is my health this year?', hi: 'इस वर्ष मेरा स्वास्थ्य कैसा रहेगा?' },
-    domain: 'health',
-    houses: [1, 6, 8],
-    planets: [0, 2, 6], // Sun, Mars, Saturn
-    favorableYogaCategories: ['health'],
-    adverseDoshas: ['arishta'],
-  },
-  {
-    id: 'health_concerns',
-    category: 'health',
-    question: { en: 'What health issues should I watch for?', hi: 'किन स्वास्थ्य समस्याओं से सावधान रहूँ?' },
-    domain: 'health',
-    houses: [1, 6, 8, 12],
-    planets: [0, 1, 2, 6],
-    favorableYogaCategories: [],
-    adverseDoshas: ['arishta'],
-  },
+  { id: 'health_this_year', type: 'how', category: 'health', question: { en: 'How is my health this year?', hi: 'इस वर्ष मेरा स्वास्थ्य कैसा रहेगा?' }, domain: 'health', houses: [1, 6, 8], planets: [0, 2, 6], favorableYogaCategories: ['health'], adverseDoshas: ['arishta'] },
+  { id: 'health_concerns', type: 'what', category: 'health', question: { en: 'What health issues should I watch for?', hi: 'किन स्वास्थ्य समस्याओं से सावधान रहूँ?' }, domain: 'health', houses: [1, 6, 8, 12], planets: [0, 1, 2, 6], favorableYogaCategories: [], adverseDoshas: ['arishta'] },
   // ── Education ──
-  {
-    id: 'exam_success',
-    category: 'education',
-    question: { en: 'Will I pass my exam / get admission?', hi: 'क्या मैं परीक्षा पास करूँगा / प्रवेश मिलेगा?' },
-    domain: 'education',
-    houses: [4, 5, 9],
-    planets: [3, 4], // Mercury, Jupiter
-    favorableYogaCategories: ['saraswati'],
-    adverseDoshas: [],
-  },
-  {
-    id: 'study_abroad',
-    category: 'education',
-    question: { en: 'Should I study or settle abroad?', hi: 'क्या विदेश में पढ़ाई या बसना चाहिए?' },
-    domain: 'education',
-    houses: [9, 12, 4],
-    planets: [4, 7], // Jupiter, Rahu
-    favorableYogaCategories: [],
-    adverseDoshas: [],
-  },
+  { id: 'exam_success', type: 'yesno', category: 'education', question: { en: 'Will I pass my exam / get admission?', hi: 'क्या मैं परीक्षा पास करूँगा / प्रवेश मिलेगा?' }, domain: 'education', houses: [4, 5, 9], planets: [3, 4], favorableYogaCategories: ['saraswati'], adverseDoshas: [] },
+  { id: 'study_abroad', type: 'yesno', category: 'education', question: { en: 'Should I study or settle abroad?', hi: 'क्या विदेश में पढ़ाई या बसना चाहिए?' }, domain: 'education', houses: [9, 12, 4], planets: [4, 7], favorableYogaCategories: [], adverseDoshas: [] },
   // ── Children ──
-  {
-    id: 'children_when',
-    category: 'children',
-    question: { en: 'When will I have children?', hi: 'सन्तान कब होगी?' },
-    domain: 'children',
-    houses: [5, 9, 11],
-    planets: [4, 1], // Jupiter (putra karaka), Moon
-    favorableYogaCategories: [],
-    adverseDoshas: ['putra_dosha'],
-  },
+  { id: 'children_when', type: 'when', category: 'children', question: { en: 'When could I have children?', hi: 'सन्तान कब हो सकती है?' }, domain: 'children', houses: [5, 9, 11], planets: [4, 1], favorableYogaCategories: [], adverseDoshas: ['putra_dosha'] },
   // ── Spiritual ──
-  {
-    id: 'spiritual_growth',
-    category: 'spiritual',
-    question: { en: 'What is my spiritual path?', hi: 'मेरा आध्यात्मिक मार्ग क्या है?' },
-    domain: 'spiritual',
-    houses: [9, 12, 5],
-    planets: [8, 4, 1], // Ketu, Jupiter, Moon
-    favorableYogaCategories: ['moksha'],
-    adverseDoshas: [],
-  },
+  { id: 'spiritual_growth', type: 'what', category: 'spiritual', question: { en: 'What is my spiritual path?', hi: 'मेरा आध्यात्मिक मार्ग क्या है?' }, domain: 'spiritual', houses: [9, 12, 5], planets: [8, 4, 1], favorableYogaCategories: ['moksha'], adverseDoshas: [] },
   // ── General ──
-  {
-    id: 'focus_this_year',
-    category: 'general',
-    question: { en: 'What should I focus on this year?', hi: 'इस वर्ष किस पर ध्यान दूँ?' },
-    houses: [1, 10],
-    planets: [],
-    favorableYogaCategories: [],
-    adverseDoshas: [],
-  },
-  {
-    id: 'best_period',
-    category: 'general',
-    question: { en: 'When is my best period coming?', hi: 'मेरा सबसे अच्छा समय कब आएगा?' },
-    houses: [],
-    planets: [],
-    favorableYogaCategories: ['raja', 'dhana'],
-    adverseDoshas: [],
-  },
+  { id: 'focus_this_year', type: 'what', category: 'general', question: { en: 'What should I focus on this year?', hi: 'इस वर्ष किस पर ध्यान दूँ?' }, houses: [1, 10], planets: [], favorableYogaCategories: [], adverseDoshas: [] },
+  { id: 'best_period', type: 'when', category: 'general', question: { en: 'When is my best period coming?', hi: 'मेरा सबसे अच्छा समय कब आएगा?' }, houses: [], planets: [], favorableYogaCategories: ['raja', 'dhana'], adverseDoshas: [] },
 ];
 
 // ═══════════════════════════════════════════════════════════════
@@ -392,9 +258,11 @@ export function answerQuestion(
   }
 
   // ── Compute verdict ──
+  // Cap confidence conservatively — astrology shows tendencies, not certainties
   const totalScore = positiveScore + negativeScore;
   const positiveRatio = totalScore > 0 ? positiveScore / totalScore : 0.5;
-  const confidence = Math.min(95, Math.max(20, Math.round(positiveRatio * 100)));
+  // Cap at 75% — no chart reading should claim >75% certainty
+  const confidence = Math.min(75, Math.max(20, Math.round(positiveRatio * 80)));
 
   let verdict: QuestionAnswer['verdict'];
   if (positiveRatio >= 0.75) verdict = 'yes';
@@ -403,13 +271,22 @@ export function answerQuestion(
   else if (positiveRatio >= 0.25) verdict = 'unlikely';
   else verdict = 'challenging';
 
-  // ── Generate answer text ──
+  // ── Generate answer text based on question TYPE ──
   const positiveFactors = evidence.filter(e => e.supports === 'positive').length;
   const negativeFactors = evidence.filter(e => e.supports === 'negative').length;
 
+  // Get timing first — used by 'when' type answers
+  let timing: string | undefined;
+  if (personalReading && qDef.domain) {
+    const domainReading = personalReading.domains.find(d => d.domain === qDef.domain);
+    if (domainReading?.timelineTriggers?.length) {
+      const nextTrigger = domainReading.timelineTriggers[0];
+      timing = `Next significant window: ${tl(nextTrigger.description, locale)} (${nextTrigger.startDate})`;
+    }
+  }
+
   let answer: string;
   if (qDef.id === 'focus_this_year') {
-    // Special: find the strongest domain
     const strongestDomain = personalReading?.domains.reduce((best, d) =>
       d.overallRating.score > (best?.overallRating.score || 0) ? d : best, personalReading.domains[0]);
     answer = strongestDomain
@@ -419,32 +296,51 @@ export function answerQuestion(
     answer = tippanni.dashaInsight.upcoming
       ? `Your current period: ${tippanni.dashaInsight.currentMaha}. ${tippanni.dashaInsight.upcoming}. The next positive shift comes with the dasha transition described above.`
       : `You are in ${tippanni.dashaInsight.currentMaha}. Check the dasha timeline for your next favorable period.`;
+  } else if (qDef.type === 'when') {
+    // "When" questions — focus on timing, frame as possibility not certainty
+    const conditionText = positiveRatio >= 0.6
+      ? 'Your chart shows favorable conditions for this.'
+      : positiveRatio >= 0.4
+        ? 'Your chart shows mixed conditions — some support exists but timing matters.'
+        : 'Your chart suggests this area needs strengthening before the timing aligns.';
+    const timingText = timing
+      ? `The next significant window is: ${timing.replace('Next significant window: ', '')}.`
+      : `Look to your current ${tippanni.dashaInsight.currentMaha} period and upcoming dasha transitions for timing clues.`;
+    answer = `${conditionText} ${timingText} ${evidence[0]?.interpretation || ''} Remember: chart indicators show potential and tendencies — your choices and effort shape the actual outcome.`;
+  } else if (qDef.type === 'how') {
+    // "How" questions — assessment, not yes/no
+    const assessmentText = positiveRatio >= 0.6
+      ? 'The chart indicators in this area are generally favorable.'
+      : positiveRatio >= 0.4
+        ? 'This area shows a mix of strengths and challenges in your chart.'
+        : 'This area faces some challenges according to your chart factors.';
+    answer = `${assessmentText} ${positiveFactors} factor${positiveFactors !== 1 ? 's' : ''} support strength here${negativeFactors > 0 ? `, while ${negativeFactors} factor${negativeFactors !== 1 ? 's' : ''} suggest${negativeFactors === 1 ? 's' : ''} areas for attention` : ''}. ${evidence[0]?.interpretation || ''}`;
+  } else if (qDef.type === 'what') {
+    // "What" questions — guidance, descriptive
+    answer = evidence.length > 0
+      ? `Based on your chart: ${evidence.map(e => e.interpretation).filter(Boolean).slice(0, 2).join(' ')} ${timing ? `Timing note: ${timing.replace('Next significant window: ', '')}.` : ''}`
+      : 'See the evidence factors below for chart-specific guidance.';
   } else {
-    const verdictText = verdict === 'yes' ? 'Yes — the indicators are strongly favorable.'
-      : verdict === 'likely' ? 'Most likely yes — the majority of chart factors support this.'
-      : verdict === 'mixed' ? 'Mixed signals — some factors support this, others create challenges.'
-      : verdict === 'unlikely' ? 'The chart suggests challenges — timing and effort matter significantly.'
-      : 'This area faces significant obstacles — but remedies and right timing can help.';
+    // 'yesno' — frame as tendencies, not absolutes
+    const verdictText = verdict === 'yes'
+      ? 'The chart indicators are favorable — if you choose to pursue this, the conditions support you.'
+      : verdict === 'likely'
+        ? 'Most chart factors lean positive — conditions are generally supportive, though not guaranteed.'
+        : verdict === 'mixed'
+          ? 'Mixed signals — some chart factors support this, others create resistance. Timing and effort will be decisive.'
+          : verdict === 'unlikely'
+            ? 'The chart suggests challenges here — success is possible but requires deliberate effort and good timing.'
+            : 'This area faces significant chart-level obstacles. Remedies and patience are recommended before major action.';
 
-    answer = `${verdictText} ${positiveFactors} chart factor${positiveFactors !== 1 ? 's' : ''} support a positive outcome${negativeFactors > 0 ? `, while ${negativeFactors} factor${negativeFactors !== 1 ? 's' : ''} create${negativeFactors === 1 ? 's' : ''} resistance` : ''}. ${evidence[0]?.interpretation || ''}`;
+    answer = `${verdictText} ${evidence[0]?.interpretation || ''}`;
   }
 
   // ── Advice ──
   const advice = verdict === 'yes' || verdict === 'likely'
-    ? `The timing supports action. ${evidence.find(e => e.supports === 'positive')?.factor || 'Your chart strengths'} work in your favor.`
+    ? `Conditions are supportive. ${evidence.find(e => e.supports === 'positive')?.factor || 'Your chart strengths'} work in your favor — but remember, astrology shows tendencies, not certainties. Your actions matter most.`
     : verdict === 'mixed'
-      ? 'Wait for a stronger transit window, or strengthen the weak factors through remedies. Consult the remedies section for specific guidance.'
-      : `Focus on strengthening the weak chart factors first. ${evidence.find(e => e.supports === 'negative')?.factor || 'See remedies'} needs attention before proceeding.`;
-
-  // ── Timing ──
-  let timing: string | undefined;
-  if (personalReading && qDef.domain) {
-    const domainReading = personalReading.domains.find(d => d.domain === qDef.domain);
-    if (domainReading?.timelineTriggers?.length) {
-      const nextTrigger = domainReading.timelineTriggers[0];
-      timing = `Next significant window: ${tl(nextTrigger.description, locale)} (${nextTrigger.startDate})`;
-    }
-  }
+      ? 'Consider waiting for a stronger transit window, or strengthen the weaker factors through the remedies suggested in your reading. Patience and preparation improve outcomes.'
+      : `Focus on strengthening the chart factors that need support. ${evidence.find(e => e.supports === 'negative')?.factor || 'See remedies below'} deserves attention. Remedies and right timing can shift the balance.`;
 
   return {
     questionId: qDef.id,

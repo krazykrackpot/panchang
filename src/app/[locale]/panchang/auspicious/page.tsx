@@ -107,13 +107,10 @@ export default function AuspiciousTimingsPage() {
                 const country = geoData.address?.country || '';
                 name = [city, country].filter(Boolean).join(', ') || name;
               } catch { /* use coordinate fallback */ }
-              let tz = -(new Date().getTimezoneOffset() / 60);
-              if (data.utc_offset) {
-                const sign = data.utc_offset[0] === '-' ? -1 : 1;
-                const hh = parseInt(data.utc_offset.slice(1, 3), 10);
-                const mm = parseInt(data.utc_offset.slice(3, 5), 10);
-                tz = sign * (hh + mm / 60);
-              }
+              // Use IANA timezone from IP geolocation, not browser timezone
+              const ianaTz = data.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+              const now = new Date();
+              const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTz);
               setLocation({ lat: data.latitude, lng: data.longitude, name, tz });
             }
           } catch (err) {

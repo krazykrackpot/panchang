@@ -13,7 +13,7 @@ import MonthlyPDFButton from '@/components/panchang/MonthlyPDFButton';
 import { Download } from 'lucide-react';
 import { TithiIcon, NakshatraIcon, YogaIcon, KaranaIcon, VaraIcon, MuhurtaIcon, GrahanIcon, RashiIcon, MasaIcon, SamvatsaraIcon, SunriseIcon, SunsetIcon, MoonriseIcon, RituIcon, AyanaIcon } from '@/components/icons/PanchangIcons';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
-import { GRAHAS } from '@/lib/constants/grahas';
+import { GRAHAS, VARA_QUALITY } from '@/lib/constants/grahas';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import type { PanchangData, Locale, Muhurta, TransitionInfo, BalamResult, LocaleText } from '@/types/panchang';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -1144,6 +1144,26 @@ export default function PanchangClient({ serverPanchang, serverLocation }: Panch
                   <div className="text-gold-dark text-xs uppercase tracking-widest mb-3 font-semibold">{t('vara')}</div>
                   <div className="text-gold-light text-xl sm:text-2xl font-black leading-tight" style={headingFont}>{tl(panchang.vara.name)}</div>
                   <div className="text-text-secondary text-xs mt-2">{tl(panchang.vara.ruler)}</div>
+                  {/* Vara quality badge + activities */}
+                  {(() => {
+                    const vq = VARA_QUALITY[panchang.vara.day];
+                    if (!vq) return null;
+                    const isShubh = vq.score >= 70;
+                    const badgeColor = vq.score >= 80 ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' : isShubh ? 'bg-emerald-500/12 text-emerald-400/80 border-emerald-500/20' : vq.score >= 50 ? 'bg-gold-primary/12 text-gold-primary border-gold-primary/20' : 'bg-amber-500/12 text-amber-400 border-amber-500/20';
+                    return (
+                      <div className="mt-2 space-y-1.5">
+                        <span className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-bold border ${badgeColor}`}>
+                          {tl(vq.quality)}
+                        </span>
+                        <div className="text-emerald-400/70 text-[10px] leading-snug">
+                          ✓ {tl(vq.bestFor)}
+                        </div>
+                        <div className="text-amber-400/50 text-[10px] leading-snug">
+                          ✗ {tl(vq.avoidFor)}
+                        </div>
+                      </div>
+                    );
+                  })()}
                   {/* Vara contextual tip */}
                   <div className="text-text-secondary/70 text-xs mt-1.5 leading-snug">
                     {msg('ruledBy', locale)}{' '}{tl(panchang.vara.ruler)}{' — '}{

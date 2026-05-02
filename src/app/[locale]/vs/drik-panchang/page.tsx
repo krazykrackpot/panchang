@@ -3,7 +3,7 @@
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
-import { Check, X, Sparkles, Globe, Brain, Palette, Shield, Clock, BookOpen, BarChart3 } from 'lucide-react';
+import { Check, X, Sparkles, Globe, Brain, Palette, Shield, Clock, BookOpen, BarChart3, Trophy } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { ShareRow } from '@/components/ui/ShareButton';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -28,17 +28,18 @@ const LABELS = {
     'দুটি আধুনিক বৈদিক জ্যোতিষ প্ল্যাটফর্মের বৈশিষ্ট্য তুলনা',
   ),
   disclaimer: L(
-    'This comparison is based on publicly available features as of April 2026. We respect Drik Panchang as a pioneering platform that has served millions. This page highlights differences to help users choose the right tool for their needs.',
-    'यह तुलना अप्रैल 2026 तक सार्वजनिक रूप से उपलब्ध सुविधाओं पर आधारित है। हम दृक् पंचांग को एक अग्रणी मंच के रूप में सम्मान करते हैं। यह पृष्ठ उपयोगकर्ताओं को सही उपकरण चुनने में मदद करता है।',
+    'This comparison is based on publicly available features as of May 2026. We respect Drik Panchang as a pioneering platform that has served millions. This page highlights differences to help users choose the right tool for their needs.',
+    'यह तुलना मई 2026 तक सार्वजनिक रूप से उपलब्ध सुविधाओं पर आधारित है। हम दृक् पंचांग को एक अग्रणी मंच के रूप में सम्मान करते हैं। यह पृष्ठ उपयोगकर्ताओं को सही उपकरण चुनने में मदद करता है।',
   ),
   dekho: L('Dekho Panchang', 'देखो पंचांग'),
   drik: L('Drik Panchang', 'दृक् पंचांग'),
   feature: L('Feature', 'सुविधा', 'அம்சம்', 'বৈশিষ্ট্য'),
   tryFree: L('Try Dekho Panchang Free', 'देखो पंचांग मुफ़्त आज़माएँ', 'டெக்கோ பஞ்சாங்கத்தை இலவசமாக முயற்சிக்கவும்', 'দেখো পঞ্চাঙ্গ বিনামূল্যে চেষ্টা করুন'),
+  scoreTitle: L('Feature Score', 'सुविधा स्कोर', 'அம்ச மதிப்பெண்', 'বৈশিষ্ট্য স্কোর'),
   whyTitle: L('Why Dekho Panchang?', 'देखो पंचांग क्यों?', 'ஏன் டெக்கோ பஞ்சாங்கம்?', 'কেন দেখো পঞ্চাঙ্গ?'),
   bottomLine: L(
-    'Drik Panchang is a trusted reference library. Dekho Panchang is your personal Vedic astrology consultant — it doesn\'t just show data, it interprets it for your life.',
-    'दृक् पंचांग एक विश्वसनीय संदर्भ पुस्तकालय है। देखो पंचांग आपका व्यक्तिगत वैदिक ज्योतिष सलाहकार है — यह केवल डेटा नहीं दिखाता, आपके जीवन के लिए इसकी व्याख्या करता है।',
+    'Drik Panchang is a trusted reference library with 15 years of history. Dekho Panchang is the next generation — 39 features where Drik has 20, with AI interpretation, 10 languages, a 106-module learning curriculum, and tools no other platform offers. It doesn\'t just show data — it makes Jyotish actionable for your life.',
+    'दृक् पंचांग 15 वर्षों के इतिहास वाला एक विश्वसनीय संदर्भ पुस्तकालय है। देखो पंचांग अगली पीढ़ी है — जहाँ दृक् के पास 20 सुविधाएँ हैं, वहाँ देखो के पास 39, AI व्याख्या, 10 भाषाएँ, 106-मॉड्यूल शिक्षण पाठ्यक्रम, और ऐसे उपकरण जो किसी अन्य मंच पर नहीं हैं। यह केवल डेटा नहीं दिखाता — ज्योतिष को आपके जीवन के लिए कार्यशील बनाता है।',
   ),
 };
 
@@ -182,6 +183,146 @@ const ROWS: CompRow[] = [
     dekhoYes: true, drikYes: true,
   },
   {
+    feature: 'Devotional Library (55+ Texts)',
+    featureHi: 'भक्ति पुस्तकालय (55+ पाठ)',
+    dekho: '55+ sacred texts — Devanagari + transliteration + meaning',
+    drik: 'Aarti & Chalisa collection (text only)',
+    dekhoYes: true, drikYes: true, highlight: true,
+  },
+  {
+    feature: 'Chandrabalam / Tarabalam Daily',
+    featureHi: 'चन्द्रबल / ताराबल दैनिक',
+    dekho: 'Personalized Moon/Star strength with birth data integration',
+    drik: 'Basic Chandrabalam/Tarabalam lookup',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'Premium PDF Kundali Report',
+    featureHi: 'प्रीमियम PDF कुण्डली रिपोर्ट',
+    dekho: '12-section professional report — personality, yogas, doshas, dashas, Nadi Amsha, remedies',
+    drik: 'Basic chart printout',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'Transit Articles with Moon-Sign Effects',
+    featureHi: 'गोचर लेख — चन्द्र राशि प्रभाव सहित',
+    dekho: '4 editorial transit articles — Jupiter, Rahu, Ketu with 12 Moon-sign interpretations',
+    drik: 'Transit dates only, no interpretation',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'Transit Swimlane Timeline',
+    featureHi: 'गोचर स्विमलेन टाइमलाइन',
+    dekho: 'Visual horizontal swimlane showing all planetary transits for the year',
+    drik: 'Basic transit date list',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Nadi Amsha (D-150) with Karmic Synthesis',
+    featureHi: 'नाड़ी अंश (D-150) कर्मिक संश्लेषण सहित',
+    dekho: 'D-150 chart with karmic narrative, soul purpose, strengths/challenges, 150 Nadi reference',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'Vrat Katha (Sacred Stories)',
+    featureHi: 'व्रत कथा (पवित्र कहानियाँ)',
+    dekho: '10 complete vrat stories in Hindi + English',
+    drik: 'Vrat Katha collection',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'ISKCON Vaishnava Calendar',
+    featureHi: 'इस्कॉन वैष्णव कैलेंडर',
+    dekho: 'Gaurabda calendar with Maha Dvadashi rules + acharya dates',
+    drik: 'ISKCON calendar',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'Panchak & Holashtak Detection',
+    featureHi: 'पंचक एवं होलाष्टक पहचान',
+    dekho: 'Live detection with warnings on panchang page + dedicated tool pages + learn pages',
+    drik: 'Panchak dates page',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'Chandra Darshan (Moon Sighting)',
+    featureHi: 'चन्द्र दर्शन',
+    dekho: 'Moon visibility calculator with Yallop model + upcoming dates',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Special Auspicious Yogas Display',
+    featureHi: 'विशेष शुभ योग प्रदर्शन',
+    dekho: '7 special yogas highlighted on panchang — Sarvartha Siddhi, Amrit Siddhi, Guru Pushya, etc.',
+    drik: 'Listed but not highlighted prominently',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'Ganda Mool Dates',
+    featureHi: 'गण्ड मूल तिथियाँ',
+    dekho: 'Full year calendar with computed Moon nakshatra transition times',
+    drik: 'Ganda Mool dates page',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'Rudraksha Calculator',
+    featureHi: 'रुद्राक्ष कैलकुलेटर',
+    dekho: 'Birth chart-based Rudraksha recommendation with mantras + care guide',
+    drik: 'Rudraksha calculator',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'Embeddable Temple Widget',
+    featureHi: 'मन्दिर विजेट (एम्बेड)',
+    dekho: 'Free iframe widget for temple websites with city panchang',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Auto Twitter / Social Posting',
+    featureHi: 'स्वचालित ट्विटर / सोशल पोस्टिंग',
+    dekho: 'Daily rotating content — panchang, nakshatra, yoga, transit, matching tips',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'Instagram Image Generation',
+    featureHi: 'इंस्टाग्राम छवि निर्माण',
+    dekho: 'API-generated 1080x1080 panchang cards, nakshatra spotlights, Moon sign carousels',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'WhatsApp Sharing',
+    featureHi: 'व्हाट्सएप शेयरिंग',
+    dekho: 'Pre-composed WhatsApp share on festivals, panchang, matching with context',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false,
+  },
+  {
+    feature: 'PWA with Offline Panchang',
+    featureHi: 'PWA ऑफ़लाइन पंचांग सहित',
+    dekho: 'Installable app, offline cached panchang, home screen shortcuts',
+    drik: 'Native apps (iOS/Android) — no PWA',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'Horoscope with Transit Impact + Remedies',
+    featureHi: 'राशिफल — गोचर प्रभाव एवं उपाय सहित',
+    dekho: 'Daily/weekly/monthly with transit positions, dos/don\'ts, remedies, compatibility',
+    drik: 'Basic daily rashifal',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: 'Family Command Center',
+    featureHi: 'परिवार कमांड सेंटर',
+    dekho: 'Multi-chart family dashboard with transit impact per member',
+    drik: 'Not available',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
     feature: 'Years of Data / Trust',
     featureHi: 'डेटा के वर्ष / विश्वास',
     dekho: 'Launched 2026 — newer platform, rapidly growing',
@@ -309,6 +450,33 @@ export default function VsDrikPanchangPage() {
         >
           {t(LABELS.disclaimer)}
         </motion.div>
+
+        {/* ── Score Summary ── */}
+        {(() => {
+          const dekhoCount = ROWS.filter(r => r.dekhoYes).length;
+          const drikCount = ROWS.filter(r => r.drikYes).length;
+          return (
+            <motion.div
+              custom={1.5}
+              initial="hidden"
+              animate="visible"
+              variants={fadeUp}
+              className="mb-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8"
+            >
+              <div className="flex items-center gap-3 px-6 py-3 rounded-xl border border-emerald-400/20 bg-emerald-400/5">
+                <Trophy size={20} className="text-emerald-400" />
+                <span className="text-emerald-400 font-bold text-lg">{dekhoCount}</span>
+                <span className="text-text-secondary text-sm">{t(LABELS.dekho)}</span>
+              </div>
+              <span className="text-text-secondary text-sm font-medium">vs</span>
+              <div className="flex items-center gap-3 px-6 py-3 rounded-xl border border-text-secondary/20 bg-white/[0.02]">
+                <BarChart3 size={20} className="text-text-secondary" />
+                <span className="text-text-secondary font-bold text-lg">{drikCount}</span>
+                <span className="text-text-secondary text-sm">{t(LABELS.drik)}</span>
+              </div>
+            </motion.div>
+          );
+        })()}
 
         {/* ── Comparison Table ── */}
         <motion.div

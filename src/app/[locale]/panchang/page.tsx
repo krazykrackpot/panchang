@@ -178,8 +178,9 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
     description: `Today's Vedic Panchang: ${panchang?.tithi?.name?.en || ''}, ${panchang?.nakshatra?.name?.en || ''}, ${panchang?.yoga?.name?.en || ''}. Rahu Kaal ${panchang?.rahuKaal?.start || ''}-${panchang?.rahuKaal?.end || ''}.`,
     thumbnailUrl: 'https://dekhopanchang.com/icon-512.png',
     uploadDate: dateStr,
-    contentUrl: `https://www.youtube.com/@DekhoPanchang`,
-    embedUrl: `https://www.youtube.com/@DekhoPanchang`,
+    contentUrl: `https://www.youtube.com/@DekhoPanchang/shorts`,
+    embedUrl: `https://www.youtube.com/@DekhoPanchang/shorts`,
+    duration: 'PT30S',
     publisher: {
       '@type': 'Organization',
       name: 'Dekho Panchang',

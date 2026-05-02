@@ -1382,22 +1382,41 @@ export default function PanchangClient({ serverPanchang, serverLocation }: Panch
               <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{isDevanagari ? 'अयन' : 'Ayana'}</div>
               <div className="text-gold-light font-bold text-sm mt-0.5" style={headingFont}>{_tl(panchang.ayana, locale) || '\u2014'}</div>
             </div>
-            {/* Chandrabalam quick link */}
+            {/* Chandrabalam — personalized if birth data available */}
             <Link href="/chandrabalam"
-              className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 text-center hover:border-gold-primary/40 transition-all group block">
+              className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border p-4 text-center hover:border-gold-primary/40 transition-all group block ${balamResult ? (balamResult.chandrabalam.favorable ? 'border-emerald-500/25' : 'border-red-500/25') : 'border-gold-primary/12'}`}>
               <div className="flex justify-center mb-1.5"><Moon className="w-8 h-8 text-gold-primary group-hover:scale-110 transition-transform" /></div>
               <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{isDevanagari ? 'चन्द्रबल' : 'Chandrabalam'}</div>
-              <div className="text-text-secondary text-xs mt-0.5">
-                {isDevanagari ? '12 राशियों के लिए \u2192' : 'All 12 signs \u2192'}
+              {balamResult ? (
+                <div className={`text-sm font-bold mt-1 ${balamResult.chandrabalam.favorable ? 'text-emerald-400' : 'text-red-400'}`}>
+                  {balamResult.chandrabalam.favorable
+                    ? (isDevanagari ? '✓ शुभ' : '✓ Favorable')
+                    : (isDevanagari ? '✗ अशुभ' : '✗ Unfavorable')}
+                </div>
+              ) : null}
+              <div className="text-text-secondary text-[10px] mt-0.5">
+                {isDevanagari ? 'सभी 12 राशियाँ \u2192' : 'All 12 signs \u2192'}
               </div>
             </Link>
-            {/* Tarabalam quick link */}
+            {/* Tarabalam — personalized if birth data available */}
             <Link href="/tarabalam"
-              className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 text-center hover:border-gold-primary/40 transition-all group block">
+              className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border p-4 text-center hover:border-gold-primary/40 transition-all group block ${balamResult ? (balamResult.tarabalam.favorable ? 'border-emerald-500/25' : 'border-red-500/25') : 'border-gold-primary/12'}`}>
               <div className="flex justify-center mb-1.5"><Sparkles className="w-8 h-8 text-gold-primary group-hover:scale-110 transition-transform" /></div>
               <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{isDevanagari ? 'ताराबल' : 'Tarabalam'}</div>
-              <div className="text-text-secondary text-xs mt-0.5">
-                {isDevanagari ? '27 नक्षत्रों के लिए \u2192' : 'All 27 nakshatras \u2192'}
+              {balamResult ? (
+                <>
+                  <div className={`text-sm font-bold mt-1 ${balamResult.tarabalam.favorable ? 'text-emerald-400' : 'text-red-400'}`}>
+                    {balamResult.tarabalam.favorable
+                      ? (isDevanagari ? '✓ शुभ' : '✓ Favorable')
+                      : (isDevanagari ? '✗ अशुभ' : '✗ Unfavorable')}
+                  </div>
+                  <div className="text-text-secondary/60 text-[9px] mt-0.5">
+                    {tl(balamResult.tarabalam.taraName)}
+                  </div>
+                </>
+              ) : null}
+              <div className="text-text-secondary text-[10px] mt-0.5">
+                {isDevanagari ? 'सभी 27 नक्षत्र \u2192' : 'All 27 nakshatras \u2192'}
               </div>
             </Link>
           </div>

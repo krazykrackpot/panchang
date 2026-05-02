@@ -738,6 +738,34 @@ interface RowDef {
   cards: CardDef[];
 }
 
+function RudrakshaSVG() {
+  return (
+    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+      <defs>
+        <linearGradient id="rk1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
+        <radialGradient id="rk1g" cx="50%" cy="40%" r="50%"><stop offset="0%" stopColor="#d4a853" stopOpacity="0.2" /><stop offset="100%" stopColor="#d4a853" stopOpacity="0" /></radialGradient>
+      </defs>
+      {/* Glow */}
+      <circle cx="32" cy="32" r="28" fill="url(#rk1g)" />
+      {/* Bead body */}
+      <ellipse cx="32" cy="32" rx="14" ry="16" fill="none" stroke="url(#rk1)" strokeWidth="2" opacity="0.8" />
+      {/* Vertical mukhi lines */}
+      <line x1="32" y1="16" x2="32" y2="48" stroke="url(#rk1)" strokeWidth="1" opacity="0.5" />
+      <line x1="24" y1="18" x2="22" y2="46" stroke="url(#rk1)" strokeWidth="0.8" opacity="0.35" />
+      <line x1="40" y1="18" x2="42" y2="46" stroke="url(#rk1)" strokeWidth="0.8" opacity="0.35" />
+      <line x1="19" y1="24" x2="17" y2="40" stroke="url(#rk1)" strokeWidth="0.6" opacity="0.25" />
+      <line x1="45" y1="24" x2="47" y2="40" stroke="url(#rk1)" strokeWidth="0.6" opacity="0.25" />
+      {/* Hole at top */}
+      <circle cx="32" cy="14" r="2" fill="url(#rk1)" opacity="0.6" />
+      {/* Thread */}
+      <line x1="32" y1="4" x2="32" y2="14" stroke="url(#rk1)" strokeWidth="1" opacity="0.4" />
+      <line x1="32" y1="48" x2="32" y2="58" stroke="url(#rk1)" strokeWidth="1" opacity="0.4" />
+      {/* Om symbol hint */}
+      <text x="32" y="35" textAnchor="middle" fill="url(#rk1)" fontSize="10" opacity="0.3" fontFamily="serif">&#x0950;</text>
+    </svg>
+  );
+}
+
 function buildRows(locale: Locale, isDevanagari: boolean): RowDef[] {
   /** Locale-aware string picker: en / hi (+ other Devanagari) / ta / bn */
   const loc = (en: string, hi: string, ta?: string, bn?: string): string =>
@@ -785,6 +813,7 @@ function buildRows(locale: Locale, isDevanagari: boolean): RowDef[] {
         { href: '/lunar-calendar', title: loc('Lunar Calendar', 'चान्द्र पंचांग', 'சந்திர நாள்காட்டி', 'চান্দ্র পঞ্জিকা'), subtitle: loc('Tithi \u00b7 Masa \u00b7 Paksha', 'तिथि \u00b7 मास \u00b7 पक्ष', 'திதி \u00b7 மாதம் \u00b7 பக்ஷம்', 'তিথি \u00b7 মাস \u00b7 পক্ষ'), description: loc('Moon phase panchang', 'चन्द्र कला पंचांग', 'நிலவு நிலை பஞ்சாங்கம்', 'চন্দ্র কলা পঞ্চাঙ্গ'), glowColor: '#d4a853', svg: <LunarCalendarSVG /> },
         { href: '/sky', title: loc('Live Sky', 'आकाश दर्शन', 'வான காட்சி', 'আকাশ দর্শন'), subtitle: loc('Real-time Positions', 'वास्तविक समय स्थिति', 'நேரடி நிலைகள்', 'রিয়েল-টাইম অবস্থান'), description: loc('Graha positions now', 'ग्रह स्थिति अभी', 'கிரக நிலைகள் இப்போது', 'গ্রহ অবস্থান এখন'), glowColor: '#38bdf8', svg: <LiveSkySVG /> },
         { href: '/chandra-darshan', title: loc('Chandra Darshan', 'चन्द्र दर्शन', 'சந்திர தரிசனம்', 'চন্দ্র দর্শন'), subtitle: loc('Moon Sighting', 'नव चन्द्र दृश्यता', 'நிலவு பார்வை', 'চাঁদ দেখা'), description: loc('New crescent visibility', 'नव चन्द्र दृश्यता गणना', 'புதிய பிறை தெரிவுநிலை', 'নতুন চাঁদের দৃশ্যতা'), glowColor: '#e2e8f0', svg: <ChandraDarshanSVG /> },
+        { href: '/rudraksha', title: loc('Rudraksha', 'रुद्राक्ष', 'ருத்ராட்சம்', 'রুদ্রাক্ষ'), subtitle: loc('Sacred Bead Guide', 'पवित्र मनका मार्गदर्शन', 'புனித மணி வழிகாட்டி', 'পবিত্র মালা নির্দেশিকা'), description: loc('Recommendation by birth chart', 'जन्म कुण्डली अनुसार अनुशंसा', 'ஜாதகப்படி பரிந்துரை', 'জন্ম কুণ্ডলী অনুসারে'), glowColor: '#a78bfa', svg: <RudrakshaSVG /> },
       ],
     },
   ];

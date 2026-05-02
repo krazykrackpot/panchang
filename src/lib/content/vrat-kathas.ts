@@ -378,3 +378,11 @@ export function getVratKatha(slug: string): VratKatha | undefined {
 export function getAllVratKathaSlugs(): string[] {
   return VRAT_KATHAS.map(k => k.slug);
 }
+
+/**
+ * Find a Vrat Katha linked to a given festival/puja slug.
+ * Returns the first matching katha, or undefined if none.
+ */
+export function getVratKathaByFestivalSlug(festivalSlug: string): VratKatha | undefined {
+  return VRAT_KATHAS.find(k => k.linkedFestivalSlugs.includes(festivalSlug));
+}

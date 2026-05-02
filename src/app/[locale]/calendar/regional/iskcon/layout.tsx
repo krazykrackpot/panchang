@@ -1,11 +1,28 @@
 import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
+import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   return getPageMetadata('/calendar/regional/iskcon', locale);
 }
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const toolLD = generateToolLD(
+    'ISKCON Vaishnava Calendar 2026',
+    'Complete ISKCON Gaudiya Vaishnava calendar for 2026 with festivals, Ekadashi, and acharya appearance/disappearance days.',
+    `${BASE_URL}/${locale}/calendar/regional/iskcon`,
+  );
+  const breadcrumbLD = generateBreadcrumbLD(`/${locale}/calendar/regional/iskcon`, locale);
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(toolLD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }} />
+      {children}
+    </>
+  );
 }

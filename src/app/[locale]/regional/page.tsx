@@ -4,6 +4,8 @@ import { useMemo } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import GoldDivider from '@/components/ui/GoldDivider';
+import { Link } from '@/lib/i18n/navigation';
+import { ArrowRight } from 'lucide-react';
 import { dateToJD, sunLongitude, toSidereal, getRashiNumber, moonLongitude, calculateTithi } from '@/lib/ephem/astronomical';
 import type { LocaleText, Locale} from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
@@ -519,6 +521,28 @@ export default function RegionalCalendarsPage() {
             </tbody>
           </table>
         </div>
+      </div>
+
+      {/* ISKCON Vaishnava Calendar cross-link */}
+      <div className="mt-12">
+        <Link
+          href="/calendar/regional/iskcon"
+          className="block bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 hover:border-gold-primary/40 rounded-2xl p-6 sm:p-8 transition-colors group"
+        >
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-gold-light text-xl sm:text-2xl font-bold mb-2" style={headingFont}>
+                {locale === 'hi' ? 'इस्कॉन वैष्णव पंचांग' : 'ISKCON Vaishnava Calendar'}
+              </h3>
+              <p className="text-text-secondary text-sm max-w-2xl">
+                {locale === 'hi'
+                  ? 'गौड़ीय वैष्णव पर्व, एकादशी (महा द्वादशी नियमों सहित), और आचार्यों के प्रकट/तिरोभाव दिवस'
+                  : 'Gaudiya Vaishnava festivals, Ekadashi with Maha Dvadashi rules, and acharya appearance/disappearance days'}
+              </p>
+            </div>
+            <ArrowRight className="w-6 h-6 text-gold-primary group-hover:translate-x-1 transition-transform flex-shrink-0" />
+          </div>
+        </Link>
       </div>
     </div>
   );

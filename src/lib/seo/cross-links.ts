@@ -214,6 +214,20 @@ export const TOOL_TO_LEARN: Record<string, CrossLinkEntry[]> = {
     { label: 'Learn Masa', href: '/learn/masa', description: 'Hindu months' },
     { label: 'Learn Adhika Masa', href: '/learn/adhika-masa', description: 'Intercalary months' },
   ],
+  '/rudraksha': [
+    { label: 'Learn Remedies', href: '/learn/remedies', description: 'Vedic remedial measures' },
+    { label: 'Learn Nakshatras', href: '/learn/nakshatras', description: '27 lunar mansions' },
+    { label: 'Learn Rashis', href: '/learn/rashis', description: '12 zodiac signs' },
+  ],
+  '/devotional': [
+    { label: 'Learn Grahas', href: '/learn/grahas', description: 'Nine celestial bodies' },
+    { label: 'Learn Vara', href: '/learn/vara', description: 'Weekday lords & deities' },
+  ],
+  '/dates/ganda-mool': [
+    { label: 'Learn Nakshatras', href: '/learn/nakshatras', description: '27 lunar mansions' },
+    { label: 'Learn Nakshatra Pada', href: '/learn/nakshatra-pada', description: 'Quarter divisions' },
+    { label: 'Learn Remedies', href: '/learn/remedies', description: 'Vedic remedial measures' },
+  ],
 };
 
 /**
@@ -347,6 +361,7 @@ export const LEARN_TO_TOOL: Record<string, CrossLinkEntry[]> = {
     { label: 'Kundali', href: '/kundali', description: 'Full birth chart' },
     { label: 'Mangal Dosha', href: '/mangal-dosha', description: 'Mars affliction check' },
     { label: 'Sade Sati', href: '/sade-sati', description: "Saturn's 7.5-year transit" },
+    { label: 'Rudraksha', href: '/rudraksha', description: 'Find your ideal bead' },
   ],
   '/learn/dashas': [
     { label: 'Kundali', href: '/kundali', description: 'Full birth chart with dashas' },
@@ -401,6 +416,20 @@ export const TOOL_ALSO_SEE: Record<string, CrossLinkEntry[]> = {
     { label: 'Tropical Compare', href: '/tropical-compare' },
     { label: 'Sign Shift', href: '/sign-shift' },
     { label: 'Horoscope', href: '/horoscope' },
+  ],
+  '/chandrabalam': [
+    { label: 'Tarabalam', href: '/tarabalam' },
+    { label: 'Panchang', href: '/panchang' },
+    { label: 'Muhurta AI', href: '/muhurta-ai' },
+  ],
+  '/tarabalam': [
+    { label: 'Chandrabalam', href: '/chandrabalam' },
+    { label: 'Panchang', href: '/panchang' },
+    { label: 'Muhurta AI', href: '/muhurta-ai' },
+  ],
+  '/rudraksha': [
+    { label: 'Kundali', href: '/kundali' },
+    { label: 'Sade Sati', href: '/sade-sati' },
   ],
 };
 

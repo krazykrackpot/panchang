@@ -23,6 +23,8 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
 import VratFollowButton from '@/components/vrat/VratFollowButton';
 import { TRACKABLE_VRATS } from '@/lib/vrat/trackable-vrats';
+import { getVratKathaByFestivalSlug } from '@/lib/content/vrat-kathas';
+import { BookOpen } from 'lucide-react';
 
 type DisplayMode = 'devanagari' | 'iast' | 'both';
 
@@ -919,6 +921,29 @@ export default function PujaVidhiPage() {
             </p>
           </SectionAccordion>
         )}
+
+        {/* Vrat Katha cross-link — if a related katha exists */}
+        {(() => {
+          const katha = getVratKathaByFestivalSlug(slug);
+          if (!katha) return null;
+          const kathaTitle = locale === 'hi' ? katha.title.hi : katha.title.en;
+          return (
+            <Link
+              href={`/${locale}/vrat-katha/${katha.slug}`}
+              className="block mt-6 p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 hover:border-gold-primary/40 transition-colors group"
+            >
+              <div className="flex items-center gap-3">
+                <BookOpen className="w-5 h-5 text-gold-primary flex-shrink-0" />
+                <div>
+                  <div className="text-gold-light text-sm font-bold">{kathaTitle}</div>
+                  <div className="text-text-secondary text-xs">
+                    {locale === 'hi' ? 'सम्पूर्ण कथा, विधि और फल पढ़ें' : 'Read the complete story, method, and benefits'}
+                  </div>
+                </div>
+              </div>
+            </Link>
+          );
+        })()}
 
         {/* Back link */}
         <div className="text-center pt-4">

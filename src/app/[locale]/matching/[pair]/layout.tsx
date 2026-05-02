@@ -31,16 +31,18 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const western1 = r1.name.en;
   const western2 = r2.name.en;
 
+  // Title under 60 chars: "Aries & Scorpio — 36-Point Vedic Match Score"
   const title = tl({
-    en: `${name1} & ${name2} (${western1} & ${western2}) Compatibility — Vedic Astrology`,
-    hi: `${name1} और ${name2} (${western1} & ${western2}) संगतता — वैदिक ज्योतिष`,
-    sa: `${name1} और ${name2} (${western1} & ${western2}) संगतता — वैदिक ज्योतिष`,
+    en: `${western1} & ${western2} — 36-Point Vedic Match Score`,
+    hi: `${name1} और ${name2} — 36 अंक वैदिक मिलान`,
+    sa: `${name1} ${name2} च — ३६ अङ्कवैदिकमेलनम्`,
   }, locale);
 
+  // Description under 155 chars
   const description = tl({
-    en: `${name1} and ${name2} (${western1} and ${western2}) Vedic compatibility analysis with Ashta Kuta score, temperament, romance, career partnership.`,
-    hi: `${name1} और ${name2} (${western1} और ${western2}) राशि वैदिक संगतता विश्लेषण। अष्ट कूट स्कोर, स्वभाव, प्रेम, करियर साझेदारी।`,
-    sa: `${name1} और ${name2} (${western1} और ${western2}) राशि वैदिक संगतता विश्लेषण। अष्ट कूट स्कोर, स्वभाव, प्रेम, करियर साझेदारी।`,
+    en: `Free ${western1}-${western2} compatibility: Ashta Kuta 36-point score, Nadi, Bhakut, Gana & 5 more factors. Instant Vedic matching analysis.`,
+    hi: `${name1}-${name2} संगतता: अष्ट कूट 36 अंक, नाड़ी, भकूट, गण व 5 अन्य कारक। तुरन्त वैदिक मिलान।`,
+    sa: `${name1}-${name2} संगतता: अष्टकूट ३६ अङ्काः नाडी भकूटं गणं च। वैदिकमेलनविश्लेषणम्।`,
   }, locale);
 
   return {

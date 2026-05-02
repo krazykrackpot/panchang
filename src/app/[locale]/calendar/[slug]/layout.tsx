@@ -11,8 +11,8 @@ export function generateStaticParams() {
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
-/** Find the next occurrence date for a festival (current year or next) */
-function getNextFestivalDate(slug: string): { date: string; year: number } | null {
+/** Find the next occurrence date + muhurta for a festival (current year or next) */
+function getNextFestivalDate(slug: string): { date: string; year: number; pujaMuhurat?: { start: string; end: string; name: string } } | null {
   try {
     const now = new Date();
     const currentYear = now.getFullYear();
@@ -22,18 +22,36 @@ function getNextFestivalDate(slug: string): { date: string; year: number } | nul
       const festivals = generateFestivalCalendarV2(year, 23.1765, 75.7885, 'Asia/Kolkata');
       const match = festivals.find(f => f.slug === slug);
       if (match && (year > currentYear || match.date >= now.toISOString().slice(0, 10))) {
-        return { date: match.date, year };
+        return { date: match.date, year, pujaMuhurat: match.pujaMuhurat };
       }
     }
-  } catch { /* Festival computation may fail for some slugs */ }
+  } catch {
+    // Festival computation may fail for some slugs — log and continue
+    console.error(`[calendar-slug-meta] Failed to compute date for ${slug}`);
+  }
   return null;
 }
 
-/** Format date as "May 7, 2027" */
-function formatFestivalDate(dateStr: string): string {
+/** Format "2026-08-22" → "Oct 20" (short, for title — saves characters) */
+function fmtShortDate(dateStr: string): string {
   const [y, m, d] = dateStr.split('-').map(Number);
   const date = new Date(Date.UTC(y, m - 1, d));
-  return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+}
+
+/** Format "2026-08-22" → "22 August 2026" */
+function fmtLongDate(dateStr: string): string {
+  const [y, m, d] = dateStr.split('-').map(Number);
+  const date = new Date(Date.UTC(y, m - 1, d));
+  return date.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+}
+
+/** Format HH:MM 24h → "6:12 AM" 12h */
+function fmt12h(hhmm: string): string {
+  const [h, m] = hhmm.split(':').map(Number);
+  const ampm = h >= 12 ? 'PM' : 'AM';
+  const h12 = h % 12 || 12;
+  return `${h12}:${m.toString().padStart(2, '0')} ${ampm}`;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -50,16 +68,39 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   // Compute the actual date for the title
   const nextDate = getNextFestivalDate(slug);
-  const dateStr = nextDate ? formatFestivalDate(nextDate.date) : '';
   const yearStr = nextDate ? String(nextDate.year) : '';
 
-  // Title with actual date: "Diwali 2027 — October 29 | Puja Time & Significance"
-  const title = nextDate
-    ? `${name} ${yearStr} — ${dateStr} | Puja Time & Significance | Dekho Panchang`
-    : `${name} — Date, Puja Vidhi & Significance | Dekho Panchang`;
-  const description = nextDate
-    ? `${nameEn} ${yearStr} falls on ${dateStr}. Exact Puja Muhurat, Tithi timing, and significance. ${festival.significance.en}`.slice(0, 160)
-    : `${nameEn}: ${festival.significance.en}`.slice(0, 160);
+  // Title under 60 chars: "Diwali 2026 — Oct 20 | Puja Time & Significance"
+  let title: string;
+  if (nextDate) {
+    const shortDate = fmtShortDate(nextDate.date);
+    if (nextDate.pujaMuhurat) {
+      const pujaTime = fmt12h(nextDate.pujaMuhurat.start);
+      title = `${name} ${yearStr} — ${shortDate}, Puja ${pujaTime}`;
+    } else {
+      title = `${name} ${yearStr} — ${shortDate} | Date & Significance`;
+    }
+  } else {
+    title = `${name} — Date, Puja Vidhi & Significance`;
+  }
+
+  // Description under 155 chars with actual date
+  let description: string;
+  if (nextDate) {
+    const longDate = fmtLongDate(nextDate.date);
+    const muhurtaPart = nextDate.pujaMuhurat
+      ? ` Puja muhurta: ${fmt12h(nextDate.pujaMuhurat.start)}\u2013${fmt12h(nextDate.pujaMuhurat.end)}.`
+      : '';
+    description = `${nameEn} ${yearStr} falls on ${longDate}.${muhurtaPart} Tithi timing, puja vidhi & significance.`;
+    if (description.length > 155) {
+      description = `${nameEn} ${yearStr} on ${longDate}.${muhurtaPart} Puja vidhi & significance.`;
+    }
+    if (description.length > 155) {
+      description = description.slice(0, 152) + '...';
+    }
+  } else {
+    description = `${nameEn}: ${festival.significance.en}`.slice(0, 155);
+  }
 
   return {
     title,

@@ -176,6 +176,61 @@ function VedicTimeSVG() {
   );
 }
 
+/* 5b. Chandrabalam — crescent moon over 12-sign wheel */
+function ChandrabalamSVG() {
+  return (
+    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+      <defs>
+        <radialGradient id="cb1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#6366f1" stopOpacity="0.25" /><stop offset="100%" stopColor="#6366f1" stopOpacity="0" /></radialGradient>
+        <linearGradient id="cb1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="28" fill="url(#cb1g)" />
+      {/* 12-sign ring */}
+      <circle cx="32" cy="32" r="24" fill="none" stroke="url(#cb1)" strokeWidth="1.5" opacity="0.4" />
+      <circle cx="32" cy="32" r="18" fill="none" stroke="url(#cb1)" strokeWidth="1" opacity="0.2" />
+      {/* 12 division marks */}
+      {Array.from({ length: 12 }, (_, i) => {
+        const a = (Math.PI * 2 * i) / 12 - Math.PI / 2;
+        return <line key={i} x1={Math.round((32 + 18 * Math.cos(a)) * 100) / 100} y1={Math.round((32 + 18 * Math.sin(a)) * 100) / 100} x2={Math.round((32 + 24 * Math.cos(a)) * 100) / 100} y2={Math.round((32 + 24 * Math.sin(a)) * 100) / 100} stroke="url(#cb1)" strokeWidth="1.5" opacity="0.5" />;
+      })}
+      {/* Crescent moon */}
+      <path d="M 34 10 A 14 14 0 1 0 34 42 A 10 10 0 1 1 34 10" fill="url(#cb1)" opacity="0.3" stroke="url(#cb1)" strokeWidth="2" />
+      {/* Favorable dots (green-ish gold) */}
+      {[3, 6, 7, 9, 10, 11].map(h => {
+        const a = (Math.PI * 2 * (h - 1)) / 12 - Math.PI / 2;
+        return <circle key={h} cx={Math.round((32 + 21 * Math.cos(a)) * 100) / 100} cy={Math.round((32 + 21 * Math.sin(a)) * 100) / 100} r="2" fill="#f0d48a" opacity="0.7" />;
+      })}
+    </svg>
+  );
+}
+
+/* 5c. Tarabalam — 9-pointed star with nakshatra dots */
+function TarabalamSVG() {
+  return (
+    <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
+      <defs>
+        <radialGradient id="tb1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#a855f7" stopOpacity="0.25" /><stop offset="100%" stopColor="#a855f7" stopOpacity="0" /></radialGradient>
+        <linearGradient id="tb1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="28" fill="url(#tb1g)" />
+      {/* Outer ring of 27 dots (nakshatras) */}
+      {Array.from({ length: 27 }, (_, i) => {
+        const a = (Math.PI * 2 * i) / 27 - Math.PI / 2;
+        return <circle key={i} cx={Math.round((32 + 25 * Math.cos(a)) * 100) / 100} cy={Math.round((32 + 25 * Math.sin(a)) * 100) / 100} r={i % 3 === 0 ? 1.5 : 0.8} fill="#f0d48a" opacity={i % 3 === 0 ? 0.6 : 0.3} />;
+      })}
+      {/* 9-pointed star */}
+      <polygon points={Array.from({ length: 9 }, (_, i) => {
+        const a = (Math.PI * 2 * i) / 9 - Math.PI / 2;
+        const r = i % 2 === 0 ? 18 : 10;
+        return `${Math.round((32 + r * Math.cos(a)) * 100) / 100},${Math.round((32 + r * Math.sin(a)) * 100) / 100}`;
+      }).join(' ')} fill="url(#tb1)" opacity="0.1" stroke="url(#tb1)" strokeWidth="2" strokeLinejoin="round" />
+      {/* Center star */}
+      <circle cx="32" cy="32" r="5" fill="url(#tb1)" opacity="0.2" stroke="url(#tb1)" strokeWidth="1.5" />
+      <circle cx="32" cy="32" r="2" fill="#f0d48a" opacity="0.7" />
+    </svg>
+  );
+}
+
 /* 6. Rashi Calculator — Zodiac wheel with 12 marks */
 function RashiCalcSVG() {
   return (
@@ -697,6 +752,8 @@ function buildRows(locale: Locale, isDevanagari: boolean): RowDef[] {
         { href: '/hora', title: loc('Hora', 'होरा', 'ஹோரை', 'হোরা'), subtitle: loc('Planetary Hours', 'ग्रहीय प्रहर', 'கிரக மணிகள்', 'গ্রহীয় প্রহর'), description: loc('24-hour planetary cycle', '24-होरा ग्रह चक्र', '24 மணி கிரக சுழற்சி', '২৪-ঘণ্টা গ্রহ চক্র'), glowColor: '#8b5cf6', svg: <HoraSVG /> },
         { href: '/dinacharya', title: loc('Dinacharya', 'दिनचर्या', 'தினசரி', 'দিনচর্যা'), subtitle: loc('Ayurvedic Routine', 'आयुर्वेदिक दिनचर्या', 'ஆயுர்வேத வழக்கம்', 'আয়ুর্বেদিক রুটিন'), description: loc('Dosha \u00b7 Prahara \u00b7 Routine', 'दोष \u00b7 प्रहर \u00b7 दिनचर्या', 'தோஷம் \u00b7 பிரகாரம் \u00b7 வழக்கம்', 'দোষ \u00b7 প্রহর \u00b7 রুটিন'), glowColor: '#22d3ee', svg: <DinacharyaSVG /> },
         { href: '/vedic-time', title: loc('Vedic Time', 'वैदिक समय', 'வேத காலம்', 'বৈদিক সময়'), subtitle: loc('Ancient Time Units', 'प्राचीन समय इकाई', 'பண்டைய கால அலகுகள்', 'প্রাচীন সময় একক'), description: loc('Ghati \u00b7 Pala \u00b7 Vipala', 'घटी \u00b7 पल \u00b7 विपल', 'கடிகை \u00b7 பலம் \u00b7 விபலம்', 'ঘটি \u00b7 পল \u00b7 বিপল'), glowColor: '#fb923c', svg: <VedicTimeSVG /> },
+        { href: '/chandrabalam', title: loc('Chandrabalam', 'चन्द्रबल', 'சந்திரபலம்', 'চন্দ্রবল'), subtitle: loc('Moon Strength', 'चन्द्र बल', 'நிலவு வலிமை', 'চন্দ্র বল'), description: loc('12-sign Moon transit', '12 राशि चन्द्र गोचर', '12 ராசி நிலவு கோசாரம்', '১২ রাশি চন্দ্র গোচর'), glowColor: '#6366f1', svg: <ChandrabalamSVG /> },
+        { href: '/tarabalam', title: loc('Tarabalam', 'ताराबल', 'தாரபலம்', 'তারাবল'), subtitle: loc('Star Strength', 'तारा बल', 'நட்சத்திர வலிமை', 'তারা বল'), description: loc('27-nakshatra tara cycle', '27 नक्षत्र तारा चक्र', '27 நட்சத்திர தாரா சுழற்சி', '২৭ নক্ষত্র তারা চক্র'), glowColor: '#a855f7', svg: <TarabalamSVG /> },
       ],
     },
     {
@@ -758,12 +815,12 @@ export default function ToolsPage() {
         </h1>
         <p className="text-text-secondary text-sm">
           {locale === 'ta'
-            ? '20 சக்திவாய்ந்த வேத ஜோதிட கணிப்பான்கள் — உங்கள் அட்டையைத் தேர்ந்தெடுங்கள்'
+            ? '22 சக்திவாய்ந்த வேத ஜோதிட கணிப்பான்கள் — உங்கள் அட்டையைத் தேர்ந்தெடுங்கள்'
             : locale === 'bn'
-              ? '20টি শক্তিশালী বৈদিক জ্যোতিষ গণক — আপনার কার্ড বেছে নিন'
+              ? '22টি শক্তিশালী বৈদিক জ্যোতিষ গণক — আপনার কার্ড বেছে নিন'
               : isDevanagari
-                ? '20 शक्तिशाली वैदिक ज्योतिष गणक — अपना कार्ड चुनें'
-                : '20 powerful Vedic astrology calculators — pick your card'}
+                ? '22 शक्तिशाली वैदिक ज्योतिष गणक — अपना कार्ड चुनें'
+                : '22 powerful Vedic astrology calculators — pick your card'}
         </p>
       </motion.div>
 

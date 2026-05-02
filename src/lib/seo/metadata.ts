@@ -578,6 +578,16 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: 'Calculate planetary hours (Hora) for any day and location. Know which planet rules each hour for muhurta selection and daily planning.', hi: 'किसी भी दिन और स्थान के लिए ग्रह होरा गणना करें। मुहूर्त चयन और दैनिक योजना के लिए प्रत्येक घंटे का ग्रह स्वामी जानें।', sa: 'कस्यापि दिनस्य स्थानस्य च कृते ग्रहहोरां गणयतु। मुहूर्तचयनाय दैनिकयोजनायै च प्रत्येकघण्टायाः ग्रहस्वामिनं जानीयात्।' },
     keywords: ['hora', 'planetary hours', 'hora calculator', 'graha hora', 'planetary hour ruler', 'best time for activity'],
   },
+  '/chandrabalam': {
+    title: { en: 'Chandrabalam Today — Moon Strength for All 12 Signs', hi: 'आज का चन्द्रबल — सभी 12 राशियों के लिए चन्द्र बल', sa: 'अद्य चन्द्रबलम् — द्वादशराशिषु चन्द्रबलम्' },
+    description: { en: 'Check today\'s Chandrabalam (Moon strength) for all 12 zodiac signs. See if the Moon\'s transit is favorable or unfavorable for your birth rashi based on Muhurta Chintamani rules.', hi: 'सभी 12 राशियों के लिए आज का चन्द्रबल देखें। मुहूर्त चिन्तामणि नियमों के आधार पर जानें चन्द्र गोचर आपकी जन्म राशि के लिए अनुकूल है या प्रतिकूल।', sa: 'द्वादशराशिषु अद्यतनचन्द्रबलं पश्यतु। मुहूर्तचिन्तामणिनियमानुसारं चन्द्रगोचरः अनुकूलः प्रतिकूलो वा इति जानीयात्।' },
+    keywords: ['chandrabalam', 'moon strength', 'chandrabalam today', 'moon transit', 'muhurta chintamani'],
+  },
+  '/tarabalam': {
+    title: { en: 'Tarabalam Today — Star Strength for All 27 Nakshatras', hi: 'आज का ताराबल — सभी 27 नक्षत्रों के लिए तारा बल', sa: 'अद्य ताराबलम् — सप्तविंशतिनक्षत्रेषु ताराबलम्' },
+    description: { en: 'Check today\'s Tarabalam (star strength) for all 27 nakshatras. The 9 tara cycle shows which birth nakshatras have favorable or unfavorable star strength today.', hi: 'सभी 27 नक्षत्रों के लिए आज का ताराबल देखें। 9 तारा चक्र दर्शाता है कि किन जन्म नक्षत्रों के लिए आज ताराबल अनुकूल है।', sa: 'सप्तविंशतिनक्षत्रेषु अद्यतनताराबलं पश्यतु। नवताराचक्रः दर्शयति कस्य जन्मनक्षत्रस्य अद्य ताराबलम् अनुकूलम् इति।' },
+    keywords: ['tarabalam', 'star strength', 'tarabalam today', 'nakshatra tara', '9 taras'],
+  },
   '/chandra-darshan': {
     title: { en: 'Chandra Darshan Today — Moon Sighting Calculator', hi: 'चन्द्र दर्शन — नव चन्द्र दृश्यता गणक', sa: 'चन्द्रदर्शनम् — नवचन्द्रदृश्यतागणकम्' },
     description: { en: 'Is the new crescent Moon visible tonight? Calculate Moon age, elongation, and visibility conditions for your location. Includes upcoming Chandra Darshan dates for 6 months.', hi: 'क्या आज रात नव चन्द्रमा दृश्य है? अपने स्थान के लिए चन्द्र आयु, दूरी और दृश्यता स्थितियों की गणना करें।', sa: 'किम् अद्य रात्रौ नवचन्द्रः दृश्यते? स्वस्थानस्य कृते चन्द्रवयः दूरी दृश्यतास्थितिश्च गणयतु।' },
@@ -1332,6 +1342,45 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: { en: 'Holashtak 2026 — 8 Inauspicious Days Before Holi | Dekho Panchang', hi: 'होलाष्टक 2026 — होली से पूर्व 8 अशुभ दिन | Dekho Panchang', sa: 'होलाष्टकम् 2026 — होलिकापूर्वम् ८ अशुभदिनानि | Dekho Panchang' },
     description: { en: 'Is Holashtak active today? Check which day of the 8-day inauspicious period before Holi, activities to avoid, and Holashtak dates for 2026-2027.', hi: 'क्या आज होलाष्टक है? होली से पहले 8 दिन की अशुभ अवधि, वर्जित कार्य और 2026-2027 की तिथियाँ।', sa: 'अद्य होलाष्टकं किम्? होलिकापूर्वम् ८ दिनानाम् अशुभकालः वर्जितकार्याणि 2026-2027 तिथ्यश्च।' },
     keywords: ['holashtak 2026', 'holashtak today', 'holashtak dates', 'inauspicious days before holi', 'holashtak period'],
+  },
+  '/dates/ganda-mool': {
+    title: {
+      en: 'Ganda Mool Nakshatra Dates 2026 — Complete List with Timings',
+      hi: 'गण्ड मूल नक्षत्र तिथियां 2026 — समय सहित पूरी सूची',
+      sa: 'गण्डमूलनक्षत्रतिथयः 2026',
+    },
+    description: {
+      en: 'Complete list of Ganda Mool Nakshatra dates for 2026 with exact start/end timings. Ashwini, Ashlesha, Magha, Jyeshtha, Mula, Revati transit dates for any location.',
+      hi: '2026 के लिए गण्ड मूल नक्षत्र तिथियों की पूरी सूची — सटीक समय सहित। किसी भी स्थान के लिए अश्विनी, आश्लेषा, मघा, ज्येष्ठा, मूल, रेवती गोचर तिथियां।',
+      sa: '2026 वर्षस्य गण्डमूलनक्षत्रतिथीनां सम्पूर्णसूची। अश्विनी आश्लेषा मघा ज्येष्ठा मूलं रेवती गोचरतिथयः।',
+    },
+    keywords: ['ganda mool nakshatra', 'ganda mool dates 2026', 'ganda mool timings', 'ganda mool shanti puja', 'inauspicious nakshatra'],
+  },
+  '/calendar/regional/iskcon': {
+    title: {
+      en: 'ISKCON Vaishnava Calendar 2026 — Festivals, Ekadashi, Acharya Days',
+      hi: 'इस्कॉन वैष्णव पंचांग 2026 — पर्व, एकादशी, आचार्य दिवस',
+      sa: 'इस्कॉनवैष्णवपञ्चाङ्गम् 2026',
+    },
+    description: {
+      en: 'Complete ISKCON Gaudiya Vaishnava calendar for 2026. Gaura Purnima, Janmashtami, Rath Yatra, Ekadashi with Maha Dvadashi rules, and appearance/disappearance days of acharyas.',
+      hi: '2026 का सम्पूर्ण इस्कॉन गौड़ीय वैष्णव पंचांग। गौर पूर्णिमा, जन्माष्टमी, रथ यात्रा, महा द्वादशी नियमों सहित एकादशी, और आचार्यों के प्रकट/तिरोभाव दिवस।',
+      sa: '2026 वर्षस्य सम्पूर्णम् इस्कॉनगौड़ीयवैष्णवपञ्चाङ्गम्।',
+    },
+    keywords: ['iskcon calendar 2026', 'gaudiya vaishnava calendar', 'gaura purnima', 'janmashtami', 'ekadashi iskcon', 'maha dvadashi'],
+  },
+  '/rudraksha': {
+    title: {
+      en: 'Rudraksha Recommendation — Find Your Ideal Bead by Birth Chart',
+      hi: 'रुद्राक्ष अनुशंसा — जन्म कुण्डली द्वारा उचित रुद्राक्ष खोजें',
+      sa: 'रुद्राक्षानुशंसा — जन्मकुण्डलीद्वारा',
+    },
+    description: {
+      en: 'Find the right Rudraksha based on your Vedic birth chart. Recommendations by Rashi lord and Nakshatra lord with mukhi, deity, mantra, benefits, and wearing instructions.',
+      hi: 'अपनी वैदिक जन्म कुण्डली के आधार पर सही रुद्राक्ष खोजें। राशि स्वामी और नक्षत्र स्वामी द्वारा मुखी, देवता, मन्त्र, लाभ और धारण विधि सहित अनुशंसा।',
+      sa: 'वैदिकजन्मकुण्डल्याधारेण सम्यक् रुद्राक्षम् अन्विष्यतु।',
+    },
+    keywords: ['rudraksha recommendation', 'rudraksha by rashi', 'rudraksha calculator', 'which mukhi rudraksha', 'rudraksha benefits'],
   },
 };
 

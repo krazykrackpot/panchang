@@ -1368,6 +1368,40 @@ export default function PanchangClient({ serverPanchang, serverLocation }: Panch
             );
           })()}
 
+          {/* ═══ RITU · AYANA · CHANDRABALAM compact row ═══ */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            {/* Ritu (Season) */}
+            <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 text-center">
+              <div className="flex justify-center mb-1.5"><RituIcon size={36} /></div>
+              <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{isDevanagari ? 'ऋतु' : 'Ritu'}</div>
+              <div className="text-gold-light font-bold text-sm mt-0.5" style={headingFont}>{_tl(panchang.ritu, locale) || '\u2014'}</div>
+            </div>
+            {/* Ayana */}
+            <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 text-center">
+              <div className="flex justify-center mb-1.5"><AyanaIcon size={36} /></div>
+              <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{isDevanagari ? 'अयन' : 'Ayana'}</div>
+              <div className="text-gold-light font-bold text-sm mt-0.5" style={headingFont}>{_tl(panchang.ayana, locale) || '\u2014'}</div>
+            </div>
+            {/* Chandrabalam quick link */}
+            <Link href="/chandrabalam"
+              className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 text-center hover:border-gold-primary/40 transition-all group block">
+              <div className="flex justify-center mb-1.5"><Moon className="w-8 h-8 text-gold-primary group-hover:scale-110 transition-transform" /></div>
+              <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{isDevanagari ? 'चन्द्रबल' : 'Chandrabalam'}</div>
+              <div className="text-text-secondary text-xs mt-0.5">
+                {isDevanagari ? '12 राशियों के लिए \u2192' : 'All 12 signs \u2192'}
+              </div>
+            </Link>
+            {/* Tarabalam quick link */}
+            <Link href="/tarabalam"
+              className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 text-center hover:border-gold-primary/40 transition-all group block">
+              <div className="flex justify-center mb-1.5"><Sparkles className="w-8 h-8 text-gold-primary group-hover:scale-110 transition-transform" /></div>
+              <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{isDevanagari ? 'ताराबल' : 'Tarabalam'}</div>
+              <div className="text-text-secondary text-xs mt-0.5">
+                {isDevanagari ? '27 नक्षत्रों के लिए \u2192' : 'All 27 nakshatras \u2192'}
+              </div>
+            </Link>
+          </div>
+
           {/* ═══ REGIONAL QUICK-ACCESS — locale-aware featured tools ═══ */}
           {(() => {
             // Regional specialization: surface the most-used tools for each locale.

@@ -197,6 +197,8 @@ const routes = [
   '/choghadiya',
   '/chandra-darshan',
   '/hora',
+  '/chandrabalam',
+  '/tarabalam',
   '/mangal-dosha',
   '/kaal-sarp',
   '/pitra-dosha',
@@ -215,6 +217,22 @@ const routes = [
   '/dates/amavasya',
   '/dates/pradosham',
   '/dates/chaturthi',
+  '/dates/ganda-mool',
+  // Vrat Kathas
+  '/vrat-katha/ekadashi',
+  '/vrat-katha/satyanarayan',
+  '/vrat-katha/karva-chauth',
+  '/vrat-katha/somvar-vrat',
+  '/vrat-katha/mangalvar-vrat',
+  '/vrat-katha/pradosh-vrat',
+  '/vrat-katha/shivratri',
+  '/vrat-katha/santoshi-maa',
+  '/vrat-katha/ganesh-chaturthi',
+  '/vrat-katha/ahoi-ashtami',
+  // Regional calendars (additions)
+  '/calendar/regional/iskcon',
+  // Tools (additions)
+  '/rudraksha',
   // Learn modules (structured curriculum)
   '/learn/track/cosmology',
   '/learn/track/panchang',

@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import type { PanchangData } from '@/types/panchang';
 
 // ── Time helpers ──
@@ -257,8 +257,9 @@ export default function DayTimeline({
 
   const overlaps = useMemo(() => detectOverlaps(filtered), [filtered]);
 
-  const displayed = compact ? filtered.slice(0, 6) : filtered;
-  const hasMore = compact && filtered.length > 6;
+  const [showAll, setShowAll] = useState(false);
+  const displayed = (compact && !showAll) ? filtered.slice(0, 6) : filtered;
+  const hasMore = compact && !showAll && filtered.length > 6;
 
   if (displayed.length === 0) {
     return (
@@ -345,12 +346,15 @@ export default function DayTimeline({
         })}
       </div>
 
-      {/* "See all" link in compact mode */}
-      {hasMore && (
+      {/* "See all" toggle in compact mode */}
+      {compact && filtered.length > 6 && (
         <div className="mt-3 text-center">
-          <span className="text-gold-light/60 text-xs cursor-pointer hover:text-gold-light transition-colors">
-            +{filtered.length - 6} more windows
-          </span>
+          <button
+            onClick={() => setShowAll(prev => !prev)}
+            className="text-gold-light/60 text-xs cursor-pointer hover:text-gold-light transition-colors"
+          >
+            {showAll ? 'Show less ▲' : `+${filtered.length - 6} more windows ▼`}
+          </button>
         </div>
       )}
 

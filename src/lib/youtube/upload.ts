@@ -65,10 +65,17 @@ export interface YouTubeUploadOptions {
 export async function uploadToYouTube(opts: YouTubeUploadOptions): Promise<string> {
   const accessToken = await getAccessToken();
 
-  const tags = [...opts.tags];
+  let tags = [...opts.tags];
   if (opts.isShort && !tags.includes('#Shorts')) {
     tags.push('#Shorts');
   }
+  // YouTube API limit: total tag string must be ≤500 chars
+  // Trim tags from the end until within limit
+  while (tags.join(',').length > 490 && tags.length > 1) {
+    tags.pop();
+  }
+  // Remove any tags with characters YouTube rejects (< > are banned)
+  tags = tags.filter(t => !/<|>/.test(t));
 
   const metadata = {
     snippet: {

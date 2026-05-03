@@ -154,31 +154,16 @@ export async function generateDailyShort(): Promise<ShortVideoResult> {
         '#पंचांग #राशिफल #ज्योतिष #तिथि #नक्षत्र #राहुकाल',
         '#పంచాంగం #ராசிபலன் #পঞ্চাঙ্গ #પંચાંગ #ಪಂಚಾಂಗ',
       ].join('\n'),
+      // YouTube tag limit: 500 chars total combined. Keep it tight.
       tags: [
-        // Core — high volume
-        'panchang', 'panchang today', 'today panchang', 'aaj ka panchang',
-        'daily panchang', 'hindu panchang', 'vedic panchang',
-        // Rahu Kaal — your top search query
-        'rahu kaal', 'rahu kaal today', 'rahu kalam today', 'rahu time today',
-        // Tithi/Nakshatra
-        'tithi today', 'tithi aaj', 'nakshatra today', 'today tithi',
-        // Astrology
-        'vedic astrology', 'jyotish', 'hindu astrology', 'indian astrology',
-        // Calendar/Festivals
-        'hindu calendar', 'hindu calendar 2026', 'festival calendar',
-        // Kundali
-        'kundali', 'birth chart', 'horoscope', 'rashifal', 'rashifal today',
-        // Hindi tags — massive search volume in India
-        'आज का पंचांग', 'पंचांग', 'राशिफल', 'तिथि', 'नक्षत्र', 'राहु काल',
-        'ज्योतिष', 'कुण्डली', 'मुहूर्त',
-        // Regional language tags
-        'పంచాంగం', 'ராசி பலன்', 'পঞ্চাঙ্গ', 'પંચાંગ', 'ಪಂಚಾಂಗ',
-        // Day/date specific (rotate for freshness)
-        `panchang ${dayName}`, `${monthName} ${year} panchang`,
-        // Brand
-        'dekho panchang',
-        // Shorts discovery
-        'astrology shorts', 'panchang shorts',
+        'panchang', 'panchang today', 'aaj ka panchang',
+        'daily panchang', 'vedic astrology', 'jyotish',
+        'rahu kaal', 'rahu kaal today',
+        'tithi today', 'nakshatra today',
+        'hindu calendar', 'horoscope', 'rashifal',
+        'kundali', 'dekho panchang',
+        `panchang ${dayName}`,
+        'astrology shorts',
       ],
     };
   } finally {

@@ -1,0 +1,29 @@
+name: Daily Tweet
+
+on:
+  schedule:
+    # 00:30 UTC = 06:00 IST — morning panchang post
+    - cron: '30 0 * * *'
+  workflow_dispatch: # Manual trigger from GitHub UI
+
+jobs:
+  post-tweet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+
+    steps:
+      - name: Post daily panchang tweet
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
+        run: |
+          URL="${SITE_URL:-https://dekhopanchang.com}/api/cron/social-post"
+          RESPONSE=$(curl -s -w "\n%{http_code}" -H "Authorization: Bearer $CRON_SECRET" "$URL")
+          HTTP_CODE=$(echo "$RESPONSE" | tail -1)
+          BODY=$(echo "$RESPONSE" | head -1)
+          echo "Status: $HTTP_CODE"
+          echo "Response: $BODY"
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "::error::Tweet post failed with status $HTTP_CODE"
+            exit 1
+          fi

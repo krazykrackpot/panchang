@@ -41,10 +41,6 @@
     {
       "path": "/api/cron/index-urls",
       "schedule": "5 0 * * *"
-    },
-    {
-      "path": "/api/cron/social-post",
-      "schedule": "30 0 * * *"
     }
   ]
 }

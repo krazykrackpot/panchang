@@ -368,23 +368,35 @@ function truncateTweet(lines: string[]): string {
   let tweet = lines.join('\n');
   if (tweet.length <= 280) return tweet;
 
-  // Drop temple tags, keep minimal hashtags
-  lines[lines.length - 1] = '#Panchang #RahuKaal #Muhurta #Jyotish #Rashifal';
+  // Step 1: Shorten to minimal hashtags (always keep these)
+  const minTags = '#Panchang #RahuKaal #Jyotish';
+  lines[lines.length - 1] = minTags;
   tweet = lines.join('\n');
   if (tweet.length <= 280) return tweet;
 
-  // Remove all hashtags
-  lines.pop();
-  tweet = lines.join('\n');
-  if (tweet.length <= 280) return tweet;
-
-  // Remove trailing empty lines + last content line until it fits
-  while (tweet.length > 280 && lines.length > 2) {
-    lines.pop();
-    // Also remove trailing empty line if present
-    if (lines.length > 0 && lines[lines.length - 1] === '') {
-      lines.pop();
+  // Step 2: Trim content lines from middle (keep header + hashtags)
+  // Find the educational content line (longest line that's not header/tags/URL)
+  while (tweet.length > 280 && lines.length > 4) {
+    // Remove the line before the URL/tags (educational content)
+    const urlIdx = lines.findIndex(l => l.includes('dekhopanchang.com'));
+    const removeIdx = urlIdx > 0 ? urlIdx - 1 : lines.length - 3;
+    if (removeIdx > 0 && removeIdx < lines.length - 1) {
+      lines.splice(removeIdx, 1);
+      // Also remove empty line if it creates a double blank
+      if (removeIdx > 0 && lines[removeIdx - 1] === '' && lines[removeIdx] === '') {
+        lines.splice(removeIdx, 1);
+      }
+    } else {
+      lines.splice(lines.length - 3, 1);
     }
+    tweet = lines.join('\n');
+  }
+  if (tweet.length <= 280) return tweet;
+
+  // Step 3: Last resort — remove everything except header + tags
+  while (tweet.length > 280 && lines.length > 4) {
+    lines.splice(3, 1);
+    if (lines[3] === '') lines.splice(3, 1);
     tweet = lines.join('\n');
   }
 

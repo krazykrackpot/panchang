@@ -62,6 +62,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     twitter: {
       card: 'summary_large_image',
+      site: '@dekhopanchang',
+      creator: '@dekhopanchang',
       title,
       description,
       images: [`${BASE_URL}/${locale}/twitter-image`],

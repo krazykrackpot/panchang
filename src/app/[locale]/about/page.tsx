@@ -23,7 +23,7 @@ const CONTENT = {
     features: [
       { icon: 'calc', label: 'Precise Panchang', desc: 'Daily Tithi, Nakshatra, Yoga, Karana, and Muhurta timings computed for your exact location using astronomical algorithms verified within 1-2 minutes of reference sources.' },
       { icon: 'book', label: 'Birth Chart Analysis', desc: 'Complete Kundali generation with Vimshottari Dasha, Shadbala, Ashtakavarga, Yogas, Doshas, and interpretive Tippanni — all computed locally, no external APIs.' },
-      { icon: 'code', label: 'Open Computation', desc: 'All astronomical calculations use the Meeus algorithm suite. Sun positions accurate to ~0.01 degrees, Moon to ~0.5 degrees. No black-box APIs — pure, verifiable mathematics.' },
+      { icon: 'code', label: 'Swiss Ephemeris Precision', desc: 'Primary engine: Swiss Ephemeris (arcsecond accuracy for all 9 planets). Meeus algorithms as fallback. No black-box APIs — open, verifiable astronomical computation.' },
       { icon: 'shield', label: 'Privacy First', desc: 'Your birth data stays yours. We use Supabase with Row Level Security — users can only access their own data. No selling personal information to third parties.' },
       { icon: 'globe', label: 'Multilingual', desc: 'Available in 10 languages including Hindi, Tamil, Bengali, Telugu, Kannada, Marathi, Gujarati, Maithili, and Sanskrit. Real translations, not machine-generated.' },
       { icon: 'learn', label: '100+ Learning Modules', desc: 'A structured curriculum covering everything from Panchang basics to advanced Jaimini Jyotish, Shadbala, KP System, and Ashtakavarga — free for everyone.' },

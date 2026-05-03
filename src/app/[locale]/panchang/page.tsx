@@ -13,6 +13,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { getNakshatraActivity } from '@/lib/constants/nakshatra-activities';
+import { getLatestVideo } from '@/lib/youtube/latest-video';
 import type { PanchangData } from '@/types/panchang';
 import PanchangClient from './PanchangClient';
 
@@ -137,18 +138,16 @@ function PanchangSEOBlock({
           <div className="mt-3 mb-3 text-text-secondary/80 text-xs leading-relaxed space-y-1.5">
             <p>
               {locale === 'hi'
-                ? `आज की तिथि ${tithiName} है, नक्षत्र ${nakName} है, और योग ${yogaName || '—'} है। आज ${varaName || '—'} है।`
-                : `Today's Tithi is ${tithiName}, Nakshatra is ${nakName}, and Yoga is ${yogaName || '—'}. Today is ${varaName || '—'}.`}
-            </p>
-            <p>
+                ? `इस ${varaName || '—'} को तिथि ${tithiName}, नक्षत्र ${nakName}, और योग ${yogaName || '—'} है।`
+                : `This ${varaName || '—'} brings ${tithiName} Tithi under ${nakName} Nakshatra, with ${yogaName || '—'} Yoga.`}
+              {' '}
               {locale === 'hi'
-                ? `आज का दिन ${auspLabel} है। ${nakName} नक्षत्र ${nkActivity ? (nkActivity.goodFor.map(g => g.hi).join(', ') || 'सामान्य कार्यों') : 'सामान्य कार्यों'} के लिए अनुकूल है।`
-                : `Today is ${auspLabel}. ${nakName} Nakshatra favors ${nkActivity ? (nkActivity.goodFor.map(g => g.en).join(', ') || 'general activities') : 'general activities'}.`}
-            </p>
-            <p>
+                ? `दिन ${auspLabel} है — ${nakName} नक्षत्र ${nkActivity ? (nkActivity.goodFor.map(g => g.hi).join(', ') || 'सामान्य कार्यों') : 'सामान्य कार्यों'} के लिए अनुकूल रहता है।`
+                : `The day is ${auspLabel} — ${nakName} favors ${nkActivity ? (nkActivity.goodFor.map(g => g.en).join(', ') || 'general activities') : 'general activities'}.`}
+              {' '}
               {locale === 'hi'
-                ? `राहु काल ${panchang.rahuKaal?.start || '—'} से ${panchang.rahuKaal?.end || '—'} तक है — इस अवधि में शुभ कार्य टालें।`
-                : `Rahu Kaal is from ${panchang.rahuKaal?.start || '—'} to ${panchang.rahuKaal?.end || '—'} — avoid starting auspicious activities during this period.`}
+                ? `राहु काल ${panchang.rahuKaal?.start || '—'} से ${panchang.rahuKaal?.end || '—'} तक रहेगा, इस दौरान नए शुभ कार्य न आरम्भ करें।`
+                : `Rahu Kaal runs ${panchang.rahuKaal?.start || '—'}–${panchang.rahuKaal?.end || '—'}; hold off on new beginnings during that window.`}
             </p>
           </div>
         );
@@ -168,27 +167,36 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
   const { locale } = await params;
   const { panchang, location: serverLocation } = await getServerPanchang();
 
-  // VideoObject schema — links to daily YouTube Short for Google Video/Discover
+  // Fetch latest YouTube video (RSS feed, cached 1h) for VideoObject schema + embed
   const today = new Date();
   const dateStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-  const videoLd = {
+  const latestVideo = await getLatestVideo();
+
+  // VideoObject schema — real video URL makes search result 2x larger on mobile
+  const videoLd = latestVideo ? {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
-    name: `Daily Panchang — ${panchang?.tithi?.name?.en || 'Vedic Calendar'} | ${dateStr}`,
-    description: `Today's Vedic Panchang: ${panchang?.tithi?.name?.en || ''}, ${panchang?.nakshatra?.name?.en || ''}, ${panchang?.yoga?.name?.en || ''}. Rahu Kaal ${panchang?.rahuKaal?.start || ''}-${panchang?.rahuKaal?.end || ''}.`,
-    thumbnailUrl: 'https://dekhopanchang.com/icon-512.png',
-    uploadDate: dateStr,
-    contentUrl: `https://www.youtube.com/@DekhoPanchang/shorts`,
-    embedUrl: `https://www.youtube.com/@DekhoPanchang/shorts`,
-    duration: 'PT30S',
+    name: latestVideo.title,
+    description: `Vedic Panchang for ${dateStr}: ${panchang?.tithi?.name?.en || ''}, ${panchang?.nakshatra?.name?.en || ''}, ${panchang?.yoga?.name?.en || ''}. Rahu Kaal ${panchang?.rahuKaal?.start || ''}–${panchang?.rahuKaal?.end || ''}.`,
+    thumbnailUrl: latestVideo.thumbnail,
+    uploadDate: latestVideo.published.split('T')[0],
+    contentUrl: `https://www.youtube.com/watch?v=${latestVideo.videoId}`,
+    embedUrl: `https://www.youtube.com/embed/${latestVideo.videoId}`,
+    duration: 'PT60S',
     publisher: {
       '@type': 'Organization',
       name: 'Dekho Panchang',
       logo: { '@type': 'ImageObject', url: 'https://dekhopanchang.com/icon-512.png' },
     },
-  };
+  } : null;
 
   // Dynamic FAQ schema with today's actual panchang values
+  const tithiEn = panchang?.tithi?.name?.en || '—';
+  const nakEn = panchang?.nakshatra?.name?.en || '—';
+  const yogaEn = panchang?.yoga?.name?.en || '—';
+  const varaEn = panchang?.vara?.name?.en || '—';
+  const rkStart = panchang?.rahuKaal?.start || '—';
+  const rkEnd = panchang?.rahuKaal?.end || '—';
   const faqLd = panchang ? {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -196,30 +204,32 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
       {
         '@type': 'Question',
         name: `What is today's Tithi?`,
-        acceptedAnswer: { '@type': 'Answer', text: `Today's Tithi is ${panchang.tithi?.name?.en || '—'}.` },
+        acceptedAnswer: { '@type': 'Answer', text: `The Tithi on ${dateStr} is ${tithiEn} (${panchang.tithi?.paksha || ''} Paksha), active until ${panchang.tithi?.endTime || '—'}.` },
       },
       {
         '@type': 'Question',
         name: `What is today's Nakshatra?`,
-        acceptedAnswer: { '@type': 'Answer', text: `Today's Nakshatra is ${panchang.nakshatra?.name?.en || '—'}.` },
+        acceptedAnswer: { '@type': 'Answer', text: `${nakEn} Nakshatra is active on ${dateStr}, lasting until ${panchang.nakshatraTransition?.endTime || '—'}.` },
       },
       {
         '@type': 'Question',
-        name: `What is Rahu Kaal today?`,
-        acceptedAnswer: { '@type': 'Answer', text: `Rahu Kaal today is from ${panchang.rahuKaal?.start || '—'} to ${panchang.rahuKaal?.end || '—'}. Avoid starting auspicious activities during this period.` },
+        name: `What time is Rahu Kaal today?`,
+        acceptedAnswer: { '@type': 'Answer', text: `Rahu Kaal on ${varaEn} (${dateStr}) runs from ${rkStart} to ${rkEnd}. Avoid initiating auspicious activities during this window.` },
       },
       {
         '@type': 'Question',
-        name: `Is today auspicious?`,
-        acceptedAnswer: { '@type': 'Answer', text: `Today is ${panchang.vara?.name?.en || '—'} with ${panchang.tithi?.name?.en || '—'} Tithi and ${panchang.nakshatra?.name?.en || '—'} Nakshatra. The Yoga is ${panchang.yoga?.name?.en || '—'}. Check the detailed muhurta timings for specific activities.` },
+        name: `Is today auspicious for new activities?`,
+        acceptedAnswer: { '@type': 'Answer', text: `${varaEn} with ${tithiEn} Tithi and ${nakEn} Nakshatra under ${yogaEn} Yoga. Check the detailed muhurta timings on Dekho Panchang for activity-specific guidance.` },
       },
     ],
   } : null;
 
   return (
     <>
-      {/* VideoObject JSON-LD — Google Video/Discover feed */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoLd) }} />
+      {/* VideoObject JSON-LD — real video URL makes search result 2x larger on mobile */}
+      {videoLd && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoLd) }} />
+      )}
 
       {/* Dynamic FAQ JSON-LD for featured snippet capture */}
       {faqLd && (
@@ -242,6 +252,7 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
         <PanchangClient
           serverPanchang={panchang}
           serverLocation={serverLocation}
+          latestVideo={latestVideo}
         />
       </div>
     </>

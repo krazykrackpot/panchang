@@ -42,7 +42,6 @@ import LearnLink from '@/components/ui/LearnLink';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl as _tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
-import WhatsAppShareButton from '@/components/ui/WhatsAppShareButton';
 import PMSG from '@/messages/pages/panchang-inline.json';
 import { usePreferenceStore, type TraditionPreference } from '@/stores/preference-store';
 import { HORA_PLANET_ACTIVITIES, computeHoraTable } from '@/lib/panchang/hora-engine';
@@ -171,14 +170,68 @@ function InsightBlock({ insight }: { insight: PanchangInsight | undefined }) {
   );
 }
 
+// ---------------------------------------------------------------------------
+// Daily Video Card — lite YouTube embed (thumbnail first, iframe on click)
+// ---------------------------------------------------------------------------
+function DailyVideoCard({ videoId, title, thumbnail, isDevanagari }: { videoId: string; title: string; thumbnail: string; isDevanagari: boolean }) {
+  const [playing, setPlaying] = useState(false);
+  return (
+    <div className="mb-6 rounded-2xl bg-gradient-to-br from-red-900/20 via-[#1a1040]/40 to-[#0a0e27] border border-red-500/15 overflow-hidden">
+      <div className="px-5 pt-4 pb-2 flex items-center justify-between">
+        <div className="text-gold-dark text-xs uppercase tracking-widest font-bold">
+          {isDevanagari ? 'आज का वीडियो पंचांग' : 'Daily Video Forecast'}
+        </div>
+        <a
+          href="https://www.youtube.com/@DekhoPanchang?sub_confirmation=1"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-red-600 text-white text-[10px] font-semibold hover:bg-red-500 transition-colors"
+        >
+          <svg viewBox="0 0 24 24" className="w-3 h-3 fill-current"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 4-8 4z" /></svg>
+          Subscribe
+        </a>
+      </div>
+      <div className="relative w-full aspect-video">
+        {playing ? (
+          <iframe
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
+            title={title}
+            className="absolute inset-0 w-full h-full"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        ) : (
+          <button
+            onClick={() => setPlaying(true)}
+            className="absolute inset-0 w-full h-full group cursor-pointer"
+            aria-label={`Play: ${title}`}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={thumbnail} alt={title} className="w-full h-full object-cover" loading="lazy" />
+            {/* Play button overlay */}
+            <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/20 transition-colors">
+              <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                <svg viewBox="0 0 24 24" className="w-7 h-7 text-white fill-current ml-1"><path d="M8 5v14l11-7z" /></svg>
+              </div>
+            </div>
+          </button>
+        )}
+      </div>
+      <div className="px-5 py-2.5 text-xs text-text-secondary truncate">{title}</div>
+    </div>
+  );
+}
+
 interface PanchangClientProps {
   /** Server-computed panchang from Vercel geo headers — eliminates LCP waterfall */
   serverPanchang?: PanchangData | null;
   /** Server-resolved location from Vercel geo headers */
   serverLocation?: { lat: number; lng: number; name: string; timezone: string } | null;
+  /** Latest YouTube video from RSS feed (server-fetched, cached 1h) */
+  latestVideo?: { videoId: string; title: string; thumbnail: string; published: string } | null;
 }
 
-export default function PanchangClient({ serverPanchang, serverLocation }: PanchangClientProps) {
+export default function PanchangClient({ serverPanchang, serverLocation, latestVideo }: PanchangClientProps) {
   const t = useTranslations('panchang');
   const tNav = useTranslations('nav');
   const locale = useLocale() as Locale;
@@ -529,12 +582,6 @@ export default function PanchangClient({ serverPanchang, serverLocation }: Panch
                 text={`Today's Panchang — ${panchang.tithi?.name?.[locale] || panchang.tithi?.name?.en || ''}, ${panchang.nakshatra?.name?.[locale] || panchang.nakshatra?.name?.en || ''}, ${panchang.yoga?.name?.[locale] || panchang.yoga?.name?.en || ''} | dekhopanchang.com`}
                 url={`https://dekhopanchang.com/${locale}/panchang`}
                 locale={locale}
-              />
-              <WhatsAppShareButton
-                text={`Today's Panchang \u2014 Tithi: ${_tl(panchang.tithi.name, locale)}, Nakshatra: ${_tl(panchang.nakshatra.name, locale)}, Sunrise: ${panchang.sunrise}. Full details:`}
-                url={`https://dekhopanchang.com/${locale}/panchang`}
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-md border border-[#25D366]/20 text-[#25D366] hover:bg-[#25D366]/10 transition-all"
-                label={isDevanagari ? 'WhatsApp' : 'WhatsApp'}
               />
               <button
                 onClick={async () => {

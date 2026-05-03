@@ -18,7 +18,6 @@ import BirthForm from '@/components/kundali/BirthForm';
 import ConvergenceSummary from '@/components/kundali/ConvergenceSummary';
 import GoldDivider from '@/components/ui/GoldDivider';
 import ShareButton from '@/components/ui/ShareButton';
-import WhatsAppShareButton from '@/components/ui/WhatsAppShareButton';
 // PrintButton removed — consolidated into DownloadReportButton (full HTML report via /api/kundali-report)
 import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
@@ -1009,10 +1008,6 @@ export default function KundaliPage() {
                 text={`${kundali.birthData.name ? kundali.birthData.name + "'s Kundali" : 'Kundali'} — ${tl(kundali.ascendant.signName, locale)} ${locale === 'en' || isTamil ? 'Lagna' : 'लग्न'}, ${tl(kundali.planets.find(p => p.planet.id === 1)?.signName, locale) || ''} ${locale === 'en' || isTamil ? 'Moon' : 'चन्द्र'} | dekhopanchang.com`}
                 url={`https://dekhopanchang.com/${locale}/kundali`}
                 locale={locale as Locale}
-              />
-              <WhatsAppShareButton
-                text={`My Vedic Birth Chart \u2014 Ascendant: ${tl(kundali.ascendant.signName, locale)}, Moon: ${tl(kundali.planets.find(p => p.planet.id === 1)?.signName, locale) || ''}. Generate yours free:`}
-                url="https://dekhopanchang.com/en/kundali"
               />
               <button
                 onClick={() => setShowPoster(true)}

@@ -1,7 +1,8 @@
 import { getLocale } from 'next-intl/server';
 import { MapPin, Globe, ChevronRight } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
-import { CITIES, type CityData } from '@/lib/constants/cities';
+import { type CityData } from '@/lib/constants/cities';
+import { ALL_CITIES } from '@/lib/constants/cities-extended';
 import { isDevanagariLocale, getHeadingFont } from '@/lib/utils/locale-fonts';
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
@@ -167,8 +168,8 @@ export default async function LocationsPage() {
   const headingFont = getHeadingFont(locale);
   const isDevanagari = isDevanagariLocale(locale);
 
-  const indianCities = CITIES.filter((c) => !isInternational(c));
-  const internationalCities = CITIES.filter((c) => isInternational(c)).sort(
+  const indianCities = ALL_CITIES.filter((c) => !isInternational(c));
+  const internationalCities = ALL_CITIES.filter((c) => isInternational(c)).sort(
     (a, b) => (b.population ?? 0) - (a.population ?? 0),
   );
 

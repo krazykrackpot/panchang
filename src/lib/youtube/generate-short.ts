@@ -131,14 +131,15 @@ export async function generateDailyShort(): Promise<ShortVideoResult> {
       videoBuffer,
       title: `Today's Panchang — ${dateStr} | आज का पंचांग | तिथि नक्षत्र राहु काल #Shorts`,
       description: [
-        `📅 Daily Vedic Panchang for ${dateStr} (${dateHi})`,
+        // First 2 lines visible above "...more" fold — localized link MUST be here
+        `📅 Full Panchang for ${dateStr}: ${BASE_URL}/en/panchang`,
+        `📅 आज का पंचांग (${dateHi}): ${BASE_URL}/hi/panchang`,
         '',
         '✨ Tithi, Nakshatra, Yoga, Karana, Vara',
         '🌅 Sunrise, Sunset, Moonrise, Rahu Kaal',
         '🔮 Nakshatra spotlight with deity & characteristics',
         '',
-        `🌐 Full interactive panchang: ${BASE_URL}/en/panchang`,
-        `📊 Generate your Kundali: ${BASE_URL}/en/kundali`,
+        `📊 Generate your Kundali FREE: ${BASE_URL}/en/kundali`,
         `🤖 AI Muhurta Scanner: ${BASE_URL}/en/muhurta-ai`,
         `📱 Rahu Kaal Today: ${BASE_URL}/en/rahu-kaal`,
         `📅 Festival Calendar: ${BASE_URL}/en/calendar`,

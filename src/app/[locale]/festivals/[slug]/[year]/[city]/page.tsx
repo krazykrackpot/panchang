@@ -1,4 +1,5 @@
-import { getCityBySlug, getPopularCities, CITIES } from '@/lib/constants/cities';
+import { CITIES } from '@/lib/constants/cities';
+import { getCityBySlugExtended, getNearbyCities } from '@/lib/constants/cities-extended';
 import { MAJOR_FESTIVALS, type MuhurtaRule } from '@/lib/calendar/festival-defs';
 import { FESTIVAL_DETAILS, type FestivalDetail } from '@/lib/constants/festival-details';
 import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
@@ -151,7 +152,7 @@ export default async function FestivalCityPage({
   if (isNaN(year) || year < 2024 || year > 2030) notFound();
 
   // Validate city
-  const cityData = getCityBySlug(citySlug);
+  const cityData = getCityBySlugExtended(citySlug);
   if (!cityData) notFound();
 
   // Find festival definition
@@ -203,7 +204,7 @@ export default async function FestivalCityPage({
   const sunsetStr = formatTimeHHMM(sunTimes.sunset);
 
   // City cross-links: top 15 cities excluding current
-  const crossLinkCities = getPopularCities(16).filter(c => c.slug !== citySlug).slice(0, 15);
+  const crossLinkCities = getNearbyCities(citySlug, 15);
 
   // Year navigation
   const yearLinks = VALID_YEARS;

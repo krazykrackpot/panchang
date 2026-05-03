@@ -1,4 +1,5 @@
 import { CITIES } from '@/lib/constants/cities';
+import { getCityBySlugExtended, getCitiesByTier, getNearbyCities } from '@/lib/constants/cities-extended';
 import { scanDateRangeV2 } from '@/lib/muhurta/time-window-scanner';
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -23,7 +24,7 @@ export async function generateStaticParams() {
     return months[idx];
   });
 
-  const topCities = CITIES.slice(0, 10).map(c => c.slug);
+  const topCities = getCitiesByTier(1).slice(0, 20).map(c => c.slug);
 
   const params: { type: string; year: string; month: string; city: string }[] = [];
   for (const activity of activities) {
@@ -54,7 +55,7 @@ export default async function MuhurtaActivityPage({ params }: PageProps) {
   const activityId = ACTIVITY_SLUGS[activitySlug];
   const monthNum = MONTH_MAP[monthStr.toLowerCase()];
   const year = parseInt(yearStr, 10);
-  const cityData = CITIES.find(c => c.slug === citySlug);
+  const cityData = getCityBySlugExtended(citySlug);
 
   if (!activityId || !monthNum || !cityData || isNaN(year) || year < 2024 || year > 2030) {
     notFound();
@@ -229,9 +230,7 @@ export default async function MuhurtaActivityPage({ params }: PageProps) {
           <div>
             <h3 className="text-[#f0d48a] text-sm font-semibold mb-3">{activityName} in Other Cities</h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-              {CITIES.slice(0, 6)
-                .filter(c => c.slug !== citySlug)
-                .slice(0, 5)
+              {getNearbyCities(citySlug, 5)
                 .map(c => (
                   <Link
                     key={c.slug}

@@ -33,6 +33,12 @@ interface DaySummary {
   };
   taraBala?: { tara: number; name: string; auspicious: boolean };
   chandraBala?: boolean;
+  /** Tithi name at sunrise (for display in calendar cells) */
+  tithi?: string;
+  /** Nakshatra name at sunrise (for display in calendar cells) */
+  nakshatra?: string;
+  /** Weekday name */
+  vara?: string;
 }
 
 function qualityFromScore(score: number): DaySummary['quality'] {
@@ -96,6 +102,8 @@ export async function GET(req: NextRequest) {
         },
         taraBala: w.taraBala,
         chandraBala: w.chandraBala,
+        tithi: (w as unknown as Record<string, unknown>).tithiName as string | undefined,
+        nakshatra: (w as unknown as Record<string, unknown>).nakshatraName as string | undefined,
       });
     } else {
       existing.windowCount++;

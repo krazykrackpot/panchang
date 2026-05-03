@@ -31,6 +31,9 @@ interface DaySummary {
   bestWindow?: { startTime: string; endTime: string; score: number; shuddhi: number };
   taraBala?: { tara: number; name: string; auspicious: boolean };
   chandraBala?: boolean;
+  tithi?: string;
+  nakshatra?: string;
+  vara?: string;
 }
 
 interface ActivityOption {
@@ -671,16 +674,24 @@ export default function MuhuratPage() {
                     }`}
                   >
                     {isToday && (
-                      <span className="absolute top-1 right-1.5 w-1.5 h-1.5 rounded-full bg-gold-primary animate-pulse" />
+                      <span className="absolute top-0.5 right-1 w-1.5 h-1.5 rounded-full bg-gold-primary animate-pulse" />
                     )}
-                    <span className={`text-sm sm:text-base font-bold ${isAuspicious ? 'text-gold-light' : 'text-text-secondary/40'}`}>
+                    {/* Day number */}
+                    <span className={`text-sm sm:text-base font-bold leading-none ${isAuspicious ? 'text-gold-light' : 'text-text-secondary/40'}`}>
                       {dayNum}
                     </span>
-                    {isAuspicious && (
-                      <div className={`w-1.5 h-1.5 rounded-full mt-0.5 ${QUALITY_DOT[day.quality]}`} />
+                    {/* Tithi name — contextualizes why the day is good/bad */}
+                    {day.tithi && (
+                      <span className={`text-[8px] sm:text-[9px] leading-none mt-0.5 truncate max-w-full px-0.5 ${isAuspicious ? 'text-text-secondary/60' : 'text-text-secondary/25'}`}>
+                        {day.tithi.length > 8 ? day.tithi.slice(0, 7) + '.' : day.tithi}
+                      </span>
                     )}
-                    {day.bestScore > 0 && (
-                      <span className="text-[9px] text-text-secondary/50 mt-0.5">{day.bestScore}</span>
+                    {/* Quality indicator — dot for auspicious, nothing for poor */}
+                    {isAuspicious && (
+                      <div className="flex items-center gap-0.5 mt-0.5">
+                        <div className={`w-1.5 h-1.5 rounded-full ${QUALITY_DOT[day.quality]}`} />
+                        {day.quality === 'excellent' && <div className={`w-1 h-1 rounded-full ${QUALITY_DOT[day.quality]} opacity-50`} />}
+                      </div>
                     )}
                   </button>
                 );

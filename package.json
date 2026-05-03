@@ -19,12 +19,16 @@
     "test:all": "vitest run --reporter=verbose && npx playwright test",
     "e2e:seed": "node --env-file=.env.local --import tsx scripts/e2e-seed.ts",
     "test:e2e:auth": "E2E_AUTH_COOKIE=\"$(npm run -s e2e:seed -- --token-only)\" npx playwright test e2e/dashboard-saved-kundalis.spec.ts e2e/error-surfacing.spec.ts",
-    "analyze": "ANALYZE=true next build --webpack"
+    "analyze": "ANALYZE=true next build --webpack",
+    "video:studio": "npx remotion studio src/video/index.ts",
+    "video:render": "npx tsx scripts/render-video.ts"
   },
   "dependencies": {
     "@react-email/components": "^1.0.11",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.0",
+    "@remotion/cli": "^4.0.456",
+    "@remotion/renderer": "^4.0.456",
     "@supabase/supabase-js": "^2.100.0",
     "@types/three": "^0.184.0",
     "@vercel/analytics": "^2.0.1",
@@ -41,6 +45,7 @@
     "razorpay": "^2.9.6",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "remotion": "^4.0.456",
     "resend": "^6.10.0",
     "stripe": "^21.0.1",
     "sweph": "^2.10.3-b-1",

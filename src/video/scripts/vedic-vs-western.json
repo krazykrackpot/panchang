@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "topic": "vedic-vs-western-zodiac",
+    "type": "short",
+    "language": "en",
+    "estimatedDuration": 45,
+    "style": "dramatic",
+    "musicMood": "dramatic",
+    "voiceProfile": "narrator-en"
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "duration": 4,
+      "narration": "Your zodiac sign... is probably wrong.",
+      "visualType": "title_card",
+      "textOverlay": "YOUR SIGN IS WRONG",
+      "transition": "cut"
+    },
+    {
+      "id": 2,
+      "duration": 8,
+      "narration": "Western astrology uses the tropical zodiac — based on seasons. But the actual stars have shifted 24 degrees over 1,700 years.",
+      "visualType": "comparison",
+      "textOverlay": "Tropical vs Sidereal: 24° drift",
+      "transition": "zoom"
+    },
+    {
+      "id": 3,
+      "duration": 8,
+      "narration": "Vedic astrology uses the sidereal zodiac — fixed to real star positions. So if you're a Taurus in Western... you're likely an Aries in Vedic.",
+      "visualType": "zodiac_wheel",
+      "textOverlay": "Taurus → Aries",
+      "transition": "slide"
+    },
+    {
+      "id": 4,
+      "duration": 6,
+      "narration": "Which system reveals your TRUE personality? Vedic astrology has been doing this for 5,000 years.",
+      "visualType": "text_reveal",
+      "textOverlay": "5,000 years of precision",
+      "transition": "fade"
+    },
+    {
+      "id": 5,
+      "duration": 4,
+      "narration": "Check your real Vedic sign — free — at Dekho Panchang dot com.",
+      "visualType": "cta",
+      "textOverlay": "dekhopanchang.com",
+      "transition": "fade"
+    }
+  ]
+}

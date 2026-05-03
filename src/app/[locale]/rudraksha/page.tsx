@@ -222,7 +222,7 @@ export default function RudrakshaPage() {
 
   return (
     <main className="min-h-screen bg-bg-primary pt-24 pb-16">
-      {safeJsonLd(generateBreadcrumbLD(`/${locale}/rudraksha`, locale))}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(generateBreadcrumbLD(`/${locale}/rudraksha`, locale)) }} />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <Link href="/tools" className="inline-flex items-center gap-2 text-text-secondary hover:text-gold-light transition-colors mb-6">

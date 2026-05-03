@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "topic": "pushya-nakshatra-gold",
+    "type": "short",
+    "language": "en",
+    "estimatedDuration": 35,
+    "style": "casual",
+    "musicMood": "celebratory"
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "duration": 3,
+      "narration": "Want to know the BEST day to buy gold?",
+      "visualType": "title_card",
+      "textOverlay": "BEST DAY FOR GOLD",
+      "transition": "cut"
+    },
+    {
+      "id": 2,
+      "duration": 8,
+      "narration": "When the Moon enters Pushya nakshatra on a Thursday — that's called Guru Pushya Yoga. It happens only 4 times a year.",
+      "visualType": "nakshatra_card",
+      "textOverlay": "Thursday + Pushya = Guru Pushya Yoga",
+      "transition": "zoom"
+    },
+    {
+      "id": 3,
+      "duration": 8,
+      "narration": "Pushya is ruled by Brihaspati — Jupiter, the planet of abundance. Thursday is also Jupiter's day. Double Jupiter energy means everything you buy multiplies in value.",
+      "visualType": "planet_showcase",
+      "textOverlay": "Jupiter x Jupiter = 2x abundance",
+      "transition": "slide"
+    },
+    {
+      "id": 4,
+      "duration": 6,
+      "narration": "That's why jewelers across India have massive sales on Guru Pushya Yoga. Now you know why.",
+      "visualType": "text_reveal",
+      "textOverlay": "jewelers know this secret",
+      "transition": "fade"
+    },
+    {
+      "id": 5,
+      "duration": 4,
+      "narration": "Find the next Guru Pushya date at Dekho Panchang.",
+      "visualType": "cta",
+      "textOverlay": "dekhopanchang.com",
+      "transition": "fade"
+    }
+  ]
+}

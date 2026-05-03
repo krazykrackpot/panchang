@@ -109,7 +109,7 @@ export default function ISKCONCalendarPage() {
 
   return (
     <main className="min-h-screen bg-bg-primary pt-24 pb-16">
-      {safeJsonLd(generateBreadcrumbLD(`/${locale}/calendar/regional/iskcon`, locale))}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(generateBreadcrumbLD(`/${locale}/calendar/regional/iskcon`, locale)) }} />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         {/* Back */}

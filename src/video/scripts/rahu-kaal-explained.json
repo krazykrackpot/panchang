@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "topic": "rahu-kaal-explained",
+    "type": "short",
+    "language": "hi",
+    "estimatedDuration": 45,
+    "style": "educational",
+    "musicMood": "mystical"
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "duration": 4,
+      "narration": "राहु काल क्या है? 45 सेकंड में समझिए।",
+      "visualType": "title_card",
+      "textOverlay": "राहु काल — 45 सेकंड में",
+      "transition": "cut"
+    },
+    {
+      "id": 2,
+      "duration": 10,
+      "narration": "हर दिन सूर्योदय से सूर्यास्त तक का समय 8 बराबर भागों में बंटा होता है। इनमें से एक भाग राहु काल कहलाता है — यह अशुभ माना जाता है।",
+      "visualType": "timeline",
+      "textOverlay": "दिन ÷ 8 = राहु काल",
+      "transition": "slide"
+    },
+    {
+      "id": 3,
+      "duration": 12,
+      "narration": "सोमवार को दूसरा भाग, शनिवार को तीसरा, शुक्रवार को चौथा। हर दिन अलग समय। राहु काल में नया काम शुरू नहीं करना चाहिए — विवाह, व्यापार, यात्रा।",
+      "visualType": "data_table",
+      "textOverlay": "सोम=2, शनि=3, शुक्र=4...",
+      "transition": "fade"
+    },
+    {
+      "id": 4,
+      "duration": 8,
+      "narration": "लेकिन राहु काल में पहले से चल रहा काम जारी रख सकते हैं। और राहु की पूजा इस समय विशेष फलदायी होती है।",
+      "visualType": "text_reveal",
+      "textOverlay": "चल रहा काम = ठीक\nनया काम = नहीं",
+      "transition": "fade"
+    },
+    {
+      "id": 5,
+      "duration": 4,
+      "narration": "आज का राहु काल देखें — देखो पंचांग डॉट कॉम पर।",
+      "visualType": "cta",
+      "textOverlay": "dekhopanchang.com/rahu-kaal",
+      "transition": "fade"
+    }
+  ]
+}

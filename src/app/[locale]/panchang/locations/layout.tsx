@@ -79,7 +79,7 @@ export default async function LocationsLayout({
   return (
     <>
       <Script id="locations-breadcrumb-ld" type="application/ld+json" strategy="afterInteractive">
-        {safeJsonLd(breadcrumbLd)}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLd) }} />
       </Script>
       {children}
     </>

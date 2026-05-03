@@ -97,10 +97,10 @@ export default async function FestivalsLayout({
   return (
     <>
       <Script id="festivals-breadcrumb-ld" type="application/ld+json" strategy="afterInteractive">
-        {safeJsonLd(breadcrumbLd)}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLd) }} />
       </Script>
       <Script id="festivals-collection-ld" type="application/ld+json" strategy="afterInteractive">
-        {safeJsonLd(collectionLd)}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(collectionLd) }} />
       </Script>
       {children}
     </>

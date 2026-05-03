@@ -83,8 +83,6 @@ export default function VratKathaPage() {
 
   return (
     <main className="min-h-screen bg-bg-primary pt-24 pb-16">
-      {safeJsonLd(generateBreadcrumbLD(`/${locale}/vrat-katha/${slug}`, locale))}
-
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         {/* Back link */}
         <Link href="/vrat-katha" className="inline-flex items-center gap-2 text-text-secondary hover:text-gold-light transition-colors mb-6">

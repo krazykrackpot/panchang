@@ -7,7 +7,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { scanDateRange } from '@/lib/muhurta/time-window-scanner';
+import { scanDateRange, scanDateRangeV2 } from '@/lib/muhurta/time-window-scanner';
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
 import type { ExtendedActivityId } from '@/types/muhurta-ai';
 
@@ -70,15 +70,17 @@ export async function GET(req: NextRequest) {
   const startDate = `${year}-${String(month).padStart(2, '0')}-01`;
   const endDate = `${year}-${String(month).padStart(2, '0')}-${String(daysInMonth).padStart(2, '0')}`;
 
-  // scanDateRange returns top windows — but we need ALL days for the calendar grid
-  // We'll scan with a lower threshold to get more coverage
-  const windows = scanDateRange({
+  // Use V2 scanner — includes panchangContext with tithi/nakshatra names
+  const windows = scanDateRangeV2({
     startDate,
     endDate,
     activity,
     lat,
     lng,
     tz,
+    windowMinutes: 120,    // 2-hour windows for overview
+    preSunriseHours: 1,
+    postSunsetHours: 1,
     birthNakshatra: birthNak,
     birthRashi: birthRashi,
   });
@@ -88,22 +90,29 @@ export async function GET(req: NextRequest) {
 
   for (const w of windows) {
     const existing = dayMap.get(w.date);
-    if (!existing || w.totalScore > existing.bestScore) {
+    if (!existing || w.score > existing.bestScore) {
+      // Derive Panchanga Shuddhi (0-5) from V2 breakdown sub-scores
+      // Each sub-score > 10 (out of 20) = favorable → counts as 1 shuddhi point
+      const bd = w.breakdown;
+      const shuddhi = bd
+        ? [bd.tithi > 10, bd.nakshatra > 10, bd.yoga > 10, bd.karana > 5, bd.taraBala > 5].filter(Boolean).length
+        : 0;
+
       dayMap.set(w.date, {
         date: w.date,
-        bestScore: w.totalScore,
-        quality: qualityFromScore(w.totalScore),
+        bestScore: w.score,
+        quality: qualityFromScore(w.score),
         windowCount: (existing?.windowCount ?? 0) + 1,
         bestWindow: {
           startTime: w.startTime,
           endTime: w.endTime,
-          score: w.totalScore,
-          shuddhi: typeof w.panchangaShuddhi === 'number' ? w.panchangaShuddhi : 0,
+          score: w.score,
+          shuddhi,
         },
         taraBala: w.taraBala,
         chandraBala: w.chandraBala,
-        tithi: (w as unknown as Record<string, unknown>).tithiName as string | undefined,
-        nakshatra: (w as unknown as Record<string, unknown>).nakshatraName as string | undefined,
+        tithi: w.panchangContext?.tithiName,
+        nakshatra: w.panchangContext?.nakshatraName,
       });
     } else {
       existing.windowCount++;

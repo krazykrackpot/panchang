@@ -349,13 +349,13 @@ function composeEducationalTweet(
 
 function getTempleHashtags(dayOfYear: number): string {
   const TEMPLE_TAGS = [
-    '#Mahakal #Ujjain #Panchang #Jyotish',
-    '#KashiVishwanath #Varanasi #Panchang #Jyotish',
-    '#Kamakhya #Panchang #HinduCalendar #Jyotish',
-    '#Vindhyavasini #Panchang #VedicAstrology',
-    '#Somnath #Panchang #Jyotish #HinduTemple',
-    '#Tirupati #Panchang #Jyotish #VedicAstrology',
-    '#Jagannath #Puri #Panchang #Jyotish',
+    '#Panchang #RahuKaal #Muhurta #Tithi #Nakshatra #आजकापंचांग',
+    '#Panchang #Jyotish #Rashifal #Kundali #VedicAstrology #राशिफल',
+    '#Panchang #RahuKaal #Choghadiya #Hora #HinduCalendar #तिथि',
+    '#Panchang #Nakshatra #Muhurta #Ekadashi #SadeSati #नक्षत्र',
+    '#Panchang #Tithi #RahuKaal #Astrology #Horoscope #ज्योतिष',
+    '#Panchang #VedicAstrology #Muhurta #Kundali #Matching #मुहूर्त',
+    '#Panchang #Jyotish #RahuKaal #Nakshatra #Dasha #राहुकाल',
   ];
   return TEMPLE_TAGS[dayOfYear % TEMPLE_TAGS.length];
 }
@@ -369,7 +369,7 @@ function truncateTweet(lines: string[]): string {
   if (tweet.length <= 280) return tweet;
 
   // Drop temple tags, keep minimal hashtags
-  lines[lines.length - 1] = '#Panchang #Jyotish';
+  lines[lines.length - 1] = '#Panchang #RahuKaal #Muhurta #Jyotish #Rashifal';
   tweet = lines.join('\n');
   if (tweet.length <= 280) return tweet;
 
@@ -454,7 +454,7 @@ function composeTweet(data: {
   let tweet = lines.join('\n');
   if (tweet.length > 280) {
     // Drop temple tags, keep minimal hashtags
-    lines[lines.length - 1] = '#Panchang #Jyotish';
+    lines[lines.length - 1] = '#Panchang #RahuKaal #Muhurta #Jyotish #Rashifal';
     tweet = lines.join('\n');
   }
   if (tweet.length > 280) {

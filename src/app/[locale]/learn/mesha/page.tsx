@@ -436,6 +436,68 @@ export default function MeshaPage() {
         </div>
       </LessonSection>
 
+      {/* ── 10. Health & Body ── */}
+      <LessonSection number={next()} title={ml({ en: 'Health & Body', hi: 'स्वास्थ्य एवं शरीर' })}>
+        <p style={bf} className="mb-3">{ml({ en: 'Mesha rules the head, face, and brain. Natives are prone to headaches, migraines, fevers, inflammation, and injuries to the head or face. The fiery constitution gives strong immune response but poor patience with illness — Mesha natives push through sickness rather than resting, which can worsen acute conditions. Mars-ruled, they tend toward high blood pressure, acidity, and excess pitta (bile). Dental issues, sinus problems, and eye strain are common. Sports injuries and cuts/burns are frequent given their physical lifestyle. Mental health concerns include anger management, impulsivity, and burnout from overexertion. The key remedy is cooling — both in diet (avoid excess spice, alcohol) and lifestyle (meditation, water sports). When Mars is well-placed, the native has exceptional physical stamina and recovers quickly from illness or surgery.', hi: 'मेष मस्तक, मुख और मस्तिष्क पर शासन करता है। जातकों को सिरदर्द, माइग्रेन, ज्वर, सूजन और मस्तक या मुख पर चोट की प्रवृत्ति होती है। अग्नि प्रकृति प्रबल रोग प्रतिरोधक क्षमता देती है किन्तु रोग में धैर्य की कमी — मेष जातक रोग में भी कार्य करते रहते हैं जो तीव्र स्थितियों को बिगाड़ सकता है। मंगल शासित होने से उच्च रक्तचाप, अम्लता और पित्त प्रकोप की प्रवृत्ति। दन्त समस्या, साइनस और नेत्र तनाव सामान्य। खेल चोटें और कटाव/जलन बार-बार। मानसिक स्वास्थ्य में क्रोध प्रबन्धन, आवेग और अतिश्रम से थकान। मुख्य उपाय शीतलता — आहार (अधिक मसाला, मदिरा से बचें) और जीवनशैली (ध्यान, जल क्रीड़ा) दोनों में।' })}</p>
+        <div className="grid grid-cols-2 gap-3">
+          <div className="bg-bg-primary/50 rounded-lg border border-gold-primary/10 p-3">
+            <span className="text-gold-dark text-xs uppercase tracking-wider">{ml({ en: 'Vulnerable Areas', hi: 'संवेदनशील अंग' })}</span>
+            <p className="text-text-primary text-sm mt-1" style={bf}>{ml({ en: 'Head, brain, face, eyes, upper jaw, cerebral cortex, adrenal glands', hi: 'मस्तक, मस्तिष्क, मुख, नेत्र, ऊपरी जबड़ा, प्रमस्तिष्क वल्कुट, अधिवृक्क ग्रन्थियाँ' })}</p>
+          </div>
+          <div className="bg-bg-primary/50 rounded-lg border border-gold-primary/10 p-3">
+            <span className="text-gold-dark text-xs uppercase tracking-wider">{ml({ en: 'Ayurvedic Constitution', hi: 'आयुर्वेदिक प्रकृति' })}</span>
+            <p className="text-text-primary text-sm mt-1" style={bf}>{ml({ en: 'Pitta dominant (fire). Needs cooling foods, bitter greens, coconut water. Avoid excess red meat, alcohol, and fried food.', hi: 'पित्त प्रधान (अग्नि)। शीतल आहार, कड़वी सब्जियाँ, नारियल पानी आवश्यक। अधिक मांस, मदिरा और तले भोजन से बचें।' })}</p>
+          </div>
+        </div>
+      </LessonSection>
+
+      {/* ── 11. Practical Application ── */}
+      <LessonSection number={next()} title={ml({ en: 'Practical Application', hi: 'व्यावहारिक अनुप्रयोग' })}>
+        <p style={bf} className="mb-3">{ml({ en: 'Understanding Mesha in your chart goes beyond simply knowing your Sun or Moon sign. Here is how to practically assess and work with Mesha energy:', hi: 'अपनी कुण्डली में मेष को समझना केवल सूर्य या चन्द्र राशि जानने से परे है। मेष ऊर्जा का व्यावहारिक आकलन और उपयोग:' })}</p>
+        <div className="space-y-3">
+          {[
+            { title: { en: 'If Mesha is your Lagna (Ascendant)', hi: 'यदि मेष आपका लग्न है' }, content: { en: 'Mars becomes your Lagna lord. Its house placement, sign, and aspects define your physical vitality, life direction, and how the world sees you. A strong Mars (in own sign, exalted, or in kendra) gives you natural leadership, athletic ability, and decisive personality. A weak Mars (debilitated, combust, or in dusthana) requires conscious effort to develop courage and initiative. Check Mars\'s nakshatra — Ashwini gives healing ability, Mrigashira gives intellectual curiosity, Dhanishtha gives wealth-building capacity.', hi: 'मंगल आपका लग्नेश बनता है। इसकी भाव स्थिति, राशि और दृष्टि आपकी शारीरिक जीवनशक्ति, जीवन दिशा और संसार में प्रस्तुति निर्धारित करती है। प्रबल मंगल (स्वराशि, उच्च, या केन्द्र में) स्वाभाविक नेतृत्व, खेल क्षमता और निर्णायक व्यक्तित्व देता है।' } },
+            { title: { en: 'If Mesha is your Moon sign', hi: 'यदि मेष आपकी चन्द्र राशि है' }, content: { en: 'Your emotional nature is fiery, impulsive, and action-oriented. You process feelings by doing something — sitting with emotions feels uncomfortable. Arguments are your way of engaging emotionally. You need physical outlets for emotional energy: exercise, martial arts, competitive sports. In relationships, you lead with passion but may struggle with patience. Emotional maturity comes from learning that not every feeling requires immediate action.', hi: 'आपका भावनात्मक स्वभाव अग्निमय, आवेगी और कर्म-उन्मुख है। आप भावनाओं को कुछ करके संसाधित करते हैं — भावनाओं के साथ बैठना असहज लगता है। वाद-विवाद आपकी भावनात्मक संलग्नता का तरीका है। भावनात्मक ऊर्जा के लिए शारीरिक माध्यम चाहिए।' } },
+            { title: { en: 'Mesha in the divisional charts', hi: 'विभागीय कुण्डलियों में मेष' }, content: { en: 'Mesha rising in D9 (Navamsa) indicates a marriage partner who is assertive, independent, and possibly connected to military/sports/surgery. In D10 (Dasamsa), Mesha rising indicates a career requiring courage, quick decisions, and leadership — emergency medicine, military, entrepreneurship, firefighting. In D7 (Saptamsa), it relates to the eldest child being headstrong and independent.', hi: 'D9 (नवांश) में मेष लग्न एक मुखर, स्वतन्त्र जीवनसाथी का संकेत — सम्भवतः सेना/खेल/शल्य से जुड़ा। D10 (दशांश) में मेष लग्न साहस, त्वरित निर्णय और नेतृत्व वाला करियर — आपातकालीन चिकित्सा, सेना, उद्यमिता।' } },
+            { title: { en: 'Common misconceptions', hi: 'सामान्य भ्रान्तियाँ' }, content: { en: 'Not all Mesha natives are aggressive — the nakshatras matter enormously. Ashwini (Ketu-ruled) is a healer, not a fighter. Bharani (Venus-ruled) is artistic and sensual, not combative. Only when Mars is heavily afflicted does the stereotype of the angry Aries fully manifest. Also, Saturn debilitated in Mesha does not mean "no discipline" — Neecha Bhanga cancellation is common and can produce exceptional discipline forged through hardship.', hi: 'सभी मेष जातक आक्रामक नहीं — नक्षत्र अत्यन्त महत्त्वपूर्ण। अश्विनी (केतु) चिकित्सक है, योद्धा नहीं। भरणी (शुक्र) कलात्मक और संवेदनशील, आक्रामक नहीं। केवल जब मंगल अत्यधिक पीड़ित हो तब क्रोधी मेष का रूढ़िवाद पूर्णतः प्रकट होता है।' } },
+          ].map((item, i) => (
+            <div key={i} className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-gold-primary/10 rounded-xl p-4">
+              <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml(item.title)}</h4>
+              <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(item.content)}</p>
+            </div>
+          ))}
+        </div>
+        <WhyItMatters locale={locale}>
+          {ml({ en: 'The sign is the lens, but the nakshatra is the prescription. Two people with Moon in Mesha can have completely different temperaments depending on whether the Moon is in Ashwini, Bharani, or Krittika. Always read the nakshatra before concluding about sign effects.', hi: 'राशि लेंस है, किन्तु नक्षत्र प्रिस्क्रिप्शन है। मेष चन्द्र वाले दो व्यक्ति अश्विनी, भरणी या कृत्तिका में चन्द्र होने पर पूर्णतः भिन्न स्वभाव के हो सकते हैं। राशि प्रभाव का निष्कर्ष निकालने से पहले सदैव नक्षत्र पढ़ें।' })}
+        </WhyItMatters>
+      </LessonSection>
+
+      {/* ── 12. Mesha Through the Bhavas ── */}
+      <LessonSection number={next()} title={ml({ en: 'Mesha as House Cusp', hi: 'भाव शिखर के रूप में मेष' })}>
+        <p style={bf} className="mb-3">{ml({ en: 'When Mesha falls on different house cusps in your chart, it brings Martian energy to that life area. Here is how Mesha colors each house when it becomes the sign on that bhava cusp:', hi: 'जब मेष आपकी कुण्डली में विभिन्न भाव शिखरों पर पड़ता है, तो उस जीवन क्षेत्र में मंगल ऊर्जा लाता है:' })}</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {[
+            { house: '1st', effect: { en: 'Mesha Lagna — courageous, athletic, independent, direct personality. Leadership comes naturally. Prone to head injuries. Mars as Lagna lord drives the entire chart.', hi: 'मेष लग्न — साहसी, खिलाड़ी, स्वतन्त्र, सीधा व्यक्तित्व। नेतृत्व स्वाभाविक। मस्तक चोट की प्रवृत्ति।' } },
+            { house: '2nd', effect: { en: 'Aggressive speech, bold financial decisions, earning through courage and physical skill. Family environment is competitive. Can accumulate through real estate and engineering.', hi: 'आक्रामक वाणी, साहसिक वित्तीय निर्णय। परिवार वातावरण प्रतिस्पर्धी। भूमि और अभियान्त्रिकी से संचय।' } },
+            { house: '3rd', effect: { en: 'Exceptional courage and initiative. Powerful younger siblings who may be in military/sports. Success in media, writing about conflict/adventure, short-distance travel for business.', hi: 'असाधारण साहस और पहल। शक्तिशाली छोटे भाई-बहन। मीडिया, साहसिक लेखन, व्यापारिक लघु यात्रा में सफलता।' } },
+            { house: '4th', effect: { en: 'Independent home setup, possibly living away from birthplace. Property through bold investment. Mother is strong-willed. Home renovations and construction activity. May own red vehicles.', hi: 'स्वतन्त्र गृह व्यवस्था, जन्मभूमि से दूर। साहसिक निवेश से सम्पत्ति। माता दृढ़ संकल्प। गृह नवीनीकरण।' } },
+            { house: '5th', effect: { en: 'Creative fire, competitive children, speculative boldness. Romance is passionate and direct. Good for sports coaching, creative direction, and competitive arts. Children are independent.', hi: 'सृजनात्मक अग्नि, प्रतिस्पर्धी संतान, सट्टे में साहस। प्रेम उत्कट और सीधा। खेल प्रशिक्षण, सृजनात्मक निर्देशन।' } },
+            { house: '6th', effect: { en: 'Excellent — Mars in own sign context destroys enemies and competition. Victory in litigation, success in military/police/medical service. Strong immune system. Competitive work environment.', hi: 'उत्कृष्ट — शत्रुओं और प्रतिस्पर्धा का विनाश। मुकदमों में विजय, सेना/पुलिस/चिकित्सा सेवा। प्रबल प्रतिरक्षा प्रणाली।' } },
+            { house: '7th', effect: { en: 'Partner is assertive, independent, possibly in martial/athletic field. Marriage has competitive dynamics. Business partnerships need clear leadership roles. May marry early.', hi: 'जीवनसाथी मुखर, स्वतन्त्र, सम्भवतः सैनिक/खिलाड़ी क्षेत्र। विवाह में प्रतिस्पर्धी गतिशीलता।' } },
+            { house: '8th', effect: { en: 'Research ability, interest in surgery/forensics/occult. Inheritance through dispute. Transformative crises build resilience. Prone to surgical interventions.', hi: 'शोध क्षमता, शल्य/न्यायिक विज्ञान/गूढ़ विषय में रुचि। विवाद से विरासत। संकट से लचीलापन।' } },
+            { house: '9th', effect: { en: 'Dharmic warrior — fights for beliefs. Father is independent/military. Travel for pilgrimage or adventure. Teaches through action, not just words. Strong will in spiritual pursuits.', hi: 'धार्मिक योद्धा — विश्वासों के लिए लड़ता है। पिता स्वतन्त्र/सैनिक। तीर्थयात्रा या साहसिक यात्रा।' } },
+            { house: '10th', effect: { en: 'Career in leadership, military, surgery, sports, engineering, or firefighting. Known for courage in profession. Quick career rise but possible conflicts with authority.', hi: 'नेतृत्व, सेना, शल्य, खेल, अभियान्त्रिकी। पेशे में साहस के लिए प्रसिद्ध। त्वरित करियर उन्नति।' } },
+            { house: '11th', effect: { en: 'Gains through courage and competitive endeavors. Friends in military/sports. Elder siblings are strong. Ambitious goals achieved through direct action.', hi: 'साहस और प्रतिस्पर्धी प्रयासों से लाभ। सेना/खेल में मित्र। बड़े भाई-बहन प्रबल। सीधी कार्रवाई से लक्ष्य।' } },
+            { house: '12th', effect: { en: 'Energy spent in foreign lands, hospitals, or spiritual retreats. Hidden courage. Expenses through litigation or surgery. Liberation through physical discipline (yoga, martial arts).', hi: 'विदेश, अस्पताल या आध्यात्मिक आश्रम में ऊर्जा। गुप्त साहस। मुकदमे या शल्य से व्यय। योग/मार्शल आर्ट से मुक्ति।' } },
+          ].map((item, i) => (
+            <div key={i} className="bg-bg-primary/50 rounded-lg border border-gold-primary/10 p-3">
+              <span className="text-gold-light font-bold text-sm" style={hf}>{item.house} House</span>
+              <p className="text-text-primary text-sm mt-1" style={bf}>{ml(item.effect)}</p>
+            </div>
+          ))}
+        </div>
+      </LessonSection>
+
       {/* ── Key Takeaway ── */}
       <KeyTakeaway locale={locale} points={[
         ml({ en: 'Mesha (Aries) is the first sign — ruled by Mars, element fire, cardinal modality. It represents raw initiative, courage, and the primal impulse to act.', hi: 'मेष प्रथम राशि — मंगल शासित, अग्नि तत्त्व, चर स्वभाव। कच्ची पहल, साहस और कर्म का आदि आवेग।' }),

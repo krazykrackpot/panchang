@@ -15,6 +15,9 @@ import {
   computeInauspiciousForWindow,
   computeInauspiciousPenalty,
 } from './inauspicious-periods';
+import {
+  checkVivahCombustion, scoreLagna, krishnaPakshaAdjustment,
+} from './classical-checks';
 import type { ScoredTimeWindow, ScoreBreakdown, ExtendedActivityId, ScanOptionsV2, DetailBreakdown, InauspiciousPeriod } from '@/types/muhurta-ai';
 import type { LocaleText,} from '@/types/panchang';
 
@@ -77,8 +80,10 @@ export function scanDateRange(options: ScanOptions): ScoredTimeWindow[] {
     const snap = getPanchangSnapshot(jdSunrise, lat, lng);
 
     // 3 time windows: divide daylight into 3 equal parts (sunrise to sunset)
-    const sunriseLocal = sunriseUT + tz;
+    // Cross-day UT normalization (see V2 scanner comment)
+    let sunriseLocal = sunriseUT + tz;
     const sunsetLocal = sunsetUT + tz;
+    if (sunriseLocal > 24) sunriseLocal -= 24;
     const dayLen = sunsetLocal - sunriseLocal;
     const third = dayLen / 3;
     const timeSlots = [
@@ -231,11 +236,17 @@ export function scanDateRangeV2(options: ScanOptionsV2): ScanV2Window[] {
   const hasPersonal = !!(birthNakshatra && birthNakshatra > 0) || !!(birthRashi && birthRashi > 0);
   const hasDasha = !!dashaLords;
 
-  // Max raw score for normalization
+  // Max raw score for normalization — includes lagna component
   const maxRaw = 75 // panchang(25) + transit(25) + timing(25)
+    + 8               // lagna (Muhurta Chintamani: most powerful single factor)
     + (hasPersonal ? 20 : 0)  // taraBala(10) + chandraBala(10)
     + (hasDasha ? 10 : 0)     // dashaHarmony
     + 10;                      // inauspicious (10 = no penalty)
+
+  // Samskaras that require Venus/Jupiter non-combustion (MC + Dharmasindhu)
+  const COMBUSTION_ACTIVITIES = new Set<string>([
+    'marriage', 'engagement', 'griha_pravesh', 'upanayana', 'namakarana', 'mundan',
+  ]);
 
   const current = new Date(startD);
   while (current <= endD) {
@@ -247,9 +258,25 @@ export function scanDateRangeV2(options: ScanOptionsV2): ScanV2Window[] {
     const sunriseUT = approximateSunriseSafe(jdNoon, lat, lng);
     const sunsetUT = approximateSunsetSafe(jdNoon, lat, lng);
 
+    // ── Per-day hard veto: Venus/Jupiter combustion ──────────────
+    // Muhurta Chintamani + Dharmasindhu: Samskaras forbidden when
+    // Shukra (Venus) or Guru (Jupiter) is combust.
+    // Checked once per day (combustion doesn't change within hours).
+    if (COMBUSTION_ACTIVITIES.has(activity)) {
+      const combust = checkVivahCombustion(jdNoon);
+      if (combust.vetoed) {
+        current.setUTCDate(current.getUTCDate() + 1);
+        continue; // Skip entire day
+      }
+    }
+
     // Local time range: pre-sunrise to post-sunset
-    const sunriseLocal = sunriseUT + tz;
+    // Cross-day UT normalization: for eastern timezones (IST=+5.5, JST=+9),
+    // sunrise UT can be ~23:58 (previous UT day). Adding tz gives >24.
+    // Normalize to same-day local time by subtracting 24 when needed.
+    let sunriseLocal = sunriseUT + tz;
     const sunsetLocal = sunsetUT + tz;
+    if (sunriseLocal > 24) sunriseLocal -= 24;
     const rangeStartLocal = sunriseLocal - preSunriseHours;
     const rangeEndLocal = sunsetLocal + postSunsetHours;
 
@@ -267,6 +294,30 @@ export function scanDateRangeV2(options: ScanOptionsV2): ScanV2Window[] {
 
       // Panchang snapshot at midpoint
       const snap = getPanchangSnapshot(jdMid, lat, lng);
+
+      // ── Hard Vetoes ──────────────────────────────────────────
+      // Nakshatra hard veto: Muhurta Chintamani + Jyotirnibandha.
+      // Strong textual consensus — no compensation possible.
+      let hardVetoed = false;
+      if (rules.hardAvoidNakshatras?.includes(snap.nakshatra)) hardVetoed = true;
+
+      if (hardVetoed) {
+        slotIndex++;
+        continue;
+      }
+
+      // ── Lagna Scoring ─────────────────────────────────────────
+      // MC: "A properly chosen lagna removes all defects."
+      // Lagna changes every ~2 hours, so scored per window.
+      const lagna = scoreLagna(jdMid, lat, lng, activity);
+
+      // ── Krishna Paksha conditional logic ──────────────────────
+      // Not a hard veto. Penalty depends on nakshatra + lagna quality.
+      const windowPaksha: 'shukla' | 'krishna' = snap.tithi <= 15 ? 'shukla' : 'krishna';
+      const nakshatraIsGood = rules.goodNakshatras.includes(snap.nakshatra);
+      const krishnaAdj = krishnaPakshaAdjustment(
+        windowPaksha === 'krishna', nakshatraIsGood, lagna.score,
+      );
 
       // Score panchang factors (0-25, with subScores)
       const panchang = scorePanchangFactors(snap, rules);
@@ -311,8 +362,10 @@ export function scanDateRangeV2(options: ScanOptionsV2): ScanV2Window[] {
         dashaScore = dashaResult.score;
       }
 
-      // Raw score
+      // Raw score — includes lagna (MC's most powerful factor) and Krishna adj
       const rawScore = panchang.score + transit.score + timing.score
+        + Math.max(0, lagna.score)  // Lagna: 0-8 (negative lagnas clamp to 0)
+        + krishnaAdj               // Krishna Paksha conditional: 0 to -6
         + (hasPersonal ? taraScore + chandraScore : 0)
         + (hasDasha ? dashaScore : 0)
         + inauspiciousScore;
@@ -331,6 +384,8 @@ export function scanDateRangeV2(options: ScanOptionsV2): ScanV2Window[] {
         yoga: Math.max(0, Math.round(((sub.yoga + 3) / 7) * 20)),
         // karana sub-score range: -5..2 → normalized 0..10
         karana: Math.max(0, Math.round(((sub.karana + 5) / 7) * 10)),
+        // lagna score: -3..8 → clamped 0..8
+        lagna: Math.max(0, lagna.score),
         taraBala: taraScore,
         chandraBala: chandraScore,
         dashaHarmony: dashaScore,

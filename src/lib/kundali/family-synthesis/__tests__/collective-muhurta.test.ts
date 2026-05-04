@@ -11,8 +11,8 @@ describe('findCollectiveMuhurta', () => {
         { name: 'Spouse', birthNakshatra: 4, birthRashi: 2 },
       ],
       activity: 'griha_pravesh',
-      startDate: '2026-05-01',
-      endDate: '2026-05-07',
+      startDate: '2026-05-17',
+      endDate: '2026-05-28',
       ...CORSEAUX,
     });
 
@@ -36,8 +36,8 @@ describe('findCollectiveMuhurta', () => {
         { name: 'B', birthNakshatra: 20, birthRashi: 9 },
       ],
       activity: 'marriage',
-      startDate: '2026-05-01',
-      endDate: '2026-05-03',
+      startDate: '2026-05-17',
+      endDate: '2026-05-22',
       ...CORSEAUX,
     });
 

@@ -38,6 +38,14 @@ export interface ExtendedActivity {
   avoidNakshatras: number[];
   goodHoras: number[];
   relevantHouses: number[];
+  /**
+   * Nakshatra hard vetoes — window is disqualified (score → 0) if nakshatra matches.
+   * Per Muhurta Chintamani Ch. 6 + Jyotirnibandha: strong textual consensus that
+   * certain nakshatras are absolutely forbidden for specific samskaras.
+   * Venus/Jupiter combustion is a separate hard veto checked in the scanner.
+   * See docs/muhurta-rules.md for full citations.
+   */
+  hardAvoidNakshatras?: number[];
 }
 
 export interface MuhurtaAIResult {
@@ -70,6 +78,7 @@ export interface DetailBreakdown {
   nakshatra: number;       // 0-20
   yoga: number;            // 0-20
   karana: number;          // 0-10
+  lagna: number;           // 0-8 (MC: most powerful single factor)
   taraBala: number;        // 0-10
   chandraBala: number;     // 0-10
   dashaHarmony: number;    // 0-10

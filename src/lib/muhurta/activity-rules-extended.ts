@@ -1,6 +1,10 @@
 /**
  * Extended Activity Rules for Muhurta AI
- * 20 activities with Tithi, Nakshatra, Weekday, Hora rules
+ * 20 activities with Tithi, Nakshatra, Weekday, Hora rules.
+ *
+ * Classical sources: Muhurta Chintamani (Ch. 6 Vivah Prakarana),
+ * B.V. Raman's Muhurtha (Ch. 12-13), Dharmasindhu (Vivaha Prakarana).
+ * See docs/muhurta-rules.md for full citations and textual basis.
  */
 
 import type { ExtendedActivity, ExtendedActivityId } from '@/types/muhurta-ai';
@@ -19,6 +23,14 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     avoidNakshatras: [1, 6, 9, 16, 18, 19, 20, 24, 25],
     goodHoras: [5, 4, 1], // Venus, Jupiter, Moon
     relevantHouses: [2, 7, 11],
+    // Hard vetoes — only for conditions with strong textual consensus.
+    // Avoided nakshatras per Muhurta Chintamani Ch. 6 + Jyotirnibandha:
+    // Ashwini(1), Ardra(6), Ashlesha(9), Vishakha(16), Jyeshtha(18),
+    // Mula(19), P.Ashadha(20), Shatabhisha(24), P.Bhadrapada(25).
+    // Krishna Paksha and weekdays are soft penalties — no classical text
+    // explicitly forbids them; MC deprioritises vara/tithi for Vivah Shuddhi.
+    // See docs/muhurta-rules.md for full textual citations.
+    hardAvoidNakshatras: [1, 6, 9, 16, 18, 19, 20, 24, 25],
   },
   griha_pravesh: {
     id: 'griha_pravesh',
@@ -30,6 +42,8 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     avoidNakshatras: [1, 5, 9, 15, 16, 17, 18, 19, 23, 24, 26],
     goodHoras: [4, 5, 1], // Jupiter, Venus, Moon
     relevantHouses: [4, 7, 10],
+    // Hard vetoes: avoided nakshatras only. See docs/muhurta-rules.md.
+    hardAvoidNakshatras: [1, 5, 9, 15, 16, 17, 18, 19, 23, 24, 26],
   },
   mundan: {
     id: 'mundan',

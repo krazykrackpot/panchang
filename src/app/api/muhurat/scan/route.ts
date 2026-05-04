@@ -42,9 +42,9 @@ interface DaySummary {
 }
 
 function qualityFromScore(score: number): DaySummary['quality'] {
-  if (score >= 70) return 'excellent';
-  if (score >= 55) return 'good';
-  if (score >= 40) return 'fair';
+  if (score >= 72) return 'excellent';
+  if (score >= 58) return 'good';
+  if (score >= 50) return 'fair';
   return 'poor';
 }
 
@@ -71,19 +71,25 @@ export async function GET(req: NextRequest) {
   const endDate = `${year}-${String(month).padStart(2, '0')}-${String(daysInMonth).padStart(2, '0')}`;
 
   // Use V2 scanner — includes panchangContext with tithi/nakshatra names
-  const windows = scanDateRangeV2({
+  // Larger windows (180min) + no pre-sunrise/post-sunset = faster + more relevant
+  const allWindows = scanDateRangeV2({
     startDate,
     endDate,
     activity,
     lat,
     lng,
     tz,
-    windowMinutes: 120,    // 2-hour windows for overview
-    preSunriseHours: 1,
-    postSunsetHours: 1,
+    windowMinutes: 180,    // 3-hour windows — fewer evaluations, faster
+    preSunriseHours: 0,    // muhurtas are daytime — no pre-sunrise scan
+    postSunsetHours: 0,    // no post-sunset scan
     birthNakshatra: birthNak,
     birthRashi: birthRashi,
   });
+
+  // Filter: only keep windows above minimum score
+  // V2 returns ALL windows including poor ones — must filter to match classical muhurta standards
+  // Reference: Prokerala/AstroYogi show ~8 marriage days in May 2026. Score >= 50 gives ~10-12.
+  const windows = allWindows.filter(w => w.score >= 50);
 
   // Group windows by date → day summaries
   const dayMap = new Map<string, DaySummary>();

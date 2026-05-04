@@ -53,14 +53,20 @@ export function scorePanchangFactors(
   const pakshaRelTithi = snap.tithi > 15 ? snap.tithi - 15 : snap.tithi;
   const isKrishnaPaksha = snap.tithi > 15;
 
-  // Tithi match: +8 (Shukla tithis favored; Krishna generally less auspicious)
+  // Tithi scoring — Muhurta Chintamani lists auspicious tithis (2,3,5,7,10,11,13)
+  // without a paksha qualifier, but Shukla Paksha is universally preferred for
+  // samskaras (waxing Moon = growth). Krishna Paksha tithis are allowed by some
+  // traditions (South Indian, Prokerala) but penalised. See docs/muhurta-rules.md.
   if (rules.goodTithis.includes(pakshaRelTithi) && !isKrishnaPaksha) {
     tithiScore += 8;
-    factors.push({ en: 'Auspicious Tithi', hi: 'शुभ तिथि', sa: 'शुभतिथिः' });
+    factors.push({ en: 'Auspicious Tithi (Shukla)', hi: 'शुभ तिथि (शुक्ल)', sa: 'शुभतिथिः (शुक्ले)' });
   } else if (rules.goodTithis.includes(pakshaRelTithi) && isKrishnaPaksha) {
-    tithiScore += 3; // Krishna variant of a good tithi — reduced benefit
+    tithiScore += 1; // Krishna variant — allowed but strongly deprioritised
+    factors.push({ en: 'Krishna Paksha — reduced auspiciousness', hi: 'कृष्ण पक्ष — न्यून शुभत्व', sa: 'कृष्णपक्षः — न्यूनशुभत्वम्' });
+  } else if (isKrishnaPaksha && !rules.goodTithis.includes(pakshaRelTithi)) {
+    tithiScore -= 3; // Krishna + non-good tithi = double penalty
   }
-  // Avoid tithi: -5 (applies to both pakshas)
+  // Avoid tithi: -5 (applies to both pakshas — Rikta tithis 4,9,14 etc.)
   if (rules.avoidTithis.includes(pakshaRelTithi)) {
     tithiScore -= 5;
     factors.push({ en: 'Inauspicious Tithi', hi: 'अशुभ तिथि', sa: 'अशुभतिथिः' });
@@ -76,9 +82,10 @@ export function scorePanchangFactors(
     factors.push({ en: 'Inauspicious Nakshatra', hi: 'अशुभ नक्षत्र', sa: 'अशुभनक्षत्रम्' });
   }
 
-  // Yoga: check against specific inauspicious yogas per Brihat Samhita
-  // Inauspicious: Vishkambha(1), Atiganda(6), Shula(9), Ganda(10), Vyaghata(13), Vajra(15),
-  //               Vyatipata(17), Parigha(19), Vaidhriti(27)
+  // 9 Ashubh Yogas per Muhurta Chintamani Ch. 6 (Vivah Prakarana).
+  // Each has specific ill effects for marriage. MC notes a Visha Ghati nuance
+  // and lagna antidote, so this is a soft penalty, not a hard veto.
+  // See docs/muhurta-rules.md for full citations.
   const INAUSPICIOUS_YOGAS = new Set([1, 6, 9, 10, 13, 15, 17, 19, 27]);
   if (!INAUSPICIOUS_YOGAS.has(snap.yoga)) {
     yogaScore += 4;
@@ -87,10 +94,25 @@ export function scorePanchangFactors(
     factors.push({ en: 'Inauspicious Yoga', hi: 'अशुभ योग', sa: 'अशुभयोगः' });
   }
 
-  // Good weekday: +3
+  // Weekday scoring — Muhurta Chintamani recommends Mon/Wed/Thu/Fri for most
+  // samskaras. Drik Panchang states weekdays are "given less importance" for
+  // marriage selection, so this is a moderate factor, not a hard veto.
+  // Tuesday is the most strongly avoided (Mars = conflict). Saturday (Saturn = delay)
+  // is also inauspicious. Sunday is neutral-to-mild. See docs/muhurta-rules.md.
   if (rules.goodWeekdays.includes(snap.weekday)) {
     weekdayScore += 3;
     factors.push({ en: 'Favorable weekday', hi: 'अनुकूल वार', sa: 'अनुकूलवारः' });
+  } else if (snap.weekday === 2) {
+    // Tuesday — most strongly avoided across texts (Mangalvar = Mars)
+    weekdayScore -= 4;
+    factors.push({ en: 'Tuesday — generally avoided', hi: 'मंगलवार — सामान्यतः वर्ज्य', sa: 'मङ्गलवारः — सामान्यतः वर्ज्यः' });
+  } else if (snap.weekday === 6) {
+    // Saturday — Saturn's day, avoided for auspicious beginnings
+    weekdayScore -= 3;
+    factors.push({ en: 'Saturday — less auspicious', hi: 'शनिवार — अल्प शुभ', sa: 'शनिवारः — अल्पशुभः' });
+  } else if (snap.weekday === 0) {
+    // Sunday — mild penalty, some texts allow
+    weekdayScore -= 1;
   }
 
   // Karana favorable (chara karanas 1-6): +2. Vishti/Bhadra (7) is most inauspicious.

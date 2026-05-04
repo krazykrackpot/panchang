@@ -31,10 +31,11 @@ import { calculateFunctionalNature } from '@/lib/kundali/functional-nature';
 import { applyFullShodhana } from '@/lib/kundali/ashtakavarga-shodhana';
 
 /**
- * Calculate the Ascendant (Lagna) degree
- * Simplified calculation using sidereal time
+ * Calculate the Ascendant (Lagna) degree — TROPICAL.
+ * For sidereal: `toSidereal(calculateAscendant(jd, lat, lng), jd)`
+ * Exported for use by muhurta scanner (lagna scoring per MC).
  */
-function calculateAscendant(jd: number, lat: number, lng: number): number {
+export function calculateAscendant(jd: number, lat: number, lng: number): number {
   // Local Sidereal Time
   const T = (jd - 2451545.0) / 36525.0;
   const gmst = 280.46061837 + 360.98564736629 * (jd - 2451545.0)

@@ -142,7 +142,7 @@
   "kundali": {
     "title": "Kundali Generator",
     "subtitle": "Generate your Vedic birth chart (Janma Patrika)",
-    "name": "Your Name",
+    "name": "Name",
     "dateOfBirth": "Date of Birth",
     "timeOfBirth": "Time of Birth",
     "placeOfBirth": "Place of Birth",

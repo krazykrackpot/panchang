@@ -165,6 +165,19 @@ export default function SadeSatiPage() {
 
   /** Compute full sade sati for a birth_data — same logic as handleFullAnalysis */
   const computeSadeSatiForBirthData = useCallback(async (bd: BirthData): Promise<{ analysis: SadeSatiAnalysis; moonSign: number } | null> => {
+    // Cache key: birth data hash + today's date (Saturn moves ~0.05°/day, daily granularity is fine)
+    const today = new Date().toISOString().slice(0, 10);
+    const cacheKey = `sade-sati:${bd.date}:${bd.time}:${bd.lat}:${bd.lng}:${today}`;
+
+    // Check localStorage cache first
+    try {
+      const cached = localStorage.getItem(cacheKey);
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        if (parsed?.analysis && parsed?.moonSign) return parsed;
+      }
+    } catch { /* localStorage unavailable or corrupt — compute fresh */ }
+
     try {
       const [y, m, d] = bd.date.split('-').map(Number);
       const tz = bd.timezone || '5.5';
@@ -194,7 +207,12 @@ export default function SadeSatiPage() {
         currentDasha: currentMaha ? { planet: currentMaha.planet, startDate: currentMaha.startDate, endDate: currentMaha.endDate } : undefined,
         currentAntar: currentAntar ? { planet: currentAntar.planet, startDate: currentAntar.startDate, endDate: currentAntar.endDate } : undefined,
       };
-      return { analysis: analyzeSadeSati(input), moonSign: moon?.sign ?? 1 };
+      const result = { analysis: analyzeSadeSati(input), moonSign: moon?.sign ?? 1 };
+
+      // Cache the result — expires naturally when date changes (new cache key tomorrow)
+      try { localStorage.setItem(cacheKey, JSON.stringify(result)); } catch { /* storage full — fine */ }
+
+      return result;
     } catch {
       return null;
     }

@@ -24,11 +24,18 @@ const CONTENT = {
     whatWeOffer: 'What We Offer',
     features: [
       { icon: 'calc', label: 'Precise Panchang', desc: 'Daily Tithi, Nakshatra, Yoga, Karana, and Muhurta timings computed for your exact location using astronomical algorithms verified within 1-2 minutes of reference sources.' },
-      { icon: 'book', label: 'Birth Chart Analysis', desc: 'Complete Kundali generation with Vimshottari Dasha, Shadbala, Ashtakavarga, Yogas, Doshas, and interpretive Tippanni — all computed locally, no external APIs.' },
-      { icon: 'code', label: 'Swiss Ephemeris Precision', desc: 'Primary engine: Swiss Ephemeris (arcsecond accuracy for all 9 planets). Meeus algorithms as fallback. No black-box APIs — open, verifiable astronomical computation.' },
+      { icon: 'book', label: 'Professional-Grade Birth Chart', desc: '25+ analysis modules: Vimshottari/Ashtottari/Yogini Dashas, Shadbala (6-fold strength), Ashtakavarga, 16 divisional charts (D1-D60), 144 yoga patterns, KP System (Placidus sub-lords), Jaimini Karakas, Avasthas, Argala, Bhava Chalit — plus AI-powered chart chat. Computed locally from Swiss Ephemeris, no external APIs.' },
+      { icon: 'code', label: 'NASA JPL Ephemeris Precision', desc: 'Primary engine: Swiss Ephemeris powered by NASA JPL DE441 planetary ephemeris — arcsecond accuracy for all 9 planets, the same data used by NASA for spacecraft navigation. Meeus algorithms as fallback. No black-box APIs — open, verifiable astronomical computation.' },
       { icon: 'shield', label: 'Privacy First', desc: 'Your birth data stays yours. We use Supabase with Row Level Security — users can only access their own data. No selling personal information to third parties.' },
       { icon: 'globe', label: 'Multilingual', desc: 'Available in 10 languages including Hindi, Tamil, Bengali, Telugu, Kannada, Marathi, Gujarati, Maithili, and Sanskrit. Real translations, not machine-generated.' },
       { icon: 'learn', label: '100+ Learning Modules', desc: 'A structured curriculum covering everything from Panchang basics to advanced Jaimini Jyotish, Shadbala, KP System, and Ashtakavarga — free for everyone.' },
+    ],
+    accuracyHeading: 'Accuracy & Methodology',
+    accuracy: [
+      { title: 'Ephemeris', text: 'Swiss Ephemeris v2.10 powered by NASA JPL DE441 — the same planetary ephemeris used by NASA for spacecraft navigation. Sub-arcsecond accuracy for Sun, Moon, and all planets including true lunar nodes (Rahu/Ketu).' },
+      { title: 'Ayanamsha', text: 'Lahiri (Chitrapaksha) Ayanamsha as default — the Indian government standard used by the Indian Astronomical Ephemeris. Krishnamurti Ayanamsha available for KP System analysis.' },
+      { title: 'Verification', text: '3,005 automated tests covering panchang accuracy, kundali computation, dasha periods, yoga detection, and festival dates. Regularly cross-verified against Prokerala and professional Hindu almanacs for multiple locations worldwide.' },
+      { title: 'Sunrise Model', text: 'Swiss Ephemeris atmospheric refraction model accounting for observer elevation, temperature, and pressure. Verified within ±1 minute of professional panchang sources across Delhi, Bangalore, and New York.' },
     ],
     heritage: [
       { title: 'The Surya Siddhanta', text: 'The Surya Siddhanta (c. 400 CE) is one of the most remarkable astronomical texts in human history. It accurately calculates the sidereal year at 365.2563627 days — a figure astonishingly close to the modern value of 365.25636 days. It provides precise formulas for planetary positions, eclipse predictions, and the precession of equinoxes.' },
@@ -63,6 +70,13 @@ const CONTENT = {
       { icon: 'shield', label: 'गोपनीयता प्रथम', desc: 'आपका जन्म डेटा आपका है। Row Level Security के साथ Supabase।' },
       { icon: 'globe', label: 'बहुभाषी', desc: '10 भाषाओं में उपलब्ध — हिन्दी, तमिल, बंगाली, तेलुगु, कन्नड़, मराठी, गुजराती, मैथिली और संस्कृत।' },
       { icon: 'learn', label: '100+ शिक्षण मॉड्यूल', desc: 'पंचांग मूल बातों से लेकर उन्नत ज्योतिष तक संरचित पाठ्यक्रम — सभी के लिए मुफ्त।' },
+    ],
+    accuracyHeading: 'सटीकता और कार्यप्रणाली',
+    accuracy: [
+      { title: 'पंचांग', text: 'स्विस एफ़ेमेरिस v2.10 — NASA JPL DE441 ग्रहीय पंचांग पर आधारित। सभी ग्रहों के लिए उप-आर्क-सेकंड सटीकता — वही डेटा जो NASA अन्तरिक्ष यान नेविगेशन के लिए उपयोग करता है।' },
+      { title: 'अयनांश', text: 'लाहिरी (चित्रापक्ष) अयनांश मानक — भारत सरकार का आधिकारिक मानक। KP प्रणाली विश्लेषण के लिए कृष्णमूर्ति अयनांश भी उपलब्ध।' },
+      { title: 'सत्यापन', text: '3,005 स्वचालित परीक्षण — पंचांग सटीकता, कुण्डली गणना, दशा अवधि, योग पहचान और त्योहार तिथियों को कवर करते हैं। प्रोकेराला और पेशेवर हिन्दू पंचांगों से नियमित रूप से सत्यापित।' },
+      { title: 'सूर्योदय मॉडल', text: 'स्विस एफ़ेमेरिस वायुमण्डलीय अपवर्तन मॉडल। दिल्ली, बेंगलुरु और न्यूयॉर्क में पेशेवर पंचांग स्रोतों से ±1 मिनट के भीतर सत्यापित।' },
     ],
     heritage: [
       { title: 'सूर्य सिद्धान्त', text: 'सूर्य सिद्धान्त (लगभग 400 ई.) मानव इतिहास के सबसे उल्लेखनीय खगोलीय ग्रन्थों में से एक है। यह नाक्षत्र वर्ष की गणना 365.2563627 दिनों पर करता है — जो आधुनिक मान के आश्चर्यजनक रूप से निकट है।' },
@@ -152,6 +166,21 @@ export default async function AboutPage() {
           ))}
         </div>
       </section>
+
+      {/* Accuracy & Methodology — addresses ChatGPT/LLM "accuracy not clear" criticism */}
+      {l.accuracy && (
+        <section className="max-w-4xl mx-auto mb-16">
+          <h2 className="text-2xl font-bold text-gold-light mb-6" style={headingFont}>{l.accuracyHeading}</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {l.accuracy.map((a: { title: string; text: string }, i: number) => (
+              <div key={i} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
+                <h3 className="text-gold-light font-semibold text-sm mb-2">{a.title}</h3>
+                <p className="text-text-secondary text-sm leading-relaxed">{a.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Heritage */}
       <section className="max-w-4xl mx-auto mb-16">

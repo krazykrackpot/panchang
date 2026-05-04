@@ -23,7 +23,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   // ─── Core ─────────────────────────────────────────────────
   '/panchang': {
     title: {
-      en: 'Daily Panchang — Tithi, Nakshatra, Yoga, Karana Today',
+      en: "Today's Panchang — Tithi, Nakshatra, Rahu Kaal & Muhurta Times",
       hi: 'आज का पंचांग — तिथि, नक्षत्र, योग, करण',
       sa: 'दैनिकपञ्चाङ्गम् — तिथिः नक्षत्रं योगः करणम्',
       gu: 'આજનું પંચાંગ — તિથિ, નક્ષત્ર, યોગ | Dekho Panchang',

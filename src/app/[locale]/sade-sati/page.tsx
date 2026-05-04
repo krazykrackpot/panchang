@@ -714,7 +714,19 @@ export default function SadeSatiPage() {
             <div className="relative mb-10">
               <div className="absolute left-6 top-0 bottom-0 w-px bg-gold-primary/20" />
               <div className="space-y-4 ml-14">
-                {analysis.allCycles.map((cycle, i) => (
+                {analysis.allCycles
+                .filter(cycle => {
+                  // Only show cycles from birth year onwards
+                  // For saved charts: use the selected chart's birth data
+                  // For full mode: use the birthDate form field
+                  // For quick mode: no birth year available — show all
+                  const selectedChart = savedCharts.find(c => c.id === selectedChartId);
+                  const bd = selectedChart?.birth_data?.date || birthDate;
+                  if (!bd) return true; // Quick mode — show all
+                  const birthYear = parseInt(bd.split('-')[0]);
+                  return !birthYear || cycle.endYear >= birthYear;
+                })
+                .map((cycle, i) => (
                   <motion.div
                     key={cycle.startYear}
                     initial={{ opacity: 0, x: -10 }}

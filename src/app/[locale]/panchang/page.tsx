@@ -17,7 +17,9 @@ import { getLatestVideo } from '@/lib/youtube/latest-video';
 import type { PanchangData } from '@/types/panchang';
 import PanchangClient from './PanchangClient';
 
-export const revalidate = 1800; // 30 min — balances freshness with CPU savings
+// NO revalidate here — page uses headers() for geo-location.
+// ISR would cache one user's city and serve wrong panchang to others.
+// CPU protection via API-level caching (s-maxage=43200 on /api/panchang).
 
 // ---------------------------------------------------------------------------
 // Server-side panchang computation

@@ -11,7 +11,9 @@ import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { PanchangData } from '@/types/panchang';
 
-export const revalidate = 3600; // 1 hour — panchang data changes daily but 1hr cache is fine
+// NO revalidate here — page uses headers() for geo-location.
+// ISR would cache one user's city and serve it to everyone.
+// CPU protection via API-level caching (s-maxage=43200 on /api/panchang).
 
 // ─── Locale text helper ───
 function L(texts: { en: string; hi: string; sa?: string; ta?: string; te?: string; bn?: string; kn?: string; mr?: string; gu?: string; mai?: string }, locale: string): string {

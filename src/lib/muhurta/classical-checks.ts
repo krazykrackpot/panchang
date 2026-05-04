@@ -201,6 +201,26 @@ export function isProhibitedSolarMonth(jd: number): boolean {
   return PROHIBITED_SOLAR_SIGNS.has(solarSign);
 }
 
+// ─── Dakshinayana Check (for Mundan) ────────────────────────────────────────
+// Muhurta Chintamani (Chudakarana Prakarana): Mundan requires Uttarayana
+// (Sun's northern course). Permitted solar months: Makara(10), Kumbha(11),
+// Mesha(1), Vrishabha(2), Mithuna(3). Meena(12) excluded despite being
+// technically in Uttarayana (it's Kharmas).
+// Dakshinayana = Karka(4) through Dhanu(9) = ~Jul-Dec — forbidden for mundan.
+
+const UTTARAYANA_SIGNS = new Set([1, 2, 3, 10, 11]); // Mesha..Mithuna + Makara..Kumbha
+
+/**
+ * Check if the Sun is in Dakshinayana (southern course).
+ * Returns true if Dakshinayana — mundan is forbidden.
+ */
+export function isDakshinayana(jd: number): boolean {
+  const tropSun = sunLongitude(jd);
+  const sidSun = toSidereal(tropSun, jd);
+  const solarSign = Math.floor(sidSun / 30) + 1;
+  return !UTTARAYANA_SIGNS.has(solarSign);
+}
+
 // ─── Shishutva (Infant Venus/Jupiter) ───────────────────────────────────────
 // After Venus or Jupiter emerges from combustion (heliacal rising), the
 // first ~10 days are called Shishutva (infancy). The planet's beneficent

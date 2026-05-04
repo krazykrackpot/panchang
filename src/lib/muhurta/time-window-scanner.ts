@@ -18,7 +18,7 @@ import {
 import {
   checkVivahCombustion, scoreLagna, scoreNavamshaShuddhi,
   krishnaPakshaAdjustment, isAdhikaMasa, checkChaturmas,
-  isProhibitedSolarMonth, checkShishutva,
+  isProhibitedSolarMonth, checkShishutva, isDakshinayana,
 } from './classical-checks';
 import { checkHolashtak } from '@/lib/panchang/holashtak';
 import { getLunarMasaForDate } from '@/lib/calendar/hindu-months';
@@ -320,6 +320,13 @@ export function scanDateRangeV2(options: ScanOptionsV2): ScanV2Window[] {
     // Classical Kharmas = Sun in Dhanu + Mina. Other months (Karka/Simha/Kanya)
     // overlap with Chaturmas which is already checked above.
     if (FULL_PERIOD_CHECKS.has(activity) && isProhibitedSolarMonth(jdNoon)) {
+      current.setUTCDate(current.getUTCDate() + 1);
+      continue;
+    }
+
+    // Dakshinayana — hard veto for mundan only (MC Chudakarana Prakarana)
+    // Uttarayana required: solar months Makara..Mithuna (excl. Meena)
+    if (activity === 'mundan' && isDakshinayana(jdNoon)) {
       current.setUTCDate(current.getUTCDate() + 1);
       continue;
     }

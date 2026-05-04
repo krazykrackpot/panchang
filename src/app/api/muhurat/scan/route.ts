@@ -9,7 +9,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { scanDateRange, scanDateRangeV2 } from '@/lib/muhurta/time-window-scanner';
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
-import { checkVivahCombustion, isAdhikaMasa, checkChaturmas, isProhibitedSolarMonth, checkShishutva } from '@/lib/muhurta/classical-checks';
+import { checkVivahCombustion, isAdhikaMasa, checkChaturmas, isProhibitedSolarMonth, checkShishutva, isDakshinayana } from '@/lib/muhurta/classical-checks';
 import { checkHolashtak } from '@/lib/panchang/holashtak';
 import { getLunarMasaForDate } from '@/lib/calendar/hindu-months';
 import { dateToJD, calculateTithi } from '@/lib/ephem/astronomical';
@@ -328,6 +328,20 @@ export async function GET(req: NextRequest) {
           });
         }
       }
+    }
+  }
+
+  // Dakshinayana — mundan only
+  if (activity === 'mundan') {
+    const jdMidD = dateToJD(year, month, 15, 12 - tz);
+    if (isDakshinayana(jdMidD)) {
+      restrictions.push({
+        type: 'dakshinayana',
+        label: {
+          en: 'Dakshinayana (Sun\'s southern course) — Mundan requires Uttarayana (MC Chudakarana Prakarana)',
+          hi: 'दक्षिणायन — मुण्डन हेतु उत्तरायण आवश्यक (मुहूर्त चिन्तामणि)',
+        },
+      });
     }
   }
 

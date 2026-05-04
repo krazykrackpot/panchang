@@ -22,6 +22,7 @@ export interface PanchangSnapshot {
   karana: number;
   weekday: number;
   moonSign: number;
+  moonSid: number;  // Moon's sidereal longitude (degrees) — needed for Varjyam check
 }
 
 export interface PanchangSubScores {
@@ -316,5 +317,6 @@ export function getPanchangSnapshot(jd: number, lat: number, lng: number): Panch
     karana,
     weekday,
     moonSign,
+    moonSid,
   };
 }

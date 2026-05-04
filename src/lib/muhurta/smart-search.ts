@@ -144,7 +144,7 @@ function snapAtJD(jd: number): PanchangSnapshot {
   const karana = calculateKarana(jd);
   const moonSign = getRashiNumber(moonSid);
   const weekday = Math.floor(jd + 1.5) % 7; // 0=Sunday
-  return { tithi: tithiResult.number, nakshatra, yoga, karana, weekday, moonSign };
+  return { tithi: tithiResult.number, nakshatra, yoga, karana, weekday, moonSign, moonSid };
 }
 
 /** Get hora planet at a given local hour on a given weekday. */

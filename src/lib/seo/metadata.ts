@@ -1424,6 +1424,45 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: 'Complete guide to Choghadiya — the 7 types (Amrit, Shubh, Labh, Char, Rog, Kaal, Udveg), weekday rotation, daily timing decisions, and comparison with Hora system.', hi: 'चौघड़िया की सम्पूर्ण मार्गदर्शिका — 7 प्रकार (अमृत, शुभ, लाभ, चर, रोग, काल, उद्वेग), साप्ताहिक क्रम, दैनिक समय-निर्धारण।', sa: 'चौघड़ियामार्गदर्शिका — सप्तप्रकाराः।' },
     keywords: ['choghadiya', 'chaughadia', 'auspicious time', 'amrit choghadiya', 'shubh muhurat', 'gujarati panchang', 'daily timing vedic'],
   },
+  '/learn/gun-milan': {
+    title: {
+      en: 'Gun Milan — 36-Point Kundali Matching (Ashta Kuta) Guide',
+      hi: 'गुण मिलान — 36 अंक कुण्डली मिलान (अष्ट कूट) मार्गदर्शिका',
+      sa: 'गुणमेलनम् — ३६ अङ्ककुण्डलीमेलनमार्गदर्शिका',
+    },
+    description: {
+      en: 'Complete guide to Gun Milan (Ashta Kuta matching) — all 8 kutas explained with scoring, Nadi Dosha, Mangal Dosha, score interpretation (18+ minimum), and North vs South Indian traditions.',
+      hi: 'गुण मिलान (अष्ट कूट) की सम्पूर्ण मार्गदर्शिका — सभी 8 कूट, अंक व्याख्या, नाड़ी दोष, मांगलिक दोष और उत्तर बनाम दक्षिण भारतीय परम्पराएँ।',
+      sa: 'गुणमेलनस्य सम्पूर्णमार्गदर्शिका — अष्टकूटानि नाडीदोषः माङ्गलिकदोषश्च।',
+    },
+    keywords: ['gun milan', 'kundali matching', '36 gun milan', 'ashta kuta', 'guna milap', 'marriage compatibility', 'nadi dosha', 'horoscope matching'],
+  },
+  '/learn/hindu-calendar': {
+    title: {
+      en: 'Hindu Calendar System — Vikram Samvat, Months, Seasons & Panchang',
+      hi: 'हिन्दू कैलेंडर — विक्रम सम्वत, मास, ऋतुएँ एवं पंचांग',
+      sa: 'हिन्दूपञ्चाङ्गम् — विक्रमसम्वत् मासाः ऋतवः पञ्चाङ्गं च',
+    },
+    description: {
+      en: 'Complete guide to the Hindu calendar — Vikram Samvat vs Shaka vs Gregorian, 12 lunar months, 6 Ritus (seasons), Amanta vs Purnimanta, Adhika Masa, and how to read a traditional panchang.',
+      hi: 'हिन्दू कैलेंडर की सम्पूर्ण मार्गदर्शिका — विक्रम सम्वत, 12 चन्द्र मास, 6 ऋतुएँ, अमान्त बनाम पूर्णिमान्त, अधिक मास और पंचांग पढ़ना।',
+      sa: 'हिन्दूपञ्चाङ्गस्य सम्पूर्णमार्गदर्शिका — विक्रमसम्वत् मासाः ऋतवः अधिकमासश्च।',
+    },
+    keywords: ['hindu calendar', 'vikram samvat', 'hindu calendar 2026', 'panchang calendar', 'amanta purnimanta', 'hindu months', 'adhika masa', 'indian calendar'],
+  },
+  '/learn/nakshatra-baby-names': {
+    title: {
+      en: 'Baby Names by Nakshatra — Starting Syllables for All 27 Stars',
+      hi: 'नक्षत्र अनुसार शिशु नाम — 27 नक्षत्रों के प्रारम्भिक अक्षर',
+      sa: 'नक्षत्रानुसारं शिशुनामानि — सप्तविंशतिनक्षत्राणां प्रारम्भिकाक्षराणि',
+    },
+    description: {
+      en: 'Find the right baby name by birth Nakshatra — complete syllable table for all 27 Nakshatras and 108 Padas. Namakarana ceremony, Moon vs Lagna Nakshatra, and modern naming tips.',
+      hi: 'जन्म नक्षत्र से सही शिशु नाम खोजें — 27 नक्षत्रों और 108 पदों की सम्पूर्ण अक्षर तालिका। नामकरण संस्कार, चन्द्र बनाम लग्न नक्षत्र।',
+      sa: 'जन्मनक्षत्रेण शिशुनाम अन्विष्यतु — सप्तविंशतिनक्षत्राणां अक्षरसारणी।',
+    },
+    keywords: ['nakshatra baby names', 'baby name by birth star', 'name letter by nakshatra', 'namakarana', 'hindu baby names', 'nakshatra pada names', 'vedic naming'],
+  },
   '/rudraksha': {
     title: {
       en: 'Rudraksha Recommendation — Find Your Ideal Bead by Birth Chart',

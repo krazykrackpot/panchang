@@ -1,0 +1,110 @@
+{
+  "title": {
+    "en": "The Hindu Calendar System: Vikram Samvat & Panchang",
+    "hi": "हिन्दू कैलेंडर: विक्रम सम्वत एवं पंचांग",
+    "ta": "இந்து நாட்காட்டி: விக்ரம் சம்வத் & பஞ்சாங்கம்",
+    "bn": "হিন্দু ক্যালেন্ডার: বিক্রম সম্বৎ ও পঞ্চাঙ্গ"
+  },
+  "subtitle": {
+    "en": "Understanding the lunisolar calendar — months, seasons, eras, and intercalary months",
+    "hi": "चन्द्र-सौर कैलेंडर — मास, ऋतुएँ, सम्वत और अधिक मास का विस्तृत विवरण",
+    "ta": "சந்திர-சூரிய நாட்காட்டி — மாதங்கள், பருவங்கள், சகாப்தங்கள் மற்றும் அதிக மாதம்",
+    "bn": "চন্দ্র-সৌর ক্যালেন্ডার — মাস, ঋতু, সম্বৎ এবং অধিক মাস"
+  },
+  "intro": {
+    "en": "The Hindu calendar is a lunisolar system — it tracks both the Moon's phases and the Sun's position through the zodiac. Unlike the purely solar Gregorian calendar (where months have no relationship to lunar cycles) or purely lunar calendars like the Islamic Hijri (which drift through seasons), the Hindu calendar reconciles both by periodically inserting an intercalary month (Adhika Masa).",
+    "hi": "हिन्दू कैलेंडर एक चन्द्र-सौर प्रणाली है — यह चन्द्रमा की कलाओं और सूर्य की राशि स्थिति दोनों पर आधारित है। विशुद्ध सौर ग्रेगोरियन या विशुद्ध चन्द्र हिजरी कैलेंडर के विपरीत, हिन्दू कैलेंडर समय-समय पर अधिक मास जोड़कर दोनों का समन्वय करता है।",
+    "ta": "இந்து நாட்காட்டி ஒரு சந்திர-சூரிய முறை — இது நிலவின் நிலைகள் மற்றும் சூரியனின் ராசி நிலை இரண்டையும் கண்காணிக்கிறது.",
+    "bn": "হিন্দু ক্যালেন্ডার একটি চন্দ্র-সৌর পদ্ধতি — এটি চন্দ্রের কলা এবং সূর্যের রাশি অবস্থান উভয়ই অনুসরণ করে।"
+  },
+  "erasTitle": {
+    "en": "Calendar Eras: Vikram, Shaka & Gregorian",
+    "hi": "कैलेंडर सम्वत: विक्रम, शक और ग्रेगोरियन",
+    "ta": "நாட்காட்டி சகாப்தங்கள்: விக்ரம், சகா & கிரிகோரியன்",
+    "bn": "ক্যালেন্ডার সম্বৎ: বিক্রম, শক ও গ্রেগরিয়ান"
+  },
+  "erasContent": {
+    "en": "India uses multiple calendar eras simultaneously. The Vikram Samvat (VS) is 56-57 years ahead of Gregorian (2026 CE = VS 2083). It begins with Chaitra Shukla Pratipada (Hindu New Year). The Shaka Samvat, used by the Indian Government, is 78 years behind Gregorian (2026 CE = Shaka 1948). The Kali Yuga era counts from 3102 BCE, making 2026 CE = Kali 5128.",
+    "hi": "भारत में एक साथ कई कैलेंडर सम्वत प्रयोग होते हैं। विक्रम सम्वत ग्रेगोरियन से 56-57 वर्ष आगे है (2026 ई. = वि.स. 2083)। शक सम्वत, जो भारत सरकार द्वारा प्रयुक्त है, ग्रेगोरियन से 78 वर्ष पीछे है।",
+    "ta": "இந்தியா பல நாட்காட்டி சகாப்தங்களை ஒரே நேரத்தில் பயன்படுத்துகிறது.",
+    "bn": "ভারত একসাথে একাধিক ক্যালেন্ডার সম্বৎ ব্যবহার করে।"
+  },
+  "monthsTitle": {
+    "en": "The 12 Lunar Months",
+    "hi": "12 चन्द्र मास",
+    "ta": "12 சந்திர மாதங்கள்",
+    "bn": "১২ চন্দ্র মাস"
+  },
+  "monthsContent": {
+    "en": "Each Hindu month spans one complete lunar cycle (~29.5 days). The months are named after the Nakshatra in which the Full Moon falls. Since lunar months are shorter than solar months, about every 32.5 months an extra month (Adhika Masa) is inserted to keep the calendar aligned with seasons.",
+    "hi": "प्रत्येक हिन्दू मास एक पूर्ण चन्द्र चक्र (~29.5 दिन) का होता है। मासों के नाम उस नक्षत्र पर रखे जाते हैं जिसमें पूर्णिमा पड़ती है। चन्द्र मास सौर मास से छोटे होने के कारण लगभग हर 32.5 मास पर एक अतिरिक्त मास (अधिक मास) जोड़ा जाता है।",
+    "ta": "ஒவ்வொரு இந்து மாதமும் ஒரு முழு சந்திர சுழற்சியை (~29.5 நாட்கள்) உள்ளடக்கியது.",
+    "bn": "প্রতিটি হিন্দু মাস একটি পূর্ণ চন্দ্র চক্র (~২৯.৫ দিন)।"
+  },
+  "amantaTitle": {
+    "en": "Amanta vs Purnimanta: Two Month Systems",
+    "hi": "अमान्त बनाम पूर्णिमान्त",
+    "ta": "அமாந்த vs பூர்ணிமாந்த",
+    "bn": "অমান্ত বনাম পূর্ণিমান্ত"
+  },
+  "amantaContent": {
+    "en": "The same months have two different starting points depending on region. Amanta (New Moon ending) starts the month after the New Moon — used in Gujarat, Maharashtra, South India, and by most panchang publishers. Purnimanta (Full Moon ending) starts the month after the Full Moon — used in North India (UP, MP, Bihar, Rajasthan). During Krishna Paksha (waning phase), the Purnimanta month name is one month ahead of Amanta.",
+    "hi": "एक ही मास के दो भिन्न प्रारम्भ बिन्दु होते हैं। अमान्त (अमावस्या अन्त) में मास अमावस्या के बाद प्रारम्भ होता है — गुजरात, महाराष्ट्र, दक्षिण भारत में प्रयुक्त। पूर्णिमान्त (पूर्णिमा अन्त) में मास पूर्णिमा के बाद प्रारम्भ होता है — उत्तर भारत में प्रयुक्त।",
+    "ta": "ஒரே மாதங்களுக்கு இரண்டு வெவ்வேறு தொடக்கப் புள்ளிகள் உள்ளன.",
+    "bn": "একই মাসের দুটি ভিন্ন শুরু আছে।"
+  },
+  "seasonsTitle": {
+    "en": "The 6 Ritus (Seasons)",
+    "hi": "6 ऋतुएँ",
+    "ta": "6 ருதுக்கள் (பருவங்கள்)",
+    "bn": "৬ ঋতু"
+  },
+  "seasonsContent": {
+    "en": "The Hindu year divides into 6 seasons of two months each, linked to the Sun's position. These seasons determined agricultural cycles, festivals, and daily routines for millennia.",
+    "hi": "हिन्दू वर्ष 6 ऋतुओं में विभाजित है, प्रत्येक दो मास की, जो सूर्य की स्थिति से जुड़ी हैं।",
+    "ta": "இந்து ஆண்டு 6 பருவங்களாக பிரிக்கப்பட்டுள்ளது, ஒவ்வொன்றும் இரண்டு மாதங்கள்.",
+    "bn": "হিন্দু বছর ৬টি ঋতুতে বিভক্ত, প্রতিটি দুই মাসের।"
+  },
+  "ayanaTitle": {
+    "en": "Uttarayana & Dakshinayana",
+    "hi": "उत्तरायण एवं दक्षिणायन",
+    "ta": "உத்தராயணம் & தக்ஷிணாயனம்",
+    "bn": "উত্তরায়ণ ও দক্ষিণায়ন"
+  },
+  "ayanaContent": {
+    "en": "The solar year is divided into two halves called Ayanas. Uttarayana (northward journey) begins when the Sun enters Makara (Capricorn) — celebrated as Makar Sankranti. This 6-month period (roughly Jan-Jul) is considered auspicious for ceremonies. Dakshinayana (southward journey) begins when the Sun enters Karka (Cancer) — roughly Jul-Jan. While less favoured for rituals, Dakshinayana is considered the 'night of the gods' and is associated with tapasya (austerity).",
+    "hi": "सौर वर्ष दो भागों में विभाजित है जिन्हें अयन कहते हैं। उत्तरायण सूर्य के मकर राशि में प्रवेश से प्रारम्भ होता है — मकर संक्रान्ति के रूप में मनाया जाता है। दक्षिणायन सूर्य के कर्क राशि में प्रवेश से प्रारम्भ होता है।",
+    "ta": "சூரிய ஆண்டு அயனங்கள் என்ற இரண்டு பகுதிகளாக பிரிக்கப்பட்டுள்ளது.",
+    "bn": "সৌর বছর দুটি অয়নে বিভক্ত।"
+  },
+  "adhikaTitle": {
+    "en": "Adhika Masa: The Intercalary Month",
+    "hi": "अधिक मास: अतिरिक्त चन्द्र मास",
+    "ta": "அதிக மாசம்: இடைச்செருகல் மாதம்",
+    "bn": "অধিক মাস: অতিরিক্ত চন্দ্র মাস"
+  },
+  "adhikaContent": {
+    "en": "A lunar year of 12 months totals ~354 days — about 11 days short of the solar year. Without correction, Hindu festivals would drift through seasons like Islamic holidays. The solution: when a lunar month passes without the Sun changing zodiac signs (Sankranti), that month is declared Adhika (extra). This happens roughly every 32.5 months. The Adhika Masa takes the name of the following month with the prefix 'Adhika'. Ceremonies and auspicious activities are generally avoided during Adhika Masa, though charitable acts are considered especially meritorious.",
+    "hi": "12 चन्द्र मासों का वर्ष ~354 दिनों का होता है — सौर वर्ष से लगभग 11 दिन कम। बिना सुधार के त्योहार ऋतुओं में भटक जाएंगे। समाधान: जब किसी चन्द्र मास में सूर्य राशि परिवर्तन (संक्रान्ति) नहीं होती, वह मास अधिक (अतिरिक्त) घोषित होता है।",
+    "ta": "12 சந்திர மாதங்களின் ஆண்டு ~354 நாட்கள் — சூரிய ஆண்டை விட சுமார் 11 நாட்கள் குறைவு.",
+    "bn": "১২ চন্দ্র মাসের বছর ~৩৫৪ দিন — সৌর বছরের চেয়ে প্রায় ১১ দিন কম।"
+  },
+  "readingTitle": {
+    "en": "How to Read a Traditional Panchang",
+    "hi": "पारम्परिक पंचांग कैसे पढ़ें",
+    "ta": "பாரம்பரிய பஞ்சாங்கத்தை எப்படி படிப்பது",
+    "bn": "ঐতিহ্যবাহী পঞ্চাঙ্গ কীভাবে পড়বেন"
+  },
+  "readingContent": {
+    "en": "A daily panchang page shows five core elements (Tithi, Nakshatra, Yoga, Karana, Vara), along with sunrise/sunset, Rahu Kaal, and lunar month information. The five elements change at different rates — Vara changes at sunrise, Tithi and Karana change roughly twice per day, while Nakshatra and Yoga change approximately once per day. Understanding these rhythms is key to reading the panchang effectively.",
+    "hi": "दैनिक पंचांग पृष्ठ पाँच मुख्य तत्त्व (तिथि, नक्षत्र, योग, करण, वार) के साथ सूर्योदय/सूर्यास्त, राहु काल और मास की जानकारी दिखाता है।",
+    "ta": "தினசரி பஞ்சாங்க பக்கம் ஐந்து முக்கிய கூறுகளை (திதி, நட்சத்திரம், யோகம், கரணம், வாரம்) காட்டுகிறது.",
+    "bn": "দৈনিক পঞ্চাঙ্গ পৃষ্ঠা পাঁচটি মূল উপাদান (তিথি, নক্ষত্র, যোগ, করণ, বার) দেখায়।"
+  },
+  "sourceDisclaimer": {
+    "en": "Based on Surya Siddhanta (astronomical foundations), regional panchang conventions, and the National Calendar Committee of India's standardisation work. The Amanta/Purnimanta distinction follows the conventions documented by S.B. Dikshit in 'Bharatiya Jyotish Shastra'.",
+    "hi": "सूर्य सिद्धान्त, क्षेत्रीय पंचांग परम्पराओं और भारत की राष्ट्रीय कैलेंडर समिति के मानकीकरण कार्य पर आधारित।",
+    "ta": "சூர்ய சித்தாந்தம், பிராந்திய பஞ்சாங்க மரபுகள் மற்றும் இந்திய தேசிய நாட்காட்டி குழுவின் தரப்படுத்தல் பணியின் அடிப்படையில்.",
+    "bn": "সূর্য সিদ্ধান্ত, আঞ্চলিক পঞ্চাঙ্গ ঐতিহ্য এবং ভারতের জাতীয় ক্যালেন্ডার কমিটির মানকরণ কাজের ভিত্তিতে।"
+  }
+}

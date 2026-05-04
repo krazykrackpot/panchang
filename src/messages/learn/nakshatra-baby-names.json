@@ -1,0 +1,80 @@
+{
+  "title": {
+    "en": "Baby Names by Nakshatra: The Vedic Naming Tradition",
+    "hi": "नक्षत्र अनुसार शिशु नाम: वैदिक नामकरण परम्परा",
+    "ta": "நட்சத்திரப்படி குழந்தை பெயர்கள்: வேத பெயரிடும் மரபு",
+    "bn": "নক্ষত্র অনুসারে শিশুর নাম: বৈদিক নামকরণ ঐতিহ্য"
+  },
+  "subtitle": {
+    "en": "Find the ideal starting syllable for your baby's name based on their birth Nakshatra and Pada",
+    "hi": "जन्म नक्षत्र और पद के आधार पर अपने शिशु के नाम का आदर्श प्रारम्भिक अक्षर खोजें",
+    "ta": "குழந்தையின் பிறப்பு நட்சத்திரம் மற்றும் பாதத்தின் அடிப்படையில் பெயரின் தொடக்க எழுத்தை கண்டறியுங்கள்",
+    "bn": "জন্ম নক্ষত্র ও পদের ভিত্তিতে আপনার শিশুর নামের আদর্শ প্রারম্ভিক অক্ষর খুঁজুন"
+  },
+  "intro": {
+    "en": "In Vedic tradition, a baby's name is not chosen casually — it is determined by the Moon's Nakshatra at the exact moment of birth. Each of the 27 Nakshatras has 4 Padas (quarters), and each Pada prescribes specific starting syllables for the child's name. This system, described in Muhurta Chintamani's Namakarana chapter, ensures the name vibrates in harmony with the child's natal lunar energy.",
+    "hi": "वैदिक परम्परा में शिशु का नाम यादृच्छिक रूप से नहीं चुना जाता — यह जन्म के सटीक क्षण में चन्द्र के नक्षत्र से निर्धारित होता है। 27 नक्षत्रों में से प्रत्येक के 4 पद होते हैं, और प्रत्येक पद शिशु के नाम के लिए विशिष्ट प्रारम्भिक अक्षर निर्धारित करता है।",
+    "ta": "வேத மரபில், குழந்தையின் பெயர் சாதாரணமாக தேர்ந்தெடுக்கப்படுவதில்லை — பிறப்பின் சரியான தருணத்தில் நிலவின் நட்சத்திரத்தால் தீர்மானிக்கப்படுகிறது.",
+    "bn": "বৈদিক ঐতিহ্যে শিশুর নাম যাদৃচ্ছিকভাবে বাছাই করা হয় না — জন্মের সঠিক মুহূর্তে চন্দ্রের নক্ষত্র দ্বারা নির্ধারিত হয়।"
+  },
+  "syllableTitle": {
+    "en": "The Syllable System",
+    "hi": "अक्षर प्रणाली",
+    "ta": "எழுத்து முறை",
+    "bn": "অক্ষর পদ্ধতি"
+  },
+  "syllableContent": {
+    "en": "The 27 Nakshatras divide the 360° zodiac into equal 13°20' segments. Each Nakshatra is further split into 4 Padas of 3°20' each — creating 108 Padas total (27 x 4). Each Pada is assigned one or more starting syllables based on its position in the Navamsha (D-9) chart. The Moon's exact degree at birth determines the Pada, and therefore the prescribed syllable.",
+    "hi": "27 नक्षत्र 360° राशिचक्र को समान 13°20' खण्डों में विभाजित करते हैं। प्रत्येक नक्षत्र आगे 4 पदों (प्रत्येक 3°20') में विभाजित होता है — कुल 108 पद।",
+    "ta": "27 நட்சத்திரங்கள் 360° ராசிவட்டத்தை சம 13°20' பகுதிகளாக பிரிக்கின்றன.",
+    "bn": "২৭ নক্ষত্র ৩৬০° রাশিচক্রকে সমান ১৩°২০' খণ্ডে ভাগ করে।"
+  },
+  "tableTitle": {
+    "en": "Complete Nakshatra Syllable Table",
+    "hi": "सम्पूर्ण नक्षत्र अक्षर तालिका",
+    "ta": "முழுமையான நட்சத்திர எழுத்து அட்டவணை",
+    "bn": "সম্পূর্ণ নক্ষত্র অক্ষর তালিকা"
+  },
+  "namakaranaTitle": {
+    "en": "The Namakarana Ceremony",
+    "hi": "नामकरण संस्कार",
+    "ta": "நாமகரணம் சடங்கு",
+    "bn": "নামকরণ সংস্কার"
+  },
+  "namakaranaContent": {
+    "en": "Namakarana is one of the 16 Samskaras (sacraments) in Hindu tradition. It is traditionally performed on the 11th or 12th day after birth, or on a day when the Moon is in an auspicious Nakshatra. The priest calculates the baby's birth Nakshatra and Pada, then announces the prescribed syllables. The family chooses a name beginning with one of these syllables. In some traditions, multiple names are given — a Nakshatra name (based on syllable), a Masa name (based on birth month), and a family/chosen name.",
+    "hi": "नामकरण हिन्दू परम्परा के 16 संस्कारों में से एक है। यह परम्परागत रूप से जन्म के 11वें या 12वें दिन, या चन्द्रमा शुभ नक्षत्र में होने पर किया जाता है।",
+    "ta": "நாமகரணம் இந்து மரபின் 16 சமஸ்காரங்களில் ஒன்று.",
+    "bn": "নামকরণ হিন্দু ঐতিহ্যের ১৬টি সংস্কারের একটি।"
+  },
+  "moonVsLagnaTitle": {
+    "en": "Moon Nakshatra vs Lagna Nakshatra",
+    "hi": "चन्द्र नक्षत्र बनाम लग्न नक्षत्र",
+    "ta": "சந்திர நட்சத்திரம் vs லக்ன நட்சத்திரம்",
+    "bn": "চন্দ্র নক্ষত্র বনাম লগ্ন নক্ষত্র"
+  },
+  "moonVsLagnaContent": {
+    "en": "The primary tradition uses the Moon's Nakshatra for naming — this is the overwhelmingly common practice across India. However, some families also consider the Lagna (Ascendant) Nakshatra. When both are considered, the Moon Nakshatra name takes precedence as the 'official' name, while the Lagna Nakshatra syllable may influence a middle name or nickname. If the Moon is in Gandanta (junction between water and fire signs), some traditions prefer the Lagna Nakshatra instead.",
+    "hi": "प्रमुख परम्परा नामकरण के लिए चन्द्र नक्षत्र का उपयोग करती है। कुछ परिवार लग्न नक्षत्र पर भी विचार करते हैं। जब दोनों पर विचार किया जाता है, चन्द्र नक्षत्र का नाम प्राथमिक होता है।",
+    "ta": "முதன்மை மரபு நாமகரணத்திற்கு சந்திர நட்சத்திரத்தைப் பயன்படுத்துகிறது.",
+    "bn": "প্রধান ঐতিহ্য নামকরণের জন্য চন্দ্র নক্ষত্র ব্যবহার করে।"
+  },
+  "modernTitle": {
+    "en": "Modern Considerations",
+    "hi": "आधुनिक विचार",
+    "ta": "நவீன கருத்தில்",
+    "bn": "আধুনিক বিবেচনা"
+  },
+  "modernContent": {
+    "en": "Many modern families honour the tradition by ensuring the name starts with or contains the prescribed syllable, even if the full name is contemporary. For example, a child born in Rohini Pada 2 (syllable: Va) might be named 'Vanya' or 'Varun' — names that feel modern but carry the traditional vibration. Some families use the Nakshatra syllable name as a middle name while choosing a different first name. The key principle: the sound vibration of the syllable is what matters, not rigid adherence to any single format.",
+    "hi": "कई आधुनिक परिवार यह सुनिश्चित करके परम्परा का सम्मान करते हैं कि नाम निर्धारित अक्षर से प्रारम्भ हो या उसमें सम्मिलित हो।",
+    "ta": "பல நவீன குடும்பங்கள் பெயர் நிர்ணயிக்கப்பட்ட எழுத்தில் தொடங்குவதை உறுதிசெய்கின்றன.",
+    "bn": "অনেক আধুনিক পরিবার নিশ্চিত করে যে নাম নির্ধারিত অক্ষর দিয়ে শুরু হয়।"
+  },
+  "sourceDisclaimer": {
+    "en": "Syllable assignments follow Muhurta Chintamani (Namakarana chapter) and the widely accepted North Indian tradition. Some regional variations exist — South Indian traditions may use slightly different syllable mappings for certain Nakshatras. Always consult a family priest for the authoritative syllable in your regional tradition.",
+    "hi": "अक्षर निर्धारण मुहूर्त चिन्तामणि (नामकरण अध्याय) और व्यापक रूप से स्वीकृत उत्तर भारतीय परम्परा का अनुसरण करता है।",
+    "ta": "எழுத்து நிர்ணயம் முகூர்த்த சிந்தாமணி (நாமகரணம் அத்தியாயம்) மற்றும் வட இந்திய மரபைப் பின்பற்றுகிறது.",
+    "bn": "অক্ষর নির্ধারণ মুহূর্ত চিন্তামণি (নামকরণ অধ্যায়) এবং উত্তর ভারতীয় ঐতিহ্য অনুসরণ করে।"
+  }
+}

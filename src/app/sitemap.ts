@@ -143,6 +143,9 @@ const routes = [
   '/learn/mangal-dosha',
   '/learn/panchang-guide',
   '/learn/choghadiya',
+  '/learn/gun-milan',
+  '/learn/hindu-calendar',
+  '/learn/nakshatra-baby-names',
   // Learn Contributions (India's mathematical & astronomical heritage)
   '/learn/contributions/zero',
   '/learn/contributions/pi',

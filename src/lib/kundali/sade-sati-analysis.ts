@@ -829,17 +829,18 @@ export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
     if (cycle.startYear <= currentYear && currentYear <= cycle.endYear) {
       currentCycleIndex = i;
       cycle.isActive = true;
-      // Determine phase — use month-level precision for progress
+      // Determine phase — use Saturn's actual degree through the sign
+      // for precise progress (not year boundaries which are coarse).
+      // Each phase = Saturn transiting one 30° sign. Saturn's current
+      // degree within that sign directly gives the progress.
+      const satNow = getCurrentSaturnSign();
       for (const p of cycle.phases) {
         if (p.startYear <= currentYear && currentYear <= p.endYear) {
           currentPhase = p.phase;
-          // Phase starts ~Jan of startYear and ends ~Dec of endYear
-          const phaseStartMonth = p.startYear * 12;
-          const phaseEndMonth = (p.endYear + 1) * 12; // end of endYear
-          const currentMonth = currentYear * 12 + now.getMonth();
-          const totalMonths = phaseEndMonth - phaseStartMonth;
-          const elapsedMonths = currentMonth - phaseStartMonth;
-          phaseProgress = totalMonths > 0 ? Math.min(1, Math.max(0, elapsedMonths / totalMonths)) : 0.5;
+          // Saturn's degree in the current sign (0-30) directly maps to progress.
+          // 0° = just entered = 0%, 30° = about to leave = 100%.
+          // This is astronomically precise — no approximation needed.
+          phaseProgress = Math.min(1, Math.max(0, satNow.degree / 30));
           break;
         }
       }

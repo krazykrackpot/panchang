@@ -18,6 +18,7 @@ import { KARANAS } from '@/lib/constants/karanas';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS, VARA_DATA } from '@/lib/constants/grahas';
 import { MUHURTA_DATA } from '@/lib/constants/muhurtas';
+import { DUR_MUHURTAM_A, DUR_MUHURTAM_B } from '@/lib/constants/dur-muhurtam';
 import { VARJYAM_GHATI, VARJYAM_GHATI_2, AMRIT_GHATI } from '@/lib/constants/varjyam';
 import { PanchangData, Muhurta, TransitionInfo, ChoghadiyaSlot, HoraSlot, DishaShoolInfo , LocaleText} from '@/types/panchang';
 import { getLunarMasaForDate } from '@/lib/calendar/hindu-months';
@@ -1245,29 +1246,8 @@ export function computePanchang(input: PanchangInput): PanchangData {
   };
 
   // 2. Dur Muhurtam (inauspicious muhurta windows by weekday)
-  // Two classical traditions exist with different muhurta indices per weekday.
-  // Both are shown to the user — they can follow their preferred tradition.
-  //
-  // Tradition A: Kaala Prakashika / South Indian (matches Prokerala, Drik)
-  // Tradition B: Nirṇaya Sindhu / North Indian (older Dharma Sindhu lineage)
-  const DUR_MUHURTAM_A: number[][] = [ // Kaala Prakashika (verified against Prokerala Apr 5-11 2026)
-    [13],    // Sunday    — 14th muhurta
-    [8, 11], // Monday    — 9th & 12th muhurta
-    [3],     // Tuesday   — 4th muhurta
-    [7],     // Wednesday — 8th muhurta
-    [5, 11], // Thursday  — 6th & 12th muhurta
-    [3, 8],  // Friday    — 4th & 9th muhurta
-    [2],     // Saturday  — 3rd muhurta
-  ];
-  const DUR_MUHURTAM_B: number[][] = [ // Nirṇaya Sindhu
-    [6, 10], // Sunday    — 7th & 11th muhurta
-    [5],     // Monday    — 6th muhurta
-    [7],     // Tuesday   — 8th muhurta
-    [7],     // Wednesday — 8th muhurta
-    [3],     // Thursday  — 4th muhurta
-    [4, 8],  // Friday    — 5th & 9th muhurta
-    [1],     // Saturday  — 2nd muhurta
-  ];
+  // Two classical traditions — imported from @/lib/constants/dur-muhurtam.
+  // Weekday index 0=Sunday (matches JD weekday convention).
   const formatDurWindows = (indices: number[]) => indices.map(idx => {
     const s = sunriseUT + idx * muhurtaDuration;
     const e = s + muhurtaDuration;

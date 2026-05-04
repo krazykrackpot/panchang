@@ -2,51 +2,79 @@
   "meta": {
     "topic": "rahu-kaal-explained",
     "type": "short",
-    "language": "hi",
-    "estimatedDuration": 45,
-    "style": "educational",
-    "musicMood": "mystical"
+    "language": "en",
+    "estimatedDuration": 75,
+    "style": "dramatic",
+    "musicMood": "mystical",
+    "voiceProfile": "narrator-en",
+    "musicTrack": "ambient-short"
   },
   "scenes": [
     {
       "id": 1,
-      "duration": 4,
-      "narration": "राहु काल क्या है? 45 सेकंड में समझिए।",
-      "visualType": "title_card",
-      "textOverlay": "राहु काल — 45 सेकंड में",
-      "transition": "cut"
+      "duration": 7,
+      "narration": "Every single day, there is a 90-minute window when the cosmos turns hostile. Starting anything new during this time invites disaster. The ancients called it Rahu Kaal.",
+      "visualType": "cosmic_text",
+      "textOverlay": "*RAHU KAAL*\nThe Forbidden Hour",
+      "textStyle": "burst",
+      "cosmicPreset": "eclipse",
+      "transition": "cut",
+      "videoPrompt": "Dark cosmic void with a shadowy serpent-like form coiling through space, eclipse-like darkness consuming golden light, ominous atmosphere, cosmic dust swirling into a vortex, stars dimming one by one, dramatic camera push-in, 4K cinematic, dark and foreboding, deep purple and black color palette"
     },
     {
       "id": 2,
       "duration": 10,
-      "narration": "हर दिन सूर्योदय से सूर्यास्त तक का समय 8 बराबर भागों में बंटा होता है। इनमें से एक भाग राहु काल कहलाता है — यह अशुभ माना जाता है।",
-      "visualType": "timeline",
-      "textOverlay": "दिन ÷ 8 = राहु काल",
-      "transition": "slide"
+      "narration": "Rahu is not a physical planet. It is the north lunar node — the point where the Moon's orbit crosses the Sun's path. In mythology, Rahu is the severed head of the demon Svarbhanu, eternally hungry, eternally consuming.",
+      "visualType": "planet_render",
+      "planet": "rahu",
+      "textOverlay": "RAHU — The Shadow",
+      "subtitle": "North Lunar Node • The Cosmic Devourer",
+      "cosmicPreset": "deep_space",
+      "transition": "zoom",
+      "videoPrompt": "Abstract cosmic visualization of a lunar node — where the Moon's orbital plane intersects the ecliptic, two luminous orbital rings crossing in space, at their intersection point a dark vortex of shadow consuming light, ghostly purple energy spiraling inward, celestial mechanics made visible and terrifying, 4K cinematic, mystical and ominous"
     },
     {
       "id": 3,
-      "duration": 12,
-      "narration": "सोमवार को दूसरा भाग, शनिवार को तीसरा, शुक्रवार को चौथा। हर दिन अलग समय। राहु काल में नया काम शुरू नहीं करना चाहिए — विवाह, व्यापार, यात्रा।",
-      "visualType": "data_table",
-      "textOverlay": "सोम=2, शनि=3, शुक्र=4...",
-      "transition": "fade"
+      "duration": 10,
+      "narration": "During Rahu Kaal, the shadow planet's influence peaks. New ventures begun in this window face hidden obstacles. Contracts signed become tangled. Journeys started encounter delays. Investments made lose their timing.",
+      "visualType": "cosmic_text",
+      "textOverlay": "No new ventures\nNo contracts\nNo journeys",
+      "textStyle": "ascend",
+      "cosmicPreset": "nebula",
+      "transition": "slide",
+      "videoPrompt": "Cosmic obstacles materializing in space — golden paths being blocked by dark shadowy barriers, light being bent and distorted by invisible gravitational forces, a journey through space encountering dark matter clouds, golden ships of light being deflected off course, time distortion visualized, 4K cinematic, tension building"
     },
     {
       "id": 4,
-      "duration": 8,
-      "narration": "लेकिन राहु काल में पहले से चल रहा काम जारी रख सकते हैं। और राहु की पूजा इस समय विशेष फलदायी होती है।",
-      "visualType": "text_reveal",
-      "textOverlay": "चल रहा काम = ठीक\nनया काम = नहीं",
-      "transition": "fade"
+      "duration": 10,
+      "narration": "The timing changes every day of the week. Monday: 7:30 to 9 AM. Tuesday: 3 to 4:30 PM. Wednesday: noon to 1:30. And it shifts with sunrise — different for every city on Earth.",
+      "visualType": "cosmic_text",
+      "textOverlay": "*Different* every day\n*Different* every city",
+      "textStyle": "glow",
+      "cosmicPreset": "aurora",
+      "transition": "fade",
+      "videoPrompt": "Time-lapse of Earth rotating from space, different cities lighting up and darkening as the Sun moves, golden sundial shadows sweeping across continents, seven days cycling rapidly, clock hands spinning, each day's Rahu Kaal window highlighted as a dark band moving across the globe, 4K cinematic, rhythmic and educational"
     },
     {
       "id": 5,
-      "duration": 4,
-      "narration": "आज का राहु काल देखें — देखो पंचांग डॉट कॉम पर।",
+      "duration": 8,
+      "narration": "But here's what most people don't know: Rahu Kaal doesn't affect work already in progress. Only new beginnings are vulnerable. And for Rahu worship itself — this is actually the MOST powerful time.",
+      "visualType": "cosmic_text",
+      "textOverlay": "Ongoing work = *safe*\nRahu worship = *powerful*",
+      "textStyle": "burst",
+      "cosmicPreset": "constellation",
+      "transition": "zoom",
+      "videoPrompt": "Dark cosmic energy transforming into golden protective light, shadows being channeled and controlled, a meditation scene in cosmic space — figure sitting in lotus position surrounded by controlled dark energy being converted to wisdom, transformation of fear into power, 4K cinematic, empowering and mystical"
+    },
+    {
+      "id": 6,
+      "duration": 8,
+      "narration": "Millions check Rahu Kaal before signing deals, booking flights, or starting new projects. Know the shadow. Respect the shadow. Check today's Rahu Kaal — free — at Dekho Panchang.",
       "visualType": "cta",
-      "textOverlay": "dekhopanchang.com/rahu-kaal",
-      "transition": "fade"
+      "textOverlay": "dekhopanchang.com",
+      "cosmicPreset": "galaxy",
+      "transition": "fade",
+      "videoPrompt": "Camera slowly pulling back from dark cosmic energy to reveal a vast, serene galaxy, darkness giving way to billions of stars, golden spiral arms rotating peacefully, sense of knowledge conquering fear, warm golden light, cosmic serenity, 4K cinematic, peaceful resolution"
     }
   ]
 }

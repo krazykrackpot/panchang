@@ -3,50 +3,67 @@
     "topic": "pushya-nakshatra-gold",
     "type": "short",
     "language": "en",
-    "estimatedDuration": 35,
-    "style": "casual",
-    "musicMood": "celebratory"
+    "estimatedDuration": 70,
+    "style": "dramatic",
+    "musicMood": "celebratory",
+    "voiceProfile": "narrator-en",
+    "musicTrack": "ambient-short"
   },
   "scenes": [
     {
       "id": 1,
-      "duration": 3,
-      "narration": "Want to know the BEST day to buy gold?",
-      "visualType": "title_card",
-      "textOverlay": "BEST DAY FOR GOLD",
-      "transition": "cut"
+      "duration": 6,
+      "narration": "There is one day — sometimes just a few hours — when buying gold is considered the most auspicious act in the universe. Ancient sages discovered it. Modern jewelers profit from it.",
+      "visualType": "cosmic_text",
+      "textOverlay": "THE *BEST* DAY\nTO BUY *GOLD*",
+      "textStyle": "burst",
+      "cosmicPreset": "sun_corona",
+      "transition": "cut",
+      "videoPrompt": "Liquid gold flowing through cosmic space, molten golden streams forming into sacred geometric patterns, blazing sun in the background with corona rays, gold particles raining down like cosmic dust, extreme luxury and abundance, cinematic 4K, warm golden color palette, dramatic and celebratory"
     },
     {
       "id": 2,
-      "duration": 8,
-      "narration": "When the Moon enters Pushya nakshatra on a Thursday — that's called Guru Pushya Yoga. It happens only 4 times a year.",
-      "visualType": "nakshatra_card",
-      "textOverlay": "Thursday + Pushya = Guru Pushya Yoga",
-      "transition": "zoom"
+      "duration": 10,
+      "narration": "It's called Guru Pushya Yoga. It happens when the Moon enters Pushya nakshatra — the 8th lunar mansion — on a Thursday. Jupiter's star. Jupiter's day. Double abundance. This alignment occurs only 3 to 4 times a year.",
+      "visualType": "cosmic_text",
+      "textOverlay": "Thursday + *Pushya* =\n*Guru Pushya Yoga*",
+      "textStyle": "glow",
+      "cosmicPreset": "constellation",
+      "transition": "zoom",
+      "videoPrompt": "Moon drifting into a specific star cluster (Pushya — stars in Cancer), the star cluster lighting up with brilliant golden energy, Jupiter appearing in the distance glowing warm yellow, alignment beam connecting Moon-Pushya-Jupiter, sacred golden triangle forming in the sky, cosmic celebration energy, 4K cinematic, warm and mystical"
     },
     {
       "id": 3,
-      "duration": 8,
-      "narration": "Pushya is ruled by Brihaspati — Jupiter, the planet of abundance. Thursday is also Jupiter's day. Double Jupiter energy means everything you buy multiplies in value.",
-      "visualType": "planet_showcase",
-      "textOverlay": "Jupiter x Jupiter = 2x abundance",
-      "transition": "slide"
+      "duration": 10,
+      "narration": "Pushya is ruled by Brihaspati — Jupiter — the guru of the gods. The planet of expansion, abundance, and divine grace. Thursday — Guruvar — is Jupiter's own day. When Moon, star, and day all align under Jupiter... the cosmos opens a door to prosperity.",
+      "visualType": "planet_render",
+      "planet": "jupiter",
+      "textOverlay": "BRIHASPATI\nGuru of the Gods",
+      "subtitle": "Abundance • Expansion • Divine Grace",
+      "cosmicPreset": "deep_space",
+      "transition": "slide",
+      "videoPrompt": "Massive Jupiter filling the frame, its Great Red Spot visible, atmospheric bands swirling with colorful storms, four Galilean moons orbiting, golden light radiating from the planet outward, sense of overwhelming abundance and power, camera slowly approaching this king of planets, 4K cinematic, awe-inspiring scale"
     },
     {
       "id": 4,
-      "duration": 6,
-      "narration": "That's why jewelers across India have massive sales on Guru Pushya Yoga. Now you know why.",
-      "visualType": "text_reveal",
-      "textOverlay": "jewelers know this secret",
-      "transition": "fade"
+      "duration": 10,
+      "narration": "This is why every major jeweler in India tracks this date. Tanishq. Kalyan. PC Jewellers. They launch their biggest sales on Guru Pushya Yoga. Gold bought on this day is believed to multiply. Investments made under Jupiter's blessing grow.",
+      "visualType": "cosmic_text",
+      "textOverlay": "Gold bought under *Jupiter*\n*multiplies* in value",
+      "textStyle": "ascend",
+      "cosmicPreset": "galaxy",
+      "transition": "fade",
+      "videoPrompt": "Golden coins and jewelry floating in zero gravity space, multiplying and cascading, golden light rays streaming from Jupiter in the background, abundance overflowing, cosmic golden river flowing through space, sacred geometry patterns forming from gold particles, celebration of prosperity, 4K cinematic, warm and opulent"
     },
     {
       "id": 5,
-      "duration": 4,
-      "narration": "Find the next Guru Pushya date at Dekho Panchang.",
+      "duration": 8,
+      "narration": "The next Guru Pushya Yoga is coming. Will you know when? Will you be ready? Find the exact date and muhurta — free — at Dekho Panchang.",
       "visualType": "cta",
       "textOverlay": "dekhopanchang.com",
-      "transition": "fade"
+      "cosmicPreset": "nebula",
+      "transition": "fade",
+      "videoPrompt": "Golden cosmic light settling into serenity, Jupiter and Moon together in a peaceful starscape, golden particles gently falling, vast nebula in warm amber and gold tones, sense of opportunity and readiness, camera pulling back to reveal the beauty of the cosmos, 4K cinematic, warm resolution"
     }
   ]
 }

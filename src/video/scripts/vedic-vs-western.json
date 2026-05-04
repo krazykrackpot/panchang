@@ -3,51 +3,98 @@
     "topic": "vedic-vs-western-zodiac",
     "type": "short",
     "language": "en",
-    "estimatedDuration": 45,
+    "estimatedDuration": 75,
     "style": "dramatic",
     "musicMood": "dramatic",
-    "voiceProfile": "narrator-en"
+    "voiceProfile": "narrator-en",
+    "musicTrack": "ambient-short"
   },
   "scenes": [
     {
       "id": 1,
-      "duration": 4,
-      "narration": "Your zodiac sign... is probably wrong.",
-      "visualType": "title_card",
-      "textOverlay": "YOUR SIGN IS WRONG",
-      "transition": "cut"
+      "duration": 6,
+      "narration": "Your zodiac sign... is probably wrong. And you've been reading the wrong horoscope your entire life.",
+      "visualType": "cosmic_text",
+      "textOverlay": "YOUR SIGN IS *WRONG*",
+      "textStyle": "burst",
+      "cosmicPreset": "eclipse",
+      "transition": "cut",
+      "videoPrompt": "Cinematic slow-motion total solar eclipse in deep space, diamond ring effect appearing, corona streamers blazing outward, dramatic shift from light to darkness, 4K, epic cosmic atmosphere, golden light bursting through"
     },
     {
       "id": 2,
-      "duration": 8,
-      "narration": "Western astrology uses the tropical zodiac — based on seasons. But the actual stars have shifted 24 degrees over 1,700 years.",
-      "visualType": "comparison",
-      "textOverlay": "Tropical vs Sidereal: 24° drift",
-      "transition": "zoom"
+      "duration": 10,
+      "narration": "Western astrology uses the tropical zodiac — a system based on Earth's seasons, not the actual stars. But over 1,700 years, the Earth's axis has wobbled. The stars have drifted 24 degrees from where the ancients mapped them.",
+      "visualType": "zodiac_wheel",
+      "textOverlay": "24° DRIFT IN 1,700 YEARS",
+      "cosmicPreset": "constellation",
+      "transition": "zoom",
+      "videoPrompt": "Ancient constellation map coming to life in the night sky, golden zodiac lines slowly rotating against a star field, Earth visible below slowly wobbling on its axis, precession of equinoxes visualized, stars drifting out of alignment with constellation boundaries, cinematic 4K, deep blue and gold color palette"
     },
     {
       "id": 3,
-      "duration": 8,
-      "narration": "Vedic astrology uses the sidereal zodiac — fixed to real star positions. So if you're a Taurus in Western... you're likely an Aries in Vedic.",
-      "visualType": "zodiac_wheel",
-      "textOverlay": "Taurus → Aries",
-      "transition": "slide"
+      "duration": 10,
+      "narration": "That means when Western astrology says the Sun is in Taurus — it's actually in Aries. The stars moved, but the Western calendar didn't. Your real sign has been hiding in plain sight.",
+      "visualType": "cosmic_text",
+      "textOverlay": "*Taurus* → *Aries*\nThe stars moved",
+      "textStyle": "ascend",
+      "cosmicPreset": "nebula",
+      "transition": "slide",
+      "videoPrompt": "Two zodiac constellations overlapping and separating in space — Taurus bull constellation fading as Aries ram constellation glows brighter, stars shifting positions, cosmic dust swirling between them, dramatic golden light transition, deep space nebula background, cinematic 4K"
     },
     {
       "id": 4,
-      "duration": 6,
-      "narration": "Which system reveals your TRUE personality? Vedic astrology has been doing this for 5,000 years.",
-      "visualType": "text_reveal",
-      "textOverlay": "5,000 years of precision",
-      "transition": "fade"
+      "duration": 10,
+      "narration": "Vedic astrology — Jyotish — uses the sidereal zodiac. Fixed to real star positions. When you look up at the night sky, Vedic astrology matches what you actually see. It's been this precise for 5,000 years.",
+      "visualType": "cosmic_text",
+      "textOverlay": "*5,000* YEARS\nOF *PRECISION*",
+      "textStyle": "glow",
+      "cosmicPreset": "galaxy",
+      "transition": "fade",
+      "videoPrompt": "Ancient Indian observatory at night under a spectacular star-filled sky, time-lapse of stars wheeling overhead, constellation patterns connected by golden light lines, Milky Way stretching across the sky, ancient stone instruments silhouetted, transition to close-up of stars with golden Sanskrit characters appearing, cinematic 4K, mystical atmosphere"
     },
     {
       "id": 5,
-      "duration": 4,
-      "narration": "Check your real Vedic sign — free — at Dekho Panchang dot com.",
+      "duration": 8,
+      "narration": "The Moon — not the Sun — is the foundation of Vedic astrology. Your Moon sign reveals your true emotional nature, your instincts, your deepest self. Everything in Jyotish flows from the Moon.",
+      "visualType": "planet_render",
+      "planet": "moon",
+      "textOverlay": "The Moon is everything",
+      "cosmicPreset": "deep_space",
+      "transition": "zoom",
+      "videoPrompt": "Dramatic close-up of a full Moon rising over the Earth's horizon seen from space, lunar surface details visible — craters, maria, mountains — silvery light flooding the frame, Earth's atmosphere glowing blue below, camera slowly orbiting, ethereal and mystical, cinematic 4K"
+    },
+    {
+      "id": 6,
+      "duration": 8,
+      "narration": "Your dashas — the planetary periods that govern your entire life — are calculated from the Moon's exact position among the 27 nakshatras at the moment of your birth. Each nakshatra is a cosmic address.",
+      "visualType": "cosmic_text",
+      "textOverlay": "27 *Nakshatras*\nYour cosmic address",
+      "textStyle": "ascend",
+      "cosmicPreset": "constellation",
+      "transition": "slide",
+      "videoPrompt": "27 star clusters lighting up one by one in a circular pattern around a central Moon, each cluster connected by thin golden lines forming a cosmic mandala, Sanskrit names appearing briefly beside each star group, camera pulling back to reveal the full pattern — a sacred geometric wheel of stars, deep space background with nebula, cinematic 4K"
+    },
+    {
+      "id": 7,
+      "duration": 8,
+      "narration": "Nine planets. Twelve houses. Twenty-seven nakshatras. One hundred and fifty yogas. This isn't pop astrology. This is a complete science of time — and it's been free and open for millennia.",
+      "visualType": "cosmic_text",
+      "textOverlay": "9 planets • 12 houses\n27 nakshatras • 150 yogas",
+      "textStyle": "burst",
+      "cosmicPreset": "nebula",
+      "transition": "fade",
+      "videoPrompt": "Cinematic montage: nine planets orbiting in a cosmic dance, each glowing with its characteristic color — golden Sun, silver Moon, red Mars, green Mercury, yellow Jupiter, white Venus, dark blue Saturn, smoky Rahu shadow, fiery Ketu tail — all converging toward a central diamond chart pattern, sacred geometry forming, epic cosmic atmosphere, 4K"
+    },
+    {
+      "id": 8,
+      "duration": 8,
+      "narration": "Millions have been reading the wrong horoscope. Don't be one of them. Discover your real Vedic chart — your real self — free, at Dekho Panchang.",
       "visualType": "cta",
       "textOverlay": "dekhopanchang.com",
-      "transition": "fade"
+      "cosmicPreset": "galaxy",
+      "transition": "fade",
+      "videoPrompt": "Camera pulling back from a birth chart mandala floating in space, revealing a vast spiral galaxy behind it, golden particles streaming toward the viewer, serene and majestic, the galaxy slowly rotating, warm golden light washing over the scene, peaceful resolution, cinematic 4K"
     }
   ]
 }

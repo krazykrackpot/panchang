@@ -123,6 +123,10 @@ function formatTimeHHMM(date: Date): string {
   return date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false });
 }
 
+// ISR: cache for 7 days — festival dates for a given year never change.
+// Prevents CPU spikes from crawlers (Meta, Google) hitting uncached pages repeatedly.
+export const revalidate = 604800; // 7 days in seconds
+
 /**
  * Pre-render only a small seed set at build time — top 5 festivals × top 5 cities × 2026.
  * All other combinations are generated on-demand via ISR (Next.js dynamic rendering).

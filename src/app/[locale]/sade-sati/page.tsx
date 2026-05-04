@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useLocale } from 'next-intl';
 import { authedFetch } from '@/lib/api/authed-fetch';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -8,6 +8,7 @@ import GoldDivider from '@/components/ui/GoldDivider';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import type { Locale, LocaleText } from '@/types/panchang';
+import type { BirthData } from '@/types/kundali';
 import { tl } from '@/lib/utils/trilingual';
 import { RASHIS } from '@/lib/constants/rashis';
 import {
@@ -24,6 +25,9 @@ import InfoBlock from '@/components/ui/InfoBlock';
 import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { useAuthStore } from '@/stores/auth-store';
+import { getSupabase } from '@/lib/supabase/client';
+import { User } from 'lucide-react';
 
 // ---------------------------------------------------------------------------
 // Trilingual labels
@@ -150,6 +154,93 @@ export default function SadeSatiPage() {
   const [birthLat, setBirthLat] = useState<number | null>(null);
   const [birthLng, setBirthLng] = useState<number | null>(null);
   const [birthTimezone, setBirthTimezone] = useState<string | null>(null);
+
+  // ── Saved charts integration ──────────────────────────────────
+  const authUser = useAuthStore(s => s.user);
+  interface SavedChart { id: string; label: string; birth_data: BirthData }
+  interface ChartWithSadeSati extends SavedChart { analysis: SadeSatiAnalysis | null; moonSign: number; loading: boolean }
+  const [savedCharts, setSavedCharts] = useState<ChartWithSadeSati[]>([]);
+  const [selectedChartId, setSelectedChartId] = useState<string | null>(null);
+  const [chartsLoading, setChartsLoading] = useState(false);
+
+  /** Compute full sade sati for a birth_data — same logic as handleFullAnalysis */
+  const computeSadeSatiForBirthData = useCallback(async (bd: BirthData): Promise<{ analysis: SadeSatiAnalysis; moonSign: number } | null> => {
+    try {
+      const [y, m, d] = bd.date.split('-').map(Number);
+      const tz = bd.timezone || '5.5';
+      const tzOffset = typeof tz === 'string' && tz.includes('/') ? getUTCOffsetForDate(y, m, d, tz) : parseFloat(tz);
+      const res = await authedFetch('/api/kundali', {
+        method: 'POST',
+        body: JSON.stringify({ ...bd, timezone: String(tzOffset), ayanamsha: bd.ayanamsha || 'lahiri' }),
+      });
+      if (!res.ok) return null;
+      const kundali = await res.json();
+      const moon = kundali.planets?.[1];
+      const saturn = kundali.planets?.[6];
+      const ascSign = kundali.ascendant?.sign;
+      const bavRow = kundali.ashtakavarga?.bpiTable?.[6];
+      const now = new Date().toISOString();
+      const currentMaha = kundali.dashas?.find((dd: { startDate: string; endDate: string }) => dd.startDate <= now && dd.endDate >= now);
+      const currentAntar = currentMaha?.subPeriods?.find((dd: { startDate: string; endDate: string }) => dd.startDate <= now && dd.endDate >= now);
+      const input: SadeSatiInput = {
+        moonSign: moon?.sign ?? 1,
+        moonNakshatra: moon?.nakshatra?.id,
+        moonDegree: moon?.longitude != null ? (moon.longitude % 30) : undefined,
+        ascendantSign: ascSign,
+        saturnSign: saturn?.sign,
+        saturnHouse: saturn?.house,
+        saturnRetrograde: saturn?.isRetrograde,
+        ashtakavargaSaturnBindus: bavRow,
+        currentDasha: currentMaha ? { planet: currentMaha.planet, startDate: currentMaha.startDate, endDate: currentMaha.endDate } : undefined,
+        currentAntar: currentAntar ? { planet: currentAntar.planet, startDate: currentAntar.startDate, endDate: currentAntar.endDate } : undefined,
+      };
+      return { analysis: analyzeSadeSati(input), moonSign: moon?.sign ?? 1 };
+    } catch {
+      return null;
+    }
+  }, []);
+
+  // Fetch saved charts and compute sade sati for each
+  useEffect(() => {
+    if (!authUser) { setSavedCharts([]); return; }
+    const supabase = getSupabase();
+    if (!supabase) return;
+    setChartsLoading(true);
+    supabase
+      .from('saved_charts')
+      .select('id, label, birth_data')
+      .eq('user_id', authUser.id)
+      .order('created_at', { ascending: false })
+      .then(async ({ data: charts, error }) => {
+        if (error || !charts?.length) { setChartsLoading(false); return; }
+        // Initialize with loading state
+        const initial: ChartWithSadeSati[] = charts.map(c => ({
+          ...c as SavedChart, analysis: null, moonSign: 0, loading: true,
+        }));
+        setSavedCharts(initial);
+        setChartsLoading(false);
+
+        // Compute sade sati for each in parallel
+        const results = await Promise.all(
+          charts.map(c => computeSadeSatiForBirthData((c as SavedChart).birth_data))
+        );
+        setSavedCharts(prev => prev.map((c, i) => ({
+          ...c,
+          analysis: results[i]?.analysis ?? null,
+          moonSign: results[i]?.moonSign ?? 0,
+          loading: false,
+        })));
+      });
+  }, [authUser, computeSadeSatiForBirthData]);
+
+  // When a saved chart is selected, set the analysis
+  const handleChartSelect = (chart: ChartWithSadeSati) => {
+    if (!chart.analysis) return;
+    setSelectedChartId(chart.id);
+    setMoonRashi(chart.moonSign);
+    setAnalysis(chart.analysis);
+    setIsFullMode(true);
+  };
 
   const saturnNow = useMemo(() => getCurrentSaturnSign(), []);
   const saturnSignName = RASHIS.find(r => r.id === saturnNow.sign)?.name;
@@ -279,7 +370,71 @@ export default function SadeSatiPage() {
         )}
       </InfoBlock>
 
-      {/* Tabs */}
+      {/* ── Saved Charts — auto sade sati for logged-in users ── */}
+      {authUser && savedCharts.length > 0 && (
+        <motion.div {...fadeUp} className="mb-10">
+          <h2 className="text-lg font-bold text-gold-light mb-4 flex items-center gap-2" style={headingFont}>
+            <User size={18} className="text-gold-primary" />
+            {locale === 'hi' ? 'आपकी कुण्डलियाँ' : 'Your Charts'}
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {savedCharts.map(chart => {
+              const isSelected = selectedChartId === chart.id;
+              const isActive = chart.analysis?.isActive ?? false;
+              const phase = chart.analysis?.currentPhase;
+              const moonName = chart.moonSign > 0 ? RASHIS.find(r => r.id === chart.moonSign)?.name : null;
+              return (
+                <button
+                  key={chart.id}
+                  onClick={() => handleChartSelect(chart)}
+                  disabled={chart.loading}
+                  className={`text-left px-4 py-3.5 rounded-xl border transition-all ${
+                    isSelected
+                      ? 'border-gold-primary/50 bg-gold-primary/10'
+                      : 'border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] hover:border-gold-primary/30'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-text-primary text-sm font-semibold truncate" style={bodyFont}>{chart.label || chart.birth_data?.name || 'Chart'}</span>
+                    {chart.loading ? (
+                      <span className="text-text-secondary text-xs animate-pulse">...</span>
+                    ) : isActive ? (
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-red-500/20 text-red-400 border border-red-500/25 font-bold">
+                        {locale === 'hi' ? 'सक्रिय' : 'ACTIVE'}
+                      </span>
+                    ) : (
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/20 font-bold">
+                        {locale === 'hi' ? 'नहीं' : 'NOT ACTIVE'}
+                      </span>
+                    )}
+                  </div>
+                  {moonName && (
+                    <div className="flex items-center gap-1.5">
+                      <RashiIconById id={chart.moonSign} size={14} className="text-gold-primary/60" />
+                      <span className="text-text-secondary text-xs" style={bodyFont}>
+                        {locale === 'hi' ? 'चन्द्र' : 'Moon'}: {tl(moonName, locale)}
+                      </span>
+                      {phase && (
+                        <span className="text-text-secondary/50 text-xs ml-auto">
+                          {phase === 'rising' ? '↗' : phase === 'peak' ? '●' : '↘'} {t(LABELS.phase[phase], locale)}
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+          {chartsLoading && (
+            <p className="text-text-secondary text-sm text-center mt-3 animate-pulse" style={bodyFont}>
+              {locale === 'hi' ? 'कुण्डलियाँ लोड हो रही हैं...' : 'Loading your charts...'}
+            </p>
+          )}
+          <GoldDivider />
+        </motion.div>
+      )}
+
+      {/* Tabs — for new/quick checks */}
       <div className="flex justify-center gap-2 mb-10">
         {(['quick', 'full'] as const).map(tb => (
           <button

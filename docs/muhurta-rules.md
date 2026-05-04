@@ -235,8 +235,22 @@ combust. Jupiter governs dharma and progeny.
 **Dharmasindhu**: Marriage prohibited during Chaturmas (Ashada Shukla Ekadashi
 to Kartik Shukla Ekadashi, approximately July-November).
 
-**Our implementation**: Not yet modelled at the scanner level. Future
-enhancement — requires tithi table lookup for Ekadashi dates per year.
+**Our implementation** (`classical-checks.ts → checkChaturmas`):
+Uses `getLunarMasaForDate()` to identify the Amanta month. Shravana (month 4)
+and Bhadrapada (month 5) are fully within Chaturmas — **hard veto** for
+samskaras. Ashadha (3) and Ashwina (6) are partial edge months — noted in the
+UI as "fewer auspicious days" but not hard vetoed (the exact Ekadashi boundary
+varies by year).
+
+### Adhika Masa
+
+**Dharmasindhu**: Marriage prohibited during Adhika (intercalary) Masa.
+
+**Our implementation** (`classical-checks.ts → isAdhikaMasa`):
+**Hard veto** for samskaras. Uses `getLunarMasaForDate()` which checks whether
+the lunar month contains a solar ingress (sankranti). If not, it's Adhika.
+Verified: May 2026 has Adhika Jyeshtha (~May 19 to June 13) → 0 marriage
+dates during that period.
 
 ---
 
@@ -328,17 +342,16 @@ Wednesdays per some texts. Not yet modelled as a bonus in the scanner.
 | Rikta tithis | Soft penalty (-5) | MC explicitly forbids 4th, 9th, 14th |
 | Vishti karana | Soft penalty (-5) | Universal prohibition |
 | Panchaka | Soft penalty (-5) | Traditional prohibition |
-| Chaturmas | **Not yet modelled** — should be hard veto | Dharmasindhu explicitly forbids |
-| Adhika/Kshaya Masa | **Not yet modelled** — should be hard veto | Dharmasindhu explicitly forbids |
+| **Chaturmas** (Shravana/Bhadrapada) | **Hard veto** (skip entire day) | Dharmasindhu: Harishayana period |
+| **Adhika Masa** | **Hard veto** (skip entire day) | Dharmasindhu explicitly forbids |
+| Navamsha Shuddhi | **+4 to -2** (half lagna weight) | MC: emphasised over Lagna Shuddhi for Vivah |
 
 ---
 
 ## Gaps and Future Enhancements
 
-1. **Chaturmas prohibition** — hard veto for marriage/samskaras.
-2. **Adhika Masa detection** — hard veto. Infrastructure exists (`TithiEntry.masa.isAdhika`).
-3. **Navamsha Shuddhi** — MC emphasises this over Lagna Shuddhi for Vivah.
-   Narrows each muhurta window to ~10-12 minutes.
+1. **Precise Chaturmas Ekadashi boundaries** — currently uses month-level
+   approximation. Exact Devshayani/Prabodhini dates need tithi table lookup.
 4. **Tithi-gandanthara** — junction periods between specific tithis.
 5. **Godhuli Lagna** — universal override per Brihat Samhita Ch. 103.
 6. **Pushya special case** — flag as "generally auspicious but disputed for Vivah."

@@ -16,7 +16,8 @@ import {
   computeInauspiciousPenalty,
 } from './inauspicious-periods';
 import {
-  checkVivahCombustion, scoreLagna, krishnaPakshaAdjustment,
+  checkVivahCombustion, scoreLagna, scoreNavamshaShuddhi,
+  krishnaPakshaAdjustment, isAdhikaMasa, checkChaturmas,
 } from './classical-checks';
 import type { ScoredTimeWindow, ScoreBreakdown, ExtendedActivityId, ScanOptionsV2, DetailBreakdown, InauspiciousPeriod } from '@/types/muhurta-ai';
 import type { LocaleText,} from '@/types/panchang';
@@ -236,9 +237,10 @@ export function scanDateRangeV2(options: ScanOptionsV2): ScanV2Window[] {
   const hasPersonal = !!(birthNakshatra && birthNakshatra > 0) || !!(birthRashi && birthRashi > 0);
   const hasDasha = !!dashaLords;
 
-  // Max raw score for normalization — includes lagna component
+  // Max raw score for normalization — includes lagna + navamsha
   const maxRaw = 75 // panchang(25) + transit(25) + timing(25)
-    + 8               // lagna (Muhurta Chintamani: most powerful single factor)
+    + 8               // lagna (MC: most powerful single factor)
+    + 4               // navamsha shuddhi (MC: emphasised for Vivah, half lagna weight)
     + (hasPersonal ? 20 : 0)  // taraBala(10) + chandraBala(10)
     + (hasDasha ? 10 : 0)     // dashaHarmony
     + 10;                      // inauspicious (10 = no penalty)
@@ -258,15 +260,28 @@ export function scanDateRangeV2(options: ScanOptionsV2): ScanV2Window[] {
     const sunriseUT = approximateSunriseSafe(jdNoon, lat, lng);
     const sunsetUT = approximateSunsetSafe(jdNoon, lat, lng);
 
-    // ── Per-day hard veto: Venus/Jupiter combustion ──────────────
-    // Muhurta Chintamani + Dharmasindhu: Samskaras forbidden when
-    // Shukra (Venus) or Guru (Jupiter) is combust.
-    // Checked once per day (combustion doesn't change within hours).
+    // ── Per-day hard vetoes (Dharmasindhu + MC) ──────────────────
+
     if (COMBUSTION_ACTIVITIES.has(activity)) {
+      // Venus/Jupiter combustion — absolute prohibition for samskaras
       const combust = checkVivahCombustion(jdNoon);
       if (combust.vetoed) {
         current.setUTCDate(current.getUTCDate() + 1);
-        continue; // Skip entire day
+        continue;
+      }
+
+      // Adhika Masa — Dharmasindhu: marriage prohibited in intercalary month
+      if (isAdhikaMasa(year, month, day)) {
+        current.setUTCDate(current.getUTCDate() + 1);
+        continue;
+      }
+
+      // Chaturmas — Dharmasindhu: marriage prohibited Shravana-Bhadrapada
+      // (full months within Chaturmas). Ashadha/Ashwina are partial — soft penalty.
+      const chaturmas = checkChaturmas(year, month, day);
+      if (chaturmas === 'full') {
+        current.setUTCDate(current.getUTCDate() + 1);
+        continue;
       }
     }
 
@@ -306,10 +321,11 @@ export function scanDateRangeV2(options: ScanOptionsV2): ScanV2Window[] {
         continue;
       }
 
-      // ── Lagna Scoring ─────────────────────────────────────────
+      // ── Lagna + Navamsha Scoring ────────────────────────────────
       // MC: "A properly chosen lagna removes all defects."
-      // Lagna changes every ~2 hours, so scored per window.
+      // MC: Navamsha Shuddhi emphasised over Lagna Shuddhi for Vivah.
       const lagna = scoreLagna(jdMid, lat, lng, activity);
+      const navamsha = scoreNavamshaShuddhi(jdMid, lat, lng, activity);
 
       // ── Krishna Paksha conditional logic ──────────────────────
       // Not a hard veto. Penalty depends on nakshatra + lagna quality.
@@ -362,10 +378,11 @@ export function scanDateRangeV2(options: ScanOptionsV2): ScanV2Window[] {
         dashaScore = dashaResult.score;
       }
 
-      // Raw score — includes lagna (MC's most powerful factor) and Krishna adj
+      // Raw score — lagna + navamsha (MC's most powerful factors) and Krishna adj
       const rawScore = panchang.score + transit.score + timing.score
-        + Math.max(0, lagna.score)  // Lagna: 0-8 (negative lagnas clamp to 0)
-        + krishnaAdj               // Krishna Paksha conditional: 0 to -6
+        + Math.max(0, lagna.score)     // Lagna: 0-8
+        + Math.max(0, navamsha.score)  // Navamsha Shuddhi: 0-4
+        + krishnaAdj                   // Krishna Paksha conditional: 0 to -6
         + (hasPersonal ? taraScore + chandraScore : 0)
         + (hasDasha ? dashaScore : 0)
         + inauspiciousScore;

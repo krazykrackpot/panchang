@@ -125,12 +125,49 @@ export function scoreLagna(
 // Dharmasindhu: Marriage prohibited during Adhika (intercalary) Masa.
 // An Adhika Masa occurs when a lunar month contains no solar ingress
 // (sankranti). This happens ~once every 2.7 years.
-//
-// We check this via the tithi table's masa.isAdhika flag.
-// Since the tithi table is expensive to build, callers should cache it.
 
-// Chaturmas period boundaries are handled by the caller checking festival dates.
-// This module provides the point-in-time checks.
+import { getLunarMasaForDate } from '@/lib/calendar/hindu-months';
+
+/**
+ * Check if a date falls in Adhika (intercalary) Masa.
+ * Dharmasindhu explicitly prohibits marriage during Adhika Masa.
+ */
+export function isAdhikaMasa(year: number, month: number, day: number): boolean {
+  const masa = getLunarMasaForDate(year, month, day);
+  return masa?.isAdhika ?? false;
+}
+
+// ─── Chaturmas Check ────────────────────────────────────────────────────────
+// Dharmasindhu: Marriage prohibited during Chaturmas (Harishayana period).
+// Chaturmas = Devshayani Ekadashi (Ashadha Shukla 11) to
+//             Prabodhini Ekadashi (Kartika Shukla 11).
+// ~July to November in the Gregorian calendar.
+//
+// Precise Ekadashi boundaries require the tithi table. We approximate
+// using Amanta month names: Shravana and Bhadrapada are fully within
+// Chaturmas; Ashadha (latter half) and Ashwina/Kartika (first half)
+// are partial. We conservatively mark Shravana + Bhadrapada as hard
+// veto, and Ashadha/Ashwina as soft (handled by the month being
+// naturally poor for marriage due to monsoon/inauspicious yogas).
+
+// Amanta masa indices: 0=Chaitra..11=Phalguna
+// Shravana=4, Bhadrapada=5 are fully within Chaturmas.
+// Ashadha=3 is partial (after Ekadashi), Ashwina=6 is partial (until Ekadashi).
+const CHATURMAS_FULL_MONTHS = [4, 5]; // Shravana, Bhadrapada — hard veto
+const CHATURMAS_PARTIAL_MONTHS = [3, 6]; // Ashadha, Ashwina — soft penalty
+
+/**
+ * Check if a date falls within Chaturmas.
+ * Returns 'full' for months entirely within Chaturmas (hard veto),
+ * 'partial' for edge months (soft penalty), or null.
+ */
+export function checkChaturmas(year: number, month: number, day: number): 'full' | 'partial' | null {
+  const masa = getLunarMasaForDate(year, month, day);
+  if (!masa) return null;
+  if (CHATURMAS_FULL_MONTHS.includes(masa.masaIdx)) return 'full';
+  if (CHATURMAS_PARTIAL_MONTHS.includes(masa.masaIdx)) return 'partial';
+  return null;
+}
 
 // ─── Krishna Paksha Conditional Logic ───────────────────────────────────────
 // No classical text explicitly forbids Krishna Paksha for marriage.
@@ -140,6 +177,60 @@ export function scoreLagna(
 //
 // Rule: Krishna Paksha is permitted when nakshatra is in the "good" list
 // AND lagna is favourable (score >= 5). Otherwise, heavy penalty.
+
+// ─── Navamsha Shuddhi ───────────────────────────────────────────────────────
+// Muhurta Chintamani: Navamsha Shuddhi is emphasised over Lagna Shuddhi for
+// Vivah. The navamsha (D9 division) of the lagna at the muhurta moment should
+// fall in an auspicious sign. Each navamsha spans 3°20' (~13.3 minutes of time),
+// making this the finest-grained classical timing tool.
+//
+// Auspicious navamsha signs for Vivah: same as auspicious lagnas.
+
+/**
+ * Compute the navamsha rashi of the lagna and return a bonus/penalty.
+ * Navamsha = floor((degree_in_sign) / 3.333...) → maps to a rashi.
+ * The starting rashi of the navamsha cycle depends on the sign's element:
+ *   Fire signs (1,5,9): start from Aries (1)
+ *   Earth signs (2,6,10): start from Capricorn (10)
+ *   Air signs (3,7,11): start from Libra (7)
+ *   Water signs (4,8,12): start from Cancer (4)
+ */
+export function scoreNavamshaShuddhi(
+  jd: number,
+  lat: number,
+  lng: number,
+  activityId: string,
+): { navamshaRashi: number; score: number } {
+  const tropicalAsc = calculateAscendant(jd, lat, lng);
+  const siderealAsc = toSidereal(tropicalAsc, jd);
+  const signNum = getRashiNumber(siderealAsc); // 1-12
+  const degInSign = siderealAsc % 30;
+  const navamshaIdx = Math.floor(degInSign / (30 / 9)); // 0-8
+
+  // Starting rashi based on element
+  const ELEMENT_START: Record<number, number> = {
+    1: 1, 5: 1, 9: 1,     // Fire → Aries
+    2: 10, 6: 10, 10: 10,  // Earth → Capricorn
+    3: 7, 7: 7, 11: 7,     // Air → Libra
+    4: 4, 8: 4, 12: 4,     // Water → Cancer
+  };
+
+  const startRashi = ELEMENT_START[signNum] ?? 1;
+  const navamshaRashi = ((startRashi - 1 + navamshaIdx) % 12) + 1;
+
+  // Score the navamsha rashi using the same lagna scoring tables
+  const scores = activityId === 'marriage' || activityId === 'engagement'
+    ? VIVAH_LAGNA_SCORE
+    : GENERIC_LAGNA_SCORE;
+
+  // Navamsha contribution is smaller than lagna (secondary factor)
+  const rawScore = scores[navamshaRashi] ?? 0;
+  const score = Math.round(rawScore / 2); // Half weight of lagna
+
+  return { navamshaRashi, score };
+}
+
+// ─── Krishna Paksha Conditional Logic ───────────────────────────────────────
 
 /**
  * Compute Krishna Paksha penalty based on supporting factors.

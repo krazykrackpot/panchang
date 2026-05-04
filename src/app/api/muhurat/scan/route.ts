@@ -9,6 +9,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { scanDateRange, scanDateRangeV2 } from '@/lib/muhurta/time-window-scanner';
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
+import { checkVivahCombustion, isAdhikaMasa, checkChaturmas } from '@/lib/muhurta/classical-checks';
+import { dateToJD } from '@/lib/ephem/astronomical';
 import type { ExtendedActivityId } from '@/types/muhurta-ai';
 
 // All supported activities
@@ -134,6 +136,56 @@ export async function GET(req: NextRequest) {
     return { id, label: data?.label ?? { en: id } };
   });
 
+  // ── Restriction notices ──────────────────────────────────────
+  // Check classical prohibitions that may explain why a month has few/no dates.
+  // Only check for samskaras (marriage, griha_pravesh, etc.)
+  const SAMSKARA_ACTIVITIES = new Set(['marriage', 'engagement', 'griha_pravesh', 'upanayana', 'namakarana', 'mundan']);
+  const restrictions: { type: string; label: { en: string; hi: string } }[] = [];
+  if (SAMSKARA_ACTIVITIES.has(activity)) {
+    // Venus/Jupiter combustion — check mid-month
+    const jdMid = dateToJD(year, month, 15, 12 - tz);
+    const combust = checkVivahCombustion(jdMid);
+    if (combust.vetoed) {
+      const planets = combust.planets.join(' & ');
+      restrictions.push({
+        type: 'combustion',
+        label: {
+          en: `${planets} combust this month — samskaras restricted (Muhurta Chintamani + Dharmasindhu)`,
+          hi: `${planets === 'Venus' ? 'शुक्र' : planets === 'Jupiter' ? 'गुरु' : 'शुक्र/गुरु'} अस्त — संस्कार वर्जित (मुहूर्त चिन्तामणि + धर्मसिन्धु)`,
+        },
+      });
+    }
+    // Adhika Masa — check mid-month
+    if (isAdhikaMasa(year, month, 15)) {
+      restrictions.push({
+        type: 'adhika_masa',
+        label: {
+          en: 'Adhika Masa (intercalary month) — samskaras restricted (Dharmasindhu)',
+          hi: 'अधिक मास — संस्कार वर्जित (धर्मसिन्धु)',
+        },
+      });
+    }
+    // Chaturmas
+    const chaturmas = checkChaturmas(year, month, 15);
+    if (chaturmas === 'full') {
+      restrictions.push({
+        type: 'chaturmas',
+        label: {
+          en: 'Chaturmas (Harishayana period) — marriage prohibited (Dharmasindhu)',
+          hi: 'चातुर्मास (हरिशयन काल) — विवाह वर्जित (धर्मसिन्धु)',
+        },
+      });
+    } else if (chaturmas === 'partial') {
+      restrictions.push({
+        type: 'chaturmas_partial',
+        label: {
+          en: 'Chaturmas edge month — fewer auspicious days available',
+          hi: 'चातुर्मास सीमा मास — शुभ दिन सीमित',
+        },
+      });
+    }
+  }
+
   return NextResponse.json({
     year,
     month,
@@ -142,6 +194,7 @@ export async function GET(req: NextRequest) {
     windows: windows.slice(0, 10), // Top 10 detailed windows
     activities: activityLabels,
     activityLabel: activityData?.label,
+    restrictions,
   }, {
     headers: { 'Cache-Control': 'public, s-maxage=1800' },
   });

@@ -368,6 +368,7 @@ export default function MuhuratPage() {
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState<'calendar' | 'list'>('calendar');
   const [selectedDay, setSelectedDay] = useState<DaySummary | null>(null);
+  const [restrictions, setRestrictions] = useState<{ type: string; label: { en: string; hi: string } }[]>([]);
 
   useEffect(() => {
     setLoading(true);
@@ -391,6 +392,7 @@ export default function MuhuratPage() {
       .then(data => {
         setDays(data.days || []);
         if (data.activities) setActivities(data.activities);
+        setRestrictions(data.restrictions || []);
         setLoading(false);
       })
       .catch((err) => {
@@ -524,6 +526,26 @@ export default function MuhuratPage() {
       </motion.div>
 
       <GoldDivider />
+
+      {/* ================================================================ */}
+      {/* RESTRICTION NOTICES — combustion, Adhika Masa, Chaturmas         */}
+      {/* ================================================================ */}
+      {!loading && restrictions.length > 0 && (
+        <div className="my-6 space-y-2">
+          {restrictions.map((r, i) => (
+            <div key={i} className={`flex items-start gap-3 px-4 py-3 rounded-xl border ${
+              r.type === 'chaturmas_partial'
+                ? 'bg-gold-primary/5 border-gold-primary/15'
+                : 'bg-red-500/8 border-red-500/20'
+            }`}>
+              <span className="text-lg flex-shrink-0 mt-0.5">{r.type === 'combustion' ? '🔥' : r.type.startsWith('chaturmas') ? '🕉' : '📅'}</span>
+              <p className={`text-sm ${r.type === 'chaturmas_partial' ? 'text-gold-primary/80' : 'text-red-300'}`}>
+                {locale === 'hi' ? r.label.hi : r.label.en}
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* ================================================================ */}
       {/* NEXT BEST DATE — Hero card                                       */}

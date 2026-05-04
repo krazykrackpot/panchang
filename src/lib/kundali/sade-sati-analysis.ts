@@ -32,6 +32,12 @@ export interface SadeSatiAnalysis {
   saturnSign: number;
   cycleStart: string;
   cycleEnd: string;
+  /** Per-phase intensity (0-10) — personalised for the individual chart */
+  phaseIntensities: {
+    rising: number;
+    peak: number;
+    setting: number;
+  };
 
   allCycles: SadeSatiCycle[];
   currentCycleIndex: number;
@@ -65,6 +71,7 @@ export interface NakshatraTransitEntry {
   lastYear: number;
   isBirthNakshatra: boolean;
   isCurrent: boolean; // Saturn is currently in this nakshatra
+  phase: 'rising' | 'peak' | 'setting' | null; // which Sade Sati phase this nakshatra falls in
 }
 
 export interface SadeSatiCycle {
@@ -884,6 +891,10 @@ export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
   let intensityFactors: IntensityFactor[] = [];
   let overallIntensity = 0;
 
+  // Per-phase intensities — compute intensity for each of the 3 phases
+  // by substituting the phase score while keeping all other factors fixed.
+  let phaseIntensities = { rising: 0, peak: 0, setting: 0 };
+
   if (isActive) {
     const f1 = scoreSaturnFunctionalNature(input.ascendantSign);
     const f2 = scoreMoonStrength(input.moonSign, input.moonNakshatra);
@@ -893,6 +904,14 @@ export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
     const f6 = scoreNatalSaturn(input);
     intensityFactors = [f1, f2, f3, f4, f5, f6];
     overallIntensity = Math.min(10, intensityFactors.reduce((sum, f) => sum + f.score, 0));
+
+    // Base score = everything except the phase factor
+    const baseScore = f1.score + f2.score + f4.score + f5.score + f6.score;
+    phaseIntensities = {
+      rising: Math.min(10, baseScore + scorePhase('rising').score),
+      peak: Math.min(10, baseScore + scorePhase('peak').score),
+      setting: Math.min(10, baseScore + scorePhase('setting').score),
+    };
   }
 
   // Interpretation — transit-specific sections only shown when active
@@ -945,16 +964,27 @@ export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
     const nowSatSid = normalizeDeg(toSidereal(nowPlanets[6]?.longitude ?? 0, nowJd));
     const currentSaturnNak = getNakshatraNumber(nowSatSid);
 
+    // Determine which phase a nakshatra belongs to based on its sign
+    const naksInRising = new Set(nakshatrasInSign(sign12th));
+    const naksInPeak = new Set(nakshatrasInSign(input.moonSign));
+    // sign2nd nakshatras = setting phase
+    const naksInSetting = new Set(nakshatrasInSign(sign2nd));
+
     // Build ordered entries
     for (const nak of cycleNaks) {
       const range = nakRanges.get(nak);
       if (range) {
+        const phase = naksInRising.has(nak) ? 'rising' as const
+          : naksInPeak.has(nak) ? 'peak' as const
+          : naksInSetting.has(nak) ? 'setting' as const
+          : null;
         nakshatraTimeline.push({
           nakshatra: nak,
           firstYear: range.first,
           lastYear: range.last,
           isBirthNakshatra: nak === (input.moonNakshatra ?? 0),
           isCurrent: nak === currentSaturnNak,
+          phase,
         });
       }
     }
@@ -971,6 +1001,7 @@ export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
     saturnSign: saturnInfo.sign,
     cycleStart,
     cycleEnd,
+    phaseIntensities,
     allCycles,
     currentCycleIndex,
     overallIntensity,

@@ -754,42 +754,73 @@ export default function SadeSatiPage() {
                       </div>
                     )}
 
-                    {/* Nakshatra transit sub-items for active cycle */}
+                    {/* Visual Phase Timeline with nakshatra transits + per-phase intensity */}
                     {cycle.isActive && analysis.nakshatraTimeline.length > 0 && (
-                      <div className="mt-3 pt-3 border-t border-gold-primary/10 space-y-1">
-                        <div className="text-xs text-text-tertiary uppercase tracking-wider mb-1.5">
-                          {isTamil ? 'நட்சத்திர கோசாரம்' : locale === 'en' ? 'Nakshatra Transits' : 'नक्षत्र गोचर'}
+                      <div className="mt-4 pt-4 border-t border-gold-primary/10">
+                        <div className="text-xs text-gold-dark uppercase tracking-widest font-bold mb-3">
+                          {locale === 'hi' ? 'चरण-वार गोचर मानचित्र' : 'Phase-wise Transit Map'}
                         </div>
-                        {analysis.nakshatraTimeline.map((nt, k) => {
-                          const nak = NAKSHATRAS[nt.nakshatra - 1];
-                          const nakName = nak?.name?.[locale as 'en' | 'hi' | 'sa'] || nak?.name?.en || '';
-                          const yearLabel = nt.firstYear === nt.lastYear ? String(nt.firstYear) : `${nt.firstYear}–${nt.lastYear}`;
+                        {(['rising', 'peak', 'setting'] as const).map(phase => {
+                          const phaseNaks = analysis.nakshatraTimeline.filter(nt => nt.phase === phase);
+                          if (phaseNaks.length === 0) return null;
+                          const intensity = analysis.phaseIntensities[phase];
+                          const isCurrent = analysis.currentPhase === phase;
+                          const phaseBg = isCurrent
+                            ? (phase === 'rising' ? 'bg-sky-500/8 border-sky-500/25' : phase === 'peak' ? 'bg-red-500/8 border-red-500/25' : 'bg-amber-500/8 border-amber-500/25')
+                            : 'bg-white/[0.02] border-white/5';
                           return (
-                            <div
-                              key={k}
-                              className={`flex items-center gap-2 text-xs px-2.5 py-1.5 rounded-lg border ${
-                                nt.isBirthNakshatra
-                                  ? 'bg-amber-500/10 border-amber-500/30 text-amber-300 font-bold'
-                                  : nt.isCurrent
-                                    ? 'bg-gold-primary/10 border-gold-primary/25 text-gold-light'
-                                    : 'border-transparent text-text-secondary'
-                              }`}
-                            >
-                              <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${
-                                nt.isCurrent ? 'bg-gold-primary animate-pulse' : nt.isBirthNakshatra ? 'bg-amber-400' : 'bg-text-tertiary/40'
-                              }`} />
-                              <span className="flex-1">{nakName}</span>
-                              <span className="font-mono text-xs opacity-70">{yearLabel}</span>
-                              {nt.isBirthNakshatra && (
-                                <span className="text-xs uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-500/15 border border-amber-500/25 text-amber-300">
-                                  {isTamil ? 'ஜன்மம்' : locale === 'en' ? 'Birth' : 'जन्म'}
-                                </span>
-                              )}
-                              {nt.isCurrent && !nt.isBirthNakshatra && (
-                                <span className="text-xs uppercase tracking-wider px-1.5 py-0.5 rounded bg-gold-primary/15 border border-gold-primary/25 text-gold-light">
-                                  {isTamil ? 'இப்போது' : locale === 'en' ? 'Now' : 'अभी'}
-                                </span>
-                              )}
+                            <div key={phase} className={`rounded-xl border ${phaseBg} p-3 mb-2`}>
+                              {/* Phase header with intensity */}
+                              <div className="flex items-center justify-between mb-2">
+                                <div className="flex items-center gap-2">
+                                  <span className={`w-2 h-2 rounded-full ${isCurrent ? (phase === 'rising' ? 'bg-sky-400 animate-pulse' : phase === 'peak' ? 'bg-red-400 animate-pulse' : 'bg-amber-400 animate-pulse') : 'bg-text-tertiary/30'}`} />
+                                  <span className={`text-xs font-bold uppercase tracking-wider ${isCurrent ? (phase === 'rising' ? 'text-sky-400' : phase === 'peak' ? 'text-red-400' : 'text-amber-400') : 'text-text-secondary/70'}`}>
+                                    {t(LABELS.phase[phase], locale)}
+                                  </span>
+                                  {isCurrent && (
+                                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-gold-primary/15 text-gold-light font-bold">
+                                      {locale === 'hi' ? 'वर्तमान' : 'CURRENT'}
+                                    </span>
+                                  )}
+                                </div>
+                                {/* Per-phase intensity */}
+                                <div className="flex items-center gap-1.5">
+                                  <div className="w-16 h-1.5 rounded-full bg-bg-tertiary/40 overflow-hidden">
+                                    <div
+                                      className={`h-full rounded-full ${
+                                        intensity <= 3 ? 'bg-emerald-400' : intensity <= 5 ? 'bg-gold-primary' : intensity <= 7 ? 'bg-orange-400' : 'bg-red-400'
+                                      }`}
+                                      style={{ width: `${Math.min(100, intensity * 10)}%` }}
+                                    />
+                                  </div>
+                                  <span className={`text-xs font-bold ${intensityColor(intensity)}`}>{intensity.toFixed(1)}</span>
+                                </div>
+                              </div>
+                              {/* Nakshatra chips */}
+                              <div className="flex flex-wrap gap-1.5">
+                                {phaseNaks.map((nt, k) => {
+                                  const nak = NAKSHATRAS[nt.nakshatra - 1];
+                                  const nakName = nak?.name?.[locale as 'en' | 'hi' | 'sa'] || nak?.name?.en || '';
+                                  const yearLabel = nt.firstYear === nt.lastYear ? String(nt.firstYear) : `${nt.firstYear}–${nt.lastYear}`;
+                                  return (
+                                    <div
+                                      key={k}
+                                      className={`inline-flex items-center gap-1.5 text-xs px-2 py-1 rounded-lg border ${
+                                        nt.isBirthNakshatra
+                                          ? 'bg-amber-500/15 border-amber-500/30 text-amber-300 font-bold'
+                                          : nt.isCurrent
+                                            ? 'bg-gold-primary/15 border-gold-primary/30 text-gold-light'
+                                            : 'border-white/5 text-text-secondary'
+                                      }`}
+                                    >
+                                      {nt.isCurrent && <span className="w-1.5 h-1.5 rounded-full bg-gold-primary animate-pulse" />}
+                                      <span>{nakName}</span>
+                                      <span className="opacity-50 font-mono">{yearLabel}</span>
+                                      {nt.isBirthNakshatra && <span className="text-[9px] uppercase tracking-wider text-amber-400">{locale === 'hi' ? 'जन्म' : 'Birth'}</span>}
+                                    </div>
+                                  );
+                                })}
+                              </div>
                             </div>
                           );
                         })}

@@ -13,6 +13,7 @@
  */
 
 import type { PanchangData } from '@/types/panchang';
+import { getNakshatraActivity } from '@/lib/constants/nakshatra-activities';
 
 export interface DailyEnergy {
   score: number;           // 0–100 (clamped integer)
@@ -246,7 +247,7 @@ export function computeDailyEnergy(panchang: PanchangData): DailyEnergy {
   const varaRaw     = varaScore(vara.day);
 
   // Weighted sum
-  const score = Math.round(
+  const weighted = Math.round(
     moonRaw   * 0.40 +
     nakRaw    * 0.30 +
     yogaRaw   * 0.15 +
@@ -254,8 +255,19 @@ export function computeDailyEnergy(panchang: PanchangData): DailyEnergy {
     varaRaw   * 0.05,
   );
 
+  // Auspicious/inauspicious modifiers (additive, post-weighting)
+  // Fields may be undefined (e.g., in test fixtures) — treat as 0
+  let modifier = 0;
+  if (panchang.sarvarthaSiddhi) modifier += 8;
+  if (panchang.amritSiddhiYoga) modifier += 6;
+  if (panchang.amritKalam)      modifier += 4;
+  if (panchang.varjyam)         modifier -= 6;
+  if (panchang.dagdhaTithi)     modifier -= 8;
+  if (panchang.panchaka?.active) modifier -= 4;
+  if (panchang.gandaMoola?.active) modifier -= 3;
+
   // Clamp to 0–100
-  const clamped = Math.max(0, Math.min(100, score));
+  const clamped = Math.max(0, Math.min(100, weighted + modifier));
 
   // Label
   const label = clamped >= 80 ? 'High' : clamped >= 50 ? 'Moderate' : 'Low';
@@ -270,35 +282,37 @@ export function computeDailyEnergy(panchang: PanchangData): DailyEnergy {
   ];
   const dominant = components.reduce((a, b) => (a.weighted >= b.weighted ? a : b));
 
-  // Best-for: merge from moon phase and nakshatra (top contributors)
-  const moonBest = moonPhaseBestFor(tithi.number, paksha);
-  const nakBest  = nakshatraBestFor(nakshatra.id);
-  const yogaBest = yogaBestFor(yoga.number);
-
-  // Take first unique 3
-  const allBest = [...moonBest, ...nakBest, ...yogaBest];
-  const uniqueBest: string[] = [];
-  for (const b of allBest) {
-    if (!uniqueBest.includes(b)) uniqueBest.push(b);
-    if (uniqueBest.length >= 3) break;
+  // Best-for: BPHS classical nakshatra activities (specific and authoritative)
+  const activity = getNakshatraActivity(nakshatra.id);
+  let bestFor: string[];
+  if (activity && activity.goodFor.length > 0) {
+    bestFor = activity.goodFor.slice(0, 3).map(g => g.en);
+  } else {
+    // Fallback to moon-phase recommendations when nakshatra data unavailable
+    bestFor = moonPhaseBestFor(tithi.number, paksha).slice(0, 3);
   }
 
-  // Avoid: combine moon-phase and yoga avoid lists
-  const moonAvoid = moonPhaseAvoid(tithi.number, paksha);
-  const yogaAv    = yogaAvoid(yoga.number);
-  const allAvoid  = [...yogaAv, ...moonAvoid];
-  const uniqueAvoid: string[] = [];
-  for (const a of allAvoid) {
-    if (!uniqueAvoid.includes(a)) uniqueAvoid.push(a);
-    if (uniqueAvoid.length >= 2) break;
+  // Avoid: nakshatra-specific classical avoids + inauspicious period warnings
+  const avoidItems: string[] = [];
+  if (activity) {
+    for (const a of activity.avoidFor) {
+      avoidItems.push(a.en);
+    }
+  }
+  if (panchang.varjyam) avoidItems.push('Activities during Varjyam');
+  if (panchang.dagdhaTithi) avoidItems.push('Auspicious events (Dagdha Tithi)');
+  // Fallback if no avoids at all
+  if (avoidItems.length === 0) {
+    const moonAv = moonPhaseAvoid(tithi.number, paksha);
+    avoidItems.push(...moonAv);
   }
 
   return {
     score: clamped,
     label,
     dominantFactor: dominant.name,
-    bestFor: uniqueBest.slice(0, 3),
-    avoid: uniqueAvoid.slice(0, 2),
+    bestFor,
+    avoid: avoidItems.slice(0, 3),
   };
 }
 

@@ -329,3 +329,102 @@ describe('computeEnergyFromComponents', () => {
     expect(score).toBeLessThan(30);
   });
 });
+
+describe('unified energy modifiers', () => {
+  it('Sarvartha Siddhi raises score by +8', () => {
+    const base = makePanchang({
+      tithiNumber: 8, paksha: 'shukla', nakshatraId: 14, yogaNumber: 14, karanaNumber: 4, varaDayOfWeek: 3,
+    });
+    const baseScore = computeDailyEnergy(base).score;
+
+    const withSiddhi = { ...base, sarvarthaSiddhi: true } as PanchangData;
+    const sScore = computeDailyEnergy(withSiddhi).score;
+
+    expect(sScore).toBe(baseScore + 8);
+  });
+
+  it('Dagdha Tithi lowers score by -8', () => {
+    const base = makePanchang({
+      tithiNumber: 8, paksha: 'shukla', nakshatraId: 14, yogaNumber: 14, karanaNumber: 4, varaDayOfWeek: 3,
+    });
+    const baseScore = computeDailyEnergy(base).score;
+
+    const withDagdha = { ...base, dagdhaTithi: true } as PanchangData;
+    const dScore = computeDailyEnergy(withDagdha).score;
+
+    expect(dScore).toBe(baseScore - 8);
+  });
+
+  it('multiple modifiers stack correctly', () => {
+    const base = makePanchang({
+      tithiNumber: 10, paksha: 'shukla', nakshatraId: 17, yogaNumber: 18, karanaNumber: 6, varaDayOfWeek: 5,
+    });
+    const baseScore = computeDailyEnergy(base).score;
+
+    // Sarvartha (+8) + Varjyam (-6) = net +2
+    const withBoth = { ...base, sarvarthaSiddhi: true, varjyam: { start: '10:00', end: '11:30' } } as PanchangData;
+    const bothScore = computeDailyEnergy(withBoth).score;
+
+    expect(bothScore).toBe(baseScore + 2);
+  });
+
+  it('score remains clamped to 0-100 even with extreme modifiers', () => {
+    // Best possible base + all positive modifiers
+    const best = makePanchang({
+      tithiNumber: 15, paksha: 'shukla', nakshatraId: 8, yogaNumber: 16, karanaNumber: 6, varaDayOfWeek: 5,
+    });
+    const boosted = {
+      ...best,
+      sarvarthaSiddhi: true, amritSiddhiYoga: true,
+      amritKalam: { start: '02:00', end: '03:30' },
+    } as PanchangData;
+    expect(computeDailyEnergy(boosted).score).toBeLessThanOrEqual(100);
+
+    // Worst possible base + all negative modifiers
+    const worst = makePanchang({
+      tithiNumber: 15, paksha: 'krishna', nakshatraId: 19, yogaNumber: 27, karanaNumber: 7, varaDayOfWeek: 6,
+    });
+    const penalized = {
+      ...worst,
+      dagdhaTithi: true, varjyam: { start: '10:00', end: '11:30' },
+      panchaka: { active: true }, gandaMoola: { active: true },
+    } as PanchangData;
+    expect(computeDailyEnergy(penalized).score).toBeGreaterThanOrEqual(0);
+  });
+
+  it('bestFor uses BPHS nakshatra activities, not generic phrases', () => {
+    // Ashwini (id=1) should return "Travel", "Medicine & Healing", etc.
+    const p = makePanchang({
+      tithiNumber: 8, paksha: 'shukla', nakshatraId: 1, yogaNumber: 14, karanaNumber: 4, varaDayOfWeek: 3,
+    });
+    const result = computeDailyEnergy(p);
+    expect(result.bestFor).toContain('Travel');
+    expect(result.bestFor).toContain('Medicine & Healing');
+  });
+
+  it('avoid includes Varjyam warning when active', () => {
+    const p = {
+      ...makePanchang({
+        tithiNumber: 8, paksha: 'shukla', nakshatraId: 1, yogaNumber: 14, karanaNumber: 4, varaDayOfWeek: 3,
+      }),
+      varjyam: { start: '10:00', end: '11:30' },
+    } as PanchangData;
+    const result = computeDailyEnergy(p);
+    expect(result.avoid).toContain('Activities during Varjyam');
+  });
+});
+
+describe('unified score consistency', () => {
+  it('computeDailyEnergy and generateDailyVibe produce the same score', async () => {
+    const { generateDailyVibe } = await import('@/lib/shareable/daily-vibe');
+
+    const p = makePanchang({
+      tithiNumber: 11, paksha: 'shukla', nakshatraId: 17, yogaNumber: 18, karanaNumber: 6, varaDayOfWeek: 4,
+    });
+
+    const energyScore = computeDailyEnergy(p).score;
+    const vibeScore = generateDailyVibe(p, 'en').energyScore;
+
+    expect(energyScore).toBe(vibeScore);
+  });
+});

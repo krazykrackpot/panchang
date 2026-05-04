@@ -8,6 +8,7 @@
 
 import type { PanchangData, LocaleText } from '@/types/panchang';
 import { getNakshatraActivity } from '@/lib/constants/nakshatra-activities';
+import { computeDailyEnergy } from '@/lib/panchang/energy-score';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -86,12 +87,7 @@ const JUPITER_DAY = 4;
 // Tithi / Yoga / Karana quality helpers
 // ---------------------------------------------------------------------------
 
-// Auspicious tithis: 2 (Dwitiya), 3 (Tritiya), 5 (Panchami), 7 (Saptami),
-// 10 (Dashami), 11 (Ekadashi), 13 (Trayodashi), Purnima(15)
-const GOOD_TITHIS = new Set([2, 3, 5, 7, 10, 11, 13, 15]);
-
-// Good karanas: Bava(1), Balava(2), Kaulava(3), Taitila(4), Garija(5), Vanija(6)
-const GOOD_KARANAS = new Set([1, 2, 3, 4, 5, 6]);
+// GOOD_TITHIS and GOOD_KARANAS removed — scoring now in energy-score.ts
 
 // Moon exaltation: Rashi 2 (Taurus), specifically Rohini(4) / early Mrigashira(5)
 function isMoonExalted(moonSign?: { rashi: number; nakshatra: number }): boolean {
@@ -104,28 +100,28 @@ function isMoonExalted(moonSign?: { rashi: number; nakshatra: number }): boolean
 // ---------------------------------------------------------------------------
 
 export function generateDailyVibe(panchang: PanchangData, locale: string): DailyVibeData {
-  // 1. Determine vibe title by priority rules
+  // 1. Unified energy score from the canonical scorer
+  const energy = computeDailyEnergy(panchang);
+
+  // 2. Determine vibe title by priority rules (presentation layer)
   const vibe = resolveVibeTitle(panchang);
 
-  // 2. Build key transit string
+  // 3. Build key transit string
   const moonNakName = panchang.nakshatra?.name?.en || 'Unknown';
   const moonExalted = isMoonExalted(panchang.moonSign);
   const keyTransit = moonExalted
     ? `Moon in ${moonNakName} (Exalted)`
     : `Moon in ${moonNakName}`;
 
-  // 3. Build secondary influence
+  // 4. Build secondary influence
   const secondaryInfluence = resolveSecondaryInfluence(panchang);
 
-  // 4. Best For / Avoid from nakshatra activities
+  // 5. Best For / Avoid — locale-aware from same BPHS source as energy-score.ts
   const activity = getNakshatraActivity(panchang.nakshatra?.id ?? 1);
   const bestFor = activity
     ? activity.goodFor.map((g) => (locale === 'hi' ? g.hi : g.en))
-    : ['General activities'];
+    : energy.bestFor; // fallback to English from unified scorer
   const avoid = buildAvoidList(panchang, activity, locale);
-
-  // 5. Compute energy score (0-100)
-  const energyScore = computeEnergyScore(panchang);
 
   // 6. Format date
   const date = formatVibeDate(panchang.date, locale);
@@ -137,7 +133,7 @@ export function generateDailyVibe(panchang: PanchangData, locale: string): Daily
     secondaryInfluence,
     bestFor,
     avoid,
-    energyScore: Math.max(0, Math.min(100, energyScore)),
+    energyScore: energy.score,
     moonSign: moonNakName,
     dominantEnergy: vibe.energy,
   };
@@ -298,49 +294,8 @@ function buildAvoidList(
   return items.slice(0, 4); // max 4 items for card space
 }
 
-// ---------------------------------------------------------------------------
-// Energy score (0-100)
-// ---------------------------------------------------------------------------
-
-function computeEnergyScore(p: PanchangData): number {
-  let score = 50; // baseline
-
-  // Tithi quality: +15 for auspicious
-  if (GOOD_TITHIS.has(p.tithi?.number ?? 0)) score += 15;
-
-  // Nakshatra quality: +20 for gentle/auspicious nature
-  if (GENTLE_NAKSHATRAS.has(p.nakshatra?.id ?? 0)) score += 20;
-
-  // Yoga quality: +15 for auspicious, -10 for inauspicious
-  if (p.yoga?.nature === 'auspicious') score += 15;
-  else if (p.yoga?.nature === 'inauspicious') score -= 10;
-
-  // Karana quality: +10 for good karana
-  if (GOOD_KARANAS.has(p.karana?.number ?? 0)) score += 10;
-
-  // Sarvartha Siddhi: +20
-  if (p.sarvarthaSiddhi) score += 20;
-
-  // Amrit Siddhi Yoga: +15
-  if (p.amritSiddhiYoga) score += 15;
-
-  // Amrit Kalam present: +10
-  if (p.amritKalam) score += 10;
-
-  // Rahu Kaal penalty: -10
-  if (p.rahuKaal) score -= 10;
-
-  // Varjyam penalty: -10
-  if (p.varjyam) score -= 10;
-
-  // Dagdha tithi penalty: -10
-  if (p.dagdhaTithi) score -= 10;
-
-  // Panchaka penalty: -5
-  if (p.panchaka?.active) score -= 5;
-
-  return score;
-}
+// computeEnergyScore removed — scoring now delegated to computeDailyEnergy
+// from energy-score.ts for a unified score across all pages
 
 // ---------------------------------------------------------------------------
 // Date formatting

@@ -22,6 +22,7 @@ import type { DomainReading, DomainType, Rating, TimelineTrigger, DomainRemedy }
 import type { LifeArea } from '@/lib/kundali/tippanni-types';
 import { tl } from '@/lib/utils/trilingual';
 import { getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
+import { getDomainConfig } from '@/lib/kundali/domain-synthesis/config';
 
 // ---------------------------------------------------------------------------
 // Props
@@ -196,6 +197,8 @@ export default function SummaryDomainCard({
   const Icon = DOMAIN_ICONS[domain.domain] || Sparkles;
   const { rating, score } = domain.overallRating;
   const headlineText = tl(domain.headline, locale);
+  const domainConfig = getDomainConfig(domain.domain);
+  const domainName = domainConfig ? tl(domainConfig.name, locale) : domain.domain;
 
   // Narrative truncation
   const narrativeRaw = tl(domain.natalPromise.summary, locale);
@@ -236,10 +239,10 @@ export default function SummaryDomainCard({
             </div>
             <div>
               <h3 className="text-lg font-bold text-gold-light" style={headingStyle}>
-                {tl(domain.overallRating.label, locale)}
+                {domainName}
               </h3>
               <p className="text-xs text-text-secondary">
-                {RATING_LABELS[rating]?.sa}
+                {tl(domain.overallRating.label, locale)} · {RATING_LABELS[rating]?.sa}
               </p>
             </div>
           </div>

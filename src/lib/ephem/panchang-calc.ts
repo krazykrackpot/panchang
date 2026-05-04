@@ -933,7 +933,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const nakshatraData = { ...(NAKSHATRAS[nakshatraNum - 1] || NAKSHATRAS[0]), pada: nakshatraPada };
 
   // 3. Yoga
-  const yogaNum = calculateYoga(jdSunrise);
+  const yogaNum = calculateYoga(jdSunrise, userAyanamsha);
   const yogaData = YOGAS[yogaNum - 1] || YOGAS[0];
 
   // 4. Karana
@@ -1250,7 +1250,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   }
 
   // Ayanamsha value
-  const ayanamsha = lahiriAyanamsha(jdSunrise);
+  const ayanamsha = userAyanamsha ?? lahiriAyanamsha(jdSunrise);
 
   // Sun sign and nakshatra
   const sunSidLong = toSidereal(sunLongitude(jdSunrise), jdSunrise, userAyanamsha);
@@ -1583,7 +1583,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
     let asc = Math.atan2(y, x) * 180 / Math.PI;
     return normalizeDeg(asc);
   }
-  const lagnaAyanamsha = lahiriAyanamsha(jdSunrise);
+  const lagnaAyanamsha = userAyanamsha ?? lahiriAyanamsha(jdSunrise);
   const udayaLagna: { rashi: number; name: LocaleText; start: string; end: string }[] = [];
   const STEP = 10 / 60; // 10 minutes in hours
   let prevRashi = -1;

@@ -193,7 +193,8 @@ export function buildChartNarrative(
   if (moon) {
     // Moon's nakshatra is stored on the planet's grahaDetails or can be derived from longitude
     // PlanetPosition doesn't have nakshatra directly — derive from sidereal longitude
-    const moonSidLng = moon.longitude - (kundali.ayanamshaValue || 24.18);
+    // 24.21 = Lahiri ayanamsha for ~2026 — fallback only; ayanamshaValue should always be set
+    const moonSidLng = moon.longitude - (kundali.ayanamshaValue ?? 24.21);
     const normalizedLng = ((moonSidLng % 360) + 360) % 360;
     const nakId = Math.floor(normalizedLng / (360 / 27)) + 1;
     const nak = NAKSHATRAS[nakId - 1];

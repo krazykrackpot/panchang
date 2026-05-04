@@ -11,6 +11,7 @@
  */
 
 import { dateToJD } from '@/lib/astronomy/julian';
+import { lahiriAyanamsha } from '@/lib/ephem/astronomical';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -18,12 +19,6 @@ import { dateToJD } from '@/lib/astronomy/julian';
 
 /** Julian Day Number of J2000.0 epoch (Jan 1.5, 2000 TT). */
 const J2000 = 2451545.0;
-
-/** Lahiri Ayanamsha at J2000.0 (degrees). */
-const AYANAMSHA_J2000 = 23.85;
-
-/** Rate of precession (degrees per Julian year). */
-const AYANAMSHA_RATE = 0.01396;
 
 /**
  * Mean tropical longitudes and daily motion rates at J2000.0 for slow planets.
@@ -80,13 +75,12 @@ export function currentSiderealLong(pid: number, jd: number): number {
   if (!epoch) return 0;
 
   const days = jd - J2000;
-  const years = days / 365.25;
 
   // Mean tropical longitude
   const tropicalLong = epoch.long0 + epoch.rate * days;
 
-  // Lahiri ayanamsha for the given date
-  const ayanamsha = AYANAMSHA_J2000 + AYANAMSHA_RATE * years;
+  // Lahiri ayanamsha for the given date (canonical polynomial, not linear approx)
+  const ayanamsha = lahiriAyanamsha(jd);
 
   // Sidereal longitude, normalised to [0, 360)
   return ((tropicalLong - ayanamsha) % 360 + 360) % 360;

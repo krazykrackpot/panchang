@@ -110,6 +110,68 @@ const JUPITER_IN_HOUSES: { house: number; name: ML; effect: ML }[] = [
     effect: { en: 'Jupiter in the 12th is paradoxically one of the best placements for spiritual life and moksha. The native spends generously on charity, pilgrimage, and spiritual retreat. Foreign travel and residence in distant lands bring wisdom. Expenses are on auspicious causes — temples, ashrams, hospitals. This placement indicates a strong past-life connection to spiritual practice. Dreams are vivid and prophetic. Bedroom comforts are excellent (Jupiter\'s aspect on the 4th). Financial outflow is constant but the native never faces poverty. The soul yearns for liberation.', hi: '12वें भाव में गुरु विरोधाभासी रूप से आध्यात्मिक जीवन और मोक्ष के लिए सर्वश्रेष्ठ स्थितियों में। दान, तीर्थयात्रा और आध्यात्मिक साधना पर उदारता से खर्च। विदेश यात्रा और दूर देशों में निवास ज्ञान लाता है। शुभ कार्यों पर व्यय — मन्दिर, आश्रम, अस्पताल। स्वप्न सजीव और भविष्यसूचक। आत्मा मोक्ष की आकांक्षी।' } },
 ];
 
+// ─── Astronomical Profile ──────────────────────────────────────────────
+const ASTRONOMICAL = {
+  orbitalPeriod: { en: 'Orbital period: 11.86 years — Jupiter takes nearly 12 years to complete one orbit, spending approximately one year in each sign. This 12-year cycle is the foundation of the Jovian year (Brihaspati Samvatsara) system used in Indian calendrical traditions, where each year is named after one of 60 Samvatsaras.', hi: 'कक्षीय अवधि: 11.86 वर्ष — गुरु एक परिक्रमा पूरी करने में लगभग 12 वर्ष लेता है, प्रत्येक राशि में लगभग एक वर्ष बिताता है। यह 12-वर्षीय चक्र भारतीय पञ्चाङ्ग परम्पराओं में बृहस्पति सम्वत्सर प्रणाली का आधार है, जहाँ प्रत्येक वर्ष 60 सम्वत्सरों में से एक के नाम पर है।' },
+  dailyMotion: { en: 'Average daily motion: ~0.083° per day (about 5 arc-minutes). Jupiter is a slow-moving planet — its effects are felt over months and years, not days. This slow motion gives Jupiter\'s transits deep, long-lasting significance. A Jupiter transit through a house takes about 12-13 months, during which the themes of that house undergo sustained expansion.', hi: 'औसत दैनिक गति: ~0.083° प्रतिदिन (लगभग 5 आर्क-मिनट)। गुरु एक धीमी गति का ग्रह है — इसके प्रभाव दिनों में नहीं, महीनों और वर्षों में अनुभव होते हैं। गुरु का एक भाव में गोचर लगभग 12-13 महीने चलता है, जिसमें उस भाव के विषय निरन्तर विस्तार अनुभव करते हैं।' },
+  synodicPeriod: { en: 'Synodic period: 398.88 days — the interval between successive oppositions to the Sun. Jupiter is at its brightest and closest to Earth during opposition, which occurs roughly every 13 months. Astrologically, Jupiter opposition is a time of peak Jupiterian influence — good for initiating dharmic activities, education, and legal matters.', hi: 'सिनॉडिक अवधि: 398.88 दिन — सूर्य से क्रमिक प्रतियुतियों के बीच का अन्तराल। प्रतियुति में गुरु सबसे चमकीला और पृथ्वी के सबसे निकट होता है, जो लगभग हर 13 महीने में होता है। ज्योतिषीय रूप से, गुरु प्रतियुति गुरु प्रभाव का शिखर है — धार्मिक गतिविधियों, शिक्षा और कानूनी मामलों के लिए शुभ।' },
+  retrograde: { en: 'Retrograde frequency: Once per year, lasting approximately 120 days (4 months). Jupiter is retrograde about 30% of the time. Natal retrograde Jupiter (found in ~30% of charts) indicates internalized wisdom — the native develops philosophical understanding through personal reflection rather than external teaching. Jupiter retrograde periods are excellent for reviewing legal matters, revisiting educational goals, and deepening spiritual practice.', hi: 'वक्री आवृत्ति: वर्ष में एक बार, लगभग 120 दिन (4 माह)। गुरु लगभग 30% समय वक्री रहता है। जन्मजात वक्री गुरु (~30% कुण्डलियों में) आन्तरिक ज्ञान सूचित करता है — जातक बाहरी शिक्षण के बजाय व्यक्तिगत चिन्तन से दार्शनिक समझ विकसित करता है।' },
+  combustion: { en: 'Combustion: Jupiter is combust when within ~11° of the Sun. This is relatively rare compared to Mercury or Venus combustion because Jupiter moves slowly and independently of the Sun. When combust, Jupiter\'s wisdom becomes subservient to ego — the native may use spiritual knowledge for personal aggrandizement rather than genuine guidance. Religious hypocrisy and false moral authority are classic indicators of combust Jupiter.', hi: 'अस्त: गुरु सूर्य से ~11° के भीतर होने पर अस्त होता है। बुध या शुक्र अस्त की तुलना में यह अपेक्षाकृत दुर्लभ है। अस्त होने पर गुरु का ज्ञान अहंकार के अधीन — जातक आध्यात्मिक ज्ञान का व्यक्तिगत महिमामण्डन के लिए उपयोग कर सकता है। धार्मिक पाखण्ड और झूठा नैतिक अधिकार अस्त गुरु के शास्त्रीय संकेत।' },
+  astronomicalSignificance: { en: 'Astronomical vs. astrological significance: Jupiter is the largest planet (1,321 Earths could fit inside), has the strongest magnetic field, and acts as a "cosmic vacuum cleaner" protecting Earth from asteroid impacts. These physical traits mirror its astrological nature — Jupiter is the great protector, the magnifier, and the most expansive influence in the chart. Its 79+ moons reflect the many people who orbit a Jupiter-dominant personality. The Great Red Spot — a storm larger than Earth that has raged for centuries — mirrors Jupiter\'s capacity to sustain intense spiritual and philosophical engagement over a lifetime.', hi: 'खगोलीय बनाम ज्योतिषीय महत्त्व: गुरु सबसे बड़ा ग्रह है (1,321 पृथ्वी समा सकती हैं), सबसे शक्तिशाली चुम्बकीय क्षेत्र, और "ब्रह्मांडीय सफाईकर्ता" के रूप में पृथ्वी को क्षुद्रग्रह प्रभावों से बचाता है। ये भौतिक लक्षण ज्योतिषीय प्रकृति को प्रतिबिम्बित करते हैं — गुरु महारक्षक, आवर्धक और कुण्डली में सबसे विस्तारशील प्रभाव। इसके 79+ चन्द्रमा उन अनेक लोगों को दर्शाते हैं जो गुरु-प्रधान व्यक्तित्व के चारों ओर परिक्रमा करते हैं।' },
+};
+
+// ─── Notable Yogas ────────────────────────────────────────────────────
+const NOTABLE_YOGAS = [
+  { name: { en: 'Hamsa Yoga (Mahapurusha)', hi: 'हंस योग (महापुरुष)' },
+    condition: { en: 'Jupiter in a kendra (1st, 4th, 7th, or 10th house) in its own sign (Sagittarius/Pisces) or exalted (Cancer). This is one of the five Mahapurusha Yogas.', hi: 'गुरु केन्द्र (1, 4, 7, 10 भाव) में स्वराशि (धनु/मीन) या उच्च (कर्क) में। यह पाँच महापुरुष योगों में एक है।' },
+    effect: { en: 'The native becomes a dharmic authority — wise, respected, and blessed with all the qualities of an ideal teacher. Hamsa (swan) symbolizes the ability to separate milk from water, truth from falsehood. The native commands respect in religious, educational, and legal institutions. Beautiful speech, strong moral compass, and natural leadership in spiritual matters. Children are dutiful and accomplished. Wealth flows through ethical channels.', hi: 'जातक धार्मिक प्राधिकारी बनता है — बुद्धिमान, सम्मानित और आदर्श शिक्षक के सभी गुणों से युक्त। हंस दूध और पानी, सत्य और असत्य अलग करने की क्षमता का प्रतीक। धार्मिक, शैक्षणिक और कानूनी संस्थानों में सम्मान। सुन्दर वाणी, प्रबल नैतिक दिशा। सन्तान कर्तव्यनिष्ठ और सफल।' },
+    strength: { en: 'Strongest in Lagna and 10th house. Exalted Jupiter in Cancer Lagna is the pinnacle. Weakened if Jupiter is combust, retrograde, or aspected by Rahu (Guru Chandal).', hi: 'लग्न और दशम भाव में सबसे बलवान। कर्क लग्न में उच्च गुरु शिखर है। अस्त, वक्री या राहु की दृष्टि (गुरु चाण्डाल) से दुर्बल।' } },
+  { name: { en: 'Gajakesari Yoga', hi: 'गजकेसरी योग' },
+    condition: { en: 'Jupiter and Moon in mutual kendras (1st, 4th, 7th, or 10th from each other). Both should be strong — Moon not waning, Jupiter not combust or debilitated.', hi: 'गुरु और चन्द्र परस्पर केन्द्र (एक-दूसरे से 1, 4, 7 या 10 भाव) में। दोनों बलवान — चन्द्र क्षीण नहीं, गुरु अस्त या नीच नहीं।' },
+    effect: { en: 'One of the most celebrated yogas in Jyotish. The name means "elephant-lion" — the native possesses both Jupiter\'s magnanimity (elephant) and emotional courage (lion/Moon). Produces prosperous, respected, and influential individuals. The native rises above their birth circumstances through wisdom and emotional intelligence. Expected frequency is roughly 25% of charts, but strong results require both planets to be well-dignified.', hi: 'ज्योतिष में सबसे प्रसिद्ध योगों में। नाम का अर्थ "हाथी-सिंह" — जातक में गुरु की उदारता (हाथी) और भावनात्मक साहस (सिंह/चन्द्र) दोनों। समृद्ध, सम्मानित और प्रभावशाली व्यक्ति उत्पन्न। लगभग 25% कुण्डलियों में, किन्तु बलवान फल दोनों ग्रहों की सुगरिमा चाहते हैं।' },
+    strength: { en: 'Full strength when Moon is in Shukla Paksha (bright half) and Jupiter is in own sign or exalted. Weakened when Moon is dark or Jupiter is debilitated/combust.', hi: 'चन्द्र शुक्ल पक्ष में और गुरु स्वराशि या उच्च में हो तो पूर्ण बल। चन्द्र कृष्ण पक्ष या गुरु नीच/अस्त हो तो दुर्बल।' } },
+  { name: { en: 'Guru Chandal Yoga', hi: 'गुरु चाण्डाल योग' },
+    condition: { en: 'Jupiter conjunct Rahu or Ketu. The yoga is strongest when the conjunction is tight (within 5°) and Jupiter is in a sign where it lacks dignity.', hi: 'गुरु राहु या केतु के साथ युत। योग सबसे बलवान जब युति सख्त (5° के भीतर) हो और गुरु ऐसी राशि में हो जहाँ गरिमा कम।' },
+    effect: { en: 'The guru is "polluted" by the shadow planet. The native may challenge traditional religious and moral frameworks — sometimes productively (genuine spiritual innovation), sometimes destructively (hypocrisy, false teaching, cult leadership). Rahu corrupts Jupiter\'s ethics while amplifying its ambition. The native may find success through unconventional spiritual paths, foreign religions, or technology-meets-spirituality ventures. Children may face challenges or adopt unconventional lifestyles.', hi: 'गुरु छाया ग्रह से "दूषित"। जातक पारम्परिक धार्मिक और नैतिक ढाँचों को चुनौती दे सकता है — कभी रचनात्मक (वास्तविक आध्यात्मिक नवाचार), कभी विनाशकारी (पाखण्ड, झूठी शिक्षा)। राहु गुरु की नैतिकता भ्रष्ट करता है जबकि महत्त्वाकांक्षा बढ़ाता है। सन्तान को चुनौतियाँ या अपरम्परागत जीवनशैली।' },
+    strength: { en: 'Most damaging in 1st, 5th, or 9th houses (dharma axis). Less harmful in 3rd, 6th, 10th, 11th houses where Rahu\'s energy is more constructively channeled.', hi: '1, 5 या 9 भाव (धर्म अक्ष) में सबसे हानिकारक। 3, 6, 10, 11 भावों में कम हानिकारक जहाँ राहु ऊर्जा अधिक रचनात्मक।' } },
+  { name: { en: 'Dharma-Karmadhipati Yoga', hi: 'धर्म-कर्माधिपति योग' },
+    condition: { en: 'The lords of the 9th house (dharma) and 10th house (karma) conjunct, mutually aspect, or exchange signs. Jupiter\'s involvement as either lord makes this yoga especially powerful.', hi: '9वें भाव (धर्म) और 10वें भाव (कर्म) के स्वामी युत, परस्पर दृष्टि या राशि परिवर्तन। किसी भी स्वामी के रूप में गुरु की भागीदारी योग को विशेष शक्तिशाली बनाती है।' },
+    effect: { en: 'The union of dharma (purpose) and karma (action) produces a native whose career IS their calling. Fame, recognition, and success through righteous action. Produces leaders who inspire through moral authority rather than mere power. This is the yoga of the great statesman, the reforming judge, and the teacher who changes society.', hi: 'धर्म (उद्देश्य) और कर्म (कार्य) का मिलन — जातक का करियर ही उसका आह्वान। धर्मपूर्ण कार्य से यश, मान्यता और सफलता। नैतिक अधिकार से प्रेरित करने वाले नेता उत्पन्न। महान राजनेता, सुधारक न्यायाधीश और समाज बदलने वाले शिक्षक का योग।' },
+    strength: { en: 'Strongest when Jupiter is the 9th lord in a kendra. Also powerful when both lords are in each other\'s signs (parivartana).', hi: 'गुरु 9वें भाव स्वामी के रूप में केन्द्र में हो तो सबसे बलवान। दोनों स्वामी परस्पर राशि में (परिवर्तन) हों तो भी शक्तिशाली।' } },
+  { name: { en: 'Saraswati Yoga', hi: 'सरस्वती योग' },
+    condition: { en: 'Jupiter, Mercury, and Venus all in kendras, trikonas, or the 2nd house. All three must be in strong dignity for full effect.', hi: 'गुरु, बुध और शुक्र सभी केन्द्र, त्रिकोण या दूसरे भाव में। पूर्ण फल के लिए तीनों की बलवान गरिमा।' },
+    effect: { en: 'Supreme scholarship, eloquent speech, mastery of arts and sciences. The native becomes a celebrated author, professor, or cultural authority. This yoga combines wisdom (Jupiter), intellect (Mercury), and aesthetic refinement (Venus) into a single package — the renaissance personality. Rare in its full form.', hi: 'सर्वोच्च विद्वत्ता, वाक्पटुता, कला और विज्ञान में दक्षता। प्रसिद्ध लेखक, प्रोफेसर या सांस्कृतिक प्राधिकारी बनता है। ज्ञान (गुरु), बुद्धि (बुध) और सौन्दर्य परिष्कार (शुक्र) का संयोजन — पुनर्जागरण व्यक्तित्व। पूर्ण रूप में दुर्लभ।' },
+    strength: { en: 'Requires all three planets to be free from combustion and malefic aspects. Even one weak planet significantly reduces the yoga\'s effect.', hi: 'तीनों ग्रहों का अस्त और पापी दृष्टि से मुक्त होना आवश्यक। एक भी दुर्बल ग्रह योग का प्रभाव बहुत कम करता है।' } },
+];
+
+// ─── Practical Application ────────────────────────────────────────────
+const PRACTICAL = {
+  assessStrength: {
+    en: 'To assess Jupiter\'s strength in your chart: (1) Sign placement — exalted in Cancer is strongest, debilitated in Capricorn is weakest, own signs (Sagittarius/Pisces) are strong. (2) House placement — kendras and trikonas are auspicious; 6th/8th can be challenging but 12th is paradoxically good for spiritual growth. (3) Aspects — Jupiter\'s own aspect on 5th, 7th, and 9th houses from its position blesses those areas. (4) Combustion — within 11° of Sun weakens moral authority. (5) Retrograde — natal retrograde Jupiter is common (~30%) and indicates wisdom gained through personal experience rather than formal teaching. (6) Relationship with Moon — Gajakesari conditions greatly amplify Jupiter\'s beneficence.',
+    hi: 'कुण्डली में गुरु के बल का आकलन: (1) राशि — कर्क में उच्च सबसे बलवान, मकर में नीच दुर्बलतम, स्वराशि (धनु/मीन) बलवान। (2) भाव — केन्द्र और त्रिकोण शुभ; 6/8 चुनौतीपूर्ण किन्तु 12वाँ आध्यात्मिक विकास के लिए विरोधाभासी रूप से शुभ। (3) दृष्टि — गुरु की 5, 7, 9 भाव पर दृष्टि। (4) अस्त — सूर्य से 11° के भीतर नैतिक अधिकार दुर्बल। (5) वक्री — जन्मजात वक्री (~30%) औपचारिक शिक्षण के बजाय व्यक्तिगत अनुभव से ज्ञान। (6) चन्द्र से सम्बन्ध — गजकेसरी शर्तें शुभता बहुत बढ़ाती हैं।',
+  },
+  strongIndicators: {
+    en: 'Signs of a strong Jupiter: Natural optimism and faith, respected by peers and elders, children are accomplished, steady wealth accumulation, good relationships with teachers and mentors, interest in philosophy and higher education, generous nature, large and well-built physique, sweet and persuasive speech, fairness in dealings, drawn to dharmic activities, and the ability to inspire others.',
+    hi: 'बलवान गुरु के संकेत: स्वाभाविक आशावाद और श्रद्धा, समकक्षों और बुजुर्गों द्वारा सम्मान, सन्तान सफल, स्थिर धन संचय, गुरुओं और मार्गदर्शकों से अच्छे सम्बन्ध, दर्शन और उच्च शिक्षा में रुचि, उदार स्वभाव, बड़ी और सुगठित काया, मधुर और प्रेरक वाणी, धार्मिक गतिविधियों के प्रति आकर्षण।',
+  },
+  weakIndicators: {
+    en: 'Signs of a weak Jupiter: Chronic pessimism or cynicism, trouble with children (delayed, difficult, or strained relationships), debt and financial instability, conflict with teachers or religious figures, liver and weight problems, broken promises, difficulty with higher education, lack of faith or spiritual connection, tendency toward hypocrisy, and inability to inspire trust in others.',
+    hi: 'दुर्बल गुरु के संकेत: दीर्घकालिक निराशावाद, सन्तान से कठिनाई (विलम्ब, कठिन या तनावपूर्ण सम्बन्ध), ऋण और आर्थिक अस्थिरता, गुरुओं या धार्मिक व्यक्तियों से संघर्ष, यकृत और वज़न समस्याएँ, टूटे वादे, उच्च शिक्षा में कठिनाई, श्रद्धा की कमी, पाखण्ड की प्रवृत्ति।',
+  },
+  whenToRemediate: {
+    en: 'Seek Jupiter remedies when: Jupiter dasha is running and you experience problems with children, legal setbacks, or moral crises. When Jupiter is debilitated or combust in your chart and you struggle with faith, optimism, or financial stability. When Guru Chandal Yoga (Jupiter-Rahu) creates confusion between genuine and false spiritual paths. When you notice a pattern of broken promises — either from you or toward you. Jupiter remedies are MOST effective when combined with genuine dharmic practice — teaching, charity, studying sacred texts, and maintaining ethical conduct. A selfish person doing Jupiter remedies gains little.',
+    hi: 'गुरु उपाय कब करें: गुरु दशा चल रही हो और सन्तान से समस्या, कानूनी पिछड़ापन या नैतिक संकट हो। गुरु नीच या अस्त हो और श्रद्धा, आशावाद या आर्थिक स्थिरता में कठिनाई। गुरु चाण्डाल योग वास्तविक और झूठे आध्यात्मिक मार्गों में भ्रम बनाये। गुरु उपाय वास्तविक धार्मिक आचरण — शिक्षण, दान, शास्त्र अध्ययन और नैतिक आचरण — के साथ सबसे प्रभावी।',
+  },
+  misconceptions: {
+    en: 'Common misconceptions: (1) "Jupiter is always good" — Jupiter EXPANDS whatever it touches, including negative things. Jupiter in the 6th expands enemies, in the 8th expands crises, and conjunct malefics expands their negative influence. (2) "Gajakesari Yoga makes you rich" — only when both Jupiter and Moon are strong. A waning Moon with debilitated Jupiter produces little. (3) "Yellow Sapphire is safe for everyone" — a strong Jupiter amplified by Pukhraj can cause weight gain, liver problems, and overconfidence. Only wear it when Jupiter is genuinely weak. (4) "Jupiter retrograde is bad" — roughly 30% of the population has retrograde Jupiter. It simply means wisdom is internalized rather than expressed outwardly.',
+    hi: 'सामान्य भ्रान्तियाँ: (1) "गुरु सदा शुभ" — गुरु जो छूता है उसे विस्तारित करता है, नकारात्मक चीज़ें भी। 6वें भाव में शत्रु बढ़ाता है, 8वें में संकट। (2) "गजकेसरी योग धनी बनाता है" — केवल जब गुरु और चन्द्र दोनों बलवान। (3) "पुखराज सबके लिए सुरक्षित" — बलवान गुरु के साथ वज़न वृद्धि, यकृत समस्या, अति-आत्मविश्वास। (4) "गुरु वक्री बुरा" — लगभग 30% लोगों का गुरु वक्री; ज्ञान आन्तरिक होता है।',
+  },
+  hamsaDetail: {
+    en: 'Hamsa Yoga and Guru Chandal Yoga — the two poles of Jupiter: Hamsa Yoga represents Jupiter at its absolute best — the swan who separates truth from illusion, the perfect guru who teaches by example. A person with strong Hamsa Yoga becomes a pillar of their community, respected for wisdom and integrity. Guru Chandal represents the opposite — the guru corrupted by worldly ambition (Rahu) or spiritual confusion (Ketu). Modern examples of Guru Chandal include self-proclaimed spiritual leaders involved in scandals, religious organizations that prioritize profit, and intellectuals who use philosophy to justify unethical behavior. The remedy for Guru Chandal is genuine service without expectation of recognition.',
+    hi: 'हंस योग और गुरु चाण्डाल योग — गुरु के दो ध्रुव: हंस योग सर्वश्रेष्ठ गुरु — सत्य और माया अलग करने वाला हंस, उदाहरण से सिखाने वाला आदर्श गुरु। बलवान हंस योग वाला व्यक्ति समुदाय का स्तम्भ बनता है। गुरु चाण्डाल विपरीत — सांसारिक महत्त्वाकांक्षा (राहु) या आध्यात्मिक भ्रम (केतु) से भ्रष्ट गुरु। गुरु चाण्डाल का उपाय मान्यता की अपेक्षा बिना वास्तविक सेवा है।',
+  },
+};
+
 // ─── Dasha Information ─────────────────────────────────────────────────
 const DASHA = {
   years: 16,
@@ -135,6 +197,10 @@ const REMEDIES = {
   fasting: { en: 'Thursday fasting — eat only one meal of yellow foods (dal, banana, turmeric rice). Some traditions recommend full fast until sunset.', hi: 'गुरुवार का उपवास — केवल एक भोजन पीले खाद्य पदार्थों का (दाल, केला, हल्दी चावल)। कुछ परम्पराएँ सूर्यास्त तक पूर्ण उपवास की सलाह देती हैं।' },
   worship: { en: 'Visit Brihaspati or Vishnu temples on Thursdays. Recite Vishnu Sahasranama or Guru Stotra. Offer yellow flowers, ghee lamp, and banana to the deity. Water a Peepal tree on Thursday mornings.', hi: 'गुरुवार को बृहस्पति या विष्णु मन्दिर जाएँ। विष्णु सहस्रनाम या गुरु स्तोत्र का पाठ करें। देवता को पीले पुष्प, घी का दीपक और केला अर्पित करें। गुरुवार प्रातः पीपल वृक्ष को जल दें।' },
   yantra: { en: 'Guru Yantra — a 4×4 magic square with a sum of 34 in each row/column. Install on a gold or brass plate, worship on Thursdays.', hi: 'गुरु यन्त्र — 4×4 जादुई वर्ग जिसमें प्रत्येक पंक्ति/स्तम्भ का योग 34 है। स्वर्ण या पीतल पत्र पर स्थापित करें, गुरुवार को पूजन करें।' },
+  dietary: { en: 'Dietary remedies: Chana dal (Bengal gram), turmeric, saffron, bananas, jaggery, ghee, almonds, and sweet fruits. Thursday meals should be yellow-themed. Jupiter rules the liver and fat tissue — avoid excessive alcohol and fatty foods during Jupiter dasha. Saffron milk (kesar doodh) on Thursday mornings is considered especially auspicious. A diet that supports liver health directly supports Jupiter\'s significations. Fasting with chana dal khichdi on Thursdays combines fasting discipline with Jupiter-appropriate food.', hi: 'आहार उपाय: चना दाल, हल्दी, केसर, केला, गुड़, घी, बादाम और मीठे फल। गुरुवार का भोजन पीले-विषयक। गुरु यकृत और वसा ऊतक शासित करता है — गुरु दशा में अत्यधिक मद्यपान और वसायुक्त भोजन से बचें। गुरुवार प्रातः केसर दूध विशेष शुभ। यकृत स्वास्थ्य का समर्थन करने वाला आहार गुरु के कारकत्व का प्रत्यक्ष समर्थन। गुरुवार को चना दाल खिचड़ी से उपवास।' },
+  colorTherapy: { en: 'Color therapy: Wear yellow on Thursdays — golden yellow, turmeric yellow, or saffron. The pooja room, study, or counseling space should have yellow accents. Yellow sapphire color in clothing has a direct Jupiter-energizing effect even without wearing the gemstone. Avoid wearing dark black or grey on Thursdays. Yellow flowers (marigold, sunflower) in the home amplify Jupiter\'s presence. Gold jewelry, even small pieces, carries Jupiter\'s vibration when worn on Thursdays.', hi: 'रंग चिकित्सा: गुरुवार को पीला पहनें — स्वर्ण पीला, हल्दी पीला या केसरिया। पूजा कक्ष, अध्ययन या परामर्श स्थान में पीले रंग। गुरुवार को गहरा काला या धूसर पहनने से बचें। घर में पीले फूल (गेंदा, सूरजमुखी) गुरु की उपस्थिति बढ़ाते हैं। गुरुवार को पहना गया स्वर्ण आभूषण, छोटा भी, गुरु का स्पन्दन वहन करता है।' },
+  behavioral: { en: 'Behavioral remedies (most powerful for Jupiter): Teach someone — share your knowledge freely without expectation. Respect your teachers and elders — visit them, seek their blessings. Maintain integrity in all financial dealings — Jupiter hates dishonesty in money matters. Support children\'s education through donation or mentoring. Read philosophical or spiritual texts regularly. Attend religious gatherings (satsang) on Thursdays. Water a Peepal tree on Thursday mornings — this is the single most recommended Jupiter remedy in classical texts. Avoid criticizing any religion or guru. Practice gratitude daily.', hi: 'व्यवहारिक उपाय (गुरु के लिए सबसे शक्तिशाली): किसी को सिखाएँ — अपेक्षा बिना ज्ञान साझा करें। गुरुओं और बुजुर्गों का सम्मान — उनसे मिलें, आशीर्वाद लें। सभी आर्थिक व्यवहारों में ईमानदारी — गुरु धन में बेईमानी से घृणा करता है। बच्चों की शिक्षा का दान या मार्गदर्शन से समर्थन। गुरुवार प्रातः पीपल वृक्ष को जल — शास्त्रीय ग्रन्थों में सबसे अनुशंसित गुरु उपाय। किसी धर्म या गुरु की आलोचना से बचें। दैनिक कृतज्ञता।' },
+  timing: { en: 'Timing for mantra recitation: Thursday during Jupiter Hora (the first hora after sunrise on Thursdays). Early morning (Brahma Muhurta: 4:00-5:30 AM) is most auspicious. Face north-east (Ishanya — Jupiter\'s direction) while chanting. The 40-day mandala should begin on a Thursday in Shukla Paksha, ideally when Jupiter is direct (not retrograde) and transiting a friendly sign. Thursday during Pushya Nakshatra is considered the most powerful single day for Jupiter remedies.', hi: 'मन्त्र जाप का समय: गुरुवार को गुरु होरा में (गुरुवार को सूर्योदय के बाद पहली होरा)। प्रातः (ब्रह्म मुहूर्त: 4:00-5:30) सबसे शुभ। ईशान (उत्तर-पूर्व — गुरु की दिशा) की ओर मुख। 40-दिवसीय मण्डल शुक्ल पक्ष में गुरुवार से शुरू, आदर्श रूप से गुरु मार्गी हो। पुष्य नक्षत्र में गुरुवार गुरु उपाय के लिए सबसे शक्तिशाली दिन।' },
 };
 
 // ─── Mythology ─────────────────────────────────────────────────────────
@@ -228,7 +294,20 @@ export default function GuruPage() {
         <ClassicalReference shortName="BPHS" chapter="Ch. 3 — Graha Visheshaphala" />
       </LessonSection>
 
-      {/* ── 2. Dignities ── */}
+      {/* ── 2. Astronomical Profile ── */}
+      <LessonSection number={next()} title={ml({ en: 'Astronomical Profile', hi: 'खगोलीय परिचय' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'Jupiter\'s astronomical characteristics directly inform its astrological behavior. As the largest planet with the slowest visible motion, its effects are deep, lasting, and generational in scope.', hi: 'गुरु की खगोलीय विशेषताएँ सीधे इसके ज्योतिषीय व्यवहार को सूचित करती हैं। सबसे बड़े ग्रह और सबसे धीमी दृश्य गति के रूप में, इसके प्रभाव गहरे, दीर्घस्थायी और पीढ़ीगत हैं।' })}</p>
+        <div className="space-y-3">
+          {Object.entries(ASTRONOMICAL).map(([key, val]) => (
+            <div key={key} className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-graha-jupiter/10 rounded-xl p-4">
+              <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(val)}</p>
+            </div>
+          ))}
+        </div>
+        <ClassicalReference shortName="Surya Siddhanta" chapter="Jupiter Orbital Parameters" />
+      </LessonSection>
+
+      {/* ── 3. Dignities ── */}
       <LessonSection number={next()} title={ml({ en: 'Dignities & Strength', hi: 'गरिमा एवं बल' })}>
         <p style={bf}>{ml({ en: 'Jupiter\'s dignity determines whether its immense beneficence flows freely or is obstructed. Exalted in Cancer at 5°, Jupiter combines nurturing compassion with expansive wisdom — the perfect guru. Debilitated in Capricorn at 5°, the guru is forced into materialistic pragmatism, and faith becomes a commodity rather than a conviction. In its own signs (Sagittarius and Pisces), Jupiter is the king in his court — free to teach, guide, and bless without hindrance.', hi: 'गुरु की गरिमा यह निर्धारित करती है कि इसकी अपार शुभता स्वतन्त्र रूप से बहती है या बाधित होती है। कर्क में 5° पर उच्च, गुरु पोषक करुणा को विस्तारशील ज्ञान से जोड़ता है — आदर्श गुरु। मकर में 5° पर नीच, गुरु भौतिकवादी व्यावहारिकता में विवश, और श्रद्धा विश्वास के बजाय वस्तु बन जाती है।' })}</p>
         <div className="space-y-2 mt-4">
@@ -242,7 +321,7 @@ export default function GuruPage() {
         <ClassicalReference shortName="BPHS" chapter="Ch. 3 v.18 — Uccha-Neecha" />
       </LessonSection>
 
-      {/* ── 3. Jupiter in Each Sign ── */}
+      {/* ── 4. Jupiter in Each Sign ── */}
       <LessonSection number={next()} title={ml({ en: 'Jupiter in the Twelve Signs', hi: 'बारह राशियों में गुरु' })}>
         <p style={bf} className="mb-4">{ml({ en: 'Jupiter transits one sign approximately every 12-13 months, making its sign placement a generational influence shared by peers born in the same year. However, its house placement (determined by the ascendant) is unique to each individual. The sign colors the quality of Jupiter\'s wisdom — fiery signs produce action-oriented teachers, earth signs produce practical advisors, air signs produce intellectual communicators, and water signs produce intuitive healers.', hi: 'गुरु लगभग हर 12-13 माह में एक राशि का भ्रमण करता है, जिससे इसकी राशि स्थिति एक ही वर्ष में जन्मे समकक्षों द्वारा साझा पीढ़ीगत प्रभाव है। तथापि, इसकी भाव स्थिति (लग्न द्वारा निर्धारित) प्रत्येक व्यक्ति के लिए अद्वितीय है। राशि गुरु के ज्ञान की गुणवत्ता को रंगती है।' })}</p>
         {JUPITER_IN_SIGNS.map((s, i) => (
@@ -263,7 +342,7 @@ export default function GuruPage() {
         ))}
       </LessonSection>
 
-      {/* ── 4. Jupiter in Each House ── */}
+      {/* ── 5. Jupiter in Each House ── */}
       <LessonSection number={next()} title={ml({ en: 'Jupiter in the Twelve Houses', hi: 'बारह भावों में गुरु' })}>
         <p style={bf} className="mb-4">{ml({ en: 'Jupiter\'s special aspect (5th, 7th, and 9th from itself) means that wherever it sits, it blesses three additional houses. This is why Jupiter is called the "great protector" — even from difficult houses (6th, 8th, 12th), its aspects can uplift the native. In Kendras (1, 4, 7, 10), Jupiter forms the foundation for Hamsa Yoga. In Trikonas (1, 5, 9), it amplifies dharma and fortune.', hi: 'गुरु की विशेष दृष्टि (अपने से 5वें, 7वें और 9वें भाव पर) का अर्थ है कि यह जहाँ भी बैठता है, तीन अतिरिक्त भावों को आशीर्वाद देता है। इसीलिए गुरु को "महारक्षक" कहा जाता है — कठिन भावों (6, 8, 12) से भी इसकी दृष्टि जातक को ऊपर उठा सकती है। केन्द्रों में हंस योग का आधार। त्रिकोणों में धर्म और भाग्य की वृद्धि।' })}</p>
         {JUPITER_IN_HOUSES.map((h) => (
@@ -278,7 +357,7 @@ export default function GuruPage() {
         <ClassicalReference shortName="BPHS" chapter="Ch. 24 — Bhava Phala (Effects of Planets in Houses)" />
       </LessonSection>
 
-      {/* ── 5. Dasha Period ── */}
+      {/* ── 6. Dasha Period ── */}
       <LessonSection number={next()} title={ml({ en: 'Guru Mahadasha (16 Years)', hi: 'गुरु महादशा (16 वर्ष)' })}>
         <p style={bf}>{ml(DASHA.overview)}</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
@@ -293,7 +372,68 @@ export default function GuruPage() {
         </div>
       </LessonSection>
 
-      {/* ── 6. Planetary Relationships ── */}
+      {/* ── 7. Notable Yogas ── */}
+      <LessonSection number={next()} title={ml({ en: 'Notable Yogas Involving Jupiter', hi: 'गुरु से सम्बन्धित प्रमुख योग' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'Jupiter participates in more named yogas than any other planet — reflecting its central role in determining a chart\'s overall quality. A chart with strong Jupiter yogas is fundamentally different from one without them, regardless of other placements.', hi: 'गुरु किसी भी अन्य ग्रह से अधिक नामित योगों में भाग लेता है — कुण्डली की समग्र गुणवत्ता निर्धारित करने में इसकी केन्द्रीय भूमिका को दर्शाता है। बलवान गुरु योगों वाली कुण्डली अन्य स्थितियों की परवाह किये बिना मौलिक रूप से भिन्न है।' })}</p>
+        {NOTABLE_YOGAS.map((yoga, i) => (
+          <div key={i} className="mb-4 bg-gradient-to-br from-[#2d1b69]/25 via-[#1a1040]/30 to-[#0a0e27] border border-graha-jupiter/15 rounded-xl p-5">
+            <h4 className="text-gold-light font-bold text-base mb-2" style={hf}>{ml(yoga.name)}</h4>
+            <div className="space-y-2">
+              <div>
+                <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{ml({ en: 'Condition', hi: 'शर्त' })}</span>
+                <p className="text-text-primary text-sm mt-1" style={bf}>{ml(yoga.condition)}</p>
+              </div>
+              <div>
+                <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{ml({ en: 'Effect', hi: 'फल' })}</span>
+                <p className="text-text-primary text-sm mt-1" style={bf}>{ml(yoga.effect)}</p>
+              </div>
+              <div>
+                <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{ml({ en: 'Strength Assessment', hi: 'बल आकलन' })}</span>
+                <p className="text-text-secondary text-sm mt-1" style={bf}>{ml(yoga.strength)}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+        <ClassicalReference shortName="BPHS" chapter="Ch. 34-36 — Yoga Adhyaya" />
+      </LessonSection>
+
+      {/* ── 8. Practical Application ── */}
+      <LessonSection number={next()} title={ml({ en: 'Practical Application', hi: 'व्यावहारिक अनुप्रयोग' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'Jupiter is the most commonly discussed benefic, yet its practical assessment requires nuance. A debilitated Jupiter in a trikona can outperform an exalted Jupiter in a dusthana — context is everything.', hi: 'गुरु सबसे अधिक चर्चित शुभ ग्रह है, तथापि इसके व्यावहारिक आकलन में सूक्ष्मता आवश्यक। त्रिकोण में नीच गुरु दुस्थान में उच्च गुरु से बेहतर प्रदर्शन कर सकता है — सन्दर्भ ही सब कुछ है।' })}</p>
+
+        <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-graha-jupiter/10 rounded-xl p-5 mb-4">
+          <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'How to Assess Jupiter\'s Strength', hi: 'गुरु के बल का आकलन कैसे करें' })}</h4>
+          <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.assessStrength)}</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div className="bg-emerald-500/5 border border-emerald-500/15 rounded-xl p-4">
+            <h4 className="text-emerald-400 font-bold text-sm mb-2" style={hf}>{ml({ en: 'Strong Jupiter Indicators', hi: 'बलवान गुरु के संकेत' })}</h4>
+            <p className="text-text-primary text-sm" style={bf}>{ml(PRACTICAL.strongIndicators)}</p>
+          </div>
+          <div className="bg-red-500/5 border border-red-500/15 rounded-xl p-4">
+            <h4 className="text-red-400 font-bold text-sm mb-2" style={hf}>{ml({ en: 'Weak Jupiter Indicators', hi: 'दुर्बल गुरु के संकेत' })}</h4>
+            <p className="text-text-primary text-sm" style={bf}>{ml(PRACTICAL.weakIndicators)}</p>
+          </div>
+        </div>
+
+        <div className="bg-bg-primary/50 rounded-lg border border-gold-primary/10 p-4 mb-4">
+          <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'When to Seek Remedies', hi: 'उपाय कब करें' })}</h4>
+          <p className="text-text-primary text-sm" style={bf}>{ml(PRACTICAL.whenToRemediate)}</p>
+        </div>
+
+        <div className="bg-bg-primary/50 rounded-lg border border-gold-primary/10 p-4 mb-4">
+          <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ' })}</h4>
+          <p className="text-text-primary text-sm" style={bf}>{ml(PRACTICAL.misconceptions)}</p>
+        </div>
+
+        <div className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-graha-jupiter/15 rounded-xl p-5">
+          <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Hamsa Yoga vs Guru Chandal — The Two Poles', hi: 'हंस योग बनाम गुरु चाण्डाल — दो ध्रुव' })}</h4>
+          <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.hamsaDetail)}</p>
+        </div>
+      </LessonSection>
+
+      {/* ── 9. Planetary Relationships ── */}
       <LessonSection number={next()} title={ml({ en: 'Relationships with Other Planets', hi: 'अन्य ग्रहों के साथ सम्बन्ध' })}>
         <p style={bf} className="mb-4">{ml({ en: 'Jupiter\'s friendships and enmities shape some of the most important yogas in Jyotish. Jupiter-Sun creates Raja Yogas, Jupiter-Moon creates Gajakesari, Jupiter-Mars creates Dharma-Karmadhipati combinations. The Jupiter-Venus enmity (Devaguru vs Asura Guru) and Jupiter-Mercury tension create the most nuanced results in chart interpretation.', hi: 'गुरु की मैत्री और शत्रुता ज्योतिष के कुछ सबसे महत्त्वपूर्ण योगों को आकार देती है। गुरु-सूर्य राज योग बनाता है, गुरु-चन्द्र गजकेसरी, गुरु-मंगल धर्म-कर्माधिपति संयोग। गुरु-शुक्र शत्रुता (देवगुरु बनाम असुर गुरु) और गुरु-बुध तनाव कुण्डली व्याख्या में सबसे सूक्ष्म परिणाम देते हैं।' })}</p>
         <div className="space-y-3">
@@ -314,7 +454,7 @@ export default function GuruPage() {
         <ClassicalReference shortName="BPHS" chapter="Ch. 3 v.23-26 — Naisargika Maitri" />
       </LessonSection>
 
-      {/* ── 7. Remedies ── */}
+      {/* ── 10. Remedies ── */}
       <LessonSection number={next()} title={ml({ en: 'Remedies for Jupiter', hi: 'गुरु के उपाय' })}>
         <p style={bf} className="mb-4">{ml({ en: 'Remedies are prescribed when Jupiter is weak, afflicted, or poorly placed in the birth chart. A strong Jupiter generally does not need remedies — and wearing Yellow Sapphire with a strong Jupiter can cause excess (weight gain, overconfidence, liver issues). Consult a qualified Jyotishi before wearing gemstones.', hi: 'उपाय तब निर्धारित किये जाते हैं जब गुरु दुर्बल, पीड़ित या कुण्डली में अशुभ स्थान पर हो। बलवान गुरु को प्रायः उपाय की आवश्यकता नहीं — और बलवान गुरु के साथ पुखराज पहनना अतिरेक (वज़न वृद्धि, अति-आत्मविश्वास, यकृत समस्या) कर सकता है। रत्न धारण से पूर्व योग्य ज्योतिषी से परामर्श करें।' })}</p>
 
@@ -334,6 +474,10 @@ export default function GuruPage() {
           { key: 'fasting', title: { en: 'Fasting (Upavasa)', hi: 'उपवास' } },
           { key: 'worship', title: { en: 'Worship & Puja', hi: 'पूजा एवं उपासना' } },
           { key: 'yantra', title: { en: 'Guru Yantra', hi: 'गुरु यन्त्र' } },
+          { key: 'dietary', title: { en: 'Dietary Recommendations', hi: 'आहार अनुशंसाएँ' } },
+          { key: 'colorTherapy', title: { en: 'Color Therapy', hi: 'रंग चिकित्सा' } },
+          { key: 'behavioral', title: { en: 'Behavioral Remedies', hi: 'व्यवहारिक उपाय' } },
+          { key: 'timing', title: { en: 'Optimal Timing for Mantra', hi: 'मन्त्र जाप का उत्तम समय' } },
         ].map(({ key, title }) => (
           <div key={key} className="bg-bg-primary/50 rounded-lg border border-gold-primary/10 p-4 mb-3">
             <h4 className="text-gold-light font-bold text-sm mb-1" style={hf}>{ml(title)}</h4>
@@ -345,7 +489,7 @@ export default function GuruPage() {
         </WhyItMatters>
       </LessonSection>
 
-      {/* ── 8. Mythology ── */}
+      {/* ── 11. Mythology ── */}
       <LessonSection number={next()} title={ml({ en: 'Mythology & Worship', hi: 'पौराणिक कथा एवं उपासना' })}>
         <div className="space-y-4">
           <div>

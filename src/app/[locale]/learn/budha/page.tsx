@@ -110,6 +110,68 @@ const MERCURY_IN_HOUSES: { house: number; name: ML; effect: ML }[] = [
     effect: { en: 'Mercury here operates behind the scenes — the mind processes information subconsciously, through dreams, and in isolation. Excellent for research in enclosed environments (labs, libraries, hospitals), writing in solitude, and foreign-language studies. The native may work in foreign countries or for foreign companies in intellectual roles. Expenditure on education, books, and travel for learning. Can indicate speech disorders or communication difficulties in early life. Meditation and introspection sharpen the intellect. When well-placed, produces brilliant researchers, writers of spiritual texts, and translators who bridge cultures from behind the scenes.', hi: 'बुध यहाँ पर्दे के पीछे कार्य करता है — मन अवचेतन रूप से, स्वप्नों और एकान्त में जानकारी संसाधित करता है। प्रयोगशालाओं, पुस्तकालयों में शोध, एकान्त में लेखन और विदेशी भाषा अध्ययन के लिए उत्कृष्ट। शिक्षा और यात्रा पर व्यय। ध्यान और आत्मनिरीक्षण बुद्धि को तीक्ष्ण करते हैं।' } },
 ];
 
+// ─── Astronomical Profile ──────────────────────────────────────────────
+const ASTRONOMICAL = {
+  orbitalPeriod: { en: 'Orbital period: 87.97 days — the fastest planet in the solar system. Mercury completes over 4 orbits for every one of Earth\'s, making it the most restless and changeable graha.', hi: 'कक्षीय अवधि: 87.97 दिन — सौरमण्डल का सबसे तेज़ ग्रह। बुध पृथ्वी की एक परिक्रमा में 4 से अधिक परिक्रमाएँ पूरी करता है, जिससे यह सबसे अस्थिर और परिवर्तनशील ग्रह है।' },
+  dailyMotion: { en: 'Average daily motion: ~1.38° per day (varies 0.5°–2.2° due to eccentric orbit). This rapid motion means Mercury changes sign roughly every 14–30 days, spending variable time in each sign depending on retrograde cycles.', hi: 'औसत दैनिक गति: ~1.38° प्रतिदिन (विलक्षण कक्षा के कारण 0.5°–2.2° तक भिन्न)। इस तीव्र गति का अर्थ है बुध लगभग हर 14-30 दिनों में राशि बदलता है।' },
+  synodicPeriod: { en: 'Synodic period: 115.88 days — the interval between successive inferior conjunctions with the Sun. This cycle determines when Mercury becomes visible as a morning or evening star, and governs the rhythm of its retrograde periods.', hi: 'सिनॉडिक अवधि: 115.88 दिन — सूर्य के साथ क्रमिक अधोयुतियों के बीच का अन्तराल। यह चक्र निर्धारित करता है कि बुध प्रातः या सायं तारे के रूप में कब दिखता है, और इसकी वक्री अवधियों की लय को नियन्त्रित करता है।' },
+  retrograde: { en: 'Retrograde frequency: 3–4 times per year, lasting 20–24 days each. Mercury retrograde is the most talked-about planetary phenomenon in popular astrology. During retrograde, communication breakdowns, travel delays, technology glitches, and contract errors are classically indicated. In the birth chart, natal Mercury retrograde (present in ~20% of charts) suggests an internalized intellect — the native processes information deeply before speaking and may have been a late talker in childhood.', hi: 'वक्री आवृत्ति: वर्ष में 3-4 बार, प्रत्येक बार 20-24 दिन। बुध वक्री लोकप्रिय ज्योतिष में सबसे चर्चित ग्रह घटना है। वक्री काल में संवाद भंग, यात्रा विलम्ब, प्रौद्योगिकी त्रुटियाँ और अनुबन्ध दोष शास्त्रीय रूप से सूचित। जन्मजात बुध वक्री (~20% कुण्डलियों में) आन्तरिक बुद्धि सूचित करता है।' },
+  combustion: { en: 'Combustion: Mercury is the most frequently combust planet because it never strays more than 28° from the Sun. Combustion occurs within ~14° (direct) or ~12° (retrograde) of the Sun. A combust Mercury loses independent thinking — the native\'s intellect becomes subservient to ego and authority. Budhaditya Yoga requires Mercury to be close to Sun but NOT combust — the narrow window between ~12° and ~17° is where this yoga operates most powerfully.', hi: 'अस्त: बुध सबसे अधिक बार अस्त होने वाला ग्रह है क्योंकि यह सूर्य से कभी 28° से अधिक दूर नहीं जाता। अस्त ~14° (मार्गी) या ~12° (वक्री) के भीतर होता है। अस्त बुध स्वतन्त्र चिन्तन खो देता है। बुधादित्य योग के लिए बुध सूर्य के निकट किन्तु अस्त नहीं होना चाहिए — ~12° और ~17° के बीच का संकीर्ण क्षेत्र सबसे शक्तिशाली।' },
+  astronomicalSignificance: { en: 'Astronomical vs. astrological significance: Mercury\'s tiny size (smallest planet) belies its astrological importance. Astronomically, Mercury has the most eccentric orbit of any planet (e=0.206), the greatest temperature range (-180°C to +430°C), and no atmosphere. These physical extremes mirror Mercury\'s astrological nature — maximum adaptability, extreme duality (benefic/malefic), and inability to hold its own identity without influence from other planets.', hi: 'खगोलीय बनाम ज्योतिषीय महत्त्व: बुध का छोटा आकार (सबसे छोटा ग्रह) इसके ज्योतिषीय महत्त्व को छुपाता है। खगोलीय रूप से, बुध की सबसे विलक्षण कक्षा (e=0.206), सबसे बड़ा तापमान परास (-180°C से +430°C) और कोई वायुमण्डल नहीं। ये भौतिक चरम बुध की ज्योतिषीय प्रकृति को प्रतिबिम्बित करते हैं — अधिकतम अनुकूलनशीलता और चरम द्वैत।' },
+};
+
+// ─── Notable Yogas ────────────────────────────────────────────────────
+const NOTABLE_YOGAS = [
+  { name: { en: 'Budhaditya Yoga', hi: 'बुधादित्य योग' },
+    condition: { en: 'Mercury conjunct Sun in the same sign, with Mercury NOT combust (ideally 12°–17° from Sun). Both should be in a kendra or trikona for full strength.', hi: 'बुध और सूर्य एक ही राशि में, बुध अस्त नहीं (आदर्श रूप से सूर्य से 12°-17°)। पूर्ण बल के लिए दोनों केन्द्र या त्रिकोण में।' },
+    effect: { en: 'The native possesses sharp intelligence illuminated by purpose and authority. Produces educated professionals, government communicators, public intellectuals, and leaders who combine analytical skill with executive decision-making. This is the most common yoga in Jyotish — present in roughly 1 in 3 charts — but its strength varies enormously based on house placement and combustion status.', hi: 'जातक में उद्देश्य और अधिकार से प्रकाशित तीक्ष्ण बुद्धि। शिक्षित पेशेवर, सरकारी संवादक, सार्वजनिक बुद्धिजीवी उत्पन्न करता है। ज्योतिष में सबसे सामान्य योग — लगभग 3 में 1 कुण्डली में — किन्तु बल भाव स्थिति और अस्त स्थिति पर बहुत भिन्न।' },
+    strength: { en: 'Strongest in 1st, 4th, 5th, 9th, 10th houses. Weak or ineffective if Mercury is combust, debilitated, or in 6th/8th/12th houses.', hi: '1, 4, 5, 9, 10 भावों में सबसे बलवान। बुध अस्त, नीच या 6/8/12 भावों में हो तो दुर्बल या अप्रभावी।' } },
+  { name: { en: 'Bhadra Yoga (Mahapurusha)', hi: 'भद्र योग (महापुरुष)' },
+    condition: { en: 'Mercury in a kendra (1st, 4th, 7th, or 10th house) in its own sign (Gemini/Virgo) or exalted (Virgo). This is one of the five Mahapurusha Yogas.', hi: 'बुध केन्द्र (1, 4, 7, 10 भाव) में स्वराशि (मिथुन/कन्या) या उच्च (कन्या) में। यह पाँच महापुरुष योगों में एक है।' },
+    effect: { en: 'The native has a strong, well-built body with a commanding intellectual presence. Exceptional memory, oratory skill, and scholarship. The person becomes famous through intelligence, writing, or commerce. Long life and respected social position. Classical texts describe the Bhadra native as having a face like a lion and the gait of an elephant — confident intellectual authority.', hi: 'जातक का सशक्त, सुगठित शरीर और प्रभावशाली बौद्धिक उपस्थिति। असाधारण स्मृति, वाक्चातुर्य और विद्वत्ता। बुद्धि, लेखन या वाणिज्य से प्रसिद्धि। दीर्घ जीवन और सम्मानित सामाजिक स्थिति। शास्त्रीय ग्रन्थ भद्र जातक को सिंह जैसे मुख और हाथी जैसी चाल वाला बताते हैं।' },
+    strength: { en: 'Strongest in Lagna (1st) and 10th house. Weakened if Mercury is combust or aspected by malefics.', hi: 'लग्न (1st) और दशम भाव में सबसे बलवान। बुध अस्त या पापग्रहों की दृष्टि में हो तो दुर्बल।' } },
+  { name: { en: 'Saraswati Yoga', hi: 'सरस्वती योग' },
+    condition: { en: 'Mercury, Jupiter, and Venus all placed in kendras, trikonas, or the 2nd house from the ascendant. All three should be in strong dignity.', hi: 'बुध, गुरु और शुक्र सभी केन्द्र, त्रिकोण या लग्न से दूसरे भाव में। तीनों की गरिमा बलवान होनी चाहिए।' },
+    effect: { en: 'Unparalleled scholarship, literary genius, and mastery of multiple arts and sciences. The native becomes renowned as a scholar, teacher, or author. Produces university professors, encyclopedia-level polymaths, and literary prize winners. The name Saraswati (goddess of learning) reflects the yoga\'s essence: the native becomes a vessel for knowledge itself.', hi: 'अद्वितीय विद्वत्ता, साहित्यिक प्रतिभा और विविध कला-विज्ञान में दक्षता। विद्वान, शिक्षक या लेखक के रूप में विख्यात। विश्वविद्यालय प्रोफेसर, विश्वकोश-स्तरीय बहुज्ञ और साहित्यिक पुरस्कार विजेता उत्पन्न करता है।' },
+    strength: { en: 'Requires all three planets in good dignity. If any one is debilitated or combust, the yoga weakens significantly.', hi: 'तीनों ग्रहों की अच्छी गरिमा आवश्यक। यदि कोई एक नीच या अस्त हो तो योग बहुत दुर्बल।' } },
+  { name: { en: 'Nipuna Yoga (Budha-Chandra)', hi: 'निपुण योग (बुध-चन्द्र)' },
+    condition: { en: 'Mercury and Moon conjunct in a kendra or trikona, especially in signs favorable to both (Gemini, Virgo, or Taurus).', hi: 'बुध और चन्द्र केन्द्र या त्रिकोण में युत, विशेषकर दोनों के अनुकूल राशियों (मिथुन, कन्या या वृषभ) में।' },
+    effect: { en: 'The native combines emotional intelligence with analytical precision — the ability to read people and situations with uncanny accuracy. Excellent for psychology, counseling, creative writing, and any field where empathy must combine with intellect. Despite Mercury-Moon enmity, when well-placed this conjunction produces exceptional communicators who bridge heart and mind.', hi: 'भावनात्मक बुद्धि और विश्लेषणात्मक सूक्ष्मता का संयोजन — लोगों और स्थितियों को अद्भुत सटीकता से पढ़ने की क्षमता। मनोविज्ञान, परामर्श और सृजनात्मक लेखन के लिए उत्कृष्ट। बुध-चन्द्र शत्रुता के बावजूद, सुस्थित होने पर असाधारण संवादक उत्पन्न।' },
+    strength: { en: 'Strong when Moon is waxing (Shukla Paksha) and Mercury is not combust. Weak when Moon is waning or Mercury is debilitated.', hi: 'चन्द्र शुक्ल पक्ष में हो और बुध अस्त न हो तो बलवान। चन्द्र कृष्ण पक्ष में या बुध नीच हो तो दुर्बल।' } },
+  { name: { en: 'Dhana Yoga (Mercury-based)', hi: 'धन योग (बुध आधारित)' },
+    condition: { en: 'Mercury as lord of 2nd or 11th house, placed in a kendra or trikona, conjunct or aspected by benefics (Jupiter or Venus). Or Mercury forming mutual aspect with the lord of 2nd/11th.', hi: 'बुध 2 या 11 भाव का स्वामी, केन्द्र या त्रिकोण में, शुभ ग्रहों (गुरु या शुक्र) की युति या दृष्टि। या बुध 2/11 भाव स्वामी से परस्पर दृष्टि।' },
+    effect: { en: 'Wealth through intellectual pursuits — writing royalties, consulting fees, software products, educational content, trading profits, and information arbitrage. This is the yoga of the modern knowledge economy. The native earns by knowing what others don\'t and communicating it effectively. Multiple income streams from different intellectual activities simultaneously.', hi: 'बौद्धिक कार्यों से धन — लेखन रॉयल्टी, परामर्श शुल्क, सॉफ्टवेयर, शैक्षिक सामग्री, व्यापार लाभ और सूचना मध्यस्थता। आधुनिक ज्ञान अर्थव्यवस्था का योग। जातक दूसरों से अधिक जानकर और प्रभावी संवाद से कमाता है।' },
+    strength: { en: 'Strongest when Mercury is in its own sign or exalted and unafflicted by malefics. Rahu conjunction amplifies but adds ethical risks.', hi: 'बुध स्वराशि या उच्च में और पापग्रहों से अपीड़ित हो तो सबसे बलवान। राहु युति बढ़ाती है किन्तु नैतिक जोखिम जोड़ती है।' } },
+];
+
+// ─── Practical Application ────────────────────────────────────────────
+const PRACTICAL = {
+  assessStrength: {
+    en: 'To assess Mercury\'s strength in your chart, check these factors in order of importance: (1) Sign placement — own sign (Gemini/Virgo) or exalted (Virgo) is best; debilitated (Pisces) is weakest. (2) House placement — kendras and trikonas are strong; 6th/8th/12th are challenging. (3) Combustion — if Mercury is within 14° of the Sun, its independent significations are weakened. (4) Aspects — benefic aspects (Jupiter, Venus) strengthen; malefic aspects (Saturn, Mars, Rahu) can distort. (5) Retrograde status — natal retrograde Mercury is not inherently weak but processes information differently. (6) Nakshatra lord — the nakshatra dispositor colors Mercury\'s expression significantly.',
+    hi: 'अपनी कुण्डली में बुध के बल का आकलन करने के लिए, महत्त्व क्रम में जाँचें: (1) राशि — स्वराशि (मिथुन/कन्या) या उच्च (कन्या) सर्वोत्तम; नीच (मीन) दुर्बलतम। (2) भाव — केन्द्र और त्रिकोण बलवान; 6/8/12 चुनौतीपूर्ण। (3) अस्त — सूर्य से 14° के भीतर बुध हो तो स्वतन्त्र कारकत्व दुर्बल। (4) दृष्टि — शुभ दृष्टि बलवान करती है; पापी दृष्टि विकृत कर सकती है। (5) वक्री — जन्मजात वक्री बुध स्वतः दुर्बल नहीं किन्तु भिन्न रूप से संसाधित करता है। (6) नक्षत्र स्वामी — बुध की अभिव्यक्ति को महत्त्वपूर्ण रूप से रंगता है।',
+  },
+  strongIndicators: {
+    en: 'Signs of a strong Mercury: Quick learner, excellent memory, articulate speech, skill with languages, good handwriting, mathematical aptitude, commercial acumen, youthful appearance, adaptable personality, curiosity about diverse subjects, good sense of humor, and the ability to multitask without losing quality.',
+    hi: 'बलवान बुध के संकेत: शीघ्र शिक्षार्थी, उत्कृष्ट स्मृति, स्पष्ट वाणी, भाषाओं में कौशल, अच्छी लिखावट, गणितीय योग्यता, वाणिज्यिक कौशल, युवा दिखावट, अनुकूलनशील व्यक्तित्व, विविध विषयों में जिज्ञासा, अच्छी हास्य बोध, गुणवत्ता खोये बिना बहुकार्य करने की क्षमता।',
+  },
+  weakIndicators: {
+    en: 'Signs of a weak Mercury: Speech impediments or communication difficulties, poor memory, inability to concentrate, chronic nervousness or anxiety, skin disorders, lung problems, difficulty with mathematics or languages, poor handwriting, indecisiveness, chronic lying or exaggeration, and trouble processing written information.',
+    hi: 'दुर्बल बुध के संकेत: वाक् दोष या संवाद कठिनाई, कमज़ोर स्मृति, एकाग्रता की अक्षमता, दीर्घकालिक घबराहट या चिन्ता, त्वचा विकार, फेफड़ों की समस्या, गणित या भाषा में कठिनाई, खराब लिखावट, अनिर्णय, दीर्घकालिक झूठ या अतिशयोक्ति, लिखित जानकारी संसाधित करने में कठिनाई।',
+  },
+  whenToRemediate: {
+    en: 'Seek Mercury remedies when: Mercury dasha is running and you experience communication breakdowns, business failures, or nervous health issues. When Mercury is combust in your natal chart and you struggle with independent thinking. When transiting Mercury retrograde repeatedly causes disruptions in your work. When you notice chronic indecisiveness or inability to commit to a single career path. Mercury remedies are MOST effective when combined with active intellectual engagement — reading, writing, learning a new skill, or studying a new language.',
+    hi: 'बुध उपाय कब करें: बुध दशा चल रही हो और संवाद भंग, व्यापार विफलता या तन्त्रिका स्वास्थ्य समस्याएँ अनुभव हों। जब बुध कुण्डली में अस्त हो और स्वतन्त्र चिन्तन में कठिनाई। जब गोचर बुध वक्री बार-बार कार्य में व्यवधान। जब दीर्घकालिक अनिर्णय या एक करियर पथ पर प्रतिबद्ध होने की अक्षमता। बुध उपाय सक्रिय बौद्धिक संलग्नता — पठन, लेखन, नया कौशल सीखना — के साथ सबसे प्रभावी।',
+  },
+  misconceptions: {
+    en: 'Common misconceptions: (1) "Mercury retrograde ruins everything" — natal retrograde Mercury is NOT a curse; it simply internalizes the intellect. Many brilliant thinkers have retrograde Mercury. (2) "Budhaditya Yoga makes you a genius" — only when Mercury is NOT combust. A combust Mercury with Sun actually weakens independent thinking. (3) "Mercury is always benefic" — Mercury is benefic ONLY when associated with benefics. With malefics, Mercury becomes malefic. This dual nature is unique to Mercury. (4) "Wearing Emerald is always good for Mercury" — Emerald amplifies Mercury\'s energy, including nervous tension. For already anxious people, it can worsen anxiety.',
+    hi: 'सामान्य भ्रान्तियाँ: (1) "बुध वक्री सब बिगाड़ता है" — जन्मजात वक्री बुध श्राप नहीं; यह बुद्धि को आन्तरिक करता है। (2) "बुधादित्य योग प्रतिभाशाली बनाता है" — केवल जब बुध अस्त नहीं। अस्त बुध स्वतन्त्र चिन्तन दुर्बल करता है। (3) "बुध सदा शुभ है" — बुध शुभों के साथ ही शुभ; पापियों के साथ पापी। (4) "पन्ना पहनना सदा अच्छा" — पन्ना बुध ऊर्जा बढ़ाता है, तन्त्रिका तनाव सहित। पहले से चिन्तित लोगों में चिन्ता बढ़ा सकता है।',
+  },
+  budhadityaDetail: {
+    en: 'Budhaditya Yoga — when it actually works: This yoga is present in roughly 33% of all charts because Mercury never strays far from the Sun. But it only delivers its full promise under specific conditions: (a) Mercury must be 12°–17° from the Sun — close enough for conjunction but not combust. (b) Mercury should be in a strong sign (Gemini, Virgo, or a friendly sign). (c) The conjunction should be in a kendra (1, 4, 7, 10) or trikona (1, 5, 9) for maximum career benefit. (d) Mercury should not be retrograde at the time of conjunction. When ALL these conditions are met, Budhaditya produces genuinely exceptional intelligence and career success through intellectual authority.',
+    hi: 'बुधादित्य योग — वास्तव में कब काम करता है: यह योग लगभग 33% कुण्डलियों में होता है क्योंकि बुध सूर्य से कभी बहुत दूर नहीं जाता। किन्तु पूर्ण फल विशिष्ट शर्तों में ही: (क) बुध सूर्य से 12°-17° — युति के लिए पर्याप्त निकट किन्तु अस्त नहीं। (ख) बलवान राशि (मिथुन, कन्या या मित्र राशि)। (ग) केन्द्र या त्रिकोण में। (घ) युति के समय बुध वक्री न हो। सभी शर्तें पूरी होने पर बुधादित्य वास्तव में असाधारण बुद्धि और करियर सफलता देता है।',
+  },
+};
+
 // ─── Dasha Information ─────────────────────────────────────────────────
 const DASHA = {
   years: 17,
@@ -135,6 +197,10 @@ const REMEDIES = {
   fasting: { en: 'Wednesday fasting — consume only green vegetables, moong dal, and milk products. Some traditions recommend fasting with recitation of Vishnu Sahasranama, as Vishnu is Mercury\'s presiding deity.', hi: 'बुधवार का उपवास — केवल हरी सब्जियाँ, मूँग दाल और दुग्ध उत्पाद। कुछ परम्पराओं में विष्णु सहस्रनाम पाठ के साथ उपवास, क्योंकि विष्णु बुध के अधिष्ठाता देवता हैं।' },
   worship: { en: 'Worship Lord Vishnu on Wednesdays — recite Vishnu Sahasranama or Budha Kavacham. Offer green flowers, tulsi leaves, and green fruits. Visit Navagraha temples. Keep a small potted plant of Tulsi (holy basil) at home as Mercury loves greenery and growth.', hi: 'बुधवार को भगवान विष्णु की पूजा — विष्णु सहस्रनाम या बुध कवचम् का पाठ। हरे पुष्प, तुलसी पत्र और हरे फल अर्पित करें। नवग्रह मन्दिर जाएँ। घर में तुलसी का छोटा पौधा रखें।' },
   yantra: { en: 'Budha Yantra — a 3×3 magic square with a sum of 24 in each row/column. Install on a brass plate (Mercury\'s metal), worship on Wednesdays. Place in the north direction of the study room or office.', hi: 'बुध यन्त्र — 3×3 जादुई वर्ग जिसमें प्रत्येक पंक्ति/स्तम्भ का योग 24 है। पीतल (बुध की धातु) के पत्र पर स्थापित करें, बुधवार को पूजन करें। अध्ययन कक्ष या कार्यालय की उत्तर दिशा में रखें।' },
+  dietary: { en: 'Dietary remedies: Green moong dal (the primary Mercury food), green leafy vegetables, green grapes, cucumber, celery, mint, coriander, and green tea. Avoid excess red meat during Mercury dasha. Mercury governs the nervous system — omega-3 fatty acids (walnuts, flaxseed) support Mercury\'s significations physiologically. Wednesday meals should emphasize green foods. Avoid eating in haste or while working — Mercury appreciates mindful consumption of food.', hi: 'आहार उपाय: हरी मूँग दाल (प्राथमिक बुध भोजन), हरी पत्तेदार सब्जियाँ, हरे अंगूर, खीरा, अजवाइन, पुदीना, धनिया और हरी चाय। बुध दशा में अत्यधिक लाल माँस से बचें। बुध तन्त्रिका तन्त्र शासित करता है — ओमेगा-3 (अखरोट, अलसी) बुध के कारकत्व को शारीरिक रूप से सहायता। बुधवार का भोजन हरे खाद्य पदार्थों पर जोर दे।' },
+  colorTherapy: { en: 'Color therapy: Wear green on Wednesdays — emerald green, leaf green, or forest green. The study room or workspace should have green accents — a green desk lamp, green plants, or green-tinted walls. Avoid wearing green during Mercury retrograde if you are already experiencing Mercury-related problems (it amplifies both positive and negative). Green aventurine can be kept on the work desk as a subtle Mercury energizer.', hi: 'रंग चिकित्सा: बुधवार को हरा पहनें — पन्ना हरा, पत्ती हरा या वन हरा। अध्ययन कक्ष या कार्यस्थल में हरे रंग — हरा डेस्क लैम्प, हरे पौधे या हरे रंग की दीवारें। बुध वक्री में बुध-सम्बन्धित समस्या अनुभव करने पर हरा पहनने से बचें। कार्य डेस्क पर हरा एवेंचुरिन रखा जा सकता है।' },
+  behavioral: { en: 'Behavioral remedies (most powerful for Mercury): Read daily for at least 30 minutes — books, not social media. Learn a new language or skill every year. Keep a journal — writing is the most direct Mercury activation. Solve puzzles, play chess, or engage in strategic games. Maintain honest, clear communication — lying weakens Mercury more than any malefic aspect. Teach someone what you know. Organize your workspace and digital files. Practice pranayama (Nadi Shodhana — alternate nostril breathing specifically strengthens Mercury). Avoid gossip and trivial conversation.', hi: 'व्यवहारिक उपाय (बुध के लिए सबसे शक्तिशाली): प्रतिदिन कम से कम 30 मिनट पठन — पुस्तकें, सोशल मीडिया नहीं। हर वर्ष नई भाषा या कौशल सीखें। पत्रिका रखें — लेखन सबसे प्रत्यक्ष बुध सक्रियकरण। पहेलियाँ सुलझाएँ, शतरंज खेलें। ईमानदार, स्पष्ट संवाद बनाये रखें — झूठ बुध को किसी पापी दृष्टि से अधिक दुर्बल करता है। नाड़ी शोधन प्राणायाम बुध को विशेष बलवान करता है। गपशप और तुच्छ बातचीत से बचें।' },
+  timing: { en: 'Timing for mantra recitation: Wednesday during Mercury Hora (calculate based on sunrise — Mercury Hora is the first hour after sunrise on Wednesdays). Early morning (4:30-6:00 AM) when the mind is fresh is ideal. Face north while chanting. The 40-day period (mandala) should ideally begin on a Wednesday during Shukla Paksha when Mercury is not retrograde. If Mercury is in Gemini, Virgo, or Taurus in transit, remedies are especially effective.', hi: 'मन्त्र जाप का समय: बुधवार को बुध होरा में (सूर्योदय से गणना — बुधवार को सूर्योदय के बाद पहली होरा बुध की)। प्रातः (4:30-6:00 बजे) जब मन ताज़ा हो, आदर्श। जाप करते समय उत्तर दिशा। 40-दिवसीय अवधि (मण्डल) आदर्श रूप से शुक्ल पक्ष में बुधवार से शुरू जब बुध वक्री न हो। गोचर में बुध मिथुन, कन्या या वृषभ में हो तो उपाय विशेष प्रभावी।' },
 };
 
 // ─── Mythology ─────────────────────────────────────────────────────────
@@ -228,7 +294,20 @@ export default function BudhaPage() {
         <ClassicalReference shortName="BPHS" chapter="Ch. 3 — Graha Visheshaphala" />
       </LessonSection>
 
-      {/* ── 2. Dignities ── */}
+      {/* ── 2. Astronomical Profile ── */}
+      <LessonSection number={next()} title={ml({ en: 'Astronomical Profile', hi: 'खगोलीय परिचय' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'Understanding Mercury\'s astronomical behavior reveals why it behaves the way it does in Jyotish — the fastest orbit, most frequent retrograde, and closest proximity to the Sun all have direct astrological consequences.', hi: 'बुध के खगोलीय व्यवहार को समझने से पता चलता है कि यह ज्योतिष में जैसा व्यवहार करता है वैसा क्यों — सबसे तेज़ कक्षा, सबसे बार-बार वक्री और सूर्य से निकटतम — सभी के प्रत्यक्ष ज्योतिषीय परिणाम हैं।' })}</p>
+        <div className="space-y-3">
+          {Object.entries(ASTRONOMICAL).map(([key, val]) => (
+            <div key={key} className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-gold-primary/10 rounded-xl p-4">
+              <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(val)}</p>
+            </div>
+          ))}
+        </div>
+        <ClassicalReference shortName="Surya Siddhanta" chapter="Mercury Orbital Parameters" />
+      </LessonSection>
+
+      {/* ── 3. Dignities ── */}
       <LessonSection number={next()} title={ml({ en: 'Dignities & Strength', hi: 'गरिमा एवं बल' })}>
         <p style={bf}>{ml({ en: 'Mercury\'s dignity determines whether the intellect operates at peak precision or drowns in confusion. In Virgo at 15°, Mercury is exalted — the analytical mind achieves perfection, processing information with flawless accuracy. In Pisces at 15°, Mercury is debilitated — rational thought dissolves in imagination and intuition, which can be either visionary or delusional. Mercury uniquely has its exaltation and own sign in the same sign (Virgo), meaning the 16°-20° range (moolatrikona) is where Mercury expresses its purest analytical nature.', hi: 'बुध की गरिमा यह निर्धारित करती है कि बुद्धि चरम सूक्ष्मता पर काम करती है या भ्रम में डूबती है। कन्या 15° में बुध उच्च — विश्लेषणात्मक मन सूचना को दोषरहित सटीकता से संसाधित करता है। मीन 15° में नीच — तर्कशील विचार कल्पना में विलीन। बुध की उच्च और स्वराशि एक ही राशि (कन्या) में — अद्वितीय।' })}</p>
         <div className="space-y-2 mt-4">
@@ -242,7 +321,7 @@ export default function BudhaPage() {
         <ClassicalReference shortName="BPHS" chapter="Ch. 3 v.18 — Uccha-Neecha" />
       </LessonSection>
 
-      {/* ── 3. Mercury in Each Sign ── */}
+      {/* ── 4. Mercury in Each Sign ── */}
       <LessonSection number={next()} title={ml({ en: 'Mercury in the Twelve Signs', hi: 'बारह राशियों में बुध' })}>
         <p style={bf} className="mb-4">{ml({ en: 'Mercury\'s sign placement determines the style of thinking, communication, and learning. In air signs (Gemini, Libra, Aquarius), Mercury is most communicative and social. In earth signs (Taurus, Virgo, Capricorn), Mercury is practical and detail-oriented. In fire signs (Aries, Leo, Sagittarius), Mercury thinks boldly but impulsively. In water signs (Cancer, Scorpio, Pisces), Mercury thinks through intuition and emotion rather than pure logic.', hi: 'बुध की राशि स्थिति सोच, संवाद और सीखने की शैली निर्धारित करती है। वायु राशियों में सबसे संवादशील। पृथ्वी राशियों में व्यावहारिक और विवरण-उन्मुख। अग्नि राशियों में साहसिक किन्तु आवेगी। जल राशियों में अन्तर्ज्ञान और भावना से।' })}</p>
         {MERCURY_IN_SIGNS.map((s, i) => (
@@ -265,7 +344,7 @@ export default function BudhaPage() {
         ))}
       </LessonSection>
 
-      {/* ── 4. Mercury in Each House ── */}
+      {/* ── 5. Mercury in Each House ── */}
       <LessonSection number={next()} title={ml({ en: 'Mercury in the Twelve Houses', hi: 'बारह भावों में बुध' })}>
         <p style={bf} className="mb-4">{ml({ en: 'The house placement determines the life domain where Mercury\'s intellectual energy concentrates. Mercury is naturally strong in the 1st and 10th houses for career and personality. In the 3rd house (communication), Mercury finds its most natural expression. Bhavartha Ratnakara notes that Mercury in kendras gives sharp intelligence, in trikonas gives scholarly wisdom, and in upachayas improves commercial acumen with age.', hi: 'भाव स्थिति यह निर्धारित करती है कि बुध की बौद्धिक ऊर्जा जीवन के किस क्षेत्र में केन्द्रित होती है। करियर और व्यक्तित्व के लिए पहले और दशम भाव में स्वाभाविक रूप से सशक्त। तृतीय भाव (संवाद) में सबसे स्वाभाविक अभिव्यक्ति। केन्द्रों में तीक्ष्ण बुद्धि, त्रिकोणों में विद्वत्ता।' })}</p>
         {MERCURY_IN_HOUSES.map((h) => (
@@ -280,7 +359,7 @@ export default function BudhaPage() {
         <ClassicalReference shortName="BPHS" chapter="Ch. 24 — Bhava Phala (Effects of Planets in Houses)" />
       </LessonSection>
 
-      {/* ── 5. Dasha Period ── */}
+      {/* ── 6. Dasha Period ── */}
       <LessonSection number={next()} title={ml({ en: 'Budha Mahadasha (17 Years)', hi: 'बुध महादशा (17 वर्ष)' })}>
         <p style={bf}>{ml(DASHA.overview)}</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
@@ -295,7 +374,68 @@ export default function BudhaPage() {
         </div>
       </LessonSection>
 
-      {/* ── 6. Planetary Relationships ── */}
+      {/* ── 7. Notable Yogas ── */}
+      <LessonSection number={next()} title={ml({ en: 'Notable Yogas Involving Mercury', hi: 'बुध से सम्बन्धित प्रमुख योग' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'Mercury participates in several important yogas that can dramatically elevate or distort the native\'s intellectual and commercial potential. Understanding these yogas helps distinguish a chart with strong Mercury influence from one where Mercury merely occupies a position.', hi: 'बुध कई महत्त्वपूर्ण योगों में भाग लेता है जो जातक की बौद्धिक और वाणिज्यिक क्षमता को नाटकीय रूप से ऊँचा या विकृत कर सकते हैं। इन योगों को समझने से बलवान बुध प्रभाव वाली कुण्डली और केवल स्थान भरने वाले बुध में अन्तर स्पष्ट होता है।' })}</p>
+        {NOTABLE_YOGAS.map((yoga, i) => (
+          <div key={i} className="mb-4 bg-gradient-to-br from-[#2d1b69]/25 via-[#1a1040]/30 to-[#0a0e27] border border-graha-mercury/15 rounded-xl p-5">
+            <h4 className="text-gold-light font-bold text-base mb-2" style={hf}>{ml(yoga.name)}</h4>
+            <div className="space-y-2">
+              <div>
+                <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{ml({ en: 'Condition', hi: 'शर्त' })}</span>
+                <p className="text-text-primary text-sm mt-1" style={bf}>{ml(yoga.condition)}</p>
+              </div>
+              <div>
+                <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{ml({ en: 'Effect', hi: 'फल' })}</span>
+                <p className="text-text-primary text-sm mt-1" style={bf}>{ml(yoga.effect)}</p>
+              </div>
+              <div>
+                <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{ml({ en: 'Strength Assessment', hi: 'बल आकलन' })}</span>
+                <p className="text-text-secondary text-sm mt-1" style={bf}>{ml(yoga.strength)}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+        <ClassicalReference shortName="BPHS" chapter="Ch. 34-36 — Yoga Adhyaya" />
+      </LessonSection>
+
+      {/* ── 8. Practical Application ── */}
+      <LessonSection number={next()} title={ml({ en: 'Practical Application', hi: 'व्यावहारिक अनुप्रयोग' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'Knowing Mercury\'s theoretical significations is only the first step. The real skill lies in assessing Mercury\'s functional strength in an individual chart and translating that assessment into actionable life guidance.', hi: 'बुध के सैद्धान्तिक कारकत्व जानना केवल पहला कदम है। वास्तविक कौशल व्यक्तिगत कुण्डली में बुध के कार्यात्मक बल का आकलन और उसे क्रियाशील जीवन मार्गदर्शन में रूपान्तरित करना है।' })}</p>
+
+        <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-gold-primary/10 rounded-xl p-5 mb-4">
+          <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'How to Assess Mercury\'s Strength', hi: 'बुध के बल का आकलन कैसे करें' })}</h4>
+          <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.assessStrength)}</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div className="bg-emerald-500/5 border border-emerald-500/15 rounded-xl p-4">
+            <h4 className="text-emerald-400 font-bold text-sm mb-2" style={hf}>{ml({ en: 'Strong Mercury Indicators', hi: 'बलवान बुध के संकेत' })}</h4>
+            <p className="text-text-primary text-sm" style={bf}>{ml(PRACTICAL.strongIndicators)}</p>
+          </div>
+          <div className="bg-red-500/5 border border-red-500/15 rounded-xl p-4">
+            <h4 className="text-red-400 font-bold text-sm mb-2" style={hf}>{ml({ en: 'Weak Mercury Indicators', hi: 'दुर्बल बुध के संकेत' })}</h4>
+            <p className="text-text-primary text-sm" style={bf}>{ml(PRACTICAL.weakIndicators)}</p>
+          </div>
+        </div>
+
+        <div className="bg-bg-primary/50 rounded-lg border border-gold-primary/10 p-4 mb-4">
+          <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'When to Seek Remedies', hi: 'उपाय कब करें' })}</h4>
+          <p className="text-text-primary text-sm" style={bf}>{ml(PRACTICAL.whenToRemediate)}</p>
+        </div>
+
+        <div className="bg-bg-primary/50 rounded-lg border border-gold-primary/10 p-4 mb-4">
+          <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ' })}</h4>
+          <p className="text-text-primary text-sm" style={bf}>{ml(PRACTICAL.misconceptions)}</p>
+        </div>
+
+        <div className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-graha-mercury/15 rounded-xl p-5">
+          <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Budhaditya Yoga — Deep Dive', hi: 'बुधादित्य योग — गहन विश्लेषण' })}</h4>
+          <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.budhadityaDetail)}</p>
+        </div>
+      </LessonSection>
+
+      {/* ── 9. Planetary Relationships ── */}
       <LessonSection number={next()} title={ml({ en: 'Relationships with Other Planets', hi: 'अन्य ग्रहों के साथ सम्बन्ध' })}>
         <p style={bf} className="mb-4">{ml({ en: 'Mercury\'s relationships reveal the intellect\'s alliances and conflicts. His friendship with Sun (Budhaditya Yoga) and Venus (commercial artistry) forms the axis of communicative power. His enmity with Moon reflects the deep tension between rational analysis and emotional intuition. Mercury\'s dual nature means he takes on the character of whichever planet he associates with — making his conjunctions uniquely variable in their effects.', hi: 'बुध के सम्बन्ध बुद्धि के गठबन्धन और संघर्ष प्रकट करते हैं। सूर्य (बुधादित्य योग) और शुक्र (वाणिज्यिक कलात्मकता) से मैत्री संवादात्मक शक्ति की धुरी। चन्द्र से शत्रुता तर्कशील विश्लेषण और भावनात्मक अन्तर्ज्ञान के गहरे तनाव का प्रतिबिम्ब। बुध का द्वैत स्वभाव उसकी युतियों को अद्वितीय रूप से परिवर्तनशील बनाता है।' })}</p>
         <div className="space-y-3">
@@ -316,7 +456,7 @@ export default function BudhaPage() {
         <ClassicalReference shortName="BPHS" chapter="Ch. 3 v.23-26 — Naisargika Maitri" />
       </LessonSection>
 
-      {/* ── 7. Remedies ── */}
+      {/* ── 10. Remedies ── */}
       <LessonSection number={next()} title={ml({ en: 'Remedies for Mercury', hi: 'बुध के उपाय' })}>
         <p style={bf} className="mb-4">{ml({ en: 'Remedies are prescribed when Mercury is weak, combust, debilitated, or afflicted by malefics. A strong Mercury thrives when the native engages in continuous learning, reading, writing, and intellectual stimulation. The best Mercury remedy is education itself. Consult a qualified Jyotishi before wearing gemstones — an incorrectly prescribed Emerald can amplify nervous anxiety and overthinking.', hi: 'उपाय तब निर्धारित किये जाते हैं जब बुध दुर्बल, अस्त, नीच या पापग्रहों से पीड़ित हो। बलवान बुध निरन्तर शिक्षा, पठन, लेखन और बौद्धिक उत्तेजना से फलता-फूलता है। सबसे अच्छा बुध उपाय स्वयं शिक्षा है। रत्न धारण से पूर्व ज्योतिषी से परामर्श अनिवार्य।' })}</p>
 
@@ -336,6 +476,10 @@ export default function BudhaPage() {
           { key: 'fasting', title: { en: 'Fasting (Upavasa)', hi: 'उपवास' } },
           { key: 'worship', title: { en: 'Worship — Vishnu', hi: 'पूजा — विष्णु' } },
           { key: 'yantra', title: { en: 'Budha Yantra', hi: 'बुध यन्त्र' } },
+          { key: 'dietary', title: { en: 'Dietary Recommendations', hi: 'आहार अनुशंसाएँ' } },
+          { key: 'colorTherapy', title: { en: 'Color Therapy', hi: 'रंग चिकित्सा' } },
+          { key: 'behavioral', title: { en: 'Behavioral Remedies', hi: 'व्यवहारिक उपाय' } },
+          { key: 'timing', title: { en: 'Optimal Timing for Mantra', hi: 'मन्त्र जाप का उत्तम समय' } },
         ].map(({ key, title }) => (
           <div key={key} className="bg-bg-primary/50 rounded-lg border border-gold-primary/10 p-4 mb-3">
             <h4 className="text-gold-light font-bold text-sm mb-1" style={hf}>{ml(title)}</h4>
@@ -347,7 +491,7 @@ export default function BudhaPage() {
         </WhyItMatters>
       </LessonSection>
 
-      {/* ── 8. Mythology ── */}
+      {/* ── 11. Mythology ── */}
       <LessonSection number={next()} title={ml({ en: 'Mythology & Worship', hi: 'पौराणिक कथा एवं उपासना' })}>
         <div className="space-y-4">
           <div>

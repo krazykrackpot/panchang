@@ -110,6 +110,68 @@ const VENUS_IN_HOUSES: { house: number; name: ML; effect: ML }[] = [
     effect: { en: 'Venus in the 12th is excellent for bedroom pleasures and spiritual love. The native has an active and fulfilling intimate life. Expenses on luxury, travel, and pleasure. Foreign connections bring romantic opportunities. Artistic expression has a dreamy, otherworldly quality. Can indicate secret affairs or love that operates behind the scenes. Excellent for spiritual practices involving beauty — devotional music, sacred dance, temple art. Moksha through love and surrender. Financial outflow is constant but on pleasurable causes. The native may live abroad for love or work in the luxury/entertainment sector internationally.', hi: '12वें भाव में शुक्र शयनकक्ष सुख और आध्यात्मिक प्रेम के लिए उत्कृष्ट। सक्रिय और पूर्ण अन्तरंग जीवन। विलासिता, यात्रा और सुख पर व्यय। विदेशी सम्बन्ध प्रेम अवसर लाते हैं। कलात्मक अभिव्यक्ति स्वप्निल, अलौकिक। गुप्त प्रेम सम्भव। भक्ति संगीत, पवित्र नृत्य में आध्यात्मिक साधना। प्रेम और समर्पण से मोक्ष।' } },
 ];
 
+// ─── Astronomical Profile ──────────────────────────────────────────────
+const ASTRONOMICAL = {
+  orbitalPeriod: { en: 'Orbital period: 224.7 days — Venus completes its orbit in about 7.5 months, making it faster than Earth but appearing to move slowly from our perspective due to its similar orbital distance. Venus is Earth\'s closest planetary neighbor and the brightest object in the sky after the Sun and Moon.', hi: 'कक्षीय अवधि: 224.7 दिन — शुक्र लगभग 7.5 माह में अपनी कक्षा पूरी करता है। शुक्र पृथ्वी का निकटतम ग्रह पड़ोसी और सूर्य-चन्द्र के बाद आकाश की सबसे चमकीली वस्तु है।' },
+  dailyMotion: { en: 'Average daily motion: ~1.6° per day (varies 0.6°–1.3° in geocentric terms). Venus spends 15–60 days in each sign depending on its retrograde cycle. Because Venus is an inferior planet (orbiting closer to the Sun than Earth), it oscillates between being a morning star (visible before sunrise) and evening star (visible after sunset) — never appearing at midnight.', hi: 'औसत दैनिक गति: ~1.6° प्रतिदिन (भूकेन्द्रिक दृष्टि से 0.6°-1.3°)। शुक्र प्रत्येक राशि में 15-60 दिन बिताता है। शुक्र अधोग्रह होने से प्रातः तारा (सूर्योदय से पूर्व) और सायं तारा (सूर्यास्त के बाद) के बीच दोलन करता है — कभी मध्यरात्रि में दृश्य नहीं।' },
+  synodicPeriod: { en: 'Synodic period: 583.9 days — the interval between successive inferior conjunctions. This nearly 19-month cycle is deeply significant: five synodic periods almost exactly equal 8 Earth years, creating the famous Venus Pentagram — if you plot Venus\'s inferior conjunctions on the zodiac over 8 years, they form a near-perfect five-pointed star. Ancient civilizations tracked this pattern, associating Venus with the number 5 and the pentagram.', hi: 'सिनॉडिक अवधि: 583.9 दिन — क्रमिक अधोयुतियों के बीच। यह लगभग 19-माह चक्र गहन महत्त्वपूर्ण है: पाँच सिनॉडिक अवधियाँ लगभग 8 पृथ्वी वर्षों के बराबर, प्रसिद्ध शुक्र पंचकोण बनाते हैं — 8 वर्षों में शुक्र की अधोयुतियाँ राशिचक्र पर लगभग पूर्ण पंचकोणीय तारा बनाती हैं।' },
+  retrograde: { en: 'Retrograde frequency: Once every 18 months, lasting approximately 40–43 days. Venus retrograde is the rarest inner-planet retrograde. During retrograde, old lovers may reappear, past relationship patterns resurface, and aesthetic judgments may be unreliable (avoid cosmetic surgery, major beauty purchases, or wedding planning). Natal Venus retrograde (~7% of charts — the rarest) indicates deeply internalized values around love and beauty, often with a karmic quality to relationships.', hi: 'वक्री आवृत्ति: प्रत्येक 18 माह में एक बार, लगभग 40-43 दिन। शुक्र वक्री सबसे दुर्लभ आन्तरिक ग्रह वक्री है। वक्री काल में पुराने प्रेमी पुनः प्रकट हो सकते हैं, पूर्व सम्बन्ध पैटर्न उभर सकते हैं। जन्मजात शुक्र वक्री (~7% कुण्डलियों में — सबसे दुर्लभ) प्रेम और सौन्दर्य के प्रति गहन आन्तरिक मूल्य सूचित करता है।' },
+  combustion: { en: 'Combustion: Venus is combust within ~10° of Sun (direct) or ~8° (retrograde). Venus combustion is the MOST COMMON planetary combustion because Venus never strays more than ~47° from the Sun. About 10% of people have combust Venus at birth. When combust, romantic significations weaken — the native may prioritize ego, career, or social status over genuine love and intimacy. Marriage may be delayed or the spouse may feel overshadowed.', hi: 'अस्त: शुक्र सूर्य से ~10° (मार्गी) या ~8° (वक्री) के भीतर अस्त। शुक्र अस्त सबसे सामान्य ग्रह अस्त है क्योंकि शुक्र सूर्य से कभी ~47° से अधिक दूर नहीं। लगभग 10% लोगों का जन्मजात शुक्र अस्त। अस्त होने पर प्रेम कारकत्व दुर्बल — जातक अहंकार या करियर को प्रेम और अन्तरंगता पर प्राथमिकता दे सकता है। विवाह में विलम्ब सम्भव।' },
+  astronomicalSignificance: { en: 'Astronomical vs. astrological significance: Venus is Earth\'s "sister planet" — nearly identical in size and mass, yet with a surface temperature of 475°C and an atmosphere of sulfuric acid clouds. This duality mirrors Venus\'s astrological nature: externally beautiful but internally intense. Venus rotates backward (retrograde rotation), making its day longer than its year — the only planet with this property. Astrologically, this reflects Venus\'s capacity to reverse conventional expectations: what looks like pleasure can become suffering, and what seems like loss in love can become spiritual liberation.', hi: 'खगोलीय बनाम ज्योतिषीय महत्त्व: शुक्र पृथ्वी का "भगिनी ग्रह" — आकार और द्रव्यमान में लगभग समान, तथापि 475°C सतह तापमान और सल्फ्यूरिक अम्ल मेघ। यह द्वैत ज्योतिषीय प्रकृति को प्रतिबिम्बित करता है: बाहर से सुन्दर किन्तु भीतर तीव्र। शुक्र उलटा घूमता है (वक्री घूर्णन), इसका दिन वर्ष से लम्बा — एकमात्र ग्रह। ज्योतिषीय रूप से, यह शुक्र की परम्परागत अपेक्षाओं को उलटने की क्षमता दर्शाता है।' },
+};
+
+// ─── Notable Yogas ────────────────────────────────────────────────────
+const NOTABLE_YOGAS = [
+  { name: { en: 'Malavya Yoga (Mahapurusha)', hi: 'मालव्य योग (महापुरुष)' },
+    condition: { en: 'Venus in a kendra (1st, 4th, 7th, or 10th house) in its own sign (Taurus/Libra) or exalted (Pisces). This is one of the five Mahapurusha Yogas.', hi: 'शुक्र केन्द्र (1, 4, 7, 10 भाव) में स्वराशि (वृषभ/तुला) या उच्च (मीन) में। यह पाँच महापुरुष योगों में एक है।' },
+    effect: { en: 'The native possesses exceptional beauty, charm, and artistic talent. Malavya (meaning "born of the Malava people" — a culture known for refinement) produces individuals who elevate their surroundings through aesthetic grace. Luxurious lifestyle, beautiful spouse, many vehicles, and social prominence. The native becomes a patron or creator of art, fashion, or luxury. Strong sensual nature balanced by refined taste. This yoga often produces celebrities, fashion moguls, and cultural icons.', hi: 'जातक में असाधारण सौन्दर्य, आकर्षण और कलात्मक प्रतिभा। मालव्य सौन्दर्य कृपा से अपने परिवेश को ऊँचा करने वाले व्यक्ति उत्पन्न करता है। विलासितापूर्ण जीवनशैली, सुन्दर जीवनसाथी, अनेक वाहन और सामाजिक प्रमुखता। कला, फैशन या विलासिता का संरक्षक या सृजक। सेलिब्रिटी, फैशन शक्तिशाली और सांस्कृतिक प्रतीक उत्पन्न करता है।' },
+    strength: { en: 'Strongest in 7th house (marriage) and 4th house (comforts). In the 10th, it creates fame through beauty/art. Weakened if Venus is combust, retrograde, or aspected by Saturn (delays) or Mars (conflict in love).', hi: '7वें भाव (विवाह) और 4थे भाव (सुख) में सबसे बलवान। 10वें में सौन्दर्य/कला से यश। शुक्र अस्त, वक्री या शनि (विलम्ब) या मंगल (प्रेम में संघर्ष) की दृष्टि में हो तो दुर्बल।' } },
+  { name: { en: 'Lakshmi Yoga', hi: 'लक्ष्मी योग' },
+    condition: { en: 'The lord of the 9th house is strong and Venus occupies its own or exalted sign in a kendra or trikona. Alternatively, Venus as 9th lord in a kendra in strong dignity.', hi: '9वें भाव का स्वामी बलवान और शुक्र केन्द्र या त्रिकोण में स्वराशि या उच्च में। वैकल्पिक: शुक्र 9वें भाव स्वामी के रूप में केन्द्र में बलवान गरिमा में।' },
+    effect: { en: 'Named after the goddess of wealth and beauty, this yoga bestows material abundance with aesthetic refinement. The native accumulates luxury, art, and precious items. Wealth comes through beauty-related industries, partnerships, or spouse\'s family. Unlike purely material wealth yogas, Lakshmi Yoga implies that prosperity is accompanied by grace, taste, and cultural sophistication.', hi: 'धन और सौन्दर्य की देवी के नाम पर, यह योग सौन्दर्य परिष्कार के साथ भौतिक प्रचुरता देता है। विलासिता, कला और बहुमूल्य वस्तुओं का संचय। सौन्दर्य-सम्बन्धित उद्योगों, साझेदारियों या जीवनसाथी के परिवार से धन। समृद्धि कृपा, रुचि और सांस्कृतिक परिष्कार के साथ।' },
+    strength: { en: 'Full strength requires Venus and 9th lord both unafflicted. Jupiter\'s aspect on Venus significantly enhances this yoga.', hi: 'पूर्ण बल के लिए शुक्र और 9वें भाव स्वामी दोनों अपीड़ित। शुक्र पर गुरु की दृष्टि योग को बहुत बढ़ाती है।' } },
+  { name: { en: 'Raja Lakshmi Yoga', hi: 'राज लक्ष्मी योग' },
+    condition: { en: 'Venus conjunct or aspecting the lord of the Lagna while being placed in a kendra or trikona in good dignity. Venus should not be combust.', hi: 'शुक्र लग्न स्वामी से युत या दृष्टि करता हो, केन्द्र या त्रिकोण में सुगरिमा। शुक्र अस्त न हो।' },
+    effect: { en: 'The native leads a life of both power and luxury — the queen or king who rules with grace. Political power through charm and cultural influence rather than brute force. Produces leaders in creative industries, diplomatic corps, and fashion empires. Marriage elevates social status dramatically.', hi: 'जातक शक्ति और विलासिता दोनों का जीवन जीता है — कृपा से शासन करने वाला राजा या रानी। आकर्षण और सांस्कृतिक प्रभाव से राजनीतिक शक्ति। सृजनात्मक उद्योगों, कूटनीतिक दल और फैशन साम्राज्यों में नेता। विवाह सामाजिक प्रतिष्ठा नाटकीय रूप से ऊँची करता है।' },
+    strength: { en: 'Strongest when Venus is exalted in Pisces and the Lagna lord is Jupiter. Weakened by any malefic aspect on Venus.', hi: 'शुक्र मीन में उच्च हो और लग्न स्वामी गुरु हो तो सबसे बलवान। शुक्र पर किसी पापी दृष्टि से दुर्बल।' } },
+  { name: { en: 'Kalatramsha Yoga', hi: 'कलत्रांश योग' },
+    condition: { en: 'Venus in the Navamsha (D-9) chart placed in its own sign, exalted sign, or in a kendra from the Navamsha Lagna. The D-9 is the chart of marriage — Venus\'s dignity here is crucial for married life.', hi: 'नवमांश (D-9) में शुक्र स्वराशि, उच्च राशि या नवमांश लग्न से केन्द्र में। D-9 विवाह की कुण्डली है — यहाँ शुक्र की गरिमा वैवाहिक जीवन के लिए महत्त्वपूर्ण।' },
+    effect: { en: 'Even if Venus is poorly placed in the Rashi chart, strong Venus in the Navamsha rescues married life. The native finds a beautiful, supportive, and compatible spouse. Physical intimacy is fulfilling. Artistic appreciation deepens with marriage. This yoga is often overlooked because astrologers only check the Rashi chart — but for marriage, the Navamsha is equally or more important.', hi: 'राशि कुण्डली में शुक्र दुर्बल हो तो भी नवमांश में बलवान शुक्र वैवाहिक जीवन बचाता है। सुन्दर, सहायक और अनुकूल जीवनसाथी मिलता है। शारीरिक अन्तरंगता पूर्ण। विवाह के साथ कलात्मक सराहना गहरी। यह योग प्रायः अनदेखा क्योंकि ज्योतिषी केवल राशि कुण्डली जाँचते हैं — किन्तु विवाह के लिए नवमांश समान या अधिक महत्त्वपूर्ण।' },
+    strength: { en: 'Strongest when Venus is Vargottama (same sign in both Rashi and Navamsha). Jupiter\'s aspect in the Navamsha adds spiritual depth to marriage.', hi: 'शुक्र वर्गोत्तम (राशि और नवमांश दोनों में एक ही राशि) हो तो सबसे बलवान। नवमांश में गुरु की दृष्टि विवाह में आध्यात्मिक गहराई जोड़ती है।' } },
+  { name: { en: 'Venus-Saturn Yoga (Shukra-Shani)', hi: 'शुक्र-शनि योग' },
+    condition: { en: 'Venus and Saturn conjunct or in mutual aspect, especially in signs favorable to both (Libra, Taurus, Capricorn, Aquarius). They are natural friends.', hi: 'शुक्र और शनि युत या परस्पर दृष्टि, विशेषकर दोनों के अनुकूल राशियों (तुला, वृषभ, मकर, कुम्भ) में। वे स्वाभाविक मित्र हैं।' },
+    effect: { en: 'The endurance artist. Saturn gives Venus discipline, structure, and longevity. The native creates timeless beauty — architecture that lasts centuries, music that becomes classical, fashion that defines an era. Marriage may come late but lasts forever. Relationships improve dramatically after age 35. Love expressed through commitment and loyalty rather than passion. This combination also excels in real estate, classical arts, and luxury brands built on heritage.', hi: 'धैर्यवान कलाकार। शनि शुक्र को अनुशासन, संरचना और दीर्घायु देता है। शाश्वत सौन्दर्य का सृजन — सदियों टिकने वाली वास्तुकला, शास्त्रीय बनने वाला संगीत। विवाह देर से किन्तु शाश्वत। 35 वर्ष के बाद सम्बन्ध नाटकीय सुधार। प्रतिबद्धता और वफादारी से व्यक्त प्रेम। अचल सम्पत्ति और विरासत-आधारित विलासिता ब्राण्ड में उत्कृष्ट।' },
+    strength: { en: 'Strongest in Libra (Venus\'s Moolatrikona and Saturn\'s exaltation sign) — both planets are dignified. Weakened in Leo (Sun\'s sign — enemy of both).', hi: 'तुला में सबसे बलवान (शुक्र का मूलत्रिकोण और शनि की उच्च राशि) — दोनों ग्रह गरिमावान। सिंह (सूर्य की राशि — दोनों का शत्रु) में दुर्बल।' } },
+];
+
+// ─── Practical Application ────────────────────────────────────────────
+const PRACTICAL = {
+  assessStrength: {
+    en: 'To assess Venus\'s strength in your chart: (1) Sign placement — exalted in Pisces (27°) is strongest, debilitated in Virgo (27°) is weakest; own signs Taurus and Libra are strong. (2) House placement — Venus thrives in kendras (especially 4th and 7th for marriage) and the 5th for romance; 6th/8th/12th create complications but the 12th paradoxically enhances bedroom pleasures. (3) Combustion — within 10° of Sun weakens romantic significations; this is the MOST COMMON Venus affliction (check your chart). (4) Navamsha dignity — for marriage assessment, Venus\'s sign in the D-9 chart is as important as in the D-1. (5) Aspects — Jupiter\'s aspect adds spiritual depth; Saturn\'s aspect delays but stabilizes; Mars\'s aspect adds passion but also conflict. (6) Retrograde — natal Venus retrograde (~7%) suggests karmic patterns in love from past lives.',
+    hi: 'कुण्डली में शुक्र के बल का आकलन: (1) राशि — मीन 27° में उच्च सबसे बलवान, कन्या 27° में नीच दुर्बलतम; स्वराशि वृषभ और तुला बलवान। (2) भाव — केन्द्र (विशेषकर 4 और 7 विवाह के लिए) और 5वाँ प्रेम के लिए उत्कृष्ट; 6/8/12 जटिल किन्तु 12वाँ शयनकक्ष सुख बढ़ाता है। (3) अस्त — सूर्य से 10° के भीतर प्रेम कारकत्व दुर्बल; सबसे सामान्य शुक्र पीड़ा। (4) नवमांश गरिमा — विवाह के लिए D-9 में शुक्र की राशि D-1 जितनी महत्त्वपूर्ण। (5) दृष्टि — गुरु आध्यात्मिक गहराई; शनि विलम्ब किन्तु स्थिरता; मंगल उत्कटता किन्तु संघर्ष। (6) वक्री — जन्मजात शुक्र वक्री (~7%) पूर्वजन्म से प्रेम में कार्मिक पैटर्न।',
+  },
+  strongIndicators: {
+    en: 'Signs of a strong Venus: Natural beauty and charm, harmonious relationships, artistic talent or refined taste, good marriage, pleasant voice, ability to attract wealth and luxury, social grace and diplomatic skill, sexual vitality, love of music and beauty, healthy skin and reproductive system, ability to create beauty in environment, and a magnetic personality that draws others.',
+    hi: 'बलवान शुक्र के संकेत: स्वाभाविक सौन्दर्य और आकर्षण, सामंजस्यपूर्ण सम्बन्ध, कलात्मक प्रतिभा, अच्छा विवाह, मधुर स्वर, धन और विलासिता आकर्षित करने की क्षमता, सामाजिक कृपा और कूटनीतिक कौशल, यौन जीवन शक्ति, संगीत और सौन्दर्य प्रेम, स्वस्थ त्वचा और प्रजनन तन्त्र, चुम्बकीय व्यक्तित्व।',
+  },
+  weakIndicators: {
+    en: 'Signs of a weak Venus: Troubled or delayed marriage, lack of aesthetic sense, reproductive health issues, kidney or urinary problems, skin disorders, inability to maintain romantic relationships, chronic dissatisfaction with appearance, difficulty attracting or retaining partners, excessive or suppressed sexuality, diabetes or hormonal imbalances, and a general inability to experience pleasure and beauty in daily life.',
+    hi: 'दुर्बल शुक्र के संकेत: कष्टप्रद या विलम्बित विवाह, सौन्दर्य बोध की कमी, प्रजनन स्वास्थ्य समस्याएँ, वृक्क या मूत्र समस्याएँ, त्वचा विकार, प्रेम सम्बन्ध बनाये रखने में असमर्थता, दिखावट से दीर्घकालिक असन्तोष, साथी आकर्षित करने में कठिनाई, अत्यधिक या दमित कामुकता, मधुमेह या हार्मोनल असन्तुलन।',
+  },
+  whenToRemediate: {
+    en: 'Seek Venus remedies when: Venus dasha is running and marriage, romantic, or financial issues dominate. When Venus is combust in your natal chart and relationships consistently feel overshadowed by career or ego. When Venus is debilitated and artistic expression feels blocked. When you experience repeated patterns of love that starts passionately but ends painfully. Venus remedies are MOST effective when combined with genuinely cultivating beauty — learning music, improving your living space, practicing generosity toward women and artists, and developing genuine appreciation (not just consumption) of art and culture.',
+    hi: 'शुक्र उपाय कब करें: शुक्र दशा चल रही हो और विवाह, प्रेम या आर्थिक मुद्दे प्रभावी। शुक्र अस्त हो और सम्बन्ध करियर या अहंकार से लगातार दबे। शुक्र नीच हो और कलात्मक अभिव्यक्ति अवरुद्ध। बार-बार प्रेम उत्कट शुरू किन्तु दर्दनाक समापन। शुक्र उपाय सौन्दर्य का सच्चा विकास — संगीत सीखना, रहने की जगह सुधारना, महिलाओं और कलाकारों के प्रति उदारता — के साथ सबसे प्रभावी।',
+  },
+  misconceptions: {
+    en: 'Common misconceptions: (1) "Venus is only about love and marriage" — Venus governs ALL pleasure, including artistic creation, financial luxury, diplomatic skill, and sensory refinement. It is equally important for career (in creative/luxury industries) as for love. (2) "Diamond is safe for everyone" — a strong Venus amplified by Diamond can increase sensual excess, extramarital temptation, and luxury addiction. Only wear it when Venus is genuinely weak. (3) "Venus in the 7th guarantees good marriage" — it guarantees an attractive spouse, but not necessarily a harmonious marriage. Afflictions to Venus in the 7th can create the most passionate AND the most painful partnerships. (4) "Venus retrograde means bad love life" — only 7% have this placement, and it indicates depth and karmic significance in love, not absence of it.',
+    hi: 'सामान्य भ्रान्तियाँ: (1) "शुक्र केवल प्रेम और विवाह" — शुक्र सभी सुख शासित करता है — कलात्मक सृजन, आर्थिक विलासिता, कूटनीतिक कौशल। (2) "हीरा सबके लिए सुरक्षित" — बलवान शुक्र के साथ हीरा कामुक अतिरेक, विवाहेतर प्रलोभन बढ़ा सकता है। (3) "7वें भाव में शुक्र अच्छा विवाह गारण्टी" — आकर्षक जीवनसाथी गारण्टी, सामंजस्यपूर्ण विवाह नहीं। (4) "शुक्र वक्री बुरा प्रेम जीवन" — केवल 7% में; प्रेम में गहराई और कार्मिक महत्त्व सूचित करता है, अनुपस्थिति नहीं।',
+  },
+  malavyaDetail: {
+    en: 'Malavya Yoga conditions and when it actually works: Malavya requires Venus in a kendra in own sign (Taurus/Libra) or exalted (Pisces). The 7th house placement is the strongest for marriage and partnerships — producing a spouse who is genuinely beautiful, cultured, and supportive. The 4th house produces the most luxurious home life and vehicle collection. The 10th house creates fame through beauty, art, or fashion. The 1st house makes the native themselves strikingly attractive. However, Malavya fails to deliver when: (a) Venus is combust (within 10° of Sun) — the light of beauty is consumed by ego. (b) Mars afflicts Venus — passion overrides harmony, creating relationship turbulence. (c) Saturn aspects Venus — delays and austerity undermine luxury. When Malavya operates fully, the native lives a life that others openly envy — beauty, love, wealth, and cultural refinement in abundance.',
+    hi: 'मालव्य योग शर्तें और वास्तव में कब काम करता है: मालव्य के लिए शुक्र केन्द्र में स्वराशि (वृषभ/तुला) या उच्च (मीन)। 7वाँ भाव विवाह के लिए सबसे बलवान — वास्तव में सुन्दर, संस्कृत और सहायक जीवनसाथी। 4था भाव सबसे विलासितापूर्ण गृहस्थ जीवन। 10वाँ भाव सौन्दर्य, कला या फैशन से यश। 1ला भाव जातक को स्वयं अत्यन्त आकर्षक बनाता है। तथापि मालव्य विफल जब: (क) शुक्र अस्त — सौन्दर्य का प्रकाश अहंकार में विलीन। (ख) मंगल शुक्र पीड़ित — उत्कटता सामंजस्य पर हावी। (ग) शनि दृष्टि — विलम्ब और कठोरता विलासिता कम करती है।',
+  },
+};
+
 // ─── Dasha Information ─────────────────────────────────────────────────
 const DASHA = {
   years: 20,
@@ -135,6 +197,10 @@ const REMEDIES = {
   fasting: { en: 'Friday fasting — eat only one meal of white foods (rice, milk, curd, sugar). Some traditions recommend eating only fruits until sunset.', hi: 'शुक्रवार का उपवास — केवल एक भोजन श्वेत खाद्य पदार्थों का (चावल, दूध, दही, शर्करा)। कुछ परम्पराएँ सूर्यास्त तक केवल फल खाने की सलाह देती हैं।' },
   worship: { en: 'Visit Lakshmi or Devi temples on Fridays. Recite Lakshmi Stotra, Shri Suktam, or Soundarya Lahari. Offer white flowers, rice, and sweets to Goddess Lakshmi. Light a ghee lamp on Friday evening.', hi: 'शुक्रवार को लक्ष्मी या देवी मन्दिर जाएँ। लक्ष्मी स्तोत्र, श्री सूक्तम् या सौन्दर्य लहरी का पाठ करें। देवी लक्ष्मी को श्वेत पुष्प, चावल और मिठाई अर्पित करें। शुक्रवार सन्ध्या को घी का दीपक जलाएँ।' },
   yantra: { en: 'Shukra Yantra — a 5×5 magic square. Install on a silver plate, worship on Fridays with white flowers and camphor.', hi: 'शुक्र यन्त्र — 5×5 जादुई वर्ग। चाँदी के पत्र पर स्थापित करें, शुक्रवार को श्वेत पुष्प और कपूर से पूजन करें।' },
+  dietary: { en: 'Dietary remedies: White foods — rice, milk, curd, white butter, coconut, sugar, kheer (rice pudding), and white sesame. Friday meals should emphasize white and sweet foods. Venus rules reproductive health — foods rich in zinc and healthy fats support Venus\'s significations. Saffron in warm milk on Friday evenings strengthens Venus (saffron connects to both Venus and Jupiter). Avoid excessively spicy or sour foods during Venus dasha. Rose petal jam (gulkand) is a classical Venus food — cooling, sweet, and beautifying.', hi: 'आहार उपाय: श्वेत खाद्य — चावल, दूध, दही, सफेद मक्खन, नारियल, शर्करा, खीर और सफेद तिल। शुक्रवार का भोजन श्वेत और मीठे खाद्य पर जोर। शुक्र प्रजनन स्वास्थ्य शासित — जिंक और स्वस्थ वसा समृद्ध भोजन शुक्र के कारकत्व का समर्थन। शुक्रवार सन्ध्या गरम दूध में केसर शुक्र बलवान करता है। शुक्र दशा में अत्यधिक तीखे या खट्टे भोजन से बचें। गुलकन्द शास्त्रीय शुक्र भोजन।' },
+  colorTherapy: { en: 'Color therapy: Wear white, cream, pastel pink, or iridescent colors on Fridays. The bedroom should have soft, luxurious textures and light colors — Venus rules the bedroom. Avoid harsh, dark colors in intimate spaces. White flowers (jasmine, tuberose, lily) in the bedroom or on the dressing table strengthen Venus. Silver jewelry carries Venus\'s vibration. Rose quartz crystal in the bedroom enhances Venus\'s energy for relationships. Ensure your wardrobe includes high-quality fabrics that feel good against the skin — Venus appreciates texture as much as color.', hi: 'रंग चिकित्सा: शुक्रवार को श्वेत, क्रीम, हल्का गुलाबी या इन्द्रधनुषी रंग पहनें। शयनकक्ष में मुलायम, विलासितापूर्ण बनावट और हल्के रंग — शुक्र शयनकक्ष शासित करता है। अन्तरंग स्थानों में कठोर, अन्धेरे रंगों से बचें। शयनकक्ष में श्वेत पुष्प (चमेली, रजनीगन्धा) शुक्र बलवान करते हैं। चाँदी के आभूषण शुक्र का स्पन्दन वहन करते हैं। शयनकक्ष में रोज़ क्वार्ट्ज़ सम्बन्धों के लिए शुक्र ऊर्जा बढ़ाता है।' },
+  behavioral: { en: 'Behavioral remedies (most powerful for Venus): Cultivate genuine appreciation for beauty — visit art galleries, listen to live music, spend time in gardens. Treat your spouse or partner with respect and tenderness — Venus weakens when intimacy is neglected. Support women\'s causes through donation or volunteer work. Learn a creative skill — singing, painting, dancing, cooking, or instrument playing. Keep your living space clean, fragrant, and aesthetically pleasing — a cluttered, ugly home weakens Venus. Practice self-care — grooming, skincare, and dressing well are not vanity but Venus worship. Maintain sexual health and intimacy in marriage. Never disrespect or exploit women.', hi: 'व्यवहारिक उपाय (शुक्र के लिए सबसे शक्तिशाली): सौन्दर्य के प्रति सच्ची सराहना विकसित करें — कला दीर्घा जाएँ, जीवित संगीत सुनें, बागों में समय बिताएँ। जीवनसाथी या साथी से सम्मान और कोमलता से व्यवहार — अन्तरंगता उपेक्षित होने पर शुक्र दुर्बल। महिला कारणों का समर्थन। सृजनात्मक कौशल सीखें — गायन, चित्रकला, नृत्य। रहने की जगह स्वच्छ, सुगन्धित और सौन्दर्यपरक रखें। आत्म-देखभाल — सज्जा और अच्छे वस्त्र शुक्र पूजा हैं।' },
+  timing: { en: 'Timing for mantra recitation: Friday during Venus Hora (calculate based on sunrise — Venus Hora is the first hora after sunrise on Fridays). Sunrise or sunset hours are most auspicious for Venus mantras — Venus is literally the morning/evening star. Face south-east (Agneya — Venus\'s direction). The 40-day mandala should begin on a Friday in Shukla Paksha when Venus is not combust and not retrograde. Friday during Purva Phalguni or Bharani Nakshatra is especially powerful for Venus remedies. Full Moon Fridays (Purnima on Shukravara) are the most auspicious.', hi: 'मन्त्र जाप का समय: शुक्रवार को शुक्र होरा में (सूर्योदय से गणना — शुक्रवार को सूर्योदय के बाद पहली होरा शुक्र की)। सूर्योदय या सूर्यास्त शुक्र मन्त्रों के लिए सबसे शुभ — शुक्र शाब्दिक रूप से प्रातः/सायं तारा। आग्नेय (दक्षिण-पूर्व — शुक्र की दिशा) की ओर मुख। 40-दिवसीय मण्डल शुक्ल पक्ष में शुक्रवार से शुरू जब शुक्र अस्त या वक्री न हो। पूर्वा फाल्गुनी या भरणी नक्षत्र में शुक्रवार विशेष शक्तिशाली। पूर्णिमा शुक्रवार सबसे शुभ।' },
 };
 
 // ─── Mythology ─────────────────────────────────────────────────────────
@@ -227,7 +293,20 @@ export default function ShukraPage() {
         <ClassicalReference shortName="BPHS" chapter="Ch. 3 — Graha Visheshaphala" />
       </LessonSection>
 
-      {/* ── 2. Dignities ── */}
+      {/* ── 2. Astronomical Profile ── */}
+      <LessonSection number={next()} title={ml({ en: 'Astronomical Profile', hi: 'खगोलीय परिचय' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'Venus\'s astronomical behavior explains many of its astrological signatures — the most frequent combustion, the rarest retrograde among inner planets, and the mesmerizing Venus Pentagram that ancient civilizations tracked for millennia.', hi: 'शुक्र का खगोलीय व्यवहार इसके अनेक ज्योतिषीय लक्षणों को स्पष्ट करता है — सबसे बार-बार अस्त, आन्तरिक ग्रहों में सबसे दुर्लभ वक्री, और वह मनमोहक शुक्र पंचकोण जिसे प्राचीन सभ्यताओं ने सहस्राब्दियों तक ट्रैक किया।' })}</p>
+        <div className="space-y-3">
+          {Object.entries(ASTRONOMICAL).map(([key, val]) => (
+            <div key={key} className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-graha-venus/10 rounded-xl p-4">
+              <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(val)}</p>
+            </div>
+          ))}
+        </div>
+        <ClassicalReference shortName="Surya Siddhanta" chapter="Venus Orbital Parameters" />
+      </LessonSection>
+
+      {/* ── 3. Dignities ── */}
       <LessonSection number={next()} title={ml({ en: 'Dignities & Strength', hi: 'गरिमा एवं बल' })}>
         <p style={bf}>{ml({ en: 'Venus\'s dignity determines the quality of love, beauty, and artistic expression in the native\'s life. Exalted in Pisces at 27°, Venus achieves its highest expression — selfless love, transcendent art, and beauty that touches the divine. Debilitated in Virgo at 27°, Venus becomes hyper-critical of beauty, analyzing love until the joy is gone. In its own signs (Taurus and Libra), Venus is the master of its domain — sensual pleasure in Taurus, refined harmony in Libra.', hi: 'शुक्र की गरिमा जातक के जीवन में प्रेम, सौन्दर्य और कलात्मक अभिव्यक्ति की गुणवत्ता निर्धारित करती है। मीन में 27° पर उच्च, शुक्र अपनी उच्चतम अभिव्यक्ति प्राप्त करता है — निःस्वार्थ प्रेम, उत्कृष्ट कला और दिव्य सौन्दर्य। कन्या में 27° पर नीच, शुक्र सौन्दर्य की अति-आलोचना करता है। वृषभ और तुला में शुक्र अपने क्षेत्र का स्वामी।' })}</p>
         <div className="space-y-2 mt-4">
@@ -241,7 +320,7 @@ export default function ShukraPage() {
         <ClassicalReference shortName="BPHS" chapter="Ch. 3 v.18 — Uccha-Neecha" />
       </LessonSection>
 
-      {/* ── 3. Venus in Each Sign ── */}
+      {/* ── 4. Venus in Each Sign ── */}
       <LessonSection number={next()} title={ml({ en: 'Venus in the Twelve Signs', hi: 'बारह राशियों में शुक्र' })}>
         <p style={bf} className="mb-4">{ml({ en: 'Venus completes one orbit around the Sun in about 225 days but spends variable time in each sign (15-60 days) due to its elongation from the Sun. It is never more than ~47° away from the Sun, which is why Venus combustion is the most common planetary combustion. The sign placement colors how the native experiences love, creates art, and pursues beauty.', hi: 'शुक्र लगभग 225 दिनों में सूर्य की एक परिक्रमा पूरी करता है किन्तु सूर्य से दूरी के कारण प्रत्येक राशि में अलग-अलग समय (15-60 दिन) बिताता है। यह सूर्य से कभी ~47° से अधिक दूर नहीं होता, इसीलिए शुक्र अस्त सबसे सामान्य ग्रह अस्त है। राशि स्थिति रंगती है कि जातक प्रेम, कला और सौन्दर्य कैसे अनुभव करता है।' })}</p>
         {VENUS_IN_SIGNS.map((s, i) => (
@@ -262,7 +341,7 @@ export default function ShukraPage() {
         ))}
       </LessonSection>
 
-      {/* ── 4. Venus in Each House ── */}
+      {/* ── 5. Venus in Each House ── */}
       <LessonSection number={next()} title={ml({ en: 'Venus in the Twelve Houses', hi: 'बारह भावों में शुक्र' })}>
         <p style={bf} className="mb-4">{ml({ en: 'Venus aspects the 7th house from its placement — always connecting to partnerships. In Kendras (1, 4, 7, 10), Venus can form Malavya Yoga (one of the five Mahapurusha Yogas) if in its own sign or exalted, bestowing exceptional beauty, luxury, and artistic talent. In Trikonas, Venus enhances dharma through aesthetic refinement. Even in Dusthanas, Venus\'s benefic nature often mitigates negative effects.', hi: 'शुक्र अपनी स्थिति से 7वें भाव को देखता है — सदा साझेदारियों से जुड़ता है। केन्द्रों (1, 4, 7, 10) में शुक्र मालव्य योग बना सकता है यदि स्वराशि या उच्च में, असाधारण सौन्दर्य, विलासिता और कलात्मक प्रतिभा प्रदान करता है। त्रिकोणों में सौन्दर्य परिष्कार से धर्म की वृद्धि। दुस्थानों में भी शुक्र का शुभ स्वभाव नकारात्मक प्रभावों को कम करता है।' })}</p>
         {VENUS_IN_HOUSES.map((h) => (
@@ -277,7 +356,7 @@ export default function ShukraPage() {
         <ClassicalReference shortName="BPHS" chapter="Ch. 24 — Bhava Phala (Effects of Planets in Houses)" />
       </LessonSection>
 
-      {/* ── 5. Dasha Period ── */}
+      {/* ── 6. Dasha Period ── */}
       <LessonSection number={next()} title={ml({ en: 'Shukra Mahadasha (20 Years)', hi: 'शुक्र महादशा (20 वर्ष)' })}>
         <p style={bf}>{ml(DASHA.overview)}</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
@@ -292,7 +371,68 @@ export default function ShukraPage() {
         </div>
       </LessonSection>
 
-      {/* ── 6. Planetary Relationships ── */}
+      {/* ── 7. Notable Yogas ── */}
+      <LessonSection number={next()} title={ml({ en: 'Notable Yogas Involving Venus', hi: 'शुक्र से सम्बन्धित प्रमुख योग' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'Venus participates in yogas that govern marriage, wealth, beauty, and creative expression. These yogas are especially important for assessing the quality of romantic life and artistic potential.', hi: 'शुक्र उन योगों में भाग लेता है जो विवाह, धन, सौन्दर्य और सृजनात्मक अभिव्यक्ति को शासित करते हैं। ये योग प्रेम जीवन और कलात्मक क्षमता की गुणवत्ता आकलन के लिए विशेष महत्त्वपूर्ण हैं।' })}</p>
+        {NOTABLE_YOGAS.map((yoga, i) => (
+          <div key={i} className="mb-4 bg-gradient-to-br from-[#2d1b69]/25 via-[#1a1040]/30 to-[#0a0e27] border border-graha-venus/15 rounded-xl p-5">
+            <h4 className="text-gold-light font-bold text-base mb-2" style={hf}>{ml(yoga.name)}</h4>
+            <div className="space-y-2">
+              <div>
+                <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{ml({ en: 'Condition', hi: 'शर्त' })}</span>
+                <p className="text-text-primary text-sm mt-1" style={bf}>{ml(yoga.condition)}</p>
+              </div>
+              <div>
+                <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{ml({ en: 'Effect', hi: 'फल' })}</span>
+                <p className="text-text-primary text-sm mt-1" style={bf}>{ml(yoga.effect)}</p>
+              </div>
+              <div>
+                <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{ml({ en: 'Strength Assessment', hi: 'बल आकलन' })}</span>
+                <p className="text-text-secondary text-sm mt-1" style={bf}>{ml(yoga.strength)}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+        <ClassicalReference shortName="BPHS" chapter="Ch. 34-36 — Yoga Adhyaya" />
+      </LessonSection>
+
+      {/* ── 8. Practical Application ── */}
+      <LessonSection number={next()} title={ml({ en: 'Practical Application', hi: 'व्यावहारिक अनुप्रयोग' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'Venus assessment requires looking beyond the Rashi chart — the Navamsha (D-9) is equally important for marriage, and Venus combustion is so common that many people carry this affliction without knowing it.', hi: 'शुक्र आकलन राशि कुण्डली से परे देखना चाहता है — विवाह के लिए नवमांश (D-9) समान रूप से महत्त्वपूर्ण, और शुक्र अस्त इतना सामान्य कि कई लोग बिना जाने यह पीड़ा वहन करते हैं।' })}</p>
+
+        <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-graha-venus/10 rounded-xl p-5 mb-4">
+          <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'How to Assess Venus\'s Strength', hi: 'शुक्र के बल का आकलन कैसे करें' })}</h4>
+          <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.assessStrength)}</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div className="bg-emerald-500/5 border border-emerald-500/15 rounded-xl p-4">
+            <h4 className="text-emerald-400 font-bold text-sm mb-2" style={hf}>{ml({ en: 'Strong Venus Indicators', hi: 'बलवान शुक्र के संकेत' })}</h4>
+            <p className="text-text-primary text-sm" style={bf}>{ml(PRACTICAL.strongIndicators)}</p>
+          </div>
+          <div className="bg-red-500/5 border border-red-500/15 rounded-xl p-4">
+            <h4 className="text-red-400 font-bold text-sm mb-2" style={hf}>{ml({ en: 'Weak Venus Indicators', hi: 'दुर्बल शुक्र के संकेत' })}</h4>
+            <p className="text-text-primary text-sm" style={bf}>{ml(PRACTICAL.weakIndicators)}</p>
+          </div>
+        </div>
+
+        <div className="bg-bg-primary/50 rounded-lg border border-gold-primary/10 p-4 mb-4">
+          <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'When to Seek Remedies', hi: 'उपाय कब करें' })}</h4>
+          <p className="text-text-primary text-sm" style={bf}>{ml(PRACTICAL.whenToRemediate)}</p>
+        </div>
+
+        <div className="bg-bg-primary/50 rounded-lg border border-gold-primary/10 p-4 mb-4">
+          <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ' })}</h4>
+          <p className="text-text-primary text-sm" style={bf}>{ml(PRACTICAL.misconceptions)}</p>
+        </div>
+
+        <div className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-graha-venus/15 rounded-xl p-5">
+          <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Malavya Yoga — Deep Dive', hi: 'मालव्य योग — गहन विश्लेषण' })}</h4>
+          <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.malavyaDetail)}</p>
+        </div>
+      </LessonSection>
+
+      {/* ── 9. Planetary Relationships ── */}
       <LessonSection number={next()} title={ml({ en: 'Relationships with Other Planets', hi: 'अन्य ग्रहों के साथ सम्बन्ध' })}>
         <p style={bf} className="mb-4">{ml({ en: 'Venus\'s friendships and enmities shape marriage compatibility, artistic talent, and material prosperity. The Venus-Mercury friendship creates Lakshmi Yoga (wealth through art and commerce). The Venus-Saturn friendship produces enduring beauty. The Venus-Sun and Venus-Moon enmities explain why combustion and emotional turbulence often afflict love in charts.', hi: 'शुक्र की मैत्री और शत्रुता विवाह संगतता, कलात्मक प्रतिभा और भौतिक समृद्धि को आकार देती है। शुक्र-बुध मैत्री लक्ष्मी योग बनाती है (कला और वाणिज्य से धन)। शुक्र-शनि मैत्री चिरस्थायी सौन्दर्य उत्पन्न करती है। शुक्र-सूर्य और शुक्र-चन्द्र शत्रुता समझाती है कि अस्त और भावनात्मक उथल-पुथल प्रेम को क्यों पीड़ित करती है।' })}</p>
         <div className="space-y-3">
@@ -313,7 +453,7 @@ export default function ShukraPage() {
         <ClassicalReference shortName="BPHS" chapter="Ch. 3 v.23-26 — Naisargika Maitri" />
       </LessonSection>
 
-      {/* ── 7. Remedies ── */}
+      {/* ── 10. Remedies ── */}
       <LessonSection number={next()} title={ml({ en: 'Remedies for Venus', hi: 'शुक्र के उपाय' })}>
         <p style={bf} className="mb-4">{ml({ en: 'Remedies are prescribed when Venus is weak, afflicted, combust, or poorly placed. A strong Venus does not need remedies — and wearing Diamond with a strong Venus can amplify luxury attachment and sensual excess. Venus combustion is the most common affliction (Venus is never far from the Sun). Consult a qualified Jyotishi before wearing gemstones.', hi: 'उपाय तब निर्धारित किये जाते हैं जब शुक्र दुर्बल, पीड़ित, अस्त या अशुभ स्थान पर हो। बलवान शुक्र को उपाय की आवश्यकता नहीं — और बलवान शुक्र के साथ हीरा पहनना विलासिता आसक्ति और कामुक अतिरेक बढ़ा सकता है। शुक्र अस्त सबसे सामान्य पीड़ा। रत्न धारण से पूर्व योग्य ज्योतिषी से परामर्श करें।' })}</p>
 
@@ -333,6 +473,10 @@ export default function ShukraPage() {
           { key: 'fasting', title: { en: 'Fasting (Upavasa)', hi: 'उपवास' } },
           { key: 'worship', title: { en: 'Worship & Puja', hi: 'पूजा एवं उपासना' } },
           { key: 'yantra', title: { en: 'Shukra Yantra', hi: 'शुक्र यन्त्र' } },
+          { key: 'dietary', title: { en: 'Dietary Recommendations', hi: 'आहार अनुशंसाएँ' } },
+          { key: 'colorTherapy', title: { en: 'Color Therapy', hi: 'रंग चिकित्सा' } },
+          { key: 'behavioral', title: { en: 'Behavioral Remedies', hi: 'व्यवहारिक उपाय' } },
+          { key: 'timing', title: { en: 'Optimal Timing for Mantra', hi: 'मन्त्र जाप का उत्तम समय' } },
         ].map(({ key, title }) => (
           <div key={key} className="bg-bg-primary/50 rounded-lg border border-gold-primary/10 p-4 mb-3">
             <h4 className="text-gold-light font-bold text-sm mb-1" style={hf}>{ml(title)}</h4>
@@ -344,7 +488,7 @@ export default function ShukraPage() {
         </WhyItMatters>
       </LessonSection>
 
-      {/* ── 8. Mythology ── */}
+      {/* ── 11. Mythology ── */}
       <LessonSection number={next()} title={ml({ en: 'Mythology & Worship', hi: 'पौराणिक कथा एवं उपासना' })}>
         <div className="space-y-4">
           <div>

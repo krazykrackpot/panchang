@@ -135,6 +135,8 @@ const REMEDIES = {
   fasting: { en: 'Saturday fasting — abstain from alcohol, non-vegetarian food, and tobacco. Some traditions prescribe fasting on the day of Rahu-ruled nakshatra (Ardra, Swati, Shatabhisha).', hi: 'शनिवार का उपवास — मद्य, माँसाहार और तम्बाकू से परहेज। कुछ परम्पराओं में राहु-शासित नक्षत्र (आर्द्रा, स्वाति, शतभिषा) के दिन उपवास।' },
   worship: { en: 'Worship Goddess Durga or Saraswati. Recite Rahu Kavach or Rahu Stotra. Perform Nag Puja (serpent worship) at Rahu temples. The most powerful remedy: offer Durga Saptashati path on Saturday evenings. Lighting a mustard oil lamp at a crossroad on Saturday evening.', hi: 'देवी दुर्गा या सरस्वती की उपासना करें। राहु कवच या राहु स्तोत्र का पाठ करें। राहु मन्दिर में नाग पूजा करें। सबसे शक्तिशाली उपाय: शनिवार सन्ध्या को दुर्गा सप्तशती पाठ। शनिवार सन्ध्या को चौराहे पर सरसों तेल का दीपक जलाएँ।' },
   yantra: { en: 'Rahu Yantra — a 3x3 magic square with specific numerical arrangement. Install on a silver plate or bhojpatra, worship on Saturdays during Rahu Kaal. Keep in the south-west corner of the home.', hi: 'राहु यन्त्र — विशिष्ट संख्यात्मक व्यवस्था का 3x3 जादुई वर्ग। रजत पत्र या भोजपत्र पर स्थापित करें, शनिवार को राहु काल में पूजन करें। घर के दक्षिण-पश्चिम कोने में रखें।' },
+  dietary: { en: 'Rahu responds to garlic, onions, coconut, and strong-flavored foods. Eating coconut on Saturdays is a simple but effective Rahu pacification. Avoid excessively processed or artificial foods during Rahu dasha — ironic since Rahu rules artificial things, but consuming them amplifies Rahu\'s chaotic energy. Black urad dal with garlic on Saturdays is a traditional Rahu dietary remedy. Drinking coconut water and using coconut oil in cooking helps balance Rahu\'s smoky, agitating energy with cool, nourishing lunar qualities.', hi: 'राहु लहसुन, प्याज, नारियल और तीव्र स्वाद वाले खाद्य पदार्थों से प्रतिक्रिया करता है। शनिवार को नारियल खाना सरल किन्तु प्रभावी राहु शान्ति। राहु दशा में अत्यधिक प्रसंस्कृत भोजन से बचें। शनिवार को लहसुन के साथ काली उड़द दाल पारम्परिक राहु आहार उपाय। नारियल पानी और नारियल तेल राहु की अशान्त ऊर्जा को शान्त चन्द्र गुणों से सन्तुलित करता है।' },
+  behavioral: { en: 'Rahu behavioral remedies focus on honesty, transparency, and grounding. Since Rahu represents illusion and deception, the most powerful counter is radical truthfulness. Wear blue or black clothing on Saturdays. Avoid gossip, manipulation, and hidden agendas — these amplify Rahu\'s negative side. Practice digital detox regularly (Rahu rules technology addiction). Spend time in nature, barefoot on earth, to ground Rahu\'s ethereal, destabilizing energy. Avoid gambling and speculative risks during Rahu transits. The single most effective behavioral remedy: honest self-examination — seeing through your own illusions before they consume you.', hi: 'राहु व्यावहारिक उपाय ईमानदारी, पारदर्शिता और भूमि से जुड़ाव पर केन्द्रित हैं। राहु माया और छल का प्रतिनिधि, अतः सबसे शक्तिशाली प्रतिकार मूलगत सत्यनिष्ठा। शनिवार को नीला या काला वस्त्र पहनें। गपशप, छलकपट और छिपे इरादों से बचें। नियमित डिजिटल विषहरण (राहु प्रौद्योगिकी व्यसन शासित करता है)। प्रकृति में समय बिताएँ, नंगे पैर भूमि पर।' },
 };
 
 // ─── Mythology ─────────────────────────────────────────────────────────
@@ -151,6 +153,14 @@ const MYTHOLOGY = {
     en: 'The Rahu Kavach from the Skanda Purana is the most potent protective hymn. The opening verse: "Ardhakaayam Mahaaveeryam Chandraadityavimardanam / Simhikaagarbhasambhootam Tam Rahum Pranamaamyaham" — "I bow to Rahu, the half-bodied one of great valor, born from Simhika\'s womb, who eclipses the Sun and Moon."',
     hi: 'स्कन्द पुराण का राहु कवच सबसे शक्तिशाली रक्षात्मक स्तुति है। प्रारम्भिक श्लोक: "अर्धकायं महावीर्यं चन्द्रादित्यविमर्दनम् / सिंहिकागर्भसम्भूतं तं राहुं प्रणमाम्यहम्" — "मैं राहु को प्रणाम करता हूँ, महान पराक्रम वाले अर्धकाय, सिंहिका के गर्भ से जन्मे, सूर्य और चन्द्र को ग्रसने वाले।"',
   },
+  samudraManthanFull: {
+    en: 'The full Samudra Manthan story reveals Rahu\'s nature perfectly. The Devas and Asuras churned the cosmic ocean using Mount Mandara as the churning rod and Vasuki (the serpent king) as the rope. From the ocean emerged both poison (Halahala, drunk by Shiva) and nectar (Amrit). When the Amrit appeared, the Asuras tried to seize it. Lord Vishnu assumed the form of Mohini — the most beautiful woman ever created — and offered to distribute the nectar fairly. The Asuras, bewitched by her beauty, agreed. Mohini served the Devas first. Svarbhanu, a shrewd Asura, saw through the deception and disguised himself as a Deva, sitting between the Sun and Moon. He drank the Amrit — but before it could pass his throat, the Sun and Moon exposed him, and Vishnu severed his head with the Sudarshana Chakra. This story encodes Rahu\'s entire astrological nature: deception, disguise, crossing boundaries, seizing what isn\'t rightfully yours, and the consequences of illusion.',
+    hi: 'पूर्ण समुद्र मन्थन कथा राहु की प्रकृति को पूर्णतः प्रकट करती है। देवों और असुरों ने मन्दर पर्वत को मथनी और वासुकि (नागराज) को रस्सी के रूप में ब्रह्माण्डीय समुद्र मथा। समुद्र से विष (हलाहल, शिव द्वारा पीया) और अमृत दोनों निकले। जब अमृत प्रकट हुआ, असुरों ने छीनने का प्रयास किया। भगवान विष्णु ने मोहिनी रूप धारण किया — सबसे सुन्दर नारी — और अमृत समान वितरण का प्रस्ताव रखा। स्वर्भानु ने छल देखा और देव का वेष धारण किया, सूर्य और चन्द्र के बीच बैठा। अमृत पीया — किन्तु कण्ठ से नीचे जाने से पहले सूर्य-चन्द्र ने उजागर किया और विष्णु ने सुदर्शन चक्र से सिर काटा।',
+  },
+  whyRahuChases: {
+    en: 'Why does Rahu eternally chase the Sun and Moon? Because they are the ones who exposed him. The Sun (Surya) and Moon (Chandra) recognized Svarbhanu\'s disguise and alerted Vishnu. In revenge, Rahu\'s severed head perpetually chases them across the sky. When he catches them, an eclipse occurs — Rahu swallows the luminary. But because Rahu has no body, the swallowed Sun or Moon passes through his severed throat and reappears. This myth explains both solar and lunar eclipses, and encodes the astrological principle that Rahu-Sun and Rahu-Moon conjunctions (Grahan Yoga) represent the eclipsing of ego and mind — temporary but intense periods of darkness and confusion that ultimately reveal hidden truth.',
+    hi: 'राहु शाश्वत रूप से सूर्य और चन्द्र का पीछा क्यों करता है? क्योंकि उन्होंने ही उसे उजागर किया। सूर्य और चन्द्र ने स्वर्भानु का वेष पहचाना और विष्णु को सचेत किया। प्रतिशोध में राहु का कटा सिर शाश्वत रूप से उनका पीछा करता है। जब पकड़ता है, ग्रहण होता है — राहु ज्योति निगलता है। किन्तु शरीर न होने से निगला सूर्य या चन्द्र कटे कण्ठ से गुजरकर फिर प्रकट होता है। यह कथा सूर्य और चन्द्र दोनों ग्रहणों की व्याख्या करती है।',
+  },
 };
 
 // ─── Relationships ─────────────────────────────────────────────────────
@@ -164,6 +174,46 @@ const RELATIONSHIPS = [
   { planet: { en: 'Saturn', hi: 'शनि' }, relation: { en: 'Friend', hi: 'मित्र' }, note: { en: 'Rahu-Saturn conjunction combines discipline with obsession — can create extreme workaholics, political operators, or systematic manipulators. The Shani-Rahu conjunction (Shrapit Yoga) indicates past-life karmic debt. But also gives extraordinary perseverance and capacity for long-term strategic achievement.', hi: 'राहु-शनि युति अनुशासन और जुनून मिलाती है — अत्यधिक कर्मठ, राजनीतिक संचालक। श्रापित योग पूर्व जन्म के कार्मिक ऋण का संकेत। किन्तु असाधारण दृढ़ता और दीर्घकालिक रणनीतिक उपलब्धि भी देता है।' } },
   { planet: { en: 'Ketu', hi: 'केतु' }, relation: { en: 'Axis partner', hi: 'धुरी साझीदार' }, note: { en: 'Rahu and Ketu are always exactly 180° apart — they form a single karmic axis. Rahu shows where the soul is heading (future desire), Ketu shows where it has been (past-life mastery). Together they define the fundamental tension of the incarnation. Their transit axis (18-month cycle) is one of the most powerful timing tools in Jyotish.', hi: 'राहु और केतु सदा ठीक 180° पर — एक कार्मिक धुरी बनाते हैं। राहु दिखाता है आत्मा कहाँ जा रही है (भविष्य की इच्छा), केतु दिखाता है कहाँ रही है (पूर्व जन्म की निपुणता)। साथ में अवतार का मूल तनाव परिभाषित करते हैं।' } },
 ];
+
+// ─── Astronomical Profile ─────────────────────────────────────────────
+const ASTRONOMICAL = {
+  nodalCycle: { en: 'The lunar nodes (Rahu and Ketu) complete one full cycle through the zodiac in approximately 18.61 years, spending about 18 months (1.55 years) in each sign. Unlike the planets, the nodes move backward (retrograde) through the zodiac as their natural motion — they transit from Aries to Pisces to Aquarius, not the other way. This backward motion through the signs is why Rahu and Ketu are said to be "always retrograde." The 18.6-year cycle is one of the most important timing mechanisms in Vedic astrology, governing eclipse seasons, karmic turning points, and generational shifts.', hi: 'चन्द्र पात (राहु और केतु) लगभग 18.61 वर्षों में राशिचक्र का एक पूर्ण चक्र पूरा करते हैं, प्रत्येक राशि में लगभग 18 महीने (1.55 वर्ष) बिताते हैं। ग्रहों के विपरीत, पात राशिचक्र में पीछे (वक्री) चलते हैं — मेष से मीन से कुम्भ, उल्टा नहीं। यह 18.6 वर्ष का चक्र वैदिक ज्योतिष में सबसे महत्वपूर्ण समय तन्त्रों में एक है।' },
+  eclipseMechanism: { en: 'Rahu causes solar eclipses when the Sun, Moon, and Rahu align at a new Moon near the ascending node. Rahu causes lunar eclipses when the Sun, Earth, and Moon align with Rahu at a full Moon. Eclipses can only occur when the Sun is within approximately 18 degrees of a node — this creates the "eclipse season" (about 34 days) that occurs roughly every 6 months as the Sun crosses each node. The mythological story of Rahu swallowing the Sun and Moon is a poetic description of this precise astronomical mechanism. Ancient Indian astronomers calculated eclipse timings with remarkable accuracy using nodal positions.', hi: 'राहु सूर्यग्रहण तब करता है जब सूर्य, चन्द्र और राहु अमावस्या पर आरोही पात के निकट संरेखित हों। राहु चन्द्रग्रहण तब करता है जब सूर्य, पृथ्वी और चन्द्र पूर्णिमा पर राहु के साथ संरेखित हों। ग्रहण केवल तभी हो सकते हैं जब सूर्य पात से लगभग 18 अंश भीतर हो। प्राचीन भारतीय खगोलविदों ने पात स्थितियों से ग्रहण समय की उल्लेखनीय सटीकता से गणना की।' },
+  meanVsTrue: { en: 'There are two methods for calculating Rahu\'s position: Mean Node and True Node. The Mean Node moves at a constant average rate (about 0.053 degrees/day retrograde). The True Node accounts for gravitational perturbations and oscillates around the mean position, sometimes briefly moving direct. Most traditional Indian astrologers use the Mean Node (which is always retrograde), while Western sidereal astrologers often prefer the True Node. The difference between Mean and True Rahu can be up to 1.5 degrees — enough to change the nakshatra pada in some cases. This app uses the True Node system by default.', hi: 'राहु की स्थिति गणना की दो विधियाँ हैं: मध्य पात और सत्य पात। मध्य पात एक स्थिर औसत गति (लगभग 0.053 अंश/दिन वक्री) से चलता है। सत्य पात गुरुत्वाकर्षण विक्षोभ के लिए समायोजन करता है और मध्य स्थिति के चारों ओर दोलन करता है। अधिकांश पारम्परिक भारतीय ज्योतिषी मध्य पात (जो सदा वक्री) का उपयोग करते हैं। मध्य और सत्य राहु में 1.5 अंश तक अन्तर हो सकता है।' },
+  alwaysRetrograde: { en: 'Rahu is always retrograde in the Mean Node system — this is not an affliction but its natural state. In the True Node system, Rahu occasionally moves direct for brief periods (a few days at a time), but the overwhelming majority of its motion is retrograde. This perpetual backward motion through the zodiac is astronomically caused by the regression of the lunar orbital plane due to the Sun\'s gravitational pull. In Jyotish, this retrograde nature symbolizes Rahu\'s connection to the past, to karma, and to the reversal of normal expectations — Rahu operates by unconventional means precisely because it moves against the current.', hi: 'मध्य पात प्रणाली में राहु सदा वक्री है — यह कोई पीड़ा नहीं बल्कि इसकी स्वाभाविक अवस्था है। सत्य पात प्रणाली में राहु कभी-कभी संक्षेप में (कुछ दिनों के लिए) मार्गी होता है, किन्तु इसकी अधिकांश गति वक्री है। राशिचक्र में यह शाश्वत पश्चगामी गति खगोलीय रूप से सूर्य के गुरुत्वाकर्षण से चन्द्र कक्षा तल के प्रतिगमन के कारण है। ज्योतिष में यह वक्री स्वभाव अतीत, कर्म और सामान्य अपेक्षाओं के उलट से सम्बन्ध प्रतीक है।' },
+};
+
+// ─── Notable Yogas ────────────────────────────────────────────────────
+const NOTABLE_YOGAS = [
+  { name: { en: 'Grahan Yoga (Rahu + Sun/Moon)', hi: 'ग्रहण योग (राहु + सूर्य/चन्द्र)' },
+    condition: { en: 'Rahu conjunct the Sun or Moon within the same sign, especially within 10 degrees. The closer the conjunction, the more intense the effect.', hi: 'राहु एक ही राशि में सूर्य या चन्द्र से युत, विशेषकर 10 अंश के भीतर। जितनी निकट युति, उतना तीव्र प्रभाव।' },
+    effect: { en: 'Rahu-Sun Grahan Yoga eclipses the ego, authority, and relationship with father. The native may struggle with identity, face government opposition, or have an absent/complex father figure. However, it also grants magnetic charisma and ability to command attention through unconventional means — many politicians and media personalities have this yoga. Rahu-Moon Grahan Yoga eclipses the mind — anxiety, obsessive thinking, and emotional instability, but also sharp intuition and public appeal. Frequency: approximately 7-8% of charts for each variant.', hi: 'राहु-सूर्य ग्रहण योग अहंकार, अधिकार और पिता से सम्बन्ध को ग्रसित करता है। पहचान में संघर्ष, सरकारी विरोध। किन्तु चुम्बकीय करिश्मा और अपरम्परागत ध्यान आकर्षित करने की क्षमता भी। राहु-चन्द्र ग्रहण योग मन को ग्रसित — चिन्ता और जुनूनी सोच, किन्तु तीक्ष्ण अन्तर्ज्ञान और जनप्रियता भी। आवृत्ति: प्रत्येक रूप में लगभग 7-8%।' } },
+  { name: { en: 'Guru Chandal Yoga (Rahu + Jupiter)', hi: 'गुरु चाण्डाल योग (राहु + गुरु)' },
+    condition: { en: 'Rahu conjunct Jupiter in the same sign. Some authorities also consider the mutual aspect (Rahu in the 7th from Jupiter).', hi: 'राहु गुरु के साथ एक ही राशि में युत। कुछ आचार्य पारस्परिक दृष्टि (राहु गुरु से 7वें में) भी मानते हैं।' },
+    effect: { en: 'The guru is "contaminated" by the outcaste — traditional wisdom clashes with unconventional thinking. The native may adopt foreign spiritual traditions, question established religious authority, or become a guru figure through non-traditional paths. This yoga produces boundary-crossing philosophers, interfaith leaders, and academics who challenge orthodoxy. Negatively, it can indicate religious hypocrisy, false gurus, or using spiritual authority for material gain. Jupiter\'s expansion meets Rahu\'s obsession — the combination can create both brilliant teachers and charismatic frauds. Frequency: approximately 7% of charts.', hi: 'गुरु चाण्डाल से "दूषित" — पारम्परिक ज्ञान अपरम्परागत सोच से टकराता है। विदेशी आध्यात्मिक परम्पराएँ अपनाना, स्थापित धार्मिक अधिकार को चुनौती, या अपरम्परागत मार्गों से गुरु बनना। सीमा-तोड़ दार्शनिक और अन्तर्धर्मीय नेता। नकारात्मक: धार्मिक पाखण्ड या झूठे गुरु। आवृत्ति: लगभग 7%।' } },
+  { name: { en: 'Kala Sarpa Yoga (All planets between Rahu-Ketu)', hi: 'काल सर्प योग (सभी ग्रह राहु-केतु के बीच)' },
+    condition: { en: 'All seven visible planets (Sun through Saturn) are hemmed between Rahu and Ketu — all on one side of the nodal axis. Must be strict: no planet should cross the Rahu-Ketu line.', hi: 'सभी सात दृश्य ग्रह (सूर्य से शनि) राहु और केतु के बीच घिरे — पात धुरी के एक ही ओर। कड़ाई से: कोई ग्रह राहु-केतु रेखा पार न करे।' },
+    effect: { en: 'One of the most debated yogas in Jyotish. Strict Kala Sarpa is relatively rare (about 3-5% of charts). It intensifies the karmic axis — the native\'s entire life is dominated by the Rahu-Ketu themes of desire vs. detachment. Can indicate dramatic life swings, persistent obstacles that feel fated, and intense spiritual transformation. Many successful people have partial Kala Sarpa — the restriction forces focused energy. The fear around this yoga is largely exaggerated; its effects depend heavily on the houses involved and the dignity of the nodes. Remedies include Kaal Sarpa Dosha puja at Trimbakeshwar.', hi: 'ज्योतिष में सबसे विवादित योगों में एक। कड़ा काल सर्प अपेक्षाकृत दुर्लभ (लगभग 3-5%)। कार्मिक धुरी को तीव्र करता है। नाटकीय जीवन उतार-चढ़ाव, भाग्य-जैसी बाधाएँ और तीव्र आध्यात्मिक परिवर्तन। भय अत्यधिक अतिशयोक्ति; प्रभाव भावों और पातों की गरिमा पर निर्भर। उपाय: त्र्यम्बकेश्वर पर काल सर्प पूजा। आवृत्ति: लगभग 3-5%।' } },
+  { name: { en: 'Angarak Yoga (Rahu + Mars)', hi: 'अंगारक योग (राहु + मंगल)' },
+    condition: { en: 'Rahu conjunct Mars in the same sign. Intensified if in the 1st, 4th, 7th, or 8th house.', hi: 'राहु मंगल के साथ एक ही राशि में युत। 1, 4, 7 या 8वें भाव में हो तो तीव्र।' },
+    effect: { en: 'Rahu amplifies Mars\'s already volatile energy — creating explosive aggression, accident-proneness, and rash decision-making. The native may be drawn to danger, conflict, and high-risk situations. Surgical situations and blood-related health issues are possible. However, when channeled positively, Angarak Yoga gives extraordinary courage, technical engineering genius, athletic ability, and military leadership. Many successful surgeons, engineers, and athletes have this combination. The key is conscious channeling — Mars-Rahu energy without direction is destructive; with direction, it is unstoppable. Frequency: approximately 7% of charts.', hi: 'राहु मंगल की पहले से अस्थिर ऊर्जा को बढ़ाता है — विस्फोटक आक्रामकता, दुर्घटना प्रवणता। खतरे और संघर्ष की ओर आकर्षण। शल्य और रक्त-सम्बन्धी स्वास्थ्य। किन्तु सकारात्मक रूप से असाधारण साहस, तकनीकी प्रतिभा और सैन्य नेतृत्व। अनेक सफल शल्य चिकित्सक और अभियन्ता। दिशा बिना विनाशकारी; दिशा के साथ अजेय। आवृत्ति: लगभग 7%।' } },
+];
+
+// ─── Practical Application ────────────────────────────────────────────
+const PRACTICAL = {
+  rahuDashaSurvival: {
+    en: 'Rahu Mahadasha (18 years) is the longest planetary period and often the most disorienting. Survival strategy: (1) Expect obsession — Rahu will fixate your mind on one thing; the key is choosing that thing wisely. (2) Embrace foreignness — travel, cross-cultural work, and unconventional paths are Rahu\'s domain. (3) Avoid shortcuts — Rahu tempts with "too good to be true" opportunities; verify everything. (4) Technology and media will be prominent — lean into these areas. (5) The first 3 years and last 3 years are the most turbulent (Rahu-Rahu and Rahu-Saturn antardashas). (6) Ground yourself — daily routine, physical exercise, and contact with earth counteract Rahu\'s disorienting energy.',
+    hi: 'राहु महादशा (18 वर्ष) सबसे लम्बी और प्रायः सबसे भ्रमित करने वाली। उत्तरजीविता रणनीति: (1) जुनून की अपेक्षा — राहु मन को एक चीज पर केन्द्रित करेगा; कुंजी उसे बुद्धिमानी से चुनना। (2) विदेशीपन अपनाएँ — यात्रा और अपरम्परागत मार्ग राहु के क्षेत्र। (3) शॉर्टकट से बचें — राहु "बहुत अच्छा" अवसरों का प्रलोभन देता है। (4) प्रौद्योगिकी प्रमुख होगी। (5) प्रथम 3 और अन्तिम 3 वर्ष सबसे अशान्त। (6) भूमि से जुड़ें — दैनिक दिनचर्या और शारीरिक व्यायाम।',
+  },
+  wealthVsChaos: {
+    en: 'When does Rahu give wealth vs. chaos? Wealth indicators: Rahu in upachaya houses (3rd, 6th, 10th, 11th), Rahu exalted in Taurus, Rahu with friendly planets (Mercury, Venus, Saturn), Rahu in signs ruled by friendly planets, and Rahu in the 2nd house with benefic aspect. Chaos indicators: Rahu debilitated in Scorpio, Rahu conjunct enemies (Sun, Moon, Mars) without benefic aspect, Rahu in the 8th or 12th without mitigation, and Rahu involved in Kala Sarpa Yoga with malefics. The single most important factor: Rahu\'s dispositor (the lord of the sign Rahu occupies). If the dispositor is strong and well-placed, Rahu delivers its positive results; if weak and afflicted, chaos follows.',
+    hi: 'राहु कब धन देता है बनाम अराजकता? धन संकेत: उपचय भावों (3, 6, 10, 11) में राहु, वृषभ में उच्च, मित्र ग्रहों (बुध, शुक्र, शनि) के साथ, और शुभ दृष्टि के साथ 2nd भाव। अराजकता संकेत: वृश्चिक में नीच, शत्रुओं (सूर्य, चन्द्र, मंगल) से युत बिना शुभ दृष्टि, 8वें या 12वें में बिना शमन। सबसे महत्वपूर्ण कारक: राहु का अधिपति (राहु जिस राशि में बैठा उसका स्वामी)। अधिपति बलवान तो राहु सकारात्मक; दुर्बल तो अराजकता।',
+  },
+  misconceptions: {
+    en: 'The most dangerous misconception about Rahu is that it is "purely malefic." Rahu is the planet of ambition, innovation, technology, and worldly achievement — without Rahu energy, there would be no entrepreneurship, no scientific breakthroughs, no cross-cultural exchange. Many of the most successful people in history have strong Rahu placements. The second misconception: "Rahu always causes scandals." Rahu amplifies whatever it touches — if it touches good planets in good houses, it amplifies success. The third misconception: "Rahu remedies can prevent all Rahu effects." Rahu\'s energy must be channeled, not suppressed. The most effective Rahu remedy is conscious pursuit of dharmic ambition — directing Rahu\'s immense drive toward service rather than selfishness.',
+    hi: 'राहु के बारे में सबसे खतरनाक भ्रान्ति कि यह "पूर्णतः पापी" है। राहु महत्वाकांक्षा, नवाचार, प्रौद्योगिकी और सांसारिक उपलब्धि का ग्रह है — राहु ऊर्जा के बिना उद्यमिता, वैज्ञानिक सफलता, या अन्तर-सांस्कृतिक आदान-प्रदान नहीं होता। दूसरी भ्रान्ति: "राहु सदा घोटाले करता है।" राहु जो छूता है उसे बढ़ाता है — यदि शुभ ग्रह शुभ भावों में तो सफलता बढ़ाता है। तीसरी भ्रान्ति: "राहु उपाय सब रोक सकते हैं।" राहु ऊर्जा को दिशा देनी चाहिए, दबाना नहीं।',
+  },
+};
 
 // ─── Cross-reference links ─────────────────────────────────────────────
 const CROSS_LINKS = [
@@ -231,7 +281,20 @@ export default function RahuPage() {
         <ClassicalReference shortName="BPHS" chapter="Ch. 3 — Graha Visheshaphala (Shadow Planets)" />
       </LessonSection>
 
-      {/* ── 2. Dignities ── */}
+      {/* ── 2. Astronomical Profile ── */}
+      <LessonSection number={next()} title={ml({ en: 'Astronomical Profile', hi: 'खगोलीय परिचय' })}>
+        <div className="space-y-4">
+          {Object.entries(ASTRONOMICAL).map(([key, val]) => (
+            <div key={key} className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-graha-rahu/12 rounded-xl p-4">
+              <h4 className="text-graha-rahu font-bold text-sm mb-2" style={hf}>{key === 'nodalCycle' ? ml({ en: '18.6-Year Nodal Cycle', hi: '18.6 वर्ष का पात चक्र' }) : key === 'eclipseMechanism' ? ml({ en: 'Eclipse Mechanism', hi: 'ग्रहण तन्त्र' }) : key === 'meanVsTrue' ? ml({ en: 'Mean Node vs. True Node', hi: 'मध्य पात बनाम सत्य पात' }) : ml({ en: 'Always Retrograde — The Natural State', hi: 'सदा वक्री — स्वाभाविक अवस्था' })}</h4>
+              <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(val)}</p>
+            </div>
+          ))}
+        </div>
+        <ClassicalReference shortName="Surya Siddhanta" chapter="Ch. 2 — True Motions of Nodes" />
+      </LessonSection>
+
+      {/* ── 3. Dignities ── */}
       <LessonSection number={next()} title={ml({ en: 'Dignities & Strength', hi: 'गरिमा एवं बल' })}>
         <p style={bf}>{ml({ en: 'Rahu\'s dignities are debated among classical authorities. Unlike the seven visible planets, Rahu has no universally agreed-upon own sign. The Parashari tradition places exaltation in Taurus and debilitation in Scorpio, while some Jaimini scholars argue for Gemini and Sagittarius respectively. What is universally agreed: Rahu functions like Saturn — it is disciplined, strategic, and patient when well-placed, and chaotic, deceptive, and destructive when afflicted. Rahu is ALWAYS retrograde in the true node system — this is its natural state, not an affliction.', hi: 'राहु की गरिमाएँ शास्त्रीय आचार्यों में विवादित हैं। सात दृश्य ग्रहों के विपरीत, राहु की कोई सर्वसम्मत स्वराशि नहीं। पराशरी परम्परा उच्च वृषभ में और नीच वृश्चिक में रखती है, जबकि कुछ जैमिनी विद्वान मिथुन और धनु का तर्क देते हैं। सर्वसम्मत: राहु शनि की भाँति कार्य करता है। राहु सत्य पात प्रणाली में सदा वक्री है — यह इसकी स्वाभाविक स्थिति है।' })}</p>
         <div className="space-y-2 mt-4">
@@ -318,7 +381,41 @@ export default function RahuPage() {
         </div>
       </LessonSection>
 
-      {/* ── 7. Planetary Relationships ── */}
+      {/* ── 8. Notable Yogas ── */}
+      <LessonSection number={next()} title={ml({ en: 'Notable Rahu Yogas', hi: 'राहु के प्रमुख योग' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'Rahu participates in some of the most dramatic yogas in Jyotish — from the feared Grahan Yoga and Kala Sarpa to the transformative Guru Chandal. These combinations reveal whether Rahu functions as a cosmic accelerator of ambition or a source of karmic chaos.', hi: 'राहु ज्योतिष के कुछ सबसे नाटकीय योगों में भाग लेता है — भयंकर ग्रहण योग और काल सर्प से लेकर परिवर्तनकारी गुरु चाण्डाल तक। ये संयोग प्रकट करते हैं कि राहु महत्वाकांक्षा का ब्रह्माण्डीय त्वरक या कार्मिक अराजकता का स्रोत है।' })}</p>
+        <div className="space-y-4">
+          {NOTABLE_YOGAS.map((yoga, i) => (
+            <div key={i} className="bg-gradient-to-br from-[#2d1b69]/25 via-[#1a1040]/30 to-[#0a0e27] border border-graha-rahu/12 rounded-xl p-5">
+              <h4 className="text-gold-light font-bold text-sm mb-1" style={hf}>{ml(yoga.name)}</h4>
+              <p className="text-graha-rahu text-xs mb-2" style={bf}>{ml(yoga.condition)}</p>
+              <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(yoga.effect)}</p>
+            </div>
+          ))}
+        </div>
+        <ClassicalReference shortName="BPHS" chapter="Ch. 26 — Rahu Yoga Phala" />
+      </LessonSection>
+
+      {/* ── 9. Practical Application ── */}
+      <LessonSection number={next()} title={ml({ en: 'Practical Application — Navigating Rahu', hi: 'व्यावहारिक अनुप्रयोग — राहु को नेविगेट करना' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'Rahu\'s 18-year dasha and 18-month sign transits are among the most intense periods in Vedic astrology. Understanding when Rahu gives wealth vs. chaos — and how to survive Rahu Mahadasha — is essential practical knowledge for every astrology student.', hi: 'राहु की 18-वर्षीय दशा और 18-महीने की राशि गोचर वैदिक ज्योतिष की सबसे तीव्र अवधियों में हैं। राहु कब धन देता है बनाम अराजकता — और राहु महादशा में कैसे उत्तरजीवी रहें — हर ज्योतिष छात्र के लिए आवश्यक व्यावहारिक ज्ञान है।' })}</p>
+        <div className="space-y-4">
+          <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-graha-rahu/12 rounded-xl p-5">
+            <h4 className="text-graha-rahu font-bold text-sm mb-2" style={hf}>{ml({ en: 'Rahu Mahadasha Survival Guide', hi: 'राहु महादशा उत्तरजीविता मार्गदर्शिका' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.rahuDashaSurvival)}</p>
+          </div>
+          <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-graha-rahu/12 rounded-xl p-5">
+            <h4 className="text-graha-rahu font-bold text-sm mb-2" style={hf}>{ml({ en: 'When Does Rahu Give Wealth vs. Chaos?', hi: 'राहु कब धन देता है बनाम अराजकता?' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.wealthVsChaos)}</p>
+          </div>
+          <div className="bg-emerald-500/5 border border-emerald-500/15 rounded-xl p-5">
+            <h4 className="text-emerald-400 font-bold text-sm mb-2" style={hf}>{ml({ en: 'Common Misconceptions — Rahu is NOT Always Malefic', hi: 'सामान्य भ्रान्तियाँ — राहु सदा पापी नहीं' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.misconceptions)}</p>
+          </div>
+        </div>
+      </LessonSection>
+
+      {/* ── 10. Planetary Relationships ── */}
       <LessonSection number={next()} title={ml({ en: 'Relationships with Other Planets', hi: 'अन्य ग्रहों के साथ सम्बन्ध' })}>
         <p style={bf} className="mb-4">{ml({ en: 'Rahu acts as an amplifier for any planet it conjoins — but the nature of that amplification depends on whether the planet is Rahu\'s friend or enemy. Friendly conjunctions produce extraordinary results; enemy conjunctions create volatile, unpredictable situations. Rahu\'s aspects (5th, 7th, 9th from itself per some traditions) also carry this amplification energy.', hi: 'राहु किसी भी ग्रह के साथ युत होने पर विस्तारक का कार्य करता है — किन्तु विस्तार की प्रकृति मित्रता या शत्रुता पर निर्भर करती है। मित्र युति असाधारण परिणाम देती है; शत्रु युति अस्थिर, अप्रत्याशित स्थितियाँ बनाती है।' })}</p>
         <div className="space-y-3">
@@ -360,6 +457,8 @@ export default function RahuPage() {
           { key: 'fasting', title: { en: 'Fasting (Upavasa)', hi: 'उपवास' } },
           { key: 'worship', title: { en: 'Worship & Puja', hi: 'पूजा एवं उपासना' } },
           { key: 'yantra', title: { en: 'Rahu Yantra', hi: 'राहु यन्त्र' } },
+          { key: 'dietary', title: { en: 'Dietary Remedies (Ahara)', hi: 'आहार उपाय' } },
+          { key: 'behavioral', title: { en: 'Behavioral Remedies (Achara)', hi: 'आचार उपाय' } },
         ].map(({ key, title }) => (
           <div key={key} className="bg-bg-primary/50 rounded-lg border border-graha-rahu/15 p-4 mb-3">
             <h4 className="text-graha-rahu font-bold text-sm mb-1" style={hf}>{ml(title)}</h4>
@@ -383,11 +482,38 @@ export default function RahuPage() {
             <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(MYTHOLOGY.keyHymn)}</p>
           </div>
           <div>
+            <h4 className="text-graha-rahu font-bold text-sm mb-2" style={hf}>{ml({ en: 'The Full Story of Samudra Manthan', hi: 'समुद्र मन्थन की पूर्ण कथा' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(MYTHOLOGY.samudraManthanFull)}</p>
+          </div>
+          <div>
+            <h4 className="text-graha-rahu font-bold text-sm mb-2" style={hf}>{ml({ en: 'Why Rahu Chases the Sun and Moon', hi: 'राहु सूर्य और चन्द्र का पीछा क्यों करता है' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(MYTHOLOGY.whyRahuChases)}</p>
+          </div>
+          <div>
             <h4 className="text-graha-rahu font-bold text-sm mb-2" style={hf}>{ml({ en: 'Sacred Temples', hi: 'पवित्र मन्दिर' })}</h4>
             <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(MYTHOLOGY.temples)}</p>
           </div>
         </div>
         <ClassicalReference shortName="Skanda Purana" chapter="Rahu Kavach" />
+      </LessonSection>
+
+      {/* ── 13. Rahu in the Modern World ── */}
+      <LessonSection number={next()} title={ml({ en: 'Rahu in the Modern World', hi: 'आधुनिक संसार में राहु' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'Rahu is often called the most "modern" planet in Vedic astrology because its significations align perfectly with the defining forces of the 21st century. Understanding Rahu\'s modern manifestations helps bridge classical wisdom with contemporary life.', hi: 'राहु को प्रायः वैदिक ज्योतिष में सबसे "आधुनिक" ग्रह कहा जाता है क्योंकि इसके कारकत्व 21वीं सदी की परिभाषित शक्तियों से पूर्णतः मेल खाते हैं। राहु की आधुनिक अभिव्यक्तियों को समझना शास्त्रीय ज्ञान को समकालीन जीवन से जोड़ता है।' })}</p>
+        <div className="space-y-4">
+          <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-graha-rahu/12 rounded-xl p-4">
+            <h4 className="text-graha-rahu font-bold text-sm mb-2" style={hf}>{ml({ en: 'Technology & Social Media', hi: 'प्रौद्योगिकी और सोशल मीडिया' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml({ en: 'Rahu rules technology, artificial intelligence, social media, cryptocurrency, and virtual reality — all things that amplify human desire through illusion. Social media is pure Rahu: the construction of an idealized identity (illusion), the obsessive pursuit of followers and likes (insatiable hunger), and the blurring of truth and fiction (maya). People with strong Rahu placements often thrive in tech industries, digital marketing, and social media influence. During Rahu dasha, technology becomes either a powerful tool for advancement or a trap of addiction and distraction. The key is conscious use — Rahu technology serves beautifully when directed by dharmic intention, and destroys when driven by ego.', hi: 'राहु प्रौद्योगिकी, कृत्रिम बुद्धिमत्ता, सोशल मीडिया, क्रिप्टोकरेंसी और आभासी वास्तविकता शासित करता है — सब जो माया से मानव इच्छा बढ़ाते हैं। सोशल मीडिया शुद्ध राहु: आदर्शित पहचान का निर्माण (माया), फॉलोअर्स का जुनूनी पीछा (अतृप्त भूख), और सत्य-कल्पना का धुँधलापन। प्रबल राहु वाले प्रायः तकनीकी उद्योगों में सफल। कुंजी सचेत उपयोग — धार्मिक इरादे से निर्देशित राहु प्रौद्योगिकी सुन्दर सेवा करती है।' })}</p>
+          </div>
+          <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-graha-rahu/12 rounded-xl p-4">
+            <h4 className="text-graha-rahu font-bold text-sm mb-2" style={hf}>{ml({ en: 'Immigration & Cross-Cultural Life', hi: 'आव्रजन और अन्तर-सांस्कृतिक जीवन' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml({ en: 'Rahu is the primary indicator of foreign travel, immigration, and cross-cultural experience. The global Indian diaspora, international students, and expat communities are all Rahu phenomena. Rahu in the 4th house (leaving homeland), 7th house (foreign spouse), 9th house (foreign education), or 12th house (foreign settlement) often manifests as the native building a life far from their birthplace. Rahu dasha frequently triggers the first international move. The current era of globalization is a collective Rahu transit — boundaries dissolve, cultures mix, and the "foreign" becomes the new normal. For anyone analyzing immigration timing in a chart, Rahu transits and dashas are the first place to look.', hi: 'राहु विदेश यात्रा, आव्रजन और अन्तर-सांस्कृतिक अनुभव का प्रमुख संकेतक। वैश्विक भारतीय प्रवासी, अन्तर्राष्ट्रीय छात्र सब राहु घटनाएँ। 4वें भाव में राहु (मातृभूमि छोड़ना), 7वें (विदेशी जीवनसाथी), 9वें (विदेशी शिक्षा), 12वें (विदेश बसना) प्रायः जन्मभूमि से दूर जीवन निर्माण। राहु दशा प्रायः पहले अन्तर्राष्ट्रीय कदम का प्रवर्तक। वर्तमान वैश्वीकरण युग सामूहिक राहु गोचर।' })}</p>
+          </div>
+          <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-graha-rahu/12 rounded-xl p-4">
+            <h4 className="text-graha-rahu font-bold text-sm mb-2" style={hf}>{ml({ en: 'Rahu and Political Power', hi: 'राहु और राजनीतिक शक्ति' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml({ en: 'Rahu is the planet of politics par excellence. Where Jupiter represents the wise philosopher-king, Rahu represents the charismatic populist who rises through mass appeal, media manipulation, and unconventional strategy. Many world leaders — both benevolent and tyrannical — have dominant Rahu placements. Rahu in the 10th house is particularly associated with political success through public spectacle. Rahu conjunct the Sun (Grahan Yoga) in leaders\' charts often indicates the ability to command massive followings through personal magnetism, but also the danger of ego corruption. The Rahu politician is a boundary-breaker — they change the rules rather than play by them.', hi: 'राहु सर्वोत्कृष्ट राजनीति का ग्रह। गुरु बुद्धिमान दार्शनिक-राजा, राहु करिश्माई लोकवादी जो जनता की अपील, मीडिया हेरफेर और अपरम्परागत रणनीति से उभरता है। अनेक विश्व नेता — परोपकारी और निरंकुश दोनों — में प्रमुख राहु स्थिति। 10वें भाव में राहु विशेष रूप से सार्वजनिक तमाशे से राजनीतिक सफलता। राहु राजनेता नियम-तोड़क — नियमों से खेलने के बजाय बदलता है।' })}</p>
+          </div>
+        </div>
       </LessonSection>
 
       {/* ── Key Takeaway ── */}
@@ -397,6 +523,109 @@ export default function RahuPage() {
         ml({ en: 'Friends: Venus, Saturn, Mercury. Enemies: Sun, Moon, Mars. Rahu-Ketu axis defines the soul\'s karmic direction.', hi: 'मित्र: शुक्र, शनि, बुध। शत्रु: सूर्य, चन्द्र, मंगल। राहु-केतु धुरी आत्मा की कार्मिक दिशा परिभाषित करती है।' }),
         ml({ en: 'Mahadasha: 18 years (longest). Best in upachaya houses (3/6/10/11). Remedy: Gomed gemstone (with caution), Durga worship, Rahu Kavach.', hi: 'महादशा: 18 वर्ष (सबसे लम्बी)। उपचय भावों (3/6/10/11) में सर्वोत्तम। उपाय: गोमेद (सावधानी से), दुर्गा पूजा, राहु कवच।' }),
       ]} />
+
+      {/* ── 14. Rahu Antardasha Phases ── */}
+      <LessonSection number={next()} title={ml({ en: 'Rahu Mahadasha — Key Antardashas', hi: 'राहु महादशा — मुख्य अन्तर्दशाएँ' })}>
+        <p style={bf} className="mb-4">{ml({
+          en: 'The 18-year Rahu Mahadasha unfolds through 9 antardashas (sub-periods). The most critical ones determine whether Rahu dasha brings spectacular success or chaotic downfall. Understanding the key sub-periods helps navigation.',
+          hi: '18-वर्षीय राहु महादशा 9 अन्तर्दशाओं (उप-अवधियों) से प्रकट होती है। सबसे महत्वपूर्ण निर्धारित करती हैं कि राहु दशा शानदार सफलता या अराजक पतन लाती है। मुख्य उप-अवधियों को समझना नेविगेशन में सहायता करता है।'
+        })}</p>
+        <div className="space-y-3">
+          <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-graha-rahu/12 rounded-xl p-4">
+            <h4 className="text-graha-rahu font-bold text-sm mb-1" style={hf}>
+              {ml({ en: 'Rahu-Rahu (2 years 8 months) — Opening Intensity', hi: 'राहु-राहु (2 वर्ष 8 माह) — प्रारम्भिक तीव्रता' })}
+            </h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml({
+              en: 'The opening sub-period sets the tone for the entire 18 years. Rahu\'s themes crystallize: obsessive desire, foreign connections, technology involvement, and unconventional paths. This period is often disorienting — the native feels pulled in directions that make no logical sense. New career directions emerge. Relocation is common. The key: don\'t resist the change, but verify every "opportunity" carefully — Rahu-Rahu is notorious for presenting mirages alongside genuine openings.',
+              hi: 'प्रारम्भिक उप-अवधि पूरे 18 वर्षों का स्वर तय करती है। राहु के विषय स्पष्ट: जुनूनी इच्छा, विदेशी सम्बन्ध, प्रौद्योगिकी, अपरम्परागत मार्ग। यह अवधि प्रायः भ्रमित करने वाली। नए करियर दिशा उभरती। स्थानान्तरण सामान्य। कुंजी: परिवर्तन का विरोध न करें, किन्तु हर "अवसर" सावधानी से सत्यापित करें।'
+            })}</p>
+          </div>
+          <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-graha-rahu/12 rounded-xl p-4">
+            <h4 className="text-graha-rahu font-bold text-sm mb-1" style={hf}>
+              {ml({ en: 'Rahu-Jupiter (2 years 5 months) — Expansion or Excess', hi: 'राहु-गुरु (2 वर्ष 5 माह) — विस्तार या अतिरेक' })}
+            </h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml({
+              en: 'Jupiter\'s sub-period within Rahu dasha can bring either spectacular expansion (education, foreign travel, spiritual growth, wealth) or dangerous over-extension. Guru Chandal themes activate — unconventional philosophy, foreign gurus, and religious exploration. If Jupiter is strong in the natal chart, this sub-period often marks the biggest career advancement and financial gains of the entire Rahu dasha. If Jupiter is weak, watch for hubris, over-promising, and getting involved with questionable spiritual/educational institutions.',
+              hi: 'राहु दशा में गुरु की अन्तर्दशा शानदार विस्तार (शिक्षा, विदेश यात्रा, आध्यात्मिक विकास, धन) या खतरनाक अति-विस्तार ला सकती है। गुरु चाण्डाल विषय सक्रिय। यदि गुरु जन्म कुण्डली में बलवान, यह अन्तर्दशा प्रायः पूरी राहु दशा की सबसे बड़ी करियर उन्नति। यदि गुरु दुर्बल, अहंकार और संदिग्ध संस्थाओं से सावधान।'
+            })}</p>
+          </div>
+          <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-graha-rahu/12 rounded-xl p-4">
+            <h4 className="text-graha-rahu font-bold text-sm mb-1" style={hf}>
+              {ml({ en: 'Rahu-Saturn (2 years 10 months) — The Karmic Pressure Cooker', hi: 'राहु-शनि (2 वर्ष 10 माह) — कार्मिक प्रेशर कुकर' })}
+            </h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml({
+              en: 'The final major sub-period of Rahu dasha. Shrapit Yoga themes intensify — karmic debts come due, chronic obstacles resurface, and the native faces the accumulated consequences of choices made during the dasha. This is often the most challenging sub-period. However, for those who used the dasha well, Rahu-Saturn brings institutional recognition, government connections, and long-term structural achievements. Saturn demands accountability for everything Rahu attempted during the preceding years. The transition out of Rahu dasha into Jupiter dasha (if next) often feels like emerging from a tunnel into daylight.',
+              hi: 'राहु दशा की अन्तिम प्रमुख अन्तर्दशा। श्रापित योग विषय तीव्र — कार्मिक ऋण देय, दीर्घकालिक बाधाएँ पुनः सतह। प्रायः सबसे चुनौतीपूर्ण अन्तर्दशा। किन्तु जिन्होंने दशा अच्छी उपयोग की, राहु-शनि संस्थागत मान्यता और दीर्घकालिक संरचनात्मक उपलब्धियाँ। शनि पूर्ववर्ती वर्षों में राहु के प्रयासों की जवाबदेही माँगता है।'
+            })}</p>
+          </div>
+          <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-graha-rahu/12 rounded-xl p-4">
+            <h4 className="text-graha-rahu font-bold text-sm mb-1" style={hf}>
+              {ml({ en: 'Rahu-Mercury (2 years 7 months) — Technology & Communication', hi: 'राहु-बुध (2 वर्ष 7 माह) — प्रौद्योगिकी और संवाद' })}
+            </h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml({
+              en: 'Mercury is Rahu\'s friend — this sub-period often brings the most productive professional results. Technology ventures, communication projects, media presence, and intellectual achievements peak. Business deals, contracts, and partnerships involving foreign elements flourish. Writing, publishing, and digital content creation are especially favored. The native\'s social media presence or digital business may explode during this period. Mind stays sharp and strategic. Good for starting tech companies, writing books, or building information-based businesses.',
+              hi: 'बुध राहु का मित्र — यह अन्तर्दशा प्रायः सबसे उत्पादक व्यावसायिक परिणाम। प्रौद्योगिकी उपक्रम, संचार परियोजनाएँ, मीडिया उपस्थिति और बौद्धिक उपलब्धियाँ शिखर। विदेशी तत्वों वाले व्यापारिक सौदे फलते-फूलते। लेखन, प्रकाशन और डिजिटल सामग्री विशेष अनुकूल। सोशल मीडिया या डिजिटल व्यवसाय विस्फोट कर सकता है। तकनीकी कम्पनियाँ शुरू करने के लिए अच्छा।'
+            })}</p>
+          </div>
+        </div>
+      </LessonSection>
+
+      {/* ── Quick Reference Table ── */}
+      <div className="mt-12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-graha-rahu/15 rounded-2xl p-6">
+        <h3 className="text-gold-light font-bold text-sm mb-4" style={hf}>
+          {ml({ en: 'Rahu Quick Reference', hi: 'राहु त्वरित सन्दर्भ' })}
+        </h3>
+        <div className="grid grid-cols-2 gap-3 text-sm">
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Nodal Cycle', hi: 'पात चक्र' })}</span>
+            <span className="text-text-primary" style={bf}>18.61 {ml({ en: 'years', hi: 'वर्ष' })}</span>
+          </div>
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Dasha Duration', hi: 'दशा अवधि' })}</span>
+            <span className="text-text-primary" style={bf}>18 {ml({ en: 'years', hi: 'वर्ष' })}</span>
+          </div>
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Motion', hi: 'गति' })}</span>
+            <span className="text-text-primary" style={bf}>{ml({ en: 'Always Retrograde', hi: 'सदा वक्री' })}</span>
+          </div>
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Sign Duration', hi: 'राशि अवधि' })}</span>
+            <span className="text-text-primary" style={bf}>~18 {ml({ en: 'months/sign', hi: 'माह/राशि' })}</span>
+          </div>
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Exaltation', hi: 'उच्च' })}</span>
+            <span className="text-text-primary" style={bf}>{ml({ en: 'Taurus 20°', hi: 'वृषभ 20°' })}</span>
+          </div>
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Debilitation', hi: 'नीच' })}</span>
+            <span className="text-text-primary" style={bf}>{ml({ en: 'Scorpio 20°', hi: 'वृश्चिक 20°' })}</span>
+          </div>
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Gemstone', hi: 'रत्न' })}</span>
+            <span className="text-text-primary" style={bf}>{ml({ en: 'Hessonite (Gomed)', hi: 'गोमेद' })}</span>
+          </div>
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Day', hi: 'दिन' })}</span>
+            <span className="text-text-primary" style={bf}>{ml({ en: 'Saturday', hi: 'शनिवार' })}</span>
+          </div>
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Best Houses', hi: 'सर्वोत्तम भाव' })}</span>
+            <span className="text-text-primary" style={bf}>3, 6, 10, 11</span>
+          </div>
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Functions Like', hi: 'जैसा कार्य करता है' })}</span>
+            <span className="text-text-primary" style={bf}>{ml({ en: 'Saturn', hi: 'शनि' })}</span>
+          </div>
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Nakshatra Lordship', hi: 'नक्षत्र स्वामित्व' })}</span>
+            <span className="text-text-primary" style={bf}>{ml({ en: 'Ardra, Swati, Shatabhisha', hi: 'आर्द्रा, स्वाति, शतभिषा' })}</span>
+          </div>
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Eclipse Type', hi: 'ग्रहण प्रकार' })}</span>
+            <span className="text-text-primary" style={bf}>{ml({ en: 'At Ascending Node', hi: 'आरोही पात पर' })}</span>
+          </div>
+        </div>
+      </div>
 
       {/* ── Cross-links ── */}
       <div className="mt-12 border-t border-gold-primary/10 pt-8">

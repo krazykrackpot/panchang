@@ -135,6 +135,8 @@ const REMEDIES = {
   fasting: { en: 'Saturday fasting — eat only one meal of black or dark foods (urad dal, sesame, black salt). Some traditions recommend complete fasting from sunrise to sunset.', hi: 'शनिवार का उपवास — केवल एक भोजन काले या गहरे खाद्य पदार्थों का (उड़द दाल, तिल, काला नमक)। कुछ परम्पराएँ सूर्योदय से सूर्यास्त तक पूर्ण उपवास की सलाह देती हैं।' },
   worship: { en: 'Visit Shani temples or Hanuman temples on Saturdays (Hanuman is believed to have subdued Shani). Recite Shani Stotra or Hanuman Chalisa. Offer sesame oil lamp, black flowers, and iron to Shani Dev. Pour mustard oil on a Shani idol and observe your reflection in it.', hi: 'शनिवार को शनि मन्दिर या हनुमान मन्दिर जाएँ (हनुमान ने शनि को वश में किया था)। शनि स्तोत्र या हनुमान चालीसा का पाठ करें। शनि देव को तिल तेल का दीपक, काले पुष्प और लोहा अर्पित करें। शनि की मूर्ति पर सरसों का तेल चढ़ाएँ।' },
   yantra: { en: 'Shani Yantra — install on an iron plate, worship on Saturdays with sesame oil and black flowers. The Shani Yantra number is a 3×3 grid totaling 15 per row.', hi: 'शनि यन्त्र — लोहे के पत्र पर स्थापित करें, शनिवार को तिल तेल और काले पुष्प से पूजन करें। शनि यन्त्र 3×3 ग्रिड जिसमें प्रत्येक पंक्ति का योग 15 है।' },
+  dietary: { en: 'Saturn responds to simple, dark-colored foods: black sesame seeds (til), urad dal (black gram), mustard oil, dark honey, and black salt. Eating these on Saturdays aligns your body with Saturn\'s energy. Avoid alcohol and excessive luxury foods during Sade Sati. Drinking water kept overnight in an iron vessel is a traditional Saturn remedy. Black coffee and dark chocolate (in moderation) are modern equivalents that carry Saturn\'s energy signature.', hi: 'शनि सरल, गहरे रंग के खाद्य पदार्थों से प्रतिक्रिया करता है: काला तिल, उड़द दाल, सरसों का तेल, गहरा शहद और काला नमक। शनिवार को इन्हें खाना शनि की ऊर्जा से जोड़ता है। साढ़ेसाती में मद्य और अत्यधिक विलासी भोजन से बचें। लोहे के बर्तन में रात भर रखा पानी पीना पारम्परिक शनि उपाय है।' },
+  behavioral: { en: 'The most effective Saturn remedy is behavioral: practice discipline, keep your word, honor commitments, serve the elderly and disabled, and work hard without complaint. Saturn rewards those who take responsibility — blame-shifting and shortcut-seeking are the surest ways to intensify Saturn\'s lessons. Wake early, maintain routine, respect authority, and practice patience. Wearing dark blue or black clothing on Saturdays, walking barefoot on earth, and performing physical labor (gardening, cleaning, construction) are powerful behavioral alignments with Saturn\'s energy.', hi: 'सबसे प्रभावी शनि उपाय व्यावहारिक है: अनुशासन का अभ्यास करें, वचन निभाएँ, प्रतिबद्धताओं का सम्मान करें, वृद्ध और विकलांगों की सेवा करें, और बिना शिकायत कठिन परिश्रम करें। शनि उत्तरदायित्व लेने वालों को पुरस्कृत करता है। शनिवार को गहरा नीला या काला वस्त्र पहनना, नंगे पैर भूमि पर चलना और शारीरिक श्रम (बागवानी, सफाई) शक्तिशाली व्यावहारिक संरेखण हैं।' },
 };
 
 // ─── Mythology ─────────────────────────────────────────────────────────
@@ -151,6 +153,18 @@ const MYTHOLOGY = {
     en: 'The Shani Stotra from the Navagraha Stotram: "Nilanjana Samabhasam, Ravi Putram Yamagrajam, Chhaya Martanda Sambhutam, Tam Namami Shanishcharam." Meaning: "I bow to Shani, whose complexion is like blue collyrium, who is the son of Surya, the elder brother of Yama, born of Chhaya and Surya — I salute that slow-moving one." The Dasharatha Shani Stotra — composed by King Dasharatha when Shani entered his birth star — is considered the most powerful remedy during Sade Sati.',
     hi: 'नवग्रह स्तोत्रम् से शनि स्तोत्र: "नीलाञ्जनसमाभासं रविपुत्रं यमाग्रजम्, छायामार्तण्डसम्भूतं तं नमामि शनैश्चरम्।" अर्थ: "मैं शनि को नमन करता हूँ जिनका वर्ण नीले अञ्जन के समान है, जो सूर्य के पुत्र हैं, यम के अग्रज हैं, छाया और सूर्य से उत्पन्न — उस धीमी गति वाले को नमस्कार।" दशरथ शनि स्तोत्र — राजा दशरथ द्वारा रचित जब शनि उनके जन्म नक्षत्र में प्रवेश किया — साढ़ेसाती में सबसे शक्तिशाली उपाय माना जाता है।',
   },
+  curseFromWife: {
+    en: 'According to Puranic tradition, Shani was deeply devoted to his dharma of dispensing karmic justice. His wife, weary of his emotional distance, cursed him: "Just as you are unable to look at me with love, your gaze shall destroy whatever it falls upon." This is the mythological origin of Shani\'s drishti (aspect) being the most feared in Jyotish. Shani accepted the curse without complaint — embodying the stoic acceptance of karmic consequences that he demands from all beings. The story teaches: Saturn\'s gaze is not malice, it is truth — and truth can feel destructive when we are living in illusion.',
+    hi: 'पौराणिक परम्परा के अनुसार, शनि कार्मिक न्याय देने के अपने धर्म में गहराई से समर्पित थे। उनकी पत्नी, उनकी भावनात्मक दूरी से थककर, शाप दिया: "जैसे तुम मुझे प्रेम से नहीं देख सकते, तुम्हारी दृष्टि जिस पर पड़ेगी उसे नष्ट करेगी।" यह शनि की दृष्टि के ज्योतिष में सबसे भयंकर होने का पौराणिक मूल है। शनि ने बिना शिकायत शाप स्वीकार किया — कार्मिक परिणामों की स्टोइक स्वीकृति का मूर्तरूप।',
+  },
+  ravanaStory: {
+    en: 'When Ravana conquered the Navagrahas, he forced all nine planets to lie face-down as steps to his throne — so his son Meghanada would be born under perfect planetary alignment. But Shani, even face-down, turned his gaze upward just slightly. That single sideways glance ensured that Meghanada (Indrajit) would eventually be killed despite being born under favorable conditions. This story demonstrates that Saturn\'s justice cannot be defeated by power, ego, or clever arrangement — karma will find its way regardless. Even the greatest king in mythology could not escape Saturn\'s impartial gaze.',
+    hi: 'जब रावण ने नवग्रहों को जीता, उसने सभी नौ ग्रहों को अपने सिंहासन की सीढ़ियों के रूप में मुँह नीचे लेटने को विवश किया — ताकि उसका पुत्र मेघनाद आदर्श ग्रह स्थिति में जन्मे। किन्तु शनि ने, मुँह नीचे होते हुए भी, अपनी दृष्टि हल्के से ऊपर घुमा ली। उस एक तिरछी दृष्टि ने सुनिश्चित किया कि मेघनाद (इन्द्रजित) अन्ततः मारा जाएगा। यह कथा दर्शाती है कि शनि का न्याय शक्ति या अहंकार से नहीं हराया जा सकता।',
+  },
+  hanumanStory: {
+    en: 'The most beloved Shani story involves Hanuman. When Shani approached Hanuman to begin his Sade Sati, Hanuman — who was carrying a mountain to Lanka — said, "Climb on my shoulders." Shani sat on Hanuman\'s shoulders and was squeezed between Hanuman\'s powerful body and the mountain above, suffering immense pain. Shani begged for release and promised that anyone who worships Hanuman would be protected from Shani\'s harshest effects. This is why reciting the Hanuman Chalisa on Saturdays is the most popular Shani remedy across India. The story also reveals a deeper truth: pure devotion (bhakti) and selfless service (karma yoga) are the ultimate shields against karmic hardship.',
+    hi: 'सबसे प्रिय शनि कथा हनुमान से सम्बन्धित है। जब शनि हनुमान की साढ़ेसाती शुरू करने आए, हनुमान — जो लंका में पर्वत ले जा रहे थे — ने कहा "मेरे कन्धों पर बैठो।" शनि हनुमान के कन्धों पर बैठे और हनुमान के शक्तिशाली शरीर और ऊपर पर्वत के बीच दबकर अत्यन्त पीड़ा सही। शनि ने मुक्ति माँगी और वचन दिया कि जो हनुमान की पूजा करेगा उसे शनि के कठोर प्रभाव से सुरक्षा मिलेगी। इसीलिए शनिवार को हनुमान चालीसा पाठ भारत भर में सबसे लोकप्रिय शनि उपाय है।',
+  },
 };
 
 // ─── Relationships ─────────────────────────────────────────────────────
@@ -164,6 +178,50 @@ const RELATIONSHIPS = [
   { planet: { en: 'Rahu', hi: 'राहु' }, relation: { en: 'Neutral', hi: 'सम' }, note: { en: 'Saturn and Rahu together create Shrapit Yoga — a curse from past life that manifests as recurring obstacles, chronic delays, and karmic entanglements. The native feels stuck in cycles of frustration. However, when transcended, this combination produces unconventional disciplinarians — people who build revolutionary institutions. Technology, mining, and foreign connections are domains.', hi: 'शनि और राहु साथ श्रापित योग बनाते हैं — पूर्वजन्म का शाप जो बार-बार बाधाओं, दीर्घकालिक विलम्ब और कार्मिक उलझनों के रूप में प्रकट। जातक हताशा के चक्रों में फँसा महसूस करता है। किन्तु पार करने पर अपरम्परागत अनुशासक — क्रान्तिकारी संस्थाएँ बनाने वाले। प्रौद्योगिकी, खनन क्षेत्र।' } },
   { planet: { en: 'Ketu', hi: 'केतु' }, relation: { en: 'Neutral', hi: 'सम' }, note: { en: 'Saturn-Ketu conjunction creates deep detachment from material goals combined with karmic suffering. The native may experience inexplicable obstacles and spiritual crises. Can produce genuine ascetics who renounce worldly ambition through sustained hardship rather than philosophical choice. Technical skills in obsolete or niche domains. Past-life karma related to duty and service manifests.', hi: 'शनि-केतु युति भौतिक लक्ष्यों से गहरा वैराग्य कार्मिक पीड़ा के साथ बनाती है। अकथनीय बाधाएँ और आध्यात्मिक संकट। दार्शनिक चुनाव से नहीं निरन्तर कठिनाई से सांसारिक महत्वाकांक्षा का त्याग करने वाले सच्चे तपस्वी। कर्तव्य और सेवा से सम्बन्धित पूर्वजन्म कर्म प्रकट।' } },
 ];
+
+// ─── Astronomical Profile ─────────────────────────────────────────────
+const ASTRONOMICAL = {
+  orbit: { en: 'Saturn orbits the Sun in approximately 29.46 years (10,759 days), making it the slowest-moving visible planet. It spends roughly 2.5 years in each zodiacal sign, which is why Saturn placements are generational markers — everyone born within a 2.5-year window shares the same Saturn sign. This slow movement is the astronomical basis for Saturn\'s association with patience, delay, and long-term processes.', hi: 'शनि सूर्य की परिक्रमा लगभग 29.46 वर्षों (10,759 दिनों) में करता है, जिससे यह सबसे धीमा दृश्य ग्रह है। प्रत्येक राशि में लगभग 2.5 वर्ष बिताता है, इसीलिए शनि स्थिति पीढ़ीगत चिह्न है। यह धीमी गति शनि के धैर्य, विलम्ब और दीर्घकालिक प्रक्रियाओं के साथ सम्बन्ध का खगोलीय आधार है।' },
+  retrograde: { en: 'Saturn goes retrograde for approximately 4.5 months each year — the longest retrograde of any planet. During retrograde, Saturn appears to move backward against the zodiac background, slowing from about 0.034 degrees/day to stationary, then reversing. In Jyotish, retrograde Saturn is considered especially powerful: its lessons become internalized. A natal retrograde Saturn often indicates karmic debts from past lives that require extra patience and effort to resolve. Retrograde Saturn transits are periods of karmic review — old issues resurface for final resolution.', hi: 'शनि प्रतिवर्ष लगभग 4.5 महीने वक्री होता है — किसी भी ग्रह का सबसे लम्बा वक्री। वक्री काल में शनि राशिचक्र पृष्ठभूमि के विरुद्ध पीछे चलता प्रतीत होता है। ज्योतिष में वक्री शनि विशेष शक्तिशाली माना जाता है: इसके सबक आन्तरिक होते हैं। जन्मकालीन वक्री शनि प्रायः पूर्व जन्म के कार्मिक ऋणों का संकेत जिनके समाधान में अतिरिक्त धैर्य चाहिए।' },
+  rings: { en: 'Saturn\'s iconic ring system — composed of billions of ice and rock particles — has deep symbolic meaning in Vedic astrology. The rings represent Saturn\'s boundaries, limitations, and structured containment. Just as Saturn\'s rings define its borders in space, astrological Saturn defines the boundaries of karma, social structure, and human discipline. The rings are also associated with Saturn\'s role as timekeeper — cycles within cycles, orbits within orbits, the cosmic clock that measures karmic debt.', hi: 'शनि की प्रतिष्ठित वलय प्रणाली — अरबों बर्फ और चट्टान कणों से बनी — वैदिक ज्योतिष में गहरा प्रतीकात्मक अर्थ रखती है। वलय शनि की सीमाओं, मर्यादाओं और संरचित नियन्त्रण का प्रतिनिधित्व करती हैं। जैसे शनि की वलय अन्तरिक्ष में इसकी सीमा परिभाषित करती हैं, ज्योतिषीय शनि कर्म, सामाजिक संरचना और मानव अनुशासन की सीमाएँ परिभाषित करता है।' },
+  visibility: { en: 'Saturn is the outermost planet visible to the naked eye — ancient civilizations tracked it for thousands of years before the telescope. Its faint yellowish light and slow movement made it an object of both awe and dread. In Indian astronomical tradition, Saturn is associated with the color black and deep indigo, reflecting its distance from the Sun and the cold, slow nature of its orbital journey. Saturn\'s synodic period (opposition to opposition) is about 378 days, meaning it returns to opposition with the Sun roughly once a year.', hi: 'शनि नंगी आँख से दिखने वाला सबसे दूर का ग्रह है — प्राचीन सभ्यताओं ने दूरबीन से पहले हजारों वर्षों तक इसे ट्रैक किया। इसकी फीकी पीली रोशनी और धीमी गति इसे विस्मय और भय दोनों का विषय बनाती है। भारतीय खगोलीय परम्परा में शनि काले और गहरे नील रंग से जुड़ा है, जो सूर्य से दूरी और ठण्डी, धीमी कक्षीय यात्रा को दर्शाता है।' },
+};
+
+// ─── Notable Yogas ────────────────────────────────────────────────────
+const NOTABLE_YOGAS = [
+  { name: { en: 'Shasha Yoga (Mahapurusha)', hi: 'शशक योग (महापुरुष)' },
+    condition: { en: 'Saturn in own sign (Capricorn/Aquarius) or exalted (Libra) in a Kendra house (1st, 4th, 7th, or 10th from Lagna).', hi: 'शनि स्वराशि (मकर/कुम्भ) या उच्च (तुला) में केन्द्र भाव (1, 4, 7, 10) में।' },
+    effect: { en: 'One of the five Mahapurusha Yogas. Grants powerful leadership, institutional authority, longevity, wealth through discipline, and command over large organizations. The native becomes a pillar of society — respected for fairness, endurance, and administrative genius. Historically associated with kings, judges, and empire-builders. Frequency: approximately 8-10% of charts.', hi: 'पाँच महापुरुष योगों में एक। शक्तिशाली नेतृत्व, संस्थागत अधिकार, दीर्घायु, अनुशासन से धन और बड़े संगठनों पर आदेश। जातक समाज का स्तम्भ बनता है। ऐतिहासिक रूप से राजाओं, न्यायाधीशों और साम्राज्य-निर्माताओं से सम्बन्धित। आवृत्ति: लगभग 8-10%।' } },
+  { name: { en: 'Vish Yoga (Saturn + Moon)', hi: 'विष योग (शनि + चन्द्र)' },
+    condition: { en: 'Saturn and Moon in conjunction (same sign/house). Also called Punaraphoo Yoga when it affects the 7th house or 7th lord.', hi: 'शनि और चन्द्र युति (एक ही राशि/भाव)। 7वें भाव या 7वें भावेश को प्रभावित करने पर पुनरफू योग भी कहा जाता है।' },
+    effect: { en: 'Creates emotional heaviness, depressive tendencies, difficulty in relationships, and delayed marriage. The mind (Moon) is weighed down by Saturn\'s karmic burden. However, this yoga also produces extraordinary emotional resilience and psychological depth. Many therapists, counselors, and psychologists have this placement. The native who masters Vish Yoga develops the deepest empathy — they understand suffering because they have lived it. Frequency: approximately 7-8% of charts.', hi: 'भावनात्मक भारीपन, अवसादी प्रवृत्तियाँ, सम्बन्धों में कठिनाई और विलम्बित विवाह। मन (चन्द्र) शनि के कार्मिक बोझ से दबा। किन्तु असाधारण भावनात्मक लचीलापन और मनोवैज्ञानिक गहराई भी। अनेक चिकित्सक और मनोवैज्ञानिकों में यह स्थिति। आवृत्ति: लगभग 7-8%।' } },
+  { name: { en: 'Shrapit Yoga (Saturn + Rahu)', hi: 'श्रापित योग (शनि + राहु)' },
+    condition: { en: 'Saturn and Rahu in conjunction in the same house. Intensified if in the 1st, 5th, 7th, or 9th house.', hi: 'शनि और राहु एक ही भाव में युति। 1, 5, 7 या 9वें भाव में हो तो तीव्र।' },
+    effect: { en: 'Indicates a curse from a previous life — the native faces recurring obstacles, chronic delays, and karmic entanglements that seem disproportionate to their actions. Relationships may suffer from trust issues and betrayal patterns. However, when consciously worked through, Shrapit Yoga builds unconventional institutional strength. The native who transcends this yoga creates revolutionary structures that serve the marginalized. Remedies include Shani-Rahu puja and Rudrabhishek. Frequency: approximately 7% of charts.', hi: 'पूर्व जन्म के शाप का संकेत — बार-बार बाधाएँ, दीर्घकालिक विलम्ब और कार्मों के अनुपात से अधिक कार्मिक उलझनें। सम्बन्धों में विश्वास समस्या। किन्तु सचेत रूप से पार करने पर अपरम्परागत संस्थागत शक्ति। शनि-राहु पूजा और रुद्राभिषेक उपाय। आवृत्ति: लगभग 7%।' } },
+  { name: { en: 'Dainya Yoga (Saturn as 6th/8th/12th lord in exchange)', hi: 'दैन्य योग (6/8/12 भावेश शनि का परिवर्तन)' },
+    condition: { en: 'Saturn as lord of the 6th, 8th, or 12th house exchanges signs with another planet, especially a benefic.', hi: 'शनि 6, 8 या 12वें भाव के स्वामी के रूप में किसी अन्य ग्रह, विशेषकर शुभ ग्रह के साथ राशि परिवर्तन।' },
+    effect: { en: 'Creates chronic hardship in the areas ruled by both houses involved. Health issues, debts, and losses persist across long periods. The native must develop extreme patience and systematic problem-solving. However, Dainya Yoga also confers deep wisdom born of struggle — the native understands systemic problems better than anyone and can build solutions that address root causes rather than symptoms.', hi: 'दोनों सम्बद्ध भावों के क्षेत्रों में दीर्घकालिक कठिनाई। स्वास्थ्य समस्याएँ, ऋण और हानि लम्बे समय तक। अत्यधिक धैर्य और व्यवस्थित समस्या-समाधान विकसित करना होता है। किन्तु संघर्ष से जन्मा गहन ज्ञान भी — मूल कारणों को समझने की क्षमता।' } },
+];
+
+// ─── Practical Application ────────────────────────────────────────────
+const PRACTICAL = {
+  sadeSati: {
+    en: 'Sade Sati occurs when Saturn transits the 12th, 1st, and 2nd houses from your natal Moon — a 7.5-year period that every person experiences 2-3 times in their life. To identify it in your chart: find your Moon sign, then check if Saturn is currently transiting the sign before it, the same sign, or the sign after it. The first 2.5 years (12th from Moon) bring financial stress, isolation, and inner turmoil. The middle 2.5 years (over the Moon) are the most intense — identity crisis, health challenges, and karmic reckoning. The final 2.5 years (2nd from Moon) bring gradual recovery, with lessons in speech, family, and wealth.',
+    hi: 'साढ़ेसाती तब होती है जब शनि आपके जन्म चन्द्र से 12वें, 1ले और 2रे भाव से गोचर करता है — 7.5 वर्ष की अवधि जो हर व्यक्ति जीवन में 2-3 बार अनुभव करता है। पहचान: अपनी चन्द्र राशि खोजें, फिर देखें शनि उससे पहली, उसी, या अगली राशि में गोचर कर रहा है। प्रथम 2.5 वर्ष (चन्द्र से 12वाँ) आर्थिक तनाव और आन्तरिक उथल-पुथल। मध्य 2.5 वर्ष सबसे तीव्र। अन्तिम 2.5 वर्ष धीमी रिकवरी।',
+  },
+  ashtamaShani: {
+    en: 'Ashtama Shani occurs when Saturn transits the 8th house from your natal Moon. This 2.5-year period brings sudden transformations, health crises, and confrontation with mortality. Unlike Sade Sati (which is gradual), Ashtama Shani strikes suddenly. The 8th house governs longevity, hidden matters, and in-laws — all these areas come under pressure. How to identify: count 8 signs forward from your Moon sign. When Saturn enters that sign, Ashtama Shani begins. Remedies: Mrityunjaya Japa (108 daily), Hanuman Chalisa on Saturdays, and avoiding risky financial decisions during this period.',
+    hi: 'अष्टम शनि तब होता है जब शनि आपके जन्म चन्द्र से 8वें भाव में गोचर करता है। यह 2.5 वर्ष अचानक परिवर्तन, स्वास्थ्य संकट और नश्वरता का सामना लाता है। साढ़ेसाती (जो क्रमिक) के विपरीत, अष्टम शनि अचानक प्रहार करता है। पहचान: चन्द्र राशि से 8 राशि आगे गिनें। उपाय: दैनिक 108 महामृत्युञ्जय जप, शनिवार को हनुमान चालीसा।',
+  },
+  kantakaShani: {
+    en: 'Kantaka Shani occurs when Saturn transits the 4th house from your natal Moon (also applied from Lagna by some authorities). "Kantaka" means thorn — and that is exactly what this 2.5-year transit feels like. Domestic peace is disturbed, property matters create legal issues, relationship with mother may be strained, and inner contentment feels impossible. Educational pursuits face obstacles. How to identify: count 4 signs from your Moon sign. Remedies: recite Sunderkand on Saturdays, offer sesame oil at a Shani temple, and practice patience with domestic matters.',
+    hi: 'कण्टक शनि तब होता है जब शनि आपके जन्म चन्द्र से 4वें भाव में गोचर करता है। "कण्टक" अर्थात काँटा — और इस 2.5 वर्ष का गोचर ऐसा ही लगता है। घरेलू शान्ति भंग, सम्पत्ति में कानूनी समस्या, माता से सम्बन्ध में तनाव, आन्तरिक सन्तोष असम्भव। पहचान: चन्द्र राशि से 4 राशि गिनें। उपाय: शनिवार को सुन्दरकाण्ड पाठ, शनि मन्दिर में तिल तेल अर्पण।',
+  },
+  misconceptions: {
+    en: 'The biggest misconception about Saturn is that it is "always bad." Saturn is the planet of karma — it gives exactly what you have earned, nothing more, nothing less. For people with good karma in the relevant life areas, Saturn Mahadasha and Sade Sati bring career breakthroughs, lasting marriage, institutional recognition, and real estate acquisition. Saturn rewards discipline, patience, service, and honest work. The fear of Saturn comes from the reluctance to face karmic consequences — not from Saturn itself being malefic. A well-placed Saturn (exalted in Libra, own sign in Capricorn/Aquarius, or in upachaya houses) is one of the greatest blessings in any chart.',
+    hi: 'शनि के बारे में सबसे बड़ी भ्रान्ति कि यह "सदा बुरा" है। शनि कर्म का ग्रह है — ठीक वही देता है जो अर्जित किया, न अधिक न कम। सम्बन्धित जीवन क्षेत्रों में अच्छे कर्म वालों के लिए शनि महादशा और साढ़ेसाती करियर सफलता, स्थायी विवाह, संस्थागत मान्यता और अचल सम्पत्ति अर्जन लाती है। शनि अनुशासन, धैर्य, सेवा और ईमानदार कार्य को पुरस्कृत करता है। सुस्थित शनि किसी भी कुण्डली में सबसे बड़ा वरदान है।',
+  },
+};
 
 // ─── Cross-reference links ─────────────────────────────────────────────
 const CROSS_LINKS = [
@@ -228,7 +286,20 @@ export default function ShaniPage() {
         <ClassicalReference shortName="BPHS" chapter="Ch. 3 — Graha Visheshaphala" />
       </LessonSection>
 
-      {/* ── 2. Dignities ── */}
+      {/* ── 2. Astronomical Profile ── */}
+      <LessonSection number={next()} title={ml({ en: 'Astronomical Profile', hi: 'खगोलीय परिचय' })}>
+        <div className="space-y-4">
+          {Object.entries(ASTRONOMICAL).map(([key, val]) => (
+            <div key={key} className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-graha-saturn/10 rounded-xl p-4">
+              <h4 className="text-gold-light font-bold text-sm mb-2 capitalize" style={hf}>{key === 'orbit' ? ml({ en: 'Orbital Period — 29.46 Years', hi: 'कक्षीय अवधि — 29.46 वर्ष' }) : key === 'retrograde' ? ml({ en: 'Retrograde — 4.5 Months/Year', hi: 'वक्री — 4.5 माह/वर्ष' }) : key === 'rings' ? ml({ en: 'The Rings — Symbol of Boundaries', hi: 'वलय — सीमाओं का प्रतीक' }) : ml({ en: 'Naked-Eye Visibility', hi: 'नंगी आँख से दृश्यता' })}</h4>
+              <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(val)}</p>
+            </div>
+          ))}
+        </div>
+        <ClassicalReference shortName="Surya Siddhanta" chapter="Ch. 1 — Mean Motions of Planets" />
+      </LessonSection>
+
+      {/* ── 3. Dignities ── */}
       <LessonSection number={next()} title={ml({ en: 'Dignities & Strength', hi: 'गरिमा एवं बल' })}>
         <p style={bf}>{ml({ en: 'Saturn\'s dignity determines whether its lessons come as structured growth or crushing hardship. Exalted in Libra at 20°, Saturn achieves its highest purpose — impartial justice, balanced authority, and disciplined fairness. Debilitated in Aries at 20°, Saturn\'s patience is broken by Mars\'s impulsiveness — the native wants results now but the universe demands they wait. In Capricorn (own sign), Saturn builds empires. In Aquarius (Moolatrikona 0°-20°), Saturn reforms societies.', hi: 'शनि की गरिमा निर्धारित करती है कि इसके सबक संरचित विकास या कठोर कठिनाई के रूप में आते हैं। तुला में 20° पर उच्च, शनि अपना उच्चतम उद्देश्य प्राप्त करता है — निष्पक्ष न्याय, सन्तुलित अधिकार। मेष में 20° पर नीच, शनि का धैर्य मंगल की आवेगशीलता से टूटता है। मकर में साम्राज्य बनाता है। कुम्भ (मूलत्रिकोण 0°-20°) में समाज सुधारता है।' })}</p>
         <div className="space-y-2 mt-4">
@@ -293,7 +364,45 @@ export default function ShaniPage() {
         </div>
       </LessonSection>
 
-      {/* ── 6. Planetary Relationships ── */}
+      {/* ── 7. Notable Yogas ── */}
+      <LessonSection number={next()} title={ml({ en: 'Notable Saturn Yogas', hi: 'शनि के प्रमुख योग' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'Saturn participates in some of the most powerful yogas in Jyotish — from the coveted Shasha Mahapurusha Yoga to the feared Vish Yoga and Shrapit Yoga. Understanding these combinations reveals whether Saturn acts as a cosmic builder or a karmic taskmaster in your chart.', hi: 'शनि ज्योतिष के कुछ सबसे शक्तिशाली योगों में भाग लेता है — प्रतिष्ठित शशक महापुरुष योग से लेकर भयंकर विष योग और श्रापित योग तक। इन संयोगों को समझना प्रकट करता है कि शनि आपकी कुण्डली में ब्रह्माण्डीय निर्माता या कार्मिक कार्यदाता है।' })}</p>
+        <div className="space-y-4">
+          {NOTABLE_YOGAS.map((yoga, i) => (
+            <div key={i} className="bg-gradient-to-br from-[#2d1b69]/25 via-[#1a1040]/30 to-[#0a0e27] border border-graha-saturn/12 rounded-xl p-5">
+              <h4 className="text-gold-light font-bold text-sm mb-1" style={hf}>{ml(yoga.name)}</h4>
+              <p className="text-graha-saturn text-xs mb-2" style={bf}>{ml(yoga.condition)}</p>
+              <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(yoga.effect)}</p>
+            </div>
+          ))}
+        </div>
+        <ClassicalReference shortName="BPHS" chapter="Ch. 36 — Pancha Mahapurusha Yoga" />
+      </LessonSection>
+
+      {/* ── 8. Practical Application ── */}
+      <LessonSection number={next()} title={ml({ en: 'Practical Application — Saturn Transits', hi: 'व्यावहारिक अनुप्रयोग — शनि गोचर' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'Saturn\'s slow transits create the longest and most impactful periods in Vedic astrology. Understanding Sade Sati, Ashtama Shani, and Kantaka Shani helps you identify and navigate these critical phases in your own life.', hi: 'शनि के धीमे गोचर वैदिक ज्योतिष में सबसे लम्बी और सबसे प्रभावशाली अवधियाँ बनाते हैं। साढ़ेसाती, अष्टम शनि और कण्टक शनि को समझना आपको अपने जीवन के इन महत्वपूर्ण चरणों को पहचानने और नेविगेट करने में सहायता करता है।' })}</p>
+        <div className="space-y-4">
+          <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-graha-saturn/12 rounded-xl p-5">
+            <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Sade Sati — The 7.5-Year Trial', hi: 'साढ़ेसाती — 7.5 वर्ष की परीक्षा' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.sadeSati)}</p>
+          </div>
+          <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-graha-saturn/12 rounded-xl p-5">
+            <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Ashtama Shani — Saturn in the 8th from Moon', hi: 'अष्टम शनि — चन्द्र से 8वें में शनि' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.ashtamaShani)}</p>
+          </div>
+          <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-graha-saturn/12 rounded-xl p-5">
+            <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Kantaka Shani — The Thorn Transit', hi: 'कण्टक शनि — काँटे का गोचर' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.kantakaShani)}</p>
+          </div>
+          <div className="bg-emerald-500/5 border border-emerald-500/15 rounded-xl p-5">
+            <h4 className="text-emerald-400 font-bold text-sm mb-2" style={hf}>{ml({ en: 'Common Misconceptions — Saturn is NOT Always Bad', hi: 'सामान्य भ्रान्तियाँ — शनि सदा बुरा नहीं' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.misconceptions)}</p>
+          </div>
+        </div>
+      </LessonSection>
+
+      {/* ── 9. Planetary Relationships ── */}
       <LessonSection number={next()} title={ml({ en: 'Relationships with Other Planets', hi: 'अन्य ग्रहों के साथ सम्बन्ध' })}>
         <p style={bf} className="mb-4">{ml({ en: 'Saturn\'s relationships define many of the most significant yogas and doshas in Jyotish. The Sun-Saturn enmity creates Pitru Dosha. The Moon-Saturn tension triggers Sade Sati. The Mars-Saturn conflict causes accidents and frustration. But Saturn\'s friendships with Mercury (analytical precision) and Venus (enduring beauty) produce some of the most productive planetary combinations for career and art.', hi: 'शनि के सम्बन्ध ज्योतिष के कई सबसे महत्त्वपूर्ण योगों और दोषों को परिभाषित करते हैं। सूर्य-शनि शत्रुता पितृ दोष बनाती है। चन्द्र-शनि तनाव साढ़ेसाती को जन्म देता है। मंगल-शनि संघर्ष दुर्घटनाएँ। किन्तु बुध (विश्लेषणात्मक सटीकता) और शुक्र (चिरस्थायी सौन्दर्य) के साथ मैत्री करियर और कला के लिए सबसे उत्पादक ग्रह संयोग।' })}</p>
         <div className="space-y-3">
@@ -334,6 +443,8 @@ export default function ShaniPage() {
           { key: 'fasting', title: { en: 'Fasting (Upavasa)', hi: 'उपवास' } },
           { key: 'worship', title: { en: 'Worship & Puja', hi: 'पूजा एवं उपासना' } },
           { key: 'yantra', title: { en: 'Shani Yantra', hi: 'शनि यन्त्र' } },
+          { key: 'dietary', title: { en: 'Dietary Remedies (Ahara)', hi: 'आहार उपाय' } },
+          { key: 'behavioral', title: { en: 'Behavioral Remedies (Achara)', hi: 'आचार उपाय' } },
         ].map(({ key, title }) => (
           <div key={key} className="bg-bg-primary/50 rounded-lg border border-gold-primary/10 p-4 mb-3">
             <h4 className="text-gold-light font-bold text-sm mb-1" style={hf}>{ml(title)}</h4>
@@ -357,11 +468,91 @@ export default function ShaniPage() {
             <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(MYTHOLOGY.stotra)}</p>
           </div>
           <div>
+            <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'The Curse of Shani\'s Wife', hi: 'शनि की पत्नी का शाप' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(MYTHOLOGY.curseFromWife)}</p>
+          </div>
+          <div>
+            <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Shani and Ravana\'s Throne', hi: 'शनि और रावण का सिंहासन' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(MYTHOLOGY.ravanaStory)}</p>
+          </div>
+          <div>
+            <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Shani and Hanuman', hi: 'शनि और हनुमान' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(MYTHOLOGY.hanumanStory)}</p>
+          </div>
+          <div>
             <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Sacred Temples', hi: 'पवित्र मन्दिर' })}</h4>
             <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(MYTHOLOGY.temples)}</p>
           </div>
         </div>
         <ClassicalReference shortName="BPHS" chapter="Ch. 3 — Graha Characteristics" />
+      </LessonSection>
+
+      {/* ── 12. Expanded Mythology — Additional Stories ── */}
+      <LessonSection number={next()} title={ml({ en: 'Saturn\'s Lessons Through History', hi: 'इतिहास में शनि के सबक' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'Throughout Indian history, Saturn has been associated with some of the most dramatic karmic stories. These tales illustrate Saturn\'s core principle: karma is inescapable, but it is also fair. Saturn does not discriminate between king and commoner — everyone receives exactly what they have earned.', hi: 'भारतीय इतिहास में शनि सबसे नाटकीय कार्मिक कथाओं से जुड़ा है। ये कहानियाँ शनि के मूल सिद्धान्त को दर्शाती हैं: कर्म अनिवार्य है, किन्तु निष्पक्ष भी। शनि राजा और सामान्य में भेद नहीं करता — हर कोई ठीक वही पाता है जो अर्जित किया।' })}</p>
+        <div className="space-y-4">
+          <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-graha-saturn/12 rounded-xl p-4">
+            <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Saturn\'s Judgment of King Vikramaditya', hi: 'राजा विक्रमादित्य पर शनि का न्याय' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml({ en: 'The most famous Saturn story in Indian folklore. King Vikramaditya — the mightiest king of his era — was so proud of his power that he declared no planet could harm him. Shani Dev accepted the challenge. Over the next 7.5 years (Sade Sati), Vikramaditya lost his kingdom, was falsely accused of theft, had his hands and feet cut off, and lived as a beggar. Only when Vikramaditya accepted his karma with humility did Saturn relent and restore everything — with interest. The story teaches: Saturn does not break the proud randomly; he breaks the pride so the person can be rebuilt stronger, wiser, and more compassionate. Every loss during Sade Sati is preparation for greater responsibility.', hi: 'भारतीय लोककथाओं में सबसे प्रसिद्ध शनि कहानी। राजा विक्रमादित्य — अपने युग के सबसे शक्तिशाली राजा — इतने गर्वित थे कि घोषणा की कोई ग्रह उन्हें हानि नहीं पहुँचा सकता। शनि देव ने चुनौती स्वीकार की। अगले 7.5 वर्षों (साढ़ेसाती) में विक्रमादित्य ने राज्य खोया, चोरी का झूठा आरोप, हाथ-पैर कटे, भिखारी बने। जब विक्रमादित्य ने विनम्रता से कर्म स्वीकार किया, शनि ने सब लौटाया — ब्याज सहित। सबक: शनि गर्व इसलिए तोड़ता है ताकि व्यक्ति मजबूत, बुद्धिमान और करुणामय बन सके।' })}</p>
+          </div>
+          <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-graha-saturn/12 rounded-xl p-4">
+            <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Saturn and the Three Phases of Life', hi: 'शनि और जीवन के तीन चरण' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml({ en: 'Saturn\'s 29.5-year cycle creates three natural phases in every life. The first Saturn Return (age 28-30): the end of youth and the beginning of adult responsibility. Careers solidify, marriages are tested, and the native must choose between the life they inherited and the life they will build. The second Saturn Return (age 57-60): the transition from active career to legacy-building. Authority is established or lost. Health demands attention. The third Saturn Return (age 86-88): the final spiritual accounting — the soul reviews its entire journey. Each Return is a crisis that, if navigated with humility and discipline, becomes a profound leveling-up of maturity and wisdom.', hi: 'शनि का 29.5-वर्षीय चक्र हर जीवन में तीन प्राकृतिक चरण बनाता है। प्रथम शनि वापसी (28-30 वर्ष): यौवन का अन्त और वयस्क उत्तरदायित्व का आरम्भ। करियर सुदृढ़, विवाह परीक्षित। द्वितीय शनि वापसी (57-60 वर्ष): सक्रिय करियर से विरासत-निर्माण में संक्रमण। तृतीय शनि वापसी (86-88 वर्ष): अन्तिम आध्यात्मिक लेखा-जोखा। प्रत्येक वापसी एक संकट जो विनम्रता और अनुशासन से नेविगेट करने पर परिपक्वता का गहन उत्थान बनता है।' })}</p>
+          </div>
+          <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-graha-saturn/12 rounded-xl p-4">
+            <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Saturn\'s Aspect — The Most Feared Gaze', hi: 'शनि की दृष्टि — सबसे भयंकर दृष्टि' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml({ en: 'Saturn has a unique triple aspect: it aspects the 3rd, 7th, and 10th houses from its position (in addition to the 7th aspect that all planets share). This means Saturn influences four houses simultaneously — the house it sits in, plus three more. The 3rd aspect affects courage and initiative (restriction). The 7th aspect affects partnerships and marriage (delay and seriousness). The 10th aspect affects career and public life (sustained effort required). When Saturn\'s aspect falls on another planet, that planet\'s significations slow down, mature, and demand patience. Saturn\'s aspect is not destruction — it is the demand for quality over speed, substance over show.', hi: 'शनि की अद्वितीय तीहरी दृष्टि: अपनी स्थिति से 3रे, 7वें और 10वें भाव पर दृष्टि (सभी ग्रहों की साझा 7वीं दृष्टि के अतिरिक्त)। अर्थात शनि एक साथ चार भावों को प्रभावित करता है। 3री दृष्टि साहस और पहल को प्रभावित (प्रतिबन्ध)। 7वीं दृष्टि साझेदारी और विवाह (विलम्ब और गम्भीरता)। 10वीं दृष्टि करियर और सार्वजनिक जीवन (निरन्तर प्रयास आवश्यक)। शनि की दृष्टि विनाश नहीं — गति पर गुणवत्ता, दिखावे पर सार की माँग।' })}</p>
+          </div>
+        </div>
+      </LessonSection>
+
+      {/* ── 14. Saturn Return Timing ── */}
+      <LessonSection number={next()} title={ml({ en: 'Saturn Returns — Life\'s Three Great Tests', hi: 'शनि की वापसी — जीवन की तीन महापरीक्षाएँ' })}>
+        <p style={bf} className="mb-4">{ml({
+          en: 'Every ~29.5 years, Saturn returns to the exact zodiacal position it occupied at your birth. This "Saturn Return" is one of the most significant astrological events in any life — a complete cycle of karmic accounting. There are typically three Saturn Returns in a human lifespan.',
+          hi: 'प्रत्येक ~29.5 वर्ष में शनि आपके जन्म के समय की ठीक उसी राशिचक्र स्थिति में लौटता है। यह "शनि वापसी" किसी भी जीवन में सबसे महत्वपूर्ण ज्योतिषीय घटनाओं में एक — कार्मिक लेखा-जोखा का पूर्ण चक्र। मानव जीवनकाल में सामान्यतः तीन शनि वापसी।'
+        })}</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-gradient-to-br from-[#2d1b69]/25 via-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/15 rounded-xl p-4">
+            <div className="text-center mb-3">
+              <span className="text-gold-light text-2xl font-bold" style={hf}>28-30</span>
+              <p className="text-text-secondary text-xs">{ml({ en: 'years old', hi: 'वर्ष की आयु' })}</p>
+            </div>
+            <h4 className="text-gold-light font-bold text-sm mb-2 text-center" style={hf}>
+              {ml({ en: '1st Return', hi: 'प्रथम वापसी' })}
+            </h4>
+            <p className="text-text-primary text-xs leading-relaxed" style={bf}>{ml({
+              en: 'The transition from youth to true adulthood. Career direction must be chosen seriously. Relationships that are not built on reality end. The native takes full responsibility for their life for the first time. Common manifestations: career change, marriage or divorce, first major investment, moving away from parental influence.',
+              hi: 'यौवन से सच्ची वयस्कता में संक्रमण। करियर दिशा गम्भीरता से चुननी होती है। वास्तविकता पर न बने सम्बन्ध समाप्त। पहली बार पूर्ण उत्तरदायित्व। सामान्य अभिव्यक्ति: करियर परिवर्तन, विवाह या तलाक, प्रथम प्रमुख निवेश।'
+            })}</p>
+          </div>
+          <div className="bg-gradient-to-br from-[#2d1b69]/25 via-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/15 rounded-xl p-4">
+            <div className="text-center mb-3">
+              <span className="text-gold-light text-2xl font-bold" style={hf}>57-60</span>
+              <p className="text-text-secondary text-xs">{ml({ en: 'years old', hi: 'वर्ष की आयु' })}</p>
+            </div>
+            <h4 className="text-gold-light font-bold text-sm mb-2 text-center" style={hf}>
+              {ml({ en: '2nd Return', hi: 'द्वितीय वापसी' })}
+            </h4>
+            <p className="text-text-primary text-xs leading-relaxed" style={bf}>{ml({
+              en: 'The transition from active career to wisdom phase. Authority is either consolidated or lost. Health demands serious attention. Legacy questions arise: what will you leave behind? Common manifestations: retirement planning, health crises, becoming an elder/mentor, reassessment of life achievements, grandchildren.',
+              hi: 'सक्रिय करियर से ज्ञान चरण में संक्रमण। अधिकार सुदृढ़ या खोया। स्वास्थ्य गम्भीर ध्यान माँगता है। विरासत प्रश्न: क्या पीछे छोड़ेंगे? सामान्य: सेवानिवृत्ति योजना, स्वास्थ्य संकट, बुजुर्ग/मार्गदर्शक बनना, जीवन उपलब्धियों का पुनर्मूल्यांकन।'
+            })}</p>
+          </div>
+          <div className="bg-gradient-to-br from-[#2d1b69]/25 via-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/15 rounded-xl p-4">
+            <div className="text-center mb-3">
+              <span className="text-gold-light text-2xl font-bold" style={hf}>86-88</span>
+              <p className="text-text-secondary text-xs">{ml({ en: 'years old', hi: 'वर्ष की आयु' })}</p>
+            </div>
+            <h4 className="text-gold-light font-bold text-sm mb-2 text-center" style={hf}>
+              {ml({ en: '3rd Return', hi: 'तृतीय वापसी' })}
+            </h4>
+            <p className="text-text-primary text-xs leading-relaxed" style={bf}>{ml({
+              en: 'The final spiritual accounting. The soul reviews its entire journey — what was built, what was destroyed, what wisdom was gained. Mortality becomes immediate rather than theoretical. Those who reach this return have completed Saturn\'s full lesson cycle. Common manifestations: deep peace or deep regret, spiritual resolution, final transfer of wisdom to next generation.',
+              hi: 'अन्तिम आध्यात्मिक लेखा-जोखा। आत्मा अपनी पूरी यात्रा का अवलोकन — क्या बना, क्या नष्ट, क्या ज्ञान अर्जित। नश्वरता सैद्धान्तिक नहीं तत्काल। इस वापसी तक पहुँचने वालों ने शनि का पूर्ण पाठ्यक्रम पूरा किया। सामान्य: गहन शान्ति या गहन पश्चात्ताप, आध्यात्मिक समाधान।'
+            })}</p>
+          </div>
+        </div>
       </LessonSection>
 
       {/* ── Key Takeaway ── */}
@@ -371,6 +562,109 @@ export default function ShaniPage() {
         ml({ en: 'Friends: Mercury, Venus. Enemies: Sun, Moon, Mars. Neutral: Jupiter. The Sun-Saturn enmity defines the ego-humility axis in every chart.', hi: 'मित्र: बुध, शुक्र। शत्रु: सूर्य, चन्द्र, मंगल। सम: गुरु। सूर्य-शनि शत्रुता हर कुण्डली में अहंकार-विनम्रता अक्ष परिभाषित करती है।' }),
         ml({ en: 'Mahadasha: 19 years. Remedy: Blue Sapphire (test first!), Saturday fasting, Hanuman Chalisa, sesame oil/iron charity, service to the elderly and underprivileged.', hi: 'महादशा: 19 वर्ष। उपाय: नीलम (पहले परीक्षण करें!), शनिवार उपवास, हनुमान चालीसा, तिल तेल/लोहा दान, वृद्ध और वंचितों की सेवा।' }),
       ]} />
+
+      {/* ── 13. Sade Sati Phase Guide ── */}
+      <LessonSection number={next()} title={ml({ en: 'Sade Sati — Phase-by-Phase Guide', hi: 'साढ़ेसाती — चरण-दर-चरण मार्गदर्शिका' })}>
+        <p style={bf} className="mb-4">{ml({
+          en: 'Sade Sati is not a single monolithic experience. Each of its three 2.5-year phases has a distinct character. Understanding the phase you are in helps you respond appropriately — the challenges of Phase 1 differ fundamentally from Phase 2 and Phase 3.',
+          hi: 'साढ़ेसाती एक एकल अखण्ड अनुभव नहीं। इसके तीन 2.5-वर्षीय चरणों में प्रत्येक का विशिष्ट चरित्र है। किस चरण में हैं यह समझना उचित प्रतिक्रिया में सहायता करता है — चरण 1 की चुनौतियाँ चरण 2 और 3 से मूलतः भिन्न।'
+        })}</p>
+        <div className="space-y-4">
+          <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-amber-500/15 rounded-xl p-5">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-8 h-8 rounded-full bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 text-xs font-bold">1</span>
+              <h4 className="text-amber-400 font-bold text-sm" style={hf}>
+                {ml({ en: 'Phase 1: Rising (12th from Moon) — The Dissolution', hi: 'चरण 1: उदय (चन्द्र से 12वाँ) — विलय' })}
+              </h4>
+            </div>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml({
+              en: 'Saturn transits the 12th house from natal Moon. This phase brings financial pressure, increased expenses, sleep disturbances, and a sense of losing control over familiar comforts. The native may feel isolated, misunderstood, or spiritually adrift. Foreign connections intensify. Old support systems begin to dissolve. The key lesson: release what no longer serves you. Clinging to the past intensifies suffering. This phase often manifests as the "quiet before the storm" — subtle erosion rather than dramatic crisis. Health effects: insomnia, foot/eye problems, mental fatigue. Remedy focus: spiritual practice, charity, and accepting necessary endings.',
+              hi: 'शनि जन्म चन्द्र से 12वें भाव में गोचर करता है। यह चरण आर्थिक दबाव, बढ़ा व्यय, नींद में बाधा और परिचित सुखों पर नियन्त्रण खोने की भावना लाता है। एकान्त, गलतफहमी। पुराने सहारे विलीन होने लगते हैं। मुख्य सबक: जो अब सेवा नहीं करता उसे छोड़ें। स्वास्थ्य: अनिद्रा, पैर/नेत्र समस्या, मानसिक थकान। उपाय: आध्यात्मिक साधना, दान, आवश्यक अन्त स्वीकारना।'
+            })}</p>
+          </div>
+          <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-red-500/15 rounded-xl p-5">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-8 h-8 rounded-full bg-red-500/15 border border-red-500/30 flex items-center justify-center text-red-400 text-xs font-bold">2</span>
+              <h4 className="text-red-400 font-bold text-sm" style={hf}>
+                {ml({ en: 'Phase 2: Peak (Over Moon) — The Crucible', hi: 'चरण 2: शिखर (चन्द्र पर) — अग्निपरीक्षा' })}
+              </h4>
+            </div>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml({
+              en: 'Saturn transits directly over the natal Moon. This is the most intense phase — the crucible of transformation. Identity is challenged at its core. Depression, anxiety, and emotional heaviness peak. Relationships face their deepest tests. Career may hit a wall or demand complete reinvention. Physical health requires attention — bones, joints, and chronic conditions activate. The key lesson: you are not who you thought you were. Saturn strips the constructed identity to reveal the authentic self underneath. Many people emerge from Phase 2 fundamentally changed — stronger, wiser, and more self-aware than they could have imagined. Remedy focus: Hanuman Chalisa, physical exercise, professional support for mental health.',
+              hi: 'शनि सीधे जन्म चन्द्र पर गोचर करता है। सबसे तीव्र चरण — परिवर्तन की अग्निपरीक्षा। पहचान मूल से चुनौतीग्रस्त। अवसाद, चिन्ता और भावनात्मक भारीपन चरम। सम्बन्ध गहनतम परीक्षा। करियर दीवार या पूर्ण पुनर्निर्माण। शारीरिक स्वास्थ्य — अस्थि, जोड़। मुख्य सबक: आप वह नहीं हैं जो सोचते थे। शनि निर्मित पहचान छीनकर प्रामाणिक स्व प्रकट करता है। अनेक चरण 2 से मूलतः बदले निकलते हैं। उपाय: हनुमान चालीसा, शारीरिक व्यायाम, मानसिक स्वास्थ्य सहायता।'
+            })}</p>
+          </div>
+          <div className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-emerald-500/15 rounded-xl p-5">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-8 h-8 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xs font-bold">3</span>
+              <h4 className="text-emerald-400 font-bold text-sm" style={hf}>
+                {ml({ en: 'Phase 3: Setting (2nd from Moon) — The Integration', hi: 'चरण 3: अस्त (चन्द्र से 2रा) — एकीकरण' })}
+              </h4>
+            </div>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml({
+              en: 'Saturn transits the 2nd house from natal Moon. Recovery begins but is not automatic — it must be earned through discipline and correct action. Financial matters stabilize but require careful management. Speech becomes more powerful — words carry weight and responsibility. Family dynamics settle into new patterns. The lessons learned in Phases 1 and 2 must be integrated into daily life. This is where Saturn rewards those who learned: new wealth, stronger relationships, deeper self-knowledge. For those who resisted the lessons, Phase 3 can bring continued pressure on finances and family. Remedy focus: honest speech, family service, building savings, and establishing new routines based on the wisdom gained.',
+              hi: 'शनि जन्म चन्द्र से 2रे भाव में गोचर। रिकवरी आरम्भ किन्तु स्वचालित नहीं — अनुशासन से अर्जित। आर्थिक मामले स्थिर किन्तु सावधान प्रबन्धन। वाणी शक्तिशाली — शब्दों में भार और उत्तरदायित्व। परिवार नए प्रतिमानों में। चरण 1-2 के सबक दैनिक जीवन में एकीकृत। शनि सीखने वालों को पुरस्कृत: नया धन, मजबूत सम्बन्ध, गहन आत्मज्ञान। उपाय: ईमानदार वाणी, परिवार सेवा, बचत निर्माण, अर्जित ज्ञान पर नई दिनचर्या।'
+            })}</p>
+          </div>
+        </div>
+      </LessonSection>
+
+      {/* ── Quick Reference Table ── */}
+      <div className="mt-12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-graha-saturn/15 rounded-2xl p-6">
+        <h3 className="text-gold-light font-bold text-sm mb-4" style={hf}>
+          {ml({ en: 'Saturn Quick Reference', hi: 'शनि त्वरित सन्दर्भ' })}
+        </h3>
+        <div className="grid grid-cols-2 gap-3 text-sm">
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Orbital Period', hi: 'कक्षीय अवधि' })}</span>
+            <span className="text-text-primary" style={bf}>29.46 {ml({ en: 'years', hi: 'वर्ष' })}</span>
+          </div>
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Dasha Duration', hi: 'दशा अवधि' })}</span>
+            <span className="text-text-primary" style={bf}>19 {ml({ en: 'years', hi: 'वर्ष' })}</span>
+          </div>
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Retrograde Duration', hi: 'वक्री अवधि' })}</span>
+            <span className="text-text-primary" style={bf}>~4.5 {ml({ en: 'months/year', hi: 'माह/वर्ष' })}</span>
+          </div>
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Sign Duration', hi: 'राशि अवधि' })}</span>
+            <span className="text-text-primary" style={bf}>~2.5 {ml({ en: 'years/sign', hi: 'वर्ष/राशि' })}</span>
+          </div>
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Exaltation', hi: 'उच्च' })}</span>
+            <span className="text-text-primary" style={bf}>{ml({ en: 'Libra 20°', hi: 'तुला 20°' })}</span>
+          </div>
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Debilitation', hi: 'नीच' })}</span>
+            <span className="text-text-primary" style={bf}>{ml({ en: 'Aries 20°', hi: 'मेष 20°' })}</span>
+          </div>
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Gemstone', hi: 'रत्न' })}</span>
+            <span className="text-text-primary" style={bf}>{ml({ en: 'Blue Sapphire', hi: 'नीलम' })}</span>
+          </div>
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Day', hi: 'दिन' })}</span>
+            <span className="text-text-primary" style={bf}>{ml({ en: 'Saturday', hi: 'शनिवार' })}</span>
+          </div>
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Best Houses', hi: 'सर्वोत्तम भाव' })}</span>
+            <span className="text-text-primary" style={bf}>3, 6, 7, 10, 11</span>
+          </div>
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Directional Strength', hi: 'दिग्बल' })}</span>
+            <span className="text-text-primary" style={bf}>{ml({ en: '7th / 10th House', hi: '7वाँ / 10वाँ भाव' })}</span>
+          </div>
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Nakshatra Lordship', hi: 'नक्षत्र स्वामित्व' })}</span>
+            <span className="text-text-primary" style={bf}>{ml({ en: 'Pushya, Anuradha, U.Bhadra', hi: 'पुष्य, अनुराधा, उ.भाद्र' })}</span>
+          </div>
+          <div className="bg-bg-primary/30 rounded-lg p-3">
+            <span className="text-gold-dark text-xs block mb-1">{ml({ en: 'Sade Sati Duration', hi: 'साढ़ेसाती अवधि' })}</span>
+            <span className="text-text-primary" style={bf}>7.5 {ml({ en: 'years', hi: 'वर्ष' })}</span>
+          </div>
+        </div>
+      </div>
 
       {/* ── Cross-links ── */}
       <div className="mt-12 border-t border-gold-primary/10 pt-8">

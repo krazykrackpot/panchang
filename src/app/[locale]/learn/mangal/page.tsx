@@ -37,6 +37,25 @@ const DIGNITIES = {
   neutral: { en: 'Venus, Saturn', hi: 'शुक्र, शनि' },
 };
 
+// ─── Astronomical Profile ──────────────────────────────────────────────
+const ASTRONOMICAL = {
+  orbitalPeriod: { en: 'Sidereal orbital period: ~687 days (approximately 1.88 years). Mars takes nearly two years to complete one orbit around the Sun, spending roughly 45-60 days in each sign depending on whether it is direct or retrograde. This means Mars transits are relatively slow and impactful — unlike the Moon which changes signs every 2.25 days, a Mars transit through a sign is felt for weeks. Mars enters and exits signs at predictable intervals, making its transits important for timing property transactions, surgeries, and competitive endeavors.', hi: 'नाक्षत्रिक कक्षीय अवधि: ~687 दिन (लगभग 1.88 वर्ष)। मंगल को सूर्य की एक परिक्रमा पूर्ण करने में लगभग दो वर्ष लगते हैं, प्रत्येक राशि में लगभग 45-60 दिन मार्गी या वक्री के अनुसार। मंगल गोचर अपेक्षाकृत धीमे और प्रभावशाली — सम्पत्ति लेन-देन, शल्य और प्रतिस्पर्धी प्रयासों के समय निर्धारण के लिए महत्त्वपूर्ण।' },
+  dailyMotion: { en: 'Average daily motion: ~0°31\'27" (about half a degree per day when direct). Mars\'s daily motion varies more dramatically than any other visible planet — from about 0°40\' at its fastest (when direct and near perihelion) to apparent standstill during retrograde stations, and up to -0°24\' when retrograde. This variability reflects Mars\'s astrological nature: sometimes charging forward with unstoppable momentum, sometimes stalling in frustration, sometimes retreating to regroup. The speed of Mars at birth in your chart affects how quickly its significations manifest.', hi: 'औसत दैनिक गति: ~0°31\'27" (मार्गी में प्रतिदिन लगभग आधा अंश)। मंगल की दैनिक गति किसी भी दृश्य ग्रह से अधिक नाटकीय रूप से बदलती है — सबसे तीव्र ~0°40\' से वक्री में स्थिर, और वक्री में -0°24\' तक। यह परिवर्तनशीलता मंगल के ज्योतिषीय स्वभाव को दर्शाती है: कभी अजेय गति से आगे, कभी निराशा में रुकना, कभी पीछे हटना।' },
+  synodicPeriod: { en: 'Synodic period: ~779.9 days (approximately 2 years and 50 days). This is the time between successive Mars-Sun conjunctions as seen from Earth. Mars is the only planet whose synodic period is significantly longer than its orbital period. Every ~2 years, Mars reaches opposition (directly opposite the Sun), appearing brightest and closest to Earth — this is when Mars is at its most powerful astrologically and often correlates with periods of heightened aggression, conflict, and energy in mundane astrology.', hi: 'आवर्तन काल: ~779.9 दिन (लगभग 2 वर्ष 50 दिन)। पृथ्वी से देखे गए क्रमिक मंगल-सूर्य युतियों का अन्तराल। प्रत्येक ~2 वर्ष में मंगल प्रतिपक्ष (सूर्य के ठीक विपरीत) पहुँचता है, सबसे चमकीला और निकटतम — यह ज्योतिषीय रूप से सबसे शक्तिशाली और सांसारिक ज्योतिष में आक्रामकता, संघर्ष और ऊर्जा की अवधि।' },
+  retrograde: { en: 'Retrograde: Every ~26 months, lasting about 58-81 days. Mars retrogrades less frequently than any other true planet, making each Mars retrograde period particularly significant. During retrograde, Mars\'s energy turns inward — anger becomes frustration, initiative becomes procrastination, and external conflicts become internal wrestling. Surgeries should be avoided during Mars retrograde if possible. Military campaigns and property transactions initiated during Mars retrograde tend to face unexpected reversals. However, retrograde Mars is excellent for revisiting unfinished physical projects, resolving old conflicts, and internal martial arts practice.', hi: 'वक्री गति: प्रत्येक ~26 माह, लगभग 58-81 दिन। मंगल किसी भी वास्तविक ग्रह से कम बार वक्री होता है, प्रत्येक अवधि विशेष रूप से महत्त्वपूर्ण। वक्री में मंगल ऊर्जा अन्तर्मुखी — क्रोध निराशा, पहल विलम्ब, बाह्य संघर्ष आन्तरिक कुश्ती बन जाते हैं। सम्भव हो तो वक्री में शल्य से बचें। सम्पत्ति लेन-देन में अप्रत्याशित उलटफेर।' },
+  combustion: { en: 'Combustion: Mars becomes combust when within 17° of the Sun. A combust Mars loses its independent courage and initiative — the native\'s aggression becomes subservient to ego (Sun) rather than directed by practical necessity. Combust Mars can indicate: father who suppresses the native\'s independence, inability to stand up for oneself despite having the energy to do so, and anger that simmers internally rather than being expressed healthily. In mundane astrology, combust Mars can correlate with military forces controlled by dictatorial leadership rather than acting on strategic necessity.', hi: 'अस्त: मंगल सूर्य से 17° के भीतर अस्त होता है। अस्त मंगल स्वतन्त्र साहस और पहल खो देता है — जातक की आक्रामकता व्यावहारिक आवश्यकता के बजाय अहंकार (सूर्य) के अधीन। अस्त मंगल: पिता जो स्वतन्त्रता दबाए, ऊर्जा होने पर भी अपने लिए खड़े न हो पाना, क्रोध जो आन्तरिक रूप से सुलगता रहे।' },
+  astroVsAstrol: { en: 'Astronomically, Mars is the fourth planet from the Sun with a diameter of 6,779 km — roughly half the Earth\'s size. Its distinctive red color comes from iron oxide (rust) on its surface, which perfectly aligns with the Jyotish association of Mars with iron (Loha), blood (Rakta), and the color red. Mars has two small moons — Phobos (Fear) and Deimos (Terror) — named after the Greek god of war\'s attendants, echoing the Vedic understanding of Mars as Bhayankara (the terrifying one). The planet\'s thin atmosphere and barren landscape mirror Mars\'s astrological nature: stripped of comfort, focused on survival, raw and unforgiving.', hi: 'खगोलीय रूप से मंगल सूर्य से चौथा ग्रह, व्यास 6,779 किमी — पृथ्वी का लगभग आधा। विशिष्ट लाल रंग सतह पर आयरन ऑक्साइड (जंग) से — ज्योतिषीय सम्बन्ध लोहा, रक्त और लाल रंग से पूर्णतः मेल। दो छोटे चन्द्रमा फोबोस (भय) और डीमोस (आतंक) — वैदिक समझ "भयंकर" की प्रतिध्वनि। विरल वातावरण और बंजर भूदृश्य मंगल के ज्योतिषीय स्वभाव का दर्पण।' },
+};
+
+// ─── Practical Application ────────────────────────────────────────────
+const PRACTICAL = {
+  assessStrength: { en: 'To assess Mars\'s strength in your chart, check these factors: (1) Sign placement — exalted in Capricorn, own signs Aries/Scorpio, debilitated in Cancer. (2) House placement — Mars is strongest in the 10th house (Digbala) and in upachaya houses (3, 6, 10, 11) where it improves over time. (3) Aspects — Jupiter\'s aspect tempers aggression with wisdom; Saturn\'s creates frustrated energy. (4) Retrograde status — retrograde Mars at birth can indicate suppressed anger or internalized aggression. (5) Nakshatra — Mrigashira, Chitra, and Dhanishtha are Mars-ruled nakshatras where Mars feels most natural. (6) Manglik status — Mars in 1/2/4/7/8/12 from lagna and Moon creates Manglik Dosha affecting marriage.', hi: 'कुण्डली में मंगल बल का आकलन: (1) राशि — मकर में उच्च, मेष/वृश्चिक स्वराशि, कर्क में नीच। (2) भाव — 10वें में दिग्बल, उपचय (3, 6, 10, 11) में समय के साथ सुधरता। (3) दृष्टि — गुरु की दृष्टि आक्रामकता को ज्ञान से संयमित; शनि की निराशाजनक ऊर्जा। (4) वक्री — जन्म पर वक्री दबा हुआ क्रोध। (5) नक्षत्र — मृगशिरा, चित्रा, धनिष्ठा मंगल-शासित। (6) मांगलिक — लग्न और चन्द्र से 1/2/4/7/8/12 में।' },
+  strongIndicators: { en: 'Signs of a strong Mars in your life: You take initiative naturally — when problems arise, you act rather than wait. Physical energy is abundant and you enjoy exercise or sports. Courage comes easily; you don\'t back down from necessary confrontations. Property matters resolve favorably. Siblings are supportive or successful. Competitive situations energize rather than intimidate you. Recovery from illness or surgery is quick. You have natural mechanical or engineering aptitude. Anger is expressed cleanly and dissipates quickly rather than festering.', hi: 'बलवान मंगल के संकेत: स्वाभाविक रूप से पहल — समस्या पर प्रतीक्षा नहीं, कर्म। प्रचुर शारीरिक ऊर्जा और व्यायाम/खेल में आनन्द। साहस सहज; आवश्यक टकराव से पीछे नहीं हटना। सम्पत्ति मामले अनुकूल। भाई-बहन सहायक। प्रतिस्पर्धा उत्साहित करती है। बीमारी/शल्य से शीघ्र स्वास्थ्य लाभ। यान्त्रिक योग्यता। क्रोध स्वच्छ रूप से प्रकट और शीघ्र शान्त।' },
+  weakIndicators: { en: 'Signs of a weak Mars: Chronic passivity — unable to assert yourself even when boundaries are violated. Physical lethargy, low stamina, and frequent illnesses. Property disputes that drag on without resolution. Sibling relationships are strained or absent. Accident-prone but in a victim pattern (things happen TO you rather than you causing them). Suppressed anger that manifests as passive-aggression, resentment, or psychosomatic illness. Blood pressure issues, anemia, or inflammatory conditions. Inability to start or complete physical projects. Fear of conflict even when conflict is necessary for justice.', hi: 'दुर्बल मंगल के संकेत: दीर्घकालिक निष्क्रियता — सीमा उल्लंघन पर भी स्वयं को स्थापित न कर पाना। शारीरिक सुस्ती, कम सहनशक्ति। सम्पत्ति विवाद जो लटके रहें। भाई-बहन सम्बन्ध तनावपूर्ण। दुर्घटना-प्रवण किन्तु पीड़ित पैटर्न। दबा हुआ क्रोध — निष्क्रिय-आक्रामकता या मनोदैहिक रोग। रक्तचाप, रक्ताल्पता, सूजन। संघर्ष का भय।' },
+  whenToRemediate: { en: 'Seek remedies when: Mars is debilitated (in Cancer), combust, retrograde and afflicted, in trikasthana (6/8/12) causing health/legal issues, or when Manglik Dosha is affecting marriage prospects. Also during Mars Mahadasha if Mars is poorly placed. Do NOT seek Mars remedies when: Mars is exalted, in own sign, Digbali in the 10th, or strong in upachaya houses — strengthening an already-strong Mars can increase aggression, accident risk, rash behavior, and conflicts. Mars energy should be CHANNELED, not amplified, when it is already strong. Physical exercise, competitive sports, and martial arts are the best outlets for excess Mars energy.', hi: 'उपाय कब: मंगल नीच (कर्क), अस्त, वक्री और पीड़ित, त्रिकस्थान (6/8/12) में स्वास्थ्य/कानूनी समस्या, मांगलिक दोष विवाह प्रभावित कर रहा हो। पीड़ित मंगल महादशा में। उपाय कब नहीं: उच्च, स्वराशि, 10वें में दिग्बली — बलवान मंगल को और बल देना आक्रामकता, दुर्घटना जोखिम बढ़ा सकता है। बलवान मंगल को बढ़ाना नहीं, निर्देशित करना चाहिए।' },
+  misconceptions: { en: 'Common misconceptions about Mars: (1) "Manglik Dosha means you can\'t marry" — Wrong. Over 40% of charts have some form of Manglik placement. It means the marriage needs careful partner matching, not avoidance. (2) "Mars is always bad" — Mars in 3rd, 6th, 10th, and 11th houses gives excellent results. Mars is the planet of courage, land ownership, and protective strength. (3) "Red Coral will control anger" — Red Coral amplifies Mars energy. If Mars is already causing anger, the Coral can make it worse. (4) "Women with strong Mars are masculine" — Strong Mars gives women courage, independence, and professional success. It does not affect femininity. (5) "Mars retrograde is always terrible" — It is excellent for resolving old property disputes, completing unfinished physical projects, and internal martial arts practice.', hi: 'मंगल भ्रान्तियाँ: (1) "मांगलिक = विवाह नहीं" — 40% से अधिक कुण्डलियों में मांगलिक। सावधान मिलान आवश्यक, विवाह से बचाव नहीं। (2) "मंगल सदा अशुभ" — 3, 6, 10, 11 भावों में उत्कृष्ट। (3) "मूँगा क्रोध नियन्त्रित करेगा" — पहले से क्रोध हो तो मूँगा बढ़ा सकता है। (4) "बलवान मंगल वाली महिला पुरुषत्वपूर्ण" — बलवान मंगल साहस, स्वतन्त्रता और व्यावसायिक सफलता देता है। (5) "वक्री मंगल सदा भयंकर" — पुराने सम्पत्ति विवाद और अधूरी परियोजनाओं के लिए उत्कृष्ट।' },
+};
+
 // ─── Significations ────────────────────────────────────────────────────
 const SIGNIFICATIONS = {
   people: { en: 'Younger siblings, warriors, soldiers, surgeons, police, firefighters, athletes', hi: 'छोटे भाई-बहन, योद्धा, सैनिक, शल्य चिकित्सक, पुलिस, अग्निशमन, खिलाड़ी' },
@@ -135,6 +154,9 @@ const REMEDIES = {
   fasting: { en: 'Tuesday fasting — consume only one meal of wheat and jaggery, or eat only red-colored foods. Some traditions recommend Hanuman Vrat (fasting with recitation of Hanuman Chalisa on Tuesdays).', hi: 'मंगलवार का उपवास — केवल गेहूँ और गुड़ का एक भोजन, या केवल लाल रंग के खाद्य पदार्थ। कुछ परम्पराओं में हनुमान व्रत (मंगलवार को हनुमान चालीसा पाठ के साथ उपवास)।' },
   worship: { en: 'Worship Lord Hanuman on Tuesdays — recite Hanuman Chalisa and offer sindoor (vermilion), red flowers, and jasmine oil. Visit Hanuman temples. For Manglik Dosha specifically: Mangal Puja at a Navagraha temple, and keeping a Hanuman idol in the home facing south.', hi: 'मंगलवार को हनुमान जी की पूजा — हनुमान चालीसा पाठ, सिन्दूर, लाल पुष्प और चमेली तेल अर्पित करें। हनुमान मन्दिर जाएँ। मांगलिक दोष हेतु: नवग्रह मन्दिर में मंगल पूजा, दक्षिण मुखी हनुमान प्रतिमा घर में रखें।' },
   yantra: { en: 'Mangal Yantra — a 3×3 magic square with a sum of 21 in each row/column. Install on a copper plate, worship on Tuesdays. Can also install a triangular yantra representing Mars\'s fiery energy.', hi: 'मंगल यन्त्र — 3×3 जादुई वर्ग जिसमें प्रत्येक पंक्ति/स्तम्भ का योग 21 है। ताम्र पत्र पर स्थापित करें, मंगलवार को पूजन करें।' },
+  dietary: { en: 'Dietary recommendations for strengthening Mars: Consume red lentils (masoor dal), jaggery, honey, pomegranate, red apples, beetroot, and iron-rich foods like spinach and dates. Spiced food with turmeric, black pepper, and ginger activates Mars energy. Avoid cold, stale, and leftover food during Mars remedial periods — Mars demands freshness and heat. Eat protein-rich meals to support physical vitality. Red-colored fruits and vegetables naturally resonate with Mars vibration. For weakened Mars, cook with iron vessels (kadhai/tawa) — the iron transfers to food and strengthens blood.', hi: 'मंगल बल बढ़ाने के आहार: मसूर दाल, गुड़, शहद, अनार, लाल सेब, चुकन्दर, और लौह-समृद्ध खाद्य जैसे पालक और खजूर। हल्दी, काली मिर्च और अदरक से मसालेदार भोजन मंगल ऊर्जा सक्रिय करता है। बासी और ठंडा भोजन बचें। प्रोटीन-समृद्ध भोजन। लाल रंग के फल-सब्जी मंगल से अनुकूल। दुर्बल मंगल हेतु लोहे के बर्तन (कढ़ाई/तवा) में पकाएँ।' },
+  colorTherapy: { en: 'Color therapy for Mars: Wear red, scarlet, crimson, orange-red, or copper colors on Tuesdays and during competitive situations (interviews, court hearings, sports events). Avoid green (Mercury\'s color, Mars\'s enemy) on Tuesdays. A red thread (Mauli) tied on the right wrist is a simple daily Mars remedy. Sindoor (vermilion) applied at the parting of hair (for married women) or on the forehead is a traditional Mars activation. Your exercise space should have warm, energizing colors — red or orange accents. Red coral beads as a necklace or bracelet carry Mars energy even without a formal gemstone prescription.', hi: 'मंगल रंग चिकित्सा: मंगलवार और प्रतिस्पर्धी स्थितियों (साक्षात्कार, न्यायालय, खेल) में लाल, सिन्दूरी, ताम्र रंग पहनें। मंगलवार को हरा (बुध का रंग, मंगल का शत्रु) न पहनें। दाहिनी कलाई पर लाल धागा (मौली) सरल दैनिक उपाय। सिन्दूर माँग या माथे पर पारम्परिक मंगल सक्रियण। व्यायाम स्थल में गरम, ऊर्जावान रंग। मूँगा मालाएँ मंगल ऊर्जा वहन करती हैं।' },
+  behavioral: { en: 'Behavioral remedies (most powerful): (1) Exercise vigorously and regularly — Mars strengthens through physical exertion. Running, weightlifting, swimming, or any intense sport channels Mars energy constructively. (2) Practice a martial art — karate, kendo, boxing, or even fencing. The discipline of controlled combat is the purest Mars expression. (3) Complete physical projects — finish building, repairing, or organizing something tangible. Mars hates incompletion. (4) Stand up for someone weaker — Mars is the protector. Defending the vulnerable strengthens Mars directly. (5) Donate blood regularly if medically appropriate — blood is Mars\'s element. (6) Learn basic first aid or emergency response — Mars governs surgery and crisis management. (7) Cook with fire (grill, tandoor, open flame) rather than microwave — Mars resonates with direct fire. (8) Resolve conflicts directly rather than avoiding them — Mars weakens through suppression and strengthens through honest confrontation.', hi: 'व्यवहारिक उपाय: (1) नियमित कठोर व्यायाम — दौड़, भारोत्तोलन, तैराकी। (2) युद्ध कला अभ्यास — कराटे, मुक्केबाजी। नियन्त्रित युद्ध का अनुशासन शुद्धतम मंगल अभिव्यक्ति। (3) शारीरिक परियोजनाएँ पूर्ण करें — मंगल अधूरापन से घृणा करता है। (4) कमज़ोर की रक्षा — मंगल रक्षक है। (5) नियमित रक्तदान। (6) प्राथमिक चिकित्सा सीखें। (7) खुली आग पर पकाएँ। (8) संघर्षों को सीधे सुलझाएँ — मंगल दमन से दुर्बल और ईमानदार टकराव से बलवान।' },
 };
 
 // ─── Mythology ─────────────────────────────────────────────────────────
@@ -151,6 +173,14 @@ const MYTHOLOGY = {
     en: 'The Mangal Kavacham from Skanda Purana is the primary protective hymn. The Navagraha Stotra verse for Mars: "Dharanee Garbha Sambhootam Vidyut Kanti Samaprabham, Kumaram Shakti Hastam Cha Mangalam Pranamaamyaham" — "I bow to Mars, born from Earth\'s womb, brilliant as lightning, the youthful one bearing the shakti (lance) in hand." Hanuman Chalisa is the most popular remedy text, as Hanuman is Mars\'s presiding deity.',
     hi: 'स्कन्द पुराण से मंगल कवचम् प्राथमिक सुरक्षात्मक स्तुति है। नवग्रह स्तोत्र का मंगल श्लोक: "धरणीगर्भसम्भूतं विद्युत्कान्तिसमप्रभम्, कुमारं शक्तिहस्तं च मंगलं प्रणमाम्यहम्" — "पृथ्वी के गर्भ से उत्पन्न, विद्युत के समान कान्तिमान, हाथ में शक्ति धारण करने वाले कुमार मंगल को प्रणाम।" हनुमान चालीसा सबसे लोकप्रिय उपाय ग्रन्थ।',
   },
+  festivals: {
+    en: 'Hanuman Jayanti (Chaitra Purnima) is the most significant festival connected to Mars through its presiding deity Hanuman. Devotees fast, recite Hanuman Chalisa 108 times, and apply sindoor at Hanuman temples. Mangala Gauri Vrat is observed by married women on Tuesdays during Shravana month for marital harmony — directly addressing Manglik Dosha through devotional practice. Angarki Chaturthi (when Chaturthi falls on a Tuesday) is considered extremely auspicious for Mars-related remedies and Ganesha worship. Skanda Shashthi celebrates Kartikeya (Mars\'s deity form) with particular fervor in South India, involving six days of fasting and culminating in the symbolic slaying of the demon Surapadman — representing the conquest of inner demons through martial discipline.',
+    hi: 'हनुमान जयन्ती (चैत्र पूर्णिमा) अधिष्ठाता देवता हनुमान से मंगल का सबसे महत्त्वपूर्ण त्योहार। भक्त उपवास, हनुमान चालीसा 108 बार पाठ, और सिन्दूर अर्पण। मंगला गौरी व्रत विवाहित महिलाएँ श्रावण मास के मंगलवार को वैवाहिक सामंजस्य हेतु — मांगलिक दोष निवारण। अंगारकी चतुर्थी (मंगलवार को चतुर्थी) मंगल उपाय और गणेश पूजा के लिए अत्यन्त शुभ। स्कन्द षष्ठी कार्तिकेय (मंगल का देवता रूप) का उत्सव।',
+  },
+  otherTraditions: {
+    en: 'In Buddhist tradition, Mars is associated with the wrathful deities (Dharmapalas) who protect the Dharma through fierce compassion — destroying obstacles to enlightenment just as Mars destroys enemies. The concept of the "dharma protector" who uses force for righteous ends is a direct parallel to Mangal as Senapati (commander). In Jain tradition, Mars energy is channeled through the concept of Purushartha (self-effort) — the Jain emphasis on Kayotsarga (body mortification) and intense physical austerity mirrors Mars\'s relationship with physical discipline. The Greco-Roman Mars/Ares, Norse Tyr, and Celtic Neit all embody the same archetypal warrior energy, demonstrating the universal recognition of Mars as the planet of courage, conflict, and physical transformation.',
+    hi: 'बौद्ध परम्परा में मंगल क्रोधी देवताओं (धर्मपालों) से जुड़ा — उग्र करुणा से धर्म की रक्षा, बाधाओं का विनाश। "धर्म रक्षक" की अवधारणा सीधे मंगल सेनापति से समानान्तर। जैन परम्परा में पुरुषार्थ (स्व-प्रयत्न) और कायोत्सर्ग (शारीरिक तपस्या) मंगल के शारीरिक अनुशासन सम्बन्ध का दर्पण। ग्रीको-रोमन मार्स/एरीस, नोर्स टायर — सभी समान आर्कीटाइपल योद्धा ऊर्जा।',
+  },
 };
 
 // ─── Relationships ─────────────────────────────────────────────────────
@@ -163,6 +193,40 @@ const RELATIONSHIPS = [
   { planet: { en: 'Saturn', hi: 'शनि' }, relation: { en: 'Neutral', hi: 'सम' }, note: { en: 'Fire meets ice — the most frustrating planetary combination. Mars wants to act NOW; Saturn demands patience and delay. Their conjunction creates enormous pressure that either forges diamonds or shatters glass. Accident-prone but builds incredible resilience. When channeled properly, produces engineers, builders, and warriors who endure impossible hardships.', hi: 'अग्नि और हिम का मिलन — सबसे निराशाजनक ग्रह संयोजन। मंगल अभी कर्म चाहता है; शनि धैर्य और विलम्ब माँगता है। प्रचण्ड दबाव जो हीरे गढ़ता या काँच तोड़ता है। दुर्घटना-प्रवण किन्तु अविश्वसनीय सहनशीलता।' } },
   { planet: { en: 'Rahu', hi: 'राहु' }, relation: { en: 'Neutral', hi: 'सम' }, note: { en: 'Angarak Yoga — amplified aggression, unconventional warfare, and explosive energy. Mars-Rahu conjunction can produce fearless risk-takers, demolition experts, and boundary-breakers. In negative expression: accidents, explosions, criminal violence, and reckless behavior. The native may use technology or chemicals as weapons.', hi: 'अंगारक योग — प्रवर्धित आक्रामकता, अपरम्परागत युद्ध और विस्फोटक ऊर्जा। मंगल-राहु युति निर्भय जोखिम लेने वाले बनाती है। नकारात्मक रूप में: दुर्घटना, विस्फोट, आपराधिक हिंसा।' } },
   { planet: { en: 'Ketu', hi: 'केतु' }, relation: { en: 'Neutral', hi: 'सम' }, note: { en: 'Mars-Ketu conjunction creates Pishach Yoga in some traditions — fierce but directionless energy. The native acts from subconscious impulse rather than conscious decision. Excellent for martial arts with spiritual foundations, surgery performed with intuitive precision, and occult warfare. Can indicate accidents through electrical or fire-related causes.', hi: 'मंगल-केतु युति कुछ परम्पराओं में पिशाच योग — उग्र किन्तु दिशाहीन ऊर्जा। अवचेतन आवेग से कर्म। आध्यात्मिक नींव वाली युद्ध कला और अन्तर्ज्ञानी शल्य के लिए उत्कृष्ट। विद्युत या अग्नि से दुर्घटना संकेतित।' } },
+];
+
+// ─── Key Yogas involving Mars ─────────────────────────────────────────
+const KEY_YOGAS = [
+  {
+    name: { en: 'Ruchaka Yoga (Pancha Mahapurusha)', hi: 'रुचक योग (पंच महापुरुष)' },
+    condition: { en: 'Mars in its own sign (Aries/Scorpio) or exalted (Capricorn) AND in a Kendra (1st, 4th, 7th, 10th) from Lagna', hi: 'मंगल स्वराशि (मेष/वृश्चिक) या उच्च (मकर) में और लग्न से केन्द्र (1, 4, 7, 10) में' },
+    effect: { en: 'One of the five Mahapurusha Yogas — produces a "brilliant person." The native has exceptional physical strength, courage, military or administrative ability, and commanding presence. They rise to positions of authority through personal valor. Longevity is strong. The native may have a reddish complexion and athletic build. This yoga produces military commanders, sports champions, surgical pioneers, and fearless entrepreneurs who build empires through personal courage and strategic brilliance.',
+      hi: 'पंच महापुरुष योगों में — "प्रतिभाशाली व्यक्ति" उत्पन्न करता है। असाधारण शारीरिक बल, साहस, सैन्य/प्रशासनिक योग्यता और आधिकारिक उपस्थिति। व्यक्तिगत वीरता से अधिकार पद। दीर्घायु। सैन्य कमांडर, खेल चैम्पियन, शल्य अग्रणी और निर्भय उद्यमी जो साहस और रणनीति से साम्राज्य बनाते हैं।' },
+  },
+  {
+    name: { en: 'Manglik Dosha', hi: 'मांगलिक दोष' },
+    condition: { en: 'Mars in houses 1, 2, 4, 7, 8, or 12 from Lagna, Moon, or Venus', hi: 'लग्न, चन्द्र, या शुक्र से भाव 1, 2, 4, 7, 8, या 12 में मंगल' },
+    effect: { en: 'The most discussed dosha in marriage compatibility. Mars in these houses aspects the 7th house of marriage or occupies houses that directly affect domestic harmony. Effects vary from mild to severe based on: which house Mars occupies, whether it is in own/exalted sign (cancellation), whether it aspects benefics, and the overall chart balance. Cancellation conditions include: Mars in Cancer/Capricorn/Aries/Scorpio, Mars aspected by Jupiter, or both partners being Manglik. Over 40% of charts have some Manglik placement — it is NOT a sentence of doom but a factor requiring conscious partnership work.',
+      hi: 'विवाह अनुकूलता में सबसे चर्चित दोष। इन भावों में मंगल सप्तम पर दृष्टि या घरेलू सामंजस्य प्रभावित करने वाले भाव। प्रभाव मंगल की राशि, भाव, शुभ दृष्टि और सम्पूर्ण कुण्डली सन्तुलन पर निर्भर। भंग: मंगल कर्क/मकर/मेष/वृश्चिक में, गुरु दृष्टि, या दोनों साथी मांगलिक। 40% से अधिक कुण्डलियों में — विनाश का वाक्य नहीं, सचेत साझेदारी कार्य का संकेत।' },
+  },
+  {
+    name: { en: 'Angarak Yoga (Mars-Rahu)', hi: 'अंगारक योग (मंगल-राहु)' },
+    condition: { en: 'Mars conjunct Rahu in the same sign', hi: 'मंगल और राहु एक राशि में युति' },
+    effect: { en: 'Amplified, unconventional aggression — Mars\'s fire combined with Rahu\'s insatiable desire creates explosive energy. The native may take extraordinary risks, use technology or chemicals as weapons, or pursue forbidden paths with relentless determination. In positive expression: fearless innovators who break boundaries that others dare not approach, demolition experts (literal and metaphorical), and pioneers in dangerous fields. In negative expression: accidents, explosions, criminal violence, and self-destructive recklessness. Requires strong Jupiter aspect for positive channeling.',
+      hi: 'प्रवर्धित, अपरम्परागत आक्रामकता — मंगल की अग्नि और राहु की अतृप्त इच्छा का विस्फोटक संयोजन। असाधारण जोखिम, प्रौद्योगिकी या रसायन हथियार के रूप। सकारात्मक: निर्भय नवप्रवर्तक जो सीमाएँ तोड़ते हैं। नकारात्मक: दुर्घटना, विस्फोट, आपराधिक हिंसा। सकारात्मक संचालन हेतु गुरु दृष्टि आवश्यक।' },
+  },
+  {
+    name: { en: 'Guru-Mangal Yoga', hi: 'गुरु-मंगल योग' },
+    condition: { en: 'Mars and Jupiter conjunct in the same sign or in mutual aspect (especially 1-7 axis)', hi: 'मंगल और गुरु एक राशि में युति या परस्पर दृष्टि (विशेषतः 1-7 अक्ष)' },
+    effect: { en: 'The dharmic warrior — courage guided by wisdom and righteousness. This is a powerful Dhana Yoga (wealth combination) and Raja Yoga (power combination). The native fights only for just causes and wins through moral authority combined with physical courage. Excellent for military officers with ethical codes, judges who enforce justice, and religious leaders who take action. Property and land come through righteous means. Children inherit both courage and wisdom.',
+      hi: 'धार्मिक योद्धा — ज्ञान और धर्म से निर्देशित साहस। शक्तिशाली धन योग और राज योग। केवल न्यायपूर्ण कारणों के लिए संघर्ष और नैतिक अधिकार से विजय। नैतिक सैन्य अधिकारियों, न्यायाधीशों और कर्मठ धार्मिक नेताओं के लिए उत्कृष्ट। धार्मिक मार्ग से सम्पत्ति। संतान में साहस और ज्ञान दोनों।' },
+  },
+  {
+    name: { en: 'Kuja Dosha Bhanga (Cancellation)', hi: 'कुज दोष भंग (निवारण)' },
+    condition: { en: 'Various: Mars in own/exalted sign, Jupiter aspecting Mars, Mars in 2nd in Gemini/Virgo, both partners Manglik, Mars in 1st in Aries/Leo/Aquarius', hi: 'विभिन्न: मंगल स्वराशि/उच्च, गुरु दृष्टि, द्वितीय में मिथुन/कन्या, दोनों मांगलिक, प्रथम में मेष/सिंह/कुम्भ' },
+    effect: { en: 'Critical to understand: Manglik Dosha is NOT absolute. Over a dozen classical conditions cancel or reduce the dosha. When Mars is in its own sign or exalted, its energy is disciplined rather than destructive — the marriage may still be intense but is not harmful. Jupiter\'s aspect infuses wisdom and dharma into Mars\'s energy. When both partners are Manglik, their energies match and the dosha neutralizes mutually. A thorough Jyotishi will check ALL cancellation conditions before declaring a chart strongly Manglik.',
+      hi: 'समझना महत्त्वपूर्ण: मांगलिक दोष निरपेक्ष नहीं। दर्जनों शास्त्रीय स्थितियाँ दोष का भंग या न्यूनीकरण करती हैं। स्वराशि/उच्च में मंगल अनुशासित है, विनाशक नहीं। गुरु दृष्टि ज्ञान और धर्म भरती है। दोनों मांगलिक होने पर ऊर्जा मेल और पारस्परिक निष्प्रभाव। योग्य ज्योतिषी सभी भंग स्थितियाँ जाँचेगा।' },
+  },
 ];
 
 // ─── Cross-reference links ─────────────────────────────────────────────
@@ -228,7 +292,21 @@ export default function MangalPage() {
         <ClassicalReference shortName="BPHS" chapter="Ch. 3 — Graha Visheshaphala" />
       </LessonSection>
 
-      {/* ── 2. Dignities ── */}
+      {/* ── 2. Astronomical Profile ── */}
+      <LessonSection number={next()} title={ml({ en: 'Astronomical Profile', hi: 'खगोलीय परिचय' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'Mars is the first planet in the Jyotish system that orbits outside Earth — the first "outer planet." Its astronomical behavior, including dramatic retrograde periods, wide speed variations, and distinctive red color, directly mirror its astrological symbolism of variable energy, strategic retreat, and fiery aggression.', hi: 'मंगल ज्योतिष पद्धति में पृथ्वी के बाहर कक्षा करने वाला प्रथम ग्रह — पहला "बाह्य ग्रह।" इसका खगोलीय व्यवहार — नाटकीय वक्री अवधि, व्यापक गति भिन्नता, और विशिष्ट लाल रंग — सीधे ज्योतिषीय प्रतीकवाद से मेल खाता है।' })}</p>
+        <div className="space-y-3">
+          {Object.entries(ASTRONOMICAL).map(([key, val]) => (
+            <div key={key} className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-gold-primary/10 rounded-xl p-4">
+              <h4 className="text-gold-light font-bold text-sm mb-2 capitalize" style={hf}>{key.replace(/([A-Z])/g, ' $1').trim()}</h4>
+              <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(val)}</p>
+            </div>
+          ))}
+        </div>
+        <ClassicalReference shortName="Surya Siddhanta" chapter="Ch. 1 — Mean motions of Mars (Kuja)" />
+      </LessonSection>
+
+      {/* ── 3. Dignities ── */}
       <LessonSection number={next()} title={ml({ en: 'Dignities & Strength', hi: 'गरिमा एवं बल' })}>
         <p style={bf}>{ml({ en: 'Mars\'s dignity determines whether its energy is disciplined or destructive. In Capricorn at 28°, Mars is exalted — the warrior operates with strategic precision, patience, and organizational brilliance. In Cancer at 28°, Mars is debilitated — aggressive energy is trapped in emotional waters, producing passive-aggressive behavior and misdirected anger. Mars has two own signs: Aries (cardinal fire — the charge) and Scorpio (fixed water — the ambush), reflecting its dual nature as both the open warrior and the covert operative.', hi: 'मंगल की गरिमा यह निर्धारित करती है कि उसकी ऊर्जा अनुशासित है या विनाशक। मकर 28° में मंगल उच्च — योद्धा रणनीतिक सूक्ष्मता से कार्य करता है। कर्क 28° में नीच — आक्रामक ऊर्जा भावनात्मक जल में फँसी। मंगल की दो स्वराशियाँ: मेष (खुला आक्रमण) और वृश्चिक (गुप्त घात)।' })}</p>
         <div className="space-y-2 mt-4">
@@ -295,7 +373,36 @@ export default function MangalPage() {
         </div>
       </LessonSection>
 
-      {/* ── 6. Planetary Relationships ── */}
+      {/* ── 7. Practical Application ── */}
+      <LessonSection number={next()} title={ml({ en: 'Practical Application', hi: 'व्यावहारिक अनुप्रयोग' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'Mars is perhaps the most misunderstood planet in Jyotish — feared for its aggression but essential for courage, property ownership, and physical vitality. Understanding how to assess Mars in your own chart and when remedies are genuinely needed versus when Mars energy simply needs proper channeling is crucial for practical application.', hi: 'मंगल ज्योतिष में शायद सबसे गलत समझा जाने वाला ग्रह — आक्रामकता के लिए भयभीत किन्तु साहस, सम्पत्ति और शारीरिक जीवनशक्ति के लिए आवश्यक। अपनी कुण्डली में मंगल का आकलन करना और उपाय कब आवश्यक हैं बनाम ऊर्जा को दिशा देना — यह समझना व्यावहारिक अनुप्रयोग के लिए महत्त्वपूर्ण।' })}</p>
+        <div className="space-y-4">
+          <div className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/15 rounded-xl p-5">
+            <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'How to Assess Mars\'s Strength', hi: 'मंगल के बल का आकलन कैसे करें' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.assessStrength)}</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-emerald-500/5 border border-emerald-500/15 rounded-xl p-4">
+              <h4 className="text-emerald-400 font-bold text-sm mb-2" style={hf}>{ml({ en: 'Signs of a Strong Mars', hi: 'बलवान मंगल के संकेत' })}</h4>
+              <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.strongIndicators)}</p>
+            </div>
+            <div className="bg-red-500/5 border border-red-500/15 rounded-xl p-4">
+              <h4 className="text-red-400 font-bold text-sm mb-2" style={hf}>{ml({ en: 'Signs of a Weak Mars', hi: 'दुर्बल मंगल के संकेत' })}</h4>
+              <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.weakIndicators)}</p>
+            </div>
+          </div>
+          <div className="bg-bg-primary/50 rounded-lg border border-gold-primary/10 p-4">
+            <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'When to Seek Remedies', hi: 'उपाय कब करें' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.whenToRemediate)}</p>
+          </div>
+          <div className="bg-amber-500/5 border border-amber-500/15 rounded-xl p-4">
+            <h4 className="text-amber-400 font-bold text-sm mb-2" style={hf}>{ml({ en: 'Common Misconceptions', hi: 'आम भ्रान्तियाँ' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.misconceptions)}</p>
+          </div>
+        </div>
+      </LessonSection>
+
+      {/* ── 8. Planetary Relationships ── */}
       <LessonSection number={next()} title={ml({ en: 'Relationships with Other Planets', hi: 'अन्य ग्रहों के साथ सम्बन्ध' })}>
         <p style={bf} className="mb-4">{ml({ en: 'Mars\'s friendships and enmities reflect the warrior\'s alliances on the cosmic battlefield. His friendship with Sun, Moon, and Jupiter forms the axis of dharmic action — courage guided by authority, nurtured by compassion, and directed by wisdom. His enmity with Mercury represents the eternal tension between action and analysis, the sword and the pen.', hi: 'मंगल की मैत्री और शत्रुता ब्रह्मांडीय युद्धक्षेत्र पर योद्धा के गठबन्धनों को दर्शाती है। सूर्य, चन्द्र और गुरु से मैत्री धार्मिक कर्म की धुरी — अधिकार से निर्देशित, करुणा से पोषित, ज्ञान से निर्दिष्ट साहस। बुध से शत्रुता कर्म और विश्लेषण का शाश्वत तनाव।' })}</p>
         <div className="space-y-3">
@@ -316,7 +423,22 @@ export default function MangalPage() {
         <ClassicalReference shortName="BPHS" chapter="Ch. 3 v.23-26 — Naisargika Maitri" />
       </LessonSection>
 
-      {/* ── 7. Remedies ── */}
+      {/* ── Key Yogas Involving Mars ── */}
+      <LessonSection number={next()} title={ml({ en: 'Key Yogas Involving Mangal', hi: 'मंगल से सम्बन्धित प्रमुख योग' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'Mars participates in several critical yogas that can dramatically enhance or complicate a chart. The Ruchaka Mahapurusha Yoga makes Mars a king-maker, while Manglik Dosha is the most discussed compatibility factor in Hindu marriage. Understanding these yogas — especially the many cancellation conditions for Manglik Dosha — prevents both unnecessary fear and careless dismissal.', hi: 'मंगल कई महत्त्वपूर्ण योगों में भाग लेता है जो कुण्डली को नाटकीय रूप से बढ़ा या जटिल बना सकते हैं। रुचक महापुरुष योग मंगल को राजनिर्माता बनाता है, जबकि मांगलिक दोष हिन्दू विवाह में सबसे चर्चित अनुकूलता कारक है। इन योगों — विशेषतः मांगलिक दोष के भंग — को समझना अनावश्यक भय और लापरवाह उपेक्षा दोनों से बचाता है।' })}</p>
+        <div className="space-y-4">
+          {KEY_YOGAS.map((yoga, i) => (
+            <div key={i} className="bg-gradient-to-br from-[#2d1b69]/25 via-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+              <h4 className="text-gold-light font-bold text-sm mb-1" style={hf}>{ml(yoga.name)}</h4>
+              <p className="text-gold-dark text-xs mb-2 italic" style={bf}>{ml(yoga.condition)}</p>
+              <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(yoga.effect)}</p>
+            </div>
+          ))}
+        </div>
+        <ClassicalReference shortName="BPHS" chapter="Ch. 34-35 — Mahapurusha Yogas & Kuja Dosha" />
+      </LessonSection>
+
+      {/* ── Remedies ── */}
       <LessonSection number={next()} title={ml({ en: 'Remedies for Mars', hi: 'मंगल के उपाय' })}>
         <p style={bf} className="mb-4">{ml({ en: 'Remedies are prescribed when Mars is weak, afflicted, or causing Manglik Dosha. A well-placed Mars generally does not need remedies — its energy should be channeled through physical activity, competitive endeavors, and courageous action rather than suppressed. Consult a qualified Jyotishi before wearing gemstones, as amplifying Mars energy incorrectly can increase aggression and accident risk.', hi: 'उपाय तब निर्धारित किये जाते हैं जब मंगल दुर्बल, पीड़ित हो या मांगलिक दोष उत्पन्न कर रहा हो। सुस्थित मंगल को प्रायः उपाय की आवश्यकता नहीं — शारीरिक गतिविधि और साहसिक कर्म से ऊर्जा का संचालन करें। रत्न धारण से पूर्व ज्योतिषी से परामर्श अनिवार्य।' })}</p>
 
@@ -336,6 +458,9 @@ export default function MangalPage() {
           { key: 'fasting', title: { en: 'Fasting (Upavasa)', hi: 'उपवास' } },
           { key: 'worship', title: { en: 'Worship — Hanuman', hi: 'पूजा — हनुमान' } },
           { key: 'yantra', title: { en: 'Mangal Yantra', hi: 'मंगल यन्त्र' } },
+          { key: 'dietary', title: { en: 'Dietary Recommendations', hi: 'आहार अनुशंसाएँ' } },
+          { key: 'colorTherapy', title: { en: 'Color Therapy', hi: 'रंग चिकित्सा' } },
+          { key: 'behavioral', title: { en: 'Behavioral Remedies', hi: 'व्यवहारिक उपाय' } },
         ].map(({ key, title }) => (
           <div key={key} className="bg-bg-primary/50 rounded-lg border border-gold-primary/10 p-4 mb-3">
             <h4 className="text-gold-light font-bold text-sm mb-1" style={hf}>{ml(title)}</h4>
@@ -361,6 +486,14 @@ export default function MangalPage() {
           <div>
             <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Sacred Temples', hi: 'पवित्र मन्दिर' })}</h4>
             <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(MYTHOLOGY.temples)}</p>
+          </div>
+          <div>
+            <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Festivals & Observances', hi: 'त्योहार एवं अनुष्ठान' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(MYTHOLOGY.festivals)}</p>
+          </div>
+          <div>
+            <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Mars in Other Traditions', hi: 'अन्य परम्पराओं में मंगल' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(MYTHOLOGY.otherTraditions)}</p>
           </div>
         </div>
         <ClassicalReference shortName="Skanda Purana" chapter="Mangal Kavacham" />

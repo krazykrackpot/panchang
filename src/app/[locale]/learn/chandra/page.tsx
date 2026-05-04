@@ -37,6 +37,25 @@ const DIGNITIES = {
   neutral: { en: 'Mars, Jupiter, Venus, Saturn', hi: 'मंगल, गुरु, शुक्र, शनि' },
 };
 
+// ─── Astronomical Profile ──────────────────────────────────────────────
+const ASTRONOMICAL = {
+  orbitalPeriod: { en: 'Sidereal orbital period: ~27.32 days (one sidereal month). The Moon completes one full orbit around the Earth in approximately 27.32 days, passing through all 27 nakshatras — spending roughly one day in each. This is the foundation of the nakshatra system in Jyotish. The synodic month (New Moon to New Moon) is longer at ~29.53 days because the Earth-Moon system also orbits the Sun.', hi: 'नाक्षत्रिक कक्षीय अवधि: ~27.32 दिन (एक नाक्षत्रिक मास)। चन्द्रमा लगभग 27.32 दिनों में पृथ्वी की एक पूर्ण परिक्रमा करता है, सभी 27 नक्षत्रों से गुजरता है — प्रत्येक में लगभग एक दिन। यह ज्योतिष में नक्षत्र पद्धति का आधार है। सिनॉडिक मास (अमावस्या से अमावस्या) ~29.53 दिन का होता है।' },
+  dailyMotion: { en: 'Average daily motion: ~13°10\' (the fastest of all Jyotish grahas). The Moon moves approximately 13 degrees per day — over 13 times faster than the Sun. This rapid motion is why the Moon changes signs every 2.25 days and nakshatras every day. It is also why the Moon\'s position at birth is so specific and personal. Even twins born an hour apart can have slightly different Moon positions, affecting their Navamsha and Dasha starting points.', hi: 'औसत दैनिक गति: ~13°10\' (सभी ज्योतिषीय ग्रहों में सबसे तीव्र)। चन्द्र प्रतिदिन लगभग 13 अंश चलता है — सूर्य से 13 गुना तीव्र। इसी कारण चन्द्र प्रत्येक 2.25 दिन में राशि बदलता है और प्रतिदिन नक्षत्र। जन्म के समय चन्द्र की स्थिति अत्यन्त विशिष्ट और व्यक्तिगत होती है।' },
+  synodicPeriod: { en: 'Synodic period: ~29.53 days (one lunation). This is the time from one New Moon to the next, encompassing both Shukla Paksha (waxing, 15 tithis) and Krishna Paksha (waning, 15 tithis). The entire tithi system, the backbone of the Hindu calendar, is derived from this synodic cycle. Each tithi represents a 12° increase in the Moon-Sun angular separation. The synodic period varies between about 29.26 and 29.80 days due to the Moon\'s elliptical orbit — this is why tithis have unequal durations.', hi: 'आवर्तन काल: ~29.53 दिन (एक चान्द्रमास)। यह एक अमावस्या से अगली तक का समय है, शुक्ल पक्ष (15 तिथि) और कृष्ण पक्ष (15 तिथि) दोनों सम्मिलित। सम्पूर्ण तिथि पद्धति इसी आवर्तन चक्र से व्युत्पन्न। प्रत्येक तिथि चन्द्र-सूर्य कोणीय अन्तर में 12° की वृद्धि है।' },
+  retrograde: { en: 'Retrograde: Never. Like the Sun, the Moon never retrogrades because it orbits the Earth directly (it is not observed from outside its orbit like the outer planets). The Moon always moves forward through the zodiac, though its speed varies significantly — from about 11°46\' to 15°17\' per day. When the Moon moves faster (near perigee), tithis are shorter; when slower (near apogee), tithis are longer. This is why certain lunar days can be "kshaya" (lost) or "vriddhi" (doubled).', hi: 'वक्री गति: कभी नहीं। सूर्य की तरह चन्द्र कभी वक्री नहीं होता क्योंकि यह सीधे पृथ्वी की परिक्रमा करता है। चन्द्र सदैव राशिचक्र में अग्रसर रहता है, यद्यपि गति में काफी भिन्नता — लगभग 11°46\' से 15°17\' प्रतिदिन। तीव्र गति (निकटतम बिन्दु) पर तिथि छोटी; मन्द गति (दूरस्थ बिन्दु) पर लम्बी। इसलिए कुछ तिथि क्षय या वृद्धि होती हैं।' },
+  phases: { en: 'Lunar phases and Paksha Bala: The Moon\'s phase at birth is critically important in Jyotish. A waxing Moon (Shukla Paksha, tithis 1-15) is considered benefic — the mind is growing, optimistic, and receptive. A waning Moon (Krishna Paksha, tithis 1-15 counting from Purnima) is considered malefic — the mind is contracting, introspective, and potentially anxious. The Full Moon (Purnima) gives maximum Paksha Bala (phase strength), while the New Moon (Amavasya) gives minimum. A Full Moon in exaltation (Taurus) is the strongest possible Moon; a New Moon in debilitation (Scorpio) is the weakest.', hi: 'चन्द्र कलाएँ और पक्ष बल: जन्म के समय चन्द्र की कला ज्योतिष में अत्यन्त महत्त्वपूर्ण। शुक्ल पक्ष का चन्द्र (तिथि 1-15) शुभ — मन बढ़ता, आशावादी। कृष्ण पक्ष का अशुभ — मन सिकुड़ता, अन्तर्मुखी। पूर्णिमा अधिकतम पक्ष बल देती है, अमावस्या न्यूनतम। वृषभ में पूर्णिमा सबसे बलवान चन्द्र; वृश्चिक में अमावस्या सबसे दुर्बल।' },
+  astroVsAstrol: { en: 'Astronomically, the Moon is Earth\'s only natural satellite, with a diameter of 3,474 km, orbiting at an average distance of 384,400 km. It is tidally locked — always showing the same face to Earth. Astrologically, this tidal locking symbolizes the mind\'s relationship with the body: always reflecting the same side outward (persona) while hiding the dark side (subconscious). The Moon\'s gravitational pull causes ocean tides — and in Jyotish, it governs all fluids in the body, emotional tides, and the rhythmic cycles of fertility and menstruation. The fact that the Moon appears almost exactly the same size as the Sun during eclipses (a cosmic coincidence) is seen as proof of their equal importance in the horoscope.', hi: 'खगोलीय रूप से चन्द्रमा पृथ्वी का एकमात्र प्राकृतिक उपग्रह, व्यास 3,474 किमी, औसत दूरी 384,400 किमी। ज्वारीय बन्धन — सदा एक ही मुख दिखाता है। ज्योतिषीय रूप से यह मन और शरीर के सम्बन्ध का प्रतीक: बाहर सदा एक पक्ष (व्यक्तित्व) दिखाना जबकि अन्धेरा पक्ष (अवचेतन) छिपा। चन्द्र का गुरुत्वाकर्षण ज्वार उत्पन्न करता है — ज्योतिष में शरीर के सभी तरल, भावनात्मक ज्वार और प्रजनन चक्र।' },
+};
+
+// ─── Practical Application ────────────────────────────────────────────
+const PRACTICAL = {
+  assessStrength: { en: 'To assess the Moon\'s strength in your chart, check these factors in order: (1) Phase — waxing (Shukla Paksha) is stronger than waning (Krishna Paksha). A Moon within 72° of the Sun (less than 6 tithis from New Moon) is considered weak regardless of sign. (2) Sign placement — exalted in Taurus, own sign Cancer, debilitated in Scorpio. (3) House placement — Moon is strongest in the 4th house (Digbala). (4) Aspects — benefic aspects from Jupiter especially strengthen; malefic aspects from Saturn (Vish Yoga) or Rahu (Grahan Yoga) weaken significantly. (5) Paksha Bala — calculated numerically based on distance from New Moon. (6) Nakshatra — Rohini, Hasta, and Shravana are particularly strong for the Moon.', hi: 'अपनी कुण्डली में चन्द्र के बल का आकलन: (1) कला — शुक्ल पक्ष बलवान, कृष्ण पक्ष दुर्बल। सूर्य से 72° के भीतर चन्द्र दुर्बल। (2) राशि — वृषभ में उच्च, कर्क स्वराशि, वृश्चिक में नीच। (3) भाव — चतुर्थ भाव में दिग्बल। (4) दृष्टि — गुरु बल देता है; शनि (विष योग) या राहु (ग्रहण योग) दुर्बल करते हैं। (5) पक्ष बल — अमावस्या से दूरी पर आधारित। (6) नक्षत्र — रोहिणी, हस्त, श्रवण विशेष रूप से शुभ।' },
+  strongIndicators: { en: 'Signs of a strong Moon in your life: Emotional stability — you recover from setbacks quickly and maintain perspective. Good relationship with mother. Sound sleep with vivid but not disturbing dreams. Strong intuition that proves reliable in decisions. Popular with the public and comfortable in social settings. Good memory, especially for emotional experiences. Physical health is good, especially digestion and fluid balance. You are naturally nurturing — people come to you for comfort. Financial flow is steady and you manage resources well.', hi: 'बलवान चन्द्र के संकेत: भावनात्मक स्थिरता — विपरीत परिस्थितियों से शीघ्र उबरना। माता से अच्छा सम्बन्ध। अच्छी नींद। विश्वसनीय अन्तर्ज्ञान। जनता में लोकप्रिय और सामाजिक परिवेश में सहज। प्रबल स्मृति। अच्छा पाचन और तरल सन्तुलन। स्वाभाविक रूप से पोषक — लोग सान्त्वना के लिए आपके पास आते हैं।' },
+  weakIndicators: { en: 'Signs of a weak Moon: Chronic anxiety, depression, or emotional instability — mood swings that seem disproportionate to events. Insomnia or disturbed sleep. Poor relationship with mother or early separation from mother. Weak memory, difficulty concentrating. Social anxiety or feeling emotionally isolated. Water retention, blood disorders, chest or lung issues. Poor intuition — gut feelings are often wrong. Emotional eating or substance use to manage feelings. Feeling "homeless" even when housed — lack of inner peace. Menstrual irregularities (for women).', hi: 'दुर्बल चन्द्र के संकेत: दीर्घकालिक चिन्ता, अवसाद या भावनात्मक अस्थिरता। अनिद्रा। माता से कठिन सम्बन्ध। कमज़ोर स्मृति। सामाजिक चिन्ता। जल प्रतिधारण, रक्त विकार, वक्ष/फेफड़े की समस्या। कमज़ोर अन्तर्ज्ञान। भावनात्मक भोजन। आन्तरिक शान्ति की कमी। अनियमित मासिक चक्र (महिलाओं में)।' },
+  whenToRemediate: { en: 'Seek remedies when: The Moon is waning and debilitated (in Scorpio), conjunct Rahu (Grahan Yoga), conjunct Saturn (Vish Yoga), placed in the 6th/8th/12th house without benefic aspect, or when the native experiences chronic mental health issues during Moon dasha/antardasha. Also beneficial during Sade Sati. Do NOT seek Moon remedies when: The Moon is waxing, exalted, in own sign, well-aspected by Jupiter, or in the 4th house with strength. Amplifying an already-strong Moon can make you overly emotional, dependent on others for validation, and unable to make rational decisions.', hi: 'उपाय कब: कृष्ण पक्ष और नीच चन्द्र (वृश्चिक), राहु युति (ग्रहण योग), शनि युति (विष योग), 6/8/12 भाव में बिना शुभ दृष्टि, चन्द्र दशा/अन्तर्दशा में मानसिक स्वास्थ्य समस्या, साढ़ेसाती। उपाय कब न करें: शुक्ल पक्ष, उच्च, स्वराशि, गुरु दृष्टि सहित, चतुर्थ भाव में बलवान — अत्यधिक बलवान चन्द्र अधिक भावुक और निर्णय में अतार्किक बना सकता है।' },
+  misconceptions: { en: 'Common misconceptions about the Moon: (1) "Weak Moon means you\'re crazy" — Wrong. A weak Moon means emotional sensitivity, not mental illness. Many brilliant artists and mystics have weak Moons. (2) "Pearl will fix everything" — Pearl amplifies Moon energy. For Grahan Yoga (Moon-Rahu), a Pearl can amplify the confusion rather than cure it. (3) "Moon is always benefic" — Only the waxing Moon is naturally benefic. A waning Moon, especially near Amavasya, acts as a functional malefic. (4) "Moon sign doesn\'t matter in Western astrology countries" — The Moon sign matters everywhere. It governs the mind regardless of which astrological system you follow. (5) "Full Moon makes people crazy" — Partial truth. Full Moon amplifies whatever emotional state exists — it doesn\'t create madness, but it intensifies existing instability.', hi: 'चन्द्र भ्रान्तियाँ: (1) "दुर्बल चन्द्र = पागलपन" — गलत। दुर्बल चन्द्र भावनात्मक संवेदनशीलता है, मानसिक रोग नहीं। (2) "मोती सब ठीक करेगा" — ग्रहण योग में मोती भ्रम बढ़ा सकता है। (3) "चन्द्र सदा शुभ" — केवल शुक्ल पक्ष का चन्द्र। कृष्ण पक्ष में कार्यात्मक पापग्रह। (4) "पूर्णिमा पागल बनाती है" — आंशिक सत्य, विद्यमान अस्थिरता को तीव्र करती है।' },
+};
+
 // ─── Significations ────────────────────────────────────────────────────
 const SIGNIFICATIONS = {
   people: { en: 'Mother, queen, nurse, healer, public, common people', hi: 'माता, रानी, दाई, वैद्य, जनता, सामान्य जन' },
@@ -135,6 +154,9 @@ const REMEDIES = {
   fasting: { en: 'Monday fasting — consume only milk, curd, rice, and white-colored foods. Some traditions recommend fasting for 16 consecutive Mondays (Solah Somvar Vrat) for marriage or mental peace.', hi: 'सोमवार का उपवास — केवल दूध, दही, चावल और श्वेत खाद्य पदार्थ। कुछ परम्पराओं में विवाह या मानसिक शान्ति हेतु 16 लगातार सोमवार (सोलह सोमवार व्रत) का विधान।' },
   worship: { en: 'Offer water mixed with milk and white flowers to Shiva Linga on Mondays. Recite Chandra Kavacham or Chandra Ashtottara Shatanamavali. Visit Chandra temples on Mondays. Keep a silver bowl of water on the bedside table to absorb negative lunar energy during sleep.', hi: 'सोमवार को शिवलिंग पर दूध मिश्रित जल और श्वेत पुष्प अर्पित करें। चन्द्र कवचम् या चन्द्र अष्टोत्तर शतनामावली का पाठ करें। सोमवार को चन्द्र मन्दिर जाएँ।' },
   yantra: { en: 'Chandra Yantra — a 3×3 magic square with a sum of 18 in each row/column. Install on a silver plate, worship on Mondays during Shukla Paksha. Place in the north-west corner of the home.', hi: 'चन्द्र यन्त्र — 3×3 जादुई वर्ग जिसमें प्रत्येक पंक्ति/स्तम्भ का योग 18 है। चाँदी के पत्र पर स्थापित करें, सोमवार को शुक्ल पक्ष में पूजन करें। घर के वायव्य कोने में रखें।' },
+  dietary: { en: 'Dietary recommendations for strengthening the Moon: Consume milk, curd, rice, white butter, coconut, white sesame, kheer (rice pudding), and cooling foods. Drink milk with mishri (rock sugar) before bed. Avoid excessively spicy and heating foods during Moon remedial periods. Eat cooling fruits: cucumber, watermelon, grapes, and pears. Saffron-infused milk on Mondays is particularly beneficial. The Moon governs taste itself (Rasa), so mindful eating — savoring each bite, eating in a calm environment — is itself a lunar remedy.', hi: 'चन्द्र बल बढ़ाने के आहार: दूध, दही, चावल, सफेद मक्खन, नारियल, सफेद तिल, खीर और शीतल खाद्य। सोने से पहले मिश्री वाला दूध। उपाय काल में अत्यधिक मसालेदार और गरम भोजन से बचें। शीतल फल: खीरा, तरबूज, अंगूर, नाशपाती। सोमवार को केसर दूध विशेष लाभकारी। चन्द्र रस (स्वाद) का शासक है — शान्त वातावरण में सावधानीपूर्वक भोजन स्वयं चन्द्र उपाय है।' },
+  colorTherapy: { en: 'Color therapy for the Moon: Wear white, silver, pale blue, cream, or light pink on Mondays and during emotionally significant events. Avoid dark, heavy colors (black, dark red) on Mondays. Silver jewelry — even a simple silver ring or bangle — carries Moon energy continuously. Keep your bedroom in soft, cool colors (white sheets, pale curtains) for better sleep and emotional recovery. The Moon resonates with pastel and opalescent colors — anything that reminds you of moonlight, pearls, or gentle water reflections.', hi: 'चन्द्र रंग चिकित्सा: सोमवार और भावनात्मक रूप से महत्त्वपूर्ण अवसरों पर सफेद, रजत, हल्का नीला, क्रीम या हल्का गुलाबी पहनें। सोमवार को गहरे रंग (काला, गहरा लाल) से बचें। चाँदी के आभूषण — एक साधारण चाँदी की अँगूठी भी — निरन्तर चन्द्र ऊर्जा वहन करते हैं। शयनकक्ष में हल्के, शीतल रंग रखें। चन्द्र पेस्टल और ओपेलसेंट रंगों से अनुकूल।' },
+  behavioral: { en: 'Behavioral remedies (most powerful): (1) Maintain a consistent sleep schedule — the Moon governs sleep rhythms. Going to bed and waking at the same time strengthens the Moon. (2) Nurture your relationship with your mother — call, visit, serve. Even if the relationship is difficult, showing respect strengthens Chandra. (3) Spend time near natural water bodies — rivers, lakes, the ocean. Water is the Moon\'s element. (4) Practice meditation, especially on Full Moon nights (Purnima). (5) Keep a clean, well-organized home — the Moon governs domestic peace. (6) Avoid emotional decisions during Krishna Paksha (waning Moon) — wait for Shukla Paksha. (7) Develop emotional vocabulary — being able to name your feelings precisely strengthens the Moon\'s articulation. (8) Care for women, children, and the elderly — the Moon governs nurturing in all forms.', hi: 'व्यवहारिक उपाय: (1) नियमित नींद — चन्द्र नींद की लय शासित करता है। (2) माता से सम्बन्ध का पोषण — फोन करें, मिलें, सेवा करें। (3) प्राकृतिक जलस्रोतों के निकट समय बिताएँ। (4) ध्यान अभ्यास, विशेषतः पूर्णिमा रात। (5) स्वच्छ, व्यवस्थित घर रखें। (6) कृष्ण पक्ष में भावनात्मक निर्णयों से बचें। (7) भावनात्मक शब्दकोश विकसित करें — भावनाओं को सटीक नाम देना चन्द्र बल देता है। (8) महिलाओं, बच्चों और वृद्धों की देखभाल करें।' },
 };
 
 // ─── Mythology ─────────────────────────────────────────────────────────
@@ -151,6 +173,14 @@ const MYTHOLOGY = {
     en: 'The Chandra Kavacham from Markandeya Purana is the primary protective hymn for the Moon. The Chandra Ashtottara Shatanamavali (108 names of the Moon) is recited for mental peace. Additionally, Chapter 2 of the Navagraha Stotra (attributed to Vyasa) contains the Moon verse: "Dadhi Shankha Tusharabham Kshirodarnava Sambhavam, Namami Shashinam Somam Shambhor Mukuta Bhushanam" — "I bow to the Moon, white as curd, conch, and snow, born from the Ocean of Milk, the jewel on Shiva\'s crown."',
     hi: 'मार्कण्डेय पुराण से चन्द्र कवचम् चन्द्र के लिए प्राथमिक सुरक्षात्मक स्तुति है। चन्द्र अष्टोत्तर शतनामावली (चन्द्र के 108 नाम) मानसिक शान्ति हेतु पढ़ी जाती है। नवग्रह स्तोत्र का चन्द्र श्लोक: "दधि शंख तुषाराभं क्षीरोदार्णव सम्भवम्, नमामि शशिनं सोमं शम्भोर्मुकुट भूषणम्" — "दही, शंख और हिम के समान श्वेत, क्षीर सागर से उत्पन्न, शम्भु के मुकुट के आभूषण चन्द्र को नमन।"',
   },
+  karvaChauth: {
+    en: 'Karva Chauth is the most celebrated Moon-related festival, observed by married Hindu women who fast from sunrise to moonrise for the longevity of their husbands. The fast is broken only after sighting the Moon through a sieve and offering water. Sharad Purnima (the Full Moon of Ashwin month) is another major lunar celebration — it is believed that on this night, the Moon\'s rays have healing properties and that kheer (rice pudding) left in moonlight absorbs divine nectar. The Kojagari Lakshmi Puja on this night connects the Moon\'s fullness with abundance. Every Purnima and Amavasya has specific ritual significance, making the Moon the most liturgically active graha in Hindu practice.',
+    hi: 'करवा चौथ सबसे प्रसिद्ध चन्द्र-सम्बन्धी त्योहार है, विवाहित हिन्दू महिलाएँ पति की दीर्घायु हेतु सूर्योदय से चन्द्रोदय तक उपवास रखती हैं। छलनी से चन्द्र दर्शन के बाद व्रत तोड़ा जाता है। शरद पूर्णिमा (आश्विन पूर्णिमा) पर चन्द्र किरणों में उपचार शक्ति मानी जाती है — चाँदनी में रखी खीर दिव्य अमृत अवशोषित करती है। प्रत्येक पूर्णिमा और अमावस्या का विशिष्ट अनुष्ठानिक महत्त्व है।',
+  },
+  otherTraditions: {
+    en: 'In Buddhism, the Moon is associated with Chandraprabha Bodhisattva, who represents the cooling light of wisdom that soothes the burning of ignorance. The Buddha\'s enlightenment is celebrated on Vaishakha Purnima (Buddha Purnima), linking spiritual awakening to the Full Moon. In Jain tradition, all 24 Tirthankaras are believed to have attained Kevala Jnana (omniscience) on Purnima, and major Jain festivals follow the lunar calendar. The Moon\'s universality across cultures — from Islamic calendar months to Chinese Mid-Autumn Festival — reflects its deep connection to the human psyche. The English word "lunatic" derives from Luna (Moon), echoing the Vedic understanding of the Moon-mind connection.',
+    hi: 'बौद्ध धर्म में चन्द्र चन्द्रप्रभ बोधिसत्व से जुड़ा — अज्ञान की जलन शान्त करने वाली ज्ञान की शीतल ज्योति। बुद्ध का ज्ञानोदय वैशाख पूर्णिमा पर मनाया जाता है। जैन परम्परा में सभी 24 तीर्थंकरों ने पूर्णिमा पर केवल ज्ञान प्राप्त किया। इस्लामी पंचांग, चीनी मध्य-शरद उत्सव — चन्द्र की सार्वभौमिकता मानव मानस से गहरे जुड़ाव को दर्शाती है।',
+  },
 };
 
 // ─── Relationships ─────────────────────────────────────────────────────
@@ -163,6 +193,46 @@ const RELATIONSHIPS = [
   { planet: { en: 'Saturn', hi: 'शनि' }, relation: { en: 'Neutral', hi: 'सम' }, note: { en: 'Vish Yoga (poison combination) when conjunct — Saturn constricts the emotional mind, producing depression, emotional isolation, and delayed motherly affection. However, this gives extraordinary emotional endurance and maturity. Sade Sati (Saturn\'s 7.5-year transit over Moon) is the most feared transit in Jyotish.', hi: 'युति में विष योग — शनि भावनात्मक मन को संकुचित करता है, अवसाद और भावनात्मक एकान्त देता है। तथापि असाधारण भावनात्मक सहनशीलता। साढ़ेसाती (चन्द्र पर शनि का गोचर) ज्योतिष में सबसे भयंकर गोचर।' } },
   { planet: { en: 'Rahu', hi: 'राहु' }, relation: { en: 'Enemy', hi: 'शत्रु' }, note: { en: 'Grahan Yoga — Rahu eclipses the Moon, creating illusion, anxiety, and obsessive thinking. Can produce irrational fears, phobias, and mental disturbance. In positive expression, gives extraordinary imagination and psychic ability. The most challenging conjunction for mental health in Jyotish.', hi: 'ग्रहण योग — राहु चन्द्र को ग्रसित करता है, भ्रम, चिन्ता और जुनूनी विचार उत्पन्न करता है। अतार्किक भय और मानसिक अशान्ति। सकारात्मक रूप में असाधारण कल्पनाशक्ति और पराभौतिक क्षमता।' } },
   { planet: { en: 'Ketu', hi: 'केतु' }, relation: { en: 'Enemy', hi: 'शत्रु' }, note: { en: 'Ketu detaches the mind from material concerns — spiritual liberation but worldly confusion. Moon-Ketu conjunction (Shrapit Yoga in some traditions) can indicate past-life emotional karma. The native may feel emotionally disconnected, having difficulty expressing or even identifying their feelings. Powerful for meditation and moksha.', hi: 'केतु मन को भौतिक चिन्ताओं से विरक्त करता है — आध्यात्मिक मुक्ति किन्तु सांसारिक भ्रम। चन्द्र-केतु युति पूर्वजन्म के भावनात्मक कर्म। भावनाओं को पहचानने में कठिनाई। ध्यान और मोक्ष के लिए शक्तिशाली।' } },
+];
+
+// ─── Key Yogas involving Moon ─────────────────────────────────────────
+const KEY_YOGAS = [
+  {
+    name: { en: 'Gajakesari Yoga', hi: 'गजकेसरी योग' },
+    condition: { en: 'Jupiter in a Kendra (1st, 4th, 7th, 10th) from the Moon', hi: 'चन्द्र से केन्द्र (1, 4, 7, 10) में गुरु' },
+    effect: { en: 'One of the most celebrated yogas in Jyotish — the "elephant-lion" combination. Jupiter\'s wisdom and expansion protect and empower the emotional mind. The native gains reputation, wealth, and wisdom that endures beyond their lifetime. Children are a source of pride. Public recognition comes through wise, generous conduct. This yoga occurs in roughly 25% of charts but its strength varies enormously based on the dignities and house placements of both Moon and Jupiter. A Full Moon with exalted Jupiter in a kendra is the strongest possible expression — producing kings, saints, and institutional founders.',
+      hi: 'ज्योतिष में सबसे प्रसिद्ध योगों में — "हाथी-सिंह" संयोजन। गुरु की ज्ञान और विस्तार भावनात्मक मन की रक्षा और शक्ति। प्रतिष्ठा, धन और ज्ञान। लगभग 25% कुण्डलियों में किन्तु बल चन्द्र और गुरु दोनों की गरिमा और भाव पर निर्भर। पूर्णिमा चन्द्र और उच्च गुरु सबसे शक्तिशाली — राजा, सन्त और संस्थापक।' },
+  },
+  {
+    name: { en: 'Chandra-Mangala Yoga', hi: 'चन्द्र-मंगल योग' },
+    condition: { en: 'Moon and Mars conjunct in the same sign', hi: 'चन्द्र और मंगल एक राशि में युति' },
+    effect: { en: 'Emotional courage that translates into financial success. The native makes bold decisions driven by gut feeling rather than analysis — and often profits from them. Excellent for real estate, hospitality business, and aggressive entrepreneurship. The mother may be strong-willed or the native inherits business instincts from the maternal line. Can produce impulsive spending if uncontrolled. The combination of nurturing (Moon) and aggression (Mars) creates a formidable negotiator who can be both charming and ruthless.',
+      hi: 'भावनात्मक साहस जो आर्थिक सफलता में बदलता है। विश्लेषण के बजाय अन्तर्ज्ञान से निर्भीक निर्णय — और प्रायः लाभ। भूसम्पत्ति, आतिथ्य व्यवसाय के लिए उत्कृष्ट। माता दृढ़ संकल्प वाली या मातृ वंश से व्यापारिक बुद्धि। पोषण (चन्द्र) और आक्रामकता (मंगल) — आकर्षक और निर्दय दोनों।' },
+  },
+  {
+    name: { en: 'Sunapha Yoga', hi: 'सुनफा योग' },
+    condition: { en: 'Any planet (except Sun, Rahu, Ketu) in the 2nd house from Moon', hi: 'कोई ग्रह (सूर्य, राहु, केतु को छोड़कर) चन्द्र से 2nd भाव में' },
+    effect: { en: 'Self-made wealth and status. The planet in the 2nd from Moon shows what resources the native accumulates through their own emotional intelligence. Mars gives property; Mercury gives knowledge-based income; Jupiter gives wisdom-wealth; Venus gives artistic income; Saturn gives legacy wealth built through patience. The native does not depend on inheritance or luck — they create their own security through emotional competence.',
+      hi: 'स्व-निर्मित धन और प्रतिष्ठा। चन्द्र से 2nd में ग्रह बताता है कि भावनात्मक बुद्धि से क्या संसाधन संचित। मंगल सम्पत्ति; बुध ज्ञान-आय; गुरु ज्ञान-धन; शुक्र कलात्मक आय; शनि धैर्य से निर्मित विरासत। विरासत या भाग्य पर निर्भर नहीं — भावनात्मक योग्यता से स्वयं सुरक्षा।' },
+  },
+  {
+    name: { en: 'Anapha Yoga', hi: 'अनफा योग' },
+    condition: { en: 'Any planet (except Sun, Rahu, Ketu) in the 12th house from Moon', hi: 'कोई ग्रह (सूर्य, राहु, केतु को छोड़कर) चन्द्र से 12th भाव में' },
+    effect: { en: 'Spiritual depth and inner resources from past experiences. The planet in the 12th from Moon shows what was internalized from past life or early emotional experiences. This yoga gives depth, introspection, and the ability to draw from hidden reserves during crisis. The native has inner wealth that is not visible to others — a secret emotional strength or spiritual connection that sustains them through difficulty.',
+      hi: 'पूर्व अनुभवों से आध्यात्मिक गहराई और आन्तरिक संसाधन। चन्द्र से 12th में ग्रह बताता है कि पूर्वजन्म या प्रारम्भिक भावनात्मक अनुभवों से क्या आत्मसात किया गया। गहराई, आत्मनिरीक्षण और संकट में छिपे भण्डार से शक्ति लेने की क्षमता। दूसरों को अदृश्य आन्तरिक सम्पदा।' },
+  },
+  {
+    name: { en: 'Durudhara Yoga', hi: 'दुरुधरा योग' },
+    condition: { en: 'Planets on BOTH sides of the Moon (in 2nd and 12th from Moon)', hi: 'चन्द्र के दोनों ओर ग्रह (चन्द्र से 2nd और 12th में)' },
+    effect: { en: 'The most powerful of the lunar yogas — the Moon is flanked and supported from both sides. The native has emotional resources from both past depth (12th) and future accumulation (2nd). This produces remarkable emotional resilience, financial stability, and social grace. The native navigates emotional challenges with the composure of someone who has both inner reserves and external support. Produces leaders who connect with people on a deep emotional level while maintaining practical stability.',
+      hi: 'चन्द्र योगों में सबसे शक्तिशाली — चन्द्र दोनों ओर से समर्थित। पूर्व गहराई (12th) और भविष्य संचय (2nd) दोनों से भावनात्मक संसाधन। उल्लेखनीय भावनात्मक सहनशीलता, आर्थिक स्थिरता और सामाजिक कुशलता। ऐसे नेता जो गहरे भावनात्मक स्तर पर जुड़ते हैं और व्यावहारिक स्थिरता बनाए रखते हैं।' },
+  },
+  {
+    name: { en: 'Kemadruma Yoga', hi: 'केमद्रुम योग' },
+    condition: { en: 'No planet in the 2nd or 12th from Moon (Moon isolated)', hi: 'चन्द्र से 2nd या 12th में कोई ग्रह नहीं (चन्द्र एकाकी)' },
+    effect: { en: 'The dreaded "isolation" yoga — the Moon stands alone without support from either side. The native may experience poverty, loneliness, and emotional struggle despite other good placements. However, cancellation (Bhanga) is very common: if Moon is in a kendra, if Moon is aspected by Jupiter, if Moon is conjunct a planet, or if kendras from Moon/Lagna have planets — the yoga is cancelled. In practice, pure uncancelled Kemadruma is rare. When present, remedies for Moon become essential.',
+      hi: 'भयंकर "एकान्त" योग — चन्द्र दोनों ओर से बिना सहारे। दरिद्रता, अकेलापन और भावनात्मक संघर्ष सम्भव। तथापि भंग अत्यन्त सामान्य: चन्द्र केन्द्र में, गुरु दृष्टि, ग्रह युति, या केन्द्रों में ग्रह हों — योग निरस्त। शुद्ध अनिरस्त केमद्रुम दुर्लभ। विद्यमान होने पर चन्द्र उपाय आवश्यक।' },
+  },
 ];
 
 // ─── Cross-reference links ─────────────────────────────────────────────
@@ -228,7 +298,21 @@ export default function ChandraPage() {
         <ClassicalReference shortName="BPHS" chapter="Ch. 3 — Graha Visheshaphala" />
       </LessonSection>
 
-      {/* ── 2. Dignities ── */}
+      {/* ── 2. Astronomical Profile ── */}
+      <LessonSection number={next()} title={ml({ en: 'Astronomical Profile', hi: 'खगोलीय परिचय' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'The Moon is the fastest-moving body in Jyotish and the closest celestial object to Earth. Its astronomical behavior — rapid motion, dramatic phases, and gravitational influence on tides — directly mirrors its astrological role as the governor of the ever-changing mind, emotions, and bodily fluids.', hi: 'चन्द्र ज्योतिष में सबसे तीव्र गति वाला पिण्ड और पृथ्वी का निकटतम आकाशीय पिण्ड। इसका खगोलीय व्यवहार — तीव्र गति, नाटकीय कलाएँ, ज्वार पर गुरुत्वाकर्षण प्रभाव — सीधे ज्योतिषीय भूमिका को दर्शाता है: सतत परिवर्तनशील मन, भावनाएँ और शारीरिक तरल।' })}</p>
+        <div className="space-y-3">
+          {Object.entries(ASTRONOMICAL).map(([key, val]) => (
+            <div key={key} className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-gold-primary/10 rounded-xl p-4">
+              <h4 className="text-gold-light font-bold text-sm mb-2 capitalize" style={hf}>{key.replace(/([A-Z])/g, ' $1').trim()}</h4>
+              <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(val)}</p>
+            </div>
+          ))}
+        </div>
+        <ClassicalReference shortName="Surya Siddhanta" chapter="Ch. 1 — Mean motions of the Moon" />
+      </LessonSection>
+
+      {/* ── 3. Dignities ── */}
       <LessonSection number={next()} title={ml({ en: 'Dignities & Strength', hi: 'गरिमा एवं बल' })}>
         <p style={bf}>{ml({ en: 'A planet\'s dignity determines whether it can express its full potential or is constrained. Moon in Taurus at 3° is at the peak of its power — here the mind finds perfect emotional stability and material security. In Scorpio at 3°, the Moon is deeply disturbed — the mind is pulled into emotional intensity, fear, and psychological transformation. The waxing or waning phase (Paksha Bala) is equally important — a Full Moon in debilitation may be stronger than a New Moon in exaltation.', hi: 'ग्रह की गरिमा यह निर्धारित करती है कि वह अपनी पूर्ण क्षमता व्यक्त कर सकता है या बाधित है। वृषभ में 3° पर चन्द्र अपनी शक्ति के शिखर पर — मन को पूर्ण भावनात्मक स्थिरता मिलती है। वृश्चिक में 3° पर चन्द्र गहराई से विचलित — मन भावनात्मक तीव्रता और भय में खिंचता है।' })}</p>
         <div className="space-y-2 mt-4">
@@ -293,7 +377,36 @@ export default function ChandraPage() {
         </div>
       </LessonSection>
 
-      {/* ── 6. Planetary Relationships ── */}
+      {/* ── 7. Practical Application ── */}
+      <LessonSection number={next()} title={ml({ en: 'Practical Application', hi: 'व्यावहारिक अनुप्रयोग' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'The Moon\'s condition in your chart directly affects your daily emotional experience, mental health, and relationship with your mother. Learning to assess its strength helps you understand your own emotional patterns and when remedial measures are genuinely needed.', hi: 'आपकी कुण्डली में चन्द्र की स्थिति सीधे आपके दैनिक भावनात्मक अनुभव, मानसिक स्वास्थ्य और माता सम्बन्ध को प्रभावित करती है। इसके बल का आकलन करना सीखना आपको अपने भावनात्मक पैटर्न और उपाय की वास्तविक आवश्यकता समझने में सहायता करता है।' })}</p>
+        <div className="space-y-4">
+          <div className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/15 rounded-xl p-5">
+            <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'How to Assess Moon\'s Strength', hi: 'चन्द्र के बल का आकलन कैसे करें' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.assessStrength)}</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-emerald-500/5 border border-emerald-500/15 rounded-xl p-4">
+              <h4 className="text-emerald-400 font-bold text-sm mb-2" style={hf}>{ml({ en: 'Signs of a Strong Moon', hi: 'बलवान चन्द्र के संकेत' })}</h4>
+              <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.strongIndicators)}</p>
+            </div>
+            <div className="bg-red-500/5 border border-red-500/15 rounded-xl p-4">
+              <h4 className="text-red-400 font-bold text-sm mb-2" style={hf}>{ml({ en: 'Signs of a Weak Moon', hi: 'दुर्बल चन्द्र के संकेत' })}</h4>
+              <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.weakIndicators)}</p>
+            </div>
+          </div>
+          <div className="bg-bg-primary/50 rounded-lg border border-gold-primary/10 p-4">
+            <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'When to Seek Remedies', hi: 'उपाय कब करें' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.whenToRemediate)}</p>
+          </div>
+          <div className="bg-amber-500/5 border border-amber-500/15 rounded-xl p-4">
+            <h4 className="text-amber-400 font-bold text-sm mb-2" style={hf}>{ml({ en: 'Common Misconceptions', hi: 'आम भ्रान्तियाँ' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.misconceptions)}</p>
+          </div>
+        </div>
+      </LessonSection>
+
+      {/* ── 8. Planetary Relationships ── */}
       <LessonSection number={next()} title={ml({ en: 'Relationships with Other Planets', hi: 'अन्य ग्रहों के साथ सम्बन्ध' })}>
         <p style={bf} className="mb-4">{ml({ en: 'Chandra\'s relationships are unique among the Navagrahas — she has no natural enemies. The Moon considers everyone either a friend or neutral, reflecting her nurturing nature that embraces all. However, some planets (Rahu, Ketu) are considered enemies in practice due to their eclipsing effect on the mind. The Moon\'s friendships and neutralities govern how conjunctions and aspects affect emotional and mental wellbeing.', hi: 'नवग्रहों में चन्द्र के सम्बन्ध अद्वितीय हैं — उसका कोई स्वाभाविक शत्रु नहीं। चन्द्र सभी को मित्र या सम मानती है, जो उसके पोषक स्वभाव को दर्शाता है। तथापि राहु, केतु व्यवहार में शत्रु माने जाते हैं क्योंकि वे मन को ग्रसित करते हैं।' })}</p>
         <div className="space-y-3">
@@ -314,7 +427,22 @@ export default function ChandraPage() {
         <ClassicalReference shortName="BPHS" chapter="Ch. 3 v.23-26 — Naisargika Maitri" />
       </LessonSection>
 
-      {/* ── 7. Remedies ── */}
+      {/* ── Key Yogas Involving Moon ── */}
+      <LessonSection number={next()} title={ml({ en: 'Key Yogas Involving Chandra', hi: 'चन्द्र से सम्बन्धित प्रमुख योग' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'The Moon is central to more yogas than any other planet in Jyotish. The lunar yogas (Chandra Yogas) are formed by the positions of planets relative to the Moon — in the 2nd, 12th, or kendras from the Moon. Since the Moon represents the mind, these yogas directly describe the native\'s emotional resources, mental stability, and capacity for worldly success through emotional intelligence.', hi: 'ज्योतिष में चन्द्र किसी भी अन्य ग्रह से अधिक योगों का केन्द्र है। चन्द्र योग चन्द्र के सापेक्ष ग्रहों की स्थितियों — 2nd, 12th, या केन्द्रों — से बनते हैं। चन्द्र मन का प्रतिनिधित्व करता है, इसलिए ये योग सीधे भावनात्मक संसाधन, मानसिक स्थिरता और भावनात्मक बुद्धि से सांसारिक सफलता का वर्णन करते हैं।' })}</p>
+        <div className="space-y-4">
+          {KEY_YOGAS.map((yoga, i) => (
+            <div key={i} className="bg-gradient-to-br from-[#2d1b69]/25 via-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+              <h4 className="text-gold-light font-bold text-sm mb-1" style={hf}>{ml(yoga.name)}</h4>
+              <p className="text-gold-dark text-xs mb-2 italic" style={bf}>{ml(yoga.condition)}</p>
+              <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(yoga.effect)}</p>
+            </div>
+          ))}
+        </div>
+        <ClassicalReference shortName="BPHS" chapter="Ch. 36 — Chandra Yogas (Sunapha, Anapha, Durudhara, Kemadruma)" />
+      </LessonSection>
+
+      {/* ── Remedies ── */}
       <LessonSection number={next()} title={ml({ en: 'Remedies for Moon', hi: 'चन्द्र के उपाय' })}>
         <p style={bf} className="mb-4">{ml({ en: 'Remedies are prescribed when the Moon is weak (waning, debilitated, or afflicted by malefics like Rahu or Saturn). A strong, waxing Moon rarely needs remedies. Moon remedies focus on calming the mind, strengthening emotional resilience, and improving the relationship with the mother. Consult a qualified Jyotishi before wearing gemstones.', hi: 'उपाय तब निर्धारित किये जाते हैं जब चन्द्र दुर्बल हो (कृष्ण पक्ष, नीच, या राहु-शनि जैसे पापग्रहों से पीड़ित)। बलवान शुक्ल पक्ष चन्द्र को प्रायः उपाय की आवश्यकता नहीं। चन्द्र उपाय मन को शान्त करने, भावनात्मक सहनशीलता बढ़ाने और माता सम्बन्ध सुधारने पर केन्द्रित।' })}</p>
 
@@ -334,6 +462,9 @@ export default function ChandraPage() {
           { key: 'fasting', title: { en: 'Fasting (Upavasa)', hi: 'उपवास' } },
           { key: 'worship', title: { en: 'Worship & Stotra', hi: 'पूजा एवं स्तोत्र' } },
           { key: 'yantra', title: { en: 'Chandra Yantra', hi: 'चन्द्र यन्त्र' } },
+          { key: 'dietary', title: { en: 'Dietary Recommendations', hi: 'आहार अनुशंसाएँ' } },
+          { key: 'colorTherapy', title: { en: 'Color Therapy', hi: 'रंग चिकित्सा' } },
+          { key: 'behavioral', title: { en: 'Behavioral Remedies', hi: 'व्यवहारिक उपाय' } },
         ].map(({ key, title }) => (
           <div key={key} className="bg-bg-primary/50 rounded-lg border border-gold-primary/10 p-4 mb-3">
             <h4 className="text-gold-light font-bold text-sm mb-1" style={hf}>{ml(title)}</h4>
@@ -359,6 +490,14 @@ export default function ChandraPage() {
           <div>
             <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Sacred Temples', hi: 'पवित्र मन्दिर' })}</h4>
             <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(MYTHOLOGY.temples)}</p>
+          </div>
+          <div>
+            <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Karva Chauth & Lunar Festivals', hi: 'करवा चौथ एवं चन्द्र त्योहार' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(MYTHOLOGY.karvaChauth)}</p>
+          </div>
+          <div>
+            <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Moon in Other Traditions', hi: 'अन्य परम्पराओं में चन्द्र' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(MYTHOLOGY.otherTraditions)}</p>
           </div>
         </div>
         <ClassicalReference shortName="Markandeya Purana" chapter="Chandra Kavacham" />

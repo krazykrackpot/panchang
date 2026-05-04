@@ -37,6 +37,25 @@ const DIGNITIES = {
   neutral: { en: 'Mercury', hi: 'बुध' },
 };
 
+// ─── Astronomical Profile ──────────────────────────────────────────────
+const ASTRONOMICAL = {
+  orbitalPeriod: { en: 'Apparent orbital period: ~365.25 days (one sidereal year). The Sun appears to move through all 12 signs in approximately 365.25 days, spending roughly 30 days in each sign. This apparent motion is actually the Earth orbiting the Sun, but from a geocentric (Earth-centered) perspective used in Jyotish, the Sun moves through the zodiac.', hi: 'दृश्य कक्षीय अवधि: ~365.25 दिन (एक नाक्षत्रिक वर्ष)। सूर्य लगभग 365.25 दिनों में सभी 12 राशियों से गुजरता प्रतीत होता है, प्रत्येक राशि में लगभग 30 दिन बिताता है। ज्योतिष में भू-केन्द्रित दृष्टिकोण से सूर्य राशिचक्र में गति करता है।' },
+  dailyMotion: { en: 'Average daily motion: ~0°59\'08" (just under 1° per day). The Sun\'s daily motion is remarkably consistent compared to other planets — varying only between about 0°57\' (when Earth is at aphelion in July) and 1°01\' (when Earth is at perihelion in January). This consistency is why the solar calendar is so reliable. In Jyotish, the Sun\'s transit into a new sign (Sankranti) is a major event, occurring approximately every 30 days.', hi: 'औसत दैनिक गति: ~0°59\'08" (प्रतिदिन लगभग 1°)। सूर्य की दैनिक गति अन्य ग्रहों की तुलना में अत्यन्त स्थिर है — लगभग 0°57\' (जुलाई में) से 1°01\' (जनवरी में) के बीच। इसी स्थिरता से सौर पंचांग विश्वसनीय है। नई राशि में सूर्य का प्रवेश (संक्रान्ति) प्रत्येक ~30 दिन पर होता है।' },
+  synodicPeriod: { en: 'Synodic period: Not applicable. Since the Sun is the reference point for synodic periods of all other planets, it does not have its own synodic period. All other planets\' synodic periods are measured relative to the Sun — the time between successive conjunctions with the Sun as seen from Earth.', hi: 'आवर्तन काल: लागू नहीं। चूँकि सूर्य सभी अन्य ग्रहों के आवर्तन काल का सन्दर्भ बिन्दु है, इसका अपना आवर्तन काल नहीं होता। अन्य सभी ग्रहों का आवर्तन काल सूर्य के सापेक्ष मापा जाता है।' },
+  retrograde: { en: 'Retrograde: Never. The Sun never retrogrades in geocentric astronomy because it is the central reference body. While all five true planets (Mars through Saturn) and the lunar nodes exhibit retrograde motion, the Sun and Moon always move direct (forward through the zodiac). This astronomical fact reinforces the Sun\'s symbolism in Jyotish — the Atman (soul) never wavers, never retreats, never compromises. It is the constant around which all other planetary experiences revolve.', hi: 'वक्री गति: कभी नहीं। सूर्य भू-केन्द्रित खगोलशास्त्र में कभी वक्री नहीं होता क्योंकि यह केन्द्रीय सन्दर्भ पिण्ड है। पाँच वास्तविक ग्रह और चन्द्र की गाँठें वक्री होती हैं, किन्तु सूर्य और चन्द्र सदैव मार्गी रहते हैं। यह तथ्य ज्योतिष में सूर्य के प्रतीकवाद को पुष्ट करता है — आत्मा कभी डगमगाती नहीं।' },
+  combustion: { en: 'Combustion (Asta): The Sun is the cause of combustion for all other planets. When a planet comes too close to the Sun in longitude, it becomes "combust" (Asta) — its significations weaken as the Sun\'s brilliance overpowers it. The combustion orbs are: Moon 12°, Mars 17°, Mercury 14° (12° when retrograde), Jupiter 11°, Venus 10° (8° when retrograde), Saturn 15°. A combust planet loses its independent power and becomes subservient to the Sun\'s agenda. This is one of the most important concepts in Jyotish — a combust Venus, for instance, weakens marriage and romantic significations regardless of sign or house placement.', hi: 'अस्त (दहन): सूर्य सभी अन्य ग्रहों के अस्त होने का कारण है। जब कोई ग्रह देशान्तर में सूर्य के अत्यन्त निकट आता है, वह "अस्त" हो जाता है — उसकी कारकत्व शक्ति क्षीण होती है। अस्त कोण: चन्द्र 12°, मंगल 17°, बुध 14° (वक्री में 12°), गुरु 11°, शुक्र 10° (वक्री में 8°), शनि 15°। अस्त ग्रह स्वतन्त्र शक्ति खो देता है।' },
+  astroVsAstrol: { en: 'Astronomically, the Sun is a G-type main-sequence star with a surface temperature of about 5,778 K, located 149.6 million km from Earth. Astrologically, it represents the immortal soul (Atman), personal authority, and the father principle. The astronomical fact that all planets orbit the Sun directly maps to the astrological principle that the Sun is the king (Raja) around whom all other planetary significations revolve. The Sun\'s consistent motion through the zodiac symbolizes dharmic constancy — unlike Mercury or Venus, which waver near the Sun, the Atman holds its course.', hi: 'खगोलीय रूप से सूर्य G-प्रकार का मुख्य-अनुक्रम तारा है, सतह तापमान ~5,778 K, पृथ्वी से 149.6 मिलियन किमी दूर। ज्योतिषीय रूप से यह अमर आत्मा, व्यक्तिगत अधिकार और पितृ सिद्धान्त है। सभी ग्रहों का सूर्य की परिक्रमा करना ज्योतिषीय सिद्धान्त से सीधे जुड़ता है कि सूर्य राजा है जिसके चारों ओर सभी ग्रह कारकत्व घूमते हैं।' },
+};
+
+// ─── Practical Application ────────────────────────────────────────────
+const PRACTICAL = {
+  assessStrength: { en: 'To assess the Sun\'s strength in your chart, check these factors in order: (1) Sign placement — exalted in Aries, own sign Leo, debilitated in Libra. (2) House placement — Sun is strongest in the 10th house (Digbala) and in kendras/trikonas generally. (3) Aspects — benefic aspects from Jupiter or Moon strengthen; malefic aspects from Saturn, Rahu, or Ketu weaken. (4) Nakshatra — the nakshatra lord colors the Sun\'s expression. (5) Combustion — the Sun cannot be combust, but check if it is closely conjunct malefics. (6) Shadbala score — the six-fold strength calculation gives a numerical value for comparison.', hi: 'अपनी कुण्डली में सूर्य के बल का आकलन करने के लिए क्रम से जाँचें: (1) राशि स्थिति — मेष में उच्च, सिंह स्वराशि, तुला में नीच। (2) भाव स्थिति — 10वें भाव में सबसे बलवान (दिग्बल), केन्द्र/त्रिकोण में शुभ। (3) दृष्टि — गुरु/चन्द्र की शुभ दृष्टि बल देती है; शनि/राहु/केतु की दृष्टि दुर्बल करती है। (4) नक्षत्र — नक्षत्र स्वामी सूर्य की अभिव्यक्ति को रंगता है। (5) षड्बल अंक।' },
+  strongIndicators: { en: 'Signs of a strong Sun in your life: You naturally command respect without demanding it. Authority figures (bosses, government, father) are supportive. You have clear life purpose and strong willpower. Your physical constitution is robust, especially the heart and eyes. You wake up energized and have a consistent daily routine. People look to you for leadership in crisis. Government or institutional processes work smoothly for you. Your relationship with your father is healthy and respectful.', hi: 'आपके जीवन में बलवान सूर्य के संकेत: आप स्वाभाविक रूप से बिना माँगे सम्मान पाते हैं। अधिकारी व्यक्ति (बॉस, सरकार, पिता) सहायक हैं। स्पष्ट जीवन उद्देश्य और दृढ़ इच्छाशक्ति। शारीरिक संरचना सुदृढ़, विशेषतः हृदय और नेत्र। सरकारी प्रक्रियाएँ सुचारू। पिता से स्वस्थ सम्बन्ध।' },
+  weakIndicators: { en: 'Signs of a weak Sun in your life: Chronic low self-esteem or identity confusion — you don\'t know what you stand for. Conflicts with authority figures, government problems (tax issues, visa rejections, licensing problems). Father is absent, ill, or the relationship is strained. Eye or heart problems. Difficulty making decisions or asserting yourself. Others take credit for your work. You feel invisible in group settings. Chronic fatigue despite adequate rest. Bones and spine may be weak.', hi: 'आपके जीवन में दुर्बल सूर्य के संकेत: दीर्घकालिक कम आत्मसम्मान या पहचान का भ्रम। अधिकारियों से संघर्ष, सरकारी समस्याएँ (कर, वीज़ा, लाइसेंस)। पिता अनुपस्थित, बीमार या सम्बन्ध तनावपूर्ण। नेत्र या हृदय रोग। निर्णय लेने में कठिनाई। दूसरे आपके काम का श्रेय लेते हैं। दीर्घकालिक थकान।' },
+  whenToRemediate: { en: 'Seek remedies when: The Sun is debilitated (in Libra), combust by close conjunction with a strong malefic, placed in dusthana houses (6th, 8th, 12th) without cancellation, or the lord of a dusthana placed with the Sun. Also during Surya Mahadasha if the Sun is afflicted. Do NOT seek Sun remedies when: The Sun is exalted, in own sign, well-placed in a kendra or trikona with benefic aspects — strengthening an already-strong Sun can make you arrogant, domineering, and create unnecessary conflicts with others. Remedies are medicine — you don\'t take medicine when you\'re healthy.', hi: 'उपाय कब करें: सूर्य नीच (तुला में), प्रबल पापग्रह के साथ अस्त, दुस्थान (6, 8, 12) में बिना भंग के, या दुस्थान स्वामी सूर्य के साथ। पीड़ित सूर्य महादशा में भी। उपाय कब न करें: सूर्य उच्च, स्वराशि, शुभ दृष्टि सहित केन्द्र/त्रिकोण में हो — पहले से बलवान सूर्य को बल देना अहंकारी और दबंग बना सकता है।' },
+  misconceptions: { en: 'Common misconceptions about the Sun: (1) "Sun is always malefic" — Wrong. Sun is a natural benefic for dharma and spiritual growth. Its cruelty burns impurities, like fire purifies gold. (2) "Sun in the 7th house means no marriage" — Exaggeration. It means the ego must learn to share power, but marriage happens, often to a strong-willed partner. (3) "Wearing a Ruby will solve all father issues" — A Ruby amplifies Sun energy. If the Sun is badly placed, amplifying it can worsen ego clashes and authority conflicts. (4) "Sun sign is unimportant in Vedic astrology" — The Sun sign determines your solar month (Masa), your Ayanamsha-adjusted zodiac position, and your relationship with authority. It is very important, just differently weighted than in Western astrology.', hi: 'सूर्य के बारे में आम भ्रान्तियाँ: (1) "सूर्य सदा अशुभ" — गलत। सूर्य धर्म और आध्यात्मिक विकास के लिए स्वाभाविक शुभ। (2) "7वें भाव में सूर्य = विवाह नहीं" — अतिशयोक्ति। अहंकार को शक्ति साझा करना सीखना होता है। (3) "माणिक्य से पिता समस्या हल" — माणिक्य सूर्य ऊर्जा बढ़ाता है, दुर्बल सूर्य को बढ़ाना अहंकार बढ़ा सकता है। (4) "वैदिक ज्योतिष में सूर्य राशि महत्त्वहीन" — भिन्न रूप से महत्त्वपूर्ण।' },
+};
+
 // ─── Significations ────────────────────────────────────────────────────
 const SIGNIFICATIONS = {
   people: { en: 'Father, king, government authority, leader, physician', hi: 'पिता, राजा, सरकारी अधिकारी, नेता, चिकित्सक' },
@@ -135,6 +154,9 @@ const REMEDIES = {
   fasting: { en: 'Sunday fasting — eat only one meal after sunset, or consume only fruits and milk during the day.', hi: 'रविवार का उपवास — केवल सूर्यास्त के बाद एक भोजन करें, या दिन में केवल फल और दूध लें।' },
   worship: { en: 'Offer water (Arghya) to the rising Sun every morning with a copper vessel, adding red flowers and red sandalwood. Recite Aditya Hridayam Stotra. Visit Surya temples on Sundays.', hi: 'प्रतिदिन ताम्र पात्र से उदीयमान सूर्य को अर्घ्य दें, लाल पुष्प और रक्त चन्दन मिलाएँ। आदित्य हृदयम् स्तोत्र का पाठ करें। रविवार को सूर्य मन्दिर जाएँ।' },
   yantra: { en: 'Surya Yantra — a 3×3 magic square with a sum of 15 in each row/column. Install on a copper plate, worship on Sundays.', hi: 'सूर्य यन्त्र — 3×3 जादुई वर्ग जिसमें प्रत्येक पंक्ति/स्तम्भ का योग 15 है। ताम्र पत्र पर स्थापित करें, रविवार को पूजन करें।' },
+  dietary: { en: 'Dietary recommendations for strengthening the Sun: Consume wheat-based foods (roti, bread, daliya), jaggery (gur), saffron-infused milk, honey, cardamom, and dry fruits — especially almonds and walnuts. Avoid excessive salt and sour foods during Surya remedial periods. Eat your main meal during the Sun\'s strongest hours (10 AM to 2 PM). Drink warm water with a pinch of turmeric at sunrise. Foods that are golden, orange, or red in color naturally resonate with Sun energy — oranges, carrots, mangoes, and pomegranates are excellent.', hi: 'सूर्य बल बढ़ाने के आहार: गेहूँ-आधारित खाद्य (रोटी, दलिया), गुड़, केसर-दूध, शहद, इलायची और सूखे मेवे — विशेषतः बादाम और अखरोट। सूर्य उपाय काल में अधिक नमक और खट्टे से बचें। मुख्य भोजन सूर्य की प्रबल अवधि (10 AM - 2 PM) में करें। सूर्योदय पर हल्दी मिश्रित गरम जल पियें। सुनहरे, नारंगी या लाल रंग के फल सूर्य ऊर्जा से अनुकूल।' },
+  colorTherapy: { en: 'Color therapy for the Sun: Wear deep red, copper, orange, or golden-yellow colors on Sundays and during important meetings with authority figures. Avoid dark blue and black on Sundays. Your workspace should have warm lighting — avoid cold fluorescent lights if possible. A copper or gold-colored item on your desk strengthens the Sun\'s influence. The Ruby\'s red color is the concentrated essence of Sun energy, but even wearing a red or orange shirt on Sundays can subtly align you with solar vibrations.', hi: 'सूर्य के लिए रंग चिकित्सा: रविवार और अधिकारियों से मिलते समय गहरा लाल, ताम्र, नारंगी या सुनहरा-पीला पहनें। रविवार को गहरा नीला और काला न पहनें। कार्यस्थल में गरम प्रकाश रखें। मेज पर ताम्र या सुनहरी वस्तु सूर्य प्रभाव बढ़ाती है।' },
+  behavioral: { en: 'Behavioral remedies (most powerful): (1) Wake before sunrise — witnessing dawn aligns you with solar energy daily. (2) Maintain a consistent daily routine — the Sun represents order and regularity. (3) Respect your father and authority figures, even if the relationship is difficult — resistance to authority weakens the Sun. (4) Take leadership responsibility in your community or workplace — the Sun strengthens through use. (5) Practice Surya Namaskar (12 rounds minimum) every morning. (6) Spend 15-20 minutes in morning sunlight (before 9 AM) for vitamin D and solar attunement. (7) Keep your promises — the Sun represents truth (Satya). Breaking promises weakens it. (8) Donate time to governance, civic duty, or community leadership — the Sun rules collective responsibility.', hi: 'व्यवहारिक उपाय (सबसे शक्तिशाली): (1) सूर्योदय से पहले जागें — प्रातःकाल सूर्य ऊर्जा से जुड़ें। (2) नियमित दिनचर्या बनाएँ — सूर्य व्यवस्था और नियमितता है। (3) पिता और अधिकारियों का सम्मान करें। (4) समुदाय या कार्यस्थल में नेतृत्व लें। (5) प्रतिदिन सूर्य नमस्कार (न्यूनतम 12 चक्र)। (6) प्रातः 15-20 मिनट सूर्य प्रकाश में बिताएँ। (7) वचन निभाएँ — सूर्य सत्य है। (8) शासन, नागरिक कर्तव्य में समय दान करें।' },
 };
 
 // ─── Mythology ─────────────────────────────────────────────────────────
@@ -151,6 +173,14 @@ const MYTHOLOGY = {
     en: 'The Gayatri Mantra (Rigveda 3.62.10) is the most sacred hymn dedicated to Savita (the Sun): "Om Bhur Bhuvaḥ Swaḥ, Tat Savitur Varenyam, Bhargo Devasya Dhimahi, Dhiyo Yo Naḥ Prachodayat." It means: "We meditate upon the divine light of the luminous Sun; may it illuminate our intellect."',
     hi: 'गायत्री मन्त्र (ऋग्वेद 3.62.10) सविता (सूर्य) को समर्पित सबसे पवित्र स्तुति है: "ॐ भूर्भुवः स्वः तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात्।" अर्थ: "हम तेजस्वी सूर्य के दिव्य प्रकाश का ध्यान करते हैं; वह हमारी बुद्धि को प्रेरित करे।"',
   },
+  chhathPuja: {
+    en: 'Chhath Puja is the most significant festival dedicated exclusively to Surya, celebrated primarily in Bihar, Jharkhand, and eastern Uttar Pradesh. This four-day festival involves rigorous fasting, standing in water at sunrise and sunset, and offering Arghya to the rising and setting Sun. It is one of the few Hindu festivals where the setting Sun (Astachal ka Surya) is worshipped — symbolizing gratitude not just for life-giving energy but also for the cycle of death and rebirth. The festival honors Chhathi Maiya (Usha, the Sun\'s consort in some traditions) alongside Surya. Makar Sankranti marks the Sun\'s northward journey (Uttarayana) and is celebrated across India as a solar harvest festival.',
+    hi: 'छठ पूजा विशेष रूप से सूर्य को समर्पित सबसे महत्त्वपूर्ण त्योहार है, मुख्यतः बिहार, झारखण्ड और पूर्वी उत्तर प्रदेश में मनाया जाता है। चार दिवसीय उपवास, जल में खड़े होकर सूर्योदय और सूर्यास्त पर अर्घ्य दिया जाता है। यह उन दुर्लभ हिन्दू त्योहारों में है जहाँ अस्त होते सूर्य की भी पूजा होती है। मकर संक्रान्ति सूर्य की उत्तरायण यात्रा का प्रतीक है।',
+  },
+  otherTraditions: {
+    en: 'In Buddhism, the Sun is associated with Vairocana Buddha ("The Illuminator"), whose name derives from the same Sanskrit root as Vivasvan (another name for Surya). In Jain tradition, the Sun is revered as a celestial being (Jyotishi Deva) and Surya Puja is part of the daily ritual for many Jain practitioners. The twelve Adityas (solar deities) correspond to the twelve months of the year and are invoked in the Surya Namaskar (Sun Salutation) sequence of yoga — each of the twelve postures honors one Aditya. The Persian Mithra, the Roman Sol Invictus, and the Egyptian Ra all share symbolic parallels with Vedic Surya — the universal archetype of the divine solar king transcends cultural boundaries.',
+    hi: 'बौद्ध धर्म में सूर्य वैरोचन बुद्ध ("प्रकाशक") से जुड़ा है, जिनका नाम विवस्वान् (सूर्य का अन्य नाम) से व्युत्पन्न। जैन परम्परा में सूर्य ज्योतिषी देव के रूप में पूजित। बारह आदित्य वर्ष के बारह महीनों से सम्बद्ध, सूर्य नमस्कार की बारह मुद्राओं में प्रत्येक एक आदित्य को सम्मानित करती है। पर्शियन मिथ्र, रोमन सोल इनविक्टस और मिस्री रा सभी वैदिक सूर्य से प्रतीकात्मक समानता रखते हैं।',
+  },
 };
 
 // ─── Relationships ─────────────────────────────────────────────────────
@@ -163,6 +193,46 @@ const RELATIONSHIPS = [
   { planet: { en: 'Saturn', hi: 'शनि' }, relation: { en: 'Enemy', hi: 'शत्रु' }, note: { en: 'Father and son in eternal conflict. Sun is authority; Saturn is democracy. Sun is speed; Saturn is delay. Their conjunction or opposition creates intense karmic pressure. Pitru Dosha often involves Sun-Saturn affliction.', hi: 'पिता और पुत्र शाश्वत संघर्ष में। सूर्य अधिकार है; शनि लोकतन्त्र। सूर्य गति है; शनि विलम्ब। इनका संयोग तीव्र कार्मिक दबाव बनाता है।' } },
   { planet: { en: 'Rahu', hi: 'राहु' }, relation: { en: 'Enemy', hi: 'शत्रु' }, note: { en: 'Rahu eclipses the Sun — illusion obscures the soul. Grahan Yoga (Sun-Rahu conjunction) can bring sudden rise followed by fall, or fame with scandal. Father may face unusual challenges.', hi: 'राहु सूर्य को ग्रहण करता है — माया आत्मा को ढकती है। ग्रहण योग (सूर्य-राहु युति) अचानक उत्थान फिर पतन ला सकता है।' } },
   { planet: { en: 'Ketu', hi: 'केतु' }, relation: { en: 'Enemy', hi: 'शत्रु' }, note: { en: 'Ketu detaches from what Sun represents — the ego surrenders. Sun-Ketu conjunction can indicate spiritual awakening but worldly difficulties, especially with father and government.', hi: 'केतु सूर्य के प्रतिनिधित्व से वैराग्य देता है — अहंकार का समर्पण। सूर्य-केतु युति आध्यात्मिक जागृति किन्तु सांसारिक कठिनाइयाँ ला सकती है।' } },
+];
+
+// ─── Key Yogas involving Sun ──────────────────────────────────────────
+const KEY_YOGAS = [
+  {
+    name: { en: 'Budha-Aditya Yoga', hi: 'बुधादित्य योग' },
+    condition: { en: 'Sun and Mercury in the same sign (within 12° for full effect)', hi: 'सूर्य और बुध एक राशि में (पूर्ण प्रभाव हेतु 12° के भीतर)' },
+    effect: { en: 'Brilliant intellect illuminated by purpose. The native has sharp analytical skills combined with strong self-identity. Excellent for academics, administration, and communication. This is extremely common (Mercury is never more than 28° from the Sun), but the strength varies with the degree of separation and whether Mercury is combust. When Mercury is more than 14° from Sun but in the same sign — this yoga is at its best. When Mercury is combust (within 14°) — the intellect becomes subservient to ego rather than independent.',
+      hi: 'उद्देश्य से प्रकाशित प्रतिभाशाली बुद्धि। तीव्र विश्लेषणात्मक कौशल और मजबूत आत्म-पहचान। शिक्षा, प्रशासन और संवाद के लिए उत्कृष्ट। अत्यन्त सामान्य (बुध सूर्य से 28° से अधिक कभी नहीं)। सूर्य से 14° से अधिक दूर किन्तु एक राशि — सर्वोत्तम। 14° के भीतर अस्त — बुद्धि अहंकार के अधीन।' },
+  },
+  {
+    name: { en: 'Veshi Yoga', hi: 'वेशी योग' },
+    condition: { en: 'Any planet (except Moon, Rahu, Ketu) in the 2nd house from the Sun', hi: 'कोई ग्रह (चन्द्र, राहु, केतु को छोड़कर) सूर्य से 2nd भाव में' },
+    effect: { en: 'Wealth and resources support the soul\'s purpose. The planet in the 2nd from Sun indicates what resources the native naturally accumulates. Mars gives property; Venus gives luxury; Jupiter gives wisdom; Mercury gives knowledge; Saturn gives endurance. This yoga indicates that material support comes naturally to express one\'s identity.',
+      hi: 'धन और संसाधन आत्मा के उद्देश्य का समर्थन करते हैं। सूर्य से 2nd में ग्रह बताता है कि जातक स्वाभाविक रूप से क्या संचित करता है। मंगल सम्पत्ति; शुक्र विलास; गुरु ज्ञान; बुध विद्या; शनि सहनशक्ति देता है।' },
+  },
+  {
+    name: { en: 'Vashi Yoga', hi: 'वशी योग' },
+    condition: { en: 'Any planet (except Moon, Rahu, Ketu) in the 12th house from the Sun', hi: 'कोई ग्रह (चन्द्र, राहु, केतु को छोड़कर) सूर्य से 12th भाव में' },
+    effect: { en: 'Resources and energy that were spent or sacrificed before the soul\'s current expression developed. The planet in the 12th from Sun shows what was given up to become who you are. This yoga gives depth to the personality — the native has already paid a price for their identity. It adds gravitas, past-life maturity, and a sense of having "been through something" that others can feel.',
+      hi: 'संसाधन और ऊर्जा जो आत्मा की वर्तमान अभिव्यक्ति से पहले खर्च या समर्पित हुई। सूर्य से 12th में ग्रह बताता है कि आप जो हैं उसके लिए क्या छोड़ा गया। व्यक्तित्व को गहराई, पूर्वजन्म परिपक्वता और गरिमा देता है।' },
+  },
+  {
+    name: { en: 'Ubhayachari Yoga', hi: 'उभयचारी योग' },
+    condition: { en: 'Planets on BOTH sides of the Sun (in 2nd and 12th from Sun)', hi: 'सूर्य के दोनों ओर ग्रह (सूर्य से 2nd और 12th में)' },
+    effect: { en: 'The most powerful of the solar yogas. The Sun is flanked by resources on both sides — past investment and future accumulation protect and empower the soul. The native has a strong sense of destiny, abundant resources, and a personality that commands respect naturally. This yoga produces leaders who feel "chosen" for their role — their past prepared them and their future supports them.',
+      hi: 'सौर योगों में सबसे शक्तिशाली। सूर्य दोनों ओर से संसाधनों से घिरा — पूर्व निवेश और भविष्य संचय आत्मा की रक्षा और शक्ति प्रदान करते हैं। जातक में भाग्य की प्रबल भावना, प्रचुर संसाधन और स्वाभाविक सम्मान। ऐसे नेता जो अपनी भूमिका के लिए "चुने" महसूस करते हैं।' },
+  },
+  {
+    name: { en: 'Grahan Yoga (Sun-Rahu)', hi: 'ग्रहण योग (सूर्य-राहु)' },
+    condition: { en: 'Sun conjunct Rahu within 12° in the same sign', hi: 'सूर्य और राहु एक राशि में 12° के भीतर युति' },
+    effect: { en: 'The soul is eclipsed by illusion, ambition, and unconventional desires. Can give sudden fame followed by scandal, rise through deception, or an identity crisis where the native doesn\'t know what is real about themselves versus what is performance. Father may have unusual or foreign connections. Government dealings involve hidden complications. In positive expression: breaking free from restrictive tradition, innovative leadership, and cross-cultural identity that enriches rather than confuses.',
+      hi: 'आत्मा माया, महत्वाकांक्षा और अपरम्परागत इच्छाओं से ग्रस्त। अचानक यश फिर कलंक, छल से उत्थान, या पहचान संकट। पिता के असामान्य या विदेशी सम्बन्ध। सकारात्मक: प्रतिबन्धक परम्परा से मुक्ति, नवाचारी नेतृत्व, समृद्ध करने वाली बहुसांस्कृतिक पहचान।' },
+  },
+  {
+    name: { en: 'Pitru Dosha (Sun-Saturn)', hi: 'पितृ दोष (सूर्य-शनि)' },
+    condition: { en: 'Sun conjunct, aspected by, or in exchange with Saturn; or Sun in Saturn\'s signs', hi: 'सूर्य शनि से युत, दृष्ट, या परिवर्तन में; या शनि की राशि में' },
+    effect: { en: 'Ancestral karma related to the father lineage manifests as recurring obstacles in authority, career, and father\'s health. The native may experience chronic delays in recognition, conflicts with government, or feel perpetually undervalued despite competence. Remedies focus on ancestral propitiation (Pitru Tarpan, Shraddha rituals). This dosha diminishes after age 36 (Saturn return) when the native learns to build authority through patience rather than birthright.',
+      hi: 'पैतृक वंश का कर्म अधिकार, करियर और पिता स्वास्थ्य में बार-बार बाधाओं के रूप में। मान्यता में दीर्घकालिक विलम्ब, सरकार से संघर्ष। उपाय पितृ तर्पण, श्राद्ध। यह दोष 36 वर्ष (शनि प्रत्यावर्तन) के बाद कम होता है जब धैर्य से अधिकार बनाना सीखा जाता है।' },
+  },
 ];
 
 // ─── Cross-reference links ─────────────────────────────────────────────
@@ -227,7 +297,21 @@ export default function SuryaPage() {
         <ClassicalReference shortName="BPHS" chapter="Ch. 3 — Graha Visheshaphala" />
       </LessonSection>
 
-      {/* ── 2. Dignities ── */}
+      {/* ── 2. Astronomical Profile ── */}
+      <LessonSection number={next()} title={ml({ en: 'Astronomical Profile', hi: 'खगोलीय परिचय' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'Understanding the Sun\'s astronomical behavior deepens our appreciation of its astrological symbolism. The Sun\'s remarkable consistency in motion, its role as the gravitational center, and its unique property of never retrograding all have direct astrological parallels.', hi: 'सूर्य के खगोलीय व्यवहार को समझना उसके ज्योतिषीय प्रतीकवाद की हमारी समझ को गहरा करता है। गति में उल्लेखनीय स्थिरता, गुरुत्वाकर्षण केन्द्र की भूमिका, और कभी वक्री न होने का अद्वितीय गुण — सभी के प्रत्यक्ष ज्योतिषीय समानान्तर हैं।' })}</p>
+        <div className="space-y-3">
+          {Object.entries(ASTRONOMICAL).map(([key, val]) => (
+            <div key={key} className="bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-gold-primary/10 rounded-xl p-4">
+              <h4 className="text-gold-light font-bold text-sm mb-2 capitalize" style={hf}>{key.replace(/([A-Z])/g, ' $1').trim()}</h4>
+              <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(val)}</p>
+            </div>
+          ))}
+        </div>
+        <ClassicalReference shortName="Surya Siddhanta" chapter="Ch. 1 — Mean motions of the planets" />
+      </LessonSection>
+
+      {/* ── 3. Dignities ── */}
       <LessonSection number={next()} title={ml({ en: 'Dignities & Strength', hi: 'गरिमा एवं बल' })}>
         <p style={bf}>{ml({ en: 'A planet\'s dignity determines whether it can express its full potential or is constrained. Sun in Aries at 10° is at the peak of its power — here the soul burns brightest with courage and initiative. In Libra at 10°, the Sun struggles — the ego dissolves in the desire to please others, compromising personal authority.', hi: 'ग्रह की गरिमा यह निर्धारित करती है कि वह अपनी पूर्ण क्षमता व्यक्त कर सकता है या बाधित है। मेष में 10° पर सूर्य अपनी शक्ति के शिखर पर है। तुला में 10° पर सूर्य संघर्ष करता है।' })}</p>
         <div className="space-y-2 mt-4">
@@ -292,7 +376,36 @@ export default function SuryaPage() {
         </div>
       </LessonSection>
 
-      {/* ── 6. Planetary Relationships ── */}
+      {/* ── 7. Practical Application ── */}
+      <LessonSection number={next()} title={ml({ en: 'Practical Application', hi: 'व्यावहारिक अनुप्रयोग' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'Theory without application is incomplete. This section helps you assess the Sun\'s real impact in your own chart, recognize the signs of a strong versus weak Sun in daily life, and understand when remedies are appropriate versus unnecessary.', hi: 'अनुप्रयोग के बिना सिद्धान्त अपूर्ण है। यह खण्ड आपको अपनी कुण्डली में सूर्य के वास्तविक प्रभाव का आकलन करने, दैनिक जीवन में बलवान बनाम दुर्बल सूर्य के संकेतों को पहचानने, और समझने में सहायता करता है कि उपाय कब उचित हैं।' })}</p>
+        <div className="space-y-4">
+          <div className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/15 rounded-xl p-5">
+            <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'How to Assess Sun\'s Strength', hi: 'सूर्य के बल का आकलन कैसे करें' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.assessStrength)}</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-emerald-500/5 border border-emerald-500/15 rounded-xl p-4">
+              <h4 className="text-emerald-400 font-bold text-sm mb-2" style={hf}>{ml({ en: 'Signs of a Strong Sun', hi: 'बलवान सूर्य के संकेत' })}</h4>
+              <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.strongIndicators)}</p>
+            </div>
+            <div className="bg-red-500/5 border border-red-500/15 rounded-xl p-4">
+              <h4 className="text-red-400 font-bold text-sm mb-2" style={hf}>{ml({ en: 'Signs of a Weak Sun', hi: 'दुर्बल सूर्य के संकेत' })}</h4>
+              <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.weakIndicators)}</p>
+            </div>
+          </div>
+          <div className="bg-bg-primary/50 rounded-lg border border-gold-primary/10 p-4">
+            <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'When to Seek Remedies', hi: 'उपाय कब करें' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.whenToRemediate)}</p>
+          </div>
+          <div className="bg-amber-500/5 border border-amber-500/15 rounded-xl p-4">
+            <h4 className="text-amber-400 font-bold text-sm mb-2" style={hf}>{ml({ en: 'Common Misconceptions', hi: 'आम भ्रान्तियाँ' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(PRACTICAL.misconceptions)}</p>
+          </div>
+        </div>
+      </LessonSection>
+
+      {/* ── 8. Planetary Relationships ── */}
       <LessonSection number={next()} title={ml({ en: 'Relationships with Other Planets', hi: 'अन्य ग्रहों के साथ सम्बन्ध' })}>
         <p style={bf} className="mb-4">{ml({ en: 'Surya\'s friendships and enmities define how planetary conjunctions and aspects play out. A friend\'s conjunction enhances; an enemy\'s creates friction. These relationships form the basis of Pancha Dha Maitri (five-fold friendship) used in compatibility and transit analysis.', hi: 'सूर्य की मैत्री और शत्रुता यह निर्धारित करती है कि ग्रह युति और दृष्टि कैसे प्रकट होती है। मित्र की युति वृद्धि करती है; शत्रु की घर्षण पैदा करती है। ये सम्बन्ध पंचधा मैत्री का आधार हैं।' })}</p>
         <div className="space-y-3">
@@ -313,7 +426,22 @@ export default function SuryaPage() {
         <ClassicalReference shortName="BPHS" chapter="Ch. 3 v.23-26 — Naisargika Maitri" />
       </LessonSection>
 
-      {/* ── 7. Remedies ── */}
+      {/* ── Key Yogas Involving Sun ── */}
+      <LessonSection number={next()} title={ml({ en: 'Key Yogas Involving Surya', hi: 'सूर्य से सम्बन्धित प्रमुख योग' })}>
+        <p style={bf} className="mb-4">{ml({ en: 'The Sun participates in several important yogas (planetary combinations) that significantly modify chart results. These yogas are formed by the Sun\'s relationship with other planets by conjunction, sign placement, or house distance. Understanding these yogas helps interpret the Sun\'s role beyond simple sign/house analysis.', hi: 'सूर्य कई महत्त्वपूर्ण योगों (ग्रह संयोजनों) में भाग लेता है जो कुण्डली परिणामों को महत्त्वपूर्ण रूप से संशोधित करते हैं। ये योग सूर्य के अन्य ग्रहों से युति, राशि स्थिति, या भाव दूरी से बनते हैं। इन योगों को समझना राशि/भाव विश्लेषण से परे सूर्य की भूमिका की व्याख्या में सहायक है।' })}</p>
+        <div className="space-y-4">
+          {KEY_YOGAS.map((yoga, i) => (
+            <div key={i} className="bg-gradient-to-br from-[#2d1b69]/25 via-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+              <h4 className="text-gold-light font-bold text-sm mb-1" style={hf}>{ml(yoga.name)}</h4>
+              <p className="text-gold-dark text-xs mb-2 italic" style={bf}>{ml(yoga.condition)}</p>
+              <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(yoga.effect)}</p>
+            </div>
+          ))}
+        </div>
+        <ClassicalReference shortName="BPHS" chapter="Ch. 34 — Yogas from Sun" />
+      </LessonSection>
+
+      {/* ── Remedies ── */}
       <LessonSection number={next()} title={ml({ en: 'Remedies for Sun', hi: 'सूर्य के उपाय' })}>
         <p style={bf} className="mb-4">{ml({ en: 'Remedies are prescribed when Sun is weak, afflicted, or poorly placed in the birth chart. A strong Sun generally does not need remedies. Consult a qualified Jyotishi before wearing gemstones, as an incorrectly prescribed remedy can amplify problems.', hi: 'उपाय तब निर्धारित किये जाते हैं जब सूर्य दुर्बल, पीड़ित या कुण्डली में अशुभ स्थान पर हो। बलवान सूर्य को प्रायः उपाय की आवश्यकता नहीं। रत्न धारण से पूर्व योग्य ज्योतिषी से परामर्श करें।' })}</p>
 
@@ -333,6 +461,9 @@ export default function SuryaPage() {
           { key: 'fasting', icon: '🍽', title: { en: 'Fasting (Upavasa)', hi: 'उपवास' } },
           { key: 'worship', icon: '🔱', title: { en: 'Worship & Arghya', hi: 'पूजा एवं अर्घ्य' } },
           { key: 'yantra', icon: '🔲', title: { en: 'Surya Yantra', hi: 'सूर्य यन्त्र' } },
+          { key: 'dietary', icon: '🍞', title: { en: 'Dietary Recommendations', hi: 'आहार अनुशंसाएँ' } },
+          { key: 'colorTherapy', icon: '🎨', title: { en: 'Color Therapy', hi: 'रंग चिकित्सा' } },
+          { key: 'behavioral', icon: '🏃', title: { en: 'Behavioral Remedies', hi: 'व्यवहारिक उपाय' } },
         ].map(({ key, title }) => (
           <div key={key} className="bg-bg-primary/50 rounded-lg border border-gold-primary/10 p-4 mb-3">
             <h4 className="text-gold-light font-bold text-sm mb-1" style={hf}>{ml(title)}</h4>
@@ -358,6 +489,14 @@ export default function SuryaPage() {
           <div>
             <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Sacred Temples', hi: 'पवित्र मन्दिर' })}</h4>
             <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(MYTHOLOGY.temples)}</p>
+          </div>
+          <div>
+            <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Chhath Puja & Solar Festivals', hi: 'छठ पूजा एवं सौर त्योहार' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(MYTHOLOGY.chhathPuja)}</p>
+          </div>
+          <div>
+            <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{ml({ en: 'Surya in Other Traditions', hi: 'अन्य परम्पराओं में सूर्य' })}</h4>
+            <p className="text-text-primary text-sm leading-relaxed" style={bf}>{ml(MYTHOLOGY.otherTraditions)}</p>
           </div>
         </div>
         <ClassicalReference shortName="Surya Siddhanta" chapter="Astronomical foundation of solar calculations" />

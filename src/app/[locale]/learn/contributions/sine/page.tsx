@@ -7,6 +7,9 @@ import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
+export const revalidate = 604800; // 7 days — static educational content
+
+
 const JYA_TABLE = [
   { deg: '3.75°', aryabhata: '225', modern: '224.86', error: '0.06%' },
   { deg: '7.50°', aryabhata: '449', modern: '448.75', error: '0.05%' },

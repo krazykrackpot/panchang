@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
+export const revalidate = 604800; // 7 days — static text page
+
 const LABELS = {
   en: {
     title: 'Terms of Service',

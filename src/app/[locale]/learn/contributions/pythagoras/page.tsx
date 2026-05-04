@@ -7,6 +7,9 @@ import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/contributions-pythagoras.json';
 
+export const revalidate = 604800; // 7 days — static educational content
+
+
 
 /* ════════════════════════════════════════════════════════════════
    DATA

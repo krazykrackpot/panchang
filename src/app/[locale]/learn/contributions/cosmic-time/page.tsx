@@ -7,6 +7,9 @@ import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
+export const revalidate = 604800; // 7 days — static educational content
+
+
 /* ════════════════════════════════════════════════════════════════
    LABELS — bilingual (en / hi)
    ════════════════════════════════════════════════════════════════ */

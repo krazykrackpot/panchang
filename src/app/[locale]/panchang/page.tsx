@@ -17,6 +17,8 @@ import { getLatestVideo } from '@/lib/youtube/latest-video';
 import type { PanchangData } from '@/types/panchang';
 import PanchangClient from './PanchangClient';
 
+export const revalidate = 1800; // 30 min — balances freshness with CPU savings
+
 // ---------------------------------------------------------------------------
 // Server-side panchang computation
 // ---------------------------------------------------------------------------

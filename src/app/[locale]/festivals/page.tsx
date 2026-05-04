@@ -2,6 +2,8 @@ import { getLocale } from 'next-intl/server';
 import { Link } from '@/lib/i18n/navigation';
 import { Calendar, Sparkles, MapPin, ChevronRight } from 'lucide-react';
 
+export const revalidate = 86400; // 24 hours — festival listing changes rarely
+
 // ─── Festival data ────────────────────────────────────────────────────────────
 
 const FESTIVALS = [

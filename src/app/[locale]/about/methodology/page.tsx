@@ -2,6 +2,8 @@ import { getLocale } from 'next-intl/server';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+
+export const revalidate = 604800; // 7 days — static text page
 import {
   Calculator,
   Sun,

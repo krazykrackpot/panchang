@@ -4,6 +4,8 @@ import { generatePersonLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { Mail, Globe, Code, BookOpen, Calculator, Shield } from 'lucide-react';
 
+export const revalidate = 604800; // 7 days — static text page
+
 // ---------------------------------------------------------------------------
 // Inline multilingual content — server component, fully SSR for AdSense bot
 // ---------------------------------------------------------------------------

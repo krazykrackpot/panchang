@@ -11,6 +11,8 @@ import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { PanchangData } from '@/types/panchang';
 
+export const revalidate = 3600; // 1 hour — panchang data changes daily but 1hr cache is fine
+
 // ─── Locale text helper ───
 function L(texts: { en: string; hi: string; sa?: string; ta?: string; te?: string; bn?: string; kn?: string; mr?: string; gu?: string; mai?: string }, locale: string): string {
   if (locale === 'mr' && texts.mr) return texts.mr;

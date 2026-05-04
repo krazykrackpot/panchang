@@ -7,6 +7,9 @@ import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
+export const revalidate = 604800; // 7 days — static educational content
+
+
 const SCHOOL_CHAIN = [
   { name: 'Madhava', years: 'c. 1340–1425 CE', contrib: { en: 'π series, sin/cos/arctan series, correction terms', hi: 'π श्रेणी, sin/cos/arctan श्रेणी, सुधार पद', sa: 'π श्रेणी, sin/cos/arctan श्रेणी, सुधार पद', mai: 'π श्रेणी, sin/cos/arctan श्रेणी, सुधार पद', mr: 'π श्रेणी, sin/cos/arctan श्रेणी, सुधार पद', ta: 'π தொடர், sin/cos/arctan தொடர், திருத்தச் சொற்கள்', te: 'π శ్రేణి, sin/cos/arctan శ్రేణి, సవరణ పదాలు', bn: 'π ধারা, sin/cos/arctan ধারা, সংশোধন পদ', kn: 'π ಸರಣಿ, sin/cos/arctan ಸರಣಿ, ತಿದ್ದುಪಡಿ ಪದಗಳು', gu: 'π શ્રેણી, sin/cos/arctan શ્રેણી, સુધારા પદ' } },
   { name: 'Parameshvara', years: 'c. 1380–1460 CE', contrib: { en: 'Drigganita system, eclipse observations, mean motion corrections', hi: 'दृग्गणित प्रणाली, ग्रहण अवलोकन, मध्यम गति सुधार', sa: 'दृग्गणित प्रणाली, ग्रहण अवलोकन, मध्यम गति सुधार', mai: 'दृग्गणित प्रणाली, ग्रहण अवलोकन, मध्यम गति सुधार', mr: 'दृग्गणित प्रणाली, ग्रहण अवलोकन, मध्यम गति सुधार', ta: 'திருக்கணித முறை, கிரகண அவதானிப்புகள், சராசரி இயக்கத் திருத்தங்கள்', te: 'దృగ్గణిత వ్యవస్థ, గ్రహణ పరిశీలనలు, సగటు చలన సవరణలు', bn: 'দৃগ্গণিত পদ্ধতি, গ্রহণ পর্যবেক্ষণ, গড় গতি সংশোধন', kn: 'ದೃಗ್ಗಣಿತ ವ್ಯವಸ್ಥೆ, ಗ್ರಹಣ ಅವಲೋಕನಗಳು, ಸರಾಸರಿ ಚಲನೆ ತಿದ್ದುಪಡಿಗಳು', gu: 'દૃગ્ગણિત પદ્ધતિ, ગ્રહણ નિરીક્ષણો, સરેરાશ ગતિ સુધારા' } },

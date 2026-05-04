@@ -9,6 +9,8 @@ import Link from 'next/link';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
+export const revalidate = 86400; // 24 hours — daily page for a past date is permanent
+
 const HOROSCOPE_LABELS: Record<string, Record<string, string>> = {
   en: { heading: "Today's Horoscope by Rashi", score: 'Score', lucky: 'Lucky', readMore: 'Read more' },
   hi: { heading: 'आज का राशिफल', score: 'स्कोर', lucky: 'भाग्यशाली', readMore: 'और पढ़ें' },

@@ -5,6 +5,9 @@ import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
 
+export const revalidate = 604800; // 7 days — static educational content
+
+
 /* ════════════════════════════════════════════════════════════════
    TIMELINE DATA
    ════════════════════════════════════════════════════════════════ */

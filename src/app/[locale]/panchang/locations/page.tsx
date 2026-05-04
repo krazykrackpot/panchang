@@ -5,6 +5,8 @@ import { type CityData } from '@/lib/constants/cities';
 import { ALL_CITIES } from '@/lib/constants/cities-extended';
 import { isDevanagariLocale, getHeadingFont } from '@/lib/utils/locale-fonts';
 
+export const revalidate = 604800; // 7 days — city listing is static
+
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
 /** Locale-aware city name with en fallback */

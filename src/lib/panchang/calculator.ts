@@ -12,8 +12,9 @@ import { dateToJD, normalizeAngle } from '../astronomy/julian';
 import { getSolarPosition } from '../astronomy/solar';
 import { getLunarPosition } from '../astronomy/lunar';
 import { getSunTimes } from '../astronomy/sunrise';
-import { getAyanamsa, tropicalToSidereal } from '../astronomy/ayanamsa';
-import type { AyanamsaType } from '../astronomy/ayanamsa';
+import { getAyanamsha as getAyanamsa, toSidereal as _toSidereal, type AyanamshaType as AyanamsaType } from '../ephem/astronomical';
+/** Adapter: Module B's toSidereal takes (lon, jd, ayanamsha?) — we have pre-computed ayanamsha. */
+const tropicalToSidereal = (lon: number, ayanamsa: number) => _toSidereal(lon, 0, ayanamsa);
 import {
   type PanchangData, type TithiInfo, type NakshatraInfo, type YogaInfo, type KaranaInfo, type RahuKalamInfo,
   TITHI_NAMES, TITHI_DEITIES, NAKSHATRA_DATA, YOGA_DATA, KARANA_NAMES,

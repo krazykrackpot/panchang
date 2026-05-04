@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { getAyanamsa, type AyanamsaType } from '@/lib/astronomy/ayanamsa';
+import { getAyanamsha as getAyanamsa, type AyanamshaType as AyanamsaType } from '@/lib/ephem/astronomical';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import type { KundaliData, PlanetPosition } from '@/types/kundali';
@@ -16,7 +16,7 @@ import type { SubLordInfo } from '@/types/kp';
 const AYANAMSHA_SYSTEMS: { key: AyanamsaType; label: string; desc: string }[] = [
   { key: 'lahiri', label: 'Lahiri', desc: 'Chitrapaksha — IAU standard, most widely used in India' },
   { key: 'raman', label: 'Raman', desc: 'B.V. Raman — popular in South India' },
-  { key: 'krishnamurti', label: 'KP', desc: 'Krishnamurti Paddhati — used in KP system' },
+  { key: 'kp', label: 'KP', desc: 'Krishnamurti Paddhati — used in KP system' },
 ];
 
 interface AyanamshaComparisonProps {
@@ -31,7 +31,7 @@ interface PlanetRow {
   positions: {
     lahiri: number;
     raman: number;
-    krishnamurti: number;
+    kp: number;
   };
   /** true if any system puts the planet in a different sign */
   hasSignChange: boolean;
@@ -266,7 +266,7 @@ function SignShiftCommentary({ planets, locale }: { planets: PlanetRow[]; locale
         {shifted.map((row) => {
           const lahiriSign = Math.floor(((row.positions.lahiri % 360) + 360) % 360 / 30);
           const ramanSign = Math.floor(((row.positions.raman % 360) + 360) % 360 / 30);
-          const kpSign = Math.floor(((row.positions.krishnamurti % 360) + 360) % 360 / 30);
+          const kpSign = Math.floor(((row.positions.kp % 360) + 360) % 360 / 30);
           const commentary = getSignShiftCommentary(row.id, row.name, lahiriSign, ramanSign, kpSign, locale);
           if (!commentary) return null;
 
@@ -476,7 +476,7 @@ export default function AyanamshaComparison({ kundali, locale }: AyanamshaCompar
     const jd = kundali.julianDay;
     const lahiriAya = kundali.ayanamshaValue;
     const ramanAya = getAyanamsa(jd, 'raman');
-    const kpAya = getAyanamsa(jd, 'krishnamurti');
+    const kpAya = getAyanamsa(jd, 'kp');
 
     // Compute planet rows
     const planetRows: PlanetRow[] = kundali.planets.map((p: PlanetPosition) => {
@@ -496,7 +496,7 @@ export default function AyanamshaComparison({ kundali, locale }: AyanamshaCompar
       return {
         id: p.planet.id,
         name: tl(p.planet.name, locale),
-        positions: { lahiri: lahiriLong, raman: ramanLong, krishnamurti: kpLong },
+        positions: { lahiri: lahiriLong, raman: ramanLong, kp: kpLong },
         hasSignChange: lahiriSign !== ramanSign || lahiriSign !== kpSign,
         kpSubLord,
       };
@@ -514,7 +514,7 @@ export default function AyanamshaComparison({ kundali, locale }: AyanamshaCompar
     planetRows.push({
       id: -1,
       name: locale === 'hi' ? 'लग्न' : 'Lagna',
-      positions: { lahiri: ascLong, raman: ramanAsc, krishnamurti: kpAsc },
+      positions: { lahiri: ascLong, raman: ramanAsc, kp: kpAsc },
       hasSignChange: lahiriAscSign !== ramanAscSign || lahiriAscSign !== kpAscSign,
       kpSubLord: getSubLordForDegree(kpAsc),
     });
@@ -538,7 +538,7 @@ export default function AyanamshaComparison({ kundali, locale }: AyanamshaCompar
       ayanamshaValues: {
         lahiri: lahiriAya,
         raman: ramanAya,
-        krishnamurti: kpAya,
+        kp: kpAya,
       },
       cuspalSubLords,
     };
@@ -553,7 +553,7 @@ export default function AyanamshaComparison({ kundali, locale }: AyanamshaCompar
       {/* Ayanamsha values */}
       <div className="grid grid-cols-3 gap-3 mb-6">
         {AYANAMSHA_SYSTEMS.map((sys) => {
-          const deg = rows.ayanamshaValues[sys.key];
+          const deg = (rows.ayanamshaValues as Record<string, number>)[sys.key];
           const d = Math.floor(deg);
           const m = Math.floor((deg - d) * 60);
           const s = Math.round(((deg - d) * 60 - m) * 60);
@@ -586,7 +586,7 @@ export default function AyanamshaComparison({ kundali, locale }: AyanamshaCompar
             {rows.planets.map((row) => {
               const lahiri = formatPosition(row.positions.lahiri, locale);
               const raman = formatPosition(row.positions.raman, locale);
-              const kp = formatPosition(row.positions.krishnamurti, locale);
+              const kp = formatPosition(row.positions.kp, locale);
 
               return (
                 <tr

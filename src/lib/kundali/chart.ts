@@ -7,7 +7,9 @@ import { dateToJD } from '../astronomy/julian';
 import { getSolarPosition, getLST, getObliquity } from '../astronomy/solar';
 import { getLunarPosition } from '../astronomy/lunar';
 import { getAllPlanetPositions, type PlanetId } from '../astronomy/planets';
-import { getAyanamsa, tropicalToSidereal, type AyanamsaType } from '../astronomy/ayanamsa';
+import { getAyanamsha as getAyanamsa, toSidereal as _toSidereal, type AyanamshaType as AyanamsaType } from '../ephem/astronomical';
+/** Adapter: Module B's toSidereal takes (lon, jd, ayanamsha?) — we have pre-computed ayanamsha. */
+const tropicalToSidereal = (lon: number, ayanamsa: number) => _toSidereal(lon, 0, ayanamsa);
 import { degToRad, radToDeg, normalizeAngle } from '../astronomy/julian';
 import { RASHI_NAMES, RASHI_NAMES_SANSKRIT, NAKSHATRA_DATA } from '../panchang/types';
 import { calculateDashas } from './dasha';

@@ -14,7 +14,7 @@ import {
   getNakshatraNumber,
   formatDegrees,
 } from '@/lib/ephem/astronomical';
-import { getAyanamsa } from '@/lib/astronomy/ayanamsa';
+import { getAyanamsha as getAyanamsa } from '@/lib/ephem/astronomical';
 import { computeCombust } from '@/lib/ephem/coordinates';
 import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
@@ -39,7 +39,7 @@ import { getRulingPlanets } from './ruling-planets';
 // ---------------------------------------------------------------------------
 
 function kpAyanamsha(jd: number): number {
-  return getAyanamsa(jd, 'krishnamurti');
+  return getAyanamsa(jd, 'kp'); // 'kp' = Krishnamurti Paddhati — same polynomial as the old 'krishnamurti' key
 }
 
 // ---------------------------------------------------------------------------

@@ -1,5 +1,5 @@
 import type { PlanetId } from '../astronomy/planets';
-import type { AyanamsaType } from '../astronomy/ayanamsa';
+import type { AyanamshaType as AyanamsaType } from '../ephem/astronomical';
 
 export type GrahaId = 'sun' | 'moon' | PlanetId;
 

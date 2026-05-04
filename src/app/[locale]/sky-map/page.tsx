@@ -8,7 +8,9 @@ import { useLocationStore } from '@/stores/location-store';
 import { dateToJD } from '@/lib/astronomy/julian';
 import { getPlanetaryPositions, normalizeDeg } from '@/lib/ephem/astronomical';
 import { eclipticToEquatorial, computePlanetLatitude, equatorialToHorizontal } from '@/lib/ephem/coordinates';
-import { getAyanamsa, tropicalToSidereal } from '@/lib/astronomy/ayanamsa';
+import { getAyanamsha as getAyanamsa, toSidereal as _toSidereal } from '@/lib/ephem/astronomical';
+/** Adapter: Module B's toSidereal takes (lon, jd, ayanamsha?) — we have pre-computed ayanamsha. */
+const tropicalToSidereal = (lon: number, ayanamsa: number) => _toSidereal(lon, 0, ayanamsa);
 import { GRAHAS } from '@/lib/constants/grahas';
 import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';

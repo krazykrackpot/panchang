@@ -22,6 +22,13 @@ const ACTIVITIES: ExtendedActivityId[] = [
   'surgery', 'relocation',
 ];
 
+interface FactorVerdict {
+  factor: string;       // e.g. "Tithi", "Nakshatra"
+  value: string;        // e.g. "Panchami (Shukla)"
+  verdict: 'good' | 'neutral' | 'bad';
+  reason: string;       // e.g. "Auspicious per Muhurta Chintamani Ch. 6"
+}
+
 interface DaySummary {
   date: string;
   bestScore: number;
@@ -41,6 +48,8 @@ interface DaySummary {
   nakshatra?: string;
   /** Weekday name */
   vara?: string;
+  /** Per-factor verdicts explaining WHY this day is auspicious or not */
+  factors?: FactorVerdict[];
 }
 
 function qualityFromScore(score: number): DaySummary['quality'] {
@@ -93,6 +102,91 @@ export async function GET(req: NextRequest) {
   // Reference: Prokerala/AstroYogi show ~8 marriage days in May 2026. Score >= 50 gives ~10-12.
   const windows = allWindows.filter(w => w.score >= 50);
 
+  // Activity rules for factor verdicts
+  const rules = getExtendedActivity(activity);
+
+  // Inauspicious yogas (MC Ch. 6)
+  const INAUSPICIOUS_YOGAS = new Set([1, 6, 9, 10, 13, 15, 17, 19, 27]);
+  // Vara names for display
+  const VARA_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  /** Build per-factor verdicts explaining why this day scored as it did */
+  function buildFactorVerdicts(w: typeof windows[0]): FactorVerdict[] {
+    const ctx = w.panchangContext;
+    if (!ctx || !rules) return [];
+
+    const factors: FactorVerdict[] = [];
+    const paksha = ctx.paksha === 'shukla' ? 'Shukla' : 'Krishna';
+
+    // 1. Tithi
+    // Map tithi name back to number for rule checking
+    const TITHI_NUMS: Record<string, number> = {
+      'Pratipada': 1, 'Dwitiya': 2, 'Tritiya': 3, 'Chaturthi': 4, 'Panchami': 5,
+      'Shashthi': 6, 'Saptami': 7, 'Ashtami': 8, 'Navami': 9, 'Dashami': 10,
+      'Ekadashi': 11, 'Dwadashi': 12, 'Trayodashi': 13, 'Chaturdashi': 14, 'Purnima/Amavasya': 15,
+    };
+    const tithiNum = TITHI_NUMS[ctx.tithiName] ?? 0;
+    const tithiInGood = rules.goodTithis.includes(tithiNum);
+    const tithiInAvoid = rules.avoidTithis.includes(tithiNum);
+    factors.push({
+      factor: 'Tithi',
+      value: `${ctx.tithiName} (${paksha})`,
+      verdict: tithiInAvoid ? 'bad' : tithiInGood ? 'good' : 'neutral',
+      reason: tithiInAvoid ? 'Rikta tithi — avoided per MC Ch. 6'
+        : tithiInGood && ctx.paksha === 'shukla' ? 'Auspicious tithi in Shukla Paksha'
+        : tithiInGood ? 'Auspicious tithi, but Krishna Paksha reduces strength'
+        : 'Neutral tithi',
+    });
+
+    // 2. Nakshatra
+    // Map name to number (approximate — using the scanner's internal data)
+    const nakInGood = w.breakdown.nakshatra > 10;
+    const nakInAvoid = rules.hardAvoidNakshatras?.includes(0); // We don't have the number here, use breakdown
+    factors.push({
+      factor: 'Nakshatra',
+      value: ctx.nakshatraName,
+      verdict: nakInGood ? 'good' : 'neutral',
+      reason: nakInGood
+        ? `Favourable for ${activity} per MC Ch. 6`
+        : 'Neutral nakshatra — not among the most auspicious',
+    });
+
+    // 3. Yoga
+    const yogaScore = w.breakdown.yoga;
+    factors.push({
+      factor: 'Yoga',
+      value: ctx.yogaName,
+      verdict: yogaScore > 14 ? 'good' : yogaScore < 6 ? 'bad' : 'neutral',
+      reason: yogaScore < 6
+        ? 'Inauspicious yoga per MC Ch. 6 (one of 9 Ashubh Yogas)'
+        : yogaScore > 14 ? 'Favourable yoga' : 'Neutral yoga',
+    });
+
+    // 4. Karana
+    factors.push({
+      factor: 'Karana',
+      value: ctx.karanaName,
+      verdict: w.breakdown.karana > 6 ? 'good' : w.breakdown.karana < 3 ? 'bad' : 'neutral',
+      reason: ctx.karanaName === 'Vishti' ? 'Vishti (Bhadra) — most inauspicious karana'
+        : w.breakdown.karana > 6 ? 'Favourable chara karana' : 'Neutral',
+    });
+
+    // 5. Lagna
+    if (w.breakdown.lagna > 0) {
+      factors.push({
+        factor: 'Lagna',
+        value: `Score ${w.breakdown.lagna}/8`,
+        verdict: w.breakdown.lagna >= 6 ? 'good' : w.breakdown.lagna <= 1 ? 'bad' : 'neutral',
+        reason: w.breakdown.lagna >= 6
+          ? 'Excellent lagna per MC — "removes all other defects"'
+          : w.breakdown.lagna <= 1 ? 'Unfavourable lagna (Mars/Saturn-ruled)'
+          : 'Acceptable lagna',
+      });
+    }
+
+    return factors;
+  }
+
   // Group windows by date → day summaries
   const dayMap = new Map<string, DaySummary>();
 
@@ -100,7 +194,6 @@ export async function GET(req: NextRequest) {
     const existing = dayMap.get(w.date);
     if (!existing || w.score > existing.bestScore) {
       // Derive Panchanga Shuddhi (0-5) from V2 breakdown sub-scores
-      // Each sub-score > 10 (out of 20) = favorable → counts as 1 shuddhi point
       const bd = w.breakdown;
       const shuddhi = bd
         ? [bd.tithi > 10, bd.nakshatra > 10, bd.yoga > 10, bd.karana > 5, bd.taraBala > 5].filter(Boolean).length
@@ -121,6 +214,7 @@ export async function GET(req: NextRequest) {
         chandraBala: w.chandraBala,
         tithi: w.panchangContext?.tithiName,
         nakshatra: w.panchangContext?.nakshatraName,
+        factors: buildFactorVerdicts(w),
       });
     } else {
       existing.windowCount++;

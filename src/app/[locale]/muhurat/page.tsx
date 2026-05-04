@@ -23,6 +23,13 @@ const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string
 // Types
 // ---------------------------------------------------------------------------
 
+interface FactorVerdict {
+  factor: string;
+  value: string;
+  verdict: 'good' | 'neutral' | 'bad';
+  reason: string;
+}
+
 interface DaySummary {
   date: string;
   bestScore: number;
@@ -34,6 +41,7 @@ interface DaySummary {
   tithi?: string;
   nakshatra?: string;
   vara?: string;
+  factors?: FactorVerdict[];
 }
 
 interface ActivityOption {
@@ -780,6 +788,38 @@ export default function MuhuratPage() {
                           {msg('chandraBala', locale)} {selectedDay.chandraBala ? '✓' : '✗'}
                         </span>
                       )}
+                    </div>
+                  )}
+
+                  {/* Panchang Factor Verdicts — explain WHY this day is good/bad */}
+                  {selectedDay.factors && selectedDay.factors.length > 0 && (
+                    <div className="mb-5">
+                      <h4 className="text-xs text-gold-dark font-bold uppercase tracking-widest mb-3">
+                        {locale === 'hi' ? 'पंचांग विश्लेषण' : 'Panchang Analysis'}
+                      </h4>
+                      <div className="space-y-2">
+                        {selectedDay.factors.map((f, i) => (
+                          <div key={i} className={`flex items-start gap-3 px-3 py-2.5 rounded-xl border ${
+                            f.verdict === 'good' ? 'bg-emerald-500/8 border-emerald-500/15' :
+                            f.verdict === 'bad' ? 'bg-red-500/8 border-red-500/15' :
+                            'bg-white/[0.02] border-white/5'
+                          }`}>
+                            <span className={`text-sm font-bold mt-0.5 flex-shrink-0 ${
+                              f.verdict === 'good' ? 'text-emerald-400' :
+                              f.verdict === 'bad' ? 'text-red-400' : 'text-gold-primary/50'
+                            }`}>
+                              {f.verdict === 'good' ? '✓' : f.verdict === 'bad' ? '✗' : '○'}
+                            </span>
+                            <div className="min-w-0">
+                              <div className="flex items-baseline gap-2 flex-wrap">
+                                <span className="text-gold-dark text-xs font-semibold uppercase tracking-wider">{f.factor}</span>
+                                <span className="text-text-primary text-sm font-medium">{f.value}</span>
+                              </div>
+                              <p className="text-text-secondary text-xs mt-0.5">{f.reason}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   )}
 

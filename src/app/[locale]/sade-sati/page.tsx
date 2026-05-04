@@ -556,9 +556,9 @@ export default function SadeSatiPage() {
                 {analysis.currentPhase && (
                   <div className="text-text-secondary text-sm mb-4" style={bodyFont}>{t(LABELS.phase[analysis.currentPhase], locale)}</div>
                 )}
-                {/* Phase progress bar */}
-                <div className="max-w-xs mx-auto">
-                  <div className="h-2 rounded-full bg-bg-tertiary/40 overflow-hidden">
+                {/* Phase progress bar + Saturn degree */}
+                <div className="max-w-sm mx-auto">
+                  <div className="h-2.5 rounded-full bg-bg-tertiary/40 overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: `${Math.min(100, Math.round(analysis.phaseProgress * 100))}%` }}
@@ -566,7 +566,24 @@ export default function SadeSatiPage() {
                       className="h-full rounded-full bg-gradient-to-r from-red-500 to-red-400"
                     />
                   </div>
-                  <div className="text-text-secondary text-xs mt-1">{Math.min(100, Math.round(analysis.phaseProgress * 100))}%</div>
+                  <div className="flex items-center justify-between mt-2">
+                    <span className="text-text-secondary text-xs">0°</span>
+                    <div className="text-center">
+                      <span className="text-gold-light text-sm font-bold">{analysis.saturnDegree.toFixed(1)}°</span>
+                      <span className="text-text-secondary text-xs ml-1.5">
+                        ({Math.round(analysis.phaseProgress * 100)}% {locale === 'hi' ? 'पूर्ण' : 'through'})
+                      </span>
+                    </div>
+                    <span className="text-text-secondary text-xs">30°</span>
+                  </div>
+                  {/* Retrograde speed explanation */}
+                  <div className="mt-3 px-3 py-2 rounded-lg bg-white/[0.03] border border-white/5">
+                    <p className="text-text-secondary/70 text-xs leading-relaxed" style={bodyFont}>
+                      {locale === 'hi'
+                        ? 'शनि की गति राशि में एकसमान नहीं होती। वक्री (retrograde) स्टेशनों के निकट शनि 0°/दिन तक धीमा हो जाता है — यही काल सबसे तीव्र प्रभाव का होता है। यह वास्तविक गति नहीं बल्कि पृथ्वी से देखी गई भासमान गति है।'
+                        : "Saturn's speed through the sign is not uniform. Near retrograde stations, it slows to 0°/day — this is when effects are felt most intensely. This is apparent (geocentric) speed, not real orbital speed. Saturn's actual orbit is nearly circular; the variation comes from Earth overtaking Saturn, like a slower car appearing to reverse when you pass it."}
+                    </p>
+                  </div>
                 </div>
               </div>
             ) : (

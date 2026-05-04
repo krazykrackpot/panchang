@@ -23,6 +23,10 @@ export interface SadeSatiAnalysis {
   isActive: boolean;
   currentPhase: 'rising' | 'peak' | 'setting' | null;
   phaseProgress: number;
+  /** Saturn's current degree within the sign (0-30) */
+  saturnDegree: number;
+  /** Saturn's current sidereal sign (1-12) */
+  saturnSign: number;
   cycleStart: string;
   cycleEnd: string;
 
@@ -126,7 +130,30 @@ function moonSignStrength(sign: number): 'exalted' | 'own' | 'friendly' | 'neutr
 // Cycle detection
 // ---------------------------------------------------------------------------
 
-/** Get Saturn's sidereal sign at a given JD */
+/** Module-level cache: Saturn sidereal sign per year×month (key: year*12+month) */
+let _saturnSignCache: Map<number, number> | null = null;
+
+function getSaturnSignCache(): Map<number, number> {
+  if (_saturnSignCache) return _saturnSignCache;
+  _saturnSignCache = new Map();
+  for (let y = 1940; y <= 2070; y++) {
+    for (let m = 1; m <= 12; m++) {
+      const jd = dateToJD(y, m, 15, 12);
+      const planets = getPlanetaryPositions(jd);
+      const saturnTropical = planets[6]?.longitude ?? 0;
+      const sign = getRashiNumber(normalizeDeg(toSidereal(saturnTropical, jd)));
+      _saturnSignCache.set(y * 12 + m, sign);
+    }
+  }
+  return _saturnSignCache;
+}
+
+/** Get Saturn's sidereal sign at a given year-month (cached) */
+function saturnSignAt(year: number, month: number): number {
+  return getSaturnSignCache().get(year * 12 + month) ?? 0;
+}
+
+/** Get Saturn's sidereal sign at a given JD (uncached, for one-off lookups) */
 function saturnSignAtJD(jd: number): number {
   const planets = getPlanetaryPositions(jd);
   const saturnTropical = planets[6]?.longitude ?? 0;
@@ -162,28 +189,20 @@ function buildAllCycles(moonSign: number): SadeSatiCycle[] {
   const sign2nd = (moonSign % 12) + 1;
   const targetSigns = new Set([sign12th, sign1st, sign2nd]);
 
-  // Find actual Saturn ingress dates at monthly resolution
-  const ingresses = findSaturnIngresses(1940, 2070);
-
-  // Build year-level entries: for each year, determine the DOMINANT target sign.
-  // Require at least 4 months (out of 12) in a target sign to count the year.
-  // Brief retrogrades (e.g., Saturn in Kumbha for 74 days in 2022 before returning
-  // to Makara) should NOT start a new sade sati cycle — most astrologers use the
-  // permanent ingress as the boundary, not brief dips.
+  // Build year-level entries using CACHED monthly Saturn data.
+  // Require at least 4 months in a target sign to count the year —
+  // filters out brief retrograde transits (e.g., 74-day Kumbha dip in 2022).
   const yearData = new Map<number, number>();
 
   for (let y = 1940; y <= 2070; y++) {
     const signCounts = new Map<number, number>();
     for (let m = 1; m <= 12; m++) {
-      const jd = dateToJD(y, m, 15, 12);
-      const sign = saturnSignAtJD(jd);
+      const sign = saturnSignAt(y, m);
       if (targetSigns.has(sign)) {
         signCounts.set(sign, (signCounts.get(sign) ?? 0) + 1);
       }
     }
     if (signCounts.size > 0) {
-      // Use the sign with the most months — but require at least 4 months
-      // to filter out brief retrograde transits
       let bestSign = 0, bestCount = 0;
       for (const [sign, count] of signCounts) {
         if (count > bestCount) { bestSign = sign; bestCount = count; }
@@ -941,6 +960,8 @@ export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
     isActive,
     currentPhase,
     phaseProgress,
+    saturnDegree: saturnInfo.degree,
+    saturnSign: saturnInfo.sign,
     cycleStart,
     cycleEnd,
     allCycles,

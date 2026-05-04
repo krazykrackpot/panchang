@@ -343,7 +343,48 @@ export default function SadeSatiLearnPage() {
         </div>
       </LessonSection>
 
-      {/* ── Section 7: Cross References ───────────────────────────── */}
+      {/* ── Section 7: Saturn's Apparent Speed ────────────────────── */}
+      <LessonSection number={7} title={loc === 'hi' ? 'शनि की भासमान गति: वक्री का विज्ञान' : "Saturn's Apparent Speed: The Science Behind Retrograde"} variant="highlight">
+        <p className="text-text-secondary text-sm leading-relaxed mb-4">
+          {loc === 'hi'
+            ? 'शनि की कक्षीय गति लगभग स्थिर है — उसकी कक्षा लगभग वृत्ताकार है (विकेन्द्रता मात्र 0.056)। जो बदलता है वह है पृथ्वी से देखी गई भासमान (geocentric) गति। यह समझना साढ़ेसाती के प्रभावों को समझने की कुंजी है।'
+            : "Saturn's actual orbital speed barely changes — its orbit is nearly circular (eccentricity just 0.056). What varies dramatically is its apparent (geocentric) speed — how fast it appears to move as seen from Earth. Understanding this is key to understanding Sade Sati's varying intensity."}
+        </p>
+
+        <div className="space-y-3 mb-4">
+          <div className="flex items-start gap-3 px-3 py-2.5 rounded-xl bg-emerald-500/8 border border-emerald-500/15">
+            <span className="text-emerald-400 font-bold text-sm mt-0.5">→</span>
+            <div>
+              <span className="text-emerald-400 text-sm font-medium">{loc === 'hi' ? 'मार्गी (Direct) गति' : 'Direct Motion'}</span>
+              <p className="text-text-secondary text-xs mt-0.5">~0.08°/day — {loc === 'hi' ? 'शनि सामान्य गति से चलता है' : 'Saturn moves at its normal apparent pace'}</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3 px-3 py-2.5 rounded-xl bg-gold-primary/8 border border-gold-primary/15">
+            <span className="text-gold-primary font-bold text-sm mt-0.5">◼</span>
+            <div>
+              <span className="text-gold-primary text-sm font-medium">{loc === 'hi' ? 'स्टेशन (Station)' : 'Station'}</span>
+              <p className="text-text-secondary text-xs mt-0.5">~0°/day — {loc === 'hi' ? 'शनि रुकता हुआ प्रतीत होता है। यही सबसे तीव्र प्रभाव का काल है।' : "Saturn appears to stop. This is when effects are felt most intensely."}</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3 px-3 py-2.5 rounded-xl bg-red-500/8 border border-red-500/15">
+            <span className="text-red-400 font-bold text-sm mt-0.5">←</span>
+            <div>
+              <span className="text-red-400 text-sm font-medium">{loc === 'hi' ? 'वक्री (Retrograde) गति' : 'Retrograde Motion'}</span>
+              <p className="text-text-secondary text-xs mt-0.5">~-0.05°/day — {loc === 'hi' ? 'शनि पीछे जाता प्रतीत होता है। यह वास्तविक नहीं — पृथ्वी शनि से आगे निकलती है।' : "Saturn appears to move backwards. This isn't real — Earth is overtaking Saturn, like a slower car seeming to reverse when you pass it."}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="px-4 py-3 rounded-xl bg-white/[0.03] border border-white/5">
+          <p className="text-gold-light/80 text-sm leading-relaxed">
+            {loc === 'hi'
+              ? 'इसका अर्थ: डिग्री-आधारित प्रगति (जो हम दिखाते हैं) समय में असमान है। शनि राशि के मध्य में (जहाँ वक्री स्टेशन अक्सर होते हैं) अधिक दिन बिताता है। यह एक विशेषता है, दोष नहीं — यह वास्तविक ज्योतिषीय अनुभव को दर्शाता है।'
+              : "This means: degree-based progress (which we show) is non-linear in time. Saturn spends more calendar days near the middle of a sign (where retrograde stations often occur) than near the beginning or end. This is a feature, not a bug — it reflects the actual astrological experience."}
+          </p>
+        </div>
+      </LessonSection>
+
+      {/* ── Section 8: Cross References ───────────────────────────── */}
       <LessonSection number={7} title={t('crossRefTitle')}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {CROSS_REFS.map((ref) => (

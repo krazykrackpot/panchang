@@ -1,0 +1,122 @@
+{
+  "title": {
+    "en": "What is Panchang? The Complete Guide",
+    "hi": "पंचांग क्या है? सम्पूर्ण मार्गदर्शिका",
+    "ta": "பஞ்சாங்கம் என்றால் என்ன? முழுமையான வழிகாட்டி",
+    "bn": "পঞ্চাঙ্গ কী? সম্পূর্ণ গাইড"
+  },
+  "subtitle": {
+    "en": "The 5 limbs of the Vedic calendar — Tithi, Nakshatra, Yoga, Karana, Vara — and how to use them daily",
+    "hi": "वैदिक पंचांग के 5 अंग — तिथि, नक्षत्र, योग, करण, वार — और दैनिक उपयोग",
+    "ta": "வேத நாட்காட்டியின் 5 உறுப்புகள் — திதி, நட்சத்திரம், யோகம், கரணம், வாரம்",
+    "bn": "বৈদিক পঞ্চাঙ্গের ৫ অঙ্গ — তিথি, নক্ষত্র, যোগ, করণ, বার"
+  },
+  "intro": {
+    "en": "Panchang (Sanskrit: पञ्चाङ्ग, 'five limbs') is the traditional Vedic almanac that has guided Hindu daily life, festivals, and rituals for thousands of years. Unlike the Gregorian calendar which tracks only the day and date, the Panchang provides five astronomical parameters computed from the exact positions of the Sun and Moon. These five elements together determine the auspicious or inauspicious nature of any given moment — making the Panchang not just a calendar but a decision-making tool. Every Hindu temple, household, and astrologer consults the Panchang daily to determine festival dates, muhurtas for ceremonies, fasting days, and the spiritual quality of time.",
+    "hi": "पंचांग (संस्कृत: पञ्चाङ्ग, 'पाँच अंग') पारम्परिक वैदिक पंचांग है जो हज़ारों वर्षों से हिन्दू दैनिक जीवन, त्योहारों और अनुष्ठानों का मार्गदर्शन करता आ रहा है। ग्रेगोरियन कैलेण्डर के विपरीत जो केवल दिन और तिथि ट्रैक करता है, पंचांग सूर्य और चन्द्रमा की सटीक स्थिति से गणित पाँच खगोलीय पैरामीटर प्रदान करता है। ये पाँच तत्त्व मिलकर किसी भी क्षण की शुभ या अशुभ प्रकृति निर्धारित करते हैं — पंचांग केवल कैलेण्डर नहीं बल्कि निर्णय-उपकरण है।",
+    "ta": "பஞ்சாங்கம் ('ஐந்து உறுப்புகள்') ஆயிரக்கணக்கான ஆண்டுகளாக இந்து அன்றாட வாழ்க்கையை வழிநடத்தும் பாரம்பரிய வேத நாள்காட்டி.",
+    "bn": "পঞ্চাঙ্গ ('পাঁচ অঙ্গ') সনাতন বৈদিক পঞ্জিকা যা হাজার হাজার বছর ধরে হিন্দু দৈনন্দিন জীবন পরিচালনা করে আসছে।"
+  },
+  "tithiTitle": {
+    "en": "Tithi: The Lunar Day",
+    "hi": "तिथि: चान्द्र दिवस",
+    "ta": "திதி: சந்திர நாள்",
+    "bn": "তিথি: চান্দ্র দিবস"
+  },
+  "tithiContent": {
+    "en": "Tithi is the angular distance between the Sun and Moon, measured in units of 12°. There are 30 tithis in a lunar month — 15 in the waxing half (Shukla Paksha, from New Moon to Full Moon) and 15 in the waning half (Krishna Paksha, from Full Moon to New Moon). Each tithi has a specific name (Pratipada, Dwitiya, Tritiya... Chaturdashi, Purnima/Amavasya) and a ruling deity. Tithis are not equal to solar days — a tithi can last from about 19 hours to 26 hours depending on the Moon's speed in its elliptical orbit. A tithi that is current at sunrise governs the entire Vedic day. If a tithi starts after sunrise and ends before the next sunrise, it is called a 'Kshaya Tithi' (lost tithi); if the same tithi spans two sunrises, it is 'Vriddhi' (extended).",
+    "hi": "तिथि सूर्य और चन्द्रमा के बीच का कोणीय अन्तर है, 12° की इकाइयों में। एक चान्द्र मास में 30 तिथियाँ होती हैं — 15 शुक्ल पक्ष (अमावस्या से पूर्णिमा) और 15 कृष्ण पक्ष (पूर्णिमा से अमावस्या) में। प्रत्येक तिथि का विशिष्ट नाम और अधिष्ठाता देवता है। तिथियाँ सौर दिन के बराबर नहीं — चन्द्रमा की दीर्घवृत्तीय कक्षा के कारण एक तिथि 19 से 26 घण्टे तक हो सकती है। सूर्योदय पर जो तिथि हो वह पूरे वैदिक दिवस पर शासन करती है।",
+    "ta": "திதி சூரியன் மற்றும் சந்திரன் இடையேயான கோண தூரம், 12° அலகுகளில். ஒரு சந்திர மாதத்தில் 30 திதிகள் உள்ளன.",
+    "bn": "তিথি সূর্য ও চন্দ্রের মধ্যে কৌণিক দূরত্ব, ১২° একক। এক চান্দ্র মাসে ৩০টি তিথি থাকে।"
+  },
+  "nakshatraTitle": {
+    "en": "Nakshatra: The Lunar Mansion",
+    "hi": "नक्षत्र: चान्द्र गृह",
+    "ta": "நட்சத்திரம்: சந்திர மாளிகை",
+    "bn": "নক্ষত্র: চান্দ্র ভবন"
+  },
+  "nakshatraContent": {
+    "en": "Nakshatra refers to the Moon's position among the 27 constellations that divide the ecliptic into segments of 13°20' each. The Moon transits one nakshatra roughly every day (about 24 hours), giving each day a distinct 'stellar signature'. Each nakshatra has a ruling planet, deity, symbol, and set of qualities. The nakshatra is the primary factor in muhurta selection — more important than tithi or weekday. In daily life, the nakshatra governs the spiritual and psychological quality of the day: Pushya (the most auspicious) is excellent for new beginnings; Ashlesha brings intensity and transformation; Revati is gentle and ideal for travel.",
+    "hi": "नक्षत्र राशिचक्र को 27 तारासमूहों (प्रत्येक 13°20') में विभक्त करता है और चन्द्रमा की स्थिति बताता है। चन्द्रमा लगभग एक दिन (24 घण्टे) में एक नक्षत्र पार करता है, प्रत्येक दिन को एक विशिष्ट 'तारकीय हस्ताक्षर' देता है। प्रत्येक नक्षत्र का स्वामी ग्रह, देवता, प्रतीक और गुण हैं। मुहूर्त चयन में नक्षत्र प्रमुख कारक है। दैनिक जीवन में नक्षत्र दिन की आध्यात्मिक गुणवत्ता निर्धारित करता है।",
+    "ta": "நட்சத்திரம் 27 விண்மீன் தொகுப்புகளில் சந்திரனின் நிலையைக் குறிக்கிறது. ஒவ்வொன்றும் 13°20' அகலம்.",
+    "bn": "নক্ষত্র ২৭টি তারামণ্ডলে চন্দ্রের অবস্থান নির্দেশ করে, প্রতিটি ১৩°২০' ব্যাপ্ত।"
+  },
+  "yogaTitle": {
+    "en": "Yoga: The Luni-Solar Combination",
+    "hi": "योग: सूर्य-चन्द्र संयोग",
+    "ta": "யோகம்: சூரிய-சந்திர சேர்க்கை",
+    "bn": "যোগ: সূর্য-চন্দ্র সংযোগ"
+  },
+  "yogaContent": {
+    "en": "Yoga in Panchang (not to be confused with planetary yogas in Kundali) is calculated by adding the longitudes of the Sun and Moon, then dividing by 13°20'. There are 27 yogas in total, cycling through the month. Each yoga has a name and character: Siddhi yoga is excellent for accomplishments; Vishkambha is obstructive; Shubha is auspicious; Vridhi brings growth. Some yogas like Vyatipata and Vaidhriti are considered especially inauspicious and are traditionally avoided for important activities. The yoga changes roughly every 24 hours but can vary based on the relative speeds of the luminaries.",
+    "hi": "पंचांग में योग (कुण्डली के ग्रह योगों से भिन्न) सूर्य और चन्द्रमा के देशान्तरों का योग, 13°20' से विभाजित कर गणित होता है। कुल 27 योग हैं। प्रत्येक योग का नाम और स्वभाव है: सिद्धि योग कार्यसिद्धि के लिए उत्तम; विष्कम्भ बाधाकारी; शुभ शुभकारी; वृद्धि विकास लाती है। व्यतीपात और वैधृति विशेष रूप से अशुभ माने जाते हैं।",
+    "ta": "பஞ்சாங்க யோகம் சூரியன் மற்றும் சந்திரனின் தீர்க்கரேகைகளை கூட்டி 13°20' ஆல் வகுத்து கணிக்கப்படுகிறது. மொத்தம் 27 யோகங்கள்.",
+    "bn": "পঞ্চাঙ্গে যোগ সূর্য ও চন্দ্রের দ্রাঘিমাংশের যোগফল ১৩°২০' দিয়ে ভাগ করে গণনা হয়। মোট ২৭টি যোগ।"
+  },
+  "karanaTitle": {
+    "en": "Karana: The Half-Tithi",
+    "hi": "करण: अर्ध-तिथि",
+    "ta": "கரணம்: அரை-திதி",
+    "bn": "করণ: অর্ধ-তিথি"
+  },
+  "karanaContent": {
+    "en": "A Karana is half a tithi — each tithi has two karanas, so there are 60 karanas in a lunar month. There are 11 named karanas: 7 'movable' (Chara) karanas that repeat 8 times each (Bava, Balava, Kaulava, Taitila, Gara, Vanija, Vishti) and 4 'fixed' (Sthira) karanas that occur only once per month (Shakuni, Chatushpada, Naga, Kimsthughna). The most important karana for daily use is Vishti (also called Bhadra) — it recurs every 7 tithis and is considered highly inauspicious. No important activity should be started during Vishti Karana. The fixed karanas Shakuni, Chatushpada, and Naga are also inauspicious.",
+    "hi": "करण तिथि का आधा है — प्रत्येक तिथि में दो करण, अतः एक चान्द्र मास में 60 करण। 11 नामित करण हैं: 7 चर करण (बव, बालव, कौलव, तैतिल, गर, वणिज, विष्टि) जो 8 बार दोहराते हैं, और 4 स्थिर करण (शकुनि, चतुष्पद, नाग, किंस्तुघ्न) जो मास में एक बार आते हैं। विष्टि (भद्रा) सबसे महत्त्वपूर्ण है — हर 7 तिथियों पर आता है और अत्यन्त अशुभ माना जाता है।",
+    "ta": "கரணம் திதியின் பாதி — ஒவ்வொரு திதிக்கும் இரண்டு கரணங்கள். 11 பெயரிடப்பட்ட கரணங்கள் உள்ளன. விஷ்டி (பத்ரா) மிகவும் அசுபமானது.",
+    "bn": "করণ তিথির অর্ধেক — প্রতিটি তিথিতে দুটি করণ। ১১টি নামাঙ্কিত করণ আছে। বিষ্টি (ভদ্রা) অত্যন্ত অশুভ।"
+  },
+  "varaTitle": {
+    "en": "Vara: The Weekday",
+    "hi": "वार: सप्ताह का दिन",
+    "ta": "வாரம்: வாரநாள்",
+    "bn": "বার: সপ্তাহের দিন"
+  },
+  "varaContent": {
+    "en": "Vara is the simplest of the five elements — it is the weekday, from Sunday to Saturday, each ruled by one of the seven visible planets. The Vedic day begins at sunrise (not midnight), so the vara changes at sunrise. Each vara has a ruling planet: Ravivara (Sunday — Sun), Somvara (Monday — Moon), Mangalvara (Tuesday — Mars), Budhvara (Wednesday — Mercury), Guruvara (Thursday — Jupiter), Shukravara (Friday — Venus), Shanivara (Saturday — Saturn). The vara lord influences the day's character: Tuesday is Mars-ruled and favourable for courage, surgery, and competition; Thursday is Jupiter-ruled and excellent for learning, rituals, and spiritual activities.",
+    "hi": "वार पाँच तत्त्वों में सबसे सरल — रविवार से शनिवार तक, प्रत्येक का स्वामी सात दृश्य ग्रहों में से एक। वैदिक दिन सूर्योदय से आरम्भ होता है (मध्यरात्रि से नहीं)। प्रत्येक वार का स्वामी ग्रह दिन का स्वभाव निर्धारित करता है: मंगलवार साहस, शल्यक्रिया और प्रतिस्पर्धा के लिए; गुरुवार शिक्षा, अनुष्ठान और आध्यात्मिक कार्यों के लिए उत्तम।",
+    "ta": "வாரம் ஐந்து கூறுகளில் எளிமையானது — ஞாயிறு முதல் சனி வரை. வேத நாள் சூரிய உதயத்தில் தொடங்குகிறது.",
+    "bn": "বার পাঁচটি উপাদানের মধ্যে সবচেয়ে সরল — রবিবার থেকে শনিবার। বৈদিক দিন সূর্যোদয়ে শুরু হয়।"
+  },
+  "sunriseTitle": {
+    "en": "Sunrise-Based vs Midnight-Based Calendar",
+    "hi": "सूर्योदय आधारित बनाम मध्यरात्रि आधारित पंचांग",
+    "ta": "சூரிய உதய அடிப்படை vs நள்ளிரவு அடிப்படை நாட்காட்டி",
+    "bn": "সূর্যোদয় ভিত্তিক বনাম মধ্যরাত্রি ভিত্তিক পঞ্জিকা"
+  },
+  "sunriseContent": {
+    "en": "A fundamental difference between the Vedic Panchang and the modern Gregorian calendar is when the day begins. In the Panchang, the day starts at sunrise, not at midnight. This means the tithi, nakshatra, yoga, and karana that are active at sunrise govern the entire Vedic day — even if they change later. If Ekadashi begins at 3 AM (before sunrise), the Vedic day is still governed by the previous day's tithi until sunrise. This sunrise-based system is why Panchang requires your exact geographic location: sunrise time varies by latitude and longitude, so the same moment in time can belong to different Vedic days in different cities.",
+    "hi": "वैदिक पंचांग और ग्रेगोरियन कैलेण्डर में मूलभूत अन्तर है कि दिन कब आरम्भ होता है। पंचांग में दिन सूर्योदय से आरम्भ होता है, मध्यरात्रि से नहीं। इसका अर्थ है कि सूर्योदय पर सक्रिय तिथि, नक्षत्र, योग और करण पूरे वैदिक दिन पर शासन करते हैं। यही कारण है कि पंचांग के लिए आपका सटीक भौगोलिक स्थान आवश्यक है: सूर्योदय का समय अक्षांश-देशान्तर से भिन्न होता है।",
+    "ta": "வேத பஞ்சாங்கத்தில் நாள் சூரிய உதயத்தில் தொடங்குகிறது, நள்ளிரவில் அல்ல. சூரிய உதயத்தில் செயலில் உள்ள திதி முழு வேத நாளையும் ஆளுகிறது.",
+    "bn": "বৈদিক পঞ্চাঙ্গে দিন সূর্যোদয়ে শুরু হয়, মধ্যরাত্রিতে নয়। সূর্যোদয়ে সক্রিয় তিথি সমগ্র বৈদিক দিবস শাসন করে।"
+  },
+  "amantaPurnimantaTitle": {
+    "en": "Amanta vs Purnimanta Month Systems",
+    "hi": "अमान्त बनाम पूर्णिमान्त मास पद्धति",
+    "ta": "அமாந்த vs பூர்ணிமாந்த மாத முறைகள்",
+    "bn": "অমান্ত বনাম পূর্ণিমান্ত মাস পদ্ধতি"
+  },
+  "amantaPurnimantaContent": {
+    "en": "The Vedic lunar month can be counted two different ways, leading to two parallel systems. In the Amanta (also called Amavasyant) system used primarily in South and West India (Maharashtra, Gujarat, Karnataka, Tamil Nadu), the month ends on Amavasya (New Moon). In the Purnimanta system used in North India, the month ends on Purnima (Full Moon). During Shukla Paksha (waxing Moon), both systems agree on the month name. But during Krishna Paksha (waning Moon), the Purnimanta month is one name ahead of the Amanta month. For example, Krishna Paksha of Chaitra (Amanta) is the same as Krishna Paksha of Vaishakha (Purnimanta). This difference explains why the same festival sometimes appears under different month names in different regional panchangas. Both systems are equally valid — they simply count the boundary differently.",
+    "hi": "वैदिक चान्द्र मास दो प्रकार से गिने जा सकते हैं। अमान्त (अमावस्यान्त) पद्धति में, जो दक्षिण और पश्चिम भारत में प्रचलित है, मास अमावस्या पर समाप्त होता है। पूर्णिमान्त पद्धति में, जो उत्तर भारत में प्रचलित है, मास पूर्णिमा पर समाप्त होता है। शुक्ल पक्ष में दोनों पद्धतियाँ मास नाम पर सहमत हैं, किन्तु कृष्ण पक्ष में पूर्णिमान्त मास एक नाम आगे होता है। यही कारण है कि एक ही त्योहार विभिन्न क्षेत्रीय पंचांगों में भिन्न मास नामों से दिखता है।",
+    "ta": "அமாந்த முறையில் (தென் இந்தியா) மாதம் அமாவாசையில் முடிகிறது. பூர்ணிமாந்த முறையில் (வட இந்தியா) மாதம் பூர்ணிமாவில் முடிகிறது.",
+    "bn": "অমান্ত পদ্ধতিতে মাস অমাবস্যায় শেষ হয়। পূর্ণিমান্ত পদ্ধতিতে পূর্ণিমায় শেষ হয়। কৃষ্ণ পক্ষে পূর্ণিমান্ত মাস একটি নাম এগিয়ে থাকে।"
+  },
+  "dailyUseTitle": {
+    "en": "Using Panchang for Daily Decisions",
+    "hi": "दैनिक निर्णयों के लिए पंचांग का उपयोग",
+    "ta": "தினசரி முடிவுகளுக்கு பஞ்சாங்கம் பயன்படுத்துதல்",
+    "bn": "দৈনিক সিদ্ধান্তে পঞ্চাঙ্গ ব্যবহার"
+  },
+  "dailyUseContent": {
+    "en": "You don't need to be an astrologer to benefit from the Panchang. Here are practical daily applications: (1) Check the tithi for fasting — Ekadashi (11th tithi) is the primary fasting day; Chaturthi (4th) for Ganesh worship; Purnima and Amavasya for specific rituals. (2) Check for inauspicious periods — avoid starting important work during Rahu Kaal, Yamaganda, or Vishti Karana. (3) Use the nakshatra for major decisions — Pushya, Rohini, Hasta, and Shravana are universally auspicious; avoid Ashlesha, Ardra, and Mula for new beginnings. (4) Check the yoga — avoid Vishkambha, Vyatipata, and Vaidhriti for auspicious work. (5) Match the weekday — Tuesday and Saturday are generally avoided for new ventures; Thursday and Friday are considered favourable.",
+    "hi": "पंचांग का लाभ उठाने के लिए ज्योतिषी होना आवश्यक नहीं। व्यावहारिक दैनिक उपयोग: (1) व्रत के लिए तिथि — एकादशी प्रमुख उपवास दिन; चतुर्थी गणेश पूजा; पूर्णिमा/अमावस्या विशेष अनुष्ठान। (2) अशुभ काल — राहु काल, यमगण्ड, विष्टि करण में महत्त्वपूर्ण कार्य न करें। (3) नक्षत्र — पुष्य, रोहिणी, हस्त, श्रवण शुभ; आश्लेषा, आर्द्रा, मूल में नया कार्य न करें। (4) योग — विष्कम्भ, व्यतीपात, वैधृति से बचें। (5) वार — मंगलवार/शनिवार नए कार्य के लिए प्रायः टाले जाते हैं।",
+    "ta": "(1) விரதத்திற்கு திதி சரிபாருங்கள் — ஏகாதசி முதன்மை விரத நாள். (2) ராகு காலம், யமகண்டம் தவிர்க்கவும். (3) புஷ்யம், ரோகிணி சுபமானவை.",
+    "bn": "(১) ব্রতের জন্য তিথি — একাদশী প্রধান উপবাস দিন। (২) রাহু কাল, যমগণ্ড এড়িয়ে চলুন। (৩) পুষ্য, রোহিণী শুভ।"
+  },
+  "sourceDisclaimer": {
+    "en": "This guide draws from the Surya Siddhanta (the foundational text of Indian astronomy), regional Panchang traditions from across India, and modern computational methods. The Panchang has been continuously published and verified against observed astronomical events for over 2,000 years.",
+    "hi": "यह मार्गदर्शिका सूर्य सिद्धान्त, भारत भर की क्षेत्रीय पंचांग परम्पराओं और आधुनिक गणनात्मक विधियों से तैयार है। पंचांग 2,000 वर्षों से अधिक समय से निरन्तर प्रकाशित और प्रेक्षित खगोलीय घटनाओं से सत्यापित है।",
+    "ta": "இந்த வழிகாட்டி சூர்ய சித்தாந்தம், பிராந்திய பஞ்சாங்க பாரம்பரியங்கள் மற்றும் நவீன கணிப்பு முறைகளிலிருந்து எடுக்கப்பட்டது.",
+    "bn": "এই গাইড সূর্য সিদ্ধান্ত, আঞ্চলিক পঞ্চাঙ্গ পরম্পরা ও আধুনিক গণনামূলক পদ্ধতি থেকে তৈরি।"
+  }
+}

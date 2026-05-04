@@ -1,0 +1,80 @@
+{
+  "title": {
+    "en": "Rahu Kaal: The Shadow Period",
+    "hi": "राहु काल: छाया का समय",
+    "ta": "ராகு காலம்: நிழல் நேரம்",
+    "bn": "রাহু কাল: ছায়ার সময়"
+  },
+  "subtitle": {
+    "en": "Understanding the 1/8th of daytime ruled by Rahu and why new ventures are avoided during it",
+    "hi": "दिन के आठवें भाग पर राहु का अधिकार और नये कार्य क्यों वर्जित हैं",
+    "ta": "ராகுவால் ஆளப்படும் பகல் நேரத்தின் எட்டில் ஒரு பகுதி — ஏன் புதிய முயற்சிகள் தவிர்க்கப்படுகின்றன",
+    "bn": "দিনের অষ্টমাংশে রাহুর আধিপত্য এবং কেন নতুন কাজ এড়ানো হয়"
+  },
+  "whatIs": {
+    "en": "Rahu Kaal is an inauspicious time window that recurs daily. It is calculated by dividing the total daytime duration (sunrise to sunset) into eight equal parts. One of these eight slots is assigned to Rahu — the shadow planet associated with confusion, obstacles, and illusion. The specific slot rotates by weekday following a fixed classical sequence. Any new undertaking begun during Rahu Kaal is believed to face delays, hidden complications, or outright failure.",
+    "hi": "राहु काल एक अशुभ समय खंड है जो प्रतिदिन आता है। इसकी गणना सूर्योदय से सूर्यास्त तक के कुल दिन को आठ समान भागों में बाँटकर की जाती है। इनमें से एक खंड राहु को सौंपा जाता है — वह छाया ग्रह जो भ्रम, बाधा और माया से जुड़ा है। कौन-सा खंड राहु का है, यह सप्ताह के दिन पर निर्भर करता है और एक निश्चित शास्त्रीय क्रम का पालन करता है।",
+    "ta": "ராகு காலம் தினமும் வரும் ஒரு அசுப நேரம். சூரிய உதயம் முதல் சூரிய அஸ்தமனம் வரையிலான மொத்த பகல் நேரத்தை எட்டு சம பகுதிகளாகப் பிரிப்பதன் மூலம் கணக்கிடப்படுகிறது. இந்த எட்டு பகுதிகளில் ஒன்று ராகுவுக்கு ஒதுக்கப்படுகிறது.",
+    "bn": "রাহু কাল হলো প্রতিদিন পুনরাবৃত্ত একটি অশুভ সময় খণ্ড। সূর্যোদয় থেকে সূর্যাস্ত পর্যন্ত মোট দিনের সময়কে আটটি সমান ভাগে ভাগ করে এটি গণনা করা হয়। এর মধ্যে একটি খণ্ড রাহুকে নির্ধারিত করা হয়।"
+  },
+  "rotationTitle": {
+    "en": "Daily Rotation Sequence",
+    "hi": "दैनिक आवर्तन क्रम",
+    "ta": "தினசரி சுழற்சி வரிசை",
+    "bn": "দৈনিক আবর্তন ক্রম"
+  },
+  "rotationContent": {
+    "en": "The slot number assigned to Rahu follows a fixed weekly cycle. The numbering counts from sunrise: slot 1 is the first 1/8th of daylight, slot 2 is the second, and so on. The classical sequence is: Sunday = 8th slot, Monday = 2nd, Tuesday = 7th, Wednesday = 5th, Thursday = 6th, Friday = 4th, Saturday = 3rd. Because daylight length varies by season and latitude, the actual clock times of Rahu Kaal change daily — a Rahu Kaal at 10:30 AM in summer might shift to 9:15 AM in winter at the same location.",
+    "hi": "राहु को सौंपे गए खंड की संख्या एक निश्चित साप्ताहिक चक्र का पालन करती है। गिनती सूर्योदय से शुरू होती है: खंड 1 पहला आठवाँ भाग है, खंड 2 दूसरा, इत्यादि। शास्त्रीय क्रम है: रविवार = 8वाँ, सोमवार = 2रा, मंगलवार = 7वाँ, बुधवार = 5वाँ, गुरुवार = 6ठा, शुक्रवार = 4था, शनिवार = 3रा। क्योंकि दिन की लम्बाई ऋतु और अक्षांश से बदलती है, राहु काल का वास्तविक समय प्रतिदिन बदलता है।",
+    "ta": "ராகுவுக்கு ஒதுக்கப்பட்ட பகுதி எண் வாரத்தின் ஒவ்வொரு நாளும் மாறுகிறது. ஞாயிறு = 8வது, திங்கள் = 2வது, செவ்வாய் = 7வது, புதன் = 5வது, வியாழன் = 6வது, வெள்ளி = 4வது, சனி = 3வது.",
+    "bn": "রাহুকে নির্ধারিত খণ্ড সংখ্যা একটি নির্দিষ্ট সাপ্তাহিক চক্র অনুসরণ করে। রবিবার = ৮ম, সোমবার = ২য়, মঙ্গলবার = ৭ম, বুধবার = ৫ম, বৃহস্পতিবার = ৬ষ্ঠ, শুক্রবার = ৪র্থ, শনিবার = ৩য়।"
+  },
+  "whyAvoid": {
+    "en": "Rahu is classified as a naturally malefic (krura) shadow planet. In Vedic thought, Rahu magnifies whatever it touches — but with a twist of illusion, misdirection, and hidden danger. Starting a new venture, signing a contract, or beginning a journey during Rahu Kaal is believed to attract unexpected obstacles. The traditional advice is specific: avoid initiations. If you are already in the middle of an activity (eating, working, travelling), there is no need to stop — the caution applies only to the moment of commencement.",
+    "hi": "राहु को स्वाभाविक रूप से अशुभ (क्रूर) छाया ग्रह माना जाता है। वैदिक विचार में राहु जो भी स्पर्श करे उसे बढ़ाता है — लेकिन भ्रम, भटकाव और छिपे खतरे के साथ। राहु काल में नया कार्य आरम्भ करना, अनुबन्ध पर हस्ताक्षर करना, या यात्रा शुरू करना अप्रत्याशित बाधाओं को आकर्षित करता है। पारम्परिक सलाह विशिष्ट है: केवल आरम्भ से बचें। यदि आप पहले से किसी कार्य में हैं, तो रुकने की आवश्यकता नहीं।",
+    "ta": "ராகு இயற்கையாகவே பாவ கிரகமாகக் கருதப்படுகிறது. ராகு காலத்தில் புதிய முயற்சிகளைத் தொடங்குவது எதிர்பாராத தடைகளை ஈர்க்கும் என்று நம்பப்படுகிறது. ஆனால் ஏற்கனவே நடந்துகொண்டிருக்கும் செயல்களை நிறுத்த வேண்டியதில்லை.",
+    "bn": "রাহু স্বাভাবিকভাবে অশুভ (ক্রূর) ছায়া গ্রহ। রাহু কালে নতুন কাজ শুরু করলে অপ্রত্যাশিত বাধা আসে বলে বিশ্বাস করা হয়। তবে চলমান কাজ বন্ধ করার প্রয়োজন নেই — শুধুমাত্র শুরু করা থেকে বিরত থাকুন।"
+  },
+  "differenceTitle": {
+    "en": "Rahu Kaal vs Yamaganda vs Gulika Kaal",
+    "hi": "राहु काल बनाम यमगण्ड बनाम गुलिक काल",
+    "ta": "ராகு காலம் vs யமகண்டம் vs குளிகை காலம்",
+    "bn": "রাহু কাল বনাম যমগণ্ড বনাম গুলিক কাল"
+  },
+  "differenceContent": {
+    "en": "All three are computed the same way — dividing daylight into eight equal parts — but each uses a different slot sequence. Rahu Kaal is the most widely observed and is the strictest prohibition for new beginnings. Yamaganda (ruled by Yama, god of death) is avoided for risky travel and health procedures. Gulika Kaal (the sub-period of Saturn) is particularly avoided for auspicious ceremonies like marriages and housewarming. In South India, all three are checked before any important activity; in North India, Rahu Kaal alone is commonly observed.",
+    "hi": "तीनों की गणना एक ही विधि से होती है — दिन को आठ भागों में बाँटकर — लेकिन प्रत्येक का खंड क्रम भिन्न है। राहु काल सबसे अधिक पालन किया जाता है और नये कार्यों के लिए सबसे कठोर निषेध है। यमगण्ड (यमराज) जोखिमपूर्ण यात्रा और स्वास्थ्य कार्यों के लिए वर्जित है। गुलिक काल (शनि का उप-काल) विवाह और गृह प्रवेश जैसे शुभ संस्कारों के लिए विशेष रूप से वर्जित है।",
+    "ta": "மூன்றும் ஒரே முறையில் கணக்கிடப்படுகின்றன — பகல் நேரத்தை எட்டு சம பகுதிகளாகப் பிரிப்பது — ஆனால் ஒவ்வொன்றும் வெவ்வேறு வரிசையைப் பயன்படுத்துகின்றன. தென்னிந்தியாவில் மூன்றும் சரிபார்க்கப்படுகின்றன; வட இந்தியாவில் பொதுவாக ராகு காலம் மட்டுமே கடைப்பிடிக்கப்படுகிறது.",
+    "bn": "তিনটিই একই পদ্ধতিতে গণনা করা হয় — দিনের আলোকে আটটি সমান ভাগে ভাগ করে — তবে প্রত্যেকটি ভিন্ন খণ্ড ক্রম ব্যবহার করে। দক্ষিণ ভারতে তিনটিই পরীক্ষা করা হয়; উত্তর ভারতে সাধারণত শুধু রাহু কাল পালন করা হয়।"
+  },
+  "misconceptionsTitle": {
+    "en": "Common Misconceptions",
+    "hi": "सामान्य भ्रांतियाँ",
+    "ta": "பொதுவான தவறான கருத்துகள்",
+    "bn": "সাধারণ ভুল ধারণা"
+  },
+  "misconceptionsContent": {
+    "en": "The most common misconception is that all activity must cease during Rahu Kaal. Classical texts are clear: only the commencement of new undertakings is discouraged. Eating, sleeping, routine work, and continuing tasks already in progress are perfectly fine. Another misconception is that Rahu Kaal is the same time everywhere — it varies by location because it depends on local sunrise and sunset. A third myth is that Rahu Kaal at night is equally important; traditionally, the daytime calculation (sunrise to sunset) is the primary observance, though some traditions also compute a night Rahu Kaal.",
+    "hi": "सबसे सामान्य भ्रान्ति यह है कि राहु काल में सभी गतिविधियाँ बन्द होनी चाहिए। शास्त्र स्पष्ट हैं: केवल नये कार्यों के आरम्भ से बचना चाहिए। भोजन, नींद, नियमित कार्य और पहले से चल रहे कार्य पूर्णतः ठीक हैं। दूसरी भ्रान्ति यह है कि राहु काल सर्वत्र एक ही समय होता है — यह स्थान-विशेष है क्योंकि यह स्थानीय सूर्योदय और सूर्यास्त पर निर्भर है।",
+    "ta": "மிகவும் பொதுவான தவறான கருத்து, ராகு காலத்தில் அனைத்து செயல்களும் நிறுத்தப்பட வேண்டும் என்பது. சாஸ்திரங்கள் தெளிவாக உள்ளன: புதிய முயற்சிகளைத் தொடங்குவதை மட்டுமே தவிர்க்க வேண்டும்.",
+    "bn": "সবচেয়ে সাধারণ ভুল ধারণা হলো রাহু কালে সব কাজ বন্ধ রাখতে হবে। শাস্ত্র স্পষ্ট: শুধু নতুন কাজ শুরু করা থেকে বিরত থাকুন। খাওয়া, ঘুম, রুটিন কাজ এবং চলমান কাজ সম্পূর্ণ ঠিক আছে।"
+  },
+  "practicalTitle": {
+    "en": "Practical Application",
+    "hi": "व्यावहारिक उपयोग",
+    "ta": "நடைமுறை பயன்பாடு",
+    "bn": "ব্যবহারিক প্রয়োগ"
+  },
+  "practicalContent": {
+    "en": "In daily life, Rahu Kaal is most commonly checked before scheduling important meetings, signing documents, starting a business, beginning travel, or performing religious ceremonies. It lasts roughly 1.5 hours each day (exactly 1/8th of daytime). During summer, when days are longer, the Rahu Kaal window is wider; in winter, it is narrower. Many panchang apps and our own Rahu Kaal tool calculate it precisely for your location using actual sunrise and sunset times.",
+    "hi": "दैनिक जीवन में राहु काल की जाँच मुख्यतः महत्त्वपूर्ण बैठकों, दस्तावेज़ हस्ताक्षर, व्यापार आरम्भ, यात्रा शुरू करने, या धार्मिक अनुष्ठानों के पहले की जाती है। यह प्रतिदिन लगभग डेढ़ घण्टे रहता है (दिन का ठीक 1/8 भाग)। ग्रीष्म में दिन लम्बे होने पर राहु काल की अवधि बढ़ जाती है; शीत में घट जाती है।",
+    "ta": "அன்றாட வாழ்வில், முக்கியமான சந்திப்புகள், ஆவண கையொப்பம், வணிகம் தொடங்குதல் அல்லது மத சடங்குகளுக்கு முன் ராகு காலம் சரிபார்க்கப்படுகிறது. இது தினமும் சுமார் 1.5 மணி நேரம் நீடிக்கும்.",
+    "bn": "দৈনিক জীবনে রাহু কাল প্রধানত গুরুত্বপূর্ণ সভা, নথি স্বাক্ষর, ব্যবসা শুরু, যাত্রা আরম্ভ বা ধর্মীয় অনুষ্ঠানের আগে পরীক্ষা করা হয়। এটি প্রতিদিন প্রায় দেড় ঘণ্টা স্থায়ী হয়।"
+  },
+  "sourceDisclaimer": {
+    "en": "The slot rotation sequence and interpretation are drawn from Muhurta Chintamani and traditional South Indian panchang practice. Regional variations exist — some traditions use a slightly different rotation for the night period. Always check the Rahu Kaal for your specific location rather than relying on generic city-based tables.",
+    "hi": "खंड आवर्तन क्रम और व्याख्या मुहूर्त चिन्तामणि और पारम्परिक दक्षिण भारतीय पंचांग पद्धति से ली गई है। क्षेत्रीय भिन्नताएँ हैं — कुछ परम्पराएँ रात्रि काल के लिए थोड़ा भिन्न क्रम उपयोग करती हैं।",
+    "ta": "பகுதி சுழற்சி வரிசையும் விளக்கமும் முகூர்த்த சிந்தாமணி மற்றும் பாரம்பரிய தென்னிந்திய பஞ்சாங்க நடைமுறையிலிருந்து பெறப்பட்டவை.",
+    "bn": "খণ্ড আবর্তন ক্রম ও ব্যাখ্যা মুহূর্ত চিন্তামণি এবং ঐতিহ্যবাহী দক্ষিণ ভারতীয় পঞ্চাঙ্গ পদ্ধতি থেকে নেওয়া হয়েছে।"
+  }
+}

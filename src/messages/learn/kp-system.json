@@ -1,0 +1,86 @@
+{
+  "title": {
+    "en": "KP System: Krishnamurti Paddhati",
+    "hi": "केपी पद्धति: कृष्णमूर्ति पद्धति",
+    "ta": "கேபி முறை: கிருஷ்ணமூர்த்தி பத்ததி",
+    "bn": "কেপি পদ্ধতি: কৃষ্ণমূর্তি পদ্ধতি"
+  },
+  "subtitle": {
+    "en": "A precision-focused system using sub-lords, Placidus houses, and ruling planets for pinpoint predictions",
+    "hi": "उप-स्वामी, प्लेसिडस भाव और शासक ग्रहों द्वारा सटीक भविष्यवाणी की पद्धति",
+    "ta": "துணை அதிபர்கள், பிளாசிடஸ் பாவங்கள் மூலம் துல்லிய கணிப்பு",
+    "bn": "উপ-স্বামী, প্লেসিডাস ভাব এবং শাসক গ্রহ দিয়ে সুনির্দিষ্ট পূর্বাভাস"
+  },
+  "intro": {
+    "en": "Krishnamurti Paddhati (KP) is a modern system of Vedic astrology developed by the late Prof. K.S. Krishnamurti in the 1960s-70s. Dissatisfied with the ambiguity of classical Parashari methods — where the same chart could yield multiple contradictory predictions — Krishnamurti refined the system to give clearer, more binary answers: will this event happen or not? His key innovation was the sub-lord theory, which divides each nakshatra into sub-divisions governed by specific planets, enabling far more precise house significations than traditional methods.",
+    "hi": "कृष्णमूर्ति पद्धति (केपी) वैदिक ज्योतिष की एक आधुनिक प्रणाली है जिसे प्रो. के.एस. कृष्णमूर्ति ने 1960-70 के दशक में विकसित किया। पाराशरी पद्धति की अस्पष्टता से असन्तुष्ट — जहाँ एक ही कुण्डली से विरोधाभासी भविष्यवाणियाँ निकल सकती हैं — कृष्णमूर्ति ने स्पष्ट, द्विआधारी उत्तर देने वाली प्रणाली बनायी: क्या यह घटना घटेगी या नहीं? उनका मुख्य नवाचार उप-स्वामी सिद्धान्त था।",
+    "ta": "கிருஷ்ணமூர்த்தி பத்ததி (கேபி) பேராசிரியர் கே.எஸ். கிருஷ்ணமூர்த்தியால் 1960-70களில் உருவாக்கப்பட்ட நவீன வேத ஜோதிட முறை.",
+    "bn": "কৃষ্ণমূর্তি পদ্ধতি (কেপি) অধ্যাপক কে.এস. কৃষ্ণমূর্তি কর্তৃক ১৯৬০-৭০ দশকে উদ্ভাবিত আধুনিক বৈদিক জ্যোতিষ পদ্ধতি।"
+  },
+  "subLordTitle": {
+    "en": "Sub-Lord Theory: The Heart of KP",
+    "hi": "उप-स्वामी सिद्धान्त: केपी का हृदय",
+    "ta": "துணை அதிபர் கோட்பாடு: கேபியின் இதயம்",
+    "bn": "উপ-স্বামী তত্ত্ব: কেপির হৃদয়"
+  },
+  "subLordContent": {
+    "en": "In traditional Jyotish, the zodiac is divided into 27 nakshatras of 13°20' each. Each nakshatra is ruled by a planet (the nakshatra lord). KP takes this one step further: each nakshatra is sub-divided into 9 unequal parts (called 'subs'), with each sub ruled by a planet in the Vimshottari Dasha sequence. The duration of each sub is proportional to the dasha period of its ruling planet. So within a single nakshatra, you have a star lord AND a sub-lord. The sub-lord is the decisive factor in KP — it determines which house matters a planet actually delivers. Two planets in the same nakshatra but different subs can give entirely opposite results. You can further divide into sub-sub-lords for even finer timing.",
+    "hi": "पारम्परिक ज्योतिष में राशिचक्र 27 नक्षत्रों (प्रत्येक 13°20') में विभक्त है। प्रत्येक नक्षत्र का एक स्वामी ग्रह है। केपी इसे एक कदम आगे ले जाती है: प्रत्येक नक्षत्र 9 असमान भागों ('सब') में विभक्त होता है, प्रत्येक सब का स्वामी विंशोत्तरी दशा क्रम का ग्रह होता है। सब की अवधि उसके स्वामी ग्रह की दशा अवधि के अनुपात में होती है। सब-स्वामी केपी में निर्णायक कारक है — यह निर्धारित करता है कि ग्रह वास्तव में किस भाव का फल देगा।",
+    "ta": "பாரம்பரிய ஜோதிடத்தில் ராசிச்சக்கரம் 27 நட்சத்திரங்களாக பிரிக்கப்படுகிறது. கேபி ஒவ்வொரு நட்சத்திரத்தையும் 9 சமனற்ற பகுதிகளாக ('சப்') பிரிக்கிறது.",
+    "bn": "কেপি প্রতিটি নক্ষত্রকে ৯টি অসম ভাগে ('সাব') বিভক্ত করে, প্রতিটি সাবের স্বামী বিংশোত্তরী দশা ক্রমের গ্রহ।"
+  },
+  "placidusTitle": {
+    "en": "Placidus Houses vs Equal House",
+    "hi": "प्लेसिडस भाव बनाम समान भाव",
+    "ta": "பிளாசிடஸ் பாவம் vs சம பாவம்",
+    "bn": "প্লেসিডাস ভাব বনাম সম ভাব"
+  },
+  "placidusContent": {
+    "en": "Traditional Vedic astrology uses the Equal House system: each house spans exactly 30° starting from the Ascendant degree. KP instead uses the Placidus house system borrowed from Western astrology, where house cusps are calculated based on the time it takes for a degree of the ecliptic to move from one angle to the next. This means houses can be unequal in size — some may span 25° while others span 35°. The crucial difference is that in KP, the cusp sub-lord is what matters most. For example, to predict marriage, you check the sub-lord of the 7th cusp. If the 7th cusp sub-lord signifies houses 2, 7, and 11 (marriage-supporting houses), marriage is promised. If it signifies 1, 6, or 10 instead, marriage faces obstacles.",
+    "hi": "पारम्परिक वैदिक ज्योतिष समान भाव पद्धति का उपयोग करता है: प्रत्येक भाव लग्न अंश से 30° का होता है। केपी इसके स्थान पर प्लेसिडस भाव पद्धति का उपयोग करती है, जहाँ भाव सन्धियाँ क्रान्तिवृत्त के एक कोण से दूसरे तक जाने में लगने वाले समय पर आधारित हैं। इसका अर्थ है कि भाव असमान हो सकते हैं। केपी में सन्धि उप-स्वामी सर्वाधिक महत्त्वपूर्ण है। विवाह भविष्यवाणी के लिए 7वीं सन्धि का उप-स्वामी देखें।",
+    "ta": "பாரம்பரிய ஜோதிடம் சம பாவ முறையை பயன்படுத்துகிறது. கேபி பிளாசிடஸ் முறையை பயன்படுத்துகிறது, பாவங்கள் சமனற்ற அளவில் இருக்கும்.",
+    "bn": "কেপি প্লেসিডাস ভাব পদ্ধতি ব্যবহার করে যেখানে ভাবগুলি অসম আকারের হতে পারে। সন্ধি উপ-স্বামী সবচেয়ে গুরুত্বপূর্ণ।"
+  },
+  "kpNumberTitle": {
+    "en": "KP Number (1-249) and Horary Astrology",
+    "hi": "केपी संख्या (1-249) और प्रश्न ज्योतिष",
+    "ta": "கேபி எண் (1-249) மற்றும் ஹோரேரி ஜோதிடம்",
+    "bn": "কেপি সংখ্যা (১-২৪৯) এবং প্রশ্ন জ্যোতিষ"
+  },
+  "kpNumberContent": {
+    "en": "One of KP's most popular applications is horary astrology — answering a specific question without needing a birth chart. The querent thinks of a number between 1 and 249, and this number maps to a specific point in the zodiac (since 249 = 27 nakshatras × 9 subs + 6 sub-subs). From this single number, the astrologer constructs an entire chart with house cusps and planet positions for the moment of the query. The KP number system makes horary astrology remarkably accessible: you don't need exact birth details, just a sincere question and a number. The sub-lord of the relevant house cusp in the horary chart provides the answer.",
+    "hi": "केपी का सबसे लोकप्रिय अनुप्रयोग प्रश्न ज्योतिष है — जन्मकुण्डली के बिना विशिष्ट प्रश्नों का उत्तर। प्रश्नकर्ता 1 से 249 के बीच कोई संख्या सोचता है, यह संख्या राशिचक्र के एक विशिष्ट बिन्दु से सम्बद्ध होती है (249 = 27 नक्षत्र × 9 सब + 6 सब-सब)। इस एक संख्या से ज्योतिषी प्रश्नकाल की सम्पूर्ण कुण्डली बनाता है। केपी संख्या प्रश्न ज्योतिष को अत्यन्त सुलभ बनाती है।",
+    "ta": "கேபியின் மிகவும் பிரபலமான பயன்பாடு ஹோரேரி ஜோதிடம் — பிறப்பு ஜாதகம் இல்லாமல் குறிப்பிட்ட கேள்விக்கு பதில். 1 முதல் 249 வரை எண் தேர்ந்தெடுக்கவும்.",
+    "bn": "কেপির সবচেয়ে জনপ্রিয় প্রয়োগ হল প্রশ্ন জ্যোতিষ — জন্মকুণ্ডলী ছাড়াই নির্দিষ্ট প্রশ্নের উত্তর। ১ থেকে ২৪৯ এর মধ্যে একটি সংখ্যা ভাবুন।"
+  },
+  "significatorsTitle": {
+    "en": "Significators and Ruling Planets",
+    "hi": "कारक और शासक ग्रह",
+    "ta": "காரகர்கள் மற்றும் ஆட்சி கிரகங்கள்",
+    "bn": "কারক ও শাসক গ্রহ"
+  },
+  "significatorsContent": {
+    "en": "In KP, the concept of 'significators' replaces the classical concept of house lords. A planet signifies a house not merely by ruling its cusp sign, but through a four-level hierarchy: (1) planets posited in the star of the occupant of the house, (2) the occupant itself, (3) planets posited in the star of the house cusp lord, and (4) the cusp lord itself. Level 1 significators are strongest, Level 4 weakest. Ruling planets are a powerful verification tool — at the moment of judgement, the sign lord, star lord, and sub-lord of the Moon, the Ascendant, and the day lord should agree with the significators of the event house. When ruling planets confirm the significators, the prediction is strong; when they contradict, re-examine the chart.",
+    "hi": "केपी में 'कारक' की अवधारणा शास्त्रीय भावेश को प्रतिस्थापित करती है। ग्रह किसी भाव का कारक केवल सन्धि राशि-स्वामित्व से नहीं, चार-स्तरीय श्रेणी से बनता है: (1) भाव में स्थित ग्रह के नक्षत्र में स्थित ग्रह, (2) स्वयं भाव में स्थित ग्रह, (3) सन्धि स्वामी के नक्षत्र में स्थित ग्रह, (4) स्वयं सन्धि स्वामी। स्तर 1 सबसे शक्तिशाली, स्तर 4 सबसे दुर्बल। शासक ग्रह सत्यापन उपकरण हैं — निर्णय क्षण में चन्द्र, लग्न और दिन स्वामी के राशि/नक्षत्र/सब स्वामी, घटना भाव के कारकों से मेल खाने चाहिए।",
+    "ta": "கேபியில் 'குறிப்பீடு' என்ற கருத்து சம்பிரதாய பாவ அதிபரை மாற்றுகிறது. நான்கு-நிலை படிநிலை மூலம் கிரகம் ஒரு பாவத்தைக் குறிக்கிறது.",
+    "bn": "কেপিতে 'কারক' ধারণা শাস্ত্রীয় ভাবেশকে প্রতিস্থাপন করে। চার-স্তরের শ্রেণিবিন্যাস: (১) ভাবে থাকা গ্রহের নক্ষত্রে থাকা গ্রহ, (২) ভাবে থাকা গ্রহ, (৩) সন্ধি স্বামীর নক্ষত্রে থাকা গ্রহ, (৪) সন্ধি স্বামী।"
+  },
+  "kpVsParashariTitle": {
+    "en": "When to Use KP vs Parashari",
+    "hi": "केपी बनाम पाराशरी: कब क्या उपयोग करें",
+    "ta": "கேபி vs பராசரி: எப்போது எதை பயன்படுத்துவது",
+    "bn": "কেপি বনাম পরাশরী: কখন কোনটি ব্যবহার করবেন"
+  },
+  "kpVsParashariContent": {
+    "en": "KP excels at binary yes/no questions: Will I get the job? Will marriage happen this year? Will the illness be cured? Its sub-lord theory gives definitive answers. Parashari, on the other hand, excels at understanding the quality and nature of life events — the 'why' behind what happens, the karmic patterns, the remedial framework. Use KP when you need timing and specificity; use Parashari when you need depth and context. Many modern astrologers use both: Parashari for natal chart analysis and life overview, KP for specific event prediction and horary questions.",
+    "hi": "केपी द्विआधारी हाँ/नहीं प्रश्नों में श्रेष्ठ है: क्या नौकरी मिलेगी? क्या इस वर्ष विवाह होगा? क्या रोग ठीक होगा? उप-स्वामी सिद्धान्त निश्चित उत्तर देता है। पाराशरी जीवन घटनाओं की गुणवत्ता और प्रकृति समझने में श्रेष्ठ है — 'क्यों' का उत्तर, कार्मिक प्रतिरूप, उपचारात्मक ढाँचा। समय और विशिष्टता के लिए केपी; गहराई और सन्दर्भ के लिए पाराशरी। कई आधुनिक ज्योतिषी दोनों का उपयोग करते हैं।",
+    "ta": "கேபி ஆம்/இல்லை கேள்விகளில் சிறந்தது. பராசரி வாழ்க்கை நிகழ்வுகளின் தரம் மற்றும் இயல்பைப் புரிந்துகொள்வதில் சிறந்தது.",
+    "bn": "কেপি হ্যাঁ/না প্রশ্নে সেরা। পরাশরী জীবন ঘটনার গুণমান ও প্রকৃতি বোঝায় সেরা।"
+  },
+  "sourceDisclaimer": {
+    "en": "This page summarises principles from the Krishnamurti Paddhati Reader (6 volumes) by Prof. K.S. Krishnamurti. KP system uses Krishnamurti Ayanamsha, which differs from Lahiri by approximately 6 minutes of arc. For accurate KP analysis, always ensure you are using the correct ayanamsha setting.",
+    "hi": "यह पृष्ठ प्रो. के.एस. कृष्णमूर्ति कृत कृष्णमूर्ति पद्धति रीडर (6 खण्ड) से सिद्धान्तों का सारांश प्रस्तुत करता है। केपी पद्धति कृष्णमूर्ति अयनांश का उपयोग करती है जो लाहिड़ी से लगभग 6 कला भिन्न है।",
+    "ta": "இந்த பக்கம் பேராசிரியர் கே.எஸ். கிருஷ்ணமூர்த்தியின் கிருஷ்ணமூர்த்தி பத்ததி ரீடரிலிருந்து கொள்கைகளை தொகுக்கிறது.",
+    "bn": "এই পৃষ্ঠা অধ্যাপক কে.এস. কৃষ্ণমূর্তির কৃষ্ণমূর্তি পদ্ধতি রিডার থেকে নীতি সংক্ষেপ উপস্থাপন করে।"
+  }
+}

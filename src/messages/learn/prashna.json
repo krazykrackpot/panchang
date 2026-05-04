@@ -1,0 +1,86 @@
+{
+  "title": {
+    "en": "Prashna Kundali: Horary Astrology",
+    "hi": "प्रश्न कुण्डली: प्रश्न ज्योतिष",
+    "ta": "பிரசன குண்டலி: கேள்வி ஜோதிடம்",
+    "bn": "প্রশ্ন কুণ্ডলী: প্রশ্ন জ্যোতিষ"
+  },
+  "subtitle": {
+    "en": "The Vedic art of answering questions from the chart of the moment they are asked",
+    "hi": "प्रश्न पूछे जाने के क्षण की कुण्डली से उत्तर देने की वैदिक कला",
+    "ta": "கேள்வி கேட்கப்பட்ட நேரத்தின் குண்டலியிலிருந்து பதில் அளிக்கும் வேத கலை",
+    "bn": "প্রশ্ন জিজ্ঞাসার মুহূর্তের কুণ্ডলী থেকে উত্তর দেওয়ার বৈদিক কলা"
+  },
+  "whatIs": {
+    "en": "Prashna (literally 'question') is the Vedic system of horary astrology. Instead of reading a natal birth chart, the astrologer casts a chart for the exact moment and place when a question is sincerely asked. The underlying principle is that the cosmos at the moment of a genuine question already contains the answer — the planetary configuration at that instant reflects the querent's situation, the forces at play, and the likely outcome. Prashna is particularly valuable when the birth time is unknown, unreliable, or when an immediate answer is needed about a specific situation.",
+    "hi": "प्रश्न (शाब्दिक अर्थ 'प्रश्न') वैदिक प्रश्न ज्योतिष की प्रणाली है। जन्म कुण्डली पढ़ने के बजाय, ज्योतिषी उस सटीक क्षण और स्थान की कुण्डली बनाता है जब प्रश्न सच्चे मन से पूछा जाता है। मूल सिद्धान्त यह है कि सच्चे प्रश्न के क्षण का ब्रह्माण्ड पहले से उत्तर धारण करता है — उस क्षण की ग्रह स्थिति प्रश्नकर्ता की स्थिति, सक्रिय बलों और सम्भावित परिणाम को प्रतिबिम्बित करती है।",
+    "ta": "பிரசன (நேரடி அர்த்தம் 'கேள்வி') என்பது வேத ஜோதிடத்தின் கேள்வி முறை. பிறப்பு குண்டலியைப் படிப்பதற்குப் பதிலாக, கேள்வி நேர்மையாகக் கேட்கப்பட்ட சரியான நேரம் மற்றும் இடத்திற்கான குண்டலி அமைக்கப்படுகிறது.",
+    "bn": "প্রশ্ন (আক্ষরিক অর্থ 'প্রশ্ন') হলো বৈদিক প্রশ্ন জ্যোতিষ পদ্ধতি। জন্ম কুণ্ডলী পড়ার পরিবর্তে, জ্যোতিষী সেই সঠিক মুহূর্ত ও স্থানের কুণ্ডলী তৈরি করেন যখন প্রশ্ন আন্তরিকভাবে জিজ্ঞাসা করা হয়।"
+  },
+  "castingTitle": {
+    "en": "How a Prashna Chart is Cast",
+    "hi": "प्रश्न कुण्डली कैसे बनती है",
+    "ta": "பிரசன குண்டலி எப்படி அமைக்கப்படுகிறது",
+    "bn": "প্রশ্ন কুণ্ডলী কীভাবে তৈরি হয়"
+  },
+  "castingContent": {
+    "en": "The chart is cast for the exact moment the astrologer receives and understands the question — not when the querent first thinks of it, and not when it is written down. The location used is where the astrologer is sitting. The lagna (ascendant) rising at that moment becomes the querent's representative in the chart. All standard Vedic chart elements apply: the 12 houses, 9 planets, nakshatras, and divisional charts. The key difference from a natal chart is interpretive focus — every house is read in relation to the specific question asked.",
+    "hi": "कुण्डली उस सटीक क्षण के लिए बनाई जाती है जब ज्योतिषी प्रश्न प्राप्त करता और समझता है — न तब जब प्रश्नकर्ता पहली बार सोचता है, और न तब जब लिखा जाता है। स्थान वह होता है जहाँ ज्योतिषी बैठा है। उस क्षण उदित लग्न प्रश्नकर्ता का प्रतिनिधि बनता है। सभी मानक वैदिक कुण्डली तत्त्व लागू होते हैं: 12 भाव, 9 ग्रह, नक्षत्र और वर्ग कुण्डलियाँ।",
+    "ta": "ஜோதிடர் கேள்வியைப் பெற்று புரிந்துகொள்ளும் சரியான நேரத்திற்கு குண்டலி அமைக்கப்படுகிறது. அந்த நேரத்தில் உதயமாகும் லக்னம் கேள்வி கேட்பவரின் பிரதிநிதியாகிறது.",
+    "bn": "জ্যোতিষী প্রশ্ন গ্রহণ ও বোঝার সঠিক মুহূর্তে কুণ্ডলী তৈরি করা হয়। সেই মুহূর্তে উদিত লগ্ন প্রশ্নকর্তার প্রতিনিধি হয়।"
+  },
+  "keyFactorsTitle": {
+    "en": "Key Factors in Prashna Analysis",
+    "hi": "प्रश्न विश्लेषण के प्रमुख कारक",
+    "ta": "பிரசன பகுப்பாய்வின் முக்கிய காரணிகள்",
+    "bn": "প্রশ্ন বিশ্লেষণের প্রধান কারক"
+  },
+  "keyFactorsContent": {
+    "en": "Three factors dominate Prashna analysis. First, the Arudha Lagna — a special ascendant calculated from the number spoken by the querent (1-108) or derived from the first syllable of their question. Second, the Moon's position — the Moon represents the querent's mind and emotional state; its house, sign, nakshatra, and aspects reveal the true nature of the concern. Third, the relevant house lord — the house governing the question's topic (7th for marriage, 10th for career, etc.) and its strength, placement, and aspects determine the answer.",
+    "hi": "तीन कारक प्रश्न विश्लेषण में प्रमुख हैं। प्रथम, आरूढ़ लग्न — प्रश्नकर्ता द्वारा बोली गई संख्या (1-108) या प्रश्न के प्रथम अक्षर से प्राप्त विशेष लग्न। द्वितीय, चन्द्र की स्थिति — चन्द्र प्रश्नकर्ता के मन और भावनात्मक स्थिति का प्रतिनिधित्व करता है। तृतीय, सम्बन्धित भाव स्वामी — प्रश्न के विषय से सम्बन्धित भाव।",
+    "ta": "மூன்று காரணிகள் பிரசன பகுப்பாய்வில் முக்கியமானவை. முதலாவது, ஆரூட லக்னம். இரண்டாவது, சந்திரனின் நிலை. மூன்றாவது, சம்பந்தப்பட்ட வீட்டின் அதிபதி.",
+    "bn": "তিনটি কারক প্রশ্ন বিশ্লেষণে প্রধান। প্রথম, আরূঢ় লগ্ন। দ্বিতীয়, চন্দ্রের অবস্থান। তৃতীয়, প্রাসঙ্গিক ভাব স্বামী।"
+  },
+  "vsNatalTitle": {
+    "en": "When to Use Prashna vs Natal Chart",
+    "hi": "प्रश्न बनाम जन्म कुण्डली — कब क्या उपयोग करें",
+    "ta": "பிரசன vs பிறப்பு குண்டலி — எப்போது எதைப் பயன்படுத்துவது",
+    "bn": "প্রশ্ন বনাম জন্ম কুণ্ডলী — কখন কোনটি ব্যবহার করবেন"
+  },
+  "vsNatalContent": {
+    "en": "Use Prashna when: the birth time is unknown or uncertain; you need an answer about a specific, time-sensitive situation (Will this deal close? Will the missing person return?); or you want a second opinion to cross-check natal chart indications. Use the natal chart when: you need a comprehensive life overview; you are analysing long-term patterns (dashas, yogas); or you are doing compatibility matching. Many practitioners use both — the natal chart for context and the Prashna chart for immediate clarity on a specific question.",
+    "hi": "प्रश्न का उपयोग करें जब: जन्म समय अज्ञात या अनिश्चित हो; किसी विशिष्ट, समय-संवेदनशील स्थिति का उत्तर चाहिए; या जन्म कुण्डली संकेतों की पुष्टि चाहते हैं। जन्म कुण्डली का उपयोग करें जब: सम्पूर्ण जीवन अवलोकन चाहिए; दीर्घकालिक प्रारूपों (दशा, योग) का विश्लेषण कर रहे हैं; या अनुकूलता मिलान कर रहे हैं।",
+    "ta": "பிரசனத்தைப் பயன்படுத்துங்கள்: பிறந்த நேரம் தெரியாதபோது; ஒரு குறிப்பிட்ட, நேரத்துடன் தொடர்புடைய சூழ்நிலைக்கு பதில் தேவைப்படும்போது. பிறப்பு குண்டலியைப் பயன்படுத்துங்கள்: முழுமையான வாழ்க்கை பார்வை தேவைப்படும்போது.",
+    "bn": "প্রশ্ন ব্যবহার করুন যখন: জন্ম সময় অজানা বা অনিশ্চিত; নির্দিষ্ট পরিস্থিতির উত্তর দরকার। জন্ম কুণ্ডলী ব্যবহার করুন যখন: সামগ্রিক জীবন পর্যালোচনা দরকার; দীর্ঘমেয়াদী বিশ্লেষণ করছেন।"
+  },
+  "yogasTitle": {
+    "en": "Prashna Yogas for Immediate Answers",
+    "hi": "तत्काल उत्तर के प्रश्न योग",
+    "ta": "உடனடி பதில்களுக்கான பிரசன யோகங்கள்",
+    "bn": "তাৎক্ষণিক উত্তরের প্রশ্ন যোগ"
+  },
+  "yogasContent": {
+    "en": "Certain planetary configurations in a Prashna chart give immediate, clear answers without detailed analysis. If the Moon is in the lagna and is waxing, the answer is a strong 'yes'. If the lagna lord and the house lord of the question are in mutual kendras (1/4/7/10), the matter will succeed. If malefics occupy the lagna and the 7th house, and the Moon is waning and afflicted, the answer is a clear 'no'. If the sub-lord of the lagna cusp (in KP Prashna) is retrograde, the matter will not materialise. These quick-check yogas save time in urgent consultations.",
+    "hi": "प्रश्न कुण्डली में कुछ ग्रह स्थितियाँ बिना विस्तृत विश्लेषण के तत्काल स्पष्ट उत्तर देती हैं। यदि चन्द्र लग्न में हो और बढ़ता हुआ हो, तो उत्तर दृढ़ 'हाँ' है। यदि लग्नेश और प्रश्न-विषय के भाव स्वामी परस्पर केन्द्र में हों, तो कार्य सिद्ध होगा। यदि पापग्रह लग्न और सप्तम भाव में हों, चन्द्र क्षीण और पीड़ित हो, तो उत्तर स्पष्ट 'नहीं' है।",
+    "ta": "பிரசன குண்டலியில் சில கிரக அமைப்புகள் விரிவான பகுப்பாய்வு இல்லாமல் உடனடி தெளிவான பதில்களை அளிக்கின்றன. சந்திரன் லக்னத்தில் வளர்பிறையாக இருந்தால், பதில் உறுதியான 'ஆம்' ஆகும்.",
+    "bn": "প্রশ্ন কুণ্ডলীতে কিছু গ্রহ বিন্যাস বিস্তারিত বিশ্লেষণ ছাড়াই তাৎক্ষণিক স্পষ্ট উত্তর দেয়। চন্দ্র লগ্নে শুক্লপক্ষে থাকলে উত্তর দৃঢ় 'হ্যাঁ'।"
+  },
+  "keralaTitle": {
+    "en": "The Kerala Prashna Tradition (Ashtamangala)",
+    "hi": "केरल प्रश्न परम्परा (अष्टमंगल)",
+    "ta": "கேரள பிரசன மரபு (அஷ்டமங்கலம்)",
+    "bn": "কেরল প্রশ্ন ঐতিহ্য (অষ্টমঙ্গল)"
+  },
+  "keralaContent": {
+    "en": "The Kerala tradition of Ashtamangala Prashna is a unique form of horary divination that uses eight physical objects (mirror, vessel, gold ornament, lamp, throne/seat, bull figurine, flag, and fan) alongside the horoscope. The querent selects objects and a number, and the astrologer combines these with the Prashna chart for a layered reading. This system, rooted in Prashna Marga and the Kerala Jyotish tradition, is especially revered for temple-related questions, property disputes, and ancestral matters. Our Prashna Ashtamangala tool implements this classical method digitally.",
+    "hi": "अष्टमंगल प्रश्न की केरल परम्परा प्रश्न ज्योतिष का एक अनूठा रूप है जो कुण्डली के साथ आठ भौतिक वस्तुओं (दर्पण, पात्र, स्वर्णालंकार, दीप, आसन, वृषभ मूर्ति, ध्वज और पंखा) का उपयोग करती है। प्रश्नकर्ता वस्तुएँ और एक संख्या चुनता है, और ज्योतिषी इन्हें प्रश्न कुण्डली के साथ मिलाकर बहुस्तरीय पठन करता है।",
+    "ta": "அஷ்டமங்கல பிரசனத்தின் கேரள மரபு எட்டு பொருட்களை (கண்ணாடி, பாத்திரம், தங்க ஆபரணம், விளக்கு, ஆசனம், காளை, கொடி, விசிறி) ஜாதகத்துடன் இணைத்துப் பயன்படுத்தும் ஒரு தனித்துவமான முறை.",
+    "bn": "অষ্টমঙ্গল প্রশ্নের কেরল ঐতিহ্য হলো প্রশ্ন জ্যোতিষের একটি অনন্য রূপ যা কুণ্ডলীর সাথে আটটি ভৌত বস্তু (আয়না, পাত্র, স্বর্ণালংকার, প্রদীপ, আসন, বৃষভ মূর্তি, পতাকা, পাখা) ব্যবহার করে।"
+  },
+  "sourceDisclaimer": {
+    "en": "The principles described here are drawn from Prashna Marga (the definitive Kerala text on horary astrology) and Tajika Neelakanthi (which integrates Tajika annual techniques with Prashna). Regional variations exist in practice — some North Indian traditions use different Arudha computation methods.",
+    "hi": "यहाँ वर्णित सिद्धान्त प्रश्न मार्ग (प्रश्न ज्योतिष पर केरल का निश्चित ग्रन्थ) और ताजिक नीलकण्ठी से लिए गए हैं। व्यवहार में क्षेत्रीय भिन्नताएँ हैं।",
+    "ta": "இங்கே விவரிக்கப்பட்ட கோட்பாடுகள் பிரசன மார்க்கம் மற்றும் தாஜிக நீலகண்டியிலிருந்து பெறப்பட்டவை.",
+    "bn": "এখানে বর্ণিত নীতিগুলো প্রশ্ন মার্গ এবং তাজিক নীলকণ্ঠী থেকে নেওয়া হয়েছে।"
+  }
+}

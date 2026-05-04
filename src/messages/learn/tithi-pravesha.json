@@ -1,0 +1,74 @@
+{
+  "title": {
+    "en": "Tithi Pravesha: The Vedic Birthday Chart",
+    "hi": "तिथि प्रवेश: वैदिक जन्मदिन कुण्डली",
+    "ta": "திதி பிரவேசம்: வேத பிறந்தநாள் குண்டலி",
+    "bn": "তিথি প্রবেশ: বৈদিক জন্মদিন কুণ্ডলী"
+  },
+  "subtitle": {
+    "en": "The annual chart cast when the Sun-Moon angle from your birth recurs — the Vedic alternative to solar returns",
+    "hi": "जन्म के सूर्य-चन्द्र कोण की वार्षिक पुनरावृत्ति पर बनी कुण्डली — सौर प्रत्यावर्तन का वैदिक विकल्प",
+    "ta": "உங்கள் பிறப்பின் சூரிய-சந்திர கோணம் மீண்டும் ஏற்படும் வருடாந்திர குண்டலி",
+    "bn": "জন্মের সূর্য-চন্দ্র কোণ পুনরাবৃত্ত হলে তৈরি বার্ষিক কুণ্ডলী"
+  },
+  "whatIs": {
+    "en": "Tithi Pravesha is a Vedic annual prediction technique based on the exact moment when the Sun-Moon angular relationship from your birth recurs each year. Your birth tithi is defined by the angular distance between the Sun and Moon at the time of your birth (each tithi spans 12 degrees of Sun-Moon separation). Tithi Pravesha finds the precise moment in each subsequent year when the Sun and Moon return to that same angular separation, and a chart cast for that moment becomes your year chart — your Vedic birthday horoscope.",
+    "hi": "तिथि प्रवेश एक वैदिक वार्षिक भविष्यवाणी तकनीक है जो उस सटीक क्षण पर आधारित है जब आपके जन्म का सूर्य-चन्द्र कोणीय सम्बन्ध प्रतिवर्ष पुनरावृत्त होता है। आपकी जन्म तिथि जन्म के समय सूर्य और चन्द्र के बीच कोणीय दूरी से निर्धारित होती है (प्रत्येक तिथि 12 अंश का अन्तर है)। तिथि प्रवेश प्रत्येक अगले वर्ष में वह सटीक क्षण खोजता है जब सूर्य और चन्द्र उसी कोणीय अन्तर पर लौटते हैं।",
+    "ta": "திதி பிரவேசம் என்பது உங்கள் பிறப்பின் சூரிய-சந்திர கோண உறவு ஒவ்வொரு ஆண்டும் மீண்டும் ஏற்படும் சரியான நேரத்தை அடிப்படையாகக் கொண்ட வேத வருடாந்திர கணிப்பு நுட்பம்.",
+    "bn": "তিথি প্রবেশ হলো একটি বৈদিক বার্ষিক ভবিষ্যদ্বাণী কৌশল যা সেই সঠিক মুহূর্তের ওপর ভিত্তি করে যখন আপনার জন্মের সূর্য-চন্দ্র কোণীয় সম্পর্ক প্রতি বছর পুনরাবৃত্ত হয়।"
+  },
+  "vsSolarTitle": {
+    "en": "How It Differs from Western Solar Returns",
+    "hi": "पश्चिमी सौर प्रत्यावर्तन से कैसे भिन्न है",
+    "ta": "மேற்கத்திய சூரிய ரிட்டர்னிலிருந்து எவ்வாறு வேறுபடுகிறது",
+    "bn": "পশ্চিমা সৌর রিটার্ন থেকে কীভাবে ভিন্ন"
+  },
+  "vsSolarContent": {
+    "en": "A Western solar return chart is cast when the Sun returns to its exact natal degree each year — effectively your Gregorian birthday. Tithi Pravesha uses the luni-solar relationship instead: it waits for the Sun-Moon angle to match the natal tithi. This means your Vedic birthday falls on a different Gregorian date each year (typically within 2-3 weeks of your Western birthday). The advantage is that it captures the full panchanga — the tithi, nakshatra, yoga, karana, and vara at the moment of return all carry predictive significance for the coming year.",
+    "hi": "पश्चिमी सौर प्रत्यावर्तन कुण्डली तब बनती है जब सूर्य प्रतिवर्ष अपने सटीक जन्म अंश पर लौटता है — प्रभावी रूप से आपका ग्रेगोरियन जन्मदिन। तिथि प्रवेश इसके बजाय सूर्य-चन्द्र सम्बन्ध का उपयोग करता है: यह सूर्य-चन्द्र कोण के जन्म तिथि से मिलने की प्रतीक्षा करता है। इसका अर्थ है कि आपका वैदिक जन्मदिन प्रतिवर्ष भिन्न ग्रेगोरियन तिथि पर आता है।",
+    "ta": "மேற்கத்திய சூரிய ரிட்டர்ன் குண்டலி சூரியன் தனது பிறப்பு பாகையில் திரும்பும்போது அமைக்கப்படுகிறது. திதி பிரவேசம் சூரிய-சந்திர கோணத்தைப் பயன்படுத்துகிறது, எனவே வேத பிறந்தநாள் ஒவ்வொரு ஆண்டும் வெவ்வேறு கிரிகோரியன் தேதியில் வரும்.",
+    "bn": "পশ্চিমা সৌর রিটার্ন চার্ট সূর্য তার জন্ম ডিগ্রিতে ফিরলে তৈরি হয়। তিথি প্রবেশ সূর্য-চন্দ্র কোণ ব্যবহার করে, তাই বৈদিক জন্মদিন প্রতি বছর ভিন্ন গ্রেগরিয়ান তারিখে আসে।"
+  },
+  "panchangaTitle": {
+    "en": "The Panchanga at Tithi Pravesha Moment",
+    "hi": "तिथि प्रवेश क्षण का पंचांग",
+    "ta": "திதி பிரவேச நேரத்தின் பஞ்சாங்கம்",
+    "bn": "তিথি প্রবেশ মুহূর্তের পঞ্চাঙ্গ"
+  },
+  "panchangaContent": {
+    "en": "The panchanga elements at the Tithi Pravesha moment carry specific predictive weight. The tithi lord (the planet ruling the tithi at the TP moment) becomes the year lord — the dominant influence for the coming year. The nakshatra indicates the emotional tone and areas of focus. The yoga suggests the general fortune or challenge pattern. The karana (half-tithi) gives clues about the pace at which events unfold. And the vara (weekday) lord adds another layer of influence. Together, these five elements paint a quick portrait of the year's character before even examining the full chart.",
+    "hi": "तिथि प्रवेश क्षण के पंचांग तत्त्व विशिष्ट भविष्यवाणी भार रखते हैं। तिथि स्वामी (TP क्षण की तिथि का ग्रह) वर्ष स्वामी बनता है — आगामी वर्ष का प्रमुख प्रभाव। नक्षत्र भावनात्मक स्वर और ध्यान क्षेत्रों को इंगित करता है। योग सामान्य भाग्य या चुनौती प्रारूप सुझाता है। करण घटनाओं की गति के बारे में संकेत देता है। और वार स्वामी प्रभाव की एक और परत जोड़ता है।",
+    "ta": "திதி பிரவேச நேரத்தின் பஞ்சாங்க கூறுகள் குறிப்பிட்ட கணிப்பு முக்கியத்துவம் கொண்டவை. திதி நாதன் வருட நாதனாகிறார் — வரும் ஆண்டின் முதன்மை ஆதிக்கம்.",
+    "bn": "তিথি প্রবেশ মুহূর্তের পঞ্চাঙ্গ উপাদানগুলো নির্দিষ্ট ভবিষ্যদ্বাণী গুরুত্ব বহন করে। তিথি স্বামী বর্ষ স্বামী হন — আগামী বছরের প্রধান প্রভাব।"
+  },
+  "interpretingTitle": {
+    "en": "Interpreting the Year Chart",
+    "hi": "वर्ष कुण्डली की व्याख्या",
+    "ta": "வருட குண்டலியின் விளக்கம்",
+    "bn": "বর্ষ কুণ্ডলীর ব্যাখ্যা"
+  },
+  "interpretingContent": {
+    "en": "The Tithi Pravesha chart is read like a natal chart but with a one-year scope. The lagna lord's strength and placement indicate the querent's overall vitality and direction for the year. The Moon sign reflects the emotional and mental landscape. The 10th house and its lord show career developments; the 7th house reveals relationship dynamics. Importantly, the dasha running at the TP moment (within the natal Vimshottari sequence) must be integrated — the TP chart shows what the year brings, while the natal dasha shows the deeper karmic context in which those events play out. The strongest predictions come when both the TP chart and the natal dasha agree.",
+    "hi": "तिथि प्रवेश कुण्डली जन्म कुण्डली की भाँति पढ़ी जाती है लेकिन एक वर्ष के दायरे में। लग्नेश की शक्ति और स्थिति वर्ष की समग्र जीवन शक्ति और दिशा दर्शाती है। चन्द्र राशि भावनात्मक और मानसिक परिदृश्य दर्शाती है। दशम भाव और उसका स्वामी कैरियर विकास दिखाते हैं; सप्तम भाव सम्बन्ध गतिशीलता प्रकट करता है।",
+    "ta": "திதி பிரவேச குண்டலி ஒரு பிறப்பு குண்டலி போல படிக்கப்படுகிறது ஆனால் ஒரு வருட எல்லையுடன். லக்ன நாதனின் வலிமையும் நிலையும் வருடத்தின் ஒட்டுமொத்த திசையைக் காட்டுகின்றன.",
+    "bn": "তিথি প্রবেশ কুণ্ডলী জন্ম কুণ্ডলীর মতো পড়া হয় তবে এক বছরের পরিসরে। লগ্নেশের শক্তি ও অবস্থান বছরের সামগ্রিক দিকনির্দেশ দেখায়।"
+  },
+  "practicalTitle": {
+    "en": "Practical Use: Annual Prediction",
+    "hi": "व्यावहारिक उपयोग: वार्षिक भविष्यवाणी",
+    "ta": "நடைமுறை பயன்பாடு: வருடாந்திர கணிப்பு",
+    "bn": "ব্যবহারিক প্রয়োগ: বার্ষিক ভবিষ্যদ্বাণী"
+  },
+  "practicalContent": {
+    "en": "In practice, Tithi Pravesha is used alongside Varshaphal (Tajika annual chart) for year-ahead predictions. While Varshaphal uses the Sun's return to its natal degree (solar return), Tithi Pravesha captures the luni-solar dimension. Many Jyotishis consider Tithi Pravesha more accurate because it honours the fundamentally lunar character of Vedic time-keeping. The practical steps are: (1) find your birth tithi from your natal chart, (2) compute when that exact Sun-Moon angle recurs, (3) cast a chart for that moment at your current location, (4) read the panchanga and chart together for annual themes.",
+    "hi": "व्यवहार में तिथि प्रवेश का उपयोग वर्षफल (ताजिक वार्षिक कुण्डली) के साथ वर्ष-पूर्व भविष्यवाणी के लिए किया जाता है। जबकि वर्षफल सूर्य के जन्म अंश पर लौटने का उपयोग करता है, तिथि प्रवेश सूर्य-चन्द्र आयाम को पकड़ता है। अनेक ज्योतिषी तिथि प्रवेश को अधिक सटीक मानते हैं क्योंकि यह वैदिक कालगणना के मूलतः चान्द्र स्वरूप का सम्मान करता है।",
+    "ta": "நடைமுறையில், திதி பிரவேசம் வர்ஷபலத்துடன் (தாஜிக வருடாந்திர குண்டலி) இணைந்து பயன்படுத்தப்படுகிறது. பல ஜோதிடர்கள் திதி பிரவேசத்தை மிகவும் துல்லியமானதாகக் கருதுகிறார்கள்.",
+    "bn": "বাস্তবে, তিথি প্রবেশ বর্ষফলের (তাজিক বার্ষিক কুণ্ডলী) সাথে বছরের পূর্বাভাসের জন্য ব্যবহৃত হয়। অনেক জ্যোতিষী তিথি প্রবেশকে বেশি সঠিক মনে করেন।"
+  },
+  "sourceDisclaimer": {
+    "en": "Tithi Pravesha as a systematic annual technique was popularised by Pt. Sanjay Rath based on traditional Jyotish principles. The underlying concept — that the Sun-Moon angle defines the tithi and carries karmic significance — is found throughout classical literature, though the specific TP method as a distinct predictive tool is a modern synthesis of traditional elements.",
+    "hi": "तिथि प्रवेश एक व्यवस्थित वार्षिक तकनीक के रूप में पं. संजय रथ द्वारा पारम्परिक ज्योतिष सिद्धान्तों पर आधारित लोकप्रिय किया गया। मूल अवधारणा — कि सूर्य-चन्द्र कोण तिथि को परिभाषित करता है और कार्मिक महत्त्व रखता है — शास्त्रीय साहित्य में सर्वत्र पाई जाती है।",
+    "ta": "திதி பிரவேசம் ஒரு முறையான வருடாந்திர நுட்பமாக பண்டிட் சஞ்சய் ராத்தால் பாரம்பரிய ஜோதிட கோட்பாடுகளின் அடிப்படையில் பிரபலப்படுத்தப்பட்டது.",
+    "bn": "তিথি প্রবেশ একটি পদ্ধতিগত বার্ষিক কৌশল হিসেবে পণ্ডিত সঞ্জয় রথ দ্বারা ঐতিহ্যবাহী জ্যোতিষ নীতির ভিত্তিতে জনপ্রিয় করা হয়েছে।"
+  }
+}

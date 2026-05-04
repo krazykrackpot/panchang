@@ -1,0 +1,74 @@
+{
+  "title": {
+    "en": "Choghadiya: Auspicious Time Periods",
+    "hi": "चौघड़िया: शुभ समय अवधि",
+    "ta": "சோகடியா: சுப நேர காலங்கள்",
+    "bn": "চৌঘড়িয়া: শুভ সময় পর্ব"
+  },
+  "subtitle": {
+    "en": "The 7 types of Choghadiya, their weekday rotation, and how to use them for daily timing decisions",
+    "hi": "7 प्रकार के चौघड़िया, साप्ताहिक क्रम और दैनिक समय-निर्धारण में उपयोग",
+    "ta": "7 வகை சோகடியா, வாரநாள் சுழற்சி மற்றும் தினசரி நேர முடிவுகளில் பயன்பாடு",
+    "bn": "৭ প্রকার চৌঘড়িয়া, সাপ্তাহিক আবর্তন এবং দৈনিক সময় নির্ধারণে ব্যবহার"
+  },
+  "intro": {
+    "en": "Choghadiya (also spelt Chaughadia or Chogadia) is a traditional Vedic time-division system that splits each day and night into 8 periods of approximately 90 minutes each. The word comes from Gujarati: 'cho' (four) + 'ghadi' (a traditional unit of 24 minutes), so one Choghadiya = 4 ghadis = 96 minutes in theory, though in practice the duration varies because the day and night are divided equally regardless of their actual lengths. Unlike Hora (which uses a fixed 60-minute period), Choghadiya periods expand in summer and contract in winter for daytime, and vice versa for nighttime. This system is especially popular in Gujarat, Rajasthan, and Western India for quick, everyday timing decisions.",
+    "hi": "चौघड़िया (चौघड़ी) पारम्परिक वैदिक समय-विभाजन प्रणाली है जो प्रत्येक दिन और रात को लगभग 90 मिनट की 8 अवधियों में बाँटती है। शब्द गुजराती से आया है: 'चो' (चार) + 'घड़ी' (24 मिनट की पारम्परिक इकाई)। होरा (जो 60 मिनट की निश्चित अवधि है) के विपरीत, चौघड़िया दिन की लम्बाई के अनुसार बढ़ती-घटती है — ग्रीष्म में दिन के चौघड़िया लम्बे और शीतकाल में छोटे होते हैं। यह प्रणाली गुजरात, राजस्थान और पश्चिमी भारत में विशेष रूप से लोकप्रिय है।",
+    "ta": "சோகடியா ஒவ்வொரு பகல் மற்றும் இரவையும் தலா 8 காலங்களாக பிரிக்கும் பாரம்பரிய வேத நேர-பிரிவு முறை.",
+    "bn": "চৌঘড়িয়া প্রতিটি দিন ও রাতকে প্রায় ৯০ মিনিটের ৮টি পর্বে ভাগ করে। গুজরাট ও পশ্চিম ভারতে বিশেষ জনপ্রিয়।"
+  },
+  "sevenTypesTitle": {
+    "en": "The 7 Types of Choghadiya",
+    "hi": "चौघड़िया के 7 प्रकार",
+    "ta": "7 வகை சோகடியா",
+    "bn": "৭ প্রকার চৌঘড়িয়া"
+  },
+  "sevenTypesContent": {
+    "en": "Each Choghadiya period is named after one of 7 types, each governed by a planet and carrying a specific quality. From most to least auspicious: (1) Amrit ('Nectar', Moon) — the most auspicious period, excellent for all positive activities especially travel and business. (2) Shubh ('Auspicious', Jupiter) — highly favourable for religious activities, education, marriage-related work, and starting ventures. (3) Labh ('Gain', Mercury) — good for financial transactions, trade, and communication. (4) Char ('Moving', Venus) — neutral-to-good, suitable for travel and routine tasks. (5) Rog ('Disease', Mars) — inauspicious, associated with conflict and health issues; suitable only for warfare, surgery, or competitive activities. (6) Kaal ('Death', Saturn) — inauspicious, associated with delays, losses, and obstacles; avoid new beginnings. (7) Udveg ('Anxiety', Sun) — inauspicious, associated with stress and government-related troubles; suitable only for government work or meeting officials.",
+    "hi": "प्रत्येक चौघड़िया 7 प्रकारों में से एक है, प्रत्येक का स्वामी ग्रह और विशिष्ट गुण है। शुभता क्रम: (1) अमृत (चन्द्र) — सर्वाधिक शुभ, यात्रा और व्यापार के लिए उत्तम। (2) शुभ (गुरु) — धार्मिक कार्य, शिक्षा, विवाह कार्य के लिए अनुकूल। (3) लाभ (बुध) — वित्तीय लेनदेन, व्यापार के लिए अच्छा। (4) चर (शुक्र) — सामान्य, यात्रा और नित्यकर्म के लिए। (5) रोग (मंगल) — अशुभ, संघर्ष से जुड़ा; केवल युद्ध या शल्य-क्रिया के लिए। (6) काल (शनि) — अशुभ, विलम्ब और बाधाओं से जुड़ा। (7) उद्वेग (सूर्य) — अशुभ, तनाव से जुड़ा; केवल सरकारी कार्य के लिए।",
+    "ta": "(1) அமிர்தம் (சந்திரன்) — மிகவும் சுபம். (2) சுபம் (குரு) — மிகவும் சாதகமானது. (3) லாபம் (புதன்). (4) சரம் (சுக்ரன்). (5) ரோகம் (செவ்வாய்). (6) காலம் (சனி). (7) உத்வேகம் (சூரியன்).",
+    "bn": "(১) অমৃত (চন্দ্র) — সর্বাধিক শুভ। (২) শুভ (গুরু)। (৩) লাভ (বুধ)। (৪) চর (শুক্র)। (৫) রোগ (মঙ্গল)। (৬) কাল (শনি)। (৭) উদ্বেগ (সূর্য)।"
+  },
+  "rotationTitle": {
+    "en": "Weekday Rotation System",
+    "hi": "साप्ताहिक आवर्तन प्रणाली",
+    "ta": "வாரநாள் சுழற்சி முறை",
+    "bn": "সাপ্তাহিক আবর্তন পদ্ধতি"
+  },
+  "rotationContent": {
+    "en": "The first Choghadiya of the day is always governed by the planet ruling that weekday: Sunday starts with Udveg (Sun), Monday with Amrit (Moon), Tuesday with Rog (Mars), Wednesday with Labh (Mercury), Thursday with Shubh (Jupiter), Friday with Char (Venus), Saturday with Kaal (Saturn). After the first period, the remaining 7 day-periods cycle through the other types in a fixed sequence: Udveg → Char → Labh → Amrit → Kaal → Shubh → Rog (and repeat). The night sequence starts with the planet that rules 5 days later in the weekday cycle. This means that on any given day, you can predict exactly which Choghadiya types will occur and when — the only variable is the duration, which depends on sunrise and sunset times at your location.",
+    "hi": "दिन का पहला चौघड़िया सदैव उस दिन के स्वामी ग्रह से शासित होता है: रविवार उद्वेग (सूर्य) से, सोमवार अमृत (चन्द्र) से, मंगलवार रोग (मंगल) से, बुधवार लाभ (बुध) से, गुरुवार शुभ (गुरु) से, शुक्रवार चर (शुक्र) से, शनिवार काल (शनि) से। पहली अवधि के बाद शेष 7 दिन-अवधियाँ एक निश्चित क्रम में चक्रित होती हैं। अवधि की लम्बाई आपके स्थान के सूर्योदय-सूर्यास्त पर निर्भर करती है।",
+    "ta": "முதல் சோகடியா அந்த நாளின் ஆட்சி கிரகத்தால் நிர்ணயிக்கப்படுகிறது: ஞாயிறு உத்வேகம் (சூரியன்), திங்கள் அமிர்தம் (சந்திரன்) முதலியன.",
+    "bn": "দিনের প্রথম চৌঘড়িয়া সেই দিনের স্বামী গ্রহ দ্বারা শাসিত: রবিবার উদ্বেগ (সূর্য), সোমবার অমৃত (চন্দ্র) ইত্যাদি।"
+  },
+  "dailyUseTitle": {
+    "en": "How to Use Choghadiya for Daily Timing",
+    "hi": "दैनिक समय-निर्धारण के लिए चौघड़िया का उपयोग",
+    "ta": "தினசரி நேரத்திற்கு சோகடியா பயன்படுத்துதல்",
+    "bn": "দৈনিক সময় নির্ধারণে চৌঘড়িয়ার ব্যবহার"
+  },
+  "dailyUseContent": {
+    "en": "Choghadiya is the 'quick reference' timing system — simpler than a full Muhurta analysis and ideal for everyday activities. For business deals and financial decisions, prefer Labh or Shubh periods. For travel, Amrit or Char are best. For starting a new venture, Shubh or Amrit. Avoid starting anything important during Rog, Kaal, or Udveg. One important nuance: an otherwise inauspicious Choghadiya can be overridden if it coincides with a powerful auspicious window like Abhijit Muhurta (the 8th muhurta of the day, around midday) or Amrit Kalam. Conversely, even an Amrit Choghadiya should be treated with caution if it falls during Rahu Kaal, Yamaganda, or Varjyam — the inauspicious overlay takes precedence.",
+    "hi": "चौघड़िया 'त्वरित सन्दर्भ' समय-प्रणाली है — पूर्ण मुहूर्त विश्लेषण से सरल और दैनिक कार्यों के लिए आदर्श। व्यापारिक निर्णयों के लिए लाभ या शुभ चुनें। यात्रा के लिए अमृत या चर। नया उपक्रम आरम्भ करने के लिए शुभ या अमृत। रोग, काल, उद्वेग में महत्त्वपूर्ण कार्य न करें। महत्त्वपूर्ण सूक्ष्मता: अशुभ चौघड़िया भी अभिजित मुहूर्त या अमृत काल में हो तो उचित हो सकता है। इसके विपरीत, अमृत चौघड़िया भी राहु काल, यमगण्ड या वर्ज्यम में हो तो सावधानी बरतें।",
+    "ta": "வணிக முடிவுகளுக்கு லாபம் அல்லது சுபம் தேர்ந்தெடுக்கவும். பயணத்திற்கு அமிர்தம் அல்லது சரம். ரோகம், காலம், உத்வேகம் தவிர்க்கவும்.",
+    "bn": "ব্যবসায়িক সিদ্ধান্তে লাভ বা শুভ বেছে নিন। ভ্রমণে অমৃত বা চর। রোগ, কাল, উদ্বেগ এড়িয়ে চলুন।"
+  },
+  "horaRelationTitle": {
+    "en": "Choghadiya vs Hora: Related but Different",
+    "hi": "चौघड़िया बनाम होरा: सम्बन्धित किन्तु भिन्न",
+    "ta": "சோகடியா vs ஹோரா: தொடர்புடையது ஆனால் வேறுபட்டது",
+    "bn": "চৌঘড়িয়া বনাম হোরা: সম্পর্কিত কিন্তু ভিন্ন"
+  },
+  "horaRelationContent": {
+    "en": "Both Choghadiya and Hora divide the day into planetary periods, but they differ in key ways. Hora uses fixed 60-minute periods (24 horas per day) based on the Chaldean order of planets, starting from the day lord. Choghadiya uses 8 periods per day/night based on the actual duration of daylight/darkness, making each period variable in length. Hora is used across India and in Western astrology (the word 'hour' derives from 'hora'). Choghadiya is regional, primarily used in Gujarat and Rajasthan. For quick timing, Choghadiya is simpler — 7 types vs 7 hora lords. For detailed analysis, Hora is preferred because it provides finer granularity (24 periods vs 16). The ideal approach is to check both: if Choghadiya and Hora both indicate an auspicious period, confidence is high.",
+    "hi": "चौघड़िया और होरा दोनों दिन को ग्रह अवधियों में बाँटते हैं, किन्तु मुख्य अन्तर हैं। होरा 60 मिनट की निश्चित अवधियाँ (24 होरा प्रतिदिन) कैल्डियन क्रम पर आधारित। चौघड़िया दिन/रात की वास्तविक अवधि पर आधारित 8 अवधियाँ, अतः प्रत्येक अवधि चरणशील। होरा सम्पूर्ण भारत और पश्चिमी ज्योतिष में प्रचलित। चौघड़िया मुख्यतः गुजरात और राजस्थान में। सर्वोत्तम विधि: दोनों देखें — यदि दोनों शुभ दर्शाएँ तो विश्वास दृढ़ है।",
+    "ta": "ஹோரா நிலையான 60-நிமிட காலங்களை (24 ஹோரா/நாள்) பயன்படுத்துகிறது. சோகடியா பகல்/இரவின் உண்மையான நீளத்தின் அடிப்படையில் 8 காலங்கள்.",
+    "bn": "হোরা নির্দিষ্ট ৬০-মিনিটের পর্ব (২৪ হোরা/দিন) ব্যবহার করে। চৌঘড়িয়া দিন/রাতের প্রকৃত দৈর্ঘ্যের ভিত্তিতে ৮ পর্ব।"
+  },
+  "sourceDisclaimer": {
+    "en": "This page draws from Gujarati Panchang traditions, Muhurta Chintamani, and regional timing practices of Western India. Choghadiya is one of many timing systems in Vedic astrology — for important life events, a complete Muhurta analysis considering all five Panchang elements is recommended.",
+    "hi": "यह पृष्ठ गुजराती पंचांग परम्परा, मुहूर्त चिन्तामणि और पश्चिमी भारत की क्षेत्रीय समय-प्रथाओं से तैयार है। चौघड़िया वैदिक ज्योतिष की अनेक समय-प्रणालियों में से एक है।",
+    "ta": "இந்த பக்கம் குஜராத்தி பஞ்சாங்க பாரம்பரியங்கள் மற்றும் முகூர்த்த சிந்தாமணியிலிருந்து எடுக்கப்பட்டது.",
+    "bn": "এই পৃষ্ঠা গুজরাটি পঞ্চাঙ্গ পরম্পরা ও মুহূর্ত চিন্তামণি থেকে তৈরি।"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "title": {
+    "en": "Varshaphal: The Vedic Solar Return",
+    "hi": "वर्षफल: वैदिक सौर प्रत्यागमन",
+    "ta": "வர்ஷபலம்: வேத சூரிய மீளல்",
+    "bn": "বর্ষফল: বৈদিক সৌর প্রত্যাবর্তন"
+  },
+  "subtitle": {
+    "en": "Predict the year ahead using the Tajika system — Muntha, Sahams, Mudda Dasha, and 16 Tajika Yogas",
+    "hi": "ताजिक पद्धति से वर्ष का भविष्यफल — मुन्था, सहम, मुद्दा दशा और 16 ताजिक योग",
+    "ta": "தாஜிக முறை மூலம் வருடத்தின் பலன் — முந்தா, சகம், முத்தா தசை",
+    "bn": "তাজিক পদ্ধতিতে বছরের পূর্বাভাস — মুন্থা, সহম, মুদ্দা দশা"
+  },
+  "intro": {
+    "en": "Varshaphal (literally 'fruit of the year') is the Vedic solar return chart — a horoscope cast for the exact moment when the Sun returns to its natal degree each year on or near your birthday. While Parashari astrology uses the natal chart as a lifetime blueprint, the Tajika system layers an annual chart on top to predict the events, opportunities, and challenges of a specific year. This technique was refined in India after Arabic-Persian influences merged with classical Jyotish during the medieval period.",
+    "hi": "वर्षफल (शब्दशः 'वर्ष का फल') वैदिक सौर प्रत्यागमन कुण्डली है — जब सूर्य प्रतिवर्ष आपके जन्मकालीन अंश पर लौटता है, उस क्षण की कुण्डली। पाराशरी ज्योतिष जन्मकुण्डली को जीवनभर का खाका मानता है, जबकि ताजिक पद्धति किसी विशेष वर्ष की घटनाओं का भविष्यफल बताती है। यह तकनीक मध्यकाल में अरबी-फ़ारसी प्रभावों के शास्त्रीय ज्योतिष के संगम से परिष्कृत हुई।",
+    "ta": "வர்ஷபலம் ('ஆண்டின் பலன்') வேத சூரிய மீளல் குண்டலி ஆகும் — உங்கள் ஜனன பாகையில் சூரியன் திரும்பும் தருணத்தில் வரையப்படும் ஜாதகம்.",
+    "bn": "বর্ষফল ('বছরের ফল') হল বৈদিক সৌর প্রত্যাবর্তন কুণ্ডলী — প্রতি বছর সূর্য জন্মকালীন অংশে ফিরে আসার মুহূর্তের জাতক।"
+  },
+  "tajikaVsParashariTitle": {
+    "en": "Tajika vs Parashari: Two Complementary Systems",
+    "hi": "ताजिक बनाम पाराशरी: दो पूरक पद्धतियाँ",
+    "ta": "தாஜிக vs பராசரி: இரண்டு நிரப்பு முறைகள்",
+    "bn": "তাজিক বনাম পরাশরী: দুটি পরিপূরক পদ্ধতি"
+  },
+  "tajikaVsParashariContent": {
+    "en": "Parashari Jyotish (from Brihat Parashara Hora Shastra) is the foundation of Vedic astrology — it reads your natal chart as a fixed karmic blueprint valid for the entire life. Tajika, by contrast, is specifically designed for time-bound predictions. It uses a different set of aspects (Tajika aspects are based on Ptolemaic aspects — sextile, square, trine, opposition), its own yoga system (16 Tajika Yogas), and unique timing tools like Muntha and Mudda Dasha. The two systems complement each other: Parashari shows what is promised in the natal chart, and Tajika shows when (and whether) those promises activate in a given year.",
+    "hi": "पाराशरी ज्योतिष (बृहत् पाराशर होरा शास्त्र से) वैदिक ज्योतिष का आधार है — यह जन्मकुण्डली को समस्त जीवन का कार्मिक खाका मानता है। इसके विपरीत, ताजिक विशेष रूप से कालबद्ध भविष्यवाणी के लिए बनाई गयी है। इसमें भिन्न दृष्टियाँ (षडांश, चतुर्थांश, त्रिकोण, सप्तमांश), 16 ताजिक योग, और मुन्था-मुद्दा दशा जैसे विशिष्ट उपकरण हैं। दोनों पद्धतियाँ परस्पर पूरक हैं।",
+    "ta": "பராசரி ஜோதிடம் ஜனன குண்டலியை வாழ்நாள் கர்ம வரைபடமாக படிக்கிறது. தாஜிக குறிப்பிட்ட வருடத்தின் பலன்களை கணிக்கிறது.",
+    "bn": "পরাশরী জ্যোতিষ জন্মকুণ্ডলীকে সমগ্র জীবনের কর্মিক নকশা হিসেবে পড়ে। তাজিক নির্দিষ্ট বছরের পূর্বাভাসের জন্য বিশেষভাবে তৈরি।"
+  },
+  "munthaTitle": {
+    "en": "Muntha: The Progressed Ascendant",
+    "hi": "मुन्था: प्रगतिशील लग्न",
+    "ta": "முந்தா: முன்னேறிய லக்னம்",
+    "bn": "মুন্থা: প্রগতিশীল লগ্ন"
+  },
+  "munthaContent": {
+    "en": "Muntha is a sensitive point unique to the Tajika system. It starts at your natal Lagna and advances by exactly one sign per year. So at age 12, it returns to the natal Lagna, completing a full cycle. The house placement of Muntha in the Varshaphal chart is crucial: Muntha in kendras (1, 4, 7, 10) or trikonas (1, 5, 9) indicates a year of growth and opportunity; in trika houses (6, 8, 12) it signals challenges; and its conjunction or aspect from benefics or malefics further modifies its effects. The Muntha lord (ruler of the sign Muntha occupies) becomes one of the most important planets of the year.",
+    "hi": "मुन्था ताजिक पद्धति का एक विशिष्ट संवेदनशील बिन्दु है। यह जन्म लग्न से आरम्भ होकर प्रतिवर्ष एक राशि आगे बढ़ता है। 12 वर्ष में यह जन्म लग्न पर लौट आता है। वर्षफल कुण्डली में मुन्था का भाव-स्थान अत्यन्त महत्त्वपूर्ण है: केन्द्र (1, 4, 7, 10) या त्रिकोण (1, 5, 9) में मुन्था उन्नति का वर्ष दर्शाता है; त्रिक भावों (6, 8, 12) में चुनौतियाँ सूचित करता है।",
+    "ta": "முந்தா தாஜிக முறைக்கு தனித்துவமான உணர்திறன் புள்ளி. ஜனன லக்னத்தில் தொடங்கி ஒவ்வொரு வருடமும் ஒரு ராசி முன்னேறும்.",
+    "bn": "মুন্থা তাজিক পদ্ধতির একটি অনন্য সংবেদনশীল বিন্দু। এটি জন্ম লগ্ন থেকে শুরু হয়ে প্রতি বছর এক রাশি এগিয়ে যায়।"
+  },
+  "sahamsTitle": {
+    "en": "Sahams: The Arabic Parts",
+    "hi": "सहम: अरबी भाग (सेंसिटिव पॉइंट्स)",
+    "ta": "சகம்: அரேபிய பாகங்கள்",
+    "bn": "সহম: আরবীয় অংশ"
+  },
+  "sahamsContent": {
+    "en": "Sahams (also called Lots or Arabic Parts) are calculated sensitive points derived from the longitudes of three chart factors — typically the Ascendant plus or minus two planets. The Tajika system uses 16 primary Sahams, each governing a specific life domain: Punya Saham (fortune/merit), Vidya Saham (education), Vivaha Saham (marriage), Putra Saham (children), Karma Saham (profession), Roga Saham (disease), Mrityu Saham (death/danger), and more. The formula is generally: Saham = Asc + Planet A − Planet B. If a Saham falls in a favourable house with benefic aspects, that area of life flourishes during the year; malefic influences indicate difficulties.",
+    "hi": "सहम (जिन्हें लॉट्स या अरबी भाग भी कहते हैं) तीन कुण्डली कारकों — सामान्यतः लग्न ± दो ग्रहों — के देशान्तरों से गणित संवेदनशील बिन्दु हैं। ताजिक पद्धति में 16 प्रमुख सहम हैं: पुण्य सहम (भाग्य), विद्या सहम (शिक्षा), विवाह सहम, पुत्र सहम, कर्म सहम (व्यवसाय), रोग सहम, मृत्यु सहम आदि। सूत्र: सहम = लग्न + ग्रह A − ग्रह B। शुभ भाव में शुभ दृष्टि से जीवन का वह क्षेत्र उन्नत होता है।",
+    "ta": "சகம்கள் மூன்று ஜாதக காரணிகளின் தீர்க்கரேகைகளிலிருந்து கணிக்கப்படும் உணர்திறன் புள்ளிகள் — பொதுவாக லக்னம் ± இரண்டு கிரகங்கள்.",
+    "bn": "সহম তিনটি কুণ্ডলী কারকের দ্রাঘিমাংশ থেকে গণনা করা সংবেদনশীল বিন্দু — সাধারণত লগ্ন ± দুটি গ্রহ।"
+  },
+  "muddaDashaTitle": {
+    "en": "Mudda Dasha: The Year's Planetary Periods",
+    "hi": "मुद्दा दशा: वर्ष की ग्रह अवधियाँ",
+    "ta": "முத்தா தசை: வருடத்தின் கிரக காலங்கள்",
+    "bn": "মুদ্দা দশা: বছরের গ্রহ কাল"
+  },
+  "muddaDashaContent": {
+    "en": "Mudda Dasha is the Tajika equivalent of Vimshottari Dasha, compressed into a single year. The total period of 365.25 days is distributed among the planets in the same Vimshottari proportions (Sun 6/120, Moon 10/120, Mars 7/120, etc.), but starting from the birth nakshatra lord of the Varshaphal chart. Each dasha period lasts only days or weeks rather than years. The Mudda Dasha sequence tells you which planet is 'active' during each segment of the year — when Jupiter's Mudda Dasha runs, Jupiter's significations (education, children, dharma) come to the foreground; during Saturn's period, expect delays, restructuring, and karmic lessons.",
+    "hi": "मुद्दा दशा ताजिक पद्धति का विंशोत्तरी दशा का एक वर्ष में संकुचित स्वरूप है। 365.25 दिनों की कुल अवधि विंशोत्तरी अनुपात में ग्रहों में बँटती है (सूर्य 6/120, चन्द्र 10/120, मंगल 7/120, आदि), किन्तु वर्षफल कुण्डली के जन्म नक्षत्र स्वामी से आरम्भ होती है। प्रत्येक दशाकाल दिनों या सप्ताहों का होता है। गुरु की मुद्दा दशा में शिक्षा, सन्तान व धर्म अग्रभूमि पर; शनि काल में विलम्ब, पुनर्गठन और कार्मिक शिक्षा।",
+    "ta": "முத்தா தசை ஒரு வருடத்திற்குள் சுருக்கப்பட்ட விம்சோத்தரி தசை. 365.25 நாட்கள் கிரகங்களுக்கு விம்சோத்தரி விகிதத்தில் பிரிக்கப்படும்.",
+    "bn": "মুদ্দা দশা এক বছরে সংকুচিত বিংশোত্তরী দশা। ৩৬৫.২৫ দিন গ্রহদের মধ্যে বিংশোত্তরী অনুপাতে বিতরণ হয়।"
+  },
+  "tajikaYogasTitle": {
+    "en": "The 16 Tajika Yogas",
+    "hi": "16 ताजिक योग",
+    "ta": "16 தாஜிக யோகங்கள்",
+    "bn": "১৬ তাজিক যোগ"
+  },
+  "tajikaYogasContent": {
+    "en": "The Tajika system defines 16 special yogas formed by the angular relationships between planets in the Varshaphal chart. Unlike Parashari yogas (which depend on house lordships and placements), Tajika yogas focus on applying and separating aspects — whether two planets are approaching an exact aspect or moving apart. The most important are: Ikkabal (planet in its own sign or exaltation — strength and success), Ithasala (two planets applying to an aspect — events will manifest), Ishrafa (planets separating — opportunity has passed), Nakta (transfer of light via a third planet), Yamaya (mutual application between two slow planets), and Khalasara (frustration of a forming yoga by a third planet's interference). These yogas determine whether the promises of the Varshaphal chart actually materialise during the year.",
+    "hi": "ताजिक पद्धति में वर्षफल कुण्डली के ग्रहों के कोणीय सम्बन्धों से 16 विशेष योग बनते हैं। पाराशरी योगों (जो भावेश और स्थिति पर निर्भर हैं) से भिन्न, ताजिक योग 'प्रयुक्त' और 'पृथक' दृष्टियों पर केन्द्रित हैं। प्रमुख हैं: इक्क़बाल (स्वगृह/उच्च में ग्रह — बल और सफलता), इत्थशाल (दो ग्रह दृष्टि की ओर बढ़ रहे — घटनाएँ घटित होंगी), ईशराफ (ग्रह पृथक हो रहे — अवसर बीत गया), नक्त (तृतीय ग्रह द्वारा प्रकाश हस्तान्तरण), यमया (दो मन्द ग्रहों का पारस्परिक अनुप्रयोग), और खलासरा (तृतीय ग्रह के हस्तक्षेप से योग का भंग)।",
+    "ta": "தாஜிக முறை வர்ஷபல குண்டலியின் கிரக கோண உறவுகளால் 16 சிறப்பு யோகங்களை வரையறுக்கிறது.",
+    "bn": "তাজিক পদ্ধতি বর্ষফল কুণ্ডলীর গ্রহদের কৌণিক সম্পর্ক থেকে ১৬টি বিশেষ যোগ সংজ্ঞায়িত করে।"
+  },
+  "varsheshaTitle": {
+    "en": "Varshesha: The Year Lord",
+    "hi": "वर्षेश: वर्ष का स्वामी",
+    "ta": "வர்ஷேசன்: வருட அதிபதி",
+    "bn": "বর্ষেশ: বছরের অধিপতি"
+  },
+  "varsheshaContent": {
+    "en": "The Varshesha (Year Lord) is the single most powerful planet in the Varshaphal chart. Its selection follows a specific algorithm considering five factors: the lord of the Varsha Lagna, the lord of the natal Lagna, the lord of the Muntha sign, the lord of the Moon's Trikona, and the lord of the Sun's Trikona. The planet that has the highest dignity (by sign placement, aspects received, and house position) among these candidates becomes the Varshesha. The Varshesha colours the entire year — a strong Jupiter as Varshesha brings wisdom, expansion, and dharmic opportunities; Mars brings energy, conflict, and decisive action; Saturn brings discipline, delays, and maturation.",
+    "hi": "वर्षेश (वर्ष स्वामी) वर्षफल कुण्डली का सर्वाधिक प्रबल ग्रह है। इसका चयन पाँच कारकों पर आधारित है: वर्ष लग्नेश, जन्म लग्नेश, मुन्था राशि स्वामी, चन्द्र त्रिकोण स्वामी, और सूर्य त्रिकोण स्वामी। जिस ग्रह की गरिमा (राशि स्थिति, दृष्टि और भाव) सर्वोच्च हो, वह वर्षेश बनता है। गुरु वर्षेश हो तो ज्ञान-विस्तार, मंगल हो तो ऊर्जा-संघर्ष, शनि हो तो अनुशासन-विलम्ब।",
+    "ta": "வர்ஷேசன் வர்ஷபல குண்டலியில் மிக சக்திவாய்ந்த கிரகம். ஐந்து காரணிகளை கருத்தில் கொண்டு தேர்வு செய்யப்படுகிறது.",
+    "bn": "বর্ষেশ বর্ষফল কুণ্ডলীর সবচেয়ে শক্তিশালী গ্রহ। পাঁচটি কারক বিবেচনা করে নির্বাচিত হয়।"
+  },
+  "howToReadTitle": {
+    "en": "How to Read a Varshaphal Chart",
+    "hi": "वर्षफल कुण्डली कैसे पढ़ें",
+    "ta": "வர்ஷபல குண்டலியை எப்படி படிப்பது",
+    "bn": "বর্ষফল কুণ্ডলী কীভাবে পড়বেন"
+  },
+  "howToReadContent": {
+    "en": "Reading a Varshaphal chart is a layered process. Start with the Varshesha — its house placement, dignity, and aspects set the tone for the entire year. Next, examine the Muntha: its house position and the condition of the Muntha lord indicate the overall direction (growth, stability, or challenge). Then check the Tajika Yogas — which planets are forming Ithasala (applying aspects), and which are in Ishrafa (separating). Finally, look at the Mudda Dasha sequence to understand timing: which months are governed by benefics vs malefics. Always overlay the Varshaphal findings on the natal chart — a strong Varshaphal Jupiter only delivers results if natal Jupiter is well-placed. A weak natal planet cannot suddenly become powerful just because the annual chart looks good.",
+    "hi": "वर्षफल कुण्डली का अध्ययन स्तरीय प्रक्रिया है। पहले वर्षेश देखें — भाव, गरिमा और दृष्टि से वर्ष का स्वर निर्धारित होता है। फिर मुन्था — भाव स्थिति और मुन्था स्वामी की दशा से वर्ष की दिशा ज्ञात होती है। फिर ताजिक योग — कौन से ग्रह इत्थशाल (प्रयुक्त) या ईशराफ (पृथक) बना रहे हैं। अन्त में मुद्दा दशा क्रम से समय निर्धारण। सदैव वर्षफल को जन्मकुण्डली पर अध्यारोपित करें — जन्म कुण्डली में दुर्बल ग्रह वर्षफल में बलवान होने पर भी पूर्ण फल नहीं दे सकता।",
+    "ta": "வர்ஷபல குண்டலியைப் படிப்பது அடுக்கு செயல்முறை. முதலில் வர்ஷேசனை பாருங்கள் — அதன் பாவம், கௌரவம், பார்வை.",
+    "bn": "বর্ষফল কুণ্ডলী পাঠ একটি স্তরভিত্তিক প্রক্রিয়া। প্রথমে বর্ষেশ দেখুন — বছরের সুর নির্ধারণ করে।"
+  },
+  "sourceDisclaimer": {
+    "en": "This page presents classical Tajika principles from Tajika Neelakanthi by Neelakantha Daivagna (16th century) and Varshaphala by B.V. Raman. Interpretation requires considering the complete natal chart alongside the annual chart — never rely on Varshaphal alone for major life predictions.",
+    "hi": "यह पृष्ठ नीलकण्ठ दैवज्ञ कृत ताजिक नीलकण्ठी (16वीं शताब्दी) और बी.वी. रमन कृत वर्षफल से शास्त्रीय ताजिक सिद्धान्त प्रस्तुत करता है। व्याख्या में वर्षफल के साथ जन्मकुण्डली का समन्वय अनिवार्य है।",
+    "ta": "இந்த பக்கம் தாஜிக நீலகண்டி மற்றும் B.V. ராமன் எழுதிய வர்ஷபலத்தின் செம்மொழி கொள்கைகளை வழங்குகிறது.",
+    "bn": "এই পৃষ্ঠা তাজিক নীলকণ্ঠী এবং B.V. রমনের বর্ষফল থেকে শাস্ত্রীয় তাজিক নীতি উপস্থাপন করে।"
+  }
+}

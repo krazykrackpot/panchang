@@ -1,0 +1,74 @@
+{
+  "title": {
+    "en": "Mangal Dosha: Mars and Marriage Compatibility",
+    "hi": "मांगलिक दोष: मंगल और विवाह अनुकूलता",
+    "ta": "செவ்வாய் தோஷம்: செவ்வாய் மற்றும் திருமண பொருத்தம்",
+    "bn": "মাঙ্গলিক দোষ: মঙ্গল ও বিবাহ সামঞ্জস্য"
+  },
+  "subtitle": {
+    "en": "Understanding Manglik Dosha — formation, severity, 10+ cancellation rules, and common misconceptions debunked",
+    "hi": "मांगलिक दोष — निर्माण, तीव्रता, 10+ निवारण नियम और भ्रम निवारण",
+    "ta": "செவ்வாய் தோஷம் — உருவாக்கம், தீவிரம், ரத்து விதிகள்",
+    "bn": "মাঙ্গলিক দোষ — গঠন, তীব্রতা, বাতিলকরণ নিয়ম"
+  },
+  "intro": {
+    "en": "Mangal Dosha (also called Manglik Dosha, Kuja Dosha, or Chevvai Dosham) is perhaps the most feared and most misunderstood concept in Vedic astrology. It forms when Mars (Mangal) is placed in the 1st, 2nd, 4th, 7th, 8th, or 12th house from the Lagna, Moon, or Venus in the birth chart. Since Mars is a fiery, aggressive planet associated with conflict, its placement in houses related to marriage (7th), physical body (1st), family harmony (2nd, 4th), marital longevity (8th), and bed pleasures (12th) is said to create friction in married life. However, the reality is far more nuanced than the fear suggests — roughly 40% of all charts have some form of Mangal Dosha, and classical texts provide over 10 cancellation rules.",
+    "hi": "मांगलिक दोष (जिसे कुज दोष या चेव्वई दोषम् भी कहते हैं) वैदिक ज्योतिष की सबसे भयप्रद और सबसे गलत समझी गयी अवधारणा है। यह तब बनता है जब मंगल लग्न, चन्द्र या शुक्र से 1, 2, 4, 7, 8, या 12वें भाव में हो। मंगल अग्नि तत्त्व का आक्रामक ग्रह है, विवाह सम्बन्धित भावों में इसकी स्थिति दाम्पत्य जीवन में कलह का कारक मानी जाती है। किन्तु वास्तविकता भय से कहीं अधिक सूक्ष्म है — लगभग 40% कुण्डलियों में किसी न किसी प्रकार का मांगलिक दोष होता है, और शास्त्रीय ग्रन्थ 10 से अधिक निवारण नियम प्रदान करते हैं।",
+    "ta": "செவ்வாய் தோஷம் வேத ஜோதிடத்தில் மிகவும் அச்சமூட்டும் மற்றும் தவறாக புரிந்து கொள்ளப்பட்ட கருத்து. செவ்வாய் 1, 2, 4, 7, 8, அல்லது 12 வது பாவத்தில் இருக்கும்போது உருவாகிறது.",
+    "bn": "মাঙ্গলিক দোষ বৈদিক জ্যোতিষের সবচেয়ে ভয়প্রদ ও সবচেয়ে ভুল বোঝা ধারণা। মঙ্গল যখন ১, ২, ৪, ৭, ৮, বা ১২ ভাবে থাকে তখন গঠিত হয়।"
+  },
+  "severityTitle": {
+    "en": "Severity Levels: Which Houses Are Worst?",
+    "hi": "तीव्रता स्तर: कौन से भाव सबसे कठोर?",
+    "ta": "தீவிர நிலைகள்: எந்த பாவங்கள் மோசமானவை?",
+    "bn": "তীব্রতার মাত্রা: কোন ভাব সবচেয়ে কঠিন?"
+  },
+  "severityContent": {
+    "en": "Not all Mangal Dosha placements carry equal weight. Mars in the 7th house (the house of marriage itself) and the 8th house (marital longevity, shared resources, and sexuality) are considered the most severe — these directly impact the quality and durability of the partnership. Mars in the 1st house (personality, self-assertion) creates a dominating temperament. Mars in the 4th (domestic peace) disturbs home harmony. Mars in the 2nd (family, speech) causes harsh speech and family discord. Mars in the 12th (bed pleasures, losses) affects intimacy and may indicate separation. The dosha from Lagna is considered strongest, from Moon moderate, and from Venus mildest.",
+    "hi": "सभी मांगलिक दोष स्थितियाँ समान नहीं। 7वें भाव (स्वयं विवाह भाव) और 8वें भाव (दाम्पत्य दीर्घायु, साझी सम्पत्ति, कामजीवन) में मंगल सबसे कठोर माना जाता है। 1ले भाव (व्यक्तित्व) में मंगल प्रभावशाली स्वभाव बनाता है। 4थे भाव (गृह शान्ति) में घरेलू सामंजस्य बिगाड़ता है। 2रे भाव (परिवार, वाणी) में कठोर वाणी। 12वें भाव (शयन, हानि) में अन्तरंगता प्रभावित। लग्न से दोष सबसे बलवान, चन्द्र से मध्यम, शुक्र से सबसे हल्का।",
+    "ta": "7வது பாவம் (திருமணம்) மற்றும் 8வது பாவம் (தாம்பத்ய ஆயுள்) மிகவும் கடுமையானவை. லக்னத்தில் இருந்து தோஷம் வலுவானது.",
+    "bn": "৭ম ভাব (বিবাহ) ও ৮ম ভাব (দাম্পত্য দীর্ঘায়ু) সবচেয়ে তীব্র। লগ্ন থেকে দোষ সবচেয়ে বলবান।"
+  },
+  "cancellationTitle": {
+    "en": "Cancellation Rules: When Mangal Dosha Is Neutralised",
+    "hi": "निवारण नियम: मांगलिक दोष कब निष्प्रभावी होता है",
+    "ta": "ரத்து விதிகள்: தோஷம் எப்போது நிவர்த்தியாகும்",
+    "bn": "বাতিলকরণ নিয়ম: দোষ কখন নিষ্ক্রিয় হয়"
+  },
+  "cancellationContent": {
+    "en": "Classical texts, particularly BPHS Chapter 81, list numerous conditions under which Mangal Dosha is cancelled or significantly reduced. These are not modern inventions — they are part of the original framework. The key cancellation rules include: (1) Mars in its own sign (Aries or Scorpio) or exalted (Capricorn) in the dosha house, (2) Mars conjunct or aspected by Jupiter (the great benefic), (3) Mars in a sign of Jupiter (Sagittarius or Pisces), (4) The 7th lord is in a kendra (1, 4, 7, 10), (5) Mars in the 2nd house in Gemini or Virgo (Mercury's signs reduce Mars's aggression), (6) Both partners have Mangal Dosha (mutual cancellation — the most common remedy in practice), (7) Mars aspected by benefics from the 7th house, (8) Mars in the 1st/8th house in Leo/Aquarius, (9) Mars in the 4th house conjunct Moon (emotional warmth moderates martial aggression), (10) After age 28 — Mars matures and its aggressive energy stabilises.",
+    "hi": "शास्त्रीय ग्रन्थ, विशेषतः बीपीएचएस अध्याय 81, ऐसी अनेक स्थितियाँ बताते हैं जिनमें मांगलिक दोष निष्प्रभावी या काफ़ी कम हो जाता है। प्रमुख निवारण नियम: (1) मंगल दोष भाव में स्वगृही (मेष/वृश्चिक) या उच्च (मकर), (2) मंगल पर गुरु की युति या दृष्टि, (3) मंगल गुरु की राशि (धनु/मीन) में, (4) 7वें भाव का स्वामी केन्द्र में, (5) मंगल 2रे भाव में मिथुन या कन्या में, (6) दोनों साथियों में दोष (परस्पर निवारण), (7) 7वें भाव से शुभ ग्रह की दृष्टि, (8) 1ले/8वें भाव में मंगल सिंह/कुम्भ में, (9) 4थे भाव में मंगल-चन्द्र युति, (10) 28 वर्ष के बाद मंगल परिपक्व होता है।",
+    "ta": "BPHS அத்தியாயம் 81 தோஷம் ரத்தாகும் பல நிபந்தனைகளை பட்டியலிடுகிறது: (1) தோஷ பாவத்தில் செவ்வாய் ஆட்சி அல்லது உச்சம், (2) குருவின் சேர்க்கை அல்லது பார்வை.",
+    "bn": "BPHS অধ্যায় ৮১ দোষ বাতিলের অনেক শর্ত দেয়: (১) দোষ ভাবে মঙ্গল স্বগৃহী বা উচ্চ, (২) গুরুর যুতি বা দৃষ্টি।"
+  },
+  "misconceptionsTitle": {
+    "en": "Common Misconceptions Debunked",
+    "hi": "सामान्य भ्रम का निवारण",
+    "ta": "பொதுவான தவறான கருத்துகள் நிராகரிக்கப்பட்டன",
+    "bn": "সাধারণ ভুল ধারণা দূরীকরণ"
+  },
+  "misconceptionsContent": {
+    "en": "Several myths around Mangal Dosha cause unnecessary panic. Myth 1: 'A Manglik person will cause the death of their spouse.' This is a gross exaggeration with no basis in classical texts — BPHS mentions 'marital discord', not death. Myth 2: 'Mangal Dosha never goes away.' In reality, Mars matures after age 28, and the dosha's intensity naturally diminishes. Myth 3: 'You must marry only another Manglik.' While mutual cancellation is the most effective remedy, many other cancellation rules exist. Myth 4: 'Performing a Kumbh Vivah (marriage to a pot) removes the dosha.' This is a folk remedy not found in any authoritative Jyotish text. The key takeaway is that Mangal Dosha must be evaluated in the context of the complete chart — an isolated Mars placement means very little without examining its dignity, aspects, and the overall strength of the 7th house.",
+    "hi": "मांगलिक दोष के कई मिथक अनावश्यक भय पैदा करते हैं। मिथक 1: 'मांगलिक व्यक्ति पत्नी/पति की मृत्यु का कारण बनेगा।' बीपीएचएस में 'दाम्पत्य कलह' लिखा है, मृत्यु नहीं। मिथक 2: 'मांगलिक दोष कभी नहीं जाता।' 28 वर्ष बाद मंगल परिपक्व होता है। मिथक 3: 'केवल मांगलिक से ही विवाह करना चाहिए।' अनेक अन्य निवारण नियम हैं। मिथक 4: 'कुम्भ विवाह दोष दूर करता है।' यह किसी प्रामाणिक ग्रन्थ में नहीं है। मांगलिक दोष का मूल्यांकन सम्पूर्ण कुण्डली के सन्दर्भ में होना चाहिए।",
+    "ta": "மிதக் 1: 'மாங்கலிக் நபர் துணையின் மரணத்தை ஏற்படுத்துவார்.' BPHS 'தாம்பத்ய கருத்து வேறுபாடு' என்கிறது, இறப்பு அல்ல.",
+    "bn": "মিথ ১: 'মাঙ্গলিক ব্যক্তি সঙ্গীর মৃত্যু ঘটাবে।' BPHS 'দাম্পত্য কলহ' বলে, মৃত্যু নয়।"
+  },
+  "remediesTitle": {
+    "en": "Classical Remedies for Mangal Dosha",
+    "hi": "मांगलिक दोष के शास्त्रीय उपाय",
+    "ta": "செவ்வாய் தோஷத்திற்கான சாஸ்திரீய பரிகாரங்கள்",
+    "bn": "মাঙ্গলিক দোষের শাস্ত্রীয় প্রতিকার"
+  },
+  "remediesContent": {
+    "en": "When cancellation rules do not apply and the dosha is genuinely active, classical texts recommend specific remedies: (1) Mangal Dosha matching — marry a partner who also has Mangal Dosha, neutralising the effect through mutual balance. (2) Kuja Shanti Puja — a specific ritual worship of Mars involving red flowers, red cloth, and recitation of Mars mantras (Om Kraam Kreem Kraum Sah Bhaumaya Namah). (3) Fasting on Tuesdays — Mars's day. (4) Wearing a red coral (Moonga) on the ring finger of the right hand after proper energisation. (5) Donating red lentils (masoor dal), red cloth, or jaggery on Tuesdays. (6) Reciting Hanuman Chalisa — Hanuman is considered the deity who can pacify Mars's aggressive energy. (7) Visiting Vaitheeswaran Koil (Mars temple in Tamil Nadu) — a traditional pilgrimage for Mars-related afflictions. Always consult a qualified Jyotishi before implementing remedies.",
+    "hi": "जब निवारण नियम लागू न हों और दोष सक्रिय हो, शास्त्रीय उपाय: (1) मांगलिक दोष मिलान — दूसरे मांगलिक से विवाह। (2) कुज शान्ति पूजा — लाल पुष्प, लाल वस्त्र और मंगल मन्त्र जप। (3) मंगलवार का उपवास। (4) दक्षिण हाथ की अनामिका में मूँगा धारण। (5) मंगलवार को मसूर दाल, लाल वस्त्र या गुड़ का दान। (6) हनुमान चालीसा पाठ। (7) वैथीश्वरन कोविल (तमिलनाडु) दर्शन। किसी योग्य ज्योतिषी से परामर्श अवश्य लें।",
+    "ta": "(1) செவ்வாய் தோஷ பொருத்தம் — இரு பங்காளிகளுக்கும் தோஷம் இருக்க வேண்டும். (2) குஜ சாந்தி பூஜை. (3) செவ்வாய்கிழமை விரதம். (4) பவளம் அணிதல்.",
+    "bn": "(১) মাঙ্গলিক দোষ মিলান — দুজনেরই দোষ থাকলে। (২) কুজ শান্তি পূজা। (৩) মঙ্গলবার উপবাস। (৪) মুঙ্গা ধারণ।"
+  },
+  "sourceDisclaimer": {
+    "en": "This page draws from BPHS Chapter 81 (Manglik Dosha rules), Muhurta Chintamani, and Phaladeepika by Mantreshwara. Mangal Dosha must always be evaluated in the context of the entire chart — never as an isolated placement. Consult a qualified astrologer for personalised guidance.",
+    "hi": "यह पृष्ठ बीपीएचएस अध्याय 81, मुहूर्त चिन्तामणि और मन्त्रेश्वर कृत फलदीपिका से तैयार है। मांगलिक दोष का मूल्यांकन सदैव सम्पूर्ण कुण्डली के सन्दर्भ में होना चाहिए।",
+    "ta": "இந்த பக்கம் BPHS அத்தியாயம் 81, முகூர்த்த சிந்தாமணி மற்றும் பலதீபிகாவிலிருந்து எடுக்கப்பட்டது.",
+    "bn": "এই পৃষ্ঠা BPHS অধ্যায় ৮১, মুহূর্ত চিন্তামণি ও ফলদীপিকা থেকে তৈরি।"
+  }
+}

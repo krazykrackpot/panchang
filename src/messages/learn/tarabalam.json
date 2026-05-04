@@ -1,0 +1,74 @@
+{
+  "title": {
+    "en": "Tara Bala: Star Strength",
+    "hi": "तारा बल: नक्षत्र शक्ति",
+    "ta": "தார பலம்: நட்சத்திர வலிமை",
+    "bn": "তারা বল: নক্ষত্র শক্তি"
+  },
+  "subtitle": {
+    "en": "How counting from your birth nakshatra to today's nakshatra reveals whether the day is favourable for you",
+    "hi": "अपने जन्म नक्षत्र से आज के नक्षत्र तक गिनती कैसे बताती है कि दिन आपके लिए अनुकूल है या नहीं",
+    "ta": "உங்கள் பிறப்பு நட்சத்திரத்திலிருந்து இன்றைய நட்சத்திரம் வரை எண்ணுவது நாள் உங்களுக்கு சாதகமா என்பதை எவ்வாறு வெளிப்படுத்துகிறது",
+    "bn": "আপনার জন্ম নক্ষত্র থেকে আজকের নক্ষত্র পর্যন্ত গণনা কীভাবে দিনটি আপনার জন্য অনুকূল কিনা প্রকাশ করে"
+  },
+  "whatIs": {
+    "en": "Tara Bala (literally 'star strength') is a personalised daily auspiciousness check based on your birth nakshatra. The calculation is simple: count from your birth nakshatra to the current transit nakshatra (the nakshatra the Moon occupies today), divide by 9, and the remainder (1-9) maps to one of nine Taras. Each Tara has a fixed auspicious or inauspicious nature. This makes Tara Bala one of the most practical daily-use tools in Vedic astrology — it takes seconds to check and gives a clear favourable/unfavourable signal personalised to your birth chart.",
+    "hi": "तारा बल (शाब्दिक अर्थ 'नक्षत्र शक्ति') आपके जन्म नक्षत्र पर आधारित एक व्यक्तिगत दैनिक शुभत्व जाँच है। गणना सरल है: अपने जन्म नक्षत्र से वर्तमान गोचर नक्षत्र तक गिनें, 9 से भाग दें, और शेषफल (1-9) नौ तारों में से एक को इंगित करता है। प्रत्येक तारा की एक निश्चित शुभ या अशुभ प्रकृति है।",
+    "ta": "தார பலம் (நேரடி அர்த்தம் 'நட்சத்திர வலிமை') உங்கள் பிறப்பு நட்சத்திரத்தின் அடிப்படையில் தனிப்பயனாக்கப்பட்ட தினசரி சுப பரிசோதனை. கணக்கீடு எளிமையானது: உங்கள் பிறப்பு நட்சத்திரத்திலிருந்து தற்போதைய நட்சத்திரம் வரை எண்ணி, 9 ஆல் வகுத்து, மீதி (1-9) ஒன்பது தாராக்களில் ஒன்றைக் குறிக்கும்.",
+    "bn": "তারা বল (আক্ষরিক অর্থ 'নক্ষত্র শক্তি') আপনার জন্ম নক্ষত্রের ওপর ভিত্তি করে একটি ব্যক্তিগত দৈনিক শুভত্ব পরীক্ষা। গণনা সহজ: জন্ম নক্ষত্র থেকে বর্তমান নক্ষত্র পর্যন্ত গুনুন, ৯ দিয়ে ভাগ করুন, এবং ভাগশেষ (১-৯) নয়টি তারার একটি নির্দেশ করে।"
+  },
+  "nineTarasTitle": {
+    "en": "The Nine Taras",
+    "hi": "नौ तारे",
+    "ta": "ஒன்பது தாராக்கள்",
+    "bn": "নয়টি তারা"
+  },
+  "nineTarasContent": {
+    "en": "The nine Taras form a repeating cycle across the 27 nakshatras (27 / 9 = 3 complete cycles). Each Tara has a name, a number, and a fixed nature. Remainder 1: Janma (Birth) — inauspicious, represents vulnerability. Remainder 2: Sampat (Wealth) — auspicious, brings prosperity. Remainder 3: Vipat (Danger) — inauspicious, brings obstacles. Remainder 4: Kshema (Well-being) — auspicious, supports comfort and safety. Remainder 5: Pratyari (Obstacle) — inauspicious, creates opposition. Remainder 6: Sadhaka (Achievement) — auspicious, supports accomplishment. Remainder 7: Vadha (Death/Harm) — inauspicious, risk of loss. Remainder 8: Mitra (Friend) — auspicious, brings support and alliance. Remainder 9 (or 0): Atimitra (Great Friend) — highly auspicious, the best Tara.",
+    "hi": "नौ तारे 27 नक्षत्रों में एक दोहराव चक्र बनाते हैं (27 / 9 = 3 पूर्ण चक्र)। शेष 1: जन्म — अशुभ, असुरक्षा। शेष 2: सम्पत् — शुभ, समृद्धि। शेष 3: विपत् — अशुभ, बाधाएँ। शेष 4: क्षेम — शुभ, सुख-सुरक्षा। शेष 5: प्रत्यरि — अशुभ, विरोध। शेष 6: साधक — शुभ, सिद्धि। शेष 7: वध — अशुभ, हानि का जोखिम। शेष 8: मित्र — शुभ, सहयोग। शेष 9 (या 0): अतिमित्र — अत्यन्त शुभ, सर्वोत्तम तारा।",
+    "ta": "ஒன்பது தாராக்கள் 27 நட்சத்திரங்களில் ஒரு மீண்டும் வரும் சுழற்சியை உருவாக்குகின்றன. மீதி 1: ஜன்ம — அசுபம். மீதி 2: சம்பத் — சுபம். மீதி 3: விபத் — அசுபம். மீதி 4: க்ஷேமம் — சுபம். மீதி 5: பிரத்யரி — அசுபம். மீதி 6: சாதகம் — சுபம். மீதி 7: வதம் — அசுபம். மீதி 8: மித்ர — சுபம். மீதி 9: அதிமித்ர — மிகவும் சுபம்.",
+    "bn": "নয়টি তারা ২৭ নক্ষত্রে একটি পুনরাবৃত্তি চক্র তৈরি করে। ভাগশেষ ১: জন্ম — অশুভ। ভাগশেষ ২: সম্পৎ — শুভ। ভাগশেষ ৩: বিপৎ — অশুভ। ভাগশেষ ৪: ক্ষেম — শুভ। ভাগশেষ ৫: প্রত্যরি — অশুভ। ভাগশেষ ৬: সাধক — শুভ। ভাগশেষ ৭: বধ — অশুভ। ভাগশেষ ৮: মিত্র — শুভ। ভাগশেষ ৯: অতিমিত্র — অত্যন্ত শুভ।"
+  },
+  "whichGoodTitle": {
+    "en": "Auspicious vs Inauspicious Taras",
+    "hi": "शुभ बनाम अशुभ तारे",
+    "ta": "சுபம் vs அசுபம்",
+    "bn": "শুভ বনাম অশুভ তারা"
+  },
+  "whichGoodContent": {
+    "en": "Six Taras are auspicious: Sampat (2), Kshema (4), Sadhaka (6), Mitra (8), Atimitra (9), and — with a nuance — Janma (1) in its second and third cycles. Three are inauspicious: Vipat (3), Pratyari (5), and Vadha (7). The easy mnemonic: odd numbers (except 1 in later cycles and 9) tend to be bad; even numbers are good. In practice, most astrologers advise avoiding new ventures when the day's Tara is Vipat, Pratyari, or Vadha, and consider Sampat, Kshema, and Atimitra as the best windows for important activities.",
+    "hi": "छः तारे शुभ हैं: सम्पत् (2), क्षेम (4), साधक (6), मित्र (8), अतिमित्र (9), और — एक बारीकी के साथ — जन्म (1) अपने दूसरे और तीसरे चक्र में। तीन अशुभ हैं: विपत् (3), प्रत्यरि (5), और वध (7)। सरल सूत्र: विषम संख्याएँ (9 और बाद के चक्र में 1 को छोड़कर) प्रायः अशुभ; सम संख्याएँ शुभ।",
+    "ta": "ஆறு தாராக்கள் சுபம்: சம்பத் (2), க்ஷேமம் (4), சாதகம் (6), மித்ர (8), அதிமித்ர (9). மூன்று அசுபம்: விபத் (3), பிரத்யரி (5), வதம் (7).",
+    "bn": "ছয়টি তারা শুভ: সম্পৎ (২), ক্ষেম (৪), সাধক (৬), মিত্র (৮), অতিমিত্র (৯)। তিনটি অশুভ: বিপৎ (৩), প্রত্যরি (৫), বধ (৭)।"
+  },
+  "dailyUseTitle": {
+    "en": "Daily Use: Is Today Good for Me?",
+    "hi": "दैनिक उपयोग: क्या आज मेरे लिए शुभ है?",
+    "ta": "தினசரி பயன்பாடு: இன்று எனக்கு நல்லதா?",
+    "bn": "দৈনিক ব্যবহার: আজ কি আমার জন্য শুভ?"
+  },
+  "dailyUseContent": {
+    "en": "To check your Tara Bala for today: (1) Know your birth nakshatra (from your birth chart or Moon sign calculator). (2) Find today's nakshatra (from the daily panchang). (3) Count from your birth nakshatra to today's nakshatra, inclusive. (4) Divide by 9 and take the remainder. (5) Look up the Tara. For example, if your birth nakshatra is Rohini (4th) and today's Moon is in Hasta (13th): count = 13 - 4 + 1 = 10; 10 mod 9 = 1 = Janma Tara (caution). Our Tara Bala tool does this automatically from your saved birth chart.",
+    "hi": "आज के लिए अपना तारा बल जाँचने के लिए: (1) अपना जन्म नक्षत्र जानें। (2) आज का नक्षत्र पंचांग से देखें। (3) जन्म नक्षत्र से आज के नक्षत्र तक गिनें। (4) 9 से भाग दें और शेषफल लें। (5) तारा देखें। उदाहरण: यदि जन्म नक्षत्र रोहिणी (4) है और आज चन्द्र हस्त (13) में है: गिनती = 13 - 4 + 1 = 10; 10 mod 9 = 1 = जन्म तारा (सावधानी)।",
+    "ta": "இன்றைய தார பலத்தை சரிபார்க்க: (1) உங்கள் பிறப்பு நட்சத்திரத்தை அறியுங்கள். (2) இன்றைய நட்சத்திரத்தை பஞ்சாங்கத்தில் காணுங்கள். (3) பிறப்பு நட்சத்திரத்திலிருந்து இன்றைய நட்சத்திரம் வரை எண்ணுங்கள். (4) 9 ஆல் வகுத்து மீதியை எடுங்கள்.",
+    "bn": "আজকের তারা বল পরীক্ষা করতে: (১) জন্ম নক্ষত্র জানুন। (২) আজকের নক্ষত্র পঞ্চাঙ্গ থেকে দেখুন। (৩) জন্ম নক্ষত্র থেকে আজকের নক্ষত্র পর্যন্ত গুনুন। (৪) ৯ দিয়ে ভাগ করুন ও ভাগশেষ নিন।"
+  },
+  "muhurtaTitle": {
+    "en": "Relationship with Muhurta Selection",
+    "hi": "मुहूर्त चयन से सम्बन्ध",
+    "ta": "முகூர்த்தம் தேர்வுடன் உறவு",
+    "bn": "মুহূর্ত নির্বাচনের সাথে সম্পর্ক"
+  },
+  "muhurtaContent": {
+    "en": "Tara Bala is one of three personalised checks used in muhurta selection (alongside Chandra Bala, which checks Moon's transit house from natal Moon, and Panchaka, which checks for dangerous nakshatra groups). When selecting a muhurta for an important event, the best approach is to find a window where all three are favourable: Tara Bala shows a good Tara (2, 4, 6, 8, or 9), Chandra Bala shows the Moon in a benefic house from your natal Moon (1, 3, 6, 7, 10, 11), and Panchaka is absent. Our Muhurta AI tool integrates all three checks automatically.",
+    "hi": "मुहूर्त चयन में तारा बल तीन व्यक्तिगत जाँचों में से एक है (चन्द्र बल और पंचक के साथ)। किसी महत्त्वपूर्ण कार्य के लिए मुहूर्त चुनते समय, सर्वोत्तम दृष्टिकोण है ऐसी अवधि खोजना जहाँ तीनों अनुकूल हों: तारा बल शुभ तारा (2, 4, 6, 8, या 9) दिखाए, चन्द्र बल चन्द्र को शुभ भाव में दिखाए, और पंचक अनुपस्थित हो।",
+    "ta": "முகூர்த்தம் தேர்வில் தார பலம் மூன்று தனிப்பட்ட சோதனைகளில் ஒன்று (சந்திர பலம் மற்றும் பஞ்சகத்துடன்). மூன்றும் சாதகமாக இருக்கும் நேரத்தைக் கண்டறிவதே சிறந்த அணுகுமுறை.",
+    "bn": "মুহূর্ত নির্বাচনে তারা বল তিনটি ব্যক্তিগত পরীক্ষার মধ্যে একটি (চন্দ্র বল এবং পঞ্চকের সাথে)। তিনটিই অনুকূল এমন সময় খোঁজাই সর্বোত্তম পদ্ধতি।"
+  },
+  "sourceDisclaimer": {
+    "en": "Tara Bala is described in Muhurta Chintamani and is a standard element of traditional panchang practice across all Indian regions. The nine-Tara classification and the counting method are consistent across classical and modern sources. Regional variations exist mainly in how the Janma Tara (remainder 1) is treated in its second and third cycles.",
+    "hi": "तारा बल मुहूर्त चिन्तामणि में वर्णित है और सभी भारतीय क्षेत्रों में पारम्परिक पंचांग प्रथा का मानक तत्त्व है। नौ-तारा वर्गीकरण और गिनती विधि शास्त्रीय और आधुनिक स्रोतों में एकसमान है।",
+    "ta": "தார பலம் முகூர்த்த சிந்தாமணியில் விவரிக்கப்பட்டுள்ளது மற்றும் அனைத்து இந்திய பிராந்தியங்களிலும் பாரம்பரிய பஞ்சாங்க நடைமுறையின் நிலையான அங்கம்.",
+    "bn": "তারা বল মুহূর্ত চিন্তামণিতে বর্ণিত এবং সমস্ত ভারতীয় অঞ্চলে ঐতিহ্যবাহী পঞ্চাঙ্গ অনুশীলনের মানক উপাদান।"
+  }
+}

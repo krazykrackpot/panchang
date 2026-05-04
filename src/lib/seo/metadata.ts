@@ -1210,6 +1210,31 @@ export const PAGE_META: Record<string, PageMeta> = {
     },
     keywords: ['learn vedic astrology', 'jyotish course', 'astrology tutorial', 'free astrology course'],
   },
+  '/learn/rahu-kaal': {
+    title: { en: 'Rahu Kaal — The Shadow Period in Vedic Astrology', hi: 'राहु काल — वैदिक ज्योतिष में छाया का समय', sa: 'राहुकालः — वैदिकज्योतिषे छायाकालः' },
+    description: { en: 'Learn about Rahu Kaal — the daily 1.5-hour inauspicious window ruled by Rahu. Daily rotation sequence, difference from Yamaganda and Gulika, and common misconceptions.', hi: 'राहु काल के बारे में जानें — राहु द्वारा शासित दैनिक डेढ़ घंटे की अशुभ अवधि। दैनिक क्रम, यमगण्ड और गुलिक से अंतर।', sa: 'राहुकालं जानीयात् — राहुणा शासितं दैनिकम् अशुभकालखण्डम्।' },
+    keywords: ['rahu kaal', 'rahu kalam', 'inauspicious time', 'yamaganda', 'gulika kaal', 'vedic astrology'],
+  },
+  '/learn/prashna': {
+    title: { en: 'Prashna Kundali — Vedic Horary Astrology Guide', hi: 'प्रश्न कुण्डली — वैदिक प्रश्न ज्योतिष मार्गदर्शिका', sa: 'प्रश्नकुण्डली — वैदिकप्रश्नज्योतिषमार्गदर्शिका' },
+    description: { en: 'Complete guide to Prashna (horary) astrology — chart casting, Arudha Lagna, Moon analysis, Prashna Yogas, and the Kerala Ashtamangala tradition.', hi: 'प्रश्न ज्योतिष का पूर्ण मार्गदर्शन — कुण्डली निर्माण, आरूढ़ लग्न, चन्द्र विश्लेषण, प्रश्न योग और केरल अष्टमंगल परम्परा।', sa: 'प्रश्नज्योतिषस्य सम्पूर्णमार्गदर्शिका — कुण्डलीनिर्माणम् आरूढलग्नम् च।' },
+    keywords: ['prashna kundali', 'horary astrology', 'prashna marga', 'ashtamangala prashna', 'vedic horary'],
+  },
+  '/learn/tithi-pravesha': {
+    title: { en: 'Tithi Pravesha — Vedic Birthday Chart Guide', hi: 'तिथि प्रवेश — वैदिक जन्मदिन कुण्डली मार्गदर्शिका', sa: 'तिथिप्रवेशः — वैदिकजन्मदिवसकुण्डलीमार्गदर्शिका' },
+    description: { en: 'Learn Tithi Pravesha — the Vedic birthday chart based on Sun-Moon angle recurrence. Year lord, panchanga reading, comparison with Western solar returns.', hi: 'तिथि प्रवेश सीखें — सूर्य-चन्द्र कोण पुनरावृत्ति पर आधारित वैदिक जन्मदिन कुण्डली। वर्ष स्वामी, पंचांग पठन।', sa: 'तिथिप्रवेशं शिक्षतु — सूर्यचन्द्रकोणपुनरावृत्त्याधारिता वैदिकजन्मदिवसकुण्डली।' },
+    keywords: ['tithi pravesha', 'vedic birthday', 'annual chart', 'year lord', 'solar return vedic'],
+  },
+  '/learn/kaal-sarp': {
+    title: { en: 'Kaal Sarpa Dosha — Types, Effects, Cancellation & Honest Context', hi: 'काल सर्प दोष — प्रकार, प्रभाव, निवारण और ईमानदार संदर्भ', sa: 'कालसर्पदोषः — प्रकाराः प्रभावाः निवारणं शास्त्रीयसन्दर्भश्च' },
+    description: { en: 'Complete guide to Kaal Sarpa Dosha — 12 types, ascending vs descending, cancellation conditions, remedies, and honest disclosure that it is not found in BPHS.', hi: 'काल सर्प दोष का पूर्ण मार्गदर्शन — 12 प्रकार, आरोही बनाम अवरोही, निवारण शर्तें, उपाय, और BPHS में अनुपस्थिति का ईमानदार खुलासा।', sa: 'कालसर्पदोषस्य सम्पूर्णमार्गदर्शिका — द्वादशप्रकाराः निवारणशर्ताः उपायाश्च।' },
+    keywords: ['kaal sarpa dosha', 'kaal sarpa yoga', 'rahu ketu axis', 'kaal amrita', 'dosha remedies'],
+  },
+  '/learn/tarabalam': {
+    title: { en: 'Tara Bala — Star Strength for Daily Auspiciousness', hi: 'तारा बल — दैनिक शुभत्व के लिए नक्षत्र शक्ति', sa: 'ताराबलम् — दैनिकशुभत्वाय नक्षत्रशक्तिः' },
+    description: { en: 'Learn Tara Bala — the 9 Taras from birth nakshatra to transit nakshatra. Janma, Sampat, Vipat, Kshema, Pratyari, Sadhaka, Vadha, Mitra, Atimitra explained.', hi: 'तारा बल सीखें — जन्म नक्षत्र से गोचर नक्षत्र तक 9 तारे। जन्म, सम्पत्, विपत्, क्षेम, प्रत्यरि, साधक, वध, मित्र, अतिमित्र।', sa: 'ताराबलं शिक्षतु — जन्मनक्षत्रात् गोचरनक्षत्रपर्यन्तं नवताराः।' },
+    keywords: ['tara bala', 'tarabalam', 'star strength', 'nine taras', 'daily auspiciousness', 'nakshatra compatibility'],
+  },
 
   // ─── Missing Pages (SEO gap fill) ────────────────────────
   '/annual-forecast': {
@@ -1373,6 +1398,31 @@ export const PAGE_META: Record<string, PageMeta> = {
       sa: '2026 वर्षस्य सम्पूर्णम् इस्कॉनगौड़ीयवैष्णवपञ्चाङ्गम्।',
     },
     keywords: ['iskcon calendar 2026', 'gaudiya vaishnava calendar', 'gaura purnima', 'janmashtami', 'ekadashi iskcon', 'maha dvadashi'],
+  },
+  '/learn/varshaphal': {
+    title: { en: 'Varshaphal — Vedic Solar Return & Tajika System', hi: 'वर्षफल — वैदिक सौर प्रत्यागमन और ताजिक पद्धति', sa: 'वर्षफलम् — वैदिकसौरप्रत्यागमनं ताजिकपद्धतिः च' },
+    description: { en: 'Learn Varshaphal — the Vedic solar return chart. Tajika system, Muntha, Sahams, Mudda Dasha, 16 Tajika Yogas, and Varshesha explained with classical sources.', hi: 'वर्षफल — वैदिक सौर प्रत्यागमन कुण्डली। ताजिक पद्धति, मुन्था, सहम, मुद्दा दशा, 16 ताजिक योग और वर्षेश शास्त्रीय स्रोतों सहित।', sa: 'वर्षफलम् — वैदिकसौरप्रत्यागमनकुण्डली।' },
+    keywords: ['varshaphal', 'vedic solar return', 'tajika system', 'muntha', 'mudda dasha', 'tajika yogas', 'varshesha', 'annual horoscope vedic'],
+  },
+  '/learn/kp-system': {
+    title: { en: 'KP System — Krishnamurti Paddhati Explained', hi: 'केपी पद्धति — कृष्णमूर्ति पद्धति विस्तार से', sa: 'केपीपद्धतिः — कृष्णमूर्तिपद्धतिः' },
+    description: { en: 'Complete guide to KP (Krishnamurti Paddhati) astrology — sub-lord theory, Placidus houses, KP Number 1-249, significators, and ruling planets for precise predictions.', hi: 'केपी ज्योतिष की सम्पूर्ण मार्गदर्शिका — उप-स्वामी सिद्धान्त, प्लेसिडस भाव, केपी संख्या 1-249, कारक और शासक ग्रह।', sa: 'केपीज्योतिषस्य सम्पूर्णमार्गदर्शिका।' },
+    keywords: ['kp system', 'krishnamurti paddhati', 'sub lord theory', 'placidus houses', 'kp number', 'horary astrology kp', 'significators kp'],
+  },
+  '/learn/mangal-dosha': {
+    title: { en: 'Mangal Dosha — Mars & Marriage Compatibility Guide', hi: 'मांगलिक दोष — मंगल और विवाह अनुकूलता', sa: 'माङ्गलिकदोषः — कुजदोषः विवाहानुकूलता च' },
+    description: { en: 'Complete guide to Mangal Dosha (Manglik/Kuja Dosha) — formation in 6 houses, severity levels, 10+ BPHS cancellation rules, misconceptions debunked, and classical remedies.', hi: 'मांगलिक दोष की सम्पूर्ण मार्गदर्शिका — 6 भावों में निर्माण, तीव्रता, 10+ बीपीएचएस निवारण नियम, भ्रम निवारण, शास्त्रीय उपाय।', sa: 'माङ्गलिकदोषस्य सम्पूर्णमार्गदर्शिका।' },
+    keywords: ['mangal dosha', 'manglik dosha', 'kuja dosha', 'mars marriage', 'mangal dosha cancellation', 'manglik remedies', 'chevvai dosham'],
+  },
+  '/learn/panchang-guide': {
+    title: { en: 'What is Panchang? Complete Guide to the 5 Limbs', hi: 'पंचांग क्या है? सम्पूर्ण मार्गदर्शिका', sa: 'पञ्चाङ्गं किम्? सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Panchang — the 5 limbs (Tithi, Nakshatra, Yoga, Karana, Vara), sunrise-based calendar, Amanta vs Purnimanta months, and how to use it daily.', hi: 'पंचांग की सम्पूर्ण मार्गदर्शिका — तिथि, नक्षत्र, योग, करण, वार, सूर्योदय कैलेण्डर, अमान्त बनाम पूर्णिमान्त, दैनिक उपयोग।', sa: 'पञ्चाङ्गस्य सम्पूर्णमार्गदर्शिका — तिथिः नक्षत्रं योगः करणं वारः।' },
+    keywords: ['what is panchang', 'panchang guide', 'tithi nakshatra yoga karana vara', 'vedic calendar', 'hindu almanac', 'amanta purnimanta'],
+  },
+  '/learn/choghadiya': {
+    title: { en: 'Choghadiya — Auspicious Time Periods Guide', hi: 'चौघड़िया — शुभ समय अवधि मार्गदर्शिका', sa: 'चौघड़िया — शुभकालमार्गदर्शिका' },
+    description: { en: 'Complete guide to Choghadiya — the 7 types (Amrit, Shubh, Labh, Char, Rog, Kaal, Udveg), weekday rotation, daily timing decisions, and comparison with Hora system.', hi: 'चौघड़िया की सम्पूर्ण मार्गदर्शिका — 7 प्रकार (अमृत, शुभ, लाभ, चर, रोग, काल, उद्वेग), साप्ताहिक क्रम, दैनिक समय-निर्धारण।', sa: 'चौघड़ियामार्गदर्शिका — सप्तप्रकाराः।' },
+    keywords: ['choghadiya', 'chaughadia', 'auspicious time', 'amrit choghadiya', 'shubh muhurat', 'gujarati panchang', 'daily timing vedic'],
   },
   '/rudraksha': {
     title: {

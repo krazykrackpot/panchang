@@ -1,0 +1,86 @@
+{
+  "title": {
+    "en": "Kaal Sarpa Dosha: The Serpent Axis",
+    "hi": "काल सर्प दोष: सर्प अक्ष",
+    "ta": "கால சர்ப்ப தோஷம்: பாம்பு அச்சு",
+    "bn": "কাল সর্প দোষ: সর্প অক্ষ"
+  },
+  "subtitle": {
+    "en": "When all planets fall between the Rahu-Ketu axis — its types, effects, cancellation conditions, and honest classical context",
+    "hi": "जब सभी ग्रह राहु-केतु अक्ष के बीच आ जाएँ — प्रकार, प्रभाव, निवारण शर्तें और ईमानदार शास्त्रीय संदर्भ",
+    "ta": "அனைத்து கிரகங்களும் ராகு-கேது அச்சுக்கு இடையே வரும்போது — வகைகள், விளைவுகள், நிவாரண நிபந்தனைகள்",
+    "bn": "যখন সব গ্রহ রাহু-কেতু অক্ষের মধ্যে পড়ে — প্রকার, প্রভাব, নিবারণ শর্ত"
+  },
+  "whatIs": {
+    "en": "Kaal Sarpa Dosha is said to occur when all seven classical planets (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) are hemmed between Rahu and Ketu — the two lunar nodes. Visually, if you draw a line from Rahu to Ketu across the chart, all planets fall on one side of this axis. The name 'Kaal Sarpa' means 'serpent of time' — the imagery is of a cosmic snake swallowing time itself, creating a sense of constriction, karmic intensity, and life feeling 'stuck' in repeating patterns until the dosha matures or is addressed.",
+    "hi": "काल सर्प दोष तब माना जाता है जब सातों शास्त्रीय ग्रह (सूर्य, चन्द्र, मंगल, बुध, गुरु, शुक्र, शनि) राहु और केतु के बीच घिरे हों। दृश्य रूप में, यदि आप कुण्डली में राहु से केतु तक एक रेखा खींचें, तो सभी ग्रह इस अक्ष के एक तरफ आते हैं। 'काल सर्प' का अर्थ है 'समय का सर्प' — कल्पना एक ब्रह्माण्डीय साँप की है जो समय को निगल रहा है।",
+    "ta": "கால சர்ப்ப தோஷம் அனைத்து ஏழு கிரகங்களும் (சூரியன், சந்திரன், செவ்வாய், புதன், குரு, சுக்கிரன், சனி) ராகு மற்றும் கேதுவுக்கு இடையே அடைபட்டிருக்கும்போது ஏற்படுவதாகக் கூறப்படுகிறது.",
+    "bn": "কাল সর্প দোষ তখন বলা হয় যখন সাতটি শাস্ত্রীয় গ্রহ (সূর্য, চন্দ্র, মঙ্গল, বুধ, বৃহস্পতি, শুক্র, শনি) রাহু ও কেতুর মধ্যে আবদ্ধ থাকে।"
+  },
+  "typesTitle": {
+    "en": "12 Types Based on Rahu's House",
+    "hi": "राहु के भाव के अनुसार 12 प्रकार",
+    "ta": "ராகுவின் வீட்டின் அடிப்படையில் 12 வகைகள்",
+    "bn": "রাহুর ভাব অনুসারে ১২ প্রকার"
+  },
+  "typesContent": {
+    "en": "Each type is named after a mythological serpent and carries distinct themes based on which house Rahu occupies. Anant (1st house) — struggles with identity and self-image. Kulik (2nd) — financial instability and family tensions. Vasuki (3rd) — sibling conflicts, communication difficulties. Shankhpal (4th) — property disputes, maternal health. Padma (5th) — delays in children, education challenges. Mahapadma (6th) — chronic health issues, legal battles. Takshak (7th) — marriage delays or turbulent partnerships. Karkotak (8th) — sudden upheavals, inheritance issues. Shankhachur (9th) — conflicts with father/guru, spiritual confusion. Ghatak (10th) — career instability. Vishdhar (11th) — frustrated ambitions, friend betrayals. Sheshnag (12th) — foreign settlement, isolation, spiritual intensity.",
+    "hi": "प्रत्येक प्रकार का नाम एक पौराणिक सर्प के नाम पर है और राहु किस भाव में है इसके आधार पर भिन्न विषय रखता है। अनन्त (प्रथम भाव) — पहचान और आत्म-छवि से संघर्ष। कुलिक (द्वितीय) — आर्थिक अस्थिरता और पारिवारिक तनाव। वासुकि (तृतीय) — भाई-बहन संघर्ष। शंखपाल (चतुर्थ) — सम्पत्ति विवाद। पद्म (पंचम) — सन्तान में विलम्ब। महापद्म (षष्ठ) — स्वास्थ्य समस्याएँ। तक्षक (सप्तम) — विवाह में विलम्ब। कर्कोटक (अष्टम) — अचानक उथल-पुथल। शंखचूड़ (नवम) — पिता/गुरु से संघर्ष। घातक (दशम) — कैरियर अस्थिरता। विषधर (एकादश) — महत्त्वाकांक्षा में बाधा। शेषनाग (द्वादश) — विदेश बसना।",
+    "ta": "ஒவ்வொரு வகையும் ஒரு புராண பாம்பின் பெயரால் அழைக்கப்படுகிறது. அனந்த (1வது வீடு), குளிக (2வது), வாசுகி (3வது), சங்கபால (4வது), பத்ம (5வது), மகாபத்ம (6வது), தக்ஷக (7வது), கர்கோடக (8வது), சங்கசூட (9வது), கடக (10வது), விஷ்தர (11வது), சேஷநாக (12வது).",
+    "bn": "প্রতিটি প্রকার একটি পৌরাণিক সর্পের নামে। অনন্ত (১ম ভাব), কুলিক (২য়), বাসুকি (৩য়), শঙ্খপাল (৪র্থ), পদ্ম (৫ম), মহাপদ্ম (৬ষ্ঠ), তক্ষক (৭ম), কর্কোটক (৮ম), শঙ্খচূড় (৯ম), ঘাতক (১০ম), বিষধর (১১তম), শেষনাগ (১২তম)।"
+  },
+  "ascDescTitle": {
+    "en": "Ascending vs Descending: Kaal Sarpa vs Kaal Amrita",
+    "hi": "आरोही बनाम अवरोही: काल सर्प बनाम काल अमृत",
+    "ta": "ஏறுவரிசை vs இறங்குவரிசை: கால சர்ப்ப vs கால அமிர்த",
+    "bn": "আরোহী বনাম অবরোহী: কাল সর্প বনাম কাল অমৃত"
+  },
+  "ascDescContent": {
+    "en": "The direction matters. If all planets are hemmed moving from Rahu towards Ketu (following the natural house order), it is Kaal Sarpa — considered more challenging, with effects felt primarily in the first half of life. If all planets move from Ketu towards Rahu, it is Kaal Amrita (also called descending Kaal Sarpa) — still significant, but effects are more gradual and tend to manifest in the second half of life. Some texts suggest Kaal Amrita is actually beneficial, converting struggles into eventual success — like churning poison into nectar (the Samudra Manthan metaphor).",
+    "hi": "दिशा महत्त्वपूर्ण है। यदि सभी ग्रह राहु से केतु की ओर जा रहे हों (स्वाभाविक भाव क्रम में), तो यह काल सर्प है — अधिक चुनौतीपूर्ण, जिसके प्रभाव मुख्यतः जीवन के पहले भाग में अनुभव होते हैं। यदि सभी ग्रह केतु से राहु की ओर जाएँ, तो यह काल अमृत है — महत्त्वपूर्ण लेकिन प्रभाव क्रमिक होते हैं और जीवन के दूसरे भाग में प्रकट होते हैं।",
+    "ta": "திசை முக்கியம். அனைத்து கிரகங்களும் ராகுவிலிருந்து கேதுவை நோக்கிச் சென்றால் கால சர்ப்பம் — மிகவும் சவாலானது. கேதுவிலிருந்து ராகுவை நோக்கிச் சென்றால் கால அமிர்தம் — படிப்படியானது.",
+    "bn": "দিক গুরুত্বপূর্ণ। সব গ্রহ রাহু থেকে কেতুর দিকে গেলে কাল সর্প — বেশি চ্যালেঞ্জিং। কেতু থেকে রাহুর দিকে গেলে কাল অমৃত — প্রভাব ক্রমিক।"
+  },
+  "cancellationTitle": {
+    "en": "Cancellation Conditions",
+    "hi": "निवारण शर्तें",
+    "ta": "நிவாரண நிபந்தனைகள்",
+    "bn": "নিবারণ শর্ত"
+  },
+  "cancellationContent": {
+    "en": "Several conditions can cancel or significantly weaken Kaal Sarpa Dosha. First, if any planet (even one) is conjunct Rahu or Ketu, the 'hemming' is broken and the dosha is considered partial at best. Second, if a strong benefic (Jupiter or Venus in own sign or exalted) aspects the Rahu-Ketu axis, its malefic intensity is reduced. Third, if Rahu is in an upachaya house (3, 6, 10, 11), the dosha can actually produce positive results through struggle. Fourth, during specific dasha periods (especially Jupiter or Venus mahadasha), the effects are substantially mitigated. Many charts that superficially appear to have Kaal Sarpa have one of these cancellations active.",
+    "hi": "कई शर्तें काल सर्प दोष को रद्द या काफी कमज़ोर कर सकती हैं। प्रथम, यदि कोई भी ग्रह राहु या केतु के साथ युत हो, तो 'घेरा' टूट जाता है। द्वितीय, यदि कोई बलवान शुभ ग्रह (गुरु या शुक्र स्वराशि या उच्च में) राहु-केतु अक्ष पर दृष्टि डाले। तृतीय, यदि राहु उपचय भाव (3, 6, 10, 11) में हो। चतुर्थ, विशिष्ट दशा काल में (विशेषकर गुरु या शुक्र महादशा) प्रभाव काफी कम हो जाते हैं।",
+    "ta": "பல நிபந்தனைகள் கால சர்ப்ப தோஷத்தை நீக்கலாம் அல்லது கணிசமாக பலவீனப்படுத்தலாம். முதலாவது, ஏதேனும் ஒரு கிரகம் ராகு அல்லது கேதுவுடன் சேர்ந்திருந்தால். இரண்டாவது, வலுவான சுப கிரகம் ராகு-கேது அச்சைப் பார்த்தால்.",
+    "bn": "বেশ কয়েকটি শর্ত কাল সর্প দোষ বাতিল বা উল্লেখযোগ্যভাবে দুর্বল করতে পারে। প্রথম, কোনো গ্রহ রাহু বা কেতুর সাথে যুক্ত থাকলে। দ্বিতীয়, শক্তিশালী শুভ গ্রহ রাহু-কেতু অক্ষে দৃষ্টি দিলে।"
+  },
+  "effectsTitle": {
+    "en": "Effects and Remedies",
+    "hi": "प्रभाव और उपाय",
+    "ta": "விளைவுகள் மற்றும் தீர்வுகள்",
+    "bn": "প্রভাব এবং প্রতিকার"
+  },
+  "effectsContent": {
+    "en": "Common effects attributed to Kaal Sarpa include: delays in marriage and career progress, recurring obstacles at critical moments, a sense of life being 'on hold', health issues that are difficult to diagnose, and intense inner psychological struggles. Traditional remedies include: Kaal Sarpa puja at Trimbakeshwar (Nasik) or Srikalahasti (Andhra Pradesh), Rahu-specific mantras (Om Rahave Namah), donations on Saturdays or during eclipses, wearing Hessonite (Gomed) after proper astrological consultation, and Sarpa Suktam recitation. However, it is important to note that many successful individuals have Kaal Sarpa in their charts — the dosha does not prevent achievement, but it typically ensures that success comes through intense effort and delayed gratification.",
+    "hi": "काल सर्प के सामान्य प्रभाव: विवाह और कैरियर में विलम्ब, महत्त्वपूर्ण क्षणों पर बार-बार बाधाएँ, जीवन 'रुका हुआ' महसूस होना, कठिन निदान वाली स्वास्थ्य समस्याएँ। पारम्परिक उपाय: त्र्यम्बकेश्वर या श्रीकालहस्ती में काल सर्प पूजा, राहु मन्त्र (ॐ राहवे नमः), शनिवार या ग्रहण में दान, गोमेद धारण (उचित परामर्श के बाद), सर्प सूक्तम् पाठ। हालांकि, अनेक सफल व्यक्तियों की कुण्डली में काल सर्प है — यह सफलता नहीं रोकता, लेकिन सफलता तीव्र प्रयास से आती है।",
+    "ta": "கால சர்ப்பத்தின் பொதுவான விளைவுகள்: திருமணம் மற்றும் தொழில் முன்னேற்றத்தில் தாமதம், முக்கியமான நேரங்களில் மீண்டும் மீண்டும் தடைகள். பாரம்பரிய தீர்வுகள்: திரிம்பகேஸ்வர் அல்லது ஸ்ரீகாளஹஸ்தியில் கால சர்ப்ப பூஜை.",
+    "bn": "কাল সর্পের সাধারণ প্রভাব: বিবাহ ও কর্মজীবনে বিলম্ব, গুরুত্বপূর্ণ মুহূর্তে বারবার বাধা। ঐতিহ্যবাহী প্রতিকার: ত্র্যম্বকেশ্বর বা শ্রীকালহস্তিতে কাল সর্প পূজা।"
+  },
+  "misconceptionsTitle": {
+    "en": "Honest Classical Context",
+    "hi": "ईमानदार शास्त्रीय संदर्भ",
+    "ta": "நேர்மையான சாஸ்திர சூழல்",
+    "bn": "সৎ শাস্ত্রীয় প্রসঙ্গ"
+  },
+  "misconceptionsContent": {
+    "en": "It is important to be honest: Kaal Sarpa Dosha is NOT found in Brihat Parashara Hora Shastra (BPHS), the foundational text of Vedic astrology. It is also absent from Jataka Parijata, Phaladeepika, and other major classical works. The concept appears to have emerged from later traditional practice, possibly in the last few centuries. This does not mean it is invalid — many widely accepted astrological principles evolved after the classical period — but it does mean that claims of 'ancient Vedic authority' for Kaal Sarpa are overstated. Treat it as a useful analytical framework from the living tradition, not as settled classical doctrine.",
+    "hi": "ईमानदार होना महत्त्वपूर्ण है: काल सर्प दोष बृहत् पाराशर होरा शास्त्र (BPHS), वैदिक ज्योतिष के मूलभूत ग्रन्थ, में नहीं पाया जाता। यह जातक पारिजात, फलदीपिका और अन्य प्रमुख शास्त्रीय ग्रन्थों में भी अनुपस्थित है। अवधारणा सम्भवतः बाद की परम्परागत प्रथा से उभरी है। इसका अर्थ यह नहीं कि यह अमान्य है — लेकिन 'प्राचीन वैदिक प्राधिकार' का दावा अतिशयोक्ति है।",
+    "ta": "நேர்மையாக இருப்பது முக்கியம்: கால சர்ப்ப தோஷம் பிருகத் பராசர ஹோரா சாஸ்திரத்தில் (BPHS) காணப்படவில்லை. இது பிற்கால மரபிலிருந்து வந்ததாகத் தெரிகிறது. இது செல்லாது என்று அர்த்தமல்ல — ஆனால் 'பழமையான வேத அதிகாரம்' என்ற கூற்று மிகைப்படுத்தப்பட்டது.",
+    "bn": "সৎভাবে বলা প্রয়োজন: কাল সর্প দোষ বৃহৎ পরাশর হোরা শাস্ত্রে (BPHS) পাওয়া যায় না। এটি পরবর্তী ঐতিহ্যবাহী অনুশীলন থেকে এসেছে বলে মনে হয়। এর অর্থ এটি অবৈধ নয় — তবে 'প্রাচীন বৈদিক কর্তৃত্ব'-এর দাবি অতিরঞ্জিত।"
+  },
+  "sourceDisclaimer": {
+    "en": "Kaal Sarpa Dosha is drawn from traditional practice rather than classical texts. It is not found in BPHS, Jataka Parijata, or Phaladeepika. The 12 serpent-named types and the ascending/descending distinction are from later astrological commentaries. We present it honestly as a widely practised framework with clear caveats about its post-classical origin.",
+    "hi": "काल सर्प दोष शास्त्रीय ग्रन्थों के बजाय पारम्परिक प्रथा से लिया गया है। यह BPHS, जातक पारिजात या फलदीपिका में नहीं है। 12 सर्प-नामित प्रकार बाद की ज्योतिषीय टीकाओं से हैं।",
+    "ta": "கால சர்ப்ப தோஷம் சாஸ்திர நூல்களிலிருந்து அல்ல, பாரம்பரிய நடைமுறையிலிருந்து வந்தது. BPHS, ஜாதக பாரிஜாத, அல்லது பலதீபிகாவில் இல்லை.",
+    "bn": "কাল সর্প দোষ শাস্ত্রীয় গ্রন্থ থেকে নয়, ঐতিহ্যবাহী অনুশীলন থেকে। BPHS, জাতক পারিজাত বা ফলদীপিকায় নেই।"
+  }
+}

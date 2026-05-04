@@ -112,7 +112,7 @@ export default async function AboutPage() {
   const locale = await getLocale();
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-  const l = (CONTENT as Record<string, typeof CONTENT.en>)[locale] || CONTENT.en;
+  const l = (CONTENT as unknown as Record<string, typeof CONTENT.en>)[locale] || CONTENT.en;
 
   return (
     <main className="min-h-screen py-16 px-4">

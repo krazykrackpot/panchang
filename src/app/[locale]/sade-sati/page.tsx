@@ -556,26 +556,38 @@ export default function SadeSatiPage() {
                 {analysis.currentPhase && (
                   <div className="text-text-secondary text-sm mb-4" style={bodyFont}>{t(LABELS.phase[analysis.currentPhase], locale)}</div>
                 )}
-                {/* Phase progress bar + Saturn degree */}
-                <div className="max-w-sm mx-auto">
-                  <div className="h-2.5 rounded-full bg-bg-tertiary/40 overflow-hidden">
+                {/* Cycle progress bar — full 90° (3 signs) */}
+                <div className="max-w-md mx-auto">
+                  {/* 3-segment bar: Rising | Peak | Setting */}
+                  <div className="relative h-3 rounded-full bg-bg-tertiary/40 overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
-                      animate={{ width: `${Math.min(100, Math.round(analysis.phaseProgress * 100))}%` }}
+                      animate={{ width: `${Math.min(100, Math.round(analysis.cycleProgress * 100))}%` }}
                       transition={{ duration: 1, ease: 'easeOut' as const }}
-                      className="h-full rounded-full bg-gradient-to-r from-red-500 to-red-400"
+                      className="h-full rounded-full bg-gradient-to-r from-sky-500 via-red-500 to-amber-500"
                     />
+                    {/* Phase dividers at 33% and 66% */}
+                    <div className="absolute top-0 left-[33.3%] w-px h-full bg-white/20" />
+                    <div className="absolute top-0 left-[66.6%] w-px h-full bg-white/20" />
                   </div>
-                  <div className="flex items-center justify-between mt-2">
-                    <span className="text-text-secondary text-xs">0°</span>
-                    <div className="text-center">
-                      <span className="text-gold-light text-sm font-bold">{analysis.saturnDegree.toFixed(1)}°</span>
-                      <span className="text-text-secondary text-xs ml-1.5">
-                        ({Math.round(analysis.phaseProgress * 100)}% {locale === 'hi' ? 'पूर्ण' : 'through'})
-                      </span>
-                    </div>
-                    <span className="text-text-secondary text-xs">30°</span>
+                  {/* Phase labels */}
+                  <div className="flex justify-between mt-1 text-[10px] text-text-secondary/50">
+                    <span>{locale === 'hi' ? 'उदय' : 'Rising'}</span>
+                    <span>{locale === 'hi' ? 'चरम' : 'Peak'}</span>
+                    <span>{locale === 'hi' ? 'अवसान' : 'Setting'}</span>
                   </div>
+                  {/* Degree + percentage */}
+                  <div className="text-center mt-2">
+                    <span className="text-gold-light text-lg font-bold">{Math.round(analysis.cycleProgress * 100)}%</span>
+                    <span className="text-text-secondary text-sm ml-2">
+                      ({(analysis.cycleProgress * 90).toFixed(1)}° / 90°)
+                    </span>
+                  </div>
+                  <p className="text-text-secondary/60 text-xs text-center mt-1">
+                    {locale === 'hi'
+                      ? `शनि वर्तमान में ${analysis.saturnDegree.toFixed(1)}° — ${analysis.currentPhase === 'rising' ? 'पहली' : analysis.currentPhase === 'peak' ? 'दूसरी' : 'तीसरी'} राशि में`
+                      : `Saturn at ${analysis.saturnDegree.toFixed(1)}° in ${analysis.currentPhase === 'rising' ? '1st' : analysis.currentPhase === 'peak' ? '2nd' : '3rd'} sign of transit`}
+                  </p>
                   {/* Retrograde speed explanation */}
                   <div className="mt-3 px-3 py-2 rounded-lg bg-white/[0.03] border border-white/5">
                     <p className="text-text-secondary/70 text-xs leading-relaxed" style={bodyFont}>

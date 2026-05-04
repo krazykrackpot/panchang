@@ -22,7 +22,10 @@ import {
 export interface SadeSatiAnalysis {
   isActive: boolean;
   currentPhase: 'rising' | 'peak' | 'setting' | null;
+  /** Progress through the CURRENT PHASE only (0-1, within 30°) */
   phaseProgress: number;
+  /** Progress through the ENTIRE cycle (0-1, within 90° = 3 signs) */
+  cycleProgress: number;
   /** Saturn's current degree within the sign (0-30) */
   saturnDegree: number;
   /** Saturn's current sidereal sign (1-12) */
@@ -842,6 +845,7 @@ export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
   let currentCycleIndex = -1;
   let currentPhase: 'rising' | 'peak' | 'setting' | null = null;
   let phaseProgress = 0;
+  let cycleProgress = 0;
 
   for (let i = 0; i < allCycles.length; i++) {
     const cycle = allCycles[i];
@@ -856,10 +860,12 @@ export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
       for (const p of cycle.phases) {
         if (p.startYear <= currentYear && currentYear <= p.endYear) {
           currentPhase = p.phase;
-          // Saturn's degree in the current sign (0-30) directly maps to progress.
-          // 0° = just entered = 0%, 30° = about to leave = 100%.
-          // This is astronomically precise — no approximation needed.
+          // Phase progress: Saturn's degree within the current sign (0-30°)
           phaseProgress = Math.min(1, Math.max(0, satNow.degree / 30));
+          // Cycle progress: total degrees traversed across all 3 signs (0-90°)
+          // Rising = 0-30°, Peak = 30-60°, Setting = 60-90°
+          const phaseOffset = p.phase === 'rising' ? 0 : p.phase === 'peak' ? 30 : 60;
+          cycleProgress = Math.min(1, Math.max(0, (phaseOffset + satNow.degree) / 90));
           break;
         }
       }
@@ -960,6 +966,7 @@ export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
     isActive,
     currentPhase,
     phaseProgress,
+    cycleProgress,
     saturnDegree: saturnInfo.degree,
     saturnSign: saturnInfo.sign,
     cycleStart,

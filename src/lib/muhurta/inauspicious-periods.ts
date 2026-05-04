@@ -11,6 +11,8 @@
 
 import { calculateKarana } from '@/lib/ephem/astronomical';
 import { RAHU_ORDER, YAMA_ORDER, GULIKA_ORDER } from '@/lib/constants/inauspicious-orders';
+import { DUR_MUHURTAM_A } from '@/lib/constants/dur-muhurtam';
+import { VARJYAM_GHATI, VARJYAM_GHATI_2 } from '@/lib/constants/varjyam';
 import type { InauspiciousPeriod } from '@/types/muhurta-ai';
 
 interface TimeRange {
@@ -45,6 +47,55 @@ export function computeGulikaKaal(sunriseUT: number, sunsetUT: number, weekday: 
   };
 }
 
+/**
+ * Compute Dur Muhurtam windows for a day.
+ * The day is divided into 15 muhurtas from sunrise to sunset.
+ * Returns 1-2 TimeRange entries depending on weekday.
+ *
+ * Source: Kaala Prakashika (matches Prokerala, Drik Panchang).
+ * Weekday: 0=Sunday (JD convention).
+ */
+export function computeDurMuhurtam(sunriseUT: number, sunsetUT: number, weekday: number): TimeRange[] {
+  const muhurtaDuration = (sunsetUT - sunriseUT) / 15;
+  const indices = DUR_MUHURTAM_A[weekday] || [7];
+  return indices.map(idx => ({
+    start: sunriseUT + idx * muhurtaDuration,
+    end: sunriseUT + (idx + 1) * muhurtaDuration,
+  }));
+}
+
+/**
+ * Check if Moon's current sidereal position falls within Varjyam.
+ *
+ * Varjyam is defined by ghati offsets within a nakshatra. Since 1 ghati = 1/60th
+ * of the nakshatra's extent (13.333°), we convert Moon's degree position within
+ * its current nakshatra to a ghati position and check against the table.
+ *
+ * Accuracy: ±5-10 min (Moon's speed varies ±10% from mean), within the ±12 min
+ * accuracy ceiling of the classical integer-ghati tables (Prashna Marga Ch.7).
+ *
+ * @param moonSid - Moon's sidereal longitude in degrees
+ * @returns true if currently in Varjyam window
+ */
+export function isVarjyamActive(moonSid: number): boolean {
+  const nakExtent = 360 / 27; // 13.333°
+  const degInNak = ((moonSid % nakExtent) + nakExtent) % nakExtent;
+  const ghatiPosition = (degInNak / nakExtent) * 60;
+  const nakIdx = Math.floor(((moonSid % 360 + 360) % 360) / nakExtent); // 0-26
+
+  if (nakIdx < 0 || nakIdx >= 27) return false;
+
+  // Primary Varjyam window (4 ghatis wide)
+  const v1Start = VARJYAM_GHATI[nakIdx];
+  if (ghatiPosition >= v1Start && ghatiPosition < v1Start + 4) return true;
+
+  // Secondary Varjyam (dual Thyajyam — only Mula)
+  const v2Start = VARJYAM_GHATI_2[nakIdx];
+  if (v2Start >= 0 && ghatiPosition >= v2Start && ghatiPosition < v2Start + 4) return true;
+
+  return false;
+}
+
 function rangesOverlap(aStart: number, aEnd: number, bStart: number, bEnd: number): boolean {
   return aStart < bEnd && bStart < aEnd;
 }
@@ -77,6 +128,7 @@ export function computeInauspiciousForWindow(
   nakshatra: number,
   jd: number,
   tz: number,
+  moonSid?: number,
 ): InauspiciousPeriod[] {
   const rahuKaal = computeRahuKaal(sunriseUT, sunsetUT, weekday);
   const yamaganda = computeYamaganda(sunriseUT, sunsetUT, weekday);
@@ -119,6 +171,30 @@ export function computeInauspiciousForWindow(
     });
   }
 
+  // Dur Muhurtam — inauspicious muhurta windows (1-2 per day)
+  const durWindows = computeDurMuhurtam(sunriseUT, sunsetUT, weekday);
+  for (const dw of durWindows) {
+    if (rangesOverlap(windowStartUT, windowEndUT, dw.start, dw.end)) {
+      periods.push({
+        name: 'Dur Muhurtam',
+        startTime: formatHour(dw.start, tz),
+        endTime: formatHour(dw.end, tz),
+        active: true,
+      });
+      break; // One penalty even if window overlaps two Dur Muhurtam slots
+    }
+  }
+
+  // Varjyam — "time of poison" from nakshatra-based ghati offsets
+  if (moonSid !== undefined && isVarjyamActive(moonSid)) {
+    periods.push({
+      name: 'Varjyam',
+      startTime: formatHour(windowStartUT, tz),
+      endTime: formatHour(windowEndUT, tz),
+      active: true,
+    });
+  }
+
   return periods;
 }
 
@@ -137,7 +213,9 @@ export function computeInauspiciousPenalty(periods: InauspiciousPeriod[]): numbe
       case 'Rahu Kaal': penalty += 4; break;
       case 'Yamaganda': penalty += 3; break;
       case 'Gulika Kaal': penalty += 2; break;
-      case 'Vishti (Bhadra)': penalty += 4; break;
+      case 'Vishti (Bhadra)': penalty += 1; break; // Reduced: main penalty (-5) is in scorePanchangFactors
+      case 'Dur Muhurtam': penalty += 3; break;
+      case 'Varjyam': penalty += 3; break;
     }
   }
   return Math.max(0, 10 - penalty);

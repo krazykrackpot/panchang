@@ -16,7 +16,7 @@ import dynamic from 'next/dynamic';
 import { BookOpen, ChevronDown, ChevronUp, Sparkles, Shield, TrendingUp, AlertTriangle, Printer, Link2, Check } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import SummaryDomainCard from './SummaryDomainCard';
-import SummaryCurrentPeriod from './SummaryCurrentPeriod';
+import SummaryCurrentPeriod, { KeyDatesSection } from './SummaryCurrentPeriod';
 import SummaryRemedies from './SummaryRemedies';
 import type { TippanniContent, YogaInsight, DoshaInsight } from '@/lib/kundali/tippanni-types';
 import type { PersonalReading } from '@/lib/kundali/domain-synthesis/types';
@@ -303,6 +303,11 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
             {' — '}{tip.lifeStage.headline}
           </p>
         </div>
+      )}
+
+      {/* ── Key Dates — right after identity, before personality deep-dive ── */}
+      {keyDates && keyDates.length > 0 && (
+        <KeyDatesSection keyDates={keyDates} locale={locale} />
       )}
 
       <GoldDivider />

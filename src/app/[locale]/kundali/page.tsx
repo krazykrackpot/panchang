@@ -47,6 +47,7 @@ import type { PersonalReading, DomainType } from '@/lib/kundali/domain-synthesis
 import { synthesizeReading } from '@/lib/kundali/domain-synthesis/synthesizer';
 import { getSavedQuestionChoice, clearQuestionChoice } from '@/components/kundali/QuestionEntry';
 import { computeKeyDates, type KeyDate } from '@/lib/kundali/domain-synthesis/key-dates';
+import { KeyDatesSection } from '@/components/kundali/SummaryCurrentPeriod';
 import { generateVedicProfile } from '@/lib/kundali/vedic-profile';
 import type { VedicProfile as VedicProfileType } from '@/lib/kundali/vedic-profile';
 import { useAIReading } from '@/lib/kundali/domain-synthesis/use-ai-reading';
@@ -1545,6 +1546,13 @@ export default function KundaliPage() {
                   </div>
                 );
               })()}
+
+              {/* ── Key Dates — right below the chart ── */}
+              {keyDates.length > 0 && (
+                <div className="my-6">
+                  <KeyDatesSection keyDates={keyDates} locale={locale} />
+                </div>
+              )}
 
               {/* ── Inline Birth Poster (always visible) ── */}
               {kundali && (() => {

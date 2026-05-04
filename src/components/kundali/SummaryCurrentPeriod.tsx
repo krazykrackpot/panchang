@@ -306,7 +306,7 @@ function YearAheadSection({
 // Sub-section C: Key Dates
 // ---------------------------------------------------------------------------
 
-function KeyDatesSection({ keyDates, locale }: { keyDates: KeyDate[]; locale: string }) {
+export function KeyDatesSection({ keyDates, locale }: { keyDates: KeyDate[]; locale: string }) {
   const [expanded, setExpanded] = useState(false);
   const visibleCount = 5;
   const visible = expanded ? keyDates : keyDates.slice(0, visibleCount);
@@ -595,10 +595,7 @@ export default function SummaryCurrentPeriod({
       {/* B: Year Ahead */}
       <YearAheadSection yearPredictions={yearPredictions} locale={locale} />
 
-      {/* C: Key Dates */}
-      {keyDates && keyDates.length > 0 && (
-        <KeyDatesSection keyDates={keyDates} locale={locale} />
-      )}
+      {/* C: Key Dates — rendered at top level in kundali/page.tsx, not here (to keep it visible across all views) */}
 
       {/* Expandable: Full Dasha Timeline */}
       {dashaSynthesis && (

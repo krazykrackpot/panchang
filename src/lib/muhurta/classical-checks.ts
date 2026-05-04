@@ -19,31 +19,58 @@ import type { LocaleText } from '@/types/panchang';
 // Muhurta Chintamani + Dharmasindhu: Marriage absolutely forbidden when
 // Venus (Shukra) or Jupiter (Guru) is combust.
 // Venus governs conjugal happiness; Jupiter governs dharma and progeny.
+//
+// COMBUSTION ORBS (BPHS standard — coordinates.ts):
+//   Venus: 10° (8° if retrograde) | Jupiter: 11°
+// Vedic astrology recognises tiered combustion:
+//   10° orb = challenging (delays, dissatisfaction, ego clashes)
+//   5-6° orb = full combustion (failed relationships, separation risk)
+// We use the BPHS 10° standard. Some modern services use narrower orbs
+// (~5-6°), which is why they may show dates we block. Our choice is the
+// stricter classical reading — this is an explicit design decision.
+
+export interface CombustionResult {
+  vetoed: boolean;
+  planets: string[];
+  details: { planet: string; distance: number; orb: number; severity: 'full' | 'partial' }[];
+}
 
 /**
  * Check if Venus or Jupiter is combust at the given JD.
- * Returns the combust planet name(s) or null if neither is combust.
+ * Returns combust planet names + angular distance for UI display.
  */
-export function checkVivahCombustion(jd: number): { vetoed: boolean; planets: string[] } {
+export function checkVivahCombustion(jd: number): CombustionResult {
   const positions = getPlanetaryPositions(jd);
   const sun = positions.find(p => p.id === 0);
-  if (!sun) return { vetoed: false, planets: [] };
+  if (!sun) return { vetoed: false, planets: [], details: [] };
 
   const combustPlanets: string[] = [];
+  const details: CombustionResult['details'] = [];
 
-  // Venus (id=5)
+  // Venus (id=5) — BPHS orb: 10° (8° retrograde)
   const venus = positions.find(p => p.id === 5);
-  if (venus && computeCombust(5, venus.longitude, sun.longitude, venus.isRetrograde)) {
-    combustPlanets.push('Venus');
+  if (venus) {
+    const diff = Math.abs(venus.longitude - sun.longitude);
+    const dist = Math.min(diff, 360 - diff);
+    const orb = venus.isRetrograde ? 8 : 10;
+    if (dist < orb) {
+      combustPlanets.push('Venus');
+      details.push({ planet: 'Venus', distance: Math.round(dist * 10) / 10, orb, severity: dist < 6 ? 'full' : 'partial' });
+    }
   }
 
-  // Jupiter (id=4)
+  // Jupiter (id=4) — BPHS orb: 11°
   const jupiter = positions.find(p => p.id === 4);
-  if (jupiter && computeCombust(4, jupiter.longitude, sun.longitude, jupiter.isRetrograde)) {
-    combustPlanets.push('Jupiter');
+  if (jupiter) {
+    const diff = Math.abs(jupiter.longitude - sun.longitude);
+    const dist = Math.min(diff, 360 - diff);
+    if (dist < 11) {
+      combustPlanets.push('Jupiter');
+      details.push({ planet: 'Jupiter', distance: Math.round(dist * 10) / 10, orb: 11, severity: dist < 6 ? 'full' : 'partial' });
+    }
   }
 
-  return { vetoed: combustPlanets.length > 0, planets: combustPlanets };
+  return { vetoed: combustPlanets.length > 0, planets: combustPlanets, details };
 }
 
 // ─── Lagna (Ascendant) Scoring ──────────────────────────────────────────────
@@ -223,25 +250,32 @@ export function isDakshinayana(jd: number): boolean {
 
 // ─── Shishutva (Infant Venus/Jupiter) ───────────────────────────────────────
 // After Venus or Jupiter emerges from combustion (heliacal rising), the
-// first ~10 days are called Shishutva (infancy). The planet's beneficent
-// influence is still too weak. Drik Panchang blocks marriage during this
-// period alongside the combustion period itself.
+// planet passes through phases: Bala (infant), Kumara (youth), Yuva (adult).
+// During Bala, beneficent influence is still too weak for samskaras.
 //
-// Implementation: check if planet WAS combust 10 days ago but is NOT
-// combust today. If so, we're in the Shishutva grace period.
+// Classical texts describe the phases qualitatively but don't specify exact
+// durations for muhurta purposes. We use 5 days — conservative enough to
+// match the concept without being as aggressive as a 10-day window (which
+// has no specific textual backing). This is an area of legitimate
+// interpretive variation between practitioners.
+//
+// TEXTUAL BASIS: Moderate. The concept is real (BPHS describes planetary
+// phases after combustion), but the specific muhurta application and
+// duration are practitioner-derived, not shloka-specified.
+
+const SHISHUTVA_DAYS = 5;
 
 /**
  * Check if Venus or Jupiter is in Shishutva (infant) phase.
  * Returns true if either planet just emerged from combustion within
- * the last 10 days.
+ * the last SHISHUTVA_DAYS days.
  */
 export function checkShishutva(jd: number): boolean {
   const today = checkVivahCombustion(jd);
   if (today.vetoed) return false; // Still combust — handled by combustion check
 
-  // Check if combust 10 days ago
-  const tenDaysAgo = checkVivahCombustion(jd - 10);
-  if (tenDaysAgo.vetoed) return true; // Was combust recently — Shishutva active
+  const recent = checkVivahCombustion(jd - SHISHUTVA_DAYS);
+  if (recent.vetoed) return true; // Was combust recently — Shishutva active
 
   return false;
 }

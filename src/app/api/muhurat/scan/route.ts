@@ -246,14 +246,17 @@ export async function GET(req: NextRequest) {
     // Venus/Jupiter combustion — all samskaras except namakarana
     const combust = checkVivahCombustion(jdMid);
     if (combust.vetoed) {
-      const planets = combust.planets.join(' & ');
-      restrictions.push({
-        type: 'combustion',
-        label: {
-          en: `${planets} combust this month — samskaras restricted (MC + Dharmasindhu)`,
-          hi: `${planets === 'Venus' ? 'शुक्र' : planets === 'Jupiter' ? 'गुरु' : 'शुक्र/गुरु'} अस्त — संस्कार वर्जित (मुहूर्त चिन्तामणि + धर्मसिन्धु)`,
-        },
-      });
+      for (const d of combust.details) {
+        const severityEn = d.severity === 'full' ? `full combustion at ${d.distance}°` : `${d.distance}° from Sun (BPHS orb: ${d.orb}°)`;
+        const severityHi = d.severity === 'full' ? `पूर्ण दग्ध ${d.distance}°` : `सूर्य से ${d.distance}° (BPHS मानक: ${d.orb}°)`;
+        restrictions.push({
+          type: 'combustion',
+          label: {
+            en: `${d.planet} combust — ${severityEn}. Samskaras restricted (MC + Dharmasindhu).`,
+            hi: `${d.planet === 'Venus' ? 'शुक्र' : 'गुरु'} अस्त — ${severityHi}। संस्कार वर्जित (मुहूर्त चिन्तामणि + धर्मसिन्धु)।`,
+          },
+        });
+      }
     }
 
     // Adhika Masa — all samskaras except namakarana

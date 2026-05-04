@@ -348,6 +348,139 @@ Wednesdays per some texts. Not yet modelled as a bonus in the scanner.
 
 ---
 
+## Interpretive Positions — Where Classical Texts Are Ambiguous
+
+These are areas where our engine takes a specific position on rules where
+classical texts are silent, ambiguous, or in disagreement. Each position
+is documented with its textual basis and alternatives.
+
+### 1. Venus Combustion Orb: 10° (BPHS)
+
+**Our position**: Venus within 10° of the Sun = combust = marriage vetoed.
+8° if Venus is retrograde.
+
+**Textual basis**: BPHS Ch. 3. The 10° orb is the standard BPHS value.
+
+**Alternative**: Some modern services appear to use ~5-6°, which represents
+"full combustion" in the tiered interpretation. Vedic astrology recognises:
+- 10° = partial combustion (challenging: delays, dissatisfaction)
+- 5-6° = full combustion (severe: failed relationships, separation risk)
+
+**Our reasoning**: The BPHS standard is 10°. We follow the text as written.
+Marriage is a lifelong commitment — the stricter reading is appropriate.
+A user seeing "Venus combust at 8° — samskaras restricted" has complete
+transparency about why we're blocking the date.
+
+### 2. Shishutva Grace Period: 5 Days
+
+**Our position**: 5 days after Venus/Jupiter exits combustion, the planet
+is still considered weak (Bala/infant phase). Samskaras avoided.
+
+**Textual basis**: Moderate. BPHS describes planetary phases after combustion
+(Bala → Kumara → Yuva) but does not specify durations for muhurta purposes.
+
+**Alternative**: Most modern services do not implement Shishutva at all. Some
+traditional practitioners use 7-15 days. No specific shloka prescribes a
+duration.
+
+**Our reasoning**: The concept is real — a planet that was invisible yesterday
+does not become fully beneficent today. 5 days is conservative without being
+excessive. This is practitioner-derived, clearly documented, and the user can
+see the restriction banner explaining it.
+
+### 3. Kharmas: Dhanu + Mina (2 signs)
+
+**Our position**: Marriage vetoed when Sun is in Dhanu (Sagittarius) or Mina
+(Pisces). Other services block up to 5 solar months.
+
+**Textual basis**: Dharmasindhu specifically names Kharmas as Sun in Dhanu.
+Extension to Mina has practitioner consensus. Karka/Simha/Kanya overlap with
+Dakshinayana + Chaturmas which are separate checks — adding them to Kharmas
+would double-count.
+
+**Alternative**: Drik Panchang blocks 5 solar months (Karka, Simha, Kanya,
+Dhanu, Mina). This is a stricter composite of multiple overlapping rules.
+
+**Our reasoning**: Each prohibition (Chaturmas, Dakshinayana, Kharmas) should
+be tracked independently with its own textual source. Collapsing them into
+one check obscures which rule is active.
+
+### 4. Krishna Paksha: Conditional (Not Forbidden)
+
+**Our position**: Krishna Paksha dates are allowed when nakshatra is in the
+good list AND lagna score >= 5. Otherwise penalty of -3 to -6.
+
+**Textual basis**: Strong. No classical text (MC, Dharmasindhu, BPHS, Raman)
+explicitly forbids Krishna Paksha for marriage. Shukla is universally
+preferred, not exclusively required.
+
+**Alternative**: Many North Indian panchangas treat Krishna Paksha as a hard
+prohibition by convention. South Indian traditions regularly use Krishna dates.
+
+**Our reasoning**: We follow the texts, not regional convention. A Krishna
+Panchami in Rohini nakshatra with Tula lagna is classically better than a
+Shukla Chaturthi in Ardra with Vrischika lagna.
+
+### 5. Sunday: -1 Soft Penalty
+
+**Our position**: Sunday gets a mild -1 penalty (worse than goodWeekdays but
+far less than Tuesday's -4).
+
+**Textual basis**: MC explicitly lists Sunday as auspicious for marriage.
+Raman replaces Sunday with Monday.
+
+**Alternative**: Many modern panchangas exclude Sunday entirely.
+
+**Our reasoning**: MC is the older and more authoritative text for muhurta.
+When two texts disagree, we follow MC with a mild penalty acknowledging
+Raman's position.
+
+### 6. Jyeshtha Nakshatra for Mundan
+
+**Our position**: Jyeshtha is permitted for Mundan (Chudakarana).
+
+**Textual basis**: MC Chudakarana Prakarana specifically includes Jyeshtha
+as a Tikshna nakshatra exception for this samskara.
+
+**Alternative**: Jyeshtha is generally Tikshna (fierce) and avoided for most
+auspicious activities. Some practitioners exclude it even for Mundan.
+
+**Our reasoning**: The MC exception is explicit. Mundan is itself a tonsure
+— a Tikshna (cutting) nakshatra is contextually appropriate.
+
+### 7. Namakarana: No Period-Level Checks
+
+**Our position**: Namakarana is exempt from combustion, Chaturmas, Adhika
+Masa, Kharmas, and Holashtak.
+
+**Textual basis**: Strong. Drik Panchang explicitly states: "For Namakarana
+Muhurta, Tara Asta is not considered. On similar pattern, we also don't
+discard Mahalaya, Chaturmasa, Holashtaka." This is because Namakarana is a
+time-bound samskara (11th/12th day after birth) — you cannot postpone it by
+months waiting for Venus to exit combustion.
+
+**Alternative**: Some conservative practitioners still check combustion for
+namakarana. This is rare and not textually supported.
+
+### 8. Scoring System vs Binary Pass/Fail
+
+**Our position**: We use a 0-100 scoring system with a threshold of 50.
+Dates above 50 are shown with quality grades (excellent/good/fair).
+
+**Textual basis**: None — this is a modern UX choice. Classical muhurta is
+inherently binary (shuddha or ashuddha).
+
+**Alternative**: Drik Panchang and Prokerala use strict binary pass/fail on
+Panchanga Shuddhi. This produces fewer dates but no quality differentiation.
+
+**Our reasoning**: The scoring approach is more informative. A user planning
+a marriage can distinguish between a 75-score date (excellent panchanga with
+optimal lagna) and a 52-score date (acceptable but not ideal). Binary
+pass/fail loses this nuance. Our hard vetoes (combustion, Adhika, Chaturmas,
+forbidden nakshatras) ensure truly bad dates never appear regardless of score.
+
+---
+
 ## Gaps and Future Enhancements
 
 1. **Precise Chaturmas Ekadashi boundaries** — currently uses month-level

@@ -140,8 +140,8 @@ export function generateOrganizationLD(): object {
     sameAs: [
       'https://www.wikidata.org/wiki/Q139054863',
       'https://twitter.com/dekhopanchang',
-      'https://www.instagram.com/dekhopanchang/',
-      'https://www.facebook.com/dekhopanchang',
+      // Instagram/Facebook: add back when accounts are created
+      // 'https://www.instagram.com/dekhopanchang/',
       'https://www.youtube.com/@DekhoPanchang',
     ].filter(Boolean),
   };
@@ -329,7 +329,7 @@ export function generateWebSiteLD(): object {
     name: 'Dekho Panchang',
     alternateName: ['DekhoPanchang', 'dekhopanchang'],
     url: BASE_URL,
-    inLanguage: [...locales],
+    inLanguage: ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn'],
     publisher: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL, logo: `${BASE_URL}/apple-touch-icon.png` },
     potentialAction: {
       '@type': 'SearchAction',

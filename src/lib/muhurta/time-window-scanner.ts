@@ -418,6 +418,7 @@ export function scanDateRangeV2(options: ScanOptionsV2): ScanV2Window[] {
         sunriseUT, sunsetUT,
         snap.weekday, snap.nakshatra,
         jdMid, tz,
+        snap.moonSid,
       );
       const inauspiciousScore = computeInauspiciousPenalty(inauspiciousPeriods);
 

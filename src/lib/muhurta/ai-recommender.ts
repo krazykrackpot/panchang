@@ -291,6 +291,19 @@ export function scoreTimingFactors(
     factors.push({ en: 'Rahu Kaal active', hi: 'राहुकाल चल रहा है', sa: 'राहुकालः प्रवर्तते' });
   }
 
+  // Abhijit Muhurta — 8th daytime muhurta (around midday)
+  // Universally auspicious EXCEPT Wednesdays (Muhurta Chintamani, Dharma Sindhu).
+  // "On Budha-vara (Wednesday), Abhijit Muhurta is inauspicious and should be avoided."
+  const dayMuhurtaDuration = (sunsetLocal - sunriseLocal) / 15;
+  const abhijitStartLocal = sunriseLocal + 7 * dayMuhurtaDuration;
+  const abhijitEndLocal = abhijitStartLocal + dayMuhurtaDuration;
+  const isWednesday = weekday === 3; // 0=Sunday convention
+
+  if (!isWednesday && hourOfDay >= abhijitStartLocal && hourOfDay < abhijitEndLocal) {
+    score += 8;
+    factors.push({ en: 'Abhijit Muhurta — universally auspicious', hi: 'अभिजित् मुहूर्त — सर्वशुभ', sa: 'अभिजित्मुहूर्तः — सर्वशुभः' });
+  }
+
   return { score: Math.max(0, Math.min(25, score)), factors };
 }
 

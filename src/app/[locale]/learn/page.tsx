@@ -19,7 +19,7 @@ import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import LearningPath from '@/components/learn/LearningPath';
 import ReviewSession from '@/components/learn/ReviewSession';
 
-const STATS = { modules: 106, references: 47, labs: 6, phases: 12 };
+const STATS = { modules: 127, references: 68, labs: 6, phases: 12 };
 
 export default function LearnPage() {
   const locale = useLocale();
@@ -52,7 +52,28 @@ export default function LearnPage() {
     { label: { en: 'Cosmology & Mathematics', hi: 'ब्रह्माण्ड एवं गणित', sa: 'ब्रह्माण्डं गणितं च' }, refs: [
       { name: { en: 'Cosmology', hi: 'ब्रह्माण्ड', sa: 'ब्रह्माण्डम्' }, href: '/learn/cosmology' },
       { name: { en: 'Grahas', hi: 'ग्रह', sa: 'ग्रहाः' }, href: '/learn/grahas' },
+      { name: { en: 'Surya (Sun)', hi: 'सूर्य', sa: 'सूर्यः' }, href: '/learn/surya' },
+      { name: { en: 'Chandra (Moon)', hi: 'चन्द्र', sa: 'चन्द्रः' }, href: '/learn/chandra' },
+      { name: { en: 'Mangal (Mars)', hi: 'मंगल', sa: 'मङ्गलः' }, href: '/learn/mangal' },
+      { name: { en: 'Budha (Mercury)', hi: 'बुध', sa: 'बुधः' }, href: '/learn/budha' },
+      { name: { en: 'Guru (Jupiter)', hi: 'गुरु', sa: 'गुरुः' }, href: '/learn/guru' },
+      { name: { en: 'Shukra (Venus)', hi: 'शुक्र', sa: 'शुक्रः' }, href: '/learn/shukra' },
+      { name: { en: 'Shani (Saturn)', hi: 'शनि', sa: 'शनिः' }, href: '/learn/shani' },
+      { name: { en: 'Rahu', hi: 'राहु', sa: 'राहुः' }, href: '/learn/rahu' },
+      { name: { en: 'Ketu', hi: 'केतु', sa: 'केतुः' }, href: '/learn/ketu' },
       { name: { en: 'Rashis', hi: 'राशियाँ', sa: 'राशयः' }, href: '/learn/rashis' },
+      { name: { en: 'Mesha (Aries)', hi: 'मेष', sa: 'मेषः' }, href: '/learn/mesha' },
+      { name: { en: 'Vrishabha (Taurus)', hi: 'वृषभ', sa: 'वृषभः' }, href: '/learn/vrishabha' },
+      { name: { en: 'Mithuna (Gemini)', hi: 'मिथुन', sa: 'मिथुनम्' }, href: '/learn/mithuna' },
+      { name: { en: 'Karka (Cancer)', hi: 'कर्क', sa: 'कर्कः' }, href: '/learn/karka' },
+      { name: { en: 'Simha (Leo)', hi: 'सिंह', sa: 'सिंहः' }, href: '/learn/simha' },
+      { name: { en: 'Kanya (Virgo)', hi: 'कन्या', sa: 'कन्या' }, href: '/learn/kanya' },
+      { name: { en: 'Tula (Libra)', hi: 'तुला', sa: 'तुला' }, href: '/learn/tula' },
+      { name: { en: 'Vrishchika (Scorpio)', hi: 'वृश्चिक', sa: 'वृश्चिकः' }, href: '/learn/vrishchika' },
+      { name: { en: 'Dhanu (Sagittarius)', hi: 'धनु', sa: 'धनुः' }, href: '/learn/dhanu' },
+      { name: { en: 'Makara (Capricorn)', hi: 'मकर', sa: 'मकरः' }, href: '/learn/makara' },
+      { name: { en: 'Kumbha (Aquarius)', hi: 'कुम्भ', sa: 'कुम्भः' }, href: '/learn/kumbha' },
+      { name: { en: 'Meena (Pisces)', hi: 'मीन', sa: 'मीनः' }, href: '/learn/meena' },
       { name: { en: 'Nakshatras', hi: 'नक्षत्र', sa: 'नक्षत्राणि' }, href: '/learn/nakshatras' },
       { name: { en: 'Nakshatra Pada', hi: 'नक्षत्र पद', sa: 'नक्षत्रपादः' }, href: '/learn/nakshatra-pada' },
       { name: { en: 'Ayanamsha', hi: 'अयनांश', sa: 'अयनांशः' }, href: '/learn/ayanamsha' },

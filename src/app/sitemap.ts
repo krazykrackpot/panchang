@@ -54,7 +54,12 @@ const routes = [
   // Learn
   '/learn',
   '/learn/grahas',
+  '/learn/surya', '/learn/chandra', '/learn/mangal', '/learn/budha',
+  '/learn/guru', '/learn/shukra', '/learn/shani', '/learn/rahu', '/learn/ketu',
   '/learn/rashis',
+  '/learn/mesha', '/learn/vrishabha', '/learn/mithuna', '/learn/karka',
+  '/learn/simha', '/learn/kanya', '/learn/tula', '/learn/vrishchika',
+  '/learn/dhanu', '/learn/makara', '/learn/kumbha', '/learn/meena',
   '/learn/nakshatras',
   '/learn/tithis',
   '/learn/yogas',

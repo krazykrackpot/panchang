@@ -1476,6 +1476,151 @@ export const PAGE_META: Record<string, PageMeta> = {
     },
     keywords: ['rudraksha recommendation', 'rudraksha by rashi', 'rudraksha calculator', 'which mukhi rudraksha', 'rudraksha benefits'],
   },
+  '/learn/guru': {
+    title: {
+      en: 'Guru (Jupiter) in Vedic Astrology — Complete Guide',
+      hi: 'गुरु (बृहस्पति) — वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका',
+      sa: 'गुरुग्रहः — वैदिकज्योतिषे सम्पूर्णमार्गदर्शिका',
+    },
+    description: {
+      en: 'Comprehensive guide to Guru (Jupiter) in Jyotish — dignities, significations, effects in 12 signs and 12 houses, Vimshottari Dasha, remedies, and mythology.',
+      hi: 'ज्योतिष में गुरु (बृहस्पति) की सम्पूर्ण मार्गदर्शिका — गरिमा, कारकत्व, 12 राशियों और 12 भावों में फल, विंशोत्तरी दशा, उपाय और पौराणिक कथा।',
+      sa: 'ज्योतिषे गुरुग्रहस्य सम्पूर्णमार्गदर्शिका — गरिमा, कारकत्वम्, द्वादशराशिषु द्वादशभावेषु च फलम्।',
+    },
+    keywords: ['guru in astrology', 'jupiter vedic astrology', 'brihaspati', 'guru mahadasha', 'yellow sapphire', 'jupiter in signs', 'jupiter in houses'],
+  },
+  '/learn/shukra': {
+    title: {
+      en: 'Shukra (Venus) in Vedic Astrology — Complete Guide',
+      hi: 'शुक्र — वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका',
+      sa: 'शुक्रग्रहः — वैदिकज्योतिषे सम्पूर्णमार्गदर्शिका',
+    },
+    description: {
+      en: 'Comprehensive guide to Shukra (Venus) in Jyotish — dignities, significations, effects in 12 signs and 12 houses, Vimshottari Dasha, remedies, and mythology.',
+      hi: 'ज्योतिष में शुक्र की सम्पूर्ण मार्गदर्शिका — गरिमा, कारकत्व, 12 राशियों और 12 भावों में फल, विंशोत्तरी दशा, उपाय और पौराणिक कथा।',
+      sa: 'ज्योतिषे शुक्रग्रहस्य सम्पूर्णमार्गदर्शिका — गरिमा, कारकत्वम्, द्वादशराशिषु द्वादशभावेषु च फलम्।',
+    },
+    keywords: ['shukra in astrology', 'venus vedic astrology', 'shukra mahadasha', 'diamond heera', 'venus in signs', 'venus in houses', 'shukra remedies'],
+  },
+  '/learn/shani': {
+    title: {
+      en: 'Shani (Saturn) in Vedic Astrology — Complete Guide',
+      hi: 'शनि — वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका',
+      sa: 'शनिग्रहः — वैदिकज्योतिषे सम्पूर्णमार्गदर्शिका',
+    },
+    description: {
+      en: 'Comprehensive guide to Shani (Saturn) in Jyotish — dignities, significations, effects in 12 signs and 12 houses, Vimshottari Dasha, Sade Sati, remedies, and mythology.',
+      hi: 'ज्योतिष में शनि की सम्पूर्ण मार्गदर्शिका — गरिमा, कारकत्व, 12 राशियों और 12 भावों में फल, विंशोत्तरी दशा, साढ़ेसाती, उपाय और पौराणिक कथा।',
+      sa: 'ज्योतिषे शनिग्रहस्य सम्पूर्णमार्गदर्शिका — गरिमा, कारकत्वम्, द्वादशराशिषु द्वादशभावेषु च फलम्।',
+    },
+    keywords: ['shani in astrology', 'saturn vedic astrology', 'shani mahadasha', 'blue sapphire neelam', 'sade sati', 'saturn in signs', 'saturn in houses', 'shani remedies'],
+  },
+  '/learn/rahu': {
+    title: {
+      en: 'Rahu (North Node) in Vedic Astrology — Complete Guide',
+      hi: 'राहु — वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका',
+      sa: 'राहुग्रहः — वैदिकज्योतिषे सम्पूर्णमार्गदर्शिका',
+    },
+    description: {
+      en: 'Comprehensive guide to Rahu (North Lunar Node) in Jyotish — the shadow planet of obsession, illusion, and worldly desire. Dignities, effects in 12 signs and houses, 18-year dasha, remedies, and mythology.',
+      hi: 'ज्योतिष में राहु (उत्तर चन्द्र पात) की सम्पूर्ण मार्गदर्शिका — जुनून, माया और सांसारिक इच्छा का छाया ग्रह। गरिमा, 12 राशियों और भावों में फल, 18 वर्षीय दशा, उपाय और पौराणिक कथा।',
+      sa: 'ज्योतिषे राहुग्रहस्य सम्पूर्णमार्गदर्शिका — छायाग्रहः, द्वादशराशिषु द्वादशभावेषु च फलम्।',
+    },
+    keywords: ['rahu in astrology', 'north node vedic astrology', 'rahu mahadasha', 'hessonite gomed', 'rahu in signs', 'rahu in houses', 'rahu ketu axis', 'rahu remedies', 'shadow planet'],
+  },
+  '/learn/ketu': {
+    title: {
+      en: 'Ketu (South Node) in Vedic Astrology — Complete Guide',
+      hi: 'केतु — वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका',
+      sa: 'केतुग्रहः — वैदिकज्योतिषे सम्पूर्णमार्गदर्शिका',
+    },
+    description: {
+      en: 'Comprehensive guide to Ketu (South Lunar Node) in Jyotish — the shadow planet of detachment, moksha, and past-life karma. Dignities, effects in 12 signs and houses, 7-year dasha, remedies, and mythology.',
+      hi: 'ज्योतिष में केतु (दक्षिण चन्द्र पात) की सम्पूर्ण मार्गदर्शिका — वैराग्य, मोक्ष और पूर्व जन्म कर्म का छाया ग्रह। गरिमा, 12 राशियों और भावों में फल, 7 वर्षीय दशा, उपाय और पौराणिक कथा।',
+      sa: 'ज्योतिषे केतुग्रहस्य सम्पूर्णमार्गदर्शिका — मोक्षकारकः, द्वादशराशिषु द्वादशभावेषु च फलम्।',
+    },
+    keywords: ['ketu in astrology', 'south node vedic astrology', 'ketu mahadasha', 'cats eye lehsunia', 'ketu in signs', 'ketu in houses', 'moksha planet', 'ketu remedies', 'shadow planet'],
+  },
+  '/learn/surya': {
+    title: { en: 'Surya (Sun) in Vedic Astrology — Complete Guide', hi: 'सूर्य — वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका', sa: 'सूर्यग्रहः — सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Comprehensive guide to Surya (Sun) in Jyotish — Atmakaraka, dignities, effects in 12 signs and 12 houses, 6-year dasha, Ruby remedy, and mythology.', hi: 'ज्योतिष में सूर्य की सम्पूर्ण मार्गदर्शिका — आत्मकारक, गरिमा, 12 राशियों और भावों में फल, 6 वर्षीय दशा, माणिक्य उपाय और पौराणिक कथा।', sa: 'ज्योतिषे सूर्यग्रहस्य सम्पूर्णमार्गदर्शिका।' },
+    keywords: ['surya in astrology', 'sun vedic astrology', 'surya mahadasha', 'ruby manikya', 'sun in signs', 'sun in houses', 'atmakaraka', 'surya remedies'],
+  },
+  '/learn/chandra': {
+    title: { en: 'Chandra (Moon) in Vedic Astrology — Complete Guide', hi: 'चन्द्र — वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका', sa: 'चन्द्रग्रहः — सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Comprehensive guide to Chandra (Moon) in Jyotish — Manokaraka, dignities, effects in 12 signs and 12 houses, 10-year dasha, Pearl remedy, and mythology.', hi: 'ज्योतिष में चन्द्र की सम्पूर्ण मार्गदर्शिका — मनोकारक, गरिमा, 12 राशियों और भावों में फल, 10 वर्षीय दशा, मोती उपाय।', sa: 'ज्योतिषे चन्द्रग्रहस्य सम्पूर्णमार्गदर्शिका।' },
+    keywords: ['chandra in astrology', 'moon vedic astrology', 'chandra mahadasha', 'pearl moti', 'moon in signs', 'moon in houses', 'manokaraka'],
+  },
+  '/learn/mangal': {
+    title: { en: 'Mangal (Mars) in Vedic Astrology — Complete Guide', hi: 'मंगल — वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका', sa: 'मङ्गलग्रहः — सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Comprehensive guide to Mangal (Mars) in Jyotish — Bhumikaraka, dignities, effects in 12 signs and 12 houses, 7-year dasha, Red Coral remedy, and Mangal Dosha.', hi: 'ज्योतिष में मंगल की सम्पूर्ण मार्गदर्शिका — भूमिकारक, गरिमा, 12 राशियों और भावों में फल, 7 वर्षीय दशा, मूंगा उपाय।', sa: 'ज्योतिषे मङ्गलग्रहस्य सम्पूर्णमार्गदर्शिका।' },
+    keywords: ['mangal in astrology', 'mars vedic astrology', 'mangal mahadasha', 'red coral moonga', 'mars in signs', 'mars in houses', 'mangal dosha'],
+  },
+  '/learn/budha': {
+    title: { en: 'Budha (Mercury) in Vedic Astrology — Complete Guide', hi: 'बुध — वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका', sa: 'बुधग्रहः — सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Comprehensive guide to Budha (Mercury) in Jyotish — Vakkaraka, dignities, effects in 12 signs and 12 houses, 17-year dasha, Emerald remedy, and Budhaditya Yoga.', hi: 'ज्योतिष में बुध की सम्पूर्ण मार्गदर्शिका — वाक्कारक, गरिमा, 12 राशियों और भावों में फल, 17 वर्षीय दशा, पन्ना उपाय।', sa: 'ज्योतिषे बुधग्रहस्य सम्पूर्णमार्गदर्शिका।' },
+    keywords: ['budha in astrology', 'mercury vedic astrology', 'budha mahadasha', 'emerald panna', 'mercury in signs', 'mercury in houses', 'budhaditya yoga'],
+  },
+  '/learn/mesha': {
+    title: { en: 'Mesha (Aries) Rashi — Complete Vedic Astrology Guide', hi: 'मेष राशि — वैदिक ज्योतिष सम्पूर्ण मार्गदर्शिका', sa: 'मेषराशिः — सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Mesha (Aries) in Vedic astrology — fire sign ruled by Mars. Personality, nakshatras, planetary dignities, each planet in Aries, career, compatibility, and remedies.', hi: 'वैदिक ज्योतिष में मेष राशि की सम्पूर्ण मार्गदर्शिका — मंगल शासित अग्नि राशि। व्यक्तित्व, नक्षत्र, ग्रह गरिमा, करियर, अनुकूलता और उपाय।', sa: 'मेषराशेः सम्पूर्णमार्गदर्शिका।' },
+    keywords: ['mesha rashi', 'aries vedic astrology', 'mesha characteristics', 'aries personality', 'planets in aries', 'mesha compatibility'],
+  },
+  '/learn/vrishabha': {
+    title: { en: 'Vrishabha (Taurus) Rashi — Complete Vedic Astrology Guide', hi: 'वृषभ राशि — सम्पूर्ण मार्गदर्शिका', sa: 'वृषभराशिः — सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Vrishabha (Taurus) in Vedic astrology — earth sign ruled by Venus. Moon exalted here. Personality, nakshatras, planetary dignities, career, compatibility.', hi: 'वैदिक ज्योतिष में वृषभ राशि — शुक्र शासित पृथ्वी राशि। चन्द्र यहाँ उच्च। व्यक्तित्व, नक्षत्र, ग्रह गरिमा, करियर, अनुकूलता।', sa: 'वृषभराशेः सम्पूर्णमार्गदर्शिका।' },
+    keywords: ['vrishabha rashi', 'taurus vedic astrology', 'vrishabha characteristics', 'moon exalted taurus', 'planets in taurus'],
+  },
+  '/learn/mithuna': {
+    title: { en: 'Mithuna (Gemini) Rashi — Complete Vedic Astrology Guide', hi: 'मिथुन राशि — सम्पूर्ण मार्गदर्शिका', sa: 'मिथुनराशिः — सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Mithuna (Gemini) in Vedic astrology — air sign ruled by Mercury. Personality, nakshatras, planetary dignities, career, compatibility.', hi: 'वैदिक ज्योतिष में मिथुन राशि — बुध शासित वायु राशि। व्यक्तित्व, नक्षत्र, ग्रह गरिमा, करियर, अनुकूलता।', sa: 'मिथुनराशेः सम्पूर्णमार्गदर्शिका।' },
+    keywords: ['mithuna rashi', 'gemini vedic astrology', 'mithuna characteristics', 'mercury sign', 'planets in gemini'],
+  },
+  '/learn/karka': {
+    title: { en: 'Karka (Cancer) Rashi — Complete Vedic Astrology Guide', hi: 'कर्क राशि — सम्पूर्ण मार्गदर्शिका', sa: 'कर्कराशिः — सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Karka (Cancer) in Vedic astrology — water sign ruled by Moon. Jupiter exalted here. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में कर्क राशि — चन्द्र शासित जल राशि। गुरु यहाँ उच्च। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'कर्कराशेः सम्पूर्णमार्गदर्शिका।' },
+    keywords: ['karka rashi', 'cancer vedic astrology', 'karka characteristics', 'jupiter exalted cancer', 'planets in cancer'],
+  },
+  '/learn/simha': {
+    title: { en: 'Simha (Leo) Rashi — Complete Vedic Astrology Guide', hi: 'सिंह राशि — सम्पूर्ण मार्गदर्शिका', sa: 'सिंहराशिः — सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Simha (Leo) in Vedic astrology — fire sign ruled by Sun. Personality, nakshatras, planetary dignities, career, compatibility.', hi: 'वैदिक ज्योतिष में सिंह राशि — सूर्य शासित अग्नि राशि। व्यक्तित्व, नक्षत्र, ग्रह गरिमा, करियर, अनुकूलता।', sa: 'सिंहराशेः सम्पूर्णमार्गदर्शिका।' },
+    keywords: ['simha rashi', 'leo vedic astrology', 'simha characteristics', 'sun sign leo', 'planets in leo'],
+  },
+  '/learn/kanya': {
+    title: { en: 'Kanya (Virgo) Rashi — Complete Vedic Astrology Guide', hi: 'कन्या राशि — सम्पूर्ण मार्गदर्शिका', sa: 'कन्याराशिः — सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Kanya (Virgo) in Vedic astrology — earth sign ruled by Mercury. Mercury exalted here. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में कन्या राशि — बुध शासित पृथ्वी राशि। बुध यहाँ उच्च। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'कन्याराशेः सम्पूर्णमार्गदर्शिका।' },
+    keywords: ['kanya rashi', 'virgo vedic astrology', 'kanya characteristics', 'mercury exalted virgo', 'planets in virgo'],
+  },
+  '/learn/tula': {
+    title: { en: 'Tula (Libra) Rashi — Complete Vedic Astrology Guide', hi: 'तुला राशि — सम्पूर्ण मार्गदर्शिका', sa: 'तुलाराशिः — सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Tula (Libra) in Vedic astrology — air sign ruled by Venus. Saturn exalted, Sun debilitated here. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में तुला राशि — शुक्र शासित वायु राशि। शनि उच्च, सूर्य नीच। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'तुलाराशेः सम्पूर्णमार्गदर्शिका।' },
+    keywords: ['tula rashi', 'libra vedic astrology', 'tula characteristics', 'saturn exalted libra', 'sun debilitated libra'],
+  },
+  '/learn/vrishchika': {
+    title: { en: 'Vrishchika (Scorpio) Rashi — Complete Vedic Astrology Guide', hi: 'वृश्चिक राशि — सम्पूर्ण मार्गदर्शिका', sa: 'वृश्चिकराशिः — सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Vrishchika (Scorpio) in Vedic astrology — water sign ruled by Mars. Moon debilitated here. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में वृश्चिक राशि — मंगल शासित जल राशि। चन्द्र यहाँ नीच। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'वृश्चिकराशेः सम्पूर्णमार्गदर्शिका।' },
+    keywords: ['vrishchika rashi', 'scorpio vedic astrology', 'vrishchika characteristics', 'moon debilitated scorpio', 'planets in scorpio'],
+  },
+  '/learn/dhanu': {
+    title: { en: 'Dhanu (Sagittarius) Rashi — Complete Vedic Astrology Guide', hi: 'धनु राशि — सम्पूर्ण मार्गदर्शिका', sa: 'धनुराशिः — सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Dhanu (Sagittarius) in Vedic astrology — fire sign ruled by Jupiter. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में धनु राशि — गुरु शासित अग्नि राशि। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'धनुराशेः सम्पूर्णमार्गदर्शिका।' },
+    keywords: ['dhanu rashi', 'sagittarius vedic astrology', 'dhanu characteristics', 'jupiter sign', 'planets in sagittarius'],
+  },
+  '/learn/makara': {
+    title: { en: 'Makara (Capricorn) Rashi — Complete Vedic Astrology Guide', hi: 'मकर राशि — सम्पूर्ण मार्गदर्शिका', sa: 'मकरराशिः — सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Makara (Capricorn) in Vedic astrology — earth sign ruled by Saturn. Mars exalted, Jupiter debilitated here. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में मकर राशि — शनि शासित पृथ्वी राशि। मंगल उच्च, गुरु नीच। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'मकरराशेः सम्पूर्णमार्गदर्शिका।' },
+    keywords: ['makara rashi', 'capricorn vedic astrology', 'makara characteristics', 'mars exalted capricorn', 'jupiter debilitated capricorn'],
+  },
+  '/learn/kumbha': {
+    title: { en: 'Kumbha (Aquarius) Rashi — Complete Vedic Astrology Guide', hi: 'कुम्भ राशि — सम्पूर्ण मार्गदर्शिका', sa: 'कुम्भराशिः — सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Kumbha (Aquarius) in Vedic astrology — air sign ruled by Saturn (co-ruled by Rahu). Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में कुम्भ राशि — शनि शासित (राहु सह-शासित) वायु राशि। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'कुम्भराशेः सम्पूर्णमार्गदर्शिका।' },
+    keywords: ['kumbha rashi', 'aquarius vedic astrology', 'kumbha characteristics', 'saturn rahu sign', 'planets in aquarius'],
+  },
+  '/learn/meena': {
+    title: { en: 'Meena (Pisces) Rashi — Complete Vedic Astrology Guide', hi: 'मीन राशि — सम्पूर्ण मार्गदर्शिका', sa: 'मीनराशिः — सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Meena (Pisces) in Vedic astrology — water sign ruled by Jupiter. Venus exalted, Mercury debilitated here. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में मीन राशि — गुरु शासित जल राशि। शुक्र उच्च, बुध नीच। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'मीनराशेः सम्पूर्णमार्गदर्शिका।' },
+    keywords: ['meena rashi', 'pisces vedic astrology', 'meena characteristics', 'venus exalted pisces', 'mercury debilitated pisces'],
+  },
 };
 
 /**

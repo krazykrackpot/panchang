@@ -932,6 +932,107 @@ export default function MuhuratPage() {
       <GoldDivider />
 
       {/* ================================================================ */}
+      {/* HOW WE CALCULATE — methodology transparency                      */}
+      {/* ================================================================ */}
+      <div className="my-10">
+        <h2 className="text-lg sm:text-xl text-gold-light font-bold mb-5" style={headingFont}>
+          {locale === 'hi' ? 'हमारी गणना पद्धति' : 'How We Calculate Muhurtas'}
+        </h2>
+
+        <div className="space-y-4">
+          {/* Classical sources */}
+          <div className="rounded-xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-5">
+            <h3 className="text-gold-primary text-sm font-bold mb-2">
+              {locale === 'hi' ? 'शास्त्रीय स्रोत' : 'Classical Sources'}
+            </h3>
+            <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
+              {locale === 'hi'
+                ? 'हमारी गणना मुहूर्त चिन्तामणि (अध्याय ६, विवाह प्रकरण), धर्मसिन्धु, बृहत् संहिता (अध्याय १०३), और बी.वी. रमन की मुहूर्थ पर आधारित है। प्रत्येक नियम का स्रोत प्रलेखित है।'
+                : 'Our calculations are based on Muhurta Chintamani (Ch. 6, Vivah Prakarana), Dharmasindhu, Brihat Samhita (Ch. 103), and B.V. Raman\'s Muhurtha. Every rule is traced to a named classical text.'}
+            </p>
+          </div>
+
+          {/* Hard prohibitions */}
+          <div className="rounded-xl border border-red-500/15 bg-red-500/5 p-5">
+            <h3 className="text-red-400 text-sm font-bold mb-2">
+              {locale === 'hi' ? 'कठोर निषेध (पूर्ण वर्जित)' : 'Hard Prohibitions (Absolute Vetoes)'}
+            </h3>
+            <ul className="text-text-secondary text-sm space-y-1.5 list-none" style={bodyFont}>
+              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">✗</span>
+                {locale === 'hi'
+                  ? 'शुक्र/गुरु अस्त — BPHS मानक: शुक्र 10° (वक्री 8°), गुरु 11°। कुछ सेवाएँ 5-6° प्रयोग करती हैं; हम शास्त्रीय 10° मानक का पालन करते हैं।'
+                  : 'Venus/Jupiter combustion — BPHS standard orbs: Venus 10° (8° retro), Jupiter 11°. Some services use 5-6°; we follow the classical 10° standard.'}
+              </li>
+              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">✗</span>
+                {locale === 'hi' ? 'अधिक मास — धर्मसिन्धु: अधिमास में संस्कार वर्जित।' : 'Adhika Masa — Dharmasindhu: samskaras prohibited in intercalary months.'}
+              </li>
+              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">✗</span>
+                {locale === 'hi' ? 'चातुर्मास — धर्मसिन्धु: श्रावण से आश्विन तक विवाह/गृह प्रवेश वर्जित।' : 'Chaturmas — Dharmasindhu: marriage/griha pravesh prohibited Shravana through Ashwina.'}
+              </li>
+              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">✗</span>
+                {locale === 'hi' ? 'खरमास — धर्मसिन्धु: सूर्य धनु या मीन में हो तो विवाह वर्जित।' : 'Kharmas — Dharmasindhu: marriage prohibited when Sun is in Dhanu (Sagittarius) or Mina (Pisces).'}
+              </li>
+              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">✗</span>
+                {locale === 'hi' ? 'वर्जित नक्षत्र — मुहूर्त चिन्तामणि + ज्योतिर्निबन्ध: प्रत्येक संस्कार के लिए विशिष्ट।' : 'Forbidden nakshatras — per Muhurta Chintamani + Jyotirnibandha: activity-specific.'}
+              </li>
+            </ul>
+          </div>
+
+          {/* Scoring approach */}
+          <div className="rounded-xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-5">
+            <h3 className="text-gold-primary text-sm font-bold mb-2">
+              {locale === 'hi' ? 'गुणवत्ता श्रेणीकरण' : 'Quality Grading'}
+            </h3>
+            <p className="text-text-secondary text-sm leading-relaxed mb-3" style={bodyFont}>
+              {locale === 'hi'
+                ? 'कठोर निषेधों को पार करने के बाद, शेष दिनों को 8 कारकों पर स्कोर किया जाता है: नक्षत्र (प्रमुख), तिथि, योग, करण, वार, लग्न, नवांश शुद्धि, और ग्रह गोचर। लग्न सबसे शक्तिशाली सुधारक कारक है — मुहूर्त चिन्तामणि कहता है "उचित लग्न अन्य सभी दोषों का निवारण करता है।"'
+                : 'After passing hard prohibitions, remaining days are scored across 8 factors: Nakshatra (primary), Tithi, Yoga, Karana, Vara, Lagna, Navamsha Shuddhi, and planetary transits. Lagna is the most powerful corrective — Muhurta Chintamani states "a properly chosen lagna removes all other defects."'}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/20">72+ = {locale === 'hi' ? 'उत्कृष्ट' : 'Excellent'}</span>
+              <span className="text-xs px-2.5 py-1 rounded-full bg-gold-primary/15 text-gold-light border border-gold-primary/20">58-71 = {locale === 'hi' ? 'शुभ' : 'Good'}</span>
+              <span className="text-xs px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/20">50-57 = {locale === 'hi' ? 'सामान्य' : 'Fair'}</span>
+            </div>
+          </div>
+
+          {/* Activity-specific rules */}
+          <div className="rounded-xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-5">
+            <h3 className="text-gold-primary text-sm font-bold mb-2">
+              {locale === 'hi' ? 'संस्कार-विशिष्ट नियम' : 'Activity-Specific Rules'}
+            </h3>
+            <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
+              {locale === 'hi'
+                ? 'शास्त्रीय ग्रन्थ प्रत्येक संस्कार के लिए भिन्न नियम निर्धारित करते हैं। विवाह सबसे कठोर है (सभी निषेध लागू)। मुण्डन में उत्तरायण अनिवार्य है (मुहूर्त चिन्तामणि)। नामकरण समयबद्ध संस्कार है — ग्रह अस्त, चातुर्मास आदि लागू नहीं होते। वाहन खरीद में रविवार अनुमत है। प्रत्येक संस्कार के लिए विशिष्ट नक्षत्र सूची शास्त्रों से ली गई है।'
+                : 'Classical texts prescribe different rules for each samskara. Marriage is the strictest (all prohibitions apply). Mundan requires Uttarayana (MC Chudakarana Prakarana). Namakarana is time-bound — period-level restrictions don\'t apply. Vehicle purchase permits Sunday. Each activity has a specific nakshatra list sourced from classical texts. Tap any date to see the factor-by-factor analysis.'}
+            </p>
+          </div>
+
+          {/* Krishna Paksha note */}
+          <div className="rounded-xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-5">
+            <h3 className="text-gold-primary text-sm font-bold mb-2">
+              {locale === 'hi' ? 'कृष्ण पक्ष' : 'Krishna Paksha'}
+            </h3>
+            <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
+              {locale === 'hi'
+                ? 'कोई शास्त्रीय ग्रन्थ कृष्ण पक्ष को स्पष्ट रूप से वर्जित नहीं करता। शुक्ल पक्ष वरीय है, परन्तु यदि नक्षत्र उत्कृष्ट हो और लग्न शुभ हो तो कृष्ण पक्ष अनुमत है। कुछ अन्य सेवाएँ कृष्ण पक्ष को पूर्णतः बाहर करती हैं — यह क्षेत्रीय परम्परा है, शास्त्रीय निषेध नहीं।'
+                : 'No classical text explicitly forbids Krishna Paksha. Shukla Paksha is preferred, but Krishna is permitted when nakshatra and lagna are excellent. Some services exclude Krishna Paksha entirely — that is regional convention, not a classical prohibition.'}
+            </p>
+          </div>
+
+          {/* Learn more link */}
+          <Link
+            href="/learn/muhurta-selection"
+            className="inline-flex items-center gap-2 text-sm text-gold-primary hover:text-gold-light transition-colors"
+          >
+            {locale === 'hi' ? 'मुहूर्त चयन के शास्त्रीय नियम विस्तार से पढ़ें' : 'Read the full classical rules behind these calculations'}
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </div>
+
+      <GoldDivider />
+
+      {/* ================================================================ */}
       {/* CROSS-LINKS                                                      */}
       {/* ================================================================ */}
       <div className="my-10 space-y-4">
@@ -950,7 +1051,7 @@ export default function MuhuratPage() {
             <ArrowRight className="w-4 h-4 text-gold-dark group-hover:text-gold-primary transition-colors ml-auto" />
           </Link>
           <Link
-            href="/learn/muhurtas"
+            href="/learn/muhurta-selection"
             className="flex-1 group flex items-center gap-3 px-5 py-4 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] hover:border-gold-primary/40 transition-all"
           >
             <svg viewBox="0 0 24 24" width={20} height={20} className="text-gold-primary flex-shrink-0" aria-hidden="true">

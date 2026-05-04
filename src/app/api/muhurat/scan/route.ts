@@ -232,26 +232,31 @@ export async function GET(req: NextRequest) {
     return { id, label: data?.label ?? { en: id } };
   });
 
-  // ── Restriction notices ──────────────────────────────────────
-  // Check classical prohibitions that may explain why a month has few/no dates.
-  // Only check for samskaras (marriage, griha_pravesh, etc.)
-  const SAMSKARA_ACTIVITIES = new Set(['marriage', 'engagement', 'griha_pravesh', 'upanayana', 'namakarana', 'mundan']);
+  // ── Restriction notices — tiered by activity type ────────────
+  // Classical texts differentiate prohibition levels by samskara.
+  const FULL_CHECK_ACTIVITIES = new Set(['marriage', 'engagement', 'griha_pravesh']);
+  const PARTIAL_CHECK_ACTIVITIES = new Set(['upanayana']);
+  const LIGHT_CHECK_ACTIVITIES = new Set(['mundan']);
+  const anySamskara = FULL_CHECK_ACTIVITIES.has(activity) || PARTIAL_CHECK_ACTIVITIES.has(activity) || LIGHT_CHECK_ACTIVITIES.has(activity);
+
   const restrictions: { type: string; label: { en: string; hi: string } }[] = [];
-  if (SAMSKARA_ACTIVITIES.has(activity)) {
-    // Venus/Jupiter combustion — check mid-month
+  if (anySamskara) {
     const jdMid = dateToJD(year, month, 15, 12 - tz);
+
+    // Venus/Jupiter combustion — all samskaras except namakarana
     const combust = checkVivahCombustion(jdMid);
     if (combust.vetoed) {
       const planets = combust.planets.join(' & ');
       restrictions.push({
         type: 'combustion',
         label: {
-          en: `${planets} combust this month — samskaras restricted (Muhurta Chintamani + Dharmasindhu)`,
+          en: `${planets} combust this month — samskaras restricted (MC + Dharmasindhu)`,
           hi: `${planets === 'Venus' ? 'शुक्र' : planets === 'Jupiter' ? 'गुरु' : 'शुक्र/गुरु'} अस्त — संस्कार वर्जित (मुहूर्त चिन्तामणि + धर्मसिन्धु)`,
         },
       });
     }
-    // Adhika Masa — check mid-month
+
+    // Adhika Masa — all samskaras except namakarana
     if (isAdhikaMasa(year, month, 15)) {
       restrictions.push({
         type: 'adhika_masa',
@@ -261,38 +266,42 @@ export async function GET(req: NextRequest) {
         },
       });
     }
-    // Chaturmas
-    const chaturmas = checkChaturmas(year, month, 15);
-    if (chaturmas === 'full') {
-      restrictions.push({
-        type: 'chaturmas',
-        label: {
-          en: 'Chaturmas (Harishayana period) — marriage prohibited (Dharmasindhu)',
-          hi: 'चातुर्मास (हरिशयन काल) — विवाह वर्जित (धर्मसिन्धु)',
-        },
-      });
-    } else if (chaturmas === 'partial') {
-      restrictions.push({
-        type: 'chaturmas_partial',
-        label: {
-          en: 'Chaturmas edge month — fewer auspicious days available',
-          hi: 'चातुर्मास सीमा मास — शुभ दिन सीमित',
-        },
-      });
+
+    // Chaturmas — marriage/engagement/griha_pravesh/upanayana (NOT mundan)
+    if (FULL_CHECK_ACTIVITIES.has(activity) || PARTIAL_CHECK_ACTIVITIES.has(activity)) {
+      const chaturmas = checkChaturmas(year, month, 15);
+      if (chaturmas === 'full') {
+        restrictions.push({
+          type: 'chaturmas',
+          label: {
+            en: 'Chaturmas (Harishayana period) — samskaras prohibited (Dharmasindhu)',
+            hi: 'चातुर्मास (हरिशयन काल) — संस्कार वर्जित (धर्मसिन्धु)',
+          },
+        });
+      } else if (chaturmas === 'partial') {
+        restrictions.push({
+          type: 'chaturmas_partial',
+          label: {
+            en: 'Chaturmas edge month — fewer auspicious days available',
+            hi: 'चातुर्मास सीमा मास — शुभ दिन सीमित',
+          },
+        });
+      }
     }
-    // Prohibited solar month (Kharmas)
-    const jdMidSolar = dateToJD(year, month, 15, 12 - tz);
-    if (isProhibitedSolarMonth(jdMidSolar)) {
+
+    // Kharmas — full-check activities only (marriage/engagement/griha_pravesh)
+    if (FULL_CHECK_ACTIVITIES.has(activity) && isProhibitedSolarMonth(jdMid)) {
       restrictions.push({
         type: 'kharmas',
         label: {
-          en: 'Prohibited solar month (Kharmas) — marriage restricted (Dharmasindhu)',
-          hi: 'खरमास — विवाह वर्जित (धर्मसिन्धु)',
+          en: 'Kharmas (Sun in Dhanu/Mina) — marriage restricted (Dharmasindhu)',
+          hi: 'खरमास (सूर्य धनु/मीन में) — विवाह वर्जित (धर्मसिन्धु)',
         },
       });
     }
-    // Shishutva (infant Venus/Jupiter) — stricter than some modern services
-    if (checkShishutva(jdMidSolar)) {
+
+    // Shishutva — full-check activities only
+    if (FULL_CHECK_ACTIVITIES.has(activity) && checkShishutva(jdMid)) {
       restrictions.push({
         type: 'shishutva',
         label: {
@@ -301,22 +310,23 @@ export async function GET(req: NextRequest) {
         },
       });
     }
-    // Holashtak — 8 days before Holi (regional, North India)
-    // Check mid-month: if any part of the month has Holashtak, note it
-    const midMasa = getLunarMasaForDate(year, month, 15);
-    if (midMasa) {
-      const jdMidH = dateToJD(year, month, 15, 12 - tz);
-      const midTithi = calculateTithi(jdMidH);
-      const midPaksha: 'shukla' | 'krishna' = midTithi.number <= 15 ? 'shukla' : 'krishna';
-      const holashtak = checkHolashtak(midTithi.number, midMasa.name, midPaksha);
-      if (holashtak.isActive) {
-        restrictions.push({
-          type: 'holashtak',
-          label: {
-            en: 'Holashtak active this month (8 days before Holi) — samskaras traditionally avoided in North India',
-            hi: 'होलाष्टक सक्रिय (होली से पूर्व 8 दिन) — उत्तर भारत में संस्कार वर्जित',
-          },
-        });
+
+    // Holashtak — full + partial check activities (not mundan, not namakarana)
+    if (FULL_CHECK_ACTIVITIES.has(activity) || PARTIAL_CHECK_ACTIVITIES.has(activity)) {
+      const midMasa = getLunarMasaForDate(year, month, 15);
+      if (midMasa) {
+        const midTithi = calculateTithi(jdMid);
+        const midPaksha: 'shukla' | 'krishna' = midTithi.number <= 15 ? 'shukla' : 'krishna';
+        const holashtak = checkHolashtak(midTithi.number, midMasa.name, midPaksha);
+        if (holashtak.isActive) {
+          restrictions.push({
+            type: 'holashtak',
+            label: {
+              en: 'Holashtak active (8 days before Holi) — samskaras traditionally avoided in North India',
+              hi: 'होलाष्टक सक्रिय (होली से पूर्व 8 दिन) — उत्तर भारत में संस्कार वर्जित',
+            },
+          });
+        }
       }
     }
   }

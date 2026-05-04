@@ -180,18 +180,15 @@ export function checkChaturmas(year: number, month: number, day: number): 'full'
 // Prohibited: Karka, Simha, Kanya, Tula, Dhanu, Mina
 
 // Sidereal Sun sign → solar month. 1=Mesha..12=Mina
+// Strict classical Kharmas: Dhanu (Sagittarius) + Mina (Pisces) only.
+// Dharmasindhu specifically names Sun in Dhanu as Kharmas/Malamas.
+// Some traditions extend to Mina. Karka/Simha/Kanya overlap with
+// Dakshinayana + Chaturmas which are checked separately — adding them
+// here would double-count. We follow Dharmasindhu strictly.
 const PROHIBITED_SOLAR_SIGNS = new Set([
-  4,  // Karka (Cancer) — ~Jul 16 - Aug 16
-  5,  // Simha (Leo) — ~Aug 16 - Sep 16
-  6,  // Kanya (Virgo) — ~Sep 16 - Oct 16
-  9,  // Dhanu (Sagittarius) — ~Dec 16 - Jan 14
-  12, // Mina (Pisces) — ~Mar 14 - Apr 14 (Kharmas)
+  9,  // Dhanu (Sagittarius) — ~Dec 16 - Jan 14 (Kharmas proper)
+  12, // Mina (Pisces) — ~Mar 14 - Apr 14 (extended Kharmas)
 ]);
-
-// Auspicious solar months (marriage permitted)
-// Mesha=1, Vrishabha=2, Mithuna=3, Vrischika=8, Makara=10, Kumbha=11
-// Tula=7 is debated — some texts allow, Drik Panchang blocks it.
-// We follow the stricter reading (Drik) and exclude Tula.
 
 /**
  * Check if the Sun is in a prohibited solar sign for marriage.

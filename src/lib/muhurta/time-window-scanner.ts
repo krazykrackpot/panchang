@@ -248,10 +248,27 @@ export function scanDateRangeV2(options: ScanOptionsV2): ScanV2Window[] {
     + (hasDasha ? 10 : 0)     // dashaHarmony
     + 10;                      // inauspicious (10 = no penalty)
 
-  // Samskaras that require Venus/Jupiter non-combustion (MC + Dharmasindhu)
-  const COMBUSTION_ACTIVITIES = new Set<string>([
-    'marriage', 'engagement', 'griha_pravesh', 'upanayana', 'namakarana', 'mundan',
-  ]);
+  // ── Tiered activity sets for period-level checks ──────────────
+  // Classical texts differentiate prohibition levels by samskara type.
+  // See docs/muhurta-rules.md for full citations.
+
+  // Full checks: combustion + Adhika + Chaturmas + Kharmas + Shishutva + Holashtak
+  const FULL_PERIOD_CHECKS = new Set<string>(['marriage', 'engagement', 'griha_pravesh']);
+
+  // Partial checks: combustion + Adhika + Chaturmas (Kharmas = soft penalty only)
+  const PARTIAL_PERIOD_CHECKS = new Set<string>(['upanayana']);
+
+  // Light checks: combustion + Adhika only (no Chaturmas, no Kharmas)
+  const LIGHT_PERIOD_CHECKS = new Set<string>(['mundan']);
+
+  // Namakarana: NO period-level checks — time-bound samskara (11th/12th day after birth)
+  // Drik Panchang: "Tara Asta is not considered. We also don't discard Chaturmasa, Holashtaka."
+
+  // Non-samskaras (vehicle, business, travel, etc.): no period-level hard vetoes
+  // Venus combustion as soft penalty for vehicle only — handled in scoring, not here
+
+  // Union set for any period check
+  const ANY_PERIOD_CHECK = new Set<string>([...FULL_PERIOD_CHECKS, ...PARTIAL_PERIOD_CHECKS, ...LIGHT_PERIOD_CHECKS]);
 
   const current = new Date(startD);
   while (current <= endD) {
@@ -263,53 +280,56 @@ export function scanDateRangeV2(options: ScanOptionsV2): ScanV2Window[] {
     const sunriseUT = approximateSunriseSafe(jdNoon, lat, lng);
     const sunsetUT = approximateSunsetSafe(jdNoon, lat, lng);
 
-    // ── Per-day hard vetoes (Dharmasindhu + MC) ──────────────────
+    // ── Per-day hard vetoes — tiered by activity type ─────────────
+    // Classical texts differentiate prohibition levels by samskara.
+    // Namakarana has NO period-level checks (time-bound samskara).
+    // See docs/muhurta-rules.md for full citations.
 
-    if (COMBUSTION_ACTIVITIES.has(activity)) {
-      // Venus/Jupiter combustion — absolute prohibition for samskaras
+    if (ANY_PERIOD_CHECK.has(activity)) {
+      // Venus/Jupiter combustion — hard veto for all samskaras except namakarana
       const combust = checkVivahCombustion(jdNoon);
       if (combust.vetoed) {
         current.setUTCDate(current.getUTCDate() + 1);
         continue;
       }
 
-      // Adhika Masa — Dharmasindhu: marriage prohibited in intercalary month
+      // Adhika Masa — Dharmasindhu: prohibited for all samskaras except namakarana
       if (isAdhikaMasa(year, month, day)) {
         current.setUTCDate(current.getUTCDate() + 1);
         continue;
       }
 
-      // Chaturmas — Dharmasindhu: marriage prohibited Shravana through Ashwina.
-      // Ashadha (latter half) and Kartika (first half) are partial — soft penalty.
-      const chaturmas = checkChaturmas(year, month, day);
-      if (chaturmas === 'full') {
-        current.setUTCDate(current.getUTCDate() + 1);
-        continue;
-      }
-
-      // Prohibited solar months (Kharmas) — Dharmasindhu + MC:
-      // Marriage forbidden when Sun is in Mina (Pisces), Karka, Simha, Kanya, Dhanu.
-      if (isProhibitedSolarMonth(jdNoon)) {
-        current.setUTCDate(current.getUTCDate() + 1);
-        continue;
-      }
-
-      // Shishutva (infant Venus/Jupiter) — first ~10 days after emerging from
-      // combustion, the planet's beneficent influence is still weak.
-      // This is stricter than some modern services — our differentiator is
-      // classical text compliance, not matching third-party outputs.
-      if (checkShishutva(jdNoon)) {
+      // Shishutva — hard veto for full-check activities, soft for others
+      if (FULL_PERIOD_CHECKS.has(activity) && checkShishutva(jdNoon)) {
         current.setUTCDate(current.getUTCDate() + 1);
         continue;
       }
     }
 
-    // ── Holashtak — soft penalty for samskaras ──────────────────
+    // Chaturmas — hard veto for marriage/engagement/griha_pravesh/upanayana
+    // NOT for mundan (Drik Panchang mundana page doesn't mention Chaturmas)
+    if (FULL_PERIOD_CHECKS.has(activity) || PARTIAL_PERIOD_CHECKS.has(activity)) {
+      const chaturmas = checkChaturmas(year, month, day);
+      if (chaturmas === 'full') {
+        current.setUTCDate(current.getUTCDate() + 1);
+        continue;
+      }
+    }
+
+    // Kharmas (prohibited solar months) — hard veto for full-check activities only
+    // Classical Kharmas = Sun in Dhanu + Mina. Other months (Karka/Simha/Kanya)
+    // overlap with Chaturmas which is already checked above.
+    if (FULL_PERIOD_CHECKS.has(activity) && isProhibitedSolarMonth(jdNoon)) {
+      current.setUTCDate(current.getUTCDate() + 1);
+      continue;
+    }
+
+    // ── Holashtak — soft penalty for samskaras (not namakarana) ──
     // 8 days before Holi (Phalguna Shukla Ashtami to Purnima).
     // Regional (North India), not from MC/BPHS — soft penalty, not hard veto.
     let holashtakPenalty = 0;
     let holashtakActive = false;
-    if (COMBUSTION_ACTIVITIES.has(activity)) {
+    if (FULL_PERIOD_CHECKS.has(activity) || PARTIAL_PERIOD_CHECKS.has(activity)) {
       const masa = getLunarMasaForDate(year, month, day);
       if (masa) {
         // getPanchangSnapshot needs a JD but we need tithi for Holashtak check

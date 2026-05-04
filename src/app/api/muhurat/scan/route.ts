@@ -10,7 +10,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { scanDateRange, scanDateRangeV2 } from '@/lib/muhurta/time-window-scanner';
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
 import { checkVivahCombustion, isAdhikaMasa, checkChaturmas, isProhibitedSolarMonth, checkShishutva } from '@/lib/muhurta/classical-checks';
-import { dateToJD } from '@/lib/ephem/astronomical';
+import { checkHolashtak } from '@/lib/panchang/holashtak';
+import { getLunarMasaForDate } from '@/lib/calendar/hindu-months';
+import { dateToJD, calculateTithi } from '@/lib/ephem/astronomical';
 import type { ExtendedActivityId } from '@/types/muhurta-ai';
 
 // All supported activities
@@ -298,6 +300,24 @@ export async function GET(req: NextRequest) {
           hi: 'शुक्र/गुरु अस्त से हाल ही में उदित (शिशुत्व) — प्रभाव अभी दुर्बल',
         },
       });
+    }
+    // Holashtak — 8 days before Holi (regional, North India)
+    // Check mid-month: if any part of the month has Holashtak, note it
+    const midMasa = getLunarMasaForDate(year, month, 15);
+    if (midMasa) {
+      const jdMidH = dateToJD(year, month, 15, 12 - tz);
+      const midTithi = calculateTithi(jdMidH);
+      const midPaksha: 'shukla' | 'krishna' = midTithi.number <= 15 ? 'shukla' : 'krishna';
+      const holashtak = checkHolashtak(midTithi.number, midMasa.name, midPaksha);
+      if (holashtak.isActive) {
+        restrictions.push({
+          type: 'holashtak',
+          label: {
+            en: 'Holashtak active this month (8 days before Holi) — samskaras traditionally avoided in North India',
+            hi: 'होलाष्टक सक्रिय (होली से पूर्व 8 दिन) — उत्तर भारत में संस्कार वर्जित',
+          },
+        });
+      }
     }
   }
 

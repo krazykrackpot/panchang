@@ -20,6 +20,8 @@ import {
   krishnaPakshaAdjustment, isAdhikaMasa, checkChaturmas,
   isProhibitedSolarMonth, checkShishutva,
 } from './classical-checks';
+import { checkHolashtak } from '@/lib/panchang/holashtak';
+import { getLunarMasaForDate } from '@/lib/calendar/hindu-months';
 import type { ScoredTimeWindow, ScoreBreakdown, ExtendedActivityId, ScanOptionsV2, DetailBreakdown, InauspiciousPeriod } from '@/types/muhurta-ai';
 import type { LocaleText,} from '@/types/panchang';
 
@@ -302,6 +304,26 @@ export function scanDateRangeV2(options: ScanOptionsV2): ScanV2Window[] {
       }
     }
 
+    // ── Holashtak — soft penalty for samskaras ──────────────────
+    // 8 days before Holi (Phalguna Shukla Ashtami to Purnima).
+    // Regional (North India), not from MC/BPHS — soft penalty, not hard veto.
+    let holashtakPenalty = 0;
+    let holashtakActive = false;
+    if (COMBUSTION_ACTIVITIES.has(activity)) {
+      const masa = getLunarMasaForDate(year, month, day);
+      if (masa) {
+        // getPanchangSnapshot needs a JD but we need tithi for Holashtak check
+        // Use a quick snapshot at noon
+        const snapNoon = getPanchangSnapshot(jdNoon, lat, lng);
+        const paksha: 'shukla' | 'krishna' = snapNoon.tithi <= 15 ? 'shukla' : 'krishna';
+        const holashtak = checkHolashtak(snapNoon.tithi, masa.name, paksha);
+        if (holashtak.isActive) {
+          holashtakPenalty = -8; // Significant soft penalty — will push most days below 50
+          holashtakActive = true;
+        }
+      }
+    }
+
     // Local time range: pre-sunrise to post-sunset
     // Cross-day UT normalization: for eastern timezones (IST=+5.5, JST=+9),
     // sunrise UT can be ~23:58 (previous UT day). Adding tz gives >24.
@@ -395,11 +417,12 @@ export function scanDateRangeV2(options: ScanOptionsV2): ScanV2Window[] {
         dashaScore = dashaResult.score;
       }
 
-      // Raw score — lagna + navamsha (MC's most powerful factors) and Krishna adj
+      // Raw score — lagna + navamsha (MC's most powerful factors) and adjustments
       const rawScore = panchang.score + transit.score + timing.score
         + Math.max(0, lagna.score)     // Lagna: 0-8
         + Math.max(0, navamsha.score)  // Navamsha Shuddhi: 0-4
         + krishnaAdj                   // Krishna Paksha conditional: 0 to -6
+        + holashtakPenalty             // Holashtak: 0 or -8 (regional, soft penalty)
         + (hasPersonal ? taraScore + chandraScore : 0)
         + (hasDasha ? dashaScore : 0)
         + inauspiciousScore;

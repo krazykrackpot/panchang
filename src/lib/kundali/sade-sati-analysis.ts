@@ -126,36 +126,90 @@ function moonSignStrength(sign: number): 'exalted' | 'own' | 'friendly' | 'neutr
 // Cycle detection
 // ---------------------------------------------------------------------------
 
+/** Get Saturn's sidereal sign at a given JD */
+function saturnSignAtJD(jd: number): number {
+  const planets = getPlanetaryPositions(jd);
+  const saturnTropical = planets[6]?.longitude ?? 0;
+  return getRashiNumber(normalizeDeg(toSidereal(saturnTropical, jd)));
+}
+
+/**
+ * Find Saturn ingress dates at monthly resolution for a year range.
+ * Returns entries like { year: 2020, month: 3, sign: 10 } meaning
+ * Saturn entered Makara around March 2020.
+ */
+function findSaturnIngresses(startYear: number, endYear: number): { year: number; month: number; sign: number }[] {
+  const ingresses: { year: number; month: number; sign: number }[] = [];
+  let prevSign = saturnSignAtJD(dateToJD(startYear, 1, 1, 12));
+  ingresses.push({ year: startYear, month: 1, sign: prevSign });
+
+  for (let y = startYear; y <= endYear; y++) {
+    for (let m = 1; m <= 12; m++) {
+      const jd = dateToJD(y, m, 15, 12);
+      const sign = saturnSignAtJD(jd);
+      if (sign !== prevSign) {
+        ingresses.push({ year: y, month: m, sign });
+        prevSign = sign;
+      }
+    }
+  }
+  return ingresses;
+}
+
 function buildAllCycles(moonSign: number): SadeSatiCycle[] {
-  const sign12th = ((moonSign - 2 + 12) % 12) + 1; // 12th from moon
+  const sign12th = ((moonSign - 2 + 12) % 12) + 1;
   const sign1st = moonSign;
   const sign2nd = (moonSign % 12) + 1;
-  const targetSigns = [sign12th, sign1st, sign2nd];
+  const targetSigns = new Set([sign12th, sign1st, sign2nd]);
 
-  // Scan 1940-2070 at mid-year
-  const saturnPerYear: { year: number; sign: number }[] = [];
+  // Find actual Saturn ingress dates at monthly resolution
+  const ingresses = findSaturnIngresses(1940, 2070);
+
+  // Build year-level entries: for each year, determine the DOMINANT target sign.
+  // Require at least 4 months (out of 12) in a target sign to count the year.
+  // Brief retrogrades (e.g., Saturn in Kumbha for 74 days in 2022 before returning
+  // to Makara) should NOT start a new sade sati cycle — most astrologers use the
+  // permanent ingress as the boundary, not brief dips.
+  const yearData = new Map<number, number>();
+
   for (let y = 1940; y <= 2070; y++) {
-    const jd = dateToJD(y, 6, 15, 12);
-    const planets = getPlanetaryPositions(jd);
-    const saturnTropical = planets[6]?.longitude ?? 0; // Saturn = index 6
-    const saturnSid = toSidereal(saturnTropical, jd);
-    const saturnRashi = getRashiNumber(normalizeDeg(saturnSid));
-    saturnPerYear.push({ year: y, sign: saturnRashi });
+    const signCounts = new Map<number, number>();
+    for (let m = 1; m <= 12; m++) {
+      const jd = dateToJD(y, m, 15, 12);
+      const sign = saturnSignAtJD(jd);
+      if (targetSigns.has(sign)) {
+        signCounts.set(sign, (signCounts.get(sign) ?? 0) + 1);
+      }
+    }
+    if (signCounts.size > 0) {
+      // Use the sign with the most months — but require at least 4 months
+      // to filter out brief retrograde transits
+      let bestSign = 0, bestCount = 0;
+      for (const [sign, count] of signCounts) {
+        if (count > bestCount) { bestSign = sign; bestCount = count; }
+      }
+      if (bestCount >= 4) {
+        yearData.set(y, bestSign);
+      }
+    }
   }
 
-  // Group consecutive years where Saturn is in one of the 3 target signs
+  // Sort years and group consecutive ones into cycles
+  const sortedYears = [...yearData.entries()]
+    .sort((a, b) => a[0] - b[0])
+    .map(([year, sign]) => ({ year, sign }));
+
   const cycles: SadeSatiCycle[] = [];
   let cycleYears: { year: number; sign: number }[] = [];
 
-  for (const entry of saturnPerYear) {
-    if (targetSigns.includes(entry.sign)) {
-      cycleYears.push(entry);
-    } else {
-      if (cycleYears.length > 0) {
-        cycles.push(buildCycle(cycleYears, moonSign, sign12th, sign1st, sign2nd));
-        cycleYears = [];
-      }
+  for (let i = 0; i < sortedYears.length; i++) {
+    const entry = sortedYears[i];
+    // If gap > 1 year from previous, start a new cycle
+    if (cycleYears.length > 0 && entry.year - cycleYears[cycleYears.length - 1].year > 1) {
+      cycles.push(buildCycle(cycleYears, moonSign, sign12th, sign1st, sign2nd));
+      cycleYears = [];
     }
+    cycleYears.push(entry);
   }
   if (cycleYears.length > 0) {
     cycles.push(buildCycle(cycleYears, moonSign, sign12th, sign1st, sign2nd));

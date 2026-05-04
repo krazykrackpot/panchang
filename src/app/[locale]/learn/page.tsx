@@ -72,6 +72,7 @@ export default function LearnPage() {
       { name: { en: 'Karanas', hi: 'करण', sa: 'करणानि' }, href: '/learn/karanas' },
       { name: { en: 'Vara', hi: 'वार', sa: 'वारः' }, href: '/learn/vara' },
       { name: { en: 'Muhurtas', hi: 'मुहूर्त', sa: 'मुहूर्ताः' }, href: '/learn/muhurtas' },
+      { name: { en: 'Muhurta Selection', hi: 'मुहूर्त चयन', sa: 'मुहूर्तचयनम्' }, href: '/learn/muhurta-selection' },
       { name: { en: 'Hora', hi: 'होरा', sa: 'होरा' }, href: '/learn/hora' },
       { name: { en: 'Masa', hi: 'मास', sa: 'मासः' }, href: '/learn/masa' },
       { name: { en: 'Adhika Masa', hi: 'अधिक मास', sa: 'अधिकमासः' }, href: '/learn/adhika-masa' },

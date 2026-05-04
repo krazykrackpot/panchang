@@ -1045,6 +1045,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: 'Learn how to choose auspicious Muhurtas for marriage, travel, business, and ceremonies. Tithi, Nakshatra, Vara, and Yoga combinations explained.', hi: 'विवाह, यात्रा, व्यापार और उत्सवों के लिए शुभ मुहूर्त कैसे चुनें।', sa: 'विवाहयात्राव्यापारोत्सवेभ्यः शुभमुहूर्तचयनम्।' },
     keywords: ['muhurta', 'auspicious timing', 'shubh muhurat', 'vedic timing'],
   },
+  '/learn/muhurta-selection': {
+    title: { en: 'Muhurta Selection — Classical Rules for Choosing Auspicious Times', hi: 'मुहूर्त चयन — शुभ समय निर्धारण के शास्त्रीय नियम', sa: 'मुहूर्तचयनम् — शुभकालनिर्धारणस्य शास्त्रीयनियमाः' },
+    description: { en: 'Learn the classical rules for selecting auspicious Muhurtas for marriage and ceremonies. Nakshatra, Tithi, Lagna, Venus/Jupiter combustion, and Panchanga Shuddhi from Muhurta Chintamani and Dharmasindhu.', hi: 'विवाह व संस्कारों हेतु शुभ मुहूर्त चयन के शास्त्रीय नियम। मुहूर्त चिन्तामणि और धर्मसिन्धु से नक्षत्र, तिथि, लग्न, शुक्र/गुरु अस्त और पंचांग शुद्धि।', sa: 'विवाहसंस्कारेभ्यः शुभमुहूर्तचयनस्य शास्त्रीयनियमाः।' },
+    keywords: ['muhurta selection', 'vivah muhurat', 'marriage muhurta rules', 'panchanga shuddhi', 'lagna muhurta', 'venus combustion marriage', 'muhurta chintamani'],
+  },
   '/learn/eclipses': {
     title: { en: 'Grahan — Eclipses in Vedic Astrology', hi: 'ग्रहण — वैदिक ज्योतिष में ग्रहण', sa: 'ग्रहणम् — वैदिकज्योतिषे सूर्यचन्द्रग्रहणम्' },
     description: { en: 'Complete guide to solar and lunar eclipses in Jyotish — the Rahu-Ketu mythology, how eclipses are calculated, eclipse types, Sutak rules, and eclipse effects in your Kundali.', hi: 'ज्योतिष में सूर्य और चन्द्र ग्रहणों की सम्पूर्ण मार्गदर्शिका — राहु-केतु पौराणिक कथा, गणना, प्रकार, सूतक नियम और कुण्डली में प्रभाव।', sa: 'ज्योतिषे सूर्यचन्द्रग्रहणानाम् सम्पूर्णः मार्गदर्शिका।' },

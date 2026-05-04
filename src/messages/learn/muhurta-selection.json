@@ -1,0 +1,152 @@
+{
+  "title": {
+    "en": "Muhurta Selection: Choosing Auspicious Times",
+    "hi": "मुहूर्त चयन: शुभ समय का निर्धारण",
+    "ta": "முகூர்த்தம் தேர்வு: நல்ல நேரம் தேர்ந்தெடுத்தல்",
+    "bn": "মুহূর্ত নির্বাচন: শুভ সময় নির্ধারণ"
+  },
+  "subtitle": {
+    "en": "How classical Jyotish texts determine the right time for marriage, housewarming, and other life ceremonies",
+    "hi": "शास्त्रीय ज्योतिष ग्रन्थ विवाह, गृह प्रवेश व अन्य संस्कारों का शुभ समय कैसे निर्धारित करते हैं",
+    "ta": "திருமணம், கிரகப்பிரவேசம் மற்றும் பிற வாழ்க்கை சடங்குகளுக்கான சரியான நேரத்தை எப்படி தீர்மானிப்பது",
+    "bn": "বিবাহ, গৃহপ্রবেশ ও অন্যান্য সংস্কারের শুভ সময় কীভাবে নির্ধারিত হয়"
+  },
+  "intro": {
+    "en": "Muhurta Shastra is the Vedic science of electional astrology — choosing the most auspicious moment to begin an important activity. Unlike natal astrology (which interprets an existing chart), muhurta is about creating the best possible birth chart for an event. The logic is simple: if a person born at an auspicious time prospers, then an activity begun at an auspicious time should also succeed.",
+    "hi": "मुहूर्त शास्त्र वैदिक ज्योतिष की वह शाखा है जो किसी महत्त्वपूर्ण कार्य को आरम्भ करने का सर्वोत्तम समय चुनती है। जन्म कुण्डली (जो विद्यमान ग्रह स्थिति का विश्लेषण करती है) के विपरीत, मुहूर्त में हम स्वयं सर्वश्रेष्ठ ग्रह योग रचते हैं।",
+    "ta": "முகூர்த்த சாஸ்திரம் என்பது முக்கியமான செயலைத் தொடங்க மிகவும் சுப நேரத்தைத் தேர்ந்தெடுக்கும் வேத அறிவியல்.",
+    "bn": "মুহূর্ত শাস্ত্র হল বৈদিক জ্যোতিষের সেই শাখা যা কোনো গুরুত্বপূর্ণ কাজ শুরু করার সর্বোত্তম সময় নির্বাচন করে।"
+  },
+  "panchangShuddhi": {
+    "en": "Panchanga Shuddhi: The Five Limbs",
+    "hi": "पञ्चाङ्ग शुद्धि: पाँच अंगों की शुद्धता",
+    "ta": "பஞ்சாங்க சுத்தி: ஐந்து அங்கங்களின் தூய்மை",
+    "bn": "পঞ্চাঙ্গ শুদ্ধি: পাঁচটি অঙ্গের বিশুদ্ধতা"
+  },
+  "panchangContent": {
+    "en": "Every traditional panchang provides five daily elements. For a muhurta to be auspicious, ideally all five should be favourable — this is called Panchanga Shuddhi. In practice, achieving perfect shuddhi is rare, so texts prioritise: Nakshatra is the primary factor, followed by Tithi, then Yoga, Karana, and Vara.",
+    "hi": "प्रत्येक पारम्परिक पंचांग पाँच दैनिक तत्त्व प्रदान करता है। मुहूर्त शुभ होने के लिए, आदर्श रूप में पाँचों अनुकूल होने चाहिए — इसे पञ्चाङ्ग शुद्धि कहते हैं। व्यवहार में पूर्ण शुद्धि दुर्लभ है, अतः ग्रन्थ प्राथमिकता देते हैं: नक्षत्र प्रमुख कारक है, फिर तिथि, योग, करण और वार।",
+    "ta": "ஒவ்வொரு பாரம்பரிய பஞ்சாங்கமும் ஐந்து தினசரி கூறுகளை வழங்குகிறது.",
+    "bn": "প্রতিটি ঐতিহ্যবাহী পঞ্চাঙ্গ পাঁচটি দৈনিক উপাদান প্রদান করে।"
+  },
+  "nakshatraTitle": {
+    "en": "Nakshatra: The Primary Factor",
+    "hi": "नक्षत्र: प्रमुख कारक",
+    "ta": "நட்சத்திரம்: முதன்மைக் காரணி",
+    "bn": "নক্ষত্র: প্রধান কারক"
+  },
+  "nakshatraContent": {
+    "en": "The Moon's nakshatra at the time of the ceremony is the single most important panchanga factor for marriage muhurta. Muhurta Chintamani Chapter 6 and B.V. Raman's Muhurtha both provide specific lists.",
+    "hi": "संस्कार के समय चन्द्र का नक्षत्र विवाह मुहूर्त का सबसे महत्त्वपूर्ण पंचांग कारक है। मुहूर्त चिन्तामणि अध्याय ६ और बी.वी. रमन की मुहूर्थ पुस्तक में विशिष्ट सूचियाँ दी गई हैं।",
+    "ta": "திருமண முகூர்த்தத்தில் சந்திரனின் நட்சத்திரம் மிக முக்கியமான காரணி.",
+    "bn": "বিবাহ মুহূর্তে চন্দ্রের নক্ষত্র সবচেয়ে গুরুত্বপূর্ণ পঞ্চাঙ্গ কারক।"
+  },
+  "tithiTitle": {
+    "en": "Tithi: Lunar Day",
+    "hi": "तिथि: चान्द्र दिन",
+    "ta": "திதி: சந்திர நாள்",
+    "bn": "তিথি: চান্দ্র দিন"
+  },
+  "tithiContent": {
+    "en": "Muhurta Chintamani Chapter 6 lists the auspicious tithis for marriage as: 2nd (Dwitiya), 3rd (Tritiya), 5th (Panchami), 6th (Shashthi), 7th (Saptami), 10th (Dashami), 11th (Ekadashi), 12th (Dwadashi), and 13th (Trayodashi). The 4th, 9th, and 14th tithis (called Rikta tithis) are forbidden. B.V. Raman additionally avoids the 8th (Ashtami), Purnima, and Amavasya.",
+    "hi": "मुहूर्त चिन्तामणि अध्याय ६ विवाह हेतु शुभ तिथियों की सूची देता है: द्वितीया, तृतीया, पञ्चमी, षष्ठी, सप्तमी, दशमी, एकादशी, द्वादशी और त्रयोदशी। चतुर्थी, नवमी और चतुर्दशी (रिक्त तिथियाँ) वर्जित हैं। बी.वी. रमन अतिरिक्त रूप से अष्टमी, पूर्णिमा और अमावस्या से भी बचने की सलाह देते हैं।",
+    "ta": "முகூர்த்த சிந்தாமணி அத்தியாயம் 6, திருமணத்திற்கான சுப திதிகளை பட்டியலிடுகிறது.",
+    "bn": "মুহূর্ত চিন্তামণি অধ্যায় ৬ বিবাহের জন্য শুভ তিথিসমূহ নির্দেশ করে।"
+  },
+  "pakshaTitle": {
+    "en": "Shukla vs Krishna Paksha",
+    "hi": "शुक्ल बनाम कृष्ण पक्ष",
+    "ta": "சுக்ல பக்ஷம் vs கிருஷ்ண பக்ஷம்",
+    "bn": "শুক্ল বনাম কৃষ্ণ পক্ষ"
+  },
+  "pakshaContent": {
+    "en": "No classical text explicitly forbids Krishna Paksha for marriage. Shukla Paksha (waxing Moon) is universally preferred because the growing Moon symbolises growth and prosperity for new beginnings. However, several traditions — particularly in South India — regularly use Krishna Paksha dates when the nakshatra and lagna are excellent. The practical rule: Shukla Paksha is the default, but Krishna Paksha with a strong nakshatra (like Rohini, Anuradha, or Swati) and a favourable lagna (Mithuna, Kanya, or Tula) is permissible.",
+    "hi": "कोई भी शास्त्रीय ग्रन्थ कृष्ण पक्ष में विवाह को स्पष्ट रूप से वर्जित नहीं करता। शुक्ल पक्ष (बढ़ता चन्द्रमा) सार्वभौमिक रूप से वरीय है क्योंकि बढ़ता चन्द्रमा नए आरम्भों में वृद्धि और समृद्धि का प्रतीक है। तथापि, अनेक परम्पराएँ — विशेषतः दक्षिण भारत में — कृष्ण पक्ष की तिथियों का प्रयोग करती हैं जब नक्षत्र और लग्न उत्कृष्ट हों।",
+    "ta": "எந்த சாஸ்திர நூலும் கிருஷ்ண பக்ஷத்தில் திருமணத்தை வெளிப்படையாக தடை செய்யவில்லை.",
+    "bn": "কোনো শাস্ত্রীয় গ্রন্থ কৃষ্ণ পক্ষে বিবাহ স্পষ্টভাবে নিষিদ্ধ করে না।"
+  },
+  "lagnaTitle": {
+    "en": "Lagna: The Most Powerful Factor",
+    "hi": "लग्न: सर्वाधिक शक्तिशाली कारक",
+    "ta": "லக்னம்: மிக சக்திவாய்ந்த காரணி",
+    "bn": "লগ্ন: সর্বাধিক শক্তিশালী কারক"
+  },
+  "lagnaContent": {
+    "en": "Muhurta Chintamani makes a remarkable statement: \"Even where other favourable conditions are not present, a properly chosen lagna will remove the defects created by other components of muhurta.\" The lagna (ascendant sign rising on the eastern horizon) changes approximately every two hours, making it the finest-grained tool available to the muhurta astrologer.",
+    "hi": "मुहूर्त चिन्तामणि एक उल्लेखनीय वक्तव्य देता है: \"जहाँ अन्य अनुकूल स्थितियाँ नहीं भी हों, वहाँ भी उचित रूप से चुना गया लग्न मुहूर्त के अन्य अंगों द्वारा उत्पन्न दोषों का निवारण करेगा।\" लग्न (पूर्वी क्षितिज पर उदित राशि) लगभग प्रत्येक दो घण्टे में परिवर्तित होता है।",
+    "ta": "முகூர்த்த சிந்தாமணி ஒரு குறிப்பிடத்தக்க கூற்றை கூறுகிறது: \"மற்ற சாதகமான நிலைகள் இல்லாவிட்டாலும், சரியாக தேர்ந்தெடுக்கப்பட்ட லக்னம் அனைத்து குறைபாடுகளையும் நீக்கும்.\"",
+    "bn": "মুহূর্ত চিন্তামণি একটি উল্লেখযোগ্য বক্তব্য দেয়: \"অন্যান্য অনুকূল পরিস্থিতি না থাকলেও, সঠিকভাবে নির্বাচিত লগ্ন সকল দোষ নিবারণ করবে।\""
+  },
+  "combustionTitle": {
+    "en": "Venus & Jupiter Combustion: The Absolute Prohibition",
+    "hi": "शुक्र एवं गुरु अस्त: पूर्ण निषेध",
+    "ta": "சுக்கிரன் & குரு அஸ்தமனம்: முழுமையான தடை",
+    "bn": "শুক্র ও বৃহস্পতি অস্ত: সম্পূর্ণ নিষেধ"
+  },
+  "combustionContent": {
+    "en": "Both Muhurta Chintamani and Dharmasindhu absolutely forbid marriage when Venus (Shukra) or Jupiter (Guru) is combust — that is, too close to the Sun to be visible. Venus governs conjugal happiness and Jupiter governs dharma and progeny. When either is \"burnt\" by proximity to the Sun, its beneficent influence is nullified. Venus combustion occurs roughly twice per year (each lasting 1-2 months), and Jupiter combustion occurs roughly once per year. This is the strongest hard prohibition in muhurta selection — no amount of favourable nakshatra or lagna can override it.",
+    "hi": "मुहूर्त चिन्तामणि और धर्मसिन्धु दोनों शुक्र या गुरु के अस्त होने पर विवाह को पूर्णतः वर्जित करते हैं — अर्थात् जब ये सूर्य के इतने निकट हों कि दिखाई न दें। शुक्र दाम्पत्य सुख का और गुरु धर्म व सन्तान का कारक है। जब कोई भी सूर्य की निकटता से 'दग्ध' हो, तो उसका शुभ प्रभाव निष्प्रभ हो जाता है।",
+    "ta": "முகூர்த்த சிந்தாமணி மற்றும் தர்மசிந்து இரண்டும் சுக்கிரன் அல்லது குரு அஸ்தமனமாக இருக்கும்போது திருமணத்தை முற்றிலும் தடை செய்கின்றன.",
+    "bn": "মুহূর্ত চিন্তামণি ও ধর্মসিন্ধু উভয়ই শুক্র বা বৃহস্পতি অস্ত থাকলে বিবাহ সম্পূর্ণ নিষিদ্ধ করে।"
+  },
+  "yogaTitle": {
+    "en": "Inauspicious Yogas",
+    "hi": "अशुभ योग",
+    "ta": "அசுப யோகங்கள்",
+    "bn": "অশুভ যোগ"
+  },
+  "yogaContent": {
+    "en": "Muhurta Chintamani Chapter 6 lists nine Nitya Yogas that are specifically forbidden for marriage, with vivid descriptions of their ill effects: Vishkambha, Atiganda, Shula, Ganda, Vyaghata, Vajra, Vyatipata, Parigha, and Vaidhriti. However, the text also notes that each inauspicious yoga contains a specific Visha Ghati (poison period) — some practitioners avoid only that narrow window rather than the entire yoga. Additionally, a well-chosen lagna with Venus or Jupiter in the ascendant \"completely destroys all adverse influences,\" providing a classical antidote.",
+    "hi": "मुहूर्त चिन्तामणि अध्याय ६ नौ नित्य योगों की सूची देता है जो विवाह हेतु विशेष रूप से वर्जित हैं: विष्कम्भ, अतिगण्ड, शूल, गण्ड, व्याघात, वज्र, व्यतीपात, परिघ और वैधृति। तथापि, ग्रन्थ यह भी कहता है कि प्रत्येक अशुभ योग में एक विशिष्ट विष घटी होती है।",
+    "ta": "முகூர்த்த சிந்தாமணி அத்தியாயம் 6, திருமணத்திற்கு தடைசெய்யப்பட்ட ஒன்பது நித்ய யோகங்களை பட்டியலிடுகிறது.",
+    "bn": "মুহূর্ত চিন্তামণি অধ্যায় ৬ বিবাহের জন্য নিষিদ্ধ নয়টি নিত্য যোগ নির্দেশ করে।"
+  },
+  "varaTitle": {
+    "en": "Weekdays (Vara)",
+    "hi": "वार (सप्ताह के दिन)",
+    "ta": "கிழமை (வாரம்)",
+    "bn": "বার (সপ্তাহের দিন)"
+  },
+  "varaContent": {
+    "en": "Muhurta Chintamani lists Sunday, Wednesday, Thursday, and Friday as auspicious for marriage. B.V. Raman replaces Sunday with Monday. Both exclude Tuesday (Mars' day — conflict) and Saturday (Saturn's day — delay). Interestingly, the same text states that weekdays are \"given less importance\" in the final Panchanga Shuddhi assessment for marriage — the prioritisation is Nakshatra first, then Tithi and Yoga, with Vara and Karana as supporting factors.",
+    "hi": "मुहूर्त चिन्तामणि रविवार, बुधवार, गुरुवार और शुक्रवार को विवाह हेतु शुभ बताता है। बी.वी. रमन रविवार के स्थान पर सोमवार रखते हैं। दोनों मंगलवार (मंगल का दिन — संघर्ष) और शनिवार (शनि का दिन — विलम्ब) को बाहर रखते हैं।",
+    "ta": "முகூர்த்த சிந்தாமணி ஞாயிறு, புதன், வியாழன் மற்றும் வெள்ளி ஆகியவை திருமணத்திற்கு சுபமானவை என்று கூறுகிறது.",
+    "bn": "মুহূর্ত চিন্তামণি রবিবার, বুধবার, বৃহস্পতিবার ও শুক্রবার বিবাহের জন্য শুভ বলে।"
+  },
+  "karanaTitle": {
+    "en": "Karanas",
+    "hi": "करण",
+    "ta": "கரணம்",
+    "bn": "করণ"
+  },
+  "karanaContent": {
+    "en": "Vishti (also called Bhadra) is the most severely inauspicious karana — all classical sources forbid any auspicious activity during Vishti. The three other fixed (sthira) karanas — Shakuni, Chatushpada, and Naga — are also inauspicious. The seven movable (chara) karanas (Bava, Balava, Kaulava, Taitila, Gara, Vanija) are all acceptable, with Taitila specifically noted as \"propitious for marriage\" in classical texts.",
+    "hi": "विष्टि (भद्रा भी कहते हैं) सबसे अशुभ करण है — सभी शास्त्रीय ग्रन्थ विष्टि काल में किसी भी शुभ कार्य को वर्जित करते हैं।",
+    "ta": "விஷ்டி (பத்ரா) மிகவும் அசுபமான கரணம்.",
+    "bn": "বিষ্টি (ভদ্রা) সবচেয়ে অশুভ করণ।"
+  },
+  "godhuli": {
+    "en": "Brihat Samhita (Chapter 103) describes the Godhuli Lagna — the moment in the evening when cows return home, kicking up dust that glows golden in the sunset. Varahamihira states this is \"the most excellent hour for marriage\" and that during Godhuli Lagna, \"the character of the Nakshatra need not be considered\" and \"the tithi need not be considered.\" It is the only classical override that supersedes all five panchanga elements.",
+    "hi": "बृहत् संहिता (अध्याय 103) गोधूलि लग्न का वर्णन करती है — सन्ध्या का वह क्षण जब गाएँ लौटती हैं और उनके खुरों से उठी धूल सूर्यास्त में स्वर्णिम दिखती है। वराहमिहिर कहते हैं कि यह \"विवाह का सर्वोत्कृष्ट समय\" है।",
+    "ta": "பிருஹத் சம்ஹிதா (அத்தியாயம் 103) கோதூலி லக்னத்தை விவரிக்கிறது.",
+    "bn": "বৃহৎ সংহিতা (অধ্যায় ১০৩) গোধূলি লগ্নের বর্ণনা করে।"
+  },
+  "summaryTitle": {
+    "en": "Putting It All Together",
+    "hi": "सम्पूर्ण चित्र",
+    "ta": "அனைத்தையும் ஒன்றிணைத்தல்",
+    "bn": "সামগ্রিক চিত্র"
+  },
+  "summaryContent": {
+    "en": "Classical muhurta selection is not about finding a \"perfect\" time — it is about avoiding the worst combinations and maximising the best available factors. The hierarchy of importance, synthesised across Muhurta Chintamani, Dharmasindhu, and B.V. Raman, is: (1) Venus and Jupiter must not be combust — this overrides everything. (2) The nakshatra must be favourable — this is the primary panchanga filter. (3) The lagna should be well-chosen — this is the most powerful single corrective factor. (4) Tithi, yoga, karana, and vara provide supporting quality. (5) Shukla Paksha is preferred but not mandatory when other factors are strong.",
+    "hi": "शास्त्रीय मुहूर्त चयन 'पूर्ण' समय खोजने के बारे में नहीं है — यह सबसे बुरे संयोजनों से बचने और सर्वोत्तम उपलब्ध कारकों को अधिकतम करने के बारे में है।",
+    "ta": "சாஸ்திரீய முகூர்த்த தேர்வு 'சரியான' நேரத்தைக் கண்டுபிடிப்பது அல்ல — மோசமான சேர்க்கைகளைத் தவிர்ப்பதும், சிறந்த காரணிகளை அதிகரிப்பதும் ஆகும்.",
+    "bn": "শাস্ত্রীয় মুহূর্ত নির্বাচন 'নিখুঁত' সময় খোঁজা নয় — এটি সবচেয়ে খারাপ সংমিশ্রণ এড়ানো এবং সেরা উপলব্ধ কারকগুলি সর্বাধিক করা।"
+  },
+  "sourceDisclaimer": {
+    "en": "The rules on this page are sourced from Muhurta Chintamani (Ch. 6, Vivah Prakarana) by Daivagna Acharya Shri Ram, Dharmasindhu by Kasinath Upadhyaya, Brihat Samhita (Ch. 103) by Varahamihira, and B.V. Raman's Muhurtha (Electional Astrology). Where these texts disagree, both positions are noted.",
+    "hi": "इस पृष्ठ के नियम मुहूर्त चिन्तामणि (अध्याय ६, विवाह प्रकरण) — दैवज्ञ आचार्य श्री राम, धर्मसिन्धु — काशीनाथ उपाध्याय, बृहत् संहिता (अध्याय १०३) — वराहमिहिर, और बी.वी. रमन की मुहूर्थ से लिए गए हैं।",
+    "ta": "இந்தப் பக்கத்தின் விதிகள் முகூர்த்த சிந்தாமணி, தர்மசிந்து, பிருஹத் சம்ஹிதா மற்றும் பி.வி. ராமனின் முகூர்த்தா நூல்களிலிருந்து எடுக்கப்பட்டவை.",
+    "bn": "এই পৃষ্ঠার নিয়মগুলি মুহূর্ত চিন্তামণি, ধর্মসিন্ধু, বৃহৎ সংহিতা এবং বি.ভি. রমনের মুহূর্থ থেকে নেওয়া।"
+  }
+}

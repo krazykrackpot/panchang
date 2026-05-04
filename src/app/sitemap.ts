@@ -60,6 +60,7 @@ const routes = [
   '/learn/yogas',
   '/learn/karanas',
   '/learn/muhurtas',
+  '/learn/muhurta-selection',
   '/learn/kundali',
   '/learn/advanced',
   '/learn/ayanamsha',

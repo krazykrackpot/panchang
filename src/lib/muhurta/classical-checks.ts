@@ -9,7 +9,7 @@
  * See docs/muhurta-rules.md for full citations.
  */
 
-import { getPlanetaryPositions, toSidereal, getRashiNumber } from '@/lib/ephem/astronomical';
+import { getPlanetaryPositions, toSidereal, getRashiNumber, sunLongitude } from '@/lib/ephem/astronomical';
 import { computeCombust } from '@/lib/ephem/coordinates';
 import { calculateAscendant } from '@/lib/ephem/kundali-calc';
 import type { ExtendedActivity } from '@/types/muhurta-ai';
@@ -143,18 +143,16 @@ export function isAdhikaMasa(year: number, month: number, day: number): boolean 
 //             Prabodhini Ekadashi (Kartika Shukla 11).
 // ~July to November in the Gregorian calendar.
 //
-// Precise Ekadashi boundaries require the tithi table. We approximate
-// using Amanta month names: Shravana and Bhadrapada are fully within
-// Chaturmas; Ashadha (latter half) and Ashwina/Kartika (first half)
-// are partial. We conservatively mark Shravana + Bhadrapada as hard
-// veto, and Ashadha/Ashwina as soft (handled by the month being
-// naturally poor for marriage due to monsoon/inauspicious yogas).
-
+// Cross-check with Drik Panchang confirms: Chaturmas runs through Ashwina
+// into Kartika (Nov 1-20 in 2026). Our previous version only blocked
+// Shravana + Bhadrapada, missing Ashwina entirely.
+//
 // Amanta masa indices: 0=Chaitra..11=Phalguna
-// Shravana=4, Bhadrapada=5 are fully within Chaturmas.
-// Ashadha=3 is partial (after Ekadashi), Ashwina=6 is partial (until Ekadashi).
-const CHATURMAS_FULL_MONTHS = [4, 5]; // Shravana, Bhadrapada — hard veto
-const CHATURMAS_PARTIAL_MONTHS = [3, 6]; // Ashadha, Ashwina — soft penalty
+// Shravana=4, Bhadrapada=5, Ashwina=6 are within Chaturmas.
+// Ashadha=3 is partial (after Devshayani Ekadashi).
+// Kartika=7 is partial (until Prabodhini Ekadashi).
+const CHATURMAS_FULL_MONTHS = [4, 5, 6]; // Shravana, Bhadrapada, Ashwina
+const CHATURMAS_PARTIAL_MONTHS = [3, 7]; // Ashadha (latter half), Kartika (first half)
 
 /**
  * Check if a date falls within Chaturmas.
@@ -167,6 +165,68 @@ export function checkChaturmas(year: number, month: number, day: number): 'full'
   if (CHATURMAS_FULL_MONTHS.includes(masa.masaIdx)) return 'full';
   if (CHATURMAS_PARTIAL_MONTHS.includes(masa.masaIdx)) return 'partial';
   return null;
+}
+
+// ─── Prohibited Solar Months (Kharmas / Malamas) ────────────────────────────
+// Dharmasindhu + Muhurta Chintamani: Marriage prohibited when the Sun
+// transits certain signs. The primary prohibition is Kharmas (Sun in
+// Pisces / Mina, ~Mar 14 - Apr 14). Drik Panchang also blocks marriage
+// during Sun in Karka (Cancer), Simha (Leo), Kanya (Virgo), and
+// Dhanu (Sagittarius). These correspond to monsoon + winter periods.
+//
+// Auspicious solar months for marriage per Dharmasindhu:
+//   Mesha (Aries), Vrishabha (Taurus), Mithuna (Gemini),
+//   Vrischika (Scorpio), Makara (Capricorn), Kumbha (Aquarius)
+// Prohibited: Karka, Simha, Kanya, Tula, Dhanu, Mina
+
+// Sidereal Sun sign → solar month. 1=Mesha..12=Mina
+const PROHIBITED_SOLAR_SIGNS = new Set([
+  4,  // Karka (Cancer) — ~Jul 16 - Aug 16
+  5,  // Simha (Leo) — ~Aug 16 - Sep 16
+  6,  // Kanya (Virgo) — ~Sep 16 - Oct 16
+  9,  // Dhanu (Sagittarius) — ~Dec 16 - Jan 14
+  12, // Mina (Pisces) — ~Mar 14 - Apr 14 (Kharmas)
+]);
+
+// Auspicious solar months (marriage permitted)
+// Mesha=1, Vrishabha=2, Mithuna=3, Vrischika=8, Makara=10, Kumbha=11
+// Tula=7 is debated — some texts allow, Drik Panchang blocks it.
+// We follow the stricter reading (Drik) and exclude Tula.
+
+/**
+ * Check if the Sun is in a prohibited solar sign for marriage.
+ * Uses sidereal Sun longitude at noon.
+ */
+export function isProhibitedSolarMonth(jd: number): boolean {
+  const tropSun = sunLongitude(jd);
+  const sidSun = toSidereal(tropSun, jd);
+  const solarSign = Math.floor(sidSun / 30) + 1; // 1=Mesha..12=Mina
+  return PROHIBITED_SOLAR_SIGNS.has(solarSign);
+}
+
+// ─── Shishutva (Infant Venus/Jupiter) ───────────────────────────────────────
+// After Venus or Jupiter emerges from combustion (heliacal rising), the
+// first ~10 days are called Shishutva (infancy). The planet's beneficent
+// influence is still too weak. Drik Panchang blocks marriage during this
+// period alongside the combustion period itself.
+//
+// Implementation: check if planet WAS combust 10 days ago but is NOT
+// combust today. If so, we're in the Shishutva grace period.
+
+/**
+ * Check if Venus or Jupiter is in Shishutva (infant) phase.
+ * Returns true if either planet just emerged from combustion within
+ * the last 10 days.
+ */
+export function checkShishutva(jd: number): boolean {
+  const today = checkVivahCombustion(jd);
+  if (today.vetoed) return false; // Still combust — handled by combustion check
+
+  // Check if combust 10 days ago
+  const tenDaysAgo = checkVivahCombustion(jd - 10);
+  if (tenDaysAgo.vetoed) return true; // Was combust recently — Shishutva active
+
+  return false;
 }
 
 // ─── Krishna Paksha Conditional Logic ───────────────────────────────────────

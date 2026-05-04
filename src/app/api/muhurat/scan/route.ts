@@ -9,7 +9,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { scanDateRange, scanDateRangeV2 } from '@/lib/muhurta/time-window-scanner';
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
-import { checkVivahCombustion, isAdhikaMasa, checkChaturmas } from '@/lib/muhurta/classical-checks';
+import { checkVivahCombustion, isAdhikaMasa, checkChaturmas, isProhibitedSolarMonth, checkShishutva } from '@/lib/muhurta/classical-checks';
 import { dateToJD } from '@/lib/ephem/astronomical';
 import type { ExtendedActivityId } from '@/types/muhurta-ai';
 
@@ -181,6 +181,27 @@ export async function GET(req: NextRequest) {
         label: {
           en: 'Chaturmas edge month — fewer auspicious days available',
           hi: 'चातुर्मास सीमा मास — शुभ दिन सीमित',
+        },
+      });
+    }
+    // Prohibited solar month (Kharmas)
+    const jdMidSolar = dateToJD(year, month, 15, 12 - tz);
+    if (isProhibitedSolarMonth(jdMidSolar)) {
+      restrictions.push({
+        type: 'kharmas',
+        label: {
+          en: 'Prohibited solar month (Kharmas) — marriage restricted (Dharmasindhu)',
+          hi: 'खरमास — विवाह वर्जित (धर्मसिन्धु)',
+        },
+      });
+    }
+    // Shishutva (infant Venus/Jupiter) — stricter than some modern services
+    if (checkShishutva(jdMidSolar)) {
+      restrictions.push({
+        type: 'shishutva',
+        label: {
+          en: 'Venus/Jupiter recently emerged from combustion (Shishutva) — influence still weak',
+          hi: 'शुक्र/गुरु अस्त से हाल ही में उदित (शिशुत्व) — प्रभाव अभी दुर्बल',
         },
       });
     }

@@ -18,6 +18,7 @@ import {
 import {
   checkVivahCombustion, scoreLagna, scoreNavamshaShuddhi,
   krishnaPakshaAdjustment, isAdhikaMasa, checkChaturmas,
+  isProhibitedSolarMonth, checkShishutva,
 } from './classical-checks';
 import type { ScoredTimeWindow, ScoreBreakdown, ExtendedActivityId, ScanOptionsV2, DetailBreakdown, InauspiciousPeriod } from '@/types/muhurta-ai';
 import type { LocaleText,} from '@/types/panchang';
@@ -276,10 +277,26 @@ export function scanDateRangeV2(options: ScanOptionsV2): ScanV2Window[] {
         continue;
       }
 
-      // Chaturmas — Dharmasindhu: marriage prohibited Shravana-Bhadrapada
-      // (full months within Chaturmas). Ashadha/Ashwina are partial — soft penalty.
+      // Chaturmas — Dharmasindhu: marriage prohibited Shravana through Ashwina.
+      // Ashadha (latter half) and Kartika (first half) are partial — soft penalty.
       const chaturmas = checkChaturmas(year, month, day);
       if (chaturmas === 'full') {
+        current.setUTCDate(current.getUTCDate() + 1);
+        continue;
+      }
+
+      // Prohibited solar months (Kharmas) — Dharmasindhu + MC:
+      // Marriage forbidden when Sun is in Mina (Pisces), Karka, Simha, Kanya, Dhanu.
+      if (isProhibitedSolarMonth(jdNoon)) {
+        current.setUTCDate(current.getUTCDate() + 1);
+        continue;
+      }
+
+      // Shishutva (infant Venus/Jupiter) — first ~10 days after emerging from
+      // combustion, the planet's beneficent influence is still weak.
+      // This is stricter than some modern services — our differentiator is
+      // classical text compliance, not matching third-party outputs.
+      if (checkShishutva(jdNoon)) {
         current.setUTCDate(current.getUTCDate() + 1);
         continue;
       }

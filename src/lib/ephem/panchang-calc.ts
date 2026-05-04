@@ -18,6 +18,7 @@ import { KARANAS } from '@/lib/constants/karanas';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS, VARA_DATA } from '@/lib/constants/grahas';
 import { MUHURTA_DATA } from '@/lib/constants/muhurtas';
+import { VARJYAM_GHATI, VARJYAM_GHATI_2, AMRIT_GHATI } from '@/lib/constants/varjyam';
 import { PanchangData, Muhurta, TransitionInfo, ChoghadiyaSlot, HoraSlot, DishaShoolInfo , LocaleText} from '@/types/panchang';
 import { getLunarMasaForDate } from '@/lib/calendar/hindu-months';
 import { checkPanchak } from '@/lib/panchang/panchak';
@@ -342,48 +343,7 @@ function computeHora(sunriseUT: number, sunsetUT: number, weekday: number, tzOff
 // Amrit Kalam & Varjyam
 // ──────────────────────────────────────────────────────────────
 
-// Varjyam (Thyajyam) and Amrit Kalam ghati offset tables.
-// Source: Prashna Marga Ch.7 (Thyajya Nakshatra Bhoga), WisdomLib edition.
-//         Cross-validated against Prokerala Panchang (±1-5 min agreement).
-//
-// IMPORTANT: 1 ghati = 1/60th of the nakshatra's ACTUAL duration (NOT fixed 24 min).
-// Offset formula: nakshatra_start + (ghati / 60) * nakshatra_duration
-// Duration of window: 4 ghatis = (4/60) * nakshatra_duration
-// Accuracy ceiling: ±12 min (inherent to integer-ghati classical tables).
-
-// Varjyam (inauspicious) ghati offsets from nakshatra start.
-// Some nakshatras have TWO Varjyam windows (dual Thyajyam — Prashna Marga 7.18).
-// Primary offset is always used; secondary (if present) gives a second window.
-// Only the window falling within the panchang day (sunrise→sunrise) is displayed.
-const VARJYAM_GHATI: number[] = [
-  50, 24, 30, 40, 15,  // Ashwini(1)-Mrigashira(5)
-  21, 30, 20, 32, 30,  // Ardra(6)-Magha(10)  — Ardra=21, Punarvasu=30, Pushya=20 (verified vs Prokerala Apr 2026)
-  20, 18, 22, 20, 14,  // P.Phalguni(11)-Swati(15) — U.Phalguni=18 (verified vs Prokerala Aug 2026)
-  14, 10, 14, 20, 24,  // Vishakha(16)-P.Ashadha(20)
-  20, 10, 10, 18, 16,  // U.Ashadha(21)-P.Bhadra(25)
-  26, 30,              // U.Bhadra(26)-Revati(27)
-];
-// Secondary Varjyam offset for nakshatras with dual Thyajyam (Prashna Marga 7.18).
-// -1 means no second window. Mula has dual windows at 20 and 56 ghatis.
-const VARJYAM_GHATI_2: number[] = [
-  -1, -1, -1, -1, -1,  // Ashwini(1)-Mrigashira(5)
-  -1, -1, -1, -1, -1,  // Ardra(6)-Magha(10)
-  -1, -1, -1, -1, -1,  // P.Phalguni(11)-Swati(15)
-  -1, -1, -1, 56, -1,  // Vishakha(16)-P.Ashadha(20) — Mula(19) dual per Prashna Marga
-  -1, -1, -1, -1, -1,  // U.Ashadha(21)-P.Bhadra(25)
-  -1, -1,              // U.Bhadra(26)-Revati(27)
-];
-
-// Amrit Kalam (auspicious) ghati offset from nakshatra start.
-// Source: Prashna Marga Ch.7 (Amrutha Ghatika), WisdomLib edition.
-const AMRIT_GHATI: number[] = [
-  42, 48, 54, 52, 38,  // Ashwini(1)-Mrigashira(5)
-  35, 54, 44, 56, 54,  // Ardra(6)-Magha(10)
-  44, 42, 45, 44, 38,  // P.Phalguni(11)-Swati(15)
-  38, 34, 38, 44, 48,  // Vishakha(16)-P.Ashadha(20)
-  38, 34, 43, 42, 40,  // U.Ashadha(21)-P.Bhadra(25)
-  49, 54,              // U.Bhadra(26)-Revati(27)
-];
+// VARJYAM_GHATI, VARJYAM_GHATI_2, AMRIT_GHATI imported from @/lib/constants/varjyam
 
 interface TimeWindow { start: string; end: string }
 

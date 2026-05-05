@@ -55,9 +55,17 @@ User-agent: Claude-Web
 Allow: /*/panchang
 Allow: /*/kundali
 Allow: /*/muhurta-ai
+Allow: /*/muhurat
 Allow: /*/matching
 Allow: /*/calendar
+Allow: /*/choghadiya
+Allow: /*/hora
+Allow: /*/sky
+Allow: /*/sign-calculator
+Allow: /*/baby-names
+Allow: /*/vs/
 Allow: /*/about
+Allow: /llms.txt
 Disallow: /*/learn/
 Disallow: /*/learn
 
@@ -68,9 +76,17 @@ User-agent: anthropic-ai
 Allow: /*/panchang
 Allow: /*/kundali
 Allow: /*/muhurta-ai
+Allow: /*/muhurat
 Allow: /*/matching
 Allow: /*/calendar
+Allow: /*/choghadiya
+Allow: /*/hora
+Allow: /*/sky
+Allow: /*/sign-calculator
+Allow: /*/baby-names
+Allow: /*/vs/
 Allow: /*/about
+Allow: /llms.txt
 Disallow: /*/learn/
 Disallow: /*/learn
 
@@ -78,9 +94,17 @@ User-agent: Google-Extended
 Allow: /*/panchang
 Allow: /*/kundali
 Allow: /*/muhurta-ai
+Allow: /*/muhurat
 Allow: /*/matching
 Allow: /*/calendar
+Allow: /*/choghadiya
+Allow: /*/hora
+Allow: /*/sky
+Allow: /*/sign-calculator
+Allow: /*/baby-names
+Allow: /*/vs/
 Allow: /*/about
+Allow: /llms.txt
 Disallow: /*/learn/
 Disallow: /*/learn
 
@@ -88,9 +112,17 @@ User-agent: PerplexityBot
 Allow: /*/panchang
 Allow: /*/kundali
 Allow: /*/muhurta-ai
+Allow: /*/muhurat
 Allow: /*/matching
 Allow: /*/calendar
+Allow: /*/choghadiya
+Allow: /*/hora
+Allow: /*/sky
+Allow: /*/sign-calculator
+Allow: /*/baby-names
+Allow: /*/vs/
 Allow: /*/about
+Allow: /llms.txt
 Disallow: /*/learn/
 Disallow: /*/learn
 
@@ -98,5 +130,11 @@ User-agent: Bytespider
 Disallow: /
 
 User-agent: cohere-ai
+Allow: /*/panchang
+Allow: /*/kundali
+Allow: /*/muhurta-ai
+Allow: /*/matching
+Allow: /*/about
+Allow: /llms.txt
 Disallow: /*/learn/
 Disallow: /*/learn

@@ -151,8 +151,8 @@ export function analyzeEclipseImpact(
   eclipse: EclipseData,
   chart: KundaliData
 ): EclipseImpact {
-  // 24.21 = Lahiri ayanamsha for ~2026 — fallback only; ayanamshaValue should always be set
-  const ayanamsha = chart.ayanamshaValue ?? 24.21;
+  // chart.ayanamshaValue is the user's chosen ayanamsha system, set during kundali computation
+  const ayanamsha = chart.ayanamshaValue;
   const eclipseLong = computeEclipseLongitude(eclipse, ayanamsha);
 
   // Sign the eclipse falls in

@@ -13,6 +13,7 @@
 
 import { describe, it, expect } from 'vitest';
 import { analyzeEclipseImpact, analyzeAllEclipses } from '@/lib/eclipse/eclipse-impact';
+import { lahiriAyanamsha } from '@/lib/ephem/astronomical';
 import type { EclipseData, SolarEclipseData, LunarEclipseData } from '@/lib/calendar/eclipse-data';
 import type { KundaliData, PlanetPosition, HouseCusp } from '@/types/kundali';
 import type { LocaleText } from '@/types/panchang';
@@ -85,8 +86,8 @@ function mkChart(opts: {
     navamshaChart: { houses: Array.from({ length: 12 }, () => []), ascendantDeg: 0, ascendantSign: 1 },
     dashas: [],
     shadbala: [],
-    ayanamshaValue: opts.ayanamsha ?? 24.21,
     julianDay: 2451545.0,
+    ayanamshaValue: opts.ayanamsha ?? lahiriAyanamsha(2451545.0),
   } as unknown as KundaliData;
 }
 

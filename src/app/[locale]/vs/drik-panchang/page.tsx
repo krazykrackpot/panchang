@@ -38,8 +38,8 @@ const LABELS = {
   scoreTitle: L('Feature Score', 'सुविधा स्कोर', 'அம்ச மதிப்பெண்', 'বৈশিষ্ট্য স্কোর'),
   whyTitle: L('Why Dekho Panchang?', 'देखो पंचांग क्यों?', 'ஏன் டெக்கோ பஞ்சாங்கம்?', 'কেন দেখো পঞ্চাঙ্গ?'),
   bottomLine: L(
-    'Drik Panchang is a trusted reference library with 15 years of history. Dekho Panchang is the next generation — 52 features where Drik has 21, powered by Swiss Ephemeris (NASA JPL DE441), 15+ Dasha systems, 150+ Yogas, AI interpretation, 10 languages, and tools no other platform offers. Built on BPHS, Surya Siddhanta, and Muhurta Chintamani — it doesn\'t just show data, it makes Jyotish actionable for your life.',
-    'दृक् पंचांग 15 वर्षों के इतिहास वाला एक विश्वसनीय संदर्भ पुस्तकालय है। देखो पंचांग अगली पीढ़ी है — जहाँ दृक् के पास 20 सुविधाएँ हैं, वहाँ देखो के पास 39, AI व्याख्या, 10 भाषाएँ, 106-मॉड्यूल शिक्षण पाठ्यक्रम, और ऐसे उपकरण जो किसी अन्य मंच पर नहीं हैं। यह केवल डेटा नहीं दिखाता — ज्योतिष को आपके जीवन के लिए कार्यशील बनाता है।',
+    'Drik Panchang is a trusted reference library with 15 years of history. Dekho Panchang is the next generation — a 33-rule muhurta engine with classical cancellation logic (no other platform models this), 11 ayanamsha systems with consistent plumbing, 15+ Dasha systems, 150+ Yogas, AI interpretation with pandit-style reasoning chains, 10 languages, and tools no other platform offers. Built on Swiss Ephemeris (NASA JPL DE441), cross-validated against Drik Panchang to 100% nakshatra/tithi/yoga accuracy. It doesn\'t just show data — it reasons about your life like a classically trained Jyotishi.',
+    'दृक् पंचांग 15 वर्षों के इतिहास वाला एक विश्वसनीय संदर्भ पुस्तकालय है। देखो पंचांग अगली पीढ़ी है — 33-नियम मुहूर्त इंजन शास्त्रीय निवारण तर्क के साथ (कोई अन्य मंच इसे मॉडल नहीं करता), 11 अयनांश पद्धतियाँ, 15+ दशा, 150+ योग, पण्डित-शैली तर्क श्रृंखलाओं के साथ AI व्याख्या, 10 भाषाएँ। Swiss Ephemeris (NASA JPL DE441) पर निर्मित, दृक् पंचांग के विरुद्ध 100% नक्षत्र/तिथि/योग सटीकता सत्यापित। यह केवल डेटा नहीं दिखाता — शास्त्रीय रूप से प्रशिक्षित ज्योतिषी की तरह आपके जीवन के बारे में तर्क करता है।',
   ),
 };
 
@@ -64,11 +64,46 @@ const ROWS: CompRow[] = [
     dekhoYes: true, drikYes: false, highlight: true,
   },
   {
-    feature: 'AI Muhurta Scanner',
-    featureHi: 'AI मुहूर्त स्कैनर',
-    dekho: 'Ask "When should I buy a house?" — AI scans 30 days of panchang data for your best window',
-    drik: 'Manual lookup of daily muhurta tables',
+    feature: '33-Rule Muhurta Engine with Classical Cancellation',
+    featureHi: '33-नियम मुहूर्त इंजन — शास्त्रीय निवारण सहित',
+    dekho: '33 rules from 7 texts (MC, Dharma Sindhu, BPHS, Brihat Samhita, Prashna Marga, B.V. Raman, Kalaprakashika). 5-tier authority: strong lagna cancels weak karana (MC Ch.7). Godhuli override for marriage (BS Ch.103). Planets-in-ascendant cancellation. Pandit-style reasoning with citations.',
+    drik: 'Binary pass/fail on Panchanga Shuddhi — no scoring, no cancellation logic, no reasoning',
     dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'Personalised Muhurta Scoring (Tara Bala + Dasha)',
+    featureHi: 'व्यक्तिगत मुहूर्त स्कोरिंग (ताराबल + दशा)',
+    dekho: 'Birth chart integration: Tara Bala, Chandra Bala, Dasha Harmony personalise every window. Score: 0-100 with grade differentiation (excellent/good/fair/marginal).',
+    drik: 'No personalised muhurta scoring — same result regardless of birth chart',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'Muhurta Reasoning Chains (Digital Pandit)',
+    featureHi: 'मुहूर्त तर्क श्रृंखला (डिजिटल पण्डित)',
+    dekho: 'Each window gets a pandit-style verdict: strengths with citations, concerns, cancelled defects shown as mitigations. "Vishti karana cancelled by strong Taurus lagna (MC Ch.7)."',
+    drik: 'No explanation of why a date is good or bad',
+    dekhoYes: true, drikYes: false, highlight: true,
+  },
+  {
+    feature: 'Exact Chaturmas (Ekadashi-to-Ekadashi)',
+    featureHi: 'सटीक चातुर्मास (एकादशी-से-एकादशी)',
+    dekho: 'Uses actual Devshayani→Prabodhini Ekadashi dates from tithi table. 2026: Jul 25 to Nov 20. Not month-level approximation.',
+    drik: 'Month-level Chaturmas approximation (can be off by 2 weeks at boundaries)',
+    dekhoYes: true, drikYes: true,
+  },
+  {
+    feature: '11 Ayanamsha Systems',
+    featureHi: '11 अयनांश पद्धतियाँ',
+    dekho: 'Lahiri, KP, Raman, BV Raman, Yukteshwar, JN Bhasin, Fagan-Bradley, True Chitra, True Revati, True Pushya, Galactic Center — all via Swiss Ephemeris. Consistently plumbed through shadbala, sade-sati, transits.',
+    drik: '2-3 ayanamsha options (Lahiri + Raman)',
+    dekhoYes: true, drikYes: true, highlight: true,
+  },
+  {
+    feature: 'Dur Muhurtam + Varjyam + Abhijit in Muhurta Scoring',
+    featureHi: 'दुर्मुहूर्त + वर्ज्यम + अभिजित मुहूर्त स्कोरिंग में',
+    dekho: 'All three integrated into the scoring engine — windows during Dur Muhurtam are penalised, Abhijit gets bonus, Varjyam from Prashna Marga ghati tables. No contradictions between panchang display and muhurta recommendations.',
+    drik: 'Shown on panchang page but not integrated into muhurta date selection logic',
+    dekhoYes: true, drikYes: false,
   },
   {
     feature: 'Dasha Synthesis & Life Timeline',
@@ -442,10 +477,10 @@ const WHY_CARDS: WhyCard[] = [
   },
   {
     icon: Sparkles,
-    title: 'Ask Questions, Get Answers',
-    titleHi: 'प्रश्न पूछें, उत्तर पाएँ',
-    body: '"When should I start my business?" — our Muhurta AI scans 30 days of panchang data and returns ranked auspicious windows specific to your activity.',
-    bodyHi: '"मैं अपना व्यवसाय कब शुरू करूँ?" — हमारा मुहूर्त AI 30 दिनों के पंचांग डेटा को स्कैन करता है और आपकी गतिविधि के लिए शुभ समय बताता है।',
+    title: '33-Rule Muhurta Engine',
+    titleHi: '33-नियम मुहूर्त इंजन',
+    body: '"When should I start my business?" — our engine evaluates 33 classical rules from 7 texts, applies 5-tier cancellation logic (strong lagna cancels weak karana per MC Ch.7), and gives you a pandit-style verdict with citations. Not binary pass/fail — nuanced, personalised scoring.',
+    bodyHi: '"मैं अपना व्यवसाय कब शुरू करूँ?" — हमारा इंजन 7 ग्रन्थों से 33 शास्त्रीय नियमों का मूल्यांकन करता है, 5-स्तरीय निवारण तर्क लागू करता है (शक्तिशाली लग्न दुर्बल करण का निवारण करता है — MC Ch.7), और उद्धरणों के साथ पण्डित-शैली निर्णय देता है।',
   },
   {
     icon: Globe,

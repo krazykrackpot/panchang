@@ -55,11 +55,11 @@ function findTithiTransition(currentTithi: number, jdStart: number, jdEnd: numbe
 }
 
 /** Find JD when nakshatra (by sidereal Moon) changes. */
-function findNakshatraTransition(currentNak: number, jdStart: number, jdEnd: number): number {
+function findNakshatraTransition(currentNak: number, jdStart: number, jdEnd: number, ayanamsha?: number): number {
   let lo = jdStart, hi = jdEnd;
   for (let i = 0; i < 30; i++) {
     const mid = (lo + hi) / 2;
-    const moonSid = toSidereal(moonLongitude(mid), mid);
+    const moonSid = toSidereal(moonLongitude(mid), mid, ayanamsha);
     const n = getNakshatraNumber(moonSid);
     if (n === currentNak) lo = mid; else hi = mid;
   }
@@ -67,11 +67,11 @@ function findNakshatraTransition(currentNak: number, jdStart: number, jdEnd: num
 }
 
 /** Find JD when yoga changes. */
-function findYogaTransition(currentYoga: number, jdStart: number, jdEnd: number): number {
+function findYogaTransition(currentYoga: number, jdStart: number, jdEnd: number, ayanamsha?: number): number {
   let lo = jdStart, hi = jdEnd;
   for (let i = 0; i < 30; i++) {
     const mid = (lo + hi) / 2;
-    const y = calculateYoga(mid);
+    const y = calculateYoga(mid, ayanamsha);
     if (y === currentYoga) lo = mid; else hi = mid;
   }
   return (lo + hi) / 2;
@@ -1068,14 +1068,14 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const nakshatraTransition = computeTransition(
     nakshatraNum,
     (jd) => getNakshatraNumber(toSidereal(moonLongitude(jd), jd, userAyanamsha)),
-    findNakshatraTransition,
+    (cur, start, end) => findNakshatraTransition(cur, start, end, userAyanamsha),
     jdSunrise, tzOffset, NAKSHATRAS, timezone,
   );
 
   const yogaTransition = computeTransition(
     yogaNum,
-    (jd) => calculateYoga(jd),
-    findYogaTransition,
+    (jd) => calculateYoga(jd, userAyanamsha),
+    (cur, start, end) => findYogaTransition(cur, start, end, userAyanamsha),
     jdSunrise, tzOffset, YOGAS, timezone,
   );
 

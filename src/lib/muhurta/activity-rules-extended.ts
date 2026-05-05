@@ -23,14 +23,18 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     avoidNakshatras: [1, 6, 9, 16, 18, 19, 20, 24, 25],
     goodHoras: [5, 4, 1], // Venus, Jupiter, Moon
     relevantHouses: [2, 7, 11],
-    // Hard vetoes — only for conditions with strong textual consensus.
-    // Avoided nakshatras per Muhurta Chintamani Ch. 6 + Jyotirnibandha:
-    // Ashwini(1), Ardra(6), Ashlesha(9), Vishakha(16), Jyeshtha(18),
-    // Mula(19), P.Ashadha(20), Shatabhisha(24), P.Bhadrapada(25).
-    // Krishna Paksha and weekdays are soft penalties — no classical text
-    // explicitly forbids them; MC deprioritises vara/tithi for Vivah Shuddhi.
+    // Hard vetoes — ONLY for nakshatras with strong consensus across MC + Jyotirnibandha
+    // as "death-dealing" or "causing widowhood/separation":
+    //   Ardra(6): Tikshna, explicitly forbidden in MC Ch.6
+    //   Ashlesha(9): Tikshna, "death of bridegroom" per MC
+    //   Vishakha(16): "bride suffers" per MC, reinforced by Jyotirnibandha
+    //   Jyeshtha(18): "death of elder brother" per MC
+    // The remaining avoidNakshatras (1, 19, 20, 24, 25) are "soft avoid" —
+    // they carry a -5 penalty but can be compensated by excellent lagna/yoga.
+    // Raman lists Ashwini(1) as "ordinary" (not forbidden), Mula(19) has
+    // pada exceptions in MC, Shatabhisha(24) appears in Raman's favourable list.
     // See docs/muhurta-rules.md for full textual citations.
-    hardAvoidNakshatras: [1, 6, 9, 16, 18, 19, 20, 24, 25],
+    hardAvoidNakshatras: [6, 9, 16, 18],
   },
   griha_pravesh: {
     id: 'griha_pravesh',
@@ -42,8 +46,11 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     avoidNakshatras: [1, 5, 9, 15, 16, 17, 18, 19, 23, 24, 26],
     goodHoras: [4, 5, 1], // Jupiter, Venus, Moon
     relevantHouses: [4, 7, 10],
-    // Hard vetoes: avoided nakshatras only. See docs/muhurta-rules.md.
-    hardAvoidNakshatras: [1, 5, 9, 15, 16, 17, 18, 19, 23, 24, 26],
+    // Hard vetoes: only Tikshna nakshatras with strong textual consensus for griha pravesh.
+    // Ashlesha(9), Jyeshtha(18): "death/destruction" associations in MC.
+    // Vishakha(16): inauspicious for all samskaras per MC.
+    // Others in avoidNakshatras are soft penalties (can be compensated by good lagna).
+    hardAvoidNakshatras: [9, 16, 18],
   },
   mundan: {
     id: 'mundan',
@@ -60,9 +67,11 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     avoidNakshatras: [2, 3, 6, 9, 10, 11, 16, 17, 19, 20, 25, 26],
     goodHoras: [4, 5, 0], // Jupiter, Venus, Sun
     relevantHouses: [1, 5, 11],
-    // Hard nakshatra filter — only the 12 classical nakshatras are permitted.
-    // Also: Uttarayana required (handled in scanner via isProhibitedSolarMonth check).
-    hardAvoidNakshatras: [2, 3, 6, 9, 10, 11, 16, 17, 19, 20, 25, 26],
+    // Hard vetoes for mundan: Tikshna nakshatras that are explicitly forbidden.
+    // Ardra(6), Ashlesha(9): Tikshna, death associations in MC.
+    // Others in avoidNakshatras are soft penalties.
+    // Uttarayana required (handled separately via dakshinayana veto rule).
+    hardAvoidNakshatras: [6, 9],
   },
   vehicle: {
     id: 'vehicle',
@@ -79,8 +88,10 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     avoidNakshatras: [2, 3, 6, 9, 10, 11, 16, 18, 19, 20, 25],
     goodHoras: [5, 4, 3], // Venus, Jupiter, Mercury
     relevantHouses: [4, 9, 11],
-    // Hard nakshatra filter — only classically approved nakshatras
-    hardAvoidNakshatras: [2, 3, 6, 9, 10, 11, 16, 18, 19, 20, 25],
+    // Hard vetoes for vehicle: only Tikshna nakshatras with strongest consensus.
+    // Ashlesha(9), Jyeshtha(18): death/accident associations.
+    // Others are soft penalties (can be compensated by good hora/lagna).
+    hardAvoidNakshatras: [9, 18],
   },
   travel: {
     id: 'travel',
@@ -141,8 +152,10 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     avoidNakshatras: [2, 3, 6, 9, 10, 11, 16, 18, 19, 20, 25],
     goodHoras: [4, 5, 1], // Jupiter, Venus, Moon
     relevantHouses: [1, 5, 11],
-    // Hard nakshatra filter — 16 of 27 permitted (broad, as naming should "stick")
-    hardAvoidNakshatras: [2, 3, 6, 9, 10, 11, 16, 18, 19, 20, 25],
+    // Hard vetoes for namakarana: only the strongest Tikshna consensus.
+    // Namakarana is time-bound (11th/12th day) — overly strict vetoes would
+    // leave parents with no options. Only Ashlesha(9) has unanimous agreement.
+    hardAvoidNakshatras: [9],
   },
   upanayana: {
     id: 'upanayana',

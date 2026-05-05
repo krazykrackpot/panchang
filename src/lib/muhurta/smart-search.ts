@@ -10,11 +10,11 @@
  */
 
 import {
-  dateToJD, sunLongitude, moonLongitude, toSidereal,
+  dateToJD, moonLongitude, toSidereal,
   getNakshatraNumber, getRashiNumber, lahiriAyanamsha,
   calculateTithi, calculateYoga, calculateKarana,
   approximateSunriseSafe, approximateSunsetSafe,
-  calcAscendant, formatTime,
+  calcAscendant,
 } from '@/lib/ephem/astronomical';
 import { scorePanchangFactors, type PanchangSnapshot } from './ai-recommender';
 import { EXTENDED_ACTIVITIES } from './activity-rules-extended';
@@ -261,14 +261,6 @@ function scoreHora(
   // 20 for match, 5 base
   const score = match ? 20 : 5;
   return { score: Math.min(25, score), planetName, match };
-}
-
-/** Convert JD-based UT hour to "HH:MM" in local time. */
-function jdToLocalTimeStr(jd: number, tzOffset: number): string {
-  // Extract fractional day, convert to hours
-  const frac = (jd + 0.5) - Math.floor(jd + 0.5);
-  const utHour = frac * 24;
-  return formatTime(utHour, tzOffset);
 }
 
 /** Convert a "YYYY-MM-DD" + local decimal hour to JD. */

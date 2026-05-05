@@ -10,6 +10,7 @@
  */
 
 import type { MuhurtaRule, RuleAssessment, RuleContext } from '../types';
+import { toSidereal, getRashiNumber } from '@/lib/ephem/astronomical';
 
 // ─── Lagna Scoring Tables ──────────────────────────────────────────────────
 // Vivah lagna suitability: rashi index 1-12 → score
@@ -216,8 +217,129 @@ const krishnaPakshaAdjustment: MuhurtaRule = {
   },
 };
 
+// ---------------------------------------------------------------------------
+// 4. planets-in-ascendant (Muhurta Chintamani Ch.7)
+// "Venus, Mercury, or Jupiter in the ascendant completely destroy all adverse
+// influences." — Tier 1 override, cancels all Tier 3/4 negatives.
+// ---------------------------------------------------------------------------
+const planetsInAscendant: MuhurtaRule = {
+  id: 'planets-in-ascendant',
+  name: { en: 'Benefics in Lagna', hi: 'लग्न में शुभ ग्रह', sa: 'लग्ने शुभग्रहाः' },
+  category: 'lagna',
+  scope: 'window',
+  effect: 'bonus',
+  tier: 1,
+  appliesTo: 'all',
+  source: 'MC Ch.7',
+  evaluate(ctx: RuleContext): RuleAssessment | null {
+    if (ctx.lagnaSign == null || !ctx.planets || ctx.planets.length === 0) return null;
+
+    // Venus (5), Mercury (3), Jupiter (4) — check if any is in lagna sign
+    const beneficIds = [5, 3, 4];
+    const beneficNames = { 3: 'Mercury', 4: 'Jupiter', 5: 'Venus' };
+    const inLagna: number[] = [];
+
+    for (const pid of beneficIds) {
+      const planet = ctx.planets.find(p => p.id === pid);
+      if (!planet) continue;
+      const sidSign = getRashiNumber(toSidereal(planet.longitude, ctx.midpointJD));
+      if (sidSign === ctx.lagnaSign) {
+        inLagna.push(pid);
+      }
+    }
+
+    if (inLagna.length === 0) return null;
+
+    const names = inLagna.map(id => beneficNames[id as keyof typeof beneficNames]).join(', ');
+
+    return assess(this, {
+      tier: 1,
+      points: 10,
+      maxPoints: 10,
+      severity: 'positive',
+      reason: {
+        en: `${names} in ascendant — destroys all adverse influences`,
+        hi: `${names} लग्न में — सभी दोषों का नाश`,
+        sa: `लग्ने ${names} — सर्वदोषनाशकः`,
+      },
+      cancels: [
+        'tithi-quality',
+        'yoga-quality',
+        'karana-quality',
+        'vara-quality',
+        'panchaka',
+        'rahu-kaal',
+        'yamaganda',
+        'gulika-kaal',
+        'dur-muhurtam',
+        'varjyam',
+        'krishna-paksha-adjustment',
+      ],
+    });
+  },
+};
+
+// ---------------------------------------------------------------------------
+// 5. eighth-house-vacancy (B.V. Raman — Marriage/Engagement only)
+// "The 8th house must be unoccupied at the time of marriage."
+// ---------------------------------------------------------------------------
+const eighthHouseVacancy: MuhurtaRule = {
+  id: 'eighth-house-vacancy',
+  name: { en: '8th House Vacancy', hi: 'अष्टम भाव शून्यता', sa: 'अष्टमभावशून्यता' },
+  category: 'lagna',
+  scope: 'window',
+  effect: 'bonus', // dynamic: bonus when vacant, penalty when occupied
+  tier: 3,
+  appliesTo: ['marriage', 'engagement'],
+  source: 'B.V. Raman Muhurtha Ch.12',
+  evaluate(ctx: RuleContext): RuleAssessment | null {
+    if (ctx.lagnaSign == null || !ctx.planets || ctx.planets.length === 0) return null;
+
+    // 8th house = 7 signs from lagna (1-indexed, wrapped)
+    const eighthSign = ((ctx.lagnaSign - 1 + 7) % 12) + 1;
+
+    // Check if ANY planet (ids 0-8) occupies the 8th sign
+    const occupants: number[] = [];
+    for (const planet of ctx.planets) {
+      if (planet.id < 0 || planet.id > 8) continue;
+      const sidSign = getRashiNumber(toSidereal(planet.longitude, ctx.midpointJD));
+      if (sidSign === eighthSign) {
+        occupants.push(planet.id);
+      }
+    }
+
+    if (occupants.length > 0) {
+      return assess(this, {
+        tier: 3,
+        points: -3,
+        maxPoints: 3,
+        severity: 'moderate',
+        reason: {
+          en: `8th house occupied — ${occupants.length} planet(s) in house of longevity`,
+          hi: `अष्टम भाव अशून्य — आयु भाव में ${occupants.length} ग्रह`,
+          sa: `अष्टमभावे ग्रहाः — आयुर्भावे ${occupants.length} ग्रहाः`,
+        },
+      });
+    }
+
+    return assess(this, {
+      tier: 3,
+      points: 3,
+      maxPoints: 3,
+      severity: 'positive',
+      reason: {
+        en: '8th house vacant — auspicious for marital longevity',
+        hi: 'अष्टम भाव शून्य — दाम्पत्य दीर्घायु हेतु शुभ',
+        sa: 'अष्टमभावः शून्यः — दाम्पत्यदीर्घायुषे शुभम्',
+      },
+    });
+  },
+};
+
 export const LAGNA_RULES: MuhurtaRule[] = [
   lagnaQuality,
   navamshaShuddhi,
   krishnaPakshaAdjustment,
+  planetsInAscendant,
+  eighthHouseVacancy,
 ];

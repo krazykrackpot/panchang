@@ -85,7 +85,7 @@ function mkChart(opts: {
     navamshaChart: { houses: Array.from({ length: 12 }, () => []), ascendantDeg: 0, ascendantSign: 1 },
     dashas: [],
     shadbala: [],
-    ayanamshaValue: opts.ayanamsha ?? 24.18,
+    ayanamshaValue: opts.ayanamsha ?? 24.21,
     julianDay: 2451545.0,
   } as unknown as KundaliData;
 }

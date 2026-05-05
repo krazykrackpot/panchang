@@ -523,13 +523,13 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
               moonNakshatra: (() => {
                 const moon = kundali.planets.find(p => p.planet.id === 1);
                 if (!moon) return 1;
-                const sidLng = ((moon.longitude - (kundali.ayanamshaValue || 24.18)) % 360 + 360) % 360;
+                const sidLng = ((moon.longitude - (kundali.ayanamshaValue ?? 24.21)) % 360 + 360) % 360;
                 return Math.floor(sidLng / (360 / 27)) + 1;
               })(),
               moonNakshatraPada: (() => {
                 const moon = kundali.planets.find(p => p.planet.id === 1);
                 if (!moon) return 1;
-                const sidLng = ((moon.longitude - (kundali.ayanamshaValue || 24.18)) % 360 + 360) % 360;
+                const sidLng = ((moon.longitude - (kundali.ayanamshaValue ?? 24.21)) % 360 + 360) % 360;
                 const nakDeg = sidLng % (360 / 27);
                 return Math.floor(nakDeg / (360 / 27 / 4)) + 1;
               })(),

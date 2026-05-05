@@ -121,6 +121,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className="dark" suppressHydrationWarning>
       <head>
+        <meta name="google-adsense-account" content="ca-pub-4787764488539456" />
         <link rel="alternate" type="application/rss+xml" title="Dekho Panchang" href="/api/feed" />
         <link rel="author" href="/llms.txt" />
       </head>
@@ -129,6 +130,13 @@ export default async function LocaleLayout({
         {/* Google Consent Mode v2 — MUST run before adsbygoogle.js below so
             consent defaults are set before AdSense initializes. */}
         <Script id="consent-default" strategy="beforeInteractive">{CONSENT_DEFAULT_SCRIPT}</Script>
+        {/* Google AdSense — loads after consent defaults are set */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4787764488539456"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: safeJsonLd(generateOrganizationLD()) }}

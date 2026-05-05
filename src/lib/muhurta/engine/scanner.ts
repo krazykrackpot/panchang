@@ -212,8 +212,16 @@ function scanDay(
   }
 
   // Generate windows
-  const sunriseLocal = dayCtx.sunriseUT + dayCtx.tz;
-  const sunsetLocal = dayCtx.sunsetUT + dayCtx.tz;
+  // Normalise sunrise/sunset to local time. For eastern timezones in summer,
+  // sunriseUT can be ~23.9 (previous UT day), giving sunriseLocal > 24.
+  // For western timezones, sunsetUT can be ~0.5 (next UT day), giving sunsetLocal < 0.
+  let sunriseLocal = dayCtx.sunriseUT + dayCtx.tz;
+  let sunsetLocal = dayCtx.sunsetUT + dayCtx.tz;
+  if (sunriseLocal >= 24) sunriseLocal -= 24;
+  if (sunsetLocal <= 0) sunsetLocal += 24;
+  // If sunset is still before sunrise (shouldn't happen after normalisation),
+  // assume a ~12h day centred on noon as fallback.
+  if (sunsetLocal <= sunriseLocal) sunsetLocal = sunriseLocal + 12;
   const rangeStart = sunriseLocal - preSunriseHours;
   const rangeEnd = sunsetLocal + postSunsetHours;
   const stepHours = windowMinutes / 60;

@@ -9,6 +9,7 @@ import KeyTakeaway from '@/components/learn/KeyTakeaway';
 import WhyItMatters from '@/components/learn/WhyItMatters';
 import { Link } from '@/lib/i18n/navigation';
 import { getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
+import SectionNav from '@/components/learn/SectionNav';
 
 // ─── Multilingual helper ───────────────────────────────────────────────
 type ML = Record<string, string>;
@@ -245,6 +246,23 @@ export default function KetuPage() {
 
   let section = 0;
   const next = () => ++section;
+
+  const SECTIONS = [
+    { id: 'section-1', label: ml({ en: 'Overview', hi: 'परिचय' }) },
+    { id: 'section-2', label: ml({ en: 'Astronomy', hi: 'खगोल' }) },
+    { id: 'section-3', label: ml({ en: 'Dignities', hi: 'गरिमा' }) },
+    { id: 'section-4', label: ml({ en: 'Ketu vs Rahu', hi: 'केतु बनाम राहु' }) },
+    { id: 'section-5', label: ml({ en: 'In 12 Signs', hi: '12 राशियों में' }) },
+    { id: 'section-6', label: ml({ en: 'In 12 Houses', hi: '12 भावों में' }) },
+    { id: 'section-7', label: ml({ en: 'Dasha', hi: 'दशा' }) },
+    { id: 'section-8', label: ml({ en: 'Yogas', hi: 'योग' }) },
+    { id: 'section-9', label: ml({ en: 'Practical', hi: 'व्यावहारिक' }) },
+    { id: 'section-10', label: ml({ en: 'Relationships', hi: 'सम्बन्ध' }) },
+    { id: 'section-11', label: ml({ en: 'Remedies', hi: 'उपाय' }) },
+    { id: 'section-12', label: ml({ en: 'Mythology', hi: 'पौराणिक कथा' }) },
+    { id: 'section-13', label: ml({ en: 'Spiritual', hi: 'आध्यात्मिक' }) },
+    { id: 'section-14', label: ml({ en: 'Nakshatras', hi: 'नक्षत्र' }) },
+  ];
 
   return (
     <main className="max-w-4xl mx-auto px-4 sm:px-6 pt-28 pb-16">
@@ -645,6 +663,7 @@ export default function KetuPage() {
           ))}
         </div>
       </div>
+      <SectionNav sections={SECTIONS} />
     </main>
   );
 }

@@ -9,6 +9,7 @@ import KeyTakeaway from '@/components/learn/KeyTakeaway';
 import WhyItMatters from '@/components/learn/WhyItMatters';
 import { Link } from '@/lib/i18n/navigation';
 import { getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
+import SectionNav from '@/components/learn/SectionNav';
 
 // ─── Multilingual helper ───────────────────────────────────────────────
 type ML = Record<string, string>;
@@ -254,6 +255,21 @@ export default function SimhaPage() {
 
   let section = 0;
   const next = () => ++section;
+
+  const SECTIONS = [
+    { id: 'section-1', label: ml({ en: 'Overview', hi: 'अवलोकन' }) },
+    { id: 'section-2', label: ml({ en: 'Personality', hi: 'व्यक्तित्व' }) },
+    { id: 'section-3', label: ml({ en: 'Nakshatras', hi: 'नक्षत्र' }) },
+    { id: 'section-4', label: ml({ en: 'Dignities', hi: 'गरिमा' }) },
+    { id: 'section-5', label: ml({ en: 'Each Planet', hi: 'प्रत्येक ग्रह' }) },
+    { id: 'section-6', label: ml({ en: 'Career', hi: 'करियर' }) },
+    { id: 'section-7', label: ml({ en: 'Compatibility', hi: 'अनुकूलता' }) },
+    { id: 'section-8', label: ml({ en: 'Remedies', hi: 'उपाय' }) },
+    { id: 'section-9', label: ml({ en: 'Mythology', hi: 'पौराणिक कथा' }) },
+    { id: 'section-10', label: ml({ en: 'Health', hi: 'स्वास्थ्य' }) },
+    { id: 'section-11', label: ml({ en: 'Practical', hi: 'व्यावहारिक' }) },
+    { id: 'section-12', label: ml({ en: 'House Cusps', hi: 'भाव शिखर' }) },
+  ];
 
   return (
     <main className="max-w-4xl mx-auto px-4 sm:px-6 pt-28 pb-16">
@@ -508,6 +524,7 @@ export default function SimhaPage() {
           ))}
         </div>
       </div>
+      <SectionNav sections={SECTIONS} />
     </main>
   );
 }

@@ -6,12 +6,13 @@ import type { ReactNode } from 'react';
 interface LessonSectionProps {
   number?: number;
   title: string;
+  id?: string;
   children: ReactNode;
   illustration?: ReactNode;
   variant?: 'default' | 'highlight' | 'formula';
 }
 
-export default function LessonSection({ number, title, children, illustration, variant = 'default' }: LessonSectionProps) {
+export default function LessonSection({ number, title, id, children, illustration, variant = 'default' }: LessonSectionProps) {
   const bgClass = variant === 'highlight'
     ? 'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20'
     : variant === 'formula'
@@ -24,7 +25,8 @@ export default function LessonSection({ number, title, children, illustration, v
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5 }}
-      className={`rounded-xl p-6 sm:p-8 mb-6 ${bgClass}`}
+      id={id || (number !== undefined ? `section-${number}` : undefined)}
+      className={`rounded-xl p-6 sm:p-8 mb-6 ${bgClass} scroll-mt-20`}
     >
       <div className="flex items-start gap-4 mb-4">
         {number !== undefined && (

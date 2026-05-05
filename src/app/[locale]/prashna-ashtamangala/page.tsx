@@ -186,7 +186,7 @@ export default function PrashnaAshtamangalaPage() {
     try {
       const res = await authedFetch('/api/prashna-ashtamangala', {
         method: 'POST',
-        body: JSON.stringify({ numbers, category, lat: locationStore.lat, lng: locationStore.lng, tz, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }),
+        body: JSON.stringify({ numbers, category, lat: locationStore.lat, lng: locationStore.lng, tz, timezone: ianaTimezone }),
       });
       const gate = await parseGateError(res);
       if (gate) { setGateError(gate); setLoading(false); return; }

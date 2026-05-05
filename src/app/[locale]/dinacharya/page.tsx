@@ -155,10 +155,11 @@ export default function DinacharyaPage() {
         const year = now.getFullYear();
         const month = now.getMonth() + 1;
         const day = now.getDate();
+        // locationStore timezone takes priority over browser timezone
         const ianaTimezone =
-          typeof window !== 'undefined'
+          locationStore.timezone || (typeof window !== 'undefined'
             ? Intl.DateTimeFormat().resolvedOptions().timeZone
-            : 'UTC';
+            : 'UTC');
 
         const res = await fetch(
           `/api/panchang?year=${year}&month=${month}&day=${day}&lat=${lat}&lng=${lng}&timezone=${encodeURIComponent(ianaTimezone)}`
@@ -214,7 +215,7 @@ export default function DinacharyaPage() {
         setLoading(false);
       }
     },
-    [locale, prakritiStore.profile]
+    [locale, prakritiStore.profile, locationStore.timezone]
   );
 
   // Trigger location detection and data fetch

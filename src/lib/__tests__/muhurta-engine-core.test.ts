@@ -5,7 +5,16 @@ import {
 } from '@/lib/muhurta/engine/registry';
 import type { MuhurtaRule, RuleContext, RuleAssessment } from '@/lib/muhurta/engine/types';
 import { PANCHANGA_RULES } from '@/lib/muhurta/engine/rules/panchanga';
+import { PERIOD_RULES } from '@/lib/muhurta/engine/rules/periods';
+import { KAALA_RULES } from '@/lib/muhurta/engine/rules/kaala';
+import { LAGNA_RULES } from '@/lib/muhurta/engine/rules/lagna';
+import { VARJYAM_RULES } from '@/lib/muhurta/engine/rules/varjyam';
+import { SPECIAL_YOGA_RULES } from '@/lib/muhurta/engine/rules/special-yogas';
+import { GRAHA_RULES } from '@/lib/muhurta/engine/rules/graha';
+import { PERSONAL_RULES } from '@/lib/muhurta/engine/rules/personal';
 import { evaluateWindow } from '@/lib/muhurta/engine/evaluator';
+import { generateVerdict } from '@/lib/muhurta/engine/reasoning';
+import { buildDayContext, buildWindowContext } from '@/lib/muhurta/engine/context-builder';
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
 import type { PanchangSnapshot } from '@/lib/muhurta/ai-recommender';
 
@@ -324,5 +333,63 @@ describe('Evaluator', () => {
     expect(
       result.cancellations.some((c) => c.cancelledRuleId === 'vara-quality')
     ).toBe(true);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Full Pipeline Integration (uses the engine entry point with auto-registration)
+// ---------------------------------------------------------------------------
+
+describe('Full Pipeline Integration', () => {
+  beforeEach(() => {
+    clearRules();
+    registerRules([
+      ...PANCHANGA_RULES,
+      ...PERIOD_RULES,
+      ...KAALA_RULES,
+      ...LAGNA_RULES,
+      ...VARJYAM_RULES,
+      ...SPECIAL_YOGA_RULES,
+      ...GRAHA_RULES,
+      ...PERSONAL_RULES,
+    ]);
+  });
+
+  it('evaluates a real date through the complete engine', () => {
+    expect(getRuleCount()).toBeGreaterThanOrEqual(25);
+
+    // 2026-05-05, Corseaux, marriage, midday window (10:00-11:30 local = 8:00-9:30 UT for CEST)
+    const day = buildDayContext(2026, 5, 5, 46.46, 6.80, 2);
+    const ctx = buildWindowContext(day, 8, 9.5, 'marriage');
+    const result = evaluateWindow(ctx);
+
+    expect(result.score).toBeGreaterThanOrEqual(0);
+    expect(result.score).toBeLessThanOrEqual(100);
+    expect(['excellent', 'good', 'fair', 'marginal', 'poor']).toContain(result.grade);
+
+    // Should have assessments from multiple categories
+    const categories = new Set(result.assessments.map((a: { category: string }) => a.category));
+    expect(categories.size).toBeGreaterThanOrEqual(3);
+
+    // Generate verdict
+    const verdict = generateVerdict(result, 'marriage');
+    expect(verdict.headline.en).toBeTruthy();
+    expect(verdict.recommendation.en.length).toBeGreaterThan(0);
+
+    // Log for manual inspection
+    console.log(`Score: ${result.score}/100 (${result.grade})`);
+    console.log(`Assessments: ${result.assessments.length}, Cancellations: ${result.cancellations.length}`);
+    console.log(`Strengths: ${verdict.strengths.length}, Concerns: ${verdict.concerns.length}, Mitigations: ${verdict.mitigations.length}`);
+  });
+
+  it('combustion veto blocks marriage on known combust date', () => {
+    // Venus combust ~Jan 2026 (verified via checkVivahCombustion)
+    const day = buildDayContext(2026, 1, 20, 46.46, 6.80, 1);
+    const ctx = buildWindowContext(day, 10, 11.5, 'marriage');
+    const result = evaluateWindow(ctx);
+
+    expect(result.score).toBe(0);
+    expect(result.vetoes.length).toBeGreaterThan(0);
+    console.log('Combustion veto:', result.vetoes.map((v: { reason: { en: string } }) => v.reason.en).join(', '));
   });
 });

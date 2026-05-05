@@ -8,6 +8,7 @@
  */
 
 import type { ScoredWindow } from './scanner';
+import type { ResolvedAssessment } from './types';
 import type {
   ScoredTimeWindow,
   ScoreBreakdown,
@@ -36,14 +37,14 @@ export function adaptToV1(windows: ScoredWindow[]): ScoredTimeWindow[] {
 
     // Key factors: top 5 positive, non-cancelled assessments
     const keyFactors: LocaleText[] = w.factors
-      .filter((f) => !f.cancelled && f.effectivePoints > 0)
-      .sort((a, b) => b.effectivePoints - a.effectivePoints)
+      .filter((f: ResolvedAssessment) => !f.cancelled && f.effectivePoints > 0)
+      .sort((a: ResolvedAssessment, b: ResolvedAssessment) => b.effectivePoints - a.effectivePoints)
       .slice(0, 5)
-      .map((f) => f.reason);
+      .map((f: ResolvedAssessment) => f.reason);
 
     // Panchanga Shuddhi: count of positive panchanga assessments
     const panchangaShuddhi = w.factors.filter(
-      (f) => f.category === 'panchanga' && !f.cancelled && f.effectivePoints > 0
+      (f: ResolvedAssessment) => f.category === 'panchanga' && !f.cancelled && f.effectivePoints > 0
     ).length;
 
     return {
@@ -79,7 +80,7 @@ export function adaptToV2(windows: ScoredWindow[]): ScanV2Window[] {
       chandraBala: findPersonalScore(w, 'chandra-bala', 10),
       dashaHarmony: findPersonalScore(w, 'dasha-harmony', 10),
       inauspicious: clamp(
-        10 - w.inauspiciousPeriods.filter((p) => p.active).length,
+        10 - w.inauspiciousPeriods.filter((p: InauspiciousPeriod) => p.active).length,
         0,
         10
       ),
@@ -177,8 +178,8 @@ function clamp(value: number, min: number, max: number): number {
  * Find an assessment by ruleId prefix. Rules are registered with IDs
  * like 'tithi-quality', 'nakshatra-quality', etc.
  */
-function findAssessment(w: ScoredWindow, ruleIdPrefix: string) {
-  return w.factors.find((f) => f.ruleId.startsWith(ruleIdPrefix)) ?? null;
+function findAssessment(w: ScoredWindow, ruleIdPrefix: string): ResolvedAssessment | null {
+  return w.factors.find((f: ResolvedAssessment) => f.ruleId.startsWith(ruleIdPrefix)) ?? null;
 }
 
 /**

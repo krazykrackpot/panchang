@@ -27,6 +27,9 @@ import { YOGAS } from '@/lib/constants/yogas';
 import { GRAHAS } from '@/lib/constants/grahas';
 import type { ExtendedActivityId } from '@/types/muhurta-ai';
 import type { BirthData } from '@/types/kundali';
+import '@/lib/muhurta/engine'; // ensure rules registered
+import { unifiedScan as _unifiedScan } from '@/lib/muhurta/engine/scanner';
+import { adaptToSmartSearch as _adaptToSmartSearch } from '@/lib/muhurta/engine/adapters';
 
 // ─── Types ───────────────────────────────────────────────────────
 
@@ -530,20 +533,22 @@ export function smartMuhurtaSearch(
   params: SearchParams,
   userSnapshot?: UserSnapshot,
 ): MuhurtaWindow[] {
-  // Pass 1: coarse scan for top days
-  const topDays = coarseScan(params);
+  // Delegate to the unified engine with two-pass mode for performance,
+  // then adapt the output to MuhurtaWindow[] format.
+  const windows = _unifiedScan({
+    startDate: params.startDate,
+    endDate: params.endDate,
+    activity: params.activity,
+    lat: params.lat,
+    lng: params.lng,
+    tz: params.tzOffset,
+    windowMinutes: 15,
+    twoPass: true,
+    twoPassTopDays: 5,
+    maxResults: 3,
+    minScore: 30,
+    dashaLords: userSnapshot?.dashaLords,
+  });
 
-  if (topDays.length === 0) return [];
-
-  // Pass 2: fine scan each top day
-  const allWindows: MuhurtaWindow[] = [];
-
-  for (const dayScore of topDays) {
-    const windows = fineScan(dayScore.date, params, userSnapshot);
-    allWindows.push(...windows);
-  }
-
-  // Sort all windows by score descending, return top 3
-  allWindows.sort((a, b) => b.score - a.score);
-  return allWindows.slice(0, 3);
+  return _adaptToSmartSearch(windows);
 }

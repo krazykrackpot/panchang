@@ -943,12 +943,12 @@ export default function MuhuratPage() {
           {/* Classical sources */}
           <div className="rounded-xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-5">
             <h3 className="text-gold-primary text-sm font-bold mb-2">
-              {locale === 'hi' ? 'शास्त्रीय स्रोत' : 'Classical Sources'}
+              {locale === 'hi' ? '7 शास्त्रीय ग्रन्थों से 33 नियम' : '33 Rules from 7 Classical Texts'}
             </h3>
             <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
               {locale === 'hi'
-                ? 'हमारी गणना मुहूर्त चिन्तामणि (अध्याय ६, विवाह प्रकरण), धर्मसिन्धु, बृहत् संहिता (अध्याय १०३), और बी.वी. रमन की मुहूर्थ पर आधारित है। प्रत्येक नियम का स्रोत प्रलेखित है।'
-                : 'Our calculations are based on Muhurta Chintamani (Ch. 6, Vivah Prakarana), Dharmasindhu, Brihat Samhita (Ch. 103), and B.V. Raman\'s Muhurtha. Every rule is traced to a named classical text.'}
+                ? 'हमारी गणना 7 प्रामाणिक ग्रन्थों से 33 विशिष्ट नियमों पर आधारित है: मुहूर्त चिन्तामणि (अध्याय 6-7, विवाह/लग्न प्रकरण), धर्मसिन्धु (चातुर्मास/अधिमास निषेध), BPHS (अस्त कोण), बृहत् संहिता (अध्याय 103, गोधूलि लग्न), प्रश्न मार्ग, बी.वी. रमन की मुहूर्थ, और कालप्रकाशिका। प्रत्येक नियम एक विशिष्ट अध्याय/श्लोक से जुड़ा है।'
+                : 'Our scoring applies 33 discrete rules from 7 authoritative texts: Muhurta Chintamani (Ch. 6-7, Vivah/Lagna Prakarana), Dharma Sindhu (Chaturmas/Adhika Masa prohibitions), BPHS (combustion orbs), Brihat Samhita (Ch. 103, Godhuli Lagna), Prashna Marga, B.V. Raman\'s Muhurtha, and Kalaprakashika. Every rule traces to a specific chapter or verse.'}
             </p>
           </div>
 
@@ -981,12 +981,12 @@ export default function MuhuratPage() {
           {/* Scoring approach */}
           <div className="rounded-xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-5">
             <h3 className="text-gold-primary text-sm font-bold mb-2">
-              {locale === 'hi' ? 'गुणवत्ता श्रेणीकरण' : 'Quality Grading'}
+              {locale === 'hi' ? '5-स्तरीय निवारण तर्क' : '5-Tier Cancellation Logic'}
             </h3>
             <p className="text-text-secondary text-sm leading-relaxed mb-3" style={bodyFont}>
               {locale === 'hi'
-                ? 'कठोर निषेधों को पार करने के बाद, शेष दिनों को 8 कारकों पर स्कोर किया जाता है: नक्षत्र (प्रमुख), तिथि, योग, करण, वार, लग्न, नवांश शुद्धि, और ग्रह गोचर। लग्न सबसे शक्तिशाली सुधारक कारक है — मुहूर्त चिन्तामणि कहता है "उचित लग्न अन्य सभी दोषों का निवारण करता है।"'
-                : 'After passing hard prohibitions, remaining days are scored across 8 factors: Nakshatra (primary), Tithi, Yoga, Karana, Vara, Lagna, Navamsha Shuddhi, and planetary transits. Lagna is the most powerful corrective — Muhurta Chintamani states "a properly chosen lagna removes all other defects."'}
+                ? 'यह बाइनरी हाँ/नहीं प्रणाली नहीं है। कठोर निषेधों (स्तर 1) को पार करने के बाद, शेष दिनों को 5-स्तरीय प्राधिकार क्रम से स्कोर किया जाता है। अधिभावी नियम (स्तर 2) — गोधूलि लग्न (सूर्यास्त ±24 मिनट, बृहत् संहिता अध्याय 103) या लग्न में शुक्र/बुध/गुरु (MC अध्याय 7) — सभी निचले दोषों को वास्तव में निवारित करते हैं। प्रमुख कारक (स्तर 3) में नक्षत्र, तिथि-वार, अष्टम भाव शून्यता। सामान्य (स्तर 4) में योग, करण, होरा, चौघड़िया। निवारणीय (स्तर 5) — दुर्बल करण जिसे बलवान लग्न क्षतिपूर्ति करता है।'
+                : 'This is not binary pass/fail. After hard prohibitions (Tier 1), remaining days are scored via a 5-tier authority hierarchy. Override rules (Tier 2) — Godhuli Lagna (sunset ±24 min, Brihat Samhita Ch.103) or Venus/Mercury/Jupiter in lagna (MC Ch.7) — genuinely cancel all lower-tier defects. Major factors (Tier 3) include nakshatra, tithi-vara alignment, 8th house vacancy. Standard (Tier 4) covers yoga, karana, hora, choghadiya. Cancellable (Tier 5) — weak karana that a strong lagna compensates. Classical cancellation means a powerful lagna truly removes defects, not merely offsets them numerically.'}
             </p>
             <div className="flex flex-wrap gap-2">
               <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/20">72+ = {locale === 'hi' ? 'उत्कृष्ट' : 'Excellent'}</span>

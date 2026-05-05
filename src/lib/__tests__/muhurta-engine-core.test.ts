@@ -272,8 +272,9 @@ describe('Evaluator', () => {
     expect(result.vetoes).toHaveLength(0);
     expect(result.breakdown.panchanga).toBeGreaterThan(0);
     // All panchanga factors are positive, so raw panchanga sum should be high
-    // 8+8+4+2+3 = 25, clamped to 25 => score = round(25/102*100) = 25
-    expect(result.score).toBe(25);
+    // 8+8+4+2+3 = 25, clamped to 25 => score = round(25/72*100) = 35
+    // (maxPossible = 72 base when no personal data or special yogas)
+    expect(result.score).toBe(35);
   });
 
   it('cancels Tier 4 defects (karana, vara) when a Tier 2 lagna rule cancels them', () => {

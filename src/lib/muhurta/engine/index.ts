@@ -14,6 +14,7 @@ import { VARJYAM_RULES } from './rules/varjyam';
 import { SPECIAL_YOGA_RULES } from './rules/special-yogas';
 import { GRAHA_RULES } from './rules/graha';
 import { PERSONAL_RULES } from './rules/personal';
+import { GANDANTHARA_RULES } from './rules/gandanthara';
 
 // Register all rules on first import (idempotent — check if already registered)
 if (getRuleCount() === 0) {
@@ -26,6 +27,7 @@ if (getRuleCount() === 0) {
     ...SPECIAL_YOGA_RULES,
     ...GRAHA_RULES,
     ...PERSONAL_RULES,
+    ...GANDANTHARA_RULES,
   ]);
 }
 

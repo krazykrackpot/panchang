@@ -30,7 +30,8 @@ const CATEGORY_MAX: Record<string, number> = {
   period: 0, // period only produces vetoes, never score contributions
 };
 
-const MAX_POSSIBLE = 25 + 15 + 20 + 12 + 10 + 20; // 102
+// Base max (always applicable): panchanga(25) + graha(15) + kaala(20) + lagna(12) = 72
+const BASE_MAX = 25 + 15 + 20 + 12;
 
 function assignGrade(score: number): MuhurtaGrade {
   if (score >= 75) return 'excellent';
@@ -184,7 +185,26 @@ export function evaluateWindow(ctx: RuleContext): EvaluationResult {
   // 4. Compute category scores
   const breakdown = computeBreakdown(resolved);
 
-  // 5. Compute final score
+  // 5. Compute dynamic maxPossible based on what data/rules are applicable
+  // Personal category: only include if birth data was provided
+  // tara-bala(8) + chandra-bala(8) = 16 without dasha; +8 with dasha = 24 (capped to 20)
+  let personalMax = 0;
+  if (ctx.birthNakshatra !== undefined || ctx.birthRashi !== undefined) {
+    personalMax = 16; // tara(8) + chandra(8)
+    if (ctx.dashaLords) {
+      personalMax = 20; // capped: 8+8+8=24 → cap 20
+    }
+  }
+
+  // Special yogas: only include in denominator if at least one fired positively
+  const specialFired = resolved.some(
+    (a) => a.category === 'yoga-special' && a.points > 0 && !a.cancelled
+  );
+  const specialMax = specialFired ? 10 : 0;
+
+  const maxPossible = BASE_MAX + personalMax + specialMax;
+
+  // 5b. Compute final score
   const rawScore =
     breakdown.panchanga +
     breakdown.graha +
@@ -193,7 +213,7 @@ export function evaluateWindow(ctx: RuleContext): EvaluationResult {
     breakdown.special +
     breakdown.personal;
   const score = Math.round(
-    Math.max(0, Math.min(100, (rawScore / MAX_POSSIBLE) * 100))
+    Math.max(0, Math.min(100, (rawScore / maxPossible) * 100))
   );
 
   // 6. Assign grade

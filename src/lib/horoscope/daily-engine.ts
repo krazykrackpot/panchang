@@ -86,6 +86,7 @@ export interface DailyEngineInput {
   moonSign: number;           // 1-12
   date: string;               // "YYYY-MM-DD"
   nakshatra?: number;         // birth nakshatra 1-27 (optional refinement)
+  ayanamshaValue?: number;    // pre-computed ayanamsha; falls back to Lahiri if omitted
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -410,7 +411,7 @@ export function generateDailyHoroscope(input: DailyEngineInput): DailyHoroscope 
 
   // Planetary positions (tropical -> sidereal for slow planets)
   const planets = getPlanetaryPositions(jd);
-  const ayanamsha = lahiriAyanamsha(jd);
+  const ayanamsha = input.ayanamshaValue ?? lahiriAyanamsha(jd);
 
   const getSiderealSign = (planetId: number): number => {
     const p = planets.find(pl => pl.id === planetId);

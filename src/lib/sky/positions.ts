@@ -63,10 +63,10 @@ function dateToJDSafe(date: Date): number {
  * @param date  Optional date — defaults to now (new Date()). Internally uses
  *              Date.UTC components to avoid local-timezone skew.
  */
-export function getCurrentSkyPositions(date?: Date): SkyPlanetPosition[] {
+export function getCurrentSkyPositions(date?: Date, ayanamshaValue?: number): SkyPlanetPosition[] {
   const d = date ?? new Date();
   const jd = dateToJDSafe(d);
-  const ayanamsha = lahiriAyanamsha(jd);
+  const ayanamsha = ayanamshaValue ?? lahiriAyanamsha(jd);
 
   const tropicalPositions = getPlanetaryPositions(jd);
 

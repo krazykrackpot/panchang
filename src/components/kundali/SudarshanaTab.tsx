@@ -7,7 +7,7 @@ import { GRAHA_ABBREVIATIONS, GRAHAS } from '@/lib/constants/grahas';
 import { generateSudarshana, type RingData, type RingSegment } from '@/lib/kundali/sudarshana';
 import type { DetailedRingAnalysis } from '@/lib/kundali/sudarshana-interpretation';
 import type { KundaliData } from '@/types/kundali';
-import { dateToJD, getPlanetaryPositions, toSidereal, lahiriAyanamsha, getRashiNumber } from '@/lib/ephem/astronomical';
+import { dateToJD, getPlanetaryPositions, toSidereal, getAyanamsha, getRashiNumber, type AyanamshaType } from '@/lib/ephem/astronomical';
 
 interface SudarshanaTabProps {
   kundali: KundaliData;
@@ -91,7 +91,7 @@ export default function SudarshanaTab({ kundali, locale }: SudarshanaTabProps) {
       const tDay = targetDate.getUTCDate();
       const jd = dateToJD(tYear, tMonth, tDay, 12);
       const positions = getPlanetaryPositions(jd);
-      const ayanamsha = lahiriAyanamsha(jd);
+      const ayanamsha = getAyanamsha(jd, (kundali.birthData?.ayanamsha as AyanamshaType) || 'lahiri');
 
       // Map each planet to its sidereal rashi
       return positions.map((p, i) => {

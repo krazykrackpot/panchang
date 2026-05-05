@@ -903,6 +903,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
     latitude: birthData.lat,
     longitude: birthData.lng,
     timezone: tzOffset,
+    ayanamshaValue,
   });
 
   // Derive legacy shadbala format from fullShadbala (real data, not hardcoded)

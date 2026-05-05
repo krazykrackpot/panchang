@@ -34,6 +34,7 @@ interface ShadBalaInput {
   latitude: number;    // birth latitude for sunrise calc
   longitude: number;   // birth longitude
   timezone: number;    // timezone offset in hours
+  ayanamshaValue?: number; // pre-computed ayanamsha; falls back to Lahiri if omitted
 }
 
 // ---------------------------------------------------------------------------
@@ -640,7 +641,7 @@ function computeKalaBala(
   const mb = masaBala(p, input.birthDateObj, planets, input.julianDay);
   const vb = varaBala(p, input.julianDay);
   const hb = horaBala(p, birthHour, input.julianDay, sunriseHour);
-  const ayanamsha = lahiriAyanamsha(input.julianDay);
+  const ayanamsha = input.ayanamshaValue ?? lahiriAyanamsha(input.julianDay);
   const ay = ayanaBala(p, ayanamsha);
   const yb = yuddhaBalaMap[p.id] ?? 0;
 
@@ -814,7 +815,7 @@ export function calculateFullShadbala(input: ShadBalaInput, options?: ShadBalaOp
     const sthana = computeSthanaBala(p);
     const digBala = r2(computeDigBala(p, input.ascendantDeg));
     const kala = computeKalaBala(p, input, planets, yuddhaBalaMap);
-    const ayanamsha = lahiriAyanamsha(input.julianDay);
+    const ayanamsha = input.ayanamshaValue ?? lahiriAyanamsha(input.julianDay);
     const ay = ayanaBala(p, ayanamsha);
     const cheshtaBala = r2(computeCheshtaBala(p, ay, planets, options?.cheshtaBalaMode || 'bphs_strict'));
     const naisargikaBala = NAISARGIKA[p.id];

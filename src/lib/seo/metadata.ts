@@ -1621,6 +1621,41 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: 'Complete guide to Meena (Pisces) in Vedic astrology — water sign ruled by Jupiter. Venus exalted, Mercury debilitated here. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में मीन राशि — गुरु शासित जल राशि। शुक्र उच्च, बुध नीच। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'मीनराशेः सम्पूर्णमार्गदर्शिका।' },
     keywords: ['meena rashi', 'pisces vedic astrology', 'meena characteristics', 'venus exalted pisces', 'mercury debilitated pisces'],
   },
+  '/learn/amrit-siddhi-yoga': {
+    title: { en: 'Amrit Siddhi Yoga — When Nakshatra Meets Weekday', hi: 'अमृत सिद्धि योग — नक्षत्र और वार का संगम', sa: 'अमृतसिद्धियोगः' },
+    description: { en: 'Learn about Amrit Siddhi Yoga — the rare luni-solar combination when specific nakshatras align with specific weekdays, creating windows of extraordinary auspiciousness.', hi: 'अमृत सिद्धि योग — विशिष्ट नक्षत्रों और वारों के संयोग से बनने वाला दुर्लभ शुभ योग।', sa: 'अमृतसिद्धियोगस्य विवरणम्।' },
+    keywords: ['amrit siddhi yoga', 'auspicious yoga', 'nakshatra weekday combination', 'muhurta yoga', 'vedic timing'],
+  },
+  '/learn/dwipushkar-yoga': {
+    title: { en: 'Dwipushkar Yoga — Double Auspiciousness in Vedic Timing', hi: 'द्विपुष्कर योग — वैदिक समय में दोहरी शुभता', sa: 'द्विपुष्करयोगः' },
+    description: { en: 'Dwipushkar Yoga doubles the fruit of any action performed during its window. Learn the tithi-nakshatra-weekday combination that creates this powerful muhurta yoga.', hi: 'द्विपुष्कर योग इस अवधि में किये गये किसी भी कार्य का फल दोगुना करता है।', sa: 'द्विपुष्करयोगस्य विवरणम्।' },
+    keywords: ['dwipushkar yoga', 'double auspicious', 'muhurta yoga', 'vedic timing', 'tithi nakshatra combination'],
+  },
+  '/learn/guru-pushya-yoga': {
+    title: { en: 'Guru Pushya Yoga — The Most Auspicious Combination', hi: 'गुरु पुष्य योग — सर्वाधिक शुभ संयोग', sa: 'गुरुपुष्ययोगः' },
+    description: { en: 'Guru Pushya Yoga occurs when Thursday (Jupiter\'s day) coincides with Pushya nakshatra — considered the single most auspicious time for new ventures, purchases, and investments.', hi: 'गुरु पुष्य योग तब बनता है जब गुरुवार पुष्य नक्षत्र के साथ आता है — नये कार्य, खरीद और निवेश के लिए सर्वाधिक शुभ।', sa: 'गुरुपुष्ययोगस्य विवरणम्।' },
+    keywords: ['guru pushya yoga', 'thursday pushya', 'most auspicious yoga', 'buying gold', 'new ventures timing'],
+  },
+  '/learn/ravi-pushya-yoga': {
+    title: { en: 'Ravi Pushya Yoga — Solar Power Meets Lunar Grace', hi: 'रवि पुष्य योग — सौर शक्ति और चन्द्र कृपा', sa: 'रविपुष्ययोगः' },
+    description: { en: 'Ravi Pushya Yoga forms when Sunday (Sun\'s day) coincides with Pushya nakshatra. Highly auspicious for government work, health remedies, and authority-related undertakings.', hi: 'रवि पुष्य योग तब बनता है जब रविवार पुष्य नक्षत्र के साथ आता है। सरकारी कार्य, स्वास्थ्य उपचार के लिए अत्यन्त शुभ।', sa: 'रविपुष्ययोगस्य विवरणम्।' },
+    keywords: ['ravi pushya yoga', 'sunday pushya', 'auspicious yoga', 'government work timing', 'health remedies timing'],
+  },
+  '/learn/sarvartha-siddhi-yoga': {
+    title: { en: 'Sarvartha Siddhi Yoga — When All Purposes Succeed', hi: 'सर्वार्थ सिद्धि योग — जब सभी कार्य सिद्ध हों', sa: 'सर्वार्थसिद्धियोगः' },
+    description: { en: 'Sarvartha Siddhi Yoga ("accomplishment of all purposes") forms from specific tithi-nakshatra-weekday alignments. One of the most powerful muhurta yogas in classical Jyotish.', hi: 'सर्वार्थ सिद्धि योग विशिष्ट तिथि-नक्षत्र-वार संयोग से बनता है। शास्त्रीय ज्योतिष में सबसे शक्तिशाली मुहूर्त योगों में एक।', sa: 'सर्वार्थसिद्धियोगस्य विवरणम्।' },
+    keywords: ['sarvartha siddhi yoga', 'all purposes yoga', 'muhurta yoga', 'auspicious timing', 'tithi nakshatra weekday'],
+  },
+  '/learn/siddha-yoga': {
+    title: { en: 'Siddha Yoga — Accomplished Timing in Vedic Astrology', hi: 'सिद्ध योग — वैदिक ज्योतिष में सिद्ध समय', sa: 'सिद्धयोगः' },
+    description: { en: 'Siddha Yoga forms when specific weekdays combine with specific tithis, creating naturally accomplished timing windows. Learn the classical combinations and their applications.', hi: 'सिद्ध योग विशिष्ट वारों और तिथियों के संयोग से बनता है, स्वाभाविक रूप से सिद्ध समय खिड़कियाँ निर्मित करता है।', sa: 'सिद्धयोगस्य विवरणम्।' },
+    keywords: ['siddha yoga', 'accomplished yoga', 'weekday tithi combination', 'muhurta timing', 'vedic calendar yoga'],
+  },
+  '/learn/tripushkar-yoga': {
+    title: { en: 'Tripushkar Yoga — Triple Auspiciousness in Vedic Timing', hi: 'त्रिपुष्कर योग — वैदिक समय में तिगुनी शुभता', sa: 'त्रिपुष्करयोगः' },
+    description: { en: 'Tripushkar Yoga triples the fruit of actions — even rarer than Dwipushkar. Learn the specific tithi-nakshatra-weekday combination and when to use this powerful window.', hi: 'त्रिपुष्कर योग कार्यों का फल तिगुना करता है — द्विपुष्कर से भी दुर्लभ।', sa: 'त्रिपुष्करयोगस्य विवरणम्।' },
+    keywords: ['tripushkar yoga', 'triple auspicious', 'muhurta yoga', 'rarest yoga', 'vedic timing combination'],
+  },
 };
 
 /**

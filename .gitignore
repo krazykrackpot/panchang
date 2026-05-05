@@ -51,5 +51,10 @@ test-results/
 .playwright-mcp/
 final_stress_test.ts
 
-# Video files (too large for git)
+# Media files (too large for git)
 public/videos/*.mp4
+*.mp3
+*.mp4
+*.wav
+*.zip
+scripts/video/*/voice-samples/

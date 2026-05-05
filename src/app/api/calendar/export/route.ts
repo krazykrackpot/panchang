@@ -156,11 +156,16 @@ export async function GET(request: Request) {
 
     const filename = `vedic-calendar-${category}-${year}.ics`;
 
+    // webcal:// subscriptions need inline disposition; direct downloads get attachment
+    const isSubscription = searchParams.get('subscribe') === '1';
+
     return new Response(icsContent, {
       status: 200,
       headers: {
         'Content-Type': 'text/calendar; charset=utf-8',
-        'Content-Disposition': `attachment; filename="${filename}"`,
+        ...(isSubscription
+          ? { 'Content-Disposition': `inline; filename="${filename}"` }
+          : { 'Content-Disposition': `attachment; filename="${filename}"` }),
         'Cache-Control': 'public, s-maxage=3600',
       },
     });

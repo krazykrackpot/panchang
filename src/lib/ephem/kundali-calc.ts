@@ -970,6 +970,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
     ashtakavargaSaturnBindus: ashtakavarga?.bpiTable?.[6],
     currentDasha: currentMahaDasha ? { planet: currentMahaDasha.planet, startDate: currentMahaDasha.startDate, endDate: currentMahaDasha.endDate } : undefined,
     currentAntar: currentAntarDasha ? { planet: currentAntarDasha.planet, startDate: currentAntarDasha.startDate, endDate: currentAntarDasha.endDate } : undefined,
+    ayanamshaValue,
   });
 
   return {

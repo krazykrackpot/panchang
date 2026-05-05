@@ -8,7 +8,6 @@ import type { LocaleText } from '@/types/panchang';
 import {
   normalizeDeg,
   toSidereal,
-  lahiriAyanamsha,
   getRashiNumber,
   getNakshatraNumber,
   dateToJD,
@@ -99,6 +98,7 @@ export interface SadeSatiInput {
   ashtakavargaSaturnBindus?: number[];
   currentDasha?: { planet: string; startDate: string; endDate: string };
   currentAntar?: { planet: string; startDate: string; endDate: string };
+  ayanamshaValue?: number; // User's pre-computed ayanamsha; when provided, bypasses Lahiri cache
 }
 
 // ---------------------------------------------------------------------------
@@ -140,34 +140,41 @@ function moonSignStrength(sign: number): 'exalted' | 'own' | 'friendly' | 'neutr
 // Cycle detection
 // ---------------------------------------------------------------------------
 
-/** Module-level cache: Saturn sidereal sign per year×month (key: year*12+month) */
-let _saturnSignCache: Map<number, number> | null = null;
+/**
+ * Module-level cache: Saturn TROPICAL longitude per year×month (key: year*12+month).
+ *
+ * Stores tropical (not sidereal) so any ayanamsha system can be applied at lookup
+ * time. The expensive part (planetary position computation via Swiss Ephemeris) is
+ * cached; the cheap part (ayanamsha subtraction) happens on demand.
+ */
+let _saturnTropicalCache: Map<number, number> | null = null;
 
-function getSaturnSignCache(): Map<number, number> {
-  if (_saturnSignCache) return _saturnSignCache;
-  _saturnSignCache = new Map();
+function getSaturnTropicalCache(): Map<number, number> {
+  if (_saturnTropicalCache) return _saturnTropicalCache;
+  _saturnTropicalCache = new Map();
   for (let y = 1940; y <= 2070; y++) {
     for (let m = 1; m <= 12; m++) {
       const jd = dateToJD(y, m, 15, 12);
       const planets = getPlanetaryPositions(jd);
-      const saturnTropical = planets[6]?.longitude ?? 0;
-      const sign = getRashiNumber(normalizeDeg(toSidereal(saturnTropical, jd)));
-      _saturnSignCache.set(y * 12 + m, sign);
+      _saturnTropicalCache.set(y * 12 + m, planets[6]?.longitude ?? 0);
     }
   }
-  return _saturnSignCache;
+  return _saturnTropicalCache;
 }
 
-/** Get Saturn's sidereal sign at a given year-month (cached) */
-function saturnSignAt(year: number, month: number): number {
-  return getSaturnSignCache().get(year * 12 + month) ?? 0;
+/** Get Saturn's sidereal sign at a given year-month (cached tropical, ayanamsha applied at lookup) */
+function saturnSignAt(year: number, month: number, ayanamshaValue?: number): number {
+  const tropical = getSaturnTropicalCache().get(year * 12 + month);
+  if (tropical === undefined) return 0;
+  const jd = dateToJD(year, month, 15, 12);
+  return getRashiNumber(normalizeDeg(toSidereal(tropical, jd, ayanamshaValue)));
 }
 
 /** Get Saturn's sidereal sign at a given JD (uncached, for one-off lookups) */
-function saturnSignAtJD(jd: number): number {
+function saturnSignAtJD(jd: number, ayanamshaValue?: number): number {
   const planets = getPlanetaryPositions(jd);
   const saturnTropical = planets[6]?.longitude ?? 0;
-  return getRashiNumber(normalizeDeg(toSidereal(saturnTropical, jd)));
+  return getRashiNumber(normalizeDeg(toSidereal(saturnTropical, jd, ayanamshaValue)));
 }
 
 /**
@@ -175,15 +182,15 @@ function saturnSignAtJD(jd: number): number {
  * Returns entries like { year: 2020, month: 3, sign: 10 } meaning
  * Saturn entered Makara around March 2020.
  */
-function findSaturnIngresses(startYear: number, endYear: number): { year: number; month: number; sign: number }[] {
+function findSaturnIngresses(startYear: number, endYear: number, ayanamshaValue?: number): { year: number; month: number; sign: number }[] {
   const ingresses: { year: number; month: number; sign: number }[] = [];
-  let prevSign = saturnSignAtJD(dateToJD(startYear, 1, 1, 12));
+  let prevSign = saturnSignAtJD(dateToJD(startYear, 1, 1, 12), ayanamshaValue);
   ingresses.push({ year: startYear, month: 1, sign: prevSign });
 
   for (let y = startYear; y <= endYear; y++) {
     for (let m = 1; m <= 12; m++) {
       const jd = dateToJD(y, m, 15, 12);
-      const sign = saturnSignAtJD(jd);
+      const sign = saturnSignAtJD(jd, ayanamshaValue);
       if (sign !== prevSign) {
         ingresses.push({ year: y, month: m, sign });
         prevSign = sign;
@@ -193,7 +200,7 @@ function findSaturnIngresses(startYear: number, endYear: number): { year: number
   return ingresses;
 }
 
-function buildAllCycles(moonSign: number): SadeSatiCycle[] {
+function buildAllCycles(moonSign: number, ayanamshaValue?: number): SadeSatiCycle[] {
   const sign12th = ((moonSign - 2 + 12) % 12) + 1;
   const sign1st = moonSign;
   const sign2nd = (moonSign % 12) + 1;
@@ -207,7 +214,7 @@ function buildAllCycles(moonSign: number): SadeSatiCycle[] {
   for (let y = 1940; y <= 2070; y++) {
     const signCounts = new Map<number, number>();
     for (let m = 1; m <= 12; m++) {
-      const sign = saturnSignAt(y, m);
+      const sign = saturnSignAt(y, m, ayanamshaValue);
       if (targetSigns.has(sign)) {
         signCounts.set(sign, (signCounts.get(sign) ?? 0) + 1);
       }
@@ -292,12 +299,12 @@ function buildCycle(
 // Current Saturn sign helper
 // ---------------------------------------------------------------------------
 
-export function getCurrentSaturnSign(): { sign: number; signName: LocaleText; degree: number } {
+export function getCurrentSaturnSign(ayanamshaValue?: number): { sign: number; signName: LocaleText; degree: number } {
   const now = new Date();
   const jd = dateToJD(now.getFullYear(), now.getMonth() + 1, now.getDate(), 12);
   const planets = getPlanetaryPositions(jd);
   const saturnTropical = planets[6]?.longitude ?? 0;
-  const saturnSid = normalizeDeg(toSidereal(saturnTropical, jd));
+  const saturnSid = normalizeDeg(toSidereal(saturnTropical, jd, ayanamshaValue));
   const sign = getRashiNumber(saturnSid);
   return {
     sign,
@@ -650,7 +657,7 @@ function generateAshtakavargaInsight(bindus: number[] | undefined, currentSaturn
     en: `Saturn has ${b} bindu${b !== 1 ? 's' : ''} in ${RASHI_EN[currentSaturnSign]} in your Ashtakavarga. ${b <= 2 ? 'This is significantly below the 4-bindu average, indicating a harsh transit period. Extra caution and remedial measures are strongly advised.' : b <= 3 ? 'Slightly below average — some friction expected but manageable with awareness.' : b === 4 ? 'Average score — standard Sade Sati effects apply.' : b <= 6 ? 'Above average — this transit may bring constructive restructuring rather than pure hardship.' : 'Excellent score — this is a rare beneficial Saturn transit. Despite Sade Sati, expect recognition and achievement.'}`, hi: `आपके अष्टकवर्ग में शनि के ${RASHI_HI[currentSaturnSign]} में ${b} बिन्दु हैं। ${b <= 2 ? 'यह 4-बिन्दु औसत से काफी कम है, कठिन गोचर काल का संकेत। अतिरिक्त सावधानी और उपचारात्मक उपाय अत्यधिक अनुशंसित हैं।' : b <= 3 ? 'औसत से थोड़ा कम — कुछ घर्षण अपेक्षित लेकिन जागरूकता से संभालने योग्य।' : b === 4 ? 'औसत स्कोर — मानक साढ़ेसाती प्रभाव लागू।' : b <= 6 ? 'औसत से ऊपर — यह गोचर शुद्ध कष्ट के बजाय रचनात्मक पुनर्गठन ला सकता है।' : 'उत्कृष्ट स्कोर — यह एक दुर्लभ लाभकारी शनि गोचर है। साढ़ेसाती के बावजूद, मान्यता और उपलब्धि अपेक्षित।'}`, sa: `आपके अष्टकवर्ग में शनि के ${RASHI_HI[currentSaturnSign]} में ${b} बिन्दु हैं। ${b <= 2 ? 'यह 4-बिन्दु औसत से काफी कम है, कठिन गोचर काल का संकेत। अतिरिक्त सावधानी और उपचारात्मक उपाय अत्यधिक अनुशंसित हैं।' : b <= 3 ? 'औसत से थोड़ा कम — कुछ घर्षण अपेक्षित लेकिन जागरूकता से संभालने योग्य।' : b === 4 ? 'औसत स्कोर — मानक साढ़ेसाती प्रभाव लागू।' : b <= 6 ? 'औसत से ऊपर — यह गोचर शुद्ध कष्ट के बजाय रचनात्मक पुनर्गठन ला सकता है।' : 'उत्कृष्ट स्कोर — यह एक दुर्लभ लाभकारी शनि गोचर है। साढ़ेसाती के बावजूद, मान्यता और उपलब्धि अपेक्षित।'}`, mai: `आपके अष्टकवर्ग में शनि के ${RASHI_HI[currentSaturnSign]} में ${b} बिन्दु हैं। ${b <= 2 ? 'यह 4-बिन्दु औसत से काफी कम है, कठिन गोचर काल का संकेत। अतिरिक्त सावधानी और उपचारात्मक उपाय अत्यधिक अनुशंसित हैं।' : b <= 3 ? 'औसत से थोड़ा कम — कुछ घर्षण अपेक्षित लेकिन जागरूकता से संभालने योग्य।' : b === 4 ? 'औसत स्कोर — मानक साढ़ेसाती प्रभाव लागू।' : b <= 6 ? 'औसत से ऊपर — यह गोचर शुद्ध कष्ट के बजाय रचनात्मक पुनर्गठन ला सकता है।' : 'उत्कृष्ट स्कोर — यह एक दुर्लभ लाभकारी शनि गोचर है। साढ़ेसाती के बावजूद, मान्यता और उपलब्धि अपेक्षित।'}`, mr: `आपके अष्टकवर्ग में शनि के ${RASHI_HI[currentSaturnSign]} में ${b} बिन्दु हैं। ${b <= 2 ? 'यह 4-बिन्दु औसत से काफी कम है, कठिन गोचर काल का संकेत। अतिरिक्त सावधानी और उपचारात्मक उपाय अत्यधिक अनुशंसित हैं।' : b <= 3 ? 'औसत से थोड़ा कम — कुछ घर्षण अपेक्षित लेकिन जागरूकता से संभालने योग्य।' : b === 4 ? 'औसत स्कोर — मानक साढ़ेसाती प्रभाव लागू।' : b <= 6 ? 'औसत से ऊपर — यह गोचर शुद्ध कष्ट के बजाय रचनात्मक पुनर्गठन ला सकता है।' : 'उत्कृष्ट स्कोर — यह एक दुर्लभ लाभकारी शनि गोचर है। साढ़ेसाती के बावजूद, मान्यता और उपलब्धि अपेक्षित।'}`, ta: `Saturn has ${b} bindu${b !== 1 ? 's' : ''} in ${RASHI_EN[currentSaturnSign]} in your Ashtakavarga. ${b <= 2 ? 'This is significantly below the 4-bindu average, indicating a harsh transit period. Extra caution and remedial measures are strongly advised.' : b <= 3 ? 'Slightly below average — some friction expected but manageable with awareness.' : b === 4 ? 'Average score — standard Sade Sati effects apply.' : b <= 6 ? 'Above average — this transit may bring constructive restructuring rather than pure hardship.' : 'Excellent score — this is a rare beneficial Saturn transit. Despite Sade Sati, expect recognition and achievement.'}`, te: `Saturn has ${b} bindu${b !== 1 ? 's' : ''} in ${RASHI_EN[currentSaturnSign]} in your Ashtakavarga. ${b <= 2 ? 'This is significantly below the 4-bindu average, indicating a harsh transit period. Extra caution and remedial measures are strongly advised.' : b <= 3 ? 'Slightly below average — some friction expected but manageable with awareness.' : b === 4 ? 'Average score — standard Sade Sati effects apply.' : b <= 6 ? 'Above average — this transit may bring constructive restructuring rather than pure hardship.' : 'Excellent score — this is a rare beneficial Saturn transit. Despite Sade Sati, expect recognition and achievement.'}`, bn: `Saturn has ${b} bindu${b !== 1 ? 's' : ''} in ${RASHI_EN[currentSaturnSign]} in your Ashtakavarga. ${b <= 2 ? 'This is significantly below the 4-bindu average, indicating a harsh transit period. Extra caution and remedial measures are strongly advised.' : b <= 3 ? 'Slightly below average — some friction expected but manageable with awareness.' : b === 4 ? 'Average score — standard Sade Sati effects apply.' : b <= 6 ? 'Above average — this transit may bring constructive restructuring rather than pure hardship.' : 'Excellent score — this is a rare beneficial Saturn transit. Despite Sade Sati, expect recognition and achievement.'}`, kn: `Saturn has ${b} bindu${b !== 1 ? 's' : ''} in ${RASHI_EN[currentSaturnSign]} in your Ashtakavarga. ${b <= 2 ? 'This is significantly below the 4-bindu average, indicating a harsh transit period. Extra caution and remedial measures are strongly advised.' : b <= 3 ? 'Slightly below average — some friction expected but manageable with awareness.' : b === 4 ? 'Average score — standard Sade Sati effects apply.' : b <= 6 ? 'Above average — this transit may bring constructive restructuring rather than pure hardship.' : 'Excellent score — this is a rare beneficial Saturn transit. Despite Sade Sati, expect recognition and achievement.'}`, gu: `Saturn has ${b} bindu${b !== 1 ? 's' : ''} in ${RASHI_EN[currentSaturnSign]} in your Ashtakavarga. ${b <= 2 ? 'This is significantly below the 4-bindu average, indicating a harsh transit period. Extra caution and remedial measures are strongly advised.' : b <= 3 ? 'Slightly below average — some friction expected but manageable with awareness.' : b === 4 ? 'Average score — standard Sade Sati effects apply.' : b <= 6 ? 'Above average — this transit may bring constructive restructuring rather than pure hardship.' : 'Excellent score — this is a rare beneficial Saturn transit. Despite Sade Sati, expect recognition and achievement.'}` };
 }
 
-function generateNakshatraTransit(moonSign: number, moonNakshatra: number | undefined, cycle: SadeSatiCycle | null): LocaleText {
+function generateNakshatraTransit(moonSign: number, moonNakshatra: number | undefined, cycle: SadeSatiCycle | null, ayanamshaValue?: number): LocaleText {
   const sign12th = ((moonSign - 2 + 12) % 12) + 1;
   const sign2nd = (moonSign % 12) + 1;
   const allNaks: number[] = [...nakshatrasInSign(sign12th), ...nakshatrasInSign(moonSign), ...nakshatrasInSign(sign2nd)];
@@ -665,7 +672,7 @@ function generateNakshatraTransit(moonSign: number, moonNakshatra: number | unde
         const jd = dateToJD(y, m, 15, 12);
         const planets = getPlanetaryPositions(jd);
         const satTrop = planets[6]?.longitude ?? 0;
-        const satSid = normalizeDeg(toSidereal(satTrop, jd));
+        const satSid = normalizeDeg(toSidereal(satTrop, jd, ayanamshaValue));
         const nak = getNakshatraNumber(satSid);
         if (uniqueNaks.includes(nak)) {
           const existing = nakYearRanges.get(nak);
@@ -844,7 +851,7 @@ function generateRemedies(input: SadeSatiInput, intensity: number, phase: 'risin
 // ---------------------------------------------------------------------------
 
 export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
-  const allCycles = buildAllCycles(input.moonSign);
+  const allCycles = buildAllCycles(input.moonSign, input.ayanamshaValue);
   const now = new Date();
   const currentYear = now.getFullYear();
 
@@ -863,7 +870,7 @@ export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
       // for precise progress (not year boundaries which are coarse).
       // Each phase = Saturn transiting one 30° sign. Saturn's current
       // degree within that sign directly gives the progress.
-      const satNow = getCurrentSaturnSign();
+      const satNow = getCurrentSaturnSign(input.ayanamshaValue);
       for (const p of cycle.phases) {
         if (p.startYear <= currentYear && currentYear <= p.endYear) {
           currentPhase = p.phase;
@@ -885,7 +892,7 @@ export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
   const cycleEnd = isActive ? String(allCycles[currentCycleIndex].endYear) : '';
 
   // Get current Saturn sign for BAV lookup
-  const saturnInfo = getCurrentSaturnSign();
+  const saturnInfo = getCurrentSaturnSign(input.ayanamshaValue);
 
   // Intensity scoring — only meaningful when active
   let intensityFactors: IntensityFactor[] = [];
@@ -925,7 +932,7 @@ export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
     moonStrength: generateMoonStrength(input.moonSign, input.moonNakshatra),
     dashaInterplay: isActive ? generateDashaInterplay(input.currentDasha) : noTransit,
     ashtakavargaInsight: isActive ? generateAshtakavargaInsight(input.ashtakavargaSaturnBindus, saturnInfo.sign) : noTransit,
-    nakshatraTransit: isActive ? generateNakshatraTransit(input.moonSign, input.moonNakshatra, allCycles[currentCycleIndex] ?? null) : noTransit,
+    nakshatraTransit: isActive ? generateNakshatraTransit(input.moonSign, input.moonNakshatra, allCycles[currentCycleIndex] ?? null, input.ayanamshaValue) : noTransit,
     houseEffect: isActive ? generateHouseEffect(input) : noTransit,
   };
 
@@ -948,7 +955,7 @@ export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
         const jd = dateToJD(y, m, 15, 12);
         const planets = getPlanetaryPositions(jd);
         const satTrop = planets[6]?.longitude ?? 0;
-        const satSid = normalizeDeg(toSidereal(satTrop, jd));
+        const satSid = normalizeDeg(toSidereal(satTrop, jd, input.ayanamshaValue));
         const nak = getNakshatraNumber(satSid);
         if (cycleNaks.includes(nak)) {
           const existing = nakRanges.get(nak);
@@ -961,7 +968,7 @@ export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
     // Get current Saturn nakshatra
     const nowJd = dateToJD(currentYear, now.getMonth() + 1, now.getDate(), 12);
     const nowPlanets = getPlanetaryPositions(nowJd);
-    const nowSatSid = normalizeDeg(toSidereal(nowPlanets[6]?.longitude ?? 0, nowJd));
+    const nowSatSid = normalizeDeg(toSidereal(nowPlanets[6]?.longitude ?? 0, nowJd, input.ayanamshaValue));
     const currentSaturnNak = getNakshatraNumber(nowSatSid);
 
     // Determine which phase a nakshatra belongs to based on its sign

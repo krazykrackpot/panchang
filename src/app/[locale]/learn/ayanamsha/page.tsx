@@ -315,6 +315,30 @@ export default function AyanamshaPage() {
         </div>
       </div>
 
+      {/* ═══ AYANAMSHA & MUHURTA ═══ */}
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/20 rounded-2xl p-6">
+        <h3 className="text-gold-gradient font-bold text-xl mb-3" style={hf}>
+          {locale === 'hi' ? 'अयनांश और मुहूर्त: एक महत्वपूर्ण अंतर' : 'Ayanamsha & Muhurta: A Critical Distinction'}
+        </h3>
+        <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
+          <p>
+            {locale === 'hi'
+              ? 'आपकी कुण्डली और पंचांग पृष्ठ आपके चुने हुए अयनांश (लाहिरी, केपी, रमन आदि) का सम्मान करते हैं — ये ग्रहों की वास्तविक स्थिति प्रदर्शित करते हैं।'
+              : 'Your kundali and panchang pages respect your chosen ayanamsha (Lahiri, KP, Raman, etc.) — they display the observational positions of planets in your preferred reference frame.'}
+          </p>
+          <p>
+            {locale === 'hi'
+              ? 'परन्तु मुहूर्त AI स्कोरिंग सदैव लाहिरी (चित्रपक्ष) अयनांश का उपयोग करता है। ऐसा इसलिए क्योंकि मुहूर्त चिन्तामणि, धर्म सिन्धु और प्रश्न मार्ग जैसे शास्त्रीय ग्रन्थों के सभी नियम — "विवाह के लिए रोहिणी शुभ है" या "विष्टि करण अशुभ है" — लाहिरी नक्षत्र सीमाओं पर लिखे गये थे। भिन्न अयनांश लगाने से ये सीमाएँ खिसक जाती हैं, और नियम गलत नक्षत्रों पर लागू होते हैं।'
+              : 'However, muhurta AI scoring always uses Lahiri (Chitrapaksha) ayanamsha. This is because classical texts like Muhurta Chintamani, Dharma Sindhu, and Prashna Marga defined all their rules — "Rohini is auspicious for marriage," "Vishti karana is inauspicious" — using Lahiri nakshatra boundaries. Applying a different ayanamsha would shift those boundaries, causing the rules to evaluate against the wrong nakshatras.'}
+          </p>
+          <p className="text-gold-dark text-xs italic">
+            {locale === 'hi'
+              ? 'सार: अयनांश का चुनाव प्रभावित करता है कि ग्रह कहाँ दिखाई देते हैं (अवलोकन)। मुहूर्त नियम बताते हैं कि कौन सा समय शुभ है (विधान) — और वे नियम लाहिरी पर आधारित हैं।'
+              : 'In short: ayanamsha choice affects where planets appear (observational). Muhurta rules tell you which time is auspicious (prescriptive) — and those rules are Lahiri-native.'}
+          </p>
+        </div>
+      </div>
+
       {/* CTA */}
       <div className="text-center">
         <a href={`/${locale}/panchang`} className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gold-primary text-bg-primary font-semibold hover:bg-gold-light transition-colors text-sm">

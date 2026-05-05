@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+import { Info } from 'lucide-react';
 import type { DetailBreakdown } from '@/types/muhurta-ai';
 
 interface ScoreBreakdownProps {
@@ -48,10 +50,31 @@ function totalScoreClass(score: number): string {
 
 export default function ScoreBreakdown({ breakdown, totalScore }: ScoreBreakdownProps) {
   const rows = buildRows(breakdown);
+  const [showAyanamshaNote, setShowAyanamshaNote] = useState(false);
 
   return (
     <div className="bg-[#111633] border border-[#d4a853]/10 rounded-xl p-5">
-      <h3 className="font-[Cinzel] text-base text-[#f0d48a] mb-3">Score Breakdown</h3>
+      <div className="flex items-center gap-2 mb-3">
+        <h3 className="font-[Cinzel] text-base text-[#f0d48a]">Score Breakdown</h3>
+        <button
+          onClick={() => setShowAyanamshaNote(v => !v)}
+          className="text-[#8a8478] hover:text-gold-light transition-colors"
+          aria-label="Ayanamsha information"
+          title="Why does muhurta scoring use Lahiri ayanamsha?"
+        >
+          <Info size={14} />
+        </button>
+      </div>
+
+      {showAyanamshaNote && (
+        <div className="mb-3 p-3 rounded-lg bg-gold-primary/5 border border-gold-primary/15 text-xs text-text-secondary leading-relaxed">
+          <span className="font-semibold text-gold-light">Why Lahiri?</span>{' '}
+          Muhurta scoring always uses Lahiri (Chitrapaksha) ayanamsha, even if you&apos;ve selected KP or Raman for your birth chart.
+          Classical muhurta rules from texts like Muhurta Chintamani and Dharma Sindhu were composed under Lahiri
+          boundaries &mdash; applying those rules with a different ayanamsha would shift nakshatra boundaries and produce
+          less accurate results. Your kundali and panchang pages still respect your chosen ayanamsha for display.
+        </div>
+      )}
 
       <div>
         {rows.map((row, i) => {

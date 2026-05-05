@@ -308,7 +308,29 @@ export function scoreTimingFactors(
 }
 
 /**
- * Get panchang snapshot for a given JD
+ * Get panchang snapshot for a given JD.
+ *
+ * DESIGN DECISION — Lahiri ayanamsha is always used here, regardless of the user's
+ * ayanamsha preference on their kundali/panchang pages. This is intentional:
+ *
+ * The muhurta scoring engine applies classical rule tables (Muhurta Chintamani,
+ * Dharma Sindhu, Prashna Marga) that define which nakshatras, tithis, yogas, and
+ * karanas are auspicious or inauspicious. These tables were ALL composed under the
+ * Lahiri/Chitrapaksha system — the Indian government standard since 1956.
+ *
+ * If we used Raman ayanamsha (~1.45° offset), the Moon's nakshatra boundary would
+ * shift by ~2.8 hours. A window might show "Moon in Rohini" (auspicious for marriage)
+ * under Raman, but the classical rule "Rohini is auspicious" was written for
+ * Lahiri-Rohini, which starts 1.45° earlier. Applying Lahiri-native rules to
+ * non-Lahiri positions produces worse results, not better.
+ *
+ * The correct separation:
+ *   - Panchang display / Kundali chart → user's chosen ayanamsha (observational)
+ *   - Muhurta rules engine → always Lahiri (prescriptive, rule tables are Lahiri-native)
+ *   - Festival/calendar engine → always Lahiri (Hindu calendar standard)
+ *
+ * Drik Panchang follows the same approach — Lahiri for muhurta scoring regardless
+ * of the KP/Raman option on their kundali page.
  */
 export function getPanchangSnapshot(jd: number, lat: number, lng: number): PanchangSnapshot {
   const sunriseJD = jd; // approximate

@@ -367,6 +367,18 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'देखो-पञ्चाङ्गस्य मुहूर्तकृत्रिमप्रज्ञा विंशतिकार्याणि समर्थयति — विवाहः, गृहप्रवेशः, यात्रा, वाहनक्रयः, व्यापारारम्भः, भूमिक्रयः, नामकरणम्, विद्यारम्भः, चिकित्सा, सेवाप्रवेशः, स्वर्णक्रयः, ऋणपत्रम्, न्यायालयश्रवणम् इत्यादीनि। प्रत्येकस्य कार्यस्य विशिष्टवैदिकनियमाः कृत्रिमप्रज्ञया स्वयमेव अनुप्रयुज्यन्ते।',
       },
     },
+    {
+      question: {
+        en: 'Which ayanamsha does the Muhurta AI use for scoring?',
+        hi: 'मुहूर्त AI स्कोरिंग के लिए कौन सा अयनांश उपयोग करता है?',
+        sa: 'मुहूर्तकृत्रिमप्रज्ञा अङ्कनाय कम् अयनांशम् उपयुनक्ति?',
+      },
+      answer: {
+        en: 'The Muhurta AI always uses Lahiri (Chitrapaksha) ayanamsha for scoring, regardless of your kundali ayanamsha preference. This is because all classical muhurta rule tables — from Muhurta Chintamani, Dharma Sindhu, and Prashna Marga — were composed using Lahiri nakshatra boundaries. Applying those rules with a different ayanamsha (KP, Raman) would shift the boundaries and produce less accurate results. Your birth chart and panchang pages still use your chosen ayanamsha for display.',
+        hi: 'मुहूर्त AI स्कोरिंग के लिए सदैव लाहिरी (चित्रपक्ष) अयनांश का उपयोग करता है, चाहे आपकी कुण्डली में कोई भी अयनांश चुना हो। ऐसा इसलिए क्योंकि सभी शास्त्रीय मुहूर्त नियम सारणियाँ — मुहूर्त चिन्तामणि, धर्म सिन्धु और प्रश्न मार्ग — लाहिरी नक्षत्र सीमाओं पर आधारित हैं। भिन्न अयनांश लगाने से नक्षत्र सीमाएँ खिसक जाती हैं और परिणाम कम सटीक होते हैं।',
+        sa: 'मुहूर्तकृत्रिमप्रज्ञा अङ्कनाय सर्वदा लाहिरी (चित्रपक्ष) अयनांशम् उपयुनक्ति, भवतः कुण्डलीअयनांशवरणं यत्किमपि स्यात्। मुहूर्तचिन्तामणि-धर्मसिन्धु-प्रश्नमार्गादिषु सर्वेषु शास्त्रीयमुहूर्तनियमसारणीषु लाहिरीनक्षत्रसीमाः प्रयुक्ताः। भिन्नेन अयनांशेन तासां सीमानां विस्थापनं न्यूनसटीकफलानि च भवेयुः।',
+      },
+    },
   ],
 
   // ─── /rahu-kaal ─────────────────────────────────────────────

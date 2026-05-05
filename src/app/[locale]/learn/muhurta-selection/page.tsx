@@ -327,6 +327,14 @@ export default function LearnMuhurtaSelectionPage() {
         </div>
       </LessonSection>
 
+      {/* ── Ayanamsha note ── */}
+      <BeginnerNote
+        term={isHi ? 'मुहूर्त में अयनांश' : 'Ayanamsha in Muhurta'}
+        explanation={isHi
+          ? 'इस पृष्ठ पर सभी मुहूर्त नियम और हमारा मुहूर्त AI इंजन लाहिरी (चित्रपक्ष) अयनांश का उपयोग करते हैं — भारत सरकार का मानक, जिस पर मुहूर्त चिन्तामणि और धर्म सिन्धु के मूल नियम आधारित हैं। यदि आपने अपनी कुण्डली के लिए केपी या रमन अयनांश चुना है, तो भी मुहूर्त स्कोरिंग लाहिरी पर ही रहता है ताकि शास्त्रीय नियम सही नक्षत्र सीमाओं पर लागू हों।'
+          : 'All muhurta rules on this page and our Muhurta AI engine use Lahiri (Chitrapaksha) ayanamsha — the Indian government standard on which the original rules from Muhurta Chintamani and Dharma Sindhu were composed. Even if you have selected KP or Raman ayanamsha for your birth chart, muhurta scoring remains Lahiri-based so that classical rules are applied against the correct nakshatra boundaries.'}
+      />
+
       {/* ── Source disclaimer ── */}
       <WhyItMatters locale={locale}>{t('sourceDisclaimer')}</WhyItMatters>
 

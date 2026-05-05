@@ -51,12 +51,29 @@ The most sophisticated open muhurta engine in production. NOT simple binary pass
 - **Tier 4 (Cancellable)**: Vishti Karana, Dur Muhurtam, Gulika Kaal, Yamaganda — cancelled by strong lagna per MC Ch.7
 
 **Key differentiators vs other platforms:**
-- Scoring (0-100 with grade) instead of binary pass/fail
-- Classical cancellation: MC Ch.7 says "a properly chosen lagna removes all defects" — we model this. A window with Vishti Karana + strong Taurus lagna gets the karana defect cancelled, not just penalised.
-- Personalised: Tara Bala, Chandra Bala, Dasha Harmony when birth data provided
-- Pandit-style reasoning: each window gets a verdict with strengths, concerns, mitigations (cancelled defects shown with the rule that cancelled them), and recommendation with classical citations
-- 20 activities: marriage, griha pravesh, mundan, vehicle, travel, property, business, education, namakarana, upanayana, engagement, gold purchase, medical, court, exam, spiritual, agriculture, financial signing, surgery, relocation
-- Natural language queries: "best time for a wedding in Delhi in October" → ranked windows
+
+1. **Classical Cancellation Logic (NO other platform does this):**
+   Muhurta Chintamani Ch.7 explicitly states: "Even where other favourable conditions are not present, a properly chosen lagna will remove the defects." This is NOT additive scoring — it's categorical cancellation. Example: a window has Vishti Karana (-5 penalty) but Taurus lagna (score 6/8). The engine cancels the Vishti penalty entirely because MC Ch.7 says strong lagna overrides karana defects. The final score reflects only the lagna's positive contribution, not "lagna bonus minus karana penalty." No other platform models this — they either ignore the principle or treat everything as additive arithmetic.
+
+2. **5-tier authority hierarchy (classical, not invented):**
+   - Absolute vetoes (combustion, Adhika Masa) that nothing can override
+   - Override factors (Godhuli Lagna, benefics in ascendant) that cancel everything below
+   - Major compensating factors (strong lagna, special yogas) that cancel minor defects
+   - Standard factors (tithi, nakshatra, hora) that contribute to scoring
+   - Cancellable defects (weak karana, minor timing issues) that strong factors can negate
+   This hierarchy comes directly from the texts — MC distinguishes between "factors that can be compensated" and "absolute prohibitions" in Ch.6-7.
+
+3. **Scoring (0-100 with grade) instead of binary pass/fail** — like a GPS that tells you the best route, not just a dashboard of indicators.
+
+4. **Personalised**: Tara Bala, Chandra Bala, Dasha Harmony when birth data provided. Same date scores differently for different people.
+
+5. **Pandit-style reasoning**: each window gets a verdict with strengths, concerns, mitigations (cancelled defects shown with the rule that cancelled them), and recommendation with classical citations. "Vishti karana cancelled by strong Taurus lagna (MC Ch.7)" — not just a number.
+
+6. **20 activities** with different rule sets: marriage, griha pravesh, mundan, vehicle, travel, property, business, education, namakarana, upanayana, engagement, gold purchase, medical, court, exam, spiritual, agriculture, financial signing, surgery, relocation.
+
+7. **Natural language queries**: "best time for a wedding in Delhi in October" → ranked windows with reasoning.
+
+**Simple analogy:** Drik Panchang is a dashboard of indicators. Dekho Panchang is the GPS that tells you the best route — it filters, ranks, explains, and personalises.
 
 **Accuracy verification:**
 - Cross-validated against Drik Panchang (New Delhi): 100% match on nakshatra, tithi, and yoga for all dates tested

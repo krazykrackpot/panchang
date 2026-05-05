@@ -22,10 +22,10 @@ const LABELS = {
     'দেখো পঞ্চাঙ্গ vs দৃক পঞ্চাঙ্গ',
   ),
   subtitle: L(
-    'A feature-by-feature comparison of two modern Vedic astrology platforms',
-    'दो आधुनिक वैदिक ज्योतिष मंचों की सुविधा-दर-सुविधा तुलना',
-    'இரண்டு நவீன வேத ஜோதிட தளங்களின் அம்ச ஒப்பீடு',
-    'দুটি আধুনিক বৈদিক জ্যোতিষ প্ল্যাটফর্মের বৈশিষ্ট্য তুলনা',
+    'Drik Panchang is a dashboard of indicators. Dekho Panchang is the GPS that tells you the best route — it filters, ranks, explains, and personalises.',
+    'दृक् पंचांग संकेतकों का डैशबोर्ड है। देखो पंचांग वह GPS है जो आपको सर्वोत्तम मार्ग बताता है — छानता है, रैंक करता है, समझाता है, और व्यक्तिगत बनाता है।',
+    'டிரிக் பஞ்சாங்கம் குறிகாட்டிகளின் டாஷ்போர்டு. டெக்கோ பஞ்சாங்கம் சிறந்த பாதையை காட்டும் GPS.',
+    'দৃক পঞ্চাঙ্গ সূচকগুলির ড্যাশবোর্ড। দেখো পঞ্চাঙ্গ হলো GPS যা আপনাকে সেরা পথ দেখায়।',
   ),
   disclaimer: L(
     'This comparison is based on publicly available features as of May 2026. We respect Drik Panchang as a pioneering platform that has served millions. This page highlights differences to help users choose the right tool for their needs.',

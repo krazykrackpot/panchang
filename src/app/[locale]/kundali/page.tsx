@@ -1323,8 +1323,10 @@ export default function KundaliPage() {
 
           {/* Tab navigation + tab content — hidden in beginner mode */}
           <div className={eli5Mode ? 'hidden' : ''}>
-          {/* Tab navigation — horizontal scroll strip */}
+          {/* Tab navigation — horizontal scroll strip with fade hint */}
           <div className="relative mb-8">
+            {/* Right fade gradient — hints at more tabs on mobile */}
+            <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-bg-primary to-transparent z-10 pointer-events-none sm:hidden" />
             <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
               <div className="flex gap-1.5 sm:gap-2 min-w-max sm:flex-wrap sm:justify-center sm:min-w-0">
                 {([
@@ -1404,6 +1406,8 @@ export default function KundaliPage() {
                 </div>
               </details>
               {/* Chart type selector — all Parashara vargas */}
+              <div className="relative">
+              <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-bg-primary to-transparent z-10 pointer-events-none sm:hidden" />
               <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 mb-4">
               <div className="flex sm:flex-wrap sm:justify-center gap-1.5 min-w-max sm:min-w-0">
                 {([
@@ -1422,6 +1426,7 @@ export default function KundaliPage() {
                     {c.label}
                   </button>
                 ))}
+              </div>
               </div>
               </div>
 

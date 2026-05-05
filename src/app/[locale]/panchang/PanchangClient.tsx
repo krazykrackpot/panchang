@@ -146,9 +146,9 @@ function InsightBlock({ insight }: { insight: PanchangInsight | undefined }) {
       <p className="text-gold-light/70 text-[11px] text-center mb-1 leading-snug">{insight.headline}</p>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="text-text-secondary text-xs hover:text-gold-light transition-colors flex items-center gap-1 mx-auto"
+        className="text-text-secondary text-xs hover:text-gold-light transition-colors flex items-center gap-1.5 mx-auto py-2 px-3"
       >
-        <ChevronDown className={`w-3 h-3 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+        <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
         {isOpen ? 'Hide details' : 'What does this mean?'}
       </button>
       {isOpen && (
@@ -512,7 +512,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
               ) : location.name}
             </span>
             <button onClick={() => setShowLocationSearch(!showLocationSearch)}
-              className="text-gold-primary hover:text-gold-light text-xs border border-gold-primary/15 px-2 py-0.5 rounded hover:bg-gold-primary/10 transition-all whitespace-nowrap">
+              className="text-gold-primary hover:text-gold-light text-xs border border-gold-primary/15 px-3 py-1.5 sm:px-2 sm:py-0.5 rounded hover:bg-gold-primary/10 transition-all whitespace-nowrap">
               {msg('change', locale)}
             </button>
           </div>
@@ -557,7 +557,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                   const { exportPanchangPDF } = await import('@/lib/export/pdf-panchang');
                   exportPanchangPDF(panchang, locale as Locale);
                 }}
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-md border border-gold-primary/15 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all"
+                className="inline-flex items-center gap-1.5 px-3 py-2 sm:px-2.5 sm:py-1 text-xs font-medium rounded-md border border-gold-primary/15 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all"
                 aria-label="Download PDF"
               >
                 <Download className="w-3 h-3" />
@@ -567,7 +567,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                 contentRef={panchangContentRef}
                 title={`Panchang — ${panchang.date}`}
                 label={msg('print', locale)}
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-md border border-gold-primary/15 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all"
+                className="inline-flex items-center gap-1.5 px-3 py-2 sm:px-2.5 sm:py-1 text-xs font-medium rounded-md border border-gold-primary/15 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all"
               />
               <MonthlyPDFButton
                 year={selectedDate ? parseInt(selectedDate.split('-')[0]) : new Date().getFullYear()}
@@ -595,7 +595,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                     alert(msg('allowNotifications', locale));
                   }
                 }}
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-md border border-gold-primary/15 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all"
+                className="inline-flex items-center gap-1.5 px-3 py-2 sm:px-2.5 sm:py-1 text-xs font-medium rounded-md border border-gold-primary/15 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all"
                 aria-label="Set alerts"
               >
                 <Bell className="w-3 h-3" />
@@ -782,13 +782,13 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                 <div className="flex flex-wrap gap-4 mb-3">
                   {vibeData.bestFor.length > 0 && (
                     <div>
-                      <div className="text-emerald-400 text-[10px] uppercase tracking-wider font-bold mb-1">{isDevanagari ? 'अनुकूल' : 'Best For'}</div>
+                      <div className="text-emerald-400 text-[11px] sm:text-[10px] uppercase tracking-wider font-bold mb-1">{isDevanagari ? 'अनुकूल' : 'Best For'}</div>
                       <div className="text-text-secondary text-xs">{vibeData.bestFor.join(' · ')}</div>
                     </div>
                   )}
                   {vibeData.avoid.length > 0 && (
                     <div>
-                      <div className="text-red-400 text-[10px] uppercase tracking-wider font-bold mb-1">{isDevanagari ? 'बचें' : 'Avoid'}</div>
+                      <div className="text-red-400 text-[11px] sm:text-[10px] uppercase tracking-wider font-bold mb-1">{isDevanagari ? 'बचें' : 'Avoid'}</div>
                       <div className="text-text-secondary text-xs">{vibeData.avoid.join(' · ')}</div>
                     </div>
                   )}
@@ -896,7 +896,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                   className="relative rounded-2xl bg-gradient-to-br from-amber-900/15 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/20 p-3 sm:p-4 md:p-6 text-center hover:border-amber-500/40 transition-all cursor-default"
                 >
                   {/* Auspiciousness badge */}
-                  <div className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-[9px] font-bold border ${getNatureBg(panchang.tithi.paksha === 'shukla' ? 'auspicious' : 'neutral')} ${getNatureColor(panchang.tithi.paksha === 'shukla' ? 'auspicious' : 'neutral')}`}>
+                  <div className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-[11px] sm:text-[9px] font-bold border ${getNatureBg(panchang.tithi.paksha === 'shukla' ? 'auspicious' : 'neutral')} ${getNatureColor(panchang.tithi.paksha === 'shukla' ? 'auspicious' : 'neutral')}`}>
                     {getNatureLabel(panchang.tithi.paksha === 'shukla' ? 'auspicious' : 'neutral')}
                   </div>
                   <div className="flex justify-center mb-3"><TithiIcon size={56} /></div>
@@ -1022,7 +1022,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                         ? 'inauspicious'
                         : 'neutral';
                     return (
-                      <div className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-[9px] font-bold border ${getNatureBg(naksNature)} ${getNatureColor(naksNature)}`}>
+                      <div className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-[11px] sm:text-[9px] font-bold border ${getNatureBg(naksNature)} ${getNatureColor(naksNature)}`}>
                         {getNatureLabel(naksNature)}
                       </div>
                     );
@@ -1077,7 +1077,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                   className="relative rounded-2xl bg-gradient-to-br from-purple-900/20 via-[#1a1040]/50 to-[#0a0e27] border border-purple-400/20 p-3 sm:p-4 md:p-6 text-center hover:border-purple-400/40 transition-all cursor-default"
                 >
                   {/* Auspiciousness badge */}
-                  <div className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-[9px] font-bold border ${getNatureBg(activeYoga.nature)} ${getNatureColor(activeYoga.nature)}`}>
+                  <div className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-[11px] sm:text-[9px] font-bold border ${getNatureBg(activeYoga.nature)} ${getNatureColor(activeYoga.nature)}`}>
                     {getNatureLabel(activeYoga.nature)}
                   </div>
                   <div className="flex justify-center mb-3"><YogaIcon size={56} /></div>
@@ -1126,7 +1126,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                   className="relative rounded-2xl bg-gradient-to-br from-teal-900/15 via-[#1a1040]/50 to-[#0a0e27] border border-teal-400/15 p-3 sm:p-4 md:p-6 text-center hover:border-teal-400/35 transition-all cursor-default"
                 >
                   {/* Auspiciousness badge — derived from karana type: chara=auspicious, sthira=inauspicious, special=neutral */}
-                  <div className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-[9px] font-bold border ${getNatureBg(activeKarana.type === 'chara' ? 'auspicious' : activeKarana.type === 'sthira' ? 'inauspicious' : 'neutral')} ${getNatureColor(activeKarana.type === 'chara' ? 'auspicious' : activeKarana.type === 'sthira' ? 'inauspicious' : 'neutral')}`}>
+                  <div className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-[11px] sm:text-[9px] font-bold border ${getNatureBg(activeKarana.type === 'chara' ? 'auspicious' : activeKarana.type === 'sthira' ? 'inauspicious' : 'neutral')} ${getNatureColor(activeKarana.type === 'chara' ? 'auspicious' : activeKarana.type === 'sthira' ? 'inauspicious' : 'neutral')}`}>
                     {getNatureLabel(activeKarana.type === 'chara' ? 'auspicious' : activeKarana.type === 'sthira' ? 'inauspicious' : 'neutral')}
                   </div>
                   <div className="flex justify-center mb-3"><KaranaIcon size={56} /></div>
@@ -1182,7 +1182,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                   {(() => {
                     const varaNature = [0, 1, 4, 5].includes(panchang.vara.day) ? 'auspicious' : [2, 6].includes(panchang.vara.day) ? 'inauspicious' : 'neutral';
                     return (
-                      <div className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-[9px] font-bold border ${getNatureBg(varaNature)} ${getNatureColor(varaNature)}`}>
+                      <div className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-[11px] sm:text-[9px] font-bold border ${getNatureBg(varaNature)} ${getNatureColor(varaNature)}`}>
                         {getNatureLabel(varaNature)}
                       </div>
                     );
@@ -1420,20 +1420,20 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
             {/* Ritu (Season) */}
             <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 text-center">
               <div className="flex justify-center mb-1.5"><RituIcon size={36} /></div>
-              <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{isDevanagari ? 'ऋतु' : 'Ritu'}</div>
+              <div className="text-gold-dark text-[11px] sm:text-[10px] uppercase tracking-wider font-bold">{isDevanagari ? 'ऋतु' : 'Ritu'}</div>
               <div className="text-gold-light font-bold text-sm mt-0.5" style={headingFont}>{_tl(panchang.ritu, locale) || '\u2014'}</div>
             </div>
             {/* Ayana */}
             <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 text-center">
               <div className="flex justify-center mb-1.5"><AyanaIcon size={36} /></div>
-              <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{isDevanagari ? 'अयन' : 'Ayana'}</div>
+              <div className="text-gold-dark text-[11px] sm:text-[10px] uppercase tracking-wider font-bold">{isDevanagari ? 'अयन' : 'Ayana'}</div>
               <div className="text-gold-light font-bold text-sm mt-0.5" style={headingFont}>{_tl(panchang.ayana, locale) || '\u2014'}</div>
             </div>
             {/* Chandrabalam — personalized if birth data available */}
             <Link href="/chandrabalam"
               className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border p-4 text-center hover:border-gold-primary/40 transition-all group block ${balamResult ? (balamResult.chandrabalam.favorable ? 'border-emerald-500/25' : 'border-red-500/25') : 'border-gold-primary/12'}`}>
               <div className="flex justify-center mb-1.5"><Moon className="w-8 h-8 text-gold-primary group-hover:scale-110 transition-transform" /></div>
-              <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{isDevanagari ? 'चन्द्रबल' : 'Chandrabalam'}</div>
+              <div className="text-gold-dark text-[11px] sm:text-[10px] uppercase tracking-wider font-bold">{isDevanagari ? 'चन्द्रबल' : 'Chandrabalam'}</div>
               {balamResult && birthRashi > 0 ? (() => {
                 const rashiName = RASHIS[birthRashi - 1] ? tl(RASHIS[birthRashi - 1].name) : '';
                 return (
@@ -1452,7 +1452,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
             <Link href="/tarabalam"
               className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border p-4 text-center hover:border-gold-primary/40 transition-all group block ${balamResult ? (balamResult.tarabalam.favorable ? 'border-emerald-500/25' : 'border-red-500/25') : 'border-gold-primary/12'}`}>
               <div className="flex justify-center mb-1.5"><Sparkles className="w-8 h-8 text-gold-primary group-hover:scale-110 transition-transform" /></div>
-              <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{isDevanagari ? 'ताराबल' : 'Tarabalam'}</div>
+              <div className="text-gold-dark text-[11px] sm:text-[10px] uppercase tracking-wider font-bold">{isDevanagari ? 'ताराबल' : 'Tarabalam'}</div>
               {balamResult && birthNakshatra > 0 ? (() => {
                 const nakName = NAKSHATRAS[birthNakshatra - 1] ? tl(NAKSHATRAS[birthNakshatra - 1].name) : '';
                 return (

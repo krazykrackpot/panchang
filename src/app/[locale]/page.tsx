@@ -609,7 +609,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           const restIndices = [1, 3, 4, 5, 6, 7];
           const ordered = [...row1Indices, ...restIndices].map(i => HERO_CARDS[i]);
           return (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 stagger-children">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-5 stagger-children">
               {ordered.map((card) => (
                 <TarotCard
                   key={card.href}

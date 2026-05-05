@@ -124,9 +124,6 @@ const pushkarNavamshaBhaga: MuhurtaRule = {
     const moonSign = getRashiNumber(moonSid); // 1-based
     const degInSign = moonSid % 30;
 
-    let points = 0;
-    let label: 'navamsha' | 'bhaga' | 'both' | null = null;
-
     // Check Pushkar Navamsha
     const navamshaIdx = Math.floor(degInSign / (30 / 9)); // 0-8
     const signIdx = moonSign - 1; // 0-based
@@ -137,44 +134,52 @@ const pushkarNavamshaBhaga: MuhurtaRule = {
     const isBhaga = pb !== undefined && Math.abs(degInSign - pb) <= 0.8;
 
     if (isNavamsha && isBhaga) {
-      points = 10; // Bhaga subsumes Navamsha (don't stack to 18)
-      label = 'both';
-    } else if (isBhaga) {
-      points = 10;
-      label = 'bhaga';
-    } else if (isNavamsha) {
-      points = 8;
-      label = 'navamsha';
+      // Bhaga subsumes Navamsha (don't stack to 18)
+      return assess(ctx, this, {
+        tier: 2,
+        points: 10,
+        maxPoints: 10,
+        severity: 'positive',
+        reason: {
+          en: 'Moon in both Pushkar Navamsha and Bhaga — extraordinary auspiciousness',
+          hi: 'चन्द्र पुष्कर नवांश एवं भाग दोनों में — असाधारण शुभत्व',
+          sa: 'चन्द्रः पुष्करनवांशे भागे च — असाधारणशुभत्वम्',
+        },
+        cancels: ['panchaka'],
+      });
     }
 
-    if (points === 0) return null;
+    if (isBhaga) {
+      return assess(ctx, this, {
+        tier: 2,
+        points: 10,
+        maxPoints: 10,
+        severity: 'positive',
+        reason: {
+          en: 'Moon in Pushkar Bhaga — most auspicious degree',
+          hi: 'चन्द्र पुष्कर भाग में — सर्वाधिक शुभ अंश',
+          sa: 'चन्द्रः पुष्करभागे — परमशुभांशः',
+        },
+        cancels: ['panchaka'],
+      });
+    }
 
-    const reasons: Record<string, { en: string; hi: string; sa: string }> = {
-      navamsha: {
-        en: 'Moon in Pushkar Navamsha — supremely auspicious',
-        hi: 'चन्द्र पुष्कर नवांश में — अत्यंत शुभ',
-        sa: 'चन्द्रः पुष्करनवांशे — अत्यन्तशुभम्',
-      },
-      bhaga: {
-        en: 'Moon in Pushkar Bhaga — most auspicious degree',
-        hi: 'चन्द्र पुष्कर भाग में — सर्वाधिक शुभ अंश',
-        sa: 'चन्द्रः पुष्करभागे — परमशुभांशः',
-      },
-      both: {
-        en: 'Moon in both Pushkar Navamsha and Bhaga — extraordinary auspiciousness',
-        hi: 'चन्द्र पुष्कर नवांश एवं भाग दोनों में — असाधारण शुभत्व',
-        sa: 'चन्द्रः पुष्करनवांशे भागे च — असाधारणशुभत्वम्',
-      },
-    };
+    if (isNavamsha) {
+      return assess(ctx, this, {
+        tier: 2,
+        points: 8,
+        maxPoints: 10,
+        severity: 'positive',
+        reason: {
+          en: 'Moon in Pushkar Navamsha — supremely auspicious',
+          hi: 'चन्द्र पुष्कर नवांश में — अत्यंत शुभ',
+          sa: 'चन्द्रः पुष्करनवांशे — अत्यन्तशुभम्',
+        },
+        cancels: ['panchaka'],
+      });
+    }
 
-    return assess(ctx, this, {
-      tier: 2,
-      points,
-      maxPoints: 10,
-      severity: 'positive',
-      reason: reasons[label!],
-      cancels: ['panchaka'],
-    });
+    return null;
   },
 };
 

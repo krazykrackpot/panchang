@@ -143,7 +143,7 @@ function InsightBlock({ insight }: { insight: PanchangInsight | undefined }) {
   return (
     <div className="mt-2">
       {/* Always-visible headline preview */}
-      <p className="text-gold-light/70 text-[11px] text-center mb-1 leading-snug">{insight.headline}</p>
+      <p className="text-gold-light/85 text-[11px] sm:text-[11px] text-center mb-1 leading-snug">{insight.headline}</p>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="text-text-secondary text-xs hover:text-gold-light transition-colors flex items-center gap-1.5 mx-auto py-2 px-3"
@@ -886,7 +886,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
             const onwards = msg('onwards', locale);
 
             return (
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5 mb-14">
+              <div className="grid grid-cols-1 min-[400px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-5 mb-14">
                 {/* ── TITHI CARD ── */}
                 <motion.div
                   initial={{ opacity: 0, y: 30, scale: 0.9 }}

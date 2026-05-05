@@ -1420,7 +1420,7 @@ export default function KundaliPage() {
                   })) : []),
                 ]).map(c => (
                   <button key={c.key} onClick={() => setActiveChart(c.key)}
-                    className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
+                    className={`px-3 py-2 sm:px-2.5 sm:py-1 rounded-lg text-xs font-medium transition-all ${
                       activeChart === c.key ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
                     }`}>
                     {c.label}

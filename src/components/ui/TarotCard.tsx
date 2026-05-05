@@ -43,7 +43,7 @@ export default function TarotCard({
     <motion.div
       whileHover={{ scale: 1.05, y: -8 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      className={`${SIZE_MAP[size]} aspect-[2/3] cursor-pointer select-none auspicious-glow`}
+      className={`${SIZE_MAP[size]} aspect-[3/4] sm:aspect-[2/3] cursor-pointer select-none auspicious-glow`}
       onClick={onClick}
     >
       <div className="relative w-full h-full rounded-xl overflow-hidden">

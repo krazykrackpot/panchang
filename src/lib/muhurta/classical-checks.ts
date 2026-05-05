@@ -170,23 +170,97 @@ export function isAdhikaMasa(year: number, month: number, day: number): boolean 
 //             Prabodhini Ekadashi (Kartika Shukla 11).
 // ~July to November in the Gregorian calendar.
 //
-// Cross-check with Drik Panchang confirms: Chaturmas runs through Ashwina
-// into Kartika (Nov 1-20 in 2026). Our previous version only blocked
-// Shravana + Bhadrapada, missing Ashwina entirely.
+// We use exact Ekadashi dates from the tithi table rather than month-level
+// approximation. The previous approach (checking masaIdx) could be off by
+// up to 2 weeks at the boundaries.
 //
-// Amanta masa indices: 0=Chaitra..11=Phalguna
-// Shravana=4, Bhadrapada=5, Ashwina=6 are within Chaturmas.
-// Ashadha=3 is partial (after Devshayani Ekadashi).
-// Kartika=7 is partial (until Prabodhini Ekadashi).
+// Reference location for tithi table: Ujjain (23.18°N, 75.79°E) — the
+// traditional reference meridian for Indian astronomy. Ekadashi dates vary
+// by at most 1 day across locations, which is acceptable for this boundary.
+
+import { buildYearlyTithiTable, lookupTithiByMonthAndNumber } from '@/lib/calendar/tithi-table';
+
+// Cache Chaturmas boundaries per year: { startDate, endDate } as 'YYYY-MM-DD'
+const chaturmasBoundaryCache = new Map<number, { start: string; end: string } | null>();
+
+// Ujjain reference coordinates for tithi table
+const UJJAIN_LAT = 23.1765;
+const UJJAIN_LNG = 75.7885;
+const UJJAIN_TZ = 'Asia/Kolkata';
+
+// Fallback: month-level approximation (Amanta masa indices: 0=Chaitra..11=Phalguna)
 const CHATURMAS_FULL_MONTHS = [4, 5, 6]; // Shravana, Bhadrapada, Ashwina
 const CHATURMAS_PARTIAL_MONTHS = [3, 7]; // Ashadha (latter half), Kartika (first half)
 
 /**
+ * Get exact Chaturmas boundary dates for a given year.
+ * Devshayani Ekadashi = Ashadha Shukla Ekadashi (tithi 11 in 'ashadha' month)
+ * Prabodhini Ekadashi = Kartika Shukla Ekadashi (tithi 11 in 'kartika' month)
+ *
+ * Returns null if tithi table lookup fails.
+ */
+function getChaturmasBoundaries(year: number): { start: string; end: string } | null {
+  if (chaturmasBoundaryCache.has(year)) {
+    return chaturmasBoundaryCache.get(year)!;
+  }
+
+  try {
+    const table = buildYearlyTithiTable(year, UJJAIN_LAT, UJJAIN_LNG, UJJAIN_TZ);
+
+    // Devshayani Ekadashi: Ashadha Shukla Ekadashi = tithi 11 in Ashadha
+    const ashadhaEkadashis = lookupTithiByMonthAndNumber(table, 'ashadha', 11);
+    // Filter only non-Adhika month entries
+    const devshayani = ashadhaEkadashis.find(e => !e.masa.isAdhika);
+
+    // Prabodhini Ekadashi: Kartika Shukla Ekadashi = tithi 11 in Kartika
+    const kartikaEkadashis = lookupTithiByMonthAndNumber(table, 'kartika', 11);
+    const prabodhini = kartikaEkadashis.find(e => !e.masa.isAdhika);
+
+    if (!devshayani || !prabodhini) {
+      console.warn('[checkChaturmas] Could not find Ekadashi dates in tithi table for year', year);
+      chaturmasBoundaryCache.set(year, null);
+      return null;
+    }
+
+    const boundaries = {
+      start: devshayani.sunriseDate, // Chaturmas begins on Devshayani Ekadashi
+      end: prabodhini.sunriseDate,   // Chaturmas ends on Prabodhini Ekadashi
+    };
+
+    chaturmasBoundaryCache.set(year, boundaries);
+    return boundaries;
+  } catch (err) {
+    console.error('[checkChaturmas] Tithi table build failed for year', year, err);
+    chaturmasBoundaryCache.set(year, null);
+    return null;
+  }
+}
+
+/**
  * Check if a date falls within Chaturmas.
- * Returns 'full' for months entirely within Chaturmas (hard veto),
- * 'partial' for edge months (soft penalty), or null.
+ * Uses exact Ekadashi dates from the tithi table when available.
+ * Returns 'full' if the date falls between Devshayani and Prabodhini Ekadashi,
+ * or null if outside Chaturmas.
+ *
+ * Falls back to month-level approximation if the tithi table lookup fails.
  */
 export function checkChaturmas(year: number, month: number, day: number): 'full' | 'partial' | null {
+  const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
+  // Try exact Ekadashi boundaries first
+  // Chaturmas can span two calendar years (unlikely but handle Dec/Jan edge)
+  const boundaries = getChaturmasBoundaries(year) || getChaturmasBoundaries(year - 1);
+
+  if (boundaries) {
+    // Date is within Chaturmas if: start <= date <= end
+    if (dateStr >= boundaries.start && dateStr <= boundaries.end) {
+      return 'full';
+    }
+    return null;
+  }
+
+  // Fallback: month-level approximation with console.warn
+  console.warn('[checkChaturmas] Using month-level fallback for', dateStr);
   const masa = getLunarMasaForDate(year, month, day);
   if (!masa) return null;
   if (CHATURMAS_FULL_MONTHS.includes(masa.masaIdx)) return 'full';

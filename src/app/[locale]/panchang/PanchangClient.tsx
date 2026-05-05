@@ -1878,6 +1878,23 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
           ))}
         </div>
       </div>
+
+      {/* ═══ EDITORIAL — crawlable content for SEO ═══ */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-16 pb-8 border-t border-gold-primary/8">
+        <h2 className="text-lg font-semibold text-gold-dark/80 mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
+          {_tl({ en: 'Understanding the Five Elements of Panchang', hi: 'पंचांग के पाँच तत्त्वों को समझें', sa: 'पञ्चाङ्गस्य पञ्चतत्त्वानि' }, locale)}
+        </h2>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+          {_tl({ en: 'Tithi is the lunar day, determined by the angular distance between the Sun and Moon. There are 30 tithis in a lunar month — 15 in the waxing phase (Shukla Paksha) and 15 in the waning phase (Krishna Paksha). Each tithi has a presiding deity and specific qualities that make certain activities favourable or unfavourable. Ekadashi (the 11th tithi) is considered sacred for fasting, while Purnima (full moon) and Amavasya (new moon) are significant for rituals and ancestor worship.', hi: 'तिथि चन्द्र दिवस है, जो सूर्य और चन्द्रमा के बीच कोणीय दूरी से निर्धारित होती है। एक चन्द्र मास में 30 तिथियाँ होती हैं — शुक्ल पक्ष में 15 और कृष्ण पक्ष में 15। प्रत्येक तिथि का एक अधिष्ठाता देवता और विशिष्ट गुण होते हैं। एकादशी उपवास के लिए पवित्र मानी जाती है, जबकि पूर्णिमा और अमावस्या अनुष्ठानों के लिए महत्त्वपूर्ण हैं।' }, locale)}
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+          {_tl({ en: 'Nakshatra is the lunar mansion — one of 27 constellations that the Moon transits through approximately every day. Each nakshatra spans 13°20\' of the zodiac and has a ruling planet, deity, and nature (Dhruva/fixed, Chara/movable, Ugra/fierce, Mridu/gentle, etc.) that colours the quality of the day. The nakshatra at the time of your birth determines your Vimshottari Dasha sequence — the planetary period system that is the backbone of Vedic predictive astrology.', hi: 'नक्षत्र चन्द्र भवन है — 27 तारामण्डलों में से एक जिनसे चन्द्रमा प्रतिदिन लगभग गुजरता है। प्रत्येक नक्षत्र राशि चक्र के 13°20\' में फैला है और इसका एक शासक ग्रह, देवता और स्वभाव (ध्रुव, चर, उग्र, मृदु आदि) होता है जो दिन की गुणवत्ता को रंगता है।' }, locale)}
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+          {_tl({ en: 'Yoga is the luni-solar combination formed by adding the longitudes of the Sun and Moon and dividing by 13°20\'. There are 27 yogas, each with distinct qualities — from the highly auspicious Siddhi (accomplishment) and Shubha (auspicious) to the challenging Vishkambha (obstruction) and Vaidhriti (destruction). Karana is the half-tithi — there are 11 karanas that repeat in a cycle, with Vishti (Bhadra) being the most inauspicious. Vara is simply the weekday, each ruled by a planet: Sunday by Sun, Monday by Moon, through Saturday by Saturn.', hi: 'योग सूर्य और चन्द्रमा के देशान्तर जोड़कर 13°20\' से भाग देने से बनने वाला सूर्य-चन्द्र संयोजन है। 27 योग हैं, प्रत्येक विशिष्ट गुणों के साथ। करण अर्ध-तिथि है — 11 करण एक चक्र में दोहराते हैं, विष्टि (भद्रा) सबसे अशुभ। वार सप्ताह का दिन है, प्रत्येक एक ग्रह शासित।' }, locale)}
+        </p>
+      </div>
+
     </div>
   );
 }

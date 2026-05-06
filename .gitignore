@@ -58,3 +58,4 @@ public/videos/*.mp4
 *.wav
 *.zip
 scripts/video/*/voice-samples/
+.claude/worktrees/

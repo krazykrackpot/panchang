@@ -592,6 +592,12 @@ export function generateFestivalCalendarV2(
     const { name, detail } = resolveEkadashiName(ek);
     const parana = computeEkadashiParanaFromTable(ek, table, lat, lon, timezone);
 
+    // Derive a named slug from the English ekadashi name (e.g., "Kamada Ekadashi" → "kamada-ekadashi")
+    // Falls back to generic 'ekadashi' for Adhika month or unresolved names
+    const ekSlug = name.en
+      ? name.en.toLowerCase().replace(/\s+/g, '-')
+      : 'ekadashi';
+
     festivals.push({
       name,
       date: ek.sunriseDate,
@@ -600,7 +606,7 @@ export function generateFestivalCalendarV2(
       type: 'vrat',
       category: 'ekadashi',
       description: detail?.benefit || { en: 'Fasting for Lord Vishnu', hi: 'विष्णु व्रत', sa: 'विष्णुव्रतम्' },
-      slug: 'ekadashi',
+      slug: ekSlug,
       ...parana,
     });
   }

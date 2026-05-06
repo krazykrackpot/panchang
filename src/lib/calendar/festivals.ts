@@ -919,26 +919,31 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
       krishnaEkadashiDetail = getEkadashiName(nextMonth, 'krishna');
     }
 
+    const shuklaEkName = shuklaEkadashiDetail?.name || { en: 'Shukla Ekadashi', hi: 'शुक्ल एकादशी', sa: 'शुक्लैकादशी' };
+    // Derive named slug from English name (e.g., "Kamada Ekadashi" → "kamada-ekadashi")
+    const shuklaEkSlug = shuklaEkName.en ? shuklaEkName.en.toLowerCase().replace(/\s+/g, '-') : 'ekadashi';
     festivals.push({
-      name: shuklaEkadashiDetail?.name || { en: 'Shukla Ekadashi', hi: 'शुक्ल एकादशी', sa: 'शुक्लैकादशी' },
+      name: shuklaEkName,
       date: ekadashi.shukla,
       type: 'vrat',
       category: 'ekadashi',
       description: shuklaEkadashiDetail
         ? shuklaEkadashiDetail.benefit
         : { en: 'Fasting for Lord Vishnu — Shukla Paksha', hi: 'विष्णु व्रत — शुक्ल पक्ष', sa: 'विष्णुव्रतम् — शुक्लपक्षे' },
-      slug: 'ekadashi',
+      slug: shuklaEkSlug,
       ...computeEkadashiParana(ekadashi.shukla, lat, lon, resolveTz(ekadashi.shukla, timezone)),
     });
+    const krishnaEkName = krishnaEkadashiDetail?.name || { en: 'Krishna Ekadashi', hi: 'कृष्ण एकादशी', sa: 'कृष्णैकादशी' };
+    const krishnaEkSlug = krishnaEkName.en ? krishnaEkName.en.toLowerCase().replace(/\s+/g, '-') : 'ekadashi';
     festivals.push({
-      name: krishnaEkadashiDetail?.name || { en: 'Krishna Ekadashi', hi: 'कृष्ण एकादशी', sa: 'कृष्णैकादशी' },
+      name: krishnaEkName,
       date: ekadashi.krishna,
       type: 'vrat',
       category: 'ekadashi',
       description: krishnaEkadashiDetail
         ? krishnaEkadashiDetail.benefit
         : { en: 'Fasting for Lord Vishnu — Krishna Paksha', hi: 'विष्णु व्रत — कृष्ण पक्ष', sa: 'विष्णुव्रतम् — कृष्णपक्षे' },
-      slug: 'ekadashi',
+      slug: krishnaEkSlug,
       ...computeEkadashiParana(ekadashi.krishna, lat, lon, resolveTz(ekadashi.krishna, timezone)),
     });
 

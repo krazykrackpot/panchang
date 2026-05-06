@@ -287,9 +287,33 @@ export function evaluateWindow(ctx: RuleContext): EvaluationResult {
     breakdown.lagna +
     breakdown.special +
     breakdown.personal;
-  const score = Math.round(
+  let score = Math.round(
     Math.max(0, Math.min(100, (rawScore / maxPossible) * 100))
   );
+
+  // 5c. Score ceiling for inauspicious yoga (classical constraint)
+  //
+  // Even if all other factors are perfect, an inauspicious yoga should NEVER
+  // produce an "Excellent" (75+) rating. Classical muhurta treats ashubha yoga
+  // as a structural defect that no amount of positive factors can fully redeem.
+  //
+  // Hard inauspicious (Ganda, Vyatipata, Vaidhriti): cap at 55 ("Fair")
+  // Moderate inauspicious (Vishkambha, Atiganda, etc.): cap at 70 ("Good" max)
+  // Check ORIGINAL points — an inauspicious yoga is a structural defect that
+  // persists even if a tier-1 positive (benefics in ascendant) "cancels" it numerically.
+  // Classical logic: Ganda Yoga is Ganda Yoga regardless of Jupiter in lagna.
+  // The cancellation system helps with minor defects (karana, vara) but NOT ashubha yoga.
+  const hasHardInauspiciousYoga = resolved.some(
+    a => a.ruleId === 'yoga-quality' && a.points <= -8  // ignores cancellation status
+  );
+  const hasModerateInauspiciousYoga = resolved.some(
+    a => a.ruleId === 'yoga-quality' && a.points < 0 && a.points > -8  // ignores cancellation
+  );
+  if (hasHardInauspiciousYoga) {
+    score = Math.min(score, 55); // Never above "Fair" with Ganda/Vyatipata/Vaidhriti
+  } else if (hasModerateInauspiciousYoga) {
+    score = Math.min(score, 70); // Never "Excellent" with any inauspicious yoga
+  }
 
   // 6. Assign grade
   const grade = assignGrade(score);

@@ -1,15 +1,41 @@
 /**
  * Prashna (Horary) Analysis Engine
  *
- * Analyzes a moment-chart for Prashna Kundali — the Vedic horary system
- * where a chart is cast for the exact moment a question is asked.
+ * Implements Prashna Shastra — the branch of Vedic astrology (Jyotish) concerned
+ * with answering specific questions by casting a chart for the exact moment the
+ * question is asked. Unlike natal (Janma) astrology which reads a birth chart,
+ * Prashna reads the "birth chart of the question itself."
  *
- * Key principles:
- * - Lagna lord represents the querent
- * - Moon is the most important planet in Prashna
- * - Relevant house depends on the question category
- * - Benefics in Kendras indicate positive outcomes
- * - Planetary dignities and retrogrades affect timing and results
+ * Classical references:
+ * - **Prashna Marga** (Kerala tradition, ~16th century): The most comprehensive
+ *   treatise on horary astrology in Jyotish. Emphasises the Moon's condition,
+ *   Arudha Lagna, and planetary strengths at the query moment.
+ * - **Tajika Neelakanthi** (Neelakantha, 16th century): Introduces Tajika (Arabic-
+ *   influenced) aspects and Sahams to Prashna analysis, used heavily for annual
+ *   and horary charts.
+ * - **BPHS Ch.11-12** (Brihat Parashara Hora Shastra): Defines house significations
+ *   used here to map question categories to relevant bhavas.
+ *
+ * Core algorithmic approach:
+ * 1. Map the question category to its primary house (BPHS house significations)
+ * 2. Evaluate three key significators: Lagna Lord (querent), Moon (mind/intention),
+ *    and the relevant house lord (the matter asked about)
+ * 3. Score each significator based on dignity (exalted/own/debilitated/combust),
+ *    positional strength (kendra/trikona/dusthana), and retrograde status
+ * 4. Apply weighted aggregation (Moon weighted highest per Prashna Marga)
+ * 5. Check additional classical factors: benefics in kendras, exalted/debilitated
+ *    counts, retrograde concentration, karaka strength, 7th house condition
+ * 6. Generate a composite score (-100 to +100) mapped to a five-tier verdict
+ * 7. Produce timing estimates (Moon speed), guidance, and remedies
+ *
+ * Key principles (Prashna Marga Ch.1-3):
+ * - Lagna lord represents the querent (the person asking)
+ * - Moon is the most important planet in Prashna — it reflects the querent's
+ *   mind, intention, and the emotional reality behind the question
+ * - The relevant bhava (house) depends on the question category
+ * - Benefics in Kendras (1,4,7,10) indicate positive outcomes
+ * - Planetary dignities and retrogrades affect both outcome and timing
+ * - Moon's speed indicates how quickly results will manifest
  */
 
 import type { KundaliData, PlanetPosition } from '@/types/kundali';
@@ -19,43 +45,79 @@ import type { LocaleText,} from '@/types/panchang';
 // Types
 // ──────────────────────────────────────────────────────────────
 
+/** The eight supported question categories, each mapped to specific BPHS houses. */
 export type PrashnaCategory = 'general' | 'career' | 'marriage' | 'health' | 'finance' | 'travel' | 'education' | 'legal';
 
+/**
+ * A single interpretive finding from the Prashna analysis.
+ * Each insight represents one classical factor (e.g. "Lagna Lord is exalted")
+ * with a trilingual human-readable explanation, a polarity, and a numeric score.
+ */
 export interface PrashnaInsight {
   label: LocaleText;
   finding: LocaleText;
+  /** Whether this factor supports a positive, negative, or neutral outcome. */
   nature: 'positive' | 'negative' | 'neutral';
+  /** Raw score contribution — positive values favour the querent, negative oppose. */
   score: number;
 }
 
+/**
+ * Condensed view of a single planet's condition in the Prashna chart.
+ * Used by the UI to render the "Planet Digest" card grid — one card per graha
+ * showing its sign, house, dignity, retrograde status, and role in the query.
+ */
 export interface PlanetDigest {
   planetId: number;
   planetName: LocaleText;
   planetColor: string;
-  sign: number;
+  sign: number;       // 1-based Rashi ID (1=Aries..12=Pisces)
   signName: LocaleText;
-  house: number;
-  dignity: string | null;
+  house: number;      // 1-based Bhava number
+  dignity: string | null; // 'Exalted' | 'Own Sign' | 'Debilitated' | 'Combust' | null
   retrograde: boolean;
-  strength: 'strong' | 'moderate' | 'weak';
+  strength: 'strong' | 'moderate' | 'weak'; // Derived from composite planetScore()
+  /** Contextual role in THIS query: Lagna Lord, House Lord, Karaka, or just house placement. */
   role: LocaleText;
 }
 
+/**
+ * Complete output of the Prashna analysis engine.
+ *
+ * The UI renders this as a multi-section report:
+ * - Verdict banner (outcome + score + summary)
+ * - Three primary insight cards (Lagna Lord, Moon, Relevant House)
+ * - Key Factors list (variable length — only factors that crossed threshold)
+ * - Timing estimate (based on Moon speed + dasha context)
+ * - Guidance paragraph (action recommendation)
+ * - Remedies (planetary + category-specific + general if outcome is poor)
+ * - Planet Digest grid (all 9 grahas with their Prashna-context roles)
+ */
 export interface PrashnaAnalysis {
   category: PrashnaCategory;
   categoryLabel: LocaleText;
   verdict: {
+    /** Five-tier verdict derived from the composite score. */
     outcome: 'very_favorable' | 'favorable' | 'mixed' | 'challenging' | 'difficult';
-    score: number; // -100 to +100
+    /** Composite score clamped to [-100, +100]. Positive = favourable for the querent. */
+    score: number;
     summary: LocaleText;
   };
+  /** Assessment of the Lagna Lord — represents the querent themselves. */
   lagnaInsight: PrashnaInsight;
+  /** Assessment of the Moon — the primary Prashna significator (querent's mind). */
   moonInsight: PrashnaInsight;
+  /** Assessment of the house lord relevant to the question category. */
   relevantHouseInsight: PrashnaInsight;
+  /** Additional classical factors that crossed scoring thresholds. */
   keyFactors: PrashnaInsight[];
+  /** Timing estimate based on Moon speed (Prashna Marga) and Vimshottari Dasha. */
   timing: LocaleText;
+  /** Actionable guidance paragraph tailored to outcome and category. */
   guidance: LocaleText;
+  /** Ordered remedies: weakest planet remedy, category-specific, and general (if poor outcome). */
   remedies: LocaleText[];
+  /** All 9 grahas (Sun through Ketu) with their Prashna-context roles and conditions. */
   planetDigest: PlanetDigest[];
 }
 
@@ -63,80 +125,116 @@ export interface PrashnaAnalysis {
 // Constants
 // ──────────────────────────────────────────────────────────────
 
+/**
+ * Category-to-house mapping based on BPHS house significations (Ch.11-12):
+ *
+ * - **general**: 1st (self/body) + 7th (the matter/other party)
+ * - **career**: 10th (karma/profession, BPHS Ch.11 v.47-48) + 6th (service/competition)
+ * - **marriage**: 7th (spouse/partnership, BPHS Ch.11 v.35-36) + 2nd (family)
+ * - **health**: 1st (body/constitution) + 6th (disease/enemies, BPHS Ch.11 v.29-30)
+ * - **finance**: 2nd (wealth/stored assets, BPHS Ch.11 v.13) + 11th (gains/income)
+ * - **travel**: 3rd (short journeys) + 9th (long journeys/pilgrimage, BPHS Ch.11 v.41)
+ * - **education**: 4th (formal education) + 5th (intellect/learning, BPHS Ch.11 v.25)
+ * - **legal**: 6th (litigation/enemies) + 7th (the opposing party)
+ *
+ * `karaka` lists natural significator planet IDs (naisargika karaka) for the category.
+ * These are planets that inherently signify the subject matter regardless of house lordship.
+ * E.g. Venus (id=5) is the natural karaka for marriage; Sun (id=0) for career/authority.
+ */
 const CATEGORY_CONFIG: Record<PrashnaCategory, {
   label: LocaleText;
   houses: number[];       // primary + secondary relevant houses
-  karaka: number[];       // natural significator planet IDs
-  houseLabel: LocaleText; // label for the relevant house card
+  karaka: number[];       // natural significator planet IDs (0=Sun..8=Ketu)
+  houseLabel: LocaleText; // label for the relevant house card in the UI
 }> = {
   general: {
     label: { en: 'General', hi: 'सामान्य', sa: 'सामान्यम्' },
-    houses: [1, 7],
-    karaka: [1],
+    houses: [1, 7],       // 1st = querent, 7th = the matter (Prashna Marga convention)
+    karaka: [1],          // Moon — general significator of the querent's mind
     houseLabel: { en: '1st House (Self)', hi: 'प्रथम भाव (आत्मा)', sa: 'प्रथमभावः (आत्मा)' },
   },
   career: {
     label: { en: 'Career & Profession', hi: 'करियर एवं व्यवसाय', sa: 'वृत्तिः' },
-    houses: [10, 6],
-    karaka: [0, 6],
+    houses: [10, 6],      // 10th = profession/status, 6th = service/daily work
+    karaka: [0, 6],       // Sun (authority/status) + Saturn (labour/perseverance)
     houseLabel: { en: '10th House (Career)', hi: 'दशम भाव (कर्म)', sa: 'दशमभावः (कर्म)' },
   },
   marriage: {
     label: { en: 'Marriage & Relationships', hi: 'विवाह एवं सम्बन्ध', sa: 'विवाहः' },
-    houses: [7, 2],
-    karaka: [5],
+    houses: [7, 2],       // 7th = spouse/partner, 2nd = family/married life
+    karaka: [5],          // Venus — natural karaka for marriage and relationships
     houseLabel: { en: '7th House (Partnership)', hi: 'सप्तम भाव (साझेदारी)', sa: 'सप्तमभावः (भार्या)' },
   },
   health: {
     label: { en: 'Health & Wellbeing', hi: 'स्वास्थ्य', sa: 'स्वास्थ्यम्' },
-    houses: [1, 6],
-    karaka: [0, 1],
+    houses: [1, 6],       // 1st = body/vitality, 6th = disease/affliction
+    karaka: [0, 1],       // Sun (vitality/soul) + Moon (mind/constitution)
     houseLabel: { en: '1st & 6th House (Body/Disease)', hi: 'लग्न एवं षष्ठ भाव', sa: 'लग्नं षष्ठभावश्च' },
   },
   finance: {
     label: { en: 'Finance & Wealth', hi: 'धन एवं सम्पत्ति', sa: 'धनम्' },
-    houses: [2, 11],
-    karaka: [4, 5],
+    houses: [2, 11],      // 2nd = stored wealth, 11th = gains/income
+    karaka: [4, 5],       // Jupiter (prosperity/expansion) + Venus (luxury/assets)
     houseLabel: { en: '2nd House (Wealth)', hi: 'द्वितीय भाव (धन)', sa: 'द्वितीयभावः (धनम्)' },
   },
   travel: {
     label: { en: 'Travel & Relocation', hi: 'यात्रा', sa: 'यात्रा' },
-    houses: [3, 9],
-    karaka: [1, 3],
+    houses: [3, 9],       // 3rd = short journeys, 9th = long/foreign travel
+    karaka: [1, 3],       // Moon (movement/change) + Mercury (communication/transit)
     houseLabel: { en: '9th House (Long Journey)', hi: 'नवम भाव (दीर्घ यात्रा)', sa: 'नवमभावः (दीर्घयात्रा)' },
   },
   education: {
     label: { en: 'Education & Learning', hi: 'शिक्षा', sa: 'शिक्षा' },
-    houses: [4, 5],
-    karaka: [3, 4],
+    houses: [4, 5],       // 4th = formal education, 5th = intellect/learning
+    karaka: [3, 4],       // Mercury (intellect/speech) + Jupiter (wisdom/guru)
     houseLabel: { en: '5th House (Learning)', hi: 'पंचम भाव (विद्या)', sa: 'पञ्चमभावः (विद्या)' },
   },
   legal: {
     label: { en: 'Legal & Disputes', hi: 'कानूनी विवाद', sa: 'विधिविवादः' },
-    houses: [6, 7],
-    karaka: [4, 6],
+    houses: [6, 7],       // 6th = litigation/enemies, 7th = opponent/other party
+    karaka: [4, 6],       // Jupiter (justice/dharma) + Saturn (law/karma)
     houseLabel: { en: '6th House (Litigation)', hi: 'षष्ठ भाव (विवाद)', sa: 'षष्ठभावः (विवादः)' },
   },
 };
 
+/** Re-exported for use by UI components that need category labels/houses. */
 export const PRASHNA_CATEGORIES = CATEGORY_CONFIG;
 
-// Sign → Lord planet ID
+/**
+ * Sign → Lord planet ID mapping (BPHS Ch.3).
+ * Key = Rashi ID (1=Aries..12=Pisces), Value = Planet ID (0=Sun..6=Saturn).
+ * Rahu (7) and Ketu (8) are shadow planets and do not lord any sign in classical Parashari.
+ *
+ * 1 Aries=Mars(2), 2 Taurus=Venus(5), 3 Gemini=Mercury(3), 4 Cancer=Moon(1),
+ * 5 Leo=Sun(0), 6 Virgo=Mercury(3), 7 Libra=Venus(5), 8 Scorpio=Mars(2),
+ * 9 Sagittarius=Jupiter(4), 10 Capricorn=Saturn(6), 11 Aquarius=Saturn(6),
+ * 12 Pisces=Jupiter(4).
+ */
 const SIGN_LORD: Record<number, number> = {
   1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3,
   7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4,
 };
 
-const BENEFIC_IDS = new Set([1, 3, 4, 5]); // Moon, Mercury, Jupiter, Venus
-const MALEFIC_IDS = new Set([0, 2, 6, 7, 8]); // Sun, Mars, Saturn, Rahu, Ketu
+/** Natural benefics per BPHS — Moon, Mercury, Jupiter, Venus. */
+const BENEFIC_IDS = new Set([1, 3, 4, 5]);
+/** Natural malefics per BPHS — Sun, Mars, Saturn, Rahu, Ketu. */
+const MALEFIC_IDS = new Set([0, 2, 6, 7, 8]);
+/** Kendra (angular) houses: strongest positional strength (BPHS Ch.12). */
 const KENDRA = new Set([1, 4, 7, 10]);
+/** Trikona (trinal) houses: auspicious placements (Dharma, Purva Punya, Bhagya). */
 const TRIKONA = new Set([1, 5, 9]);
+/** Dusthana (malefic) houses: 6th (enemies/disease), 8th (longevity/obstacles), 12th (loss/expenditure). */
 const DUSTHANA = new Set([6, 8, 12]);
 
 // ──────────────────────────────────────────────────────────────
 // Helpers
 // ──────────────────────────────────────────────────────────────
 
+/**
+ * Returns a short English dignity label for a planet, or null if no special dignity.
+ * Used in the PlanetDigest cards. Priority order matches classical importance:
+ * exaltation > own sign > debilitation > combustion.
+ */
 function dignityLabel(p: PlanetPosition): string | null {
   if (p.isExalted) return 'Exalted';
   if (p.isOwnSign) return 'Own Sign';
@@ -145,6 +243,11 @@ function dignityLabel(p: PlanetPosition): string | null {
   return null;
 }
 
+/**
+ * Returns a trilingual dignity/state descriptor for use in narrative finding text.
+ * Falls through to retrograde if no dignity applies, then to neutral.
+ * Used to build the human-readable insight strings (e.g. "Jupiter is exalted in Cancer").
+ */
 function dignityTri(p: PlanetPosition): LocaleText {
   if (p.isExalted) return { en: 'exalted', hi: 'उच्च', sa: 'उच्चम्' };
   if (p.isOwnSign) return { en: 'in own sign', hi: 'स्वराशि में', sa: 'स्वराशौ' };
@@ -154,26 +257,50 @@ function dignityTri(p: PlanetPosition): LocaleText {
   return { en: 'in neutral position', hi: 'सामान्य स्थिति में', sa: 'सामान्यस्थितौ' };
 }
 
+/**
+ * Computes a composite strength score for a single planet in the Prashna context.
+ *
+ * Scoring heuristic (not a formal Shadbala — simplified for Prashna):
+ * - **Dignity** (BPHS Ch.3-4):
+ *     +20 exalted (peak strength, planet delivers its best significations)
+ *     +12 own sign (comfortable, strong but not peak)
+ *     -18 debilitated (weakened, significations suffer)
+ * - **Combustion** (within Sun's orb): -8 (planet's agency is overpowered by Sun)
+ * - **Retrograde** (planets 2-6 only, not Sun/Moon/Rahu/Ketu): -5
+ *     In Prashna, retrograde signals delays and reconsideration (Prashna Marga Ch.8).
+ *     Rahu/Ketu are always retrograde so no penalty is applied.
+ * - **Positional strength** (house placement):
+ *     +8 kendra (1,4,7,10) — angular houses give directional strength (Digbala-adjacent)
+ *     +6 trikona (1,5,9) — trinal houses are inherently auspicious
+ *     -8 dusthana (6,8,12) — malefic houses weaken the planet's ability to deliver
+ *
+ * Returns a raw integer score (typically -26 to +28 range).
+ */
 function planetScore(p: PlanetPosition): number {
   let s = 0;
   if (p.isExalted) s += 20;
   else if (p.isOwnSign) s += 12;
   else if (p.isDebilitated) s -= 18;
   if (p.isCombust) s -= 8;
-  if (p.isRetrograde && p.planet.id <= 6) s -= 5;
-  // Positional strength
+  if (p.isRetrograde && p.planet.id <= 6) s -= 5; // Only true planets, not nodes
+  // Positional strength — kendra > trikona > neutral > dusthana
   if (KENDRA.has(p.house)) s += 8;
   else if (TRIKONA.has(p.house)) s += 6;
   else if (DUSTHANA.has(p.house)) s -= 8;
   return s;
 }
 
+/**
+ * Maps a raw planetScore() value to a three-tier label for the UI.
+ * Thresholds: >= 10 = strong, >= -5 = moderate, < -5 = weak.
+ */
 function strengthLabel(score: number): 'strong' | 'moderate' | 'weak' {
   if (score >= 10) return 'strong';
   if (score >= -5) return 'moderate';
   return 'weak';
 }
 
+/** Finds a planet by its 0-based ID (0=Sun..8=Ketu). Asserts presence via `!`. */
 function findPlanet(planets: PlanetPosition[], id: number): PlanetPosition {
   return planets.find(p => p.planet.id === id)!;
 }
@@ -182,29 +309,55 @@ function findPlanet(planets: PlanetPosition[], id: number): PlanetPosition {
 // Main Analysis
 // ──────────────────────────────────────────────────────────────
 
+/**
+ * Main entry point — analyses a Prashna (horary) chart for a given question category.
+ *
+ * Algorithm overview (8 scoring stages):
+ *   1. **Lagna Lord** (querent): scored via planetScore(), weighted x1.2
+ *   2. **Moon** (mind of query): scored + dispositor check, weighted x1.8 (highest —
+ *      per Prashna Marga, Moon is the single most important factor in Prashna)
+ *   3. **Relevant House Lord**: scored + benefic/malefic occupancy, weighted x1.3
+ *   4. **Benefic/Malefic distribution in Kendras**: bonus/penalty for classical pattern
+ *   5. **Exalted/Debilitated planet counts**: additional adjustment
+ *   6. **Retrograde concentration**: penalty if >= 3 true planets retrograde
+ *   7. **Karaka (natural significator) strength**: bonus/penalty per category karaka
+ *   8. **7th House Lord** (the matter/other party): checked for non-marriage/legal categories
+ *
+ * The weighted sum is clamped to [-100, +100] and mapped to a five-tier verdict.
+ *
+ * @param kundali - Chart data cast for the moment of the question
+ * @param category - The type of question being asked (maps to BPHS houses)
+ * @returns Full PrashnaAnalysis with verdict, insights, timing, guidance, remedies
+ */
 export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory): PrashnaAnalysis {
   const cfg = CATEGORY_CONFIG[category];
   const planets = kundali.planets;
   const primaryHouse = cfg.houses[0];
 
-  // Key planets
+  // ── Identify the three key significators ──
+  // Moon: the querent's mind and intention (Prashna Marga Ch.3)
   const moon = findPlanet(planets, 1);
+  // Lagna Lord: the querent themselves — the person asking the question
   const ascSign = kundali.ascendant.sign;
   const ascLordId = SIGN_LORD[ascSign];
   const ascLord = findPlanet(planets, ascLordId);
 
-  // Relevant house lord
+  // Relevant House Lord: represents "the matter asked about"
+  // e.g. for a career question, this is the lord of the 10th house
   const relHouseData = kundali.houses.find(h => h.house === primaryHouse)!;
   const relLordId = SIGN_LORD[relHouseData.sign];
   const relLord = findPlanet(planets, relLordId);
 
-  // Planets in relevant house
+  // Which planets are sitting in the relevant house (occupants affect the matter)
   const planetsInRelHouse = planets.filter(p => p.house === primaryHouse);
 
-  let total = 0;
-  const factors: PrashnaInsight[] = [];
+  let total = 0;        // Running composite score
+  const factors: PrashnaInsight[] = [];  // Additional factors beyond the 3 primary insights
 
-  // ── 1. Lagna Lord ──
+  // ── 1. Lagna Lord (the querent) ──
+  // Weight: 1.2x — important but secondary to Moon in Prashna (unlike natal charts
+  // where Lagna Lord is paramount). A strong Lagna Lord means the querent is in a
+  // good position to act; a weak one means personal challenges regardless of the matter.
   const lagnaScore = planetScore(ascLord);
   total += lagnaScore * 1.2;
   const lagnaInsight: PrashnaInsight = {
@@ -218,15 +371,23 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
     score: lagnaScore,
   };
 
-  // ── 2. Moon (Most important in Prashna) ──
+  // ── 2. Moon — the primary significator of the querent in Prashna ──
+  // Per Prashna Marga Ch.3: "The Moon is the life of all horary astrology."
+  // The Moon represents the querent's mind, the emotional reality behind the question,
+  // and gives the strongest single signal about the outcome.
+  //
+  // Weight: 1.8x (highest of all factors) — Moon's condition dominates the verdict.
+  //
+  // Moon's dispositor (lord of the sign Moon occupies) is checked as a proxy for
+  // "applying aspects" — if Moon's dispositor is a natural benefic, the emotional
+  // undercurrent supports a positive outcome. This is a simplification of the full
+  // Prashna Marga aspect analysis (Ithasala/Ishrafa yogas from Tajika).
   const moonScore = planetScore(moon);
-  // Moon applying to benefics is positive, to malefics is negative
-  // We approximate by checking if Moon is in benefic/malefic sign lord's sign
   const moonSignLord = SIGN_LORD[moon.sign];
   const moonDispositorBenefic = BENEFIC_IDS.has(moonSignLord);
   const moonBonus = moonDispositorBenefic ? 8 : -5;
   const totalMoonScore = moonScore + moonBonus;
-  total += totalMoonScore * 1.8; // Moon weighted most heavily
+  total += totalMoonScore * 1.8;
 
   const moonInsight: PrashnaInsight = {
     label: { en: 'Moon (Mind of the Query)', hi: 'चन्द्र (प्रश्न का मन)', sa: 'चन्द्रः (प्रश्नमनः)' },
@@ -239,9 +400,16 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
     score: totalMoonScore,
   };
 
-  // ── 3. Relevant House ──
+  // ── 3. Relevant House Lord + occupancy ──
+  // The house corresponding to the question category (e.g. 10th for career).
+  // Two sub-factors:
+  //   a) The lord's own strength (dignity + position via planetScore)
+  //   b) Occupancy: each benefic in the house adds +6, each malefic subtracts -6.
+  //      Per Prashna Marga, benefics in the relevant house "nourish" the matter,
+  //      while malefics "damage" or "delay" it.
+  // Weight: 1.3x — the matter's condition is important but the querent (Moon/Lagna)
+  // must also be strong for it to manifest.
   const relScore = planetScore(relLord);
-  // Benefics in relevant house boost; malefics diminish
   const beneficsInRelHouse = planetsInRelHouse.filter(p => BENEFIC_IDS.has(p.planet.id)).length;
   const maleficsInRelHouse = planetsInRelHouse.filter(p => MALEFIC_IDS.has(p.planet.id)).length;
   const houseBonus = (beneficsInRelHouse * 6) - (maleficsInRelHouse * 6);
@@ -263,7 +431,10 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
     score: totalRelScore,
   };
 
-  // ── 4. Benefic/Malefic distribution ──
+  // ── 4. Benefic/Malefic distribution in Kendras (angular houses) ──
+  // Classical principle (Prashna Marga Ch.5): "Benefics in kendras are the surest
+  // sign of a favourable outcome." Two or more benefics in houses 1/4/7/10 = strong
+  // positive signal (+15). Three or more malefics in kendras = significant obstacle (-12).
   const bInK = planets.filter(p => BENEFIC_IDS.has(p.planet.id) && KENDRA.has(p.house)).length;
   const mInK = planets.filter(p => MALEFIC_IDS.has(p.planet.id) && KENDRA.has(p.house)).length;
 
@@ -292,7 +463,9 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
     });
   }
 
-  // ── 5. Exalted / Debilitated planets ──
+  // ── 5. Exalted / Debilitated planet counts ──
+  // Exalted planets anywhere in the chart bring peak energy to their significations.
+  // Debilitated planets indicate weakness in their domains. Each contributes ±5 to the total.
   const exalted = planets.filter(p => p.isExalted);
   const debilitated = planets.filter(p => p.isDebilitated);
   if (exalted.length > 0) {
@@ -324,7 +497,11 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
     });
   }
 
-  // ── 6. Retrograde count ──
+  // ── 6. Retrograde concentration ──
+  // Only counts true planets that can go retrograde: Mars(2) through Saturn(6).
+  // Sun and Moon never retrograde; Rahu/Ketu are always retrograde (excluded).
+  // >= 3 retrogrades = -8 penalty. Per Prashna Marga Ch.8, multiple retrogrades
+  // indicate the matter "turns back on itself" — delays, reversals, need to revisit.
   const retros = planets.filter(p => p.isRetrograde && p.planet.id >= 2 && p.planet.id <= 6);
   if (retros.length >= 3) {
     total -= 8;
@@ -339,7 +516,11 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
     });
   }
 
-  // ── 7. Karaka strength ──
+  // ── 7. Karaka (natural significator) strength ──
+  // Each category has one or more naisargika karakas — planets that naturally
+  // signify the subject matter (e.g. Venus for marriage, Jupiter for wealth).
+  // If the karaka is strong (score > 10): +8 bonus — the natural energy supports the query.
+  // If weak (score < -10): -6 penalty — the domain's natural ruler is compromised.
   for (const kId of cfg.karaka) {
     const k = findPlanet(planets, kId);
     const kS = planetScore(k);
@@ -368,7 +549,10 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
     }
   }
 
-  // ── 8. 7th house lord (the matter / other party) ──
+  // ── 8. 7th House Lord — "the matter" or "the other party" ──
+  // In Prashna, the 7th house generically represents "the matter being asked about"
+  // or "the other party involved" (Prashna Marga Ch.4). Skipped for marriage/legal
+  // categories because the 7th house is already their primary house (checked above).
   if (category !== 'marriage' && category !== 'legal') {
     const h7 = kundali.houses.find(h => h.house === 7)!;
     const h7LordId = SIGN_LORD[h7.sign];
@@ -388,10 +572,15 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
     }
   }
 
-  // Normalize
+  // Clamp the composite score to [-100, +100]
   total = Math.max(-100, Math.min(100, Math.round(total)));
 
-  // ── Verdict ──
+  // ── Verdict mapping ──
+  // Five tiers with asymmetric thresholds (slightly easier to be "favorable"
+  // than "challenging" — reflects the traditional Prashna Marga optimism where
+  // the act of asking the question at the right moment is itself auspicious).
+  //   >= +35: very_favorable  |  +12 to +34: favorable  |  -12 to +11: mixed
+  //   -35 to -13: challenging  |  <= -36: difficult
   let outcome: PrashnaAnalysis['verdict']['outcome'];
   if (total >= 35) outcome = 'very_favorable';
   else if (total >= 12) outcome = 'favorable';
@@ -410,7 +599,10 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
   // ── Remedies ──
   const remedies = buildRemedies(outcome, category, relLord, moon, ascLord, cfg);
 
-  // ── Planet digest ──
+  // ── Planet Digest — summary of all 9 grahas with their Prashna roles ──
+  // Each planet is tagged with its contextual role: Lagna Lord (querent),
+  // Relevant House Lord (the matter), Natural Significator (karaka), or
+  // simply its house placement. This drives the UI's planet card grid.
   const planetDigest = planets.filter(p => p.planet.id <= 8).map(p => {
     const ps = planetScore(p);
     const isKaraka = cfg.karaka.includes(p.planet.id);
@@ -453,8 +645,19 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
 
 // ──────────────────────────────────────────────────────────────
 // Verdict, Timing, Guidance, Remedies
+//
+// These builder functions generate the trilingual narrative text
+// for each section of the Prashna report. They are pure functions
+// that take scored data and produce LocaleText output — no
+// additional computation happens here.
 // ──────────────────────────────────────────────────────────────
 
+/**
+ * Generates the verdict summary paragraph — the main "bottom line" of the reading.
+ * Maps each of the five outcome tiers to a narrative that references the querent's
+ * key planets (Lagna Lord, Moon, Relevant House Lord) by name, giving the user
+ * a personalised summary rather than a generic statement.
+ */
 function buildVerdictSummary(
   outcome: PrashnaAnalysis['verdict']['outcome'],
   score: number,
@@ -501,8 +704,23 @@ function buildVerdictSummary(
   }
 }
 
+/**
+ * Generates the timing estimate for when the querent can expect results.
+ *
+ * Based on two classical indicators:
+ * 1. **Moon's speed** (Prashna Marga Ch.7): The Moon's daily motion varies from
+ *    ~11.8°/day (slow) to ~15.2°/day (fast). Fast Moon = quick manifestation;
+ *    slow Moon = the matter takes time. Thresholds:
+ *    - > 13.5°/day: days to 2 weeks
+ *    - > 12.0°/day: weeks to 1 month
+ *    - <= 12.0°/day: 1 to several months
+ *    If the overall score is very negative (< -25), timing is declared uncertain
+ *    regardless of Moon speed — a severely afflicted chart may not deliver at all.
+ *
+ * 2. **Vimshottari Dasha context**: Appends the current Mahadasha-Antardasha for
+ *    additional temporal context (which planetary period is active).
+ */
 function buildTiming(moon: PlanetPosition, dashas: KundaliData['dashas'], score: number): LocaleText {
-  // Moon speed indicates timing — fast Moon = quicker results
   const moonSpeed = Math.abs(moon.speed);
   let timingEn: string, timingHi: string;
 
@@ -534,9 +752,22 @@ function buildTiming(moon: PlanetPosition, dashas: KundaliData['dashas'], score:
     timingHi += ' ' + dashaNoteHi;
   }
 
-  return { en: timingEn, hi: timingHi, sa: timingHi }; // sa ≈ hi for brevity
+  // Sanskrit text reuses Hindi for brevity — the timing narrative is long-form prose
+  // that doesn't benefit from a distinct Sanskrit rendering.
+  return { en: timingEn, hi: timingHi, sa: timingHi };
 }
 
+/**
+ * Generates the actionable guidance paragraph.
+ *
+ * Three tiers of advice mapped to outcome severity:
+ * - **Favourable** (very_favorable / favorable): "Proceed with confidence"
+ * - **Mixed**: "Proceed with cautious optimism, gather more information"
+ * - **Challenging/Difficult**: "Exercise patience, perform remedies, consider waiting"
+ *
+ * Each tier references the querent's specific planets to make the advice feel
+ * personalised rather than boilerplate.
+ */
 function buildGuidance(
   outcome: PrashnaAnalysis['verdict']['outcome'],
   category: PrashnaCategory,
@@ -568,6 +799,23 @@ function buildGuidance(
   return base;
 }
 
+/**
+ * Generates an ordered list of remedies (upayas) tailored to the Prashna result.
+ *
+ * Remedy structure (up to 3 remedies):
+ * 1. **Weakest planet remedy**: Identifies the weakest among {Lagna Lord, Relevant
+ *    House Lord, Moon}, then suggests the classical planetary remedy for that graha.
+ *    Only applies to true planets (Sun through Saturn, ids 0-6) — Rahu/Ketu have
+ *    separate traditions not covered here.
+ * 2. **Category-specific remedy**: A fixed remedy tied to the question domain
+ *    (e.g. Saraswati worship for education, Lakshmi-Kuber for finance).
+ * 3. **General retry suggestion** (only for challenging/difficult outcomes):
+ *    Advises re-casting the Prashna at a more auspicious muhurta (Brahma Muhurta
+ *    or Abhijit Muhurta) after performing remedies.
+ *
+ * Planetary remedies follow standard Jyotish upaya traditions:
+ * each planet is associated with a weekday, deity, mantra, and charitable action.
+ */
 function buildRemedies(
   outcome: PrashnaAnalysis['verdict']['outcome'],
   category: PrashnaCategory,
@@ -578,7 +826,8 @@ function buildRemedies(
 ): LocaleText[] {
   const remedies: LocaleText[] = [];
 
-  // Always suggest worship of the relevant house lord's deity
+  // Planetary remedy lookup: planet ID → recommended worship, mantra, and charity.
+  // Each maps the graha to its weekday lord tradition (e.g. Sun → Sunday → Surya Arghya).
   const lordRemedies: Record<number, LocaleText> = {
     0: { en: 'Offer water to the Sun at sunrise (Surya Arghya) and chant Aditya Hridayam.', hi: 'सूर्योदय पर सूर्य को अर्घ्य दें और आदित्य हृदयम् का पाठ करें।', sa: 'सूर्योदये सूर्याय अर्घ्यं दत्त्वा आदित्यहृदयं पठेत्।' },
     1: { en: 'Worship on Monday. Offer milk to Shiva Linga. Chant Om Chandraya Namah 108 times.', hi: 'सोमवार को पूजा करें। शिवलिंग पर दूध चढ़ाएं। ॐ चन्द्राय नमः 108 बार जपें।', sa: 'सोमवासरे पूजनं कुर्यात्। शिवलिङ्गे दुग्धं समर्पयेत्। ॐ चन्द्राय नमः 108 वारं जपेत्।' },
@@ -589,7 +838,8 @@ function buildRemedies(
     6: { en: 'Worship Shani on Saturdays. Light sesame oil lamp. Donate black items and mustard oil.', hi: 'शनिवार को शनि पूजा करें। तिल तेल का दीपक जलाएं। काली वस्तुएं और सरसों का तेल दान करें।', sa: 'शनिवासरे शनिपूजनम्। तिलतैलदीपं प्रज्वालयेत्। कृष्णवस्तूनि सर्षपतैलं च दद्यात्।' },
   };
 
-  // Strengthen the weakest key planet
+  // Find the weakest of the three key significators and suggest its remedy.
+  // Sorted ascending by planetScore — index 0 is the most afflicted.
   const weakest = [ascLord, relLord, moon].sort((a, b) => planetScore(a) - planetScore(b))[0];
   if (weakest.planet.id <= 6 && lordRemedies[weakest.planet.id]) {
     remedies.push({
@@ -599,7 +849,8 @@ function buildRemedies(
     });
   }
 
-  // Category-specific remedies
+  // Category-specific remedies — fixed per question domain, independent of planetary state.
+  // These draw from popular Hindu devotional traditions associated with each life domain.
   const catRemedies: Record<PrashnaCategory, LocaleText> = {
     general: { en: 'Perform Ganesha Puja to remove obstacles. Chant Om Gam Ganapataye Namah 108 times before starting any new endeavor.', hi: 'बाधा दूर करने के लिए गणेश पूजा करें। किसी नए कार्य से पहले ॐ गं गणपतये नमः 108 बार जपें।', sa: 'विघ्ननिवारणार्थं गणेशपूजनं कुर्यात्। ॐ गं गणपतये नमः 108 वारं जपेत्।' },
     career: { en: 'Light a lamp before Surya Yantra or Sun image every morning. Wear Ruby or Manik if Sun is your Lagna lord.', hi: 'प्रतिदिन सूर्य यन्त्र या सूर्य प्रतिमा के सामने दीपक जलाएं। यदि सूर्य लग्नेश है तो माणिक्य धारण करें।', sa: 'प्रतिदिनं सूर्ययन्त्रसमक्षं दीपं प्रज्वालयेत्।' },
@@ -613,7 +864,9 @@ function buildRemedies(
 
   remedies.push(catRemedies[category]);
 
-  // If outcome is poor, add general remedy
+  // For poor outcomes, suggest re-casting the Prashna at a more auspicious time.
+  // Brahma Muhurta (96 min before sunrise) and Abhijit Muhurta (local noon ± 24 min)
+  // are classically considered the most powerful times to ask questions.
   if (outcome === 'challenging' || outcome === 'difficult') {
     remedies.push({
       en: 'Consider casting another Prashna chart after performing remedies, at a more auspicious time (during Brahma Muhurta or Abhijit Muhurta).',

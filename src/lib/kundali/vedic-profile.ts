@@ -1,7 +1,73 @@
 /**
  * Vedic Profile Engine
- * Generates a narrative astrology profile from KundaliData.
+ *
+ * Generates a narrative astrology profile from KundaliData. This is the
+ * "story-telling" layer that sits on top of the raw astronomical data and
+ * produces human-readable, personalised prose for the Kundali page.
+ *
  * Pure function — no API calls, no async, instant.
+ *
+ * ─── Pipeline Overview ───────────────────────────────────────────────
+ *
+ *   1. **Pattern Detection** (`detectChartPatterns`)
+ *      Scans the chart for 11 types of notable configurations, each
+ *      assigned a priority score. Patterns are sorted by score so the
+ *      most significant feature leads the narrative.
+ *
+ *   2. **Hook** (`buildHook`)
+ *      A one-sentence opener derived from the highest-scored pattern.
+ *      Uses deterministic variant selection (birth-data hash) so the
+ *      same chart always produces the same hook.
+ *
+ *   3. **Core Identity** (`buildCoreIdentity`)
+ *      Two paragraphs: Lagna (ascendant sign + lord + personality from
+ *      LAGNA_DEEP) and Moon (sign + nakshatra details from
+ *      NAKSHATRA_DETAILS). Maps to the Tattva (element) and Guna
+ *      (quality) framework per BPHS Ch.3-4.
+ *
+ *   4. **Standout Feature** (`buildStandout`)
+ *      A 3-4 sentence expansion of the top pattern. Each pattern type
+ *      has a dedicated narrative branch with contextual data (house
+ *      themes, dignity, neecha bhanga checks, etc.).
+ *
+ *   5. **Planetary Observations** (`buildPlanetaryObservations`)
+ *      Up to 3 secondary patterns rendered as connected prose paragraphs,
+ *      joined by narrative connectors ("Additionally," "Moreover,").
+ *
+ *   6. **Nakshatra Insight** (`buildNakshatraInsight`)
+ *      Moon's nakshatra mythology, meaning, characteristics, and gana
+ *      from the NAKSHATRA_DETAILS constant.
+ *
+ *   7. **Dasha Context** (`buildDashaContext`)
+ *      Current Mahadasha and Antardasha with house placement of the
+ *      dasha lord and the DASHA_EFFECTS commentary.
+ *
+ *   8. **Dosha Section** (`buildDoshaSection`)
+ *      Checks for Manglik, Kaal Sarpa, and Sade Sati with cancellation
+ *      conditions. Maps to BPHS Ch.77 (Manglik) and traditional texts.
+ *
+ *   9. **Strength Table** (`buildStrengthTable`)
+ *      Lists only planets with notable dignity (exalted, debilitated,
+ *      own sign, or retrograde) with a one-sentence impact summary.
+ *
+ * ─── Classical Concepts Mapped ───────────────────────────────────────
+ *
+ *   - Tattva (elements: Fire/Earth/Air/Water) — used in element balance
+ *     analysis within contrasting elements pattern detection
+ *   - Guna (qualities: Cardinal/Fixed/Mutable) — referenced via rashi quality
+ *   - Graha Drishti — aspect checks for Gajakesari and cancellation conditions
+ *   - Neecha Bhanga Raja Yoga — debilitated key planet with cancellation check
+ *   - Pancha Mahapurusha Yoga — from yogasComplete (BPHS Ch.75)
+ *   - Raja Yoga — from yogasComplete (BPHS Ch.37-41)
+ *   - Kaal Sarpa Yoga — all planets between Rahu-Ketu axis
+ *   - Gajakesari Yoga — Jupiter in kendra from Moon (Phaladeepika Ch.6)
+ *   - Chandra-Mangala Yoga — Moon-Mars conjunction (BPHS Ch.36)
+ *
+ * ─── Locale Support ──────────────────────────────────────────────────
+ *
+ *   Bilingual (EN/HI). Each narrative function contains parallel
+ *   Hindi text constructed from the same data. The `tl()` helper
+ *   provides safe Trilingual access with English fallback.
  */
 
 import type { KundaliData, PlanetPosition } from '@/types/kundali';
@@ -19,6 +85,29 @@ import {
 
 // ─── Types ───────────────────────────────────────────────────────
 
+/**
+ * A detected chart pattern — a notable configuration in the horoscope.
+ *
+ * Each pattern has a `score` (0-100) that determines its narrative priority.
+ * Higher-scored patterns lead the profile's hook and standout sections.
+ *
+ * Score hierarchy (descending importance):
+ *   90 — Stellium (3+ planets in one house): rare, highly defining
+ *   85 — Kaal Sarpa: all planets hemmed by Rahu-Ketu axis
+ *   80 — Raja Yoga (2+): kendra-trikona lord combinations
+ *   75 — Mahapurusha: one of the 5 special yogas (BPHS Ch.75)
+ *   70 — Dignified Lagna Lord: lagna lord exalted or in own sign
+ *   65 — Debilitated Key Planet: lagna lord, Moon, or Sun debilitated
+ *   60 — Retrograde in Kendra: a vakri planet in houses 1/4/7/10
+ *   55 — Sade Sati: Saturn transiting over natal Moon
+ *   50 — Lunar Yoga: Gajakesari or Chandra-Mangala
+ *   45 — Same Lagna-Moon sign: unified personality
+ *   40 — Contrasting Elements: lagna and moon in different elements (fallback)
+ *
+ * `templateData` holds locale-independent IDs (signId, planetId) that are
+ * resolved to locale-specific names at render time — this avoids storing
+ * language-specific strings in the detection phase.
+ */
 export interface ChartPattern {
   type: 'stellium' | 'kaalSarpa' | 'rajaYoga' | 'mahapurusha' | 'dignifiedLagnaLord'
       | 'debilitatedKey' | 'sameLagnaMoon' | 'contrastingElements' | 'sadeSati'
@@ -28,7 +117,8 @@ export interface ChartPattern {
   houses?: number[];
   yogaName?: string;
   description?: string;
-  // Template interpolation data
+  // Template interpolation data — contains IDs that get resolved to
+  // locale-specific names at render time (not stored as text).
   templateData?: Record<string, string>;
 }
 
@@ -53,6 +143,9 @@ export interface VedicProfile {
 
 // ─── Locale helpers ──────────────────────────────────────────────
 
+/** Safe trilingual text accessor. Returns the text for the requested locale,
+ *  falling back to English if the locale key is missing (e.g. Tamil, Bengali).
+ *  See Lesson J: locale fallback is non-negotiable. */
 function tl(obj: LocaleText | undefined, locale: string): string {
   if (!obj) return '';
   const l = locale as keyof LocaleText;
@@ -68,12 +161,28 @@ function hashStr(s: string): number {
   return Math.abs(h);
 }
 
+/** Replaces `{key}` placeholders in a template string with values from `data`.
+ *  Unresolved placeholders are left as-is (e.g. `{unknown}`) for debugging. */
 function interpolate(template: string, data: Record<string, string>): string {
   return template.replace(/\{(\w+)\}/g, (_, key) => data[key] || `{${key}}`);
 }
 
 // ─── Pattern Detection ──────────────────────────────────────────
 
+/**
+ * Scans a kundali for 11 types of notable chart configurations.
+ *
+ * Detection order does not affect output — all patterns are detected
+ * independently, then sorted by score descending. The score determines
+ * which pattern leads the narrative (hook + standout).
+ *
+ * Each detected pattern stores locale-independent data (planet IDs, sign IDs)
+ * in `templateData` so that locale resolution happens only at render time.
+ *
+ * @returns Patterns sorted by score (highest first). An empty array is
+ *          possible but unlikely — contrastingElements (score 40) or
+ *          sameLagnaMoon (score 45) serve as fallbacks for most charts.
+ */
 export function detectChartPatterns(kundali: KundaliData): ChartPattern[] {
   const patterns: ChartPattern[] = [];
   const planets = kundali.planets;
@@ -81,7 +190,9 @@ export function detectChartPatterns(kundali: KundaliData): ChartPattern[] {
   const moon = planets.find(p => p.planet.id === 1);
   const moonSign = moon?.sign || 1;
 
-  // 1. Stellium (3+ planets in one house)
+  // 1. Stellium detection: 3+ planets concentrated in a single house.
+  //    Stelliums intensify the house's significations dramatically.
+  //    Score 90 because a triple+ conjunction is rare and chart-defining.
   const houseCounts: Record<number, number[]> = {};
   for (const p of planets) {
     if (!houseCounts[p.house]) houseCounts[p.house] = [];
@@ -103,7 +214,12 @@ export function detectChartPatterns(kundali: KundaliData): ChartPattern[] {
     }
   }
 
-  // 2. Kaal Sarpa — all planets between Rahu and Ketu
+  // 2. Kaal Sarpa Yoga — all 7 visible planets hemmed between Rahu and Ketu.
+  //    This karmic configuration (not in BPHS but widely recognised in
+  //    modern Vedic practice) indicates intense karmic experiences along
+  //    the Rahu-Ketu axis. Score 85 for its life-defining nature.
+  //    The check tests both directions (Rahu→Ketu and Ketu→Rahu) because
+  //    all planets must lie on one side of the nodal axis.
   const rahu = planets.find(p => p.planet.id === 7);
   const ketu = planets.find(p => p.planet.id === 8);
   if (rahu && ketu) {
@@ -131,7 +247,9 @@ export function detectChartPatterns(kundali: KundaliData): ChartPattern[] {
     }
   }
 
-  // 3. Raja Yogas (from yogasComplete if available)
+  // 3. Raja Yogas — combinations of kendra and trikona lords (BPHS Ch.37-41).
+  //    Requires 2+ active raja yogas to qualify as a profile-defining pattern.
+  //    Score 80 for the authority/recognition theme.
   if (kundali.yogasComplete) {
     const rajaYogas = kundali.yogasComplete.filter(y => y.category === 'raja' && y.present);
     if (rajaYogas.length >= 2) {
@@ -143,7 +261,10 @@ export function detectChartPatterns(kundali: KundaliData): ChartPattern[] {
       });
     }
 
-    // 4. Mahapurusha Yoga
+    // 4. Pancha Mahapurusha Yoga (BPHS Ch.75) — formed when Mars, Mercury,
+    //    Jupiter, Venus, or Saturn occupies its own or exaltation sign in a
+    //    kendra. Named: Ruchaka (Mars), Bhadra (Mercury), Hamsa (Jupiter),
+    //    Malavya (Venus), Shasha (Saturn). Score 75.
     const mahapurusha = kundali.yogasComplete.filter(y => y.category === 'mahapurusha' && y.present);
     for (const mp of mahapurusha) {
       patterns.push({
@@ -156,7 +277,9 @@ export function detectChartPatterns(kundali: KundaliData): ChartPattern[] {
     }
   }
 
-  // 5. Dignified Lagna Lord (exalted or own sign)
+  // 5. Dignified Lagna Lord — the chart ruler (lagna lord) in exaltation or
+  //    own sign. Per BPHS Ch.34, a strong lagna lord stabilises the entire
+  //    chart. Score 70 because it's chart-wide but not rare.
   const lagnaLordId = LAGNA_LORDS[ascSign];
   const lagnaLord = planets.find(p => p.planet.id === lagnaLordId);
   if (lagnaLord && (lagnaLord.isExalted || lagnaLord.isOwnSign)) {
@@ -171,7 +294,10 @@ export function detectChartPatterns(kundali: KundaliData): ChartPattern[] {
     });
   }
 
-  // 6. Debilitated key planet (lagna lord, Moon, or Sun)
+  // 6. Debilitated key planet — lagna lord, Moon, or Sun in neecha (debilitation).
+  //    These are the three most personally significant planets; their weakness
+  //    is chart-defining. Only the first debilitated key planet is reported.
+  //    Score 65. Also checks for Neecha Bhanga (cancellation) in buildStandout().
   const keyPlanets = [lagnaLord, moon, planets.find(p => p.planet.id === 0)].filter(Boolean) as PlanetPosition[];
   for (const kp of keyPlanets) {
     if (kp.isDebilitated) {
@@ -185,7 +311,11 @@ export function detectChartPatterns(kundali: KundaliData): ChartPattern[] {
     }
   }
 
-  // 7. Retrograde in kendra
+  // 7. Retrograde planet in a kendra (angular house 1/4/7/10).
+  //    Vakri (retrograde) planets internalise their energy; in a kendra,
+  //    this creates a distinctive "delayed but enduring" theme.
+  //    Only true planets (id 0-6) are checked — Rahu/Ketu are always retrograde.
+  //    Score 60. Only the first qualifying planet is taken.
   const kendras = [1, 4, 7, 10];
   for (const p of planets) {
     if (p.isRetrograde && kendras.includes(p.house) && p.planet.id <= 6) {
@@ -204,7 +334,9 @@ export function detectChartPatterns(kundali: KundaliData): ChartPattern[] {
     }
   }
 
-  // 8. Sade Sati
+  // 8. Sade Sati — Saturn's 7.5-year transit over natal Moon (±1 sign).
+  //    A transit condition rather than a natal pattern, but included
+  //    because it dominates the current life experience. Score 55.
   if (kundali.sadeSati?.isActive) {
     patterns.push({
       type: 'sadeSati',
@@ -213,7 +345,13 @@ export function detectChartPatterns(kundali: KundaliData): ChartPattern[] {
     });
   }
 
-  // 9. Lunar yogas — Gajakesari, Chandra-Mangala
+  // 9. Lunar yogas — Moon-based combinations:
+  //    - Gajakesari Yoga (Phaladeepika Ch.6 Shloka 1): Jupiter in a kendra
+  //      (houses 1/4/7/10) from Moon. Confers wisdom, fame, prosperity.
+  //      Expected frequency ~25% of charts (4 out of 12 possible house positions).
+  //    - Chandra-Mangala Yoga (BPHS Ch.36): Moon and Mars in conjunction.
+  //      Confers energy, financial acumen, ~8% frequency.
+  //    Score 50 for both (relatively common yogas).
   if (moon) {
     const jupiter = planets.find(p => p.planet.id === 4);
     const mars = planets.find(p => p.planet.id === 2);
@@ -240,7 +378,9 @@ export function detectChartPatterns(kundali: KundaliData): ChartPattern[] {
     }
   }
 
-  // 10. Same lagna and moon sign
+  // 10. Same Lagna and Moon sign — the native's outward personality and inner
+  //     emotional world are governed by the same sign energy. This creates
+  //     authenticity and consistency but no "escape valve." Score 45.
   if (moonSign === ascSign) {
     const rashi = RASHIS.find(r => r.id === ascSign);
     patterns.push({
@@ -254,7 +394,10 @@ export function detectChartPatterns(kundali: KundaliData): ChartPattern[] {
     });
   }
 
-  // 11. Contrasting elements (fallback-level)
+  // 11. Contrasting elements — Lagna and Moon in different Tattvas (elements).
+  //     This is the lowest-priority pattern (score 40) and serves as a
+  //     fallback so that nearly every chart has at least one detected pattern.
+  //     Maps to the Pancha Tattva framework: Agni, Prithvi, Vayu, Jala.
   if (moonSign !== ascSign) {
     const lagnaRashi = RASHIS.find(r => r.id === ascSign);
     const moonRashi = RASHIS.find(r => r.id === moonSign);
@@ -280,6 +423,17 @@ export function detectChartPatterns(kundali: KundaliData): ChartPattern[] {
 
 // ─── Build Sections ─────────────────────────────────────────────
 
+/**
+ * Generates the one-sentence narrative "hook" — the opening line of the profile.
+ *
+ * Uses the highest-scored pattern's type to select a template from HOOK_TEMPLATES.
+ * Variant selection within that template set is deterministic: a hash of the
+ * birth data (date + time + latitude) picks the variant, so the same chart
+ * always produces the same hook. This avoids "randomness" in a static profile.
+ *
+ * Template placeholders like {sign}, {planet}, {element1} are resolved here
+ * from the pattern's templateData IDs → locale-specific names.
+ */
 function buildHook(patterns: ChartPattern[], kundali: KundaliData, locale: string): string {
   const topPattern = patterns[0];
   if (!topPattern) {
@@ -320,6 +474,22 @@ function buildHook(patterns: ChartPattern[], kundali: KundaliData, locale: strin
   return interpolate(template, data || {});
 }
 
+/**
+ * Builds the two-paragraph "Core Identity" section:
+ *
+ *   1. **Lagna paragraph** — Ascendant sign, its planetary ruler, and the first
+ *      2-3 sentences from LAGNA_DEEP personality content. This maps to the
+ *      Tanu Bhava (1st house) analysis per BPHS Ch.11-12: the sign rising
+ *      at birth defines the native's physical constitution, temperament,
+ *      and approach to life.
+ *
+ *   2. **Moon paragraph** — Moon's rashi (emotional nature) and nakshatra
+ *      (deeper behavioural nuance). The nakshatra section draws from
+ *      NAKSHATRA_DETAILS: deity, symbol meaning, mythology, characteristics,
+ *      and gana (Deva/Manushya/Rakshasa). This maps to the Chandra Lagna
+ *      principle where Moon is treated as an alternate ascendant for the
+ *      mind and emotions.
+ */
 function buildCoreIdentity(kundali: KundaliData, locale: string): { lagna: string; moon: string } {
   const ascSign = kundali.ascendant.sign;
   const lagnaDeep = LAGNA_DEEP[ascSign];
@@ -378,6 +548,27 @@ function buildCoreIdentity(kundali: KundaliData, locale: string): { lagna: strin
   return { lagna: lagnaLabel, moon: moonLabel };
 }
 
+/**
+ * Expands the highest-scored pattern into a 3-4 sentence narrative paragraph.
+ *
+ * Each pattern type has a dedicated code branch producing contextual prose:
+ *   - stellium: names the planets, house theme, and first planet's house implications
+ *   - dignifiedLagnaLord: dignity label + house placement + "captain of the chart" metaphor
+ *   - kaalSarpa: Rahu-Ketu axis houses + karmic intensity narrative
+ *   - rajaYoga: count + activation timing (dasha dependency)
+ *   - sameLagnaMoon: unified personality + authenticity theme
+ *   - mahapurusha: yoga name + description from yogasComplete
+ *   - contrastingElements: element names + modality + multidimensional narrative
+ *   - sadeSati: phase + 7.5-year maturation narrative
+ *   - lunarYoga: Moon-planet combination + quality + house theme
+ *   - debilitatedKey: dignity + house theme + Neecha Bhanga check
+ *   - retrogradeKendra: retrograde internalization + "delay not weakness" theme
+ *
+ * Neecha Bhanga Raja Yoga check (debilitatedKey): if the sign lord of the
+ * debilitated planet is itself exalted, in own sign, or in a kendra, the
+ * debilitation is considered cancelled — producing potential for extraordinary
+ * strength from weakness. Ref: BPHS Ch.29 (Neecha Bhanga conditions).
+ */
 function buildStandout(patterns: ChartPattern[], kundali: KundaliData, locale: string): string {
   const topPattern = patterns[0];
   if (!topPattern) return '';
@@ -509,8 +700,20 @@ function buildStandout(patterns: ChartPattern[], kundali: KundaliData, locale: s
   }
 }
 
+/**
+ * Renders up to 3 secondary patterns (ranks 2-4) as narrative observation
+ * paragraphs. Each paragraph begins with a connector phrase ("Additionally,"
+ * "Moreover,") from the CONNECTORS array to create flowing prose.
+ *
+ * The switch-case structure mirrors buildStandout() but with slightly
+ * different phrasing (connector-prefixed, less headline-like).
+ *
+ * This function uses the same Neecha Bhanga detection and house theme
+ * resolution as buildStandout(). See that function's JSDoc for details.
+ */
 function buildPlanetaryObservations(patterns: ChartPattern[], kundali: KundaliData, locale: string): string[] {
   const obs: string[] = [];
+  // Take the 2nd through 4th patterns (the top pattern is used in hook+standout)
   const usedPatterns = patterns.slice(1, 4);
   const planets = kundali.planets;
 
@@ -676,6 +879,21 @@ function buildPlanetaryObservations(patterns: ChartPattern[], kundali: KundaliDa
   return obs;
 }
 
+/**
+ * Generates the Moon nakshatra insight paragraph.
+ *
+ * Draws from NAKSHATRA_DETAILS to produce a paragraph covering:
+ *   - Nakshatra name and meaning (e.g. "Rohini — The Red One")
+ *   - Symbol (e.g. chariot, lotus)
+ *   - Mythology and presiding deity
+ *   - Key characteristics (first sentence)
+ *   - Gana classification (Deva/Manushya/Rakshasa)
+ *
+ * The Moon's nakshatra is the most personality-defining single data point
+ * in Vedic astrology — it determines the Vimshottari Dasha starting planet,
+ * compatibility (Ashta Kuta), and the native's fundamental emotional nature.
+ * Ref: BPHS Ch.3 Shloka 6 (Nakshatra as the Moon's subdivision).
+ */
 function buildNakshatraInsight(kundali: KundaliData, locale: string): string {
   const moon = kundali.planets.find(p => p.planet.id === 1);
   if (!moon) return '';
@@ -697,6 +915,22 @@ function buildNakshatraInsight(kundali: KundaliData, locale: string): string {
   return `Your Moon falls in ${name} — "${meaning}." ${symbol} ${mythology} ${characteristics} Gana: ${gana}.`;
 }
 
+/**
+ * Builds the Vimshottari Dasha context paragraph.
+ *
+ * Identifies the currently running Mahadasha (major period) and Antardasha
+ * (sub-period) by comparing today's date against the dasha timeline.
+ *
+ * Enriches the output with:
+ *   - Mahadasha lord's house placement and dignity
+ *   - House theme from HOUSE_THEME_LABELS
+ *   - Antardasha effect from DASHA_EFFECTS templates
+ *
+ * The Vimshottari Dasha system (BPHS Ch.46) divides 120 years among
+ * 9 planets in a fixed sequence starting from the Moon's birth nakshatra.
+ * Each Mahadasha activates the significations of its lord — its house
+ * lordship, placement, dignity, and aspects determine the period's flavour.
+ */
 function buildDashaContext(kundali: KundaliData, locale: string): string {
   const dashas = kundali.dashas;
   if (!dashas || dashas.length === 0) return '';
@@ -748,11 +982,30 @@ function buildDashaContext(kundali: KundaliData, locale: string): string {
   return `You are currently in ${mahaName} Mahadasha — a ${totalYears}-year period. ${placementText}shaping the character of these years.${antarText}`;
 }
 
+/**
+ * Builds the dosha (affliction) section of the profile.
+ *
+ * Checks for three commonly discussed doshas:
+ *
+ *   1. **Manglik Dosha** (BPHS Ch.77) — Mars in houses 1/2/4/7/8/12.
+ *      Houses 1/7/8 are "severe"; 4/12 "moderate"; 2 "mild".
+ *      Cancellation conditions checked:
+ *        - Mars in own sign or exalted → natural dignity overrides dosha
+ *        - Jupiter in kendra (1/4/7/10) → Jupiter's benefic influence mitigates
+ *
+ *   2. **Kaal Sarpa Dosha** — all planets hemmed between Rahu and Ketu.
+ *      Same detection as pattern #2 above, presented here with remedy context.
+ *
+ *   3. **Sade Sati** — Saturn's 7.5-year transit over natal Moon.
+ *      Read from kundali.sadeSati which is computed from current transits.
+ *
+ * Returns null if no doshas are present — the UI then hides the section.
+ */
 function buildDoshaSection(kundali: KundaliData, locale: string): string | null {
   const planets = kundali.planets;
   const doshas: string[] = [];
 
-  // Check Manglik
+  // Check Manglik (BPHS Ch.77 — Kuja Dosha)
   const mars = planets.find(p => p.planet.id === 2);
   const manglikHouses = [1, 2, 4, 7, 8, 12];
   if (mars && manglikHouses.includes(mars.house)) {
@@ -808,11 +1061,26 @@ function buildDoshaSection(kundali: KundaliData, locale: string): string | null 
   return doshas.join('\n\n');
 }
 
+/**
+ * Builds the planetary strength summary table.
+ *
+ * Only includes planets with notable dignity status:
+ *   - Exalted (uchcha) — planet at its sign of maximum strength
+ *   - Debilitated (neecha) — planet at its sign of minimum strength
+ *   - Own sign (sva-rashi) — planet in a sign it lords
+ *   - Retrograde (vakri) — apparent backward motion
+ *
+ * Neutral planets (none of the above) are omitted to keep the table concise.
+ * The "impact" column shows the first sentence of the planet's house
+ * implications from PLANET_HOUSE_DEPTH, or the house theme as fallback.
+ *
+ * Dignity classifications follow BPHS Ch.3-4 (Graha Svarupa).
+ */
 function buildStrengthTable(kundali: KundaliData, locale: string): StrengthRow[] {
   const rows: StrengthRow[] = [];
 
   for (const p of kundali.planets) {
-    // Only include planets with notable dignity
+    // Only include planets with notable dignity (skip neutral ones)
     if (!p.isExalted && !p.isDebilitated && !p.isOwnSign && !p.isRetrograde) continue;
 
     const dignity = p.isExalted ? bt(DIGNITY_LABELS.exalted, locale)
@@ -838,6 +1106,21 @@ function buildStrengthTable(kundali: KundaliData, locale: string): StrengthRow[]
 
 // ─── Main Entry Point ───────────────────────────────────────────
 
+/**
+ * Generates the complete VedicProfile from a KundaliData object.
+ *
+ * This is the single public entry point for the vedic-profile engine.
+ * It orchestrates the full pipeline:
+ *   1. Detect chart patterns (scored, sorted)
+ *   2. Build each narrative section using the sorted patterns
+ *   3. Assemble into VedicProfile struct
+ *
+ * Pure function — deterministic output for the same input, no side effects.
+ *
+ * @param kundali — Full kundali data with planets, houses, dashas, yogas, etc.
+ * @param locale — 'en' or 'hi' for bilingual narrative output
+ * @returns VedicProfile with all sections populated
+ */
 export function generateVedicProfile(kundali: KundaliData, locale: string): VedicProfile {
   const patterns = detectChartPatterns(kundali);
   return {

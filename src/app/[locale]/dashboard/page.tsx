@@ -1426,18 +1426,20 @@ export default function DashboardPage() {
                 {isHeroHi ? 'आज के शुभ मुहूर्त' : "Today's Best Windows"}
               </p>
               <div className="flex flex-wrap gap-2">
-                {todayMuhurtaWindows.map(w => (
-                  <span key={w.activity} className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border ${
-                    w.score >= 60 ? 'bg-emerald-500/5 border-emerald-500/20 text-emerald-300'
-                    : w.score >= 45 ? 'bg-gold-primary/5 border-gold-primary/20 text-gold-light'
-                    : 'bg-amber-500/5 border-amber-500/20 text-amber-300'
-                  }`}>
-                    <Clock className="w-3 h-3" />
-                    {isHeroHi ? (w.labelHi || w.label) : w.label}:
-                    &nbsp;<span className="font-mono text-text-primary">{w.time}</span>
-                    &nbsp;·&nbsp;{w.score}
-                  </span>
-                ))}
+                {todayMuhurtaWindows.map(w => {
+                  const q = w.score >= 75 ? { cls: 'bg-emerald-500/10 border-emerald-500/25 text-emerald-300', dot: 'bg-emerald-400', label: isHeroHi ? 'उत्तम' : 'Excellent' }
+                    : w.score >= 60 ? { cls: 'bg-emerald-500/5 border-emerald-500/20 text-emerald-300', dot: 'bg-emerald-400', label: isHeroHi ? 'शुभ' : 'Good' }
+                    : w.score >= 45 ? { cls: 'bg-gold-primary/5 border-gold-primary/20 text-gold-light', dot: 'bg-gold-primary', label: isHeroHi ? 'सामान्य' : 'Fair' }
+                    : { cls: 'bg-amber-500/5 border-amber-500/20 text-amber-300', dot: 'bg-amber-400', label: isHeroHi ? 'सतर्क' : 'Caution' };
+                  return (
+                    <span key={w.activity} className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border ${q.cls}`}>
+                      <span className={`w-2 h-2 rounded-full ${q.dot}`} />
+                      {isHeroHi ? (w.labelHi || w.label) : w.label}:
+                      &nbsp;<span className="font-mono text-text-primary">{w.time}</span>
+                      &nbsp;·&nbsp;{q.label}
+                    </span>
+                  );
+                })}
               </div>
             </div>
           )}

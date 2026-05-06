@@ -4,11 +4,13 @@ import '@/lib/muhurta/engine';
 import { unifiedScan } from '@/lib/muhurta/engine/scanner';
 
 describe('Unified Scanner', () => {
-  it('scans a single day and returns windows with valid scores', () => {
+  it('scans a date range and returns windows with valid scores', () => {
+    // Use wider range + business activity — marriage may be vetoed on specific
+    // days due to hard inauspicious yoga or combustion (classical hardening)
     const windows = unifiedScan({
       startDate: '2026-06-15',
-      endDate: '2026-06-15',
-      activity: 'marriage',
+      endDate: '2026-06-20',
+      activity: 'business',
       lat: 46.46,
       lng: 6.80,
       tz: 2,

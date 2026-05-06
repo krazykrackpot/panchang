@@ -116,8 +116,8 @@ function makeCtx(snapOverrides: Partial<PanchangSnapshot> = {}): RuleContext {
 }
 
 describe('Panchanga Rules', () => {
-  it('exports all 6 rules in PANCHANGA_RULES', () => {
-    expect(PANCHANGA_RULES).toHaveLength(6);
+  it('exports all 8 rules in PANCHANGA_RULES', () => {
+    expect(PANCHANGA_RULES).toHaveLength(8);
     const ids = PANCHANGA_RULES.map(r => r.id);
     expect(ids).toContain('tithi-quality');
     expect(ids).toContain('nakshatra-quality');
@@ -125,6 +125,8 @@ describe('Panchanga Rules', () => {
     expect(ids).toContain('karana-quality');
     expect(ids).toContain('vara-quality');
     expect(ids).toContain('panchaka');
+    expect(ids).toContain('dagdha-tithi');
+    expect(ids).toContain('nakshatra-gandanta');
   });
 
   describe('tithi-quality', () => {
@@ -189,10 +191,32 @@ describe('Panchanga Rules', () => {
   describe('yoga-quality', () => {
     const rule = PANCHANGA_RULES.find(r => r.id === 'yoga-quality')!;
 
-    it('scores -3 for inauspicious yoga (1)', () => {
+    it('scores -6 for moderate inauspicious yoga (1=Vishkambha)', () => {
+      // Vishkambha is moderate inauspicious — tier 2, -6 points
       const result = rule.evaluate(makeCtx({ yoga: 1 }));
       expect(result).not.toBeNull();
-      expect(result!.points).toBe(-3);
+      expect(result!.points).toBe(-6);
+      expect(result!.tier).toBe(2); // NOT cancellable by lagna
+    });
+
+    it('vetoes hard inauspicious yoga for samskara (marriage)', () => {
+      // makeCtx defaults to marriage — Ganda + marriage = Tier 0 absolute veto
+      const result = rule.evaluate(makeCtx({ yoga: 10 }));
+      expect(result).not.toBeNull();
+      expect(result!.vetoed).toBe(true);
+      expect(result!.tier).toBe(0);
+      expect(result!.points).toBe(-10);
+    });
+
+    it('scores -8 for hard inauspicious yoga (Ganda) on non-samskara', () => {
+      // Override activity to business — Ganda = tier 2, -8 (not a veto)
+      const ctx = makeCtx({ yoga: 10 });
+      (ctx as { activity: string }).activity = 'business';
+      const result = rule.evaluate(ctx);
+      expect(result).not.toBeNull();
+      expect(result!.points).toBe(-8);
+      expect(result!.tier).toBe(2);
+      expect(result!.vetoed).toBeFalsy();
     });
 
     it('scores +4 for auspicious yoga (5)', () => {

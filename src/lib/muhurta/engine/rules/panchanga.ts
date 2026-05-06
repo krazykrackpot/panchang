@@ -10,8 +10,35 @@
 
 import type { MuhurtaRule, RuleAssessment, RuleContext } from '../types';
 
-// 9 inauspicious yogas per MC Ch.6 (Vivah Prakarana)
-const INAUSPICIOUS_YOGAS = new Set([1, 6, 9, 10, 13, 15, 17, 19, 27]);
+// Inauspicious yogas per MC Ch.6 — split into hard and moderate
+// Hard: classically considered muhurta-breakers for new beginnings
+const HARD_INAUSPICIOUS_YOGAS = new Set([10, 17, 27]); // Ganda, Vyatipata, Vaidhriti
+// Moderate: inauspicious but less severe
+const MODERATE_INAUSPICIOUS_YOGAS = new Set([1, 6, 9, 13, 15, 19]); // Vishkambha, Atiganda, Shula, Vyaghata, Vajra, Parigha
+// Combined for backward compat
+const INAUSPICIOUS_YOGAS = new Set([...HARD_INAUSPICIOUS_YOGAS, ...MODERATE_INAUSPICIOUS_YOGAS]);
+
+// Samskara activities — hard inauspicious yoga = absolute veto
+const YOGA_VETO_ACTIVITIES = new Set(['marriage', 'engagement', 'griha_pravesh', 'upanayana', 'mundan', 'namakarana']);
+
+// Dagdha (burnt) tithi-weekday combinations per MC Ch.3
+// Key: weekday (0=Sun..6=Sat), Value: paksha-relative tithi number that is burnt on that day
+const DAGDHA_TITHI: Record<number, number> = {
+  0: 12, // Sunday + Dwadashi
+  1: 11, // Monday + Ekadashi
+  2: 5,  // Tuesday + Panchami
+  3: 3,  // Wednesday + Tritiya
+  4: 6,  // Thursday + Shashthi
+  5: 8,  // Friday + Ashtami
+  6: 9,  // Saturday + Navami
+};
+
+// Nakshatra Gandanta — water-fire sign junctions (last/first 3°20' = 3.333°)
+// These are the nakshatra IDs at the boundaries:
+// Ashlesha(9)→Magha(10), Jyeshtha(18)→Mula(19), Revati(27)→Ashwini(1)
+const GANDANTA_END_NAKSHATRAS = new Set([9, 18, 27]); // last portion is gandanta
+const GANDANTA_START_NAKSHATRAS = new Set([1, 10, 19]); // first portion is gandanta
+const GANDANTA_DEGREE_RANGE = 3.333; // 3°20' = 200 arcmin
 
 function assess(
   ctx: RuleContext,
@@ -146,7 +173,17 @@ const nakshatraQuality: MuhurtaRule = {
 };
 
 // ---------------------------------------------------------------------------
-// 3. yoga-quality
+// 3. yoga-quality (HARDENED — classical rejection logic)
+//
+// Classical rule (MC Ch.6, Jyotirnibandha):
+//   - Ganda, Vyatipata, Vaidhriti are muhurta-breakers — they CANNOT be
+//     overridden by strong lagna or other positives
+//   - For samskaras (marriage, etc.): hard inauspicious yoga = absolute veto
+//   - For other activities: heavy penalty (-8), tier 2 (lagna cannot cancel
+//     because lagna is also tier 2, and cancellation requires tier <= target-2)
+//   - Moderate inauspicious yogas: -6, tier 2 (still not cancellable by lagna)
+//
+// This ensures a Ganda Yoga day can NEVER score "Excellent" (75+)
 // ---------------------------------------------------------------------------
 const yogaQuality: MuhurtaRule = {
   id: 'yoga-quality',
@@ -154,21 +191,59 @@ const yogaQuality: MuhurtaRule = {
   category: 'panchanga',
   scope: 'window',
   effect: 'bonus',
-  tier: 3,
+  tier: 2,
   appliesTo: 'all',
   source: 'MC Ch.6',
   evaluate(ctx: RuleContext): RuleAssessment | null {
-    if (INAUSPICIOUS_YOGAS.has(ctx.snap.yoga)) {
+    const yoga = ctx.snap.yoga;
+
+    // Hard inauspicious yogas: Ganda(10), Vyatipata(17), Vaidhriti(27)
+    // These are classical muhurta-breakers — no amount of positive factors can save them
+    if (HARD_INAUSPICIOUS_YOGAS.has(yoga)) {
+      // For samskaras: absolute veto (Tier 0)
+      if (YOGA_VETO_ACTIVITIES.has(ctx.activity)) {
+        return assess(ctx, this, {
+          tier: 0,
+          points: -10,
+          maxPoints: 4,
+          vetoed: true,
+          severity: 'critical',
+          reason: {
+            en: 'Severely inauspicious Yoga — samskara forbidden',
+            hi: 'अत्यन्त अशुभ योग — संस्कार वर्जित',
+            sa: 'अत्यन्तम् अशुभयोगः — संस्कारवर्जितम्',
+          },
+        });
+      }
+      // For other activities: heavy penalty, NOT cancellable by lagna
+      // Tier 2 means only Tier 1 (Godhuli) can cancel it
       return assess(ctx, this, {
-        tier: 3,
-        points: -3,
+        tier: 2,
+        points: -8,
         maxPoints: 4,
-        severity: 'moderate',
-        reason: { en: 'Inauspicious Yoga', hi: 'अशुभ योग', sa: 'अशुभयोगः' },
-        cancelledBy: ['lagna-quality'],
+        severity: 'critical',
+        reason: {
+          en: 'Severely inauspicious Yoga (Ganda/Vyatipata/Vaidhriti)',
+          hi: 'अत्यन्त अशुभ योग (गण्ड/व्यतीपात/वैधृति)',
+          sa: 'अत्यन्तम् अशुभयोगः (गण्डः/व्यतीपातः/वैधृतिः)',
+        },
       });
     }
 
+    // Moderate inauspicious yogas: Vishkambha(1), Atiganda(6), Shula(9),
+    // Vyaghata(13), Vajra(15), Parigha(19)
+    // Heavy penalty but not a veto — still makes "Excellent" nearly impossible
+    if (MODERATE_INAUSPICIOUS_YOGAS.has(yoga)) {
+      return assess(ctx, this, {
+        tier: 2,
+        points: -6,
+        maxPoints: 4,
+        severity: 'major',
+        reason: { en: 'Inauspicious Yoga', hi: 'अशुभ योग', sa: 'अशुभयोगः' },
+      });
+    }
+
+    // Auspicious yoga — all others
     return assess(ctx, this, {
       tier: 3,
       points: 4,
@@ -360,6 +435,129 @@ const panchaka: MuhurtaRule = {
 };
 
 // ---------------------------------------------------------------------------
+// 7. dagdha-tithi (Burnt Tithi)
+//
+// Classical rule (MC Ch.3):
+//   Certain tithi-weekday combinations are "dagdha" (burnt/scorched).
+//   Activities begun during dagdha tithi are said to be destroyed.
+//   Table: Sun=Dwadashi, Mon=Ekadashi, Tue=Panchami, Wed=Tritiya,
+//          Thu=Shashthi, Fri=Ashtami, Sat=Navami
+//
+// Tier 2, -6 points — NOT cancellable by lagna (same tier).
+// Only Godhuli Lagna (Tier 1) can override a dagdha tithi.
+// ---------------------------------------------------------------------------
+const dagdhaTithi: MuhurtaRule = {
+  id: 'dagdha-tithi',
+  name: { en: 'Dagdha Tithi', hi: 'दग्ध तिथि', sa: 'दग्धतिथिः' },
+  category: 'panchanga',
+  scope: 'window',
+  effect: 'penalty',
+  tier: 2,
+  appliesTo: 'all',
+  source: 'MC Ch.3',
+  evaluate(ctx: RuleContext): RuleAssessment | null {
+    const weekday = ctx.snap.weekday; // 0=Sun..6=Sat
+    const pakshaRelTithi = ctx.snap.tithi > 15 ? ctx.snap.tithi - 15 : ctx.snap.tithi;
+    const dagdhaTithiForDay = DAGDHA_TITHI[weekday];
+
+    if (dagdhaTithiForDay === undefined || pakshaRelTithi !== dagdhaTithiForDay) {
+      return null; // No dagdha — rule does not fire
+    }
+
+    return assess(ctx, this, {
+      tier: 2,
+      points: -6,
+      maxPoints: 0,
+      severity: 'major',
+      reason: {
+        en: 'Dagdha (burnt) Tithi — inauspicious tithi-weekday combination',
+        hi: 'दग्ध तिथि — अशुभ तिथि-वार संयोग',
+        sa: 'दग्धतिथिः — अशुभतिथिवारसंयोगः',
+      },
+    });
+  },
+};
+
+// ---------------------------------------------------------------------------
+// 8. nakshatra-gandanta (Nakshatra Junction)
+//
+// Classical rule (BPHS, Muhurta Chintamani):
+//   The last 3°20' (200') of Ashlesha(9), Jyeshtha(18), Revati(27)
+//   and the first 3°20' of Magha(10), Mula(19), Ashwini(1) are
+//   "gandanta" — water-fire sign junctions where the Moon is unstable.
+//
+//   For samskaras (esp. mundan, namakarana): Tier 0 veto
+//   For other activities: Tier 2, -6 points
+//
+// Requires ctx.snap.moonSid (Moon's sidereal longitude) to compute
+// the Moon's position within the nakshatra.
+// ---------------------------------------------------------------------------
+const nakshatraGandanta: MuhurtaRule = {
+  id: 'nakshatra-gandanta',
+  name: { en: 'Nakshatra Gandanta', hi: 'नक्षत्र गण्डान्त', sa: 'नक्षत्रगण्डान्तम्' },
+  category: 'panchanga',
+  scope: 'window',
+  effect: 'penalty',
+  tier: 2,
+  appliesTo: 'all',
+  source: 'BPHS, MC',
+  evaluate(ctx: RuleContext): RuleAssessment | null {
+    const nak = ctx.snap.nakshatra;
+    const moonSid = ctx.snap.moonSid;
+    if (moonSid === undefined) return null;
+
+    // Each nakshatra spans 13°20' (13.333°)
+    const nakSpan = 360 / 27; // 13.333°
+    const nakStart = (nak - 1) * nakSpan;
+    const degreeInNak = ((moonSid - nakStart) % 360 + 360) % 360;
+
+    let isGandanta = false;
+
+    // Last 3°20' of water-sign-end nakshatras (Ashlesha, Jyeshtha, Revati)
+    if (GANDANTA_END_NAKSHATRAS.has(nak) && degreeInNak > (nakSpan - GANDANTA_DEGREE_RANGE)) {
+      isGandanta = true;
+    }
+
+    // First 3°20' of fire-sign-start nakshatras (Ashwini, Magha, Mula)
+    if (GANDANTA_START_NAKSHATRAS.has(nak) && degreeInNak < GANDANTA_DEGREE_RANGE) {
+      isGandanta = true;
+    }
+
+    if (!isGandanta) return null;
+
+    // For samskaras involving children (mundan, namakarana): absolute veto
+    const childSamskaras = new Set(['mundan', 'namakarana']);
+    if (childSamskaras.has(ctx.activity)) {
+      return assess(ctx, this, {
+        tier: 0,
+        points: -10,
+        maxPoints: 0,
+        vetoed: true,
+        severity: 'critical',
+        reason: {
+          en: 'Nakshatra Gandanta — water-fire junction, child samskara forbidden',
+          hi: 'नक्षत्र गण्डान्त — जल-अग्नि सन्धि, बाल संस्कार वर्जित',
+          sa: 'नक्षत्रगण्डान्तम् — जलाग्निसन्धिः, बालसंस्कारवर्जितम्',
+        },
+      });
+    }
+
+    // For other activities: heavy penalty
+    return assess(ctx, this, {
+      tier: 2,
+      points: -6,
+      maxPoints: 0,
+      severity: 'major',
+      reason: {
+        en: 'Nakshatra Gandanta — Moon at water-fire junction (unstable)',
+        hi: 'नक्षत्र गण्डान्त — चन्द्र जल-अग्नि सन्धि पर (अस्थिर)',
+        sa: 'नक्षत्रगण्डान्तम् — चन्द्रः जलाग्निसन्धौ (अस्थिरः)',
+      },
+    });
+  },
+};
+
+// ---------------------------------------------------------------------------
 // Export
 // ---------------------------------------------------------------------------
 export const PANCHANGA_RULES: MuhurtaRule[] = [
@@ -369,4 +567,6 @@ export const PANCHANGA_RULES: MuhurtaRule[] = [
   karanaQuality,
   varaQuality,
   panchaka,
+  dagdhaTithi,
+  nakshatraGandanta,
 ];

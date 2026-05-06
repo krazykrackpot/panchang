@@ -267,16 +267,16 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/muhurta-ai': {
     title: {
-      en: 'Muhurta AI — 33-Rule Classical Engine with Cancellation Logic',
-      hi: 'मुहूर्त AI — 33 शास्त्रीय नियमों का इंजन (निवारण तर्क सहित)',
-      sa: 'मुहूर्तकृत्रिमबुद्धिः — त्रयस्त्रिंशत्नियमयन्त्रम् निवारणतर्कसहितम्',
+      en: 'Muhurta AI — 36-Rule Classical Constraint Engine',
+      hi: 'मुहूर्त AI — 36 शास्त्रीय नियमों का बाधा-आधारित इंजन',
+      sa: 'मुहूर्तकृत्रिमबुद्धिः — षट्त्रिंशत्नियमबाधायन्त्रम्',
     },
     description: {
-      en: 'Muhurta finder with 33 rules from 7 classical texts (MC, Dharma Sindhu, BPHS, Brihat Samhita). 5-tier cancellation logic — strong lagna removes all defects (MC Ch.7). Personalised scoring via Tara Bala, Chandra Bala, and Dasha Harmony. 20 activities supported.',
-      hi: '7 शास्त्रीय ग्रन्थों से 33 नियमों वाला मुहूर्त खोजक। 5-स्तरीय निवारण तर्क — बलवान लग्न सभी दोषों का निवारण करता है (मुहूर्त चिन्तामणि अध्याय 7)। तारा बल, चन्द्र बल और दशा सामंजस्य से व्यक्तिगत स्कोरिंग। 20 कार्य समर्थित।',
-      sa: 'सप्तशास्त्रग्रन्थेभ्यः त्रयस्त्रिंशत्नियमैः मुहूर्तान्वेषकम्। पञ्चस्तरीयनिवारणतर्कम् — बलवल्लग्नं सर्वदोषान् निवारयति।',
+      en: 'Classical constraint-based muhurta engine with 36 rules from 7 texts (MC, Dharma Sindhu, BPHS, Brihat Samhita). Fatal doshas (Ganda Yoga, Dagdha Tithi, Nakshatra Gandanta) reject windows outright — not averaged away. 5-tier cancellation hierarchy. Classically verified nakshatra whitelists per activity. Personalised via Tara Bala (3-cycle), Chandra Bala, and Dasha Harmony. 20 activities.',
+      hi: '7 शास्त्रीय ग्रन्थों से 36 नियमों वाला बाधा-आधारित मुहूर्त इंजन। गण्ड योग, दग्ध तिथि, नक्षत्र गण्डान्त जैसे घातक दोष सीधे वर्ज्य — औसत नहीं। 5-स्तरीय निवारण श्रेणी। प्रत्येक कार्य के लिए शास्त्रीय रूप से सत्यापित नक्षत्र श्वेतसूची। तारा बल (3-चक्र), चन्द्र बल और दशा सामंजस्य से व्यक्तिगत।',
+      sa: 'सप्तशास्त्रग्रन्थेभ्यः षट्त्रिंशत्नियमैः बाधाधारितमुहूर्तयन्त्रम्। घातकदोषाः साक्षात् वर्ज्याः।',
     },
-    keywords: ['muhurta', 'auspicious time', 'shubh muhurat', 'marriage muhurat', 'muhurta finder', 'muhurta chintamani', 'cancellation logic', '33 rules vedic muhurta', 'godhuli lagna'],
+    keywords: ['muhurta', 'auspicious time', 'shubh muhurat', 'marriage muhurat', 'muhurta finder', 'muhurta chintamani', 'classical constraint muhurta', '36 rules vedic muhurta', 'godhuli lagna', 'dagdha tithi', 'nakshatra gandanta'],
   },
   '/cosmic-blueprint': {
     title: {
@@ -609,8 +609,8 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['live sky map', 'planet positions today', 'vedic astrology sky', 'sidereal planets', 'graha positions'],
   },
   '/muhurat': {
-    title: { en: 'Muhurat Calendar — 33-Rule Scoring from 7 Classical Texts', hi: 'मुहूर्त कैलेंडर — 7 शास्त्रीय ग्रन्थों से 33 नियमों का स्कोरिंग', sa: 'मुहूर्तपञ्चाङ्गम् — सप्तग्रन्थेभ्यः त्रयस्त्रिंशत्नियमाङ्कनम्' },
-    description: { en: 'Monthly muhurat calendar scored by 33 classical rules with 5-tier cancellation logic. Not binary pass/fail — each date gets 0-100 with pandit-style reasoning citing Muhurta Chintamani, Dharma Sindhu, and BPHS.', hi: '33 शास्त्रीय नियमों और 5-स्तरीय निवारण तर्क से स्कोर किया गया मासिक मुहूर्त कैलेंडर। बाइनरी हाँ/नहीं नहीं — प्रत्येक तिथि को मुहूर्त चिन्तामणि, धर्मसिन्धु और BPHS के उद्धरणों सहित 0-100 अंक।', sa: 'त्रयस्त्रिंशत्शास्त्रीयनियमैः पञ्चस्तरीयनिवारणतर्केण च अङ्कितं मासिकमुहूर्तपञ्चाङ्गम्।' },
+    title: { en: 'Muhurat Calendar — 36-Rule Classical Constraint Engine', hi: 'मुहूर्त कैलेंडर — 36 शास्त्रीय नियमों का बाधा-आधारित इंजन', sa: 'मुहूर्तपञ्चाङ्गम् — षट्त्रिंशत्नियमबाधायन्त्रम्' },
+    description: { en: 'Monthly muhurat calendar with 36 classical rules. Fatal doshas (Ganda Yoga, Dagdha Tithi, Gandanta) vetoed outright — not scored through. Each date gets 0-100 with pandit-style reasoning citing Muhurta Chintamani, Dharma Sindhu, and BPHS.', hi: '36 शास्त्रीय नियमों वाला मासिक मुहूर्त कैलेंडर। घातक दोष (गण्ड योग, दग्ध तिथि, गण्डान्त) सीधे वर्ज्य। प्रत्येक तिथि को मुहूर्त चिन्तामणि, धर्मसिन्धु और BPHS के उद्धरणों सहित 0-100 अंक।', sa: 'षट्त्रिंशत्शास्त्रीयनियमैः मासिकमुहूर्तपञ्चाङ्गम्। घातकदोषाः साक्षात् वर्ज्याः।' },
     keywords: ['muhurat calendar', 'shubh muhurat', 'auspicious dates', 'marriage dates', 'muhurta chintamani', 'classical muhurta scoring'],
   },
 

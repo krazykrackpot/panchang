@@ -18,6 +18,7 @@ import {
   calculateYoga, getPlanetaryPositions, lahiriAyanamsha,
 } from '@/lib/ephem/astronomical';
 import { RASHIS } from '@/lib/constants/rashis';
+import { computeEnergyFromComponents } from '@/lib/panchang/energy-score';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { YOGAS } from '@/lib/constants/yogas';
 import {
@@ -483,7 +484,24 @@ export function generateDailyHoroscope(input: DailyEngineInput): DailyHoroscope 
   // to the raw per-area scores (on 1-100 scale → ±0.5 on 1-10 scale).
   // Modifier is applied before final clamp so it can shift borderline days.
   const taraMod = input.nakshatra ? taraBalaModifier(currentNakshatraId, input.nakshatra) / 10 : 0;
-  const overallScore = Math.max(1, Math.min(10, Math.round((overallRaw + taraMod) * 10) / 10));
+  let overallScore = Math.max(1, Math.min(10, Math.round((overallRaw + taraMod) * 10) / 10));
+
+  // Constrain horoscope score by the unified energy score (0-100 → 1-10 scale).
+  // This ensures the horoscope never says "Excellent" when the panchang energy
+  // score says "Low" (e.g., Ganda Yoga, fierce nakshatra, dagdha tithi).
+  // computeEnergyFromComponents uses the same weighted formula as computeDailyEnergy
+  // but takes raw component values instead of a full PanchangData object.
+  const energyScore = computeEnergyFromComponents({
+    tithiNumber: tithiResult.number <= 15 ? tithiResult.number : tithiResult.number - 15,
+    paksha: tithiResult.number <= 15 ? 'shukla' : 'krishna',
+    nakshatraId: currentNakshatraId,
+    yogaNumber: yogaNum,
+    karanaNumber: Math.ceil(tithiResult.number / 2) % 7 + 1, // approximate karana from tithi
+    dayOfWeek: weekday,
+  });
+  const energyCap = energyScore / 10; // 0-100 → 0-10
+  overallScore = Math.min(overallScore, energyCap + 1); // +1 allows personal factors to lift slightly
+  overallScore = Math.max(1, Math.min(10, Math.round(overallScore * 10) / 10));
 
   // Overall tier for insight
   const overallTier = scoreToTier(overallScore);

@@ -1135,6 +1135,37 @@ export default function DashboardPage() {
     }
   }
 
+  // Resolve ACTIVE nakshatra/tithi — switches to next after transition passes
+  // The panchang API returns sunrise values; we check if the transition time has passed
+  const activeNakshatra = (() => {
+    if (!panchangData) return null;
+    const tr = panchangData.nakshatraTransition;
+    if (!tr?.endTime) return panchangData.nakshatra;
+    const now = new Date();
+    const [h, m] = tr.endTime.split(':').map(Number);
+    const transitionDate = tr.endDate ? new Date(tr.endDate) : new Date();
+    transitionDate.setHours(h, m, 0, 0);
+    if (now > transitionDate && tr.nextName) {
+      // Transition passed — return next nakshatra info
+      return { ...panchangData.nakshatra, name: tr.nextName, id: tr.nextNumber };
+    }
+    return panchangData.nakshatra;
+  })();
+
+  const activeTithi = (() => {
+    if (!panchangData) return null;
+    const tr = panchangData.tithiTransition;
+    if (!tr?.endTime) return panchangData.tithi;
+    const now = new Date();
+    const [h, m] = tr.endTime.split(':').map(Number);
+    const transitionDate = tr.endDate ? new Date(tr.endDate) : new Date();
+    transitionDate.setHours(h, m, 0, 0);
+    if (now > transitionDate && tr.nextName) {
+      return { ...panchangData.tithi, name: tr.nextName, number: tr.nextNumber };
+    }
+    return panchangData.tithi;
+  })();
+
   // Compute daily energy score from panchang data (for TodaysReading hero)
   const dayEnergy = panchangData ? computeDailyEnergy(panchangData) : null;
 
@@ -1261,18 +1292,18 @@ export default function DashboardPage() {
               className="text-xl sm:text-2xl md:text-3xl font-bold text-gold-light leading-tight pr-36"
               style={{ fontFamily: 'var(--font-heading)' }}
             >
-              {panchangData.nakshatra?.name
-                ? (panchangData.nakshatra.name[locale as keyof typeof panchangData.nakshatra.name] || panchangData.nakshatra.name.en)
+              {activeNakshatra?.name
+                ? (activeNakshatra.name[locale as keyof typeof activeNakshatra.name] || activeNakshatra.name.en)
                 : '—'}
               {' '}
               <span className="text-text-secondary font-normal text-lg sm:text-xl">
                 {isHeroHi ? 'नक्षत्र' : 'Nakshatra'}
               </span>
-              {panchangData.tithi?.name && (
+              {activeTithi?.name && (
                 <>
                   <span className="text-gold-primary/40 mx-2">·</span>
                   <span className="text-text-primary font-semibold text-lg sm:text-xl">
-                    {panchangData.tithi.name[locale as keyof typeof panchangData.tithi.name] || panchangData.tithi.name.en}
+                    {activeTithi.name[locale as keyof typeof activeTithi.name] || activeTithi.name.en}
                   </span>
                   {' '}
                   <span className="text-text-secondary font-normal text-base sm:text-lg">

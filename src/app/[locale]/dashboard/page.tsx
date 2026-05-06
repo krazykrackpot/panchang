@@ -1464,7 +1464,9 @@ export default function DashboardPage() {
         </div>
       </motion.div>
 
-      {panchangData && <DailyPanchangInsightCard panchang={panchangData} locale={locale} />}
+      {/* DailyPanchangInsightCard REMOVED — it had its own "Excellent" rating
+          that contradicted the Cosmic Weather hero. Panchang details (tithi,
+          nakshatra, yoga, vara) are accessible via the Panchang page link. */}
 
       {panchangData && (
         <MorningBriefing
@@ -1474,10 +1476,8 @@ export default function DashboardPage() {
         />
       )}
 
-      {/* Day Quality Card removed — merged into Cosmic Weather hero above.
-          Having two cards showing different quality labels was confusing users. */}
-
-      {/* Tara Bala + Chandra Bala — side by side */}
+      {/* Tara Bala + Chandra Bala — side by side (already shown as chips in
+          Cosmic Weather hero, but these cards give more detail) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         {/* Tara Bala */}
         <motion.div

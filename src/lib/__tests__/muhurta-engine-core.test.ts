@@ -16,7 +16,7 @@ import { evaluateWindow } from '@/lib/muhurta/engine/evaluator';
 import { generateVerdict } from '@/lib/muhurta/engine/reasoning';
 import { buildDayContext, buildWindowContext } from '@/lib/muhurta/engine/context-builder';
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
-import type { PanchangSnapshot } from '@/lib/muhurta/ai-recommender';
+import type { PanchangSnapshot } from '@/lib/muhurta/panchang-snapshot';
 
 function makeRule(overrides: Partial<MuhurtaRule> & { id: string }): MuhurtaRule {
   return {

@@ -18,8 +18,8 @@ import {
   toSidereal,
   getRashiNumber,
 } from '@/lib/ephem/astronomical';
-import { getPanchangSnapshot } from '@/lib/muhurta/ai-recommender';
-import type { PanchangSnapshot } from '@/lib/muhurta/ai-recommender';
+import { getPanchangSnapshot } from '@/lib/muhurta/panchang-snapshot';
+import type { PanchangSnapshot } from '@/lib/muhurta/panchang-snapshot';
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
 import { checkVivahCombustion, scoreLagna, scoreNavamshaShuddhi } from '@/lib/muhurta/classical-checks';
 import type { CombustionResult, LagnaResult } from '@/lib/muhurta/classical-checks';

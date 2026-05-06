@@ -9,7 +9,7 @@
 
 import type { LocaleText } from '@/types/panchang';
 import type { ExtendedActivityId, ExtendedActivity, InauspiciousPeriod } from '@/types/muhurta-ai';
-import type { PanchangSnapshot } from '@/lib/muhurta/ai-recommender';
+import type { PanchangSnapshot } from '@/lib/muhurta/panchang-snapshot';
 
 // Layer 1: Rule Registry Types
 

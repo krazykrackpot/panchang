@@ -11,7 +11,8 @@ import {
   computeDurMuhurtam,
   isVarjyamActive,
 } from '@/lib/muhurta/inauspicious-periods';
-import { scoreTimingFactors } from '@/lib/muhurta/ai-recommender';
+// scoreTimingFactors removed — legacy additive scorer replaced by engine/rules/kaala.ts
+// Tests below that used it are commented out; equivalent tests in muhurta-engine-core.test.ts
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
 import { DUR_MUHURTAM_A } from '@/lib/constants/dur-muhurtam';
 import { VARJYAM_GHATI } from '@/lib/constants/varjyam';
@@ -95,42 +96,8 @@ describe('Varjyam integration', () => {
   });
 });
 
-describe('Abhijit Muhurta bonus', () => {
-  it('grants +8 bonus during Abhijit on non-Wednesday', () => {
-    // Sunrise 6 local, sunset 18 local → muhurta = 0.8h
-    // Abhijit (8th muhurta, 0-indexed 7): 6 + 7*0.8 = 11.6 to 12.4 local
-    const rules = getExtendedActivity('marriage')!;
-    const result = scoreTimingFactors(
-      2460800,   // jd
-      12.0,      // hourOfDay (noon — inside Abhijit)
-      1,         // Monday (not Wednesday)
-      6,         // sunriseUT
-      18,        // sunsetUT
-      0,         // tz=UTC
-      rules,
-    );
-    const hasAbhijit = result.factors.some(f => f.en.includes('Abhijit'));
-    expect(hasAbhijit).toBe(true);
-  });
-
-  it('does NOT grant bonus on Wednesday', () => {
-    const rules = getExtendedActivity('marriage')!;
-    const result = scoreTimingFactors(
-      2460800, 12.0, 3, 6, 18, 0, rules, // weekday=3=Wednesday
-    );
-    const hasAbhijit = result.factors.some(f => f.en.includes('Abhijit'));
-    expect(hasAbhijit).toBe(false);
-  });
-
-  it('does NOT grant bonus outside Abhijit window', () => {
-    const rules = getExtendedActivity('marriage')!;
-    const result = scoreTimingFactors(
-      2460800, 8.0, 1, 6, 18, 0, rules, // 8 AM — well before Abhijit
-    );
-    const hasAbhijit = result.factors.some(f => f.en.includes('Abhijit'));
-    expect(hasAbhijit).toBe(false);
-  });
-});
+// Abhijit Muhurta bonus tests removed — legacy scoreTimingFactors replaced
+// by engine/rules/kaala.ts abhijit-muhurta rule. Tested in muhurta-engine-core.test.ts.
 
 describe('Vishti penalty balance', () => {
   it('Vishti inauspicious penalty is reduced to -1 (main penalty is in panchang scoring)', () => {

@@ -4,12 +4,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import {
-  scorePanchangFactors,
-  scoreTransitFactors,
-  getPanchangSnapshot,
-  type PanchangSnapshot,
-} from '../ai-recommender';
+import { getPanchangSnapshot, type PanchangSnapshot } from '../panchang-snapshot';
 import { scanDateRange } from '../time-window-scanner';
 import {
   getExtendedActivity,
@@ -147,107 +142,10 @@ describe('getPanchangSnapshot', () => {
 });
 
 // ---------------------------------------------------------------------------
-// Score Panchang Factors
-// ---------------------------------------------------------------------------
-describe('scorePanchangFactors', () => {
-  const marriageRules = getExtendedActivity('marriage');
-
-  it('returns a score number and factors array', () => {
-    const snap = getPanchangSnapshot(TEST_JD, DELHI_LAT, DELHI_LNG);
-    const result = scorePanchangFactors(snap, marriageRules);
-
-    expect(typeof result.score).toBe('number');
-    expect(Array.isArray(result.factors)).toBe(true);
-    expect(result.score).toBeGreaterThanOrEqual(0);
-    expect(result.score).toBeLessThanOrEqual(25);
-  });
-
-  it('gives positive score for matching tithi and nakshatra', () => {
-    // Construct a snapshot that matches marriage good values
-    const snap: PanchangSnapshot = {
-      tithi: marriageRules.goodTithis[0],       // a good tithi
-      nakshatra: marriageRules.goodNakshatras[0], // a good nakshatra
-      yoga: 5,   // in 1-15 range (auspicious)
-      karana: 3,  // chara karana (1-7)
-      weekday: marriageRules.goodWeekdays[0],    // a good weekday
-      moonSign: 1,
-    };
-    const result = scorePanchangFactors(snap, marriageRules);
-    // 8 (tithi) + 8 (nakshatra) + 4 (yoga) + 2 (karana) + 3 (weekday) = 25
-    expect(result.score).toBe(25);
-    expect(result.factors.length).toBeGreaterThanOrEqual(3);
-  });
-
-  it('subtracts for avoid tithi and avoid nakshatra', () => {
-    const snap: PanchangSnapshot = {
-      tithi: marriageRules.avoidTithis[0],
-      nakshatra: marriageRules.avoidNakshatras[0],
-      yoga: 20,  // above 15 — not auspicious
-      karana: 9,  // not chara
-      weekday: 6, // Saturday — not in marriage goodWeekdays
-      moonSign: 1,
-    };
-    const result = scorePanchangFactors(snap, marriageRules);
-    // -5 (avoid tithi) + -5 (avoid nakshatra) = -10, clamped to 0
-    expect(result.score).toBe(0);
-    expect(result.factors.some(f => f.en.includes('Inauspicious'))).toBe(true);
-  });
-
-  it('score is clamped between 0 and 25', () => {
-    // Even the best case should not exceed 25
-    const snap: PanchangSnapshot = {
-      tithi: marriageRules.goodTithis[0],
-      nakshatra: marriageRules.goodNakshatras[0],
-      yoga: 1,
-      karana: 1,
-      weekday: marriageRules.goodWeekdays[0],
-      moonSign: 1,
-    };
-    const result = scorePanchangFactors(snap, marriageRules);
-    expect(result.score).toBeLessThanOrEqual(25);
-    expect(result.score).toBeGreaterThanOrEqual(0);
-  });
-});
-
-// ---------------------------------------------------------------------------
-// Score Transit Factors
-// ---------------------------------------------------------------------------
-describe('scoreTransitFactors', () => {
-  const marriageRules = getExtendedActivity('marriage');
-
-  it('returns a score number and factors array', () => {
-    const result = scoreTransitFactors(TEST_JD, marriageRules);
-
-    expect(typeof result.score).toBe('number');
-    expect(Array.isArray(result.factors)).toBe(true);
-    expect(result.score).toBeGreaterThanOrEqual(0);
-    expect(result.score).toBeLessThanOrEqual(25);
-  });
-
-  it('returns consistent results for the same JD', () => {
-    const r1 = scoreTransitFactors(TEST_JD, marriageRules);
-    const r2 = scoreTransitFactors(TEST_JD, marriageRules);
-    expect(r1.score).toBe(r2.score);
-    expect(r1.factors.length).toBe(r2.factors.length);
-  });
-
-  it('factors contain trilingual objects', () => {
-    const result = scoreTransitFactors(TEST_JD, marriageRules);
-    for (const f of result.factors) {
-      expect(typeof f.en).toBe('string');
-      expect(typeof f.hi).toBe('string');
-      expect(typeof f.sa).toBe('string');
-    }
-  });
-
-  it('works with different activity rules', () => {
-    const surgeryRules = getExtendedActivity('surgery');
-    const result = scoreTransitFactors(TEST_JD, surgeryRules);
-    expect(typeof result.score).toBe('number');
-    expect(result.score).toBeGreaterThanOrEqual(0);
-    expect(result.score).toBeLessThanOrEqual(25);
-  });
-});
+// Legacy scorePanchangFactors and scoreTransitFactors tests removed —
+// those functions were part of the old additive scorer (ai-recommender.ts),
+// now replaced by the rule-based evaluator in engine/evaluator.ts.
+// Tests for the new engine are in muhurta-engine-core.test.ts.
 
 // ---------------------------------------------------------------------------
 // Scan Date Range

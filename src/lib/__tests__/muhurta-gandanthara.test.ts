@@ -9,7 +9,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import type { RuleContext } from '@/lib/muhurta/engine/types';
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
-import type { PanchangSnapshot } from '@/lib/muhurta/ai-recommender';
+import type { PanchangSnapshot } from '@/lib/muhurta/panchang-snapshot';
 
 // Mock the astronomical functions so we can control elongation precisely
 vi.mock('@/lib/ephem/astronomical', () => ({

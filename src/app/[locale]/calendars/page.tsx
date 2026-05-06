@@ -620,7 +620,7 @@ function buildRows(isDevanagari: boolean): RowDef[] {
     {
       label: isDevanagari ? 'पवित्र तिथियाँ' : 'Sacred Dates',
       cards: [
-        { href: '/dates/ekadashi', title: 'Ekadashi', subtitle: '11th Tithi Fasting', description: '24 Ekadashi dates yearly', glowColor: '#8b5cf6', svg: <EkadashiSVG /> },
+        { href: '/ekadashi', title: 'Ekadashi', subtitle: '11th Tithi Fasting', description: '24 Ekadashi dates with stories & benefits', glowColor: '#8b5cf6', svg: <EkadashiSVG /> },
         { href: '/dates/purnima', title: 'Purnima', subtitle: 'Full Moon Days', description: 'Monthly Purnima dates', glowColor: '#f0d48a', svg: <PurnimaSVG /> },
         { href: '/dates/amavasya', title: 'Amavasya', subtitle: 'New Moon Days', description: 'Monthly Amavasya dates', glowColor: '#6366f1', svg: <AmavasyaSVG /> },
         { href: '/dates/pradosham', title: 'Pradosham', subtitle: "Shiva\u2019s Twilight", description: 'Trayodashi vrat dates', glowColor: '#ec4899', svg: <PradoshamSVG /> },

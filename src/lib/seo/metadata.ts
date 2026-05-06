@@ -108,6 +108,20 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['hindu calendar', 'festival calendar 2026', 'ekadashi dates', 'purnima dates', 'vrat calendar'],
   },
 
+  '/ekadashi': {
+    title: {
+      en: 'Ekadashi 2026 — All 24 Dates, Names, Stories & Benefits | Dekho Panchang',
+      hi: 'एकादशी 2026 — सभी 24 तिथियाँ, नाम, कथाएँ और लाभ | देखो पञ्चाङ्ग',
+      sa: 'एकादशी २०२६ — सर्वाः २४ तिथयः नामानि कथाः लाभाः च',
+    },
+    description: {
+      en: 'Complete list of all 24 Ekadashi dates in 2026 with names, stories from Padma Purana & Bhavishya Purana, and spiritual benefits. Nirjala, Devshayani, Mokshada and more.',
+      hi: '2026 की सभी 24 एकादशी तिथियों की सम्पूर्ण सूची — निर्जला, देवशयनी, मोक्षदा सहित नाम, पद्म पुराण की कथाएँ और आध्यात्मिक लाभ।',
+      sa: '२०२६ वर्षस्य सर्वासां २४ एकादशीनां तिथिसूची — निर्जला देवशयनी मोक्षदा सहित नामानि कथाः लाभाः च।',
+    },
+    keywords: ['ekadashi 2026', 'ekadashi dates 2026', 'ekadashi list 2026', 'ekadashi calendar', 'nirjala ekadashi 2026', 'devshayani ekadashi 2026', 'ekadashi vrat dates'],
+  },
+
   // ─── Tools ────────────────────────────────────────────────
   '/financial-astrology': {
     title: {

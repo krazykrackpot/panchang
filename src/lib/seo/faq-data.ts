@@ -852,6 +852,58 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
     },
   ],
 
+  // ─── /ekadashi ─────────────────────────────────────────────
+  '/ekadashi': [
+    {
+      question: {
+        en: 'How many Ekadashis are there in 2026?',
+        hi: '2026 में कितनी एकादशी हैं?',
+        sa: '२०२६ वर्षे कति एकादश्यः सन्ति?',
+      },
+      answer: {
+        en: 'There are 24 named Ekadashis in 2026 — two per lunar month, one on Shukla Paksha (bright half) and one on Krishna Paksha (dark half). In years with an Adhika (intercalary) month, there can be 26 Ekadashis.',
+        hi: '2026 में 24 नामित एकादशियाँ हैं — प्रति चन्द्र मास में दो, एक शुक्ल पक्ष में और एक कृष्ण पक्ष में। अधिक मास वाले वर्षों में 26 एकादशियाँ हो सकती हैं।',
+        sa: '२०२६ वर्षे २४ नामिताः एकादश्यः सन्ति — प्रतिमासं द्वे, एका शुक्लपक्षे एका कृष्णपक्षे च।',
+      },
+    },
+    {
+      question: {
+        en: 'Which is the most powerful Ekadashi?',
+        hi: 'सबसे शक्तिशाली एकादशी कौन सी है?',
+        sa: 'शक्तिमत्तमा एकादशी का अस्ति?',
+      },
+      answer: {
+        en: 'Nirjala Ekadashi (Jyeshtha Shukla Ekadashi) is considered the most powerful. Fasting without even water on this single day is said to grant the merit of all 24 Ekadashis combined. It was prescribed by Sage Vyasa to Bhima of the Pandavas.',
+        hi: 'निर्जला एकादशी (ज्येष्ठ शुक्ल एकादशी) सबसे शक्तिशाली मानी जाती है। केवल इस एक दिन बिना जल के व्रत रखना सभी 24 एकादशियों के सम्मिलित पुण्य के बराबर है।',
+        sa: 'निर्जलैकादशी (ज्येष्ठशुक्लैकादशी) शक्तिमत्तमा मन्यते। एतस्यां दिने निर्जलव्रतं सर्वासां २४ एकादशीनां पुण्यसमम्।',
+      },
+    },
+    {
+      question: {
+        en: 'What is Nirjala Ekadashi?',
+        hi: 'निर्जला एकादशी क्या है?',
+        sa: 'निर्जलैकादशी का अस्ति?',
+      },
+      answer: {
+        en: 'Nirjala Ekadashi falls on Jyeshtha Shukla Ekadashi (May/June). "Nirjala" means "without water" — devotees fast for the entire day without consuming even water. Sage Vyasa told Bhima that this single strict fast equals the merit of observing all 24 Ekadashis. It is also called Pandava Ekadashi or Bhimseni Ekadashi.',
+        hi: 'निर्जला एकादशी ज्येष्ठ शुक्ल एकादशी (मई/जून) पर आती है। "निर्जला" का अर्थ है "बिना जल के" — भक्त पूरे दिन जल भी नहीं लेते। व्यास मुनि ने भीम को बताया कि यह एक कठोर व्रत सभी 24 एकादशियों के पुण्य के बराबर है।',
+        sa: 'निर्जलैकादशी ज्येष्ठशुक्लैकादश्यां पतति। "निर्जला" इति "जलविना" इत्यर्थः। व्यासः भीमम् अवदत् एतत् एकं कठोरव्रतं सर्वासां एकादशीनां पुण्यसमम् इति।',
+      },
+    },
+    {
+      question: {
+        en: 'What should I eat and avoid on Ekadashi?',
+        hi: 'एकादशी पर क्या खाएँ और क्या न खाएँ?',
+        sa: 'एकादश्यां किं भक्षणीयं किं च त्याज्यम्?',
+      },
+      answer: {
+        en: 'On Ekadashi, avoid all grains (rice, wheat, lentils) and beans. Permitted foods include fruits, nuts, milk, potatoes, sweet potatoes, buckwheat (kuttu), water chestnut flour (singhara), and rock salt (sendha namak). Many devotees observe a complete fast (nirjala or with only water). The fast is broken the next morning during the Parana window.',
+        hi: 'एकादशी पर सभी अनाज (चावल, गेहूँ, दाल) और फलियों का त्याग करें। फल, मेवे, दूध, आलू, शकरकन्दी, कुट्टू, सिंघाड़ा और सेंधा नमक खा सकते हैं। अनेक भक्त पूर्ण व्रत (निर्जला या केवल जल) रखते हैं। अगली सुबह पारण काल में व्रत खोलें।',
+        sa: 'एकादश्यां सर्वाणि धान्यानि (तण्डुलाः गोधूमाः मसूराः) शिम्बीनि च त्यजेत्। फलानि शुष्कमेवानि क्षीरं च भक्षणीयानि।',
+      },
+    },
+  ],
+
   // ─── /sign-calculator ──────────────────────────────────────
   '/sign-calculator': [
     {

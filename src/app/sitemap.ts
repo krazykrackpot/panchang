@@ -32,6 +32,7 @@ const routes = [
   '/about/methodology',
   '/vs/drik-panchang',
   '/festivals',
+  '/ekadashi',
   '/pricing',
   // Deep dives
   '/panchang/tithi',

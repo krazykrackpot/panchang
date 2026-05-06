@@ -36,6 +36,8 @@ This is NOT a basic chart generator. Full professional-grade analysis:
 - **Auspicious periods**: Abhijit Muhurta, Amrit Kalam, Brahma Muhurta
 - **Hora**: 24-hour planetary hour table with ruling planet
 - **Choghadiya**: Day and night Choghadiya with quality labels
+- **Nakshatra deep details**: Expandable card showing Guna (Sattva/Rajas/Tamas), Gana (Deva/Manushya/Rakshasa), Tattva (element), Yoni (animal), and compatible activities for the current nakshatra
+- **Sade Sati + Ashtama Shani**: Full lifecycle timeline showing previous, current, and upcoming Sade Sati and Ashtama Shani periods with exact month/year dates — personalised to the user's Moon sign
 
 ## Muhurta Engine — 36 Rules, 7 Classical Texts, 5-Tier Cancellation
 
@@ -71,7 +73,11 @@ The most sophisticated open muhurta engine in production. NOT simple binary pass
 
 6. **20 activities** with different rule sets: marriage, griha pravesh, mundan, vehicle, travel, property, business, education, namakarana, upanayana, engagement, gold purchase, medical, court, exam, spiritual, agriculture, financial signing, surgery, relocation.
 
-7. **Natural language queries**: "best time for a wedding in Delhi in October" → ranked windows with reasoning.
+7. **Tithi-Gandanthara detection**: Last/first 2 ghatis of junction tithis (5th/10th/Purnima boundaries) — a classical inauspicious zone most platforms ignore entirely.
+
+8. **8th house vacancy check**: For marriage/engagement, the engine checks whether any planet occupies the 8th house from the muhurta lagna — per B.V. Raman's requirement (Muhurtha Ch.12).
+
+9. **Natural language queries**: "best time for a wedding in Delhi in October" → ranked windows with reasoning.
 
 **Simple analogy:** Drik Panchang is a dashboard of indicators. Dekho Panchang is the GPS that tells you the best route — it filters, ranks, explains, and personalises.
 

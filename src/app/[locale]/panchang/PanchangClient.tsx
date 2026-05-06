@@ -22,6 +22,7 @@ import { TITHIS } from '@/lib/constants/tithis';
 import { YOGAS } from '@/lib/constants/yogas';
 import { KARANAS } from '@/lib/constants/karanas';
 import { MUHURTA_DATA } from '@/lib/constants/muhurtas';
+import { NAKSHATRA_DETAILS } from '@/lib/constants/nakshatra-details';
 import { computeBalam } from '@/lib/panchang/balam';
 import { calculatePanchaPakshi } from '@/lib/prashna/pancha-pakshi';
 import { computeHinduMonths, computePurnimantMonths, formatMonthDate } from '@/lib/calendar/hindu-months';
@@ -269,6 +270,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
   const [now, setNow] = useState<Date>(new Date());
   const [showCalcDetails, setShowCalcDetails] = useState(false);
   const [showVibeCard, setShowVibeCard] = useState(false);
+  const [showNakDetails, setShowNakDetails] = useState(false);
 
   // Auto-load birth nakshatra/rashi from store (persisted from kundali page)
   useEffect(() => {
@@ -1012,10 +1014,13 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                   whileHover={{ scale: 1.05, y: -6 }}
                   className="relative rounded-2xl bg-gradient-to-br from-indigo-900/20 via-[#1a1040]/50 to-[#0a0e27] border border-indigo-400/20 p-3 sm:p-4 md:p-6 text-center hover:border-indigo-400/40 transition-all cursor-default"
                 >
-                  {/* Auspiciousness badge — nakshatra.nature is a descriptive LocaleText (e.g. "Soft, Tender", "Sharp, Fierce").
+                  {/* Auspiciousness badge — uses ACTIVE nakshatra's nature (switches after transition).
+                      nakshatra.nature is a descriptive LocaleText (e.g. "Soft, Tender", "Sharp, Fierce").
                       Map to auspicious/inauspicious/neutral using classical gana categories. */}
                   {(() => {
-                    const natEn = (panchang.nakshatra.nature?.en || '').toLowerCase();
+                    // Use next nakshatra's nature if transition has passed
+                    const activeNak = nakPassed && nextNakData ? nextNakData : panchang.nakshatra;
+                    const natEn = (activeNak.nature?.en || '').toLowerCase();
                     const naksNature = natEn.includes('soft') || natEn.includes('tender') || natEn.includes('movable') || natEn.includes('light') || natEn.includes('swift')
                       ? 'auspicious'
                       : natEn.includes('fierce') || natEn.includes('sharp') || natEn.includes('severe')
@@ -1066,6 +1071,47 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                   </div>
                   {/* Nakshatra insight */}
                   <InsightBlock insight={getNakshatraInsight(panchang.nakshatra.id)} />
+                  {/* Nakshatra deep details — expandable */}
+                  {(() => {
+                    const detail = NAKSHATRA_DETAILS.find(d => d.id === panchang.nakshatra.id);
+                    if (!detail) return null;
+                    return (
+                      <div className="mt-2">
+                        <button
+                          onClick={() => setShowNakDetails(v => !v)}
+                          className="text-indigo-400/70 hover:text-indigo-300 text-[10px] uppercase tracking-widest font-bold transition-colors"
+                        >
+                          {showNakDetails ? (locale === 'en' ? '▾ Less' : '▾ कम') : (locale === 'en' ? '▸ More Details' : '▸ अधिक जानकारी')}
+                        </button>
+                        {showNakDetails && (
+                          <div className="mt-2 text-left space-y-1.5 text-xs">
+                            {/* Guna, Gana, Tattva row */}
+                            <div className="flex flex-wrap gap-2 justify-center">
+                              <span className="px-2 py-0.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300">
+                                {tl(detail.guna)}
+                              </span>
+                              <span className="px-2 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300">
+                                {tl(detail.gana)}
+                              </span>
+                              <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300">
+                                {tl(detail.tattva)}
+                              </span>
+                            </div>
+                            {/* Animal */}
+                            <div className="text-text-secondary text-center">
+                              <span className="text-gold-dark text-[10px] uppercase tracking-wider">{locale === 'en' ? 'Animal' : 'योनि'}: </span>
+                              {tl(detail.associatedAnimal)}
+                            </div>
+                            {/* Compatible Activities */}
+                            <div className="text-text-secondary/80 text-center leading-relaxed">
+                              <span className="text-gold-dark text-[10px] uppercase tracking-wider block mb-0.5">{locale === 'en' ? 'Good For' : 'अनुकूल कार्य'}</span>
+                              {tl(detail.compatibleActivities)}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })()}
                 </motion.div>
 
                 {/* ── YOGA CARD ── */}

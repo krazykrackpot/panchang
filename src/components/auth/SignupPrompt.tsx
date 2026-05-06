@@ -15,8 +15,11 @@ const SESSION_KEY = 'dp-signup-prompt-dismissed';
  * - Never renders if user is already logged in
  */
 export default function SignupPrompt() {
-  const { user, initialized } = useAuthStore();
+  const { user, initialized, initialize } = useAuthStore();
   const [show, setShow] = useState(false);
+
+  // Ensure auth is initialized (UserMenu also calls this, but we may mount first)
+  useEffect(() => { initialize(); }, [initialize]);
 
   useEffect(() => {
     if (!initialized) return;

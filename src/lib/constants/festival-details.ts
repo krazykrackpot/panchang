@@ -1301,3 +1301,301 @@ export function getPreviousHinduMonth(monthName: string): string {
 export function getEkadashiName(hinduMonth: string, paksha: 'shukla' | 'krishna'): EkadashiDetail | undefined {
   return EKADASHI_NAMES[hinduMonth]?.[paksha];
 }
+
+/* ═══════════════════════════════════════════
+   NAV DURGA — 9 DAYS OF NAVARATRI
+   Source: Devi Mahatmyam / Markandeya Purana
+   ═══════════════════════════════════════════ */
+
+export interface NavratriDay {
+  day: number;           // 1-9
+  deity: LocaleText;     // Nav Durga name
+  meaning: LocaleText;   // What the name means
+  colour: LocaleText;    // Auspicious colour for the day
+  mantra: LocaleText;    // Principal mantra
+  mount: LocaleText;     // Vahana (vehicle/mount)
+  significance: LocaleText; // What this form represents, what to pray for
+  offerings: LocaleText; // Bhog/prasad for this day
+}
+
+export const NAVRATRI_DAYS: NavratriDay[] = [
+  {
+    day: 1,
+    deity: {
+      en: 'Shailaputri',
+      hi: 'शैलपुत्री',
+    },
+    meaning: {
+      en: 'Daughter of the Mountain (Himalaya)',
+      hi: 'पर्वत (हिमालय) की पुत्री',
+    },
+    colour: {
+      en: 'Red',
+      hi: 'लाल',
+    },
+    mantra: {
+      en: 'Om Devi Shailaputryai Namah',
+      hi: 'ॐ देवी शैलपुत्र्यै नमः',
+    },
+    mount: {
+      en: 'Nandi (bull)',
+      hi: 'नन्दी (वृषभ)',
+    },
+    significance: {
+      en: 'First manifestation of Durga. Represents the Muladhara (root) chakra. She symbolises nature and the pure form of Shakti, holding a trident and lotus. Pray for strength, stability, and grounding.',
+      hi: 'दुर्गा का प्रथम स्वरूप। मूलाधार चक्र का प्रतीक। प्रकृति और शक्ति के शुद्ध रूप का प्रतीक, त्रिशूल और कमल धारण करती हैं। शक्ति, स्थिरता और आधार के लिए प्रार्थना करें।',
+    },
+    offerings: {
+      en: 'Pure ghee',
+      hi: 'शुद्ध घी',
+    },
+  },
+  {
+    day: 2,
+    deity: {
+      en: 'Brahmacharini',
+      hi: 'ब्रह्मचारिणी',
+    },
+    meaning: {
+      en: 'One who observes penance and celibacy',
+      hi: 'तपस्या और ब्रह्मचर्य का पालन करने वाली',
+    },
+    colour: {
+      en: 'Blue',
+      hi: 'नीला',
+    },
+    mantra: {
+      en: 'Om Devi Brahmacharinyai Namah',
+      hi: 'ॐ देवी ब्रह्मचारिण्यै नमः',
+    },
+    mount: {
+      en: 'Walks barefoot (no mount)',
+      hi: 'नंगे पैर चलती हैं (कोई वाहन नहीं)',
+    },
+    significance: {
+      en: 'Tapas (austere penance) form. She performed severe penance to win Lord Shiva as her husband. Represents the Swadhisthana chakra. Holds a kamandalu (water pot) and japmala (rosary). Pray for patience, discipline, and endurance.',
+      hi: 'तपस्या का स्वरूप। भगवान शिव को पति के रूप में पाने के लिए कठोर तपस्या की। स्वाधिष्ठान चक्र का प्रतीक। कमण्डलु और जपमाला धारण करती हैं। धैर्य, अनुशासन और सहनशक्ति के लिए प्रार्थना करें।',
+    },
+    offerings: {
+      en: 'Sugar and jaggery',
+      hi: 'शक्कर और गुड़',
+    },
+  },
+  {
+    day: 3,
+    deity: {
+      en: 'Chandraghanta',
+      hi: 'चन्द्रघण्टा',
+    },
+    meaning: {
+      en: 'One who has a half-moon shaped like a bell',
+      hi: 'जिनके मस्तक पर घण्टे के आकार का अर्धचन्द्र है',
+    },
+    colour: {
+      en: 'Yellow',
+      hi: 'पीला',
+    },
+    mantra: {
+      en: 'Om Devi Chandraghantayai Namah',
+      hi: 'ॐ देवी चन्द्रघण्टायै नमः',
+    },
+    mount: {
+      en: 'Tiger',
+      hi: 'बाघ',
+    },
+    significance: {
+      en: 'Fierce warrior form ready for battle. The crescent moon on her forehead shows she is both beautiful and terrifying. Represents the Manipura chakra. Has ten hands bearing weapons. Pray for courage, bravery, and removal of negativity.',
+      hi: 'युद्ध के लिए तत्पर उग्र योद्धा स्वरूप। मस्तक पर अर्धचन्द्र सौन्दर्य और भयावहता दोनों दर्शाता है। मणिपूर चक्र का प्रतीक। दस भुजाओं में शस्त्र धारण करती हैं। साहस, वीरता और नकारात्मकता के निवारण के लिए प्रार्थना करें।',
+    },
+    offerings: {
+      en: 'Kheer (milk pudding)',
+      hi: 'खीर',
+    },
+  },
+  {
+    day: 4,
+    deity: {
+      en: 'Kushmanda',
+      hi: 'कूष्माण्डा',
+    },
+    meaning: {
+      en: 'Creator of the cosmic egg (Ku = little, Ushma = warmth, Anda = egg)',
+      hi: 'ब्रह्माण्ड की रचयिता (कू = छोटा, ऊष्मा = गर्मी, अण्ड = अण्डा)',
+    },
+    colour: {
+      en: 'Green',
+      hi: 'हरा',
+    },
+    mantra: {
+      en: 'Om Devi Kushmandayai Namah',
+      hi: 'ॐ देवी कूष्माण्डायै नमः',
+    },
+    mount: {
+      en: 'Lion',
+      hi: 'सिंह',
+    },
+    significance: {
+      en: 'She created the universe with her divine smile when there was nothing but void. The cosmic egg (Brahmanda) was her creation. Represents the Anahata chakra. Eight hands holding weapons and a kamandalu. Pray for health, vitality, and creative energy.',
+      hi: 'जब केवल शून्य था तब उन्होंने अपनी दिव्य मुस्कान से ब्रह्माण्ड की रचना की। ब्रह्माण्ड उनकी सृष्टि है। अनाहत चक्र का प्रतीक। आठ भुजाओं में शस्त्र और कमण्डलु धारण करती हैं। स्वास्थ्य, जीवन-शक्ति और सृजनात्मक ऊर्जा के लिए प्रार्थना करें।',
+    },
+    offerings: {
+      en: 'Malpua (sweet pancakes)',
+      hi: 'मालपुआ',
+    },
+  },
+  {
+    day: 5,
+    deity: {
+      en: 'Skandamata',
+      hi: 'स्कन्दमाता',
+    },
+    meaning: {
+      en: 'Mother of Skanda (Kartikeya / Murugan)',
+      hi: 'स्कन्द (कार्तिकेय / मुरुगन) की माता',
+    },
+    colour: {
+      en: 'Grey',
+      hi: 'धूसर',
+    },
+    mantra: {
+      en: 'Om Devi Skandamatayai Namah',
+      hi: 'ॐ देवी स्कन्दमातायै नमः',
+    },
+    mount: {
+      en: 'Lion',
+      hi: 'सिंह',
+    },
+    significance: {
+      en: 'She holds baby Skanda — who later became the commander of the gods\' army — on her lap. Represents the Vishuddha chakra. Four hands hold Skanda and lotus flowers. Pray for children\'s welfare, motherly protection, and wisdom.',
+      hi: 'बालक स्कन्द — जो बाद में देवसेना के सेनापति बने — को गोद में लिए हैं। विशुद्ध चक्र का प्रतीक। चार भुजाओं में स्कन्द और कमल धारण करती हैं। सन्तान के कल्याण, मातृत्व रक्षा और ज्ञान के लिए प्रार्थना करें।',
+    },
+    offerings: {
+      en: 'Banana',
+      hi: 'केला',
+    },
+  },
+  {
+    day: 6,
+    deity: {
+      en: 'Katyayani',
+      hi: 'कात्यायनी',
+    },
+    meaning: {
+      en: 'Daughter of sage Katyayana',
+      hi: 'ऋषि कात्यायन की पुत्री',
+    },
+    colour: {
+      en: 'Orange',
+      hi: 'नारंगी',
+    },
+    mantra: {
+      en: 'Om Devi Katyayanyai Namah',
+      hi: 'ॐ देवी कात्यायन्यै नमः',
+    },
+    mount: {
+      en: 'Lion',
+      hi: 'सिंह',
+    },
+    significance: {
+      en: 'Born as the daughter of sage Katyayana to slay Mahishasura. She is the fierce warrior goddess. Represents the Ajna chakra. Four hands bearing sword and lotus. Pray for courage to face challenges, marriage (young women worship her especially), and victory over enemies.',
+      hi: 'महिषासुर के वध के लिए ऋषि कात्यायन की पुत्री के रूप में जन्मीं। उग्र योद्धा देवी हैं। आज्ञा चक्र का प्रतीक। चार भुजाओं में खड्ग और कमल धारण करती हैं। चुनौतियों का सामना करने का साहस, विवाह (कुमारियाँ विशेष रूप से पूजा करती हैं) और शत्रुओं पर विजय के लिए प्रार्थना करें।',
+    },
+    offerings: {
+      en: 'Honey',
+      hi: 'मधु (शहद)',
+    },
+  },
+  {
+    day: 7,
+    deity: {
+      en: 'Kalaratri',
+      hi: 'कालरात्रि',
+    },
+    meaning: {
+      en: 'Dark Night of Death — She who is the death of Kaal (time)',
+      hi: 'काल की रात्रि — काल (समय) की भी मृत्यु',
+    },
+    colour: {
+      en: 'White',
+      hi: 'श्वेत',
+    },
+    mantra: {
+      en: 'Om Devi Kalaratryai Namah',
+      hi: 'ॐ देवी कालरात्र्यै नमः',
+    },
+    mount: {
+      en: 'Donkey',
+      hi: 'गर्दभ',
+    },
+    significance: {
+      en: 'Most terrifying form — dark complexion, dishevelled hair, necklace of lightning, breathing fire. She destroyed the demons Shumbha and Nishumbha. Represents the Sahasrara chakra. Despite her fearsome appearance, she is the "Shubhankari" (doer of good). Pray for fearlessness, destruction of darkness and ignorance.',
+      hi: 'सबसे भयावह स्वरूप — श्याम वर्ण, बिखरे केश, विद्युत की माला, अग्नि श्वास। शुम्भ और निशुम्भ राक्षसों का वध किया। सहस्रार चक्र का प्रतीक। भयंकर रूप होने पर भी "शुभंकरी" (शुभ करने वाली) कहलाती हैं। निर्भयता, अन्धकार और अज्ञान के नाश के लिए प्रार्थना करें।',
+    },
+    offerings: {
+      en: 'Jaggery',
+      hi: 'गुड़',
+    },
+  },
+  {
+    day: 8,
+    deity: {
+      en: 'Mahagauri',
+      hi: 'महागौरी',
+    },
+    meaning: {
+      en: 'The Great White / Fair One',
+      hi: 'अत्यन्त गौर वर्ण वाली',
+    },
+    colour: {
+      en: 'Pink',
+      hi: 'गुलाबी',
+    },
+    mantra: {
+      en: 'Om Devi Mahagauryai Namah',
+      hi: 'ॐ देवी महागौर्यै नमः',
+    },
+    mount: {
+      en: 'Bull (Nandi)',
+      hi: 'वृषभ (नन्दी)',
+    },
+    significance: {
+      en: 'After severe penance, Shiva washed Parvati in the Ganges and she became extremely fair (Gauri). She represents purity, serenity, and calm after the terrifying Kalaratri. Four hands holding trident and damaru. This is Durga Ashtami — Sandhi Puja at the junction of Ashtami and Navami is considered the most powerful ritual. Pray for purity, cleansing of sins, and peace.',
+      hi: 'कठोर तपस्या के बाद शिव ने पार्वती को गंगा में स्नान कराया और वे अत्यन्त गौर वर्ण (गौरी) हो गईं। कालरात्रि के भयावह रूप के बाद पवित्रता, शान्ति और सौम्यता का प्रतीक। चार भुजाओं में त्रिशूल और डमरू धारण करती हैं। यह दुर्गाष्टमी है — अष्टमी-नवमी सन्धि पूजा सर्वाधिक शक्तिशाली अनुष्ठान मानी जाती है। पवित्रता, पापों के क्षालन और शान्ति के लिए प्रार्थना करें।',
+    },
+    offerings: {
+      en: 'Coconut',
+      hi: 'नारियल',
+    },
+  },
+  {
+    day: 9,
+    deity: {
+      en: 'Siddhidatri',
+      hi: 'सिद्धिदात्री',
+    },
+    meaning: {
+      en: 'Giver of all Siddhis (supernatural powers)',
+      hi: 'सभी सिद्धियों (अलौकिक शक्तियों) को देने वाली',
+    },
+    colour: {
+      en: 'Purple',
+      hi: 'बैंगनी',
+    },
+    mantra: {
+      en: 'Om Devi Siddhidatryai Namah',
+      hi: 'ॐ देवी सिद्धिदात्र्यै नमः',
+    },
+    mount: {
+      en: 'Lion',
+      hi: 'सिंह',
+    },
+    significance: {
+      en: 'She grants all eight Siddhis — Anima, Mahima, Garima, Laghima, Prapti, Prakamya, Ishitva, and Vashitva. Even Lord Shiva received his powers from her. She sits on a lotus with four hands holding mace, chakra, lotus, and conch. This is Maha Navami — the culmination of Navaratri. Pray for spiritual perfection, accomplishment, and fulfilment.',
+      hi: 'वे सभी आठ सिद्धियाँ — अणिमा, महिमा, गरिमा, लघिमा, प्राप्ति, प्राकाम्य, ईशित्व और वशित्व — प्रदान करती हैं। स्वयं भगवान शिव ने उनसे शक्तियाँ प्राप्त कीं। कमल पर विराजमान, चार भुजाओं में गदा, चक्र, कमल और शंख धारण करती हैं। यह महानवमी है — नवरात्रि की पराकाष्ठा। आध्यात्मिक सिद्धि, उपलब्धि और पूर्णता के लिए प्रार्थना करें।',
+    },
+    offerings: {
+      en: 'Sesame seeds (til)',
+      hi: 'तिल',
+    },
+  },
+];

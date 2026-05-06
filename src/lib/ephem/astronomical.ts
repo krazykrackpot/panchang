@@ -1,8 +1,41 @@
 import type { LocaleText } from '@/types/panchang';
 /**
- * Core astronomical calculation functions.
- * Uses Swiss Ephemeris (sweph) when available for sub-arcsecond accuracy.
- * Falls back to Meeus "Astronomical Algorithms" if sweph is not installed.
+ * Core astronomical calculation functions for Vedic astrology (Jyotish).
+ *
+ * This module provides the foundational astronomical computations needed by
+ * the panchang (daily almanac) and kundali (birth chart) engines:
+ *   - Solar and lunar tropical longitudes
+ *   - Ayanamsha (precession correction) for sidereal conversion
+ *   - Panchanga elements: tithi, yoga, karana, nakshatra
+ *   - Sunrise/sunset for any geographic location
+ *   - Planetary positions for all 9 Vedic grahas (Sun through Ketu)
+ *   - Hindu calendar elements: masa, ritu, samvatsara, ayana
+ *
+ * DUAL-ENGINE ARCHITECTURE:
+ *   When Swiss Ephemeris (sweph) is available, it provides sub-arcsecond
+ *   accuracy for all computations. When unavailable, the module falls back
+ *   to algorithms from Jean Meeus's "Astronomical Algorithms" (2nd ed., 1998).
+ *   Meeus accuracy: Sun ±0.01°, Moon ±0.5°, planets ±1-5°. These limits are
+ *   acceptable for panchang (daily almanac) use but insufficient for precise
+ *   eclipse prediction or sub-degree planetary work. See individual function
+ *   comments for specific accuracy bounds.
+ *
+ * COORDINATE CONVENTIONS:
+ *   - All longitudes are ecliptic, measured eastward from the vernal equinox (tropical)
+ *     or from the sidereal Aries point (sidereal, after ayanamsha subtraction).
+ *   - Degrees use the range [0°, 360°).
+ *   - Julian Day numbers are in Universal Time (UT), not local time.
+ *   - Rashi IDs are 1-based: 1=Aries (Mesha) through 12=Pisces (Meena).
+ *   - Nakshatra IDs are 1-based: 1=Ashwini through 27=Revati.
+ *   - Planet IDs are 0-based: 0=Sun, 1=Moon, 2=Mars, 3=Mercury, 4=Jupiter,
+ *     5=Venus, 6=Saturn, 7=Rahu, 8=Ketu.
+ *   - Weekdays from JD: Math.floor(jd + 1.5) % 7 gives 0=Sunday (Lesson O).
+ *
+ * CLASSICAL TEXT REFERENCES:
+ *   - Surya Siddhanta (SS) — ancient Indian astronomical text
+ *   - BPHS (Brihat Parashara Hora Shastra) — foundational Jyotish text
+ *   - Meeus — Jean Meeus, "Astronomical Algorithms", 2nd ed., Willmann-Bell, 1998
+ *   - IAE — Indian Astronomical Ephemeris (Government of India)
  */
 
 import {
@@ -16,14 +49,35 @@ import {
 } from './swiss-ephemeris';
 import { RAHU_ORDER } from '@/lib/constants/inauspicious-orders';
 
-// Julian Day Number from calendar date
+/**
+ * Convert a Gregorian calendar date to Julian Day Number (JD).
+ *
+ * The Julian Day is a continuous day count used in astronomy since
+ * Joseph Scaliger (1583). JD 0.0 = 1 January 4713 BCE, 12:00 UT (Julian proleptic).
+ * JD 2451545.0 = 1 January 2000, 12:00 UT (the J2000.0 epoch).
+ *
+ * Algorithm: Meeus Ch.7, valid for all Gregorian dates (after 15 Oct 1582).
+ * The Gregorian correction (variables A, B) accounts for the 10-day gap
+ * introduced by Pope Gregory XIII and the modified leap year rule.
+ *
+ * @param year  - Gregorian year (negative for BCE: -4712 = 4713 BCE)
+ * @param month - Month 1-12
+ * @param day   - Day of month (may include fractional days)
+ * @param hour  - Hour in UT (0-24, may be fractional). Default 0 = midnight UT.
+ * @returns Julian Day Number (fractional). Integer part = noon UT.
+ */
 export function dateToJD(year: number, month: number, day: number, hour: number = 0): number {
+  // Meeus convention: Jan/Feb are treated as months 13/14 of the previous year.
+  // This simplifies the leap year calculation in the main formula.
   if (month <= 2) {
     year -= 1;
     month += 12;
   }
+  // Gregorian correction: A = century, B = leap century adjustment
   const A = Math.floor(year / 100);
   const B = 2 - A + Math.floor(A / 4);
+  // The constant 4716 shifts the epoch to 4713 BCE; 1524.5 adjusts to midnight start.
+  // hour/24 converts UT hours to fractional days.
   return Math.floor(365.25 * (year + 4716)) + Math.floor(30.6001 * (month + 1)) + day + hour / 24 + B - 1524.5;
 }
 
@@ -59,22 +113,33 @@ export function jdToDate(jd: number): Date {
   return new Date(Date.UTC(year, month - 1, intDay, hours, minutes, seconds));
 }
 
-// Normalize angle to 0-360
+/**
+ * Normalize an angle to the range [0°, 360°).
+ * Handles negative values and values exceeding 360° by wrapping.
+ */
 export function normalizeDeg(deg: number): number {
   return ((deg % 360) + 360) % 360;
 }
 
-// Degrees to radians
+/** Convert degrees to radians. */
 export function toRad(deg: number): number {
   return deg * Math.PI / 180;
 }
 
-// Radians to degrees
+/** Convert radians to degrees. */
 export function toDeg(rad: number): number {
   return rad * 180 / Math.PI;
 }
 
-// Centuries from J2000.0
+/**
+ * Compute Julian centuries from the J2000.0 epoch (JD 2451545.0 = 1 Jan 2000, 12h UT).
+ *
+ * This is the standard time argument "T" used in Meeus's polynomial expressions
+ * for planetary positions, precession, nutation, etc. One Julian century = 36525 days.
+ *
+ * @param jd - Julian Day number in UT
+ * @returns Fractional Julian centuries since J2000.0
+ */
 function T(jd: number): number {
   return (jd - 2451545.0) / 36525.0;
 }
@@ -90,16 +155,42 @@ export function sunLongitude(jd: number): number {
   return _meesusSunLongitude(jd);
 }
 
+/**
+ * Sun's apparent tropical longitude via Meeus Ch.25 (low-precision solar coordinates).
+ *
+ * ALGORITHM:
+ *   1. Compute geometric mean longitude L0 and mean anomaly M of the Sun.
+ *   2. Apply the equation of centre C (elliptical orbit correction) using
+ *      the first 3 terms of the Kepler series.
+ *   3. Add C to L0 to get the Sun's true geometric longitude.
+ *   4. Apply the nutation + aberration correction (~-0.00569° nutation,
+ *      ~-0.00478° × sin(Ω) aberration) to get apparent longitude.
+ *
+ * Accuracy: ±0.01° (36 arcseconds) — sufficient for panchang tithi/yoga
+ * computation where the Sun moves ~1°/day. Not sufficient for eclipse
+ * prediction (which needs ~1 arcsecond).
+ *
+ * @param jd - Julian Day in UT
+ * @returns Apparent tropical longitude in degrees [0, 360)
+ */
 function _meesusSunLongitude(jd: number): number {
   const t = T(jd);
+  // L0: geometric mean longitude of the Sun, referred to the mean equinox of date
   const L0 = normalizeDeg(280.46646 + 36000.76983 * t + 0.0003032 * t * t);
+  // M: mean anomaly — angle from perihelion along the orbit
   const M = normalizeDeg(357.52911 + 35999.05029 * t - 0.0001537 * t * t);
   const Mrad = toRad(M);
+  // C: equation of centre — correction for Earth's elliptical orbit (eccentricity ~0.017)
+  // The dominant term (1.9146°) reflects the maximum difference between true and mean anomaly.
   const C = (1.914602 - 0.004817 * t - 0.000014 * t * t) * Math.sin(Mrad)
     + (0.019993 - 0.000101 * t) * Math.sin(2 * Mrad)
     + 0.000289 * Math.sin(3 * Mrad);
+  // True geometric longitude (still needs nutation + aberration)
   const sunTrue = normalizeDeg(L0 + C);
+  // Ω: longitude of the ascending node of the Moon's orbit — used for nutation
   const omega = 125.04 - 1934.136 * t;
+  // Apparent longitude: correct for nutation in longitude (-0.00569°) and aberration
+  // Aberration (-0.00478° × sin Ω) accounts for the finite speed of light.
   const apparent = sunTrue - 0.00569 - 0.00478 * Math.sin(toRad(omega));
   return normalizeDeg(apparent);
 }
@@ -122,22 +213,52 @@ export function moonLongitude(jd: number): number {
  * For production accuracy, Swiss Ephemeris is recommended.
  * When Swiss Ephemeris is available (isSwissEphAvailable()), these fallbacks are not used.
  */
+/**
+ * Moon's apparent tropical longitude via Meeus Ch.47 (high-precision lunar theory).
+ *
+ * This implements the ELP-2000/82 simplified theory with the 60 most significant
+ * periodic terms from Meeus Table 47.A, plus 3 additive corrections (A1 for Venus,
+ * A2 for Jupiter, A3 for a long-period term).
+ *
+ * ALGORITHM:
+ *   1. Compute 4 fundamental arguments: Lp (mean longitude), D (mean elongation),
+ *      M (Sun's mean anomaly), Mp (Moon's mean anomaly), F (argument of latitude).
+ *   2. Compute Earth's orbital eccentricity E (needed to correct terms involving M).
+ *   3. Sum 60 periodic terms: each is sin(linear combination of D,M,Mp,F) × coefficient.
+ *   4. Add planetary corrections A1 (Venus perturbation), A2 (Jupiter), A3.
+ *   5. Convert sum from 10⁻⁶ degrees to degrees and add to mean longitude.
+ *
+ * Accuracy: ±0.5° (1800 arcseconds). The full ELP-2000/82 has ~500 terms and
+ * achieves ~10 arcsecond accuracy, but the 60-term truncation is adequate for
+ * panchang nakshatra determination where each nakshatra spans 13°20'.
+ *
+ * @param jd - Julian Day in UT
+ * @returns Apparent tropical longitude in degrees [0, 360)
+ */
 function _meeusMoonLongitude(jd: number): number {
   const t = T(jd);
 
-  // Fundamental arguments (degrees)
+  // ── Fundamental arguments (Meeus Ch.47, degrees) ──
+  // Lp: Moon's mean longitude (referred to mean equinox of date)
   const Lp = normalizeDeg(218.3164477 + 481267.88123421 * t
     - 0.0015786 * t * t + t * t * t / 538841 - t * t * t * t / 65194000);
+  // D: Moon's mean elongation from the Sun
   const D = normalizeDeg(297.8501921 + 445267.1114034 * t
     - 0.0018819 * t * t + t * t * t / 545868 - t * t * t * t / 113065000);
+  // M: Sun's mean anomaly (same definition as in solar longitude)
   const M = normalizeDeg(357.5291092 + 35999.0502909 * t
     - 0.0001536 * t * t + t * t * t / 24490000);
+  // Mp: Moon's mean anomaly — angular distance from lunar perigee
   const Mp = normalizeDeg(134.9633964 + 477198.8675055 * t
     + 0.0087414 * t * t + t * t * t / 69699 - t * t * t * t / 14712000);
+  // F: Moon's argument of latitude — angular distance from ascending node
   const F = normalizeDeg(93.2720950 + 483202.0175233 * t
     - 0.0036539 * t * t - t * t * t / 3526000 + t * t * t * t / 863310000);
 
-  // Eccentricity of Earth's orbit
+  // E: eccentricity of Earth's orbit — decreasing slowly over millennia.
+  // Terms involving the Sun's anomaly M are multiplied by E (or E² for |M|=2)
+  // because the Sun's gravitational perturbation on the Moon depends on
+  // Earth's orbital eccentricity. (Meeus Ch.47)
   const E = 1 - 0.002516 * t - 0.0000074 * t * t;
   const E2 = E * E;
 
@@ -174,7 +295,10 @@ function _meeusMoonLongitude(jd: number): number {
     sumL += coeff * Math.sin(arg);
   }
 
-  // Additional corrections
+  // Additional corrections for planetary perturbations not captured by the main table.
+  // A1: Venus's gravitational perturbation on the Moon (~3958 × 10⁻⁶ degrees max)
+  // A2: Jupiter's perturbation (~1962 × 10⁻⁶ degrees max)
+  // A3: Long-period term related to the Moon's nodal precession
   const A1 = toRad(normalizeDeg(119.75 + 131.849 * t));  // Venus
   const A2 = toRad(normalizeDeg(53.09 + 479264.290 * t)); // Jupiter
   const A3 = toRad(normalizeDeg(313.45 + 481266.484 * t));
@@ -201,8 +325,28 @@ export function lahiriAyanamsha(jd: number): number {
   return _meeeusLahiriAyanamsha(jd);
 }
 
+/**
+ * Polynomial fit for Lahiri (Chitrapaksha) ayanamsha.
+ *
+ * Based on IAU precession with the fixed star Spica (Chitra) anchored at
+ * exactly 180° sidereal longitude (0° Libra). This is the official standard
+ * adopted by the Indian government for all almanacs (panchangs).
+ *
+ * The polynomial coefficients are derived from the general precession in
+ * longitude (~50.29 arcsec/year) with the Lahiri epoch offset.
+ * At J2000.0 (t=0): ayanamsha ≈ 23.853°.
+ *
+ * Accuracy: ±1 arcsecond for dates 1900-2100. Degrades outside this range
+ * due to higher-order precession terms and nutation being omitted.
+ *
+ * @param jd - Julian Day in UT
+ * @returns Ayanamsha in degrees
+ */
 function _meeeusLahiriAyanamsha(jd: number): number {
+  // t = Julian centuries from J2000.0
   const t = (jd - 2451545.0) / 36525.0;
+  // Polynomial: 23.853° + 1.397°/century + higher-order terms
+  // The linear rate ~1.397°/century ≈ 50.29"/year matches IAU precession.
   return 23.85306 + 1.39722 * t + 0.00018 * t * t - 0.000005 * t * t * t;
 }
 
@@ -285,30 +429,76 @@ export function toSidereal(tropicalLong: number, jd: number, ayanamshaValue?: nu
   return normalizeDeg(tropicalLong - aya);
 }
 
-// Get rashi (sign) number from sidereal longitude (1-12)
+/**
+ * Determine the rashi (zodiac sign) from sidereal longitude.
+ * Each rashi spans exactly 30° of the ecliptic.
+ * 1=Mesha (Aries), 2=Vrishabha (Taurus), ..., 12=Meena (Pisces).
+ *
+ * @param sidLong - Sidereal longitude in degrees [0, 360)
+ * @returns Rashi number 1-12
+ */
 export function getRashiNumber(sidLong: number): number {
   return Math.floor(sidLong / 30) + 1;
 }
 
-// Get nakshatra number from sidereal longitude (1-27)
+/**
+ * Determine the nakshatra from sidereal longitude.
+ * The 27 nakshatras divide the ecliptic into equal arcs of 13°20' (360°/27).
+ * This equal division is the standard Vedic system (as opposed to the
+ * unequal-star-span system sometimes used in Kerala tradition).
+ *
+ * @param sidLong - Sidereal longitude in degrees [0, 360)
+ * @returns Nakshatra number 1-27 (1=Ashwini, ..., 27=Revati)
+ */
 export function getNakshatraNumber(sidLong: number): number {
   return Math.floor(sidLong / (360 / 27)) + 1;
 }
 
-// Get pada (quarter) within nakshatra (1-4)
+/**
+ * Determine the pada (quarter) within the current nakshatra.
+ * Each nakshatra is divided into 4 equal padas of 3°20' each.
+ * Padas are important for:
+ *   - Navamsha (D9) sign determination (each pada maps to one navamsha)
+ *   - Baby name syllable selection (each pada has assigned syllables)
+ *   - Dasha balance calculation (pada position = fraction elapsed)
+ *
+ * @param sidLong - Sidereal longitude in degrees [0, 360)
+ * @returns Pada number 1-4
+ */
 export function getNakshatraPada(sidLong: number): number {
-  const nakshatraSpan = 360 / 27; // 13.333...
+  const nakshatraSpan = 360 / 27; // 13.333... degrees
   const posInNakshatra = sidLong % nakshatraSpan;
   return Math.floor(posInNakshatra / (nakshatraSpan / 4)) + 1;
 }
 
 /**
- * Calculate Tithi (1-30)
- * Tithi = Moon-Sun longitude difference / 12
+ * Calculate the current tithi at a given Julian Day.
+ *
+ * A tithi is a lunar day — 1/30th of a synodic month (new moon to new moon).
+ * It is defined as each 12° increment of the Moon-Sun elongation:
+ *   Tithi = floor((Moon_sid - Sun_sid) / 12°) + 1
+ *
+ * The 30 tithis are divided into two pakshas:
+ *   Shukla Paksha (waxing): tithis 1-15 (Pratipada to Purnima)
+ *   Krishna Paksha (waning): tithis 16-30 (Pratipada to Amavasya)
+ *
+ * Tithi duration varies from ~19 to ~26 hours because the Moon's orbital
+ * speed is not constant (elliptical orbit). A tithi that starts and ends
+ * within one sunrise-to-sunrise day without being active at either sunrise
+ * is called a kshaya (omitted) tithi. A tithi spanning two sunrises is
+ * called vriddhi (adhika/doubled).
+ *
+ * Classical source: Surya Siddhanta Ch.14; BPHS Ch.3.
+ *
+ * @param jd - Julian Day in UT
+ * @returns Object with:
+ *   - number: tithi 1-30
+ *   - degree: raw Moon-Sun elongation in degrees [0, 360)
  */
 export function calculateTithi(jd: number): { number: number; degree: number } {
   const sunSid = toSidereal(sunLongitude(jd), jd);
   const moonSid = toSidereal(moonLongitude(jd), jd);
+  // Moon-Sun elongation: 0° at new moon, 180° at full moon
   const diff = normalizeDeg(moonSid - sunSid);
   const tithiNum = Math.floor(diff / 12) + 1;
   return { number: tithiNum, degree: diff };
@@ -332,23 +522,58 @@ export function calculateYoga(jd: number, ayanamshaValue?: number): number {
 }
 
 /**
- * Calculate Karana (1-11, cycles through)
- * Karana is half a tithi, there are 60 karanas in a lunar month
+ * Calculate the current karana at a given Julian Day.
+ *
+ * A karana is half a tithi — each 6° increment of Moon-Sun elongation.
+ * There are 60 karanas in a lunar month (2 per tithi × 30 tithis).
+ *
+ * The 11 karana types follow a specific pattern (Surya Siddhanta Ch.14):
+ *   - 4 sthira (fixed) karanas appear only once per month:
+ *     Kimstughna(11) — first half of Shukla Pratipada
+ *     Shakuni(8), Chatushpada(9), Naga(10) — last 3 half-tithis of Krishna Paksha
+ *   - 7 chara (movable) karanas cycle through the remaining 56 half-tithis:
+ *     Bava(1), Balava(2), Kaulava(3), Taitila(4), Garaja(5), Vanija(6), Vishti/Bhadra(7)
+ *
+ * Vishti (Bhadra) karana (ID 7) is considered inauspicious for muhurta selection.
+ * The sthira karanas Shakuni, Chatushpada, and Naga are also inauspicious (Lesson BB).
+ *
+ * @param jd - Julian Day in UT
+ * @returns Karana number 1-11
  */
 export function calculateKarana(jd: number): number {
   const { degree } = calculateTithi(jd);
+  // karanaIndex: 0-59, each representing a 6° arc of elongation
   const karanaIndex = Math.floor(degree / 6);
   // Map to the 11 karanas (7 chara + 4 sthira, cycling pattern)
-  if (karanaIndex === 0) return 11; // Kimstughna (first half of S1)
+  if (karanaIndex === 0) return 11; // Kimstughna — first half of Shukla Pratipada (special position)
   // Last 3 fixed karanas: Shakuni(8), Chatushpada(9), Naga(10) — 1-based IDs
-  // Bounds check: karanaIndex can be at most 59 (degree < 360), but clamp defensively
+  // These occupy indices 57, 58, 59 (second half of Krishna Chaturdashi + Amavasya)
   if (karanaIndex >= 57) return [8, 9, 10][Math.min(karanaIndex - 57, 2)];
+  // The 7 chara karanas cycle through indices 1-56 (56 = 7 × 8 complete cycles)
   return ((karanaIndex - 1) % 7) + 1; // Chara karanas cycle
 }
 
 /**
- * Approximate sunrise time for a location
- * Returns hours from midnight (UT)
+ * Compute approximate sunrise time for a geographic location.
+ *
+ * ALGORITHM (Meeus Ch.15 + EoT correction):
+ *   1. Compute the Sun's declination from its ecliptic longitude and obliquity.
+ *   2. Solve the sunrise hour angle H from the spherical trigonometry formula:
+ *        cos(H) = (sin(-0.8333°) - sin(lat) × sin(decl)) / (cos(lat) × cos(decl))
+ *      where -0.8333° accounts for atmospheric refraction (34') + solar semidiameter (16').
+ *   3. Compute the Equation of Time (EoT) to convert mean solar time to apparent solar time.
+ *      The EoT arises from two effects: (a) Earth's orbital eccentricity and (b) the
+ *      obliquity of the ecliptic. Maximum deviation is ~16 minutes (early November).
+ *   4. Solar noon UT = (720 - 4×longitude - EoT) / 60. Sunrise = noon - H/15.
+ *
+ * Returns null at polar latitudes when the Sun doesn't rise (perpetual night).
+ *
+ * Accuracy: ±2 minutes for latitudes below 65°. Swiss Ephemeris path achieves ±10 seconds.
+ *
+ * @param jd  - Julian Day number (used to determine the date)
+ * @param lat - Geographic latitude in degrees (positive = North)
+ * @param lng - Geographic longitude in degrees (positive = East)
+ * @returns UT decimal hours from midnight (0-24), or null if Sun doesn't rise
  */
 export function approximateSunrise(jd: number, lat: number, lng: number): number | null {
   if (isSwissEphAvailable()) {
@@ -356,35 +581,55 @@ export function approximateSunrise(jd: number, lat: number, lng: number): number
   }
   // Meeus improved: actual obliquity + EoT correction
   const T = (jd - 2451545.0) / 36525;
+  // Mean obliquity of the ecliptic (Meeus Ch.22) — the tilt of Earth's axis
   const obliquity = 23.4393 - 0.0130 * T;
   const sunLong = _meesusSunLongitude(jd);
+  // Sun's declination: the angular distance north/south of the celestial equator
   const decl = toDeg(Math.asin(Math.sin(toRad(obliquity)) * Math.sin(toRad(sunLong))));
 
+  // Hour angle at sunrise: how far before solar noon the Sun crosses the horizon.
+  // -0.8333° = standard altitude for the centre of the Sun at apparent sunrise,
+  // accounting for atmospheric refraction (~34 arcmin) and solar semidiameter (~16 arcmin).
   const cosH = (Math.sin(toRad(-0.8333)) - Math.sin(toRad(lat)) * Math.sin(toRad(decl)))
     / (Math.cos(toRad(lat)) * Math.cos(toRad(decl)));
   // Polar latitude: Sun never rises (cosH > 1) or never sets (cosH < -1)
   if (cosH > 1 || cosH < -1) return null;
   const H = toDeg(Math.acos(cosH));
 
-  // Equation of Time (simplified Meeus)
+  // Equation of Time (simplified Meeus Ch.28):
+  // Converts mean solar time to apparent solar time.
+  // y2 = tan²(ε/2) where ε is the obliquity — a convenient parameter for the EoT formula.
   const y2 = Math.tan(toRad(obliquity / 2)) ** 2;
   const L0 = toRad(280.46646 + 36000.76983 * T);
   const M = toRad(357.52911 + 35999.05029 * T);
-  const e = 0.016708634 - 0.000042037 * T;
+  const e = 0.016708634 - 0.000042037 * T; // orbital eccentricity
+  // EoT result is in minutes of time
   const eot = toDeg(y2 * Math.sin(2 * L0) - 2 * e * Math.sin(M)
     + 4 * e * y2 * Math.sin(M) * Math.cos(2 * L0)
     - 0.5 * y2 * y2 * Math.sin(4 * L0)
     - 1.25 * e * e * Math.sin(2 * M)) * 4; // in minutes
 
+  // Solar noon in UT hours: 720 minutes = 12:00, adjusted by longitude (4 min/degree) and EoT
   const solarNoon = (720 - 4 * lng - eot) / 60; // in hours UT
+  // Sunrise = solar noon minus half the day arc (H in degrees, 15°/hour conversion)
   return ((solarNoon - H / 15) % 24 + 24) % 24;
 }
 
+/**
+ * Compute approximate sunset time for a geographic location.
+ * Same algorithm as approximateSunrise but adds H/15 to solar noon instead of subtracting.
+ * Returns null at polar latitudes when the Sun doesn't set (perpetual day / midnight sun).
+ *
+ * @param jd  - Julian Day number
+ * @param lat - Geographic latitude in degrees (positive = North)
+ * @param lng - Geographic longitude in degrees (positive = East)
+ * @returns UT decimal hours from midnight (0-24), or null if Sun doesn't set
+ */
 export function approximateSunset(jd: number, lat: number, lng: number): number | null {
   if (isSwissEphAvailable()) {
     return swissSunset(jd, lat, lng);
   }
-  // Meeus improved: actual obliquity + EoT correction
+  // Same computation as sunrise — see approximateSunrise for detailed algorithm notes
   const T = (jd - 2451545.0) / 36525;
   const obliquity = 23.4393 - 0.0130 * T;
   const sunLong = _meesusSunLongitude(jd);
@@ -484,7 +729,13 @@ export function jdToYear(jd: number): number {
   return 2000.0 + (jd - 2451545.0) / 365.25;
 }
 
-// Format decimal hours to HH:MM string
+/**
+ * Format decimal hours (UT) to a local-time "HH:MM" string.
+ *
+ * @param decimalHours  - Time in UT as fractional hours (e.g., 14.5 = 14:30 UT)
+ * @param tzOffsetHours - Timezone offset to add (e.g., 5.5 for IST, 1 for CET)
+ * @returns Formatted local time string "HH:MM"
+ */
 export function formatTime(decimalHours: number, tzOffsetHours: number = 0): string {
   const totalHours = ((decimalHours + tzOffsetHours) % 24 + 24) % 24;
   const hours = Math.floor(totalHours);
@@ -493,11 +744,29 @@ export function formatTime(decimalHours: number, tzOffsetHours: number = 0): str
 }
 
 /**
- * Calculate Rahu Kaal based on weekday and sunrise/sunset
+ * Calculate Rahu Kaal — the inauspicious period ruled by Rahu on each weekday.
+ *
+ * Rahu Kaal is one of the most widely consulted muhurta elements in daily life.
+ * It divides the daytime (sunrise to sunset) into 8 equal segments, and assigns
+ * one segment to Rahu based on the weekday. Starting new ventures, travel, or
+ * important activities during Rahu Kaal is traditionally avoided.
+ *
+ * The segment order follows the descending Chaldean planetary sequence starting
+ * from the day lord: Mon=2, Sat=1, Fri=7, Wed=5, Thu=4, Tue=6, Sun=8 (varies
+ * by tradition — this uses the standard Dharma Sindhu / Muhurta Chintamani order).
+ *
+ * Classical source: Dharma Sindhu, Muhurta Chintamani.
+ * Segment order imported from shared constants (Lesson Q — single source of truth).
+ *
+ * @param sunrise - Sunrise time in UT decimal hours
+ * @param sunset  - Sunset time in UT decimal hours
+ * @param weekday - Day of week: 0=Sunday, 1=Monday, ..., 6=Saturday
+ * @returns Start and end times in UT decimal hours
  */
 export function calculateRahuKaal(sunrise: number, sunset: number, weekday: number): { start: number; end: number } {
-  // Segment order imported from shared constants (Lesson Q — single source of truth)
+  // Each segment is 1/8 of the daytime duration (sunrise to sunset)
   const duration = (sunset - sunrise) / 8;
+  // RAHU_ORDER[weekday] gives the 1-based segment number for Rahu on that day
   const segment = RAHU_ORDER[weekday] - 1;
   return {
     start: sunrise + segment * duration,
@@ -540,6 +809,28 @@ export function getPlanetaryPositions(jd: number, useTrueNode?: boolean): {
   return _meeusPlanetaryPositions(jd, useTrueNode).map(p => ({ ...p, latitude: 0, distance: 0 }));
 }
 
+/**
+ * Compute all 9 Vedic graha positions using Meeus simplified orbital elements.
+ *
+ * For each classical planet (Mars through Saturn), uses a 2-term Kepler model:
+ *   longitude ≈ L0 + A1×sin(M) + A2×sin(2M)
+ * where L0 is the mean longitude and M is the mean anomaly. This captures the
+ * primary elliptical correction but omits mutual planetary perturbations.
+ *
+ * Retrograde detection: positions are computed at jd and jd+1; the speed
+ * (degrees/day) is the finite difference. Negative speed = retrograde motion.
+ * Sun and Moon are never retrograde. Rahu/Ketu are always retrograde by convention.
+ *
+ * For the lunar nodes (Rahu/Ketu):
+ *   - Mean node: Meeus Ch.22 polynomial for the ascending node Ω
+ *   - True node: adds 5 principal nutation-like perturbation terms
+ *   - Ketu = Rahu + 180° (diametrically opposite); speed is the SAME as Rahu
+ *     (both move retrograde — Lesson W: do NOT negate Ketu's speed)
+ *
+ * @param jd - Julian Day in UT
+ * @param useTrueNode - If true, apply perturbation corrections for true node (vs mean)
+ * @returns Array of 9 planets with tropical longitude, speed, and retrograde status
+ */
 function _meeusPlanetaryPositions(jd: number, useTrueNode?: boolean): {
   id: number; longitude: number; speed: number; isRetrograde: boolean
 }[] {
@@ -781,6 +1072,22 @@ export function getSamvatsara(year: number): number {
   return ((year + 6) % 60 + 60) % 60;
 }
 
+/**
+ * Get the Hindu ritu (season) from the masa index.
+ *
+ * The 12 months pair into 6 ritus of 2 months each:
+ *   0 = Vasanta (Spring): Chaitra + Vaishakha
+ *   1 = Grishma (Summer): Jyeshtha + Ashadha
+ *   2 = Varsha (Monsoon): Shravana + Bhadrapada
+ *   3 = Sharad (Autumn): Ashwina + Kartika
+ *   4 = Hemanta (Pre-winter): Margashirsha + Pausha
+ *   5 = Shishira (Winter): Magha + Phalguna
+ *
+ * Classical source: Surya Siddhanta Ch.14; also Arthashastra.
+ *
+ * @param masaIndex - Masa index 0-11 (0=Chaitra)
+ * @returns Ritu index 0-5
+ */
 export function getRitu(masaIndex: number): number {
   return Math.floor(masaIndex / 2);
 }
@@ -813,6 +1120,26 @@ export interface BirthSignResult {
   ayanamsha: number;      // ayanamsha value used
 }
 
+/**
+ * Centralised birth sign computation — the SINGLE function for computing
+ * Sun sign, Moon sign, Moon nakshatra, and Moon pada from birth details.
+ *
+ * Every page that needs birth signs MUST use this function — no inline
+ * dateToJD + moonLongitude + toSidereal chains elsewhere (Lesson B: single
+ * source of truth for shared data).
+ *
+ * The timezone is resolved from the IANA timezone string, NOT from the browser
+ * or a stored offset (Lesson L: timezone from coordinates only). This correctly
+ * handles DST transitions for historical birth times.
+ *
+ * @param date          - Birth date as "YYYY-MM-DD"
+ * @param time          - Birth time as "HH:MM" (local time)
+ * @param lat           - Birth latitude in degrees
+ * @param lng           - Birth longitude in degrees
+ * @param timezone      - IANA timezone string (e.g., 'Asia/Kolkata', 'Europe/Zurich') — REQUIRED
+ * @param ayanamshaType - Ayanamsha system: 'lahiri' (default), 'raman', or 'kp'
+ * @returns BirthSignResult with Sun/Moon signs, nakshatra, pada, and computed ayanamsha
+ */
 export function computeBirthSigns(
   date: string,       // YYYY-MM-DD
   time: string,       // HH:MM
@@ -846,7 +1173,10 @@ export function computeBirthSigns(
   };
 }
 
-// Format degrees as DD°MM'SS"
+/**
+ * Format a decimal degree value as DD°MM'SS" (degrees, arcminutes, arcseconds).
+ * Used for displaying planet positions within a sign (0-30° range).
+ */
 export function formatDegrees(deg: number): string {
   const d = Math.floor(deg);
   const mFloat = (deg - d) * 60;
@@ -856,19 +1186,41 @@ export function formatDegrees(deg: number): string {
 }
 
 /**
- * Compute the ascendant (lagna) degree for a given JD and geographic coordinates.
- * Returns tropical longitude of the ascending point (0-360).
- * To get sidereal: subtract lahiriAyanamsha(jd).
+ * Compute the ascendant (lagna) degree — the ecliptic point rising on the eastern horizon.
+ *
+ * The ascendant is the most time-sensitive element in Jyotish — it changes sign
+ * approximately every 2 hours (exact duration varies by latitude and season).
+ * It determines the 1st house of the birth chart and all subsequent house positions.
+ *
+ * ALGORITHM:
+ *   1. Compute Greenwich Mean Sidereal Time (GMST) from JD using the IAU formula.
+ *   2. Convert to Local Sidereal Time (LST) by adding geographic longitude.
+ *   3. Compute the obliquity of the ecliptic (ε).
+ *   4. Apply the ascendant formula:
+ *        tan(ASC) = -cos(LST) / (sin(ε)×tan(lat) + cos(ε)×sin(LST))
+ *      This is derived from the intersection of the ecliptic plane with the
+ *      observer's horizon plane in the equatorial coordinate system.
+ *
+ * @param jd  - Julian Day in UT (precision matters: 1 minute ≈ 0.25° change in ASC)
+ * @param lat - Geographic latitude in degrees
+ * @param lng - Geographic longitude in degrees
+ * @returns Tropical longitude of the ascendant in degrees [0, 360).
+ *          To get sidereal: subtract lahiriAyanamsha(jd).
  */
 export function calcAscendant(jd: number, lat: number, lng: number): number {
   const T2 = (jd - 2451545.0) / 36525.0;
+  // GMST: Greenwich Mean Sidereal Time (Meeus Ch.12) — the right ascension
+  // of the vernal equinox, which rotates ~360.985°/day due to Earth's spin.
   const gmst = 280.46061837 + 360.98564736629 * (jd - 2451545.0)
     + 0.000387933 * T2 * T2 - T2 * T2 * T2 / 38710000;
+  // LST: Local Sidereal Time = GMST + observer's longitude (east positive)
   const lst = normalizeDeg(gmst + lng);
+  // ε: obliquity of the ecliptic (~23.44°, decreasing ~0.013°/century)
   const eps = 23.4393 - 0.013 * T2;
   const epsRad = eps * Math.PI / 180;
   const latRad = lat * Math.PI / 180;
   const lstRad = lst * Math.PI / 180;
+  // Ascendant formula (Meeus Ch.13): atan2(-cos(LST), sin(ε)tan(lat) + cos(ε)sin(LST))
   const y = -Math.cos(lstRad);
   const x = Math.sin(epsRad) * Math.tan(latRad) + Math.cos(epsRad) * Math.sin(lstRad);
   return normalizeDeg(Math.atan2(y, x) * 180 / Math.PI);

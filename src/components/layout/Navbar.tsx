@@ -120,24 +120,10 @@ export default function Navbar() {
         <div className="flex items-center h-16">
           {/* Left — Logo */}
           <Link href="/" className="flex items-center gap-2.5 group shrink-0">
-            <div className="relative w-12 h-12">
-              <svg viewBox="0 0 32 32" className="w-12 h-12 group-hover:scale-105 transition-transform" aria-hidden="true">
-                <defs>
-                  <linearGradient id="nav-om-g" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stopColor="#f0d48a" />
-                    <stop offset="50%" stopColor="#d4a853" />
-                    <stop offset="100%" stopColor="#8a6d2b" />
-                  </linearGradient>
-                  <radialGradient id="nav-om-glow" cx="50%" cy="45%" r="45%">
-                    <stop offset="0%" stopColor="#d4a853" stopOpacity="0.15" />
-                    <stop offset="100%" stopColor="#0a0e27" stopOpacity="0" />
-                  </radialGradient>
-                </defs>
+            <div className="relative w-10 h-10">
+              <svg viewBox="0 0 32 32" className="w-10 h-10 group-hover:scale-105 transition-transform" aria-hidden="true">
                 <rect width="32" height="32" rx="7" fill="#0a0e27" />
-                <circle cx="16" cy="15" r="14" fill="url(#nav-om-glow)" />
-                <text x="16" y="22" textAnchor="middle" fontSize="22" fontWeight="bold" fill="url(#nav-om-g)" fontFamily="serif">ॐ</text>
-                <circle cx="20" cy="5.5" r="1.2" fill="#f0d48a" opacity="0.6" />
-                <rect x="9" y="27.5" width="14" height="1.2" rx="0.6" fill="url(#nav-om-g)" opacity="0.35" />
+                <text x="16" y="23" textAnchor="middle" fontSize="24" fontWeight="900" fill="#e8c55a" fontFamily="serif">ॐ</text>
               </svg>
             </div>
             <span className="text-xl font-bold text-gold-gradient hidden sm:inline" style={{ fontFamily: 'var(--font-heading)' }}>

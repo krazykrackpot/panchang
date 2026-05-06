@@ -265,18 +265,57 @@ const karanaQuality: MuhurtaRule = {
   effect: 'bonus',
   tier: 4,
   appliesTo: 'all',
-  source: 'MC Ch.7',
+  source: 'MC Ch.7, Nirnaya Sindhu',
   evaluate(ctx: RuleContext): RuleAssessment | null {
     const k = ctx.snap.karana;
 
     if (k === 7) {
-      // Vishti (Bhadra) — most inauspicious, but cancellable by strong lagna
+      // Bhadra (Vishti) subdivision by Moon's sign quality (Nirnaya Sindhu, MC Ch.6)
+      // Movable signs (Chara) → Mukha (head) = most severe
+      // Fixed signs (Sthira) → Madhya (middle) = moderate
+      // Dual signs (Dvisvabhava) → Puchha (tail) = mildest
+      const moonSign = ctx.snap.moonSign; // 1-12
+      const signModality = ((moonSign - 1) % 3); // 0=movable(1,4,7,10), 1=fixed(2,5,8,11), 2=dual(3,6,9,12)
+
+      let points: number;
+      let reason: RuleAssessment['reason'];
+      let severity: RuleAssessment['severity'];
+
+      if (signModality === 0) {
+        // Mukha — Bhadra head active on earth, most inauspicious
+        points = -5;
+        severity = 'major';
+        reason = {
+          en: 'Vishti Mukha (Bhadra Head) — most severe, Moon in movable sign',
+          hi: 'विष्टि मुख (भद्रा शीर्ष) — सर्वाधिक अशुभ, चन्द्र चर राशि में',
+          sa: 'विष्टिमुखम् (भद्राशीर्षम्) — सर्वाधिकम् अशुभम्, चन्द्रः चरराशौ',
+        };
+      } else if (signModality === 1) {
+        // Madhya — Bhadra middle, moderate severity
+        points = -3;
+        severity = 'moderate';
+        reason = {
+          en: 'Vishti Madhya (Bhadra Middle) — moderate severity, Moon in fixed sign',
+          hi: 'विष्टि मध्य (भद्रा मध्य) — मध्यम अशुभ, चन्द्र स्थिर राशि में',
+          sa: 'विष्टिमध्यम् (भद्रामध्यम्) — मध्यमम् अशुभम्, चन्द्रः स्थिरराशौ',
+        };
+      } else {
+        // Puchha — Bhadra tail, least severe for human activities
+        points = -2;
+        severity = 'minor';
+        reason = {
+          en: 'Vishti Puchha (Bhadra Tail) — reduced severity, Moon in dual sign',
+          hi: 'विष्टि पुच्छ (भद्रा पुच्छ) — न्यून अशुभ, चन्द्र द्विस्वभाव राशि में',
+          sa: 'विष्टिपुच्छम् (भद्रापुच्छम्) — न्यूनम् अशुभम्, चन्द्रः द्विस्वभावराशौ',
+        };
+      }
+
       return assess(ctx, this, {
         tier: 4,
-        points: -5,
+        points,
         maxPoints: 2,
-        severity: 'major',
-        reason: { en: 'Vishti (Bhadra) Karana \u2014 inauspicious', hi: 'विष्टि (भद्रा) करण \u2014 अशुभ', sa: 'विष्टिकरणम् \u2014 अशुभम्' },
+        severity,
+        reason,
         cancelledBy: ['lagna-quality'],
       });
     }

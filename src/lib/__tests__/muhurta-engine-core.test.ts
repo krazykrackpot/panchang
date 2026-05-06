@@ -174,10 +174,27 @@ describe('Panchanga Rules', () => {
   describe('karana-quality', () => {
     const rule = PANCHANGA_RULES.find(r => r.id === 'karana-quality')!;
 
-    it('scores -5 for Vishti (7) and is Tier 4', () => {
-      const result = rule.evaluate(makeCtx({ karana: 7 }));
+    it('scores -5 for Vishti Mukha (Moon in movable sign) and is Tier 4', () => {
+      // moonSign 1 = Aries (movable) → signModality 0 → Mukha = -5
+      const result = rule.evaluate(makeCtx({ karana: 7, moonSign: 1 }));
       expect(result).not.toBeNull();
       expect(result!.points).toBe(-5);
+      expect(result!.tier).toBe(4);
+    });
+
+    it('scores -3 for Vishti Madhya (Moon in fixed sign)', () => {
+      // moonSign 2 = Taurus (fixed) → signModality 1 → Madhya = -3
+      const result = rule.evaluate(makeCtx({ karana: 7, moonSign: 2 }));
+      expect(result).not.toBeNull();
+      expect(result!.points).toBe(-3);
+      expect(result!.tier).toBe(4);
+    });
+
+    it('scores -2 for Vishti Puchha (Moon in dual sign)', () => {
+      // moonSign 3 = Gemini (dual) → signModality 2 → Puchha = -2
+      const result = rule.evaluate(makeCtx({ karana: 7, moonSign: 3 }));
+      expect(result).not.toBeNull();
+      expect(result!.points).toBe(-2);
       expect(result!.tier).toBe(4);
     });
 
@@ -328,7 +345,7 @@ describe('Evaluator', () => {
     };
     registerRule(mockLagnaRule);
 
-    // Vishti karana (7) = -5 at Tier 4, Tuesday (2) = -4 at Tier 4
+    // Vishti karana (7) with default moonSign=2 (fixed) = Madhya -3 at Tier 4, Tuesday (2) = -4 at Tier 4
     const ctx = makeCtx({ karana: 7, weekday: 2 });
     const result = evaluateWindow(ctx);
 

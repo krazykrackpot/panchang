@@ -37,11 +37,11 @@ This is NOT a basic chart generator. Full professional-grade analysis:
 - **Hora**: 24-hour planetary hour table with ruling planet
 - **Choghadiya**: Day and night Choghadiya with quality labels
 
-## Muhurta Engine — 33 Rules, 7 Classical Texts, 5-Tier Cancellation
+## Muhurta Engine — 36 Rules, 7 Classical Texts, 5-Tier Cancellation
 
 The most sophisticated open muhurta engine in production. NOT simple binary pass/fail.
 
-**33 rules** sourced from: Muhurta Chintamani, Dharma Sindhu, BPHS, Brihat Samhita, Prashna Marga, B.V. Raman's Muhurtha, and Kalaprakashika.
+**36 rules** sourced from: Muhurta Chintamani, Dharma Sindhu, BPHS, Brihat Samhita, Prashna Marga, B.V. Raman's Muhurtha, and Kalaprakashika.
 
 **5-tier authority system** for classical cancellation logic:
 - **Tier 0 (Absolute)**: Venus/Jupiter combustion, Adhika Masa, exact Chaturmas (Devshayani→Prabodhini Ekadashi), forbidden nakshatras — NEVER overridden

@@ -38,8 +38,8 @@ const LABELS = {
   scoreTitle: L('Feature Score', 'सुविधा स्कोर', 'அம்ச மதிப்பெண்', 'বৈশিষ্ট্য স্কোর'),
   whyTitle: L('Why Dekho Panchang?', 'देखो पंचांग क्यों?', 'ஏன் டெக்கோ பஞ்சாங்கம்?', 'কেন দেখো পঞ্চাঙ্গ?'),
   bottomLine: L(
-    'Drik Panchang is a trusted reference library with 15 years of history. Dekho Panchang is the next generation — a 33-rule muhurta engine with classical cancellation logic (no other platform models this), 11 ayanamsha systems with consistent plumbing, 15+ Dasha systems, 150+ Yogas, AI interpretation with pandit-style reasoning chains, 10 languages, and tools no other platform offers. Built on Swiss Ephemeris (NASA JPL DE441), cross-validated against Drik Panchang to 100% nakshatra/tithi/yoga accuracy. It doesn\'t just show data — it reasons about your life like a classically trained Jyotishi.',
-    'दृक् पंचांग 15 वर्षों के इतिहास वाला एक विश्वसनीय संदर्भ पुस्तकालय है। देखो पंचांग अगली पीढ़ी है — 33-नियम मुहूर्त इंजन शास्त्रीय निवारण तर्क के साथ (कोई अन्य मंच इसे मॉडल नहीं करता), 11 अयनांश पद्धतियाँ, 15+ दशा, 150+ योग, पण्डित-शैली तर्क श्रृंखलाओं के साथ AI व्याख्या, 10 भाषाएँ। Swiss Ephemeris (NASA JPL DE441) पर निर्मित, दृक् पंचांग के विरुद्ध 100% नक्षत्र/तिथि/योग सटीकता सत्यापित। यह केवल डेटा नहीं दिखाता — शास्त्रीय रूप से प्रशिक्षित ज्योतिषी की तरह आपके जीवन के बारे में तर्क करता है।',
+    'Dekho Panchang is a 36-rule muhurta engine with classical cancellation logic that no other platform models — built on Swiss Ephemeris (NASA JPL DE441), 11 ayanamsha systems, 15+ Dasha systems, 150+ Yogas, AI interpretation with pandit-style reasoning chains, and 10 languages. It doesn\'t just show data — it reasons about your life like a classically trained Jyotishi. 100% nakshatra/tithi/yoga accuracy verified. Where other platforms give you tables to interpret yourself, Dekho Panchang gives you answers.',
+    'देखो पंचांग एक 36-नियम मुहूर्त इंजन है जो शास्त्रीय निवारण तर्क को मॉडल करता है — कोई अन्य मंच ऐसा नहीं करता। Swiss Ephemeris (NASA JPL DE441), 11 अयनांश पद्धतियाँ, 15+ दशा, 150+ योग, पण्डित-शैली तर्क श्रृंखलाओं के साथ AI व्याख्या, 10 भाषाएँ। यह केवल डेटा नहीं दिखाता — शास्त्रीय रूप से प्रशिक्षित ज्योतिषी की तरह आपके जीवन के बारे में तर्क करता है। 100% नक्षत्र/तिथि/योग सटीकता सत्यापित। जहाँ अन्य मंच आपको तालिकाएँ देते हैं, देखो पंचांग आपको उत्तर देता है।',
   ),
 };
 
@@ -64,9 +64,9 @@ const ROWS: CompRow[] = [
     dekhoYes: true, drikYes: false, highlight: true,
   },
   {
-    feature: '33-Rule Muhurta Engine with Classical Cancellation',
+    feature: '36-Rule Muhurta Engine with Classical Cancellation',
     featureHi: '33-नियम मुहूर्त इंजन — शास्त्रीय निवारण सहित',
-    dekho: '33 rules from 7 texts (MC, Dharma Sindhu, BPHS, Brihat Samhita, Prashna Marga, B.V. Raman, Kalaprakashika). 5-tier authority: strong lagna cancels weak karana (MC Ch.7). Godhuli override for marriage (BS Ch.103). Planets-in-ascendant cancellation. Pandit-style reasoning with citations.',
+    dekho: '36 rules from 7 texts (MC, Dharma Sindhu, BPHS, Brihat Samhita, Prashna Marga, B.V. Raman, Kalaprakashika). 5-tier authority: strong lagna cancels weak karana (MC Ch.7). Godhuli override for marriage (BS Ch.103). Planets-in-ascendant cancellation. Pandit-style reasoning with citations.',
     drik: 'Binary pass/fail on Panchanga Shuddhi — no scoring, no cancellation logic, no reasoning',
     dekhoYes: true, drikYes: false, highlight: true,
   },
@@ -477,7 +477,7 @@ const WHY_CARDS: WhyCard[] = [
   },
   {
     icon: Sparkles,
-    title: '33-Rule Muhurta Engine',
+    title: '36-Rule Muhurta Engine',
     titleHi: '33-नियम मुहूर्त इंजन',
     body: '"When should I start my business?" — our engine evaluates 33 classical rules from 7 texts, applies 5-tier cancellation logic (strong lagna cancels weak karana per MC Ch.7), and gives you a pandit-style verdict with citations. Not binary pass/fail — nuanced, personalised scoring.',
     bodyHi: '"मैं अपना व्यवसाय कब शुरू करूँ?" — हमारा इंजन 7 ग्रन्थों से 33 शास्त्रीय नियमों का मूल्यांकन करता है, 5-स्तरीय निवारण तर्क लागू करता है (शक्तिशाली लग्न दुर्बल करण का निवारण करता है — MC Ch.7), और उद्धरणों के साथ पण्डित-शैली निर्णय देता है।',

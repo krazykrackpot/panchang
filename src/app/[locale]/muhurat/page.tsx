@@ -943,12 +943,12 @@ export default function MuhuratPage() {
           {/* Classical sources */}
           <div className="rounded-xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-5">
             <h3 className="text-gold-primary text-sm font-bold mb-2">
-              {locale === 'hi' ? '7 शास्त्रीय ग्रन्थों से 33 नियम' : '33 Rules from 7 Classical Texts'}
+              {locale === 'hi' ? '7 शास्त्रीय ग्रन्थों से 36 नियम' : '36 Rules from 7 Classical Texts'}
             </h3>
             <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
               {locale === 'hi'
-                ? 'हमारी गणना 7 प्रामाणिक ग्रन्थों से 33 विशिष्ट नियमों पर आधारित है: मुहूर्त चिन्तामणि (अध्याय 6-7, विवाह/लग्न प्रकरण), धर्मसिन्धु (चातुर्मास/अधिमास निषेध), BPHS (अस्त कोण), बृहत् संहिता (अध्याय 103, गोधूलि लग्न), प्रश्न मार्ग, बी.वी. रमन की मुहूर्थ, और कालप्रकाशिका। प्रत्येक नियम एक विशिष्ट अध्याय/श्लोक से जुड़ा है।'
-                : 'Our scoring applies 33 discrete rules from 7 authoritative texts: Muhurta Chintamani (Ch. 6-7, Vivah/Lagna Prakarana), Dharma Sindhu (Chaturmas/Adhika Masa prohibitions), BPHS (combustion orbs), Brihat Samhita (Ch. 103, Godhuli Lagna), Prashna Marga, B.V. Raman\'s Muhurtha, and Kalaprakashika. Every rule traces to a specific chapter or verse.'}
+                ? 'हमारी गणना 7 प्रामाणिक ग्रन्थों से 36 विशिष्ट नियमों पर आधारित है: मुहूर्त चिन्तामणि (अध्याय 6-7, विवाह/लग्न प्रकरण), धर्मसिन्धु (चातुर्मास/अधिमास निषेध), BPHS (अस्त कोण), बृहत् संहिता (अध्याय 103, गोधूलि लग्न), प्रश्न मार्ग, बी.वी. रमन की मुहूर्थ, और कालप्रकाशिका। प्रत्येक नियम एक विशिष्ट अध्याय/श्लोक से जुड़ा है।'
+                : 'Our scoring applies 36 discrete rules from 7 authoritative texts: Muhurta Chintamani (Ch. 6-7, Vivah/Lagna Prakarana), Dharma Sindhu (Chaturmas/Adhika Masa prohibitions), BPHS (combustion orbs), Brihat Samhita (Ch. 103, Godhuli Lagna), Prashna Marga, B.V. Raman\'s Muhurtha, and Kalaprakashika. Every rule traces to a specific chapter or verse.'}
             </p>
           </div>
 

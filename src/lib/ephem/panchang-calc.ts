@@ -25,6 +25,30 @@ import { getLunarMasaForDate } from '@/lib/calendar/hindu-months';
 import { checkPanchak } from '@/lib/panchang/panchak';
 import { checkHolashtak } from '@/lib/panchang/holashtak';
 
+/**
+ * Main panchang (daily almanac) computation module.
+ *
+ * Computes all elements of a traditional Hindu panchang for a given date and location:
+ *   - Five limbs (Pancha-Anga): tithi, nakshatra, yoga, karana, vara
+ *   - Transition times: when each element starts and ends (binary-searched to sub-second precision)
+ *   - Inauspicious periods: Rahu Kaal, Yamaganda, Gulika Kaal
+ *   - Choghadiya (8 auspicious/inauspicious day + 8 night periods)
+ *   - Hora (24 planetary hours based on Chaldean sequence)
+ *   - Varjyam and Amrit Kalam (inauspicious/auspicious windows from nakshatra ghati offsets)
+ *   - Named muhurtas: Brahma Muhurta, Abhijit, Vijaya, Godhuli, Sandhya, Nishita
+ *   - Special yogas: Sarvartha Siddhi, Amrit Siddhi, Dwipushkar, Tripushkar, etc.
+ *   - Hindu calendar: masa (Amant/Purnimant), ritu, samvatsara, ayana, Vikram/Shaka Samvat
+ *   - Supplementary: Disha Shool, Panchaka, Holashtak, Ganda Moola, Dagdha Tithi, etc.
+ *
+ * PANCHANG DAY CONVENTION:
+ *   A panchang day runs from sunrise to the next sunrise (not midnight to midnight).
+ *   All panchanga elements are evaluated at the moment of sunrise for the primary values,
+ *   then transition times are found by scanning forward/backward from sunrise.
+ *
+ * DUAL-ENGINE: Swiss Ephemeris when available (sub-minute sunrise, sub-arcsecond positions),
+ * Meeus fallback (±2 minute sunrise, ±0.5° Moon). See astronomical.ts for accuracy details.
+ */
+
 export interface PanchangInput {
   year: number;
   month: number; // 1-12
@@ -42,11 +66,24 @@ export interface PanchangInput {
 // ──────────────────────────────────────────────────────────────
 // Binary search helpers — find when a panchang element transitions
 // ──────────────────────────────────────────────────────────────
+//
+// Each panchanga element (tithi, nakshatra, yoga, karana) changes at a
+// specific moment determined by the Moon-Sun geometry. These functions
+// use bisection (binary search) to find that moment within a bracketed
+// interval [jdStart, jdEnd] where the element is known to change.
+//
+// 30 iterations of bisection on a ~1-day bracket yields precision of:
+//   1 day / 2³⁰ ≈ 0.08 milliseconds — far more than needed.
+// In practice we only need ~minute precision for display, but the extra
+// iterations are negligible in cost and prevent edge-case rounding issues.
 
-/** Find JD when tithi changes from `currentTithi` within [jdStart, jdEnd]. */
+/**
+ * Find the JD when the tithi transitions away from `currentTithi`.
+ * Precondition: at jdStart the tithi IS currentTithi, at jdEnd it is NOT.
+ */
 function findTithiTransition(currentTithi: number, jdStart: number, jdEnd: number): number {
   let lo = jdStart, hi = jdEnd;
-  for (let i = 0; i < 30; i++) { // ~30 iterations gives sub-second precision
+  for (let i = 0; i < 30; i++) {
     const mid = (lo + hi) / 2;
     const t = calculateTithi(mid).number;
     if (t === currentTithi) lo = mid; else hi = mid;
@@ -54,7 +91,7 @@ function findTithiTransition(currentTithi: number, jdStart: number, jdEnd: numbe
   return (lo + hi) / 2;
 }
 
-/** Find JD when nakshatra (by sidereal Moon) changes. */
+/** Find JD when the Moon's nakshatra transitions away from `currentNak`. */
 function findNakshatraTransition(currentNak: number, jdStart: number, jdEnd: number, ayanamsha?: number): number {
   let lo = jdStart, hi = jdEnd;
   for (let i = 0; i < 30; i++) {
@@ -66,7 +103,7 @@ function findNakshatraTransition(currentNak: number, jdStart: number, jdEnd: num
   return (lo + hi) / 2;
 }
 
-/** Find JD when yoga changes. */
+/** Find JD when the nitya yoga transitions away from `currentYoga`. */
 function findYogaTransition(currentYoga: number, jdStart: number, jdEnd: number, ayanamsha?: number): number {
   let lo = jdStart, hi = jdEnd;
   for (let i = 0; i < 30; i++) {
@@ -77,7 +114,7 @@ function findYogaTransition(currentYoga: number, jdStart: number, jdEnd: number,
   return (lo + hi) / 2;
 }
 
-/** Find JD when karana changes. */
+/** Find JD when the karana transitions away from `currentKarana`. */
 function findKaranaTransition(currentKarana: number, jdStart: number, jdEnd: number): number {
   let lo = jdStart, hi = jdEnd;
   for (let i = 0; i < 30; i++) {
@@ -89,9 +126,28 @@ function findKaranaTransition(currentKarana: number, jdStart: number, jdEnd: num
 }
 
 /**
- * Compute transition info for a panchang element.
- * Scans forward from sunrise to find end time, and backward to find start time,
- * then binary-searches for the exact transition JDs.
+ * Compute full transition info for a panchang element (tithi, nakshatra, yoga, or karana).
+ *
+ * This is the generic transition-finder used by all four panchanga limbs. It:
+ *   1. Scans FORWARD from sunrise in ~30-min steps (up to 36h) to find when the
+ *      current element ends (the next element begins).
+ *   2. Scans BACKWARD from sunrise to find when the current element started.
+ *   3. Binary-searches each boundary to sub-second precision.
+ *   4. Identifies the NEXT element and resolves timezone offsets per-JD for DST.
+ *
+ * The backward scan is direction-agnostic: it searches for ANY different value,
+ * not a specific predecessor. This is essential for karana, where the predecessor
+ * in the cycle is non-trivial (e.g., Bava can follow Vishti, Kimstughna, or Naga
+ * depending on position in the lunar month).
+ *
+ * @param currentValue - Current element number (e.g., tithi 1-30, nakshatra 1-27)
+ * @param getter       - Function that returns the element number at a given JD
+ * @param finder       - Binary search function for this element type
+ * @param jdSunrise    - JD of sunrise (the reference point for scanning)
+ * @param tzOffset     - Timezone offset in hours (for display formatting)
+ * @param dataArray    - Array of element metadata (names) for looking up the next element
+ * @param timezone     - Optional IANA timezone for per-JD DST resolution
+ * @returns TransitionInfo with start/end times, next element name, and raw JDs
  */
 function computeTransition(
   currentValue: number,
@@ -203,8 +259,22 @@ function jdToDecimalHoursUT(jd: number, jdRef: number): number {
 }
 
 // ──────────────────────────────────────────────────────────────
-// Choghadiya
+// Choghadiya (चौघड़िया) — "Four-Ghati" auspicious time divisions
 // ──────────────────────────────────────────────────────────────
+//
+// Choghadiya divides the day (sunrise→sunset) and night (sunset→next sunrise)
+// into 8 equal segments each, for 16 total. Each segment is ruled by a planet
+// and classified as auspicious, inauspicious, or neutral.
+//
+// The 7 types cycle with different starting points per weekday (see tables below).
+// Approximately 1.5 hours each, but varies with day length.
+//
+// Classical source: Muhurta Chintamani; Nirṇaya Sindhu.
+// Modern usage: widely consulted for everyday activities (travel, shopping, meetings).
+//
+// IMPORTANT (Lesson R): Night choghadiya slots can cross midnight (e.g., 23:30→01:15).
+// The midnight-crossing logic is handled by storing unwrapped UT values (may exceed 24h)
+// and marking crossesMidnight=true for UI display.
 
 const CHOGHADIYA_TYPES = ['udveg', 'char', 'labh', 'amrit', 'kaal', 'shubh', 'rog'] as const;
 
@@ -279,10 +349,25 @@ function computeChoghadiya(sunriseUT: number, sunsetUT: number, weekday: number,
 }
 
 // ──────────────────────────────────────────────────────────────
-// Hora (Planetary Hours)
+// Hora (होरा) — Planetary Hours (Chaldean system)
 // ──────────────────────────────────────────────────────────────
+//
+// The hora system divides each day into 24 planetary hours (12 day + 12 night),
+// each ruled by a planet in the Chaldean descending order:
+//   Sun → Venus → Mercury → Moon → Saturn → Jupiter → Mars (repeat)
+//
+// This sequence is the "Chaldean order" based on descending orbital period
+// as known to ancient astronomers. The first hora at sunrise belongs to the
+// day lord (e.g., Sunday = Sun, Monday = Moon), and subsequent horas advance
+// through the sequence. This is also how weekday names were originally assigned.
+//
+// Day horas: each = daylight_duration / 12 (variable, not 60 minutes).
+// Night horas: each = night_duration / 12.
+//
+// Classical source: BPHS Ch.3 (graha hora); also found in Hellenistic astrology.
 
-// Hora planet sequence: Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars (then repeats)
+// Chaldean descending order by perceived orbital speed:
+// Sun(0), Venus(5), Mercury(3), Moon(1), Saturn(6), Jupiter(4), Mars(2)
 const HORA_PLANET_SEQUENCE = [0, 5, 3, 1, 6, 4, 2]; // planet IDs
 const HORA_PLANET_NAMES: Record<number, LocaleText> = {
   0: { en: 'Sun',     hi: 'सूर्य',   sa: 'सूर्यः' },
@@ -341,8 +426,27 @@ function computeHora(sunriseUT: number, sunsetUT: number, weekday: number, tzOff
 }
 
 // ──────────────────────────────────────────────────────────────
-// Amrit Kalam & Varjyam
+// Amrit Kalam & Varjyam (अमृत काल & वर्ज्यम्)
 // ──────────────────────────────────────────────────────────────
+//
+// Each of the 27 nakshatras has a specific ghati offset (from the nakshatra's
+// start) where an inauspicious period (Varjyam / Thyajyam) and an auspicious
+// period (Amrit Kalam) begin. Each window lasts 4 ghatis (= 4/60 of the
+// nakshatra's total duration in time, NOT a fixed 96 minutes).
+//
+// 1 Ghati = 24 minutes = 1/60 of a day (a ghati is a Vedic time unit, NOT
+// the same as a degree of arc). Since the window length is proportional to
+// the nakshatra's duration, it varies as the Moon's speed varies.
+//
+// Some nakshatras have TWO Varjyam windows (dual Thyajyam) — e.g., Mula has
+// Varjyam at ghati 20 AND ghati 56. These are stored in VARJYAM_GHATI_2.
+//
+// Classical source: Dharma Sindhu; Kalaprakashika; Muhurta Chintamani.
+// The ghati offsets are from @/lib/constants/varjyam (single source of truth — Lesson Q).
+//
+// IMPORTANT (from Lesson about Panchang Time Windows):
+//   Windows computed from nakshatra ghati offsets can fall OUTSIDE the current
+//   panchang day. ALWAYS filter against sunrise-to-next-sunrise bounds before display.
 
 // VARJYAM_GHATI, VARJYAM_GHATI_2, AMRIT_GHATI imported from @/lib/constants/varjyam
 
@@ -350,6 +454,21 @@ interface TimeWindow { start: string; end: string }
 
 interface UTWindow { startUT: number; endUT: number }
 
+/**
+ * Compute Amrit Kalam and Varjyam time windows for a single nakshatra period.
+ *
+ * The ghati offset is scaled to actual clock time by:
+ *   actualHours = ghatiOffset × (nakshatraDuration / 60)
+ * This accounts for the variable nakshatra duration caused by the Moon's
+ * elliptical orbit (faster near perigee = shorter nakshatras).
+ *
+ * @param nakshatraNum     - Nakshatra number 1-27
+ * @param nakshatraStartJD - JD when this nakshatra began
+ * @param nakshatraEndJD   - JD when this nakshatra ends
+ * @param jdMidnight       - JD at 0h UT for the reference date
+ * @param tzOffset         - Timezone offset for display formatting
+ * @returns Amrit Kalam window and array of Varjyam windows (1-2 per nakshatra)
+ */
 function computeAmritVarjyamForNakshatra(
   nakshatraNum: number,
   nakshatraStartJD: number,
@@ -433,6 +552,28 @@ function computeAllAmritVarjyam(
 // Named Muhurtas
 // ──────────────────────────────────────────────────────────────
 
+/**
+ * Compute named muhurtas — special time periods with fixed durations relative to sunrise/sunset.
+ *
+ * These are NOT the 30 muhurtas (15 day + 15 night) that divide the day into equal parts.
+ * These are specific named periods with cultural and spiritual significance:
+ *
+ *   - Brahma Muhurta: 96→48 min before sunrise. The most auspicious time for meditation
+ *     and spiritual practice. Per Dharmasindhu, this is a FIXED duration, not derived
+ *     from the variable night muhurta (Drik Panchang and Prokerala confirm this).
+ *
+ *   - Godhuli ("cow-dust"): ±12 min around sunset. Named for the dust raised by
+ *     returning cattle — an auspicious time for marriage ceremonies per Muhurta Chintamani.
+ *
+ *   - Sandhya Kaal: ±24 min around sunrise (morning) and sunset (evening).
+ *     The twilight period for Sandhyavandana prayers (three daily prayers).
+ *
+ *   - Nishita Kaal: ±24 min around true midnight. Sacred to Lord Shiva;
+ *     Mahashivaratri puja is performed during Nishita Kaal. True midnight is
+ *     computed as the midpoint of the night (sunset + nightDuration/2).
+ *
+ * All durations: Dharmasindhu.
+ */
 function computeNamedMuhurtas(
   sunriseUT: number, sunsetUT: number, tzOffset: number
 ): {
@@ -496,8 +637,15 @@ function computeNamedMuhurtas(
 }
 
 // ──────────────────────────────────────────────────────────────
-// Disha Shool
+// Disha Shool (दिशा शूल) — Directional prohibition
 // ──────────────────────────────────────────────────────────────
+//
+// Each weekday has a "forbidden direction" (Shool = trident/lance of Shiva)
+// for travel or new ventures. Travelling in the forbidden direction on that
+// day is considered inauspicious. Each day has a prescribed food remedy
+// (eating a specific item before travel neutralises the shool).
+//
+// Classical source: Muhurta Chintamani; Dharma Sindhu.
 
 const DISHA_SHOOL_DATA: Record<number, DishaShoolInfo> = {
   0: { // Sunday
@@ -550,8 +698,26 @@ const SARVARTHA_SIDDHI: Record<number, Set<number>> = {
 // ──────────────────────────────────────────────────────────────
 // Moonrise / Moonset — iterative horizon-crossing calculation
 // ──────────────────────────────────────────────────────────────
+//
+// Unlike sunrise/sunset (which can be solved analytically using the Sun's
+// slow-changing declination), moonrise/moonset requires iterative computation
+// because the Moon moves ~13° per day — fast enough that its declination
+// changes significantly during the rise/set event itself.
+//
+// ALGORITHM:
+//   1. Compute Moon's altitude above the horizon at 5-minute intervals.
+//   2. Detect sign changes (below → above horizon = rise; above → below = set).
+//   3. Binary search the exact crossing point to ~1-second precision.
+//   4. Apply topocentric parallax correction (Moon is close enough that
+//      the observer's position on Earth's surface matters — up to ~1° shift).
+//
+// The standard altitude for moonrise/moonset is -0.3° (not -0.8333° like the
+// Sun) because the Moon has no appreciable semidiameter correction at the
+// precision level of this calculation, and atmospheric refraction alone is ~34'.
+//
+// Swiss Ephemeris path achieves ±10-second accuracy. Meeus fallback is ±2-3 min.
 
-// ── Helpers for Moon position ──
+// ── Helpers for Moon position (short aliases to reduce verbosity) ──
 const _mr = (d: number) => d * Math.PI / 180;
 const _md = (r: number) => r * 180 / Math.PI;
 const _mn = (d: number) => ((d % 360) + 360) % 360;
@@ -573,6 +739,12 @@ function _moonFundamentals(jdAt: number) {
 
 /**
  * Compute Moon's ecliptic latitude using Meeus Table 47.B (top 13 terms).
+ * The Moon's latitude oscillates ±5.15° about the ecliptic plane with the
+ * ~18.6-year nodal precession cycle. This is needed for accurate altitude
+ * calculations (the Moon can be up to 5° north/south of the ecliptic).
+ *
+ * @param jdAt - Julian Day in UT
+ * @returns Ecliptic latitude in degrees (positive = north of ecliptic)
  */
 function _meeusMoonLatitude(jdAt: number): number {
   const { D, M, Mp, F, E } = _moonFundamentals(jdAt);
@@ -594,8 +766,18 @@ function _meeusMoonLatitude(jdAt: number): number {
 }
 
 /**
- * Compute Moon's horizontal parallax from distance (Meeus Table 47.A cosine terms).
- * Returns parallax in degrees.
+ * Compute Moon's horizontal parallax from its geocentric distance.
+ *
+ * The Moon is close enough (avg ~385,000 km) that observers at different
+ * positions on Earth's surface see it at noticeably different altitudes.
+ * The horizontal parallax HP = arcsin(R_earth / distance) is the maximum
+ * angular shift between the geocentric and topocentric Moon position.
+ * HP ranges from ~0.9° (apogee) to ~1.0° (perigee).
+ *
+ * Uses the top 14 cosine terms from Meeus Table 47.A for distance.
+ *
+ * @param jdAt - Julian Day in UT
+ * @returns Horizontal parallax in degrees
  */
 function _meeusMoonParallax(jdAt: number): number {
   const { D, M, Mp, F, E } = _moonFundamentals(jdAt);
@@ -650,8 +832,21 @@ function getMoonEquatorial(jdAt: number): { dec: number; ra: number } {
 }
 
 /**
- * Compute Moon's altitude above the horizon at a given JD for a given location.
- * Applies topocentric parallax correction for the Moon's proximity.
+ * Compute Moon's altitude above the horizon at a given JD and location.
+ *
+ * ALGORITHM:
+ *   1. Convert Moon's ecliptic coordinates (longitude, latitude) to equatorial (RA, Dec).
+ *   2. Compute the local hour angle = LST - RA.
+ *   3. Apply the standard altitude formula:
+ *        sin(alt) = sin(lat)×sin(dec) + cos(lat)×cos(dec)×cos(HA)
+ *   4. Subtract topocentric parallax correction: HP × cos(alt).
+ *      This lowers the apparent altitude because the Moon appears lower
+ *      from the surface than from the Earth's centre.
+ *
+ * @param jdAt   - Julian Day in UT
+ * @param latRad - Observer's latitude in RADIANS (pre-converted for efficiency)
+ * @param lng    - Observer's longitude in DEGREES
+ * @returns Altitude in degrees (negative = below horizon)
  */
 function moonAltitude(jdAt: number, latRad: number, lng: number): number {
   const { dec, ra } = getMoonEquatorial(jdAt);
@@ -839,6 +1034,26 @@ function getMoonsetForDisplay(jd: number, lat: number, lng: number, tzOffset: nu
   return '--:--';
 }
 
+/**
+ * Main panchang computation — computes the complete daily almanac for a given date and location.
+ *
+ * This is the primary entry point for the panchang page. It orchestrates all sub-computations:
+ *   1. Sunrise/sunset (Swiss Ephemeris or Meeus fallback)
+ *   2. Five limbs at sunrise: tithi, nakshatra, yoga, karana, vara
+ *   3. Transition times for each limb (binary search)
+ *   4. Kshaya (skipped) and Vriddhi (doubled) tithi detection
+ *   5. Inauspicious periods: Rahu Kaal, Yamaganda, Gulika Kaal
+ *   6. Choghadiya (16 slots), Hora (24 planetary hours), Muhurtas (30 named periods)
+ *   7. Varjyam and Amrit Kalam for both active nakshatras
+ *   8. Named muhurtas: Brahma, Abhijit, Vijaya, Godhuli, Sandhya, Nishita
+ *   9. Hindu calendar: masa, ritu, samvatsara, ayana, Vikram/Shaka Samvat
+ *  10. Special yogas and supplementary elements
+ *
+ * The returned PanchangData object contains all information needed for the panchang page display.
+ *
+ * @param input - Date, location, timezone, and optional ayanamsha override
+ * @returns Complete PanchangData for the requested date and location
+ */
 export function computePanchang(input: PanchangInput): PanchangData {
   const { year, month, day, lat, lng, tzOffset, timezone, locationName, ayanamshaValue: userAyanamsha } = input;
 

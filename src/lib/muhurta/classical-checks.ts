@@ -1,12 +1,54 @@
 /**
- * Classical Muhurta Checks — hard vetoes and lagna scoring
+ * Classical Muhurta Checks — hard vetoes, lagna scoring, and period prohibitions.
  *
- * These checks implement rules with strong textual consensus from:
- * - Muhurta Chintamani Ch. 6 (Vivah Prakarana)
- * - Dharmasindhu (Vivaha Prakarana)
- * - B.V. Raman's Muhurtha (Ch. 12-13)
+ * This module implements the most authoritative muhurta rules — those with strong
+ * textual consensus across multiple classical sources. These are primarily used for
+ * Vivah (marriage) muhurta, the most complex and rule-heavy samskara, but several
+ * checks (Chaturmas, Adhika Masa, Kharmas) apply to all samskaras.
  *
- * See docs/muhurta-rules.md for full citations.
+ * CLASSICAL SOURCES:
+ *   - Muhurta Chintamani (MC) Ch. 6 — Vivah Prakarana (marriage chapter)
+ *   - Dharmasindhu (DS) — Vivaha Prakarana
+ *   - B.V. Raman's "Muhurtha" Ch. 12-13
+ *   - BPHS (Brihat Parashara Hora Shastra) — combustion orbs, planetary phases
+ *   - Prashna Marga Ch. 7 — general muhurta principles
+ *
+ * CHECKS IN THIS FILE:
+ *   1. Venus/Jupiter Combustion (TIER 0 VETO for marriage):
+ *      MC + DS explicitly prohibit marriage when Venus or Jupiter is combust.
+ *      Venus governs conjugal happiness; Jupiter governs dharma and progeny.
+ *      Uses BPHS combustion orbs (10° Venus / 8° if retrograde; 11° Jupiter).
+ *
+ *   2. Lagna (Ascendant) Scoring (TIER 2 — strong factor):
+ *      MC: "A properly chosen lagna removes defects." Gemini, Virgo, Libra
+ *      are the MC top picks for marriage. Aries and Scorpio are avoided.
+ *
+ *   3. Navamsha Shuddhi (TIER 3 — moderate factor):
+ *      MC emphasises D9 lagna quality over rashi lagna for marriage.
+ *      Each navamsha spans 3°20' — the finest classical timing tool.
+ *
+ *   4. Adhika Masa (TIER 0 VETO for marriage):
+ *      DS explicitly prohibits marriage during the intercalary month.
+ *
+ *   5. Chaturmas (TIER 0 VETO for marriage):
+ *      DS: Harishayana period from Devshayani Ekadashi to Prabodhini Ekadashi.
+ *      Uses exact tithi-table dates, not month-level approximation.
+ *
+ *   6. Prohibited Solar Months / Kharmas (TIER 0 VETO for marriage):
+ *      DS + MC: Sun in Dhanu (Sagittarius) or Meena (Pisces) = Kharmas/Malamas.
+ *
+ *   7. Dakshinayana (TIER 0 VETO for Mundan/first haircut):
+ *      MC Chudakarana Prakarana: requires Uttarayana (northern solar course).
+ *
+ *   8. Shishutva — Infant Venus/Jupiter (TIER 3 — moderate negative):
+ *      BPHS describes planetary phases after combustion. First 5 days after
+ *      heliacal rising, the planet is still too weak for samskara muhurta.
+ *
+ *   9. Krishna Paksha Conditional Logic (TIER 4 — weak negative):
+ *      No classical text explicitly forbids Krishna Paksha for marriage,
+ *      but Shukla is universally preferred. Penalty adjusted by supporting factors.
+ *
+ * See docs/muhurta-rules.md for full shloka citations and cross-references.
  */
 
 import { getPlanetaryPositions, toSidereal, getRashiNumber, sunLongitude } from '@/lib/ephem/astronomical';
@@ -37,7 +79,22 @@ export interface CombustionResult {
 
 /**
  * Check if Venus or Jupiter is combust at the given JD.
- * Returns combust planet names + angular distance for UI display.
+ *
+ * COMBUSTION (Asta Graha) occurs when a planet is within a certain angular
+ * distance of the Sun along the ecliptic. The planet's light is "burnt"
+ * by the Sun's overwhelming brilliance, weakening its significations.
+ *
+ * BPHS standard combustion orbs (Lesson X — different for retrograde):
+ *   Venus:   10° direct, 8° retrograde (reduced orb when retrograde)
+ *   Jupiter: 11° (same in both directions)
+ *   Mercury: 14° direct, 12° retrograde (not checked here — only relevant for education muhurta)
+ *
+ * Two severity levels for UI display:
+ *   "partial" (6°-10°/11°): challenging but not fatal
+ *   "full" (<6°): planet completely overwhelmed — strongest prohibition
+ *
+ * @param jd - Julian Day at the muhurta moment
+ * @returns CombustionResult with vetoed flag, planet names, and angular distances
  */
 export function checkVivahCombustion(jd: number): CombustionResult {
   const positions = getPlanetaryPositions(jd);
@@ -119,7 +176,26 @@ const RASHI_NAMES = [
 ];
 
 /**
- * Compute sidereal lagna at a given JD and score it for an activity.
+ * Compute the sidereal lagna (ascendant) at a given JD and score it for an activity.
+ *
+ * MC Ch.6: "Even where other favourable conditions are not present,
+ * a properly chosen lagna will remove the defects."
+ *
+ * For marriage (Vivah):
+ *   BEST (score 8): Mithuna (Gemini), Kanya (Virgo), Tula (Libra) — MC top picks
+ *   GOOD (score 5-6): Vrishabha (Taurus), Karka (Cancer), Dhanu (Sagittarius), Meena (Pisces)
+ *   NEUTRAL (score 1-2): Simha (Leo), Makara (Capricorn), Kumbha (Aquarius)
+ *   AVOID (score <0): Mesha (Aries, -2), Vrischika (Scorpio, -3)
+ *     Aries and Scorpio are Mars-ruled — too aggressive/destructive for marriage.
+ *     Scorpio is additionally the natural 8th sign (death/transformation).
+ *
+ * For generic activities: scores based on B.V. Raman's general muhurta guidance.
+ *
+ * @param jd         - Julian Day at the muhurta moment
+ * @param lat        - Geographic latitude
+ * @param lng        - Geographic longitude
+ * @param activityId - Activity identifier (e.g., 'marriage', 'business')
+ * @returns LagnaResult with rashi, score, and whether it's an MC top pick
  */
 export function scoreLagna(
   jd: number,
@@ -157,7 +233,16 @@ import { getLunarMasaForDate } from '@/lib/calendar/hindu-months';
 
 /**
  * Check if a date falls in Adhika (intercalary) Masa.
- * Dharmasindhu explicitly prohibits marriage during Adhika Masa.
+ *
+ * An Adhika (extra/intercalary) Masa occurs when a lunar month contains
+ * no solar sankranti (ingress into a new zodiac sign). This happens
+ * approximately once every 2.7 years due to the ~11-day difference
+ * between the solar year (365.25 days) and 12 lunar months (354 days).
+ *
+ * Dharmasindhu explicitly prohibits marriage during Adhika Masa:
+ * "अधिकमासे विवाहः न कार्यः" — marriage should not be performed in Adhika Masa.
+ *
+ * This is a TIER 0 (absolute veto) check — no positive factor can override it.
  */
 export function isAdhikaMasa(year: number, month: number, day: number): boolean {
   const masa = getLunarMasaForDate(year, month, day);
@@ -372,13 +457,30 @@ export function checkShishutva(jd: number): boolean {
 // Auspicious navamsha signs for Vivah: same as auspicious lagnas.
 
 /**
- * Compute the navamsha rashi of the lagna and return a bonus/penalty.
- * Navamsha = floor((degree_in_sign) / 3.333...) → maps to a rashi.
- * The starting rashi of the navamsha cycle depends on the sign's element:
- *   Fire signs (1,5,9): start from Aries (1)
- *   Earth signs (2,6,10): start from Capricorn (10)
- *   Air signs (3,7,11): start from Libra (7)
- *   Water signs (4,8,12): start from Cancer (4)
+ * Compute Navamsha Shuddhi — the D9 quality of the lagna at the muhurta moment.
+ *
+ * MC Ch.6: Navamsha Shuddhi is emphasised over Lagna Shuddhi for Vivah muhurta.
+ * The navamsha (1/9th of a sign = 3°20') of the lagna determines a secondary
+ * sign, and the auspiciousness of THAT sign matters for the muhurta.
+ *
+ * Since each navamsha spans only 3°20' of ecliptic arc, and the ascendant
+ * traverses ~1° every 4 minutes, the navamsha changes approximately every
+ * 13 minutes — making it the finest-grained classical timing tool available.
+ *
+ * NAVAMSHA MAPPING (BPHS Ch.6):
+ *   The starting rashi of the navamsha cycle depends on the sign's element:
+ *     Fire signs (Aries, Leo, Sagittarius): start from Aries (1)
+ *     Earth signs (Taurus, Virgo, Capricorn): start from Capricorn (10)
+ *     Air signs (Gemini, Libra, Aquarius): start from Libra (7)
+ *     Water signs (Cancer, Scorpio, Pisces): start from Cancer (4)
+ *
+ * Score contribution is half-weight of lagna (secondary factor per MC's hierarchy).
+ *
+ * @param jd         - Julian Day at the muhurta moment
+ * @param lat        - Geographic latitude
+ * @param lng        - Geographic longitude
+ * @param activityId - Activity identifier
+ * @returns navamshaRashi (1-12) and score adjustment
  */
 export function scoreNavamshaShuddhi(
   jd: number,
@@ -418,13 +520,31 @@ export function scoreNavamshaShuddhi(
 // ─── Krishna Paksha Conditional Logic ───────────────────────────────────────
 
 /**
- * Compute Krishna Paksha penalty based on supporting factors.
- * Returns a score adjustment: 0 (no penalty) to -6 (heavy penalty).
+ * Compute Krishna Paksha (waning Moon) penalty based on supporting factors.
  *
- * Logic:
- * - Krishna + good nakshatra + good lagna → mild penalty (-1)
- * - Krishna + good nakshatra + neutral lagna → moderate penalty (-3)
- * - Krishna + bad nakshatra → heavy penalty (-6, but hard veto may catch first)
+ * No classical text explicitly FORBIDS Krishna Paksha for marriage — it is
+ * Shukla Paksha (waxing Moon) that is universally PREFERRED. The waxing Moon
+ * symbolises growth, prosperity, and increasing light, making it the natural
+ * choice for auspicious beginnings.
+ *
+ * However, several traditions and practitioners DO accept Krishna Paksha when
+ * compensating factors are strong (excellent nakshatra + strong lagna). This
+ * function implements a graduated penalty system:
+ *
+ *   - Krishna + good nakshatra + good lagna → mild penalty (-1)
+ *     Classical texts allow this combination for marriage.
+ *
+ *   - Krishna + good nakshatra + neutral/weak lagna → moderate penalty (-3)
+ *     The nakshatra is fine but lagna isn't supporting — weaker foundation.
+ *
+ *   - Krishna + bad nakshatra → heavy penalty (-6)
+ *     The hard veto from bad nakshatra may catch this first, but the Krishna
+ *     Paksha penalty stacks if it doesn't.
+ *
+ * @param isKrishna           - True if tithi 16-30 (waning Moon)
+ * @param nakshatraInGoodList - True if the nakshatra is auspicious for this activity
+ * @param lagnaScore          - Lagna score from scoreLagna() (higher = better)
+ * @returns Score adjustment: 0 (no penalty) to -6 (heavy penalty)
  */
 export function krishnaPakshaAdjustment(
   isKrishna: boolean,

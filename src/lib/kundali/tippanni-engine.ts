@@ -1,6 +1,70 @@
 /**
  * Tippanni Interpretation Engine
- * Generates comprehensive interpretive commentary from KundaliData
+ *
+ * The central interpretive commentary generator for a Kundali chart. "Tippanni"
+ * (Sanskrit: टिप्पणी) means annotation or commentary — this engine transforms
+ * raw astronomical data into structured, human-readable insights.
+ *
+ * ─── Architecture ────────────────────────────────────────────────────
+ *
+ * The engine is a pipeline of section generators, each producing a typed
+ * section of the TippanniContent output. The main entry point
+ * `generateTippanni()` orchestrates the flow:
+ *
+ *   Input: KundaliData (planets, houses, dashas, yogas, shadbala, etc.)
+ *          + locale ('en' | 'hi' | 'sa' | ...)
+ *
+ *   Pipeline:
+ *     1. Compute life stage context (age → stage: child/student/career/elder)
+ *     2. generateYearPredictions  → current transit-based predictions
+ *     3. generatePersonality     → lagna/moon/sun analysis + lagna lord strength
+ *     4. generatePlanetInsights  → per-planet house+sign+dignity commentary
+ *     5. generateYogas           → yoga detection + classical citations
+ *     6. generateDoshas          → dosha detection + cancellation analysis
+ *     7. generateLifeAreas       → 5 life domains (career/wealth/marriage/health/education)
+ *     8. generateDashaInsight    → current Mahadasha/Antardasha analysis
+ *     9. generateRemedies        → gemstone/mantra/practice recommendations
+ *    10. generateStrengthOverview → Shadbala-based planetary strength bars
+ *    11. generateDashaSynthesis  → integrated dasha narrative
+ *    12. buildChartNarrative     → unified chart story (runs last, reads all sections)
+ *
+ *   Output: TippanniContent (see tippanni-types.ts)
+ *
+ * ─── Data Sources ────────────────────────────────────────────────────
+ *
+ *   - LAGNA_DEEP: deep personality/career/health text per ascendant (tippanni-lagna.ts)
+ *   - PLANET_HOUSE_BASE: inline planet-in-house descriptions (this file)
+ *   - PLANET_HOUSE_DEPTH: extended implications/prognosis (tippanni-planets.ts)
+ *   - BPHS_PLANET_IN_HOUSE: classical citations from BPHS Ch.24/47
+ *   - YOGA_CITATIONS: classical references for named yogas (bphs-yogas.ts)
+ *   - Enhanced modules: planet-in-sign, aspects, yogas-extended, doshas-extended,
+ *     dasha-effects-enhanced, remedies-enhanced, life-areas-enhanced
+ *
+ * ─── Life Stage Context ──────────────────────────────────────────────
+ *
+ *   The engine adapts commentary to the native's current age/stage:
+ *     - Child (0-12): focus on education, health, parenting guidance
+ *     - Student (13-25): education, career preparation, relationship readiness
+ *     - Career (26-55): career, marriage, wealth, health maintenance
+ *     - Elder (56+): health, legacy, spiritual growth, grandchildren
+ *
+ *   Stage context influences: personality framing, life area priority order,
+ *   yoga relevance weighting, dasha advice tone, and remedy preferences.
+ *
+ * ─── Classical References ────────────────────────────────────────────
+ *
+ *   - BPHS (Brihat Parashara Hora Shastra): primary reference for yogas,
+ *     doshas, house significations, and dasha effects
+ *   - Phaladeepika (Mantreshwara): supplementary yoga/dosha conditions
+ *   - Jataka Parijata: additional classical perspectives
+ *   - Lal Kitab: folk remedy traditions (referenced in Manglik cancellation)
+ *
+ * ─── Error Handling ──────────────────────────────────────────────────
+ *
+ *   The chart narrative (final step) is wrapped in try/catch — it reads
+ *   from all other sections and a failure there must never block the
+ *   entire tippanni. All other sections are expected to succeed given
+ *   valid KundaliData input.
  */
 
 import type { KundaliData, PlanetPosition } from '@/types/kundali';
@@ -40,7 +104,18 @@ import { generateYearPredictions } from '@/lib/tippanni/year-predictions';
 
 export type { TippanniContent } from './tippanni-types';
 
-// Planet-in-house base descriptions (English)
+// Planet-in-house base descriptions (English only — Hindi/Sanskrit handled
+// by the enhanced module getPlanetInHouseEnhanced() when available).
+//
+// These are concise summaries of each planet's signification when placed
+// in a particular house. They serve as the fallback when the enhanced
+// trilingual module doesn't cover a placement.
+//
+// Planet IDs: 0=Sun, 1=Moon, 2=Mars, 3=Mercury, 4=Jupiter, 5=Venus,
+// 6=Saturn, 7=Rahu, 8=Ketu.
+//
+// Classical basis: BPHS Ch.24 (effects of planets in houses) and
+// Phaladeepika Ch.3-8 (planet-in-house effects).
 const PLANET_HOUSE_BASE: Record<number, Record<number, string>> = {
   0: {
     1: 'Sun in the 1st house gives a strong sense of self, leadership ability, and vitality. You are confident and have a commanding presence.',
@@ -170,10 +245,39 @@ const PLANET_HOUSE_BASE: Record<number, Record<number, string>> = {
   },
 };
 
+/** Locale-conditioned text selector. Returns Hindi for 'hi' locale,
+ *  English for all others (sa/ta/bn/etc. fall back to English here;
+ *  separate enhanced modules handle true trilingual content). */
 function t(locale: Locale, en: string, hi: string, _sa?: string): string {
   return locale === 'hi' ? hi : en;
 }
 
+/**
+ * Generates the Personality section of the tippanni.
+ *
+ * Analyses three pillars of Vedic personality (the "triad of self"):
+ *
+ *   1. **Lagna (Ascendant)** — BPHS Ch.11-12 (Tanu Bhava): the sign rising
+ *      at birth determines physical constitution, outward temperament,
+ *      and approach to life. Content drawn from LAGNA_DEEP which has
+ *      detailed personality/career/health/relationships/finances/spiritual
+ *      text per sign.
+ *
+ *   2. **Moon Sign** — BPHS Ch.24 (Chandra effects): the mind's rashi.
+ *      Analysed through element (Tattva) and quality (Guna) frameworks.
+ *      Determines emotional response patterns and relationship needs.
+ *
+ *   3. **Sun Sign** — the soul's expression (Atma Karaka principle).
+ *      Defines core identity, ego, and life purpose. Father's influence.
+ *
+ * The summary blends all three into a personality synthesis, enriched with:
+ *   - Lagna lord's Shadbala strength (BPHS Ch.27) — strong vs suppressed expression
+ *   - Lagna lord's Baladi Avastha (age-state: Bala/Kumara/Yuva/Vriddha/Mrita)
+ *   - Life-stage-specific personality framing from LAGNA_STAGE_CONTEXT
+ *
+ * @param stageCtx — optional life stage (child/student/career/elder) for
+ *                    age-appropriate personality framing
+ */
 function generatePersonality(kundali: KundaliData, locale: Locale, stageCtx?: LifeStageContext): PersonalitySection {
   const ascSign = kundali.ascendant.sign;
   const lagna = LAGNA_DEEP[ascSign];
@@ -217,7 +321,9 @@ function generatePersonality(kundali: KundaliData, locale: Locale, stageCtx?: Li
     `${rashi.name.hi} लग्न${moonSign ? `, ${moonSign.name.hi} में चन्द्रमा` : ''}${sunSign ? `, और ${sunSign.name.hi} में सूर्य` : ''} के साथ, आपका व्यक्तित्व ${rashi.element.hi} लग्न ऊर्जा${moonSign ? ` और ${moonSign.element.hi} भावनात्मक प्रकृति` : ''} का मिश्रण है।`
   );
 
-  // Enrich with lagna lord's condition from real data
+  // Enrich with lagna lord's condition from computed data (Shadbala + Avastha).
+  // Sign lords mapping: signId → planet ID of the sign's ruler.
+  // Per BPHS Ch.3: Aries=Mars(2), Taurus=Venus(5), Gemini=Mercury(3), etc.
   const signLords: Record<number, number> = { 1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3, 7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4 };
   const lagnaLordId = signLords[ascSign];
   if (lagnaLordId !== undefined) {
@@ -280,6 +386,37 @@ function generatePersonality(kundali: KundaliData, locale: Locale, stageCtx?: Li
   return personality;
 }
 
+/**
+ * Generates per-planet interpretive insights for all 9 planets.
+ *
+ * For each planet, the insight is built from multiple layers (in order):
+ *
+ *   1. **House placement** — from getPlanetInHouseEnhanced() (trilingual)
+ *      or PLANET_HOUSE_BASE (English fallback). Ref: BPHS Ch.24.
+ *
+ *   2. **Sign placement** — from getPlanetInSignText(). How the planet
+ *      expresses through the characteristics of its host rashi.
+ *
+ *   3. **Dignity status** — exalted/debilitated/own sign from DIGNITY_EFFECTS.
+ *      Per BPHS Ch.3-4 (Graha Svarupa).
+ *
+ *   4. **Retrograde effect** — for true planets (id 0-6) only. Rahu/Ketu
+ *      are always retrograde and excluded. Ref: BPHS Ch.26.
+ *
+ *   5. **Avastha enrichment** — Baladi (age state) and Deeptadi (luminosity)
+ *      from computed avasthas. Ref: BPHS Ch.45.
+ *
+ *   6. **Functional nature** — YogaKaraka, Maraka, Badhaka, or functional
+ *      benefic/malefic for the specific lagna. Ref: BPHS Ch.34.
+ *
+ *   7. **Vimshopaka Bala** — dignity across 16 divisional charts (0-20 scale).
+ *      Ref: BPHS Ch.16. Separate from Shadbala (6-fold strength).
+ *
+ *   8. **Shadbala** — 6-fold strength in rupas with ratio to minimum required.
+ *      Ref: BPHS Ch.27. Thresholds: >=1.5 Strong, >=1.0 Adequate, <1.0 Weak.
+ *
+ *   9. **Classical citations** — BPHS chapter references from BPHS_PLANET_IN_HOUSE.
+ */
 function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetInsight[] {
   return kundali.planets.map((p) => {
     const graha = GRAHAS[p.planet.id];
@@ -407,6 +544,33 @@ function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetIns
   });
 }
 
+/**
+ * Generates the Yogas section — planetary combinations that modify
+ * the chart's overall quality.
+ *
+ * Two detection paths:
+ *   1. **yogasComplete** (preferred): 150+ yogas pre-computed by the yoga engine
+ *      with proper conditions checked (BPHS Ch.36-41 for Raja Yogas,
+ *      Ch.75 for Pancha Mahapurusha, Phaladeepika Ch.6 for Chandra Yogas, etc.)
+ *   2. **Fallback**: manual detection via detectExtendedYogas() when
+ *      yogasComplete is unavailable (e.g. simplified kundali generation)
+ *
+ * Post-detection enrichment:
+ *   - Classical citations from YOGA_CITATIONS (BPHS/Phaladeepika chapter refs)
+ *   - Life-stage relevance scoring: e.g. Dhana Yogas score higher for career-age,
+ *     Moksha Yogas score higher for elders. This reorders the yoga list so the
+ *     most age-relevant yogas appear first.
+ *   - Stage context suffix: adds a sentence like "At your age, this yoga
+ *     manifests particularly through..." based on the native's current stage.
+ *
+ * Sorting: effective weight = strength multiplier × age relevance.
+ * Strong yogas with high age relevance float to the top.
+ *
+ * Expected frequency guideline (Lesson T): if a "rare" yoga triggers in >20%
+ * of charts, the detection condition is likely too loose.
+ *
+ * @param stageCtx — life stage for age-relevance weighting
+ */
 function generateYogas(kundali: KundaliData, locale: Locale, stageCtx?: LifeStageContext): YogaInsight[] {
   let yogaInsights: YogaInsight[];
 
@@ -492,6 +656,39 @@ function generateYogas(kundali: KundaliData, locale: Locale, stageCtx?: LifeStag
   return yogaInsights;
 }
 
+/**
+ * Generates the Doshas section — afflictions and their cancellation analysis.
+ *
+ * Two detection paths (same pattern as generateYogas):
+ *   1. **yogasComplete doshas** (preferred): pre-computed dosha category entries
+ *   2. **Manual detection** (fallback): inline logic for the three major doshas
+ *
+ * The three manually detected doshas are:
+ *
+ *   **Manglik Dosha (Kuja Dosha)** — BPHS Ch.77
+ *     Mars in houses 1/2/4/7/8/12. Severity: severe (1,7,8), moderate (4,12), mild (2).
+ *     Cancellation conditions checked against BPHS Ch.77 and Phaladeepika:
+ *       - Mars in own/exalted sign
+ *       - Jupiter aspects Mars or 7th house
+ *       - Venus in kendra
+ *       - Mars in Cancer or Leo
+ *       - Saturn aspects Mars
+ *     effectiveSeverity: 'cancelled' (2+ met), 'partial' (1 met), 'full' (0 met)
+ *
+ *   **Kaal Sarpa Dosha** — all 7 planets hemmed between Rahu and Ketu.
+ *     12 sub-types identified by Rahu's house position (Anant through Sheshnag).
+ *     Cancellation conditions: planet conjunct Rahu/Ketu (breaks axis),
+ *     Jupiter aspects nodes, Rahu/Ketu in upachaya houses (3/6/11).
+ *
+ *   **Pitra Dosha** — BPHS Ch.76
+ *     Sun conjunct Rahu, or Sun conjunct Saturn while debilitated.
+ *     Indicates ancestral karmic debts affecting career and father relationship.
+ *     Cancellation: Jupiter aspects Sun, Sun in own/exalted sign, 9th lord strong.
+ *
+ * After manual detection, extended doshas from detectExtendedDoshas() are merged
+ * (avoiding duplicates by name). Classical citations from findDoshaCitations()
+ * are attached to all doshas.
+ */
 function generateDoshas(kundali: KundaliData, locale: Locale): DoshaInsight[] {
   // Use yogasComplete dosha category when available
   if (kundali.yogasComplete && kundali.yogasComplete.length > 0) {
@@ -696,11 +893,43 @@ function generateDoshas(kundali: KundaliData, locale: Locale): DoshaInsight[] {
   return doshas;
 }
 
+/**
+ * Generates the 5 Life Area analyses: Career, Wealth, Marriage, Health, Education.
+ *
+ * Each area uses a two-pass approach:
+ *
+ *   **Pass 1 — Crude rating** (`rateHouse()`): a heuristic 1-10 score based on:
+ *     - Benefic planets in the relevant house(s) → +1.5 each
+ *     - Malefic planets → -0.5 each
+ *     - Exalted tenant → +1
+ *     - Debilitated tenant → -1
+ *     - Own sign tenant → +0.5
+ *
+ *   **Pass 2 — Enhanced analysis**: calls the enhanced life-areas module
+ *     (analyzeCareerEnhanced, etc.) which provides deeper, multi-factor text.
+ *
+ *   **Pass 3 — Bhavabala override** (when available): replaces crude ratings
+ *     with proper 4-component Bhavabala scores from calculateBhavabala().
+ *     This is the most accurate rating since it accounts for lordship strength,
+ *     directional strength, aspects, and occupancy.
+ *
+ *   **Pass 4 — Ashtakavarga enrichment** (when available): appends SAV
+ *     (Sarva Ashtakavarga) bindu counts for the relevant houses. SAV scores
+ *     ≥28 indicate strong support, <22 need attention. Ref: BPHS Ch.66-72.
+ *
+ * House-to-area mapping (per BPHS Ch.11-12):
+ *   - Career: 10th house (Karma Bhava) + Sun
+ *   - Wealth: 2nd (Dhana) + 11th (Labha) houses + Jupiter
+ *   - Marriage: 7th house (Kalatra Bhava) + Venus
+ *   - Health: 1st (Tanu) + 6th (Roga) houses
+ *   - Education: 4th (Vidya) + 5th (Putra/Buddhi) houses + Mercury
+ */
 function generateLifeAreas(kundali: KundaliData, locale: Locale): LifeAreaSection {
   const planets = kundali.planets;
   const houses = kundali.houses;
   const getP = (id: number) => planets.find(p => p.planet.id === id);
 
+  /** Crude house-strength heuristic. Superseded by Bhavabala when available. */
   function rateHouse(houseNum: number, beneficIds: number[]): number {
     const planetsIn = planets.filter(p => p.house === houseNum);
     let score = 5;
@@ -854,6 +1083,28 @@ function generateLifeAreas(kundali: KundaliData, locale: Locale): LifeAreaSectio
   };
 }
 
+/**
+ * Generates the Dasha Insight section — analysis of the current Vimshottari
+ * Mahadasha and Antardasha.
+ *
+ * The Vimshottari Dasha system (BPHS Ch.46-51) assigns 120 years to 9 planets
+ * in a fixed sequence (Sun 6y, Moon 10y, Mars 7y, Rahu 18y, Jupiter 16y,
+ * Saturn 19y, Mercury 17y, Ketu 7y, Venus 20y). The starting point is
+ * determined by the Moon's birth nakshatra position.
+ *
+ * This function:
+ *   1. Finds the current Mahadasha by date range comparison against `now`
+ *   2. Finds the current Antardasha within that Mahadasha
+ *   3. Applies enhanced analysis from getDashaLordAnalysis() which considers
+ *      the dasha lord's dignity, house placement, and lordship for the lagna
+ *   4. Applies Antardasha interaction analysis from getAntardashaInteraction()
+ *   5. Enriches with Shadbala strength, Avastha, and functional nature of
+ *      the dasha lord for precision
+ *   6. Appends life-stage-conditioned advice from getDashaStageAdvice()
+ *   7. Identifies the next upcoming Antardasha for forward-looking context
+ *
+ * @param stageCtx — life stage for age-conditioned dasha advice
+ */
 function generateDashaInsight(kundali: KundaliData, locale: Locale, stageCtx?: LifeStageContext): DashaInsightSection {
   const now = new Date();
   let currentMaha = '';
@@ -994,6 +1245,28 @@ function generateDashaInsight(kundali: KundaliData, locale: Locale, stageCtx?: L
   return { currentMaha, currentMahaAnalysis, currentAntar, currentAntarAnalysis, upcoming };
 }
 
+/**
+ * Generates gemstone, mantra, and practice remedy recommendations.
+ *
+ * Remedies target weak planets (Shadbala ratio < 1.0 per BPHS Ch.27).
+ * The strength threshold conversion:
+ *   - fullShadbala strengthRatio is mapped to the simplified 0-100 scale
+ *     used by getRemediesForWeakPlanets(): ratio × 40 → threshold 40.
+ *   - Ratio < 1.0 → totalStrength < 40 → flagged as weak → remedies generated
+ *   - Ratio ≥ 1.0 → totalStrength ≥ 40 → considered adequate → no remedies
+ *
+ * Remedy types (from remedies-enhanced.ts):
+ *   - Gemstones (ratna) with specific finger/metal/day recommendations
+ *   - Mantras with japa count (e.g. "Om Shum Shanaishcharaya Namah" 108x)
+ *   - Donation (daan) recommendations per planet
+ *   - Fasting (vrat) on the planet's day
+ *   - Puja and yantra recommendations
+ *
+ * Life-stage adaptation: remedy preferences differ by age (e.g. children
+ * receive mantra/puja suggestions rather than gemstone recommendations).
+ *
+ * @param stageCtx — life stage for age-appropriate remedy selection
+ */
 function generateRemedies(kundali: KundaliData, locale: Locale, stageCtx?: LifeStageContext): RemedySection {
   // Build a synthetic ShadBala[] from fullShadbala so the remedies function gets real data.
   // The remedies function checks totalStrength < 40 to identify weak planets.
@@ -1009,6 +1282,21 @@ function generateRemedies(kundali: KundaliData, locale: Locale, stageCtx?: LifeS
   return getRemediesForWeakPlanets(kundali.planets, shadbalaForRemedies, kundali.ascendant.sign, locale, stageCtx?.stage);
 }
 
+/**
+ * Generates the planetary strength overview — visualised as strength bars in the UI.
+ *
+ * Two data paths:
+ *   1. **fullShadbala** (preferred): the proper 6-fold strength calculation
+ *      (Sthana + Dig + Kala + Cheshta + Naisargika + Drik bala) per BPHS Ch.27.
+ *      strengthRatio = rupas / minimum required. Thresholds:
+ *        - ≥1.5: Strong (planet delivers results well above baseline)
+ *        - ≥1.0: Adequate (meets minimum required strength)
+ *        - <1.0: Weak (underperforms — remedies recommended)
+ *      The percentage for the UI bar = 30 + ratio × 35, capped at 100.
+ *
+ *   2. **Simplified shadbala** (fallback): a 0-100 totalStrength score from
+ *      the simplified computation. Thresholds: ≥60 Strong, ≥40 Adequate, <40 Weak.
+ */
 function generateStrengthOverview(kundali: KundaliData, locale: Locale): StrengthEntry[] {
   // Use fullShadbala (proper 6-fold calculation) when available; fall back to simplified
   if (kundali.fullShadbala && kundali.fullShadbala.length > 0) {
@@ -1046,6 +1334,28 @@ function generateStrengthOverview(kundali: KundaliData, locale: Locale): Strengt
 
 // ===== MAIN EXPORT =====
 
+/**
+ * Main entry point for the Tippanni interpretation engine.
+ *
+ * Orchestrates all section generators in sequence and assembles the complete
+ * TippanniContent object. This is called from the Kundali page component
+ * and the API route.
+ *
+ * Execution order:
+ *   1. Life areas (computed first because life-stage framing modifies their summaries)
+ *   2. Life stage context (age-based: child/student/career/elder)
+ *   3. Year predictions, personality, planet insights, yogas, doshas (independent)
+ *   4. Dasha insight, remedies, strength overview, dasha synthesis (may read #3)
+ *   5. Chart narrative (runs LAST — reads from all other sections to weave threads)
+ *
+ * The chart narrative step is wrapped in try/catch because it's non-critical:
+ * a failure in narrative generation must never prevent the rest of the tippanni
+ * from being returned. See Lesson A: never silently swallow errors — it logs.
+ *
+ * @param kundali — complete kundali data (planets, houses, dashas, yogas, etc.)
+ * @param locale — determines language of all generated text
+ * @returns TippanniContent with all sections populated
+ */
 export function generateTippanni(kundali: KundaliData, locale: Locale): TippanniContent {
   const lifeAreas = generateLifeAreas(kundali, locale);
 

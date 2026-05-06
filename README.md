@@ -1,21 +1,25 @@
-# Jyotish Panchang — Vedic Astrology Platform
+# Dekho Panchang — Vedic Astrology Platform
 
-> The most comprehensive open-source Vedic astrology web application. Swiss Ephemeris accuracy, 50-module learning curriculum, AI-powered chart interpretation, and 612 pages across 3 languages.
+> The most comprehensive Vedic astrology web application. Swiss Ephemeris accuracy, 127+ learning modules, 36-rule classical muhurta engine, and 17,000+ pages across 10 languages.
+
+**Live at [dekhopanchang.com](https://dekhopanchang.com)**
 
 ---
 
 ## What Is This?
 
-A full-featured Vedic astrology (Jyotish) web application that performs all astronomical calculations locally — no external astrology APIs. Every planetary position, dasha period, yoga detection, and chart analysis is computed from first principles using the Swiss Ephemeris engine (NASA JPL DE431 precision).
+A full-featured Vedic astrology (Jyotish) web application that performs all astronomical calculations locally — no external astrology APIs. Every planetary position, dasha period, yoga detection, and muhurta evaluation is computed from first principles using the Swiss Ephemeris engine (NASA JPL DE441 precision).
 
-**Live features:**
-- Daily Panchang with 90+ fields, location-aware
-- Birth chart (Kundali) generation with 19 divisional charts (D1-D60)
-- 75+ yoga detection, 15 dasha systems, 5 avastha systems
-- Life Timeline — 90-year synthesis of all kundali elements on one scrollable canvas
-- AI-powered chart chat (Claude integration)
-- 50-module interactive learning curriculum with quizzes
-- Trilingual: English, Hindi, Sanskrit
+**Core capabilities:**
+- Daily Panchang with 90+ fields, location-aware for any city on Earth
+- Birth chart (Kundali) with 19 divisional charts, 15 dasha systems, 75+ yogas
+- 36-rule classical muhurta engine with 5-tier cancellation hierarchy for 20 activity types
+- Ashta Kuta (36-point) compatibility matching
+- 127+ learning modules covering all of Jyotish Shastra
+- 21 individual graha + rashi deep-dive reference pages
+- AI-powered chart interpretation (Claude integration)
+- 10 languages: English, Hindi, Tamil, Telugu, Bengali, Kannada, Marathi, Gujarati, Maithili, Sanskrit
+- PWA with offline support, daily panchang email notifications
 
 ---
 
@@ -26,126 +30,138 @@ BROWSER (Client)
   Next.js 16 App Router | React 19 | Tailwind CSS v4
   Framer Motion | D3.js Charts | Zustand State
                     |
-                 API Routes
+                 API Routes (14)
                     |
-SERVER (Node.js)
-  Swiss Ephemeris (sweph npm) ── 0.0000° accuracy
-  Meeus Algorithms ──────────── fallback
-  Claude API (optional) ─────── Chart chat, horoscope
+SERVER (Node.js on Vercel)
+  Swiss Ephemeris (sweph) ── 0.0000° accuracy
+  Meeus Algorithms ──────── fallback engine
+  Claude API (optional) ─── Chart chat, horoscope
                     |
-  CALCULATION ENGINE (~30,000 LOC)
-    astronomical.ts ── Swiss Eph wrapper + Meeus
+  CALCULATION ENGINE (~35,000 LOC)
+    astronomical.ts ── Swiss Eph wrapper + Meeus fallback
     panchang-calc.ts ── Tithi, Nakshatra, Yoga, Karana
     kundali-calc.ts ── Charts, Dashas, Yogas, Avasthas
-    jaimini-calc.ts ── Chara Karakas, Arudhas, Argala, Rashi Drishti
+    jaimini-calc.ts ── Chara Karakas, Arudhas, Argala
     shadbala.ts ── 6-fold planetary strength
-    yogas-complete.ts ── 75+ yoga detection engine
-    graha-yuddha.ts ── Planetary war detection
-    tippanni-engine.ts ── AI commentary synthesis
+    yogas-complete.ts ── 75+ yoga detection
+    muhurta engine/ ── 36-rule constraint system
+    tippanni-engine.ts ── Interpretive commentary
                     |
-  SUPABASE (optional)
-    Auth | Saved Charts | Classical Text Vectors (RAG)
+  SUPABASE (PostgreSQL + Auth)
+    User profiles | Saved charts | RLS policies
 ```
 
 ### Key Design Principles
 
-1. **Swiss Ephemeris primary, Meeus fallback** — Sub-arcsecond accuracy when sweph is installed, graceful degradation otherwise
+1. **Swiss Ephemeris primary, Meeus fallback** — Sub-arcsecond when sweph installed, graceful degradation otherwise
 2. **All computation server-side** — No external astrology API calls
-3. **Progressive enhancement** — Core features work without Claude API or Supabase
-4. **Trilingual from day one** — Every user-facing string in EN/HI/SA
+3. **Classical constraint-based** — Muhurta engine rejects on fatal flaws first, then scores
+4. **10-locale i18n** — next-intl with per-locale message files and Indic script fonts
 
 ---
 
-## Swiss Ephemeris Integration
+## Muhurta Engine (36-Rule Classical Constraint System)
 
-### Why Swiss Ephemeris?
+The muhurta engine is the most architecturally significant subsystem. Unlike scoring-only systems that average positives and negatives, it follows classical logic: **reject on fatal flaws first, then score the rest**.
 
-We validated our original Meeus-based engine against Swiss Ephemeris (NASA JPL DE431) and found critical accuracy gaps:
+```
+INPUT: Activity + Date range + Location + (optional) Birth data
+  ↓
+LAYER 1: Period vetoes (Tier 0)
+  Venus/Jupiter combustion, Adhika Masa, Chaturmas, Kharmas
+  → If any fire: ENTIRE DAY REJECTED
+  ↓
+LAYER 2: Window evaluation (36 rules across 9 categories)
+  Panchanga (8 rules): tithi, nakshatra, yoga, karana, vara, panchaka, dagdha tithi, gandanta
+  Kaala (7): hora, choghadiya, abhijit, rahu kaal, yamaganda, gulika, dur muhurtam, varjyam
+  Lagna (5): sign quality, navamsha shuddhi, benefics in ascendant, 8th house, krishna adjustment
+  Graha (2): transit strength, pushkar navamsha/bhaga
+  Special (3): sarvartha siddhi, amrit siddhi, godhuli lagna
+  Personal (3): tara bala (3-cycle), chandra bala, dasha harmony
+  Periods (6): combustion, adhika masa, chaturmas, kharmas, dakshinayana, shishutva
+  Gandanthara (1): tithi junction dosha
+  Varjyam (1): nakshatra-specific poison window
+  ↓
+LAYER 3: 5-tier cancellation hierarchy
+  Tier 0: Absolute veto (nothing cancels)
+  Tier 1: Supreme positive (Godhuli) — cancels everything except Tier 0
+  Tier 2: Strong (lagna, abhijit) — cancels Tier 4
+  Tier 3: Standard (most panchanga factors)
+  Tier 4: Cancellable negatives (rahu kaal, weak vara)
+  ↓
+SCORE CAP: Inauspicious yoga limits maximum score regardless of other factors
+  Hard inauspicious (Ganda/Vyatipata/Vaidhriti): max 55 (Fair)
+  Moderate inauspicious: max 70 (Good)
+  ↓
+OUTPUT: 0-100 score + grade + pandit-style reasoning with classical citations
+```
+
+20 activity types with classically verified nakshatra whitelists (not permissive "everything not forbidden" lists). Each activity's allowed nakshatras are sourced from Muhurta Chintamani, B.V. Raman, and Jyotirnibandha.
+
+---
+
+## Swiss Ephemeris Accuracy
 
 | Planet | Meeus Error | Swiss Eph Error | Improvement |
 |--------|------------|-----------------|-------------|
-| Sun | avg 0.21 degrees | 0.0000 degrees | Perfect |
-| Moon | avg 2.78 degrees, max 13 degrees | 0.0001 degrees | 27,800x |
-| Mars | avg 22.63 degrees (BROKEN) | 0.0000 degrees | Was broken, now perfect |
-| Jupiter | avg 8.24 degrees (BROKEN) | 0.0000 degrees | Was broken, now perfect |
-| Saturn | avg 3.19 degrees (BROKEN) | 0.0000 degrees | Was broken, now perfect |
-| Ayanamsha | avg 0.004 degrees | 0.0000 degrees (exact) | Perfect |
+| Sun | 0.21° avg | 0.0000° | Perfect |
+| Moon | 2.78° avg, 13° max | 0.0001° | 27,800x |
+| Mars | 22.63° (broken) | 0.0000° | Was broken, now perfect |
+| Jupiter | 8.24° (broken) | 0.0000° | Was broken, now perfect |
+| Saturn | 3.19° (broken) | 0.0000° | Was broken, now perfect |
 | Tithi match | 80% | 100% | Perfect |
-
-Mars, Jupiter, and Saturn were fundamentally broken with Meeus — producing wrong signs in 30-40% of charts.
-
-### How It Works
-
-Every astronomical function follows the pattern: Swiss Ephemeris primary, Meeus fallback:
-- sunLongitude() — Swiss Eph primary, Meeus fallback
-- moonLongitude() — Swiss Eph primary, Meeus fallback
-- lahiriAyanamsha() — Swiss Eph primary, polynomial fallback
-- getPlanetaryPositions() — Swiss Eph for all 9 planets
-- approximateSunrise() — Swiss Eph Sun declination, Meeus fallback
-
-Install sweph for production: npm install sweph
 
 ---
 
-## Calculation Engine
-
-### Panchang (Daily Calendar)
-
-90+ fields including all 5 Pancha Anga elements (Tithi, Nakshatra, Yoga, Karana, Vara).
-All transitions computed via binary search with 30 iterations for sub-second precision.
-
-### Kundali (Birth Chart) — 18 Analysis Tabs
+## Kundali Analysis — 18 Tabs
 
 | Tab | Contents |
 |-----|----------|
-| Chart | North/South Indian chart, Navamsha, Bhav Chalit |
+| Chart | North/South Indian, Navamsha, Bhav Chalit, 19 divisional charts |
 | Planets | Graha details, Upagrahas, Pushkara, Mrityu Bhaga |
-| Dasha | 15 systems: Vimshottari, Yogini, Ashtottari, Chara, Narayana, Kalachakra, Shoola, Sthira, Sudarsana + 6 more |
-| Ashtakavarga | Bhinnashtakavarga (7 planets × 12 signs) + Sarvashtakavarga |
-| Tippanni | AI synthesis: personality, yogas, doshas, life areas, dasha insight, year predictions |
-| Varga Charts | 19 divisional charts D1–D60 with meanings |
-| Jaimini | Chara Karakas, Karakamsha, Bhava Arudhas, Graha Arudhas, Argala, Chara Dasha, Rashi Drishti |
-| Graha | Declination, right ascension, latitude, full positional detail |
-| Yogas | 75+ yoga detection with strength ratings and interpretations |
-| Shadbala | 6-fold strength: Sthana, Dig, Kala, Cheshta, Naisargika, Drik |
-| Bhavabala | House strength: Bhavadhipati, Dig, Drishti, Graha Sambandha |
-| Avasthas | 5 avastha systems: Baladi, Jagradadi, Deeptadi, Lajjitadi, Shayanadi |
-| Argala | Interventions and obstruction analysis for all houses |
-| Sphutas | 8 sensitive points: Prana, Deha, Mrityu, Tri, Yogi, Avayogi, Bija, Kshetra |
-| Sade Sati | Saturn transit analysis with phase breakdown and intensity chart |
-| Life Timeline | 90-year synthesis: all dashas, Sade Sati, Jupiter/Saturn transits, yoga activation, synthesis score |
-| Patrika | Printable birth certificate with full chart |
+| Dasha | 15 systems: Vimshottari, Yogini, Ashtottari, Chara, Narayana, Kalachakra + 9 more |
+| Ashtakavarga | BPI (7 planets × 12 signs) + SAV heat map |
+| Tippanni | Personality, yogas, doshas, life areas, dasha insight, year predictions |
+| Jaimini | Chara Karakas, Karakamsha, Arudhas, Argala, Chara Dasha, Rashi Drishti |
+| Yogas | 75+ detection with strength ratings |
+| Shadbala | 6-fold: Sthana, Dig, Kala, Cheshta, Naisargika, Drik |
+| Bhavabala | House strength with component breakdown |
+| Avasthas | 5 systems: Baladi, Jagradadi, Deeptadi, Lajjitadi, Shayanadi |
+| Sade Sati | Phase breakdown, intensity chart, all cycles |
+| Life Timeline | 90-year synthesis on scrollable canvas |
 | Chat | AI chat about the chart using Claude |
-
-**Additional calculations:**
-- 6 special lagnas (Hora, Ghati, Sree, Indu, Pranapada, Varnada)
-- 4 house systems (Equal, Sripati, Whole Sign, Placidus)
-- Graha Yuddha (planetary war) detection
-- Vimshopaka Bala (20-point divisional strength)
-
-### Specialized Systems
-
-- **KP (Krishnamurti)** — Placidus cusps, sub-lords, significators, ruling planets
-- **Varshaphal (Tajika)** — Solar return, Muntha, Sahams, Tajika aspects, Mudda Dasha
-- **Prashna (Horary)** — Ashtamangala, horary analysis, question classification
-- **Matching** — Ashta Kuta (36 points), Manglik check, Nadi Dosha
-- **Muhurta AI** — Multi-factor electional scoring for 20 activity types
-- **Sade Sati Calculator** — Standalone tool with historical and future cycles
 
 ---
 
-## Pages
+## Content & Pages
 
-204 locale pages × 3 languages = 612 total pages:
+17,000+ pages generated across 10 locales:
 
-| Section | Pages | Description |
-|---------|-------|-------------|
-| Core | Home, Panchang, Kundali, Matching, About | Primary features |
-| Deep Dives | Tithi, Nakshatra, Yoga, Karana, Muhurta, Eclipse, Rashi, Masa, Samvatsara | Element-level content |
-| Learn | 9 curriculum areas | Foundations through advanced |
-| Calendars | Festival, Transit, Retrograde, Eclipse, Muhurat, Regional | 6 calendar views |
-| Tools | Sign Calculator, Sade Sati, Prashna, Baby Names, Shraddha, Vedic Time, Upagraha, Devotional, Varshaphal, KP System, Ashtamangala Prashna, Muhurta AI | 12 specialized tools |
-| Specialized | Horoscope, Kaal Nirnaya, Nivas Shool, Sankalpa, Puja | Classical practices |
+| Section | Description |
+|---------|-------------|
+| Core tools | Panchang, Kundali, Matching, Muhurta AI |
+| Learn (127+ modules) | Foundations through advanced Jyotish, interactive quizzes |
+| Individual references | 9 Graha pages (Surya-Ketu) + 12 Rashi pages (Mesha-Meena) + 7 Yoga pages |
+| Calendars (6) | Festival, Transit, Retrograde, Eclipse, Muhurat, Lunar |
+| Specialized tools (12) | Sign Calculator, Sade Sati, Prashna, Baby Names, Varshaphal, KP System, etc. |
+| City panchang (250+) | Location-specific timings for cities worldwide |
+| Horoscope | Daily/weekly/monthly for all 12 rashis |
+| Devotional | Puja vidhi, Sankalpa, Rudraksha guide |
+
+---
+
+## SEO
+
+Comprehensive SEO implementation documented in [`docs/SEO-GUIDE.md`](docs/SEO-GUIDE.md):
+
+- 241 PAGE_META entries with multilingual titles/descriptions
+- 11 JSON-LD schema types (Organization, WebSite, Article, FAQPage, Event, HowTo, etc.)
+- 30 dynamic OpenGraph images
+- 89 FAQ questions across 30 routes
+- 20,000+ URL sitemap with full hreflang
+- Cross-linking system (tool↔learn bidirectional)
+- AI crawler management (llms.txt + selective robots.txt)
+- AdSense integration with Consent Mode v2
 
 ---
 
@@ -156,14 +172,16 @@ All transitions computed via binary search with 30 iterations for sub-second pre
 - **State**: Zustand
 - **Charts**: D3.js + custom SVG
 - **Animation**: Framer Motion
-- **Ephemeris**: Swiss Ephemeris via sweph npm (AGPL-3.0)
+- **Ephemeris**: Swiss Ephemeris via sweph (AGPL-3.0)
 - **AI**: Anthropic Claude API (optional)
-- **Auth/DB**: Supabase (optional)
-- **Payments**: Stripe + Razorpay
-- **Email**: Resend
-- **i18n**: next-intl (EN/HI/SA)
+- **Auth/DB**: Supabase (PostgreSQL + RLS)
+- **Payments**: Stripe (USD) + Razorpay (INR)
+- **Email**: Resend (transactional + daily panchang)
+- **i18n**: next-intl (10 locales)
 - **Validation**: Zod
-- **Tests**: 886 tests across 21 suites
+- **Tests**: 3,000+ tests across 128 suites
+- **Deployment**: Vercel (auto-deploy from main)
+- **PWA**: Service worker with CacheFirst/SWR/NetworkFirst
 
 ---
 
@@ -171,49 +189,47 @@ All transitions computed via binary search with 30 iterations for sub-second pre
 
 ### Installation
 
-```
+```bash
 git clone https://github.com/krazykrackpot/panchang.git
 cd panchang
 npm install
-npm install sweph  # For Swiss Ephemeris accuracy (recommended)
+npm install sweph  # Swiss Ephemeris (recommended for production accuracy)
 ```
 
 ### Environment Variables
 
-Copy .env.example to .env.local:
+Copy `.env.example` to `.env.local`:
 
-```
-# Optional: AI features
-ANTHROPIC_API_KEY=sk-ant-...
-
-# Optional: Database + Auth
+```bash
+# Required for auth + saved charts
 NEXT_PUBLIC_SUPABASE_URL=https://...
 NEXT_PUBLIC_SUPABASE_ANON_KEY=...
 SUPABASE_SERVICE_ROLE_KEY=...
 
+# Optional: AI features
+ANTHROPIC_API_KEY=sk-ant-...
+
 # Optional: Payments
 STRIPE_SECRET_KEY=sk_...
 RAZORPAY_KEY_ID=rzp_...
+
+# Optional: Email
+RESEND_API_KEY=re_...
 ```
 
 ### Development
 
-```
-npm run dev    # Start at http://localhost:3000
-```
-
-### Build
-
-```
-npx next build  # 612 pages across 3 locales
+```bash
+npx next dev --turbopack    # Fast dev (may loop on large projects)
+npx next dev                # Webpack fallback if Turbopack loops
 ```
 
-### Tests
+### Build & Test
 
-```
-npx vitest run                          # 886 tests across 21 suites
-npx vitest run src/lib/__tests__/       # Core calculation suites
-python3 scripts/validate-against-pyjhora.py  # Swiss Eph validation
+```bash
+npx tsc --noEmit -p tsconfig.build-check.json   # Type check
+npx vitest run                                    # 3,000+ tests
+npx next build                                    # Production build (17,000+ pages)
 ```
 
 ---
@@ -222,11 +238,9 @@ python3 scripts/validate-against-pyjhora.py  # Swiss Eph validation
 
 | Document | Description |
 |----------|-------------|
-| docs/ROADMAP.md | Product roadmap |
-| docs/JHORA_PARITY_GAPS.md | Detailed JHora feature comparison |
-| docs/LLM_FEATURES_DESIGN.md | AI feature architecture |
-| docs/LEARN_GAMIFICATION_DESIGN.md | Modular learning system design |
-| docs/LEARN_CONTENT_PLAN.md | 50-module curriculum content plan |
+| [`docs/SEO-GUIDE.md`](docs/SEO-GUIDE.md) | Complete SEO reference (18 sections) |
+| [`docs/muhurta-nakshatra-audit.md`](docs/muhurta-nakshatra-audit.md) | Classical nakshatra audit for 20 activities |
+| [`CLAUDE.md`](CLAUDE.md) | AI coding assistant instructions + lessons learned |
 
 ---
 
@@ -239,4 +253,4 @@ All calculation engine, UI, and educational content is original work.
 
 ---
 
-Built with precision, guided by tradition.
+*Built with precision, guided by tradition.*

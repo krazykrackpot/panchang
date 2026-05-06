@@ -211,11 +211,11 @@ const ROWS: CompRow[] = [
     dekhoYes: true, drikYes: true,
   },
   {
-    feature: 'Festival Calendar',
-    featureHi: 'त्योहार कैलेंडर',
-    dekho: 'Festivals with puja vidhi, regional variants, Amanta/Purnimanta toggle',
-    drik: 'Comprehensive festival calendar — larger database, more years of historical data',
-    dekhoYes: true, drikYes: true,
+    feature: '255 Festivals — All Traditions & Regions',
+    featureHi: '255 त्योहार — सभी परम्पराएँ और क्षेत्र',
+    dekho: '255 festivals across Hindu (Vaishnava/Shaiva/Shakta), Jain, Sikh, Buddhist. All 24 named Ekadashis, 12 Sankrantis, Pitru Paksha, regional New Years (Ugadi, Vishu, Bihu, Puthandu), multi-day families (Diwali, Navaratri, Pongal), 15+ saint jayantis. Tradition + region tagging.',
+    drik: 'Festival calendar with dates and basic descriptions',
+    dekhoYes: true, drikYes: true, highlight: true,
   },
   {
     feature: 'Devotional Library (55+ Texts)',

@@ -9,7 +9,7 @@
 - **Ayanamsha**: 11 systems — Lahiri (default), KP, Raman, BV Raman, Yukteshwar, JN Bhasin, Fagan-Bradley, True Chitra, True Revati, True Pushya, Galactic Center. All consistently plumbed through panchang, kundali, shadbala, sade-sati, transits, and muhurta.
 - **Sunrise algorithm**: Swiss Ephemeris atmospheric refraction model — verified within ±1 minute of Prokerala and Drik Panchang for 3 locations × 3 dates
 - **Meeus fallback**: Jean Meeus "Astronomical Algorithms" for clients without server access (~0.01° Sun, ~0.5° Moon)
-- **3,067 automated tests** covering panchang accuracy, kundali computation, dasha periods, yoga detection, muhurta engine rules, festival dates, and cross-validation against Drik Panchang
+- **3,048 automated tests** covering panchang accuracy, kundali computation, dasha periods, yoga detection, muhurta engine rules, festival dates, and cross-validation against Drik Panchang
 - **Cross-verification**: Regularly validated against Prokerala, Shubh Panchang, and professional Hindu almanacs
 
 ## Kundali (Birth Chart) — 25+ Analysis Modules
@@ -38,6 +38,19 @@ This is NOT a basic chart generator. Full professional-grade analysis:
 - **Choghadiya**: Day and night Choghadiya with quality labels
 - **Nakshatra deep details**: Expandable card showing Guna (Sattva/Rajas/Tamas), Gana (Deva/Manushya/Rakshasa), Tattva (element), Yoni (animal), and compatible activities for the current nakshatra
 - **Sade Sati + Ashtama Shani**: Full lifecycle timeline showing previous, current, and upcoming Sade Sati and Ashtama Shani periods with exact month/year dates — personalised to the user's Moon sign
+
+## Festival & Vrat Calendar — 255 Festivals Across All Traditions
+
+- **255 festival definitions** covering Hindu (Vaishnava, Shaiva, Shakta), Jain, Sikh, and Buddhist traditions
+- **All 24 named Ekadashis** with stories and spiritual benefits (Kamada, Nirjala, Devshayani, Mokshada, etc.)
+- **12 solar Sankrantis** (Makar Sankranti, Mesh Sankranti, etc.) with regional variants (Pongal, Lohri, Bihu, Vishu, Baisakhi)
+- **Regional festivals**: Ugadi (Telugu), Gudi Padwa (Marathi), Poila Boishakh (Bengali), Puthandu (Tamil), Cheti Chand (Sindhi), Navreh (Kashmiri), Bohag Bihu (Assamese)
+- **Multi-day festival families**: Diwali (Dhanteras→Narak Chaturdashi→Diwali→Govardhan→Bhai Dooj), Navaratri (day-by-day), Durga Puja (Shashti→Dashami), Pongal (Bhogi→Thai→Mattu→Kaanum)
+- **Pitru Paksha**: 16-day ancestor worship period with Mahalaya
+- **15+ Jayantis**: saints and acharyas (Shankaracharya, Ramanuja, Madhvacharya, Chaitanya, Valmiki, Kabir, Meera, Tulsidas)
+- **Tradition tagging**: Vaishnava, Shaiva, Shakta, Jain, Sikh, Buddhist — filter by your tradition
+- **Regional tagging**: Tamil, Bengali, Punjabi, Gujarati, Marathi, Assamese, Kerala, Kashmiri, Sindhi, Odisha
+- **Kala-Vyapti date resolution**: Correct tithi-based date selection using Dharmasindhu/Nirnaya Sindhu rules, not simple date matching
 
 ## Muhurta Engine — 36 Rules, 7 Classical Texts, 5-Tier Cancellation
 

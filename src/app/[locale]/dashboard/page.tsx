@@ -830,7 +830,7 @@ export default function DashboardPage() {
   const [hasBirthData, setHasBirthData] = useState(false);
   const [ascendantSign, setAscendantSign] = useState<number>(0);
   const [panchangData, setPanchangData] = useState<PanchangData | null>(null);
-  const [todayMuhurtaWindows, setTodayMuhurtaWindows] = useState<{ activity: string; label: string; time: string; score: number }[]>([]);
+  const [todayMuhurtaWindows, setTodayMuhurtaWindows] = useState<{ activity: string; label: string; labelHi: string; time: string; score: number }[]>([]);
   const [dashaTimeline, setDashaTimeline] = useState<DashaEntry[]>([]);
   const [birthLat, setBirthLat] = useState<number | null>(null);
   const [birthLng, setBirthLng] = useState<number | null>(null);
@@ -902,11 +902,15 @@ export default function DashboardPage() {
           const tz = locStore.timezone || 'UTC';
           const tzOffset = new Date().getTimezoneOffset() / -60;
           const activities = [
-            { id: 'business', label: 'Business' },
-            { id: 'travel', label: 'Travel' },
-            { id: 'spiritual_practice', label: 'Spiritual' },
+            { id: 'business', label: 'Business', hi: 'व्यापार' },
+            { id: 'marriage', label: 'Marriage', hi: 'विवाह' },
+            { id: 'travel', label: 'Travel', hi: 'यात्रा' },
+            { id: 'property', label: 'Property', hi: 'सम्पत्ति' },
+            { id: 'education', label: 'Education', hi: 'शिक्षा' },
+            { id: 'spiritual_practice', label: 'Spiritual', hi: 'साधना' },
+            { id: 'medical_treatment', label: 'Medical', hi: 'चिकित्सा' },
           ];
-          const muhurtaResults: { activity: string; label: string; time: string; score: number }[] = [];
+          const muhurtaResults: { activity: string; label: string; labelHi: string; time: string; score: number }[] = [];
           // Dynamic import to avoid loading muhurta engine on every dashboard visit
           const { unifiedScan } = await import('@/lib/muhurta/engine/scanner');
           await import('@/lib/muhurta/engine'); // registers rules
@@ -927,6 +931,7 @@ export default function DashboardPage() {
               muhurtaResults.push({
                 activity: act.id,
                 label: act.label,
+                labelHi: act.hi,
                 time: `${windows[0].startTime}–${windows[0].endTime}`,
                 score: windows[0].score,
               });
@@ -1161,8 +1166,9 @@ export default function DashboardPage() {
   const pd = personalizedDay;
   if (!pd) return null;
 
-  const qc = QUALITY_COLORS[pd.dayQuality];
-  const ql = QUALITY_LABEL[pd.dayQuality];
+  // qc/ql set after dayEnergy is computed (see below)
+  let qc = QUALITY_COLORS[pd.dayQuality];
+  let ql = QUALITY_LABEL[pd.dayQuality];
   const fadeUp = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 } };
 
   // Compute dasha progress percentage
@@ -1213,6 +1219,15 @@ export default function DashboardPage() {
 
   // Compute daily energy score from panchang data (for TodaysReading hero)
   const dayEnergy = panchangData ? computeDailyEnergy(panchangData) : null;
+
+  // Override day quality badge with unified energy score (accounts for yoga,
+  // nakshatra nature, inauspicious periods — not just Tara+Chandra)
+  if (dayEnergy) {
+    const effectiveQuality: 'excellent' | 'good' | 'neutral' | 'caution' | 'challenging' =
+      dayEnergy.label === 'High' ? 'good' : dayEnergy.label === 'Low' ? 'challenging' : 'neutral';
+    qc = QUALITY_COLORS[effectiveQuality];
+    ql = QUALITY_LABEL[effectiveQuality];
+  }
 
   // Resolve current mahadasha planet ID from GRAHAS constant (0-based: 0=Sun..8=Ketu)
   const mahaDashaPlanetId = pd.currentDasha
@@ -1412,11 +1427,15 @@ export default function DashboardPage() {
               </p>
               <div className="flex flex-wrap gap-2">
                 {todayMuhurtaWindows.map(w => (
-                  <span key={w.activity} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border bg-gold-primary/5 border-gold-primary/20 text-gold-light">
-                    <Clock className="w-3 h-3 text-gold-primary" />
-                    {isHeroHi ? (w.label === 'Business' ? 'व्यापार' : w.label === 'Travel' ? 'यात्रा' : 'साधना') : w.label}:
+                  <span key={w.activity} className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border ${
+                    w.score >= 60 ? 'bg-emerald-500/5 border-emerald-500/20 text-emerald-300'
+                    : w.score >= 45 ? 'bg-gold-primary/5 border-gold-primary/20 text-gold-light'
+                    : 'bg-amber-500/5 border-amber-500/20 text-amber-300'
+                  }`}>
+                    <Clock className="w-3 h-3" />
+                    {isHeroHi ? (w.labelHi || w.label) : w.label}:
                     &nbsp;<span className="font-mono text-text-primary">{w.time}</span>
-                    &nbsp;·&nbsp;{w.score}/100
+                    &nbsp;·&nbsp;{w.score}
                   </span>
                 ))}
               </div>
@@ -1455,23 +1474,8 @@ export default function DashboardPage() {
         />
       )}
 
-      {/* Day Quality Card */}
-      <motion.div
-        {...fadeUp}
-        transition={{ delay: 0.15 }}
-        className={`mb-8 p-6 md:p-8 rounded-2xl border ${qc.border} bg-gradient-to-br ${qc.bg} backdrop-blur-sm shadow-lg ${qc.glow}`}
-      >
-        <div className="flex items-center gap-3 mb-3">
-          <Star className={`w-6 h-6 ${qc.text}`} />
-          <h3 className="text-lg font-semibold text-text-secondary">{L.todayQuality}</h3>
-        </div>
-        <p className={`text-3xl md:text-4xl font-bold ${qc.text} mb-2`} style={{ fontFamily: 'var(--font-heading)' }}>
-          {ql[locale] || ql.en}
-        </p>
-        <p className="text-text-secondary text-sm md:text-base">
-          {pd.dayQualityDescription[locale] || pd.dayQualityDescription.en}
-        </p>
-      </motion.div>
+      {/* Day Quality Card removed — merged into Cosmic Weather hero above.
+          Having two cards showing different quality labels was confusing users. */}
 
       {/* Tara Bala + Chandra Bala — side by side */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">

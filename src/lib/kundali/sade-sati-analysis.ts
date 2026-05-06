@@ -1018,3 +1018,83 @@ export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
     remedies,
   };
 }
+
+// ---------------------------------------------------------------------------
+// Ashtama Shani — Saturn transit through the 8th sign from natal Moon
+// ---------------------------------------------------------------------------
+
+/**
+ * Ashtama Shani occurs when Saturn transits the 8th sign from the natal Moon.
+ * Classical texts (Phaladeepika, Brihat Jataka) consider this a period of
+ * health challenges, unexpected obstacles, and deep karmic transformation.
+ * Some authorities regard it as more severe than Sade Sati's individual phases
+ * because the 8th house governs longevity, hidden matters, and sudden events.
+ *
+ * Saturn takes ~2.5 years per sign, so each Ashtama Shani lasts ~2.5 years
+ * and recurs every ~29.5 years (one Saturn cycle).
+ */
+export interface AshtamaShaniPeriod {
+  startYear: number;
+  startMonth: number;
+  endYear: number;
+  endMonth: number;
+  isActive: boolean;
+}
+
+/**
+ * Find all Ashtama Shani periods (Saturn in 8th from Moon) for 1940-2070.
+ * Uses the same cached Saturn tropical longitude table as Sade Sati.
+ */
+export function getAshtamaShaniPeriods(
+  moonSign: number,
+  ayanamshaValue?: number,
+): AshtamaShaniPeriod[] {
+  // 8th sign from Moon: count 7 signs forward (1-based)
+  const eighthSign = ((moonSign - 1 + 7) % 12) + 1;
+
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth() + 1;
+
+  // Scan the cached Saturn positions and find contiguous months in the 8th sign
+  const periods: AshtamaShaniPeriod[] = [];
+  let inPeriod = false;
+  let periodStart = { year: 0, month: 0 };
+
+  for (let y = 1940; y <= 2070; y++) {
+    for (let m = 1; m <= 12; m++) {
+      const sign = saturnSignAt(y, m, ayanamshaValue);
+      if (sign === eighthSign && !inPeriod) {
+        // Period starts
+        inPeriod = true;
+        periodStart = { year: y, month: m };
+      } else if (sign !== eighthSign && inPeriod) {
+        // Period ends
+        inPeriod = false;
+        const isActive = currentYear * 12 + currentMonth >= periodStart.year * 12 + periodStart.month
+          && currentYear * 12 + currentMonth < y * 12 + m;
+        periods.push({
+          startYear: periodStart.year,
+          startMonth: periodStart.month,
+          endYear: y,
+          endMonth: m - 1 || 12, // Previous month was the last month in the sign
+          isActive,
+        });
+      }
+    }
+  }
+
+  // If still in period at end of range
+  if (inPeriod) {
+    const isActive = currentYear * 12 + currentMonth >= periodStart.year * 12 + periodStart.month;
+    periods.push({
+      startYear: periodStart.year,
+      startMonth: periodStart.month,
+      endYear: 2070,
+      endMonth: 12,
+      isActive,
+    });
+  }
+
+  return periods;
+}

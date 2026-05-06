@@ -14,9 +14,11 @@ import { RASHIS } from '@/lib/constants/rashis';
 import {
   analyzeSadeSati,
   getCurrentSaturnSign,
+  getAshtamaShaniPeriods,
   type SadeSatiAnalysis,
   type SadeSatiInput,
   type NakshatraTransitEntry,
+  type AshtamaShaniPeriod,
 } from '@/lib/kundali/sade-sati-analysis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import LocationSearch from '@/components/ui/LocationSearch';
@@ -540,28 +542,77 @@ export default function SadeSatiPage() {
           <motion.div {...fadeUp} exit={{ opacity: 0 }}>
             <GoldDivider />
 
-            {/* Ashtama Shani Warning — Saturn in 8th from natal Moon */}
+            {/* Ashtama Shani — Saturn in 8th from natal Moon: dates + timeline */}
             {(() => {
-              if (!moonRashi || !saturnNow.sign) return null;
-              const eighthFromMoon = ((moonRashi - 1 + 7) % 12) + 1;
-              const isAshtamaShani = saturnNow.sign === eighthFromMoon;
-              if (!isAshtamaShani) return null;
-              const saturnSignNm = RASHIS.find(r => r.id === saturnNow.sign)?.name;
+              if (!moonRashi) return null;
+              const MONTH_EN = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+              const MONTH_HI = ['', 'जन', 'फ़र', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुल', 'अग', 'सित', 'अक्टू', 'नव', 'दिस'];
+              const periods = getAshtamaShaniPeriods(moonRashi);
+              if (periods.length === 0) return null;
+
+              const activePeriod = periods.find(p => p.isActive);
+              const now = new Date();
+              const currentYear = now.getFullYear();
+              // Show: active period (if any) + next upcoming + previous
+              const upcoming = periods.find(p => p.startYear > currentYear || (p.startYear === currentYear && p.startMonth > now.getMonth() + 1));
+              const previous = [...periods].reverse().find(p => p.endYear < currentYear || (p.endYear === currentYear && p.endMonth < now.getMonth() + 1));
+
+              const eighthSign = ((moonRashi - 1 + 7) % 12) + 1;
+              const eighthSignName = RASHIS.find(r => r.id === eighthSign)?.name;
+
+              const fmtPeriod = (p: AshtamaShaniPeriod) => {
+                const ms = locale === 'en' ? MONTH_EN : MONTH_HI;
+                return `${ms[p.startMonth]} ${p.startYear} — ${ms[p.endMonth]} ${p.endYear}`;
+              };
+
               return (
-                <div className="my-6 rounded-2xl border-2 border-red-700/50 bg-gradient-to-br from-red-900/20 via-red-950/10 to-transparent p-5 text-center">
-                  <div className="text-red-400 text-xs uppercase tracking-[0.3em] font-bold mb-2">
-                    {isTamil ? '⚠ அஷ்டம சனி செயலில்' : locale === 'en' ? '⚠ Ashtama Shani Active' : '⚠ अष्टम शनि सक्रिय'}
+                <div className={`my-6 rounded-2xl border-2 ${activePeriod ? 'border-red-700/50 bg-gradient-to-br from-red-900/20 via-red-950/10 to-transparent' : 'border-amber-600/30 bg-gradient-to-br from-amber-900/10 via-amber-950/5 to-transparent'} p-5`}>
+                  <div className={`text-xs uppercase tracking-[0.3em] font-bold mb-2 text-center ${activePeriod ? 'text-red-400' : 'text-amber-400'}`}>
+                    {activePeriod
+                      ? (locale === 'en' ? '⚠ Ashtama Shani Active' : '⚠ अष्टम शनि सक्रिय')
+                      : (locale === 'en' ? 'Ashtama Shani Timeline' : 'अष्टम शनि समयरेखा')}
                   </div>
-                  <div className="text-red-300 text-xl font-bold mb-2" style={headingFont}>
+                  <div className={`text-xl font-bold mb-2 text-center ${activePeriod ? 'text-red-300' : 'text-amber-300'}`} style={headingFont}>
                     {locale === 'en'
-                      ? `Saturn in your 8th sign (${saturnSignNm?.[lk as keyof typeof saturnSignNm] || ''})`
-                      : `शनि आपकी ${saturnSignNm?.[lk as keyof typeof saturnSignNm] || ''} राशि में — अष्टम स्थान`}
+                      ? `Saturn in your 8th sign (${eighthSignName?.[lk as keyof typeof eighthSignName] || ''})`
+                      : `शनि आपकी 8वीं राशि (${eighthSignName?.[lk as keyof typeof eighthSignName] || ''}) में`}
                   </div>
-                  <p className="text-text-secondary text-sm max-w-xl mx-auto">
-                    {locale === 'en'
-                      ? 'Ashtama Shani — Saturn transiting the 8th sign from your natal Moon — is considered more severe than individual Sade Sati phases. This 2.5-year period brings deep transformation, unexpected challenges, and intensified karmic lessons in health, longevity, and hidden matters. Focus on discipline, avoid impulsive decisions, and prioritise spiritual practice.'
-                      : 'अष्टम शनि — शनि का जन्म चन्द्र राशि से 8वीं राशि में गोचर — साढ़े साती के व्यक्तिगत चरणों से भी अधिक कष्टप्रद माना जाता है। यह 2.5 वर्ष की अवधि स्वास्थ्य, आयु और छिपे विषयों में गहन परिवर्तन, अप्रत्याशित चुनौतियाँ लाती है। अनुशासन पर ध्यान दें, आवेगी निर्णयों से बचें, आध्यात्मिक साधना बढ़ाएँ।'}
-                  </p>
+
+                  {activePeriod && (
+                    <p className="text-text-secondary text-sm max-w-xl mx-auto text-center mb-4">
+                      {locale === 'en'
+                        ? 'Ashtama Shani — Saturn transiting the 8th sign from your natal Moon — is considered more severe than individual Sade Sati phases. This period brings deep transformation, unexpected challenges, and intensified karmic lessons in health, longevity, and hidden matters.'
+                        : 'अष्टम शनि — शनि का जन्म चन्द्र से 8वीं राशि में गोचर — साढ़े साती के चरणों से भी अधिक कष्टप्रद माना जाता है। यह अवधि स्वास्थ्य, आयु और छिपे विषयों में गहन परिवर्तन लाती है।'}
+                    </p>
+                  )}
+
+                  {/* Period cards */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4 max-w-2xl mx-auto">
+                    {previous && (
+                      <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3 text-center">
+                        <div className="text-text-secondary text-[10px] uppercase tracking-widest mb-1">
+                          {locale === 'en' ? 'Previous' : 'पिछला'}
+                        </div>
+                        <div className="text-text-primary text-sm font-semibold">{fmtPeriod(previous)}</div>
+                      </div>
+                    )}
+                    {activePeriod && (
+                      <div className="rounded-xl border-2 border-red-500/40 bg-red-500/10 p-3 text-center">
+                        <div className="text-red-400 text-[10px] uppercase tracking-widest mb-1 font-bold">
+                          {locale === 'en' ? 'Current' : 'वर्तमान'}
+                        </div>
+                        <div className="text-red-300 text-sm font-bold">{fmtPeriod(activePeriod)}</div>
+                      </div>
+                    )}
+                    {upcoming && (
+                      <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-3 text-center">
+                        <div className="text-amber-400 text-[10px] uppercase tracking-widest mb-1">
+                          {locale === 'en' ? 'Upcoming' : 'आगामी'}
+                        </div>
+                        <div className="text-amber-300 text-sm font-semibold">{fmtPeriod(upcoming)}</div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               );
             })()}

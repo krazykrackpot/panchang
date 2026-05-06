@@ -118,11 +118,30 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
   business: {
     id: 'business',
     label: { en: 'New Business', hi: 'नया व्यापार', sa: 'नवव्यापारः' },
+    // Classical good tithis for business: Pratipada(1), Dwitiya(2), Tritiya(3),
+    // Panchami(5), Saptami(7), Dashami(10), Ekadashi(11), Trayodashi(13)
     goodTithis: [1, 2, 3, 5, 7, 10, 11, 13],
-    goodNakshatras: [2, 3, 6, 7, 8, 11, 12, 13, 14, 20, 21, 22, 25, 27],
-    goodWeekdays: [1, 3, 4, 5],
+    // Classical good nakshatras for new business (MC Ch.6, Jyotirnibandha):
+    // Rohini(4)=fertility/growth, Punarvasu(7)=restoration, Pushya(8)=BEST for business,
+    // Uttara Phalguni(12)=lasting commitment, Hasta(13)=skilled execution,
+    // Chitra(14)=creative brilliance, Anuradha(17)=devotion/loyalty,
+    // Shravana(22)=learning/receptivity, Revati(27)=compassionate completion
+    // REMOVED: Bharani(2)=Ugra, Krittika(3)=Tikshna/fire, Ardra(6)=Tikshna/destruction,
+    //   Purva Phalguni(11)=Ugra/pleasure, Purva Ashadha(20)=Ugra, Uttara Ashadha(21)=mixed,
+    //   Purva Bhadrapada(25)=Ugra/fierce
+    goodNakshatras: [4, 7, 8, 12, 13, 14, 17, 22, 27],
+    goodWeekdays: [1, 3, 4, 5], // Mon(Mercury), Wed(Mercury), Thu(Jupiter), Fri(Venus)
     avoidTithis: [4, 8, 9, 14, 15, 30],
-    avoidNakshatras: [1, 5, 9, 15, 16, 17, 18, 19, 23, 24, 26],
+    // Classical avoid nakshatras: Tikshna/Ugra nakshatras unsuitable for initiating business
+    // Ashwini(1)=too fast/impulsive, Mrigashira(5)=searching/uncertain, Ardra(6)=destruction,
+    // Ashlesha(9)=serpentine/manipulative, Swati(15)=independent/unstable,
+    // Vishakha(16)=split purpose, Jyeshtha(18)=protective edge, Mula(19)=uprooting,
+    // Dhanishtha(23)=wealth but volatile, Shatabhisha(24)=healing not commerce,
+    // Purva Bhadrapada(25)=fierce transformation, Uttara Bhadrapada(26)=deep/slow
+    avoidNakshatras: [1, 5, 6, 9, 15, 16, 18, 19, 23, 24, 25, 26],
+    // Hard avoid: Ardra(6)=Rudra's destructive energy, Ashlesha(9)=binding/entanglement
+    // These are classically rejected outright for business starts
+    hardAvoidNakshatras: [6, 9],
     goodHoras: [3, 4, 5], // Mercury, Jupiter, Venus
     relevantHouses: [2, 7, 10, 11],
   },

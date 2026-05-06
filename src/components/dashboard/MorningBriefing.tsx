@@ -13,7 +13,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 // ---------------------------------------------------------------------------
 const LABELS = {
   en: {
-    heading: "Today's Cosmic Weather",
+    heading: "Today's Panchang",
     tithi: 'Tithi',
     nakshatra: 'Nakshatra',
     yoga: 'Yoga',
@@ -44,7 +44,7 @@ const LABELS = {
     samvatsara: 'Samvatsara',
   },
   hi: {
-    heading: 'आज का ब्रह्माण्डीय मौसम',
+    heading: 'आज का पंचांग',
     tithi: 'तिथि',
     nakshatra: 'नक्षत्र',
     yoga: 'योग',
@@ -486,11 +486,20 @@ export default function MorningBriefing({ panchangData, personalizedDay, locale 
           }
         />
 
-        {/* 2. Nakshatra */}
+        {/* 2. Nakshatra — shows active nakshatra (after transition if passed) */}
         <BriefingCell
           label={L.nakshatra}
           icon={<Sparkles className="w-4 h-4" />}
-          value={panchangData.nakshatra.name[locale] || panchangData.nakshatra.name.en}
+          value={(() => {
+            const tr = panchangData.nakshatraTransition;
+            if (tr?.endTime && tr.nextName) {
+              const [h, m] = tr.endTime.split(':').map(Number);
+              const transDate = tr.endDate ? new Date(tr.endDate) : new Date();
+              transDate.setHours(h, m, 0, 0);
+              if (new Date() > transDate) return tr.nextName[locale] || tr.nextName.en;
+            }
+            return panchangData.nakshatra.name[locale] || panchangData.nakshatra.name.en;
+          })()}
           sub={`${L.rulingPlanet}: ${panchangData.nakshatra.rulerName[locale] || panchangData.nakshatra.rulerName.en}`}
         />
 

@@ -51,6 +51,7 @@ import FamilyDoshaStrip from '@/components/dashboard/FamilyDoshaStrip';
 import JournalCheckinCard from '@/components/journal/JournalCheckinCard';
 import TodaysReading from '@/components/dashboard/TodaysReading';
 import { computeDailyEnergy } from '@/lib/panchang/energy-score';
+import { getNakshatraActivity } from '@/lib/constants/nakshatra-activities';
 import { usePrakritiStore } from '@/stores/prakriti-store';
 import AtAGlance from '@/components/dashboard/AtAGlance';
 import DashboardTabs from '@/components/dashboard/DashboardTabs';
@@ -829,6 +830,7 @@ export default function DashboardPage() {
   const [hasBirthData, setHasBirthData] = useState(false);
   const [ascendantSign, setAscendantSign] = useState<number>(0);
   const [panchangData, setPanchangData] = useState<PanchangData | null>(null);
+  const [todayMuhurtaWindows, setTodayMuhurtaWindows] = useState<{ activity: string; label: string; time: string; score: number }[]>([]);
   const [dashaTimeline, setDashaTimeline] = useState<DashaEntry[]>([]);
   const [birthLat, setBirthLat] = useState<number | null>(null);
   const [birthLng, setBirthLng] = useState<number | null>(null);
@@ -892,6 +894,49 @@ export default function DashboardPage() {
       // Extract today's nakshatra and moon sign from panchang
       const todayNakshatra = fetchedPanchang?.nakshatra?.id || 1;
       const todayMoonSign = fetchedPanchang?.moonSign?.rashi || 1;
+
+      // Fetch today's best muhurta windows for key activities (personalized)
+      if (panchangLat != null && panchangLng != null) {
+        try {
+          const today = new Date().toISOString().split('T')[0];
+          const tz = locStore.timezone || 'UTC';
+          const tzOffset = new Date().getTimezoneOffset() / -60;
+          const activities = [
+            { id: 'business', label: 'Business' },
+            { id: 'travel', label: 'Travel' },
+            { id: 'spiritual_practice', label: 'Spiritual' },
+          ];
+          const muhurtaResults: { activity: string; label: string; time: string; score: number }[] = [];
+          // Dynamic import to avoid loading muhurta engine on every dashboard visit
+          const { unifiedScan } = await import('@/lib/muhurta/engine/scanner');
+          await import('@/lib/muhurta/engine'); // registers rules
+          for (const act of activities) {
+            const windows = unifiedScan({
+              startDate: today,
+              endDate: today,
+              activity: act.id as 'business' | 'travel' | 'spiritual_practice',
+              lat: panchangLat,
+              lng: panchangLng,
+              tz: tzOffset,
+              windowMinutes: 90,
+              maxResults: 1,
+              birthNakshatra: snapshot?.moon_nakshatra,
+              birthRashi: snapshot?.moon_sign,
+            });
+            if (windows.length > 0 && windows[0].score >= 30) {
+              muhurtaResults.push({
+                activity: act.id,
+                label: act.label,
+                time: `${windows[0].startTime}–${windows[0].endTime}`,
+                score: windows[0].score,
+              });
+            }
+          }
+          setTodayMuhurtaWindows(muhurtaResults);
+        } catch (err) {
+          console.error('[Dashboard] Muhurta scan failed:', err);
+        }
+      }
 
       // Build UserSnapshot
       const userSnapshot: UserSnapshot = {
@@ -1318,18 +1363,63 @@ export default function DashboardPage() {
             </h2>
           )}
 
-          {/* Day quality description */}
-          <p className="mt-3 text-text-secondary text-sm sm:text-base leading-relaxed max-w-2xl">
-            {pd.dayQualityDescription[locale] || pd.dayQualityDescription.en}
-          </p>
+          {/* Day quality — from unified energy score + nakshatra activities */}
+          {dayEnergy && (
+            <p className="mt-3 text-text-secondary text-sm sm:text-base leading-relaxed max-w-2xl">
+              {dayEnergy.label === 'High'
+                ? (isHeroHi ? 'शुभ दिन — अनुकूल ऊर्जा' : 'Favorable day — positive energy alignment')
+                : dayEnergy.label === 'Low'
+                  ? (isHeroHi ? 'सतर्क रहें — चुनौतीपूर्ण ऊर्जा' : 'Exercise caution — challenging energy')
+                  : (isHeroHi ? 'सामान्य दिन — नियमित कार्यों के लिए उपयुक्त' : 'Moderate day — suitable for routine activities')}
+              {dayEnergy.bestFor.length > 0 && (
+                <span className="text-gold-light/80">
+                  {' · '}{isHeroHi ? 'अनुकूल' : 'Best for'}: {dayEnergy.bestFor.slice(0, 2).join(', ')}
+                </span>
+              )}
+            </p>
+          )}
+          {!dayEnergy && (
+            <p className="mt-3 text-text-secondary text-sm sm:text-base leading-relaxed max-w-2xl">
+              {pd.dayQualityDescription[locale] || pd.dayQualityDescription.en}
+            </p>
+          )}
+
+          {/* Yoga dosha warning — if active inauspicious yoga */}
+          {panchangData?.yoga?.nature === 'inauspicious' && (
+            <div className="mt-3 flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-sm font-semibold w-fit">
+              <AlertTriangle className="w-4 h-4 shrink-0 text-amber-400" />
+              {isHeroHi
+                ? `${panchangData.yoga.name?.hi || panchangData.yoga.name?.en} योग — नए कार्य आरम्भ न करें`
+                : `${panchangData.yoga.name?.en} Yoga active — avoid starting new ventures`}
+            </div>
+          )}
 
           {/* Rahu Kaal warning — only when active right now */}
           {heroRahuActive && panchangData?.rahuKaal && (
-            <div className="mt-4 flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-sm font-semibold w-fit">
+            <div className="mt-3 flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-sm font-semibold w-fit">
               <AlertTriangle className="w-4 h-4 shrink-0 text-red-400" />
               {isHeroHi
                 ? `राहु काल सक्रिय: ${panchangData.rahuKaal.start}–${panchangData.rahuKaal.end} — नए कार्य शुरू न करें`
                 : `Rahu Kaal active: ${panchangData.rahuKaal.start}–${panchangData.rahuKaal.end} — avoid starting new ventures`}
+            </div>
+          )}
+
+          {/* Today's best muhurta windows — personalized */}
+          {todayMuhurtaWindows.length > 0 && (
+            <div className="mt-5">
+              <p className="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-2">
+                {isHeroHi ? 'आज के शुभ मुहूर्त' : "Today's Best Windows"}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {todayMuhurtaWindows.map(w => (
+                  <span key={w.activity} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border bg-gold-primary/5 border-gold-primary/20 text-gold-light">
+                    <Clock className="w-3 h-3 text-gold-primary" />
+                    {isHeroHi ? (w.label === 'Business' ? 'व्यापार' : w.label === 'Travel' ? 'यात्रा' : 'साधना') : w.label}:
+                    &nbsp;<span className="font-mono text-text-primary">{w.time}</span>
+                    &nbsp;·&nbsp;{w.score}/100
+                  </span>
+                ))}
+              </div>
             </div>
           )}
 

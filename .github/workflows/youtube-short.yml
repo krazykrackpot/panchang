@@ -9,7 +9,7 @@ on:
 jobs:
   post-short:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
       - uses: actions/checkout@v4
@@ -23,7 +23,7 @@ jobs:
         run: npm ci
 
       - name: Install ffmpeg
-        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+        uses: FedericoCarboni/setup-ffmpeg@v3
 
       - name: Generate and upload YouTube Short
         env:

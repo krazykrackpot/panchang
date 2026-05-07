@@ -443,6 +443,54 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'राहुकालः राहुकालमश्च एकाम् एव अशुभावधिं निर्दिशतः — ज्योतिषशास्त्रीयः कोऽपि भेदः नास्ति। "राहुकालः" हिन्दी-उत्तरभारतीयं पदं, "राहुकालम्" तु तमिल-दक्षिणभारतीयं पदम्। उभयम् अपि राहुशासितां दैनिकसार्धघण्टावधिं दर्शयति या नामपरिवर्तनम् अनपेक्ष्य समानतया गण्यते।',
       },
     },
+    {
+      question: {
+        en: 'How long is Rahu Kaal each day?',
+        hi: 'राहु काल प्रतिदिन कितना लम्बा होता है?',
+        sa: 'प्रतिदिनं राहुकालः कियत्कालावधिः भवति?',
+      },
+      answer: {
+        en: 'Rahu Kaal lasts approximately 1.5 hours (90 minutes) each day. The exact duration varies slightly because it depends on day length — daytime (sunrise to sunset) is divided into 8 equal parts, and one part is Rahu Kaal. In summer when days are longer, Rahu Kaal is slightly longer; in winter, slightly shorter.',
+        hi: 'राहु काल प्रतिदिन लगभग 1.5 घण्टे (90 मिनट) का होता है। सटीक अवधि थोड़ी भिन्न होती है क्योंकि यह दिन की लम्बाई पर निर्भर करती है। गर्मियों में जब दिन लम्बे होते हैं तो राहु काल कुछ लम्बा होता है; सर्दियों में कुछ छोटा।',
+        sa: 'राहुकालः प्रतिदिनं प्रायः सार्धघण्टां (90 निमेषान्) यावत् भवति। दिवसावधेः आश्रितत्वात् सूक्ष्मावधिः किञ्चित् भिद्यते।',
+      },
+    },
+    {
+      question: {
+        en: 'Can I travel during Rahu Kaal?',
+        hi: 'क्या राहु काल में यात्रा कर सकते हैं?',
+        sa: 'किं राहुकाले यात्रां कर्तुं शक्नोति?',
+      },
+      answer: {
+        en: 'Vedic tradition advises against starting a new journey during Rahu Kaal, as it is considered inauspicious for new beginnings. However, continuing a journey already in progress is fine. Routine travel (daily commute, errands) is generally not affected. The restriction applies mainly to first-time or important journeys — house moves, business trips, pilgrimages.',
+        hi: 'वैदिक परम्परा के अनुसार राहु काल में नई यात्रा आरम्भ नहीं करनी चाहिए। लेकिन पहले से चल रही यात्रा जारी रखने में कोई दोष नहीं है। दैनिक आवागमन प्रभावित नहीं होता। प्रतिबन्ध मुख्यतः नई या महत्वपूर्ण यात्राओं पर लागू है।',
+        sa: 'वैदिकपरम्परानुसारं राहुकाले नवयात्राम् आरभेत न इति उपदिश्यते। किन्तु पूर्वमारब्धा यात्रा अनुवर्तयितुं शक्या। दैनिकयातायातं न प्रभाव्यते।',
+      },
+    },
+    {
+      question: {
+        en: 'What is the Rahu Kaal slot for each day of the week?',
+        hi: 'सप्ताह के प्रत्येक दिन राहु काल कौनसी स्लॉट में आता है?',
+        sa: 'सप्ताहस्य प्रतिदिनं राहुकालः कस्मिन् भागे भवति?',
+      },
+      answer: {
+        en: 'The Rahu Kaal slot rotates by weekday: Sunday = 8th slot (4:30-6 PM approx.), Monday = 2nd slot (7:30-9 AM), Tuesday = 7th slot (3-4:30 PM), Wednesday = 5th slot (12-1:30 PM), Thursday = 6th slot (1:30-3 PM), Friday = 4th slot (10:30 AM-12 PM), Saturday = 3rd slot (9-10:30 AM). Actual times depend on your city\'s sunrise and sunset.',
+        hi: 'राहु काल की स्लॉट वार के अनुसार बदलती है: रविवार = 8वीं स्लॉट (शाम ~4:30-6), सोमवार = 2री (~7:30-9 सुबह), मंगलवार = 7वीं (~3-4:30), बुधवार = 5वीं (~12-1:30), गुरुवार = 6ठी (~1:30-3), शुक्रवार = 4थी (~10:30-12), शनिवार = 3री (~9-10:30)।',
+        sa: 'राहुकालस्य भागः वारानुसारं भ्रमति: रविवारः = अष्टमभागः, सोमवारः = द्वितीयभागः, मङ्गलवारः = सप्तमभागः, बुधवारः = पञ्चमभागः, गुरुवारः = षष्ठभागः, शुक्रवारः = चतुर्थभागः, शनिवारः = तृतीयभागः।',
+      },
+    },
+    {
+      question: {
+        en: 'What should you avoid during Rahu Kaal?',
+        hi: 'राहु काल में किन कार्यों से बचना चाहिए?',
+        sa: 'राहुकाले कानि कार्याणि वर्जनीयानि?',
+      },
+      answer: {
+        en: 'During Rahu Kaal, avoid starting new ventures: signing contracts, launching businesses, beginning journeys, entering a new home, buying vehicles or property, conducting naming ceremonies, and scheduling important meetings. Routine activities, prayers, and ongoing work are not affected. Emergency situations override any timing restrictions.',
+        hi: 'राहु काल में नए कार्य आरम्भ करने से बचें: अनुबन्ध पर हस्ताक्षर, व्यापार आरम्भ, यात्रा, नया घर प्रवेश, वाहन या सम्पत्ति खरीद, नामकरण संस्कार, महत्वपूर्ण बैठकें। दैनिक कार्य, पूजा और चल रहा काम प्रभावित नहीं होता। आपातकालीन स्थितियाँ समय प्रतिबन्ध से ऊपर हैं।',
+        sa: 'राहुकाले नवकार्याणाम् आरम्भात् विरमेत: सन्धिपत्रहस्ताक्षरणम्, व्यापारारम्भः, यात्रारम्भः, नवगृहप्रवेशः, वाहनसम्पत्तिक्रयः, नामकरणसंस्कारः। दैनिककार्याणि पूजा प्रवृत्तकार्यं च न प्रभाव्यन्ते।',
+      },
+    },
   ],
 
   // ─── /dates/ekadashi ─────────────────────────────────────────

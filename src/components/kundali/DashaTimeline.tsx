@@ -15,7 +15,10 @@
  */
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import * as d3 from 'd3';
+import { scaleTime } from 'd3-scale';
+import { select } from 'd3-selection';
+import { zoom, zoomIdentity } from 'd3-zoom';
+import type { ZoomTransform, ZoomBehavior } from 'd3-zoom';
 import type { DashaEntry } from '@/types/kundali';
 import { tl } from '@/lib/utils/trilingual';
 import DashaTimelineDetail from './DashaTimelineDetail';
@@ -86,11 +89,11 @@ export default function DashaTimeline({ dashas, birthDate, locale }: DashaTimeli
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(800);
-  const [transform, setTransform] = useState<d3.ZoomTransform>(d3.zoomIdentity);
+  const [transform, setTransform] = useState<ZoomTransform>(zoomIdentity);
   const [selected, setSelected] = useState<DashaEntry | null>(null);
   const [isPanning, setIsPanning] = useState(false);
   // Store the D3 zoom instance so we can call .scaleBy / .translateBy programmatically
-  const zoomRef = useRef<d3.ZoomBehavior<SVGSVGElement, unknown> | null>(null);
+  const zoomRef = useRef<ZoomBehavior<SVGSVGElement, unknown> | null>(null);
   // Drag state
   const dragRef = useRef<{ startX: number; startTx: number } | null>(null);
 
@@ -113,7 +116,7 @@ export default function DashaTimeline({ dashas, birthDate, locale }: DashaTimeli
 
   /* Base scale: full 120-year cycle across the available width */
   const baseScale = useMemo(
-    () => d3.scaleTime().domain([birth, cycleEnd]).range([0, width]),
+    () => scaleTime().domain([birth, cycleEnd]).range([0, width]),
     [birth, cycleEnd, width],
   );
 
@@ -128,17 +131,17 @@ export default function DashaTimeline({ dashas, birthDate, locale }: DashaTimeli
     const svgEl = svgRef.current;
     if (!svgEl) return;
 
-    const zoom = d3.zoom<SVGSVGElement, unknown>()
+    const zoomBehavior = zoom<SVGSVGElement, unknown>()
       .scaleExtent([MIN_ZOOM, MAX_ZOOM])
       .translateExtent([[0, 0], [width, SVG_H]])
       .on('zoom', event => {
         setTransform(event.transform);
       });
 
-    zoomRef.current = zoom;
+    zoomRef.current = zoomBehavior;
 
     // Attach wheel zoom to SVG — drag is handled via React pointer events
-    const sel = d3.select(svgEl);
+    const sel = select(svgEl);
     sel.call(zoom);
 
     // Disable default double-click zoom; we handle clicks for selection
@@ -243,8 +246,8 @@ export default function DashaTimeline({ dashas, birthDate, locale }: DashaTimeli
     const svgEl = svgRef.current;
     if (!svgEl || !zoomRef.current) return;
     const newTx = dragRef.current.startTx + dx;
-    const newT = d3.zoomIdentity.translate(newTx, 0).scale(transform.k);
-    d3.select(svgEl).call(zoomRef.current.transform, newT);
+    const newT = zoomIdentity.translate(newTx, 0).scale(transform.k);
+    select(svgEl).call(zoomRef.current.transform, newT);
   }, [transform.k]);
 
   const onPointerUp = useCallback(() => {
@@ -267,13 +270,13 @@ export default function DashaTimeline({ dashas, birthDate, locale }: DashaTimeli
   const doZoom = useCallback((factor: number) => {
     const svgEl = svgRef.current;
     if (!svgEl || !zoomRef.current) return;
-    d3.select(svgEl).call(zoomRef.current.scaleBy, factor, [width / 2, SVG_H / 2]);
+    select(svgEl).call(zoomRef.current.scaleBy, factor, [width / 2, SVG_H / 2]);
   }, [width]);
 
   const resetZoom = useCallback(() => {
     const svgEl = svgRef.current;
     if (!svgEl || !zoomRef.current) return;
-    d3.select(svgEl).call(zoomRef.current.transform, d3.zoomIdentity);
+    select(svgEl).call(zoomRef.current.transform, zoomIdentity);
   }, []);
 
   /* Scroll to TODAY */
@@ -282,8 +285,8 @@ export default function DashaTimeline({ dashas, birthDate, locale }: DashaTimeli
     const svgEl = svgRef.current;
     if (!svgEl || !zoomRef.current) return;
     const targetTx = width / 2 - nowX;
-    const newT = d3.zoomIdentity.translate(targetTx, 0).scale(transform.k);
-    d3.select(svgEl).call(zoomRef.current.transform, newT);
+    const newT = zoomIdentity.translate(targetTx, 0).scale(transform.k);
+    select(svgEl).call(zoomRef.current.transform, newT);
   }, [nowX, width, transform.k]);
 
   const showPratya = transform.k >= PRATYA_ZOOM_THRESHOLD;

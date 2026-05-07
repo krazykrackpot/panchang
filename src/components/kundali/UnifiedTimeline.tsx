@@ -9,7 +9,10 @@
  */
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import * as d3 from 'd3';
+import { scaleTime } from 'd3-scale';
+import { select } from 'd3-selection';
+import { zoom, zoomIdentity } from 'd3-zoom';
+import type { ZoomTransform, ZoomBehavior } from 'd3-zoom';
 import { Calendar, ZoomIn, ZoomOut, RotateCcw, Sun, CircleDot } from 'lucide-react';
 import type { DashaEntry } from '@/types/kundali';
 import type { KeyDate, KeyDateType, KeyDateImpact } from '@/lib/kundali/domain-synthesis/key-dates';
@@ -172,12 +175,12 @@ export default function UnifiedTimeline({ dashas, keyDates, locale, today: today
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(800);
-  const [transform, setTransform] = useState<d3.ZoomTransform>(d3.zoomIdentity);
+  const [transform, setTransform] = useState<ZoomTransform>(zoomIdentity);
   const [hoveredMarker, setHoveredMarker] = useState<KeyDate | null>(null);
   const [hoveredSeg, setHoveredSeg] = useState<DashaEntry | null>(null);
   const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const [isPanning, setIsPanning] = useState(false);
-  const zoomRef = useRef<d3.ZoomBehavior<SVGSVGElement, unknown> | null>(null);
+  const zoomRef = useRef<ZoomBehavior<SVGSVGElement, unknown> | null>(null);
   const dragRef = useRef<{ startX: number; startTx: number } | null>(null);
 
   const isHi = locale === 'hi' || locale === 'sa';
@@ -205,7 +208,7 @@ export default function UnifiedTimeline({ dashas, keyDates, locale, today: today
 
   /* Base scale */
   const baseScale = useMemo(
-    () => d3.scaleTime().domain([birth, cycleEnd]).range([0, width]),
+    () => scaleTime().domain([birth, cycleEnd]).range([0, width]),
     [birth, cycleEnd, width],
   );
 
@@ -220,16 +223,16 @@ export default function UnifiedTimeline({ dashas, keyDates, locale, today: today
     const svgEl = svgRef.current;
     if (!svgEl) return;
 
-    const zoom = d3.zoom<SVGSVGElement, unknown>()
+    const zoomBehavior = zoom<SVGSVGElement, unknown>()
       .scaleExtent([MIN_ZOOM, MAX_ZOOM])
       .translateExtent([[0, 0], [width, SVG_H]])
-      .on('zoom', event => {
+      .on('zoom', (event: { transform: ZoomTransform }) => {
         setTransform(event.transform);
       });
 
-    zoomRef.current = zoom;
-    const sel = d3.select(svgEl);
-    sel.call(zoom);
+    zoomRef.current = zoomBehavior;
+    const sel = select(svgEl);
+    sel.call(zoomBehavior);
     sel.on('dblclick.zoom', null);
 
     return () => { sel.on('.zoom', null); };
@@ -382,8 +385,8 @@ export default function UnifiedTimeline({ dashas, keyDates, locale, today: today
     const svgEl = svgRef.current;
     if (!svgEl || !zoomRef.current) return;
     const newTx = dragRef.current.startTx + dx;
-    const newT = d3.zoomIdentity.translate(newTx, 0).scale(transform.k);
-    d3.select(svgEl).call(zoomRef.current.transform, newT);
+    const newT = zoomIdentity.translate(newTx, 0).scale(transform.k);
+    select(svgEl).call(zoomRef.current.transform, newT);
   }, [transform.k]);
 
   const onPointerUp = useCallback(() => {
@@ -394,13 +397,13 @@ export default function UnifiedTimeline({ dashas, keyDates, locale, today: today
   const doZoom = useCallback((factor: number) => {
     const svgEl = svgRef.current;
     if (!svgEl || !zoomRef.current) return;
-    d3.select(svgEl).call(zoomRef.current.scaleBy, factor, [width / 2, SVG_H / 2]);
+    select(svgEl).call(zoomRef.current.scaleBy, factor, [width / 2, SVG_H / 2]);
   }, [width]);
 
   const resetZoom = useCallback(() => {
     const svgEl = svgRef.current;
     if (!svgEl || !zoomRef.current) return;
-    d3.select(svgEl).call(zoomRef.current.transform, d3.zoomIdentity);
+    select(svgEl).call(zoomRef.current.transform, zoomIdentity);
   }, []);
 
   const scrollToNow = useCallback(() => {
@@ -408,8 +411,8 @@ export default function UnifiedTimeline({ dashas, keyDates, locale, today: today
     const svgEl = svgRef.current;
     if (!svgEl || !zoomRef.current) return;
     const targetTx = width / 2 - nowX;
-    const newT = d3.zoomIdentity.translate(targetTx, 0).scale(transform.k);
-    d3.select(svgEl).call(zoomRef.current.transform, newT);
+    const newT = zoomIdentity.translate(targetTx, 0).scale(transform.k);
+    select(svgEl).call(zoomRef.current.transform, newT);
   }, [nowX, width, transform.k]);
 
   /* Handle marker hover */

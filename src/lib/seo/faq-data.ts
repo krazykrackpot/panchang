@@ -1258,6 +1258,70 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       },
     },
   ],
+
+  // ─── /caesarean-muhurta ──────────────────────────────────────
+  '/caesarean-muhurta': [
+    {
+      question: {
+        en: 'What is caesarean muhurta?',
+        hi: 'सिजेरियन मुहूर्त क्या है?',
+        sa: 'शस्त्रक्रियाजन्ममुहूर्तं किम् अस्ति?',
+      },
+      answer: {
+        en: 'Caesarean muhurta is the Vedic practice of electing the most auspicious birth time for a planned C-section delivery. Since the delivery date range is known in advance, classical Jyotish principles are applied to find a time slot that produces the strongest possible birth chart for the child — optimising lagna strength, Moon placement, benefic distribution, and the starting Vimshottari dasha.',
+        hi: 'सिजेरियन मुहूर्त नियोजित सिजेरियन प्रसव के लिए सबसे शुभ जन्म समय चुनने की वैदिक पद्धति है। चूंकि प्रसव की तिथि सीमा पहले से ज्ञात होती है, शास्त्रीय ज्योतिष सिद्धान्तों द्वारा ऐसा समय खोजा जाता है जो शिशु की सर्वश्रेष्ठ जन्म कुण्डली प्रदान करे।',
+        sa: 'शस्त्रक्रियाजन्ममुहूर्तं नियोजितशस्त्रक्रियाप्रसवार्थं सर्वोत्तमजन्मकालस्य निर्वाचनं भवति। शास्त्रीयज्योतिषसिद्धान्तैः लग्नबलं चन्द्रस्थानं शुभग्रहवितरणं दशामार्गश्च अनुकूलितम्।',
+      },
+    },
+    {
+      question: {
+        en: 'How does the 5-pillar birth time scorer work?',
+        hi: 'पाँच स्तम्भ जन्म समय मूल्यांकन कैसे कार्य करता है?',
+        sa: 'पञ्चस्तम्भजन्मकालमूल्याङ्कनं कथं कार्यं करोति?',
+      },
+      answer: {
+        en: 'Each candidate time slot is scored across 5 classical pillars out of 100 points: Lagna Strength (30 pts — lord dignity, kendra/trikona placement, benefic in lagna, Pushkar Navamsha, sandhi buffer), Moon Strength (25 pts — house placement, paksha bala, nakshatra quality, Jupiter aspect), Benefic/Malefic Distribution (20 pts — benefics in kendras/trikonas, malefics in upachaya, clean 8th house), Dasha Trajectory (15 pts — quality and remaining balance of the starting maha dasha), and Structural Defects (10 pts deducted for Gandanta Moon, Kaal Sarpa, combust lagna lord, nodes in lagna, etc.).',
+        hi: 'प्रत्येक उम्मीदवार समय खंड का 100 अंकों में 5 शास्त्रीय स्तम्भों पर मूल्यांकन होता है: लग्न बल (30), चन्द्र बल (25), शुभ/अशुभ ग्रह वितरण (20), दशा प्रक्षेपण (15), और संरचनात्मक दोष (10 कटौती)।',
+        sa: 'प्रत्येकं कालखण्डं शतबिन्दुषु पञ्चशास्त्रीयस्तम्भेषु मूल्याङ्कितम् — लग्नबलं चन्द्रबलं शुभाशुभवितरणं दशामार्गः संरचनादोषाश्च।',
+      },
+    },
+    {
+      question: {
+        en: 'Which nakshatras should be avoided for a caesarean birth?',
+        hi: 'सिजेरियन जन्म के लिए किन नक्षत्रों से बचना चाहिए?',
+        sa: 'शस्त्रक्रियाजन्मार्थं कानि नक्षत्राणि वर्जनीयानि?',
+      },
+      answer: {
+        en: 'Classical texts flag specific Janma Nakshatra Doshas: Ashlesha (4th pada — harm to mother), Magha (1st pada — harm to father), Moola (1st pada — harm to father/family), and Jyeshtha (4th pada — harm to elder brother). Additionally, any Moon in the Gandanta zone (last 3°20\' of a water sign or first 3°20\' of a fire sign) is a hard veto — the tool marks such slots as "Avoid" regardless of other factors.',
+        hi: 'शास्त्रीय ग्रन्थों में विशिष्ट जन्म नक्षत्र दोष बताए गए हैं: आश्लेषा (चौथा पद — माता को हानि), मघा (पहला पद — पिता को हानि), मूल (पहला पद — पिता/परिवार), ज्येष्ठा (चौथा पद — बड़े भाई)। गण्डान्त क्षेत्र में चन्द्रमा होना कठोर निषेध है।',
+        sa: 'शास्त्रेषु विशिष्टजन्मनक्षत्रदोषाः उक्ताः — आश्लेषा (चतुर्थपादः), मघा (प्रथमपादः), मूलम् (प्रथमपादः), ज्येष्ठा (चतुर्थपादः)। गण्डान्तक्षेत्रे चन्द्रमाः कठोरनिषेधः।',
+      },
+    },
+    {
+      question: {
+        en: 'Why does the starting Vimshottari dasha matter for a newborn?',
+        hi: 'नवजात शिशु के लिए प्रारम्भिक विंशोत्तरी दशा क्यों महत्वपूर्ण है?',
+        sa: 'नवजातशिशोः प्रारम्भिकविंशोत्तरीदशा कथं महत्त्वपूर्णा?',
+      },
+      answer: {
+        en: 'The child enters the Vimshottari maha dasha of the Moon\'s nakshatra lord at birth. A Jupiter or Venus dasha (benefic, long duration) gives the child a stable, growth-oriented start, while a Ketu or Rahu dasha can indicate early confusion and instability. The remaining balance also matters — starting Jupiter with only 1 year left means a quick transition to Saturn. The scorer weighs both the dasha lord quality and the remaining balance.',
+        hi: 'शिशु जन्म पर चन्द्र नक्षत्र स्वामी की विंशोत्तरी महादशा में प्रवेश करता है। गुरु या शुक्र दशा स्थिर शुरुआत देती है, जबकि केतु या राहु दशा अस्थिरता सूचित कर सकती है। शेष अवधि भी महत्वपूर्ण है — गुरु दशा केवल 1 वर्ष शेष हो तो शीघ्र शनि में संक्रमण होगा।',
+        sa: 'शिशुः जन्मसमये चन्द्रनक्षत्रस्वामिनो विंशोत्तरीमहादशां प्रविशति। गुरुशुक्रदशा स्थिरारम्भं ददाति, केतुराहुदशा अस्थिरतां सूचयति। शेषावधिः अपि महत्त्वपूर्णा।',
+      },
+    },
+    {
+      question: {
+        en: 'How accurate is the 15-minute scanning window?',
+        hi: '15 मिनट की स्कैनिंग विंडो कितनी सटीक है?',
+        sa: 'पञ्चदशनिमेषस्कैनिंगविन्डो कियत् सूक्ष्मम्?',
+      },
+      answer: {
+        en: 'The Ascendant (Lagna) moves approximately 1 degree every 4 minutes — so a 15-minute interval captures roughly 3.5–4 degrees of lagna movement. This is fine-grained enough to distinguish different lagna signs and avoid sandhi (junction) zones, while keeping the computation time reasonable for multi-day scans. The scorer also applies a 2-degree sandhi buffer penalty to flag slots where the lagna is too close to a sign boundary, ensuring the recommended time is not on an unstable cusp.',
+        hi: 'लग्न लगभग हर 4 मिनट में 1 अंश चलता है — 15 मिनट के अंतराल में लगभग 3.5-4 अंश का परिवर्तन होता है। यह विभिन्न लग्न राशियों को पहचानने और सन्धि क्षेत्रों से बचने के लिए पर्याप्त सूक्ष्म है। मूल्यांकक 2 अंश की सन्धि बफर कटौती भी लागू करता है।',
+        sa: 'लग्नं प्रतिचतुर्निमेषं प्रायशः एकांशं चलति — पञ्चदशनिमेषान्तरेण ३.५-४ अंशाः परिवर्तन्ते। एतत् भिन्नलग्नराशीनां पहचानार्थं सन्धिक्षेत्रपरिहारार्थं च पर्याप्तसूक्ष्मम्।',
+      },
+    },
+  ],
 };
 
 /**

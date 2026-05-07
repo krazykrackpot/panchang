@@ -34,6 +34,7 @@ export const TOOL_TO_LEARN: Record<string, CrossLinkEntry[]> = {
     { label: 'Learn Yogas', href: '/learn/yogas', description: 'Planetary combinations' },
     { label: 'Learn Doshas', href: '/learn/doshas', description: 'Afflictions in a chart' },
     { label: 'Learn Shadbala', href: '/learn/shadbala', description: 'Six-fold strength' },
+    { label: 'Caesarean Muhurta', href: '/caesarean-muhurta', description: 'Best birth time for C-section' },
   ],
   '/rahu-kaal': [
     { label: 'Learn Muhurtas', href: '/learn/muhurtas', description: 'Auspicious timing theory' },
@@ -184,6 +185,13 @@ export const TOOL_TO_LEARN: Record<string, CrossLinkEntry[]> = {
     { label: 'Learn Muhurtas', href: '/learn/muhurtas', description: 'Auspicious timing theory' },
     { label: 'Learn Hora', href: '/learn/hora', description: 'Planetary hour system' },
     { label: 'Learn Tithis', href: '/learn/tithis', description: 'Lunar day theory' },
+    { label: 'Caesarean Muhurta', href: '/caesarean-muhurta', description: 'Best birth time for C-section' },
+  ],
+  '/caesarean-muhurta': [
+    { label: 'Learn Muhurtas', href: '/learn/muhurtas', description: 'Auspicious timing theory' },
+    { label: 'Learn Caesarean Muhurta', href: '/learn/caesarean-muhurta', description: 'Classical birth-election rules' },
+    { label: 'Muhurta AI', href: '/muhurta-ai', description: 'AI-powered auspicious timing' },
+    { label: 'Kundali', href: '/kundali', description: 'Full birth chart' },
   ],
   '/muhurta': [
     { label: 'Learn Muhurtas', href: '/learn/muhurtas', description: 'Auspicious timing theory' },
@@ -256,8 +264,14 @@ export const LEARN_TO_TOOL: Record<string, CrossLinkEntry[]> = {
   ],
   '/learn/muhurtas': [
     { label: 'Muhurta AI', href: '/muhurta-ai', description: 'AI-powered timing' },
+    { label: 'Caesarean Muhurta', href: '/caesarean-muhurta', description: 'Best birth time for C-section' },
     { label: 'Choghadiya', href: '/choghadiya', description: '8-fold auspicious periods' },
     { label: 'Rahu Kaal', href: '/rahu-kaal', description: 'Inauspicious window' },
+  ],
+  '/learn/caesarean-muhurta': [
+    { label: 'Caesarean Muhurta Tool', href: '/caesarean-muhurta', description: 'Find the best C-section birth time' },
+    { label: 'Muhurta AI', href: '/muhurta-ai', description: 'AI-powered auspicious timing' },
+    { label: 'Kundali', href: '/kundali', description: 'Full birth chart' },
   ],
   '/learn/hora': [
     { label: 'Hora Tool', href: '/hora', description: 'Planetary hours today' },

@@ -18,7 +18,7 @@ import '@/styles/globals.css';
 
 import { CONSENT_DEFAULT_SCRIPT } from '@/components/cookie-consent/consent-mode';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;

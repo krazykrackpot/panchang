@@ -1,0 +1,356 @@
+{
+  "title": {
+    "en": "Caesarean Muhurta — Birth Time Election",
+    "hi": "सीजेरियन मुहूर्त — जन्म समय चयन"
+  },
+  "subtitle": {
+    "en": "Classical Jyotish principles for selecting the most auspicious birth time when a caesarean delivery is planned",
+    "hi": "जब सीजेरियन प्रसव नियोजित हो तब सबसे शुभ जन्म समय चुनने के शास्त्रीय ज्योतिष सिद्धांत"
+  },
+  "introTitle": {
+    "en": "What Is Caesarean Muhurta?",
+    "hi": "सीजेरियन मुहूर्त क्या है?"
+  },
+  "introContent": {
+    "en": "Caesarean Muhurta is the Vedic practice of selecting the most favourable birth time when a planned caesarean delivery gives the family a narrow window of choice. Unlike a natural birth, where the moment is determined by nature, a scheduled C-section allows parents to work within the hospital's available dates and operating hours to find a time that produces the strongest possible birth chart for the child.",
+    "hi": "सीजेरियन मुहूर्त एक वैदिक परंपरा है जिसमें जब नियोजित सीजेरियन प्रसव परिवार को चयन की एक संकीर्ण खिड़की देता है, तब सबसे अनुकूल जन्म समय का चयन किया जाता है। प्राकृतिक जन्म के विपरीत, जहाँ समय प्रकृति द्वारा निर्धारित होता है, एक निर्धारित सीजेरियन माता-पिता को अस्पताल की उपलब्ध तिथियों और ऑपरेशन के समय के भीतर शिशु के लिए सबसे मजबूत जन्म कुंडली बनाने वाला समय खोजने की अनुमति देता है।"
+  },
+  "introContent2": {
+    "en": "Families across India, Nepal, and the global diaspora have consulted Jyotishis for birth-time election for centuries. The practice is rooted in the belief that the birth chart — the snapshot of planetary positions at the moment of first breath — shapes the child's temperament, health trajectory, and life path. When that moment can be chosen within medical constraints, classical texts provide a rigorous framework for evaluation.",
+    "hi": "भारत, नेपाल और वैश्विक प्रवासी समुदायों के परिवार सदियों से जन्म-समय चयन के लिए ज्योतिषियों से परामर्श करते रहे हैं। यह प्रथा इस विश्वास में निहित है कि जन्म कुंडली — पहली साँस के क्षण में ग्रहों की स्थिति का चित्र — शिशु के स्वभाव, स्वास्थ्य प्रक्षेपवक्र और जीवन पथ को आकार देती है। जब वह क्षण चिकित्सा सीमाओं के भीतर चुना जा सकता है, तो शास्त्रीय ग्रंथ मूल्यांकन के लिए एक कठोर ढाँचा प्रदान करते हैं।"
+  },
+  "introDisclaimer": {
+    "en": "Important: This is astrological guidance, not medical advice. The obstetrician's clinical judgement always takes precedence. Never delay or advance a medically necessary procedure for astrological reasons. The goal is to choose the best time within the window the doctor has already approved.",
+    "hi": "महत्वपूर्ण: यह ज्योतिषीय मार्गदर्शन है, चिकित्सा सलाह नहीं। प्रसूति विशेषज्ञ का नैदानिक निर्णय हमेशा प्राथमिकता रखता है। ज्योतिषीय कारणों से चिकित्सकीय रूप से आवश्यक प्रक्रिया को कभी विलम्बित या अग्रसर न करें। लक्ष्य उस खिड़की के भीतर सबसे अच्छा समय चुनना है जो डॉक्टर ने पहले से अनुमोदित किया है।"
+  },
+  "pillarsTitle": {
+    "en": "The 5 Pillars of Birth Chart Evaluation",
+    "hi": "जन्म कुंडली मूल्यांकन के 5 स्तंभ"
+  },
+  "pillarsContent": {
+    "en": "Classical birth-election astrology evaluates a candidate birth moment across five pillars. Together they form a 100-point scoring framework where each pillar captures a distinct dimension of chart quality. A good birth chart has a strong lagna (ascendant), a well-placed Moon, benefics where they help, malefics where they are contained, and no structural defects that classical texts warn against.",
+    "hi": "शास्त्रीय जन्म-चयन ज्योतिष एक उम्मीदवार जन्म क्षण का मूल्यांकन पाँच स्तंभों में करता है। ये मिलकर 100-अंक का मूल्यांकन ढाँचा बनाते हैं जहाँ प्रत्येक स्तंभ कुंडली गुणवत्ता का एक अलग आयाम दर्शाता है। एक अच्छी जन्म कुंडली में मजबूत लग्न, सुस्थित चंद्रमा, लाभकारी स्थानों पर शुभ ग्रह, नियंत्रित स्थानों पर पाप ग्रह, और शास्त्रीय ग्रंथों द्वारा चेतावनी दिए गए संरचनात्मक दोषों का अभाव होता है।"
+  },
+  "pillar1Name": {
+    "en": "Lagna Strength",
+    "hi": "लग्न बल"
+  },
+  "pillar1Pts": {
+    "en": "30 points",
+    "hi": "30 अंक"
+  },
+  "pillar1Desc": {
+    "en": "The ascendant and its lord set the foundation of the entire chart. A dignified lagna lord in a strong house gives the child natural resilience and vitality.",
+    "hi": "लग्न और उसका स्वामी पूरी कुंडली की नींव रखते हैं। एक प्रतिष्ठित लग्नेश मजबूत भाव में बच्चे को प्राकृतिक लचीलापन और जीवन शक्ति देता है।"
+  },
+  "pillar2Name": {
+    "en": "Moon Strength",
+    "hi": "चंद्र बल"
+  },
+  "pillar2Pts": {
+    "en": "25 points",
+    "hi": "25 अंक"
+  },
+  "pillar2Desc": {
+    "en": "The Moon governs the mind, emotions, and mother-child bond. Its house placement, lunar phase, and nakshatra quality shape the child's emotional foundation.",
+    "hi": "चंद्रमा मन, भावनाओं और माता-शिशु बंधन को नियंत्रित करता है। इसकी भाव स्थिति, चंद्र कला और नक्षत्र गुणवत्ता शिशु की भावनात्मक नींव को आकार देती है।"
+  },
+  "pillar3Name": {
+    "en": "Benefic/Malefic Distribution",
+    "hi": "शुभ/पाप ग्रह वितरण"
+  },
+  "pillar3Pts": {
+    "en": "20 points",
+    "hi": "20 अंक"
+  },
+  "pillar3Desc": {
+    "en": "Benefic planets (Jupiter, Venus, Mercury, waxing Moon) do their best work in kendras and trikonas. Malefic planets (Saturn, Mars, Rahu, Ketu) thrive in upachaya houses where their aggressive energy becomes constructive.",
+    "hi": "शुभ ग्रह (गुरु, शुक्र, बुध, शुक्ल चंद्र) केंद्र और त्रिकोण में सर्वश्रेष्ठ कार्य करते हैं। पाप ग्रह (शनि, मंगल, राहु, केतु) उपचय भावों में फलते-फूलते हैं जहाँ उनकी आक्रामक ऊर्जा रचनात्मक बनती है।"
+  },
+  "pillar4Name": {
+    "en": "Dasha Trajectory",
+    "hi": "दशा प्रक्षेपवक्र"
+  },
+  "pillar4Pts": {
+    "en": "15 points",
+    "hi": "15 अंक"
+  },
+  "pillar4Desc": {
+    "en": "The child enters the Vimshottari Maha Dasha of the Moon's nakshatra lord at birth. Which dasha starts — and how much remains — sets the tone for the first years of life.",
+    "hi": "शिशु जन्म के समय चंद्रमा के नक्षत्र स्वामी की विंशोत्तरी महादशा में प्रवेश करता है। कौन सी दशा शुरू होती है — और कितनी शेष है — जीवन के पहले वर्षों की दिशा निर्धारित करती है।"
+  },
+  "pillar5Name": {
+    "en": "Structural Defects",
+    "hi": "संरचनात्मक दोष"
+  },
+  "pillar5Pts": {
+    "en": "10 points (penalty)",
+    "hi": "10 अंक (दंड)"
+  },
+  "pillar5Desc": {
+    "en": "Certain chart patterns are classically considered so harmful that they override other strengths. Gandanta Moon is a hard veto — no amount of lagna strength compensates for it.",
+    "hi": "कुछ कुंडली पैटर्न शास्त्रीय रूप से इतने हानिकारक माने जाते हैं कि वे अन्य बलों को ओवरराइड कर देते हैं। गंडांत चंद्र एक कठोर निषेध है — कोई भी लग्न बल इसकी भरपाई नहीं कर सकता।"
+  },
+  "lagnaTitle": {
+    "en": "Lagna Strength — The Foundation",
+    "hi": "लग्न बल — नींव"
+  },
+  "lagnaContent": {
+    "en": "The lagna (ascendant) is the zodiac sign rising on the eastern horizon at the moment of birth. It defines the child's physical constitution, personality, and the lens through which all other planetary influences operate. In birth-time election, lagna strength carries the highest weight (30 of 100 points) because every other house cusp derives from it.",
+    "hi": "लग्न (उदय राशि) जन्म के क्षण में पूर्वी क्षितिज पर उदय होने वाली राशि है। यह शिशु के शारीरिक संविधान, व्यक्तित्व और उस दृष्टिकोण को परिभाषित करता है जिसके माध्यम से अन्य सभी ग्रहीय प्रभाव कार्य करते हैं। जन्म-समय चयन में लग्न बल का सबसे अधिक भार (100 में से 30 अंक) है क्योंकि हर दूसरे भाव की संधि इसी से प्राप्त होती है।"
+  },
+  "lagnaLordDignity": {
+    "en": "Lagna Lord Dignity (0-10 pts): The sign in which the lagna lord is placed determines its dignity. Exalted = 10, Own sign = 8, Moolatrikona = 9, Friendly sign = 6, Neutral = 4, Enemy sign = 2, Debilitated = 0. A debilitated lagna lord means the ruler of the child's chart is at its weakest — avoid if possible.",
+    "hi": "लग्नेश गरिमा (0-10 अंक): जिस राशि में लग्नेश स्थित है वह उसकी गरिमा निर्धारित करती है। उच्च = 10, स्वराशि = 8, मूलत्रिकोण = 9, मित्र राशि = 6, सम = 4, शत्रु राशि = 2, नीच = 0। नीच लग्नेश का अर्थ है शिशु की कुंडली का शासक अपनी सबसे कमजोर स्थिति में है — संभव हो तो इससे बचें।"
+  },
+  "lagnaLordHouse": {
+    "en": "Lagna Lord House Placement (0-5 pts): Kendra (1st, 4th, 7th, 10th) = 5, Trikona (5th, 9th) = 4, 11th = 3, 2nd = 2, Dusthana (6th, 8th, 12th) = 0. The lagna lord in a kendra or trikona means the chart's ruler is strongly positioned to benefit the native throughout life.",
+    "hi": "लग्नेश भाव स्थिति (0-5 अंक): केंद्र (1, 4, 7, 10) = 5, त्रिकोण (5, 9) = 4, 11वाँ = 3, 2रा = 2, दुस्थान (6, 8, 12) = 0। केंद्र या त्रिकोण में लग्नेश का अर्थ है कुंडली का शासक जीवन भर जातक को लाभ पहुँचाने के लिए सुदृढ़ स्थिति में है।"
+  },
+  "lagnaBenefic": {
+    "en": "Benefic in Lagna (0-5 pts): Jupiter in the ascendant = 5 (the single strongest protective factor), Venus = 4, unafflicted Mercury = 3, waxing Moon = 2. A benefic rising alongside the ascendant degree bestows grace, health, and a generally fortunate start to life.",
+    "hi": "लग्न में शुभ ग्रह (0-5 अंक): लग्न में गुरु = 5 (सबसे मजबूत सुरक्षात्मक कारक), शुक्र = 4, अपीड़ित बुध = 3, शुक्ल चंद्र = 2। उदय अंश के साथ उदय होने वाला शुभ ग्रह कृपा, स्वास्थ्य और जीवन की सामान्यतः शुभ शुरुआत प्रदान करता है।"
+  },
+  "lagnaMalefic": {
+    "en": "Malefic in Lagna (0-4 pts penalty): Saturn, Mars, Rahu, or Ketu in the ascendant without the aspect of Jupiter or Venus costs 4 points. These planets in the 1st house create physical or temperamental difficulties unless mitigated by a benefic's gaze.",
+    "hi": "लग्न में पाप ग्रह (0-4 अंक दंड): गुरु या शुक्र की दृष्टि के बिना लग्न में शनि, मंगल, राहु या केतु 4 अंक काटता है। प्रथम भाव में ये ग्रह शारीरिक या स्वभावगत कठिनाइयाँ उत्पन्न करते हैं जब तक कि किसी शुभ ग्रह की दृष्टि से शमन न हो।"
+  },
+  "lagnaPushkar": {
+    "en": "Pushkar Navamsha (0-3 pts): When the lagna degree falls in a Pushkar Navamsha division, the ascendant receives an extra layer of nourishment. Pushkar Navamshas are specific subdivisions considered inherently auspicious — they amplify the positive qualities of whatever planet or point occupies them.",
+    "hi": "पुष्कर नवांश (0-3 अंक): जब लग्न अंश पुष्कर नवांश विभाग में पड़ता है, तो लग्न को पोषण की एक अतिरिक्त परत मिलती है। पुष्कर नवांश विशिष्ट उपविभाग हैं जो स्वाभाविक रूप से शुभ माने जाते हैं — वे जो भी ग्रह या बिंदु उनमें स्थित हो उसके सकारात्मक गुणों को बढ़ाते हैं।"
+  },
+  "lagnaSandhi": {
+    "en": "Sandhi Lagna Buffer (0-3 pts): Lagna more than 2 degrees from any sign boundary on both sides = 3, between 1-2 degrees = 1, less than 1 degree = 0 (unstable). A lagna in sandhi (the junction of two signs) is considered weak and ambiguous — even a few minutes' difference in birth time could place it in a different sign entirely, making the chart unreliable.",
+    "hi": "संधि लग्न बफर (0-3 अंक): लग्न दोनों ओर किसी भी राशि सीमा से 2 अंशों से अधिक दूर = 3, 1-2 अंशों के बीच = 1, 1 अंश से कम = 0 (अस्थिर)। संधि में लग्न (दो राशियों का संधि स्थल) कमजोर और अस्पष्ट माना जाता है — जन्म समय में कुछ मिनटों के अंतर से भी यह एक अलग राशि में आ सकता है, जिससे कुंडली अविश्वसनीय हो जाती है।"
+  },
+  "moonTitle": {
+    "en": "Moon's Role at Birth",
+    "hi": "जन्म में चंद्रमा की भूमिका"
+  },
+  "moonContent": {
+    "en": "The Moon is the second most important factor in birth-time election. While the lagna governs the physical body and outward personality, the Moon governs the mind (manas), emotional well-being, and the mother-child relationship. In Vedic astrology, the Moon's nakshatra at birth determines the starting Vimshottari dasha, making it doubly critical.",
+    "hi": "चंद्रमा जन्म-समय चयन में दूसरा सबसे महत्वपूर्ण कारक है। जहाँ लग्न शारीरिक शरीर और बाहरी व्यक्तित्व को नियंत्रित करता है, चंद्रमा मन (मानस), भावनात्मक कल्याण और माता-शिशु संबंध को नियंत्रित करता है। वैदिक ज्योतिष में, जन्म के समय चंद्रमा का नक्षत्र प्रारंभिक विंशोत्तरी दशा निर्धारित करता है, जो इसे दोगुना महत्वपूर्ण बनाता है।"
+  },
+  "moonHouse": {
+    "en": "Moon's House from Lagna (0-8 pts): Kendra (1, 4, 7, 10) = 8, Trikona (5, 9) = 7, 2nd/11th = 5, 3rd = 3, Dusthana (6, 8, 12) = 0. The Moon in a kendra from the lagna gives emotional stability and a strong connection with the mother. Moon in the 4th (house of the mother) is particularly favourable.",
+    "hi": "लग्न से चंद्र का भाव (0-8 अंक): केंद्र (1, 4, 7, 10) = 8, त्रिकोण (5, 9) = 7, 2/11 = 5, 3 = 3, दुस्थान (6, 8, 12) = 0। लग्न से केंद्र में चंद्रमा भावनात्मक स्थिरता और माता के साथ मजबूत संबंध देता है। 4थे भाव (माता का भाव) में चंद्रमा विशेष रूप से अनुकूल है।"
+  },
+  "moonPaksha": {
+    "en": "Paksha Bala — Lunar Phase (0-5 pts): Shukla Dwitiya to Dashami = 5 (peak waxing Moon — bright, strong, emotionally supportive), Shukla Ekadashi to Purnima = 4, Krishna Pratipada to Panchami = 3, Krishna Shashthi to Dashami = 1, Krishna Ekadashi to Amavasya = 0. A waxing Moon is universally preferred for birth — it signifies growth, nourishment, and expanding vitality.",
+    "hi": "पक्ष बल — चंद्र कला (0-5 अंक): शुक्ल द्वितीया से दशमी = 5 (शिखर शुक्ल चंद्र — उज्ज्वल, बलवान, भावनात्मक रूप से सहायक), शुक्ल एकादशी से पूर्णिमा = 4, कृष्ण प्रतिपदा से पंचमी = 3, कृष्ण षष्ठी से दशमी = 1, कृष्ण एकादशी से अमावस्या = 0। शुक्ल पक्ष का चंद्रमा जन्म के लिए सार्वभौमिक रूप से श्रेष्ठ है — यह वृद्धि, पोषण और बढ़ती जीवन शक्ति का प्रतीक है।"
+  },
+  "moonNakshatra": {
+    "en": "Nakshatra Quality (0-5 pts): Deva gana nakshatras (Ashwini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Shravana, Revati) = 5, Manushya gana = 3, Rakshasa gana = 1, Gandanta zone = 0. Deva gana nakshatras bestow a naturally gentle, dharmic temperament. Rakshasa gana nakshatras (Ashlesha, Magha, Purva Phalguni, Chitra, Vishakha, Jyeshtha, Moola, Dhanishtha, Shatabhisha) are intense and challenging for childhood — not forbidden, but score lower.",
+    "hi": "नक्षत्र गुणवत्ता (0-5 अंक): देव गण नक्षत्र (अश्विनी, मृगशिरा, पुनर्वसु, पुष्य, हस्त, स्वाति, अनुराधा, श्रवण, रेवती) = 5, मनुष्य गण = 3, राक्षस गण = 1, गंडांत क्षेत्र = 0। देव गण नक्षत्र स्वाभाविक रूप से सौम्य, धार्मिक स्वभाव प्रदान करते हैं। राक्षस गण नक्षत्र तीव्र हैं और बचपन के लिए चुनौतीपूर्ण — निषिद्ध नहीं, परंतु कम अंक पाते हैं।"
+  },
+  "moonJupiterAspect": {
+    "en": "Jupiter Aspecting Moon (0-3 pts): If Jupiter aspects the Moon from houses 5, 7, or 9 relative to Jupiter's position, the Moon receives Jupiter's protective and wisdom-giving gaze. This is Gajakesari Yoga in its simplest form — one of the most desirable configurations for any birth chart, giving intelligence, emotional balance, and good fortune.",
+    "hi": "गुरु की चंद्र पर दृष्टि (0-3 अंक): यदि गुरु अपनी स्थिति से 5, 7 या 9वें भाव से चंद्रमा पर दृष्टि डालता है, तो चंद्रमा को गुरु की सुरक्षात्मक और ज्ञानदायक दृष्टि प्राप्त होती है। यह अपने सरलतम रूप में गजकेसरी योग है — किसी भी जन्म कुंडली के लिए सबसे वांछनीय विन्यासों में से एक, जो बुद्धि, भावनात्मक संतुलन और सौभाग्य प्रदान करता है।"
+  },
+  "gandantaExplain": {
+    "en": "Gandanta zones are the junctions where a water sign ends and a fire sign begins: Pisces-Aries (Revati 4th pada to Ashwini 1st pada), Cancer-Leo (Ashlesha 4th pada to Magha 1st pada), and Scorpio-Sagittarius (Jyeshtha 4th pada to Moola 1st pada). The last 3 degrees 20 minutes of the water sign and the first 3 degrees 20 minutes of the fire sign constitute the gandanta zone. A Moon in gandanta at birth is the hardest classical veto — it is associated with intense karmic turbulence and is considered the single strongest reason to avoid a particular time slot.",
+    "hi": "गंडांत क्षेत्र वे संधियाँ हैं जहाँ जल राशि समाप्त होती है और अग्नि राशि शुरू होती है: मीन-मेष (रेवती 4था पद से अश्विनी 1ला पद), कर्क-सिंह (आश्लेषा 4था पद से मघा 1ला पद), और वृश्चिक-धनु (ज्येष्ठा 4था पद से मूल 1ला पद)। जल राशि के अंतिम 3 अंश 20 कला और अग्नि राशि के प्रथम 3 अंश 20 कला गंडांत क्षेत्र बनाते हैं। जन्म के समय गंडांत में चंद्रमा सबसे कठोर शास्त्रीय निषेध है — यह तीव्र कार्मिक अशांति से जुड़ा है और किसी विशेष समय स्लॉट से बचने का सबसे मजबूत कारण माना जाता है।"
+  },
+  "nakshatraDoshaTitle": {
+    "en": "Janma Nakshatra Doshas",
+    "hi": "जन्म नक्षत्र दोष"
+  },
+  "nakshatraDoshaContent": {
+    "en": "Certain nakshatras — specifically certain padas (quarters) within them — carry classical warnings about the welfare of specific family members. These are not blanket prohibitions but targeted cautions. The Muhurta Chintamani and other classical texts list these as the strongest reasons for caution when selecting a birth time.",
+    "hi": "कुछ नक्षत्र — विशेष रूप से उनके भीतर कुछ पद (चतुर्थांश) — विशिष्ट परिवार के सदस्यों के कल्याण के बारे में शास्त्रीय चेतावनियाँ रखते हैं। ये पूर्ण निषेध नहीं बल्कि लक्षित सावधानियाँ हैं। मुहूर्त चिंतामणि और अन्य शास्त्रीय ग्रंथ जन्म समय चुनते समय सावधानी के सबसे मजबूत कारणों के रूप में इन्हें सूचीबद्ध करते हैं।"
+  },
+  "nakshatraDoshaAshlesha": {
+    "en": "Ashlesha (Nakshatra 9), 4th Pada — Classical concern for the mother. Ashlesha is ruled by Mercury and its deity is the Naga (serpent). The 4th pada intensifies the serpentine, secretive qualities. Classical texts advise strong caution.",
+    "hi": "आश्लेषा (नक्षत्र 9), 4था पद — माता के लिए शास्त्रीय चिंता। आश्लेषा का स्वामी बुध है और इसके देवता नाग (सर्प) हैं। 4था पद सर्पीय, गोपनीय गुणों को तीव्र करता है। शास्त्रीय ग्रंथ कड़ी सावधानी की सलाह देते हैं।"
+  },
+  "nakshatraDoshaMagha": {
+    "en": "Magha (Nakshatra 10), 1st Pada — Classical concern for the father. Magha is ruled by Ketu and its deities are the Pitrs (ancestors). The 1st pada at the gandanta junction with Cancer amplifies ancestral karma themes.",
+    "hi": "मघा (नक्षत्र 10), 1ला पद — पिता के लिए शास्त्रीय चिंता। मघा का स्वामी केतु है और इसके देवता पितर (पूर्वज) हैं। कर्क के साथ गंडांत संधि पर 1ला पद पैतृक कर्म विषयों को बढ़ाता है।"
+  },
+  "nakshatraDoshaJyeshtha": {
+    "en": "Jyeshtha (Nakshatra 18), 4th Pada — Classical concern for the elder brother. Jyeshtha is ruled by Mercury with Indra as deity. The 4th pada sits at the gandanta junction with Sagittarius, compounding the intensity.",
+    "hi": "ज्येष्ठा (नक्षत्र 18), 4था पद — बड़े भाई के लिए शास्त्रीय चिंता। ज्येष्ठा का स्वामी बुध है और देवता इंद्र हैं। 4था पद धनु के साथ गंडांत संधि पर है, जो तीव्रता को और बढ़ाता है।"
+  },
+  "nakshatraDoshaMoola": {
+    "en": "Moola (Nakshatra 19), 1st Pada — Classical concern for the father and family welfare. Moola is ruled by Ketu with Nirriti (goddess of destruction) as deity. The 1st pada is in the gandanta zone with Scorpio. This is among the most cautioned-against placements in all of muhurta literature.",
+    "hi": "मूल (नक्षत्र 19), 1ला पद — पिता और पारिवारिक कल्याण के लिए शास्त्रीय चिंता। मूल का स्वामी केतु है और देवता निऋति (विनाश की देवी) हैं। 1ला पद वृश्चिक के साथ गंडांत क्षेत्र में है। यह संपूर्ण मुहूर्त साहित्य में सबसे अधिक सावधानी वाले स्थानों में से एक है।"
+  },
+  "nakshatraDoshaMild": {
+    "en": "Ashwini (Nakshatra 1) and Revati (Nakshatra 27) carry milder cautions. Ashwini is generally considered safe. Revati is cautioned only if the Moon falls in the last 3 degrees 20 minutes (gandanta zone with Aries). Outside the gandanta zone, both are positive nakshatras for birth.",
+    "hi": "अश्विनी (नक्षत्र 1) और रेवती (नक्षत्र 27) में हल्की सावधानियाँ हैं। अश्विनी सामान्यतः सुरक्षित मानी जाती है। रेवती में सावधानी केवल तभी है जब चंद्रमा अंतिम 3 अंश 20 कला (मेष के साथ गंडांत क्षेत्र) में हो। गंडांत क्षेत्र के बाहर, दोनों जन्म के लिए सकारात्मक नक्षत्र हैं।"
+  },
+  "distributionTitle": {
+    "en": "Benefic/Malefic Distribution — The Ideal Chart",
+    "hi": "शुभ/पाप ग्रह वितरण — आदर्श कुंडली"
+  },
+  "distributionContent": {
+    "en": "The classical ideal for a birth chart places benefic planets (Jupiter, Venus, Mercury, waxing Moon) in kendras (1st, 4th, 7th, 10th houses) and trikonas (5th, 9th houses), while malefic planets (Saturn, Mars, Rahu, Ketu) are directed to upachaya houses (3rd, 6th, 11th) where their fierce energy becomes competitive advantage rather than harm. This pillar evaluates how close the candidate chart comes to this ideal.",
+    "hi": "जन्म कुंडली के लिए शास्त्रीय आदर्श शुभ ग्रहों (गुरु, शुक्र, बुध, शुक्ल चंद्र) को केंद्र (1, 4, 7, 10वें भाव) और त्रिकोण (5, 9वें भाव) में रखता है, जबकि पाप ग्रह (शनि, मंगल, राहु, केतु) को उपचय भावों (3, 6, 11) में निर्देशित करता है जहाँ उनकी उग्र ऊर्जा हानि के बजाय प्रतिस्पर्धात्मक लाभ बनती है। यह स्तंभ मूल्यांकन करता है कि उम्मीदवार कुंडली इस आदर्श के कितनी निकट है।"
+  },
+  "distributionBeneficKendra": {
+    "en": "Benefics in Kendras (0-8 pts): +2.5 points per benefic planet in any kendra house (1st, 4th, 7th, 10th), maximum 8. Four benefics across all four kendras is the dream configuration — extremely rare but overwhelmingly positive.",
+    "hi": "केंद्र में शुभ ग्रह (0-8 अंक): किसी भी केंद्र भाव (1, 4, 7, 10) में प्रत्येक शुभ ग्रह के लिए +2.5 अंक, अधिकतम 8। चारों केंद्रों में चार शुभ ग्रह स्वप्न विन्यास है — अत्यंत दुर्लभ परंतु अत्यधिक सकारात्मक।"
+  },
+  "distributionBeneficTrikona": {
+    "en": "Benefics in Trikonas (0-4 pts): +2 points per benefic in the 5th or 9th house, maximum 4. The 5th house governs children (putra bhava) and intelligence, while the 9th governs fortune and dharma — benefics here directly support the child's purpose.",
+    "hi": "त्रिकोण में शुभ ग्रह (0-4 अंक): 5वें या 9वें भाव में प्रत्येक शुभ ग्रह के लिए +2 अंक, अधिकतम 4। 5वाँ भाव संतान (पुत्र भाव) और बुद्धि को नियंत्रित करता है, जबकि 9वाँ भाग्य और धर्म को — यहाँ शुभ ग्रह सीधे शिशु के उद्देश्य का समर्थन करते हैं।"
+  },
+  "distributionMaleficUpachaya": {
+    "en": "Malefics in Upachaya (0-4 pts): +2 points per malefic planet (Saturn, Mars, Rahu, Ketu) in the 3rd, 6th, or 11th house, maximum 4. These are the houses of effort, competition, and gains — malefic energy here drives ambition and the ability to overcome obstacles.",
+    "hi": "उपचय में पाप ग्रह (0-4 अंक): 3, 6 या 11वें भाव में प्रत्येक पाप ग्रह (शनि, मंगल, राहु, केतु) के लिए +2 अंक, अधिकतम 4। ये प्रयास, प्रतिस्पर्धा और लाभ के भाव हैं — यहाँ पाप ऊर्जा महत्वाकांक्षा और बाधाओं को पार करने की क्षमता को प्रेरित करती है।"
+  },
+  "distribution8thHouse": {
+    "en": "Clean 8th House (0-4 pts): Empty = 4, only a benefic present = 2, any malefic present = 0. The 8th house governs longevity, hidden dangers, and sudden transformations. An empty 8th house is ideal — it means no planet is directly afflicting the house of lifespan.",
+    "hi": "स्वच्छ 8वाँ भाव (0-4 अंक): खाली = 4, केवल शुभ ग्रह = 2, कोई पाप ग्रह = 0। 8वाँ भाव आयु, छिपे खतरों और अचानक परिवर्तनों को नियंत्रित करता है। खाली 8वाँ भाव आदर्श है — इसका अर्थ है कोई ग्रह सीधे आयु के भाव को पीड़ित नहीं कर रहा।"
+  },
+  "dashaTitle": {
+    "en": "Dasha Trajectory — The First Chapter of Life",
+    "hi": "दशा प्रक्षेपवक्र — जीवन का पहला अध्याय"
+  },
+  "dashaContent": {
+    "en": "At the moment of birth, the child enters the Vimshottari Maha Dasha of whichever planet rules the Moon's nakshatra. This dasha — and how much of it remains — profoundly shapes the first years of life. A child born with Jupiter dasha and 14 years remaining starts life under the most benefic, expansive influence. A child born at the tail end of Ketu dasha (1 year remaining) immediately transitions to Venus — the dasha lord at birth barely matters if its time is nearly spent.",
+    "hi": "जन्म के क्षण में, शिशु चंद्रमा के नक्षत्र के स्वामी ग्रह की विंशोत्तरी महादशा में प्रवेश करता है। यह दशा — और इसका कितना भाग शेष है — जीवन के पहले वर्षों को गहराई से आकार देती है। गुरु दशा और 14 वर्ष शेष के साथ जन्मा शिशु सबसे शुभ, विस्तारक प्रभाव में जीवन शुरू करता है। केतु दशा के अंतिम छोर पर (1 वर्ष शेष) जन्मा शिशु तुरंत शुक्र में संक्रमित होता है — जन्म के समय दशा स्वामी का महत्व तभी है जब उसका पर्याप्त समय शेष हो।"
+  },
+  "dashaTableTitle": {
+    "en": "Dasha Lords Ranked by Desirability for Birth",
+    "hi": "जन्म के लिए वांछनीयता के अनुसार दशा स्वामियों की श्रेणी"
+  },
+  "dashaJupiter": {
+    "en": "Jupiter (16 years) — Best. Benefic, expansive, wisdom-oriented. The child grows under Jupiter's grace with natural optimism and learning ability.",
+    "hi": "गुरु (16 वर्ष) — सर्वश्रेष्ठ। शुभ, विस्तारक, ज्ञानोन्मुख। शिशु गुरु की कृपा में प्राकृतिक आशावाद और सीखने की क्षमता के साथ बढ़ता है।"
+  },
+  "dashaVenus": {
+    "en": "Venus (20 years) — Excellent. Benefic, longest period, comfort and creativity. Venus dasha at birth often correlates with a comfortable, aesthetically rich upbringing.",
+    "hi": "शुक्र (20 वर्ष) — उत्कृष्ट। शुभ, सबसे लंबी अवधि, आराम और रचनात्मकता। जन्म पर शुक्र दशा अक्सर आरामदायक, सौंदर्यपूर्ण पालन-पोषण से संबंधित होती है।"
+  },
+  "dashaMercury": {
+    "en": "Mercury (17 years) — Good. Intellectual, adaptable, communicative. Mercury dasha supports early learning, language acquisition, and social skills.",
+    "hi": "बुध (17 वर्ष) — अच्छा। बौद्धिक, अनुकूलनशील, संवादात्मक। बुध दशा प्रारंभिक शिक्षा, भाषा अधिग्रहण और सामाजिक कौशल का समर्थन करती है।"
+  },
+  "dashaMoon": {
+    "en": "Moon (10 years) — Good but short. Emotional nourishment, mother-bond. The brevity means the child transitions to Mars dasha relatively early.",
+    "hi": "चंद्र (10 वर्ष) — अच्छा परंतु छोटा। भावनात्मक पोषण, माता-बंधन। संक्षिप्तता का अर्थ है शिशु अपेक्षाकृत जल्दी मंगल दशा में संक्रमित होता है।"
+  },
+  "dashaSun": {
+    "en": "Sun (6 years) — Decent but very short. Authority, vitality. Only 6 years means the child quickly enters Moon dasha — consider where Moon is placed.",
+    "hi": "सूर्य (6 वर्ष) — ठीक परंतु बहुत छोटा। अधिकार, जीवन शक्ति। केवल 6 वर्ष का अर्थ है शिशु शीघ्र चंद्र दशा में प्रवेश करता है — चंद्र की स्थिति पर विचार करें।"
+  },
+  "dashaMars": {
+    "en": "Mars (7 years) — Aggressive energy for a child. Courage and physical vitality, but can mean a turbulent, accident-prone early childhood if Mars is poorly placed.",
+    "hi": "मंगल (7 वर्ष) — शिशु के लिए आक्रामक ऊर्जा। साहस और शारीरिक जीवन शक्ति, परंतु यदि मंगल कमजोर स्थिति में हो तो अशांत, दुर्घटना-प्रवण प्रारंभिक बचपन हो सकता है।"
+  },
+  "dashaSaturn": {
+    "en": "Saturn (19 years) — Difficult childhood, builds resilience. Long period of discipline, restriction, and slow growth. The child matures early but may face health or resource constraints.",
+    "hi": "शनि (19 वर्ष) — कठिन बचपन, लचीलापन बनाता है। अनुशासन, प्रतिबंध और धीमी वृद्धि की लंबी अवधि। शिशु जल्दी परिपक्व होता है परंतु स्वास्थ्य या संसाधन बाधाओं का सामना कर सकता है।"
+  },
+  "dashaRahu": {
+    "en": "Rahu (18 years) — Directionless, confusion. Rahu dasha at birth can create an unconventional, unpredictable early life. The child may face identity questions and unusual circumstances.",
+    "hi": "राहु (18 वर्ष) — दिशाहीन, भ्रम। जन्म पर राहु दशा अपरंपरागत, अप्रत्याशित प्रारंभिक जीवन बना सकती है। शिशु को पहचान के प्रश्नों और असामान्य परिस्थितियों का सामना हो सकता है।"
+  },
+  "dashaKetu": {
+    "en": "Ketu (7 years) — Detached, spiritual but difficult for a child. Ketu's energy is renunciatory — helpful for a monk, challenging for an infant who needs worldly nurturing and attachment.",
+    "hi": "केतु (7 वर्ष) — विरक्त, आध्यात्मिक परंतु शिशु के लिए कठिन। केतु की ऊर्जा त्यागी है — एक सन्यासी के लिए सहायक, एक शिशु के लिए चुनौतीपूर्ण जिसे सांसारिक पोषण और लगाव की आवश्यकता है।"
+  },
+  "dashaBalance": {
+    "en": "Balance Matters: The remaining dasha balance at birth is critical. The scoring formula applies a balance multiplier: full score only if at least half the total dasha period remains. Starting Jupiter with 1 year left means the child gets barely any Jupiter influence before transitioning to Saturn. Always check both the dasha lord and the remaining balance.",
+    "hi": "शेष महत्वपूर्ण है: जन्म के समय शेष दशा संतुलन महत्वपूर्ण है। अंकन सूत्र संतुलन गुणक लागू करता है: पूर्ण अंक तभी जब कुल दशा अवधि का कम से कम आधा शेष हो। 1 वर्ष शेष के साथ गुरु शुरू करने का अर्थ है शिशु को शनि में संक्रमण से पहले गुरु का बमुश्किल कोई प्रभाव मिलता है। हमेशा दशा स्वामी और शेष संतुलन दोनों की जाँच करें।"
+  },
+  "defectsTitle": {
+    "en": "Structural Defects — Red Flags and Vetoes",
+    "hi": "संरचनात्मक दोष — चेतावनियाँ और निषेध"
+  },
+  "defectsContent": {
+    "en": "The fifth pillar starts with 10 points and deducts for each structural defect found in the candidate chart. Some defects are so severe they constitute a hard veto — the slot is marked \"Avoid\" regardless of how strong the other pillars are. Others are deductions that weaken the chart but do not disqualify it.",
+    "hi": "पाँचवाँ स्तंभ 10 अंकों से शुरू होता है और उम्मीदवार कुंडली में पाए गए प्रत्येक संरचनात्मक दोष के लिए कटौती करता है। कुछ दोष इतने गंभीर हैं कि वे कठोर निषेध बनते हैं — अन्य स्तंभ कितने भी मजबूत हों, स्लॉट को \"बचें\" चिह्नित किया जाता है। अन्य कटौतियाँ हैं जो कुंडली को कमजोर करती हैं परंतु अयोग्य नहीं करतीं।"
+  },
+  "defectGandanta": {
+    "en": "Gandanta Moon (HARD VETO, -10): Moon in the last 3 degrees 20 minutes of Cancer, Scorpio, or Pisces, or the first 3 degrees 20 minutes of Leo, Sagittarius, or Aries. This is the single strongest classical prohibition. A gandanta birth is associated with intense karmic turbulence affecting the child and family. If the Moon is in gandanta, the entire slot scores 0.",
+    "hi": "गंडांत चंद्र (कठोर निषेध, -10): कर्क, वृश्चिक या मीन के अंतिम 3 अंश 20 कला में, या सिंह, धनु या मेष के प्रथम 3 अंश 20 कला में चंद्रमा। यह सबसे कठोर शास्त्रीय निषेध है। गंडांत जन्म शिशु और परिवार को प्रभावित करने वाली तीव्र कार्मिक अशांति से जुड़ा है। यदि चंद्रमा गंडांत में है, तो पूरा स्लॉट 0 अंक पाता है।"
+  },
+  "defectKaalSarpa": {
+    "en": "Kaal Sarpa Yoga (-8): All seven planets hemmed between the Rahu-Ketu axis. This creates a life pattern of sudden upheavals and karmic intensity. Not a veto, but a severe deduction that makes the slot undesirable.",
+    "hi": "काल सर्प योग (-8): सभी सात ग्रह राहु-केतु अक्ष के बीच घिरे। यह अचानक उथल-पुथल और कार्मिक तीव्रता का जीवन पैटर्न बनाता है। निषेध नहीं, परंतु एक गंभीर कटौती जो स्लॉट को अवांछनीय बनाती है।"
+  },
+  "defectCombustLagna": {
+    "en": "Combust Lagna Lord (-6): The lagna lord within the Sun's combustion orb (typically 6-15 degrees depending on the planet). A combust lagna lord loses its ability to protect the native — like a bodyguard blinded by a spotlight.",
+    "hi": "अस्त लग्नेश (-6): सूर्य के अस्त कक्ष (सामान्यतः ग्रह के अनुसार 6-15 अंश) के भीतर लग्नेश। अस्त लग्नेश जातक की रक्षा करने की क्षमता खो देता है — जैसे एक अंगरक्षक जो तेज रोशनी से अंधा हो गया हो।"
+  },
+  "defectRahuKetuLagna": {
+    "en": "Rahu/Ketu in 1st House (-5): The shadow planets in the ascendant create confusion about identity, unconventional appearance, or health anxieties. The child may struggle with self-image. In the 7th House (-4): Affects partnerships and social integration later in life.",
+    "hi": "राहु/केतु प्रथम भाव में (-5): लग्न में छाया ग्रह पहचान, अपरंपरागत रूप या स्वास्थ्य चिंताओं के बारे में भ्रम पैदा करते हैं। शिशु को आत्म-छवि से जूझना पड़ सकता है। 7वें भाव में (-4): जीवन में बाद में साझेदारी और सामाजिक एकीकरण को प्रभावित करता है।"
+  },
+  "defectSaturnLagna": {
+    "en": "Saturn in Lagna without Jupiter's Aspect (-5): Saturn alone in the ascendant brings restriction, delayed development, and a heavy sense of responsibility from childhood. Jupiter's aspect (from the 5th, 7th, or 9th house) mitigates this significantly — if Jupiter aspects Saturn in lagna, no deduction applies.",
+    "hi": "गुरु की दृष्टि के बिना लग्न में शनि (-5): लग्न में अकेला शनि प्रतिबंध, विलम्बित विकास और बचपन से जिम्मेदारी का भारी बोध लाता है। गुरु की दृष्टि (5वें, 7वें या 9वें भाव से) इसे काफी कम करती है — यदि गुरु लग्न में शनि पर दृष्टि डालता है, तो कोई कटौती लागू नहीं होती।"
+  },
+  "defectVishti": {
+    "en": "Vishti (Bhadra) Karana (-3): Vishti is the most inauspicious of the 11 karanas. Activities begun during Vishti karana face obstacles and delays. For a birth, it adds a layer of difficulty to the child's start in life.",
+    "hi": "विष्टि (भद्रा) करण (-3): विष्टि 11 करणों में सबसे अशुभ है। विष्टि करण में शुरू किए गए कार्यों में बाधाएँ और विलम्ब आते हैं। जन्म के लिए, यह शिशु के जीवन की शुरुआत में कठिनाई की एक परत जोड़ता है।"
+  },
+  "defectVyatipata": {
+    "en": "Vyatipata / Vaidhriti Yoga (-3): These two yogas among the 27 Nitya Yogas are classically considered the most inauspicious. Vyatipata means \"great calamity\" and Vaidhriti means \"great support\" (ironically, it is negative). Both indicate a challenging start.",
+    "hi": "व्यतीपात / वैधृति योग (-3): 27 नित्य योगों में ये दो योग शास्त्रीय रूप से सबसे अशुभ माने जाते हैं। व्यतीपात का अर्थ \"महा विपत्ति\" है और वैधृति का अर्थ \"महा आधार\" है (विडंबना यह कि यह नकारात्मक है)। दोनों एक चुनौतीपूर्ण शुरुआत का संकेत देते हैं।"
+  },
+  "defectRahuKaal": {
+    "en": "Rahu Kaal / Gulika Kaal (-3): Birth during Rahu Kaal or Gulika Kaal adds an inauspicious temporal layer. These are daily time windows ruled by malefic sub-periods that shift based on the weekday.",
+    "hi": "राहु काल / गुलिक काल (-3): राहु काल या गुलिक काल के दौरान जन्म एक अशुभ कालिक परत जोड़ता है। ये दैनिक समय खिड़कियाँ हैं जो सप्ताह के दिन के आधार पर बदलने वाली पाप उप-अवधियों द्वारा शासित होती हैं।"
+  },
+  "practicalTitle": {
+    "en": "Practical Guidance for Families",
+    "hi": "परिवारों के लिए व्यावहारिक मार्गदर्शन"
+  },
+  "practicalContent": {
+    "en": "Applying these classical principles in a modern hospital setting requires pragmatism. The doctor's clinical judgement always comes first, and the astrologer works within the constraints the medical team provides.",
+    "hi": "आधुनिक अस्पताल सेटिंग में इन शास्त्रीय सिद्धांतों को लागू करने के लिए व्यावहारिकता की आवश्यकता है। डॉक्टर का नैदानिक निर्णय हमेशा पहले आता है, और ज्योतिषी चिकित्सा दल द्वारा प्रदान की गई सीमाओं के भीतर कार्य करता है।"
+  },
+  "practicalHospital": {
+    "en": "Hospital Constraints: Most hospitals schedule C-sections during fixed operating hours (typically 8:00 AM to 6:00 PM). The obstetrician will provide a date range (often 2-5 days) based on gestational age, maternal health, and operating theatre availability. Your astrological window is whatever falls within these medical constraints — never ask the doctor to work outside them.",
+    "hi": "अस्पताल की सीमाएँ: अधिकांश अस्पताल निश्चित ऑपरेशन घंटों (आमतौर पर सुबह 8:00 से शाम 6:00) के दौरान सीजेरियन निर्धारित करते हैं। प्रसूति विशेषज्ञ गर्भकालीन आयु, मातृ स्वास्थ्य और ऑपरेशन थिएटर की उपलब्धता के आधार पर एक तिथि सीमा (अक्सर 2-5 दिन) प्रदान करेंगे। आपकी ज्योतिषीय खिड़की वही है जो इन चिकित्सा सीमाओं के भीतर आती है — कभी डॉक्टर से इनके बाहर काम करने को न कहें।"
+  },
+  "practicalBuffer": {
+    "en": "The 15-Minute Buffer: Surgical timing is never precise to the minute. The actual moment of birth (baby's first breath) can vary by 10-15 minutes from the scheduled incision time due to anaesthesia preparation, surgical access, and delivery mechanics. For this reason, always choose time slots where the lagna remains in the same sign for at least 30 minutes. If the lagna changes sign within your 15-minute window, the chart you planned may not be the chart you get.",
+    "hi": "15-मिनट बफर: शल्य समय कभी भी मिनट तक सटीक नहीं होता। जन्म का वास्तविक क्षण (शिशु की पहली साँस) निर्धारित चीरा समय से 10-15 मिनट भिन्न हो सकता है — एनेस्थीसिया तैयारी, शल्य पहुँच और प्रसव यांत्रिकी के कारण। इस कारण, हमेशा ऐसे समय स्लॉट चुनें जहाँ लग्न कम से कम 30 मिनट तक एक ही राशि में रहे। यदि आपकी 15-मिनट खिड़की में लग्न राशि बदलती है, तो जो कुंडली आपने योजना बनाई वह नहीं मिल सकती।"
+  },
+  "practicalDoctor": {
+    "en": "Communicating with the Doctor: Present your preferred time slots as a request, not a demand. Most obstetricians are familiar with families asking for specific times and are willing to accommodate within reason. Provide 3-5 ranked options so the doctor can choose the one that works best clinically. Never frame it as 'the astrologer said it must be this time' — frame it as 'we have a cultural preference for morning/afternoon if possible.'",
+    "hi": "डॉक्टर से संवाद: अपने पसंदीदा समय स्लॉट को अनुरोध के रूप में प्रस्तुत करें, माँग के रूप में नहीं। अधिकांश प्रसूति विशेषज्ञ परिवारों द्वारा विशिष्ट समय माँगने से परिचित हैं और तर्कसंगत सीमा में समायोजन के इच्छुक हैं। 3-5 श्रेणीबद्ध विकल्प प्रदान करें ताकि डॉक्टर नैदानिक रूप से सबसे उपयुक्त चुन सकें। इसे कभी 'ज्योतिषी ने कहा यही समय होना चाहिए' के रूप में प्रस्तुत न करें — इसे 'यदि संभव हो तो हमारी सांस्कृतिक प्राथमिकता सुबह/दोपहर की है' के रूप में प्रस्तुत करें।"
+  },
+  "practicalExpectations": {
+    "en": "Managing Expectations: No birth chart is perfect. Even the best available slot within a 3-day hospital window will have some weaknesses. The goal is optimisation, not perfection. A chart that scores 65/100 (\"Auspicious\") is genuinely good — do not hold out for 90+ and risk the doctor's patience or medical safety. Remember that remedial measures (mantras, pujas, gemstones) exist precisely for charts that have some challenges.",
+    "hi": "अपेक्षाओं का प्रबंधन: कोई जन्म कुंडली पूर्ण नहीं होती। 3-दिन की अस्पताल खिड़की में उपलब्ध सबसे अच्छे स्लॉट में भी कुछ कमजोरियाँ होंगी। लक्ष्य अनुकूलन है, पूर्णता नहीं। 65/100 (\"शुभ\") स्कोर करने वाली कुंडली वास्तव में अच्छी है — 90+ के लिए प्रतीक्षा न करें और डॉक्टर के धैर्य या चिकित्सा सुरक्षा को जोखिम में न डालें। याद रखें कि उपचारात्मक उपाय (मंत्र, पूजा, रत्न) ठीक उन कुंडलियों के लिए हैं जिनमें कुछ चुनौतियाँ हैं।"
+  },
+  "takeawayPoints": [
+    {
+      "en": "The lagna (ascendant) is the single most important factor — ensure it is in a strong sign with a dignified lord, well away from sign boundaries (sandhi).",
+      "hi": "लग्न (उदय राशि) सबसे महत्वपूर्ण कारक है — सुनिश्चित करें कि यह एक मजबूत राशि में है जिसका स्वामी प्रतिष्ठित है, राशि सीमाओं (संधि) से दूर।"
+    },
+    {
+      "en": "Never choose a time where the Moon is in a gandanta zone (water-fire sign junction) — this is the hardest classical veto and overrides all other strengths.",
+      "hi": "कभी ऐसा समय न चुनें जहाँ चंद्रमा गंडांत क्षेत्र (जल-अग्नि राशि संधि) में हो — यह सबसे कठोर शास्त्रीय निषेध है और अन्य सभी बलों को ओवरराइड करता है।"
+    },
+    {
+      "en": "A waxing Moon (Shukla Paksha) is universally preferred over a waning Moon for birth — it signifies growth, nourishment, and emotional strength.",
+      "hi": "जन्म के लिए शुक्ल पक्ष (बढ़ता चंद्रमा) सार्वभौमिक रूप से कृष्ण पक्ष से श्रेष्ठ है — यह वृद्धि, पोषण और भावनात्मक शक्ति का प्रतीक है।"
+    },
+    {
+      "en": "Check the starting Vimshottari dasha lord AND its remaining balance — Jupiter or Venus with substantial time remaining is ideal.",
+      "hi": "प्रारंभिक विंशोत्तरी दशा स्वामी और उसका शेष संतुलन दोनों जाँचें — पर्याप्त समय शेष के साथ गुरु या शुक्र आदर्श है।"
+    },
+    {
+      "en": "Always choose slots where the lagna stays in the same sign for 30+ minutes to account for surgical timing variance of 10-15 minutes.",
+      "hi": "हमेशा ऐसे स्लॉट चुनें जहाँ लग्न 30+ मिनट तक एक ही राशि में रहे ताकि 10-15 मिनट के शल्य समय अंतर को समायोजित किया जा सके।"
+    },
+    {
+      "en": "Provide the doctor with 3-5 ranked time options — never just one. Medical safety always takes precedence over astrological preference.",
+      "hi": "डॉक्टर को 3-5 श्रेणीबद्ध समय विकल्प प्रदान करें — कभी केवल एक नहीं। चिकित्सा सुरक्षा हमेशा ज्योतिषीय प्राथमिकता से ऊपर है।"
+    },
+    {
+      "en": "No chart is perfect — aim for optimisation (60+ score), not perfection. Remedial measures exist for any chart's weaknesses.",
+      "hi": "कोई कुंडली पूर्ण नहीं — अनुकूलन (60+ अंक) का लक्ष्य रखें, पूर्णता का नहीं। किसी भी कुंडली की कमजोरियों के लिए उपचारात्मक उपाय मौजूद हैं।"
+    }
+  ],
+  "exploreTitle": {
+    "en": "Explore Further",
+    "hi": "और जानें"
+  }
+}

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { PLANET_HOUSE_VERSES } from '@/lib/constants/planet-in-house-verses';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
 const PLANET_NAMES: Record<number, { en: string; hi: string }> = {
   0: { en: 'Sun', hi: 'सूर्य' },

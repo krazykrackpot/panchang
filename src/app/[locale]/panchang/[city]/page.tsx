@@ -15,7 +15,7 @@ import M from '@/messages/pages/panchang-city.json';
 type LocaleText = Record<string, string>;
 const msg = (key: string, locale: string) => tl((M as unknown as Record<string, LocaleText>)[key], locale);
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
 // ──────────────────────────────────────────────────────────────
 // ISR — Tier 2/3 cities generated on first visit, cached 1 hour

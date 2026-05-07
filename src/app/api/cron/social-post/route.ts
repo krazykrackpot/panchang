@@ -600,7 +600,7 @@ async function uploadMediaToTwitter(imageBuffer: Buffer): Promise<string | null>
  */
 async function fetchSocialImage(typeParams: string): Promise<Buffer | null> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
+    const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
     const res = await fetch(`${baseUrl}/api/social/instagram?type=${typeParams}`);
     if (!res.ok) {
       console.error('[social-post] Image fetch failed:', res.status, typeParams);

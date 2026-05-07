@@ -6,7 +6,8 @@ import { getMuhurtaTypeSlugs } from '@/lib/constants/muhurta-types';
 import { getTransitArticleSlugs } from '@/lib/content/transit-articles';
 import { ALL_DEVOTIONAL_ITEMS } from '@/lib/content/devotional-content';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
+// .trim() is critical — Vercel env vars can have trailing \n that corrupts sitemap XML
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
 // Import from config so new locales are never missed
 import { locales } from '@/lib/i18n/config';
@@ -141,6 +142,7 @@ const routes = [
   '/learn/tripushkar-yoga',
   '/learn/siddha-yoga',
   '/learn/rahu-kaal',
+  '/learn/caesarean-muhurta',
   '/learn/prashna',
   '/learn/tithi-pravesha',
   '/learn/kaal-sarp',
@@ -209,6 +211,7 @@ const routes = [
   '/kundali/rectify',
   '/kp-system',
   '/muhurta-ai',
+  '/caesarean-muhurta',
   '/horoscope',
   '/kaal-nirnaya',
   '/nivas-shool',
@@ -372,7 +375,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const route of routes) {
     addEntries(entries, route, {
       changeFrequency: route === '' || route === '/panchang' ? 'daily' : 'weekly',
-      priority: route === '' ? 1.0 : route === '/panchang' ? 0.9 : route === '/kundali' ? 0.8 : 0.6,
+      priority: route === '' ? 1.0 : route === '/panchang' ? 0.9 : route === '/kundali' ? 0.8 : route === '/caesarean-muhurta' ? 0.7 : 0.6,
     });
   }
 

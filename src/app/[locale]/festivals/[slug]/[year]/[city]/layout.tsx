@@ -9,7 +9,7 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import { locales } from '@/lib/i18n/config';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
 /** Format "2026-08-22" → "Aug 22" (short, for title — saves characters) */
 function fmtShortDate(dateStr: string): string {

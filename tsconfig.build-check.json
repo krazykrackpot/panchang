@@ -5,6 +5,7 @@
     "**/*.test.ts",
     "**/*.test.tsx",
     "**/__tests__/**",
-    "tests/**"
+    "tests/**",
+    "scripts/**"
   ]
 }

@@ -18,7 +18,7 @@ const HOROSCOPE_LABELS: Record<string, Record<string, string>> = {
   sa: { heading: 'अद्य राशिफलम्', score: 'अङ्कः', lucky: 'भाग्यम्', readMore: 'अधिकं पठतु' },
 };
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; date: string }> }): Promise<Metadata> {
   const { locale, date } = await params;

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { MODULE_SEQUENCE } from '@/lib/learn/module-sequence';
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 const MOD_ID = '3-1';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;

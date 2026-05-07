@@ -6,7 +6,7 @@
 import type { Metadata } from 'next';
 import { locales } from '@/lib/i18n/config';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
 const OG_LOCALE_MAP: Record<string, string> = {
   hi: 'hi_IN', sa: 'sa_IN', ta: 'ta_IN', te: 'te_IN',
@@ -1669,6 +1669,32 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: { en: 'Tripushkar Yoga — Triple Auspiciousness in Vedic Timing', hi: 'त्रिपुष्कर योग — वैदिक समय में तिगुनी शुभता', sa: 'त्रिपुष्करयोगः' },
     description: { en: 'Tripushkar Yoga triples the fruit of actions — even rarer than Dwipushkar. Learn the specific tithi-nakshatra-weekday combination and when to use this powerful window.', hi: 'त्रिपुष्कर योग कार्यों का फल तिगुना करता है — द्विपुष्कर से भी दुर्लभ।', sa: 'त्रिपुष्करयोगस्य विवरणम्।' },
     keywords: ['tripushkar yoga', 'triple auspicious', 'muhurta yoga', 'rarest yoga', 'vedic timing combination'],
+  },
+  '/caesarean-muhurta': {
+    title: {
+      en: 'Caesarean Birth Time Suggester | Best Muhurta for C-Section',
+      hi: 'सिजेरियन जन्म मुहूर्त — सी-सेक्शन के लिए सर्वश्रेष्ठ समय',
+      sa: 'शस्त्रक्रियाजन्ममुहूर्तम् — सर्वोत्तमजन्मकालनिर्णयः',
+    },
+    description: {
+      en: 'Find the most auspicious birth time for a planned C-section delivery. 5-pillar classical scoring — lagna strength, Moon strength, benefic distribution, dasha trajectory & structural defects. 15-minute resolution across your hospital date range.',
+      hi: 'नियोजित सिजेरियन प्रसव के लिए सर्वाधिक शुभ जन्म समय खोजें। 5 शास्त्रीय स्तम्भ — लग्न बल, चन्द्र बल, शुभ ग्रह वितरण, दशा प्रक्षेपण और संरचनात्मक दोष। 15 मिनट के अंतराल पर विश्लेषण।',
+      sa: 'नियोजितशस्त्रक्रियाप्रसवार्थं सर्वोत्तमजन्ममुहूर्तं प्राप्नुयात्। पञ्चस्तम्भशास्त्रीयमूल्याङ्कनम् — लग्नबलं चन्द्रबलं शुभग्रहवितरणं दशामार्गश्च। पञ्चदशनिमेषान्तरेण विश्लेषणम्।',
+    },
+    keywords: ['caesarean muhurta', 'c-section birth time', 'best birth time astrology', 'caesarean birth chart', 'birth election vedic', 'lagna strength baby', 'planned delivery muhurta', 'jyotish birth time', 'gandanta avoidance', 'dasha trajectory baby'],
+  },
+  '/learn/caesarean-muhurta': {
+    title: {
+      en: 'Caesarean Muhurta — Classical Rules for Birth Time Election',
+      hi: 'सिजेरियन मुहूर्त — जन्म समय चयन के शास्त्रीय नियम',
+      sa: 'शस्त्रक्रियाजन्ममुहूर्तम् — जन्मकालनिर्वाचनस्य शास्त्रीयनियमाः',
+    },
+    description: {
+      en: 'Learn the classical Jyotish rules for electing a C-section birth time. Covers the 5 scoring pillars — lagna shuddhi, Moon strength, benefic/malefic distribution, dasha trajectory, and structural defects like Gandanta. Based on BPHS, Muhurta Chintamani & Prasna Marga.',
+      hi: 'सिजेरियन जन्म समय चयन के शास्त्रीय ज्योतिष नियम सीखें। 5 मूल्यांकन स्तम्भ — लग्न शुद्धि, चन्द्र बल, शुभ-अशुभ ग्रह वितरण, दशा प्रक्षेपण और गण्डान्त जैसे संरचनात्मक दोष।',
+      sa: 'शस्त्रक्रियाजन्मकालनिर्वाचनस्य शास्त्रीयज्योतिषनियमान् अधिगच्छतु। पञ्चमूल्याङ्कनस्तम्भाः — लग्नशुद्धिः चन्द्रबलं शुभाशुभग्रहवितरणं दशामार्गः गण्डान्तादिसंरचनादोषाश्च।',
+    },
+    keywords: ['caesarean muhurta rules', 'birth time election jyotish', 'lagna shuddhi', 'gandanta avoidance', 'muhurta chintamani birth', 'prasna marga birth', 'BPHS birth election', 'dasha trajectory newborn', 'janma nakshatra dosha'],
   },
   '/videos': {
     title: { en: 'Videos — Dekho Panchang', hi: 'वीडियो — देखो पंचांग', sa: 'चलचित्राणि — देखो पञ्चाङ्गम्' },

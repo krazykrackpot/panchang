@@ -5,7 +5,7 @@
  * Used by learn topic layouts to improve rich snippet eligibility.
  */
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
 // Key learn topics with their publication dates and descriptions
 const ARTICLE_META: Record<string, { datePublished: string; dateModified: string }> = {

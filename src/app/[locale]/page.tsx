@@ -557,13 +557,16 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             {t('subtitle')}
           </p>
 
-          {/* Two bold CTAs */}
+          {/* Three bold CTAs — Panchang, Kundali, Muhurta AI */}
           <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
             <Link href="/panchang" className="px-8 py-3 rounded-xl bg-gold-primary/15 border border-gold-primary/30 text-gold-light font-bold text-sm hover:bg-gold-primary/25 transition-all hover:-translate-y-0.5">
               {L({ en: "Today's Panchang", hi: 'आज का पञ्चाङ्ग', ta: 'இன்றைய பஞ்சாங்கம்', bn: 'আজকের পঞ্চাঙ্গ' }, locale)}
             </Link>
             <Link href="/kundali" className="px-8 py-3 rounded-xl bg-[#2d1b69]/40 border border-[#a78bfa]/20 text-[#c4b5fd] font-bold text-sm hover:bg-[#2d1b69]/60 transition-all hover:-translate-y-0.5">
               {L({ en: 'Generate Birth Chart', hi: 'जन्म कुण्डली बनाएं', ta: 'ஜாதகம் உருவாக்குங்கள்', bn: 'জাতক তৈরি করুন' }, locale)}
+            </Link>
+            <Link href="/muhurta-ai" className="px-8 py-3 rounded-xl bg-emerald-900/30 border border-emerald-400/20 text-emerald-300 font-bold text-sm hover:bg-emerald-900/50 transition-all hover:-translate-y-0.5">
+              {L({ en: 'Find Shubh Muhurta', hi: 'शुभ मुहूर्त खोजें', ta: 'சுப முகூர்த்தம் கண்டறியுங்கள்', bn: 'শুভ মুহূর্ত খুঁজুন' }, locale)}
             </Link>
           </div>
 

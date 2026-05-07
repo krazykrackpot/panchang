@@ -500,16 +500,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
   // Top 50 cities by population (Tier 1) for festival × city SEO
   const festivalSeoCities = getCitiesByTier(1).slice(0, 50).map(c => c.slug);
-  // Only current + next year — 2025 is past, 2028/2029 are too far out.
-  // Expand yearly as time passes.
+  // GSC data shows strong impressions for future years (diwali 2028=67,
+  // ganesh chaturthi 2028 at position 2). Add 2028/2029 only for TOP festivals
+  // to avoid OOM in sitemap generation (200K+ URLs at 4 years × 50 cities).
   const festivalSeoYears = [2026, 2027];
+  // High-demand festivals get extended years (GSC-proven queries)
+  const extendedYearFestivals = new Set([
+    'diwali', 'ganesh-chaturthi', 'holi', 'dussehra', 'akshaya-tritiya',
+    'raksha-bandhan', 'hanuman-jayanti', 'janmashtami', 'chhath-puja',
+  ]);
+  const extendedYears = [2028, 2029];
   for (const fSlug of festivalSeoSlugs) {
+    // Base years (2026-2027) for all festivals
     for (const fYear of festivalSeoYears) {
       for (const fCity of festivalSeoCities) {
         addEntries(entries, `/festivals/${fSlug}/${fYear}/${fCity}`, {
           changeFrequency: 'monthly',
           priority: 0.7,
         });
+      }
+    }
+    // Extended years (2028-2029) only for GSC-proven high-demand festivals
+    // Uses top 15 cities only (not 50) to keep sitemap manageable
+    if (extendedYearFestivals.has(fSlug)) {
+      const top15Cities = festivalSeoCities.slice(0, 15);
+      for (const fYear of extendedYears) {
+        for (const fCity of top15Cities) {
+          addEntries(entries, `/festivals/${fSlug}/${fYear}/${fCity}`, {
+            changeFrequency: 'monthly',
+            priority: 0.6,
+          });
+        }
       }
     }
   }

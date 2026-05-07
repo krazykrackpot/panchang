@@ -34,7 +34,7 @@ const CONTENT = {
     accuracy: [
       { title: 'Ephemeris', text: 'Swiss Ephemeris v2.10 powered by NASA JPL DE441 — the same planetary ephemeris used by NASA for spacecraft navigation. Sub-arcsecond accuracy for Sun, Moon, and all planets including true lunar nodes (Rahu/Ketu).' },
       { title: 'Ayanamsha', text: 'Lahiri (Chitrapaksha) Ayanamsha as default — the Indian government standard used by the Indian Astronomical Ephemeris. Krishnamurti Ayanamsha available for KP System analysis.' },
-      { title: 'Verification', text: '3,005 automated tests covering panchang accuracy, kundali computation, dasha periods, yoga detection, and festival dates. Regularly cross-verified against Prokerala and professional Hindu almanacs for multiple locations worldwide.' },
+      { title: 'Verification', text: '3,005 automated tests covering panchang accuracy, kundali computation, dasha periods, yoga detection, and festival dates. Regularly cross-verified against professional Hindu almanacs and authoritative panchang sources for multiple locations worldwide.' },
       { title: 'Sunrise Model', text: 'Swiss Ephemeris atmospheric refraction model accounting for observer elevation, temperature, and pressure. Verified within ±1 minute of professional panchang sources across Delhi, Bangalore, and New York.' },
     ],
     heritage: [

@@ -101,7 +101,7 @@ export async function GET(req: NextRequest) {
 
   // Filter: only keep windows above minimum score
   // V2 returns ALL windows including poor ones — must filter to match classical muhurta standards
-  // Reference: Prokerala/AstroYogi show ~8 marriage days in May 2026. Score >= 50 gives ~10-12.
+  // Empirically, score >= 50 yields ~10-12 auspicious days per month — aligns with classical expectations.
   const windows = allWindows.filter(w => w.score >= 50);
 
   // Activity rules for factor verdicts

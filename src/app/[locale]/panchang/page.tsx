@@ -183,7 +183,7 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
     name: latestVideo.title,
     description: `Vedic Panchang for ${dateStr}: ${panchang?.tithi?.name?.en || ''}, ${panchang?.nakshatra?.name?.en || ''}, ${panchang?.yoga?.name?.en || ''}. Rahu Kaal ${panchang?.rahuKaal?.start || ''}–${panchang?.rahuKaal?.end || ''}.`,
     thumbnailUrl: latestVideo.thumbnail,
-    uploadDate: latestVideo.published.split('T')[0],
+    uploadDate: latestVideo.published.includes('T') ? latestVideo.published : `${latestVideo.published}T00:00:00+00:00`,
     contentUrl: `https://www.youtube.com/watch?v=${latestVideo.videoId}`,
     embedUrl: `https://www.youtube.com/embed/${latestVideo.videoId}`,
     duration: 'PT60S',

@@ -134,11 +134,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: 'Dekho Panchang',
       locale: locale === 'hi' ? 'hi_IN' : locale === 'sa' ? 'sa_IN' : 'en_US',
       type: 'article',
+      images: [
+        {
+          url: `${BASE_URL}/${locale}/festivals/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: `${festivalNameEn} ${year} in ${cityNameEn}`,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
+      images: [`${BASE_URL}/${locale}/festivals/opengraph-image`],
     },
     alternates: {
       canonical: `${BASE_URL}/en/festivals/${slug}/${year}/${city}`,

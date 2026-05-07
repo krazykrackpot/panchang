@@ -386,18 +386,13 @@ export const NAKSHATRA_GANA: Record<number, 'deva' | 'manushya' | 'rakshasa'> = 
   19: 'rakshasa',// Moola
   20: 'manushya',// Purva Ashadha
   21: 'manushya',// Uttara Ashadha
-  22: 'rakshasa',// Shravana — actually Deva, correcting below
-  23: 'deva',    // Dhanishta — actually Rakshasa, correcting below
-  24: 'manushya',// Shatabhisha — actually Rakshasa
-  25: 'deva',    // Purva Bhadrapada — actually Manushya
-  26: 'manushya',// Uttara Bhadrapada — actually Manushya
-  27: 'deva',    // Revati
+  22: 'deva',     // Shravana
+  23: 'rakshasa', // Dhanishta
+  24: 'rakshasa', // Shatabhisha
+  25: 'manushya', // Purva Bhadrapada
+  26: 'manushya', // Uttara Bhadrapada
+  27: 'deva',     // Revati
 };
-// NOTE: Verify gana assignments against BPHS during implementation.
-// The above is the standard Muhurta Chintamani assignment.
-// Correct values:
-// 22 Shravana = Deva, 23 Dhanishta = Rakshasa, 24 Shatabhisha = Rakshasa,
-// 25 Purva Bhadrapada = Manushya, 26 Uttara Bhadrapada = Manushya
 
 // ─── Benefic/Malefic Classification ─────────────────────────────────────────
 
@@ -456,14 +451,12 @@ export const PUSHKAR_NAVAMSHA_RANGES: Array<{ sign: number; startDeg: number; en
  * Fixed signs (2,5,8,11): 9th lord is badhaka
  * Dual signs (3,6,9,12): 7th lord is badhaka
  */
-export function getBadhakeshPlanet(lagnaSign: number): number {
-  // Import SIGN_LORDS at call site to avoid circular deps
-  // Returns the planet ID of the badhaka lord
-  const { SIGN_LORDS } = require('@/lib/constants/dignities');
+export function getBadhakeshPlanet(lagnaSign: number, signLords: Record<number, number>): number {
+  // signLords passed in to avoid circular dependency — caller imports SIGN_LORDS
   const modality = getSignModality(lagnaSign);
   const badhakHouse = modality === 'movable' ? 11 : modality === 'fixed' ? 9 : 7;
   const badhakSign = ((lagnaSign - 1 + badhakHouse - 1) % 12) + 1;
-  return SIGN_LORDS[badhakSign];
+  return signLords[badhakSign];
 }
 
 function getSignModality(sign: number): 'movable' | 'fixed' | 'dual' {
@@ -772,7 +765,7 @@ function scoreLagnaPillar(snap: ChartSnapshot, strengths: ChartStrength[], defec
   const maleficInLagna = snap.planets.filter(p => p.house === 1 && NATURAL_MALEFICS.has(p.id));
   if (maleficInLagna.length > 0 && beneficInLagna.length === 0) {
     // Check if Jupiter aspects lagna (houses 5,7,9 from Jupiter)
-    const jupiterAspectsLagna = snap.planets.some(p => p.id === 4 && aspectsHouse(p.house, 1));
+    const jupiterAspectsLagna = snap.planets.some(p => p.id === 4 && planetAspectsHouse(4, p.house, 1));
     if (!jupiterAspectsLagna) {
       score -= 4;
       defects.push({ id: 'malefic_in_lagna', label: { en: 'Malefic in ascendant without benefic aspect', hi: 'शुभ दृष्टि के बिना अशुभ ग्रह लग्न में' }, deduction: 4, isVeto: false, source: 'Prasna Marga Ch.9' });
@@ -827,7 +820,7 @@ function scoreMoonPillar(snap: ChartSnapshot, strengths: ChartStrength[]): numbe
   }
 
   // 5. Jupiter aspecting Moon (0-3)
-  const jupiterAspectsMoon = snap.planets.some(p => p.id === 4 && aspectsHouse(p.house, snap.moonHouse));
+  const jupiterAspectsMoon = snap.planets.some(p => p.id === 4 && planetAspectsHouse(4, p.house, snap.moonHouse));
   if (jupiterAspectsMoon) {
     score += 3;
     strengths.push({ id: 'jupiter_aspects_moon', label: { en: 'Jupiter aspects Moon', hi: 'बृहस्पति की चन्द्र पर दृष्टि' }, points: 3, pillar: 'moon', source: 'Prasna Marga Ch.9' });
@@ -958,7 +951,7 @@ function scoreDefects(snap: ChartSnapshot, defects: ChartDefect[]): { defectScor
   // ── Saturn in lagna without Jupiter aspect ──
   const saturnInLagna = snap.planets.some(p => p.id === 6 && p.house === 1);
   if (saturnInLagna) {
-    const jupAspects = snap.planets.some(p => p.id === 4 && aspectsHouse(p.house, 1));
+    const jupAspects = snap.planets.some(p => p.id === 4 && planetAspectsHouse(4, p.house, 1));
     if (!jupAspects) {
       base -= 5;
       defects.push({ id: 'saturn_in_lagna', label: { en: 'Saturn in ascendant without Jupiter\'s aspect', hi: 'बृहस्पति दृष्टि के बिना शनि लग्न में' }, deduction: 5, isVeto: false, source: 'Prasna Marga Ch.9' });
@@ -1025,14 +1018,9 @@ function getPakshaScore(tithiNumber: number): number {
   return 0; // Krishna Ekadashi-Amavasya or Pratipada
 }
 
-/** Check if planetHouse aspects targetHouse (Vedic aspects: all planets aspect 7th;
- *  Mars additionally aspects 4,8; Jupiter 5,9; Saturn 3,10) */
-function aspectsHouse(planetHouse: number, targetHouse: number): boolean {
-  const offset = ((targetHouse - planetHouse + 12) % 12) || 12;
-  return offset === 7; // Simplified: 7th aspect universal. Full aspects handled per-planet in defect checks.
-}
-
-/** Full Vedic aspects including special aspects */
+/** Full Vedic aspects including Mars (4,8), Jupiter (5,9), Saturn (3,10) special aspects.
+ *  CRITICAL: Jupiter's 5th and 9th aspects are essential for birth-election scoring —
+ *  a simplified 7th-only check would miss Jupiter aspecting lagna from houses 5 and 9. */
 function planetAspectsHouse(planetId: number, planetHouse: number, targetHouse: number): boolean {
   const offset = ((targetHouse - planetHouse + 12) % 12) || 12;
   if (offset === 7) return true; // All planets aspect 7th
@@ -1525,7 +1513,12 @@ npx tsc --noEmit -p tsconfig.build-check.json
 npx next build
 ```
 
-- [ ] **Step 8: Test in browser**
+- [ ] **Step 8: Add ethical disclaimer**
+
+Add a disclaimer at the top of the page (subtle, below the title, in `text-text-secondary text-sm`):
+"This tool provides astrological guidance based on classical Jyotish principles. It is for educational and reference purposes. Always follow your doctor's medical advice for delivery timing."
+
+- [ ] **Step 9: Test in browser**
 
 Start dev server, navigate to `/caesarean-muhurta`. Verify:
 - Form renders, location auto-populates from store
@@ -1623,14 +1616,18 @@ In `src/lib/seo/cross-links.ts`, add cross-links from:
 - `/learn/muhurtas` → `/learn/caesarean-muhurta`
 - `/caesarean-muhurta` → `/muhurta-ai`, `/charts`, `/learn/caesarean-muhurta`
 
-- [ ] **Step 5: Type check + build**
+- [ ] **Step 5: Add to Tools hub page**
+
+Add an entry for Caesarean Muhurta in whatever tools index/hub page lists the 12 existing tools (check `src/app/[locale]/tools/` or equivalent). This must be discoverable from the main nav — an unlinked page is a dead page.
+
+- [ ] **Step 6: Type check + build**
 
 ```bash
 npx tsc --noEmit -p tsconfig.build-check.json
 npx next build
 ```
 
-- [ ] **Step 6: Verify integration in browser**
+- [ ] **Step 7: Verify integration in browser**
 
 - Check that `/caesarean-muhurta` appears in the rendered sitemap
 - Check that cross-links render on muhurta-ai and kundali pages

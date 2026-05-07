@@ -32,15 +32,15 @@ export const PAGE_META: Record<string, PageMeta> = {
       bn: 'আজকের পঞ্চাঙ্গ — তিথি, নক্ষত্র, যোগ | Dekho Panchang',
     },
     description: {
-      en: 'Accurate daily Panchang with Tithi, Nakshatra, Yoga, Karana, Rahu Kalam, sunrise/sunset for any location worldwide. Computed from classical Vedic algorithms.',
-      hi: 'विश्व भर में किसी भी स्थान के लिए सटीक दैनिक पंचांग — तिथि, नक्षत्र, योग, करण, राहु काल, सूर्योदय/सूर्यास्त।',
-      sa: 'विश्वस्य कस्यापि स्थानस्य कृते सम्यक् दैनिकपञ्चाङ्गम् — तिथिः नक्षत्रं योगः करणम्।',
-      gu: 'ગુજરાત અને વિશ્વ ભરમાં કોઈ પણ સ્થળ માટે સચોટ દૈનિક પંચાંગ — તિથિ, નક્ષત્ર, યોગ, કરણ, રાહુ કાળ.',
-      kn: 'ವಿಶ್ವದ ಯಾವುದೇ ಸ್ಥಳಕ್ಕೆ ನಿಖರ ದೈನಂದಿನ ಪಂಚಾಂಗ — ತಿಥಿ, ನಕ್ಷತ್ರ, ಯೋಗ, ಕರಣ, ರಾಹು ಕಾಲ.',
-      te: 'ప్రపంచంలో ఎక్కడైనా ఖచ్చితమైన రోజువారీ పంచాంగం — తిథి, నక్షత్రం, యోగం, కరణం, రాహు కాలం.',
-      bn: 'বিশ্বের যেকোনো স্থানের জন্য সঠিক দৈনিক পঞ্চাঙ্গ — তিথি, নক্ষত্র, যোগ, করণ, রাহু কাল.',
+      en: 'Check today\'s Panchang for your city — Tithi, Nakshatra, Yoga, Karana, Rahu Kaal, Shubh Muhurat, sunrise & sunset. Free, accurate, updated daily for any location worldwide.',
+      hi: 'आज का पंचांग अपने शहर के लिए देखें — तिथि, नक्षत्र, योग, करण, राहु काल, शुभ मुहूर्त। निःशुल्क, सटीक, प्रतिदिन अपडेट।',
+      sa: 'अद्य स्वनगरस्य पञ्चाङ्गं पश्यतु — तिथिः नक्षत्रं योगः करणं राहुकालः शुभमुहूर्तः सूर्योदयः सूर्यास्तश्च।',
+      gu: 'આજનું પંચાંગ તમારા શહેર માટે તપાસો — તિથિ, નક્ષત્ર, રાહુ કાળ, શુભ મુહૂર્ત. મફત અને સચોટ.',
+      kn: 'ನಿಮ್ಮ ನಗಗಕ್ಕೆ ಇಂದಿನ ಪಂಚಾಂಗ ಪರಿಶೀಲಿಸಿ — ತಿಥಿ, ನಕ್ಷತ್ರ, ರಾಹು ಕಾಲ, ಶುಭ ಮುಹೂರ್ತ. ಉಚಿತ ಮತ್ತು ನಿಖರ.',
+      te: 'మీ నగరం కోసం నేటి పంచాంగం చూడండి — తిథి, నక్షత్రం, రాహు కాలం, శుభ ముహూర్తం. ఉచితం మరియు ఖచ్చితం.',
+      bn: 'আজকের পঞ্চাঙ্গ আপনার শহরের জন্য দেখুন — তিথি, নক্ষত্র, রাহু কাল, শুভ মুহূর্ত. বিনামূল্যে ও সঠিক.',
     },
-    keywords: ['panchang today', 'daily panchang', 'tithi today', 'nakshatra today', 'rahu kalam', 'hindu calendar'],
+    keywords: ['panchang today', 'aaj ka panchang', 'daily panchang', 'tithi today', 'nakshatra today', 'rahu kaal today', 'shubh muhurat today', 'hindu calendar'],
   },
   '/panchang/auspicious': {
     title: {
@@ -49,7 +49,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       sa: 'अद्य शुभमुहूर्ताः — अभिजित्, अमृतकालः, ब्रह्ममुहूर्तः',
     },
     description: {
-      en: 'Today\'s auspicious timings: Brahma Muhurta, Abhijit Muhurta, Vijaya Muhurta, Amrit Kalam, Godhuli, Sandhya Kaal, and special yoga windows for any location.',
+      en: 'Check today\'s Shubh Muhurat — Brahma Muhurta, Abhijit, Amrit Kalam, Godhuli & more. Find the best time to start anything today. Free, location-aware.',
       hi: 'आज के शुभ समय: ब्रह्म मुहूर्त, अभिजित मुहूर्त, विजय मुहूर्त, अमृत काल, गोधूलि, संध्या काल और विशेष योग।',
       sa: 'अद्य शुभसमयाः: ब्रह्ममुहूर्तः, अभिजित्मुहूर्तः, विजयमुहूर्तः, अमृतकालः, गोधूलिः, सन्ध्याकालः।',
     },
@@ -62,7 +62,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       sa: 'अद्य अशुभसमयाः — राहुकालः, यमगण्डः, वर्ज्यम्',
     },
     description: {
-      en: 'Today\'s inauspicious timings: Rahu Kaal, Yamaganda, Gulika Kaal, Dur Muhurtam, Varjyam, Bhadra, Ganda Moola, and Panchaka for any location worldwide.',
+      en: 'Avoid bad timings today — Rahu Kaal, Yamaganda, Gulika Kaal, Varjyam, Dur Muhurtam & Bhadra for your city. Check before starting anything important.',
       hi: 'आज के अशुभ समय: राहु काल, यमगण्ड, गुलिक काल, दुर्मुहूर्त, वर्ज्यम, भद्रा, गण्ड मूल, पंचक।',
       sa: 'अद्य अशुभसमयाः: राहुकालः, यमगण्डः, गुलिककालः, दुर्मुहूर्तम्, वर्ज्यम्, भद्रा, गण्डमूलम्, पञ्चकम्।',
     },
@@ -75,7 +75,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       sa: 'निःशुल्कजन्मकुण्डली — वैदिकजन्मपत्रिका',
     },
     description: {
-      en: 'Generate your free Vedic birth chart (Kundali) with planet positions, Vimshottari Dasha, Yogas, Shadbala, and detailed Tippanni commentary.',
+      en: 'Create your free Kundali in seconds — 19 charts, 15 dasha systems, 75+ yogas, Shadbala & AI-powered reading. No signup required.',
       hi: 'ग्रह स्थिति, विंशोत्तरी दशा, योग, षड्बल और विस्तृत टिप्पणी के साथ अपनी निःशुल्क वैदिक जन्म कुण्डली बनाएं।',
       sa: 'ग्रहस्थितिः विंशोत्तरीदशा योगाः षड्बलं विस्तृतटिप्पणी च सहितं निःशुल्कं वैदिकजन्मकुण्डलीं रचयतु।',
     },
@@ -88,7 +88,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       sa: 'कुण्डलीमेलनम् — अष्टकूटगुणमेलनम्',
     },
     description: {
-      en: 'Free Kundali matching with 36-point Ashta Kuta Guna Milan system. Check horoscope compatibility for marriage with Nadi Dosha analysis.',
+      en: 'Free Kundali matching — 36-point Guna Milan with Nadi Dosha check. Get instant compatibility score for marriage. No signup needed.',
       hi: '36 अंकों वाली अष्ट कूट गुण मिलान प्रणाली से निःशुल्क कुण्डली मिलान। नाड़ी दोष विश्लेषण सहित।',
       sa: 'षट्त्रिंशदङ्काभिः अष्टकूटगुणमेलनप्रणाल्या निःशुल्कं कुण्डलीमेलनम्।',
     },
@@ -101,7 +101,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       sa: 'हिन्दूपर्वपञ्चाङ्गम् २०२६ — व्रतम् एकादशी पूर्णिमा',
     },
     description: {
-      en: 'Complete Hindu festival calendar with 180+ festivals, vrats, Ekadashi, Purnima, Amavasya dates. Amanta and Purnimant systems. Location-aware.',
+      en: 'All 180+ Hindu festivals & vrat dates for 2026 — Ekadashi, Purnima, Amavasya, Chaturthi. Location-aware with exact timings for your city.',
       hi: '180+ त्योहार, व्रत, एकादशी, पूर्णिमा, अमावस्या तिथियों के साथ पूर्ण हिन्दू त्योहार कैलेंडर।',
       sa: '१८०+ पर्वाणि व्रतानि एकादशी पूर्णिमा अमावस्या तिथिभिः सह सम्पूर्णं हिन्दूपर्वपञ्चाङ्गम्।',
     },
@@ -260,7 +260,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       sa: 'सूर्यचन्द्रराशिगणकम् — स्वराशिं जानीयात्',
     },
     description: {
-      en: 'Calculate your Vedic Sun sign (Surya Rashi), Moon sign (Chandra Rashi), and birth Nakshatra instantly. Free and accurate.',
+      en: 'Find your real Vedic Sun sign, Moon sign & Nakshatra — enter your birth details and get results instantly. Free, accurate, no signup.',
       hi: 'अपनी वैदिक सूर्य राशि, चन्द्र राशि और जन्म नक्षत्र तुरंत जानें। निःशुल्क और सटीक।',
       sa: 'स्वस्य वैदिकसूर्यराशिं चन्द्रराशिं जन्मनक्षत्रं च शीघ्रं जानीयात्।',
     },
@@ -273,7 +273,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       sa: 'साडेसातिगणकम् — शनिगोचरविश्लेषणम्',
     },
     description: {
-      en: 'Check if Sade Sati (Saturn\'s 7.5-year transit) is active for your Moon sign. Phase analysis, start/end dates, and remedies.',
+      en: 'Is Sade Sati active for you? Check now — enter your Moon sign for instant phase analysis, start/end dates, intensity score & remedies. Free calculator.',
       hi: 'जानें कि क्या आपकी चन्द्र राशि पर साढ़े साती सक्रिय है। चरण विश्लेषण, तिथियां और उपाय।',
       sa: 'स्वचन्द्रराश्यां साडेसातिः सक्रिया किं वेति जानीयात्। चरणविश्लेषणं तिथयः उपायाश्च।',
     },
@@ -286,7 +286,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       sa: 'मुहूर्तकृत्रिमबुद्धिः — षट्त्रिंशत्नियमबाधायन्त्रम्',
     },
     description: {
-      en: 'Classical constraint-based muhurta engine with 36 rules from 7 texts (MC, Dharma Sindhu, BPHS, Brihat Samhita). Fatal doshas (Ganda Yoga, Dagdha Tithi, Nakshatra Gandanta) reject windows outright — not averaged away. 5-tier cancellation hierarchy. Classically verified nakshatra whitelists per activity. Personalised via Tara Bala (3-cycle), Chandra Bala, and Dasha Harmony. 20 activities.',
+      en: 'Find the best date & time for marriage, business, travel & 17 more activities. 36-rule classical engine rejects bad windows — doesn\'t just score them. Personalized with your birth chart. Try free.',
       hi: '7 शास्त्रीय ग्रन्थों से 36 नियमों वाला बाधा-आधारित मुहूर्त इंजन। गण्ड योग, दग्ध तिथि, नक्षत्र गण्डान्त जैसे घातक दोष सीधे वर्ज्य — औसत नहीं। 5-स्तरीय निवारण श्रेणी। प्रत्येक कार्य के लिए शास्त्रीय रूप से सत्यापित नक्षत्र श्वेतसूची। तारा बल (3-चक्र), चन्द्र बल और दशा सामंजस्य से व्यक्तिगत।',
       sa: 'सप्तशास्त्रग्रन्थेभ्यः षट्त्रिंशत्नियमैः बाधाधारितमुहूर्तयन्त्रम्। घातकदोषाः साक्षात् वर्ज्याः।',
     },
@@ -583,8 +583,8 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['rahu kaal today', 'rahu kalam today', 'rahukaal timings', 'inauspicious time today', 'rahu kaal by city', 'rahu kaal time', 'today rahu kaal', 'आज का राहु काल'],
   },
   '/choghadiya': {
-    title: { en: 'Choghadiya Today — Auspicious & Inauspicious Time Slots', hi: 'आज का चौघड़िया — शुभ और अशुभ समय', sa: 'अद्य चौघड़िया — शुभाशुभकालः' },
-    description: { en: 'Check today\'s Choghadiya timings — Amrit, Shubh, Labh, Char, Rog, Kaal, Udveg periods. Find the best time for travel, business, and auspicious activities.', hi: 'आज का चौघड़िया समय — अमृत, शुभ, लाभ, चर, रोग, काल, उद्वेग। यात्रा, व्यापार और शुभ कार्यों के लिए सर्वोत्तम समय।', sa: 'अद्यतनचौघड़ियासमयः — अमृत, शुभ, लाभ, चर, रोग, काल, उद्वेग। यात्रायै शुभकार्याय च उत्तमसमयः।' },
+    title: { en: 'Choghadiya Today — Best Time to Start Anything | Free', hi: 'आज का चौघड़िया — किसी भी कार्य का शुभ समय | मुफ़्त', sa: 'अद्य चौघड़िया — कार्यारम्भस्य शुभकालः' },
+    description: { en: 'Check today\'s Choghadiya now — find Amrit, Shubh & Labh slots for your city. Best times for travel, business, shopping & auspicious activities. Free, accurate, no signup.', hi: 'आज का चौघड़िया अभी देखें — अपने शहर के लिए अमृत, शुभ और लाभ काल। यात्रा, व्यापार, खरीदारी के लिए। मुफ़्त और सटीक।', sa: 'अद्यतनचौघड़ियासमयं पश्यतु — स्वनगरस्य कृते अमृत-शुभ-लाभकालः।' },
     keywords: ['choghadiya today', 'choghadiya timings', 'auspicious time today', 'shubh muhurat'],
   },
   '/hora': {
@@ -1218,7 +1218,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       sa: 'वैदिकज्योतिषं शिक्षतु — निःशुल्कपाठ्यक्रमः',
     },
     description: {
-      en: 'Free comprehensive course on Vedic astrology (Jyotish). Learn Grahas, Rashis, Nakshatras, Tithis, Yogas, Kundali reading, and more.',
+      en: 'Learn Vedic astrology free — 127+ interactive modules from basics to advanced. Grahas, Rashis, Nakshatras, Kundali reading, Muhurta & more. Start now.',
       hi: 'वैदिक ज्योतिष का निःशुल्क पूर्ण पाठ्यक्रम। ग्रह, राशि, नक्षत्र, तिथि, योग, कुण्डली पढ़ना सीखें।',
       sa: 'वैदिकज्योतिषस्य निःशुल्कः सम्पूर्णपाठ्यक्रमः। ग्रहान् राशीन् नक्षत्राणि तिथीन् योगान् कुण्डलीपठनं च शिक्षतु।',
     },

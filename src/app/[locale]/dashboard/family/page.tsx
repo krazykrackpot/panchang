@@ -10,8 +10,21 @@ import { Link } from '@/lib/i18n/navigation';
 import { useAuthStore } from '@/stores/auth-store';
 import { useLocationStore } from '@/stores/location-store';
 import { getSupabase } from '@/lib/supabase/client';
-import { generateKundali } from '@/lib/ephem/kundali-calc';
 import { generateTippanni } from '@/lib/kundali/tippanni-engine';
+
+/** Generate kundali via server API instead of importing the heavy computation client-side */
+async function fetchKundali(bd: BirthData): Promise<KundaliData> {
+  const res = await fetch('/api/kundali', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(bd),
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ error: 'Unknown error' }));
+    throw new Error(err.error || `Kundali API failed: ${res.status}`);
+  }
+  return res.json();
+}
 import type { DoshaInsight } from '@/lib/kundali/tippanni-types';
 import { computeMemberStatus, type MemberStatus } from '@/lib/kundali/family-synthesis/member-status';
 import { findCollectiveMuhurta, type CollectiveMuhurtaWindow, type FamilyMemberInput } from '@/lib/kundali/family-synthesis/collective-muhurta';
@@ -215,8 +228,8 @@ export default function FamilyCommandCenter() {
       for (const chart of savedCharts) {
         try {
           const bd = chart.birth_data;
-          // generateKundali expects BirthData with all fields
-          const kundali: KundaliData = generateKundali({
+          // Compute kundali server-side via API (avoids heavy client bundle)
+          const kundali: KundaliData = await fetchKundali({
             name: bd.name ?? chart.label,
             date: bd.date,
             time: bd.time,
@@ -283,10 +296,8 @@ export default function FamilyCommandCenter() {
     setMuhurtaScanning(true);
     setMuhurtaScanned(false);
 
-    // NOTE: requestAnimationFrame prevents UI freeze but still runs on the main thread.
-    // For truly non-blocking computation, a Web Worker would be needed. The muhurta scan
-    // is fast enough (~50-200ms) that this is acceptable for now.
-    requestAnimationFrame(() => {
+    // Kundali generation now runs server-side via API — no main-thread blocking.
+    (async () => {
       try {
         const [startDate, endDate] = getMonthDateRange(selectedMonth);
 
@@ -295,7 +306,7 @@ export default function FamilyCommandCenter() {
         for (const chart of charts) {
           try {
             const bd = chart.birth_data;
-            const kundali = generateKundali({
+            const kundali = await fetchKundali({
               name: bd.name ?? chart.label,
               date: bd.date,
               time: bd.time,
@@ -352,7 +363,7 @@ export default function FamilyCommandCenter() {
         setMuhurtaScanning(false);
         setMuhurtaScanned(true);
       }
-    });
+    })();
   }, [memberStatuses, charts, selectedActivity, selectedMonth, lat, lng, timezone]);
 
   // --- Derived counts ---

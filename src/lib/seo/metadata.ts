@@ -1670,6 +1670,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: 'Tripushkar Yoga triples the fruit of actions — even rarer than Dwipushkar. Learn the specific tithi-nakshatra-weekday combination and when to use this powerful window.', hi: 'त्रिपुष्कर योग कार्यों का फल तिगुना करता है — द्विपुष्कर से भी दुर्लभ।', sa: 'त्रिपुष्करयोगस्य विवरणम्।' },
     keywords: ['tripushkar yoga', 'triple auspicious', 'muhurta yoga', 'rarest yoga', 'vedic timing combination'],
   },
+  '/videos': {
+    title: { en: 'Videos — Dekho Panchang', hi: 'वीडियो — देखो पंचांग', sa: 'चलचित्राणि — देखो पञ्चाङ्गम्' },
+    description: { en: 'Watch Vedic astrology videos — daily panchang shorts, Sade Sati explained, nakshatra guides, and spiritual knowledge from Dekho Panchang.', hi: 'वैदिक ज्योतिष वीडियो देखें — दैनिक पंचांग शॉर्ट्स, साढ़े साती विवरण, नक्षत्र मार्गदर्शिका और आध्यात्मिक ज्ञान।', sa: 'वैदिकज्योतिषचलचित्राणि — दैनिकपञ्चाङ्गम्, साढेसात्याः विवरणम्।' },
+    keywords: ['vedic astrology videos', 'panchang video', 'jyotish youtube', 'dekho panchang videos', 'sade sati video', 'daily panchang shorts'],
+  },
 };
 
 /**

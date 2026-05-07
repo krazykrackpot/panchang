@@ -34,6 +34,7 @@ const routes = [
   '/festivals',
   '/ekadashi',
   '/pricing',
+  '/videos',
   // Deep dives
   '/panchang/tithi',
   '/panchang/nakshatra',

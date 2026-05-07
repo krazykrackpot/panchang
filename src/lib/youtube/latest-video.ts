@@ -14,6 +14,7 @@ export interface LatestVideo {
 }
 
 let cached: { data: LatestVideo | null; fetchedAt: number } = { data: null, fetchedAt: 0 };
+let cachedAll: { data: LatestVideo[]; fetchedAt: number } = { data: [], fetchedAt: 0 };
 const CACHE_TTL = 60 * 60 * 1000; // 1 hour
 
 export async function getLatestVideo(): Promise<LatestVideo | null> {
@@ -51,5 +52,45 @@ export async function getLatestVideo(): Promise<LatestVideo | null> {
   } catch (err) {
     console.error('[youtube] RSS feed fetch failed:', err);
     return cached.data; // return stale data on error
+  }
+}
+
+/**
+ * Fetch all videos from the channel RSS feed (up to 15, which is YouTube's feed limit).
+ * Zero API quota — uses Atom XML feed. Cached 1 hour.
+ */
+export async function getAllVideos(): Promise<LatestVideo[]> {
+  const now = Date.now();
+  if (cachedAll.data.length > 0 && now - cachedAll.fetchedAt < CACHE_TTL) {
+    return cachedAll.data;
+  }
+
+  try {
+    const res = await fetch(FEED_URL, { next: { revalidate: 3600 } });
+    if (!res.ok) return cachedAll.data;
+
+    const xml = await res.text();
+    const entries = xml.match(/<entry>[\s\S]*?<\/entry>/g) || [];
+    const videos: LatestVideo[] = [];
+
+    for (const entry of entries) {
+      const videoId = entry.match(/<yt:videoId>([^<]+)<\/yt:videoId>/)?.[1];
+      const title = entry.match(/<title>([^<]+)<\/title>/)?.[1];
+      const published = entry.match(/<published>([^<]+)<\/published>/)?.[1];
+      if (!videoId) continue;
+
+      videos.push({
+        videoId,
+        title: title || 'Dekho Panchang Video',
+        thumbnail: `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+        published: published || new Date().toISOString(),
+      });
+    }
+
+    cachedAll = { data: videos, fetchedAt: now };
+    return videos;
+  } catch (err) {
+    console.error('[youtube] RSS feed fetch failed:', err);
+    return cachedAll.data;
   }
 }

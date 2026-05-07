@@ -379,6 +379,30 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'मुहूर्तकृत्रिमप्रज्ञा अङ्कनाय सर्वदा लाहिरी (चित्रपक्ष) अयनांशम् उपयुनक्ति, भवतः कुण्डलीअयनांशवरणं यत्किमपि स्यात्। मुहूर्तचिन्तामणि-धर्मसिन्धु-प्रश्नमार्गादिषु सर्वेषु शास्त्रीयमुहूर्तनियमसारणीषु लाहिरीनक्षत्रसीमाः प्रयुक्ताः। भिन्नेन अयनांशेन तासां सीमानां विस्थापनं न्यूनसटीकफलानि च भवेयुः।',
       },
     },
+    {
+      question: {
+        en: 'How does the AI Muhurta engine differ from other panchang sites?',
+        hi: 'AI मुहूर्त इंजन अन्य पंचांग साइटों से कैसे अलग है?',
+        sa: 'कृत्रिमप्रज्ञामुहूर्तयन्त्रं अन्येभ्यः पञ्चाङ्गस्थलेभ्यः कथं भिन्नम्?',
+      },
+      answer: {
+        en: 'Most panchang sites use binary pass/fail on Panchanga Shuddhi — a date either passes or fails. Dekho Panchang\'s 36-rule engine scores windows 0-100 with classical cancellation logic from Muhurta Chintamani Ch.7: a strong lagna genuinely cancels a weak karana, not just offsets it numerically. We also personalise scores using your birth chart (Tara Bala, Chandra Bala, Dasha Harmony) and explain each recommendation with chapter-level citations — like a classically trained Jyotishi.',
+        hi: 'अधिकांश पंचांग साइटें पंचांग शुद्धि पर हाँ/ना (pass/fail) प्रणाली उपयोग करती हैं। देखो पंचांग का 36-नियम इंजन मुहूर्त चिन्तामणि अध्याय 7 के शास्त्रीय निवारण तर्क के साथ 0-100 अंकन करता है: बलवान लग्न दुर्बल करण का वास्तविक निवारण करता है। साथ ही, आपकी जन्म कुण्डली से ताराबल, चन्द्रबल और दशा सामंजस्य से व्यक्तिगत अंकन करता है — प्रत्येक सिफारिश शास्त्रीय उद्धरणों के साथ।',
+        sa: 'अधिकांशपञ्चाङ्गस्थलानि पञ्चाङ्गशुद्ध्या द्वयात्मकप्रणालिम् उपयुञ्जते। देखोपञ्चाङ्गस्य ३६-नियमयन्त्रम् शास्त्रीयनिवारणतर्कैः ० तः १०० पर्यन्तम् अङ्कयति।',
+      },
+    },
+    {
+      question: {
+        en: 'Is the Muhurta AI free to use?',
+        hi: 'क्या मुहूर्त AI मुफ्त है?',
+        sa: 'किं मुहूर्तकृत्रिमप्रज्ञा निःशुल्का अस्ति?',
+      },
+      answer: {
+        en: 'Yes, completely free. The Muhurta AI scanner, all 20 activities, personalised scoring, and classical reasoning chains are available without any paywall or signup. We believe Jyotish Shastra should be accessible to everyone.',
+        hi: 'हाँ, पूर्णतः मुफ्त। मुहूर्त AI स्कैनर, सभी 20 गतिविधियाँ, व्यक्तिगत अंकन, और शास्त्रीय तर्क श्रृंखलाएँ बिना किसी भुगतान या साइनअप के उपलब्ध हैं। हमारा मानना है कि ज्योतिष शास्त्र सभी के लिए सुलभ होना चाहिए।',
+        sa: 'आम्, सर्वथा निःशुल्कम्। ज्योतिषशास्त्रं सर्वेभ्यः सुलभं स्यात् इति अस्माकं विश्वासः।',
+      },
+    },
   ],
 
   // ─── /rahu-kaal ─────────────────────────────────────────────

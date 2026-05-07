@@ -335,6 +335,22 @@ export default async function FestivalCityPage({
               {tl({ en: `in ${cityNameLocale}`, hi: `${cityNameLocale} में` }, locale)}
             </span>
           </h1>
+          {/* Cross-links to core pages — passes SEO authority from high-impression festival pages */}
+          <div className="flex flex-wrap justify-center gap-2 mt-3">
+            <a href={`/${locale}/panchang`} className="px-3 py-1 rounded-full text-xs border border-gold-primary/20 text-gold-dark hover:bg-gold-primary/10 transition-colors">
+              {isHi ? 'आज का पंचांग' : "Today's Panchang"}
+            </a>
+            <a href={`/${locale}/ekadashi`} className="px-3 py-1 rounded-full text-xs border border-gold-primary/20 text-gold-dark hover:bg-gold-primary/10 transition-colors">
+              {isHi ? 'एकादशी 2026' : 'Ekadashi 2026'}
+            </a>
+            <a href={`/${locale}/muhurta-ai`} className="px-3 py-1 rounded-full text-xs border border-gold-primary/20 text-gold-dark hover:bg-gold-primary/10 transition-colors">
+              {isHi ? 'शुभ मुहूर्त खोजें' : 'Find Auspicious Muhurta'}
+            </a>
+            <a href={`/${locale}/kundali`} className="px-3 py-1 rounded-full text-xs border border-gold-primary/20 text-gold-dark hover:bg-gold-primary/10 transition-colors">
+              {isHi ? 'कुण्डली बनाएँ' : 'Generate Kundali'}
+            </a>
+          </div>
+
           <p className="text-text-secondary text-sm max-w-lg mx-auto" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
             {tl({
               en: `Exact puja times & muhurta computed for ${cityNameEn} coordinates (${cityData.lat.toFixed(2)}°N, ${cityData.lng.toFixed(2)}°E)`,

@@ -103,16 +103,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const longDate = fmtLongDate(festivalDate);
     const muhurtaPart = pujaMuhuratStr ? ` Puja: ${pujaMuhuratStr}.` : '';
     const sunPart = sunriseStr ? ` Sunrise ${sunriseStr}, Sunset ${sunsetStr}.` : '';
-    description = `${festivalNameEn} in ${cityNameEn} on ${longDate}.${muhurtaPart}${sunPart} Puja vidhi & significance.`;
+    description = `${festivalNameEn} in ${cityNameEn} on ${longDate}.${muhurtaPart}${sunPart} Step-by-step puja vidhi, mantras & samagri list inside.`;
     if (description.length > 155) {
-      // Trim to fit — drop sun times first
-      description = `${festivalNameEn} in ${cityNameEn} on ${longDate}.${muhurtaPart} Puja vidhi & significance.`;
+      description = `${festivalNameEn} in ${cityNameEn} on ${longDate}.${muhurtaPart} Step-by-step puja vidhi, mantras & samagri list inside.`;
     }
     if (description.length > 155) {
       description = description.slice(0, 152) + '...';
     }
   } else {
-    description = `${festivalNameEn} ${year} in ${cityNameEn}: exact date, Puja Muhurta, sunrise & significance. Free, no ads.`.slice(0, 155);
+    description = `${festivalNameEn} ${year} in ${cityNameEn}: exact date & puja muhurta. Step-by-step vidhi, mantras & samagri checklist.`.slice(0, 155);
   }
 
   const url = `${BASE_URL}/${locale}/festivals/${slug}/${year}/${city}`;

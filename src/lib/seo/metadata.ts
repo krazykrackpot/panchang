@@ -578,8 +578,8 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['ashtamangala prashna', 'kerala astrology', 'horary divination'],
   },
   '/rahu-kaal': {
-    title: { en: 'Rahu Kaal Today — Exact Start & End Time | Free, No Ads | Dekho Panchang', hi: 'आज का राहु काल — सटीक समय | मुफ़्त, विज्ञापन रहित | Dekho Panchang', sa: 'अद्य राहुकालः — यथार्थसमयः', mai: 'आइ के राहु काल — सटीक समय | मुफ़्त' },
-    description: { en: 'Check today\'s Rahu Kaal, Yamaganda & Gulika Kaal times for your city. Computed from Swiss Ephemeris sunrise — accurate to the minute. Also: Choghadiya, Hora, activities to avoid. Free, no ads, 7 languages.', hi: 'आज का राहु काल, यमगण्ड और गुलिक काल — आपके शहर के लिए सटीक समय। स्विस एफेमेरिस सूर्योदय से गणना — मिनट-स्तरीय सटीकता। साथ में: चौघड़िया, होरा, वर्जित कार्य। मुफ़्त, विज्ञापन रहित।', sa: 'अद्य राहुकालस्य यमगण्डस्य गुलिककालस्य च समयाः।' },
+    title: { en: 'Rahu Kaal Today — Exact Time for Your City', hi: 'आज का राहु काल — आपके शहर का सटीक समय', sa: 'अद्य राहुकालः — भवतः नगरस्य यथार्थसमयः', mai: 'आइ के राहु काल — अहाँ के शहर के सटीक समय' },
+    description: { en: 'Rahu Kaal, Yamaganda & Gulika Kaal times for any city — accurate to the minute. Plus Choghadiya, Hora chart, and what to avoid during Rahu Kaal. Updated daily.', hi: 'राहु काल, यमगण्ड और गुलिक काल — किसी भी शहर के लिए मिनट-स्तरीय सटीकता। चौघड़िया, होरा, वर्जित कार्य। रोज़ अपडेट।', sa: 'राहुकालयमगण्डगुलिककालसमयाः — कस्यापि नगरस्य कृते निमेषस्तरीयसटीकता।' },
     keywords: ['rahu kaal today', 'rahu kalam today', 'rahukaal timings', 'inauspicious time today', 'rahu kaal by city', 'rahu kaal time', 'today rahu kaal', 'आज का राहु काल'],
   },
   '/choghadiya': {
@@ -1284,68 +1284,68 @@ export const PAGE_META: Record<string, PageMeta> = {
 
   // ─── Learn Contributions (India's Mathematical & Astronomical Heritage) ───
   '/learn/contributions/zero': {
-    title: { en: 'The Invention of Zero — India\'s Greatest Gift to Mathematics', hi: 'शून्य का आविष्कार — गणित को भारत की सबसे बड़ी देन', sa: 'शून्यस्य आविष्कारः — गणिताय भारतस्य महत्तमा देनम्' },
-    description: { en: 'How India invented zero as a number and placeholder. From Brahmagupta\'s rules for zero arithmetic to the global spread of the decimal system.', hi: 'भारत ने शून्य का आविष्कार कैसे किया। ब्रह्मगुप्त से दशमलव प्रणाली के वैश्विक प्रसार तक।', sa: 'भारतः शून्यम् अङ्कत्वेन कथम् आविष्कृतवान्।' },
+    title: { en: 'Zero — The Most Dangerous Idea in History (Born in India)', hi: 'शून्य — इतिहास का सबसे खतरनाक विचार (भारत में जन्मा)', sa: 'शून्यम् — इतिहासस्य भयङ्करतमः विचारः (भारते जातम्)' },
+    description: { en: 'How a "nothing" from India terrified Europe and transformed mathematics. Brahmagupta\'s rules for zero arithmetic to the decimal revolution that changed the world.', hi: 'भारत के "कुछ नहीं" ने यूरोप को भयभीत कर गणित बदल दिया। ब्रह्मगुप्त से दशमलव क्रान्ति तक।', sa: 'भारतस्य "किमपि न" इत्यस्य विचारेण यूरोपं भयभीतं गणितं च परिवर्तितम्।' },
     keywords: ['invention of zero', 'brahmagupta zero', 'indian mathematics', 'decimal system origin'],
   },
   '/learn/contributions/pi': {
-    title: { en: 'Pi in Ancient India — Madhava\'s Infinite Series', hi: 'प्राचीन भारत में पाई — माधव की अनन्त श्रृंखला', sa: 'प्राचीनभारते पाई — माधवस्य अनन्तश्रेणी' },
-    description: { en: 'India\'s contributions to Pi — from Aryabhata\'s approximation to Madhava\'s infinite series, 250 years before Leibniz.', hi: 'पाई में भारत का योगदान — आर्यभट की सन्निकटता से माधव की अनन्त श्रृंखला तक।', sa: 'पाई अङ्के भारतस्य योगदानम् — आर्यभटसन्निकटतातः माधवस्य अनन्तश्रेणीपर्यन्तम्।' },
+    title: { en: 'Pi = 3.1416 — How Aryabhata Nailed It in 499 CE', hi: 'π = 3.1416 — आर्यभट ने 499 CE में कैसे सटीक गणना की', sa: 'π = 3.1416 — आर्यभटः 499 CE वर्षे कथं सुनिश्चितं गणितवान्' },
+    description: { en: 'Aryabhata calculated Pi to 4 decimal places in 499 CE. Madhava then cracked infinite series 250 years before Leibniz. The Indian story of Pi nobody tells.', hi: 'आर्यभट ने 499 CE में पाई की 4 दशमलव तक गणना की। माधव ने लाइबनिट्ज़ से 250 वर्ष पहले अनन्त श्रृंखला खोजी।', sa: 'आर्यभटः 499 CE वर्षे पाई 4 दशमलवस्थानपर्यन्तं गणितवान्।' },
     keywords: ['pi india', 'madhava series', 'aryabhata pi', 'indian mathematics pi'],
   },
   '/learn/contributions/sine': {
-    title: { en: 'The Sine Function — Born in India', hi: 'ज्या फलन — भारत में जन्मा', sa: 'ज्याफलनम् — भारते जातम्' },
-    description: { en: 'India invented trigonometry: Aryabhata\'s jya (sine) tables, the half-chord revolution, and how Indian sine reached the Arab world and Europe.', hi: 'भारत ने त्रिकोणमिति का आविष्कार किया: आर्यभट की ज्या तालिकाएँ और अर्ध-जीवा क्रान्ति।', sa: 'भारतः त्रिकोणमितिम् आविष्कृतवान् — आर्यभटस्य ज्यासारण्यः।' },
+    title: { en: 'Did You Know "Sine" Is a Sanskrit Word? The Indian Origin of Trigonometry', hi: 'क्या आप जानते हैं "Sine" संस्कृत शब्द है? त्रिकोणमिति का भारतीय मूल', sa: '"Sine" इति संस्कृतशब्दः इति जानीथ वा? त्रिकोणमितेः भारतीयमूलम्' },
+    description: { en: 'The word "sine" comes from Sanskrit jya via Arabic mistranslation. Aryabhata\'s half-chord tables gave birth to modern trigonometry 1,500 years ago.', hi: '"Sine" शब्द संस्कृत ज्या से अरबी के गलत अनुवाद से आया। आर्यभट की अर्ध-जीवा तालिकाओं ने आधुनिक त्रिकोणमिति को जन्म दिया।', sa: '"Sine" इति शब्दः संस्कृतात् ज्या इति शब्दात् आगतः।' },
     keywords: ['sine function india', 'aryabhata jya', 'trigonometry origin', 'indian trigonometry'],
   },
   '/learn/contributions/pythagoras': {
-    title: { en: 'Pythagoras Theorem — Known in India Before Pythagoras', hi: 'पाइथागोरस प्रमेय — पाइथागोरस से पहले भारत में ज्ञात', sa: 'पाइथागोरसप्रमेयम् — पाइथागोरसात् पूर्वं भारते ज्ञातम्' },
-    description: { en: 'The Shulba Sutras (800 BCE) contain the Pythagorean theorem centuries before Pythagoras. Baudhayana, Apastamba, and Vedic geometry.', hi: 'शुल्ब सूत्र (800 BCE) में पाइथागोरस से सदियों पहले यह प्रमेय मिलता है। बौधायन और वैदिक ज्यामिति।', sa: 'शुल्बसूत्रेषु (800 BCE) पाइथागोरसात् शताब्दीभिः पूर्वम् एतत् प्रमेयं विद्यते।' },
+    title: { en: 'The "Pythagorean" Theorem Was Indian — Baudhayana Had It 300 Years Earlier', hi: '"पाइथागोरस" प्रमेय भारतीय था — बौधायन के पास 300 वर्ष पहले था', sa: '"पाइथागोरस" प्रमेयं भारतीयम् आसीत् — बौधायनः 300 वर्षैः पूर्वम्' },
+    description: { en: 'Baudhayana\'s Shulba Sutras (800 BCE) describe the diagonal theorem 300 years before Pythagoras was born. The proof Pythagoras gets credit for isn\'t his.', hi: 'बौधायन के शुल्ब सूत्र (800 BCE) में विकर्ण प्रमेय पाइथागोरस के जन्म से 300 वर्ष पहले है।', sa: 'बौधायनस्य शुल्बसूत्रेषु (800 BCE) विकर्णप्रमेयं पाइथागोरसजन्मनः 300 वर्षैः पूर्वम्।' },
     keywords: ['pythagorean theorem india', 'shulba sutras', 'baudhayana', 'vedic geometry'],
   },
   '/learn/contributions/fibonacci': {
-    title: { en: 'Fibonacci Sequence — First Described by Indian Mathematicians', hi: 'फिबोनैचि अनुक्रम — भारतीय गणितज्ञों द्वारा पहले वर्णित', sa: 'फिबोनैचि अनुक्रमः — भारतीयगणितज्ञैः प्रथमं वर्णितम्' },
-    description: { en: 'The Fibonacci sequence was known to Pingala, Virahanka, and Hemachandra centuries before Fibonacci. Sanskrit prosody and the matra-vrtta connection.', hi: 'फिबोनैचि अनुक्रम पिंगल, विरहंक और हेमचन्द्र को फिबोनैचि से सदियों पहले ज्ञात था।', sa: 'पिङ्गलविरहङ्कहेमचन्द्रैः फिबोनैचितः शताब्दीभिः पूर्वम् एषः अनुक्रमः ज्ञातः आसीत्।' },
+    title: { en: 'The "Fibonacci" Sequence Was Indian — And It Started With Music', hi: '"फिबोनैचि" अनुक्रम भारतीय था — और यह संगीत से शुरू हुआ', sa: '"फिबोनैचि" अनुक्रमः भारतीयः आसीत् — सङ्गीतात् आरब्धम्' },
+    description: { en: 'Pingala described this sequence in 200 BCE — for Sanskrit poetry rhythms. Hemachandra formalized it in 1150 CE. Fibonacci showed up in 1202 CE. Do the maths.', hi: 'पिंगल ने 200 BCE में संस्कृत कविता की लय के लिए इसका वर्णन किया। हेमचन्द्र 1150 CE। फिबोनैचि 1202 CE।', sa: 'पिङ्गलः 200 BCE वर्षे संस्कृतकवितायाः लयार्थम् एतद् वर्णितवान्।' },
     keywords: ['fibonacci india', 'pingala sequence', 'hemachandra', 'sanskrit prosody mathematics'],
   },
   '/learn/contributions/binary': {
-    title: { en: 'Binary System — Pingala\'s Chandahshastra (300 BCE)', hi: 'द्विआधारी प्रणाली — पिंगल का छन्दःशास्त्र', sa: 'द्व्याधारीप्रणाली — पिङ्गलस्य छन्दःशास्त्रम्' },
-    description: { en: 'Pingala\'s Chandahshastra (300 BCE) used binary-like encoding (laghu/guru) for Sanskrit meters — the conceptual ancestor of modern binary.', hi: 'पिंगल के छन्दःशास्त्र (300 BCE) में संस्कृत छन्दों के लिए द्विआधारी-जैसी संकेतन प्रणाली।', sa: 'पिङ्गलस्य छन्दःशास्त्रे संस्कृतच्छन्दानां कृते द्व्याधारीसंकेतनम्।' },
+    title: { en: 'Binary Code — 1,800 Years Before Computers (Pingala, 300 BCE)', hi: 'बाइनरी कोड — कम्प्यूटर से 1,800 वर्ष पहले (पिंगल, 300 BCE)', sa: 'द्व्याधारीसंकेतः — सङ्गणकेभ्यः 1800 वर्षैः पूर्वम् (पिङ्गलः)' },
+    description: { en: 'Pingala encoded Sanskrit poetry as 0s and 1s (laghu/guru) in 300 BCE. His system is structurally identical to modern binary. He even described a binary-to-decimal converter.', hi: 'पिंगल ने 300 BCE में संस्कृत कविता को 0 और 1 (लघु/गुरु) में कोड किया। उनकी प्रणाली आधुनिक बाइनरी से मेल खाती है।', sa: 'पिङ्गलः 300 BCE वर्षे संस्कृतकविताम् 0-1 (लघुगुरु) रूपेण सङ्केतितवान्।' },
     keywords: ['binary system india', 'pingala', 'chandahshastra', 'laghu guru binary'],
   },
   '/learn/contributions/calculus': {
-    title: { en: 'Calculus — Madhava & the Kerala School (1350 CE)', hi: 'कलन — माधव और केरल स्कूल (1350 CE)', sa: 'कलनम् — माधवः केरलविद्यापीठं च' },
-    description: { en: 'Madhava of Sangamagrama discovered infinite series for sine, cosine, and arctangent 250 years before Newton and Leibniz. The Kerala School\'s calculus revolution.', hi: 'सङ्गमग्राम के माधव ने न्यूटन और लाइबनिट्ज़ से 250 वर्ष पहले अनन्त श्रृंखला खोजी।', sa: 'सङ्गमग्रामस्य माधवः न्यूटनलैब्निट्सतः 250 वर्षैः पूर्वम् अनन्तश्रेणीम् आविष्कृतवान्।' },
+    title: { en: 'Calculus Was Invented in Kerala, Not Cambridge (1350 CE)', hi: 'कलन का आविष्कार केरल में हुआ, कैम्ब्रिज में नहीं (1350 CE)', sa: 'कलनस्य आविष्कारः केरले अभवत्, कैम्ब्रिजे न (1350 CE)' },
+    description: { en: 'Madhava cracked infinite series for sine, cosine, and pi 250 years before Newton was born. The Kerala School\'s calculus revolution that European textbooks skip.', hi: 'माधव ने न्यूटन के जन्म से 250 वर्ष पहले साइन, कोसाइन और पाई की अनन्त श्रृंखला खोजी।', sa: 'माधवः न्यूटनजन्मनः 250 वर्षैः पूर्वं ज्या-कोज्या-पाई अनन्तश्रेणीम् आविष्कृतवान्।' },
     keywords: ['calculus india', 'madhava kerala school', 'infinite series', 'indian calculus'],
   },
   '/learn/contributions/negative-numbers': {
-    title: { en: 'Negative Numbers — Brahmagupta\'s Rules (628 CE)', hi: 'ऋणात्मक संख्याएँ — ब्रह्मगुप्त के नियम (628 CE)', sa: 'ऋणसंख्याः — ब्रह्मगुप्तस्य नियमाः' },
-    description: { en: 'Brahmagupta first formalized rules for negative numbers and zero in Brahmasphutasiddhanta (628 CE) — debt as negative, fortune as positive.', hi: 'ब्रह्मगुप्त ने ब्रह्मस्फुटसिद्धान्त (628 CE) में ऋणात्मक संख्याओं और शून्य के नियम दिए।', sa: 'ब्रह्मगुप्तः ब्रह्मस्फुटसिद्धान्ते ऋणसंख्यानां शून्यस्य च नियमान् प्रथमं निर्धारितवान्।' },
+    title: { en: 'Negative Numbers — When India Said "Less Than Nothing" and Europe Said "Impossible"', hi: 'ऋणात्मक संख्याएँ — जब भारत ने "शून्य से कम" कहा और यूरोप ने "असम्भव"', sa: 'ऋणसंख्याः — यदा भारतः "शून्यात् न्यूनम्" अवदत् यूरोपश्च "असम्भवम्"' },
+    description: { en: 'Brahmagupta wrote complete rules for negative numbers in 628 CE. Europe rejected the concept as "absurd" for another 1,000 years. Debt as negative, fortune as positive.', hi: 'ब्रह्मगुप्त ने 628 CE में ऋणात्मक संख्याओं के पूरे नियम लिखे। यूरोप ने इसे 1,000 वर्ष और "बेतुका" माना।', sa: 'ब्रह्मगुप्तः 628 CE वर्षे ऋणसंख्यानां सम्पूर्णनियमान् लिखितवान्।' },
     keywords: ['negative numbers india', 'brahmagupta', 'brahmasphutasiddhanta', 'indian algebra'],
   },
   '/learn/contributions/kerala-school': {
-    title: { en: 'Kerala School of Mathematics — India\'s Scientific Revolution', hi: 'केरल गणित स्कूल — भारत की वैज्ञानिक क्रान्ति', sa: 'केरलगणितविद्यापीठम् — भारतस्य वैज्ञानिकक्रान्तिः' },
-    description: { en: 'The Kerala School (1300-1600 CE) pioneered infinite series, calculus concepts, and astronomical models. Madhava, Nilakantha, Jyeshtadeva and their legacy.', hi: 'केरल स्कूल (1300-1600 CE) ने अनन्त श्रृंखला, कलन और खगोलीय मॉडल में अग्रणी भूमिका निभाई।', sa: 'केरलविद्यापीठम् (1300-1600 CE) अनन्तश्रेण्यां कलने खगोलमानदण्डेषु च अग्रणीम् भूमिकां निर्वहितवत्।' },
+    title: { en: 'The Kerala School — When India Invented Calculus 250 Years Before Europe', hi: 'केरल स्कूल — जब भारत ने यूरोप से 250 वर्ष पहले कलन का आविष्कार किया', sa: 'केरलविद्यापीठम् — यदा भारतः यूरोपात् 250 वर्षैः पूर्वं कलनम् आविष्कृतवान्' },
+    description: { en: '300 years of breakthroughs that Europe took credit for. Madhava, Nilakantha, and Jyeshtadeva built infinite series, calculus, and astronomical models in Kerala (1300-1600 CE).', hi: '300 वर्षों की उपलब्धियाँ जिनका श्रेय यूरोप ने लिया। माधव, नीलकण्ठ और ज्येष्ठदेव (1300-1600 CE)।', sa: '300 वर्षाणां सिद्धयः यासां श्रेयः यूरोपः गृहीतवान्। माधवनीलकण्ठज्येष्ठदेवाः (1300-1600 CE)।' },
     keywords: ['kerala school mathematics', 'madhava', 'nilakantha', 'indian scientific revolution'],
   },
   '/learn/contributions/speed-of-light': {
-    title: { en: 'Speed of Light — Sayana\'s Rig Veda Commentary', hi: 'प्रकाश की गति — सायण का ऋग्वेद भाष्य', sa: 'प्रकाशगतिः — सायणस्य ऋग्वेदभाष्यम्' },
-    description: { en: 'Sayana\'s 14th-century commentary on Rig Veda 1.50.4 gives a value for the speed of sunlight remarkably close to the modern measurement.', hi: '14वीं शताब्दी में सायण के ऋग्वेद भाष्य में सूर्य प्रकाश की गति का मूल्य आधुनिक माप के निकट है।', sa: 'सायणस्य ऋग्वेदभाष्ये सूर्यप्रकाशगतेः मूल्यम् आधुनिकमापस्य समीपम् अस्ति।' },
+    title: { en: 'The Speed of Light — In a 14th-Century Sanskrit Commentary', hi: 'प्रकाश की गति — 14वीं सदी के संस्कृत भाष्य में', sa: 'प्रकाशगतिः — चतुर्दशशतकस्य संस्कृतभाष्ये' },
+    description: { en: 'Sayana\'s commentary on Rig Veda 1.50.4 gives the speed of sunlight as 2,202 yojanas in half a nimesha — remarkably close to 186,000 mi/s. Coincidence or calculation?', hi: 'सायण के ऋग्वेद भाष्य में सूर्यप्रकाश की गति 2,202 योजन प्रति अर्ध निमेष — 186,000 mi/s के निकट। संयोग या गणना?', sa: 'सायणस्य ऋग्वेदभाष्ये सूर्यप्रकाशगतिः 2202 योजनानि अर्धनिमेषे — 186,000 mi/s समीपम्।' },
     keywords: ['speed of light vedas', 'sayana commentary', 'rig veda science', 'ancient indian science'],
   },
   '/learn/contributions/earth-rotation': {
-    title: { en: 'Earth\'s Rotation — Aryabhata\'s Revolutionary Claim (499 CE)', hi: 'पृथ्वी का घूर्णन — आर्यभट का क्रान्तिकारी दावा', sa: 'पृथिव्याः भ्रमणम् — आर्यभटस्य क्रान्तिकारी वचनम्' },
-    description: { en: 'Aryabhata proposed that Earth rotates on its axis in 499 CE — over 1000 years before Copernicus. His Aryabhatiya transformed Indian astronomy.', hi: 'आर्यभट ने 499 CE में पृथ्वी के अपनी धुरी पर घूमने का प्रस्ताव दिया — कोपरनिकस से 1000+ वर्ष पहले।', sa: 'आर्यभटः 499 CE वर्षे पृथिवी स्वधुर्यां भ्रमति इति प्रतिपादितवान्।' },
+    title: { en: 'India Knew the Earth Rotates — 1,000 Years Before Europe (Aryabhata)', hi: 'भारत जानता था कि पृथ्वी घूमती है — यूरोप से 1,000 वर्ष पहले (आर्यभट)', sa: 'भारतः जानाति स्म पृथिवी भ्रमति इति — यूरोपात् 1000 वर्षैः पूर्वम् (आर्यभटः)' },
+    description: { en: 'In 499 CE, Aryabhata declared "the Earth rotates on its axis like a wheel on a spindle." Copernicus said the same thing in 1543 CE. The Aryabhatiya that changed astronomy.', hi: '499 CE में आर्यभट ने घोषणा की "पृथ्वी अपनी धुरी पर घूमती है।" कोपरनिकस ने 1543 CE में यही कहा।', sa: '499 CE वर्षे आर्यभटः "पृथिवी स्वधुर्यां भ्रमति" इति घोषितवान्। कोपर्निकस् 1543 CE वर्षे।' },
     keywords: ['aryabhata earth rotation', 'aryabhatiya', 'indian astronomy', 'heliocentric india'],
   },
   '/learn/contributions/gravity': {
-    title: { en: 'Gravity — Bhaskaracharya & Varahamihira\'s Insights', hi: 'गुरुत्वाकर्षण — भास्कराचार्य और वराहमिहिर', sa: 'गुरुत्वाकर्षणम् — भास्कराचार्यवराहमिहिरौ' },
-    description: { en: 'Indian astronomers described gravitational attraction centuries before Newton. Bhaskaracharya\'s Siddhanta Shiromani and Varahamihira\'s insights on Earth\'s pulling force.', hi: 'भारतीय खगोलशास्त्रियों ने न्यूटन से सदियों पहले गुरुत्वाकर्षण का वर्णन किया। भास्कराचार्य और वराहमिहिर।', sa: 'भारतीयखगोलशास्त्रिणः न्यूटनात् शताब्दीभिः पूर्वं गुरुत्वाकर्षणम् वर्णितवन्तः।' },
+    title: { en: 'Gravity — 500 Years Before Newton\'s Apple (Bhaskaracharya, 1150 CE)', hi: 'गुरुत्वाकर्षण — न्यूटन के सेब से 500 वर्ष पहले (भास्कराचार्य, 1150 CE)', sa: 'गुरुत्वाकर्षणम् — न्यूटनसेवात् 500 वर्षैः पूर्वम् (भास्कराचार्यः, 1150 CE)' },
+    description: { en: '"The earth attracts all objects towards itself by an inherent force" — Bhaskaracharya wrote this in 1150 CE. Newton published Principia in 1687. Read the original Sanskrit verse.', hi: '"पृथ्वी सभी वस्तुओं को अपनी ओर खींचती है" — भास्कराचार्य ने 1150 CE में लिखा। न्यूटन का प्रिंसिपिया 1687 में आया।', sa: '"पृथिवी सर्ववस्तूनि स्वशक्त्या आकर्षति" — भास्कराचार्यः 1150 CE वर्षे लिखितवान्।' },
     keywords: ['gravity india', 'bhaskaracharya gravity', 'varahamihira', 'indian physics'],
   },
   '/learn/contributions/cosmic-time': {
-    title: { en: 'Cosmic Time Scales — Yugas, Kalpas & Brahma\'s Lifespan', hi: 'ब्रह्माण्डीय समय — युग, कल्प और ब्रह्मा का जीवनकाल', sa: 'ब्रह्माण्डीयकालः — युगाः कल्पाः ब्रह्मायुश्च' },
-    description: { en: 'Hindu cosmology operates on time scales matching modern cosmology — 4.32 billion year Kalpas, 311 trillion year Brahma cycles. The only ancient system to think in billions.', hi: 'हिन्दू ब्रह्माण्ड विज्ञान आधुनिक ब्रह्माण्ड विज्ञान से मेल खाने वाले समय पैमानों पर काम करता है।', sa: 'हिन्दूब्रह्माण्डविज्ञानम् आधुनिकब्रह्माण्डविज्ञानेन सह मेलयन्तं कालमानम् उपयुनक्ति।' },
+    title: { en: '4.32 Billion Years — How Did the Ancients Know? (Vedic Cosmic Time)', hi: '4.32 अरब वर्ष — प्राचीन लोगों को कैसे पता था? (वैदिक ब्रह्माण्डीय काल)', sa: '432 कोटिवर्षाणि — प्राचीनाः कथं ज्ञातवन्तः? (वैदिकब्रह्माण्डकालः)' },
+    description: { en: 'Hindu cosmology says Earth is 4.32 billion years old. Modern science says 4.54 billion. The only ancient civilisation that thought in billions — Yugas, Kalpas, and Brahma\'s 311 trillion year lifespan.', hi: 'हिन्दू ब्रह्माण्ड विज्ञान: पृथ्वी 4.32 अरब वर्ष पुरानी। आधुनिक विज्ञान: 4.54 अरब। अरबों में सोचने वाली एकमात्र प्राचीन सभ्यता।', sa: 'हिन्दूब्रह्माण्डविज्ञानम्: पृथिवी 432 कोटिवर्षपुरातना। आधुनिकविज्ञानम्: 454 कोटिवर्ष।' },
     keywords: ['hindu cosmic time', 'yuga kalpa', 'brahma lifespan', 'vedic cosmology time'],
   },
   '/learn/contributions/al-khwarizmi': {
@@ -1354,8 +1354,8 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['al-khwarizmi hindu mathematics', 'arabic numerals indian origin', 'algorithm etymology', 'brahmagupta al-khwarizmi', 'hindu numeral system'],
   },
   '/learn/contributions/timeline': {
-    title: { en: 'Timeline of India\'s Mathematical & Astronomical Contributions', hi: 'भारत के गणितीय और खगोलशास्त्रीय योगदानों की समयरेखा', sa: 'भारतस्य गणितखगोलयोगदानानां कालसूची' },
-    description: { en: 'Interactive timeline from Shulba Sutras (800 BCE) to Kerala School (1600 CE) — 2400 years of Indian mathematical and astronomical breakthroughs.', hi: 'शुल्ब सूत्र (800 BCE) से केरल स्कूल (1600 CE) तक — 2400 वर्षों की भारतीय गणित और खगोलशास्त्र उपलब्धियों की समयरेखा।', sa: 'शुल्बसूत्रेभ्यः (800 BCE) केरलविद्यापीठपर्यन्तम् (1600 CE) — 2400 वर्षाणां भारतीयगणितखगोलशास्त्रसिद्धीनां कालसूची।' },
+    title: { en: '2,000 Years of Indian Science — A Visual Timeline (800 BCE to 1600 CE)', hi: '2,000 वर्षों का भारतीय विज्ञान — एक दृश्य समयरेखा (800 BCE से 1600 CE)', sa: '2000 वर्षाणां भारतीयविज्ञानम् — दृश्यकालसूची (800 BCE तः 1600 CE)' },
+    description: { en: 'From Baudhayana\'s geometry to Madhava\'s calculus — 2,400 years of breakthroughs that European textbooks rarely mention. Interactive visual timeline with 50+ milestones.', hi: 'बौधायन की ज्यामिति से माधव के कलन तक — 2,400 वर्षों की उपलब्धियाँ। 50+ मील के पत्थरों के साथ संवादी दृश्य समयरेखा।', sa: 'बौधायनज्यामितेः माधवकलनपर्यन्तम् — 2400 वर्षाणां सिद्धयः। 50+ प्रमुखघटनाभिः संवादीदृश्यकालसूची।' },
     keywords: ['indian mathematics timeline', 'indian astronomy history', 'ancient indian science', 'mathematical contributions india'],
   },
 

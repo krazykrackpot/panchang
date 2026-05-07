@@ -5,8 +5,9 @@
  * to generate the complete festival calendar. Replaces the scanning-based approach.
  */
 
-import { dateToJD, approximateSunriseSafe, approximateSunsetSafe, formatTime, normalizeDeg, toSidereal, sunLongitude } from '@/lib/ephem/astronomical';
+import { dateToJD, approximateSunriseSafe, approximateSunsetSafe, formatTime, normalizeDeg } from '@/lib/ephem/astronomical';
 import { calculateMoonriseUT } from '@/lib/ephem/panchang-calc';
+import { resolveSolarFestivals } from '@/lib/calendar/solar-festivals';
 
 /**
  * Find when a sidereal sign occupies a specific horizon.
@@ -532,43 +533,24 @@ export function generateFestivalCalendarV2(
     }
   }
 
-  // ── 1b. Solar festivals (Sankranti — Sun entering a sign) ───
-  // Makar Sankranti: Sun enters Capricorn (sidereal longitude crosses 270°)
+  // ── 1b. Solar festivals (all 22 Sankranti-based festivals via solar-festivals engine) ───
   {
-    // Binary search for the exact UT moment the Sun's sidereal longitude crosses 270°
-    let jdLow = dateToJD(year, 1, 10, 0);
-    let jdHigh = dateToJD(year, 1, 18, 0);
-    for (let iter = 0; iter < 50; iter++) {
-      const jdMid = (jdLow + jdHigh) / 2;
-      const sunSid = normalizeDeg(toSidereal(sunLongitude(jdMid), jdMid));
-      // Handle the 270° crossing — Sun moves from ~269° to ~271°
-      if (sunSid < 270 && sunSid > 260) jdLow = jdMid;
-      else jdHigh = jdMid;
-    }
-    const crossingJd = (jdLow + jdHigh) / 2;
-    // Convert crossing moment to LOCAL calendar date
-    const tzOff = getUTCOffsetForDate(year, 1, 14, timezone);
-    const crossingLocalMs = (crossingJd - 2440587.5) * 86400000 + tzOff * 3600000;
-    const crossingDate = new Date(crossingLocalMs);
-    let sankrantiDay = crossingDate.getUTCDate();
-    const sankrantiMonth = crossingDate.getUTCMonth() + 1;
-    // Punya Kala rule: if Sankranti occurs after sunset, the observance
-    // (holy bath, charity) shifts to the next morning (Drik Panchang convention).
-    const crossingDayJd = dateToJD(year, 1, sankrantiDay, 12 - tzOff);
-    const sunsetUT = approximateSunsetSafe(crossingDayJd, lat, lon);
-    const sunsetJd = dateToJD(year, 1, sankrantiDay, sunsetUT);
-    if (crossingJd > sunsetJd) sankrantiDay++;
-    if (sankrantiMonth === 1 && sankrantiDay >= 10 && sankrantiDay <= 18) {
+    const solarFests = resolveSolarFestivals(year, timezone);
+    for (const sf of solarFests) {
       festivals.push({
-        name: { en: 'Makar Sankranti', hi: 'मकर संक्रान्ति', sa: 'मकरसंक्रान्तिः' },
-        date: `${year}-01-${String(sankrantiDay).padStart(2, '0')}`,
-        tithi: 'Makar Sankranti (Solar)',
-        masa: { purnimanta: 'pausha', amanta: 'pausha', isAdhika: false },
+        name: sf.name,
+        date: sf.date,
+        tithi: `${sf.signName.en} Sankranti (Solar)`,
+        masa: { purnimanta: '', amanta: '', isAdhika: false },
         paksha: 'shukla',
-        type: 'major',
-        category: 'festival',
-        description: { en: 'Sun enters Capricorn — marks the northward journey (Uttarayana). Sacred bathing, charity, and sesame offerings.', hi: 'सूर्य मकर राशि में प्रवेश — उत्तरायण का आरम्भ। पवित्र स्नान, दान और तिल।', sa: 'सूर्यः मकरराशिं प्रविशति — उत्तरायणारम्भः।' },
-        slug: 'makar-sankranti',
+        type: sf.type,
+        category: sf.category,
+        description: sf.isUttarayana
+          ? { en: 'Sun enters Capricorn — marks the northward journey (Uttarayana). Sacred bathing, charity, and sesame offerings.', hi: 'सूर्य मकर राशि में प्रवेश — उत्तरायण का आरम्भ। पवित्र स्नान, दान और तिल।', sa: 'सूर्यः मकरराशिं प्रविशति — उत्तरायणारम्भः।' }
+          : sf.isDakshinayana
+            ? { en: `Sun enters Cancer — marks the southward journey (Dakshinayana).`, hi: 'सूर्य कर्क राशि में प्रवेश — दक्षिणायन का आरम्भ।', sa: 'सूर्यः कर्कराशिं प्रविशति — दक्षिणायनारम्भः।' }
+            : { en: `Sun enters ${sf.signName.en} — ${sf.name.en}.`, hi: `सूर्य ${sf.signName.hi} राशि में प्रवेश — ${sf.name.hi}।`, sa: `सूर्यः ${sf.signName.sa} राशिं प्रविशति।` },
+        slug: sf.slug,
       });
     }
   }

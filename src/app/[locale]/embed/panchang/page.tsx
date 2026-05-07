@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { useLocationStore } from '@/stores/location-store';
 
 interface WidgetData {
   date: string;
@@ -31,7 +32,7 @@ export default function PanchangWidget() {
     navigator.geolocation.getCurrentPosition(
       async (pos) => {
         try {
-          const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+          const timezone = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
           const now = new Date();
           const res = await fetch(`/api/panchang?lat=${pos.coords.latitude}&lng=${pos.coords.longitude}&timezone=${encodeURIComponent(timezone)}&year=${now.getFullYear()}&month=${now.getMonth() + 1}&day=${now.getDate()}`);
           if (res.ok) setData(await res.json());

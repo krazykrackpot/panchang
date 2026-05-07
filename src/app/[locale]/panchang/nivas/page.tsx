@@ -137,12 +137,12 @@ export default function NivasShoolPage() {
             const city = data.address?.city || data.address?.town || data.address?.village || data.address?.county || '';
             const country = data.address?.country || '';
             const name = [city, country].filter(Boolean).join(', ') || `${latitude.toFixed(2)}°N, ${longitude.toFixed(2)}°E`;
-            const browserTz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+            const browserTz = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
             const now = new Date();
             const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), browserTz);
             setLocation({ lat: latitude, lng: longitude, name, tz });
           } catch {
-            const browserTz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+            const browserTz = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
             const now = new Date();
             const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), browserTz);
             setLocation({ lat: latitude, lng: longitude, name: `${latitude.toFixed(2)}°N, ${longitude.toFixed(2)}°E`, tz });
@@ -161,8 +161,8 @@ export default function NivasShoolPage() {
                 const country = geoData.address?.country || '';
                 name = [city, country].filter(Boolean).join(', ') || name;
               } catch { /* use coordinate fallback */ }
-              // Use IANA timezone from IP geolocation, not browser timezone
-              const ianaTz = data.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+              // Use IANA timezone from IP geolocation; fall back to locationStore, then browser timezone
+              const ianaTz = data.timezone || useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
               const now = new Date();
               const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTz);
               setLocation({ lat: data.latitude, lng: data.longitude, name, tz });

@@ -82,12 +82,12 @@ export default function AuspiciousTimingsPage() {
             const city = data.address?.city || data.address?.town || data.address?.village || data.address?.county || '';
             const country = data.address?.country || '';
             const name = [city, country].filter(Boolean).join(', ') || `${latitude.toFixed(2)}N, ${longitude.toFixed(2)}E`;
-            const browserTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+            const browserTimezone = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
             const now = new Date();
             const tz = getUTCOffsetForDate(now.getUTCFullYear(), now.getUTCMonth() + 1, now.getUTCDate(), browserTimezone);
             setLocation({ lat: latitude, lng: longitude, name, tz });
           } catch {
-            const browserTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+            const browserTimezone = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
             const now = new Date();
             const tz = getUTCOffsetForDate(now.getUTCFullYear(), now.getUTCMonth() + 1, now.getUTCDate(), browserTimezone);
             setLocation({ lat: latitude, lng: longitude, name: `${latitude.toFixed(2)}N, ${longitude.toFixed(2)}E`, tz });
@@ -107,8 +107,8 @@ export default function AuspiciousTimingsPage() {
                 const country = geoData.address?.country || '';
                 name = [city, country].filter(Boolean).join(', ') || name;
               } catch { /* use coordinate fallback */ }
-              // Use IANA timezone from IP geolocation, not browser timezone
-              const ianaTz = data.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+              // Use IANA timezone from IP geolocation; fall back to locationStore, then browser timezone
+              const ianaTz = data.timezone || useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
               const now = new Date();
               const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTz);
               setLocation({ lat: data.latitude, lng: data.longitude, name, tz });

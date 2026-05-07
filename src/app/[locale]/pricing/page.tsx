@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 import { Check, X, ChevronDown } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
 import { useSubscription } from '@/hooks/useSubscription';
+import { useLocationStore } from '@/stores/location-store';
 import type { Locale } from '@/types/panchang';
 import { trackSubscriptionStarted, trackCheckoutStarted, trackCheckoutCompleted } from '@/lib/analytics';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -174,7 +175,7 @@ export default function PricingPage() {
 
   const [currency, setCurrency] = useState<'INR' | 'USD'>(() => {
     if (typeof window === 'undefined') return 'INR';
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const tz = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
     return tz.startsWith('Asia/') ? 'INR' : 'USD';
   });
   const [billing, setBilling] = useState<'monthly' | 'annual'>('monthly');

@@ -52,6 +52,7 @@ import JournalCheckinCard from '@/components/journal/JournalCheckinCard';
 import TodaysReading from '@/components/dashboard/TodaysReading';
 import { computeDailyEnergy } from '@/lib/panchang/energy-score';
 import { getNakshatraActivity } from '@/lib/constants/nakshatra-activities';
+import NakshatraShareButton from '@/components/shareable/NakshatraShareButton';
 import { usePrakritiStore } from '@/stores/prakriti-store';
 import AtAGlance from '@/components/dashboard/AtAGlance';
 import DashboardTabs from '@/components/dashboard/DashboardTabs';
@@ -1463,6 +1464,18 @@ export default function DashboardPage() {
                 : (pd.chandraBala.isFavorable ? 'Favorable' : 'Neutral')}
             </span>
           </div>
+
+          {/* Share My Nakshatra — viral card generator */}
+          {userMoonNakshatra > 0 && (
+            <div className="mt-5">
+              <NakshatraShareButton
+                name={displayName || 'You'}
+                nakshatraId={userMoonNakshatra}
+                rashiId={userMoonSign || undefined}
+                locale={locale}
+              />
+            </div>
+          )}
         </div>
       </motion.div>
 

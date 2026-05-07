@@ -1611,6 +1611,136 @@ export async function GET(
     );
   }
 
+  // ── Nakshatra Personality Card ───────────────────────────────────────────────
+  // Shareable viral card: "I'm Pushya Moon — The Nurturer"
+  // Params: name, nakshatraId, rashiName, rulerName, deity, nature, trait, gana, tattva
+  if (type === 'nakshatra-card') {
+    const name = searchParams.get('name') || 'You';
+    const nakshatraName = searchParams.get('nakshatra') || 'Ashwini';
+    const rashiName = searchParams.get('rashi') || '';
+    const rulerName = searchParams.get('ruler') || '';
+    const deity = searchParams.get('deity') || '';
+    const nature = searchParams.get('nature') || '';
+    const trait = searchParams.get('trait') || '';
+    const gana = searchParams.get('gana') || '';
+    const symbol = searchParams.get('symbol') || '✦';
+
+    return new ImageResponse(
+      (
+        <div
+          style={{
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            backgroundColor: CARD_COLORS.navy,
+            backgroundImage: `radial-gradient(ellipse at 30% 20%, #2d1b69 0%, ${CARD_COLORS.navy} 60%)`,
+            padding: format === 'story' ? '80px 48px' : '48px',
+            fontFamily: 'sans-serif',
+            position: 'relative',
+          }}
+        >
+          {/* Top decorative line */}
+          <div style={{ display: 'flex', width: '100%', height: '3px', background: 'linear-gradient(90deg, transparent, #d4a853, transparent)', marginBottom: '32px' }} />
+
+          {/* Symbol */}
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
+            <div style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              width: format === 'story' ? '120px' : '80px', height: format === 'story' ? '120px' : '80px',
+              borderRadius: '50%', border: '2px solid rgba(212, 168, 83, 0.3)',
+              backgroundColor: 'rgba(212, 168, 83, 0.08)',
+              fontSize: format === 'story' ? '64px' : '40px',
+            }}>
+              {symbol}
+            </div>
+          </div>
+
+          {/* Name */}
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px' }}>
+            <span style={{ color: 'rgba(232, 230, 227, 0.6)', fontSize: format === 'story' ? '24px' : '16px', letterSpacing: '0.2em', textTransform: 'uppercase' as const }}>
+              {name}
+            </span>
+          </div>
+
+          {/* Nakshatra name — hero text */}
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px' }}>
+            <span style={{
+              color: '#f0d48a', fontSize: format === 'story' ? '56px' : '36px',
+              fontWeight: 900, letterSpacing: '0.02em',
+            }}>
+              {nakshatraName}
+            </span>
+          </div>
+
+          {/* Moon subtitle */}
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '32px' }}>
+            <span style={{ color: 'rgba(212, 168, 83, 0.7)', fontSize: format === 'story' ? '22px' : '14px' }}>
+              {rashiName ? `Moon in ${rashiName}` : 'Moon Nakshatra'}
+            </span>
+          </div>
+
+          {/* Trait line */}
+          {trait && (
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '32px', padding: '0 24px' }}>
+              <span style={{
+                color: '#e8e6e3', fontSize: format === 'story' ? '26px' : '18px',
+                textAlign: 'center', lineHeight: 1.5, fontStyle: 'italic',
+              }}>
+                &ldquo;{trait}&rdquo;
+              </span>
+            </div>
+          )}
+
+          {/* Info grid */}
+          <div style={{
+            display: 'flex', flexWrap: 'wrap', gap: '12px', justifyContent: 'center',
+            marginBottom: '32px',
+          }}>
+            {[
+              { label: 'Ruler', value: rulerName },
+              { label: 'Deity', value: deity },
+              { label: 'Nature', value: nature },
+              { label: 'Gana', value: gana },
+            ].filter(i => i.value).map((item) => (
+              <div key={item.label} style={{
+                display: 'flex', flexDirection: 'column', alignItems: 'center',
+                padding: '12px 20px', borderRadius: '12px',
+                border: '1px solid rgba(212, 168, 83, 0.15)',
+                backgroundColor: 'rgba(212, 168, 83, 0.05)',
+                minWidth: '100px',
+              }}>
+                <span style={{ color: 'rgba(138, 109, 43, 1)', fontSize: format === 'story' ? '12px' : '10px', textTransform: 'uppercase' as const, letterSpacing: '0.1em', marginBottom: '4px' }}>
+                  {item.label}
+                </span>
+                <span style={{ color: '#e8e6e3', fontSize: format === 'story' ? '18px' : '13px', fontWeight: 600 }}>
+                  {item.value}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom decorative line */}
+          <div style={{ display: 'flex', width: '100%', height: '2px', background: 'linear-gradient(90deg, transparent, #d4a853, transparent)', marginTop: 'auto' }} />
+
+          {/* Watermark */}
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '16px' }}>
+            <span style={{ color: 'rgba(212, 168, 83, 0.4)', fontSize: format === 'story' ? '16px' : '11px', letterSpacing: '0.15em' }}>
+              dekhopanchang.com
+            </span>
+          </div>
+        </div>
+      ),
+      {
+        width,
+        height,
+        headers: {
+          'Cache-Control': 'public, max-age=86400, s-maxage=86400',
+        },
+      }
+    );
+  }
+
   // ── Placeholder for other card types ────────────────────────────────────────
 
   // Human-readable type label for the placeholder

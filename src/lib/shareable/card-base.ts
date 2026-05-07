@@ -13,7 +13,7 @@ import QRCode from 'qrcode';
 
 export type CardFormat = 'story' | 'square' | 'og';
 
-export type CardType = 'birth-poster' | 'daily-vibe' | 'yoga-badge' | 'discovery' | 'blueprint' | 'compatibility';
+export type CardType = 'birth-poster' | 'daily-vibe' | 'yoga-badge' | 'discovery' | 'blueprint' | 'compatibility' | 'nakshatra-card';
 
 export interface CardDimensions {
   width: number;
@@ -155,6 +155,7 @@ export function isValidCardType(type: string): type is CardType {
     type === 'yoga-badge' ||
     type === 'discovery' ||
     type === 'blueprint' ||
-    type === 'compatibility'
+    type === 'compatibility' ||
+    type === 'nakshatra-card'
   );
 }

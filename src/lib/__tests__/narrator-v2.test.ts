@@ -300,7 +300,9 @@ describe('generateActionPlan', () => {
 
     expect(plan.bestDays).toBeDefined();
     expect(Array.isArray(plan.bestDays)).toBe(true);
-    expect(plan.bestDays.length).toBe(3);
+    // Only days within the current week (1 occurrence max)
+    expect(plan.bestDays.length).toBeGreaterThanOrEqual(0);
+    expect(plan.bestDays.length).toBeLessThanOrEqual(1);
 
     expect(plan.avoid).toBeDefined();
     expect(plan.avoid.en).toBeTruthy();
@@ -317,7 +319,7 @@ describe('generateActionPlan', () => {
     const plan = generateActionPlan(uttamaReading, 'en');
 
     expect(plan.lifestyle.en).toBeTruthy();
-    expect(plan.bestDays.length).toBe(3);
+    expect(plan.bestDays.length).toBeLessThanOrEqual(1);
     expect(plan.avoid.en).toBeTruthy();
     expect(plan.affirmation.en).toBeTruthy();
     expect(plan.weeklyPractice.en).toBeTruthy();
@@ -327,7 +329,7 @@ describe('generateActionPlan', () => {
     const plan = generateActionPlan(madhyamaReading, 'en');
 
     expect(plan.lifestyle.en).toContain('Steady growth');
-    expect(plan.bestDays.length).toBe(3);
+    expect(plan.bestDays.length).toBeLessThanOrEqual(1);
     expect(plan.avoid.en).toBeTruthy();
     expect(plan.affirmation.en).toBeTruthy();
     expect(plan.weeklyPractice.en).toBeTruthy();
@@ -336,11 +338,15 @@ describe('generateActionPlan', () => {
   it('best days are valid ISO date strings on correct weekday', () => {
     // Career primary planet is Sun (0) → Sunday (0)
     const plan = generateActionPlan(adhamaReading, 'en');
+    // May have 0 results if Sunday already passed this week
     for (const day of plan.bestDays) {
       expect(day).toMatch(/^\d{4}-\d{2}-\d{2}$/);
       const d = new Date(day);
-      // Career config primaryPlanets[0] = Sun = 0 → Sunday = 0
-      expect(d.getDay()).toBe(0);
+      expect(d.getDay()).toBe(0); // Sunday
+      // Must be within 7 days of today
+      const diffDays = (d.getTime() - new Date().getTime()) / (24 * 60 * 60 * 1000);
+      expect(diffDays).toBeLessThanOrEqual(7);
+      expect(diffDays).toBeGreaterThanOrEqual(0);
     }
   });
 
@@ -348,27 +354,40 @@ describe('generateActionPlan', () => {
     const plan = generateActionPlan(uttamaReading, 'en');
     for (const day of plan.bestDays) {
       const d = new Date(day);
-      // Marriage config primaryPlanets[0] = Venus = 5 → Friday = 5
-      expect(d.getDay()).toBe(5);
+      expect(d.getDay()).toBe(5); // Friday
     }
   });
 
-  it('adhama career lifestyle mentions consolidation with Saturn transit', () => {
+  it('adhama career lifestyle mentions consolidation with Saturn transit and chart context', () => {
     const plan = generateActionPlan(adhamaReading, 'en');
     expect(plan.lifestyle.en).toContain('consolidation');
     expect(plan.lifestyle.en).toContain('Saturn');
+    // Enrichment: should reference dasha period
+    expect(plan.lifestyle.en).toContain('dasha period');
   });
 
-  it('uttama marriage lifestyle mentions relationship energy at peak', () => {
+  it('uttama marriage lifestyle mentions relationship energy at peak and chart context', () => {
     const plan = generateActionPlan(uttamaReading, 'en');
     expect(plan.lifestyle.en).toContain('relationship energy');
     expect(plan.lifestyle.en).toContain('peak');
+    // Enrichment: should reference Venus (transit) and yoga
+    expect(plan.lifestyle.en).toContain('Venus');
+    expect(plan.lifestyle.en).toContain('Venus-Jupiter conjunction');
   });
 
   it('avoid guidance references malefic transit planet day', () => {
     // adhamaReading has Saturn malefic transit → avoid Saturdays
     const plan = generateActionPlan(adhamaReading, 'en');
     expect(plan.avoid.en).toContain('Saturday');
+  });
+
+  it('avoid guidance falls back to generic when challenge is >6 months away', () => {
+    // uttamaReading challenge starts 2027-08-01 — well beyond 6 months
+    const plan = generateActionPlan(uttamaReading, 'en');
+    // Should NOT mention "August 2027" — too far away to be actionable
+    expect(plan.avoid.en).not.toContain('2027');
+    // Should get generic or transit-based avoid text instead
+    expect(plan.avoid.en).toBeTruthy();
   });
 
   it('affirmation is domain-specific', () => {

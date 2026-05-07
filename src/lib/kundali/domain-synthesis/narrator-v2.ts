@@ -202,19 +202,24 @@ function formatDate(iso: string, locale: string): string {
   }
 }
 
-/** Get the next N occurrences of a given weekday from today */
-function getNextDaysForWeekday(weekday: number, count: number): string[] {
+/**
+ * Get upcoming favorable days for this domain's primary weekday.
+ * Returns dates within the next 7 days only — this is a "this week" plan,
+ * not a 3-week forecast. If the weekday already passed this week, we still
+ * include next week's occurrence so there's always at least one result.
+ */
+function getNextDaysForWeekday(weekday: number, _count: number): string[] {
   const results: string[] = [];
   const today = new Date();
-  let d = new Date(today);
-  // Advance to first occurrence of the weekday
+  const d = new Date(today);
+  // Advance to first occurrence of the weekday (today or later)
   while (d.getDay() !== weekday) {
     d.setDate(d.getDate() + 1);
   }
-  for (let i = 0; i < count; i++) {
+  // Only include if within 7 days of today
+  const msIn7Days = 7 * 24 * 60 * 60 * 1000;
+  if (d.getTime() - today.getTime() <= msIn7Days) {
     results.push(d.toISOString().slice(0, 10));
-    d = new Date(d);
-    d.setDate(d.getDate() + 7);
   }
   return results;
 }
@@ -599,6 +604,66 @@ export function narrateStrength(domainReading: DomainReading, locale: string): L
 }
 
 // ---------------------------------------------------------------------------
+// Lifestyle enrichment — injects chart-specific context into generic templates
+// ---------------------------------------------------------------------------
+
+/**
+ * Takes a generic lifestyle template and appends concrete chart context:
+ * dasha lord, active transits, and supporting yogas. This prevents the
+ * "could apply to anyone" problem — every lifestyle blurb names something
+ * specific to this person's chart.
+ */
+function enrichLifestyle(base: LocaleText, reading: DomainReading): LocaleText {
+  const parts: { en: string[]; hi: string[] } = { en: [], hi: [] };
+
+  // Dasha context — always available
+  const mdEn = PLANET_NAMES_EN[reading.currentActivation.mahaDashaLordId] ?? 'your dasha lord';
+  const mdHi = PLANET_NAMES_HI[reading.currentActivation.mahaDashaLordId] ?? 'आपका दशा स्वामी';
+  const adEn = PLANET_NAMES_EN[reading.currentActivation.antarDashaLordId] ?? '';
+  const adHi = PLANET_NAMES_HI[reading.currentActivation.antarDashaLordId] ?? '';
+
+  if (adEn) {
+    parts.en.push(`Your ${mdEn}–${adEn} dasha period shapes the backdrop`);
+    parts.hi.push(`आपकी ${mdHi}–${adHi} दशा अवधि पृष्ठभूमि को आकार देती है`);
+  }
+
+  // Active transit — name the most relevant one
+  const transit = reading.currentActivation.transitInfluences[0];
+  if (transit) {
+    const tpEn = PLANET_NAMES_EN[transit.planetId] ?? 'a planet';
+    const tpHi = PLANET_NAMES_HI[transit.planetId] ?? 'एक ग्रह';
+    const houseNum = transit.transitHouse;
+    const suffix = ordSuffix(houseNum);
+    if (transit.nature === 'benefic') {
+      parts.en.push(`${tpEn}'s supportive transit through your ${houseNum}${suffix} house adds momentum`);
+      parts.hi.push(`${tpHi} का आपके ${houseNum}वें भाव में शुभ गोचर गति प्रदान करता है`);
+    } else if (transit.nature === 'malefic') {
+      parts.en.push(`${tpEn}'s transit through your ${houseNum}${suffix} house demands extra care`);
+      parts.hi.push(`${tpHi} का आपके ${houseNum}वें भाव में गोचर अतिरिक्त सावधानी की मांग करता है`);
+    }
+  }
+
+  // Supporting yoga — if present, name the strongest
+  const yogas = reading.natalPromise.supportingYogas;
+  if (yogas.length > 0) {
+    const best = yogas.reduce((a, b) => (b.strength > a.strength ? b : a), yogas[0]);
+    parts.en.push(`${best.name.en} in your chart lends innate strength here`);
+    parts.hi.push(`आपकी कुंडली में ${best.name.hi ?? best.name.en} यहां जन्मजात शक्ति प्रदान करता है`);
+  }
+
+  if (parts.en.length === 0) return base;
+
+  // Combine: base template + chart-specific sentence
+  const contextEn = parts.en.join('; ') + '.';
+  const contextHi = parts.hi.join('; ') + '।';
+
+  return {
+    en: `${base.en} ${contextEn}`,
+    hi: `${base.hi} ${contextHi}`,
+  };
+}
+
+// ---------------------------------------------------------------------------
 // 3. generateActionPlan — Structured modern guidance for ALL domains
 // ---------------------------------------------------------------------------
 
@@ -610,10 +675,13 @@ export function narrateStrength(domainReading: DomainReading, locale: string): L
 export function generateActionPlan(domainReading: DomainReading, locale: string): ActionPlan {
   const domain = domainReading.domain;
 
-  // --- Lifestyle guidance ---
+  // --- Lifestyle guidance (enriched with chart context) ---
   const templates = LIFESTYLE_TEMPLATES[domain] ?? LIFESTYLE_TEMPLATES.currentPeriod;
   const matched = templates.find(t => t.condition(domainReading)) ?? templates[templates.length - 1];
-  const lifestyle: LocaleText = { en: matched.en, hi: matched.hi };
+  const lifestyle: LocaleText = enrichLifestyle(
+    { en: matched.en, hi: matched.hi },
+    domainReading,
+  );
 
   // --- Best days ---
   const primaryPlanet = getDomainPrimaryPlanet(domain);
@@ -660,15 +728,23 @@ function buildAvoidGuidance(reading: DomainReading, locale: string): LocaleText 
     }
   }
 
-  // Challenge timeline triggers
+  // Challenge timeline triggers — only surface if within 6 months (actionable)
   const challenge = findChallengeTrigger(reading.timelineTriggers);
   if (challenge) {
-    const dateEn = formatDate(challenge.startDate, 'en');
-    const dateHi = formatDate(challenge.startDate, 'hi');
-    return {
-      en: `Exercise caution around ${dateEn} when a challenging phase begins. Avoid risky ${domEn} commitments during that window.`,
-      hi: `${dateHi} के आसपास सावधानी बरतें जब एक चुनौतीपूर्ण चरण शुरू होता है। उस अवधि में जोखिमभरे ${domHi} प्रतिबद्धताओं से बचें।`,
-    };
+    const challengeDate = new Date(challenge.startDate);
+    const sixMonthsFromNow = new Date();
+    sixMonthsFromNow.setMonth(sixMonthsFromNow.getMonth() + 6);
+    if (challengeDate <= sixMonthsFromNow) {
+      const dateEn = formatDate(challenge.startDate, 'en');
+      const dateHi = formatDate(challenge.startDate, 'hi');
+      const pIds = challenge.planets;
+      const pEn = pIds.map(id => PLANET_NAMES_EN[id]).filter(Boolean).join(' and ') || 'a challenging transit';
+      const pHi = pIds.map(id => PLANET_NAMES_HI[id]).filter(Boolean).join(' और ') || 'एक चुनौतीपूर्ण गोचर';
+      return {
+        en: `Around ${dateEn}, ${pEn}'s influence intensifies — avoid initiating major ${domEn} commitments in that window. Prepare by building your foundation now.`,
+        hi: `${dateEn} के आसपास ${pHi} का प्रभाव तीव्र होगा — उस अवधि में प्रमुख ${domHi} प्रतिबद्धताओं से बचें। अभी से अपनी नींव मजबूत करें।`,
+      };
+    }
   }
 
   // Generic

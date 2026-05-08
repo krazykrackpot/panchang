@@ -359,16 +359,21 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/horoscope': {
     title: {
-      en: 'Daily Horoscope — Based on Real Planetary Transits',
-      hi: 'आज का राशिफल — वास्तविक ग्रह गोचर पर आधारित',
-      sa: 'दैनिकराशिफलम् — वास्तविकग्रहगोचराधारितम्',
+      en: 'Daily Horoscope 2026 — All 12 Zodiac Signs | Vedic Rashifal Today',
+      hi: 'दैनिक राशिफल 2026 — सभी 12 राशियाँ | आज का राशिफल',
+      sa: 'दैनिकराशिफलम् — द्वादशराशयः',
     },
     description: {
-      en: 'Today\'s horoscope based on actual planetary transits, not generic predictions. Personalized for your Moon sign with transit analysis.',
-      hi: 'वास्तविक ग्रह गोचर पर आधारित आज का राशिफल। आपकी चन्द्र राशि के लिए व्यक्तिगत।',
-      sa: 'वास्तविकग्रहगोचराधारितं दैनिकराशिफलम्। भवतः चन्द्रराशये व्यक्तिगतम्।',
+      en: 'Free daily horoscope for all 12 zodiac signs based on real Vedic planetary transits. Check your Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, Pisces horoscope today.',
+      hi: 'सभी 12 राशियों का मुफ्त दैनिक राशिफल वास्तविक वैदिक ग्रह गोचर पर आधारित। मेष, वृषभ, मिथुन, कर्क, सिंह, कन्या, तुला, वृश्चिक, धनु, मकर, कुम्भ, मीन राशिफल आज।',
+      sa: 'द्वादशराशीनां दैनिकफलम्',
     },
-    keywords: ['daily horoscope', 'rashifal today', 'horoscope today', 'transit horoscope'],
+    keywords: [
+      'daily horoscope', 'horoscope today', 'rashifal today', 'dainik rashifal',
+      'aaj ka rashifal', 'आज का राशिफल', 'दैनिक राशिफल',
+      'vedic horoscope', 'transit horoscope', 'all 12 signs horoscope',
+      'aries horoscope today', 'mesh rashifal aaj',
+    ],
   },
   '/eclipses': {
     title: {

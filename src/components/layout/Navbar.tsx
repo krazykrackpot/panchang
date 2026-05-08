@@ -107,6 +107,7 @@ export default function Navbar() {
   const navItems: NavItem[] = [
     { href: '/', label: t('home') },
     { href: '/panchang', label: t('panchang') },
+    { href: '/horoscope', label: t('horoscope') },
     { href: '/charts', label: t('kundali') },
     { href: '/rituals', label: ritualsLabel },
     { href: '/calendars', label: t('calendars') },

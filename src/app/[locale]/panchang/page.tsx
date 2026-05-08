@@ -83,7 +83,7 @@ function PanchangSEOBlock({
           {locale === 'hi' ? 'त्योहार कैलेंडर' : 'Festival Calendar'}
         </Link>
         <span className="text-text-secondary/30">·</span>
-        <Link href="/muhurat" className="text-gold-primary/70 hover:text-gold-light transition-colors">
+        <Link href="/muhurta-ai" className="text-gold-primary/70 hover:text-gold-light transition-colors">
           {locale === 'hi' ? 'मुहूर्त कैलेंडर' : 'Muhurat Calendar'}
         </Link>
         <span className="text-text-secondary/30">·</span>

@@ -613,7 +613,7 @@ function buildRows(isDevanagari: boolean): RowDef[] {
       label: isDevanagari ? 'समय एवं क्षेत्रीय' : 'Timing & Regional',
       cards: [
         { href: '/events', title: 'Celestial Events', subtitle: 'Conjunctions \u00b7 Occultations', description: 'Notable sky phenomena', glowColor: '#38bdf8', svg: <CelestialEventsSVG /> },
-        { href: '/muhurat', title: 'Muhurat Calendar', subtitle: 'Auspicious Windows', description: 'Best times for life events', glowColor: '#d4a853', svg: <MuhuratCalendarSVG /> },
+        { href: '/muhurta-ai', title: 'Muhurat Calendar', subtitle: 'Auspicious Windows', description: 'Best times for life events', glowColor: '#d4a853', svg: <MuhuratCalendarSVG /> },
         { href: '/regional', title: 'Regional', subtitle: 'State-wise Panchang', description: "India\u2019s regional traditions", glowColor: '#34d399', svg: <RegionalSVG /> },
       ],
     },

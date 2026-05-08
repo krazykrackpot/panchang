@@ -197,10 +197,6 @@ export const TOOL_TO_LEARN: Record<string, CrossLinkEntry[]> = {
     { label: 'Learn Muhurtas', href: '/learn/muhurtas', description: 'Auspicious timing theory' },
     { label: 'Learn Hora', href: '/learn/hora', description: 'Planetary hour system' },
   ],
-  '/muhurat': [
-    { label: 'Learn Muhurtas', href: '/learn/muhurtas', description: 'Auspicious timing theory' },
-    { label: 'Learn Hora', href: '/learn/hora', description: 'Planetary hour system' },
-  ],
   '/mundane': [
     { label: 'Learn Cosmology', href: '/learn/cosmology', description: 'Vedic cosmology' },
     { label: 'Learn Eclipses', href: '/learn/eclipses', description: 'Eclipse astrology' },

@@ -352,7 +352,7 @@ export default function LearnMuhurtaSelectionPage() {
             { href: '/learn/karanas', label: isHi ? 'करण' : 'Karanas' },
             { href: '/learn/combustion', label: isHi ? 'अस्त ग्रह' : 'Combustion' },
             { href: '/learn/hora', label: isHi ? 'होरा' : 'Hora' },
-            { href: '/muhurat', label: isHi ? 'मुहूर्त खोजक' : 'Muhurat Finder' },
+            { href: '/muhurta-ai', label: isHi ? 'मुहूर्त खोजक' : 'Muhurat Finder' },
           ].map(link => (
             <Link key={link.href} href={link.href}
               className="px-3 py-1.5 rounded-lg text-sm text-text-secondary hover:text-gold-light border border-gold-primary/10 hover:border-gold-primary/25 hover:bg-gold-primary/5 transition-colors"

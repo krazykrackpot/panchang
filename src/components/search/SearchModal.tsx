@@ -38,7 +38,7 @@ const SEARCH_INDEX: SearchItem[] = [
   { title: 'Planet Transits', titleHi: 'ग्रह गोचर', href: '/transits', category: 'Calendars', keywords: ['gochar', 'transit', 'planet movement'] },
   { title: 'Retrograde Calendar', titleHi: 'वक्री पंचांग', href: '/retrograde', category: 'Calendars', keywords: ['retrograde', 'vakri', 'mercury retrograde'] },
   { title: 'Eclipse Calendar', titleHi: 'ग्रहण पंचांग', href: '/eclipses', category: 'Calendars', keywords: ['solar eclipse', 'lunar eclipse', 'surya grahan', 'chandra grahan'] },
-  { title: 'Muhurat Calendar', titleHi: 'मुहूर्त पंचांग', href: '/muhurat', category: 'Calendars', keywords: ['muhurat', 'auspicious dates', 'marriage dates', 'griha pravesh'] },
+  { title: 'Muhurat Calendar', titleHi: 'मुहूर्त पंचांग', href: '/muhurta-ai', category: 'Calendars', keywords: ['muhurat', 'auspicious dates', 'marriage dates', 'griha pravesh'] },
   { title: 'Regional Calendars', titleHi: 'क्षेत्रीय पंचांग', href: '/regional', category: 'Calendars', keywords: ['tamil', 'telugu', 'kannada', 'regional'] },
 
   // Tools

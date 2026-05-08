@@ -290,7 +290,7 @@ export default async function MuhurtaTypePage({ params }: { params: Promise<{ lo
 
           <div className="text-center mt-8">
             <Link
-              href="/muhurat"
+              href="/muhurta-ai"
               className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg border border-gold-primary/20 text-gold-primary hover:bg-gold-primary/5 transition-colors"
             >
               {t('viewAll', locale)}

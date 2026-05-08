@@ -181,7 +181,7 @@ const routes = [
   '/retrograde',
   '/eclipses',
   '/events',
-  '/muhurat',
+  '/muhurta-ai',
   '/regional',
   '/calendar/regional/tamil',
   '/calendar/regional/bengali',

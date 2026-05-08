@@ -129,3 +129,29 @@ export interface MuhurtaScanResponse {
     computeTimeMs: number;
   };
 }
+
+export interface FactorVerdict {
+  factor: string;       // 'Tithi', 'Nakshatra', 'Yoga', 'Karana', 'Lagna'
+  value: string;        // e.g. 'Dwitiya', 'Rohini'
+  verdict: 'good' | 'neutral' | 'bad';
+  reason: string;       // classical citation, e.g. 'Auspicious for marriage — MC Ch. 6'
+}
+
+export interface DaySummary {
+  date: string;         // YYYY-MM-DD
+  bestScore: number;
+  quality: 'excellent' | 'good' | 'fair' | 'poor';
+  windowCount: number;
+  bestWindow?: { startTime: string; endTime: string; score: number };
+  taraBala?: { tara: number; name: string; auspicious: boolean };
+  chandraBala?: boolean;
+  tithi?: string;
+  nakshatra?: string;
+  vara?: string;
+  factors?: FactorVerdict[];
+}
+
+export interface RestrictionNotice {
+  type: string;
+  label: { en: string; hi: string };
+}

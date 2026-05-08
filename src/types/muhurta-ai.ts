@@ -121,6 +121,10 @@ export interface DetailWindow {
 
 export interface MuhurtaScanResponse {
   windows: HeatmapCell[] | DetailWindow[];
+  /** Day-level summaries with best window, quality tier, and factor verdicts (overview only) */
+  days?: DaySummary[];
+  /** Classical restriction notices for the scanned period (overview only) */
+  restrictions?: RestrictionNotice[];
   meta: {
     activity: ExtendedActivityId;
     dateRange: [string, string];

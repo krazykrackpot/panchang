@@ -9,8 +9,11 @@ import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { NAKSHATRA_DETAILS } from '@/lib/constants/nakshatra-details';
 import { NakshatraIconById } from '@/components/icons/NakshatraIcons';
 import type { Locale } from '@/types/panchang';
+import { useEffect } from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import NakshatraShareButton from '@/components/shareable/NakshatraShareButton';
+import { useBirthDataStore } from '@/stores/birth-data-store';
 import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
@@ -23,6 +26,9 @@ export default function NakshatraDetailPage() {
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
+
+  const { birthNakshatra, birthRashi, birthName, loadFromStorage } = useBirthDataStore();
+  useEffect(() => { loadFromStorage(); }, [loadFromStorage]);
 
   const id = parseInt(params.id as string, 10);
   const nak = NAKSHATRAS[id - 1];
@@ -216,6 +222,18 @@ export default function NakshatraDetailPage() {
       </section>
 
       <GoldDivider />
+
+      {/* Share Nakshatra Card — shown when user has birth data */}
+      {birthNakshatra > 0 && (
+        <div className="flex justify-center my-8">
+          <NakshatraShareButton
+            name={birthName || ''}
+            nakshatraId={birthNakshatra}
+            rashiId={birthRashi}
+            locale={locale}
+          />
+        </div>
+      )}
 
       {/* Navigation to prev/next */}
       <div className="flex justify-between items-center my-10">

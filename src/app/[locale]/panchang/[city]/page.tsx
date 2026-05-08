@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import { Sunrise, Sunset, Clock, MapPin, Calendar, ArrowRight, ChevronRight } from 'lucide-react';
+import WhatsAppShareBanner from '@/components/ui/WhatsAppShareBanner';
 import { getCityBySlugExtended, getCitiesByTier, getNearbyCities } from '@/lib/constants/cities-extended';
 import { computePanchang, type PanchangInput } from '@/lib/ephem/panchang-calc';
 import { generateDailyArticle, type ArticleCityConfig } from '@/lib/horoscope/daily-article';
@@ -389,6 +390,16 @@ export default async function CityPanchangPage({
           />
         </div>
       </div>
+
+      {/* ═══ WHATSAPP SHARE CTA ═══ */}
+      <WhatsAppShareBanner
+        shareText={isHi
+          ? `${cityName} पंचांग आज: ${tithiName}, ${nakshatraName} | सूर्योदय ${panchang.sunrise}`
+          : `${city.name.en} Panchang Today: ${tithiName}, ${nakshatraName} | Sunrise ${panchang.sunrise}`}
+        url={`${BASE_URL}/${locale}/panchang/${citySlug}`}
+        locale={loc}
+        className="mb-10"
+      />
 
       {/* ═══ CALCULATION PROOF — TRANSPARENT AUDIT TRAIL ═══ */}
       <div className="mb-10">

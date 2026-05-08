@@ -8,29 +8,48 @@
 
 **Tech Stack:** Next.js App Router, React 19, Framer Motion, Zustand (location/birth stores), existing `scanDateRangeV2` engine (unchanged), `html-to-image` for share.
 
+**URL decision:** Keep `/muhurta-ai` as the URL path despite dropping "AI" branding. Reason: `/muhurta` conflicts with the existing `/muhurta/[type]` dynamic route (12+ static SEO pages like `/muhurta/wedding`, `/muhurta/griha-pravesh`). Renaming would require restructuring the type pages. The URL is a technical detail — user-visible branding (titles, headings) says "Shubh Muhurta Finder", not "AI".
+
+---
+
+## Critical Design Decisions
+
+1. **Calendar view auto-fetches on mount and month change** (like the old page). Heatmap view requires clicking "Scan" (like the scanner). This matches user expectations for each metaphor — calendar = browse, heatmap = analyse.
+
+2. **Activity picker uses the rich SVG icons** from the old `/muhurat` page's `ActivityIcon` component (10 activities with custom icons, fallback star for the rest). The scanner's `ScanControls` dropdown is replaced with the tarot-style card grid.
+
+3. **API stays POST** but the calendar view fires it automatically on mount with sensible defaults (current month, marriage activity, user's location from store).
+
+4. **Type imports:** All shared types (`DaySummary`, `FactorVerdict`, `RestrictionNotice`) live in `src/types/muhurta-ai.ts` — the canonical location. Components import from there, not local `./types`.
+
+5. **Message files:** Keep `src/messages/pages/muhurta-ai.json` as the single message file. Port any missing translations from `src/messages/pages/muhurat.json` into it, then delete `muhurat.json`.
+
+6. **Scanner labels:** `src/app/[locale]/muhurta-ai/scanner-labels.ts` is kept as-is — it provides locale-specific labels for the scanner UI.
+
 ---
 
 ## File Map
 
 | Action | Path | Responsibility |
 |--------|------|----------------|
+| **Modify** | `src/types/muhurta-ai.ts` | Add DaySummary, FactorVerdict, RestrictionNotice types |
 | **Modify** | `src/app/api/muhurta-scan/route.ts` | Add restriction checks, factor verdicts, day grouping from old API |
-| **Delete** | `src/app/api/muhurat/scan/route.ts` | Old calendar API — replaced by unified endpoint |
-| **Modify** | `src/app/[locale]/muhurta-ai/MuhurtaScannerClient.tsx` | Add calendar grid view, restriction notices, factor verdicts, "next best" card |
-| **Create** | `src/app/[locale]/muhurta-ai/components/CalendarGrid.tsx` | Month calendar grid with quality dots (from old page) |
+| **Create** | `src/app/[locale]/muhurta-ai/components/CalendarGrid.tsx` | Month calendar grid with quality dots + month nav |
 | **Create** | `src/app/[locale]/muhurta-ai/components/RestrictionNotices.tsx` | Combustion, chaturmas, adhika masa notices |
-| **Create** | `src/app/[locale]/muhurta-ai/components/FactorVerdicts.tsx` | Tithi/nakshatra/yoga/karana/lagna verdicts with classical citations |
+| **Create** | `src/app/[locale]/muhurta-ai/components/FactorVerdicts.tsx` | Tithi/nakshatra/yoga/karana/lagna verdicts with citations |
 | **Create** | `src/app/[locale]/muhurta-ai/components/NextBestCard.tsx` | Hero card showing next auspicious date |
+| **Modify** | `src/app/[locale]/muhurta-ai/MuhurtaScannerClient.tsx` | Add calendar view, auto-fetch, restrictions, verdicts, next-best card |
 | **Modify** | `src/app/[locale]/muhurta-ai/components/ScanControls.tsx` | Add calendar/heatmap view toggle |
-| **Modify** | `src/app/[locale]/muhurta-ai/page.tsx` | Update editorial content, remove "AI" branding, add methodology section |
-| **Modify** | `src/app/[locale]/muhurta-ai/layout.tsx` | Update metadata — remove "AI" from title/description |
-| **Delete** | `src/app/[locale]/muhurat/page.tsx` | Old calendar page — replaced |
-| **Modify** | `src/app/[locale]/muhurat/layout.tsx` | Convert to redirect → `/muhurta-ai` |
-| **Delete** | `src/app/[locale]/muhurta-ai/components/NLSearchBar.tsx` | Dead code |
-| **Delete** | `src/app/[locale]/muhurta-ai/components/NLResultCards.tsx` | Dead code |
-| **Modify** | `src/lib/seo/metadata.ts` | Update `/muhurta-ai` meta title/description (drop "AI") |
-| **Modify** | `src/app/sitemap.ts` | Remove `/muhurat` route, keep `/muhurta-ai` |
-| **Modify** | Navbar/footer/cross-links | Update all internal links from `/muhurat` → `/muhurta-ai` |
+| **Modify** | `src/app/[locale]/muhurta-ai/page.tsx` | Drop "AI" branding, add methodology, remove NL dead code |
+| **Modify** | `src/app/[locale]/muhurta-ai/layout.tsx` | Update metadata title/description |
+| **Modify** | `src/lib/seo/metadata.ts` | Update `/muhurta-ai` meta (drop "AI") |
+| **Replace** | `src/app/[locale]/muhurat/page.tsx` | 1105-line page → simple redirect to `/muhurta-ai` |
+| **Delete** | `src/app/api/muhurat/scan/route.ts` | Old calendar API (368 lines) — replaced |
+| **Delete** | `src/app/[locale]/muhurta-ai/components/NLSearchBar.tsx` | Dead code (imported but never rendered) |
+| **Delete** | `src/app/[locale]/muhurta-ai/components/NLResultCards.tsx` | Dead code (imported but never rendered) |
+| **Modify** | `src/app/sitemap.ts` | Remove `/muhurat` route |
+| **Modify** | Navbar, Footer, cross-links, `/muhurta/[type]` pages | Update all `/muhurat` links → `/muhurta-ai` |
+| **Delete** | `src/messages/pages/muhurat.json` | Merge any missing keys into `muhurta-ai.json`, then delete |
 
 ---
 
@@ -39,9 +58,9 @@
 **Files:**
 - Modify: `src/types/muhurta-ai.ts`
 
-- [ ] **Step 1: Add DaySummary and FactorVerdict types**
+- [ ] **Step 1: Add DaySummary, FactorVerdict, and RestrictionNotice types**
 
-Add to `src/types/muhurta-ai.ts`:
+Add to `src/types/muhurta-ai.ts` (after existing types):
 
 ```typescript
 export interface FactorVerdict {
@@ -84,79 +103,60 @@ git commit -m "feat: add DaySummary, FactorVerdict, RestrictionNotice types"
 
 ---
 
-## Task 1: Unify the API — add restrictions + verdicts to `/api/muhurta-scan`
+## Task 1: Unify the API — add restrictions, verdicts, and day grouping
 
-The old `/api/muhurat/scan` had restriction checks and factor verdicts that `/api/muhurta-scan` lacks. Port them over.
+Port the restriction checks and factor verdict logic from the old `/api/muhurat/scan` (GET, 368 lines) into the unified `/api/muhurta-scan` (POST, 155 lines). The old API will be deleted in Task 6 — read it now as reference.
 
 **Files:**
 - Modify: `src/app/api/muhurta-scan/route.ts`
-- Reference: `src/app/api/muhurat/scan/route.ts` (lines 180-368 for restriction logic)
+- Reference (read-only): `src/app/api/muhurat/scan/route.ts`
 
-- [ ] **Step 1: Read the restriction logic from the old API**
+- [ ] **Step 1: Read the old API's restriction logic**
 
-The old API imports and calls these restriction checkers (from `src/app/api/muhurat/scan/route.ts`):
+Read `src/app/api/muhurat/scan/route.ts` lines 180-368 completely. It imports:
 ```typescript
 import { checkVivahCombustion } from '@/lib/muhurta/combustion';
 import { isAdhikaMasa, checkChaturmas, isProhibitedSolarMonth, checkShishutva, isDakshinayana } from '@/lib/muhurta/vedic-restrictions';
 import { checkHolashtak } from '@/lib/calendar/festival-generator';
-```
-
-These produce a `restrictions[]` array of `{ type: string, label: LocaleText }`. Copy this logic.
-
-- [ ] **Step 2: Add restriction imports and logic to the unified API**
-
-Add to `src/app/api/muhurta-scan/route.ts` after the existing `scanDateRangeV2` call:
-
-```typescript
-import { checkVivahCombustion } from '@/lib/muhurta/combustion';
-import { isAdhikaMasa, checkChaturmas, isProhibitedSolarMonth, checkShishutva, isDakshinayana } from '@/lib/muhurta/vedic-restrictions';
-import { checkHolashtak } from '@/lib/calendar/festival-generator';
-import { dateToJD, calculateTithi } from '@/lib/ephem/astronomical';
 import { getLunarMasaForDate } from '@/lib/calendar/tithi-table';
-
-// After computing windows, add restriction notices for overview mode:
-if (resolution === 'overview') {
-  const restrictions: Array<{ type: string; label: { en: string; hi: string } }> = [];
-  // Port the tiered restriction logic from the old API (lines 230-340)
-  // Check: combustion, adhika masa, chaturmas, kharmas, shishutva, holashtak, dakshinayana
-  // Filter by activity type (marriage gets all, general gets fewer)
-  response.restrictions = restrictions;
-}
 ```
 
-- [ ] **Step 3: Add day-level grouping and factor verdicts for overview mode**
+The restriction logic is tiered by activity type:
+- **Marriage/griha-pravesh:** Check all 7 restrictions (combustion, adhika masa, chaturmas, kharmas, shishutva, holashtak, dakshinayana)
+- **Other activities:** Check combustion + adhika masa only
 
-For overview responses, group windows by date and compute best-window-per-day summaries with factor verdicts:
+Each restriction produces a `{ type: string, label: { en: string, hi: string } }` with classical citation in the label.
 
+- [ ] **Step 2: Read the old API's factor verdict logic**
+
+Read `src/app/api/muhurat/scan/route.ts` lines 120-175. The `buildFactorVerdicts` function takes a scored window and the activity's rules, and returns an array of `FactorVerdict[]`:
+- For each factor (Tithi, Nakshatra, Yoga, Karana, Lagna), it checks whether the current value is in `goodTithis`/`avoidTithis`/etc. from the activity rules
+- Returns `verdict: 'good'` if in the good list, `'bad'` if in the avoid list, `'neutral'` otherwise
+- The `reason` field includes the classical text reference
+
+- [ ] **Step 3: Add restriction + verdict + day-grouping logic to unified API**
+
+In `src/app/api/muhurta-scan/route.ts`:
+
+1. Add the restriction imports (from step 1)
+2. Add the `buildFactorVerdicts` helper function (from step 2)
+3. After `scanDateRangeV2()` returns windows, when `resolution === 'overview'`:
+   - Compute restrictions for the date range (call each restriction checker)
+   - Group windows by date into `DaySummary[]` (best window per day, quality tier, factor verdicts)
+   - Add `restrictions` and `days` to the response JSON
+4. Import and use the `DaySummary`, `FactorVerdict`, `RestrictionNotice` types from `@/types/muhurta-ai`
+
+The response shape for overview mode becomes:
 ```typescript
-if (resolution === 'overview') {
-  const dayMap = new Map<string, ScanV2Window[]>();
-  for (const w of windows) {
-    const list = dayMap.get(w.date) || [];
-    list.push(w);
-    dayMap.set(w.date, list);
-  }
-  const days = [...dayMap.entries()].map(([date, ws]) => {
-    const best = ws.reduce((a, b) => a.score > b.score ? a : b);
-    const quality = best.score >= 72 ? 'excellent' : best.score >= 58 ? 'good' : best.score >= 50 ? 'fair' : 'poor';
-    return {
-      date, bestScore: best.score, quality, windowCount: ws.length,
-      bestWindow: { startTime: best.startTime, endTime: best.endTime, score: best.score },
-      tithi: best.panchangContext?.tithiName,
-      nakshatra: best.panchangContext?.nakshatraName,
-      vara: best.panchangContext?.varaName,
-      taraBala: best.taraBala,
-      chandraBala: best.chandraBala,
-      factors: buildFactorVerdicts(best, activityRules),
-    };
-  });
-  response.days = days;
+{
+  windows: HeatmapCell[],       // existing — raw 120-min window scores
+  days: DaySummary[],           // NEW — day-level summaries with verdicts
+  restrictions: RestrictionNotice[], // NEW — active restrictions for this period
+  meta: { ... }                 // existing
 }
 ```
 
-The `buildFactorVerdicts` function extracts tithi/nakshatra/yoga/karana/lagna verdicts from the window's breakdown and activity rules. Port from old API lines 120-175.
-
-- [ ] **Step 4: Verify the unified API returns both old and new data**
+- [ ] **Step 4: Verify compilation**
 
 Run: `npx tsc --noEmit -p tsconfig.build-check.json`
 Expected: zero errors
@@ -165,27 +165,32 @@ Expected: zero errors
 
 ```bash
 git add src/app/api/muhurta-scan/route.ts
-git commit -m "feat: unified muhurta API — add restrictions, verdicts, day grouping"
+git commit -m "feat: unified muhurta API — restrictions, verdicts, day grouping"
 ```
 
 ---
 
-## Task 2: Create calendar grid component
+## Task 2: Create CalendarGrid, RestrictionNotices, FactorVerdicts, NextBestCard components
 
-Extract the calendar grid UI from the old `/muhurat/page.tsx` (lines 600-800) into a standalone component.
+All four are presentation components extracted from the old `/muhurat/page.tsx`. All import types from `@/types/muhurta-ai`.
 
 **Files:**
 - Create: `src/app/[locale]/muhurta-ai/components/CalendarGrid.tsx`
-- Reference: `src/app/[locale]/muhurat/page.tsx` (lines 600-800)
+- Create: `src/app/[locale]/muhurta-ai/components/RestrictionNotices.tsx`
+- Create: `src/app/[locale]/muhurta-ai/components/FactorVerdicts.tsx`
+- Create: `src/app/[locale]/muhurta-ai/components/NextBestCard.tsx`
+- Reference (read-only): `src/app/[locale]/muhurat/page.tsx`
 
-- [ ] **Step 1: Create CalendarGrid component**
+- [ ] **Step 1: Create CalendarGrid**
+
+Read old page lines 600-800 for the calendar grid rendering. Create `CalendarGrid.tsx`:
 
 ```typescript
 'use client';
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import type { DaySummary } from './types';
+import type { DaySummary } from '@/types/muhurta-ai';
 
 interface CalendarGridProps {
   year: number;
@@ -198,55 +203,59 @@ interface CalendarGridProps {
 }
 ```
 
-Port the calendar grid rendering from old page lines 600-800: 7-column grid, weekday headers, quality-dot color coding (green=excellent, amber=good, grey=fair), click handler to select a day. Include the ShuddhiDots component inline (5-dot panchanga shuddhi indicator from old page line 340).
+Must include:
+- 7-column grid with weekday headers (Sun-Sat)
+- `useMemo` to compute grid cells (first-day-of-month offset, days-in-month, map to DaySummary)
+- Quality dot colour coding: green for excellent (>=72), amber for good (>=58), grey for fair (>=50), no dot for poor
+- Click handler calls `onDaySelect`
+- Selected day gets a gold border highlight
+- Month navigation arrows call `onMonthChange(+1)` / `onMonthChange(-1)`
+- Purple mega card gradient background per project styling rules
 
-- [ ] **Step 2: Verify it compiles**
+Also include the `ShuddhiDots` inline sub-component (from old page line 340): 5 small dots showing panchanga shuddhi level (0-5), green=filled, grey=empty.
 
-Run: `npx tsc --noEmit -p tsconfig.build-check.json`
+- [ ] **Step 2: Create RestrictionNotices**
 
-- [ ] **Step 3: Commit**
-
-```bash
-git add src/app/[locale]/muhurta-ai/components/CalendarGrid.tsx
-git commit -m "feat: CalendarGrid component extracted from old muhurat page"
-```
-
----
-
-## Task 3: Create restriction notices + factor verdicts + next-best-card components
-
-**Files:**
-- Create: `src/app/[locale]/muhurta-ai/components/RestrictionNotices.tsx`
-- Create: `src/app/[locale]/muhurta-ai/components/FactorVerdicts.tsx`
-- Create: `src/app/[locale]/muhurta-ai/components/NextBestCard.tsx`
-
-- [ ] **Step 1: Create RestrictionNotices**
-
-Port from old page lines 480-540. Displays amber/red banners for active restrictions (combustion, chaturmas, adhika masa, kharmas, holashtak, dakshinayana) with classical citations.
+Read old page lines 480-540. Create `RestrictionNotices.tsx`:
 
 ```typescript
+'use client';
+import { AlertTriangle } from 'lucide-react';
+import type { RestrictionNotice } from '@/types/muhurta-ai';
+
 interface RestrictionNoticesProps {
-  restrictions: Array<{ type: string; label: { en: string; hi: string } }>;
+  restrictions: RestrictionNotice[];
   locale: string;
 }
 ```
 
-- [ ] **Step 2: Create FactorVerdicts**
+Renders amber/red banners for active restrictions. Each banner shows the restriction type icon + label text (locale-aware). Use `bg-amber-500/10 border border-amber-500/20` for styling.
 
-Port from old page lines 830-940. Table showing tithi/nakshatra/yoga/karana/lagna verdicts with good/neutral/bad badges and reason text.
+- [ ] **Step 3: Create FactorVerdicts**
+
+Read old page lines 830-940. Create `FactorVerdicts.tsx`:
 
 ```typescript
+'use client';
+import type { FactorVerdict } from '@/types/muhurta-ai';
+
 interface FactorVerdictsProps {
-  factors: Array<{ factor: string; value: string; verdict: 'good' | 'neutral' | 'bad'; reason: string }>;
+  factors: FactorVerdict[];
   locale: string;
 }
 ```
 
-- [ ] **Step 3: Create NextBestCard**
+Table/list showing each factor's value and verdict. Good = green dot + text, neutral = grey, bad = red. Reason text shown in smaller secondary colour. Use the project's purple mega card gradient for the container.
 
-Port from old page lines 540-600. Hero card showing the next excellent/good date with score, shuddhi dots, and "View details" CTA.
+- [ ] **Step 4: Create NextBestCard**
+
+Read old page lines 540-600. Create `NextBestCard.tsx`:
 
 ```typescript
+'use client';
+import { Sparkles, ArrowRight } from 'lucide-react';
+import type { DaySummary } from '@/types/muhurta-ai';
+
 interface NextBestCardProps {
   day: DaySummary;
   activityLabel: string;
@@ -255,102 +264,199 @@ interface NextBestCardProps {
 }
 ```
 
-- [ ] **Step 4: Verify compilation**
+Hero card with gold accent showing: date, score, quality badge, best window time range, tithi + nakshatra names, "View details →" CTA button. Include ShuddhiDots if factors are available.
+
+- [ ] **Step 5: Verify all four compile**
 
 Run: `npx tsc --noEmit -p tsconfig.build-check.json`
-
-- [ ] **Step 5: Commit**
-
-```bash
-git add src/app/[locale]/muhurta-ai/components/RestrictionNotices.tsx \
-        src/app/[locale]/muhurta-ai/components/FactorVerdicts.tsx \
-        src/app/[locale]/muhurta-ai/components/NextBestCard.tsx
-git commit -m "feat: restriction notices, factor verdicts, next-best-card components"
-```
-
----
-
-## Task 4: Update MuhurtaScannerClient — add calendar view + wire new components
-
-**Files:**
-- Modify: `src/app/[locale]/muhurta-ai/MuhurtaScannerClient.tsx`
-- Modify: `src/app/[locale]/muhurta-ai/components/ScanControls.tsx`
-
-- [ ] **Step 1: Add view toggle state and calendar grid**
-
-Add to MuhurtaScannerClient:
-- `viewMode` state: `'heatmap' | 'calendar'` (default `'calendar'`)
-- Import and render `CalendarGrid` when `viewMode === 'calendar'`
-- Import and render `MonthHeatmap` when `viewMode === 'heatmap'`
-- Wire `RestrictionNotices` above the grid (from API response)
-- Wire `NextBestCard` above the grid
-- Wire `FactorVerdicts` into the day detail panel (alongside existing `ScoreBreakdown`)
-
-- [ ] **Step 2: Add view toggle to ScanControls**
-
-Add a segmented toggle (Calendar | Heatmap) to `ScanControls.tsx`, similar to the old page's `view` toggle (calendar/list). Pass `viewMode` and `onViewModeChange` props.
-
-- [ ] **Step 3: Change default activity from 'property' to 'marriage'**
-
-In `MuhurtaScannerClient.tsx` line where `activity` state is initialised, change default from `'property'` to `'marriage'`.
-
-- [ ] **Step 4: Update API call to request restrictions + days**
-
-The overview API call in `handleScan` already sends `resolution: 'overview'`. After Task 1, the response will include `restrictions` and `days`. Store them in state:
-
-```typescript
-const [restrictions, setRestrictions] = useState<Array<{ type: string; label: { en: string; hi: string } }>>([]);
-const [daySummaries, setDaySummaries] = useState<DaySummary[]>([]);
-```
-
-- [ ] **Step 5: Verify compilation and test in browser**
-
-Run: `npx tsc --noEmit -p tsconfig.build-check.json`
-Start dev server: `npx next dev --webpack`
-Open `http://localhost:3000/en/muhurta-ai` — verify:
-- Calendar grid renders with quality dots
-- Heatmap toggle switches view
-- Day click shows factor verdicts + score breakdown
-- Restriction notices appear when relevant
 
 - [ ] **Step 6: Commit**
 
 ```bash
-git add src/app/[locale]/muhurta-ai/MuhurtaScannerClient.tsx \
-        src/app/[locale]/muhurta-ai/components/ScanControls.tsx
-git commit -m "feat: unified muhurta page — calendar view, restrictions, verdicts"
+git add src/app/[locale]/muhurta-ai/components/CalendarGrid.tsx \
+        src/app/[locale]/muhurta-ai/components/RestrictionNotices.tsx \
+        src/app/[locale]/muhurta-ai/components/FactorVerdicts.tsx \
+        src/app/[locale]/muhurta-ai/components/NextBestCard.tsx
+git commit -m "feat: CalendarGrid, RestrictionNotices, FactorVerdicts, NextBestCard components"
 ```
 
 ---
 
-## Task 5: Update page wrapper — drop "AI" branding, add methodology
+## Task 3: Wire new components into MuhurtaScannerClient
+
+This is the core integration task. The scanner client gains a calendar view mode, auto-fetch behaviour, and renders the new components.
 
 **Files:**
-- Modify: `src/app/[locale]/muhurta-ai/page.tsx`
-- Modify: `src/app/[locale]/muhurta-ai/layout.tsx`
+- Modify: `src/app/[locale]/muhurta-ai/MuhurtaScannerClient.tsx` (438 lines)
+- Modify: `src/app/[locale]/muhurta-ai/components/ScanControls.tsx`
+
+- [ ] **Step 1: Add new state variables and imports**
+
+In `MuhurtaScannerClient.tsx`, add:
+
+```typescript
+import { CalendarGrid } from './components/CalendarGrid';
+import { RestrictionNotices } from './components/RestrictionNotices';
+import { FactorVerdicts } from './components/FactorVerdicts';
+import { NextBestCard } from './components/NextBestCard';
+import type { DaySummary, RestrictionNotice } from '@/types/muhurta-ai';
+
+// New state:
+const [viewMode, setViewMode] = useState<'calendar' | 'heatmap'>('calendar');
+const [daySummaries, setDaySummaries] = useState<DaySummary[]>([]);
+const [restrictions, setRestrictions] = useState<RestrictionNotice[]>([]);
+```
+
+- [ ] **Step 2: Change default activity to 'marriage'**
+
+Change the activity state initialiser from `'property'` to `'marriage'`.
+
+- [ ] **Step 3: Add auto-fetch for calendar view**
+
+Add a `useEffect` that fires when `viewMode === 'calendar'` and when year/month/activity/location changes:
+
+```typescript
+useEffect(() => {
+  if (viewMode !== 'calendar') return;
+  // Auto-fetch overview for the current month
+  handleScan(); // reuse existing scan function
+}, [viewMode, startDate, endDate, activity, /* location deps */]);
+```
+
+This gives the calendar view the browse-on-mount behaviour users expect from a calendar. The heatmap view keeps the manual "Scan" button.
+
+- [ ] **Step 4: Parse new API response fields**
+
+In the `handleScan` callback, after parsing the overview response, extract the new fields:
+
+```typescript
+const data = await res.json();
+setOverviewCells(data.windows || []);
+setDaySummaries(data.days || []);      // NEW
+setRestrictions(data.restrictions || []); // NEW
+```
+
+- [ ] **Step 5: Render calendar grid vs heatmap based on viewMode**
+
+Replace the current unconditional `<MonthHeatmap>` render with:
+
+```typescript
+{viewMode === 'calendar' ? (
+  <>
+    <RestrictionNotices restrictions={restrictions} locale={locale} />
+    {nextBestDay && (
+      <NextBestCard day={nextBestDay} activityLabel={...} onSelect={...} locale={locale} />
+    )}
+    <CalendarGrid
+      year={year} month={month} days={daySummaries}
+      onMonthChange={handleMonthChange} onDaySelect={handleDaySelect}
+      selectedDate={selectedDate} locale={locale}
+    />
+  </>
+) : (
+  <>
+    {/* Desktop */}
+    <MonthHeatmap ... />
+    {/* Mobile */}
+    <MobileMonthView ... />
+  </>
+)}
+```
+
+The day detail panel (DayDrilldown + FactorVerdicts + ScoreBreakdown) renders below either view when a day is selected.
+
+- [ ] **Step 6: Add FactorVerdicts to day detail panel**
+
+When a day is selected and drilldown data is loaded, show FactorVerdicts alongside ScoreBreakdown:
+
+```typescript
+{selectedDate && daySummaries.find(d => d.date === selectedDate)?.factors && (
+  <FactorVerdicts
+    factors={daySummaries.find(d => d.date === selectedDate)!.factors!}
+    locale={locale}
+  />
+)}
+```
+
+- [ ] **Step 7: Add view toggle to ScanControls**
+
+In `ScanControls.tsx`, add a `viewMode` / `onViewModeChange` prop and render a segmented toggle:
+
+```typescript
+interface ScanControlsProps {
+  // ... existing props
+  viewMode: 'calendar' | 'heatmap';
+  onViewModeChange: (mode: 'calendar' | 'heatmap') => void;
+}
+```
+
+Render two toggle buttons (Calendar icon | Grid icon) styled like the old page's calendar/list toggle.
+
+- [ ] **Step 8: Verify compilation and test in browser**
+
+Run: `npx tsc --noEmit -p tsconfig.build-check.json`
+
+Start dev server: `npx next dev --webpack`
+Test at `http://localhost:3000/en/muhurta-ai`:
+- Calendar grid renders with quality dots on first load (auto-fetch)
+- Month navigation works (changes month, re-fetches)
+- Toggle to heatmap works
+- Day click shows factor verdicts + score breakdown
+- Restriction notices appear when applicable
+
+- [ ] **Step 9: Commit**
+
+```bash
+git add src/app/[locale]/muhurta-ai/MuhurtaScannerClient.tsx \
+        src/app/[locale]/muhurta-ai/components/ScanControls.tsx
+git commit -m "feat: unified muhurta page — calendar view, auto-fetch, restrictions, verdicts"
+```
+
+---
+
+## Task 4: Drop "AI" branding, add methodology, clean dead code
+
+**Files:**
+- Modify: `src/app/[locale]/muhurta-ai/page.tsx` (158 lines)
+- Modify: `src/app/[locale]/muhurta-ai/layout.tsx` (31 lines)
 - Modify: `src/lib/seo/metadata.ts`
-- Delete: `src/app/[locale]/muhurta-ai/components/NLSearchBar.tsx`
-- Delete: `src/app/[locale]/muhurta-ai/components/NLResultCards.tsx`
+- Delete: `src/app/[locale]/muhurta-ai/components/NLSearchBar.tsx` (dead code)
+- Delete: `src/app/[locale]/muhurta-ai/components/NLResultCards.tsx` (dead code)
 
-- [ ] **Step 1: Remove NL dead code imports from page.tsx**
+- [ ] **Step 1: Remove NL dead code**
 
-Remove the `NLSearchBar` and `NLResultCards` imports from `page.tsx`. Delete both component files.
+In `page.tsx`, remove the `NLSearchBar` and `NLResultCards` imports. Delete both files:
+- `src/app/[locale]/muhurta-ai/components/NLSearchBar.tsx` (2,720 bytes)
+- `src/app/[locale]/muhurta-ai/components/NLResultCards.tsx` (10,656 bytes)
 
-- [ ] **Step 2: Update editorial content — drop "AI" branding**
+- [ ] **Step 2: Update page editorial content**
 
-Replace "AI Muhurta Scanner" headings with "Muhurta Scanner" or "Shubh Muhurta Finder". Update the 4 editorial cards to remove AI references. Add the methodology section from the old `/muhurat` page (lines 950-1100) — the "How We Calculate" section explaining the 36-rule, 5-tier scoring system.
+In `page.tsx`:
+- Replace "AI Muhurta Scanner" headings with "Shubh Muhurta Finder" / "शुभ मुहूर्त खोजक"
+- Update the 4 editorial cards — replace "AI Scoring" card with "Classical 36-Rule Engine" card
+- Port the "How We Calculate" methodology section from old `/muhurat/page.tsx` lines 950-1100. This is ~150 lines of educational content explaining the 5-tier scoring system, 36 rules, classical citations. Place it after the editorial cards.
 
 - [ ] **Step 3: Update layout metadata**
 
-In `layout.tsx`, update `getPageMetadata('/muhurta-ai', locale)` — the metadata in `metadata.ts` needs title/description changes:
+In `src/lib/seo/metadata.ts`, find the `/muhurta-ai` entry and update:
 
 ```typescript
-// In metadata.ts, update the /muhurta-ai entry:
 '/muhurta-ai': {
-  title: { en: 'Shubh Muhurta Finder — Auspicious Dates & Times', ... },
-  description: { en: 'Find the most auspicious date and time for marriage, griha pravesh, business, and 18 more activities. 36-rule Vedic scoring with 15-minute precision.', ... },
-}
+  title: {
+    en: 'Shubh Muhurta Finder — Auspicious Dates & Times for 20 Activities',
+    hi: 'शुभ मुहूर्त खोजक — 20 कार्यों के लिए शुभ तिथि एवं समय',
+    sa: 'शुभमुहूर्तान्वेषकम् — 20 कार्याणां कृते शुभतिथिसमयौ',
+  },
+  description: {
+    en: 'Find the most auspicious date and time for marriage, griha pravesh, business, and 18 more activities. 36-rule Vedic scoring with 15-minute precision. Free.',
+    hi: 'विवाह, गृह प्रवेश, व्यापार और 18 अन्य कार्यों के लिए सबसे शुभ तिथि और समय। 36-नियम वैदिक स्कोरिंग, 15 मिनट की सटीकता।',
+    sa: 'विवाहगृहप्रवेशव्यापारादि 20 कार्याणां कृते शुभतिथिसमयम्। 36-नियमवैदिकमूल्याङ्कनम्।',
+  },
+  keywords: ['muhurta finder', 'auspicious date', 'shubh muhurat', 'vivah muhurat', 'wedding date'],
+},
 ```
+
+Update `layout.tsx` — no code change needed since it already calls `getPageMetadata('/muhurta-ai', locale)`.
 
 - [ ] **Step 4: Verify**
 
@@ -359,86 +465,97 @@ Run: `npx tsc --noEmit -p tsconfig.build-check.json`
 - [ ] **Step 5: Commit**
 
 ```bash
+git rm src/app/[locale]/muhurta-ai/components/NLSearchBar.tsx \
+       src/app/[locale]/muhurta-ai/components/NLResultCards.tsx
 git add src/app/[locale]/muhurta-ai/page.tsx \
         src/app/[locale]/muhurta-ai/layout.tsx \
         src/lib/seo/metadata.ts
-git rm src/app/[locale]/muhurta-ai/components/NLSearchBar.tsx \
-       src/app/[locale]/muhurta-ai/components/NLResultCards.tsx
-git commit -m "feat: drop AI branding, add methodology section, remove NL dead code"
+git commit -m "feat: drop AI branding → Shubh Muhurta Finder, add methodology, kill dead code"
 ```
 
 ---
 
-## Task 6: Redirect `/muhurat` → `/muhurta-ai` and clean up links
+## Task 5: Redirect `/muhurat` → `/muhurta-ai`, delete old code, update all links
 
 **Files:**
-- Modify: `src/app/[locale]/muhurat/layout.tsx` — redirect
-- Delete: `src/app/[locale]/muhurat/page.tsx`
-- Delete: `src/app/api/muhurat/scan/route.ts`
-- Modify: `src/app/sitemap.ts` — remove `/muhurat` route
-- Modify: navbar, footer, cross-links — update all `/muhurat` references
+- Replace: `src/app/[locale]/muhurat/page.tsx` (1105 lines → redirect)
+- Delete: `src/app/api/muhurat/scan/route.ts` (368 lines)
+- Delete: `src/messages/pages/muhurat.json` (after merging any missing keys)
+- Modify: `src/app/sitemap.ts`
+- Modify: All files linking to `/muhurat`
 
-- [ ] **Step 1: Convert `/muhurat` to a redirect page**
+- [ ] **Step 1: Replace old page with redirect**
 
-Replace `src/app/[locale]/muhurat/page.tsx` with a simple redirect:
+Replace the 1105-line `src/app/[locale]/muhurat/page.tsx` with:
 
 ```typescript
 import { redirect } from 'next/navigation';
 
-export default async function MuhuratPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function MuhuratRedirect({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   redirect(`/${locale}/muhurta-ai`);
 }
 ```
 
-Or use Next.js middleware / `layout.tsx` redirect. Keep the layout.tsx for the redirect; delete the old 1105-line page.
-
 - [ ] **Step 2: Delete old API route**
 
-Delete `src/app/api/muhurat/scan/route.ts` (368 lines). The unified `/api/muhurta-scan` now handles everything.
+```bash
+rm src/app/api/muhurat/scan/route.ts
+```
 
-- [ ] **Step 3: Update sitemap**
+- [ ] **Step 3: Merge message files and delete old one**
 
-In `src/app/sitemap.ts`, remove `/muhurat` from the routes array. `/muhurta-ai` is already there.
+Read `src/messages/pages/muhurat.json` and `src/messages/pages/muhurta-ai.json`. Copy any keys from muhurat.json that don't exist in muhurta-ai.json. Then delete muhurat.json.
 
-- [ ] **Step 4: Update all internal links**
+- [ ] **Step 4: Remove `/muhurat` from sitemap**
 
-Grep for `/muhurat` across the codebase and update to `/muhurta-ai`:
-- Navbar links
-- Footer links
-- Cross-links in `src/lib/seo/cross-links.ts`
-- Any `<Link href="...muhurat...">` in other pages
-- The `/muhurta/[type]/page.tsx` pages that link to the calendar
+In `src/app/sitemap.ts`, find the `'/muhurat'` entry in the routes array and remove it. `/muhurta-ai` is already listed.
 
-Command: `grep -rn '"/muhurat"' src/ --include="*.tsx" --include="*.ts" | grep -v muhurta-ai | grep -v node_modules`
+- [ ] **Step 5: Update all internal links from `/muhurat` to `/muhurta-ai`**
 
-- [ ] **Step 5: Verify build**
+Run: `grep -rn '"/muhurat"' src/ --include="*.tsx" --include="*.ts" | grep -v muhurta-ai | grep -v node_modules`
+
+Expected files to update:
+- `src/components/layout/Navbar.tsx` — nav link
+- `src/components/layout/Footer.tsx` — footer link
+- `src/lib/seo/cross-links.ts` — cross-link definitions
+- `src/app/[locale]/muhurta/[type]/page.tsx` — CTA buttons ("Find your date →")
+- `src/app/[locale]/panchang/muhurta/page.tsx` — if it links to the calendar
+- Any other pages with muhurat cross-references
+
+Also grep for `'/muhurat/'` (with trailing slash) and `muhurat/scan` (API references in client code) — these should also be updated.
+
+**CRITICAL: The `/muhurta/[type]` pages (12+ static SEO pages) have CTA buttons linking to `/muhurat`. Update ALL of them to `/muhurta-ai`.**
+
+- [ ] **Step 6: Verify build**
 
 Run: `npx tsc --noEmit -p tsconfig.build-check.json`
 Run: `npx vitest run`
-Run: `npx next build` (with increased heap: `NODE_OPTIONS='--max-old-space-size=8192'`)
 
-- [ ] **Step 6: Commit**
+- [ ] **Step 7: Commit**
 
 ```bash
-git rm src/app/[locale]/muhurat/page.tsx src/app/api/muhurat/scan/route.ts
-git add src/app/[locale]/muhurat/ src/app/sitemap.ts src/lib/seo/cross-links.ts \
-        src/components/layout/Navbar.tsx src/components/layout/Footer.tsx
-git commit -m "feat: redirect /muhurat → /muhurta-ai, delete old API, update all links"
+git rm src/app/api/muhurat/scan/route.ts src/messages/pages/muhurat.json
+git add src/app/[locale]/muhurat/page.tsx src/app/sitemap.ts \
+        src/lib/seo/cross-links.ts src/components/layout/Navbar.tsx \
+        src/components/layout/Footer.tsx
+# Also add any muhurta/[type] pages that were updated
+git add src/app/[locale]/muhurta/
+git commit -m "feat: redirect /muhurat → /muhurta-ai, delete old API + page, update all links"
 ```
 
 ---
 
-## Task 7: Final verification and push
+## Task 6: Final verification and push
 
-- [ ] **Step 1: Run full test suite**
+- [ ] **Step 1: Full test suite**
 
 ```bash
 npx vitest run
 ```
-Expected: all tests pass (no muhurta-specific tests should break since the engine is unchanged)
+Expected: all ~3075 tests pass (scoring engine is unchanged)
 
-- [ ] **Step 2: Run type check**
+- [ ] **Step 2: Type check**
 
 ```bash
 npx tsc --noEmit -p tsconfig.build-check.json
@@ -446,18 +563,24 @@ npx tsc --noEmit -p tsconfig.build-check.json
 
 - [ ] **Step 3: Test in browser**
 
-Start dev server and verify:
-1. `/en/muhurta-ai` loads with calendar grid view by default
-2. Activity picker works (20 activities with icons)
-3. Month navigation works
-4. Calendar grid shows quality dots for auspicious days
-5. Click a day → factor verdicts + score breakdown + 15-min drilldown
-6. Toggle to heatmap view → 2D heatmap renders
-7. Restriction notices appear (if applicable for current month)
-8. "Next best date" card shows correctly
-9. Share button generates PNG
-10. `/en/muhurat` redirects to `/en/muhurta-ai`
-11. No console errors
+Start dev server: `npx next dev --webpack`
+
+Verify ALL of these:
+1. `/en/muhurta-ai` loads with calendar grid, marriage activity selected, current month auto-fetched
+2. Activity picker shows 20 activities with rich SVG icons
+3. Month navigation arrows work — data re-fetches automatically
+4. Calendar grid shows quality dots (green/amber/grey) for scored days
+5. Click a day → below the grid, factor verdicts appear (Tithi: good/neutral/bad with reason) + score breakdown + 15-min drilldown
+6. Toggle to heatmap view → 2D heatmap renders correctly
+7. In heatmap view, "Scan" button is required (no auto-fetch)
+8. Restriction notices appear when viewing a month with active restrictions (e.g., check Adhika Masa months)
+9. "Next best date" card appears above the grid with score and time range
+10. Share button generates PNG
+11. Personalization (birth nakshatra/rashi) affects scores
+12. `/en/muhurat` redirects to `/en/muhurta-ai` (HTTP 307/308)
+13. No console errors
+14. Hindi locale works: `/hi/muhurta-ai` with Hindi labels
+15. Mobile responsive: calendar grid adapts, no horizontal overflow
 
 - [ ] **Step 4: Push**
 
@@ -468,7 +591,10 @@ git push origin main
 - [ ] **Step 5: Verify Vercel deployment**
 
 ```bash
-npx vercel ls  # confirm Ready
+npx vercel ls  # confirm Ready status
 ```
 
-Check live site: `https://dekhopanchang.com/en/muhurta-ai` and `https://dekhopanchang.com/en/muhurat` (should redirect).
+Check live:
+- `https://dekhopanchang.com/en/muhurta-ai` — unified page works
+- `https://dekhopanchang.com/en/muhurat` — redirects to muhurta-ai
+- `https://dekhopanchang.com/en/muhurta/wedding` — CTA links to muhurta-ai (not old muhurat)

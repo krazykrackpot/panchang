@@ -13,6 +13,8 @@ import { ArrowLeft } from 'lucide-react';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
 import AuthorByline from '@/components/ui/AuthorByline';
+import NakshatraShareButton from '@/components/shareable/NakshatraShareButton';
+import { useBirthDataStore } from '@/stores/birth-data-store';
 
 export default function NakshatraPage() {
   const t = useTranslations('deepDive');
@@ -20,6 +22,8 @@ export default function NakshatraPage() {
   const isTamil = String(locale) === 'ta';
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
+  const { birthNakshatra, birthRashi, birthName, loadFromStorage } = useBirthDataStore();
+  useEffect(() => { loadFromStorage(); }, [loadFromStorage]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -156,6 +160,17 @@ export default function NakshatraPage() {
           ))}
         </div>
       </section>
+
+      {birthNakshatra > 0 && (
+        <div className="flex justify-center my-8">
+          <NakshatraShareButton
+            name={birthName || ''}
+            nakshatraId={birthNakshatra}
+            rashiId={birthRashi}
+            locale={locale}
+          />
+        </div>
+      )}
 
       <AuthorByline />
     </div>

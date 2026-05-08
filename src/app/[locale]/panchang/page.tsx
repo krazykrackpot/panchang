@@ -14,6 +14,8 @@ import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { getNakshatraActivity } from '@/lib/constants/nakshatra-activities';
 import { getLatestVideo } from '@/lib/youtube/latest-video';
+import { MapPin } from 'lucide-react';
+import { getCitiesByTier } from '@/lib/constants/cities-extended';
 import type { PanchangData } from '@/types/panchang';
 import PanchangClient from './PanchangClient';
 
@@ -259,6 +261,100 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
           latestVideo={latestVideo}
         />
       </div>
+
+      {/* Popular Cities section — server-rendered for SEO crawl paths to /panchang/[city] */}
+      <PopularCitiesSection locale={locale} />
     </>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Popular Cities Section (server-rendered, gives Google crawl paths)
+// ---------------------------------------------------------------------------
+
+/** Curated city slugs: top Indian cities + key diaspora cities */
+const FEATURED_INDIAN_SLUGS = [
+  'delhi', 'mumbai', 'bangalore', 'hyderabad', 'chennai', 'kolkata',
+  'ahmedabad', 'pune', 'jaipur', 'lucknow', 'varanasi', 'patna',
+  'surat', 'indore', 'nagpur', 'chandigarh', 'bhopal', 'kanpur',
+  'coimbatore', 'kochi',
+];
+const FEATURED_DIASPORA_SLUGS = [
+  'new-york', 'london', 'toronto', 'sydney', 'singapore', 'dubai',
+];
+
+function PopularCitiesSection({ locale }: { locale: string }) {
+  const tier1 = getCitiesByTier(1);
+  const isHi = locale === 'hi' || locale === 'sa' || locale === 'mai';
+
+  // Build ordered list: Indian first, then diaspora
+  const indianCities = FEATURED_INDIAN_SLUGS
+    .map(slug => tier1.find(c => c.slug === slug))
+    .filter(Boolean) as typeof tier1;
+  const diasporaCities = FEATURED_DIASPORA_SLUGS
+    .map(slug => tier1.find(c => c.slug === slug))
+    .filter(Boolean) as typeof tier1;
+
+  return (
+    <section className="max-w-5xl mx-auto px-4 pb-16 pt-8">
+      <h2 className="text-2xl sm:text-3xl font-bold text-gold-light text-center mb-3">
+        {isHi ? 'शहर के अनुसार पंचांग' : 'Panchang by City'}
+      </h2>
+      <p className="text-text-secondary text-sm text-center mb-8 max-w-2xl mx-auto">
+        {isHi
+          ? 'अपने शहर के लिए सटीक सूर्योदय, सूर्यास्त, तिथि, नक्षत्र और राहु काल का समय देखें।'
+          : 'View accurate sunrise, sunset, tithi, nakshatra, and Rahu Kaal timings for your city.'}
+      </p>
+
+      {/* Indian Cities */}
+      <h3 className="text-gold-primary text-xs font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
+        <MapPin size={14} />
+        {isHi ? 'भारतीय शहर' : 'Indian Cities'}
+      </h3>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 mb-8">
+        {indianCities.map(city => (
+          <Link
+            key={city.slug}
+            href={`/${locale}/panchang/${city.slug}`}
+            className="rounded-xl border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] px-4 py-3 text-center hover:border-gold-primary/40 hover:bg-gold-primary/5 transition-all group"
+          >
+            <div className="text-gold-light text-sm font-medium group-hover:text-gold-primary transition-colors">
+              {isHi ? city.name.hi : city.name.en}
+            </div>
+            <div className="text-text-secondary/50 text-xs">{city.state}</div>
+          </Link>
+        ))}
+      </div>
+
+      {/* Diaspora Cities */}
+      <h3 className="text-gold-primary text-xs font-bold uppercase tracking-wider mb-4 flex items-center gap-2">
+        <MapPin size={14} />
+        {isHi ? 'अंतर्राष्ट्रीय शहर' : 'International Cities'}
+      </h3>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 mb-8">
+        {diasporaCities.map(city => (
+          <Link
+            key={city.slug}
+            href={`/${locale}/panchang/${city.slug}`}
+            className="rounded-xl border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] px-4 py-3 text-center hover:border-gold-primary/40 hover:bg-gold-primary/5 transition-all group"
+          >
+            <div className="text-gold-light text-sm font-medium group-hover:text-gold-primary transition-colors">
+              {isHi ? city.name.hi : city.name.en}
+            </div>
+            <div className="text-text-secondary/50 text-xs">{city.state}</div>
+          </Link>
+        ))}
+      </div>
+
+      {/* Link to full locations page */}
+      <div className="text-center">
+        <Link
+          href={`/${locale}/panchang/locations`}
+          className="inline-flex items-center gap-2 text-gold-primary hover:text-gold-light text-sm font-medium transition-colors"
+        >
+          {isHi ? 'सभी 800+ शहर देखें →' : 'View all 800+ cities →'}
+        </Link>
+      </div>
+    </section>
   );
 }

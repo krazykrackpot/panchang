@@ -8,6 +8,7 @@ import { MapPin, Loader2, Clock, Sun, Moon, ChevronDown, ChevronUp, Compass, Cal
 import GoldDivider from '@/components/ui/GoldDivider';
 import InfoBlock from '@/components/ui/InfoBlock';
 import ShareButton from '@/components/ui/ShareButton';
+import WhatsAppShareBanner from '@/components/ui/WhatsAppShareBanner';
 import PrintButton from '@/components/ui/PrintButton';
 import MonthlyPDFButton from '@/components/panchang/MonthlyPDFButton';
 import { Download } from 'lucide-react';
@@ -1900,6 +1901,16 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
           ))}
         </div>
       </div>
+
+      {/* ═══ WHATSAPP SHARE CTA ═══ */}
+      {panchang && (
+        <WhatsAppShareBanner
+          shareText={`${_tl({ en: "Today's Panchang", hi: 'आज का पंचांग', sa: 'अद्य पञ्चाङ्गम्' }, locale)}: ${panchang.tithi?.name?.[locale] || panchang.tithi?.name?.en || ''}, ${panchang.nakshatra?.name?.[locale] || panchang.nakshatra?.name?.en || ''}, ${panchang.yoga?.name?.[locale] || panchang.yoga?.name?.en || ''} | ${location?.name || ''}`}
+          url={`https://dekhopanchang.com/${locale}/panchang`}
+          locale={locale}
+          className="my-10"
+        />
+      )}
 
       {/* ═══ PANCHANG BY CITY ═══ */}
       <div className="my-14">

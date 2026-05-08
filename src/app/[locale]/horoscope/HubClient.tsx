@@ -8,6 +8,7 @@ import { RashiIconById } from '@/components/icons/RashiIcons';
 import { RASHIS } from '@/lib/constants/rashis';
 import { Link } from '@/lib/i18n/navigation';
 import ShareButton from '@/components/ui/ShareButton';
+import WhatsAppShareBanner from '@/components/ui/WhatsAppShareBanner';
 import TarotCard from '@/components/ui/TarotCard';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import { useAuthStore } from '@/stores/auth-store';
@@ -651,15 +652,12 @@ export function HubClient({ locale }: HubClientProps) {
                 })}
               </div>
 
-              {/* Share buttons */}
-              <div className="flex justify-center">
-                <ShareButton
-                  title={`${horoscope.moonSignName[lk]} — ${L.title}`}
-                  text={`Today's ${horoscope.moonSignName.en} Horoscope — Score: ${horoscope.overallScore}/10 | dekhopanchang.com`}
-                  url={`https://dekhopanchang.com/${locale}/horoscope`}
-                  locale={locale as Locale}
-                />
-              </div>
+              {/* WhatsApp Share Banner — viral distribution to family groups */}
+              <WhatsAppShareBanner
+                shareText={`${horoscope.moonSignName[lk]} — ${L.title}\n${L.overallScore}: ${horoscope.overallScore}/10`}
+                url={`https://dekhopanchang.com/${locale}/horoscope`}
+                locale={locale as Locale}
+              />
 
               {/* CTA — generate kundali */}
               <div className="bg-gradient-to-br from-gold-primary/10 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 rounded-2xl p-6 text-center">

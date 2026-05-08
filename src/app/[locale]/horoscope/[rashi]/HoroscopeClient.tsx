@@ -7,6 +7,8 @@ import { RashiIconById } from '@/components/icons/RashiIcons';
 import { RASHIS } from '@/lib/constants/rashis';
 import { Link } from '@/lib/i18n/navigation';
 import ShareButton from '@/components/ui/ShareButton';
+import WhatsAppShareBanner from '@/components/ui/WhatsAppShareBanner';
+import NakshatraShareButton from '@/components/shareable/NakshatraShareButton';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale, getHeadingFont, getBodyFont, dataLocale } from '@/lib/utils/locale-fonts';
 import { useBirthDataStore } from '@/stores/birth-data-store';
@@ -246,7 +248,7 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
   const westernName = rashi.name.en;
 
   // Birth data store (localStorage) — only available client-side
-  const { birthRashi, birthNakshatra, loadFromStorage } = useBirthDataStore();
+  const { birthRashi, birthNakshatra, birthName, loadFromStorage } = useBirthDataStore();
   useEffect(() => { loadFromStorage(); }, [loadFromStorage]);
 
   // True when the user is viewing their own sign page
@@ -691,15 +693,22 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
               </Link>
             </div>
 
-            {/* Share */}
-            <div className="flex justify-center">
-              <ShareButton
-                title={`${vedicName} (${westernName}) — ${L.horoscopeToday}`}
-                text={`Today's ${westernName} Horoscope — Score: ${horoscope.overallScore}/10 | dekhopanchang.com`}
-                url={`https://dekhopanchang.com/${locale}/horoscope/${rashiSlug}`}
-                locale={locale as Locale}
-              />
-            </div>
+            {/* WhatsApp Share Banner — viral distribution to family groups */}
+            <WhatsAppShareBanner
+              shareText={`${vedicName} (${westernName}) — ${L.horoscopeToday}\n${L.overallScore}: ${horoscope.overallScore}/10`}
+              url={`https://dekhopanchang.com/${locale}/horoscope/${rashiSlug}`}
+              locale={locale as Locale}
+            />
+            {birthNakshatra > 0 && (
+              <div className="flex justify-center">
+                <NakshatraShareButton
+                  name={birthName || ''}
+                  nakshatraId={birthNakshatra}
+                  rashiId={birthRashi}
+                  locale={locale}
+                />
+              </div>
+            )}
 
             {/* CTA */}
             <div className="bg-gradient-to-br from-gold-primary/10 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 rounded-2xl p-6 text-center">

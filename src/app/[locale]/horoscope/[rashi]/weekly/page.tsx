@@ -37,7 +37,7 @@ export default async function WeeklyRashiPage({ params }: { params: Promise<{ lo
   const rashi = getRashiBySlug(rashiSlug);
   if (!rashi) return notFound();
 
-  const vedicName = tl(rashi.name, locale);
+  const vedicName = rashi.name.hi || rashi.name.en;
   const westernName = rashi.name.en;
   const week = getWeekRange();
 

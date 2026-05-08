@@ -26,7 +26,7 @@ export default async function DateHoroscopePage({ params }: { params: Promise<{ 
   if (isNaN(parsed.getTime())) return notFound();
 
   const horoscope = generateDailyHoroscope({ moonSign: rashi.id, date });
-  const vedicName = tl(rashi.name, locale);
+  const vedicName = rashi.name.hi || rashi.name.en;
   const westernName = rashi.name.en;
 
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';

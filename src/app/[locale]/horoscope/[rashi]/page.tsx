@@ -24,8 +24,9 @@ export default async function RashiPage({ params }: { params: Promise<{ locale: 
   const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
   const horoscope = generateDailyHoroscope({ moonSign: rashi.id, date: today });
 
-  const vedicName = tl(rashi.name, locale);
+  const vedicName = rashi.name.hi || rashi.name.en; // Always use Hindi/Sanskrit name as the Vedic name
   const westernName = rashi.name.en;
+  const localeName = tl(rashi.name, locale); // Locale-specific name for body text
 
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
 

@@ -29,7 +29,7 @@ export default async function MonthlyRashiPage({ params }: { params: Promise<{ l
   const rashi = getRashiBySlug(rashiSlug);
   if (!rashi) return notFound();
 
-  const vedicName = tl(rashi.name, locale);
+  const vedicName = rashi.name.hi || rashi.name.en;
   const westernName = rashi.name.en;
 
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';

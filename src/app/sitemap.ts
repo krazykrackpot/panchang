@@ -453,9 +453,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  // Date-based horoscope routes (next 7 days) — captures long-tail queries like "aries horoscope may 8 2026"
+  // Date-based horoscope routes (next 30 days) — captures long-tail queries like "aries horoscope may 8 2026"
+  // 30 days ensures the sitemap stays fresh even if nobody deploys for a month
   const horoscopeDateBase = new Date();
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 30; i++) {
     const d = new Date(horoscopeDateBase);
     d.setDate(d.getDate() + i);
     const dateStr = d.toISOString().slice(0, 10);

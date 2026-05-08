@@ -1,0 +1,741 @@
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { Loader2, Briefcase, Heart, Activity, IndianRupee, Sparkles, ArrowLeft, ChevronRight, Star, Compass, Shield, CheckCircle, XCircle, Globe } from 'lucide-react';
+import { RashiIconById } from '@/components/icons/RashiIcons';
+import { RASHIS } from '@/lib/constants/rashis';
+import { Link } from '@/lib/i18n/navigation';
+import ShareButton from '@/components/ui/ShareButton';
+import { tl } from '@/lib/utils/trilingual';
+import { isDevanagariLocale, getHeadingFont, getBodyFont, dataLocale } from '@/lib/utils/locale-fonts';
+import { useBirthDataStore } from '@/stores/birth-data-store';
+import { trackHoroscopeViewed } from '@/lib/analytics';
+import type { Locale } from '@/types/panchang';
+import type { Rashi } from '@/types/panchang';
+import type { DailyHoroscope } from '@/lib/horoscope/daily-engine';
+import type { KundaliData } from '@/types/kundali';
+
+// ---------------------------------------------------------------------------
+// Labels
+// ---------------------------------------------------------------------------
+const LABELS = {
+  en: {
+    backToAll: 'All Signs',
+    horoscopeToday: 'Horoscope Today',
+    subtitle: 'Based on actual planetary transits — not generic predictions',
+    overallScore: 'Overall Score',
+    career: 'Career',
+    love: 'Love',
+    health: 'Health',
+    finance: 'Finance',
+    spirituality: 'Spirituality',
+    luckyColor: 'Lucky Color',
+    luckyNumber: 'Lucky Number',
+    luckyTime: 'Lucky Time',
+    dailyInsight: 'Daily Insight',
+    otherSigns: 'Other Signs',
+    ruledBy: 'Ruled by',
+    element: 'Element',
+    quality: 'Quality',
+    ctaTitle: 'Get personalized horoscope',
+    ctaDesc: 'Generate your Kundali to unlock daily predictions tailored to your exact birth chart.',
+    ctaButton: 'Generate Kundali',
+    loading: 'Calculating your horoscope...',
+    personalizedFor: 'Personalized for you',
+    basedOnBirthChart: 'Based on your birth chart',
+    personalizedLoading: 'Reading your chart...',
+    taraBala: 'Tara Bala',
+    taraAuspicious: 'Auspicious nakshatra transit',
+    taraInauspicious: 'Challenging nakshatra transit',
+    transitImpact: 'Transit Impact',
+    moonIn: 'Moon in',
+    houseLabel: 'house from your sign',
+    jupiterIn: 'Jupiter in',
+    saturnIn: 'Saturn in',
+    rahuIn: 'Rahu in',
+    luckyDirection: 'Lucky Direction',
+    remedies: 'Remedies for Today',
+    mantra: 'Mantra',
+    practicalRemedy: 'Practical Remedy',
+    compatibilityToday: 'Best Compatibility Today',
+    dosTitle: "Do's",
+    dontsTitle: "Don'ts",
+    dosAndDonts: "Do's & Don'ts",
+    weeklyLink: 'See Weekly Forecast',
+    sadeSatiLink: 'Check Sade Sati Status',
+  },
+  hi: {
+    backToAll: 'सभी राशियाँ',
+    horoscopeToday: 'आज का राशिफल',
+    subtitle: 'वास्तविक ग्रह गोचर पर आधारित — सामान्य राशिफल नहीं',
+    overallScore: 'समग्र स्कोर',
+    career: 'करियर',
+    love: 'प्रेम',
+    health: 'स्वास्थ्य',
+    finance: 'वित्त',
+    spirituality: 'आध्यात्म',
+    luckyColor: 'शुभ रंग',
+    luckyNumber: 'शुभ अंक',
+    luckyTime: 'शुभ समय',
+    dailyInsight: 'दैनिक अंतर्दृष्टि',
+    otherSigns: 'अन्य राशियाँ',
+    ruledBy: 'स्वामी',
+    element: 'तत्त्व',
+    quality: 'गुण',
+    ctaTitle: 'व्यक्तिगत राशिफल प्राप्त करें',
+    ctaDesc: 'अपनी सटीक जन्म कुण्डली के अनुरूप दैनिक भविष्यवाणी पाने के लिए कुण्डली बनाएँ।',
+    ctaButton: 'कुण्डली बनाएँ',
+    loading: 'आपका राशिफल गणना हो रहा है...',
+    personalizedFor: 'आपके लिए व्यक्तिगत',
+    basedOnBirthChart: 'आपकी जन्म कुण्डली के आधार पर',
+    personalizedLoading: 'आपकी कुण्डली पढ़ी जा रही है...',
+    taraBala: 'तारा बल',
+    taraAuspicious: 'शुभ नक्षत्र गोचर',
+    taraInauspicious: 'चुनौतीपूर्ण नक्षत्र गोचर',
+    transitImpact: 'ग्रह गोचर प्रभाव',
+    moonIn: 'चन्द्र',
+    houseLabel: 'भाव आपकी राशि से',
+    jupiterIn: 'बृहस्पति',
+    saturnIn: 'शनि',
+    rahuIn: 'राहु',
+    luckyDirection: 'शुभ दिशा',
+    remedies: 'आज के उपाय',
+    mantra: 'मंत्र',
+    practicalRemedy: 'व्यावहारिक उपाय',
+    compatibilityToday: 'आज सर्वोत्तम अनुकूलता',
+    dosTitle: 'करें',
+    dontsTitle: 'न करें',
+    dosAndDonts: 'क्या करें और क्या न करें',
+    weeklyLink: 'साप्ताहिक राशिफल देखें',
+    sadeSatiLink: 'साढ़े साती स्थिति जाँचें',
+  },
+};
+
+const AREA_ICONS = {
+  career: Briefcase,
+  love: Heart,
+  health: Activity,
+  finance: IndianRupee,
+  spirituality: Sparkles,
+};
+
+const AREA_COLORS: Record<string, string> = {
+  career: 'from-blue-400 to-blue-600',
+  love: 'from-pink-400 to-rose-600',
+  health: 'from-emerald-400 to-green-600',
+  finance: 'from-amber-400 to-yellow-600',
+  spirituality: 'from-purple-400 to-violet-600',
+};
+
+// ---------------------------------------------------------------------------
+// Chart snapshot extraction (mirrors PersonalizedHoroscope.tsx logic)
+// ---------------------------------------------------------------------------
+interface ChartSnapshot {
+  ascendantSign: number;
+  moonSign: number;
+  currentMahaDasha: string;
+  currentAntarDasha: string;
+  savTable: number[];
+  keyYogas: string[];
+  keyDoshas: string[];
+  name: string;
+}
+
+function extractSnapshot(kundali: KundaliData): ChartSnapshot {
+  const now = new Date();
+  const moonPlanet = kundali.planets.find((p) => p.planet.id === 1);
+
+  let mahaDasha = 'Unknown';
+  let antarDasha = 'Unknown';
+  for (const d of kundali.dashas) {
+    if (d.level === 'maha' && new Date(d.startDate) <= now && now <= new Date(d.endDate)) {
+      mahaDasha = d.planetName.en;
+      if (d.subPeriods) {
+        for (const sub of d.subPeriods) {
+          if (new Date(sub.startDate) <= now && now <= new Date(sub.endDate)) {
+            antarDasha = sub.planetName.en;
+            break;
+          }
+        }
+      }
+      break;
+    }
+  }
+
+  const keyYogas: string[] = [];
+  if (kundali.yogasComplete) {
+    for (const y of kundali.yogasComplete) {
+      if ((y as { present?: boolean }).present && keyYogas.length < 3) {
+        keyYogas.push((y as { name?: { en?: string } }).name?.en || 'Yoga');
+      }
+    }
+  }
+
+  const keyDoshas: string[] = [];
+  if ('mangalDosha' in kundali && kundali.mangalDosha) keyDoshas.push('Mangal Dosha');
+  if ('kalaSarpa' in kundali && kundali.kalaSarpa) keyDoshas.push('Kala Sarpa');
+
+  return {
+    name: '',
+    ascendantSign: kundali.ascendant.sign,
+    moonSign: moonPlanet?.sign || 1,
+    currentMahaDasha: mahaDasha,
+    currentAntarDasha: antarDasha,
+    savTable: kundali.ashtakavarga?.reducedSavTable || kundali.ashtakavarga?.savTable || new Array(12).fill(25),
+    keyYogas,
+    keyDoshas,
+  };
+}
+
+function getOrdinalSuffix(n: number): string {
+  if (n >= 11 && n <= 13) return 'th';
+  const lastDigit = n % 10;
+  if (lastDigit === 1) return 'st';
+  if (lastDigit === 2) return 'nd';
+  if (lastDigit === 3) return 'rd';
+  return 'th';
+}
+
+function scoreColor(score: number): string {
+  if (score >= 7) return 'text-emerald-400';
+  if (score >= 4) return 'text-amber-400';
+  return 'text-red-400';
+}
+
+function barColor(score: number): string {
+  if (score >= 7) return 'bg-emerald-500';
+  if (score >= 4) return 'bg-amber-500';
+  return 'bg-red-500';
+}
+
+function scoreLabel(score: number, locale: string): string {
+  if (score >= 8) return tl({ en: 'Excellent', hi: 'उत्कृष्ट', sa: 'उत्कृष्ट' }, locale);
+  if (score >= 6.5) return tl({ en: 'Good', hi: 'शुभ', sa: 'शुभ' }, locale);
+  if (score >= 4) return tl({ en: 'Mixed', hi: 'मिश्रित', sa: 'मिश्रित' }, locale);
+  return tl({ en: 'Challenging', hi: 'चुनौतीपूर्ण', sa: 'कठिनः' }, locale);
+}
+
+interface PersonalizedForecast {
+  date: string;
+  forecast: string;
+  moonTransitHouse: number;
+  moonTransitSign: number;
+  dasha: { maha: string; antar: string };
+}
+
+// ---------------------------------------------------------------------------
+// Props
+// ---------------------------------------------------------------------------
+interface Props {
+  rashi: Rashi;
+  locale: string;
+  initialHoroscope: DailyHoroscope;
+  initialDate?: string;
+}
+
+export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }: Props) {
+  const lk = dataLocale(locale as Locale);
+  const isHi = lk === 'hi';
+  const headingFont = getHeadingFont(locale as Locale);
+  const bodyFont = getBodyFont(locale as Locale);
+  const L = isHi ? LABELS.hi : LABELS.en;
+
+  const rashiSlug = rashi.slug;
+  const vedicName = tl(rashi.name, locale);
+  const westernName = rashi.name.en;
+
+  // Birth data store (localStorage) — only available client-side
+  const { birthRashi, birthNakshatra, loadFromStorage } = useBirthDataStore();
+  useEffect(() => { loadFromStorage(); }, [loadFromStorage]);
+
+  // True when the user is viewing their own sign page
+  const isOwnSign = birthRashi === rashi.id && birthRashi > 0;
+
+  const [horoscope, setHoroscope] = useState<DailyHoroscope>(initialHoroscope);
+  const [loading, setLoading] = useState(false); // Start false — we have SSR data
+  const today = new Date();
+  const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+  const [date, setDate] = useState(initialDate || todayStr);
+
+  // Tier 3: personalized forecast panel
+  const [personalForecast, setPersonalForecast] = useState<PersonalizedForecast | null>(null);
+  const [personalLoading, setPersonalLoading] = useState(false);
+
+  // Track whether the user has changed date or person (to skip initial fetch)
+  const isInitialMount = useRef(true);
+
+  // Re-fetch when date changes or birth data changes (skip initial mount — SSR data is already loaded)
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      // On initial mount, only re-fetch if birth nakshatra personalisation is available
+      // (the SSR data was generated without nakshatra)
+      if (!(birthRashi === rashi.id && birthNakshatra > 0)) {
+        // Track the view with SSR data
+        trackHoroscopeViewed({ rashi: rashiSlug, period: 'daily', personalized: false });
+        return;
+      }
+    }
+
+    // Build URL — nakshatra param is appended when viewing own sign with known birth nakshatra
+    // URL params take priority over cached state (URL is the source of truth for rashi)
+    let url = `/api/horoscope/daily?moonSign=${rashi.id}&date=${date}`;
+    if (birthRashi === rashi.id && birthNakshatra > 0) {
+      url += `&nakshatra=${birthNakshatra}`;
+    }
+
+    setLoading(true);
+    fetch(url)
+      .then(res => {
+        if (res.ok) return res.json();
+        throw new Error('Failed');
+      })
+      .then((data: DailyHoroscope) => {
+        setHoroscope(data);
+        trackHoroscopeViewed({ rashi: rashiSlug, period: 'daily', personalized: birthRashi === rashi.id && birthNakshatra > 0 });
+      })
+      .catch(err => console.error('[horoscope/rashi] Failed to fetch daily horoscope:', err))
+      .finally(() => setLoading(false));
+  }, [rashi.id, date, birthRashi, birthNakshatra, rashiSlug]);
+
+  // Tier 3: load kundali from sessionStorage and fetch personalized forecast
+  useEffect(() => {
+    if (!isOwnSign) return;
+
+    let kundali: KundaliData | null = null;
+    try {
+      const raw = sessionStorage.getItem('kundali-data');
+      if (raw) kundali = JSON.parse(raw) as KundaliData;
+    } catch {
+      // sessionStorage unavailable or parse error — skip personalization
+    }
+
+    if (!kundali) return;
+
+    const snapshot = extractSnapshot(kundali);
+    setPersonalLoading(true);
+
+    fetch('/api/horoscope/personalized', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chart: snapshot,
+        lat: 0,
+        lng: 0,
+        locale,
+      }),
+    })
+      .then(res => {
+        if (res.ok) return res.json();
+        throw new Error(`HTTP ${res.status}`);
+      })
+      .then((data: PersonalizedForecast) => setPersonalForecast(data))
+      .catch(err => console.error('[horoscope/personalized] Failed to fetch personalized forecast:', err))
+      .finally(() => setPersonalLoading(false));
+  // Run after isOwnSign is stable (depends on birthRashi store being loaded)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOwnSign]);
+
+  const otherRashis = RASHIS.filter(r => r.id !== rashi.id);
+
+  return (
+    <section className="py-4 px-4">
+      <div className="max-w-4xl mx-auto">
+
+        {/* Back link */}
+        <Link href="/horoscope"
+          className="inline-flex items-center gap-1.5 text-gold-primary hover:text-gold-light transition-colors text-sm mb-8">
+          <ArrowLeft className="w-4 h-4" />
+          <span style={bodyFont}>{L.backToAll}</span>
+        </Link>
+
+        {/* Navigation tabs: Daily | Weekly | Monthly */}
+        <div className="flex items-center gap-1 mb-8 bg-white/5 rounded-xl p-1 w-fit">
+          <div className="px-4 py-2 rounded-lg text-sm font-medium bg-gold-primary/15 text-gold-light border border-gold-primary/20" style={bodyFont}>
+            {isHi ? 'दैनिक' : 'Daily'}
+          </div>
+          <Link
+            href={`/horoscope/${rashiSlug}/weekly` as '/horoscope'}
+            className="px-4 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-white/5 transition-all"
+            style={bodyFont}
+          >
+            {isHi ? 'साप्ताहिक' : 'Weekly'}
+          </Link>
+          <Link
+            href={`/horoscope/${rashiSlug}/monthly` as '/horoscope'}
+            className="px-4 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-white/5 transition-all"
+            style={bodyFont}
+          >
+            {isHi ? 'मासिक' : 'Monthly'}
+          </Link>
+        </div>
+
+        {/* Loading state */}
+        {loading && (
+          <div className="text-center py-16">
+            <Loader2 className="w-8 h-8 animate-spin text-gold-primary mx-auto mb-3" />
+            <p className="text-text-secondary text-sm" style={bodyFont}>{L.loading}</p>
+          </div>
+        )}
+
+        {/* Tier 3: Personalized Insight panel — shown when user has kundali data in sessionStorage */}
+        {isOwnSign && (personalLoading || personalForecast) && (
+          <motion.div
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+            className="mb-6 rounded-2xl border border-gold-primary/30 bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] p-5">
+            <div className="flex items-center gap-2 mb-3">
+              <Sparkles className="w-4 h-4 text-gold-primary" />
+              <p className="text-xs font-semibold text-gold-dark uppercase tracking-wider">
+                {L.basedOnBirthChart}
+              </p>
+            </div>
+            {personalLoading && (
+              <div className="flex items-center gap-2 text-text-secondary text-sm">
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <span style={bodyFont}>{L.personalizedLoading}</span>
+              </div>
+            )}
+            {personalForecast && !personalLoading && (
+              <>
+                {/* Dasha context badge */}
+                {personalForecast.dasha?.maha && (
+                  <span className="inline-flex items-center gap-1 mb-3 rounded-full bg-purple-600/20 border border-purple-500/25 px-3 py-1 text-xs font-medium text-purple-300">
+                    {isHi ? 'दशा' : 'Dasha'}: {personalForecast.dasha.maha}
+                    {personalForecast.dasha.antar ? ` / ${personalForecast.dasha.antar}` : ''}
+                  </span>
+                )}
+                <p className="text-text-primary text-sm leading-relaxed" style={bodyFont}>
+                  {personalForecast.forecast}
+                </p>
+              </>
+            )}
+          </motion.div>
+        )}
+
+        {/* Horoscope result */}
+        {!loading && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+            className="space-y-6">
+
+            {/* Overall score card */}
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 rounded-2xl p-6">
+              <div className="flex items-center justify-between mb-5">
+                <div>
+                  <p className="text-text-secondary text-xs uppercase tracking-wider mb-1">{L.overallScore}</p>
+                  <p className={`text-4xl font-bold ${scoreColor(horoscope.overallScore)}`}>
+                    {horoscope.overallScore}<span className="text-lg text-text-secondary">/10</span>
+                  </p>
+                  <p className={`text-sm font-medium mt-1 ${scoreColor(horoscope.overallScore)}`}>
+                    {scoreLabel(horoscope.overallScore, locale)}
+                  </p>
+                </div>
+                {/* Circular gauge */}
+                <div className="relative w-24 h-24">
+                  <svg viewBox="0 0 80 80" className="w-full h-full -rotate-90">
+                    <circle cx="40" cy="40" r="34" fill="none" stroke="currentColor"
+                      className="text-white/5" strokeWidth="6" />
+                    <circle cx="40" cy="40" r="34" fill="none"
+                      strokeWidth="6" strokeLinecap="round"
+                      className={scoreColor(horoscope.overallScore)}
+                      stroke="currentColor"
+                      strokeDasharray={`${(horoscope.overallScore / 10) * 213.6} 213.6`} />
+                  </svg>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <span className={`text-2xl font-bold ${scoreColor(horoscope.overallScore)}`}>
+                      {horoscope.overallScore}
+                    </span>
+                    <span className="text-[10px] text-text-secondary">/10</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Daily insight */}
+              <div className="bg-gold-primary/5 border border-gold-primary/10 rounded-xl p-4 mb-5">
+                <p className="text-xs text-gold-dark uppercase tracking-wider mb-1 font-semibold">{L.dailyInsight}</p>
+                <p className="text-text-primary text-sm leading-relaxed" style={bodyFont}>
+                  {horoscope.insight[lk]}
+                </p>
+              </div>
+
+              {/* Tier 2: Tara Bala indicator — shown when score was personalized with birth nakshatra */}
+              {horoscope.taraBala && (
+                <div className={`flex items-center gap-2 mb-5 rounded-lg px-3 py-2 text-xs font-medium border ${
+                  horoscope.taraBala.isAuspicious
+                    ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300'
+                    : 'bg-red-500/10 border-red-500/20 text-red-300'
+                }`}>
+                  <Star className={`w-3.5 h-3.5 ${horoscope.taraBala.isAuspicious ? 'fill-emerald-400 text-emerald-400' : 'fill-red-400 text-red-400'}`} />
+                  <span>
+                    {L.taraBala}: <strong>{horoscope.taraBala.taraName}</strong>
+                    {' — '}
+                    {horoscope.taraBala.isAuspicious ? L.taraAuspicious : L.taraInauspicious}
+                  </span>
+                </div>
+              )}
+
+              {/* Lucky quartet */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="bg-white/5 rounded-lg p-3 text-center">
+                  <p className="text-[10px] text-text-secondary uppercase tracking-wider">{L.luckyColor}</p>
+                  <p className="text-gold-light text-sm font-semibold mt-1" style={bodyFont}>
+                    {horoscope.luckyColor[lk]}
+                  </p>
+                </div>
+                <div className="bg-white/5 rounded-lg p-3 text-center">
+                  <p className="text-[10px] text-text-secondary uppercase tracking-wider">{L.luckyNumber}</p>
+                  <p className="text-gold-light text-sm font-semibold mt-1">{horoscope.luckyNumber}</p>
+                </div>
+                <div className="bg-white/5 rounded-lg p-3 text-center">
+                  <p className="text-[10px] text-text-secondary uppercase tracking-wider">{L.luckyTime}</p>
+                  <p className="text-gold-light text-sm font-semibold mt-1">{horoscope.luckyTime}</p>
+                </div>
+                {horoscope.luckyDirection && (
+                  <div className="bg-white/5 rounded-lg p-3 text-center">
+                    <p className="text-[10px] text-text-secondary uppercase tracking-wider">{L.luckyDirection}</p>
+                    <p className="text-gold-light text-sm font-semibold mt-1" style={bodyFont}>
+                      {horoscope.luckyDirection[lk]}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Area cards */}
+            <div className="space-y-3">
+              {(['career', 'love', 'health', 'finance', 'spirituality'] as const).map((area) => {
+                const Icon = AREA_ICONS[area];
+                const areaData = horoscope.areas[area];
+                return (
+                  <div key={area}
+                    className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 rounded-xl p-4">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className={`p-2 rounded-lg bg-gradient-to-br ${AREA_COLORS[area]} bg-opacity-20`}>
+                        <Icon className="w-4 h-4 text-white" />
+                      </div>
+                      <span className="text-text-primary text-sm font-semibold flex-1" style={bodyFont}>
+                        {L[area]}
+                      </span>
+                      <span className={`text-sm font-bold ${scoreColor(areaData.score)}`}>
+                        {areaData.score}/10
+                      </span>
+                    </div>
+                    {/* Score bar */}
+                    <div className="w-full h-1.5 bg-white/5 rounded-full mb-2 overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: `${areaData.score * 10}%` }}
+                        transition={{ duration: 0.8, ease: 'easeOut' as const }}
+                        className={`h-full rounded-full ${barColor(areaData.score)}`}
+                      />
+                    </div>
+                    <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
+                      {areaData.text[lk]}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Transit Impact Summary */}
+            {horoscope.transitSummary && (
+              <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <Globe className="w-5 h-5 text-gold-primary" />
+                  <h3 className="text-gold-light text-base font-bold" style={headingFont}>{L.transitImpact}</h3>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-white/5 rounded-lg p-3">
+                    <p className="text-[10px] text-text-secondary uppercase tracking-wider">{L.moonIn}</p>
+                    <p className="text-gold-light text-sm font-semibold mt-0.5" style={bodyFont}>
+                      {horoscope.transitSummary.moonTransitSignName[lk]}
+                    </p>
+                    <p className="text-text-secondary text-[10px] mt-0.5">
+                      {horoscope.transitSummary.moonHouseFromNatal}{isHi ? 'वाँ' : getOrdinalSuffix(horoscope.transitSummary.moonHouseFromNatal)} {L.houseLabel}
+                    </p>
+                  </div>
+                  <div className="bg-white/5 rounded-lg p-3">
+                    <p className="text-[10px] text-text-secondary uppercase tracking-wider">{L.jupiterIn}</p>
+                    <p className="text-gold-light text-sm font-semibold mt-0.5" style={bodyFont}>
+                      {horoscope.transitSummary.jupiterSignName[lk]}
+                    </p>
+                    <p className="text-text-secondary text-[10px] mt-0.5">
+                      {horoscope.transitSummary.jupiterHouse}{isHi ? 'वाँ' : getOrdinalSuffix(horoscope.transitSummary.jupiterHouse)} {L.houseLabel}
+                    </p>
+                  </div>
+                  <div className="bg-white/5 rounded-lg p-3">
+                    <p className="text-[10px] text-text-secondary uppercase tracking-wider">{L.saturnIn}</p>
+                    <p className="text-gold-light text-sm font-semibold mt-0.5" style={bodyFont}>
+                      {horoscope.transitSummary.saturnSignName[lk]}
+                    </p>
+                    <p className="text-text-secondary text-[10px] mt-0.5">
+                      {horoscope.transitSummary.saturnHouse}{isHi ? 'वाँ' : getOrdinalSuffix(horoscope.transitSummary.saturnHouse)} {L.houseLabel}
+                    </p>
+                  </div>
+                  <div className="bg-white/5 rounded-lg p-3">
+                    <p className="text-[10px] text-text-secondary uppercase tracking-wider">{L.rahuIn}</p>
+                    <p className="text-gold-light text-sm font-semibold mt-0.5" style={bodyFont}>
+                      {horoscope.transitSummary.rahuSignName[lk]}
+                    </p>
+                    <p className="text-text-secondary text-[10px] mt-0.5">
+                      {horoscope.transitSummary.rahuHouse}{isHi ? 'वाँ' : getOrdinalSuffix(horoscope.transitSummary.rahuHouse)} {L.houseLabel}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Do's and Don'ts */}
+            {horoscope.dosAndDonts && (
+              <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <Shield className="w-5 h-5 text-gold-primary" />
+                  <h3 className="text-gold-light text-base font-bold" style={headingFont}>{L.dosAndDonts}</h3>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-2">{L.dosTitle}</p>
+                    <ul className="space-y-2">
+                      {horoscope.dosAndDonts.dos.map((d, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-text-primary">
+                          <CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                          <span style={bodyFont}>{d[lk]}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="text-red-400 text-xs font-semibold uppercase tracking-wider mb-2">{L.dontsTitle}</p>
+                    <ul className="space-y-2">
+                      {horoscope.dosAndDonts.donts.map((d, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-text-primary">
+                          <XCircle className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
+                          <span style={bodyFont}>{d[lk]}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Compatibility + Remedies row */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Compatibility of the day */}
+              {horoscope.compatibility && horoscope.compatibility.length > 0 && (
+                <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Heart className="w-4 h-4 text-pink-400" />
+                    <h3 className="text-gold-light text-sm font-bold" style={headingFont}>{L.compatibilityToday}</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {horoscope.compatibility.map((signId) => {
+                      const compRashi = RASHIS[signId - 1];
+                      if (!compRashi) return null;
+                      return (
+                        <Link key={signId} href={`/horoscope/${compRashi.slug}` as '/horoscope'}
+                          className="flex items-center gap-1.5 bg-white/5 hover:bg-white/10 rounded-lg px-3 py-1.5 transition-colors">
+                          <RashiIconById id={signId} size={16} />
+                          <span className="text-gold-light text-xs font-medium" style={bodyFont}>
+                            {tl(compRashi.name, locale)}
+                          </span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Remedies for the day */}
+              {horoscope.remedy && (
+                <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Sparkles className="w-4 h-4 text-purple-400" />
+                    <h3 className="text-gold-light text-sm font-bold" style={headingFont}>{L.remedies}</h3>
+                  </div>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-[10px] text-gold-dark uppercase tracking-wider font-semibold">{L.mantra}</p>
+                      <p className="text-gold-light text-sm font-medium mt-0.5" style={bodyFont}>
+                        {horoscope.remedy.mantra[lk]}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-gold-dark uppercase tracking-wider font-semibold">{L.practicalRemedy}</p>
+                      <p className="text-text-primary text-xs leading-relaxed mt-0.5" style={bodyFont}>
+                        {horoscope.remedy.practical[lk]}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Cross-links */}
+            <div className="flex flex-wrap gap-3 justify-center">
+              <Link href={`/horoscope/${rashiSlug}/weekly` as '/horoscope'}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/5 border border-gold-primary/15 hover:border-gold-primary/30 text-gold-light text-sm transition-all" style={bodyFont}>
+                <Compass className="w-4 h-4" />
+                {L.weeklyLink}
+              </Link>
+              <Link href="/kundali"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/5 border border-gold-primary/15 hover:border-gold-primary/30 text-gold-light text-sm transition-all" style={bodyFont}>
+                <Star className="w-4 h-4" />
+                {L.ctaButton}
+              </Link>
+              <Link href="/sade-sati"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/5 border border-gold-primary/15 hover:border-gold-primary/30 text-gold-light text-sm transition-all" style={bodyFont}>
+                <Shield className="w-4 h-4" />
+                {L.sadeSatiLink}
+              </Link>
+            </div>
+
+            {/* Share */}
+            <div className="flex justify-center">
+              <ShareButton
+                title={`${vedicName} (${westernName}) — ${L.horoscopeToday}`}
+                text={`Today's ${westernName} Horoscope — Score: ${horoscope.overallScore}/10 | dekhopanchang.com`}
+                url={`https://dekhopanchang.com/${locale}/horoscope/${rashiSlug}`}
+                locale={locale as Locale}
+              />
+            </div>
+
+            {/* CTA */}
+            <div className="bg-gradient-to-br from-gold-primary/10 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 rounded-2xl p-6 text-center">
+              <h3 className="text-gold-light text-lg font-bold mb-2" style={headingFont}>{L.ctaTitle}</h3>
+              <p className="text-text-secondary text-sm mb-4" style={bodyFont}>{L.ctaDesc}</p>
+              <Link href="/kundali"
+                className="inline-block px-6 py-2.5 bg-gradient-to-r from-gold-primary to-gold-dark text-bg-primary font-semibold rounded-xl hover:brightness-110 transition-all">
+                {L.ctaButton}
+              </Link>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Other signs grid — internal linking */}
+        <div className="mt-12">
+          <h2 className="text-gold-light text-xl font-bold mb-6 text-center" style={headingFont}>
+            {L.otherSigns}
+          </h2>
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+            {otherRashis.map((r) => (
+              <Link key={r.id} href={`/horoscope/${r.slug}` as '/horoscope'}
+                className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/12 hover:border-gold-primary/30 rounded-xl p-3 text-center transition-all group">
+                <div className="flex justify-center mb-2">
+                  <RashiIconById id={r.id} size={28} />
+                </div>
+                <div className="text-gold-light text-xs font-bold group-hover:text-gold-primary transition-colors" style={headingFont}>
+                  {tl(r.name, locale)}
+                </div>
+                <div className="text-text-secondary text-[10px] mt-0.5">{r.name.en}</div>
+                <ChevronRight className="w-3 h-3 text-gold-dark mx-auto mt-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </Link>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}

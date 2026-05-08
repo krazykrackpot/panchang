@@ -9,6 +9,8 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
+export const revalidate = 3600; // Revalidate once per hour — ISR for generateDailyHoroscope()
+
 export function generateStaticParams() {
   return RASHIS.map(r => ({ rashi: r.slug }));
 }
@@ -94,11 +96,12 @@ export default async function Layout({ children, params }: { children: React.Rea
   const faqLD = generateHoroscopeFAQ(vedicName, name, 'daily');
 
   const today = new Date().toISOString().split('T')[0];
+  const dateStr = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
   const articleLD = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `${vedicName} (${name}) Horoscope Today`,
+    headline: `${vedicName} (${name}) Horoscope Today — ${dateStr}`,
     description: `Daily Vedic horoscope for ${name} (${vedicName}) with career, love, health, finance & spirituality predictions.`,
     url: `${BASE_URL}/${locale}/horoscope/${rashi}`,
     datePublished: today,

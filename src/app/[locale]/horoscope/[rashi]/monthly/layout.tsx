@@ -7,6 +7,8 @@ import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
+export const revalidate = 3600;
+
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
 function getMonthRange(): { start: string; end: string; label: string; labelHi: string } {

@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og';
+import { generateDailyHoroscope } from '@/lib/horoscope/daily-engine';
 
 export const runtime = 'edge';
 export const size = { width: 1200, height: 630 };
@@ -7,19 +8,19 @@ export const revalidate = 3600; // Refresh every hour
 
 // ─── Inlined rashi data (edge-safe, no native deps) ─────────────────────────
 
-const RASHI_MAP: Record<string, { vedic: string; western: string; symbol: string }> = {
-  mesh:      { vedic: 'Mesh',      western: 'Aries',       symbol: '♈' },
-  vrishabh:  { vedic: 'Vrishabh', western: 'Taurus',      symbol: '♉' },
-  mithun:    { vedic: 'Mithun',   western: 'Gemini',      symbol: '♊' },
-  kark:      { vedic: 'Kark',     western: 'Cancer',      symbol: '♋' },
-  simha:     { vedic: 'Simha',    western: 'Leo',         symbol: '♌' },
-  kanya:     { vedic: 'Kanya',    western: 'Virgo',       symbol: '♍' },
-  tula:      { vedic: 'Tula',     western: 'Libra',       symbol: '♎' },
-  vrishchik: { vedic: 'Vrishchik',western: 'Scorpio',     symbol: '♏' },
-  dhanu:     { vedic: 'Dhanu',    western: 'Sagittarius', symbol: '♐' },
-  makar:     { vedic: 'Makar',    western: 'Capricorn',   symbol: '♑' },
-  kumbh:     { vedic: 'Kumbh',    western: 'Aquarius',    symbol: '♒' },
-  meen:      { vedic: 'Meen',     western: 'Pisces',      symbol: '♓' },
+const RASHI_MAP: Record<string, { id: number; vedic: string; western: string; symbol: string }> = {
+  mesh:      { id: 1,  vedic: 'Mesh',      western: 'Aries',       symbol: '♈' },
+  vrishabh:  { id: 2,  vedic: 'Vrishabh', western: 'Taurus',      symbol: '♉' },
+  mithun:    { id: 3,  vedic: 'Mithun',   western: 'Gemini',      symbol: '♊' },
+  kark:      { id: 4,  vedic: 'Kark',     western: 'Cancer',      symbol: '♋' },
+  simha:     { id: 5,  vedic: 'Simha',    western: 'Leo',         symbol: '♌' },
+  kanya:     { id: 6,  vedic: 'Kanya',    western: 'Virgo',       symbol: '♍' },
+  tula:      { id: 7,  vedic: 'Tula',     western: 'Libra',       symbol: '♎' },
+  vrishchik: { id: 8,  vedic: 'Vrishchik',western: 'Scorpio',     symbol: '♏' },
+  dhanu:     { id: 9,  vedic: 'Dhanu',    western: 'Sagittarius', symbol: '♐' },
+  makar:     { id: 10, vedic: 'Makar',    western: 'Capricorn',   symbol: '♑' },
+  kumbh:     { id: 11, vedic: 'Kumbh',    western: 'Aquarius',    symbol: '♒' },
+  meen:      { id: 12, vedic: 'Meen',     western: 'Pisces',      symbol: '♓' },
 };
 
 // Western slug aliases → vedic slug
@@ -38,6 +39,13 @@ function getRashiInfo(slug: string) {
 
 export const alt = 'Daily Horoscope — Dekho Panchang';
 
+/** Score colour: green for 7+, amber for 5-6, red-ish for ≤4. */
+function scoreColor(score: number): string {
+  if (score >= 7) return '#4ade80'; // green
+  if (score >= 5) return '#f0d48a'; // gold/amber
+  return '#f87171';                 // red
+}
+
 export default async function Image({ params }: { params: Promise<{ locale: string; rashi: string }> }) {
   // params is a Promise in Next.js 16 — must be awaited before accessing properties.
   const { rashi: rashiSlug } = await params;
@@ -46,8 +54,10 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
   const vedicName = rashiInfo?.vedic ?? 'Horoscope';
   const westernName = rashiInfo?.western ?? '';
   const symbol = rashiInfo?.symbol ?? '✦';
+  const rashiId = rashiInfo?.id ?? 1;
 
   const now = new Date();
+  const today = `${now.getUTCFullYear()}-${String(now.getUTCMonth() + 1).padStart(2, '0')}-${String(now.getUTCDate()).padStart(2, '0')}`;
   const dateStr = now.toLocaleDateString('en-US', {
     weekday: 'long',
     month: 'long',
@@ -55,6 +65,11 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
     year: 'numeric',
     timeZone: 'UTC',
   });
+
+  // Compute today's score via the deterministic horoscope engine
+  const horoscope = generateDailyHoroscope({ moonSign: rashiId, date: today });
+  const score = horoscope.overallScore;
+  const color = scoreColor(score);
 
   return new ImageResponse(
     (
@@ -64,7 +79,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
           width: '100%',
           height: '100%',
           display: 'flex',
-          flexDirection: 'column',
+          flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'center',
           fontFamily: 'sans-serif',
@@ -98,94 +113,172 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
           }}
         />
 
-        {/* Top eyebrow */}
+        {/* Left column: rashi info */}
         <div
           style={{
-            fontSize: 13,
-            letterSpacing: 5,
-            color: '#d4a853',
-            textTransform: 'uppercase',
-            marginBottom: 20,
             display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
-            gap: 12,
+            justifyContent: 'center',
+            flex: 1,
+            paddingLeft: 60,
           }}
         >
-          <div style={{ width: 32, height: 1, background: '#d4a853', opacity: 0.5, display: 'flex' }} />
-          DAILY HOROSCOPE
-          <div style={{ width: 32, height: 1, background: '#d4a853', opacity: 0.5, display: 'flex' }} />
-        </div>
-
-        {/* Zodiac symbol */}
-        <div
-          style={{
-            fontSize: 72,
-            color: '#d4a853',
-            marginBottom: 8,
-            display: 'flex',
-            opacity: 0.85,
-          }}
-        >
-          {symbol}
-        </div>
-
-        {/* Rashi name (Vedic + Western) */}
-        <div
-          style={{
-            fontSize: 64,
-            fontWeight: 800,
-            color: '#f0d48a',
-            letterSpacing: -1,
-            marginBottom: 4,
-            display: 'flex',
-          }}
-        >
-          {vedicName}
-        </div>
-        {westernName ? (
+          {/* Top eyebrow */}
           <div
             style={{
-              fontSize: 24,
-              color: '#8a8478',
-              letterSpacing: 2,
-              marginBottom: 20,
+              fontSize: 13,
+              letterSpacing: 5,
+              color: '#d4a853',
+              textTransform: 'uppercase',
+              marginBottom: 16,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 12,
+            }}
+          >
+            <div style={{ width: 32, height: 1, background: '#d4a853', opacity: 0.5, display: 'flex' }} />
+            DAILY HOROSCOPE
+            <div style={{ width: 32, height: 1, background: '#d4a853', opacity: 0.5, display: 'flex' }} />
+          </div>
+
+          {/* Zodiac symbol */}
+          <div
+            style={{
+              fontSize: 64,
+              color: '#d4a853',
+              marginBottom: 4,
+              display: 'flex',
+              opacity: 0.85,
+            }}
+          >
+            {symbol}
+          </div>
+
+          {/* Rashi name (Vedic + Western) */}
+          <div
+            style={{
+              fontSize: 56,
+              fontWeight: 800,
+              color: '#f0d48a',
+              letterSpacing: -1,
+              marginBottom: 4,
               display: 'flex',
             }}
           >
-            {westernName}
+            {vedicName}
           </div>
-        ) : null}
+          {westernName ? (
+            <div
+              style={{
+                fontSize: 22,
+                color: '#8a8478',
+                letterSpacing: 2,
+                marginBottom: 16,
+                display: 'flex',
+              }}
+            >
+              {westernName}
+            </div>
+          ) : null}
 
-        {/* Divider */}
+          {/* Date */}
+          <div
+            style={{
+              fontSize: 18,
+              color: '#d4a853',
+              fontWeight: 600,
+              display: 'flex',
+            }}
+          >
+            {dateStr}
+          </div>
+        </div>
+
+        {/* Right column: score badge */}
         <div
           style={{
-            width: 80,
-            height: 2,
-            background: 'linear-gradient(90deg, transparent, #d4a853, transparent)',
-            marginTop: 8,
-            marginBottom: 24,
             display: 'flex',
-          }}
-        />
-
-        {/* Date */}
-        <div
-          style={{
-            fontSize: 22,
-            color: '#d4a853',
-            fontWeight: 600,
-            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingRight: 80,
+            gap: 8,
           }}
         >
-          {dateStr}
+          {/* Score label */}
+          <div
+            style={{
+              fontSize: 14,
+              letterSpacing: 4,
+              color: '#8a8478',
+              textTransform: 'uppercase',
+              display: 'flex',
+            }}
+          >
+            {"TODAY'S SCORE"}
+          </div>
+
+          {/* Score circle */}
+          <div
+            style={{
+              width: 180,
+              height: 180,
+              borderRadius: '50%',
+              border: `4px solid ${color}`,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: 'rgba(10, 14, 39, 0.8)',
+            }}
+          >
+            <div
+              style={{
+                fontSize: 80,
+                fontWeight: 800,
+                color,
+                lineHeight: 1,
+                display: 'flex',
+              }}
+            >
+              {score}
+            </div>
+            <div
+              style={{
+                fontSize: 24,
+                color: '#8a8478',
+                marginTop: 2,
+                display: 'flex',
+              }}
+            >
+              / 10
+            </div>
+          </div>
+
+          {/* Score tier label */}
+          <div
+            style={{
+              fontSize: 16,
+              fontWeight: 700,
+              color,
+              letterSpacing: 2,
+              textTransform: 'uppercase',
+              marginTop: 4,
+              display: 'flex',
+            }}
+          >
+            {score >= 8 ? 'EXCELLENT' : score >= 6 ? 'GOOD' : score >= 4 ? 'MIXED' : 'CHALLENGING'}
+          </div>
         </div>
 
         {/* Footer */}
         <div
           style={{
+            position: 'absolute',
+            bottom: 24,
             fontSize: 15,
             color: '#8a8478',
-            marginTop: 40,
             opacity: 0.5,
             letterSpacing: 1,
             display: 'flex',

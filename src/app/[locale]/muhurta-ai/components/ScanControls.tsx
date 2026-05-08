@@ -16,6 +16,8 @@ interface ScanControlsProps {
   onStartDateChange: (date: string) => void;
   onEndDateChange: (date: string) => void;
   onScan: () => void;
+  viewMode?: 'calendar' | 'heatmap';
+  onViewModeChange?: (mode: 'calendar' | 'heatmap') => void;
 }
 
 const ACTIVITIES = getAllExtendedActivities();
@@ -30,11 +32,42 @@ export default function ScanControls({
   onStartDateChange,
   onEndDateChange,
   onScan,
+  viewMode = 'heatmap',
+  onViewModeChange,
 }: ScanControlsProps) {
   const locale = useLocale();
 
   return (
     <div className="bg-[#111633] border border-[#8a6d2b]/30 rounded-xl p-4 flex flex-wrap gap-3 items-end">
+      {/* View toggle */}
+      <div className="flex flex-col gap-1">
+        <label className="text-[10px] uppercase tracking-wider text-[#8a8478]">{sl('view', locale) ?? 'View'}</label>
+        <div className="flex gap-1 bg-[#0a0e27] rounded-xl p-1">
+          <button
+            type="button"
+            onClick={() => onViewModeChange?.('calendar')}
+            className={`px-3 py-1.5 rounded-lg text-sm transition-colors ${
+              viewMode === 'calendar'
+                ? 'bg-gold-primary/20 text-gold-light'
+                : 'text-text-secondary hover:text-text-primary'
+            }`}
+          >
+            Calendar
+          </button>
+          <button
+            type="button"
+            onClick={() => onViewModeChange?.('heatmap')}
+            className={`px-3 py-1.5 rounded-lg text-sm transition-colors ${
+              viewMode === 'heatmap'
+                ? 'bg-gold-primary/20 text-gold-light'
+                : 'text-text-secondary hover:text-text-primary'
+            }`}
+          >
+            Heatmap
+          </button>
+        </div>
+      </div>
+
       {/* Activity */}
       <div className="flex flex-col gap-1">
         <label className="text-[10px] uppercase tracking-wider text-[#8a8478]">{sl('activity', locale)}</label>
@@ -84,14 +117,25 @@ export default function ScanControls({
         </div>
       </div>
 
-      {/* Scan Button */}
-      <button
-        onClick={onScan}
-        disabled={loading}
-        className="ml-auto px-6 py-2.5 bg-gradient-to-br from-[#d4a853] to-[#8a6d2b] text-[#0a0e27] font-semibold rounded-lg text-sm hover:from-[#f0d48a] hover:to-[#d4a853] transition-all disabled:opacity-50"
-      >
-        {loading ? sl('scanning', locale) : sl('scanMonth', locale)}
-      </button>
+      {/* Scan Button — prominent in heatmap mode, subtle refresh in calendar mode */}
+      {viewMode === 'heatmap' ? (
+        <button
+          onClick={onScan}
+          disabled={loading}
+          className="ml-auto px-6 py-2.5 bg-gradient-to-br from-[#d4a853] to-[#8a6d2b] text-[#0a0e27] font-semibold rounded-lg text-sm hover:from-[#f0d48a] hover:to-[#d4a853] transition-all disabled:opacity-50"
+        >
+          {loading ? sl('scanning', locale) : sl('scanMonth', locale)}
+        </button>
+      ) : (
+        <button
+          onClick={onScan}
+          disabled={loading}
+          className="ml-auto px-4 py-2 border border-[#d4a853]/30 text-[#d4a853] rounded-lg text-sm hover:bg-[#d4a853]/10 transition-all disabled:opacity-50"
+          title="Refresh results"
+        >
+          {loading ? sl('scanning', locale) : 'Refresh'}
+        </button>
+      )}
     </div>
   );
 }

@@ -52,6 +52,7 @@ export default function MuhurtaScannerClient() {
   const initBounds = getMonthBounds(initYear, initMonth);
 
   // --- State ---
+  const [viewMode, setViewMode] = useState<'calendar' | 'heatmap'>('heatmap');
   const [activity, setActivity] = useState<ExtendedActivityId>('property');
   const [startDate, setStartDate] = useState(initBounds.start);
   const [endDate, setEndDate] = useState(initBounds.end);
@@ -311,6 +312,8 @@ export default function MuhurtaScannerClient() {
         onStartDateChange={setStartDate}
         onEndDateChange={setEndDate}
         onScan={handleScan}
+        viewMode={viewMode}
+        onViewModeChange={setViewMode}
       />
 
       {/* Personalization: QuickPersonalize OR DashaBanner */}

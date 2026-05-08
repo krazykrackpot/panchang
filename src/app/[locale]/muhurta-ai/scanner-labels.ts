@@ -237,6 +237,12 @@ export const SL: Record<string, Record<string, string>> = {
     ta: 'கண்டறிகிறது…',
     bn: 'সনাক্ত করা হচ্ছে…',
   },
+  view: {
+    en: 'View',
+    hi: 'दृश्य',
+    ta: 'காட்சி',
+    bn: 'দৃশ্য',
+  },
 };
 
 /**

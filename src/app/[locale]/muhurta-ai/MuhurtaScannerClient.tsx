@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { toPng } from 'html-to-image';
 import { Share2, Loader2 } from 'lucide-react';
 import { useLocale } from 'next-intl';
@@ -8,7 +8,7 @@ import { useLocationStore } from '@/stores/location-store';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
 import { tl } from '@/lib/utils/trilingual';
-import type { ExtendedActivityId, HeatmapCell, DetailWindow } from '@/types/muhurta-ai';
+import type { ExtendedActivityId, HeatmapCell, DetailWindow, DaySummary, RestrictionNotice } from '@/types/muhurta-ai';
 import { sl } from './scanner-labels';
 import ScanControls from './components/ScanControls';
 import QuickPersonalize from './components/QuickPersonalize';
@@ -18,6 +18,10 @@ import MobileMonthView from './components/MobileMonthView';
 import DayDrilldown from './components/DayDrilldown';
 import PeakCards from './components/PeakCards';
 import ScoreBreakdown from './components/ScoreBreakdown';
+import CalendarGrid from './components/CalendarGrid';
+import RestrictionNotices from './components/RestrictionNotices';
+import FactorVerdicts from './components/FactorVerdicts';
+import NextBestCard from './components/NextBestCard';
 
 function formatDisplayDate(dateStr: string): string {
   const [y, m, d] = dateStr.split('-').map(Number);
@@ -52,10 +56,12 @@ export default function MuhurtaScannerClient() {
   const initBounds = getMonthBounds(initYear, initMonth);
 
   // --- State ---
-  const [viewMode, setViewMode] = useState<'calendar' | 'heatmap'>('heatmap');
-  const [activity, setActivity] = useState<ExtendedActivityId>('property');
+  const [viewMode, setViewMode] = useState<'calendar' | 'heatmap'>('calendar');
+  const [activity, setActivity] = useState<ExtendedActivityId>('marriage');
   const [startDate, setStartDate] = useState(initBounds.start);
   const [endDate, setEndDate] = useState(initBounds.end);
+  const [daySummaries, setDaySummaries] = useState<DaySummary[]>([]);
+  const [restrictions, setRestrictions] = useState<RestrictionNotice[]>([]);
 
   // Personalization
   const [birthNakshatra, setBirthNakshatra] = useState<number | null>(null);
@@ -217,6 +223,8 @@ export default function MuhurtaScannerClient() {
       const overviewData = await res.json();
       const cells: HeatmapCell[] = overviewData.windows || [];
       setOverviewCells(cells);
+      setDaySummaries(overviewData.days || []);
+      setRestrictions(overviewData.restrictions || []);
 
       // Find top 3 unique dates by max cell score
       const dateScores = new Map<string, number>();
@@ -290,6 +298,32 @@ export default function MuhurtaScannerClient() {
     setEndDate(bounds.end);
   }, []);
 
+  // Calendar view: auto-fetch on mount and when dependencies change
+  // handleScan is a useCallback — we intentionally only react to these 4 deps
+  useEffect(() => {
+    if (viewMode !== 'calendar') return;
+    handleScan();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [viewMode, startDate, endDate, activity]);
+
+  // Next best auspicious day (for NextBestCard)
+  const nextBestDay = useMemo(() => {
+    const today = new Date().toISOString().slice(0, 10);
+    return daySummaries
+      .filter(d => d.date >= today && (d.quality === 'excellent' || d.quality === 'good'))
+      .sort((a, b) => a.date.localeCompare(b.date))[0] || null;
+  }, [daySummaries]);
+
+  // Adapter: CalendarGrid.onMonthChange expects a delta (-1 or +1),
+  // so we compute the new year/month and forward to handleMonthChange.
+  const handleCalendarMonthChange = useCallback((delta: number) => {
+    let newMonth = viewMonth + delta;
+    let newYear = viewYear;
+    if (newMonth < 1) { newMonth = 12; newYear -= 1; }
+    else if (newMonth > 12) { newMonth = 1; newYear += 1; }
+    handleMonthChange(newYear, newMonth);
+  }, [viewMonth, viewYear, handleMonthChange]);
+
   return (
     <div className="mx-auto max-w-6xl px-4 pt-8 pb-20">
       {/* Page header */}
@@ -340,44 +374,84 @@ export default function MuhurtaScannerClient() {
         </div>
       )}
 
-      {/* Pass 1: Monthly Overview (only after scan) */}
-      {(overviewCells.length > 0 || overviewLoading) && (
+      {/* Pass 1: Monthly Overview — conditional on view mode */}
+      {viewMode === 'calendar' ? (
         <>
-          <div className="mt-6 mb-3">
-            <h2 className="font-[Cinzel] text-base text-[#f0d48a] flex items-center gap-2">
-              {sl('monthlyOverview', locale)}
-              <span className="font-sans text-[10px] bg-[#d4a853]/15 text-[#d4a853] px-2 py-0.5 rounded uppercase tracking-wider">
-                {sl('pass1Label', locale)}
-              </span>
-            </h2>
-          </div>
-          {/* Desktop heatmap (hidden on mobile) */}
-          <div className="hidden lg:block">
-            <MonthHeatmap
-              cells={overviewCells}
-              selectedDate={selectedDate}
-              today={todayStr}
-              year={viewYear}
-              month={viewMonth}
-              loading={overviewLoading}
-              onCellClick={handleDaySelect}
-              onMonthChange={handleMonthChange}
-            />
-          </div>
-          {/* Mobile month view (hidden on desktop) */}
-          <div className="lg:hidden">
-            <MobileMonthView
-              cells={overviewCells}
-              selectedDate={selectedDate}
-              today={todayStr}
-              loading={overviewLoading}
-              onDaySelect={handleDaySelect}
-            />
-          </div>
+          {/* Restriction notices (calendar view only) */}
+          {restrictions.length > 0 && (
+            <div className="mt-6">
+              <RestrictionNotices restrictions={restrictions} locale={locale} />
+            </div>
+          )}
+
+          {/* Next best day card */}
+          {nextBestDay && (
+            <div className="mt-6">
+              <NextBestCard
+                day={nextBestDay}
+                activityLabel={activityLabel}
+                onSelect={() => handleDaySelect(nextBestDay.date)}
+                locale={locale}
+              />
+            </div>
+          )}
+
+          {/* Calendar grid */}
+          {(daySummaries.length > 0 || overviewLoading) && (
+            <div className="mt-6">
+              <CalendarGrid
+                year={viewYear}
+                month={viewMonth}
+                days={daySummaries}
+                onMonthChange={handleCalendarMonthChange}
+                onDaySelect={(day) => handleDaySelect(day.date)}
+                selectedDate={selectedDate || undefined}
+                locale={locale}
+                loading={overviewLoading}
+              />
+            </div>
+          )}
         </>
+      ) : (
+        /* Heatmap view — existing MonthHeatmap + MobileMonthView */
+        (overviewCells.length > 0 || overviewLoading) && (
+          <>
+            <div className="mt-6 mb-3">
+              <h2 className="font-[Cinzel] text-base text-[#f0d48a] flex items-center gap-2">
+                {sl('monthlyOverview', locale)}
+                <span className="font-sans text-[10px] bg-[#d4a853]/15 text-[#d4a853] px-2 py-0.5 rounded uppercase tracking-wider">
+                  {sl('pass1Label', locale)}
+                </span>
+              </h2>
+            </div>
+            {/* Desktop heatmap (hidden on mobile) */}
+            <div className="hidden lg:block">
+              <MonthHeatmap
+                cells={overviewCells}
+                selectedDate={selectedDate}
+                today={todayStr}
+                year={viewYear}
+                month={viewMonth}
+                loading={overviewLoading}
+                onCellClick={handleDaySelect}
+                onMonthChange={handleMonthChange}
+              />
+            </div>
+            {/* Mobile month view (hidden on desktop) */}
+            <div className="lg:hidden">
+              <MobileMonthView
+                cells={overviewCells}
+                selectedDate={selectedDate}
+                today={todayStr}
+                loading={overviewLoading}
+                onDaySelect={handleDaySelect}
+              />
+            </div>
+          </>
+        )
       )}
 
-      {/* Peak Cards (only after scan) */}
+      {/* Peak Cards (only after scan, both views) */}
       {peaks.length > 0 && (
         <>
           <div className="mt-6 mb-3">
@@ -400,6 +474,16 @@ export default function MuhurtaScannerClient() {
           </div>
         </>
       )}
+
+      {/* Factor Verdicts (when a day is selected, both views) */}
+      {selectedDate && (() => {
+        const dayData = daySummaries.find(d => d.date === selectedDate);
+        return dayData?.factors ? (
+          <div className="mt-6">
+            <FactorVerdicts factors={dayData.factors} locale={locale} />
+          </div>
+        ) : null;
+      })()}
 
       {/* Pass 2: Day Drill-down (only when a date is selected) */}
       {selectedDate && (

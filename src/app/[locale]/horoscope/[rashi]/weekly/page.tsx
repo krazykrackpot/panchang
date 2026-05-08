@@ -315,9 +315,13 @@ export default function WeeklyHoroscopePage() {
             <div className="px-4 py-2 rounded-lg text-sm font-medium bg-gold-primary/15 text-gold-light border border-gold-primary/20" style={bodyFont}>
               {L.weekly}
             </div>
-            <span className="px-4 py-2 rounded-lg text-sm font-medium text-text-secondary/40 cursor-not-allowed" style={bodyFont}>
+            <Link
+              href={`/${locale}/horoscope/${rashi.slug}/monthly`}
+              className="px-4 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-white/5 transition-all"
+              style={bodyFont}
+            >
               {L.monthly}
-            </span>
+            </Link>
           </div>
 
           {/* Hero header */}

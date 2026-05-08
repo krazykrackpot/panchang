@@ -449,6 +449,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
+  // Date-based horoscope routes (next 7 days) — captures long-tail queries like "aries horoscope may 8 2026"
+  const horoscopeDateBase = new Date();
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(horoscopeDateBase);
+    d.setDate(d.getDate() + i);
+    const dateStr = d.toISOString().slice(0, 10);
+    for (const slug of rashiSlugs) {
+      addEntries(entries, `/horoscope/${slug}/${dateStr}`, {
+        changeFrequency: 'daily',
+        priority: 0.7,
+      });
+    }
+  }
+
   // Western-name horoscope aliases (/horoscope/aries etc.) are 301 redirects.
   // Removed from sitemap — redirects burn crawl budget without adding indexable content.
   // Google discovers these via internal links and follows the redirect chain naturally.

@@ -62,6 +62,7 @@ export default function MuhurtaScannerClient() {
   const [endDate, setEndDate] = useState(initBounds.end);
   const [daySummaries, setDaySummaries] = useState<DaySummary[]>([]);
   const [restrictions, setRestrictions] = useState<RestrictionNotice[]>([]);
+  const [personalFactorsUsed, setPersonalFactorsUsed] = useState<string[]>([]);
 
   // Personalization
   const [birthNakshatra, setBirthNakshatra] = useState<number | null>(null);
@@ -225,6 +226,7 @@ export default function MuhurtaScannerClient() {
       setOverviewCells(cells);
       setDaySummaries(overviewData.days || []);
       setRestrictions(overviewData.restrictions || []);
+      setPersonalFactorsUsed(overviewData.meta?.personalFactorsUsed || []);
 
       // Find top 3 unique dates by max cell score
       const dateScores = new Map<string, number>();
@@ -517,6 +519,7 @@ export default function MuhurtaScannerClient() {
           <ScoreBreakdown
             breakdown={selectedWindow.breakdown}
             totalScore={selectedWindow.score}
+            personalFactorsUsed={personalFactorsUsed as ('taraBala' | 'chandraBala' | 'dashaHarmony')[]}
           />
         </>
       )}

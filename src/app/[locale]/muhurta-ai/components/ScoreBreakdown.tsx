@@ -7,23 +7,35 @@ import type { DetailBreakdown } from '@/types/muhurta-ai';
 interface ScoreBreakdownProps {
   breakdown: DetailBreakdown;
   totalScore: number;          // 0-100
+  /** Which personal factors were actually computed (empty = no birth data provided) */
+  personalFactorsUsed?: ('taraBala' | 'chandraBala' | 'dashaHarmony')[];
 }
 
 interface FactorRow {
   label: string;
   value: number;
   max: number;
+  /** true if this factor requires personalisation and none was provided */
+  needsPersonalisation?: boolean;
 }
 
-function buildRows(b: DetailBreakdown): FactorRow[] {
+// Factors that require the user's birth nakshatra/rashi/dasha to compute
+const PERSONAL_FACTOR_MAP: Record<string, 'taraBala' | 'chandraBala' | 'dashaHarmony'> = {
+  'Tara Bala': 'taraBala',
+  'Chandra Bala': 'chandraBala',
+  'Dasha Harmony': 'dashaHarmony',
+};
+
+function buildRows(b: DetailBreakdown, personalFactorsUsed?: string[]): FactorRow[] {
+  const used = new Set(personalFactorsUsed || []);
   return [
     { label: 'Tithi',         value: b.tithi,         max: 20 },
     { label: 'Nakshatra',     value: b.nakshatra,     max: 20 },
     { label: 'Yoga',          value: b.yoga,          max: 20 },
     { label: 'Karana',        value: b.karana,        max: 10 },
-    { label: 'Tara Bala',     value: b.taraBala,      max: 10 },
-    { label: 'Chandra Bala',  value: b.chandraBala,   max: 10 },
-    { label: 'Dasha Harmony', value: b.dashaHarmony,  max: 10 },
+    { label: 'Tara Bala',     value: b.taraBala,      max: 10, needsPersonalisation: !used.has('taraBala') },
+    { label: 'Chandra Bala',  value: b.chandraBala,   max: 10, needsPersonalisation: !used.has('chandraBala') },
+    { label: 'Dasha Harmony', value: b.dashaHarmony,  max: 10, needsPersonalisation: !used.has('dashaHarmony') },
     { label: 'Inauspicious',  value: b.inauspicious,  max: 10 },
   ];
 }
@@ -48,8 +60,8 @@ function totalScoreClass(score: number): string {
   return 'text-red-400';
 }
 
-export default function ScoreBreakdown({ breakdown, totalScore }: ScoreBreakdownProps) {
-  const rows = buildRows(breakdown);
+export default function ScoreBreakdown({ breakdown, totalScore, personalFactorsUsed }: ScoreBreakdownProps) {
+  const rows = buildRows(breakdown, personalFactorsUsed);
   const [showAyanamshaNote, setShowAyanamshaNote] = useState(false);
 
   return (
@@ -89,21 +101,40 @@ export default function ScoreBreakdown({ breakdown, totalScore }: ScoreBreakdown
               {/* Label */}
               <span className="w-[140px] text-sm text-[#8a8478] shrink-0">{row.label}</span>
 
-              {/* Bar track */}
-              <div className="flex-1 h-1.5 bg-white/[0.05] rounded-full overflow-hidden">
-                <div
-                  className={`h-full rounded-full transition-all duration-500 ${barFillClass(row.value, row.max)}`}
-                  style={{ width: `${widthPct}%` }}
-                />
-              </div>
+              {row.needsPersonalisation ? (
+                <>
+                  {/* Dashed placeholder bar + hint for factors that need birth details */}
+                  <div className="flex-1 h-1.5 bg-white/[0.03] rounded-full border border-dashed border-white/[0.08]" />
+                  <span className="w-10 text-right text-xs text-text-secondary italic" title="Set your birth nakshatra above to unlock this score">
+                    —
+                  </span>
+                </>
+              ) : (
+                <>
+                  {/* Bar track */}
+                  <div className="flex-1 h-1.5 bg-white/[0.05] rounded-full overflow-hidden">
+                    <div
+                      className={`h-full rounded-full transition-all duration-500 ${barFillClass(row.value, row.max)}`}
+                      style={{ width: `${widthPct}%` }}
+                    />
+                  </div>
 
-              {/* Score */}
-              <span className={`w-10 text-right text-sm ${scoreTextClass(row.value, row.max)}`}>
-                {row.value}
-              </span>
+                  {/* Score */}
+                  <span className={`w-10 text-right text-sm ${scoreTextClass(row.value, row.max)}`}>
+                    {row.value}
+                  </span>
+                </>
+              )}
             </div>
           );
         })}
+
+        {/* Personalisation hint if any factors are missing */}
+        {rows.some(r => r.needsPersonalisation) && (
+          <p className="mt-2 text-xs text-text-secondary italic">
+            Set your birth nakshatra &amp; rashi above to unlock Tara Bala, Chandra Bala, and Dasha scores.
+          </p>
+        )}
       </div>
 
       {/* Total row */}

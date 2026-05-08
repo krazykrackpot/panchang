@@ -19,7 +19,9 @@ import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import LearningPath from '@/components/learn/LearningPath';
 import ReviewSession from '@/components/learn/ReviewSession';
 
-const STATS = { modules: 127, references: 68, labs: 6, phases: 12 };
+// MUST match module-sequence.ts — never hardcode these numbers
+import { TOTAL_MODULES, PHASE_INFO } from '@/lib/learn/module-sequence';
+const STATS = { modules: TOTAL_MODULES, references: 68, labs: 6, phases: PHASE_INFO.length };
 
 export default function LearnPage() {
   const locale = useLocale();

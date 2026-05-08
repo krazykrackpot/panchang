@@ -2,8 +2,10 @@ import type { LocaleText } from '@/types/panchang';
 import { NextResponse } from 'next/server';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { generateDailyPanchangEmail } from '@/lib/email/templates/daily-panchang';
+import { generateDailyHoroscope } from '@/lib/horoscope/daily-engine';
 import { sendEmail } from '@/lib/email/resend-client';
 import { getServerSupabase } from '@/lib/supabase/server';
+import { RASHIS } from '@/lib/constants/rashis';
 
 /**
  * Cron endpoint: sends daily panchang email to all opted-in users.
@@ -48,6 +50,20 @@ export async function GET(request: Request) {
       }
     }
 
+    // Fetch kundali snapshots for moon sign data (used for daily rashifal)
+    // moon_sign (1-12) and moon_nakshatra (1-27) enable personalized horoscope
+    const { data: snapshots } = await supabase
+      .from('kundali_snapshots')
+      .select('user_id, moon_sign, moon_nakshatra')
+      .in('user_id', userIds);
+
+    const snapshotMap = new Map<string, { moonSign: number; moonNakshatra: number }>();
+    if (snapshots) {
+      for (const s of snapshots) {
+        snapshotMap.set(s.user_id, { moonSign: s.moon_sign, moonNakshatra: s.moon_nakshatra });
+      }
+    }
+
     let sent = 0;
     let errors = 0;
 
@@ -83,6 +99,39 @@ export async function GET(request: Request) {
         const locale = (sub.preferred_locale === 'hi' ? 'hi' : 'en') as 'en' | 'hi';
         const L = (obj: LocaleText) => obj[locale] || obj.en;
 
+        // Compute daily rashifal if user has a kundali snapshot with moon sign
+        const snapshot = snapshotMap.get(sub.id);
+        let horoscopeData: Parameters<typeof generateDailyPanchangEmail>[0]['horoscope'];
+        if (snapshot) {
+          try {
+            const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+            const horoscope = generateDailyHoroscope({
+              moonSign: snapshot.moonSign,
+              date: todayStr,
+              nakshatra: snapshot.moonNakshatra,
+            });
+            const rashi = RASHIS[snapshot.moonSign - 1];
+            horoscopeData = {
+              moonSignName: L(horoscope.moonSignName),
+              rashiSlug: rashi?.slug || 'mesh',
+              overallScore: horoscope.overallScore,
+              insight: L(horoscope.insight),
+              areas: {
+                career: horoscope.areas.career.score,
+                love: horoscope.areas.love.score,
+                health: horoscope.areas.health.score,
+                finance: horoscope.areas.finance.score,
+                spirituality: horoscope.areas.spirituality.score,
+              },
+              luckyColor: L(horoscope.luckyColor),
+              luckyNumber: horoscope.luckyNumber,
+            };
+          } catch (err) {
+            console.error('[daily-panchang] horoscope generation failed for user:', sub.id, err);
+            // Non-fatal: send email without rashifal section
+          }
+        }
+
         const emailData = {
           date: panchang.date,
           vara: L(panchang.vara.name),
@@ -100,6 +149,7 @@ export async function GET(request: Request) {
           locale,
           locationName: locName || `${Number(lat).toFixed(1)}°N, ${Number(lng).toFixed(1)}°E`,
           unsubscribeUrl: `https://dekhopanchang.com/${locale}/settings?unsubscribe=daily`,
+          horoscope: horoscopeData,
         };
 
         const { subject, html } = generateDailyPanchangEmail(emailData);

@@ -4,6 +4,22 @@ import { tl } from '@/lib/utils/trilingual';
  * Sent at sunrise (via cron) to subscribed users.
  */
 
+interface HoroscopeEmailData {
+  moonSignName: string;
+  rashiSlug: string;
+  overallScore: number;
+  insight: string;
+  areas: {
+    career: number;
+    love: number;
+    health: number;
+    finance: number;
+    spirituality: number;
+  };
+  luckyColor: string;
+  luckyNumber: number;
+}
+
 interface DailyPanchangEmailData {
   date: string;
   vara: string;
@@ -21,6 +37,101 @@ interface DailyPanchangEmailData {
   locale: 'en' | 'hi';
   locationName: string;
   unsubscribeUrl: string;
+  horoscope?: HoroscopeEmailData;
+}
+
+/**
+ * Renders the daily rashifal (horoscope) section for the email.
+ * Only called when the user has moon sign data from their kundali snapshot.
+ */
+function generateRashifalSection(
+  h: HoroscopeEmailData,
+  locale: 'en' | 'hi',
+  gold: string,
+  goldLight: string,
+  _bg: string,
+  bgCard: string,
+  textPrimary: string,
+  textSecondary: string,
+): string {
+  const isHi = locale === 'hi';
+
+  const areaLabel = (en: string, hi: string) => isHi ? hi : en;
+  const areaRow = (label: string, score: number) => {
+    // Score 1-10, render as filled/empty dots for email compatibility
+    const filled = Math.round(score);
+    const dots = Array.from({ length: 10 }, (_, i) =>
+      `<span style="display:inline-block;width:8px;height:8px;border-radius:50%;margin:0 1px;background:${i < filled ? gold : gold + '25'}">&nbsp;</span>`
+    ).join('');
+    return `<tr>
+      <td style="padding:5px 12px;color:${textSecondary};font-size:11px;width:35%;vertical-align:middle">${label}</td>
+      <td style="padding:5px 12px;vertical-align:middle">${dots}</td>
+      <td style="padding:5px 8px;color:${goldLight};font-size:12px;font-weight:600;width:30px;text-align:right;vertical-align:middle">${score.toFixed(1)}</td>
+    </tr>`;
+  };
+
+  // Score colour: green for 7+, gold for 4-6.9, red-ish for <4
+  const scoreColor = h.overallScore >= 7 ? '#2ecc71' : h.overallScore >= 4 ? gold : '#e74c3c';
+
+  return `
+  <!-- Rashifal Section -->
+  <div style="margin:24px 0;border-top:1px solid ${gold}20;padding-top:20px">
+    <div style="text-align:center;margin-bottom:16px">
+      <div style="color:${gold};font-size:10px;text-transform:uppercase;letter-spacing:2px;font-weight:700;margin-bottom:4px">
+        ${tl({ en: 'Your Daily Rashifal', hi: 'आपका दैनिक राशिफल', sa: 'आपका दैनिक राशिफल' }, locale)}
+      </div>
+      <div style="color:${goldLight};font-size:18px;font-weight:700">${h.moonSignName}</div>
+    </div>
+
+    <!-- Overall Score -->
+    <div style="text-align:center;margin:16px 0">
+      <div style="display:inline-block;width:64px;height:64px;border-radius:50%;border:3px solid ${scoreColor};line-height:58px;text-align:center">
+        <span style="color:${scoreColor};font-size:22px;font-weight:800">${h.overallScore.toFixed(1)}</span>
+      </div>
+      <div style="color:${textSecondary};font-size:10px;margin-top:4px">${tl({ en: 'out of 10', hi: '10 में से', sa: '10 में से' }, locale)}</div>
+    </div>
+
+    <!-- Insight -->
+    <div style="background:${bgCard};border-radius:10px;padding:12px 14px;margin:12px 0;border:1px solid ${gold}15;text-align:center">
+      <div style="color:${textPrimary};font-size:13px;line-height:1.5;font-style:italic">${h.insight}</div>
+    </div>
+
+    <!-- Area Scores -->
+    <div style="background:${bgCard};border-radius:12px;margin:12px 0;border:1px solid ${gold}20;overflow:hidden">
+      <div style="padding:10px 12px;background:${gold}10;border-bottom:1px solid ${gold}15">
+        <span style="color:${gold};font-size:10px;text-transform:uppercase;letter-spacing:1.5px;font-weight:700">
+          ${tl({ en: 'Life Areas', hi: 'जीवन क्षेत्र', sa: 'जीवन क्षेत्र' }, locale)}
+        </span>
+      </div>
+      <table style="width:100%;border-collapse:collapse">
+        ${areaRow(areaLabel('Career', 'करियर'), h.areas.career)}
+        ${areaRow(areaLabel('Love', 'प्रेम'), h.areas.love)}
+        ${areaRow(areaLabel('Health', 'स्वास्थ्य'), h.areas.health)}
+        ${areaRow(areaLabel('Finance', 'वित्त'), h.areas.finance)}
+        ${areaRow(areaLabel('Spirituality', 'आध्यात्म'), h.areas.spirituality)}
+      </table>
+    </div>
+
+    <!-- Lucky Colour & Number -->
+    <div style="display:flex;gap:8px;margin:12px 0">
+      <div style="flex:1;background:${bgCard};border-radius:8px;padding:10px;text-align:center;border:1px solid ${gold}15">
+        <div style="color:${textSecondary};font-size:9px;text-transform:uppercase;letter-spacing:0.5px">${tl({ en: 'Lucky Colour', hi: 'शुभ रंग', sa: 'शुभ रंग' }, locale)}</div>
+        <div style="color:${goldLight};font-weight:700;font-size:14px;margin-top:2px">${h.luckyColor}</div>
+      </div>
+      <div style="flex:1;background:${bgCard};border-radius:8px;padding:10px;text-align:center;border:1px solid ${gold}15">
+        <div style="color:${textSecondary};font-size:9px;text-transform:uppercase;letter-spacing:0.5px">${tl({ en: 'Lucky Number', hi: 'शुभ अंक', sa: 'शुभ अंक' }, locale)}</div>
+        <div style="color:${goldLight};font-weight:700;font-size:14px;margin-top:2px">${h.luckyNumber}</div>
+      </div>
+    </div>
+
+    <!-- Full Horoscope CTA -->
+    <div style="text-align:center;margin:16px 0">
+      <a href="https://dekhopanchang.com/${locale}/horoscope/${h.rashiSlug}"
+         style="display:inline-block;padding:10px 24px;background:${gold}30;border:1px solid ${gold}60;border-radius:8px;color:${goldLight};font-weight:700;font-size:13px;text-decoration:none">
+        ${tl({ en: 'Full Horoscope \u2192', hi: '\u092A\u0942\u0930\u094D\u0923 \u0930\u093E\u0936\u093F\u092B\u0932 \u2192', sa: '\u092A\u0942\u0930\u094D\u0923 \u0930\u093E\u0936\u093F\u092B\u0932 \u2192' }, locale)}
+      </a>
+    </div>
+  </div>`;
 }
 
 export function generateDailyPanchangEmail(data: DailyPanchangEmailData): { subject: string; html: string } {
@@ -116,6 +227,8 @@ export function generateDailyPanchangEmail(data: DailyPanchangEmailData): { subj
       ${tl({ en: 'View Full Panchang', hi: 'पूर्ण पंचांग देखें', sa: 'पूर्ण पंचांग देखें' }, data.locale)}
     </a>
   </div>
+
+  ${data.horoscope ? generateRashifalSection(data.horoscope, data.locale, gold, goldLight, bg, bgCard, textPrimary, textSecondary) : ''}
 
   <!-- Footer -->
   <div style="text-align:center;padding:16px 0;border-top:1px solid ${gold}15;color:${textSecondary};font-size:10px">

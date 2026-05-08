@@ -27,36 +27,78 @@ function loadEnv() {
   }
 }
 
-async function main() {
+/** Get an access token from ADC credentials or service account key */
+async function getAccessToken(): Promise<string> {
   loadEnv();
 
-  const { google } = await import('googleapis');
-
-  // Service account auth ONLY — no OAuth (conflicts with YouTube OAuth tokens)
+  // 1. Service account key
   const keyPath = process.env.GSC_SERVICE_ACCOUNT_KEY_PATH?.trim();
-  if (!keyPath) {
-    console.error('GSC_SERVICE_ACCOUNT_KEY_PATH not set in .env.local.');
-    console.error('Create a GCP service account and add its email as a Full user in GSC.');
-    process.exit(1);
+  if (keyPath && fs.existsSync(path.resolve(keyPath))) {
+    const { google } = await import('googleapis');
+    const auth = new google.auth.GoogleAuth({
+      keyFile: path.resolve(keyPath),
+      scopes: ['https://www.googleapis.com/auth/webmasters'],
+    });
+    const client = await auth.getClient();
+    const token = await client.getAccessToken();
+    return token.token!;
   }
 
-  const keyFile = path.resolve(keyPath);
-  if (!fs.existsSync(keyFile)) {
-    console.error(`Service account key not found: ${keyFile}`);
-    process.exit(1);
+  // 2. ADC refresh token (from gcloud auth application-default login)
+  const adcPath = path.join(process.env.HOME || '', '.config/gcloud/application_default_credentials.json');
+  if (fs.existsSync(adcPath)) {
+    const adcData = JSON.parse(fs.readFileSync(adcPath, 'utf-8'));
+    if (adcData.refresh_token) {
+      console.log('Refreshing token from ADC...');
+      const res = await fetch('https://oauth2.googleapis.com/token', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          client_id: adcData.client_id,
+          client_secret: adcData.client_secret,
+          refresh_token: adcData.refresh_token,
+          grant_type: 'refresh_token',
+        }),
+      });
+      if (!res.ok) throw new Error(`Token refresh failed: ${await res.text()}`);
+      const { access_token } = await res.json() as { access_token: string };
+      return access_token;
+    }
   }
 
-  const auth = new google.auth.GoogleAuth({
-    keyFile,
-    scopes: ['https://www.googleapis.com/auth/webmasters'],
+  throw new Error('No credentials found. Run: gcloud auth application-default login --scopes=https://www.googleapis.com/auth/webmasters,https://www.googleapis.com/auth/cloud-platform');
+}
+
+/** Raw GSC API call — bypasses googleapis library quota project detection */
+async function gscApi(method: string, endpoint: string, token: string): Promise<any> {
+  const base = 'https://searchconsole.googleapis.com/webmasters/v3';
+  const url = `${base}${endpoint}`;
+  const res = await fetch(url, {
+    method,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      'x-goog-user-project': 'dekhopanchang',
+    },
   });
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`GSC API ${method} ${endpoint} → ${res.status}: ${body}`);
+  }
+  if (res.status === 204 || res.headers.get('content-length') === '0') return {};
+  return res.json();
+}
 
-  const searchconsole = google.searchconsole({ version: 'v1', auth });
+async function main() {
+  const token = await getAccessToken();
+  console.log('Authenticated.');
+
+  const siteUrl = encodeURIComponent(GSC_PROPERTY);
 
   // List current sitemaps
-  console.log('Current sitemaps in GSC:');
-  const listRes = await searchconsole.sitemaps.list({ siteUrl: GSC_PROPERTY });
-  const sitemaps = listRes.data.sitemap || [];
+  console.log('\nCurrent sitemaps in GSC:');
+  const listData = await gscApi('GET', `/sites/${siteUrl}/sitemaps`, token);
+  const sitemaps = listData.sitemap || [];
 
   for (const sm of sitemaps) {
     console.log(`  ${sm.path}`);
@@ -69,41 +111,31 @@ async function main() {
     }
   }
 
-  // Delete the old www sitemap if it exists
-  const wwwSitemap = sitemaps.find(s => s.path?.includes('www.dekhopanchang.com'));
+  // Delete old www sitemap if exists
+  const wwwSitemap = sitemaps.find((s: any) => s.path?.includes('www.dekhopanchang.com'));
   if (wwwSitemap) {
     console.log(`\nDeleting old www sitemap: ${wwwSitemap.path}`);
     try {
-      await searchconsole.sitemaps.delete({
-        siteUrl: GSC_PROPERTY,
-        feedpath: wwwSitemap.path!,
-      });
+      await gscApi('DELETE', `/sites/${siteUrl}/sitemaps/${encodeURIComponent(wwwSitemap.path)}`, token);
       console.log('  Deleted.');
     } catch (err: any) {
-      console.warn(`  Warning: could not delete: ${err.message}`);
+      console.warn(`  Warning: ${err.message}`);
     }
   }
 
-  // Submit/re-submit the non-www sitemap
+  // Submit sitemap
   console.log(`\nSubmitting sitemap: ${SITEMAP_URL}`);
-  try {
-    await searchconsole.sitemaps.submit({
-      siteUrl: GSC_PROPERTY,
-      feedpath: SITEMAP_URL,
-    });
-    console.log('  Submitted successfully.');
-  } catch (err: any) {
-    console.error(`  Error: ${err.message}`);
-  }
+  await gscApi('PUT', `/sites/${siteUrl}/sitemaps/${encodeURIComponent(SITEMAP_URL)}`, token);
+  console.log('  Submitted successfully.');
 
   // Verify
   console.log('\nVerifying...');
-  const verifyRes = await searchconsole.sitemaps.list({ siteUrl: GSC_PROPERTY });
-  for (const sm of verifyRes.data.sitemap || []) {
+  const verifyData = await gscApi('GET', `/sites/${siteUrl}/sitemaps`, token);
+  for (const sm of verifyData.sitemap || []) {
     console.log(`  ${sm.path} — warnings: ${sm.warnings || 0}, errors: ${sm.errors || 0}`);
   }
 
-  console.log('\n✓ Done. Google will re-process the sitemap within 24-48 hours.');
+  console.log('\nDone. Google will re-process the sitemap within 24-48 hours.');
 }
 
 main().catch(err => {

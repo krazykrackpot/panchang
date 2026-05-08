@@ -564,48 +564,21 @@ async function main() {
   let inspectionResults: Array<{ url: string; verdict: string; coverage: string; lastCrawl: string }> = [];
 
   const keyPath = process.env.GSC_SERVICE_ACCOUNT_KEY_PATH?.trim();
-  const refreshToken = process.env.GSC_REFRESH_TOKEN?.trim();
-  const tokenFilePath = path.join(process.cwd(), '.gsc-token.json');
-  const hasTokenFile = fs.existsSync(tokenFilePath);
 
-  // Auth priority: service account > OAuth refresh token > token file
-  if ((runAll || gscOnly) && (keyPath || refreshToken || hasTokenFile)) {
+  // Service account auth ONLY — no OAuth (OAuth refresh tokens conflict with YouTube OAuth)
+  if ((runAll || gscOnly) && keyPath) {
     const { google } = await import('googleapis');
 
-    if (keyPath) {
-      // Service account auth
-      const keyFile = path.resolve(keyPath);
-      if (!fs.existsSync(keyFile)) {
-        console.error(`\n✗ Service account key not found: ${keyFile}`);
-        process.exit(1);
-      }
-      auth = new google.auth.GoogleAuth({
-        keyFile,
-        scopes: ['https://www.googleapis.com/auth/webmasters.readonly'],
-      });
-      console.log('   Auth: service account');
-    } else {
-      // OAuth2 flow — use refresh token from env or token file
-      const CLIENT_ID = process.env.GOOGLE_OAUTH_CLIENT_ID?.trim() || '';
-      const CLIENT_SECRET = process.env.GOOGLE_OAUTH_CLIENT_SECRET?.trim() || '';
-
-      const oauth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, 'http://localhost:9876/callback');
-
-      if (refreshToken) {
-        oauth2Client.setCredentials({ refresh_token: refreshToken });
-        console.log('   Auth: OAuth2 refresh token (from .env.local)');
-      } else if (hasTokenFile) {
-        const tokenData = JSON.parse(fs.readFileSync(tokenFilePath, 'utf-8'));
-        oauth2Client.setCredentials({
-          access_token: tokenData.access_token,
-          refresh_token: tokenData.refresh_token,
-          expiry_date: tokenData.expiry_date,
-        });
-        console.log('   Auth: OAuth2 token file (.gsc-token.json)');
-      }
-
-      auth = oauth2Client;
+    const keyFile = path.resolve(keyPath);
+    if (!fs.existsSync(keyFile)) {
+      console.error(`\n✗ Service account key not found: ${keyFile}`);
+      process.exit(1);
     }
+    auth = new google.auth.GoogleAuth({
+      keyFile,
+      scopes: ['https://www.googleapis.com/auth/webmasters.readonly'],
+    });
+    console.log('   Auth: service account');
 
     const result = await getGscIndexedPages(auth);
     indexedUrls = result.indexedUrls;
@@ -628,13 +601,14 @@ async function main() {
         console.log('   No priority unindexed URLs to inspect.');
       }
     }
-  } else if ((runAll || gscOnly) && !keyPath && !refreshToken && !hasTokenFile) {
+  } else if ((runAll || gscOnly) && !keyPath) {
     console.log('\n━━━ GSC: Skipped (no credentials) ━━━');
-    console.log('   Run the OAuth setup first:');
-    console.log('     npx tsx scripts/gsc-auth.ts');
-    console.log('');
-    console.log('   Or set a service account key:');
-    console.log('     GSC_SERVICE_ACCOUNT_KEY_PATH=/path/to/key.json in .env.local');
+    console.log('   Set up a GCP service account (NOT OAuth — OAuth conflicts with YouTube tokens):');
+    console.log('   1. Create a service account in GCP Console');
+    console.log('   2. Enable "Google Search Console API"');
+    console.log('   3. Download the JSON key file');
+    console.log('   4. Add the SA email in GSC → Settings → Users (Full access)');
+    console.log('   5. Set GSC_SERVICE_ACCOUNT_KEY_PATH=/path/to/key.json in .env.local');
   }
 
   // Step 5: Bing submission

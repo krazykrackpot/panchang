@@ -32,31 +32,26 @@ async function main() {
 
   const { google } = await import('googleapis');
 
-  const CLIENT_ID = process.env.GOOGLE_OAUTH_CLIENT_ID?.trim() || '';
-  const CLIENT_SECRET = process.env.GOOGLE_OAUTH_CLIENT_SECRET?.trim() || '';
-
-  const refreshToken = process.env.GSC_REFRESH_TOKEN?.trim();
-  const tokenFilePath = path.join(process.cwd(), '.gsc-token.json');
-
-  if (!refreshToken && !fs.existsSync(tokenFilePath)) {
-    console.error('No GSC credentials. Run: npx tsx scripts/gsc-auth.ts');
+  // Service account auth ONLY — no OAuth (conflicts with YouTube OAuth tokens)
+  const keyPath = process.env.GSC_SERVICE_ACCOUNT_KEY_PATH?.trim();
+  if (!keyPath) {
+    console.error('GSC_SERVICE_ACCOUNT_KEY_PATH not set in .env.local.');
+    console.error('Create a GCP service account and add its email as a Full user in GSC.');
     process.exit(1);
   }
 
-  const oauth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, 'http://localhost:9876/callback');
-
-  if (refreshToken) {
-    oauth2Client.setCredentials({ refresh_token: refreshToken });
-  } else {
-    const tokenData = JSON.parse(fs.readFileSync(tokenFilePath, 'utf-8'));
-    oauth2Client.setCredentials({
-      access_token: tokenData.access_token,
-      refresh_token: tokenData.refresh_token,
-      expiry_date: tokenData.expiry_date,
-    });
+  const keyFile = path.resolve(keyPath);
+  if (!fs.existsSync(keyFile)) {
+    console.error(`Service account key not found: ${keyFile}`);
+    process.exit(1);
   }
 
-  const searchconsole = google.searchconsole({ version: 'v1', auth: oauth2Client });
+  const auth = new google.auth.GoogleAuth({
+    keyFile,
+    scopes: ['https://www.googleapis.com/auth/webmasters'],
+  });
+
+  const searchconsole = google.searchconsole({ version: 'v1', auth });
 
   // List current sitemaps
   console.log('Current sitemaps in GSC:');

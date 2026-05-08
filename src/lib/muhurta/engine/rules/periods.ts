@@ -248,6 +248,14 @@ const shishutva: MuhurtaRule = {
 };
 
 // ---------------------------------------------------------------------------
+// NOTE: Pitra Paksha (Mahalaya Shraddha) — Krishna Paksha of Bhadrapada
+// This falls within Chaturmas (Devshayani to Prabodhini Ekadashi,
+// ~July-November), so it is already covered by the chaturmas veto above.
+// No separate check is needed. If Chaturmas boundaries ever change,
+// Pitra Paksha should be added as a distinct prohibition for marriage.
+// ---------------------------------------------------------------------------
+
+// ---------------------------------------------------------------------------
 // Export
 // ---------------------------------------------------------------------------
 export const PERIOD_RULES: MuhurtaRule[] = [

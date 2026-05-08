@@ -40,17 +40,22 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     id: 'marriage',
     label: { en: 'Marriage (Vivah)', hi: 'विवाह', sa: 'विवाहः' },
     goodTithis: [2, 3, 5, 7, 10, 11, 13],
-    // MC Ch.6 Vivah Prakarana: Sthira + Mrdu + select Chara nakshatras
-    // Rohini(4), Mrigashira(5), Punarvasu(7), Pushya(8), U.Phalguni(12),
-    // Hasta(13), Chitra(14), Swati(15), Anuradha(17), U.Ashadha(21),
-    // Shravana(22), Dhanishtha(23), U.Bhadrapada(26), Revati(27)
-    goodNakshatras: [4, 5, 7, 8, 12, 13, 14, 15, 17, 21, 22, 23, 26, 27],
+    // Muhurta Chintamani Vivah Prakarana — 11 BEST nakshatras for marriage:
+    // Rohini(4), Mrigashira(5), Magha(10), U.Phalguni(12), Hasta(13),
+    // Swati(15), Anuradha(17), Moola(19), U.Ashadha(21), U.Bhadrapada(26), Revati(27)
+    // PADA RESTRICTIONS: first quarter of Magha(10) & Moola(19), last quarter of Revati(27) are inauspicious.
+    // SECOND-TIER (moderate, kept in goodNakshatras): Chitra(14), Shravana(22), Dhanishtha(23)
+    // REMOVED from good list: Punarvasu(7), Pushya(8) — NOT in any marriage-specific classical list
+    goodNakshatras: [4, 5, 10, 12, 13, 14, 15, 17, 19, 21, 22, 23, 26, 27],
     goodWeekdays: [1, 3, 4, 5], // Mon, Wed, Thu, Fri
-    avoidTithis: [4, 8, 9, 14, 15, 30],
-    // Ugra + Tikshna: Ashwini(1)=impulsive, Bharani(2)=Yama, Krittika(3)=Agni,
-    // Magha(10)=ancestral, P.Phalguni(11)=pleasure, Vishakha(16)=split,
-    // P.Ashadha(20)=purification, Shatabhisha(24)=healing, P.Bhadrapada(25)=fierce
-    avoidNakshatras: [1, 2, 3, 9, 10, 11, 16, 18, 19, 20, 24, 25],
+    // Rikta tithis (4, 9, 14) + Amavasya (30) only.
+    // Purnima(15) is neutral for marriage, not avoided. Ashtami(8) is NOT a Rikta tithi.
+    avoidTithis: [4, 9, 14, 30],
+    // Ugra + Tikshna + unsuitable: Ashwini(1)=impulsive, Bharani(2)=Yama, Krittika(3)=Agni,
+    // Punarvasu(7)=not marriage-specific, Pushya(8)=not marriage-specific,
+    // P.Phalguni(11)=pleasure, P.Ashadha(20)=purification,
+    // Shatabhisha(24)=healing, P.Bhadrapada(25)=fierce
+    avoidNakshatras: [1, 2, 3, 7, 8, 11, 20, 24, 25],
     // Absolute vetoes — MC "death-dealing / widowhood" nakshatras:
     // Ardra(6)=Rudra destruction, Ashlesha(9)=serpent/death of groom,
     // Vishakha(16)=bride suffering, Jyeshtha(18)=death of elder brother
@@ -63,14 +68,15 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     id: 'engagement',
     label: { en: 'Engagement', hi: 'सगाई', sa: 'वाग्दानम्' },
     goodTithis: [2, 3, 5, 7, 10, 11, 13],
-    // Same logic as marriage but slightly broader — commitment, not consummation
-    // Rohini(4), Mrigashira(5), Punarvasu(7), Pushya(8), U.Phalguni(12),
-    // Hasta(13), Chitra(14), Swati(15), Anuradha(17), U.Ashadha(21),
+    // Same base as marriage — Muhurta Chintamani Vivah Prakarana nakshatras
+    // Rohini(4), Mrigashira(5), Magha(10), U.Phalguni(12), Hasta(13),
+    // Chitra(14), Swati(15), Anuradha(17), Moola(19), U.Ashadha(21),
     // Shravana(22), U.Bhadrapada(26), Revati(27)
-    goodNakshatras: [4, 5, 7, 8, 12, 13, 14, 15, 17, 21, 22, 26, 27],
+    goodNakshatras: [4, 5, 10, 12, 13, 14, 15, 17, 19, 21, 22, 26, 27],
     goodWeekdays: [1, 3, 4, 5],
-    avoidTithis: [4, 8, 9, 14, 15, 30],
-    avoidNakshatras: [1, 2, 3, 6, 9, 10, 11, 16, 18, 19, 20, 23, 24, 25],
+    // Rikta tithis (4, 9, 14) + Amavasya (30) only
+    avoidTithis: [4, 9, 14, 30],
+    avoidNakshatras: [1, 2, 3, 7, 8, 11, 20, 23, 24, 25],
     // Ardra(6)=Rudra tears, not for engagement
     hardAvoidNakshatras: [6],
     goodHoras: [5, 4, 1], // Venus, Jupiter, Moon

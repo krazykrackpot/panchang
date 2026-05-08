@@ -354,24 +354,31 @@ export function checkChaturmas(year: number, month: number, day: number): 'full'
 }
 
 // ─── Prohibited Solar Months (Kharmas / Malamas) ────────────────────────────
-// Dharmasindhu + Muhurta Chintamani: Marriage prohibited when the Sun
-// transits certain signs. The primary prohibition is Kharmas (Sun in
-// Pisces / Mina, ~Mar 14 - Apr 14). Drik Panchang also blocks marriage
-// during Sun in Karka (Cancer), Simha (Leo), Kanya (Virgo), and
-// Dhanu (Sagittarius). These correspond to monsoon + winter periods.
-//
-// Auspicious solar months for marriage per Dharmasindhu:
+// Muhurta Chintamani Vivah Prakarana + Dharmasindhu: Marriage ONLY permitted
+// when Sun is in 6 auspicious signs:
 //   Mesha (Aries), Vrishabha (Taurus), Mithuna (Gemini),
 //   Vrischika (Scorpio), Makara (Capricorn), Kumbha (Aquarius)
-// Prohibited: Karka, Simha, Kanya, Tula, Dhanu, Mina
+//
+// Marriage PROHIBITED when Sun is in the remaining 6 signs:
+//   Karka (Cancer), Simha (Leo), Kanya (Virgo), Tula (Libra),
+//   Dhanu (Sagittarius) — Kharmas proper, Mina (Pisces) — extended Kharmas
+//
+// Note: Simha/Kanya overlap with Chaturmas, but Karka and Tula are distinct
+// prohibitions that must be checked here.
 
 // Sidereal Sun sign → solar month. 1=Mesha..12=Mina
-// Strict classical Kharmas: Dhanu (Sagittarius) + Mina (Pisces) only.
-// Dharmasindhu specifically names Sun in Dhanu as Kharmas/Malamas.
-// Some traditions extend to Mina. Karka/Simha/Kanya overlap with
-// Dakshinayana + Chaturmas which are checked separately — adding them
-// here would double-count. We follow Dharmasindhu strictly.
+// Muhurta Chintamani Vivah Prakarana: marriages ONLY permitted when Sun is in
+// Mesha(1), Vrishabha(2), Mithuna(3), Vrischika(8), Makara(10), Kumbha(11).
+// ALL other signs are PROHIBITED for marriage:
+//   Karka(4)=Cancer, Simha(5)=Leo, Kanya(6)=Virgo, Tula(7)=Libra,
+//   Dhanu(9)=Sagittarius (Kharmas proper), Mina(12)=Pisces (extended Kharmas)
+// Note: Simha(5)/Kanya(6) overlap with Chaturmas (checked separately),
+// but Karka(4) and Tula(7) are NEW prohibitions not covered by any other check.
 const PROHIBITED_SOLAR_SIGNS = new Set([
+  4,  // Karka (Cancer) — ~Jul 17 - Aug 17
+  5,  // Simha (Leo) — ~Aug 17 - Sep 17 (also Chaturmas)
+  6,  // Kanya (Virgo) — ~Sep 17 - Oct 17 (also Chaturmas)
+  7,  // Tula (Libra) — ~Oct 17 - Nov 16
   9,  // Dhanu (Sagittarius) — ~Dec 16 - Jan 14 (Kharmas proper)
   12, // Mina (Pisces) — ~Mar 14 - Apr 14 (extended Kharmas)
 ]);

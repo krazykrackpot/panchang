@@ -336,10 +336,292 @@ const eighthHouseVacancy: MuhurtaRule = {
   },
 };
 
+// ---------------------------------------------------------------------------
+// 6. seventh-house-vacancy (MC + B.V. Raman — Marriage/Engagement)
+// 7th house is the marriage house. Malefics there damage marital harmony.
+// Rahu, Ketu, Saturn, Mars = -4; Sun = -2 (lesser malefic).
+// Exception: Waxing Moon in 7th is sometimes tolerated (near Purnima).
+// ---------------------------------------------------------------------------
+const MARRIAGE_ACTIVITIES: string[] = ['marriage', 'engagement'];
+
+const seventhHouseVacancy: MuhurtaRule = {
+  id: 'seventh-house-vacancy',
+  name: { en: '7th House Vacancy', hi: 'सप्तम भाव शून्यता', sa: 'सप्तमभावशून्यता' },
+  category: 'lagna',
+  scope: 'window',
+  effect: 'penalty',
+  tier: 3,
+  appliesTo: ['marriage', 'engagement'],
+  source: 'MC Vivah Prakarana, B.V. Raman Muhurtha Ch.12',
+  evaluate(ctx: RuleContext): RuleAssessment | null {
+    if (!MARRIAGE_ACTIVITIES.includes(ctx.activity)) return null;
+    if (ctx.lagnaSign == null || !ctx.planets || ctx.planets.length === 0) return null;
+
+    // 7th house = 6 signs from lagna (1-indexed, wrapped)
+    const seventhSign = ((ctx.lagnaSign - 1 + 6) % 12) + 1;
+
+    // Malefic planet ids: Sun(0), Mars(2), Saturn(6), Rahu(7), Ketu(8)
+    const maleficPenalty: Record<number, number> = { 0: -2, 2: -4, 6: -4, 7: -4, 8: -4 };
+    const maleficNames: Record<number, string> = { 0: 'Sun', 2: 'Mars', 6: 'Saturn', 7: 'Rahu', 8: 'Ketu' };
+    let totalPenalty = 0;
+    const occupants: string[] = [];
+
+    for (const planet of ctx.planets) {
+      if (!(planet.id in maleficPenalty)) continue;
+      const sidSign = getRashiNumber(toSidereal(planet.longitude, ctx.midpointJD));
+      if (sidSign === seventhSign) {
+        // Moon (id=1) exception — not in maleficPenalty, so won't reach here
+        totalPenalty += maleficPenalty[planet.id]!;
+        occupants.push(maleficNames[planet.id]!);
+      }
+    }
+
+    if (occupants.length === 0) {
+      return assess(this, {
+        tier: 3,
+        points: 3,
+        maxPoints: 3,
+        severity: 'positive',
+        reason: {
+          en: '7th house (marriage house) vacant — auspicious',
+          hi: 'सप्तम भाव (विवाह भाव) शून्य — शुभ',
+          sa: 'सप्तमभावः शून्यः — शुभम्',
+        },
+      });
+    }
+
+    return assess(this, {
+      tier: 3,
+      points: totalPenalty,
+      maxPoints: 3,
+      severity: totalPenalty <= -4 ? 'major' : 'moderate',
+      reason: {
+        en: `${occupants.join(', ')} in 7th house — damages marital harmony`,
+        hi: `${occupants.join(', ')} सप्तम भाव में — दाम्पत्य सुख को हानि`,
+        sa: `सप्तमभावे ${occupants.join(', ')} — दाम्पत्यसुखहानिः`,
+      },
+    });
+  },
+};
+
+// ---------------------------------------------------------------------------
+// 7. malefics-aspecting-seventh (MC + B.V. Raman — Marriage/Engagement)
+// Vedic aspects on the 7th house from malefics: -3 points per malefic.
+// All planets aspect 7th from their position. Mars also aspects 4th/8th.
+// Saturn also aspects 3rd/10th.
+// ---------------------------------------------------------------------------
+const maleficsAspectingSeventh: MuhurtaRule = {
+  id: 'malefics-aspecting-seventh',
+  name: { en: 'Malefics Aspecting 7th', hi: 'सप्तम पर पापदृष्टि', sa: 'सप्तमे पापदृष्टिः' },
+  category: 'lagna',
+  scope: 'window',
+  effect: 'penalty',
+  tier: 3,
+  appliesTo: ['marriage', 'engagement'],
+  source: 'MC Vivah Prakarana, B.V. Raman',
+  evaluate(ctx: RuleContext): RuleAssessment | null {
+    if (!MARRIAGE_ACTIVITIES.includes(ctx.activity)) return null;
+    if (ctx.lagnaSign == null || !ctx.planets || ctx.planets.length === 0) return null;
+
+    const seventhSign = ((ctx.lagnaSign - 1 + 6) % 12) + 1;
+
+    // Malefic ids to check: Mars(2), Saturn(6), Rahu(7), Ketu(8)
+    // Sun(0) excluded — its aspects are not traditionally checked for this rule
+    const maleficIds = [2, 6, 7, 8];
+    const maleficNames: Record<number, string> = { 2: 'Mars', 6: 'Saturn', 7: 'Rahu', 8: 'Ketu' };
+    const aspecting: string[] = [];
+
+    for (const pid of maleficIds) {
+      const planet = ctx.planets.find(p => p.id === pid);
+      if (!planet) continue;
+      const planetSign = getRashiNumber(toSidereal(planet.longitude, ctx.midpointJD));
+
+      // Compute house offset: how many houses from planet to 7th house
+      // houseOffset = ((targetSign - planetSign + 12) % 12) || 12
+      const offset = ((seventhSign - planetSign + 12) % 12) || 12;
+
+      // All planets aspect 7th from self (offset 7)
+      let aspects = false;
+      if (offset === 7) aspects = true;
+      // Mars special aspects: 4th and 8th from its position
+      if (pid === 2 && (offset === 4 || offset === 8)) aspects = true;
+      // Saturn special aspects: 3rd and 10th from its position
+      if (pid === 6 && (offset === 3 || offset === 10)) aspects = true;
+
+      // Skip if planet is already IN the 7th (handled by seventh-house-vacancy)
+      if (offset === 0 || planetSign === seventhSign) continue;
+
+      if (aspects) {
+        aspecting.push(maleficNames[pid]!);
+      }
+    }
+
+    if (aspecting.length === 0) return null;
+
+    const points = -3 * aspecting.length;
+    return assess(this, {
+      tier: 3,
+      points,
+      maxPoints: 0,
+      severity: aspecting.length >= 2 ? 'major' : 'moderate',
+      reason: {
+        en: `${aspecting.join(', ')} aspect${aspecting.length > 1 ? '' : 's'} 7th house — adverse for marriage`,
+        hi: `${aspecting.join(', ')} की सप्तम भाव पर दृष्टि — विवाह हेतु प्रतिकूल`,
+        sa: `${aspecting.join(', ')} सप्तमभावे दृष्टिः — विवाहे प्रतिकूलम्`,
+      },
+    });
+  },
+};
+
+// ---------------------------------------------------------------------------
+// 8. venus-in-sixth (MC — Marriage/Engagement)
+// Venus (karaka of marriage) in 6th house from lagna = -3 points.
+// 6th house = enemies, obstacles, debts — terrible for Venus.
+// ---------------------------------------------------------------------------
+const venusInSixth: MuhurtaRule = {
+  id: 'venus-in-sixth',
+  name: { en: 'Venus in 6th House', hi: 'शुक्र षष्ठ भाव में', sa: 'शुक्रः षष्ठभावे' },
+  category: 'lagna',
+  scope: 'window',
+  effect: 'penalty',
+  tier: 3,
+  appliesTo: ['marriage', 'engagement'],
+  source: 'MC Vivah Prakarana',
+  evaluate(ctx: RuleContext): RuleAssessment | null {
+    if (!MARRIAGE_ACTIVITIES.includes(ctx.activity)) return null;
+    if (ctx.lagnaSign == null || !ctx.planets || ctx.planets.length === 0) return null;
+
+    const sixthSign = ((ctx.lagnaSign - 1 + 5) % 12) + 1;
+    const venus = ctx.planets.find(p => p.id === 5);
+    if (!venus) return null;
+
+    const venusSign = getRashiNumber(toSidereal(venus.longitude, ctx.midpointJD));
+    if (venusSign !== sixthSign) return null;
+
+    return assess(this, {
+      tier: 3,
+      points: -3,
+      maxPoints: 0,
+      severity: 'moderate',
+      reason: {
+        en: 'Venus (marriage karaka) in 6th house — obstacles to conjugal happiness',
+        hi: 'शुक्र (विवाह कारक) षष्ठ भाव में — दाम्पत्य सुख में बाधा',
+        sa: 'शुक्रः (विवाहकारकः) षष्ठभावे — दाम्पत्यसुखबाधा',
+      },
+    });
+  },
+};
+
+// ---------------------------------------------------------------------------
+// 9. mars-in-eighth-extra (B.V. Raman — Marriage/Engagement)
+// Mars in 8th house gets an extra -2 penalty on top of the generic
+// eighth-house-vacancy rule (-3). Mars in 8th = violence/accident to
+// spouse, the worst malefic placement for marriage. Total = -5.
+// ---------------------------------------------------------------------------
+const marsInEighthExtra: MuhurtaRule = {
+  id: 'mars-in-eighth-extra',
+  name: { en: 'Mars in 8th House', hi: 'मंगल अष्टम भाव में', sa: 'कुजः अष्टमभावे' },
+  category: 'lagna',
+  scope: 'window',
+  effect: 'penalty',
+  tier: 3,
+  appliesTo: ['marriage', 'engagement'],
+  source: 'B.V. Raman Muhurtha Ch.12',
+  evaluate(ctx: RuleContext): RuleAssessment | null {
+    if (!MARRIAGE_ACTIVITIES.includes(ctx.activity)) return null;
+    if (ctx.lagnaSign == null || !ctx.planets || ctx.planets.length === 0) return null;
+
+    const eighthSign = ((ctx.lagnaSign - 1 + 7) % 12) + 1;
+    const mars = ctx.planets.find(p => p.id === 2);
+    if (!mars) return null;
+
+    const marsSign = getRashiNumber(toSidereal(mars.longitude, ctx.midpointJD));
+    if (marsSign !== eighthSign) return null;
+
+    return assess(this, {
+      tier: 3,
+      points: -2,
+      maxPoints: 0,
+      severity: 'major',
+      reason: {
+        en: 'Mars in 8th house — severe danger to marital longevity (additional penalty)',
+        hi: 'मंगल अष्टम भाव में — दाम्पत्य दीर्घायु को गंभीर खतरा (अतिरिक्त दंड)',
+        sa: 'कुजः अष्टमभावे — दाम्पत्यदीर्घायुषे गम्भीरभयम् (अतिरिक्तदण्डः)',
+      },
+    });
+  },
+};
+
+// ---------------------------------------------------------------------------
+// 10. jupiter-venus-aspecting-lagna (MC Ch.7 — all activities)
+// Jupiter or Venus ASPECTING lagna (not just occupying) also confers
+// significant benefit. +5 points per aspecting benefic (Tier 2).
+// Jupiter aspects from houses 5, 7, 9 (i.e. offsets 5, 7, 9 from Jupiter).
+// Venus aspects from house 7 only (standard 7th aspect).
+// This complements rule #4 (planets-in-ascendant) which checks occupation.
+// ---------------------------------------------------------------------------
+const jupiterVenusAspectingLagna: MuhurtaRule = {
+  id: 'jupiter-venus-aspecting-lagna',
+  name: { en: 'Jupiter/Venus Aspecting Lagna', hi: 'गुरु/शुक्र लग्न पर दृष्टि', sa: 'गुरुशुक्रलग्नदृष्टिः' },
+  category: 'lagna',
+  scope: 'window',
+  effect: 'bonus',
+  tier: 2,
+  appliesTo: 'all',
+  source: 'MC Ch.7',
+  evaluate(ctx: RuleContext): RuleAssessment | null {
+    if (ctx.lagnaSign == null || !ctx.planets || ctx.planets.length === 0) return null;
+
+    const aspecting: string[] = [];
+
+    for (const pid of [4, 5]) { // Jupiter(4), Venus(5)
+      const planet = ctx.planets.find(p => p.id === pid);
+      if (!planet) continue;
+      const planetSign = getRashiNumber(toSidereal(planet.longitude, ctx.midpointJD));
+
+      // Skip if planet is IN lagna (already handled by planets-in-ascendant)
+      if (planetSign === ctx.lagnaSign) continue;
+
+      // Compute offset from planet to lagna
+      const offset = ((ctx.lagnaSign - planetSign + 12) % 12) || 12;
+
+      let aspects = false;
+      // Jupiter special aspects: 5th, 7th, 9th from its position
+      if (pid === 4 && (offset === 5 || offset === 7 || offset === 9)) aspects = true;
+      // Venus standard aspect: 7th from its position
+      if (pid === 5 && offset === 7) aspects = true;
+
+      if (aspects) {
+        aspecting.push(pid === 4 ? 'Jupiter' : 'Venus');
+      }
+    }
+
+    if (aspecting.length === 0) return null;
+
+    const points = 5 * aspecting.length;
+    return assess(this, {
+      tier: 2,
+      points,
+      maxPoints: 10,
+      severity: 'positive',
+      reason: {
+        en: `${aspecting.join(' & ')} aspect${aspecting.length > 1 ? '' : 's'} lagna — strong benefic influence`,
+        hi: `${aspecting.join(' व ')} की लग्न पर दृष्टि — प्रबल शुभ प्रभाव`,
+        sa: `${aspecting.join(' ')} लग्ने दृष्टिः — प्रबलशुभप्रभावः`,
+      },
+    });
+  },
+};
+
 export const LAGNA_RULES: MuhurtaRule[] = [
   lagnaQuality,
   navamshaShuddhi,
   krishnaPakshaAdjustment,
   planetsInAscendant,
   eighthHouseVacancy,
+  seventhHouseVacancy,
+  maleficsAspectingSeventh,
+  venusInSixth,
+  marsInEighthExtra,
+  jupiterVenusAspectingLagna,
 ];

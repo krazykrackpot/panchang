@@ -169,7 +169,7 @@
   },
   "pdLabel": {
     "en": "Public Domain",
-    "hi": "सार्वजनिक",
+    "hi": "सार्वजनिक क्षेत्र",
     "sa": "Public Domain",
     "ta": "Public Domain",
     "te": "Public Domain",
@@ -193,7 +193,7 @@
   },
   "openLabel": {
     "en": "Open",
-    "hi": "खुला",
+    "hi": "मुक्त",
     "sa": "Open",
     "ta": "Open",
     "te": "Open",
@@ -205,7 +205,7 @@
   },
   "backToLearn": {
     "en": "Back to Learn",
-    "hi": "सीखने पर वापस",
+    "hi": "अध्ययन पर वापस जाएँ",
     "sa": "Back to Learn",
     "ta": "Back to Learn",
     "te": "Back to Learn",

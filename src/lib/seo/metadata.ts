@@ -281,16 +281,16 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/muhurta-ai': {
     title: {
-      en: 'Muhurta AI — 36-Rule Classical Constraint Engine',
-      hi: 'मुहूर्त AI — 36 शास्त्रीय नियमों का बाधा-आधारित इंजन',
-      sa: 'मुहूर्तकृत्रिमबुद्धिः — षट्त्रिंशत्नियमबाधायन्त्रम्',
+      en: 'Shubh Muhurta Finder — Auspicious Dates & Times for 20 Activities',
+      hi: 'शुभ मुहूर्त खोजक — 20 कार्यों के लिए शुभ तिथि एवं समय',
+      sa: 'शुभमुहूर्तान्वेषकम् — 20 कार्याणां कृते शुभतिथिसमयौ',
     },
     description: {
-      en: 'Find the best date & time for marriage, business, travel & 17 more activities. 36-rule classical engine rejects bad windows — doesn\'t just score them. Personalized with your birth chart. Try free.',
-      hi: '7 शास्त्रीय ग्रन्थों से 36 नियमों वाला बाधा-आधारित मुहूर्त इंजन। गण्ड योग, दग्ध तिथि, नक्षत्र गण्डान्त जैसे घातक दोष सीधे वर्ज्य — औसत नहीं। 5-स्तरीय निवारण श्रेणी। प्रत्येक कार्य के लिए शास्त्रीय रूप से सत्यापित नक्षत्र श्वेतसूची। तारा बल (3-चक्र), चन्द्र बल और दशा सामंजस्य से व्यक्तिगत।',
-      sa: 'सप्तशास्त्रग्रन्थेभ्यः षट्त्रिंशत्नियमैः बाधाधारितमुहूर्तयन्त्रम्। घातकदोषाः साक्षात् वर्ज्याः।',
+      en: 'Find the most auspicious date and time for marriage, griha pravesh, business, and 18 more activities. 36-rule Vedic scoring with 15-minute precision. Free.',
+      hi: 'विवाह, गृह प्रवेश, व्यापार और 18 अन्य कार्यों के लिए सबसे शुभ तिथि और समय। 36-नियम वैदिक स्कोरिंग, 15 मिनट की सटीकता। मुफ़्त।',
+      sa: 'विवाहगृहप्रवेशव्यापारादि 20 कार्याणां कृते शुभतिथिसमयम्। 36-नियमवैदिकमूल्याङ्कनम्।',
     },
-    keywords: ['muhurta', 'auspicious time', 'shubh muhurat', 'marriage muhurat', 'muhurta finder', 'muhurta chintamani', 'classical constraint muhurta', '36 rules vedic muhurta', 'godhuli lagna', 'dagdha tithi', 'nakshatra gandanta'],
+    keywords: ['muhurta finder', 'auspicious date', 'shubh muhurat', 'vivah muhurat', 'wedding date', 'griha pravesh muhurat'],
   },
   '/cosmic-blueprint': {
     title: {

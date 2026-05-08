@@ -8,10 +8,10 @@
  */
 export const SL: Record<string, Record<string, string>> = {
   scannerTitle: {
-    en: 'Muhurta Scanner',
-    hi: 'मुहूर्त स्कैनर',
-    ta: 'முகூர்த்த ஸ்கேனர்',
-    bn: 'মুহূর্ত স্ক্যানার',
+    en: 'Shubh Muhurta Finder',
+    hi: 'शुभ मुहूर्त खोजक',
+    ta: 'சுப முகூர்த்த கண்டுபிடிப்பான்',
+    bn: 'শুভ মুহূর্ত খোঁজক',
   },
   scannerSubtitle: {
     en: 'Find the most auspicious time for your activity — personalized to your birth chart',

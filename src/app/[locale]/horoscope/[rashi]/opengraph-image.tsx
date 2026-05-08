@@ -1,7 +1,8 @@
 import { ImageResponse } from 'next/og';
 import { generateDailyHoroscope } from '@/lib/horoscope/daily-engine';
 
-export const runtime = 'edge';
+// Node.js runtime required — daily-engine chains to swiss-ephemeris (native module, not edge-safe)
+export const runtime = 'nodejs';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 export const revalidate = 3600; // Refresh every hour

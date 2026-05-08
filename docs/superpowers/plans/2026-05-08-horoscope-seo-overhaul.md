@@ -8,6 +8,12 @@
 
 **Tech Stack:** Next.js App Router Server Components, existing `generateDailyHoroscope()` engine, existing `RASHIS` constants, `next-intl` for i18n.
 
+**Scope notes:**
+- Weekly/Monthly SSR conversion is deferred — daily is the traffic magnet. Follow-up ticket.
+- The SSR shell renders the H1, date, score, and insight as *the visible header*. The client island renders everything *below* it (area cards, transit, dos/donts, etc.) — no duplication.
+- The hub SSR grid (12 rashi links with emoji symbols) is for Google's HTML indexing. The client island overlays the full TarotCard grid with score overlays once hydrated.
+- Add `export const revalidate = 3600` to rashi layout so `generateDailyHoroscope()` runs at most once per hour per rashi, not on every request.
+
 ---
 
 ## File Structure
@@ -166,9 +172,11 @@ export const RASHI_EDITORIAL: Record<number, RashiEditorial> = {
       hi: 'सिंह और धनु (अग्नि राशियों) तथा मिथुन और कुम्भ (वायु राशियों) के साथ स्वाभाविक अनुकूलता। कर्क और मकर के साथ चुनौतीपूर्ण गतिशीलता, जहाँ धैर्य की आवश्यकता होती है।',
     },
   },
-  // Remaining 11 rashis follow the same pattern.
-  // Implementation: create all 12 with equivalent depth and quality.
-  // Each rashi must have unique, sign-specific content — NOT generic filler.
+  // MANDATORY: Create ALL 12 entries (IDs 1-12) with unique, sign-specific content.
+  // Each rashi MUST reference its actual ruling planet, element, and quality.
+  // Do NOT use generic filler that could apply to any sign.
+  // Each `personality` field must be 2-3 sentences unique to that sign.
+  // The implementing agent must write all 12 — this is NOT optional.
 };
 ```
 
@@ -350,6 +358,8 @@ export default async function RashiPage({ params }: { params: Promise<{ locale: 
 
 The `HoroscopeClient` receives `initialHoroscope` as a prop so it doesn't need to re-fetch on mount — it already has the data. It only fetches when the user changes the date or switches persons.
 
+**CRITICAL: No content duplication.** The SSR section above renders the H1, date, score summary, and insight text. The `HoroscopeClient` must NOT re-render these — it starts from the Daily/Weekly/Monthly tab bar, then the area cards, transit summary, dos/donts, compatibility, remedies, cross-links, share button, and the "Other Signs" grid. Remove the hero/H1/score card from the client component — the server already rendered it.
+
 - [ ] **Step 5: Update HoroscopeClient to accept initialHoroscope prop**
 
 In `HoroscopeClient.tsx`, add `initialHoroscope` to props:
@@ -383,6 +393,12 @@ useEffect(() => {
 - [ ] **Step 6: Update layout.tsx — add date to Article headline**
 
 In `src/app/[locale]/horoscope/[rashi]/layout.tsx`, update the Article JSON-LD to include today's date in the headline:
+
+Also add ISR caching so `generateDailyHoroscope()` doesn't run on every request:
+
+```ts
+export const revalidate = 3600; // Revalidate once per hour
+```
 
 Find the `articleLD` object and change `headline` from `"Mesh (Aries) Horoscope Today"` to include the formatted date:
 

@@ -257,6 +257,9 @@ const routes = [
   '/vrat-katha/ahoi-ashtami',
   // Regional calendars (additions)
   '/calendar/regional/iskcon',
+  // Vivah Muhurat (yearly SEO pages)
+  '/vivah-muhurat/2026',
+  '/vivah-muhurat/2027',
   // Tools (additions)
   '/rudraksha',
   // Learn modules (structured curriculum)

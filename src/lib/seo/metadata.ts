@@ -1719,6 +1719,40 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: 'Watch Vedic astrology videos — daily panchang shorts, Sade Sati explained, nakshatra guides, and spiritual knowledge from Dekho Panchang.', hi: 'वैदिक ज्योतिष वीडियो देखें — दैनिक पंचांग शॉर्ट्स, साढ़े साती विवरण, नक्षत्र मार्गदर्शिका और आध्यात्मिक ज्ञान।', sa: 'वैदिकज्योतिषचलचित्राणि — दैनिकपञ्चाङ्गम्, साढेसात्याः विवरणम्।' },
     keywords: ['vedic astrology videos', 'panchang video', 'jyotish youtube', 'dekho panchang videos', 'sade sati video', 'daily panchang shorts'],
   },
+  '/vivah-muhurat/2026': {
+    title: {
+      en: 'Shubh Vivah Muhurat 2026 — Auspicious Hindu Marriage Dates',
+      hi: 'शुभ विवाह मुहूर्त 2026 — हिन्दू विवाह की शुभ तिथियाँ',
+      sa: 'शुभविवाहमुहूर्तम् २०२६ — हिन्दुविवाहशुभतिथयः',
+      ta: 'சுப விவாஹ முகூர்த்தம் 2026 — இந்து திருமண சுப நாட்கள்',
+      bn: 'শুভ বিবাহ মুহূর্ত 2026 — হিন্দু বিবাহের শুভ তারিখ',
+    },
+    description: {
+      en: 'Complete list of auspicious Hindu marriage dates for 2026 with nakshatra, tithi, lagna windows, and Vedic scores. Computed using 36 classical rules from Muhurta Chintamani and BPHS. Free and location-aware.',
+      hi: '2026 के सभी शुभ हिन्दू विवाह मुहूर्त — नक्षत्र, तिथि, लग्न और वैदिक स्कोर। मुहूर्त चिन्तामणि और BPHS के 36 शास्त्रीय नियमों से गणना। निःशुल्क।',
+      sa: '२०२६ वर्षस्य सर्वाणि शुभविवाहमुहूर्तानि — नक्षत्रं तिथिः लग्नं वैदिकाङ्कः। मुहूर्तचिन्तामणेः BPHS च ३६ शास्त्रीयनियमैः गणितम्।',
+      ta: '2026 ஆண்டுக்கான அனைத்து சுப இந்து திருமண நாட்கள் — நட்சத்திரம், திதி, லக்னம் மற்றும் வேத மதிப்பெண்கள்.',
+      bn: '2026 সালের সকল শুভ হিন্দু বিবাহ তারিখ — নক্ষত্র, তিথি, লগ্ন এবং বৈদিক স্কোর।',
+    },
+    keywords: ['shubh vivah muhurat 2026', 'vivah muhurat 2026', 'marriage dates 2026', 'hindu wedding dates 2026', 'shadi muhurat 2026', 'auspicious marriage dates 2026', 'vivah shubh muhurat', 'wedding muhurta 2026'],
+  },
+  '/vivah-muhurat/2027': {
+    title: {
+      en: 'Shubh Vivah Muhurat 2027 — Auspicious Hindu Marriage Dates',
+      hi: 'शुभ विवाह मुहूर्त 2027 — हिन्दू विवाह की शुभ तिथियाँ',
+      sa: 'शुभविवाहमुहूर्तम् २०२७ — हिन्दुविवाहशुभतिथयः',
+      ta: 'சுப விவாஹ முகூர்த்தம் 2027 — இந்து திருமண சுப நாட்கள்',
+      bn: 'শুভ বিবাহ মুহূর্ত 2027 — হিন্দু বিবাহের শুভ তারিখ',
+    },
+    description: {
+      en: 'Complete list of auspicious Hindu marriage dates for 2027 with nakshatra, tithi, lagna windows, and Vedic scores. Computed using 36 classical rules from Muhurta Chintamani and BPHS. Free and location-aware.',
+      hi: '2027 के सभी शुभ हिन्दू विवाह मुहूर्त — नक्षत्र, तिथि, लग्न और वैदिक स्कोर। मुहूर्त चिन्तामणि और BPHS के 36 शास्त्रीय नियमों से गणना। निःशुल्क।',
+      sa: '२०२७ वर्षस्य सर्वाणि शुभविवाहमुहूर्तानि — नक्षत्रं तिथिः लग्नं वैदिकाङ्कः। मुहूर्तचिन्तामणेः BPHS च ३६ शास्त्रीयनियमैः गणितम्।',
+      ta: '2027 ஆண்டுக்கான அனைத்து சுப இந்து திருமண நாட்கள் — நட்சத்திரம், திதி, லக்னம் மற்றும் வேத மதிப்பெண்கள்.',
+      bn: '2027 সালের সকল শুভ হিন্দু বিবাহ তারিখ — নক্ষত্র, তিথি, লগ্ন এবং বৈদিক স্কোর।',
+    },
+    keywords: ['shubh vivah muhurat 2027', 'vivah muhurat 2027', 'marriage dates 2027', 'hindu wedding dates 2027', 'shadi muhurat 2027', 'auspicious marriage dates 2027'],
+  },
 };
 
 /**

@@ -1434,6 +1434,94 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       },
     },
   ],
+
+  // ─── /vivah-muhurat/2026 ──────────────────────────────────
+  '/vivah-muhurat/2026': [
+    {
+      question: {
+        en: 'How many auspicious marriage dates are there in 2026?',
+        hi: '2026 में कितनी शुभ विवाह तिथियाँ हैं?',
+      },
+      answer: {
+        en: 'The number of auspicious marriage dates in 2026 varies by location due to sunrise-based lagna calculations. For most Indian cities, there are typically 40-60 dates scoring above 50 on our 36-rule classical Vedic scoring engine. Months with Venus or Jupiter combustion and the Chaturmas period (July-November) have significantly fewer or no eligible dates.',
+        hi: '2026 में शुभ विवाह तिथियों की संख्या स्थान के अनुसार भिन्न है क्योंकि लग्न गणना सूर्योदय पर आधारित है। अधिकांश भारतीय शहरों के लिए हमारे 36-नियम वैदिक स्कोरिंग इंजन पर 50 से अधिक अंक प्राप्त करने वाली 40-60 तिथियाँ होती हैं। शुक्र/गुरु अस्त और चातुर्मास काल (जुलाई-नवम्बर) में बहुत कम या कोई तिथि नहीं होती।',
+      },
+    },
+    {
+      question: {
+        en: 'Which months are best for marriage in 2026?',
+        hi: '2026 में विवाह के लिए कौन से महीने सबसे अच्छे हैं?',
+      },
+      answer: {
+        en: 'The best months for marriage in 2026 are typically January-June and November-December, outside the Chaturmas period (Devshayani to Prabodhini Ekadashi). Within these months, dates with fixed nakshatras (Rohini, Uttara Phalguni, Uttara Ashadha, Uttara Bhadrapada) on Monday, Wednesday, Thursday, or Friday in Shukla Paksha score highest per Muhurta Chintamani.',
+        hi: 'चातुर्मास काल (देवशयनी से प्रबोधिनी एकादशी) के बाहर जनवरी-जून और नवम्बर-दिसम्बर 2026 में विवाह के लिए सर्वोत्तम हैं। इनमें स्थिर नक्षत्रों (रोहिणी, उत्तरा फाल्गुनी, उत्तरा आषाढ़ा, उत्तरा भाद्रपद) पर शुक्ल पक्ष के सोमवार, बुधवार, गुरुवार या शुक्रवार सबसे ऊँचे अंक प्राप्त करते हैं।',
+      },
+    },
+    {
+      question: {
+        en: 'Why are marriages avoided during Chaturmas?',
+        hi: 'चातुर्मास में विवाह क्यों वर्जित है?',
+      },
+      answer: {
+        en: 'Chaturmas is the four-month period from Devshayani Ekadashi to Prabodhini Ekadashi (typically July to November) during which Lord Vishnu is believed to be in cosmic sleep. The Dharmasindhu and other classical texts prohibit auspicious ceremonies including marriage during this period. Additionally, this period overlaps with the monsoon season, which historically made travel and outdoor ceremonies impractical.',
+        hi: 'चातुर्मास देवशयनी एकादशी से प्रबोधिनी एकादशी तक (जुलाई से नवम्बर) का चार मास का काल है जब भगवान विष्णु योगनिद्रा में होते हैं। धर्मसिन्धु और अन्य शास्त्रीय ग्रन्थ इस काल में विवाह सहित शुभ कार्यों को वर्जित करते हैं।',
+      },
+    },
+    {
+      question: {
+        en: 'What is Venus combustion and how does it affect marriage dates?',
+        hi: 'शुक्र अस्त क्या है और यह विवाह तिथियों को कैसे प्रभावित करता है?',
+      },
+      answer: {
+        en: 'Venus (Shukra) combustion occurs when Venus passes within 10 degrees of the Sun (8 degrees when retrograde), per BPHS. Since Venus is the karaka (significator) of marriage, love, and conjugal harmony, marriages performed during Venus combustion are considered inauspicious by all classical texts including Muhurta Chintamani. Our engine applies this as an absolute veto — no marriage muhurta is recommended during Venus combustion regardless of other factors.',
+        hi: 'शुक्र अस्त तब होता है जब शुक्र सूर्य के 10 अंश (वक्री में 8 अंश) के भीतर आ जाता है (BPHS)। शुक्र विवाह, प्रेम और दाम्पत्य सुख का कारक होने के कारण शुक्र अस्त में विवाह मुहूर्त चिन्तामणि सहित सभी शास्त्रीय ग्रन्थों में अशुभ माना गया है। हमारा इंजन इसे पूर्ण निषेध के रूप में लागू करता है।',
+      },
+    },
+    {
+      question: {
+        en: 'How is the marriage muhurta score calculated?',
+        hi: 'विवाह मुहूर्त का अंक कैसे गणना किया जाता है?',
+      },
+      answer: {
+        en: 'Each marriage muhurta is scored 0-100 using 36 classical rules from 7 texts (Muhurta Chintamani, Dharmasindhu, BPHS, Brihat Samhita, Prashna Marga, B.V. Raman, Kalaprakashika). The score combines: Panchanga factors (tithi, nakshatra, yoga, karana, vara — up to 25 points), planetary positions (up to 15), time quality including hora and choghadiya (up to 20), lagna strength (up to 12), and special yogas like Sarvartha Siddhi or Godhuli Lagna (up to 10). Scores above 72 are Excellent, 58-71 Good, and 50-57 Fair.',
+        hi: 'प्रत्येक विवाह मुहूर्त का मूल्यांकन 7 ग्रन्थों से 36 शास्त्रीय नियमों से 0-100 अंकों पर किया जाता है। अंक में शामिल हैं: पंचांग कारक (तिथि, नक्षत्र, योग, करण, वार — 25 अंक), ग्रह स्थिति (15), होरा-चौघड़िया सहित काल गुणवत्ता (20), लग्न बल (12), और विशेष योग जैसे सर्वार्थ सिद्धि या गोधूलि लग्न (10)। 72+ उत्तम, 58-71 शुभ, 50-57 ठीक।',
+      },
+    },
+  ],
+
+  // ─── /vivah-muhurat/2027 ──────────────────────────────────
+  '/vivah-muhurat/2027': [
+    {
+      question: {
+        en: 'How many auspicious marriage dates are there in 2027?',
+        hi: '2027 में कितनी शुभ विवाह तिथियाँ हैं?',
+      },
+      answer: {
+        en: 'The number of auspicious marriage dates in 2027 depends on your location. Our 36-rule engine typically finds 40-60 dates scoring 50+ for major Indian cities. Venus and Jupiter combustion periods, Chaturmas, and Kharmas reduce available dates in certain months.',
+        hi: '2027 में शुभ विवाह तिथियाँ आपके स्थान पर निर्भर करती हैं। हमारा 36-नियम इंजन प्रमुख भारतीय शहरों के लिए 50+ अंक वाली 40-60 तिथियाँ खोजता है। शुक्र-गुरु अस्त, चातुर्मास और खरमास कुछ महीनों में उपलब्ध तिथियाँ कम करते हैं।',
+      },
+    },
+    {
+      question: {
+        en: 'What classical texts are used to determine marriage muhurta?',
+        hi: 'विवाह मुहूर्त निर्धारित करने के लिए कौन से शास्त्रीय ग्रन्थ उपयोग किए जाते हैं?',
+      },
+      answer: {
+        en: 'Our marriage muhurta engine uses rules from seven classical texts: Muhurta Chintamani by Rama Daivagya, Dharmasindhu, Brihat Parashara Hora Shastra (BPHS), Brihat Samhita by Varahamihira, Prashna Marga, B.V. Raman\'s Muhurtha, and Kalaprakashika. These texts span from the 6th century CE (Brihat Samhita) to the 20th century (B.V. Raman), covering the complete classical consensus on marriage timing.',
+        hi: 'हमारा विवाह मुहूर्त इंजन सात शास्त्रीय ग्रन्थों के नियमों का उपयोग करता है: राम दैवज्ञ की मुहूर्त चिन्तामणि, धर्मसिन्धु, बृहत् पराशर होरा शास्त्र (BPHS), वराहमिहिर की बृहत् संहिता, प्रश्न मार्ग, बी.वी. रमन की मुहूर्थ, और कालप्रकाशिका।',
+      },
+    },
+    {
+      question: {
+        en: 'Can I find personalised marriage muhurta using my birth chart?',
+        hi: 'क्या मैं अपनी जन्म कुण्डली से व्यक्तिगत विवाह मुहूर्त खोज सकता हूँ?',
+      },
+      answer: {
+        en: 'Yes. Our Muhurta AI tool accepts your birth data (nakshatra and rashi) to add three personalised scoring dimensions: Tara Bala (compatibility between your birth nakshatra and the transit nakshatra), Chandra Bala (Moon\'s transit house strength from your birth rashi), and Dasha Harmony (alignment of your current Vimshottari dasha period with the activity). Visit the Muhurta AI page to enter your birth details for personalised marriage dates.',
+        hi: 'हाँ। हमारा मुहूर्त AI उपकरण आपके जन्म डेटा (नक्षत्र और राशि) स्वीकार करता है और तीन व्यक्तिगत स्कोरिंग आयाम जोड़ता है: तारा बल, चन्द्र बल, और दशा सामंजस्य। व्यक्तिगत विवाह तिथियों के लिए मुहूर्त AI पृष्ठ पर अपने जन्म विवरण दर्ज करें।',
+      },
+    },
+  ],
 };
 
 /**

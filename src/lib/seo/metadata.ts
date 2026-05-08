@@ -1688,6 +1688,19 @@ export const PAGE_META: Record<string, PageMeta> = {
     },
     keywords: ['caesarean muhurta', 'c-section birth time', 'best birth time astrology', 'caesarean birth chart', 'birth election vedic', 'lagna strength baby', 'planned delivery muhurta', 'jyotish birth time', 'gandanta avoidance', 'dasha trajectory baby'],
   },
+  '/learn/vivah-muhurta': {
+    title: {
+      en: 'Vivah Muhurta — How Marriage Dates Are Selected in Vedic Astrology',
+      hi: 'विवाह मुहूर्त — वैदिक ज्योतिष में शुभ विवाह तिथि कैसे चुनें',
+      sa: 'विवाहमुहूर्तम् — वैदिकज्योतिषे शुभविवाहतिथिनिर्धारणम्',
+    },
+    description: {
+      en: 'The complete classical guide to selecting auspicious marriage dates — solar months, 11 blessed nakshatras, Venus/Jupiter combustion, lagna selection, prohibited karanas & tithis. Based on Muhurta Chintamani, Brihat Samhita & BPHS.',
+      hi: 'शुभ विवाह तिथि चयन का सम्पूर्ण शास्त्रीय मार्गदर्शक — सौर मास, 11 शुभ नक्षत्र, शुक्र/गुरु अस्त, लग्न चयन, निषिद्ध करण और तिथियाँ। मुहूर्त चिंतामणि, बृहत् संहिता और बीएचपीएस पर आधारित।',
+      sa: 'शुभविवाहतिथिनिर्वाचनस्य शास्त्रीयमार्गदर्शकम्।',
+    },
+    keywords: ['vivah muhurta', 'marriage muhurta', 'wedding date astrology', 'shubh vivah muhurat', 'marriage nakshatra', 'hindu wedding date selection', 'venus combustion marriage', 'jupiter combustion wedding', 'lagna for marriage', 'auspicious marriage date vedic'],
+  },
   '/learn/caesarean-muhurta': {
     title: {
       en: 'Caesarean Muhurta — Classical Rules for Birth Time Election',

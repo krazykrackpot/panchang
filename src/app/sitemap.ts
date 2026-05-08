@@ -143,6 +143,7 @@ const routes = [
   '/learn/siddha-yoga',
   '/learn/rahu-kaal',
   '/learn/caesarean-muhurta',
+  '/learn/vivah-muhurta',
   '/learn/prashna',
   '/learn/tithi-pravesha',
   '/learn/kaal-sarp',

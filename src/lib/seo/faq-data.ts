@@ -1370,6 +1370,70 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       },
     },
   ],
+
+  // ─── /learn/vivah-muhurta ──────────────────────────────────
+  '/learn/vivah-muhurta': [
+    {
+      question: {
+        en: 'Which nakshatras are auspicious for Hindu marriage?',
+        hi: 'हिन्दू विवाह के लिए कौन से नक्षत्र शुभ हैं?',
+      },
+      answer: {
+        en: 'Eleven nakshatras are classically auspicious for marriage per the Muhurta Chintamani: Rohini, Mrigashira, Magha, Uttara Phalguni, Hasta, Swati, Anuradha, Moola, Uttarashada, Uttara Bhadrapada, and Revati. Rohini, Uttara Phalguni, and Anuradha are considered the finest of these. Pushya — though the most auspicious nakshatra for almost everything else — is specifically avoided for first marriages.',
+        hi: 'मुहूर्त चिंतामणि के अनुसार ग्यारह नक्षत्र विवाह के लिए शुभ हैं: रोहिणी, मृगशिरा, मघा, उत्तर फाल्गुनी, हस्त, स्वाति, अनुराधा, मूल, उत्तराषाढ़ा, उत्तर भाद्रपद और रेवती। रोहिणी, उत्तर फाल्गुनी और अनुराधा इनमें सर्वश्रेष्ठ माने जाते हैं।',
+      },
+    },
+    {
+      question: {
+        en: 'Why are marriages not performed during Venus or Jupiter combustion?',
+        hi: 'शुक्र या गुरु अस्त के दौरान विवाह क्यों नहीं किया जाता?',
+      },
+      answer: {
+        en: 'Venus is the significator of love, romance, and marital harmony. Jupiter is the significator of marriage itself, dharma, and blessings. When either planet is combust (too close to the Sun and invisible), its energy is suppressed. BPHS specifies combustion orbs: Venus within 10 degrees of the Sun (8 degrees retrograde), Jupiter within 11 degrees. A marriage during combustion begins with its essential love or blessing energy already weakened.',
+        hi: 'शुक्र प्रेम, रोमांस और वैवाहिक सामंजस्य का कारक है। गुरु स्वयं विवाह, धर्म और आशीर्वाद का कारक है। जब कोई भी ग्रह अस्त (सूर्य के बहुत निकट और अदृश्य) होता है, तो इसकी ऊर्जा दबी होती है। अस्त के दौरान विवाह अपनी प्रेम या आशीर्वाद ऊर्जा पहले से कमजोर होने के साथ शुरू होता है।',
+      },
+    },
+    {
+      question: {
+        en: 'Which months are best for a Hindu wedding?',
+        hi: 'हिन्दू विवाह के लिए कौन से महीने सर्वोत्तम हैं?',
+      },
+      answer: {
+        en: 'Marriage muhurta uses solar months (Sun\'s zodiac sign). Six solar signs are permitted: Aries (Apr-May), Taurus (May-Jun), Gemini (Jun-Jul), Scorpio (Nov-Dec), Capricorn (Jan-Feb), and Aquarius (Feb-Mar). Cancer through Libra are prohibited due to monsoon energy, Sagittarius and Pisces are blocked by Kharmas (weakened Jupiter energy). This is universal regardless of North or South Indian calendar.',
+        hi: 'विवाह मुहूर्त सौर मासों (सूर्य की राशि) का उपयोग करता है। छह सौर राशियाँ अनुमत हैं: मेष, वृषभ, मिथुन, वृश्चिक, मकर और कुम्भ। कर्क से तुला मानसून ऊर्जा के कारण, धनु और मीन खरमास (कमजोर गुरु ऊर्जा) के कारण निषिद्ध हैं।',
+      },
+    },
+    {
+      question: {
+        en: 'What is the best lagna (ascendant) for a marriage ceremony?',
+        hi: 'विवाह समारोह के लिए सबसे अच्छा लग्न कौन सा है?',
+      },
+      answer: {
+        en: 'The three best lagnas for marriage are Gemini (communication, partnership), Virgo (service, practical harmony), and Libra (balance, Venus-ruled sign of partnership). Good alternatives include Taurus, Cancer, Sagittarius, and Pisces. The 7th house of the marriage lagna must be vacant — no malefics. Jupiter or Venus in or aspecting the lagna is the strongest blessing.',
+        hi: 'विवाह के लिए तीन सर्वश्रेष्ठ लग्न हैं मिथुन (संवाद, साझेदारी), कन्या (सेवा, व्यावहारिक सामंजस्य), और तुला (संतुलन, शुक्र शासित साझेदारी की राशि)। विवाह लग्न का 7वाँ भाव खाली होना चाहिए — कोई पाप ग्रह नहीं।',
+      },
+    },
+    {
+      question: {
+        en: 'Why is Tuesday avoided for Hindu weddings?',
+        hi: 'मंगलवार को हिन्दू विवाह क्यों नहीं होते?',
+      },
+      answer: {
+        en: 'Tuesday is ruled by Mars, the planet of aggression, conflict, and impulsive action. Marriages on Tuesday are classically associated with quarrels, heated arguments, and marital discord. This is one of the most widely observed prohibitions across all regional Hindu traditions. Thursday (Jupiter — marriage significator) and Friday (Venus — love) are the preferred weekdays.',
+        hi: 'मंगलवार मंगल द्वारा शासित है — आक्रामकता, संघर्ष और आवेगी कार्रवाई का ग्रह। मंगलवार के विवाह शास्त्रीय रूप से झगड़ों और वैवाहिक कलह से जुड़े हैं। गुरुवार (गुरु — विवाह कारक) और शुक्रवार (शुक्र — प्रेम) पसंदीदा दिन हैं।',
+      },
+    },
+    {
+      question: {
+        en: 'What is Godhuli Lagna and why is it special for marriage?',
+        hi: 'गोधूलि लग्न क्या है और यह विवाह के लिए विशेष क्यों है?',
+      },
+      answer: {
+        en: 'Godhuli Lagna is the 24-minute window around sunset when cows return home raising dust in the twilight. The Brihat Samhita considers it the most auspicious time for marriage. It evokes homecoming, domesticity, and warmth. This lagna transcends normal lagna rules — it is universally auspicious regardless of which zodiac sign is rising.',
+        hi: 'गोधूलि लग्न सूर्यास्त के आसपास 24 मिनट की खिड़की है जब गायें धूल उड़ाती हुई घर लौटती हैं। बृहत् संहिता इसे विवाह के लिए सबसे शुभ समय मानती है। यह लग्न सामान्य लग्न नियमों से परे है — चाहे कोई भी राशि उदय हो रही हो, यह सार्वभौमिक रूप से शुभ है।',
+      },
+    },
+  ],
 };
 
 /**

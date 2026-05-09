@@ -12,6 +12,7 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { Locale, TransitionInfo } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import M from '@/messages/pages/panchang-city.json';
+import CrossSellCTA from '@/components/cta/CrossSellCTA';
 
 type LocaleText = Record<string, string>;
 const msg = (key: string, locale: string) => tl((M as unknown as Record<string, LocaleText>)[key], locale);
@@ -553,6 +554,20 @@ export default async function CityPanchangPage({
             </div>
           </div>
         )}
+      </div>
+
+      {/* ═══ EMAIL CTA (guests only) ═══ */}
+      <div className="mb-10">
+        <CrossSellCTA
+          headline={isHi
+            ? 'हर सुबह ईमेल पर यह पंचांग पाएँ'
+            : 'Get this delivered to your inbox every morning'}
+          subtext={isHi
+            ? 'मुफ़्त खाता — सूर्योदय पर दैनिक पंचांग, राहु काल, और राशिफल'
+            : 'Free account — daily panchang, Rahu Kaal, and rashifal at sunrise'}
+          buttonLabel={isHi ? 'निःशुल्क खाता बनाएँ' : 'Sign Up Free'}
+          triggerAuth
+        />
       </div>
 
       {/* ═══ OTHER CITIES ═══ */}

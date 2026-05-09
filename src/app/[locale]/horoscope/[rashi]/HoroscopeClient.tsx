@@ -13,6 +13,7 @@ import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale, getHeadingFont, getBodyFont, dataLocale } from '@/lib/utils/locale-fonts';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import { trackHoroscopeViewed } from '@/lib/analytics';
+import CrossSellCTA from '@/components/cta/CrossSellCTA';
 import type { Locale } from '@/types/panchang';
 import type { Rashi } from '@/types/panchang';
 import type { DailyHoroscope } from '@/lib/horoscope/daily-engine';
@@ -721,6 +722,20 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
             </div>
           </motion.div>
         )}
+
+        {/* Sign-up CTA — guests only */}
+        <div className="mt-8">
+          <CrossSellCTA
+            headline={isHi
+              ? 'अपनी कुण्डली सहेजें और ईमेल से दैनिक राशिफल पाएँ — निःशुल्क'
+              : 'Save your chart & get daily rashifal by email — free'}
+            subtext={isHi
+              ? 'व्यक्तिगत गोचर विश्लेषण, साढ़े साती जाँच, और रोज़ सूर्योदय पर ईमेल'
+              : 'Personalised transit analysis, Sade Sati check, and daily sunrise email'}
+            buttonLabel={isHi ? 'निःशुल्क खाता बनाएँ' : 'Sign Up Free'}
+            triggerAuth
+          />
+        </div>
 
         {/* Other signs grid — internal linking */}
         <div className="mt-12">

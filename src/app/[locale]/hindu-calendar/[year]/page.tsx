@@ -16,6 +16,7 @@ import { tl } from '@/lib/utils/trilingual';
 import {
   CalendarDays, Star, Moon, Eclipse, MapPin, ChevronRight, Share2,
 } from 'lucide-react';
+import CrossSellCTA from '@/components/cta/CrossSellCTA';
 
 // ─── Valid years ────────────────────────────────────────────────
 const VALID_YEARS = [2026, 2027];
@@ -362,6 +363,21 @@ export default async function HinduCalendarPage({
             <ChevronRight className="w-4 h-4 text-text-secondary ml-auto" />
           </Link>
         </nav>
+
+        {/* ─── Personalised Panchang CTA (guests only) ──────────── */}
+        <div className="mb-10">
+          <CrossSellCTA
+            headline={locale === 'hi'
+              ? 'अपने शहर का व्यक्तिगत पंचांग + राशिफल पाएँ'
+              : 'Get daily panchang for YOUR city + personalised rashifal'}
+            subtext={locale === 'hi'
+              ? 'मुफ़्त खाता बनाएँ — सूर्योदय पर ईमेल से दैनिक पंचांग प्राप्त करें'
+              : 'Free account — daily panchang delivered to your inbox at sunrise'}
+            href={`/${locale}/dashboard`}
+            buttonLabel={locale === 'hi' ? 'डैशबोर्ड देखें' : 'View Dashboard'}
+            triggerAuth
+          />
+        </div>
 
         {/* ─── Other Year Link ──────────────────────────────────── */}
         <div className="text-center">

@@ -56,6 +56,7 @@ import NakshatraShareButton from '@/components/shareable/NakshatraShareButton';
 import { usePrakritiStore } from '@/stores/prakriti-store';
 import AtAGlance from '@/components/dashboard/AtAGlance';
 import DashboardTabs from '@/components/dashboard/DashboardTabs';
+import DailyEmailOptIn from '@/components/dashboard/DailyEmailOptIn';
 
 interface SavedChart {
   id: string;
@@ -2096,6 +2097,9 @@ export default function DashboardPage() {
             </p>
           )}
         </motion.div>
+
+        {/* Daily email opt-in — shown if user hasn't enabled daily_panchang_email */}
+        <DailyEmailOptIn locale={locale} />
 
         {/* Location prompt — shown when location store is empty (no panchang data) */}
         {!panchangData && !loading && (

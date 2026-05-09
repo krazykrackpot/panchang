@@ -23,7 +23,7 @@ const PAGE_CTA: Record<string, { headline: string; subtext: string }> = {
   },
   'muhurta-ai': {
     headline: 'Sign in to personalise muhurta with your birth data',
-    subtext: 'Free account — AI-powered auspicious timing based on your chart',
+    subtext: 'Free account — personalised auspicious timing based on your chart',
   },
   ekadashi: {
     headline: 'Get ekadashi reminders via email',

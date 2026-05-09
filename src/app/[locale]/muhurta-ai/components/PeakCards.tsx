@@ -5,6 +5,8 @@ import type { DetailWindow } from '@/types/muhurta-ai';
 interface PeakCardsProps {
   peaks: DetailWindow[];     // Top 3 windows, pre-sorted by score descending
   onCardClick: (window: DetailWindow) => void;
+  /** Which personal factors were actually computed (empty = no birth data) */
+  personalFactorsUsed?: string[];
 }
 
 const RANK_LABELS = [
@@ -24,7 +26,7 @@ function activeInauspiciousNames(w: DetailWindow): string[] {
   return w.inauspiciousPeriods.filter(p => p.active).map(p => p.name);
 }
 
-export default function PeakCards({ peaks, onCardClick }: PeakCardsProps) {
+export default function PeakCards({ peaks, onCardClick, personalFactorsUsed }: PeakCardsProps) {
   if (peaks.length === 0) return null;
 
   return (
@@ -104,9 +106,13 @@ export default function PeakCards({ peaks, onCardClick }: PeakCardsProps) {
               {/* Dasha Harmony */}
               <div className="flex justify-between text-[11px]">
                 <span className="text-[#8a8478]">Dasha Harmony</span>
-                <span className={scoreColor(w.breakdown.dashaHarmony, 10)}>
-                  {w.breakdown.dashaHarmony}/10
-                </span>
+                {personalFactorsUsed?.includes('dashaHarmony') ? (
+                  <span className={scoreColor(w.breakdown.dashaHarmony, 10)}>
+                    {w.breakdown.dashaHarmony}/10
+                  </span>
+                ) : (
+                  <span className="text-[#8a8478]" title="Set birth details to unlock">—</span>
+                )}
               </div>
 
               {/* Inauspicious */}

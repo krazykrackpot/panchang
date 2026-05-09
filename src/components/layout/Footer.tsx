@@ -14,7 +14,7 @@ const SECTIONS = [
       { href: '/kundali', label: { en: 'Kundali', hi: 'कुण्डली', ta: 'குண்டலி', bn: 'কুণ্ডলি' } },
       { href: '/matching', label: { en: 'Matching', hi: 'गुण मिलान', ta: 'பொருத்தம்', bn: 'গুণ মিলন' } },
       { href: '/sign-calculator', label: { en: 'Sign Calculator', hi: 'राशि खोजें', ta: 'ராசி கணிப்பான்', bn: 'রাশি ক্যালকুলেটর' } },
-      { href: '/muhurta-ai', label: { en: 'Muhurta AI', hi: 'मुहूर्त AI', ta: 'முகூர்த்தம் AI', bn: 'মুহূর্ত AI' } },
+      { href: '/muhurta-ai', label: { en: 'Muhurta Finder', hi: 'मुहूर्त खोजक', ta: 'முகூர்த்தம் கண்டுபிடி', bn: 'মুহূর্ত খোঁজক' } },
       { href: '/varshaphal', label: { en: 'Varshaphal', hi: 'वर्षफल', ta: 'வர்ஷபலன்', bn: 'বর্ষফল' } },
       { href: '/kp-system', label: { en: 'KP System', hi: 'KP पद्धति', ta: 'KP முறை', bn: 'KP পদ্ধতি' } },
       { href: '/prashna', label: { en: 'Prashna', hi: 'प्रश्न', ta: 'பிரச்சினை', bn: 'প্রশ্ন' } },

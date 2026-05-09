@@ -462,7 +462,7 @@ export default function MuhurtaScannerClient() {
             </h2>
           </div>
           <div ref={peaksRef}>
-            <PeakCards peaks={peaks} onCardClick={(w) => handleDaySelect(w.date)} />
+            <PeakCards peaks={peaks} onCardClick={(w) => handleDaySelect(w.date)} personalFactorsUsed={personalFactorsUsed} />
           </div>
           <div className="flex justify-center mt-4">
             <button

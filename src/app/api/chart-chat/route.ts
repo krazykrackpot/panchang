@@ -5,6 +5,7 @@ import { buildChartChatSystemPrompt, sanitizeChatMessage, buildFallbackResponse 
 import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 import { smartMuhurtaSearch, type MuhurtaWindow } from '@/lib/muhurta/smart-search';
 import type { ExtendedActivityId } from '@/types/muhurta-ai';
+import { getServerSupabase } from '@/lib/supabase/server';
 
 // ─── Timing Question Detection ─────────────────────────────────
 
@@ -131,7 +132,24 @@ const chatSchema = z.object({
 });
 
 export async function POST(request: Request) {
-  // Rate limiting
+  // --- Auth (requires valid Supabase session) ---
+  const supabase = getServerSupabase();
+  if (!supabase) {
+    return NextResponse.json({ error: 'Auth not configured' }, { status: 503 });
+  }
+
+  const authHeader = request.headers.get('authorization');
+  if (!authHeader?.startsWith('Bearer ')) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  const token = authHeader.slice(7).trim();
+  const { data: { user }, error: authError } = await supabase.auth.getUser(token);
+  if (authError || !user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  // IP-based rate limiting (kept as secondary defence)
   const ip = getClientIP(request);
   const { allowed } = checkRateLimit(ip, { maxRequests: 30, windowMs: 60000 });
   if (!allowed) {

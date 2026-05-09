@@ -26,6 +26,23 @@ const SIGN_ELEMENTS: Record<number, string> = {
   7: 'Air', 8: 'Water', 9: 'Fire', 10: 'Earth', 11: 'Air', 12: 'Water',
 };
 
+/** Static configuration for constitutional sphuta cards — hoisted to module level
+ *  to avoid re-creating the array on every render (CLAUDE.md: inline data in .map() perf bug). */
+const CONSTITUTIONAL_SPHUTA_CONFIG = [
+  { key: 'prana' as const, color: 'border-gold-primary/20', icon: '&#9829;',
+    labelKey: 'pranaSphuta', sublabelKey: 'pranaSphutaSubLabel', explainKey: 'pranaSphutaExplain' },
+  { key: 'deha' as const, color: 'border-blue-500/20', icon: '&#9775;',
+    labelKey: 'dehaSphuta', sublabelKey: 'dehaSphutaSubLabel', explainKey: 'dehaSphutaExplain' },
+  { key: 'mrityu' as const, color: 'border-violet-500/20', icon: '&#8734;',
+    labelKey: 'mrityuSphuta', sublabelKey: 'mrityuSphutaSubLabel', explainKey: 'mrityuSphutaExplain' },
+  { key: 'tri' as const, color: 'border-amber-500/20', icon: '&#9651;',
+    labelKey: 'triSphuta', sublabelKey: 'triSphutaSubLabel', explainKey: 'triSphutaExplain' },
+] as const;
+
+const TX_PRIMARY_LABELS: Record<string, 'Next Sun transit' | 'Next Moon transit' | 'Next Saturn transit'> = {
+  prana: 'Next Sun transit', deha: 'Next Moon transit', mrityu: 'Next Saturn transit', tri: 'Next Sun transit',
+};
+
 const SIGN_ELEMENTS_HI: Record<number, string> = {
   1: 'अग्नि', 2: 'पृथ्वी', 3: 'वायु', 4: 'जल', 5: 'अग्नि', 6: 'पृथ्वी',
   7: 'वायु', 8: 'जल', 9: 'अग्नि', 10: 'पृथ्वी', 11: 'वायु', 12: 'जल',
@@ -325,23 +342,20 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
           {msg('constitutionalSphuatasDesc', locale)}
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {([
-            { data: kundali.sphutas!.pranaSphuta, label: msg('pranaSphuta', locale), sublabel: msg('pranaSphutaSubLabel', locale), color: 'border-gold-primary/20', icon: '&#9829;', txKey: 'prana' as const,
-              explain: msg('pranaSphutaExplain', locale) },
-            { data: kundali.sphutas!.dehaSphuta, label: msg('dehaSphuta', locale), sublabel: msg('dehaSphutaSubLabel', locale), color: 'border-blue-500/20', icon: '&#9775;', txKey: 'deha' as const,
-              explain: msg('dehaSphutaExplain', locale) },
-            { data: kundali.sphutas!.mrityuSphuta, label: msg('mrityuSphuta', locale), sublabel: msg('mrityuSphutaSubLabel', locale), color: 'border-violet-500/20', icon: '&#8734;', txKey: 'mrityu' as const,
-              explain: msg('mrityuSphutaExplain', locale) },
-            { data: kundali.sphutas!.triSphuta, label: msg('triSphuta', locale), sublabel: msg('triSphutaSubLabel', locale), color: 'border-amber-500/20', icon: '&#9651;', txKey: 'tri' as const,
-              explain: msg('triSphutaExplain', locale) },
-          ] as const).map(({ data, label, sublabel, color, icon, explain, txKey }) => {
+          {CONSTITUTIONAL_SPHUTA_CONFIG.map(({ key: txKey, color, icon, labelKey, sublabelKey, explainKey }) => {
+            const data = txKey === 'prana' ? kundali.sphutas!.pranaSphuta
+              : txKey === 'deha' ? kundali.sphutas!.dehaSphuta
+              : txKey === 'mrityu' ? kundali.sphutas!.mrityuSphuta
+              : kundali.sphutas!.triSphuta;
+            const label = msg(labelKey, locale);
+            const sublabel = msg(sublabelKey, locale);
+            const explain = msg(explainKey, locale);
             const txInfo = sphuataTransitData ? (
               txKey === 'prana' ? { primary: sphuataTransitData.pranaSun, primaryLabel: 'Next Sun transit', secondary: sphuataTransitData.pranaJupiter, secondaryLabel: 'Next Jupiter transit' } :
               txKey === 'deha'  ? { primary: sphuataTransitData.dehaMoon, primaryLabel: 'Next Moon transit', secondary: sphuataTransitData.dehaSaturn, secondaryLabel: 'Next Saturn transit' } :
               txKey === 'mrityu'? { primary: sphuataTransitData.mrityuSaturn, primaryLabel: 'Next Saturn transit', secondary: sphuataTransitData.mrityuMars, secondaryLabel: 'Next Mars transit' } :
               /* tri */          { primary: sphuataTransitData.triSun, primaryLabel: 'Next Sun transit', secondary: null, secondaryLabel: '' }
             ) : null;
-            const txPrimaryLabels: Record<string,'Next Sun transit'|'Next Moon transit'|'Next Saturn transit'> = { prana:'Next Sun transit',deha:'Next Moon transit',mrityu:'Next Saturn transit',tri:'Next Sun transit' };
             return (
             <div key={label} className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 border ${color}`}>
               <div className="flex items-center gap-2 mb-2">
@@ -359,7 +373,7 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
               {txInfo && (
                 <div className="space-y-1">
                   <div className={`flex items-center justify-between rounded-md px-2.5 py-1 text-xs ${txInfo.primary.isActive ? 'bg-emerald-500/15 border border-emerald-400/20' : 'bg-[#0a0e27]/60 border border-gold-primary/8'}`}>
-                    <span className="text-text-secondary/70">{isHi ? txPrimaryLabels[txKey].replace('Sun','सूर्य').replace('Moon','चन्द्र').replace('Saturn','शनि') : txInfo.primaryLabel}</span>
+                    <span className="text-text-secondary/70">{isHi ? TX_PRIMARY_LABELS[txKey].replace('Sun','सूर्य').replace('Moon','चन्द्र').replace('Saturn','शनि') : txInfo.primaryLabel}</span>
                     <span className={`font-bold ml-2 ${txInfo.primary.isActive ? 'text-emerald-300' : 'text-gold-light'}`}>{isHi ? txInfo.primary.labelHi : txInfo.primary.label}</span>
                   </div>
                   {txInfo.secondary && (

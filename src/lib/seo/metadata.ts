@@ -346,6 +346,32 @@ export const PAGE_META: Record<string, PageMeta> = {
     },
     keywords: ['vrat calendar', 'ekadashi dates', 'pradosham dates', 'purnima dates', 'fasting calendar', 'hindu vrat tracker'],
   },
+  '/charts': {
+    title: {
+      en: 'Vedic Charts & Tools — Kundali, Divisional, KP & More',
+      hi: 'वैदिक कुण्डली और उपकरण — कुण्डली, वर्ग, केपी आदि',
+      sa: 'वैदिककुण्डलीसाधनानि',
+    },
+    description: {
+      en: 'Access all Vedic astrology chart tools — Kundali, Varshaphal, KP System, Prashna, matching, and more. Free, accurate, and instant.',
+      hi: 'सभी वैदिक ज्योतिष कुण्डली उपकरण — कुण्डली, वर्षफल, केपी, प्रश्न, मिलान आदि।',
+      sa: 'सर्वाणि वैदिकज्योतिषकुण्डलीसाधनानि।',
+    },
+    keywords: ['vedic charts', 'kundali tools', 'birth chart', 'divisional charts', 'kp system'],
+  },
+  '/rituals': {
+    title: {
+      en: 'Hindu Rituals & Puja Vidhi — Step-by-Step Guides',
+      hi: 'हिंदू अनुष्ठान और पूजा विधि — चरणबद्ध मार्गदर्शिका',
+      sa: 'हिन्दूअनुष्ठानानि पूजाविधिश्च',
+    },
+    description: {
+      en: 'Complete puja vidhi, vrat katha, and ritual guides for major Hindu festivals and observances. Step-by-step instructions with mantras.',
+      hi: 'प्रमुख हिंदू त्योहारों और व्रतों के लिए पूर्ण पूजा विधि, व्रत कथा और अनुष्ठान मार्गदर्शिका।',
+      sa: 'प्रमुखहिन्दूपर्वव्रतानां पूर्णपूजाविधिव्रतकथानुष्ठानमार्गदर्शिका।',
+    },
+    keywords: ['puja vidhi', 'hindu rituals', 'vrat katha', 'festival puja', 'mantra guide'],
+  },
   '/lunar-calendar': {
     title: {
       en: 'Lunar Lifestyle Calendar — Moon Phase Energy Guide',

@@ -9,7 +9,7 @@ import { Link } from '@/lib/i18n/navigation';
 
 const SECTIONS = [
   {
-    title: { en: 'Tools', hi: 'उपकरण', ta: 'கருவிகள்', bn: 'সরঞ্জাম' },
+    title: { en: 'Tools', hi: 'उपकरण', ta: 'கருவிகள்', bn: 'সরঞ্জাম', te: 'సాధనాలు', gu: 'સાધનો', kn: 'ಉಪಕರಣಗಳು', mr: 'साधने', mai: 'उपकरण', sa: 'उपकरणानि' },
     links: [
       { href: '/kundali', label: { en: 'Kundali', hi: 'कुण्डली', ta: 'குண்டலி', bn: 'কুণ্ডলি' } },
       { href: '/matching', label: { en: 'Matching', hi: 'गुण मिलान', ta: 'பொருத்தம்', bn: 'গুণ মিলন' } },
@@ -26,7 +26,7 @@ const SECTIONS = [
     ],
   },
   {
-    title: { en: 'Calendars', hi: 'कैलेंडर', ta: 'நாள்காட்டிகள்', bn: 'ক্যালেন্ডার' },
+    title: { en: 'Calendars', hi: 'कैलेंडर', ta: 'நாள்காட்டிகள்', bn: 'ক্যালেন্ডার', te: 'క్యాలెండర్లు', gu: 'કૅલેન્ડર', kn: 'ಕ್ಯಾಲೆಂಡರ್‌ಗಳು', mr: 'दिनदर्शिका', mai: 'कैलेंडर', sa: 'पञ्चाङ्गानि' },
     links: [
       { href: '/panchang', label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग', ta: 'தினசரி பஞ்சாங்கம்', bn: 'দৈনিক পঞ্জিকা' } },
       { href: '/calendar', label: { en: 'Festival Calendar', hi: 'त्योहार कैलेंडर', ta: 'பண்டிகை நாட்காட்டி', bn: 'উৎসব ক্যালেন্ডার' } },
@@ -42,7 +42,7 @@ const SECTIONS = [
     ],
   },
   {
-    title: { en: 'Learn', hi: 'सीखें', ta: 'கற்றுக்கொள்', bn: 'শিখুন' },
+    title: { en: 'Learn', hi: 'सीखें', ta: 'கற்றுக்கொள்', bn: 'শিখুন', te: 'నేర్చుకోండి', gu: 'શીખો', kn: 'ಕಲಿಯಿರಿ', mr: 'शिका', mai: 'सीखू', sa: 'अध्ययनम्' },
     links: [
       { href: '/learn', label: { en: 'All Topics', hi: 'सभी विषय', ta: 'அனைத்து தலைப்புகள்', bn: 'সব বিষয়' } },
       { href: '/learn/grahas', label: { en: 'Grahas', hi: 'ग्रह', ta: 'கிரகங்கள்', bn: 'গ্রহ' } },
@@ -56,7 +56,7 @@ const SECTIONS = [
     ],
   },
   {
-    title: { en: 'Deep Dives', hi: 'गहन अध्ययन', ta: 'ஆழ்ந்த பகுப்பாய்வு', bn: 'গভীর বিশ্লেষণ' },
+    title: { en: 'Deep Dives', hi: 'गहन अध्ययन', ta: 'ஆழ்ந்த பகுப்பாய்வு', bn: 'গভীর বিশ্লেষণ', te: 'లోతైన విశ్లేషణ', gu: 'ઊંડો અભ્યાસ', kn: 'ಆಳವಾದ ವಿಶ್ಲೇಷಣೆ', mr: 'सखोल अभ्यास', mai: 'गहन अध्ययन', sa: 'गहनाध्ययनम्' },
     links: [
       { href: '/panchang/tithi', label: { en: 'Tithi', hi: 'तिथि', ta: 'திதி', bn: 'তিথি' } },
       { href: '/panchang/nakshatra', label: { en: 'Nakshatra', hi: 'नक्षत्र', ta: 'நட்சத்திரம்', bn: 'নক্ষত্র' } },
@@ -141,19 +141,19 @@ export default function Footer() {
 
           <div className="flex flex-wrap items-center gap-4 text-xs text-text-secondary">
             <Link href="/about" className="hover:text-gold-light transition-colors py-1 inline-block">
-              {t({ en: 'About', hi: 'परिचय', ta: 'பற்றி', bn: 'সম্পর্কে' }, locale)}
+              {t({ en: 'About', hi: 'परिचय', ta: 'பற்றி', bn: 'সম্পর্কে', te: 'గురించి', gu: 'વિશે', kn: 'ಕುರಿತು', mr: 'परिचय', mai: 'परिचय', sa: 'परिचयः' }, locale)}
             </Link>
             <Link href="/about/methodology" className="hover:text-gold-light transition-colors py-1 inline-block">
-              {t({ en: 'Methodology', hi: 'गणना पद्धति', ta: 'முறையியல்', bn: 'পদ্ধতি' }, locale)}
+              {t({ en: 'Methodology', hi: 'गणना पद्धति', ta: 'முறையியல்', bn: 'পদ্ধতি', te: 'పద్ధతి', gu: 'પદ્ધતિ', kn: 'ವಿಧಾನ', mr: 'पद्धती', mai: 'पद्धति', sa: 'गणनापद्धतिः' }, locale)}
             </Link>
             <Link href="/about#contact" className="hover:text-gold-light transition-colors py-1 inline-block">
-              {t({ en: 'Contact', hi: 'संपर्क', ta: 'தொடர்பு', bn: 'যোগাযোগ' }, locale)}
+              {t({ en: 'Contact', hi: 'संपर्क', ta: 'தொடர்பு', bn: 'যোগাযোগ', te: 'సంప్రదించండి', gu: 'સંપર્ક', kn: 'ಸಂಪರ್ಕ', mr: 'संपर्क', mai: 'संपर्क', sa: 'सम्पर्कः' }, locale)}
             </Link>
             <Link href="/privacy" className="hover:text-gold-light transition-colors py-1 inline-block">
-              {t({ en: 'Privacy', hi: 'गोपनीयता', ta: 'தனியுரிமை', bn: 'গোপনীয়তা' }, locale)}
+              {t({ en: 'Privacy', hi: 'गोपनीयता', ta: 'தனியுரிமை', bn: 'গোপনীয়তা', te: 'గోప్యత', gu: 'ગોપનીયતા', kn: 'ಗೌಪ್ಯತೆ', mr: 'गोपनीयता', mai: 'गोपनीयता', sa: 'गोपनीयता' }, locale)}
             </Link>
             <Link href="/terms" className="hover:text-gold-light transition-colors py-1 inline-block">
-              {t({ en: 'Terms', hi: 'शर्तें', ta: 'விதிமுறைகள்', bn: 'শর্তাবলী' }, locale)}
+              {t({ en: 'Terms', hi: 'शर्तें', ta: 'விதிமுறைகள்', bn: 'শর্তাবলী', te: 'నిబంధనలు', gu: 'શરતો', kn: 'ನಿಯಮಗಳು', mr: 'अटी', mai: 'शर्तें', sa: 'नियमाः' }, locale)}
             </Link>
           </div>
 

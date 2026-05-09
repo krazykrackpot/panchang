@@ -209,7 +209,7 @@ function DailyVideoCard({ videoId, title, thumbnail, isDevanagari }: { videoId: 
             aria-label={`Play: ${title}`}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={thumbnail} alt={title} className="w-full h-full object-cover" loading="lazy" />
+            <img src={thumbnail} alt={title} width={320} height={180} className="w-full h-full object-cover" loading="lazy" />
             {/* Play button overlay */}
             <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/20 transition-colors">
               <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">

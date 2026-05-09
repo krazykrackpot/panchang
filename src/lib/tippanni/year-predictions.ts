@@ -13,10 +13,11 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import type { LifeStageContext } from '@/lib/kundali/life-stage';
 import { getStageTransitEffect, JUPITER_STAGE_EFFECTS, SATURN_STAGE_EFFECTS, RAHU_KETU_STAGE_EFFECTS } from './stage-transit-effects';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 function t(locale: Locale, en: string, hi: string, _sa?: string): string {
-  // 'sa' (Sanskrit) retired — _sa param kept for call-site compat but ignored
-  return locale === 'hi' ? hi : en;
+  // Devanagari-script locales (hi, sa, mr, mai) use Hindi text; all others use English
+  return isDevanagariLocale(locale) ? hi : en;
 }
 
 /** Get rashi name in given locale */
@@ -507,14 +508,14 @@ export function generateYearPredictions(
         const houseFromMoon = houseFromSign(transits.jupiterSign, natalMoonSign);
         const stageText = getStageTransitEffect(JUPITER_STAGE_EFFECTS, houseFromMoon, stageCtx.stage);
         if (stageText.en) {
-          event.description = locale === 'hi' ? stageText.hi : stageText.en;
+          event.description = isDevanagariLocale(locale) ? stageText.hi : stageText.en;
         }
       } else if (event.type === 'sade_sati') {
         // Saturn transit: use house from Moon for lookup
         const saturnHouse = houseFromSign(transits.saturnSign, natalMoonSign);
         const stageText = getStageTransitEffect(SATURN_STAGE_EFFECTS, saturnHouse, stageCtx.stage);
         if (stageText.en) {
-          event.description = locale === 'hi' ? stageText.hi : stageText.en;
+          event.description = isDevanagariLocale(locale) ? stageText.hi : stageText.en;
         }
       } else if (event.type === 'rahu_ketu') {
         const rahuHouseFromAsc = houseFromSign(transits.rahuSign, ascSign);
@@ -524,7 +525,7 @@ export function generateYearPredictions(
         const axisKey = `${low}-${high}`;
         const stageText = getStageTransitEffect(RAHU_KETU_STAGE_EFFECTS, axisKey, stageCtx.stage);
         if (stageText.en) {
-          event.description = locale === 'hi' ? stageText.hi : stageText.en;
+          event.description = isDevanagariLocale(locale) ? stageText.hi : stageText.en;
         }
       }
     }

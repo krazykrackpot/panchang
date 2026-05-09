@@ -40,14 +40,14 @@ export function getHeadingFont(locale: string): CSSProperties {
   return { fontFamily: 'var(--font-heading)' };
 }
 
-/** True for locales that use a non-Latin script (Devanagari, Tamil, Telugu, Bengali, Kannada, Gujarati). */
+/** True for locales that use a non-Latin script (Devanagari, Tamil, Telugu, Bengali, Kannada, Gujarati, Marathi, Maithili). */
 export function isIndicLocale(locale: string): boolean {
-  return locale === 'hi' || locale === 'ta' || locale === 'te' || locale === 'bn' || locale === 'kn' || locale === 'gu';
+  return locale === 'hi' || locale === 'sa' || locale === 'ta' || locale === 'te' || locale === 'bn' || locale === 'kn' || locale === 'gu' || locale === 'mr' || locale === 'mai';
 }
 
-/** True only for Devanagari-script locales. Only Hindi remains after sa/mr/mai retirement. */
+/** True for Devanagari-script locales: Hindi, Sanskrit, Marathi, Maithili. */
 export function isDevanagariLocale(locale: string): boolean {
-  return locale === 'hi';
+  return locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
 }
 
 /**

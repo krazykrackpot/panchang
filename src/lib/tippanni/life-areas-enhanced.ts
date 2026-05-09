@@ -13,9 +13,11 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { getHouseLord, isKendra, isTrikona, isDusthana, isBenefic, isMalefic } from './utils';
 import { getPlanetsAspectingHouse } from './aspects';
 import { getPlanetDignity } from './dignity';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 function t(locale: Locale, en: string, hi: string, _sa?: string): string {
-  return locale === 'hi' ? hi : en;
+  // Devanagari-script locales (hi, sa, mr, mai) use Hindi text; all others use English
+  return isDevanagariLocale(locale) ? hi : en;
 }
 
 function getP(planets: PlanetPosition[], id: number): PlanetPosition | undefined {

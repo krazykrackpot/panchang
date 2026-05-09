@@ -7,6 +7,7 @@
  */
 
 import type { PanchangData, LocaleText } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { getNakshatraActivity } from '@/lib/constants/nakshatra-activities';
 import { computeDailyEnergy } from '@/lib/panchang/energy-score';
 
@@ -119,7 +120,7 @@ export function generateDailyVibe(panchang: PanchangData, locale: string): Daily
   // 5. Best For / Avoid — locale-aware from same BPHS source as energy-score.ts
   const activity = getNakshatraActivity(panchang.nakshatra?.id ?? 1);
   const bestFor = activity
-    ? activity.goodFor.map((g) => (locale === 'hi' ? g.hi : g.en))
+    ? activity.goodFor.map((g) => (isDevanagariLocale(locale) ? g.hi : g.en))
     : energy.bestFor; // fallback to English from unified scorer
   const avoid = buildAvoidList(panchang, activity, locale);
 
@@ -274,21 +275,21 @@ function buildAvoidList(
   // Nakshatra-specific avoids
   if (activity) {
     for (const a of activity.avoidFor) {
-      items.push(locale === 'hi' ? a.hi : a.en);
+      items.push(isDevanagariLocale(locale) ? a.hi : a.en);
     }
   }
 
   // Add inauspicious-period warnings
   if (p.varjyam) {
-    items.push(locale === 'hi' ? 'वर्ज्यम् काल में कार्य' : 'Activities during Varjyam');
+    items.push(isDevanagariLocale(locale) ? 'वर्ज्यम् काल में कार्य' : 'Activities during Varjyam');
   }
   if (p.dagdhaTithi) {
-    items.push(locale === 'hi' ? 'शुभ कार्य (दग्ध तिथि)' : 'Auspicious events (Dagdha Tithi)');
+    items.push(isDevanagariLocale(locale) ? 'शुभ कार्य (दग्ध तिथि)' : 'Auspicious events (Dagdha Tithi)');
   }
 
   // If no avoids at all, provide a generic one
   if (items.length === 0) {
-    items.push(locale === 'hi' ? 'कोई विशेष परहेज नहीं' : 'No specific cautions');
+    items.push(isDevanagariLocale(locale) ? 'कोई विशेष परहेज नहीं' : 'No specific cautions');
   }
 
   return items.slice(0, 4); // max 4 items for card space
@@ -313,6 +314,6 @@ const MONTHS_HI = [
 function formatVibeDate(dateStr: string, locale: string): string {
   // dateStr is "YYYY-MM-DD"
   const [y, m, d] = dateStr.split('-').map(Number);
-  const months = locale === 'hi' ? MONTHS_HI : MONTHS_EN;
+  const months = isDevanagariLocale(locale) ? MONTHS_HI : MONTHS_EN;
   return `${d} ${months[m - 1]} ${y}`;
 }

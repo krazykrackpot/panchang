@@ -89,8 +89,8 @@ export default function Navbar() {
   // Mark as hydrated after mount to avoid SSR/client mismatch
   useEffect(() => { setHydrated(true); }, []);
 
-  // Auto-detect location on mount
-  useEffect(() => { locationStore.detect(); }, []);
+  // Auto-detect location on mount (skip if already set — detect() also guards internally)
+  useEffect(() => { if (!locationStore.lat) locationStore.detect(); }, []);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -164,7 +164,7 @@ export default function Navbar() {
                       href="/dashboard/family"
                       className={`text-gold-light/70 hover:text-gold-primary transition-all duration-200 text-sm whitespace-nowrap ${hydrated && user ? 'opacity-100' : 'opacity-0 pointer-events-none w-0 overflow-hidden'}`}
                     >
-                      {locale === 'hi' ? 'परिवार' : locale === 'ta' ? 'குடும்பம்' : locale === 'bn' ? 'পরিবার' : 'Family'}
+                      {tl({ en: 'Family', hi: 'परिवार', sa: 'कुटुम्बम्', ta: 'குடும்பம்', bn: 'পরিবার', te: 'కుటుంబం', gu: 'કુટુંબ', kn: 'ಕುಟುಂಬ', mr: 'कुटुंब', mai: 'परिवार' }, locale)}
                     </Link>
                   </span>
                 );
@@ -225,7 +225,7 @@ export default function Navbar() {
                     className="text-gold-light/70 hover:text-gold-primary transition-colors px-3 py-3 text-sm pl-6"
                     onClick={() => setIsOpen(false)}
                   >
-                    {locale === 'hi' ? 'परिवार' : locale === 'ta' ? 'குடும்பம்' : locale === 'bn' ? 'পরিবার' : 'Family'}
+                    {tl({ en: 'Family', hi: 'परिवार', sa: 'कुटुम्बम्', ta: 'குடும்பம்', bn: 'পরিবার', te: 'కుటుంబం', gu: 'કુટુંબ', kn: 'ಕುಟುಂಬ', mr: 'कुटुंब', mai: 'परिवार' }, locale)}
                   </Link>
                 </>
               )}

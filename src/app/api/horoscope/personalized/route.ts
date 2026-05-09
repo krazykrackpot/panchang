@@ -4,9 +4,52 @@ import { getClaudeClient, DEFAULT_MODEL } from '@/lib/llm/llm-client';
 import { buildPersonalizedData, buildPersonalizedPrompt, buildPersonalizedFallback } from '@/lib/llm/personalized-horoscope';
 import type { PersonalChartSnapshot } from '@/lib/llm/personalized-horoscope';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { getServerSupabase } from '@/lib/supabase/server';
+
+// In-memory daily rate limiter: userId -> { date: 'YYYY-MM-DD', count: number }
+// Resets each day. Acceptable for single-instance; good enough before Redis.
+const dailyUsage = new Map<string, { date: string; count: number }>();
+const MAX_DAILY_REQUESTS = 5;
+
+function checkDailyLimit(userId: string): boolean {
+  const today = new Date().toISOString().slice(0, 10);
+  const entry = dailyUsage.get(userId);
+  if (!entry || entry.date !== today) {
+    dailyUsage.set(userId, { date: today, count: 1 });
+    return true;
+  }
+  if (entry.count >= MAX_DAILY_REQUESTS) return false;
+  entry.count++;
+  return true;
+}
 
 export async function POST(request: Request) {
   try {
+    // --- Auth (requires valid Supabase session) ---
+    const supabase = getServerSupabase();
+    if (!supabase) {
+      return NextResponse.json({ error: 'Auth not configured' }, { status: 503 });
+    }
+
+    const authHeader = request.headers.get('authorization');
+    if (!authHeader?.startsWith('Bearer ')) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const token = authHeader.slice(7).trim();
+    const { data: { user }, error: authError } = await supabase.auth.getUser(token);
+    if (authError || !user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    // --- Daily rate limit (AI calls cost money) ---
+    if (!checkDailyLimit(user.id)) {
+      return NextResponse.json(
+        { error: 'Daily limit reached (5 personalised horoscopes per day)' },
+        { status: 429 },
+      );
+    }
+
     const body = await request.json();
     const { chart, lat, lng, timezone, locale = 'en' } = body as {
       chart: PersonalChartSnapshot;

@@ -4,10 +4,12 @@
  * Dark theme matching the app: #0a0e27 background, #e6e2d8 text, #d4a853 gold accent.
  */
 
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+
 const BASE_URL = 'https://dekhopanchang.com';
 
 type Day = 1 | 2 | 3 | 4 | 5 | 6 | 7;
-type Locale = 'en' | 'hi';
+type Locale = string;
 
 interface UserData {
   name?: string;
@@ -79,8 +81,8 @@ function goldText(text: string): string {
    ═══════════════════════════════════════════════════════════════ */
 
 function day1(locale: Locale, data?: UserData): EmailOutput {
-  const name = data?.name || (locale === 'hi' ? 'मित्र' : 'Friend');
-  if (locale === 'hi') {
+  const name = data?.name || (isDevanagariLocale(locale) ? 'मित्र' : 'Friend');
+  if (isDevanagariLocale(locale)) {
     return {
       subject: 'आपकी ब्रह्मांडीय यात्रा आज शुरू होती है',
       html: wrapEmail(card(
@@ -111,7 +113,7 @@ function day1(locale: Locale, data?: UserData): EmailOutput {
    ═══════════════════════════════════════════════════════════════ */
 
 function day2(locale: Locale, _data?: UserData): EmailOutput {
-  if (locale === 'hi') {
+  if (isDevanagariLocale(locale)) {
     return {
       subject: 'तिथि क्या है? आज यह क्यों मायने रखती है',
       html: wrapEmail(card(
@@ -142,7 +144,7 @@ function day2(locale: Locale, _data?: UserData): EmailOutput {
    ═══════════════════════════════════════════════════════════════ */
 
 function day3(locale: Locale, _data?: UserData): EmailOutput {
-  if (locale === 'hi') {
+  if (isDevanagariLocale(locale)) {
     return {
       subject: 'Sine संस्कृत है। Calculus केरल से है। और भी बहुत कुछ...',
       html: wrapEmail(card(
@@ -174,10 +176,10 @@ function day3(locale: Locale, _data?: UserData): EmailOutput {
 
 function day4(locale: Locale, data?: UserData): EmailOutput {
   const houseRef = data?.nthHouse
-    ? (locale === 'hi' ? `आपके ${data.nthHouse}वें भाव` : `your ${data.nthHouse}${ordinalSuffix(data.nthHouse)} house`)
-    : (locale === 'hi' ? 'आपकी कुंडली' : 'your chart');
+    ? (isDevanagariLocale(locale) ? `आपके ${data.nthHouse}वें भाव` : `your ${data.nthHouse}${ordinalSuffix(data.nthHouse)} house`)
+    : (isDevanagariLocale(locale) ? 'आपकी कुंडली' : 'your chart');
 
-  if (locale === 'hi') {
+  if (isDevanagariLocale(locale)) {
     return {
       subject: `अगला ग्रहण ${houseRef} में पड़ता है`,
       html: wrapEmail(card(
@@ -206,7 +208,7 @@ function day4(locale: Locale, data?: UserData): EmailOutput {
    ═══════════════════════════════════════════════════════════════ */
 
 function day5(locale: Locale, _data?: UserData): EmailOutput {
-  if (locale === 'hi') {
+  if (isDevanagariLocale(locale)) {
     return {
       subject: '104 मुफ़्त मॉड्यूल। "ज्योतिष क्या है?" से शुरू करें',
       html: wrapEmail(card(
@@ -238,10 +240,10 @@ function day5(locale: Locale, _data?: UserData): EmailOutput {
 
 function day6(locale: Locale, data?: UserData): EmailOutput {
   const dashaRef = data?.dashaLord
-    ? (locale === 'hi' ? `${data.dashaLord} महादशा` : `${data.dashaLord} Mahadasha`)
-    : (locale === 'hi' ? 'आपकी महादशा' : 'your Mahadasha');
+    ? (isDevanagariLocale(locale) ? `${data.dashaLord} महादशा` : `${data.dashaLord} Mahadasha`)
+    : (isDevanagariLocale(locale) ? 'आपकी महादशा' : 'your Mahadasha');
 
-  if (locale === 'hi') {
+  if (isDevanagariLocale(locale)) {
     return {
       subject: `आप ${dashaRef} में हैं — इसका क्या मतलब है`,
       html: wrapEmail(card(
@@ -271,13 +273,13 @@ function day6(locale: Locale, data?: UserData): EmailOutput {
 
 function day7(locale: Locale, _data?: UserData): EmailOutput {
   const shareText = encodeURIComponent(
-    locale === 'hi'
+    isDevanagariLocale(locale)
       ? 'देखो पंचांग — मुफ़्त वैदिक ज्योतिष ऐप। दैनिक पंचांग, कुंडली, और 104 सीखने के मॉड्यूल।'
       : 'Dekho Panchang — free Vedic astrology app. Daily Panchang, Kundali, and 104 learning modules.'
   );
   const whatsappUrl = `https://wa.me/?text=${shareText}%20${encodeURIComponent(BASE_URL)}`;
 
-  if (locale === 'hi') {
+  if (isDevanagariLocale(locale)) {
     return {
       subject: 'आपके परिवार को भी ब्रह्मांडीय मार्गदर्शन मिलना चाहिए',
       html: wrapEmail(card(

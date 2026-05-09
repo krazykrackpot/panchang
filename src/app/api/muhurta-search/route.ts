@@ -15,6 +15,33 @@ import { EXTENDED_ACTIVITIES } from '@/lib/muhurta/activity-rules-extended';
 import { resolveTimezone, resolveTimezoneFromCoords, getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { ExtendedActivityId } from '@/types/muhurta-ai';
 
+// ─── In-memory rate limiter (10 requests per IP per hour) ─────────
+const RATE_LIMIT = 10;
+const RATE_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (!entry || now >= entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS });
+    return true;
+  }
+  if (entry.count >= RATE_LIMIT) return false;
+  entry.count++;
+  return true;
+}
+
+// Periodically prune expired entries to prevent memory leak (every 100 requests)
+let pruneCounter = 0;
+function maybePrune() {
+  if (++pruneCounter % 100 !== 0) return;
+  const now = Date.now();
+  for (const [key, val] of rateLimitMap) {
+    if (now >= val.resetAt) rateLimitMap.delete(key);
+  }
+}
+
 // ─── Valid activity keys for LLM prompt ─────────────────────────
 const VALID_ACTIVITIES = Object.keys(EXTENDED_ACTIVITIES) as ExtendedActivityId[];
 
@@ -71,6 +98,18 @@ Respond with ONLY valid JSON, no markdown fences:
 }
 
 export async function POST(request: Request) {
+  // ── Rate limiting ──────────────────────────────────────────
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+    || request.headers.get('x-real-ip')
+    || 'unknown';
+  maybePrune();
+  if (!checkRateLimit(ip)) {
+    return NextResponse.json(
+      { error: 'Rate limit exceeded. Maximum 10 requests per hour.' },
+      { status: 429, headers: { 'Retry-After': '3600' } },
+    );
+  }
+
   try {
     const body = (await request.json()) as MuhurtaSearchRequest;
 

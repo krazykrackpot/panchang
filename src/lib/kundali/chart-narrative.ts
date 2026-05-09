@@ -64,7 +64,7 @@ export function buildChartNarrative(
   locale: string,
   stageCtx?: LifeStageContext,
 ): UnifiedNarrative {
-  const isHi = locale === 'hi' || locale === 'ta' || locale === 'bn' || locale === 'te' || locale === 'gu' || locale === 'kn';
+  const isHi = locale === 'hi' || locale === 'sa' || locale === 'ta' || locale === 'bn' || locale === 'te' || locale === 'gu' || locale === 'kn' || locale === 'mr' || locale === 'mai';
   const t = (obj: { en: string; hi: string }) => isHi ? obj.hi : obj.en;
 
   const threads: ChartThread[] = [];

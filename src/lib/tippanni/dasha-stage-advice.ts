@@ -16,6 +16,7 @@
  */
 
 import type { LifeStage } from '@/lib/kundali/life-stage';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 export type DignityLevel = 'strong' | 'neutral' | 'weak';
 
@@ -813,7 +814,7 @@ export function getDashaStageAdvice(
     return '';
   }
 
-  // Fall back to English for unsupported locales
-  const lang = locale === 'hi' ? 'hi' : 'en';
+  // Devanagari-script locales (hi, sa, mr, mai) use Hindi text; all others use English
+  const lang = isDevanagariLocale(locale) ? 'hi' : 'en';
   return stageData[lang];
 }

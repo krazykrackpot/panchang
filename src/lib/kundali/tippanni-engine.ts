@@ -69,6 +69,7 @@
 
 import type { KundaliData, PlanetPosition } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { LAGNA_DEEP } from './tippanni-lagna';
@@ -245,11 +246,11 @@ const PLANET_HOUSE_BASE: Record<number, Record<number, string>> = {
   },
 };
 
-/** Locale-conditioned text selector. Returns Hindi for 'hi' locale,
- *  English for all others (sa/ta/bn/etc. fall back to English here;
+/** Locale-conditioned text selector. Returns Hindi for Devanagari-script locales
+ *  (hi, sa, mr, mai), English for all others (ta/bn/te/etc. fall back to English here;
  *  separate enhanced modules handle true trilingual content). */
 function t(locale: Locale, en: string, hi: string, _sa?: string): string {
-  return locale === 'hi' ? hi : en;
+  return isDevanagariLocale(locale) ? hi : en;
 }
 
 /**
@@ -379,7 +380,7 @@ function generatePersonality(kundali: KundaliData, locale: Locale, stageCtx?: Li
   if (stageCtx) {
     const lagnaStage = LAGNA_STAGE_CONTEXT[kundali.ascendant.sign]?.[stageCtx.stage];
     if (lagnaStage) {
-      personality.currentRelevance = locale === 'hi' ? lagnaStage.hi : lagnaStage.en;
+      personality.currentRelevance = isDevanagariLocale(locale) ? lagnaStage.hi : lagnaStage.en;
     }
   }
 
@@ -1369,16 +1370,16 @@ export function generateTippanni(kundali: KundaliData, locale: Locale): Tippanni
       lifeStageInfo = {
         age: stageCtx.age,
         stage: stageCtx.stage,
-        headline: locale === 'hi' ? stageCtx.headline.hi : stageCtx.headline.en,
+        headline: isDevanagariLocale(locale) ? stageCtx.headline.hi : stageCtx.headline.en,
         priorityOrder: stageCtx.priorityOrder,
-        remedyNote: locale === 'hi' ? stageCtx.remedyPreference.note.hi : stageCtx.remedyPreference.note.en,
+        remedyNote: isDevanagariLocale(locale) ? stageCtx.remedyPreference.note.hi : stageCtx.remedyPreference.note.en,
       };
 
       // Prepend stage-specific framing to each life area summary
       for (const key of stageCtx.priorityOrder) {
         const area = lifeAreas[key as keyof typeof lifeAreas];
         if (area && stageCtx.framing[key as keyof typeof stageCtx.framing]) {
-          const framing = locale === 'hi'
+          const framing = isDevanagariLocale(locale)
             ? stageCtx.framing[key as keyof typeof stageCtx.framing].hi
             : stageCtx.framing[key as keyof typeof stageCtx.framing].en;
           area.summary = `${framing} ${area.summary}`;

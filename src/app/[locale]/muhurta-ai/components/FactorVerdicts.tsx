@@ -1,6 +1,8 @@
 'use client';
 
-import { CheckCircle2, XCircle, MinusCircle } from 'lucide-react';
+import { useState } from 'react';
+import { CheckCircle2, XCircle, MinusCircle, Info } from 'lucide-react';
+import { Link } from '@/lib/i18n/navigation';
 import type { FactorVerdict } from '@/types/muhurta-ai';
 
 interface FactorVerdictsProps {
@@ -30,7 +32,11 @@ export default function FactorVerdicts({
   factors,
   locale,
 }: FactorVerdictsProps) {
+  const [showLagnaNote, setShowLagnaNote] = useState(false);
+
   if (factors.length === 0) return null;
+
+  const hasLagnaFactor = factors.some(f => f.factor === 'Lagna');
 
   return (
     <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-5 sm:p-6">
@@ -54,6 +60,16 @@ export default function FactorVerdicts({
                   <span className="text-gold-dark text-xs font-semibold uppercase tracking-wider">
                     {f.factor}
                   </span>
+                  {f.factor === 'Lagna' && (
+                    <button
+                      onClick={() => setShowLagnaNote(v => !v)}
+                      className="text-[#8a8478] hover:text-gold-light transition-colors"
+                      aria-label="Lagna information"
+                      title="What is Lagna?"
+                    >
+                      <Info size={12} />
+                    </button>
+                  )}
                   <span className="text-text-primary text-sm font-medium">
                     {f.value}
                   </span>
@@ -66,6 +82,20 @@ export default function FactorVerdicts({
           );
         })}
       </div>
+
+      {hasLagnaFactor && showLagnaNote && (
+        <div className="mt-3 p-3 rounded-lg bg-gold-primary/5 border border-gold-primary/15 text-xs text-text-secondary leading-relaxed">
+          <span className="font-semibold text-gold-light">
+            {locale === 'hi' ? 'लग्न क्या है?' : 'What is Lagna?'}
+          </span>{' '}
+          {locale === 'hi'
+            ? 'लग्न आपकी गतिविधि के आरम्भ में पूर्वी क्षितिज पर उदित राशि है। उचित और बलवान लग्न लघु अशुभ कारकों की क्षतिपूर्ति कर सकता है।'
+            : 'Lagna is the zodiac sign rising at the start of your activity. A strong, appropriate lagna can compensate for minor inauspicious factors.'}{' '}
+          <Link href="/learn/lagna" className="text-gold-light underline hover:text-gold-primary">
+            {locale === 'hi' ? 'और जानें →' : 'Learn more →'}
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

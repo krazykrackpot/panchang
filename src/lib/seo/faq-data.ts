@@ -1522,6 +1522,50 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       },
     },
   ],
+
+  // ─── /learn/lagna ────────────────────────────────────────────
+  '/learn/lagna': [
+    {
+      question: {
+        en: 'What is Lagna (Ascendant) in Vedic astrology?',
+        hi: 'वैदिक ज्योतिष में लग्न (उदय राशि) क्या है?',
+      },
+      answer: {
+        en: 'Lagna is the zodiac sign rising on the eastern horizon at the exact moment and place of birth (or event). It determines the 1st house in a Vedic birth chart and all 12 houses rotate from it. The Lagna changes approximately every 2 hours, making it the most time-sensitive factor in a horoscope. In Sanskrit, "Lagna" means "that which is attached" — the sign attached to the eastern horizon at your first breath.',
+        hi: 'लग्न जन्म (या घटना) के ठीक उस क्षण और स्थान पर पूर्वी क्षितिज पर उदित होने वाली राशि है। यह कुण्डली में प्रथम भाव निर्धारित करता है और सभी 12 भाव इससे घूमते हैं। लग्न लगभग हर 2 घण्टे में बदलता है, जिससे यह कुण्डली का सबसे समय-संवेदनशील कारक बनता है।',
+      },
+    },
+    {
+      question: {
+        en: 'Why is Lagna important in Muhurta (auspicious timing)?',
+        hi: 'मुहूर्त (शुभ समय) में लग्न क्यों महत्वपूर्ण है?',
+      },
+      answer: {
+        en: 'In muhurta selection, the lagna is the rising sign at the START of the activity. Different lagnas favour different activities: fixed signs (Taurus, Leo, Scorpio, Aquarius) are best for permanent things like marriage and house construction; movable signs (Aries, Cancer, Libra, Capricorn) for travel and new ventures; and dual signs (Gemini, Virgo, Sagittarius, Pisces) for education and creative work. Classical texts like Muhurta Chintamani state that a strong lagna can compensate for minor panchanga doshas.',
+        hi: 'मुहूर्त चयन में लग्न कार्य के आरम्भ समय पर उदित राशि है। भिन्न लग्न भिन्न कार्यों के लिए अनुकूल हैं: स्थिर राशियाँ स्थायी कार्यों के लिए, चर राशियाँ यात्रा के लिए, और द्विस्वभाव राशियाँ शिक्षा के लिए। मुहूर्त चिन्तामणि जैसे शास्त्रीय ग्रन्थ कहते हैं कि बलवान लग्न लघु पंचांग दोषों की क्षतिपूर्ति कर सकता है।',
+      },
+    },
+    {
+      question: {
+        en: 'How is Lagna different from Sun sign and Moon sign?',
+        hi: 'लग्न सूर्य राशि और चन्द्र राशि से कैसे भिन्न है?',
+      },
+      answer: {
+        en: 'Your Sun sign (Surya Rashi) changes once a month and represents your soul and core identity. Your Moon sign (Chandra Rashi) changes every 2.25 days and reflects your mind and emotions. Your Lagna changes every ~2 hours and governs your physical body, appearance, temperament, and how the world perceives you. All three are important, but the Lagna is considered the most critical point in Vedic astrology because all 12 houses are counted from it.',
+        hi: 'सूर्य राशि महीने में एक बार बदलती है और आत्मा का प्रतिनिधित्व करती है। चन्द्र राशि हर 2.25 दिन में बदलती है और मन को दर्शाती है। लग्न हर ~2 घण्टे में बदलता है और शरीर, रूप, स्वभाव को नियन्त्रित करता है। तीनों महत्वपूर्ण हैं, परन्तु लग्न सबसे निर्णायक माना जाता है क्योंकि सभी 12 भाव इसी से गिने जाते हैं।',
+      },
+    },
+    {
+      question: {
+        en: 'Can a strong Lagna override inauspicious tithi or yoga in muhurta?',
+        hi: 'क्या बलवान लग्न मुहूर्त में अशुभ तिथि या योग को ओवरराइड कर सकता है?',
+      },
+      answer: {
+        en: 'Yes, classical texts (Muhurta Chintamani Chapter 4) state that a well-placed lagna can compensate for minor panchanga doshas. If the lagna sign is appropriate for the activity AND the lagna lord is strong (not combust, not in dusthana, not debilitated), it acts as a quality multiplier. However, major inauspicious periods like Rahu Kaal, Vishti Karana, or Venus/Jupiter combustion are hard vetoes that even a strong lagna cannot override.',
+        hi: 'हाँ, शास्त्रीय ग्रन्थ (मुहूर्त चिन्तामणि अ. 4) कहते हैं कि सुस्थित लग्न लघु पंचांग दोषों की क्षतिपूर्ति कर सकता है। परन्तु राहु काल, विष्टि करण, या शुक्र/गुरु अस्त जैसी प्रमुख अशुभ अवधियाँ कठोर निषेध हैं जिन्हें बलवान लग्न भी ओवरराइड नहीं कर सकता।',
+      },
+    },
+  ],
 };
 
 /**

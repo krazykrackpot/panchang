@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Info } from 'lucide-react';
+import { Link } from '@/lib/i18n/navigation';
 import type { DetailBreakdown } from '@/types/muhurta-ai';
 
 interface ScoreBreakdownProps {
@@ -36,6 +37,7 @@ function buildRows(b: DetailBreakdown, personalFactorsUsed?: string[]): FactorRo
     { label: 'Tara Bala',     value: b.taraBala,      max: 10, needsPersonalisation: !used.has('taraBala') },
     { label: 'Chandra Bala',  value: b.chandraBala,   max: 10, needsPersonalisation: !used.has('chandraBala') },
     { label: 'Dasha Harmony', value: b.dashaHarmony,  max: 10, needsPersonalisation: !used.has('dashaHarmony') },
+    { label: 'Lagna',          value: b.lagna,          max: 8 },
     { label: 'Inauspicious',  value: b.inauspicious,  max: 10 },
   ];
 }
@@ -63,6 +65,7 @@ function totalScoreClass(score: number): string {
 export default function ScoreBreakdown({ breakdown, totalScore, personalFactorsUsed }: ScoreBreakdownProps) {
   const rows = buildRows(breakdown, personalFactorsUsed);
   const [showAyanamshaNote, setShowAyanamshaNote] = useState(false);
+  const [showLagnaNote, setShowLagnaNote] = useState(false);
 
   return (
     <div className="bg-[#111633] border border-[#d4a853]/10 rounded-xl p-5">
@@ -99,7 +102,19 @@ export default function ScoreBreakdown({ breakdown, totalScore, personalFactorsU
               }`}
             >
               {/* Label */}
-              <span className="w-[140px] text-sm text-[#8a8478] shrink-0">{row.label}</span>
+              <span className="w-[140px] text-sm text-[#8a8478] shrink-0 flex items-center gap-1">
+                {row.label}
+                {row.label === 'Lagna' && (
+                  <button
+                    onClick={() => setShowLagnaNote(v => !v)}
+                    className="text-[#8a8478] hover:text-gold-light transition-colors"
+                    aria-label="Lagna scoring information"
+                    title="What is Lagna and why does it matter?"
+                  >
+                    <Info size={12} />
+                  </button>
+                )}
+              </span>
 
               {row.needsPersonalisation ? (
                 <>
@@ -128,6 +143,19 @@ export default function ScoreBreakdown({ breakdown, totalScore, personalFactorsU
             </div>
           );
         })}
+
+        {showLagnaNote && (
+          <div className="mt-2 p-3 rounded-lg bg-gold-primary/5 border border-gold-primary/15 text-xs text-text-secondary leading-relaxed">
+            <span className="font-semibold text-gold-light">What is Lagna?</span>{' '}
+            Lagna is the zodiac sign rising on the eastern horizon at the start of your activity. A strong, appropriate
+            lagna can compensate for minor inauspicious factors &mdash; classical texts (Muhurta Chintamani Ch. 4) give
+            it disproportionate weight. Fixed signs suit permanent events (marriage, house), movable signs suit travel,
+            and dual signs suit learning.{' '}
+            <Link href="/learn/lagna" className="text-gold-light underline hover:text-gold-primary">
+              Learn more &rarr;
+            </Link>
+          </div>
+        )}
 
         {/* Personalisation hint if any factors are missing */}
         {rows.some(r => r.needsPersonalisation) && (

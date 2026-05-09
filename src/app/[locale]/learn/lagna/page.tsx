@@ -69,6 +69,13 @@ const INLINE_MISCONCEPTIONS = [
   { myth: { en: '"Twins have the same chart"', hi: '"जुड़वों की कुण्डली समान होती है"', sa: '"जुड़वों की कुण्डली समान होती है"', mai: '"जुड़वों की कुण्डली समान होती है"', mr: '"जुड़वों की कुण्डली समान होती है"', ta: '"இரட்டையர்களுக்கு ஒரே ஜாதகம்"', te: '"కవలలకు ఒకే చార్ట్"', bn: '"যমজদের একই চার্ট"', kn: '"ಅವಳಿಗಳಿಗೆ ಒಂದೇ ಜಾತಕ"', gu: '"જોડિયાનો એક જ ચાર્ટ હોય"' }, truth: { en: 'Even a few minutes difference can change the Lagna degree, Navamsha, dasha balance, and sub-lord.', hi: 'कुछ मिनटों का अन्तर भी लग्न अंश, नवांश, दशा सन्तुलन बदल सकता है।', sa: 'कुछ मिनटों का अन्तर भी लग्न अंश, नवांश, दशा सन्तुलन बदल सकता है।', mai: 'कुछ मिनटों का अन्तर भी लग्न अंश, नवांश, दशा सन्तुलन बदल सकता है।', mr: 'कुछ मिनटों का अन्तर भी लग्न अंश, नवांश, दशा सन्तुलन बदल सकता है।', ta: 'சில நிமிடங்களின் வித்தியாசம் கூட லக்ன பாகை, நவாம்சம், தசா சமநிலை மற்றும் துணை அதிபதியை மாற்றலாம்.', te: 'కొన్ని నిమిషాల తేడా కూడా లగ్న డిగ్రీ, నవాంశ, దశా సమతుల్యత మరియు ఉప-అధిపతిని మార్చగలదు.', bn: 'কয়েক মিনিটের পার্থক্যও লগ্ন ডিগ্রি, নবাংশ, দশা ভারসাম্য ও উপ-অধিপতি বদলাতে পারে।', kn: 'ಕೆಲವು ನಿಮಿಷಗಳ ವ್ಯತ್ಯಾಸವೂ ಲಗ್ನ ಡಿಗ್ರಿ, ನವಾಂಶ, ದಶಾ ಸಮತೋಲನ ಮತ್ತು ಉಪ-ಅಧಿಪತಿ ಬದಲಾಯಿಸಬಹುದು.', gu: 'થોડી મિનિટોનો તફાવત પણ લગ્ન ડિગ્રી, નવાંશ, દશા સંતુલન અને ઉપ-અધિપતિ બદલી શકે.' } },
 ];
 
+const INLINE_SCORING_FACTORS: { points: string; label: Record<string, string>; desc: Record<string, string> }[] = [
+  { points: '+8', label: { en: 'Sign-Activity Match', hi: 'राशि-कार्य मिलान' }, desc: { en: 'Is the rising sign appropriate for this activity type? Fixed signs for permanent things (marriage, house), movable for journeys, dual for learning.', hi: 'क्या उदय राशि इस कार्य प्रकार के लिए उचित है? स्थिर राशियाँ स्थायी कार्यों के लिए, चर यात्रा के लिए, द्विस्वभाव शिक्षा के लिए।' } },
+  { points: '+bonus', label: { en: 'Lagna Lord Strength', hi: 'लग्नेश की शक्ति' }, desc: { en: 'Is the lagna lord well-placed? Not combust, not in a dusthana (6th, 8th, 12th house), not debilitated. A strong lagna lord reinforces the entire chart.', hi: 'क्या लग्नेश सुस्थित है? अस्त नहीं, दुःस्थान (6, 8, 12 भाव) में नहीं, नीच नहीं। बलवान लग्नेश सम्पूर्ण कुण्डली को सुदृढ़ करता है।' } },
+  { points: '+bonus', label: { en: 'Benefics in Kendras', hi: 'केन्द्रों में शुभ ग्रह' }, desc: { en: 'Are natural benefics (Jupiter, Venus, Mercury, Moon) placed in angular houses (1st, 4th, 7th, 10th) from the lagna? This stabilises the muhurta chart.', hi: 'क्या शुभ ग्रह (गुरु, शुक्र, बुध, चन्द्र) लग्न से केन्द्र भावों (1, 4, 7, 10) में हैं? यह मुहूर्त कुण्डली को स्थिर करता है।' } },
+  { points: '+bonus', label: { en: 'Malefics in Upachaya', hi: 'उपचय में पाप ग्रह' }, desc: { en: 'Are malefics (Mars, Saturn, Rahu) in growth houses (3rd, 6th, 10th, 11th)? Malefics in upachaya houses give strength to overcome obstacles.', hi: 'क्या पाप ग्रह (मंगल, शनि, राहु) उपचय भावों (3, 6, 10, 11) में हैं? उपचय में पाप ग्रह बाधाओं पर विजय का बल देते हैं।' } },
+];
+
 const INLINE_MUHURTALAGNAS = [
   { sign: { en: 'Taurus (Vrishabha)', hi: 'वृषभ', sa: 'वृषभ', mai: 'वृषभ', mr: 'वृषभ', ta: 'ரிஷபம் (வ்ருஷபம்)', te: 'వృషభం (వృషభం)', bn: 'বৃষ (বৃষভ)', kn: 'ವೃಷಭ (ವೃಷಭ)', gu: 'વૃષભ (વૃષભ)' }, use: { en: 'Lakshmi Puja, wealth rituals, financial ventures -- Venus-ruled', hi: 'लक्ष्मी पूजा, धन अनुष्ठान, वित्तीय उद्यम -- शुक्र-शासित', sa: 'लक्ष्मी पूजा, धन अनुष्ठान, वित्तीय उद्यम -- शुक्र-शासित', mai: 'लक्ष्मी पूजा, धन अनुष्ठान, वित्तीय उद्यम -- शुक्र-शासित', mr: 'लक्ष्मी पूजा, धन अनुष्ठान, वित्तीय उद्यम -- शुक्र-शासित', ta: 'லட்சுமி பூஜை, செல்வ சடங்குகள், நிதி தொழில்கள் — சுக்கிரன் ஆட்சி', te: 'లక్ష్మీ పూజ, సంపద పూజలు, ఆర్థిక వెంచర్లు — శుక్రుడి పాలన', bn: 'লক্ষ্মী পূজা, সম্পদ অনুষ্ঠান, আর্থিক উদ্যোগ — শুক্র শাসিত', kn: 'ಲಕ್ಷ್ಮೀ ಪೂಜೆ, ಸಂಪತ್ತು ವಿಧಿ, ಆರ್ಥಿಕ ಉದ್ಯಮ — ಶುಕ್ರ ಆಳ್ವಿಕೆ', gu: 'લક્ષ્મી પૂજા, સંપત્તિ વિધિ, નાણાકીય ઉદ્યમ — શુક્ર શાસિત' } },
   { sign: { en: 'Leo (Simha)', hi: 'सिंह', sa: 'सिंह', mai: 'सिंह', mr: 'सिंह', ta: 'சிம்மம் (சிம்மம்)', te: 'సింహం (సింహం)', bn: 'সিংহ (সিংহ)', kn: 'ಸಿಂಹ (ಸಿಂಹ)', gu: 'સિંહ (સિંહ)' }, use: { en: 'Government work, authority rituals, Surya puja -- Sun-ruled', hi: 'सरकारी कार्य, अधिकार अनुष्ठान, सूर्य पूजा -- सूर्य-शासित', sa: 'सरकारी कार्य, अधिकार अनुष्ठान, सूर्य पूजा -- सूर्य-शासित', mai: 'सरकारी कार्य, अधिकार अनुष्ठान, सूर्य पूजा -- सूर्य-शासित', mr: 'सरकारी कार्य, अधिकार अनुष्ठान, सूर्य पूजा -- सूर्य-शासित', ta: 'அரசு பணி, அதிகார சடங்குகள், சூரிய பூஜை — சூரியன் ஆட்சி', te: 'ప్రభుత్వ పని, అధికార పూజలు, సూర్య పూజ — సూర్యుడి పాలన', bn: 'সরকারি কাজ, কর্তৃত্ব অনুষ্ঠান, সূর্য পূজা — সূর্য শাসিত', kn: 'ಸರ್ಕಾರಿ ಕೆಲಸ, ಅಧಿಕಾರ ವಿಧಿ, ಸೂರ್ಯ ಪೂಜೆ — ಸೂರ್ಯ ಆಳ್ವಿಕೆ', gu: 'સરકારી કામ, સત્તા વિધિ, સૂર્ય પૂજા — સૂર્ય શાસિત' } },
@@ -221,6 +228,33 @@ export default function LagnaPage() {
           <p className="text-gold-primary/80 text-sm" style={bodyFont}>
             {t('muhurtaOurTool')}{' '}
             <Link href="/panchang" className="text-gold-light underline hover:text-gold-primary">{t('viewLagnaWindows')}</Link>
+          </p>
+        </div>
+      </LessonSection>
+
+      {/* How Lagna is Scored in Our Muhurta Engine */}
+      <LessonSection title={t('scoringTitle')}>
+        <p className="text-text-secondary leading-relaxed mb-4" style={bodyFont}>{t('scoringContent')}</p>
+        <div className="space-y-2 mb-4">
+          {INLINE_SCORING_FACTORS.map((factor, i) => (
+            <motion.div key={i} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.55 + i * 0.05 }}
+              className="p-3 bg-bg-primary/30 rounded-lg border border-gold-primary/10 flex items-start gap-3">
+              <span className="text-gold-primary font-bold text-sm mt-0.5">{factor.points}</span>
+              <div>
+                <span className="text-gold-light text-sm font-semibold" style={headingFont}>{tObj(factor.label)}</span>
+                <p className="text-text-secondary text-sm mt-0.5" style={bodyFont}>{tObj(factor.desc)}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+        <div className="p-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] rounded-xl border border-gold-primary/12">
+          <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>{t('scoringOverride')}</p>
+        </div>
+        <div className="mt-3 p-3 bg-gold-primary/5 rounded-lg border border-gold-primary/20">
+          <p className="text-gold-primary/80 text-sm" style={bodyFont}>
+            <Link href="/muhurta-ai" className="text-gold-light underline hover:text-gold-primary">
+              {locale === 'hi' ? 'मुहूर्त AI टूल आज़माएं →' : 'Try the Muhurta AI tool →'}
+            </Link>
           </p>
         </div>
       </LessonSection>

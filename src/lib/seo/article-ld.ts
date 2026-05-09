@@ -37,7 +37,7 @@ const ARTICLE_META: Record<string, { datePublished: string; dateModified: string
   '/learn/bhavabala': { datePublished: '2026-04-10', dateModified: '2026-04-20' },
   '/learn/sphutas': { datePublished: '2026-04-10', dateModified: '2026-04-20' },
   '/learn/birth-chart': { datePublished: '2026-03-10', dateModified: '2026-04-15' },
-  '/learn/lagna': { datePublished: '2026-03-15', dateModified: '2026-04-15' },
+  '/learn/lagna': { datePublished: '2026-03-15', dateModified: '2026-05-07' },
   '/learn/gochar': { datePublished: '2026-04-01', dateModified: '2026-04-15' },
   '/learn/hora': { datePublished: '2026-04-05', dateModified: '2026-04-15' },
   '/learn/eclipses': { datePublished: '2026-04-05', dateModified: '2026-04-15' },

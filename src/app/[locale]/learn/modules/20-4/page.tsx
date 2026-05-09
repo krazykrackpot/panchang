@@ -8,6 +8,8 @@ import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/modules/20-4.json';
 import KeyTakeaway from '@/components/learn/KeyTakeaway';
+import WhyItMatters from '@/components/learn/WhyItMatters';
+import QuickCheck from '@/components/learn/QuickCheck';
 
 const META: ModuleMeta = {
   id: 'mod_20_4', phase: 7, topic: 'KP System', moduleNumber: '20.4',
@@ -28,6 +30,7 @@ function Page1() {
         points={[
           'Ruling planets at the moment of judgment (current Lagna lord, Moon sign lord, Moon star lord, day lord) confirm and time predictions.',
           'If a significator\'s dasha sub-period lord matches a ruling planet, the event is likely to manifest during that exact sub-period.',
+          'Ruling planets that repeat across multiple roles (e.g., both Moon star lord AND Lagna sign lord) carry extra weight.',
         ]}
         locale={locale}
       />
@@ -36,23 +39,25 @@ function Page1() {
           {tl({ en: 'What Are Ruling Planets?', hi: 'शासक ग्रह क्या हैं?', sa: 'शासक ग्रह क्या हैं?' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          {isHi
-            ? <>शासक ग्रह ज्योतिष के सबसे महत्त्वपूर्ण प्रश्न — भविष्यवाणित घटना वास्तव में कब होगी — का केपी का सुन्दर समाधान हैं। ठीक उस क्षण जब ज्योतिषी कुण्डली विश्लेषण हेतु बैठता है या जब प्रश्नकर्ता प्रश्न पूछता है, ब्रह्माण्ड पाँच संकेतक — पाँच शासक ग्रह — प्रदान करता है जो बताते हैं कि कौन-सी ग्रह अवधि घटना लाएगी। ये शासक ग्रह वर्तमान आकाश से प्राप्त होते हैं, जन्म कुण्डली से नहीं, जिससे ये वास्तविक समय का दिव्य संकेत बनते हैं।</>
-            : <>Ruling planets are KP&apos;s elegant solution to the most important question in astrology: WHEN will a predicted event actually happen? At the exact moment when an astrologer sits down to analyze a chart or when a querent asks a question, the cosmos provides five pointers — five ruling planets — that indicate which planetary periods will deliver the event. These ruling planets are derived from the current sky, not from the birth chart, making them a real-time divine signal.</>}
+          Ruling planets are KP&apos;s elegant solution to the most important question in astrology: WHEN will a predicted event actually happen? At the exact moment when an astrologer sits down to analyse a chart or when a querent asks a question, the cosmos provides five pointers — five ruling planets — that indicate which planetary periods will deliver the event. These are derived from the current sky, not from the birth chart.
         </p>
-        <p className="text-text-secondary text-sm leading-relaxed">
-          {isHi
-            ? <>पाँच शासक ग्रह हैं: (1) चन्द्र का राशि स्वामी — वर्तमान में चन्द्रमा जिस राशि में गोचर कर रहा है उसका शासक ग्रह। (2) चन्द्र का नक्षत्र स्वामी — वर्तमान में चन्द्रमा जिस नक्षत्र में है उसका शासक ग्रह। (3) लग्न का राशि स्वामी — उस क्षण पूर्वी क्षितिज पर उदित राशि का शासक ग्रह। (4) लग्न का नक्षत्र स्वामी — वर्तमान लग्न अंश के नक्षत्र का शासक ग्रह। (5) दिन स्वामी — वर्तमान सप्ताह दिन का शासक ग्रह (रविवार को सूर्य, सोमवार को चन्द्र, आदि)।</>
-            : <>The five ruling planets are: (1) Moon&apos;s Sign Lord — the planet ruling the rashi the Moon is currently transiting. (2) Moon&apos;s Star Lord — the planet ruling the nakshatra the Moon is currently in. (3) Lagna Sign Lord — the planet ruling the rashi rising on the eastern horizon at that moment. (4) Lagna Star Lord — the planet ruling the nakshatra of the current Ascendant degree. (5) Day Lord — the planet that rules the current weekday (Sun for Sunday, Moon for Monday, etc.).</>}
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          The five ruling planets are: (1) <strong className="text-gold-light">Moon&apos;s Sign Lord</strong> — the planet ruling the rashi the Moon is currently transiting. (2) <strong className="text-gold-light">Moon&apos;s Star Lord</strong> — the planet ruling the nakshatra the Moon is currently in. (3) <strong className="text-gold-light">Lagna Sign Lord</strong> — the planet ruling the rashi rising on the eastern horizon at that moment. (4) <strong className="text-gold-light">Lagna Star Lord</strong> — the planet ruling the nakshatra of the current Ascendant degree. (5) <strong className="text-gold-light">Day Lord</strong> — the planet that rules the current weekday.
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-          {tl({ en: 'Classical Origin', hi: 'शास्त्रीय उत्पत्ति', sa: 'शास्त्रीयः उद्भवः' }, locale)}
-        </h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">How to Compute Ruling Planets</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Step 1:</span> Note the exact moment (date, time, location) when you begin analysing the question.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Step 2:</span> Compute the Moon&apos;s current sidereal longitude. From this, derive the sign (rashi lord = Moon sign lord) and nakshatra (star lord = Moon star lord).</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Step 3:</span> Compute the current Ascendant (Lagna) degree. Derive the rashi lord (Lagna sign lord) and nakshatra lord (Lagna star lord).</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Step 4:</span> Identify the day lord from the weekday (Sun for Sunday, Moon for Monday, etc.). You now have 5 ruling planets — some may repeat, which strengthens them.</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
-          {tl({ en: 'The idea that the moment of a question carries its own answer is rooted in the ancient Prashna (horary) tradition of Vedic astrology. Texts like Prashna Marga and Tajika Neelakanthi emphasize that the chart cast for the moment of query contains all information about the outcome. Krishnamurti refined this into the ruling planets concept — extracting five key planetary pointers from the query moment and using them as a filter to narrow down dasha timing from the birth chart. This synthesis of horary principles with natal dasha analysis is uniquely KP.', hi: 'प्रश्न के क्षण में उसका उत्तर निहित है यह विचार वैदिक ज्योतिष की प्राचीन प्रश्न (होरेरी) परम्परा में निहित है। प्रश्न मार्ग और ताजिक नीलकण्ठी जैसे ग्रन्थ बल देते हैं कि प्रश्न के क्षण की कुण्डली परिणाम की सम्पूर्ण सूचना रखती है। कृष्णमूर्ति ने इसे शासक ग्रह अवधारणा में परिशोधित किया — प्रश्न क्षण से पाँच प्रमुख ग्रह संकेतक निकालकर उन्हें जन्म कुण्डली से दशा समय को सीमित करने के फिल्टर के रूप में उपयोग करना। होरेरी सिद्धान्तों का जन्म दशा विश्लेषण के साथ यह संश्लेषण विशिष्ट रूप से केपी है।', sa: 'प्रश्न के क्षण में उसका उत्तर निहित है यह विचार वैदिक ज्योतिष की प्राचीन प्रश्न (होरेरी) परम्परा में निहित है। प्रश्न मार्ग और ताजिक नीलकण्ठी जैसे ग्रन्थ बल देते हैं कि प्रश्न के क्षण की कुण्डली परिणाम की सम्पूर्ण सूचना रखती है। कृष्णमूर्ति ने इसे शासक ग्रह अवधारणा में परिशोधित किया — प्रश्न क्षण से पाँच प्रमुख ग्रह संकेतक निकालकर उन्हें जन्म कुण्डली से दशा समय को सीमित करने के फिल्टर के रूप में उपयोग करना। होरेरी सिद्धान्तों का जन्म दशा विश्लेषण के साथ यह संश्लेषण विशिष्ट रूप से केपी है।' }, locale)}
+          The idea that the moment of a question carries its own answer is rooted in the ancient Prashna (horary) tradition. Krishnamurti refined this into the ruling planets concept — extracting five key planetary pointers from the query moment and using them as a filter to narrow down dasha timing from the birth chart. This synthesis of horary principles with natal dasha analysis is uniquely KP.
         </p>
       </section>
     </div>
@@ -69,25 +74,32 @@ function Page2() {
           {tl({ en: 'Using Ruling Planets for Timing', hi: 'समय-निर्धारण हेतु शासक ग्रहों का उपयोग', sa: 'समय-निर्धारण हेतु शासक ग्रहों का उपयोग' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          {tl({ en: 'The process works in three steps. First, cast a chart for the current moment (when you sit down to analyze the question) and compute the five ruling planets. Second, compare these ruling planets against the significator table from the birth chart. Find which ruling planets are also significators of the relevant event houses. Third, the dasha/bhukti/antara sequence that involves the most ruling-planet-significator matches is the timing window for the event.', hi: 'प्रक्रिया तीन चरणों में कार्य करती है। पहला, वर्तमान क्षण (जब आप प्रश्न विश्लेषण हेतु बैठते हैं) की कुण्डली बनाएँ और पाँच शासक ग्रह गणित करें। दूसरा, इन शासक ग्रहों की जन्म कुण्डली की कारक सारणी से तुलना करें। ज्ञात करें कि कौन-से शासक ग्रह सम्बन्धित घटना भावों के कारक भी हैं। तीसरा, जिस दशा/भुक्ति/अन्तरा क्रम में सर्वाधिक शासक-ग्रह-कारक मिलान हों वह घटना की समय खिड़की है।', sa: 'प्रक्रिया तीन चरणों में कार्य करती है। पहला, वर्तमान क्षण (जब आप प्रश्न विश्लेषण हेतु बैठते हैं) की कुण्डली बनाएँ और पाँच शासक ग्रह गणित करें। दूसरा, इन शासक ग्रहों की जन्म कुण्डली की कारक सारणी से तुलना करें। ज्ञात करें कि कौन-से शासक ग्रह सम्बन्धित घटना भावों के कारक भी हैं। तीसरा, जिस दशा/भुक्ति/अन्तरा क्रम में सर्वाधिक शासक-ग्रह-कारक मिलान हों वह घटना की समय खिड़की है।' }, locale)}
+          The process works in three steps. First, cast a chart for the current moment and compute the five ruling planets. Second, compare these ruling planets against the significator table from the birth chart — find which ruling planets are also significators of the relevant event houses. Third, the dasha/bhukti/antara sequence that involves the most ruling-planet-significator matches is the timing window for the event.
         </p>
-        <p className="text-text-secondary text-sm leading-relaxed">
-          If a ruling planet appears multiple times (e.g., it is both the Moon&apos;s star lord and the Lagna sign lord), it carries extra weight. If 3 or more of the 5 ruling planets also signify the event&apos;s houses, the prediction carries high confidence. If fewer than 2 match, the astrologer may need to wait for a more favorable moment to re-analyze, or the event may be denied.
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          If a ruling planet appears multiple times (e.g., it is both the Moon&apos;s star lord and the Lagna sign lord), it carries extra weight. If 3 or more of the 5 ruling planets also signify the event&apos;s houses, the prediction carries high confidence. If fewer than 2 match, the astrologer may need to wait for a more favourable moment to re-analyse, or the event may be denied.
         </p>
+        <WhyItMatters locale={locale}>
+          Ruling planets bridge the gap between &quot;this event is promised in your chart&quot; and &quot;this event will happen in March 2027.&quot; Without ruling planets, KP can identify WHAT is promised but not WHEN with precision. With them, timing accuracy reaches weeks or even days.
+        </WhyItMatters>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'सोदाहरणं कार्यम्' }, locale)}
-        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरणकुण्डली' }, locale)} />
+          Worked Example — Marriage Timing
         </h4>
+        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरणकुण्डली' }, locale)} />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
-          <span className="text-gold-light font-medium">Query: &quot;When will I get married?&quot;</span> Analysis moment: Tuesday at 10:15 AM. Moon at 22 degrees Taurus (Rohini nakshatra). Ascendant at 8 degrees Cancer (Pushya nakshatra). Ruling planets: (1) Moon&apos;s sign lord = Venus (Taurus). (2) Moon&apos;s star lord = Moon (Rohini). (3) Lagna sign lord = Moon (Cancer). (4) Lagna star lord = Saturn (Pushya). (5) Day lord = Mars (Tuesday). Ruling planets: Venus, Moon (repeated), Saturn, Mars.
+          <span className="text-gold-light font-medium">Query: &quot;When will I get married?&quot;</span> Analysis moment: Tuesday at 10:15 AM. Moon at 22° Taurus (Rohini nakshatra). Ascendant at 8° Cancer (Pushya nakshatra).
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          <span className="text-gold-light font-medium">Ruling planets:</span> (1) Moon sign lord = Venus (Taurus). (2) Moon star lord = Moon (Rohini). (3) Lagna sign lord = Moon (Cancer). (4) Lagna star lord = Saturn (Pushya). (5) Day lord = Mars (Tuesday). <strong>Result:</strong> Venus, Moon (repeated twice), Saturn, Mars.
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          <span className="text-gold-light font-medium">Cross-check with birth chart:</span> Venus signifies 7th house (Level 1 — occupies 7th) and 2nd house (Level 3 — owns Taurus on 2nd cusp). Venus is both a ruling planet AND a Level 1 significator of the 7th house (marriage) = highest confidence.
         </p>
         <p className="text-text-secondary text-xs leading-relaxed">
-          {isHi
-            ? <><span className="text-gold-light font-medium">प्रश्न: &quot;मेरा विवाह कब होगा?&quot;</span> विश्लेषण क्षण: मंगलवार प्रातः 10:15। चन्द्रमा 22 अंश वृषभ (रोहिणी नक्षत्र)। लग्न 8 अंश कर्क (पुष्य नक्षत्र)। शासक ग्रह: (1) चन्द्र राशि स्वामी = शुक्र (वृषभ)। (2) चन्द्र नक्षत्र स्वामी = चन्द्र (रोहिणी)। (3) लग्न राशि स्वामी = चन्द्र (कर्क)। (4) लग्न नक्षत्र स्वामी = शनि (पुष्य)। (5) दिन स्वामी = मंगल (मंगलवार)। जन्म कुण्डली से: शुक्र सप्तम (स्तर 1) और द्वितीय (स्तर 3) का कारक। विवाह काल: शुक्र-चन्द्र या चन्द्र-शुक्र दशा/भुक्ति। शुक्र शासक ग्रह और सप्तम का स्तर 1 कारक दोनों = सर्वोच्च विश्वास।</>
-            : <><span className="text-gold-light font-medium">Cross-check with birth chart significators:</span> From the birth chart significator table, Venus signifies 7th house (Level 1 — occupies 7th) and 2nd house (Level 3 — owns Taurus on 2nd cusp). Jupiter signifies 11th house (Level 2 — in star of 11th occupant). Venus and Moon are both ruling planets AND strong marriage significators. Marriage timing: Venus-Moon or Moon-Venus dasha/bhukti period. Since Venus repeats as ruling planet and is Level 1 significator of 7th = highest confidence.</>}
+          <span className="text-gold-light font-medium">Timing:</span> Marriage will occur during Venus-Moon or Moon-Venus dasha/bhukti period. The Moon repeating twice among ruling planets adds further confirmation.
         </p>
       </section>
     </div>
@@ -101,43 +113,79 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'Refining with Transits', hi: 'गोचर द्वारा परिशोधन', sa: 'गोचर द्वारा परिशोधन' }, locale)}
+          {tl({ en: 'Refining with Transits and Prashna Use', hi: 'गोचर और प्रश्न में प्रयोग', sa: 'गोचर और प्रश्न में प्रयोग' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          {isHi
-            ? <>दशा/भुक्ति अवधि पहचान लेने के बाद, केपी सटीक तिथि इंगित करने के लिए एक अन्तिम तकनीक उपयोग करता है: सम्बन्धित सन्धि उप-स्वामी स्थितियों पर शासक ग्रहों का गोचर। घटना तब प्रकट होती है जब एक या अधिक शासक ग्रह सम्बन्धित भाव सन्धि उप-स्वामी के नक्षत्र या उप पर गोचर करें। विवाह के लिए, पहचानी गई दशा अवधि के दौरान ट्रैक करें कि शुक्र (या सबसे प्रबल विवाह कारक) कब सप्तम सन्धि उप-स्वामी की नक्षत्र स्थिति पर गोचर करता है।</>
-            : <>Once the dasha/bhukti period is identified, KP uses one final technique to pinpoint the exact date: transit of ruling planets over the relevant cusp sub-lord positions. The event manifests when one or more ruling planets transit over the star or sub of the relevant house cusp sub-lord. For marriage, track when Venus (or the strongest marriage significator) transits over the 7th cusp sub-lord&apos;s nakshatra position during the identified dasha period.</>}
+          Once the dasha/bhukti period is identified, KP uses one final technique to pinpoint the exact date: transit of ruling planets over the relevant cusp sub-lord positions. The event manifests when one or more ruling planets transit over the star or sub of the relevant house cusp sub-lord. This three-layer approach — significators (what), ruling planets (who/when at dasha level), and transits (when at date level) — gives KP its reputation for precise event timing.
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          <strong className="text-gold-light">Ruling planets in Prashna (horary):</strong> In pure Prashna practice, there is no birth chart at all. The querent picks a number between 1-249 (KP number), and the astrologer casts a chart for that moment. The ruling planets of the Prashna moment serve double duty — they confirm whether the answer is affirmative AND indicate timing. If the ruling planets do not signify the queried house, the answer is &quot;no&quot; or &quot;not now.&quot;
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
-          This three-layer approach — significator table (what), ruling planets (who/when at dasha level), and transits (when at date level) — is what gives KP its reputation for remarkably precise event timing. While no system is infallible, experienced KP practitioners report timing accuracy within weeks, sometimes days, for major life events.
+          This makes ruling planets the most versatile tool in KP — they work for natal chart timing, horary questions, and even for verifying whether the chart is fit for reading (if the ruling planets are incoherent with the question topic, some KP practitioners advise waiting and re-casting).
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}
+          Common Misconceptions
         </h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          <span className="text-gold-light font-medium">Misconception:</span> &quot;Ruling planets alone can predict events without a birth chart.&quot; Ruling planets are a TIMING FILTER, not a standalone prediction system. You still need the birth chart&apos;s significator table to know WHAT events are promised. Ruling planets only tell you WHEN.
+        </p>
         <p className="text-text-secondary text-xs leading-relaxed">
-          {isHi
-            ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;शासक ग्रह अकेले जन्म कुण्डली के बिना घटनाओं की भविष्यवाणी कर सकते हैं।&quot; यह गलत है। शासक ग्रह समय-निर्धारण का फिल्टर हैं, स्वतन्त्र भविष्यवाणी पद्धति नहीं। आपको अभी भी जन्म कुण्डली की कारक सारणी चाहिए यह जानने के लिए कि कौन-सी घटनाएँ वादित हैं। शासक ग्रह केवल बताते हैं कि सम्भावित दशा अवधियों में से कब घटना साकार होगी। जन्म कुण्डली के बिना, शासक ग्रह ऐसे संकेतक हैं जिनके पास संकेत करने को कुछ नहीं।</>
-            : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Ruling planets alone can predict events without a birth chart.&quot; This is incorrect. Ruling planets are a TIMING FILTER, not a standalone prediction system. You still need the birth chart&apos;s significator table to know WHAT events are promised. Ruling planets only tell you WHEN among the possible dasha periods the event will materialize. Without the birth chart, ruling planets are pointers with nothing to point to.</>}
+          <span className="text-gold-light font-medium">Misconception:</span> &quot;If a planet appears as a ruling planet, it must be strong.&quot; A ruling planet can be weak, debilitated, or retrograde. Its role as a ruling planet indicates timing relevance, not inherent strength. The birth chart still determines whether the planet delivers positive or negative results.
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिकी प्रासङ्गिकता' }, locale)}
+          Modern Relevance
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
-          {isHi
-            ? <>शासक ग्रह तकनीक ने केपी को विशेष रूप से जीवन्त परामर्श सत्रों में लोकप्रिय बनाया है। जब ग्राहक पूछता है &quot;मुझे नौकरी कब मिलेगी?&quot;, ज्योतिषी उसी क्षण के शासक ग्रह गणित करता है, जन्म कुण्डली कारकों से क्रॉस-रेफरेंस करता है, और प्रायः एक विशिष्ट माह या सप्ताह तक बता सकता है। हमारा केपी सिस्टम उपकरण शासक ग्रहों की वास्तविक समय में गणना करता है, किसी भी पूछी गई घटना के लिए जन्म कुण्डली की कारक सारणी से उनका मिलान प्रतिशत दिखाता है — यह शक्तिशाली तकनीक प्रत्येक उपयोगकर्ता की उँगलियों पर लाते हुए।</>
-            : <>The ruling planets technique has made KP especially popular for live consultation sessions. When a client asks &quot;When will I get a job?&quot;, the astrologer computes ruling planets for that exact moment, cross-references with the birth chart significators, and can often give a specific month or even week. Our KP System tool computes ruling planets in real-time, showing their match percentage with the birth chart&apos;s significator table for any queried event — bringing this powerful technique to every user&apos;s fingertips.</>}
+          The ruling planets technique has made KP especially popular for live consultation sessions. When a client asks &quot;When will I get a job?&quot;, the astrologer computes ruling planets for that exact moment, cross-references with the birth chart significators, and can often give a specific month or week. Our <span className="text-gold-light">KP System tool</span> computes ruling planets in real-time, showing their match percentage with the birth chart&apos;s significator table. See <span className="text-gold-light">Module 20.1 (Placidus Houses)</span> for house computation, and <span className="text-gold-light">Module 20.2 (Sub-Lords)</span> for the significator table that ruling planets are matched against.
         </p>
+      </section>
+
+      <QuickCheck
+        question="How many ruling planets does KP derive from the moment of analysis?"
+        options={['3 (Moon lord, Lagna lord, Day lord)', '5 (Moon sign/star, Lagna sign/star, Day lord)', '7 (one for each classical planet)', '9 (one for each graha)']}
+        correctIndex={1}
+        explanation="KP derives 5 ruling planets: Moon's sign lord, Moon's star lord, Lagna sign lord, Lagna star lord, and the Day lord. Some may repeat, which strengthens their significance."
+      />
+    </div>
+  );
+}
+
+function Page4() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          Advanced Ruling Planet Techniques
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          <strong className="text-gold-light">Eliminating retrograde ruling planets:</strong> Some KP practitioners exclude retrograde planets from the ruling planet list. If a ruling planet is retrograde at the moment of analysis, it may delay rather than deliver the event. However, this is debated — the original Krishnamurti texts do not explicitly exclude retrogrades, and many practitioners include them with a note of caution.
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          <strong className="text-gold-light">Sub-lord of ruling planets:</strong> Advanced KP takes the analysis one level deeper — instead of just using the ruling planet itself, check which sub it occupies. If a ruling planet&apos;s sub-lord does not signify the queried houses, that ruling planet is weakened as a timing indicator. This filtering creates a shorter, more precise list of active timing planets.
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed">
+          <strong className="text-gold-light">Ruling planets for date selection:</strong> Beyond prediction, ruling planets can be used proactively. If you want to start a business, find a date when the ruling planets match the significators of houses 2 (income), 7 (partnership), 10 (career), and 11 (gains) from your birth chart. This turns KP into a muhurta selection tool — more precise than classical Panchang-based muhurta because it is personalised to your birth chart.
+        </p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">Ruling Planets vs Classical Muhurta</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Classical muhurta:</span> Based on Panchang elements (nakshatra, tithi, yoga, karana, vara). Same for everyone on a given day. Good for general auspiciousness.</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">KP ruling planet muhurta:</span> Based on matching ruling planets to YOUR birth chart significators. Different for each person. Good for personalised event timing. Both approaches are valid — ideally, use classical muhurta as a baseline and refine with ruling planet matching for the individual.</p>
       </section>
     </div>
   );
 }
 
 export default function Module20_4Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

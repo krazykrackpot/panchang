@@ -10,6 +10,7 @@ import KeyTakeaway from '@/components/learn/KeyTakeaway';
 import WhyItMatters from '@/components/learn/WhyItMatters';
 import ClassicalReference from '@/components/learn/ClassicalReference';
 import BeginnerNote from '@/components/learn/BeginnerNote';
+import QuickCheck from '@/components/learn/QuickCheck';
 
 const META: ModuleMeta = {
   id: 'mod_7_2', phase: 2, topic: 'Yoga Karana', moduleNumber: '7.2',
@@ -68,14 +69,68 @@ function Page2() {
   return (
     <div className="space-y-6">
       <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>The Complete Karana Table — All 11 Types</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">Understanding karana requires knowing all 11 types, their nature, and which activities they favour. The following table summarises the complete system.</p>
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-gold-primary/10">
+                <th className="text-left text-text-tertiary text-xs py-2 pr-3">Karana</th>
+                <th className="text-left text-gold-light text-xs py-2 pr-3">Type</th>
+                <th className="text-left text-gold-light text-xs py-2 pr-3">Deity</th>
+                <th className="text-left text-gold-light text-xs py-2">Nature &amp; Suited Activities</th>
+              </tr>
+            </thead>
+            <tbody className="text-text-secondary text-xs">
+              <tr className="border-b border-white/5"><td className="py-1.5 pr-3 text-gold-light">Bava</td><td className="py-1.5 pr-3">Chara</td><td className="py-1.5 pr-3">Indra</td><td className="py-1.5">Strength — government work, authority matters, bold initiatives</td></tr>
+              <tr className="border-b border-white/5"><td className="py-1.5 pr-3 text-gold-light">Balava</td><td className="py-1.5 pr-3">Chara</td><td className="py-1.5 pr-3">Brahma</td><td className="py-1.5">Auspiciousness — religious ceremonies, marriages, sacred rituals</td></tr>
+              <tr className="border-b border-white/5"><td className="py-1.5 pr-3 text-gold-light">Kaulava</td><td className="py-1.5 pr-3">Chara</td><td className="py-1.5 pr-3">Mitra</td><td className="py-1.5">Friendship — forming alliances, social gatherings, reconciliation</td></tr>
+              <tr className="border-b border-white/5"><td className="py-1.5 pr-3 text-gold-light">Taitila</td><td className="py-1.5 pr-3">Chara</td><td className="py-1.5 pr-3">Aryama</td><td className="py-1.5">Worldly success — business ventures, property, material pursuits</td></tr>
+              <tr className="border-b border-white/5"><td className="py-1.5 pr-3 text-gold-light">Gara</td><td className="py-1.5 pr-3">Chara</td><td className="py-1.5 pr-3">Prithvi</td><td className="py-1.5">Agriculture — planting, harvesting, land-related activities</td></tr>
+              <tr className="border-b border-white/5"><td className="py-1.5 pr-3 text-gold-light">Vanija</td><td className="py-1.5 pr-3">Chara</td><td className="py-1.5 pr-3">Lakshmi</td><td className="py-1.5">Commerce — trade, buying/selling, financial transactions</td></tr>
+              <tr className="border-b border-white/5"><td className="py-1.5 pr-3 text-red-400">Vishti</td><td className="py-1.5 pr-3">Chara</td><td className="py-1.5 pr-3">Yama</td><td className="py-1.5">Inauspicious — avoid new beginnings; suited only for destructive actions</td></tr>
+              <tr className="border-b border-white/5"><td className="py-1.5 pr-3 text-gold-light">Kimstughna</td><td className="py-1.5 pr-3">Sthira</td><td className="py-1.5 pr-3">Maruts</td><td className="py-1.5">Neutral — appears only at cycle start (Shukla Pratipada 1st half)</td></tr>
+              <tr className="border-b border-white/5"><td className="py-1.5 pr-3 text-amber-400">Shakuni</td><td className="py-1.5 pr-3">Sthira</td><td className="py-1.5 pr-3">Garuda</td><td className="py-1.5">Mildly inauspicious — slot 58, near end of Krishna Paksha</td></tr>
+              <tr className="border-b border-white/5"><td className="py-1.5 pr-3 text-amber-400">Chatushpada</td><td className="py-1.5 pr-3">Sthira</td><td className="py-1.5 pr-3">Vrishabha</td><td className="py-1.5">Mildly inauspicious — slot 59, penalised in muhurta scoring</td></tr>
+              <tr><td className="py-1.5 pr-3 text-amber-400">Naga</td><td className="py-1.5 pr-3">Sthira</td><td className="py-1.5 pr-3">Naga</td><td className="py-1.5">Mildly inauspicious — slot 60, final karana before Amavasya ends</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-text-secondary text-sm leading-relaxed mt-3">The Sthira karanas (Shakuni, Chatushpada, Naga) are often overlooked because they appear only once each per month. However, muhurta engines — including our Muhurta AI — penalise these periods alongside Vishti. The penalty for Sthira karanas is lighter than for Vishti, but they are not considered favourable for auspicious beginnings.</p>
+      </section>
+      <QuickCheck
+        question="How many Chara (movable) karanas exist in the system?"
+        options={['4', '7', '11', '30']}
+        correctIndex={1}
+        explanation="There are 7 Chara karanas (Bava, Balava, Kaulava, Taitila, Gara, Vanija, Vishti) that cycle 8 times to fill 56 of the 60 slots. The remaining 4 are Sthira (fixed) karanas."
+      />
+    </div>
+  );
+}
+
+function Page3() {
+  const locale = useModuleLocale();
+  const isHi = isDevanagariLocale(locale);
+  return (
+    <div className="space-y-6">
+      <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Vishti (Bhadra) — The Critical Karana</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">Vishti, popularly known as Bhadra, is the seventh Chara karana and the most feared element in the karana system. It appears approximately 8 times each lunar month (once in every cycle of 7 Chara karanas across the 56 Chara slots). During Bhadra, classical texts strongly advise against starting journeys, marriages, new businesses, griha-pravesha (housewarming), and religious ceremonies.</p>
-        <p className="text-text-secondary text-sm leading-relaxed mb-3">However, Bhadra is not uniformly malefic. The tradition distinguishes between Bhadra Mukha (face) and Bhadra Puchha (tail). When Bhadra is in Swarga (heaven) or Patala (nether world), the inauspicious effects are diminished or even neutralized. When Bhadra is on Prithvi (earth), the malefic effects are at full strength. The position depends on the specific tithi during which Vishti occurs — texts provide tables mapping each Vishti occurrence to its celestial, terrestrial, or nether position.</p>
-        <p className="text-text-secondary text-sm leading-relaxed">Certain activities are actually suited to Bhadra: antagonistic actions such as filing legal battles, breaking alliances, demolition work, or removing obstacles are considered empowered during Vishti. This reflects the Jyotish principle that no time is universally bad — the character of the time should match the character of the action.</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">However, Bhadra is not uniformly malefic. The tradition distinguishes between Bhadra Mukha (face) and Bhadra Puchha (tail). When Bhadra is in Swarga (heaven) or Patala (nether world), the inauspicious effects are diminished or even neutralised. When Bhadra is on Prithvi (earth), the malefic effects are at full strength. The position depends on the specific tithi during which Vishti occurs — texts provide tables mapping each Vishti occurrence to its celestial, terrestrial, or nether position.</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">Certain activities are actually suited to Bhadra: antagonistic actions such as filing legal battles, breaking alliances, demolition work, or removing obstacles are considered empowered during Vishti. This reflects the Jyotish principle that no time is universally bad — the character of the time should match the character of the action.</p>
         <WhyItMatters locale={locale}>
           Bhadra is not uniformly malefic — the mukha/puchha distinction is critical. When Bhadra is in heaven or Patala (netherworld), the inauspicious effects are significantly diminished. Only Bhadra on Earth carries full malefic force. This nuance separates a casual panchang reader from a serious muhurta practitioner.
         </WhyItMatters>
       </section>
+
+      {/* Vishti Rules Table */}
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">Vishti Karana Rules for Muhurta</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-red-400 font-medium">Absolute avoid:</span> Marriage, griha-pravesha, mundan (first haircut), naming ceremony, business launch, journey commencement, signing contracts, beginning education.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-amber-400 font-medium">Conditionally acceptable:</span> If Bhadra is in Swarga or Patala (not Earth), some texts permit minor activities with strong compensating factors (excellent nakshatra + yoga).</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-emerald-400 font-medium">Actually suited:</span> Litigation, demolition, debt collection, removing enemies, breaking partnerships, aggressive medical procedures, clearing obstacles.</p>
+      </section>
+
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
         <ExampleChart
@@ -91,15 +146,22 @@ function Page2() {
   );
 }
 
-function Page3() {
+function Page4() {
   const locale = useModuleLocale();
   const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Calculation Details and Modern Practice</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-3">The karana calculation derives directly from the Moon-Sun elongation used for tithis. Compute the sidereal elongation (Moon longitude minus Sun longitude, normalized to 0-360°), then divide by 6° to get the karana index (0-59). The mapping to karana names follows this pattern: index 0 = Kimstughna (fixed), indices 1-56 cycle through {'{'}Bava, Balava, Kaulava, Taitila, Gara, Vanija, Vishti{'}'} using (index - 1) mod 7, and indices 57-59 map to Shakuni, Chatushpada, Naga (fixed).</p>
-        <p className="text-text-secondary text-sm leading-relaxed">In our app, the karana is computed alongside the tithi from the same elongation value. Start and end times are found by determining when the elongation crosses each 6° boundary. Because the Moon&apos;s speed varies (roughly 12-15° per day), karana durations range from about 9 to 13 hours — roughly half a day, but never exactly half.</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">The karana calculation derives directly from the Moon-Sun elongation used for tithis. Compute the sidereal elongation (Moon longitude minus Sun longitude, normalised to 0-360°), then divide by 6° to get the karana index (0-59). The mapping to karana names follows this pattern: index 0 = Kimstughna (fixed), indices 1-56 cycle through {'{'}Bava, Balava, Kaulava, Taitila, Gara, Vanija, Vishti{'}'} using (index - 1) mod 7, and indices 57-59 map to Shakuni, Chatushpada, Naga (fixed).</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">In our app, the karana is computed alongside the tithi from the same elongation value. Start and end times are found by determining when the elongation crosses each 6° boundary. Because the Moon&apos;s speed varies (roughly 12-15° per day), karana durations range from about 9 to 13 hours — roughly half a day, but never exactly half.</p>
+        <p className="text-text-secondary text-sm leading-relaxed">The formula for finding the karana name from any Moon-Sun elongation is deterministic and simple to implement:</p>
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 mt-3">
+          <p className="text-text-secondary text-xs font-mono leading-relaxed mb-1">index = floor(elongation / 6)</p>
+          <p className="text-text-secondary text-xs font-mono leading-relaxed mb-1">if index == 0: return &quot;Kimstughna&quot;</p>
+          <p className="text-text-secondary text-xs font-mono leading-relaxed mb-1">if index &lt;= 56: return CHARA_NAMES[(index - 1) % 7]</p>
+          <p className="text-text-secondary text-xs font-mono leading-relaxed">if index &gt;= 57: return STHIRA_NAMES[index - 57]</p>
+        </div>
         <WhyItMatters locale={locale}>
           The calculation is straightforward once you understand tithis: a karana is simply the finer 6-degree grid overlaid on the same Moon-Sun elongation. The mapping formula — index 0 = Kimstughna, indices 1-56 cycle through 7 Chara names, indices 57-59 = fixed karanas — is the key to implementing karana computation in any panchang engine.
         </WhyItMatters>
@@ -112,12 +174,19 @@ function Page3() {
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
-        <p className="text-text-secondary text-xs leading-relaxed">Every printed Panchang in India lists the karana alongside the other four elements. In digital muhurta engines — including our Muhurta AI — Vishti karana triggers an automatic penalty in the scoring algorithm. Wedding planners, business consultants using Jyotish, and temple priests routinely check for Bhadra before finalizing ceremony times. The karana provides the last layer of temporal refinement in the five-limb system.</p>
+        <p className="text-text-secondary text-xs leading-relaxed">Every printed Panchang in India lists the karana alongside the other four elements. In digital muhurta engines — including our Muhurta AI — Vishti karana triggers an automatic penalty in the scoring algorithm. The Sthira karanas (Shakuni, Chatushpada, Naga) also receive a lighter penalty. Wedding planners, business consultants using Jyotish, and temple priests routinely check for Bhadra before finalising ceremony times. The karana provides the last layer of temporal refinement in the five-limb system. Explore the <span className="text-gold-light">Muhurta AI tool</span> to see how karana scoring works in practice, or check <span className="text-gold-light">Module 7.1 (Yoga)</span> and <span className="text-gold-light">Module 8.1 (Muhurta Basics)</span> for related Panchang elements.</p>
       </section>
+
+      <QuickCheck
+        question="Which karana is considered inauspicious and appears ~8 times per lunar month?"
+        options={['Kimstughna', 'Balava', 'Vishti (Bhadra)', 'Naga']}
+        correctIndex={2}
+        explanation="Vishti (also called Bhadra) is the 7th Chara karana and appears once per cycle of 7 across 56 Chara slots = 8 times per month. It is the most feared karana for new beginnings."
+      />
     </div>
   );
 }
 
 export default function Module7_2Page() {
-  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />, <Page4 key="p4" />]} questions={QUESTIONS} />;
 }

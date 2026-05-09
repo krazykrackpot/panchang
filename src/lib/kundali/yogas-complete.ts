@@ -1,6 +1,6 @@
 import type { LocaleText } from '@/types/panchang';
+import { EXALTATION_SIGNS, DEBILITATION_SIGNS, OWN_SIGNS } from '@/lib/constants/dignities';
 // yogas-complete.ts — Comprehensive Vedic Yoga Detection Library (150+ yogas)
-// Pure logic, no imports needed.
 
 export interface YogaComplete {
   id: string;
@@ -26,6 +26,8 @@ interface PlanetData {
   isExalted: boolean;
   isDebilitated: boolean;
   isOwnSign: boolean;
+  navamshaSign?: number;        // 1-12, D9 sign
+  isPushkarNavamsha?: boolean;  // true if in a Pushkara Navamsha position
 }
 
 // ---------------------------------------------------------------------------
@@ -3377,7 +3379,320 @@ function detectMoonSignYogas(planets: PlanetData[], ascSign: number): YogaComple
   return results;
 }
 
-export function detectAllYogas(planets: PlanetData[], ascendantSign: number): YogaComplete[] {
+// ---------------------------------------------------------------------------
+// Navamsha (D9) Yogas
+// ---------------------------------------------------------------------------
+
+function detectNavamshaYogas(planets: PlanetData[], ascendantSign: number, ascendantLongitude?: number): YogaComplete[] {
+  const results: YogaComplete[] = [];
+
+  // Helper: compute navamsha sign from longitude (1-based, 1=Aries..12=Pisces)
+  function navamshaSignFromLong(longitude: number): number {
+    const navamshaIndex = Math.floor((longitude % 360) / (360 / 108)); // 108 navamshas total
+    return (navamshaIndex % 12) + 1;
+  }
+
+  // 1. Vargottama Lagna — ascendant sign same in D1 and D9
+  if (ascendantLongitude !== undefined) {
+    const lagnaD9Sign = navamshaSignFromLong(ascendantLongitude);
+    const isVargottamaLagna = ascendantSign === lagnaD9Sign;
+    results.push({
+      id: 'vargottama_lagna',
+      name: {
+        en: 'Vargottama Lagna',
+        hi: 'वर्गोत्तम लग्न',
+        sa: 'वर्गोत्तमलग्नम्',
+      },
+      category: 'other',
+      isAuspicious: true,
+      present: isVargottamaLagna,
+      strength: isVargottamaLagna ? 'Strong' : 'Weak',
+      formationRule: {
+        en: 'Ascendant (lagna) occupies the same sign in both D1 (rashi) and D9 (navamsha) — the lagna\'s energy is doubled.',
+        hi: 'लग्न D1 (राशि) और D9 (नवांश) दोनों में एक ही राशि में — लग्न की ऊर्जा दोगुनी हो जाती है।',
+        sa: 'लग्नं D1 (राशौ) D9 (नवांशे) च समानराशौ — लग्नस्य ऊर्जा द्विगुणा भवति।',
+      },
+      description: {
+        en: isVargottamaLagna
+          ? 'The ascendant is vargottama — its sign is identical in rashi and navamsha. This is highly auspicious, doubling the ascendant\'s strength and giving the native strong self-identity, resilience, and life direction.'
+          : 'The ascendant is not vargottama — D1 and D9 lagna signs differ.',
+        hi: isVargottamaLagna
+          ? 'लग्न वर्गोत्तम है — राशि और नवांश में इसकी राशि समान है। यह अत्यंत शुभ है, जो लग्न की शक्ति दोगुनी करता है।'
+          : 'लग्न वर्गोत्तम नहीं है — D1 और D9 लग्न राशियाँ भिन्न हैं।',
+        sa: isVargottamaLagna
+          ? 'लग्नं वर्गोत्तमं — राशौ नवांशे च तस्य राशिः समाना। अत्यन्तशुभं लग्नबलं द्विगुणयति।'
+          : 'लग्नं वर्गोत्तमं नास्ति — D1 D9 लग्नराशी भिन्ने।',
+      },
+    });
+  }
+
+  // 2. Pushkara Navamsha Yoga — 3+ planets in Pushkara Navamsha
+  const pushkaraCount = planets.filter(p => p.isPushkarNavamsha === true).length;
+  results.push({
+    id: 'pushkara_navamsha_yoga',
+    name: {
+      en: 'Pushkara Navamsha Yoga',
+      hi: 'पुष्कर नवांश योग',
+      sa: 'पुष्करनवांशयोगः',
+    },
+    category: 'other',
+    isAuspicious: true,
+    present: pushkaraCount >= 3,
+    strength: pushkaraCount >= 5 ? 'Strong' : pushkaraCount >= 4 ? 'Moderate' : 'Weak',
+    formationRule: {
+      en: '3 or more planets in Pushkara Navamsha positions — the most auspicious D9 divisions.',
+      hi: '3 या अधिक ग्रह पुष्कर नवांश स्थानों में — सबसे शुभ D9 विभाग।',
+      sa: 'त्रयः वा अधिकाः ग्रहाः पुष्करनवांशस्थानेषु — अत्यन्तशुभं D9 विभागम्।',
+    },
+    description: {
+      en: `${pushkaraCount} planet(s) in Pushkara Navamsha. These nourishing positions amplify planetary beneficence, granting luck, protection, and abundance in the areas governed by those planets.`,
+      hi: `${pushkaraCount} ग्रह पुष्कर नवांश में। ये पोषक स्थितियाँ ग्रहों की शुभता बढ़ाती हैं, उन ग्रहों द्वारा शासित क्षेत्रों में भाग्य, सुरक्षा और समृद्धि प्रदान करती हैं।`,
+      sa: `${pushkaraCount} ग्रहाः पुष्करनवांशे। एतानि पोषकस्थानानि ग्रहशुभत्वं वर्धयन्ति, तैः ग्रहैः शासितक्षेत्रेषु भाग्यं रक्षां समृद्धिं च प्रयच्छन्ति।`,
+    },
+  });
+
+  // 3. Navamsha Parivartana — two planets exchange signs in D9
+  // Planet A's D9 sign = Planet B's D1 sign AND Planet B's D9 sign = Planet A's D1 sign
+  const navParivartanaPairs: string[] = [];
+  for (let i = 0; i < planets.length; i++) {
+    for (let j = i + 1; j < planets.length; j++) {
+      const a = planets[i];
+      const b = planets[j];
+      if (a.navamshaSign && b.navamshaSign &&
+          a.navamshaSign === b.sign && b.navamshaSign === a.sign) {
+        navParivartanaPairs.push(`${GRAHA_EN[a.id]}-${GRAHA_EN[b.id]}`);
+      }
+    }
+  }
+  results.push({
+    id: 'navamsha_parivartana',
+    name: {
+      en: 'Navamsha Parivartana Yoga',
+      hi: 'नवांश परिवर्तन योग',
+      sa: 'नवांशपरिवर्तनयोगः',
+    },
+    category: 'other',
+    isAuspicious: true,
+    present: navParivartanaPairs.length > 0,
+    strength: navParivartanaPairs.length >= 2 ? 'Strong' : 'Moderate',
+    formationRule: {
+      en: 'Two planets exchange signs between D1 and D9 — planet A\'s navamsha sign is planet B\'s rashi sign and vice versa.',
+      hi: 'दो ग्रह D1 और D9 के बीच राशि विनिमय करते हैं — ग्रह A का नवांश राशि ग्रह B का राशि है और इसके विपरीत।',
+      sa: 'द्वौ ग्रहौ D1-D9-मध्ये राशिविनिमयं कुरुतः — ग्रहस्य A नवांशराशिः ग्रहस्य B राशिः इति विपर्ययेण च।',
+    },
+    description: {
+      en: navParivartanaPairs.length > 0
+        ? `D9 exchange between ${navParivartanaPairs.join(', ')}. This powerful exchange creates a deep karmic bond between the planets, strengthening both in their D9 significations — marriage, dharma, and inner purpose.`
+        : 'No navamsha exchange found between any planet pair.',
+      hi: navParivartanaPairs.length > 0
+        ? `${navParivartanaPairs.join(', ')} के बीच D9 विनिमय। यह शक्तिशाली विनिमय ग्रहों के बीच गहरा कार्मिक बंधन बनाता है।`
+        : 'किसी ग्रह जोड़ी के बीच नवांश विनिमय नहीं पाया गया।',
+      sa: navParivartanaPairs.length > 0
+        ? `${navParivartanaPairs.join(', ')} मध्ये D9 विनिमयः। एषः शक्तिमान् विनिमयः ग्रहयोः मध्ये गभीरं कार्मिकबन्धनं रचयति।`
+        : 'कस्यापि ग्रहयुगलस्य मध्ये नवांशविनिमयः न दृष्टः।',
+    },
+  });
+
+  // 4. D9 Exaltation Yoga — planet exalted in navamsha
+  for (let i = 0; i < planets.length; i++) {
+    const p = planets[i];
+    if (p.navamshaSign === undefined) continue;
+    const exaltSign = EXALTATION_SIGNS[p.id];
+    if (exaltSign === undefined) continue; // Rahu/Ketu don't have standard exaltation
+    const isD9Exalted = p.navamshaSign === exaltSign;
+    results.push({
+      id: `d9_exalt_${GRAHA_EN[p.id].toLowerCase()}`,
+      name: {
+        en: `D9 Exaltation — ${GRAHA_EN[p.id]}`,
+        hi: `D9 उच्च — ${GRAHA_HI[p.id]}`,
+        sa: `D9 उच्चम् — ${GRAHA_EN[p.id]}`,
+      },
+      category: 'other',
+      isAuspicious: true,
+      present: isD9Exalted,
+      strength: isD9Exalted ? 'Moderate' : 'Weak',
+      formationRule: {
+        en: `${GRAHA_EN[p.id]} in its exaltation sign in Navamsha (D9) — deep inner strength in ${GRAHA_EN[p.id]}'s significations.`,
+        hi: `${GRAHA_HI[p.id]} नवांश (D9) में अपनी उच्च राशि में — ${GRAHA_HI[p.id]} के कारकत्वों में गहरी आंतरिक शक्ति।`,
+        sa: `${GRAHA_EN[p.id]} नवांशे (D9) स्वोच्चराशौ — ${GRAHA_EN[p.id]} कारकत्वेषु गभीरा आन्तरिकशक्तिः।`,
+      },
+      description: {
+        en: isD9Exalted
+          ? `${GRAHA_EN[p.id]} is exalted in D9, indicating deep soul-level strength. The planet's qualities manifest powerfully in marriage, dharma, and spiritual life.`
+          : `${GRAHA_EN[p.id]} is not exalted in D9.`,
+        hi: isD9Exalted
+          ? `${GRAHA_HI[p.id]} D9 में उच्च है, जो गहरी आत्म-स्तरीय शक्ति दर्शाता है।`
+          : `${GRAHA_HI[p.id]} D9 में उच्च नहीं है।`,
+        sa: isD9Exalted
+          ? `${GRAHA_EN[p.id]} D9 उच्चराशौ, गभीरां आत्मस्तरीयां शक्तिं दर्शयति।`
+          : `${GRAHA_EN[p.id]} D9 उच्चराशौ नास्ति।`,
+      },
+    });
+  }
+
+  // 5. D9 Debilitation Yoga — planet debilitated in navamsha
+  for (let i = 0; i < planets.length; i++) {
+    const p = planets[i];
+    if (p.navamshaSign === undefined) continue;
+    const debSign = DEBILITATION_SIGNS[p.id];
+    if (debSign === undefined) continue;
+    const isD9Debilitated = p.navamshaSign === debSign;
+    results.push({
+      id: `d9_debil_${GRAHA_EN[p.id].toLowerCase()}`,
+      name: {
+        en: `D9 Debilitation — ${GRAHA_EN[p.id]}`,
+        hi: `D9 नीच — ${GRAHA_HI[p.id]}`,
+        sa: `D9 नीचम् — ${GRAHA_EN[p.id]}`,
+      },
+      category: 'inauspicious',
+      isAuspicious: false,
+      present: isD9Debilitated,
+      strength: isD9Debilitated ? 'Moderate' : 'Weak',
+      formationRule: {
+        en: `${GRAHA_EN[p.id]} in its debilitation sign in Navamsha (D9) — inner weakness in ${GRAHA_EN[p.id]}'s areas.`,
+        hi: `${GRAHA_HI[p.id]} नवांश (D9) में अपनी नीच राशि में — ${GRAHA_HI[p.id]} के क्षेत्रों में आंतरिक दुर्बलता।`,
+        sa: `${GRAHA_EN[p.id]} नवांशे (D9) स्वनीचराशौ — ${GRAHA_EN[p.id]} क्षेत्रेषु आन्तरिकदौर्बल्यम्।`,
+      },
+      description: {
+        en: isD9Debilitated
+          ? `${GRAHA_EN[p.id]} is debilitated in D9, suggesting inner weakness or karmic challenges in ${GRAHA_EN[p.id]}'s significations — marriage, spirituality, and dharma may require extra conscious effort.`
+          : `${GRAHA_EN[p.id]} is not debilitated in D9.`,
+        hi: isD9Debilitated
+          ? `${GRAHA_HI[p.id]} D9 में नीच है, जो ${GRAHA_HI[p.id]} के कारकत्वों में आंतरिक दुर्बलता या कार्मिक चुनौतियाँ सुझाता है।`
+          : `${GRAHA_HI[p.id]} D9 में नीच नहीं है।`,
+        sa: isD9Debilitated
+          ? `${GRAHA_EN[p.id]} D9 नीचराशौ, आन्तरिकदौर्बल्यं कार्मिकप्रत्यूहान् वा ${GRAHA_EN[p.id]} कारकत्वेषु सूचयति।`
+          : `${GRAHA_EN[p.id]} D9 नीचराशौ नास्ति।`,
+      },
+    });
+  }
+
+  // 6. Navamsha Rajayoga — Jupiter AND Venus both in benefic navamsha signs
+  // Benefic D9 signs: Sagittarius(9), Pisces(12), Taurus(2), Libra(7), Cancer(4)
+  const BENEFIC_D9_SIGNS = [9, 12, 2, 7, 4];
+  const jupiter = getP(planets, 4);
+  const venus = getP(planets, 5);
+  const jupInBeneficD9 = jupiter.navamshaSign !== undefined && BENEFIC_D9_SIGNS.includes(jupiter.navamshaSign);
+  const venInBeneficD9 = venus.navamshaSign !== undefined && BENEFIC_D9_SIGNS.includes(venus.navamshaSign);
+  const navRajayoga = jupInBeneficD9 && venInBeneficD9;
+  results.push({
+    id: 'navamsha_rajayoga',
+    name: {
+      en: 'Navamsha Rajayoga',
+      hi: 'नवांश राजयोग',
+      sa: 'नवांशराजयोगः',
+    },
+    category: 'raja',
+    isAuspicious: true,
+    present: navRajayoga,
+    strength: navRajayoga ? 'Strong' : 'Weak',
+    formationRule: {
+      en: 'Jupiter and Venus both in benefic navamsha signs (Sagittarius, Pisces, Taurus, Libra, or Cancer) — double benefic strength in D9.',
+      hi: 'बृहस्पति और शुक्र दोनों शुभ नवांश राशियों (धनु, मीन, वृषभ, तुला, या कर्क) में — D9 में दोहरी शुभ शक्ति।',
+      sa: 'बृहस्पतिशुक्रौ उभौ शुभनवांशराशिषु (धनुमीनवृषभतुलाकर्कटेषु) — D9 द्विगुणशुभबलम्।',
+    },
+    description: {
+      en: navRajayoga
+        ? 'Both Jupiter and Venus occupy benefic navamsha signs, creating powerful D9 Rajayoga. This blesses marriage, dharma, wealth, and spiritual growth with strong benefic support at the soul level.'
+        : 'Jupiter and Venus are not both in benefic navamsha signs.',
+      hi: navRajayoga
+        ? 'बृहस्पति और शुक्र दोनों शुभ नवांश राशियों में हैं, शक्तिशाली D9 राजयोग बना रहे हैं।'
+        : 'बृहस्पति और शुक्र दोनों शुभ नवांश राशियों में नहीं हैं।',
+      sa: navRajayoga
+        ? 'बृहस्पतिशुक्रौ उभौ शुभनवांशराशिषु स्थितौ, शक्तिमन्तं D9 राजयोगं रचयतः।'
+        : 'बृहस्पतिशुक्रौ उभौ शुभनवांशराशिषु न स्थितौ।',
+    },
+  });
+
+  // 7. Navamsha Neecha Bhanga — debilitated in D1 but own/exalted in D9
+  for (let i = 0; i < planets.length; i++) {
+    const p = planets[i];
+    if (p.navamshaSign === undefined) continue;
+    if (!p.isDebilitated) continue; // only applies to D1-debilitated planets
+    const ownSigns = OWN_SIGNS[p.id] ?? [];
+    const exaltSign = EXALTATION_SIGNS[p.id];
+    const isNeechaBhanga = ownSigns.includes(p.navamshaSign) || p.navamshaSign === exaltSign;
+    results.push({
+      id: `d9_neecha_bhanga_${GRAHA_EN[p.id].toLowerCase()}`,
+      name: {
+        en: `Navamsha Neecha Bhanga — ${GRAHA_EN[p.id]}`,
+        hi: `नवांश नीच भंग — ${GRAHA_HI[p.id]}`,
+        sa: `नवांशनीचभङ्गः — ${GRAHA_EN[p.id]}`,
+      },
+      category: 'other',
+      isAuspicious: true,
+      present: isNeechaBhanga,
+      strength: p.navamshaSign === exaltSign ? 'Strong' : 'Moderate',
+      formationRule: {
+        en: `${GRAHA_EN[p.id]} is debilitated in D1 but in own sign or exalted in D9 — cancellation of debilitation at the soul level.`,
+        hi: `${GRAHA_HI[p.id]} D1 में नीच लेकिन D9 में स्वराशि या उच्च — आत्म स्तर पर नीच भंग।`,
+        sa: `${GRAHA_EN[p.id]} D1 नीचे परन्तु D9 स्वराशौ उच्चे वा — आत्मस्तरे नीचभङ्गः।`,
+      },
+      description: {
+        en: isNeechaBhanga
+          ? `${GRAHA_EN[p.id]}'s D1 debilitation is cancelled in D9 — the planet's weakness on the surface hides deep inner strength. Over time, ${GRAHA_EN[p.id]}'s significations improve dramatically, especially in marriage and dharmic pursuits.`
+          : `${GRAHA_EN[p.id]} is debilitated in D1 without D9 cancellation.`,
+        hi: isNeechaBhanga
+          ? `${GRAHA_HI[p.id]} की D1 नीचता D9 में रद्द हो गई है — सतह पर ग्रह की दुर्बलता गहरी आंतरिक शक्ति छुपाती है।`
+          : `${GRAHA_HI[p.id]} D1 में नीच है बिना D9 रद्दीकरण के।`,
+        sa: isNeechaBhanga
+          ? `${GRAHA_EN[p.id]} D1 नीचता D9 मध्ये निरस्ता — पृष्ठभागे ग्रहदौर्बल्यं गभीरां आन्तरिकशक्तिं गूहति।`
+          : `${GRAHA_EN[p.id]} D1 नीचे D9 निरासनं विना।`,
+      },
+    });
+  }
+
+  // 8. D9 Atmakaraka Strength — Atmakaraka in own/exalted sign in D9 (Karakamsha)
+  // Atmakaraka = planet with highest longitude within its sign (max longitude % 30) among Sun-Saturn (0-6)
+  const sunToSaturn = planets.filter(p => p.id >= 0 && p.id <= 6);
+  let atmakaraka: PlanetData | null = null;
+  let maxDegInSign = -1;
+  for (const p of sunToSaturn) {
+    const degInSign = p.longitude % 30;
+    if (degInSign > maxDegInSign) {
+      maxDegInSign = degInSign;
+      atmakaraka = p;
+    }
+  }
+
+  if (atmakaraka && atmakaraka.navamshaSign !== undefined) {
+    const akOwnSigns = OWN_SIGNS[atmakaraka.id] ?? [];
+    const akExaltSign = EXALTATION_SIGNS[atmakaraka.id];
+    const akStrong = akOwnSigns.includes(atmakaraka.navamshaSign) || atmakaraka.navamshaSign === akExaltSign;
+    results.push({
+      id: 'd9_atmakaraka_strength',
+      name: {
+        en: 'D9 Atmakaraka Strength',
+        hi: 'D9 आत्मकारक बल',
+        sa: 'D9 आत्मकारकबलम्',
+      },
+      category: 'other',
+      isAuspicious: true,
+      present: akStrong,
+      strength: atmakaraka.navamshaSign === akExaltSign ? 'Strong' : akOwnSigns.includes(atmakaraka.navamshaSign) ? 'Moderate' : 'Weak',
+      formationRule: {
+        en: `Atmakaraka (${GRAHA_EN[atmakaraka.id]}) in own or exalted sign in D9 (Karakamsha) — Jaimini considers this the most important D9 placement.`,
+        hi: `आत्मकारक (${GRAHA_HI[atmakaraka.id]}) D9 (कारकांश) में स्वराशि या उच्च — जैमिनि इसे सबसे महत्वपूर्ण D9 स्थिति मानते हैं।`,
+        sa: `आत्मकारकः (${GRAHA_EN[atmakaraka.id]}) D9 (कारकांशे) स्वराशौ उच्चे वा — जैमिनिः एतत् सर्वाधिकमहत्त्वपूर्णं D9 स्थानं मन्यते।`,
+      },
+      description: {
+        en: akStrong
+          ? `The Atmakaraka ${GRAHA_EN[atmakaraka.id]} is dignified in D9 (Karakamsha), indicating a strong soul purpose. The native's deepest dharma is well-supported, with clarity of life direction and spiritual maturity.`
+          : `The Atmakaraka ${GRAHA_EN[atmakaraka.id]} is not in own or exalted sign in D9 — the soul's purpose may require more conscious cultivation.`,
+        hi: akStrong
+          ? `आत्मकारक ${GRAHA_HI[atmakaraka.id]} D9 (कारकांश) में बलवान है, मजबूत आत्म उद्देश्य दर्शाता है।`
+          : `आत्मकारक ${GRAHA_HI[atmakaraka.id]} D9 में स्वराशि या उच्च में नहीं है।`,
+        sa: akStrong
+          ? `आत्मकारकः ${GRAHA_EN[atmakaraka.id]} D9 (कारकांशे) बलवान्, दृढं आत्मप्रयोजनं दर्शयति।`
+          : `आत्मकारकः ${GRAHA_EN[atmakaraka.id]} D9 स्वराशौ उच्चे वा नास्ति।`,
+      },
+    });
+  }
+
+  return results;
+}
+
+export function detectAllYogas(planets: PlanetData[], ascendantSign: number, ascendantLongitude?: number): YogaComplete[] {
   return [
     ...detectDoshaYogas(planets, ascendantSign),
     ...detectExtendedDoshas(planets, ascendantSign),
@@ -3411,5 +3726,6 @@ export function detectAllYogas(planets: PlanetData[], ascendantSign: number): Yo
     ...detectNamedDhanaYogas(planets, ascendantSign),
     ...detectAdditionalArishtaYogas(planets, ascendantSign),
     ...detectMoonSignYogas(planets, ascendantSign),
+    ...detectNavamshaYogas(planets, ascendantSign, ascendantLongitude),
   ];
 }

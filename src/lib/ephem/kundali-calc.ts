@@ -799,6 +799,10 @@ export function generateKundali(birthData: BirthData): KundaliData {
     const d9SignIdx = navamshaSignMap.get(p.planet.id);
     // Vargottama: D1 sign index === D9 sign index (both 0-based from Aries)
     p.isVargottama = d9SignIdx !== undefined && d1SignIdx === d9SignIdx;
+    // Store navamsha sign (1-based) for downstream yoga detection
+    if (d9SignIdx !== undefined) {
+      p.navamshaSign = d9SignIdx + 1; // convert 0-based to 1-based (1=Aries..12=Pisces)
+    }
   });
 
   // Mrityu Bhaga — one dangerous degree per sign per planet (Narada Purana/BPHS tradition)
@@ -1107,8 +1111,11 @@ export function generateKundali(birthData: BirthData): KundaliData {
       isExalted: p.isExalted,
       isDebilitated: p.isDebilitated,
       isOwnSign: p.isOwnSign,
+      navamshaSign: p.navamshaSign,
+      isPushkarNavamsha: p.isPushkarNavamsha,
     })),
-    ascSign
+    ascSign,
+    siderealAsc
   );
 
   // Sade Sati analysis

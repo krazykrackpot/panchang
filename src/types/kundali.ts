@@ -47,6 +47,8 @@ export interface PlanetPosition {
   isMrityuBhaga?: boolean;
   isPushkarNavamsha?: boolean;
   isPushkarBhaga?: boolean;
+  /** Navamsha (D9) sign — 1-12. Computed from longitude: floor((longitude % 30) / 3.333...) mapped to navamsha cycle */
+  navamshaSign?: number;
 }
 
 export interface BhriguBindu {

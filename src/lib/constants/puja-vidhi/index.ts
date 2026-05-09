@@ -44,6 +44,12 @@ import { PONGAL_PUJA } from './pongal';
 import { BAISAKHI_PUJA } from './baisakhi';
 import { UGADI_PUJA } from './ugadi';
 import { BIHU_PUJA } from './bihu';
+import { GANGA_DUSSEHRA_PUJA } from './ganga-dussehra';
+import { HARIYALI_TEEJ_PUJA } from './hariyali-teej';
+import { DEVSHAYANI_EKADASHI_PUJA } from './devshayani-ekadashi';
+import { DEVUTTHANA_EKADASHI_PUJA } from './devutthana-ekadashi';
+import { KAMADA_EKADASHI_PUJA } from './kamada-ekadashi';
+import { ONAM_PUJA } from './onam';
 
 export const PUJA_VIDHIS: Record<string, PujaVidhi> = {
   'ganesh-chaturthi': GANESH_CHATURTHI_PUJA,
@@ -90,6 +96,12 @@ export const PUJA_VIDHIS: Record<string, PujaVidhi> = {
   'baisakhi': BAISAKHI_PUJA,
   'ugadi': UGADI_PUJA,
   'bihu': BIHU_PUJA,
+  'ganga-dussehra': GANGA_DUSSEHRA_PUJA,
+  'hariyali-teej': HARIYALI_TEEJ_PUJA,
+  'devshayani-ekadashi': DEVSHAYANI_EKADASHI_PUJA,
+  'devutthana-ekadashi': DEVUTTHANA_EKADASHI_PUJA,
+  'kamada-ekadashi': KAMADA_EKADASHI_PUJA,
+  'onam': ONAM_PUJA,
   ...GRAHA_SHANTI_VIDHIS,
 };
 

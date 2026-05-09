@@ -260,6 +260,9 @@ const routes = [
   // Vivah Muhurat (yearly SEO pages)
   '/vivah-muhurat/2026',
   '/vivah-muhurat/2027',
+  // Hindu Calendar (yearly SEO pages)
+  '/hindu-calendar/2026',
+  '/hindu-calendar/2027',
   // Tools (additions)
   '/rudraksha',
   // Learn modules (structured curriculum)

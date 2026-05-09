@@ -1566,6 +1566,114 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       },
     },
   ],
+
+  // ─── /hindu-calendar/2026 ──────────────────────────────────
+  '/hindu-calendar/2026': [
+    {
+      question: {
+        en: 'When is Diwali in 2026?',
+        hi: 'दीवाली 2026 में कब है?',
+      },
+      answer: {
+        en: 'Diwali in 2026 falls on Thursday, 8 October 2026 (Kartika Krishna Amavasya). Dhanteras is on 6 October and Bhai Dooj on 10 October.',
+        hi: '2026 में दीवाली गुरुवार, 8 अक्टूबर 2026 (कार्तिक कृष्ण अमावस्या) को है। धनतेरस 6 अक्टूबर और भाई दूज 10 अक्टूबर को है।',
+      },
+    },
+    {
+      question: {
+        en: 'How many Ekadashi vrats are there in 2026?',
+        hi: '2026 में कितनी एकादशी हैं?',
+      },
+      answer: {
+        en: 'There are 24 Ekadashi vrat dates in 2026 — two per lunar month (one in Shukla Paksha and one in Krishna Paksha). If an Adhika Masa (intercalary month) occurs, there may be 26 Ekadashis. Each Ekadashi has a specific name and significance from the Padma Purana.',
+        hi: '2026 में 24 एकादशी व्रत तिथियाँ हैं — प्रत्येक चान्द्र मास में दो (एक शुक्ल पक्ष और एक कृष्ण पक्ष)। यदि अधिक मास आता है तो 26 एकादशी हो सकती हैं। प्रत्येक एकादशी का पद्म पुराण से विशेष नाम और महत्व है।',
+      },
+    },
+    {
+      question: {
+        en: 'When is Holi in 2026?',
+        hi: '2026 में होली कब है?',
+      },
+      answer: {
+        en: 'Holi in 2026 falls on Wednesday, 4 March 2026 (Phalguna Purnima). Holika Dahan is observed on the evening of 3 March.',
+        hi: '2026 में होली बुधवार, 4 मार्च 2026 (फाल्गुन पूर्णिमा) को है। होलिका दहन 3 मार्च की सन्ध्या को है।',
+      },
+    },
+    {
+      question: {
+        en: 'When is Navratri in 2026?',
+        hi: '2026 में नवरात्रि कब है?',
+      },
+      answer: {
+        en: 'Sharad Navratri in 2026 begins on Wednesday, 30 September and ends on Thursday, 8 October (Dussehra/Vijayadashami). Chaitra Navratri begins on Thursday, 19 March 2026.',
+        hi: '2026 में शारदीय नवरात्रि बुधवार, 30 सितम्बर से प्रारम्भ होकर गुरुवार, 8 अक्टूबर (दशहरा/विजयादशमी) तक है। चैत्र नवरात्रि गुरुवार, 19 मार्च 2026 से आरम्भ होती है।',
+      },
+    },
+    {
+      question: {
+        en: 'What eclipses occur in 2026?',
+        hi: '2026 में कौन-कौन से ग्रहण हैं?',
+      },
+      answer: {
+        en: 'In 2026, there are two solar eclipses and two lunar eclipses. The exact dates and visibility depend on geographic location. Check the full eclipse calendar for Sutak timings and visibility details.',
+        hi: '2026 में दो सूर्य ग्रहण और दो चन्द्र ग्रहण हैं। सटीक तिथियाँ और दृश्यता भौगोलिक स्थिति पर निर्भर करती हैं। सूतक काल और दृश्यता विवरण के लिए पूर्ण ग्रहण कैलेंडर देखें।',
+      },
+    },
+  ],
+
+  // ─── /hindu-calendar/2027 ──────────────────────────────────
+  '/hindu-calendar/2027': [
+    {
+      question: {
+        en: 'When is Diwali in 2027?',
+        hi: 'दीवाली 2027 में कब है?',
+      },
+      answer: {
+        en: 'Diwali in 2027 falls on Monday, 27 October 2027 (Kartika Krishna Amavasya). Dhanteras is on 25 October and Bhai Dooj on 29 October.',
+        hi: '2027 में दीवाली सोमवार, 27 अक्टूबर 2027 (कार्तिक कृष्ण अमावस्या) को है। धनतेरस 25 अक्टूबर और भाई दूज 29 अक्टूबर को है।',
+      },
+    },
+    {
+      question: {
+        en: 'How many Ekadashi vrats are there in 2027?',
+        hi: '2027 में कितनी एकादशी हैं?',
+      },
+      answer: {
+        en: 'There are 24 Ekadashi vrat dates in 2027 — two per lunar month (one in Shukla Paksha and one in Krishna Paksha). Each Ekadashi has a unique name and spiritual significance from the Padma Purana and Bhavishya Purana.',
+        hi: '2027 में 24 एकादशी व्रत तिथियाँ हैं — प्रत्येक चान्द्र मास में दो। प्रत्येक एकादशी का पद्म पुराण और भविष्य पुराण से अनन्य नाम और आध्यात्मिक महत्व है।',
+      },
+    },
+    {
+      question: {
+        en: 'When is Holi in 2027?',
+        hi: '2027 में होली कब है?',
+      },
+      answer: {
+        en: 'Holi in 2027 falls on Monday, 22 March 2027 (Phalguna Purnima). Holika Dahan is observed on the evening of 21 March.',
+        hi: '2027 में होली सोमवार, 22 मार्च 2027 (फाल्गुन पूर्णिमा) को है। होलिका दहन 21 मार्च की सन्ध्या को है।',
+      },
+    },
+    {
+      question: {
+        en: 'When is Navratri in 2027?',
+        hi: '2027 में नवरात्रि कब है?',
+      },
+      answer: {
+        en: 'Sharad Navratri in 2027 begins on Monday, 18 October and ends on Tuesday, 26 October (Dussehra/Vijayadashami). Chaitra Navratri begins on Saturday, 6 March 2027.',
+        hi: '2027 में शारदीय नवरात्रि सोमवार, 18 अक्टूबर से प्रारम्भ होकर मंगलवार, 26 अक्टूबर (दशहरा/विजयादशमी) तक है। चैत्र नवरात्रि शनिवार, 6 मार्च 2027 से आरम्भ होती है।',
+      },
+    },
+    {
+      question: {
+        en: 'What eclipses occur in 2027?',
+        hi: '2027 में कौन-कौन से ग्रहण हैं?',
+      },
+      answer: {
+        en: 'In 2027, there are two solar eclipses and two lunar eclipses. A total lunar eclipse is expected to be visible from India. Check the full eclipse calendar for exact dates, Sutak timings, and visibility maps.',
+        hi: '2027 में दो सूर्य ग्रहण और दो चन्द्र ग्रहण हैं। एक पूर्ण चन्द्र ग्रहण भारत से दृश्य होने की सम्भावना है। सटीक तिथियों, सूतक काल और दृश्यता मानचित्र के लिए पूर्ण ग्रहण कैलेंडर देखें।',
+      },
+    },
+  ],
 };
 
 /**

@@ -108,6 +108,34 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['hindu calendar', 'festival calendar 2026', 'ekadashi dates', 'purnima dates', 'vrat calendar'],
   },
 
+  // ─── Hindu Calendar (yearly SEO pages) ───────────────────────
+  '/hindu-calendar/2026': {
+    title: {
+      en: 'Hindu Calendar 2026 — Complete Festival, Vrat & Eclipse Dates',
+      hi: 'हिन्दू कैलेंडर 2026 — सम्पूर्ण त्योहार, व्रत एवं ग्रहण तिथियाँ',
+      sa: 'हिन्दूपञ्चाङ्गम् २०२६ — सम्पूर्णपर्वव्रतग्रहणतिथयः',
+    },
+    description: {
+      en: 'Complete Hindu calendar for 2026 — all 180+ festivals, 24 Ekadashi vrat dates, eclipses, Purnima & Amavasya. Month-by-month with exact dates for every major Hindu festival.',
+      hi: '2026 का सम्पूर्ण हिन्दू कैलेंडर — 180+ त्योहार, 24 एकादशी व्रत तिथियाँ, ग्रहण, पूर्णिमा एवं अमावस्या। प्रत्येक प्रमुख हिन्दू त्योहार की सटीक तिथियाँ।',
+      sa: '२०२६ वर्षस्य सम्पूर्णं हिन्दूपञ्चाङ्गम् — १८०+ पर्वाणि २४ एकादशीव्रततिथयः ग्रहणानि पूर्णिमा अमावास्या च।',
+    },
+    keywords: ['hindu calendar 2026', 'hindu panchang 2026', 'हिन्दू कैलेंडर 2026', 'hindu festival dates 2026', 'vrat dates 2026', 'ekadashi 2026', 'diwali 2026 date', 'holi 2026 date'],
+  },
+  '/hindu-calendar/2027': {
+    title: {
+      en: 'Hindu Calendar 2027 — Complete Festival, Vrat & Eclipse Dates',
+      hi: 'हिन्दू कैलेंडर 2027 — सम्पूर्ण त्योहार, व्रत एवं ग्रहण तिथियाँ',
+      sa: 'हिन्दूपञ्चाङ्गम् २०२७ — सम्पूर्णपर्वव्रतग्रहणतिथयः',
+    },
+    description: {
+      en: 'Complete Hindu calendar for 2027 — all 180+ festivals, 24 Ekadashi vrat dates, eclipses, Purnima & Amavasya. Month-by-month with exact dates for every major Hindu festival.',
+      hi: '2027 का सम्पूर्ण हिन्दू कैलेंडर — 180+ त्योहार, 24 एकादशी व्रत तिथियाँ, ग्रहण, पूर्णिमा एवं अमावस्या। प्रत्येक प्रमुख हिन्दू त्योहार की सटीक तिथियाँ।',
+      sa: '२०२७ वर्षस्य सम्पूर्णं हिन्दूपञ्चाङ्गम् — १८०+ पर्वाणि २४ एकादशीव्रततिथयः ग्रहणानि पूर्णिमा अमावास्या च।',
+    },
+    keywords: ['hindu calendar 2027', 'hindu panchang 2027', 'हिन्दू कैलेंडर 2027', 'hindu festival dates 2027', 'vrat dates 2027', 'diwali 2027 date', 'holi 2027 date', 'navratri 2027'],
+  },
+
   '/ekadashi': {
     title: {
       en: 'Ekadashi 2026 — All 24 Dates, Names, Stories & Benefits | Dekho Panchang',

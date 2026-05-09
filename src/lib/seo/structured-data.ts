@@ -33,6 +33,7 @@ const DISPLAY_NAMES: Record<string, string> = {
   muhurat: 'Muhurat',
   muhurta: 'Muhurta',
   'vivah-muhurat': 'Vivah Muhurat',
+  'hindu-calendar': 'Hindu Calendar',
   wedding: 'Wedding Muhurat',
   'griha-pravesh': 'Griha Pravesh Muhurat',
   'vehicle-purchase': 'Vehicle Purchase Muhurat',

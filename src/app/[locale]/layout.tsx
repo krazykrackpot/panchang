@@ -7,7 +7,8 @@ import { locales, visibleLocales, type Locale } from '@/lib/i18n/config';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import StarField from '@/components/layout/StarField';
-import SignupPrompt from '@/components/auth/SignupPrompt';
+// SignupPrompt (full-screen modal) removed — too aggressive, hurts bounce rate.
+// SignupBanner (subtle bottom-right card, 10s delay, 7-day dismiss) in ClientShell handles this.
 import { Analytics } from '@vercel/analytics/react';
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import ClientShell from '@/components/layout/ClientShell';
@@ -160,7 +161,6 @@ export default async function LocaleLayout({
           </a>
           <StarField />
           <Navbar />
-          <SignupPrompt />
           <main id="main-content" className="relative z-10 pt-16 min-h-screen overflow-x-hidden" role="main">
             <ScrollToTop />
             {children}

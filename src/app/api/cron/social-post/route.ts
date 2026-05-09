@@ -77,37 +77,111 @@ export async function GET(request: Request) {
     const startOfYear = Date.UTC(year, 0, 0);
     const dayOfYear = Math.floor((Date.UTC(year, month - 1, day) - startOfYear) / 86400000);
 
+    // Alternate language: even dayOfYear = English, odd = Hindi
+    const useHindi = dayOfYear % 2 === 1;
+    const T = (obj: LocaleText) => useHindi ? (obj.hi || obj.en) : obj.en;
+    const siteBase = useHindi ? 'dekhopanchang.com/hi' : 'dekhopanchang.com/en';
+
+    // Check for upcoming major festivals (next 7 days) for countdown tweets
+    let upcomingFestival: { name: LocaleText; date: string; daysUntil: number } | null = null;
+    try {
+      const allFestivals = generateFestivalCalendarV2(year, UJJAIN_LAT, UJJAIN_LNG, UJJAIN_TZ);
+      const majorUpcoming = allFestivals
+        .filter(f => f.type === 'major')
+        .map(f => {
+          const fDate = new Date(f.date + 'T00:00:00Z');
+          const today = new Date(Date.UTC(year, month - 1, day));
+          const daysUntil = Math.round((fDate.getTime() - today.getTime()) / 86400000);
+          return { name: f.name, date: f.date, daysUntil };
+        })
+        .filter(f => f.daysUntil > 0 && f.daysUntil <= 7)
+        .sort((a, b) => a.daysUntil - b.daysUntil);
+      upcomingFestival = majorUpcoming[0] || null;
+    } catch (err) {
+      console.error('[social-post] Upcoming festival check failed:', err);
+    }
+
     let tweetText: string;
 
-    if (istDayOfWeek === 1) {
-      // Monday — Daily Panchang (existing logic)
+    // Priority 1: Festival countdown (if a major festival is within 7 days)
+    if (upcomingFestival) {
+      const fName = T(upcomingFestival.name);
+      const fDate = new Date(upcomingFestival.date + 'T00:00:00Z');
+      const fDateStr = fDate.toLocaleDateString(useHindi ? 'hi-IN' : 'en-IN', {
+        weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
+      });
+      const daysLabel = upcomingFestival.daysUntil === 1
+        ? (useHindi ? 'कल' : 'Tomorrow')
+        : (useHindi ? `${upcomingFestival.daysUntil} दिन बाकी` : `${upcomingFestival.daysUntil} days away`);
+
+      const tags = useHindi
+        ? '#पंचांग #त्योहार #हिन्दूकैलेंडर #DekhoPanchang'
+        : '#HinduFestival #Panchang #VedicCalendar #DekhoPanchang';
+
+      tweetText = truncateTweet([
+        useHindi ? `\u{1F31F} ${fName} — ${daysLabel}!` : `\u{1F31F} ${fName} — ${daysLabel}!`,
+        `\u{1F4C5} ${fDateStr}`,
+        '',
+        ...panchangHeader(panchang, new Date(Date.UTC(year, month - 1, day))
+          .toLocaleDateString(useHindi ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }),
+          T),
+        '',
+        useHindi
+          ? `शहर के अनुसार मुहूर्त देखें \u2192 ${siteBase}/calendar`
+          : `City-wise muhurta timing \u2192 ${siteBase}/calendar`,
+        '',
+        tags,
+      ]);
+    }
+    // Priority 2: Today IS a festival
+    else if (festivals.length > 0 && festivals.some(f => f.type === 'major')) {
+      const fest = festivals.find(f => f.type === 'major') || festivals[0];
+      const tags = useHindi
+        ? '#पंचांग #त्योहार #हिन्दूकैलेंडर #DekhoPanchang'
+        : '#HinduFestival #Panchang #VedicCalendar #DekhoPanchang';
+
+      tweetText = truncateTweet([
+        `\u{1F31F} ${T(fest.name)}!`,
+        '',
+        ...panchangHeader(panchang, new Date(Date.UTC(year, month - 1, day))
+          .toLocaleDateString(useHindi ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }),
+          T),
+        '',
+        useHindi
+          ? `आज का सम्पूर्ण पंचांग \u2192 ${siteBase}/panchang`
+          : `Full panchang for today \u2192 ${siteBase}/panchang`,
+        '',
+        tags,
+      ]);
+    }
+    // Priority 3: Monday = daily panchang, other days = educational rotation
+    else if (istDayOfWeek === 1) {
       const dateStr = new Date(Date.UTC(year, month - 1, day))
-        .toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+        .toLocaleDateString(useHindi ? 'hi-IN' : 'en-IN', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 
       tweetText = composeTweet({
         date: dateStr,
-        tithi: L(panchang.tithi.name),
-        nakshatra: L(panchang.nakshatra.name),
-        yoga: L(panchang.yoga.name),
-        vara: L(panchang.vara.name),
+        tithi: T(panchang.tithi.name),
+        nakshatra: T(panchang.nakshatra.name),
+        yoga: T(panchang.yoga.name),
+        vara: T(panchang.vara.name),
         sunrise: panchang.sunrise,
         sunset: panchang.sunset,
         rahuKaalStart: panchang.rahuKaal.start,
         rahuKaalEnd: panchang.rahuKaal.end,
         festivals: festivals.map(f => ({
-          name: L(f.name),
+          name: T(f.name),
           type: f.type,
         })),
         panchakWarning: panchang.panchakInfo?.isActive
-          ? `Panchak active — avoid southward travel, cremation`
+          ? (useHindi ? 'पंचक सक्रिय — दक्षिण यात्रा, दाह संस्कार से बचें' : 'Panchak active — avoid southward travel, cremation')
           : undefined,
         holashtakWarning: panchang.holashtak?.isActive
-          ? `Holashtak Day ${panchang.holashtak.dayNumber}/8 — avoid auspicious activities`
+          ? (useHindi ? `होलाष्टक दिन ${panchang.holashtak.dayNumber}/8 — शुभ कार्यों से बचें` : `Holashtak Day ${panchang.holashtak.dayNumber}/8 — avoid auspicious activities`)
           : undefined,
       });
     } else {
-      // All other days — educational content rotation
-      tweetText = composeEducationalTweet(istDayOfWeek, panchang, dayOfYear);
+      tweetText = composeEducationalTweet(istDayOfWeek, panchang, dayOfYear, useHindi, siteBase, T);
     }
 
     // Fetch multiple card images and upload to Twitter (up to 4 per tweet)
@@ -207,11 +281,10 @@ const SHANI_FACTS = [
 // ──────────────────────────────────────────────────────────────
 
 /** Build a compact panchang header that goes on EVERY tweet */
-function panchangHeader(panchang: PanchangData, dateStr: string): string[] {
-  const L = (obj: LocaleText) => obj.en;
+function panchangHeader(panchang: PanchangData, dateStr: string, T: (obj: LocaleText) => string = (obj) => obj.en): string[] {
   return [
     `\u{1F64F} ${dateStr}`,
-    `${L(panchang.tithi.name)} \u00b7 ${L(panchang.nakshatra.name)} \u00b7 ${L(panchang.vara.name)}`,
+    `${T(panchang.tithi.name)} \u00b7 ${T(panchang.nakshatra.name)} \u00b7 ${T(panchang.vara.name)}`,
     `\u26A0\uFE0F Rahu Kaal ${panchang.rahuKaal.start}\u2013${panchang.rahuKaal.end}`,
   ];
 }
@@ -220,12 +293,16 @@ function composeEducationalTweet(
   dayOfWeek: number,
   panchang: PanchangData,
   dayOfYear: number,
+  useHindi: boolean = false,
+  siteBase: string = 'dekhopanchang.com/en',
+  T: (obj: LocaleText) => string = (obj) => obj.en,
 ): string {
-  const L = (obj: LocaleText) => obj.en;
-  const tags = getTempleHashtags(dayOfYear);
+  const tags = useHindi
+    ? getHindiHashtags(dayOfYear)
+    : getTempleHashtags(dayOfYear);
   const today = new Date();
-  const dateStr = today.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' });
-  const header = panchangHeader(panchang, dateStr);
+  const dateStr = today.toLocaleDateString(useHindi ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' });
+  const header = panchangHeader(panchang, dateStr, T);
 
   switch (dayOfWeek) {
     case 0: { // Sunday — Panchang + Learn fact
@@ -235,7 +312,7 @@ function composeEducationalTweet(
         '',
         `\u{1F4A1} ${fact}`,
         '',
-        'dekhopanchang.com/en/panchang',
+        `${siteBase}/panchang`,
         '',
         tags,
       ]);
@@ -244,15 +321,15 @@ function composeEducationalTweet(
     case 2: { // Tuesday — Panchang + Nakshatra Deep Dive
       const nk = panchang.nakshatra;
       const detail = NAKSHATRA_DETAILS.find(d => d.id === nk.id);
-      const meaning = detail ? L(detail.meaning) : '';
+      const meaning = detail ? T(detail.meaning) : '';
       return truncateTweet([
         ...header,
         '',
-        `\u2726 ${L(nk.name)} Nakshatra`,
-        `Deity: ${L(nk.deity)} | Ruler: ${nk.ruler}`,
+        `\u2726 ${T(nk.name)} Nakshatra`,
+        `${useHindi ? 'देवता' : 'Deity'}: ${T(nk.deity)} | ${useHindi ? 'स्वामी' : 'Ruler'}: ${nk.ruler}`,
         meaning ? `\u2192 ${meaning}` : '',
         '',
-        'dekhopanchang.com/en/panchang',
+        `${siteBase}/panchang`,
         '',
         tags,
       ].filter(Boolean));
@@ -261,15 +338,15 @@ function composeEducationalTweet(
     case 3: { // Wednesday — Panchang + Yoga meaning
       const yoga = panchang.yoga;
       const yogaData = YOGAS.find(y => y.number === yoga.number);
-      const yogaMeaning = yogaData ? L(yogaData.meaning) : '';
+      const yogaMeaning = yogaData ? T(yogaData.meaning) : '';
       const yogaNature = yogaData ? yogaData.nature : '';
       return truncateTweet([
         ...header,
         '',
-        `\u{1F52E} Yoga: ${L(yoga.name)}${yogaMeaning ? ` (${yogaMeaning})` : ''}`,
-        yogaNature ? `Nature: ${yogaNature}` : '',
+        `\u{1F52E} ${useHindi ? 'योग' : 'Yoga'}: ${T(yoga.name)}${yogaMeaning ? ` (${yogaMeaning})` : ''}`,
+        yogaNature ? `${useHindi ? 'प्रकृति' : 'Nature'}: ${yogaNature}` : '',
         '',
-        'dekhopanchang.com/en/panchang',
+        `${siteBase}/panchang`,
         '',
         tags,
       ].filter(Boolean));
@@ -288,10 +365,10 @@ function composeEducationalTweet(
         return truncateTweet([
           ...header,
           '',
-          `\u{1FA90} ${upcomingArticle.title.en.split(':')[0]}`,
-          `${daysUntil} days until this major transit.`,
+          `\u{1FA90} ${useHindi ? (upcomingArticle.title.hi || upcomingArticle.title.en).split(':')[0] : upcomingArticle.title.en.split(':')[0]}`,
+          useHindi ? `इस बड़े गोचर में ${daysUntil} दिन बाकी।` : `${daysUntil} days until this major transit.`,
           '',
-          `dekhopanchang.com/en/learn/transits/${upcomingArticle.slug}`,
+          `${siteBase}/learn/transits/${upcomingArticle.slug}`,
           '',
           tags,
         ]);
@@ -303,7 +380,7 @@ function composeEducationalTweet(
         '',
         `\u{1FA90} ${fact}`,
         '',
-        'dekhopanchang.com/en/panchang',
+        `${siteBase}/panchang`,
         '',
         tags,
       ]);
@@ -316,7 +393,7 @@ function composeEducationalTweet(
         '',
         `\u{1F495} ${fact}`,
         '',
-        'dekhopanchang.com/en/matching',
+        `${siteBase}/matching`,
         '',
         tags,
       ]);
@@ -329,7 +406,7 @@ function composeEducationalTweet(
         '',
         `\u{1FA94} ${fact}`,
         '',
-        'dekhopanchang.com/en/sade-sati',
+        `${siteBase}/sade-sati`,
         '',
         tags,
       ]);
@@ -339,7 +416,7 @@ function composeEducationalTweet(
       return truncateTweet([
         ...header,
         '',
-        'dekhopanchang.com/en/panchang',
+        `${siteBase}/panchang`,
         '',
         tags,
       ]);
@@ -358,6 +435,19 @@ function getTempleHashtags(dayOfYear: number): string {
     '#Panchang #Jyotish #RahuKaal #Nakshatra #Dasha #राहुकाल',
   ];
   return TEMPLE_TAGS[dayOfYear % TEMPLE_TAGS.length];
+}
+
+function getHindiHashtags(dayOfYear: number): string {
+  const HINDI_TAGS = [
+    '#पंचांग #राशिफल #ज्योतिष #आजकापंचांग #DekhoPanchang',
+    '#राशिफल #दैनिकराशिफल #पंचांग #मुहूर्त #DekhoPanchang',
+    '#पंचांग #नक्षत्र #तिथि #राहुकाल #DekhoPanchang',
+    '#ज्योतिष #कुण्डली #राशिफल #पंचांग #DekhoPanchang',
+    '#पंचांग #शुभमुहूर्त #विवाहमुहूर्त #ज्योतिष #DekhoPanchang',
+    '#राशिफल #आजकाराशिफल #पंचांग #ज्योतिष #DekhoPanchang',
+    '#पंचांग #शनिदेव #साढ़ेसाती #ज्योतिष #DekhoPanchang',
+  ];
+  return HINDI_TAGS[dayOfYear % HINDI_TAGS.length];
 }
 
 /**

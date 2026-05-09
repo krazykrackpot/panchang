@@ -12,7 +12,7 @@ const META: ModuleMeta = {
   id: 'mod_23_2', phase: 10, topic: 'Prediction', moduleNumber: '23.2',
   title: L.title as unknown as Record<string, string>,
   subtitle: L.subtitle as unknown as Record<string, string>,
-  estimatedMinutes: 13,
+  estimatedMinutes: 16,
   crossRefs: L.crossRefs as unknown as Array<{label: Record<string, string>; href: string}>,
 };
 
@@ -29,42 +29,44 @@ function Page1() {
         points={[
           'Retrograde planets appear to move backward due to orbital mechanics — in Jyotish, retrograde gives a planet intensified and internalized energy.',
           'Combustion occurs when a planet is within a few degrees of the Sun and becomes invisible — it loses its ability to express its significations externally.',
+          'BPHS specifies different combustion orbs for retrograde Mercury (12°) and Venus (8°) — reduced from their direct-motion thresholds.',
         ]}
         locale={locale}
       />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{isHi ? 'वक्री — दृश्य पश्चगामी नृत्य' : 'Retrograde — The Apparent Backward Dance'}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>वक्री गति कक्षीय यांत्रिकी के कारण एक दृष्टि भ्रम है। कोई भी ग्रह वास्तव में दिशा नहीं बदलता — यह केवल पृथ्वी के परिप्रेक्ष्य से ऐसा दिखता है। राजमार्ग पर दो कारों की कल्पना करें: जब आप धीमी कार को पार करते हैं, तो वह कार दूर के पर्वतों की तुलना में पीछे जाती दिखती है। वही सिद्धान्त ग्रहों पर लागू होता है।</> : <>Retrograde motion is an optical illusion caused by orbital mechanics. No planet actually reverses direction — it only appears to from Earth&apos;s perspective. Think of two cars on a highway: when you overtake a slower car, that car seems to move backward relative to the distant mountains. The same principle applies to planets.</>}</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>वक्री गति कक्षीय यांत्रिकी के कारण एक दृष्टि भ्रम है। कोई भी ग्रह वास्तव में दिशा नहीं बदलता। राजमार्ग पर दो कारों की कल्पना करें: जब आप धीमी कार को पार करते हैं, तो वह कार दूर के पर्वतों की तुलना में पीछे जाती दिखती है। वही सिद्धान्त ग्रहों पर लागू होता है।</> : <>Retrograde motion is an optical illusion caused by orbital mechanics. No planet actually reverses direction. Think of two cars on a highway: when you overtake a slower car, that car seems to move backward relative to the distant mountains. The same principle applies to planets.</>}</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>भौतिक प्रक्रिया स्पष्ट है: जब पृथ्वी अपनी तीव्र आन्तरिक कक्षा में किसी बाह्य ग्रह (मंगल, बृहस्पति, शनि) को पार करती है, तो वह ग्रह तारकीय पृष्ठभूमि पर पीछे चलता दिखता है। आन्तरिक ग्रहों (बुध, शुक्र) के लिए प्रभाव विपरीत है — वे पृथ्वी से तेज़ हैं, अतः जब वे अवर युति (पृथ्वी और सूर्य के बीच) से गुज़रते हैं तब वक्री दिखते हैं। प्रत्येक ग्रह के लिए वक्री अवधि उसकी कक्षा यांत्रिकी द्वारा निश्चित है।</> : <>The physical process is clear: when Earth in its faster inner orbit overtakes an outer planet (Mars, Jupiter, Saturn), that planet appears to move backward against the stellar background. For inner planets (Mercury, Venus), the effect is reversed — they are faster than Earth, so they appear retrograde when they pass between Earth and the Sun at inferior conjunction. Each planet&apos;s retrograde period is fixed by its orbital mechanics.</>}</p>
 
         <div className="space-y-3">
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3">
-            <p className="text-gold-light font-bold text-sm">{tl({ en: 'Mercury Retrograde (Budha Vakri)', hi: 'बुध वक्री', sa: 'बुधवक्रता (बुधवक्री)' }, locale)}</p>
-            <p className="text-text-secondary text-xs mt-1">{isHi ? <>वर्ष में 3-4 बार, प्रत्येक ~21 दिन। सबसे अधिक बार और सांस्कृतिक रूप से सबसे कुख्यात वक्री। बुध संवाद, प्रौद्योगिकी, वाणिज्य और लघु यात्रा का शासक है। वक्री के दौरान: संवाद भ्रम, तकनीकी त्रुटियाँ, अनुबन्ध गलतियाँ, यात्रा विलम्ब। सुझाव: समीक्षा करें, संशोधन करें और पुनः जुड़ें — नये प्रकल्प आरम्भ न करें।</> : <>3-4 times per year, ~21 days each. The most frequent and culturally notorious retrograde. Mercury rules communication, technology, commerce, and short travel. During retrograde: miscommunications, tech glitches, contract errors, travel delays. Tip: review, revise, and reconnect — don&apos;t start new projects.</>}</p>
+            <p className="text-gold-light font-bold text-sm">{tl({ en: 'Mercury (Budha Vakri)', hi: 'बुध वक्री', sa: 'बुधवक्रता' }, locale)}</p>
+            <p className="text-text-secondary text-xs mt-1">{isHi ? <>वर्ष में 3-4 बार, प्रत्येक ~21 दिन। सांस्कृतिक रूप से सबसे कुख्यात। बुध संवाद, प्रौद्योगिकी, वाणिज्य का शासक है।</> : <>3-4 times per year, ~21 days each. The most culturally notorious retrograde. Mercury rules communication, technology, commerce.</>}</p>
           </div>
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3">
-            <p className="text-gold-light font-bold text-sm">{tl({ en: 'Venus Retrograde (Shukra Vakri)', hi: 'शुक्र वक्री', sa: 'शुक्रवक्रता (शुक्रवक्री)' }, locale)}</p>
-            <p className="text-text-secondary text-xs mt-1">{isHi ? <>हर 18 महीने, ~40 दिन। शुक्र प्रेम, सौन्दर्य, विलासिता और वित्त का शासक है। वक्री के दौरान: पुराने प्रेमी पुनः प्रकट होते हैं, सम्बन्ध पुनर्मूल्यांकन, सौन्दर्यशास्त्र से असन्तोष, सौन्दर्य प्रसाधन खरीद या विवाह के लिए खराब समय। यह पुनर्मूल्यांकन का समय है कि आप वास्तव में क्या (और किसे) महत्व देते हैं।</> : <>Every 18 months, ~40 days. Venus rules love, beauty, luxury, and finance. During retrograde: old lovers resurface, relationship re-evaluation, dissatisfaction with aesthetics, poor timing for cosmetic purchases or weddings. It&apos;s a time to reassess what (and whom) you truly value.</>}</p>
+            <p className="text-gold-light font-bold text-sm">{tl({ en: 'Venus (Shukra Vakri)', hi: 'शुक्र वक्री', sa: 'शुक्रवक्रता' }, locale)}</p>
+            <p className="text-text-secondary text-xs mt-1">{isHi ? <>हर 18 महीने, ~40 दिन। शुक्र प्रेम, सौन्दर्य, विलासिता और वित्त का शासक है। पुराने प्रेमी पुनः प्रकट, सम्बन्ध पुनर्मूल्यांकन।</> : <>Every 18 months, ~40 days. Venus rules love, beauty, luxury, and finance. Old lovers resurface, relationship re-evaluation.</>}</p>
           </div>
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3">
-            <p className="text-gold-light font-bold text-sm">{tl({ en: 'Mars Retrograde (Mangal Vakri)', hi: 'मंगल वक्री', sa: 'मंगलवक्रता (मंगलवक्री)' }, locale)}</p>
-            <p className="text-text-secondary text-xs mt-1">{isHi ? <>हर 26 महीने, ~72 दिन। मंगल कर्म, ऊर्जा, आक्रामकता और साहस का शासक है। वक्री के दौरान: विलम्बित कार्रवाई, पुराने संघर्षों पर पुनर्विचार, कुण्ठित ऊर्जा, पुनर्निर्देशित महत्वाकांक्षा। शारीरिक ऊर्जा कम अनुभव हो सकती है। लड़ाई (कानूनी, प्रतिस्पर्धी या शारीरिक) शुरू करने के लिए आदर्श नहीं — रणनीतिक योजना के लिए बेहतर।</> : <>Every 26 months, ~72 days. Mars rules action, energy, aggression, and courage. During retrograde: delayed action, revisiting old conflicts, frustrated energy, redirected ambition. Physical energy may feel lower. Not ideal for starting battles (legal, competitive, or physical) — better for strategic planning.</>}</p>
+            <p className="text-gold-light font-bold text-sm">{tl({ en: 'Mars (Mangal Vakri)', hi: 'मंगल वक्री', sa: 'मंगलवक्रता' }, locale)}</p>
+            <p className="text-text-secondary text-xs mt-1">{isHi ? <>हर 26 महीने, ~72 दिन। मंगल कर्म, ऊर्जा, आक्रामकता का शासक है। विलम्बित कार्रवाई, पुनर्विचारित संघर्ष।</> : <>Every 26 months, ~72 days. Mars rules action, energy, aggression. Delayed action, revisiting old conflicts.</>}</p>
           </div>
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3">
-            <p className="text-gold-light font-bold text-sm">{tl({ en: 'Jupiter & Saturn Retrogrades', hi: 'बृहस्पति और शनि वक्री', sa: 'बृहस्पति-शनिवक्रताः' }, locale)}</p>
-            <p className="text-text-secondary text-xs mt-1">{isHi ? <>दोनों प्रतिवर्ष ~4-5 महीनों के लिए वक्री होते हैं। बृहस्पति वक्री: आन्तरिक विकास, दार्शनिक पुनर्मूल्यांकन, विश्वासों पर प्रश्न। शनि वक्री: उत्तरदायित्वों पर पुनर्विचार, कार्मिक पाठ पुनः प्रकट, विलम्बित लेकिन अन्ततः जवाबदेही। चूँकि वे इतनी बार वक्री होते हैं (~30-40% समय), ये व्यक्तिगत रूप से कम नाटकीय हैं लेकिन पृष्ठभूमि ऊर्जा बदलाव बनाते हैं।</> : <>Both retrograde annually for ~4-5 months. Jupiter retrograde: internal growth, philosophical re-evaluation, questioning beliefs. Saturn retrograde: revisiting responsibilities, karmic lessons resurface, delayed but eventual accountability. Since they retrograde so often (~30-40% of the time), these are less dramatic individually but create a background energy shift.</>}</p>
+            <p className="text-gold-light font-bold text-sm">{tl({ en: 'Jupiter & Saturn', hi: 'बृहस्पति और शनि', sa: 'बृहस्पति-शनिवक्रताः' }, locale)}</p>
+            <p className="text-text-secondary text-xs mt-1">{isHi ? <>दोनों प्रतिवर्ष ~4-5 महीनों के लिए वक्री होते हैं (~30-40% समय)। बृहस्पति: आन्तरिक विकास। शनि: कार्मिक पाठ पुनः प्रकट। चूँकि वे इतनी बार वक्री होते हैं, ये व्यक्तिगत रूप से कम नाटकीय हैं लेकिन पृष्ठभूमि ऊर्जा बदलते हैं।</> : <>Both retrograde annually for ~4-5 months (~30-40% of the time). Jupiter: internal growth. Saturn: karmic lessons resurface. Since they retrograde so often, these are less dramatic individually but shift background energy.</>}</p>
           </div>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Key Insight', hi: 'मुख्य अन्तर्दृष्टि', sa: 'मुख्यः अन्तर्बोधः' }, locale)}</h4>
-        <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>वक्री ग्रह पृथ्वी के अधिक निकट होते हैं, दूर नहीं। यह प्रतिकूल ज्ञान है लेकिन महत्वपूर्ण: वक्री ग्रह आकाश में अधिक चमकीला दिखता है, अधिक शक्तिशाली (दुर्बल नहीं) होता है, और इसके प्रभाव अधिक आन्तरिक और तीव्र होते हैं। &quot;पुनः-&quot; उपसर्ग वक्री को पूर्ण रूप से व्यक्त करता है: पुनर्समीक्षा, पुनर्संशोधन, पुनर्विचार, पुनर्सम्पर्क, पुनः करना।</> : <>Retrograde planets are CLOSER to Earth, not farther. This is counterintuitive but critical: a retrograde planet appears brighter in the sky, is stronger (not weaker), and its effects are more internalized and intense. The &quot;re-&quot; prefix captures retrogrades perfectly: review, revise, reconsider, reconnect, redo.</>}</p>
+        <h4 className="text-emerald-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Key Insight: Retrograde = Closer, Not Weaker', hi: 'मुख्य अन्तर्दृष्टि: वक्री = निकट, दुर्बल नहीं', sa: 'मुख्यः अन्तर्बोधः: वक्री = निकट, न दुर्बलः' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>वक्री ग्रह पृथ्वी के अधिक निकट होते हैं, दूर नहीं। वक्री ग्रह आकाश में अधिक चमकीला दिखता है, अधिक शक्तिशाली (दुर्बल नहीं) होता है, और इसके प्रभाव अधिक आन्तरिक और तीव्र होते हैं। &quot;पुनः-&quot; उपसर्ग वक्री को पूर्ण रूप से व्यक्त करता है: पुनर्समीक्षा, पुनर्संशोधन, पुनर्विचार, पुनर्सम्पर्क, पुनः करना।</> : <>Retrograde planets are CLOSER to Earth, not farther. A retrograde planet appears brighter in the sky, is stronger (not weaker), and its effects are more internalized and intense. The &quot;re-&quot; prefix captures retrogrades perfectly: review, revise, reconsider, reconnect, redo.</>}</p>
       </section>
     </div>
   );
 }
 
-/* ─── Page 2: Combustion (Asta) ────────────────────────────────────────── */
+/* ─── Page 2: Combustion (Asta) with BPHS Degrees ────────────────────── */
 
 function Page2() {
   const locale = useModuleLocale();
@@ -72,40 +74,44 @@ function Page2() {
   return (
     <div className="space-y-6">
       <section>
-        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{isHi ? 'अस्त — सूर्य की चमक में लुप्त होना' : 'Combustion (Asta) — Vanishing in the Sun&apos;s Glare'}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>अस्त तब होता है जब कोई ग्रह सूर्य के बहुत निकट आ जाता है और अदृश्य हो जाता है — सूर्य के तेज प्रकाश से अभिभूत। वैदिक ज्योतिष में, अस्त ग्रह दुर्बल माना जाता है: इसके कारकत्व दबे, भ्रमित या जले हुए हो जाते हैं। प्रत्येक ग्रह की विशिष्ट अस्त दूरी सीमा है।</> : <>Combustion occurs when a planet gets too close to the Sun and becomes invisible — overwhelmed by the Sun&apos;s brilliant light. In Vedic astrology, a combust planet is considered weakened: its significations become suppressed, confused, or burned away. Each planet has a specific combustion distance threshold.</>}</p>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{isHi ? 'अस्त — सूर्य की चमक में लुप्त होना' : 'Combustion (Asta) — Vanishing in the Sun\'s Glare'}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>अस्त तब होता है जब कोई ग्रह सूर्य के बहुत निकट आ जाता है और अदृश्य हो जाता है — सूर्य के तेज प्रकाश से अभिभूत। वैदिक ज्योतिष में, अस्त ग्रह दुर्बल माना जाता है: इसके कारकत्व दबे, भ्रमित या जले हुए हो जाते हैं।</> : <>Combustion occurs when a planet gets too close to the Sun and becomes invisible — overwhelmed by the Sun&apos;s brilliant light. In Vedic astrology, a combust planet is considered weakened: its significations become suppressed, confused, or burned away.</>}</p>
 
-        <div className="space-y-3">
-          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-red-500/10">
-            <p className="text-red-400 font-bold text-sm">{tl({ en: 'Combustion Distances', hi: 'अस्त दूरियाँ', sa: 'अस्तदूरताः' }, locale)}</p>
-            <div className="text-text-secondary text-xs mt-2 space-y-1">{isHi ? <><p><strong className="text-gold-light">चन्द्र:</strong> 12° — भावनात्मक स्पष्टता मन्द, मानसिक धुंध</p>
-              <p><strong className="text-gold-light">मंगल:</strong> 17° — साहस/कर्म दबा हुआ, छिपी आक्रामकता</p>
-              <p><strong className="text-gold-light">बुध:</strong> 14° (वक्री होने पर 12°) — संवाद भ्रम</p>
-              <p><strong className="text-gold-light">बृहस्पति:</strong> 11° — दुर्बल ज्ञान, खराब मार्गदर्शन वृत्ति</p>
-              <p><strong className="text-gold-light">शुक्र:</strong> 10° (वक्री होने पर 8°) — सम्बन्ध भ्रम, मन्द सौन्दर्यबोध</p>
-              <p><strong className="text-gold-light">शनि:</strong> 15° — अनुशासन टूटता है, संरचना विफल</p></> : <><p><strong className="text-gold-light">Moon (Chandra):</strong> 12° — emotional clarity dimmed, mental fog</p>
-              <p><strong className="text-gold-light">Mars (Mangal):</strong> 17° — courage/action suppressed, hidden aggression</p>
-              <p><strong className="text-gold-light">Mercury (Budha):</strong> 14° (12° if retrograde) — communication confusion</p>
-              <p><strong className="text-gold-light">Jupiter (Guru):</strong> 11° — weakened wisdom, poor guidance instincts</p>
-              <p><strong className="text-gold-light">Venus (Shukra):</strong> 10° (8° if retrograde) — relationship confusion, dulled aesthetics</p>
-              <p><strong className="text-gold-light">Saturn (Shani):</strong> 15° — discipline breaks down, structure fails</p></>}</div>
-          </div>
-          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3">
-            <p className="text-gold-light font-bold text-sm">{tl({ en: 'Combust vs. Cazimi', hi: 'अस्त बनाम काज़िमी', sa: 'अस्तः विरुद्धं काज़िमी' }, locale)}</p>
-            <p className="text-text-secondary text-xs mt-1">{isHi ? <>एक विशेष अपवाद है: जब कोई ग्रह सूर्य के अत्यन्त निकट (1° या सूर्य की डिस्क के भीतर) हो, तो इसे &quot;काज़िमी&quot; — सूर्य के हृदय में माना जाता है। यह विरोधाभासी रूप से सबसे शक्तिशाली स्थिति है। ग्रह जला नहीं बल्कि सूर्य के सिंहासन पर बैठकर सशक्त है। यह दुर्लभ और अत्यन्त शुभ है।</> : <>There is a special exception: when a planet is extremely close to the Sun (within ~1° or the Sun&apos;s disk), it is considered &quot;cazimi&quot; — in the heart of the Sun. This is paradoxically the most powerful position. The planet is not burned but empowered by sitting on the Sun&apos;s throne. This is rare and highly auspicious.</>}</p>
-          </div>
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-red-500/10">
+          <p className="text-red-400 font-bold text-sm mb-2">{tl({ en: 'BPHS Combustion Orbs (Ch. 6)', hi: 'BPHS अस्त दूरियाँ (अध्याय 6)', sa: 'BPHS अस्तदूरताः' }, locale)}</p>
+          <div className="text-text-secondary text-xs mt-2 space-y-1">{isHi ? <><p><strong className="text-gold-light">चन्द्र:</strong> 12° — भावनात्मक स्पष्टता मन्द, मानसिक धुंध</p>
+            <p><strong className="text-gold-light">मंगल:</strong> 17° — साहस/कर्म दबा हुआ, छिपी आक्रामकता</p>
+            <p><strong className="text-gold-light">बुध:</strong> 14° सामान्य / <span className="text-emerald-400">12° वक्री होने पर</span> — संवाद भ्रम</p>
+            <p><strong className="text-gold-light">बृहस्पति:</strong> 11° — दुर्बल ज्ञान, खराब मार्गदर्शन वृत्ति</p>
+            <p><strong className="text-gold-light">शुक्र:</strong> 10° सामान्य / <span className="text-emerald-400">8° वक्री होने पर</span> — सम्बन्ध भ्रम</p>
+            <p><strong className="text-gold-light">शनि:</strong> 15° — अनुशासन टूटता है, संरचना विफल</p></> : <><p><strong className="text-gold-light">Moon (Chandra):</strong> 12° — emotional clarity dimmed, mental fog</p>
+            <p><strong className="text-gold-light">Mars (Mangal):</strong> 17° — courage/action suppressed, hidden aggression</p>
+            <p><strong className="text-gold-light">Mercury (Budha):</strong> 14° direct / <span className="text-emerald-400">12° when retrograde</span> — communication confusion</p>
+            <p><strong className="text-gold-light">Jupiter (Guru):</strong> 11° — weakened wisdom, poor guidance instincts</p>
+            <p><strong className="text-gold-light">Venus (Shukra):</strong> 10° direct / <span className="text-emerald-400">8° when retrograde</span> — relationship confusion</p>
+            <p><strong className="text-gold-light">Saturn (Shani):</strong> 15° — discipline breaks down, structure fails</p></>}</div>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-light text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Engine Tracking', hi: 'इंजन ट्रैकिंग', sa: 'इञ्जिन-अनुसरणम्' }, locale)}</h4>
-        <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>हमारा वक्री और अस्त इंजन प्रत्येक ग्रह के लिए सटीक अवधियों को ट्रैक करता है — कब वे वक्री या अस्त में प्रवेश और निकास करते हैं। यह डेटा वक्री पंचांग पृष्ठ पर उपलब्ध है, जो सटीक तिथियाँ और प्रभावित राशि अंश दिखाता है। आप एक नज़र में देख सकते हैं कि कौन से ग्रह वर्तमान में वक्री या अस्त हैं।</> : <>Our retrograde and combustion engine tracks exact windows for each planet — when they enter and exit retrograde or combustion. This data is available on the Retrograde Calendar page, showing precise dates and the affected zodiac degrees. You can see at a glance which planets are currently retrograde or combust.</>}</p>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Why Retrograde Reduces Combustion Orbs', hi: 'वक्री क्यों अस्त दूरी कम करता है', sa: 'वक्री क्यों अस्त दूरी कम करता है' }, locale)}</h4>
+        <p className="text-text-secondary text-sm leading-relaxed mb-2">{isHi ? <>बुध और शुक्र वक्री होने पर सूर्य के समान दिशा में लौटते दिखते हैं — किन्तु वे अवर युति पर होते हैं (सूर्य और पृथ्वी के बीच), पृथ्वी के निकट। निकटता उन्हें प्रभावी रूप से &quot;उज्ज्वल&quot; बनाती है, जिससे वे सूर्य की चमक में भी कुछ अधिक दृश्य रहते हैं। BPHS इसे कम अस्त दूरी के रूप में व्यक्त करता है: बुध 14° → 12°, शुक्र 10° → 8°। हमारा computeCombust() फ़ंक्शन ग्रह की वक्री स्थिति जाँचता है और तदनुसार सही सीमा लगाता है।</> : <>When Mercury and Venus are retrograde, they are moving back toward the Sun — but they are at inferior conjunction (between the Sun and Earth), closer to us. This proximity makes them effectively &quot;brighter,&quot; so they remain somewhat more visible even in the Sun&apos;s glare. BPHS expresses this as reduced combustion orbs: Mercury 14° → 12°, Venus 10° → 8°. Our computeCombust() function checks the planet&apos;s retrograde status and applies the correct threshold accordingly.</>}</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3">
+        <p className="text-gold-light font-bold text-sm">{tl({ en: 'Asta & Udaya — Heliacal Setting & Rising', hi: 'अस्त और उदय — सान्ध्य अस्त और उदय', sa: 'अस्तः उदयश्च' }, locale)}</p>
+        <p className="text-text-secondary text-xs mt-1">{isHi ? <>अस्त (हेलियाकल सेटिंग) वह तिथि है जब ग्रह सूर्य के बहुत निकट होने से सान्ध्य आकाश में अन्तिम बार दिखता है। उदय (हेलियाकल राइज़िंग) वह तिथि है जब ग्रह अस्त अवधि के बाद प्रभात आकाश में पहली बार पुनः दिखता है। प्राचीन मेसोपोटामिया, मिस्र और भारत में हेलियाकल उदय का विशेष महत्त्व था — शुक्र का उदय युद्ध और शान्ति के शगुन के रूप में देखा जाता था। वैदिक ज्योतिष में, ग्रह का अस्त से उदय तक का संक्रमण &quot;पुनर्जन्म&quot; माना जाता है — जैसे अग्नि में तपकर ग्रह शुद्ध होकर लौटता है।</> : <>Asta (heliacal setting) is the date when a planet is last visible in the evening sky before becoming too close to the Sun. Udaya (heliacal rising) is the date when the planet first becomes visible again in the morning sky after the combustion period. In ancient Mesopotamia, Egypt, and India, heliacal risings held special significance — Venus&apos;s rising was seen as an omen of war and peace. In Vedic astrology, the transition from Asta to Udaya is considered a &quot;rebirth&quot; — the planet returns purified, as if tempered by fire.</>}</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3">
+        <p className="text-gold-light font-bold text-sm">{tl({ en: 'Combust vs. Cazimi — The Exception', hi: 'अस्त बनाम काज़िमी — अपवाद', sa: 'अस्तः विरुद्धं काज़िमी' }, locale)}</p>
+        <p className="text-text-secondary text-xs mt-1">{isHi ? <>जब कोई ग्रह सूर्य के अत्यन्त निकट (1° या सूर्य की डिस्क के भीतर) हो, तो इसे &quot;काज़िमी&quot; — सूर्य के हृदय में माना जाता है। यह विरोधाभासी रूप से सबसे शक्तिशाली स्थिति है। ग्रह जला नहीं बल्कि सूर्य के सिंहासन पर बैठकर सशक्त है। यह दुर्लभ और अत्यन्त शुभ है।</> : <>When a planet is extremely close to the Sun (within ~1° or the Sun&apos;s disk), it is considered &quot;cazimi&quot; — in the heart of the Sun. This is paradoxically the most powerful position. The planet is not burned but empowered by sitting on the Sun&apos;s throne. This is rare and highly auspicious.</>}</p>
       </section>
     </div>
   );
 }
 
-/* ─── Page 3: Practical Impact ─────────────────────────────────────────── */
+/* ─── Page 3: Natal vs Transit + Shadbala ─────────────────────────────── */
 
 function Page3() {
   const locale = useModuleLocale();
@@ -113,28 +119,19 @@ function Page3() {
   return (
     <div className="space-y-6">
       <section>
-        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{isHi ? 'वक्री और अस्त का व्यावहारिक प्रभाव' : 'Practical Impact of Retrogrades & Combustion'}</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>वक्री और अस्त अवधियों को समझना आपको ब्रह्माण्डीय लय के साथ योजना बनाने की अनुमति देता है, न कि इसके विरुद्ध। हालाँकि ये घटनाएँ कार्यों को असम्भव नहीं बनातीं, वे ऊर्जा को बदलती हैं — जैसे धारा के साथ या विरुद्ध तैरना।</> : <>Understanding retrograde and combustion windows allows you to plan with the cosmic rhythm rather than against it. While these phenomena don&apos;t make events impossible, they shift the energy — like swimming with or against a current.</>}</p>
-
-        <div className="space-y-3">
-          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3">
-            <p className="text-gold-light font-bold text-sm">{tl({ en: 'Mercury Retrograde: Real Effects', hi: 'बुध वक्री: वास्तविक प्रभाव', sa: 'बुधवक्री: वास्तविकाः प्रभावाः' }, locale)}</p>
-            <p className="text-text-secondary text-xs mt-1">{isHi ? <>बुध वक्री प्रभावों का सांख्यिकीय आधार विवादित है, लेकिन प्रतिमान सामान्यतः देखा जाता है: संवाद भूलें, प्रौद्योगिकी विफलताएँ, अनुबन्ध गलतफहमियाँ और यात्रा व्यवधान। व्यावहारिक रूप से: डेटा बैकअप लें, अनुबन्ध दोबारा जाँचें, यदि सम्भव हो तो महत्वपूर्ण दस्तावेज़ों पर हस्ताक्षर से बचें। सर्वोत्तम उपयोग: पुराने कार्य की समीक्षा, लोगों से पुनर्सम्पर्क, रचना के बजाय सम्पादन।</> : <>While the statistical basis for Mercury retrograde effects is debated, the pattern is commonly observed: communication mishaps, technology failures, contract misunderstandings, and travel disruptions. Practically: back up data, double-check contracts, avoid signing important documents if possible. Best used for: reviewing old work, reconnecting with people, editing rather than creating.</>}</p>
-          </div>
-          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3">
-            <p className="text-gold-light font-bold text-sm">{tl({ en: 'Mars Retrograde: Redirected Fire', hi: 'मंगल वक्री: पुनर्निर्देशित अग्नि', sa: 'मंगलवक्री: पुनर्निर्दिष्टोऽग्निः' }, locale)}</p>
-            <p className="text-text-secondary text-xs mt-1">{isHi ? <>मंगल वक्री विलम्बित कार्रवाई और पुनर्विचारित संघर्ष लाता है। पुराने विवाद समाधान की माँग करते हुए पुनः प्रकट हो सकते हैं। शारीरिक ऊर्जा कम या गलत दिशा में अनुभव हो सकती है। लड़ाई (कानूनी, प्रतिस्पर्धी या शारीरिक) शुरू करने के लिए आदर्श नहीं। सर्वोत्तम उपयोग: रणनीतिक योजना, पुराने संघर्षों का समाधान, आन्तरिक शक्ति-निर्माण, आक्रामक नई दिनचर्या शुरू करने के बजाय फिटनेस दिनचर्या की समीक्षा।</> : <>Mars retrograde brings delayed action and revisited conflicts. Old disputes may resurface demanding resolution. Physical energy may feel lower or misdirected. Not ideal for starting battles (legal, competitive, or physical). Best used for: strategic planning, resolving old conflicts, internal strength-building, reviewing fitness routines rather than starting aggressive new ones.</>}</p>
-          </div>
-          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3">
-            <p className="text-gold-light font-bold text-sm">{tl({ en: 'Combust Venus: Relationship Fog', hi: 'अस्त शुक्र: सम्बन्ध धुंध', sa: 'अस्तशुक्रः: सम्बन्धकुहासः' }, locale)}</p>
-            <p className="text-text-secondary text-xs mt-1">{isHi ? <>जब शुक्र अस्त होता है, सम्बन्ध स्पष्टता पीड़ित होती है। लोग खराब रोमांटिक या वित्तीय निर्णय ले सकते हैं। सौन्दर्य और सौन्दर्यशास्त्र &quot;गलत&quot; लगते हैं। यह विवाह, प्रमुख खरीद या नये सम्बन्ध शुरू करने का समय नहीं है। मौजूदा सम्बन्ध अस्पष्ट या तनावपूर्ण लग सकते हैं। अवधि समाप्त हो जाती है जब शुक्र सूर्य से अस्त दूरी से आगे बढ़ जाता है।</> : <>When Venus is combust, relationship clarity suffers. People may make poor romantic or financial decisions. Beauty and aesthetics feel &quot;off.&quot; This is not the time for weddings, major purchases, or starting new relationships. Existing relationships may feel unclear or strained. The period passes once Venus moves beyond the combustion distance from the Sun.</>}</p>
-          </div>
-        </div>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{isHi ? 'जन्म कुण्डली बनाम गोचर में प्रभाव' : 'Effects in Natal Chart vs Transit'}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>वक्री और अस्त का प्रभाव जन्म कुण्डली और गोचर में भिन्न होता है। <span className="text-gold-light font-medium">जन्म कुण्डली में वक्री:</span> ग्रह के कारकत्वों में आजीवन आन्तरिकता और गहनता। वक्री बुध वाले जातक उत्कृष्ट सम्पादक/शोधकर्ता हो सकते हैं (पुनर्विचार, पुनर्समीक्षा में कुशल) किन्तु तात्कालिक संवाद में कठिनाई अनुभव कर सकते हैं। वक्री शुक्र वाले जातक प्रेम में गहरी भावनात्मक जटिलता अनुभव करते हैं — सतही सम्बन्ध सन्तुष्ट नहीं करते।</> : <>The effects of retrograde and combustion differ between natal charts and transits. <span className="text-gold-light font-medium">Retrograde in natal:</span> lifelong internalization and intensity of the planet&apos;s significations. A native with retrograde Mercury may be an excellent editor/researcher (skilled at re-thinking, re-examining) but may struggle with spontaneous communication. A native with retrograde Venus experiences deep emotional complexity in love — surface relationships do not satisfy.</>}</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <><span className="text-gold-light font-medium">गोचर में वक्री:</span> अस्थायी ऊर्जा परिवर्तन जो सभी को प्रभावित करता है। बुध वक्री गोचर में संवाद भूलें, तकनीकी त्रुटियाँ, यात्रा विलम्ब — ये 21 दिनों तक रहती हैं फिर सामान्य हो जाती हैं। <span className="text-gold-light font-medium">जन्म कुण्डली में अस्त:</span> ग्रह के कारकत्व जीवन भर आत्मविश्वास की कमी, अस्पष्टता या दमन अनुभव करते हैं। अस्त बृहस्पति वाला जातक ज्ञान और मार्गदर्शन में आत्मविश्वास की कमी अनुभव कर सकता है — उन्हें सक्रिय रूप से इन गुणों को विकसित करना होगा।</> : <><span className="text-gold-light font-medium">Retrograde in transit:</span> a temporary energy shift affecting everyone. Mercury retrograde in transit brings communication mishaps, tech glitches, travel delays — these last 21 days then normalize. <span className="text-gold-light font-medium">Combustion in natal:</span> the planet&apos;s significations experience lifelong lack of confidence, ambiguity, or suppression. A native with combust Jupiter may struggle with confidence in wisdom and guidance — they must actively cultivate these qualities.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Vakri Planets in Shadbala', hi: 'षड्बल में वक्री ग्रह', sa: 'षड्बले वक्रिग्रहाः' }, locale)}</h4>
-        <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>वक्री अवस्था षड्बल प्रणाली में चेष्टा बल (गतिजन्य शक्ति) देती है। वक्री ग्रह अधिक परिश्रम करता है — यह तीव्र, दृढ़ और माँग करने वाला होता है। जन्म कुण्डली में, वक्री ग्रह अक्सर जीवन के उस क्षेत्र को दर्शाता है जहाँ जातक को अतिरिक्त प्रयास करना, पिछले कर्म पर पुनर्विचार करना, या अपरम्परागत माध्यमों से विकास करना होता है। हमारे ऐप का वक्री पंचांग पृष्ठ वर्ष भर के सभी ग्रहीय वक्री और अस्त अवधियों की सटीक तिथियाँ दिखाता है।</> : <>The Vakri (retrograde) state gives Cheshta Bala (motional strength) in the Shadbala system. A retrograde planet works harder — it is intense, determined, and demanding. In a birth chart, a retrograde planet often indicates an area of life where the native must put in extra effort, revisit past karma, or develop through unconventional means. Our app&apos;s Retrograde Calendar page shows exact dates for all planetary retrogrades and combustion windows throughout the year.</>}</p>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Vakri in Shadbala — Cheshta Bala', hi: 'षड्बल में वक्री — चेष्टा बल', sa: 'षड्बले वक्री — चेष्टा बल' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>वक्री अवस्था षड्बल प्रणाली में चेष्टा बल (गतिजन्य शक्ति) देती है। वक्री ग्रह को अधिकतम 60 विरूप मिलते हैं — यह चेष्टा बल की 8 अवस्थाओं में सर्वोच्च है। तुलना: मार्गी (सामान्य गति) = 45 विरूप, मन्दगति = 30, स्थानक (स्थिर) = 15, अस्त = 0। वक्री ग्रह शाब्दिक रूप से &quot;सबसे कठिन परिश्रम करने वाला&quot; माना जाता है — इसके फलादेश सबसे तीव्र और अपरिहार्य होते हैं।</> : <>The Vakri (retrograde) state gives Cheshta Bala (motional strength) in the Shadbala system. A retrograde planet receives the maximum 60 virupas — the highest of the 8 Cheshta Bala states. Compare: Margi (direct motion) = 45 virupas, Mandagati (slow) = 30, Sthanaka (stationary) = 15, Asta (combust) = 0. A retrograde planet literally &quot;works the hardest&quot; — its results are the most intense and inescapable.</>}</p>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
+        <h4 className="text-gold-light text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Engine Tracking', hi: 'इंजन ट्रैकिंग', sa: 'इञ्जिन-अनुसरणम्' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>हमारा वक्री और अस्त इंजन प्रत्येक ग्रह के लिए सटीक अवधियों को ट्रैक करता है — कब वे वक्री या अस्त में प्रवेश और निकास करते हैं। यह डेटा वक्री पंचांग पृष्ठ पर उपलब्ध है। मुहूर्त इंजन भी इस डेटा का उपयोग करता है — अस्त ग्रह की दशा में शुभ मुहूर्त स्कोर कम हो जाता है।</> : <>Our retrograde and combustion engine tracks exact windows for each planet — when they enter and exit retrograde or combustion. This data is available on the Retrograde Calendar page. The muhurta engine also uses this data — auspicious muhurta scores are reduced during combust planet dashas.</>}</p>
       </section>
     </div>
   );

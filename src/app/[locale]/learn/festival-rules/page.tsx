@@ -41,6 +41,7 @@ function tl(obj: Record<string, string>, locale: string): string {
 export default function FestivalRulesPage() {
   const locale = useLocale();
   const hf = getHeadingFont(locale);
+  const isHi = locale === 'hi' || locale === 'sa';
 
   return (
     <div className="space-y-10">
@@ -53,9 +54,26 @@ export default function FestivalRulesPage() {
       </div>
 
       {/* The Problem */}
-      <div className="rounded-2xl border border-white/5 bg-bg-secondary/30 p-6">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <h3 className="text-xl font-semibold text-gold-light mb-3" style={hf}>{tl(LABELS.theProblem, locale)}</h3>
         <p className="text-text-primary leading-relaxed">{tl(LABELS.theProblemDesc, locale)}</p>
+      </div>
+
+      {/* Purnimant vs Amant */}
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 space-y-4">
+        <h3 className="text-xl font-semibold text-gold-light mb-3" style={hf}>
+          {isHi ? 'पूर्णिमान्त बनाम अमान्त — एक ही त्योहार, भिन्न मास नाम' : 'Purnimant vs Amant — Same Festival, Different Month Names'}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {isHi
+            ? <>भारत में दो मास-गणना प्रणालियाँ हैं। अमान्त (दक्षिण भारत, गुजरात) में मास अमावस्या (नई चन्द्रमा) पर समाप्त होता है। पूर्णिमान्त (उत्तर भारत) में मास पूर्णिमा पर समाप्त होता है। इसका अर्थ है कि कृष्ण पक्ष (पूर्णिमा के बाद) में पूर्णिमान्त मास अमान्त से एक मास आगे है। दीपावली अमान्त में कार्तिक अमावस्या पर है — लेकिन पूर्णिमान्त में भी यही तिथि कार्तिक अमावस्या है (क्योंकि कृष्ण पक्ष में दोनों प्रणालियाँ मेल खाती हैं)। समस्या शुक्ल पक्ष के त्योहारों में आती है।</>
+            : <>India uses two month-counting systems. In Amant (South India, Gujarat), the month ends at Amavasya (new moon). In Purnimant (North India), the month ends at Purnima (full moon). During Krishna Paksha (after full moon), the Purnimant month is one ahead of Amant. Diwali is on Kartik Amavasya in Amant — and also Kartik Amavasya in Purnimant (because both systems align during Krishna Paksha). The divergence appears for Shukla Paksha festivals.</>}
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {isHi
+            ? <>उदाहरण: होली पूर्णिमा पर है। अमान्त में यह &quot;फाल्गुन पूर्णिमा&quot; है। पूर्णिमान्त में यह &quot;फाल्गुन पूर्णिमा&quot; ही है (क्योंकि पूर्णिमा पर मास समाप्त होता है, अतः यह फाल्गुन का अन्तिम दिन है)। किन्तु राम नवमी (चैत्र शुक्ल नवमी) अमान्त में &quot;चैत्र&quot; में है, पूर्णिमान्त में भी &quot;चैत्र&quot; — यहाँ भी मेल। विसंगति तब प्रकट होती है जब कृष्ण पक्ष के त्योहारों को सन्दर्भित करते हैं। हमारा ऐप सभी त्योहार परिभाषाओं में अमान्त मास नामों का उपयोग करता है (Prokerala और अधिकांश सन्दर्भ स्रोतों के अनुरूप)।</>
+            : <>Example: Holi is on Purnima. In Amant it is &quot;Phalguna Purnima.&quot; In Purnimant it is also &quot;Phalguna Purnima&quot; (since Purnima ends the month, it is the last day of Phalguna). But discrepancies appear when Krishna Paksha festivals are referenced across systems. Our app uses Amant month names for all festival definitions (matching Prokerala and most reference sources).</>}
+        </p>
       </div>
 
       {/* Rules cards */}
@@ -74,8 +92,42 @@ export default function FestivalRulesPage() {
         })}
       </div>
 
+      {/* Dwi-tithi and Kshaya */}
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 space-y-4">
+        <h3 className="text-xl font-semibold text-gold-light mb-3" style={hf}>
+          {isHi ? 'द्वि-तिथि, क्षय तिथि और अधिक तिथि' : 'Dwi-Tithi, Kshaya Tithi, and Adhika Tithi'}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {isHi
+            ? <><span className="text-gold-light font-medium">द्वि-तिथि (Spanning):</span> जब एक ही तिथि दो क्रमिक सूर्योदय पर उपस्थित हो — अर्थात तिथि इतनी लम्बी है कि दो दिनों पर फैलती है। सामान्य नियम: एकादशी के लिए दूसरा दिन चुनें (व्रत लम्बा होता है); अन्य सभी तिथियों के लिए पहला दिन।</>
+            : <><span className="text-gold-light font-medium">Dwi-tithi (Spanning):</span> When the same tithi is present at two consecutive sunrises — the tithi is long enough to span two days. General rule: for Ekadashi, choose the second day (longer fast); for all other tithis, choose the first day.</>}
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {isHi
+            ? <><span className="text-gold-light font-medium">क्षय तिथि (Compressed):</span> जब तिथि एक सूर्योदय और अगले सूर्योदय के बीच पूर्ण हो जाती है — किसी भी सूर्योदय पर मौजूद नहीं। यह दुर्लभ है (~2% दिनों पर)। त्योहार पिछले दिन मनाया जाता है।</>
+            : <><span className="text-gold-light font-medium">Kshaya Tithi (Compressed):</span> When a tithi completes entirely between one sunrise and the next — it is not present at any sunrise. This is rare (~2% of days). The festival is observed on the previous day.</>}
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {isHi
+            ? <><span className="text-gold-light font-medium">अधिक तिथि:</span> जब एक अतिरिक्त तिथि सम्मिलित हो — एक ही नम्बर की तिथि दो बार आती है। त्योहार दूसरी (निज) तिथि पर मनाया जाता है, पहली (अधिक) पर नहीं।</>
+            : <><span className="text-gold-light font-medium">Adhika Tithi:</span> When an extra tithi is inserted — the same numbered tithi occurs twice. The festival is observed on the second (Nija) occurrence, not the first (Adhika).</>}
+        </p>
+      </div>
+
+      {/* Smartha vs Vaishnava */}
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-blue-500/15">
+        <h3 className="text-lg font-semibold text-blue-300 mb-3" style={hf}>
+          {isHi ? 'स्मार्त बनाम वैष्णव — एकादशी विवाद' : 'Smartha vs Vaishnava — The Ekadashi Debate'}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {isHi
+            ? <>एकादशी व्रत के लिए स्मार्त और वैष्णव सम्प्रदाय भिन्न नियमों का पालन करते हैं। स्मार्त परम्परा उदय तिथि (सूर्योदय पर तिथि) का अनुसरण करती है। वैष्णव परम्परा अतिरिक्त प्रतिबन्ध जोड़ती है: एकादशी में दशमी का &quot;वेध&quot; (संस्पर्श) नहीं होना चाहिए — यदि सूर्योदय पर दशमी शेष है, तो एकादशी व्रत अगले दिन (द्वादशी) पर होता है। यही कारण है कि कभी-कभी स्मार्त और वैष्णव एकादशी अलग-अलग दिनों पर पड़ती है।</>
+            : <>For Ekadashi fasting, Smartha and Vaishnava traditions follow different rules. The Smartha tradition follows Udaya Tithi (tithi at sunrise). The Vaishnava tradition adds an extra restriction: Ekadashi must not have &quot;Vedha&quot; (contamination) from Dashami — if Dashami lingers past sunrise, the Ekadashi fast shifts to the next day (Dwadashi). This is why Smartha and Vaishnava Ekadashis sometimes fall on different days.</>}
+        </p>
+      </div>
+
       {/* Visual timeline */}
-      <div className="rounded-2xl border border-gold-primary/15 bg-bg-secondary/50 p-6">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <h3 className="text-lg font-semibold text-gold-light mb-4" style={hf}>Day Timeline</h3>
         <div className="flex h-10 rounded-lg overflow-hidden text-xs font-medium">
           <div className="bg-rose-500/20 text-rose-300 flex items-center justify-center border-r border-white/10" style={{ width: '7%' }}>Aruno.</div>

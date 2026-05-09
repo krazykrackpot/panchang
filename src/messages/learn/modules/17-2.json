@@ -725,6 +725,39 @@
           "mai": "बुधवार"
         }
       ]
+    },
+    {
+      "id": "q17_2_11",
+      "type": "mcq",
+      "question": { "en": "Which type of Lagna is preferred for a marriage Muhurta chart?", "hi": "विवाह मुहूर्त कुण्डली हेतु किस प्रकार का लग्न पसन्दीदा है?", "sa": "विवाह मुहूर्त हेतु किस प्रकार का लग्न पसन्दीदा है?", "ta": "Which type of Lagna is preferred for marriage Muhurta?", "te": "Which type of Lagna is preferred for marriage Muhurta?", "bn": "Which type of Lagna is preferred for marriage Muhurta?", "kn": "Which type of Lagna is preferred for marriage Muhurta?", "mr": "विवाह मुहूर्त हेतु किस प्रकार का लग्न पसन्दीदा है?", "gu": "Which type of Lagna is preferred for marriage Muhurta?", "mai": "विवाह मुहूर्त हेतु किस प्रकार का लग्न पसन्दीदा है?" },
+      "correctAnswer": 1,
+      "explanation": { "en": "Fixed signs (Taurus, Leo, Scorpio, Aquarius) are preferred because they represent stability and permanence — essential qualities for a lasting marriage.", "hi": "स्थिर राशियाँ (वृषभ, सिंह, वृश्चिक, कुम्भ) पसन्दीदा हैं क्योंकि ये स्थिरता और स्थायित्व दर्शाती हैं।", "sa": "स्थिर राशियाँ पसन्दीदा हैं।", "ta": "Fixed signs are preferred for stability.", "te": "Fixed signs are preferred for stability.", "bn": "Fixed signs are preferred for stability.", "kn": "Fixed signs are preferred for stability.", "mr": "स्थिर राशियाँ पसन्दीदा हैं।", "gu": "Fixed signs are preferred for stability.", "mai": "स्थिर राशियाँ पसन्दीदा हैं।" },
+      "options": [
+        { "en": "Movable signs (Cardinal)", "hi": "चर राशियाँ", "sa": "चर राशियाँ", "ta": "Movable signs", "te": "Movable signs", "bn": "Movable signs", "kn": "Movable signs", "mr": "चर राशियाँ", "gu": "Movable signs", "mai": "चर राशियाँ" },
+        { "en": "Fixed signs (Sthira)", "hi": "स्थिर राशियाँ", "sa": "स्थिर राशियाँ", "ta": "Fixed signs", "te": "Fixed signs", "bn": "Fixed signs", "kn": "Fixed signs", "mr": "स्थिर राशियाँ", "gu": "Fixed signs", "mai": "स्थिर राशियाँ" },
+        { "en": "Dual signs (Mutable)", "hi": "द्विस्वभाव राशियाँ", "sa": "द्विस्वभाव राशियाँ", "ta": "Dual signs", "te": "Dual signs", "bn": "Dual signs", "kn": "Dual signs", "mr": "द्विस्वभाव राशियाँ", "gu": "Dual signs", "mai": "द्विस्वभाव राशियाँ" },
+        { "en": "Any sign is equally good", "hi": "कोई भी राशि समान रूप से अच्छी है", "sa": "कोई भी राशि समान है", "ta": "Any sign is equally good", "te": "Any sign is equally good", "bn": "Any sign is equally good", "kn": "Any sign is equally good", "mr": "कोई भी राशि समान है", "gu": "Any sign is equally good", "mai": "कोई भी राशि समान है" }
+      ]
+    },
+    {
+      "id": "q17_2_12",
+      "type": "true_false",
+      "question": { "en": "Venus combustion is more harmful for marriage Muhurta than Venus retrograde.", "hi": "विवाह मुहूर्त हेतु शुक्र का अस्तत्व शुक्र वक्री से अधिक हानिकारक है।", "sa": "विवाह मुहूर्त हेतु शुक्र अस्तत्व शुक्र वक्री से अधिक हानिकारक है।", "ta": "Venus combustion is more harmful than Venus retrograde for marriage.", "te": "Venus combustion is more harmful than Venus retrograde for marriage.", "bn": "Venus combustion is more harmful than Venus retrograde for marriage.", "kn": "Venus combustion is more harmful than Venus retrograde for marriage.", "mr": "विवाह मुहूर्त हेतु शुक्र अस्तत्व शुक्र वक्री से अधिक हानिकारक है।", "gu": "Venus combustion is more harmful than Venus retrograde for marriage.", "mai": "विवाह मुहूर्त हेतु शुक्र अस्तत्व शुक्र वक्री से अधिक हानिकारक है।" },
+      "correctAnswer": true,
+      "explanation": { "en": "Venus combust (within ~10 degrees of the Sun) destroys the karaka of marriage entirely. Venus retrograde is undesirable but not an absolute prohibition.", "hi": "शुक्र अस्त (सूर्य से ~10 अंश के भीतर) विवाह के कारक को पूर्णतया नष्ट कर देता है। शुक्र वक्री अनुचित है परन्तु पूर्ण निषेध नहीं।", "sa": "शुक्र अस्त विवाह कारक को नष्ट कर देता है।", "ta": "Venus combust destroys the karaka of marriage entirely.", "te": "Venus combust destroys the karaka of marriage entirely.", "bn": "Venus combust destroys the karaka of marriage entirely.", "kn": "Venus combust destroys the karaka of marriage entirely.", "mr": "शुक्र अस्त विवाह कारक को नष्ट कर देता है।", "gu": "Venus combust destroys the karaka of marriage entirely.", "mai": "शुक्र अस्त विवाह कारक को नष्ट कर देता है।" }
+    },
+    {
+      "id": "q17_2_13",
+      "type": "mcq",
+      "question": { "en": "Why are Chaturthi, Navami, and Chaturdashi tithis avoided for marriage?", "hi": "विवाह हेतु चतुर्थी, नवमी और चतुर्दशी तिथियाँ क्यों टाली जाती हैं?", "sa": "विवाह हेतु ये तिथियाँ क्यों टाली जाती हैं?", "ta": "Why are these tithis avoided for marriage?", "te": "Why are these tithis avoided for marriage?", "bn": "Why are these tithis avoided for marriage?", "kn": "Why are these tithis avoided for marriage?", "mr": "विवाह हेतु ये तिथियाँ क्यों टाली जाती हैं?", "gu": "Why are these tithis avoided for marriage?", "mai": "विवाह हेतु ये तिथियाँ क्यों टाली जाती हैं?" },
+      "correctAnswer": 2,
+      "explanation": { "en": "These are Rikta (empty) tithis ruled by Yama, the god of death. Their destructive energy is incompatible with the constructive nature of marriage.", "hi": "ये रिक्त (खाली) तिथियाँ हैं जिनका शासक यम (मृत्यु देवता) है। इनकी विध्वंसक ऊर्जा विवाह की निर्माणात्मक प्रकृति के विपरीत है।", "sa": "ये रिक्त तिथियाँ हैं जिनका शासक यम है।", "ta": "These are Rikta tithis ruled by Yama.", "te": "These are Rikta tithis ruled by Yama.", "bn": "These are Rikta tithis ruled by Yama.", "kn": "These are Rikta tithis ruled by Yama.", "mr": "ये रिक्त तिथियाँ हैं जिनका शासक यम है।", "gu": "These are Rikta tithis ruled by Yama.", "mai": "ये रिक्त तिथियाँ हैं जिनका शासक यम है।" },
+      "options": [
+        { "en": "They are too short in duration", "hi": "ये अवधि में बहुत छोटी हैं", "sa": "ये बहुत छोटी हैं", "ta": "They are too short", "te": "They are too short", "bn": "They are too short", "kn": "They are too short", "mr": "ये बहुत छोटी हैं", "gu": "They are too short", "mai": "ये बहुत छोटी हैं" },
+        { "en": "They always fall on inauspicious days", "hi": "ये सदैव अशुभ दिनों पर पड़ती हैं", "sa": "ये सदैव अशुभ दिनों पर पड़ती हैं", "ta": "They always fall on inauspicious days", "te": "They always fall on inauspicious days", "bn": "They always fall on inauspicious days", "kn": "They always fall on inauspicious days", "mr": "ये सदैव अशुभ दिनों पर पड़ती हैं", "gu": "They always fall on inauspicious days", "mai": "ये सदैव अशुभ दिनों पर पड़ती हैं" },
+        { "en": "They are Rikta tithis ruled by Yama with destructive energy", "hi": "ये रिक्त तिथियाँ हैं जो यम द्वारा शासित हैं और विध्वंसक ऊर्जा रखती हैं", "sa": "ये रिक्त तिथियाँ हैं", "ta": "They are Rikta tithis ruled by Yama", "te": "They are Rikta tithis ruled by Yama", "bn": "They are Rikta tithis ruled by Yama", "kn": "They are Rikta tithis ruled by Yama", "mr": "ये रिक्त तिथियाँ हैं", "gu": "They are Rikta tithis ruled by Yama", "mai": "ये रिक्त तिथियाँ हैं" },
+        { "en": "They are only avoided in South India", "hi": "ये केवल दक्षिण भारत में टाली जाती हैं", "sa": "ये केवल दक्षिण भारत में टाली जाती हैं", "ta": "They are only avoided in South India", "te": "They are only avoided in South India", "bn": "They are only avoided in South India", "kn": "They are only avoided in South India", "mr": "ये केवल दक्षिण भारत में टाली जाती हैं", "gu": "They are only avoided in South India", "mai": "ये केवल दक्षिण भारत में टाली जाती हैं" }
+      ]
     }
   ]
 }

@@ -40,9 +40,59 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-2">{isHi ? <>तीव्र ग्रह ट्रिगर का कार्य करते हैं जो मन्द ग्रह गोचर द्वारा प्रतिश्रुत घटनाओं के सटीक प्रकटीकरण का समय निर्धारित करते हैं। सूर्य लगभग 1 मास में एक राशि पार करता है, चन्द्रमा लगभग 2.25 दिन में, बुध 25 दिन से 2 मास में (वक्री के अनुसार), शुक्र लगभग 1 मास में और मंगल लगभग 45 दिन में। जब अनेक तीव्र ग्रह एक साथ किसी संवेदनशील बिन्दु को सक्रिय करते हैं जो पहले से मन्द ग्रह द्वारा उत्तेजित है, तब घटनाएँ साकार होती हैं।</> : <>Fast-moving planets act as triggers that time the exact manifestation of events promised by slow-planet transits. The Sun transits a sign in about 1 month, the Moon in about 2.25 days, Mercury in 25 days to 2 months (varying with retrograde), Venus in about 1 month, and Mars in about 45 days. When multiple fast planets simultaneously activate a sensitive point already stimulated by a slow planet, events crystallize.</>}</p>
       </section>
 
+      {/* Transit Speed Table */}
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 overflow-x-auto">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Transit Speed Reference Table', hi: 'गोचर गति संदर्भ तालिका', sa: 'गोचर गति संदर्भ तालिका' }, locale)}</h4>
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-gold-primary/10">
+              <th className="text-left text-gold-light text-xs py-2 pr-3">{isHi ? 'ग्रह' : 'Planet'}</th>
+              <th className="text-left text-text-tertiary text-xs py-2 pr-3">{isHi ? 'प्रति राशि समय' : 'Time per Sign'}</th>
+              <th className="text-left text-text-tertiary text-xs py-2">{isHi ? 'प्रभाव' : 'Impact Level'}</th>
+            </tr>
+          </thead>
+          <tbody className="text-text-secondary text-xs">
+            {[
+              { p: isHi ? 'चन्द्रमा' : 'Moon', t: isHi ? '~2.25 दिन' : '~2.25 days', i: isHi ? 'दैनिक मनोदशा, भावनाएँ' : 'Daily mood, emotional triggers' },
+              { p: isHi ? 'सूर्य' : 'Sun', t: isHi ? '~1 मास' : '~1 month', i: isHi ? 'मासिक ऊर्जा, ध्यान केन्द्र' : 'Monthly energy, focus area' },
+              { p: isHi ? 'बुध' : 'Mercury', t: isHi ? '25 दिन - 2 मास' : '25 days - 2 months', i: isHi ? 'संवाद, व्यापार, यात्रा' : 'Communication, business, travel' },
+              { p: isHi ? 'शुक्र' : 'Venus', t: isHi ? '~1 मास' : '~1 month', i: isHi ? 'प्रेम, कला, धन' : 'Love, art, finances' },
+              { p: isHi ? 'मंगल' : 'Mars', t: isHi ? '~45 दिन' : '~45 days', i: isHi ? 'ऊर्जा, संघर्ष, साहस' : 'Energy, conflicts, courage' },
+              { p: isHi ? 'बृहस्पति' : 'Jupiter', t: isHi ? '~13 मास' : '~13 months', i: isHi ? 'विस्तार, अवसर, ज्ञान' : 'Expansion, opportunity, wisdom' },
+              { p: isHi ? 'शनि' : 'Saturn', t: isHi ? '~2.5 वर्ष' : '~2.5 years', i: isHi ? 'अनुशासन, कर्म, पुनर्गठन' : 'Discipline, karma, restructuring' },
+              { p: isHi ? 'राहु/केतु' : 'Rahu/Ketu', t: isHi ? '~18 मास' : '~18 months', i: isHi ? 'कार्मिक इच्छाएँ, मुक्ति' : 'Karmic desires, liberation' },
+            ].map(r => (
+              <tr key={r.p} className="border-b border-white/5">
+                <td className="py-1.5 pr-3 text-gold-light font-medium">{r.p}</td>
+                <td className="py-1.5 pr-3">{r.t}</td>
+                <td className="py-1.5">{r.i}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+
+      {/* Double Transit Theory */}
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Double Transit Theory (Dwi-Graha Gochar)', hi: 'दोहरा गोचर सिद्धान्त (द्वि-ग्रह गोचर)', sa: 'दोहरा गोचर सिद्धान्त (द्वि-ग्रह गोचर)' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>दोहरा गोचर सिद्धान्त वैदिक ज्योतिष की सबसे विश्वसनीय भविष्यवाणी पद्धतियों में से एक है। इसका सिद्धान्त सरल है: <strong className="text-gold-light">कोई भी प्रमुख जीवन घटना (विवाह, सन्तान, कैरियर परिवर्तन) तब तक घटित नहीं होती जब तक गुरु और शनि दोनों एक साथ सम्बन्धित भाव को दृष्टि या स्थिति से सक्रिय न करें।</strong></> : <>The Double Transit theory is one of the most reliable predictive techniques in Vedic astrology. The principle is simple: <strong className="text-gold-light">no major life event (marriage, children, career change) manifests unless BOTH Jupiter and Saturn simultaneously activate the relevant house through transit or aspect.</strong></>}</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>उदाहरण: विवाह हेतु गुरु और शनि दोनों को 7वें भाव (या उसके स्वामी) को दृष्टि/स्थिति से सक्रिय करना होगा। केवल गुरु 7वें में पर्याप्त नहीं — शनि का समर्थन भी अनिवार्य है। यह सिद्धान्त बताता है कि क्यों गुरु हर वर्ष 7वें भाव को पार करता है परन्तु विवाह प्रत्येक वर्ष नहीं होता।</> : <>Example: for marriage, both Jupiter and Saturn must activate the 7th house (or its lord) through transit or aspect. Jupiter alone in the 7th is not sufficient — Saturn&apos;s support is also required. This explains why Jupiter crosses the 7th house every year but marriage does not happen annually.</>}</p>
+      </section>
+
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example — Saturn Through Houses', hi: 'उदाहरण — शनि का भाव गोचर', sa: 'उदाहरण — शनि का भाव गोचर' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">उदाहरण:</span> जन्म चन्द्रमा वृषभ में। शनि मीन (वृषभ से 11वाँ) में 2023-2025 में था — लाभ और इच्छापूर्ति का शुभ काल। जब शनि मेष (12वाँ) में प्रवेश करता है, साढ़े साती आरम्भ होती है। प्रत्येक 2.5 वर्ष में विषय नाटकीय रूप से बदलता है।</> : <><span className="text-gold-light font-medium">Example:</span> Natal Moon in Taurus. Saturn transiting Pisces (11th from Taurus, 2023-2025) was an auspicious period of gains. When Saturn enters Aries (12th from Taurus), Sade Sati begins. Every 2.5 years the theme shifts dramatically, making Saturn&apos;s ingress dates the most tracked events in Vedic astrology.</>}</p>
+      </section>
+
+      {/* Natal vs Transit */}
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Natal Positions vs Transits', hi: 'जन्मकालिक स्थिति बनाम गोचर', sa: 'जन्मकालिक स्थिति बनाम गोचर' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>एक आवश्यक भेद: <strong className="text-gold-light">जन्मकालिक स्थिति</strong> (natal) स्थिर है — यह जन्म क्षण का आकाश है जो कभी नहीं बदलता। <strong className="text-gold-light">गोचर</strong> (transit) सतत बदलता है — ग्रह वर्तमान में कहाँ हैं। गोचर विश्लेषण जन्म कुण्डली पर गोचरी ग्रहों को आरोपित करता है और देखता है कि कौन से जन्मकालिक बिन्दु सक्रिय हो रहे हैं।</> : <>A critical distinction: <strong className="text-gold-light">natal positions</strong> are fixed — they represent the sky at the moment of birth and never change. <strong className="text-gold-light">Transits</strong> change continuously — they represent where planets are RIGHT NOW. Transit analysis overlays the current planetary positions onto the birth chart to see which natal points are being activated.</>}</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>गोचर केवल जन्म कुण्डली में प्रतिश्रुत फलों को सक्रिय करता है। यदि जन्म कुण्डली में विवाह योग नहीं है, तो गुरु का 7वें भाव में गोचर विवाह नहीं लाएगा। गोचर एक उत्प्रेरक है, मूल कारण नहीं।</> : <>Transits can only activate results promised in the birth chart. If there is no marriage yoga in the natal chart, Jupiter transiting the 7th house will not bring marriage. Transits are catalysts, not root causes. Think of the natal chart as the script and transits as the director calling &quot;Action!&quot; on specific scenes.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">

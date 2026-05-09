@@ -760,6 +760,39 @@
           "gu": "27"
         }
       ]
+    },
+    {
+      "id": "q13_1_11",
+      "type": "mcq",
+      "question": { "en": "What is the total duration of the Vimshottari Dasha cycle?", "hi": "विंशोत्तरी दशा चक्र की कुल अवधि क्या है?", "sa": "विंशोत्तरी दशा चक्र की कुल अवधि क्या है?", "ta": "What is the total Vimshottari Dasha cycle?", "te": "What is the total Vimshottari Dasha cycle?", "bn": "What is the total Vimshottari Dasha cycle?", "kn": "What is the total Vimshottari Dasha cycle?", "mr": "विंशोत्तरी दशा चक्र की कुल अवधि क्या है?", "gu": "What is the total Vimshottari Dasha cycle?", "mai": "विंशोत्तरी दशा चक्र की कुल अवधि क्या है?" },
+      "correctAnswer": 2,
+      "explanation": { "en": "The Vimshottari Dasha totals 120 years (6+10+7+18+16+19+17+7+20), representing a full human lifespan in Vedic tradition.", "hi": "विंशोत्तरी दशा कुल 120 वर्ष (6+10+7+18+16+19+17+7+20) है, जो वैदिक परम्परा में पूर्ण मानव आयु मानी जाती है।", "sa": "विंशोत्तरी दशा कुल 120 वर्ष है।", "ta": "The Vimshottari Dasha totals 120 years.", "te": "The Vimshottari Dasha totals 120 years.", "bn": "The Vimshottari Dasha totals 120 years.", "kn": "The Vimshottari Dasha totals 120 years.", "mr": "विंशोत्तरी दशा कुल 120 वर्ष है।", "gu": "The Vimshottari Dasha totals 120 years.", "mai": "विंशोत्तरी दशा कुल 120 वर्ष है।" },
+      "options": [
+        { "en": "60 years", "hi": "60 वर्ष", "sa": "60 वर्ष", "ta": "60 years", "te": "60 years", "bn": "60 years", "kn": "60 years", "mr": "60 वर्ष", "gu": "60 years", "mai": "60 वर्ष" },
+        { "en": "108 years", "hi": "108 वर्ष", "sa": "108 वर्ष", "ta": "108 years", "te": "108 years", "bn": "108 years", "kn": "108 years", "mr": "108 वर्ष", "gu": "108 years", "mai": "108 वर्ष" },
+        { "en": "120 years", "hi": "120 वर्ष", "sa": "120 वर्ष", "ta": "120 years", "te": "120 years", "bn": "120 years", "kn": "120 years", "mr": "120 वर्ष", "gu": "120 years", "mai": "120 वर्ष" },
+        { "en": "84 years", "hi": "84 वर्ष", "sa": "84 वर्ष", "ta": "84 years", "te": "84 years", "bn": "84 years", "kn": "84 years", "mr": "84 वर्ष", "gu": "84 years", "mai": "84 वर्ष" }
+      ]
+    },
+    {
+      "id": "q13_1_12",
+      "type": "true_false",
+      "question": { "en": "A yoga that appears in the birth chart always delivers its full result regardless of dasha timing.", "hi": "जन्म कुण्डली में दिखने वाला योग दशा के समय की परवाह किए बिना सदैव पूर्ण फल देता है।", "sa": "जन्म कुण्डली में दिखने वाला योग सदैव पूर्ण फल देता है।", "ta": "A yoga in the birth chart always delivers its full result.", "te": "A yoga in the birth chart always delivers its full result.", "bn": "A yoga in the birth chart always delivers its full result.", "kn": "A yoga in the birth chart always delivers its full result.", "mr": "जन्म कुण्डली में दिखने वाला योग सदैव पूर्ण फल देता है।", "gu": "A yoga in the birth chart always delivers its full result.", "mai": "जन्म कुण्डली में दिखने वाला योग सदैव पूर्ण फल देता है।" },
+      "correctAnswer": false,
+      "explanation": { "en": "A yoga remains a latent promise until the dasha of one of its forming planets arrives. Without dasha activation, even a powerful yoga may never fully manifest.", "hi": "योग एक अप्रकट प्रतिज्ञा बना रहता है जब तक उसके निर्माता ग्रहों में से एक की दशा न आए।", "sa": "योग तब तक अप्रकट प्रतिज्ञा बना रहता है जब तक उसके निर्माता ग्रह की दशा न आए।", "ta": "A yoga remains latent until the dasha of its forming planet arrives.", "te": "A yoga remains latent until the dasha of its forming planet arrives.", "bn": "A yoga remains latent until the dasha of its forming planet arrives.", "kn": "A yoga remains latent until the dasha of its forming planet arrives.", "mr": "योग तब तक अप्रकट प्रतिज्ञा बना रहता है जब तक उसके निर्माता ग्रह की दशा न आए।", "gu": "A yoga remains latent until the dasha of its forming planet arrives.", "mai": "योग तब तक अप्रकट प्रतिज्ञा बना रहता है जब तक उसके निर्माता ग्रह की दशा न आए।" }
+    },
+    {
+      "id": "q13_1_13",
+      "type": "mcq",
+      "question": { "en": "What happens when a debilitated planet's debilitation is cancelled (Neechabhanga)?", "hi": "जब नीच ग्रह का नीचभंग हो जाए तो क्या होता है?", "sa": "नीचभंग होने पर क्या होता है?", "ta": "What happens when debilitation is cancelled?", "te": "What happens when debilitation is cancelled?", "bn": "What happens when debilitation is cancelled?", "kn": "What happens when debilitation is cancelled?", "mr": "नीचभंग होने पर क्या होता है?", "gu": "What happens when debilitation is cancelled?", "mai": "नीचभंग होने पर क्या होता है?" },
+      "correctAnswer": 1,
+      "explanation": { "en": "Neechabhanga Raja Yoga transforms a debilitated planet into a source of unexpected power and success — the cancellation converts weakness into strength.", "hi": "नीचभंग राजयोग नीच ग्रह को अप्रत्याशित शक्ति और सफलता का स्रोत बना देता है।", "sa": "नीचभंग राजयोग नीच ग्रह को शक्ति का स्रोत बना देता है।", "ta": "Neechabhanga Raja Yoga transforms weakness into strength.", "te": "Neechabhanga Raja Yoga transforms weakness into strength.", "bn": "Neechabhanga Raja Yoga transforms weakness into strength.", "kn": "Neechabhanga Raja Yoga transforms weakness into strength.", "mr": "नीचभंग राजयोग नीच ग्रह को शक्ति का स्रोत बना देता है।", "gu": "Neechabhanga Raja Yoga transforms weakness into strength.", "mai": "नीचभंग राजयोग नीच ग्रह को शक्ति का स्रोत बना देता है।" },
+      "options": [
+        { "en": "The planet becomes even weaker", "hi": "ग्रह और भी कमज़ोर हो जाता है", "sa": "ग्रह और कमज़ोर होता है", "ta": "The planet becomes even weaker", "te": "The planet becomes even weaker", "bn": "The planet becomes even weaker", "kn": "The planet becomes even weaker", "mr": "ग्रह और कमज़ोर होता है", "gu": "The planet becomes even weaker", "mai": "ग्रह और कमज़ोर होता है" },
+        { "en": "It transforms into Raja Yoga — unexpected power from weakness", "hi": "यह राजयोग में परिवर्तित होता है — कमज़ोरी से अप्रत्याशित शक्ति", "sa": "यह राजयोग में परिवर्तित होता है", "ta": "It transforms into Raja Yoga", "te": "It transforms into Raja Yoga", "bn": "It transforms into Raja Yoga", "kn": "It transforms into Raja Yoga", "mr": "यह राजयोग में परिवर्तित होता है", "gu": "It transforms into Raja Yoga", "mai": "यह राजयोग में परिवर्तित होता है" },
+        { "en": "Nothing happens", "hi": "कुछ नहीं होता", "sa": "कुछ नहीं होता", "ta": "Nothing happens", "te": "Nothing happens", "bn": "Nothing happens", "kn": "Nothing happens", "mr": "कुछ नहीं होता", "gu": "Nothing happens", "mai": "कुछ नहीं होता" },
+        { "en": "The planet changes signs", "hi": "ग्रह राशि बदल लेता है", "sa": "ग्रह राशि बदल लेता है", "ta": "The planet changes signs", "te": "The planet changes signs", "bn": "The planet changes signs", "kn": "The planet changes signs", "mr": "ग्रह राशि बदल लेता है", "gu": "The planet changes signs", "mai": "ग्रह राशि बदल लेता है" }
+      ]
     }
   ]
 }

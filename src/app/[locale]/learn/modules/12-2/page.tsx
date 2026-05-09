@@ -68,6 +68,46 @@ function Page2() {
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">5. Saturn&apos;s Functional Role:</span> For Taurus and Libra lagnas, Saturn is Yoga Karaka — even during Sade Sati it delivers career breakthroughs. For Cancer and Leo lagnas, Saturn rules dusthanas and the transit tends harsher.</p>
       </section>
 
+      {/* Dasha Interaction */}
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Sade Sati + Dasha Combinations', hi: 'साढ़े साती + दशा संयोग', sa: 'साढ़े साती + दशा संयोग' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>साढ़े साती का अनुभव चल रही दशा से गहराई से प्रभावित होता है। प्रत्येक दशा-गोचर संयोग एक विशिष्ट अनुभव पैटर्न बनाता है:</> : <>The experience of Sade Sati is profoundly shaped by the running dasha period. Each dasha-transit combination creates a distinct experiential pattern:</>}</p>
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-gold-primary/10">
+                <th className="text-left text-gold-light text-xs py-2 pr-3">{isHi ? 'चल रही दशा' : 'Running Dasha'}</th>
+                <th className="text-left text-text-tertiary text-xs py-2">{isHi ? 'साढ़े साती के साथ अनुभव' : 'Experience During Sade Sati'}</th>
+              </tr>
+            </thead>
+            <tbody className="text-text-secondary text-xs">
+              {[
+                { d: isHi ? 'शनि दशा' : 'Saturn Dasha', e: isHi ? 'दोहरा शनि प्रभाव — सर्वाधिक कठिन। कर्म-हिसाब अनिवार्य। परन्तु अनुशासित व्यक्ति के लिए स्थायी सफलता।' : 'Double Saturn effect — most intense. Karmic reckoning unavoidable. But for the disciplined, permanent success emerges.' },
+                { d: isHi ? 'गुरु दशा' : 'Jupiter Dasha', e: isHi ? 'सुरक्षा कवच। गुरु की कृपा कठिनाइयों को शमित करती है। आध्यात्मिक विकास प्रबल।' : 'Protective buffer. Jupiter\'s grace mitigates hardships. Spiritual growth is prominent. Challenges exist but feel manageable.' },
+                { d: isHi ? 'राहु दशा' : 'Rahu Dasha', e: isHi ? 'भ्रम और अनिश्चितता। अप्रत्याशित मोड़। भौतिक इच्छाएँ तीव्र पर सन्तुष्टि कठिन।' : 'Confusion and uncertainty. Unexpected turns. Material desires intensify but satisfaction remains elusive.' },
+                { d: isHi ? 'शुक्र दशा' : 'Venus Dasha', e: isHi ? 'सम्बन्ध परीक्षा। विलासिता में कमी। परन्तु कला और सृजनात्मकता में गहराई आती है।' : 'Relationship tests. Luxury diminishes. But art and creativity deepen through the pressure.' },
+                { d: isHi ? 'मंगल दशा' : 'Mars Dasha', e: isHi ? 'ऊर्जा और हताशा का मिश्रण। क्रोध पर नियन्त्रण आवश्यक। भौतिक स्वास्थ्य पर ध्यान दें।' : 'Mix of energy and frustration. Anger management is critical. Pay attention to physical health.' },
+              ].map(r => (
+                <tr key={r.d} className="border-b border-white/5">
+                  <td className="py-1.5 pr-3 text-gold-light font-medium">{r.d}</td>
+                  <td className="py-1.5">{r.e}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* Dhaiyya */}
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Dhaiyya (Small Panoti) — Saturn in the 4th and 8th', hi: 'ढैय्या (लघु पनौती) — शनि 4थे और 8वें में', sa: 'ढैय्या (लघु पनौती) — शनि 4थे और 8वें में' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>साढ़े साती के अतिरिक्त, शनि चन्द्र राशि से 4थे और 8वें भाव में गोचर करते समय भी कठिनाई लाता है — इसे <strong className="text-gold-light">ढैय्या</strong> (2.5 वर्ष) कहते हैं। चौथे में शनि = गृह, माता और मानसिक शान्ति पर दबाव। आठवें में शनि = अचानक परिवर्तन, स्वास्थ्य चिन्ताएँ, और छिपी चुनौतियाँ। कुछ ज्योतिषी 8वें के ढैय्या को साढ़े साती से भी अधिक कठिन मानते हैं।</> : <>Beyond Sade Sati, Saturn transiting the 4th and 8th houses from the natal Moon also brings challenges — called <strong className="text-gold-light">Dhaiyya</strong> (2.5 years each). Saturn in the 4th = pressure on home, mother, and mental peace. Saturn in the 8th = sudden changes, health concerns, and hidden challenges. Some astrologers consider the 8th-house Dhaiyya even more intense than Sade Sati itself.</>}</p>
+      </section>
+
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Remedial Measures', hi: 'उपचार', sa: 'उपचार' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>शास्त्रीय उपचार जो शनि की ऊर्जा को शांत करने के लिए बताये गये हैं: शनिवार को तेल, काले तिल, लोहे की वस्तुएँ दान करना। हनुमान चालीसा या शनि स्तोत्र का पाठ। सेवा कार्य (निम्नवर्गीय लोगों की सहायता) — शनि सेवा का ग्रह है।</> : <>Classical remedies prescribed for Saturn&apos;s energy: donating oil, black sesame, iron items on Saturdays. Recitation of Hanuman Chalisa or Shani Stotra. Service work (helping underprivileged people) — Saturn is the planet of service. These remedies work by aligning the native&apos;s actions with Saturn&apos;s fundamental nature: discipline, humility, and compassion for the suffering.</>}</p>
@@ -104,6 +144,21 @@ function Page3() {
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           Despite its fearsome reputation, Sade Sati is ultimately Saturn&apos;s gift of maturity. Many of history&apos;s greatest achievements — career breakthroughs, spiritual awakenings, masterworks of art — have occurred during Sade Sati. Saturn does not destroy; he removes what is false so that what is true can emerge. What survives Sade Sati becomes unshakable.
         </p>
+      </section>
+
+      {/* Moon sign variations */}
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {tl({ en: 'Sade Sati by Moon Sign — Not All Are Equal', hi: 'चन्द्र राशि अनुसार साढ़े साती — सभी समान नहीं', sa: 'चन्द्र राशि अनुसार साढ़े साती — सभी समान नहीं' }, locale)}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>शनि की गोचर राशि का स्वभाव भी प्रभाव निर्धारित करता है। शनि <strong className="text-gold-light">तुला</strong> (उच्च) में गोचर करते हुए — कन्या, तुला, वृश्चिक चन्द्र राशि वालों की साढ़े साती सबसे शमित होती है क्योंकि शनि अपनी सर्वोत्तम गरिमा में है। शनि <strong className="text-red-400">मेष</strong> (नीच) में — मीन, मेष, वृषभ चन्द्र राशि वालों की साढ़े साती सबसे कठोर हो सकती है।</> : <>The sign Saturn is transiting through also determines the intensity. Saturn transiting through <strong className="text-gold-light">Libra</strong> (exaltation) — Virgo, Libra, and Scorpio Moon natives experience the mildest Sade Sati because Saturn is in its highest dignity. Saturn in <strong className="text-red-400">Aries</strong> (debilitation) — Pisces, Aries, and Taurus Moon natives may experience the harshest version.</>}</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>इसके अतिरिक्त, शनि की स्वराशि गोचर (मकर या कुम्भ) भी अपेक्षाकृत सुखद होती है — धनु/मकर/कुम्भ और कर्क/कुम्भ/मीन चन्द्र राशि वाले इस स्थिति में कम कठिनाई अनुभव करते हैं।</> : <>Additionally, Saturn transiting through its own signs (Capricorn or Aquarius) is also relatively comfortable — Sagittarius/Capricorn/Aquarius and Cancer/Aquarius/Pisces Moon natives experience less difficulty in this configuration.</>}</p>
+      </section>
+
+      {/* Practical guidance */}
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Practical Guidance', hi: 'व्यावहारिक मार्गदर्शन', sa: 'व्यावहारिक मार्गदर्शन' }, locale)}</h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>जब साढ़े साती चल रही हो: (1) बड़े निर्णय शीघ्रता में न लें — शनि धैर्य की परीक्षा लेता है। (2) स्वास्थ्य को प्राथमिकता दें — शनि उपेक्षित शरीर को संकट देता है। (3) ऋण से बचें — शनि आर्थिक अनुशासन की माँग करता है। (4) सेवा कार्य करें — शनि उन्हें पुरस्कृत करता है जो दूसरों की सहायता करते हैं।</> : <>When Sade Sati is running: (1) Do not make major decisions in haste — Saturn tests patience. (2) Prioritise health — Saturn afflicts the neglected body. (3) Avoid debt — Saturn demands financial discipline. (4) Engage in service work — Saturn rewards those who help others. (5) Do not fight the process — resistance amplifies suffering, acceptance transforms it.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">

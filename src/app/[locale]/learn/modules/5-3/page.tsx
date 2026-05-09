@@ -74,10 +74,54 @@ function Page2() {
         </p>
       </section>
 
+      {/* Ekadashi Rules */}
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{isHi ? 'एकादशी व्रत विस्तार' : 'Ekadashi Vrat Rules in Detail'}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi ? <>एकादशी दो परम्पराओं में भिन्न रूप से मनाई जाती है: <strong className="text-gold-light">स्मार्त</strong> एकादशी तब होती है जब एकादशी तिथि सूर्योदय पर चल रही हो, भले ही दशमी भी उपस्थित हो (दशमी वेध)। <strong className="text-gold-light">वैष्णव</strong> एकादशी में दशमी वेध शुद्ध एकादशी को अशुद्ध बनाता है — वैष्णव अगले दिन उपवास रखते हैं (द्वादशी व्रत)। यही कारण है कि कभी-कभी स्मार्त और वैष्णव एकादशी तिथियाँ एक दिन भिन्न होती हैं।</> : <>Ekadashi is observed differently in two traditions: <strong className="text-gold-light">Smartha</strong> Ekadashi is when Ekadashi tithi is running at sunrise, even if Dashami is also present (Dashami Viddha). <strong className="text-gold-light">Vaishnava</strong> Ekadashi requires a &quot;pure&quot; Ekadashi — free from Dashami contamination. If Dashami is present at sunrise alongside Ekadashi, Vaishnavas observe the fast the next day (Dwadashi Vrat). This is why Smartha and Vaishnava Ekadashi dates sometimes differ by one day.</>}
+        </p>
+      </section>
+
+      {/* Tithi-specific vrats */}
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{isHi ? 'तिथि-विशिष्ट व्रत' : 'Tithi-Specific Vrats'}</h3>
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+          <div className="space-y-2 text-text-secondary text-xs">
+            <p><span className="text-gold-light font-medium">{isHi ? 'चतुर्थी — गणेश पूजा:' : 'Chaturthi — Ganesh Worship:'}</span> {isHi ? 'शुक्ल चतुर्थी गणेश पूजा हेतु (विनायक चतुर्थी)। कृष्ण चतुर्थी संकष्टी चतुर्थी के रूप में मनाई जाती है — चन्द्रोदय के बाद उपवास तोड़ा जाता है।' : 'Shukla Chaturthi for Ganesh worship (Vinayaka Chaturthi). Krishna Chaturthi is observed as Sankashti Chaturthi — the fast is broken after moonrise.'}</p>
+            <p><span className="text-gold-light font-medium">{isHi ? 'अष्टमी — दुर्गा पूजा:' : 'Ashtami — Durga Worship:'}</span> {isHi ? 'अष्टमी दुर्गा/काली से जुड़ी है। नवरात्रि की अष्टमी (महाष्टमी) सर्वाधिक महत्वपूर्ण। कृष्ण अष्टमी कालाष्टमी (भैरव) हेतु।' : 'Ashtami is linked to Durga/Kali. Navaratri Ashtami (Maha Ashtami) is the most important. Krishna Ashtami is for Kalashtami (Bhairava).'}</p>
+            <p><span className="text-gold-light font-medium">{isHi ? 'त्रयोदशी — प्रदोष व्रत (शिव):' : 'Trayodashi — Pradosh Vrat (Shiva):'}</span> {isHi ? 'प्रत्येक त्रयोदशी पर शिव पूजा। सन्ध्याकाल (प्रदोष काल) में विशेष पूजा। शनि प्रदोष (शनिवार) सर्वाधिक शक्तिशाली माना जाता है।' : 'Shiva worship on every Trayodashi. Special puja during twilight (Pradosh Kaal). Shani Pradosh (Saturday) is considered most powerful.'}</p>
+            <p><span className="text-gold-light font-medium">{isHi ? 'पूर्णिमा — व्रत और त्योहार:' : 'Purnima — Vrats and Festivals:'}</span> {isHi ? 'सत्यनारायण व्रत, गुरु पूर्णिमा, शरद पूर्णिमा, होली (फाल्गुन)। पूर्णिमा सामान्य उपवास हेतु भी शुभ — चन्द्रमा अपने पूर्ण बल पर।' : 'Satyanarayan Vrat, Guru Purnima, Sharad Purnima, Holi (Phalguna). Purnima is auspicious for general fasting — the Moon is at full strength.'}</p>
+            <p><span className="text-gold-light font-medium">{isHi ? 'अमावस्या — पितृ कार्य:' : 'Amavasya — Ancestor Rituals:'}</span> {isHi ? 'तर्पण, श्राद्ध, पितृ पूजा। सोमवती अमावस्या (सोमवार) विशेष रूप से शुभ। शनिश्चरी अमावस्या (शनिवार) शनि शान्ति हेतु।' : 'Tarpana, Shraddha, ancestor worship. Somvati Amavasya (Monday) is especially auspicious. Shanishchari Amavasya (Saturday) for Saturn propitiation.'}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Rikta Tithis */}
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{isHi ? 'रिक्त तिथियाँ — क्यों अशुभ' : 'Rikta Tithis — Why They Are Inauspicious'}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi ? <>चतुर्थी (4), नवमी (9) और चतुर्दशी (14) को <strong className="text-gold-light">रिक्त (खाली) तिथियाँ</strong> कहा जाता है। इनका शासक यम (मृत्यु देवता) है। इन्हें विवाह, गृहप्रवेश, व्यापार आरम्भ जैसे शुभ कार्यों हेतु टाला जाता है। परन्तु ये तपस्या, शत्रु-शमन और दुर्गा-काली पूजा हेतु शक्तिशाली हैं। रिक्त तिथि का अर्थ &quot;बुरी&quot; नहीं — बल्कि इसकी ऊर्जा विध्वंसक है, निर्माणात्मक नहीं।</> : <>Chaturthi (4th), Navami (9th), and Chaturdashi (14th) are called <strong className="text-gold-light">Rikta (empty) tithis</strong>. They are ruled by Yama (the god of death). These are avoided for auspicious activities like marriage, housewarming, or business launches. However, they are powerful for austerities, enemy-pacification, and Durga/Kali worship. Rikta does not mean &quot;bad&quot; — rather, its energy is destructive rather than constructive.</>}
+        </p>
+      </section>
+
+      {/* Dwi-tithi rule */}
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{isHi ? 'द्वि-तिथि नियम' : 'Dwi-Tithi Rule: When a Tithi Spans Two Sunrises'}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi ? <>जब कोई तिथि दो सूर्योदयों पर उपस्थित हो (वृद्धि तिथि), तो किस दिन व्रत/त्योहार मनाना चाहिए? सामान्य नियम: <strong className="text-gold-light">एकादशी हेतु दूसरा दिन</strong> (ताकि दशमी वेध न हो)। <strong className="text-gold-light">अन्य सभी तिथियों हेतु प्रथम दिन</strong>। यह नियम इसलिए है कि एकादशी की शुद्धता (दशमी स्पर्श रहित) अनिवार्य है, जबकि अन्य त्योहार प्रथम अवसर पर मनाये जाते हैं।</> : <>When a tithi spans two sunrises (Vriddhi tithi), which day should the vrat/festival be observed? The general rule: <strong className="text-gold-light">for Ekadashi, use the second day</strong> (to avoid Dashami contamination). <strong className="text-gold-light">For all other tithis, use the first day</strong>. This rule exists because Ekadashi&apos;s purity (freedom from Dashami touch) is mandatory, whereas other festivals are observed at the first opportunity.</>}
+        </p>
+      </section>
+
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
-        <p className="text-text-secondary text-xs leading-relaxed">
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> "पारण एकादशी के अगले दिन सुबह कभी भी किया जा सकता है।" यह गलत है और एकादशी तिथि चलते हुए (यदि एकादशी देर सुबह समाप्त हो) उपवास तोड़ सकता है। सदैव एकादशी समाप्ति का सटीक समय देखें। यदि यह प्रातः 10:30 पर समाप्त होती है तो 7:00 बजे भोजन करना एकादशी के दौरान ही उपवास तोड़ना होगा, जिससे व्रत का पुण्य नष्ट हो जाएगा।</> : <><span className="text-gold-light font-medium">Misconception:</span> "Parana can be done any time the next morning after Ekadashi." This is incorrect and can lead to breaking the fast while Ekadashi tithi is still running (if Ekadashi ends late morning). Always check the exact Ekadashi end time. If it ends at 10:30 AM, eating at 7 AM would break the fast during Ekadashi itself, losing the vrat&apos;s merit.</>}
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> "सभी एकादशियाँ समान हैं।" प्रत्येक एकादशी का अपना नाम, देवता और विशेष फल है — निर्जला (सर्वश्रेष्ठ, जल भी वर्जित), देवशयनी (विष्णु शयन), प्रबोधिनी (विष्णु जागरण)।</> : <><span className="text-gold-light font-medium">Misconception:</span> "All Ekadashis are equal." Each Ekadashi has its own name, presiding deity, and specific merit — Nirjala (greatest, even water is prohibited), Devshayani (Vishnu sleeps), Prabodhini (Vishnu awakens).</>}
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed">
+          {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> "पूर्णिमा और अमावस्या पर कोई भी शुभ कार्य नहीं होना चाहिए।" वास्तविकता: अमावस्या पितृ कार्य हेतु अत्यन्त शुभ है, और पूर्णिमा सत्यनारायण पूजा, दान आदि हेतु उत्तम। अशुभ केवल विवाह जैसे विशिष्ट कार्यों हेतु है।</> : <><span className="text-gold-light font-medium">Misconception:</span> "No auspicious work should be done on Purnima or Amavasya." Reality: Amavasya is highly auspicious for ancestor rites, and Purnima is excellent for Satyanarayan Puja and charity. The restriction applies specifically to events like marriage, not to all sacred activities.</>}
         </p>
       </section>
     </div>
@@ -111,6 +155,26 @@ function Page3() {
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> "तिथि समाप्ति समय 12 अंश को चन्द्रमा की औसत गति से भाग देकर निकाला जा सकता है।" यह एक सन्निकटन तो देता है किन्तु एक घण्टे से अधिक की त्रुटि हो सकती है क्योंकि चन्द्रमा की गति दिनभर निरन्तर बदलती रहती है। द्विभाजन खोज विधि प्रत्येक चरण पर चन्द्र और सूर्य की स्थिति पुनः गणना करती है, वास्तविक-समय गति परिवर्तन को पकड़ती है, यही कारण है कि आधुनिक पंचांग सॉफ्टवेयर मिनट-स्तर की सटीकता प्राप्त करता है।</> : <><span className="text-gold-light font-medium">Misconception:</span> "You can compute tithi end time by simply dividing 12 degrees by the average Moon speed." While this gives an approximation, it can be off by over an hour because the Moon&apos;s speed changes continuously throughout the day. The binary search method recomputes Moon and Sun positions at each iteration, capturing the real-time speed variation, which is why modern Panchang software achieves minute-level accuracy.</>}
         </p>
+      </section>
+
+      {/* Cross-links */}
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{isHi ? 'सम्बन्धित उपकरण और पृष्ठ' : 'Related Tools and Pages'}</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi ? <>हमारा <strong className="text-gold-light">पंचांग पृष्ठ</strong> आज की तिथि, उसका सटीक आरम्भ/समाप्ति समय, और क्षय/वृद्धि स्थिति स्वचालित रूप से प्रदर्शित करता है। <strong className="text-gold-light">एकादशी पृष्ठ</strong> आगामी एकादशी तिथियाँ, स्मार्त/वैष्णव भेद, और पारण समय दर्शाता है। <strong className="text-gold-light">पंचांग कैलेण्डर</strong> में सभी तिथियाँ मासिक दृश्य में दिखती हैं — क्षय तिथियाँ लाल और वृद्धि नीले रंग में चिह्नित।</> : <>Our <strong className="text-gold-light">Panchang page</strong> automatically displays today&apos;s tithi, its exact start/end times, and Kshaya/Vriddhi status. The <strong className="text-gold-light">Ekadashi page</strong> shows upcoming Ekadashi dates, Smartha/Vaishnava distinction, and Parana timing. The <strong className="text-gold-light">Panchang Calendar</strong> displays all tithis in a monthly view — Kshaya tithis marked in red, Vriddhi in blue.</>}
+        </p>
+      </section>
+
+      {/* Tithi groupings */}
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'तिथि वर्गीकरण सारांश' : 'Tithi Classification Summary'}</h4>
+        <div className="space-y-2 text-text-secondary text-xs">
+          <p><span className="text-gold-light font-medium">{isHi ? 'नन्दा (1, 6, 11):' : 'Nanda (1, 6, 11):'}</span> {isHi ? 'आनन्ददायक — शुभ कार्यों हेतु अनुकूल।' : 'Joyful — favourable for auspicious activities.'}</p>
+          <p><span className="text-gold-light font-medium">{isHi ? 'भद्रा (2, 7, 12):' : 'Bhadra (2, 7, 12):'}</span> {isHi ? 'शुभकारी — स्थायी कार्यों हेतु उत्तम।' : 'Auspicious — excellent for lasting endeavours.'}</p>
+          <p><span className="text-gold-light font-medium">{isHi ? 'जया (3, 8, 13):' : 'Jaya (3, 8, 13):'}</span> {isHi ? 'विजय — प्रतिस्पर्धा और संघर्ष हेतु शुभ।' : 'Victory — auspicious for competition and conflict resolution.'}</p>
+          <p><span className="text-red-400 font-medium">{isHi ? 'रिक्ता (4, 9, 14):' : 'Rikta (4, 9, 14):'}</span> {isHi ? 'रिक्त — शुभ कार्यों हेतु अशुभ, तपस्या हेतु शक्तिशाली।' : 'Empty — inauspicious for auspicious activities, powerful for austerities.'}</p>
+          <p><span className="text-gold-light font-medium">{isHi ? 'पूर्णा (5, 10, 15/30):' : 'Purna (5, 10, 15/30):'}</span> {isHi ? 'पूर्ण — सर्वाधिक शुभ, सभी कार्यों हेतु उत्तम।' : 'Complete — most auspicious, excellent for all activities.'}</p>
+        </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">

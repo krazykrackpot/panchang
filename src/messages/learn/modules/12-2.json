@@ -710,6 +710,39 @@
           "gu": "Childbirth"
         }
       ]
+    },
+    {
+      "id": "q12_2_11",
+      "type": "mcq",
+      "question": { "en": "Which dasha running alongside Sade Sati creates the most intense experience?", "hi": "साढ़े साती के साथ कौन सी दशा सर्वाधिक तीव्र अनुभव बनाती है?", "sa": "साढ़े साती के साथ कौन सी दशा सर्वाधिक तीव्र अनुभव बनाती है?", "ta": "Which dasha alongside Sade Sati creates the most intense experience?", "te": "Which dasha alongside Sade Sati creates the most intense experience?", "bn": "Which dasha alongside Sade Sati creates the most intense experience?", "kn": "Which dasha alongside Sade Sati creates the most intense experience?", "mr": "साढ़े साती के साथ कौन सी दशा सर्वाधिक तीव्र अनुभव बनाती है?", "gu": "Which dasha alongside Sade Sati creates the most intense experience?", "mai": "साढ़े साती के साथ कौन सी दशा सर्वाधिक तीव्र अनुभव बनाती है?" },
+      "correctAnswer": 0,
+      "explanation": { "en": "Saturn dasha + Sade Sati creates a 'double Saturn' effect — the most intense combination. Both the timing system and the transit are dominated by Saturn.", "hi": "शनि दशा + साढ़े साती 'दोहरा शनि' प्रभाव बनाती है — सर्वाधिक तीव्र संयोग।", "sa": "शनि दशा + साढ़े साती 'दोहरा शनि' प्रभाव बनाती है।", "ta": "Saturn dasha + Sade Sati creates a double Saturn effect.", "te": "Saturn dasha + Sade Sati creates a double Saturn effect.", "bn": "Saturn dasha + Sade Sati creates a double Saturn effect.", "kn": "Saturn dasha + Sade Sati creates a double Saturn effect.", "mr": "शनि दशा + साढ़े साती दोहरा शनि प्रभाव बनाती है।", "gu": "Saturn dasha + Sade Sati creates a double Saturn effect.", "mai": "शनि दशा + साढ़े साती दोहरा शनि प्रभाव बनाती है।" },
+      "options": [
+        { "en": "Saturn dasha", "hi": "शनि दशा", "sa": "शनि दशा", "ta": "Saturn dasha", "te": "Saturn dasha", "bn": "Saturn dasha", "kn": "Saturn dasha", "mr": "शनि दशा", "gu": "Saturn dasha", "mai": "शनि दशा" },
+        { "en": "Jupiter dasha", "hi": "गुरु दशा", "sa": "गुरु दशा", "ta": "Jupiter dasha", "te": "Jupiter dasha", "bn": "Jupiter dasha", "kn": "Jupiter dasha", "mr": "गुरु दशा", "gu": "Jupiter dasha", "mai": "गुरु दशा" },
+        { "en": "Venus dasha", "hi": "शुक्र दशा", "sa": "शुक्र दशा", "ta": "Venus dasha", "te": "Venus dasha", "bn": "Venus dasha", "kn": "Venus dasha", "mr": "शुक्र दशा", "gu": "Venus dasha", "mai": "शुक्र दशा" },
+        { "en": "Moon dasha", "hi": "चन्द्र दशा", "sa": "चन्द्र दशा", "ta": "Moon dasha", "te": "Moon dasha", "bn": "Moon dasha", "kn": "Moon dasha", "mr": "चन्द्र दशा", "gu": "Moon dasha", "mai": "चन्द्र दशा" }
+      ]
+    },
+    {
+      "id": "q12_2_12",
+      "type": "true_false",
+      "question": { "en": "Dhaiyya (Saturn in the 8th from Moon) can sometimes be more intense than Sade Sati.", "hi": "ढैय्या (चन्द्र से 8वें में शनि) कभी-कभी साढ़े साती से अधिक तीव्र हो सकती है।", "sa": "ढैय्या कभी-कभी साढ़े साती से अधिक तीव्र हो सकती है।", "ta": "Dhaiyya can sometimes be more intense than Sade Sati.", "te": "Dhaiyya can sometimes be more intense than Sade Sati.", "bn": "Dhaiyya can sometimes be more intense than Sade Sati.", "kn": "Dhaiyya can sometimes be more intense than Sade Sati.", "mr": "ढैय्या कभी-कभी साढ़े साती से अधिक तीव्र हो सकती है।", "gu": "Dhaiyya can sometimes be more intense than Sade Sati.", "mai": "ढैय्या कभी-कभी साढ़े साती से अधिक तीव्र हो सकती है।" },
+      "correctAnswer": true,
+      "explanation": { "en": "Saturn in the 8th from Moon (Ashtama Shani or Dhaiyya) can be more intense than Sade Sati because the 8th house governs sudden transformations, hidden challenges, and crises.", "hi": "चन्द्र से 8वें में शनि (अष्टम शनि या ढैय्या) साढ़े साती से अधिक तीव्र हो सकती है क्योंकि 8वाँ भाव अचानक रूपान्तरण, छिपी चुनौतियाँ और संकट को नियन्त्रित करता है।", "sa": "अष्टम शनि साढ़े साती से अधिक तीव्र हो सकती है।", "ta": "Saturn in the 8th from Moon can be more intense than Sade Sati.", "te": "Saturn in the 8th from Moon can be more intense than Sade Sati.", "bn": "Saturn in the 8th from Moon can be more intense than Sade Sati.", "kn": "Saturn in the 8th from Moon can be more intense than Sade Sati.", "mr": "अष्टम शनि साढ़े साती से अधिक तीव्र हो सकती है।", "gu": "Saturn in the 8th from Moon can be more intense than Sade Sati.", "mai": "अष्टम शनि साढ़े साती से अधिक तीव्र हो सकती है।" }
+    },
+    {
+      "id": "q12_2_13",
+      "type": "mcq",
+      "question": { "en": "For which Lagnas is Saturn a Yoga Karaka, making Sade Sati potentially beneficial?", "hi": "किन लग्नों के लिए शनि योगकारक है, जिससे साढ़े साती सम्भावित रूप से लाभकारी हो सकती है?", "sa": "किन लग्नों के लिए शनि योगकारक है?", "ta": "For which Lagnas is Saturn a Yoga Karaka?", "te": "For which Lagnas is Saturn a Yoga Karaka?", "bn": "For which Lagnas is Saturn a Yoga Karaka?", "kn": "For which Lagnas is Saturn a Yoga Karaka?", "mr": "किन लग्नों के लिए शनि योगकारक है?", "gu": "For which Lagnas is Saturn a Yoga Karaka?", "mai": "किन लग्नों के लिए शनि योगकारक है?" },
+      "correctAnswer": 1,
+      "explanation": { "en": "For Taurus and Libra Lagnas, Saturn rules both a Kendra and a Trikona, making it Yoga Karaka. Even during Sade Sati, Saturn can deliver career breakthroughs for these natives.", "hi": "वृषभ और तुला लग्नों के लिए शनि केन्द्र और त्रिकोण दोनों का स्वामी होता है, जिससे यह योगकारक बनता है।", "sa": "वृषभ और तुला लग्नों के लिए शनि योगकारक है।", "ta": "For Taurus and Libra Lagnas, Saturn is Yoga Karaka.", "te": "For Taurus and Libra Lagnas, Saturn is Yoga Karaka.", "bn": "For Taurus and Libra Lagnas, Saturn is Yoga Karaka.", "kn": "For Taurus and Libra Lagnas, Saturn is Yoga Karaka.", "mr": "वृषभ और तुला लग्नों के लिए शनि योगकारक है।", "gu": "For Taurus and Libra Lagnas, Saturn is Yoga Karaka.", "mai": "वृषभ और तुला लग्नों के लिए शनि योगकारक है।" },
+      "options": [
+        { "en": "Aries and Cancer", "hi": "मेष और कर्क", "sa": "मेष और कर्क", "ta": "Aries and Cancer", "te": "Aries and Cancer", "bn": "Aries and Cancer", "kn": "Aries and Cancer", "mr": "मेष और कर्क", "gu": "Aries and Cancer", "mai": "मेष और कर्क" },
+        { "en": "Taurus and Libra", "hi": "वृषभ और तुला", "sa": "वृषभ और तुला", "ta": "Taurus and Libra", "te": "Taurus and Libra", "bn": "Taurus and Libra", "kn": "Taurus and Libra", "mr": "वृषभ और तुला", "gu": "Taurus and Libra", "mai": "वृषभ और तुला" },
+        { "en": "Leo and Scorpio", "hi": "सिंह और वृश्चिक", "sa": "सिंह और वृश्चिक", "ta": "Leo and Scorpio", "te": "Leo and Scorpio", "bn": "Leo and Scorpio", "kn": "Leo and Scorpio", "mr": "सिंह और वृश्चिक", "gu": "Leo and Scorpio", "mai": "सिंह और वृश्चिक" },
+        { "en": "Gemini and Virgo", "hi": "मिथुन और कन्या", "sa": "मिथुन और कन्या", "ta": "Gemini and Virgo", "te": "Gemini and Virgo", "bn": "Gemini and Virgo", "kn": "Gemini and Virgo", "mr": "मिथुन और कन्या", "gu": "Gemini and Virgo", "mai": "मिथुन और कन्या" }
+      ]
     }
   ]
 }

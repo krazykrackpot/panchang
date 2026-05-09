@@ -35,11 +35,53 @@ function Page1() {
           Absolutely avoided: Vishti (Bhadra) karana, Rikta tithis (4th, 9th, 14th), Vyatipata/Vaidhriti yoga, Rahu Kaal during the ceremony. The wedding ceremony (particularly the Saptapadi/seven steps) should ideally occur during the auspicious window, not just the reception or formal registration.
         </p>
       </section>
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">The Nine Marriage Nakshatras</h4>
-        <p className="text-text-secondary text-sm leading-relaxed">
-          Rohini (stability, beauty), Mrigashira (gentleness, seeking), Uttara Phalguni (patronage, lasting bonds), Hasta (skill, craftsmanship in relationships), Swati (independence with harmony), Anuradha (devotion, friendship), Uttara Ashadha (final victory, commitment), Uttarabhadrapada (depth, wisdom), Revati (nourishment, completion). Each carries a specific energy that blesses the marriage in its own way.
+      {/* Auspicious Tithis for Marriage */}
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          Auspicious Tithis for Marriage
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          Not all tithis are equally suitable. The following are considered auspicious for marriage, and the reason behind each selection reflects the lunar energy present:
         </p>
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
+          <div className="space-y-2 text-text-secondary text-xs">
+            <p><span className="text-gold-light font-medium">Dwitiya (2nd):</span> Ruled by Brahma. Fresh beginning energy, ideal for launching a new chapter of life.</p>
+            <p><span className="text-gold-light font-medium">Tritiya (3rd):</span> Ruled by Vishnu. Balance and growth. Associated with Akshaya Tritiya — the &quot;imperishable&quot; tithi.</p>
+            <p><span className="text-gold-light font-medium">Panchami (5th):</span> Ruled by the Moon. Intelligence and creativity. Blesses the couple with wise children.</p>
+            <p><span className="text-gold-light font-medium">Saptami (7th):</span> Ruled by the Sun. Vitality and energy. The Sun&apos;s strength supports a vibrant partnership.</p>
+            <p><span className="text-gold-light font-medium">Dashami (10th):</span> Ruled by Dharma. Prosperity and right action. Strong foundation for a dharmic union.</p>
+            <p><span className="text-gold-light font-medium">Ekadashi (11th):</span> Ruled by Rudra. Spiritual depth. Considered highly sacred — but the Dwi-tithi rule applies.</p>
+            <p><span className="text-gold-light font-medium">Trayodashi (13th):</span> Ruled by Kamadeva (god of desire). Blesses romantic harmony and attraction.</p>
+          </div>
+          <p className="text-red-400 text-xs mt-3"><span className="font-medium">Avoided:</span> Chaturthi (4th), Navami (9th), Chaturdashi (14th) — these are Rikta (empty) tithis associated with Yama and destructive energy. Amavasya and Purnima are also typically avoided for marriage.</p>
+        </div>
+      </section>
+
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">The Ten Marriage Nakshatras</h4>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          Rohini (stability, beauty), Mrigashira (gentleness, seeking), Magha (ancestral blessings, royal dignity), Uttara Phalguni (patronage, lasting bonds), Hasta (skill, craftsmanship in relationships), Swati (independence with harmony), Anuradha (devotion, friendship), Uttara Ashadha (final victory, commitment), Uttarabhadrapada (depth, wisdom), Revati (nourishment, completion). Each carries a specific energy that blesses the marriage in its own way.
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed">
+          <span className="text-red-400 font-medium">Strictly avoided nakshatras:</span> Bharani (death themes), Ardra (tears, storms), Ashlesha (deceit), Jyeshtha (conflicts), Moola (destruction/uprooting). These carry energies fundamentally incompatible with the stability a marriage requires.
+        </p>
+      </section>
+
+      {/* Absolutely avoided periods */}
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          Absolutely Avoided Periods
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          Beyond individual tithi/nakshatra checks, several conditions are absolute prohibitions:
+        </p>
+        <div className="space-y-2 text-text-secondary text-xs">
+          <p><span className="text-red-400 font-medium">Bhadra/Vishti Karana:</span> Occurs 7 times per lunar month. Any ceremony during Vishti is inauspicious — check the exact Vishti start and end time.</p>
+          <p><span className="text-red-400 font-medium">Rahu Kaal:</span> Approximately 1.5 hours daily ruled by Rahu. The Saptapadi must NOT fall within Rahu Kaal.</p>
+          <p><span className="text-red-400 font-medium">Venus Combustion:</span> When Venus is within ~10 degrees of the Sun (8 degrees if retrograde), it is combust. Venus is the karaka of marriage — combustion severely weakens marital harmony.</p>
+          <p><span className="text-red-400 font-medium">Jupiter Combustion:</span> Jupiter blesses the marriage with wisdom and dharma. Its combustion removes this protection.</p>
+          <p><span className="text-red-400 font-medium">Vyatipata/Vaidhriti Yoga:</span> These two inauspicious yogas from the Panchang are avoided for all auspicious activities.</p>
+        </div>
       </section>
     </div>
   );
@@ -102,6 +144,22 @@ function Page3() {
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Chaturmas:</span> July-November (varies by tradition). Some regions strictly prohibit, others are flexible.</p>
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Adhika Masa:</span> North India generally prohibits; South India varies. Consult family pandit.</p>
       </section>
+      {/* Chaturmas and Kharmas */}
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          Chaturmas, Kharmas, and Seasonal Restrictions
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          <strong className="text-gold-light">Chaturmas</strong> (four months from Devshayani to Prabodhini Ekadashi, roughly July-November) restricts marriages in many North Indian traditions. Lord Vishnu is considered asleep during this period. However, enforcement varies — Shaiva traditions and some South Indian communities are more flexible.
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          <strong className="text-gold-light">Kharmas (Mal Masa)</strong> occurs when the Sun transits Sagittarius or Pisces (roughly mid-December to mid-January, and mid-March to mid-April). Many traditions avoid marriages during Kharmas because the Sun is considered weak in these periods.
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          <strong className="text-gold-light">The role of Lagna in marriage Muhurta:</strong> Fixed signs (Taurus, Leo, Scorpio, Aquarius) are strongly preferred for the marriage Lagna because they represent stability and permanence — qualities essential for a lasting union. Movable signs (Aries, Cancer, Libra, Capricorn) are acceptable but less ideal. Dual signs (Gemini, Virgo, Sagittarius, Pisces) are generally avoided as they suggest instability or a second marriage.
+        </p>
+      </section>
+
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">The Pandit&rsquo;s Final Step</h4>
         <p className="text-text-secondary text-xs leading-relaxed">

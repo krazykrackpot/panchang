@@ -690,6 +690,39 @@
           "gu": "Manusmriti"
         }
       ]
+    },
+    {
+      "id": "q9_1_11",
+      "type": "mcq",
+      "question": { "en": "Which house governs marriage and partnerships?", "hi": "कौन सा भाव विवाह और साझेदारी को नियन्त्रित करता है?", "sa": "कौन सा भाव विवाह और साझेदारी को नियन्त्रित करता है?", "mai": "कौन सा भाव विवाह और साझेदारी को नियन्त्रित करता है?", "mr": "कौन सा भाव विवाह और साझेदारी को नियन्त्रित करता है?", "ta": "Which house governs marriage and partnerships?", "te": "Which house governs marriage and partnerships?", "bn": "Which house governs marriage and partnerships?", "kn": "Which house governs marriage and partnerships?", "gu": "Which house governs marriage and partnerships?" },
+      "correctAnswer": 2,
+      "explanation": { "en": "The 7th house (Kalatra Bhava) governs marriage, partnerships, business associations, and public dealings. It is directly opposite the 1st house of self.", "hi": "सातवाँ भाव (कलत्र भाव) विवाह, साझेदारी, व्यापारिक सम्बन्ध और सार्वजनिक व्यवहार को नियन्त्रित करता है।", "sa": "सातवाँ भाव (कलत्र भाव) विवाह, साझेदारी, व्यापारिक सम्बन्ध और सार्वजनिक व्यवहार को नियन्त्रित करता है।", "mai": "सातवाँ भाव (कलत्र भाव) विवाह, साझेदारी, व्यापारिक सम्बन्ध और सार्वजनिक व्यवहार को नियन्त्रित करता है।", "mr": "सातवाँ भाव (कलत्र भाव) विवाह, साझेदारी, व्यापारिक सम्बन्ध और सार्वजनिक व्यवहार को नियन्त्रित करता है।", "ta": "The 7th house (Kalatra Bhava) governs marriage, partnerships, business associations, and public dealings.", "te": "The 7th house (Kalatra Bhava) governs marriage, partnerships, business associations, and public dealings.", "bn": "The 7th house (Kalatra Bhava) governs marriage, partnerships, business associations, and public dealings.", "kn": "The 7th house (Kalatra Bhava) governs marriage, partnerships, business associations, and public dealings.", "gu": "The 7th house (Kalatra Bhava) governs marriage, partnerships, business associations, and public dealings." },
+      "options": [
+        { "en": "5th house", "hi": "पाँचवाँ भाव", "sa": "पाँचवाँ भाव", "mai": "पाँचवाँ भाव", "mr": "पाँचवाँ भाव", "ta": "5th house", "te": "5th house", "bn": "5th house", "kn": "5th house", "gu": "5th house" },
+        { "en": "10th house", "hi": "दसवाँ भाव", "sa": "दसवाँ भाव", "mai": "दसवाँ भाव", "mr": "दसवाँ भाव", "ta": "10th house", "te": "10th house", "bn": "10th house", "kn": "10th house", "gu": "10th house" },
+        { "en": "7th house", "hi": "सातवाँ भाव", "sa": "सातवाँ भाव", "mai": "सातवाँ भाव", "mr": "सातवाँ भाव", "ta": "7th house", "te": "7th house", "bn": "7th house", "kn": "7th house", "gu": "7th house" },
+        { "en": "2nd house", "hi": "दूसरा भाव", "sa": "दूसरा भाव", "mai": "दूसरा भाव", "mr": "दूसरा भाव", "ta": "2nd house", "te": "2nd house", "bn": "2nd house", "kn": "2nd house", "gu": "2nd house" }
+      ]
+    },
+    {
+      "id": "q9_1_12",
+      "type": "mcq",
+      "question": { "en": "Which houses are called Kendras (angular houses)?", "hi": "किन भावों को केन्द्र कहते हैं?", "sa": "किन भावों को केन्द्र कहते हैं?", "mai": "किन भावों को केन्द्र कहते हैं?", "mr": "किन भावों को केन्द्र कहते हैं?", "ta": "Which houses are called Kendras?", "te": "Which houses are called Kendras?", "bn": "Which houses are called Kendras?", "kn": "Which houses are called Kendras?", "gu": "Which houses are called Kendras?" },
+      "correctAnswer": 1,
+      "explanation": { "en": "Kendras (1, 4, 7, 10) are the four pillars of the chart representing self, home, partnerships, and career. Planets in Kendras are considered most powerful.", "hi": "केन्द्र (1, 4, 7, 10) कुण्डली के चार स्तम्भ हैं — स्वयं, गृह, साझेदारी और कैरियर। केन्द्र में ग्रह सर्वाधिक शक्तिशाली माने जाते हैं।", "sa": "केन्द्र (1, 4, 7, 10) कुण्डली के चार स्तम्भ हैं।", "mai": "केन्द्र (1, 4, 7, 10) कुण्डली के चार स्तम्भ हैं।", "mr": "केन्द्र (1, 4, 7, 10) कुण्डली के चार स्तम्भ हैं।", "ta": "Kendras (1, 4, 7, 10) are the four pillars of the chart.", "te": "Kendras (1, 4, 7, 10) are the four pillars of the chart.", "bn": "Kendras (1, 4, 7, 10) are the four pillars of the chart.", "kn": "Kendras (1, 4, 7, 10) are the four pillars of the chart.", "gu": "Kendras (1, 4, 7, 10) are the four pillars of the chart." },
+      "options": [
+        { "en": "1, 5, 9", "hi": "1, 5, 9", "sa": "1, 5, 9", "mai": "1, 5, 9", "mr": "1, 5, 9", "ta": "1, 5, 9", "te": "1, 5, 9", "bn": "1, 5, 9", "kn": "1, 5, 9", "gu": "1, 5, 9" },
+        { "en": "1, 4, 7, 10", "hi": "1, 4, 7, 10", "sa": "1, 4, 7, 10", "mai": "1, 4, 7, 10", "mr": "1, 4, 7, 10", "ta": "1, 4, 7, 10", "te": "1, 4, 7, 10", "bn": "1, 4, 7, 10", "kn": "1, 4, 7, 10", "gu": "1, 4, 7, 10" },
+        { "en": "6, 8, 12", "hi": "6, 8, 12", "sa": "6, 8, 12", "mai": "6, 8, 12", "mr": "6, 8, 12", "ta": "6, 8, 12", "te": "6, 8, 12", "bn": "6, 8, 12", "kn": "6, 8, 12", "gu": "6, 8, 12" },
+        { "en": "3, 6, 10, 11", "hi": "3, 6, 10, 11", "sa": "3, 6, 10, 11", "mai": "3, 6, 10, 11", "mr": "3, 6, 10, 11", "ta": "3, 6, 10, 11", "te": "3, 6, 10, 11", "bn": "3, 6, 10, 11", "kn": "3, 6, 10, 11", "gu": "3, 6, 10, 11" }
+      ]
+    },
+    {
+      "id": "q9_1_13",
+      "type": "true_false",
+      "question": { "en": "If Taurus is the Lagna, then Scorpio becomes the 7th house.", "hi": "यदि वृषभ लग्न है, तो वृश्चिक सातवाँ भाव बनता है।", "sa": "यदि वृषभ लग्न है, तो वृश्चिक सातवाँ भाव बनता है।", "mai": "यदि वृषभ लग्न है, तो वृश्चिक सातवाँ भाव बनता है।", "mr": "यदि वृषभ लग्न है, तो वृश्चिक सातवाँ भाव बनता है।", "ta": "If Taurus is the Lagna, then Scorpio becomes the 7th house.", "te": "If Taurus is the Lagna, then Scorpio becomes the 7th house.", "bn": "If Taurus is the Lagna, then Scorpio becomes the 7th house.", "kn": "If Taurus is the Lagna, then Scorpio becomes the 7th house.", "gu": "If Taurus is the Lagna, then Scorpio becomes the 7th house." },
+      "correctAnswer": true,
+      "explanation": { "en": "Counting from Taurus: Taurus=1, Gemini=2, Cancer=3, Leo=4, Virgo=5, Libra=6, Scorpio=7. The 7th sign from any Lagna is always its opposite sign.", "hi": "वृषभ से गिनती: वृषभ=1, मिथुन=2, कर्क=3, सिंह=4, कन्या=5, तुला=6, वृश्चिक=7। किसी भी लग्न से 7वीं राशि सदैव विपरीत राशि होती है।", "sa": "वृषभ से गिनती: वृषभ=1, मिथुन=2, कर्क=3, सिंह=4, कन्या=5, तुला=6, वृश्चिक=7।", "mai": "वृषभ से गिनती: वृषभ=1, मिथुन=2, कर्क=3, सिंह=4, कन्या=5, तुला=6, वृश्चिक=7।", "mr": "वृषभ से गिनती: वृषभ=1, मिथुन=2, कर्क=3, सिंह=4, कन्या=5, तुला=6, वृश्चिक=7।", "ta": "Counting from Taurus: Taurus=1, Gemini=2, Cancer=3, Leo=4, Virgo=5, Libra=6, Scorpio=7.", "te": "Counting from Taurus: Taurus=1, Gemini=2, Cancer=3, Leo=4, Virgo=5, Libra=6, Scorpio=7.", "bn": "Counting from Taurus: Taurus=1, Gemini=2, Cancer=3, Leo=4, Virgo=5, Libra=6, Scorpio=7.", "kn": "Counting from Taurus: Taurus=1, Gemini=2, Cancer=3, Leo=4, Virgo=5, Libra=6, Scorpio=7.", "gu": "Counting from Taurus: Taurus=1, Gemini=2, Cancer=3, Leo=4, Virgo=5, Libra=6, Scorpio=7." }
     }
   ]
 }

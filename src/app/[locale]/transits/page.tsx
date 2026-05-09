@@ -695,6 +695,33 @@ export default function TransitsPage() {
             </div>
           </div>
 
+          {/* Empty state when filter produces no events for current/visible months */}
+          {filteredEvents.length > 0 && sigFilter !== 'all' && (() => {
+            const currentMonth = new Date().getMonth();
+            const hasCurrentMonthEvents = !!eventsByMonth[currentMonth];
+            if (hasCurrentMonthEvents) return null;
+            const nextEvent = filteredEvents.find(e => e.date > new Date().toISOString().split('T')[0]);
+            if (!nextEvent) return null;
+            const nextDate = new Date(nextEvent.date + 'T00:00:00');
+            const nextMonthName = (isDevanagari ? MONTH_NAMES_HI : MONTH_NAMES_EN)[nextDate.getMonth()];
+            return (
+              <div className="mt-6 mb-2 p-4 rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-center">
+                <p className="text-text-secondary text-sm" style={bodyFont}>
+                  {isDevanagari
+                    ? `इस माह कोई प्रमुख गोचर नहीं। अगला: `
+                    : `No major transits this month. Next: `}
+                  <span className="text-gold-light font-bold" style={headingFont}>
+                    {tl(nextEvent.planetName, locale)} → {tl(nextEvent.toSignName, locale)}
+                  </span>
+                  {' '}
+                  <span className="text-text-secondary">
+                    ({nextDate.getDate()} {nextMonthName})
+                  </span>
+                </p>
+              </div>
+            );
+          })()}
+
           {/* ═══ Mobile: Vertical Timeline ═══ */}
           <div className="md:hidden mt-8">
             <div className="relative pl-10">

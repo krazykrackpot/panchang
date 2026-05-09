@@ -386,8 +386,8 @@ async function submitToBing(urls: string[], apiKey: string): Promise<void> {
     return;
   }
 
-  // Bing allows up to 10,000 URLs per batch, 500 per request
-  const BATCH_SIZE = 500;
+  // Bing daily quota is 100 URLs (not 10K as docs claim). Batch size 100 to stay within quota.
+  const BATCH_SIZE = 100;
   let submitted = 0;
   let errors = 0;
 
@@ -531,6 +531,8 @@ async function main() {
   const sitemapOnly = args.includes('--sitemap-only');
   const gscOnly = args.includes('--gsc-only');
   const bingOnly = args.includes('--bing-only');
+  const bingOffsetArg = args.find(a => a.startsWith('--bing-offset='));
+  const bingOffset = bingOffsetArg ? parseInt(bingOffsetArg.split('=')[1], 10) : 0;
   const inspectArg = args.find(a => a.startsWith('--inspect='));
   const inspectLimit = inspectArg ? parseInt(inspectArg.split('=')[1], 10) : 0;
   const runAll = !sitemapOnly && !gscOnly && !bingOnly;
@@ -565,20 +567,28 @@ async function main() {
 
   const keyPath = process.env.GSC_SERVICE_ACCOUNT_KEY_PATH?.trim();
 
-  // Service account auth ONLY — no OAuth (OAuth refresh tokens conflict with YouTube OAuth)
-  if ((runAll || gscOnly) && keyPath) {
+  // Auth priority: service account key > ADC (gcloud auth application-default login)
+  // No OAuth refresh tokens — those conflict with YouTube OAuth.
+  if ((runAll || gscOnly) && keyPath && fs.existsSync(path.resolve(keyPath))) {
     const { google } = await import('googleapis');
-
-    const keyFile = path.resolve(keyPath);
-    if (!fs.existsSync(keyFile)) {
-      console.error(`\n✗ Service account key not found: ${keyFile}`);
-      process.exit(1);
-    }
     auth = new google.auth.GoogleAuth({
-      keyFile,
+      keyFile: path.resolve(keyPath),
       scopes: ['https://www.googleapis.com/auth/webmasters.readonly'],
     });
-    console.log('   Auth: service account');
+    console.log('   Auth: service account key');
+  } else if (runAll || gscOnly) {
+    // Try ADC (from gcloud auth application-default login)
+    const adcPath = path.join(process.env.HOME || '', '.config/gcloud/application_default_credentials.json');
+    if (fs.existsSync(adcPath)) {
+      const { google } = await import('googleapis');
+      auth = new google.auth.GoogleAuth({
+        scopes: ['https://www.googleapis.com/auth/webmasters.readonly'],
+      });
+      console.log('   Auth: Application Default Credentials (gcloud)');
+    }
+  }
+
+  if ((runAll || gscOnly) && auth) {
 
     const result = await getGscIndexedPages(auth);
     indexedUrls = result.indexedUrls;
@@ -601,14 +611,10 @@ async function main() {
         console.log('   No priority unindexed URLs to inspect.');
       }
     }
-  } else if ((runAll || gscOnly) && !keyPath) {
+  } else if (runAll || gscOnly) {
     console.log('\n━━━ GSC: Skipped (no credentials) ━━━');
-    console.log('   Set up a GCP service account (NOT OAuth — OAuth conflicts with YouTube tokens):');
-    console.log('   1. Create a service account in GCP Console');
-    console.log('   2. Enable "Google Search Console API"');
-    console.log('   3. Download the JSON key file');
-    console.log('   4. Add the SA email in GSC → Settings → Users (Full access)');
-    console.log('   5. Set GSC_SERVICE_ACCOUNT_KEY_PATH=/path/to/key.json in .env.local');
+    console.log('   Option 1: gcloud auth application-default login --scopes=https://www.googleapis.com/auth/webmasters,https://www.googleapis.com/auth/cloud-platform');
+    console.log('   Option 2: Set GSC_SERVICE_ACCOUNT_KEY_PATH=/path/to/key.json in .env.local');
   }
 
   // Step 5: Bing submission
@@ -628,8 +634,10 @@ async function main() {
       }
     }
 
-    // Bing daily quota: 10,000 URLs — Tier 1+2 should fit comfortably
-    const bingBatch = urlsToSubmit.slice(0, 10_000);
+    // Bing daily quota: 100 URLs. Use --bing-offset=N to drip-feed across days.
+    // Day 1: --bing-offset=0, Day 2: --bing-offset=100, Day 3: --bing-offset=200, etc.
+    const bingBatch = urlsToSubmit.slice(bingOffset, bingOffset + 100);
+    console.log(`   Submitting URLs ${bingOffset + 1}-${bingOffset + bingBatch.length} of ${urlsToSubmit.length}`);
     await submitToBing(bingBatch, bingKey || '');
   }
 

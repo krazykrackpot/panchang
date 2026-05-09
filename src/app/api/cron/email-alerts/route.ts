@@ -5,6 +5,7 @@ import { alertEmail } from '@/lib/email/templates/alert';
 
 // Runs daily at 6 AM UTC — checks for dasha transitions and festival reminders
 export async function GET(req: Request) {
+  try {
   const authHeader = req.headers.get('authorization');
   if (authHeader !== `Bearer ${process.env.CRON_SECRET?.trim()}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -134,4 +135,8 @@ export async function GET(req: Request) {
   }
 
   return NextResponse.json({ sent, total: users.length });
+  } catch (err) {
+    console.error('[email-alerts] error:', err);
+    return NextResponse.json({ error: 'Failed to process email alerts' }, { status: 500 });
+  }
 }

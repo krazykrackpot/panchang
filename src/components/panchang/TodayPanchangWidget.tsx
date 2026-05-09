@@ -69,7 +69,10 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
     fetch(`/api/panchang?year=${now.getFullYear()}&month=${now.getMonth() + 1}&day=${now.getDate()}&lat=${lat}&lng=${lng}&timezone=${encodeURIComponent(ianaTimezone)}&location=${encodeURIComponent(name)}`)
       .then((res) => res.json())
       .then((data) => { setPanchang(data); setLoading(false); })
-      .catch(() => setLoading(false));
+      .catch((err) => {
+        console.error('[TodayPanchangWidget] fetch failed:', err);
+        setLoading(false);
+      });
   }, [serverLocation]);
 
   // React to location store changes

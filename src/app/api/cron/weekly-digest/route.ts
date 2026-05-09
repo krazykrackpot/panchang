@@ -9,6 +9,7 @@ import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 
 // Runs every Monday at 6 AM UTC
 export async function GET(req: Request) {
+  try {
   const authHeader = req.headers.get('authorization');
   if (authHeader !== `Bearer ${process.env.CRON_SECRET?.trim()}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -118,4 +119,8 @@ export async function GET(req: Request) {
   }
 
   return NextResponse.json({ sent, skipped, total: users.length });
+  } catch (err) {
+    console.error('[weekly-digest] error:', err);
+    return NextResponse.json({ error: 'Failed to process weekly digest' }, { status: 500 });
+  }
 }

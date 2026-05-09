@@ -30,7 +30,7 @@ const SECTIONS = [
     links: [
       { href: '/panchang', label: { en: 'Daily Panchang', hi: 'दैनिक पंचांग', ta: 'தினசரி பஞ்சாங்கம்', bn: 'দৈনিক পঞ্জিকা' } },
       { href: '/calendar', label: { en: 'Festival Calendar', hi: 'त्योहार कैलेंडर', ta: 'பண்டிகை நாட்காட்டி', bn: 'উৎসব ক্যালেন্ডার' } },
-      { href: '/ekadashi', label: { en: 'Ekadashi 2026', hi: 'एकादशी 2026', ta: 'ஏகாதசி 2026', bn: 'একাদশী ২০২৬' } },
+      { href: '/ekadashi', label: { en: 'Ekadashi', hi: 'एकादशी', ta: 'ஏகாதசி', bn: 'একাদশী' } },
       { href: '/transits', label: { en: 'Transit Calendar', hi: 'गोचर कैलेंडर', ta: 'கோசார நாள்காட்டி', bn: 'গোচর ক্যালেন্ডার' } },
       { href: '/retrograde', label: { en: 'Retrograde Calendar', hi: 'वक्री कैलेंडर', ta: 'வக்கிர நாள்காட்டி', bn: 'বক্র ক্যালেন্ডার' } },
       { href: '/eclipses', label: { en: 'Eclipse Calendar', hi: 'ग्रहण कैलेंडर', ta: 'கிரகண நாள்காட்டி', bn: 'গ্রহণ ক্যালেন্ডার' } },
@@ -122,7 +122,7 @@ export default function Footer() {
               <span className="text-gold-primary text-sm font-semibold" style={{ fontFamily: 'var(--font-heading)' }}>
                 Dekho Panchang
               </span>
-              <span className="text-text-secondary text-xs">&copy; 2026</span>
+              <span className="text-text-secondary text-xs">&copy; {new Date().getFullYear()}</span>
             </div>
 
             {/* Social links */}

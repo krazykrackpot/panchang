@@ -246,9 +246,15 @@ export default function VarshaphalPage() {
       .maybeSingle()
       .then(({ data: profile }) => {
         if (profile?.default_location) {
-          const loc = typeof profile.default_location === 'string'
-            ? JSON.parse(profile.default_location)
-            : profile.default_location;
+          let loc;
+          try {
+            loc = typeof profile.default_location === 'string'
+              ? JSON.parse(profile.default_location)
+              : profile.default_location;
+          } catch {
+            console.error('[varshaphal] corrupt default_location for user', user.id);
+            return;
+          }
           setForm(prev => ({
             ...prev,
             date: loc.birth_date && prev.date === '1990-01-15' ? loc.birth_date : prev.date,

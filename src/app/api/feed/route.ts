@@ -116,7 +116,8 @@ const items = [
 ];
 
 export async function GET() {
-  const rss = `<?xml version="1.0" encoding="UTF-8"?>
+  try {
+    const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Dekho Panchang — Indian Science &amp; Vedic Astrology</title>
@@ -135,10 +136,14 @@ export async function GET() {
   </channel>
 </rss>`;
 
-  return new NextResponse(rss, {
-    headers: {
-      'Content-Type': 'application/rss+xml; charset=utf-8',
-      'Cache-Control': 'public, s-maxage=86400',
-    },
-  });
+    return new NextResponse(rss, {
+      headers: {
+        'Content-Type': 'application/rss+xml; charset=utf-8',
+        'Cache-Control': 'public, s-maxage=86400',
+      },
+    });
+  } catch (err) {
+    console.error('[feed] error:', err);
+    return new NextResponse('Internal Server Error', { status: 500 });
+  }
 }

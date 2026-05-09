@@ -9,35 +9,40 @@ const querySchema = z.object({
 });
 
 export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const parsed = querySchema.safeParse({
-    moonSign: searchParams.get('moonSign'),
-    nakshatra: searchParams.get('nakshatra') || undefined,
-    date: searchParams.get('date') || undefined,
-  });
+  try {
+    const { searchParams } = new URL(request.url);
+    const parsed = querySchema.safeParse({
+      moonSign: searchParams.get('moonSign'),
+      nakshatra: searchParams.get('nakshatra') || undefined,
+      date: searchParams.get('date') || undefined,
+    });
 
-  if (!parsed.success) {
-    return NextResponse.json(
-      { error: 'Invalid parameters. moonSign (1-12) is required.' },
-      { status: 400 },
-    );
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: 'Invalid parameters. moonSign (1-12) is required.' },
+        { status: 400 },
+      );
+    }
+
+    const { moonSign, nakshatra, date } = parsed.data;
+
+    // Default to today's date
+    const now = new Date();
+    const today = date || `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+
+    const horoscope = generateDailyHoroscope({
+      moonSign,
+      date: today,
+      nakshatra,
+    });
+
+    return NextResponse.json(horoscope, {
+      headers: {
+        'Cache-Control': 'public, s-maxage=1800, stale-while-revalidate=3600',
+      },
+    });
+  } catch (err) {
+    console.error('[horoscope-daily] error:', err);
+    return NextResponse.json({ error: 'Failed to generate horoscope' }, { status: 500 });
   }
-
-  const { moonSign, nakshatra, date } = parsed.data;
-
-  // Default to today's date
-  const now = new Date();
-  const today = date || `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-
-  const horoscope = generateDailyHoroscope({
-    moonSign,
-    date: today,
-    nakshatra,
-  });
-
-  return NextResponse.json(horoscope, {
-    headers: {
-      'Cache-Control': 'public, s-maxage=1800, stale-while-revalidate=3600',
-    },
-  });
 }

@@ -100,9 +100,15 @@ export async function GET(req: NextRequest) {
   let notified = 0;
 
   for (const snap of snapshots) {
-    const chartData = typeof snap.chart_data === 'string'
-      ? JSON.parse(snap.chart_data)
-      : snap.chart_data;
+    let chartData;
+    try {
+      chartData = typeof snap.chart_data === 'string'
+        ? JSON.parse(snap.chart_data)
+        : snap.chart_data;
+    } catch {
+      console.error('[transit-alerts] corrupt chart_data for user', snap.user_id);
+      continue;
+    }
 
     const savTable = chartData?.ashtakavarga?.savTable;
     const ascSign = chartData?.ascendant?.sign || snap.ascendant_sign;

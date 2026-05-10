@@ -185,6 +185,11 @@ export default async function AboutPage() {
       {/* Heritage */}
       <section className="max-w-4xl mx-auto mb-16">
         <h2 className="text-2xl font-bold text-gold-light mb-6" style={headingFont}>{l.heritageHeading}</h2>
+        <p className="text-text-secondary text-lg leading-relaxed mb-8">
+          {locale === 'hi'
+            ? 'भारतीय ज्योतिष एक द्वि-स्तरीय प्रणाली है। आधार है सिद्धान्तिक ज्योतिष  –  सर्वोच्च कोटि का गणितीय खगोल विज्ञान, जो ग्रहों की स्थिति की ऐसी सटीकता से गणना करता है जिसकी पुष्टि आधुनिक उपकरणों ने की है। इस आधार पर खड़ा है फलित ज्योतिष  –  वह व्याख्यात्मक ढाँचा जो ब्रह्माण्डीय प्रतिरूपों को मानव अनुभव से जोड़ता है। यह साइट दोनों परतों को समान कठोरता से लागू करती है: खगोलीय इंजन सूर्य सिद्धान्त और जीन मीउस के एल्गोरिदम का उपयोग करता है, जो NASA के JPL पंचांग से सत्यापित है; व्याख्यात्मक मॉड्यूल पराशर, जैमिनी और मुहूर्त चिन्तामणि का अनुसरण करते हैं।'
+            : 'Indian Jyotish is a two-layer system. The foundation is Siddhantic Jyotish  –  mathematical astronomy of the highest order, computing planetary positions with precision that modern instruments have confirmed. Upon this foundation stands Phalit Jyotish  –  the interpretive framework that maps cosmic patterns to human experience. This site implements both layers with equal rigour: the astronomy engine uses algorithms from the Surya Siddhanta and Jean Meeus, verified against NASA\'s JPL ephemeris; the interpretive modules follow Parashara, Jaimini, and the Muhurta Chintamani.'}
+        </p>
         <div className="space-y-6">
           {l.heritage.map((h, i) => (
             <div key={i} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8">

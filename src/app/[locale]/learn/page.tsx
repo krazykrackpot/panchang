@@ -197,7 +197,12 @@ export default function LearnPage() {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4" style={hf}>
             <span className="text-gold-gradient">{t('heroTitle')}</span>
           </h1>
-          <p className="text-text-secondary text-lg max-w-2xl mb-6" style={bf}>{t('heroSub')}</p>
+          <p className="text-text-secondary text-lg max-w-2xl mb-3" style={bf}>{t('heroSub')}</p>
+          <p className="text-text-secondary/80 text-sm italic max-w-2xl mb-6" style={bf}>
+            {locale === 'hi'
+              ? 'ग्रहों की कक्षाओं के गणित से कर्म और चेतना के दर्शन तक  –  ज्योतिष वेद का नेत्र है, और यह पाठ्यक्रम आपको देखना सिखाता है।'
+              : 'From the mathematics of planetary orbits to the philosophy of karma and consciousness  –  Jyotish is the eye of the Veda, and this course teaches you to see.'}
+          </p>
 
           {/* Item 1: Start Learning CTA + Item 4: Streak badge */}
           <div className="flex flex-wrap items-center gap-4 mb-8">

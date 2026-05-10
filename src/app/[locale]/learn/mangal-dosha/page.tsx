@@ -54,15 +54,15 @@ export default function LearnMangalDoshaPage() {
       </div>
 
       <KeyTakeaway locale={locale} points={[
-        'Mangal Dosha forms when Mars occupies the 1st, 2nd, 4th, 7th, 8th, or 12th house — roughly 40% of all charts have it.',
-        'Classical texts (BPHS Ch. 81) provide 10+ cancellation rules — the dosha is neutralised far more often than feared.',
-        'Mars matures after age 28 and its aggressive energy naturally stabilises — the dosha\'s intensity diminishes with age.',
+        'Mangal Dosha forms when Mars occupies the 1st, 2nd, 4th, 7th, 8th, or 12th house  –  roughly 40% of all charts have it.',
+        'Classical texts (BPHS Ch. 81) provide 10+ cancellation rules  –  the dosha is neutralised far more often than feared.',
+        'Mars matures after age 28 and its aggressive energy naturally stabilises  –  the dosha\'s intensity diminishes with age.',
       ]} />
 
       <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
-        <BeginnerNote term="Mangal Dosha" explanation="When Mars (Mangal/Kuja) is in specific houses from Lagna, Moon, or Venus — said to create friction in married life" />
-        <BeginnerNote term="Kuja Dosha" explanation="Another name for Mangal Dosha — 'Kuja' is the Sanskrit name for Mars" />
-        <BeginnerNote term="Cancellation" explanation="Classical conditions under which the dosha is neutralised — there are 10+ rules in BPHS" />
+        <BeginnerNote term="Mangal Dosha" explanation="When Mars (Mangal/Kuja) is in specific houses from Lagna, Moon, or Venus  –  said to create friction in married life" />
+        <BeginnerNote term="Kuja Dosha" explanation="Another name for Mangal Dosha  –  'Kuja' is the Sanskrit name for Mars" />
+        <BeginnerNote term="Cancellation" explanation="Classical conditions under which the dosha is neutralised  –  there are 10+ rules in BPHS" />
       </div>
 
       {/* Intro */}
@@ -100,7 +100,7 @@ export default function LearnMangalDoshaPage() {
             </div>
           ))}
         </div>
-        <ClassicalReference shortName="BPHS" author="Maharshi Parashara" chapter="Ch. 81 — Manglik Dosha formation and cancellation rules" />
+        <ClassicalReference shortName="BPHS" author="Maharshi Parashara" chapter="Ch. 81  –  Manglik Dosha formation and cancellation rules" />
       </LessonSection>
 
       {/* Misconceptions */}
@@ -129,7 +129,7 @@ export default function LearnMangalDoshaPage() {
         <p style={bf}>{t('remediesContent')}</p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
-            { remedy: isHi ? 'मांगलिक मिलान' : 'Mangal Dosha Matching', desc: isHi ? 'दोनों साथियों में दोष — परस्पर निवारण' : 'Both partners have dosha — mutual neutralisation', primary: true },
+            { remedy: isHi ? 'मांगलिक मिलान' : 'Mangal Dosha Matching', desc: isHi ? 'दोनों साथियों में दोष  –  परस्पर निवारण' : 'Both partners have dosha  –  mutual neutralisation', primary: true },
             { remedy: isHi ? 'कुज शान्ति पूजा' : 'Kuja Shanti Puja', desc: isHi ? 'लाल पुष्प, लाल वस्त्र, मंगल मन्त्र' : 'Red flowers, red cloth, Mars mantras', primary: true },
             { remedy: isHi ? 'मंगलवार उपवास' : 'Tuesday Fasting', desc: isHi ? 'मंगल का दिन' : 'Mars\'s day', primary: false },
             { remedy: isHi ? 'मूँगा (रेड कोरल)' : 'Red Coral (Moonga)', desc: isHi ? 'दक्षिण हाथ की अनामिका में' : 'On the ring finger of right hand', primary: false },

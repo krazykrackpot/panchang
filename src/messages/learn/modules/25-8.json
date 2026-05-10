@@ -1,11 +1,11 @@
 {
   "title": {
-    "en": "The 'Pythagorean' Theorem — 300 Years Before Pythagoras",
-    "hi": "'पाइथागोरस प्रमेय' — पाइथागोरस से 300 वर्ष पहले"
+    "en": "The 'Pythagorean' Theorem  –  300 Years Before Pythagoras",
+    "hi": "'पाइथागोरस प्रमेय'  –  पाइथागोरस से 300 वर्ष पहले"
   },
   "subtitle": {
-    "en": "How Baudhayana stated a² + b² = c² in ~800 BCE — three centuries before Pythagoras was born — in a Vedic fire altar manual, with √2 accurate to 5 decimal places",
-    "hi": "बौधायन ने ~800 ईपू में a² + b² = c² कैसे कही — पाइथागोरस के जन्म से तीन शताब्दी पहले — एक वैदिक अग्निकुण्ड पुस्तिका में, √2 पाँच दशमलव स्थानों तक सटीक"
+    "en": "How Baudhayana stated a² + b² = c² in ~800 BCE  –  three centuries before Pythagoras was born  –  in a Vedic fire altar manual, with √2 accurate to 5 decimal places",
+    "hi": "बौधायन ने ~800 ईपू में a² + b² = c² कैसे कही  –  पाइथागोरस के जन्म से तीन शताब्दी पहले  –  एक वैदिक अग्निकुण्ड पुस्तिका में, √2 पाँच दशमलव स्थानों तक सटीक"
   },
   "crossRefs": [
     {
@@ -64,8 +64,8 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "Baudhayana, in the Baudhayana Sulba Sutra (~800 BCE), stated the theorem in verse 1.48: 'The diagonal of a rectangle produces both [areas] which its length and breadth produce separately.' This is the Pythagorean theorem in general form — stated roughly 230 years before Pythagoras was born (~570 BCE). Euclid's proof came even later, around 300 BCE.",
-        "hi": "बौधायन ने, बौधायन शुल्ब सूत्र (~800 ईपू) में, श्लोक 1.48 में प्रमेय कही: \"आयत का विकर्ण वह दोनों [क्षेत्रफल] उत्पन्न करता है जो उसकी लम्बाई और चौड़ाई अलग-अलग उत्पन्न करती हैं।\" यह पाइथागोरस प्रमेय सामान्य रूप में है — पाइथागोरस के जन्म (~570 ईपू) से लगभग 230 वर्ष पहले।"
+        "en": "Baudhayana, in the Baudhayana Sulba Sutra (~800 BCE), stated the theorem in verse 1.48: 'The diagonal of a rectangle produces both [areas] which its length and breadth produce separately.' This is the Pythagorean theorem in general form  –  stated roughly 230 years before Pythagoras was born (~570 BCE). Euclid's proof came even later, around 300 BCE.",
+        "hi": "बौधायन ने, बौधायन शुल्ब सूत्र (~800 ईपू) में, श्लोक 1.48 में प्रमेय कही: \"आयत का विकर्ण वह दोनों [क्षेत्रफल] उत्पन्न करता है जो उसकी लम्बाई और चौड़ाई अलग-अलग उत्पन्न करती हैं।\" यह पाइथागोरस प्रमेय सामान्य रूप में है  –  पाइथागोरस के जन्म (~570 ईपू) से लगभग 230 वर्ष पहले।"
       },
       "options": [
         {
@@ -253,8 +253,8 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "'Sulba' (शुल्ब) means cord or rope. The Sulba Sutras were literally rope-and-peg geometry manuals — the ancient Indian equivalent of a surveyor's handbook. They gave instructions for using ropes (cords) and pegs to lay out sacred fire altar spaces with geometric precision. The rope was used to create right angles, circles, and precise distances.",
-        "hi": "'शुल्ब' का अर्थ है रस्सी या डोरी। शुल्ब सूत्र वस्तुतः रस्सी-और-खूँटी ज्यामिति की पुस्तिकाएँ थीं — प्राचीन भारतीय सर्वेक्षक की पुस्तिका के समतुल्य। वे पवित्र अग्निकुण्ड स्थानों को ज्यामितीय परिशुद्धता के साथ रखने के लिए रस्सी और खूँटी का उपयोग करने के निर्देश देती थीं।"
+        "en": "'Sulba' (शुल्ब) means cord or rope. The Sulba Sutras were literally rope-and-peg geometry manuals  –  the ancient Indian equivalent of a surveyor's handbook. They gave instructions for using ropes (cords) and pegs to lay out sacred fire altar spaces with geometric precision. The rope was used to create right angles, circles, and precise distances.",
+        "hi": "'शुल्ब' का अर्थ है रस्सी या डोरी। शुल्ब सूत्र वस्तुतः रस्सी-और-खूँटी ज्यामिति की पुस्तिकाएँ थीं  –  प्राचीन भारतीय सर्वेक्षक की पुस्तिका के समतुल्य। वे पवित्र अग्निकुण्ड स्थानों को ज्यामितीय परिशुद्धता के साथ रखने के लिए रस्सी और खूँटी का उपयोग करने के निर्देश देती थीं।"
       },
       "options": [
         {
@@ -316,8 +316,8 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "The Sulba Sutras provided the geometry needed to construct Vedic fire altars (Agni) of specific shapes — falcon, tortoise, wheel, chariot wheel — with exact areas. Ritual law demanded mathematical precision: the altars had to be exactly the right shape and size. This religious necessity drove the development of sophisticated geometry, including the Pythagorean theorem, √2, and Pythagorean triples.",
-        "hi": "शुल्ब सूत्रों ने वैदिक अग्निकुण्डों (अग्नि) के निर्माण के लिए ज्यामिति प्रदान की — बाज, कछुआ, चक्र — सटीक क्षेत्रफल के साथ। अनुष्ठान नियम ने गणितीय परिशुद्धता की माँग की। इस धार्मिक आवश्यकता ने परिष्कृत ज्यामिति के विकास को प्रेरित किया।"
+        "en": "The Sulba Sutras provided the geometry needed to construct Vedic fire altars (Agni) of specific shapes  –  falcon, tortoise, wheel, chariot wheel  –  with exact areas. Ritual law demanded mathematical precision: the altars had to be exactly the right shape and size. This religious necessity drove the development of sophisticated geometry, including the Pythagorean theorem, √2, and Pythagorean triples.",
+        "hi": "शुल्ब सूत्रों ने वैदिक अग्निकुण्डों (अग्नि) के निर्माण के लिए ज्यामिति प्रदान की  –  बाज, कछुआ, चक्र  –  सटीक क्षेत्रफल के साथ। अनुष्ठान नियम ने गणितीय परिशुद्धता की माँग की। इस धार्मिक आवश्यकता ने परिष्कृत ज्यामिति के विकास को प्रेरित किया।"
       },
       "options": [
         {
@@ -379,8 +379,8 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "Baudhayana's formula √2 ≈ 1 + 1/3 + 1/(3×4) − 1/(3×4×34) gives 1.4142156..., while the modern value is 1.4142135... — a difference of only 0.0000021, accurate to 5 decimal places. This was needed to compute the diagonal of a unit square (which equals s√2) for altar construction. No other ancient civilisation came close to this precision for √2.",
-        "hi": "बौधायन का सूत्र √2 ≈ 1 + 1/3 + 1/(3×4) − 1/(3×4×34) देता है 1.4142156..., जबकि आधुनिक मान है 1.4142135... — केवल 0.0000021 का अंतर, 5 दशमलव स्थानों तक सटीक। किसी अन्य प्राचीन सभ्यता ने √2 के लिए इतनी परिशुद्धता नहीं छुई।"
+        "en": "Baudhayana's formula √2 ≈ 1 + 1/3 + 1/(3×4) − 1/(3×4×34) gives 1.4142156..., while the modern value is 1.4142135...  –  a difference of only 0.0000021, accurate to 5 decimal places. This was needed to compute the diagonal of a unit square (which equals s√2) for altar construction. No other ancient civilisation came close to this precision for √2.",
+        "hi": "बौधायन का सूत्र √2 ≈ 1 + 1/3 + 1/(3×4) − 1/(3×4×34) देता है 1.4142156..., जबकि आधुनिक मान है 1.4142135...  –  केवल 0.0000021 का अंतर, 5 दशमलव स्थानों तक सटीक। किसी अन्य प्राचीन सभ्यता ने √2 के लिए इतनी परिशुद्धता नहीं छुई।"
       },
       "options": [
         {
@@ -442,7 +442,7 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "The Baudhayana Sulba Sutra lists four Pythagorean triples: (3, 4, 5), (5, 12, 13), (8, 15, 17), and (7, 24, 25). The triple (3, 4, 5) is the most famous: 3² + 4² = 9 + 16 = 25 = 5². A rope of length 12 (3+4+5) tied with knots at positions 3 and 7 creates a perfect right angle — this is how ancient builders made right angles before modern tools.",
+        "en": "The Baudhayana Sulba Sutra lists four Pythagorean triples: (3, 4, 5), (5, 12, 13), (8, 15, 17), and (7, 24, 25). The triple (3, 4, 5) is the most famous: 3² + 4² = 9 + 16 = 25 = 5². A rope of length 12 (3+4+5) tied with knots at positions 3 and 7 creates a perfect right angle  –  this is how ancient builders made right angles before modern tools.",
         "hi": "बौधायन शुल्ब सूत्र चार पाइथागोरीय त्रिकों की सूची देता है: (3, 4, 5), (5, 12, 13), (8, 15, 17), और (7, 24, 25)। त्रिक (3, 4, 5) सबसे प्रसिद्ध है: 3² + 4² = 9 + 16 = 25 = 5²।"
       },
       "options": [
@@ -505,8 +505,8 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "Pythagoras was born approximately 570 BCE in Samos, Greece. The Baudhayana Sulba Sutra was written approximately 800 BCE — making it about 230 years older than Pythagoras. Adding the time until Pythagoras could have stated the theorem (~495 BCE), the Indian statement precedes the Greek attribution by approximately 300 years. This gap is why the theorem's conventional name is disputed by historians of mathematics.",
-        "hi": "पाइथागोरस का जन्म लगभग 570 ईपू में ग्रीस के सामोस में हुआ। बौधायन शुल्ब सूत्र लगभग 800 ईपू में लिखा गया — पाइथागोरस से लगभग 230 वर्ष पहले। भारतीय कथन ग्रीक आरोपण से लगभग 300 वर्ष पहले है।"
+        "en": "Pythagoras was born approximately 570 BCE in Samos, Greece. The Baudhayana Sulba Sutra was written approximately 800 BCE  –  making it about 230 years older than Pythagoras. Adding the time until Pythagoras could have stated the theorem (~495 BCE), the Indian statement precedes the Greek attribution by approximately 300 years. This gap is why the theorem's conventional name is disputed by historians of mathematics.",
+        "hi": "पाइथागोरस का जन्म लगभग 570 ईपू में ग्रीस के सामोस में हुआ। बौधायन शुल्ब सूत्र लगभग 800 ईपू में लिखा गया  –  पाइथागोरस से लगभग 230 वर्ष पहले। भारतीय कथन ग्रीक आरोपण से लगभग 300 वर्ष पहले है।"
       },
       "options": [
         {
@@ -568,7 +568,7 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "FALSE. Baudhayana's verse 1.48 states the theorem in general form: 'The diagonal of a rectangle produces both [areas] which its length and breadth produce separately.' This applies to ALL rectangles, not just specific cases. The mention of specific triples (3,4,5 etc.) elsewhere in the Sulba Sutras is additional — the theorem itself is stated generally.",
+        "en": "FALSE. Baudhayana's verse 1.48 states the theorem in general form: 'The diagonal of a rectangle produces both [areas] which its length and breadth produce separately.' This applies to ALL rectangles, not just specific cases. The mention of specific triples (3,4,5 etc.) elsewhere in the Sulba Sutras is additional  –  the theorem itself is stated generally.",
         "hi": "असत्य। बौधायन का श्लोक 1.48 प्रमेय सामान्य रूप में कहता है: \"आयत का विकर्ण वह दोनों [क्षेत्रफल] उत्पन्न करता है जो उसकी लम्बाई और चौड़ाई अलग-अलग उत्पन्न करती हैं।\" यह सभी आयतों पर लागू होता है, केवल विशेष मामलों पर नहीं।"
       }
     },
@@ -576,13 +576,13 @@
       "id": "q25_8_10",
       "type": "true_false",
       "question": {
-        "en": "True or False: No written work by Pythagoras himself survives — all attributions come from later followers and writers.",
-        "hi": "सत्य या असत्य: पाइथागोरस का कोई लिखित कार्य स्वयं नहीं बचा — सभी आरोपण बाद के अनुयायियों और लेखकों से आते हैं।"
+        "en": "True or False: No written work by Pythagoras himself survives  –  all attributions come from later followers and writers.",
+        "hi": "सत्य या असत्य: पाइथागोरस का कोई लिखित कार्य स्वयं नहीं बचा  –  सभी आरोपण बाद के अनुयायियों और लेखकों से आते हैं।"
       },
       "correctAnswer": 0,
       "explanation": {
-        "en": "TRUE. Not a single written work by Pythagoras himself has survived. Everything attributed to him — the theorem, other mathematical results, his philosophical teachings — comes from the writings of later followers (the Pythagoreans) and ancient commentators. The earliest surviving Greek proof of the theorem appears in Euclid's Elements (~300 BCE), written roughly 200 years after Pythagoras died. This makes it difficult to determine exactly what Pythagoras himself contributed.",
-        "hi": "सत्य। पाइथागोरस का एक भी लिखित कार्य स्वयं नहीं बचा। उनसे सम्बन्धित सब कुछ — प्रमेय, अन्य गणितीय परिणाम, दार्शनिक शिक्षाएँ — बाद के अनुयायियों (पाइथागोरियन) और प्राचीन टिप्पणीकारों के लेखन से आता है।"
+        "en": "TRUE. Not a single written work by Pythagoras himself has survived. Everything attributed to him  –  the theorem, other mathematical results, his philosophical teachings  –  comes from the writings of later followers (the Pythagoreans) and ancient commentators. The earliest surviving Greek proof of the theorem appears in Euclid's Elements (~300 BCE), written roughly 200 years after Pythagoras died. This makes it difficult to determine exactly what Pythagoras himself contributed.",
+        "hi": "सत्य। पाइथागोरस का एक भी लिखित कार्य स्वयं नहीं बचा। उनसे सम्बन्धित सब कुछ  –  प्रमेय, अन्य गणितीय परिणाम, दार्शनिक शिक्षाएँ  –  बाद के अनुयायियों (पाइथागोरियन) और प्राचीन टिप्पणीकारों के लेखन से आता है।"
       }
     }
   ]

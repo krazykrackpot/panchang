@@ -168,9 +168,9 @@ export const SURYA_SHANTI: PujaVidhi = {
 
   precautions: [
     {
-      en: 'Perform the puja facing east. The copper vessel and red flowers are essential — do not substitute with other metals or colours.',
-      hi: 'पूजा पूर्व दिशा की ओर मुख करके करें। ताँबे का पात्र और लाल फूल आवश्यक हैं — अन्य धातु या रंग से न बदलें।',
-      sa: 'प्राङ्मुखं पूजां कुर्यात्। ताम्रपात्रं रक्तपुष्पाणि च अनिवार्याणि — अन्यधातुभिः वर्णैः वा न प्रतिस्थापयेत्।',
+      en: 'Perform the puja facing east. The copper vessel and red flowers are essential  –  do not substitute with other metals or colours.',
+      hi: 'पूजा पूर्व दिशा की ओर मुख करके करें। ताँबे का पात्र और लाल फूल आवश्यक हैं  –  अन्य धातु या रंग से न बदलें।',
+      sa: 'प्राङ्मुखं पूजां कुर्यात्। ताम्रपात्रं रक्तपुष्पाणि च अनिवार्याणि  –  अन्यधातुभिः वर्णैः वा न प्रतिस्थापयेत्।',
     },
     {
       en: 'Avoid salt and oil in food on the day of Surya Shanti puja. A sattvic diet is recommended.',

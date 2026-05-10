@@ -3,7 +3,7 @@ import { isValidCardType, CARD_DIMENSIONS } from '@/lib/shareable/card-base';
 import { Link } from '@/lib/i18n/navigation';
 
 // ---------------------------------------------------------------------------
-// Metadata — OG images point to the card API route for link previews
+// Metadata  –  OG images point to the card API route for link previews
 // ---------------------------------------------------------------------------
 
 interface PageParams {
@@ -29,7 +29,7 @@ export async function generateMetadata({
 
   return {
     title: `${typeLabel} | Dekho Panchang`,
-    description: `View this ${typeLabel} on Dekho Panchang — Vedic astrology for the modern world.`,
+    description: `View this ${typeLabel} on Dekho Panchang  –  Vedic astrology for the modern world.`,
     openGraph: {
       title: `${typeLabel} | Dekho Panchang`,
       description: `View this ${typeLabel} on Dekho Panchang.`,
@@ -111,7 +111,7 @@ export default async function ShareableCardPage({
         </Link>
 
         <p className="text-sm text-text-secondary">
-          Free Vedic astrology tools — no signup required
+          Free Vedic astrology tools  –  no signup required
         </p>
       </div>
     </div>

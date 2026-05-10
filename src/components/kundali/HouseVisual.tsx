@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * Compact visual house indicator — a 4×3 grid showing 12 houses
+ * Compact visual house indicator  –  a 4×3 grid showing 12 houses
  * with highlighted houses for quick reference. Used in interpretation
  * sections to make "House 7" visually concrete.
  *
@@ -98,7 +98,7 @@ export default function HouseVisual({ highlight, label, size = 'sm', color = 'go
 }
 
 /**
- * Inline house badge — shows house number with signification
+ * Inline house badge  –  shows house number with signification
  */
 export function HouseBadge({ house, locale = 'en', color = 'gold' }: { house: number; locale?: string; color?: 'gold' | 'emerald' | 'red' | 'amber' }) {
   const isHi = isDevanagariLocale(locale);

@@ -28,10 +28,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       dateHint = dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
     }
 
-    // Title under 60 chars: "Wedding Muhurat 2026 — Next: May 14"
+    // Title under 60 chars: "Wedding Muhurat 2026  –  Next: May 14"
     const title = dateHint
-      ? `${name} ${year} — Next: ${dateHint} | Dekho Panchang`
-      : `${name} ${year} — ${month} Dates | Dekho Panchang`;
+      ? `${name} ${year}  –  Next: ${dateHint} | Dekho Panchang`
+      : `${name} ${year}  –  ${month} Dates | Dekho Panchang`;
 
     // Description under 155 chars
     const description = dateHint

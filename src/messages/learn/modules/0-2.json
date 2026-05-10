@@ -1,15 +1,15 @@
 {
   "title": {
-    "en": "The Hindu Calendar — Why It's Different",
-    "hi": "हिन्दू पंचांग — यह अलग क्यों है",
-    "sa": "हिन्दूपञ्चाङ्गम् — कुतः भिन्नम्",
-    "ta": "இந்து நாள்காட்டி — ஏன் வேறுபட்டது",
-    "te": "హిందూ పంచాంగం — ఎందుకు భిన్నమైనది",
-    "bn": "হিন্দু পঞ্জিকা — কেন আলাদা",
-    "kn": "ಹಿಂದೂ ಪಂಚಾಂಗ — ಏಕೆ ಭಿನ್ನ",
-    "mr": "हिंदू पंचांग — ते वेगळे का आहे",
-    "gu": "હિન્દુ પંચાંગ — તે અલગ કેમ છે",
-    "mai": "हिन्दू पंचांग — ई अलग किएक अछि"
+    "en": "The Hindu Calendar  –  Why It's Different",
+    "hi": "हिन्दू पंचांग  –  यह अलग क्यों है",
+    "sa": "हिन्दूपञ्चाङ्गम्  –  कुतः भिन्नम्",
+    "ta": "இந்து நாள்காட்டி  –  ஏன் வேறுபட்டது",
+    "te": "హిందూ పంచాంగం  –  ఎందుకు భిన్నమైనది",
+    "bn": "হিন্দু পঞ্জিকা  –  কেন আলাদা",
+    "kn": "ಹಿಂದೂ ಪಂಚಾಂಗ  –  ಏಕೆ ಭಿನ್ನ",
+    "mr": "हिंदू पंचांग  –  ते वेगळे का आहे",
+    "gu": "હિન્દુ પંચાંગ  –  તે અલગ કેમ છે",
+    "mai": "हिन्दू पंचांग  –  ई अलग किएक अछि"
   },
   "subtitle": {
     "en": "The genius lunisolar system that keeps festivals aligned with both Moon and seasons",
@@ -153,16 +153,16 @@
       ],
       "correctAnswer": 2,
       "explanation": {
-        "en": "The Hindu calendar is lunisolar — months follow the Moon (synodic month ~29.5 days), but years stay aligned with the Sun through the insertion of a leap month (Adhika Masa) every ~33 months. This is a sophisticated hybrid system.",
-        "hi": "हिन्दू पंचांग चान्द्र-सौर है — मास चन्द्रमा का अनुसरण करते हैं, लेकिन अधिक मास (हर ~33 मास) द्वारा वर्ष सूर्य से संरेखित रहते हैं।",
-        "sa": "हिन्दू पंचांग चान्द्र-सौर है — मास चन्द्रमा का अनुसरण करते हैं, लेकिन अधिक मास (हर ~33 मास) द्वारा वर्ष सूर्य से संरेखित रहते हैं।",
-        "mai": "हिन्दू पंचांग चान्द्र-सौर है — मास चन्द्रमा का अनुसरण करते हैं, लेकिन अधिक मास (हर ~33 मास) द्वारा वर्ष सूर्य से संरेखित रहते हैं।",
-        "mr": "हिन्दू पंचांग चान्द्र-सौर है — मास चन्द्रमा का अनुसरण करते हैं, लेकिन अधिक मास (हर ~33 मास) द्वारा वर्ष सूर्य से संरेखित रहते हैं।",
-        "ta": "The Hindu calendar is lunisolar — months follow the Moon (synodic month ~29.5 days), but years stay aligned with the Sun through the insertion of a leap month (Adhika Masa) every ~33 months. This is a sophisticated hybrid system.",
-        "te": "The Hindu calendar is lunisolar — months follow the Moon (synodic month ~29.5 days), but years stay aligned with the Sun through the insertion of a leap month (Adhika Masa) every ~33 months. This is a sophisticated hybrid system.",
-        "bn": "The Hindu calendar is lunisolar — months follow the Moon (synodic month ~29.5 days), but years stay aligned with the Sun through the insertion of a leap month (Adhika Masa) every ~33 months. This is a sophisticated hybrid system.",
-        "kn": "The Hindu calendar is lunisolar — months follow the Moon (synodic month ~29.5 days), but years stay aligned with the Sun through the insertion of a leap month (Adhika Masa) every ~33 months. This is a sophisticated hybrid system.",
-        "gu": "The Hindu calendar is lunisolar — months follow the Moon (synodic month ~29.5 days), but years stay aligned with the Sun through the insertion of a leap month (Adhika Masa) every ~33 months. This is a sophisticated hybrid system."
+        "en": "The Hindu calendar is lunisolar  –  months follow the Moon (synodic month ~29.5 days), but years stay aligned with the Sun through the insertion of a leap month (Adhika Masa) every ~33 months. This is a sophisticated hybrid system.",
+        "hi": "हिन्दू पंचांग चान्द्र-सौर है  –  मास चन्द्रमा का अनुसरण करते हैं, लेकिन अधिक मास (हर ~33 मास) द्वारा वर्ष सूर्य से संरेखित रहते हैं।",
+        "sa": "हिन्दू पंचांग चान्द्र-सौर है  –  मास चन्द्रमा का अनुसरण करते हैं, लेकिन अधिक मास (हर ~33 मास) द्वारा वर्ष सूर्य से संरेखित रहते हैं।",
+        "mai": "हिन्दू पंचांग चान्द्र-सौर है  –  मास चन्द्रमा का अनुसरण करते हैं, लेकिन अधिक मास (हर ~33 मास) द्वारा वर्ष सूर्य से संरेखित रहते हैं।",
+        "mr": "हिन्दू पंचांग चान्द्र-सौर है  –  मास चन्द्रमा का अनुसरण करते हैं, लेकिन अधिक मास (हर ~33 मास) द्वारा वर्ष सूर्य से संरेखित रहते हैं।",
+        "ta": "The Hindu calendar is lunisolar  –  months follow the Moon (synodic month ~29.5 days), but years stay aligned with the Sun through the insertion of a leap month (Adhika Masa) every ~33 months. This is a sophisticated hybrid system.",
+        "te": "The Hindu calendar is lunisolar  –  months follow the Moon (synodic month ~29.5 days), but years stay aligned with the Sun through the insertion of a leap month (Adhika Masa) every ~33 months. This is a sophisticated hybrid system.",
+        "bn": "The Hindu calendar is lunisolar  –  months follow the Moon (synodic month ~29.5 days), but years stay aligned with the Sun through the insertion of a leap month (Adhika Masa) every ~33 months. This is a sophisticated hybrid system.",
+        "kn": "The Hindu calendar is lunisolar  –  months follow the Moon (synodic month ~29.5 days), but years stay aligned with the Sun through the insertion of a leap month (Adhika Masa) every ~33 months. This is a sophisticated hybrid system.",
+        "gu": "The Hindu calendar is lunisolar  –  months follow the Moon (synodic month ~29.5 days), but years stay aligned with the Sun through the insertion of a leap month (Adhika Masa) every ~33 months. This is a sophisticated hybrid system."
       }
     },
     {
@@ -232,16 +232,16 @@
       ],
       "correctAnswer": 1,
       "explanation": {
-        "en": "Diwali is ALWAYS on Kartik Amavasya (new moon of Kartik month) — it never \"moves\" in the Hindu calendar. But because the lunisolar calendar and the Gregorian calendar have different month lengths, the same Hindu date maps to different Gregorian dates each year.",
-        "hi": "दीवाली सदा कार्तिक अमावस्या पर होती है — हिन्दू पंचांग में यह कभी \"बदलती\" नहीं। किन्तु चान्द्र-सौर और ग्रेगोरियन पंचांग की मास-अवधि भिन्न होने से ग्रेगोरियन तिथि बदलती है।",
-        "sa": "दीवाली सदा कार्तिक अमावस्या पर होती है — हिन्दू पंचांग में यह कभी \"बदलती\" नहीं। किन्तु चान्द्र-सौर और ग्रेगोरियन पंचांग की मास-अवधि भिन्न होने से ग्रेगोरियन तिथि बदलती है।",
-        "mai": "दीवाली सदा कार्तिक अमावस्या पर होती है — हिन्दू पंचांग में यह कभी \"बदलती\" नहीं। किन्तु चान्द्र-सौर और ग्रेगोरियन पंचांग की मास-अवधि भिन्न होने से ग्रेगोरियन तिथि बदलती है।",
-        "mr": "दीवाली सदा कार्तिक अमावस्या पर होती है — हिन्दू पंचांग में यह कभी \"बदलती\" नहीं। किन्तु चान्द्र-सौर और ग्रेगोरियन पंचांग की मास-अवधि भिन्न होने से ग्रेगोरियन तिथि बदलती है।",
-        "ta": "Diwali is ALWAYS on Kartik Amavasya (new moon of Kartik month) — it never \"moves\" in the Hindu calendar. But because the lunisolar calendar and the Gregorian calendar have different month lengths, the same Hindu date maps to different Gregorian dates each year.",
-        "te": "Diwali is ALWAYS on Kartik Amavasya (new moon of Kartik month) — it never \"moves\" in the Hindu calendar. But because the lunisolar calendar and the Gregorian calendar have different month lengths, the same Hindu date maps to different Gregorian dates each year.",
-        "bn": "Diwali is ALWAYS on Kartik Amavasya (new moon of Kartik month) — it never \"moves\" in the Hindu calendar. But because the lunisolar calendar and the Gregorian calendar have different month lengths, the same Hindu date maps to different Gregorian dates each year.",
-        "kn": "Diwali is ALWAYS on Kartik Amavasya (new moon of Kartik month) — it never \"moves\" in the Hindu calendar. But because the lunisolar calendar and the Gregorian calendar have different month lengths, the same Hindu date maps to different Gregorian dates each year.",
-        "gu": "Diwali is ALWAYS on Kartik Amavasya (new moon of Kartik month) — it never \"moves\" in the Hindu calendar. But because the lunisolar calendar and the Gregorian calendar have different month lengths, the same Hindu date maps to different Gregorian dates each year."
+        "en": "Diwali is ALWAYS on Kartik Amavasya (new moon of Kartik month)  –  it never \"moves\" in the Hindu calendar. But because the lunisolar calendar and the Gregorian calendar have different month lengths, the same Hindu date maps to different Gregorian dates each year.",
+        "hi": "दीवाली सदा कार्तिक अमावस्या पर होती है  –  हिन्दू पंचांग में यह कभी \"बदलती\" नहीं। किन्तु चान्द्र-सौर और ग्रेगोरियन पंचांग की मास-अवधि भिन्न होने से ग्रेगोरियन तिथि बदलती है।",
+        "sa": "दीवाली सदा कार्तिक अमावस्या पर होती है  –  हिन्दू पंचांग में यह कभी \"बदलती\" नहीं। किन्तु चान्द्र-सौर और ग्रेगोरियन पंचांग की मास-अवधि भिन्न होने से ग्रेगोरियन तिथि बदलती है।",
+        "mai": "दीवाली सदा कार्तिक अमावस्या पर होती है  –  हिन्दू पंचांग में यह कभी \"बदलती\" नहीं। किन्तु चान्द्र-सौर और ग्रेगोरियन पंचांग की मास-अवधि भिन्न होने से ग्रेगोरियन तिथि बदलती है।",
+        "mr": "दीवाली सदा कार्तिक अमावस्या पर होती है  –  हिन्दू पंचांग में यह कभी \"बदलती\" नहीं। किन्तु चान्द्र-सौर और ग्रेगोरियन पंचांग की मास-अवधि भिन्न होने से ग्रेगोरियन तिथि बदलती है।",
+        "ta": "Diwali is ALWAYS on Kartik Amavasya (new moon of Kartik month)  –  it never \"moves\" in the Hindu calendar. But because the lunisolar calendar and the Gregorian calendar have different month lengths, the same Hindu date maps to different Gregorian dates each year.",
+        "te": "Diwali is ALWAYS on Kartik Amavasya (new moon of Kartik month)  –  it never \"moves\" in the Hindu calendar. But because the lunisolar calendar and the Gregorian calendar have different month lengths, the same Hindu date maps to different Gregorian dates each year.",
+        "bn": "Diwali is ALWAYS on Kartik Amavasya (new moon of Kartik month)  –  it never \"moves\" in the Hindu calendar. But because the lunisolar calendar and the Gregorian calendar have different month lengths, the same Hindu date maps to different Gregorian dates each year.",
+        "kn": "Diwali is ALWAYS on Kartik Amavasya (new moon of Kartik month)  –  it never \"moves\" in the Hindu calendar. But because the lunisolar calendar and the Gregorian calendar have different month lengths, the same Hindu date maps to different Gregorian dates each year.",
+        "gu": "Diwali is ALWAYS on Kartik Amavasya (new moon of Kartik month)  –  it never \"moves\" in the Hindu calendar. But because the lunisolar calendar and the Gregorian calendar have different month lengths, the same Hindu date maps to different Gregorian dates each year."
       }
     },
     {
@@ -311,16 +311,16 @@
       ],
       "correctAnswer": 1,
       "explanation": {
-        "en": "Twelve lunar months (354 days) fall short of a solar year (365.25 days) by about 11 days. Over ~33 months, this deficit accumulates to one full extra month. Adhika Masa is inserted to correct this — keeping festivals in their proper seasons. Without it, Holi would eventually fall in winter.",
+        "en": "Twelve lunar months (354 days) fall short of a solar year (365.25 days) by about 11 days. Over ~33 months, this deficit accumulates to one full extra month. Adhika Masa is inserted to correct this  –  keeping festivals in their proper seasons. Without it, Holi would eventually fall in winter.",
         "hi": "12 चान्द्र मास (354 दिन) सौर वर्ष (365.25 दिन) से ~11 दिन कम होते हैं। ~33 मास में यह अन्तर एक पूरे मास जितना हो जाता है। अधिक मास इसे सुधारता है।",
         "sa": "12 चान्द्र मास (354 दिन) सौर वर्ष (365.25 दिन) से ~11 दिन कम होते हैं। ~33 मास में यह अन्तर एक पूरे मास जितना हो जाता है। अधिक मास इसे सुधारता है।",
         "mai": "12 चान्द्र मास (354 दिन) सौर वर्ष (365.25 दिन) से ~11 दिन कम होते हैं। ~33 मास में यह अन्तर एक पूरे मास जितना हो जाता है। अधिक मास इसे सुधारता है।",
         "mr": "12 चान्द्र मास (354 दिन) सौर वर्ष (365.25 दिन) से ~11 दिन कम होते हैं। ~33 मास में यह अन्तर एक पूरे मास जितना हो जाता है। अधिक मास इसे सुधारता है।",
-        "ta": "Twelve lunar months (354 days) fall short of a solar year (365.25 days) by about 11 days. Over ~33 months, this deficit accumulates to one full extra month. Adhika Masa is inserted to correct this — keeping festivals in their proper seasons. Without it, Holi would eventually fall in winter.",
-        "te": "Twelve lunar months (354 days) fall short of a solar year (365.25 days) by about 11 days. Over ~33 months, this deficit accumulates to one full extra month. Adhika Masa is inserted to correct this — keeping festivals in their proper seasons. Without it, Holi would eventually fall in winter.",
-        "bn": "Twelve lunar months (354 days) fall short of a solar year (365.25 days) by about 11 days. Over ~33 months, this deficit accumulates to one full extra month. Adhika Masa is inserted to correct this — keeping festivals in their proper seasons. Without it, Holi would eventually fall in winter.",
-        "kn": "Twelve lunar months (354 days) fall short of a solar year (365.25 days) by about 11 days. Over ~33 months, this deficit accumulates to one full extra month. Adhika Masa is inserted to correct this — keeping festivals in their proper seasons. Without it, Holi would eventually fall in winter.",
-        "gu": "Twelve lunar months (354 days) fall short of a solar year (365.25 days) by about 11 days. Over ~33 months, this deficit accumulates to one full extra month. Adhika Masa is inserted to correct this — keeping festivals in their proper seasons. Without it, Holi would eventually fall in winter."
+        "ta": "Twelve lunar months (354 days) fall short of a solar year (365.25 days) by about 11 days. Over ~33 months, this deficit accumulates to one full extra month. Adhika Masa is inserted to correct this  –  keeping festivals in their proper seasons. Without it, Holi would eventually fall in winter.",
+        "te": "Twelve lunar months (354 days) fall short of a solar year (365.25 days) by about 11 days. Over ~33 months, this deficit accumulates to one full extra month. Adhika Masa is inserted to correct this  –  keeping festivals in their proper seasons. Without it, Holi would eventually fall in winter.",
+        "bn": "Twelve lunar months (354 days) fall short of a solar year (365.25 days) by about 11 days. Over ~33 months, this deficit accumulates to one full extra month. Adhika Masa is inserted to correct this  –  keeping festivals in their proper seasons. Without it, Holi would eventually fall in winter.",
+        "kn": "Twelve lunar months (354 days) fall short of a solar year (365.25 days) by about 11 days. Over ~33 months, this deficit accumulates to one full extra month. Adhika Masa is inserted to correct this  –  keeping festivals in their proper seasons. Without it, Holi would eventually fall in winter.",
+        "gu": "Twelve lunar months (354 days) fall short of a solar year (365.25 days) by about 11 days. Over ~33 months, this deficit accumulates to one full extra month. Adhika Masa is inserted to correct this  –  keeping festivals in their proper seasons. Without it, Holi would eventually fall in winter."
       }
     },
     {
@@ -527,16 +527,16 @@
       ],
       "correctAnswer": 1,
       "explanation": {
-        "en": "In the Purnimant system used in North India, each month ends at the Full Moon (Purnima). In the Amant system (South India/Gujarat), each month ends at the New Moon (Amavasya). Both systems are valid — they just use different anchor points.",
-        "hi": "पूर्णिमान्त में प्रत्येक मास पूर्णिमा पर समाप्त होता है। अमान्त (दक्षिण भारत/गुजरात) में अमावस्या पर। दोनों प्रणालियाँ मान्य हैं — केवल सन्दर्भ बिन्दु भिन्न है।",
-        "sa": "पूर्णिमान्त में प्रत्येक मास पूर्णिमा पर समाप्त होता है। अमान्त (दक्षिण भारत/गुजरात) में अमावस्या पर। दोनों प्रणालियाँ मान्य हैं — केवल सन्दर्भ बिन्दु भिन्न है।",
-        "mai": "पूर्णिमान्त में प्रत्येक मास पूर्णिमा पर समाप्त होता है। अमान्त (दक्षिण भारत/गुजरात) में अमावस्या पर। दोनों प्रणालियाँ मान्य हैं — केवल सन्दर्भ बिन्दु भिन्न है।",
-        "mr": "पूर्णिमान्त में प्रत्येक मास पूर्णिमा पर समाप्त होता है। अमान्त (दक्षिण भारत/गुजरात) में अमावस्या पर। दोनों प्रणालियाँ मान्य हैं — केवल सन्दर्भ बिन्दु भिन्न है।",
-        "ta": "In the Purnimant system used in North India, each month ends at the Full Moon (Purnima). In the Amant system (South India/Gujarat), each month ends at the New Moon (Amavasya). Both systems are valid — they just use different anchor points.",
-        "te": "In the Purnimant system used in North India, each month ends at the Full Moon (Purnima). In the Amant system (South India/Gujarat), each month ends at the New Moon (Amavasya). Both systems are valid — they just use different anchor points.",
-        "bn": "In the Purnimant system used in North India, each month ends at the Full Moon (Purnima). In the Amant system (South India/Gujarat), each month ends at the New Moon (Amavasya). Both systems are valid — they just use different anchor points.",
-        "kn": "In the Purnimant system used in North India, each month ends at the Full Moon (Purnima). In the Amant system (South India/Gujarat), each month ends at the New Moon (Amavasya). Both systems are valid — they just use different anchor points.",
-        "gu": "In the Purnimant system used in North India, each month ends at the Full Moon (Purnima). In the Amant system (South India/Gujarat), each month ends at the New Moon (Amavasya). Both systems are valid — they just use different anchor points."
+        "en": "In the Purnimant system used in North India, each month ends at the Full Moon (Purnima). In the Amant system (South India/Gujarat), each month ends at the New Moon (Amavasya). Both systems are valid  –  they just use different anchor points.",
+        "hi": "पूर्णिमान्त में प्रत्येक मास पूर्णिमा पर समाप्त होता है। अमान्त (दक्षिण भारत/गुजरात) में अमावस्या पर। दोनों प्रणालियाँ मान्य हैं  –  केवल सन्दर्भ बिन्दु भिन्न है।",
+        "sa": "पूर्णिमान्त में प्रत्येक मास पूर्णिमा पर समाप्त होता है। अमान्त (दक्षिण भारत/गुजरात) में अमावस्या पर। दोनों प्रणालियाँ मान्य हैं  –  केवल सन्दर्भ बिन्दु भिन्न है।",
+        "mai": "पूर्णिमान्त में प्रत्येक मास पूर्णिमा पर समाप्त होता है। अमान्त (दक्षिण भारत/गुजरात) में अमावस्या पर। दोनों प्रणालियाँ मान्य हैं  –  केवल सन्दर्भ बिन्दु भिन्न है।",
+        "mr": "पूर्णिमान्त में प्रत्येक मास पूर्णिमा पर समाप्त होता है। अमान्त (दक्षिण भारत/गुजरात) में अमावस्या पर। दोनों प्रणालियाँ मान्य हैं  –  केवल सन्दर्भ बिन्दु भिन्न है।",
+        "ta": "In the Purnimant system used in North India, each month ends at the Full Moon (Purnima). In the Amant system (South India/Gujarat), each month ends at the New Moon (Amavasya). Both systems are valid  –  they just use different anchor points.",
+        "te": "In the Purnimant system used in North India, each month ends at the Full Moon (Purnima). In the Amant system (South India/Gujarat), each month ends at the New Moon (Amavasya). Both systems are valid  –  they just use different anchor points.",
+        "bn": "In the Purnimant system used in North India, each month ends at the Full Moon (Purnima). In the Amant system (South India/Gujarat), each month ends at the New Moon (Amavasya). Both systems are valid  –  they just use different anchor points.",
+        "kn": "In the Purnimant system used in North India, each month ends at the Full Moon (Purnima). In the Amant system (South India/Gujarat), each month ends at the New Moon (Amavasya). Both systems are valid  –  they just use different anchor points.",
+        "gu": "In the Purnimant system used in North India, each month ends at the Full Moon (Purnima). In the Amant system (South India/Gujarat), each month ends at the New Moon (Amavasya). Both systems are valid  –  they just use different anchor points."
       }
     },
     {
@@ -606,16 +606,16 @@
       ],
       "correctAnswer": 1,
       "explanation": {
-        "en": "Meghnad Saha discovered the Saha equation, which explains stellar spectra through thermal ionization — a cornerstone of astrophysics. The same brilliant physicist who standardized India's national calendar was also transforming our understanding of stars.",
-        "hi": "मेघनाद साहा ने साहा समीकरण की खोज की, जो तापीय आयनीकरण से तारकीय स्पेक्ट्रम समझाता है — खगोल भौतिकी की आधारशिला। वही प्रतिभाशाली भौतिकविद् जिन्होंने भारत का राष्ट्रीय पंचांग मानकीकृत किया।",
-        "sa": "मेघनाद साहा ने साहा समीकरण की खोज की, जो तापीय आयनीकरण से तारकीय स्पेक्ट्रम समझाता है — खगोल भौतिकी की आधारशिला। वही प्रतिभाशाली भौतिकविद् जिन्होंने भारत का राष्ट्रीय पंचांग मानकीकृत किया।",
-        "ta": "Meghnad Saha discovered the Saha equation, which explains stellar spectra through thermal ionization — a cornerstone of astrophysics. The same brilliant physicist who standardized India's national calendar was also transforming our understanding of stars.",
-        "te": "Meghnad Saha discovered the Saha equation, which explains stellar spectra through thermal ionization — a cornerstone of astrophysics. The same brilliant physicist who standardized India's national calendar was also transforming our understanding of stars.",
-        "bn": "Meghnad Saha discovered the Saha equation, which explains stellar spectra through thermal ionization — a cornerstone of astrophysics. The same brilliant physicist who standardized India's national calendar was also transforming our understanding of stars.",
-        "kn": "Meghnad Saha discovered the Saha equation, which explains stellar spectra through thermal ionization — a cornerstone of astrophysics. The same brilliant physicist who standardized India's national calendar was also transforming our understanding of stars.",
-        "mr": "मेघनाद साहा ने साहा समीकरण की खोज की, जो तापीय आयनीकरण से तारकीय स्पेक्ट्रम समझाता है — खगोल भौतिकी की आधारशिला। वही प्रतिभाशाली भौतिकविद् जिन्होंने भारत का राष्ट्रीय पंचांग मानकीकृत किया।",
-        "gu": "Meghnad Saha discovered the Saha equation, which explains stellar spectra through thermal ionization — a cornerstone of astrophysics. The same brilliant physicist who standardized India's national calendar was also transforming our understanding of stars.",
-        "mai": "मेघनाद साहा ने साहा समीकरण की खोज की, जो तापीय आयनीकरण से तारकीय स्पेक्ट्रम समझाता है — खगोल भौतिकी की आधारशिला। वही प्रतिभाशाली भौतिकविद् जिन्होंने भारत का राष्ट्रीय पंचांग मानकीकृत किया।"
+        "en": "Meghnad Saha discovered the Saha equation, which explains stellar spectra through thermal ionization  –  a cornerstone of astrophysics. The same brilliant physicist who standardized India's national calendar was also transforming our understanding of stars.",
+        "hi": "मेघनाद साहा ने साहा समीकरण की खोज की, जो तापीय आयनीकरण से तारकीय स्पेक्ट्रम समझाता है  –  खगोल भौतिकी की आधारशिला। वही प्रतिभाशाली भौतिकविद् जिन्होंने भारत का राष्ट्रीय पंचांग मानकीकृत किया।",
+        "sa": "मेघनाद साहा ने साहा समीकरण की खोज की, जो तापीय आयनीकरण से तारकीय स्पेक्ट्रम समझाता है  –  खगोल भौतिकी की आधारशिला। वही प्रतिभाशाली भौतिकविद् जिन्होंने भारत का राष्ट्रीय पंचांग मानकीकृत किया।",
+        "ta": "Meghnad Saha discovered the Saha equation, which explains stellar spectra through thermal ionization  –  a cornerstone of astrophysics. The same brilliant physicist who standardized India's national calendar was also transforming our understanding of stars.",
+        "te": "Meghnad Saha discovered the Saha equation, which explains stellar spectra through thermal ionization  –  a cornerstone of astrophysics. The same brilliant physicist who standardized India's national calendar was also transforming our understanding of stars.",
+        "bn": "Meghnad Saha discovered the Saha equation, which explains stellar spectra through thermal ionization  –  a cornerstone of astrophysics. The same brilliant physicist who standardized India's national calendar was also transforming our understanding of stars.",
+        "kn": "Meghnad Saha discovered the Saha equation, which explains stellar spectra through thermal ionization  –  a cornerstone of astrophysics. The same brilliant physicist who standardized India's national calendar was also transforming our understanding of stars.",
+        "mr": "मेघनाद साहा ने साहा समीकरण की खोज की, जो तापीय आयनीकरण से तारकीय स्पेक्ट्रम समझाता है  –  खगोल भौतिकी की आधारशिला। वही प्रतिभाशाली भौतिकविद् जिन्होंने भारत का राष्ट्रीय पंचांग मानकीकृत किया।",
+        "gu": "Meghnad Saha discovered the Saha equation, which explains stellar spectra through thermal ionization  –  a cornerstone of astrophysics. The same brilliant physicist who standardized India's national calendar was also transforming our understanding of stars.",
+        "mai": "मेघनाद साहा ने साहा समीकरण की खोज की, जो तापीय आयनीकरण से तारकीय स्पेक्ट्रम समझाता है  –  खगोल भौतिकी की आधारशिला। वही प्रतिभाशाली भौतिकविद् जिन्होंने भारत का राष्ट्रीय पंचांग मानकीकृत किया।"
       }
     },
     {
@@ -635,16 +635,16 @@
       },
       "correctAnswer": true,
       "explanation": {
-        "en": "The \"truti\" is defined as 29.6 microseconds in classical texts. For comparison, modern atomic clocks measure in microseconds. Indian astronomers were conceptualizing time at this scale over 2,000 years ago — an extraordinary level of temporal precision in ancient thought.",
+        "en": "The \"truti\" is defined as 29.6 microseconds in classical texts. For comparison, modern atomic clocks measure in microseconds. Indian astronomers were conceptualizing time at this scale over 2,000 years ago  –  an extraordinary level of temporal precision in ancient thought.",
         "hi": "\"त्रुटि\" शास्त्रीय ग्रन्थों में 29.6 माइक्रोसेकण्ड परिभाषित है। आधुनिक परमाणु घड़ियाँ माइक्रोसेकण्ड में मापती हैं। भारतीय खगोलशास्त्री 2,000 वर्ष पहले इस पैमाने पर सोच रहे थे!",
         "sa": "\"त्रुटि\" शास्त्रीय ग्रन्थों में 29.6 माइक्रोसेकण्ड परिभाषित है। आधुनिक परमाणु घड़ियाँ माइक्रोसेकण्ड में मापती हैं। भारतीय खगोलशास्त्री 2,000 वर्ष पहले इस पैमाने पर सोच रहे थे!",
         "mai": "\"त्रुटि\" शास्त्रीय ग्रन्थों में 29.6 माइक्रोसेकण्ड परिभाषित है। आधुनिक परमाणु घड़ियाँ माइक्रोसेकण्ड में मापती हैं। भारतीय खगोलशास्त्री 2,000 वर्ष पहले इस पैमाने पर सोच रहे थे!",
         "mr": "\"त्रुटि\" शास्त्रीय ग्रन्थों में 29.6 माइक्रोसेकण्ड परिभाषित है। आधुनिक परमाणु घड़ियाँ माइक्रोसेकण्ड में मापती हैं। भारतीय खगोलशास्त्री 2,000 वर्ष पहले इस पैमाने पर सोच रहे थे!",
-        "ta": "The \"truti\" is defined as 29.6 microseconds in classical texts. For comparison, modern atomic clocks measure in microseconds. Indian astronomers were conceptualizing time at this scale over 2,000 years ago — an extraordinary level of temporal precision in ancient thought.",
-        "te": "The \"truti\" is defined as 29.6 microseconds in classical texts. For comparison, modern atomic clocks measure in microseconds. Indian astronomers were conceptualizing time at this scale over 2,000 years ago — an extraordinary level of temporal precision in ancient thought.",
-        "bn": "The \"truti\" is defined as 29.6 microseconds in classical texts. For comparison, modern atomic clocks measure in microseconds. Indian astronomers were conceptualizing time at this scale over 2,000 years ago — an extraordinary level of temporal precision in ancient thought.",
-        "kn": "The \"truti\" is defined as 29.6 microseconds in classical texts. For comparison, modern atomic clocks measure in microseconds. Indian astronomers were conceptualizing time at this scale over 2,000 years ago — an extraordinary level of temporal precision in ancient thought.",
-        "gu": "The \"truti\" is defined as 29.6 microseconds in classical texts. For comparison, modern atomic clocks measure in microseconds. Indian astronomers were conceptualizing time at this scale over 2,000 years ago — an extraordinary level of temporal precision in ancient thought."
+        "ta": "The \"truti\" is defined as 29.6 microseconds in classical texts. For comparison, modern atomic clocks measure in microseconds. Indian astronomers were conceptualizing time at this scale over 2,000 years ago  –  an extraordinary level of temporal precision in ancient thought.",
+        "te": "The \"truti\" is defined as 29.6 microseconds in classical texts. For comparison, modern atomic clocks measure in microseconds. Indian astronomers were conceptualizing time at this scale over 2,000 years ago  –  an extraordinary level of temporal precision in ancient thought.",
+        "bn": "The \"truti\" is defined as 29.6 microseconds in classical texts. For comparison, modern atomic clocks measure in microseconds. Indian astronomers were conceptualizing time at this scale over 2,000 years ago  –  an extraordinary level of temporal precision in ancient thought.",
+        "kn": "The \"truti\" is defined as 29.6 microseconds in classical texts. For comparison, modern atomic clocks measure in microseconds. Indian astronomers were conceptualizing time at this scale over 2,000 years ago  –  an extraordinary level of temporal precision in ancient thought.",
+        "gu": "The \"truti\" is defined as 29.6 microseconds in classical texts. For comparison, modern atomic clocks measure in microseconds. Indian astronomers were conceptualizing time at this scale over 2,000 years ago  –  an extraordinary level of temporal precision in ancient thought."
       }
     },
     {
@@ -714,16 +714,16 @@
       ],
       "correctAnswer": 2,
       "explanation": {
-        "en": "12 lunar months = ~354 days. A solar year = ~365.25 days. The difference is about 11 days per year. Over ~33 months (about 2.7 years), this accumulates to roughly 30 days — triggering the insertion of one Adhika Masa.",
-        "hi": "12 चान्द्र मास = ~354 दिन। सौर वर्ष = ~365.25 दिन। अन्तर प्रति वर्ष ~11 दिन। ~33 मास में यह ~30 दिन बनता है — तब अधिक मास डाला जाता है।",
-        "sa": "12 चान्द्र मास = ~354 दिन। सौर वर्ष = ~365.25 दिन। अन्तर प्रति वर्ष ~11 दिन। ~33 मास में यह ~30 दिन बनता है — तब अधिक मास डाला जाता है।",
-        "mai": "12 चान्द्र मास = ~354 दिन। सौर वर्ष = ~365.25 दिन। अन्तर प्रति वर्ष ~11 दिन। ~33 मास में यह ~30 दिन बनता है — तब अधिक मास डाला जाता है।",
-        "mr": "12 चान्द्र मास = ~354 दिन। सौर वर्ष = ~365.25 दिन। अन्तर प्रति वर्ष ~11 दिन। ~33 मास में यह ~30 दिन बनता है — तब अधिक मास डाला जाता है।",
-        "ta": "12 lunar months = ~354 days. A solar year = ~365.25 days. The difference is about 11 days per year. Over ~33 months (about 2.7 years), this accumulates to roughly 30 days — triggering the insertion of one Adhika Masa.",
-        "te": "12 lunar months = ~354 days. A solar year = ~365.25 days. The difference is about 11 days per year. Over ~33 months (about 2.7 years), this accumulates to roughly 30 days — triggering the insertion of one Adhika Masa.",
-        "bn": "12 lunar months = ~354 days. A solar year = ~365.25 days. The difference is about 11 days per year. Over ~33 months (about 2.7 years), this accumulates to roughly 30 days — triggering the insertion of one Adhika Masa.",
-        "kn": "12 lunar months = ~354 days. A solar year = ~365.25 days. The difference is about 11 days per year. Over ~33 months (about 2.7 years), this accumulates to roughly 30 days — triggering the insertion of one Adhika Masa.",
-        "gu": "12 lunar months = ~354 days. A solar year = ~365.25 days. The difference is about 11 days per year. Over ~33 months (about 2.7 years), this accumulates to roughly 30 days — triggering the insertion of one Adhika Masa."
+        "en": "12 lunar months = ~354 days. A solar year = ~365.25 days. The difference is about 11 days per year. Over ~33 months (about 2.7 years), this accumulates to roughly 30 days  –  triggering the insertion of one Adhika Masa.",
+        "hi": "12 चान्द्र मास = ~354 दिन। सौर वर्ष = ~365.25 दिन। अन्तर प्रति वर्ष ~11 दिन। ~33 मास में यह ~30 दिन बनता है  –  तब अधिक मास डाला जाता है।",
+        "sa": "12 चान्द्र मास = ~354 दिन। सौर वर्ष = ~365.25 दिन। अन्तर प्रति वर्ष ~11 दिन। ~33 मास में यह ~30 दिन बनता है  –  तब अधिक मास डाला जाता है।",
+        "mai": "12 चान्द्र मास = ~354 दिन। सौर वर्ष = ~365.25 दिन। अन्तर प्रति वर्ष ~11 दिन। ~33 मास में यह ~30 दिन बनता है  –  तब अधिक मास डाला जाता है।",
+        "mr": "12 चान्द्र मास = ~354 दिन। सौर वर्ष = ~365.25 दिन। अन्तर प्रति वर्ष ~11 दिन। ~33 मास में यह ~30 दिन बनता है  –  तब अधिक मास डाला जाता है।",
+        "ta": "12 lunar months = ~354 days. A solar year = ~365.25 days. The difference is about 11 days per year. Over ~33 months (about 2.7 years), this accumulates to roughly 30 days  –  triggering the insertion of one Adhika Masa.",
+        "te": "12 lunar months = ~354 days. A solar year = ~365.25 days. The difference is about 11 days per year. Over ~33 months (about 2.7 years), this accumulates to roughly 30 days  –  triggering the insertion of one Adhika Masa.",
+        "bn": "12 lunar months = ~354 days. A solar year = ~365.25 days. The difference is about 11 days per year. Over ~33 months (about 2.7 years), this accumulates to roughly 30 days  –  triggering the insertion of one Adhika Masa.",
+        "kn": "12 lunar months = ~354 days. A solar year = ~365.25 days. The difference is about 11 days per year. Over ~33 months (about 2.7 years), this accumulates to roughly 30 days  –  triggering the insertion of one Adhika Masa.",
+        "gu": "12 lunar months = ~354 days. A solar year = ~365.25 days. The difference is about 11 days per year. Over ~33 months (about 2.7 years), this accumulates to roughly 30 days  –  triggering the insertion of one Adhika Masa."
       }
     }
   ],
@@ -733,19 +733,19 @@
     "sa": "हिन्दू त्योहार हर वर्ष \"खिसकते\" क्यों हैं?"
   },
   "whyIsDiwaliInNovember": {
-    "en": "\"Why is Diwali in November this time? Last year it was in October!\" — this question gets asked every year. The answer is simple and elegant: Diwali doesn't move. YOUR calendar does.",
-    "hi": "\"दीवाली इस बार नवम्बर में क्यों है? पिछले साल तो अक्टूबर में थी!\" — यह प्रश्न हर वर्ष पूछा जाता है। उत्तर सरल और सुन्दर है: दीवाली बदलती नहीं। आपका कैलेण्डर बदलता है।",
-    "sa": "\"दीवाली इस बार नवम्बर में क्यों है? पिछले साल तो अक्टूबर में थी!\" — यह प्रश्न हर वर्ष पूछा जाता है। उत्तर सरल और सुन्दर है: दीवाली बदलती नहीं। आपका कैलेण्डर बदलता है।"
+    "en": "\"Why is Diwali in November this time? Last year it was in October!\"  –  this question gets asked every year. The answer is simple and elegant: Diwali doesn't move. YOUR calendar does.",
+    "hi": "\"दीवाली इस बार नवम्बर में क्यों है? पिछले साल तो अक्टूबर में थी!\"  –  यह प्रश्न हर वर्ष पूछा जाता है। उत्तर सरल और सुन्दर है: दीवाली बदलती नहीं। आपका कैलेण्डर बदलता है।",
+    "sa": "\"दीवाली इस बार नवम्बर में क्यों है? पिछले साल तो अक्टूबर में थी!\"  –  यह प्रश्न हर वर्ष पूछा जाता है। उत्तर सरल और सुन्दर है: दीवाली बदलती नहीं। आपका कैलेण्डर बदलता है।"
   },
   "haveYouEverWonderedWhy": {
-    "en": "Have you ever wondered why Diwali is sometimes in October and sometimes in November? Or why your grandmother insists that Ekadashi fasting must start at a specific sunrise? The answer lies in one of humanity's most sophisticated calendar systems — and India's version is arguably the most elegant.",
-    "hi": "क्या आपने कभी सोचा है कि दीवाली कभी अक्टूबर में क्यों होती है और कभी नवम्बर में? या आपकी दादी क्यों कहती हैं कि एकादशी का व्रत एक विशिष्ट सूर्योदय से शुरू होना चाहिए? उत्तर मानव जाति की सबसे परिष्कृत पंचांग प्रणालियों में से एक में छिपा है — और भारत का संस्करण सम्भवतः सबसे सुन्दर है।",
-    "sa": "क्या आपने कभी सोचा है कि दीवाली कभी अक्टूबर में क्यों होती है और कभी नवम्बर में? या आपकी दादी क्यों कहती हैं कि एकादशी का व्रत एक विशिष्ट सूर्योदय से शुरू होना चाहिए? उत्तर मानव जाति की सबसे परिष्कृत पंचांग प्रणालियों में से एक में छिपा है — और भारत का संस्करण सम्भवतः सबसे सुन्दर है।"
+    "en": "Have you ever wondered why Diwali is sometimes in October and sometimes in November? Or why your grandmother insists that Ekadashi fasting must start at a specific sunrise? The answer lies in one of humanity's most sophisticated calendar systems  –  and India's version is arguably the most elegant.",
+    "hi": "क्या आपने कभी सोचा है कि दीवाली कभी अक्टूबर में क्यों होती है और कभी नवम्बर में? या आपकी दादी क्यों कहती हैं कि एकादशी का व्रत एक विशिष्ट सूर्योदय से शुरू होना चाहिए? उत्तर मानव जाति की सबसे परिष्कृत पंचांग प्रणालियों में से एक में छिपा है  –  और भारत का संस्करण सम्भवतः सबसे सुन्दर है।",
+    "sa": "क्या आपने कभी सोचा है कि दीवाली कभी अक्टूबर में क्यों होती है और कभी नवम्बर में? या आपकी दादी क्यों कहती हैं कि एकादशी का व्रत एक विशिष्ट सूर्योदय से शुरू होना चाहिए? उत्तर मानव जाति की सबसे परिष्कृत पंचांग प्रणालियों में से एक में छिपा है  –  और भारत का संस्करण सम्भवतः सबसे सुन्दर है।"
   },
   "hereSWhatSGenius": {
-    "en": "Here's what's genius about the Hindu lunisolar calendar: it tracks the Moon (which governs tides, agriculture, and biological rhythms) while staying aligned with the Sun (which governs seasons). Pure lunar calendars like the Islamic calendar drift 11 days per year — which is why Ramadan moves through all seasons. The Hindu calendar avoids this by inserting an Adhika Masa (leap month) every ~33 months. It's like auto-correct for the cosmos. Think of the Panchang as a cosmic weather app — except it's been running for 3,000 years.",
-    "hi": "हिन्दू चान्द्र-सौर पंचांग की प्रतिभा यह है: यह चन्द्रमा को ट्रैक करता है (जो ज्वार, कृषि और जैविक लय को नियन्त्रित करता है) और साथ ही सूर्य (जो ऋतुओं को नियन्त्रित करता है) से संरेखित रहता है। शुद्ध चान्द्र पंचांग जैसे इस्लामी पंचांग प्रति वर्ष 11 दिन खिसकते हैं — इसीलिए रमज़ान सभी ऋतुओं में घूमता है। हिन्दू पंचांग हर ~33 मास में अधिक मास (लीप मास) डालकर इससे बचता है। यह ब्रह्माण्ड के लिए ऑटो-करेक्ट जैसा है।",
-    "sa": "हिन्दू चान्द्र-सौर पंचांग की प्रतिभा यह है: यह चन्द्रमा को ट्रैक करता है (जो ज्वार, कृषि और जैविक लय को नियन्त्रित करता है) और साथ ही सूर्य (जो ऋतुओं को नियन्त्रित करता है) से संरेखित रहता है। शुद्ध चान्द्र पंचांग जैसे इस्लामी पंचांग प्रति वर्ष 11 दिन खिसकते हैं — इसीलिए रमज़ान सभी ऋतुओं में घूमता है। हिन्दू पंचांग हर ~33 मास में अधिक मास (लीप मास) डालकर इससे बचता है। यह ब्रह्माण्ड के लिए ऑटो-करेक्ट जैसा है।"
+    "en": "Here's what's genius about the Hindu lunisolar calendar: it tracks the Moon (which governs tides, agriculture, and biological rhythms) while staying aligned with the Sun (which governs seasons). Pure lunar calendars like the Islamic calendar drift 11 days per year  –  which is why Ramadan moves through all seasons. The Hindu calendar avoids this by inserting an Adhika Masa (leap month) every ~33 months. It's like auto-correct for the cosmos. Think of the Panchang as a cosmic weather app  –  except it's been running for 3,000 years.",
+    "hi": "हिन्दू चान्द्र-सौर पंचांग की प्रतिभा यह है: यह चन्द्रमा को ट्रैक करता है (जो ज्वार, कृषि और जैविक लय को नियन्त्रित करता है) और साथ ही सूर्य (जो ऋतुओं को नियन्त्रित करता है) से संरेखित रहता है। शुद्ध चान्द्र पंचांग जैसे इस्लामी पंचांग प्रति वर्ष 11 दिन खिसकते हैं  –  इसीलिए रमज़ान सभी ऋतुओं में घूमता है। हिन्दू पंचांग हर ~33 मास में अधिक मास (लीप मास) डालकर इससे बचता है। यह ब्रह्माण्ड के लिए ऑटो-करेक्ट जैसा है।",
+    "sa": "हिन्दू चान्द्र-सौर पंचांग की प्रतिभा यह है: यह चन्द्रमा को ट्रैक करता है (जो ज्वार, कृषि और जैविक लय को नियन्त्रित करता है) और साथ ही सूर्य (जो ऋतुओं को नियन्त्रित करता है) से संरेखित रहता है। शुद्ध चान्द्र पंचांग जैसे इस्लामी पंचांग प्रति वर्ष 11 दिन खिसकते हैं  –  इसीलिए रमज़ान सभी ऋतुओं में घूमता है। हिन्दू पंचांग हर ~33 मास में अधिक मास (लीप मास) डालकर इससे बचता है। यह ब्रह्माण्ड के लिए ऑटो-करेक्ट जैसा है।"
   },
   "thereAreThreeMainCalendar": {
     "en": "There are three main calendar systems in the world:",
@@ -758,9 +758,9 @@
     "sa": "ग्रेगोरियन = शुद्ध सौर"
   },
   "k36525DaysYearAligned": {
-    "en": "365.25 days/year. Aligned with seasons — December 25 is always in winter. But completely ignores Moon phases.",
-    "hi": "365.25 दिन/वर्ष। ऋतुओं से संरेखित — 25 दिसम्बर सदा शीतकाल में। किन्तु चन्द्रमा की अवस्थाओं की पूर्णतः उपेक्षा।",
-    "sa": "365.25 दिन/वर्ष। ऋतुओं से संरेखित — 25 दिसम्बर सदा शीतकाल में। किन्तु चन्द्रमा की अवस्थाओं की पूर्णतः उपेक्षा।"
+    "en": "365.25 days/year. Aligned with seasons  –  December 25 is always in winter. But completely ignores Moon phases.",
+    "hi": "365.25 दिन/वर्ष। ऋतुओं से संरेखित  –  25 दिसम्बर सदा शीतकाल में। किन्तु चन्द्रमा की अवस्थाओं की पूर्णतः उपेक्षा।",
+    "sa": "365.25 दिन/वर्ष। ऋतुओं से संरेखित  –  25 दिसम्बर सदा शीतकाल में। किन्तु चन्द्रमा की अवस्थाओं की पूर्णतः उपेक्षा।"
   },
   "islamicPureLunar": {
     "en": "Islamic = Pure Lunar",
@@ -768,9 +768,9 @@
     "sa": "इस्लामी = शुद्ध चान्द्र"
   },
   "k354DaysYearAlignedWith": {
-    "en": "354 days/year. Aligned with Moon phases — but drifts through seasons. That's why Ramadan comes ~11 days earlier each year, completing a full cycle in ~33 years.",
-    "hi": "354 दिन/वर्ष। चन्द्र अवस्थाओं से संरेखित — किन्तु ऋतुओं में खिसकता है। इसीलिए रमज़ान हर वर्ष ~11 दिन पहले आता है, ~33 वर्ष में पूरा चक्र।",
-    "sa": "354 दिन/वर्ष। चन्द्र अवस्थाओं से संरेखित — किन्तु ऋतुओं में खिसकता है। इसीलिए रमज़ान हर वर्ष ~11 दिन पहले आता है, ~33 वर्ष में पूरा चक्र।"
+    "en": "354 days/year. Aligned with Moon phases  –  but drifts through seasons. That's why Ramadan comes ~11 days earlier each year, completing a full cycle in ~33 years.",
+    "hi": "354 दिन/वर्ष। चन्द्र अवस्थाओं से संरेखित  –  किन्तु ऋतुओं में खिसकता है। इसीलिए रमज़ान हर वर्ष ~11 दिन पहले आता है, ~33 वर्ष में पूरा चक्र।",
+    "sa": "354 दिन/वर्ष। चन्द्र अवस्थाओं से संरेखित  –  किन्तु ऋतुओं में खिसकता है। इसीलिए रमज़ान हर वर्ष ~11 दिन पहले आता है, ~33 वर्ष में पूरा चक्र।"
   },
   "hinduLunisolarGeniusHybrid": {
     "en": "Hindu = Lunisolar (Genius Hybrid)",
@@ -783,9 +783,9 @@
     "sa": "मास चन्द्रमा का अनुसरण करते हैं (~29.5 दिन/मास), किन्तु अधिक मास (लीप मास, हर ~33 मास) द्वारा वर्ष सूर्य/ऋतुओं से संरेखित रहते हैं। होली सदा वसन्त में, दीवाली सदा शरद में!"
   },
   "diwaliIsAlwaysOnKartik": {
-    "en": "Diwali is ALWAYS on Kartik Amavasya (new moon of Kartik month). This lunisolar date maps to different Gregorian dates — but in the Hindu calendar, it is always the same date.",
-    "hi": "दीवाली सदा कार्तिक अमावस्या पर है। यह चान्द्र-सौर तिथि ग्रेगोरियन कैलेण्डर की भिन्न तारीखों पर आती है — किन्तु हिन्दू पंचांग में यह हमेशा एक ही तिथि है।",
-    "sa": "दीवाली सदा कार्तिक अमावस्या पर है। यह चान्द्र-सौर तिथि ग्रेगोरियन कैलेण्डर की भिन्न तारीखों पर आती है — किन्तु हिन्दू पंचांग में यह हमेशा एक ही तिथि है।"
+    "en": "Diwali is ALWAYS on Kartik Amavasya (new moon of Kartik month). This lunisolar date maps to different Gregorian dates  –  but in the Hindu calendar, it is always the same date.",
+    "hi": "दीवाली सदा कार्तिक अमावस्या पर है। यह चान्द्र-सौर तिथि ग्रेगोरियन कैलेण्डर की भिन्न तारीखों पर आती है  –  किन्तु हिन्दू पंचांग में यह हमेशा एक ही तिथि है।",
+    "sa": "दीवाली सदा कार्तिक अमावस्या पर है। यह चान्द्र-सौर तिथि ग्रेगोरियन कैलेण्डर की भिन्न तारीखों पर आती है  –  किन्तु हिन्दू पंचांग में यह हमेशा एक ही तिथि है।"
   },
   "classicalOrigin": {
     "en": "Classical Origin",
@@ -798,9 +798,9 @@
     "sa": "भारत ने चान्द्र-सौर पंचांग स्वतन्त्र रूप से विकसित किया। मेटोनिक चक्र (19 वर्षीय पुनरावृत्ति) भारत में एथेंस के मेटोन से पहले ज्ञात था।"
   },
   "theIndianCalendarReformCommittee": {
-    "en": "The Indian Calendar Reform Committee (1955) was led by physicist Meghnad Saha — the same Saha who discovered the Saha ionization equation in astrophysics. A world-class scientist standardized India's national calendar.",
-    "hi": "भारतीय पंचांग समिति (1955) का नेतृत्व भौतिकविद् मेघनाद साहा ने किया — वही साहा जिन्होंने खगोल भौतिकी में साहा आयनीकरण समीकरण की खोज की। एक विश्व-स्तरीय वैज्ञानिक ने भारत का राष्ट्रीय पंचांग मानकीकृत किया।",
-    "sa": "भारतीय पंचांग समिति (1955) का नेतृत्व भौतिकविद् मेघनाद साहा ने किया — वही साहा जिन्होंने खगोल भौतिकी में साहा आयनीकरण समीकरण की खोज की। एक विश्व-स्तरीय वैज्ञानिक ने भारत का राष्ट्रीय पंचांग मानकीकृत किया।"
+    "en": "The Indian Calendar Reform Committee (1955) was led by physicist Meghnad Saha  –  the same Saha who discovered the Saha ionization equation in astrophysics. A world-class scientist standardized India's national calendar.",
+    "hi": "भारतीय पंचांग समिति (1955) का नेतृत्व भौतिकविद् मेघनाद साहा ने किया  –  वही साहा जिन्होंने खगोल भौतिकी में साहा आयनीकरण समीकरण की खोज की। एक विश्व-स्तरीय वैज्ञानिक ने भारत का राष्ट्रीय पंचांग मानकीकृत किया।",
+    "sa": "भारतीय पंचांग समिति (1955) का नेतृत्व भौतिकविद् मेघनाद साहा ने किया  –  वही साहा जिन्होंने खगोल भौतिकी में साहा आयनीकरण समीकरण की खोज की। एक विश्व-स्तरीय वैज्ञानिक ने भारत का राष्ट्रीय पंचांग मानकीकृत किया।"
   },
   "amantaVsPurnimanta": {
     "en": "Amanta vs Purnimanta",
@@ -808,9 +808,9 @@
     "sa": "अमान्त बनाम पूर्णिमान्त"
   },
   "ifYouAskANorth": {
-    "en": "If you ask a North Indian and a South Indian \"what month is it today?\" — you might get different answers. Both are correct!",
-    "hi": "यदि आप उत्तर भारतीय और दक्षिण भारतीय से पूछें \"आज कौन सा मास है?\" — तो आपको अलग उत्तर मिल सकता है। दोनों सही हैं!",
-    "sa": "यदि आप उत्तर भारतीय और दक्षिण भारतीय से पूछें \"आज कौन सा मास है?\" — तो आपको अलग उत्तर मिल सकता है। दोनों सही हैं!"
+    "en": "If you ask a North Indian and a South Indian \"what month is it today?\"  –  you might get different answers. Both are correct!",
+    "hi": "यदि आप उत्तर भारतीय और दक्षिण भारतीय से पूछें \"आज कौन सा मास है?\"  –  तो आपको अलग उत्तर मिल सकता है। दोनों सही हैं!",
+    "sa": "यदि आप उत्तर भारतीय और दक्षिण भारतीय से पूछें \"आज कौन सा मास है?\"  –  तो आपको अलग उत्तर मिल सकता है। दोनों सही हैं!"
   },
   "purnimantaNorthIndia": {
     "en": "Purnimanta (North India)",
@@ -848,14 +848,14 @@
     "sa": "इसका अर्थ:"
   },
   "theSameEkadashiMightBe": {
-    "en": "The same Ekadashi might be \"Chaitra\" in the North but \"Vaishakha\" in the South. Our app supports BOTH systems — switch with a toggle.",
-    "hi": "एक ही एकादशी उत्तर भारत में \"चैत्र\" और दक्षिण भारत में \"वैशाख\" हो सकती है। हमारा ऐप दोनों प्रणालियों का समर्थन करता है — एक टॉगल से बदलें।",
-    "sa": "एक ही एकादशी उत्तर भारत में \"चैत्र\" और दक्षिण भारत में \"वैशाख\" हो सकती है। हमारा ऐप दोनों प्रणालियों का समर्थन करता है — एक टॉगल से बदलें।"
+    "en": "The same Ekadashi might be \"Chaitra\" in the North but \"Vaishakha\" in the South. Our app supports BOTH systems  –  switch with a toggle.",
+    "hi": "एक ही एकादशी उत्तर भारत में \"चैत्र\" और दक्षिण भारत में \"वैशाख\" हो सकती है। हमारा ऐप दोनों प्रणालियों का समर्थन करता है  –  एक टॉगल से बदलें।",
+    "sa": "एक ही एकादशी उत्तर भारत में \"चैत्र\" और दक्षिण भारत में \"वैशाख\" हो सकती है। हमारा ऐप दोनों प्रणालियों का समर्थन करता है  –  एक टॉगल से बदलें।"
   },
   "whyDoesThisMatterTo": {
-    "en": "Why does this matter to YOU? If you're following a festival calendar, the Amanta/Purnimanta difference can mean your Ekadashi falls in a different named month than someone from another state — even though it's the SAME astronomical day. Our app handles this with a toggle, so you always see the correct month for your tradition.",
-    "hi": "यह आपके लिए क्यों मायने रखता है? यदि आप त्योहार पंचांग का पालन कर रहे हैं, तो अमान्त/पूर्णिमान्त अन्तर का अर्थ है कि आपकी एकादशी दूसरे राज्य के किसी व्यक्ति से भिन्न नामित मास में पड़ सकती है — भले ही वह एक ही खगोलीय दिन हो। हमारा ऐप इसे टॉगल से सम्भालता है, जिससे आप सदा अपनी परम्परा के अनुसार सही मास देखें।",
-    "sa": "यह आपके लिए क्यों मायने रखता है? यदि आप त्योहार पंचांग का पालन कर रहे हैं, तो अमान्त/पूर्णिमान्त अन्तर का अर्थ है कि आपकी एकादशी दूसरे राज्य के किसी व्यक्ति से भिन्न नामित मास में पड़ सकती है — भले ही वह एक ही खगोलीय दिन हो। हमारा ऐप इसे टॉगल से सम्भालता है, जिससे आप सदा अपनी परम्परा के अनुसार सही मास देखें।"
+    "en": "Why does this matter to YOU? If you're following a festival calendar, the Amanta/Purnimanta difference can mean your Ekadashi falls in a different named month than someone from another state  –  even though it's the SAME astronomical day. Our app handles this with a toggle, so you always see the correct month for your tradition.",
+    "hi": "यह आपके लिए क्यों मायने रखता है? यदि आप त्योहार पंचांग का पालन कर रहे हैं, तो अमान्त/पूर्णिमान्त अन्तर का अर्थ है कि आपकी एकादशी दूसरे राज्य के किसी व्यक्ति से भिन्न नामित मास में पड़ सकती है  –  भले ही वह एक ही खगोलीय दिन हो। हमारा ऐप इसे टॉगल से सम्भालता है, जिससे आप सदा अपनी परम्परा के अनुसार सही मास देखें।",
+    "sa": "यह आपके लिए क्यों मायने रखता है? यदि आप त्योहार पंचांग का पालन कर रहे हैं, तो अमान्त/पूर्णिमान्त अन्तर का अर्थ है कि आपकी एकादशी दूसरे राज्य के किसी व्यक्ति से भिन्न नामित मास में पड़ सकती है  –  भले ही वह एक ही खगोलीय दिन हो। हमारा ऐप इसे टॉगल से सम्भालता है, जिससे आप सदा अपनी परम्परा के अनुसार सही मास देखें।"
   },
   "indianYearCountingEras": {
     "en": "Indian Year-Counting Eras",
@@ -868,9 +868,9 @@
     "sa": "विक्रम सम्वत्"
   },
   "started57BceNamedAfter": {
-    "en": "— started 57 BCE (named after King Vikramaditya). Current year: Vikram Samvat 2083. Official calendar of Nepal.",
-    "hi": "— 57 ई.पू. से शुरू (राजा विक्रमादित्य के नाम पर)। वर्तमान वर्ष: विक्रम सम्वत् 2083। नेपाल का आधिकारिक पंचांग।",
-    "sa": "— 57 ई.पू. से शुरू (राजा विक्रमादित्य के नाम पर)। वर्तमान वर्ष: विक्रम सम्वत् 2083। नेपाल का आधिकारिक पंचांग।"
+    "en": " –  started 57 BCE (named after King Vikramaditya). Current year: Vikram Samvat 2083. Official calendar of Nepal.",
+    "hi": " –  57 ई.पू. से शुरू (राजा विक्रमादित्य के नाम पर)। वर्तमान वर्ष: विक्रम सम्वत् 2083। नेपाल का आधिकारिक पंचांग।",
+    "sa": " –  57 ई.पू. से शुरू (राजा विक्रमादित्य के नाम पर)। वर्तमान वर्ष: विक्रम सम्वत् 2083। नेपाल का आधिकारिक पंचांग।"
   },
   "shakaSamvat": {
     "en": "Shaka Samvat",
@@ -878,14 +878,14 @@
     "sa": "शक सम्वत्"
   },
   "started78CeAttributedTo": {
-    "en": "— started 78 CE (attributed to Kushana king Kanishka). Official national calendar of the Government of India. Current Shaka year: 1948.",
-    "hi": "— 78 ई. से शुरू (कुषाण राजा कनिष्क के नाम पर)। भारत सरकार का आधिकारिक राष्ट्रीय पंचांग। वर्तमान शक वर्ष: 1948।",
-    "sa": "— 78 ई. से शुरू (कुषाण राजा कनिष्क के नाम पर)। भारत सरकार का आधिकारिक राष्ट्रीय पंचांग। वर्तमान शक वर्ष: 1948।"
+    "en": " –  started 78 CE (attributed to Kushana king Kanishka). Official national calendar of the Government of India. Current Shaka year: 1948.",
+    "hi": " –  78 ई. से शुरू (कुषाण राजा कनिष्क के नाम पर)। भारत सरकार का आधिकारिक राष्ट्रीय पंचांग। वर्तमान शक वर्ष: 1948।",
+    "sa": " –  78 ई. से शुरू (कुषाण राजा कनिष्क के नाम पर)। भारत सरकार का आधिकारिक राष्ट्रीय पंचांग। वर्तमान शक वर्ष: 1948।"
   },
   "theGregorianCalendarCameWith": {
-    "en": "The Gregorian calendar came with the British — India has its own multiple calendar eras, centuries older!",
-    "hi": "ग्रेगोरियन कैलेण्डर अंग्रेज़ों के साथ आया — भारत के अपने कई पंचांग युग हैं, सदियों पुराने!",
-    "sa": "ग्रेगोरियन कैलेण्डर अंग्रेज़ों के साथ आया — भारत के अपने कई पंचांग युग हैं, सदियों पुराने!"
+    "en": "The Gregorian calendar came with the British  –  India has its own multiple calendar eras, centuries older!",
+    "hi": "ग्रेगोरियन कैलेण्डर अंग्रेज़ों के साथ आया  –  भारत के अपने कई पंचांग युग हैं, सदियों पुराने!",
+    "sa": "ग्रेगोरियन कैलेण्डर अंग्रेज़ों के साथ आया  –  भारत के अपने कई पंचांग युग हैं, सदियों पुराने!"
   },
   "practicalExerciseReadTodayS": {
     "en": "Practical Exercise: Read Today's Panchang",
@@ -968,9 +968,9 @@
     "sa": "वास्तविकता:"
   },
   "theyDonTDiwaliIs": {
-    "en": "They don't! Diwali is ALWAYS Kartik Amavasya. What changes is the GREGORIAN date it falls on — because two different calendar systems run at different speeds.",
-    "hi": "वे नहीं बदलते! दीवाली सदा कार्तिक अमावस्या है। जो बदलता है वह ग्रेगोरियन तारीख है जिस पर वह तिथि पड़ती है — क्योंकि दो भिन्न पंचांग प्रणालियाँ भिन्न गति से चलती हैं।",
-    "sa": "वे नहीं बदलते! दीवाली सदा कार्तिक अमावस्या है। जो बदलता है वह ग्रेगोरियन तारीख है जिस पर वह तिथि पड़ती है — क्योंकि दो भिन्न पंचांग प्रणालियाँ भिन्न गति से चलती हैं।"
+    "en": "They don't! Diwali is ALWAYS Kartik Amavasya. What changes is the GREGORIAN date it falls on  –  because two different calendar systems run at different speeds.",
+    "hi": "वे नहीं बदलते! दीवाली सदा कार्तिक अमावस्या है। जो बदलता है वह ग्रेगोरियन तारीख है जिस पर वह तिथि पड़ती है  –  क्योंकि दो भिन्न पंचांग प्रणालियाँ भिन्न गति से चलती हैं।",
+    "sa": "वे नहीं बदलते! दीवाली सदा कार्तिक अमावस्या है। जो बदलता है वह ग्रेगोरियन तारीख है जिस पर वह तिथि पड़ती है  –  क्योंकि दो भिन्न पंचांग प्रणालियाँ भिन्न गति से चलती हैं।"
   },
   "thePanchangIsOutdatedAnd": {
     "en": "\"The Panchang is outdated and irrelevant\"",
@@ -978,9 +978,9 @@
     "sa": "\"पंचांग पुराना और अप्रासंगिक है\""
   },
   "thePanchangIsBasedOn": {
-    "en": "The Panchang is based on the Moon's actual astronomical position — it's science, not just tradition. Our app runs the same calculations as NASA/JPL.",
-    "hi": "पंचांग चन्द्रमा की वास्तविक खगोलीय स्थिति पर आधारित है — यह विज्ञान है, परम्परा मात्र नहीं। हमारा ऐप वही गणनाएँ करता है जो NASA/JPL करता है।",
-    "sa": "पंचांग चन्द्रमा की वास्तविक खगोलीय स्थिति पर आधारित है — यह विज्ञान है, परम्परा मात्र नहीं। हमारा ऐप वही गणनाएँ करता है जो NASA/JPL करता है।"
+    "en": "The Panchang is based on the Moon's actual astronomical position  –  it's science, not just tradition. Our app runs the same calculations as NASA/JPL.",
+    "hi": "पंचांग चन्द्रमा की वास्तविक खगोलीय स्थिति पर आधारित है  –  यह विज्ञान है, परम्परा मात्र नहीं। हमारा ऐप वही गणनाएँ करता है जो NASA/JPL करता है।",
+    "sa": "पंचांग चन्द्रमा की वास्तविक खगोलीय स्थिति पर आधारित है  –  यह विज्ञान है, परम्परा मात्र नहीं। हमारा ऐप वही गणनाएँ करता है जो NASA/JPL करता है।"
   },
   "modernRelevance": {
     "en": "Modern Relevance",
@@ -988,9 +988,9 @@
     "sa": "आधुनिकी प्रासङ्गिकता"
   },
   "theHinduConceptOfTime": {
-    "en": "The Hindu concept of time is cyclic, not linear — Yugas cycle in 4,320,000-year periods. The smallest time unit mentioned in texts is the \"truti\" = 29.6 microseconds. For comparison, modern atomic clocks measure in microseconds. Indian astronomers were thinking at this scale 2,000 years ago.",
-    "hi": "हिन्दू समय की अवधारणा चक्रीय है, रेखीय नहीं — युग 4,320,000 वर्षों में चक्रित होते हैं। ग्रन्थों में उल्लिखित सबसे छोटी समय इकाई \"त्रुटि\" = 29.6 माइक्रोसेकण्ड है। तुलना: आधुनिक परमाणु घड़ियाँ माइक्रोसेकण्ड में मापती हैं। भारतीय खगोलशास्त्री 2,000 वर्ष पहले इस पैमाने पर विचार कर रहे थे।",
-    "sa": "हिन्दू समय की अवधारणा चक्रीय है, रेखीय नहीं — युग 4,320,000 वर्षों में चक्रित होते हैं। ग्रन्थों में उल्लिखित सबसे छोटी समय इकाई \"त्रुटि\" = 29.6 माइक्रोसेकण्ड है। तुलना: आधुनिक परमाणु घड़ियाँ माइक्रोसेकण्ड में मापती हैं। भारतीय खगोलशास्त्री 2,000 वर्ष पहले इस पैमाने पर विचार कर रहे थे।"
+    "en": "The Hindu concept of time is cyclic, not linear  –  Yugas cycle in 4,320,000-year periods. The smallest time unit mentioned in texts is the \"truti\" = 29.6 microseconds. For comparison, modern atomic clocks measure in microseconds. Indian astronomers were thinking at this scale 2,000 years ago.",
+    "hi": "हिन्दू समय की अवधारणा चक्रीय है, रेखीय नहीं  –  युग 4,320,000 वर्षों में चक्रित होते हैं। ग्रन्थों में उल्लिखित सबसे छोटी समय इकाई \"त्रुटि\" = 29.6 माइक्रोसेकण्ड है। तुलना: आधुनिक परमाणु घड़ियाँ माइक्रोसेकण्ड में मापती हैं। भारतीय खगोलशास्त्री 2,000 वर्ष पहले इस पैमाने पर विचार कर रहे थे।",
+    "sa": "हिन्दू समय की अवधारणा चक्रीय है, रेखीय नहीं  –  युग 4,320,000 वर्षों में चक्रित होते हैं। ग्रन्थों में उल्लिखित सबसे छोटी समय इकाई \"त्रुटि\" = 29.6 माइक्रोसेकण्ड है। तुलना: आधुनिक परमाणु घड़ियाँ माइक्रोसेकण्ड में मापती हैं। भारतीय खगोलशास्त्री 2,000 वर्ष पहले इस पैमाने पर विचार कर रहे थे।"
   },
   "todayTheLunisolarSystemIs": {
     "en": "Today, the lunisolar system is used across the entire Indian subcontinent, Nepal, Sri Lanka, and large parts of Southeast Asia. Every wedding, housewarming, naming ceremony, and funeral is timed using the Panchang. This knowledge is practical cultural literacy.",
@@ -998,8 +998,8 @@
     "sa": "आज, चान्द्र-सौर प्रणाली सम्पूर्ण भारतीय उपमहाद्वीप, नेपाल, श्रीलंका और दक्षिण-पूर्व एशिया के बड़े भागों में प्रयोग होती है। प्रत्येक विवाह, गृहप्रवेश, नामकरण और अन्तिम संस्कार का समय पंचांग से निर्धारित होता है। यह ज्ञान व्यावहारिक सांस्कृतिक साक्षरता है।"
   },
   "theSmallestTimeUnitIn": {
-    "en": "The smallest time unit in the Surya Siddhanta is the \"truti\" — approximately 29.6 microseconds. The largest is the \"Kalpa\" — 4.32 BILLION years. For comparison, modern estimates put Earth's age at 4.54 billion years. Indian astronomers were thinking on this scale — from microseconds to billions of years — while most civilizations were still arguing about whether Earth was flat. And Pingala (300 BCE) described binary numbers in his work on Sanskrit meter — 2,000 years before Leibniz.",
-    "hi": "सूर्य सिद्धान्त में समय की सबसे छोटी इकाई \"त्रुटि\" है — लगभग 29.6 माइक्रोसेकण्ड। सबसे बड़ी \"कल्प\" है — 4.32 अरब वर्ष। तुलना के लिए, आधुनिक अनुमान पृथ्वी की आयु 4.54 अरब वर्ष रखते हैं। भारतीय खगोलशास्त्री इस पैमाने पर सोच रहे थे — माइक्रोसेकण्ड से अरबों वर्ष तक — जबकि अधिकांश सभ्यताएँ अभी भी यह बहस कर रही थीं कि पृथ्वी चपटी है या नहीं। पिंगल (300 ई.पू.) ने संस्कृत छन्द पर अपने कार्य में द्विआधारी संख्याओं (binary numbers) का वर्णन किया — लाइब्निट्ज़ से 2,000 वर्ष पहले।",
-    "sa": "सूर्य सिद्धान्त में समय की सबसे छोटी इकाई \"त्रुटि\" है — लगभग 29.6 माइक्रोसेकण्ड। सबसे बड़ी \"कल्प\" है — 4.32 अरब वर्ष। तुलना के लिए, आधुनिक अनुमान पृथ्वी की आयु 4.54 अरब वर्ष रखते हैं। भारतीय खगोलशास्त्री इस पैमाने पर सोच रहे थे — माइक्रोसेकण्ड से अरबों वर्ष तक — जबकि अधिकांश सभ्यताएँ अभी भी यह बहस कर रही थीं कि पृथ्वी चपटी है या नहीं। पिंगल (300 ई.पू.) ने संस्कृत छन्द पर अपने कार्य में द्विआधारी संख्याओं (binary numbers) का वर्णन किया — लाइब्निट्ज़ से 2,000 वर्ष पहले।"
+    "en": "The smallest time unit in the Surya Siddhanta is the \"truti\"  –  approximately 29.6 microseconds. The largest is the \"Kalpa\"  –  4.32 BILLION years. For comparison, modern estimates put Earth's age at 4.54 billion years. Indian astronomers were thinking on this scale  –  from microseconds to billions of years  –  while most civilizations were still arguing about whether Earth was flat. And Pingala (300 BCE) described binary numbers in his work on Sanskrit meter  –  2,000 years before Leibniz.",
+    "hi": "सूर्य सिद्धान्त में समय की सबसे छोटी इकाई \"त्रुटि\" है  –  लगभग 29.6 माइक्रोसेकण्ड। सबसे बड़ी \"कल्प\" है  –  4.32 अरब वर्ष। तुलना के लिए, आधुनिक अनुमान पृथ्वी की आयु 4.54 अरब वर्ष रखते हैं। भारतीय खगोलशास्त्री इस पैमाने पर सोच रहे थे  –  माइक्रोसेकण्ड से अरबों वर्ष तक  –  जबकि अधिकांश सभ्यताएँ अभी भी यह बहस कर रही थीं कि पृथ्वी चपटी है या नहीं। पिंगल (300 ई.पू.) ने संस्कृत छन्द पर अपने कार्य में द्विआधारी संख्याओं (binary numbers) का वर्णन किया  –  लाइब्निट्ज़ से 2,000 वर्ष पहले।",
+    "sa": "सूर्य सिद्धान्त में समय की सबसे छोटी इकाई \"त्रुटि\" है  –  लगभग 29.6 माइक्रोसेकण्ड। सबसे बड़ी \"कल्प\" है  –  4.32 अरब वर्ष। तुलना के लिए, आधुनिक अनुमान पृथ्वी की आयु 4.54 अरब वर्ष रखते हैं। भारतीय खगोलशास्त्री इस पैमाने पर सोच रहे थे  –  माइक्रोसेकण्ड से अरबों वर्ष तक  –  जबकि अधिकांश सभ्यताएँ अभी भी यह बहस कर रही थीं कि पृथ्वी चपटी है या नहीं। पिंगल (300 ई.पू.) ने संस्कृत छन्द पर अपने कार्य में द्विआधारी संख्याओं (binary numbers) का वर्णन किया  –  लाइब्निट्ज़ से 2,000 वर्ष पहले।"
   }
 }

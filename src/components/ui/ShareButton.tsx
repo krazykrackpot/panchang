@@ -72,7 +72,7 @@ export default function ShareButton({ title, text, url, locale, variant = 'inlin
       await navigator.share({ title, text, url: shareUrl });
       trackShareClicked({ platform: 'native', page: window.location.pathname });
     } catch {
-      // User cancelled or API unavailable — silently ignore
+      // User cancelled or API unavailable  –  silently ignore
     }
   }
 
@@ -111,7 +111,7 @@ export default function ShareButton({ title, text, url, locale, variant = 'inlin
   if (variant === 'inline') {
     return (
       <div className={`flex items-center gap-2 ${className}`}>
-        {/* Native share — shown on mobile when available, hides individual buttons */}
+        {/* Native share  –  shown on mobile when available, hides individual buttons */}
         {hasNativeShare && (
           <button
             onClick={nativeShare}
@@ -123,7 +123,7 @@ export default function ShareButton({ title, text, url, locale, variant = 'inlin
           </button>
         )}
 
-        {/* WhatsApp — hidden on mobile when native share is available */}
+        {/* WhatsApp  –  hidden on mobile when native share is available */}
         <a
           href={waUrl}
           target="_blank"
@@ -136,7 +136,7 @@ export default function ShareButton({ title, text, url, locale, variant = 'inlin
           <span className="hidden sm:inline">{l(LABELS.wa)}</span>
         </a>
 
-        {/* X/Twitter — hidden on mobile when native share is available */}
+        {/* X/Twitter  –  hidden on mobile when native share is available */}
         <a
           href={xUrl}
           target="_blank"
@@ -149,7 +149,7 @@ export default function ShareButton({ title, text, url, locale, variant = 'inlin
           <span className="hidden sm:inline">{l(LABELS.x)}</span>
         </a>
 
-        {/* Copy link — always visible */}
+        {/* Copy link  –  always visible */}
         <button
           onClick={copyLink}
           aria-label={copied ? l(LABELS.copied) : l(LABELS.copy)}
@@ -185,7 +185,7 @@ export default function ShareButton({ title, text, url, locale, variant = 'inlin
               </button>
             </div>
             <div className="space-y-1.5">
-              {/* WhatsApp — biggest */}
+              {/* WhatsApp  –  biggest */}
               <a
                 href={waUrl}
                 target="_blank"
@@ -243,11 +243,11 @@ export default function ShareButton({ title, text, url, locale, variant = 'inlin
 }
 
 /* ════════════════════════════════════════════════════════════════
-   ShareRow — convenience wrapper that auto-generates share text
+   ShareRow  –  convenience wrapper that auto-generates share text
    from a page title. Renders the inline variant.
    ════════════════════════════════════════════════════════════════ */
 interface ShareRowProps {
-  /** Page title — used to build share text */
+  /** Page title  –  used to build share text */
   pageTitle: string;
   /** Optional override for share text (skips auto-generation) */
   shareText?: string;
@@ -258,7 +258,7 @@ interface ShareRowProps {
 }
 
 export function ShareRow({ pageTitle, shareText, url, locale, className = '' }: ShareRowProps) {
-  const text = shareText || `${pageTitle} — Dekho Panchang`;
+  const text = shareText || `${pageTitle}  –  Dekho Panchang`;
 
   return (
     <div className={`flex items-center gap-3 ${className}`}>

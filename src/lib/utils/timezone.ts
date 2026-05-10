@@ -1,5 +1,5 @@
 /**
- * Timezone utilities — resolve UTC offset for any date + IANA timezone.
+ * Timezone utilities  –  resolve UTC offset for any date + IANA timezone.
  *
  * The key problem: a single numeric offset (e.g., tz=2 for CEST) is wrong
  * for dates in a different DST period (e.g., CET=UTC+1 in winter).
@@ -12,7 +12,7 @@
  * corrections based on documented historical records:
  *
  * India:
- *   - Before 1906: Cities used Local Mean Time (LMT) — Bombay=UTC+4:51:16,
+ *   - Before 1906: Cities used Local Mean Time (LMT)  –  Bombay=UTC+4:51:16,
  *     Calcutta=UTC+5:53:28, Madras=UTC+5:20:56. IST (UTC+5:30) didn't exist.
  *   - 1906-01-01 to 1941-09-30: IST (UTC+5:30) standardized across British India.
  *   - 1941-10-01 to 1945-10-14: "War Time" / "Advance Time" (UTC+6:30) in
@@ -57,7 +57,7 @@ const INDIA_HISTORICAL: HistoricalTzRule[] = [
   // { start: '1800-01-01', end: '1906-01-01', offset: 5.8911, cities: ['calcutta', 'kolkata'] },
   // { start: '1800-01-01', end: '1906-01-01', offset: 5.3489, cities: ['madras', 'chennai'] },
 
-  // WWII "Advance Time" — entire India shifted to UTC+6:30
+  // WWII "Advance Time"  –  entire India shifted to UTC+6:30
   // Gazette of India notification, September 1941.
   { start: '1941-10-01', end: '1945-10-15', offset: 6.5, cities: ['*'] },
 ];
@@ -127,7 +127,7 @@ export function getUTCOffsetForDate(year: number, month: number, day: number, ti
     // If timezone string is invalid, try parsing as numeric offset
     const num = parseFloat(timezone);
     if (!isNaN(num)) return num;
-    throw new Error(`Invalid timezone: "${timezone}" — must be IANA timezone string (e.g. Asia/Kolkata) or numeric offset`);
+    throw new Error(`Invalid timezone: "${timezone}"  –  must be IANA timezone string (e.g. Asia/Kolkata) or numeric offset`);
   }
 }
 
@@ -150,7 +150,7 @@ export function getBrowserTimezone(): string {
 export function resolveTimezone(tz: string | number, year: number, month: number, day: number): number {
   if (typeof tz === 'number') return tz;
   if (!tz || tz.trim() === '') {
-    throw new Error('Timezone is required — birth calculations must use the birth location timezone, not the browser timezone');
+    throw new Error('Timezone is required  –  birth calculations must use the birth location timezone, not the browser timezone');
   }
   // Try as numeric string first
   const num = parseFloat(tz);
@@ -162,10 +162,10 @@ export function resolveTimezone(tz: string | number, year: number, month: number
 /**
  * Resolve IANA timezone from lat/lng coordinates.
  * Uses timeapi.io API; falls back to longitude-based estimation.
- * The birth location's coordinates determine the timezone — never the browser.
+ * The birth location's coordinates determine the timezone  –  never the browser.
  */
 export async function resolveTimezoneFromCoords(lat: number, lng: number): Promise<string> {
-  // Method 1: Browser's Intl API — instant, no network call.
+  // Method 1: Browser's Intl API  –  instant, no network call.
   // When coordinates come from browser geolocation, the browser's timezone
   // is the correct timezone for those coordinates.
   if (typeof window !== 'undefined' && typeof Intl !== 'undefined') {
@@ -175,7 +175,7 @@ export async function resolveTimezoneFromCoords(lat: number, lng: number): Promi
     } catch { /* Intl not available */ }
   }
 
-  // Method 2: External API — resolves timezone for arbitrary coordinates.
+  // Method 2: External API  –  resolves timezone for arbitrary coordinates.
   // Needed when coordinates don't match the user's browser timezone
   // (e.g., searching for panchang in Delhi while sitting in Switzerland).
   try {
@@ -187,7 +187,7 @@ export async function resolveTimezoneFromCoords(lat: number, lng: number): Promi
       const data = await res.json();
       if (data.timeZone) return data.timeZone;
     }
-  } catch { /* API failed — use longitude fallback */ }
+  } catch { /* API failed  –  use longitude fallback */ }
 
   // Method 3: Longitude-based estimate (last resort).
   // Known weakness: Europe west of 7.5°E rounds to UTC+0 but is actually CET (UTC+1).

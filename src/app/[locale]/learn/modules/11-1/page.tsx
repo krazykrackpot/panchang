@@ -38,8 +38,8 @@ function Page1() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>वैदिक ज्योतिष में &quot;दशा&quot; एक ग्रह काल-खण्ड है — जीवन का वह कालावधि जिसमें एक ग्रह जातक के अनुभव पर प्रभुत्व रखता है। जहाँ गोचर (transits) बताता है कि ग्रह अभी कहाँ हैं, दशा बताती है कि आपके लिए किसी भी समय कौन-सा ग्रह &quot;सक्रिय&quot; है। विंशोत्तरी (&quot;विंशो&quot; = 20, &quot;उत्तरी&quot; = ऊपर/परे) = 120 वर्षों में फैली पद्धति। यह पाराशरी ज्योतिष की प्राथमिक समय-निर्धारण प्रणाली है — लगभग 95% वैदिक ज्योतिषी इसी का उपयोग करते हैं।</>
-            : <>In Vedic astrology, a &quot;dasha&quot; is a planetary time period — a stretch of life during which one planet dominates the native&apos;s experience. While transits (gochar) show where planets are NOW, dashas reveal which planet is &quot;switched on&quot; for YOU at any given time. Vimshottari (&quot;Vimsho&quot; = 20, &quot;Uttari&quot; = above/beyond) = a system spanning 120 years (a mathematical multiple of 20 x 6). It is the PRIMARY timing system in Parashari Jyotish — used by approximately 95% of Vedic astrologers.</>}
+            ? <>वैदिक ज्योतिष में &quot;दशा&quot; एक ग्रह काल-खण्ड है  –  जीवन का वह कालावधि जिसमें एक ग्रह जातक के अनुभव पर प्रभुत्व रखता है। जहाँ गोचर (transits) बताता है कि ग्रह अभी कहाँ हैं, दशा बताती है कि आपके लिए किसी भी समय कौन-सा ग्रह &quot;सक्रिय&quot; है। विंशोत्तरी (&quot;विंशो&quot; = 20, &quot;उत्तरी&quot; = ऊपर/परे) = 120 वर्षों में फैली पद्धति। यह पाराशरी ज्योतिष की प्राथमिक समय-निर्धारण प्रणाली है  –  लगभग 95% वैदिक ज्योतिषी इसी का उपयोग करते हैं।</>
+            : <>In Vedic astrology, a &quot;dasha&quot; is a planetary time period  –  a stretch of life during which one planet dominates the native&apos;s experience. While transits (gochar) show where planets are NOW, dashas reveal which planet is &quot;switched on&quot; for YOU at any given time. Vimshottari (&quot;Vimsho&quot; = 20, &quot;Uttari&quot; = above/beyond) = a system spanning 120 years (a mathematical multiple of 20 x 6). It is the PRIMARY timing system in Parashari Jyotish  –  used by approximately 95% of Vedic astrologers.</>}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -48,7 +48,7 @@ function Page1() {
         </p>
       </section>
 
-      {/* The 9 Mahadasha Periods — Full Table */}
+      {/* The 9 Mahadasha Periods  –  Full Table */}
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
           {t('the9MahadashaPeriods', locale)}
@@ -150,8 +150,8 @@ function Page1() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>वर्ष गणनाएँ मनमानी नहीं हैं — ये नक्षत्र स्वामियों की कक्षीय अवधियों और उनके अनुमानित &quot;प्रभाव बल&quot; पर आधारित गणितीय प्रतिरूप का अनुसरण करती हैं। कुल (7+20+6+10+7+18+16+19+17 = 120) वैदिक &quot;परम आयुष्&quot; (अधिकतम मानव आयु) के बराबर है। सबसे बड़ी अवधि शुक्र (20 वर्ष) को मिलती है — सुख-सुविधा और भोग प्रधान मानव अनुभव हैं। सबसे छोटी सूर्य (6 वर्ष) को — अधिकार संक्षिप्त होता है। दूसरी सबसे बड़ी शनि (19 वर्ष) को मिलती है, क्योंकि कर्म और अनुशासन का परिपक्व होना दीर्घकाल माँगता है।</>
-            : <>The year counts are NOT arbitrary — they follow a mathematical pattern based on the nakshatra lords&apos; orbital periods and their perceived &quot;strength of influence.&quot; The total (7+20+6+10+7+18+16+19+17 = 120) equals the Vedic &quot;Param Ayush&quot; (maximum ideal human lifespan). The largest period goes to Venus (20 years) — comfort and pleasure form the dominant human experience. The smallest to Sun (6 years) — authority is brief. The second-largest goes to Saturn (19 years), because karma and discipline take the longest to mature.</>}
+            ? <>वर्ष गणनाएँ मनमानी नहीं हैं  –  ये नक्षत्र स्वामियों की कक्षीय अवधियों और उनके अनुमानित &quot;प्रभाव बल&quot; पर आधारित गणितीय प्रतिरूप का अनुसरण करती हैं। कुल (7+20+6+10+7+18+16+19+17 = 120) वैदिक &quot;परम आयुष्&quot; (अधिकतम मानव आयु) के बराबर है। सबसे बड़ी अवधि शुक्र (20 वर्ष) को मिलती है  –  सुख-सुविधा और भोग प्रधान मानव अनुभव हैं। सबसे छोटी सूर्य (6 वर्ष) को  –  अधिकार संक्षिप्त होता है। दूसरी सबसे बड़ी शनि (19 वर्ष) को मिलती है, क्योंकि कर्म और अनुशासन का परिपक्व होना दीर्घकाल माँगता है।</>
+            : <>The year counts are NOT arbitrary  –  they follow a mathematical pattern based on the nakshatra lords&apos; orbital periods and their perceived &quot;strength of influence.&quot; The total (7+20+6+10+7+18+16+19+17 = 120) equals the Vedic &quot;Param Ayush&quot; (maximum ideal human lifespan). The largest period goes to Venus (20 years)  –  comfort and pleasure form the dominant human experience. The smallest to Sun (6 years)  –  authority is brief. The second-largest goes to Saturn (19 years), because karma and discipline take the longest to mature.</>}
         </p>
       </section>
 
@@ -162,13 +162,13 @@ function Page1() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>क्रम सदा एक ही है: केतु &rarr; शुक्र &rarr; सूर्य &rarr; चन्द्र &rarr; मंगल &rarr; राहु &rarr; गुरु &rarr; शनि &rarr; बुध। बुध के बाद पुनः केतु से आरम्भ। यह 27 नक्षत्रों को 3-3 के समूहों में चक्रित करता है — प्रत्येक ग्रह ठीक 3 नक्षत्रों का स्वामी है। अश्विनी (1), मघा (10), मूल (19) = केतु। भरणी (2), पू.फाल्गुनी (11), पू.आषाढ़ा (20) = शुक्र। कृत्तिका (3), उ.फाल्गुनी (12), उ.आषाढ़ा (21) = सूर्य। इसी प्रकार नौवें ग्रह बुध तक — आश्लेषा (9), ज्येष्ठा (18), रेवती (27)।</>
-            : <>The sequence is always: Ketu &rarr; Venus &rarr; Sun &rarr; Moon &rarr; Mars &rarr; Rahu &rarr; Jupiter &rarr; Saturn &rarr; Mercury. After Mercury, Ketu starts again. This cycles through the 27 nakshatras in groups of 3 — each planet rules exactly 3 nakshatras. Ashwini (1), Magha (10), Mula (19) = Ketu. Bharani (2), P.Phalguni (11), P.Ashadha (20) = Venus. Krittika (3), U.Phalguni (12), U.Ashadha (21) = Sun. And so on through the ninth planet Mercury — Ashlesha (9), Jyeshtha (18), Revati (27).</>}
+            ? <>क्रम सदा एक ही है: केतु &rarr; शुक्र &rarr; सूर्य &rarr; चन्द्र &rarr; मंगल &rarr; राहु &rarr; गुरु &rarr; शनि &rarr; बुध। बुध के बाद पुनः केतु से आरम्भ। यह 27 नक्षत्रों को 3-3 के समूहों में चक्रित करता है  –  प्रत्येक ग्रह ठीक 3 नक्षत्रों का स्वामी है। अश्विनी (1), मघा (10), मूल (19) = केतु। भरणी (2), पू.फाल्गुनी (11), पू.आषाढ़ा (20) = शुक्र। कृत्तिका (3), उ.फाल्गुनी (12), उ.आषाढ़ा (21) = सूर्य। इसी प्रकार नौवें ग्रह बुध तक  –  आश्लेषा (9), ज्येष्ठा (18), रेवती (27)।</>
+            : <>The sequence is always: Ketu &rarr; Venus &rarr; Sun &rarr; Moon &rarr; Mars &rarr; Rahu &rarr; Jupiter &rarr; Saturn &rarr; Mercury. After Mercury, Ketu starts again. This cycles through the 27 nakshatras in groups of 3  –  each planet rules exactly 3 nakshatras. Ashwini (1), Magha (10), Mula (19) = Ketu. Bharani (2), P.Phalguni (11), P.Ashadha (20) = Venus. Krittika (3), U.Phalguni (12), U.Ashadha (21) = Sun. And so on through the ninth planet Mercury  –  Ashlesha (9), Jyeshtha (18), Revati (27).</>}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>ध्यान दें: तीन नक्षत्र जो एक ग्रह के अधिकार में हैं, वे समान रूप से 120-अंश अन्तराल (360/3) पर स्थित हैं। अश्विनी 0° पर, मघा 120° पर, मूल 240° पर — सभी केतु शासित। यह कोई संयोग नहीं है; यह नक्षत्र-ग्रह मानचित्रण को ज्यामितीय सामंजस्य प्रदान करता है।</>
-            : <>Notice: the three nakshatras ruled by any single planet are equally spaced at 120-degree intervals (360/3). Ashwini at 0 degrees, Magha at 120 degrees, Mula at 240 degrees — all Ketu-ruled. This is no coincidence; it gives the nakshatra-planet mapping a geometric harmony that connects to the trine (trikona) principle in Jyotish.</>}
+            ? <>ध्यान दें: तीन नक्षत्र जो एक ग्रह के अधिकार में हैं, वे समान रूप से 120-अंश अन्तराल (360/3) पर स्थित हैं। अश्विनी 0° पर, मघा 120° पर, मूल 240° पर  –  सभी केतु शासित। यह कोई संयोग नहीं है; यह नक्षत्र-ग्रह मानचित्रण को ज्यामितीय सामंजस्य प्रदान करता है।</>
+            : <>Notice: the three nakshatras ruled by any single planet are equally spaced at 120-degree intervals (360/3). Ashwini at 0 degrees, Magha at 120 degrees, Mula at 240 degrees  –  all Ketu-ruled. This is no coincidence; it gives the nakshatra-planet mapping a geometric harmony that connects to the trine (trikona) principle in Jyotish.</>}
         </p>
       </section>
 
@@ -177,7 +177,7 @@ function Page1() {
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{t('classicalOrigin', locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           {isHi
-            ? <>विंशोत्तरी पद्धति बृहत् पराशर होराशास्त्र (BPHS), अध्याय 46 से उत्पन्न है। पराशर इसे सामान्य उपयोग के लिए सर्वाधिक उपयुक्त दशा बताते हैं — जब चन्द्रमा 0° से 360° के बीच हो (अर्थात् सदा)। पराशर 40 से अधिक दशा पद्धतियों (अष्टोत्तरी, योगिनी, आदि) का वर्णन करते हैं, किन्तु वे विशिष्ट चन्द्र स्थितियों के लिए निर्दिष्ट हैं। विंशोत्तरी कलियुग की सार्वभौमिक दशा है।</>
+            ? <>विंशोत्तरी पद्धति बृहत् पराशर होराशास्त्र (BPHS), अध्याय 46 से उत्पन्न है। पराशर इसे सामान्य उपयोग के लिए सर्वाधिक उपयुक्त दशा बताते हैं  –  जब चन्द्रमा 0° से 360° के बीच हो (अर्थात् सदा)। पराशर 40 से अधिक दशा पद्धतियों (अष्टोत्तरी, योगिनी, आदि) का वर्णन करते हैं, किन्तु वे विशिष्ट चन्द्र स्थितियों के लिए निर्दिष्ट हैं। विंशोत्तरी कलियुग की सार्वभौमिक दशा है।</>
             : <>The Vimshottari system originates from Brihat Parashara Hora Shastra (BPHS), Chapter 46. Parashara describes it as the most suitable dasha for general use when the Moon is between 0 degrees and 360 degrees (i.e., always). Parashara describes over 40 dasha systems (Ashtottari, Yogini, etc.), but those are prescribed for specific Moon conditions. Vimshottari is the universal dasha for Kali Yuga.</>}
         </p>
       </section>
@@ -187,8 +187,8 @@ function Page1() {
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">{t('keyFact', locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
-            ? <>विंशोत्तरी को विश्व की अन्य सभी समय-निर्धारण प्रणालियों से जो अद्वितीय बनाता है: यह भविष्यवाणी कर सकती है कि घटनाएँ कब होंगी, न कि केवल क्या हो सकता है। एक पश्चिमी ज्योतिषी कह सकता है &quot;आपका विवाह हो सकता है।&quot; दशा प्रयोग करने वाला वैदिक ज्योतिषी कह सकता है &quot;विवाह की सर्वाधिक सम्भावना शुक्र-गुरु काल में, अक्टूबर 2027 से फरवरी 2029 के बीच है।&quot; यह विशिष्टता पदानुक्रमिक उपविभाजन प्रणाली के कारण सम्भव है — जिसे अगले पृष्ठ पर विस्तार से समझाया गया है।</>
-            : <>Here is what makes Vimshottari unique among all timing systems worldwide: it can predict WHEN events happen, not just what MIGHT happen. A Western astrologer can say &quot;You might get married.&quot; A Vedic astrologer using dashas can say &quot;Marriage is most likely during Venus-Jupiter period, between October 2027 and February 2029.&quot; This specificity is possible because of the hierarchical subdivision system — explained in detail on the next page.</>}
+            ? <>विंशोत्तरी को विश्व की अन्य सभी समय-निर्धारण प्रणालियों से जो अद्वितीय बनाता है: यह भविष्यवाणी कर सकती है कि घटनाएँ कब होंगी, न कि केवल क्या हो सकता है। एक पश्चिमी ज्योतिषी कह सकता है &quot;आपका विवाह हो सकता है।&quot; दशा प्रयोग करने वाला वैदिक ज्योतिषी कह सकता है &quot;विवाह की सर्वाधिक सम्भावना शुक्र-गुरु काल में, अक्टूबर 2027 से फरवरी 2029 के बीच है।&quot; यह विशिष्टता पदानुक्रमिक उपविभाजन प्रणाली के कारण सम्भव है  –  जिसे अगले पृष्ठ पर विस्तार से समझाया गया है।</>
+            : <>Here is what makes Vimshottari unique among all timing systems worldwide: it can predict WHEN events happen, not just what MIGHT happen. A Western astrologer can say &quot;You might get married.&quot; A Vedic astrologer using dashas can say &quot;Marriage is most likely during Venus-Jupiter period, between October 2027 and February 2029.&quot; This specificity is possible because of the hierarchical subdivision system  –  explained in detail on the next page.</>}
         </p>
       </section>
     </div>
@@ -221,8 +221,8 @@ function Page2() {
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>जन्म नक्षत्र का स्वामी ग्रह = जन्म पर चल रही महादशा का स्वामी। हस्त का स्वामी = चन्द्रमा। अतः जन्म पर चन्द्र महादशा चल रही है। यह सीधा और सरल है — नक्षत्र &rarr; स्वामी ग्रह &rarr; वही ग्रह की दशा।</>
-            : <>The planet that rules the birth nakshatra = the Mahadasha lord running at birth. Hasta&apos;s lord = Moon. So Moon Mahadasha is running at birth. This is direct and simple — nakshatra &rarr; ruling planet &rarr; that planet&apos;s dasha.</>}
+            ? <>जन्म नक्षत्र का स्वामी ग्रह = जन्म पर चल रही महादशा का स्वामी। हस्त का स्वामी = चन्द्रमा। अतः जन्म पर चन्द्र महादशा चल रही है। यह सीधा और सरल है  –  नक्षत्र &rarr; स्वामी ग्रह &rarr; वही ग्रह की दशा।</>
+            : <>The planet that rules the birth nakshatra = the Mahadasha lord running at birth. Hasta&apos;s lord = Moon. So Moon Mahadasha is running at birth. This is direct and simple  –  nakshatra &rarr; ruling planet &rarr; that planet&apos;s dasha.</>}
         </p>
 
         <h4 className="text-gold-dark font-semibold text-sm mb-2">
@@ -239,8 +239,8 @@ function Page2() {
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>चन्द्र दशा (4 वर्ष 6 मास 9 दिन शेष) के बाद, अगली दशाएँ क्रम में चलती हैं: मंगल (7 वर्ष), राहु (18 वर्ष), गुरु (16 वर्ष), शनि (19 वर्ष), बुध (17 वर्ष), केतु (7 वर्ष), शुक्र (20 वर्ष), सूर्य (6 वर्ष)। प्रत्येक ठीक वहाँ से आरम्भ होती है जहाँ पिछली समाप्त होती है। कोई अन्तराल नहीं, कोई ओवरलैप नहीं — 120 वर्ष पूरी तरह आच्छादित।</>
-            : <>After Moon dasha (4 years 6 months 9 days remaining), the next dashas follow in fixed order: Mars (7 years), Rahu (18 years), Jupiter (16 years), Saturn (19 years), Mercury (17 years), Ketu (7 years), Venus (20 years), Sun (6 years). Each starts exactly where the previous one ends. No gaps, no overlaps — 120 years fully covered.</>}
+            ? <>चन्द्र दशा (4 वर्ष 6 मास 9 दिन शेष) के बाद, अगली दशाएँ क्रम में चलती हैं: मंगल (7 वर्ष), राहु (18 वर्ष), गुरु (16 वर्ष), शनि (19 वर्ष), बुध (17 वर्ष), केतु (7 वर्ष), शुक्र (20 वर्ष), सूर्य (6 वर्ष)। प्रत्येक ठीक वहाँ से आरम्भ होती है जहाँ पिछली समाप्त होती है। कोई अन्तराल नहीं, कोई ओवरलैप नहीं  –  120 वर्ष पूरी तरह आच्छादित।</>
+            : <>After Moon dasha (4 years 6 months 9 days remaining), the next dashas follow in fixed order: Mars (7 years), Rahu (18 years), Jupiter (16 years), Saturn (19 years), Mercury (17 years), Ketu (7 years), Venus (20 years), Sun (6 years). Each starts exactly where the previous one ends. No gaps, no overlaps  –  120 years fully covered.</>}
         </p>
       </section>
 
@@ -254,35 +254,35 @@ function Page2() {
             <span className="text-gold-dark font-bold min-w-[2rem]">1.</span>
             <div>
               <span className="text-text-primary font-semibold">{t('mahadasha', locale)}</span>
-              <span className="text-text-secondary"> — {t('majorPeriod620Years', locale)}</span>
+              <span className="text-text-secondary">  –  {t('majorPeriod620Years', locale)}</span>
             </div>
           </div>
           <div className="flex items-start gap-3 text-sm">
             <span className="text-gold-dark font-bold min-w-[2rem]">2.</span>
             <div>
               <span className="text-text-primary font-semibold">{t('antardashaBhukti', locale)}</span>
-              <span className="text-text-secondary"> — {t('subPeriodMonthsToYears', locale)}</span>
+              <span className="text-text-secondary">  –  {t('subPeriodMonthsToYears', locale)}</span>
             </div>
           </div>
           <div className="flex items-start gap-3 text-sm">
             <span className="text-gold-dark font-bold min-w-[2rem]">3.</span>
             <div>
               <span className="text-text-primary font-semibold">{t('pratyantardasha', locale)}</span>
-              <span className="text-text-secondary"> — {t('subSubPeriodWeeksTo', locale)}</span>
+              <span className="text-text-secondary">  –  {t('subSubPeriodWeeksTo', locale)}</span>
             </div>
           </div>
           <div className="flex items-start gap-3 text-sm">
             <span className="text-gold-dark font-bold min-w-[2rem]">4.</span>
             <div>
               <span className="text-text-primary font-semibold">{t('sookshmaDasha', locale)}</span>
-              <span className="text-text-secondary"> — {t('periodOfDaysTheSentence', locale)}</span>
+              <span className="text-text-secondary">  –  {t('periodOfDaysTheSentence', locale)}</span>
             </div>
           </div>
           <div className="flex items-start gap-3 text-sm">
             <span className="text-gold-dark font-bold min-w-[2rem]">5.</span>
             <div>
               <span className="text-text-primary font-semibold">{t('pranaDasha', locale)}</span>
-              <span className="text-text-secondary"> — {t('periodOfHoursTheWord', locale)}</span>
+              <span className="text-text-secondary">  –  {t('periodOfHoursTheWord', locale)}</span>
             </div>
           </div>
         </div>
@@ -336,7 +336,7 @@ function Page2() {
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? <>विंशोत्तरी पद्धति 9 x 9 = 81 अद्वितीय महादशा-अन्तर्दशा संयोजन उत्पन्न करती है। प्रत्यन्तर्दशा के साथ 729। सूक्ष्म दशा के साथ 6,561। प्राण दशा के साथ 59,049। यह एकमात्र जन्म क्षण से घण्टों की समय सटीकता उत्पन्न करता है। इतिहास की किसी अन्य ज्योतिष पद्धति में कालिक विस्तार (temporal granularity) का यह स्तर नहीं है।</>
-            : <>The Vimshottari system generates 9 x 9 = 81 unique Mahadasha-Antardasha combinations. With Pratyantardasha, that is 729. With Sookshma, 6,561. With Prana, 59,049. This creates a timing resolution of HOURS — from a single birth moment. No other astrological system in history has this level of temporal granularity.</>}
+            : <>The Vimshottari system generates 9 x 9 = 81 unique Mahadasha-Antardasha combinations. With Pratyantardasha, that is 729. With Sookshma, 6,561. With Prana, 59,049. This creates a timing resolution of HOURS  –  from a single birth moment. No other astrological system in history has this level of temporal granularity.</>}
         </p>
       </section>
     </div>
@@ -361,8 +361,8 @@ function Page3() {
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>महत्त्वपूर्ण सिद्धान्त: एक ग्रह केवल वही फल दे सकता है जो वह जन्म कुण्डली में वचन देता है। यदि शुक्र सप्तमेश है और शुभ स्थित है, तो शुक्र दशा सुखी विवाह लाती है। यदि शुक्र षष्ठेश है और पीड़ित है, तो शुक्र दशा सम्बन्ध संघर्ष या स्वास्थ्य समस्याएँ ला सकती है। दशा जन्मकालीन वचन को सक्रिय करती है — शून्य से परिणाम नहीं रचती।</>
-            : <>The critical principle: a planet can only give results that it PROMISES in the birth chart. If Venus is the 7th lord and well-placed, Venus dasha brings a happy marriage. If Venus is the 6th lord and afflicted, Venus dasha may bring relationship conflicts or health issues instead. The dasha activates the natal promise — it does not create outcomes from nothing. This is why two people running Venus dasha can have vastly different experiences.</>}
+            ? <>महत्त्वपूर्ण सिद्धान्त: एक ग्रह केवल वही फल दे सकता है जो वह जन्म कुण्डली में वचन देता है। यदि शुक्र सप्तमेश है और शुभ स्थित है, तो शुक्र दशा सुखी विवाह लाती है। यदि शुक्र षष्ठेश है और पीड़ित है, तो शुक्र दशा सम्बन्ध संघर्ष या स्वास्थ्य समस्याएँ ला सकती है। दशा जन्मकालीन वचन को सक्रिय करती है  –  शून्य से परिणाम नहीं रचती।</>
+            : <>The critical principle: a planet can only give results that it PROMISES in the birth chart. If Venus is the 7th lord and well-placed, Venus dasha brings a happy marriage. If Venus is the 6th lord and afflicted, Venus dasha may bring relationship conflicts or health issues instead. The dasha activates the natal promise  –  it does not create outcomes from nothing. This is why two people running Venus dasha can have vastly different experiences.</>}
         </p>
       </section>
 
@@ -385,8 +385,8 @@ function Page3() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>एक घटना तब प्रकट होती है जब दशा स्वामी और गुरु/शनि का गोचर दोनों सम्बन्धित भाव का समर्थन करते हैं। विवाह उदाहरण: शुक्र दशा + गुरु चन्द्र से 7वें भाव में गोचर + शनि 7वें पर दृष्टि। ये तीनों स्थितियाँ एक साथ मिलनी चाहिए। यही कारण है कि शुक्र दशा के पूरे 20 वर्षों में विवाह नहीं होता — केवल उस विशिष्ट अन्तर्दशा और गोचर संयोग में होता है जब तीनों कारक एक साथ आते हैं।</>
-            : <>An event manifests when BOTH the dasha lord AND Jupiter/Saturn transit support the relevant house. Marriage example: Venus dasha + Jupiter transiting 7th from Moon + Saturn aspecting the 7th. All three conditions must align simultaneously. This is why marriage does not happen throughout the entire 20-year Venus dasha — it occurs only during that specific Antardasha and transit combination when all three factors converge.</>}
+            ? <>एक घटना तब प्रकट होती है जब दशा स्वामी और गुरु/शनि का गोचर दोनों सम्बन्धित भाव का समर्थन करते हैं। विवाह उदाहरण: शुक्र दशा + गुरु चन्द्र से 7वें भाव में गोचर + शनि 7वें पर दृष्टि। ये तीनों स्थितियाँ एक साथ मिलनी चाहिए। यही कारण है कि शुक्र दशा के पूरे 20 वर्षों में विवाह नहीं होता  –  केवल उस विशिष्ट अन्तर्दशा और गोचर संयोग में होता है जब तीनों कारक एक साथ आते हैं।</>
+            : <>An event manifests when BOTH the dasha lord AND Jupiter/Saturn transit support the relevant house. Marriage example: Venus dasha + Jupiter transiting 7th from Moon + Saturn aspecting the 7th. All three conditions must align simultaneously. This is why marriage does not happen throughout the entire 20-year Venus dasha  –  it occurs only during that specific Antardasha and transit combination when all three factors converge.</>}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -457,8 +457,8 @@ function Page3() {
         </div>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>ध्यान दें कि यह क्रम सामान्य जीवन चरणों को कैसे प्रतिबिम्बित करता है — यह संयोग नहीं है। यही कारण है कि पराशर ने विंशोत्तरी को सार्वभौमिक दशा प्रणाली के रूप में निर्दिष्ट किया। हालाँकि, अधिकांश लोग केतु दशा से नहीं बल्कि अपने जन्म नक्षत्र के अनुसार बीच से आरम्भ करते हैं, इसलिए प्रत्येक व्यक्ति का जीवन प्रतिरूप अद्वितीय होता है।</>
-            : <>Notice how this sequence mirrors typical life phases — this is not coincidence. It is why Parashara prescribed Vimshottari as the default system. However, most people do not start from Ketu but enter the cycle at whatever point their birth nakshatra dictates, which is why each person&apos;s life pattern is unique.</>}
+            ? <>ध्यान दें कि यह क्रम सामान्य जीवन चरणों को कैसे प्रतिबिम्बित करता है  –  यह संयोग नहीं है। यही कारण है कि पराशर ने विंशोत्तरी को सार्वभौमिक दशा प्रणाली के रूप में निर्दिष्ट किया। हालाँकि, अधिकांश लोग केतु दशा से नहीं बल्कि अपने जन्म नक्षत्र के अनुसार बीच से आरम्भ करते हैं, इसलिए प्रत्येक व्यक्ति का जीवन प्रतिरूप अद्वितीय होता है।</>
+            : <>Notice how this sequence mirrors typical life phases  –  this is not coincidence. It is why Parashara prescribed Vimshottari as the default system. However, most people do not start from Ketu but enter the cycle at whatever point their birth nakshatra dictates, which is why each person&apos;s life pattern is unique.</>}
         </p>
       </section>
 
@@ -467,18 +467,18 @@ function Page3() {
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{t('commonMisconceptions', locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <><span className="text-gold-light font-medium">&quot;राहु और शनि दशा सदा बुरी होती है&quot;</span> — यह असत्य है। राहु दशा असाधारण सांसारिक सफलता ला सकती है (विदेशी अवसर, प्रौद्योगिकी कैरियर, अपरम्परागत उपलब्धियाँ)। शनि दशा स्थायी संरचनाएँ बनाती है (कैरियर शिखर, सम्पत्ति संचय, अनुशासन)। परिणामों की गुणवत्ता आपकी कुण्डली में ग्रह की मर्यादा और भावेशत्व पर निर्भर करती है, ग्रह की सामान्य प्रतिष्ठा पर नहीं।</>
-            : <><span className="text-gold-light font-medium">&quot;Rahu and Saturn dashas are always bad&quot;</span> — WRONG. Rahu dasha can bring extraordinary worldly success (foreign opportunities, technology careers, unconventional achievements). Saturn dasha builds lasting structures (career peak, property accumulation, discipline). The QUALITY of results depends on the planet&apos;s dignity and house rulership in YOUR chart, not on the planet&apos;s general reputation.</>}
+            ? <><span className="text-gold-light font-medium">&quot;राहु और शनि दशा सदा बुरी होती है&quot;</span>  –  यह असत्य है। राहु दशा असाधारण सांसारिक सफलता ला सकती है (विदेशी अवसर, प्रौद्योगिकी कैरियर, अपरम्परागत उपलब्धियाँ)। शनि दशा स्थायी संरचनाएँ बनाती है (कैरियर शिखर, सम्पत्ति संचय, अनुशासन)। परिणामों की गुणवत्ता आपकी कुण्डली में ग्रह की मर्यादा और भावेशत्व पर निर्भर करती है, ग्रह की सामान्य प्रतिष्ठा पर नहीं।</>
+            : <><span className="text-gold-light font-medium">&quot;Rahu and Saturn dashas are always bad&quot;</span>  –  WRONG. Rahu dasha can bring extraordinary worldly success (foreign opportunities, technology careers, unconventional achievements). Saturn dasha builds lasting structures (career peak, property accumulation, discipline). The QUALITY of results depends on the planet&apos;s dignity and house rulership in YOUR chart, not on the planet&apos;s general reputation.</>}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <><span className="text-gold-light font-medium">&quot;शुक्र दशा = विवाह&quot;</span> — हमेशा नहीं। शुक्र दशा विवाह तभी लाती है जब शुक्र 7वें भाव से सम्बन्धित हो (स्वामित्व, स्थिति, या दृष्टि)। वृश्चिक लग्न के लिए शुक्र 7वें और 12वें का स्वामी है — विवाह के साथ हानि/विदेश भी। सिंह लग्न के लिए शुक्र 3 और 10 का स्वामी — विवाह नहीं बल्कि कैरियर और संवाद।</>
-            : <><span className="text-gold-light font-medium">&quot;Venus dasha = marriage&quot;</span> — Not always. Venus dasha brings marriage only when Venus is connected to the 7th house (lordship, placement, or aspect). For Scorpio ascendant, Venus rules 7th and 12th — marriage with losses/foreign. For Leo ascendant, Venus rules 3rd and 10th — not marriage but career and communication.</>}
+            ? <><span className="text-gold-light font-medium">&quot;शुक्र दशा = विवाह&quot;</span>  –  हमेशा नहीं। शुक्र दशा विवाह तभी लाती है जब शुक्र 7वें भाव से सम्बन्धित हो (स्वामित्व, स्थिति, या दृष्टि)। वृश्चिक लग्न के लिए शुक्र 7वें और 12वें का स्वामी है  –  विवाह के साथ हानि/विदेश भी। सिंह लग्न के लिए शुक्र 3 और 10 का स्वामी  –  विवाह नहीं बल्कि कैरियर और संवाद।</>
+            : <><span className="text-gold-light font-medium">&quot;Venus dasha = marriage&quot;</span>  –  Not always. Venus dasha brings marriage only when Venus is connected to the 7th house (lordship, placement, or aspect). For Scorpio ascendant, Venus rules 7th and 12th  –  marriage with losses/foreign. For Leo ascendant, Venus rules 3rd and 10th  –  not marriage but career and communication.</>}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
-            ? <><span className="text-gold-light font-medium">&quot;केतु दशा = सब कुछ नष्ट&quot;</span> — केतु दशा आध्यात्मिक जागृति, गहन ध्यान अभ्यास, मोक्ष मार्ग, और भौतिक बन्धनों से मुक्ति का सबसे शक्तिशाली काल है। कई महान सन्तों और योगियों ने केतु दशा में ज्ञान प्राप्त किया। केतु विनाश नहीं लाता — वह उस चीज़ को हटाता है जो आपके विकास में बाधा है।</>
-            : <><span className="text-gold-light font-medium">&quot;Ketu dasha = everything destroyed&quot;</span> — Ketu dasha is the most powerful period for spiritual awakening, deep meditation practice, the path to moksha, and liberation from material bondage. Many great saints and yogis attained enlightenment during Ketu dasha. Ketu does not destroy — it removes what obstructs your spiritual growth.</>}
+            ? <><span className="text-gold-light font-medium">&quot;केतु दशा = सब कुछ नष्ट&quot;</span>  –  केतु दशा आध्यात्मिक जागृति, गहन ध्यान अभ्यास, मोक्ष मार्ग, और भौतिक बन्धनों से मुक्ति का सबसे शक्तिशाली काल है। कई महान सन्तों और योगियों ने केतु दशा में ज्ञान प्राप्त किया। केतु विनाश नहीं लाता  –  वह उस चीज़ को हटाता है जो आपके विकास में बाधा है।</>
+            : <><span className="text-gold-light font-medium">&quot;Ketu dasha = everything destroyed&quot;</span>  –  Ketu dasha is the most powerful period for spiritual awakening, deep meditation practice, the path to moksha, and liberation from material bondage. Many great saints and yogis attained enlightenment during Ketu dasha. Ketu does not destroy  –  it removes what obstructs your spiritual growth.</>}
         </p>
       </section>
 
@@ -542,13 +542,13 @@ function Page3() {
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{t('tryItInOurApp', locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           {isHi
-            ? <>हमारा कुण्डली इंजन (/kundali) जन्म से 120 वर्षों तक की पूर्ण विंशोत्तरी दशा तालिका गणित करता है — चन्द्रमा का सटीक निरयन भोगांश, जन्म नक्षत्र, दशा शेष, और सटीक आरम्भ-समाप्ति तिथियों सहित महादशा एवं अन्तर्दशा काल। टिप्पणी (व्याख्यात्मक भाष्य) बताता है कि वर्तमान में कौन-सी दशा चल रही है और आपकी विशिष्ट कुण्डली के लिए उसके सक्रियण का क्या अर्थ है।</>
-            : <>Our Kundali engine (/kundali) computes the complete Vimshottari dasha table from birth through 120 years — the Moon&apos;s exact sidereal longitude, birth nakshatra, balance of dasha, and Mahadasha plus Antardasha periods with precise start and end dates. The Tippanni (interpretive commentary) explains which dasha is currently running and what its activation means for your specific chart.</>}
+            ? <>हमारा कुण्डली इंजन (/kundali) जन्म से 120 वर्षों तक की पूर्ण विंशोत्तरी दशा तालिका गणित करता है  –  चन्द्रमा का सटीक निरयन भोगांश, जन्म नक्षत्र, दशा शेष, और सटीक आरम्भ-समाप्ति तिथियों सहित महादशा एवं अन्तर्दशा काल। टिप्पणी (व्याख्यात्मक भाष्य) बताता है कि वर्तमान में कौन-सी दशा चल रही है और आपकी विशिष्ट कुण्डली के लिए उसके सक्रियण का क्या अर्थ है।</>
+            : <>Our Kundali engine (/kundali) computes the complete Vimshottari dasha table from birth through 120 years  –  the Moon&apos;s exact sidereal longitude, birth nakshatra, balance of dasha, and Mahadasha plus Antardasha periods with precise start and end dates. The Tippanni (interpretive commentary) explains which dasha is currently running and what its activation means for your specific chart.</>}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? <>हमारी इंटरैक्टिव दशा प्रयोगशाला (/learn/labs/dasha) में अपना जन्म विवरण दर्ज करें और चन्द्र &rarr; नक्षत्र &rarr; दशा स्वामी &rarr; शेष गणना को चरण दर चरण होते देखें। यह इस मॉड्यूल में सीखे गए प्रत्येक गणना चरण को वास्तविक समय में प्रदर्शित करती है।</>
-            : <>Try our Interactive Dasha Lab (/learn/labs/dasha) — enter your birth details and watch the Moon &rarr; Nakshatra &rarr; Dasha Lord &rarr; Balance calculation happen step by step. It demonstrates every calculation step taught in this module in real time.</>}
+            : <>Try our Interactive Dasha Lab (/learn/labs/dasha)  –  enter your birth details and watch the Moon &rarr; Nakshatra &rarr; Dasha Lord &rarr; Balance calculation happen step by step. It demonstrates every calculation step taught in this module in real time.</>}
         </p>
       </section>
     </div>

@@ -34,9 +34,9 @@ export const GURU_SHANTI: PujaVidhi = {
       step: 1,
       title: { en: 'Snana (Ritual Bath)', hi: 'स्नान', sa: 'स्नानम्' },
       description: {
-        en: 'Bathe early and wear clean yellow clothes. Apply a turmeric tilak on the forehead. Jupiter represents the Guru principle — approach with humility and reverence.',
-        hi: 'प्रातः स्नान करें और स्वच्छ पीले वस्त्र पहनें। माथे पर हल्दी का तिलक लगाएँ। बृहस्पति गुरु तत्त्व का प्रतीक है — विनम्रता और श्रद्धा से पूजा करें।',
-        sa: 'प्रातः स्नात्वा शुचिपीतवस्त्राणि धारयेत्। ललाटे हरिद्रातिलकं धारयेत्। बृहस्पतिः गुरुतत्त्वस्य प्रतीकः — विनयेन श्रद्धया च पूजां कुर्यात्।',
+        en: 'Bathe early and wear clean yellow clothes. Apply a turmeric tilak on the forehead. Jupiter represents the Guru principle  –  approach with humility and reverence.',
+        hi: 'प्रातः स्नान करें और स्वच्छ पीले वस्त्र पहनें। माथे पर हल्दी का तिलक लगाएँ। बृहस्पति गुरु तत्त्व का प्रतीक है  –  विनम्रता और श्रद्धा से पूजा करें।',
+        sa: 'प्रातः स्नात्वा शुचिपीतवस्त्राणि धारयेत्। ललाटे हरिद्रातिलकं धारयेत्। बृहस्पतिः गुरुतत्त्वस्य प्रतीकः  –  विनयेन श्रद्धया च पूजां कुर्यात्।',
       },
       essential: true,
       stepType: 'preparation',
@@ -89,7 +89,7 @@ export const GURU_SHANTI: PujaVidhi = {
     },
     {
       step: 6,
-      title: { en: 'Homa (Fire Offering) — Optional', hi: 'होम (हवन) — वैकल्पिक', sa: 'होमः — वैकल्पिकः' },
+      title: { en: 'Homa (Fire Offering)  –  Optional', hi: 'होम (हवन)  –  वैकल्पिक', sa: 'होमः  –  वैकल्पिकः' },
       description: {
         en: 'If possible, perform a small homa with ghee and sandalwood sticks. Offer chana dal and turmeric into the fire while chanting the Guru Gayatri.',
         hi: 'यदि सम्भव हो तो घी और चन्दन की लकड़ी से लघु होम करें। गुरु गायत्री का जाप करते हुए चना दाल और हल्दी की आहुति दें।',

@@ -1,19 +1,19 @@
 {
   "title": {
-    "en": "Binary Code — 1800 Years Before Computers",
-    "hi": "द्विआधारी संकेत — कम्प्यूटर से 1800 वर्ष पहले",
-    "sa": "द्विआधारी संकेत — कम्प्यूटर से 1800 वर्ष पहले",
-    "mai": "द्विआधारी संकेत — कम्प्यूटर से 1800 वर्ष पहले",
-    "mr": "द्विआधारी संकेत — कम्प्यूटर से 1800 वर्ष पहले",
-    "ta": "Binary Code — 1800 Years Before Computers",
-    "te": "Binary Code — 1800 Years Before Computers",
-    "bn": "Binary Code — 1800 Years Before Computers",
-    "kn": "Binary Code — 1800 Years Before Computers",
-    "gu": "Binary Code — 1800 Years Before Computers"
+    "en": "Binary Code  –  1800 Years Before Computers",
+    "hi": "द्विआधारी संकेत  –  कम्प्यूटर से 1800 वर्ष पहले",
+    "sa": "द्विआधारी संकेत  –  कम्प्यूटर से 1800 वर्ष पहले",
+    "mai": "द्विआधारी संकेत  –  कम्प्यूटर से 1800 वर्ष पहले",
+    "mr": "द्विआधारी संकेत  –  कम्प्यूटर से 1800 वर्ष पहले",
+    "ta": "Binary Code  –  1800 Years Before Computers",
+    "te": "Binary Code  –  1800 Years Before Computers",
+    "bn": "Binary Code  –  1800 Years Before Computers",
+    "kn": "Binary Code  –  1800 Years Before Computers",
+    "gu": "Binary Code  –  1800 Years Before Computers"
   },
   "subtitle": {
-    "en": "How Pingala encoded poetic meters in binary notation around 200 BCE — inventing what we now call binary arithmetic, Pascal\"s triangle, and combinatorics",
-    "hi": "पिंगल ने ~200 BCE में काव्य छन्दों को द्विआधारी संकेत में कैसे एन्कोड किया — जिसे हम अब द्विआधारी अंकगणित, पास्कल त्रिभुज, और क्रमचय-संचय कहते हैं"
+    "en": "How Pingala encoded poetic meters in binary notation around 200 BCE  –  inventing what we now call binary arithmetic, Pascal\"s triangle, and combinatorics",
+    "hi": "पिंगल ने ~200 BCE में काव्य छन्दों को द्विआधारी संकेत में कैसे एन्कोड किया  –  जिसे हम अब द्विआधारी अंकगणित, पास्कल त्रिभुज, और क्रमचय-संचय कहते हैं"
   },
   "crossRefs": [
     {
@@ -72,8 +72,8 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Pingala, an ancient Indian scholar (~200 BCE), invented binary encoding in his text Chandahshastra (or Chandashāstra), a treatise on Sanskrit prosody (the study of poetic meter). To encode the patterns of short (laghu) and long (guru) syllables in Sanskrit poetry, Pingala developed what is essentially binary notation — 1800 years before Leibniz and 2000+ years before digital computers.",
-        "hi": "पिंगल, एक प्राचीन भारतीय विद्वान (~200 BCE), ने अपने छन्दःशास्त्र (Sanskrit छन्दशास्त्र) में द्विआधारी एन्कोडिंग का आविष्कार किया — संस्कृत छन्दशास्त्र (काव्य छन्द का अध्ययन) पर एक ग्रन्थ। संस्कृत कविता में लघु और गुरु अक्षरों के पैटर्न को एन्कोड करने के लिए, पिंगल ने वह विकसित किया जो मूलतः द्विआधारी अंकन है — लाइबनित्ज़ से 1800 वर्ष और डिजिटल कम्प्यूटरों से 2000+ वर्ष पहले।"
+        "en": "Pingala, an ancient Indian scholar (~200 BCE), invented binary encoding in his text Chandahshastra (or Chandashāstra), a treatise on Sanskrit prosody (the study of poetic meter). To encode the patterns of short (laghu) and long (guru) syllables in Sanskrit poetry, Pingala developed what is essentially binary notation  –  1800 years before Leibniz and 2000+ years before digital computers.",
+        "hi": "पिंगल, एक प्राचीन भारतीय विद्वान (~200 BCE), ने अपने छन्दःशास्त्र (Sanskrit छन्दशास्त्र) में द्विआधारी एन्कोडिंग का आविष्कार किया  –  संस्कृत छन्दशास्त्र (काव्य छन्द का अध्ययन) पर एक ग्रन्थ। संस्कृत कविता में लघु और गुरु अक्षरों के पैटर्न को एन्कोड करने के लिए, पिंगल ने वह विकसित किया जो मूलतः द्विआधारी अंकन है  –  लाइबनित्ज़ से 1800 वर्ष और डिजिटल कम्प्यूटरों से 2000+ वर्ष पहले।"
       },
       "options": [
         {
@@ -135,8 +135,8 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Chandahshastra (छन्दःशास्त्र, \"the science of prosody/meter\") is Pingala's text. The word \"chandas\" refers to poetic meter in Sanskrit — the patterns of short and long syllables that give Sanskrit poetry its rhythmic structure. Pingala was likely the brother of the great grammarian Panini. His Chandahshastra systematised 8 meters using combinations of short (laghu, light) and long (guru, heavy) syllables, requiring binary representation to enumerate all possible patterns.",
-        "hi": "छन्दःशास्त्र (\"छन्द का विज्ञान\") पिंगल का ग्रन्थ है। \"छन्दस्\" संस्कृत में काव्य छन्द को संदर्भित करता है — लघु और दीर्घ अक्षरों के पैटर्न जो संस्कृत कविता को उसकी लयात्मक संरचना देते हैं। पिंगल सम्भवतः महान व्याकरणशास्त्री पाणिनि के भाई थे। उनके छन्दःशास्त्र ने लघु और गुरु अक्षरों के संयोजनों का उपयोग करके 8 छन्दों को व्यवस्थित किया।"
+        "en": "Chandahshastra (छन्दःशास्त्र, \"the science of prosody/meter\") is Pingala's text. The word \"chandas\" refers to poetic meter in Sanskrit  –  the patterns of short and long syllables that give Sanskrit poetry its rhythmic structure. Pingala was likely the brother of the great grammarian Panini. His Chandahshastra systematised 8 meters using combinations of short (laghu, light) and long (guru, heavy) syllables, requiring binary representation to enumerate all possible patterns.",
+        "hi": "छन्दःशास्त्र (\"छन्द का विज्ञान\") पिंगल का ग्रन्थ है। \"छन्दस्\" संस्कृत में काव्य छन्द को संदर्भित करता है  –  लघु और दीर्घ अक्षरों के पैटर्न जो संस्कृत कविता को उसकी लयात्मक संरचना देते हैं। पिंगल सम्भवतः महान व्याकरणशास्त्री पाणिनि के भाई थे। उनके छन्दःशास्त्र ने लघु और गुरु अक्षरों के संयोजनों का उपयोग करके 8 छन्दों को व्यवस्थित किया।"
       },
       "options": [
         {
@@ -261,8 +261,8 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Pingala was encoding Sanskrit poetic meters — the patterns of short (laghu = light) and long (guru = heavy) syllables. Sanskrit poetry is strictly metered: each verse type has a specific sequence of light and heavy syllables. For example, the Gayatri meter has 3 lines of 8 syllables each. To systematically enumerate all possible 8-syllable patterns, Pingala needed to represent all 2⁸ = 256 combinations of L (laghu) and G (guru). This required a binary numbering system.",
-        "hi": "पिंगल संस्कृत काव्य छन्दों को एन्कोड कर रहे थे — लघु (हल्का) और गुरु (भारी) अक्षरों के पैटर्न। संस्कृत कविता कड़ाई से छन्दोबद्ध है। सभी सम्भावित 8-अक्षर पैटर्नों को व्यवस्थित रूप से सूचीबद्ध करने के लिए, पिंगल को L (लघु) और G (गुरु) के सभी 2⁸ = 256 संयोजनों का प्रतिनिधित्व करना था। इसके लिए एक द्विआधारी संख्या प्रणाली की आवश्यकता थी।"
+        "en": "Pingala was encoding Sanskrit poetic meters  –  the patterns of short (laghu = light) and long (guru = heavy) syllables. Sanskrit poetry is strictly metered: each verse type has a specific sequence of light and heavy syllables. For example, the Gayatri meter has 3 lines of 8 syllables each. To systematically enumerate all possible 8-syllable patterns, Pingala needed to represent all 2⁸ = 256 combinations of L (laghu) and G (guru). This required a binary numbering system.",
+        "hi": "पिंगल संस्कृत काव्य छन्दों को एन्कोड कर रहे थे  –  लघु (हल्का) और गुरु (भारी) अक्षरों के पैटर्न। संस्कृत कविता कड़ाई से छन्दोबद्ध है। सभी सम्भावित 8-अक्षर पैटर्नों को व्यवस्थित रूप से सूचीबद्ध करने के लिए, पिंगल को L (लघु) और G (गुरु) के सभी 2⁸ = 256 संयोजनों का प्रतिनिधित्व करना था। इसके लिए एक द्विआधारी संख्या प्रणाली की आवश्यकता थी।"
       },
       "options": [
         {
@@ -278,16 +278,16 @@
           "gu": "Astronomical positions of planets"
         },
         {
-          "en": "Poetic meters — patterns of short (laghu) and long (guru) syllables",
-          "hi": "काव्य छन्द — लघु और गुरु अक्षरों के पैटर्न",
-          "sa": "काव्य छन्द — लघु और गुरु अक्षरों के पैटर्न",
-          "mai": "काव्य छन्द — लघु और गुरु अक्षरों के पैटर्न",
-          "mr": "काव्य छन्द — लघु और गुरु अक्षरों के पैटर्न",
-          "ta": "Poetic meters — patterns of short (laghu) and long (guru) syllables",
-          "te": "Poetic meters — patterns of short (laghu) and long (guru) syllables",
-          "bn": "Poetic meters — patterns of short (laghu) and long (guru) syllables",
-          "kn": "Poetic meters — patterns of short (laghu) and long (guru) syllables",
-          "gu": "Poetic meters — patterns of short (laghu) and long (guru) syllables"
+          "en": "Poetic meters  –  patterns of short (laghu) and long (guru) syllables",
+          "hi": "काव्य छन्द  –  लघु और गुरु अक्षरों के पैटर्न",
+          "sa": "काव्य छन्द  –  लघु और गुरु अक्षरों के पैटर्न",
+          "mai": "काव्य छन्द  –  लघु और गुरु अक्षरों के पैटर्न",
+          "mr": "काव्य छन्द  –  लघु और गुरु अक्षरों के पैटर्न",
+          "ta": "Poetic meters  –  patterns of short (laghu) and long (guru) syllables",
+          "te": "Poetic meters  –  patterns of short (laghu) and long (guru) syllables",
+          "bn": "Poetic meters  –  patterns of short (laghu) and long (guru) syllables",
+          "kn": "Poetic meters  –  patterns of short (laghu) and long (guru) syllables",
+          "gu": "Poetic meters  –  patterns of short (laghu) and long (guru) syllables"
         },
         {
           "en": "Musical notes and rhythms",
@@ -319,13 +319,13 @@
       "id": "q25_5_05",
       "type": "mcq",
       "question": {
-        "en": "What is Meruprastara — the triangular arrangement Pingala described in the Chandahshastra?",
-        "hi": "मेरुप्रस्तार क्या है — पिंगल द्वारा छन्दःशास्त्र में वर्णित त्रिभुजाकार व्यवस्था?"
+        "en": "What is Meruprastara  –  the triangular arrangement Pingala described in the Chandahshastra?",
+        "hi": "मेरुप्रस्तार क्या है  –  पिंगल द्वारा छन्दःशास्त्र में वर्णित त्रिभुजाकार व्यवस्था?"
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Meruprastara is exactly what we today call Pascal\"s triangle — a triangular array where each number is the sum of the two numbers directly above it. Pingala described this in the Chandahshastra to count the number of meter combinations with a given number of heavy syllables. Row n gives the coefficients of the binomial expansion (a+b)ⁿ. Pingala had this ~2200 years before Blaise Pascal (1653) and ~1500 years before the Chinese mathematician Yang Hui (1261).",
-        "hi": "मेरुप्रस्तार वही है जिसे हम आज पास्कल त्रिभुज कहते हैं — एक त्रिभुजाकार सरणी जहाँ प्रत्येक संख्या उसके ऊपर की दो संख्याओं का योग है। पिंगल ने इसे दी गई संख्या के गुरु अक्षरों के साथ छन्द संयोजनों को गिनने के लिए वर्णित किया। पंक्ति n द्विपद विस्तार (a+b)ⁿ के गुणांक देती है। पिंगल के पास यह ब्लेज़ पास्कल (1653) से ~2200 वर्ष और चीनी गणितज्ञ यांग हुई (1261) से ~1500 वर्ष पहले था।"
+        "en": "Meruprastara is exactly what we today call Pascal\"s triangle  –  a triangular array where each number is the sum of the two numbers directly above it. Pingala described this in the Chandahshastra to count the number of meter combinations with a given number of heavy syllables. Row n gives the coefficients of the binomial expansion (a+b)ⁿ. Pingala had this ~2200 years before Blaise Pascal (1653) and ~1500 years before the Chinese mathematician Yang Hui (1261).",
+        "hi": "मेरुप्रस्तार वही है जिसे हम आज पास्कल त्रिभुज कहते हैं  –  एक त्रिभुजाकार सरणी जहाँ प्रत्येक संख्या उसके ऊपर की दो संख्याओं का योग है। पिंगल ने इसे दी गई संख्या के गुरु अक्षरों के साथ छन्द संयोजनों को गिनने के लिए वर्णित किया। पंक्ति n द्विपद विस्तार (a+b)ⁿ के गुणांक देती है। पिंगल के पास यह ब्लेज़ पास्कल (1653) से ~2200 वर्ष और चीनी गणितज्ञ यांग हुई (1261) से ~1500 वर्ष पहले था।"
       },
       "options": [
         {
@@ -341,8 +341,8 @@
           "gu": "A triangular arrangement of Sanskrit syllables"
         },
         {
-          "en": "Pascal\"s triangle — a triangular array where each number is the sum of the two above",
-          "hi": "पास्कल त्रिभुज — एक त्रिभुजाकार सरणी जहाँ प्रत्येक संख्या ऊपर की दो का योग है"
+          "en": "Pascal\"s triangle  –  a triangular array where each number is the sum of the two above",
+          "hi": "पास्कल त्रिभुज  –  एक त्रिभुजाकार सरणी जहाँ प्रत्येक संख्या ऊपर की दो का योग है"
         },
         {
           "en": "A temple layout plan",
@@ -379,7 +379,7 @@
       },
       "correctAnswer": 3,
       "explanation": {
-        "en": "Pingala's Meruprastara (~200 BCE) predates Pascal's triangle (1653 CE) by approximately 1850 years — about 1800 years. The gap is enormous. Pascal himself did not claim to have invented it — he compiled and systematised earlier European work. The true first known occurrence is Pingala's. Note also: the Chinese mathematician Yang Hui described it in 1261 CE (about 500 years before Pascal, 1500 years after Pingala). The true priority clearly belongs to India.",
+        "en": "Pingala's Meruprastara (~200 BCE) predates Pascal's triangle (1653 CE) by approximately 1850 years  –  about 1800 years. The gap is enormous. Pascal himself did not claim to have invented it  –  he compiled and systematised earlier European work. The true first known occurrence is Pingala's. Note also: the Chinese mathematician Yang Hui described it in 1261 CE (about 500 years before Pascal, 1500 years after Pingala). The true priority clearly belongs to India.",
         "hi": "पिंगल का मेरुप्रस्तार (~200 BCE) पास्कल त्रिभुज (1653 CE) से लगभग 1850 वर्ष पहले है। अन्तर विशाल है। पास्कल ने स्वयं इसे आविष्कार करने का दावा नहीं किया था। पहली ज्ञात घटना पिंगल की है। चीनी गणितज्ञ यांग हुई ने इसे 1261 CE में वर्णित किया (पास्कल से ~500 वर्ष पहले, पिंगल के 1500 वर्ष बाद)। वास्तविक प्राथमिकता स्पष्ट रूप से भारत की है।"
       },
       "options": [
@@ -442,7 +442,7 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Pingala's \"dvih shunye\" rule describes a binary decomposition algorithm: to convert a number to binary, repeatedly check if odd (subtract 1, mark as 1) or even (halve, mark as 0). Reading the marks in reverse gives the binary representation. This is exactly the \"divide by 2 and record remainders\" method taught in schools today for decimal-to-binary conversion. Pingala had this algorithm ~200 BCE — it is one of the earliest known computational algorithms in history.",
+        "en": "Pingala's \"dvih shunye\" rule describes a binary decomposition algorithm: to convert a number to binary, repeatedly check if odd (subtract 1, mark as 1) or even (halve, mark as 0). Reading the marks in reverse gives the binary representation. This is exactly the \"divide by 2 and record remainders\" method taught in schools today for decimal-to-binary conversion. Pingala had this algorithm ~200 BCE  –  it is one of the earliest known computational algorithms in history.",
         "hi": "पिंगल का \"द्विः शून्ये\" नियम एक द्विआधारी विघटन एल्गोरिदम का वर्णन करता है: किसी संख्या को द्विआधारी में बदलने के लिए, बार-बार जाँचें कि विषम है (1 घटाएँ, 1 के रूप में चिह्नित करें) या सम (आधा करें, 0 के रूप में चिह्नित करें)। चिह्नों को उल्टे क्रम में पढ़ने पर द्विआधारी प्रतिनिधित्व मिलता है। यह वही \"2 से भाग और शेष रिकॉर्ड करें\" विधि है जो आज स्कूलों में पढ़ाई जाती है।"
       },
       "options": [
@@ -459,16 +459,16 @@
           "gu": "When the count reaches zero, double it"
         },
         {
-          "en": "When you reach an odd number, subtract 1 and note it; when even, halve it — effectively binary decomposition",
-          "hi": "विषम पर 1 घटाकर नोट करें; सम पर आधा करें — वस्तुतः द्विआधारी विघटन",
-          "sa": "विषम पर 1 घटाकर नोट करें; सम पर आधा करें — वस्तुतः द्विआधारी विघटन",
-          "mai": "विषम पर 1 घटाकर नोट करें; सम पर आधा करें — वस्तुतः द्विआधारी विघटन",
-          "mr": "विषम पर 1 घटाकर नोट करें; सम पर आधा करें — वस्तुतः द्विआधारी विघटन",
-          "ta": "When you reach an odd number, subtract 1 and note it; when even, halve it — effectively binary decomposition",
-          "te": "When you reach an odd number, subtract 1 and note it; when even, halve it — effectively binary decomposition",
-          "bn": "When you reach an odd number, subtract 1 and note it; when even, halve it — effectively binary decomposition",
-          "kn": "When you reach an odd number, subtract 1 and note it; when even, halve it — effectively binary decomposition",
-          "gu": "When you reach an odd number, subtract 1 and note it; when even, halve it — effectively binary decomposition"
+          "en": "When you reach an odd number, subtract 1 and note it; when even, halve it  –  effectively binary decomposition",
+          "hi": "विषम पर 1 घटाकर नोट करें; सम पर आधा करें  –  वस्तुतः द्विआधारी विघटन",
+          "sa": "विषम पर 1 घटाकर नोट करें; सम पर आधा करें  –  वस्तुतः द्विआधारी विघटन",
+          "mai": "विषम पर 1 घटाकर नोट करें; सम पर आधा करें  –  वस्तुतः द्विआधारी विघटन",
+          "mr": "विषम पर 1 घटाकर नोट करें; सम पर आधा करें  –  वस्तुतः द्विआधारी विघटन",
+          "ta": "When you reach an odd number, subtract 1 and note it; when even, halve it  –  effectively binary decomposition",
+          "te": "When you reach an odd number, subtract 1 and note it; when even, halve it  –  effectively binary decomposition",
+          "bn": "When you reach an odd number, subtract 1 and note it; when even, halve it  –  effectively binary decomposition",
+          "kn": "When you reach an odd number, subtract 1 and note it; when even, halve it  –  effectively binary decomposition",
+          "gu": "When you reach an odd number, subtract 1 and note it; when even, halve it  –  effectively binary decomposition"
         },
         {
           "en": "Multiply by two and set to zero",
@@ -568,21 +568,21 @@
       },
       "correctAnswer": 0,
       "explanation": {
-        "en": "True. In Pingala's encoding system, laghu (light/short syllable) functions as the binary \"0\" and guru (heavy/long syllable) as the binary \"1.\" A sequence of n syllables can be any combination of laghu and guru, giving 2ⁿ possible patterns — exactly the binary concept. Modern computers use exactly this principle: bits are either 0 (off/low voltage) or 1 (on/high voltage). The structural identity between Pingala's prosody encoding and modern binary computing is complete.",
-        "hi": "सत्य। पिंगल की एन्कोडिंग प्रणाली में, लघु (हल्का/छोटा अक्षर) द्विआधारी \"0\" और गुरु (भारी/लम्बा अक्षर) \"1\" के रूप में काम करता है। n अक्षरों का एक अनुक्रम लघु और गुरु का कोई भी संयोजन हो सकता है, जो 2ⁿ सम्भावित पैटर्न देता है — ठीक द्विआधारी अवधारणा। आधुनिक कम्प्यूटर ठीक इसी सिद्धान्त का उपयोग करते हैं: बिट्स या तो 0 या 1 हैं।"
+        "en": "True. In Pingala's encoding system, laghu (light/short syllable) functions as the binary \"0\" and guru (heavy/long syllable) as the binary \"1.\" A sequence of n syllables can be any combination of laghu and guru, giving 2ⁿ possible patterns  –  exactly the binary concept. Modern computers use exactly this principle: bits are either 0 (off/low voltage) or 1 (on/high voltage). The structural identity between Pingala's prosody encoding and modern binary computing is complete.",
+        "hi": "सत्य। पिंगल की एन्कोडिंग प्रणाली में, लघु (हल्का/छोटा अक्षर) द्विआधारी \"0\" और गुरु (भारी/लम्बा अक्षर) \"1\" के रूप में काम करता है। n अक्षरों का एक अनुक्रम लघु और गुरु का कोई भी संयोजन हो सकता है, जो 2ⁿ सम्भावित पैटर्न देता है  –  ठीक द्विआधारी अवधारणा। आधुनिक कम्प्यूटर ठीक इसी सिद्धान्त का उपयोग करते हैं: बिट्स या तो 0 या 1 हैं।"
       }
     },
     {
       "id": "q25_5_10",
       "type": "true_false",
       "question": {
-        "en": "Modern digital computers use binary (base-2) encoding — the same two-state encoding principle that Pingala used for poetic syllables.",
-        "hi": "आधुनिक डिजिटल कम्प्यूटर द्विआधारी (आधार-2) एन्कोडिंग का उपयोग करते हैं — वही द्वि-अवस्था एन्कोडिंग सिद्धान्त जो पिंगल ने काव्य अक्षरों के लिए उपयोग किया था।"
+        "en": "Modern digital computers use binary (base-2) encoding  –  the same two-state encoding principle that Pingala used for poetic syllables.",
+        "hi": "आधुनिक डिजिटल कम्प्यूटर द्विआधारी (आधार-2) एन्कोडिंग का उपयोग करते हैं  –  वही द्वि-अवस्था एन्कोडिंग सिद्धान्त जो पिंगल ने काव्य अक्षरों के लिए उपयोग किया था।"
       },
       "correctAnswer": 0,
       "explanation": {
-        "en": "True. Modern computers are built entirely on binary (base-2) logic. Every transistor is either \"on\" (1) or \"off\" (0). Every piece of data — text, images, videos, programs — is ultimately stored as sequences of 0s and 1s. This is structurally identical to Pingala's laghu (0) / guru (1) encoding of poetic syllables. While Pingala didn't know about transistors, the mathematical principle he discovered — that any sequence can be encoded with only two symbols — is the exact foundation of all modern computing.",
-        "hi": "सत्य। आधुनिक कम्प्यूटर पूरी तरह से द्विआधारी (आधार-2) तर्क पर बने हैं। प्रत्येक ट्रांजिस्टर \"चालू\" (1) या \"बंद\" (0) होता है। प्रत्येक डेटा — पाठ, छवियाँ, वीडियो, प्रोग्राम — अन्ततः 0 और 1 के अनुक्रमों के रूप में संग्रहीत होता है। यह काव्य अक्षरों के पिंगल के लघु (0)/गुरु (1) एन्कोडिंग के समान संरचनात्मक है।"
+        "en": "True. Modern computers are built entirely on binary (base-2) logic. Every transistor is either \"on\" (1) or \"off\" (0). Every piece of data  –  text, images, videos, programs  –  is ultimately stored as sequences of 0s and 1s. This is structurally identical to Pingala's laghu (0) / guru (1) encoding of poetic syllables. While Pingala didn't know about transistors, the mathematical principle he discovered  –  that any sequence can be encoded with only two symbols  –  is the exact foundation of all modern computing.",
+        "hi": "सत्य। आधुनिक कम्प्यूटर पूरी तरह से द्विआधारी (आधार-2) तर्क पर बने हैं। प्रत्येक ट्रांजिस्टर \"चालू\" (1) या \"बंद\" (0) होता है। प्रत्येक डेटा  –  पाठ, छवियाँ, वीडियो, प्रोग्राम  –  अन्ततः 0 और 1 के अनुक्रमों के रूप में संग्रहीत होता है। यह काव्य अक्षरों के पिंगल के लघु (0)/गुरु (1) एन्कोडिंग के समान संरचनात्मक है।"
       }
     }
   ],

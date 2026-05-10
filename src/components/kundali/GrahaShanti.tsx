@@ -12,7 +12,7 @@ interface GrahaShantiProps {
   inline?: boolean;
 }
 
-/** Module-level lookup — avoids recreating on every render */
+/** Module-level lookup  –  avoids recreating on every render */
 const SHANTI_MAP: Record<number, GrahaShantiData> = {};
 for (const s of GRAHA_SHANTI) {
   SHANTI_MAP[s.planetId] = s;
@@ -110,7 +110,7 @@ export default function GrahaShanti({ planetId, locale, inline }: GrahaShantiPro
       >
         <Sparkles className="w-4 h-4 text-gold-primary shrink-0" />
         <span className="font-semibold text-gold-light text-sm flex-1">
-          {tl(shanti.deity, locale)} — {isEn ? 'Graha Shanti Vidhi' : 'ग्रह शान्ति विधि'}
+          {tl(shanti.deity, locale)}  –  {isEn ? 'Graha Shanti Vidhi' : 'ग्रह शान्ति विधि'}
         </span>
         <ChevronDown className={`w-4 h-4 text-text-secondary/40 transition-transform ${expanded ? 'rotate-180' : ''}`} />
       </button>

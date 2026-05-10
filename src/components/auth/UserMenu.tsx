@@ -44,14 +44,14 @@ export default function UserMenu() {
       .then(({ data, error }) => {
         setProfileChecked(true);
         if (error || !data) {
-          // No profile at all — show onboarding
+          // No profile at all  –  show onboarding
           setShowOnboarding(true);
         } else if (!data.date_of_birth && !data.default_location) {
-          // Profile exists but no birth data — could be skipped onboarding
+          // Profile exists but no birth data  –  could be skipped onboarding
           if (!data.display_name) {
             setShowOnboarding(true);
           } else {
-            // Has name but no birth data — show nudge, not onboarding
+            // Has name but no birth data  –  show nudge, not onboarding
             setProfileIncomplete(true);
           }
         }

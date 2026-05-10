@@ -15,8 +15,8 @@ export const FAMILY_PATTERNS: ConvergencePattern[] = [
     ],
     text: {
       full: {
-        en: 'A powerful convergence for children. Your 5th lord (progeny) is strong, Jupiter — the natural significator of children — transits your 5th house, and your dasha activates the same area. If trying to conceive, this is one of the most favorable windows. If already a parent, children bring exceptional joy and pride. Creative projects conceived now carry the energy of new life.',
-        hi: 'संतान के लिए शक्तिशाली संयोग। पंचमेश बलवान, बृहस्पति — संतान का प्राकृतिक कारक — पंचम भाव में गोचर, दशा इसी क्षेत्र को सक्रिय। गर्भधारण का प्रयास कर रहे हों तो सर्वाधिक अनुकूल खिड़की।',
+        en: 'A powerful convergence for children. Your 5th lord (progeny) is strong, Jupiter  –  the natural significator of children  –  transits your 5th house, and your dasha activates the same area. If trying to conceive, this is one of the most favorable windows. If already a parent, children bring exceptional joy and pride. Creative projects conceived now carry the energy of new life.',
+        hi: 'संतान के लिए शक्तिशाली संयोग। पंचमेश बलवान, बृहस्पति  –  संतान का प्राकृतिक कारक  –  पंचम भाव में गोचर, दशा इसी क्षेत्र को सक्रिय। गर्भधारण का प्रयास कर रहे हों तो सर्वाधिक अनुकूल खिड़की।',
       },
       mild: {
         en: 'Positive energy flows toward children and creative endeavors. Your 5th house is receiving favorable attention and the conditions for expansion in this area are supportive. This is a meaningful period to nurture what you wish to bring into the world.',
@@ -24,7 +24,7 @@ export const FAMILY_PATTERNS: ConvergencePattern[] = [
       },
     },
     advice: {
-      en: 'If family expansion is your goal, consult a physician and take proactive steps — the cosmic window supports the intention. If you are already a parent, invest quality time with your children; bonds forged now deepen meaningfully.',
+      en: 'If family expansion is your goal, consult a physician and take proactive steps  –  the cosmic window supports the intention. If you are already a parent, invest quality time with your children; bonds forged now deepen meaningfully.',
       hi: 'यदि परिवार विस्तार लक्ष्य है तो चिकित्सक से परामर्श लें और सक्रिय कदम उठाएँ। यदि पहले से माता-पिता हैं तो बच्चों के साथ गुणवत्तापूर्ण समय बिताएँ।',
     },
     laypersonNote: {
@@ -48,7 +48,7 @@ export const FAMILY_PATTERNS: ConvergencePattern[] = [
     ],
     text: {
       full: {
-        en: "Concern signals regarding children. Your 5th house lord is weakened and Saturn's transit adds pressure to the children sector. If you have children, monitor their health and wellbeing — they may face challenges that require your attention. Academic pressures, health issues, or behavioral changes in children are possible. Be present and supportive.",
+        en: "Concern signals regarding children. Your 5th house lord is weakened and Saturn's transit adds pressure to the children sector. If you have children, monitor their health and wellbeing  –  they may face challenges that require your attention. Academic pressures, health issues, or behavioral changes in children are possible. Be present and supportive.",
         hi: 'संतान संबंधी चिंता संकेत। पंचमेश कमजोर और शनि गोचर संतान क्षेत्र पर दबाव। बच्चों के स्वास्थ्य और कल्याण पर ध्यान दें। शैक्षिक दबाव, स्वास्थ्य समस्या या व्यवहार परिवर्तन संभव।',
       },
       mild: {
@@ -57,12 +57,12 @@ export const FAMILY_PATTERNS: ConvergencePattern[] = [
       },
     },
     advice: {
-      en: "Schedule health checkups for your children and stay in close communication with their teachers or caregivers. Saturn's transit here is temporary — steady attentiveness now prevents larger problems later.",
-      hi: 'बच्चों की स्वास्थ्य जाँच कराएँ और शिक्षकों या देखभालकर्ताओं से संपर्क में रहें। शनि का गोचर अस्थायी है — अभी सतर्कता बाद की बड़ी समस्याएँ रोकती है।',
+      en: "Schedule health checkups for your children and stay in close communication with their teachers or caregivers. Saturn's transit here is temporary  –  steady attentiveness now prevents larger problems later.",
+      hi: 'बच्चों की स्वास्थ्य जाँच कराएँ और शिक्षकों या देखभालकर्ताओं से संपर्क में रहें। शनि का गोचर अस्थायी है  –  अभी सतर्कता बाद की बड़ी समस्याएँ रोकती है।',
     },
     laypersonNote: {
-      en: 'A weakened 5th house combined with Saturn transiting the same area is a classic signal to pay extra attention to children. It does not predict harm — it recommends vigilance.',
-      hi: 'कमजोर पंचम भाव और शनि का उसी क्षेत्र में गोचर बच्चों पर अतिरिक्त ध्यान देने का संकेत है। यह नुकसान की भविष्यवाणी नहीं — सतर्कता की सिफारिश है।',
+      en: 'A weakened 5th house combined with Saturn transiting the same area is a classic signal to pay extra attention to children. It does not predict harm  –  it recommends vigilance.',
+      hi: 'कमजोर पंचम भाव और शनि का उसी क्षेत्र में गोचर बच्चों पर अतिरिक्त ध्यान देने का संकेत है। यह नुकसान की भविष्यवाणी नहीं  –  सतर्कता की सिफारिश है।',
     },
     relatedSections: [
       TippanniSection.PlanetInsights,
@@ -82,8 +82,8 @@ export const FAMILY_PATTERNS: ConvergencePattern[] = [
     ],
     text: {
       full: {
-        en: "Multiple signals stress your 4th house — the house of the mother. The lord is afflicted, Saturn transits this area, and a malefic occupies it natally. Mother's health may face challenges, or your relationship with her may become strained. If she has existing conditions, extra vigilance is warranted. Your own emotional wellbeing is also connected to this house.",
-        hi: 'कई संकेत चतुर्थ भाव — माता के भाव — को तनावग्रस्त करते हैं। स्वामी पीड़ित, शनि गोचर, जन्म से पापी ग्रह। माता के स्वास्थ्य में चुनौती या संबंध तनावपूर्ण। अतिरिक्त सतर्कता उचित।',
+        en: "Multiple signals stress your 4th house  –  the house of the mother. The lord is afflicted, Saturn transits this area, and a malefic occupies it natally. Mother's health may face challenges, or your relationship with her may become strained. If she has existing conditions, extra vigilance is warranted. Your own emotional wellbeing is also connected to this house.",
+        hi: 'कई संकेत चतुर्थ भाव  –  माता के भाव  –  को तनावग्रस्त करते हैं। स्वामी पीड़ित, शनि गोचर, जन्म से पापी ग्रह। माता के स्वास्थ्य में चुनौती या संबंध तनावपूर्ण। अतिरिक्त सतर्कता उचित।',
       },
       mild: {
         en: 'The 4th house of home and mother is under some pressure. Tensions at home or concerns for your mother may surface. This is a period to offer more patience and care in domestic relationships.',
@@ -114,8 +114,8 @@ export const FAMILY_PATTERNS: ConvergencePattern[] = [
     ],
     text: {
       full: {
-        en: "Your 9th house — representing the father — is under stress. The lord is weakened and Saturn's transit adds heaviness. Father's health or your relationship with paternal figures may face challenges. If your father has chronic conditions, this period warrants extra attention and possibly medical checkups.",
-        hi: 'नवम भाव — पिता का प्रतिनिधि — तनाव में। स्वामी कमजोर और शनि गोचर भारीपन जोड़ता है। पिता के स्वास्थ्य या पितृ संबंध में चुनौती। अतिरिक्त ध्यान और चिकित्सा जाँच उचित।',
+        en: "Your 9th house  –  representing the father  –  is under stress. The lord is weakened and Saturn's transit adds heaviness. Father's health or your relationship with paternal figures may face challenges. If your father has chronic conditions, this period warrants extra attention and possibly medical checkups.",
+        hi: 'नवम भाव  –  पिता का प्रतिनिधि  –  तनाव में। स्वामी कमजोर और शनि गोचर भारीपन जोड़ता है। पिता के स्वास्थ्य या पितृ संबंध में चुनौती। अतिरिक्त ध्यान और चिकित्सा जाँच उचित।',
       },
       mild: {
         en: "Saturn's movement through your 9th house brings a sobering quality to matters of father and paternal lineage. This is a time to show up for your father with practical support rather than waiting for a crisis.",
@@ -161,8 +161,8 @@ export const FAMILY_PATTERNS: ConvergencePattern[] = [
       hi: 'संपत्ति वकील रखें, सभी दस्तावेज़ सही हों, अचल संपत्ति पर मौखिक समझौते से बचें। विरासत या संपत्ति पर पारिवारिक वार्ता लिखित में और गवाहों की उपस्थिति में करें।',
     },
     laypersonNote: {
-      en: "Mars in the 4th house natally is the classic placement for property disputes in Vedic astrology. When combined with Rahu's dasha — which tends to amplify legal entanglements — the risk of prolonged property conflict rises considerably.",
-      hi: 'जन्म कुंडली में चतुर्थ भाव में मंगल संपत्ति विवाद के लिए शास्त्रीय स्थान है। राहु दशा के साथ — जो कानूनी उलझनों को बढ़ाती है — लंबे संपत्ति संघर्ष का जोखिम काफी बढ़ जाता है।',
+      en: "Mars in the 4th house natally is the classic placement for property disputes in Vedic astrology. When combined with Rahu's dasha  –  which tends to amplify legal entanglements  –  the risk of prolonged property conflict rises considerably.",
+      hi: 'जन्म कुंडली में चतुर्थ भाव में मंगल संपत्ति विवाद के लिए शास्त्रीय स्थान है। राहु दशा के साथ  –  जो कानूनी उलझनों को बढ़ाती है  –  लंबे संपत्ति संघर्ष का जोखिम काफी बढ़ जाता है।',
     },
     relatedSections: [
       TippanniSection.PlanetInsights,
@@ -191,12 +191,12 @@ export const FAMILY_PATTERNS: ConvergencePattern[] = [
       },
     },
     advice: {
-      en: 'Organize a family gathering, invest in home improvements, and initiate conversations to heal old family wounds. The energy supports reconciliation and domestic stability — make full use of this window.',
+      en: 'Organize a family gathering, invest in home improvements, and initiate conversations to heal old family wounds. The energy supports reconciliation and domestic stability  –  make full use of this window.',
       hi: 'पारिवारिक सभा आयोजित करें, घर सुधार में निवेश करें, पुरानी पारिवारिक पीड़ाएँ ठीक करने की बातचीत शुरू करें। ऊर्जा मेल-मिलाप और घरेलू स्थिरता का समर्थन करती है।',
     },
     laypersonNote: {
-      en: 'When a naturally positive planet sits in your home house, Jupiter amplifies that warmth through transit, and your life period also emphasizes home — domestic life tends to feel like a genuine sanctuary.',
-      hi: 'जब स्वाभाविक रूप से सकारात्मक ग्रह आपके गृह भाव में हो, बृहस्पति गोचर से उस गर्मजोशी को बढ़ाए, और जीवन काल भी घर पर जोर दे — तो घरेलू जीवन वास्तविक आश्रय जैसा लगता है।',
+      en: 'When a naturally positive planet sits in your home house, Jupiter amplifies that warmth through transit, and your life period also emphasizes home  –  domestic life tends to feel like a genuine sanctuary.',
+      hi: 'जब स्वाभाविक रूप से सकारात्मक ग्रह आपके गृह भाव में हो, बृहस्पति गोचर से उस गर्मजोशी को बढ़ाए, और जीवन काल भी घर पर जोर दे  –  तो घरेलू जीवन वास्तविक आश्रय जैसा लगता है।',
     },
     relatedSections: [
       TippanniSection.PlanetInsights,
@@ -224,7 +224,7 @@ export const FAMILY_PATTERNS: ConvergencePattern[] = [
       },
     },
     advice: {
-      en: 'Perform Shraddha or Tarpan rituals if they are part of your tradition, or simply light a lamp and offer silent remembrance to your ancestors. Seek stories from elders about your family history — understanding the lineage is itself a form of healing.',
+      en: 'Perform Shraddha or Tarpan rituals if they are part of your tradition, or simply light a lamp and offer silent remembrance to your ancestors. Seek stories from elders about your family history  –  understanding the lineage is itself a form of healing.',
       hi: 'यदि परंपरा का हिस्सा हो तो श्राद्ध या तर्पण करें, या बस दीप जलाएँ और पूर्वजों को मौन स्मरण अर्पित करें। परिवार के बड़ों से वंश की कहानियाँ जानें।',
     },
     laypersonNote: {
@@ -248,12 +248,12 @@ export const FAMILY_PATTERNS: ConvergencePattern[] = [
     ],
     text: {
       full: {
-        en: "Your 3rd house (siblings, courage) is stressed, and Mars' transit activates fraternal dynamics. Conflicts with brothers or sisters may surface. Younger siblings may face challenges that affect you. On the positive side, this energy also brings bursts of courage and initiative — if you can channel the Mars energy into action rather than argument.",
-        hi: 'तृतीय भाव (भाई-बहन, साहस) तनावग्रस्त और मंगल गोचर भ्रातृ गतिशीलता सक्रिय। भाई-बहनों से संघर्ष सतह पर आ सकता है। सकारात्मक पक्ष — साहस और पहल की ऊर्जा। मंगल ऊर्जा को बहस नहीं, कार्य में लगाएँ।',
+        en: "Your 3rd house (siblings, courage) is stressed, and Mars' transit activates fraternal dynamics. Conflicts with brothers or sisters may surface. Younger siblings may face challenges that affect you. On the positive side, this energy also brings bursts of courage and initiative  –  if you can channel the Mars energy into action rather than argument.",
+        hi: 'तृतीय भाव (भाई-बहन, साहस) तनावग्रस्त और मंगल गोचर भ्रातृ गतिशीलता सक्रिय। भाई-बहनों से संघर्ष सतह पर आ सकता है। सकारात्मक पक्ष  –  साहस और पहल की ऊर्जा। मंगल ऊर्जा को बहस नहीं, कार्य में लगाएँ।',
       },
       mild: {
-        en: "Mars moving through your 3rd house area stirs up sibling energy — some friction is possible, but so is a surge of personal drive. The key is to use this assertive energy constructively rather than letting it spill into family friction.",
-        hi: 'मंगल तृतीय भाव से गोचर भ्रातृ ऊर्जा जगाता है — कुछ घर्षण संभव, लेकिन व्यक्तिगत उत्साह भी। मुख्य बात यह ऊर्जा रचनात्मक रूप से उपयोग करना है।',
+        en: "Mars moving through your 3rd house area stirs up sibling energy  –  some friction is possible, but so is a surge of personal drive. The key is to use this assertive energy constructively rather than letting it spill into family friction.",
+        hi: 'मंगल तृतीय भाव से गोचर भ्रातृ ऊर्जा जगाता है  –  कुछ घर्षण संभव, लेकिन व्यक्तिगत उत्साह भी। मुख्य बात यह ऊर्जा रचनात्मक रूप से उपयोग करना है।',
       },
     },
     advice: {

@@ -1,15 +1,15 @@
 {
   "title": {
-    "en": "Calculus — Kerala, Not Cambridge",
-    "hi": "कलन — केम्ब्रिज नहीं, केरल में",
-    "sa": "कलन — केम्ब्रिज नहीं, केरल में",
-    "mai": "कलन — केम्ब्रिज नहीं, केरल में",
-    "mr": "कलन — केम्ब्रिज नहीं, केरल में",
-    "ta": "Calculus — Kerala, Not Cambridge",
-    "te": "Calculus — Kerala, Not Cambridge",
-    "bn": "Calculus — Kerala, Not Cambridge",
-    "kn": "Calculus — Kerala, Not Cambridge",
-    "gu": "Calculus — Kerala, Not Cambridge"
+    "en": "Calculus  –  Kerala, Not Cambridge",
+    "hi": "कलन  –  केम्ब्रिज नहीं, केरल में",
+    "sa": "कलन  –  केम्ब्रिज नहीं, केरल में",
+    "mai": "कलन  –  केम्ब्रिज नहीं, केरल में",
+    "mr": "कलन  –  केम्ब्रिज नहीं, केरल में",
+    "ta": "Calculus  –  Kerala, Not Cambridge",
+    "te": "Calculus  –  Kerala, Not Cambridge",
+    "bn": "Calculus  –  Kerala, Not Cambridge",
+    "kn": "Calculus  –  Kerala, Not Cambridge",
+    "gu": "Calculus  –  Kerala, Not Cambridge"
   },
   "subtitle": {
     "en": "How Madhava of Sangamagrama discovered infinite series, proto-calculus, and convergence acceleration ~250 years before Newton and Leibniz",
@@ -72,8 +72,8 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Madhava of Sangamagrama (c. 1350–1425 CE) is considered the founder of the Kerala School of Mathematics and Astronomy. He discovered infinite series for sine, cosine, and the arctangent (which gives the Madhava-Leibniz series for π). These are now attributed in Western textbooks to Newton and Leibniz (for sin/cos series) and Gregory and Leibniz (for π series) — all of whom worked 250+ years later. Madhava\"s village Sangamagrama is believed to be the modern town of Irinjalakuda in Kerala.",
-        "hi": "संगमग्राम के माधव (लगभग 1350–1425 ई.) को केरल खगोल विज्ञान और गणित स्कूल का संस्थापक माना जाता है। उन्होंने sine, cosine और arctangent (जो π के लिए माधव-लाइबनित्ज़ श्रृंखला देता है) के लिए अनन्त श्रृंखलाएँ खोजीं। पश्चिमी पाठ्यपुस्तकों में इन्हें Newton और Leibniz (sin/cos श्रृंखलाओं के लिए) और Gregory और Leibniz (π श्रृंखला के लिए) को श्रेय दिया जाता है — जो सभी 250+ वर्ष बाद काम किए।"
+        "en": "Madhava of Sangamagrama (c. 1350–1425 CE) is considered the founder of the Kerala School of Mathematics and Astronomy. He discovered infinite series for sine, cosine, and the arctangent (which gives the Madhava-Leibniz series for π). These are now attributed in Western textbooks to Newton and Leibniz (for sin/cos series) and Gregory and Leibniz (for π series)  –  all of whom worked 250+ years later. Madhava\"s village Sangamagrama is believed to be the modern town of Irinjalakuda in Kerala.",
+        "hi": "संगमग्राम के माधव (लगभग 1350–1425 ई.) को केरल खगोल विज्ञान और गणित स्कूल का संस्थापक माना जाता है। उन्होंने sine, cosine और arctangent (जो π के लिए माधव-लाइबनित्ज़ श्रृंखला देता है) के लिए अनन्त श्रृंखलाएँ खोजीं। पश्चिमी पाठ्यपुस्तकों में इन्हें Newton और Leibniz (sin/cos श्रृंखलाओं के लिए) और Gregory और Leibniz (π श्रृंखला के लिए) को श्रेय दिया जाता है  –  जो सभी 250+ वर्ष बाद काम किए।"
       },
       "options": [
         {
@@ -135,8 +135,8 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "Madhava lived approximately from 1350 to 1425 CE — squarely in the 14th century. This was about 250–340 years before Isaac Newton (1643–1727) and Gottfried Leibniz (1646–1716), who are credited with the formal development of calculus in Europe. Madhava\"s work is known primarily through quotations in later Kerala school texts, as his original works have mostly been lost. The Yuktibhasha (1530 CE) and Tantrasangraha contain detailed accounts of his results.",
-        "hi": "माधव लगभग 1350 से 1425 ई. तक — पूरी तरह 14वीं शताब्दी में — रहे। यह आइज़ैक Newton (1643–1727) और गॉटफ्रीड लाइबनित्ज़ (1646–1716) से लगभग 250–340 वर्ष पहले था, जिन्हें यूरोप में कलन के औपचारिक विकास का श्रेय दिया जाता है।"
+        "en": "Madhava lived approximately from 1350 to 1425 CE  –  squarely in the 14th century. This was about 250–340 years before Isaac Newton (1643–1727) and Gottfried Leibniz (1646–1716), who are credited with the formal development of calculus in Europe. Madhava\"s work is known primarily through quotations in later Kerala school texts, as his original works have mostly been lost. The Yuktibhasha (1530 CE) and Tantrasangraha contain detailed accounts of his results.",
+        "hi": "माधव लगभग 1350 से 1425 ई. तक  –  पूरी तरह 14वीं शताब्दी में  –  रहे। यह आइज़ैक Newton (1643–1727) और गॉटफ्रीड लाइबनित्ज़ (1646–1716) से लगभग 250–340 वर्ष पहले था, जिन्हें यूरोप में कलन के औपचारिक विकास का श्रेय दिया जाता है।"
       },
       "options": [
         {
@@ -256,8 +256,8 @@
       "id": "q25_7_04",
       "type": "mcq",
       "question": {
-        "en": "Who wrote the Yuktibhasha — the text that contains formal proofs of Kerala School results?",
-        "hi": "युक्तिभाषा — केरल स्कूल के परिणामों के औपचारिक प्रमाण वाला ग्रन्थ — किसने लिखा?"
+        "en": "Who wrote the Yuktibhasha  –  the text that contains formal proofs of Kerala School results?",
+        "hi": "युक्तिभाषा  –  केरल स्कूल के परिणामों के औपचारिक प्रमाण वाला ग्रन्थ  –  किसने लिखा?"
       },
       "correctAnswer": 1,
       "explanation": {
@@ -324,8 +324,8 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "~1530 CE. The Yuktibhasha (\"language of proofs\") was written by Jyeshthadeva around 1530 CE. This means it was written approximately 100 years after Madhava's death (Madhava died ~1425 CE) but compiled his results along with those of Nilakantha Somayaji and others. Newton's Principia Mathematica was 1687 — 157 years after the Yuktibhasha. Leibniz published his calculus in 1684 — 154 years after. The Kerala School was doing proto-calculus while Europe was still in the early Renaissance.",
-        "hi": "~1530 ई.। युक्तिभाषा (\"प्रमाणों की भाषा\") ज्येष्ठदेव ने ~1530 ई. के आसपास लिखी। इसका मतलब है कि यह माधव की मृत्यु के लगभग 100 वर्ष बाद लिखी गई लेकिन उनके परिणाम और नीलकण्ठ सोमयाजी आदि के परिणाम संकलित किए। Newton के Principia Mathematica (1687) से 157 वर्ष पहले। लाइबनित्ज़ ने 1684 में — 154 वर्ष बाद — प्रकाशित किया।"
+        "en": "~1530 CE. The Yuktibhasha (\"language of proofs\") was written by Jyeshthadeva around 1530 CE. This means it was written approximately 100 years after Madhava's death (Madhava died ~1425 CE) but compiled his results along with those of Nilakantha Somayaji and others. Newton's Principia Mathematica was 1687  –  157 years after the Yuktibhasha. Leibniz published his calculus in 1684  –  154 years after. The Kerala School was doing proto-calculus while Europe was still in the early Renaissance.",
+        "hi": "~1530 ई.। युक्तिभाषा (\"प्रमाणों की भाषा\") ज्येष्ठदेव ने ~1530 ई. के आसपास लिखी। इसका मतलब है कि यह माधव की मृत्यु के लगभग 100 वर्ष बाद लिखी गई लेकिन उनके परिणाम और नीलकण्ठ सोमयाजी आदि के परिणाम संकलित किए। Newton के Principia Mathematica (1687) से 157 वर्ष पहले। लाइबनित्ज़ ने 1684 में  –  154 वर्ष बाद  –  प्रकाशित किया।"
       },
       "options": [
         {
@@ -387,8 +387,8 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "Madhava (~1350 CE) developed his infinite series results approximately 250–340 years before Newton (1643–1727). Newton began his serious mathematical work around 1664–1668 CE, giving roughly 300 years of priority to Madhava. Leibniz (1646–1716) worked even later. The specific series results Madhava discovered — sine series, cosine series, arctangent series — are exactly what Newton and Leibniz independently rediscovered as part of their development of calculus.",
-        "hi": "माधव (~1350 ई.) ने अपनी अनन्त श्रृंखला के परिणाम Newton (1643–1727) से लगभग 250–340 वर्ष पहले विकसित किए। Newton ने अपना गंभीर गणितीय काम ~1664–1668 ई. के आसपास शुरू किया, माधव को लगभग 300 वर्षों की प्राथमिकता देते हुए। माधव द्वारा खोजी गई विशिष्ट श्रृंखलाएँ — sine श्रृंखला, cosine श्रृंखला, arctangent श्रृंखला — वही हैं जो Newton और Leibniz ने स्वतन्त्र रूप से पुनः खोजीं।"
+        "en": "Madhava (~1350 CE) developed his infinite series results approximately 250–340 years before Newton (1643–1727). Newton began his serious mathematical work around 1664–1668 CE, giving roughly 300 years of priority to Madhava. Leibniz (1646–1716) worked even later. The specific series results Madhava discovered  –  sine series, cosine series, arctangent series  –  are exactly what Newton and Leibniz independently rediscovered as part of their development of calculus.",
+        "hi": "माधव (~1350 ई.) ने अपनी अनन्त श्रृंखला के परिणाम Newton (1643–1727) से लगभग 250–340 वर्ष पहले विकसित किए। Newton ने अपना गंभीर गणितीय काम ~1664–1668 ई. के आसपास शुरू किया, माधव को लगभग 300 वर्षों की प्राथमिकता देते हुए। माधव द्वारा खोजी गई विशिष्ट श्रृंखलाएँ  –  sine श्रृंखला, cosine श्रृंखला, arctangent श्रृंखला  –  वही हैं जो Newton और Leibniz ने स्वतन्त्र रूप से पुनः खोजीं।"
       },
       "options": [
         {
@@ -451,7 +451,7 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "Gottfried Wilhelm Leibniz (1646–1716) independently developed calculus at the same time as Newton, leading to the famous \"calculus priority dispute.\" Newton developed his \"method of fluxions\" in the 1660s but published late. Leibniz published his notation-based calculus in 1684, which became the standard (the ∫ and d/dx notation we use today comes from Leibniz, not Newton). The Madhava-Newton-Leibniz connection remains a fascinating chapter in the history of mathematics.",
-        "hi": "गॉटफ्रीड विल्हेम लाइबनित्ज़ (1646–1716) ने Newton के साथ ही स्वतन्त्र रूप से कलन विकसित किया, जिससे प्रसिद्ध \"कलन प्राथमिकता विवाद\" हुआ। Newton ने 1660 के दशक में अपनी \"फ्लक्सन विधि\" विकसित की लेकिन देर से प्रकाशित किया। लाइबनित्ज़ ने 1684 में प्रकाशित किया। हम आज जो ∫ और d/dx संकेतन उपयोग करते हैं, वह Newton से नहीं — लाइबनित्ज़ से आता है।"
+        "hi": "गॉटफ्रीड विल्हेम लाइबनित्ज़ (1646–1716) ने Newton के साथ ही स्वतन्त्र रूप से कलन विकसित किया, जिससे प्रसिद्ध \"कलन प्राथमिकता विवाद\" हुआ। Newton ने 1660 के दशक में अपनी \"फ्लक्सन विधि\" विकसित की लेकिन देर से प्रकाशित किया। लाइबनित्ज़ ने 1684 में प्रकाशित किया। हम आज जो ∫ और d/dx संकेतन उपयोग करते हैं, वह Newton से नहीं  –  लाइबनित्ज़ से आता है।"
       },
       "options": [
         {
@@ -513,7 +513,7 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "The Kerala School, particularly Madhava, developed correction terms (also called \"end-correction terms\") that dramatically accelerated the convergence of their series. The basic π/4 series needs thousands of terms for even a few correct decimal places. Madhava's correction terms (of the form n/(4n²+1)) allow achieving the same accuracy with far fewer terms. This technique is closely related to what modern numerical analysts call \"acceleration of convergence\" — a sophisticated concept that predates its Western rediscovery by centuries.",
+        "en": "The Kerala School, particularly Madhava, developed correction terms (also called \"end-correction terms\") that dramatically accelerated the convergence of their series. The basic π/4 series needs thousands of terms for even a few correct decimal places. Madhava's correction terms (of the form n/(4n²+1)) allow achieving the same accuracy with far fewer terms. This technique is closely related to what modern numerical analysts call \"acceleration of convergence\"  –  a sophisticated concept that predates its Western rediscovery by centuries.",
         "hi": "केरल स्कूल, विशेष रूप से माधव, ने सुधार पद (\"अन्त-सुधार पद\") विकसित किए जिन्होंने उनकी श्रृंखलाओं के अभिसरण को नाटकीय रूप से त्वरित किया। मूल π/4 श्रृंखला को कुछ सही दशमलव के लिए भी हजारों पदों की आवश्यकता है। माधव के सुधार पद (n/(4n²+1) के रूप में) बहुत कम पदों के साथ समान सटीकता प्राप्त करने देते हैं। यह तकनीक आधुनिक संख्यात्मक विश्लेषण में \"अभिसरण का त्वरण\" कहलाती है।"
       },
       "options": [
@@ -571,13 +571,13 @@
       "id": "q25_7_09",
       "type": "true_false",
       "question": {
-        "en": "Kerala mathematicians had developed correction terms for faster convergence of their infinite series — an advanced technique modern analysts call \"acceleration of convergence.\"",
-        "hi": "केरल गणितज्ञों ने अपनी अनन्त श्रृंखलाओं के तेज़ अभिसरण के लिए सुधार पद विकसित किए थे — एक उन्नत तकनीक जिसे आधुनिक विश्लेषक \"अभिसरण का त्वरण\" कहते हैं।"
+        "en": "Kerala mathematicians had developed correction terms for faster convergence of their infinite series  –  an advanced technique modern analysts call \"acceleration of convergence.\"",
+        "hi": "केरल गणितज्ञों ने अपनी अनन्त श्रृंखलाओं के तेज़ अभिसरण के लिए सुधार पद विकसित किए थे  –  एक उन्नत तकनीक जिसे आधुनिक विश्लेषक \"अभिसरण का त्वरण\" कहते हैं।"
       },
       "correctAnswer": 0,
       "explanation": {
-        "en": "True. The Yuktibhasha and other Kerala school texts describe correction terms for Madhava\"s series that dramatically reduce the number of terms needed for a given accuracy. For example, after n terms of the π/4 series, adding the correction term n/(4n²+1) gives a much better approximation than using n terms alone. This is a genuine pre-calculus technique for accelerating convergence — not known in European mathematics until the 18th century (Euler and others).",
-        "hi": "सत्य। युक्तिभाषा और अन्य केरल स्कूल ग्रन्थ माधव की श्रृंखलाओं के लिए सुधार पद का वर्णन करते हैं जो किसी दी गई सटीकता के लिए आवश्यक पदों की संख्या को नाटकीय रूप से कम करते हैं। यह अभिसरण को त्वरित करने के लिए एक वास्तविक पूर्व-कलन तकनीक है — यूरोपीय गणित में 18वीं शताब्दी (Euler और अन्य) तक ज्ञात नहीं थी।"
+        "en": "True. The Yuktibhasha and other Kerala school texts describe correction terms for Madhava\"s series that dramatically reduce the number of terms needed for a given accuracy. For example, after n terms of the π/4 series, adding the correction term n/(4n²+1) gives a much better approximation than using n terms alone. This is a genuine pre-calculus technique for accelerating convergence  –  not known in European mathematics until the 18th century (Euler and others).",
+        "hi": "सत्य। युक्तिभाषा और अन्य केरल स्कूल ग्रन्थ माधव की श्रृंखलाओं के लिए सुधार पद का वर्णन करते हैं जो किसी दी गई सटीकता के लिए आवश्यक पदों की संख्या को नाटकीय रूप से कम करते हैं। यह अभिसरण को त्वरित करने के लिए एक वास्तविक पूर्व-कलन तकनीक है  –  यूरोपीय गणित में 18वीं शताब्दी (Euler और अन्य) तक ज्ञात नहीं थी।"
       }
     },
     {
@@ -589,8 +589,8 @@
       },
       "correctAnswer": 0,
       "explanation": {
-        "en": "True — though \"plausible but unconfirmed\" is the correct characterisation. Scholars like George Gheverghese Joseph and M.D. Srinivas have pointed to suggestive historical connections: Jesuit missionaries were active in Kerala in the 16th–17th centuries (the same period as the late Kerala School), and some Kerala texts on mathematics and astronomy were collected. However, no smoking-gun document has been found showing direct transmission. The debate continues in the history of mathematics community. Most historians acknowledge the temporal and circumstantial connections but require more evidence.",
-        "hi": "सत्य — हालाँकि \"प्रशंसनीय लेकिन अपुष्ट\" सही लक्षण-वर्णन है। George Gheverghese Joseph और M.D. Srinivas जैसे विद्वानों ने सुझावात्मक ऐतिहासिक सम्बन्धों की ओर इशारा किया है: जेसुइट मिशनरी 16वीं-17वीं शताब्दी में केरल में सक्रिय थे, और कुछ केरल ग्रन्थ एकत्र किए गए। हालाँकि, सीधे प्रसार को दिखाने वाला कोई निर्णायक दस्तावेज़ नहीं मिला है। गणित के इतिहास समुदाय में बहस जारी है।"
+        "en": "True  –  though \"plausible but unconfirmed\" is the correct characterisation. Scholars like George Gheverghese Joseph and M.D. Srinivas have pointed to suggestive historical connections: Jesuit missionaries were active in Kerala in the 16th–17th centuries (the same period as the late Kerala School), and some Kerala texts on mathematics and astronomy were collected. However, no smoking-gun document has been found showing direct transmission. The debate continues in the history of mathematics community. Most historians acknowledge the temporal and circumstantial connections but require more evidence.",
+        "hi": "सत्य  –  हालाँकि \"प्रशंसनीय लेकिन अपुष्ट\" सही लक्षण-वर्णन है। George Gheverghese Joseph और M.D. Srinivas जैसे विद्वानों ने सुझावात्मक ऐतिहासिक सम्बन्धों की ओर इशारा किया है: जेसुइट मिशनरी 16वीं-17वीं शताब्दी में केरल में सक्रिय थे, और कुछ केरल ग्रन्थ एकत्र किए गए। हालाँकि, सीधे प्रसार को दिखाने वाला कोई निर्णायक दस्तावेज़ नहीं मिला है। गणित के इतिहास समुदाय में बहस जारी है।"
       }
     }
   ],

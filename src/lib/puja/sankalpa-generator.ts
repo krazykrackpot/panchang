@@ -1,5 +1,5 @@
 /**
- * Sankalpa Generator — assembles a personalized ritual declaration
+ * Sankalpa Generator  –  assembles a personalized ritual declaration
  * with computed astronomical fields (tithi, nakshatra, yoga, karana, vara, masa, etc.)
  */
 
@@ -124,7 +124,7 @@ export function generateSankalpa(input: SankalpaInput): GeneratedSankalpa {
   const gotraField = gotra || '............';
   const place = input.placeName || '............';
 
-  // Geographic context — dvipa, varsha, khanda based on actual location
+  // Geographic context  –  dvipa, varsha, khanda based on actual location
   // Classical Puranic geography adapted for modern global use.
   // India retains the full traditional form; other regions use appropriate Sanskrit terms.
   function getGeography(lat: number, lng: number): { dvipa: string; varsha: string; khanda: string; gangaRef?: string } {
@@ -132,7 +132,7 @@ export function generateSankalpa(input: SankalpaInput): GeneratedSankalpa {
     if (lat >= 8 && lat <= 37 && lng >= 68 && lng <= 97) {
       return { dvipa: 'जम्बूद्वीपे', varsha: 'भारतवर्षे', khanda: 'भरतखण्डे', gangaRef: lat >= 25 ? 'उत्तरे' : 'दक्षिणे' };
     }
-    // Nepal, Sri Lanka, Bangladesh, Myanmar — South Asian subcontinent
+    // Nepal, Sri Lanka, Bangladesh, Myanmar  –  South Asian subcontinent
     if (lat >= 5 && lat <= 35 && lng >= 68 && lng <= 100) {
       return { dvipa: 'जम्बूद्वीपे', varsha: 'भारतवर्षे', khanda: 'भरतखण्डे' };
     }

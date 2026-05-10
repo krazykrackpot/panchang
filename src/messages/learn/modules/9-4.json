@@ -14,14 +14,14 @@
   "subtitle": {
     "en": "A systematic 5-step approach to reading any birth chart",
     "hi": "किसी भी जन्म कुण्डली पढ़ने का व्यवस्थित 5-चरणीय दृष्टिकोण",
-    "sa": "कुण्डलीपठनस्य व्यवस्थितप्रणाली — ग्रहभावराशीनां संयुक्तविश्लेषणम्",
-    "mai": "कुंडली पढ़बाक व्यवस्थित विधि — ग्रह, भाव, राशिक संयुक्त विश्लेषण",
-    "mr": "कुंडली वाचनाची सुव्यवस्थित पद्धत — ग्रह, भाव, रासींचे एकत्रित विश्लेषण",
-    "ta": "ஜாதகம் படிப்பதற்கான முறையான அணுகுமுறை — கிரகம், பாவம், ராசி ஒருங்கிணைந்த பகுப்பாய்வு",
-    "te": "జాతకం చదవడానికి క్రమబద్ధమైన విధానం — గ్రహ, భావ, రాశి సమగ్ర విశ్లేషణ",
-    "bn": "কুণ্ডলী পাঠের সুশৃঙ্খল পদ্ধতি — গ্রহ, ভাব, রাশির সমন্বিত বিশ্লেষণ",
-    "kn": "ಕುಂಡಲಿ ಓದುವ ವ್ಯವಸ್ಥಿತ ವಿಧಾನ — ಗ್ರಹ, ಭಾವ, ರಾಶಿಗಳ ಸಮನ್ವಿತ ವಿಶ್ಲೇಷಣೆ",
-    "gu": "કુંડળી વાંચવાની વ્યવસ્થિત પદ્ધતિ — ગ્રહ, ભાવ, રાશિનું સંયુક્ત વિશ્લેષણ"
+    "sa": "कुण्डलीपठनस्य व्यवस्थितप्रणाली  –  ग्रहभावराशीनां संयुक्तविश्लेषणम्",
+    "mai": "कुंडली पढ़बाक व्यवस्थित विधि  –  ग्रह, भाव, राशिक संयुक्त विश्लेषण",
+    "mr": "कुंडली वाचनाची सुव्यवस्थित पद्धत  –  ग्रह, भाव, रासींचे एकत्रित विश्लेषण",
+    "ta": "ஜாதகம் படிப்பதற்கான முறையான அணுகுமுறை  –  கிரகம், பாவம், ராசி ஒருங்கிணைந்த பகுப்பாய்வு",
+    "te": "జాతకం చదవడానికి క్రమబద్ధమైన విధానం  –  గ్రహ, భావ, రాశి సమగ్ర విశ్లేషణ",
+    "bn": "কুণ্ডলী পাঠের সুশৃঙ্খল পদ্ধতি  –  গ্রহ, ভাব, রাশির সমন্বিত বিশ্লেষণ",
+    "kn": "ಕುಂಡಲಿ ಓದುವ ವ್ಯವಸ್ಥಿತ ವಿಧಾನ  –  ಗ್ರಹ, ಭಾವ, ರಾಶಿಗಳ ಸಮನ್ವಿತ ವಿಶ್ಲೇಷಣೆ",
+    "gu": "કુંડળી વાંચવાની વ્યવસ્થિત પદ્ધતિ  –  ગ્રહ, ભાવ, રાશિનું સંયુક્ત વિશ્લેષણ"
   },
   "crossRefs": [
     {
@@ -305,16 +305,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Scorpio (Vrishchika) is ruled by Mars. So in a Scorpio Lagna chart, Mars is the Lagna lord — the most important planet. Its sign, house, dignity, and aspects define the native's overall life direction.",
-        "hi": "वृश्चिक का स्वामी मंगल है। अतः वृश्चिक लग्न कुण्डली में मंगल लग्न स्वामी है — सबसे महत्वपूर्ण ग्रह। उसकी राशि, भाव, गरिमा और दृष्टि जातक के समग्र जीवन पथ को परिभाषित करती है।",
-        "sa": "वृश्चिक का स्वामी मंगल है। अतः वृश्चिक लग्न कुण्डली में मंगल लग्न स्वामी है — सबसे महत्वपूर्ण ग्रह। उसकी राशि, भाव, गरिमा और दृष्टि जातक के समग्र जीवन पथ को परिभाषित करती है।",
-        "ta": "Scorpio (Vrishchika) is ruled by Mars. So in a Scorpio Lagna chart, Mars is the Lagna lord — the most important planet. Its sign, house, dignity, and aspects define the native's overall life direction.",
-        "te": "Scorpio (Vrishchika) is ruled by Mars. So in a Scorpio Lagna chart, Mars is the Lagna lord — the most important planet. Its sign, house, dignity, and aspects define the native's overall life direction.",
-        "bn": "Scorpio (Vrishchika) is ruled by Mars. So in a Scorpio Lagna chart, Mars is the Lagna lord — the most important planet. Its sign, house, dignity, and aspects define the native's overall life direction.",
-        "kn": "Scorpio (Vrishchika) is ruled by Mars. So in a Scorpio Lagna chart, Mars is the Lagna lord — the most important planet. Its sign, house, dignity, and aspects define the native's overall life direction.",
-        "mr": "वृश्चिक का स्वामी मंगल है। अतः वृश्चिक लग्न कुण्डली में मंगल लग्न स्वामी है — सबसे महत्वपूर्ण ग्रह। उसकी राशि, भाव, गरिमा और दृष्टि जातक के समग्र जीवन पथ को परिभाषित करती है।",
-        "gu": "Scorpio (Vrishchika) is ruled by Mars. So in a Scorpio Lagna chart, Mars is the Lagna lord — the most important planet. Its sign, house, dignity, and aspects define the native's overall life direction.",
-        "mai": "वृश्चिक का स्वामी मंगल है। अतः वृश्चिक लग्न कुण्डली में मंगल लग्न स्वामी है — सबसे महत्वपूर्ण ग्रह। उसकी राशि, भाव, गरिमा और दृष्टि जातक के समग्र जीवन पथ को परिभाषित करती है।"
+        "en": "Scorpio (Vrishchika) is ruled by Mars. So in a Scorpio Lagna chart, Mars is the Lagna lord  –  the most important planet. Its sign, house, dignity, and aspects define the native's overall life direction.",
+        "hi": "वृश्चिक का स्वामी मंगल है। अतः वृश्चिक लग्न कुण्डली में मंगल लग्न स्वामी है  –  सबसे महत्वपूर्ण ग्रह। उसकी राशि, भाव, गरिमा और दृष्टि जातक के समग्र जीवन पथ को परिभाषित करती है।",
+        "sa": "वृश्चिक का स्वामी मंगल है। अतः वृश्चिक लग्न कुण्डली में मंगल लग्न स्वामी है  –  सबसे महत्वपूर्ण ग्रह। उसकी राशि, भाव, गरिमा और दृष्टि जातक के समग्र जीवन पथ को परिभाषित करती है।",
+        "ta": "Scorpio (Vrishchika) is ruled by Mars. So in a Scorpio Lagna chart, Mars is the Lagna lord  –  the most important planet. Its sign, house, dignity, and aspects define the native's overall life direction.",
+        "te": "Scorpio (Vrishchika) is ruled by Mars. So in a Scorpio Lagna chart, Mars is the Lagna lord  –  the most important planet. Its sign, house, dignity, and aspects define the native's overall life direction.",
+        "bn": "Scorpio (Vrishchika) is ruled by Mars. So in a Scorpio Lagna chart, Mars is the Lagna lord  –  the most important planet. Its sign, house, dignity, and aspects define the native's overall life direction.",
+        "kn": "Scorpio (Vrishchika) is ruled by Mars. So in a Scorpio Lagna chart, Mars is the Lagna lord  –  the most important planet. Its sign, house, dignity, and aspects define the native's overall life direction.",
+        "mr": "वृश्चिक का स्वामी मंगल है। अतः वृश्चिक लग्न कुण्डली में मंगल लग्न स्वामी है  –  सबसे महत्वपूर्ण ग्रह। उसकी राशि, भाव, गरिमा और दृष्टि जातक के समग्र जीवन पथ को परिभाषित करती है।",
+        "gu": "Scorpio (Vrishchika) is ruled by Mars. So in a Scorpio Lagna chart, Mars is the Lagna lord  –  the most important planet. Its sign, house, dignity, and aspects define the native's overall life direction.",
+        "mai": "वृश्चिक का स्वामी मंगल है। अतः वृश्चिक लग्न कुण्डली में मंगल लग्न स्वामी है  –  सबसे महत्वपूर्ण ग्रह। उसकी राशि, भाव, गरिमा और दृष्टि जातक के समग्र जीवन पथ को परिभाषित करती है।"
       },
       "options": [
         {
@@ -384,16 +384,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Dig Bala is directional strength — each planet gains maximum power in a specific Kendra: Jupiter/Mercury in the 1st (East), Sun/Mars in the 10th (South), Saturn in the 7th (West), Moon/Venus in the 4th (North).",
-        "hi": "दिग् बल दिशात्मक शक्ति है — प्रत्येक ग्रह एक विशिष्ट केन्द्र में अधिकतम शक्ति प्राप्त करता है: बृहस्पति/बुध प्रथम (पूर्व) में, सूर्य/मंगल दशम (दक्षिण) में, शनि सप्तम (पश्चिम) में, चन्द्र/शुक्र चतुर्थ (उत्तर) में।",
-        "sa": "दिग् बल दिशात्मक शक्ति है — प्रत्येक ग्रह एक विशिष्ट केन्द्र में अधिकतम शक्ति प्राप्त करता है: बृहस्पति/बुध प्रथम (पूर्व) में, सूर्य/मंगल दशम (दक्षिण) में, शनि सप्तम (पश्चिम) में, चन्द्र/शुक्र चतुर्थ (उत्तर) में।",
-        "mai": "दिग् बल दिशात्मक शक्ति है — प्रत्येक ग्रह एक विशिष्ट केन्द्र में अधिकतम शक्ति प्राप्त करता है: बृहस्पति/बुध प्रथम (पूर्व) में, सूर्य/मंगल दशम (दक्षिण) में, शनि सप्तम (पश्चिम) में, चन्द्र/शुक्र चतुर्थ (उत्तर) में।",
-        "mr": "दिग् बल दिशात्मक शक्ति है — प्रत्येक ग्रह एक विशिष्ट केन्द्र में अधिकतम शक्ति प्राप्त करता है: बृहस्पति/बुध प्रथम (पूर्व) में, सूर्य/मंगल दशम (दक्षिण) में, शनि सप्तम (पश्चिम) में, चन्द्र/शुक्र चतुर्थ (उत्तर) में।",
-        "ta": "Dig Bala is directional strength — each planet gains maximum power in a specific Kendra: Jupiter/Mercury in the 1st (East), Sun/Mars in the 10th (South), Saturn in the 7th (West), Moon/Venus in the 4th (North).",
-        "te": "Dig Bala is directional strength — each planet gains maximum power in a specific Kendra: Jupiter/Mercury in the 1st (East), Sun/Mars in the 10th (South), Saturn in the 7th (West), Moon/Venus in the 4th (North).",
-        "bn": "Dig Bala is directional strength — each planet gains maximum power in a specific Kendra: Jupiter/Mercury in the 1st (East), Sun/Mars in the 10th (South), Saturn in the 7th (West), Moon/Venus in the 4th (North).",
-        "kn": "Dig Bala is directional strength — each planet gains maximum power in a specific Kendra: Jupiter/Mercury in the 1st (East), Sun/Mars in the 10th (South), Saturn in the 7th (West), Moon/Venus in the 4th (North).",
-        "gu": "Dig Bala is directional strength — each planet gains maximum power in a specific Kendra: Jupiter/Mercury in the 1st (East), Sun/Mars in the 10th (South), Saturn in the 7th (West), Moon/Venus in the 4th (North)."
+        "en": "Dig Bala is directional strength  –  each planet gains maximum power in a specific Kendra: Jupiter/Mercury in the 1st (East), Sun/Mars in the 10th (South), Saturn in the 7th (West), Moon/Venus in the 4th (North).",
+        "hi": "दिग् बल दिशात्मक शक्ति है  –  प्रत्येक ग्रह एक विशिष्ट केन्द्र में अधिकतम शक्ति प्राप्त करता है: बृहस्पति/बुध प्रथम (पूर्व) में, सूर्य/मंगल दशम (दक्षिण) में, शनि सप्तम (पश्चिम) में, चन्द्र/शुक्र चतुर्थ (उत्तर) में।",
+        "sa": "दिग् बल दिशात्मक शक्ति है  –  प्रत्येक ग्रह एक विशिष्ट केन्द्र में अधिकतम शक्ति प्राप्त करता है: बृहस्पति/बुध प्रथम (पूर्व) में, सूर्य/मंगल दशम (दक्षिण) में, शनि सप्तम (पश्चिम) में, चन्द्र/शुक्र चतुर्थ (उत्तर) में।",
+        "mai": "दिग् बल दिशात्मक शक्ति है  –  प्रत्येक ग्रह एक विशिष्ट केन्द्र में अधिकतम शक्ति प्राप्त करता है: बृहस्पति/बुध प्रथम (पूर्व) में, सूर्य/मंगल दशम (दक्षिण) में, शनि सप्तम (पश्चिम) में, चन्द्र/शुक्र चतुर्थ (उत्तर) में।",
+        "mr": "दिग् बल दिशात्मक शक्ति है  –  प्रत्येक ग्रह एक विशिष्ट केन्द्र में अधिकतम शक्ति प्राप्त करता है: बृहस्पति/बुध प्रथम (पूर्व) में, सूर्य/मंगल दशम (दक्षिण) में, शनि सप्तम (पश्चिम) में, चन्द्र/शुक्र चतुर्थ (उत्तर) में।",
+        "ta": "Dig Bala is directional strength  –  each planet gains maximum power in a specific Kendra: Jupiter/Mercury in the 1st (East), Sun/Mars in the 10th (South), Saturn in the 7th (West), Moon/Venus in the 4th (North).",
+        "te": "Dig Bala is directional strength  –  each planet gains maximum power in a specific Kendra: Jupiter/Mercury in the 1st (East), Sun/Mars in the 10th (South), Saturn in the 7th (West), Moon/Venus in the 4th (North).",
+        "bn": "Dig Bala is directional strength  –  each planet gains maximum power in a specific Kendra: Jupiter/Mercury in the 1st (East), Sun/Mars in the 10th (South), Saturn in the 7th (West), Moon/Venus in the 4th (North).",
+        "kn": "Dig Bala is directional strength  –  each planet gains maximum power in a specific Kendra: Jupiter/Mercury in the 1st (East), Sun/Mars in the 10th (South), Saturn in the 7th (West), Moon/Venus in the 4th (North).",
+        "gu": "Dig Bala is directional strength  –  each planet gains maximum power in a specific Kendra: Jupiter/Mercury in the 1st (East), Sun/Mars in the 10th (South), Saturn in the 7th (West), Moon/Venus in the 4th (North)."
       },
       "options": [
         {
@@ -492,16 +492,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "For Scorpio Lagna, Leo falls in the 10th house. Sun rules Leo, so Sun is the 10th lord sitting in its own 10th house — a powerful position indicating career authority, government connections, leadership roles, and public recognition.",
-        "hi": "वृश्चिक लग्न के लिए सिंह दशम भाव में पड़ता है। सूर्य सिंह का स्वामी है, अतः सूर्य दशम स्वामी अपने ही दशम भाव में बैठा है — एक शक्तिशाली स्थिति जो कैरियर अधिकार, सरकारी संबंध, नेतृत्व भूमिकाएँ और सार्वजनिक मान्यता दर्शाती है।",
-        "sa": "वृश्चिक लग्न के लिए सिंह दशम भाव में पड़ता है। सूर्य सिंह का स्वामी है, अतः सूर्य दशम स्वामी अपने ही दशम भाव में बैठा है — एक शक्तिशाली स्थिति जो कैरियर अधिकार, सरकारी संबंध, नेतृत्व भूमिकाएँ और सार्वजनिक मान्यता दर्शाती है।",
-        "mai": "वृश्चिक लग्न के लिए सिंह दशम भाव में पड़ता है। सूर्य सिंह का स्वामी है, अतः सूर्य दशम स्वामी अपने ही दशम भाव में बैठा है — एक शक्तिशाली स्थिति जो कैरियर अधिकार, सरकारी संबंध, नेतृत्व भूमिकाएँ और सार्वजनिक मान्यता दर्शाती है।",
-        "mr": "वृश्चिक लग्न के लिए सिंह दशम भाव में पड़ता है। सूर्य सिंह का स्वामी है, अतः सूर्य दशम स्वामी अपने ही दशम भाव में बैठा है — एक शक्तिशाली स्थिति जो कैरियर अधिकार, सरकारी संबंध, नेतृत्व भूमिकाएँ और सार्वजनिक मान्यता दर्शाती है।",
-        "ta": "For Scorpio Lagna, Leo falls in the 10th house. Sun rules Leo, so Sun is the 10th lord sitting in its own 10th house — a powerful position indicating career authority, government connections, leadership roles, and public recognition.",
-        "te": "For Scorpio Lagna, Leo falls in the 10th house. Sun rules Leo, so Sun is the 10th lord sitting in its own 10th house — a powerful position indicating career authority, government connections, leadership roles, and public recognition.",
-        "bn": "For Scorpio Lagna, Leo falls in the 10th house. Sun rules Leo, so Sun is the 10th lord sitting in its own 10th house — a powerful position indicating career authority, government connections, leadership roles, and public recognition.",
-        "kn": "For Scorpio Lagna, Leo falls in the 10th house. Sun rules Leo, so Sun is the 10th lord sitting in its own 10th house — a powerful position indicating career authority, government connections, leadership roles, and public recognition.",
-        "gu": "For Scorpio Lagna, Leo falls in the 10th house. Sun rules Leo, so Sun is the 10th lord sitting in its own 10th house — a powerful position indicating career authority, government connections, leadership roles, and public recognition."
+        "en": "For Scorpio Lagna, Leo falls in the 10th house. Sun rules Leo, so Sun is the 10th lord sitting in its own 10th house  –  a powerful position indicating career authority, government connections, leadership roles, and public recognition.",
+        "hi": "वृश्चिक लग्न के लिए सिंह दशम भाव में पड़ता है। सूर्य सिंह का स्वामी है, अतः सूर्य दशम स्वामी अपने ही दशम भाव में बैठा है  –  एक शक्तिशाली स्थिति जो कैरियर अधिकार, सरकारी संबंध, नेतृत्व भूमिकाएँ और सार्वजनिक मान्यता दर्शाती है।",
+        "sa": "वृश्चिक लग्न के लिए सिंह दशम भाव में पड़ता है। सूर्य सिंह का स्वामी है, अतः सूर्य दशम स्वामी अपने ही दशम भाव में बैठा है  –  एक शक्तिशाली स्थिति जो कैरियर अधिकार, सरकारी संबंध, नेतृत्व भूमिकाएँ और सार्वजनिक मान्यता दर्शाती है।",
+        "mai": "वृश्चिक लग्न के लिए सिंह दशम भाव में पड़ता है। सूर्य सिंह का स्वामी है, अतः सूर्य दशम स्वामी अपने ही दशम भाव में बैठा है  –  एक शक्तिशाली स्थिति जो कैरियर अधिकार, सरकारी संबंध, नेतृत्व भूमिकाएँ और सार्वजनिक मान्यता दर्शाती है।",
+        "mr": "वृश्चिक लग्न के लिए सिंह दशम भाव में पड़ता है। सूर्य सिंह का स्वामी है, अतः सूर्य दशम स्वामी अपने ही दशम भाव में बैठा है  –  एक शक्तिशाली स्थिति जो कैरियर अधिकार, सरकारी संबंध, नेतृत्व भूमिकाएँ और सार्वजनिक मान्यता दर्शाती है।",
+        "ta": "For Scorpio Lagna, Leo falls in the 10th house. Sun rules Leo, so Sun is the 10th lord sitting in its own 10th house  –  a powerful position indicating career authority, government connections, leadership roles, and public recognition.",
+        "te": "For Scorpio Lagna, Leo falls in the 10th house. Sun rules Leo, so Sun is the 10th lord sitting in its own 10th house  –  a powerful position indicating career authority, government connections, leadership roles, and public recognition.",
+        "bn": "For Scorpio Lagna, Leo falls in the 10th house. Sun rules Leo, so Sun is the 10th lord sitting in its own 10th house  –  a powerful position indicating career authority, government connections, leadership roles, and public recognition.",
+        "kn": "For Scorpio Lagna, Leo falls in the 10th house. Sun rules Leo, so Sun is the 10th lord sitting in its own 10th house  –  a powerful position indicating career authority, government connections, leadership roles, and public recognition.",
+        "gu": "For Scorpio Lagna, Leo falls in the 10th house. Sun rules Leo, so Sun is the 10th lord sitting in its own 10th house  –  a powerful position indicating career authority, government connections, leadership roles, and public recognition."
       },
       "options": [
         {

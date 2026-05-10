@@ -118,7 +118,7 @@ describe('Tithi-Gandanthara Rule', () => {
   it('does NOT trigger in the middle of tithi 7 (not a gandanthara tithi)', () => {
     // Tithi 7 at any position is never gandanthara
     vi.mocked(sunLongitude).mockReturnValue(0);
-    vi.mocked(moonLongitude).mockReturnValue(83.9); // Near end of tithi 7 — posInTithi = 11.9
+    vi.mocked(moonLongitude).mockReturnValue(83.9); // Near end of tithi 7  –  posInTithi = 11.9
     const result = rule.evaluate(makeCtx());
     expect(result).toBeNull();
   });

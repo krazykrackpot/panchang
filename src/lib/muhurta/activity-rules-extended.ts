@@ -7,7 +7,7 @@
  *   "If not explicitly permitted → reject"
  *   NOT: "If not explicitly forbidden → accept"
  *
- * Each goodNakshatras list is a WHITELIST — only classically verified
+ * Each goodNakshatras list is a WHITELIST  –  only classically verified
  * nakshatras for that specific activity. Everything not in the list
  * scores 0 (neutral) or negative (if in avoidNakshatras).
  *
@@ -33,19 +33,19 @@ import type { ExtendedActivity, ExtendedActivityId } from '@/types/muhurta-ai';
 export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> = {
 
   // ═══════════════════════════════════════════════════════════════════
-  // SAMSKARAS (Life ceremonies — strictest classical rules)
+  // SAMSKARAS (Life ceremonies  –  strictest classical rules)
   // ═══════════════════════════════════════════════════════════════════
 
   marriage: {
     id: 'marriage',
     label: { en: 'Marriage (Vivah)', hi: 'विवाह', sa: 'विवाहः' },
     goodTithis: [2, 3, 5, 7, 10, 11, 13],
-    // Muhurta Chintamani Vivah Prakarana — 11 BEST nakshatras for marriage:
+    // Muhurta Chintamani Vivah Prakarana  –  11 BEST nakshatras for marriage:
     // Rohini(4), Mrigashira(5), Magha(10), U.Phalguni(12), Hasta(13),
     // Swati(15), Anuradha(17), Moola(19), U.Ashadha(21), U.Bhadrapada(26), Revati(27)
     // PADA RESTRICTIONS: first quarter of Magha(10) & Moola(19), last quarter of Revati(27) are inauspicious.
     // SECOND-TIER (moderate, kept in goodNakshatras): Chitra(14), Shravana(22), Dhanishtha(23)
-    // REMOVED from good list: Punarvasu(7), Pushya(8) — NOT in any marriage-specific classical list
+    // REMOVED from good list: Punarvasu(7), Pushya(8)  –  NOT in any marriage-specific classical list
     goodNakshatras: [4, 5, 10, 12, 13, 14, 15, 17, 19, 21, 22, 23, 26, 27],
     goodWeekdays: [1, 3, 4, 5], // Mon, Wed, Thu, Fri
     // Rikta tithis (4, 9, 14) + Amavasya (30) only.
@@ -56,7 +56,7 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     // P.Phalguni(11)=pleasure, P.Ashadha(20)=purification,
     // Shatabhisha(24)=healing, P.Bhadrapada(25)=fierce
     avoidNakshatras: [1, 2, 3, 7, 8, 11, 20, 24, 25],
-    // Absolute vetoes — MC "death-dealing / widowhood" nakshatras:
+    // Absolute vetoes  –  MC "death-dealing / widowhood" nakshatras:
     // Ardra(6)=Rudra destruction, Ashlesha(9)=serpent/death of groom,
     // Vishakha(16)=bride suffering, Jyeshtha(18)=death of elder brother
     hardAvoidNakshatras: [6, 9, 16, 18],
@@ -68,7 +68,7 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     id: 'engagement',
     label: { en: 'Engagement', hi: 'सगाई', sa: 'वाग्दानम्' },
     goodTithis: [2, 3, 5, 7, 10, 11, 13],
-    // Same base as marriage — Muhurta Chintamani Vivah Prakarana nakshatras
+    // Same base as marriage  –  Muhurta Chintamani Vivah Prakarana nakshatras
     // Rohini(4), Mrigashira(5), Magha(10), U.Phalguni(12), Hasta(13),
     // Chitra(14), Swati(15), Anuradha(17), Moola(19), U.Ashadha(21),
     // Shravana(22), U.Bhadrapada(26), Revati(27)
@@ -87,7 +87,7 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     id: 'griha_pravesh',
     label: { en: 'Griha Pravesh', hi: 'गृह प्रवेश', sa: 'गृहप्रवेशः' },
     goodTithis: [2, 3, 5, 7, 10, 11, 12, 13],
-    // House entry needs STABILITY — Sthira nakshatras primary, select Mrdu/Chara
+    // House entry needs STABILITY  –  Sthira nakshatras primary, select Mrdu/Chara
     // Rohini(4), Punarvasu(7), Pushya(8), U.Phalguni(12), Hasta(13),
     // Chitra(14), Anuradha(17), U.Ashadha(21), Shravana(22),
     // U.Bhadrapada(26), Revati(27)
@@ -144,7 +144,7 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     id: 'upanayana',
     label: { en: 'Upanayana (Thread)', hi: 'उपनयन', sa: 'उपनयनम्' },
     goodTithis: [2, 3, 5, 7, 10, 11, 13],
-    // Thread ceremony = initiation into learning — needs clarity + stability
+    // Thread ceremony = initiation into learning  –  needs clarity + stability
     // Ashwini(1), Rohini(4), Mrigashira(5), Punarvasu(7), Pushya(8),
     // U.Phalguni(12), Hasta(13), Chitra(14), Swati(15), Anuradha(17),
     // Shravana(22), Revati(27)
@@ -170,8 +170,8 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     // Rohini(4)=growth, Punarvasu(7)=restoration, Pushya(8)=BEST universal,
     // U.Phalguni(12)=commitment, Hasta(13)=skill, Chitra(14)=creative brilliance,
     // Anuradha(17)=loyalty, Shravana(22)=learning, Revati(27)=completion
-    // Dhanishtha(23)=Vasus/wealth (conditional — good for structured enterprise)
-    // Swati(15)=Vayu/trade (conditional — good for trading/brokerage, volatile for lock-in)
+    // Dhanishtha(23)=Vasus/wealth (conditional  –  good for structured enterprise)
+    // Swati(15)=Vayu/trade (conditional  –  good for trading/brokerage, volatile for lock-in)
     goodNakshatras: [4, 7, 8, 12, 13, 14, 15, 17, 22, 23, 27],
     goodWeekdays: [1, 3, 4, 5],
     avoidTithis: [4, 8, 9, 14, 15, 30],
@@ -187,7 +187,7 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     id: 'property',
     label: { en: 'Property Purchase', hi: 'भूमि/सम्पत्ति', sa: 'भूमिक्रयः' },
     goodTithis: [2, 3, 5, 7, 10, 11, 12, 13],
-    // Property = FIXED assets — Sthira nakshatras dominate
+    // Property = FIXED assets  –  Sthira nakshatras dominate
     // Rohini(4)=fertile stability, Pushya(8)=universal, U.Phalguni(12)=commitment,
     // Hasta(13)=skill/precision, Anuradha(17)=loyalty, U.Ashadha(21)=final victory,
     // Shravana(22)=stability, U.Bhadrapada(26)=deep roots, Revati(27)=completion
@@ -205,7 +205,7 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     id: 'gold_purchase',
     label: { en: 'Gold Purchase', hi: 'स्वर्ण खरीद', sa: 'स्वर्णक्रयः' },
     goodTithis: [1, 2, 3, 5, 7, 10, 11, 13],
-    // Gold = durable wealth — Sthira + select Mrdu
+    // Gold = durable wealth  –  Sthira + select Mrdu
     // Rohini(4), Punarvasu(7), Pushya(8), U.Phalguni(12), Hasta(13),
     // Anuradha(17), U.Ashadha(21), Shravana(22), U.Bhadrapada(26), Revati(27)
     goodNakshatras: [4, 7, 8, 12, 13, 17, 21, 22, 26, 27],
@@ -222,7 +222,7 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     id: 'financial_signing',
     label: { en: 'Financial Signing', hi: 'वित्तीय हस्ताक्षर', sa: 'वित्तहस्ताक्षरम्' },
     goodTithis: [1, 2, 3, 5, 7, 10, 11, 13],
-    // Financial contracts need precision + stability — Sthira dominant
+    // Financial contracts need precision + stability  –  Sthira dominant
     // Rohini(4), Mrigashira(5)=careful assessment, Pushya(8), U.Phalguni(12),
     // Hasta(13)=precision, Anuradha(17), U.Ashadha(21), Shravana(22),
     // U.Bhadrapada(26), Revati(27)
@@ -262,7 +262,7 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     id: 'vehicle',
     label: { en: 'Vehicle Purchase', hi: 'वाहन खरीद', sa: 'वाहनक्रयः' },
     goodTithis: [1, 2, 3, 5, 6, 7, 10, 11, 12, 13, 15],
-    // Vehicles = movement + durability — Chara/Kshipra primary, Sthira for durability
+    // Vehicles = movement + durability  –  Chara/Kshipra primary, Sthira for durability
     // Ashwini(1)=swift vehicles, Rohini(4)=durability, Mrigashira(5)=travel,
     // Punarvasu(7), Pushya(8), U.Phalguni(12), Hasta(13), Chitra(14)=design,
     // Swati(15)=movement, Anuradha(17), U.Ashadha(21), Shravana(22),
@@ -281,7 +281,7 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     id: 'travel',
     label: { en: 'Travel', hi: 'यात्रा', sa: 'यात्रा' },
     goodTithis: [2, 3, 5, 7, 10, 11, 13],
-    // Travel = safety + mobility — Kshipra/Chara/Mrdu nakshatras
+    // Travel = safety + mobility  –  Kshipra/Chara/Mrdu nakshatras
     // Ashwini(1)=swift, Rohini(4)=safe, Mrigashira(5)=searching,
     // Punarvasu(7)=return, Pushya(8)=protected, U.Phalguni(12),
     // Hasta(13), Chitra(14), Swati(15)=wind/movement, Anuradha(17),
@@ -300,7 +300,7 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     id: 'relocation',
     label: { en: 'Relocation', hi: 'स्थानान्तरण', sa: 'स्थानान्तरणम्' },
     goodTithis: [2, 3, 5, 7, 10, 11, 12, 13],
-    // Moving/settling = stability at destination — Chara for movement + Sthira for settling
+    // Moving/settling = stability at destination  –  Chara for movement + Sthira for settling
     // Rohini(4), Mrigashira(5), Punarvasu(7), Pushya(8), U.Phalguni(12),
     // Hasta(13), Swati(15)=movement, Anuradha(17), Shravana(22),
     // Dhanishtha(23), Revati(27)
@@ -322,7 +322,7 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     id: 'education',
     label: { en: 'Education Start', hi: 'विद्यारम्भ', sa: 'विद्यारम्भः' },
     goodTithis: [1, 2, 3, 5, 7, 10, 11, 13],
-    // Learning = clarity + receptivity — Kshipra/Mrdu + intellectual Chara
+    // Learning = clarity + receptivity  –  Kshipra/Mrdu + intellectual Chara
     // Ashwini(1)=quick grasp, Rohini(4)=steady learning, Mrigashira(5)=curiosity,
     // Punarvasu(7)=understanding, Pushya(8)=nourishment, U.Phalguni(12),
     // Hasta(13)=skill, Swati(15)=independent thought, Anuradha(17)=devotion,
@@ -341,7 +341,7 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     id: 'exam',
     label: { en: 'Examination', hi: 'परीक्षा', sa: 'परीक्षा' },
     goodTithis: [1, 2, 3, 5, 7, 10, 11, 13],
-    // Exams = clarity + performance — same base as education
+    // Exams = clarity + performance  –  same base as education
     goodNakshatras: [1, 4, 5, 7, 8, 12, 13, 15, 17, 22, 23, 27],
     goodWeekdays: [1, 3, 4, 5],
     avoidTithis: [4, 8, 9, 14, 15, 30],
@@ -359,7 +359,7 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     id: 'medical_treatment',
     label: { en: 'Medical Treatment', hi: 'चिकित्सा', sa: 'चिकित्सा' },
     goodTithis: [2, 3, 5, 7, 10, 11, 13],
-    // Medicine = healing — Rudra IS the Celestial Physician
+    // Medicine = healing  –  Rudra IS the Celestial Physician
     // Ashwini(1)=Ashwini Kumaras/divine healers, Rohini(4)=nourishment,
     // Ardra(6)=Rudra healing, Punarvasu(7)=restoration, Pushya(8)=nourishment,
     // Hasta(13)=skill, Swati(15)=independence, Anuradha(17)=devotion,
@@ -376,7 +376,7 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     id: 'surgery',
     label: { en: 'Surgery', hi: 'शल्य चिकित्सा', sa: 'शल्यचिकित्सा' },
     goodTithis: [2, 3, 5, 7, 10, 11, 13],
-    // Surgery = CUTTING — Tikshna/Ugra nakshatras are CORRECT here
+    // Surgery = CUTTING  –  Tikshna/Ugra nakshatras are CORRECT here
     // This is the classical INVERSION: "bad" nakshatras become good for surgery
     // Ashwini(1)=divine surgeons, Ardra(6)=Rudra cuts, Pushya(8)=universal,
     // Ashlesha(9)=serpent precision, Magha(10)=authority, Hasta(13)=hands/skill,
@@ -384,7 +384,7 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     goodNakshatras: [1, 6, 8, 9, 10, 13, 18, 19],
     goodWeekdays: [1, 2, 4], // Mon, Tue(Mars=surgery), Thu
     avoidTithis: [4, 6, 8, 9, 14, 15, 30],
-    // Soft/stable nakshatras are WRONG for surgery — no cutting energy
+    // Soft/stable nakshatras are WRONG for surgery  –  no cutting energy
     avoidNakshatras: [4, 5, 7, 11, 12, 14, 15, 16, 17, 20, 21, 22, 23, 24, 25, 26, 27],
     goodHoras: [2, 0, 4], // Mars, Sun, Jupiter
     relevantHouses: [1, 6, 8, 11],
@@ -398,7 +398,7 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     id: 'court_case',
     label: { en: 'Court Case', hi: 'न्यायालय', sa: 'न्यायालयः' },
     goodTithis: [2, 3, 5, 7, 10, 11, 13],
-    // Litigation = aggressive action — fierce nakshatras HELP
+    // Litigation = aggressive action  –  fierce nakshatras HELP
     // Ashwini(1)=swift, Bharani(2)=Yama/justice, Krittika(3)=Agni/burning opposition,
     // Ardra(6)=Rudra/destruction of enemy, Pushya(8)=universal, Hasta(13)=skill,
     // Chitra(14)=precision, Jyeshtha(18)=seniority/authority, Mula(19)=uprooting
@@ -419,7 +419,7 @@ export const EXTENDED_ACTIVITIES: Record<ExtendedActivityId, ExtendedActivity> =
     id: 'spiritual_practice',
     label: { en: 'Spiritual Practice', hi: 'साधना', sa: 'साधना' },
     goodTithis: [1, 2, 3, 5, 7, 10, 11, 13, 15],
-    // Spiritual practice accepts broader range — Tikshna valid for intense tapas
+    // Spiritual practice accepts broader range  –  Tikshna valid for intense tapas
     // Ashwini(1), Bharani(2)=Yama/mortality awareness, Krittika(3)=purification fire,
     // Ardra(6)=Rudra tapas, Punarvasu(7), Pushya(8), U.Phalguni(12),
     // Hasta(13), Chitra(14), Anuradha(17), Mula(19)=roots of liberation,

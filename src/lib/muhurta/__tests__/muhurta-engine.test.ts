@@ -142,7 +142,7 @@ describe('getPanchangSnapshot', () => {
 });
 
 // ---------------------------------------------------------------------------
-// Legacy scorePanchangFactors and scoreTransitFactors tests removed —
+// Legacy scorePanchangFactors and scoreTransitFactors tests removed  – 
 // those functions were part of the old additive scorer (ai-recommender.ts),
 // now replaced by the rule-based evaluator in engine/evaluator.ts.
 // Tests for the new engine are in muhurta-engine-core.test.ts.

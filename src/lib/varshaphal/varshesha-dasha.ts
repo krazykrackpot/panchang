@@ -1,5 +1,5 @@
 /**
- * Varshesha Dasha — Year Lord-based annual planetary periods
+ * Varshesha Dasha  –  Year Lord-based annual planetary periods
  *
  * Divides 365.25 days proportionally based on the Year Lord's natural
  * planetary relationships. The Year Lord's own period is largest; friend
@@ -16,9 +16,9 @@ import type { LocaleText } from '@/types/panchang';
 // ─── Planetary friendship table (BPHS Ch.3, canonical from Lesson S) ──────────
 // 0=Sun, 1=Moon, 2=Mars, 3=Mercury, 4=Jupiter, 5=Venus, 6=Saturn, 7=Rahu, 8=Ketu
 //
-// Moon's friends: Sun, Mercury — NOT Jupiter. Moon has NO natural enemies. (Lesson S)
-// Jupiter's enemies: Mercury, Venus — NOT Saturn. Saturn is neutral.
-// Mercury's friends: Sun, Venus — NOT Moon/Jupiter/Saturn.
+// Moon's friends: Sun, Mercury  –  NOT Jupiter. Moon has NO natural enemies. (Lesson S)
+// Jupiter's enemies: Mercury, Venus  –  NOT Saturn. Saturn is neutral.
+// Mercury's friends: Sun, Venus  –  NOT Moon/Jupiter/Saturn.
 const FRIENDS: Record<number, number[]> = {
   0: [1, 4, 2],          // Sun: Moon, Jupiter, Mars
   1: [0, 3],             // Moon: Sun, Mercury (no natural enemies)

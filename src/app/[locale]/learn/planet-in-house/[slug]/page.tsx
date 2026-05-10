@@ -108,7 +108,7 @@ export default async function PlanetInHouseDetailPage({
   const articleLD = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `${planet.en} in the ${houseLabel.suffix} House — BPHS Vedic Astrology`,
+    headline: `${planet.en} in the ${houseLabel.suffix} House  –  BPHS Vedic Astrology`,
     description: verse.interpretation.en.slice(0, 160),
     author: { '@type': 'Organization', name: 'Dekho Panchang' },
     publisher: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },

@@ -1,15 +1,15 @@
 {
   "title": {
-    "en": "Tithi Pravesha — The Birthday Chart",
-    "hi": "तिथि प्रवेश — जन्मदिन कुण्डली",
-    "sa": "तिथिप्रवेशः — जन्मदिवसकुण्डली",
-    "ta": "திதி பிரவேசம் — பிறந்தநாள் ஜாதகம்",
-    "te": "తిథి ప్రవేశ — జన్మదిన కుండలి",
-    "bn": "তিথি প্রবেশ — জন্মদিন কুণ্ডলী",
-    "kn": "ತಿಥಿ ಪ್ರವೇಶ — ಜನ್ಮದಿನ ಕುಂಡಲಿ",
-    "mr": "तिथी प्रवेश — वाढदिवस कुंडली",
-    "gu": "તિથિ પ્રવેશ — જન્મદિવસ કુંડળી",
-    "mai": "तिथि प्रवेश — जन्मदिन कुण्डली"
+    "en": "Tithi Pravesha  –  The Birthday Chart",
+    "hi": "तिथि प्रवेश  –  जन्मदिन कुण्डली",
+    "sa": "तिथिप्रवेशः  –  जन्मदिवसकुण्डली",
+    "ta": "திதி பிரவேசம்  –  பிறந்தநாள் ஜாதகம்",
+    "te": "తిథి ప్రవేశ  –  జన్మదిన కుండలి",
+    "bn": "তিথি প্রবেশ  –  জন্মদিন কুণ্ডলী",
+    "kn": "ತಿಥಿ ಪ್ರವೇಶ  –  ಜನ್ಮದಿನ ಕುಂಡಲಿ",
+    "mr": "तिथी प्रवेश  –  वाढदिवस कुंडली",
+    "gu": "તિથિ પ્રવેશ  –  જન્મદિવસ કુંડળી",
+    "mai": "तिथि प्रवेश  –  जन्मदिन कुण्डली"
   },
   "subtitle": {
     "en": "When the Sun-Moon angle of birth repeats each year, creating a powerful annual chart unique to Vedic astrology",
@@ -130,8 +130,8 @@
       ],
       "correctAnswer": 2,
       "explanation": {
-        "en": "Tithi Pravesha is based on the annual recurrence of the natal tithi — the exact Sun-Moon elongation angle at birth. The chart is cast for the moment this angular relationship repeats each year.",
-        "hi": "तिथि प्रवेश जन्म तिथि — जन्म के समय सूर्य-चन्द्र के यथार्थ कोणीय विस्तार — के वार्षिक पुनरावर्तन पर आधारित है। कुण्डली उस क्षण के लिए बनाई जाती है जब यह कोणीय सम्बन्ध प्रत्येक वर्ष दोहराता है।"
+        "en": "Tithi Pravesha is based on the annual recurrence of the natal tithi  –  the exact Sun-Moon elongation angle at birth. The chart is cast for the moment this angular relationship repeats each year.",
+        "hi": "तिथि प्रवेश जन्म तिथि  –  जन्म के समय सूर्य-चन्द्र के यथार्थ कोणीय विस्तार  –  के वार्षिक पुनरावर्तन पर आधारित है। कुण्डली उस क्षण के लिए बनाई जाती है जब यह कोणीय सम्बन्ध प्रत्येक वर्ष दोहराता है।"
       }
     },
     {
@@ -258,8 +258,8 @@
       },
       "correctAnswer": true,
       "explanation": {
-        "en": "True. Traditional Hindu birthdays (Janma Tithi) are celebrated based on the lunar tithi, not the solar/Gregorian date. This is why Tithi Pravesha honors the same tradition — your cosmic \"birthday\" is when the Sun-Moon relationship recurs.",
-        "hi": "सत्य। पारम्परिक हिन्दू जन्मदिन (जन्म तिथि) चान्द्र तिथि के आधार पर मनाए जाते हैं, सौर/ग्रेगोरियन तिथि पर नहीं। इसीलिए तिथि प्रवेश उसी परम्परा का सम्मान करता है — आपका ब्रह्माण्डीय \"जन्मदिन\" वह है जब सूर्य-चन्द्र सम्बन्ध पुनरावृत्त होता है।"
+        "en": "True. Traditional Hindu birthdays (Janma Tithi) are celebrated based on the lunar tithi, not the solar/Gregorian date. This is why Tithi Pravesha honors the same tradition  –  your cosmic \"birthday\" is when the Sun-Moon relationship recurs.",
+        "hi": "सत्य। पारम्परिक हिन्दू जन्मदिन (जन्म तिथि) चान्द्र तिथि के आधार पर मनाए जाते हैं, सौर/ग्रेगोरियन तिथि पर नहीं। इसीलिए तिथि प्रवेश उसी परम्परा का सम्मान करता है  –  आपका ब्रह्माण्डीय \"जन्मदिन\" वह है जब सूर्य-चन्द्र सम्बन्ध पुनरावृत्त होता है।"
       }
     },
     {
@@ -515,8 +515,8 @@
       ],
       "correctAnswer": 1,
       "explanation": {
-        "en": "The Moon in Vedic astrology represents the mind (mana) and emotions. Since Tithi Pravesha is based on the Sun-Moon angular relationship, it is inherently tuned to emotional, psychological, and domestic themes — areas where the Moon's influence is paramount.",
-        "hi": "वैदिक ज्योतिष में चन्द्रमा मन (मनस) और भावनाओं का प्रतिनिधित्व करता है। चूँकि तिथि प्रवेश सूर्य-चन्द्र कोणीय सम्बन्ध पर आधारित है, यह स्वाभाविक रूप से भावनात्मक, मनोवैज्ञानिक और घरेलू विषयों से अनुकूलित है — ऐसे क्षेत्र जहाँ चन्द्रमा का प्रभाव सर्वोपरि है।"
+        "en": "The Moon in Vedic astrology represents the mind (mana) and emotions. Since Tithi Pravesha is based on the Sun-Moon angular relationship, it is inherently tuned to emotional, psychological, and domestic themes  –  areas where the Moon's influence is paramount.",
+        "hi": "वैदिक ज्योतिष में चन्द्रमा मन (मनस) और भावनाओं का प्रतिनिधित्व करता है। चूँकि तिथि प्रवेश सूर्य-चन्द्र कोणीय सम्बन्ध पर आधारित है, यह स्वाभाविक रूप से भावनात्मक, मनोवैज्ञानिक और घरेलू विषयों से अनुकूलित है  –  ऐसे क्षेत्र जहाँ चन्द्रमा का प्रभाव सर्वोपरि है।"
       }
     }
   ]

@@ -1,13 +1,13 @@
 'use client';
 
 /**
- * VratScheduler — client-side notification scheduler
+ * VratScheduler  –  client-side notification scheduler
  *
  * Included once in the app layout. On mount (and when preferences change),
  * it fetches the calendar API and schedules browser notifications for
  * followed vrats within the user's reminder window.
  *
- * This is a render-nothing component — it only produces side effects.
+ * This is a render-nothing component  –  it only produces side effects.
  */
 
 import { useEffect, useRef } from 'react';
@@ -57,5 +57,5 @@ export default function VratScheduler() {
     scheduleVratNotifications();
   }, [followedVrats, reminderHours, lat, lng, timezone, locale]);
 
-  return null; // Render nothing — side-effect only
+  return null; // Render nothing  –  side-effect only
 }

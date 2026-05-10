@@ -102,7 +102,7 @@ export async function GET(request: Request) {
     festivals = generateFestivalCalendarV2(year, lat, lng, timezone);
   } catch (err) {
     console.error('[panchang-pdf] Festival generation failed:', err);
-    // Continue without festivals — don't block the PDF
+    // Continue without festivals  –  don't block the PDF
   }
 
   const monthStr = String(month).padStart(2, '0');
@@ -166,12 +166,12 @@ export async function GET(request: Request) {
         day,
         weekday: DAY_ABBR[weekdayNum],
         weekdayNum,
-        tithi: '—',
-        nakshatra: '—',
-        yoga: '—',
-        sunrise: '—',
-        sunset: '—',
-        rahuKaal: '—',
+        tithi: ' – ',
+        nakshatra: ' – ',
+        yoga: ' – ',
+        sunrise: ' – ',
+        sunset: ' – ',
+        rahuKaal: ' – ',
         festivals: '',
         isPanchak: false,
       });
@@ -180,7 +180,7 @@ export async function GET(request: Request) {
 
   // ── Build HTML ────────────────────────────────────────────────
   const monthName = MONTH_NAMES[month - 1];
-  const subtitle = hinduMasa ? `${monthName} ${year} — ${hinduMasa}` : `${monthName} ${year}`;
+  const subtitle = hinduMasa ? `${monthName} ${year}  –  ${hinduMasa}` : `${monthName} ${year}`;
   const generatedDate = new Date().toISOString().split('T')[0];
 
   const tableRows = rows.map(r => {
@@ -207,7 +207,7 @@ export async function GET(request: Request) {
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Monthly Panchang — ${monthName} ${year} — ${escapeHtml(cityName)}</title>
+  <title>Monthly Panchang  –  ${monthName} ${year}  –  ${escapeHtml(cityName)}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet" />
@@ -391,7 +391,7 @@ export async function GET(request: Request) {
   </style>
 </head>
 <body>
-  <!-- Print action bar — hidden in print output -->
+  <!-- Print action bar  –  hidden in print output -->
   <div class="print-bar no-print">
     <button class="print-btn" onclick="window.print()">
       &#128424; Save as PDF / Print

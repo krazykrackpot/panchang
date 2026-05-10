@@ -1,9 +1,9 @@
 /**
- * Personal Rules — 3 rules that require the querent's birth data
+ * Personal Rules  –  3 rules that require the querent's birth data
  *
- * 1. tara-bala — birth nakshatra to muhurta nakshatra compatibility
- * 2. chandra-bala — Moon sign transit compatibility
- * 3. dasha-harmony — current dasha lord alignment with activity
+ * 1. tara-bala  –  birth nakshatra to muhurta nakshatra compatibility
+ * 2. chandra-bala  –  Moon sign transit compatibility
+ * 3. dasha-harmony  –  current dasha lord alignment with activity
  *
  * All return null when the required birth data is not provided,
  * so the engine gracefully degrades to non-personal scoring.
@@ -38,18 +38,18 @@ const GOOD_MOON_POSITIONS = new Set([1, 3, 6, 7, 10, 11]);
 // Inauspicious taras: 3 (Vipat), 5 (Pratyari), 7 (Vadha).
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
-// TARA BALA — Classical 9-fold star compatibility (HARDENED)
+// TARA BALA  –  Classical 9-fold star compatibility (HARDENED)
 //
 // Count from birth nakshatra to muhurta nakshatra, mod 9 → Tara (1-9):
-//   1. Janma (birth)      — neutral-sensitive, +3 (not full bonus)
-//   2. Sampat (wealth)     — auspicious, +8
-//   3. Vipat (danger)      — INAUSPICIOUS, -5 (active penalty, not just 0)
-//   4. Kshema (well-being) — auspicious, +8
-//   5. Pratyari (obstacle) — INAUSPICIOUS, -5
-//   6. Sadhana (achievement) — auspicious, +8
-//   7. Vadha (death)       — INAUSPICIOUS, -5
-//   8. Mitra (friend)      — auspicious, +8
-//   9. Ati-Mitra (best friend) — most auspicious, +8
+//   1. Janma (birth)       –  neutral-sensitive, +3 (not full bonus)
+//   2. Sampat (wealth)      –  auspicious, +8
+//   3. Vipat (danger)       –  INAUSPICIOUS, -5 (active penalty, not just 0)
+//   4. Kshema (well-being)  –  auspicious, +8
+//   5. Pratyari (obstacle)  –  INAUSPICIOUS, -5
+//   6. Sadhana (achievement)  –  auspicious, +8
+//   7. Vadha (death)        –  INAUSPICIOUS, -5
+//   8. Mitra (friend)       –  auspicious, +8
+//   9. Ati-Mitra (best friend)  –  most auspicious, +8
 //
 // Cycle degradation (classical refinement):
 //   1st cycle (nakshatras 1-9 from birth): full points
@@ -86,25 +86,25 @@ const taraBala: MuhurtaRule = {
     const cycle = Math.ceil(count / 9); // 1st, 2nd, or 3rd cycle
     const taraName = TARA_NAMES[tara] || { en: `Tara ${tara}`, hi: `तारा ${tara}`, sa: `तारा ${tara}` };
 
-    // Cycle degradation multiplier (bonuses only — penalties stay full)
+    // Cycle degradation multiplier (bonuses only  –  penalties stay full)
     const cycleMultiplier = cycle === 1 ? 1.0 : cycle === 2 ? 0.75 : 0.5;
 
     // Inauspicious taras: active penalty (not just missed bonus)
     if (INAUSPICIOUS_TARAS.has(tara)) {
       return assess(ctx, this, {
         tier: 3,
-        points: -5, // Active penalty — makes bad tara visible in scoring
+        points: -5, // Active penalty  –  makes bad tara visible in scoring
         maxPoints: 8,
         severity: 'major',
         reason: {
-          en: `Tara ${tara} (${taraName.en}) — inauspicious${cycle > 1 ? ` (${ordinal(cycle)} cycle)` : ''}`,
-          hi: `तारा ${tara} (${taraName.hi}) — अशुभ${cycle > 1 ? ` (${cycle}रा चक्र)` : ''}`,
-          sa: `तारा ${tara} (${taraName.sa}) — अशुभम्`,
+          en: `Tara ${tara} (${taraName.en})  –  inauspicious${cycle > 1 ? ` (${ordinal(cycle)} cycle)` : ''}`,
+          hi: `तारा ${tara} (${taraName.hi})  –  अशुभ${cycle > 1 ? ` (${cycle}रा चक्र)` : ''}`,
+          sa: `तारा ${tara} (${taraName.sa})  –  अशुभम्`,
         },
       });
     }
 
-    // Janma Tara (1st): classically neutral-to-sensitive — reduced bonus
+    // Janma Tara (1st): classically neutral-to-sensitive  –  reduced bonus
     if (tara === 1) {
       const pts = Math.round(3 * cycleMultiplier);
       return assess(ctx, this, {
@@ -113,9 +113,9 @@ const taraBala: MuhurtaRule = {
         maxPoints: 8,
         severity: 'minor',
         reason: {
-          en: `Tara 1 (${taraName.en}) — birth star, neutral${cycle > 1 ? ` (${ordinal(cycle)} cycle, ${pts}pts)` : ''}`,
-          hi: `तारा 1 (${taraName.hi}) — जन्म नक्षत्र, सामान्य`,
-          sa: `तारा 1 (${taraName.sa}) — जन्मनक्षत्रम्, सामान्यम्`,
+          en: `Tara 1 (${taraName.en})  –  birth star, neutral${cycle > 1 ? ` (${ordinal(cycle)} cycle, ${pts}pts)` : ''}`,
+          hi: `तारा 1 (${taraName.hi})  –  जन्म नक्षत्र, सामान्य`,
+          sa: `तारा 1 (${taraName.sa})  –  जन्मनक्षत्रम्, सामान्यम्`,
         },
       });
     }
@@ -128,9 +128,9 @@ const taraBala: MuhurtaRule = {
       maxPoints: 8,
       severity: 'positive',
       reason: {
-        en: `Tara ${tara} (${taraName.en}) — auspicious${cycle > 1 ? ` (${ordinal(cycle)} cycle, ${pts}pts)` : ''}`,
-        hi: `तारा ${tara} (${taraName.hi}) — शुभ${cycle > 1 ? ` (${cycle}रा चक्र)` : ''}`,
-        sa: `तारा ${tara} (${taraName.sa}) — शुभम्`,
+        en: `Tara ${tara} (${taraName.en})  –  auspicious${cycle > 1 ? ` (${ordinal(cycle)} cycle, ${pts}pts)` : ''}`,
+        hi: `तारा ${tara} (${taraName.hi})  –  शुभ${cycle > 1 ? ` (${cycle}रा चक्र)` : ''}`,
+        sa: `तारा ${tara} (${taraName.sa})  –  शुभम्`,
       },
     });
   },
@@ -141,14 +141,14 @@ const taraBala: MuhurtaRule = {
 // Moon's transit sign relative to birth rashi. Good: 1,3,6,7,10,11.
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
-// CHANDRA BALA — Moon transit strength (HARDENED)
+// CHANDRA BALA  –  Moon transit strength (HARDENED)
 //
 // Classical rule (MC, Jyotirnibandha):
 //   Moon's transit house from birth rashi determines Chandra Bala.
 //   Good houses: 1 (Janma), 3 (Upachaya), 6 (Upachaya), 7 (Kendra),
 //                10 (Kendra), 11 (Labha)
 //   Bad houses:  2, 4, 5, 8, 9, 12
-//   Worst: 8th (Ashtama Chandra — Moon in 8th from birth)
+//   Worst: 8th (Ashtama Chandra  –  Moon in 8th from birth)
 //
 // HARDENED: bad positions now give ACTIVE PENALTY (-4 or -5),
 // not just missed bonus (0). This makes bad Chandra Bala visible
@@ -176,14 +176,14 @@ const chandraBala: MuhurtaRule = {
         maxPoints: 8,
         severity: 'positive',
         reason: {
-          en: `Moon in ${ordinal(position)} from birth sign — favourable Chandra Bala`,
-          hi: `जन्म राशि से ${position}वें स्थान में चन्द्र — शुभ चन्द्र बल`,
-          sa: `जन्मराशेः ${position}स्थाने चन्द्रः — शुभचन्द्रबलम्`,
+          en: `Moon in ${ordinal(position)} from birth sign  –  favourable Chandra Bala`,
+          hi: `जन्म राशि से ${position}वें स्थान में चन्द्र  –  शुभ चन्द्र बल`,
+          sa: `जन्मराशेः ${position}स्थाने चन्द्रः  –  शुभचन्द्रबलम्`,
         },
       });
     }
 
-    // 8th position (Ashtama Chandra) — worst placement, heaviest penalty
+    // 8th position (Ashtama Chandra)  –  worst placement, heaviest penalty
     if (position === 8) {
       return assess(ctx, this, {
         tier: 3,
@@ -191,23 +191,23 @@ const chandraBala: MuhurtaRule = {
         maxPoints: 8,
         severity: 'major',
         reason: {
-          en: `Ashtama Chandra — Moon in 8th from birth sign (worst position)`,
-          hi: `अष्टम चन्द्र — जन्म राशि से 8वें स्थान में (सबसे कमजोर)`,
-          sa: `अष्टमचन्द्रः — जन्मराशेः अष्टमस्थाने (अत्यन्तदुर्बलम्)`,
+          en: `Ashtama Chandra  –  Moon in 8th from birth sign (worst position)`,
+          hi: `अष्टम चन्द्र  –  जन्म राशि से 8वें स्थान में (सबसे कमजोर)`,
+          sa: `अष्टमचन्द्रः  –  जन्मराशेः अष्टमस्थाने (अत्यन्तदुर्बलम्)`,
         },
       });
     }
 
-    // Other bad positions (2, 4, 5, 9, 12) — moderate penalty
+    // Other bad positions (2, 4, 5, 9, 12)  –  moderate penalty
     return assess(ctx, this, {
       tier: 3,
       points: -4,
       maxPoints: 8,
       severity: 'moderate',
       reason: {
-        en: `Moon in ${ordinal(position)} from birth sign — weak Chandra Bala`,
-        hi: `जन्म राशि से ${position}वें स्थान में चन्द्र — दुर्बल चन्द्र बल`,
-        sa: `जन्मराशेः ${position}स्थाने चन्द्रः — दुर्बलचन्द्रबलम्`,
+        en: `Moon in ${ordinal(position)} from birth sign  –  weak Chandra Bala`,
+        hi: `जन्म राशि से ${position}वें स्थान में चन्द्र  –  दुर्बल चन्द्र बल`,
+        sa: `जन्मराशेः ${position}स्थाने चन्द्रः  –  दुर्बलचन्द्रबलम्`,
       },
     });
   },

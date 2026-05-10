@@ -23,7 +23,7 @@ const LABELS = {
   en: {
     backToAll: 'All Signs',
     weeklyHoroscope: 'Weekly Horoscope',
-    subtitle: 'Based on actual planetary transits — not generic predictions',
+    subtitle: 'Based on actual planetary transits  –  not generic predictions',
     weekOverview: 'Week Overview',
     overallScore: 'Average Score',
     bestDay: 'Best Day',
@@ -31,7 +31,7 @@ const LABELS = {
     dayByDay: 'Day-by-Day Breakdown',
     weeklyDomains: 'Weekly Domain Highlights',
     luckyDays: 'Lucky Days',
-    luckyDaysDesc: 'Days scoring above 7 — optimal for important decisions',
+    luckyDaysDesc: 'Days scoring above 7  –  optimal for important decisions',
     career: 'Career',
     love: 'Love',
     health: 'Health',
@@ -42,7 +42,7 @@ const LABELS = {
     daily: 'Daily',
     weekly: 'Weekly',
     monthly: 'Monthly',
-    noLuckyDays: 'No standout lucky days this week — focus on steady progress.',
+    noLuckyDays: 'No standout lucky days this week  –  focus on steady progress.',
     ctaTitle: 'Get personalized horoscope',
     ctaDesc: 'Generate your Kundali to unlock predictions tailored to your exact birth chart.',
     ctaButton: 'Generate Kundali',
@@ -55,7 +55,7 @@ const LABELS = {
   hi: {
     backToAll: 'सभी राशियाँ',
     weeklyHoroscope: 'साप्ताहिक राशिफल',
-    subtitle: 'वास्तविक ग्रह गोचर पर आधारित — सामान्य राशिफल नहीं',
+    subtitle: 'वास्तविक ग्रह गोचर पर आधारित  –  सामान्य राशिफल नहीं',
     weekOverview: 'सप्ताह का अवलोकन',
     overallScore: 'औसत स्कोर',
     bestDay: 'सर्वोत्तम दिन',
@@ -63,7 +63,7 @@ const LABELS = {
     dayByDay: 'दैनिक विवरण',
     weeklyDomains: 'साप्ताहिक क्षेत्र विश्लेषण',
     luckyDays: 'शुभ दिन',
-    luckyDaysDesc: '7 से अधिक स्कोर वाले दिन — महत्वपूर्ण निर्णयों के लिए उत्तम',
+    luckyDaysDesc: '7 से अधिक स्कोर वाले दिन  –  महत्वपूर्ण निर्णयों के लिए उत्तम',
     career: 'करियर',
     love: 'प्रेम',
     health: 'स्वास्थ्य',
@@ -74,7 +74,7 @@ const LABELS = {
     daily: 'दैनिक',
     weekly: 'साप्ताहिक',
     monthly: 'मासिक',
-    noLuckyDays: 'इस सप्ताह कोई विशेष शुभ दिन नहीं — स्थिर प्रगति पर ध्यान दें।',
+    noLuckyDays: 'इस सप्ताह कोई विशेष शुभ दिन नहीं  –  स्थिर प्रगति पर ध्यान दें।',
     ctaTitle: 'व्यक्तिगत राशिफल प्राप्त करें',
     ctaDesc: 'अपनी सटीक जन्म कुण्डली के अनुरूप भविष्यवाणी पाने के लिए कुण्डली बनाएँ।',
     ctaButton: 'कुण्डली बनाएँ',
@@ -508,7 +508,7 @@ export function WeeklyClient({ rashi, locale }: WeeklyClientProps) {
               )}
             </div>
 
-            {/* Key Dates — strong and challenging days with context */}
+            {/* Key Dates  –  strong and challenging days with context */}
             <div className="bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
               <h2 className="text-gold-light text-lg font-bold mb-4" style={headingFont}>{L.keyDates}</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -593,8 +593,8 @@ export function WeeklyClient({ rashi, locale }: WeeklyClientProps) {
             {/* Share */}
             <div className="flex justify-center">
               <ShareButton
-                title={`${vedicName} (${westernName}) — ${L.weeklyHoroscope}`}
-                text={`${westernName} Weekly Horoscope — Avg Score: ${agg.avgScore}/10 | dekhopanchang.com`}
+                title={`${vedicName} (${westernName})  –  ${L.weeklyHoroscope}`}
+                text={`${westernName} Weekly Horoscope  –  Avg Score: ${agg.avgScore}/10 | dekhopanchang.com`}
                 url={`https://dekhopanchang.com/${locale}/horoscope/${rashiSlug}/weekly`}
                 locale={locale as Locale}
               />

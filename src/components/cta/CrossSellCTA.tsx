@@ -10,7 +10,7 @@ interface CrossSellCTAProps {
   headline: string;
   /** Subtext / description */
   subtext: string;
-  /** Link destination — if set, renders a link button instead of auth trigger */
+  /** Link destination  –  if set, renders a link button instead of auth trigger */
   href?: string;
   /** Button label */
   buttonLabel: string;

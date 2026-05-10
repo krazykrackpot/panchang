@@ -89,7 +89,7 @@ export default function Navbar() {
   // Mark as hydrated after mount to avoid SSR/client mismatch
   useEffect(() => { setHydrated(true); }, []);
 
-  // Auto-detect location on mount (skip if already set — detect() also guards internally)
+  // Auto-detect location on mount (skip if already set  –  detect() also guards internally)
   useEffect(() => { if (!locationStore.lat) locationStore.detect(); }, []);
 
   // Lock body scroll when mobile menu is open
@@ -119,7 +119,7 @@ export default function Navbar() {
     <nav aria-label="Main navigation" className="fixed top-0 left-0 right-0 z-50 bg-bg-primary/80 backdrop-blur-xl border-b border-gold-primary/10">
       <div className="w-full px-6 lg:px-10">
         <div className="flex items-center h-16">
-          {/* Left — Logo */}
+          {/* Left  –  Logo */}
           <Link href="/" className="flex items-center gap-2.5 group shrink-0">
             <div className="relative w-10 h-10">
               <svg viewBox="0 0 32 32" className="w-10 h-10 group-hover:scale-105 transition-transform" aria-hidden="true">
@@ -132,10 +132,10 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Spacer — small gap between logo and nav */}
+          {/* Spacer  –  small gap between logo and nav */}
           <div className="min-w-6 lg:min-w-10" />
 
-          {/* Center — Nav links */}
+          {/* Center  –  Nav links */}
           <div className="hidden lg:flex items-center gap-6">
             {navItems.map((item, i) => {
               const rendered = item.children ? (
@@ -176,7 +176,7 @@ export default function Navbar() {
           {/* Spacer */}
           <div className="flex-1 min-w-4 lg:min-w-8" />
 
-          {/* Right — Controls */}
+          {/* Right  –  Controls */}
           <div className="hidden lg:flex items-center gap-3 shrink-0">
             <div className={`flex items-center gap-1.5 text-text-secondary text-xs transition-opacity duration-150 ${hydrated && locationStore.confirmed && locationStore.name ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
               <MapPin className="w-3.5 h-3.5 text-gold-primary" />

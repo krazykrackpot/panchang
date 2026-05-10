@@ -1,15 +1,15 @@
 {
   "title": {
-    "en": "Finding the Sun — Meeus Algorithm Step by Step",
-    "hi": "सूर्य की खोज — मीयस एल्गोरिदम चरणबद्ध",
-    "sa": "सूर्यान्वेषणम् — मीयस् एल्गोरिदम् पदशः",
-    "ta": "சூரியனைக் கண்டறிதல் — மீயஸ் வழிமுறை படிப்படியாக",
-    "te": "సూర్యుని కనుగొనడం — మీయస్ అల్గారిథమ్ దశలవారీగా",
-    "bn": "সূর্যের সন্ধান — মীউস অ্যালগরিদম ধাপে ধাপে",
-    "kn": "ಸೂರ್ಯನ ಶೋಧ — ಮೀಯಸ್ ಅಲ್ಗಾರಿದಮ್ ಹಂತ ಹಂತವಾಗಿ",
-    "mr": "सूर्य शोध — मीयस अल्गोरिदम चरणबद्ध",
-    "gu": "સૂર્યની શોધ — મીયસ એલ્ગોરિધમ ચરણબદ્ધ",
-    "mai": "सूर्यक खोज — मीयस एल्गोरिदम चरणबद्ध"
+    "en": "Finding the Sun  –  Meeus Algorithm Step by Step",
+    "hi": "सूर्य की खोज  –  मीयस एल्गोरिदम चरणबद्ध",
+    "sa": "सूर्यान्वेषणम्  –  मीयस् एल्गोरिदम् पदशः",
+    "ta": "சூரியனைக் கண்டறிதல்  –  மீயஸ் வழிமுறை படிப்படியாக",
+    "te": "సూర్యుని కనుగొనడం  –  మీయస్ అల్గారిథమ్ దశలవారీగా",
+    "bn": "সূর্যের সন্ধান  –  মীউস অ্যালগরিদম ধাপে ধাপে",
+    "kn": "ಸೂರ್ಯನ ಶೋಧ  –  ಮೀಯಸ್ ಅಲ್ಗಾರಿದಮ್ ಹಂತ ಹಂತವಾಗಿ",
+    "mr": "सूर्य शोध  –  मीयस अल्गोरिदम चरणबद्ध",
+    "gu": "સૂર્યની શોધ  –  મીયસ એલ્ગોરિધમ ચરણબદ્ધ",
+    "mai": "सूर्यक खोज  –  मीयस एल्गोरिदम चरणबद्ध"
   },
   "subtitle": {
     "en": "The mathematical recipe for computing the Sun's ecliptic longitude to 0.01-degree accuracy using only JavaScript",
@@ -92,8 +92,8 @@
           "gu": "સૂર્ય પૃથ્વીની વર્તુળાકાર ભ્રમણકક્ષામાં ફરે છે તેથી"
         },
         {
-          "en": "Because Earth's orbit is elliptical — faster at perihelion, slower at aphelion",
-          "hi": "क्योंकि पृथ्वी की कक्षा दीर्घवृत्तीय है — उपसौर पर तेज़, अपसौर पर धीमी"
+          "en": "Because Earth's orbit is elliptical  –  faster at perihelion, slower at aphelion",
+          "hi": "क्योंकि पृथ्वी की कक्षा दीर्घवृत्तीय है  –  उपसौर पर तेज़, अपसौर पर धीमी"
         },
         {
           "en": "Because of the Moon's gravitational pull on the Sun",
@@ -153,8 +153,8 @@
       ],
       "correctAnswer": 1,
       "explanation": {
-        "en": "L₀ = 280.466° + 36000.770° x T is the Sun's mean longitude — where it would be if Earth's orbit were a perfect circle with uniform motion. The actual position differs due to the elliptical orbit (corrected by the Equation of Center).",
-        "hi": "L₀ = 280.466° + 36000.770° × T सूर्य का माध्य भोगांश है — यदि पृथ्वी की कक्षा समान गति वाला पूर्ण वृत्त होता तो सूर्य यहाँ होता। वास्तविक स्थिति दीर्घवृत्तीय कक्षा के कारण भिन्न होती है (केन्द्र समीकरण द्वारा सुधारित)।"
+        "en": "L₀ = 280.466° + 36000.770° x T is the Sun's mean longitude  –  where it would be if Earth's orbit were a perfect circle with uniform motion. The actual position differs due to the elliptical orbit (corrected by the Equation of Center).",
+        "hi": "L₀ = 280.466° + 36000.770° × T सूर्य का माध्य भोगांश है  –  यदि पृथ्वी की कक्षा समान गति वाला पूर्ण वृत्त होता तो सूर्य यहाँ होता। वास्तविक स्थिति दीर्घवृत्तीय कक्षा के कारण भिन्न होती है (केन्द्र समीकरण द्वारा सुधारित)।"
       }
     },
     {
@@ -549,8 +549,8 @@
       ],
       "correctAnswer": 1,
       "explanation": {
-        "en": "By Kepler's second law, Earth moves fastest at perihelion (closest to the Sun, around January 3). This is why winter in the Northern Hemisphere is slightly shorter than summer — Earth traverses that part of its orbit more quickly.",
-        "hi": "केप्लर के द्वितीय नियम से पृथ्वी उपसौर (सूर्य के निकटतम, लगभग 3 जनवरी) पर सबसे तेज़ चलती है। इसीलिए उत्तरी गोलार्ध में शीत ऋतु ग्रीष्म से थोड़ी छोटी होती है — पृथ्वी कक्षा के उस भाग को अधिक तेज़ी से पार करती है।"
+        "en": "By Kepler's second law, Earth moves fastest at perihelion (closest to the Sun, around January 3). This is why winter in the Northern Hemisphere is slightly shorter than summer  –  Earth traverses that part of its orbit more quickly.",
+        "hi": "केप्लर के द्वितीय नियम से पृथ्वी उपसौर (सूर्य के निकटतम, लगभग 3 जनवरी) पर सबसे तेज़ चलती है। इसीलिए उत्तरी गोलार्ध में शीत ऋतु ग्रीष्म से थोड़ी छोटी होती है  –  पृथ्वी कक्षा के उस भाग को अधिक तेज़ी से पार करती है।"
       }
     }
   ]

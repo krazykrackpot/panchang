@@ -12,7 +12,7 @@ import InfoBlock from '@/components/ui/InfoBlock';
 import type { AshtakavargaData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 
-// House theme for each sign relative to lagna — used for concrete transit guidance
+// House theme for each sign relative to lagna  –  used for concrete transit guidance
 // signId (1-12) mapped to lagna-relative house (computed at render time)
 const HOUSE_LIFE_THEMES: Record<number, { en: string; hi: string }> = {
   1:  { en: 'self, health, and personal identity', hi: 'आत्म, स्वास्थ्य और व्यक्तिगत पहचान' },
@@ -122,33 +122,33 @@ export default function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, he
       >
         {locale === 'en' || isTamil ? (
           <div className="space-y-3">
-            <p><strong>Ashtakavarga</strong> is a point-based system that tells you which zodiac signs are <em>lucky zones</em> for transiting planets to pass through — and which are challenging. Every planet in your birth chart casts &quot;votes&quot; (called <strong>bindus</strong>) to every sign. The sign that gets the most votes is the most receptive for planetary transits.</p>
+            <p><strong>Ashtakavarga</strong> is a point-based system that tells you which zodiac signs are <em>lucky zones</em> for transiting planets to pass through  –  and which are challenging. Every planet in your birth chart casts &quot;votes&quot; (called <strong>bindus</strong>) to every sign. The sign that gets the most votes is the most receptive for planetary transits.</p>
             <p><strong>Reading the score (what the numbers mean for YOU):</strong></p>
             <ul className="list-disc ml-4 space-y-1 text-xs">
-              <li><strong className="text-emerald-400">30+ bindus</strong> — Excellent zone. When a planet transits this sign, it brings its best results. Great time to launch ventures, make investments, or take action in that planet&apos;s domain.</li>
-              <li><strong className="text-amber-300">25–29 bindus</strong> — Above average. Generally favourable transits with some friction.</li>
-              <li><strong className="text-text-secondary">22–24 bindus</strong> — Average. Mixed results — modest gains, no major setbacks.</li>
-              <li><strong className="text-red-400">Below 22 bindus</strong> — Weak zone. Planets transiting here underperform. Saturn or Rahu transiting a weak sign can be a difficult period — plan conservatively.</li>
+              <li><strong className="text-emerald-400">30+ bindus</strong>  –  Excellent zone. When a planet transits this sign, it brings its best results. Great time to launch ventures, make investments, or take action in that planet&apos;s domain.</li>
+              <li><strong className="text-amber-300">25–29 bindus</strong>  –  Above average. Generally favourable transits with some friction.</li>
+              <li><strong className="text-text-secondary">22–24 bindus</strong>  –  Average. Mixed results  –  modest gains, no major setbacks.</li>
+              <li><strong className="text-red-400">Below 22 bindus</strong>  –  Weak zone. Planets transiting here underperform. Saturn or Rahu transiting a weak sign can be a difficult period  –  plan conservatively.</li>
             </ul>
             <p><strong>Practical examples:</strong></p>
             <ul className="list-disc ml-4 space-y-1 text-xs">
               <li>Jupiter (wealth/wisdom) transiting a sign with 30+ bindus = excellent year for education, spiritual growth, and financial gains.</li>
-              <li>Saturn transiting a sign with &lt;22 bindus = a challenging 2.5-year stretch — not a time to take on heavy debt or risky ventures.</li>
-              <li>Your current transits page shows where planets are NOW — cross-reference with your bindus for precise timing.</li>
+              <li>Saturn transiting a sign with &lt;22 bindus = a challenging 2.5-year stretch  –  not a time to take on heavy debt or risky ventures.</li>
+              <li>Your current transits page shows where planets are NOW  –  cross-reference with your bindus for precise timing.</li>
             </ul>
-            <p><strong>SAV vs BPI:</strong> SAV (Sarvashtakavarga) = total votes for each sign from ALL planets combined — your general lucky/unlucky sign map. BPI (Bhinnashtakavarga) = each planet&apos;s individual score — more specific, used when checking a specific planet&apos;s transit.</p>
+            <p><strong>SAV vs BPI:</strong> SAV (Sarvashtakavarga) = total votes for each sign from ALL planets combined  –  your general lucky/unlucky sign map. BPI (Bhinnashtakavarga) = each planet&apos;s individual score  –  more specific, used when checking a specific planet&apos;s transit.</p>
           </div>
         ) : (
           <div className="space-y-3">
             <p><strong>अष्टकवर्ग</strong> एक बिन्दु-आधारित पद्धति है जो बताती है कि गोचर ग्रहों के लिए कौन-सी राशियाँ <em>शुभ क्षेत्र</em> हैं। आपकी जन्म कुण्डली के प्रत्येक ग्रह प्रत्येक राशि को &quot;बिन्दु&quot; (शुभ अंक) देते हैं।</p>
             <p><strong>स्कोर का अर्थ (आपके लिए):</strong></p>
             <ul className="list-disc ml-4 space-y-1 text-xs">
-              <li><strong className="text-emerald-400">30+ बिन्दु</strong> — उत्कृष्ट क्षेत्र। जब कोई ग्रह इस राशि से गुजरे, तो नए कार्य, निवेश और उद्यम शुरू करें।</li>
-              <li><strong className="text-amber-300">25–29 बिन्दु</strong> — औसत से ऊपर। सामान्यतः अनुकूल।</li>
-              <li><strong className="text-text-secondary">22–24 बिन्दु</strong> — औसत। मिश्रित परिणाम।</li>
-              <li><strong className="text-red-400">22 से कम बिन्दु</strong> — कमज़ोर क्षेत्र। यहाँ से गुजरने वाले ग्रह कम फल देते हैं। शनि/राहु का गोचर कठिन हो सकता है।</li>
+              <li><strong className="text-emerald-400">30+ बिन्दु</strong>  –  उत्कृष्ट क्षेत्र। जब कोई ग्रह इस राशि से गुजरे, तो नए कार्य, निवेश और उद्यम शुरू करें।</li>
+              <li><strong className="text-amber-300">25–29 बिन्दु</strong>  –  औसत से ऊपर। सामान्यतः अनुकूल।</li>
+              <li><strong className="text-text-secondary">22–24 बिन्दु</strong>  –  औसत। मिश्रित परिणाम।</li>
+              <li><strong className="text-red-400">22 से कम बिन्दु</strong>  –  कमज़ोर क्षेत्र। यहाँ से गुजरने वाले ग्रह कम फल देते हैं। शनि/राहु का गोचर कठिन हो सकता है।</li>
             </ul>
-            <p><strong>SAV बनाम BPI:</strong> SAV = सभी ग्रहों का कुल स्कोर (समग्र शुभ/अशुभ राशि नक्शा)। BPI = प्रत्येक ग्रह का व्यक्तिगत स्कोर — किसी विशेष ग्रह गोचर की जाँच हेतु।</p>
+            <p><strong>SAV बनाम BPI:</strong> SAV = सभी ग्रहों का कुल स्कोर (समग्र शुभ/अशुभ राशि नक्शा)। BPI = प्रत्येक ग्रह का व्यक्तिगत स्कोर  –  किसी विशेष ग्रह गोचर की जाँच हेतु।</p>
           </div>
         )}
       </InfoBlock>
@@ -157,12 +157,12 @@ export default function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, he
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 p-5">
         <p className="text-sm text-text-primary/85 leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
           {isEn
-            ? 'Ashtakavarga is the most reliable transit prediction tool in Vedic astrology. It tells you which signs in the zodiac are supportive for you and which are challenging. When slow-moving planets like Saturn and Jupiter transit through your strong signs, life flows more easily. When they pass through weak signs, extra caution and patience are needed. Use these scores to time major decisions — job changes, investments, and life commitments.'
-            : 'अष्टकवर्ग वैदिक ज्योतिष का सबसे विश्वसनीय गोचर भविष्यवाणी उपकरण है। यह बताता है कि राशि चक्र की कौन-सी राशियाँ आपके लिए सहायक हैं और कौन-सी चुनौतीपूर्ण। जब शनि और बृहस्पति जैसे मन्द ग्रह आपकी बलवान राशियों से गुजरते हैं, तो जीवन सुगम होता है। दुर्बल राशियों में गोचर के समय अतिरिक्त सावधानी आवश्यक है। बड़े निर्णयों — नौकरी बदलना, निवेश, जीवन के बड़े फैसले — का समय निर्धारित करने के लिए इन अंकों का उपयोग करें।'}
+            ? 'Ashtakavarga is the most reliable transit prediction tool in Vedic astrology. It tells you which signs in the zodiac are supportive for you and which are challenging. When slow-moving planets like Saturn and Jupiter transit through your strong signs, life flows more easily. When they pass through weak signs, extra caution and patience are needed. Use these scores to time major decisions  –  job changes, investments, and life commitments.'
+            : 'अष्टकवर्ग वैदिक ज्योतिष का सबसे विश्वसनीय गोचर भविष्यवाणी उपकरण है। यह बताता है कि राशि चक्र की कौन-सी राशियाँ आपके लिए सहायक हैं और कौन-सी चुनौतीपूर्ण। जब शनि और बृहस्पति जैसे मन्द ग्रह आपकी बलवान राशियों से गुजरते हैं, तो जीवन सुगम होता है। दुर्बल राशियों में गोचर के समय अतिरिक्त सावधानी आवश्यक है। बड़े निर्णयों  –  नौकरी बदलना, निवेश, जीवन के बड़े फैसले  –  का समय निर्धारित करने के लिए इन अंकों का उपयोग करें।'}
         </p>
       </div>
 
-      {/* Quick insight — with house-theme context */}
+      {/* Quick insight  –  with house-theme context */}
       {(strongSigns.length > 0 || weakSigns.length > 0) && (
         <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
           <h4 className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-3">{isEn ? 'Your Supportive & Challenging Zones' : 'आपके सहायक एवं चुनौतीपूर्ण क्षेत्र'}</h4>
@@ -178,13 +178,13 @@ export default function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, he
                     {isEn
                       ? <>
                           <strong>{strongSigns[idx]}</strong> (SAV {ashtakavarga.savTable[signId - 1]})
-                          {theme && <> — When planets transit here, you experience support and positive outcomes in <em>{theme.en}</em>.</>}
-                          {!theme && <> — planets transiting this sign bring favorable results.</>}
+                          {theme && <>  –  When planets transit here, you experience support and positive outcomes in <em>{theme.en}</em>.</>}
+                          {!theme && <>  –  planets transiting this sign bring favorable results.</>}
                         </>
                       : <>
                           <strong>{strongSigns[idx]}</strong> (SAV {ashtakavarga.savTable[signId - 1]})
-                          {theme && <> — जब ग्रह यहाँ से गुजरते हैं, तो <em>{theme.hi}</em> में सहयोग और शुभ फल मिलते हैं।</>}
-                          {!theme && <> — इस राशि में गोचर शुभ फल देते हैं।</>}
+                          {theme && <>  –  जब ग्रह यहाँ से गुजरते हैं, तो <em>{theme.hi}</em> में सहयोग और शुभ फल मिलते हैं।</>}
+                          {!theme && <>  –  इस राशि में गोचर शुभ फल देते हैं।</>}
                         </>}
                   </p>
                 </div>
@@ -200,13 +200,13 @@ export default function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, he
                     {isEn
                       ? <>
                           <strong>{weakSigns[idx]}</strong> (SAV {ashtakavarga.savTable[signId - 1]})
-                          {theme && <> — Transits here may bring challenges in <em>{theme.en}</em>. Extra caution advised during these periods.</>}
-                          {!theme && <> — transits through this sign may bring challenges.</>}
+                          {theme && <>  –  Transits here may bring challenges in <em>{theme.en}</em>. Extra caution advised during these periods.</>}
+                          {!theme && <>  –  transits through this sign may bring challenges.</>}
                         </>
                       : <>
                           <strong>{weakSigns[idx]}</strong> (SAV {ashtakavarga.savTable[signId - 1]})
-                          {theme && <> — यहाँ गोचर <em>{theme.hi}</em> में चुनौतियाँ ला सकते हैं। इन अवधियों में अतिरिक्त सावधानी रखें।</>}
-                          {!theme && <> — इस राशि में गोचर चुनौतीपूर्ण हो सकते हैं।</>}
+                          {theme && <>  –  यहाँ गोचर <em>{theme.hi}</em> में चुनौतियाँ ला सकते हैं। इन अवधियों में अतिरिक्त सावधानी रखें।</>}
+                          {!theme && <>  –  इस राशि में गोचर चुनौतीपूर्ण हो सकते हैं।</>}
                         </>}
                   </p>
                 </div>
@@ -221,7 +221,7 @@ export default function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, he
         </div>
       )}
 
-      {/* Transit Timeline — strong + weak periods */}
+      {/* Transit Timeline  –  strong + weak periods */}
       {allTransits.length > 0 && (() => {
         const minY = Math.min(...allTransits.map(t => t.startYear));
         const maxY = Math.max(...allTransits.map(t => t.endYear));
@@ -237,7 +237,7 @@ export default function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, he
         const PLANET_TEXT: Record<number, string> = { 4: 'text-amber-300', 6: 'text-indigo-300', 7: 'text-slate-300' };
         return (
           <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/12 p-4 sm:p-5">
-            <h4 className="text-gold-light text-sm font-bold mb-1">{locale === 'en' || isTamil ? 'Transit Forecast — Next 15 Years' : 'गोचर पूर्वानुमान — अगले 15 वर्ष'}</h4>
+            <h4 className="text-gold-light text-sm font-bold mb-1">{locale === 'en' || isTamil ? 'Transit Forecast  –  Next 15 Years' : 'गोचर पूर्वानुमान  –  अगले 15 वर्ष'}</h4>
             <p className="text-text-secondary/60 text-xs mb-4">
               {locale === 'en' || isTamil
                 ? 'Green = transiting your strong signs (favorable). Red = transiting your weak signs (challenging).'
@@ -408,7 +408,7 @@ export default function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, he
                 const weak = val < 22;
                 const pct = Math.round((val / 56) * 100);
                 const barColor = strong ? 'bg-emerald-500/60' : weak ? 'bg-red-500/50' : 'bg-gold-primary/40';
-                // — 3-tier heatmap: vivid backgrounds so the tier is INSTANT to read
+                //  –  3-tier heatmap: vivid backgrounds so the tier is INSTANT to read
                 const borderColor = strong ? 'border-emerald-500/50' : weak ? 'border-red-500/40' : 'border-gold-primary/20';
                 const bgColor = strong ? 'bg-emerald-500/15' : weak ? 'bg-red-500/15' : 'bg-white/5';
                 const tierLabel = strong
@@ -430,7 +430,7 @@ export default function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, he
                       <RashiIconById id={r.id} size={32} />
                       <div className="text-sm font-semibold text-text-secondary mt-1.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(r.name, locale)}</div>
                       <div className={`text-2xl font-bold mt-1 ${strong ? 'text-emerald-300' : weak ? 'text-red-300' : 'text-gold-light'}`}>{val}</div>
-                      {/* Tier badge — instant visual signal */}
+                      {/* Tier badge  –  instant visual signal */}
                       <div className={`flex items-center justify-center gap-1 mt-1.5`}>
                         <span className={`w-1.5 h-1.5 rounded-full ${tierDotColor}`} />
                         <span className={`text-[10px] font-bold ${tierTextColor}`}>{tierLabel}</span>
@@ -456,8 +456,8 @@ export default function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, he
             </h4>
             <p className="text-text-secondary/70 text-xs mb-4">
               {locale === 'en' || isTamil
-                ? 'After Trikona & Ekadhipatya reductions per BPHS Ch.66-67 — the essential signal. Higher = genuinely strong for transits.'
-                : 'BPHS अ.66-67 अनुसार त्रिकोण और एकाधिपत्य शोधन के बाद — मूल संकेत। अधिक = गोचर के लिए वास्तविक बलवान।'}
+                ? 'After Trikona & Ekadhipatya reductions per BPHS Ch.66-67  –  the essential signal. Higher = genuinely strong for transits.'
+                : 'BPHS अ.66-67 अनुसार त्रिकोण और एकाधिपत्य शोधन के बाद  –  मूल संकेत। अधिक = गोचर के लिए वास्तविक बलवान।'}
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-1.5">
               {RASHIS.map((r, i) => {

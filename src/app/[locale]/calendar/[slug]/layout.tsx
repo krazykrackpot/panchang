@@ -26,13 +26,13 @@ function getNextFestivalDate(slug: string): { date: string; year: number; pujaMu
       }
     }
   } catch {
-    // Festival computation may fail for some slugs — log and continue
+    // Festival computation may fail for some slugs  –  log and continue
     console.error(`[calendar-slug-meta] Failed to compute date for ${slug}`);
   }
   return null;
 }
 
-/** Format "2026-08-22" → "Oct 20" (short, for title — saves characters) */
+/** Format "2026-08-22" → "Oct 20" (short, for title  –  saves characters) */
 function fmtShortDate(dateStr: string): string {
   const [y, m, d] = dateStr.split('-').map(Number);
   const date = new Date(Date.UTC(y, m - 1, d));
@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const festival = FESTIVAL_DETAILS[slug];
 
   if (!festival) {
-    return { title: 'Festival Details — Dekho Panchang' };
+    return { title: 'Festival Details  –  Dekho Panchang' };
   }
 
   const loc = locale as 'en' | 'hi' | 'sa';
@@ -70,18 +70,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const nextDate = getNextFestivalDate(slug);
   const yearStr = nextDate ? String(nextDate.year) : '';
 
-  // Title under 60 chars: "Diwali 2026 — Oct 20 | Puja Time & Significance"
+  // Title under 60 chars: "Diwali 2026  –  Oct 20 | Puja Time & Significance"
   let title: string;
   if (nextDate) {
     const shortDate = fmtShortDate(nextDate.date);
     if (nextDate.pujaMuhurat) {
       const pujaTime = fmt12h(nextDate.pujaMuhurat.start);
-      title = `${name} ${yearStr} — ${shortDate}, Puja ${pujaTime}`;
+      title = `${name} ${yearStr}  –  ${shortDate}, Puja ${pujaTime}`;
     } else {
-      title = `${name} ${yearStr} — ${shortDate} | Date & Significance`;
+      title = `${name} ${yearStr}  –  ${shortDate} | Date & Significance`;
     }
   } else {
-    title = `${name} — Date, Puja Vidhi & Significance`;
+    title = `${name}  –  Date, Puja Vidhi & Significance`;
   }
 
   // Description under 155 chars with actual date
@@ -148,7 +148,7 @@ export default async function CalendarSlugLayout({
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `${nameEn} — Date, Puja Vidhi & Significance`,
+    headline: `${nameEn}  –  Date, Puja Vidhi & Significance`,
     description,
     url: `${BASE_URL}/${locale}/calendar/${slug}`,
     publisher: {
@@ -169,7 +169,7 @@ export default async function CalendarSlugLayout({
     ],
   };
 
-  // Event JSON-LD — marks this as a calendar event for Google rich results
+  // Event JSON-LD  –  marks this as a calendar event for Google rich results
   const year = new Date().getFullYear();
   const eventJsonLd = generateEventLD({
     name: nameEn,

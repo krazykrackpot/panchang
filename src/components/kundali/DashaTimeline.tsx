@@ -1,13 +1,13 @@
 'use client';
 
 /**
- * DashaTimeline — Animated D3-powered interactive horizontal timeline
+ * DashaTimeline  –  Animated D3-powered interactive horizontal timeline
  * showing the full Vimshottari Dasha cycle across 3 nested bands:
  *   1. Mahadasha  (outer, ~40px tall)
  *   2. Antardasha (middle, ~28px tall)
- *   3. Pratyantardasha (inner, ~18px tall — only shown when zoom ≥ 3x)
+ *   3. Pratyantardasha (inner, ~18px tall  –  only shown when zoom ≥ 3x)
  *
- * D3 is used for scaleTime + zoom math only — DOM is React SVG.
+ * D3 is used for scaleTime + zoom math only  –  DOM is React SVG.
  *
  * NOTE: d3-selection / d3-zoom direct DOM attachment is avoided here;
  *       we use d3.zoom() to compute transform math but apply pointer
@@ -109,7 +109,7 @@ export default function DashaTimeline({ dashas, birthDate, locale }: DashaTimeli
     return () => ro.disconnect();
   }, []);
 
-  /* Parse dates — memoised */
+  /* Parse dates  –  memoised */
   const birth = useMemo(() => parseDate(birthDate || '1990-01-01'), [birthDate]);
   const cycleEnd = useMemo(() => addYears(birth, 120), [birth]);
   const today = useMemo(() => new Date(), []);
@@ -126,7 +126,7 @@ export default function DashaTimeline({ dashas, birthDate, locale }: DashaTimeli
     [transform, baseScale],
   );
 
-  /* D3 zoom setup — attach once per SVG mount */
+  /* D3 zoom setup  –  attach once per SVG mount */
   useEffect(() => {
     const svgEl = svgRef.current;
     if (!svgEl) return;
@@ -140,7 +140,7 @@ export default function DashaTimeline({ dashas, birthDate, locale }: DashaTimeli
 
     zoomRef.current = zoomBehavior;
 
-    // Attach wheel zoom to SVG — drag is handled via React pointer events
+    // Attach wheel zoom to SVG  –  drag is handled via React pointer events
     const sel = select(svgEl);
     sel.call(zoom);
 

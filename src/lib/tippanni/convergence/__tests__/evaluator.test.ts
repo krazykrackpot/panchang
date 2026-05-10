@@ -8,23 +8,23 @@ import type { ConvergenceInput, PatternCondition } from '../types';
 
 function makeInput(overrides: Partial<ConvergenceInput> = {}): ConvergenceInput {
   const defaultPlanets: ConvergenceInput['planets'] = [
-    // Sun (0) — malefic, house 1, sign 1
+    // Sun (0)  –  malefic, house 1, sign 1
     { id: 0, house: 1, sign: 1, isRetrograde: false, isCombust: false, isExalted: false, isDebilitated: false, isOwnSign: false, shadbala: 1.2 },
-    // Moon (1) — benefic, house 4, sign 4
+    // Moon (1)  –  benefic, house 4, sign 4
     { id: 1, house: 4, sign: 4, isRetrograde: false, isCombust: false, isExalted: false, isDebilitated: false, isOwnSign: false, shadbala: 1.1 },
-    // Mars (2) — malefic, house 7, sign 7
+    // Mars (2)  –  malefic, house 7, sign 7
     { id: 2, house: 7, sign: 7, isRetrograde: false, isCombust: false, isExalted: false, isDebilitated: false, isOwnSign: false, shadbala: 1.0 },
-    // Mercury (3) — benefic, house 2, sign 2
+    // Mercury (3)  –  benefic, house 2, sign 2
     { id: 3, house: 2, sign: 2, isRetrograde: false, isCombust: false, isExalted: false, isDebilitated: false, isOwnSign: false, shadbala: 1.3 },
-    // Jupiter (4) — benefic, house 10, sign 10
+    // Jupiter (4)  –  benefic, house 10, sign 10
     { id: 4, house: 10, sign: 10, isRetrograde: false, isCombust: false, isExalted: false, isDebilitated: false, isOwnSign: false, shadbala: 1.5 },
-    // Venus (5) — benefic, house 5, sign 5
+    // Venus (5)  –  benefic, house 5, sign 5
     { id: 5, house: 5, sign: 5, isRetrograde: false, isCombust: false, isExalted: false, isDebilitated: false, isOwnSign: false, shadbala: 1.4 },
-    // Saturn (6) — malefic, house 8, sign 8
+    // Saturn (6)  –  malefic, house 8, sign 8
     { id: 6, house: 8, sign: 8, isRetrograde: false, isCombust: false, isExalted: false, isDebilitated: false, isOwnSign: false, shadbala: 1.2 },
-    // Rahu (7) — malefic, house 9, sign 9
+    // Rahu (7)  –  malefic, house 9, sign 9
     { id: 7, house: 9, sign: 9, isRetrograde: false, isCombust: false, isExalted: false, isDebilitated: false, isOwnSign: false, shadbala: 0.8 },
-    // Ketu (8) — malefic, house 3, sign 3
+    // Ketu (8)  –  malefic, house 3, sign 3
     { id: 8, house: 3, sign: 3, isRetrograde: false, isCombust: false, isExalted: false, isDebilitated: false, isOwnSign: false, shadbala: 0.8 },
   ];
 
@@ -273,7 +273,7 @@ describe('dasha: lord-rules-or-occupies', () => {
   it('returns false when neither dashaLord nor antarLord rules or occupies the house', () => {
     // House 3: ruler=8 (Ketu), occupied by Ketu. Neither Jupiter(4) nor Venus(5)
     const cond: PatternCondition = { type: 'dasha', check: 'lord-rules-or-occupies', house: 3 };
-    // houseRulers[3]=8, planetHouses[4]=10, planetHouses[5]=5 — neither is 3
+    // houseRulers[3]=8, planetHouses[4]=10, planetHouses[5]=5  –  neither is 3
     expect(evaluateCondition(cond, makeInput())).toBe(false);
   });
 });

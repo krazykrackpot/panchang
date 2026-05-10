@@ -1,15 +1,15 @@
 {
   "title": {
-    "en": "Measuring the Sky — Degrees, Signs & Nakshatras",
-    "hi": "आकाश मापन — अंश, राशि एवं नक्षत्र",
-    "sa": "आकाशमापनम् — अंशाः, राशयः, नक्षत्राणि च",
-    "ta": "வானத்தை அளப்பது — பாகைகள், ராசிகள் & நட்சத்திரங்கள்",
-    "te": "ఆకాశాన్ని కొలవడం — డిగ్రీలు, రాశులు & నక్షత్రాలు",
-    "bn": "আকাশ পরিমাপ — অংশ, রাশি ও নক্ষত্র",
-    "kn": "ಆಕಾಶ ಅಳೆಯುವುದು — ಅಂಶ, ರಾಶಿ & ನಕ್ಷತ್ರಗಳು",
-    "mr": "आकाश मोजमाप — अंश, राशी आणि नक्षत्र",
-    "gu": "આકાશ માપન — અંશ, રાશિ અને નક્ષત્ર",
-    "mai": "आकाश मापन — अंश, राशि आ नक्षत्र"
+    "en": "Measuring the Sky  –  Degrees, Signs & Nakshatras",
+    "hi": "आकाश मापन  –  अंश, राशि एवं नक्षत्र",
+    "sa": "आकाशमापनम्  –  अंशाः, राशयः, नक्षत्राणि च",
+    "ta": "வானத்தை அளப்பது  –  பாகைகள், ராசிகள் & நட்சத்திரங்கள்",
+    "te": "ఆకాశాన్ని కొలవడం  –  డిగ్రీలు, రాశులు & నక్షత్రాలు",
+    "bn": "আকাশ পরিমাপ  –  অংশ, রাশি ও নক্ষত্র",
+    "kn": "ಆಕಾಶ ಅಳೆಯುವುದು  –  ಅಂಶ, ರಾಶಿ & ನಕ್ಷತ್ರಗಳು",
+    "mr": "आकाश मोजमाप  –  अंश, राशी आणि नक्षत्र",
+    "gu": "આકાશ માપન  –  અંશ, રાશિ અને નક્ષત્ર",
+    "mai": "आकाश मापन  –  अंश, राशि आ नक्षत्र"
   },
   "subtitle": {
     "en": "The dual coordinate grid that makes Jyotish calculations possible",
@@ -138,16 +138,16 @@
       ],
       "correctAnswer": 2,
       "explanation": {
-        "en": "360° ÷ 12 signs = 30° per sign. This equal division is fundamental — signs are mathematical divisions, not physical constellations (which have unequal spans).",
-        "hi": "360° ÷ 12 राशि = 30° प्रति राशि। यह समान विभाजन मूलभूत है — राशियाँ गणितीय विभाजन हैं, भौतिक नक्षत्रमंडल (जिनका विस्तार असमान है) नहीं।",
-        "sa": "360° ÷ 12 राशि = 30° प्रति राशि। यह समान विभाजन मूलभूत है — राशियाँ गणितीय विभाजन हैं, भौतिक नक्षत्रमंडल (जिनका विस्तार असमान है) नहीं।",
-        "mai": "360° ÷ 12 राशि = 30° प्रति राशि। यह समान विभाजन मूलभूत है — राशियाँ गणितीय विभाजन हैं, भौतिक नक्षत्रमंडल (जिनका विस्तार असमान है) नहीं।",
-        "mr": "360° ÷ 12 राशि = 30° प्रति राशि। यह समान विभाजन मूलभूत है — राशियाँ गणितीय विभाजन हैं, भौतिक नक्षत्रमंडल (जिनका विस्तार असमान है) नहीं।",
-        "ta": "360° ÷ 12 signs = 30° per sign. This equal division is fundamental — signs are mathematical divisions, not physical constellations (which have unequal spans).",
-        "te": "360° ÷ 12 signs = 30° per sign. This equal division is fundamental — signs are mathematical divisions, not physical constellations (which have unequal spans).",
-        "bn": "360° ÷ 12 signs = 30° per sign. This equal division is fundamental — signs are mathematical divisions, not physical constellations (which have unequal spans).",
-        "kn": "360° ÷ 12 signs = 30° per sign. This equal division is fundamental — signs are mathematical divisions, not physical constellations (which have unequal spans).",
-        "gu": "360° ÷ 12 signs = 30° per sign. This equal division is fundamental — signs are mathematical divisions, not physical constellations (which have unequal spans)."
+        "en": "360° ÷ 12 signs = 30° per sign. This equal division is fundamental  –  signs are mathematical divisions, not physical constellations (which have unequal spans).",
+        "hi": "360° ÷ 12 राशि = 30° प्रति राशि। यह समान विभाजन मूलभूत है  –  राशियाँ गणितीय विभाजन हैं, भौतिक नक्षत्रमंडल (जिनका विस्तार असमान है) नहीं।",
+        "sa": "360° ÷ 12 राशि = 30° प्रति राशि। यह समान विभाजन मूलभूत है  –  राशियाँ गणितीय विभाजन हैं, भौतिक नक्षत्रमंडल (जिनका विस्तार असमान है) नहीं।",
+        "mai": "360° ÷ 12 राशि = 30° प्रति राशि। यह समान विभाजन मूलभूत है  –  राशियाँ गणितीय विभाजन हैं, भौतिक नक्षत्रमंडल (जिनका विस्तार असमान है) नहीं।",
+        "mr": "360° ÷ 12 राशि = 30° प्रति राशि। यह समान विभाजन मूलभूत है  –  राशियाँ गणितीय विभाजन हैं, भौतिक नक्षत्रमंडल (जिनका विस्तार असमान है) नहीं।",
+        "ta": "360° ÷ 12 signs = 30° per sign. This equal division is fundamental  –  signs are mathematical divisions, not physical constellations (which have unequal spans).",
+        "te": "360° ÷ 12 signs = 30° per sign. This equal division is fundamental  –  signs are mathematical divisions, not physical constellations (which have unequal spans).",
+        "bn": "360° ÷ 12 signs = 30° per sign. This equal division is fundamental  –  signs are mathematical divisions, not physical constellations (which have unequal spans).",
+        "kn": "360° ÷ 12 signs = 30° per sign. This equal division is fundamental  –  signs are mathematical divisions, not physical constellations (which have unequal spans).",
+        "gu": "360° ÷ 12 signs = 30° per sign. This equal division is fundamental  –  signs are mathematical divisions, not physical constellations (which have unequal spans)."
       },
       "classicalRef": "BPHS Ch.1 v.4"
     },
@@ -393,16 +393,16 @@
       "id": "q1_2_05",
       "type": "true_false",
       "question": {
-        "en": "27 nakshatras × 4 padas = 108 — and this is why 108 is sacred in Hinduism.",
-        "hi": "27 नक्षत्र × 4 पाद = 108 — और यही कारण है कि 108 हिंदू धर्म में पवित्र है।",
-        "sa": "27 नक्षत्र × 4 पाद = 108 — और यही कारण है कि 108 हिंदू धर्म में पवित्र है।",
-        "mai": "27 नक्षत्र × 4 पाद = 108 — और यही कारण है कि 108 हिंदू धर्म में पवित्र है।",
-        "mr": "27 नक्षत्र × 4 पाद = 108 — और यही कारण है कि 108 हिंदू धर्म में पवित्र है।",
-        "ta": "27 nakshatras × 4 padas = 108 — and this is why 108 is sacred in Hinduism.",
-        "te": "27 nakshatras × 4 padas = 108 — and this is why 108 is sacred in Hinduism.",
-        "bn": "27 nakshatras × 4 padas = 108 — and this is why 108 is sacred in Hinduism.",
-        "kn": "27 nakshatras × 4 padas = 108 — and this is why 108 is sacred in Hinduism.",
-        "gu": "27 nakshatras × 4 padas = 108 — and this is why 108 is sacred in Hinduism."
+        "en": "27 nakshatras × 4 padas = 108  –  and this is why 108 is sacred in Hinduism.",
+        "hi": "27 नक्षत्र × 4 पाद = 108  –  और यही कारण है कि 108 हिंदू धर्म में पवित्र है।",
+        "sa": "27 नक्षत्र × 4 पाद = 108  –  और यही कारण है कि 108 हिंदू धर्म में पवित्र है।",
+        "mai": "27 नक्षत्र × 4 पाद = 108  –  और यही कारण है कि 108 हिंदू धर्म में पवित्र है।",
+        "mr": "27 नक्षत्र × 4 पाद = 108  –  और यही कारण है कि 108 हिंदू धर्म में पवित्र है।",
+        "ta": "27 nakshatras × 4 padas = 108  –  and this is why 108 is sacred in Hinduism.",
+        "te": "27 nakshatras × 4 padas = 108  –  and this is why 108 is sacred in Hinduism.",
+        "bn": "27 nakshatras × 4 padas = 108  –  and this is why 108 is sacred in Hinduism.",
+        "kn": "27 nakshatras × 4 padas = 108  –  and this is why 108 is sacred in Hinduism.",
+        "gu": "27 nakshatras × 4 padas = 108  –  and this is why 108 is sacred in Hinduism."
       },
       "correctAnswer": true,
       "explanation": {
@@ -447,16 +447,16 @@
           "mai": "क्योंकि प्राचीन भारतीयों को नहीं पता था कि तारामंडल अलग-अलग आकार के हैं"
         },
         {
-          "en": "For mathematical convenience — equal divisions enable precise computation",
-          "hi": "गणितीय सुविधा — समान विभाजन सटीक गणना संभव बनाते हैं",
-          "sa": "गणितीय सुविधा — समान विभाजन सटीक गणना संभव बनाते हैं",
-          "mai": "गणितीय सुविधा — समान विभाजन सटीक गणना संभव बनाते हैं",
-          "mr": "गणितीय सुविधा — समान विभाजन सटीक गणना संभव बनाते हैं",
-          "ta": "For mathematical convenience — equal divisions enable precise computation",
-          "te": "For mathematical convenience — equal divisions enable precise computation",
-          "bn": "For mathematical convenience — equal divisions enable precise computation",
-          "kn": "For mathematical convenience — equal divisions enable precise computation",
-          "gu": "For mathematical convenience — equal divisions enable precise computation"
+          "en": "For mathematical convenience  –  equal divisions enable precise computation",
+          "hi": "गणितीय सुविधा  –  समान विभाजन सटीक गणना संभव बनाते हैं",
+          "sa": "गणितीय सुविधा  –  समान विभाजन सटीक गणना संभव बनाते हैं",
+          "mai": "गणितीय सुविधा  –  समान विभाजन सटीक गणना संभव बनाते हैं",
+          "mr": "गणितीय सुविधा  –  समान विभाजन सटीक गणना संभव बनाते हैं",
+          "ta": "For mathematical convenience  –  equal divisions enable precise computation",
+          "te": "For mathematical convenience  –  equal divisions enable precise computation",
+          "bn": "For mathematical convenience  –  equal divisions enable precise computation",
+          "kn": "For mathematical convenience  –  equal divisions enable precise computation",
+          "gu": "For mathematical convenience  –  equal divisions enable precise computation"
         },
         {
           "en": "Because the Greeks told them to",
@@ -485,15 +485,15 @@
       ],
       "correctAnswer": 1,
       "explanation": {
-        "en": "The equal 30° division is INTENTIONAL. Ancient Indians were fully aware that star patterns have unequal spans. But computation requires a uniform coordinate system. The 12 × 30° grid and the 27 × 13°20' grid are mathematical frameworks overlaid on the ecliptic — like longitude lines on Earth.",
+        "en": "The equal 30° division is INTENTIONAL. Ancient Indians were fully aware that star patterns have unequal spans. But computation requires a uniform coordinate system. The 12 × 30° grid and the 27 × 13°20' grid are mathematical frameworks overlaid on the ecliptic  –  like longitude lines on Earth.",
         "hi": "समान 30° विभाजन जानबूझकर है। प्राचीन भारतीयों को पता था कि तारा-पैटर्न असमान हैं। लेकिन गणना के लिए एकसमान निर्देशांक आवश्यक है।",
         "sa": "समान 30° विभाजन जानबूझकर है। प्राचीन भारतीयों को पता था कि तारा-पैटर्न असमान हैं। लेकिन गणना के लिए एकसमान निर्देशांक आवश्यक है।",
-        "ta": "The equal 30° division is INTENTIONAL. Ancient Indians were fully aware that star patterns have unequal spans. But computation requires a uniform coordinate system. The 12 × 30° grid and the 27 × 13°20' grid are mathematical frameworks overlaid on the ecliptic — like longitude lines on Earth.",
-        "te": "The equal 30° division is INTENTIONAL. Ancient Indians were fully aware that star patterns have unequal spans. But computation requires a uniform coordinate system. The 12 × 30° grid and the 27 × 13°20' grid are mathematical frameworks overlaid on the ecliptic — like longitude lines on Earth.",
-        "bn": "The equal 30° division is INTENTIONAL. Ancient Indians were fully aware that star patterns have unequal spans. But computation requires a uniform coordinate system. The 12 × 30° grid and the 27 × 13°20' grid are mathematical frameworks overlaid on the ecliptic — like longitude lines on Earth.",
-        "kn": "The equal 30° division is INTENTIONAL. Ancient Indians were fully aware that star patterns have unequal spans. But computation requires a uniform coordinate system. The 12 × 30° grid and the 27 × 13°20' grid are mathematical frameworks overlaid on the ecliptic — like longitude lines on Earth.",
+        "ta": "The equal 30° division is INTENTIONAL. Ancient Indians were fully aware that star patterns have unequal spans. But computation requires a uniform coordinate system. The 12 × 30° grid and the 27 × 13°20' grid are mathematical frameworks overlaid on the ecliptic  –  like longitude lines on Earth.",
+        "te": "The equal 30° division is INTENTIONAL. Ancient Indians were fully aware that star patterns have unequal spans. But computation requires a uniform coordinate system. The 12 × 30° grid and the 27 × 13°20' grid are mathematical frameworks overlaid on the ecliptic  –  like longitude lines on Earth.",
+        "bn": "The equal 30° division is INTENTIONAL. Ancient Indians were fully aware that star patterns have unequal spans. But computation requires a uniform coordinate system. The 12 × 30° grid and the 27 × 13°20' grid are mathematical frameworks overlaid on the ecliptic  –  like longitude lines on Earth.",
+        "kn": "The equal 30° division is INTENTIONAL. Ancient Indians were fully aware that star patterns have unequal spans. But computation requires a uniform coordinate system. The 12 × 30° grid and the 27 × 13°20' grid are mathematical frameworks overlaid on the ecliptic  –  like longitude lines on Earth.",
         "mr": "समान 30° विभाजन जानबूझकर है। प्राचीन भारतीयों को पता था कि तारा-पैटर्न असमान हैं। लेकिन गणना के लिए एकसमान निर्देशांक आवश्यक है।",
-        "gu": "The equal 30° division is INTENTIONAL. Ancient Indians were fully aware that star patterns have unequal spans. But computation requires a uniform coordinate system. The 12 × 30° grid and the 27 × 13°20' grid are mathematical frameworks overlaid on the ecliptic — like longitude lines on Earth.",
+        "gu": "The equal 30° division is INTENTIONAL. Ancient Indians were fully aware that star patterns have unequal spans. But computation requires a uniform coordinate system. The 12 × 30° grid and the 27 × 13°20' grid are mathematical frameworks overlaid on the ecliptic  –  like longitude lines on Earth.",
         "mai": "समान 30° विभाजन जानबूझकर है। प्राचीन भारतीयों को पता था कि तारा-पैटर्न असमान हैं। लेकिन गणना के लिए एकसमान निर्देशांक आवश्यक है।"
       },
       "classicalRef": "Surya Siddhanta Ch.1"
@@ -753,10 +753,10 @@
       "correctAnswer": 1,
       "explanation": {
         "en": "108 = 27 nakshatras × 4 padas = 12 signs × 9 navamshas. Each pada IS a navamsha. This is why 108 appears everywhere in Hindu tradition: 108 beads in a mala, 108 Upanishads, 108 names of deities. The astronomical origin is this zodiacal factorization.",
-        "hi": "108 = 27 × 4 = 12 × 9। प्रत्येक पाद एक नवांश है। 108 की माला, 108 उपनिषद, 108 नाम — मूल यह राशिचक्रीय गुणनखंड है।",
-        "sa": "108 = 27 × 4 = 12 × 9। प्रत्येक पाद एक नवांश है। 108 की माला, 108 उपनिषद, 108 नाम — मूल यह राशिचक्रीय गुणनखंड है।",
-        "mai": "108 = 27 × 4 = 12 × 9। प्रत्येक पाद एक नवांश है। 108 की माला, 108 उपनिषद, 108 नाम — मूल यह राशिचक्रीय गुणनखंड है।",
-        "mr": "108 = 27 × 4 = 12 × 9। प्रत्येक पाद एक नवांश है। 108 की माला, 108 उपनिषद, 108 नाम — मूल यह राशिचक्रीय गुणनखंड है।",
+        "hi": "108 = 27 × 4 = 12 × 9। प्रत्येक पाद एक नवांश है। 108 की माला, 108 उपनिषद, 108 नाम  –  मूल यह राशिचक्रीय गुणनखंड है।",
+        "sa": "108 = 27 × 4 = 12 × 9। प्रत्येक पाद एक नवांश है। 108 की माला, 108 उपनिषद, 108 नाम  –  मूल यह राशिचक्रीय गुणनखंड है।",
+        "mai": "108 = 27 × 4 = 12 × 9। प्रत्येक पाद एक नवांश है। 108 की माला, 108 उपनिषद, 108 नाम  –  मूल यह राशिचक्रीय गुणनखंड है।",
+        "mr": "108 = 27 × 4 = 12 × 9। प्रत्येक पाद एक नवांश है। 108 की माला, 108 उपनिषद, 108 नाम  –  मूल यह राशिचक्रीय गुणनखंड है।",
         "ta": "108 = 27 nakshatras × 4 padas = 12 signs × 9 navamshas. Each pada IS a navamsha. This is why 108 appears everywhere in Hindu tradition: 108 beads in a mala, 108 Upanishads, 108 names of deities. The astronomical origin is this zodiacal factorization.",
         "te": "108 = 27 nakshatras × 4 padas = 12 signs × 9 navamshas. Each pada IS a navamsha. This is why 108 appears everywhere in Hindu tradition: 108 beads in a mala, 108 Upanishads, 108 names of deities. The astronomical origin is this zodiacal factorization.",
         "bn": "108 = 27 nakshatras × 4 padas = 12 signs × 9 navamshas. Each pada IS a navamsha. This is why 108 appears everywhere in Hindu tradition: 108 beads in a mala, 108 Upanishads, 108 names of deities. The astronomical origin is this zodiacal factorization.",

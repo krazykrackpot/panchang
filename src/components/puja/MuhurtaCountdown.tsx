@@ -159,7 +159,7 @@ export default function MuhurtaCountdown({
         </span>
       </div>
 
-      {/* Countdown — only show if within 24 hours */}
+      {/* Countdown  –  only show if within 24 hours */}
       {status === 'upcoming' && (() => {
         const msUntil = muhurta.start.getTime() - now.getTime();
         const isWithin24h = msUntil > 0 && msUntil < 24 * 60 * 60 * 1000;

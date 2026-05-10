@@ -9,13 +9,13 @@
  * The Sudarshana Chakra ("auspicious vision wheel") uses THREE concurrent
  * reference points to analyse each year of life:
  *
- *   1. Lagna (Ascendant) — represents the physical body, health, and
+ *   1. Lagna (Ascendant)  –  represents the physical body, health, and
  *      outward circumstances. The Lagna sign becomes house 1 of this ring.
  *
- *   2. Chandra (Moon) — represents the mind, emotions, and psychological
+ *   2. Chandra (Moon)  –  represents the mind, emotions, and psychological
  *      experience. The Moon sign becomes house 1 of this ring.
  *
- *   3. Surya (Sun) — represents the soul, authority, and core identity.
+ *   3. Surya (Sun)  –  represents the soul, authority, and core identity.
  *      The Sun sign becomes house 1 of this ring.
  *
  * ─── Year-Mapping Logic ──────────────────────────────────────────────
@@ -80,7 +80,7 @@ export interface SudarshanaData {
   birthYear: number;
   /** Current age of native (can be overridden via slider) */
   currentAge: number;
-  /** The three ring definitions — one each for Lagna, Moon, and Sun */
+  /** The three ring definitions  –  one each for Lagna, Moon, and Sun */
   lagnaRing: RingData;
   chandraRing: RingData;
   suryaRing: RingData;
@@ -284,7 +284,7 @@ function makeTheme(house: number, signId: number): HouseTheme {
 /**
  * Builds a combined prose interpretation from the three activated houses.
  *
- * The heuristic checks for "convergence patterns" — when 2+ of the three
+ * The heuristic checks for "convergence patterns"  –  when 2+ of the three
  * rings activate houses of the same category (kendra, trikona, dusthana),
  * the effect is amplified:
  *
@@ -311,13 +311,13 @@ function buildCombinedInterpretation(
   const dusthanaCoverage = houses.filter(h => [6, 8, 12].includes(h)).length;
 
   if (kendraCoverage >= 2) {
-    parts.push('Strong kendra activation — period of stability, achievement, and public recognition.');
+    parts.push('Strong kendra activation  –  period of stability, achievement, and public recognition.');
   }
   if (trikonaCoverage >= 2) {
-    parts.push('Trikona houses active — auspicious for fortune, dharma, and creative expression.');
+    parts.push('Trikona houses active  –  auspicious for fortune, dharma, and creative expression.');
   }
   if (dusthanaCoverage >= 2) {
-    parts.push('Multiple dusthana houses active — period of challenges requiring patience and inner work.');
+    parts.push('Multiple dusthana houses active  –  period of challenges requiring patience and inner work.');
   }
 
   // Per-ring theme brief
@@ -337,7 +337,7 @@ function buildCombinedInterpretation(
  *
  * This table is used for both the timeline view and historical navigation.
  * When the kundali already has precomputed entries (kundali.sudarsanaDasha),
- * this function is not called — see generateSudarshana() above.
+ * this function is not called  –  see generateSudarshana() above.
  */
 function buildEntries(
   ascSign: number,

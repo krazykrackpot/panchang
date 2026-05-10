@@ -11,7 +11,7 @@ export default async function Layout({ children, params }: { children: React.Rea
   const { locale } = await params;
   return (
     <>
-      <LearnArticleLD route="/learn/doshas-detailed" locale={locale} title="Doshas in Vedic Astrology — Comprehensive Guide" description="In-depth guide to all major Jyotish doshas: Mangal, Kaal Sarpa, Pitra, Kemdrum, Guru Chandal, and Grahan Dosha. Detection, severity, cancellation, remedies, and classical references." />
+      <LearnArticleLD route="/learn/doshas-detailed" locale={locale} title="Doshas in Vedic Astrology  –  Comprehensive Guide" description="In-depth guide to all major Jyotish doshas: Mangal, Kaal Sarpa, Pitra, Kemdrum, Guru Chandal, and Grahan Dosha. Detection, severity, cancellation, remedies, and classical references." />
       {children}
     </>
   );

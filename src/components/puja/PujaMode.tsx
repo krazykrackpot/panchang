@@ -75,7 +75,7 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
           }
         }
       } catch {
-        // Wake lock not supported or denied — ignore
+        // Wake lock not supported or denied  –  ignore
       }
     }
 
@@ -303,7 +303,7 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
         </AnimatePresence>
       </div>
 
-      {/* Bottom navigation — extra pb for iPhone home indicator */}
+      {/* Bottom navigation  –  extra pb for iPhone home indicator */}
       <div className="flex items-center justify-between border-t border-gold-primary/10 px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-6">
         <button
           type="button"

@@ -61,7 +61,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'Bhadra Yoga gives intellectual brilliance, skill in speech, a lion-like gait, and a long life of about seventy years.',
       relevanceNote:
-        'Classical result — intellect and communication prowess.',
+        'Classical result  –  intellect and communication prowess.',
     },
   ],
 
@@ -86,7 +86,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'Hansa Yoga bestows a beautiful body, virtuous conduct, spiritual inclination, and renown. The native is respected by the learned.',
       relevanceNote:
-        'Jupiter-based Mahapurusha yoga — wisdom and dharma.',
+        'Jupiter-based Mahapurusha yoga  –  wisdom and dharma.',
     },
   ],
 
@@ -111,7 +111,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'Malavya Yoga gives a strong and handsome body, wealth from a devoted spouse, enjoyment of luxuries, and fame spread in many lands.',
       relevanceNote:
-        'Venus-based Mahapurusha yoga — luxury and conjugal happiness.',
+        'Venus-based Mahapurusha yoga  –  luxury and conjugal happiness.',
     },
   ],
 
@@ -136,7 +136,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'Shasha Yoga: the native will command authority over others, be fond of forests and mountains, possess wealth, and be versed in metallurgy and weapons.',
       relevanceNote:
-        'Saturn-based Mahapurusha yoga — authority and discipline.',
+        'Saturn-based Mahapurusha yoga  –  authority and discipline.',
     },
   ],
 
@@ -165,7 +165,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'When Jupiter occupies a kendra from the Moon, Gajakesari Yoga arises. The native destroys opponents as an elephant destroys a lion, builds villages and towns, and is endowed with lasting fame.',
       relevanceNote:
-        'Gaja (elephant) + Kesari (lion) — the name denotes majestic power.',
+        'Gaja (elephant) + Kesari (lion)  –  the name denotes majestic power.',
     },
   ],
 
@@ -232,7 +232,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'If planets other than the Sun occupy both the 2nd and 12th houses from the Moon, Durudhura Yoga is formed. The native will enjoy much wealth, vehicles, and will be generous and noble.',
       relevanceNote:
-        'Planets in both 2nd AND 12th from Moon — combines Sunapha + Anapha.',
+        'Planets in both 2nd AND 12th from Moon  –  combines Sunapha + Anapha.',
     },
   ],
 
@@ -269,7 +269,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       verseRange: '15-16',
       sanskritExcerpt: null,
       translationExcerpt:
-        'When Moon occupies the 6th, 8th, or 12th house from Jupiter, Shakata Yoga is formed. The native suffers fluctuating fortunes — wealth comes and goes like the movement of a cart wheel.',
+        'When Moon occupies the 6th, 8th, or 12th house from Jupiter, Shakata Yoga is formed. The native suffers fluctuating fortunes  –  wealth comes and goes like the movement of a cart wheel.',
       relevanceNote:
         'Moon in dusthana from Jupiter. Indicates instability in fortune.',
     },
@@ -303,7 +303,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'When the lord of the 9th house (Dharma) and the lord of the 10th house (Karma) conjoin or mutually aspect, the most powerful Raja Yoga called Dharma-Karmadhipati is formed. The native becomes a ruler, achieves great fame, and performs righteous deeds.',
       relevanceNote:
-        '9th lord + 10th lord conjunction/aspect — considered the strongest Raja Yoga.',
+        '9th lord + 10th lord conjunction/aspect  –  considered the strongest Raja Yoga.',
     },
   ],
 
@@ -331,7 +331,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'When the lords of the 6th, 8th, or 12th houses are placed in the 6th, 8th, or 12th houses (mutual exchange or placement), Viparita Raja Yoga is formed. The native gains through misfortunes of enemies, rises after initial adversity, and achieves unexpected success.',
       relevanceNote:
-        'Dusthana lords in dusthana houses — "reverse" Raja Yoga. Three sub-types: Harsha (6L in 6/8/12), Sarala (8L), Vimala (12L).',
+        'Dusthana lords in dusthana houses  –  "reverse" Raja Yoga. Three sub-types: Harsha (6L in 6/8/12), Sarala (8L), Vimala (12L).',
     },
   ],
 
@@ -343,7 +343,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       verseRange: '20-24',
       sanskritExcerpt: null,
       translationExcerpt:
-        'When a debilitated planet has its debilitation cancelled — by the lord of the debilitation sign being in kendra from Lagna or Moon, or by the exaltation lord of that sign being in kendra — Neechabhanga Raja Yoga is formed. The native rises from humble origins to great heights.',
+        'When a debilitated planet has its debilitation cancelled  –  by the lord of the debilitation sign being in kendra from Lagna or Moon, or by the exaltation lord of that sign being in kendra  –  Neechabhanga Raja Yoga is formed. The native rises from humble origins to great heights.',
       relevanceNote:
         'Debilitated planet whose debilitation is cancelled by specific conditions.',
     },
@@ -377,7 +377,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'When ALL natural benefics (Jupiter, Venus, Mercury, Moon) occupy upachaya houses (3, 6, 10, 11) from the Moon, Vasumati Yoga is formed. The native is immensely wealthy and never faces poverty.',
       relevanceNote:
-        'All benefics in upachaya from Moon — ALL must satisfy the condition, not just some (<5% of charts).',
+        'All benefics in upachaya from Moon  –  ALL must satisfy the condition, not just some (<5% of charts).',
     },
   ],
 
@@ -406,7 +406,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'Amala Yoga produces a person whose fame is unblemished (amala = spotless). Such a native performs charitable deeds and is praised by sovereigns.',
       relevanceNote:
-        'Amala literally means "spotless" — the native\'s reputation remains untarnished.',
+        'Amala literally means "spotless"  –  the native\'s reputation remains untarnished.',
     },
   ],
 
@@ -418,9 +418,9 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       verseRange: '24-26',
       sanskritExcerpt: null,
       translationExcerpt:
-        'When benefic planets occupy kendra houses and no malefic planet is in a kendra, Parvata Yoga is formed. The native will be wealthy, eloquent, learned, charitable, and famous — firm like a mountain.',
+        'When benefic planets occupy kendra houses and no malefic planet is in a kendra, Parvata Yoga is formed. The native will be wealthy, eloquent, learned, charitable, and famous  –  firm like a mountain.',
       relevanceNote:
-        'Benefics in kendras with no malefics in kendras — rare and highly auspicious.',
+        'Benefics in kendras with no malefics in kendras  –  rare and highly auspicious.',
     },
   ],
 
@@ -448,7 +448,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'When the Sun and Mercury are conjoined in the same house, Budhaditya Yoga is formed. The native is highly intelligent, skillful, earns good reputation, and is learned in many disciplines.',
       relevanceNote:
-        'Sun-Mercury conjunction — common since Mercury is never more than 28 degrees from the Sun. Strength depends on house placement and combustion status.',
+        'Sun-Mercury conjunction  –  common since Mercury is never more than 28 degrees from the Sun. Strength depends on house placement and combustion status.',
     },
     {
       textName: 'Saravali',
@@ -459,7 +459,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'Budhaditya Yoga is most effective when Mercury is not combust and both planets are in kendra or trikona houses. When Mercury is combust, the yoga\'s results are significantly diminished.',
       relevanceNote:
-        'Combustion of Mercury weakens this yoga — check Sun-Mercury distance.',
+        'Combustion of Mercury weakens this yoga  –  check Sun-Mercury distance.',
     },
   ],
 
@@ -501,7 +501,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'When benefic planets occupy the 6th, 7th, and 8th houses from the Moon, Adhi Yoga is formed. The native will be a polite, trustworthy minister or king, will vanquish enemies, and be long-lived.',
       relevanceNote:
-        'Benefics in 6th, 7th, 8th from Moon — leads to political/administrative power.',
+        'Benefics in 6th, 7th, 8th from Moon  –  leads to political/administrative power.',
     },
   ],
 
@@ -529,7 +529,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'When the Lagna lord and the 9th lord are in mutual kendras, and the 2nd lord is also strong, Rajalakshana Yoga gives royal traits, noble bearing, and inherent leadership qualities.',
       relevanceNote:
-        'Lagna lord and 9th lord in mutual kendra — signs of natural royalty.',
+        'Lagna lord and 9th lord in mutual kendra  –  signs of natural royalty.',
     },
   ],
 
@@ -541,9 +541,9 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       verseRange: '35-37',
       sanskritExcerpt: null,
       translationExcerpt:
-        'For a male native: if birth is during daytime, and the Sun, Moon, and Lagna are all in odd signs — Mahabhagya Yoga is formed. For a female: night birth with Sun, Moon, and Lagna in even signs. The native is of great fortune, long-lived, and a leader.',
+        'For a male native: if birth is during daytime, and the Sun, Moon, and Lagna are all in odd signs  –  Mahabhagya Yoga is formed. For a female: night birth with Sun, Moon, and Lagna in even signs. The native is of great fortune, long-lived, and a leader.',
       relevanceNote:
-        'Check lagna SIGN (not lagna lord\'s sign), Sun sign, Moon sign — all odd for male day birth, all even for female night birth.',
+        'Check lagna SIGN (not lagna lord\'s sign), Sun sign, Moon sign  –  all odd for male day birth, all even for female night birth.',
     },
   ],
 
@@ -575,7 +575,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'When Jupiter is conjoined with or aspected by Rahu or Ketu, Guru Chandala Yoga is formed. The native acts against tradition, defies teachers and elders, behaves unethically, and may face punishment from authorities.',
       relevanceNote:
-        'Jupiter with Rahu/Ketu — "teacher-outcast" combination. Disrupts guru-shishya (teacher-student) relationships.',
+        'Jupiter with Rahu/Ketu  –  "teacher-outcast" combination. Disrupts guru-shishya (teacher-student) relationships.',
     },
     {
       textName: 'Saravali',
@@ -614,7 +614,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'When the lord of the 11th house is placed in the 6th, 8th, or 12th house, Daridra Yoga is formed. The native faces poverty, financial losses through debts, enemies, or expenditure, and struggles to accumulate wealth.',
       relevanceNote:
-        '11th lord (house of gains) in dusthana (loss houses) — directly obstructs income.',
+        '11th lord (house of gains) in dusthana (loss houses)  –  directly obstructs income.',
     },
   ],
 
@@ -628,7 +628,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'When Mars is conjoined with Rahu, Angarak Yoga is formed. The native faces accidents, surgical interventions, sudden conflicts, and explosive temperament. However, this also grants extraordinary courage and ability to overcome seemingly impossible odds.',
       relevanceNote:
-        'Mars-Rahu conjunction — "burning coal" yoga. Amplifies Mars energy unpredictably.',
+        'Mars-Rahu conjunction  –  "burning coal" yoga. Amplifies Mars energy unpredictably.',
     },
   ],
 
@@ -642,7 +642,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'When the Sun is conjoined with Rahu or Ketu in the 1st, 5th, or 9th house, or when the 9th lord is afflicted by nodes, Pitru Dosha is indicated. The native faces obstacles in progeny, strained relationship with father, and ancestral karmic debts.',
       relevanceNote:
-        'Sun + Rahu/Ketu in specific houses, or 9th lord affliction — ancestral karma.',
+        'Sun + Rahu/Ketu in specific houses, or 9th lord affliction  –  ancestral karma.',
     },
   ],
 
@@ -656,7 +656,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'When Saturn and Rahu are conjoined, Shrapit Dosha is formed, indicating past-life curses. The native experiences chronic delays, persistent anxiety, fear of authority, and obstacles in all undertakings until the karmic debt is resolved.',
       relevanceNote:
-        'Saturn-Rahu conjunction — "cursed" combination. Slow, grinding karmic difficulties.',
+        'Saturn-Rahu conjunction  –  "cursed" combination. Slow, grinding karmic difficulties.',
     },
   ],
 
@@ -671,7 +671,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'When Saturn and Rahu are conjoined, past-life karmic debts manifest as chronic delays, fear, and anxiety. However, intense perseverance and eventual breakthrough after the Saturn maturity age of 36.',
       relevanceNote:
-        'Saturn-Rahu conjunction — variant name for Shrapit Dosha.',
+        'Saturn-Rahu conjunction  –  variant name for Shrapit Dosha.',
     },
   ],
 
@@ -685,7 +685,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'Natural benefics (Jupiter, Venus, Mercury, Moon) owning kendra houses lose their benefic nature and become neutral or even harmful for the native. They do not produce Raja Yoga on their own, and their dasha periods may not yield expected good results.',
       relevanceNote:
-        'Benefics owning kendras (1, 4, 7, 10) lose their natural beneficence — Parashara\'s functional malefic rule.',
+        'Benefics owning kendras (1, 4, 7, 10) lose their natural beneficence  –  Parashara\'s functional malefic rule.',
     },
   ],
 
@@ -703,7 +703,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'When any planet (other than Moon) occupies the 2nd house from the Sun, Veshi Yoga is formed. The native is truthful, lazy but eloquent, and has a balanced temperament.',
       relevanceNote:
-        'Planet in 2nd from Sun — the result varies by which planet occupies the 2nd.',
+        'Planet in 2nd from Sun  –  the result varies by which planet occupies the 2nd.',
     },
   ],
 
@@ -717,7 +717,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'When any planet (other than Moon) occupies the 12th house from the Sun, Vasi Yoga is formed. The native is charitable, powerful, prosperous, and favored by those in authority.',
       relevanceNote:
-        'Planet in 12th from Sun — complements Veshi (2nd from Sun).',
+        'Planet in 12th from Sun  –  complements Veshi (2nd from Sun).',
     },
   ],
 
@@ -731,7 +731,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'When planets (other than Moon) occupy both the 2nd and 12th houses from the Sun, Ubhayachari (Obhayachari) Yoga is formed. The native is a king or equal to one, eloquent, attractive, and enjoys all comforts.',
       relevanceNote:
-        'Planets flanking the Sun on both sides — combines Veshi + Vasi.',
+        'Planets flanking the Sun on both sides  –  combines Veshi + Vasi.',
     },
   ],
 
@@ -747,9 +747,9 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       verseRange: '10-14',
       sanskritExcerpt: null,
       translationExcerpt:
-        'When all seven planets (Sun through Saturn) occupy consecutive houses forming an unbroken chain (garland), Graha Malika Yoga is formed. The result depends on the starting house — if from a kendra, the native becomes a ruler; from a trikona, wealthy and virtuous.',
+        'When all seven planets (Sun through Saturn) occupy consecutive houses forming an unbroken chain (garland), Graha Malika Yoga is formed. The result depends on the starting house  –  if from a kendra, the native becomes a ruler; from a trikona, wealthy and virtuous.',
       relevanceNote:
-        'Planets in consecutive houses without gaps — "planetary garland."',
+        'Planets in consecutive houses without gaps  –  "planetary garland."',
     },
   ],
 
@@ -767,7 +767,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'When malefics occupy kendras and trikonas with no benefic aspect, and the Moon is weak and afflicted, Balarishta Yoga indicates childhood difficulties. The severity depends on the number and strength of afflictions.',
       relevanceNote:
-        'Childhood health/longevity concern — check Moon strength and benefic aspects for cancellation.',
+        'Childhood health/longevity concern  –  check Moon strength and benefic aspects for cancellation.',
     },
   ],
 
@@ -785,7 +785,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'When four or more planets conjoin in a single house, or when Saturn aspects the Moon without any other benefic influence, Pravrajya Yoga may form. The native renounces worldly life and takes to asceticism or monastic living.',
       relevanceNote:
-        'Renunciation yoga — strong detachment from material world.',
+        'Renunciation yoga  –  strong detachment from material world.',
     },
   ],
 
@@ -813,7 +813,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'When the Lagna lord aspects Jupiter and Moon in the 9th house, or when Jupiter is in a trikona from Moon aspecting the Lagna, Gauri Yoga is formed. The native comes from a noble family and is devoted to righteous acts.',
       relevanceNote:
-        'Aspect direction matters — Jupiter must aspect FROM its position toward the target, not the reverse.',
+        'Aspect direction matters  –  Jupiter must aspect FROM its position toward the target, not the reverse.',
     },
   ],
 
@@ -827,7 +827,7 @@ export const YOGA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'When the lord of the navamsa occupied by the 2nd lord is exalted and conjoins with the 5th lord, Bharati Yoga is formed. The native is a celebrated scholar, a master of multiple arts, and famed across regions.',
       relevanceNote:
-        'Navamsa-linked yoga — indicates scholarship and artistic mastery.',
+        'Navamsa-linked yoga  –  indicates scholarship and artistic mastery.',
     },
   ],
 

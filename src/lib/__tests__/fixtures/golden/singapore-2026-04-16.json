@@ -19,5 +19,5 @@
     "rahuKaal":    { "start": "14:35", "end": "16:06" }
   },
   "tolerances": { "timeMinutes": 5 },
-  "notes": "Near-equatorial test (1.35N) — minimal sunrise/sunset variation year-round. SGT is UTC+8 (no DST). ~12h day length expected."
+  "notes": "Near-equatorial test (1.35N)  –  minimal sunrise/sunset variation year-round. SGT is UTC+8 (no DST). ~12h day length expected."
 }

@@ -6,7 +6,7 @@ import { getMuhurtaTypeSlugs } from '@/lib/constants/muhurta-types';
 import { getTransitArticleSlugs } from '@/lib/content/transit-articles';
 import { ALL_DEVOTIONAL_ITEMS } from '@/lib/content/devotional-content';
 
-// .trim() is critical — Vercel env vars can have trailing \n that corrupts sitemap XML
+// .trim() is critical  –  Vercel env vars can have trailing \n that corrupts sitemap XML
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
 // Import from config so new locales are never missed
@@ -19,7 +19,7 @@ import { locales } from '@/lib/i18n/config';
  * after GSC data showed strong organic traffic from Maithili daily pages.
  * Other active locales (ta, te, bn, gu, kn) appear in hreflang alternates.
  *
- * sa, mr retired (Apr 2026) — middleware 301-redirects them to /en/.
+ * sa, mr retired (Apr 2026)  –  middleware 301-redirects them to /en/.
  */
 const sitemapLocales: ReadonlyArray<typeof locales[number]> = ['en', 'hi', 'mai'];
 
@@ -340,7 +340,7 @@ const pujaVidhiSlugs = [
   'graha-shanti-shani', 'graha-shanti-rahu', 'graha-shanti-ketu',
 ];
 
-// Festival/Calendar detail slugs (from FESTIVAL_DETAILS — includes items without puja vidhi)
+// Festival/Calendar detail slugs (from FESTIVAL_DETAILS  –  includes items without puja vidhi)
 const festivalDetailSlugs = [
   'makar-sankranti', 'vasant-panchami', 'maha-shivaratri', 'holi',
   'ram-navami', 'hanuman-jayanti', 'guru-purnima', 'raksha-bandhan',
@@ -409,12 +409,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // NOTE: /daily/[date] and /daily/[date]/[city] are intentionally EXCLUDED from
   // the sitemap. They are ephemeral, algorithmically generated, and previously
-  // comprised ~43% of the sitemap — burning crawl budget on thin templated
+  // comprised ~43% of the sitemap  –  burning crawl budget on thin templated
   // content. The pages still exist for user navigation, but carry robots:
   // noindex in their metadata so Google doesn't waste budget on them.
   // See `src/app/[locale]/daily/[date]/layout.tsx` for the noindex config.
 
-  // Daily index (hub page remains indexable — it's a real landing page)
+  // Daily index (hub page remains indexable  –  it's a real landing page)
   addEntries(entries, '/daily', {
     changeFrequency: 'daily',
     priority: 0.8,
@@ -461,7 +461,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  // Date-based horoscope routes (next 30 days) — captures long-tail queries like "aries horoscope may 8 2026"
+  // Date-based horoscope routes (next 30 days)  –  captures long-tail queries like "aries horoscope may 8 2026"
   // 30 days ensures the sitemap stays fresh even if nobody deploys for a month
   const horoscopeDateBase = new Date();
   for (let i = 0; i < 30; i++) {
@@ -477,11 +477,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   // Western-name horoscope aliases (/horoscope/aries etc.) are 301 redirects.
-  // Removed from sitemap — redirects burn crawl budget without adding indexable content.
+  // Removed from sitemap  –  redirects burn crawl budget without adding indexable content.
   // Google discovers these via internal links and follows the redirect chain naturally.
 
-  // City panchang pages — Tier 1 (priority 0.8, daily) + Tier 2 (priority 0.5, weekly).
-  // Tier 3 cities are NOT in sitemap — discovered via "nearby cities" internal links.
+  // City panchang pages  –  Tier 1 (priority 0.8, daily) + Tier 2 (priority 0.5, weekly).
+  // Tier 3 cities are NOT in sitemap  –  discovered via "nearby cities" internal links.
   for (const city of getCitiesByTier(1)) {
     addEntries(entries, `/panchang/${city.slug}`, {
       changeFrequency: 'daily',
@@ -510,7 +510,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   // Western-name matching pair aliases (/matching/aries-and-leo etc.) are 301 redirects.
-  // Removed from sitemap — redirects burn crawl budget. Google follows them via internal links.
+  // Removed from sitemap  –  redirects burn crawl budget. Google follows them via internal links.
 
   // Muhurta type landing pages (/muhurta/{type})
   for (const slug of getMuhurtaTypeSlugs()) {

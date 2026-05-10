@@ -7,12 +7,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
 
   const title = locale === 'hi'
-    ? 'व्रत कथा संदर्भ — विधि, फल एवं समय | Dekho Panchang'
-    : 'Vrat Katha Reference — Vidhi, Benefits & Timing | Dekho Panchang';
+    ? 'व्रत कथा संदर्भ  –  विधि, फल एवं समय | Dekho Panchang'
+    : 'Vrat Katha Reference  –  Vidhi, Benefits & Timing | Dekho Panchang';
 
   const description = locale === 'hi'
-    ? '10 पवित्र व्रतों का सम्पूर्ण संदर्भ — देवता, तिथि, विधि और फल। Dekho Panchang पर पढ़ें।'
-    : 'Complete reference for 10 sacred Hindu vrats — deity, timing, vidhi, and benefits. Read on Dekho Panchang.';
+    ? '10 पवित्र व्रतों का सम्पूर्ण संदर्भ  –  देवता, तिथि, विधि और फल। Dekho Panchang पर पढ़ें।'
+    : 'Complete reference for 10 sacred Hindu vrats  –  deity, timing, vidhi, and benefits. Read on Dekho Panchang.';
 
   const alternateLanguages: Record<string, string> = {};
   for (const l of locales) {

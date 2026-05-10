@@ -20,7 +20,7 @@ function getP(planets: PlanetPosition[], id: number): PlanetPosition | undefined
 }
 
 // ─── Ganda Mula Nakshatra Data ──────────────────────────────────
-// 6 nakshatras at water-fire sign junctions — birth in these requires shanti
+// 6 nakshatras at water-fire sign junctions  –  birth in these requires shanti
 const GANDA_MULA_NAKSHATRAS: {
   id: number;
   name: LocaleText;
@@ -110,7 +110,7 @@ export function detectExtendedDoshas(
     severity: grahanSeverity,
     description: grahanPresent
       ? t(locale,
-          `${sunGrahan ? 'Sun' : ''}${sunGrahan && moonGrahan ? ' and ' : ''}${moonGrahan ? 'Moon' : ''} conjunct with shadow planet creates Grahan Dosha. The luminary's significations are eclipsed — ${sunGrahan ? 'father, authority, and ego suffer periodic challenges' : ''}${sunGrahan && moonGrahan ? '; ' : ''}${moonGrahan ? 'mother, emotions, and mental peace face disturbance' : ''}. Effects intensify during actual eclipses.`,
+          `${sunGrahan ? 'Sun' : ''}${sunGrahan && moonGrahan ? ' and ' : ''}${moonGrahan ? 'Moon' : ''} conjunct with shadow planet creates Grahan Dosha. The luminary's significations are eclipsed  –  ${sunGrahan ? 'father, authority, and ego suffer periodic challenges' : ''}${sunGrahan && moonGrahan ? '; ' : ''}${moonGrahan ? 'mother, emotions, and mental peace face disturbance' : ''}. Effects intensify during actual eclipses.`,
           `${sunGrahan ? 'सूर्य' : ''}${sunGrahan && moonGrahan ? ' और ' : ''}${moonGrahan ? 'चन्द्रमा' : ''} छाया ग्रह के साथ ग्रहण दोष बनाता है। ${sunGrahan ? 'पिता, अधिकार और अहम् में आवधिक चुनौतियाँ' : ''}${moonGrahan ? 'माता, भावनाएँ और मानसिक शान्ति में अशान्ति' : ''}।`)
       : t(locale, 'No Grahan Dosha. Luminaries are free from Rahu-Ketu conjunction.', 'ग्रहण दोष नहीं। ज्योतियाँ राहु-केतु युति से मुक्त।'),
     remedies: grahanPresent
@@ -131,7 +131,7 @@ export function detectExtendedDoshas(
       ? t(locale,
           'Jupiter conjunct Rahu contaminates wisdom with worldly desire. May lead to wrong guru, misguided beliefs, or exploiting spiritual knowledge. Children and education may face obstacles. However, this can also grant mastery of unconventional knowledge.',
           'बृहस्पति राहु युति ज्ञान को सांसारिक इच्छा से प्रदूषित करती है। गलत गुरु, भ्रामक विश्वास, या आध्यात्मिक ज्ञान का शोषण। सन्तान और शिक्षा में बाधाएँ। परन्तु अपरम्परागत ज्ञान की प्राप्ति भी सम्भव।')
-      : t(locale, 'No Guru Chandal Dosha. Jupiter is free from Rahu\'s shadow — wisdom flows purely.', 'गुरु चाण्डाल दोष नहीं। बृहस्पति राहु की छाया से मुक्त — ज्ञान शुद्ध रूप से प्रवाहित।'),
+      : t(locale, 'No Guru Chandal Dosha. Jupiter is free from Rahu\'s shadow  –  wisdom flows purely.', 'गुरु चाण्डाल दोष नहीं। बृहस्पति राहु की छाया से मुक्त  –  ज्ञान शुद्ध रूप से प्रवाहित।'),
     remedies: gcPresent
       ? t(locale,
           'Remedies: 1) Respect and serve genuine teachers. 2) Chant Jupiter Beej Mantra (Om Graam Greem Graum Sah Gurave Namah). 3) Wear Yellow Sapphire after consultation. 4) Feed Brahmins on Thursdays. 5) Read Vishnu Sahasranama.',
@@ -156,12 +156,12 @@ export function detectExtendedDoshas(
     description: shakataPresent
       ? shakataCancel
         ? t(locale,
-            'Shakata Dosha is present but cancelled — Jupiter is in Kendra from Lagna. The wheel of fortune stabilizes. Fluctuations are mild.',
-            'शकट दोष उपस्थित पर रद्द — बृहस्पति लग्न से केन्द्र में। भाग्य का पहिया स्थिर।')
+            'Shakata Dosha is present but cancelled  –  Jupiter is in Kendra from Lagna. The wheel of fortune stabilizes. Fluctuations are mild.',
+            'शकट दोष उपस्थित पर रद्द  –  बृहस्पति लग्न से केन्द्र में। भाग्य का पहिया स्थिर।')
         : t(locale,
-            'Jupiter in 6th/8th/12th from Moon creates Shakata Dosha. Fortune fluctuates like a cart wheel — alternating prosperity and setbacks. Wisdom and emotional life may conflict.',
-            'चन्द्रमा से 6/8/12वें भाव में बृहस्पति शकट दोष बनाता है। भाग्य गाड़ी के पहिये की तरह उतार-चढ़ाव — समृद्धि और बाधाएँ बारी-बारी से।')
-      : t(locale, 'No Shakata Dosha. Jupiter and Moon are well-placed — fortune is steady.', 'शकट दोष नहीं। बृहस्पति और चन्द्रमा शुभ स्थिति में — भाग्य स्थिर।'),
+            'Jupiter in 6th/8th/12th from Moon creates Shakata Dosha. Fortune fluctuates like a cart wheel  –  alternating prosperity and setbacks. Wisdom and emotional life may conflict.',
+            'चन्द्रमा से 6/8/12वें भाव में बृहस्पति शकट दोष बनाता है। भाग्य गाड़ी के पहिये की तरह उतार-चढ़ाव  –  समृद्धि और बाधाएँ बारी-बारी से।')
+      : t(locale, 'No Shakata Dosha. Jupiter and Moon are well-placed  –  fortune is steady.', 'शकट दोष नहीं। बृहस्पति और चन्द्रमा शुभ स्थिति में  –  भाग्य स्थिर।'),
     remedies: shakataPresent && !shakataCancel
       ? t(locale,
           'Remedies: 1) Chant Guru Beej Mantra on Thursdays. 2) Wear Yellow Sapphire. 3) Donate yellow items on Purnima. 4) Read Sundarkand on Saturdays. 5) Fast on Purnima.',
@@ -187,7 +187,7 @@ export function detectExtendedDoshas(
       ? t(locale,
           `Natural benefics (${kendraLords.map(k => planets.find(p => p.planet.id === k.planetId)?.planet.name.en || '').join(', ')}) own Kendra houses, becoming functional malefics for this ascendant. Their benefic nature is weakened when they govern angular houses. (Phaladeepika)`,
           `प्राकृतिक शुभ ग्रह (${kendraLords.map(k => planets.find(p => p.planet.id === k.planetId)?.planet.name.hi || '').join(', ')}) केन्द्र भावों के स्वामी हैं, इस लग्न के लिए कार्यात्मक पापी बनते हैं। (फलदीपिका)`)
-      : t(locale, 'Kendradhipati Dosha is minimal — benefics maintain their positive nature for this ascendant.', 'केन्द्राधिपति दोष न्यूनतम — शुभ ग्रह इस लग्न के लिए सकारात्मक प्रकृति बनाए रखते हैं।'),
+      : t(locale, 'Kendradhipati Dosha is minimal  –  benefics maintain their positive nature for this ascendant.', 'केन्द्राधिपति दोष न्यूनतम  –  शुभ ग्रह इस लग्न के लिए सकारात्मक प्रकृति बनाए रखते हैं।'),
     remedies: kendradhipatiPresent
       ? t(locale,
           'Remedies: 1) Strengthen the benefic planet with its gemstone. 2) Perform Graha Shanti Puja for the affected planet. 3) Mantra chanting of the affected benefic. This dosha is generally mild.',
@@ -206,8 +206,8 @@ export function detectExtendedDoshas(
     severity: daridraPresent ? (lord11?.house === 8 ? 'moderate' : 'mild') : 'none',
     description: daridraPresent
       ? t(locale,
-          `${lord11!.planet.name.en} (lord of 11th house — gains) placed in house ${lord11!.house} (dusthana). Income faces obstacles, delays, or comes through unconventional means. Financial growth requires extra effort. May gain through service, healing, or foreign sources.`,
-          `${lord11!.planet.name.hi} (11वें भाव का स्वामी — लाभ) ${lord11!.house}वें भाव (दुःस्थान) में। आय में बाधाएँ, विलम्ब या अपरम्परागत साधन। आर्थिक विकास में अतिरिक्त प्रयास। सेवा, उपचार या विदेशी स्रोतों से लाभ सम्भव।`)
+          `${lord11!.planet.name.en} (lord of 11th house  –  gains) placed in house ${lord11!.house} (dusthana). Income faces obstacles, delays, or comes through unconventional means. Financial growth requires extra effort. May gain through service, healing, or foreign sources.`,
+          `${lord11!.planet.name.hi} (11वें भाव का स्वामी  –  लाभ) ${lord11!.house}वें भाव (दुःस्थान) में। आय में बाधाएँ, विलम्ब या अपरम्परागत साधन। आर्थिक विकास में अतिरिक्त प्रयास। सेवा, उपचार या विदेशी स्रोतों से लाभ सम्भव।`)
       : t(locale, 'No Daridra Dosha. The 11th lord is well-placed for gains and fulfillment of desires.', 'दरिद्र दोष नहीं। 11वें भाव का स्वामी लाभ और इच्छापूर्ति के लिए शुभ स्थिति में।'),
     remedies: daridraPresent
       ? t(locale,
@@ -238,8 +238,8 @@ export function detectExtendedDoshas(
       description: kemdrumPresent
         ? kemdrumCancelled
           ? t(locale,
-              'Kemdrum Dosha is present but cancelled — Moon is in Kendra or aspected by Jupiter. Emotional isolation is mitigated.',
-              'केमद्रुम दोष उपस्थित पर रद्द — चन्द्रमा केन्द्र में या बृहस्पति की दृष्टि में। भावनात्मक एकांत कम।')
+              'Kemdrum Dosha is present but cancelled  –  Moon is in Kendra or aspected by Jupiter. Emotional isolation is mitigated.',
+              'केमद्रुम दोष उपस्थित पर रद्द  –  चन्द्रमा केन्द्र में या बृहस्पति की दृष्टि में। भावनात्मक एकांत कम।')
           : t(locale,
               'No planets adjacent to Moon. May experience periods of emotional isolation, financial difficulty, and feeling unsupported. Self-reliance develops through necessity. (BPHS)',
               'चन्द्रमा के निकट कोई ग्रह नहीं। भावनात्मक एकांत, आर्थिक कठिनाई और असमर्थित महसूस करने के काल। आवश्यकता से आत्मनिर्भरता विकसित। (BPHS)')
@@ -253,7 +253,7 @@ export function detectExtendedDoshas(
   }
 
   // --- Shani Dosha (Sade Sati indicator) ---
-  // Saturn's position relative to Moon sign — transit effect but natal indicator
+  // Saturn's position relative to Moon sign  –  transit effect but natal indicator
   if (sat && moon) {
     const satFromMoon = houseDistance(moon.house, sat.house);
     const sadeSatiNatal = [12, 1, 2].includes(satFromMoon);
@@ -263,9 +263,9 @@ export function detectExtendedDoshas(
       severity: sadeSatiNatal ? 'mild' : 'none',
       description: sadeSatiNatal
         ? t(locale,
-            `Saturn is in ${satFromMoon === 12 ? '12th' : satFromMoon === 1 ? '1st' : '2nd'} house from Moon natally. This natal position mirrors Sade Sati themes — emotional discipline, karmic lessons through challenges, and slow but profound transformation. The native learns patience early in life.`,
-            `शनि जन्म से चन्द्रमा से ${satFromMoon === 12 ? '12वें' : satFromMoon === 1 ? 'प्रथम' : '2वें'} भाव में। यह जन्मस्थिति साढ़ेसाती विषयों को दर्शाती है — भावनात्मक अनुशासन, चुनौतियों से कार्मिक पाठ।`)
-        : t(locale, 'Saturn is well-placed from Moon — Sade Sati themes are not prominent natally.', 'शनि चन्द्रमा से शुभ स्थिति में — साढ़ेसाती विषय जन्म से प्रमुख नहीं।'),
+            `Saturn is in ${satFromMoon === 12 ? '12th' : satFromMoon === 1 ? '1st' : '2nd'} house from Moon natally. This natal position mirrors Sade Sati themes  –  emotional discipline, karmic lessons through challenges, and slow but profound transformation. The native learns patience early in life.`,
+            `शनि जन्म से चन्द्रमा से ${satFromMoon === 12 ? '12वें' : satFromMoon === 1 ? 'प्रथम' : '2वें'} भाव में। यह जन्मस्थिति साढ़ेसाती विषयों को दर्शाती है  –  भावनात्मक अनुशासन, चुनौतियों से कार्मिक पाठ।`)
+        : t(locale, 'Saturn is well-placed from Moon  –  Sade Sati themes are not prominent natally.', 'शनि चन्द्रमा से शुभ स्थिति में  –  साढ़ेसाती विषय जन्म से प्रमुख नहीं।'),
       remedies: sadeSatiNatal
         ? t(locale,
             'Remedies: 1) Chant Hanuman Chalisa on Saturdays. 2) Donate black sesame and mustard oil. 3) Light mustard oil lamp under Peepal tree on Saturdays. 4) Serve elderly. 5) Wear Blue Sapphire after careful trial.',
@@ -293,11 +293,11 @@ export function detectExtendedDoshas(
         present: true,
         severity,
         description: t(locale,
-          `Moon is in ${gandaMula.name.en} nakshatra (Pada ${moonPada}) — one of the 6 Ganda Mula nakshatras at the ${gandaMula.junction} junction. ${gandaMula.effect.en}${isCriticalPada ? ` Pada ${moonPada} is particularly sensitive — Ganda Mula Shanti Puja is strongly recommended within the first year of birth.` : ' The impact is moderate at this pada, but shanti puja is still advisable.'}`,
-          `चन्द्रमा ${gandaMula.name.hi} नक्षत्र (पाद ${moonPada}) में — ${gandaMula.junction} सन्धि के 6 गण्ड मूल नक्षत्रों में से एक। ${gandaMula.effect.hi}${isCriticalPada ? ` पाद ${moonPada} विशेष रूप से संवेदनशील — जन्म के प्रथम वर्ष में गण्ड मूल शान्ति पूजा अत्यन्त अनुशंसित।` : ' इस पाद पर प्रभाव मध्यम है, किन्तु शान्ति पूजा उचित।'}`),
+          `Moon is in ${gandaMula.name.en} nakshatra (Pada ${moonPada})  –  one of the 6 Ganda Mula nakshatras at the ${gandaMula.junction} junction. ${gandaMula.effect.en}${isCriticalPada ? ` Pada ${moonPada} is particularly sensitive  –  Ganda Mula Shanti Puja is strongly recommended within the first year of birth.` : ' The impact is moderate at this pada, but shanti puja is still advisable.'}`,
+          `चन्द्रमा ${gandaMula.name.hi} नक्षत्र (पाद ${moonPada}) में  –  ${gandaMula.junction} सन्धि के 6 गण्ड मूल नक्षत्रों में से एक। ${gandaMula.effect.hi}${isCriticalPada ? ` पाद ${moonPada} विशेष रूप से संवेदनशील  –  जन्म के प्रथम वर्ष में गण्ड मूल शान्ति पूजा अत्यन्त अनुशंसित।` : ' इस पाद पर प्रभाव मध्यम है, किन्तु शान्ति पूजा उचित।'}`),
         remedies: t(locale,
-          `Remedies for Ganda Mula (${gandaMula.name.en}): 1) Perform Ganda Mula Shanti Puja — ideally on the 27th day after birth or at the earliest opportunity. 2) Recite ${gandaMula.ruler === 'Ketu' ? 'Ketu Beej Mantra (Om Sram Sreem Sroum Sah Ketave Namah) 17,000 times' : 'Budh Beej Mantra (Om Bram Breem Broum Sah Budhaye Namah) 9,000 times'}. 3) Donate ${gandaMula.ruler === 'Ketu' ? 'blanket, seven grains (saptadhanya), and a cow' : 'green cloth, moong dal, and books'}. 4) Perform Nakshatra Shanti Havan with ${gandaMula.name.en} specific mantras. 5) Worship ${gandaMula.ruler === 'Ketu' ? 'Lord Ganesha' : 'Lord Vishnu'} — especially on the day ruled by the nakshatra lord. 6) Affected relation (${gandaMula.affectedRelation.en}) should avoid seeing the newborn for ${isCriticalPada ? '27 days' : '12 days'} after birth (traditional).`,
-          `गण्ड मूल उपाय (${gandaMula.name.hi}): 1) गण्ड मूल शान्ति पूजा — जन्म के 27वें दिन या शीघ्रातिशीघ्र। 2) ${gandaMula.ruler === 'Ketu' ? 'केतु बीज मन्त्र (ॐ स्रां स्रीं स्रौं सः केतवे नमः) 17,000 बार' : 'बुध बीज मन्त्र (ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः) 9,000 बार'}। 3) ${gandaMula.ruler === 'Ketu' ? 'कम्बल, सप्तधान्य और गाय का दान' : 'हरा वस्त्र, मूंग दाल और पुस्तकों का दान'}। 4) ${gandaMula.name.hi} विशेष मन्त्रों के साथ नक्षत्र शान्ति हवन। 5) ${gandaMula.ruler === 'Ketu' ? 'भगवान गणेश' : 'भगवान विष्णु'} की पूजा। 6) प्रभावित सम्बन्धी (${gandaMula.affectedRelation.hi}) को जन्म के ${isCriticalPada ? '27 दिनों' : '12 दिनों'} तक नवजात को न देखें (पारम्परिक)।`),
+          `Remedies for Ganda Mula (${gandaMula.name.en}): 1) Perform Ganda Mula Shanti Puja  –  ideally on the 27th day after birth or at the earliest opportunity. 2) Recite ${gandaMula.ruler === 'Ketu' ? 'Ketu Beej Mantra (Om Sram Sreem Sroum Sah Ketave Namah) 17,000 times' : 'Budh Beej Mantra (Om Bram Breem Broum Sah Budhaye Namah) 9,000 times'}. 3) Donate ${gandaMula.ruler === 'Ketu' ? 'blanket, seven grains (saptadhanya), and a cow' : 'green cloth, moong dal, and books'}. 4) Perform Nakshatra Shanti Havan with ${gandaMula.name.en} specific mantras. 5) Worship ${gandaMula.ruler === 'Ketu' ? 'Lord Ganesha' : 'Lord Vishnu'}  –  especially on the day ruled by the nakshatra lord. 6) Affected relation (${gandaMula.affectedRelation.en}) should avoid seeing the newborn for ${isCriticalPada ? '27 days' : '12 days'} after birth (traditional).`,
+          `गण्ड मूल उपाय (${gandaMula.name.hi}): 1) गण्ड मूल शान्ति पूजा  –  जन्म के 27वें दिन या शीघ्रातिशीघ्र। 2) ${gandaMula.ruler === 'Ketu' ? 'केतु बीज मन्त्र (ॐ स्रां स्रीं स्रौं सः केतवे नमः) 17,000 बार' : 'बुध बीज मन्त्र (ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः) 9,000 बार'}। 3) ${gandaMula.ruler === 'Ketu' ? 'कम्बल, सप्तधान्य और गाय का दान' : 'हरा वस्त्र, मूंग दाल और पुस्तकों का दान'}। 4) ${gandaMula.name.hi} विशेष मन्त्रों के साथ नक्षत्र शान्ति हवन। 5) ${gandaMula.ruler === 'Ketu' ? 'भगवान गणेश' : 'भगवान विष्णु'} की पूजा। 6) प्रभावित सम्बन्धी (${gandaMula.affectedRelation.hi}) को जन्म के ${isCriticalPada ? '27 दिनों' : '12 दिनों'} तक नवजात को न देखें (पारम्परिक)।`),
       });
     } else {
       doshas.push({

@@ -16,7 +16,7 @@ function makePlanet(
   overrides: Partial<ConvergenceInput['planets'][number]> = {},
 ): ConvergenceInput['planets'][number] {
   return {
-    id: 4, // Jupiter — benefic by default
+    id: 4, // Jupiter  –  benefic by default
     house: 1,
     sign: 1,
     isRetrograde: false,

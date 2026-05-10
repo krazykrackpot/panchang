@@ -169,8 +169,8 @@ export const ANANT_CHATURDASHI_PUJA: PujaVidhi = {
   ],
 
   phala: {
-    en: 'Anant Chaturdashi bestows infinite (anant) blessings of Lord Vishnu. The 14-year vrat grants unending prosperity, removal of poverty and suffering, and ultimately moksha. The Ganesh Visarjan teaches the spiritual lesson of non-attachment — welcoming the divine with joy and releasing with equal grace.',
-    hi: 'अनन्त चतुर्दशी भगवान विष्णु का अनन्त (असीम) आशीर्वाद प्रदान करती है। 14 वर्ष का व्रत अनन्त समृद्धि, दरिद्रता और दुःख का निवारण, और अन्ततः मोक्ष प्रदान करता है। गणेश विसर्जन वैराग्य का आध्यात्मिक पाठ सिखाता है — दिव्यता का हर्षपूर्वक स्वागत और समान कृपा से विदाई।',
-    sa: 'अनन्तचतुर्दशी श्रीविष्णोः अनन्तम् (असीमम्) आशीर्वादं ददाति। चतुर्दशवर्षव्रतं अनन्तसमृद्धिं दारिद्र्यदुःखनिवारणं मोक्षं च ददाति। गणेशविसर्जनं वैराग्यस्य आध्यात्मिकशिक्षां ददाति — दैवत्वस्य हर्षपूर्वकं स्वागतं समानकृपया विदापनं च।',
+    en: 'Anant Chaturdashi bestows infinite (anant) blessings of Lord Vishnu. The 14-year vrat grants unending prosperity, removal of poverty and suffering, and ultimately moksha. The Ganesh Visarjan teaches the spiritual lesson of non-attachment  –  welcoming the divine with joy and releasing with equal grace.',
+    hi: 'अनन्त चतुर्दशी भगवान विष्णु का अनन्त (असीम) आशीर्वाद प्रदान करती है। 14 वर्ष का व्रत अनन्त समृद्धि, दरिद्रता और दुःख का निवारण, और अन्ततः मोक्ष प्रदान करता है। गणेश विसर्जन वैराग्य का आध्यात्मिक पाठ सिखाता है  –  दिव्यता का हर्षपूर्वक स्वागत और समान कृपा से विदाई।',
+    sa: 'अनन्तचतुर्दशी श्रीविष्णोः अनन्तम् (असीमम्) आशीर्वादं ददाति। चतुर्दशवर्षव्रतं अनन्तसमृद्धिं दारिद्र्यदुःखनिवारणं मोक्षं च ददाति। गणेशविसर्जनं वैराग्यस्य आध्यात्मिकशिक्षां ददाति  –  दैवत्वस्य हर्षपूर्वकं स्वागतं समानकृपया विदापनं च।',
   },
 };

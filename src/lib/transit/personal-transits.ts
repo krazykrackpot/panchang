@@ -81,7 +81,7 @@ export function computePersonalTransits(
   const jd = dateToJD(now.getUTCFullYear(), now.getUTCMonth() + 1, now.getUTCDate(), 12);
   const positions = getPlanetaryPositions(jd);
 
-  // Prefer reducedSavTable (post-Shodhana) for quality scoring — more accurate for transit prediction.
+  // Prefer reducedSavTable (post-Shodhana) for quality scoring  –  more accurate for transit prediction.
   // Reduced SAV averages ~8 per sign vs raw ~28, so thresholds are adjusted accordingly.
   const scoringTable = reducedSavTable ?? savTable;
   const isReduced = !!reducedSavTable;
@@ -115,9 +115,9 @@ export function computePersonalTransits(
       savBindu,
       quality,
       interpretation: {
-        en: `${sp.name.en} in house ${house} (${hm.en}) — ${qualityLabel.en} (${savBindu} bindus)`,
-        hi: `${sp.name.hi} ${house}वें भाव में (${hm.hi}) — ${qualityLabel.hi} (${savBindu} बिन्दु)`,
-        sa: `${sp.name.sa} ${house}-भावे (${hm.sa}) — ${qualityLabel.sa} (${savBindu} बिन्दवः)`,
+        en: `${sp.name.en} in house ${house} (${hm.en})  –  ${qualityLabel.en} (${savBindu} bindus)`,
+        hi: `${sp.name.hi} ${house}वें भाव में (${hm.hi})  –  ${qualityLabel.hi} (${savBindu} बिन्दु)`,
+        sa: `${sp.name.sa} ${house}-भावे (${hm.sa})  –  ${qualityLabel.sa} (${savBindu} बिन्दवः)`,
       },
     };
   }).filter(Boolean) as PersonalTransit[];

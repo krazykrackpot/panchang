@@ -486,7 +486,7 @@ export default function MorningBriefing({ panchangData, personalizedDay, locale 
           }
         />
 
-        {/* 2. Nakshatra — shows active nakshatra (after transition if passed) */}
+        {/* 2. Nakshatra  –  shows active nakshatra (after transition if passed) */}
         <BriefingCell
           label={L.nakshatra}
           icon={<Sparkles className="w-4 h-4" />}

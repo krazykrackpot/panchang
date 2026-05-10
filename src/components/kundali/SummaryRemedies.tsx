@@ -165,7 +165,7 @@ export default function SummaryRemedies({ remedies, domains, remedyNote, locale 
         </div>
       )}
 
-      {/* ===== 2. By Planet — Classical ===== */}
+      {/* ===== 2. By Planet  –  Classical ===== */}
       {hasClassical && (
         <section className={SECTION_CLS}>
           <h3 className="text-xl text-gold-light font-semibold mb-6">
@@ -201,7 +201,7 @@ export default function SummaryRemedies({ remedies, domains, remedyNote, locale 
         </section>
       )}
 
-      {/* ===== 3. By Life Area — Practical ===== */}
+      {/* ===== 3. By Life Area  –  Practical ===== */}
       {domainsWithRemedies.length > 0 && (
         <section className={SECTION_CLS}>
           <h3 className="text-xl text-gold-light font-semibold mb-6">
@@ -319,7 +319,7 @@ export default function SummaryRemedies({ remedies, domains, remedyNote, locale 
             </div>
           </div>
 
-          {/* Affirmation — full width */}
+          {/* Affirmation  –  full width */}
           <div className="mt-5 p-4 rounded-lg bg-gradient-to-r from-gold-primary/5 to-transparent border border-gold-primary/10 text-center">
             <p className="text-text-secondary/60 text-xs uppercase tracking-widest mb-2">
               {isEn ? 'Daily Affirmation' : 'दैनिक प्रतिज्ञा'}

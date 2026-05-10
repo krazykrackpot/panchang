@@ -71,7 +71,7 @@ export const MOOLATRIKONA: Record<number, { sign: number; startDeg: number; endD
 };
 
 /**
- * Sign lordship — which planet rules each rashi.
+ * Sign lordship  –  which planet rules each rashi.
  * Key: rashi number (1=Aries through 12=Pisces)
  * Value: planet ID (0=Sun through 6=Saturn)
  *

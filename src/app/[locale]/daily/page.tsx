@@ -10,8 +10,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const isHi = isDevanagariLocale(locale);
   return {
-    title: tl({ en: 'Daily Panchang Articles — Dekho Panchang', hi: 'दैनिक पंचांग लेख — देखो पंचांग', sa: 'दैनिक पंचांग लेख — देखो पंचांग' }, locale),
-    description: tl({ en: 'Daily Vedic panchang analysis — tithi, nakshatra, yoga, auspicious/inauspicious windows, and guidance.', hi: 'प्रतिदिन का वैदिक पंचांग विश्लेषण — तिथि, नक्षत्र, योग, शुभ-अशुभ काल और मार्गदर्शन।', sa: 'प्रतिदिन का वैदिक पंचांग विश्लेषण — तिथि, नक्षत्र, योग, शुभ-अशुभ काल और मार्गदर्शन।' }, locale),
+    title: tl({ en: 'Daily Panchang Articles  –  Dekho Panchang', hi: 'दैनिक पंचांग लेख  –  देखो पंचांग', sa: 'दैनिक पंचांग लेख  –  देखो पंचांग' }, locale),
+    description: tl({ en: 'Daily Vedic panchang analysis  –  tithi, nakshatra, yoga, auspicious/inauspicious windows, and guidance.', hi: 'प्रतिदिन का वैदिक पंचांग विश्लेषण  –  तिथि, नक्षत्र, योग, शुभ-अशुभ काल और मार्गदर्शन।', sa: 'प्रतिदिन का वैदिक पंचांग विश्लेषण  –  तिथि, नक्षत्र, योग, शुभ-अशुभ काल और मार्गदर्शन।' }, locale),
     alternates: {
       canonical: `${BASE_URL}/${locale}/daily`,
       languages: { en: `${BASE_URL}/en/daily`, hi: `${BASE_URL}/hi/daily` },

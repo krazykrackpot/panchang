@@ -34,7 +34,7 @@ export function ShareCardButton({
 
         if (imageBlob) {
           const file = new File([imageBlob], 'card.png', { type: 'image/png' });
-          // navigator.canShare is not available everywhere — guard it
+          // navigator.canShare is not available everywhere  –  guard it
           if (navigator.canShare?.({ files: [file] })) {
             shareData.files = [file];
           }
@@ -50,7 +50,7 @@ export function ShareCardButton({
       const timer = setTimeout(() => setCopied(false), 2000);
       return () => clearTimeout(timer);
     } catch (err) {
-      // User cancelled share sheet — not a real error
+      // User cancelled share sheet  –  not a real error
       if (err instanceof Error && err.name === 'AbortError') return;
       console.error('[ShareCardButton] share failed:', err);
 

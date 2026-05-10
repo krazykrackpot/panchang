@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   if (!profile) return {};
   const nakData = NAKSHATRAS[parsed.nakshatraId - 1];
   const nakName = tl(nakData?.name, locale) || NAK_SLUGS[parsed.nakshatraId - 1];
-  const title = `${nakName} Pada ${parsed.pada} — ${profile.syllable} | Vedic Nakshatra Analysis`;
+  const title = `${nakName} Pada ${parsed.pada}  –  ${profile.syllable} | Vedic Nakshatra Analysis`;
   const desc = profile.personality.en.slice(0, 155);
   const route = `/learn/nakshatra-pada/${slug}`;
   return {

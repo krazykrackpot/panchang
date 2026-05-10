@@ -1,31 +1,31 @@
 {
   "title": {
-    "en": "The Speed of Light — In a 14th-Century Sanskrit Commentary",
-    "hi": "प्रकाश की गति — 14वीं सदी की संस्कृत टीका में",
-    "sa": "प्रकाशस्य वेगः — सायणस्य ऋग्वेदभाष्यम्",
-    "ta": "ஒளியின் வேகம் — சாயணரின் ரிக்வேத உரை",
-    "te": "కాంతి వేగం — సాయణ యొక్క ఋగ్వేద వ్యాఖ్యానం",
-    "bn": "আলোর গতি — সায়ণের ঋগ্বেদ ভাষ্য",
-    "kn": "ಬೆಳಕಿನ ವೇಗ — ಸಾಯಣನ ಋಗ್ವೇದ ಭಾಷ್ಯ",
-    "mr": "प्रकाशाचा वेग — सायणाचे ऋग्वेद भाष्य",
-    "gu": "પ્રકાશનો વેગ — સાયણનું ઋગ્વેદ ભાષ્ય",
-    "mai": "प्रकाशक वेग — सायणक ऋग्वेद भाष्य"
+    "en": "The Speed of Light  –  In a 14th-Century Sanskrit Commentary",
+    "hi": "प्रकाश की गति  –  14वीं सदी की संस्कृत टीका में",
+    "sa": "प्रकाशस्य वेगः  –  सायणस्य ऋग्वेदभाष्यम्",
+    "ta": "ஒளியின் வேகம்  –  சாயணரின் ரிக்வேத உரை",
+    "te": "కాంతి వేగం  –  సాయణ యొక్క ఋగ్వేద వ్యాఖ్యానం",
+    "bn": "আলোর গতি  –  সায়ণের ঋগ্বেদ ভাষ্য",
+    "kn": "ಬೆಳಕಿನ ವೇಗ  –  ಸಾಯಣನ ಋಗ್ವೇದ ಭಾಷ್ಯ",
+    "mr": "प्रकाशाचा वेग  –  सायणाचे ऋग्वेद भाष्य",
+    "gu": "પ્રકાશનો વેગ  –  સાયણનું ઋગ્વેદ ભાષ્ય",
+    "mai": "प्रकाशक वेग  –  सायणक ऋग्वेद भाष्य"
   },
   "subtitle": {
-    "en": "In the 1670s, Danish astronomer Ole Rømer made the first measurement of the speed of light. But 300 years earlier, Sayana — minister of the Vijayanagara Empire and one of the greatest Sanskrit scholars — wrote a commentary on the Rig Veda that gives a value astonishingly close to the modern measurement.",
-    "hi": "1670 के दशक में, डेनिश खगोलशास्त्री ओले रोमर ने प्रकाश की गति का पहला माप किया। लेकिन 300 वर्ष पहले, सायण — विजयनगर साम्राज्य के मंत्री और महानतम संस्कृत विद्वानों में से एक — ने ऋग्वेद पर एक टीका लिखी जो आधुनिक माप के आश्चर्यजनक रूप से निकट एक मान देती है।",
-    "sa": "चतुर्दशशताब्दे सायणः सूर्यप्रकाशस्य वेगम् उल्लिखितवान् — आधुनिकगणनायाः समीपस्थं मूल्यम्",
-    "ta": "14ம் நூற்றாண்டில் சாயணர் சூரிய ஒளியின் வேகத்தை குறிப்பிட்டார் — நவீன கணக்கீட்டுக்கு நெருக்கமான மதிப்பு",
-    "te": "14వ శతాబ్దంలో సాయణుడు సూర్యకాంతి వేగాన్ని పేర్కొన్నాడు — ఆధునిక గణనకు దగ్గరగా ఉన్న విలువ",
-    "bn": "১৪শ শতকে সায়ণ সূর্যালোকের গতি উল্লেখ করেন — আধুনিক গণনার কাছাকাছি মান",
-    "kn": "14ನೇ ಶತಮಾನದಲ್ಲಿ ಸಾಯಣ ಸೂರ್ಯನ ಬೆಳಕಿನ ವೇಗವನ್ನು ಉಲ್ಲೇಖಿಸಿದರು — ಆಧುನಿಕ ಲೆಕ್ಕಾಚಾರಕ್ಕೆ ಹತ್ತಿರದ ಮೌಲ್ಯ",
-    "mr": "१४व्या शतकात सायणाने सूर्यप्रकाशाचा वेग नमूद केला — आधुनिक गणनेच्या जवळचे मूल्य",
-    "gu": "14મી સદીમાં સાયણે સૂર્યપ્રકાશનો વેગ જણાવ્યો — આધુનિક ગણતરીની નજીકનું મૂલ્ય",
-    "mai": "14म शताब्दीमे सायण सूर्यप्रकाशक वेग उल्लेख कयलथि — आधुनिक गणनाक निकटक मूल्य"
+    "en": "In the 1670s, Danish astronomer Ole Rømer made the first measurement of the speed of light. But 300 years earlier, Sayana  –  minister of the Vijayanagara Empire and one of the greatest Sanskrit scholars  –  wrote a commentary on the Rig Veda that gives a value astonishingly close to the modern measurement.",
+    "hi": "1670 के दशक में, डेनिश खगोलशास्त्री ओले रोमर ने प्रकाश की गति का पहला माप किया। लेकिन 300 वर्ष पहले, सायण  –  विजयनगर साम्राज्य के मंत्री और महानतम संस्कृत विद्वानों में से एक  –  ने ऋग्वेद पर एक टीका लिखी जो आधुनिक माप के आश्चर्यजनक रूप से निकट एक मान देती है।",
+    "sa": "चतुर्दशशताब्दे सायणः सूर्यप्रकाशस्य वेगम् उल्लिखितवान्  –  आधुनिकगणनायाः समीपस्थं मूल्यम्",
+    "ta": "14ம் நூற்றாண்டில் சாயணர் சூரிய ஒளியின் வேகத்தை குறிப்பிட்டார்  –  நவீன கணக்கீட்டுக்கு நெருக்கமான மதிப்பு",
+    "te": "14వ శతాబ్దంలో సాయణుడు సూర్యకాంతి వేగాన్ని పేర్కొన్నాడు  –  ఆధునిక గణనకు దగ్గరగా ఉన్న విలువ",
+    "bn": "১৪শ শতকে সায়ণ সূর্যালোকের গতি উল্লেখ করেন  –  আধুনিক গণনার কাছাকাছি মান",
+    "kn": "14ನೇ ಶತಮಾನದಲ್ಲಿ ಸಾಯಣ ಸೂರ್ಯನ ಬೆಳಕಿನ ವೇಗವನ್ನು ಉಲ್ಲೇಖಿಸಿದರು  –  ಆಧುನಿಕ ಲೆಕ್ಕಾಚಾರಕ್ಕೆ ಹತ್ತಿರದ ಮೌಲ್ಯ",
+    "mr": "१४व्या शतकात सायणाने सूर्यप्रकाशाचा वेग नमूद केला  –  आधुनिक गणनेच्या जवळचे मूल्य",
+    "gu": "14મી સદીમાં સાયણે સૂર્યપ્રકાશનો વેગ જણાવ્યો  –  આધુનિક ગણતરીની નજીકનું મૂલ્ય",
+    "mai": "14म शताब्दीमे सायण सूर्यप्रकाशक वेग उल्लेख कयलथि  –  आधुनिक गणनाक निकटक मूल्य"
   },
   "s1Title": {
-    "en": "The Sayana Verse — Rigveda 1.50.4",
-    "hi": "सायण का श्लोक — ऋग्वेद 1.50.4",
+    "en": "The Sayana Verse  –  Rigveda 1.50.4",
+    "hi": "सायण का श्लोक  –  ऋग्वेद 1.50.4",
     "sa": "सायणस्य वेदभाष्यम्",
     "ta": "சாயணரின் வேத உரை",
     "te": "సాయణ యొక్క వేద వ్యాఖ్యానం",
@@ -36,8 +36,8 @@
     "mai": "सायणक वेद भाष्य"
   },
   "s1Body": {
-    "en": "The Rig Veda 1.50.4 is a hymn to Surya (the Sun). In his 14th-century commentary on this verse, Sayana writes a remarkable passage about how far sunlight travels in half a nimesha (a traditional time unit). The verse itself is about Surya's glory; the computation appears in Sayana's prose commentary — suggesting he was citing an existing numerical tradition, not inventing it.",
-    "hi": "ऋग्वेद 1.50.4 सूर्य की एक स्तुति है। इस श्लोक पर अपनी 14वीं सदी की टीका में, सायण सूर्य प्रकाश की यात्रा के बारे में एक उल्लेखनीय अनुच्छेद लिखते हैं — आधे निमेष (एक पारंपरिक समय इकाई) में। श्लोक स्वयं सूर्य की महिमा के बारे में है; गणना सायण की गद्य टीका में प्रकट होती है — यह सुझाव देती है कि वे एक मौजूदा संख्यात्मक परंपरा को उद्धृत कर रहे थे, इसका आविष्कार नहीं कर रहे थे।",
+    "en": "The Rig Veda 1.50.4 is a hymn to Surya (the Sun). In his 14th-century commentary on this verse, Sayana writes a remarkable passage about how far sunlight travels in half a nimesha (a traditional time unit). The verse itself is about Surya's glory; the computation appears in Sayana's prose commentary  –  suggesting he was citing an existing numerical tradition, not inventing it.",
+    "hi": "ऋग्वेद 1.50.4 सूर्य की एक स्तुति है। इस श्लोक पर अपनी 14वीं सदी की टीका में, सायण सूर्य प्रकाश की यात्रा के बारे में एक उल्लेखनीय अनुच्छेद लिखते हैं  –  आधे निमेष (एक पारंपरिक समय इकाई) में। श्लोक स्वयं सूर्य की महिमा के बारे में है; गणना सायण की गद्य टीका में प्रकट होती है  –  यह सुझाव देती है कि वे एक मौजूदा संख्यात्मक परंपरा को उद्धृत कर रहे थे, इसका आविष्कार नहीं कर रहे थे।",
     "sa": "सायणः (चतुर्दशशताब्दी) विजयनगरसाम्राज्यस्य प्रसिद्धवेदभाष्यकारः। तस्य ऋग्वेदभाष्ये सूर्यप्रकाशवेगसूचकः श्लोकः अस्ति।",
     "ta": "சாயணர் (14ம் நூற்றாண்டு) விஜயநகர சாம்ராஜ்யத்தின் புகழ்பெற்ற வேத உரையாசிரியர். அவரது ஋க்வேத பாஷ்யத்தில் சூரிய ஒளியின் வேகத்தைக் குறிக்கும் ஒரு சுலோகம் உள்ளது.",
     "te": "సాయణుడు (14వ శతాబ్దం) విజయనగర సామ్రాజ్యం యొక్క ప్రసిద్ధ వేద వ్యాఖ్యాత. అతని ఋగ్వేద భాష్యంలో సూర్యకాంతి వేగాన్ని సూచించే ఒక శ్లోకం ఉంది.",
@@ -72,16 +72,16 @@
     "mai": "अनुवाद: \"आधा निमेषमे 2,202 योजन पार करयवाला (सूर्यप्रकाशक) वेगकेँ नमस्कार\""
   },
   "s2Title": {
-    "en": "The Calculation — Step by Step",
-    "hi": "गणना — चरण दर चरण",
-    "sa": "गणना — चरण दर चरण",
+    "en": "The Calculation  –  Step by Step",
+    "hi": "गणना  –  चरण दर चरण",
+    "sa": "गणना  –  चरण दर चरण",
     "ta": "கணக்கீடு",
     "te": "గణన",
     "bn": "গণনা",
     "kn": "ಲೆಕ್ಕಾಚಾರ",
-    "mr": "गणना — चरण दर चरण",
+    "mr": "गणना  –  चरण दर चरण",
     "gu": "ગણતરી",
-    "mai": "गणना — चरण दर चरण"
+    "mai": "गणना  –  चरण दर चरण"
   },
   "s2Body": {
     "en": "To evaluate Sayana's claim, we need the values of \"yojana\" and \"nimesha.\" Both units appear in multiple classical texts with consistent definitions. The calculation uses the Arthashastra yojana (Kautilya, ~300 BCE) which is the most widely cited.",
@@ -108,8 +108,8 @@
     "mai": "पूर्वजसभक योगदान"
   },
   "s3Body": {
-    "en": "The speed of light in a vacuum is exactly 299,792,458 meters per second = 186,282.397 miles per second. Sayana's calculation gives 186,536 miles/second — a difference of only 253 miles/second, or 0.14%. This level of agreement is extraordinary. No other pre-modern text, from any civilization, comes close.",
-    "hi": "निर्वात में प्रकाश की गति ठीक 299,792,458 मीटर प्रति सेकंड = 186,282.397 मील प्रति सेकंड है। सायण की गणना 186,536 मील/सेकंड देती है — केवल 253 मील/सेकंड का अंतर, या 0.14%। इस सहमति का स्तर असाधारण है। किसी भी सभ्यता का कोई अन्य पूर्व-आधुनिक ग्रंथ इसके करीब नहीं आता।",
+    "en": "The speed of light in a vacuum is exactly 299,792,458 meters per second = 186,282.397 miles per second. Sayana's calculation gives 186,536 miles/second  –  a difference of only 253 miles/second, or 0.14%. This level of agreement is extraordinary. No other pre-modern text, from any civilization, comes close.",
+    "hi": "निर्वात में प्रकाश की गति ठीक 299,792,458 मीटर प्रति सेकंड = 186,282.397 मील प्रति सेकंड है। सायण की गणना 186,536 मील/सेकंड देती है  –  केवल 253 मील/सेकंड का अंतर, या 0.14%। इस सहमति का स्तर असाधारण है। किसी भी सभ्यता का कोई अन्य पूर्व-आधुनिक ग्रंथ इसके करीब नहीं आता।",
     "sa": "सायणस्य गणना चतुर्दशशताब्दस्य, रोमरः १६७६ तमे वर्षे यूरोपे प्रथमतया प्रकाशवेगं मापितवान्। त्रिशताब्दी पूर्वम् एव भारते एषा संख्या आसीत्।",
     "ta": "சாயணரின் கணக்கீடு 14ம் நூற்றாண்டிலிருந்தும், ரோமர் 1676 இல்தான் ஐரோப்பாவில் முதன்முதலாக ஒளியின் வேகத்தை அளவிட்டார். அதற்கு மூன்று நூற்றாண்டுகள் முன்பே இந்தியாவில் இந்த எண் இருந்தது.",
     "te": "సాయణ గణన 14వ శతాబ్దానిది, రోమర్ 1676 లో ఐరోపాలో మొదటిసారి కాంతి వేగాన్ని కొలిచాడు. మూడు శతాబ్దాల ముందే భారతదేశంలో ఈ సంఖ్య ఉంది.",
@@ -120,8 +120,8 @@
     "mai": "सायणक गणना 14म शताब्दीक, रोमर 1676 मे यूरोपमे पहिलबेर प्रकाशक वेग मापलथि। तीन शताब्दी पहिने भारतमे ई संख्या छल।"
   },
   "s4Title": {
-    "en": "The Debate — Coincidence or Knowledge?",
-    "hi": "बहस — संयोग या ज्ञान?",
+    "en": "The Debate  –  Coincidence or Knowledge?",
+    "hi": "बहस  –  संयोग या ज्ञान?",
     "sa": "चर्चा विश्लेषणं च",
     "ta": "விவாதம் & பகுப்பாய்வு",
     "te": "చర్చ & విశ్లేషణ",
@@ -132,8 +132,8 @@
     "mai": "चर्चा आ विश्लेषण"
   },
   "s4For": {
-    "en": "Arguments FOR genuine knowledge: The value is too precise to be accidental (0.14% error). Sayana says \"it is remembered\" — citing an older tradition, not claiming originality. The Surya Siddhanta (astronomy text) independently gives very accurate values for astronomical distances. Indian astronomers were clearly capable of precision measurement.",
-    "hi": "वास्तविक ज्ञान के पक्ष में तर्क: मान इतना सटीक है कि आकस्मिक नहीं हो सकता (0.14% त्रुटि)। सायण कहते हैं \"यह स्मरण किया जाता है\" — एक पुरानी परंपरा को उद्धृत करते हुए, मौलिकता का दावा नहीं। सूर्य सिद्धांत (खगोल ग्रंथ) स्वतंत्र रूप से खगोलीय दूरियों के लिए बहुत सटीक मान देता है। भारतीय खगोलशास्त्री स्पष्ट रूप से सटीक माप में सक्षम थे।",
+    "en": "Arguments FOR genuine knowledge: The value is too precise to be accidental (0.14% error). Sayana says \"it is remembered\"  –  citing an older tradition, not claiming originality. The Surya Siddhanta (astronomy text) independently gives very accurate values for astronomical distances. Indian astronomers were clearly capable of precision measurement.",
+    "hi": "वास्तविक ज्ञान के पक्ष में तर्क: मान इतना सटीक है कि आकस्मिक नहीं हो सकता (0.14% त्रुटि)। सायण कहते हैं \"यह स्मरण किया जाता है\"  –  एक पुरानी परंपरा को उद्धृत करते हुए, मौलिकता का दावा नहीं। सूर्य सिद्धांत (खगोल ग्रंथ) स्वतंत्र रूप से खगोलीय दूरियों के लिए बहुत सटीक मान देता है। भारतीय खगोलशास्त्री स्पष्ट रूप से सटीक माप में सक्षम थे।",
     "sa": "पक्षे तर्काः: संख्या आश्चर्यजनकतया यथार्था, योजन/निमेषम् एककानि सुनिर्धारितानि।",
     "ta": "சாதகமான வாதங்கள்: எண் ஆச்சரியமான அளவு துல்லியமானது, யோஜனை/நிமிடம் அலகுகள் துல்லியமாக வரையறுக்கப்பட்டவை.",
     "te": "అనుకూల వాదనలు: సంఖ్య ఆశ్చర్యకరంగా ఖచ్చితమైనది, యోజన/నిమిషం ప్రమాణాలు ఖచ్చితంగా నిర్వచించబడ్డాయి.",
@@ -144,8 +144,8 @@
     "mai": "पक्षमे तर्क: संख्या आश्चर्यजनक रूपसँ सटीक, योजन/निमेष एकक सुनिर्धारित।"
   },
   "s4Against": {
-    "en": "Arguments AGAINST: We don't know exactly what yojana value Sayana intended — different texts give different yojana sizes. If we use a longer yojana (~9.5 miles), the result exceeds the modern value. The close match may depend on which yojana we choose. No other Indian text explicitly claims to measure light speed.",
-    "hi": "विरुद्ध तर्क: हम नहीं जानते कि सायण का इच्छित योजन मान क्या था — विभिन्न ग्रंथ विभिन्न योजन आकार देते हैं। यदि हम एक लंबे योजन (~9.5 मील) का उपयोग करें, तो परिणाम आधुनिक मान से अधिक हो जाता है। निकट मेल इस बात पर निर्भर हो सकता है कि हम कौन सा योजन चुनते हैं। कोई अन्य भारतीय ग्रंथ स्पष्ट रूप से प्रकाश गति मापने का दावा नहीं करता।",
+    "en": "Arguments AGAINST: We don't know exactly what yojana value Sayana intended  –  different texts give different yojana sizes. If we use a longer yojana (~9.5 miles), the result exceeds the modern value. The close match may depend on which yojana we choose. No other Indian text explicitly claims to measure light speed.",
+    "hi": "विरुद्ध तर्क: हम नहीं जानते कि सायण का इच्छित योजन मान क्या था  –  विभिन्न ग्रंथ विभिन्न योजन आकार देते हैं। यदि हम एक लंबे योजन (~9.5 मील) का उपयोग करें, तो परिणाम आधुनिक मान से अधिक हो जाता है। निकट मेल इस बात पर निर्भर हो सकता है कि हम कौन सा योजन चुनते हैं। कोई अन्य भारतीय ग्रंथ स्पष्ट रूप से प्रकाश गति मापने का दावा नहीं करता।",
     "sa": "विपक्षे तर्काः: सायणः खगोलशास्त्रज्ञः नासीत्, सः वेदभाष्यकारः आसीत्। एषा संख्या संयोगेन सुसङ्गता स्यात्।",
     "ta": "எதிர்வாதங்கள்: சாயணர் வானியலாளர் அல்ல, அவர் வேத உரையாசிரியர். இந்த எண் தற்செயலாக பொருந்தலாம்.",
     "te": "వ్యతిరేక వాదనలు: సాయణుడు ఖగోళ శాస్త్రవేత్త కాదు, అతను వేద వ్యాఖ్యాత. ఈ సంఖ్య యాదృచ్ఛికంగా సరిపోయి ఉండవచ్చు.",
@@ -156,8 +156,8 @@
     "mai": "विपक्षमे तर्क: सायण खगोलशास्त्री नहि छलथि, ओ वेद भाष्यकार छलथि। ई संख्या संयोगसँ मिलल होइ सकैत अछि।"
   },
   "s4Conclusion": {
-    "en": "Our assessment: The coincidence hypothesis is strained by the extreme precision. Even if the match is partially due to unit selection, the number 2,202 appears in a context that is specifically about how far light travels — suggesting systematic astronomical observation, not random numerology.",
-    "hi": "हमारा आकलन: संयोग परिकल्पना अत्यधिक सटीकता से तनावपूर्ण है। भले ही मेल आंशिक रूप से इकाई चयन के कारण हो, संख्या 2,202 एक ऐसे संदर्भ में प्रकट होती है जो विशेष रूप से प्रकाश की यात्रा के बारे में है — व्यवस्थित खगोलीय अवलोकन का सुझाव देती है, न कि यादृच्छिक अंकशास्त्र।",
+    "en": "Our assessment: The coincidence hypothesis is strained by the extreme precision. Even if the match is partially due to unit selection, the number 2,202 appears in a context that is specifically about how far light travels  –  suggesting systematic astronomical observation, not random numerology.",
+    "hi": "हमारा आकलन: संयोग परिकल्पना अत्यधिक सटीकता से तनावपूर्ण है। भले ही मेल आंशिक रूप से इकाई चयन के कारण हो, संख्या 2,202 एक ऐसे संदर्भ में प्रकट होती है जो विशेष रूप से प्रकाश की यात्रा के बारे में है  –  व्यवस्थित खगोलीय अवलोकन का सुझाव देती है, न कि यादृच्छिक अंकशास्त्र।",
     "sa": "यत् किमपि सत्यम् अस्तु, अस्य संख्यायाः यथार्थता (९९.३%) उल्लेखनीया।",
     "ta": "எது உண்மையாக இருந்தாலும், இந்த எண்ணின் துல்லியம் (99.3%) குறிப்பிடத்தக்கது.",
     "te": "ఏది నిజమైనా, ఈ సంఖ్య యొక్క ఖచ్చితత్వం (99.3%) గమనార్హం.",
@@ -180,16 +180,16 @@
     "mai": "सायण कौन थे?"
   },
   "s5Body": {
-    "en": "Sayana (c. 1315–1387 CE) was the Prime Minister (Mahamantri) of the Vijayanagara Empire under King Bukka I and later Harihara II. He was one of the most prolific Sanskrit scholars in history, writing commentaries on all four Vedas — over 20,000 pages of scholarship. His Rigveda commentary, Rigveda-Samhita-Bhasya, is still the standard reference text for Rigvedic interpretation. He was not a crackpot or mystic — he was the foremost intellectual of a great empire.",
-    "hi": "सायण (c. 1315-1387 CE) विजयनगर साम्राज्य में राजा बुक्क प्रथम और बाद में हरिहर द्वितीय के अधीन महामंत्री थे। वे इतिहास में सबसे विपुल संस्कृत विद्वानों में से एक थे, जिन्होंने चारों वेदों पर टिप्पणियाँ लिखीं — 20,000 से अधिक पृष्ठों की विद्वत्ता। उनकी ऋग्वेद टीका, ऋग्वेद-संहिता-भाष्य, अभी भी ऋग्वैदिक व्याख्या के लिए मानक संदर्भ ग्रंथ है। वे कोई विक्षिप्त या रहस्यवादी नहीं थे — वे एक महान साम्राज्य के सर्वोच्च बुद्धिजीवी थे।",
-    "sa": "रोमरः (१६७६) प्रकाशवेगं २,१४,००० कि.मी./क्षणम् अनुमानितवान् — २९% न्यूनम्। सायणस्य संख्या रोमरात् अधिकतया यथार्था!",
-    "ta": "ரோமர் (1676) ஒளியின் வேகத்தை 2,14,000 கி.மீ./வினாடி என மதிப்பிட்டார் — 29% குறைவு. சாயணரின் எண் ரோமரை விட மிகவும் துல்லியமானது!",
-    "te": "రోమర్ (1676) కాంతి వేగాన్ని 2,14,000 కి.మీ./సెకన్‌గా అంచనా వేశాడు — 29% తక్కువ. సాయణ సంఖ్య రోమర్ కంటే చాలా ఖచ్చితమైనది!",
-    "bn": "রোমার (১৬৭৬) আলোর গতি ২,১৪,০০০ কি.মি./সেকেন্ড অনুমান করেন — ২৯% কম। সায়ণের সংখ্যা রোমারের চেয়ে অনেক বেশি সঠিক!",
-    "kn": "ರೋಮರ್ (1676) ಬೆಳಕಿನ ವೇಗವನ್ನು 2,14,000 ಕಿ.ಮೀ./ಸೆಕೆಂಡ್ ಎಂದು ಅಂದಾಜಿಸಿದರು — 29% ಕಡಿಮೆ. ಸಾಯಣನ ಸಂಖ್ಯೆ ರೋಮರ್‌ಗಿಂತ ಹೆಚ್ಚು ನಿಖರ!",
-    "mr": "रोमर (१६७६) ने प्रकाशाचा वेग २,१४,००० कि.मी./सेकंद अंदाजला — २९% कमी. सायणाचा आकडा रोमरपेक्षा खूपच अचूक!",
-    "gu": "રોમર (1676) એ પ્રકાશનો વેગ 2,14,000 કિ.મી./સેકન્ડ આંક્યો — 29% ઓછો. સાયણનો આંકડો રોમર કરતાં ઘણો વધુ સચોટ!",
-    "mai": "रोमर (1676) प्रकाशक वेग 2,14,000 कि.मी./सेकेण्ड अनुमान कयलथि — 29% कम। सायणक संख्या रोमरसँ बहुत बेसी सटीक!"
+    "en": "Sayana (c. 1315–1387 CE) was the Prime Minister (Mahamantri) of the Vijayanagara Empire under King Bukka I and later Harihara II. He was one of the most prolific Sanskrit scholars in history, writing commentaries on all four Vedas  –  over 20,000 pages of scholarship. His Rigveda commentary, Rigveda-Samhita-Bhasya, is still the standard reference text for Rigvedic interpretation. He was not a crackpot or mystic  –  he was the foremost intellectual of a great empire.",
+    "hi": "सायण (c. 1315-1387 CE) विजयनगर साम्राज्य में राजा बुक्क प्रथम और बाद में हरिहर द्वितीय के अधीन महामंत्री थे। वे इतिहास में सबसे विपुल संस्कृत विद्वानों में से एक थे, जिन्होंने चारों वेदों पर टिप्पणियाँ लिखीं  –  20,000 से अधिक पृष्ठों की विद्वत्ता। उनकी ऋग्वेद टीका, ऋग्वेद-संहिता-भाष्य, अभी भी ऋग्वैदिक व्याख्या के लिए मानक संदर्भ ग्रंथ है। वे कोई विक्षिप्त या रहस्यवादी नहीं थे  –  वे एक महान साम्राज्य के सर्वोच्च बुद्धिजीवी थे।",
+    "sa": "रोमरः (१६७६) प्रकाशवेगं २,१४,००० कि.मी./क्षणम् अनुमानितवान्  –  २९% न्यूनम्। सायणस्य संख्या रोमरात् अधिकतया यथार्था!",
+    "ta": "ரோமர் (1676) ஒளியின் வேகத்தை 2,14,000 கி.மீ./வினாடி என மதிப்பிட்டார்  –  29% குறைவு. சாயணரின் எண் ரோமரை விட மிகவும் துல்லியமானது!",
+    "te": "రోమర్ (1676) కాంతి వేగాన్ని 2,14,000 కి.మీ./సెకన్‌గా అంచనా వేశాడు  –  29% తక్కువ. సాయణ సంఖ్య రోమర్ కంటే చాలా ఖచ్చితమైనది!",
+    "bn": "রোমার (১৬৭৬) আলোর গতি ২,১৪,০০০ কি.মি./সেকেন্ড অনুমান করেন  –  ২৯% কম। সায়ণের সংখ্যা রোমারের চেয়ে অনেক বেশি সঠিক!",
+    "kn": "ರೋಮರ್ (1676) ಬೆಳಕಿನ ವೇಗವನ್ನು 2,14,000 ಕಿ.ಮೀ./ಸೆಕೆಂಡ್ ಎಂದು ಅಂದಾಜಿಸಿದರು  –  29% ಕಡಿಮೆ. ಸಾಯಣನ ಸಂಖ್ಯೆ ರೋಮರ್‌ಗಿಂತ ಹೆಚ್ಚು ನಿಖರ!",
+    "mr": "रोमर (१६७६) ने प्रकाशाचा वेग २,१४,००० कि.मी./सेकंद अंदाजला  –  २९% कमी. सायणाचा आकडा रोमरपेक्षा खूपच अचूक!",
+    "gu": "રોમર (1676) એ પ્રકાશનો વેગ 2,14,000 કિ.મી./સેકન્ડ આંક્યો  –  29% ઓછો. સાયણનો આંકડો રોમર કરતાં ઘણો વધુ સચોટ!",
+    "mai": "रोमर (1676) प्रकाशक वेग 2,14,000 कि.मी./सेकेण्ड अनुमान कयलथि  –  29% कम। सायणक संख्या रोमरसँ बहुत बेसी सटीक!"
   },
   "s6Title": {
     "en": "Other Vedic References to Light and Its Nature",
@@ -204,8 +204,8 @@
     "mai": "ऐतिहासिक महत्त्व"
   },
   "s6Body": {
-    "en": "The Vedic corpus contains numerous references suggesting sophisticated understanding of light. The Rigveda describes Surya's rays as \"self-luminous\" and traveling through space. The Aitareya Brahmana speaks of light having no mass. The Vishnu Purana states that the Sun illuminates from a fixed point while its light spreads spherically — an accurate description of electromagnetic radiation propagation. These are not proofs of measured knowledge, but they suggest a contemplative tradition that took the physical nature of light seriously.",
-    "hi": "वैदिक संहिता में कई संदर्भ हैं जो प्रकाश की परिष्कृत समझ का सुझाव देते हैं। ऋग्वेद सूर्य की किरणों को \"स्व-प्रकाशमान\" और अंतरिक्ष में यात्रा करने वाली बताता है। ऐतरेय ब्राह्मण कहता है कि प्रकाश का कोई द्रव्यमान नहीं है। विष्णु पुराण कहता है कि सूर्य एक निश्चित बिंदु से प्रकाशित करता है जबकि उसका प्रकाश गोलाकार रूप से फैलता है — विद्युतचुम्बकीय विकिरण प्रसार का सटीक वर्णन। ये मापे गए ज्ञान के प्रमाण नहीं हैं, लेकिन वे एक चिंतनशील परंपरा का सुझाव देते हैं जिसने प्रकाश की भौतिक प्रकृति को गंभीरता से लिया।",
+    "en": "The Vedic corpus contains numerous references suggesting sophisticated understanding of light. The Rigveda describes Surya's rays as \"self-luminous\" and traveling through space. The Aitareya Brahmana speaks of light having no mass. The Vishnu Purana states that the Sun illuminates from a fixed point while its light spreads spherically  –  an accurate description of electromagnetic radiation propagation. These are not proofs of measured knowledge, but they suggest a contemplative tradition that took the physical nature of light seriously.",
+    "hi": "वैदिक संहिता में कई संदर्भ हैं जो प्रकाश की परिष्कृत समझ का सुझाव देते हैं। ऋग्वेद सूर्य की किरणों को \"स्व-प्रकाशमान\" और अंतरिक्ष में यात्रा करने वाली बताता है। ऐतरेय ब्राह्मण कहता है कि प्रकाश का कोई द्रव्यमान नहीं है। विष्णु पुराण कहता है कि सूर्य एक निश्चित बिंदु से प्रकाशित करता है जबकि उसका प्रकाश गोलाकार रूप से फैलता है  –  विद्युतचुम्बकीय विकिरण प्रसार का सटीक वर्णन। ये मापे गए ज्ञान के प्रमाण नहीं हैं, लेकिन वे एक चिंतनशील परंपरा का सुझाव देते हैं जिसने प्रकाश की भौतिक प्रकृति को गंभीरता से लिया।",
     "sa": "सायणस्य संख्या विवादास्पदा चेदपि, एषा वैदिकपरम्परायां खगोलज्ञानस्य गाम्भीर्यं दर्शयति।",
     "ta": "சாயணரின் எண் சர்ச்சைக்குரியதாக இருந்தாலும், இது வேத மரபில் வானியல் அறிவின் ஆழத்தைக் காட்டுகிறது.",
     "te": "సాయణ సంఖ్య వివాదాస్పదమైనప్పటికీ, ఇది వైదిక సంప్రదాయంలో ఖగోళ జ్ఞానం యొక్క లోతును చూపిస్తుంది.",

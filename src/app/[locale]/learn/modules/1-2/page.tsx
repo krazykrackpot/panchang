@@ -32,15 +32,15 @@ function Page1() {
     <div className="space-y-6">
       <KeyTakeaway
         points={[
-          'The zodiac is divided two ways: 12 signs of 30 degrees each AND 27 nakshatras of 13°20\' each — both systems are used simultaneously.',
+          'The zodiac is divided two ways: 12 signs of 30 degrees each AND 27 nakshatras of 13°20\' each  –  both systems are used simultaneously.',
           'This dual coordinate system is unique to Vedic astrology and enables more precise analysis than signs alone.',
         ]}
         locale={locale}
       />
       <section>
-        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>The 360° Circle — Why 360?</h3>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>The 360° Circle  –  Why 360?</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          In Module 1.1, we learned that the ecliptic is a great circle — the Sun's apparent annual path through the sky. Now we need to measure positions along this circle. The ancient world settled on dividing the circle into <span className="text-gold-light font-bold">360 degrees</span> (अंश, Amsha).
+          In Module 1.1, we learned that the ecliptic is a great circle  –  the Sun's apparent annual path through the sky. Now we need to measure positions along this circle. The ancient world settled on dividing the circle into <span className="text-gold-light font-bold">360 degrees</span> (अंश, Amsha).
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           Why 360? Because it's extraordinarily divisible. 360 has 24 divisors: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 18, 20, 24, 30, 36, 40, 45, 60, 72, 90, 120, 180, 360. This makes it easy to divide the sky into equal parts. The Babylonians may have originated this choice (their year was ~360 days), but Indian astronomers adopted and perfected it.
@@ -53,12 +53,12 @@ function Page1() {
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
-          The Surya Siddhanta (Ch.1) defines the Bhachakra (भचक्र) — the "star circle" or zodiac — as a 360° circle centered on the ecliptic. The term <span className="text-gold-light font-bold">Amsha</span> (अंश) means "part" or "degree" — literally a 1/360th part of the circle. Parashara (BPHS Ch.1) opens with: <em>"The zodiac comprises 360 degrees, 12 signs of 30° each, and 27 nakshatras..."</em> — establishing both coordinate grids in the very first chapter.
+          The Surya Siddhanta (Ch.1) defines the Bhachakra (भचक्र)  –  the "star circle" or zodiac  –  as a 360° circle centered on the ecliptic. The term <span className="text-gold-light font-bold">Amsha</span> (अंश) means "part" or "degree"  –  literally a 1/360th part of the circle. Parashara (BPHS Ch.1) opens with: <em>"The zodiac comprises 360 degrees, 12 signs of 30° each, and 27 nakshatras..."</em>  –  establishing both coordinate grids in the very first chapter.
         </p>
       </section>
 
       <section>
-        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>The Dual Grid — Signs AND Nakshatras</h3>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>The Dual Grid  –  Signs AND Nakshatras</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           Here is the key insight that distinguishes Indian astronomy: the same 360° ecliptic circle is measured by <span className="text-gold-light font-bold">two overlapping grids simultaneously</span>:
         </p>
@@ -81,9 +81,9 @@ function Page1() {
         </div>
 
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          This is NOT arbitrary. The Sun moves ~1°/day, so it crosses 30° in ~30 days (one month). The Moon moves ~13°/day, so it crosses 13°20' in ~1 day. The solar grid (Rashis) divides the year into 12 months. The lunar grid (Nakshatras) divides the month into 27 days. Together, they form the <span className="text-gold-light font-bold">Panchanga</span> — the complete measurement of celestial time.
+          This is NOT arbitrary. The Sun moves ~1°/day, so it crosses 30° in ~30 days (one month). The Moon moves ~13°/day, so it crosses 13°20' in ~1 day. The solar grid (Rashis) divides the year into 12 months. The lunar grid (Nakshatras) divides the month into 27 days. Together, they form the <span className="text-gold-light font-bold">Panchanga</span>  –  the complete measurement of celestial time.
         </p>
-        <WhyItMatters locale={locale}>This dual coordinate system — signs AND nakshatras measured simultaneously — is unique to Vedic astrology and is what gives it finer resolution than any other astrological tradition.</WhyItMatters>
+        <WhyItMatters locale={locale}>This dual coordinate system  –  signs AND nakshatras measured simultaneously  –  is unique to Vedic astrology and is what gives it finer resolution than any other astrological tradition.</WhyItMatters>
       </section>
 
       <QuickCheck
@@ -102,7 +102,7 @@ function Page2() {
   return (
     <div className="space-y-6">
       <section>
-        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>The Sacred Number 108 — Where Signs Meet Nakshatras</h3>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>The Sacred Number 108  –  Where Signs Meet Nakshatras</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           Each nakshatra is divided into 4 <span className="text-gold-light font-bold">Padas</span> (पाद, quarters) of 3°20' each. Total padas: 27 × 4 = <span className="text-gold-light font-bold">108</span>.
         </p>
@@ -110,7 +110,7 @@ function Page2() {
           Each sign contains 9 navamshas (sub-divisions of 3°20' each). Total navamshas: 12 × 9 = <span className="text-gold-light font-bold">108</span>.
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          This is not a coincidence — <span className="text-gold-light">one pada IS one navamsha</span>. The LCM of 12 and 27 is 108, and this mathematical convergence is why the number 108 pervades Hindu culture: 108 beads in a japa mala, 108 Upanishads, 108 names of each deity. The astronomical origin is this elegant factorization of the zodiac.
+          This is not a coincidence  –  <span className="text-gold-light">one pada IS one navamsha</span>. The LCM of 12 and 27 is 108, and this mathematical convergence is why the number 108 pervades Hindu culture: 108 beads in a japa mala, 108 Upanishads, 108 names of each deity. The astronomical origin is this elegant factorization of the zodiac.
         </p>
 
         {/* Conversion formulas */}
@@ -164,7 +164,7 @@ function Page2() {
           A critical subtlety: 30° (sign) and 13°20' (nakshatra) do NOT divide evenly into each other. 30 ÷ 13.333 = 2.25, meaning <span className="text-gold-light font-bold">2¼ nakshatras fit in each sign</span>. This means nakshatra boundaries do not align with sign boundaries.
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          For example: Ashwini nakshatra spans 0° to 13°20' — entirely within Aries (0°-30°). Bharani spans 13°20' to 26°40' — also in Aries. But Krittika spans 26°40' to 40° — starting in Aries and ending in Taurus! This cross-sign spanning is not a bug — it's a feature. It creates a richer, more nuanced coordinate system than either grid alone.
+          For example: Ashwini nakshatra spans 0° to 13°20'  –  entirely within Aries (0°-30°). Bharani spans 13°20' to 26°40'  –  also in Aries. But Krittika spans 26°40' to 40°  –  starting in Aries and ending in Taurus! This cross-sign spanning is not a bug  –  it's a feature. It creates a richer, more nuanced coordinate system than either grid alone.
         </p>
       </section>
 
@@ -173,7 +173,7 @@ function Page2() {
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <p><span className="text-red-300 font-bold">Misconception:</span> "Signs correspond to constellations."<br />
-          <span className="text-emerald-300">Reality:</span> Signs are equal 30° mathematical divisions. Constellations (physical star patterns) have wildly unequal spans — Virgo covers ~44° while Cancer covers only ~20°. Jyotish uses signs, not constellations.</p>
+          <span className="text-emerald-300">Reality:</span> Signs are equal 30° mathematical divisions. Constellations (physical star patterns) have wildly unequal spans  –  Virgo covers ~44° while Cancer covers only ~20°. Jyotish uses signs, not constellations.</p>
           <p><span className="text-red-300 font-bold">Misconception:</span> "There are 28 nakshatras, not 27."<br />
           <span className="text-emerald-300">Reality:</span> The standard system uses 27. Abhijit (a portion between Uttara Ashadha and Shravana) is sometimes used as the 28th for muhurta purposes, but NOT for standard Jyotish calculations. Adding it would break the 13°20' equal division.</p>
         </div>
@@ -183,7 +183,7 @@ function Page2() {
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
-          <span className="text-blue-300 font-bold">Fully valid.</span> The degree system, sign divisions, and nakshatra divisions are mathematical constructs — they don't depend on physical accuracy. Our app computes planetary longitudes to 0.01° precision using Meeus algorithms, then maps them to signs and nakshatras using exactly these formulas. The 108 pada/navamsha system underpins the entire divisional chart (varga) engine.
+          <span className="text-blue-300 font-bold">Fully valid.</span> The degree system, sign divisions, and nakshatra divisions are mathematical constructs  –  they don't depend on physical accuracy. Our app computes planetary longitudes to 0.01° precision using Meeus algorithms, then maps them to signs and nakshatras using exactly these formulas. The 108 pada/navamsha system underpins the entire divisional chart (varga) engine.
         </p>
       </section>
     </div>

@@ -21,8 +21,8 @@ export function RashiArticle({ rashiId, vedicName, westernName, locale }: Props)
 
   const isHi = locale === 'hi' || locale === 'mai' || locale === 'mr' || locale === 'sa';
   const h2 = isHi
-    ? `${vedicName} राशि — व्यक्तित्व और लक्षण`
-    : `About ${westernName} (${vedicName}) — Personality & Traits`;
+    ? `${vedicName} राशि  –  व्यक्तित्व और लक्षण`
+    : `About ${westernName} (${vedicName})  –  Personality & Traits`;
 
   return (
     <section className="mt-12 space-y-6 max-w-3xl mx-auto px-4">

@@ -57,7 +57,7 @@ const QUESTIONS: ModuleQuestion[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 1 — What is Manglik Dosha?                                    */
+/*  PAGE 1  –  What is Manglik Dosha?                                    */
 /* ------------------------------------------------------------------ */
 function Page1() {
   const locale = useModuleLocale();
@@ -92,13 +92,13 @@ function Page1() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>मंगल (कुज) ग्रह आक्रामकता, जुनून, साहस और शारीरिक ऊर्जा का प्रतिनिधित्व करता है। जब मंगल लग्न, चन्द्र, या शुक्र से कुछ विशिष्ट भावों में बैठता है, तो यह मांगलिक दोष बनाता है — जिसे कुज दोष या चेव्वई दोषम (तमिल) भी कहते हैं।</>
-            : <>Mars (Mangal/Kuja) represents aggression, passion, courage, and physical energy. When Mars occupies certain houses from the Lagna (Ascendant), Moon, or Venus, it creates Mangal Dosha — also known as Kuja Dosha or Chevvai Dosham (Tamil). This is one of the most commonly checked factors in Vedic marriage compatibility.</>}
+            ? <>मंगल (कुज) ग्रह आक्रामकता, जुनून, साहस और शारीरिक ऊर्जा का प्रतिनिधित्व करता है। जब मंगल लग्न, चन्द्र, या शुक्र से कुछ विशिष्ट भावों में बैठता है, तो यह मांगलिक दोष बनाता है  –  जिसे कुज दोष या चेव्वई दोषम (तमिल) भी कहते हैं।</>
+            : <>Mars (Mangal/Kuja) represents aggression, passion, courage, and physical energy. When Mars occupies certain houses from the Lagna (Ascendant), Moon, or Venus, it creates Mangal Dosha  –  also known as Kuja Dosha or Chevvai Dosham (Tamil). This is one of the most commonly checked factors in Vedic marriage compatibility.</>}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>परम्परागत वैदिक पद्धति में विवाह से पहले मांगलिक स्थिति का मिलान अनिवार्य माना जाता है। जब एक साथी मांगलिक हो और दूसरा न हो, तो मंगल की ऊर्जा असन्तुलन पैदा करती है — मांगलिक साथी की आक्रामक/जुनूनी ऊर्जा गैर-मांगलिक साथी को अभिभूत कर सकती है। जब दोनों साथी मांगलिक हों, तो ऊर्जाएँ एक-दूसरे को सन्तुलित करती हैं।</>
-            : <>Traditional Vedic practice requires matching Manglik status before marriage. When one partner is Manglik and the other is not, the Mars energy creates an imbalance — the Manglik partner&apos;s aggressive and passionate energy can overwhelm the non-Manglik partner, leading to discord. When both partners are Manglik, the energies balance each other out.</>}
+            ? <>परम्परागत वैदिक पद्धति में विवाह से पहले मांगलिक स्थिति का मिलान अनिवार्य माना जाता है। जब एक साथी मांगलिक हो और दूसरा न हो, तो मंगल की ऊर्जा असन्तुलन पैदा करती है  –  मांगलिक साथी की आक्रामक/जुनूनी ऊर्जा गैर-मांगलिक साथी को अभिभूत कर सकती है। जब दोनों साथी मांगलिक हों, तो ऊर्जाएँ एक-दूसरे को सन्तुलित करती हैं।</>
+            : <>Traditional Vedic practice requires matching Manglik status before marriage. When one partner is Manglik and the other is not, the Mars energy creates an imbalance  –  the Manglik partner&apos;s aggressive and passionate energy can overwhelm the non-Manglik partner, leading to discord. When both partners are Manglik, the energies balance each other out.</>}
         </p>
       </section>
 
@@ -133,8 +133,8 @@ function Page1() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <>लगभग 50% लोगों का मंगल इन 6 भावों में से किसी एक में होता है (12 में से 6 भाव)। इसका अर्थ है कि मांगलिक दोष अत्यन्त सामान्य है — इससे अत्यधिक भय नहीं होना चाहिए। मंगल की स्थिति, बल, दृष्टि और अन्य ग्रहों का प्रभाव सब मिलकर दोष की वास्तविक तीव्रता निर्धारित करते हैं।</>
-            : <>Approximately 50% of people have Mars in one of these 6 houses (6 out of 12 houses). This means Manglik Dosha is VERY common — it should not cause excessive fear. Mars&apos;s sign placement, strength, aspects from other planets, and cancellation conditions all determine the actual severity of the dosha.</>}
+            ? <>लगभग 50% लोगों का मंगल इन 6 भावों में से किसी एक में होता है (12 में से 6 भाव)। इसका अर्थ है कि मांगलिक दोष अत्यन्त सामान्य है  –  इससे अत्यधिक भय नहीं होना चाहिए। मंगल की स्थिति, बल, दृष्टि और अन्य ग्रहों का प्रभाव सब मिलकर दोष की वास्तविक तीव्रता निर्धारित करते हैं।</>
+            : <>Approximately 50% of people have Mars in one of these 6 houses (6 out of 12 houses). This means Manglik Dosha is VERY common  –  it should not cause excessive fear. Mars&apos;s sign placement, strength, aspects from other planets, and cancellation conditions all determine the actual severity of the dosha.</>}
         </p>
       </section>
     </div>
@@ -142,26 +142,26 @@ function Page1() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 2 — Cancellation Conditions (Dosha Bhanga)                    */
+/*  PAGE 2  –  Cancellation Conditions (Dosha Bhanga)                    */
 /* ------------------------------------------------------------------ */
 function Page2() {
   const locale = useModuleLocale();
   const isHi = isDevanagariLocale(locale);
 
-  /* Cancellation conditions — aligned with tippanni-engine.ts (lines 499-506):
-     1. Mars in own sign (Aries/Scorpio) or exalted (Capricorn) — BPHS Ch.77
-     2. Jupiter aspects Mars or 7th house — BPHS Ch.77
-     3. Venus in kendra (1,4,7,10) — Phala Deepika
-     4. Mars in Cancer or Leo sign — BPHS
-     5. Saturn aspects Mars — Lal Kitab
-     6. Both partners are Manglik (mutual cancellation) — Traditional */
+  /* Cancellation conditions  –  aligned with tippanni-engine.ts (lines 499-506):
+     1. Mars in own sign (Aries/Scorpio) or exalted (Capricorn)  –  BPHS Ch.77
+     2. Jupiter aspects Mars or 7th house  –  BPHS Ch.77
+     3. Venus in kendra (1,4,7,10)  –  Phala Deepika
+     4. Mars in Cancer or Leo sign  –  BPHS
+     5. Saturn aspects Mars  –  Lal Kitab
+     6. Both partners are Manglik (mutual cancellation)  –  Traditional */
   const CANCELLATIONS = [
     { titleEn: 'Mars in own sign (Aries/Scorpio) or exalted (Capricorn)', titleHi: 'मंगल स्वराशि (मेष/वृश्चिक) या उच्च (मकर) में', source: 'BPHS Ch.77',
       descEn: 'Mars is comfortable and controlled in its own signs. Its aggressive energy is channeled constructively rather than destructively. An exalted Mars in Capricorn is disciplined and mature, directing energy toward achievement. This is the strongest cancellation condition.',
       descHi: 'मंगल अपनी राशियों में सहज और नियन्त्रित होता है। उसकी आक्रामक ऊर्जा विनाशकारी नहीं बल्कि रचनात्मक रूप से उपयोग होती है। मकर में उच्च मंगल अनुशासित और परिपक्व होता है। यह सबसे प्रबल निरसन शर्त है।' },
     { titleEn: 'Jupiter aspects Mars or the 7th house', titleHi: 'गुरु मंगल या 7वें भाव को देखे', source: 'BPHS Ch.77',
-      descEn: 'Jupiter\'s benevolent aspect (5th, 7th, or 9th from Jupiter) calms Mars. This is considered a powerful cancellation — Jupiter\'s wisdom tempers Mars\'s aggression. When Jupiter also aspects the 7th house, the marriage house receives divine protection.',
-      descHi: 'गुरु की शुभ दृष्टि (गुरु से 5, 7, या 9वीं) मंगल को शान्त करती है। यह एक शक्तिशाली निरसन माना जाता है — गुरु की बुद्धि मंगल की आक्रामकता को नियन्त्रित करती है। जब गुरु 7वें भाव को भी देखता है, तो विवाह भाव को दैवीय सुरक्षा मिलती है।' },
+      descEn: 'Jupiter\'s benevolent aspect (5th, 7th, or 9th from Jupiter) calms Mars. This is considered a powerful cancellation  –  Jupiter\'s wisdom tempers Mars\'s aggression. When Jupiter also aspects the 7th house, the marriage house receives divine protection.',
+      descHi: 'गुरु की शुभ दृष्टि (गुरु से 5, 7, या 9वीं) मंगल को शान्त करती है। यह एक शक्तिशाली निरसन माना जाता है  –  गुरु की बुद्धि मंगल की आक्रामकता को नियन्त्रित करती है। जब गुरु 7वें भाव को भी देखता है, तो विवाह भाव को दैवीय सुरक्षा मिलती है।' },
     { titleEn: 'Venus in kendra (1st, 4th, 7th, or 10th house)', titleHi: 'शुक्र केन्द्र में (1, 4, 7, या 10वें भाव में)', source: 'Phala Deepika',
       descEn: 'Venus is the natural significator of marriage and romance. When Venus occupies a kendra (angular) house, it is strong enough to counterbalance Mars\'s disruptive influence on married life. Venus softens Mars\'s sharp edges with harmony and romance.',
       descHi: 'शुक्र विवाह और प्रेम का नैसर्गिक कारक है। जब शुक्र केन्द्र (कोणीय) भाव में होता है, तो यह मंगल के वैवाहिक जीवन पर विघटनकारी प्रभाव को सन्तुलित कर सकता है। शुक्र सद्भाव और प्रेम से मंगल की तीक्ष्णता को शान्त करता है।' },
@@ -172,8 +172,8 @@ function Page2() {
       descEn: 'Saturn\'s disciplining aspect (3rd, 7th, or 10th from Saturn) restricts Mars\'s impulsive energy. While Saturn-Mars aspects can create tension, in the context of Manglik cancellation, Saturn\'s restraint prevents Mars from causing relationship damage.',
       descHi: 'शनि की अनुशासनकारी दृष्टि (शनि से 3, 7, या 10वीं) मंगल की आवेगपूर्ण ऊर्जा को नियन्त्रित करती है। मांगलिक निरसन के सन्दर्भ में, शनि का नियन्त्रण मंगल को सम्बन्धों में हानि पहुँचाने से रोकता है।' },
     { titleEn: 'Both partners are Manglik (mutual cancellation)', titleHi: 'दोनों साथी मांगलिक (पारस्परिक निरसन)', source: 'Traditional',
-      descEn: 'When both prospective partners have Manglik Dosha, the Mars energies cancel each other out — fire meets fire, creating balance rather than imbalance. This is the most common practical solution and is widely accepted across all traditions of Jyotish.',
-      descHi: 'जब दोनों सम्भावित साथियों में मांगलिक दोष हो, तो मंगल की ऊर्जाएँ एक-दूसरे को सन्तुलित करती हैं — अग्नि अग्नि से मिलती है, असन्तुलन के बजाय सन्तुलन बनाती है। यह सबसे सामान्य व्यावहारिक समाधान है।' },
+      descEn: 'When both prospective partners have Manglik Dosha, the Mars energies cancel each other out  –  fire meets fire, creating balance rather than imbalance. This is the most common practical solution and is widely accepted across all traditions of Jyotish.',
+      descHi: 'जब दोनों सम्भावित साथियों में मांगलिक दोष हो, तो मंगल की ऊर्जाएँ एक-दूसरे को सन्तुलित करती हैं  –  अग्नि अग्नि से मिलती है, असन्तुलन के बजाय सन्तुलन बनाती है। यह सबसे सामान्य व्यावहारिक समाधान है।' },
   ];
 
   return (
@@ -184,8 +184,8 @@ function Page2() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-4">
           {isHi
-            ? <>BPHS, फलदीपिका, और अन्य शास्त्रीय ग्रन्थ कई शर्तें बताते हैं जो मांगलिक दोष को निरस्त या कम करती हैं। हमारा कुण्डली विश्लेषण इंजन इन्हीं शर्तों की जाँच करता है — यदि 2 या अधिक शर्तें पूर्ण हों तो दोष "निरस्त" माना जाता है, 1 शर्त पूर्ण होने पर "आंशिक" निरसन।</>
-            : <>BPHS, Phaladeepika, and other classical texts describe several conditions that cancel or mitigate Manglik Dosha. Our kundali analysis engine checks these exact conditions — if 2 or more conditions are met, the dosha is considered &quot;cancelled&quot;; if 1 condition is met, it is &quot;partially&quot; mitigated.</>}
+            ? <>BPHS, फलदीपिका, और अन्य शास्त्रीय ग्रन्थ कई शर्तें बताते हैं जो मांगलिक दोष को निरस्त या कम करती हैं। हमारा कुण्डली विश्लेषण इंजन इन्हीं शर्तों की जाँच करता है  –  यदि 2 या अधिक शर्तें पूर्ण हों तो दोष "निरस्त" माना जाता है, 1 शर्त पूर्ण होने पर "आंशिक" निरसन।</>
+            : <>BPHS, Phaladeepika, and other classical texts describe several conditions that cancel or mitigate Manglik Dosha. Our kundali analysis engine checks these exact conditions  –  if 2 or more conditions are met, the dosha is considered &quot;cancelled&quot;; if 1 condition is met, it is &quot;partially&quot; mitigated.</>}
         </p>
       </section>
 
@@ -211,8 +211,8 @@ function Page2() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
-            ? <>विभिन्न परम्पराएँ मांगलिक की जाँच अलग-अलग सन्दर्भ बिन्दुओं से करती हैं — लग्न से, चन्द्र से, और शुक्र से। सबसे प्रबल मूल्यांकन तीनों पर विचार करता है। यदि मंगल लग्न से मांगलिक है पर चन्द्र और शुक्र से नहीं, तो दोष हल्का माना जाता है।</>
-            : <>Different traditions assess Manglik from different reference points — from Lagna, from Moon, and from Venus. The strongest assessment considers all three. If Mars is Manglik from Lagna but NOT from Moon and Venus, the dosha is considered mild.</>}
+            ? <>विभिन्न परम्पराएँ मांगलिक की जाँच अलग-अलग सन्दर्भ बिन्दुओं से करती हैं  –  लग्न से, चन्द्र से, और शुक्र से। सबसे प्रबल मूल्यांकन तीनों पर विचार करता है। यदि मंगल लग्न से मांगलिक है पर चन्द्र और शुक्र से नहीं, तो दोष हल्का माना जाता है।</>
+            : <>Different traditions assess Manglik from different reference points  –  from Lagna, from Moon, and from Venus. The strongest assessment considers all three. If Mars is Manglik from Lagna but NOT from Moon and Venus, the dosha is considered mild.</>}
         </p>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -225,7 +225,7 @@ function Page2() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 3 — Impact on Life and Relationships                          */
+/*  PAGE 3  –  Impact on Life and Relationships                          */
 /* ------------------------------------------------------------------ */
 function Page3() {
   const locale = useModuleLocale();
@@ -239,7 +239,7 @@ function Page3() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
             ? <>मांगलिक दोष केवल विवाह को ही नहीं बल्कि जीवन के व्यापक क्षेत्रों को प्रभावित करता है। मंगल की ऊर्जा इन भावों में रहकर स्वभाव, पारिवारिक गतिशीलता और घरेलू शान्ति को भी प्रभावित करती है।</>
-            : <>Manglik Dosha does not just affect marriage — Mars&apos;s energy in these houses has broader life implications affecting temperament, family dynamics, and domestic peace.</>}
+            : <>Manglik Dosha does not just affect marriage  –  Mars&apos;s energy in these houses has broader life implications affecting temperament, family dynamics, and domestic peace.</>}
         </p>
       </section>
 
@@ -249,7 +249,7 @@ function Page3() {
         </h4>
         <ul className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <li className="flex gap-2"><span className="text-gold-primary shrink-0">&#8226;</span>
-            {isHi ? 'रिश्तों में समझौता करने में कठिनाई' : 'Difficulty compromising in relationships — Mars\'s fiery nature resists yielding'}
+            {isHi ? 'रिश्तों में समझौता करने में कठिनाई' : 'Difficulty compromising in relationships  –  Mars\'s fiery nature resists yielding'}
           </li>
           <li className="flex gap-2"><span className="text-gold-primary shrink-0">&#8226;</span>
             {isHi ? 'तीव्र स्वभाव, विशेषकर घरेलू वातावरण में' : 'Quick temper, especially in domestic settings where Mars feels confined'}
@@ -258,7 +258,7 @@ function Page3() {
             {isHi ? 'स्वतन्त्रता की आवश्यकता जिसे साथी उदासीनता समझ सकता है' : 'Need for independence that partners may misinterpret as coldness or emotional distance'}
           </li>
           <li className="flex gap-2"><span className="text-gold-primary shrink-0">&#8226;</span>
-            {isHi ? 'जुनूनी पर तीव्र — प्रेम साथी को अभिभूत कर सकता है' : 'Passionate but intense — love can feel overwhelming or all-consuming to partners'}
+            {isHi ? 'जुनूनी पर तीव्र  –  प्रेम साथी को अभिभूत कर सकता है' : 'Passionate but intense  –  love can feel overwhelming or all-consuming to partners'}
           </li>
         </ul>
       </section>
@@ -272,7 +272,7 @@ function Page3() {
             {isHi ? 'शास्त्रीय ग्रन्थों के अनुसार प्रथम विवाह में चुनौतियाँ आ सकती हैं' : 'First marriage may face challenges according to classical texts'}
           </li>
           <li className="flex gap-2"><span className="text-gold-primary shrink-0">&#8226;</span>
-            {isHi ? 'विवाह में विलम्ब सामान्य है — "सही मिलान" खोजने में अधिक समय लगता है' : 'Delays in marriage are common — finding the "right match" takes longer due to compatibility requirements'}
+            {isHi ? 'विवाह में विलम्ब सामान्य है  –  "सही मिलान" खोजने में अधिक समय लगता है' : 'Delays in marriage are common  –  finding the "right match" takes longer due to compatibility requirements'}
           </li>
           <li className="flex gap-2"><span className="text-gold-primary shrink-0">&#8226;</span>
             {isHi ? 'विवाह के बाद समायोजन में अधिक प्रयास की आवश्यकता होती है' : 'Post-marriage adjustments require more conscious effort from both partners'}
@@ -289,8 +289,8 @@ function Page3() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <>मंगल स्वाभाविक रूप से हानिकारक नहीं है — यह प्रेरणा, महत्वाकांक्षा और जो महत्वपूर्ण है उसके लिए लड़ने की क्षमता का प्रतिनिधित्व करता है। मंगल की ऊर्जा को करियर, खेल, या सामाजिक कार्यों में लगाने वाला मांगलिक व्यक्ति अक्सर "दोष" को "योग" (आशीर्वाद) में बदल देता है। कुंजी ऊर्जा का सचेत मार्गदर्शन है। मंगल युद्ध, प्रतिस्पर्धा, शल्य चिकित्सा, इंजीनियरिंग और नेतृत्व का ग्रह है — इन क्षेत्रों में मांगलिक व्यक्ति अक्सर उत्कृष्ट प्रदर्शन करते हैं।</>
-            : <>Mars is not inherently malefic — it represents drive, ambition, and the ability to fight for what matters. A Manglik person channeling Mars energy into career, sports, or social causes often transforms the &quot;dosha&quot; into a &quot;yoga&quot; (blessing). The key is conscious channeling of energy. Mars is the planet of war, competition, surgery, engineering, and leadership — Manglik individuals often excel in these fields.</>}
+            ? <>मंगल स्वाभाविक रूप से हानिकारक नहीं है  –  यह प्रेरणा, महत्वाकांक्षा और जो महत्वपूर्ण है उसके लिए लड़ने की क्षमता का प्रतिनिधित्व करता है। मंगल की ऊर्जा को करियर, खेल, या सामाजिक कार्यों में लगाने वाला मांगलिक व्यक्ति अक्सर "दोष" को "योग" (आशीर्वाद) में बदल देता है। कुंजी ऊर्जा का सचेत मार्गदर्शन है। मंगल युद्ध, प्रतिस्पर्धा, शल्य चिकित्सा, इंजीनियरिंग और नेतृत्व का ग्रह है  –  इन क्षेत्रों में मांगलिक व्यक्ति अक्सर उत्कृष्ट प्रदर्शन करते हैं।</>
+            : <>Mars is not inherently malefic  –  it represents drive, ambition, and the ability to fight for what matters. A Manglik person channeling Mars energy into career, sports, or social causes often transforms the &quot;dosha&quot; into a &quot;yoga&quot; (blessing). The key is conscious channeling of energy. Mars is the planet of war, competition, surgery, engineering, and leadership  –  Manglik individuals often excel in these fields.</>}
         </p>
       </section>
     </div>
@@ -298,7 +298,7 @@ function Page3() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 4 — Remedies and Practical Guidance                           */
+/*  PAGE 4  –  Remedies and Practical Guidance                           */
 /* ------------------------------------------------------------------ */
 function Page4() {
   const locale = useModuleLocale();
@@ -322,8 +322,8 @@ function Page4() {
             </p>
             <p className="text-text-secondary text-xs leading-relaxed">
               {isHi
-                ? 'वास्तविक विवाह से पहले केले के पेड़ (महिलाओं के लिए) या पीपल के पेड़ (पुरुषों के लिए) से औपचारिक विवाह। "पहला विवाह" प्रतीकात्मक रूप से पूरा हो जाता है, और वास्तविक विवाह "दूसरा" बनता है — दोष के प्रभाव से मुक्त।'
-                : 'Ceremonial marriage to a banana tree (women) or peepal tree (men) before the real marriage. The "first marriage" is symbolically completed, and the real marriage becomes the "second" — free from the dosha\'s effect on the first marriage.'}
+                ? 'वास्तविक विवाह से पहले केले के पेड़ (महिलाओं के लिए) या पीपल के पेड़ (पुरुषों के लिए) से औपचारिक विवाह। "पहला विवाह" प्रतीकात्मक रूप से पूरा हो जाता है, और वास्तविक विवाह "दूसरा" बनता है  –  दोष के प्रभाव से मुक्त।'
+                : 'Ceremonial marriage to a banana tree (women) or peepal tree (men) before the real marriage. The "first marriage" is symbolically completed, and the real marriage becomes the "second"  –  free from the dosha\'s effect on the first marriage.'}
             </p>
           </div>
           <div>
@@ -351,7 +351,7 @@ function Page4() {
               {tl({ en: '4. Mangal Mantra', hi: '4. मंगल मन्त्र', sa: '4. मङ्गलमन्त्रः' }, locale)}
             </p>
             <p className="text-text-secondary text-xs leading-relaxed font-mono">
-              {tl({ en: '"Om Kraam Kreem Kraum Sah Bhaumaya Namah" — chanted 108 times daily', hi: '"ॐ क्रां क्रीं क्रौं सः भौमाय नमः" — प्रतिदिन 108 बार जाप', sa: '"ॐ क्रां क्रीं क्रौं सः भौमाय नमः"' }, locale)}
+              {tl({ en: '"Om Kraam Kreem Kraum Sah Bhaumaya Namah"  –  chanted 108 times daily', hi: '"ॐ क्रां क्रीं क्रौं सः भौमाय नमः"  –  प्रतिदिन 108 बार जाप', sa: '"ॐ क्रां क्रीं क्रौं सः भौमाय नमः"' }, locale)}
             </p>
           </div>
           <div>
@@ -360,8 +360,8 @@ function Page4() {
             </p>
             <p className="text-text-secondary text-xs leading-relaxed">
               {isHi
-                ? 'मंगल के दिन व्रत रखना, केवल एक बार भोजन करना। लाल रंग की वस्तुएँ — मसूर दाल, लाल वस्त्र, और गेहूँ — मंगलवार को मन्दिरों में दान करें।'
-                : 'Observing a fast on Mars\'s day, consuming only one meal. Red items — red lentils (masoor dal), red cloth, and wheat — should be donated at temples on Tuesdays.'}
+                ? 'मंगल के दिन व्रत रखना, केवल एक बार भोजन करना। लाल रंग की वस्तुएँ  –  मसूर दाल, लाल वस्त्र, और गेहूँ  –  मंगलवार को मन्दिरों में दान करें।'
+                : 'Observing a fast on Mars\'s day, consuming only one meal. Red items  –  red lentils (masoor dal), red cloth, and wheat  –  should be donated at temples on Tuesdays.'}
             </p>
           </div>
           <div>
@@ -370,8 +370,8 @@ function Page4() {
             </p>
             <p className="text-text-secondary text-xs leading-relaxed">
               {isHi
-                ? 'सोने में जड़ित लाल मूँगा (मूँगा) अनामिका में धारण — केवल ज्योतिषी से परामर्श के बाद, क्योंकि मंगल कुण्डली में कार्यात्मक शुभ ग्रह होना चाहिए। गलत रत्न नकारात्मक प्रभाव दे सकता है।'
-                : 'Wearing red coral (Moonga) on the ring finger in gold — only after consulting an astrologer, as Mars must be a functional benefic in the chart. An inappropriate gemstone can amplify negative effects.'}
+                ? 'सोने में जड़ित लाल मूँगा (मूँगा) अनामिका में धारण  –  केवल ज्योतिषी से परामर्श के बाद, क्योंकि मंगल कुण्डली में कार्यात्मक शुभ ग्रह होना चाहिए। गलत रत्न नकारात्मक प्रभाव दे सकता है।'
+                : 'Wearing red coral (Moonga) on the ring finger in gold  –  only after consulting an astrologer, as Mars must be a functional benefic in the chart. An inappropriate gemstone can amplify negative effects.'}
             </p>
           </div>
         </div>
@@ -386,19 +386,19 @@ function Page4() {
             {isHi ? 'यदि कई निरसन शर्तें पूर्ण नहीं हैं तो 28 वर्ष की आयु तक विवाह में विलम्ब पर विचार करें' : 'Delay marriage until after 28 if multiple cancellation conditions are NOT met'}
           </li>
           <li className="flex gap-2"><span className="text-emerald-400 shrink-0">&#8226;</span>
-            {isHi ? 'ऐसा जीवनसाथी खोजें जो मांगलिक भी हो — यह सबसे व्यावहारिक समाधान है' : 'Seek a partner who is also Manglik — this is the most practical and widely accepted solution'}
+            {isHi ? 'ऐसा जीवनसाथी खोजें जो मांगलिक भी हो  –  यह सबसे व्यावहारिक समाधान है' : 'Seek a partner who is also Manglik  –  this is the most practical and widely accepted solution'}
           </li>
           <li className="flex gap-2"><span className="text-emerald-400 shrink-0">&#8226;</span>
             {isHi ? 'लग्न के अलावा चन्द्र और शुक्र से भी मिलान पर विचार करें' : 'Consider matching from Moon and Venus in addition to Lagna for a comprehensive assessment'}
           </li>
           <li className="flex gap-2"><span className="text-emerald-400 shrink-0">&#8226;</span>
-            {isHi ? 'नियमित शारीरिक व्यायाम से मंगल की ऊर्जा को सकारात्मक दिशा दें' : 'Channel Mars energy through regular physical exercise — martial arts, sports, or intense workouts'}
+            {isHi ? 'नियमित शारीरिक व्यायाम से मंगल की ऊर्जा को सकारात्मक दिशा दें' : 'Channel Mars energy through regular physical exercise  –  martial arts, sports, or intense workouts'}
           </li>
           <li className="flex gap-2"><span className="text-emerald-400 shrink-0">&#8226;</span>
-            {isHi ? 'धैर्य और संवाद कौशल सचेत रूप से विकसित करें' : 'Practice patience and communication skills consciously — this directly counteracts Mars\'s impulsive nature'}
+            {isHi ? 'धैर्य और संवाद कौशल सचेत रूप से विकसित करें' : 'Practice patience and communication skills consciously  –  this directly counteracts Mars\'s impulsive nature'}
           </li>
           <li className="flex gap-2"><span className="text-emerald-400 shrink-0">&#8226;</span>
-            {isHi ? 'मांगलिक स्थिति को विवाह की चिन्ता का कारण न बनने दें — 50% लोग मांगलिक हैं' : 'Don\'t let Manglik status create marriage anxiety — 50% of people are Manglik, and many cancellation conditions exist'}
+            {isHi ? 'मांगलिक स्थिति को विवाह की चिन्ता का कारण न बनने दें  –  50% लोग मांगलिक हैं' : 'Don\'t let Manglik status create marriage anxiety  –  50% of people are Manglik, and many cancellation conditions exist'}
           </li>
         </ul>
       </section>

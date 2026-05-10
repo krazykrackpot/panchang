@@ -18,7 +18,7 @@ import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 const LABELS = {
   en: {
     title: 'Nadi Jyotish',
-    subtitle: 'Bhrigu Nandi Nadi — Planet·Sign Direct Reading',
+    subtitle: 'Bhrigu Nandi Nadi  –  Planet·Sign Direct Reading',
     desc: 'BNN Nadi reads each planet directly in its sign, layering aspects and conjunctions to reveal the soul\'s encoded life map. Unlike Parashari, which emphasises house lordship, BNN emphasises the planet-in-sign as the primary karmic statement.',
     disclaimer: 'This reading is based on Bhrigu Nandi Nadi tradition and is for self-reflection and spiritual inquiry only. It does not replace the guidance of a qualified Jyotishi.',
     generate: 'Generate Nadi Reading',
@@ -43,7 +43,7 @@ const LABELS = {
   },
   hi: {
     title: 'नाड़ी ज्योतिष',
-    subtitle: 'भृगु नंदी नाड़ी — ग्रह·राशि प्रत्यक्ष पठन',
+    subtitle: 'भृगु नंदी नाड़ी  –  ग्रह·राशि प्रत्यक्ष पठन',
     desc: 'BNN नाड़ी प्रत्येक ग्रह को उसकी राशि में सीधे पढ़ती है, दृष्टि और युति को जोड़कर आत्मा का जीवन मानचित्र प्रकट करती है। पाराशरी के विपरीत, जो भाव स्वामित्व पर जोर देती है, BNN ग्रह-राशि को प्राथमिक कार्मिक वक्तव्य मानती है।',
     disclaimer: 'यह पठन भृगु नंदी नाड़ी परंपरा पर आधारित है और केवल आत्म-चिंतन के लिए है। यह किसी योग्य ज्योतिषी के मार्गदर्शन का विकल्प नहीं है।',
     generate: 'नाड़ी पठन करें',
@@ -68,7 +68,7 @@ const LABELS = {
   },
   ta: {
     title: 'நாடி ஜோதிடம்',
-    subtitle: 'பிருகு நந்தி நாடி — கிரக·ராசி நேரடி வாசிப்பு',
+    subtitle: 'பிருகு நந்தி நாடி  –  கிரக·ராசி நேரடி வாசிப்பு',
     desc: 'BNN நாடி ஒவ்வொரு கிரகத்தையும் அதன் ராசியில் நேரடியாக வாசிக்கிறது, தோற்றங்கள் மற்றும் இணைவுகளை அடுக்கி ஆத்மாவின் வாழ்க்கை வரைபடத்தை வெளிப்படுத்துகிறது.',
     disclaimer: 'இந்த வாசிப்பு பிருகு நந்தி நாடி மரபின் அடிப்படையிலானது மற்றும் சுய-ஆராய்ச்சிக்காக மட்டுமே.',
     generate: 'நாடி வாசிப்பு உருவாக்கு',
@@ -93,7 +93,7 @@ const LABELS = {
   },
   bn: {
     title: 'নাড়ি জ্যোতিষ',
-    subtitle: 'ভৃগু নন্দি নাড়ি — গ্রহ·রাশি সরাসরি পাঠ',
+    subtitle: 'ভৃগু নন্দি নাড়ি  –  গ্রহ·রাশি সরাসরি পাঠ',
     desc: 'BNN নাড়ি প্রতিটি গ্রহকে তার রাশিতে সরাসরি পড়ে, দৃষ্টি এবং যোগ যুক্ত করে আত্মার জীবন মানচিত্র প্রকাশ করে।',
     disclaimer: 'এই পাঠটি ভৃগু নন্দি নাড়ি ঐতিহ্যের উপর ভিত্তি করে এবং শুধুমাত্র আত্ম-চিন্তনের জন্য।',
     generate: 'নাড়ি পাঠ তৈরি করুন',
@@ -275,7 +275,7 @@ export default function NadiJyotishPage() {
   const [bnnReading, setBnnReading] = useState<BNNReading | null>(null);
   const [karmicProfile, setKarmicProfile] = useState<KarmicProfile | null>(null);
 
-  // BirthForm passes (data, style) — we only need data for BNN
+  // BirthForm passes (data, style)  –  we only need data for BNN
   async function handleSubmit(data: BirthData, _style: ChartStyle) {
     setLoading(true);
     setError(null);

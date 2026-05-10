@@ -1,7 +1,7 @@
 /**
  * Tropical vs Sidereal Comparison Engine
  *
- * Powers the "Global-Vibe" feature — a side-by-side view of Western (tropical)
+ * Powers the "Global-Vibe" feature  –  a side-by-side view of Western (tropical)
  * and Vedic (sidereal) zodiac positions for all 9 planets.
  *
  * The comparison is simple math:
@@ -45,7 +45,7 @@ export interface PlanetComparison {
   tropicalSignName: LocaleText;
   /** Multilingual sidereal sign name */
   siderealSignName: LocaleText;
-  /** True when tropical and sidereal sign differ — the "reveal moment" */
+  /** True when tropical and sidereal sign differ  –  the "reveal moment" */
   isShifted: boolean;
   /** Nakshatra data for Sun (id=0) and Moon (id=1); undefined for other planets */
   nakshatra?: {
@@ -70,7 +70,7 @@ export interface ComparisonResult {
   planets: PlanetComparison[];
   /** How many planets shifted sign between the two systems */
   shiftedCount: number;
-  /** Viral one-liner for sharing — non-empty */
+  /** Viral one-liner for sharing  –  non-empty */
   hookLine: string;
   /** Precession data for the interactive "time slider" */
   precessionData: PrecessionData;
@@ -89,7 +89,7 @@ const LAHIRI_YEARLY_RATE = 50.3 / 3600; // ≈ 0.013972°/year
  */
 const LAHIRI_ZERO_YEAR = 285;
 
-// Planet names in Western / tropical convention — used in the hook line
+// Planet names in Western / tropical convention  –  used in the hook line
 const WESTERN_SIGN_NAMES: Record<number, string> = {
   1: 'Aries', 2: 'Taurus', 3: 'Gemini', 4: 'Cancer', 5: 'Leo', 6: 'Virgo',
   7: 'Libra', 8: 'Scorpio', 9: 'Sagittarius', 10: 'Capricorn', 11: 'Aquarius', 12: 'Pisces',
@@ -158,7 +158,7 @@ export function computeComparison(
 
   const shiftedCount = planets.filter((p) => p.isShifted).length;
 
-  // Generate hook line — viral sentence for social sharing
+  // Generate hook line  –  viral sentence for social sharing
   const hookLine = generateHookLine(planets, shiftedCount);
 
   // Precession data for the interactive slider
@@ -184,8 +184,8 @@ export function computeComparison(
  */
 function generateHookLine(planets: PlanetComparison[], shiftedCount: number): string {
   if (shiftedCount === 0) {
-    // Edge case: no planets shifted (very rare — would require ayanamsha near a boundary)
-    return `All your planets are in the same signs in both Western and Vedic astrology — you're a rare cosmic alignment.`;
+    // Edge case: no planets shifted (very rare  –  would require ayanamsha near a boundary)
+    return `All your planets are in the same signs in both Western and Vedic astrology  –  you're a rare cosmic alignment.`;
   }
 
   const sun = planets.find((p) => p.id === 0);
@@ -195,32 +195,32 @@ function generateHookLine(planets: PlanetComparison[], shiftedCount: number): st
   const moonShifted = moon?.isShifted ?? false;
 
   if (shiftedCount >= 7) {
-    return `Surprise: almost your entire birth chart shifts when you switch from Western to Vedic astrology — ${shiftedCount} out of 9 planets land in different signs.`;
+    return `Surprise: almost your entire birth chart shifts when you switch from Western to Vedic astrology  –  ${shiftedCount} out of 9 planets land in different signs.`;
   }
 
   if (sunShifted && moonShifted) {
     const wSun = WESTERN_SIGN_NAMES[sun!.tropicalSign];
     const vSun = sun!.siderealSignName.en;
     const vMoon = moon!.siderealSignName.en;
-    return `You think you're a ${wSun}? In Vedic astrology your Sun is actually ${vSun} — and your Moon shifts too, landing in ${vMoon}.`;
+    return `You think you're a ${wSun}? In Vedic astrology your Sun is actually ${vSun}  –  and your Moon shifts too, landing in ${vMoon}.`;
   }
 
   if (sunShifted && sun) {
     const wSun = WESTERN_SIGN_NAMES[sun.tropicalSign];
     const vSun = sun.siderealSignName.en;
-    return `You call yourself a ${wSun}, but the ancient Vedic sky says your Sun is actually in ${vSun} — ${shiftedCount} planet${shiftedCount > 1 ? 's' : ''} shift sign when you look through a 24° different lens.`;
+    return `You call yourself a ${wSun}, but the ancient Vedic sky says your Sun is actually in ${vSun}  –  ${shiftedCount} planet${shiftedCount > 1 ? 's' : ''} shift sign when you look through a 24° different lens.`;
   }
 
   if (moonShifted && moon) {
     const vMoon = moon.siderealSignName.en;
-    return `Your Moon sign shifts to ${vMoon} in Vedic astrology — along with ${shiftedCount - 1} other planet${shiftedCount > 2 ? 's' : ''} — because a 24° precession gap separates the two zodiac systems.`;
+    return `Your Moon sign shifts to ${vMoon} in Vedic astrology  –  along with ${shiftedCount - 1} other planet${shiftedCount > 2 ? 's' : ''}  –  because a 24° precession gap separates the two zodiac systems.`;
   }
 
-  // Generic — shifted planets but not Sun or Moon
+  // Generic  –  shifted planets but not Sun or Moon
   const shiftedNames = planets
     .filter((p) => p.isShifted)
     .slice(0, 3)
     .map((p) => p.name.en)
     .join(', ');
-  return `${shiftedCount} of your planets — ${shiftedNames} — land in completely different signs in Vedic astrology due to a ~24° precession shift since the zodiac was first mapped.`;
+  return `${shiftedCount} of your planets  –  ${shiftedNames}  –  land in completely different signs in Vedic astrology due to a ~24° precession shift since the zodiac was first mapped.`;
 }

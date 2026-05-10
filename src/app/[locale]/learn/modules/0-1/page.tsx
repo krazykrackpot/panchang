@@ -37,12 +37,12 @@ function Page1() {
         points={
           isHi
             ? [
-                'ज्योतिष का अर्थ है "प्रकाश का विज्ञान" — यह अवलोकन खगोल विज्ञान है जो जीवन मार्गदर्शन से जुड़ा है, भाग्य-कथन नहीं',
-                'वैदिक ज्योतिष नक्षत्र-आधारित राशिचक्र (सायन) का उपयोग करता है, जबकि पश्चिमी ज्योतिष ऋतु-आधारित (निरयन) — दोनों में ~24° का अन्तर है',
+                'ज्योतिष का अर्थ है "प्रकाश का विज्ञान"  –  यह अवलोकन खगोल विज्ञान है जो जीवन मार्गदर्शन से जुड़ा है, भाग्य-कथन नहीं',
+                'वैदिक ज्योतिष नक्षत्र-आधारित राशिचक्र (सायन) का उपयोग करता है, जबकि पश्चिमी ज्योतिष ऋतु-आधारित (निरयन)  –  दोनों में ~24° का अन्तर है',
               ]
             : [
-                'Jyotish means "science of light" — it is observational astronomy intertwined with life guidance, not fortune-telling',
-                'Vedic astrology uses the sidereal zodiac (actual star positions), while Western uses the tropical zodiac (seasons) — they differ by ~24\u00B0',
+                'Jyotish means "science of light"  –  it is observational astronomy intertwined with life guidance, not fortune-telling',
+                'Vedic astrology uses the sidereal zodiac (actual star positions), while Western uses the tropical zodiac (seasons)  –  they differ by ~24\u00B0',
               ]
         }
         locale={locale}
@@ -57,7 +57,7 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {t('jyotishHasThreeBranchesAnd', locale)}
         </p>
-        <BeginnerNote term="Jyotish" explanation="Literally 'science of light' — the Vedic system of astronomy and astrology, one of the six Vedangas (limbs of the Vedas)." />
+        <BeginnerNote term="Jyotish" explanation="Literally 'science of light'  –  the Vedic system of astronomy and astrology, one of the six Vedangas (limbs of the Vedas)." />
         <ul className="text-text-secondary text-sm space-y-2 ml-4">
           <li>
             <span className="text-gold-light font-bold">{t('siddhanta', locale)}</span>{' '}
@@ -80,12 +80,12 @@ function Page1() {
         </p>
         <div className="flex flex-wrap gap-3 mt-2">
           <BeginnerNote term="Sidereal zodiac" explanation="A zodiac anchored to actual star positions, as opposed to the tropical zodiac which is tied to the seasons." />
-          <BeginnerNote term="Vedanga" explanation="One of six auxiliary disciplines attached to the Vedas — Jyotish is the 'eye' of the Vedas." />
+          <BeginnerNote term="Vedanga" explanation="One of six auxiliary disciplines attached to the Vedas  –  Jyotish is the 'eye' of the Vedas." />
         </div>
-        <WhyItMatters locale={locale}>Jyotish is not fortune-telling — it is a mathematical framework built on real astronomy. Understanding this distinction is the foundation for everything that follows.</WhyItMatters>
+        <WhyItMatters locale={locale}>Jyotish is not fortune-telling  –  it is a mathematical framework built on real astronomy. Understanding this distinction is the foundation for everything that follows.</WhyItMatters>
       </section>
 
-      {/* Classical Origin — Gold card */}
+      {/* Classical Origin  –  Gold card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
           {t('classicalOrigin', locale)}
@@ -120,7 +120,7 @@ function Page1() {
         question="Which zodiac system does Vedic astrology use?"
         options={['Tropical (seasons)', 'Sidereal (stars)', 'Both equally', 'Neither']}
         correctIndex={1}
-        explanation="Sidereal means star-based — Vedic astrology tracks actual star positions, unlike Western astrology which tracks seasons."
+        explanation="Sidereal means star-based  –  Vedic astrology tracks actual star positions, unlike Western astrology which tracks seasons."
       />
     </div>
   );
@@ -236,19 +236,19 @@ function Page3() {
         <ul className="text-text-secondary text-sm space-y-2 ml-4">
           <li>
             <span className="text-gold-light font-medium">{t('readingADailyPanchang', locale)}</span>{' '}
-            — {t('yourCosmicWeatherReportFor', locale)}
+             –  {t('yourCosmicWeatherReportFor', locale)}
           </li>
           <li>
             <span className="text-gold-light font-medium">{t('understandingABirthChart', locale)}</span>{' '}
-            — {t('yourCosmicDna', locale)}
+             –  {t('yourCosmicDna', locale)}
           </li>
           <li>
             <span className="text-gold-light font-medium">{t('theMathematicsBehindTheCalculations', locale)}</span>{' '}
-            — {t('realAlgorithmsNotMysticism', locale)}
+             –  {t('realAlgorithmsNotMysticism', locale)}
           </li>
           <li>
             <span className="text-gold-light font-medium">{t('culturalContext', locale)}</span>{' '}
-            — {t('forHinduRitualsAndFestivals', locale)}
+             –  {t('forHinduRitualsAndFestivals', locale)}
           </li>
         </ul>
         <p className="text-text-secondary text-sm leading-relaxed mt-3">
@@ -257,7 +257,7 @@ function Page3() {
         </p>
       </section>
 
-      {/* Red — Misconceptions */}
+      {/* Red  –  Misconceptions */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
           {t('commonMisconceptions', locale)}
@@ -294,7 +294,7 @@ function Page3() {
         </div>
       </section>
 
-      {/* Blue — Modern Relevance */}
+      {/* Blue  –  Modern Relevance */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">
           {t('modernRelevance', locale)}

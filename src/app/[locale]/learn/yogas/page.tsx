@@ -271,7 +271,7 @@ export default function LearnYogasPage() {
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════
-          PART 2: KUNDALI YOGAS — Planetary Combinations in Birth Chart
+          PART 2: KUNDALI YOGAS  –  Planetary Combinations in Birth Chart
       ═══════════════════════════════════════════════════════════════ */}
       <KundaliYogasSection locale={locale} />
 
@@ -283,7 +283,7 @@ export default function LearnYogasPage() {
             {locale === 'hi' ? 'योग निर्माण एनीमेटर' : locale === 'ta' ? 'யோக அமைப்பு அனிமேட்டர்' : locale === 'bn' ? 'যোগ গঠন অ্যানিমেটর' : 'Yoga Formation Animator'}
           </div>
           <div className="text-text-secondary text-sm">
-            {locale === 'hi' ? 'देखें कैसे ग्रह चरण दर चरण योग बनाते हैं — शर्तें एक-एक करके हरी होती हैं।' : locale === 'ta' ? 'கிரகங்கள் படிப்படியாக யோகங்களை எவ்வாறு உருவாக்குகின்றன என்று காணுங்கள்.' : locale === 'bn' ? 'দেখুন কীভাবে গ্রহগুলি ধাপে ধাপে যোগ তৈরি করে।' : 'Watch planets animate step-by-step into position — conditions tick green as each is satisfied.'}
+            {locale === 'hi' ? 'देखें कैसे ग्रह चरण दर चरण योग बनाते हैं  –  शर्तें एक-एक करके हरी होती हैं।' : locale === 'ta' ? 'கிரகங்கள் படிப்படியாக யோகங்களை எவ்வாறு உருவாக்குகின்றன என்று காணுங்கள்.' : locale === 'bn' ? 'দেখুন কীভাবে গ্রহগুলি ধাপে ধাপে যোগ তৈরি করে।' : 'Watch planets animate step-by-step into position  –  conditions tick green as each is satisfied.'}
           </div>
         </div>
         <Link

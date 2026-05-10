@@ -1,19 +1,19 @@
 {
   "title": {
-    "en": "4.32 Billion Years — Cosmic Time",
-    "hi": "4.32 अरब वर्ष — ब्रह्मांडीय समय",
-    "sa": "4.32 अरब वर्ष — ब्रह्मांडीय समय",
-    "mai": "4.32 अरब वर्ष — ब्रह्मांडीय समय",
-    "mr": "4.32 अरब वर्ष — ब्रह्मांडीय समय",
-    "ta": "4.32 Billion Years — Cosmic Time",
-    "te": "4.32 Billion Years — Cosmic Time",
-    "bn": "4.32 Billion Years — Cosmic Time",
-    "kn": "4.32 Billion Years — Cosmic Time",
-    "gu": "4.32 Billion Years — Cosmic Time"
+    "en": "4.32 Billion Years  –  Cosmic Time",
+    "hi": "4.32 अरब वर्ष  –  ब्रह्मांडीय समय",
+    "sa": "4.32 अरब वर्ष  –  ब्रह्मांडीय समय",
+    "mai": "4.32 अरब वर्ष  –  ब्रह्मांडीय समय",
+    "mr": "4.32 अरब वर्ष  –  ब्रह्मांडीय समय",
+    "ta": "4.32 Billion Years  –  Cosmic Time",
+    "te": "4.32 Billion Years  –  Cosmic Time",
+    "bn": "4.32 Billion Years  –  Cosmic Time",
+    "kn": "4.32 Billion Years  –  Cosmic Time",
+    "gu": "4.32 Billion Years  –  Cosmic Time"
   },
   "subtitle": {
-    "en": "How ancient Hindu cosmology computed a cosmic time cycle of 4.32 billion years — remarkably close to Earth\"s actual age of 4.54 billion years",
-    "hi": "प्राचीन हिन्दू ब्रह्मांडविज्ञान ने 4.32 अरब वर्षों का एक ब्रह्मांडीय समय चक्र कैसे गणना किया — पृथ्वी की वास्तविक आयु 4.54 अरब वर्षों के उल्लेखनीय रूप से करीब"
+    "en": "How ancient Hindu cosmology computed a cosmic time cycle of 4.32 billion years  –  remarkably close to Earth\"s actual age of 4.54 billion years",
+    "hi": "प्राचीन हिन्दू ब्रह्मांडविज्ञान ने 4.32 अरब वर्षों का एक ब्रह्मांडीय समय चक्र कैसे गणना किया  –  पृथ्वी की वास्तविक आयु 4.54 अरब वर्षों के उल्लेखनीय रूप से करीब"
   },
   "crossRefs": [
     {
@@ -135,8 +135,8 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "One Kalpa = 4,320,000,000 (4.32 billion) human years = 1,000 Mahayugas. This number is consistent across the major astronomical texts: Surya Siddhanta, Aryabhatiya, Brahmasphutasiddhanta, and Vishnu Purana. Compare this to Earth's actual age: 4.54 billion years (determined by radiometric dating of the oldest rocks and meteorites). The Kalpa is 4.32 billion years — within about 5% of Earth's actual age. This correspondence has fascinated modern scientists and historians of science, though the reason for this remarkable proximity is debated.",
-        "hi": "एक कल्प = 4,320,000,000 (4.32 अरब) मानव वर्ष = 1,000 महायुग। यह संख्या प्रमुख खगोलीय ग्रन्थों में सुसंगत है: सूर्य सिद्धान्त, आर्यभटीय, ब्रह्मस्फुटसिद्धान्त, और विष्णु पुराण। पृथ्वी की वास्तविक आयु: 4.54 अरब वर्ष (सबसे पुरानी चट्टानों और उल्काओं के रेडियोमेट्रिक डेटिंग द्वारा निर्धारित) से तुलना करें। कल्प 4.32 अरब वर्ष है — पृथ्वी की वास्तविक आयु के लगभग 5% के भीतर। यह समझौता आधुनिक वैज्ञानिकों और विज्ञान के इतिहासकारों को आकर्षित करता है।"
+        "en": "One Kalpa = 4,320,000,000 (4.32 billion) human years = 1,000 Mahayugas. This number is consistent across the major astronomical texts: Surya Siddhanta, Aryabhatiya, Brahmasphutasiddhanta, and Vishnu Purana. Compare this to Earth's actual age: 4.54 billion years (determined by radiometric dating of the oldest rocks and meteorites). The Kalpa is 4.32 billion years  –  within about 5% of Earth's actual age. This correspondence has fascinated modern scientists and historians of science, though the reason for this remarkable proximity is debated.",
+        "hi": "एक कल्प = 4,320,000,000 (4.32 अरब) मानव वर्ष = 1,000 महायुग। यह संख्या प्रमुख खगोलीय ग्रन्थों में सुसंगत है: सूर्य सिद्धान्त, आर्यभटीय, ब्रह्मस्फुटसिद्धान्त, और विष्णु पुराण। पृथ्वी की वास्तविक आयु: 4.54 अरब वर्ष (सबसे पुरानी चट्टानों और उल्काओं के रेडियोमेट्रिक डेटिंग द्वारा निर्धारित) से तुलना करें। कल्प 4.32 अरब वर्ष है  –  पृथ्वी की वास्तविक आयु के लगभग 5% के भीतर। यह समझौता आधुनिक वैज्ञानिकों और विज्ञान के इतिहासकारों को आकर्षित करता है।"
       },
       "options": [
         {
@@ -261,7 +261,7 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "One Mahayuga (also called Chaturyuga = four Yugas) = 4,320,000 (4.32 million) years. Structure: Krita Yuga = 1,728,000 years; Treta Yuga = 1,296,000 years; Dvapara Yuga = 864,000 years; Kali Yuga = 432,000 years. Sum = 4,320,000 years. The base unit is 432,000 (Kali Yuga), and each older Yuga is 2×, 3×, 4× the Kali Yuga. We are currently in Kali Yuga, which began on 18 February 3102 BCE (the traditional date of Krishna's departure) according to the Surya Siddhanta — meaning approximately 5,127 years of the current Kali Yuga have elapsed as of 2025 CE.",
+        "en": "One Mahayuga (also called Chaturyuga = four Yugas) = 4,320,000 (4.32 million) years. Structure: Krita Yuga = 1,728,000 years; Treta Yuga = 1,296,000 years; Dvapara Yuga = 864,000 years; Kali Yuga = 432,000 years. Sum = 4,320,000 years. The base unit is 432,000 (Kali Yuga), and each older Yuga is 2×, 3×, 4× the Kali Yuga. We are currently in Kali Yuga, which began on 18 February 3102 BCE (the traditional date of Krishna's departure) according to the Surya Siddhanta  –  meaning approximately 5,127 years of the current Kali Yuga have elapsed as of 2025 CE.",
         "hi": "एक महायुग (चतुर्युग भी = चार युग) = 4,320,000 (4.32 मिलियन) वर्ष। संरचना: कृत युग = 1,728,000 वर्ष; त्रेता युग = 1,296,000 वर्ष; द्वापर युग = 864,000 वर्ष; कलियुग = 432,000 वर्ष। योग = 4,320,000 वर्ष। आधार इकाई 432,000 (कलियुग) है, और प्रत्येक पुराने युग की लम्बाई कलियुग की 2×, 3×, 4× है। हम वर्तमान में कलियुग में हैं, जो 18 फरवरी 3102 ईसा पूर्व (कृष्ण के प्रस्थान की पारंपरिक तिथि) को आरम्भ हुआ।"
       },
       "options": [
@@ -324,8 +324,8 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Earth\"s age is 4.54 ± 0.05 billion years, determined by radiometric dating of the oldest meteorites (carbonaceous chondrites from the early solar system) and the oldest Earth rocks. The uranium-lead dating method on zircon crystals gives the most precise values. The Hindu Kalpa is 4.32 billion years — a difference of about 0.22 billion years, or approximately 5%. The age of the entire universe (Big Bang) is approximately 13.8 billion years. The Brahma day-night cycle (8.64 billion years) is closer to the total age of Earth and the Sun (~5 billion years each).",
-        "hi": "पृथ्वी की आयु 4.54 ± 0.05 अरब वर्ष है, जो सबसे पुरानी उल्काओं (प्रारम्भिक सौरमंडल से कार्बोनेसियस कॉन्ड्राइट) और सबसे पुरानी पृथ्वी की चट्टानों के रेडियोमेट्रिक डेटिंग द्वारा निर्धारित है। जिरकॉन क्रिस्टल पर यूरेनियम-सीसा डेटिंग विधि सबसे सटीक मान देती है। हिन्दू कल्प 4.32 अरब वर्ष है — लगभग 0.22 अरब वर्ष या लगभग 5% का अंतर।"
+        "en": "Earth\"s age is 4.54 ± 0.05 billion years, determined by radiometric dating of the oldest meteorites (carbonaceous chondrites from the early solar system) and the oldest Earth rocks. The uranium-lead dating method on zircon crystals gives the most precise values. The Hindu Kalpa is 4.32 billion years  –  a difference of about 0.22 billion years, or approximately 5%. The age of the entire universe (Big Bang) is approximately 13.8 billion years. The Brahma day-night cycle (8.64 billion years) is closer to the total age of Earth and the Sun (~5 billion years each).",
+        "hi": "पृथ्वी की आयु 4.54 ± 0.05 अरब वर्ष है, जो सबसे पुरानी उल्काओं (प्रारम्भिक सौरमंडल से कार्बोनेसियस कॉन्ड्राइट) और सबसे पुरानी पृथ्वी की चट्टानों के रेडियोमेट्रिक डेटिंग द्वारा निर्धारित है। जिरकॉन क्रिस्टल पर यूरेनियम-सीसा डेटिंग विधि सबसे सटीक मान देती है। हिन्दू कल्प 4.32 अरब वर्ष है  –  लगभग 0.22 अरब वर्ष या लगभग 5% का अंतर।"
       },
       "options": [
         {
@@ -589,8 +589,8 @@
       },
       "correctAnswer": 0,
       "explanation": {
-        "en": "False. The Kali Yuga is the SHORTEST of the four Yugas. The four Yugas in order from longest to shortest: Krita/Satya Yuga = 1,728,000 years (4 units); Treta Yuga = 1,296,000 years (3 units); Dvapara Yuga = 864,000 years (2 units); Kali Yuga = 432,000 years (1 unit). The ratio is 4:3:2:1. Kali Yuga is the \"darkest\" and shortest age — an era of spiritual decline, conflict, and moral degradation in Hindu cosmology. We are currently in Kali Yuga, which began in 3102 BCE and has approximately 426,000 years remaining. The Krita Yuga (Golden Age) is four times longer than the Kali Yuga.",
-        "hi": "असत्य। कलियुग चार युगों में सबसे छोटा है। सबसे लम्बे से छोटे के क्रम में चार युग: कृत/सत्य युग = 1,728,000 वर्ष (4 इकाइयाँ); त्रेता युग = 1,296,000 वर्ष (3 इकाइयाँ); द्वापर युग = 864,000 वर्ष (2 इकाइयाँ); कलियुग = 432,000 वर्ष (1 इकाई)। अनुपात 4:3:2:1 है। कलियुग सबसे \"अंधकारमय\" और सबसे छोटा युग है — हिन्दू ब्रह्मांडविज्ञान में आध्यात्मिक पतन, संघर्ष और नैतिक अधःपतन का युग। हम वर्तमान में कलियुग में हैं, जो 3102 ईसा पूर्व में आरम्भ हुआ और इसमें लगभग 426,000 वर्ष शेष हैं।"
+        "en": "False. The Kali Yuga is the SHORTEST of the four Yugas. The four Yugas in order from longest to shortest: Krita/Satya Yuga = 1,728,000 years (4 units); Treta Yuga = 1,296,000 years (3 units); Dvapara Yuga = 864,000 years (2 units); Kali Yuga = 432,000 years (1 unit). The ratio is 4:3:2:1. Kali Yuga is the \"darkest\" and shortest age  –  an era of spiritual decline, conflict, and moral degradation in Hindu cosmology. We are currently in Kali Yuga, which began in 3102 BCE and has approximately 426,000 years remaining. The Krita Yuga (Golden Age) is four times longer than the Kali Yuga.",
+        "hi": "असत्य। कलियुग चार युगों में सबसे छोटा है। सबसे लम्बे से छोटे के क्रम में चार युग: कृत/सत्य युग = 1,728,000 वर्ष (4 इकाइयाँ); त्रेता युग = 1,296,000 वर्ष (3 इकाइयाँ); द्वापर युग = 864,000 वर्ष (2 इकाइयाँ); कलियुग = 432,000 वर्ष (1 इकाई)। अनुपात 4:3:2:1 है। कलियुग सबसे \"अंधकारमय\" और सबसे छोटा युग है  –  हिन्दू ब्रह्मांडविज्ञान में आध्यात्मिक पतन, संघर्ष और नैतिक अधःपतन का युग। हम वर्तमान में कलियुग में हैं, जो 3102 ईसा पूर्व में आरम्भ हुआ और इसमें लगभग 426,000 वर्ष शेष हैं।"
       }
     }
   ],
@@ -700,9 +700,9 @@
     "sa": "ब्रह्मांड की आधुनिक आयु:"
   },
   "cyclicUniverseAPhilosophicalAchievement": {
-    "en": "Cyclic Universe — A Philosophical Achievement",
-    "hi": "चक्रीय ब्रह्मांड — एक दार्शनिक उपलब्धि",
-    "sa": "चक्रीय ब्रह्मांड — एक दार्शनिक उपलब्धि"
+    "en": "Cyclic Universe  –  A Philosophical Achievement",
+    "hi": "चक्रीय ब्रह्मांड  –  एक दार्शनिक उपलब्धि",
+    "sa": "चक्रीय ब्रह्मांड  –  एक दार्शनिक उपलब्धि"
   },
   "kaliYugaOurPlaceIn": {
     "en": "Kali Yuga: Our Place in Cosmic Time",

@@ -17,7 +17,7 @@ export default function ServiceWorkerRegistrar() {
         if (!newWorker) return;
         newWorker.addEventListener('statechange', () => {
           if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-            // New version available — show update banner
+            // New version available  –  show update banner
             setUpdateAvailable(true);
           }
         });

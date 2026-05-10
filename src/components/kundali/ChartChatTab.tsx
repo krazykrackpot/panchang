@@ -155,7 +155,7 @@ export default function ChartChatTab({ kundali, locale, headingFont }: ChartChat
                 {msg.content}
               </div>
 
-              {/* Muhurta windows card — rendered below the assistant text */}
+              {/* Muhurta windows card  –  rendered below the assistant text */}
               {msg.muhurtaWindows && msg.muhurtaWindows.length > 0 && (
                 <div className="mt-3 space-y-2">
                   <div className="flex items-center gap-1.5">

@@ -2,13 +2,13 @@
  * Retrograde & Combustion Calendar Engine
  *
  * Scans a full year day-by-day to detect:
- *   1. Retrograde periods — when a planet's geocentric daily motion becomes negative
- *   2. Combustion (Asta) windows — when a planet is within its combustion orb of the Sun
+ *   1. Retrograde periods  –  when a planet's geocentric daily motion becomes negative
+ *   2. Combustion (Asta) windows  –  when a planet is within its combustion orb of the Sun
  *
  * Detection approach: iterate forward one day at a time over the year,
  * computing positions at each step. When the state changes (direct→retrograde
  * or visible→combust), record the transition date. This "day-scanning" method
- * has ±1 day resolution — sufficient for calendar display but not for
+ * has ±1 day resolution  –  sufficient for calendar display but not for
  * precise station timing (which would require bisection refinement).
  *
  * Retrograde in Vedic astrology: a retrograde (vakri) planet is considered
@@ -73,11 +73,11 @@ export interface CombustEvent {
 // Moon combustion (Amavasya proximity) is detected but short events (<3 days)
 // are filtered out since they occur every month and would clutter the calendar.
 const COMBUSTION_ORBS: Record<number, number> = {
-  1: 12,  // Moon (Chandra) — within 12° of Sun
-  2: 17,  // Mars (Mangal) — widest orb due to slower motion
-  3: 14,  // Mercury (Budha) — 12° when retrograde (applied dynamically below)
+  1: 12,  // Moon (Chandra)  –  within 12° of Sun
+  2: 17,  // Mars (Mangal)  –  widest orb due to slower motion
+  3: 14,  // Mercury (Budha)  –  12° when retrograde (applied dynamically below)
   4: 11,  // Jupiter (Guru)
-  5: 10,  // Venus (Shukra) — 8° when retrograde (applied dynamically below)
+  5: 10,  // Venus (Shukra)  –  8° when retrograde (applied dynamically below)
   6: 15,  // Saturn (Shani)
 };
 
@@ -87,7 +87,7 @@ const COMBUSTION_ORBS: Record<number, number> = {
  * Speed = position(jd+1) - position(jd), normalised to [-180°, +180°] to
  * handle the 0°/360° wrap. A negative speed indicates retrograde motion.
  *
- * This is a 1-day forward difference — adequate for detecting retrograde
+ * This is a 1-day forward difference  –  adequate for detecting retrograde
  * state changes but not for pinpointing the exact station moment (which
  * would need sub-day interpolation or bisection).
  */
@@ -107,7 +107,7 @@ function getDailySpeed(planetId: number, jd: number): number {
  * Convert a Julian Day number to a "YYYY-MM-DD" date string.
  *
  * Uses the algorithm from Meeus Ch. 7 (based on Fliegel & Van Flandern, 1968).
- * This is a pure integer arithmetic conversion — no Date object or timezone
+ * This is a pure integer arithmetic conversion  –  no Date object or timezone
  * involved, so the result is always in UT (Lesson L: avoid local-time Date
  * constructors in computation code).
  */

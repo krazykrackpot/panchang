@@ -17,7 +17,7 @@ import AuthorByline from '@/components/ui/AuthorByline';
 import VratFollowButton from '@/components/vrat/VratFollowButton';
 
 // ─── Types ──────────────────────────────────────────────────────
-// Festival entry from /api/calendar — single source of truth
+// Festival entry from /api/calendar  –  single source of truth
 interface FestivalEntry {
   name: LocaleText;
   date: string;
@@ -75,30 +75,30 @@ const LABELS: Record<string, Record<string, string>> = {
     jumpTo: 'Jump to month',
     loading: 'Loading...',
     aboutEkadashi: 'About Ekadashi',
-    aboutEkadashiText1: 'Ekadashi is the eleventh Tithi (lunar day) of each fortnight in the Hindu calendar, falling twice every month — once during Shukla Paksha (waxing moon) and once during Krishna Paksha (waning moon). This yields approximately 24 named Ekadashis per year, each carrying a distinct spiritual narrative rooted in the Padma Purana and Bhavishya Purana. The Brihat Parashara Hora Shastra (BPHS) classifies Ekadashi as intrinsically sattvic — a day when the mind naturally inclines toward contemplation and restraint.',
-    aboutEkadashiText2: 'The 24 Ekadashi cycle includes well-known observances such as Nirjala Ekadashi (Jyeshtha Shukla), considered the most austere because devotees abstain from both food and water for the entire day. Papankusha Ekadashi (Ashwin Shukla) is believed to absolve accumulated sins, while Devuthani Ekadashi (Kartik Shukla) marks the end of Chaturmas when Lord Vishnu awakens from cosmic sleep. Each Ekadashi 2026 date varies by location because the tithi boundary depends on local sunrise — this page computes exact timings for your coordinates.',
-    aboutEkadashiText3: 'Ekadashi fasting rules are codified in the Hari Bhakti Vilasa. The standard practice is a complete fast from grains and beans (anna). Permitted foods include fruits, nuts, milk, root vegetables (potato, sweet potato), sabudana (tapioca), and rock salt (sendha namak). Regular table salt, rice, wheat, lentils, and mustard oil are strictly avoided. The scientific rationale aligns with modern intermittent fasting research: a 24-hour grain-free window gives the digestive system a periodic reset, reduces insulin spikes, and promotes autophagy — the body\'s cellular repair mechanism.',
-    aboutEkadashiText4: 'Parana (breaking the fast) must be done the next day within the prescribed window — after sunrise but before the end of the Dwadashi tithi. If Dwadashi ends before sunrise the next day, parana should be done immediately after sunrise. Missing the parana window is considered as inauspicious as missing the fast itself. Regional variations exist: Smartha Ekadashi follows a different calendar calculation than Vaishnava Ekadashi, and in some years an extra (Adhik Masa) Ekadashi pair appears due to the intercalary month.',
+    aboutEkadashiText1: 'Ekadashi is the eleventh Tithi (lunar day) of each fortnight in the Hindu calendar, falling twice every month  –  once during Shukla Paksha (waxing moon) and once during Krishna Paksha (waning moon). This yields approximately 24 named Ekadashis per year, each carrying a distinct spiritual narrative rooted in the Padma Purana and Bhavishya Purana. The Brihat Parashara Hora Shastra (BPHS) classifies Ekadashi as intrinsically sattvic  –  a day when the mind naturally inclines toward contemplation and restraint.',
+    aboutEkadashiText2: 'The 24 Ekadashi cycle includes well-known observances such as Nirjala Ekadashi (Jyeshtha Shukla), considered the most austere because devotees abstain from both food and water for the entire day. Papankusha Ekadashi (Ashwin Shukla) is believed to absolve accumulated sins, while Devuthani Ekadashi (Kartik Shukla) marks the end of Chaturmas when Lord Vishnu awakens from cosmic sleep. Each Ekadashi 2026 date varies by location because the tithi boundary depends on local sunrise  –  this page computes exact timings for your coordinates.',
+    aboutEkadashiText3: 'Ekadashi fasting rules are codified in the Hari Bhakti Vilasa. The standard practice is a complete fast from grains and beans (anna). Permitted foods include fruits, nuts, milk, root vegetables (potato, sweet potato), sabudana (tapioca), and rock salt (sendha namak). Regular table salt, rice, wheat, lentils, and mustard oil are strictly avoided. The scientific rationale aligns with modern intermittent fasting research: a 24-hour grain-free window gives the digestive system a periodic reset, reduces insulin spikes, and promotes autophagy  –  the body\'s cellular repair mechanism.',
+    aboutEkadashiText4: 'Parana (breaking the fast) must be done the next day within the prescribed window  –  after sunrise but before the end of the Dwadashi tithi. If Dwadashi ends before sunrise the next day, parana should be done immediately after sunrise. Missing the parana window is considered as inauspicious as missing the fast itself. Regional variations exist: Smartha Ekadashi follows a different calendar calculation than Vaishnava Ekadashi, and in some years an extra (Adhik Masa) Ekadashi pair appears due to the intercalary month.',
     aboutPurnima: 'About Purnima',
-    aboutPurnimaText1: 'Purnima is the full moon day — the fifteenth and final Tithi of Shukla Paksha when the lunar disc reaches complete illumination. It occurs once every synodic month (approximately 29.53 days) and holds a central position in Vedic timekeeping. In the Purnimant calendar system used across North India, Purnima marks the boundary between months: the month ends on the full moon day, making it the calendrical equivalent of December 31st in the Gregorian system.',
-    aboutPurnimaText2: 'The Hindu year contains 12 to 13 named Purnimas, each tied to a specific observance. Guru Purnima (Ashadha) honors the guru lineage and Vyasa, the compiler of the Vedas. Sharad Purnima (Ashwin) is the harvest moon celebration when the moon is believed to shower amrit (nectar) — devotees prepare kheer left under moonlight. Kartik Purnima coincides with Dev Deepavali and is sacred for Ganga snan. Buddha Purnima (Vaishakha) celebrates the birth, enlightenment, and parinirvana of Gautama Buddha. Holi falls on Phalguna Purnima, and Raksha Bandhan on Shravana Purnima.',
-    aboutPurnimaText3: 'Ayurveda and the Surya Siddhanta both document the moon\'s influence on biological rhythms. The gravitational pull at full moon measurably affects ocean tides, and traditional agricultural calendars time planting and harvesting around Purnima. The Charaka Samhita notes that kapha dosha peaks on Purnima, recommending lighter meals and meditative practice. Modern chronobiology confirms increased melatonin sensitivity and altered sleep architecture around the full moon — lending empirical weight to the ancient prescription of fasting and night vigil (jagran) on Purnima.',
-    aboutPurnimaText4: 'Purnima observances typically include Satyanarayan Katha — a puja dedicated to Lord Vishnu recounted from the Skanda Purana, performed with panchamrit and offered to the community as prasad. Fasting on Purnima ranges from nirjala (waterless) to phalahari (fruit-only), depending on regional tradition. Charity (daan) given on Purnima — especially food, clothing, and sesame seeds — is considered to yield amplified spiritual merit. In 2026, each Purnima date and moonrise time is location-dependent; this page calculates them precisely for your coordinates.',
+    aboutPurnimaText1: 'Purnima is the full moon day  –  the fifteenth and final Tithi of Shukla Paksha when the lunar disc reaches complete illumination. It occurs once every synodic month (approximately 29.53 days) and holds a central position in Vedic timekeeping. In the Purnimant calendar system used across North India, Purnima marks the boundary between months: the month ends on the full moon day, making it the calendrical equivalent of December 31st in the Gregorian system.',
+    aboutPurnimaText2: 'The Hindu year contains 12 to 13 named Purnimas, each tied to a specific observance. Guru Purnima (Ashadha) honors the guru lineage and Vyasa, the compiler of the Vedas. Sharad Purnima (Ashwin) is the harvest moon celebration when the moon is believed to shower amrit (nectar)  –  devotees prepare kheer left under moonlight. Kartik Purnima coincides with Dev Deepavali and is sacred for Ganga snan. Buddha Purnima (Vaishakha) celebrates the birth, enlightenment, and parinirvana of Gautama Buddha. Holi falls on Phalguna Purnima, and Raksha Bandhan on Shravana Purnima.',
+    aboutPurnimaText3: 'Ayurveda and the Surya Siddhanta both document the moon\'s influence on biological rhythms. The gravitational pull at full moon measurably affects ocean tides, and traditional agricultural calendars time planting and harvesting around Purnima. The Charaka Samhita notes that kapha dosha peaks on Purnima, recommending lighter meals and meditative practice. Modern chronobiology confirms increased melatonin sensitivity and altered sleep architecture around the full moon  –  lending empirical weight to the ancient prescription of fasting and night vigil (jagran) on Purnima.',
+    aboutPurnimaText4: 'Purnima observances typically include Satyanarayan Katha  –  a puja dedicated to Lord Vishnu recounted from the Skanda Purana, performed with panchamrit and offered to the community as prasad. Fasting on Purnima ranges from nirjala (waterless) to phalahari (fruit-only), depending on regional tradition. Charity (daan) given on Purnima  –  especially food, clothing, and sesame seeds  –  is considered to yield amplified spiritual merit. In 2026, each Purnima date and moonrise time is location-dependent; this page calculates them precisely for your coordinates.',
     aboutAmavasya: 'About Amavasya',
-    aboutAmavasyaText1: 'Amavasya is the new moon day — the thirtieth and final Tithi of Krishna Paksha when the moon is entirely invisible. In the Amanta (Amavasyant) calendar system followed in Gujarat, Maharashtra, Karnataka, and South India, Amavasya marks the last day of the lunar month. The word derives from Sanskrit "ama" (together) and "vasya" (to dwell), signifying the conjunction of Sun and Moon — they occupy the same longitude in the sky, rendering the moon dark.',
-    aboutAmavasyaText2: 'Amavasya holds paramount importance for Pitru Tarpan — ritual offerings of water, sesame seeds, and kusha grass to departed ancestors. The Garuda Purana and Markandeya Purana prescribe Amavasya as the day when the Pitru Loka (ancestral realm) is most accessible. Somvati Amavasya, falling on a Monday, is especially potent for tarpan and peepal tree worship. Mauni Amavasya (Magha) prescribes maun vrat (vow of silence) and holy river bathing — the Kumbh Mela\'s most sacred snan falls on this day.',
+    aboutAmavasyaText1: 'Amavasya is the new moon day  –  the thirtieth and final Tithi of Krishna Paksha when the moon is entirely invisible. In the Amanta (Amavasyant) calendar system followed in Gujarat, Maharashtra, Karnataka, and South India, Amavasya marks the last day of the lunar month. The word derives from Sanskrit "ama" (together) and "vasya" (to dwell), signifying the conjunction of Sun and Moon  –  they occupy the same longitude in the sky, rendering the moon dark.',
+    aboutAmavasyaText2: 'Amavasya holds paramount importance for Pitru Tarpan  –  ritual offerings of water, sesame seeds, and kusha grass to departed ancestors. The Garuda Purana and Markandeya Purana prescribe Amavasya as the day when the Pitru Loka (ancestral realm) is most accessible. Somvati Amavasya, falling on a Monday, is especially potent for tarpan and peepal tree worship. Mauni Amavasya (Magha) prescribes maun vrat (vow of silence) and holy river bathing  –  the Kumbh Mela\'s most sacred snan falls on this day.',
     aboutAmavasyaText3: 'The Diwali festival falls on Kartik Amavasya, transforming the otherwise somber new moon into the most celebrated night of the year. On this day, Lakshmi Puja is performed during the Pradosh Kaal and Nishita Kaal. Shani Amavasya (Saturday) is observed with mustard oil offerings to Lord Shani, believed to mitigate the malefic effects of Saturn in one\'s horoscope. Kali Puja, particularly in Bengal, coincides with Amavasya when the goddess Kali\'s fierce energy is honored through night-long worship.',
-    aboutAmavasyaText4: 'While Amavasya is traditionally considered inauspicious for starting new ventures, marriages, or travel, it is regarded as deeply powerful for introspective and tantric practices. Meditation on Amavasya is said to penetrate deeper states of consciousness because external sensory distraction (moonlight) is absent. Ayurveda notes that Vata dosha increases on Amavasya, recommending warm, grounding foods and oil massage (abhyanga). Amavasya 2026 dates vary by timezone and location — this page provides exact timings computed for your coordinates.',
+    aboutAmavasyaText4: 'While Amavasya is traditionally considered inauspicious for starting new ventures, marriages, or travel, it is regarded as deeply powerful for introspective and tantric practices. Meditation on Amavasya is said to penetrate deeper states of consciousness because external sensory distraction (moonlight) is absent. Ayurveda notes that Vata dosha increases on Amavasya, recommending warm, grounding foods and oil massage (abhyanga). Amavasya 2026 dates vary by timezone and location  –  this page provides exact timings computed for your coordinates.',
     aboutPradosham: 'About Pradosham',
-    aboutPradoshamText1: 'Pradosham (Pradosh Vrat) falls on the thirteenth Tithi (Trayodashi) of each lunar fortnight — both Shukla and Krishna Paksha — yielding approximately 24 Pradosham days per year. The word "Pradosha" literally means "the first part of the night" and refers to the twilight period between sunset and nightfall. This 90-minute window, called Pradosh Kaal, is considered the most sacred time for Lord Shiva worship according to the Skanda Purana.',
-    aboutPradoshamText2: 'The origin story of Pradosham comes from the Skanda Purana. When the gods and demons churned the cosmic ocean (Samudra Manthan), the deadly poison Halahala emerged during the Pradosh Kaal of Trayodashi. Lord Shiva consumed the poison to save creation, and Parvati pressed his throat to prevent it from descending — turning his throat blue (Neelakantha). Nandi, Shiva\'s divine bull, is said to have performed intense penance during this twilight hour, earning the boon that anyone who worships Shiva during Pradosh Kaal would receive swift grace.',
-    aboutPradoshamText3: 'Shani Pradosham (Saturday) and Soma Pradosham (Monday) carry special significance. Shani Pradosham combines Saturn\'s karmic discipline with Shiva\'s transformative power — particularly recommended for those undergoing Sade Sati or Saturn Dasha in their horoscope. Soma Pradosham links the Moon\'s emotional healing with Shiva worship, prescribed for mental peace and emotional stability. Bhauma Pradosham (Tuesday) is observed for Mars-related remedies, especially Mangal Dosha.',
-    aboutPradoshamText4: 'The Pradosham puja vidhi involves lighting a ghee lamp at twilight, offering bilva leaves, white flowers, and milk abhishekam to a Shiva Linga. Devotees observe a day-long fast, breaking it after the evening puja. The Maha Mrityunjaya Mantra and Rudram chanting during Pradosh Kaal are considered exceptionally potent. Pradosham 2026 dates and the exact Pradosh Kaal window depend on your local sunset time — this page calculates both for your location.',
+    aboutPradoshamText1: 'Pradosham (Pradosh Vrat) falls on the thirteenth Tithi (Trayodashi) of each lunar fortnight  –  both Shukla and Krishna Paksha  –  yielding approximately 24 Pradosham days per year. The word "Pradosha" literally means "the first part of the night" and refers to the twilight period between sunset and nightfall. This 90-minute window, called Pradosh Kaal, is considered the most sacred time for Lord Shiva worship according to the Skanda Purana.',
+    aboutPradoshamText2: 'The origin story of Pradosham comes from the Skanda Purana. When the gods and demons churned the cosmic ocean (Samudra Manthan), the deadly poison Halahala emerged during the Pradosh Kaal of Trayodashi. Lord Shiva consumed the poison to save creation, and Parvati pressed his throat to prevent it from descending  –  turning his throat blue (Neelakantha). Nandi, Shiva\'s divine bull, is said to have performed intense penance during this twilight hour, earning the boon that anyone who worships Shiva during Pradosh Kaal would receive swift grace.',
+    aboutPradoshamText3: 'Shani Pradosham (Saturday) and Soma Pradosham (Monday) carry special significance. Shani Pradosham combines Saturn\'s karmic discipline with Shiva\'s transformative power  –  particularly recommended for those undergoing Sade Sati or Saturn Dasha in their horoscope. Soma Pradosham links the Moon\'s emotional healing with Shiva worship, prescribed for mental peace and emotional stability. Bhauma Pradosham (Tuesday) is observed for Mars-related remedies, especially Mangal Dosha.',
+    aboutPradoshamText4: 'The Pradosham puja vidhi involves lighting a ghee lamp at twilight, offering bilva leaves, white flowers, and milk abhishekam to a Shiva Linga. Devotees observe a day-long fast, breaking it after the evening puja. The Maha Mrityunjaya Mantra and Rudram chanting during Pradosh Kaal are considered exceptionally potent. Pradosham 2026 dates and the exact Pradosh Kaal window depend on your local sunset time  –  this page calculates both for your location.',
     aboutChaturthi: 'About Chaturthi',
-    aboutChaturthiText1: 'Chaturthi is the fourth Tithi of each lunar fortnight, sacred to Lord Ganesha — the remover of obstacles and the deity invoked at the beginning of every Hindu ceremony. The Ganapati Atharvashirsha Upanishad declares Ganesha as the primordial cosmic principle (Brahman) manifest in elephant form, and Chaturthi is his designated worship day in the Tithi cycle.',
-    aboutChaturthiText2: 'Two types of Chaturthi recur monthly. Sankashti Chaturthi falls in Krishna Paksha (waning moon) and is the primary monthly Ganesha vrat. Devotees fast from sunrise until moonrise, and the fast is broken only after sighting the moon and performing Ganesh Puja. The moonrise time is therefore critical — it varies significantly by location and season. Vinayaka Chaturthi falls in Shukla Paksha (waxing moon) and is observed with morning puja and modak offerings, though it carries less austerity than Sankashti.',
+    aboutChaturthiText1: 'Chaturthi is the fourth Tithi of each lunar fortnight, sacred to Lord Ganesha  –  the remover of obstacles and the deity invoked at the beginning of every Hindu ceremony. The Ganapati Atharvashirsha Upanishad declares Ganesha as the primordial cosmic principle (Brahman) manifest in elephant form, and Chaturthi is his designated worship day in the Tithi cycle.',
+    aboutChaturthiText2: 'Two types of Chaturthi recur monthly. Sankashti Chaturthi falls in Krishna Paksha (waning moon) and is the primary monthly Ganesha vrat. Devotees fast from sunrise until moonrise, and the fast is broken only after sighting the moon and performing Ganesh Puja. The moonrise time is therefore critical  –  it varies significantly by location and season. Vinayaka Chaturthi falls in Shukla Paksha (waxing moon) and is observed with morning puja and modak offerings, though it carries less austerity than Sankashti.',
     aboutChaturthiText3: 'The grand Ganesh Chaturthi festival (Bhadrapada Shukla Chaturthi, August-September) is a 10-day celebration culminating in Anant Chaturdashi. Established as a public festival by Lokmanya Tilak in 1893 to foster community unity, it features elaborate clay Ganesha installations (pandals), daily aarti, and the iconic visarjan (immersion) procession. The Chaturthi Chandra Dosha is a unique prohibition: on Bhadrapada Shukla Chaturthi, looking at the moon is said to bring false accusations (Syamantaka gem curse from the Bhagavata Purana). If seen accidentally, reciting the Syamantaka story or Krishna Stuti is the prescribed remedy.',
-    aboutChaturthiText4: 'The modak (sweet dumpling) is Ganesha\'s signature offering — 21 modaks are traditionally prepared for Sankashti, representing the 21 chapters of the Ganesha Purana. Durva grass (bermuda grass) bundles of 3 or 5 blades are offered as they are believed to have cooling properties that please Ganesha. Each Chaturthi 2026 falls on a different weekday, and the moonrise time determines when the Sankashti fast can be broken — this page provides precise moonrise calculations for your location.',
+    aboutChaturthiText4: 'The modak (sweet dumpling) is Ganesha\'s signature offering  –  21 modaks are traditionally prepared for Sankashti, representing the 21 chapters of the Ganesha Purana. Durva grass (bermuda grass) bundles of 3 or 5 blades are offered as they are believed to have cooling properties that please Ganesha. Each Chaturthi 2026 falls on a different weekday, and the moonrise time determines when the Sankashti fast can be broken  –  this page provides precise moonrise calculations for your location.',
     // Guide card labels
     guideTitle_ekadashi: 'Ekadashi Fasting Rules',
     guideTitle_purnima: 'Purnima Observance Guide',
@@ -110,7 +110,7 @@ const LABELS: Record<string, Record<string, string>> = {
     guide_ekadashi_3: 'Break fast (Parana) next day after sunrise but before Dwadashi tithi ends',
     guide_ekadashi_4: 'Nirjala Ekadashi: no food or water for the entire day',
     guide_ekadashi_5: 'Chant Vishnu Sahasranama or Om Namo Bhagavate Vasudevaya',
-    guide_ekadashi_6: 'Avoid sleeping during daytime — stay awake for night vigil if possible',
+    guide_ekadashi_6: 'Avoid sleeping during daytime  –  stay awake for night vigil if possible',
     guide_purnima_1: 'Perform Satyanarayan Katha with panchamrit offering',
     guide_purnima_2: 'Fast options: Nirjala (waterless), Phalahari (fruit-only), or single meal',
     guide_purnima_3: 'Give daan (charity): food, clothing, sesame seeds, or cow feeding',
@@ -118,14 +118,14 @@ const LABELS: Record<string, Record<string, string>> = {
     guide_purnima_5: 'Take holy river bath or visit temple at moonrise',
     guide_purnima_6: 'Prepare kheer and leave under moonlight on Sharad Purnima',
     guide_amavasya_do_1: 'Perform Pitru Tarpan with water, sesame, and kusha grass',
-    guide_amavasya_do_2: 'Meditate — the dark moon supports deep introspection',
+    guide_amavasya_do_2: 'Meditate  –  the dark moon supports deep introspection',
     guide_amavasya_do_3: 'Offer mustard oil lamp to Lord Shani (especially on Saturday)',
     guide_amavasya_do_4: 'Worship at peepal tree on Somvati Amavasya (Monday)',
     guide_amavasya_dont_1: 'Avoid starting new ventures, businesses, or journeys',
     guide_amavasya_dont_2: 'Avoid major purchases, contracts, or marriages',
     guide_amavasya_dont_3: 'Avoid cutting hair or nails (traditional prescription)',
     guide_amavasya_dont_4: 'Avoid consuming tamasic foods (meat, alcohol, stale food)',
-    guide_pradosham_1: 'Begin worship during Pradosh Kaal — 90 minutes around sunset',
+    guide_pradosham_1: 'Begin worship during Pradosh Kaal  –  90 minutes around sunset',
     guide_pradosham_2: 'Light a ghee lamp and offer bilva leaves to Shiva Linga',
     guide_pradosham_3: 'Perform milk abhishekam with white flowers',
     guide_pradosham_4: 'Chant Maha Mrityunjaya Mantra (108 times) or Sri Rudram',
@@ -155,33 +155,33 @@ const LABELS: Record<string, Record<string, string>> = {
     jumpTo: 'माह पर जाएँ',
     loading: 'लोड हो रहा है...',
     aboutEkadashi: 'एकादशी के बारे में',
-    aboutEkadashiText1: 'एकादशी हिन्दू पंचांग में प्रत्येक चान्द्र पक्ष की ग्यारहवीं तिथि है। प्रत्येक माह में दो एकादशियाँ होती हैं — एक शुक्ल पक्ष में और एक कृष्ण पक्ष में, जिससे वर्ष में लगभग 24 नामित एकादशियाँ आती हैं। पद्म पुराण और भविष्य पुराण में प्रत्येक एकादशी की अलग कथा वर्णित है। बृहत् पराशर होरा शास्त्र (BPHS) एकादशी को सात्विक तिथि मानता है जब मन स्वाभाविक रूप से चिन्तन और संयम की ओर प्रवृत्त होता है।',
+    aboutEkadashiText1: 'एकादशी हिन्दू पंचांग में प्रत्येक चान्द्र पक्ष की ग्यारहवीं तिथि है। प्रत्येक माह में दो एकादशियाँ होती हैं  –  एक शुक्ल पक्ष में और एक कृष्ण पक्ष में, जिससे वर्ष में लगभग 24 नामित एकादशियाँ आती हैं। पद्म पुराण और भविष्य पुराण में प्रत्येक एकादशी की अलग कथा वर्णित है। बृहत् पराशर होरा शास्त्र (BPHS) एकादशी को सात्विक तिथि मानता है जब मन स्वाभाविक रूप से चिन्तन और संयम की ओर प्रवृत्त होता है।',
     aboutEkadashiText2: '24 एकादशी चक्र में निर्जला एकादशी (ज्येष्ठ शुक्ल) सबसे कठोर मानी जाती है क्योंकि भक्त पूरे दिन अन्न और जल दोनों का त्याग करते हैं। पापांकुशा एकादशी (आश्विन शुक्ल) पापों के नाश के लिए प्रसिद्ध है, जबकि देवउठनी एकादशी (कार्तिक शुक्ल) चातुर्मास के अन्त में भगवान विष्णु के जागरण का पर्व है। एकादशी 2026 की तिथियाँ स्थान-आधारित हैं क्योंकि तिथि सीमा स्थानीय सूर्योदय पर निर्भर करती है।',
-    aboutEkadashiText3: 'एकादशी व्रत के नियम हरि भक्ति विलास में संहिताबद्ध हैं। मुख्य नियम अन्न (अनाज और दालों) का पूर्ण त्याग है। फल, मेवे, दूध, कन्द-मूल (आलू, शकरकन्द), साबूदाना और सेंधा नमक वर्जित नहीं हैं। सामान्य नमक, चावल, गेहूँ, दालें और सरसों का तेल वर्जित हैं। आधुनिक विज्ञान इसे इन्टरमिटेन्ट फ़ास्टिंग से जोड़ता है — 24 घण्टे का अन्न-मुक्त उपवास पाचन तन्त्र को विश्राम देता है।',
-    aboutEkadashiText4: 'पारण (व्रत तोड़ना) अगले दिन निर्धारित समय-सीमा में करना अनिवार्य है — सूर्योदय के बाद किन्तु द्वादशी तिथि के समाप्त होने से पहले। स्मार्त और वैष्णव एकादशी की गणना में अन्तर होता है, और अधिक मास में एक अतिरिक्त एकादशी जोड़ी आती है।',
+    aboutEkadashiText3: 'एकादशी व्रत के नियम हरि भक्ति विलास में संहिताबद्ध हैं। मुख्य नियम अन्न (अनाज और दालों) का पूर्ण त्याग है। फल, मेवे, दूध, कन्द-मूल (आलू, शकरकन्द), साबूदाना और सेंधा नमक वर्जित नहीं हैं। सामान्य नमक, चावल, गेहूँ, दालें और सरसों का तेल वर्जित हैं। आधुनिक विज्ञान इसे इन्टरमिटेन्ट फ़ास्टिंग से जोड़ता है  –  24 घण्टे का अन्न-मुक्त उपवास पाचन तन्त्र को विश्राम देता है।',
+    aboutEkadashiText4: 'पारण (व्रत तोड़ना) अगले दिन निर्धारित समय-सीमा में करना अनिवार्य है  –  सूर्योदय के बाद किन्तु द्वादशी तिथि के समाप्त होने से पहले। स्मार्त और वैष्णव एकादशी की गणना में अन्तर होता है, और अधिक मास में एक अतिरिक्त एकादशी जोड़ी आती है।',
     aboutPurnima: 'पूर्णिमा के बारे में',
-    aboutPurnimaText1: 'पूर्णिमा पूर्ण चन्द्रमा का दिन है — शुक्ल पक्ष की पन्द्रहवीं और अन्तिम तिथि जब चन्द्र बिम्ब पूर्ण प्रकाशित होता है। यह प्रत्येक चान्द्र मास (लगभग 29.53 दिन) में एक बार आती है। पूर्णिमान्त पंचांग में, जो उत्तर भारत में प्रचलित है, पूर्णिमा मास की सीमा है — मास पूर्णिमा को समाप्त होता है।',
-    aboutPurnimaText2: 'हिन्दू वर्ष में 12 से 13 नामित पूर्णिमाएँ होती हैं। गुरु पूर्णिमा (आषाढ़) गुरु परम्परा और वेदव्यास को समर्पित है। शरद पूर्णिमा (आश्विन) को चन्द्रमा अमृत वर्षा करता है — भक्त खीर चाँदनी में रखते हैं। कार्तिक पूर्णिमा देव दीपावली के साथ मनाई जाती है। बुद्ध पूर्णिमा (वैशाख) गौतम बुद्ध के जन्म, बोधि और परिनिर्वाण का पर्व है। होली फाल्गुन पूर्णिमा पर और रक्षा बन्धन श्रावण पूर्णिमा पर पड़ता है।',
+    aboutPurnimaText1: 'पूर्णिमा पूर्ण चन्द्रमा का दिन है  –  शुक्ल पक्ष की पन्द्रहवीं और अन्तिम तिथि जब चन्द्र बिम्ब पूर्ण प्रकाशित होता है। यह प्रत्येक चान्द्र मास (लगभग 29.53 दिन) में एक बार आती है। पूर्णिमान्त पंचांग में, जो उत्तर भारत में प्रचलित है, पूर्णिमा मास की सीमा है  –  मास पूर्णिमा को समाप्त होता है।',
+    aboutPurnimaText2: 'हिन्दू वर्ष में 12 से 13 नामित पूर्णिमाएँ होती हैं। गुरु पूर्णिमा (आषाढ़) गुरु परम्परा और वेदव्यास को समर्पित है। शरद पूर्णिमा (आश्विन) को चन्द्रमा अमृत वर्षा करता है  –  भक्त खीर चाँदनी में रखते हैं। कार्तिक पूर्णिमा देव दीपावली के साथ मनाई जाती है। बुद्ध पूर्णिमा (वैशाख) गौतम बुद्ध के जन्म, बोधि और परिनिर्वाण का पर्व है। होली फाल्गुन पूर्णिमा पर और रक्षा बन्धन श्रावण पूर्णिमा पर पड़ता है।',
     aboutPurnimaText3: 'आयुर्वेद और सूर्य सिद्धान्त दोनों चन्द्रमा के जैविक लय पर प्रभाव का वर्णन करते हैं। पूर्णिमा पर समुद्री ज्वार-भाटा अधिकतम होता है। चरक संहिता के अनुसार पूर्णिमा पर कफ दोष बढ़ता है, इसलिए हल्का भोजन और ध्यान की सलाह दी जाती है। आधुनिक शोध भी पूर्णिमा पर नींद के पैटर्न में बदलाव की पुष्टि करता है।',
-    aboutPurnimaText4: 'पूर्णिमा पर सत्यनारायण कथा (स्कन्द पुराण) का पाठ, पंचामृत से पूजा और प्रसाद वितरण प्रमुख अनुष्ठान हैं। उपवास निर्जला से लेकर फलाहार तक हो सकता है। पूर्णिमा पर दान — विशेषकर अन्न, वस्त्र और तिल — का पुण्य बहुगुणित माना जाता है। पूर्णिमा 2026 की तिथियाँ और चन्द्रोदय का समय स्थान पर निर्भर हैं।',
+    aboutPurnimaText4: 'पूर्णिमा पर सत्यनारायण कथा (स्कन्द पुराण) का पाठ, पंचामृत से पूजा और प्रसाद वितरण प्रमुख अनुष्ठान हैं। उपवास निर्जला से लेकर फलाहार तक हो सकता है। पूर्णिमा पर दान  –  विशेषकर अन्न, वस्त्र और तिल  –  का पुण्य बहुगुणित माना जाता है। पूर्णिमा 2026 की तिथियाँ और चन्द्रोदय का समय स्थान पर निर्भर हैं।',
     aboutAmavasya: 'अमावस्या के बारे में',
-    aboutAmavasyaText1: 'अमावस्या कृष्ण पक्ष की तीसवीं और अन्तिम तिथि है जब चन्द्रमा पूर्णतः अदृश्य होता है। अमान्त (अमावस्यान्त) पंचांग में, जो गुजरात, महाराष्ट्र, कर्नाटक और दक्षिण भारत में प्रचलित है, अमावस्या मास का अन्तिम दिन है। संस्कृत में "अमा" (साथ) और "वस्य" (निवास) — सूर्य और चन्द्रमा का एक ही अंश पर संयोग।',
-    aboutAmavasyaText2: 'अमावस्या पितृ तर्पण के लिए सर्वाधिक महत्वपूर्ण है — जल, तिल और कुश से पितरों को अर्पण किया जाता है। गरुड़ पुराण और मार्कण्डेय पुराण के अनुसार अमावस्या पर पितृ लोक सबसे सुलभ होता है। सोमवती अमावस्या (सोमवार) तर्पण और पीपल पूजा के लिए विशेष शुभ है। मौनी अमावस्या (माघ) पर मौन व्रत और पवित्र नदी स्नान का विधान है — कुम्भ मेले का मुख्य स्नान इसी दिन होता है।',
-    aboutAmavasyaText3: 'दीपावली कार्तिक अमावस्या पर पड़ती है — अन्यथा शान्त अमावस्या वर्ष की सबसे भव्य रात्रि बन जाती है। इस दिन प्रदोष काल और निशीथ काल में लक्ष्मी पूजा होती है। शनि अमावस्या (शनिवार) पर शनि देव को सरसों का तेल अर्पित किया जाता है। बंगाल में काली पूजा अमावस्या पर रात्रि भर की जाती है।',
-    aboutAmavasyaText4: 'अमावस्या नए कार्य, विवाह या यात्रा के लिए अशुभ मानी जाती है, किन्तु ध्यान और आन्तरिक साधना के लिए अत्यन्त शक्तिशाली है। आयुर्वेद के अनुसार अमावस्या पर वात दोष बढ़ता है — गर्म, पौष्टिक भोजन और तेल मालिश (अभ्यंग) की सलाह दी जाती है। अमावस्या 2026 की तिथियाँ समय क्षेत्र और स्थान पर निर्भर हैं।',
+    aboutAmavasyaText1: 'अमावस्या कृष्ण पक्ष की तीसवीं और अन्तिम तिथि है जब चन्द्रमा पूर्णतः अदृश्य होता है। अमान्त (अमावस्यान्त) पंचांग में, जो गुजरात, महाराष्ट्र, कर्नाटक और दक्षिण भारत में प्रचलित है, अमावस्या मास का अन्तिम दिन है। संस्कृत में "अमा" (साथ) और "वस्य" (निवास)  –  सूर्य और चन्द्रमा का एक ही अंश पर संयोग।',
+    aboutAmavasyaText2: 'अमावस्या पितृ तर्पण के लिए सर्वाधिक महत्वपूर्ण है  –  जल, तिल और कुश से पितरों को अर्पण किया जाता है। गरुड़ पुराण और मार्कण्डेय पुराण के अनुसार अमावस्या पर पितृ लोक सबसे सुलभ होता है। सोमवती अमावस्या (सोमवार) तर्पण और पीपल पूजा के लिए विशेष शुभ है। मौनी अमावस्या (माघ) पर मौन व्रत और पवित्र नदी स्नान का विधान है  –  कुम्भ मेले का मुख्य स्नान इसी दिन होता है।',
+    aboutAmavasyaText3: 'दीपावली कार्तिक अमावस्या पर पड़ती है  –  अन्यथा शान्त अमावस्या वर्ष की सबसे भव्य रात्रि बन जाती है। इस दिन प्रदोष काल और निशीथ काल में लक्ष्मी पूजा होती है। शनि अमावस्या (शनिवार) पर शनि देव को सरसों का तेल अर्पित किया जाता है। बंगाल में काली पूजा अमावस्या पर रात्रि भर की जाती है।',
+    aboutAmavasyaText4: 'अमावस्या नए कार्य, विवाह या यात्रा के लिए अशुभ मानी जाती है, किन्तु ध्यान और आन्तरिक साधना के लिए अत्यन्त शक्तिशाली है। आयुर्वेद के अनुसार अमावस्या पर वात दोष बढ़ता है  –  गर्म, पौष्टिक भोजन और तेल मालिश (अभ्यंग) की सलाह दी जाती है। अमावस्या 2026 की तिथियाँ समय क्षेत्र और स्थान पर निर्भर हैं।',
     aboutPradosham: 'प्रदोष के बारे में',
-    aboutPradoshamText1: 'प्रदोष व्रत प्रत्येक चान्द्र पक्ष की त्रयोदशी (13वीं) तिथि को पड़ता है — शुक्ल और कृष्ण दोनों पक्षों में — जिससे वर्ष में लगभग 24 प्रदोष आते हैं। "प्रदोष" का शाब्दिक अर्थ "रात्रि का प्रथम भाग" है — सूर्यास्त और रात्रि के बीच का सन्ध्याकाल। स्कन्द पुराण के अनुसार यह 90 मिनट का प्रदोष काल भगवान शिव की पूजा के लिए सर्वश्रेष्ठ है।',
-    aboutPradoshamText2: 'प्रदोष की कथा स्कन्द पुराण से आती है। समुद्र मन्थन में त्रयोदशी के प्रदोष काल में हालाहल विष प्रकट हुआ। भगवान शिव ने सृष्टि रक्षा हेतु विष पान किया और पार्वती ने उनका कण्ठ दबाया — जिससे वे नीलकण्ठ कहलाए। नन्दी ने इसी सन्ध्या काल में कठोर तपस्या कर वरदान प्राप्त किया कि प्रदोष काल में शिव पूजा करने वालों पर शीघ्र कृपा होगी।',
-    aboutPradoshamText3: 'शनि प्रदोष (शनिवार) और सोम प्रदोष (सोमवार) विशेष महत्व रखते हैं। शनि प्रदोष शनि की कर्म-शक्ति और शिव की रूपान्तरण शक्ति का संयोग है — साढ़े साती या शनि दशा वालों के लिए विशेष रूप से अनुशंसित। सोम प्रदोष चन्द्रमा की शान्ति और मानसिक स्थिरता के लिए प्रसिद्ध है।',
+    aboutPradoshamText1: 'प्रदोष व्रत प्रत्येक चान्द्र पक्ष की त्रयोदशी (13वीं) तिथि को पड़ता है  –  शुक्ल और कृष्ण दोनों पक्षों में  –  जिससे वर्ष में लगभग 24 प्रदोष आते हैं। "प्रदोष" का शाब्दिक अर्थ "रात्रि का प्रथम भाग" है  –  सूर्यास्त और रात्रि के बीच का सन्ध्याकाल। स्कन्द पुराण के अनुसार यह 90 मिनट का प्रदोष काल भगवान शिव की पूजा के लिए सर्वश्रेष्ठ है।',
+    aboutPradoshamText2: 'प्रदोष की कथा स्कन्द पुराण से आती है। समुद्र मन्थन में त्रयोदशी के प्रदोष काल में हालाहल विष प्रकट हुआ। भगवान शिव ने सृष्टि रक्षा हेतु विष पान किया और पार्वती ने उनका कण्ठ दबाया  –  जिससे वे नीलकण्ठ कहलाए। नन्दी ने इसी सन्ध्या काल में कठोर तपस्या कर वरदान प्राप्त किया कि प्रदोष काल में शिव पूजा करने वालों पर शीघ्र कृपा होगी।',
+    aboutPradoshamText3: 'शनि प्रदोष (शनिवार) और सोम प्रदोष (सोमवार) विशेष महत्व रखते हैं। शनि प्रदोष शनि की कर्म-शक्ति और शिव की रूपान्तरण शक्ति का संयोग है  –  साढ़े साती या शनि दशा वालों के लिए विशेष रूप से अनुशंसित। सोम प्रदोष चन्द्रमा की शान्ति और मानसिक स्थिरता के लिए प्रसिद्ध है।',
     aboutPradoshamText4: 'प्रदोष पूजा विधि में सन्ध्याकाल में घी का दीपक जलाना, शिव लिंग पर बिल्व पत्र और श्वेत पुष्प अर्पित करना, तथा दुग्ध अभिषेक शामिल है। भक्त सूर्योदय से उपवास रखते हैं और सन्ध्या पूजा के बाद व्रत तोड़ते हैं। प्रदोष काल में महामृत्युञ्जय मन्त्र (108 बार) और रुद्रम् का पाठ अत्यन्त प्रभावशाली माना जाता है।',
     aboutChaturthi: 'चतुर्थी के बारे में',
     aboutChaturthiText1: 'चतुर्थी प्रत्येक चान्द्र पक्ष की चौथी तिथि है, जो विघ्नहर्ता भगवान गणेश को समर्पित है। गणपति अथर्वशीर्ष उपनिषद् गणेश को ब्रह्म का गजरूपी साक्षात्कार घोषित करता है, और चतुर्थी तिथि चक्र में उनका निर्धारित पूजा दिवस है।',
     aboutChaturthiText2: 'दो प्रकार की चतुर्थी प्रतिमास आती हैं। संकष्टी चतुर्थी कृष्ण पक्ष (ढलते चन्द्र) में पड़ती है और मुख्य मासिक गणेश व्रत है। भक्त सूर्योदय से चन्द्रोदय तक उपवास रखते हैं और चन्द्र दर्शन व गणेश पूजा के बाद ही व्रत तोड़ते हैं। चन्द्रोदय का समय स्थान और ऋतु के अनुसार बहुत भिन्न होता है। विनायक चतुर्थी शुक्ल पक्ष में पड़ती है जिसमें प्रातः पूजा और मोदक अर्पण किया जाता है।',
-    aboutChaturthiText3: 'भव्य गणेश चतुर्थी महोत्सव (भाद्रपद शुक्ल चतुर्थी) 10 दिन का उत्सव है जो अनन्त चतुर्दशी पर समाप्त होता है। 1893 में लोकमान्य तिलक ने इसे सार्वजनिक उत्सव के रूप में स्थापित किया। चतुर्थी चन्द्र दोष एक विशेष निषेध है — भाद्रपद शुक्ल चतुर्थी पर चन्द्र दर्शन से मिथ्या आरोप लगने की मान्यता है (भागवत पुराण का स्यमन्तक मणि प्रसंग)।',
-    aboutChaturthiText4: 'मोदक गणेश का प्रिय भोग है — संकष्टी पर 21 मोदक अर्पित किए जाते हैं जो गणेश पुराण के 21 अध्यायों का प्रतीक हैं। दूर्वा (दूब) घास की 3 या 5 पत्तियों की गुच्छी अर्पित की जाती है। चतुर्थी 2026 की प्रत्येक तिथि भिन्न वार पर पड़ती है और संकष्टी व्रत के लिए चन्द्रोदय का सटीक समय आवश्यक है।',
+    aboutChaturthiText3: 'भव्य गणेश चतुर्थी महोत्सव (भाद्रपद शुक्ल चतुर्थी) 10 दिन का उत्सव है जो अनन्त चतुर्दशी पर समाप्त होता है। 1893 में लोकमान्य तिलक ने इसे सार्वजनिक उत्सव के रूप में स्थापित किया। चतुर्थी चन्द्र दोष एक विशेष निषेध है  –  भाद्रपद शुक्ल चतुर्थी पर चन्द्र दर्शन से मिथ्या आरोप लगने की मान्यता है (भागवत पुराण का स्यमन्तक मणि प्रसंग)।',
+    aboutChaturthiText4: 'मोदक गणेश का प्रिय भोग है  –  संकष्टी पर 21 मोदक अर्पित किए जाते हैं जो गणेश पुराण के 21 अध्यायों का प्रतीक हैं। दूर्वा (दूब) घास की 3 या 5 पत्तियों की गुच्छी अर्पित की जाती है। चतुर्थी 2026 की प्रत्येक तिथि भिन्न वार पर पड़ती है और संकष्टी व्रत के लिए चन्द्रोदय का सटीक समय आवश्यक है।',
     guideTitle_ekadashi: 'एकादशी व्रत के नियम',
     guideTitle_purnima: 'पूर्णिमा पालन मार्गदर्शिका',
-    guideTitle_amavasya: 'अमावस्या — क्या करें, क्या न करें',
+    guideTitle_amavasya: 'अमावस्या  –  क्या करें, क्या न करें',
     guideTitle_pradosham: 'प्रदोष व्रत कैसे करें',
     guideTitle_chaturthi: 'चतुर्थी पूजा मार्गदर्शिका',
     guide_ekadashi_1: 'सभी अनाज, दालें, चावल, गेहूँ का त्याग करें',
@@ -189,7 +189,7 @@ const LABELS: Record<string, Record<string, string>> = {
     guide_ekadashi_3: 'पारण अगले दिन सूर्योदय के बाद, द्वादशी समाप्ति से पहले करें',
     guide_ekadashi_4: 'निर्जला एकादशी: पूरे दिन अन्न और जल दोनों का त्याग',
     guide_ekadashi_5: 'विष्णु सहस्रनाम या ॐ नमो भगवते वासुदेवाय का जाप करें',
-    guide_ekadashi_6: 'दिन में सोने से बचें — यथासम्भव रात्रि जागरण करें',
+    guide_ekadashi_6: 'दिन में सोने से बचें  –  यथासम्भव रात्रि जागरण करें',
     guide_purnima_1: 'पंचामृत से सत्यनारायण कथा का पाठ करें',
     guide_purnima_2: 'उपवास: निर्जला, फलाहार, या एक समय भोजन',
     guide_purnima_3: 'दान करें: अन्न, वस्त्र, तिल, या गौ सेवा',
@@ -197,14 +197,14 @@ const LABELS: Record<string, Record<string, string>> = {
     guide_purnima_5: 'चन्द्रोदय पर पवित्र नदी स्नान या मन्दिर दर्शन करें',
     guide_purnima_6: 'शरद पूर्णिमा पर खीर चाँदनी में रखें',
     guide_amavasya_do_1: 'जल, तिल और कुश से पितृ तर्पण करें',
-    guide_amavasya_do_2: 'ध्यान करें — अन्धकार चन्द्र गहन आत्मनिरीक्षण में सहायक है',
+    guide_amavasya_do_2: 'ध्यान करें  –  अन्धकार चन्द्र गहन आत्मनिरीक्षण में सहायक है',
     guide_amavasya_do_3: 'शनि देव को सरसों के तेल का दीपक अर्पित करें (विशेषकर शनिवार)',
     guide_amavasya_do_4: 'सोमवती अमावस्या पर पीपल वृक्ष की पूजा करें',
     guide_amavasya_dont_1: 'नए कार्य, व्यापार या यात्रा आरम्भ न करें',
     guide_amavasya_dont_2: 'बड़ी ख़रीदारी, अनुबन्ध या विवाह से बचें',
     guide_amavasya_dont_3: 'बाल या नाखून न कटवाएँ (पारम्परिक विधान)',
     guide_amavasya_dont_4: 'तामसिक भोजन (माँस, मद्य, बासी भोजन) का त्याग करें',
-    guide_pradosham_1: 'प्रदोष काल में पूजा आरम्भ करें — सूर्यास्त के 90 मिनट',
+    guide_pradosham_1: 'प्रदोष काल में पूजा आरम्भ करें  –  सूर्यास्त के 90 मिनट',
     guide_pradosham_2: 'घी का दीपक जलाएँ और शिव लिंग पर बिल्व पत्र अर्पित करें',
     guide_pradosham_3: 'श्वेत पुष्पों के साथ दुग्ध अभिषेक करें',
     guide_pradosham_4: 'महामृत्युञ्जय मन्त्र (108 बार) या श्री रुद्रम् का पाठ करें',
@@ -234,9 +234,9 @@ const LABELS: Record<string, Record<string, string>> = {
     jumpTo: 'मासं गच्छतु',
     loading: 'लोड हो रहा है...',
     aboutEkadashi: 'एकादश्याः विषये',
-    aboutEkadashiText1: 'एकादशी हिन्दूपञ्चाङ्गे प्रत्येकपक्षस्य एकादशतिथिः। प्रत्येकमासे द्वे एकादश्यौ भवतः — एका शुक्लपक्षे एका कृष्णपक्षे। एकादशीव्रतं हिन्दूधर्मस्य महत्वपूर्णव्रतेषु अन्यतमम्।',
+    aboutEkadashiText1: 'एकादशी हिन्दूपञ्चाङ्गे प्रत्येकपक्षस्य एकादशतिथिः। प्रत्येकमासे द्वे एकादश्यौ भवतः  –  एका शुक्लपक्षे एका कृष्णपक्षे। एकादशीव्रतं हिन्दूधर्मस्य महत्वपूर्णव्रतेषु अन्यतमम्।',
     aboutEkadashiText2: 'निर्जलैकादशी ज्येष्ठशुक्लपक्षे कठोरतमा मन्यते। देवोत्थानैकादशी कार्तिकशुक्लपक्षे चातुर्मासान्ते विष्णोः जागरणपर्व भवति।',
-    aboutEkadashiText3: 'एकादशीव्रतनियमाः हरिभक्तिविलासे संहिताबद्धाः। अन्नत्यागः मुख्यः — फलानि दुग्धं कन्दमूलानि अनुमतानि।',
+    aboutEkadashiText3: 'एकादशीव्रतनियमाः हरिभक्तिविलासे संहिताबद्धाः। अन्नत्यागः मुख्यः  –  फलानि दुग्धं कन्दमूलानि अनुमतानि।',
     aboutEkadashiText4: 'पारणं परदिने सूर्योदयानन्तरं द्वादशीसमाप्तेः पूर्वं करणीयम्।',
     aboutPurnima: 'पूर्णिमायाः विषये',
     aboutPurnimaText1: 'पूर्णिमा पूर्णचन्द्रदिनम् शुक्लपक्षस्य पञ्चदशतिथिः। एतत् हिन्दूपञ्चाङ्गस्य शुभतमदिनेषु अन्यतमम्।',
@@ -260,7 +260,7 @@ const LABELS: Record<string, Record<string, string>> = {
     aboutChaturthiText4: 'मोदकाः गणेशस्य प्रियभोगाः। एकविंशतिमोदकाः अर्प्यन्ते। दूर्वादलानि त्रीणि पञ्च वा अर्प्यन्ते।',
     guideTitle_ekadashi: 'एकादशीव्रतनियमाः',
     guideTitle_purnima: 'पूर्णिमापालनमार्गदर्शिका',
-    guideTitle_amavasya: 'अमावस्या — कर्तव्यम् अकर्तव्यं च',
+    guideTitle_amavasya: 'अमावस्या  –  कर्तव्यम् अकर्तव्यं च',
     guideTitle_pradosham: 'प्रदोषव्रतविधिः',
     guideTitle_chaturthi: 'चतुर्थीपूजामार्गदर्शिका',
     viewCalendar: 'पर्वपञ्चाङ्गं पश्यतु',
@@ -310,7 +310,7 @@ export default function DateCategoryPage() {
   const storeTz = useLocationStore(s => s.timezone);
 
   // Fetch from the SAME /api/calendar endpoint used by the festival calendar page.
-  // Single source of truth — no separate tithi table computation.
+  // Single source of truth  –  no separate tithi table computation.
   // Auto-detect location via IP if store is empty (no hardcoded Delhi fallback).
   useEffect(() => {
     const fetchWithLocation = (lat: number, lng: number, tz: string) => {
@@ -333,7 +333,7 @@ export default function DateCategoryPage() {
       return;
     }
 
-    // No location in store — try IP geolocation (same pattern as calendar page)
+    // No location in store  –  try IP geolocation (same pattern as calendar page)
     setLoading(true);
     fetch('https://ipapi.co/json/')
       .then(r => r.json())
@@ -394,7 +394,7 @@ export default function DateCategoryPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          {catLabel} {year} — {L.completeDates}
+          {catLabel} {year}  –  {L.completeDates}
         </motion.h1>
 
         {/* Year Navigator */}
@@ -547,7 +547,7 @@ export default function DateCategoryPage() {
                             // Timings: use ekadashi-specific fields if available, otherwise show date
                             const timingStart = entry.ekadashiStart || '';
                             const timingEnd = entry.ekadashiEnd || '';
-                            const timingDisplay = timingStart && timingEnd ? `${timingStart} — ${timingEnd}` : '—';
+                            const timingDisplay = timingStart && timingEnd ? `${timingStart}  –  ${timingEnd}` : ' – ';
                             const paksha = entry.paksha || '';
                             return (
                               <motion.tr

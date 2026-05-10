@@ -6,8 +6,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const mod = MODULE_SEQUENCE.find(m => m.id === MOD_ID);
   const loc = locale as 'en' | 'hi' | 'sa';
-  const title = mod ? `${((mod.title as Record<string, string>)[loc] || mod.title.en)} — Learn Jyotish` : `Module ${MOD_ID} — Learn Jyotish`;
-  const description = mod ? `${mod.topic} · Module ${MOD_ID} — Interactive Vedic astrology lesson` : undefined;
+  const title = mod ? `${((mod.title as Record<string, string>)[loc] || mod.title.en)}  –  Learn Jyotish` : `Module ${MOD_ID}  –  Learn Jyotish`;
+  const description = mod ? `${mod.topic} · Module ${MOD_ID}  –  Interactive Vedic astrology lesson` : undefined;
   return {
     title,
     description,

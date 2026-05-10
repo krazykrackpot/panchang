@@ -110,7 +110,7 @@ export default function MuhurtaScannerClient() {
     }
   }, [activity, locale]);
 
-  // AbortController for in-flight scan requests — aborted on unmount or new scan
+  // AbortController for in-flight scan requests  –  aborted on unmount or new scan
   const scanAbortRef = useRef<AbortController | null>(null);
 
   // Abort any in-flight scan on unmount
@@ -301,7 +301,7 @@ export default function MuhurtaScannerClient() {
   }, []);
 
   // Calendar view: auto-fetch on mount and when dependencies change
-  // handleScan is a useCallback — we intentionally only react to these 4 deps
+  // handleScan is a useCallback  –  we intentionally only react to these 4 deps
   useEffect(() => {
     if (viewMode !== 'calendar') return;
     handleScan();
@@ -376,7 +376,7 @@ export default function MuhurtaScannerClient() {
         </div>
       )}
 
-      {/* Pass 1: Monthly Overview — conditional on view mode */}
+      {/* Pass 1: Monthly Overview  –  conditional on view mode */}
       {viewMode === 'calendar' ? (
         <>
           {/* Restriction notices (calendar view only) */}
@@ -415,7 +415,7 @@ export default function MuhurtaScannerClient() {
           )}
         </>
       ) : (
-        /* Heatmap view — existing MonthHeatmap + MobileMonthView */
+        /* Heatmap view  –  existing MonthHeatmap + MobileMonthView */
         (overviewCells.length > 0 || overviewLoading) && (
           <>
             <div className="mt-6 mb-3">
@@ -492,7 +492,7 @@ export default function MuhurtaScannerClient() {
         <>
           <div className="mt-6 mb-3">
             <h2 className="font-[Cinzel] text-base text-[#f0d48a] flex items-center gap-2">
-              {sl('dayDetail', locale)} — {formatDisplayDate(selectedDate)}
+              {sl('dayDetail', locale)}  –  {formatDisplayDate(selectedDate)}
               <span className="font-sans text-[10px] bg-[#d4a853]/15 text-[#d4a853] px-2 py-0.5 rounded uppercase tracking-wider">
                 {sl('pass2Label', locale)}
               </span>
@@ -513,7 +513,7 @@ export default function MuhurtaScannerClient() {
         <>
           <div className="mt-6 mb-3">
             <h2 className="font-[Cinzel] text-base text-[#f0d48a]">
-              {sl('scoreBreakdown', locale)} — {selectedWindow.date}, {selectedWindow.startTime}
+              {sl('scoreBreakdown', locale)}  –  {selectedWindow.date}, {selectedWindow.startTime}
             </h2>
           </div>
           <ScoreBreakdown

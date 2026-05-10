@@ -84,7 +84,7 @@ export async function GET(request: Request) {
     nadi = calculateNadiAmsha(kundali);
   } catch (err) {
     console.error('[kundali-report] Nadi Amsha calculation failed:', err);
-    // Non-critical — continue without nadi
+    // Non-critical  –  continue without nadi
   }
 
   // ── Build HTML ────────────────────────────────────────────────
@@ -216,13 +216,13 @@ function renderNorthChart(kundali: KundaliData): string {
   <!-- Inner diamond (rotated square) -->
   <polygon points="200,24 376,200 200,376 24,200" fill="none" stroke="#d4a853" stroke-width="1.5"/>
 
-  <!-- Diagonal lines from corners to center — creating 12 triangular houses -->
+  <!-- Diagonal lines from corners to center  –  creating 12 triangular houses -->
   <line x1="24" y1="24" x2="200" y2="200" stroke="#b89a3e" stroke-width="0.8"/>
   <line x1="376" y1="24" x2="200" y2="200" stroke="#b89a3e" stroke-width="0.8"/>
   <line x1="24" y1="376" x2="200" y2="200" stroke="#b89a3e" stroke-width="0.8"/>
   <line x1="376" y1="376" x2="200" y2="200" stroke="#b89a3e" stroke-width="0.8"/>
 
-  <!-- Faint cross lines (horizontal + vertical midpoints) — optional classical touch -->
+  <!-- Faint cross lines (horizontal + vertical midpoints)  –  optional classical touch -->
   <line x1="24" y1="200" x2="376" y2="200" stroke="#d4a853" stroke-width="0.3" opacity="0.2"/>
   <line x1="200" y1="24" x2="200" y2="376" stroke="#d4a853" stroke-width="0.3" opacity="0.2"/>
 
@@ -753,7 +753,7 @@ function buildReportHtml(
     .chart-svg-wrap {
       flex-shrink: 0;
     }
-    /* old table chart styles removed — SVG diamond uses inline styles */
+    /* old table chart styles removed  –  SVG diamond uses inline styles */
 
     /* ── Chart key info ── */
     .chart-key {
@@ -966,7 +966,7 @@ function buildReportHtml(
     </button>
   </div>
   <script>
-    /* Use document.fonts.ready — never setTimeout for font loading (Lesson E) */
+    /* Use document.fonts.ready  –  never setTimeout for font loading (Lesson E) */
     document.fonts.ready.then(function() {
       var btn = document.getElementById('print-btn');
       if (btn) {
@@ -981,7 +981,7 @@ function buildReportHtml(
   <!-- COVER PAGE -->
   <!-- ════════════════════════════════════════════════════════════ -->
   <div class="cover">
-    <!-- Hindu Swastika (卐) — clockwise arms, red, large -->
+    <!-- Hindu Swastika (卐)  –  clockwise arms, red, large -->
     <div style="text-align:center; margin-bottom:16px;">
       <svg width="80" height="80" viewBox="0 0 100 100" style="display:inline-block;">
         <g fill="#C41E3A">
@@ -1006,12 +1006,12 @@ function buildReportHtml(
       </svg>
     </div>
 
-    <!-- Shree Ganesh — use the Om/Ganesh symbol character + elegant Devanagari rendering -->
+    <!-- Shree Ganesh  –  use the Om/Ganesh symbol character + elegant Devanagari rendering -->
     <div style="text-align:center; margin-bottom:8px;">
       <div style="font-size: 64px; color: #C41E3A; line-height: 1; margin-bottom: 4px;">&#x0950;</div>
     </div>
 
-    <!-- Ganesh Mantra in Devanagari — classy serif script -->
+    <!-- Ganesh Mantra in Devanagari  –  classy serif script -->
     <div style="font-family: 'Tiro Devanagari Sanskrit', 'Noto Sans Devanagari', serif; color: #C41E3A; font-size: 20px; font-weight: 700; text-align: center; letter-spacing: 3px; margin-bottom: 20px; line-height: 1.6;">
       ॥ श्री गणेशाय नमः ॥
     </div>
@@ -1147,11 +1147,11 @@ function buildReportHtml(
     </table>
     <div class="legend">
       <div class="legend-title">Legend</div>
-      <span class="legend-item"><span class="retro-badge" style="vertical-align:middle;font-size:8px;padding:1px 4px">R</span> Retrograde — planet appears to move backward</span>
-      <span class="legend-item"><span class="combust-badge" style="vertical-align:middle;font-size:8px;padding:1px 4px">C</span> Combust — planet too close to the Sun, weakened</span><br/>
-      <span class="legend-item"><span class="legend-swatch" style="background:#16a34a"></span> <strong style="color:#16a34a">Exalted</strong> — planet in its strongest sign</span>
-      <span class="legend-item"><span class="legend-swatch" style="background:#2563eb"></span> <strong style="color:#2563eb">Own Sign</strong> — planet in the sign it rules</span>
-      <span class="legend-item"><span class="legend-swatch" style="background:#dc2626"></span> <strong style="color:#dc2626">Debilitated</strong> — planet in its weakest sign</span>
+      <span class="legend-item"><span class="retro-badge" style="vertical-align:middle;font-size:8px;padding:1px 4px">R</span> Retrograde  –  planet appears to move backward</span>
+      <span class="legend-item"><span class="combust-badge" style="vertical-align:middle;font-size:8px;padding:1px 4px">C</span> Combust  –  planet too close to the Sun, weakened</span><br/>
+      <span class="legend-item"><span class="legend-swatch" style="background:#16a34a"></span> <strong style="color:#16a34a">Exalted</strong>  –  planet in its strongest sign</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#2563eb"></span> <strong style="color:#2563eb">Own Sign</strong>  –  planet in the sign it rules</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#dc2626"></span> <strong style="color:#dc2626">Debilitated</strong>  –  planet in its weakest sign</span>
     </div>
   </div>
 
@@ -1197,9 +1197,9 @@ function buildReportHtml(
     ${doshasHtml}
     <div class="legend">
       <div class="legend-title">Severity Legend</div>
-      <span class="legend-item"><span class="legend-swatch" style="background:#dc2626"></span> <strong>Severe</strong> — significant impact, remedies strongly recommended</span>
-      <span class="legend-item"><span class="legend-swatch" style="background:#f59e0b"></span> <strong>Moderate</strong> — noticeable effects, remedies helpful</span>
-      <span class="legend-item"><span class="legend-swatch" style="background:#16a34a"></span> <strong>Mild / Cancelled</strong> — dosha present but neutralized by cancellation conditions</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#dc2626"></span> <strong>Severe</strong>  –  significant impact, remedies strongly recommended</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#f59e0b"></span> <strong>Moderate</strong>  –  noticeable effects, remedies helpful</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#16a34a"></span> <strong>Mild / Cancelled</strong>  –  dosha present but neutralized by cancellation conditions</span>
     </div>
   </div>
 
@@ -1267,9 +1267,9 @@ function buildReportHtml(
     </table>
     <div class="legend">
       <div class="legend-title">Strength Scale</div>
-      <span class="legend-item"><span class="legend-swatch" style="background:#16a34a"></span> <strong>Strong</strong> (≥70%) — planet delivers its significations powerfully</span>
-      <span class="legend-item"><span class="legend-swatch" style="background:#f59e0b"></span> <strong>Moderate</strong> (40-70%) — planet functions adequately</span>
-      <span class="legend-item"><span class="legend-swatch" style="background:#dc2626"></span> <strong>Weak</strong> (&lt;40%) — planet struggles to deliver results, remedies recommended</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#16a34a"></span> <strong>Strong</strong> (≥70%)  –  planet delivers its significations powerfully</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#f59e0b"></span> <strong>Moderate</strong> (40-70%)  –  planet functions adequately</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#dc2626"></span> <strong>Weak</strong> (&lt;40%)  –  planet struggles to deliver results, remedies recommended</span>
     </div>
   </div>
 

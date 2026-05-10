@@ -1,5 +1,5 @@
 /**
- * Personal Pandit Engine — Integration Tests
+ * Personal Pandit Engine  –  Integration Tests
  *
  * End-to-end verification of the domain synthesis engine.
  * Uses a real KundaliData generated from the kundali calculator
@@ -96,7 +96,7 @@ describe('Personal Pandit Integration', () => {
   });
 
   // -----------------------------------------------------------------------
-  // 7. Domain differentiation — not all ratings are identical
+  // 7. Domain differentiation  –  not all ratings are identical
   // -----------------------------------------------------------------------
   it('domains have differentiated ratings (not all identical)', () => {
     const scores = reading.domains.map(d => d.overallRating.score);

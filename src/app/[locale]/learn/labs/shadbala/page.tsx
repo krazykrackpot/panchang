@@ -15,18 +15,18 @@ import LJ from '@/messages/learn/labs-shadbala.json';
 interface LocationResult { name: string; lat: number; lng: number; timezone: string; }
 
 const BALA_INFO = [
-  { key: 'sthanaBala' as const,    color: '#e67e22', label: 'Sthana Bala',    icon: '🏠', plain: 'Positional strength — is the planet in its home, exalted, or a hostile sign?', detail: 'A planet in its own sign (like Mars in Aries) or exalted sign (like Mars in Capricorn) gets full Sthana Bala. Like a person performing at their home stadium — they have all the advantages.' },
-  { key: 'digBala' as const,       color: '#3498db', label: 'Dig Bala',       icon: '🧭', plain: 'Directional strength — which house (corner of the chart) does the planet prefer?', detail: 'Each planet has a preferred angular house (kendra) where it shines brightest: Jupiter loves the 1st house, Sun/Mars prefer the 10th, Saturn the 7th, Moon/Venus the 4th, Mercury the 1st.' },
-  { key: 'kalaBala' as const,      color: '#9b59b6', label: 'Kala Bala',      icon: '⏰', plain: 'Temporal strength — is the planet powerful right now (day vs night, lunar phase)?', detail: 'Solar planets (Sun, Jupiter, Venus) are stronger by day; Lunar planets (Moon, Mars, Saturn) are stronger by night. Mercury is equal both times. The lunar paksha (fortnight) also boosts or weakens planets.' },
-  { key: 'cheshtaBala' as const,   color: '#e74c3c', label: 'Cheshta Bala',   icon: '🏃', plain: 'Motional strength — is the planet moving fast, slow, or retrograde?', detail: 'A planet moving faster than average is exerting more effort (more cheshta). Retrograde planets get a special high Cheshta Bala — their apparent backward motion shows unusual intensity. Stationary planets get low Cheshta Bala.' },
-  { key: 'naisargikaBala' as const, color: '#2ecc71', label: 'Naisargika Bala', icon: '✨', plain: 'Natural/inherent strength — some planets are just naturally stronger than others.', detail: 'This is fixed and never changes: Sun has the most natural strength, then Moon, Venus, Jupiter, Mercury, Mars, Saturn (weakest). Think of it as the planet\'s baseline "wattage" regardless of position.' },
-  { key: 'drikBala' as const,      color: '#f39c12', label: 'Drik Bala',      icon: '👁️', plain: 'Aspectual strength — what aspects does the planet receive from benefics or malefics?', detail: 'Benefic planets (Jupiter, Venus, Moon, Mercury) aspecting a planet give it positive Drik Bala. Malefic aspects (Saturn, Mars, Rahu, Ketu) reduce it. A planet heavily aspected by Jupiter is like having a powerful mentor.' },
+  { key: 'sthanaBala' as const,    color: '#e67e22', label: 'Sthana Bala',    icon: '🏠', plain: 'Positional strength  –  is the planet in its home, exalted, or a hostile sign?', detail: 'A planet in its own sign (like Mars in Aries) or exalted sign (like Mars in Capricorn) gets full Sthana Bala. Like a person performing at their home stadium  –  they have all the advantages.' },
+  { key: 'digBala' as const,       color: '#3498db', label: 'Dig Bala',       icon: '🧭', plain: 'Directional strength  –  which house (corner of the chart) does the planet prefer?', detail: 'Each planet has a preferred angular house (kendra) where it shines brightest: Jupiter loves the 1st house, Sun/Mars prefer the 10th, Saturn the 7th, Moon/Venus the 4th, Mercury the 1st.' },
+  { key: 'kalaBala' as const,      color: '#9b59b6', label: 'Kala Bala',      icon: '⏰', plain: 'Temporal strength  –  is the planet powerful right now (day vs night, lunar phase)?', detail: 'Solar planets (Sun, Jupiter, Venus) are stronger by day; Lunar planets (Moon, Mars, Saturn) are stronger by night. Mercury is equal both times. The lunar paksha (fortnight) also boosts or weakens planets.' },
+  { key: 'cheshtaBala' as const,   color: '#e74c3c', label: 'Cheshta Bala',   icon: '🏃', plain: 'Motional strength  –  is the planet moving fast, slow, or retrograde?', detail: 'A planet moving faster than average is exerting more effort (more cheshta). Retrograde planets get a special high Cheshta Bala  –  their apparent backward motion shows unusual intensity. Stationary planets get low Cheshta Bala.' },
+  { key: 'naisargikaBala' as const, color: '#2ecc71', label: 'Naisargika Bala', icon: '✨', plain: 'Natural/inherent strength  –  some planets are just naturally stronger than others.', detail: 'This is fixed and never changes: Sun has the most natural strength, then Moon, Venus, Jupiter, Mercury, Mars, Saturn (weakest). Think of it as the planet\'s baseline "wattage" regardless of position.' },
+  { key: 'drikBala' as const,      color: '#f39c12', label: 'Drik Bala',      icon: '👁️', plain: 'Aspectual strength  –  what aspects does the planet receive from benefics or malefics?', detail: 'Benefic planets (Jupiter, Venus, Moon, Mercury) aspecting a planet give it positive Drik Bala. Malefic aspects (Saturn, Mars, Rahu, Ketu) reduce it. A planet heavily aspected by Jupiter is like having a powerful mentor.' },
 ];
 
 function getBarColor(strengthRatio: number): string {
-  if (strengthRatio >= 1.5) return '#22c55e'; // green — strong
-  if (strengthRatio >= 1.0) return '#eab308'; // yellow — adequate
-  return '#ef4444'; // red — weak
+  if (strengthRatio >= 1.5) return '#22c55e'; // green  –  strong
+  if (strengthRatio >= 1.0) return '#eab308'; // yellow  –  adequate
+  return '#ef4444'; // red  –  weak
 }
 
 // ── UI Primitives ───────────────────────────────────────────────────────────
@@ -240,7 +240,7 @@ export default function ShadbalaLabPage() {
             Shadbala Breakdown
           </h1>
         </div>
-        <p className="text-slate-400 text-base">Six ways to measure planetary strength — explained from scratch</p>
+        <p className="text-slate-400 text-base">Six ways to measure planetary strength  –  explained from scratch</p>
       </div>
 
       {/* Progress */}
@@ -273,7 +273,7 @@ export default function ShadbalaLabPage() {
                 <div className="text-4xl mb-3">⚖️</div>
                 <h2 className="text-2xl font-bold text-white mb-2">Measure Your Planets' Strength</h2>
                 <p className="text-slate-400 text-sm leading-relaxed max-w-md mx-auto">
-                  Not all planets in a chart are equally powerful. Shadbala is a precise 6-component scoring system that tells you exactly how strong each planet is — and therefore which ones dominate your life.
+                  Not all planets in a chart are equally powerful. Shadbala is a precise 6-component scoring system that tells you exactly how strong each planet is  –  and therefore which ones dominate your life.
                 </p>
               </div>
               <div className="space-y-4 mb-8">
@@ -309,7 +309,7 @@ export default function ShadbalaLabPage() {
               <div className="mb-6 p-4 rounded-xl bg-emerald-500/8 border border-emerald-500/20">
                 <div className="text-xs text-emerald-400 uppercase tracking-wider font-semibold mb-2">Why does this matter for you?</div>
                 <p className="text-slate-300 text-sm leading-relaxed">
-                  In a birth chart, the same planet in two different charts can have very different levels of actual influence. A Saturn placed in its own sign (Capricorn) at a kendra house, aspected by Jupiter, in a daytime chart — that Saturn has enormous Shadbala. A Saturn in an enemy sign, in a cadent house, retrograde and aspected by Mars — much weaker. The same planet, radically different impact. Shadbala lets you quantify this.
+                  In a birth chart, the same planet in two different charts can have very different levels of actual influence. A Saturn placed in its own sign (Capricorn) at a kendra house, aspected by Jupiter, in a daytime chart  –  that Saturn has enormous Shadbala. A Saturn in an enemy sign, in a cadent house, retrograde and aspected by Mars  –  much weaker. The same planet, radically different impact. Shadbala lets you quantify this.
                 </p>
               </div>
 
@@ -364,7 +364,7 @@ export default function ShadbalaLabPage() {
                     {/* Visual for each bala */}
                     {selectedBala === 0 && (
                       <div className="p-3 rounded-lg bg-black/20 text-xs text-slate-400 leading-relaxed">
-                        <strong className="text-orange-300">Example:</strong> Jupiter placed in Cancer (its exaltation sign) gets near-maximum Sthana Bala. Jupiter in Capricorn (its debilitation sign) gets minimal Sthana Bala. The same Jupiter — completely different home-field advantage.
+                        <strong className="text-orange-300">Example:</strong> Jupiter placed in Cancer (its exaltation sign) gets near-maximum Sthana Bala. Jupiter in Capricorn (its debilitation sign) gets minimal Sthana Bala. The same Jupiter  –  completely different home-field advantage.
                       </div>
                     )}
                     {selectedBala === 1 && (
@@ -404,7 +404,7 @@ export default function ShadbalaLabPage() {
                   <span>Step 3</span><span className="opacity-40">/</span><span className="opacity-60">{TOTAL_STEPS}</span>
                 </div>
               </div>
-              <h2 className="text-2xl font-bold text-white mb-2">All Planets — Six Strengths Each</h2>
+              <h2 className="text-2xl font-bold text-white mb-2">All Planets  –  Six Strengths Each</h2>
               <p className="text-slate-400 text-base mb-6">Each bar shows one of the 6 Bala components. The overall score (Rupas) determines planetary dominance.</p>
 
               <div className="space-y-4">
@@ -480,13 +480,13 @@ export default function ShadbalaLabPage() {
               <div className="mb-6 p-5 rounded-2xl border border-amber-500/30 bg-gradient-to-br from-amber-500/15 to-orange-500/5 flex items-center gap-4">
                 <Crown className="w-10 h-10 text-amber-300 flex-shrink-0" />
                 <div>
-                  <div className="text-xs text-amber-400 uppercase tracking-wider font-semibold mb-1">Chart Captain — Strongest Planet</div>
+                  <div className="text-xs text-amber-400 uppercase tracking-wider font-semibold mb-1">Chart Captain  –  Strongest Planet</div>
                   <div className="text-2xl font-bold text-amber-200 flex items-center gap-2">
                     <span className="text-3xl">{GRAHAS[result.captain.planetId].symbol}</span>
                     {lt(GRAHAS[result.captain.planetId].name as LocaleText, locale)}
                     <span className="text-lg font-mono text-amber-300/70">{result.captain.rupas.toFixed(2)} rupas</span>
                   </div>
-                  <p className="text-slate-400 text-xs mt-1">This planet dominates the chart — its significations, house placement, and dasha periods carry the most weight in life outcomes.</p>
+                  <p className="text-slate-400 text-xs mt-1">This planet dominates the chart  –  its significations, house placement, and dasha periods carry the most weight in life outcomes.</p>
                 </div>
               </div>
 

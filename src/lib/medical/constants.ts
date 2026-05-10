@@ -1,5 +1,5 @@
 /**
- * Medical Astrology constants — planet→dosha, house→body region,
+ * Medical Astrology constants  –  planet→dosha, house→body region,
  * sign→element, disease pattern definitions.
  *
  * All tables from classical Ayurveda & Jyotish texts (Charaka Samhita,
@@ -11,12 +11,12 @@ export type Dosha = 'vata' | 'pitta' | 'kapha';
 
 // ─── Planet → Dosha ─────────────────────────────────────────────────────────
 // Planet IDs: 0=Sun,1=Moon,2=Mars,3=Mercury,4=Jupiter,5=Venus,6=Saturn,7=Rahu,8=Ketu
-// Mercury (3) is tridoshic — resolved at runtime by context
+// Mercury (3) is tridoshic  –  resolved at runtime by context
 export const PLANET_DOSHA: Record<number, Dosha | 'tridosha'> = {
   0: 'pitta',    // Sun
   1: 'kapha',    // Moon
   2: 'pitta',    // Mars
-  3: 'tridosha', // Mercury — adapts
+  3: 'tridosha', // Mercury  –  adapts
   4: 'kapha',    // Jupiter
   5: 'kapha',    // Venus
   6: 'vata',     // Saturn
@@ -127,7 +127,7 @@ export const DISEASE_PATTERNS: DiseasePatternDef[] = [
   {
     id: 'cardiac_risk',
     name: 'Cardiac Risk Pattern',
-    description: 'Mars and Saturn afflicting the 4th house — classical indicator of cardiac stress (BPHS Ch.24)',
+    description: 'Mars and Saturn afflicting the 4th house  –  classical indicator of cardiac stress (BPHS Ch.24)',
     detect: (ctx) => {
       const h4score = ctx.houseVulnerability[3]; // index 3 = house 4
       const marsHouse = ctx.planetHouse.get(2);
@@ -140,7 +140,7 @@ export const DISEASE_PATTERNS: DiseasePatternDef[] = [
   {
     id: 'anxiety_mental',
     name: 'Anxiety / Mental Health Pattern',
-    description: 'Rahu in 5th house with Mercury afflicted — mental unrest, anxiety (Sarvartha Chintamani)',
+    description: 'Rahu in 5th house with Mercury afflicted  –  mental unrest, anxiety (Sarvartha Chintamani)',
     detect: (ctx) => {
       const rahuHouse = ctx.planetHouse.get(7);
       const mercuryDebil = ctx.planetDebilitated.get(3) ?? false;
@@ -151,7 +151,7 @@ export const DISEASE_PATTERNS: DiseasePatternDef[] = [
   {
     id: 'chronic_digestive',
     name: 'Chronic Digestive Pattern',
-    description: 'Saturn in 6th or 6th lord debilitated — chronic digestive / intestinal weakness',
+    description: 'Saturn in 6th or 6th lord debilitated  –  chronic digestive / intestinal weakness',
     detect: (ctx) => {
       const saturnHouse = ctx.planetHouse.get(6);
       const sixthLordSign = ((ctx.lagnaSign - 1 + 5) % 12) + 1; // lagna + 5 wraps to 6th house sign
@@ -163,7 +163,7 @@ export const DISEASE_PATTERNS: DiseasePatternDef[] = [
   {
     id: 'urogenital',
     name: 'Urogenital / Reproductive Pattern',
-    description: 'Venus afflicted and 7th house vulnerable — urogenital concerns (classical Jyotish)',
+    description: 'Venus afflicted and 7th house vulnerable  –  urogenital concerns (classical Jyotish)',
     detect: (ctx) => {
       const venusCombust = ctx.planetCombust.get(5) ?? false;
       const venusDebil = ctx.planetDebilitated.get(5) ?? false;
@@ -174,7 +174,7 @@ export const DISEASE_PATTERNS: DiseasePatternDef[] = [
   {
     id: 'chronic_hidden',
     name: 'Chronic / Hidden Disease Pattern',
-    description: '8th house heavily afflicted — tendency toward chronic, difficult-to-diagnose conditions',
+    description: '8th house heavily afflicted  –  tendency toward chronic, difficult-to-diagnose conditions',
     detect: (ctx) => {
       const h8score = ctx.houseVulnerability[7]; // index 7 = house 8
       return h8score > 55;
@@ -183,7 +183,7 @@ export const DISEASE_PATTERNS: DiseasePatternDef[] = [
   {
     id: 'nervous_system',
     name: 'Nervous System / Vata Pattern',
-    description: 'Rahu or Saturn in lagna afflicting Moon — nervous system, anxiety, Vata aggravation',
+    description: 'Rahu or Saturn in lagna afflicting Moon  –  nervous system, anxiety, Vata aggravation',
     detect: (ctx) => {
       const rahuHouse = ctx.planetHouse.get(7);
       const saturnHouse = ctx.planetHouse.get(6);
@@ -195,7 +195,7 @@ export const DISEASE_PATTERNS: DiseasePatternDef[] = [
   {
     id: 'respiratory',
     name: 'Respiratory Pattern',
-    description: 'Malefics in 3rd house or 3rd lord afflicted — lung, bronchial, arm conditions',
+    description: 'Malefics in 3rd house or 3rd lord afflicted  –  lung, bronchial, arm conditions',
     detect: (ctx) => {
       const h3score = ctx.houseVulnerability[2]; // index 2 = house 3
       return h3score > 50;
@@ -204,7 +204,7 @@ export const DISEASE_PATTERNS: DiseasePatternDef[] = [
   {
     id: 'eye_sleep',
     name: 'Eye / Sleep Pattern',
-    description: '12th house afflicted with Sun or Moon weak — eye health and sleep disorders',
+    description: '12th house afflicted with Sun or Moon weak  –  eye health and sleep disorders',
     detect: (ctx) => {
       const h12score = ctx.houseVulnerability[11]; // index 11 = house 12
       const sunDebil = ctx.planetDebilitated.get(0) ?? false;

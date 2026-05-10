@@ -58,7 +58,7 @@ export default function LearnSidebarMobile() {
 
   return (
     <>
-      {/* Floating Pill — mobile only */}
+      {/* Floating Pill  –  mobile only */}
       <button
         onClick={() => setOpen(true)}
         className="lg:hidden fixed bottom-4 left-4 z-40 flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-br from-[#2d1b69]/90 via-[#1a1040]/95 to-[#0a0e27] border border-gold-primary/25 shadow-lg shadow-gold-primary/10 backdrop-blur-sm text-sm font-medium text-gold-light"

@@ -2,7 +2,7 @@ import React from 'react';
 import { AbsoluteFill, useCurrentFrame, interpolate } from 'remotion';
 
 /**
- * Generic data display card — for comparison views, data tables, timelines.
+ * Generic data display card  –  for comparison views, data tables, timelines.
  * Renders text overlay with animated line-by-line reveal.
  */
 

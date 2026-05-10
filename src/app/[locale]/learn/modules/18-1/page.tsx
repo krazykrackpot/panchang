@@ -32,7 +32,7 @@ function Page1() {
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>छह घटक हैं: <strong>स्थानबल</strong> (स्थिति) — 5 उप-भाग: उच्च, सप्तवर्गज, ओजा-युग्म, केन्द्रादि, द्रेक्काण। <strong>दिग्बल</strong> (दिशा) — बृहस्पति/बुध पूर्व में, सूर्य/मंगल दक्षिण में, शनि पश्चिम में, चन्द्र/शुक्र उत्तर में सबसे बलवान। <strong>कालबल</strong> (समय) — दिवस/रात्रि स्वामित्व, होरा, मास/वर्ष स्वामी। <strong>चेष्टाबल</strong> (गति) — वक्री ग्रह को अधिकतम शक्ति। <strong>नैसर्गिकबल</strong> (प्राकृतिक) — स्थिर मान, सूर्य सबसे बलवान, शनि सबसे दुर्बल। <strong>दृग्बल</strong> (दृष्टि) — शुभ दृष्टि जोड़ती है, पापी दृष्टि घटाती है। न्यूनतम प्रभावी सीमा 1.0 रूपा (60 षष्ट्यंश) है।</>
+            ? <>छह घटक हैं: <strong>स्थानबल</strong> (स्थिति)  –  5 उप-भाग: उच्च, सप्तवर्गज, ओजा-युग्म, केन्द्रादि, द्रेक्काण। <strong>दिग्बल</strong> (दिशा)  –  बृहस्पति/बुध पूर्व में, सूर्य/मंगल दक्षिण में, शनि पश्चिम में, चन्द्र/शुक्र उत्तर में सबसे बलवान। <strong>कालबल</strong> (समय)  –  दिवस/रात्रि स्वामित्व, होरा, मास/वर्ष स्वामी। <strong>चेष्टाबल</strong> (गति)  –  वक्री ग्रह को अधिकतम शक्ति। <strong>नैसर्गिकबल</strong> (प्राकृतिक)  –  स्थिर मान, सूर्य सबसे बलवान, शनि सबसे दुर्बल। <strong>दृग्बल</strong> (दृष्टि)  –  शुभ दृष्टि जोड़ती है, पापी दृष्टि घटाती है। न्यूनतम प्रभावी सीमा 1.0 रूपा (60 षष्ट्यंश) है।</>
             : <>The six components are: <strong>Sthana Bala</strong> (positional) with 5 sub-parts &mdash; Uccha (exaltation), Saptavargaja (7 divisional charts), Ojha-Yugma (odd/even sign), Kendradi (angular placement), Drekkana (decanate). <strong>Dig Bala</strong> (directional) &mdash; Jupiter/Mercury strongest in the East (lagna), Sun/Mars in the South (10th), Saturn in the West (7th), Moon/Venus in the North (4th). <strong>Kala Bala</strong> (temporal) &mdash; day/night rulership, hora lord, month/year lords. <strong>Cheshta Bala</strong> (motional) &mdash; retrograde planets gain maximum strength. <strong>Naisargika Bala</strong> (natural) &mdash; fixed values, Sun strongest, Saturn weakest. <strong>Drig Bala</strong> (aspectual) &mdash; benefic aspects add, malefic aspects subtract.</>}
         </p>
       </section>
@@ -60,7 +60,7 @@ function Page2() {
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <><strong>स्थानबल:</strong> उच्चबल — मंगल 28&deg; मकर (सटीक उच्च अंश) पर = 60 षष्ट्यंश। यह अधिकतम है। नीच बिन्दु (28&deg; कर्क) पर 0 होगा। सूत्र रैखिक है: शक्ति = 60 &times; (180 &minus; उच्च से दूरी) / 180।</>
+            ? <><strong>स्थानबल:</strong> उच्चबल  –  मंगल 28&deg; मकर (सटीक उच्च अंश) पर = 60 षष्ट्यंश। यह अधिकतम है। नीच बिन्दु (28&deg; कर्क) पर 0 होगा। सूत्र रैखिक है: शक्ति = 60 &times; (180 &minus; उच्च से दूरी) / 180।</>
             : <><strong>Sthana Bala (positional):</strong> Uccha Bala &mdash; Mars at 28&deg; Capricorn (exact exaltation degree) = 60 shashtiamsas. This is the maximum. At its debilitation point (28&deg; Cancer) it would score 0. The formula is linear: strength = 60 &times; (180 &minus; distance from exaltation) / 180.</>}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
@@ -70,7 +70,7 @@ function Page2() {
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
-            ? <><strong>कालबल:</strong> मंगल रात्रिचर ग्रह है, अतः रात्रि कुण्डली में शक्ति प्राप्त करता है। दिवस कुण्डली में कम कालबल — लगभग 30 षष्ट्यंश। <strong>चेष्टाबल:</strong> यदि मंगल मार्गी (वक्री नहीं), मध्यम गति शक्ति ~30। <strong>नैसर्गिकबल:</strong> मंगल का स्थिर प्राकृतिक बल 17.14 षष्ट्यंश (7 ग्रहों में 6ठा)। <strong>दृग्बल:</strong> प्राप्त दृष्टियों पर निर्भर — बृहस्पति दृष्टि +15; शनि दृष्टि -15। काल्पनिक शुद्ध: +10।</>
+            ? <><strong>कालबल:</strong> मंगल रात्रिचर ग्रह है, अतः रात्रि कुण्डली में शक्ति प्राप्त करता है। दिवस कुण्डली में कम कालबल  –  लगभग 30 षष्ट्यंश। <strong>चेष्टाबल:</strong> यदि मंगल मार्गी (वक्री नहीं), मध्यम गति शक्ति ~30। <strong>नैसर्गिकबल:</strong> मंगल का स्थिर प्राकृतिक बल 17.14 षष्ट्यंश (7 ग्रहों में 6ठा)। <strong>दृग्बल:</strong> प्राप्त दृष्टियों पर निर्भर  –  बृहस्पति दृष्टि +15; शनि दृष्टि -15। काल्पनिक शुद्ध: +10।</>
             : <><strong>Kala Bala:</strong> Mars is a nocturnal planet, so it gains strength in a night chart. In a daytime chart, it gets reduced Kala Bala &mdash; approximately 30 shashtiamsas instead of 60. <strong>Cheshta Bala:</strong> If Mars is direct (not retrograde), moderate motional strength of ~30. <strong>Naisargika Bala:</strong> Mars has a fixed natural strength of 17.14 shashtiamsas (6th of 7 planets). <strong>Drig Bala:</strong> Depends on aspects received &mdash; if Jupiter aspects this Mars, add ~15; if Saturn aspects, subtract ~15. Hypothetical net: +10.</>}
         </p>
       </section>
@@ -79,7 +79,7 @@ function Page2() {
         <ExampleChart
           ascendant={1}
           planets={{ 10: [2], 2: [4] }}
-          title={tl({ en: 'Aries Lagna — Mars in 10th (Capricorn), Jupiter in 2nd', hi: 'मेष लग्न — मंगल दशम में (मकर), बृहस्पति द्वितीय में', sa: 'मेष लग्न — मंगल दशम में (मकर), बृहस्पति द्वितीय में' }, locale)}
+          title={tl({ en: 'Aries Lagna  –  Mars in 10th (Capricorn), Jupiter in 2nd', hi: 'मेष लग्न  –  मंगल दशम में (मकर), बृहस्पति द्वितीय में', sa: 'मेष लग्न  –  मंगल दशम में (मकर), बृहस्पति द्वितीय में' }, locale)}
           highlight={[10, 2]}
         />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
@@ -143,15 +143,15 @@ function Page4() {
           {tl({ en: 'Minimum Strength Thresholds', hi: 'न्यूनतम शक्ति सीमाएँ', sa: 'न्यूनतम शक्ति सीमाएँ' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          {tl({ en: 'BPHS prescribes minimum Shadbala requirements for each planet: Sun 6.5 rupas, Moon 6.0, Mars 5.0, Mercury 7.0, Jupiter 6.5, Venus 5.5, Saturn 5.0. A planet scoring below its minimum is functionally weak regardless of dignity — even an exalted planet can fail the Shadbala threshold if other components drag it down. Conversely, a debilitated planet can exceed the threshold if strong Dig Bala, Kala Bala, and benefic aspects compensate.', hi: 'BPHS प्रत्येक ग्रह के लिए न्यूनतम षड्बल आवश्यकताएँ निर्धारित करता है: सूर्य 6.5 रूपा, चन्द्र 6.0, मंगल 5.0, बुध 7.0, गुरु 6.5, शुक्र 5.5, शनि 5.0। इस सीमा से नीचे अंकन वाला ग्रह कार्यात्मक रूप से दुर्बल है, मर्यादा की परवाह किए बिना।', sa: 'BPHS प्रत्येक ग्रह के लिए न्यूनतम षड्बल आवश्यकताएँ निर्धारित करता है: सूर्य 6.5 रूपा, चन्द्र 6.0, मंगल 5.0, बुध 7.0, गुरु 6.5, शुक्र 5.5, शनि 5.0।' }, locale)}
+          {tl({ en: 'BPHS prescribes minimum Shadbala requirements for each planet: Sun 6.5 rupas, Moon 6.0, Mars 5.0, Mercury 7.0, Jupiter 6.5, Venus 5.5, Saturn 5.0. A planet scoring below its minimum is functionally weak regardless of dignity  –  even an exalted planet can fail the Shadbala threshold if other components drag it down. Conversely, a debilitated planet can exceed the threshold if strong Dig Bala, Kala Bala, and benefic aspects compensate.', hi: 'BPHS प्रत्येक ग्रह के लिए न्यूनतम षड्बल आवश्यकताएँ निर्धारित करता है: सूर्य 6.5 रूपा, चन्द्र 6.0, मंगल 5.0, बुध 7.0, गुरु 6.5, शुक्र 5.5, शनि 5.0। इस सीमा से नीचे अंकन वाला ग्रह कार्यात्मक रूप से दुर्बल है, मर्यादा की परवाह किए बिना।', sa: 'BPHS प्रत्येक ग्रह के लिए न्यूनतम षड्बल आवश्यकताएँ निर्धारित करता है: सूर्य 6.5 रूपा, चन्द्र 6.0, मंगल 5.0, बुध 7.0, गुरु 6.5, शुक्र 5.5, शनि 5.0।' }, locale)}
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Practical Application — Chart Triage', hi: 'व्यावहारिक अनुप्रयोग — कुण्डली त्रिआयाम', sa: 'व्यावहारिक अनुप्रयोग — कुण्डली त्रिआयाम' }, locale)}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Practical Application  –  Chart Triage', hi: 'व्यावहारिक अनुप्रयोग  –  कुण्डली त्रिआयाम', sa: 'व्यावहारिक अनुप्रयोग  –  कुण्डली त्रिआयाम' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">{isHi ? 'चरण 1:' : 'Step 1:'}</span> {isHi ? <>सभी 7 ग्रहों का षड्बल गणित करें। हमारा ऐप यह मिलीसेकण्ड में करता है।</> : <>Compute Shadbala for all 7 planets. Our app does this in milliseconds.</>}</p>
-        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">{isHi ? 'चरण 2:' : 'Step 2:'}</span> {isHi ? <>सबसे बलवान ग्रह (कप्तान) पहचानें — इसके कारकत्व जातक के जीवन में प्रभुत्व रखते हैं।</> : <>Identify the strongest planet (the captain) — its significations dominate the native&rsquo;s life.</>}</p>
-        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">{isHi ? 'चरण 3:' : 'Step 3:'}</span> {isHi ? <>न्यूनतम सीमा से नीचे के ग्रह चिह्नित करें — इन्हें उपचार की आवश्यकता है।</> : <>Flag planets below the minimum threshold — these need remedial attention.</>}</p>
-        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">{isHi ? 'चरण 4:' : 'Step 4:'}</span> {isHi ? <>दुर्बल ग्रह की दशा/अन्तर्दशा पहचानें — ये कठिन काल होंगे। उपचार: मन्त्र, रत्न (सम्बन्धित शुभ ग्रह का), दान।</> : <>Identify when the weak planet&rsquo;s dasha/antardasha runs — these will be challenging periods. Remedies: mantras, gemstones (of the associated benefic), and charitable acts.</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">{isHi ? 'चरण 2:' : 'Step 2:'}</span> {isHi ? <>सबसे बलवान ग्रह (कप्तान) पहचानें  –  इसके कारकत्व जातक के जीवन में प्रभुत्व रखते हैं।</> : <>Identify the strongest planet (the captain)  –  its significations dominate the native&rsquo;s life.</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">{isHi ? 'चरण 3:' : 'Step 3:'}</span> {isHi ? <>न्यूनतम सीमा से नीचे के ग्रह चिह्नित करें  –  इन्हें उपचार की आवश्यकता है।</> : <>Flag planets below the minimum threshold  –  these need remedial attention.</>}</p>
+        <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">{isHi ? 'चरण 4:' : 'Step 4:'}</span> {isHi ? <>दुर्बल ग्रह की दशा/अन्तर्दशा पहचानें  –  ये कठिन काल होंगे। उपचार: मन्त्र, रत्न (सम्बन्धित शुभ ग्रह का), दान।</> : <>Identify when the weak planet&rsquo;s dasha/antardasha runs  –  these will be challenging periods. Remedies: mantras, gemstones (of the associated benefic), and charitable acts.</>}</p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Cross-References', hi: 'सम्बन्धित मॉड्यूल', sa: 'सम्बन्धित मॉड्यूल' }, locale)}</h4>

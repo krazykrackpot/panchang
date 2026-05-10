@@ -2,7 +2,7 @@ import { Cinzel, Cormorant_Garamond, Inter, Noto_Sans_Devanagari, Noto_Sans_Tami
 
 export const inter = Inter({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],  // dropped 300 — unused
+  weight: ['400', '500', '600', '700'],  // dropped 300  –  unused
   display: 'swap',
   variable: '--font-inter',
   preload: true,
@@ -10,7 +10,7 @@ export const inter = Inter({
 
 export const cinzel = Cinzel({
   subsets: ['latin'],
-  weight: ['400', '700'],  // dropped 500, 600 — only need regular + bold for headings
+  weight: ['400', '700'],  // dropped 500, 600  –  only need regular + bold for headings
   display: 'swap',
   variable: '--font-cinzel',
   preload: true,
@@ -18,14 +18,14 @@ export const cinzel = Cinzel({
 
 export const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['400', '600'],  // dropped 300, 500, 700 — only need regular + semibold
+  weight: ['400', '600'],  // dropped 300, 500, 700  –  only need regular + semibold
   style: ['normal', 'italic'],
   display: 'swap',
   variable: '--font-cormorant',
 });
 
 // Indic fonts: 3 weights only (400=body, 600=semibold, 700=headings).
-// Dropped 300 and 500 — saves ~12 WOFF2 files across 6 scripts.
+// Dropped 300 and 500  –  saves ~12 WOFF2 files across 6 scripts.
 export const notoDevanagari = Noto_Sans_Devanagari({
   subsets: ['devanagari'],
   weight: ['400', '600', '700'],

@@ -25,7 +25,7 @@ function DomainDefs() {
   );
 }
 
-// 1. Health — Figure with chakra points and radiating energy
+// 1. Health  –  Figure with chakra points and radiating energy
 export function HealthIcon({ className }: DomainIconProps) {
   return (
     <svg viewBox="0 0 120 80" fill="none" className={className} aria-hidden="true">
@@ -53,7 +53,7 @@ export function HealthIcon({ className }: DomainIconProps) {
   );
 }
 
-// 2. Wealth — Balance scales with lotus and coins
+// 2. Wealth  –  Balance scales with lotus and coins
 export function WealthIcon({ className }: DomainIconProps) {
   return (
     <svg viewBox="0 0 120 80" fill="none" className={className} aria-hidden="true">
@@ -68,13 +68,13 @@ export function WealthIcon({ className }: DomainIconProps) {
       <path d="M56 14L60 8L64 14z" fill="url(#domainGold)" opacity="0.6" />
       {/* Left chain */}
       <line x1="30" y1="22" x2="30" y2="38" stroke="#d4a853" strokeWidth="1" />
-      {/* Left pan — lotus */}
+      {/* Left pan  –  lotus */}
       <path d="M20 38Q25 34 30 38Q35 34 40 38" stroke="url(#domainGold)" strokeWidth="1.5" fill="none" />
       <path d="M24 42Q27 38 30 42Q33 38 36 42" stroke="#f0d48a" strokeWidth="1" fill="none" opacity="0.5" />
       <circle cx="30" cy="44" r="1.5" fill="#f0d48a" opacity="0.6" />
       {/* Right chain */}
       <line x1="90" y1="22" x2="90" y2="38" stroke="#d4a853" strokeWidth="1" />
-      {/* Right pan — coins */}
+      {/* Right pan  –  coins */}
       <path d="M80 42h20" stroke="url(#domainGold)" strokeWidth="1.5" strokeLinecap="round" />
       <ellipse cx="86" cy="40" rx="4" ry="2" stroke="#d4a853" strokeWidth="1" fill="url(#domainGold)" fillOpacity="0.2" />
       <ellipse cx="90" cy="38" rx="4" ry="2" stroke="#d4a853" strokeWidth="1" fill="url(#domainGold)" fillOpacity="0.3" />
@@ -85,7 +85,7 @@ export function WealthIcon({ className }: DomainIconProps) {
   );
 }
 
-// 3. Career — Mountain with ascending path and flag
+// 3. Career  –  Mountain with ascending path and flag
 export function CareerIcon({ className }: DomainIconProps) {
   return (
     <svg viewBox="0 0 120 80" fill="none" className={className} aria-hidden="true">
@@ -108,7 +108,7 @@ export function CareerIcon({ className }: DomainIconProps) {
   );
 }
 
-// 4. Marriage — Interlocked rings with sacred flame
+// 4. Marriage  –  Interlocked rings with sacred flame
 export function MarriageIcon({ className }: DomainIconProps) {
   return (
     <svg viewBox="0 0 120 80" fill="none" className={className} aria-hidden="true">
@@ -131,7 +131,7 @@ export function MarriageIcon({ className }: DomainIconProps) {
   );
 }
 
-// 5. Children — Tree with blossoms/fruits
+// 5. Children  –  Tree with blossoms/fruits
 export function ChildrenIcon({ className }: DomainIconProps) {
   return (
     <svg viewBox="0 0 120 80" fill="none" className={className} aria-hidden="true">
@@ -156,7 +156,7 @@ export function ChildrenIcon({ className }: DomainIconProps) {
   );
 }
 
-// 6. Family — Temple/house with shikhara roof and figures
+// 6. Family  –  Temple/house with shikhara roof and figures
 export function FamilyIcon({ className }: DomainIconProps) {
   return (
     <svg viewBox="0 0 120 80" fill="none" className={className} aria-hidden="true">
@@ -172,7 +172,7 @@ export function FamilyIcon({ className }: DomainIconProps) {
       <line x1="28" y1="72" x2="92" y2="72" stroke="url(#domainGold)" strokeWidth="1.5" />
       {/* Door */}
       <path d="M52 72V52Q52 46 60 46Q68 46 68 52V72" stroke="#d4a853" strokeWidth="1.5" fill="url(#domainGold)" fillOpacity="0.1" />
-      {/* Family figures inside — 3 circles+lines */}
+      {/* Family figures inside  –  3 circles+lines */}
       <circle cx="44" cy="52" r="2.5" fill="#f0d48a" opacity="0.5" />
       <line x1="44" y1="55" x2="44" y2="64" stroke="#f0d48a" strokeWidth="1" opacity="0.4" />
       <circle cx="76" cy="52" r="2.5" fill="#f0d48a" opacity="0.5" />
@@ -183,12 +183,12 @@ export function FamilyIcon({ className }: DomainIconProps) {
   );
 }
 
-// 7. Spiritual — Meditation figure with third eye and radiating circles
+// 7. Spiritual  –  Meditation figure with third eye and radiating circles
 export function SpiritualIcon({ className }: DomainIconProps) {
   return (
     <svg viewBox="0 0 120 80" fill="none" className={className} aria-hidden="true">
       <DomainDefs />
-      {/* Seated figure silhouette — padmasana */}
+      {/* Seated figure silhouette  –  padmasana */}
       <path d="M60 24L60 50" stroke="url(#domainGold)" strokeWidth="1.5" />
       {/* Head */}
       <circle cx="60" cy="20" r="6" stroke="url(#domainGold)" strokeWidth="1.5" fill="none" />
@@ -211,7 +211,7 @@ export function SpiritualIcon({ className }: DomainIconProps) {
   );
 }
 
-// 8. Education — Open book with light rays and star
+// 8. Education  –  Open book with light rays and star
 export function EducationIcon({ className }: DomainIconProps) {
   return (
     <svg viewBox="0 0 120 80" fill="none" className={className} aria-hidden="true">

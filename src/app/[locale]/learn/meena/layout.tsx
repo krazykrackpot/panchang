@@ -14,7 +14,7 @@ export default async function Layout({ children, params }: { children: React.Rea
       <LearnArticleLD
         route="/learn/meena"
         locale={locale}
-        title="Meena (Pisces) in Vedic Astrology — Complete Rashi Guide"
+        title="Meena (Pisces) in Vedic Astrology  –  Complete Rashi Guide"
         description="Comprehensive guide to Meena Rashi (Pisces) covering planetary dignities, nakshatras, personality, career, compatibility, remedies, and mythology from classical Jyotish sources."
       />
       {children}

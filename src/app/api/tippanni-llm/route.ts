@@ -180,7 +180,7 @@ export async function POST(request: NextRequest) {
       const currentHash = getConvergenceHash(convergence);
 
       if (cached && cached.convergenceHash === currentHash && (Date.now() - cached.generatedAt) < CACHE_TTL_MS) {
-        // Patterns haven't changed — serve cached reading
+        // Patterns haven't changed  –  serve cached reading
         return NextResponse.json({
           content: cached.content,
           model: cached.model,
@@ -189,7 +189,7 @@ export async function POST(request: NextRequest) {
         });
       }
 
-      // Monthly usage limit — keyed by authenticated user ID (falls back to chart fingerprint for anonymous users)
+      // Monthly usage limit  –  keyed by authenticated user ID (falls back to chart fingerprint for anonymous users)
       const userKey = userId ?? chartKey;
       const monthlyUsage = getMonthlyUsage(userKey);
       const monthlyLimit = MONTHLY_LIMITS[tier] ?? 0;
@@ -237,7 +237,7 @@ export async function POST(request: NextRequest) {
     const userKey = compare ? '' : (userId ?? chartKey);
     const currentHash = getConvergenceHash(convergence);
 
-    // Streaming mode (default) — Opus
+    // Streaming mode (default)  –  Opus
     if (stream && !compare) {
       // For streaming, we generate non-streaming first to cache, then serve
       // This is simpler and ensures we always have a cached copy
@@ -280,7 +280,7 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Non-streaming mode — Opus
+    // Non-streaming mode  –  Opus
     const result = await generateLLMSynthesis(
       convergence, chartSummary, { model: 'opus', locale }
     );

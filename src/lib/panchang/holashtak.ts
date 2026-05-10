@@ -1,5 +1,5 @@
 /**
- * Holashtak (होलाष्टक) — the 8 inauspicious days before Holi.
+ * Holashtak (होलाष्टक)  –  the 8 inauspicious days before Holi.
  *
  * Holashtak runs from Shukla Ashtami to Shukla Purnima of Phalguna month
  * (Amanta reckoning). During these 8 days, all auspicious activities
@@ -33,21 +33,21 @@ export const HOLASHTAK_AVOID_ACTIVITIES: { en: string; hi: string }[] = [
  * Check if Holashtak is active based on tithi, masa, and paksha.
  *
  * Holashtak is active when:
- * - Month is Phalguna (amanta reckoning — per Lesson ZC, festival definitions use Amant months)
+ * - Month is Phalguna (amanta reckoning  –  per Lesson ZC, festival definitions use Amant months)
  * - Paksha is Shukla
  * - Tithi is 8 (Ashtami) through 15 (Purnima)
  * - Day number = tithiNumber - 7 (Ashtami=day 1, Navami=day 2, ... Purnima=day 8)
  *
- * @param tithiNumber — current tithi (1-30, where 1-15 = Shukla, 16-30 = Krishna)
- * @param masaAmanta — amanta month name (LocaleText). We match against .en for reliability.
- * @param paksha — 'shukla' or 'krishna'
+ * @param tithiNumber  –  current tithi (1-30, where 1-15 = Shukla, 16-30 = Krishna)
+ * @param masaAmanta  –  amanta month name (LocaleText). We match against .en for reliability.
+ * @param paksha  –  'shukla' or 'krishna'
  */
 export function checkHolashtak(
   tithiNumber: number,
   masaAmanta: LocaleText | undefined,
   paksha: 'shukla' | 'krishna',
 ): HolashtakInfo {
-  // Must be Phalguna month (amanta reckoning — per Lesson ZC)
+  // Must be Phalguna month (amanta reckoning  –  per Lesson ZC)
   const masaEn = masaAmanta?.en?.toLowerCase() || '';
   const isPhalguna = masaEn === 'phalguna' || masaEn.startsWith('adhika phalguna');
 
@@ -74,8 +74,8 @@ export function checkHolashtak(
     isActive: true,
     dayNumber,
     description: {
-      en: `Holashtak Day ${dayNumber}/8 — All auspicious activities (marriage, griha pravesh, mundan, new purchases) are avoided during these 8 days before Holi.`,
-      hi: `होलाष्टक दिवस ${dayNumber}/8 — होली से पूर्व इन 8 दिनों में सभी शुभ कार्य (विवाह, गृह प्रवेश, मुंडन, नई खरीदारी) वर्जित हैं।`,
+      en: `Holashtak Day ${dayNumber}/8  –  All auspicious activities (marriage, griha pravesh, mundan, new purchases) are avoided during these 8 days before Holi.`,
+      hi: `होलाष्टक दिवस ${dayNumber}/8  –  होली से पूर्व इन 8 दिनों में सभी शुभ कार्य (विवाह, गृह प्रवेश, मुंडन, नई खरीदारी) वर्जित हैं।`,
     },
   };
 }

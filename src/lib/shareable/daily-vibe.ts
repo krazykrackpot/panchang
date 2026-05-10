@@ -2,7 +2,7 @@
  * Daily Vibe Generation Engine
  *
  * Deterministic mapping of PanchangData → shareable "energy weather" data.
- * No AI/LLM — vibe titles come from a fixed lookup of nakshatra nature +
+ * No AI/LLM  –  vibe titles come from a fixed lookup of nakshatra nature +
  * yoga quality + transit patterns.
  */
 
@@ -88,7 +88,7 @@ const JUPITER_DAY = 4;
 // Tithi / Yoga / Karana quality helpers
 // ---------------------------------------------------------------------------
 
-// GOOD_TITHIS and GOOD_KARANAS removed — scoring now in energy-score.ts
+// GOOD_TITHIS and GOOD_KARANAS removed  –  scoring now in energy-score.ts
 
 // Moon exaltation: Rashi 2 (Taurus), specifically Rohini(4) / early Mrigashira(5)
 function isMoonExalted(moonSign?: { rashi: number; nakshatra: number }): boolean {
@@ -117,7 +117,7 @@ export function generateDailyVibe(panchang: PanchangData, locale: string): Daily
   // 4. Build secondary influence
   const secondaryInfluence = resolveSecondaryInfluence(panchang);
 
-  // 5. Best For / Avoid — locale-aware from same BPHS source as energy-score.ts
+  // 5. Best For / Avoid  –  locale-aware from same BPHS source as energy-score.ts
   const activity = getNakshatraActivity(panchang.nakshatra?.id ?? 1);
   const bestFor = activity
     ? activity.goodFor.map((g) => (isDevanagariLocale(locale) ? g.hi : g.en))
@@ -256,7 +256,7 @@ function resolveSecondaryInfluence(p: PanchangData): string {
 
   // Fallback to yoga meaning
   const yogaMeaning = p.yoga?.meaning?.en;
-  if (yogaMeaning) return `${p.yoga?.name?.en ?? 'Yoga'} — ${yogaMeaning}`;
+  if (yogaMeaning) return `${p.yoga?.name?.en ?? 'Yoga'}  –  ${yogaMeaning}`;
 
   return 'Panchang Elements Balanced';
 }
@@ -295,7 +295,7 @@ function buildAvoidList(
   return items.slice(0, 4); // max 4 items for card space
 }
 
-// computeEnergyScore removed — scoring now delegated to computeDailyEnergy
+// computeEnergyScore removed  –  scoring now delegated to computeDailyEnergy
 // from energy-score.ts for a unified score across all pages
 
 // ---------------------------------------------------------------------------

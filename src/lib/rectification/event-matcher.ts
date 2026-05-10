@@ -1,12 +1,12 @@
 /**
- * Birth Time Rectification — Event Matcher (Phase 2)
+ * Birth Time Rectification  –  Event Matcher (Phase 2)
  *
  * Scores each life event against a candidate birth chart by checking whether
  * the Vimshottari Dasha lord running at the event date is connected to the
  * classically relevant house(s) for that event type.
  *
  * Kept deliberately simple: we check dasha lord's house placement and lordship.
- * No complex aspect logic — that can be layered on later.
+ * No complex aspect logic  –  that can be layered on later.
  */
 
 import type { KundaliData, DashaEntry, PlanetPosition } from '@/types/kundali';
@@ -22,7 +22,7 @@ const PLANET_NAME_TO_ID: Record<string, number> = {
 };
 
 // Sign lordships: sign (1-12) → planet english name
-// Defined ONCE here — canonical BPHS Ch.3 (see Lesson Q/S/Z)
+// Defined ONCE here  –  canonical BPHS Ch.3 (see Lesson Q/S/Z)
 const SIGN_LORD: Record<number, string> = {
   1: 'Mars', 2: 'Venus', 3: 'Mercury', 4: 'Moon',
   5: 'Sun', 6: 'Mercury', 7: 'Venus', 8: 'Mars',
@@ -55,7 +55,7 @@ const EVENT_HOUSES: Record<string, number[]> = {
   education: [4, 5, 9],
 };
 
-// Malefic planets — used for illness/loss scoring
+// Malefic planets  –  used for illness/loss scoring
 const MALEFICS = new Set(['Mars', 'Saturn', 'Rahu', 'Ketu']);
 
 // ---------------------------------------------------------------------------
@@ -168,7 +168,7 @@ export function scoreEvent(
   const { maha, antar } = findDashaAtDate(dashas, event.date);
 
   if (!maha) {
-    // Event falls outside dasha timeline — can't score
+    // Event falls outside dasha timeline  –  can't score
     return {
       event,
       score: 0,

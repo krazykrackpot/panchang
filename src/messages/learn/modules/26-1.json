@@ -1,19 +1,19 @@
 {
   "title": {
-    "en": "Earth Rotates — 1000 Years Before Europe",
-    "hi": "पृथ्वी घूमती है — यूरोप से 1000 वर्ष पहले",
-    "sa": "पृथ्वी घूमती है — यूरोप से 1000 वर्ष पहले",
-    "mai": "पृथ्वी घूमती है — यूरोप से 1000 वर्ष पहले",
-    "mr": "पृथ्वी घूमती है — यूरोप से 1000 वर्ष पहले",
-    "ta": "Earth Rotates — 1000 Years Before Europe",
-    "te": "Earth Rotates — 1000 Years Before Europe",
-    "bn": "Earth Rotates — 1000 Years Before Europe",
-    "kn": "Earth Rotates — 1000 Years Before Europe",
-    "gu": "Earth Rotates — 1000 Years Before Europe"
+    "en": "Earth Rotates  –  1000 Years Before Europe",
+    "hi": "पृथ्वी घूमती है  –  यूरोप से 1000 वर्ष पहले",
+    "sa": "पृथ्वी घूमती है  –  यूरोप से 1000 वर्ष पहले",
+    "mai": "पृथ्वी घूमती है  –  यूरोप से 1000 वर्ष पहले",
+    "mr": "पृथ्वी घूमती है  –  यूरोप से 1000 वर्ष पहले",
+    "ta": "Earth Rotates  –  1000 Years Before Europe",
+    "te": "Earth Rotates  –  1000 Years Before Europe",
+    "bn": "Earth Rotates  –  1000 Years Before Europe",
+    "kn": "Earth Rotates  –  1000 Years Before Europe",
+    "gu": "Earth Rotates  –  1000 Years Before Europe"
   },
   "subtitle": {
-    "en": "Aryabhata\"s 499 CE declaration that Earth rotates on its axis — a millennium before Copernicus shocked Europe with the same idea",
-    "hi": "499 ईस्वी में आर्यभट की घोषणा कि पृथ्वी अपनी धुरी पर घूमती है — कोपर्निकस से एक सहस्राब्दी पहले"
+    "en": "Aryabhata\"s 499 CE declaration that Earth rotates on its axis  –  a millennium before Copernicus shocked Europe with the same idea",
+    "hi": "499 ईस्वी में आर्यभट की घोषणा कि पृथ्वी अपनी धुरी पर घूमती है  –  कोपर्निकस से एक सहस्राब्दी पहले"
   },
   "crossRefs": [
     {
@@ -135,8 +135,8 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Aryabhata wrote the Aryabhatiya in 499 CE, when he was 23 years old. He tells us this explicitly in the text itself, stating that 3,600 years of the Kali Yuga had elapsed, placing the composition in 499 CE. The text covers arithmetic, algebra, plane trigonometry, spherical trigonometry, continued fractions, quadratic equations, and astronomical calculations — all in 121 compact verses. It remains one of the most extraordinary scientific documents of antiquity.",
-        "hi": "आर्यभट ने 499 ईस्वी में आर्यभटीय लिखी, जब वे 23 वर्ष के थे। उन्होंने यह स्वयं ग्रन्थ में स्पष्ट रूप से बताया है, कहते हुए कि कलियुग के 3,600 वर्ष बीत चुके थे, जो रचना को 499 ईस्वी में स्थापित करता है। ग्रन्थ में अंकगणित, बीजगणित, समतल त्रिकोणमिति, गोलाकार त्रिकोणमिति, सतत भिन्न, द्विघात समीकरण, और खगोलीय गणनाएँ — सभी 121 संक्षिप्त श्लोकों में — शामिल हैं। यह प्राचीनता के सबसे असाधारण वैज्ञानिक दस्तावेजों में से एक है।"
+        "en": "Aryabhata wrote the Aryabhatiya in 499 CE, when he was 23 years old. He tells us this explicitly in the text itself, stating that 3,600 years of the Kali Yuga had elapsed, placing the composition in 499 CE. The text covers arithmetic, algebra, plane trigonometry, spherical trigonometry, continued fractions, quadratic equations, and astronomical calculations  –  all in 121 compact verses. It remains one of the most extraordinary scientific documents of antiquity.",
+        "hi": "आर्यभट ने 499 ईस्वी में आर्यभटीय लिखी, जब वे 23 वर्ष के थे। उन्होंने यह स्वयं ग्रन्थ में स्पष्ट रूप से बताया है, कहते हुए कि कलियुग के 3,600 वर्ष बीत चुके थे, जो रचना को 499 ईस्वी में स्थापित करता है। ग्रन्थ में अंकगणित, बीजगणित, समतल त्रिकोणमिति, गोलाकार त्रिकोणमिति, सतत भिन्न, द्विघात समीकरण, और खगोलीय गणनाएँ  –  सभी 121 संक्षिप्त श्लोकों में  –  शामिल हैं। यह प्राचीनता के सबसे असाधारण वैज्ञानिक दस्तावेजों में से एक है।"
       },
       "options": [
         {
@@ -198,8 +198,8 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "Aryabhata stated Earth's rotation in the Golapada (the chapter on the celestial sphere — \"gola\" means sphere). In verse Golapada 9–10, he writes: \"Just as a man in a moving boat sees stationary objects moving backward, so too the fixed stars appear to move westward at Lanka — it is the Earth that moves.\" This analogy is remarkably modern in its relativistic framing: apparent motion depends on the frame of reference. The Golapada covers spherical astronomy, eclipses, and the model of the cosmos.",
-        "hi": "आर्यभट ने गोलपाद (खगोलीय गोले पर अध्याय — \"गोल\" का अर्थ है गोला) में पृथ्वी के घूर्णन का कथन किया। गोलपाद 9-10 श्लोक में वे लिखते हैं: \"जैसे एक चलती नाव में आदमी स्थिर वस्तुओं को पीछे जाते देखता है, उसी तरह लंका में स्थिर तारे पश्चिम की ओर जाते प्रतीत होते हैं — यह पृथ्वी है जो चलती है।\" यह उपमा अपने सापेक्षतावादी ढाँचे में उल्लेखनीय रूप से आधुनिक है: प्रत्यक्ष गति संदर्भ के फ्रेम पर निर्भर करती है।"
+        "en": "Aryabhata stated Earth's rotation in the Golapada (the chapter on the celestial sphere  –  \"gola\" means sphere). In verse Golapada 9–10, he writes: \"Just as a man in a moving boat sees stationary objects moving backward, so too the fixed stars appear to move westward at Lanka  –  it is the Earth that moves.\" This analogy is remarkably modern in its relativistic framing: apparent motion depends on the frame of reference. The Golapada covers spherical astronomy, eclipses, and the model of the cosmos.",
+        "hi": "आर्यभट ने गोलपाद (खगोलीय गोले पर अध्याय  –  \"गोल\" का अर्थ है गोला) में पृथ्वी के घूर्णन का कथन किया। गोलपाद 9-10 श्लोक में वे लिखते हैं: \"जैसे एक चलती नाव में आदमी स्थिर वस्तुओं को पीछे जाते देखता है, उसी तरह लंका में स्थिर तारे पश्चिम की ओर जाते प्रतीत होते हैं  –  यह पृथ्वी है जो चलती है।\" यह उपमा अपने सापेक्षतावादी ढाँचे में उल्लेखनीय रूप से आधुनिक है: प्रत्यक्ष गति संदर्भ के फ्रेम पर निर्भर करती है।"
       },
       "options": [
         {
@@ -261,8 +261,8 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Brahmagupta (598–668 CE), in his Brahmasphutasiddhanta (628 CE), strongly criticized Aryabhata\"s claim that the Earth rotates. Brahmagupta argued that if the Earth spun, birds and clouds would be left behind, and objects thrown upward would land far from where they were thrown. This is actually a sophisticated objection — the answer requires the concept of inertia (Galileo\"s principle), which was not yet formalized. Ironically, this disagreement between two great Indian mathematicians shows the active, self-critical nature of ancient Indian science.",
-        "hi": "ब्रह्मगुप्त (598-668 ईस्वी) ने अपने ब्रह्मस्फुटसिद्धान्त (628 ईस्वी) में पृथ्वी के घूमने के आर्यभट के दावे की कड़ी आलोचना की। ब्रह्मगुप्त ने तर्क दिया कि यदि पृथ्वी घूमती, तो पक्षी और बादल पीछे रह जाते, और ऊपर फेंकी गई वस्तुएँ उससे बहुत दूर उतरतीं जहाँ से फेंकी गई थीं। यह वास्तव में एक परिष्कृत आपत्ति है — उत्तर के लिए जड़ता की अवधारणा (गैलीलियो के सिद्धान्त) की आवश्यकता है, जो अभी औपचारिक नहीं थी। व्यंग्यात्मक रूप से, दो महान भारतीय गणितज्ञों के बीच यह असहमति प्राचीन भारतीय विज्ञान की सक्रिय, आत्म-आलोचनात्मक प्रकृति को दर्शाती है।"
+        "en": "Brahmagupta (598–668 CE), in his Brahmasphutasiddhanta (628 CE), strongly criticized Aryabhata\"s claim that the Earth rotates. Brahmagupta argued that if the Earth spun, birds and clouds would be left behind, and objects thrown upward would land far from where they were thrown. This is actually a sophisticated objection  –  the answer requires the concept of inertia (Galileo\"s principle), which was not yet formalized. Ironically, this disagreement between two great Indian mathematicians shows the active, self-critical nature of ancient Indian science.",
+        "hi": "ब्रह्मगुप्त (598-668 ईस्वी) ने अपने ब्रह्मस्फुटसिद्धान्त (628 ईस्वी) में पृथ्वी के घूमने के आर्यभट के दावे की कड़ी आलोचना की। ब्रह्मगुप्त ने तर्क दिया कि यदि पृथ्वी घूमती, तो पक्षी और बादल पीछे रह जाते, और ऊपर फेंकी गई वस्तुएँ उससे बहुत दूर उतरतीं जहाँ से फेंकी गई थीं। यह वास्तव में एक परिष्कृत आपत्ति है  –  उत्तर के लिए जड़ता की अवधारणा (गैलीलियो के सिद्धान्त) की आवश्यकता है, जो अभी औपचारिक नहीं थी। व्यंग्यात्मक रूप से, दो महान भारतीय गणितज्ञों के बीच यह असहमति प्राचीन भारतीय विज्ञान की सक्रिय, आत्म-आलोचनात्मक प्रकृति को दर्शाती है।"
       },
       "options": [
         {
@@ -324,8 +324,8 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "Aryabhata calculated Earth\"s circumference as 4,967 yojanas (where 1 yojana ≈ 8 km), giving approximately 39,736 km. The actual circumference of Earth at the equator is 40,075 km. This means Aryabhata\"s value was accurate to 99.7% — a remarkable achievement for 499 CE. By comparison, the famous Greek Eratosthenes (276–195 BCE) calculated Earth\"s circumference with about 99.4% accuracy. Both demonstrate that precise geodetic measurement was achieved in the ancient world through careful astronomical observation.",
-        "hi": "आर्यभट ने पृथ्वी की परिधि 4,967 योजन (जहाँ 1 योजन ≈ 8 किमी) गणना की, जो लगभग 39,736 किमी है। भूमध्य रेखा पर पृथ्वी की वास्तविक परिधि 40,075 किमी है। इसका मतलब है कि आर्यभट का मान 99.7% सटीक था — 499 ईस्वी के लिए एक उल्लेखनीय उपलब्धि। तुलना के लिए, प्रसिद्ध ग्रीक एराटोस्थनीज (276-195 ईसा पूर्व) ने पृथ्वी की परिधि की गणना लगभग 99.4% सटीकता से की। दोनों दर्शाते हैं कि सावधानीपूर्वक खगोलीय अवलोकन के माध्यम से प्राचीन दुनिया में सटीक भूगणित माप प्राप्त किया गया था।"
+        "en": "Aryabhata calculated Earth\"s circumference as 4,967 yojanas (where 1 yojana ≈ 8 km), giving approximately 39,736 km. The actual circumference of Earth at the equator is 40,075 km. This means Aryabhata\"s value was accurate to 99.7%  –  a remarkable achievement for 499 CE. By comparison, the famous Greek Eratosthenes (276–195 BCE) calculated Earth\"s circumference with about 99.4% accuracy. Both demonstrate that precise geodetic measurement was achieved in the ancient world through careful astronomical observation.",
+        "hi": "आर्यभट ने पृथ्वी की परिधि 4,967 योजन (जहाँ 1 योजन ≈ 8 किमी) गणना की, जो लगभग 39,736 किमी है। भूमध्य रेखा पर पृथ्वी की वास्तविक परिधि 40,075 किमी है। इसका मतलब है कि आर्यभट का मान 99.7% सटीक था  –  499 ईस्वी के लिए एक उल्लेखनीय उपलब्धि। तुलना के लिए, प्रसिद्ध ग्रीक एराटोस्थनीज (276-195 ईसा पूर्व) ने पृथ्वी की परिधि की गणना लगभग 99.4% सटीकता से की। दोनों दर्शाते हैं कि सावधानीपूर्वक खगोलीय अवलोकन के माध्यम से प्राचीन दुनिया में सटीक भूगणित माप प्राप्त किया गया था।"
       },
       "options": [
         {
@@ -387,8 +387,8 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "The Ptolemaic geocentric model — developed by Claudius Ptolemy in Alexandria around 150 CE — placed Earth at the centre of the universe, with the Sun, Moon, planets, and stars all revolving around a stationary Earth. This model dominated European astronomy for over 1,300 years, until Copernicus (1543 CE). Aryabhata\"s rotating Earth directly contradicted the Ptolemaic model\"s central assumption. What makes this even more striking is that Aryabhata and Ptolemy were near-contemporaries — Ptolemy\"s model was being codified while Aryabhata was already going beyond it.",
-        "hi": "टॉलेमिक भूकेन्द्रीय मॉडल — लगभग 150 ईस्वी में अलेक्जेंड्रिया में क्लॉडियस टॉलेमी द्वारा विकसित — ने पृथ्वी को ब्रह्मांड के केन्द्र में रखा, सूर्य, चन्द्रमा, ग्रहों और तारों के साथ सभी एक स्थिर पृथ्वी के चारों ओर परिक्रमा कर रहे थे। यह मॉडल 1,300 से अधिक वर्षों तक यूरोपीय खगोल विज्ञान पर हावी रहा, कोपर्निकस (1543 ईस्वी) तक। आर्यभट की घूमती हुई पृथ्वी ने सीधे टॉलेमिक मॉडल की केन्द्रीय धारणा का खंडन किया।"
+        "en": "The Ptolemaic geocentric model  –  developed by Claudius Ptolemy in Alexandria around 150 CE  –  placed Earth at the centre of the universe, with the Sun, Moon, planets, and stars all revolving around a stationary Earth. This model dominated European astronomy for over 1,300 years, until Copernicus (1543 CE). Aryabhata\"s rotating Earth directly contradicted the Ptolemaic model\"s central assumption. What makes this even more striking is that Aryabhata and Ptolemy were near-contemporaries  –  Ptolemy\"s model was being codified while Aryabhata was already going beyond it.",
+        "hi": "टॉलेमिक भूकेन्द्रीय मॉडल  –  लगभग 150 ईस्वी में अलेक्जेंड्रिया में क्लॉडियस टॉलेमी द्वारा विकसित  –  ने पृथ्वी को ब्रह्मांड के केन्द्र में रखा, सूर्य, चन्द्रमा, ग्रहों और तारों के साथ सभी एक स्थिर पृथ्वी के चारों ओर परिक्रमा कर रहे थे। यह मॉडल 1,300 से अधिक वर्षों तक यूरोपीय खगोल विज्ञान पर हावी रहा, कोपर्निकस (1543 ईस्वी) तक। आर्यभट की घूमती हुई पृथ्वी ने सीधे टॉलेमिक मॉडल की केन्द्रीय धारणा का खंडन किया।"
       },
       "options": [
         {
@@ -450,8 +450,8 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "Nicolaus Copernicus published De Revolutionibus Orbium Coelestium in 1543 CE, proposing that the Sun, not Earth, is at the centre of the solar system, and that Earth revolves around the Sun while rotating on its axis. This sparked the \"Copernican Revolution\" in European science and led to Galileo's house arrest by the Inquisition (1633). Aryabhata had described Earth's axial rotation in 499 CE — 1,044 years earlier. The concept of Earth moving had been considered heretical in medieval Europe; in India, it was discussed openly in scholarly debate.",
-        "hi": "निकोलस कोपर्निकस ने 1543 ईस्वी में डे रिवोल्यूशनिबस ऑर्बियम कोएलेस्टियम प्रकाशित किया, यह प्रस्तावित करते हुए कि सूर्य, पृथ्वी नहीं, सौरमंडल के केन्द्र में है, और पृथ्वी अपनी धुरी पर घूमते हुए सूर्य के चारों ओर परिक्रमा करती है। इसने यूरोपीय विज्ञान में \"कोपर्निकन क्रांति\" को जन्म दिया और गैलीलियो की जिज्ञासा द्वारा गृह नज़रबंदी (1633) का कारण बना। आर्यभट ने 499 ईस्वी में — 1,044 वर्ष पहले — पृथ्वी के अक्षीय घूर्णन का वर्णन किया था।"
+        "en": "Nicolaus Copernicus published De Revolutionibus Orbium Coelestium in 1543 CE, proposing that the Sun, not Earth, is at the centre of the solar system, and that Earth revolves around the Sun while rotating on its axis. This sparked the \"Copernican Revolution\" in European science and led to Galileo's house arrest by the Inquisition (1633). Aryabhata had described Earth's axial rotation in 499 CE  –  1,044 years earlier. The concept of Earth moving had been considered heretical in medieval Europe; in India, it was discussed openly in scholarly debate.",
+        "hi": "निकोलस कोपर्निकस ने 1543 ईस्वी में डे रिवोल्यूशनिबस ऑर्बियम कोएलेस्टियम प्रकाशित किया, यह प्रस्तावित करते हुए कि सूर्य, पृथ्वी नहीं, सौरमंडल के केन्द्र में है, और पृथ्वी अपनी धुरी पर घूमते हुए सूर्य के चारों ओर परिक्रमा करती है। इसने यूरोपीय विज्ञान में \"कोपर्निकन क्रांति\" को जन्म दिया और गैलीलियो की जिज्ञासा द्वारा गृह नज़रबंदी (1633) का कारण बना। आर्यभट ने 499 ईस्वी में  –  1,044 वर्ष पहले  –  पृथ्वी के अक्षीय घूर्णन का वर्णन किया था।"
       },
       "options": [
         {
@@ -513,8 +513,8 @@
       },
       "correctAnswer": 0,
       "explanation": {
-        "en": "Aryabhata calculated the sidereal day (the time for Earth to complete one rotation relative to distant stars) as 23 hours, 56 minutes, and 4.1 seconds. The modern value is 23 hours, 56 minutes, and 4.0916 seconds. This is accurate to within a fraction of a second — an astonishing precision achieved purely through naked-eye astronomical observation and mathematical calculation. The slight difference between a sidereal day (23h 56m 4s) and a solar day (24h) is because Earth also moves along its orbit, requiring an extra ~4 minutes to bring the Sun back to the same apparent position.",
-        "hi": "आर्यभट ने नाक्षत्र दिन (पृथ्वी द्वारा दूर के तारों के सापेक्ष एक घूर्णन पूरा करने का समय) 23 घण्टे, 56 मिनट, 4.1 सेकंड गणना किया। आधुनिक मान 23 घण्टे, 56 मिनट, 4.0916 सेकंड है। यह एक सेकंड के अंश के भीतर सटीक है — नग्न आँखों के खगोलीय अवलोकन और गणितीय गणना के माध्यम से प्राप्त एक आश्चर्यजनक सटीकता।"
+        "en": "Aryabhata calculated the sidereal day (the time for Earth to complete one rotation relative to distant stars) as 23 hours, 56 minutes, and 4.1 seconds. The modern value is 23 hours, 56 minutes, and 4.0916 seconds. This is accurate to within a fraction of a second  –  an astonishing precision achieved purely through naked-eye astronomical observation and mathematical calculation. The slight difference between a sidereal day (23h 56m 4s) and a solar day (24h) is because Earth also moves along its orbit, requiring an extra ~4 minutes to bring the Sun back to the same apparent position.",
+        "hi": "आर्यभट ने नाक्षत्र दिन (पृथ्वी द्वारा दूर के तारों के सापेक्ष एक घूर्णन पूरा करने का समय) 23 घण्टे, 56 मिनट, 4.1 सेकंड गणना किया। आधुनिक मान 23 घण्टे, 56 मिनट, 4.0916 सेकंड है। यह एक सेकंड के अंश के भीतर सटीक है  –  नग्न आँखों के खगोलीय अवलोकन और गणितीय गणना के माध्यम से प्राप्त एक आश्चर्यजनक सटीकता।"
       },
       "options": [
         {
@@ -589,7 +589,7 @@
       },
       "correctAnswer": 0,
       "explanation": {
-        "en": "False. Brahmagupta (628 CE) actually disagreed with Aryabhata and rejected Earth's rotation. He argued that a rotating Earth would cause wind, birds, and clouds to be left behind. This disagreement is historically significant: it shows that ancient Indian astronomy was not monolithic but engaged in real scientific debate, with scholars challenging each other's ideas with reasoned arguments. The very existence of this debate — and the fact that both sides are preserved — demonstrates the intellectual vitality of the tradition. Brahmagupta was wrong on this specific point, but his challenge forced later astronomers to think more carefully about the question.",
+        "en": "False. Brahmagupta (628 CE) actually disagreed with Aryabhata and rejected Earth's rotation. He argued that a rotating Earth would cause wind, birds, and clouds to be left behind. This disagreement is historically significant: it shows that ancient Indian astronomy was not monolithic but engaged in real scientific debate, with scholars challenging each other's ideas with reasoned arguments. The very existence of this debate  –  and the fact that both sides are preserved  –  demonstrates the intellectual vitality of the tradition. Brahmagupta was wrong on this specific point, but his challenge forced later astronomers to think more carefully about the question.",
         "hi": "असत्य। ब्रह्मगुप्त (628 ईस्वी) ने वास्तव में आर्यभट से असहमति जताई और पृथ्वी के घूर्णन को अस्वीकार किया। उन्होंने तर्क दिया कि एक घूमती पृथ्वी हवा, पक्षियों और बादलों को पीछे छोड़ देगी। यह असहमति ऐतिहासिक रूप से महत्त्वपूर्ण है: यह दर्शाती है कि प्राचीन भारतीय खगोल विज्ञान अखंड नहीं था बल्कि वास्तविक वैज्ञानिक बहस में लगा हुआ था। ब्रह्मगुप्त इस विशिष्ट बिन्दु पर गलत थे, लेकिन उनकी चुनौती ने बाद के खगोलशास्त्रियों को इस प्रश्न के बारे में अधिक सावधानी से सोचने पर मजबूर किया।"
       }
     }

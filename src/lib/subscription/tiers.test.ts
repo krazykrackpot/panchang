@@ -99,9 +99,9 @@ describe('Subscription Tiers', () => {
     });
   });
 
-  // ── Free tier — all features unlocked except batch/api ──────────────
+  // ── Free tier  –  all features unlocked except batch/api ──────────────
 
-  describe('Free tier — all features unlocked', () => {
+  describe('Free tier  –  all features unlocked', () => {
     it('free tier has 13 features (everything except batch + api_access)', () => {
       expect(TIER_CONFIG.free.features.size).toBe(13);
     });

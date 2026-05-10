@@ -1,5 +1,5 @@
 /**
- * Dasha Period Synthesis Engine — 3-level granular forecast
+ * Dasha Period Synthesis Engine  –  3-level granular forecast
  *
  * Synthesizes ALL chart elements (yogas, doshas, transits, house activations,
  * divisional charts) into a coherent period-by-period forecast for each
@@ -306,7 +306,7 @@ function isDoshaActivatedByPlanet(dosha: DoshaInsight, planetId: number): boolea
 // ─── Interaction Type ─────────────────────────────────────────────────────────
 
 function getInteractionType(mahaLord: string, antarLord: string): 'friendly' | 'neutral' | 'enemy' {
-  // BPHS Ch.3 Naisargika Maitri — directional lookup (not bidirectional pairs)
+  // BPHS Ch.3 Naisargika Maitri  –  directional lookup (not bidirectional pairs)
   // 2=friend, 1=neutral, 0=enemy. Assess from MAHA lord's perspective.
   const MAITRI: Record<string, Record<string, number>> = {
     Sun:     { Sun:2, Moon:2, Mars:2, Mercury:1, Jupiter:2, Venus:0, Saturn:0, Rahu:0, Ketu:1 },
@@ -355,8 +355,8 @@ function getTransitContext(
     const saturnFavorable = SATURN_FAVORABLE_FROM_MOON.includes(satHouse);
 
     const text = t(locale,
-      `At period start, Jupiter transits house ${jupHouse} from Moon (${jupiterFavorable ? 'favorable' : 'challenging'}) and Saturn transits house ${satHouse} from Moon (${saturnFavorable ? 'supportive' : 'testing'}). ${jupiterFavorable && saturnFavorable ? 'Double transit support strengthens this period considerably.' : jupiterFavorable ? 'Jupiter\'s favorable transit provides growth opportunities.' : saturnFavorable ? 'Saturn\'s supportive transit brings structured progress.' : 'Both major transits are testing — rely on natal strengths and remedies.'}`,
-      `काल आरम्भ पर बृहस्पति चन्द्र से ${jupHouse}वें भाव में (${jupiterFavorable ? 'अनुकूल' : 'चुनौतीपूर्ण'}) और शनि ${satHouse}वें भाव में (${saturnFavorable ? 'सहायक' : 'परीक्षाकारी'}) गोचर करते हैं। ${jupiterFavorable && saturnFavorable ? 'दोहरा गोचर समर्थन इस काल को बहुत सशक्त करता है।' : jupiterFavorable ? 'बृहस्पति का अनुकूल गोचर विकास के अवसर देता है।' : saturnFavorable ? 'शनि का सहायक गोचर व्यवस्थित प्रगति लाता है।' : 'दोनों प्रमुख गोचर परीक्षाकारी हैं — जन्मकालिक बल और उपायों पर भरोसा करें।'}`
+      `At period start, Jupiter transits house ${jupHouse} from Moon (${jupiterFavorable ? 'favorable' : 'challenging'}) and Saturn transits house ${satHouse} from Moon (${saturnFavorable ? 'supportive' : 'testing'}). ${jupiterFavorable && saturnFavorable ? 'Double transit support strengthens this period considerably.' : jupiterFavorable ? 'Jupiter\'s favorable transit provides growth opportunities.' : saturnFavorable ? 'Saturn\'s supportive transit brings structured progress.' : 'Both major transits are testing  –  rely on natal strengths and remedies.'}`,
+      `काल आरम्भ पर बृहस्पति चन्द्र से ${jupHouse}वें भाव में (${jupiterFavorable ? 'अनुकूल' : 'चुनौतीपूर्ण'}) और शनि ${satHouse}वें भाव में (${saturnFavorable ? 'सहायक' : 'परीक्षाकारी'}) गोचर करते हैं। ${jupiterFavorable && saturnFavorable ? 'दोहरा गोचर समर्थन इस काल को बहुत सशक्त करता है।' : jupiterFavorable ? 'बृहस्पति का अनुकूल गोचर विकास के अवसर देता है।' : saturnFavorable ? 'शनि का सहायक गोचर व्यवस्थित प्रगति लाता है।' : 'दोनों प्रमुख गोचर परीक्षाकारी हैं  –  जन्मकालिक बल और उपायों पर भरोसा करें।'}`
     );
 
     return { text, jupiterFavorable, saturnFavorable };
@@ -534,9 +534,9 @@ export function generateDashaSynthesis(
         }).join(', ');
 
         const dignityNote = planet
-          ? (planet.isExalted ? t(locale, ' Planet is exalted — peak results.', ' ग्रह उच्च — शिखर परिणाम।')
-            : planet.isDebilitated ? t(locale, ' Planet is debilitated — challenges require effort.', ' ग्रह नीच — चुनौतियों में प्रयास आवश्यक।')
-            : planet.isOwnSign ? t(locale, ' Planet is in own sign — natural strength.', ' ग्रह स्वगृह में — प्राकृतिक बल।')
+          ? (planet.isExalted ? t(locale, ' Planet is exalted  –  peak results.', ' ग्रह उच्च  –  शिखर परिणाम।')
+            : planet.isDebilitated ? t(locale, ' Planet is debilitated  –  challenges require effort.', ' ग्रह नीच  –  चुनौतियों में प्रयास आवश्यक।')
+            : planet.isOwnSign ? t(locale, ' Planet is in own sign  –  natural strength.', ' ग्रह स्वगृह में  –  प्राकृतिक बल।')
             : '')
           : '';
 
@@ -834,12 +834,12 @@ export function generateDashaSynthesis(
         let warning: string | undefined;
         if (pratyDignity === 'debilitated') {
           warning = t(locale,
-            `${pratyPName} is debilitated — exercise maximum caution. Health, finances, and relationships in ${pratyPName}'s domain need protective attention.`,
-            `${pratyPName} नीच — अधिकतम सावधानी बरतें। ${pratyPName} के क्षेत्र में स्वास्थ्य, वित्त और सम्बन्धों को सुरक्षात्मक ध्यान चाहिए।`);
+            `${pratyPName} is debilitated  –  exercise maximum caution. Health, finances, and relationships in ${pratyPName}'s domain need protective attention.`,
+            `${pratyPName} नीच  –  अधिकतम सावधानी बरतें। ${pratyPName} के क्षेत्र में स्वास्थ्य, वित्त और सम्बन्धों को सुरक्षात्मक ध्यान चाहिए।`);
         } else if (pratyLordPlanet?.isCombust) {
           warning = t(locale,
-            `${pratyPName} is combust (too close to Sun) — its significations are weakened. Avoid overexposure in ${pratyPName}'s domains.`,
-            `${pratyPName} अस्त (सूर्य के अत्यन्त निकट) — इसके कारकत्व दुर्बल। ${pratyPName} के क्षेत्रों में अत्यधिक प्रदर्शन से बचें।`);
+            `${pratyPName} is combust (too close to Sun)  –  its significations are weakened. Avoid overexposure in ${pratyPName}'s domains.`,
+            `${pratyPName} अस्त (सूर्य के अत्यन्त निकट)  –  इसके कारकत्व दुर्बल। ${pratyPName} के क्षेत्रों में अत्यधिक प्रदर्शन से बचें।`);
         }
 
         expanded = {

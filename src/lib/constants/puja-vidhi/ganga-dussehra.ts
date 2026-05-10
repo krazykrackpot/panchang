@@ -39,8 +39,8 @@ export const GANGA_DUSSEHRA_PUJA: PujaVidhi = {
       step: 1,
       title: { en: 'Holy Bath (Snan)', hi: 'पवित्र स्नान', sa: 'पुण्यस्नानम्' },
       description: {
-        en: 'Take a holy bath in the Ganga or any nearby river. If no river is accessible, add Ganga Jal to your bathing water. While bathing, pray to Ganga Mata for purification of ten sins (kaya, vacha, manas — three each, plus one universal).',
-        hi: 'गंगा या किसी निकटवर्ती नदी में पवित्र स्नान करें। नदी उपलब्ध न हो तो स्नान के जल में गंगाजल मिलाएँ। स्नान करते हुए दस पापों (काय, वाचा, मनस — तीन-तीन, और एक सार्वभौमिक) के शुद्धिकरण हेतु गंगा माता से प्रार्थना करें।',
+        en: 'Take a holy bath in the Ganga or any nearby river. If no river is accessible, add Ganga Jal to your bathing water. While bathing, pray to Ganga Mata for purification of ten sins (kaya, vacha, manas  –  three each, plus one universal).',
+        hi: 'गंगा या किसी निकटवर्ती नदी में पवित्र स्नान करें। नदी उपलब्ध न हो तो स्नान के जल में गंगाजल मिलाएँ। स्नान करते हुए दस पापों (काय, वाचा, मनस  –  तीन-तीन, और एक सार्वभौमिक) के शुद्धिकरण हेतु गंगा माता से प्रार्थना करें।',
         sa: 'गङ्गायां समीपवर्तिन्यां नद्यां वा पुण्यस्नानं कुर्यात्। नदी अनुपलब्धा चेत् स्नानजले गङ्गाजलं मिश्रयेत्। स्नानकाले दशपापशोधनाय गङ्गामातरं प्रार्थयेत्।',
       },
       duration: '15 min',
@@ -63,8 +63,8 @@ export const GANGA_DUSSEHRA_PUJA: PujaVidhi = {
       step: 3,
       title: { en: 'Sankalpa', hi: 'संकल्प', sa: 'सङ्कल्पः' },
       description: {
-        en: 'Hold water and akshat in the right hand. State your name, gotra, the date (Jyeshtha Shukla Dashami), and the purpose — worship of Ganga Mata for removal of ten sins. Release the water into the river.',
-        hi: 'दाहिने हाथ में जल और अक्षत लें। अपना नाम, गोत्र, तिथि (ज्येष्ठ शुक्ल दशमी) और उद्देश्य — दस पापों के निवारण हेतु गंगा माता की पूजा — बोलें। जल नदी में छोड़ें।',
+        en: 'Hold water and akshat in the right hand. State your name, gotra, the date (Jyeshtha Shukla Dashami), and the purpose  –  worship of Ganga Mata for removal of ten sins. Release the water into the river.',
+        hi: 'दाहिने हाथ में जल और अक्षत लें। अपना नाम, गोत्र, तिथि (ज्येष्ठ शुक्ल दशमी) और उद्देश्य  –  दस पापों के निवारण हेतु गंगा माता की पूजा  –  बोलें। जल नदी में छोड़ें।',
         sa: 'दक्षिणहस्ते जलाक्षतान् गृहीत्वा स्वनाम गोत्रं तिथिं (ज्येष्ठशुक्लदशमी) दशपापनिवारणाय गङ्गामातुः पूजाप्रयोजनं च वदेत्। जलं नद्यां विसृजेत्।',
       },
       duration: '3 min',
@@ -112,9 +112,9 @@ export const GANGA_DUSSEHRA_PUJA: PujaVidhi = {
       step: 7,
       title: { en: 'Charity (Daan)', hi: 'दान', sa: 'दानम्' },
       description: {
-        en: 'Donate ten items to Brahmins or the needy — representing the ten sins being absolved. Traditional gifts include grains, clothes, sesame seeds, and gold (according to capacity).',
-        hi: 'ब्राह्मणों या ज़रूरतमंदों को दस वस्तुएँ दान करें — दस पापों के निवारण का प्रतीक। पारम्परिक दान में अनाज, वस्त्र, तिल और सोना (यथाशक्ति) शामिल हैं।',
-        sa: 'ब्राह्मणेभ्यः दरिद्रेभ्यो वा दशवस्तूनि दद्यात् — दशपापनिवारणस्य प्रतीकम्। पारम्परिकदाने धान्यं वस्त्राणि तिलाः सुवर्णं (यथाशक्ति) च सन्ति।',
+        en: 'Donate ten items to Brahmins or the needy  –  representing the ten sins being absolved. Traditional gifts include grains, clothes, sesame seeds, and gold (according to capacity).',
+        hi: 'ब्राह्मणों या ज़रूरतमंदों को दस वस्तुएँ दान करें  –  दस पापों के निवारण का प्रतीक। पारम्परिक दान में अनाज, वस्त्र, तिल और सोना (यथाशक्ति) शामिल हैं।',
+        sa: 'ब्राह्मणेभ्यः दरिद्रेभ्यो वा दशवस्तूनि दद्यात्  –  दशपापनिवारणस्य प्रतीकम्। पारम्परिकदाने धान्यं वस्त्राणि तिलाः सुवर्णं (यथाशक्ति) च सन्ति।',
       },
       duration: '10 min',
       essential: false,
@@ -129,9 +129,9 @@ export const GANGA_DUSSEHRA_PUJA: PujaVidhi = {
       devanagari: 'ॐ नमः शिवाय नारायणाय दशहराय गङ्गायै नमः।\nविष्णुपादाब्जसम्भूते गङ्गे त्रिपथगामिनि।\nधर्मद्रवेति विख्याते पापं मे हर जाह्नवि॥',
       iast: 'oṃ namaḥ śivāya nārāyaṇāya daśaharāya gaṅgāyai namaḥ |\nviṣṇupādābjasambhūte gaṅge tripatthagāmini |\ndharmadraveti vikhyāte pāpaṃ me hara jāhnavi ||',
       meaning: {
-        en: 'Om, salutations to Shiva, Narayana, and Ganga who removes ten sins. O Ganga, born from the lotus feet of Vishnu, who flows through the three worlds, famed as the stream of dharma — remove my sins, O daughter of Jahnu.',
-        hi: 'ॐ, शिव, नारायण और दस पापों को हरने वाली गंगा को नमस्कार। हे गंगे, विष्णु के चरणकमलों से उत्पन्न, तीन लोकों में बहने वाली, धर्म की धारा के रूप में विख्यात — हे जाह्नवी, मेरे पापों को हर लो।',
-        sa: 'ॐ, शिवाय नारायणाय दशपापहारिण्यै गङ्गायै नमः। हे गङ्गे, विष्णुपादपद्मोद्भवे, त्रिपथगामिनि, धर्मप्रवाहरूपे — हे जाह्नवि, मम पापं हर।',
+        en: 'Om, salutations to Shiva, Narayana, and Ganga who removes ten sins. O Ganga, born from the lotus feet of Vishnu, who flows through the three worlds, famed as the stream of dharma  –  remove my sins, O daughter of Jahnu.',
+        hi: 'ॐ, शिव, नारायण और दस पापों को हरने वाली गंगा को नमस्कार। हे गंगे, विष्णु के चरणकमलों से उत्पन्न, तीन लोकों में बहने वाली, धर्म की धारा के रूप में विख्यात  –  हे जाह्नवी, मेरे पापों को हर लो।',
+        sa: 'ॐ, शिवाय नारायणाय दशपापहारिण्यै गङ्गायै नमः। हे गङ्गे, विष्णुपादपद्मोद्भवे, त्रिपथगामिनि, धर्मप्रवाहरूपे  –  हे जाह्नवि, मम पापं हर।',
       },
       japaCount: 108,
       usage: {
@@ -146,9 +146,9 @@ export const GANGA_DUSSEHRA_PUJA: PujaVidhi = {
       devanagari: 'देवि सुरेश्वरि भगवति गङ्गे त्रिभुवनतारिणि तरलतरङ्गे।\nशङ्करमौलिविहारिणि विमले मम मतिरास्तां तव पदकमले॥',
       iast: 'devi sureśvari bhagavati gaṅge tribhuvanatāriṇi taralataraṅge |\nśaṅkaramaulivihāriṇi vimale mama matirāstāṃ tava padakamale ||',
       meaning: {
-        en: 'O Devi, queen of the gods, blessed Ganga, saviour of the three worlds with your restless waves! O pure one, who plays in the locks of Shankara — may my mind rest at your lotus feet.',
-        hi: 'हे देवी, देवों की रानी, भगवती गंगे, तीन लोकों की तारिणी, चञ्चल तरंगों वाली! हे विमले, शंकर की जटाओं में विहार करने वाली — मेरा मन तुम्हारे चरणकमलों में स्थिर रहे।',
-        sa: 'हे देवि सुरेश्वरि भगवति गङ्गे, त्रिभुवनतारिणि, तरलतरङ्गे! हे शङ्करमौलिविहारिणि विमले — मम मतिः तव पदकमले आस्ताम्।',
+        en: 'O Devi, queen of the gods, blessed Ganga, saviour of the three worlds with your restless waves! O pure one, who plays in the locks of Shankara  –  may my mind rest at your lotus feet.',
+        hi: 'हे देवी, देवों की रानी, भगवती गंगे, तीन लोकों की तारिणी, चञ्चल तरंगों वाली! हे विमले, शंकर की जटाओं में विहार करने वाली  –  मेरा मन तुम्हारे चरणकमलों में स्थिर रहे।',
+        sa: 'हे देवि सुरेश्वरि भगवति गङ्गे, त्रिभुवनतारिणि, तरलतरङ्गे! हे शङ्करमौलिविहारिणि विमले  –  मम मतिः तव पदकमले आस्ताम्।',
       },
       usage: {
         en: 'Recite during Ganga Aarti or while seated at the riverbank.',
@@ -163,7 +163,7 @@ export const GANGA_DUSSEHRA_PUJA: PujaVidhi = {
       iast: 'oṃ viṣṇupādāya namastubhyaṃ gaṅge viśveśvarapriye |\nnamaste viṣṇurūpiṇyai namo brahmasvarūpiṇi ||',
       meaning: {
         en: 'Om, I bow to you, Ganga, born from the feet of Vishnu, dear to the Lord of the universe. Salutations to you who are the form of Vishnu, the embodiment of Brahman.',
-        hi: 'ॐ, विष्णु के चरणों से उत्पन्न, विश्वेश्वर की प्रिय, हे गंगे, मैं आपको नमन करता हूँ। विष्णुरूपिणी, ब्रह्मस्वरूपिणी — आपको नमस्कार।',
+        hi: 'ॐ, विष्णु के चरणों से उत्पन्न, विश्वेश्वर की प्रिय, हे गंगे, मैं आपको नमन करता हूँ। विष्णुरूपिणी, ब्रह्मस्वरूपिणी  –  आपको नमस्कार।',
         sa: 'ॐ, विष्णुपादोद्भवे विश्वेश्वरप्रिये हे गङ्गे तुभ्यं नमः। विष्णुरूपिण्यै ब्रह्मस्वरूपिण्यै नमः।',
       },
       usage: {
@@ -182,9 +182,9 @@ export const GANGA_DUSSEHRA_PUJA: PujaVidhi = {
 
   precautions: [
     {
-      en: 'Maintain cleanliness of the river — do not throw plastic, non-biodegradable items, or pollutants into the water.',
-      hi: 'नदी की स्वच्छता बनाए रखें — प्लास्टिक, अजैविक पदार्थ या प्रदूषक जल में न डालें।',
-      sa: 'नद्याः स्वच्छतां रक्षेत् — प्लास्टिकं अजैवपदार्थान् प्रदूषकान् वा जले मा क्षिपेत्।',
+      en: 'Maintain cleanliness of the river  –  do not throw plastic, non-biodegradable items, or pollutants into the water.',
+      hi: 'नदी की स्वच्छता बनाए रखें  –  प्लास्टिक, अजैविक पदार्थ या प्रदूषक जल में न डालें।',
+      sa: 'नद्याः स्वच्छतां रक्षेत्  –  प्लास्टिकं अजैवपदार्थान् प्रदूषकान् वा जले मा क्षिपेत्।',
     },
     {
       en: 'Be cautious while bathing in the river, especially during monsoon season when water levels may be high.',
@@ -192,9 +192,9 @@ export const GANGA_DUSSEHRA_PUJA: PujaVidhi = {
       sa: 'नद्यां स्नानकाले सावधानं भवेत्, विशेषतो वर्षाकाले यदा जलस्तरः उच्चो भवेत्।',
     },
     {
-      en: 'The ten diyas represent the ten sins — perform the ritual with genuine devotion and intent for self-purification, not as a mere formality.',
-      hi: 'दस दीपक दस पापों का प्रतीक हैं — यह अनुष्ठान वास्तविक भक्ति और आत्मशुद्धि के संकल्प से करें, केवल औपचारिकता के रूप में नहीं।',
-      sa: 'दशदीपाः दशपापानां प्रतीकाः — इदम् अनुष्ठानं सच्चया भक्त्या आत्मशोधनसङ्कल्पेन कुर्यात्, केवलौपचारिकतया न।',
+      en: 'The ten diyas represent the ten sins  –  perform the ritual with genuine devotion and intent for self-purification, not as a mere formality.',
+      hi: 'दस दीपक दस पापों का प्रतीक हैं  –  यह अनुष्ठान वास्तविक भक्ति और आत्मशुद्धि के संकल्प से करें, केवल औपचारिकता के रूप में नहीं।',
+      sa: 'दशदीपाः दशपापानां प्रतीकाः  –  इदम् अनुष्ठानं सच्चया भक्त्या आत्मशोधनसङ्कल्पेन कुर्यात्, केवलौपचारिकतया न।',
     },
     {
       en: 'Observe vegetarian diet on this day. Avoid alcohol, meat, and tamasic food.',

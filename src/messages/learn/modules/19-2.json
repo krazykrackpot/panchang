@@ -1,27 +1,27 @@
 {
   "title": {
-    "en": "Rashi Drishti — Sign-Based Aspects",
-    "hi": "राशि दृष्टि — राशि-आधारित दृष्टियाँ",
-    "sa": "राशिदृष्टिः — राश्याधारितदृष्टयः",
-    "ta": "ராசி திருஷ்டி — ராசி அடிப்படை பார்வைகள்",
-    "te": "రాశి దృష్టి — రాశి ఆధారిత దృష్టులు",
-    "bn": "রাশি দৃষ্টি — রাশি ভিত্তিক দৃষ্টি",
-    "kn": "ರಾಶಿ ದೃಷ್ಟಿ — ರಾಶಿ ಆಧಾರಿತ ದೃಷ್ಟಿಗಳು",
-    "mr": "राशि दृष्टि — राशि-आधारित दृष्टी",
-    "gu": "રાશિ દૃષ્ટિ — રાશિ આધારિત દૃષ્ટિ",
-    "mai": "राशि दृष्टि — राशि-आधारित दृष्टियाँ"
+    "en": "Rashi Drishti  –  Sign-Based Aspects",
+    "hi": "राशि दृष्टि  –  राशि-आधारित दृष्टियाँ",
+    "sa": "राशिदृष्टिः  –  राश्याधारितदृष्टयः",
+    "ta": "ராசி திருஷ்டி  –  ராசி அடிப்படை பார்வைகள்",
+    "te": "రాశి దృష్టి  –  రాశి ఆధారిత దృష్టులు",
+    "bn": "রাশি দৃষ্টি  –  রাশি ভিত্তিক দৃষ্টি",
+    "kn": "ರಾಶಿ ದೃಷ್ಟಿ  –  ರಾಶಿ ಆಧಾರಿತ ದೃಷ್ಟಿಗಳು",
+    "mr": "राशि दृष्टि  –  राशि-आधारित दृष्टी",
+    "gu": "રાશિ દૃષ્ટિ  –  રાશિ આધારિત દૃષ્ટિ",
+    "mai": "राशि दृष्टि  –  राशि-आधारित दृष्टियाँ"
   },
   "subtitle": {
-    "en": "Jaimini's aspect system where entire signs aspect entire signs — no orbs, no partial aspects, radically different from Parashari",
-    "hi": "जैमिनी की दृष्टि पद्धति जहाँ सम्पूर्ण राशियाँ सम्पूर्ण राशियों को दृष्ट करती हैं — कोई ओर्ब नहीं, कोई आंशिक दृष्टि नहीं, पाराशरी से मूलतः भिन्न",
-    "sa": "जैमिनेः दृष्टिपद्धतिः यत्र सम्पूर्णा राशयः सम्पूर्णा राशीन् दृष्टवन्ति — न कोऽपि ओर्बः, नांशिकदृष्टिः, पाराशर्याः मूलतः भिन्ना",
-    "ta": "ஜைமினியின் பார்வை முறை — முழு ராசிகள் முழு ராசிகளை பார்க்கும், ஓர்ப் இல்லை, பகுதி பார்வை இல்லை, பராசரியிலிருந்து முற்றிலும் வேறுபட்டது",
-    "te": "జైమినీ దృష్టి పద్ధతి — సంపూర్ణ రాశులు సంపూర్ణ రాశులను చూస్తాయి, ఓర్బ్ లేదు, పాక్షిక దృష్టి లేదు, పరాశరి నుండి పూర్తిగా భిన్నం",
-    "bn": "জৈমিনীর দৃষ্টি পদ্ধতি যেখানে সম্পূর্ণ রাশি সম্পূর্ণ রাশিকে দৃষ্টি দেয় — কোনো ওর্ব নেই, আংশিক দৃষ্টি নেই, পরাশরী থেকে সম্পূর্ণ ভিন্ন",
-    "kn": "ಜೈಮಿನಿಯ ದೃಷ್ಟಿ ಪದ್ಧತಿ — ಸಂಪೂರ್ಣ ರಾಶಿಗಳು ಸಂಪೂರ್ಣ ರಾಶಿಗಳನ್ನು ನೋಡುತ್ತವೆ, ಓರ್ಬ್ ಇಲ್ಲ, ಭಾಗಶಃ ದೃಷ್ಟಿ ಇಲ್ಲ, ಪರಾಶರಿಯಿಂದ ಸಂಪೂರ್ಣ ಭಿನ್ನ",
-    "mr": "जैमिनीची दृष्टी पद्धती जिथे संपूर्ण राशी संपूर्ण राशींना दृष्ट करतात — कोणताही ओर्ब नाही, आंशिक दृष्टी नाही, पाराशरीपेक्षा मूलतः भिन्न",
-    "gu": "જૈમિનીની દૃષ્ટિ પદ્ધતિ જ્યાં સંપૂર્ણ રાશિઓ સંપૂર્ણ રાશિઓને દૃષ્ટ કરે છે — કોઈ ઓર્બ નહીં, આંશિક દૃષ્ટિ નહીં, પારાશરીથી મૂળભૂત રીતે ભિન્ન",
-    "mai": "जैमिनीक दृष्टि पद्धति जतय सम्पूर्ण राशि सम्पूर्ण राशिकेँ दृष्ट करैत अछि — कोनो ओर्ब नहिं, आंशिक दृष्टि नहिं, पाराशरी सँ मूलतः भिन्न"
+    "en": "Jaimini's aspect system where entire signs aspect entire signs  –  no orbs, no partial aspects, radically different from Parashari",
+    "hi": "जैमिनी की दृष्टि पद्धति जहाँ सम्पूर्ण राशियाँ सम्पूर्ण राशियों को दृष्ट करती हैं  –  कोई ओर्ब नहीं, कोई आंशिक दृष्टि नहीं, पाराशरी से मूलतः भिन्न",
+    "sa": "जैमिनेः दृष्टिपद्धतिः यत्र सम्पूर्णा राशयः सम्पूर्णा राशीन् दृष्टवन्ति  –  न कोऽपि ओर्बः, नांशिकदृष्टिः, पाराशर्याः मूलतः भिन्ना",
+    "ta": "ஜைமினியின் பார்வை முறை  –  முழு ராசிகள் முழு ராசிகளை பார்க்கும், ஓர்ப் இல்லை, பகுதி பார்வை இல்லை, பராசரியிலிருந்து முற்றிலும் வேறுபட்டது",
+    "te": "జైమినీ దృష్టి పద్ధతి  –  సంపూర్ణ రాశులు సంపూర్ణ రాశులను చూస్తాయి, ఓర్బ్ లేదు, పాక్షిక దృష్టి లేదు, పరాశరి నుండి పూర్తిగా భిన్నం",
+    "bn": "জৈমিনীর দৃষ্টি পদ্ধতি যেখানে সম্পূর্ণ রাশি সম্পূর্ণ রাশিকে দৃষ্টি দেয়  –  কোনো ওর্ব নেই, আংশিক দৃষ্টি নেই, পরাশরী থেকে সম্পূর্ণ ভিন্ন",
+    "kn": "ಜೈಮಿನಿಯ ದೃಷ್ಟಿ ಪದ್ಧತಿ  –  ಸಂಪೂರ್ಣ ರಾಶಿಗಳು ಸಂಪೂರ್ಣ ರಾಶಿಗಳನ್ನು ನೋಡುತ್ತವೆ, ಓರ್ಬ್ ಇಲ್ಲ, ಭಾಗಶಃ ದೃಷ್ಟಿ ಇಲ್ಲ, ಪರಾಶರಿಯಿಂದ ಸಂಪೂರ್ಣ ಭಿನ್ನ",
+    "mr": "जैमिनीची दृष्टी पद्धती जिथे संपूर्ण राशी संपूर्ण राशींना दृष्ट करतात  –  कोणताही ओर्ब नाही, आंशिक दृष्टी नाही, पाराशरीपेक्षा मूलतः भिन्न",
+    "gu": "જૈમિનીની દૃષ્ટિ પદ્ધતિ જ્યાં સંપૂર્ણ રાશિઓ સંપૂર્ણ રાશિઓને દૃષ્ટ કરે છે  –  કોઈ ઓર્બ નહીં, આંશિક દૃષ્ટિ નહીં, પારાશરીથી મૂળભૂત રીતે ભિન્ન",
+    "mai": "जैमिनीक दृष्टि पद्धति जतय सम्पूर्ण राशि सम्पूर्ण राशिकेँ दृष्ट करैत अछि  –  कोनो ओर्ब नहिं, आंशिक दृष्टि नहिं, पाराशरी सँ मूलतः भिन्न"
   },
   "crossRefs": [
     {
@@ -130,8 +130,8 @@
       ],
       "correctAnswer": 1,
       "explanation": {
-        "en": "Movable signs (Aries, Cancer, Libra, Capricorn) aspect all fixed signs (Taurus, Leo, Scorpio, Aquarius) except the one adjacent to them. For example, Aries aspects Leo, Scorpio, and Aquarius — but not Taurus (which is adjacent).",
-        "hi": "चर राशियाँ (मेष, कर्क, तुला, मकर) सभी स्थिर राशियों (वृषभ, सिंह, वृश्चिक, कुम्भ) को दृष्ट करती हैं — निकटवर्ती को छोड़कर। उदाहरणार्थ, मेष सिंह, वृश्चिक और कुम्भ को दृष्ट करता है — किन्तु वृषभ (निकटवर्ती) को नहीं।"
+        "en": "Movable signs (Aries, Cancer, Libra, Capricorn) aspect all fixed signs (Taurus, Leo, Scorpio, Aquarius) except the one adjacent to them. For example, Aries aspects Leo, Scorpio, and Aquarius  –  but not Taurus (which is adjacent).",
+        "hi": "चर राशियाँ (मेष, कर्क, तुला, मकर) सभी स्थिर राशियों (वृषभ, सिंह, वृश्चिक, कुम्भ) को दृष्ट करती हैं  –  निकटवर्ती को छोड़कर। उदाहरणार्थ, मेष सिंह, वृश्चिक और कुम्भ को दृष्ट करता है  –  किन्तु वृषभ (निकटवर्ती) को नहीं।"
       }
     },
     {
@@ -193,8 +193,8 @@
       ],
       "correctAnswer": 2,
       "explanation": {
-        "en": "Fixed signs (Taurus, Leo, Scorpio, Aquarius) aspect all movable signs (Aries, Cancer, Libra, Capricorn) except the adjacent one. For example, Taurus aspects Cancer, Libra, and Capricorn — but not Aries (adjacent).",
-        "hi": "स्थिर राशियाँ (वृषभ, सिंह, वृश्चिक, कुम्भ) सभी चर राशियों (मेष, कर्क, तुला, मकर) को दृष्ट करती हैं — निकटवर्ती को छोड़कर। उदाहरणार्थ, वृषभ कर्क, तुला और मकर को दृष्ट करता है — किन्तु मेष (निकटवर्ती) को नहीं।"
+        "en": "Fixed signs (Taurus, Leo, Scorpio, Aquarius) aspect all movable signs (Aries, Cancer, Libra, Capricorn) except the adjacent one. For example, Taurus aspects Cancer, Libra, and Capricorn  –  but not Aries (adjacent).",
+        "hi": "स्थिर राशियाँ (वृषभ, सिंह, वृश्चिक, कुम्भ) सभी चर राशियों (मेष, कर्क, तुला, मकर) को दृष्ट करती हैं  –  निकटवर्ती को छोड़कर। उदाहरणार्थ, वृषभ कर्क, तुला और मकर को दृष्ट करता है  –  किन्तु मेष (निकटवर्ती) को नहीं।"
       }
     },
     {
@@ -206,8 +206,8 @@
       },
       "correctAnswer": false,
       "explanation": {
-        "en": "False. Jaimini aspects are \"whole sign\" — there are no orbs and no gradation based on degree. A planet at 1° of a sign has exactly the same Rashi Drishti as a planet at 29° of that sign. This is fundamentally different from Parashari aspects where orb matters.",
-        "hi": "असत्य। जैमिनी दृष्टियाँ \"सम्पूर्ण राशि\" हैं — कोई ओर्ब नहीं और अंश पर आधारित कोई श्रेणीकरण नहीं। किसी राशि में 1° का ग्रह उसी राशि में 29° के ग्रह के बिल्कुल समान राशि दृष्टि रखता है। यह पाराशरी दृष्टियों से मूलतः भिन्न है जहाँ ओर्ब महत्त्वपूर्ण होता है।"
+        "en": "False. Jaimini aspects are \"whole sign\"  –  there are no orbs and no gradation based on degree. A planet at 1° of a sign has exactly the same Rashi Drishti as a planet at 29° of that sign. This is fundamentally different from Parashari aspects where orb matters.",
+        "hi": "असत्य। जैमिनी दृष्टियाँ \"सम्पूर्ण राशि\" हैं  –  कोई ओर्ब नहीं और अंश पर आधारित कोई श्रेणीकरण नहीं। किसी राशि में 1° का ग्रह उसी राशि में 29° के ग्रह के बिल्कुल समान राशि दृष्टि रखता है। यह पाराशरी दृष्टियों से मूलतः भिन्न है जहाँ ओर्ब महत्त्वपूर्ण होता है।"
       }
     },
     {
@@ -269,8 +269,8 @@
       ],
       "correctAnswer": 2,
       "explanation": {
-        "en": "Dual signs (Gemini, Virgo, Sagittarius, Pisces) aspect each other. Gemini aspects Virgo, Sagittarius, and Pisces — and vice versa. This is the simplest rule: duals see duals.",
-        "hi": "द्विस्वभाव राशियाँ (मिथुन, कन्या, धनु, मीन) एक-दूसरे को दृष्ट करती हैं। मिथुन कन्या, धनु और मीन को दृष्ट करता है — और इसका विपरीत भी। यह सरलतम नियम है: द्विस्वभाव द्विस्वभाव को देखते हैं।"
+        "en": "Dual signs (Gemini, Virgo, Sagittarius, Pisces) aspect each other. Gemini aspects Virgo, Sagittarius, and Pisces  –  and vice versa. This is the simplest rule: duals see duals.",
+        "hi": "द्विस्वभाव राशियाँ (मिथुन, कन्या, धनु, मीन) एक-दूसरे को दृष्ट करती हैं। मिथुन कन्या, धनु और मीन को दृष्ट करता है  –  और इसका विपरीत भी। यह सरलतम नियम है: द्विस्वभाव द्विस्वभाव को देखते हैं।"
       }
     },
     {
@@ -346,7 +346,7 @@
       "correctAnswer": 2,
       "explanation": {
         "en": "Aries (movable) aspects all fixed signs except the adjacent one. Taurus is adjacent to Aries, so Aries does NOT aspect Taurus. Aries aspects Leo, Scorpio, and Aquarius.",
-        "hi": "मेष (चर) सभी स्थिर राशियों को दृष्ट करता है — निकटवर्ती को छोड़कर। वृषभ मेष से निकटवर्ती है, अतः मेष वृषभ को दृष्ट नहीं करता। मेष सिंह, वृश्चिक और कुम्भ को दृष्ट करता है।"
+        "hi": "मेष (चर) सभी स्थिर राशियों को दृष्ट करता है  –  निकटवर्ती को छोड़कर। वृषभ मेष से निकटवर्ती है, अतः मेष वृषभ को दृष्ट नहीं करता। मेष सिंह, वृश्चिक और कुम्भ को दृष्ट करता है।"
       }
     },
     {
@@ -421,8 +421,8 @@
       },
       "correctAnswer": true,
       "explanation": {
-        "en": "True. Aries (movable) aspects fixed signs including Leo. Leo (fixed) aspects movable signs including Aries. The exception rule also works mutually — Aries doesn't aspect Taurus, and Taurus doesn't aspect Aries. All Jaimini aspects are inherently mutual.",
-        "hi": "सत्य। मेष (चर) स्थिर राशियों को दृष्ट करता है जिसमें सिंह सम्मिलित है। सिंह (स्थिर) चर राशियों को दृष्ट करता है जिसमें मेष सम्मिलित। अपवाद नियम भी पारस्परिक कार्य करता है — मेष वृषभ को दृष्ट नहीं करता, और वृषभ मेष को नहीं। सभी जैमिनी दृष्टियाँ स्वाभाविक रूप से पारस्परिक हैं।"
+        "en": "True. Aries (movable) aspects fixed signs including Leo. Leo (fixed) aspects movable signs including Aries. The exception rule also works mutually  –  Aries doesn't aspect Taurus, and Taurus doesn't aspect Aries. All Jaimini aspects are inherently mutual.",
+        "hi": "सत्य। मेष (चर) स्थिर राशियों को दृष्ट करता है जिसमें सिंह सम्मिलित है। सिंह (स्थिर) चर राशियों को दृष्ट करता है जिसमें मेष सम्मिलित। अपवाद नियम भी पारस्परिक कार्य करता है  –  मेष वृषभ को दृष्ट नहीं करता, और वृषभ मेष को नहीं। सभी जैमिनी दृष्टियाँ स्वाभाविक रूप से पारस्परिक हैं।"
       }
     },
     {
@@ -548,7 +548,7 @@
       "correctAnswer": 2,
       "explanation": {
         "en": "No. Scorpio (fixed) aspects all movable signs except the adjacent one. Libra is adjacent to Scorpio, so Scorpio does NOT aspect Libra. Similarly, Libra (movable) would aspect fixed signs except adjacent Scorpio. The adjacency exception blocks this aspect both ways.",
-        "hi": "नहीं। वृश्चिक (स्थिर) सभी चर राशियों को दृष्ट करता है — निकटवर्ती को छोड़कर। तुला वृश्चिक से निकटवर्ती है, अतः वृश्चिक तुला को दृष्ट नहीं करता। इसी प्रकार, तुला (चर) निकटवर्ती वृश्चिक को छोड़कर स्थिर राशियों को दृष्ट करेगा। निकटता का अपवाद दोनों दिशाओं में इस दृष्टि को अवरुद्ध करता है।"
+        "hi": "नहीं। वृश्चिक (स्थिर) सभी चर राशियों को दृष्ट करता है  –  निकटवर्ती को छोड़कर। तुला वृश्चिक से निकटवर्ती है, अतः वृश्चिक तुला को दृष्ट नहीं करता। इसी प्रकार, तुला (चर) निकटवर्ती वृश्चिक को छोड़कर स्थिर राशियों को दृष्ट करेगा। निकटता का अपवाद दोनों दिशाओं में इस दृष्टि को अवरुद्ध करता है।"
       }
     }
   ]

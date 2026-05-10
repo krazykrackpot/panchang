@@ -1,15 +1,15 @@
 {
   "title": {
-    "en": "Ashtakavarga — The Bindu Scoring System",
-    "hi": "अष्टकवर्ग — बिन्दु अंकन पद्धति",
-    "sa": "अष्टकवर्गः — बिन्दुगणनापद्धतिः",
-    "ta": "அஷ்டகவர்கம் — புள்ளி மதிப்பீட்டு முறை",
-    "te": "అష్టకవర్గం — బిందు స్కోరింగ్ వ్యవస్థ",
-    "bn": "অষ্টকবর্গ — বিন্দু স্কোরিং পদ্ধতি",
-    "kn": "ಅಷ್ಟಕವರ್ಗ — ಬಿಂದು ಸ್ಕೋರಿಂಗ್ ವ್ಯವಸ್ಥೆ",
-    "mr": "अष्टकवर्ग — बिंदू गणना पद्धत",
-    "gu": "અષ્ટકવર્ગ — બિંદુ ગણતરી પદ્ધતિ",
-    "mai": "अष्टकवर्ग — बिन्दु अंकन पद्धति"
+    "en": "Ashtakavarga  –  The Bindu Scoring System",
+    "hi": "अष्टकवर्ग  –  बिन्दु अंकन पद्धति",
+    "sa": "अष्टकवर्गः  –  बिन्दुगणनापद्धतिः",
+    "ta": "அஷ்டகவர்கம்  –  புள்ளி மதிப்பீட்டு முறை",
+    "te": "అష్టకవర్గం  –  బిందు స్కోరింగ్ వ్యవస్థ",
+    "bn": "অষ্টকবর্গ  –  বিন্দু স্কোরিং পদ্ধতি",
+    "kn": "ಅಷ್ಟಕವರ್ಗ  –  ಬಿಂದು ಸ್ಕೋರಿಂಗ್ ವ್ಯವಸ್ಥೆ",
+    "mr": "अष्टकवर्ग  –  बिंदू गणना पद्धत",
+    "gu": "અષ્ટકવર્ગ  –  બિંદુ ગણતરી પદ્ધતિ",
+    "mai": "अष्टकवर्ग  –  बिन्दु अंकन पद्धति"
   },
   "subtitle": {
     "en": "How 7 planets contribute beneficial points across 12 signs from 8 sources, creating a transit-prediction matrix that pinpoints favorable and challenging periods",
@@ -26,31 +26,31 @@
   "crossRefs": [
     {
       "label": {
-        "en": "Module 18-1: Shadbala — Planetary Strength",
-        "hi": "मॉड्यूल 18-1: षड्बल — ग्रह शक्ति",
-        "sa": "मॉड्यूल 18-1: षड्बल — ग्रह शक्ति",
-        "mai": "मॉड्यूल 18-1: षड्बल — ग्रह शक्ति",
-        "mr": "मॉड्यूल 18-1: षड्बल — ग्रह शक्ति",
-        "ta": "Module 18-1: Shadbala — Planetary Strength",
-        "te": "Module 18-1: Shadbala — Planetary Strength",
-        "bn": "Module 18-1: Shadbala — Planetary Strength",
-        "kn": "Module 18-1: Shadbala — Planetary Strength",
-        "gu": "Module 18-1: Shadbala — Planetary Strength"
+        "en": "Module 18-1: Shadbala  –  Planetary Strength",
+        "hi": "मॉड्यूल 18-1: षड्बल  –  ग्रह शक्ति",
+        "sa": "मॉड्यूल 18-1: षड्बल  –  ग्रह शक्ति",
+        "mai": "मॉड्यूल 18-1: षड्बल  –  ग्रह शक्ति",
+        "mr": "मॉड्यूल 18-1: षड्बल  –  ग्रह शक्ति",
+        "ta": "Module 18-1: Shadbala  –  Planetary Strength",
+        "te": "Module 18-1: Shadbala  –  Planetary Strength",
+        "bn": "Module 18-1: Shadbala  –  Planetary Strength",
+        "kn": "Module 18-1: Shadbala  –  Planetary Strength",
+        "gu": "Module 18-1: Shadbala  –  Planetary Strength"
       },
       "href": "/learn/modules/18-1"
     },
     {
       "label": {
-        "en": "Module 18-2: Bhavabala — House Strength",
-        "hi": "मॉड्यूल 18-2: भावबल — भाव शक्ति",
-        "sa": "मॉड्यूल 18-2: भावबल — भाव शक्ति",
-        "mai": "मॉड्यूल 18-2: भावबल — भाव शक्ति",
-        "mr": "मॉड्यूल 18-2: भावबल — भाव शक्ति",
-        "ta": "Module 18-2: Bhavabala — House Strength",
-        "te": "Module 18-2: Bhavabala — House Strength",
-        "bn": "Module 18-2: Bhavabala — House Strength",
-        "kn": "Module 18-2: Bhavabala — House Strength",
-        "gu": "Module 18-2: Bhavabala — House Strength"
+        "en": "Module 18-2: Bhavabala  –  House Strength",
+        "hi": "मॉड्यूल 18-2: भावबल  –  भाव शक्ति",
+        "sa": "मॉड्यूल 18-2: भावबल  –  भाव शक्ति",
+        "mai": "मॉड्यूल 18-2: भावबल  –  भाव शक्ति",
+        "mr": "मॉड्यूल 18-2: भावबल  –  भाव शक्ति",
+        "ta": "Module 18-2: Bhavabala  –  House Strength",
+        "te": "Module 18-2: Bhavabala  –  House Strength",
+        "bn": "Module 18-2: Bhavabala  –  House Strength",
+        "kn": "Module 18-2: Bhavabala  –  House Strength",
+        "gu": "Module 18-2: Bhavabala  –  House Strength"
       },
       "href": "/learn/modules/18-2"
     },

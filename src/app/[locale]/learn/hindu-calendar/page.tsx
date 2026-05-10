@@ -65,15 +65,15 @@ export default function LearnHinduCalendarPage() {
       </div>
 
       <KeyTakeaway locale={locale} points={[
-        'The Hindu calendar is lunisolar — it tracks both Moon phases and the Sun\'s zodiac position, unlike purely solar or lunar calendars.',
+        'The Hindu calendar is lunisolar  –  it tracks both Moon phases and the Sun\'s zodiac position, unlike purely solar or lunar calendars.',
         'Adhika Masa (intercalary month) is inserted every ~32.5 months to keep lunar months aligned with seasons.',
-        'Amanta and Purnimanta are two different starting conventions for the same months — they differ by region, not by content.',
+        'Amanta and Purnimanta are two different starting conventions for the same months  –  they differ by region, not by content.',
       ]} />
 
       <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
         <BeginnerNote term="Lunisolar" explanation="A calendar system that tracks both the Moon's phases (lunar) and the Sun's position (solar)" />
-        <BeginnerNote term="Sankranti" explanation="The Sun's transit from one zodiac sign to the next — there are 12 Sankrantis per year" />
-        <BeginnerNote term="Paksha" explanation="A lunar fortnight — Shukla (waxing, bright) and Krishna (waning, dark)" />
+        <BeginnerNote term="Sankranti" explanation="The Sun's transit from one zodiac sign to the next  –  there are 12 Sankrantis per year" />
+        <BeginnerNote term="Paksha" explanation="A lunar fortnight  –  Shukla (waxing, bright) and Krishna (waning, dark)" />
       </div>
 
       {/* ── Introduction ── */}

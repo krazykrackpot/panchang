@@ -80,7 +80,7 @@ export default function ELI5Panel({ kundali, locale }: ELI5PanelProps) {
         </p>
       </div>
 
-      {/* Section cards — all stacked vertically */}
+      {/* Section cards  –  all stacked vertically */}
       <div className="space-y-3">
         {result.sections.map((section, i) => (
           <SectionCard
@@ -95,8 +95,8 @@ export default function ELI5Panel({ kundali, locale }: ELI5PanelProps) {
       {/* Footer note */}
       <p className="text-text-secondary/50 text-xs text-center pt-4">
         {lang === 'hi'
-          ? 'यह सारांश है — पूरे विश्लेषण के लिए "Expert" मोड देखें।'
-          : 'This is a summary — switch to "Expert" mode for the full technical analysis.'}
+          ? 'यह सारांश है  –  पूरे विश्लेषण के लिए "Expert" मोड देखें।'
+          : 'This is a summary  –  switch to "Expert" mode for the full technical analysis.'}
       </p>
     </div>
   );

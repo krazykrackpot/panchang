@@ -5,7 +5,7 @@ import type { JournalFilters } from '@/types/journal';
 import type { DashaEntry } from '@/types/kundali';
 
 // ---------------------------------------------------------------------------
-// POST /api/journal — create or update today's journal entry
+// POST /api/journal  –  create or update today's journal entry
 // ---------------------------------------------------------------------------
 export async function POST(req: NextRequest) {
   const supabase = getServerSupabase();
@@ -98,7 +98,7 @@ export async function POST(req: NextRequest) {
     lng = Number(defaultLoc.lng);
     timezone = String(defaultLoc.timezone);
   } else {
-    // Don't fall back to birth location for panchang — birth location is for kundali,
+    // Don't fall back to birth location for panchang  –  birth location is for kundali,
     // panchang depends on where the user IS now. Ask them to set a panchang location.
     return NextResponse.json(
       { error: 'No location configured. Please set your panchang location in profile settings.' },
@@ -165,7 +165,7 @@ export async function POST(req: NextRequest) {
 }
 
 // ---------------------------------------------------------------------------
-// GET /api/journal — list journal entries with optional filters
+// GET /api/journal  –  list journal entries with optional filters
 // ---------------------------------------------------------------------------
 export async function GET(req: NextRequest) {
   const supabase = getServerSupabase();

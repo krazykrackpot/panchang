@@ -72,8 +72,8 @@ function Page1() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>चिकित्सा ज्योतिष (Medical Astrology) वैदिक ज्योतिष की वह शाखा है जो जन्म कुण्डली से स्वास्थ्य प्रवृत्तियों, रोग सम्भावनाओं और उपचार समय का विश्लेषण करती है। आयुर्वेद और ज्योतिष में मौलिक सम्बन्ध है — दोनों पंचभूत (पाँच तत्व) और त्रिदोष (वात, पित्त, कफ) सिद्धान्त पर आधारित हैं। प्रत्येक ग्रह विशिष्ट शारीरिक अंगों, अंग प्रणालियों और रोग प्रकारों से सम्बन्धित है।</>
-            : <>Medical Jyotish is the branch of Vedic astrology that analyzes health tendencies, disease probabilities, and healing timing from the birth chart. There is a fundamental connection between Ayurveda and Jyotish — both are based on the Pancha Bhuta (five elements) and Tridosha (Vata, Pitta, Kapha) theory. Each planet corresponds to specific body parts, organ systems, and disease types.</>}
+            ? <>चिकित्सा ज्योतिष (Medical Astrology) वैदिक ज्योतिष की वह शाखा है जो जन्म कुण्डली से स्वास्थ्य प्रवृत्तियों, रोग सम्भावनाओं और उपचार समय का विश्लेषण करती है। आयुर्वेद और ज्योतिष में मौलिक सम्बन्ध है  –  दोनों पंचभूत (पाँच तत्व) और त्रिदोष (वात, पित्त, कफ) सिद्धान्त पर आधारित हैं। प्रत्येक ग्रह विशिष्ट शारीरिक अंगों, अंग प्रणालियों और रोग प्रकारों से सम्बन्धित है।</>
+            : <>Medical Jyotish is the branch of Vedic astrology that analyzes health tendencies, disease probabilities, and healing timing from the birth chart. There is a fundamental connection between Ayurveda and Jyotish  –  both are based on the Pancha Bhuta (five elements) and Tridosha (Vata, Pitta, Kapha) theory. Each planet corresponds to specific body parts, organ systems, and disease types.</>}
         </p>
       </section>
 
@@ -116,8 +116,8 @@ function Page2() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
-            ? <>मेष = सिर, वृषभ = मुख/गला, मिथुन = भुजाएँ/फेफड़े, कर्क = छाती/पेट, सिंह = हृदय/पीठ, कन्या = आँतें/तन्त्रिकाएँ, तुला = गुर्दे/कमर, वृश्चिक = प्रजनन अंग, धनु = जंघाएँ/कूल्हे, मकर = घुटने/हड्डियाँ, कुम्भ = पिण्डलियाँ/टखने, मीन = पैर/लसीका तन्त्र। यह "काल पुरुष" (ब्रह्माण्डीय पुरुष) सिद्धान्त है — मेष सिर से प्रारम्भ होता है और मीन पैरों पर समाप्त होता है।</>
-            : <>Aries = head, Taurus = face/throat, Gemini = arms/lungs, Cancer = chest/stomach, Leo = heart/back, Virgo = intestines/nerves, Libra = kidneys/lower back, Scorpio = reproductive organs, Sagittarius = thighs/hips, Capricorn = knees/bones, Aquarius = calves/ankles, Pisces = feet/lymphatic system. This is the &quot;Kalapurusha&quot; (cosmic person) principle — Aries begins at the head and Pisces ends at the feet.</>}
+            ? <>मेष = सिर, वृषभ = मुख/गला, मिथुन = भुजाएँ/फेफड़े, कर्क = छाती/पेट, सिंह = हृदय/पीठ, कन्या = आँतें/तन्त्रिकाएँ, तुला = गुर्दे/कमर, वृश्चिक = प्रजनन अंग, धनु = जंघाएँ/कूल्हे, मकर = घुटने/हड्डियाँ, कुम्भ = पिण्डलियाँ/टखने, मीन = पैर/लसीका तन्त्र। यह "काल पुरुष" (ब्रह्माण्डीय पुरुष) सिद्धान्त है  –  मेष सिर से प्रारम्भ होता है और मीन पैरों पर समाप्त होता है।</>
+            : <>Aries = head, Taurus = face/throat, Gemini = arms/lungs, Cancer = chest/stomach, Leo = heart/back, Virgo = intestines/nerves, Libra = kidneys/lower back, Scorpio = reproductive organs, Sagittarius = thighs/hips, Capricorn = knees/bones, Aquarius = calves/ankles, Pisces = feet/lymphatic system. This is the &quot;Kalapurusha&quot; (cosmic person) principle  –  Aries begins at the head and Pisces ends at the feet.</>}
         </p>
       </section>
 
@@ -155,8 +155,8 @@ function Page3() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <>BPHS में आयुर्दाय (आयु गणना) के कई सूत्र हैं। तीन श्रेणियाँ हैं: अल्पायु (0-32), मध्यायु (32-64), और दीर्घायु (64-100+)। लग्नेश, 8वें भावेश, और शनि की स्थिति इसमें प्रमुख हैं। हालाँकि, आधुनिक ज्योतिषी आयु भविष्यवाणी में अत्यन्त सतर्क रहते हैं — चिकित्सा विज्ञान ने जीवनकाल को मूलभूत रूप से बदल दिया है, और किसी की मृत्यु का समय बताना नैतिक रूप से संवेदनशील विषय है।</>
-            : <>BPHS contains multiple formulas for Ayurdaya (lifespan calculation). Three categories exist: Alpaayu (0-32), Madhyaayu (32-64), and Deerghayu (64-100+). The Lagna lord, 8th lord, and Saturn&apos;s position are key factors. However, modern astrologers are extremely cautious with longevity prediction — medical science has fundamentally changed lifespans, and predicting someone&apos;s death is an ethically sensitive matter that responsible astrologers approach with great care.</>}
+            ? <>BPHS में आयुर्दाय (आयु गणना) के कई सूत्र हैं। तीन श्रेणियाँ हैं: अल्पायु (0-32), मध्यायु (32-64), और दीर्घायु (64-100+)। लग्नेश, 8वें भावेश, और शनि की स्थिति इसमें प्रमुख हैं। हालाँकि, आधुनिक ज्योतिषी आयु भविष्यवाणी में अत्यन्त सतर्क रहते हैं  –  चिकित्सा विज्ञान ने जीवनकाल को मूलभूत रूप से बदल दिया है, और किसी की मृत्यु का समय बताना नैतिक रूप से संवेदनशील विषय है।</>
+            : <>BPHS contains multiple formulas for Ayurdaya (lifespan calculation). Three categories exist: Alpaayu (0-32), Madhyaayu (32-64), and Deerghayu (64-100+). The Lagna lord, 8th lord, and Saturn&apos;s position are key factors. However, modern astrologers are extremely cautious with longevity prediction  –  medical science has fundamentally changed lifespans, and predicting someone&apos;s death is an ethically sensitive matter that responsible astrologers approach with great care.</>}
         </p>
       </section>
     </div>

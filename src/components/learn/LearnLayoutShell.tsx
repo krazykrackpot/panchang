@@ -7,7 +7,7 @@ import LearnSidebarMobile from './LearnSidebarMobile';
 export default function LearnLayoutShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-[calc(100vh-80px)]">
-      {/* Desktop sidebar — hidden on mobile */}
+      {/* Desktop sidebar  –  hidden on mobile */}
       <div className="hidden lg:flex sticky top-20 h-[calc(100vh-80px)]">
         <LearnSidebar />
       </div>

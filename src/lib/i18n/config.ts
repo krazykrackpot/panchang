@@ -1,11 +1,11 @@
 // All supported locales (routing + generation)
-// sa (Sanskrit) and mr (Marathi) retired — insufficient translations.
-// mai (Maithili) re-enabled Apr 2026 — GSC shows strong Maithili traffic.
+// sa (Sanskrit) and mr (Marathi) retired  –  insufficient translations.
+// mai (Maithili) re-enabled Apr 2026  –  GSC shows strong Maithili traffic.
 export const locales = ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai'] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = 'en';
 
-// Retired locales — middleware redirects these to 'en' equivalent
+// Retired locales  –  middleware redirects these to 'en' equivalent
 export const retiredLocales = ['sa', 'mr'] as const;
 
 // Locales visible in the language picker and generated at build time.

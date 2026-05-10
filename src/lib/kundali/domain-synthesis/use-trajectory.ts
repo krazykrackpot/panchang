@@ -1,5 +1,5 @@
 /**
- * useTrajectory — hook for fetching reading history and computing trajectory.
+ * useTrajectory  –  hook for fetching reading history and computing trajectory.
  *
  * After `synthesizeReading()` succeeds for a logged-in user:
  *  1. POSTs current scores to /api/user/readings
@@ -123,7 +123,7 @@ export function useTrajectory(): UseTrajectoryResult {
           }),
         });
       } catch (postErr) {
-        // POST failure is non-fatal — we can still fetch existing history
+        // POST failure is non-fatal  –  we can still fetch existing history
         console.warn('[trajectory] POST scores failed, continuing with existing history:', postErr);
       }
 

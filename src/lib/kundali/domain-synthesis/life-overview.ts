@@ -1,7 +1,7 @@
 /**
  * Life Overview Generator
  *
- * Produces a 2-3 sentence "elevator pitch" of the native's chart —
+ * Produces a 2-3 sentence "elevator pitch" of the native's chart  – 
  * the kind of opening summary a pandit would give before diving into details.
  *
  * Planet IDs: 0=Sun, 1=Moon, 2=Mars, 3=Mercury, 4=Jupiter,
@@ -29,7 +29,7 @@ export interface OverviewInput {
 }
 
 // ---------------------------------------------------------------------------
-// Static lookup maps (hoisted to module level — never inline in render paths)
+// Static lookup maps (hoisted to module level  –  never inline in render paths)
 // ---------------------------------------------------------------------------
 
 /** Soul-archetype associated with each Atmakaraka */
@@ -57,7 +57,7 @@ const AK_ARCHETYPE_HI: Record<number, string> = {
   8: 'एक साधक',
 };
 
-/** Dasha lord energy — how the planet colors a Mahadasha PERIOD (distinct from AK soul-purpose) */
+/** Dasha lord energy  –  how the planet colors a Mahadasha PERIOD (distinct from AK soul-purpose) */
 const DASHA_LORD_EN: Record<number, string> = {
   0: 'authority, visibility, and self-realization',
   1: 'emotional depth, public connection, and nurturing',
@@ -199,12 +199,12 @@ export function generateLifeOverview(input: OverviewInput): LocaleText {
   const en =
     `You are fundamentally ${akEn}, with ${signEn} as your core nature. ` +
     `Your greatest strength lies in ${houseEn}. ` +
-    `This is your ${phaseEn} phase — your current Mahadasha themes are ${dashaEn}.`;
+    `This is your ${phaseEn} phase  –  your current Mahadasha themes are ${dashaEn}.`;
 
   const hi =
     `आप मूलतः ${akHi} हैं, और ${signHi} आपकी मूल प्रकृति है। ` +
     `आपकी सबसे बड़ी शक्ति ${houseHi} में निहित है। ` +
-    `यह आपका ${phaseHi} चरण है — आपकी वर्तमान महादशा के विषय हैं ${dashaHi}।`;
+    `यह आपका ${phaseHi} चरण है  –  आपकी वर्तमान महादशा के विषय हैं ${dashaHi}।`;
 
   return { en, hi };
 }

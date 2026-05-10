@@ -227,7 +227,7 @@ export function generateKundaliPrintHtml(kundali: KundaliData, locale: Locale): 
   }
 
   return `
-    <h1${devaClass}>${locale === 'en' ? 'Vedic Birth Chart' : 'वैदिक जन्मकुण्डली'} — ${name}</h1>
+    <h1${devaClass}>${locale === 'en' ? 'Vedic Birth Chart' : 'वैदिक जन्मकुण्डली'}  –  ${name}</h1>
     ${birthTable}
     ${ascInfo}
     ${planetTable}

@@ -1,5 +1,5 @@
 /**
- * Special Lagnas — Hora, Ghati, Sree, Indu, Pranapada, Varnada
+ * Special Lagnas  –  Hora, Ghati, Sree, Indu, Pranapada, Varnada
  * Reference: BPHS Ch.4-5, Jaimini Sutras
  */
 
@@ -69,10 +69,10 @@ function obliquity(jd: number): number {
  * @param sunriseUT - UT decimal hours of sunrise
  * @param birthTimeUT - UT decimal hours of birth
  * @param ascSign - Ascendant sign (1-12)
- * @param jd - Julian Day of birth (optional — needed for latitude-corrected Hora Lagna)
- * @param lat - Geographic latitude in degrees (optional — needed for latitude-corrected Hora Lagna)
- * @param lng - Geographic longitude in degrees (optional — needed for latitude-corrected Hora Lagna)
- * @param ayanamsha - Ayanamsha value in degrees (optional — needed for sidereal conversion of Hora Lagna)
+ * @param jd - Julian Day of birth (optional  –  needed for latitude-corrected Hora Lagna)
+ * @param lat - Geographic latitude in degrees (optional  –  needed for latitude-corrected Hora Lagna)
+ * @param lng - Geographic longitude in degrees (optional  –  needed for latitude-corrected Hora Lagna)
+ * @param ayanamsha - Ayanamsha value in degrees (optional  –  needed for sidereal conversion of Hora Lagna)
  */
 export function calculateSpecialLagnas(
   ascDeg: number,
@@ -99,14 +99,14 @@ export function calculateSpecialLagnas(
   // The Hora Lagna moment = sunrise + (hoursFromSunrise * 2.5), i.e. the HL clock
   // runs 2.5× faster than real time. We compute LST at that fictitious moment and
   // derive the ascendant (= Hora Lagna) using the standard RAMC + obliquity + latitude
-  // formula — the same formula that computes the birth ascendant.
+  // formula  –  the same formula that computes the birth ascendant.
   let horaLagnaDeg: number;
   if (jd != null && lat != null && lng != null && ayanamsha != null) {
     // Hora Lagna "elapsed hours" in sidereal-time units:
     // HL advances at 2.5× the rate of real time. The LST at the Hora Lagna moment
     // is LST_sunrise + hoursFromSunrise * 2.5 * (360/24) in degrees.
     // But since LST already advances at 360°/24h, we just need the LST at
-    // (jdSunrise + hoursFromSunrise * 2.5 / 24) in JD — this is the fictitious
+    // (jdSunrise + hoursFromSunrise * 2.5 / 24) in JD  –  this is the fictitious
     // JD at which the HL clock has "arrived".
     const jdSunrise = jd + (sunriseUT - birthTimeUT) / 24;
     const horaJd = jdSunrise + (hoursFromSunrise * 2.5) / 24;
@@ -127,7 +127,7 @@ export function calculateSpecialLagnas(
   // 1 ghati = 24 minutes; 1 ghati → 1 sign = 30°.
   //
   // HISTORICAL BUG (now fixed): the formula used (360/60) = 6° per ghati,
-  // which is the rate of the full zodiac completing in 60 ghatis — that is the
+  // which is the rate of the full zodiac completing in 60 ghatis  –  that is the
   // ascendant's rate for Hora Lagna, NOT Ghati Lagna.  Using 6°/ghati instead
   // of 30°/ghati produced a GL five times too slow, placing it in the wrong
   // sign in most charts.

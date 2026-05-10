@@ -1,5 +1,5 @@
 /**
- * Integration tests for muhurta scoring — Dur Muhurtam, Abhijit, Varjyam, Vishti.
+ * Integration tests for muhurta scoring  –  Dur Muhurtam, Abhijit, Varjyam, Vishti.
  *
  * These verify that the scoring engine correctly applies bonuses/penalties
  * for periods that were previously computed but not integrated.
@@ -11,7 +11,7 @@ import {
   computeDurMuhurtam,
   isVarjyamActive,
 } from '@/lib/muhurta/inauspicious-periods';
-// scoreTimingFactors removed — legacy additive scorer replaced by engine/rules/kaala.ts
+// scoreTimingFactors removed  –  legacy additive scorer replaced by engine/rules/kaala.ts
 // Tests below that used it are commented out; equivalent tests in muhurta-engine-core.test.ts
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
 import { DUR_MUHURTAM_A } from '@/lib/constants/dur-muhurtam';
@@ -96,7 +96,7 @@ describe('Varjyam integration', () => {
   });
 });
 
-// Abhijit Muhurta bonus tests removed — legacy scoreTimingFactors replaced
+// Abhijit Muhurta bonus tests removed  –  legacy scoreTimingFactors replaced
 // by engine/rules/kaala.ts abhijit-muhurta rule. Tested in muhurta-engine-core.test.ts.
 
 describe('Vishti penalty balance', () => {

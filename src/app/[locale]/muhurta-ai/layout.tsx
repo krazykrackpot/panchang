@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const toolLD = generateToolLD(
-    'Muhurta AI — Auspicious Time Finder',
+    'Muhurta AI  –  Auspicious Time Finder',
     'AI-powered muhurta scanner for finding the best dates and times for important activities.',
     `https://dekhopanchang.com/${locale}/muhurta-ai`,
   );

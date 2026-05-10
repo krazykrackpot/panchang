@@ -12,16 +12,16 @@
     "mai": "सम्पत्ति एवं यात्रा मुहूर्त"
   },
   "subtitle": {
-    "en": "Griha Pravesh, vehicle purchase, and travel muhurta — Bhoomi Dosha, Disha Shool, Tara Bala, and Chandrabala",
-    "hi": "गृह प्रवेश, वाहन क्रय और यात्रा मुहूर्त — भूमि दोष, दिशा शूल, तारा बल और चन्द्र बल",
-    "sa": "गृहप्रवेशः, वाहनक्रयः, यात्रामुहूर्तः — भूमिदोषः, दिशाशूलम्, ताराबलम्, चन्द्रबलं च",
-    "ta": "கிரகப்பிரவேசம், வாகனம் வாங்குதல், பயண முகூர்த்தம் — பூமி தோஷம், திசை சூலம், தாரா பலம் மற்றும் சந்திர பலம்",
-    "te": "గృహ ప్రవేశం, వాహన కొనుగోలు, ప్రయాణ ముహూర్తం — భూమి దోషం, దిశా శూలం, తారా బలం మరియు చంద్ర బలం",
-    "bn": "গৃহ প্রবেশ, যানবাহন ক্রয়, ভ্রমণ মুহূর্ত — ভূমি দোষ, দিশা শূল, তারা বল এবং চন্দ্র বল",
-    "kn": "ಗೃಹ ಪ್ರವೇಶ, ವಾಹನ ಖರೀದಿ, ಪ್ರಯಾಣ ಮುಹೂರ್ತ — ಭೂಮಿ ದೋಷ, ದಿಶಾ ಶೂಲ, ತಾರಾ ಬಲ ಮತ್ತು ಚಂದ್ರ ಬಲ",
-    "mr": "गृह प्रवेश, वाहन खरेदी, प्रवास मुहूर्त — भूमी दोष, दिशा शूल, तारा बल आणि चंद्र बल",
-    "gu": "ગૃહ પ્રવેશ, વાહન ખરીદી, મુસાફરી મુહૂર્ત — ભૂમિ દોષ, દિશા શૂળ, તારા બળ અને ચંદ્ર બળ",
-    "mai": "गृह प्रवेश, वाहन क्रय, यात्रा मुहूर्त — भूमि दोष, दिशा शूल, तारा बल आ चन्द्र बल"
+    "en": "Griha Pravesh, vehicle purchase, and travel muhurta  –  Bhoomi Dosha, Disha Shool, Tara Bala, and Chandrabala",
+    "hi": "गृह प्रवेश, वाहन क्रय और यात्रा मुहूर्त  –  भूमि दोष, दिशा शूल, तारा बल और चन्द्र बल",
+    "sa": "गृहप्रवेशः, वाहनक्रयः, यात्रामुहूर्तः  –  भूमिदोषः, दिशाशूलम्, ताराबलम्, चन्द्रबलं च",
+    "ta": "கிரகப்பிரவேசம், வாகனம் வாங்குதல், பயண முகூர்த்தம்  –  பூமி தோஷம், திசை சூலம், தாரா பலம் மற்றும் சந்திர பலம்",
+    "te": "గృహ ప్రవేశం, వాహన కొనుగోలు, ప్రయాణ ముహూర్తం  –  భూమి దోషం, దిశా శూలం, తారా బలం మరియు చంద్ర బలం",
+    "bn": "গৃহ প্রবেশ, যানবাহন ক্রয়, ভ্রমণ মুহূর্ত  –  ভূমি দোষ, দিশা শূল, তারা বল এবং চন্দ্র বল",
+    "kn": "ಗೃಹ ಪ್ರವೇಶ, ವಾಹನ ಖರೀದಿ, ಪ್ರಯಾಣ ಮುಹೂರ್ತ  –  ಭೂಮಿ ದೋಷ, ದಿಶಾ ಶೂಲ, ತಾರಾ ಬಲ ಮತ್ತು ಚಂದ್ರ ಬಲ",
+    "mr": "गृह प्रवेश, वाहन खरेदी, प्रवास मुहूर्त  –  भूमी दोष, दिशा शूल, तारा बल आणि चंद्र बल",
+    "gu": "ગૃહ પ્રવેશ, વાહન ખરીદી, મુસાફરી મુહૂર્ત  –  ભૂમિ દોષ, દિશા શૂળ, તારા બળ અને ચંદ્ર બળ",
+    "mai": "गृह प्रवेश, वाहन क्रय, यात्रा मुहूर्त  –  भूमि दोष, दिशा शूल, तारा बल आ चन्द्र बल"
   },
   "crossRefs": [
     {
@@ -103,16 +103,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Dhanishtha, Uttara Phalguni, Uttarabhadrapada, and Rohini are the primary nakshatras for Griha Pravesh. These are Dhruva (fixed/stable) nakshatras — ideal for permanent works like entering a new home. Stability in the home is the key quality sought.",
-        "hi": "धनिष्ठा, उत्तरा फाल्गुनी, उत्तरा भाद्रपद और रोहिणी गृह प्रवेश के प्राथमिक नक्षत्र हैं। ये ध्रुव (स्थिर) नक्षत्र हैं — नए घर में प्रवेश जैसे स्थायी कार्यों के लिए आदर्श।",
-        "sa": "धनिष्ठा, उत्तरा फाल्गुनी, उत्तरा भाद्रपद और रोहिणी गृह प्रवेश के प्राथमिक नक्षत्र हैं। ये ध्रुव (स्थिर) नक्षत्र हैं — नए घर में प्रवेश जैसे स्थायी कार्यों के लिए आदर्श।",
-        "ta": "Dhanishtha, Uttara Phalguni, Uttarabhadrapada, and Rohini are the primary nakshatras for Griha Pravesh. These are Dhruva (fixed/stable) nakshatras — ideal for permanent works like entering a new home. Stability in the home is the key quality sought.",
-        "te": "Dhanishtha, Uttara Phalguni, Uttarabhadrapada, and Rohini are the primary nakshatras for Griha Pravesh. These are Dhruva (fixed/stable) nakshatras — ideal for permanent works like entering a new home. Stability in the home is the key quality sought.",
-        "bn": "Dhanishtha, Uttara Phalguni, Uttarabhadrapada, and Rohini are the primary nakshatras for Griha Pravesh. These are Dhruva (fixed/stable) nakshatras — ideal for permanent works like entering a new home. Stability in the home is the key quality sought.",
-        "kn": "Dhanishtha, Uttara Phalguni, Uttarabhadrapada, and Rohini are the primary nakshatras for Griha Pravesh. These are Dhruva (fixed/stable) nakshatras — ideal for permanent works like entering a new home. Stability in the home is the key quality sought.",
-        "mr": "धनिष्ठा, उत्तरा फाल्गुनी, उत्तरा भाद्रपद और रोहिणी गृह प्रवेश के प्राथमिक नक्षत्र हैं। ये ध्रुव (स्थिर) नक्षत्र हैं — नए घर में प्रवेश जैसे स्थायी कार्यों के लिए आदर्श।",
-        "gu": "Dhanishtha, Uttara Phalguni, Uttarabhadrapada, and Rohini are the primary nakshatras for Griha Pravesh. These are Dhruva (fixed/stable) nakshatras — ideal for permanent works like entering a new home. Stability in the home is the key quality sought.",
-        "mai": "धनिष्ठा, उत्तरा फाल्गुनी, उत्तरा भाद्रपद और रोहिणी गृह प्रवेश के प्राथमिक नक्षत्र हैं। ये ध्रुव (स्थिर) नक्षत्र हैं — नए घर में प्रवेश जैसे स्थायी कार्यों के लिए आदर्श।"
+        "en": "Dhanishtha, Uttara Phalguni, Uttarabhadrapada, and Rohini are the primary nakshatras for Griha Pravesh. These are Dhruva (fixed/stable) nakshatras  –  ideal for permanent works like entering a new home. Stability in the home is the key quality sought.",
+        "hi": "धनिष्ठा, उत्तरा फाल्गुनी, उत्तरा भाद्रपद और रोहिणी गृह प्रवेश के प्राथमिक नक्षत्र हैं। ये ध्रुव (स्थिर) नक्षत्र हैं  –  नए घर में प्रवेश जैसे स्थायी कार्यों के लिए आदर्श।",
+        "sa": "धनिष्ठा, उत्तरा फाल्गुनी, उत्तरा भाद्रपद और रोहिणी गृह प्रवेश के प्राथमिक नक्षत्र हैं। ये ध्रुव (स्थिर) नक्षत्र हैं  –  नए घर में प्रवेश जैसे स्थायी कार्यों के लिए आदर्श।",
+        "ta": "Dhanishtha, Uttara Phalguni, Uttarabhadrapada, and Rohini are the primary nakshatras for Griha Pravesh. These are Dhruva (fixed/stable) nakshatras  –  ideal for permanent works like entering a new home. Stability in the home is the key quality sought.",
+        "te": "Dhanishtha, Uttara Phalguni, Uttarabhadrapada, and Rohini are the primary nakshatras for Griha Pravesh. These are Dhruva (fixed/stable) nakshatras  –  ideal for permanent works like entering a new home. Stability in the home is the key quality sought.",
+        "bn": "Dhanishtha, Uttara Phalguni, Uttarabhadrapada, and Rohini are the primary nakshatras for Griha Pravesh. These are Dhruva (fixed/stable) nakshatras  –  ideal for permanent works like entering a new home. Stability in the home is the key quality sought.",
+        "kn": "Dhanishtha, Uttara Phalguni, Uttarabhadrapada, and Rohini are the primary nakshatras for Griha Pravesh. These are Dhruva (fixed/stable) nakshatras  –  ideal for permanent works like entering a new home. Stability in the home is the key quality sought.",
+        "mr": "धनिष्ठा, उत्तरा फाल्गुनी, उत्तरा भाद्रपद और रोहिणी गृह प्रवेश के प्राथमिक नक्षत्र हैं। ये ध्रुव (स्थिर) नक्षत्र हैं  –  नए घर में प्रवेश जैसे स्थायी कार्यों के लिए आदर्श।",
+        "gu": "Dhanishtha, Uttara Phalguni, Uttarabhadrapada, and Rohini are the primary nakshatras for Griha Pravesh. These are Dhruva (fixed/stable) nakshatras  –  ideal for permanent works like entering a new home. Stability in the home is the key quality sought.",
+        "mai": "धनिष्ठा, उत्तरा फाल्गुनी, उत्तरा भाद्रपद और रोहिणी गृह प्रवेश के प्राथमिक नक्षत्र हैं। ये ध्रुव (स्थिर) नक्षत्र हैं  –  नए घर में प्रवेश जैसे स्थायी कार्यों के लिए आदर्श।"
       },
       "options": [
         {
@@ -290,16 +290,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Monday (Moon — emotional comfort), Wednesday (Mercury — communication), Thursday (Jupiter — blessings, growth), and Friday (Venus — luxury, beauty) are preferred for Griha Pravesh. Saturday (Saturn — delays) and Tuesday (Mars — conflict) are generally avoided for house entry.",
-        "hi": "सोमवार (चन्द्र — भावनात्मक सुख), बुधवार (बुध — संवाद), गुरुवार (बृहस्पति — आशीर्वाद), और शुक्रवार (शुक्र — विलासिता) गृह प्रवेश के लिए प्राथमिक हैं। शनिवार (शनि — विलम्ब) और मंगलवार (मंगल — संघर्ष) सामान्यतः टाले जाते हैं।",
-        "sa": "सोमवार (चन्द्र — भावनात्मक सुख), बुधवार (बुध — संवाद), गुरुवार (बृहस्पति — आशीर्वाद), और शुक्रवार (शुक्र — विलासिता) गृह प्रवेश के लिए प्राथमिक हैं। शनिवार (शनि — विलम्ब) और मंगलवार (मंगल — संघर्ष) सामान्यतः टाले जाते हैं।",
-        "ta": "Monday (Moon — emotional comfort), Wednesday (Mercury — communication), Thursday (Jupiter — blessings, growth), and Friday (Venus — luxury, beauty) are preferred for Griha Pravesh. Saturday (Saturn — delays) and Tuesday (Mars — conflict) are generally avoided for house entry.",
-        "te": "Monday (Moon — emotional comfort), Wednesday (Mercury — communication), Thursday (Jupiter — blessings, growth), and Friday (Venus — luxury, beauty) are preferred for Griha Pravesh. Saturday (Saturn — delays) and Tuesday (Mars — conflict) are generally avoided for house entry.",
-        "bn": "Monday (Moon — emotional comfort), Wednesday (Mercury — communication), Thursday (Jupiter — blessings, growth), and Friday (Venus — luxury, beauty) are preferred for Griha Pravesh. Saturday (Saturn — delays) and Tuesday (Mars — conflict) are generally avoided for house entry.",
-        "kn": "Monday (Moon — emotional comfort), Wednesday (Mercury — communication), Thursday (Jupiter — blessings, growth), and Friday (Venus — luxury, beauty) are preferred for Griha Pravesh. Saturday (Saturn — delays) and Tuesday (Mars — conflict) are generally avoided for house entry.",
-        "mr": "सोमवार (चन्द्र — भावनात्मक सुख), बुधवार (बुध — संवाद), गुरुवार (बृहस्पति — आशीर्वाद), और शुक्रवार (शुक्र — विलासिता) गृह प्रवेश के लिए प्राथमिक हैं। शनिवार (शनि — विलम्ब) और मंगलवार (मंगल — संघर्ष) सामान्यतः टाले जाते हैं।",
-        "gu": "Monday (Moon — emotional comfort), Wednesday (Mercury — communication), Thursday (Jupiter — blessings, growth), and Friday (Venus — luxury, beauty) are preferred for Griha Pravesh. Saturday (Saturn — delays) and Tuesday (Mars — conflict) are generally avoided for house entry.",
-        "mai": "सोमवार (चन्द्र — भावनात्मक सुख), बुधवार (बुध — संवाद), गुरुवार (बृहस्पति — आशीर्वाद), और शुक्रवार (शुक्र — विलासिता) गृह प्रवेश के लिए प्राथमिक हैं। शनिवार (शनि — विलम्ब) और मंगलवार (मंगल — संघर्ष) सामान्यतः टाले जाते हैं।"
+        "en": "Monday (Moon  –  emotional comfort), Wednesday (Mercury  –  communication), Thursday (Jupiter  –  blessings, growth), and Friday (Venus  –  luxury, beauty) are preferred for Griha Pravesh. Saturday (Saturn  –  delays) and Tuesday (Mars  –  conflict) are generally avoided for house entry.",
+        "hi": "सोमवार (चन्द्र  –  भावनात्मक सुख), बुधवार (बुध  –  संवाद), गुरुवार (बृहस्पति  –  आशीर्वाद), और शुक्रवार (शुक्र  –  विलासिता) गृह प्रवेश के लिए प्राथमिक हैं। शनिवार (शनि  –  विलम्ब) और मंगलवार (मंगल  –  संघर्ष) सामान्यतः टाले जाते हैं।",
+        "sa": "सोमवार (चन्द्र  –  भावनात्मक सुख), बुधवार (बुध  –  संवाद), गुरुवार (बृहस्पति  –  आशीर्वाद), और शुक्रवार (शुक्र  –  विलासिता) गृह प्रवेश के लिए प्राथमिक हैं। शनिवार (शनि  –  विलम्ब) और मंगलवार (मंगल  –  संघर्ष) सामान्यतः टाले जाते हैं।",
+        "ta": "Monday (Moon  –  emotional comfort), Wednesday (Mercury  –  communication), Thursday (Jupiter  –  blessings, growth), and Friday (Venus  –  luxury, beauty) are preferred for Griha Pravesh. Saturday (Saturn  –  delays) and Tuesday (Mars  –  conflict) are generally avoided for house entry.",
+        "te": "Monday (Moon  –  emotional comfort), Wednesday (Mercury  –  communication), Thursday (Jupiter  –  blessings, growth), and Friday (Venus  –  luxury, beauty) are preferred for Griha Pravesh. Saturday (Saturn  –  delays) and Tuesday (Mars  –  conflict) are generally avoided for house entry.",
+        "bn": "Monday (Moon  –  emotional comfort), Wednesday (Mercury  –  communication), Thursday (Jupiter  –  blessings, growth), and Friday (Venus  –  luxury, beauty) are preferred for Griha Pravesh. Saturday (Saturn  –  delays) and Tuesday (Mars  –  conflict) are generally avoided for house entry.",
+        "kn": "Monday (Moon  –  emotional comfort), Wednesday (Mercury  –  communication), Thursday (Jupiter  –  blessings, growth), and Friday (Venus  –  luxury, beauty) are preferred for Griha Pravesh. Saturday (Saturn  –  delays) and Tuesday (Mars  –  conflict) are generally avoided for house entry.",
+        "mr": "सोमवार (चन्द्र  –  भावनात्मक सुख), बुधवार (बुध  –  संवाद), गुरुवार (बृहस्पति  –  आशीर्वाद), और शुक्रवार (शुक्र  –  विलासिता) गृह प्रवेश के लिए प्राथमिक हैं। शनिवार (शनि  –  विलम्ब) और मंगलवार (मंगल  –  संघर्ष) सामान्यतः टाले जाते हैं।",
+        "gu": "Monday (Moon  –  emotional comfort), Wednesday (Mercury  –  communication), Thursday (Jupiter  –  blessings, growth), and Friday (Venus  –  luxury, beauty) are preferred for Griha Pravesh. Saturday (Saturn  –  delays) and Tuesday (Mars  –  conflict) are generally avoided for house entry.",
+        "mai": "सोमवार (चन्द्र  –  भावनात्मक सुख), बुधवार (बुध  –  संवाद), गुरुवार (बृहस्पति  –  आशीर्वाद), और शुक्रवार (शुक्र  –  विलासिता) गृह प्रवेश के लिए प्राथमिक हैं। शनिवार (शनि  –  विलम्ब) और मंगलवार (मंगल  –  संघर्ष) सामान्यतः टाले जाते हैं।"
       },
       "options": [
         {
@@ -502,16 +502,16 @@
           "mai": "एक प्रकार का योग संयोजन"
         },
         {
-          "en": "A directional defect based on the weekday — certain directions are inauspicious on specific days",
-          "hi": "वार पर आधारित दिशात्मक दोष — विशिष्ट दिनों में कुछ दिशाएँ अशुभ हैं",
-          "sa": "वार पर आधारित दिशात्मक दोष — विशिष्ट दिनों में कुछ दिशाएँ अशुभ हैं",
-          "ta": "A directional defect based on the weekday — certain directions are inauspicious on specific days",
-          "te": "A directional defect based on the weekday — certain directions are inauspicious on specific days",
-          "bn": "A directional defect based on the weekday — certain directions are inauspicious on specific days",
-          "kn": "A directional defect based on the weekday — certain directions are inauspicious on specific days",
-          "mr": "वार पर आधारित दिशात्मक दोष — विशिष्ट दिनों में कुछ दिशाएँ अशुभ हैं",
-          "gu": "A directional defect based on the weekday — certain directions are inauspicious on specific days",
-          "mai": "वार पर आधारित दिशात्मक दोष — विशिष्ट दिनों में कुछ दिशाएँ अशुभ हैं"
+          "en": "A directional defect based on the weekday  –  certain directions are inauspicious on specific days",
+          "hi": "वार पर आधारित दिशात्मक दोष  –  विशिष्ट दिनों में कुछ दिशाएँ अशुभ हैं",
+          "sa": "वार पर आधारित दिशात्मक दोष  –  विशिष्ट दिनों में कुछ दिशाएँ अशुभ हैं",
+          "ta": "A directional defect based on the weekday  –  certain directions are inauspicious on specific days",
+          "te": "A directional defect based on the weekday  –  certain directions are inauspicious on specific days",
+          "bn": "A directional defect based on the weekday  –  certain directions are inauspicious on specific days",
+          "kn": "A directional defect based on the weekday  –  certain directions are inauspicious on specific days",
+          "mr": "वार पर आधारित दिशात्मक दोष  –  विशिष्ट दिनों में कुछ दिशाएँ अशुभ हैं",
+          "gu": "A directional defect based on the weekday  –  certain directions are inauspicious on specific days",
+          "mai": "वार पर आधारित दिशात्मक दोष  –  विशिष्ट दिनों में कुछ दिशाएँ अशुभ हैं"
         },
         {
           "en": "A planetary dasha transition",

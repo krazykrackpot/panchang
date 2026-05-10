@@ -24,12 +24,12 @@ export const NARAYANA_INTERPRETATIONS: NarayanaDashaInterpretation[] = [
       hi: 'मेष दशा स्वतंत्रता, पहल और नवारम्भ के विषयों को सक्रिय करती है। यह आत्म-स्थापना, निर्णायक कार्यवाही और व्यक्तिगत लक्ष्यों को ऊर्जा से अनुसरण करने का काल है। शारीरिक ऊर्जा और साहस बढ़ता है।',
     },
     focus: {
-      en: 'Primary focus falls on personal identity, physical body, and leadership roles — launching new ventures and establishing one\'s mark in the world.',
-      hi: 'प्राथमिक ध्यान व्यक्तिगत पहचान, शारीरिक देह और नेतृत्व भूमिकाओं पर रहता है — नए उपक्रम आरम्भ करना और संसार में अपनी छाप छोड़ना।',
+      en: 'Primary focus falls on personal identity, physical body, and leadership roles  –  launching new ventures and establishing one\'s mark in the world.',
+      hi: 'प्राथमिक ध्यान व्यक्तिगत पहचान, शारीरिक देह और नेतृत्व भूमिकाओं पर रहता है  –  नए उपक्रम आरम्भ करना और संसार में अपनी छाप छोड़ना।',
     },
     caution: {
-      en: 'Guard against impulsiveness, aggression, and rushing into commitments without sufficient planning — haste can create conflicts that linger.',
-      hi: 'आवेग, आक्रामकता और पर्याप्त योजना के बिना प्रतिबद्धताओं में शीघ्रता से सावधान रहें — जल्दबाज़ी से स्थायी विवाद उत्पन्न हो सकते हैं।',
+      en: 'Guard against impulsiveness, aggression, and rushing into commitments without sufficient planning  –  haste can create conflicts that linger.',
+      hi: 'आवेग, आक्रामकता और पर्याप्त योजना के बिना प्रतिबद्धताओं में शीघ्रता से सावधान रहें  –  जल्दबाज़ी से स्थायी विवाद उत्पन्न हो सकते हैं।',
     },
   },
 
@@ -45,8 +45,8 @@ export const NARAYANA_INTERPRETATIONS: NarayanaDashaInterpretation[] = [
       hi: 'प्राथमिक ध्यान वित्त, वाणी, पारिवारिक धरोहर और स्थायी स्थिरता प्रदान करने वाले संसाधनों के संचय पर रहता है।',
     },
     caution: {
-      en: 'Watch for stubbornness, over-attachment to possessions, and resistance to necessary change — comfort zones can become stagnation traps.',
-      hi: 'हठधर्मिता, सम्पत्ति से अति-आसक्ति और आवश्यक परिवर्तन का प्रतिरोध — सुविधा क्षेत्र ठहराव के जाल बन सकते हैं।',
+      en: 'Watch for stubbornness, over-attachment to possessions, and resistance to necessary change  –  comfort zones can become stagnation traps.',
+      hi: 'हठधर्मिता, सम्पत्ति से अति-आसक्ति और आवश्यक परिवर्तन का प्रतिरोध  –  सुविधा क्षेत्र ठहराव के जाल बन सकते हैं।',
     },
   },
 
@@ -62,8 +62,8 @@ export const NARAYANA_INTERPRETATIONS: NarayanaDashaInterpretation[] = [
       hi: 'प्राथमिक ध्यान संवाद कौशल, स्थानीय सम्पर्क, अभिव्यक्ति में साहस और अनेक माध्यमों से विचार-विनिमय पर रहता है।',
     },
     caution: {
-      en: 'Beware of scattered energy, superficial commitments, and gossip — depth may be sacrificed for breadth during this period.',
-      hi: 'बिखरी ऊर्जा, सतही प्रतिबद्धताओं और अफ़वाहों से सावधान रहें — इस काल में गहराई चौड़ाई के लिए बलिदान हो सकती है।',
+      en: 'Beware of scattered energy, superficial commitments, and gossip  –  depth may be sacrificed for breadth during this period.',
+      hi: 'बिखरी ऊर्जा, सतही प्रतिबद्धताओं और अफ़वाहों से सावधान रहें  –  इस काल में गहराई चौड़ाई के लिए बलिदान हो सकती है।',
     },
   },
 
@@ -96,8 +96,8 @@ export const NARAYANA_INTERPRETATIONS: NarayanaDashaInterpretation[] = [
       hi: 'प्राथमिक ध्यान रचनात्मक उत्पादन, संतान कल्याण, प्रेम पूर्ति और व्यक्तिगत प्रतिभा से सार्वजनिक मान्यता प्राप्ति पर रहता है।',
     },
     caution: {
-      en: 'Watch for excessive pride, risky speculation, and ego-driven conflicts — the desire for applause can override better judgment.',
-      hi: 'अत्यधिक अहंकार, जोखिमपूर्ण सट्टा और अहम्-जनित विवादों से सावधान — प्रशंसा की लालसा विवेक पर भारी पड़ सकती है।',
+      en: 'Watch for excessive pride, risky speculation, and ego-driven conflicts  –  the desire for applause can override better judgment.',
+      hi: 'अत्यधिक अहंकार, जोखिमपूर्ण सट्टा और अहम्-जनित विवादों से सावधान  –  प्रशंसा की लालसा विवेक पर भारी पड़ सकती है।',
     },
   },
 
@@ -113,8 +113,8 @@ export const NARAYANA_INTERPRETATIONS: NarayanaDashaInterpretation[] = [
       hi: 'प्राथमिक ध्यान स्वास्थ्य प्रबन्धन, कार्यस्थल दक्षता, विवाद समाधान और अनुशासित अभ्यास से कौशल परिष्कार पर रहता है।',
     },
     caution: {
-      en: 'Beware of over-analysis, hypochondria, and being overly critical of self and others — perfectionism becomes paralyzing if unchecked.',
-      hi: 'अत्यधिक विश्लेषण, रोगभ्रम और स्वयं तथा दूसरों की अति-आलोचना से सावधान रहें — अनियंत्रित पूर्णतावाद पक्षाघाती बन जाता है।',
+      en: 'Beware of over-analysis, hypochondria, and being overly critical of self and others  –  perfectionism becomes paralyzing if unchecked.',
+      hi: 'अत्यधिक विश्लेषण, रोगभ्रम और स्वयं तथा दूसरों की अति-आलोचना से सावधान रहें  –  अनियंत्रित पूर्णतावाद पक्षाघाती बन जाता है।',
     },
   },
 
@@ -130,8 +130,8 @@ export const NARAYANA_INTERPRETATIONS: NarayanaDashaInterpretation[] = [
       hi: 'प्राथमिक ध्यान विवाह, व्यापारिक साझेदारी, कूटनीतिक सम्बन्ध और सभी व्यवहारों में निष्पक्षता प्राप्ति पर रहता है।',
     },
     caution: {
-      en: 'Guard against codependency, indecisiveness, and sacrificing personal needs to maintain peace — suppressed conflict erupts later.',
-      hi: 'सह-निर्भरता, अनिर्णय और शान्ति बनाए रखने हेतु व्यक्तिगत आवश्यकताओं के बलिदान से सावधान रहें — दबा हुआ विवाद बाद में फूटता है।',
+      en: 'Guard against codependency, indecisiveness, and sacrificing personal needs to maintain peace  –  suppressed conflict erupts later.',
+      hi: 'सह-निर्भरता, अनिर्णय और शान्ति बनाए रखने हेतु व्यक्तिगत आवश्यकताओं के बलिदान से सावधान रहें  –  दबा हुआ विवाद बाद में फूटता है।',
     },
   },
 
@@ -147,8 +147,8 @@ export const NARAYANA_INTERPRETATIONS: NarayanaDashaInterpretation[] = [
       hi: 'प्राथमिक ध्यान आन्तरिक परिवर्तन, साझा संसाधनों का प्रबन्धन, गूढ़ सत्यों का अनुसन्धान और गहन भय का सामना करने पर रहता है।',
     },
     caution: {
-      en: 'Watch for obsessive behavior, power struggles, and destructive jealousy — the intensity of this period can consume if not channeled constructively.',
-      hi: 'जुनूनी व्यवहार, सत्ता संघर्ष और विनाशकारी ईर्ष्या से सावधान रहें — इस काल की तीव्रता रचनात्मक मार्ग न मिलने पर विनाशकारी हो सकती है।',
+      en: 'Watch for obsessive behavior, power struggles, and destructive jealousy  –  the intensity of this period can consume if not channeled constructively.',
+      hi: 'जुनूनी व्यवहार, सत्ता संघर्ष और विनाशकारी ईर्ष्या से सावधान रहें  –  इस काल की तीव्रता रचनात्मक मार्ग न मिलने पर विनाशकारी हो सकती है।',
     },
   },
 
@@ -164,8 +164,8 @@ export const NARAYANA_INTERPRETATIONS: NarayanaDashaInterpretation[] = [
       hi: 'प्राथमिक ध्यान ज्ञान विस्तार, गुरुजनों से सम्पर्क, उच्च शिक्षा प्राप्ति और जीवन के गहरे उद्देश्य की खोज पर रहता है।',
     },
     caution: {
-      en: 'Beware of dogmatism, over-preaching, and neglecting practical details in pursuit of grand visions — idealism needs grounding.',
-      hi: 'कट्टरता, अत्यधिक उपदेश और विराट दृष्टि की खोज में व्यावहारिक विवरणों की उपेक्षा से सावधान — आदर्शवाद को धरातल की आवश्यकता है।',
+      en: 'Beware of dogmatism, over-preaching, and neglecting practical details in pursuit of grand visions  –  idealism needs grounding.',
+      hi: 'कट्टरता, अत्यधिक उपदेश और विराट दृष्टि की खोज में व्यावहारिक विवरणों की उपेक्षा से सावधान  –  आदर्शवाद को धरातल की आवश्यकता है।',
     },
   },
 
@@ -181,8 +181,8 @@ export const NARAYANA_INTERPRETATIONS: NarayanaDashaInterpretation[] = [
       hi: 'प्राथमिक ध्यान करियर उपलब्धियों, व्यावसायिक प्रतिष्ठा, अधिकार पदों को ग्रहण करने और स्थायी विरासत निर्माण पर रहता है।',
     },
     caution: {
-      en: 'Guard against workaholism, emotional coldness, and neglecting family for professional gains — success without fulfillment is hollow.',
-      hi: 'कर्मव्यसन, भावनात्मक शीतलता और व्यावसायिक लाभ के लिए परिवार की उपेक्षा से सावधान — पूर्ति के बिना सफलता खोखली है।',
+      en: 'Guard against workaholism, emotional coldness, and neglecting family for professional gains  –  success without fulfillment is hollow.',
+      hi: 'कर्मव्यसन, भावनात्मक शीतलता और व्यावसायिक लाभ के लिए परिवार की उपेक्षा से सावधान  –  पूर्ति के बिना सफलता खोखली है।',
     },
   },
 
@@ -207,16 +207,16 @@ export const NARAYANA_INTERPRETATIONS: NarayanaDashaInterpretation[] = [
   {
     signId: 12,
     themes: {
-      en: 'Pisces dasha activates spirituality, foreign lands, liberation (moksha), and expenses. This is a deeply introspective period — meditation, charity, and retreat from worldly pursuits are emphasized. Bed pleasures, dreams, and the subconscious surface.',
-      hi: 'मीन दशा आध्यात्मिकता, विदेश, मोक्ष और व्यय को सक्रिय करती है। यह गहन आत्मनिरीक्षण का काल है — ध्यान, दान और सांसारिक गतिविधियों से विराम पर बल है। शय्या सुख, स्वप्न और अवचेतन सतह पर आता है।',
+      en: 'Pisces dasha activates spirituality, foreign lands, liberation (moksha), and expenses. This is a deeply introspective period  –  meditation, charity, and retreat from worldly pursuits are emphasized. Bed pleasures, dreams, and the subconscious surface.',
+      hi: 'मीन दशा आध्यात्मिकता, विदेश, मोक्ष और व्यय को सक्रिय करती है। यह गहन आत्मनिरीक्षण का काल है  –  ध्यान, दान और सांसारिक गतिविधियों से विराम पर बल है। शय्या सुख, स्वप्न और अवचेतन सतह पर आता है।',
     },
     focus: {
       en: 'Primary focus falls on spiritual practices, releasing attachments, settling karmic debts, and finding peace through surrender and service.',
       hi: 'प्राथमिक ध्यान आध्यात्मिक साधना, आसक्ति त्याग, कार्मिक ऋण निपटान और समर्पण तथा सेवा से शान्ति प्राप्ति पर रहता है।',
     },
     caution: {
-      en: 'Beware of excessive escapism, uncontrolled expenses, and losing oneself in fantasy or substances — the dissolution energy of Pisces needs conscious channeling.',
-      hi: 'अत्यधिक पलायनवाद, अनियंत्रित व्यय और कल्पना या मादक द्रव्यों में स्वयं को खोने से सावधान — मीन की विलय ऊर्जा को सचेत मार्गदर्शन की आवश्यकता है।',
+      en: 'Beware of excessive escapism, uncontrolled expenses, and losing oneself in fantasy or substances  –  the dissolution energy of Pisces needs conscious channeling.',
+      hi: 'अत्यधिक पलायनवाद, अनियंत्रित व्यय और कल्पना या मादक द्रव्यों में स्वयं को खोने से सावधान  –  मीन की विलय ऊर्जा को सचेत मार्गदर्शन की आवश्यकता है।',
     },
   },
 ];

@@ -2,7 +2,7 @@ import type { LocaleText } from '@/types/panchang';
 /**
  * Daily Horoscope Article Generator
  * Produces SEO-optimized, Google Discover-friendly content from panchang data.
- * No AI/LLM — pure deterministic content from astronomical calculations.
+ * No AI/LLM  –  pure deterministic content from astronomical calculations.
  */
 
 import { computePanchang } from '@/lib/ephem/panchang-calc';
@@ -79,12 +79,12 @@ export function generateDailyArticle(date: Date, city?: ArticleCityConfig): Dail
   const dateFormattedHi = date.toLocaleDateString('hi-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
   const slug = city ? `daily-panchang-${dateStr}-${c.name.toLowerCase().replace(/\s+/g, '-')}` : `daily-panchang-${dateStr}`;
-  const cityLabel = city ? ` — ${c.name}` : '';
-  const cityLabelHi = city ? ` — ${c.nameHi}` : '';
+  const cityLabel = city ? `  –  ${c.name}` : '';
+  const cityLabelHi = city ? `  –  ${c.nameHi}` : '';
 
   const title = {
-    en: `${varName} Panchang ${dateFormatted}${cityLabel} — ${tithiName}, ${nakName}`,
-    hi: `${panchang.vara.name.hi} पंचांग ${dateFormattedHi}${cityLabelHi} — ${panchang.tithi.name.hi}, ${panchang.nakshatra.name.hi}`,
+    en: `${varName} Panchang ${dateFormatted}${cityLabel}  –  ${tithiName}, ${nakName}`,
+    hi: `${panchang.vara.name.hi} पंचांग ${dateFormattedHi}${cityLabelHi}  –  ${panchang.tithi.name.hi}, ${panchang.nakshatra.name.hi}`,
   };
 
   const description = {
@@ -93,21 +93,21 @@ export function generateDailyArticle(date: Date, city?: ArticleCityConfig): Dail
   };
 
   // Build article body
-  const rahuWarning = `Rahu Kaal is from ${panchang.rahuKaal.start} to ${panchang.rahuKaal.end} — avoid starting important new work during this period.`;
-  const rahuWarningHi = `राहु काल ${panchang.rahuKaal.start} से ${panchang.rahuKaal.end} तक है — इस अवधि में महत्वपूर्ण नए कार्य न करें।`;
+  const rahuWarning = `Rahu Kaal is from ${panchang.rahuKaal.start} to ${panchang.rahuKaal.end}  –  avoid starting important new work during this period.`;
+  const rahuWarningHi = `राहु काल ${panchang.rahuKaal.start} से ${panchang.rahuKaal.end} तक है  –  इस अवधि में महत्वपूर्ण नए कार्य न करें।`;
 
   const varjyamNote = panchang.varjyam
     ? `Varjyam (inauspicious window) is active from ${panchang.varjyam.start} to ${panchang.varjyam.end}. Avoid initiating ventures during this time.`
-    : 'No Varjyam today — the day is largely free of inauspicious windows.';
+    : 'No Varjyam today  –  the day is largely free of inauspicious windows.';
   const varjyamNoteHi = panchang.varjyam
     ? `वर्ज्यम् काल ${panchang.varjyam.start} से ${panchang.varjyam.end} तक सक्रिय है। इस समय नए कार्य न करें।`
-    : 'आज कोई वर्ज्यम् नहीं — दिन अशुभ काल से मुक्त है।';
+    : 'आज कोई वर्ज्यम् नहीं  –  दिन अशुभ काल से मुक्त है।';
 
   const amritNote = panchang.amritKalam
     ? `Amrit Kalam (most auspicious window) runs from ${panchang.amritKalam.start} to ${panchang.amritKalam.end}. This is the best time for important decisions, ceremonies, and new ventures.`
     : '';
   const amritNoteHi = panchang.amritKalam
-    ? `अमृत काल ${panchang.amritKalam.start} से ${panchang.amritKalam.end} तक है — महत्वपूर्ण निर्णयों, अनुष्ठानों और नए कार्यों के लिए सर्वोत्तम समय।`
+    ? `अमृत काल ${panchang.amritKalam.start} से ${panchang.amritKalam.end} तक है  –  महत्वपूर्ण निर्णयों, अनुष्ठानों और नए कार्यों के लिए सर्वोत्तम समय।`
     : '';
 
   const cityNarrative = city
@@ -124,8 +124,8 @@ export function generateDailyArticle(date: Date, city?: ArticleCityConfig): Dail
 
 Today's panchang${city ? ` for ${c.name}` : ''} is defined by **${tithiName}** tithi under **${nakName}** nakshatra, with **${yogaName}** yoga active. The ${tithiEnergy.en}.${cityNarrative}
 
-**Tithi:** ${tithiName} (${paksha === 'shukla' ? 'Shukla Paksha — Waxing Moon' : 'Krishna Paksha — Waning Moon'})
-**Nakshatra:** ${nakName} — the Moon's position today influences ${moonTheme.en}.
+**Tithi:** ${tithiName} (${paksha === 'shukla' ? 'Shukla Paksha  –  Waxing Moon' : 'Krishna Paksha  –  Waning Moon'})
+**Nakshatra:** ${nakName}  –  the Moon's position today influences ${moonTheme.en}.
 **Yoga:** ${yogaName}
 **Vara:** ${varName}
 
@@ -147,7 +147,7 @@ ${amritNote}
 
 ### Guidance
 
-The combination of ${tithiName} and ${nakName} makes today ${paksha === 'shukla' ? 'favorable for starting new projects, making purchases, and celebrations' : 'better suited for completing ongoing work, clearing debts, and spiritual practices'}. The ${yogaName} yoga adds ${yogaName === 'Siddhi' || yogaName === 'Amrit' || yogaName === 'Shubha' ? 'positive momentum' : yogaName === 'Vyatipata' || yogaName === 'Vaidhriti' ? 'caution — be mindful in decisions' : 'neutral energy'} to the day.
+The combination of ${tithiName} and ${nakName} makes today ${paksha === 'shukla' ? 'favorable for starting new projects, making purchases, and celebrations' : 'better suited for completing ongoing work, clearing debts, and spiritual practices'}. The ${yogaName} yoga adds ${yogaName === 'Siddhi' || yogaName === 'Amrit' || yogaName === 'Shubha' ? 'positive momentum' : yogaName === 'Vyatipata' || yogaName === 'Vaidhriti' ? 'caution  –  be mindful in decisions' : 'neutral energy'} to the day.
 
 *For personalized panchang based on your location, visit [Dekho Panchang](https://dekhopanchang.com/en/panchang).*`,
 
@@ -158,7 +158,7 @@ The combination of ${tithiName} and ${nakName} makes today ${paksha === 'shukla'
 आज का${city ? ` ${c.nameHi} का` : ''} पंचांग **${panchang.tithi.name.hi}** तिथि, **${panchang.nakshatra.name.hi}** नक्षत्र और **${panchang.yoga.name.hi}** योग से परिभाषित है। ${tithiEnergy.hi}।${cityNarrativeHi}
 
 **तिथि:** ${panchang.tithi.name.hi} (${paksha === 'shukla' ? 'शुक्ल पक्ष' : 'कृष्ण पक्ष'})
-**नक्षत्र:** ${panchang.nakshatra.name.hi} — आज चन्द्रमा की स्थिति ${moonTheme.hi} को प्रभावित करती है।
+**नक्षत्र:** ${panchang.nakshatra.name.hi}  –  आज चन्द्रमा की स्थिति ${moonTheme.hi} को प्रभावित करती है।
 **योग:** ${panchang.yoga.name.hi}
 **वार:** ${panchang.vara.name.hi}
 

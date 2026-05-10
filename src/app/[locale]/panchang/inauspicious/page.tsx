@@ -18,7 +18,7 @@ import PMSG from '@/messages/pages/panchang-inline.json';
 const msg = (key: string, locale: string): string =>
   lt((PMSG as unknown as Record<string, LocaleText>)[key], locale);
 
-// Section heading — same component as PanchangClient
+// Section heading  –  same component as PanchangClient
 function SectionHeading({
   icon,
   title,
@@ -231,7 +231,7 @@ export default function InauspiciousTimingsPage() {
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.05 }}
               className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 text-center border border-red-500/30 bg-gradient-to-br from-red-500/5 to-transparent">
               <div className="text-red-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('rahuKaal')}</div>
-              <div className="font-mono text-2xl font-bold text-red-300">{panchang.rahuKaal.start} — {panchang.rahuKaal.end}</div>
+              <div className="font-mono text-2xl font-bold text-red-300">{panchang.rahuKaal.start}  –  {panchang.rahuKaal.end}</div>
               <div className="text-text-secondary text-xs mt-2">{msg('rahuKaalDesc', locale)}</div>
             </motion.div>
 
@@ -239,7 +239,7 @@ export default function InauspiciousTimingsPage() {
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.08 }}
               className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 text-center border border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-transparent">
               <div className="text-orange-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('yamaganda')}</div>
-              <div className="font-mono text-2xl font-bold text-orange-300">{panchang.yamaganda.start} — {panchang.yamaganda.end}</div>
+              <div className="font-mono text-2xl font-bold text-orange-300">{panchang.yamaganda.start}  –  {panchang.yamaganda.end}</div>
               <div className="text-text-secondary text-xs mt-2">{msg('yamagandaDesc', locale)}</div>
             </motion.div>
 
@@ -247,11 +247,11 @@ export default function InauspiciousTimingsPage() {
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.11 }}
               className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 text-center border border-yellow-500/30 bg-gradient-to-br from-yellow-500/5 to-transparent">
               <div className="text-yellow-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('gulikaKaal')}</div>
-              <div className="font-mono text-2xl font-bold text-yellow-300">{panchang.gulikaKaal.start} — {panchang.gulikaKaal.end}</div>
+              <div className="font-mono text-2xl font-bold text-yellow-300">{panchang.gulikaKaal.start}  –  {panchang.gulikaKaal.end}</div>
               <div className="text-text-secondary text-xs mt-2">{msg('gulikaKaalDesc', locale)}</div>
             </motion.div>
 
-            {/* Dur Muhurtam — two classical traditions */}
+            {/* Dur Muhurtam  –  two classical traditions */}
             {panchang.durMuhurtam && panchang.durMuhurtam.length > 0 && (
               <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.14 }}
                 className="rounded-xl border border-red-600/30 bg-gradient-to-br from-red-600/5 to-transparent p-3 sm:p-4 md:p-6 text-center">
@@ -262,7 +262,7 @@ export default function InauspiciousTimingsPage() {
                   {msg('kaalaPrakashika', locale)}
                 </div>
                 {panchang.durMuhurtam.map((w, i) => (
-                  <div key={i} className="font-mono text-lg font-bold text-red-400 leading-tight">{w.start} — {w.end}</div>
+                  <div key={i} className="font-mono text-lg font-bold text-red-400 leading-tight">{w.start}  –  {w.end}</div>
                 ))}
                 {panchang.durMuhurtamAlt && panchang.durMuhurtamAlt.length > 0 && (
                   <details className="mt-3 text-left">
@@ -271,7 +271,7 @@ export default function InauspiciousTimingsPage() {
                     </summary>
                     <div className="mt-2 text-center">
                       {panchang.durMuhurtamAlt.map((w: { start: string; end: string }, i: number) => (
-                        <div key={i} className="font-mono text-sm text-red-400/60 leading-tight">{w.start} — {w.end}</div>
+                        <div key={i} className="font-mono text-sm text-red-400/60 leading-tight">{w.start}  –  {w.end}</div>
                       ))}
                     </div>
                   </details>
@@ -280,27 +280,27 @@ export default function InauspiciousTimingsPage() {
               </motion.div>
             )}
 
-            {/* Visha Ghatika — 25th Ghatika poison period */}
+            {/* Visha Ghatika  –  25th Ghatika poison period */}
             {panchang.vishaGhatika && (
               <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.15 }}
                 className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-700/30 p-3 sm:p-4 md:p-6 text-center bg-gradient-to-br from-red-700/5 to-transparent">
                 <div className="text-red-500 text-xs uppercase tracking-widest mb-2 font-bold">
                   {msg('vishaGhatika', locale)}
                 </div>
-                <div className="font-mono text-lg font-bold text-red-400">{panchang.vishaGhatika.start} — {panchang.vishaGhatika.end}</div>
+                <div className="font-mono text-lg font-bold text-red-400">{panchang.vishaGhatika.start}  –  {panchang.vishaGhatika.end}</div>
                 <div className="text-text-secondary text-xs mt-2">
                   {msg('vishaGhatikaDesc', locale)}
                 </div>
               </motion.div>
             )}
 
-            {/* Varjyam — show all windows */}
+            {/* Varjyam  –  show all windows */}
             {((panchang as unknown as Record<string, unknown>).varjyamAll as Array<{ start: string; end: string }> | undefined)?.length || panchang.varjyam ? (
               <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.17 }}
                 className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 text-center border border-red-400/25 bg-gradient-to-br from-red-400/5 to-transparent">
                 <div className="text-red-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('varjyam')}</div>
                 {((panchang as unknown as Record<string, unknown>).varjyamAll as Array<{ start: string; end: string }> || [panchang.varjyam]).map((v: { start: string; end: string }, i: number) => (
-                  <div key={i} className="font-mono text-xl font-bold text-red-300">{v.start} — {v.end}</div>
+                  <div key={i} className="font-mono text-xl font-bold text-red-300">{v.start}  –  {v.end}</div>
                 ))}
                 <div className="text-text-secondary text-xs mt-2">{t('varjyamDesc')}</div>
               </motion.div>
@@ -315,7 +315,7 @@ export default function InauspiciousTimingsPage() {
                 </div>
                 {((panchang as unknown as Record<string, unknown>).bhadraAll as Array<{ start: string; end: string; endDate?: string }> || [panchang.bhadra]).map((b: { start: string; end: string; endDate?: string }, i: number) => (
                   <div key={i} className="font-mono text-xl font-bold text-orange-300">
-                    {b.start} — {b.end}{b.endDate ? `, ${b.endDate.split('-').reverse().join('/')}` : ''}
+                    {b.start}  –  {b.end}{b.endDate ? `, ${b.endDate.split('-').reverse().join('/')}` : ''}
                   </div>
                 ))}
                 <div className="text-text-secondary text-xs mt-2">
@@ -324,7 +324,7 @@ export default function InauspiciousTimingsPage() {
               </motion.div>
             )}
 
-            {/* Ganda Moola — with time window */}
+            {/* Ganda Moola  –  with time window */}
             {panchang.gandaMoola?.active && (
               <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.20 }}
                 className="rounded-xl p-3 sm:p-4 md:p-6 text-center border-2 border-red-500/50 bg-gradient-to-br from-red-500/10 to-transparent">
@@ -345,7 +345,7 @@ export default function InauspiciousTimingsPage() {
                 {(panchang.gandaMoola as any).start && (
                   <div className="font-mono text-lg font-bold text-red-300 mt-1">
                     {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                    {(panchang.gandaMoola as any).start} — {(panchang.gandaMoola as any).end}{(panchang.gandaMoola as any).endDate ? `, ${(panchang.gandaMoola as any).endDate.split('-').slice(1).join('/')}` : ''}
+                    {(panchang.gandaMoola as any).start}  –  {(panchang.gandaMoola as any).end}{(panchang.gandaMoola as any).endDate ? `, ${(panchang.gandaMoola as any).endDate.split('-').slice(1).join('/')}` : ''}
                   </div>
                 )}
                 <div className="text-text-secondary text-xs mt-2">
@@ -362,7 +362,7 @@ export default function InauspiciousTimingsPage() {
                   {msg('aadalYoga', locale)}
                 </div>
                 <div className="font-mono text-xl font-bold text-amber-300">
-                  {panchang.aadalYoga.start} — {panchang.aadalYoga.end}{panchang.aadalYoga.endDate ? `, ${panchang.aadalYoga.endDate.split('-').slice(1).join('/')}` : ''}
+                  {panchang.aadalYoga.start}  –  {panchang.aadalYoga.end}{panchang.aadalYoga.endDate ? `, ${panchang.aadalYoga.endDate.split('-').slice(1).join('/')}` : ''}
                 </div>
                 <div className="text-text-secondary text-xs mt-2">
                   {msg('aadalYogaDesc', locale)}
@@ -378,7 +378,7 @@ export default function InauspiciousTimingsPage() {
                   {msg('vidaalYoga', locale)}
                 </div>
                 <div className="font-mono text-xl font-bold text-rose-300">
-                  {panchang.vidaalYoga.start} — {panchang.vidaalYoga.end}{panchang.vidaalYoga.endDate ? `, ${panchang.vidaalYoga.endDate.split('-').slice(1).join('/')}` : ''}
+                  {panchang.vidaalYoga.start}  –  {panchang.vidaalYoga.end}{panchang.vidaalYoga.endDate ? `, ${panchang.vidaalYoga.endDate.split('-').slice(1).join('/')}` : ''}
                 </div>
                 <div className="text-text-secondary text-xs mt-2">
                   {msg('vidaalYogaDesc', locale)}
@@ -386,7 +386,7 @@ export default function InauspiciousTimingsPage() {
               </motion.div>
             )}
 
-            {/* Panchaka — pulsing purple warning */}
+            {/* Panchaka  –  pulsing purple warning */}
             {panchang.panchaka?.active && (
               <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.23 }}
                 className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 text-center border-2 border-purple-500/50 bg-gradient-to-br from-purple-500/10 to-transparent">

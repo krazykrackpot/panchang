@@ -1,7 +1,7 @@
 {
   "pageTitle": {
-    "en": "Caesarean Muhurta — Birth Time Optimiser",
-    "hi": "सिजेरियन मुहूर्त — जन्म समय अनुकूलक"
+    "en": "Caesarean Muhurta  –  Birth Time Optimiser",
+    "hi": "सिजेरियन मुहूर्त  –  जन्म समय अनुकूलक"
   },
   "pageSubtitle": {
     "en": "Find the most auspicious birth time within your doctor's scheduled window, scored by classical Jyotish birth-election principles.",
@@ -52,8 +52,8 @@
     "hi": "स्वीकार्य"
   },
   "gradeMarginal": {
-    "en": "Weak — proceed with caution",
-    "hi": "दुर्बल — सावधानी से आगे बढ़ें"
+    "en": "Weak  –  proceed with caution",
+    "hi": "दुर्बल  –  सावधानी से आगे बढ़ें"
   },
   "gradePoor": {
     "en": "Not recommended",
@@ -176,8 +176,8 @@
     "hi": "लग्नेश भाव स्थिति (0-5 अंक)"
   },
   "tipLagnaLordHouseBody": {
-    "en": "The lagna lord placed in a kendra (1,4,7,10) scores 5, trikona (5,9) scores 4, 11th house scores 3, 2nd house scores 2. Placement in dusthana (6,8,12) scores 0 — the chart's ruler is weakened when hidden in difficult houses.",
-    "hi": "केन्द्र (1,4,7,10) में लग्नेश = 5 अंक, त्रिकोण (5,9) = 4, 11वें भाव = 3, 2रे भाव = 2। दुस्थान (6,8,12) = 0 — कुण्डली का स्वामी कठिन भावों में दुर्बल हो जाता है।"
+    "en": "The lagna lord placed in a kendra (1,4,7,10) scores 5, trikona (5,9) scores 4, 11th house scores 3, 2nd house scores 2. Placement in dusthana (6,8,12) scores 0  –  the chart's ruler is weakened when hidden in difficult houses.",
+    "hi": "केन्द्र (1,4,7,10) में लग्नेश = 5 अंक, त्रिकोण (5,9) = 4, 11वें भाव = 3, 2रे भाव = 2। दुस्थान (6,8,12) = 0  –  कुण्डली का स्वामी कठिन भावों में दुर्बल हो जाता है।"
   },
   "tipLagnaLordHouseSource": {
     "en": "BPHS Ch.6",
@@ -212,8 +212,8 @@
     "hi": "संधि लग्न बफर (0-3 अंक)"
   },
   "tipSandhiBufferBody": {
-    "en": "The ascendant should be at least 2 degrees from the sign boundary. A lagna very close to the boundary (sandhi) is unstable — a few minutes' difference changes the entire rising sign. 2+ degrees = 3 pts, 1-2 degrees = 1 pt, under 1 degree = 0.",
-    "hi": "लग्न राशि सीमा से कम से कम 2 अंश दूर होना चाहिए। सीमा के बहुत करीब (संधि) लग्न अस्थिर है — कुछ मिनटों का अन्तर पूरी उदय राशि बदल देता है। 2+ अंश = 3, 1-2 अंश = 1, 1 से कम = 0।"
+    "en": "The ascendant should be at least 2 degrees from the sign boundary. A lagna very close to the boundary (sandhi) is unstable  –  a few minutes' difference changes the entire rising sign. 2+ degrees = 3 pts, 1-2 degrees = 1 pt, under 1 degree = 0.",
+    "hi": "लग्न राशि सीमा से कम से कम 2 अंश दूर होना चाहिए। सीमा के बहुत करीब (संधि) लग्न अस्थिर है  –  कुछ मिनटों का अन्तर पूरी उदय राशि बदल देता है। 2+ अंश = 3, 1-2 अंश = 1, 1 से कम = 0।"
   },
   "tipSandhiBufferSource": {
     "en": "Practitioner consensus",
@@ -224,16 +224,16 @@
     "hi": "लग्न से चन्द्र भाव (0-8 अंक)"
   },
   "tipMoonHouseBody": {
-    "en": "The Moon in a kendra (1,4,7,10) scores 8 — the child's mind is stable and well-supported. Trikona (5,9) scores 7. The 2nd/11th house scores 5. Dusthana placement (6,8,12) scores 0 — the mind faces early challenges.",
-    "hi": "केन्द्र (1,4,7,10) में चन्द्र = 8 अंक — बालक का मन स्थिर और सुदृढ़ रहता है। त्रिकोण (5,9) = 7। 2रा/11वाँ भाव = 5। दुस्थान (6,8,12) = 0 — मन को शुरुआती चुनौतियों का सामना।"
+    "en": "The Moon in a kendra (1,4,7,10) scores 8  –  the child's mind is stable and well-supported. Trikona (5,9) scores 7. The 2nd/11th house scores 5. Dusthana placement (6,8,12) scores 0  –  the mind faces early challenges.",
+    "hi": "केन्द्र (1,4,7,10) में चन्द्र = 8 अंक  –  बालक का मन स्थिर और सुदृढ़ रहता है। त्रिकोण (5,9) = 7। 2रा/11वाँ भाव = 5। दुस्थान (6,8,12) = 0  –  मन को शुरुआती चुनौतियों का सामना।"
   },
   "tipMoonHouseSource": {
     "en": "Muhurta Chintamani",
     "hi": "मुहूर्त चिन्तामणि"
   },
   "tipPakshaBala": {
-    "en": "Paksha Bala — Lunar Phase (0-5 pts)",
-    "hi": "पक्ष बल — चन्द्र कला (0-5 अंक)"
+    "en": "Paksha Bala  –  Lunar Phase (0-5 pts)",
+    "hi": "पक्ष बल  –  चन्द्र कला (0-5 अंक)"
   },
   "tipPakshaBalaBody": {
     "en": "A bright, waxing Moon (Shukla Paksha) is strongly preferred. Shukla Dwitiya to Dashami = 5 pts (optimal brightness). Shukla Ekadashi to Purnima = 4. Krishna Pratipada to Panchami = 3. Krishna Shashthi onwards = 1 or 0 as the Moon darkens.",
@@ -244,12 +244,12 @@
     "hi": "BPHS अध्याय 27"
   },
   "tipNakshatraGana": {
-    "en": "Nakshatra Quality — Gana (0-5 pts)",
-    "hi": "नक्षत्र गुण — गण (0-5 अंक)"
+    "en": "Nakshatra Quality  –  Gana (0-5 pts)",
+    "hi": "नक्षत्र गुण  –  गण (0-5 अंक)"
   },
   "tipNakshatraGanaBody": {
-    "en": "Nakshatras are classified by temperament. Deva (divine) nakshatras like Pushya, Rohini, Shravana = 5 pts — gentle, auspicious nature. Manushya (human) = 3. Rakshasa (fierce) like Ashlesha, Moola = 1. Gandanta zone = 0 (vetoed).",
-    "hi": "नक्षत्र स्वभाव से वर्गीकृत हैं। देव गण जैसे पुष्य, रोहिणी, श्रवण = 5 — सौम्य, शुभ प्रकृति। मनुष्य = 3। राक्षस जैसे आश्लेषा, मूल = 1। गण्डान्त क्षेत्र = 0 (वर्जित)।"
+    "en": "Nakshatras are classified by temperament. Deva (divine) nakshatras like Pushya, Rohini, Shravana = 5 pts  –  gentle, auspicious nature. Manushya (human) = 3. Rakshasa (fierce) like Ashlesha, Moola = 1. Gandanta zone = 0 (vetoed).",
+    "hi": "नक्षत्र स्वभाव से वर्गीकृत हैं। देव गण जैसे पुष्य, रोहिणी, श्रवण = 5  –  सौम्य, शुभ प्रकृति। मनुष्य = 3। राक्षस जैसे आश्लेषा, मूल = 1। गण्डान्त क्षेत्र = 0 (वर्जित)।"
   },
   "tipNakshatraGanaSource": {
     "en": "Muhurta Chintamani",
@@ -296,8 +296,8 @@
     "hi": "शुद्ध अष्टम भाव (0-4 अंक)"
   },
   "tipClean8thBody": {
-    "en": "An empty 8th house scores 4 — the house of longevity is undisturbed. A benefic there scores 2. Any malefic in the 8th reduces it to 0, as it threatens health and lifespan.",
-    "hi": "खाली अष्टम भाव = 4 अंक — आयु भाव अबाधित है। शुभ ग्रह वहाँ = 2। अष्टम में कोई भी अशुभ ग्रह इसे 0 कर देता है, क्योंकि यह स्वास्थ्य और आयु को खतरा है।"
+    "en": "An empty 8th house scores 4  –  the house of longevity is undisturbed. A benefic there scores 2. Any malefic in the 8th reduces it to 0, as it threatens health and lifespan.",
+    "hi": "खाली अष्टम भाव = 4 अंक  –  आयु भाव अबाधित है। शुभ ग्रह वहाँ = 2। अष्टम में कोई भी अशुभ ग्रह इसे 0 कर देता है, क्योंकि यह स्वास्थ्य और आयु को खतरा है।"
   },
   "tipClean8thSource": {
     "en": "Muhurta Chintamani",
@@ -320,8 +320,8 @@
     "hi": "दशा शेष गुणक"
   },
   "tipDashaBalanceBody": {
-    "en": "A dasha lord scores fully only if at least half its total period remains. Starting Jupiter with 1 year left means an almost immediate transition to Saturn — nearly worthless. The balance multiplier ensures this is penalised.",
-    "hi": "दशा स्वामी पूर्ण अंक तभी पाता है जब उसकी कुल अवधि का कम से कम आधा शेष हो। 1 वर्ष शेष गुरु का अर्थ है शनि में लगभग तत्काल संक्रमण — लगभग निरर्थक। शेष गुणक सुनिश्चित करता है कि यह दण्डित हो।"
+    "en": "A dasha lord scores fully only if at least half its total period remains. Starting Jupiter with 1 year left means an almost immediate transition to Saturn  –  nearly worthless. The balance multiplier ensures this is penalised.",
+    "hi": "दशा स्वामी पूर्ण अंक तभी पाता है जब उसकी कुल अवधि का कम से कम आधा शेष हो। 1 वर्ष शेष गुरु का अर्थ है शनि में लगभग तत्काल संक्रमण  –  लगभग निरर्थक। शेष गुणक सुनिश्चित करता है कि यह दण्डित हो।"
   },
   "tipDashaBalanceSource": {
     "en": "Practitioner consensus",
@@ -332,8 +332,8 @@
     "hi": "गण्डान्त चन्द्र (पूर्ण निषेध)"
   },
   "tipGandantaBody": {
-    "en": "If the Moon is in the last 3 degrees 20 minutes of a water sign or the first 3 degrees 20 minutes of a fire sign, the birth is in Gandanta — a junction considered extremely inauspicious. This is a hard veto: the slot is scored 0 regardless of all other factors.",
-    "hi": "यदि चन्द्र जल राशि के अन्तिम 3 अंश 20 कला या अग्नि राशि के प्रथम 3 अंश 20 कला में है, तो जन्म गण्डान्त में है — एक संधि जो अत्यन्त अशुभ मानी जाती है। यह पूर्ण निषेध है: अन्य सभी कारकों की परवाह किये बिना समय-खण्ड का अंक 0 है।"
+    "en": "If the Moon is in the last 3 degrees 20 minutes of a water sign or the first 3 degrees 20 minutes of a fire sign, the birth is in Gandanta  –  a junction considered extremely inauspicious. This is a hard veto: the slot is scored 0 regardless of all other factors.",
+    "hi": "यदि चन्द्र जल राशि के अन्तिम 3 अंश 20 कला या अग्नि राशि के प्रथम 3 अंश 20 कला में है, तो जन्म गण्डान्त में है  –  एक संधि जो अत्यन्त अशुभ मानी जाती है। यह पूर्ण निषेध है: अन्य सभी कारकों की परवाह किये बिना समय-खण्ड का अंक 0 है।"
   },
   "tipGandantaSource": {
     "en": "Muhurta Chintamani",
@@ -356,8 +356,8 @@
     "hi": "लग्नेश अस्त (-6 अंक)"
   },
   "tipCombustLagnaBody": {
-    "en": "When the lagna lord is within the Sun's combustion orb, it loses its strength — the ruler of the chart is overpowered by the Sun. This weakens the child's constitution and self-expression.",
-    "hi": "जब लग्नेश सूर्य के अस्त-कोण के भीतर हो, तो वह अपना बल खो देता है — कुण्डली का शासक सूर्य से पराभूत हो जाता है। यह बालक के संविधान और आत्म-अभिव्यक्ति को दुर्बल करता है।"
+    "en": "When the lagna lord is within the Sun's combustion orb, it loses its strength  –  the ruler of the chart is overpowered by the Sun. This weakens the child's constitution and self-expression.",
+    "hi": "जब लग्नेश सूर्य के अस्त-कोण के भीतर हो, तो वह अपना बल खो देता है  –  कुण्डली का शासक सूर्य से पराभूत हो जाता है। यह बालक के संविधान और आत्म-अभिव्यक्ति को दुर्बल करता है।"
   },
   "tipCombustLagnaSource": {
     "en": "BPHS Ch.3",
@@ -404,15 +404,15 @@
     "hi": "ज्योतिष में सिजेरियन जन्म समय चयन"
   },
   "edIntro": {
-    "en": "In Vedic astrology, the moment of birth determines the entire life chart — the lagna (ascendant), planetary positions, and dasha periods that shape destiny. When a caesarean delivery is planned, families have the rare opportunity to choose a birth moment that maximises auspicious factors. This practice, rooted in classical Muhurta Shastra, evaluates candidate time slots across five dimensions: lagna strength, Moon quality, planet distribution, dasha trajectory, and the absence of structural defects.",
-    "hi": "वैदिक ज्योतिष में, जन्म का क्षण सम्पूर्ण जीवन कुण्डली निर्धारित करता है — लग्न (उदय राशि), ग्रह स्थितियाँ, और दशा अवधियाँ जो भाग्य को आकार देती हैं। जब सिजेरियन प्रसव नियोजित हो, तो परिवारों को शुभ कारकों को अधिकतम करने वाला जन्म क्षण चुनने का दुर्लभ अवसर मिलता है। यह प्रथा, शास्त्रीय मुहूर्त शास्त्र में निहित, पाँच आयामों में उम्मीदवार समय-खण्डों का मूल्यांकन करती है: लग्न बल, चन्द्र गुणवत्ता, ग्रह वितरण, दशा प्रक्षेपण, और संरचनात्मक दोषों की अनुपस्थिति।"
+    "en": "In Vedic astrology, the moment of birth determines the entire life chart  –  the lagna (ascendant), planetary positions, and dasha periods that shape destiny. When a caesarean delivery is planned, families have the rare opportunity to choose a birth moment that maximises auspicious factors. This practice, rooted in classical Muhurta Shastra, evaluates candidate time slots across five dimensions: lagna strength, Moon quality, planet distribution, dasha trajectory, and the absence of structural defects.",
+    "hi": "वैदिक ज्योतिष में, जन्म का क्षण सम्पूर्ण जीवन कुण्डली निर्धारित करता है  –  लग्न (उदय राशि), ग्रह स्थितियाँ, और दशा अवधियाँ जो भाग्य को आकार देती हैं। जब सिजेरियन प्रसव नियोजित हो, तो परिवारों को शुभ कारकों को अधिकतम करने वाला जन्म क्षण चुनने का दुर्लभ अवसर मिलता है। यह प्रथा, शास्त्रीय मुहूर्त शास्त्र में निहित, पाँच आयामों में उम्मीदवार समय-खण्डों का मूल्यांकन करती है: लग्न बल, चन्द्र गुणवत्ता, ग्रह वितरण, दशा प्रक्षेपण, और संरचनात्मक दोषों की अनुपस्थिति।"
   },
   "edScoringTitle": {
     "en": "The 5-Pillar Scoring Framework",
     "hi": "5-स्तम्भ अंकन प्रणाली"
   },
   "edScoring": {
-    "en": "Our engine evaluates each 15-minute window across 5 classical pillars totalling 100 points. Lagna Strength (30 pts) measures the ascendant lord's dignity, house placement, and stability. Moon Strength (25 pts) assesses the mind's foundation — house position, lunar phase, and nakshatra quality. Benefic/Malefic Distribution (20 pts) checks whether benefics occupy kendras and malefics are contained in upachaya houses. Dasha Trajectory (15 pts) evaluates the starting maha dasha lord and remaining balance. Structural Defects (10 pts) applies deductions for classical doshas like Kaal Sarpa, combustion, and node placement.",
-    "hi": "हमारा इंजन प्रत्येक 15-मिनट की खिड़की का 100 अंकों के कुल 5 शास्त्रीय स्तम्भों में मूल्यांकन करता है। लग्न बल (30 अंक) उदय राशि स्वामी की गरिमा, भाव स्थिति और स्थिरता मापता है। चन्द्र बल (25 अंक) मन की नींव — भाव स्थिति, चन्द्र कला और नक्षत्र गुणवत्ता — का आकलन करता है। शुभ/अशुभ वितरण (20 अंक) जाँचता है कि शुभ ग्रह केन्द्र में हैं और अशुभ उपचय भावों में समाहित हैं। दशा प्रक्षेपण (15 अंक) आरम्भिक महादशा स्वामी और शेष अवधि का मूल्यांकन करता है। संरचनात्मक दोष (10 अंक) काल सर्प, अस्त और ग्रह-नोड स्थिति जैसे शास्त्रीय दोषों के लिए कटौती लागू करता है।"
+    "en": "Our engine evaluates each 15-minute window across 5 classical pillars totalling 100 points. Lagna Strength (30 pts) measures the ascendant lord's dignity, house placement, and stability. Moon Strength (25 pts) assesses the mind's foundation  –  house position, lunar phase, and nakshatra quality. Benefic/Malefic Distribution (20 pts) checks whether benefics occupy kendras and malefics are contained in upachaya houses. Dasha Trajectory (15 pts) evaluates the starting maha dasha lord and remaining balance. Structural Defects (10 pts) applies deductions for classical doshas like Kaal Sarpa, combustion, and node placement.",
+    "hi": "हमारा इंजन प्रत्येक 15-मिनट की खिड़की का 100 अंकों के कुल 5 शास्त्रीय स्तम्भों में मूल्यांकन करता है। लग्न बल (30 अंक) उदय राशि स्वामी की गरिमा, भाव स्थिति और स्थिरता मापता है। चन्द्र बल (25 अंक) मन की नींव  –  भाव स्थिति, चन्द्र कला और नक्षत्र गुणवत्ता  –  का आकलन करता है। शुभ/अशुभ वितरण (20 अंक) जाँचता है कि शुभ ग्रह केन्द्र में हैं और अशुभ उपचय भावों में समाहित हैं। दशा प्रक्षेपण (15 अंक) आरम्भिक महादशा स्वामी और शेष अवधि का मूल्यांकन करता है। संरचनात्मक दोष (10 अंक) काल सर्प, अस्त और ग्रह-नोड स्थिति जैसे शास्त्रीय दोषों के लिए कटौती लागू करता है।"
   }
 }

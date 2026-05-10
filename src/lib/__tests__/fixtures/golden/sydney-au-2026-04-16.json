@@ -19,5 +19,5 @@
     "rahuKaal":    { "start": "13:18", "end": "14:43" }
   },
   "tolerances": { "timeMinutes": 5 },
-  "notes": "Southern hemisphere test — April is autumn, so earlier sunset and later sunrise than equinox. AEST (UTC+10, DST ended first Sunday of April). Different karana than London/Singapore due to timezone offset placing sunrise at different tithi boundary."
+  "notes": "Southern hemisphere test  –  April is autumn, so earlier sunset and later sunrise than equinox. AEST (UTC+10, DST ended first Sunday of April). Different karana than London/Singapore due to timezone offset placing sunrise at different tithi boundary."
 }

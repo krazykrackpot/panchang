@@ -106,7 +106,7 @@ function jdToDateObj(jd: number, tzOffset: number): Date {
   const hour = Math.floor(hourFrac);
   const min = Math.floor((hourFrac - hour) * 60);
 
-  // Lesson L: use Date.UTC — the JD→Gregorian conversion gives UT components.
+  // Lesson L: use Date.UTC  –  the JD→Gregorian conversion gives UT components.
   // Local-time constructor would shift by server timezone offset on Vercel (UTC) vs dev.
   return new Date(Date.UTC(year, month - 1, day, hour, min));
 }

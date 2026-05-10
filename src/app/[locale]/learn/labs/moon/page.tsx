@@ -110,7 +110,7 @@ function MoonOrbitDiagram() {
   // Show elliptical orbit concept + perturbations
   return (
     <div className="mb-6 p-4 rounded-xl bg-black/20 border border-white/8">
-      <div className="text-xs text-text-secondary/60 uppercase tracking-wider mb-3 font-semibold">The Moon's Orbit — Why it's complicated</div>
+      <div className="text-xs text-text-secondary/60 uppercase tracking-wider mb-3 font-semibold">The Moon's Orbit  –  Why it's complicated</div>
       <svg viewBox="0 0 400 160" className="w-full">
         {/* Earth */}
         <circle cx="80" cy="80" r="12" fill="#3b82f6" />
@@ -214,7 +214,7 @@ function NakshatraPositionBar({ sidLong, nakNum }: { sidLong: number; nakNum: nu
           </div>
         ))}
       </div>
-      <p className="text-text-secondary/60 text-xs text-center mt-2">Moon is in Pada {pada} — {pct.toFixed(1)}% through this Nakshatra</p>
+      <p className="text-text-secondary/60 text-xs text-center mt-2">Moon is in Pada {pada}  –  {pct.toFixed(1)}% through this Nakshatra</p>
     </div>
   );
 }
@@ -359,7 +359,7 @@ export default function MoonLabPage() {
               <div className="p-4 rounded-xl bg-indigo-500/8 border border-indigo-500/20 mb-6">
                 <div className="text-xs text-indigo-400 uppercase tracking-wider font-semibold mb-2">{t('whatThisLabShows')}</div>
                 <div className="space-y-1.5">
-                  {['Why the Moon\'s orbit is irregular', 'Julian Centuries — a compact time unit', '5 fundamental orbital angles', '60 sine correction terms (Fourier analysis)', 'Final tropical → sidereal conversion', 'Rashi and Nakshatra identification'].map(item => (
+                  {['Why the Moon\'s orbit is irregular', 'Julian Centuries  –  a compact time unit', '5 fundamental orbital angles', '60 sine correction terms (Fourier analysis)', 'Final tropical → sidereal conversion', 'Rashi and Nakshatra identification'].map(item => (
                     <div key={item} className="flex items-center gap-2 text-text-primary text-xs">
                       <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 flex-shrink-0" />
                       {item}
@@ -393,15 +393,15 @@ export default function MoonLabPage() {
           {step === 1 && calc && (
             <StepShell key="why" stepNum={1} totalSteps={TOTAL_STEPS}
               title="Why is the Moon's Position Hard to Calculate?"
-              subtitle="Unlike the Sun — which moves in a nearly perfect ellipse — the Moon has one of the most complex orbits in the solar system.">
+              subtitle="Unlike the Sun  –  which moves in a nearly perfect ellipse  –  the Moon has one of the most complex orbits in the solar system.">
               <WhyBox heading={t('whyDoWeNeedThis')}>
                 Three forces constantly distort the Moon's orbit:
                 <br /><br />
-                <strong className="text-white">1. Earth's gravity</strong> — the main force, keeping the Moon in orbit<br />
-                <strong className="text-white">2. Sun's gravity</strong> — pulling the Moon sideways, stretching the orbit (this causes the biggest corrections — up to 6.3°!)<br />
-                <strong className="text-white">3. Earth's equatorial bulge</strong> — Earth isn't a perfect sphere, so its gravity isn't perfectly uniform
+                <strong className="text-white">1. Earth's gravity</strong>  –  the main force, keeping the Moon in orbit<br />
+                <strong className="text-white">2. Sun's gravity</strong>  –  pulling the Moon sideways, stretching the orbit (this causes the biggest corrections  –  up to 6.3°!)<br />
+                <strong className="text-white">3. Earth's equatorial bulge</strong>  –  Earth isn't a perfect sphere, so its gravity isn't perfectly uniform
                 <br /><br />
-                The result: the Moon's orbit is an ellipse that rotates, tilts, and stretches over time. You can't compute it with one formula. You need to add up many mathematical waves — each wave capturing one gravitational influence.
+                The result: the Moon's orbit is an ellipse that rotates, tilts, and stretches over time. You can't compute it with one formula. You need to add up many mathematical waves  –  each wave capturing one gravitational influence.
               </WhyBox>
 
               <MoonOrbitDiagram />
@@ -409,7 +409,7 @@ export default function MoonLabPage() {
               <div className="p-4 rounded-xl bg-amber-500/8 border border-amber-500/20">
                 <div className="text-xs text-amber-400 uppercase tracking-wider font-semibold mb-2">The Meeus Algorithm</div>
                 <p className="text-text-primary text-sm leading-relaxed">
-                  Jean Meeus, a Belgian astronomer, published "Astronomical Algorithms" in 1991. He distilled centuries of orbital observations into a set of 60+ trigonometric terms that together predict the Moon's position to within 0.5° — accurate enough for Panchang calculations. This is what almost every Vedic astrology software uses today.
+                  Jean Meeus, a Belgian astronomer, published "Astronomical Algorithms" in 1991. He distilled centuries of orbital observations into a set of 60+ trigonometric terms that together predict the Moon's position to within 0.5°  –  accurate enough for Panchang calculations. This is what almost every Vedic astrology software uses today.
                 </p>
               </div>
               <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('nextStep')} />
@@ -422,7 +422,7 @@ export default function MoonLabPage() {
               title="Julian Day & Julian Centuries"
               subtitle="We need to express 'how much time has passed' in a form that's easy to put into polynomial equations.">
               <WhyBox heading={t('whyDoWeNeedThis')}>
-                The Julian Day (JD) gives us a single number for any moment. But for orbital calculations, astronomers use an even more convenient unit: <strong className="text-white">Julian Centuries (T)</strong> — how many 100-year chunks have passed since January 1.5, 2000 (the J2000 epoch). Why J2000? Because all of Meeus's equations were calibrated to that date. Using T means the numbers stay small and manageable — today T ≈ 0.26, instead of JD ≈ 2,460,000.
+                The Julian Day (JD) gives us a single number for any moment. But for orbital calculations, astronomers use an even more convenient unit: <strong className="text-white">Julian Centuries (T)</strong>  –  how many 100-year chunks have passed since January 1.5, 2000 (the J2000 epoch). Why J2000? Because all of Meeus's equations were calibrated to that date. Using T means the numbers stay small and manageable  –  today T ≈ 0.26, instead of JD ≈ 2,460,000.
               </WhyBox>
 
               <div className="mb-5 p-4 rounded-xl bg-black/20 border border-white/8">
@@ -431,8 +431,8 @@ export default function MoonLabPage() {
                   T = (JD − 2,451,545.0) ÷ 36,525
                 </div>
                 <p className="text-text-secondary text-sm mt-3">
-                  <strong className="text-indigo-300">2,451,545.0</strong> — the JD of January 1.5, 2000 (the J2000 standard epoch)<br />
-                  <strong className="text-indigo-300">36,525</strong> — days per Julian century (365.25 × 100). Dividing by this converts days to centuries.
+                  <strong className="text-indigo-300">2,451,545.0</strong>  –  the JD of January 1.5, 2000 (the J2000 standard epoch)<br />
+                  <strong className="text-indigo-300">36,525</strong>  –  days per Julian century (365.25 × 100). Dividing by this converts days to centuries.
                 </p>
               </div>
 
@@ -460,28 +460,28 @@ export default function MoonLabPage() {
               title="5 Fundamental Arguments"
               subtitle="Before we can evaluate the 60 sine terms, we need 5 key orbital angles. Each is a linearly-growing angle based on T.">
               <WhyBox heading={t('whyDoWeNeedThis')}>
-                Think of the solar system as a machine with spinning gears. Each gear has a frequency — it rotates at a certain rate over time. The 5 fundamental arguments are the "master angles" of that machine: the Moon's average position, the Sun-Moon angle, the Sun's orbit, the Moon's orbit shape, and the Moon's orbital tilt. Once we know where each gear is pointed, we can calculate the distortions using sine/cosine functions.
+                Think of the solar system as a machine with spinning gears. Each gear has a frequency  –  it rotates at a certain rate over time. The 5 fundamental arguments are the "master angles" of that machine: the Moon's average position, the Sun-Moon angle, the Sun's orbit, the Moon's orbit shape, and the Moon's orbital tilt. Once we know where each gear is pointed, we can calculate the distortions using sine/cosine functions.
               </WhyBox>
 
               <div className="mb-5 p-4 rounded-xl bg-black/20 border border-white/8">
                 <div className="text-xs text-text-secondary/60 font-semibold uppercase tracking-wider mb-3">The 5 Angles (all in degrees, mod 360°)</div>
                 <div className="space-y-2 font-mono text-xs text-text-primary">
-                  <div><span className="text-indigo-300">L'</span> = 218.316 + <span className="text-purple-300">481,267.881</span> × T — Moon's mean longitude</div>
-                  <div><span className="text-indigo-300">D</span>  = 297.850 + <span className="text-purple-300">445,267.111</span> × T — Mean Moon-Sun elongation</div>
-                  <div><span className="text-indigo-300">M</span>  = 357.529 + <span className="text-purple-300">35,999.050</span>  × T — Sun's mean anomaly</div>
-                  <div><span className="text-indigo-300">M'</span> = 134.963 + <span className="text-purple-300">477,198.868</span> × T — Moon's mean anomaly</div>
-                  <div><span className="text-indigo-300">F</span>  = 93.272  + <span className="text-purple-300">483,202.018</span> × T — Moon's argument of latitude</div>
+                  <div><span className="text-indigo-300">L'</span> = 218.316 + <span className="text-purple-300">481,267.881</span> × T  –  Moon's mean longitude</div>
+                  <div><span className="text-indigo-300">D</span>  = 297.850 + <span className="text-purple-300">445,267.111</span> × T  –  Mean Moon-Sun elongation</div>
+                  <div><span className="text-indigo-300">M</span>  = 357.529 + <span className="text-purple-300">35,999.050</span>  × T  –  Sun's mean anomaly</div>
+                  <div><span className="text-indigo-300">M'</span> = 134.963 + <span className="text-purple-300">477,198.868</span> × T  –  Moon's mean anomaly</div>
+                  <div><span className="text-indigo-300">F</span>  = 93.272  + <span className="text-purple-300">483,202.018</span> × T  –  Moon's argument of latitude</div>
                 </div>
                 <p className="text-text-secondary/60 text-xs mt-3">The large multipliers (e.g. 481,267) are the orbital frequencies in degrees per century. The Moon completes ~1,336 full orbits per century.</p>
               </div>
 
               <div className="space-y-2">
                 <CalcRow label="T (Julian Centuries)" value={calc.t.toFixed(8)} />
-                <CalcRow label="L' — Moon mean longitude" value={`${calc.Lp.toFixed(4)}°`} highlight />
-                <CalcRow label="D  — Mean elongation" value={`${calc.D.toFixed(4)}°`} />
-                <CalcRow label="M  — Sun mean anomaly" value={`${calc.M.toFixed(4)}°`} />
-                <CalcRow label="M' — Moon mean anomaly" value={`${calc.Mp.toFixed(4)}°`} />
-                <CalcRow label="F  — Arg of latitude" value={`${calc.F.toFixed(4)}°`} />
+                <CalcRow label="L'  –  Moon mean longitude" value={`${calc.Lp.toFixed(4)}°`} highlight />
+                <CalcRow label="D   –  Mean elongation" value={`${calc.D.toFixed(4)}°`} />
+                <CalcRow label="M   –  Sun mean anomaly" value={`${calc.M.toFixed(4)}°`} />
+                <CalcRow label="M'  –  Moon mean anomaly" value={`${calc.Mp.toFixed(4)}°`} />
+                <CalcRow label="F   –  Arg of latitude" value={`${calc.F.toFixed(4)}°`} />
               </div>
 
               <ResultBanner resultLabel={t('stepResult')} label="5 angles computed" value="Now we can evaluate all 60 sine terms" />
@@ -493,9 +493,9 @@ export default function MoonLabPage() {
           {step === 4 && calc && (
             <StepShell key="terms" stepNum={4} totalSteps={TOTAL_STEPS}
               title="60 Sine Correction Terms"
-              subtitle="This is where all the gravitational complexity gets encoded — as a sum of 60 carefully measured sine waves.">
+              subtitle="This is where all the gravitational complexity gets encoded  –  as a sum of 60 carefully measured sine waves.">
               <WhyBox heading={t('whyDoWeNeedThis')}>
-                Fourier analysis (named after French mathematician Joseph Fourier) shows that <em>any</em> repeating shape can be approximated by adding sine waves of different frequencies and amplitudes. The Moon's irregular orbit is a repeating pattern — and Meeus found the 60 most important waves that together reconstruct it. Each row in his famous Table 47.A says: "multiply D by this, M by this, M' by this, F by this, take the sine, multiply by this coefficient". Adding all 60 results gives the total correction to add to the Moon's mean position.
+                Fourier analysis (named after French mathematician Joseph Fourier) shows that <em>any</em> repeating shape can be approximated by adding sine waves of different frequencies and amplitudes. The Moon's irregular orbit is a repeating pattern  –  and Meeus found the 60 most important waves that together reconstruct it. Each row in his famous Table 47.A says: "multiply D by this, M by this, M' by this, F by this, take the sine, multiply by this coefficient". Adding all 60 results gives the total correction to add to the Moon's mean position.
               </WhyBox>
 
               <SineWaveDiagram top5={calc.top5} />
@@ -539,9 +539,9 @@ export default function MoonLabPage() {
               subtitle="We add all 60 terms plus 3 extra corrections for Venus, Earth's shape, and Jupiter.">
               <WhyBox heading={t('whyDoWeNeedThis')}>
                 After summing the main 60 terms, Meeus adds 3 extra corrections. These account for:<br />
-                <strong className="text-white">Venus</strong> — the second-largest gravitational influence after the Sun (small but non-negligible)<br />
-                <strong className="text-white">Earth's flattening</strong> — Earth is slightly squashed at the poles, so gravity isn't perfectly spherical<br />
-                <strong className="text-white">Jupiter</strong> — the largest planet, whose gravity creates a tiny but measurable effect
+                <strong className="text-white">Venus</strong>  –  the second-largest gravitational influence after the Sun (small but non-negligible)<br />
+                <strong className="text-white">Earth's flattening</strong>  –  Earth is slightly squashed at the poles, so gravity isn't perfectly spherical<br />
+                <strong className="text-white">Jupiter</strong>  –  the largest planet, whose gravity creates a tiny but measurable effect
               </WhyBox>
 
               <div className="space-y-2 mb-4">
@@ -564,7 +564,7 @@ export default function MoonLabPage() {
               title="Final Tropical Longitude"
               subtitle="Now we add the total correction to the mean longitude to get where the Moon actually is.">
               <WhyBox heading={t('whyDoWeNeedThis')}>
-                L' is the Moon's <em>mean</em> position — where it would be if the orbit were a perfect ellipse with no perturbations. The correction term (all those 60+ sine waves) tells us how far the Moon has deviated from that mean due to gravitational influences. Adding them gives the Moon's true tropical longitude — its position measured from the Spring Equinox point.
+                L' is the Moon's <em>mean</em> position  –  where it would be if the orbit were a perfect ellipse with no perturbations. The correction term (all those 60+ sine waves) tells us how far the Moon has deviated from that mean due to gravitational influences. Adding them gives the Moon's true tropical longitude  –  its position measured from the Spring Equinox point.
               </WhyBox>
 
               <div className="space-y-2 mb-4">
@@ -585,7 +585,7 @@ export default function MoonLabPage() {
               title="Apply the Ayanamsha"
               subtitle="The last step: convert from the Western (tropical) zodiac to the Vedic (sidereal) star-fixed zodiac.">
               <WhyBox heading={t('whyDoWeNeedThis')}>
-                The tropical zodiac is anchored to the Spring Equinox — a point that slowly drifts due to Earth's 26,000-year axial wobble. The sidereal zodiac is anchored to the actual star backdrop. Since Vedic astrology uses the real stars, not the drifting equinox, we subtract the Lahiri Ayanamsha — the official correction adopted by the Government of India in 1955 — to get the true Vedic position.
+                The tropical zodiac is anchored to the Spring Equinox  –  a point that slowly drifts due to Earth's 26,000-year axial wobble. The sidereal zodiac is anchored to the actual star backdrop. Since Vedic astrology uses the real stars, not the drifting equinox, we subtract the Lahiri Ayanamsha  –  the official correction adopted by the Government of India in 1955  –  to get the true Vedic position.
               </WhyBox>
 
               <div className="space-y-2 mb-4">
@@ -594,7 +594,7 @@ export default function MoonLabPage() {
                 <CalcRow label="Sidereal = Tropical − Ayanamsha" value={`${calc.sidLong.toFixed(6)}°`} highlight />
               </div>
 
-              <ResultBanner resultLabel={t('stepResult')} label={`Sidereal Moon: ${calc.sidLong.toFixed(4)}°`} value="Vedic (star-fixed) position — ready for Nakshatra/Rashi lookup" />
+              <ResultBanner resultLabel={t('stepResult')} label={`Sidereal Moon: ${calc.sidLong.toFixed(4)}°`} value="Vedic (star-fixed) position  –  ready for Nakshatra/Rashi lookup" />
               <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('seeResult')} />
             </StepShell>
           )}
@@ -608,9 +608,9 @@ export default function MoonLabPage() {
 
               <div className="space-y-2 mb-4">
                 <CalcRow label="Sidereal Moon" value={`${calc.sidLong.toFixed(4)}°`} />
-                <CalcRow label="Rashi = floor(° ÷ 30) + 1" value={`${calc.rashiNum} — ${lt(calc.rashiData.name as LocaleText, locale)} ${calc.rashiData.symbol}`} highlight />
+                <CalcRow label="Rashi = floor(° ÷ 30) + 1" value={`${calc.rashiNum}  –  ${lt(calc.rashiData.name as LocaleText, locale)} ${calc.rashiData.symbol}`} highlight />
                 <CalcRow label="Degree within sign" value={`${(calc.sidLong % 30).toFixed(2)}°`} />
-                <CalcRow label="Nakshatra = floor(° ÷ 13.333) + 1" value={`${calc.nakNum} — ${lt(calc.nakData.name as LocaleText, locale)}`} highlight />
+                <CalcRow label="Nakshatra = floor(° ÷ 13.333) + 1" value={`${calc.nakNum}  –  ${lt(calc.nakData.name as LocaleText, locale)}`} highlight />
                 <CalcRow label="Pada (quarter)" value={`${calc.pada} / 4`} />
                 <CalcRow label="Nakshatra ruler" value={calc.nakData.ruler} />
               </div>

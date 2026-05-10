@@ -1,5 +1,5 @@
 import type { LocaleText } from '@/types/panchang';
-// graha-yuddha.ts — Planetary War (Graha Yuddha) Analysis
+// graha-yuddha.ts  –  Planetary War (Graha Yuddha) Analysis
 // Source: BPHS Ch. 3, Brihat Jataka
 // Two planets within 1° of each other engage in war.
 // Winner: higher ecliptic latitude (closer to ecliptic). Loser loses ~25% Shadbala.
@@ -43,7 +43,7 @@ const WAR_PLANETS = new Set([2, 3, 4, 5, 6]);
 interface PlanetInput {
   id: number;
   longitude: number;
-  latitude: number; // ecliptic latitude — determines winner
+  latitude: number; // ecliptic latitude  –  determines winner
 }
 
 export function detectGrahaYuddha(planets: PlanetInput[]): GrahaYuddhaResult[] {
@@ -82,8 +82,8 @@ export function detectGrahaYuddha(planets: PlanetInput[]): GrahaYuddhaResult[] {
         loserId:     loser.id,
         loserName,
         interpretation: {
-          en: `${winnerName.en} and ${loserName.en} are in Planetary War (${sep.toFixed(2)}° apart). ${winnerName.en} wins (higher ecliptic latitude) — its themes of ${winnerDomain?.en} are amplified. ${loserName.en} loses — its themes of ${loserDomain?.en} are compromised. The loser's Shadbala is reduced by ~25%, weakening its significations during its dasha periods.`,
-          hi: `${winnerName.hi} और ${loserName.hi} ग्रह युद्ध में हैं (${sep.toFixed(2)}° अंतर)। ${winnerName.hi} विजयी — इसके ${winnerDomain?.hi} के विषय प्रबल होते हैं। ${loserName.hi} पराजित — इसके ${loserDomain?.hi} के विषय कमजोर पड़ते हैं।`,
+          en: `${winnerName.en} and ${loserName.en} are in Planetary War (${sep.toFixed(2)}° apart). ${winnerName.en} wins (higher ecliptic latitude)  –  its themes of ${winnerDomain?.en} are amplified. ${loserName.en} loses  –  its themes of ${loserDomain?.en} are compromised. The loser's Shadbala is reduced by ~25%, weakening its significations during its dasha periods.`,
+          hi: `${winnerName.hi} और ${loserName.hi} ग्रह युद्ध में हैं (${sep.toFixed(2)}° अंतर)। ${winnerName.hi} विजयी  –  इसके ${winnerDomain?.hi} के विषय प्रबल होते हैं। ${loserName.hi} पराजित  –  इसके ${loserDomain?.hi} के विषय कमजोर पड़ते हैं।`,
           sa: `${winnerName.sa} ${loserName.sa}च ग्रहयुद्धे स्तः। ${winnerName.sa} विजयी, ${loserName.sa} पराजितः।`,
         },
       });

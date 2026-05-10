@@ -4,7 +4,7 @@
  * `JSON.stringify(x)` on its own is not safe to embed inside a `<script>` tag
  * because if any value ever contains the substring `</script>`, the HTML
  * parser will close the script tag early and treat the remaining JSON as
- * markup — trivially exploitable if user-controlled content reaches a
+ * markup  –  trivially exploitable if user-controlled content reaches a
  * JSON-LD payload.
  *
  * Two additional sequences also need escaping:

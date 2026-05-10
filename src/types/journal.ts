@@ -1,5 +1,5 @@
 /**
- * Astro Journal — TypeScript types
+ * Astro Journal  –  TypeScript types
  *
  * PlanetarySnapshot is stored as JSONB in `planetary_state`.
  * The flat scalar columns (tithi_number, nakshatra_number, …) are denormalised
@@ -42,7 +42,7 @@ export interface JournalEntry {
   note: string | null;
   tags: string[];
   planetary_state: PlanetarySnapshot;
-  /** Denormalised scalars — kept in sync with planetary_state at write time. */
+  /** Denormalised scalars  –  kept in sync with planetary_state at write time. */
   tithi_number: number | null;
   nakshatra_number: number | null;
   yoga_number: number | null;

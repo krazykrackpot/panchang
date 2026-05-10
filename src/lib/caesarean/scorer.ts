@@ -1,19 +1,19 @@
 // src/lib/caesarean/scorer.ts
 
 /**
- * Caesarean Birth Time Scorer — 5-Pillar Classical Framework
+ * Caesarean Birth Time Scorer  –  5-Pillar Classical Framework
  *
  * Evaluates a candidate birth moment across:
- *   1. Lagna Strength (30 pts) — BPHS Ch.6-7
- *   2. Moon Strength (25 pts) — Muhurta Chintamani
- *   3. Benefic/Malefic Distribution (20 pts) — Prasna Marga Ch.9
- *   4. Dasha Trajectory (15 pts) — BPHS dasha chapters
- *   5. Structural Defects (10 pts base, deducted) — multiple sources
+ *   1. Lagna Strength (30 pts)  –  BPHS Ch.6-7
+ *   2. Moon Strength (25 pts)  –  Muhurta Chintamani
+ *   3. Benefic/Malefic Distribution (20 pts)  –  Prasna Marga Ch.9
+ *   4. Dasha Trajectory (15 pts)  –  BPHS dasha chapters
+ *   5. Structural Defects (10 pts base, deducted)  –  multiple sources
  *
- * Input: pre-computed chart snapshot (not raw BirthData — the scanner handles
+ * Input: pre-computed chart snapshot (not raw BirthData  –  the scanner handles
  * the expensive kundali computation and passes the relevant data here).
  *
- * This scorer is a PURE FUNCTION — no side effects, no I/O.
+ * This scorer is a PURE FUNCTION  –  no side effects, no I/O.
  */
 
 import type { LocaleText } from '@/types/panchang';
@@ -33,7 +33,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 
 // ─── Scorer Input ───────────────────────────────────────────────────────────
 
-/** Lightweight chart snapshot — the minimum data needed to score a slot */
+/** Lightweight chart snapshot  –  the minimum data needed to score a slot */
 export interface ChartSnapshot {
   lagnaSign: number;           // 1-12
   lagnaDegreesInSign: number;  // 0-30 degrees within sign
@@ -258,11 +258,11 @@ function scoreMoonPillar(snap: ChartSnapshot, strengths: ChartStrength[]): numbe
     d.problematicPada === null
   );
   if (severeDosha) {
-    score += 0; // Problematic pada — zero points
+    score += 0; // Problematic pada  –  zero points
   } else if (moderateDosha) {
-    score += 2; // Moderate — dosha present but not in worst pada
+    score += 2; // Moderate  –  dosha present but not in worst pada
   } else {
-    score += 4; // No dosha — full points
+    score += 4; // No dosha  –  full points
   }
 
   // 5. Jupiter aspecting Moon (0-3)
@@ -382,15 +382,15 @@ function scoreDefects(snap: ChartSnapshot, defects: ChartDefect[]): { defectScor
   if (isInGandanta(snap.moonSidDeg)) {
     defects.push({
       id: 'gandanta_moon',
-      label: { en: 'Moon in Gandanta zone — avoid', hi: 'चन्द्र गंडान्त क्षेत्र में — टालें' },
+      label: { en: 'Moon in Gandanta zone  –  avoid', hi: 'चन्द्र गंडान्त क्षेत्र में  –  टालें' },
       deduction: 10, isVeto: true, source: 'Muhurta Chintamani',
     });
     return {
       defectScore: 0,
       isVetoed: true,
       vetoReason: {
-        en: 'Moon in Gandanta — birth at water-fire sign junction is classically prohibited',
-        hi: 'चन्द्र गंडान्त में — जल-अग्नि राशि संधि पर जन्म शास्त्रीय रूप से निषिद्ध',
+        en: 'Moon in Gandanta  –  birth at water-fire sign junction is classically prohibited',
+        hi: 'चन्द्र गंडान्त में  –  जल-अग्नि राशि संधि पर जन्म शास्त्रीय रूप से निषिद्ध',
       },
     };
   }
@@ -405,7 +405,7 @@ function scoreDefects(snap: ChartSnapshot, defects: ChartDefect[]): { defectScor
       base -= 8;
       defects.push({
         id: 'kaal_sarpa',
-        label: { en: 'Kaal Sarpa Yoga — all planets between Rahu-Ketu axis', hi: 'काल सर्प योग — सभी ग्रह राहु-केतु अक्ष के बीच' },
+        label: { en: 'Kaal Sarpa Yoga  –  all planets between Rahu-Ketu axis', hi: 'काल सर्प योग  –  सभी ग्रह राहु-केतु अक्ष के बीच' },
         deduction: 8, isVeto: false, source: 'Multiple classical sources',
       });
     }
@@ -524,10 +524,10 @@ function getDignityScore(planetId: number, sign: number): number {
   const mt = MOOLATRIKONA[planetId];
   if (mt && mt.sign === sign) return 9;
   if (isOwnSign(planetId, sign)) return 8;
-  // Friend/neutral/enemy requires full friendship table — approximate:
+  // Friend/neutral/enemy requires full friendship table  –  approximate:
   // For the lagna lord, own/exalted/moolatrikona are the key differentiators.
   if (isDebilitated(planetId, sign)) return 0;
-  return 4; // Neutral fallback — conservative middle ground
+  return 4; // Neutral fallback  –  conservative middle ground
 }
 
 function isWaxingMoon(tithiNumber: number): boolean {
@@ -546,7 +546,7 @@ function getPakshaScore(tithiNumber: number): number {
 /**
  * Full Vedic aspects including Mars (4,8), Jupiter (5,9), Saturn (3,10) special aspects.
  *
- * CRITICAL: Jupiter's 5th and 9th aspects are essential for birth-election scoring —
+ * CRITICAL: Jupiter's 5th and 9th aspects are essential for birth-election scoring  – 
  * a simplified 7th-only check would miss Jupiter aspecting lagna from houses 5 and 9.
  *
  * @param planetId - 0=Sun..8=Ketu

@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { Download, X } from 'lucide-react';
 
 /**
- * PWA Install Prompt — shows a custom "Add to Home Screen" banner
+ * PWA Install Prompt  –  shows a custom "Add to Home Screen" banner
  * after the user's 2nd visit (tracked via localStorage).
  *
  * Uses the `beforeinstallprompt` event to detect when the browser
@@ -20,7 +20,7 @@ export default function InstallPrompt() {
     // Don't show if already installed (standalone mode)
     if (window.matchMedia('(display-mode: standalone)').matches) return;
 
-    // Track visit count — only show after 2nd visit
+    // Track visit count  –  only show after 2nd visit
     const key = 'dp-install-visits';
     const dismissKey = 'dp-install-dismissed';
     const visits = parseInt(localStorage.getItem(key) || '0', 10) + 1;

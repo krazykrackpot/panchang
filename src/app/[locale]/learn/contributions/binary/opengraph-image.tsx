@@ -1,7 +1,7 @@
 import { createContributionOG, OG_SIZE } from '../og-helper';
 
 export const runtime = 'edge';
-export const alt = 'Binary Code — 200 BCE, India';
+export const alt = 'Binary Code  –  200 BCE, India';
 export const size = OG_SIZE;
 export const contentType = 'image/png';
 

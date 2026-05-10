@@ -9,7 +9,7 @@ import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
-export const revalidate = 604800; // 7 days — static educational content
+export const revalidate = 604800; // 7 days  –  static educational content
 
 
 /* ═══════════════════════════════════════════════════════════════
@@ -27,9 +27,9 @@ const TIMELINE = [
 ];
 
 const SANSKRIT_TERMS = [
-  { term: 'Aryabhatiya', transliteration: 'Āryabhaṭīya', meaning: 'Aryabhata\'s treatise — 499 CE, covers arithmetic, algebra, trigonometry', devanagari: 'आर्यभटीय' },
+  { term: 'Aryabhatiya', transliteration: 'Āryabhaṭīya', meaning: 'Aryabhata\'s treatise  –  499 CE, covers arithmetic, algebra, trigonometry', devanagari: 'आर्यभटीय' },
   { term: 'Ganitapada', transliteration: 'Gaṇitapāda', meaning: 'Mathematics chapter of Aryabhatiya (33 verses)', devanagari: 'गणितपाद' },
-  { term: 'Asannah', transliteration: 'āsannaḥ', meaning: '"Approaching" / "approximate" — Aryabhata\'s hint at irrationality', devanagari: 'आसन्नः' },
+  { term: 'Asannah', transliteration: 'āsannaḥ', meaning: '"Approaching" / "approximate"  –  Aryabhata\'s hint at irrationality', devanagari: 'आसन्नः' },
   { term: 'Parinaha', transliteration: 'pariṇāha', meaning: 'circumference', devanagari: 'परिणाह' },
   { term: 'Vishkambha', transliteration: 'viṣkambha', meaning: 'diameter', devanagari: 'विष्कम्भ' },
 ];
@@ -95,7 +95,7 @@ export default async function PiPage({ params }: { params: Promise<{ locale: str
                 3.14160
               </span>
               <span className="text-text-secondary mt-2 text-sm sm:text-base">
-                {hi ? 'आर्यभट का π — 499 ईस्वी | वास्तविक: 3.14159265... | त्रुटि: 0.0001%' : "Aryabhata's π — 499 CE | True: 3.14159265... | Error: 0.0001%"}
+                {hi ? 'आर्यभट का π  –  499 ईस्वी | वास्तविक: 3.14159265... | त्रुटि: 0.0001%' : "Aryabhata's π  –  499 CE | True: 3.14159265... | Error: 0.0001%"}
               </span>
             </div>
           </div>
@@ -117,7 +117,7 @@ export default async function PiPage({ params }: { params: Promise<{ locale: str
               {t('s1Sanskrit')}
             </div>
             <div className="text-gold-light/70 text-sm italic px-4">{t('s1Trans')}</div>
-            <div className="text-text-secondary/60 text-xs mt-2">— Aryabhatiya, Ganitapada, verse 10, 499 CE</div>
+            <div className="text-text-secondary/60 text-xs mt-2"> –  Aryabhatiya, Ganitapada, verse 10, 499 CE</div>
           </div>
         </LessonSection>
 
@@ -154,10 +154,10 @@ export default async function PiPage({ params }: { params: Promise<{ locale: str
             </div>
             <div className="text-gold-light font-semibold">"āsannaḥ"</div>
             <div className="text-text-secondary text-sm mt-2 max-w-md mx-auto">
-              {hi ? '"निकट" या "लगभग" — आर्यभट ने जानबूझकर यह शब्द चुना। यह एक गणितज्ञ की भाषा है जो जानता है कि सटीक उत्तर असंभव है।' : '"Approaching" / "approximate" — Aryabhata chose this word deliberately. This is the language of a mathematician who knows the exact answer is impossible.'}
+              {hi ? '"निकट" या "लगभग"  –  आर्यभट ने जानबूझकर यह शब्द चुना। यह एक गणितज्ञ की भाषा है जो जानता है कि सटीक उत्तर असंभव है।' : '"Approaching" / "approximate"  –  Aryabhata chose this word deliberately. This is the language of a mathematician who knows the exact answer is impossible.'}
             </div>
             <div className="mt-3 text-xs text-text-secondary/60 italic">
-              {hi ? 'लैम्बर्ट ने 1761 में π की अपरिमेयता को सिद्ध किया — आर्यभट के 1,262 साल बाद' : 'Lambert proved the irrationality of π in 1761 — 1,262 years after Aryabhata'}
+              {hi ? 'लैम्बर्ट ने 1761 में π की अपरिमेयता को सिद्ध किया  –  आर्यभट के 1,262 साल बाद' : 'Lambert proved the irrationality of π in 1761  –  1,262 years after Aryabhata'}
             </div>
           </div>
         </LessonSection>
@@ -206,7 +206,7 @@ export default async function PiPage({ params }: { params: Promise<{ locale: str
               1/π = (2√2/9801) × Σ [(4n)!(1103+26390n)] / [(n!)⁴ × 396⁴ⁿ]
             </div>
             <div className="text-text-secondary/60 text-xs mt-3 italic">
-              {hi ? 'प्रत्येक पद ~8 सही अंक जोड़ता है — 1985 में 17 मिलियन अंकों की गणना का आधार' : 'Each term adds ~8 correct digits — basis for 17 million digit computation in 1985'}
+              {hi ? 'प्रत्येक पद ~8 सही अंक जोड़ता है  –  1985 में 17 मिलियन अंकों की गणना का आधार' : 'Each term adds ~8 correct digits  –  basis for 17 million digit computation in 1985'}
             </div>
           </div>
         </LessonSection>

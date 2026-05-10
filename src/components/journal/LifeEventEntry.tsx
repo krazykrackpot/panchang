@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * LifeEventEntry — form to record a new life event.
+ * LifeEventEntry  –  form to record a new life event.
  * Captures: date, type, title, description, significance (1-5 stars), tags.
  */
 

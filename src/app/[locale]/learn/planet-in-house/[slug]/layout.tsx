@@ -56,12 +56,12 @@ export async function generateMetadata({
   const planetName = isHi ? planet.hi : planet.en;
 
   const title = isHi
-    ? `${planetName} ${suffix} भाव में — बृहत् पाराशर होराशास्त्र | Dekho Panchang`
-    : `${planetName} in the ${suffix} House — BPHS Vedic Astrology | Dekho Panchang`;
+    ? `${planetName} ${suffix} भाव में  –  बृहत् पाराशर होराशास्त्र | Dekho Panchang`
+    : `${planetName} in the ${suffix} House  –  BPHS Vedic Astrology | Dekho Panchang`;
 
   const descText = verse
     ? (isHi ? (verse.interpretation.hi ?? verse.interpretation.en) : verse.interpretation.en)
-    : `${planet.en} in the ${suffix} house — classical verse and modern interpretation from Brihat Parashara Hora Shastra.`;
+    : `${planet.en} in the ${suffix} house  –  classical verse and modern interpretation from Brihat Parashara Hora Shastra.`;
   const description = descText.slice(0, 160);
 
   const url = `${BASE_URL}/${locale}/learn/planet-in-house/${slug}`;

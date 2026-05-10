@@ -99,8 +99,8 @@ function getKalaExplanation(
   const ruleLabel = tl(RULE_LABELS[rule], locale);
   if (rule === 'sunrise') {
     return tl({
-      en: `${festivalNameEn} follows the Udaya Tithi rule — the festival is observed on the day when the required tithi prevails at sunrise. This is the default Dharmasindhu convention for festivals without a special time-window requirement.`,
-      hi: `${festivalNameEn} उदय तिथि नियम का पालन करता है — जिस दिन आवश्यक तिथि सूर्योदय के समय व्याप्त हो, उस दिन त्योहार मनाया जाता है। यह धर्मसिन्धु का सामान्य नियम है।`,
+      en: `${festivalNameEn} follows the Udaya Tithi rule  –  the festival is observed on the day when the required tithi prevails at sunrise. This is the default Dharmasindhu convention for festivals without a special time-window requirement.`,
+      hi: `${festivalNameEn} उदय तिथि नियम का पालन करता है  –  जिस दिन आवश्यक तिथि सूर्योदय के समय व्याप्त हो, उस दिन त्योहार मनाया जाता है। यह धर्मसिन्धु का सामान्य नियम है।`,
     }, locale);
   }
 
@@ -123,12 +123,12 @@ function formatTimeHHMM(date: Date): string {
   return date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false });
 }
 
-// ISR: cache for 7 days — festival dates for a given year never change.
+// ISR: cache for 7 days  –  festival dates for a given year never change.
 // Prevents CPU spikes from crawlers (Meta, Google) hitting uncached pages repeatedly.
 export const revalidate = 604800; // 7 days in seconds
 
 /**
- * Pre-render only a small seed set at build time — top 5 festivals × top 5 cities × 2026.
+ * Pre-render only a small seed set at build time  –  top 5 festivals × top 5 cities × 2026.
  * All other combinations are generated on-demand via ISR (Next.js dynamic rendering).
  * This keeps build time under control while seeding the most-searched pages.
  */
@@ -168,13 +168,13 @@ export default async function FestivalCityPage({
 
   // Generate festival calendar for this city + year
   const festivals = generateFestivalCalendarV2(year, cityData.lat, cityData.lng, cityData.timezone);
-  // Free memory — tithi table is large
+  // Free memory  –  tithi table is large
   clearTithiTableCache();
 
   // Find the matching festival entry
   const festivalEntry = festivals.find(f => f.slug === slug);
   if (!festivalEntry) {
-    // Festival doesn't occur in this year (rare — e.g., adhika masa shifts)
+    // Festival doesn't occur in this year (rare  –  e.g., adhika masa shifts)
     notFound();
   }
 
@@ -335,7 +335,7 @@ export default async function FestivalCityPage({
               {tl({ en: `in ${cityNameLocale}`, hi: `${cityNameLocale} में` }, locale)}
             </span>
           </h1>
-          {/* Cross-links to core pages — passes SEO authority from high-impression festival pages */}
+          {/* Cross-links to core pages  –  passes SEO authority from high-impression festival pages */}
           <div className="flex flex-wrap justify-center gap-2 mt-3">
             <a href={`/${locale}/panchang`} className="px-3 py-1 rounded-full text-xs border border-gold-primary/20 text-gold-dark hover:bg-gold-primary/10 transition-colors">
               {isHi ? 'आज का पंचांग' : "Today's Panchang"}
@@ -472,8 +472,8 @@ export default async function FestivalCityPage({
             </p>
             <p className="text-text-secondary/60 text-xs italic" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
               {tl({
-                en: 'Source: Dharmasindhu & Nirnayasindhu — classical Kala-Vyapti system',
-                hi: 'स्रोत: धर्मसिन्धु एवं निर्णयसिन्धु — शास्त्रीय काल-व्याप्ति पद्धति',
+                en: 'Source: Dharmasindhu & Nirnayasindhu  –  classical Kala-Vyapti system',
+                hi: 'स्रोत: धर्मसिन्धु एवं निर्णयसिन्धु  –  शास्त्रीय काल-व्याप्ति पद्धति',
               }, locale)}
             </p>
           </div>
@@ -595,7 +595,7 @@ export default async function FestivalCityPage({
         <details className="group">
           <summary className="flex items-center gap-2 cursor-pointer text-gold-primary text-sm font-medium hover:text-gold-light transition-colors">
             <ChevronRight className="w-4 h-4 group-open:rotate-90 transition-transform" />
-            {tl({ en: 'Calculation Proof — Transparent Audit Trail', hi: 'गणना प्रमाण — पारदर्शी लेखा परीक्षा' }, locale)}
+            {tl({ en: 'Calculation Proof  –  Transparent Audit Trail', hi: 'गणना प्रमाण  –  पारदर्शी लेखा परीक्षा' }, locale)}
           </summary>
           <div className="mt-3 bg-bg-secondary rounded-xl border border-gold-primary/10 p-4 space-y-2 text-sm text-text-secondary">
             <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
@@ -603,7 +603,7 @@ export default async function FestivalCityPage({
               <span className="text-gold-light">{festivalNameEn}</span>
 
               <span className="text-text-secondary/60">{tl({ en: 'Tithi', hi: 'तिथि' }, locale)}</span>
-              <span className="text-gold-light">{tithiStr || '—'}</span>
+              <span className="text-gold-light">{tithiStr || ' – '}</span>
 
               <span className="text-text-secondary/60">{tl({ en: 'Kala Rule', hi: 'काल नियम' }, locale)}</span>
               <span className="text-gold-light">{ruleLabel}</span>
@@ -734,8 +734,8 @@ export default async function FestivalCityPage({
         <div>
           <h2 className="text-gold-light font-bold text-lg mb-4 text-center" style={{ fontFamily: 'var(--font-heading)' }}>
             {tl({
-              en: `${festivalNameEn} in ${cityNameEn} — Other Years`,
-              hi: `${cityNameLocale} में ${festivalNameLocale} — अन्य वर्ष`,
+              en: `${festivalNameEn} in ${cityNameEn}  –  Other Years`,
+              hi: `${cityNameLocale} में ${festivalNameLocale}  –  अन्य वर्ष`,
             }, locale)}
           </h2>
           <div className="flex flex-wrap justify-center gap-3">

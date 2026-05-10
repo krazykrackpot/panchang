@@ -460,7 +460,7 @@ const YOGA_CATEGORY_KEYWORDS: [RegExp, YogaCategory][] = [
   [/\bsaubhagya\b/i, 'marriage'],
   [/\bsumangali\b/i, 'marriage'],
 
-  // Nabhasa (pattern) yogas — all 32 types
+  // Nabhasa (pattern) yogas  –  all 32 types
   // Ashraya (3): Rajju, Musala, Nala
   [/\brajju\b/i, 'nabhasa'],
   [/\bmusala?\b/i, 'nabhasa'],
@@ -497,7 +497,7 @@ const YOGA_CATEGORY_KEYWORDS: [RegExp, YogaCategory][] = [
   [/\bhala\b/i, 'nabhasa'],
   [/\bgada\b/i, 'nabhasa'],
   // Sankhya (7): Vallaki, Dama, Pasha, Kedara, Shula, Yuga, Gola
-  // (already covered above — Nabhasa Sankhya names overlap with Akriti)
+  // (already covered above  –  Nabhasa Sankhya names overlap with Akriti)
 ];
 
 /**

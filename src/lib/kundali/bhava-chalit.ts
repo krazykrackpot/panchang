@@ -1,5 +1,5 @@
 /**
- * Bhava Chalit Chart — Equal Bhava (Sripati) System
+ * Bhava Chalit Chart  –  Equal Bhava (Sripati) System
  *
  * In the standard Vedic chart, each rashi IS a house (whole-sign system).
  * But in the Bhava Chalit system, house boundaries (sandhis) are determined
@@ -25,9 +25,9 @@ export interface BhavaChalitPlanet {
 }
 
 export interface BhavaChalitResult {
-  /** Bhava Madhya (midpoints) — 12 entries in degrees (0-360) */
+  /** Bhava Madhya (midpoints)  –  12 entries in degrees (0-360) */
   bhavaMadhya: number[];
-  /** Bhava Sandhi (boundaries) — 12 entries, sandhi[i] = start of bhava i+1 */
+  /** Bhava Sandhi (boundaries)  –  12 entries, sandhi[i] = start of bhava i+1 */
   bhavaSandhi: number[];
   /** Planet bhava assignments */
   planets: BhavaChalitPlanet[];

@@ -202,9 +202,9 @@ describe('Moolatrikona degree ranges (Saptavargaja Bala)', () => {
     };
   }
 
-  it('Sun at Leo 10° (within 0-20°) — D1 gets Moolatrikona points (45)', () => {
+  it('Sun at Leo 10° (within 0-20°)  –  D1 gets Moolatrikona points (45)', () => {
     // Sun moolatrikona = Leo 0°-20°. At 10° it should be in range.
-    // We check saptavargajaBala increases — at least the D1 component is 45
+    // We check saptavargajaBala increases  –  at least the D1 component is 45
     const inside = calculateFullShadbala(mtInput(0, 5, 10));
     const outside = calculateFullShadbala(mtInput(0, 5, 25)); // Leo 25° = outside range → own sign (30)
     const sunInside = inside.find(p => p.planetId === 0)!;
@@ -213,7 +213,7 @@ describe('Moolatrikona degree ranges (Saptavargaja Bala)', () => {
     expect(sunInside.sthanaBala).toBeGreaterThan(sunOutside.sthanaBala);
   });
 
-  it('Sun at Leo 25° (outside 0-20°) — lower sthanaBala than Sun at Leo 10° (inside range)', () => {
+  it('Sun at Leo 25° (outside 0-20°)  –  lower sthanaBala than Sun at Leo 10° (inside range)', () => {
     // At Leo 25° Sun still owns the sign (30 pts D1) vs 45 pts D1 at Leo 10° = 15 pts less from moolatrikona
     // ucchaBala also differs by degree so total difference is >15; just verify inside > outside
     const inside = calculateFullShadbala(mtInput(0, 5, 10));
@@ -225,7 +225,7 @@ describe('Moolatrikona degree ranges (Saptavargaja Bala)', () => {
     expect(sunInside.sthanaBala - sunOutside.sthanaBala).toBeGreaterThanOrEqual(14);
   });
 
-  it('Mars at Aries 5° (within 0-12°) — D1 gets Moolatrikona points', () => {
+  it('Mars at Aries 5° (within 0-12°)  –  D1 gets Moolatrikona points', () => {
     const inside = calculateFullShadbala(mtInput(2, 1, 5));
     const outside = calculateFullShadbala(mtInput(2, 1, 20)); // Aries 20° = outside range
     const marsInside = inside.find(p => p.planetId === 2)!;
@@ -233,7 +233,7 @@ describe('Moolatrikona degree ranges (Saptavargaja Bala)', () => {
     expect(marsInside.sthanaBala).toBeGreaterThan(marsOutside.sthanaBala);
   });
 
-  it('Mercury at Virgo 17° (within 15-20°) — D1 gets Moolatrikona points', () => {
+  it('Mercury at Virgo 17° (within 15-20°)  –  D1 gets Moolatrikona points', () => {
     const inside = calculateFullShadbala(mtInput(3, 6, 17));
     const outside = calculateFullShadbala(mtInput(3, 6, 10)); // Virgo 10° = outside range → own sign
     const mercInside = inside.find(p => p.planetId === 3)!;
@@ -241,7 +241,7 @@ describe('Moolatrikona degree ranges (Saptavargaja Bala)', () => {
     expect(mercInside.sthanaBala).toBeGreaterThan(mercOutside.sthanaBala);
   });
 
-  it('Jupiter at Sagittarius 5° (within 0-10°) — D1 gets Moolatrikona points', () => {
+  it('Jupiter at Sagittarius 5° (within 0-10°)  –  D1 gets Moolatrikona points', () => {
     const inside = calculateFullShadbala(mtInput(4, 9, 5));
     const outside = calculateFullShadbala(mtInput(4, 9, 15)); // Sag 15° = outside range → own sign
     const jupInside = inside.find(p => p.planetId === 4)!;
@@ -249,7 +249,7 @@ describe('Moolatrikona degree ranges (Saptavargaja Bala)', () => {
     expect(jupInside.sthanaBala).toBeGreaterThan(jupOutside.sthanaBala);
   });
 
-  it('Saturn at Aquarius 10° (within 0-20°) — D1 gets Moolatrikona points', () => {
+  it('Saturn at Aquarius 10° (within 0-20°)  –  D1 gets Moolatrikona points', () => {
     const inside = calculateFullShadbala(mtInput(6, 11, 10));
     const outside = calculateFullShadbala(mtInput(6, 11, 25)); // Aquarius 25° = outside range → own sign
     const satInside = inside.find(p => p.planetId === 6)!;
@@ -300,7 +300,7 @@ describe('Rahu/Ketu contribute to Drik Bala as malefics', () => {
     };
   }
 
-  it('Rahu on house 1 casts 7th aspect — reduces drikBala of planet on house 7', () => {
+  it('Rahu on house 1 casts 7th aspect  –  reduces drikBala of planet on house 7', () => {
     // Rahu on H1 → aspects H7 (7th from H1). Target: planet on H7.
     const withRahu = inputWithRahuOnHouse(1, 7, 3); // Mercury on H7, Rahu on H1
     const result = calculateFullShadbala(withRahu);
@@ -312,7 +312,7 @@ describe('Rahu/Ketu contribute to Drik Bala as malefics', () => {
   it('Rahu/Ketu presence changes drikBala vs without Rahu/Ketu', () => {
     const base = makeInput(); // original input that has Rahu/Ketu in planets
     const result = calculateFullShadbala(base);
-    // All DrikBala values should be finite — confirms Rahu/Ketu are processed
+    // All DrikBala values should be finite  –  confirms Rahu/Ketu are processed
     for (const p of result) {
       expect(Number.isFinite(p.drikBala)).toBe(true);
     }
@@ -328,7 +328,7 @@ describe('Rahu/Ketu contribute to Drik Bala as malefics', () => {
 });
 
 // ---------------------------------------------------------------------------
-// Tribhaga Bala — actual sunrise/sunset-based thirds
+// Tribhaga Bala  –  actual sunrise/sunset-based thirds
 // ---------------------------------------------------------------------------
 
 describe('Tribhaga Bala uses actual sunrise/sunset', () => {
@@ -362,7 +362,7 @@ describe('Tribhaga Bala uses actual sunrise/sunset', () => {
     return {
       planets,
       ascendantDeg: 280,
-      julianDay: 2448257.5, // 1990-01-15 — Delhi sunrise ≈ 07:13 local
+      julianDay: 2448257.5, // 1990-01-15  –  Delhi sunrise ≈ 07:13 local
       birthDateObj: new Date('1990-01-15T02:30:00Z'), // 2:30 UTC + 5.5h = 8:00 AM local → early 1st third
       latitude: 28.6139,
       longitude: 77.2090,
@@ -383,7 +383,7 @@ describe('Tribhaga Bala uses actual sunrise/sunset', () => {
     expect(jup.kalaBreakdown.tribhagaBala).toBe(60);
   });
 
-  it('tribhagaBala is 0 or 60 for every planet — no intermediate values', () => {
+  it('tribhagaBala is 0 or 60 for every planet  –  no intermediate values', () => {
     const result = calculateFullShadbala(makeEarlyMorningInput());
     for (const p of result) {
       expect([0, 60]).toContain(p.kalaBreakdown.tribhagaBala);

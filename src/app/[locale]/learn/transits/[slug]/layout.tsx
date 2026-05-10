@@ -13,7 +13,7 @@ type Props = { params: Promise<{ locale: string; slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const article = TRANSIT_ARTICLES[slug];
-  if (!article) return { title: 'Transit Article — Dekho Panchang' };
+  if (!article) return { title: 'Transit Article  –  Dekho Panchang' };
 
   const loc = locale as 'en' | 'hi';
   const title = article.title[loc] || article.title.en;

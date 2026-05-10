@@ -1,5 +1,5 @@
 /**
- * YouTube Short video generator — cinematic 5-slide panchang Short.
+ * YouTube Short video generator  –  cinematic 5-slide panchang Short.
  *
  * 1. Fetches 5 branded slides from /api/social/youtube?slide=1..5
  * 2. Uses ffmpeg to assemble with crossfade transitions + Ken Burns zoom
@@ -80,7 +80,7 @@ export async function generateDailyShort(): Promise<ShortVideoResult> {
     for (let i = 1; i < SLIDE_COUNT; i++) {
       const offset = i * SLIDE_DURATION - i * CROSSFADE;
       const outLabel = i < SLIDE_COUNT - 1 ? `xf${i}` : 'vout';
-      // Smooth, elegant transitions only — no jarring effects
+      // Smooth, elegant transitions only  –  no jarring effects
       const transitions = ['fade', 'fadeblack', 'fade', 'fadeblack'];
       const transition = transitions[i % transitions.length];
       xfadeChain += `;\n[${lastOutput}][v${i}]xfade=transition=${transition}:duration=${CROSSFADE}:offset=${offset.toFixed(2)}[${outLabel}]`;
@@ -129,9 +129,9 @@ export async function generateDailyShort(): Promise<ShortVideoResult> {
 
     return {
       videoBuffer,
-      title: `Today's Panchang — ${dateStr} | आज का पंचांग | तिथि नक्षत्र राहु काल #Shorts`,
+      title: `Today's Panchang  –  ${dateStr} | आज का पंचांग | तिथि नक्षत्र राहु काल #Shorts`,
       description: [
-        // First 2 lines visible above "...more" fold — localized link MUST be here
+        // First 2 lines visible above "...more" fold  –  localized link MUST be here
         `📅 Full Panchang for ${dateStr}: ${BASE_URL}/en/panchang`,
         `📅 आज का पंचांग (${dateHi}): ${BASE_URL}/hi/panchang`,
         '',
@@ -144,8 +144,8 @@ export async function generateDailyShort(): Promise<ShortVideoResult> {
         `📱 Rahu Kaal Today: ${BASE_URL}/en/rahu-kaal`,
         `📅 Festival Calendar: ${BASE_URL}/en/calendar`,
         '',
-        'Computed for Ujjain — the traditional prime meridian of Hindu astronomy (Surya Siddhanta).',
-        'Swiss Ephemeris precision — not approximations.',
+        'Computed for Ujjain  –  the traditional prime meridian of Hindu astronomy (Surya Siddhanta).',
+        'Swiss Ephemeris precision  –  not approximations.',
         '',
         '🌍 Available in 7 languages: English, हिन्दी, தமிழ், తెలుగు, বাংলা, ગુજરાતી, ಕನ್ನಡ',
         `🌐 Website: ${BASE_URL}`,

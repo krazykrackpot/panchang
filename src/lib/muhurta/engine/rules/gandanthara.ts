@@ -11,7 +11,7 @@
  * These "Gandanthara" periods are transitional zones where tithi energy is unstable.
  * 2 ghatis ≈ 2/60 of a tithi ≈ 0.4° of Moon-Sun elongation.
  *
- * Tier 3 (standard) — not cancellable by lagna since it's a temporal defect.
+ * Tier 3 (standard)  –  not cancellable by lagna since it's a temporal defect.
  * Source: MC Ch.6
  */
 
@@ -50,7 +50,7 @@ const gandanthara: MuhurtaRule = {
   source: 'MC Ch.6',
   evaluate(ctx: RuleContext): RuleAssessment | null {
     // Compute Moon-Sun elongation at window midpoint
-    // Tithi is ayanamsha-independent — use tropical longitudes
+    // Tithi is ayanamsha-independent  –  use tropical longitudes
     const sunLon = sunLongitude(ctx.midpointJD);
     const moonLon = moonLongitude(ctx.midpointJD);
     const elongation = normalizeDeg(moonLon - sunLon); // 0-360°
@@ -77,9 +77,9 @@ const gandanthara: MuhurtaRule = {
       maxPoints: 0,
       severity: 'moderate',
       reason: {
-        en: 'Tithi Gandanthara — unstable tithi junction period',
-        hi: 'तिथि गण्डान्तर — अस्थिर तिथि सन्धि काल',
-        sa: 'तिथिगण्डान्तरम् — अस्थिरतिथिसन्धिकालः',
+        en: 'Tithi Gandanthara  –  unstable tithi junction period',
+        hi: 'तिथि गण्डान्तर  –  अस्थिर तिथि सन्धि काल',
+        sa: 'तिथिगण्डान्तरम्  –  अस्थिरतिथिसन्धिकालः',
       },
     });
   },

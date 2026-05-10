@@ -1,5 +1,5 @@
 /**
- * Dasha Synthesis Types — 3-level period analysis (Maha → Antar → Pratyantar)
+ * Dasha Synthesis Types  –  3-level period analysis (Maha → Antar → Pratyantar)
  * Combines yogas, doshas, transits, house activations, and divisional charts
  * into a coherent period-by-period forecast.
  */

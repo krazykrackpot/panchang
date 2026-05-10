@@ -45,7 +45,7 @@ function getElementIndex(signId: number): number {
   return (signId - 1) % 4;
 }
 
-/** Planet labels used in narrative text (English only — Hindi uses pos.planetName). */
+/** Planet labels used in narrative text (English only  –  Hindi uses pos.planetName). */
 const PLANET_LABELS_EN: Record<number, string> = {
   [-1]: 'Ascendant', 0: 'Sun', 1: 'Moon', 2: 'Mars', 3: 'Mercury',
   4: 'Jupiter', 5: 'Venus', 6: 'Saturn', 7: 'Rahu', 8: 'Ketu',
@@ -66,46 +66,46 @@ const PLANET_DOMAINS_HI: Record<number, string> = {
 /** Karmic guidance actions mapped to dominant element */
 const GUIDANCE_EN: Record<number, { quality: string; action: string }[]> = {
   0: [ // Fire
-    { quality: 'courage and initiative', action: 'Take on leadership roles — your soul chose this lifetime to lead, not follow.' },
+    { quality: 'courage and initiative', action: 'Take on leadership roles  –  your soul chose this lifetime to lead, not follow.' },
     { quality: 'creative self-expression', action: 'Channel fire energy through physical activity, competition, or performance art.' },
     { quality: 'patience under pressure', action: 'Practice cooling pranayama (Sheetali) to balance excess fire without dimming your spark.' },
   ],
   1: [ // Earth
-    { quality: 'material stewardship', action: 'Build something tangible that outlasts you — a business, a garden, a family tradition.' },
+    { quality: 'material stewardship', action: 'Build something tangible that outlasts you  –  a business, a garden, a family tradition.' },
     { quality: 'sensory grounding', action: 'Spend time in nature daily. Earth karma resolves through physical connection to the land.' },
-    { quality: 'releasing attachment', action: 'Practice dana (giving) regularly — your karmic lesson is that security comes from within.' },
+    { quality: 'releasing attachment', action: 'Practice dana (giving) regularly  –  your karmic lesson is that security comes from within.' },
   ],
   2: [ // Air
-    { quality: 'intellectual connection', action: 'Teach, write, or mentor — your soul chose to distribute knowledge this lifetime.' },
+    { quality: 'intellectual connection', action: 'Teach, write, or mentor  –  your soul chose to distribute knowledge this lifetime.' },
     { quality: 'social bridge-building', action: 'Connect disparate groups. Your karma is fulfilled when you unite divided communities.' },
     { quality: 'embodied presence', action: 'Ground air energy through walking meditation or yoga to prevent mental restlessness.' },
   ],
   3: [ // Water
-    { quality: 'emotional wisdom', action: 'Trust your intuition — it is a karmic gift refined over many lifetimes.' },
+    { quality: 'emotional wisdom', action: 'Trust your intuition  –  it is a karmic gift refined over many lifetimes.' },
     { quality: 'compassionate service', action: 'Serve those who suffer. Water karma resolves through healing and empathy.' },
-    { quality: 'healthy boundaries', action: 'Learn to distinguish your emotions from others\' — practice psychic shielding through mantra.' },
+    { quality: 'healthy boundaries', action: 'Learn to distinguish your emotions from others\'  –  practice psychic shielding through mantra.' },
   ],
 };
 const GUIDANCE_HI: Record<number, { quality: string; action: string }[]> = {
   0: [
-    { quality: 'साहस और पहल', action: 'नेतृत्व की भूमिका अपनाएँ — आपकी आत्मा ने इस जन्म में अगुआई करने का चयन किया।' },
+    { quality: 'साहस और पहल', action: 'नेतृत्व की भूमिका अपनाएँ  –  आपकी आत्मा ने इस जन्म में अगुआई करने का चयन किया।' },
     { quality: 'रचनात्मक आत्म-अभिव्यक्ति', action: 'अग्नि ऊर्जा को शारीरिक गतिविधि या कला के माध्यम से प्रवाहित करें।' },
     { quality: 'धैर्य', action: 'अतिरिक्त अग्नि को संतुलित करने के लिए शीतली प्राणायाम का अभ्यास करें।' },
   ],
   1: [
-    { quality: 'भौतिक प्रबन्धन', action: 'कुछ स्थायी बनाएँ — व्यवसाय, बगीचा, या पारिवारिक परम्परा।' },
+    { quality: 'भौतिक प्रबन्धन', action: 'कुछ स्थायी बनाएँ  –  व्यवसाय, बगीचा, या पारिवारिक परम्परा।' },
     { quality: 'प्रकृति से जुड़ाव', action: 'प्रतिदिन प्रकृति में समय बिताएँ। पृथ्वी कर्म भूमि से जुड़कर ही पूरा होता है।' },
-    { quality: 'आसक्ति का त्याग', action: 'नियमित दान करें — आपका कर्म-पाठ यह है कि सुरक्षा भीतर से आती है।' },
+    { quality: 'आसक्ति का त्याग', action: 'नियमित दान करें  –  आपका कर्म-पाठ यह है कि सुरक्षा भीतर से आती है।' },
   ],
   2: [
-    { quality: 'बौद्धिक सम्पर्क', action: 'सिखाएँ, लिखें या मार्गदर्शन करें — आपकी आत्मा ने ज्ञान बाँटने का चयन किया।' },
+    { quality: 'बौद्धिक सम्पर्क', action: 'सिखाएँ, लिखें या मार्गदर्शन करें  –  आपकी आत्मा ने ज्ञान बाँटने का चयन किया।' },
     { quality: 'सामाजिक सेतु', action: 'विभिन्न समूहों को जोड़ें। आपका कर्म तब पूरा होता है जब आप विभाजन मिटाते हैं।' },
     { quality: 'मूर्त उपस्थिति', action: 'वायु ऊर्जा को चलने वाले ध्यान या योग से स्थिर करें।' },
   ],
   3: [
-    { quality: 'भावनात्मक ज्ञान', action: 'अपनी अन्तर्ज्ञान पर भरोसा करें — यह कई जन्मों में परिष्कृत कर्मिक उपहार है।' },
+    { quality: 'भावनात्मक ज्ञान', action: 'अपनी अन्तर्ज्ञान पर भरोसा करें  –  यह कई जन्मों में परिष्कृत कर्मिक उपहार है।' },
     { quality: 'करुणामय सेवा', action: 'पीड़ितों की सेवा करें। जल कर्म उपचार और सहानुभूति से पूरा होता है।' },
-    { quality: 'स्वस्थ सीमाएँ', action: 'अपनी और दूसरों की भावनाओं में अन्तर करना सीखें — मन्त्र द्वारा अभ्यास करें।' },
+    { quality: 'स्वस्थ सीमाएँ', action: 'अपनी और दूसरों की भावनाओं में अन्तर करना सीखें  –  मन्त्र द्वारा अभ्यास करें।' },
   ],
 };
 
@@ -236,9 +236,9 @@ export default function NadiAmshaTab({ kundali, locale }: Props) {
       const marsSign = getNadiSignName(marsPos.nadiSign);
       const compatText = isLatin
         ? sunMoonCompat === 'harmonious'
-          ? 'Sun and Moon occupy compatible elements, suggesting inner alignment — your conscious will and emotional nature reinforce each other. This is a karmic gift of coherence.'
+          ? 'Sun and Moon occupy compatible elements, suggesting inner alignment  –  your conscious will and emotional nature reinforce each other. This is a karmic gift of coherence.'
           : sunMoonCompat === 'conflicting'
-          ? 'Sun and Moon occupy conflicting elements, revealing an inner tension between your conscious purpose and emotional needs. This friction is itself a karmic catalyst — it drives transformation.'
+          ? 'Sun and Moon occupy conflicting elements, revealing an inner tension between your conscious purpose and emotional needs. This friction is itself a karmic catalyst  –  it drives transformation.'
           : 'Sun and Moon occupy neutral elements, suggesting a balanced but dynamic interplay between will and emotion.'
         : sunMoonCompat === 'harmonious'
           ? 'सूर्य और चन्द्रमा अनुकूल तत्वों में हैं, जो आन्तरिक सामंजस्य दर्शाता है।'
@@ -276,8 +276,8 @@ export default function NadiAmshaTab({ kundali, locale }: Props) {
         <div className="flex items-center justify-between">
           <p className="text-sm text-text-secondary leading-relaxed flex-1">
             {isLatin
-              ? 'Nadi Amsha is the 150th divisional chart (D-150) — the finest subdivision in Vedic astrology. Each zodiac sign (30\u00B0) is divided into 150 equal parts of 0.2\u00B0 (12 arc-minutes) each. At this microscopic level, even twins born minutes apart can have different Nadi positions, revealing unique karmic signatures invisible in coarser charts like D-1 (Rashi) or D-9 (Navamsha).'
-              : 'नाडी अंश 150वां विभागीय चार्ट (D-150) है — वैदिक ज्योतिष में सबसे सूक्ष्म विभाजन। प्रत्येक राशि (30\u00B0) को 0.2\u00B0 (12 कला-मिनट) के 150 समान भागों में विभाजित किया जाता है। इस सूक्ष्म स्तर पर, मिनटों के अन्तर से जन्मे जुड़वाँ बच्चों की भी अलग-अलग नाडी स्थितियाँ हो सकती हैं।'}
+              ? 'Nadi Amsha is the 150th divisional chart (D-150)  –  the finest subdivision in Vedic astrology. Each zodiac sign (30\u00B0) is divided into 150 equal parts of 0.2\u00B0 (12 arc-minutes) each. At this microscopic level, even twins born minutes apart can have different Nadi positions, revealing unique karmic signatures invisible in coarser charts like D-1 (Rashi) or D-9 (Navamsha).'
+              : 'नाडी अंश 150वां विभागीय चार्ट (D-150) है  –  वैदिक ज्योतिष में सबसे सूक्ष्म विभाजन। प्रत्येक राशि (30\u00B0) को 0.2\u00B0 (12 कला-मिनट) के 150 समान भागों में विभाजित किया जाता है। इस सूक्ष्म स्तर पर, मिनटों के अन्तर से जन्मे जुड़वाँ बच्चों की भी अलग-अलग नाडी स्थितियाँ हो सकती हैं।'}
           </p>
         </div>
         <Link href="/learn/nadi-amsha" className="text-xs text-gold-primary/70 hover:text-gold-light flex items-center gap-1 mt-1">
@@ -295,7 +295,7 @@ export default function NadiAmshaTab({ kundali, locale }: Props) {
           </div>
           <div className="bg-gold-primary/5 rounded-lg p-3 border border-gold-primary/10">
             <p className="text-gold-light font-medium mb-1">{isLatin ? 'Karmic Theme' : 'कर्म विषय'}</p>
-            <p className="text-text-secondary">{isLatin ? 'The deep karmic pattern revealed by this placement — past-life tendencies, soul-level lessons, and latent gifts that unfold over a lifetime.' : 'इस स्थिति द्वारा प्रकट गहन कार्मिक प्रतिरूप — पूर्वजन्म प्रवृत्तियाँ और आत्मा-स्तरीय शिक्षाएँ।'}</p>
+            <p className="text-text-secondary">{isLatin ? 'The deep karmic pattern revealed by this placement  –  past-life tendencies, soul-level lessons, and latent gifts that unfold over a lifetime.' : 'इस स्थिति द्वारा प्रकट गहन कार्मिक प्रतिरूप  –  पूर्वजन्म प्रवृत्तियाँ और आत्मा-स्तरीय शिक्षाएँ।'}</p>
           </div>
         </div>
       </div>
@@ -441,8 +441,8 @@ export default function NadiAmshaTab({ kundali, locale }: Props) {
             </div>
             <p className="text-text-primary/90 text-sm leading-relaxed">
               {isLatin
-                ? `${PLANET_LABELS_EN[karmicSynthesis.strongestKarmic.planetId] ?? tl(karmicSynthesis.strongestKarmic.planetName, locale)} at Nadi #${karmicSynthesis.strongestKarmic.nadiAmshaNumber} — ${karmicSynthesis.isBeginning ? 'positioned at the beginning of its karmic cycle, suggesting fresh karmic initiation and new lessons to learn in this domain' : 'positioned near the end of its karmic cycle, suggesting accumulated wisdom and near-completion of lessons in this area'}. ${karmicSynthesis.strongestKarmic.karmicTheme}`
-                : `${tl(karmicSynthesis.strongestKarmic.planetName, locale)} नाडी #${karmicSynthesis.strongestKarmic.nadiAmshaNumber} पर — ${karmicSynthesis.isBeginning ? 'कार्मिक चक्र के आरम्भ में, नये कर्म-पाठों का संकेत' : 'कार्मिक चक्र के अन्त के निकट, संचित ज्ञान और पाठों की पूर्णता का संकेत'}। ${karmicSynthesis.strongestKarmic.karmicTheme}`}
+                ? `${PLANET_LABELS_EN[karmicSynthesis.strongestKarmic.planetId] ?? tl(karmicSynthesis.strongestKarmic.planetName, locale)} at Nadi #${karmicSynthesis.strongestKarmic.nadiAmshaNumber}  –  ${karmicSynthesis.isBeginning ? 'positioned at the beginning of its karmic cycle, suggesting fresh karmic initiation and new lessons to learn in this domain' : 'positioned near the end of its karmic cycle, suggesting accumulated wisdom and near-completion of lessons in this area'}. ${karmicSynthesis.strongestKarmic.karmicTheme}`
+                : `${tl(karmicSynthesis.strongestKarmic.planetName, locale)} नाडी #${karmicSynthesis.strongestKarmic.nadiAmshaNumber} पर  –  ${karmicSynthesis.isBeginning ? 'कार्मिक चक्र के आरम्भ में, नये कर्म-पाठों का संकेत' : 'कार्मिक चक्र के अन्त के निकट, संचित ज्ञान और पाठों की पूर्णता का संकेत'}। ${karmicSynthesis.strongestKarmic.karmicTheme}`}
             </p>
           </div>
 
@@ -479,8 +479,8 @@ export default function NadiAmshaTab({ kundali, locale }: Props) {
                 {karmicSynthesis.gifts.length === 0 ? (
                   <p className="text-text-secondary text-xs italic">
                     {isLatin
-                      ? 'No planets in exalted or own D-150 sign — your karmic gifts express through subtler channels.'
-                      : 'कोई ग्रह उच्च या स्व D-150 राशि में नहीं — आपके कार्मिक वरदान सूक्ष्म मार्गों से प्रकट होते हैं।'}
+                      ? 'No planets in exalted or own D-150 sign  –  your karmic gifts express through subtler channels.'
+                      : 'कोई ग्रह उच्च या स्व D-150 राशि में नहीं  –  आपके कार्मिक वरदान सूक्ष्म मार्गों से प्रकट होते हैं।'}
                   </p>
                 ) : (
                   <div className="space-y-2">
@@ -519,8 +519,8 @@ export default function NadiAmshaTab({ kundali, locale }: Props) {
                 {karmicSynthesis.challenges.length === 0 ? (
                   <p className="text-text-secondary text-xs italic">
                     {isLatin
-                      ? 'No planets debilitated at D-150 level — your karmic challenges are distributed evenly rather than concentrated.'
-                      : 'D-150 स्तर पर कोई ग्रह नीच नहीं — आपकी कार्मिक चुनौतियाँ समान रूप से वितरित हैं।'}
+                      ? 'No planets debilitated at D-150 level  –  your karmic challenges are distributed evenly rather than concentrated.'
+                      : 'D-150 स्तर पर कोई ग्रह नीच नहीं  –  आपकी कार्मिक चुनौतियाँ समान रूप से वितरित हैं।'}
                   </p>
                 ) : (
                   <div className="space-y-2">
@@ -586,7 +586,7 @@ export default function NadiAmshaTab({ kundali, locale }: Props) {
                       ))}
                     </div>
                     <span className="text-text-secondary text-xs">
-                      {isLatin ? 'in' : '—'} {getNadiSignName(group[0].nadiSign)}
+                      {isLatin ? 'in' : ' – '} {getNadiSignName(group[0].nadiSign)}
                     </span>
                   </div>
                 ))}
@@ -679,7 +679,7 @@ export default function NadiAmshaTab({ kundali, locale }: Props) {
                       {tl(pos.planetName, locale)}
                     </span>
                     <span className="text-text-secondary text-xs ml-2">
-                      {isLatin ? 'Nadi' : 'नाडी'} {pos.nadiAmshaNumber} {isLatin ? 'of' : '—'} {getD1SignName(pos.d1Sign)} {'\u2192'} {tl(pos.nadiSignName, locale)}
+                      {isLatin ? 'Nadi' : 'नाडी'} {pos.nadiAmshaNumber} {isLatin ? 'of' : ' – '} {getD1SignName(pos.d1Sign)} {'\u2192'} {tl(pos.nadiSignName, locale)}
                     </span>
                   </div>
                 </div>

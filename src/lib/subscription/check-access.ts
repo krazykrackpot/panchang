@@ -1,4 +1,4 @@
-// Server-side only — uses Supabase service role
+// Server-side only  –  uses Supabase service role
 import { getServerSupabase } from '@/lib/supabase/server';
 import { type Tier, type UsageFeature, getUsageLimit } from './tiers';
 

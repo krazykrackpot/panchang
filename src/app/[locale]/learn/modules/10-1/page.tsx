@@ -26,13 +26,13 @@ function Page1() {
           What Are Divisional Charts?
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          The rashi chart (D1) is the complete sky map at birth — it shows where every planet sits in the zodiac. But trying to read every life question from one chart is like trying to diagnose every illness with a single blood test. Vedic Jyotish solves this by creating <span className="text-gold-light font-medium">varga charts</span> (divisional charts), each a mathematically derived sub-chart that zooms into a specific life domain.
+          The rashi chart (D1) is the complete sky map at birth  –  it shows where every planet sits in the zodiac. But trying to read every life question from one chart is like trying to diagnose every illness with a single blood test. Vedic Jyotish solves this by creating <span className="text-gold-light font-medium">varga charts</span> (divisional charts), each a mathematically derived sub-chart that zooms into a specific life domain.
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          Think of the rashi chart as the trunk of a great tree. The vargas are its branches — each one growing from the same trunk but reaching into different territory. The <span className="text-gold-light font-medium">Navamsha (D9)</span> branch reveals marriage and dharma. The <span className="text-gold-light font-medium">Dasamsha (D10)</span> branch shows career. The <span className="text-gold-light font-medium">Saptamsha (D7)</span> branch governs children. The <span className="text-gold-light font-medium">Dwadashamsha (D12)</span> branch illuminates parents and lineage.
+          Think of the rashi chart as the trunk of a great tree. The vargas are its branches  –  each one growing from the same trunk but reaching into different territory. The <span className="text-gold-light font-medium">Navamsha (D9)</span> branch reveals marriage and dharma. The <span className="text-gold-light font-medium">Dasamsha (D10)</span> branch shows career. The <span className="text-gold-light font-medium">Saptamsha (D7)</span> branch governs children. The <span className="text-gold-light font-medium">Dwadashamsha (D12)</span> branch illuminates parents and lineage.
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
-          Each varga is created by dividing every 30-degree sign into equal parts and mapping those parts to new signs following specific rules laid down by Parashara. A planet at 15 degrees Aries occupies one sign in D1, potentially a different sign in D9, yet another in D10 — each placement revealing a different facet of the same planet's influence.
+          Each varga is created by dividing every 30-degree sign into equal parts and mapping those parts to new signs following specific rules laid down by Parashara. A planet at 15 degrees Aries occupies one sign in D1, potentially a different sign in D9, yet another in D10  –  each placement revealing a different facet of the same planet's influence.
         </p>
       </section>
 
@@ -68,36 +68,36 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          The Shodasvarga — 16 Charts and Their Weights
+          The Shodasvarga  –  16 Charts and Their Weights
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          Parashara prescribes the <span className="text-gold-light font-medium">Shodasvarga</span> system — a set of 16 divisional charts that together give a comprehensive portrait of any horoscope. Each chart divides signs into progressively finer portions: D1 uses the full 30 degrees, D9 uses 3°20' divisions, and D60 uses razor-thin 0.5° slices. The finer the division, the more precise the birth time must be — even a few minutes' error can shift a D60 placement entirely.
+          Parashara prescribes the <span className="text-gold-light font-medium">Shodasvarga</span> system  –  a set of 16 divisional charts that together give a comprehensive portrait of any horoscope. Each chart divides signs into progressively finer portions: D1 uses the full 30 degrees, D9 uses 3°20' divisions, and D60 uses razor-thin 0.5° slices. The finer the division, the more precise the birth time must be  –  even a few minutes' error can shift a D60 placement entirely.
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          The <span className="text-gold-light font-medium">Vimshopaka Bala</span> (20-point strength) system assigns specific weights to each varga. In the Shodasvarga scheme: D1 gets 3.5 points, D2 gets 1, D3 gets 1, D4 gets 0.5, D7 gets 0.5, D9 gets 3, D10 gets 0.5, D12 gets 0.5, D16 gets 2, D20 gets 0.5, D24 gets 0.5, D27 gets 0.5, D30 gets 1, D40 gets 0.5, D45 gets 0.5, and D60 gets 4 — totaling 20 points. Notice that D60 has the highest weight, reflecting its karmic significance.
+          The <span className="text-gold-light font-medium">Vimshopaka Bala</span> (20-point strength) system assigns specific weights to each varga. In the Shodasvarga scheme: D1 gets 3.5 points, D2 gets 1, D3 gets 1, D4 gets 0.5, D7 gets 0.5, D9 gets 3, D10 gets 0.5, D12 gets 0.5, D16 gets 2, D20 gets 0.5, D24 gets 0.5, D27 gets 0.5, D30 gets 1, D40 gets 0.5, D45 gets 0.5, and D60 gets 4  –  totaling 20 points. Notice that D60 has the highest weight, reflecting its karmic significance.
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
-          A planet is evaluated in each varga for its dignity — is it in its own sign, exalted, in a friendly sign, neutral, enemy, or debilitated? Each status yields a fraction of that varga's maximum points. A planet scoring 15+ out of 20 in Vimshopaka is exceptionally strong; below 5 is severely compromised regardless of its D1 placement.
+          A planet is evaluated in each varga for its dignity  –  is it in its own sign, exalted, in a friendly sign, neutral, enemy, or debilitated? Each status yields a fraction of that varga's maximum points. A planet scoring 15+ out of 20 in Vimshopaka is exceptionally strong; below 5 is severely compromised regardless of its D1 placement.
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Practical Example: Strong in D1, Weak in D9</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
-          <span className="text-gold-light font-medium">Scenario:</span> Jupiter is exalted in Cancer in D1 (rashi chart) — this looks magnificent. The native appears wise, generous, and spiritually inclined. But in D9, Jupiter falls in Capricorn (its debilitation sign).
+          <span className="text-gold-light font-medium">Scenario:</span> Jupiter is exalted in Cancer in D1 (rashi chart)  –  this looks magnificent. The native appears wise, generous, and spiritually inclined. But in D9, Jupiter falls in Capricorn (its debilitation sign).
         </p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Result:</span> The outer display of wisdom is impressive, but the inner dharmic conviction is weak. The person may preach values they don't truly follow. In marriage (D9's primary domain), Jupiter's debilitation suggests challenges with faith, trust, and the quality of guidance from the spouse or guru.
         </p>
         <p className="text-text-secondary text-xs leading-relaxed">
-          <span className="text-gold-light font-medium">Key Lesson:</span> Never judge a planet by D1 alone. The rashi chart shows the surface — the Navamsha reveals what lies beneath.
+          <span className="text-gold-light font-medium">Key Lesson:</span> Never judge a planet by D1 alone. The rashi chart shows the surface  –  the Navamsha reveals what lies beneath.
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">The Navamsha — "The Chart Behind the Chart"</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">The Navamsha  –  "The Chart Behind the Chart"</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
-          Among all 16 vargas, the Navamsha (D9) holds a special status. No serious Jyotish reading is complete without it. While D1 shows your outer circumstances — the life you live in the world — D9 reveals your inner reality: your true strength, your dharmic path, and the quality of your closest partnerships.
+          Among all 16 vargas, the Navamsha (D9) holds a special status. No serious Jyotish reading is complete without it. While D1 shows your outer circumstances  –  the life you live in the world  –  D9 reveals your inner reality: your true strength, your dharmic path, and the quality of your closest partnerships.
         </p>
         <p className="text-text-secondary text-xs leading-relaxed">
           Classical texts state that the D9 is so important that if D1 and D9 give contradictory results, the D9 should be given more weight for matters of marriage and dharma. Many astrologers read D1 and D9 side by side as a standard practice, only consulting other vargas for specific questions (D10 for career, D7 for children, etc.).
@@ -114,16 +114,16 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          Reading the Navamsha — Vargottama and Pushkara
+          Reading the Navamsha  –  Vargottama and Pushkara
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          A planet's <span className="text-gold-light font-medium">Navamsha sign</span> reveals its inner nature, while the rashi sign shows the outer expression. Mars in Aries (D1) appears bold and assertive outwardly; if Mars is in Cancer in D9, the inner nature is actually emotional, protective, and home-oriented. The outer warrior, the inner nurturer — this is the depth vargas provide.
+          A planet's <span className="text-gold-light font-medium">Navamsha sign</span> reveals its inner nature, while the rashi sign shows the outer expression. Mars in Aries (D1) appears bold and assertive outwardly; if Mars is in Cancer in D9, the inner nature is actually emotional, protective, and home-oriented. The outer warrior, the inner nurturer  –  this is the depth vargas provide.
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          <span className="text-gold-light font-medium">Vargottama</span> — when a planet occupies the same sign in both D1 and D9 — is considered exceptionally powerful. The outer expression and inner nature are perfectly aligned: what you see is what you get. Vargottama planets act with the strength of being in their own sign. A Vargottama Lagna (ascendant) is especially auspicious, giving the native a strong, coherent personality.
+          <span className="text-gold-light font-medium">Vargottama</span>  –  when a planet occupies the same sign in both D1 and D9  –  is considered exceptionally powerful. The outer expression and inner nature are perfectly aligned: what you see is what you get. Vargottama planets act with the strength of being in their own sign. A Vargottama Lagna (ascendant) is especially auspicious, giving the native a strong, coherent personality.
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
-          <span className="text-gold-light font-medium">Pushkara Navamsha</span> refers to specific Navamsha positions that are inherently nourishing and auspicious. These occur at particular degrees within each sign and always fall in signs ruled by benefics (Jupiter, Venus, Moon, Mercury). A planet in Pushkara Navamsha receives a boost of natural beneficence — like a tree planted in fertile soil.
+          <span className="text-gold-light font-medium">Pushkara Navamsha</span> refers to specific Navamsha positions that are inherently nourishing and auspicious. These occur at particular degrees within each sign and always fall in signs ruled by benefics (Jupiter, Venus, Moon, Mercury). A planet in Pushkara Navamsha receives a boost of natural beneficence  –  like a tree planted in fertile soil.
         </p>
       </section>
 

@@ -4,10 +4,10 @@ import { generatePersonLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { Mail, Globe, Code, BookOpen, Calculator, Shield } from 'lucide-react';
 
-export const revalidate = 604800; // 7 days — static text page
+export const revalidate = 604800; // 7 days  –  static text page
 
 // ---------------------------------------------------------------------------
-// Inline multilingual content — server component, fully SSR for AdSense bot
+// Inline multilingual content  –  server component, fully SSR for AdSense bot
 // ---------------------------------------------------------------------------
 
 const CONTENT = {
@@ -18,34 +18,34 @@ const CONTENT = {
     authorIntro: 'Dekho Panchang is built and maintained by',
     authorName: 'Aditya Kumar',
     authorHeritage: 'a Maithil Brahmin with deep roots in the Vedic tradition.',
-    authorMission: 'This project was born from a simple conviction: that the astronomical and astrological wisdom preserved in texts like the Surya Siddhanta and Brihat Parashara Hora Shastra deserves to be accessible to everyone — not locked behind paywalls or simplified beyond recognition.',
-    authorApproach: 'Every calculation on this site is done from first principles. Planetary positions use Jean Meeus\'s astronomical algorithms. Panchang elements are computed using classical Jyotish rules. There are no external astrology APIs — just mathematics, the same mathematics our ancestors encoded thousands of years ago, now running in your browser.',
+    authorMission: 'This project was born from a simple conviction: that the astronomical and astrological wisdom preserved in texts like the Surya Siddhanta and Brihat Parashara Hora Shastra deserves to be accessible to everyone  –  not locked behind paywalls or simplified beyond recognition.',
+    authorApproach: 'Every calculation on this site is done from first principles. Planetary positions use Jean Meeus\'s astronomical algorithms. Panchang elements are computed using classical Jyotish rules. There are no external astrology APIs  –  just mathematics, the same mathematics our ancestors encoded thousands of years ago, now running in your browser.',
     authorClosing: 'This is a passion project, not a corporation. If you find value in it, that is the best reward.',
     whatWeOffer: 'What We Offer',
     features: [
       { icon: 'calc', label: 'Precise Panchang', desc: 'Daily Tithi, Nakshatra, Yoga, Karana, and Muhurta timings computed for your exact location using astronomical algorithms verified within 1-2 minutes of reference sources.' },
-      { icon: 'book', label: 'Professional-Grade Birth Chart', desc: '25+ analysis modules: Vimshottari/Ashtottari/Yogini Dashas, Shadbala (6-fold strength), Ashtakavarga, 16 divisional charts (D1-D60), 144 yoga patterns, KP System (Placidus sub-lords), Jaimini Karakas, Avasthas, Argala, Bhava Chalit — plus AI-powered chart chat. Computed locally from Swiss Ephemeris, no external APIs.' },
-      { icon: 'code', label: 'NASA JPL Ephemeris Precision', desc: 'Primary engine: Swiss Ephemeris powered by NASA JPL DE441 planetary ephemeris — arcsecond accuracy for all 9 planets, the same data used by NASA for spacecraft navigation. Meeus algorithms as fallback. No black-box APIs — open, verifiable astronomical computation.' },
-      { icon: 'shield', label: 'Privacy First', desc: 'Your birth data stays yours. We use Supabase with Row Level Security — users can only access their own data. No selling personal information to third parties.' },
+      { icon: 'book', label: 'Professional-Grade Birth Chart', desc: '25+ analysis modules: Vimshottari/Ashtottari/Yogini Dashas, Shadbala (6-fold strength), Ashtakavarga, 16 divisional charts (D1-D60), 144 yoga patterns, KP System (Placidus sub-lords), Jaimini Karakas, Avasthas, Argala, Bhava Chalit  –  plus AI-powered chart chat. Computed locally from Swiss Ephemeris, no external APIs.' },
+      { icon: 'code', label: 'NASA JPL Ephemeris Precision', desc: 'Primary engine: Swiss Ephemeris powered by NASA JPL DE441 planetary ephemeris  –  arcsecond accuracy for all 9 planets, the same data used by NASA for spacecraft navigation. Meeus algorithms as fallback. No black-box APIs  –  open, verifiable astronomical computation.' },
+      { icon: 'shield', label: 'Privacy First', desc: 'Your birth data stays yours. We use Supabase with Row Level Security  –  users can only access their own data. No selling personal information to third parties.' },
       { icon: 'globe', label: 'Multilingual', desc: 'Available in 10 languages including Hindi, Tamil, Bengali, Telugu, Kannada, Marathi, Gujarati, Maithili, and Sanskrit. Real translations, not machine-generated.' },
-      { icon: 'learn', label: '100+ Learning Modules', desc: 'A structured curriculum covering everything from Panchang basics to advanced Jaimini Jyotish, Shadbala, KP System, and Ashtakavarga — free for everyone.' },
+      { icon: 'learn', label: '100+ Learning Modules', desc: 'A structured curriculum covering everything from Panchang basics to advanced Jaimini Jyotish, Shadbala, KP System, and Ashtakavarga  –  free for everyone.' },
     ],
     accuracyHeading: 'Accuracy & Methodology',
     accuracy: [
-      { title: 'Ephemeris', text: 'Swiss Ephemeris v2.10 powered by NASA JPL DE441 — the same planetary ephemeris used by NASA for spacecraft navigation. Sub-arcsecond accuracy for Sun, Moon, and all planets including true lunar nodes (Rahu/Ketu).' },
-      { title: 'Ayanamsha', text: 'Lahiri (Chitrapaksha) Ayanamsha as default — the Indian government standard used by the Indian Astronomical Ephemeris. Krishnamurti Ayanamsha available for KP System analysis.' },
+      { title: 'Ephemeris', text: 'Swiss Ephemeris v2.10 powered by NASA JPL DE441  –  the same planetary ephemeris used by NASA for spacecraft navigation. Sub-arcsecond accuracy for Sun, Moon, and all planets including true lunar nodes (Rahu/Ketu).' },
+      { title: 'Ayanamsha', text: 'Lahiri (Chitrapaksha) Ayanamsha as default  –  the Indian government standard used by the Indian Astronomical Ephemeris. Krishnamurti Ayanamsha available for KP System analysis.' },
       { title: 'Verification', text: '3,005 automated tests covering panchang accuracy, kundali computation, dasha periods, yoga detection, and festival dates. Regularly cross-verified against professional Hindu almanacs and authoritative panchang sources for multiple locations worldwide.' },
       { title: 'Sunrise Model', text: 'Swiss Ephemeris atmospheric refraction model accounting for observer elevation, temperature, and pressure. Verified within ±1 minute of professional panchang sources across Delhi, Bangalore, and New York.' },
     ],
     heritage: [
-      { title: 'The Surya Siddhanta', text: 'The Surya Siddhanta (c. 400 CE) is one of the most remarkable astronomical texts in human history. It accurately calculates the sidereal year at 365.2563627 days — a figure astonishingly close to the modern value of 365.25636 days. It provides precise formulas for planetary positions, eclipse predictions, and the precession of equinoxes.' },
-      { title: 'Aryabhata\'s Revolution', text: 'Aryabhata (476 CE) proposed that the Earth rotates on its axis — over a millennium before Copernicus. His Aryabhatiya contains sophisticated sine tables, pi accurate to 4 decimal places (3.1416), and algorithms for planetary calculations still admired today.' },
+      { title: 'The Surya Siddhanta', text: 'The Surya Siddhanta (c. 400 CE) is one of the most remarkable astronomical texts in human history. It accurately calculates the sidereal year at 365.2563627 days  –  a figure astonishingly close to the modern value of 365.25636 days. It provides precise formulas for planetary positions, eclipse predictions, and the precession of equinoxes.' },
+      { title: 'Aryabhata\'s Revolution', text: 'Aryabhata (476 CE) proposed that the Earth rotates on its axis  –  over a millennium before Copernicus. His Aryabhatiya contains sophisticated sine tables, pi accurate to 4 decimal places (3.1416), and algorithms for planetary calculations still admired today.' },
       { title: 'The Panchang System', text: 'The Panchang ("five limbs") is a lunisolar calendar tracking five astronomical elements: Tithi (lunar day), Nakshatra (lunar mansion), Yoga (luni-solar angle), Karana (half-tithi), and Vara (weekday). It simultaneously tracks the Moon\'s position relative to the Sun and against fixed stars.' },
-      { title: 'Ayanamsha: The Critical Correction', text: 'Indian astronomy accounts for precession of equinoxes through Ayanamsha — the angular difference between tropical and sidereal zodiacs. This ~50.3 arc-seconds/year precession completes one cycle in ~25,920 years. The Lahiri Ayanamsha is ~24 degrees currently.' },
-      { title: 'Eclipses: Predictive Power', text: 'Indian astronomers identified Rahu and Ketu as the ascending and descending nodes of the Moon\'s orbit — where eclipses occur. The Saros cycle (~18 years) was independently discovered. Ancient eclipse computation tables show remarkable accuracy when verified against modern calculations.' },
+      { title: 'Ayanamsha: The Critical Correction', text: 'Indian astronomy accounts for precession of equinoxes through Ayanamsha  –  the angular difference between tropical and sidereal zodiacs. This ~50.3 arc-seconds/year precession completes one cycle in ~25,920 years. The Lahiri Ayanamsha is ~24 degrees currently.' },
+      { title: 'Eclipses: Predictive Power', text: 'Indian astronomers identified Rahu and Ketu as the ascending and descending nodes of the Moon\'s orbit  –  where eclipses occur. The Saros cycle (~18 years) was independently discovered. Ancient eclipse computation tables show remarkable accuracy when verified against modern calculations.' },
     ],
     contactHeading: 'Contact Us',
-    contactIntro: 'We would love to hear from you. Whether you have a question about our calculations, want to report a bug, or just want to say hello — reach out.',
+    contactIntro: 'We would love to hear from you. Whether you have a question about our calculations, want to report a bug, or just want to say hello  –  reach out.',
     contactEmail: 'General inquiries',
     contactPrivacy: 'Privacy & data requests',
     contactLegal: 'Legal & terms',
@@ -58,35 +58,35 @@ const CONTENT = {
     authorHeading: 'लेखक के बारे में',
     authorIntro: 'देखो पंचांग का निर्माण और रखरखाव',
     authorName: 'आदित्य कुमार',
-    authorHeritage: 'द्वारा किया जाता है — एक मैथिल ब्राह्मण जिनकी जड़ें वैदिक परम्परा में गहरी हैं।',
+    authorHeritage: 'द्वारा किया जाता है  –  एक मैथिल ब्राह्मण जिनकी जड़ें वैदिक परम्परा में गहरी हैं।',
     authorMission: 'यह परियोजना एक सरल विश्वास से जन्मी है: सूर्य सिद्धान्त और बृहत् पराशर होरा शास्त्र जैसे ग्रन्थों में संरक्षित खगोलीय और ज्योतिषीय ज्ञान सभी के लिए सुलभ होना चाहिए।',
-    authorApproach: 'इस साइट पर प्रत्येक गणना मूल सिद्धान्तों से की जाती है। ग्रहों की स्थिति जीन मीउस के खगोलीय एल्गोरिदम पर आधारित है। पञ्चाङ्ग तत्व शास्त्रीय ज्योतिष नियमों से गणित हैं। कोई बाहरी ज्योतिष API नहीं — केवल गणित।',
+    authorApproach: 'इस साइट पर प्रत्येक गणना मूल सिद्धान्तों से की जाती है। ग्रहों की स्थिति जीन मीउस के खगोलीय एल्गोरिदम पर आधारित है। पञ्चाङ्ग तत्व शास्त्रीय ज्योतिष नियमों से गणित हैं। कोई बाहरी ज्योतिष API नहीं  –  केवल गणित।',
     authorClosing: 'यह एक जुनून की परियोजना है, कोई निगम नहीं। यदि आपको इसमें मूल्य मिलता है, तो वही सबसे बड़ा पुरस्कार है।',
     whatWeOffer: 'हम क्या प्रदान करते हैं',
     features: [
       { icon: 'calc', label: 'सटीक पंचांग', desc: 'आपके सटीक स्थान के लिए दैनिक तिथि, नक्षत्र, योग, करण और मुहूर्त समय की गणना।' },
       { icon: 'book', label: 'जन्म कुण्डली विश्लेषण', desc: 'विंशोत्तरी दशा, षड्बल, अष्टकवर्ग, योग, दोष और टिप्पणी सहित पूर्ण कुण्डली।' },
-      { icon: 'code', label: 'खुली गणना', desc: 'सभी गणनाएं मीउस एल्गोरिदम पर आधारित हैं। कोई बाहरी API नहीं — शुद्ध गणित।' },
+      { icon: 'code', label: 'खुली गणना', desc: 'सभी गणनाएं मीउस एल्गोरिदम पर आधारित हैं। कोई बाहरी API नहीं  –  शुद्ध गणित।' },
       { icon: 'shield', label: 'गोपनीयता प्रथम', desc: 'आपका जन्म डेटा आपका है। Row Level Security के साथ Supabase।' },
-      { icon: 'globe', label: 'बहुभाषी', desc: '10 भाषाओं में उपलब्ध — हिन्दी, तमिल, बंगाली, तेलुगु, कन्नड़, मराठी, गुजराती, मैथिली और संस्कृत।' },
-      { icon: 'learn', label: '100+ शिक्षण मॉड्यूल', desc: 'पंचांग मूल बातों से लेकर उन्नत ज्योतिष तक संरचित पाठ्यक्रम — सभी के लिए मुफ्त।' },
+      { icon: 'globe', label: 'बहुभाषी', desc: '10 भाषाओं में उपलब्ध  –  हिन्दी, तमिल, बंगाली, तेलुगु, कन्नड़, मराठी, गुजराती, मैथिली और संस्कृत।' },
+      { icon: 'learn', label: '100+ शिक्षण मॉड्यूल', desc: 'पंचांग मूल बातों से लेकर उन्नत ज्योतिष तक संरचित पाठ्यक्रम  –  सभी के लिए मुफ्त।' },
     ],
     accuracyHeading: 'सटीकता और कार्यप्रणाली',
     accuracy: [
-      { title: 'पंचांग', text: 'स्विस एफ़ेमेरिस v2.10 — NASA JPL DE441 ग्रहीय पंचांग पर आधारित। सभी ग्रहों के लिए उप-आर्क-सेकंड सटीकता — वही डेटा जो NASA अन्तरिक्ष यान नेविगेशन के लिए उपयोग करता है।' },
-      { title: 'अयनांश', text: 'लाहिरी (चित्रापक्ष) अयनांश मानक — भारत सरकार का आधिकारिक मानक। KP प्रणाली विश्लेषण के लिए कृष्णमूर्ति अयनांश भी उपलब्ध।' },
-      { title: 'सत्यापन', text: '3,005 स्वचालित परीक्षण — पंचांग सटीकता, कुण्डली गणना, दशा अवधि, योग पहचान और त्योहार तिथियों को कवर करते हैं। प्रोकेराला और पेशेवर हिन्दू पंचांगों से नियमित रूप से सत्यापित।' },
+      { title: 'पंचांग', text: 'स्विस एफ़ेमेरिस v2.10  –  NASA JPL DE441 ग्रहीय पंचांग पर आधारित। सभी ग्रहों के लिए उप-आर्क-सेकंड सटीकता  –  वही डेटा जो NASA अन्तरिक्ष यान नेविगेशन के लिए उपयोग करता है।' },
+      { title: 'अयनांश', text: 'लाहिरी (चित्रापक्ष) अयनांश मानक  –  भारत सरकार का आधिकारिक मानक। KP प्रणाली विश्लेषण के लिए कृष्णमूर्ति अयनांश भी उपलब्ध।' },
+      { title: 'सत्यापन', text: '3,005 स्वचालित परीक्षण  –  पंचांग सटीकता, कुण्डली गणना, दशा अवधि, योग पहचान और त्योहार तिथियों को कवर करते हैं। प्रोकेराला और पेशेवर हिन्दू पंचांगों से नियमित रूप से सत्यापित।' },
       { title: 'सूर्योदय मॉडल', text: 'स्विस एफ़ेमेरिस वायुमण्डलीय अपवर्तन मॉडल। दिल्ली, बेंगलुरु और न्यूयॉर्क में पेशेवर पंचांग स्रोतों से ±1 मिनट के भीतर सत्यापित।' },
     ],
     heritage: [
-      { title: 'सूर्य सिद्धान्त', text: 'सूर्य सिद्धान्त (लगभग 400 ई.) मानव इतिहास के सबसे उल्लेखनीय खगोलीय ग्रन्थों में से एक है। यह नाक्षत्र वर्ष की गणना 365.2563627 दिनों पर करता है — जो आधुनिक मान के आश्चर्यजनक रूप से निकट है।' },
-      { title: 'आर्यभट की क्रान्ति', text: 'आर्यभट (476 ई.) ने प्रस्तावित किया कि पृथ्वी अपनी धुरी पर घूमती है — कॉपरनिकस से एक सहस्राब्दी पहले। उनके आर्यभटीय में परिष्कृत ज्या सारणियाँ और पाई 4 दशमलव तक सटीक (3.1416) है।' },
-      { title: 'पञ्चाङ्ग प्रणाली', text: 'पञ्चाङ्ग ("पाँच अंग") एक चान्द्र-सौर कालदर्शिका है जो प्रतिदिन पाँच खगोलीय तत्वों — तिथि, नक्षत्र, योग, करण और वार — को ट्रैक करती है।' },
-      { title: 'अयनांश: महत्वपूर्ण सुधार', text: 'भारतीय खगोल विज्ञान अयनांश के माध्यम से विषुव अयन गति का हिसाब रखता है — साायन और निरायन राशिचक्रों के बीच का कोणीय अन्तर। यह ~50.3 आर्क-सेकंड/वर्ष प्रिसेशन ~25,920 वर्षों में एक चक्र पूरा करती है।' },
-      { title: 'ग्रहण: भविष्यवाणी शक्ति', text: 'भारतीय खगोलविदों ने राहु और केतु को चन्द्रमा की कक्षा के आरोही और अवरोही पात बिन्दुओं के रूप में पहचाना — जहाँ ग्रहण होते हैं।' },
+      { title: 'सूर्य सिद्धान्त', text: 'सूर्य सिद्धान्त (लगभग 400 ई.) मानव इतिहास के सबसे उल्लेखनीय खगोलीय ग्रन्थों में से एक है। यह नाक्षत्र वर्ष की गणना 365.2563627 दिनों पर करता है  –  जो आधुनिक मान के आश्चर्यजनक रूप से निकट है।' },
+      { title: 'आर्यभट की क्रान्ति', text: 'आर्यभट (476 ई.) ने प्रस्तावित किया कि पृथ्वी अपनी धुरी पर घूमती है  –  कॉपरनिकस से एक सहस्राब्दी पहले। उनके आर्यभटीय में परिष्कृत ज्या सारणियाँ और पाई 4 दशमलव तक सटीक (3.1416) है।' },
+      { title: 'पञ्चाङ्ग प्रणाली', text: 'पञ्चाङ्ग ("पाँच अंग") एक चान्द्र-सौर कालदर्शिका है जो प्रतिदिन पाँच खगोलीय तत्वों  –  तिथि, नक्षत्र, योग, करण और वार  –  को ट्रैक करती है।' },
+      { title: 'अयनांश: महत्वपूर्ण सुधार', text: 'भारतीय खगोल विज्ञान अयनांश के माध्यम से विषुव अयन गति का हिसाब रखता है  –  साायन और निरायन राशिचक्रों के बीच का कोणीय अन्तर। यह ~50.3 आर्क-सेकंड/वर्ष प्रिसेशन ~25,920 वर्षों में एक चक्र पूरा करती है।' },
+      { title: 'ग्रहण: भविष्यवाणी शक्ति', text: 'भारतीय खगोलविदों ने राहु और केतु को चन्द्रमा की कक्षा के आरोही और अवरोही पात बिन्दुओं के रूप में पहचाना  –  जहाँ ग्रहण होते हैं।' },
     ],
     contactHeading: 'संपर्क करें',
-    contactIntro: 'हम आपसे सुनना चाहेंगे। चाहे आपका कोई प्रश्न हो, बग रिपोर्ट करना हो, या बस नमस्ते कहना हो — संपर्क करें।',
+    contactIntro: 'हम आपसे सुनना चाहेंगे। चाहे आपका कोई प्रश्न हो, बग रिपोर्ट करना हो, या बस नमस्ते कहना हो  –  संपर्क करें।',
     contactEmail: 'सामान्य पूछताछ',
     contactPrivacy: 'गोपनीयता और डेटा अनुरोध',
     contactLegal: 'कानूनी और शर्तें',
@@ -116,7 +116,7 @@ export default async function AboutPage() {
 
   return (
     <main className="min-h-screen py-16 px-4">
-      {/* Person JSON-LD — E-E-A-T signal */}
+      {/* Person JSON-LD  –  E-E-A-T signal */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(generatePersonLD()) }}
@@ -136,12 +136,12 @@ export default async function AboutPage() {
         <p className="text-text-secondary text-lg max-w-2xl mx-auto">{l.subtitle}</p>
       </div>
 
-      {/* Author Section — E-E-A-T */}
+      {/* Author Section  –  E-E-A-T */}
       <section className="max-w-4xl mx-auto mb-16">
         <h2 className="text-2xl font-bold text-gold-light mb-6" style={headingFont}>{l.authorHeading}</h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 space-y-4">
           <p className="text-text-primary leading-relaxed text-lg">
-            {l.authorIntro} <span className="text-gold-light font-semibold">{l.authorName}</span> — {l.authorHeritage}
+            {l.authorIntro} <span className="text-gold-light font-semibold">{l.authorName}</span>  –  {l.authorHeritage}
           </p>
           <p className="text-text-secondary leading-relaxed text-lg">{l.authorMission}</p>
           <p className="text-text-secondary leading-relaxed text-lg">{l.authorApproach}</p>
@@ -167,7 +167,7 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      {/* Accuracy & Methodology — addresses ChatGPT/LLM "accuracy not clear" criticism */}
+      {/* Accuracy & Methodology  –  addresses ChatGPT/LLM "accuracy not clear" criticism */}
       {l.accuracy && (
         <section className="max-w-4xl mx-auto mb-16">
           <h2 className="text-2xl font-bold text-gold-light mb-6" style={headingFont}>{l.accuracyHeading}</h2>
@@ -195,7 +195,7 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      {/* Contact Us — required by AdSense */}
+      {/* Contact Us  –  required by AdSense */}
       <section className="max-w-4xl mx-auto mb-16" id="contact">
         <h2 className="text-2xl font-bold text-gold-light mb-6" style={headingFont}>{l.contactHeading}</h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8">

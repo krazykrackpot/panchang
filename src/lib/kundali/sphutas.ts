@@ -1,6 +1,6 @@
 import type { LocaleText } from '@/types/panchang';
 /**
- * Sphuta Calculations — Sensitive Points
+ * Sphuta Calculations  –  Sensitive Points
  * Computed degrees that indicate vitality, body, death timing, and benefic/malefic peaks.
  * Reference: BPHS Ch.10, Phaladeepika Ch.8
  */
@@ -51,13 +51,13 @@ export function calculateSphutas(
   const pranaNak = getNakshatraNumber(pranaDeg);
 
   // ── Deha Sphuta (Body Point) ──
-  // = (Moon × 8 + Lagna) / 9 — weighted average, produces 0-360° directly
+  // = (Moon × 8 + Lagna) / 9  –  weighted average, produces 0-360° directly
   const dehaDeg = normalizeDeg((moonLong * 8 + lagnaLong) / 9);
   const dehaSign = Math.floor(dehaDeg / 30) + 1;
   const dehaNak = getNakshatraNumber(dehaDeg);
 
   // ── Mrityu Sphuta (Death Point) ──
-  // = (Moon × 8 + Lagna + Sun × 7) / 16 — weighted average, 0-360° directly
+  // = (Moon × 8 + Lagna + Sun × 7) / 16  –  weighted average, 0-360° directly
   const mrityuDeg = normalizeDeg((moonLong * 8 + lagnaLong + sunLong * 7) / 16);
   const mrityuSign = Math.floor(mrityuDeg / 30) + 1;
   const mrityuNak = getNakshatraNumber(mrityuDeg);

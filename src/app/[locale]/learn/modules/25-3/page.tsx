@@ -91,7 +91,7 @@ const QUESTIONS: ModuleQuestion[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 1 — Aryabhata's Pi                                             */
+/*  PAGE 1  –  Aryabhata's Pi                                             */
 /* ------------------------------------------------------------------ */
 function Page1() {
   const locale = useModuleLocale();
@@ -129,7 +129,7 @@ function Page1() {
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
             ? <><span className="text-gold-light font-medium">आसन्नः का महत्त्व:</span> "आसन्न" = "निकटतम" = "सटीक नहीं।" यह शब्द संकेत देता है कि आर्यभट को पता था यह मान अनुमानित है, और संभवतः उन्होंने महसूस किया था कि π को कोई सरल भिन्न व्यक्त नहीं कर सकती।</>
-            : <><span className="text-gold-light font-medium">Significance of āsannaḥ:</span> "Āsannaḥ" = "approaching" = "not exact." This word signals Aryabhata knew his value was approximate, and likely intuited that no simple fraction could exactly represent π — an implicit recognition of irrationality.</>}
+            : <><span className="text-gold-light font-medium">Significance of āsannaḥ:</span> "Āsannaḥ" = "approaching" = "not exact." This word signals Aryabhata knew his value was approximate, and likely intuited that no simple fraction could exactly represent π  –  an implicit recognition of irrationality.</>}
         </p>
       </section>
 
@@ -150,7 +150,7 @@ function Page1() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 2 — Madhava's Infinite Series                                  */
+/*  PAGE 2  –  Madhava's Infinite Series                                  */
 /* ------------------------------------------------------------------ */
 function Page2() {
   const locale = useModuleLocale();
@@ -163,8 +163,8 @@ function Page2() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>~1350 ई. में केरल के एक गणितज्ञ ने वह खोजा जिसे यूरोप 1670 में "खोजेगा" — π की अनन्त श्रृंखला। माधव की श्रृंखला न केवल π के लिए थी — यह sin और cos के लिए भी थी, जो कलन (calculus) का आधार है।</>
-            : <>Around 1350 CE, a Kerala mathematician discovered what Europe would "discover" in 1670 — an infinite series for π. Madhava's series were not just for π — they were also for sin and cos, the foundation of calculus.</>}
+            ? <>~1350 ई. में केरल के एक गणितज्ञ ने वह खोजा जिसे यूरोप 1670 में "खोजेगा"  –  π की अनन्त श्रृंखला। माधव की श्रृंखला न केवल π के लिए थी  –  यह sin और cos के लिए भी थी, जो कलन (calculus) का आधार है।</>
+            : <>Around 1350 CE, a Kerala mathematician discovered what Europe would "discover" in 1670  –  an infinite series for π. Madhava's series were not just for π  –  they were also for sin and cos, the foundation of calculus.</>}
         </p>
       </section>
 
@@ -177,13 +177,13 @@ function Page2() {
         </p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
-            ? <>यह श्रृंखला π/4 = arctan(1) है — और इसलिए यह arctan की टेलर श्रृंखला का एक विशेष मामला है। इसे "माधव-ग्रेगरी-लाइबनित्ज़ श्रृंखला" भी कहते हैं। यूरोप में ग्रेगरी (1671) और लाइबनित्ज़ (1673) ने इसे स्वतन्त्र रूप से खोजा।</>
-            : <>This series is π/4 = arctan(1) — making it a special case of the Taylor series for arctan. Also called the "Madhava-Gregory-Leibniz series." In Europe, Gregory (1671) and Leibniz (1673) independently discovered it.</>}
+            ? <>यह श्रृंखला π/4 = arctan(1) है  –  और इसलिए यह arctan की टेलर श्रृंखला का एक विशेष मामला है। इसे "माधव-ग्रेगरी-लाइबनित्ज़ श्रृंखला" भी कहते हैं। यूरोप में ग्रेगरी (1671) और लाइबनित्ज़ (1673) ने इसे स्वतन्त्र रूप से खोजा।</>
+            : <>This series is π/4 = arctan(1)  –  making it a special case of the Taylor series for arctan. Also called the "Madhava-Gregory-Leibniz series." In Europe, Gregory (1671) and Leibniz (1673) independently discovered it.</>}
         </p>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <><span className="text-gold-light font-medium">समस्या:</span> यह श्रृंखला बहुत धीरे अभिसरित होती है — 11 दशमलव के लिए अरबों पद चाहिए। <span className="text-gold-light font-medium">माधव का समाधान:</span> सुधार पद (correction terms) — एक अतिरिक्त अनुपद जो अभिसरण को नाटकीय रूप से तेज़ कर देता है।</>
-            : <><span className="text-gold-light font-medium">Problem:</span> This series converges very slowly — billions of terms needed for 11 decimals. <span className="text-gold-light font-medium">Madhava's solution:</span> Correction terms — additional fractional terms that dramatically accelerate convergence.</>}
+            ? <><span className="text-gold-light font-medium">समस्या:</span> यह श्रृंखला बहुत धीरे अभिसरित होती है  –  11 दशमलव के लिए अरबों पद चाहिए। <span className="text-gold-light font-medium">माधव का समाधान:</span> सुधार पद (correction terms)  –  एक अतिरिक्त अनुपद जो अभिसरण को नाटकीय रूप से तेज़ कर देता है।</>
+            : <><span className="text-gold-light font-medium">Problem:</span> This series converges very slowly  –  billions of terms needed for 11 decimals. <span className="text-gold-light font-medium">Madhava's solution:</span> Correction terms  –  additional fractional terms that dramatically accelerate convergence.</>}
         </p>
       </section>
 
@@ -198,8 +198,8 @@ function Page2() {
         </p>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <>माधव की यह विधि यूक्तिभाषा (1530 ई.) में संरक्षित है — जो केरल गणित की मुख्य प्रमाण-पुस्तक है। Module 25-7 में इस पर और विवरण।</>
-            : <>Madhava's method is preserved in the Yuktibhasha (1530 CE) — the main proof-text of Kerala mathematics. Module 25-7 covers this in more detail.</>}
+            ? <>माधव की यह विधि यूक्तिभाषा (1530 ई.) में संरक्षित है  –  जो केरल गणित की मुख्य प्रमाण-पुस्तक है। Module 25-7 में इस पर और विवरण।</>
+            : <>Madhava's method is preserved in the Yuktibhasha (1530 CE)  –  the main proof-text of Kerala mathematics. Module 25-7 covers this in more detail.</>}
         </p>
       </section>
     </div>
@@ -207,7 +207,7 @@ function Page2() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 3 — Pi in Indian Astronomy and Culture                         */
+/*  PAGE 3  –  Pi in Indian Astronomy and Culture                         */
 /* ------------------------------------------------------------------ */
 function Page3() {
   const locale = useModuleLocale();
@@ -220,8 +220,8 @@ function Page3() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>भारतीय गणितज्ञों ने π की गणना केवल अकादमिक रुचि के लिए नहीं की — इसके व्यावहारिक अनुप्रयोग थे जो खगोल विज्ञान और इंजीनियरिंग को प्रत्यक्ष रूप से प्रभावित करते थे।</>
-            : <>Indian mathematicians computed π not out of academic curiosity alone — it had direct practical applications that affected astronomy and engineering.</>}
+            ? <>भारतीय गणितज्ञों ने π की गणना केवल अकादमिक रुचि के लिए नहीं की  –  इसके व्यावहारिक अनुप्रयोग थे जो खगोल विज्ञान और इंजीनियरिंग को प्रत्यक्ष रूप से प्रभावित करते थे।</>
+            : <>Indian mathematicians computed π not out of academic curiosity alone  –  it had direct practical applications that affected astronomy and engineering.</>}
         </p>
       </section>
 
@@ -251,12 +251,12 @@ function Page3() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
-            ? <>आर्यभट का "आसन्नः" शब्द एक गहरी दार्शनिक प्रश्न उठाता है: क्या ब्रह्माण्ड में कुछ मूल राशियाँ ऐसी हैं जो अपरिमेय हैं? π, √2, e — ये सभी अपरिमेय हैं। गणित के दार्शनिक इसे एक संकेत मानते हैं कि ब्रह्माण्ड की गहराइयाँ किसी भी परिमित मानवीय संख्या प्रणाली से परे हैं।</>
-            : <>Aryabhata's "āsannaḥ" raises a deep philosophical question: are there fundamental quantities in the universe that are irrational? π, √2, e — all irrational. Mathematical philosophers see this as a signal that the universe's depths transcend any finite human number system.</>}
+            ? <>आर्यभट का "आसन्नः" शब्द एक गहरी दार्शनिक प्रश्न उठाता है: क्या ब्रह्माण्ड में कुछ मूल राशियाँ ऐसी हैं जो अपरिमेय हैं? π, √2, e  –  ये सभी अपरिमेय हैं। गणित के दार्शनिक इसे एक संकेत मानते हैं कि ब्रह्माण्ड की गहराइयाँ किसी भी परिमित मानवीय संख्या प्रणाली से परे हैं।</>
+            : <>Aryabhata's "āsannaḥ" raises a deep philosophical question: are there fundamental quantities in the universe that are irrational? π, √2, e  –  all irrational. Mathematical philosophers see this as a signal that the universe's depths transcend any finite human number system.</>}
         </p>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <>भारतीय दर्शन में, "अनन्त" (अनन्त) और "अपरिमेय" के बीच एक सहज सम्बन्ध था। ब्रह्मगुप्त के शून्य, आर्यभट के अपरिमेय π, और माधव की अनन्त श्रृंखलाएँ — सभी एक ही दार्शनिक परम्परा से उभरे।</>
+            ? <>भारतीय दर्शन में, "अनन्त" (अनन्त) और "अपरिमेय" के बीच एक सहज सम्बन्ध था। ब्रह्मगुप्त के शून्य, आर्यभट के अपरिमेय π, और माधव की अनन्त श्रृंखलाएँ  –  सभी एक ही दार्शनिक परम्परा से उभरे।</>
             : <>In Indian philosophy, there was an intuitive connection between "ananta" (infinity) and the irrational. Brahmagupta's zero, Aryabhata's irrational π, and Madhava's infinite series all emerged from the same philosophical tradition.</>}
         </p>
       </section>

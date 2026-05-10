@@ -12,9 +12,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
 
-  const title = 'Hindu Festival Calendar 2026-2029 — Exact Muhurta Times for 55 Cities | Dekho Panchang';
+  const title = 'Hindu Festival Calendar 2026-2029  –  Exact Muhurta Times for 55 Cities | Dekho Panchang';
   const description =
-    'Exact dates, Tithi, Muhurta & puja timings for 20 major Hindu festivals across 55 cities worldwide. Computed from Vedic algorithms — not fixed tables.';
+    'Exact dates, Tithi, Muhurta & puja timings for 20 major Hindu festivals across 55 cities worldwide. Computed from Vedic algorithms  –  not fixed tables.';
 
   const url = `${BASE_URL}/${locale}/festivals`;
 
@@ -82,9 +82,9 @@ export default async function FestivalsLayout({
   const collectionLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Hindu Festival Calendar 2026-2029 — Exact Muhurta Times for 55 Cities | Dekho Panchang',
+    name: 'Hindu Festival Calendar 2026-2029  –  Exact Muhurta Times for 55 Cities | Dekho Panchang',
     description:
-      'Exact dates, Tithi, Muhurta & puja timings for 20 major Hindu festivals across 55 cities worldwide. Computed from Vedic algorithms — not fixed tables.',
+      'Exact dates, Tithi, Muhurta & puja timings for 20 major Hindu festivals across 55 cities worldwide. Computed from Vedic algorithms  –  not fixed tables.',
     url: `${BASE_URL}/${locale}/festivals`,
     publisher: {
       '@type': 'Organization',

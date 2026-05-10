@@ -121,7 +121,7 @@ export default function ScoreBreakdown({ breakdown, totalScore, personalFactorsU
                   {/* Dashed placeholder bar + hint for factors that need birth details */}
                   <div className="flex-1 h-1.5 bg-white/[0.03] rounded-full border border-dashed border-white/[0.08]" />
                   <span className="w-10 text-right text-xs text-text-secondary italic" title="Set your birth nakshatra above to unlock this score">
-                    —
+                     – 
                   </span>
                 </>
               ) : (

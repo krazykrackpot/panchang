@@ -60,7 +60,7 @@ const RELATED_LINKS: { href: '/kundali' | '/learn/ashtakavarga' | '/learn/planet
   { href: '/learn/yogas', labelKey: 'linkYogas' },
 ];
 
-/* ── SVG: Wealth Triangle — houses 2, 5, 9, 11 connected ────────── */
+/* ── SVG: Wealth Triangle  –  houses 2, 5, 9, 11 connected ────────── */
 function WealthTriangleSVG() {
   const r = 105;
   const houses = Array.from({ length: 12 }, (_, i) => i + 1);

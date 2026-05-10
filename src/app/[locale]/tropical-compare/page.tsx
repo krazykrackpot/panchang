@@ -136,7 +136,7 @@ export default function TropicalComparePage() {
     setComputing(true);
 
     try {
-      // Resolve timezone from coordinates — never trust browser timezone (CLAUDE.md rule)
+      // Resolve timezone from coordinates  –  never trust browser timezone (CLAUDE.md rule)
       const tz = await resolveTimezoneFromCoords(lat, lng);
 
       const [year, month, day] = dateStr.split('-').map(Number);
@@ -405,7 +405,7 @@ export default function TropicalComparePage() {
                           )}
                         </td>
 
-                        {/* Nakshatra — only for Sun and Moon */}
+                        {/* Nakshatra  –  only for Sun and Moon */}
                         <td className="px-3 py-2.5">
                           {p.nakshatra ? (
                             <JyotishTerm term="nakshatra">
@@ -529,11 +529,11 @@ export default function TropicalComparePage() {
                     {tl(LABELS.generateChart, locale)} &rarr;
                   </Link>
 
-                  {/* Share Discovery Card — uses Sun sign shift for the narrative */}
+                  {/* Share Discovery Card  –  uses Sun sign shift for the narrative */}
                   {discoveryCardUrl && (
                     <ShareCardButton
                       cardUrl={discoveryCardUrl}
-                      title="My Real Star Signs — Sidereal vs Tropical"
+                      title="My Real Star Signs  –  Sidereal vs Tropical"
                       text={result?.hookLine ?? 'Discover your real star signs with Vedic astrology'}
                     />
                   )}
@@ -598,8 +598,8 @@ function InterpretiveCard({
             {tl(planet.nakshatra.name, locale)}
           </JyotishTerm>
           {locale === 'en'
-            ? ` nakshatra — a level of precision Western astrology cannot provide.`
-            : ` नक्षत्र में है — यह सूक्ष्मता पश्चिमी ज्योतिष में सम्भव नहीं।`
+            ? ` nakshatra  –  a level of precision Western astrology cannot provide.`
+            : ` नक्षत्र में है  –  यह सूक्ष्मता पश्चिमी ज्योतिष में सम्भव नहीं।`
           }
         </p>
       )}

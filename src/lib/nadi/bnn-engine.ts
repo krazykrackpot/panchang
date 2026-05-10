@@ -8,7 +8,7 @@
  *  4. Check retrograde → layer modifier
  *  5. Combine into a reading paragraph
  *
- * Aspect rules (Parashari — used in BNN for aspect analysis):
+ * Aspect rules (Parashari  –  used in BNN for aspect analysis):
  *  All planets aspect 7th from their position.
  *  Mars also aspects 4th and 8th.
  *  Jupiter also aspects 5th and 9th.
@@ -154,8 +154,8 @@ function generateLifeThemes(planets: PlanetPosition[], locale: string): string[]
     const jupAspectCount = planets.filter(p => p.planet.id !== 4 && doesAspect(jupiterPlanet, p)).length;
     if (jupAspectCount >= 3) {
       themes.push(locale === 'hi'
-        ? 'बृहस्पति की व्यापक दृष्टि एकाधिक जीवन क्षेत्रों को आशीर्वाद देती है — ज्ञान और आध्यात्मिक विकास एक केंद्रीय जीवन विषय है।'
-        : 'Jupiter\'s broad aspect blesses multiple life areas — wisdom and spiritual growth is a central life theme.');
+        ? 'बृहस्पति की व्यापक दृष्टि एकाधिक जीवन क्षेत्रों को आशीर्वाद देती है  –  ज्ञान और आध्यात्मिक विकास एक केंद्रीय जीवन विषय है।'
+        : 'Jupiter\'s broad aspect blesses multiple life areas  –  wisdom and spiritual growth is a central life theme.');
     }
   }
 
@@ -165,8 +165,8 @@ function generateLifeThemes(planets: PlanetPosition[], locale: string): string[]
     const satAspectCount = planets.filter(p => p.planet.id !== 6 && doesAspect(saturnPlanet, p)).length;
     if (satAspectCount >= 2) {
       themes.push(locale === 'hi'
-        ? 'शनि की कठोर दृष्टि अनेक क्षेत्रों में परीक्षा करती है — कठिन परिश्रम से अर्जित सफलता और दीर्घकालिक उपलब्धि जीवन का स्वर है।'
-        : 'Saturn\'s stern aspect tests multiple domains — hard-earned success and late-blooming achievement is the life keynote.');
+        ? 'शनि की कठोर दृष्टि अनेक क्षेत्रों में परीक्षा करती है  –  कठिन परिश्रम से अर्जित सफलता और दीर्घकालिक उपलब्धि जीवन का स्वर है।'
+        : 'Saturn\'s stern aspect tests multiple domains  –  hard-earned success and late-blooming achievement is the life keynote.');
     }
   }
 
@@ -193,8 +193,8 @@ function generateLifeThemes(planets: PlanetPosition[], locale: string): string[]
   if (sun && moon) {
     if (sun.house === moon.house) {
       themes.push(locale === 'hi'
-        ? 'सूर्य-चन्द्र युति आत्मा और मन का मिलन दर्शाती है — व्यक्तित्व और भावनाएँ एकीकृत शक्ति के साथ काम करती हैं।'
-        : 'Sun-Moon conjunction indicates unity of self and mind — personality and emotions work with integrated power.');
+        ? 'सूर्य-चन्द्र युति आत्मा और मन का मिलन दर्शाती है  –  व्यक्तित्व और भावनाएँ एकीकृत शक्ति के साथ काम करती हैं।'
+        : 'Sun-Moon conjunction indicates unity of self and mind  –  personality and emotions work with integrated power.');
     }
   }
 
@@ -306,8 +306,8 @@ export function generateBNNReading(kundali: KundaliData, locale: string): BNNRea
     : (locale === 'hi' ? 'केतु की राशि के लिए पठन अनुपलब्ध है।' : 'Ketu sign reading unavailable.');
 
   const pastLifeTheme = locale === 'hi'
-    ? `आपका केतु ${ketuSignName} राशि में ${ketuHouseName} भाव में है, जो ${ketuSignName} की ऊर्जाओं में पूर्व जीवन की गहरी महारत दर्शाता है — एक ऐसा क्षेत्र जो इस जीवन में अनायास आता है लेकिन अकेले पूर्णता नहीं देता।`
-    : `Your Ketu in ${ketuSignName} in the ${ketuHouseName} house indicates deep past-life mastery in the energies of ${ketuSignName} — a domain that comes naturally in this life but no longer provides fulfilment on its own.`;
+    ? `आपका केतु ${ketuSignName} राशि में ${ketuHouseName} भाव में है, जो ${ketuSignName} की ऊर्जाओं में पूर्व जीवन की गहरी महारत दर्शाता है  –  एक ऐसा क्षेत्र जो इस जीवन में अनायास आता है लेकिन अकेले पूर्णता नहीं देता।`
+    : `Your Ketu in ${ketuSignName} in the ${ketuHouseName} house indicates deep past-life mastery in the energies of ${ketuSignName}  –  a domain that comes naturally in this life but no longer provides fulfilment on its own.`;
 
   const rahuPlanet = planets.find(p => p.planet.id === 7);
   const rahuSign = rahuPlanet?.sign ?? 1;
@@ -317,7 +317,7 @@ export function generateBNNReading(kundali: KundaliData, locale: string): BNNRea
   const rahuHouseName = tl(HOUSE_NAMES[rahuHouse] ?? { en: `${rahuHouse}th` }, locale);
 
   const dharmaPath = locale === 'hi'
-    ? `आपका राहु ${rahuSignName} राशि में ${rahuHouseName} भाव में है — ${rahuSignName} के क्षेत्र में और ${rahuHouseName} भाव के विषयों में कदम रखना ही इस जन्म का धर्म मार्ग है। इस क्षेत्र में असुविधा और विकास आत्मा के विकास का संकेत है।`
+    ? `आपका राहु ${rahuSignName} राशि में ${rahuHouseName} भाव में है  –  ${rahuSignName} के क्षेत्र में और ${rahuHouseName} भाव के विषयों में कदम रखना ही इस जन्म का धर्म मार्ग है। इस क्षेत्र में असुविधा और विकास आत्मा के विकास का संकेत है।`
     : `Your Rahu in ${rahuSignName} in the ${rahuHouseName} house indicates that stepping into the domain of ${rahuSignName} and the themes of the ${rahuHouseName} house is this incarnation\'s dharma path. Discomfort and growth in this area signals the soul\'s forward movement.`;
 
   return {

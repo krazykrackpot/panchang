@@ -89,7 +89,7 @@ export const BUDHA_SHANTI: PujaVidhi = {
     },
     {
       step: 6,
-      title: { en: 'Homa (Fire Offering) — Optional', hi: 'होम (हवन) — वैकल्पिक', sa: 'होमः — वैकल्पिकः' },
+      title: { en: 'Homa (Fire Offering)  –  Optional', hi: 'होम (हवन)  –  वैकल्पिक', sa: 'होमः  –  वैकल्पिकः' },
       description: {
         en: 'If possible, perform a small homa with sandalwood sticks and ghee. Offer moong dal and durva grass into the fire while chanting the Budha Gayatri.',
         hi: 'यदि सम्भव हो तो चन्दन की लकड़ी और घी से लघु होम करें। बुध गायत्री का जाप करते हुए मूँग दाल और दूर्वा की आहुति दें।',
@@ -102,9 +102,9 @@ export const BUDHA_SHANTI: PujaVidhi = {
       step: 7,
       title: { en: 'Daan (Charitable Giving)', hi: 'दान', sa: 'दानम्' },
       description: {
-        en: 'Donate moong dal and green cloth to the needy. Supporting education — donating books, stationery, or school fees — is the most powerful Mercury remedy.',
-        hi: 'ज़रूरतमन्दों को मूँग दाल और हरा वस्त्र दान करें। शिक्षा का सहयोग — पुस्तकें, स्टेशनरी या विद्यालय शुल्क दान — सबसे प्रभावशाली बुध उपाय है।',
-        sa: 'दीनेभ्यः मुद्गदालं हरितवस्त्रं च दद्यात्। शिक्षासहयोगः — पुस्तकलेखनसामग्रीविद्यालयशुल्कदानम् — सर्वाधिकप्रभावशालि बुधोपचारः।',
+        en: 'Donate moong dal and green cloth to the needy. Supporting education  –  donating books, stationery, or school fees  –  is the most powerful Mercury remedy.',
+        hi: 'ज़रूरतमन्दों को मूँग दाल और हरा वस्त्र दान करें। शिक्षा का सहयोग  –  पुस्तकें, स्टेशनरी या विद्यालय शुल्क दान  –  सबसे प्रभावशाली बुध उपाय है।',
+        sa: 'दीनेभ्यः मुद्गदालं हरितवस्त्रं च दद्यात्। शिक्षासहयोगः  –  पुस्तकलेखनसामग्रीविद्यालयशुल्कदानम्  –  सर्वाधिकप्रभावशालि बुधोपचारः।',
       },
       essential: true,
       stepType: 'offering',
@@ -167,9 +167,9 @@ export const BUDHA_SHANTI: PujaVidhi = {
 
   precautions: [
     {
-      en: 'Face north during the puja. Green is the essential colour — clothes, flowers, and cloth should all be green.',
-      hi: 'पूजा में उत्तर दिशा की ओर मुख करें। हरा रंग आवश्यक है — वस्त्र, फूल और कपड़ा सभी हरे होने चाहिए।',
-      sa: 'पूजायाम् उत्तरदिशम् अभिमुखं कुर्यात्। हरितवर्णः अनिवार्यः — वस्त्राणि पुष्पाणि वस्त्रं च सर्वाणि हरितानि भवेयुः।',
+      en: 'Face north during the puja. Green is the essential colour  –  clothes, flowers, and cloth should all be green.',
+      hi: 'पूजा में उत्तर दिशा की ओर मुख करें। हरा रंग आवश्यक है  –  वस्त्र, फूल और कपड़ा सभी हरे होने चाहिए।',
+      sa: 'पूजायाम् उत्तरदिशम् अभिमुखं कुर्यात्। हरितवर्णः अनिवार्यः  –  वस्त्राणि पुष्पाणि वस्त्रं च सर्वाणि हरितानि भवेयुः।',
     },
     {
       en: 'Avoid lying and deceitful speech on the puja day. Mercury governs truthful communication.',

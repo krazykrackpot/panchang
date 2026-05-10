@@ -7,7 +7,7 @@ import type { BhavaBalaResult } from '@/lib/kundali/bhavabala';
 import type { Locale, LocaleText } from '@/types/panchang';
 
 /* ------------------------------------------------------------------ */
-/*  Static data — hoisted to module level per codebase performance rule */
+/*  Static data  –  hoisted to module level per codebase performance rule */
 /* ------------------------------------------------------------------ */
 
 const HOUSE_NAMES: Record<number, LocaleText> = {
@@ -204,18 +204,18 @@ export default function BhavabalaTab({ bhavabala, locale, isDevanagari, headingF
   return (
     <div className="space-y-6">
       <h3 className="text-2xl font-bold text-gold-gradient text-center" style={headingFont}>
-        {isEn ? 'Bhavabala — House Strength' : 'भावबल — भाव शक्ति'}
+        {isEn ? 'Bhavabala  –  House Strength' : 'भावबल  –  भाव शक्ति'}
       </h3>
 
-      {/* A) What is Bhavabala — explainer */}
+      {/* A) What is Bhavabala  –  explainer */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
         <h4 className="text-gold-light font-bold text-sm mb-2" style={bodyFont}>
           {isEn ? 'What is Bhavabala?' : 'भावबल क्या है?'}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
           {isEn
-            ? 'Bhavabala measures how strong each house (life area) is in your chart. A strong house means its themes manifest easily and prominently in your life — you naturally excel in that area. A weak house means those themes require more conscious effort, but this is a growth opportunity, not a life sentence. Think of it as a map of where your energy flows most naturally.'
-            : 'भावबल मापता है कि आपकी कुण्डली में प्रत्येक भाव (जीवन क्षेत्र) कितना शक्तिशाली है। शक्तिशाली भाव का अर्थ है कि उसके विषय आपके जीवन में सहज रूप से प्रकट होते हैं। कमजोर भाव का अर्थ है कि उन विषयों में अधिक सचेत प्रयास चाहिए — यह विकास का अवसर है, दण्ड नहीं।'}
+            ? 'Bhavabala measures how strong each house (life area) is in your chart. A strong house means its themes manifest easily and prominently in your life  –  you naturally excel in that area. A weak house means those themes require more conscious effort, but this is a growth opportunity, not a life sentence. Think of it as a map of where your energy flows most naturally.'
+            : 'भावबल मापता है कि आपकी कुण्डली में प्रत्येक भाव (जीवन क्षेत्र) कितना शक्तिशाली है। शक्तिशाली भाव का अर्थ है कि उसके विषय आपके जीवन में सहज रूप से प्रकट होते हैं। कमजोर भाव का अर्थ है कि उन विषयों में अधिक सचेत प्रयास चाहिए  –  यह विकास का अवसर है, दण्ड नहीं।'}
         </p>
         {/* Quick snapshot */}
         <div className="flex flex-wrap gap-3 mt-3">
@@ -299,7 +299,7 @@ export default function BhavabalaTab({ bhavabala, locale, isDevanagari, headingF
         </div>
       </div>
 
-      {/* B) Per-house interpretive commentary — strongest houses */}
+      {/* B) Per-house interpretive commentary  –  strongest houses */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
         <h4 className="text-gold-light font-bold text-sm mb-4" style={headingFont}>
           {isEn ? 'Your Strongest Life Areas' : 'आपके सबसे शक्तिशाली जीवन क्षेत्र'}
@@ -314,7 +314,7 @@ export default function BhavabalaTab({ bhavabala, locale, isDevanagari, headingF
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-green-400 font-bold text-sm">#{i + 1}</span>
                   <span className="text-gold-light font-bold text-sm" style={bodyFont}>
-                    {isEn ? `House ${b.bhava}` : `भाव ${b.bhava}`} — {tl(houseName!, locale)}
+                    {isEn ? `House ${b.bhava}` : `भाव ${b.bhava}`}  –  {tl(houseName!, locale)}
                   </span>
                   <span className="text-green-400 font-mono text-xs ml-auto">{b.strengthPercent}%</span>
                 </div>
@@ -330,7 +330,7 @@ export default function BhavabalaTab({ bhavabala, locale, isDevanagari, headingF
         </div>
       </div>
 
-      {/* C) Weakest houses — growth opportunities */}
+      {/* C) Weakest houses  –  growth opportunities */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
         <h4 className="text-gold-light font-bold text-sm mb-4" style={headingFont}>
           {isEn ? 'Growth Opportunities' : 'विकास के अवसर'}
@@ -345,7 +345,7 @@ export default function BhavabalaTab({ bhavabala, locale, isDevanagari, headingF
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-red-400/70 font-bold text-sm">#{i + 1}</span>
                   <span className="text-gold-light font-bold text-sm" style={bodyFont}>
-                    {isEn ? `House ${b.bhava}` : `भाव ${b.bhava}`} — {tl(houseName!, locale)}
+                    {isEn ? `House ${b.bhava}` : `भाव ${b.bhava}`}  –  {tl(houseName!, locale)}
                   </span>
                   <span className="text-red-400 font-mono text-xs ml-auto">{b.strengthPercent}%</span>
                 </div>
@@ -384,7 +384,7 @@ export default function BhavabalaTab({ bhavabala, locale, isDevanagari, headingF
                 <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
                   {t.question}
                   <span className="text-text-secondary/50 text-xs ml-1">
-                    ({isEn ? `House ${b.bhava} — ${b.strengthPercent}%` : `भाव ${b.bhava} — ${b.strengthPercent}%`})
+                    ({isEn ? `House ${b.bhava}  –  ${b.strengthPercent}%` : `भाव ${b.bhava}  –  ${b.strengthPercent}%`})
                   </span>
                 </p>
               </div>

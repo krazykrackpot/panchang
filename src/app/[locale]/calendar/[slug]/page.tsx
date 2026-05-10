@@ -110,7 +110,7 @@ export default function FestivalDetailPage() {
   };
   const puja: PujaVidhi | undefined = PUJA_VIDHIS[slug] || PUJA_VIDHIS[PUJA_SLUG_MAP[slug] || ''];
 
-  // Determine category from slug or puja — ekadashi slug check FIRST (before vrat)
+  // Determine category from slug or puja  –  ekadashi slug check FIRST (before vrat)
   const category = slug.includes('ekadashi') ? 'ekadashi'
     : puja?.category === 'vrat' ? 'vrat'
     : puja?.category === 'graha_shanti' ? 'vrat'
@@ -120,7 +120,7 @@ export default function FestivalDetailPage() {
     : slug.includes('pradosham') ? 'pradosham'
     : 'festival';
 
-  // Ekadashi detail lookup — deferred until after ekadashiParana is available
+  // Ekadashi detail lookup  –  deferred until after ekadashiParana is available
   // (the specific ekadashi name comes from the festival calendar entry)
   let ekadashiDetail: EkadashiDetail | null = null;
 
@@ -147,7 +147,7 @@ export default function FestivalDetailPage() {
   const userLng = locationStore.lng;
   const userTimezone = locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-  // Compute Ekadashi parana via server action — eliminates hydration mismatch
+  // Compute Ekadashi parana via server action  –  eliminates hydration mismatch
   // from new Date() differences between server and client
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [ekadashiParana, setEkadashiParana] = useState<any>(null);
@@ -218,7 +218,7 @@ export default function FestivalDetailPage() {
     );
   }
 
-  // ─── Display name — prefer specific ekadashi name from calendar entry ───
+  // ─── Display name  –  prefer specific ekadashi name from calendar entry ───
   const specificEkadashiName = ekadashiParana?.name as LocaleText | undefined;
   const displayName = specificEkadashiName || detail?.name || ekadashiDetail?.name || { en: slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '), hi: slug, sa: slug };
 
@@ -273,7 +273,7 @@ export default function FestivalDetailPage() {
             </div>
           </motion.div>
 
-          {/* ═══ Ekadashi Parana — TOP of page ═══ */}
+          {/* ═══ Ekadashi Parana  –  TOP of page ═══ */}
           {ekadashiParana && (
             <motion.div {...fadeInUp}>
               <EkadashiParanaCard
@@ -402,7 +402,7 @@ export default function FestivalDetailPage() {
             </motion.div>
           )}
 
-          {/* Ekadashi Parana card moved to top — see after title */}
+          {/* Ekadashi Parana card moved to top  –  see after title */}
 
           {/* ═══ Learn More Links ═══ */}
           <motion.div {...fadeInUp} className="mt-6 flex flex-wrap items-center gap-2">

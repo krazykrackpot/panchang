@@ -25,16 +25,16 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
 
   muhurtaType: 'computed',
   muhurtaDescription: {
-    en: 'Nishita Kaal (midnight period) is the most auspicious time — Lord Krishna was born at the exact midnight hour on Bhadrapada Krishna Ashtami (Rohini Nakshatra)',
-    hi: 'निशीथ काल (मध्यरात्रि) सर्वाधिक शुभ समय है — भगवान कृष्ण का जन्म भाद्रपद कृष्ण अष्टमी (रोहिणी नक्षत्र) को ठीक मध्यरात्रि में हुआ था',
-    sa: 'निशीथकालः (मध्यरात्रिः) सर्वोत्तमः शुभकालः — श्रीकृष्णस्य जन्म भाद्रपदकृष्णाष्टम्यां (रोहिणीनक्षत्रे) ठीकमध्यरात्रौ अभवत्',
+    en: 'Nishita Kaal (midnight period) is the most auspicious time  –  Lord Krishna was born at the exact midnight hour on Bhadrapada Krishna Ashtami (Rohini Nakshatra)',
+    hi: 'निशीथ काल (मध्यरात्रि) सर्वाधिक शुभ समय है  –  भगवान कृष्ण का जन्म भाद्रपद कृष्ण अष्टमी (रोहिणी नक्षत्र) को ठीक मध्यरात्रि में हुआ था',
+    sa: 'निशीथकालः (मध्यरात्रिः) सर्वोत्तमः शुभकालः  –  श्रीकृष्णस्य जन्म भाद्रपदकृष्णाष्टम्यां (रोहिणीनक्षत्रे) ठीकमध्यरात्रौ अभवत्',
   },
   muhurtaWindow: { type: 'nishita' },
 
   sankalpa: {
     en: 'On this sacred Bhadrapada Krishna Ashtami, the divine birthday of Lord Krishna, I undertake this vrat and puja for the attainment of devotion, liberation from worldly bonds, and the supreme grace of Bhagavan Shri Krishna, the eighth avatar of Vishnu.',
-    hi: 'इस पवित्र भाद्रपद कृष्ण अष्टमी, भगवान कृष्ण के दिव्य जन्मदिवस पर, भक्ति की प्राप्ति, सांसारिक बन्धनों से मुक्ति और भगवान श्री कृष्ण — विष्णु के अष्टम अवतार — की परम कृपा हेतु मैं यह व्रत और पूजा करता/करती हूँ।',
-    sa: 'अस्मिन् पवित्रे भाद्रपदकृष्णाष्टम्यां श्रीकृष्णस्य दिव्यजन्मदिवसे भक्तिप्राप्त्यर्थं सांसारिकबन्धनमुक्त्यर्थं भगवच्छ्रीकृष्णस्य — विष्णोः अष्टमावतारस्य — परमानुग्रहार्थं च व्रतपूजनमहं करिष्ये।',
+    hi: 'इस पवित्र भाद्रपद कृष्ण अष्टमी, भगवान कृष्ण के दिव्य जन्मदिवस पर, भक्ति की प्राप्ति, सांसारिक बन्धनों से मुक्ति और भगवान श्री कृष्ण  –  विष्णु के अष्टम अवतार  –  की परम कृपा हेतु मैं यह व्रत और पूजा करता/करती हूँ।',
+    sa: 'अस्मिन् पवित्रे भाद्रपदकृष्णाष्टम्यां श्रीकृष्णस्य दिव्यजन्मदिवसे भक्तिप्राप्त्यर्थं सांसारिकबन्धनमुक्त्यर्थं भगवच्छ्रीकृष्णस्य  –  विष्णोः अष्टमावतारस्य  –  परमानुग्रहार्थं च व्रतपूजनमहं करिष्ये।',
   },
 
   vidhiSteps: [
@@ -88,7 +88,7 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
     },
     {
       step: 5,
-      title: { en: 'Jagran (Night Vigil) — Bhajan & Kirtan', hi: 'जागरण — भजन व कीर्तन', sa: 'जागरणम् — भजनकीर्तने' },
+      title: { en: 'Jagran (Night Vigil)  –  Bhajan & Kirtan', hi: 'जागरण  –  भजन व कीर्तन', sa: 'जागरणम्  –  भजनकीर्तने' },
       description: {
         en: 'Stay awake through the night (jagran) singing Krishna bhajans and kirtans. Popular songs include "Hare Krishna Mahamantra", "Govind Bolo Hari Gopal Bolo", and narration of Krishna\'s childhood leelas.',
         hi: 'रात भर जागकर (जागरण) कृष्ण भजन और कीर्तन गाएँ। लोकप्रिय गीतों में "हरे कृष्ण महामन्त्र", "गोविन्द बोलो हरि गोपाल बोलो", और कृष्ण की बाल लीलाओं का वर्णन शामिल है।',
@@ -101,11 +101,11 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
     },
     {
       step: 6,
-      title: { en: 'Midnight Abhishek (12 AM — Birth Moment)', hi: 'मध्यरात्रि अभिषेक (12 बजे — जन्म क्षण)', sa: 'मध्यरात्र्यभिषेकः (जन्मक्षणः)' },
+      title: { en: 'Midnight Abhishek (12 AM  –  Birth Moment)', hi: 'मध्यरात्रि अभिषेक (12 बजे  –  जन्म क्षण)', sa: 'मध्यरात्र्यभिषेकः (जन्मक्षणः)' },
       description: {
-        en: 'At the exact Nishita Kaal (midnight), bathe the baby Krishna idol with Panchamrit — first milk, then curd, then ghee, then honey, then sugar water — followed by clean water. Blow the conch, ring bells, and exclaim "Nand Gher Anand Bhayo, Jai Kanhaiya Lal Ki!"',
-        hi: 'ठीक निशीथ काल (मध्यरात्रि) पर बालकृष्ण मूर्ति को पंचामृत से स्नान कराएँ — पहले दूध, फिर दही, फिर घी, फिर शहद, फिर शक्कर का पानी — उसके बाद शुद्ध जल। शंख बजाएँ, घण्टी बजाएँ और "नन्द घेर आनन्द भयो, जय कन्हैया लाल की!" का उद्घोष करें।',
-        sa: 'ठीकनिशीथकाले (मध्यरात्रौ) बालकृष्णमूर्तिं पञ्चामृतेन स्नापयेत् — प्रथमं क्षीरेण, ततो दध्ना, ततो घृतेन, ततो मधुना, ततो शर्करोदकेन — ततः शुद्धजलेन। शङ्खं वादयेत्, घण्टां वादयेत्, "नन्दगृहे आनन्दो ऽभवत्, जयो बालकृष्णस्य!" इति उद्घोषयेत्।',
+        en: 'At the exact Nishita Kaal (midnight), bathe the baby Krishna idol with Panchamrit  –  first milk, then curd, then ghee, then honey, then sugar water  –  followed by clean water. Blow the conch, ring bells, and exclaim "Nand Gher Anand Bhayo, Jai Kanhaiya Lal Ki!"',
+        hi: 'ठीक निशीथ काल (मध्यरात्रि) पर बालकृष्ण मूर्ति को पंचामृत से स्नान कराएँ  –  पहले दूध, फिर दही, फिर घी, फिर शहद, फिर शक्कर का पानी  –  उसके बाद शुद्ध जल। शंख बजाएँ, घण्टी बजाएँ और "नन्द घेर आनन्द भयो, जय कन्हैया लाल की!" का उद्घोष करें।',
+        sa: 'ठीकनिशीथकाले (मध्यरात्रौ) बालकृष्णमूर्तिं पञ्चामृतेन स्नापयेत्  –  प्रथमं क्षीरेण, ततो दध्ना, ततो घृतेन, ततो मधुना, ततो शर्करोदकेन  –  ततः शुद्धजलेन। शङ्खं वादयेत्, घण्टां वादयेत्, "नन्दगृहे आनन्दो ऽभवत्, जयो बालकृष्णस्य!" इति उद्घोषयेत्।',
       },
       duration: '10 min',
       essential: true,
@@ -125,11 +125,11 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
     },
     {
       step: 8,
-      title: { en: 'Swing the Cradle — Sing Bhajans', hi: 'पालना झुलाना — भजन गायन', sa: 'डोलम् आन्दोलयेत् — भजनगानम्' },
+      title: { en: 'Swing the Cradle  –  Sing Bhajans', hi: 'पालना झुलाना  –  भजन गायन', sa: 'डोलम् आन्दोलयेत्  –  भजनगानम्' },
       description: {
-        en: 'Swing the cradle gently while singing devotional songs — lullabies for baby Krishna such as "So Ja Rajkumari" or "Jai Jai Radha Raman." Each family member should take turns swinging.',
-        hi: 'भक्ति गीत गाते हुए पालना धीरे-धीरे झुलाएँ — बालकृष्ण के लिए लोरियाँ जैसे "सो जा राजकुमारी" या "जय जय राधा रमण"। हर परिवार के सदस्य को बारी-बारी से झूला झुलाना चाहिए।',
-        sa: 'भक्तिगीतानि गायन् डोलं मृदुलं आन्दोलयेत् — बालकृष्णार्थं लालनागीतानि। प्रत्येकं कुटुम्बसदस्यं पर्यायेण डोलम् आन्दोलयेत्।',
+        en: 'Swing the cradle gently while singing devotional songs  –  lullabies for baby Krishna such as "So Ja Rajkumari" or "Jai Jai Radha Raman." Each family member should take turns swinging.',
+        hi: 'भक्ति गीत गाते हुए पालना धीरे-धीरे झुलाएँ  –  बालकृष्ण के लिए लोरियाँ जैसे "सो जा राजकुमारी" या "जय जय राधा रमण"। हर परिवार के सदस्य को बारी-बारी से झूला झुलाना चाहिए।',
+        sa: 'भक्तिगीतानि गायन् डोलं मृदुलं आन्दोलयेत्  –  बालकृष्णार्थं लालनागीतानि। प्रत्येकं कुटुम्बसदस्यं पर्यायेण डोलम् आन्दोलयेत्।',
       },
       duration: '10 min',
       essential: true,
@@ -137,11 +137,11 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
     },
     {
       step: 9,
-      title: { en: 'Naivedya — Makhan-Mishri Offering', hi: 'नैवेद्य — माखन-मिश्री भोग', sa: 'नैवेद्यम् — नवनीतखण्डशर्करानिवेदनम्' },
+      title: { en: 'Naivedya  –  Makhan-Mishri Offering', hi: 'नैवेद्य  –  माखन-मिश्री भोग', sa: 'नैवेद्यम्  –  नवनीतखण्डशर्करानिवेदनम्' },
       description: {
-        en: 'Offer fresh makhan (butter) mixed with mishri (rock sugar) to baby Krishna — his most beloved food. Also offer milk, curd, fruits, Panchamrit, and tulsi leaves. Sprinkle water around offerings.',
-        hi: 'बालकृष्ण को ताजा माखन (मक्खन) मिश्री मिलाकर अर्पित करें — उनका सबसे प्रिय भोजन। दूध, दही, फल, पंचामृत और तुलसी पत्ते भी अर्पित करें। भोग के चारों ओर जल छिड़कें।',
-        sa: 'बालकृष्णाय नवं नवनीतं खण्डशर्करया मिश्रितं समर्पयेत् — तस्य सर्वप्रियं भोजनम्। क्षीरं दधि फलानि पञ्चामृतं तुलसीपत्राणि च निवेदयेत्। नैवेद्यस्य परितः जलं सिञ्चेत्।',
+        en: 'Offer fresh makhan (butter) mixed with mishri (rock sugar) to baby Krishna  –  his most beloved food. Also offer milk, curd, fruits, Panchamrit, and tulsi leaves. Sprinkle water around offerings.',
+        hi: 'बालकृष्ण को ताजा माखन (मक्खन) मिश्री मिलाकर अर्पित करें  –  उनका सबसे प्रिय भोजन। दूध, दही, फल, पंचामृत और तुलसी पत्ते भी अर्पित करें। भोग के चारों ओर जल छिड़कें।',
+        sa: 'बालकृष्णाय नवं नवनीतं खण्डशर्करया मिश्रितं समर्पयेत्  –  तस्य सर्वप्रियं भोजनम्। क्षीरं दधि फलानि पञ्चामृतं तुलसीपत्राणि च निवेदयेत्। नैवेद्यस्य परितः जलं सिञ्चेत्।',
       },
       duration: '5 min',
       essential: true,
@@ -151,9 +151,9 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
       step: 10,
       title: { en: 'Aarti', hi: 'आरती', sa: 'आरात्रिकम्' },
       description: {
-        en: 'Perform the aarti of baby Krishna with camphor and ghee lamp. Sing "Aarti Kunj Bihari Ki" — the most celebrated aarti of Lord Krishna. Ring bells and blow the conch throughout.',
-        hi: 'कपूर और घी के दीपक से बालकृष्ण की आरती करें। "आरती कुंज बिहारी की" गाएँ — भगवान कृष्ण की सबसे प्रसिद्ध आरती। पूरे समय घण्टी बजाएँ और शंख फूँकें।',
-        sa: 'कर्पूरघृतदीपाभ्यां बालकृष्णस्य आरात्रिकं कुर्यात्। "आरती कुञ्जबिहारिणः" गायेत् — श्रीकृष्णस्य सर्वप्रसिद्धम् आरात्रिकम्। सर्वत्र घण्टां शङ्खं च वादयेत्।',
+        en: 'Perform the aarti of baby Krishna with camphor and ghee lamp. Sing "Aarti Kunj Bihari Ki"  –  the most celebrated aarti of Lord Krishna. Ring bells and blow the conch throughout.',
+        hi: 'कपूर और घी के दीपक से बालकृष्ण की आरती करें। "आरती कुंज बिहारी की" गाएँ  –  भगवान कृष्ण की सबसे प्रसिद्ध आरती। पूरे समय घण्टी बजाएँ और शंख फूँकें।',
+        sa: 'कर्पूरघृतदीपाभ्यां बालकृष्णस्य आरात्रिकं कुर्यात्। "आरती कुञ्जबिहारिणः" गायेत्  –  श्रीकृष्णस्य सर्वप्रसिद्धम् आरात्रिकम्। सर्वत्र घण्टां शङ्खं च वादयेत्।',
       },
       duration: '5 min',
       essential: true,
@@ -175,9 +175,9 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
       step: 12,
       title: { en: 'Dahi Handi (Next Day)', hi: 'दही हांडी (अगले दिन)', sa: 'दधिहाण्डी (अग्रिमदिवसे)' },
       description: {
-        en: 'Next day, celebrate Dahi Handi — hang a pot of curd, butter, and fruits high up, and break it in teams, reenacting young Krishna\'s mischievous butter-stealing leelas in Gokul.',
-        hi: 'अगले दिन दही हांडी मनाएँ — दही, मक्खन और फलों से भरी हांडी ऊँचाई पर लटकाएँ और टीमों में तोड़ें, गोकुल में बालकृष्ण की शरारती माखन-चोरी लीलाओं का पुनर्मंचन करते हुए।',
-        sa: 'अग्रिमदिवसे दधिहाण्डीम् उत्सवयेत् — दधिनवनीतफलपूर्णां हाण्डीम् उच्चैः लम्बयेत् दलेषु च भञ्जयेत्, गोकुले बालकृष्णस्य विनोदनवनीतचौर्यलीलाः पुनः अभिनयन्।',
+        en: 'Next day, celebrate Dahi Handi  –  hang a pot of curd, butter, and fruits high up, and break it in teams, reenacting young Krishna\'s mischievous butter-stealing leelas in Gokul.',
+        hi: 'अगले दिन दही हांडी मनाएँ  –  दही, मक्खन और फलों से भरी हांडी ऊँचाई पर लटकाएँ और टीमों में तोड़ें, गोकुल में बालकृष्ण की शरारती माखन-चोरी लीलाओं का पुनर्मंचन करते हुए।',
+        sa: 'अग्रिमदिवसे दधिहाण्डीम् उत्सवयेत्  –  दधिनवनीतफलपूर्णां हाण्डीम् उच्चैः लम्बयेत् दलेषु च भञ्जयेत्, गोकुले बालकृष्णस्य विनोदनवनीतचौर्यलीलाः पुनः अभिनयन्।',
       },
       duration: 'All day',
       essential: false,
@@ -192,9 +192,9 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
       devanagari: 'ॐ क्लीं कृष्णाय नमः',
       iast: 'oṃ klīṃ kṛṣṇāya namaḥ',
       meaning: {
-        en: 'Salutations to Lord Krishna — Kleem is the beej (seed) mantra of attraction and divine love (Kamabija)',
-        hi: 'भगवान कृष्ण को नमन — क्लीं आकर्षण और दिव्य प्रेम का बीज मन्त्र (कामबीज) है',
-        sa: 'श्रीकृष्णाय नमः — क्लीं आकर्षणदिव्यप्रेमणोः बीजमन्त्रः (कामबीजः)',
+        en: 'Salutations to Lord Krishna  –  Kleem is the beej (seed) mantra of attraction and divine love (Kamabija)',
+        hi: 'भगवान कृष्ण को नमन  –  क्लीं आकर्षण और दिव्य प्रेम का बीज मन्त्र (कामबीज) है',
+        sa: 'श्रीकृष्णाय नमः  –  क्लीं आकर्षणदिव्यप्रेमणोः बीजमन्त्रः (कामबीजः)',
       },
       japaCount: 108,
       usage: {
@@ -225,15 +225,15 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
       devanagari: 'ॐ नमो भगवते वासुदेवाय',
       iast: 'oṃ namo bhagavate vāsudevāya',
       meaning: {
-        en: 'Salutations to the divine Lord Vasudeva (Krishna) — the twelve-syllable liberation mantra (Dvadasakshari Mukti Mantra)',
-        hi: 'भगवान वासुदेव (कृष्ण) को नमन — द्वादश अक्षरों का मुक्ति मन्त्र (द्वादशाक्षरी मुक्ति मन्त्र)',
-        sa: 'भगवते वासुदेवाय नमः — द्वादशाक्षरमुक्तिमन्त्रः',
+        en: 'Salutations to the divine Lord Vasudeva (Krishna)  –  the twelve-syllable liberation mantra (Dvadasakshari Mukti Mantra)',
+        hi: 'भगवान वासुदेव (कृष्ण) को नमन  –  द्वादश अक्षरों का मुक्ति मन्त्र (द्वादशाक्षरी मुक्ति मन्त्र)',
+        sa: 'भगवते वासुदेवाय नमः  –  द्वादशाक्षरमुक्तिमन्त्रः',
       },
       japaCount: 108,
       usage: {
-        en: 'Chant 108 times — this is the supreme Vaishnava mantra from Srimad Bhagavatam, the path to moksha',
-        hi: '108 बार जपें — यह श्रीमद्भागवत से सर्वोच्च वैष्णव मन्त्र है, मोक्ष का मार्ग',
-        sa: 'अष्टोत्तरशतवारं जपेत् — अयं श्रीमद्भागवतात् सर्वोत्तमो वैष्णवमन्त्रः, मोक्षमार्गः',
+        en: 'Chant 108 times  –  this is the supreme Vaishnava mantra from Srimad Bhagavatam, the path to moksha',
+        hi: '108 बार जपें  –  यह श्रीमद्भागवत से सर्वोच्च वैष्णव मन्त्र है, मोक्ष का मार्ग',
+        sa: 'अष्टोत्तरशतवारं जपेत्  –  अयं श्रीमद्भागवतात् सर्वोत्तमो वैष्णवमन्त्रः, मोक्षमार्गः',
       },
     },
     {
@@ -242,31 +242,31 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
       devanagari: 'हरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे।\nहरे राम हरे राम राम राम हरे हरे॥',
       iast: 'hare kṛṣṇa hare kṛṣṇa kṛṣṇa kṛṣṇa hare hare |\nhare rāma hare rāma rāma rāma hare hare ||',
       meaning: {
-        en: 'O Lord Hari (Krishna), O energy of the Lord (Hare/Radha) — this 16-word Mahamantra from Kali Santarana Upanishad is the supreme means of deliverance in Kali Yuga',
-        hi: 'हे हरि (कृष्ण), हे भगवान की शक्ति (हरे/राधा) — कलिसन्तरण उपनिषद् से यह 16 शब्दों का महामन्त्र कलियुग में उद्धार का सर्वोच्च साधन है',
-        sa: 'हे हरे (कृष्ण), हे भगवच्छक्ते (हरे/राधा) — कलिसन्तरणोपनिषदः अयं षोडशपदमहामन्त्रः कलियुगे उद्धारस्य सर्वोत्तमसाधनम्',
+        en: 'O Lord Hari (Krishna), O energy of the Lord (Hare/Radha)  –  this 16-word Mahamantra from Kali Santarana Upanishad is the supreme means of deliverance in Kali Yuga',
+        hi: 'हे हरि (कृष्ण), हे भगवान की शक्ति (हरे/राधा)  –  कलिसन्तरण उपनिषद् से यह 16 शब्दों का महामन्त्र कलियुग में उद्धार का सर्वोच्च साधन है',
+        sa: 'हे हरे (कृष्ण), हे भगवच्छक्ते (हरे/राधा)  –  कलिसन्तरणोपनिषदः अयं षोडशपदमहामन्त्रः कलियुगे उद्धारस्य सर्वोत्तमसाधनम्',
       },
       usage: {
-        en: 'Chant continuously during the night vigil (jagran) — this is the most powerful mantra for Kali Yuga, recommended by Chaitanya Mahaprabhu',
-        hi: 'रात्रि जागरण के दौरान लगातार जपें — यह कलियुग का सबसे शक्तिशाली मन्त्र है, चैतन्य महाप्रभु द्वारा अनुशंसित',
-        sa: 'रात्रिजागरणकाले अविरतं जपेत् — अयं कलियुगस्य प्रभावशालितमो मन्त्रः, चैतन्यमहाप्रभुना अनुशंसितः',
+        en: 'Chant continuously during the night vigil (jagran)  –  this is the most powerful mantra for Kali Yuga, recommended by Chaitanya Mahaprabhu',
+        hi: 'रात्रि जागरण के दौरान लगातार जपें  –  यह कलियुग का सबसे शक्तिशाली मन्त्र है, चैतन्य महाप्रभु द्वारा अनुशंसित',
+        sa: 'रात्रिजागरणकाले अविरतं जपेत्  –  अयं कलियुगस्य प्रभावशालितमो मन्त्रः, चैतन्यमहाप्रभुना अनुशंसितः',
       },
     },
   ],
 
   stotras: [
     {
-      name: { en: 'Bhagavad Gita — Chapter 4 (Jnana Yoga)', hi: 'भगवद्गीता — अध्याय 4 (ज्ञान योग)', sa: 'भगवद्गीता — चतुर्थोऽध्यायः (ज्ञानयोगः)' },
+      name: { en: 'Bhagavad Gita  –  Chapter 4 (Jnana Yoga)', hi: 'भगवद्गीता  –  अध्याय 4 (ज्ञान योग)', sa: 'भगवद्गीता  –  चतुर्थोऽध्यायः (ज्ञानयोगः)' },
       verseCount: 42,
       duration: '20 min',
       note: {
-        en: 'Chapter 4 contains the famous verse "Yada yada hi dharmasya..." where Krishna declares he incarnates whenever dharma declines — most relevant for Janmashtami.',
-        hi: 'अध्याय 4 में प्रसिद्ध श्लोक "यदा यदा हि धर्मस्य..." है जहाँ कृष्ण घोषणा करते हैं कि वे जब-जब धर्म की हानि होती है तब-तब अवतार लेते हैं — जन्माष्टमी के लिए सर्वाधिक प्रासंगिक।',
-        sa: 'चतुर्थाध्याये प्रसिद्धश्लोकः "यदा यदा हि धर्मस्य..." यत्र कृष्णो घोषयति यदा यदा धर्मस्य ग्लानिर्भवति तदा तदा स अवतरतीति — जन्माष्टम्याः सर्वप्रासंगिकम्।',
+        en: 'Chapter 4 contains the famous verse "Yada yada hi dharmasya..." where Krishna declares he incarnates whenever dharma declines  –  most relevant for Janmashtami.',
+        hi: 'अध्याय 4 में प्रसिद्ध श्लोक "यदा यदा हि धर्मस्य..." है जहाँ कृष्ण घोषणा करते हैं कि वे जब-जब धर्म की हानि होती है तब-तब अवतार लेते हैं  –  जन्माष्टमी के लिए सर्वाधिक प्रासंगिक।',
+        sa: 'चतुर्थाध्याये प्रसिद्धश्लोकः "यदा यदा हि धर्मस्य..." यत्र कृष्णो घोषयति यदा यदा धर्मस्य ग्लानिर्भवति तदा तदा स अवतरतीति  –  जन्माष्टम्याः सर्वप्रासंगिकम्।',
       },
     },
     {
-      name: { en: 'Srimad Bhagavatam — Dashama Skandha (10th Canto — Krishna Birth)', hi: 'श्रीमद्भागवत — दशम स्कन्ध (कृष्ण जन्म)', sa: 'श्रीमद्भागवतम् — दशमस्कन्धः (कृष्णजन्मम्)' },
+      name: { en: 'Srimad Bhagavatam  –  Dashama Skandha (10th Canto  –  Krishna Birth)', hi: 'श्रीमद्भागवत  –  दशम स्कन्ध (कृष्ण जन्म)', sa: 'श्रीमद्भागवतम्  –  दशमस्कन्धः (कृष्णजन्मम्)' },
       verseCount: 90,
       duration: '30 min',
       note: {
@@ -286,36 +286,36 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
   },
 
   naivedya: {
-    en: 'Makhan-mishri (fresh butter with rock sugar) — Krishna\'s most beloved offering — along with Panchamrit, fresh fruits, milk, curd, and tulsi leaves',
-    hi: 'माखन-मिश्री (ताजा मक्खन और खड़ी शक्कर) — कृष्ण का सबसे प्रिय भोग — साथ में पंचामृत, ताजे फल, दूध, दही और तुलसी के पत्ते',
-    sa: 'नवनीतखण्डशर्करा — कृष्णस्य सर्वप्रियं निवेदनम् — सह पञ्चामृतं नवफलानि क्षीरं दधि तुलसीपत्राणि च',
+    en: 'Makhan-mishri (fresh butter with rock sugar)  –  Krishna\'s most beloved offering  –  along with Panchamrit, fresh fruits, milk, curd, and tulsi leaves',
+    hi: 'माखन-मिश्री (ताजा मक्खन और खड़ी शक्कर)  –  कृष्ण का सबसे प्रिय भोग  –  साथ में पंचामृत, ताजे फल, दूध, दही और तुलसी के पत्ते',
+    sa: 'नवनीतखण्डशर्करा  –  कृष्णस्य सर्वप्रियं निवेदनम्  –  सह पञ्चामृतं नवफलानि क्षीरं दधि तुलसीपत्राणि च',
   },
 
   precautions: [
     {
-      en: 'Complete fast must be observed until the midnight (Nishita Kaal) puja — do not break the fast before the abhishek and aarti are complete',
-      hi: 'मध्यरात्रि (निशीथ काल) पूजा तक पूर्ण व्रत रखना अनिवार्य है — अभिषेक और आरती पूर्ण होने से पहले व्रत न तोड़ें',
-      sa: 'मध्यरात्रिपर्यन्तं (निशीथकालपर्यन्तम्) सम्पूर्णम् उपवासं पालनीयम् — अभिषेकारात्रिकसम्पूर्त्यां पूर्वम् उपवासं न भञ्जयेत्',
+      en: 'Complete fast must be observed until the midnight (Nishita Kaal) puja  –  do not break the fast before the abhishek and aarti are complete',
+      hi: 'मध्यरात्रि (निशीथ काल) पूजा तक पूर्ण व्रत रखना अनिवार्य है  –  अभिषेक और आरती पूर्ण होने से पहले व्रत न तोड़ें',
+      sa: 'मध्यरात्रिपर्यन्तं (निशीथकालपर्यन्तम्) सम्पूर्णम् उपवासं पालनीयम्  –  अभिषेकारात्रिकसम्पूर्त्यां पूर्वम् उपवासं न भञ्जयेत्',
     },
     {
-      en: 'Do NOT sleep during the jagran (night vigil) — staying awake all night is an essential part of the Janmashtami vrat',
-      hi: 'जागरण (रात्रि जागृति) के दौरान सोएँ नहीं — पूरी रात जागना जन्माष्टमी व्रत का अनिवार्य अंग है',
-      sa: 'जागरणकाले (रात्रिजागृतौ) न स्वपेत् — सर्वरात्रौ जागरणं जन्माष्टमीव्रतस्य अनिवार्यम् अङ्गम्',
+      en: 'Do NOT sleep during the jagran (night vigil)  –  staying awake all night is an essential part of the Janmashtami vrat',
+      hi: 'जागरण (रात्रि जागृति) के दौरान सोएँ नहीं  –  पूरी रात जागना जन्माष्टमी व्रत का अनिवार्य अंग है',
+      sa: 'जागरणकाले (रात्रिजागृतौ) न स्वपेत्  –  सर्वरात्रौ जागरणं जन्माष्टमीव्रतस्य अनिवार्यम् अङ्गम्',
     },
     {
-      en: 'Use ONLY tulsi, makhan (butter), and mishri (rock sugar) for naivedya — these are Krishna\'s most sacred offerings; do not substitute with other items',
-      hi: 'नैवेद्य के लिए केवल तुलसी, माखन (मक्खन) और मिश्री (खड़ी शक्कर) का प्रयोग करें — ये कृष्ण के सबसे पवित्र भोग हैं; अन्य वस्तुओं से प्रतिस्थापन न करें',
-      sa: 'नैवेद्यार्थं तुलसीं नवनीतं खण्डशर्करां च एव उपयोजयेत् — एतानि कृष्णस्य सर्वपवित्रनिवेदनानि; अन्यैः प्रतिस्थापयेत् न',
+      en: 'Use ONLY tulsi, makhan (butter), and mishri (rock sugar) for naivedya  –  these are Krishna\'s most sacred offerings; do not substitute with other items',
+      hi: 'नैवेद्य के लिए केवल तुलसी, माखन (मक्खन) और मिश्री (खड़ी शक्कर) का प्रयोग करें  –  ये कृष्ण के सबसे पवित्र भोग हैं; अन्य वस्तुओं से प्रतिस्थापन न करें',
+      sa: 'नैवेद्यार्थं तुलसीं नवनीतं खण्डशर्करां च एव उपयोजयेत्  –  एतानि कृष्णस्य सर्वपवित्रनिवेदनानि; अन्यैः प्रतिस्थापयेत् न',
     },
     {
-      en: 'Puja MUST be performed at the exact Nishita Kaal (midnight) — not before, not after; this is the precise time of Krishna\'s birth',
-      hi: 'पूजा ठीक निशीथ काल (मध्यरात्रि) पर ही करनी चाहिए — न पहले, न बाद में; यह कृष्ण जन्म का सटीक समय है',
-      sa: 'पूजा ठीकनिशीथकाले (मध्यरात्रौ) एव करणीया — न पूर्वं न परं; अयं कृष्णजन्मनः सटीककालः',
+      en: 'Puja MUST be performed at the exact Nishita Kaal (midnight)  –  not before, not after; this is the precise time of Krishna\'s birth',
+      hi: 'पूजा ठीक निशीथ काल (मध्यरात्रि) पर ही करनी चाहिए  –  न पहले, न बाद में; यह कृष्ण जन्म का सटीक समय है',
+      sa: 'पूजा ठीकनिशीथकाले (मध्यरात्रौ) एव करणीया  –  न पूर्वं न परं; अयं कृष्णजन्मनः सटीककालः',
     },
     {
-      en: 'Pregnant women and those with health conditions may observe a modified fast (phalahar) — consult family traditions',
-      hi: 'गर्भवती महिलाएँ और स्वास्थ्य समस्या वाले लोग संशोधित व्रत (फलाहार) रख सकते हैं — पारिवारिक परम्परा से परामर्श करें',
-      sa: 'गर्भवत्यः स्वास्थ्यसमस्याग्रस्ताश्च जनाः संशोधितव्रतं (फलाहारम्) कर्तुं शक्नुवन्ति — कुटुम्बपरम्परां परामृशेत्',
+      en: 'Pregnant women and those with health conditions may observe a modified fast (phalahar)  –  consult family traditions',
+      hi: 'गर्भवती महिलाएँ और स्वास्थ्य समस्या वाले लोग संशोधित व्रत (फलाहार) रख सकते हैं  –  पारिवारिक परम्परा से परामर्श करें',
+      sa: 'गर्भवत्यः स्वास्थ्यसमस्याग्रस्ताश्च जनाः संशोधितव्रतं (फलाहारम्) कर्तुं शक्नुवन्ति  –  कुटुम्बपरम्परां परामृशेत्',
     },
   ],
 
@@ -329,8 +329,8 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
   },
 
   phala: {
-    en: 'Supreme devotion (Prema Bhakti) to Lord Krishna, liberation from the cycle of birth and death (Moksha), destruction of all sins accumulated over lifetimes, attainment of Goloka (Krishna\'s eternal abode), and the divine grace of Bhagavan Shri Krishna — the Purna Avatar',
-    hi: 'भगवान कृष्ण के प्रति परम भक्ति (प्रेम भक्ति), जन्म-मृत्यु के चक्र से मुक्ति (मोक्ष), जन्मों-जन्मों के संचित पापों का नाश, गोलोक (कृष्ण का शाश्वत धाम) की प्राप्ति, और भगवान श्री कृष्ण — पूर्ण अवतार — की दिव्य कृपा',
-    sa: 'श्रीकृष्णे परमभक्तिः (प्रेमभक्तिः), जन्ममृत्युचक्रात् मुक्तिः (मोक्षः), जन्मजन्मान्तरसञ्चितपापनाशनम्, गोलोकप्राप्तिः (कृष्णस्य शाश्वतधाम), भगवच्छ्रीकृष्णस्य — पूर्णावतारस्य — दिव्यानुग्रहश्च',
+    en: 'Supreme devotion (Prema Bhakti) to Lord Krishna, liberation from the cycle of birth and death (Moksha), destruction of all sins accumulated over lifetimes, attainment of Goloka (Krishna\'s eternal abode), and the divine grace of Bhagavan Shri Krishna  –  the Purna Avatar',
+    hi: 'भगवान कृष्ण के प्रति परम भक्ति (प्रेम भक्ति), जन्म-मृत्यु के चक्र से मुक्ति (मोक्ष), जन्मों-जन्मों के संचित पापों का नाश, गोलोक (कृष्ण का शाश्वत धाम) की प्राप्ति, और भगवान श्री कृष्ण  –  पूर्ण अवतार  –  की दिव्य कृपा',
+    sa: 'श्रीकृष्णे परमभक्तिः (प्रेमभक्तिः), जन्ममृत्युचक्रात् मुक्तिः (मोक्षः), जन्मजन्मान्तरसञ्चितपापनाशनम्, गोलोकप्राप्तिः (कृष्णस्य शाश्वतधाम), भगवच्छ्रीकृष्णस्य  –  पूर्णावतारस्य  –  दिव्यानुग्रहश्च',
   },
 };

@@ -24,10 +24,10 @@ const PLANET_COLORS: Record<number, string> = {
   4: '#f39c12', 5: '#e8e6e3', 6: '#3498db', 7: '#8e44ad', 8: '#95a5a6',
 };
 
-// Dosha explanations — what each dosha means and remedies (rendered below dosha cards)
+// Dosha explanations  –  what each dosha means and remedies (rendered below dosha cards)
 const DOSHA_EXPLANATIONS: Record<string, { en: string; hi: string }> = {
   'Manglik Dosha': {
-    en: 'Mars in houses 1/2/4/7/8/12 creates Manglik Dosha, primarily affecting marriage and partnerships. Severity varies by house — 7th and 8th are strongest. Remedies include Kumbh Vivah, Mangal Shanti puja, and matching with another Manglik.',
+    en: 'Mars in houses 1/2/4/7/8/12 creates Manglik Dosha, primarily affecting marriage and partnerships. Severity varies by house  –  7th and 8th are strongest. Remedies include Kumbh Vivah, Mangal Shanti puja, and matching with another Manglik.',
     hi: 'मंगल भाव 1/2/4/7/8/12 में मांगलिक दोष बनाता है, जो मुख्यतः विवाह को प्रभावित करता है। उपाय: कुम्भ विवाह, मंगल शान्ति पूजा, और अन्य मांगलिक से मिलान।',
   },
   'Kaal Sarp Dosha': {
@@ -36,11 +36,11 @@ const DOSHA_EXPLANATIONS: Record<string, { en: string; hi: string }> = {
   },
   'Ganda Mula': {
     en: 'Moon in a junction nakshatra at the fire-water sign boundary. Traditionally requires Ganda Mula Shanti within the first 27 days of life. Mula and Ashlesha are strongest.',
-    hi: 'चन्द्रमा सन्धि नक्षत्र में — अग्नि-जल राशि सीमा पर। जन्म के 27 दिनों में गण्ड मूल शान्ति पूजा आवश्यक।',
+    hi: 'चन्द्रमा सन्धि नक्षत्र में  –  अग्नि-जल राशि सीमा पर। जन्म के 27 दिनों में गण्ड मूल शान्ति पूजा आवश्यक।',
   },
   'Sade Sati': {
-    en: 'Saturn\'s 7.5-year transit over your Moon sign — the most transformative period. Not inherently negative — strong Saturn charts experience growth and maturity.',
-    hi: 'शनि का चन्द्र राशि पर 7.5 वर्ष का गोचर — सबसे परिवर्तनकारी अवधि। मजबूत शनि वालों को विकास मिलता है।',
+    en: 'Saturn\'s 7.5-year transit over your Moon sign  –  the most transformative period. Not inherently negative  –  strong Saturn charts experience growth and maturity.',
+    hi: 'शनि का चन्द्र राशि पर 7.5 वर्ष का गोचर  –  सबसे परिवर्तनकारी अवधि। मजबूत शनि वालों को विकास मिलता है।',
   },
 };
 
@@ -65,7 +65,7 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
   // Detect key doshas
   const doshas: { name: LocaleText; present: boolean; detail: LocaleText }[] = [];
 
-  // Manglik: Mars in 1,2,4,7,8,12 — with cancellation and severity analysis
+  // Manglik: Mars in 1,2,4,7,8,12  –  with cancellation and severity analysis
   const mars = kundali.planets.find(p => p.planet.id === 2);
   const jupiter = kundali.planets.find(p => p.planet.id === 4);
   const venus = kundali.planets.find(p => p.planet.id === 5);
@@ -86,15 +86,15 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
   const manglikSeverity = mars ? ([7, 8].includes(mars.house) ? 'severe' : [1, 4].includes(mars.house) ? 'moderate' : 'mild') : 'none';
 
   const manglikDetailEn = !isManglik
-    ? 'Mars not in 1/2/4/7/8/12 — no Manglik Dosha'
+    ? 'Mars not in 1/2/4/7/8/12  –  no Manglik Dosha'
     : isManglikCancelled
       ? `Mars in House ${mars!.house} (${manglikSeverity} severity). CANCELLED by: ${manglikCancellations.join('; ')}. The dosha is technically present but its negative effects are significantly reduced.`
-      : `Mars in House ${mars!.house} (${manglikSeverity} severity). ${manglikSeverity === 'severe' ? 'This is the strongest form — Mars directly impacts marriage and partnerships. Mangal Shanti puja and matching with another Manglik are recommended.' : manglikSeverity === 'moderate' ? 'Moderate form — affects temperament and domestic harmony more than marriage timing. Remedies help but this is not as urgent as 7th/8th house placement.' : 'Mild form — Mars here creates assertive speech or spending patterns. The weakest manifestation of Manglik Dosha.'}`;
+      : `Mars in House ${mars!.house} (${manglikSeverity} severity). ${manglikSeverity === 'severe' ? 'This is the strongest form  –  Mars directly impacts marriage and partnerships. Mangal Shanti puja and matching with another Manglik are recommended.' : manglikSeverity === 'moderate' ? 'Moderate form  –  affects temperament and domestic harmony more than marriage timing. Remedies help but this is not as urgent as 7th/8th house placement.' : 'Mild form  –  Mars here creates assertive speech or spending patterns. The weakest manifestation of Manglik Dosha.'}`;
   const manglikDetailHi = !isManglik
-    ? 'मंगल 1/2/4/7/8/12 में नहीं — मांगलिक दोष नहीं'
+    ? 'मंगल 1/2/4/7/8/12 में नहीं  –  मांगलिक दोष नहीं'
     : isManglikCancelled
       ? `मंगल भाव ${mars!.house} में (${manglikSeverity === 'severe' ? 'गम्भीर' : manglikSeverity === 'moderate' ? 'मध्यम' : 'हल्का'})। रद्द: ${manglikCancellations.join('; ')}। दोष तकनीकी रूप से है पर नकारात्मक प्रभाव काफी कम हैं।`
-      : `मंगल भाव ${mars!.house} में (${manglikSeverity === 'severe' ? 'गम्भीर' : manglikSeverity === 'moderate' ? 'मध्यम' : 'हल्का'})। ${manglikSeverity === 'severe' ? 'यह सबसे प्रबल रूप है — विवाह और साझेदारी पर सीधा प्रभाव। मंगल शान्ति पूजा और मांगलिक मिलान अनुशंसित।' : manglikSeverity === 'moderate' ? 'मध्यम रूप — स्वभाव और घरेलू सामंजस्य पर प्रभाव।' : 'हल्का रूप — वाणी या व्यय पर प्रभाव। मांगलिक दोष का सबसे कमज़ोर रूप।'}`;
+      : `मंगल भाव ${mars!.house} में (${manglikSeverity === 'severe' ? 'गम्भीर' : manglikSeverity === 'moderate' ? 'मध्यम' : 'हल्का'})। ${manglikSeverity === 'severe' ? 'यह सबसे प्रबल रूप है  –  विवाह और साझेदारी पर सीधा प्रभाव। मंगल शान्ति पूजा और मांगलिक मिलान अनुशंसित।' : manglikSeverity === 'moderate' ? 'मध्यम रूप  –  स्वभाव और घरेलू सामंजस्य पर प्रभाव।' : 'हल्का रूप  –  वाणी या व्यय पर प्रभाव। मांगलिक दोष का सबसे कमज़ोर रूप।'}`;
 
   doshas.push({
     name: { en: 'Manglik Dosha', hi: 'मांगलिक दोष', sa: 'मांगलिक दोष', mai: 'मांगलिक दोष', mr: 'मांगलिक दोष', ta: 'செவ்வாய் தோஷம்', te: 'కుజ దోషం', bn: 'মাঙ্গলিক দোষ', kn: 'ಮಾಂಗಲಿಕ ದೋಷ', gu: 'માંગલિક દોષ' },
@@ -148,7 +148,7 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
     name: { en: 'Sade Sati', hi: 'साढ़े साती', sa: 'साढ़े साती', mai: 'साढ़े साती', mr: 'साढ़े साती', ta: 'சாடே சாதி', te: 'సాడే సాతి', bn: 'সাড়ে সাতি', kn: 'ಸಾಡೆ ಸಾತಿ', gu: 'સાડા સાતી' },
     present: isSadeSati,
     detail: isSadeSati
-      ? { en: `Currently active — ${kundali.sadeSati?.currentPhase || 'ongoing'}`, hi: `वर्तमान में सक्रिय — ${kundali.sadeSati?.currentPhase || 'चालू'}`, sa: `सम्प्रति सक्रियम् — ${kundali.sadeSati?.currentPhase || 'प्रचलितम्'}`, mai: `वर्तमान में सक्रिय — ${kundali.sadeSati?.currentPhase || 'चालू'}`, mr: `सध्या सक्रिय — ${kundali.sadeSati?.currentPhase || 'चालू'}`, ta: `தற்போது செயலில் — ${kundali.sadeSati?.currentPhase || 'நடப்பில்'}`, te: `ప్రస్తుతం సక్రియం — ${kundali.sadeSati?.currentPhase || 'కొనసాగుతోంది'}`, bn: `বর্তমানে সক্রিয় — ${kundali.sadeSati?.currentPhase || 'চলমান'}`, kn: `ಪ್ರಸ್ತುತ ಸಕ್ರಿಯ — ${kundali.sadeSati?.currentPhase || 'ನಡೆಯುತ್ತಿದೆ'}`, gu: `હાલમાં સક્રિય — ${kundali.sadeSati?.currentPhase || 'ચાલુ'}` }
+      ? { en: `Currently active  –  ${kundali.sadeSati?.currentPhase || 'ongoing'}`, hi: `वर्तमान में सक्रिय  –  ${kundali.sadeSati?.currentPhase || 'चालू'}`, sa: `सम्प्रति सक्रियम्  –  ${kundali.sadeSati?.currentPhase || 'प्रचलितम्'}`, mai: `वर्तमान में सक्रिय  –  ${kundali.sadeSati?.currentPhase || 'चालू'}`, mr: `सध्या सक्रिय  –  ${kundali.sadeSati?.currentPhase || 'चालू'}`, ta: `தற்போது செயலில்  –  ${kundali.sadeSati?.currentPhase || 'நடப்பில்'}`, te: `ప్రస్తుతం సక్రియం  –  ${kundali.sadeSati?.currentPhase || 'కొనసాగుతోంది'}`, bn: `বর্তমানে সক্রিয়  –  ${kundali.sadeSati?.currentPhase || 'চলমান'}`, kn: `ಪ್ರಸ್ತುತ ಸಕ್ರಿಯ  –  ${kundali.sadeSati?.currentPhase || 'ನಡೆಯುತ್ತಿದೆ'}`, gu: `હાલમાં સક્રિય  –  ${kundali.sadeSati?.currentPhase || 'ચાલુ'}` }
       : { en: 'Not currently active', hi: 'वर्तमान में सक्रिय नहीं', sa: 'वर्तमान में सक्रिय नहीं', mai: 'वर्तमान में सक्रिय नहीं', mr: 'वर्तमान में सक्रिय नहीं', ta: 'தற்போது செயலில் இல்லை', te: 'ప్రస్తుతం సక్రియం కాదు', bn: 'বর্তমানে সক্রিয় নয়', kn: 'ಪ್ರಸ್ತುತ ಸಕ್ರಿಯವಲ್ಲ', gu: 'હાલમાં સક્રિય નથી' },
   });
 
@@ -168,7 +168,7 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
         </button>
         <PrintButton
           contentHtml={generateKundaliPrintHtml(kundali, locale as 'en' | 'hi' | 'sa')}
-          title={`Patrika — ${bd.name}`}
+          title={`Patrika  –  ${bd.name}`}
           label={msg('print', locale)}
           className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
         />
@@ -230,17 +230,17 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
                 <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-xs">
                    <span><span className="text-text-secondary/70">{msg('lagna', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(lagnaR?.name, locale)} ({kundali.ascendant.degree.toFixed(1)}°)</span></span>
                   <span className="text-gold-primary/15">|</span>
-                   <span><span className="text-text-secondary/70">{msg('chandra', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{moonR?.name[locale] || '—'}</span></span>
+                   <span><span className="text-text-secondary/70">{msg('chandra', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{moonR?.name[locale] || ' – '}</span></span>
                   <span className="text-gold-primary/15">|</span>
-                   <span><span className="text-text-secondary/70">{msg('surya', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{sunR?.name[locale] || '—'}</span></span>
+                   <span><span className="text-text-secondary/70">{msg('surya', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{sunR?.name[locale] || ' – '}</span></span>
                   <span className="text-gold-primary/15">|</span>
-                   <span><span className="text-text-secondary/70">{msg('nakshatra', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{moonP?.nakshatra?.name?.[locale] || '—'} ({msg('pada', locale)} {moonP?.pada || '—'})</span></span>
+                   <span><span className="text-text-secondary/70">{msg('nakshatra', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{moonP?.nakshatra?.name?.[locale] || ' – '} ({msg('pada', locale)} {moonP?.pada || ' – '})</span></span>
                   <span className="text-gold-primary/15">|</span>
-                   <span><span className="text-text-secondary/70">{msg('tithi', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tD?.name?.[locale] || '—'} ({tD?.paksha === 'shukla' ? msg('shukla', locale) : msg('krishna', locale)})</span></span>
+                   <span><span className="text-text-secondary/70">{msg('tithi', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tD?.name?.[locale] || ' – '} ({tD?.paksha === 'shukla' ? msg('shukla', locale) : msg('krishna', locale)})</span></span>
                   <span className="text-gold-primary/15">|</span>
-                   <span><span className="text-text-secondary/70">{msg('yoga', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{yD?.name?.[locale] || '—'}</span></span>
+                   <span><span className="text-text-secondary/70">{msg('yoga', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{yD?.name?.[locale] || ' – '}</span></span>
                   <span className="text-gold-primary/15">|</span>
-                   <span><span className="text-text-secondary/70">{msg('masa', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{mD?.[locale] || '—'}</span></span>
+                   <span><span className="text-text-secondary/70">{msg('masa', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{mD?.[locale] || ' – '}</span></span>
                 </div>
               </div>
             );
@@ -315,7 +315,7 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
                     </td>
                     <td className="py-2 px-3 text-text-secondary text-center font-mono">{p.pada}</td>
                     <td className="py-2 px-3 text-center">
-                      {p.isRetrograde ? <span className="text-red-400 font-bold">R</span> : <span className="text-text-secondary/50">—</span>}
+                      {p.isRetrograde ? <span className="text-red-400 font-bold">R</span> : <span className="text-text-secondary/50"> – </span>}
                     </td>
                   </tr>
                 ))}
@@ -391,7 +391,7 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
         {/* Footer */}
         <div className="text-center pt-2">
           <p className="text-text-secondary/55 text-xs">
-            Generated by <span className="text-gold-dark/50">Dekho Panchang</span> — dekhopanchang.com
+            Generated by <span className="text-gold-dark/50">Dekho Panchang</span>  –  dekhopanchang.com
           </p>
         </div>
       </div>

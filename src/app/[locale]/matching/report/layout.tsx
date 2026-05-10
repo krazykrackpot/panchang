@@ -4,11 +4,11 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 const META = {
   en: {
-    title: 'Detailed Compatibility Report — Vedic Marriage Analysis | Dekho Panchang',
+    title: 'Detailed Compatibility Report  –  Vedic Marriage Analysis | Dekho Panchang',
     description: 'In-depth Vedic compatibility report with Manglik analysis, Nadi Dosha, cross-chart aspects, 7th house analysis, Venus compatibility, and a narrative summary.',
   },
   hi: {
-    title: 'विस्तृत अनुकूलता रिपोर्ट — वैदिक विवाह विश्लेषण | देखो पंचांग',
+    title: 'विस्तृत अनुकूलता रिपोर्ट  –  वैदिक विवाह विश्लेषण | देखो पंचांग',
     description: 'मांगलिक विश्लेषण, नाड़ी दोष, क्रॉस-चार्ट पहलू, सप्तम भाव विश्लेषण, शुक्र अनुकूलता और कथात्मक सारांश के साथ गहन वैदिक अनुकूलता रिपोर्ट।',
   },
 };
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const toolLD = generateToolLD(
-    'Detailed Compatibility Report — Vedic Marriage Analysis',
+    'Detailed Compatibility Report  –  Vedic Marriage Analysis',
     'In-depth cross-chart compatibility analysis including Manglik, Nadi, aspects, 7th house, and Venus analysis.',
     `https://dekhopanchang.com/${locale}/matching/report`,
   );

@@ -92,7 +92,7 @@ const QUESTIONS: ModuleQuestion[] = [
 ];
 
 /* ================================================================ */
-/*  PAGE 1 — The Series That Changed Everything                       */
+/*  PAGE 1  –  The Series That Changed Everything                       */
 /* ================================================================ */
 function Page1() {
   const locale = useModuleLocale();
@@ -160,7 +160,7 @@ function Page1() {
 }
 
 /* ================================================================ */
-/*  PAGE 2 — The People and the Textbook                              */
+/*  PAGE 2  –  The People and the Textbook                              */
 /* ================================================================ */
 function Page2() {
   const locale = useModuleLocale();
@@ -211,7 +211,7 @@ function Page2() {
 }
 
 /* ================================================================ */
-/*  PAGE 3 — The Living Legacy                                        */
+/*  PAGE 3  –  The Living Legacy                                        */
 /* ================================================================ */
 function Page3() {
   const locale = useModuleLocale();

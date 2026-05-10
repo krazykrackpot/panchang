@@ -46,7 +46,7 @@ function maybePrune() {
 const VALID_ACTIVITIES = Object.keys(EXTENDED_ACTIVITIES) as ExtendedActivityId[];
 
 const ACTIVITY_LIST_FOR_PROMPT = VALID_ACTIVITIES
-  .map(id => `${id} — ${EXTENDED_ACTIVITIES[id].label.en}`)
+  .map(id => `${id}  –  ${EXTENDED_ACTIVITIES[id].label.en}`)
   .join('\n');
 
 // ─── Request body type ──────────────────────────────────────────
@@ -132,7 +132,7 @@ export async function POST(request: Request) {
     // ── LLM parameter extraction ──────────────────────────────
     const claude = getClaudeClient();
     if (!claude) {
-      // ANTHROPIC_API_KEY not configured — env var guard per CLAUDE.md rules
+      // ANTHROPIC_API_KEY not configured  –  env var guard per CLAUDE.md rules
       return NextResponse.json(
         { error: 'Muhurta search is temporarily unavailable. Please try the manual muhurta tool instead.' },
         { status: 503 },
@@ -150,13 +150,13 @@ export async function POST(request: Request) {
         messages: [{ role: 'user', content: query }],
       });
 
-      // Extract text from response — use index + type guard pattern (Anthropic SDK's
+      // Extract text from response  –  use index + type guard pattern (Anthropic SDK's
       // ContentBlock union includes ThinkingBlock etc., so direct .filter type predicate
       // doesn't satisfy TS without importing the exact TextBlock type)
       const firstBlock = completion.content[0];
       const responseText = firstBlock.type === 'text' ? firstBlock.text : '';
 
-      // Parse JSON — strip markdown fences if LLM included them despite instructions
+      // Parse JSON  –  strip markdown fences if LLM included them despite instructions
       const cleaned = responseText.replace(/```(?:json)?\s*/g, '').replace(/```\s*/g, '').trim();
       extracted = JSON.parse(cleaned) as ExtractedParams;
     } catch (llmErr) {
@@ -230,13 +230,13 @@ export async function POST(request: Request) {
     const [startYear, startMonth, startDay] = startDate.split('-').map(Number);
     // Try to resolve IANA timezone from coordinates for accurate DST handling.
     // Falls back to longitude-based heuristic (Math.round(lng / 15)) which does
-    // NOT account for DST or political timezone boundaries — known limitation.
+    // NOT account for DST or political timezone boundaries  –  known limitation.
     let tzOffset: number;
     try {
       const ianaTimezone = await resolveTimezoneFromCoords(lat, lng);
       tzOffset = getUTCOffsetForDate(startYear, startMonth, startDay, ianaTimezone);
     } catch {
-      // Fallback: longitude-based estimate — does not handle DST or political boundaries
+      // Fallback: longitude-based estimate  –  does not handle DST or political boundaries
       tzOffset = Math.round(lng / 15);
       console.error('[muhurta-search] timezone resolution failed, using longitude heuristic:', tzOffset);
     }

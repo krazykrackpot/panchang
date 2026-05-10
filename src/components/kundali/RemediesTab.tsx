@@ -112,7 +112,7 @@ function buildWhyExplanation(
   const dusthanas = new Set([6, 8, 12]);
   if (dusthanas.has(planet.house)) {
     parts.push(isEn
-      ? `Placed in the ${ordinalHouse(planet.house)} house (dusthana — house of challenge).`
+      ? `Placed in the ${ordinalHouse(planet.house)} house (dusthana  –  house of challenge).`
       : `${ordinalHouse(planet.house)} भाव (दुष्टस्थान) में स्थित।`);
   }
 
@@ -120,8 +120,8 @@ function buildWhyExplanation(
   const sb = kundali.shadbala.find(s => s.planet === planet.planet.name.en);
   if (sb && sb.totalStrength < 40) {
     parts.push(isEn
-      ? `Low Shadbala strength (${sb.totalStrength.toFixed(0)}%) — needs energizing.`
-      : `कम षड्बल (${sb.totalStrength.toFixed(0)}%) — बल वृद्धि आवश्यक।`);
+      ? `Low Shadbala strength (${sb.totalStrength.toFixed(0)}%)  –  needs energizing.`
+      : `कम षड्बल (${sb.totalStrength.toFixed(0)}%)  –  बल वृद्धि आवश्यक।`);
   }
 
   // Dasha relevance
@@ -132,14 +132,14 @@ function buildWhyExplanation(
       if (maha.startDate <= now && maha.endDate >= now) {
         if (maha.planet === planetName) {
           parts.push(isEn
-            ? `Currently running ${pName} Mahadasha — remedies are especially potent now.`
-            : `वर्तमान में ${pName} महादशा चल रही है — उपाय अत्यन्त प्रभावी।`);
+            ? `Currently running ${pName} Mahadasha  –  remedies are especially potent now.`
+            : `वर्तमान में ${pName} महादशा चल रही है  –  उपाय अत्यन्त प्रभावी।`);
         } else if (maha.subPeriods) {
           for (const antar of maha.subPeriods) {
             if (antar.startDate <= now && antar.endDate >= now && antar.planet === planetName) {
               parts.push(isEn
-                ? `Currently in ${pName} Antardasha — a timely window for remedies.`
-                : `वर्तमान ${pName} अन्तर्दशा — उपायों का उचित समय।`);
+                ? `Currently in ${pName} Antardasha  –  a timely window for remedies.`
+                : `वर्तमान ${pName} अन्तर्दशा  –  उपायों का उचित समय।`);
               break;
             }
           }
@@ -169,7 +169,7 @@ export default function RemediesTab({ kundali, locale }: RemediesTabProps) {
   );
 
   // Compute today's hora table using approximate sunrise/sunset
-  // (exact panchang data isn't available as a prop — use 06:00/18:00 default)
+  // (exact panchang data isn't available as a prop  –  use 06:00/18:00 default)
   const horaTable = useMemo(() => {
     const today = new Date();
     const varaDay = today.getDay(); // 0=Sunday
@@ -578,7 +578,7 @@ function GemstoneCard({
               <span className="text-text-primary">{isEn ? bestDay.en : bestDay.hi}</span>
               {isBestDayToday && (
                 <span className="ml-1.5 text-green-400">
-                  {isEn ? '— Today!' : '— आज!'}
+                  {isEn ? ' –  Today!' : ' –  आज!'}
                 </span>
               )}
             </span>

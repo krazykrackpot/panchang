@@ -1,5 +1,5 @@
 /**
- * Graha Shanti Puja Vidhi — Remedial prescriptions for the 9 Navagrahas
+ * Graha Shanti Puja Vidhi  –  Remedial prescriptions for the 9 Navagrahas
  * Reference: Navagraha Stotra (attributed to Vyasa), BPHS Ch.3, traditional puja vidhis
  *
  * Each planet has: presiding deity, beeja/stotra mantra, gemstone, metal,
@@ -145,8 +145,8 @@ export const GRAHA_SHANTI: GrahaShanti[] = [
     flower: { en: 'Yellow Flower (Marigold / Champa)', hi: 'पीला पुष्प (गेंदा / चम्पा)' },
     direction: { en: 'Northeast', hi: 'ईशान (उत्तर-पूर्व)' },
     fastNote: {
-      en: 'Fast on Thursdays. Eat yellow foods — chana dal, turmeric rice, banana. Offer yellow flowers and turmeric to Vishnu or one\'s Guru.',
-      hi: 'गुरुवार को व्रत रखें। पीले भोजन करें — चना दाल, हल्दी चावल, केला। विष्णु या अपने गुरु को पीले पुष्प और हल्दी अर्पित करें।',
+      en: 'Fast on Thursdays. Eat yellow foods  –  chana dal, turmeric rice, banana. Offer yellow flowers and turmeric to Vishnu or one\'s Guru.',
+      hi: 'गुरुवार को व्रत रखें। पीले भोजन करें  –  चना दाल, हल्दी चावल, केला। विष्णु या अपने गुरु को पीले पुष्प और हल्दी अर्पित करें।',
     },
   },
 
@@ -170,8 +170,8 @@ export const GRAHA_SHANTI: GrahaShanti[] = [
     flower: { en: 'White Flower (Jasmine / White Rose)', hi: 'श्वेत पुष्प (चमेली / सफ़ेद गुलाब)' },
     direction: { en: 'Southeast', hi: 'आग्नेय (दक्षिण-पूर्व)' },
     fastNote: {
-      en: 'Fast on Fridays. Eat white foods — rice, milk, curd. Offer white flowers and sweets to Goddess Lakshmi.',
-      hi: 'शुक्रवार को व्रत रखें। श्वेत भोजन करें — चावल, दूध, दही। देवी लक्ष्मी को श्वेत पुष्प और मिठाई अर्पित करें।',
+      en: 'Fast on Fridays. Eat white foods  –  rice, milk, curd. Offer white flowers and sweets to Goddess Lakshmi.',
+      hi: 'शुक्रवार को व्रत रखें। श्वेत भोजन करें  –  चावल, दूध, दही। देवी लक्ष्मी को श्वेत पुष्प और मिठाई अर्पित करें।',
     },
   },
 

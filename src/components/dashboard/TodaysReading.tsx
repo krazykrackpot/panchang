@@ -12,7 +12,7 @@ import { NakshatraIconById } from '@/components/icons/NakshatraIcons';
 // ---------------------------------------------------------------------------
 
 function YogaSymbol({ size = 128 }: { number: number; size?: number }) {
-  // Custom dramatic Sri Yantra / sacred geometry — interlocking triangles with lotus petals
+  // Custom dramatic Sri Yantra / sacred geometry  –  interlocking triangles with lotus petals
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
       <defs>
@@ -28,22 +28,22 @@ function YogaSymbol({ size = 128 }: { number: number; size?: number }) {
       </defs>
       {/* Background glow */}
       <circle cx="32" cy="32" r="31" fill="url(#yg-glow)" />
-      {/* Outer circle — warm golden */}
+      {/* Outer circle  –  warm golden */}
       <circle cx="32" cy="32" r="30" stroke="#e8a44a" strokeWidth="2.5" opacity="0.7" />
       {/* Inner circle */}
       <circle cx="32" cy="32" r="22" stroke="#c27a2a" strokeWidth="1.5" opacity="0.4" />
-      {/* Sri Yantra — 4 upward triangles (Shiva) */}
+      {/* Sri Yantra  –  4 upward triangles (Shiva) */}
       <polygon points="32,4 56,50 8,50" stroke="#e8a44a" strokeWidth="2.5" fill="#e8a44a" fillOpacity="0.08" strokeLinejoin="round" />
       <polygon points="32,12 48,44 16,44" stroke="#e8a44a" strokeWidth="2" fill="#e8a44a" fillOpacity="0.1" strokeLinejoin="round" />
       <polygon points="32,18 44,40 20,40" stroke="#e8a44a" strokeWidth="1.8" fill="#e8a44a" fillOpacity="0.12" strokeLinejoin="round" />
       <polygon points="32,22 40,38 24,38" stroke="#e8a44a" strokeWidth="1.5" fill="#e8a44a" fillOpacity="0.15" strokeLinejoin="round" />
-      {/* Sri Yantra — 5 downward triangles (Shakti) */}
+      {/* Sri Yantra  –  5 downward triangles (Shakti) */}
       <polygon points="32,60 8,14 56,14" stroke="#c27a2a" strokeWidth="2.5" fill="#c27a2a" fillOpacity="0.08" strokeLinejoin="round" />
       <polygon points="32,54 14,18 50,18" stroke="#c27a2a" strokeWidth="2" fill="#c27a2a" fillOpacity="0.1" strokeLinejoin="round" />
       <polygon points="32,48 18,22 46,22" stroke="#c27a2a" strokeWidth="1.8" fill="#c27a2a" fillOpacity="0.12" strokeLinejoin="round" />
       <polygon points="32,44 22,24 42,24" stroke="#c27a2a" strokeWidth="1.5" fill="#c27a2a" fillOpacity="0.15" strokeLinejoin="round" />
       <polygon points="32,40 26,26 38,26" stroke="#c27a2a" strokeWidth="1.2" fill="#c27a2a" fillOpacity="0.18" strokeLinejoin="round" />
-      {/* Central bindu — warm amber */}
+      {/* Central bindu  –  warm amber */}
       <circle cx="32" cy="32" r="4" fill="url(#yg-main)" opacity="0.95" />
       <circle cx="32" cy="32" r="2.5" fill="#e8a44a" opacity="1" />
     </svg>
@@ -51,7 +51,7 @@ function YogaSymbol({ size = 128 }: { number: number; size?: number }) {
 }
 
 function EnergySymbol({ size = 128 }: { score: number; size?: number }) {
-  // Custom dramatic sun with corona — solar eclipse style
+  // Custom dramatic sun with corona  –  solar eclipse style
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
       <defs>
@@ -65,9 +65,9 @@ function EnergySymbol({ size = 128 }: { score: number; size?: number }) {
           <stop offset="100%" stopColor="#d4a853" />
         </linearGradient>
       </defs>
-      {/* Corona glow — fills entire space */}
+      {/* Corona glow  –  fills entire space */}
       <circle cx="32" cy="32" r="31" fill="url(#eg-corona)" />
-      {/* 12 dramatic corona flares — thick, tapering outward */}
+      {/* 12 dramatic corona flares  –  thick, tapering outward */}
       {Array.from({ length: 12 }, (_, i) => {
         const a = (Math.PI * 2 * i) / 12;
         const isCardinal = i % 3 === 0;
@@ -80,10 +80,10 @@ function EnergySymbol({ size = 128 }: { score: number; size?: number }) {
           />
         );
       })}
-      {/* Sun disc — large, solid, bold */}
+      {/* Sun disc  –  large, solid, bold */}
       <circle cx="32" cy="32" r="15" fill="url(#eg-sun)" opacity="0.9" />
       <circle cx="32" cy="32" r="15" stroke="#f0d48a" strokeWidth="2.5" opacity="0.8" />
-      {/* Face detail — inner circle pattern */}
+      {/* Face detail  –  inner circle pattern */}
       <circle cx="32" cy="32" r="10" stroke="#f0d48a" strokeWidth="1.5" opacity="0.4" />
       {/* Bright core */}
       <circle cx="32" cy="32" r="6" fill="#f0d48a" opacity="1" />
@@ -96,7 +96,7 @@ function DoshaSymbol({ dosha, size = 128 }: { dosha: string; size?: number }) {
   const d = dosha.toLowerCase();
 
   if (d === 'vata') {
-    // Custom: Aeolus spiral — bold double spiral with flowing ribbons
+    // Custom: Aeolus spiral  –  bold double spiral with flowing ribbons
     return (
       <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
         <defs>
@@ -112,14 +112,14 @@ function DoshaSymbol({ dosha, size = 128 }: { dosha: string; size?: number }) {
         <circle cx="32" cy="32" r="31" fill="url(#dg-vata-glow)" />
         {/* Outer boundary ring */}
         <circle cx="32" cy="32" r="30" stroke="#f0d48a" strokeWidth="2" opacity="0.5" />
-        {/* Primary spiral — thick, sweeping across entire card */}
+        {/* Primary spiral  –  thick, sweeping across entire card */}
         <path d="M8 52 C8 36, 18 20, 32 20 C46 20, 52 32, 44 40 C36 48, 24 44, 24 36 C24 28, 32 26, 36 30" stroke="url(#dg-vata)" strokeWidth="4.5" strokeLinecap="round" fill="none" opacity="0.9" />
-        {/* Secondary spiral — offset, bold */}
+        {/* Secondary spiral  –  offset, bold */}
         <path d="M56 12 C56 24, 48 38, 36 42 C24 46, 14 38, 20 28 C26 18, 38 16, 42 24" stroke="#d4a853" strokeWidth="3.5" strokeLinecap="round" fill="none" opacity="0.7" />
         {/* Wind streaks */}
         <path d="M4 16 C12 14, 20 10, 30 12" stroke="#f0d48a" strokeWidth="2.5" strokeLinecap="round" opacity="0.5" />
         <path d="M50 56 C42 54, 36 58, 28 56" stroke="#f0d48a" strokeWidth="2" strokeLinecap="round" opacity="0.4" />
-        {/* Spiral centers — solid filled */}
+        {/* Spiral centers  –  solid filled */}
         <circle cx="36" cy="30" r="4" fill="#f0d48a" opacity="0.85" />
         <circle cx="42" cy="24" r="3" fill="#d4a853" opacity="0.7" />
       </svg>
@@ -127,7 +127,7 @@ function DoshaSymbol({ dosha, size = 128 }: { dosha: string; size?: number }) {
   }
 
   if (d === 'pitta') {
-    // Custom: Sacred flame — upward triangle of fire with inner eye
+    // Custom: Sacred flame  –  upward triangle of fire with inner eye
     return (
       <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
         <defs>
@@ -142,13 +142,13 @@ function DoshaSymbol({ dosha, size = 128 }: { dosha: string; size?: number }) {
           </radialGradient>
         </defs>
         <circle cx="32" cy="36" r="31" fill="url(#dg-pitta-glow)" />
-        {/* Outer flame silhouette — fills most of viewBox */}
+        {/* Outer flame silhouette  –  fills most of viewBox */}
         <path d="M32 2 C22 16, 6 26, 6 44 C6 56, 18 62, 32 62 C46 62, 58 56, 58 44 C58 26, 42 16, 32 2Z" fill="url(#dg-pitta)" fillOpacity="0.65" stroke="#f0d48a" strokeWidth="3" strokeLinejoin="round" />
         {/* Inner flame */}
         <path d="M32 16 C26 26, 16 34, 16 46 C16 54, 24 58, 32 58 C40 58, 48 54, 48 46 C48 34, 38 26, 32 16Z" fill="#f0d48a" fillOpacity="0.45" stroke="#f0d48a" strokeWidth="2" />
         {/* Third flame */}
         <path d="M32 28 C28 34, 22 38, 22 46 C22 52, 26 54, 32 54 C38 54, 42 52, 42 46 C42 38, 36 34, 32 28Z" fill="#f0d48a" fillOpacity="0.6" />
-        {/* Inner eye — almond shape */}
+        {/* Inner eye  –  almond shape */}
         <ellipse cx="32" cy="44" rx="8" ry="5" fill="none" stroke="#f0d48a" strokeWidth="2" opacity="0.8" />
         <circle cx="32" cy="44" r="3" fill="#f0d48a" opacity="1" />
         {/* Tip spark */}
@@ -157,7 +157,7 @@ function DoshaSymbol({ dosha, size = 128 }: { dosha: string; size?: number }) {
     );
   }
 
-  // Kapha — Custom: Lotus on water — layered petals above wave lines
+  // Kapha  –  Custom: Lotus on water  –  layered petals above wave lines
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
       <defs>
@@ -171,7 +171,7 @@ function DoshaSymbol({ dosha, size = 128 }: { dosha: string; size?: number }) {
         </radialGradient>
       </defs>
       <circle cx="32" cy="30" r="31" fill="url(#dg-kapha-glow)" />
-      {/* Lotus petals — 5 large, overlapping */}
+      {/* Lotus petals  –  5 large, overlapping */}
       <ellipse cx="32" cy="16" rx="6" ry="16" fill="#f0d48a" opacity="0.55" stroke="#f0d48a" strokeWidth="1.5" transform="rotate(0 32 30)" />
       <ellipse cx="32" cy="16" rx="6" ry="16" fill="#f0d48a" opacity="0.45" stroke="#f0d48a" strokeWidth="1.5" transform="rotate(30 32 30)" />
       <ellipse cx="32" cy="16" rx="6" ry="16" fill="#f0d48a" opacity="0.45" stroke="#f0d48a" strokeWidth="1.5" transform="rotate(-30 32 30)" />
@@ -188,10 +188,10 @@ function DoshaSymbol({ dosha, size = 128 }: { dosha: string; size?: number }) {
 }
 
 function TithiSymbol({ number, size = 128 }: { number: number; size?: number }) {
-  // Custom: Dramatic crescent moon with stars — always bold regardless of phase
+  // Custom: Dramatic crescent moon with stars  –  always bold regardless of phase
   const isShukla = number <= 15;
 
-  // Bold crescent with scattered stars — always dramatic regardless of phase
+  // Bold crescent with scattered stars  –  always dramatic regardless of phase
   // Crescent faces right for Shukla (waxing), left for Krishna (waning)
   const cx = isShukla ? 26 : 38;
   const shadowCx = isShukla ? 42 : 22;
@@ -217,13 +217,13 @@ function TithiSymbol({ number, size = 128 }: { number: number; size?: number }) 
       <circle cx="32" cy="32" r="31" fill={`url(#tg-glow-${number})`} />
       {/* Outer halo ring */}
       <circle cx={cx} cy="32" r="26" stroke="#f0d48a" strokeWidth="2.5" opacity="0.4" />
-      {/* Bold crescent moon — large, solid fill */}
+      {/* Bold crescent moon  –  large, solid fill */}
       <circle cx={cx} cy="32" r="24" fill={`url(#tg-${number})`} opacity="0.85" mask={`url(#tm-${number})`} />
       <circle cx={cx} cy="32" r="24" stroke="#f0d48a" strokeWidth="3" opacity="0.7" mask={`url(#tm-${number})`} />
       {/* Surface craters on crescent */}
       <circle cx={isShukla ? 18 : 44} cy="28" r="3.5" fill="#f0d48a" opacity="0.3" mask={`url(#tm-${number})`} />
       <circle cx={isShukla ? 22 : 40} cy="38" r="2.5" fill="#f0d48a" opacity="0.25" mask={`url(#tm-${number})`} />
-      {/* Scattered stars — bold, filled */}
+      {/* Scattered stars  –  bold, filled */}
       <polygon points={`${isShukla ? 50 : 14},12 ${isShukla ? 51.5 : 15.5},15.5 ${isShukla ? 55 : 18},16 ${isShukla ? 52 : 16},18.5 ${isShukla ? 53 : 17},22 ${isShukla ? 50 : 14},20 ${isShukla ? 47 : 11},22 ${isShukla ? 48 : 12},18.5 ${isShukla ? 45 : 10},16 ${isShukla ? 48.5 : 12.5},15.5`} fill="#f0d48a" opacity="0.9" />
       <circle cx={isShukla ? 54 : 10} cy="28" r="2" fill="#f0d48a" opacity="0.7" />
       <circle cx={isShukla ? 48 : 16} cy="48" r="1.5" fill="#f0d48a" opacity="0.6" />
@@ -298,7 +298,7 @@ export default function TodaysReading({
         const file = new File([blob], 'todays-reading.png', { type: 'image/png' });
         const shareData: ShareData = {
           title: "Today's Cosmic Reading",
-          text: `My cosmic reading for today — ${new Date().toLocaleDateString()}`,
+          text: `My cosmic reading for today  –  ${new Date().toLocaleDateString()}`,
         };
         if (navigator.canShare?.({ files: [file] })) {
           shareData.files = [file];
@@ -322,7 +322,7 @@ export default function TodaysReading({
   return (
     <section className="py-8 px-4">
       <div ref={readingRef}>
-      {/* Header — "The Lens" */}
+      {/* Header  –  "The Lens" */}
       <div className="text-center mb-8">
         <h2 className="font-[var(--font-cinzel)] text-2xl md:text-3xl text-[#f0d48a] mb-2">
           Today&apos;s Reading
@@ -336,7 +336,7 @@ export default function TodaysReading({
         </div>
       </div>
 
-      {/* 5 Tarot Cards — full-width grid */}
+      {/* 5 Tarot Cards  –  full-width grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
         {/* Card 1: Current Yoga */}
         <TarotCard
@@ -366,15 +366,15 @@ export default function TodaysReading({
           glowColor={
             // Planet-specific glow tints
             [
-              '#e67e22', // Sun — orange
-              '#c0c0c0', // Moon — silver
-              '#e74c3c', // Mars — red
-              '#2ecc71', // Mercury — green
-              '#f1c40f', // Jupiter — gold
-              '#e91e9f', // Venus — pink
-              '#7f8c8d', // Saturn — grey
-              '#3498db', // Rahu — blue
-              '#9b59b6', // Ketu — purple
+              '#e67e22', // Sun  –  orange
+              '#c0c0c0', // Moon  –  silver
+              '#e74c3c', // Mars  –  red
+              '#2ecc71', // Mercury  –  green
+              '#f1c40f', // Jupiter  –  gold
+              '#e91e9f', // Venus  –  pink
+              '#7f8c8d', // Saturn  –  grey
+              '#3498db', // Rahu  –  blue
+              '#9b59b6', // Ketu  –  purple
             ][dashaLord.planetId] || '#d4a853'
           }
         />

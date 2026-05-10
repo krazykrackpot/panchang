@@ -23,7 +23,7 @@ describe('calculateDashas', () => {
     expect(dashas[0].planet).toBe('Ketu');
   });
 
-  it('first dasha is partial — less than 7 full years', () => {
+  it('first dasha is partial  –  less than 7 full years', () => {
     expect(dashas[0].years).toBeLessThan(7);
     expect(dashas[0].years).toBeGreaterThan(0);
   });

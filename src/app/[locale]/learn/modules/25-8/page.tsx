@@ -91,7 +91,7 @@ const QUESTIONS: ModuleQuestion[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 1 — The Sulba Sutras and Baudhayana's Theorem                 */
+/*  PAGE 1  –  The Sulba Sutras and Baudhayana's Theorem                 */
 /* ------------------------------------------------------------------ */
 function Page1() {
   const locale = useModuleLocale();
@@ -104,30 +104,30 @@ function Page1() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>a² + b² = c². दुनिया के हर स्कूल में यह "पाइथागोरस प्रमेय" के रूप में पढ़ाई जाती है। लेकिन इस परिणाम का सबसे पुराना ज्ञात कथन ग्रीस में नहीं, भारत में मिलता है — बौधायन शुल्ब सूत्र में, जो ~800 ईपू में लिखा गया। पाइथागोरस ~570 ईपू में पैदा हुए — लगभग 230 वर्ष बाद।</>
-            : <>a² + b² = c². Taught in every school worldwide as 'Pythagoras's theorem.' But the earliest known statement of this result appears not in Greece, but in India — in the Baudhayana Sulba Sutra, written ~800 BCE. Pythagoras was born ~570 BCE — roughly 230 years later.</>}
+            ? <>a² + b² = c². दुनिया के हर स्कूल में यह "पाइथागोरस प्रमेय" के रूप में पढ़ाई जाती है। लेकिन इस परिणाम का सबसे पुराना ज्ञात कथन ग्रीस में नहीं, भारत में मिलता है  –  बौधायन शुल्ब सूत्र में, जो ~800 ईपू में लिखा गया। पाइथागोरस ~570 ईपू में पैदा हुए  –  लगभग 230 वर्ष बाद।</>
+            : <>a² + b² = c². Taught in every school worldwide as 'Pythagoras's theorem.' But the earliest known statement of this result appears not in Greece, but in India  –  in the Baudhayana Sulba Sutra, written ~800 BCE. Pythagoras was born ~570 BCE  –  roughly 230 years later.</>}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Sulba Sutras — Mathematics Born From Ritual', hi: 'शुल्ब सूत्र — कर्मकाण्ड से जन्मा गणित', sa: 'शुल्बसूत्राणि — कर्मकाण्डाद् जातं गणितम्' }, locale)}
+          {tl({ en: 'Sulba Sutras  –  Mathematics Born From Ritual', hi: 'शुल्ब सूत्र  –  कर्मकाण्ड से जन्मा गणित', sa: 'शुल्बसूत्राणि  –  कर्मकाण्डाद् जातं गणितम्' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-3">
           {isHi
-            ? <>शुल्ब सूत्र वेदों के परिशिष्ट हैं जो अग्निकुण्ड निर्माण की ज्यामिति बताते हैं। "शुल्ब" का अर्थ है रस्सी — ये रस्सी-और-खूँटी ज्यामिति की पुस्तिकाएँ थीं। वेदी का आकार (बाज, कछुआ, चक्र) और क्षेत्रफल बिल्कुल सटीक होना चाहिए था — धार्मिक नियम ने गणितीय परिशुद्धता की माँग की।</>
-            : <>The Sulba Sutras are Vedic appendices giving the geometry for fire altar construction. "Sulba" means rope — literally rope-and-peg geometry manuals. Altars had to be specific shapes (falcon, tortoise, wheel) with exact areas — ritual law demanded mathematical precision. Any deviation was considered invalid.</>}
+            ? <>शुल्ब सूत्र वेदों के परिशिष्ट हैं जो अग्निकुण्ड निर्माण की ज्यामिति बताते हैं। "शुल्ब" का अर्थ है रस्सी  –  ये रस्सी-और-खूँटी ज्यामिति की पुस्तिकाएँ थीं। वेदी का आकार (बाज, कछुआ, चक्र) और क्षेत्रफल बिल्कुल सटीक होना चाहिए था  –  धार्मिक नियम ने गणितीय परिशुद्धता की माँग की।</>
+            : <>The Sulba Sutras are Vedic appendices giving the geometry for fire altar construction. "Sulba" means rope  –  literally rope-and-peg geometry manuals. Altars had to be specific shapes (falcon, tortoise, wheel) with exact areas  –  ritual law demanded mathematical precision. Any deviation was considered invalid.</>}
         </p>
         <div className="space-y-2">
           {[
-            { name: 'Baudhayana', date: '~800 BCE', note: { en: 'Oldest — contains verse 1.48, the general theorem', hi: 'सबसे पुराना — श्लोक 1.48, सामान्य प्रमेय', sa: 'प्राचीनतमम् — श्लोकः 1.48, सामान्यप्रमेयम्', mai: 'सबसँ पुरान — श्लोक 1.48, सामान्य प्रमेय', mr: 'सर्वात जुने — श्लोक 1.48, सामान्य प्रमेय', ta: 'மிகப் பழமையானது — பாடல் 1.48, பொதுத் தேற்றம்', te: 'అత్యంత పురాతనమైనది — శ్లోకం 1.48, సాధారణ సిద్ధాంతం', bn: 'প্রাচীনতম — শ্লোক 1.48, সাধারণ উপপাদ্য', kn: 'ಅತ್ಯಂತ ಪ್ರಾಚೀನ — ಶ್ಲೋಕ 1.48, ಸಾಮಾನ್ಯ ಪ್ರಮೇಯ', gu: 'સૌથી પ્રાચીન — શ્લોક 1.48, સામાન્ય પ્રમેય' }, accent: '#f0d48a' },
+            { name: 'Baudhayana', date: '~800 BCE', note: { en: 'Oldest  –  contains verse 1.48, the general theorem', hi: 'सबसे पुराना  –  श्लोक 1.48, सामान्य प्रमेय', sa: 'प्राचीनतमम्  –  श्लोकः 1.48, सामान्यप्रमेयम्', mai: 'सबसँ पुरान  –  श्लोक 1.48, सामान्य प्रमेय', mr: 'सर्वात जुने  –  श्लोक 1.48, सामान्य प्रमेय', ta: 'மிகப் பழமையானது  –  பாடல் 1.48, பொதுத் தேற்றம்', te: 'అత్యంత పురాతనమైనది  –  శ్లోకం 1.48, సాధారణ సిద్ధాంతం', bn: 'প্রাচীনতম  –  শ্লোক 1.48, সাধারণ উপপাদ্য', kn: 'ಅತ್ಯಂತ ಪ್ರಾಚೀನ  –  ಶ್ಲೋಕ 1.48, ಸಾಮಾನ್ಯ ಪ್ರಮೇಯ', gu: 'સૌથી પ્રાચીન  –  શ્લોક 1.48, સામાન્ય પ્રમેય' }, accent: '#f0d48a' },
             { name: 'Apastamba', date: '~600 BCE', note: { en: 'Refined √2, additional constructions', hi: 'परिष्कृत √2', sa: 'परिष्कृतं √2 मूल्यम्', mai: 'परिष्कृत √2, अतिरिक्त निर्माण', mr: 'परिष्कृत √2, अतिरिक्त रचना', ta: 'மேம்படுத்தப்பட்ட √2, கூடுதல் கட்டுமானங்கள்', te: 'మెరుగైన √2, అదనపు నిర్మాణాలు', bn: 'পরিমার্জিত √2, অতিরিক্ত নির্মাণ', kn: 'ಪರಿಷ್ಕೃತ √2, ಹೆಚ್ಚುವರಿ ನಿರ್ಮಾಣಗಳು', gu: 'પરિષ્કૃત √2, વધારાનાં બાંધકામ' }, accent: '#fbbf24' },
             { name: 'Katyayana', date: '~300 BCE', note: { en: 'Generalised geometric transformations', hi: 'सामान्यीकृत रूपांतरण', sa: 'सामान्यीकृतानि ज्यामितीयरूपान्तराणि', mai: 'सामान्यीकृत ज्यामितीय रूपांतरण', mr: 'सामान्यीकृत भूमितीय रूपांतरण', ta: 'பொதுமைப்படுத்தப்பட்ட வடிவியல் மாற்றங்கள்', te: 'సాధారణీకరించిన జ్యామితీయ రూపాంతరాలు', bn: 'সাধারণীকৃত জ্যামিতিক রূপান্তর', kn: 'ಸಾಮಾನ್ಯೀಕೃತ ಜ್ಯಾಮಿತೀಯ ಪರಿವರ್ತನೆಗಳು', gu: 'સામાન્યીકૃત ભૌમિતિક રૂપાંતરણ' }, accent: '#a78bfa' },
           ].map((s, i) => (
             <div key={i} className="flex items-center gap-3 p-2 rounded-lg bg-white/[0.02] border border-white/[0.04]">
               <span className="text-xs font-mono w-16 flex-shrink-0" style={{ color: s.accent }}>{s.date}</span>
               <div>
-                <span className="text-text-primary text-xs font-semibold">{s.name} Sulba Sutra — </span>
+                <span className="text-text-primary text-xs font-semibold">{s.name} Sulba Sutra  –  </span>
                 <span className="text-text-secondary text-xs">{isHi ? s.note.hi : s.note.en}</span>
               </div>
             </div>
@@ -149,7 +149,7 @@ function Page1() {
           {tl({ en: '"The diagonal of a rectangle produces both [areas] which its length and breadth produce separately."', hi: '"आयत का विकर्ण वह दोनों [क्षेत्रफल] उत्पन्न करता है जो उसकी लम्बाई और चौड़ाई अलग-अलग उत्पन्न करती हैं।"', sa: '"आयतस्य कर्णः तयोः [क्षेत्रफलयोः] उभयोः उत्पत्तिं करोति यत् तस्य दैर्घ्यं विस्तारश्च पृथक् पृथक् उत्पादयतः।"' }, locale)}
         </p>
         <p className="text-text-secondary/60 text-xs text-center">
-          {tl({ en: '= a² + b² = c² — a general rule for ALL rectangles', hi: '= a² + b² = c² — सभी आयतों के लिए सामान्य नियम', sa: '= a² + b² = c² — सर्वेषाम् आयतानां सामान्यनियमः' }, locale)}
+          {tl({ en: '= a² + b² = c²  –  a general rule for ALL rectangles', hi: '= a² + b² = c²  –  सभी आयतों के लिए सामान्य नियम', sa: '= a² + b² = c²  –  सर्वेषाम् आयतानां सामान्यनियमः' }, locale)}
         </p>
       </section>
     </div>
@@ -157,7 +157,7 @@ function Page1() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 2 — √2, Pythagorean Triples, and Altar Geometry              */
+/*  PAGE 2  –  √2, Pythagorean Triples, and Altar Geometry              */
 /* ------------------------------------------------------------------ */
 function Page2() {
   const locale = useModuleLocale();
@@ -177,7 +177,7 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15 rounded-xl p-5">
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: '√2 — Five Decimal Places in 800 BCE', hi: '√2 — 800 ईपू में पाँच दशमलव', sa: '√2 — ८०० ईपू में पञ्चदशमलवस्थाने' }, locale)}
+          {tl({ en: '√2  –  Five Decimal Places in 800 BCE', hi: '√2  –  800 ईपू में पाँच दशमलव', sa: '√2  –  ८०० ईपू में पञ्चदशमलवस्थाने' }, locale)}
         </h4>
         <div className="p-3 rounded-lg bg-amber-500/5 border border-amber-500/10 text-center mb-3">
           <p className="text-amber-300 font-mono text-sm font-bold">√2 ≈ 1 + 1/3 + 1/(3×4) − 1/(3×4×34)</p>
@@ -185,8 +185,8 @@ function Page2() {
         </div>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
-            ? <>यह सन्निकटन क्यों? क्योंकि वर्गाकार वेदी को दोगुना करने के लिए मूल का विकर्ण चाहिए — जो s√2 है। यदि आप s = 1 की वेदी से शुरू करते हैं, तो नई भुजा = √2 है। बिना सटीक √2 के, दोगुनी वेदी ठीक नहीं होती।</>
-            : <>Why this approximation? Because doubling a square altar requires its diagonal — which is s√2. Starting from an altar of side s=1, the new side = √2. Without accurate √2, the doubled altar isn't right.</>}
+            ? <>यह सन्निकटन क्यों? क्योंकि वर्गाकार वेदी को दोगुना करने के लिए मूल का विकर्ण चाहिए  –  जो s√2 है। यदि आप s = 1 की वेदी से शुरू करते हैं, तो नई भुजा = √2 है। बिना सटीक √2 के, दोगुनी वेदी ठीक नहीं होती।</>
+            : <>Why this approximation? Because doubling a square altar requires its diagonal  –  which is s√2. Starting from an altar of side s=1, the new side = √2. Without accurate √2, the doubled altar isn't right.</>}
         </p>
         <p className="text-text-secondary text-xs leading-relaxed">
           {tl({ en: "Baudhayana's value differs from the modern IEEE 754 value by only 0.0000021. Apastamba Sulba Sutra (~600 BCE) refined it further.", hi: "बौधायन का मान आधुनिक मान से केवल 0.0000021 अलग है। अपस्तम्ब शुल्ब सूत्र (~600 ईपू) ने इसे और परिष्कृत किया।", sa: "बौधायन का मान आधुनिक मान से केवल 0.0000021 अलग है। अपस्तम्ब शुल्ब सूत्र (~600 ईपू) ने इसे और परिष्कृत किया।" }, locale)}
@@ -195,7 +195,7 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {tl({ en: 'Pythagorean Triples — Right Angles for the Altar', hi: 'पाइथागोरीय त्रिक — वेदी में समकोण', sa: 'पाइथागोरीयत्रिकाणि — वेद्यर्थं समकोणाः' }, locale)}
+          {tl({ en: 'Pythagorean Triples  –  Right Angles for the Altar', hi: 'पाइथागोरीय त्रिक  –  वेदी में समकोण', sa: 'पाइथागोरीयत्रिकाणि  –  वेद्यर्थं समकोणाः' }, locale)}
         </h4>
         <div className="grid grid-cols-2 gap-2 mb-3">
           {[
@@ -211,7 +211,7 @@ function Page2() {
           ))}
         </div>
         <p className="text-text-secondary text-xs leading-relaxed">
-          {tl({ en: 'Practical use: tie a rope of length (a+b+c) with knots at a and a+b, stretch on three pegs — a perfect right angle. This is how ancient builders made right angles without modern instruments.', hi: 'इन त्रिकों का व्यावहारिक उपयोग: लम्बाई (a+b+c) की रस्सी में a और a+b पर गाँठें बाँधें, तीनों खूँटों पर फैलाएँ — एक सटीक समकोण बनता है। यही प्राचीन निर्माणकर्ता समकोण बनाते थे।', sa: 'इन त्रिकों का व्यावहारिक उपयोग: लम्बाई (a+b+c) की रस्सी में a और a+b पर गाँठें बाँधें, तीनों खूँटों पर फैलाएँ — एक सटीक समकोण बनता है। यही प्राचीन निर्माणकर्ता समकोण बनाते थे।' }, locale)}
+          {tl({ en: 'Practical use: tie a rope of length (a+b+c) with knots at a and a+b, stretch on three pegs  –  a perfect right angle. This is how ancient builders made right angles without modern instruments.', hi: 'इन त्रिकों का व्यावहारिक उपयोग: लम्बाई (a+b+c) की रस्सी में a और a+b पर गाँठें बाँधें, तीनों खूँटों पर फैलाएँ  –  एक सटीक समकोण बनता है। यही प्राचीन निर्माणकर्ता समकोण बनाते थे।', sa: 'इन त्रिकों का व्यावहारिक उपयोग: लम्बाई (a+b+c) की रस्सी में a और a+b पर गाँठें बाँधें, तीनों खूँटों पर फैलाएँ  –  एक सटीक समकोण बनता है। यही प्राचीन निर्माणकर्ता समकोण बनाते थे।' }, locale)}
         </p>
       </section>
     </div>
@@ -219,7 +219,7 @@ function Page2() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 3 — Pythagoras, Euclid, and the Fair Assessment               */
+/*  PAGE 3  –  Pythagoras, Euclid, and the Fair Assessment               */
 /* ------------------------------------------------------------------ */
 function Page3() {
   const locale = useModuleLocale();
@@ -243,11 +243,11 @@ function Page3() {
         </h4>
         <div className="space-y-3">
           {[
-            { year: '~800 BCE', event: { en: 'Baudhayana Sulba Sutra — general theorem, √2, and triples', hi: 'बौधायन शुल्ब सूत्र — सामान्य प्रमेय, √2, और त्रिक', sa: 'बौधायनशुल्बसूत्रम् — सामान्यप्रमेयम्, √2, त्रिकाणि च', mai: 'बौधायन शुल्ब सूत्र — सामान्य प्रमेय, √2, आ त्रिक', mr: 'बौधायन शुल्बसूत्र — सामान्य प्रमेय, √2, आणि त्रिक', ta: 'பௌதாயன சுல்ப சூத்திரம் — பொதுத் தேற்றம், √2, மற்றும் முத்தொகைகள்', te: 'బౌధాయన శుల్బ సూత్రం — సాధారణ సిద్ధాంతం, √2, మరియు త్రిపుటులు', bn: 'বৌধায়ন শুল্ব সূত্র — সাধারণ উপপাদ্য, √2, ও ত্রিক', kn: 'ಬೌಧಾಯನ ಶುಲ್ಬ ಸೂತ್ರ — ಸಾಮಾನ್ಯ ಪ್ರಮೇಯ, √2, ಮತ್ತು ತ್ರಿಕಗಳು', gu: 'બૌધાયન શુલ્બ સૂત્ર — સામાન્ય પ્રમેય, √2, અને ત્રિક' }, color: '#f0d48a' },
-            { year: '~600 BCE', event: { en: 'Apastamba Sulba Sutra — refined √2', hi: 'आपस्तम्ब शुल्ब सूत्र — परिष्कृत √2', sa: 'आपस्तम्बशुल्बसूत्रम् — परिष्कृतं √2 मूल्यम्', mai: 'आपस्तम्ब शुल्ब सूत्र — परिष्कृत √2', mr: 'आपस्तंब शुल्बसूत्र — परिष्कृत √2', ta: 'ஆபஸ்தம்ப சுல்ப சூத்திரம் — மேம்படுத்தப்பட்ட √2', te: 'ఆపస్తంబ శుల్బ సూత్రం — మెరుగైన √2', bn: 'আপস্তম্ব শুল্ব সূত্র — পরিমার্জিত √2', kn: 'ಆಪಸ್ತಂಬ ಶುಲ್ಬ ಸೂತ್ರ — ಪರಿಷ್ಕೃತ √2', gu: 'આપસ્તંબ શુલ્બ સૂત્ર — પરિષ્કૃત √2' }, color: '#d4a853' },
+            { year: '~800 BCE', event: { en: 'Baudhayana Sulba Sutra  –  general theorem, √2, and triples', hi: 'बौधायन शुल्ब सूत्र  –  सामान्य प्रमेय, √2, और त्रिक', sa: 'बौधायनशुल्बसूत्रम्  –  सामान्यप्रमेयम्, √2, त्रिकाणि च', mai: 'बौधायन शुल्ब सूत्र  –  सामान्य प्रमेय, √2, आ त्रिक', mr: 'बौधायन शुल्बसूत्र  –  सामान्य प्रमेय, √2, आणि त्रिक', ta: 'பௌதாயன சுல்ப சூத்திரம்  –  பொதுத் தேற்றம், √2, மற்றும் முத்தொகைகள்', te: 'బౌధాయన శుల్బ సూత్రం  –  సాధారణ సిద్ధాంతం, √2, మరియు త్రిపుటులు', bn: 'বৌধায়ন শুল্ব সূত্র  –  সাধারণ উপপাদ্য, √2, ও ত্রিক', kn: 'ಬೌಧಾಯನ ಶುಲ್ಬ ಸೂತ್ರ  –  ಸಾಮಾನ್ಯ ಪ್ರಮೇಯ, √2, ಮತ್ತು ತ್ರಿಕಗಳು', gu: 'બૌધાયન શુલ્બ સૂત્ર  –  સામાન્ય પ્રમેય, √2, અને ત્રિક' }, color: '#f0d48a' },
+            { year: '~600 BCE', event: { en: 'Apastamba Sulba Sutra  –  refined √2', hi: 'आपस्तम्ब शुल्ब सूत्र  –  परिष्कृत √2', sa: 'आपस्तम्बशुल्बसूत्रम्  –  परिष्कृतं √2 मूल्यम्', mai: 'आपस्तम्ब शुल्ब सूत्र  –  परिष्कृत √2', mr: 'आपस्तंब शुल्बसूत्र  –  परिष्कृत √2', ta: 'ஆபஸ்தம்ப சுல்ப சூத்திரம்  –  மேம்படுத்தப்பட்ட √2', te: 'ఆపస్తంబ శుల్బ సూత్రం  –  మెరుగైన √2', bn: 'আপস্তম্ব শুল্ব সূত্র  –  পরিমার্জিত √2', kn: 'ಆಪಸ್ತಂಬ ಶುಲ್ಬ ಸೂತ್ರ  –  ಪರಿಷ್ಕೃತ √2', gu: 'આપસ્તંબ શુલ્બ સૂત્ર  –  પરિષ્કૃત √2' }, color: '#d4a853' },
             { year: '~570 BCE', event: { en: 'Pythagoras born in Samos, Greece', hi: 'पाइथागोरस का जन्म सामोस, ग्रीस में', sa: 'पाइथागोरसस्य जन्म सामोसद्वीपे, ग्रीसदेशे', mai: 'पाइथागोरसक जन्म सामोस, ग्रीस मे', mr: 'पायथागोरसचा जन्म सामोस, ग्रीस येथे', ta: 'பைதாகரஸ் சாமோஸ், கிரேக்கத்தில் பிறந்தார்', te: 'పైథాగరస్ సామోస్, గ్రీస్‌లో జన్మించారు', bn: 'পাইথাগোরাস সামোসে, গ্রিসে জন্মগ্রহণ করেন', kn: 'ಪೈಥಾಗರಸ್ ಸಾಮೋಸ್, ಗ್ರೀಸ್‌ನಲ್ಲಿ ಜನಿಸಿದರು', gu: 'પાયથાગોરસનો જન્મ સામોસ, ગ્રીસમાં' }, color: '#a78bfa' },
-            { year: '~300 BCE', event: { en: "Euclid's Elements — first surviving formal Greek proof", hi: 'यूक्लिड के Elements — पहला जीवित औपचारिक ग्रीक प्रमाण', sa: 'यूक्लिडस्य एलिमेण्ट्स् — प्रथमं जीवितं औपचारिकं ग्रीकप्रमाणम्', mai: 'यूक्लिडक एलिमेण्ट्स — पहिल जीवित औपचारिक ग्रीक प्रमाण', mr: 'युक्लिडचे एलिमेंट्स — पहिला जिवंत औपचारिक ग्रीक पुरावा', ta: 'யூக்ளிடின் எலிமெண்ட்ஸ் — முதல் எஞ்சியிருக்கும் முறையான கிரேக்க நிரூபணம்', te: 'యూక్లిడ్ ఎలిమెంట్స్ — మొదటి మిగిలిన అధికారిక గ్రీక్ నిరూపణ', bn: 'ইউক্লিডের এলিমেন্টস — প্রথম টিকে থাকা আনুষ্ঠানিক গ্রিক প্রমাণ', kn: 'ಯೂಕ್ಲಿಡ್‌ನ ಎಲಿಮೆಂಟ್ಸ್ — ಮೊದಲ ಉಳಿದಿರುವ ಔಪಚಾರಿಕ ಗ್ರೀಕ್ ಪ್ರಮಾಣ', gu: 'યુક્લિડના એલિમેન્ટ્સ — પ્રથમ ટકેલો ઔપચારિક ગ્રીક પ્રમાણ' }, color: '#34d399' },
-            { year: '499 CE', event: { en: 'Aryabhatiya — theorem used for astronomical calculations', hi: 'आर्यभटीय — खगोलीय गणनाओं में प्रमेय', sa: 'आर्यभटीयम् — ज्योतिषगणनासु प्रमेयस्य उपयोगः', mai: 'आर्यभटीय — खगोलीय गणना मे प्रमेय', mr: 'आर्यभटीय — खगोलशास्त्रीय गणनेत प्रमेय', ta: 'ஆர்யபடீயம் — வானியல் கணக்கீடுகளுக்குப் பயன்படுத்தப்பட்ட தேற்றம்', te: 'ఆర్యభటీయం — ఖగోళ గణనలలో ఉపయోగించబడిన సిద్ధాంతం', bn: 'আর্যভটীয় — জ্যোতির্বিদ্যা গণনায় ব্যবহৃত উপপাদ্য', kn: 'ಆರ್ಯಭಟೀಯ — ಖಗೋಳ ಗಣನೆಗಳಲ್ಲಿ ಬಳಸಿದ ಪ್ರಮೇಯ', gu: 'આર્યભટીય — ખગોળીય ગણતરીઓમાં ઉપયોગી પ્રમેય' }, color: '#fbbf24' },
+            { year: '~300 BCE', event: { en: "Euclid's Elements  –  first surviving formal Greek proof", hi: 'यूक्लिड के Elements  –  पहला जीवित औपचारिक ग्रीक प्रमाण', sa: 'यूक्लिडस्य एलिमेण्ट्स्  –  प्रथमं जीवितं औपचारिकं ग्रीकप्रमाणम्', mai: 'यूक्लिडक एलिमेण्ट्स  –  पहिल जीवित औपचारिक ग्रीक प्रमाण', mr: 'युक्लिडचे एलिमेंट्स  –  पहिला जिवंत औपचारिक ग्रीक पुरावा', ta: 'யூக்ளிடின் எலிமெண்ட்ஸ்  –  முதல் எஞ்சியிருக்கும் முறையான கிரேக்க நிரூபணம்', te: 'యూక్లిడ్ ఎలిమెంట్స్  –  మొదటి మిగిలిన అధికారిక గ్రీక్ నిరూపణ', bn: 'ইউক্লিডের এলিমেন্টস  –  প্রথম টিকে থাকা আনুষ্ঠানিক গ্রিক প্রমাণ', kn: 'ಯೂಕ್ಲಿಡ್‌ನ ಎಲಿಮೆಂಟ್ಸ್  –  ಮೊದಲ ಉಳಿದಿರುವ ಔಪಚಾರಿಕ ಗ್ರೀಕ್ ಪ್ರಮಾಣ', gu: 'યુક્લિડના એલિમેન્ટ્સ  –  પ્રથમ ટકેલો ઔપચારિક ગ્રીક પ્રમાણ' }, color: '#34d399' },
+            { year: '499 CE', event: { en: 'Aryabhatiya  –  theorem used for astronomical calculations', hi: 'आर्यभटीय  –  खगोलीय गणनाओं में प्रमेय', sa: 'आर्यभटीयम्  –  ज्योतिषगणनासु प्रमेयस्य उपयोगः', mai: 'आर्यभटीय  –  खगोलीय गणना मे प्रमेय', mr: 'आर्यभटीय  –  खगोलशास्त्रीय गणनेत प्रमेय', ta: 'ஆர்யபடீயம்  –  வானியல் கணக்கீடுகளுக்குப் பயன்படுத்தப்பட்ட தேற்றம்', te: 'ఆర్యభటీయం  –  ఖగోళ గణనలలో ఉపయోగించబడిన సిద్ధాంతం', bn: 'আর্যভটীয়  –  জ্যোতির্বিদ্যা গণনায় ব্যবহৃত উপপাদ্য', kn: 'ಆರ್ಯಭಟೀಯ  –  ಖಗೋಳ ಗಣನೆಗಳಲ್ಲಿ ಬಳಸಿದ ಪ್ರಮೇಯ', gu: 'આર્યભટીય  –  ખગોળીય ગણતરીઓમાં ઉપયોગી પ્રમેય' }, color: '#fbbf24' },
           ].map((item, i) => (
             <div key={i} className="flex items-start gap-3">
               <span className="text-xs font-mono w-16 flex-shrink-0 mt-0.5" style={{ color: item.color }}>{item.year}</span>
@@ -268,7 +268,7 @@ function Page3() {
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
             <span className="text-gold-light font-semibold">{tl({ en: 'Greek contribution:', hi: 'ग्रीक योगदान:', sa: 'ग्रीकानां योगदानम्:' }, locale)}</span>{' '}
-            {tl({ en: 'Possibly the first formal deductive proof — though no work by Pythagoras survives, so Euclid (~300 BCE) is the oldest surviving source.', hi: 'सम्भवतः प्रथम औपचारिक निगमनात्मक प्रमाण — हालाँकि पाइथागोरस का कोई लिखित कार्य नहीं बचा, इसलिए यूक्लिड (~300 ईपू) ही सबसे पुराना जीवित स्रोत है।', sa: 'सम्भवतः प्रथमः औपचारिकः निगमनात्मकः प्रमाणम् — यद्यपि पाइथागोरसस्य कोऽपि ग्रन्थः न उपलब्धः, अतः यूक्लिड (~300 ईपू) एव प्राचीनतमः उपलब्धः स्रोतः अस्ति।' }, locale)}
+            {tl({ en: 'Possibly the first formal deductive proof  –  though no work by Pythagoras survives, so Euclid (~300 BCE) is the oldest surviving source.', hi: 'सम्भवतः प्रथम औपचारिक निगमनात्मक प्रमाण  –  हालाँकि पाइथागोरस का कोई लिखित कार्य नहीं बचा, इसलिए यूक्लिड (~300 ईपू) ही सबसे पुराना जीवित स्रोत है।', sa: 'सम्भवतः प्रथमः औपचारिकः निगमनात्मकः प्रमाणम्  –  यद्यपि पाइथागोरसस्य कोऽपि ग्रन्थः न उपलब्धः, अतः यूक्लिड (~300 ईपू) एव प्राचीनतमः उपलब्धः स्रोतः अस्ति।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed mt-2 italic">
             {tl({ en: 'Historians of mathematics increasingly favour the name "Baudhayana theorem." Indian mathematics textbooks already call it that.', hi: 'गणित के इतिहासकार अब "बौधायन प्रमेय" नाम की ओर झुक रहे हैं। भारतीय गणित पाठ्यपुस्तकों में यह पहले से ही "बौधायन प्रमेय" कही जाती है।', sa: 'गणितस्य इतिहासकाराः क्रमशः "बौधायनप्रमेयम्" इति नाम अनुमोदयन्ति। भारतीयगणितपाठ्यपुस्तकेषु तत् नाम पूर्वमेव प्रचलितम् अस्ति।' }, locale)}

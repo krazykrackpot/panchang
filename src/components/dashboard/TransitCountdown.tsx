@@ -142,7 +142,7 @@ export default function TransitCountdown({ ascendantSign, savTable, reducedSavTa
   const L = LABELS[locale as keyof typeof LABELS] || LABELS.en;
   const isDeva = isDevanagariLocale(locale as Locale);
 
-  // Prefer reducedSavTable (post-Shodhana) for quality scoring — more accurate for transit prediction.
+  // Prefer reducedSavTable (post-Shodhana) for quality scoring  –  more accurate for transit prediction.
   const scoringTable = reducedSavTable ?? savTable;
   const isReduced = !!reducedSavTable;
 
@@ -193,7 +193,7 @@ export default function TransitCountdown({ ascendantSign, savTable, reducedSavTa
     return scored.slice(0, 3);
   }, [ascendantSign, savTable, locale, L]);
 
-  // Don't render empty state — the KeyDatesTimeline component on the dashboard
+  // Don't render empty state  –  the KeyDatesTimeline component on the dashboard
   // already shows upcoming events (dasha transitions, solar return, etc.).
   // Showing "No major transits" alongside those events is contradictory.
   if (scoredTransits.length === 0) return null;

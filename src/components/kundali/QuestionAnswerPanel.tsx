@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * Question-Answer Panel — "Ask your chart a question"
+ * Question-Answer Panel  –  "Ask your chart a question"
  *
  * User picks a question from categorized list → engine pulls relevant
  * chart factors → renders direct verdict + evidence + timing + advice.
@@ -31,8 +31,8 @@ const VERDICT_CONFIG: Record<string, { color: string; bg: string; border: string
   yes: { color: 'text-emerald-400', bg: 'bg-emerald-500/15', border: 'border-emerald-500/30', icon: CheckCircle, label: { en: 'Favorable conditions', hi: 'अनुकूल स्थितियाँ' } },
   likely: { color: 'text-emerald-400/80', bg: 'bg-emerald-500/10', border: 'border-emerald-500/20', icon: CheckCircle, label: { en: 'Generally supportive', hi: 'सामान्यतः सहायक' } },
   mixed: { color: 'text-gold-primary', bg: 'bg-gold-primary/10', border: 'border-gold-primary/20', icon: MinusCircle, label: { en: 'Mixed indicators', hi: 'मिश्रित संकेत' } },
-  unlikely: { color: 'text-amber-400', bg: 'bg-amber-500/10', border: 'border-amber-500/20', icon: XCircle, label: { en: 'Challenging — effort needed', hi: 'चुनौतीपूर्ण — प्रयास आवश्यक' } },
-  challenging: { color: 'text-red-400', bg: 'bg-red-500/10', border: 'border-red-500/20', icon: XCircle, label: { en: 'Obstacles present — remedies help', hi: 'बाधाएँ विद्यमान — उपाय सहायक' } },
+  unlikely: { color: 'text-amber-400', bg: 'bg-amber-500/10', border: 'border-amber-500/20', icon: XCircle, label: { en: 'Challenging  –  effort needed', hi: 'चुनौतीपूर्ण  –  प्रयास आवश्यक' } },
+  challenging: { color: 'text-red-400', bg: 'bg-red-500/10', border: 'border-red-500/20', icon: XCircle, label: { en: 'Obstacles present  –  remedies help', hi: 'बाधाएँ विद्यमान  –  उपाय सहायक' } },
 };
 
 interface QuestionAnswerPanelProps {
@@ -91,7 +91,7 @@ export default function QuestionAnswerPanel({ kundali, tippanni, personalReading
       {showQuestions && !answer && (
         <div className="space-y-3">
           <p className="text-text-secondary text-sm" style={isHi ? bodyFont : undefined}>
-            {isHi ? 'एक प्रश्न चुनें — आपकी कुण्डली के आधार पर सीधा उत्तर:' : 'Pick a question — get a direct answer based on YOUR chart:'}
+            {isHi ? 'एक प्रश्न चुनें  –  आपकी कुण्डली के आधार पर सीधा उत्तर:' : 'Pick a question  –  get a direct answer based on YOUR chart:'}
           </p>
           {Object.entries(grouped).map(([category, questions]) => {
             const cat = CATEGORY_LABELS[category];
@@ -144,7 +144,7 @@ export default function QuestionAnswerPanel({ kundali, tippanni, personalReading
           {/* Evidence factors */}
           <div className="space-y-2">
             <h4 className="text-xs text-gold-dark font-semibold uppercase tracking-widest">
-              {isHi ? 'प्रमाण — आपकी कुण्डली से' : 'Evidence — from your chart'}
+              {isHi ? 'प्रमाण  –  आपकी कुण्डली से' : 'Evidence  –  from your chart'}
             </h4>
             {answer.evidence.map((ev, i) => (
               <div key={i} className="flex items-start gap-2 text-xs">
@@ -153,7 +153,7 @@ export default function QuestionAnswerPanel({ kundali, tippanni, personalReading
                 </span>
                 <div>
                   <span className="text-text-primary font-medium">{ev.factor}</span>
-                  <span className="text-text-secondary ml-1">— {ev.interpretation}</span>
+                  <span className="text-text-secondary ml-1"> –  {ev.interpretation}</span>
                 </div>
               </div>
             ))}

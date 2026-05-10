@@ -21,8 +21,8 @@ const REC_STYLES: Record<string, { dot: string; text: string; bg: string; label:
 // ---------------------------------------------------------------------------
 
 interface NakshatraActivityGuideProps {
-  nakshatraId: number;      // 1-27 — today's nakshatra
-  moonSignId: number;       // 1-12 — today's Moon rashi
+  nakshatraId: number;      // 1-27  –  today's nakshatra
+  moonSignId: number;       // 1-12  –  today's Moon rashi
   locale: string;
 }
 

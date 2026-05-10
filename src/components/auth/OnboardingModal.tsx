@@ -113,7 +113,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
       setError(L.errorName);
       return;
     }
-    // DOB and POB are optional — user can skip
+    // DOB and POB are optional  –  user can skip
     if (birthDate && !birthLocation) {
       setError(L.errorPlace);
       return;
@@ -129,7 +129,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
         return;
       }
 
-      // Build profile data — birth fields only if provided
+      // Build profile data  –  birth fields only if provided
       const profileData: Record<string, unknown> = {
         id: user.id,
         display_name: fullName.trim(),
@@ -163,7 +163,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
         return;
       }
 
-      // Compute kundali snapshot via API — only if birth data provided
+      // Compute kundali snapshot via API  –  only if birth data provided
       if (birthDate && birthLocation) {
         try {
           const session = await supabase.auth.getSession();
@@ -209,7 +209,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
 
   const modal = (
     <div className="fixed inset-0 z-[9999] flex items-start justify-center p-4 pt-16 sm:pt-20 overflow-y-auto">
-      {/* Backdrop — not dismissable */}
+      {/* Backdrop  –  not dismissable */}
       <div className="fixed inset-0 bg-black/70 backdrop-blur-sm" />
 
       {/* Modal */}

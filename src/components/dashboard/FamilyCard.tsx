@@ -46,7 +46,7 @@ export default function FamilyCard({ locale }: FamilyCardProps) {
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
         if (res.status === 404) {
-          // No primary kundali or no family charts — don't show the card
+          // No primary kundali or no family charts  –  don't show the card
           setFamilyReading(null);
           setLoading(false);
           return;

@@ -1,9 +1,9 @@
 /**
- * AUDIT TEST SUITE — Layer 2: Snapshot Regression Tests
+ * AUDIT TEST SUITE  –  Layer 2: Snapshot Regression Tests
  *
  * Frozen baselines for 36 date/location combos (12 dates × 3 locations).
  * Any code change that shifts a value by >2 min or changes a name FAILS.
- * Baselines generated from our own engine — these catch REGRESSIONS, not correctness.
+ * Baselines generated from our own engine  –  these catch REGRESSIONS, not correctness.
  *
  * Dates chosen to cover: winter/summer solstice, equinox, DST transitions,
  * Ganda Moola days, Purnima, Amavasya, dual Varjyam.
@@ -15,7 +15,7 @@ import { computePanchang } from '@/lib/ephem/panchang-calc';
 // ─── Frozen baselines ──────────────────────────────────────────────────
 // Generated: 2026-04-08 from commit db4da6d (whole-sign houses)
 // DO NOT regenerate unless you intentionally changed a calculation.
-// This is the canonical baseline — edit only when intentionally changing calculations.
+// This is the canonical baseline  –  edit only when intentionally changing calculations.
 const SNAPSHOT_DATA: Record<string, any> = {
   "2026-01-15_delhi": { sunrise: "07:14", sunset: "17:46", tithi: "Dwadashi", tithiPaksha: "krishna", nakshatra: "Jyeshtha", nakshatraId: 18, yoga: "Vriddhi", karana: "Taitila", rahuKaal: "13:49-15:08", yamaganda: "07:14-08:33", gulikaKaal: "09:52-11:11", abhijitAvailable: true },
   "2026-01-15_bern": { sunrise: "08:12", sunset: "17:12", tithi: "Dwadashi", tithiPaksha: "krishna", nakshatra: "Jyeshtha", nakshatraId: 18, yoga: "Vriddhi", karana: "Taitila", rahuKaal: "13:49-14:57", yamaganda: "08:12-09:19", gulikaKaal: "10:27-11:34", abhijitAvailable: true },

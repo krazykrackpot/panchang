@@ -84,8 +84,8 @@ function analyzeMoonConnection(parent: KundaliData, child: KundaliData): { en: s
 
   if (sameSigns) {
     return {
-      en: 'Your Moons share the same sign — a natural emotional resonance. You intuitively understand this child\'s feelings.',
-      hi: 'आपके चंद्रमा एक ही राशि में हैं — प्राकृतिक भावनात्मक अनुनाद। आप सहज रूप से इस बच्चे की भावनाओं को समझते हैं।',
+      en: 'Your Moons share the same sign  –  a natural emotional resonance. You intuitively understand this child\'s feelings.',
+      hi: 'आपके चंद्रमा एक ही राशि में हैं  –  प्राकृतिक भावनात्मक अनुनाद। आप सहज रूप से इस बच्चे की भावनाओं को समझते हैं।',
     };
   }
   if (compatibleElement) {
@@ -96,8 +96,8 @@ function analyzeMoonConnection(parent: KundaliData, child: KundaliData): { en: s
   }
 
   return {
-    en: 'Your Moons are in different elements — emotional expression styles may differ. Conscious effort in understanding helps bridge this gap.',
-    hi: 'आपके चंद्रमा अलग-अलग तत्वों में हैं — भावनात्मक अभिव्यक्ति शैली भिन्न हो सकती है। समझने में सचेत प्रयास इस अंतर को पाटने में मदद करता है।',
+    en: 'Your Moons are in different elements  –  emotional expression styles may differ. Conscious effort in understanding helps bridge this gap.',
+    hi: 'आपके चंद्रमा अलग-अलग तत्वों में हैं  –  भावनात्मक अभिव्यक्ति शैली भिन्न हो सकती है। समझने में सचेत प्रयास इस अंतर को पाटने में मदद करता है।',
   };
 }
 
@@ -116,8 +116,8 @@ function detectChildKarmicIndicators(parent: KundaliData, child: KundaliData): K
     indicators.push({
       type: 'nodal_contact',
       description: {
-        en: 'Your Rahu on their Moon — you play a pivotal role in this child\'s emotional growth and life direction.',
-        hi: 'आपका राहु उनके चंद्रमा पर — आप इस बच्चे की भावनात्मक वृद्धि और जीवन दिशा में महत्वपूर्ण भूमिका निभाते हैं।',
+        en: 'Your Rahu on their Moon  –  you play a pivotal role in this child\'s emotional growth and life direction.',
+        hi: 'आपका राहु उनके चंद्रमा पर  –  आप इस बच्चे की भावनात्मक वृद्धि और जीवन दिशा में महत्वपूर्ण भूमिका निभाते हैं।',
       },
       strength: 8,
     });
@@ -128,8 +128,8 @@ function detectChildKarmicIndicators(parent: KundaliData, child: KundaliData): K
     indicators.push({
       type: 'nodal_contact',
       description: {
-        en: 'Their Rahu on your Sun — this child pushes you to grow in ways you didn\'t expect.',
-        hi: 'उनका राहु आपके सूर्य पर — यह बच्चा आपको अप्रत्याशित तरीकों से बढ़ने के लिए प्रेरित करता है।',
+        en: 'Their Rahu on your Sun  –  this child pushes you to grow in ways you didn\'t expect.',
+        hi: 'उनका राहु आपके सूर्य पर  –  यह बच्चा आपको अप्रत्याशित तरीकों से बढ़ने के लिए प्रेरित करता है।',
       },
       strength: 7,
     });

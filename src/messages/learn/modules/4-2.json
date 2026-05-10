@@ -12,16 +12,16 @@
     "mai": "अयनांश पद्धतिक तुलना"
   },
   "subtitle": {
-    "en": "Lahiri, Raman, KP, Fagan-Bradley — why they differ, how to choose, and numerical comparison",
-    "hi": "लाहिरी, रमण, केपी, फगन-ब्रैडली — अन्तर क्यों, कैसे चुनें, और संख्यात्मक तुलना",
-    "sa": "लाहिरी, रमण, केपी, फगन-ब्रैडली — भेदस्य कारणम्, कथं चिनुयात्, सांख्यिकी तुलना च",
-    "ta": "லாஹிரி, ராமன், KP, ஃபேகன்-பிராட்லி — ஏன் வேறுபடுகின்றன, எவ்வாறு தேர்வு செய்வது, எண்ணியல் ஒப்பீடு",
-    "te": "లాహిరి, రామన్, KP, ఫేగన్-బ్రాడ్లీ — ఎందుకు భిన్నం, ఎలా ఎంచుకోవాలి, సంఖ్యాపరమైన పోలిక",
-    "bn": "লাহিরি, রামন, KP, ফেগান-ব্র্যাডলি — কেন ভিন্ন, কীভাবে বাছবেন, এবং সংখ্যাগত তুলনা",
-    "kn": "ಲಾಹಿರಿ, ರಾಮನ್, KP, ಫೇಗನ್-ಬ್ರಾಡ್ಲಿ — ಏಕೆ ಭಿನ್ನ, ಹೇಗೆ ಆಯ್ಕೆ ಮಾಡುವುದು, ಸಂಖ್ಯಾತ್ಮಕ ಹೋಲಿಕೆ",
-    "mr": "लाहिरी, रमण, KP, फगन-ब्रॅडली — फरक का, कसे निवडायचे, आणि संख्यात्मक तुलना",
-    "gu": "લાહિરી, રામન, KP, ફેગન-બ્રેડલી — શા માટે અલગ, કેવી રીતે પસંદ કરવું, અને સંખ્યાત્મક તુલના",
-    "mai": "लाहिरी, रमण, KP, फगन-ब्रैडली — अन्तर किएँ, कोना चुनू, आ संख्यात्मक तुलना"
+    "en": "Lahiri, Raman, KP, Fagan-Bradley  –  why they differ, how to choose, and numerical comparison",
+    "hi": "लाहिरी, रमण, केपी, फगन-ब्रैडली  –  अन्तर क्यों, कैसे चुनें, और संख्यात्मक तुलना",
+    "sa": "लाहिरी, रमण, केपी, फगन-ब्रैडली  –  भेदस्य कारणम्, कथं चिनुयात्, सांख्यिकी तुलना च",
+    "ta": "லாஹிரி, ராமன், KP, ஃபேகன்-பிராட்லி  –  ஏன் வேறுபடுகின்றன, எவ்வாறு தேர்வு செய்வது, எண்ணியல் ஒப்பீடு",
+    "te": "లాహిరి, రామన్, KP, ఫేగన్-బ్రాడ్లీ  –  ఎందుకు భిన్నం, ఎలా ఎంచుకోవాలి, సంఖ్యాపరమైన పోలిక",
+    "bn": "লাহিরি, রামন, KP, ফেগান-ব্র্যাডলি  –  কেন ভিন্ন, কীভাবে বাছবেন, এবং সংখ্যাগত তুলনা",
+    "kn": "ಲಾಹಿರಿ, ರಾಮನ್, KP, ಫೇಗನ್-ಬ್ರಾಡ್ಲಿ  –  ಏಕೆ ಭಿನ್ನ, ಹೇಗೆ ಆಯ್ಕೆ ಮಾಡುವುದು, ಸಂಖ್ಯಾತ್ಮಕ ಹೋಲಿಕೆ",
+    "mr": "लाहिरी, रमण, KP, फगन-ब्रॅडली  –  फरक का, कसे निवडायचे, आणि संख्यात्मक तुलना",
+    "gu": "લાહિરી, રામન, KP, ફેગન-બ્રેડલી  –  શા માટે અલગ, કેવી રીતે પસંદ કરવું, અને સંખ્યાત્મક તુલના",
+    "mai": "लाहिरी, रमण, KP, फगन-ब्रैडली  –  अन्तर किएँ, कोना चुनू, आ संख्यात्मक तुलना"
   },
   "crossRefs": [
     {
@@ -88,16 +88,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Lahiri defines Spica (Chitra, Alpha Virginis) at exactly 180° sidereal longitude — the start of Tula (Libra). This was adopted by the Indian Calendar Reform Committee in 1956.",
-        "hi": "लाहिरी पद्धति स्पाइका (चित्रा, अल्फा वर्जिनिस) को 180° निरयन देशान्तर पर — तुला राशि के आरम्भ पर — निर्धारित करती है। इसे 1956 में भारतीय पञ्चाङ्ग सुधार समिति ने अपनाया।",
-        "sa": "लाहिरी पद्धति स्पाइका (चित्रा, अल्फा वर्जिनिस) को 180° निरयन देशान्तर पर — तुला राशि के आरम्भ पर — निर्धारित करती है। इसे 1956 में भारतीय पञ्चाङ्ग सुधार समिति ने अपनाया।",
-        "ta": "Lahiri defines Spica (Chitra, Alpha Virginis) at exactly 180° sidereal longitude — the start of Tula (Libra). This was adopted by the Indian Calendar Reform Committee in 1956.",
-        "te": "Lahiri defines Spica (Chitra, Alpha Virginis) at exactly 180° sidereal longitude — the start of Tula (Libra). This was adopted by the Indian Calendar Reform Committee in 1956.",
-        "bn": "Lahiri defines Spica (Chitra, Alpha Virginis) at exactly 180° sidereal longitude — the start of Tula (Libra). This was adopted by the Indian Calendar Reform Committee in 1956.",
-        "kn": "Lahiri defines Spica (Chitra, Alpha Virginis) at exactly 180° sidereal longitude — the start of Tula (Libra). This was adopted by the Indian Calendar Reform Committee in 1956.",
-        "mr": "लाहिरी पद्धति स्पाइका (चित्रा, अल्फा वर्जिनिस) को 180° निरयन देशान्तर पर — तुला राशि के आरम्भ पर — निर्धारित करती है। इसे 1956 में भारतीय पञ्चाङ्ग सुधार समिति ने अपनाया।",
-        "gu": "Lahiri defines Spica (Chitra, Alpha Virginis) at exactly 180° sidereal longitude — the start of Tula (Libra). This was adopted by the Indian Calendar Reform Committee in 1956.",
-        "mai": "लाहिरी पद्धति स्पाइका (चित्रा, अल्फा वर्जिनिस) को 180° निरयन देशान्तर पर — तुला राशि के आरम्भ पर — निर्धारित करती है। इसे 1956 में भारतीय पञ्चाङ्ग सुधार समिति ने अपनाया।"
+        "en": "Lahiri defines Spica (Chitra, Alpha Virginis) at exactly 180° sidereal longitude  –  the start of Tula (Libra). This was adopted by the Indian Calendar Reform Committee in 1956.",
+        "hi": "लाहिरी पद्धति स्पाइका (चित्रा, अल्फा वर्जिनिस) को 180° निरयन देशान्तर पर  –  तुला राशि के आरम्भ पर  –  निर्धारित करती है। इसे 1956 में भारतीय पञ्चाङ्ग सुधार समिति ने अपनाया।",
+        "sa": "लाहिरी पद्धति स्पाइका (चित्रा, अल्फा वर्जिनिस) को 180° निरयन देशान्तर पर  –  तुला राशि के आरम्भ पर  –  निर्धारित करती है। इसे 1956 में भारतीय पञ्चाङ्ग सुधार समिति ने अपनाया।",
+        "ta": "Lahiri defines Spica (Chitra, Alpha Virginis) at exactly 180° sidereal longitude  –  the start of Tula (Libra). This was adopted by the Indian Calendar Reform Committee in 1956.",
+        "te": "Lahiri defines Spica (Chitra, Alpha Virginis) at exactly 180° sidereal longitude  –  the start of Tula (Libra). This was adopted by the Indian Calendar Reform Committee in 1956.",
+        "bn": "Lahiri defines Spica (Chitra, Alpha Virginis) at exactly 180° sidereal longitude  –  the start of Tula (Libra). This was adopted by the Indian Calendar Reform Committee in 1956.",
+        "kn": "Lahiri defines Spica (Chitra, Alpha Virginis) at exactly 180° sidereal longitude  –  the start of Tula (Libra). This was adopted by the Indian Calendar Reform Committee in 1956.",
+        "mr": "लाहिरी पद्धति स्पाइका (चित्रा, अल्फा वर्जिनिस) को 180° निरयन देशान्तर पर  –  तुला राशि के आरम्भ पर  –  निर्धारित करती है। इसे 1956 में भारतीय पञ्चाङ्ग सुधार समिति ने अपनाया।",
+        "gu": "Lahiri defines Spica (Chitra, Alpha Virginis) at exactly 180° sidereal longitude  –  the start of Tula (Libra). This was adopted by the Indian Calendar Reform Committee in 1956.",
+        "mai": "लाहिरी पद्धति स्पाइका (चित्रा, अल्फा वर्जिनिस) को 180° निरयन देशान्तर पर  –  तुला राशि के आरम्भ पर  –  निर्धारित करती है। इसे 1956 में भारतीय पञ्चाङ्ग सुधार समिति ने अपनाया।"
       },
       "options": [
         {
@@ -168,16 +168,16 @@
       },
       "correctAnswer": true,
       "explanation": {
-        "en": "Correct. The KP ayanamsha is very close to Lahiri — typically about 6 arcminutes (0.1°) less. This small difference rarely changes the sign of a planet, but can occasionally shift sub-lord allocations in KP astrology.",
-        "hi": "सही। केपी अयनांश लाहिरी के बहुत निकट है — सामान्यतः लगभग 6 कलांश (0.1°) कम। यह छोटा अन्तर प्रायः ग्रह की राशि नहीं बदलता, पर कभी-कभी केपी ज्योतिष में उपनक्षत्र-स्वामी बदल सकता है।",
-        "sa": "सही। केपी अयनांश लाहिरी के बहुत निकट है — सामान्यतः लगभग 6 कलांश (0.1°) कम। यह छोटा अन्तर प्रायः ग्रह की राशि नहीं बदलता, पर कभी-कभी केपी ज्योतिष में उपनक्षत्र-स्वामी बदल सकता है।",
-        "ta": "Correct. The KP ayanamsha is very close to Lahiri — typically about 6 arcminutes (0.1°) less. This small difference rarely changes the sign of a planet, but can occasionally shift sub-lord allocations in KP astrology.",
-        "te": "Correct. The KP ayanamsha is very close to Lahiri — typically about 6 arcminutes (0.1°) less. This small difference rarely changes the sign of a planet, but can occasionally shift sub-lord allocations in KP astrology.",
-        "bn": "Correct. The KP ayanamsha is very close to Lahiri — typically about 6 arcminutes (0.1°) less. This small difference rarely changes the sign of a planet, but can occasionally shift sub-lord allocations in KP astrology.",
-        "kn": "Correct. The KP ayanamsha is very close to Lahiri — typically about 6 arcminutes (0.1°) less. This small difference rarely changes the sign of a planet, but can occasionally shift sub-lord allocations in KP astrology.",
-        "mr": "सही। केपी अयनांश लाहिरी के बहुत निकट है — सामान्यतः लगभग 6 कलांश (0.1°) कम। यह छोटा अन्तर प्रायः ग्रह की राशि नहीं बदलता, पर कभी-कभी केपी ज्योतिष में उपनक्षत्र-स्वामी बदल सकता है।",
-        "gu": "Correct. The KP ayanamsha is very close to Lahiri — typically about 6 arcminutes (0.1°) less. This small difference rarely changes the sign of a planet, but can occasionally shift sub-lord allocations in KP astrology.",
-        "mai": "सही। केपी अयनांश लाहिरी के बहुत निकट है — सामान्यतः लगभग 6 कलांश (0.1°) कम। यह छोटा अन्तर प्रायः ग्रह की राशि नहीं बदलता, पर कभी-कभी केपी ज्योतिष में उपनक्षत्र-स्वामी बदल सकता है।"
+        "en": "Correct. The KP ayanamsha is very close to Lahiri  –  typically about 6 arcminutes (0.1°) less. This small difference rarely changes the sign of a planet, but can occasionally shift sub-lord allocations in KP astrology.",
+        "hi": "सही। केपी अयनांश लाहिरी के बहुत निकट है  –  सामान्यतः लगभग 6 कलांश (0.1°) कम। यह छोटा अन्तर प्रायः ग्रह की राशि नहीं बदलता, पर कभी-कभी केपी ज्योतिष में उपनक्षत्र-स्वामी बदल सकता है।",
+        "sa": "सही। केपी अयनांश लाहिरी के बहुत निकट है  –  सामान्यतः लगभग 6 कलांश (0.1°) कम। यह छोटा अन्तर प्रायः ग्रह की राशि नहीं बदलता, पर कभी-कभी केपी ज्योतिष में उपनक्षत्र-स्वामी बदल सकता है।",
+        "ta": "Correct. The KP ayanamsha is very close to Lahiri  –  typically about 6 arcminutes (0.1°) less. This small difference rarely changes the sign of a planet, but can occasionally shift sub-lord allocations in KP astrology.",
+        "te": "Correct. The KP ayanamsha is very close to Lahiri  –  typically about 6 arcminutes (0.1°) less. This small difference rarely changes the sign of a planet, but can occasionally shift sub-lord allocations in KP astrology.",
+        "bn": "Correct. The KP ayanamsha is very close to Lahiri  –  typically about 6 arcminutes (0.1°) less. This small difference rarely changes the sign of a planet, but can occasionally shift sub-lord allocations in KP astrology.",
+        "kn": "Correct. The KP ayanamsha is very close to Lahiri  –  typically about 6 arcminutes (0.1°) less. This small difference rarely changes the sign of a planet, but can occasionally shift sub-lord allocations in KP astrology.",
+        "mr": "सही। केपी अयनांश लाहिरी के बहुत निकट है  –  सामान्यतः लगभग 6 कलांश (0.1°) कम। यह छोटा अन्तर प्रायः ग्रह की राशि नहीं बदलता, पर कभी-कभी केपी ज्योतिष में उपनक्षत्र-स्वामी बदल सकता है।",
+        "gu": "Correct. The KP ayanamsha is very close to Lahiri  –  typically about 6 arcminutes (0.1°) less. This small difference rarely changes the sign of a planet, but can occasionally shift sub-lord allocations in KP astrology.",
+        "mai": "सही। केपी अयनांश लाहिरी के बहुत निकट है  –  सामान्यतः लगभग 6 कलांश (0.1°) कम। यह छोटा अन्तर प्रायः ग्रह की राशि नहीं बदलता, पर कभी-कभी केपी ज्योतिष में उपनक्षत्र-स्वामी बदल सकता है।"
       }
     },
     {
@@ -276,16 +276,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "The B.V. Raman ayanamsha is approximately 22.37° at J2000.0 — about 1.5° less than Lahiri. This places the zero-ayanamsha year around 397 CE rather than Lahiri's ~285 CE.",
-        "hi": "बी.वी. रमण अयनांश J2000.0 पर लगभग 22.37° है — लाहिरी से लगभग 1.5° कम। इससे शून्य-अयनांश वर्ष लाहिरी के ~285 ई. की बजाय लगभग 397 ई. में आता है।",
-        "sa": "बी.वी. रमण अयनांश J2000.0 पर लगभग 22.37° है — लाहिरी से लगभग 1.5° कम। इससे शून्य-अयनांश वर्ष लाहिरी के ~285 ई. की बजाय लगभग 397 ई. में आता है।",
-        "ta": "The B.V. Raman ayanamsha is approximately 22.37° at J2000.0 — about 1.5° less than Lahiri. This places the zero-ayanamsha year around 397 CE rather than Lahiri's ~285 CE.",
-        "te": "The B.V. Raman ayanamsha is approximately 22.37° at J2000.0 — about 1.5° less than Lahiri. This places the zero-ayanamsha year around 397 CE rather than Lahiri's ~285 CE.",
-        "bn": "The B.V. Raman ayanamsha is approximately 22.37° at J2000.0 — about 1.5° less than Lahiri. This places the zero-ayanamsha year around 397 CE rather than Lahiri's ~285 CE.",
-        "kn": "The B.V. Raman ayanamsha is approximately 22.37° at J2000.0 — about 1.5° less than Lahiri. This places the zero-ayanamsha year around 397 CE rather than Lahiri's ~285 CE.",
-        "mr": "बी.वी. रमण अयनांश J2000.0 पर लगभग 22.37° है — लाहिरी से लगभग 1.5° कम। इससे शून्य-अयनांश वर्ष लाहिरी के ~285 ई. की बजाय लगभग 397 ई. में आता है।",
-        "gu": "The B.V. Raman ayanamsha is approximately 22.37° at J2000.0 — about 1.5° less than Lahiri. This places the zero-ayanamsha year around 397 CE rather than Lahiri's ~285 CE.",
-        "mai": "बी.वी. रमण अयनांश J2000.0 पर लगभग 22.37° है — लाहिरी से लगभग 1.5° कम। इससे शून्य-अयनांश वर्ष लाहिरी के ~285 ई. की बजाय लगभग 397 ई. में आता है।"
+        "en": "The B.V. Raman ayanamsha is approximately 22.37° at J2000.0  –  about 1.5° less than Lahiri. This places the zero-ayanamsha year around 397 CE rather than Lahiri's ~285 CE.",
+        "hi": "बी.वी. रमण अयनांश J2000.0 पर लगभग 22.37° है  –  लाहिरी से लगभग 1.5° कम। इससे शून्य-अयनांश वर्ष लाहिरी के ~285 ई. की बजाय लगभग 397 ई. में आता है।",
+        "sa": "बी.वी. रमण अयनांश J2000.0 पर लगभग 22.37° है  –  लाहिरी से लगभग 1.5° कम। इससे शून्य-अयनांश वर्ष लाहिरी के ~285 ई. की बजाय लगभग 397 ई. में आता है।",
+        "ta": "The B.V. Raman ayanamsha is approximately 22.37° at J2000.0  –  about 1.5° less than Lahiri. This places the zero-ayanamsha year around 397 CE rather than Lahiri's ~285 CE.",
+        "te": "The B.V. Raman ayanamsha is approximately 22.37° at J2000.0  –  about 1.5° less than Lahiri. This places the zero-ayanamsha year around 397 CE rather than Lahiri's ~285 CE.",
+        "bn": "The B.V. Raman ayanamsha is approximately 22.37° at J2000.0  –  about 1.5° less than Lahiri. This places the zero-ayanamsha year around 397 CE rather than Lahiri's ~285 CE.",
+        "kn": "The B.V. Raman ayanamsha is approximately 22.37° at J2000.0  –  about 1.5° less than Lahiri. This places the zero-ayanamsha year around 397 CE rather than Lahiri's ~285 CE.",
+        "mr": "बी.वी. रमण अयनांश J2000.0 पर लगभग 22.37° है  –  लाहिरी से लगभग 1.5° कम। इससे शून्य-अयनांश वर्ष लाहिरी के ~285 ई. की बजाय लगभग 397 ई. में आता है।",
+        "gu": "The B.V. Raman ayanamsha is approximately 22.37° at J2000.0  –  about 1.5° less than Lahiri. This places the zero-ayanamsha year around 397 CE rather than Lahiri's ~285 CE.",
+        "mai": "बी.वी. रमण अयनांश J2000.0 पर लगभग 22.37° है  –  लाहिरी से लगभग 1.5° कम। इससे शून्य-अयनांश वर्ष लाहिरी के ~285 ई. की बजाय लगभग 397 ई. में आता है।"
       },
       "options": [
         {
@@ -342,29 +342,29 @@
       "id": "q4_2_05",
       "type": "true_false",
       "question": {
-        "en": "All ayanamsha systems agree on the rate of precession (~50.3 arcsec/year) — they only disagree on the zero-point epoch.",
-        "hi": "सभी अयनांश पद्धतियाँ अयनगति दर (~50.3 कलासेकण्ड/वर्ष) पर सहमत हैं — वे केवल शून्य-बिन्दु युग पर असहमत हैं।",
-        "sa": "सभी अयनांश पद्धतियाँ अयनगति दर (~50.3 कलासेकण्ड/वर्ष) पर सहमत हैं — वे केवल शून्य-बिन्दु युग पर असहमत हैं।",
-        "ta": "All ayanamsha systems agree on the rate of precession (~50.3 arcsec/year) — they only disagree on the zero-point epoch.",
-        "te": "All ayanamsha systems agree on the rate of precession (~50.3 arcsec/year) — they only disagree on the zero-point epoch.",
-        "bn": "All ayanamsha systems agree on the rate of precession (~50.3 arcsec/year) — they only disagree on the zero-point epoch.",
-        "kn": "All ayanamsha systems agree on the rate of precession (~50.3 arcsec/year) — they only disagree on the zero-point epoch.",
-        "mr": "सभी अयनांश पद्धतियाँ अयनगति दर (~50.3 कलासेकण्ड/वर्ष) पर सहमत हैं — वे केवल शून्य-बिन्दु युग पर असहमत हैं।",
-        "gu": "All ayanamsha systems agree on the rate of precession (~50.3 arcsec/year) — they only disagree on the zero-point epoch.",
-        "mai": "सभी अयनांश पद्धतियाँ अयनगति दर (~50.3 कलासेकण्ड/वर्ष) पर सहमत हैं — वे केवल शून्य-बिन्दु युग पर असहमत हैं।"
+        "en": "All ayanamsha systems agree on the rate of precession (~50.3 arcsec/year)  –  they only disagree on the zero-point epoch.",
+        "hi": "सभी अयनांश पद्धतियाँ अयनगति दर (~50.3 कलासेकण्ड/वर्ष) पर सहमत हैं  –  वे केवल शून्य-बिन्दु युग पर असहमत हैं।",
+        "sa": "सभी अयनांश पद्धतियाँ अयनगति दर (~50.3 कलासेकण्ड/वर्ष) पर सहमत हैं  –  वे केवल शून्य-बिन्दु युग पर असहमत हैं।",
+        "ta": "All ayanamsha systems agree on the rate of precession (~50.3 arcsec/year)  –  they only disagree on the zero-point epoch.",
+        "te": "All ayanamsha systems agree on the rate of precession (~50.3 arcsec/year)  –  they only disagree on the zero-point epoch.",
+        "bn": "All ayanamsha systems agree on the rate of precession (~50.3 arcsec/year)  –  they only disagree on the zero-point epoch.",
+        "kn": "All ayanamsha systems agree on the rate of precession (~50.3 arcsec/year)  –  they only disagree on the zero-point epoch.",
+        "mr": "सभी अयनांश पद्धतियाँ अयनगति दर (~50.3 कलासेकण्ड/वर्ष) पर सहमत हैं  –  वे केवल शून्य-बिन्दु युग पर असहमत हैं।",
+        "gu": "All ayanamsha systems agree on the rate of precession (~50.3 arcsec/year)  –  they only disagree on the zero-point epoch.",
+        "mai": "सभी अयनांश पद्धतियाँ अयनगति दर (~50.3 कलासेकण्ड/वर्ष) पर सहमत हैं  –  वे केवल शून्य-बिन्दु युग पर असहमत हैं।"
       },
       "correctAnswer": true,
       "explanation": {
-        "en": "Correct. All major ayanamsha systems use the same precession rate from modern astronomy. The difference lies in when they place the zero-ayanamsha epoch — the year when tropical and sidereal zodiacs were aligned. Lahiri: ~285 CE, Raman: ~397 CE, Fagan-Bradley: ~221 CE.",
-        "hi": "सही। सभी प्रमुख अयनांश पद्धतियाँ आधुनिक खगोलविज्ञान की वही अयनगति दर प्रयोग करती हैं। अन्तर इसमें है कि वे शून्य-अयनांश युग — जब सायन और निरयन राशिचक्र समरेखित थे — कब मानती हैं। लाहिरी: ~285 ई., रमण: ~397 ई., फगन-ब्रैडली: ~221 ई.।",
-        "sa": "सही। सभी प्रमुख अयनांश पद्धतियाँ आधुनिक खगोलविज्ञान की वही अयनगति दर प्रयोग करती हैं। अन्तर इसमें है कि वे शून्य-अयनांश युग — जब सायन और निरयन राशिचक्र समरेखित थे — कब मानती हैं। लाहिरी: ~285 ई., रमण: ~397 ई., फगन-ब्रैडली: ~221 ई.।",
-        "ta": "Correct. All major ayanamsha systems use the same precession rate from modern astronomy. The difference lies in when they place the zero-ayanamsha epoch — the year when tropical and sidereal zodiacs were aligned. Lahiri: ~285 CE, Raman: ~397 CE, Fagan-Bradley: ~221 CE.",
-        "te": "Correct. All major ayanamsha systems use the same precession rate from modern astronomy. The difference lies in when they place the zero-ayanamsha epoch — the year when tropical and sidereal zodiacs were aligned. Lahiri: ~285 CE, Raman: ~397 CE, Fagan-Bradley: ~221 CE.",
-        "bn": "Correct. All major ayanamsha systems use the same precession rate from modern astronomy. The difference lies in when they place the zero-ayanamsha epoch — the year when tropical and sidereal zodiacs were aligned. Lahiri: ~285 CE, Raman: ~397 CE, Fagan-Bradley: ~221 CE.",
-        "kn": "Correct. All major ayanamsha systems use the same precession rate from modern astronomy. The difference lies in when they place the zero-ayanamsha epoch — the year when tropical and sidereal zodiacs were aligned. Lahiri: ~285 CE, Raman: ~397 CE, Fagan-Bradley: ~221 CE.",
-        "mr": "सही। सभी प्रमुख अयनांश पद्धतियाँ आधुनिक खगोलविज्ञान की वही अयनगति दर प्रयोग करती हैं। अन्तर इसमें है कि वे शून्य-अयनांश युग — जब सायन और निरयन राशिचक्र समरेखित थे — कब मानती हैं। लाहिरी: ~285 ई., रमण: ~397 ई., फगन-ब्रैडली: ~221 ई.।",
-        "gu": "Correct. All major ayanamsha systems use the same precession rate from modern astronomy. The difference lies in when they place the zero-ayanamsha epoch — the year when tropical and sidereal zodiacs were aligned. Lahiri: ~285 CE, Raman: ~397 CE, Fagan-Bradley: ~221 CE.",
-        "mai": "सही। सभी प्रमुख अयनांश पद्धतियाँ आधुनिक खगोलविज्ञान की वही अयनगति दर प्रयोग करती हैं। अन्तर इसमें है कि वे शून्य-अयनांश युग — जब सायन और निरयन राशिचक्र समरेखित थे — कब मानती हैं। लाहिरी: ~285 ई., रमण: ~397 ई., फगन-ब्रैडली: ~221 ई.।"
+        "en": "Correct. All major ayanamsha systems use the same precession rate from modern astronomy. The difference lies in when they place the zero-ayanamsha epoch  –  the year when tropical and sidereal zodiacs were aligned. Lahiri: ~285 CE, Raman: ~397 CE, Fagan-Bradley: ~221 CE.",
+        "hi": "सही। सभी प्रमुख अयनांश पद्धतियाँ आधुनिक खगोलविज्ञान की वही अयनगति दर प्रयोग करती हैं। अन्तर इसमें है कि वे शून्य-अयनांश युग  –  जब सायन और निरयन राशिचक्र समरेखित थे  –  कब मानती हैं। लाहिरी: ~285 ई., रमण: ~397 ई., फगन-ब्रैडली: ~221 ई.।",
+        "sa": "सही। सभी प्रमुख अयनांश पद्धतियाँ आधुनिक खगोलविज्ञान की वही अयनगति दर प्रयोग करती हैं। अन्तर इसमें है कि वे शून्य-अयनांश युग  –  जब सायन और निरयन राशिचक्र समरेखित थे  –  कब मानती हैं। लाहिरी: ~285 ई., रमण: ~397 ई., फगन-ब्रैडली: ~221 ई.।",
+        "ta": "Correct. All major ayanamsha systems use the same precession rate from modern astronomy. The difference lies in when they place the zero-ayanamsha epoch  –  the year when tropical and sidereal zodiacs were aligned. Lahiri: ~285 CE, Raman: ~397 CE, Fagan-Bradley: ~221 CE.",
+        "te": "Correct. All major ayanamsha systems use the same precession rate from modern astronomy. The difference lies in when they place the zero-ayanamsha epoch  –  the year when tropical and sidereal zodiacs were aligned. Lahiri: ~285 CE, Raman: ~397 CE, Fagan-Bradley: ~221 CE.",
+        "bn": "Correct. All major ayanamsha systems use the same precession rate from modern astronomy. The difference lies in when they place the zero-ayanamsha epoch  –  the year when tropical and sidereal zodiacs were aligned. Lahiri: ~285 CE, Raman: ~397 CE, Fagan-Bradley: ~221 CE.",
+        "kn": "Correct. All major ayanamsha systems use the same precession rate from modern astronomy. The difference lies in when they place the zero-ayanamsha epoch  –  the year when tropical and sidereal zodiacs were aligned. Lahiri: ~285 CE, Raman: ~397 CE, Fagan-Bradley: ~221 CE.",
+        "mr": "सही। सभी प्रमुख अयनांश पद्धतियाँ आधुनिक खगोलविज्ञान की वही अयनगति दर प्रयोग करती हैं। अन्तर इसमें है कि वे शून्य-अयनांश युग  –  जब सायन और निरयन राशिचक्र समरेखित थे  –  कब मानती हैं। लाहिरी: ~285 ई., रमण: ~397 ई., फगन-ब्रैडली: ~221 ई.।",
+        "gu": "Correct. All major ayanamsha systems use the same precession rate from modern astronomy. The difference lies in when they place the zero-ayanamsha epoch  –  the year when tropical and sidereal zodiacs were aligned. Lahiri: ~285 CE, Raman: ~397 CE, Fagan-Bradley: ~221 CE.",
+        "mai": "सही। सभी प्रमुख अयनांश पद्धतियाँ आधुनिक खगोलविज्ञान की वही अयनगति दर प्रयोग करती हैं। अन्तर इसमें है कि वे शून्य-अयनांश युग  –  जब सायन और निरयन राशिचक्र समरेखित थे  –  कब मानती हैं। लाहिरी: ~285 ई., रमण: ~397 ई., फगन-ब्रैडली: ~221 ई.।"
       }
     },
     {
@@ -584,40 +584,40 @@
       },
       "options": [
         {
-          "en": "Pisces — pushed back one more sign",
-          "hi": "मीन — एक और राशि पीछे",
-          "sa": "मीन — एक और राशि पीछे",
-          "ta": "Pisces — pushed back one more sign",
-          "te": "Pisces — pushed back one more sign",
-          "bn": "Pisces — pushed back one more sign",
-          "kn": "Pisces — pushed back one more sign",
-          "mr": "मीन — एक और राशि पीछे",
-          "gu": "Pisces — pushed back one more sign",
-          "mai": "मीन — एक और राशि पीछे"
+          "en": "Pisces  –  pushed back one more sign",
+          "hi": "मीन  –  एक और राशि पीछे",
+          "sa": "मीन  –  एक और राशि पीछे",
+          "ta": "Pisces  –  pushed back one more sign",
+          "te": "Pisces  –  pushed back one more sign",
+          "bn": "Pisces  –  pushed back one more sign",
+          "kn": "Pisces  –  pushed back one more sign",
+          "mr": "मीन  –  एक और राशि पीछे",
+          "gu": "Pisces  –  pushed back one more sign",
+          "mai": "मीन  –  एक और राशि पीछे"
         },
         {
-          "en": "Taurus — pushed forward by ~1.5°",
-          "hi": "वृषभ — ~1.5° आगे",
-          "sa": "वृषभ — ~1.5° आगे",
-          "ta": "Taurus — pushed forward by ~1.5°",
-          "te": "Taurus — pushed forward by ~1.5°",
-          "bn": "Taurus — pushed forward by ~1.5°",
-          "kn": "Taurus — pushed forward by ~1.5°",
-          "mr": "वृषभ — ~1.5° आगे",
-          "gu": "Taurus — pushed forward by ~1.5°",
-          "mai": "वृषभ — ~1.5° आगे"
+          "en": "Taurus  –  pushed forward by ~1.5°",
+          "hi": "वृषभ  –  ~1.5° आगे",
+          "sa": "वृषभ  –  ~1.5° आगे",
+          "ta": "Taurus  –  pushed forward by ~1.5°",
+          "te": "Taurus  –  pushed forward by ~1.5°",
+          "bn": "Taurus  –  pushed forward by ~1.5°",
+          "kn": "Taurus  –  pushed forward by ~1.5°",
+          "mr": "वृषभ  –  ~1.5° आगे",
+          "gu": "Taurus  –  pushed forward by ~1.5°",
+          "mai": "वृषभ  –  ~1.5° आगे"
         },
         {
-          "en": "Aries — stays the same",
-          "hi": "मेष — वही रहती है",
-          "sa": "मेष — वही रहती है",
-          "ta": "Aries — stays the same",
-          "te": "Aries — stays the same",
-          "bn": "Aries — stays the same",
-          "kn": "Aries — stays the same",
-          "mr": "मेष — वही रहती है",
-          "gu": "Aries — stays the same",
-          "mai": "मेष — वही रहती है"
+          "en": "Aries  –  stays the same",
+          "hi": "मेष  –  वही रहती है",
+          "sa": "मेष  –  वही रहती है",
+          "ta": "Aries  –  stays the same",
+          "te": "Aries  –  stays the same",
+          "bn": "Aries  –  stays the same",
+          "kn": "Aries  –  stays the same",
+          "mr": "मेष  –  वही रहती है",
+          "gu": "Aries  –  stays the same",
+          "mai": "मेष  –  वही रहती है"
         },
         {
           "en": "Cannot determine without birth time",

@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * JournalCheckinCard — daily mood / energy check-in widget for the dashboard.
+ * JournalCheckinCard  –  daily mood / energy check-in widget for the dashboard.
  *
  * Two states:
  *  - Form: mood selector, energy selector, note, tags, submit.
@@ -196,7 +196,7 @@ export default function JournalCheckinCard({ locale }: Props) {
       tags: tags.length > 0 ? tags : undefined,
     });
 
-    // Loading always terminates — submitCheckin flips store.loading; local submitting flag:
+    // Loading always terminates  –  submitCheckin flips store.loading; local submitting flag:
     setSubmitting(false);
 
     if (result.error) {
@@ -212,7 +212,7 @@ export default function JournalCheckinCard({ locale }: Props) {
   // Not signed in
   // -------------------------------------------------------------------------
   if (initialized && !session) {
-    return null; // silently omit — dashboard already handles the unauthenticated state
+    return null; // silently omit  –  dashboard already handles the unauthenticated state
   }
 
   // -------------------------------------------------------------------------

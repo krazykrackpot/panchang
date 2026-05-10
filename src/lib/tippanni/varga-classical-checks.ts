@@ -52,7 +52,7 @@ function navamshaStartSign(rashiId: number): number {
   }
 }
 
-/** Gandanta junction points (absolute degrees) — water→fire boundaries. */
+/** Gandanta junction points (absolute degrees)  –  water→fire boundaries. */
 const GANDANTA_JUNCTIONS = [
   { degree: 0,   label: 'Pisces\u2013Aries' },        // 360/0
   { degree: 120, label: 'Cancer\u2013Leo' },

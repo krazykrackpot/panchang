@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { generateCosmicBlueprint, type CosmicBlueprint } from '../kundali/archetype-engine';
 import type { ShadBalaComplete } from '../kundali/shadbala';
 
-// Mock minimal ShadBala data — Mercury strongest, Venus weakest
+// Mock minimal ShadBala data  –  Mercury strongest, Venus weakest
 const mockShadbala: ShadBalaComplete[] = [
   { planetId: 0, planet: 'Sun', strengthRatio: 1.2, rupas: 390, totalPinda: 390, minRequired: 390, rank: 3, sthanaBala: 100, digBala: 60, kalaBala: 100, cheshtaBala: 60, naisargikaBala: 60, drikBala: 10, ishtaPhala: 30, kashtaPhala: 20, sthanaBreakdown: {} as any, kalaBreakdown: {} as any },
   { planetId: 1, planet: 'Moon', strengthRatio: 1.0, rupas: 360, totalPinda: 360, minRequired: 360, rank: 5, sthanaBala: 90, digBala: 50, kalaBala: 90, cheshtaBala: 60, naisargikaBala: 50, drikBala: 20, ishtaPhala: 25, kashtaPhala: 25, sthanaBreakdown: {} as any, kalaBreakdown: {} as any },
@@ -13,7 +13,7 @@ const mockShadbala: ShadBalaComplete[] = [
   { planetId: 6, planet: 'Saturn', strengthRatio: 0.9, rupas: 270, totalPinda: 270, minRequired: 300, rank: 6, sthanaBala: 70, digBala: 30, kalaBala: 70, cheshtaBala: 50, naisargikaBala: 30, drikBala: 20, ishtaPhala: 15, kashtaPhala: 25, sthanaBreakdown: {} as any, kalaBreakdown: {} as any },
 ];
 
-// Mock dashas — Jupiter current, Saturn next
+// Mock dashas  –  Jupiter current, Saturn next
 const mockDashas = [
   { planet: 'Jupiter', startDate: new Date('2019-06-15'), endDate: new Date('2035-06-15'), years: 16, subPeriods: [] },
   { planet: 'Saturn', startDate: new Date('2035-06-15'), endDate: new Date('2054-06-15'), years: 19, subPeriods: [] },

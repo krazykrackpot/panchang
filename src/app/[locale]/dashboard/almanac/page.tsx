@@ -1,17 +1,17 @@
 'use client';
 
 /**
- * /dashboard/almanac — "Year in the Stars" personalised almanac.
+ * /dashboard/almanac  –  "Year in the Stars" personalised almanac.
  *
  * Sections (when data is sufficient):
- *   1. Header — year selector + entry/event/prediction counts
- *   2. Mood Trend Chart — 12-month SVG line chart
- *   3. Monthly Highlights — 3×4 grid cards
- *   4. Life Events Summary — category breakdown
- *   5. Prediction Accuracy — bar display
- *   6. Personal Discoveries — insight list
- *   7. Nakshatra Affinity — top 3 by frequency + mood
- *   8. Dasha Journey — dasha insight + dominant periods
+ *   1. Header  –  year selector + entry/event/prediction counts
+ *   2. Mood Trend Chart  –  12-month SVG line chart
+ *   3. Monthly Highlights  –  3×4 grid cards
+ *   4. Life Events Summary  –  category breakdown
+ *   5. Prediction Accuracy  –  bar display
+ *   6. Personal Discoveries  –  insight list
+ *   7. Nakshatra Affinity  –  top 3 by frequency + mood
+ *   8. Dasha Journey  –  dasha insight + dominant periods
  *
  * Auth: Bearer token from useAuthStore.
  */
@@ -144,7 +144,7 @@ const LABELS = {
     ],
   },
   ta: {
-    title: (y: number) => `${y} — நட்சத்திரங்களில் உங்கள் ஆண்டு`,
+    title: (y: number) => `${y}  –  நட்சத்திரங்களில் உங்கள் ஆண்டு`,
     subtitle: 'தனிப்பட்ட வருடாந்திர பஞ்சாங்கம்',
     back: 'டாஷ்போர்ட்',
     loading: 'உங்கள் பஞ்சாங்கம் உருவாக்கப்படுகிறது…',
@@ -195,7 +195,7 @@ const LABELS = {
     ],
   },
   bn: {
-    title: (y: number) => `${y} — তারাদের মধ্যে আপনার বছর`,
+    title: (y: number) => `${y}  –  তারাদের মধ্যে আপনার বছর`,
     subtitle: 'ব্যক্তিগতকৃত বার্ষিক পঞ্চাঙ্গ',
     back: 'ড্যাশবোর্ড',
     loading: 'আপনার পঞ্চাঙ্গ তৈরি হচ্ছে…',

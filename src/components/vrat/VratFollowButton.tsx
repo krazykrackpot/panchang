@@ -20,13 +20,13 @@ export default function VratFollowButton({ slug, name, size = 'md' }: VratFollow
       return;
     }
 
-    // First follow — prompt for notification permission if not yet granted
+    // First follow  –  prompt for notification permission if not yet granted
     if (followedVrats.length === 0) {
       try {
         await requestNotificationPermission();
       } catch (err) {
         console.warn('[VratFollow] Notification permission request failed:', err);
-        // Continue with follow even if notification permission denied —
+        // Continue with follow even if notification permission denied  – 
         // the vrat calendar still works without push notifications
       }
     }

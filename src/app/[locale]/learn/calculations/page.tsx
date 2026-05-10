@@ -38,12 +38,12 @@ export default function LearnCalculationsPage() {
         <p className="text-text-secondary">{t('subtitle')}</p>
       </div>
 
-      {/* Key Takeaway — top-level orientation */}
+      {/* Key Takeaway  –  top-level orientation */}
       <KeyTakeaway
         points={[
-          'This page explains how we compute astronomical positions from scratch — no external APIs, pure mathematics.',
+          'This page explains how we compute astronomical positions from scratch  –  no external APIs, pure mathematics.',
           'Every formula here runs in your browser to produce the Panchang you see on this site.',
-          'You do not need a math degree to follow along — we explain every step in plain language first, then show the formula.',
+          'You do not need a math degree to follow along  –  we explain every step in plain language first, then show the formula.',
         ]}
         locale={locale}
       />
@@ -86,7 +86,7 @@ export default function LearnCalculationsPage() {
 
         <BeginnerNote
           term="Julian Day"
-          explanation="A continuous count of days since January 1, 4713 BCE. Astronomers use it to avoid calendar complications — no leap years, no month lengths, just one clean number."
+          explanation="A continuous count of days since January 1, 4713 BCE. Astronomers use it to avoid calendar complications  –  no leap years, no month lengths, just one clean number."
         />
 
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
@@ -104,7 +104,7 @@ export default function LearnCalculationsPage() {
         <ClassicalReference shortName="Meeus" chapter="Ch. 7" topic="Julian Day conversion from calendar dates" />
 
         <WhyItMatters locale={locale}>
-          Calendars are messy — different month lengths, leap years, calendar reforms (Julian vs. Gregorian),
+          Calendars are messy  –  different month lengths, leap years, calendar reforms (Julian vs. Gregorian),
           time zones. Julian Day gives us one clean number to work with. Want to know how many days between
           two dates? Just subtract their JD values. Need to add 6 hours? Add 0.25. It is the universal
           &quot;language of time&quot; for astronomers.
@@ -117,16 +117,16 @@ export default function LearnCalculationsPage() {
           <strong className="text-gold-light">What we are computing:</strong> The Sun&apos;s position along the{' '}
           <BeginnerNote
             term="ecliptic"
-            explanation="The apparent path the Sun traces across the sky over a year. It is the plane of Earth's orbit projected onto the sky — a great circle tilted ~23.44° from the celestial equator."
+            explanation="The apparent path the Sun traces across the sky over a year. It is the plane of Earth's orbit projected onto the sky  –  a great circle tilted ~23.44° from the celestial equator."
           />{' '}
-          — measured in degrees from 0° to 360°.
+           –  measured in degrees from 0° to 360°.
         </p>
         <p>{t('sunContent')}</p>
 
         <div className="mt-4 mb-2 rounded-lg bg-blue-500/5 border border-blue-500/15 p-4">
           <p className="text-sm text-text-primary/80 leading-relaxed">
             <strong className="text-blue-400">Analogy:</strong> Imagine the Sun travelling on a slightly oval racetrack (its elliptical orbit).
-            It does not move at a constant speed — it goes faster when closer to one end and slower at the other.
+            It does not move at a constant speed  –  it goes faster when closer to one end and slower at the other.
             The &quot;mean longitude&quot; (L0) pretends the Sun moves at a steady average speed.
             The &quot;<BeginnerNote term="equation of center" explanation="The angular difference between where a body actually is in its elliptical orbit and where it would be if it moved at a constant speed. It corrects for the fact that orbits are ellipses, not circles." />&quot; (C)
             is the correction that accounts for the actual speeding up and slowing down.
@@ -149,21 +149,21 @@ export default function LearnCalculationsPage() {
             <strong className="text-text-secondary">Line by line:</strong>
           </p>
           <ul className="list-disc list-inside space-y-1 ml-2">
-            <li><strong>L0</strong> — Where the Sun <em>would</em> be if it moved at a perfectly constant speed</li>
-            <li><strong>M</strong> — How far the Sun is from perihelion (its closest point to Earth) in its orbit</li>
-            <li><strong>C</strong> — Correction for the elliptical orbit (up to ~1.9° difference)</li>
-            <li><strong>Sun_true</strong> — The Sun&apos;s actual geometric position</li>
-            <li><strong>Sun_apparent</strong> — Final position after correcting for{' '}
-              <BeginnerNote term="nutation" explanation="A small periodic wobble in Earth's axis caused by the Moon's gravitational pull. It shifts apparent positions by up to ~17 arcseconds — tiny but measurable." /> and{' '}
+            <li><strong>L0</strong>  –  Where the Sun <em>would</em> be if it moved at a perfectly constant speed</li>
+            <li><strong>M</strong>  –  How far the Sun is from perihelion (its closest point to Earth) in its orbit</li>
+            <li><strong>C</strong>  –  Correction for the elliptical orbit (up to ~1.9° difference)</li>
+            <li><strong>Sun_true</strong>  –  The Sun&apos;s actual geometric position</li>
+            <li><strong>Sun_apparent</strong>  –  Final position after correcting for{' '}
+              <BeginnerNote term="nutation" explanation="A small periodic wobble in Earth's axis caused by the Moon's gravitational pull. It shifts apparent positions by up to ~17 arcseconds  –  tiny but measurable." /> and{' '}
               <BeginnerNote term="aberration" explanation="A tiny shift in a star's apparent position caused by Earth's orbital velocity. Light from the Sun takes ~8 minutes to reach us, and Earth moves during that time." />
             </li>
           </ul>
         </div>
 
-        <ClassicalReference shortName="Meeus" chapter="Ch. 25" topic="Solar coordinates — low-accuracy algorithm sufficient for Panchang" />
+        <ClassicalReference shortName="Meeus" chapter="Ch. 25" topic="Solar coordinates  –  low-accuracy algorithm sufficient for Panchang" />
 
         <WhyItMatters locale={locale}>
-          The Sun&apos;s position determines which Rashi (zodiac sign) it occupies — this defines the solar month (Masa)
+          The Sun&apos;s position determines which Rashi (zodiac sign) it occupies  –  this defines the solar month (Masa)
           and is half the input for computing Tithi. Getting the Sun wrong by even 1° could shift a Tithi boundary
           by several hours. Our accuracy of ~0.01° keeps timing errors under 30 seconds.
         </WhyItMatters>
@@ -173,7 +173,7 @@ export default function LearnCalculationsPage() {
       <LessonSection number={3} title={t('moonTitle')}>
         <p className="text-sm text-text-primary/85 leading-relaxed mb-3">
           <strong className="text-gold-light">What we are computing:</strong> The Moon&apos;s position along the ecliptic.
-          This is the single most important calculation in the entire Panchang — the Moon determines Tithi, Nakshatra, Yoga, and Karana.
+          This is the single most important calculation in the entire Panchang  –  the Moon determines Tithi, Nakshatra, Yoga, and Karana.
         </p>
         <p>{t('moonContent')}</p>
 
@@ -181,9 +181,9 @@ export default function LearnCalculationsPage() {
           <p className="text-sm text-text-primary/80 leading-relaxed">
             <strong className="text-blue-400">Why is the Moon so hard?</strong> Unlike the Sun (which mostly follows a smooth ellipse),
             the Moon is pulled by both the Earth and the Sun simultaneously. These competing gravitational tugs create a complex
-            &quot;wobbling&quot; path — like a ball rolling on a surface that itself is tilting. To capture this complexity,
+            &quot;wobbling&quot; path  –  like a ball rolling on a surface that itself is tilting. To capture this complexity,
             we need 60 separate correction terms, each accounting for a different wobble pattern. The largest term alone
-            shifts the Moon by over 6° — that is about 12 hours of Tithi time.
+            shifts the Moon by over 6°  –  that is about 12 hours of Tithi time.
           </p>
         </div>
 
@@ -209,18 +209,18 @@ export default function LearnCalculationsPage() {
         <div className="mt-3 text-xs text-text-secondary/70 space-y-1">
           <p><strong className="text-text-secondary">The five fundamental arguments, decoded:</strong></p>
           <ul className="list-disc list-inside space-y-1 ml-2">
-            <li><strong>L&apos;</strong> — Moon&apos;s average position (if it moved at constant speed)</li>
-            <li><strong>D</strong> — Angular distance between Moon and Sun (drives the lunar phases)</li>
-            <li><strong>M</strong> — Sun&apos;s position in its own orbit (because the Sun&apos;s pull varies)</li>
-            <li><strong>M&apos;</strong> — Moon&apos;s position in its orbit around Earth</li>
-            <li><strong>F</strong> — Moon&apos;s distance above/below the ecliptic plane (related to eclipses)</li>
+            <li><strong>L&apos;</strong>  –  Moon&apos;s average position (if it moved at constant speed)</li>
+            <li><strong>D</strong>  –  Angular distance between Moon and Sun (drives the lunar phases)</li>
+            <li><strong>M</strong>  –  Sun&apos;s position in its own orbit (because the Sun&apos;s pull varies)</li>
+            <li><strong>M&apos;</strong>  –  Moon&apos;s position in its orbit around Earth</li>
+            <li><strong>F</strong>  –  Moon&apos;s distance above/below the ecliptic plane (related to eclipses)</li>
           </ul>
         </div>
 
-        <ClassicalReference shortName="Meeus" chapter="Ch. 47" topic="Periodic terms for the Moon's longitude — the full 60-term series" />
+        <ClassicalReference shortName="Meeus" chapter="Ch. 47" topic="Periodic terms for the Moon's longitude  –  the full 60-term series" />
 
         <WhyItMatters locale={locale}>
-          The Moon moves about 13° per day — roughly one Nakshatra. A 0.5° error in Moon position translates
+          The Moon moves about 13° per day  –  roughly one Nakshatra. A 0.5° error in Moon position translates
           to a 1-2 minute error in Tithi transition time. Using all 60 terms (instead of a simplified formula)
           is what makes our Panchang match professional Hindu almanacs to within 1-2 minutes.
         </WhyItMatters>
@@ -237,7 +237,7 @@ export default function LearnCalculationsPage() {
         <div className="mt-4 mb-2 rounded-lg bg-blue-500/5 border border-blue-500/15 p-4">
           <p className="text-sm text-text-primary/80 leading-relaxed">
             <strong className="text-blue-400">Analogy:</strong> Imagine two rulers measuring the same stick, but one ruler&apos;s zero mark
-            has shifted 24° to the left. The stick has not moved — the rulers just disagree on where &quot;zero&quot; is.{' '}
+            has shifted 24° to the left. The stick has not moved  –  the rulers just disagree on where &quot;zero&quot; is.{' '}
             <BeginnerNote
               term="Tropical"
               explanation="The Western zodiac system, anchored to the spring equinox point. This point shifts slowly against the stars due to Earth's axial wobble (precession), so tropical signs drift away from their namesake constellations over millennia."
@@ -249,7 +249,7 @@ export default function LearnCalculationsPage() {
             The <BeginnerNote
               term="Ayanamsha"
               explanation="The angular difference between the tropical and sidereal zodiac starting points. Currently about 24°, it increases by ~50 arcseconds per year due to precession of the equinoxes."
-            /> is the gap between them — currently about 24° and growing by ~50 arcseconds each year.
+            /> is the gap between them  –  currently about 24° and growing by ~50 arcseconds each year.
           </p>
         </div>
 
@@ -267,10 +267,10 @@ export default function LearnCalculationsPage() {
           </p>
         </div>
 
-        <ClassicalReference shortName="SS" chapter="Ch. 3" topic="Precession of the equinoxes (Ayana Chalana) — the original Indian treatment" />
+        <ClassicalReference shortName="SS" chapter="Ch. 3" topic="Precession of the equinoxes (Ayana Chalana)  –  the original Indian treatment" />
 
         <WhyItMatters locale={locale}>
-          Getting the Ayanamsha wrong by even 1° would shift every planet into the wrong Nakshatra pada — changing
+          Getting the Ayanamsha wrong by even 1° would shift every planet into the wrong Nakshatra pada  –  changing
           Dasha calculations, baby name syllables, and compatibility scores. The Lahiri value is officially adopted
           by the Indian government&apos;s Positional Astronomy Centre and is the most widely used Ayanamsha system.
         </WhyItMatters>
@@ -279,7 +279,7 @@ export default function LearnCalculationsPage() {
       {/* --- Step 5: Panchang Elements --- */}
       <LessonSection number={5} title={t('tithiCalcTitle')}>
         <p className="text-sm text-text-primary/85 leading-relaxed mb-3">
-          <strong className="text-gold-light">What we are computing:</strong> The five daily elements of the Panchang —
+          <strong className="text-gold-light">What we are computing:</strong> The five daily elements of the Panchang  – 
           each derived from simple arithmetic on the Sun and Moon positions we computed above.
         </p>
         <p>{t('tithiCalcContent')}</p>
@@ -288,7 +288,7 @@ export default function LearnCalculationsPage() {
             { name: 'Tithi', formula: 'floor((Moon_sid - Sun_sid) / 12°) + 1', range: '1-30', note: 'Moon gains ~12° on Sun per day' },
             { name: 'Nakshatra', formula: 'floor(Moon_sid / 13°20\') + 1', range: '1-27', note: 'Moon\'s position in 27 star divisions' },
             { name: 'Yoga', formula: 'floor((Sun_sid + Moon_sid) / 13°20\') + 1', range: '1-27', note: 'Sum of Sun and Moon longitudes' },
-            { name: 'Karana', formula: 'floor((Moon_sid - Sun_sid) / 6°)', range: '1-60', note: 'Half of a Tithi — 60 in a lunar month' },
+            { name: 'Karana', formula: 'floor((Moon_sid - Sun_sid) / 6°)', range: '1-60', note: 'Half of a Tithi  –  60 in a lunar month' },
             { name: 'Vara', formula: 'floor(JD + 1.5) mod 7', range: '0-6', note: 'Weekday from Julian Day Number' },
           ].map((calc, i) => (
             <motion.div
@@ -313,14 +313,14 @@ export default function LearnCalculationsPage() {
             <strong className="text-blue-400">The key insight:</strong> Tithi and Karana depend on the <em>difference</em> between
             Moon and Sun (the Moon-Sun angle). Nakshatra depends on the Moon&apos;s position alone. Yoga depends on
             the <em>sum</em> of Moon and Sun. Vara (weekday) is purely calendar-based. This is why Tithi changes
-            are linked to lunar phases — a full cycle of 30 Tithis = one full Moon orbit relative to the Sun.
+            are linked to lunar phases  –  a full cycle of 30 Tithis = one full Moon orbit relative to the Sun.
           </p>
         </div>
 
         <WhyItMatters locale={locale}>
           These five simple formulas are the heart of the Panchang. Every festival date, every muhurta
           recommendation, every &quot;auspicious or inauspicious&quot; determination flows from these five numbers.
-          The hard work was getting accurate Sun and Moon positions — once you have those, the Panchang
+          The hard work was getting accurate Sun and Moon positions  –  once you have those, the Panchang
           elements are just division and modular arithmetic.
         </WhyItMatters>
       </LessonSection>
@@ -337,7 +337,7 @@ export default function LearnCalculationsPage() {
           <p className="text-sm text-text-primary/80 leading-relaxed">
             <strong className="text-blue-400">Analogy:</strong> Imagine you know a traffic light changed from green to red
             sometime in the last hour, but you did not see when. You could check the midpoint (30 minutes ago).
-            If it was still green then, you know it changed in the second half-hour. Check 45 minutes — still green?
+            If it was still green then, you know it changed in the second half-hour. Check 45 minutes  –  still green?
             Then it changed between 45 and 60 minutes. Each check halves the remaining window. After about 20 checks,
             you have pinpointed the exact second of the change. That is binary search.
           </p>
@@ -364,15 +364,15 @@ export default function LearnCalculationsPage() {
           <p><strong className="text-text-secondary">Step by step:</strong></p>
           <ol className="list-decimal list-inside space-y-1 ml-2 mt-1">
             <li>Start with a wide window: sunrise to 36 hours later (covers any transition in the Panchang day)</li>
-            <li>Check the midpoint — compute Sun and Moon positions, derive the Tithi number</li>
-            <li>If the Tithi at the midpoint is still the current one, the transition is later — move the lower bound up</li>
-            <li>If the Tithi has changed, the transition is earlier — move the upper bound down</li>
+            <li>Check the midpoint  –  compute Sun and Moon positions, derive the Tithi number</li>
+            <li>If the Tithi at the midpoint is still the current one, the transition is later  –  move the lower bound up</li>
+            <li>If the Tithi has changed, the transition is earlier  –  move the upper bound down</li>
             <li>Repeat until the window is less than ~8.6 seconds wide (0.0001 JD)</li>
           </ol>
         </div>
 
         <WhyItMatters locale={locale}>
-          Knowing the Tithi is not enough — you need to know <em>when</em> it changes, down to the minute.
+          Knowing the Tithi is not enough  –  you need to know <em>when</em> it changes, down to the minute.
           Festival dates, Ekadashi fasting times, and Muhurta windows all depend on exact transition times.
           A 2-minute error is acceptable; a 30-minute error could mean observing a fast on the wrong day.
           Binary search gives us ~10-second precision at the cost of only 20 iterations.
@@ -389,11 +389,11 @@ export default function LearnCalculationsPage() {
 
         <div className="mt-4 mb-2 rounded-lg bg-blue-500/5 border border-blue-500/15 p-4">
           <p className="text-sm text-text-primary/80 leading-relaxed">
-            <strong className="text-blue-400">Why -0.833°?</strong> The Sun is not a point — it is a disc about 0.53° wide.
+            <strong className="text-blue-400">Why -0.833°?</strong> The Sun is not a point  –  it is a disc about 0.53° wide.
             We want the moment the <em>top edge</em> (not the center) clears the horizon, so we subtract half the disc (0.267°).
             On top of that, Earth&apos;s atmosphere bends light like a lens, lifting the Sun&apos;s image by about 0.567°.
             Combined: 0.267° + 0.567° = 0.833°. This means you can see the Sun when it is geometrically <em>below</em> the
-            horizon — atmospheric refraction gives us a few extra minutes of daylight.
+            horizon  –  atmospheric refraction gives us a few extra minutes of daylight.
           </p>
         </div>
 
@@ -412,16 +412,16 @@ export default function LearnCalculationsPage() {
         <div className="mt-3 text-xs text-text-secondary/70 space-y-1">
           <p><strong className="text-text-secondary">What each line does:</strong></p>
           <ul className="list-disc list-inside space-y-1 ml-2">
-            <li><strong>decl</strong> — Sun&apos;s declination: how far north or south of the celestial equator it is (drives seasons)</li>
-            <li><strong>H</strong> — The hour angle: how many hours before/after solar noon the Sun crosses the horizon</li>
-            <li><strong>sunrise_UT</strong> — Convert hour angle to clock time (Universal Time), adjusted for the observer&apos;s longitude</li>
+            <li><strong>decl</strong>  –  Sun&apos;s declination: how far north or south of the celestial equator it is (drives seasons)</li>
+            <li><strong>H</strong>  –  The hour angle: how many hours before/after solar noon the Sun crosses the horizon</li>
+            <li><strong>sunrise_UT</strong>  –  Convert hour angle to clock time (Universal Time), adjusted for the observer&apos;s longitude</li>
           </ul>
         </div>
 
         <ClassicalReference shortName="Meeus" chapter="Ch. 15" topic="Rising and setting of celestial bodies, with atmospheric refraction correction" />
 
         <WhyItMatters locale={locale}>
-          In the Vedic system, the day begins at sunrise — not midnight. Every Panchang element is
+          In the Vedic system, the day begins at sunrise  –  not midnight. Every Panchang element is
           anchored to sunrise. If your sunrise time is off by 5 minutes, every Muhurta window, Choghadiya,
           and Hora boundary shifts by 5 minutes too. Location matters enormously: sunrise in Zurich and
           sunrise in Mumbai differ by hours, and even neighboring cities can differ by minutes.
@@ -489,7 +489,7 @@ export default function LearnCalculationsPage() {
         <ul className="space-y-2 text-sm text-text-primary/85">
           <li className="flex items-start gap-2">
             <span className="text-emerald-500 mt-0.5 flex-shrink-0">1.</span>
-            <span>Sun and Moon positions to <strong className="text-gold-light">0.01°</strong> accuracy — using 60+ periodic terms</span>
+            <span>Sun and Moon positions to <strong className="text-gold-light">0.01°</strong> accuracy  –  using 60+ periodic terms</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-emerald-500 mt-0.5 flex-shrink-0">2.</span>
@@ -505,11 +505,11 @@ export default function LearnCalculationsPage() {
           </li>
           <li className="flex items-start gap-2">
             <span className="text-emerald-500 mt-0.5 flex-shrink-0">5.</span>
-            <span>Sidereal positions via Lahiri Ayanamsha — the bridge between modern astronomy and Vedic tradition</span>
+            <span>Sidereal positions via Lahiri Ayanamsha  –  the bridge between modern astronomy and Vedic tradition</span>
           </li>
         </ul>
         <p className="text-sm text-text-primary/85 leading-relaxed mt-3">
-          All of this runs in pure JavaScript — no external APIs, no ephemeris files, no internet connection required.
+          All of this runs in pure JavaScript  –  no external APIs, no ephemeris files, no internet connection required.
           The same engine powers the Panchang page, Kundali charts, Muhurta recommendations, and festival calendars across this site.
         </p>
       </div>

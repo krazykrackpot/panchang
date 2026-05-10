@@ -389,7 +389,7 @@ export default function DomainDeepDive({
               {ca.overallActivationScore >= 7 ? (locale === 'hi' ? 'इस समय अत्यधिक सक्रिय' : 'Highly active right now')
                 : ca.overallActivationScore >= 4 ? (locale === 'hi' ? 'इस समय सक्रिय' : 'Moderately active right now')
                 : ca.overallActivationScore >= 2 ? (locale === 'hi' ? 'हल्की सक्रियता' : 'Mildly active')
-                : (locale === 'hi' ? 'पृष्ठभूमि में — वर्तमान में प्रमुख फोकस नहीं' : 'Background level — not a primary focus currently')}
+                : (locale === 'hi' ? 'पृष्ठभूमि में  –  वर्तमान में प्रमुख फोकस नहीं' : 'Background level  –  not a primary focus currently')}
             </span>
           </div>
           <div className="flex-1 h-1.5 rounded-full bg-white/5 overflow-hidden">
@@ -434,10 +434,10 @@ export default function DomainDeepDive({
                     </div>
                     <p className="text-text-secondary/70 text-xs mt-1 ml-4">
                       {t.nature === 'benefic'
-                        ? (locale === 'hi' ? 'शुभ प्रभाव — इस क्षेत्र को सहायता और विकास मिल रहा है।' : 'Benefic influence — this area of life is receiving support and growth energy.')
+                        ? (locale === 'hi' ? 'शुभ प्रभाव  –  इस क्षेत्र को सहायता और विकास मिल रहा है।' : 'Benefic influence  –  this area of life is receiving support and growth energy.')
                         : t.nature === 'malefic'
-                        ? (locale === 'hi' ? 'चुनौतीपूर्ण प्रभाव — धैर्य और अनुशासन आवश्यक।' : 'Challenging influence — patience and discipline are needed in this area.')
-                        : (locale === 'hi' ? 'मिश्रित प्रभाव — परिणाम प्रयास पर निर्भर।' : 'Mixed influence — outcomes depend on effort and awareness.')}
+                        ? (locale === 'hi' ? 'चुनौतीपूर्ण प्रभाव  –  धैर्य और अनुशासन आवश्यक।' : 'Challenging influence  –  patience and discipline are needed in this area.')
+                        : (locale === 'hi' ? 'मिश्रित प्रभाव  –  परिणाम प्रयास पर निर्भर।' : 'Mixed influence  –  outcomes depend on effort and awareness.')}
                     </p>
                   </div>
                 );
@@ -451,7 +451,7 @@ export default function DomainDeepDive({
       {/* ----------------------------------------------------------------- */}
       {/* Section C: Forward Timeline                                       */}
       {/* ----------------------------------------------------------------- */}
-      <SectionHeading>Your Roadmap — Next 3-5 Years</SectionHeading>
+      <SectionHeading>Your Roadmap  –  Next 3-5 Years</SectionHeading>
       {reading.timelineTriggers.length > 0 ? (
         <ForwardTimeline triggers={reading.timelineTriggers} locale={locale} />
       ) : (
@@ -561,7 +561,7 @@ export default function DomainDeepDive({
         </div>
       </div>
 
-      {/* Affirmation — full width */}
+      {/* Affirmation  –  full width */}
       <div className="mt-4 rounded-xl border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 via-bg-secondary to-bg-secondary p-5 text-center">
         <p className="text-text-secondary text-xs uppercase tracking-widest mb-2">
           {locale === 'hi' ? 'आपका प्रतिज्ञान' : 'Your Affirmation'}
@@ -622,7 +622,7 @@ export default function DomainDeepDive({
                 : 'Consult Your Personal Pandit'}
           </p>
           {!aiLoading && !aiReading && (
-            <p className="text-text-secondary text-xs mt-1">AI-powered personalized reading — covers all life areas in one call</p>
+            <p className="text-text-secondary text-xs mt-1">AI-powered personalized reading  –  covers all life areas in one call</p>
           )}
         </button>
 

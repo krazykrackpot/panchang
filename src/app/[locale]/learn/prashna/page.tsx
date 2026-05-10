@@ -53,7 +53,7 @@ export default function LearnPrashnaPage() {
       </div>
 
       <KeyTakeaway locale={locale} points={[
-        'Prashna casts a chart for the moment of the question — not the birth time — making it ideal when birth data is unavailable.',
+        'Prashna casts a chart for the moment of the question  –  not the birth time  –  making it ideal when birth data is unavailable.',
         'The three pillars: Arudha Lagna (from querent\'s number), Moon\'s position (mental state), and relevant house lord (topic).',
         'Kerala\'s Ashtamangala Prashna tradition adds eight physical objects for layered divination.',
       ]} />
@@ -61,7 +61,7 @@ export default function LearnPrashnaPage() {
       <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
         <BeginnerNote term="Horary Astrology" explanation="A branch of astrology that answers specific questions from a chart cast at the moment of asking, rather than from a birth chart" />
         <BeginnerNote term="Arudha Lagna" explanation="A special ascendant in Prashna derived from a number (1-108) chosen by the querent or from the first syllable of the question" />
-        <BeginnerNote term="Kendra" explanation="Houses 1, 4, 7, and 10 — the angular houses, considered the strongest positions in a chart" />
+        <BeginnerNote term="Kendra" explanation="Houses 1, 4, 7, and 10  –  the angular houses, considered the strongest positions in a chart" />
       </div>
 
       {/* ── What is Prashna ── */}

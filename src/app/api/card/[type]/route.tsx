@@ -8,12 +8,12 @@
  * Supported formats: story (1080x1920), square (1080x1080), og (1200x630)
  *
  * Discovery card params:
- *   tropicalSign  — e.g. "Aries"
- *   siderealSign  — e.g. "Pisces"
- *   shiftedCount  — number of planets that shifted sign
- *   totalPlanets  — total planets compared (default 9)
- *   hookLine      — short narrative hook line
- *   ayanamsha     — e.g. "24.2°"
+ *   tropicalSign   –  e.g. "Aries"
+ *   siderealSign   –  e.g. "Pisces"
+ *   shiftedCount   –  number of planets that shifted sign
+ *   totalPlanets   –  total planets compared (default 9)
+ *   hookLine       –  short narrative hook line
+ *   ayanamsha      –  e.g. "24.2°"
  */
 
 import { ImageResponse } from 'next/og';
@@ -46,7 +46,7 @@ export async function GET(
   const { width, height } = CARD_DIMENSIONS[format];
 
   // ── Discovery Card ───────────────────────────────────────────────────────────
-  // Story-format viral card: "I thought I was Aries — but the stars say Pisces"
+  // Story-format viral card: "I thought I was Aries  –  but the stars say Pisces"
   if (type === 'discovery') {
     const tropicalSign = searchParams.get('tropicalSign') ?? 'Unknown';
     const siderealSign = searchParams.get('siderealSign') ?? 'Unknown';
@@ -55,7 +55,7 @@ export async function GET(
     const hookLine = searchParams.get('hookLine') ?? '';
     const ayanamsha = searchParams.get('ayanamsha') ?? '';
 
-    // Scale font sizes for format — story is tall (1920px), og is shorter (630px)
+    // Scale font sizes for format  –  story is tall (1920px), og is shorter (630px)
     const isStory = format === 'story';
     const isOg = format === 'og';
 
@@ -89,7 +89,7 @@ export async function GET(
             }}
           />
 
-          {/* Corner ornaments — top left */}
+          {/* Corner ornaments  –  top left */}
           <div
             style={{
               position: 'absolute',
@@ -102,7 +102,7 @@ export async function GET(
               display: 'flex',
             }}
           />
-          {/* Corner ornaments — bottom right */}
+          {/* Corner ornaments  –  bottom right */}
           <div
             style={{
               position: 'absolute',
@@ -163,7 +163,7 @@ export async function GET(
               I thought I was
             </div>
 
-            {/* OLD SIGN — muted, struck-through visual effect via opacity */}
+            {/* OLD SIGN  –  muted, struck-through visual effect via opacity */}
             <div
               style={{
                 fontSize: isOg ? '40px' : isStory ? '72px' : '56px',
@@ -200,7 +200,7 @@ export async function GET(
               But the stars say
             </div>
 
-            {/* NEW SIGN — gold, bold, large */}
+            {/* NEW SIGN  –  gold, bold, large */}
             <div
               style={{
                 fontSize: isOg ? '56px' : isStory ? '100px' : '80px',
@@ -353,7 +353,7 @@ export async function GET(
         width,
         height,
         headers: {
-          // Discovery cards are keyed by sign params — cache for 30 days
+          // Discovery cards are keyed by sign params  –  cache for 30 days
           'Cache-Control': 'public, max-age=2592000, s-maxage=2592000',
         },
       }
@@ -405,7 +405,7 @@ export async function GET(
             }}
           />
 
-          {/* Corner ornaments — top left */}
+          {/* Corner ornaments  –  top left */}
           <div
             style={{
               position: 'absolute',
@@ -418,7 +418,7 @@ export async function GET(
               display: 'flex',
             }}
           />
-          {/* Corner ornaments — bottom right */}
+          {/* Corner ornaments  –  bottom right */}
           <div
             style={{
               position: 'absolute',
@@ -678,7 +678,7 @@ export async function GET(
         width,
         height,
         headers: {
-          // Blueprint cards are keyed by personal data — cache for 30 days
+          // Blueprint cards are keyed by personal data  –  cache for 30 days
           'Cache-Control': 'public, max-age=2592000, s-maxage=2592000',
         },
       }
@@ -711,7 +711,7 @@ export async function GET(
     const isStory = format === 'story';
     const isOg = format === 'og';
 
-    // Verdict colour mapping (no CSS variables — Satori requires static values)
+    // Verdict colour mapping (no CSS variables  –  Satori requires static values)
     const verdictColor =
       verdict === 'excellent' ? '#10b981' :
       verdict === 'good' ? '#34d399' :
@@ -765,7 +765,7 @@ export async function GET(
             }}
           />
 
-          {/* Corner ornaments — top left */}
+          {/* Corner ornaments  –  top left */}
           <div
             style={{
               position: 'absolute',
@@ -778,7 +778,7 @@ export async function GET(
               display: 'flex',
             }}
           />
-          {/* Corner ornaments — bottom right */}
+          {/* Corner ornaments  –  bottom right */}
           <div
             style={{
               position: 'absolute',
@@ -1107,7 +1107,7 @@ export async function GET(
         width,
         height,
         headers: {
-          // Compatibility cards are user-specific — cache for 7 days
+          // Compatibility cards are user-specific  –  cache for 7 days
           'Cache-Control': 'public, max-age=604800, s-maxage=604800',
         },
       }
@@ -1137,7 +1137,7 @@ export async function GET(
         }
       }
     } catch {
-      // Silently use empty houses if JSON parsing fails — not a critical error
+      // Silently use empty houses if JSON parsing fails  –  not a critical error
       // for image generation; the chart will just show empty houses
     }
 
@@ -1149,7 +1149,7 @@ export async function GET(
       0: 'Su', 1: 'Mo', 2: 'Ma', 3: 'Me', 4: 'Ju', 5: 'Ve', 6: 'Sa', 7: 'Ra', 8: 'Ke',
     };
 
-    // North Indian diamond chart geometry — key points
+    // North Indian diamond chart geometry  –  key points
     const chartSize = isOg ? 220 : isStory ? 380 : 300;
     const p = Math.round(chartSize * 0.06);
     const m = Math.round(chartSize / 2);
@@ -1218,7 +1218,7 @@ export async function GET(
               }}
             />
 
-            {/* Corner ornaments — top left */}
+            {/* Corner ornaments  –  top left */}
             <div
               style={{
                 position: 'absolute',
@@ -1231,7 +1231,7 @@ export async function GET(
                 display: 'flex',
               }}
             />
-            {/* Corner ornaments — bottom right */}
+            {/* Corner ornaments  –  bottom right */}
             <div
               style={{
                 position: 'absolute',
@@ -1379,7 +1379,7 @@ export async function GET(
       );
     }
 
-    // Story / Square layout — vertical
+    // Story / Square layout  –  vertical
     return new ImageResponse(
       (
         <div
@@ -1612,7 +1612,7 @@ export async function GET(
   }
 
   // ── Nakshatra Personality Card ───────────────────────────────────────────────
-  // Shareable viral card: "I'm Pushya Moon — The Nurturer"
+  // Shareable viral card: "I'm Pushya Moon  –  The Nurturer"
   // Params: name, nakshatraId, rashiName, rulerName, deity, nature, trait, gana, tattva
   if (type === 'nakshatra-card') {
     const name = searchParams.get('name') || 'You';
@@ -1663,7 +1663,7 @@ export async function GET(
             </span>
           </div>
 
-          {/* Nakshatra name — hero text */}
+          {/* Nakshatra name  –  hero text */}
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '8px' }}>
             <span style={{
               color: '#f0d48a', fontSize: format === 'story' ? '56px' : '36px',
@@ -1749,7 +1749,7 @@ export async function GET(
     .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
     .join(' ');
 
-  // Placeholder card — actual card content will be wired up per type.
+  // Placeholder card  –  actual card content will be wired up per type.
   // Uses Satori-compatible JSX (flexbox only, no grid, no CSS variables).
   return new ImageResponse(
     (

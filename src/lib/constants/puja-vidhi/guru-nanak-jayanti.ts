@@ -35,9 +35,9 @@ export const GURU_NANAK_JAYANTI_PUJA: PujaVidhi = {
       step: 1,
       title: { en: 'Prabhat Pheri (Dawn Procession)', hi: 'प्रभात फेरी (सुबह की शोभायात्रा)', sa: 'प्रभातफेरी (प्रभातशोभायात्रा)' },
       description: {
-        en: 'Rise during Amrit Vela (pre-dawn, around 4 AM). Join the Prabhat Pheri — a community procession through the neighbourhood singing shabads (devotional hymns) from Guru Granth Sahib. The Nishan Sahib (Sikh flag) leads the procession.',
-        hi: 'अमृत वेला (प्रभात से पहले, लगभग 4 बजे) में उठें। प्रभात फेरी में शामिल हों — गुरु ग्रन्थ साहिब के शब्दों (भक्ति गीतों) का गायन करते हुए मोहल्ले में सामुदायिक शोभायात्रा। निशान साहिब (सिख ध्वज) शोभायात्रा का नेतृत्व करता है।',
-        sa: 'अमृतवेलायां (प्रभातपूर्वं, प्रातः चतुर्थवादने) उत्तिष्ठेत्। प्रभातफेर्यां सम्मिलेत् — गुरुग्रन्थसाहिबतः शब्दान् (भक्तिगीतान्) गायन्तः ग्रामे सामुदायिकशोभायात्रा। निशानसाहिबः (सिखध्वजः) शोभायात्रायाः नेतृत्वं करोति।',
+        en: 'Rise during Amrit Vela (pre-dawn, around 4 AM). Join the Prabhat Pheri  –  a community procession through the neighbourhood singing shabads (devotional hymns) from Guru Granth Sahib. The Nishan Sahib (Sikh flag) leads the procession.',
+        hi: 'अमृत वेला (प्रभात से पहले, लगभग 4 बजे) में उठें। प्रभात फेरी में शामिल हों  –  गुरु ग्रन्थ साहिब के शब्दों (भक्ति गीतों) का गायन करते हुए मोहल्ले में सामुदायिक शोभायात्रा। निशान साहिब (सिख ध्वज) शोभायात्रा का नेतृत्व करता है।',
+        sa: 'अमृतवेलायां (प्रभातपूर्वं, प्रातः चतुर्थवादने) उत्तिष्ठेत्। प्रभातफेर्यां सम्मिलेत्  –  गुरुग्रन्थसाहिबतः शब्दान् (भक्तिगीतान्) गायन्तः ग्रामे सामुदायिकशोभायात्रा। निशानसाहिबः (सिखध्वजः) शोभायात्रायाः नेतृत्वं करोति।',
       },
       duration: '60 min',
       essential: false,
@@ -71,9 +71,9 @@ export const GURU_NANAK_JAYANTI_PUJA: PujaVidhi = {
       step: 4,
       title: { en: 'Akhand Path Bhog (Completion)', hi: 'अखण्ड पाठ भोग (समापन)', sa: 'अखण्डपाठभोगः (समापनम्)' },
       description: {
-        en: 'Attend the Bhog (completion ceremony) of the Akhand Path — the 48-hour non-stop reading of the entire Guru Granth Sahib that was started two days before. This culminates with Ardas (congregational prayer) and Hukamnama (divine command from a random opening of the scripture).',
-        hi: 'अखण्ड पाठ का भोग (समापन समारोह) में सम्मिलित हों — दो दिन पहले आरम्भ हुए सम्पूर्ण गुरु ग्रन्थ साहिब का 48 घण्टे का निरन्तर पाठ। यह अरदास (सामूहिक प्रार्थना) और हुकमनामा (ग्रन्थ के यदृच्छिक उद्घाटन से दैवी आदेश) के साथ पूर्ण होता है।',
-        sa: 'अखण्डपाठस्य भोगं (समापनसमारोहं) उपतिष्ठेत् — द्वयोः दिवसयोः पूर्वम् आरब्धस्य सम्पूर्णगुरुग्रन्थसाहिबस्य अष्टचत्वारिंशद्घण्टीयनिरन्तरपाठः। एतत् अरदासेन (सामुदायिकप्रार्थनया) हुकमनामेन (ग्रन्थस्य यादृच्छिकोद्घाटनेन दैवीनिर्देशेन) च समाप्यते।',
+        en: 'Attend the Bhog (completion ceremony) of the Akhand Path  –  the 48-hour non-stop reading of the entire Guru Granth Sahib that was started two days before. This culminates with Ardas (congregational prayer) and Hukamnama (divine command from a random opening of the scripture).',
+        hi: 'अखण्ड पाठ का भोग (समापन समारोह) में सम्मिलित हों  –  दो दिन पहले आरम्भ हुए सम्पूर्ण गुरु ग्रन्थ साहिब का 48 घण्टे का निरन्तर पाठ। यह अरदास (सामूहिक प्रार्थना) और हुकमनामा (ग्रन्थ के यदृच्छिक उद्घाटन से दैवी आदेश) के साथ पूर्ण होता है।',
+        sa: 'अखण्डपाठस्य भोगं (समापनसमारोहं) उपतिष्ठेत्  –  द्वयोः दिवसयोः पूर्वम् आरब्धस्य सम्पूर्णगुरुग्रन्थसाहिबस्य अष्टचत्वारिंशद्घण्टीयनिरन्तरपाठः। एतत् अरदासेन (सामुदायिकप्रार्थनया) हुकमनामेन (ग्रन्थस्य यादृच्छिकोद्घाटनेन दैवीनिर्देशेन) च समाप्यते।',
       },
       duration: '45 min',
       essential: true,
@@ -125,9 +125,9 @@ export const GURU_NANAK_JAYANTI_PUJA: PujaVidhi = {
       devanagari: 'ਵਾਹਿਗੁਰੂ ਵਾਹਿਗੁਰੂ ਵਾਹਿਗੁਰੂ ਵਾਹਿਗੁਰੂ\n\nवाहेगुरु वाहेगुरु वाहेगुरु वाहेगुरु',
       iast: 'vāhegurū vāhegurū vāhegurū vāhegurū',
       meaning: {
-        en: 'Wonderful Lord! Wonderful Guru! — the ecstatic exclamation of the Divine Name, expressing wonder at the Creator\'s greatness.',
-        hi: 'अद्भुत गुरु! अद्भुत प्रभु! — दिव्य नाम का आनन्दमय उद्गार, सृष्टिकर्ता की महानता पर विस्मय व्यक्त करता है।',
-        sa: 'अद्भुतगुरुः! अद्भुतप्रभुः! — दिव्यनाम्नः आनन्दमयः उद्गारः, सृष्टिकर्तुः महत्त्वे विस्मयं प्रकटयति।',
+        en: 'Wonderful Lord! Wonderful Guru!  –  the ecstatic exclamation of the Divine Name, expressing wonder at the Creator\'s greatness.',
+        hi: 'अद्भुत गुरु! अद्भुत प्रभु!  –  दिव्य नाम का आनन्दमय उद्गार, सृष्टिकर्ता की महानता पर विस्मय व्यक्त करता है।',
+        sa: 'अद्भुतगुरुः! अद्भुतप्रभुः!  –  दिव्यनाम्नः आनन्दमयः उद्गारः, सृष्टिकर्तुः महत्त्वे विस्मयं प्रकटयति।',
       },
       japaCount: 108,
       usage: { en: 'Continuous chanting (Naam Simran) throughout the day as meditation', hi: 'दिन भर ध्यान के रूप में निरन्तर जाप (नाम सिमरन)', sa: 'दिनपर्यन्तं ध्यानरूपेण निरन्तरजपः (नामसिमरणम्)' },
@@ -135,9 +135,9 @@ export const GURU_NANAK_JAYANTI_PUJA: PujaVidhi = {
   ],
 
   naivedya: {
-    en: 'Karah Prasad (sacred pudding made from equal parts wheat flour, ghee, and sugar) is the primary offering. Langar — a full community meal of dal, roti, rice, and sabzi — is served free to all visitors. Sweets and fruits are also distributed.',
-    hi: 'कड़ाह प्रसाद (समान मात्रा में गेहूँ का आटा, घी और शक्कर से बना पवित्र हलवा) मुख्य प्रसाद है। लंगर — दाल, रोटी, चावल और सब्ज़ी का पूर्ण सामुदायिक भोजन — सभी आगन्तुकों को निःशुल्क परोसा जाता है। मिठाई और फल भी बाँटे जाते हैं।',
-    sa: 'कराहप्रसादः (समानमात्रायां गोधूमचूर्णं घृतं शर्करा इति निर्मितः पवित्रपायसः) मुख्यप्रसादः। लङ्गरम् — सूपः रोटिका तण्डुलाः शाकानि इति सम्पूर्णसामुदायिकभोजनम् — सर्वेभ्यः आगन्तुकेभ्यः निःशुल्कं परिवेष्यते। मिष्टान्नानि फलानि च वितर्यन्ते।',
+    en: 'Karah Prasad (sacred pudding made from equal parts wheat flour, ghee, and sugar) is the primary offering. Langar  –  a full community meal of dal, roti, rice, and sabzi  –  is served free to all visitors. Sweets and fruits are also distributed.',
+    hi: 'कड़ाह प्रसाद (समान मात्रा में गेहूँ का आटा, घी और शक्कर से बना पवित्र हलवा) मुख्य प्रसाद है। लंगर  –  दाल, रोटी, चावल और सब्ज़ी का पूर्ण सामुदायिक भोजन  –  सभी आगन्तुकों को निःशुल्क परोसा जाता है। मिठाई और फल भी बाँटे जाते हैं।',
+    sa: 'कराहप्रसादः (समानमात्रायां गोधूमचूर्णं घृतं शर्करा इति निर्मितः पवित्रपायसः) मुख्यप्रसादः। लङ्गरम्  –  सूपः रोटिका तण्डुलाः शाकानि इति सम्पूर्णसामुदायिकभोजनम्  –  सर्वेभ्यः आगन्तुकेभ्यः निःशुल्कं परिवेष्यते। मिष्टान्नानि फलानि च वितर्यन्ते।',
   },
 
   precautions: [

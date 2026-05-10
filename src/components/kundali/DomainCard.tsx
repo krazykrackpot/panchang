@@ -7,7 +7,7 @@ import { DOMAIN_ICON_MAP } from '@/components/icons/DomainIcons';
 import type { DomainReading, Rating } from '@/lib/kundali/domain-synthesis/types';
 
 // ---------------------------------------------------------------------------
-// Rating colour map — static, no dynamic Tailwind classes
+// Rating colour map  –  static, no dynamic Tailwind classes
 // ---------------------------------------------------------------------------
 
 const RATING_COLORS: Record<Rating, string> = {
@@ -110,10 +110,10 @@ export default function DomainCard({ reading, locale, onClick }: DomainCardProps
           onClick();
         }
       }}
-      aria-label={`${domainName}: ${ratingLabel} — click to view details`}
+      aria-label={`${domainName}: ${ratingLabel}  –  click to view details`}
       className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 pl-7 pr-5 py-5 h-full cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-gold-primary/30 overflow-hidden group focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
     >
-      {/* Left edge rating bar — natal/overall indicator */}
+      {/* Left edge rating bar  –  natal/overall indicator */}
       <div
         className="absolute left-0 top-0 bottom-0 w-2 flex items-center justify-center"
         style={{ backgroundColor: ratingColor }}
@@ -124,7 +124,7 @@ export default function DomainCard({ reading, locale, onClick }: DomainCardProps
         </span>
       </div>
 
-      {/* Current activation dot — top-right (colorblind: letter overlay) */}
+      {/* Current activation dot  –  top-right (colorblind: letter overlay) */}
       <div
         className="absolute top-3 right-3 w-3.5 h-3.5 rounded-full flex items-center justify-center"
         style={{ backgroundColor: activationColor, boxShadow: `0 0 6px ${activationColor}40` }}

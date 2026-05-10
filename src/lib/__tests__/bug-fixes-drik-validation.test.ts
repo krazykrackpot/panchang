@@ -6,7 +6,7 @@
  *
  * Calling convention:
  *   computePanchang({ year, month, day, lat, lng, tzOffset, timezone })
- * NOT positional arguments — the function takes a single PanchangInput object.
+ * NOT positional arguments  –  the function takes a single PanchangInput object.
  *
  * Reference location: New Delhi (28.6139°N, 77.2090°E, UTC+5.5 = IST)
  * Dates are chosen to be unambiguous for each specific bug.
@@ -29,7 +29,7 @@ function panchang(dateStr: string) {
 }
 
 // ───────────────────────────────────────────────────────────────────────────
-// BUG 1 — Anandadi Yoga formula: used (tithi + weekday − 2) instead of
+// BUG 1  –  Anandadi Yoga formula: used (tithi + weekday − 2) instead of
 //          (tithi + weekday − 1).
 //
 // Derivation: Drik formula = (tithi + vara − 2) % 9, vara is 1-based.
@@ -41,20 +41,20 @@ function panchang(dateStr: string) {
 //   Correct: (17 + 5 − 1 + 900) % 9 = 921 % 9 = 3 → "Shoola" (inauspicious)
 //   Old bug: (17 + 5 − 2 + 900) % 9 = 920 % 9 = 2 → "Dhwanksha" (wrong)
 // ───────────────────────────────────────────────────────────────────────────
-describe('Bug 1 — Anandadi Yoga formula (−1 not −2)', () => {
+describe('Bug 1  –  Anandadi Yoga formula (−1 not −2)', () => {
   it('Apr 3 2026 Delhi (Friday): anandadiYoga.number matches corrected formula', () => {
     // Friday = weekday 5 (0-based). Formula: (tithi + weekday − 1) % 9.
     // At Delhi sunrise on Apr 3 2026 the tithi resolves to 16 (Krishna Pratipada).
     // Correct: (16 + 5 − 1 + 900) % 9 = 920 % 9 = 2 → index 2 = "Dhwanksha"
     // Old bug: (16 + 5 − 2 + 900) % 9 = 919 % 9 = 1 → index 1 = "Kala"
     const p = panchang('2026-04-03');
-    const weekday = 5; // Friday — hardcoded for this specific test
+    const weekday = 5; // Friday  –  hardcoded for this specific test
     const expectedIdx = (p.tithi.number + weekday - 1 + 900) % 9;
     expect(p.anandadiYoga.number).toBe(expectedIdx + 1);
     // Old formula would give a different result (unless the shift doesn't matter for this idx)
     const oldIdx = (p.tithi.number + weekday - 2 + 900) % 9;
     if (oldIdx !== expectedIdx) {
-      // The formulas disagree — verify we use the CORRECT one
+      // The formulas disagree  –  verify we use the CORRECT one
       expect(p.anandadiYoga.number).not.toBe(oldIdx + 1);
     }
   });
@@ -75,7 +75,7 @@ describe('Bug 1 — Anandadi Yoga formula (−1 not −2)', () => {
 });
 
 // ───────────────────────────────────────────────────────────────────────────
-// BUG 2 — WEEKDAY_PLANET_MAP: was the Hora sequence [0,3,6,2,5,1,4] instead
+// BUG 2  –  WEEKDAY_PLANET_MAP: was the Hora sequence [0,3,6,2,5,1,4] instead
 //          of the correct day-lord identity map [0,1,2,3,4,5,6].
 //
 // Classical rule: weekday ruler = day lord.
@@ -88,45 +88,45 @@ describe('Bug 1 — Anandadi Yoga formula (−1 not −2)', () => {
 // Verification: April 2026 weekday calendar used (each date below is chosen
 // to be on the named weekday; confirmed from any standard calendar).
 // ───────────────────────────────────────────────────────────────────────────
-describe('Bug 2 — WEEKDAY_PLANET_MAP (day lord identity, not Hora sequence)', () => {
-  it('Sunday Apr 5 2026 — day lord is Sun (id=0)', () => {
+describe('Bug 2  –  WEEKDAY_PLANET_MAP (day lord identity, not Hora sequence)', () => {
+  it('Sunday Apr 5 2026  –  day lord is Sun (id=0)', () => {
     const p = panchang('2026-04-05');
     expect(p.mantriMandala.king.planet).toBe(0); // Sun
-    // Old bug: would have been Sun(0) by coincidence — first Hora sequence element is also 0
+    // Old bug: would have been Sun(0) by coincidence  –  first Hora sequence element is also 0
     // So Sunday happened to be correct under the old bug. We still test it for completeness.
   });
 
-  it('Monday Apr 6 2026 — day lord is Moon (id=1), not Mercury (id=3)', () => {
+  it('Monday Apr 6 2026  –  day lord is Moon (id=1), not Mercury (id=3)', () => {
     const p = panchang('2026-04-06');
     expect(p.mantriMandala.king.planet).toBe(1); // Moon
     expect(p.mantriMandala.king.planet).not.toBe(3); // Old bug: Mercury
   });
 
-  it('Tuesday Apr 7 2026 — day lord is Mars (id=2), not Saturn (id=6)', () => {
+  it('Tuesday Apr 7 2026  –  day lord is Mars (id=2), not Saturn (id=6)', () => {
     const p = panchang('2026-04-07');
     expect(p.mantriMandala.king.planet).toBe(2); // Mars
     expect(p.mantriMandala.king.planet).not.toBe(6); // Old bug: Saturn
   });
 
-  it('Wednesday Apr 8 2026 — day lord is Mercury (id=3), not Mars (id=2)', () => {
+  it('Wednesday Apr 8 2026  –  day lord is Mercury (id=3), not Mars (id=2)', () => {
     const p = panchang('2026-04-08');
     expect(p.mantriMandala.king.planet).toBe(3); // Mercury
     expect(p.mantriMandala.king.planet).not.toBe(2); // Old bug: Mars
   });
 
-  it('Thursday Apr 9 2026 — day lord is Jupiter (id=4), not Venus (id=5)', () => {
+  it('Thursday Apr 9 2026  –  day lord is Jupiter (id=4), not Venus (id=5)', () => {
     const p = panchang('2026-04-09');
     expect(p.mantriMandala.king.planet).toBe(4); // Jupiter
     expect(p.mantriMandala.king.planet).not.toBe(5); // Old bug: Venus
   });
 
-  it('Friday Apr 3 2026 — day lord is Venus (id=5), not Moon (id=1)', () => {
+  it('Friday Apr 3 2026  –  day lord is Venus (id=5), not Moon (id=1)', () => {
     const p = panchang('2026-04-03');
     expect(p.mantriMandala.king.planet).toBe(5); // Venus
     expect(p.mantriMandala.king.planet).not.toBe(1); // Old bug: Moon
   });
 
-  it('Saturday Apr 4 2026 — day lord is Saturn (id=6), not Jupiter (id=4)', () => {
+  it('Saturday Apr 4 2026  –  day lord is Saturn (id=6), not Jupiter (id=4)', () => {
     const p = panchang('2026-04-04');
     expect(p.mantriMandala.king.planet).toBe(6); // Saturn
     expect(p.mantriMandala.king.planet).not.toBe(4); // Old bug: Jupiter
@@ -148,7 +148,7 @@ describe('Bug 2 — WEEKDAY_PLANET_MAP (day lord identity, not Hora sequence)', 
 });
 
 // ───────────────────────────────────────────────────────────────────────────
-// BUG 3 — Purnimant/Amant masa: variable names were swapped in the output.
+// BUG 3  –  Purnimant/Amant masa: variable names were swapped in the output.
 //          Code computed the correct values but returned them under the wrong
 //          keys (amantMasa had the Purnimant logic, purnimantMasa had none).
 //
@@ -158,10 +158,10 @@ describe('Bug 2 — WEEKDAY_PLANET_MAP (day lord identity, not Hora sequence)', 
 //   Purnimant (North Indian): month ends at Purnima. During Krishna Paksha
 //     (tithi 16–30), Purnimant is already in the NEXT month vs Amant.
 //
-// Test 1 — Shukla Paksha: both systems agree.
-// Test 2 — Krishna Paksha: Purnimant is 1 month ahead of Amant.
+// Test 1  –  Shukla Paksha: both systems agree.
+// Test 2  –  Krishna Paksha: Purnimant is 1 month ahead of Amant.
 // ───────────────────────────────────────────────────────────────────────────
-describe('Bug 3 — Purnimant/Amant masa (variable names were swapped)', () => {
+describe('Bug 3  –  Purnimant/Amant masa (variable names were swapped)', () => {
   it('Shukla Paksha (tithi ≤15): both Amant and Purnimant show same month name', () => {
     // Apr 1 2026 is Chaitra Shukla (tithi should be ≤15)
     const p = panchang('2026-04-01');
@@ -186,7 +186,7 @@ describe('Bug 3 — Purnimant/Amant masa (variable names were swapped)', () => {
 });
 
 // ───────────────────────────────────────────────────────────────────────────
-// BUG 4 — Yamaganda order: used [5,4,3,2,1,7,6] instead of the correct
+// BUG 4  –  Yamaganda order: used [5,4,3,2,1,7,6] instead of the correct
 //          Dharma Sindhu order [5,4,3,7,2,1,6].
 //
 // Wednesday, Thursday, and Friday had wrong Yamaganda windows:
@@ -200,7 +200,7 @@ describe('Bug 3 — Purnimant/Amant masa (variable names were swapped)', () => {
 //   Wednesday = segment 2 (08:30-10:10, verified against Drik)
 //   Descending pattern: Sun=5, Mon=4, Tue=3, Wed=2, Thu=1, Fri=7, Sat=6
 // ───────────────────────────────────────────────────────────────────────────
-describe('Bug 4 — Yamaganda order (Drik Panchang verified)', () => {
+describe('Bug 4  –  Yamaganda order (Drik Panchang verified)', () => {
   it('Array [5,4,3,2,1,7,6] contains all segment numbers 1–7 (no duplicates)', () => {
     const YAMA_ORDER = [5, 4, 3, 2, 1, 7, 6];
     const set = new Set(YAMA_ORDER);

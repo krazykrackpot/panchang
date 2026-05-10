@@ -101,9 +101,9 @@ export const GURU_PURNIMA_PUJA: PujaVidhi = {
       step: 6,
       title: { en: 'Vyasa Vandana', hi: 'व्यास वन्दना', sa: 'व्यासवन्दना' },
       description: {
-        en: 'Offer special prayers to Veda Vyasa — the Adi Guru who compiled the Vedas, authored the Mahabharata, and codified the Puranas. Chant the Vyasa Vandana shloka. This is why the day is also called Vyasa Purnima.',
-        hi: 'वेदव्यास — जिन्होंने वेदों का संकलन किया, महाभारत लिखा और पुराणों का संहिताकरण किया — आदि गुरु को विशेष प्रार्थना अर्पित करें। व्यास वन्दना श्लोक पढ़ें। इसीलिए इस दिन को व्यास पूर्णिमा भी कहते हैं।',
-        sa: 'वेदव्यासाय — आदिगुरवे यो वेदान् सङ्कलितवान् महाभारतं रचितवान् पुराणानि च संहितीकृतवान् — विशेषप्रार्थनां समर्पयेत्। व्यासवन्दनाश्लोकं पठेत्। अतः अयं दिनं व्यासपूर्णिमा इत्यपि उच्यते।',
+        en: 'Offer special prayers to Veda Vyasa  –  the Adi Guru who compiled the Vedas, authored the Mahabharata, and codified the Puranas. Chant the Vyasa Vandana shloka. This is why the day is also called Vyasa Purnima.',
+        hi: 'वेदव्यास  –  जिन्होंने वेदों का संकलन किया, महाभारत लिखा और पुराणों का संहिताकरण किया  –  आदि गुरु को विशेष प्रार्थना अर्पित करें। व्यास वन्दना श्लोक पढ़ें। इसीलिए इस दिन को व्यास पूर्णिमा भी कहते हैं।',
+        sa: 'वेदव्यासाय  –  आदिगुरवे यो वेदान् सङ्कलितवान् महाभारतं रचितवान् पुराणानि च संहितीकृतवान्  –  विशेषप्रार्थनां समर्पयेत्। व्यासवन्दनाश्लोकं पठेत्। अतः अयं दिनं व्यासपूर्णिमा इत्यपि उच्यते।',
       },
       mantraRef: 'vyasa-vandana',
       duration: '5 min',
@@ -138,9 +138,9 @@ export const GURU_PURNIMA_PUJA: PujaVidhi = {
       step: 9,
       title: { en: 'Seek Blessings & Study', hi: 'आशीर्वाद लें और अध्ययन करें', sa: 'आशीर्वादग्रहणम् अध्ययनं च' },
       description: {
-        en: 'Prostrate before the Guru\'s image and seek blessings for knowledge and wisdom. On this day, begin reading or studying something new — a new scripture, a new skill, or a new subject — as an offering to the Guru.',
-        hi: 'गुरु के चित्र के सामने साष्टाङ्ग प्रणाम करें और ज्ञान व विवेक का आशीर्वाद माँगें। इस दिन कुछ नया पढ़ना या सीखना शुरू करें — कोई नया शास्त्र, कोई नया कौशल, या कोई नया विषय — गुरु को अर्पण के रूप में।',
-        sa: 'गुरोः चित्रस्य पुरतः साष्टाङ्गप्रणामं कृत्वा ज्ञानविवेकस्य आशीर्वादं याचेत्। अस्मिन् दिने किमपि नवं पठितुम् अध्येतुं वा आरभेत् — नवं शास्त्रम्, नवं कौशलम्, नवं विषयं वा — गुरवे अर्पणरूपेण।',
+        en: 'Prostrate before the Guru\'s image and seek blessings for knowledge and wisdom. On this day, begin reading or studying something new  –  a new scripture, a new skill, or a new subject  –  as an offering to the Guru.',
+        hi: 'गुरु के चित्र के सामने साष्टाङ्ग प्रणाम करें और ज्ञान व विवेक का आशीर्वाद माँगें। इस दिन कुछ नया पढ़ना या सीखना शुरू करें  –  कोई नया शास्त्र, कोई नया कौशल, या कोई नया विषय  –  गुरु को अर्पण के रूप में।',
+        sa: 'गुरोः चित्रस्य पुरतः साष्टाङ्गप्रणामं कृत्वा ज्ञानविवेकस्य आशीर्वादं याचेत्। अस्मिन् दिने किमपि नवं पठितुम् अध्येतुं वा आरभेत्  –  नवं शास्त्रम्, नवं कौशलम्, नवं विषयं वा  –  गुरवे अर्पणरूपेण।',
       },
       duration: '15 min',
       essential: false,
@@ -172,9 +172,9 @@ export const GURU_PURNIMA_PUJA: PujaVidhi = {
         sa: 'गुरुः ब्रह्मा (सृष्टिकर्ता), गुरुः विष्णुः (पालयिता), गुरुः महेश्वरः (संहारकर्ता)। गुरुः साक्षात् परब्रह्म। तस्मै श्रीगुरवे नमः।',
       },
       usage: {
-        en: 'The primary mantra for Guru Purnima — recite at every step of the puja and throughout the day',
-        hi: 'गुरु पूर्णिमा का मुख्य मन्त्र — पूजा के प्रत्येक चरण में और पूरे दिन पढ़ें',
-        sa: 'गुरुपूर्णिमायाः प्रधानमन्त्रः — पूजायाः प्रतिचरणे सम्पूर्णे दिने च पठेत्',
+        en: 'The primary mantra for Guru Purnima  –  recite at every step of the puja and throughout the day',
+        hi: 'गुरु पूर्णिमा का मुख्य मन्त्र  –  पूजा के प्रत्येक चरण में और पूरे दिन पढ़ें',
+        sa: 'गुरुपूर्णिमायाः प्रधानमन्त्रः  –  पूजायाः प्रतिचरणे सम्पूर्णे दिने च पठेत्',
       },
     },
     {
@@ -200,8 +200,8 @@ export const GURU_PURNIMA_PUJA: PujaVidhi = {
       iast: 'vyāsaṃ vasiṣṭhanaptāraṃ śakteḥ pautramakalmaṣam |\nparāśarātmajaṃ vande śukatātaṃ taponidhim ||',
       meaning: {
         en: 'I salute Vyasa, the great-grandson of Vasishtha, the sinless grandson of Shakti, the son of Parashara, the father of Shuka, the treasure of austerity.',
-        hi: 'मैं व्यास को नमन करता हूँ — वसिष्ठ के प्रपौत्र, शक्ति के निर्मल पौत्र, पराशर के पुत्र, शुक के पिता, तपस्या के भण्डार।',
-        sa: 'व्यासं वन्दे — वसिष्ठस्य नप्तारं, शक्तेः अकल्मषं पौत्रं, पराशरस्य आत्मजं, शुकस्य तातं, तपोनिधिम्।',
+        hi: 'मैं व्यास को नमन करता हूँ  –  वसिष्ठ के प्रपौत्र, शक्ति के निर्मल पौत्र, पराशर के पुत्र, शुक के पिता, तपस्या के भण्डार।',
+        sa: 'व्यासं वन्दे  –  वसिष्ठस्य नप्तारं, शक्तेः अकल्मषं पौत्रं, पराशरस्य आत्मजं, शुकस्य तातं, तपोनिधिम्।',
       },
       usage: {
         en: 'Recite during the Vyasa Vandana step to honour the Adi Guru of the Vedic tradition',
@@ -256,14 +256,14 @@ export const GURU_PURNIMA_PUJA: PujaVidhi = {
 
   precautions: [
     {
-      en: 'Approach the Guru (or Guru\'s image) with utmost humility — ego is the greatest barrier to receiving the Guru\'s grace',
-      hi: 'गुरु (या गुरु के चित्र) के पास अत्यन्त विनम्रता से जाएँ — अहंकार गुरु कृपा प्राप्ति में सबसे बड़ी बाधा है',
-      sa: 'गुरुं (अथवा गुरोः चित्रम्) परमविनयेन उपगच्छेत् — अहङ्कारः गुरुकृपाप्राप्तौ सर्वोत्तमा बाधा',
+      en: 'Approach the Guru (or Guru\'s image) with utmost humility  –  ego is the greatest barrier to receiving the Guru\'s grace',
+      hi: 'गुरु (या गुरु के चित्र) के पास अत्यन्त विनम्रता से जाएँ  –  अहंकार गुरु कृपा प्राप्ति में सबसे बड़ी बाधा है',
+      sa: 'गुरुं (अथवा गुरोः चित्रम्) परमविनयेन उपगच्छेत्  –  अहङ्कारः गुरुकृपाप्राप्तौ सर्वोत्तमा बाधा',
     },
     {
-      en: 'Do not step on or disrespect books, instruments, or any source of knowledge on this day — they represent the Guru\'s teachings',
-      hi: 'इस दिन पुस्तकों, उपकरणों या ज्ञान के किसी भी स्रोत पर पैर न रखें या अपमान न करें — वे गुरु की शिक्षाओं का प्रतिनिधित्व करते हैं',
-      sa: 'अस्मिन् दिने पुस्तकानि उपकरणानि ज्ञानस्रोतांसि वा पादेन न स्पृशेत् अवमानं वा न कुर्यात् — तानि गुरोः शिक्षाणां प्रतिनिधयः',
+      en: 'Do not step on or disrespect books, instruments, or any source of knowledge on this day  –  they represent the Guru\'s teachings',
+      hi: 'इस दिन पुस्तकों, उपकरणों या ज्ञान के किसी भी स्रोत पर पैर न रखें या अपमान न करें  –  वे गुरु की शिक्षाओं का प्रतिनिधित्व करते हैं',
+      sa: 'अस्मिन् दिने पुस्तकानि उपकरणानि ज्ञानस्रोतांसि वा पादेन न स्पृशेत् अवमानं वा न कुर्यात्  –  तानि गुरोः शिक्षाणां प्रतिनिधयः',
     },
     {
       en: 'If possible, visit your Guru in person and offer seva (selfless service) rather than just material gifts',
@@ -271,9 +271,9 @@ export const GURU_PURNIMA_PUJA: PujaVidhi = {
       sa: 'यदि शक्यं गुरुं साक्षात् मिलित्वा केवलभौतिकोपहारात् सेवां (निस्स्वार्थसेवाम्) एव समर्पयेत्',
     },
     {
-      en: 'Spend time reading, studying, or learning something new — this is the best offering to the Guru',
-      hi: 'पढ़ने, अध्ययन करने या कुछ नया सीखने में समय बिताएँ — यह गुरु को सबसे उत्तम अर्पण है',
-      sa: 'पठने अध्ययने किमपि नवम् अध्यतुं वा समयं यापयेत् — इदं गुरवे सर्वोत्तमम् अर्पणम्',
+      en: 'Spend time reading, studying, or learning something new  –  this is the best offering to the Guru',
+      hi: 'पढ़ने, अध्ययन करने या कुछ नया सीखने में समय बिताएँ  –  यह गुरु को सबसे उत्तम अर्पण है',
+      sa: 'पठने अध्ययने किमपि नवम् अध्यतुं वा समयं यापयेत्  –  इदं गुरवे सर्वोत्तमम् अर्पणम्',
     },
   ],
 

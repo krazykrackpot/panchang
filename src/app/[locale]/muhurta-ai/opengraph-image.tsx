@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = 'Muhurta AI Scanner — Find Your Auspicious Time | Dekho Panchang';
+export const alt = 'Muhurta AI Scanner  –  Find Your Auspicious Time | Dekho Panchang';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -48,7 +48,7 @@ export default function Image() {
           }}
         />
 
-        {/* Decorative SVG — stylised sun/clock dial representing auspicious timing */}
+        {/* Decorative SVG  –  stylised sun/clock dial representing auspicious timing */}
         <div style={{ display: 'flex', marginBottom: 20 }}>
           <svg width={100} height={100} viewBox="0 0 100 100">
             {/* Outer ring */}

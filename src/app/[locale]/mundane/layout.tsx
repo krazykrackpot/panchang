@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Layout({ children, params }: Props) {
   const { locale } = await params;
   const toolLD = generateToolLD(
-    'Mundane Astrology — National Charts & World Forecast',
+    'Mundane Astrology  –  National Charts & World Forecast',
     'Explore national foundation charts for 22 nations, Jupiter-Saturn Great Conjunction timeline, and domain-by-domain world forecasts using Vedic mundane astrology.',
     `https://dekhopanchang.com/${locale}/mundane`,
   );

@@ -55,7 +55,7 @@ const YOGA_PLANET_MAP: Record<string, number[]> = {
   dhana_yoga: [4, 5],
 };
 
-/** Extract involved planets for a yoga — uses static map first, then keyword extraction */
+/** Extract involved planets for a yoga  –  uses static map first, then keyword extraction */
 function getInvolvedPlanets(yoga: YogaComplete): { id: number; en: string; hi: string }[] {
   // Check static map first
   const mapped = YOGA_PLANET_MAP[yoga.id];
@@ -91,11 +91,11 @@ function getActivationNote(yoga: YogaComplete, isEn: boolean): string | null {
     if (isEn) {
       const dashaList = planetNames.map(n => `${n} Mahadasha`).join(', ');
       const antarList = planetNames.map(n => `${n} Antardasha`).join(' or ');
-      return `This yoga activates most strongly during ${dashaList}, or ${antarList}. These are your peak windows to pursue its promises — plan major life moves accordingly.`;
+      return `This yoga activates most strongly during ${dashaList}, or ${antarList}. These are your peak windows to pursue its promises  –  plan major life moves accordingly.`;
     } else {
       const dashaList = planetNames.map(n => `${n} महादशा`).join(', ');
       const antarList = planetNames.map(n => `${n} अन्तर्दशा`).join(' या ');
-      return `यह योग ${dashaList}, या ${antarList} के समय सबसे प्रभावी होता है। इन अवधियों में इसके शुभ फल चरम पर होते हैं — बड़े निर्णय इन्हीं काल में लें।`;
+      return `यह योग ${dashaList}, या ${antarList} के समय सबसे प्रभावी होता है। इन अवधियों में इसके शुभ फल चरम पर होते हैं  –  बड़े निर्णय इन्हीं काल में लें।`;
     }
   } else {
     if (isEn) {
@@ -119,7 +119,7 @@ export default function YogasTab({ yogas, locale, isDevanagari, headingFont }: {
   const [filter, setFilter] = useState<'all' | 'present' | 'auspicious' | 'inauspicious'>('all');
   const [expandedYoga, setExpandedYoga] = useState<string | null>(null);
 
-  // Deduplicate yogas by ID — keep the one that's present, or first occurrence
+  // Deduplicate yogas by ID  –  keep the one that's present, or first occurrence
   const deduped = useMemo(() => {
     const seen = new Map<string, YogaComplete>();
     for (const y of yogas) {
@@ -180,8 +180,8 @@ export default function YogasTab({ yogas, locale, isDevanagari, headingFont }: {
         defaultOpen={false}
       >
         {isDevanagari
-          ? 'वैदिक ज्योतिष में "योग" एक विशिष्ट ग्रह संयोजन है जो एक निश्चित परिणाम उत्पन्न करता है — जैसे एक ब्रह्मांडीय नुस्खा। राजयोग शक्ति और अधिकार लाते हैं, धनयोग धन लाते हैं, महापुरुष योग असाधारण व्यक्तित्व बनाते हैं (केवल 5 होते हैं), और अशुभ योग चुनौतियाँ लाते हैं जो चरित्र निर्माण करती हैं। "उपस्थित" का अर्थ है कि यह संयोजन आपकी कुण्डली में विद्यमान है। "शक्ति" दिखाती है कि यह कितनी प्रभावशाली ढंग से काम करता है। हरा = शुभ, लाल = चुनौतीपूर्ण किंतु प्रायः परिवर्तनकारी।'
-          : 'In Vedic astrology, a \'Yoga\' is a specific planetary combination that produces a defined result — like a cosmic recipe. Raja Yogas bring power and authority, Dhana Yogas bring wealth, Mahapurusha Yogas create exceptional personalities (only 5 exist), and Inauspicious Yogas bring challenges that build character. \'Present\' means the combination exists in your chart. \'Strength\' shows how powerfully it operates. Green = auspicious, Red = challenging but often transformative.'}
+          ? 'वैदिक ज्योतिष में "योग" एक विशिष्ट ग्रह संयोजन है जो एक निश्चित परिणाम उत्पन्न करता है  –  जैसे एक ब्रह्मांडीय नुस्खा। राजयोग शक्ति और अधिकार लाते हैं, धनयोग धन लाते हैं, महापुरुष योग असाधारण व्यक्तित्व बनाते हैं (केवल 5 होते हैं), और अशुभ योग चुनौतियाँ लाते हैं जो चरित्र निर्माण करती हैं। "उपस्थित" का अर्थ है कि यह संयोजन आपकी कुण्डली में विद्यमान है। "शक्ति" दिखाती है कि यह कितनी प्रभावशाली ढंग से काम करता है। हरा = शुभ, लाल = चुनौतीपूर्ण किंतु प्रायः परिवर्तनकारी।'
+          : 'In Vedic astrology, a \'Yoga\' is a specific planetary combination that produces a defined result  –  like a cosmic recipe. Raja Yogas bring power and authority, Dhana Yogas bring wealth, Mahapurusha Yogas create exceptional personalities (only 5 exist), and Inauspicious Yogas bring challenges that build character. \'Present\' means the combination exists in your chart. \'Strength\' shows how powerfully it operates. Green = auspicious, Red = challenging but often transformative.'}
       </InfoBlock>
 
       {/* Filters */}

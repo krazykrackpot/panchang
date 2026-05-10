@@ -3,7 +3,7 @@
  *
  * Currently covers the Navamsha (D9) marriage/dharma domain with 108 entries
  * (9 planets x 12 houses). Interpretations are rooted in classical Jyotish
- * sources (BPHS, Phaladeepika) and contextualised for D9 — they are NOT
+ * sources (BPHS, Phaladeepika) and contextualised for D9  –  they are NOT
  * generic D1 planet-in-house text.
  *
  * Planet IDs: 0=Sun, 1=Moon, 2=Mars, 3=Mercury, 4=Jupiter, 5=Venus,
@@ -36,13 +36,13 @@ export function getVargaPlanetText(
 }
 
 // ---------------------------------------------------------------------------
-// D9 Marriage / Dharma interpretations — 108 entries
+// D9 Marriage / Dharma interpretations  –  108 entries
 // ---------------------------------------------------------------------------
 
 export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
   marriage: {
     // -----------------------------------------------------------------------
-    // Sun (0) — authority, ego, soul purpose in marriage
+    // Sun (0)  –  authority, ego, soul purpose in marriage
     // -----------------------------------------------------------------------
     0: {
       1: {
@@ -96,7 +96,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
     },
 
     // -----------------------------------------------------------------------
-    // Moon (1) — emotions, nurturing, mental connection in marriage
+    // Moon (1)  –  emotions, nurturing, mental connection in marriage
     // -----------------------------------------------------------------------
     1: {
       1: {
@@ -150,7 +150,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
     },
 
     // -----------------------------------------------------------------------
-    // Mars (2) — passion, energy, conflict in marriage
+    // Mars (2)  –  passion, energy, conflict in marriage
     // -----------------------------------------------------------------------
     2: {
       1: {
@@ -204,7 +204,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
     },
 
     // -----------------------------------------------------------------------
-    // Mercury (3) — communication, intellect, adaptability in marriage
+    // Mercury (3)  –  communication, intellect, adaptability in marriage
     // -----------------------------------------------------------------------
     3: {
       1: {
@@ -258,7 +258,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
     },
 
     // -----------------------------------------------------------------------
-    // Jupiter (4) — wisdom, dharma, blessing in marriage
+    // Jupiter (4)  –  wisdom, dharma, blessing in marriage
     // -----------------------------------------------------------------------
     4: {
       1: {
@@ -312,7 +312,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
     },
 
     // -----------------------------------------------------------------------
-    // Venus (5) — love, beauty, sensuality in marriage
+    // Venus (5)  –  love, beauty, sensuality in marriage
     // -----------------------------------------------------------------------
     5: {
       1: {
@@ -366,7 +366,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
     },
 
     // -----------------------------------------------------------------------
-    // Saturn (6) — delay, endurance, duty in marriage
+    // Saturn (6)  –  delay, endurance, duty in marriage
     // -----------------------------------------------------------------------
     6: {
       1: {
@@ -382,7 +382,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'नवांश तृतीय में शनि विवाह को जीवित रखने के लिए निरंतर प्रयास की आवश्यकता देता है। संवाद धीमा किंतु बंधन लचीला होता है।',
       },
       4: {
-        en: 'Saturn in the D9 4th house can limit domestic happiness initially — the home may feel austere or there may be property disputes. Over time, however, the marriage builds a solid, stable foundation.',
+        en: 'Saturn in the D9 4th house can limit domestic happiness initially  –  the home may feel austere or there may be property disputes. Over time, however, the marriage builds a solid, stable foundation.',
         hi: 'नवांश चतुर्थ में शनि प्रारंभ में गृहस्थ सुख सीमित कर सकता है, किंतु समय के साथ विवाह मजबूत नींव पर टिकता है।',
       },
       5: {
@@ -420,7 +420,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
     },
 
     // -----------------------------------------------------------------------
-    // Rahu (7) — unconventional, obsession, foreign in marriage
+    // Rahu (7)  –  unconventional, obsession, foreign in marriage
     // -----------------------------------------------------------------------
     7: {
       1: {
@@ -474,7 +474,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
     },
 
     // -----------------------------------------------------------------------
-    // Ketu (8) — detachment, past life, spirituality in marriage
+    // Ketu (8)  –  detachment, past life, spirituality in marriage
     // -----------------------------------------------------------------------
     8: {
       1: {
@@ -494,8 +494,8 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'नवांश चतुर्थ में केतु गृहस्थ जीवन से भावनात्मक विरक्ति बना सकता है। जातक भौतिक सुखों के बजाय आंतरिक शांति की खोज करता है।',
       },
       5: {
-        en: 'Ketu in the D9 5th house may bring unusual or spiritually significant children. Romance has a past-life quality — love feels ancient and familiar. Creative expression is intuitive but unconventional.',
-        hi: 'नवांश पंचम में केतु आध्यात्मिक रूप से महत्वपूर्ण संतान ला सकता है। प्रेम में पूर्वजन्म का गुण — प्राचीन और परिचित अनुभव होता है।',
+        en: 'Ketu in the D9 5th house may bring unusual or spiritually significant children. Romance has a past-life quality  –  love feels ancient and familiar. Creative expression is intuitive but unconventional.',
+        hi: 'नवांश पंचम में केतु आध्यात्मिक रूप से महत्वपूर्ण संतान ला सकता है। प्रेम में पूर्वजन्म का गुण  –  प्राचीन और परिचित अनुभव होता है।',
       },
       6: {
         en: 'Ketu in the D9 6th house can dissolve marital conflicts through spiritual acceptance. The native may be indifferent to petty disputes, which either resolves them or causes frustration in the spouse.',
@@ -503,7 +503,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
       },
       7: {
         en: 'Ketu in the D9 7th house indicates a deep past-life connection with the spouse, leading to either a profoundly spiritual partnership or detachment from marriage altogether. The partner may be ascetic, introverted, or spiritually inclined.',
-        hi: 'नवांश सप्तम में केतु जीवनसाथी से गहन पूर्वजन्म संबंध दर्शाता है — गहन आध्यात्मिक साझेदारी या विवाह से पूर्ण विरक्ति। साथी आध्यात्मिक प्रवृत्ति का होता है।',
+        hi: 'नवांश सप्तम में केतु जीवनसाथी से गहन पूर्वजन्म संबंध दर्शाता है  –  गहन आध्यात्मिक साझेदारी या विवाह से पूर्ण विरक्ति। साथी आध्यात्मिक प्रवृत्ति का होता है।',
       },
       8: {
         en: 'Ketu in the D9 8th house brings mystical experiences in intimacy and a sense of having lived through these transformations before. The native is unafraid of marital upheavals, viewing them as karmic purification.',
@@ -529,16 +529,16 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
   },
 
   // ---------------------------------------------------------------------------
-  // D10 Career / Profession (Dashamsha) interpretations — 108 entries
+  // D10 Career / Profession (Dashamsha) interpretations  –  108 entries
   // ---------------------------------------------------------------------------
 
   career: {
     // -----------------------------------------------------------------------
-    // Sun (0) — authority, leadership, government, personal branding
+    // Sun (0)  –  authority, leadership, government, personal branding
     // -----------------------------------------------------------------------
     0: {
       1: {
-        en: 'Sun in the D10 1st house creates a powerful professional identity. Colleagues see you as a natural authority figure, and personal branding comes effortlessly — your career is an extension of who you are.',
+        en: 'Sun in the D10 1st house creates a powerful professional identity. Colleagues see you as a natural authority figure, and personal branding comes effortlessly  –  your career is an extension of who you are.',
         hi: 'दशमांश लग्न में सूर्य शक्तिशाली व्यावसायिक पहचान बनाता है। सहकर्मी आपको स्वाभाविक अधिकारी मानते हैं और करियर आपकी पहचान का विस्तार होता है।',
       },
       2: {
@@ -574,7 +574,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'दशमांश नवम में सूर्य उच्च शिक्षा, प्रकाशन या अंतरराष्ट्रीय मंचों से करियर ऊंचा करता है। बॉस या गुरु आपकी क्षमता पहचानते हैं।',
       },
       10: {
-        en: 'Sun in the D10 10th house is a premier placement for leadership and public achievement. You are born for executive, government, or top-management roles — authority and recognition define your career.',
+        en: 'Sun in the D10 10th house is a premier placement for leadership and public achievement. You are born for executive, government, or top-management roles  –  authority and recognition define your career.',
         hi: 'दशमांश दशम में सूर्य नेतृत्व और सार्वजनिक उपलब्धि का सर्वोत्तम स्थान है। कार्यकारी, सरकारी या शीर्ष प्रबंधन भूमिकाओं के लिए जन्मे हैं।',
       },
       11: {
@@ -582,13 +582,13 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'दशमांश एकादश में सूर्य प्रभावशाली नेटवर्क से व्यावसायिक लाभ लाता है। सत्ता और सरकारी हलकों के संपर्क से करियर महत्वाकांक्षाएं पूरी होती हैं।',
       },
       12: {
-        en: 'Sun in the D10 12th house may indicate a career abroad or in behind-the-scenes roles. Authority is exercised quietly — hospitals, research labs, foreign governments, or spiritual institutions.',
+        en: 'Sun in the D10 12th house may indicate a career abroad or in behind-the-scenes roles. Authority is exercised quietly  –  hospitals, research labs, foreign governments, or spiritual institutions.',
         hi: 'दशमांश द्वादश में सूर्य विदेशी करियर या पर्दे के पीछे की भूमिकाओं का संकेत देता है। अस्पताल, शोध प्रयोगशालाओं या आध्यात्मिक संस्थानों में अधिकार।',
       },
     },
 
     // -----------------------------------------------------------------------
-    // Moon (1) — public image, emotional satisfaction, popularity at work
+    // Moon (1)  –  public image, emotional satisfaction, popularity at work
     // -----------------------------------------------------------------------
     1: {
       1: {
@@ -628,7 +628,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'दशमांश नवम में चंद्र शिक्षा, यात्रा या अंतर-सांस्कृतिक कार्य में करियर का पक्ष लेता है। विदेश या उच्च शिक्षा से व्यावसायिक वृद्धि।',
       },
       10: {
-        en: 'Moon in the D10 10th house makes your career public-facing and popularity-driven. You gain recognition through emotional connection with audiences — ideal for politics, hospitality, media, and public service.',
+        en: 'Moon in the D10 10th house makes your career public-facing and popularity-driven. You gain recognition through emotional connection with audiences  –  ideal for politics, hospitality, media, and public service.',
         hi: 'दशमांश दशम में चंद्र जनता से जुड़ा और लोकप्रियता-आधारित करियर बनाता है। राजनीति, आतिथ्य, मीडिया और जनसेवा के लिए आदर्श।',
       },
       11: {
@@ -642,7 +642,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
     },
 
     // -----------------------------------------------------------------------
-    // Mars (2) — drive, engineering, competition, action-oriented career
+    // Mars (2)  –  drive, engineering, competition, action-oriented career
     // -----------------------------------------------------------------------
     2: {
       1: {
@@ -666,8 +666,8 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'दशमांश पंचम में मंगल प्रतिस्पर्धी रचनात्मकता और सट्टा साहस लाता है। खेल, ट्रेडिंग या रचनात्मक निर्देशन में उत्कृष्टता।',
       },
       6: {
-        en: 'Mars in the D10 6th house is excellent for competitive careers — you crush workplace rivals. Ideal for military, surgery, law enforcement, litigation, or any profession where combating opposition is the daily routine.',
-        hi: 'दशमांश षष्ठ में मंगल प्रतिस्पर्धी करियर के लिए उत्कृष्ट है — कार्यस्थल प्रतिद्वंद्वियों पर विजय। सैन्य, शल्य चिकित्सा, कानून प्रवर्तन के लिए आदर्श।',
+        en: 'Mars in the D10 6th house is excellent for competitive careers  –  you crush workplace rivals. Ideal for military, surgery, law enforcement, litigation, or any profession where combating opposition is the daily routine.',
+        hi: 'दशमांश षष्ठ में मंगल प्रतिस्पर्धी करियर के लिए उत्कृष्ट है  –  कार्यस्थल प्रतिद्वंद्वियों पर विजय। सैन्य, शल्य चिकित्सा, कानून प्रवर्तन के लिए आदर्श।',
       },
       7: {
         en: 'Mars in the D10 7th house brings aggressive negotiation skills and combative business partnerships. You attract dynamic, action-oriented clients, though contractual disputes are possible.',
@@ -696,16 +696,16 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
     },
 
     // -----------------------------------------------------------------------
-    // Mercury (3) — intellect, communication, analytical profession
+    // Mercury (3)  –  intellect, communication, analytical profession
     // -----------------------------------------------------------------------
     3: {
       1: {
-        en: 'Mercury in the D10 1st house creates an intellectually sharp professional identity. You are known for analytical thinking, verbal dexterity, and adaptability — the quintessential knowledge worker.',
+        en: 'Mercury in the D10 1st house creates an intellectually sharp professional identity. You are known for analytical thinking, verbal dexterity, and adaptability  –  the quintessential knowledge worker.',
         hi: 'दशमांश लग्न में बुध बौद्धिक रूप से तीक्ष्ण व्यावसायिक पहचान बनाता है। विश्लेषणात्मक सोच, वाक्चातुर्य और अनुकूलन क्षमता के लिए जाने जाते हैं।',
       },
       2: {
-        en: 'Mercury in the D10 2nd house indicates income through communication-based careers — writing, accounting, data analysis, or financial advisory. Professional speech is articulate and detail-oriented.',
-        hi: 'दशमांश द्वितीय में बुध संवाद-आधारित करियर से आय दर्शाता है — लेखन, लेखांकन, डेटा विश्लेषण। व्यावसायिक वाणी स्पष्ट और विस्तृत होती है।',
+        en: 'Mercury in the D10 2nd house indicates income through communication-based careers  –  writing, accounting, data analysis, or financial advisory. Professional speech is articulate and detail-oriented.',
+        hi: 'दशमांश द्वितीय में बुध संवाद-आधारित करियर से आय दर्शाता है  –  लेखन, लेखांकन, डेटा विश्लेषण। व्यावसायिक वाणी स्पष्ट और विस्तृत होती है।',
       },
       3: {
         en: 'Mercury in the D10 3rd house is exceptional for marketing, journalism, copywriting, and business communication. Short work trips are frequent and fruitful, and multitasking is your professional superpower.',
@@ -720,7 +720,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'दशमांश पंचम में बुध रचनात्मक लेखन, गेम डिज़ाइन, शैक्षिक सामग्री या विश्लेषण में उत्कृष्ट है। बुद्धि और तर्क से मार्गदर्शन।',
       },
       6: {
-        en: 'Mercury in the D10 6th house brings analytical prowess to problem-solving roles. You excel in auditing, quality control, debugging, legal analysis, or healthcare administration — detail work under pressure.',
+        en: 'Mercury in the D10 6th house brings analytical prowess to problem-solving roles. You excel in auditing, quality control, debugging, legal analysis, or healthcare administration  –  detail work under pressure.',
         hi: 'दशमांश षष्ठ में बुध समस्या-समाधान भूमिकाओं में विश्लेषणात्मक कौशल लाता है। ऑडिटिंग, गुणवत्ता नियंत्रण, कानूनी विश्लेषण में श्रेष्ठता।',
       },
       7: {
@@ -736,8 +736,8 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'दशमांश नवम में बुध शिक्षा, प्रकाशन, अनुवाद, अंतरराष्ट्रीय व्यापार या कानून में करियर को आगे बढ़ाता है। उच्च शिक्षा करियर-वर्धक है।',
       },
       10: {
-        en: 'Mercury in the D10 10th house is ideal for intellectual professions — technology, consulting, analytics, communications, or administration. Your career is defined by mental agility and communication mastery.',
-        hi: 'दशमांश दशम में बुध बौद्धिक पेशों के लिए आदर्श है — प्रौद्योगिकी, परामर्श, विश्लेषण या संचार। मानसिक चपलता और संवाद कौशल से करियर परिभाषित होता है।',
+        en: 'Mercury in the D10 10th house is ideal for intellectual professions  –  technology, consulting, analytics, communications, or administration. Your career is defined by mental agility and communication mastery.',
+        hi: 'दशमांश दशम में बुध बौद्धिक पेशों के लिए आदर्श है  –  प्रौद्योगिकी, परामर्श, विश्लेषण या संचार। मानसिक चपलता और संवाद कौशल से करियर परिभाषित होता है।',
       },
       11: {
         en: 'Mercury in the D10 11th house brings professional gains through intellectual networks, tech communities, and information-sharing circles. Career ambitions are fulfilled by staying connected and informed.',
@@ -750,7 +750,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
     },
 
     // -----------------------------------------------------------------------
-    // Jupiter (4) — wisdom, teaching, law, ethics, expansion
+    // Jupiter (4)  –  wisdom, teaching, law, ethics, expansion
     // -----------------------------------------------------------------------
     4: {
       1: {
@@ -804,7 +804,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
     },
 
     // -----------------------------------------------------------------------
-    // Venus (5) — arts, diplomacy, luxury, partnerships, hospitality
+    // Venus (5)  –  arts, diplomacy, luxury, partnerships, hospitality
     // -----------------------------------------------------------------------
     5: {
       1: {
@@ -844,8 +844,8 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'दशमांश नवम में शुक्र कला, संस्कृति, फैशन या आतिथ्य में अंतरराष्ट्रीय करियर को आशीर्वाद देता है। डिज़ाइन में उच्च शिक्षा से वृद्धि।',
       },
       10: {
-        en: 'Venus in the D10 10th house grants a glamorous, well-liked public career. You achieve recognition in arts, entertainment, fashion, diplomacy, or luxury commerce — beauty and grace define your professional legacy.',
-        hi: 'दशमांश दशम में शुक्र आकर्षक, लोकप्रिय सार्वजनिक करियर देता है। कला, मनोरंजन, फैशन या कूटनीति में मान्यता — सौंदर्य आपकी विरासत।',
+        en: 'Venus in the D10 10th house grants a glamorous, well-liked public career. You achieve recognition in arts, entertainment, fashion, diplomacy, or luxury commerce  –  beauty and grace define your professional legacy.',
+        hi: 'दशमांश दशम में शुक्र आकर्षक, लोकप्रिय सार्वजनिक करियर देता है। कला, मनोरंजन, फैशन या कूटनीति में मान्यता  –  सौंदर्य आपकी विरासत।',
       },
       11: {
         en: 'Venus in the D10 11th house brings professional gains through artistic communities, creative collaborations, and luxury industry networks. Career dreams are fulfilled with grace and abundant support.',
@@ -858,12 +858,12 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
     },
 
     // -----------------------------------------------------------------------
-    // Saturn (6) — discipline, slow rise, institutional authority, endurance
+    // Saturn (6)  –  discipline, slow rise, institutional authority, endurance
     // -----------------------------------------------------------------------
     6: {
       1: {
-        en: 'Saturn in the D10 1st house creates a serious, disciplined professional identity. Career success comes slowly but is built on bedrock — colleagues respect your perseverance and work ethic.',
-        hi: 'दशमांश लग्न में शनि गंभीर, अनुशासित व्यावसायिक पहचान बनाता है। करियर सफलता धीमी किंतु ठोस होती है — सहकर्मी आपकी कर्मनिष्ठा का सम्मान करते हैं।',
+        en: 'Saturn in the D10 1st house creates a serious, disciplined professional identity. Career success comes slowly but is built on bedrock  –  colleagues respect your perseverance and work ethic.',
+        hi: 'दशमांश लग्न में शनि गंभीर, अनुशासित व्यावसायिक पहचान बनाता है। करियर सफलता धीमी किंतु ठोस होती है  –  सहकर्मी आपकी कर्मनिष्ठा का सम्मान करते हैं।',
       },
       2: {
         en: 'Saturn in the D10 2nd house indicates steady but modest professional income that grows over time. You are frugal with professional resources, and career communication is measured and authoritative.',
@@ -878,7 +878,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'दशमांश चतुर्थ में शनि कठिन कार्यस्थल वातावरण बना सकता है किंतु रियल एस्टेट, सरकारी संपत्ति प्रबंधन में स्थिरता देता है।',
       },
       5: {
-        en: 'Saturn in the D10 5th house brings a structured, methodical approach to creative work. Speculative ventures are cautious, and mentoring is serious and traditional — you teach through discipline, not charm.',
+        en: 'Saturn in the D10 5th house brings a structured, methodical approach to creative work. Speculative ventures are cautious, and mentoring is serious and traditional  –  you teach through discipline, not charm.',
         hi: 'दशमांश पंचम में शनि रचनात्मक कार्य में संरचित, व्यवस्थित दृष्टिकोण लाता है। सट्टा उद्यम सतर्क और मार्गदर्शन अनुशासन-आधारित होता है।',
       },
       6: {
@@ -898,8 +898,8 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'दशमांश नवम में शनि परंपरा, कानून या संस्थागत शासन पर आधारित करियर देता है। अंतरराष्ट्रीय वृद्धि में विलंब किंतु उच्च शिक्षा आजीवन।',
       },
       10: {
-        en: 'Saturn in the D10 10th house is the classic indicator of a slow but unstoppable career rise to institutional authority. Government, judiciary, corporate governance, or infrastructure — your achievement is carved in stone.',
-        hi: 'दशमांश दशम में शनि संस्थागत अधिकार तक धीमी किंतु अजेय करियर वृद्धि का शास्त्रीय सूचक है। सरकार, न्यायपालिका या कॉर्पोरेट गवर्नेंस — उपलब्धि पत्थर पर खुदी।',
+        en: 'Saturn in the D10 10th house is the classic indicator of a slow but unstoppable career rise to institutional authority. Government, judiciary, corporate governance, or infrastructure  –  your achievement is carved in stone.',
+        hi: 'दशमांश दशम में शनि संस्थागत अधिकार तक धीमी किंतु अजेय करियर वृद्धि का शास्त्रीय सूचक है। सरकार, न्यायपालिका या कॉर्पोरेट गवर्नेंस  –  उपलब्धि पत्थर पर खुदी।',
       },
       11: {
         en: 'Saturn in the D10 11th house brings delayed but substantial professional gains. Career ambitions are fulfilled in the second half of life through patient, disciplined networking and long-term industry relationships.',
@@ -912,7 +912,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
     },
 
     // -----------------------------------------------------------------------
-    // Rahu (7) — unconventional career, technology, foreign, innovation
+    // Rahu (7)  –  unconventional career, technology, foreign, innovation
     // -----------------------------------------------------------------------
     7: {
       1: {
@@ -920,11 +920,11 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'दशमांश लग्न में राहु अपरंपरागत, सीमा-तोड़ व्यावसायिक पहचान बनाता है। उभरते उद्योगों में सफलता और करियर पारंपरिक श्रेणियों से परे।',
       },
       2: {
-        en: 'Rahu in the D10 2nd house indicates income from unconventional sources — cryptocurrency, foreign trade, tech startups, or disruptive business models. Professional speech can be persuasive but occasionally misleading.',
-        hi: 'दशमांश द्वितीय में राहु अपरंपरागत स्रोतों से आय दर्शाता है — क्रिप्टो, विदेशी व्यापार, टेक स्टार्टअप। वाणी प्रेरक किंतु कभी भ्रामक।',
+        en: 'Rahu in the D10 2nd house indicates income from unconventional sources  –  cryptocurrency, foreign trade, tech startups, or disruptive business models. Professional speech can be persuasive but occasionally misleading.',
+        hi: 'दशमांश द्वितीय में राहु अपरंपरागत स्रोतों से आय दर्शाता है  –  क्रिप्टो, विदेशी व्यापार, टेक स्टार्टअप। वाणी प्रेरक किंतु कभी भ्रामक।',
       },
       3: {
-        en: 'Rahu in the D10 3rd house gives exceptional boldness in business ventures and digital marketing. You excel in social media, viral content creation, or tech sales — unconventional communication channels are your strength.',
+        en: 'Rahu in the D10 3rd house gives exceptional boldness in business ventures and digital marketing. You excel in social media, viral content creation, or tech sales  –  unconventional communication channels are your strength.',
         hi: 'दशमांश तृतीय में राहु व्यापारिक उद्यमों और डिजिटल विपणन में असाधारण साहस देता है। सोशल मीडिया, वायरल कंटेंट या टेक बिक्री में श्रेष्ठता।',
       },
       4: {
@@ -932,8 +932,8 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'दशमांश चतुर्थ में राहु असामान्य या उच्च-तकनीक कार्यस्थल वातावरण लाता है। विदेशी कंपनियों से घर से कार्य या अत्याधुनिक प्रौद्योगिकी कार्यालय।',
       },
       5: {
-        en: 'Rahu in the D10 5th house brings innovation to creative fields — AI art, tech entertainment, gaming, or speculative trading with algorithms. Mentoring style is unorthodox and breaks traditional moulds.',
-        hi: 'दशमांश पंचम में राहु रचनात्मक क्षेत्रों में नवाचार लाता है — AI कला, तकनीकी मनोरंजन, गेमिंग या एल्गोरिदमिक ट्रेडिंग।',
+        en: 'Rahu in the D10 5th house brings innovation to creative fields  –  AI art, tech entertainment, gaming, or speculative trading with algorithms. Mentoring style is unorthodox and breaks traditional moulds.',
+        hi: 'दशमांश पंचम में राहु रचनात्मक क्षेत्रों में नवाचार लाता है  –  AI कला, तकनीकी मनोरंजन, गेमिंग या एल्गोरिदमिक ट्रेडिंग।',
       },
       6: {
         en: 'Rahu in the D10 6th house gives cunning ability to overcome workplace enemies and competition. You excel in cybersecurity, foreign healthcare, alternative medicine, or roles that disrupt established service models.',
@@ -966,7 +966,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
     },
 
     // -----------------------------------------------------------------------
-    // Ketu (8) — detachment, spirituality, past-life skill, niche expertise
+    // Ketu (8)  –  detachment, spirituality, past-life skill, niche expertise
     // -----------------------------------------------------------------------
     8: {
       1: {
@@ -978,7 +978,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'दशमांश द्वितीय में केतु भौतिक आय संचय में अरुचि दर्शाता है। आध्यात्मिक सेवाओं, वैकल्पिक उपचार या विशिष्ट परामर्श से कमाई।',
       },
       3: {
-        en: 'Ketu in the D10 3rd house gives intuitive business instincts from past-life experience. You make professional decisions effortlessly without extensive analysis — marketing and sales feel like second nature.',
+        en: 'Ketu in the D10 3rd house gives intuitive business instincts from past-life experience. You make professional decisions effortlessly without extensive analysis  –  marketing and sales feel like second nature.',
         hi: 'दशमांश तृतीय में केतु पूर्वजन्म अनुभव से सहज व्यापारिक प्रवृत्ति देता है। विपणन और बिक्री सहज स्वभाव जैसे महसूस होते हैं।',
       },
       4: {
@@ -990,20 +990,20 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'दशमांश पंचम में केतु पूर्वजन्म प्रतिभा से विशिष्ट रचनात्मक या तकनीकी क्षेत्रों में महारत लाता है। रचनात्मक उत्पादन गहन मौलिक होता है।',
       },
       6: {
-        en: 'Ketu in the D10 6th house dissolves professional competition effortlessly — rivals find you hard to target because you operate outside normal competitive frameworks. Alternative medicine and spiritual healing are suited careers.',
-        hi: 'दशमांश षष्ठ में केतु सहज रूप से व्यावसायिक प्रतिस्पर्धा को भंग करता है — प्रतिद्वंद्वी आपको लक्ष्य बनाना कठिन पाते हैं। वैकल्पिक चिकित्सा उपयुक्त।',
+        en: 'Ketu in the D10 6th house dissolves professional competition effortlessly  –  rivals find you hard to target because you operate outside normal competitive frameworks. Alternative medicine and spiritual healing are suited careers.',
+        hi: 'दशमांश षष्ठ में केतु सहज रूप से व्यावसायिक प्रतिस्पर्धा को भंग करता है  –  प्रतिद्वंद्वी आपको लक्ष्य बनाना कठिन पाते हैं। वैकल्पिक चिकित्सा उपयुक्त।',
       },
       7: {
         en: 'Ketu in the D10 7th house may bring unusual or short-lived business partnerships. You work best independently, and clients are attracted to your niche expertise rather than conventional relationship-building.',
         hi: 'दशमांश सप्तम में केतु असामान्य या अल्पकालिक व्यापारिक साझेदारी ला सकता है। स्वतंत्र रूप से सर्वश्रेष्ठ कार्य और विशिष्ट विशेषज्ञता से ग्राहक आकर्षित।',
       },
       8: {
-        en: 'Ketu in the D10 8th house gives natural aptitude for research, occult, or spiritual healing professions. Career crises don\'t faze you — you view professional upheavals as opportunities for deeper purpose.',
+        en: 'Ketu in the D10 8th house gives natural aptitude for research, occult, or spiritual healing professions. Career crises don\'t faze you  –  you view professional upheavals as opportunities for deeper purpose.',
         hi: 'दशमांश अष्टम में केतु शोध, गूढ़ या आध्यात्मिक उपचार पेशों के लिए स्वाभाविक योग्यता देता है। करियर संकट आपको विचलित नहीं करते।',
       },
       9: {
-        en: 'Ketu in the D10 9th house indicates past-life wisdom applied to career — you may instinctively know your dharmic professional path without formal guidance. Careers in spirituality, astrology, or ancient knowledge systems suit well.',
-        hi: 'दशमांश नवम में केतु करियर में पूर्वजन्म ज्ञान का संकेत देता है — बिना औपचारिक मार्गदर्शन के धार्मिक पेशे सहज ज्ञात। ज्योतिष या प्राचीन ज्ञान में उपयुक्त।',
+        en: 'Ketu in the D10 9th house indicates past-life wisdom applied to career  –  you may instinctively know your dharmic professional path without formal guidance. Careers in spirituality, astrology, or ancient knowledge systems suit well.',
+        hi: 'दशमांश नवम में केतु करियर में पूर्वजन्म ज्ञान का संकेत देता है  –  बिना औपचारिक मार्गदर्शन के धार्मिक पेशे सहज ज्ञात। ज्योतिष या प्राचीन ज्ञान में उपयुक्त।',
       },
       10: {
         en: 'Ketu in the D10 10th house makes the native indifferent to worldly career achievement and public status. You may achieve recognition paradoxically by not seeking it, or find purpose in work that transcends material success.',
@@ -1021,7 +1021,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
   },
 
   // ---------------------------------------------------------------------------
-  // D7 Saptamsha — Children / Progeny domain — 63 entries
+  // D7 Saptamsha  –  Children / Progeny domain  –  63 entries
   // 9 planets × houses 1, 2, 4, 5, 7, 9, 11
   // ---------------------------------------------------------------------------
   children: {
@@ -1102,7 +1102,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'सप्तमांश चतुर्थ में मंगल गतिशील, कभी-कभी तनावपूर्ण घरेलू वातावरण बना सकता है। जातक बच्चों का उग्र रक्षक होता है।',
       },
       5: {
-        en: 'Mars in the D7 5th house, if afflicted, can indicate risks or delays in childbirth. However, children who do arrive are bold, energetic, and competitive — natural leaders who blaze their own trails.',
+        en: 'Mars in the D7 5th house, if afflicted, can indicate risks or delays in childbirth. However, children who do arrive are bold, energetic, and competitive  –  natural leaders who blaze their own trails.',
         hi: 'सप्तमांश पंचम में मंगल, यदि पीड़ित हो, संतान में विलंब या जोखिम का संकेत दे सकता है। आने वाले बच्चे साहसी और प्रतिस्पर्धी नेता होते हैं।',
       },
       7: {
@@ -1253,7 +1253,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'सप्तमांश द्वितीय में राहु बच्चों के इर्द-गिर्द जटिल पारिवारिक गतिशीलता बना सकता है। परिवार में अपरंपरागत जोड़ संभव।',
       },
       4: {
-        en: 'Rahu in the D7 4th house creates an unusual or disrupted home environment for children. The native may parent in unconventional settings — cross-cultural households, blended families, or foreign lands.',
+        en: 'Rahu in the D7 4th house creates an unusual or disrupted home environment for children. The native may parent in unconventional settings  –  cross-cultural households, blended families, or foreign lands.',
         hi: 'सप्तमांश चतुर्थ में राहु बच्चों के लिए असामान्य या अस्त-व्यस्त घरेलू वातावरण बनाता है।',
       },
       5: {
@@ -1288,7 +1288,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'सप्तमांश चतुर्थ में केतु माता-पिता-बच्चे के घरेलू बंधन में भावनात्मक दूरी बना सकता है। बच्चे आंतरिक शांति से दुर्लभ संबंध पाते हैं।',
       },
       5: {
-        en: 'Ketu in the D7 5th house often indicates past-life karma around progeny — the native may experience delays, detachment from children, or children who pursue highly spiritual or renunciate paths.',
+        en: 'Ketu in the D7 5th house often indicates past-life karma around progeny  –  the native may experience delays, detachment from children, or children who pursue highly spiritual or renunciate paths.',
         hi: 'सप्तमांश पंचम में केतु अक्सर संतान के इर्द-गिर्द पूर्वजन्म कर्म दर्शाता है। बच्चे आध्यात्मिक या वैराग्य मार्ग अपना सकते हैं।',
       },
       7: {
@@ -1307,7 +1307,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
   },
 
   // ---------------------------------------------------------------------------
-  // D2/D4 — Wealth / Dhan domain — 54 entries
+  // D2/D4  –  Wealth / Dhan domain  –  54 entries
   // 9 planets × houses 1, 2, 4, 5, 9, 11
   // ---------------------------------------------------------------------------
   wealth: {
@@ -1380,7 +1380,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'धनांश चतुर्थ में मंगल भूमि, निर्माण और अचल संपत्ति उद्यमों से धन प्रेरित करता है।',
       },
       5: {
-        en: 'Mars in the D2 5th house brings bold, high-risk speculative gains. The native may excel in trading, sports betting, or competitive investments — though losses are equally dramatic when Mars afflicts.',
+        en: 'Mars in the D2 5th house brings bold, high-risk speculative gains. The native may excel in trading, sports betting, or competitive investments  –  though losses are equally dramatic when Mars afflicts.',
         hi: 'धनांश पंचम में मंगल साहसी, उच्च-जोखिम सट्टा लाभ लाता है। जातक व्यापार या प्रतिस्पर्धी निवेश में उत्कृष्ट हो सकता है।',
       },
       9: {
@@ -1395,7 +1395,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
     // Mercury (3)
     3: {
       1: {
-        en: 'Mercury in the D2 1st house gives intellectual and communicative financial capacity. The native earns through trade, writing, media, and mental agility — accumulating wealth by leveraging information and wit.',
+        en: 'Mercury in the D2 1st house gives intellectual and communicative financial capacity. The native earns through trade, writing, media, and mental agility  –  accumulating wealth by leveraging information and wit.',
         hi: 'धनांश लग्न में बुध बौद्धिक और संचारशील वित्तीय क्षमता देता है। जातक व्यापार, लेखन, मीडिया से धन अर्जित करता है।',
       },
       2: {
@@ -1449,7 +1449,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
     // Venus (5)
     5: {
       1: {
-        en: 'Venus in the D2 1st house gives natural financial magnetism. The native attracts wealth through beauty, art, luxury goods, and relationships — money flows toward them as naturally as charm.',
+        en: 'Venus in the D2 1st house gives natural financial magnetism. The native attracts wealth through beauty, art, luxury goods, and relationships  –  money flows toward them as naturally as charm.',
         hi: 'धनांश लग्न में शुक्र प्राकृतिक वित्तीय आकर्षण देता है। जातक सौंदर्य, कला, विलासिता और संबंधों से धन आकर्षित करता है।',
       },
       2: {
@@ -1515,16 +1515,16 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'धनांश चतुर्थ में राहु असामान्य या विदेश-संबंधित संपत्ति लाभ लाता है।',
       },
       5: {
-        en: 'Rahu in the D2 5th house brings sudden, dramatic speculative gains — and equally sudden losses. The native is attracted to high-risk investment strategies and must temper speculative instincts with discipline.',
-        hi: 'धनांश पंचम में राहु अचानक, नाटकीय सट्टा लाभ — और समान रूप से अचानक हानि लाता है।',
+        en: 'Rahu in the D2 5th house brings sudden, dramatic speculative gains  –  and equally sudden losses. The native is attracted to high-risk investment strategies and must temper speculative instincts with discipline.',
+        hi: 'धनांश पंचम में राहु अचानक, नाटकीय सट्टा लाभ  –  और समान रूप से अचानक हानि लाता है।',
       },
       9: {
         en: 'Rahu in the D2 9th house generates fortune through foreign lands, unconventional guru connections, or ethically ambiguous long-distance trade. Windfalls can come from unexpected overseas quarters.',
         hi: 'धनांश नवम में राहु विदेशी भूमि, अपरंपरागत गुरु संबंधों या नैतिक रूप से अस्पष्ट दूरस्थ व्यापार से भाग्य उत्पन्न करता है।',
       },
       11: {
-        en: 'Rahu in the D2 11th house is a classic indicator of sudden gains through unconventional income streams — cryptocurrency, speculation, or technology-driven financial innovation. Gains can be spectacular.',
-        hi: 'धनांश एकादश में राहु अपरंपरागत आय धाराओं — क्रिप्टोकरेंसी, सट्टे या प्रौद्योगिकी — से अचानक लाभ का क्लासिक सूचक है।',
+        en: 'Rahu in the D2 11th house is a classic indicator of sudden gains through unconventional income streams  –  cryptocurrency, speculation, or technology-driven financial innovation. Gains can be spectacular.',
+        hi: 'धनांश एकादश में राहु अपरंपरागत आय धाराओं  –  क्रिप्टोकरेंसी, सट्टे या प्रौद्योगिकी  –  से अचानक लाभ का क्लासिक सूचक है।',
       },
     },
     // Ketu (8)
@@ -1557,14 +1557,14 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
   },
 
   // ---------------------------------------------------------------------------
-  // D20/D60 — Spiritual / Moksha domain — 36 entries
+  // D20/D60  –  Spiritual / Moksha domain  –  36 entries
   // 9 planets × houses 1, 5, 9, 12
   // ---------------------------------------------------------------------------
   spiritual: {
     // Sun (0)
     0: {
       1: {
-        en: 'Sun in the D20 1st house reveals a soul whose spiritual identity is strong and luminous. The native is drawn to solar, radiant spiritual paths — devotion to a divine father figure, Shaivism, or royal Vedic traditions.',
+        en: 'Sun in the D20 1st house reveals a soul whose spiritual identity is strong and luminous. The native is drawn to solar, radiant spiritual paths  –  devotion to a divine father figure, Shaivism, or royal Vedic traditions.',
         hi: 'विंशांश लग्न में सूर्य एक आत्मा दर्शाता है जिसकी आध्यात्मिक पहचान प्रबल और तेजस्वी है। जातक शैवागम या वैदिक परंपराओं की ओर आकर्षित होता है।',
       },
       5: {
@@ -1602,7 +1602,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
     // Mars (2)
     2: {
       1: {
-        en: 'Mars in the D20 1st house gives a warrior-like spiritual constitution. The native pursues the spiritual path with intense discipline and energy — suited for tantric practice, martial spiritual arts, or fierce renunciation.',
+        en: 'Mars in the D20 1st house gives a warrior-like spiritual constitution. The native pursues the spiritual path with intense discipline and energy  –  suited for tantric practice, martial spiritual arts, or fierce renunciation.',
         hi: 'विंशांश लग्न में मंगल योद्धा-सी आध्यात्मिक संरचना देता है। जातक तांत्रिक साधना, मार्शल आध्यात्मिक कला या कठोर संन्यास के लिए उपयुक्त।',
       },
       5: {
@@ -1633,7 +1633,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'विंशांश नवम में बुध विद्वान, वाक्पटु गुरु का आशीर्वाद देता है जो सटीक भाषा से धर्म प्रसारित करता है।',
       },
       12: {
-        en: 'Mercury in the D20 12th house brings liberation through intellectual silence — the native must ultimately surrender analytical mind to experience moksha beyond concepts and words.',
+        en: 'Mercury in the D20 12th house brings liberation through intellectual silence  –  the native must ultimately surrender analytical mind to experience moksha beyond concepts and words.',
         hi: 'विंशांश द्वादश में बुध बौद्धिक मौन से मुक्ति लाता है। जातक को मोक्ष का अनुभव करने के लिए अंततः विश्लेषणात्मक मन को समर्पित करना होगा।',
       },
     },
@@ -1701,7 +1701,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'विंशांश लग्न में राहु असामान्य, उदार और तीव्र रूप से जिज्ञासु आध्यात्मिक प्रकृति देता है।',
       },
       5: {
-        en: 'Rahu in the D20 5th house suggests complex past-life karmic patterns around spiritual practice — the native may have used spiritual power ambitiously in prior lives and now seeks genuine purification.',
+        en: 'Rahu in the D20 5th house suggests complex past-life karmic patterns around spiritual practice  –  the native may have used spiritual power ambitiously in prior lives and now seeks genuine purification.',
         hi: 'विंशांश पंचम में राहु आध्यात्मिक साधना के इर्द-गिर्द जटिल पूर्वजन्म कार्मिक पैटर्न का सुझाव देता है।',
       },
       9: {
@@ -1709,7 +1709,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'विंशांश नवम में राहु अपरंपरागत, विदेशी या गैर-पारंपरिक गुरु ला सकता है।',
       },
       12: {
-        en: 'Rahu in the D20 12th house creates a complex relationship with liberation — the native\'s desire for moksha can itself become an obsession. True surrender requires releasing even the ambition to be free.',
+        en: 'Rahu in the D20 12th house creates a complex relationship with liberation  –  the native\'s desire for moksha can itself become an obsession. True surrender requires releasing even the ambition to be free.',
         hi: 'विंशांश द्वादश में राहु मुक्ति के साथ जटिल संबंध बनाता है। सच्चे समर्पण के लिए मुक्त होने की महत्वाकांक्षा भी छोड़नी होती है।',
       },
     },
@@ -1735,7 +1735,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
   },
 
   // ---------------------------------------------------------------------------
-  // D30 Trimsamsha — Health / Vitality domain — 36 entries
+  // D30 Trimsamsha  –  Health / Vitality domain  –  36 entries
   // 9 planets × houses 1, 6, 8, 12
   // ---------------------------------------------------------------------------
   health: {
@@ -1750,7 +1750,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'त्रिंशांश षष्ठ में सूर्य प्रबल रोग-प्रतिरोधक क्षमता और इच्छाशक्ति से स्वास्थ्य शत्रुओं पर विजय की क्षमता देता है।',
       },
       8: {
-        en: 'Sun in the D30 8th house indicates hidden vitality challenges — conditions that are not immediately apparent but may surface under stress. Surgery or invasive procedures may be needed; recovery is ultimately possible.',
+        en: 'Sun in the D30 8th house indicates hidden vitality challenges  –  conditions that are not immediately apparent but may surface under stress. Surgery or invasive procedures may be needed; recovery is ultimately possible.',
         hi: 'त्रिंशांश अष्टम में सूर्य छिपी हुई जीवन शक्ति चुनौतियों का संकेत देता है। शल्य चिकित्सा की आवश्यकता हो सकती है लेकिन स्वास्थ्य-लाभ संभव है।',
       },
       12: {
@@ -1761,11 +1761,11 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
     // Moon (1)
     1: {
       1: {
-        en: 'Moon in the D30 1st house gives an emotionally sensitive constitution. Physical health is closely tied to mental and emotional states — when the mind is at peace, the body thrives.',
+        en: 'Moon in the D30 1st house gives an emotionally sensitive constitution. Physical health is closely tied to mental and emotional states  –  when the mind is at peace, the body thrives.',
         hi: 'त्रिंशांश लग्न में चंद्रमा भावनात्मक रूप से संवेदनशील संरचना देता है। जब मन शांत होता है, शरीर फलता-फूलता है।',
       },
       6: {
-        en: 'Moon in the D30 6th house creates susceptibility to emotionally triggered illnesses — digestive disorders, hormonal imbalances, and conditions worsened by anxiety. Emotional regulation is primary preventive care.',
+        en: 'Moon in the D30 6th house creates susceptibility to emotionally triggered illnesses  –  digestive disorders, hormonal imbalances, and conditions worsened by anxiety. Emotional regulation is primary preventive care.',
         hi: 'त्रिंशांश षष्ठ में चंद्रमा भावनात्मक रूप से उत्पन्न बीमारियों की संवेदनशीलता बनाता है। भावनात्मक नियमन प्राथमिक निवारक देखभाल है।',
       },
       8: {
@@ -1807,7 +1807,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'त्रिंशांश षष्ठ में बुध तंत्रिका तंत्र विकारों, श्वसन स्थितियों और मानसिक तनाव से बिगड़ने वाली स्थितियों की संवेदनशीलता बनाता है।',
       },
       8: {
-        en: 'Mercury in the D30 8th house may indicate hidden neurological conditions or diagnostic complexity — illnesses that require extensive testing to identify. The native often researches their own health deeply.',
+        en: 'Mercury in the D30 8th house may indicate hidden neurological conditions or diagnostic complexity  –  illnesses that require extensive testing to identify. The native often researches their own health deeply.',
         hi: 'त्रिंशांश अष्टम में बुध छिपी न्यूरोलॉजिकल स्थितियों या नैदानिक जटिलता का संकेत दे सकता है।',
       },
       12: {
@@ -1860,7 +1860,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'त्रिंशांश लग्न में शनि दुबली, स्थायी संरचना देता है जो बीमार पड़ने और ठीक होने दोनों में धीमी है।',
       },
       6: {
-        en: 'Saturn in the D30 6th house creates susceptibility to chronic, slow-developing conditions — arthritis, skeletal issues, and conditions of gradual degeneration. Preventive discipline and regular health monitoring are key.',
+        en: 'Saturn in the D30 6th house creates susceptibility to chronic, slow-developing conditions  –  arthritis, skeletal issues, and conditions of gradual degeneration. Preventive discipline and regular health monitoring are key.',
         hi: 'त्रिंशांश षष्ठ में शनि पुरानी, धीरे-धीरे विकसित होने वाली स्थितियों की संवेदनशीलता बनाता है। निवारक अनुशासन और नियमित स्वास्थ्य निगरानी आवश्यक।',
       },
       8: {
@@ -1868,7 +1868,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'त्रिंशांश अष्टम में शनि पुरानी लेकिन प्रबंधनीय छिपी स्वास्थ्य स्थितियों का संकेत देता है। बार-बार आने वाली बीमारियों के बावजूद दीर्घायु आम तौर पर प्रबल रहती है।',
       },
       12: {
-        en: 'Saturn in the D30 12th house may indicate prolonged hospitalisation or extended periods of physical isolation for health reasons. The native is built for endurance — long recoveries ultimately succeed.',
+        en: 'Saturn in the D30 12th house may indicate prolonged hospitalisation or extended periods of physical isolation for health reasons. The native is built for endurance  –  long recoveries ultimately succeed.',
         hi: 'त्रिंशांश द्वादश में शनि स्वास्थ्य कारणों से लंबे समय तक अस्पताल में भर्ती या शारीरिक एकांत का संकेत दे सकता है।',
       },
     },
@@ -1879,7 +1879,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'त्रिंशांश लग्न में राहु असामान्य, निदान करने में कठिन संवैधानिक स्वास्थ्य प्रोफ़ाइल देता है।',
       },
       6: {
-        en: 'Rahu in the D30 6th house may create mysterious or misdiagnosed chronic conditions. The native is drawn to alternative, foreign, or experimental medical treatments — some of which prove unexpectedly effective.',
+        en: 'Rahu in the D30 6th house may create mysterious or misdiagnosed chronic conditions. The native is drawn to alternative, foreign, or experimental medical treatments  –  some of which prove unexpectedly effective.',
         hi: 'त्रिंशांश षष्ठ में राहु रहस्यमय या गलत निदान वाली पुरानी स्थितियां बना सकता है।',
       },
       8: {
@@ -1898,7 +1898,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'त्रिंशांश लग्न में केतु आध्यात्मिक रूप से संवेदनशील, कभी-कभी नाजुक संरचना देता है। जातक मनोदैहिक स्थितियां अनुभव कर सकता है।',
       },
       6: {
-        en: 'Ketu in the D30 6th house gives an unusual relationship with disease — conditions may dissolve inexplicably, or the native may develop immunity through past-life health karma. Spiritual healing is especially effective.',
+        en: 'Ketu in the D30 6th house gives an unusual relationship with disease  –  conditions may dissolve inexplicably, or the native may develop immunity through past-life health karma. Spiritual healing is especially effective.',
         hi: 'त्रिंशांश षष्ठ में केतु रोग के साथ असामान्य संबंध देता है। स्थितियां अकथनीय रूप से ठीक हो सकती हैं। आध्यात्मिक उपचार विशेष रूप से प्रभावी है।',
       },
       8: {
@@ -1906,7 +1906,7 @@ export const VARGA_PLANET_TEXT: VargaPlanetTextMap = {
         hi: 'त्रिंशांश अष्टम में केतु रहस्यमय या दुर्लभ स्थितियों से पूर्वजन्म स्वास्थ्य कर्म दर्शाता है। आध्यात्मिक उपचार उल्लेखनीय परिणाम दे सकता है।',
       },
       12: {
-        en: 'Ketu in the D30 12th house points to liberation through illness — the native may experience transformative health crises that strip away ego and accelerate spiritual growth. Healing becomes a deeply mystical process.',
+        en: 'Ketu in the D30 12th house points to liberation through illness  –  the native may experience transformative health crises that strip away ego and accelerate spiritual growth. Healing becomes a deeply mystical process.',
         hi: 'त्रिंशांश द्वादश में केतु रोग से मुक्ति की ओर संकेत करता है। उपचार एक गहरी रहस्यमय प्रक्रिया बन जाती है।',
       },
     },

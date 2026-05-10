@@ -19,13 +19,13 @@ export const WEALTH_PATTERNS: ConvergencePattern[] = [
         hi: 'एक दुर्लभ धन संयोग। द्वितीयेश बलवान, बृहस्पति लाभ भाव में गोचर, राहु दशा अचानक अपरंपरागत लाभ लाती है। विरासत, निवेश प्रतिफल या अप्रत्याशित आय स्रोत सक्रिय। गणनात्मक जोखिम अनुपातहीन लाभ देते हैं।',
       },
       mild: {
-        en: 'Financial signals are turning positive. Multiple factors support income growth — stay alert for unconventional opportunities.',
-        hi: 'वित्तीय संकेत सकारात्मक। कई कारक आय वृद्धि का समर्थन — अपरंपरागत अवसरों के प्रति सतर्क रहें।',
+        en: 'Financial signals are turning positive. Multiple factors support income growth  –  stay alert for unconventional opportunities.',
+        hi: 'वित्तीय संकेत सकारात्मक। कई कारक आय वृद्धि का समर्थन  –  अपरंपरागत अवसरों के प्रति सतर्क रहें।',
       },
     },
     advice: {
-      en: 'Diversify investments, explore new income streams. Don\'t hoard — circulate wealth for maximum returns.',
-      hi: 'निवेश विविधीकृत करें, नए आय स्रोत खोजें। संचय न करें — अधिकतम प्रतिफल के लिए धन प्रवाहित करें।',
+      en: 'Diversify investments, explore new income streams. Don\'t hoard  –  circulate wealth for maximum returns.',
+      hi: 'निवेश विविधीकृत करें, नए आय स्रोत खोजें। संचय न करें  –  अधिकतम प्रतिफल के लिए धन प्रवाहित करें।',
     },
     laypersonNote: {
       en: 'When your wealth house, gains house, and dasha all align favorably, money flows from unexpected directions.',
@@ -49,8 +49,8 @@ export const WEALTH_PATTERNS: ConvergencePattern[] = [
     ],
     text: {
       full: {
-        en: 'A challenging financial convergence. Your wealth house is natally stressed, Saturn\'s transit is constricting income flow, and your dasha period activates the 12th house of losses. Savings deplete, debts accumulate, and expenses outpace income. This isn\'t permanent — but it demands austerity and strategic financial planning. Cut discretionary spending immediately.',
-        hi: 'चुनौतीपूर्ण वित्तीय संयोग। धन भाव तनावग्रस्त, शनि गोचर आय प्रवाह संकुचित, दशा व्यय भाव सक्रिय करती है। बचत घटती है, ऋण बढ़ता है। यह स्थायी नहीं — लेकिन मितव्ययिता और रणनीतिक वित्तीय योजना की माँग करता है।',
+        en: 'A challenging financial convergence. Your wealth house is natally stressed, Saturn\'s transit is constricting income flow, and your dasha period activates the 12th house of losses. Savings deplete, debts accumulate, and expenses outpace income. This isn\'t permanent  –  but it demands austerity and strategic financial planning. Cut discretionary spending immediately.',
+        hi: 'चुनौतीपूर्ण वित्तीय संयोग। धन भाव तनावग्रस्त, शनि गोचर आय प्रवाह संकुचित, दशा व्यय भाव सक्रिय करती है। बचत घटती है, ऋण बढ़ता है। यह स्थायी नहीं  –  लेकिन मितव्ययिता और रणनीतिक वित्तीय योजना की माँग करता है।',
       },
       mild: {
         en: 'Financial pressure is building. Income growth is sluggish while expenses rise. Tighten the budget proactively.',
@@ -58,12 +58,12 @@ export const WEALTH_PATTERNS: ConvergencePattern[] = [
       },
     },
     advice: {
-      en: 'Build an emergency fund. Avoid new debt. Renegotiate existing obligations. This transit passes — survive it wisely.',
+      en: 'Build an emergency fund. Avoid new debt. Renegotiate existing obligations. This transit passes  –  survive it wisely.',
       hi: 'आपातकालीन कोष बनाएँ। नया ऋण न लें। मौजूदा दायित्वों पर पुनर्वार्ता करें।',
     },
     laypersonNote: {
-      en: 'Multiple financial pressure points activating simultaneously — the chart is signaling to tighten, not expand.',
-      hi: 'एक साथ कई वित्तीय दबाव बिंदु सक्रिय — कुंडली संकुचन का संकेत दे रही है, विस्तार का नहीं।',
+      en: 'Multiple financial pressure points activating simultaneously  –  the chart is signaling to tighten, not expand.',
+      hi: 'एक साथ कई वित्तीय दबाव बिंदु सक्रिय  –  कुंडली संकुचन का संकेत दे रही है, विस्तार का नहीं।',
     },
     relatedSections: [
       TippanniSection.PlanetInsights,
@@ -84,8 +84,8 @@ export const WEALTH_PATTERNS: ConvergencePattern[] = [
     ],
     text: {
       full: {
-        en: 'Both your wealth houses have strong lords — a solid foundation for steady financial growth. You may not see dramatic windfalls, but money accumulates reliably through disciplined effort. Savings grow, investments compound, and financial security builds over time. This is the tortoise winning the race.',
-        hi: 'दोनों धन भावों के स्वामी बलवान — स्थिर वित्तीय वृद्धि की ठोस नींव। नाटकीय लाभ न दिखें, लेकिन अनुशासित प्रयास से धन विश्वसनीय रूप से संचित होता है।',
+        en: 'Both your wealth houses have strong lords  –  a solid foundation for steady financial growth. You may not see dramatic windfalls, but money accumulates reliably through disciplined effort. Savings grow, investments compound, and financial security builds over time. This is the tortoise winning the race.',
+        hi: 'दोनों धन भावों के स्वामी बलवान  –  स्थिर वित्तीय वृद्धि की ठोस नींव। नाटकीय लाभ न दिखें, लेकिन अनुशासित प्रयास से धन विश्वसनीय रूप से संचित होता है।',
       },
       mild: {
         en: 'Financial foundations are solid. Focus on consistent saving and long-term investment strategies.',
@@ -97,8 +97,8 @@ export const WEALTH_PATTERNS: ConvergencePattern[] = [
       hi: 'बचत स्वचालित करें, इंडेक्स फंड में निवेश, जल्दी अमीर बनो योजनाओं से बचें।',
     },
     laypersonNote: {
-      en: 'Strong foundations in both income houses — your chart is built for steady growth, not speculation.',
-      hi: 'दोनों आय भावों में मजबूत नींव — आपकी कुंडली स्थिर वृद्धि के लिए बनी है।',
+      en: 'Strong foundations in both income houses  –  your chart is built for steady growth, not speculation.',
+      hi: 'दोनों आय भावों में मजबूत नींव  –  आपकी कुंडली स्थिर वृद्धि के लिए बनी है।',
     },
     relatedSections: [
       TippanniSection.PlanetInsights,
@@ -121,8 +121,8 @@ export const WEALTH_PATTERNS: ConvergencePattern[] = [
         hi: 'पंचम भाव (सट्टा) तिगुना सक्रिय। स्वामी बलवान, बृहस्पति गोचर जोखिम अनुकूल, दशा ऊर्जावान। निवेश, शेयर बाजार और गणनात्मक जोखिम अब अधिक फल दे सकते हैं।',
       },
       mild: {
-        en: 'Speculative instincts are heightened. Small calculated risks may pay off — but don\'t bet the farm.',
-        hi: 'सट्टा वृत्ति तीव्र। छोटे गणनात्मक जोखिम फल दे सकते हैं — लेकिन सब दाँव पर न लगाएँ।',
+        en: 'Speculative instincts are heightened. Small calculated risks may pay off  –  but don\'t bet the farm.',
+        hi: 'सट्टा वृत्ति तीव्र। छोटे गणनात्मक जोखिम फल दे सकते हैं  –  लेकिन सब दाँव पर न लगाएँ।',
       },
     },
     advice: {
@@ -130,8 +130,8 @@ export const WEALTH_PATTERNS: ConvergencePattern[] = [
       hi: 'एक निश्चित सट्टा बजट आवंटित करें। निवेश पर अंतर्ज्ञान पर भरोसा करें, लेकिन स्टॉप-लॉस लगाएँ।',
     },
     laypersonNote: {
-      en: 'Your speculation house is receiving multiple boosts — a favorable window for calculated investment risks.',
-      hi: 'सट्टा भाव को कई बढ़ावा — गणनात्मक निवेश जोखिम के लिए अनुकूल खिड़की।',
+      en: 'Your speculation house is receiving multiple boosts  –  a favorable window for calculated investment risks.',
+      hi: 'सट्टा भाव को कई बढ़ावा  –  गणनात्मक निवेश जोखिम के लिए अनुकूल खिड़की।',
     },
     relatedSections: [
       TippanniSection.PlanetInsights,
@@ -155,7 +155,7 @@ export const WEALTH_PATTERNS: ConvergencePattern[] = [
         hi: 'सट्टे पर खतरे के संकेत। पंचम भाव जन्म से पीड़ित, पापी ग्रह विराजमान, राहु दशा जोखिम तर्क से परे बढ़ाती है। जुआ, क्रिप्टो, सट्टा शेयर विशेष रूप से खतरनाक। \'दोगुना दाँव\' का हर आवेग प्रश्नित होना चाहिए।',
       },
       mild: {
-        en: 'Speculative instincts may be unreliable now. Avoid major gambles — the chart advises caution with risk.',
+        en: 'Speculative instincts may be unreliable now. Avoid major gambles  –  the chart advises caution with risk.',
         hi: 'सट्टा वृत्ति अविश्वसनीय हो सकती है। बड़े जोखिम से बचें।',
       },
     },
@@ -189,7 +189,7 @@ export const WEALTH_PATTERNS: ConvergencePattern[] = [
         hi: 'संपत्ति सितारे संरेखित। चतुर्थेश बलवान और बृहस्पति गोचर इस क्षेत्र का विस्तार करता है। संपत्ति खरीदने, नवीनीकरण या रहन-सहन सुधारने का अनुकूल समय।',
       },
       mild: {
-        en: 'Property matters are favored. Explore real estate options — timing supports acquisition.',
+        en: 'Property matters are favored. Explore real estate options  –  timing supports acquisition.',
         hi: 'संपत्ति मामले अनुकूल। अचल संपत्ति विकल्प खोजें।',
       },
     },
@@ -198,7 +198,7 @@ export const WEALTH_PATTERNS: ConvergencePattern[] = [
       hi: 'ऋण पूर्व-स्वीकृति लें, संपत्ति देखें, मजबूती से बातचीत करें।',
     },
     laypersonNote: {
-      en: 'Your home and property sector is receiving Jupiter\'s expansive blessing — a natural window for real estate moves.',
+      en: 'Your home and property sector is receiving Jupiter\'s expansive blessing  –  a natural window for real estate moves.',
       hi: 'घर और संपत्ति क्षेत्र बृहस्पति का विस्तारक आशीर्वाद प्राप्त कर रहा है।',
     },
     relatedSections: [
@@ -217,7 +217,7 @@ export const WEALTH_PATTERNS: ConvergencePattern[] = [
     ],
     text: {
       full: {
-        en: 'Your 8th house of inheritance and transformation is activated. The 8th lord is strong, and your dasha period energizes this house. Legacy wealth, insurance payouts, partner\'s resources, or inheritance may become accessible. This also signals transformation through shared resources — mergers, joint ventures, or matrimonial property.',
+        en: 'Your 8th house of inheritance and transformation is activated. The 8th lord is strong, and your dasha period energizes this house. Legacy wealth, insurance payouts, partner\'s resources, or inheritance may become accessible. This also signals transformation through shared resources  –  mergers, joint ventures, or matrimonial property.',
         hi: 'अष्टम भाव (विरासत, परिवर्तन) सक्रिय। अष्टमेश बलवान और दशा इस भाव को ऊर्जावान करती है। विरासत, बीमा, साथी के संसाधन या मातृ-संपत्ति सुलभ हो सकती है।',
       },
       mild: {
@@ -230,7 +230,7 @@ export const WEALTH_PATTERNS: ConvergencePattern[] = [
       hi: 'वसीयत अपडेट करें। बीमा नीतियों की समीक्षा करें।',
     },
     laypersonNote: {
-      en: 'The 8th house governs other people\'s money and legacy — when it activates, resources flow from outside yourself.',
+      en: 'The 8th house governs other people\'s money and legacy  –  when it activates, resources flow from outside yourself.',
       hi: 'अष्टम भाव दूसरों के धन और विरासत को नियंत्रित करता है।',
     },
     relatedSections: [
@@ -250,11 +250,11 @@ export const WEALTH_PATTERNS: ConvergencePattern[] = [
     ],
     text: {
       full: {
-        en: 'Career disruption is reshaping your income. The 10th house is stressed, Rahu\'s dasha brings unconventional ambitions, and Saturn\'s transit pressures your professional sector. Your income source is likely to change — voluntarily or not. This can be the catalyst for building a more authentic livelihood aligned with your true calling.',
+        en: 'Career disruption is reshaping your income. The 10th house is stressed, Rahu\'s dasha brings unconventional ambitions, and Saturn\'s transit pressures your professional sector. Your income source is likely to change  –  voluntarily or not. This can be the catalyst for building a more authentic livelihood aligned with your true calling.',
         hi: 'करियर बाधा आपकी आय को पुनर्आकार दे रही है। दशम भाव तनावग्रस्त, राहु दशा अपरंपरागत महत्वाकांक्षा, शनि गोचर पेशेवर क्षेत्र पर दबाव। आय स्रोत बदलने की संभावना।',
       },
       mild: {
-        en: 'Income sources may shift as career evolves. Prepare for transition — build a financial buffer.',
+        en: 'Income sources may shift as career evolves. Prepare for transition  –  build a financial buffer.',
         hi: 'करियर विकास के साथ आय स्रोत बदल सकते हैं। संक्रमण की तैयारी करें।',
       },
     },
@@ -263,7 +263,7 @@ export const WEALTH_PATTERNS: ConvergencePattern[] = [
       hi: 'करियर बदलाव से पहले 6 महीने की बचत बनाएँ। संक्रमण के दौरान फ्रीलांस आय खोजें।',
     },
     laypersonNote: {
-      en: 'When career pressure and income themes converge, the universe is redirecting your livelihood — resist, and it\'s painful; align, and it\'s liberating.',
+      en: 'When career pressure and income themes converge, the universe is redirecting your livelihood  –  resist, and it\'s painful; align, and it\'s liberating.',
       hi: 'जब करियर दबाव और आय विषय मिलते हैं, ब्रह्मांड आजीविका पुनर्निर्देशित कर रहा है।',
     },
     relatedSections: [
@@ -286,7 +286,7 @@ export const WEALTH_PATTERNS: ConvergencePattern[] = [
     text: {
       full: {
         en: 'A dangerous debt convergence. Your 6th house (debts, enemies) is afflicted, Rahu\'s presence amplifies borrowing temptation, and Saturn\'s transit makes repayment harder. Loan sharks, credit card debt, and financial obligations spiral if not checked now. This is the chart screaming: stop borrowing.',
-        hi: 'खतरनाक ऋण संयोग। षष्ठ भाव पीड़ित, राहु उधार प्रलोभन बढ़ाता है, शनि गोचर भुगतान कठिन बनाता है। ऋण सर्पिल — कुंडली चिल्ला रही है: उधार बंद करो।',
+        hi: 'खतरनाक ऋण संयोग। षष्ठ भाव पीड़ित, राहु उधार प्रलोभन बढ़ाता है, शनि गोचर भुगतान कठिन बनाता है। ऋण सर्पिल  –  कुंडली चिल्ला रही है: उधार बंद करो।',
       },
       mild: {
         en: 'Debt signals are concerning. Avoid new loans and aggressively pay down existing obligations.',
@@ -319,7 +319,7 @@ export const WEALTH_PATTERNS: ConvergencePattern[] = [
     text: {
       full: {
         en: 'Ketu\'s dasha combined with Jupiter transiting your 12th house of surrender creates a natural inclination toward giving. Charitable donations, temple contributions, and acts of selfless service feel deeply satisfying now. Money spent on spiritual purposes or helping others brings more lasting fulfillment than material accumulation. This is a phase where giving IS receiving.',
-        hi: 'केतु दशा और बृहस्पति द्वादश भाव में गोचर — दान की प्राकृतिक प्रवृत्ति। दान, मंदिर योगदान और निःस्वार्थ सेवा गहरा संतोष देते हैं। आध्यात्मिक प्रयोजनों पर खर्च भौतिक संचय से अधिक स्थायी पूर्णता लाता है।',
+        hi: 'केतु दशा और बृहस्पति द्वादश भाव में गोचर  –  दान की प्राकृतिक प्रवृत्ति। दान, मंदिर योगदान और निःस्वार्थ सेवा गहरा संतोष देते हैं। आध्यात्मिक प्रयोजनों पर खर्च भौतिक संचय से अधिक स्थायी पूर्णता लाता है।',
       },
       mild: {
         en: 'A natural pull toward generosity. Small acts of charity feel unusually rewarding now.',
@@ -331,8 +331,8 @@ export const WEALTH_PATTERNS: ConvergencePattern[] = [
       hi: 'नियमित दान स्थापित करें। समय दें, केवल धन नहीं। बच्चे की शिक्षा प्रायोजित करें।',
     },
     laypersonNote: {
-      en: 'Ketu detaches from material, Jupiter expands spiritual giving — together they create a phase where generosity is your best investment.',
-      hi: 'केतु भौतिक से विरक्ति, बृहस्पति आध्यात्मिक दान का विस्तार — उदारता सबसे अच्छा निवेश।',
+      en: 'Ketu detaches from material, Jupiter expands spiritual giving  –  together they create a phase where generosity is your best investment.',
+      hi: 'केतु भौतिक से विरक्ति, बृहस्पति आध्यात्मिक दान का विस्तार  –  उदारता सबसे अच्छा निवेश।',
     },
     relatedSections: [
       TippanniSection.DashaSynthesis,

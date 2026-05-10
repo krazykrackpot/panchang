@@ -1,5 +1,5 @@
 /**
- * Health Prognosis — current health outlook based on running dasha/antardasha,
+ * Health Prognosis  –  current health outlook based on running dasha/antardasha,
  * transits through health houses (6, 8, 12), active doshas, and yogas.
  *
  * This is TIME-DEPENDENT: the same person gets different prognosis on different dates.
@@ -91,7 +91,7 @@ function healthHouseInvolvement(kundali: KundaliData, planetName: string): numbe
   const ascSign = kundali.ascendant.sign;
   const houses: number[] = [];
 
-  // House occupied — PlanetPosition.planet is a Graha with .id
+  // House occupied  –  PlanetPosition.planet is a Graha with .id
   const planet = kundali.planets.find(p => p.planet.id === pid);
   if (planet) {
     // PlanetPosition.sign is the sign number (1-12) directly
@@ -140,8 +140,8 @@ function getTransitHealthAlerts(kundali: KundaliData): HealthPrognosis['transitA
           planet: pName.en,
           house: transitHouse,
           effect: {
-            en: `${pName.en} transiting ${transitHouse}th house (${houseLabel}). ${isMalefic ? 'Extra care recommended.' : 'Mild influence — stay aware.'}`,
-            hi: `${pName.hi} ${transitHouse}वें भाव (${houseLabelHi}) में गोचर। ${isMalefic ? 'विशेष सावधानी आवश्यक।' : 'हल्का प्रभाव — सचेत रहें।'}`,
+            en: `${pName.en} transiting ${transitHouse}th house (${houseLabel}). ${isMalefic ? 'Extra care recommended.' : 'Mild influence  –  stay aware.'}`,
+            hi: `${pName.hi} ${transitHouse}वें भाव (${houseLabelHi}) में गोचर। ${isMalefic ? 'विशेष सावधानी आवश्यक।' : 'हल्का प्रभाव  –  सचेत रहें।'}`,
           },
           severity,
         });
@@ -176,8 +176,8 @@ export function computeHealthPrognosis(kundali: KundaliData): HealthPrognosis {
 
   if (dashaAffectsHealth) {
     const houses = [...new Set([...mahaHealthHouses, ...antarHealthHouses])].join(', ');
-    dashaImplEn += ` Active dasha lords connect to health houses (${houses}) — heightened health sensitivity this period.`;
-    dashaImplHi += ` सक्रिय दशा नाथ स्वास्थ्य भावों (${houses}) से जुड़े हैं — इस अवधि में स्वास्थ्य संवेदनशीलता बढ़ी हुई है।`;
+    dashaImplEn += ` Active dasha lords connect to health houses (${houses})  –  heightened health sensitivity this period.`;
+    dashaImplHi += ` सक्रिय दशा नाथ स्वास्थ्य भावों (${houses}) से जुड़े हैं  –  इस अवधि में स्वास्थ्य संवेदनशीलता बढ़ी हुई है।`;
   }
 
   if (antarPN) {
@@ -192,8 +192,8 @@ export function computeHealthPrognosis(kundali: KundaliData): HealthPrognosis {
   // Sade Sati
   const sadeSatiActive = !!kundali.sadeSati?.isActive;
   const sadeSatiNote = sadeSatiActive ? {
-    en: 'Sade Sati is active — Saturn\'s 7.5-year transit affects mental health, stress levels, and overall vitality. Prioritise rest, meditation, and stress management.',
-    hi: 'साढ़े साती सक्रिय है — शनि का 7.5 वर्ष का गोचर मानसिक स्वास्थ्य, तनाव और समग्र जीवन शक्ति को प्रभावित करता है। आराम, ध्यान और तनाव प्रबंधन को प्राथमिकता दें।',
+    en: 'Sade Sati is active  –  Saturn\'s 7.5-year transit affects mental health, stress levels, and overall vitality. Prioritise rest, meditation, and stress management.',
+    hi: 'साढ़े साती सक्रिय है  –  शनि का 7.5 वर्ष का गोचर मानसिक स्वास्थ्य, तनाव और समग्र जीवन शक्ति को प्रभावित करता है। आराम, ध्यान और तनाव प्रबंधन को प्राथमिकता दें।',
   } : null;
 
   // Active doshas from kundali yogas
@@ -202,15 +202,15 @@ export function computeHealthPrognosis(kundali: KundaliData): HealthPrognosis {
     for (const y of kundali.yogasComplete) {
       const name = typeof y.name === 'string' ? y.name : y.name?.en || '';
       if (name.toLowerCase().includes('kemdrum') || name.toLowerCase().includes('kemadruma')) {
-        activeDoshas.push({ name: 'Kemadruma', note: { en: 'Moon isolation — emotional health needs attention.', hi: 'चंद्र एकाकीपन — भावनात्मक स्वास्थ्य पर ध्यान दें।' } });
+        activeDoshas.push({ name: 'Kemadruma', note: { en: 'Moon isolation  –  emotional health needs attention.', hi: 'चंद्र एकाकीपन  –  भावनात्मक स्वास्थ्य पर ध्यान दें।' } });
       }
       if (name.toLowerCase().includes('grahan') || name.toLowerCase().includes('eclipse')) {
-        activeDoshas.push({ name: 'Grahan Dosha', note: { en: 'Eclipsed luminary — periodic low energy or confusion.', hi: 'ग्रहण दोष — समय-समय पर कम ऊर्जा या भ्रम।' } });
+        activeDoshas.push({ name: 'Grahan Dosha', note: { en: 'Eclipsed luminary  –  periodic low energy or confusion.', hi: 'ग्रहण दोष  –  समय-समय पर कम ऊर्जा या भ्रम।' } });
       }
     }
   }
   if (sadeSatiActive) {
-    activeDoshas.push({ name: 'Sade Sati', note: { en: 'Saturn transit over Moon — stress and fatigue.', hi: 'चंद्र पर शनि गोचर — तनाव और थकान।' } });
+    activeDoshas.push({ name: 'Sade Sati', note: { en: 'Saturn transit over Moon  –  stress and fatigue.', hi: 'चंद्र पर शनि गोचर  –  तनाव और थकान।' } });
   }
 
   // Recommendations
@@ -219,21 +219,21 @@ export function computeHealthPrognosis(kundali: KundaliData): HealthPrognosis {
   // Dasha-based
   const mahaId = PLANET_NAME_TO_ID[mahaName];
   if (mahaId === 6 || (antarName && PLANET_NAME_TO_ID[antarName] === 6)) { // Saturn
-    recommendations.push({ type: 'watch', text: { en: 'Saturn period active — watch joints, bones, and chronic conditions. Regular check-ups recommended.', hi: 'शनि दशा सक्रिय — जोड़ों, हड्डियों और पुरानी बीमारियों पर ध्यान दें। नियमित जाँच कराएँ।' } });
+    recommendations.push({ type: 'watch', text: { en: 'Saturn period active  –  watch joints, bones, and chronic conditions. Regular check-ups recommended.', hi: 'शनि दशा सक्रिय  –  जोड़ों, हड्डियों और पुरानी बीमारियों पर ध्यान दें। नियमित जाँच कराएँ।' } });
   }
   if (mahaId === 2 || (antarName && PLANET_NAME_TO_ID[antarName] === 2)) { // Mars
-    recommendations.push({ type: 'avoid', text: { en: 'Mars period active — higher accident/injury risk. Avoid reckless physical activity. Watch blood pressure.', hi: 'मंगल दशा सक्रिय — दुर्घटना/चोट का जोखिम बढ़ा। लापरवाह शारीरिक गतिविधि से बचें। रक्तचाप पर ध्यान दें।' } });
+    recommendations.push({ type: 'avoid', text: { en: 'Mars period active  –  higher accident/injury risk. Avoid reckless physical activity. Watch blood pressure.', hi: 'मंगल दशा सक्रिय  –  दुर्घटना/चोट का जोखिम बढ़ा। लापरवाह शारीरिक गतिविधि से बचें। रक्तचाप पर ध्यान दें।' } });
   }
   if (mahaId === 7 || (antarName && PLANET_NAME_TO_ID[antarName] === 7)) { // Rahu
-    recommendations.push({ type: 'watch', text: { en: 'Rahu period active — watch for mysterious or hard-to-diagnose symptoms. Avoid substance overuse. Mental health awareness.', hi: 'राहु दशा सक्रिय — रहस्यमय या कठिन लक्षणों पर ध्यान दें। नशे से बचें। मानसिक स्वास्थ्य सचेतना।' } });
+    recommendations.push({ type: 'watch', text: { en: 'Rahu period active  –  watch for mysterious or hard-to-diagnose symptoms. Avoid substance overuse. Mental health awareness.', hi: 'राहु दशा सक्रिय  –  रहस्यमय या कठिन लक्षणों पर ध्यान दें। नशे से बचें। मानसिक स्वास्थ्य सचेतना।' } });
   }
   if (mahaId === 8 || (antarName && PLANET_NAME_TO_ID[antarName] === 8)) { // Ketu
-    recommendations.push({ type: 'watch', text: { en: 'Ketu period active — watch digestive system and unexplained ailments. Spiritual practices and yoga are beneficial.', hi: 'केतु दशा सक्रिय — पाचन तंत्र और अस्पष्ट बीमारियों पर ध्यान दें। आध्यात्मिक अभ्यास और योग लाभकारी हैं।' } });
+    recommendations.push({ type: 'watch', text: { en: 'Ketu period active  –  watch digestive system and unexplained ailments. Spiritual practices and yoga are beneficial.', hi: 'केतु दशा सक्रिय  –  पाचन तंत्र और अस्पष्ट बीमारियों पर ध्यान दें। आध्यात्मिक अभ्यास और योग लाभकारी हैं।' } });
   }
 
   // Transit-based
   if (transitAlerts.some(a => a.severity === 'high')) {
-    recommendations.push({ type: 'avoid', text: { en: 'Malefic transit through 8th house — avoid risky activities, get regular health screenings.', hi: 'आठवें भाव में पाप ग्रह गोचर — जोखिम भरी गतिविधियों से बचें, नियमित स्वास्थ्य जाँच कराएँ।' } });
+    recommendations.push({ type: 'avoid', text: { en: 'Malefic transit through 8th house  –  avoid risky activities, get regular health screenings.', hi: 'आठवें भाव में पाप ग्रह गोचर  –  जोखिम भरी गतिविधियों से बचें, नियमित स्वास्थ्य जाँच कराएँ।' } });
   }
 
   // General positive
@@ -257,8 +257,8 @@ export function computeHealthPrognosis(kundali: KundaliData): HealthPrognosis {
   const toneHi = overallTone === 'good' ? 'अनुकूल' : overallTone === 'moderate' ? 'अधिकतर स्थिर, मामूली संवेदनशीलता' : overallTone === 'caution' ? 'ध्यान देने योग्य' : 'विशेष देखभाल आवश्यक';
 
   const summary: LocaleText = {
-    en: `Current health outlook: ${toneEn}. ${mahaPN.en} Mahadasha${antarPN ? ` / ${antarPN.en} Antardasha` : ''} is running. ${transitAlerts.length > 0 ? `${transitAlerts.length} transit alert(s) in health houses.` : 'No major transit pressure on health houses.'} ${sadeSatiActive ? 'Sade Sati adds stress — prioritise mental wellness.' : ''}`.trim(),
-    hi: `वर्तमान स्वास्थ्य दृष्टिकोण: ${toneHi}। ${mahaPN.hi} महादशा${antarPN ? ` / ${antarPN.hi} अंतर्दशा` : ''} चल रही है। ${transitAlerts.length > 0 ? `स्वास्थ्य भावों में ${transitAlerts.length} गोचर चेतावनी।` : 'स्वास्थ्य भावों पर कोई प्रमुख गोचर दबाव नहीं।'} ${sadeSatiActive ? 'साढ़े साती तनाव बढ़ाती है — मानसिक स्वास्थ्य को प्राथमिकता दें।' : ''}`.trim(),
+    en: `Current health outlook: ${toneEn}. ${mahaPN.en} Mahadasha${antarPN ? ` / ${antarPN.en} Antardasha` : ''} is running. ${transitAlerts.length > 0 ? `${transitAlerts.length} transit alert(s) in health houses.` : 'No major transit pressure on health houses.'} ${sadeSatiActive ? 'Sade Sati adds stress  –  prioritise mental wellness.' : ''}`.trim(),
+    hi: `वर्तमान स्वास्थ्य दृष्टिकोण: ${toneHi}। ${mahaPN.hi} महादशा${antarPN ? ` / ${antarPN.hi} अंतर्दशा` : ''} चल रही है। ${transitAlerts.length > 0 ? `स्वास्थ्य भावों में ${transitAlerts.length} गोचर चेतावनी।` : 'स्वास्थ्य भावों पर कोई प्रमुख गोचर दबाव नहीं।'} ${sadeSatiActive ? 'साढ़े साती तनाव बढ़ाती है  –  मानसिक स्वास्थ्य को प्राथमिकता दें।' : ''}`.trim(),
   };
 
   return {

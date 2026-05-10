@@ -651,14 +651,14 @@ function YearOverviewSection({ forecast, locale, t, headingFont, bodyFont }: {
           <div className="flex items-center gap-3">
             <GrahaIconById id={vp.varsheshvara?.planetId ?? 0} size={32} />
             <div>
-              <p className="text-gold-light font-bold text-sm" style={bodyFont}>{vp.varsheshvara?.planetName?.[locale] || '—'}</p>
+              <p className="text-gold-light font-bold text-sm" style={bodyFont}>{vp.varsheshvara?.planetName?.[locale] || ' – '}</p>
               <p className="text-text-secondary text-xs">{t.guidesThisYear}</p>
             </div>
           </div>
           <div className="text-center">
             <p className="text-text-secondary text-xs uppercase tracking-wider">{t.munthaIn}</p>
             <p className="text-gold-light text-sm font-medium" style={bodyFont}>
-              {vp.muntha?.signName?.[locale] || '—'} — {t.house} {vp.muntha?.house || '—'}
+              {vp.muntha?.signName?.[locale] || ' – '}  –  {t.house} {vp.muntha?.house || ' – '}
             </p>
           </div>
         </div>
@@ -687,13 +687,13 @@ function YearOverviewSection({ forecast, locale, t, headingFont, bodyFont }: {
             {dashaNarrative.currentAntar && ` / ${dashaNarrative.currentAntar.planetName[locale]}`}
           </p>
           <p className="text-text-secondary text-xs mt-0.5">
-            {new Date(dashaNarrative.currentMaha.startDate).toLocaleDateString()} — {new Date(dashaNarrative.currentMaha.endDate).toLocaleDateString()}
+            {new Date(dashaNarrative.currentMaha.startDate).toLocaleDateString()}  –  {new Date(dashaNarrative.currentMaha.endDate).toLocaleDateString()}
           </p>
         </div>
         <div>
           <p className="text-text-secondary text-xs uppercase tracking-wider mb-1">{t.yearSummary}</p>
           <p className="text-text-primary text-sm leading-relaxed" style={bodyFont}>
-            {vp.yearSummary?.[locale] || vp.yearSummary?.en || '—'}
+            {vp.yearSummary?.[locale] || vp.yearSummary?.en || ' – '}
           </p>
         </div>
       </div>
@@ -752,7 +752,7 @@ function SolarReturnSection({ forecast, locale, t, headingFont, bodyFont, overla
                   </span>
                 </div>
                 <p className="text-text-secondary text-xs" style={bodyFont}>
-                  {yoga.planet1[locale]} — {yoga.planet2[locale]}
+                  {yoga.planet1[locale]}  –  {yoga.planet2[locale]}
                 </p>
                 <p className="text-text-secondary text-xs mt-1 leading-relaxed" style={bodyFont}>
                   {yoga.description[locale]}
@@ -929,7 +929,7 @@ function TransitSummarySection({ forecast, locale, t, headingFont, bodyFont }: {
               <div className="flex-1 min-w-0">
                 <p className="text-gold-light text-sm font-bold" style={bodyFont}>{p.planetName[locale]}</p>
                 <p className="text-text-secondary text-xs" style={bodyFont}>
-                  {p.signName[locale]} — {t.house} {p.house} — {t.bindus}: {p.savBindu}
+                  {p.signName[locale]}  –  {t.house} {p.house}  –  {t.bindus}: {p.savBindu}
                 </p>
               </div>
               {p.isRetrograde && (
@@ -1036,7 +1036,7 @@ function DashaPeriodCard({ entry, label, locale, t, bodyFont, headingFont }: {
       <div className="mb-2">
         <p className="text-text-secondary text-xs uppercase tracking-wider mb-1">{t.house} {entry.house}</p>
         <p className="text-text-secondary text-xs">
-          {new Date(entry.startDate).toLocaleDateString()} — {new Date(entry.endDate).toLocaleDateString()}
+          {new Date(entry.startDate).toLocaleDateString()}  –  {new Date(entry.endDate).toLocaleDateString()}
         </p>
       </div>
       <div>
@@ -1074,7 +1074,7 @@ function KeyDatesSection({ forecast, locale, t, headingFont, bodyFont }: {
             <div key={q} className="rounded-xl border border-gold-primary/8 bg-bg-secondary/15 p-3">
               <p className="text-gold-primary text-xs font-bold uppercase tracking-wider mb-3">{quarterLabels[q - 1]}</p>
               {quarters[q].length === 0 ? (
-                <p className="text-text-secondary text-xs italic">—</p>
+                <p className="text-text-secondary text-xs italic"> – </p>
               ) : (
                 <div className="space-y-2">
                   {quarters[q].map((d, i) => {

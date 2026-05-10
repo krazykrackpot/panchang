@@ -1,15 +1,15 @@
 {
   "title": {
-    "en": "How We Calculate — The Math Behind Jyotish",
-    "hi": "हम कैसे गणना करते हैं — ज्योतिष के पीछे का गणित",
-    "sa": "वयं कथं गणयामः — ज्योतिषस्य गणितम्",
-    "ta": "எப்படி கணக்கிடுகிறோம் — ஜோதிடக் கணிதம்",
-    "te": "How We Calculate — The Math Behind Jyotish",
-    "bn": "How We Calculate — The Math Behind Jyotish",
-    "kn": "How We Calculate — The Math Behind Jyotish",
-    "mr": "How We Calculate — The Math Behind Jyotish",
-    "gu": "How We Calculate — The Math Behind Jyotish",
-    "mai": "How We Calculate — The Math Behind Jyotish"
+    "en": "How We Calculate  –  The Math Behind Jyotish",
+    "hi": "हम कैसे गणना करते हैं  –  ज्योतिष के पीछे का गणित",
+    "sa": "वयं कथं गणयामः  –  ज्योतिषस्य गणितम्",
+    "ta": "எப்படி கணக்கிடுகிறோம்  –  ஜோதிடக் கணிதம்",
+    "te": "How We Calculate  –  The Math Behind Jyotish",
+    "bn": "How We Calculate  –  The Math Behind Jyotish",
+    "kn": "How We Calculate  –  The Math Behind Jyotish",
+    "mr": "How We Calculate  –  The Math Behind Jyotish",
+    "gu": "How We Calculate  –  The Math Behind Jyotish",
+    "mai": "How We Calculate  –  The Math Behind Jyotish"
   },
   "subtitle": {
     "en": "A deep dive into the astronomical algorithms powering this Panchang",
@@ -36,16 +36,16 @@
     "mai": "Step 1: Julian Day Numbers"
   },
   "jdContent": {
-    "en": "All astronomical calculations start with converting a calendar date to a Julian Day Number (JD) — a continuous count of days since January 1, 4713 BCE. This eliminates the complexities of calendars (leap years, varying month lengths, calendar reforms). For example, January 1, 2000 at noon = JD 2451545.0 (called J2000.0, a standard reference epoch).",
-    "hi": "सभी खगोलीय गणनाएँ कैलेंडर तिथि को जूलियन दिन संख्या (JD) में बदलने से शुरू होती हैं — 1 जनवरी 4713 ईसा पूर्व से दिनों की निरन्तर गिनती। उदाहरण: 1 जनवरी 2000 दोपहर = JD 2451545.0।",
+    "en": "All astronomical calculations start with converting a calendar date to a Julian Day Number (JD)  –  a continuous count of days since January 1, 4713 BCE. This eliminates the complexities of calendars (leap years, varying month lengths, calendar reforms). For example, January 1, 2000 at noon = JD 2451545.0 (called J2000.0, a standard reference epoch).",
+    "hi": "सभी खगोलीय गणनाएँ कैलेंडर तिथि को जूलियन दिन संख्या (JD) में बदलने से शुरू होती हैं  –  1 जनवरी 4713 ईसा पूर्व से दिनों की निरन्तर गिनती। उदाहरण: 1 जनवरी 2000 दोपहर = JD 2451545.0।",
     "sa": "सर्वाणि खगोलीयगणितानि दिनाङ्कं जूलियनदिनसंख्यायां परिवर्तनेन आरभ्यन्ते।",
-    "ta": "All astronomical calculations start with converting a calendar date to a Julian Day Number (JD) — a continuous count of days since January 1, 4713 BCE. This eliminates the complexities of calendars (leap years, varying month lengths, calendar reforms). For example, January 1, 2000 at noon = JD 2451545.0 (called J2000.0, a standard reference epoch).",
-    "te": "All astronomical calculations start with converting a calendar date to a Julian Day Number (JD) — a continuous count of days since January 1, 4713 BCE. This eliminates the complexities of calendars (leap years, varying month lengths, calendar reforms). For example, January 1, 2000 at noon = JD 2451545.0 (called J2000.0, a standard reference epoch).",
-    "bn": "All astronomical calculations start with converting a calendar date to a Julian Day Number (JD) — a continuous count of days since January 1, 4713 BCE. This eliminates the complexities of calendars (leap years, varying month lengths, calendar reforms). For example, January 1, 2000 at noon = JD 2451545.0 (called J2000.0, a standard reference epoch).",
-    "kn": "All astronomical calculations start with converting a calendar date to a Julian Day Number (JD) — a continuous count of days since January 1, 4713 BCE. This eliminates the complexities of calendars (leap years, varying month lengths, calendar reforms). For example, January 1, 2000 at noon = JD 2451545.0 (called J2000.0, a standard reference epoch).",
-    "mr": "All astronomical calculations start with converting a calendar date to a Julian Day Number (JD) — a continuous count of days since January 1, 4713 BCE. This eliminates the complexities of calendars (leap years, varying month lengths, calendar reforms). For example, January 1, 2000 at noon = JD 2451545.0 (called J2000.0, a standard reference epoch).",
-    "gu": "All astronomical calculations start with converting a calendar date to a Julian Day Number (JD) — a continuous count of days since January 1, 4713 BCE. This eliminates the complexities of calendars (leap years, varying month lengths, calendar reforms). For example, January 1, 2000 at noon = JD 2451545.0 (called J2000.0, a standard reference epoch).",
-    "mai": "All astronomical calculations start with converting a calendar date to a Julian Day Number (JD) — a continuous count of days since January 1, 4713 BCE. This eliminates the complexities of calendars (leap years, varying month lengths, calendar reforms). For example, January 1, 2000 at noon = JD 2451545.0 (called J2000.0, a standard reference epoch)."
+    "ta": "All astronomical calculations start with converting a calendar date to a Julian Day Number (JD)  –  a continuous count of days since January 1, 4713 BCE. This eliminates the complexities of calendars (leap years, varying month lengths, calendar reforms). For example, January 1, 2000 at noon = JD 2451545.0 (called J2000.0, a standard reference epoch).",
+    "te": "All astronomical calculations start with converting a calendar date to a Julian Day Number (JD)  –  a continuous count of days since January 1, 4713 BCE. This eliminates the complexities of calendars (leap years, varying month lengths, calendar reforms). For example, January 1, 2000 at noon = JD 2451545.0 (called J2000.0, a standard reference epoch).",
+    "bn": "All astronomical calculations start with converting a calendar date to a Julian Day Number (JD)  –  a continuous count of days since January 1, 4713 BCE. This eliminates the complexities of calendars (leap years, varying month lengths, calendar reforms). For example, January 1, 2000 at noon = JD 2451545.0 (called J2000.0, a standard reference epoch).",
+    "kn": "All astronomical calculations start with converting a calendar date to a Julian Day Number (JD)  –  a continuous count of days since January 1, 4713 BCE. This eliminates the complexities of calendars (leap years, varying month lengths, calendar reforms). For example, January 1, 2000 at noon = JD 2451545.0 (called J2000.0, a standard reference epoch).",
+    "mr": "All astronomical calculations start with converting a calendar date to a Julian Day Number (JD)  –  a continuous count of days since January 1, 4713 BCE. This eliminates the complexities of calendars (leap years, varying month lengths, calendar reforms). For example, January 1, 2000 at noon = JD 2451545.0 (called J2000.0, a standard reference epoch).",
+    "gu": "All astronomical calculations start with converting a calendar date to a Julian Day Number (JD)  –  a continuous count of days since January 1, 4713 BCE. This eliminates the complexities of calendars (leap years, varying month lengths, calendar reforms). For example, January 1, 2000 at noon = JD 2451545.0 (called J2000.0, a standard reference epoch).",
+    "mai": "All astronomical calculations start with converting a calendar date to a Julian Day Number (JD)  –  a continuous count of days since January 1, 4713 BCE. This eliminates the complexities of calendars (leap years, varying month lengths, calendar reforms). For example, January 1, 2000 at noon = JD 2451545.0 (called J2000.0, a standard reference epoch)."
   },
   "sunTitle": {
     "en": "Step 2: Sun's Longitude",
@@ -60,16 +60,16 @@
     "mai": "Step 2: Sun's Longitude"
   },
   "sunContent": {
-    "en": "The Sun's apparent position along the ecliptic is calculated using Jean Meeus's algorithms (Chapter 25 of \"Astronomical Algorithms\"). We compute: (1) The Sun's mean longitude L0, (2) The mean anomaly M (how far the Sun is in its elliptical orbit from perihelion), (3) The equation of center C (correction for elliptical orbit), and (4) Nutation and aberration corrections. This gives accuracy to ~0.01° — sufficient for all Panchang purposes.",
+    "en": "The Sun's apparent position along the ecliptic is calculated using Jean Meeus's algorithms (Chapter 25 of \"Astronomical Algorithms\"). We compute: (1) The Sun's mean longitude L0, (2) The mean anomaly M (how far the Sun is in its elliptical orbit from perihelion), (3) The equation of center C (correction for elliptical orbit), and (4) Nutation and aberration corrections. This gives accuracy to ~0.01°  –  sufficient for all Panchang purposes.",
     "hi": "ग्रहण-पथ पर सूर्य की दृश्य स्थिति की गणना Jean Meeus के एल्गोरिथ्म से की जाती है। हम गणना करते हैं: (1) सूर्य का माध्य देशान्तर L0, (2) माध्य विसंगति M, (3) केन्द्रीय समीकरण C, और (4) अयन और विपथन सुधार।",
     "sa": "ग्रहणपथे सूर्यस्य दृश्यस्थानस्य गणना Meeus गणितैः क्रियते।",
-    "ta": "The Sun's apparent position along the ecliptic is calculated using Jean Meeus's algorithms (Chapter 25 of \"Astronomical Algorithms\"). We compute: (1) The Sun's mean longitude L0, (2) The mean anomaly M (how far the Sun is in its elliptical orbit from perihelion), (3) The equation of center C (correction for elliptical orbit), and (4) Nutation and aberration corrections. This gives accuracy to ~0.01° — sufficient for all Panchang purposes.",
-    "te": "The Sun's apparent position along the ecliptic is calculated using Jean Meeus's algorithms (Chapter 25 of \"Astronomical Algorithms\"). We compute: (1) The Sun's mean longitude L0, (2) The mean anomaly M (how far the Sun is in its elliptical orbit from perihelion), (3) The equation of center C (correction for elliptical orbit), and (4) Nutation and aberration corrections. This gives accuracy to ~0.01° — sufficient for all Panchang purposes.",
-    "bn": "The Sun's apparent position along the ecliptic is calculated using Jean Meeus's algorithms (Chapter 25 of \"Astronomical Algorithms\"). We compute: (1) The Sun's mean longitude L0, (2) The mean anomaly M (how far the Sun is in its elliptical orbit from perihelion), (3) The equation of center C (correction for elliptical orbit), and (4) Nutation and aberration corrections. This gives accuracy to ~0.01° — sufficient for all Panchang purposes.",
-    "kn": "The Sun's apparent position along the ecliptic is calculated using Jean Meeus's algorithms (Chapter 25 of \"Astronomical Algorithms\"). We compute: (1) The Sun's mean longitude L0, (2) The mean anomaly M (how far the Sun is in its elliptical orbit from perihelion), (3) The equation of center C (correction for elliptical orbit), and (4) Nutation and aberration corrections. This gives accuracy to ~0.01° — sufficient for all Panchang purposes.",
-    "mr": "The Sun's apparent position along the ecliptic is calculated using Jean Meeus's algorithms (Chapter 25 of \"Astronomical Algorithms\"). We compute: (1) The Sun's mean longitude L0, (2) The mean anomaly M (how far the Sun is in its elliptical orbit from perihelion), (3) The equation of center C (correction for elliptical orbit), and (4) Nutation and aberration corrections. This gives accuracy to ~0.01° — sufficient for all Panchang purposes.",
-    "gu": "The Sun's apparent position along the ecliptic is calculated using Jean Meeus's algorithms (Chapter 25 of \"Astronomical Algorithms\"). We compute: (1) The Sun's mean longitude L0, (2) The mean anomaly M (how far the Sun is in its elliptical orbit from perihelion), (3) The equation of center C (correction for elliptical orbit), and (4) Nutation and aberration corrections. This gives accuracy to ~0.01° — sufficient for all Panchang purposes.",
-    "mai": "The Sun's apparent position along the ecliptic is calculated using Jean Meeus's algorithms (Chapter 25 of \"Astronomical Algorithms\"). We compute: (1) The Sun's mean longitude L0, (2) The mean anomaly M (how far the Sun is in its elliptical orbit from perihelion), (3) The equation of center C (correction for elliptical orbit), and (4) Nutation and aberration corrections. This gives accuracy to ~0.01° — sufficient for all Panchang purposes."
+    "ta": "The Sun's apparent position along the ecliptic is calculated using Jean Meeus's algorithms (Chapter 25 of \"Astronomical Algorithms\"). We compute: (1) The Sun's mean longitude L0, (2) The mean anomaly M (how far the Sun is in its elliptical orbit from perihelion), (3) The equation of center C (correction for elliptical orbit), and (4) Nutation and aberration corrections. This gives accuracy to ~0.01°  –  sufficient for all Panchang purposes.",
+    "te": "The Sun's apparent position along the ecliptic is calculated using Jean Meeus's algorithms (Chapter 25 of \"Astronomical Algorithms\"). We compute: (1) The Sun's mean longitude L0, (2) The mean anomaly M (how far the Sun is in its elliptical orbit from perihelion), (3) The equation of center C (correction for elliptical orbit), and (4) Nutation and aberration corrections. This gives accuracy to ~0.01°  –  sufficient for all Panchang purposes.",
+    "bn": "The Sun's apparent position along the ecliptic is calculated using Jean Meeus's algorithms (Chapter 25 of \"Astronomical Algorithms\"). We compute: (1) The Sun's mean longitude L0, (2) The mean anomaly M (how far the Sun is in its elliptical orbit from perihelion), (3) The equation of center C (correction for elliptical orbit), and (4) Nutation and aberration corrections. This gives accuracy to ~0.01°  –  sufficient for all Panchang purposes.",
+    "kn": "The Sun's apparent position along the ecliptic is calculated using Jean Meeus's algorithms (Chapter 25 of \"Astronomical Algorithms\"). We compute: (1) The Sun's mean longitude L0, (2) The mean anomaly M (how far the Sun is in its elliptical orbit from perihelion), (3) The equation of center C (correction for elliptical orbit), and (4) Nutation and aberration corrections. This gives accuracy to ~0.01°  –  sufficient for all Panchang purposes.",
+    "mr": "The Sun's apparent position along the ecliptic is calculated using Jean Meeus's algorithms (Chapter 25 of \"Astronomical Algorithms\"). We compute: (1) The Sun's mean longitude L0, (2) The mean anomaly M (how far the Sun is in its elliptical orbit from perihelion), (3) The equation of center C (correction for elliptical orbit), and (4) Nutation and aberration corrections. This gives accuracy to ~0.01°  –  sufficient for all Panchang purposes.",
+    "gu": "The Sun's apparent position along the ecliptic is calculated using Jean Meeus's algorithms (Chapter 25 of \"Astronomical Algorithms\"). We compute: (1) The Sun's mean longitude L0, (2) The mean anomaly M (how far the Sun is in its elliptical orbit from perihelion), (3) The equation of center C (correction for elliptical orbit), and (4) Nutation and aberration corrections. This gives accuracy to ~0.01°  –  sufficient for all Panchang purposes.",
+    "mai": "The Sun's apparent position along the ecliptic is calculated using Jean Meeus's algorithms (Chapter 25 of \"Astronomical Algorithms\"). We compute: (1) The Sun's mean longitude L0, (2) The mean anomaly M (how far the Sun is in its elliptical orbit from perihelion), (3) The equation of center C (correction for elliptical orbit), and (4) Nutation and aberration corrections. This gives accuracy to ~0.01°  –  sufficient for all Panchang purposes."
   },
   "moonTitle": {
     "en": "Step 3: Moon's Longitude (Meeus Chapter 47)",
@@ -86,7 +86,7 @@
   "moonContent": {
     "en": "The Moon is the most complex body to calculate because of strong gravitational perturbations from the Sun and Earth. We use the full Meeus Chapter 47 algorithm with 60 periodic terms. The five fundamental arguments are: Lp (Moon's mean longitude), D (mean elongation), M (Sun's mean anomaly), Mp (Moon's mean anomaly), and F (Moon's argument of latitude). Each term involves multiplying these arguments, taking the sine, and applying an eccentricity correction for terms involving the Sun.",
     "hi": "चन्द्रमा गणना करने में सबसे जटिल पिण्ड है क्योंकि सूर्य और पृथ्वी से मज़बूत गुरुत्वाकर्षण विक्षोभ होते हैं। हम पूर्ण Meeus अध्याय 47 एल्गोरिथ्म का उपयोग करते हैं जिसमें 60 आवर्ती पद हैं।",
-    "sa": "चन्द्रमा गणनायां सर्वाधिकजटिलः पिण्डः — सूर्यपृथिव्योः प्रबलगुरुत्वाकर्षणविक्षोभात्।",
+    "sa": "चन्द्रमा गणनायां सर्वाधिकजटिलः पिण्डः  –  सूर्यपृथिव्योः प्रबलगुरुत्वाकर्षणविक्षोभात्।",
     "ta": "The Moon is the most complex body to calculate because of strong gravitational perturbations from the Sun and Earth. We use the full Meeus Chapter 47 algorithm with 60 periodic terms. The five fundamental arguments are: Lp (Moon's mean longitude), D (mean elongation), M (Sun's mean anomaly), Mp (Moon's mean anomaly), and F (Moon's argument of latitude). Each term involves multiplying these arguments, taking the sine, and applying an eccentricity correction for terms involving the Sun.",
     "te": "The Moon is the most complex body to calculate because of strong gravitational perturbations from the Sun and Earth. We use the full Meeus Chapter 47 algorithm with 60 periodic terms. The five fundamental arguments are: Lp (Moon's mean longitude), D (mean elongation), M (Sun's mean anomaly), Mp (Moon's mean anomaly), and F (Moon's argument of latitude). Each term involves multiplying these arguments, taking the sine, and applying an eccentricity correction for terms involving the Sun.",
     "bn": "The Moon is the most complex body to calculate because of strong gravitational perturbations from the Sun and Earth. We use the full Meeus Chapter 47 algorithm with 60 periodic terms. The five fundamental arguments are: Lp (Moon's mean longitude), D (mean elongation), M (Sun's mean anomaly), Mp (Moon's mean anomaly), and F (Moon's argument of latitude). Each term involves multiplying these arguments, taking the sine, and applying an eccentricity correction for terms involving the Sun.",
@@ -96,28 +96,28 @@
     "mai": "The Moon is the most complex body to calculate because of strong gravitational perturbations from the Sun and Earth. We use the full Meeus Chapter 47 algorithm with 60 periodic terms. The five fundamental arguments are: Lp (Moon's mean longitude), D (mean elongation), M (Sun's mean anomaly), Mp (Moon's mean anomaly), and F (Moon's argument of latitude). Each term involves multiplying these arguments, taking the sine, and applying an eccentricity correction for terms involving the Sun."
   },
   "ayanamshaTitle": {
-    "en": "Step 4: Ayanamsha — Tropical to Sidereal",
-    "hi": "चरण 4: अयनांश — उष्णकटिबन्धीय से नाक्षत्रिक",
+    "en": "Step 4: Ayanamsha  –  Tropical to Sidereal",
+    "hi": "चरण 4: अयनांश  –  उष्णकटिबन्धीय से नाक्षत्रिक",
     "sa": "सोपानम् 4: अयनांशः",
-    "ta": "Step 4: Ayanamsha — Tropical to Sidereal",
-    "te": "Step 4: Ayanamsha — Tropical to Sidereal",
-    "bn": "Step 4: Ayanamsha — Tropical to Sidereal",
-    "kn": "Step 4: Ayanamsha — Tropical to Sidereal",
-    "mr": "Step 4: Ayanamsha — Tropical to Sidereal",
-    "gu": "Step 4: Ayanamsha — Tropical to Sidereal",
-    "mai": "Step 4: Ayanamsha — Tropical to Sidereal"
+    "ta": "Step 4: Ayanamsha  –  Tropical to Sidereal",
+    "te": "Step 4: Ayanamsha  –  Tropical to Sidereal",
+    "bn": "Step 4: Ayanamsha  –  Tropical to Sidereal",
+    "kn": "Step 4: Ayanamsha  –  Tropical to Sidereal",
+    "mr": "Step 4: Ayanamsha  –  Tropical to Sidereal",
+    "gu": "Step 4: Ayanamsha  –  Tropical to Sidereal",
+    "mai": "Step 4: Ayanamsha  –  Tropical to Sidereal"
   },
   "ayanamshaContent": {
-    "en": "Meeus algorithms give tropical (Western) longitudes. Vedic astrology uses sidereal (star-fixed) longitudes. The difference is the Ayanamsha — currently about 24°. We use the Lahiri (Chitrapaksha) Ayanamsha, which defines 0° sidereal Libra as the position of the star Spica. The Ayanamsha increases by about 50 arcseconds per year due to the precession of the equinoxes (Earth's axis wobble with a ~26,000 year cycle).",
-    "hi": "Meeus एल्गोरिथ्म उष्णकटिबन्धीय (पश्चिमी) देशान्तर देते हैं। वैदिक ज्योतिष नाक्षत्रिक (तारा-स्थिर) देशान्तर का उपयोग करता है। अन्तर अयनांश है — वर्तमान में लगभग 24°।",
+    "en": "Meeus algorithms give tropical (Western) longitudes. Vedic astrology uses sidereal (star-fixed) longitudes. The difference is the Ayanamsha  –  currently about 24°. We use the Lahiri (Chitrapaksha) Ayanamsha, which defines 0° sidereal Libra as the position of the star Spica. The Ayanamsha increases by about 50 arcseconds per year due to the precession of the equinoxes (Earth's axis wobble with a ~26,000 year cycle).",
+    "hi": "Meeus एल्गोरिथ्म उष्णकटिबन्धीय (पश्चिमी) देशान्तर देते हैं। वैदिक ज्योतिष नाक्षत्रिक (तारा-स्थिर) देशान्तर का उपयोग करता है। अन्तर अयनांश है  –  वर्तमान में लगभग 24°।",
     "sa": "Meeus गणितानि उष्णकटिबन्धीयदेशान्तरं ददति। वैदिकज्योतिषं नाक्षत्रिकदेशान्तरं प्रयुङ्क्ते। भेदः अयनांशः।",
-    "ta": "Meeus algorithms give tropical (Western) longitudes. Vedic astrology uses sidereal (star-fixed) longitudes. The difference is the Ayanamsha — currently about 24°. We use the Lahiri (Chitrapaksha) Ayanamsha, which defines 0° sidereal Libra as the position of the star Spica. The Ayanamsha increases by about 50 arcseconds per year due to the precession of the equinoxes (Earth's axis wobble with a ~26,000 year cycle).",
-    "te": "Meeus algorithms give tropical (Western) longitudes. Vedic astrology uses sidereal (star-fixed) longitudes. The difference is the Ayanamsha — currently about 24°. We use the Lahiri (Chitrapaksha) Ayanamsha, which defines 0° sidereal Libra as the position of the star Spica. The Ayanamsha increases by about 50 arcseconds per year due to the precession of the equinoxes (Earth's axis wobble with a ~26,000 year cycle).",
-    "bn": "Meeus algorithms give tropical (Western) longitudes. Vedic astrology uses sidereal (star-fixed) longitudes. The difference is the Ayanamsha — currently about 24°. We use the Lahiri (Chitrapaksha) Ayanamsha, which defines 0° sidereal Libra as the position of the star Spica. The Ayanamsha increases by about 50 arcseconds per year due to the precession of the equinoxes (Earth's axis wobble with a ~26,000 year cycle).",
-    "kn": "Meeus algorithms give tropical (Western) longitudes. Vedic astrology uses sidereal (star-fixed) longitudes. The difference is the Ayanamsha — currently about 24°. We use the Lahiri (Chitrapaksha) Ayanamsha, which defines 0° sidereal Libra as the position of the star Spica. The Ayanamsha increases by about 50 arcseconds per year due to the precession of the equinoxes (Earth's axis wobble with a ~26,000 year cycle).",
-    "mr": "Meeus algorithms give tropical (Western) longitudes. Vedic astrology uses sidereal (star-fixed) longitudes. The difference is the Ayanamsha — currently about 24°. We use the Lahiri (Chitrapaksha) Ayanamsha, which defines 0° sidereal Libra as the position of the star Spica. The Ayanamsha increases by about 50 arcseconds per year due to the precession of the equinoxes (Earth's axis wobble with a ~26,000 year cycle).",
-    "gu": "Meeus algorithms give tropical (Western) longitudes. Vedic astrology uses sidereal (star-fixed) longitudes. The difference is the Ayanamsha — currently about 24°. We use the Lahiri (Chitrapaksha) Ayanamsha, which defines 0° sidereal Libra as the position of the star Spica. The Ayanamsha increases by about 50 arcseconds per year due to the precession of the equinoxes (Earth's axis wobble with a ~26,000 year cycle).",
-    "mai": "Meeus algorithms give tropical (Western) longitudes. Vedic astrology uses sidereal (star-fixed) longitudes. The difference is the Ayanamsha — currently about 24°. We use the Lahiri (Chitrapaksha) Ayanamsha, which defines 0° sidereal Libra as the position of the star Spica. The Ayanamsha increases by about 50 arcseconds per year due to the precession of the equinoxes (Earth's axis wobble with a ~26,000 year cycle)."
+    "ta": "Meeus algorithms give tropical (Western) longitudes. Vedic astrology uses sidereal (star-fixed) longitudes. The difference is the Ayanamsha  –  currently about 24°. We use the Lahiri (Chitrapaksha) Ayanamsha, which defines 0° sidereal Libra as the position of the star Spica. The Ayanamsha increases by about 50 arcseconds per year due to the precession of the equinoxes (Earth's axis wobble with a ~26,000 year cycle).",
+    "te": "Meeus algorithms give tropical (Western) longitudes. Vedic astrology uses sidereal (star-fixed) longitudes. The difference is the Ayanamsha  –  currently about 24°. We use the Lahiri (Chitrapaksha) Ayanamsha, which defines 0° sidereal Libra as the position of the star Spica. The Ayanamsha increases by about 50 arcseconds per year due to the precession of the equinoxes (Earth's axis wobble with a ~26,000 year cycle).",
+    "bn": "Meeus algorithms give tropical (Western) longitudes. Vedic astrology uses sidereal (star-fixed) longitudes. The difference is the Ayanamsha  –  currently about 24°. We use the Lahiri (Chitrapaksha) Ayanamsha, which defines 0° sidereal Libra as the position of the star Spica. The Ayanamsha increases by about 50 arcseconds per year due to the precession of the equinoxes (Earth's axis wobble with a ~26,000 year cycle).",
+    "kn": "Meeus algorithms give tropical (Western) longitudes. Vedic astrology uses sidereal (star-fixed) longitudes. The difference is the Ayanamsha  –  currently about 24°. We use the Lahiri (Chitrapaksha) Ayanamsha, which defines 0° sidereal Libra as the position of the star Spica. The Ayanamsha increases by about 50 arcseconds per year due to the precession of the equinoxes (Earth's axis wobble with a ~26,000 year cycle).",
+    "mr": "Meeus algorithms give tropical (Western) longitudes. Vedic astrology uses sidereal (star-fixed) longitudes. The difference is the Ayanamsha  –  currently about 24°. We use the Lahiri (Chitrapaksha) Ayanamsha, which defines 0° sidereal Libra as the position of the star Spica. The Ayanamsha increases by about 50 arcseconds per year due to the precession of the equinoxes (Earth's axis wobble with a ~26,000 year cycle).",
+    "gu": "Meeus algorithms give tropical (Western) longitudes. Vedic astrology uses sidereal (star-fixed) longitudes. The difference is the Ayanamsha  –  currently about 24°. We use the Lahiri (Chitrapaksha) Ayanamsha, which defines 0° sidereal Libra as the position of the star Spica. The Ayanamsha increases by about 50 arcseconds per year due to the precession of the equinoxes (Earth's axis wobble with a ~26,000 year cycle).",
+    "mai": "Meeus algorithms give tropical (Western) longitudes. Vedic astrology uses sidereal (star-fixed) longitudes. The difference is the Ayanamsha  –  currently about 24°. We use the Lahiri (Chitrapaksha) Ayanamsha, which defines 0° sidereal Libra as the position of the star Spica. The Ayanamsha increases by about 50 arcseconds per year due to the precession of the equinoxes (Earth's axis wobble with a ~26,000 year cycle)."
   },
   "tithiCalcTitle": {
     "en": "Step 5: Tithi, Nakshatra, Yoga, Karana",
@@ -156,16 +156,16 @@
     "mai": "Step 6: Finding Transition Times"
   },
   "transitionContent": {
-    "en": "The trickiest part: finding exactly WHEN a tithi or nakshatra changes. We use a binary search algorithm — starting with a wide time window (24 hours), we repeatedly check the midpoint and narrow down to the exact moment the value changes. This converges to within ~10 seconds accuracy in about 20 iterations.",
-    "hi": "सबसे कठिन भाग: ठीक कब तिथि या नक्षत्र बदलता है यह ज्ञात करना। हम बाइनरी खोज एल्गोरिथ्म का उपयोग करते हैं — 24 घण्टे की विस्तृत समय सीमा से शुरू करके, हम बार-बार मध्यबिन्दु की जाँच करते हैं।",
-    "sa": "सर्वाधिककठिनं — कदा तिथिः नक्षत्रं वा परिवर्तते इति ज्ञातुम्। वयं द्विभाजनखोजगणितं प्रयुञ्ज्मः।",
-    "ta": "The trickiest part: finding exactly WHEN a tithi or nakshatra changes. We use a binary search algorithm — starting with a wide time window (24 hours), we repeatedly check the midpoint and narrow down to the exact moment the value changes. This converges to within ~10 seconds accuracy in about 20 iterations.",
-    "te": "The trickiest part: finding exactly WHEN a tithi or nakshatra changes. We use a binary search algorithm — starting with a wide time window (24 hours), we repeatedly check the midpoint and narrow down to the exact moment the value changes. This converges to within ~10 seconds accuracy in about 20 iterations.",
-    "bn": "The trickiest part: finding exactly WHEN a tithi or nakshatra changes. We use a binary search algorithm — starting with a wide time window (24 hours), we repeatedly check the midpoint and narrow down to the exact moment the value changes. This converges to within ~10 seconds accuracy in about 20 iterations.",
-    "kn": "The trickiest part: finding exactly WHEN a tithi or nakshatra changes. We use a binary search algorithm — starting with a wide time window (24 hours), we repeatedly check the midpoint and narrow down to the exact moment the value changes. This converges to within ~10 seconds accuracy in about 20 iterations.",
-    "mr": "The trickiest part: finding exactly WHEN a tithi or nakshatra changes. We use a binary search algorithm — starting with a wide time window (24 hours), we repeatedly check the midpoint and narrow down to the exact moment the value changes. This converges to within ~10 seconds accuracy in about 20 iterations.",
-    "gu": "The trickiest part: finding exactly WHEN a tithi or nakshatra changes. We use a binary search algorithm — starting with a wide time window (24 hours), we repeatedly check the midpoint and narrow down to the exact moment the value changes. This converges to within ~10 seconds accuracy in about 20 iterations.",
-    "mai": "The trickiest part: finding exactly WHEN a tithi or nakshatra changes. We use a binary search algorithm — starting with a wide time window (24 hours), we repeatedly check the midpoint and narrow down to the exact moment the value changes. This converges to within ~10 seconds accuracy in about 20 iterations."
+    "en": "The trickiest part: finding exactly WHEN a tithi or nakshatra changes. We use a binary search algorithm  –  starting with a wide time window (24 hours), we repeatedly check the midpoint and narrow down to the exact moment the value changes. This converges to within ~10 seconds accuracy in about 20 iterations.",
+    "hi": "सबसे कठिन भाग: ठीक कब तिथि या नक्षत्र बदलता है यह ज्ञात करना। हम बाइनरी खोज एल्गोरिथ्म का उपयोग करते हैं  –  24 घण्टे की विस्तृत समय सीमा से शुरू करके, हम बार-बार मध्यबिन्दु की जाँच करते हैं।",
+    "sa": "सर्वाधिककठिनं  –  कदा तिथिः नक्षत्रं वा परिवर्तते इति ज्ञातुम्। वयं द्विभाजनखोजगणितं प्रयुञ्ज्मः।",
+    "ta": "The trickiest part: finding exactly WHEN a tithi or nakshatra changes. We use a binary search algorithm  –  starting with a wide time window (24 hours), we repeatedly check the midpoint and narrow down to the exact moment the value changes. This converges to within ~10 seconds accuracy in about 20 iterations.",
+    "te": "The trickiest part: finding exactly WHEN a tithi or nakshatra changes. We use a binary search algorithm  –  starting with a wide time window (24 hours), we repeatedly check the midpoint and narrow down to the exact moment the value changes. This converges to within ~10 seconds accuracy in about 20 iterations.",
+    "bn": "The trickiest part: finding exactly WHEN a tithi or nakshatra changes. We use a binary search algorithm  –  starting with a wide time window (24 hours), we repeatedly check the midpoint and narrow down to the exact moment the value changes. This converges to within ~10 seconds accuracy in about 20 iterations.",
+    "kn": "The trickiest part: finding exactly WHEN a tithi or nakshatra changes. We use a binary search algorithm  –  starting with a wide time window (24 hours), we repeatedly check the midpoint and narrow down to the exact moment the value changes. This converges to within ~10 seconds accuracy in about 20 iterations.",
+    "mr": "The trickiest part: finding exactly WHEN a tithi or nakshatra changes. We use a binary search algorithm  –  starting with a wide time window (24 hours), we repeatedly check the midpoint and narrow down to the exact moment the value changes. This converges to within ~10 seconds accuracy in about 20 iterations.",
+    "gu": "The trickiest part: finding exactly WHEN a tithi or nakshatra changes. We use a binary search algorithm  –  starting with a wide time window (24 hours), we repeatedly check the midpoint and narrow down to the exact moment the value changes. This converges to within ~10 seconds accuracy in about 20 iterations.",
+    "mai": "The trickiest part: finding exactly WHEN a tithi or nakshatra changes. We use a binary search algorithm  –  starting with a wide time window (24 hours), we repeatedly check the midpoint and narrow down to the exact moment the value changes. This converges to within ~10 seconds accuracy in about 20 iterations."
   },
   "sunriseTitle": {
     "en": "Step 7: Sunrise & Sunset",
@@ -252,16 +252,16 @@
     "mai": "Our Sun algorithm (Meeus Ch. 25):"
   },
   "moonAlgoLabel": {
-    "en": "Moon longitude — 60-term algorithm:",
-    "hi": "चन्द्र देशान्तर — 60-पद एल्गोरिथ्म:",
-    "sa": "चन्द्रदेशान्तरम् — 60-पदगणितम्:",
-    "ta": "Moon longitude — 60-term algorithm:",
-    "te": "Moon longitude — 60-term algorithm:",
-    "bn": "Moon longitude — 60-term algorithm:",
-    "kn": "Moon longitude — 60-term algorithm:",
-    "mr": "Moon longitude — 60-term algorithm:",
-    "gu": "Moon longitude — 60-term algorithm:",
-    "mai": "Moon longitude — 60-term algorithm:"
+    "en": "Moon longitude  –  60-term algorithm:",
+    "hi": "चन्द्र देशान्तर  –  60-पद एल्गोरिथ्म:",
+    "sa": "चन्द्रदेशान्तरम्  –  60-पदगणितम्:",
+    "ta": "Moon longitude  –  60-term algorithm:",
+    "te": "Moon longitude  –  60-term algorithm:",
+    "bn": "Moon longitude  –  60-term algorithm:",
+    "kn": "Moon longitude  –  60-term algorithm:",
+    "mr": "Moon longitude  –  60-term algorithm:",
+    "gu": "Moon longitude  –  60-term algorithm:",
+    "mai": "Moon longitude  –  60-term algorithm:"
   },
   "moonTop4": {
     "en": "Top 4 terms: 6.289° sin(M'), 1.274° sin(2D-M'), 0.658° sin(2D), 0.214° sin(2M')",
@@ -408,15 +408,15 @@
     "mai": "Practical Impact"
   },
   "engineNote": {
-    "en": "Our engine uses pure JavaScript — no external ephemeris libraries or API calls. All 60 Moon terms and accurate ayanamsha give results comparable to professional Panchang software.",
-    "hi": "हमारा इंजन शुद्ध JavaScript का उपयोग करता है — कोई बाहरी पञ्चाङ्ग लाइब्रेरी या API कॉल नहीं। सभी 60 चन्द्र पद और सटीक अयनांश पेशेवर पञ्चाङ्ग सॉफ़्टवेयर के तुलनीय परिणाम देते हैं।",
-    "sa": "अस्माकम् इञ्जिनं शुद्धं JavaScript प्रयुङ्क्ते — न बाह्यपञ्चाङ्गसञ्चिकाः, न API आह्वानानि।",
-    "ta": "Our engine uses pure JavaScript — no external ephemeris libraries or API calls. All 60 Moon terms and accurate ayanamsha give results comparable to professional Panchang software.",
-    "te": "Our engine uses pure JavaScript — no external ephemeris libraries or API calls. All 60 Moon terms and accurate ayanamsha give results comparable to professional Panchang software.",
-    "bn": "Our engine uses pure JavaScript — no external ephemeris libraries or API calls. All 60 Moon terms and accurate ayanamsha give results comparable to professional Panchang software.",
-    "kn": "Our engine uses pure JavaScript — no external ephemeris libraries or API calls. All 60 Moon terms and accurate ayanamsha give results comparable to professional Panchang software.",
-    "mr": "Our engine uses pure JavaScript — no external ephemeris libraries or API calls. All 60 Moon terms and accurate ayanamsha give results comparable to professional Panchang software.",
-    "gu": "Our engine uses pure JavaScript — no external ephemeris libraries or API calls. All 60 Moon terms and accurate ayanamsha give results comparable to professional Panchang software.",
-    "mai": "Our engine uses pure JavaScript — no external ephemeris libraries or API calls. All 60 Moon terms and accurate ayanamsha give results comparable to professional Panchang software."
+    "en": "Our engine uses pure JavaScript  –  no external ephemeris libraries or API calls. All 60 Moon terms and accurate ayanamsha give results comparable to professional Panchang software.",
+    "hi": "हमारा इंजन शुद्ध JavaScript का उपयोग करता है  –  कोई बाहरी पञ्चाङ्ग लाइब्रेरी या API कॉल नहीं। सभी 60 चन्द्र पद और सटीक अयनांश पेशेवर पञ्चाङ्ग सॉफ़्टवेयर के तुलनीय परिणाम देते हैं।",
+    "sa": "अस्माकम् इञ्जिनं शुद्धं JavaScript प्रयुङ्क्ते  –  न बाह्यपञ्चाङ्गसञ्चिकाः, न API आह्वानानि।",
+    "ta": "Our engine uses pure JavaScript  –  no external ephemeris libraries or API calls. All 60 Moon terms and accurate ayanamsha give results comparable to professional Panchang software.",
+    "te": "Our engine uses pure JavaScript  –  no external ephemeris libraries or API calls. All 60 Moon terms and accurate ayanamsha give results comparable to professional Panchang software.",
+    "bn": "Our engine uses pure JavaScript  –  no external ephemeris libraries or API calls. All 60 Moon terms and accurate ayanamsha give results comparable to professional Panchang software.",
+    "kn": "Our engine uses pure JavaScript  –  no external ephemeris libraries or API calls. All 60 Moon terms and accurate ayanamsha give results comparable to professional Panchang software.",
+    "mr": "Our engine uses pure JavaScript  –  no external ephemeris libraries or API calls. All 60 Moon terms and accurate ayanamsha give results comparable to professional Panchang software.",
+    "gu": "Our engine uses pure JavaScript  –  no external ephemeris libraries or API calls. All 60 Moon terms and accurate ayanamsha give results comparable to professional Panchang software.",
+    "mai": "Our engine uses pure JavaScript  –  no external ephemeris libraries or API calls. All 60 Moon terms and accurate ayanamsha give results comparable to professional Panchang software."
   }
 }

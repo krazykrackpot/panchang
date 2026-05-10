@@ -5,7 +5,7 @@
  * IAST transliteration, English meaning, and significance.
  *
  * IMPORTANT: These are sacred texts. All Devanagari content has been carefully
- * transcribed. If you find an error, fix it with a verified source — never guess.
+ * transcribed. If you find an error, fix it with a verified source  –  never guess.
  */
 
 export type DevotionalType = 'aarti' | 'chalisa' | 'stotram' | 'mantra';
@@ -15,7 +15,7 @@ export interface DevotionalItem {
   type: DevotionalType;
   title: { en: string; hi: string };
   deity: string;
-  deityDay?: number; // 0=Sun..6=Sat — best day to recite
+  deityDay?: number; // 0=Sun..6=Sat  –  best day to recite
   devanagari: string;
   transliteration: string;
   meaning: string;
@@ -116,7 +116,7 @@ You are my Mother and Father; whose refuge shall I seek? There is no other besid
 
 You are the Supreme Soul, the Inner Knower. You are the Supreme Brahman, the Lord of all.
 
-You are an ocean of compassion, You are the sustainer. I am a foolish, wicked being; I am the servant and You are the Master — bestow Your grace.
+You are an ocean of compassion, You are the sustainer. I am a foolish, wicked being; I am the servant and You are the Master  –  bestow Your grace.
 
 You are the one unseen, the Lord of all lives. How shall I, of dim intellect, meet You, O Compassionate One?
 
@@ -128,7 +128,7 @@ Remove worldly desires and sins, O Lord. Increase faith and devotion, and servic
   {
     slug: 'ganesh-aarti',
     type: 'aarti',
-    title: { en: 'Ganesh Aarti — Jai Ganesh Deva', hi: 'गणेश आरती — जय गणेश देवा' },
+    title: { en: 'Ganesh Aarti  –  Jai Ganesh Deva', hi: 'गणेश आरती  –  जय गणेश देवा' },
     deity: 'Ganesha',
     deityDay: 3,
     devanagari: `जय गणेश जय गणेश जय गणेश देवा।
@@ -175,13 +175,13 @@ Betel leaves, flowers, and dry fruits are offered to Him. Laddoos are His favori
 
 He gives sight to the blind, health to the afflicted, sons to the childless, and wealth to the poor.
 
-Surdas seeks Your refuge — fulfill the service. His mother is Parvati and father is Mahadeva.`,
+Surdas seeks Your refuge  –  fulfill the service. His mother is Parvati and father is Mahadeva.`,
     significance: 'This aarti is sung in praise of Lord Ganesha, the remover of obstacles and the deity invoked at the beginning of all auspicious endeavors. It is recited daily in homes and temples, and especially during Ganesh Chaturthi (Bhadrapada Shukla Chaturthi). Wednesday is considered Ganesha\'s day. The aarti emphasizes His compassion and His power to fulfill the wishes of devotees.',
   },
   {
     slug: 'lakshmi-aarti',
     type: 'aarti',
-    title: { en: 'Lakshmi Aarti — Om Jai Lakshmi Mata', hi: 'लक्ष्मी आरती — ॐ जय लक्ष्मी माता' },
+    title: { en: 'Lakshmi Aarti  –  Om Jai Lakshmi Mata', hi: 'लक्ष्मी आरती  –  ॐ जय लक्ष्मी माता' },
     deity: 'Lakshmi',
     deityDay: 5,
     devanagari: `ॐ जय लक्ष्मी माता, मैया जय लक्ष्मी माता।
@@ -248,7 +248,7 @@ Ur aanand samata, paap utar jaata.
 Om Jai Lakshmi Mata.`,
     meaning: `Glory to Mother Lakshmi! Lord Vishnu serves You day and night.
 
-You are Uma, Rama, and Brahmani — the Mother of the universe. The Sun and Moon meditate on You, and sage Narada sings Your praise.
+You are Uma, Rama, and Brahmani  –  the Mother of the universe. The Sun and Moon meditate on You, and sage Narada sings Your praise.
 
 You are the pure form of Durga, giver of happiness and wealth. Whoever meditates on You attains prosperity, spiritual powers, and riches.
 
@@ -347,7 +347,7 @@ O son of Anjani, mighty and powerful! You are always the helper of the saints.
 
 As a brave warrior sent by Lord Rama, You burned Lanka and brought news of Sita.
 
-Lanka with its fortress walls and ocean-like moat — the Son of the Wind crossed it without delay.
+Lanka with its fortress walls and ocean-like moat  –  the Son of the Wind crossed it without delay.
 
 You burned Lanka and destroyed the demons, accomplishing the tasks of Sita and Rama.
 
@@ -362,12 +362,12 @@ Gods, humans, and sages perform Your aarti, chanting "Victory, Victory, Victory 
 On a golden plate with camphor flame, Mother Anjana performs Your aarti.
 
 Whoever sings this aarti of Hanumanji attains the supreme abode of Vaikuntha.`,
-    significance: 'Hanuman Aarti is recited in praise of Lord Hanuman, the embodiment of devotion, strength, and selfless service. Tuesday and Saturday are Hanuman\'s special days. This aarti recounts His heroic deeds from the Ramayana — burning Lanka, bringing the Sanjeevani herb, and defeating Ahiravana. It is especially powerful during Hanuman Jayanti and every Tuesday/Saturday evening puja.',
+    significance: 'Hanuman Aarti is recited in praise of Lord Hanuman, the embodiment of devotion, strength, and selfless service. Tuesday and Saturday are Hanuman\'s special days. This aarti recounts His heroic deeds from the Ramayana  –  burning Lanka, bringing the Sanjeevani herb, and defeating Ahiravana. It is especially powerful during Hanuman Jayanti and every Tuesday/Saturday evening puja.',
   },
   {
     slug: 'shiv-aarti',
     type: 'aarti',
-    title: { en: 'Shiva Aarti — Om Jai Shiv Omkara', hi: 'शिव आरती — ॐ जय शिव ओमकारा' },
+    title: { en: 'Shiva Aarti  –  Om Jai Shiv Omkara', hi: 'शिव आरती  –  ॐ जय शिव ओमकारा' },
     deity: 'Shiva',
     deityDay: 1,
     devanagari: `ॐ जय शिव ओमकारा, स्वामी जय शिव ओमकारा।
@@ -432,9 +432,9 @@ Om Jai Shiv Omkara.
 Trigun Shivji ki aarti jo koi nar gaave.
 Kahat Shivanand Swami manvanchhit phal paave.
 Om Jai Shiv Omkara.`,
-    meaning: `Glory to Lord Shiva, the embodiment of Om! Brahma, Vishnu, and Sadashiva — He bears His consort (Parvati) as half His form.
+    meaning: `Glory to Lord Shiva, the embodiment of Om! Brahma, Vishnu, and Sadashiva  –  He bears His consort (Parvati) as half His form.
 
-With one face, four faces, and five faces He reigns — riding the swan, Garuda, and the bull Nandi.
+With one face, four faces, and five faces He reigns  –  riding the swan, Garuda, and the bull Nandi.
 
 With two, four, and ten arms He is supremely beautiful. Beholding His three forms, the people of three worlds are enchanted.
 
@@ -452,7 +452,7 @@ Says Swami Shivanand: whoever sings this aarti of the three-natured Shiva attain
   {
     slug: 'durga-aarti',
     type: 'aarti',
-    title: { en: 'Durga Aarti — Jai Ambe Gauri', hi: 'दुर्गा आरती — जय अम्बे गौरी' },
+    title: { en: 'Durga Aarti  –  Jai Ambe Gauri', hi: 'दुर्गा आरती  –  जय अम्बे गौरी' },
     deity: 'Durga',
     deityDay: 2,
     devanagari: `जय अम्बे गौरी, मैया जय श्यामा गौरी।
@@ -539,7 +539,7 @@ Vermillion adorns Your parting, a musk tilak on Your forehead. Your two eyes shi
 
 Your body gleams like gold, draped in red garments. A garland of red flowers adorns Your neck.
 
-You ride the lion, bearing sword and skull-cup. Gods, humans, and sages serve You — You remove their sorrows.
+You ride the lion, bearing sword and skull-cup. Gods, humans, and sages serve You  –  You remove their sorrows.
 
 Earrings adorn Your ears, a pearl on Your nose. Your radiance rivals millions of suns and moons.
 
@@ -604,7 +604,7 @@ Moon-faced, seated on a lotus, radiant treasure of qualities. Wearing auspicious
 
 A book in one hand, the other hand gracing beauty. With a gentle smile, She illuminates the world.
 
-Like the wish-fulfilling cow Kamadhenu, Her speech is like the Chintamani gem. Whoever meditates on Her with love — their sorrows are removed.
+Like the wish-fulfilling cow Kamadhenu, Her speech is like the Chintamani gem. Whoever meditates on Her with love  –  their sorrows are removed.
 
 You are Bhavani, You are Bhagvati, called Brahmani. Whoever sings the praise of Saraswati attains great happiness and wealth.`,
     significance: 'Saraswati Aarti is sung in honor of Goddess Saraswati, the deity of knowledge, music, arts, and learning. It is especially important during Vasant Panchami (Saraswati Puja) and Navratri. Thursday is considered auspicious for Saraswati worship. Students recite this aarti before exams and during the beginning of educational endeavors.',
@@ -612,7 +612,7 @@ You are Bhavani, You are Bhagvati, called Brahmani. Whoever sings the praise of 
   {
     slug: 'krishna-aarti',
     type: 'aarti',
-    title: { en: 'Krishna Aarti — Aarti Kunj Bihari Ki', hi: 'कृष्ण आरती — आरती कुञ्ज बिहारी की' },
+    title: { en: 'Krishna Aarti  –  Aarti Kunj Bihari Ki', hi: 'कृष्ण आरती  –  आरती कुञ्ज बिहारी की' },
     deity: 'Krishna',
     deityDay: 3,
     devanagari: `आरती कुञ्ज बिहारी की, श्री गिरिधर कृष्ण मुरारी की॥
@@ -651,21 +651,21 @@ Yamuna tat samuditi bala, Gop Gwalan sang khela.
 Aarti Kunj Bihari ki, Shri Giridhar Krishna Murari ki.`,
     meaning: `Aarti of the One who delights in the groves (Kunj Bihari), Shri Krishna who lifted the Govardhan mountain.
 
-Around His neck is the Vaijayanti garland, and He plays the sweet flute. Earrings glitter in His ears — He is Nandlala, the bliss of Nanda.
+Around His neck is the Vaijayanti garland, and He plays the sweet flute. Earrings glitter in His ears  –  He is Nandlala, the bliss of Nanda.
 
 His dark complexion shines like the sky, with Radhika gleaming beside Him. The garden-dweller stands among the creepers, with bee-like curls and a musk tilak on His forehead.
 
-What a wondrous sight — the divine play of Mohan (the enchanter).
+What a wondrous sight  –  the divine play of Mohan (the enchanter).
 
 The golden peacock crown glitters; even the gods yearn for His darshan. Flowers shower from the sky, and bliss rains in His worship. Four-armed, consort of Lakshmi, bestower of happiness, protector of all praised by the gods. Murari removes the fear of devotees; His sacred abode is the city of Mathura.
 
 On the banks of the Yamuna, the young one plays with the cowherd boys and girls.`,
-    significance: 'This beloved aarti is sung in praise of Lord Krishna as Kunj Bihari — the one who plays in the groves of Vrindavan. It is recited daily in Krishna temples, especially at ISKCON and Banke Bihari temple in Vrindavan. Wednesday is associated with Vishnu/Krishna worship. It is especially important during Janmashtami, Holi, and Radha Ashtami.',
+    significance: 'This beloved aarti is sung in praise of Lord Krishna as Kunj Bihari  –  the one who plays in the groves of Vrindavan. It is recited daily in Krishna temples, especially at ISKCON and Banke Bihari temple in Vrindavan. Wednesday is associated with Vishnu/Krishna worship. It is especially important during Janmashtami, Holi, and Radha Ashtami.',
   },
   {
     slug: 'ram-aarti',
     type: 'aarti',
-    title: { en: 'Ram Aarti — Shri Ramchandra Kripalu Bhajman', hi: 'राम आरती — श्री रामचन्द्र कृपालु भजमन' },
+    title: { en: 'Ram Aarti  –  Shri Ramchandra Kripalu Bhajman', hi: 'राम आरती  –  श्री रामचन्द्र कृपालु भजमन' },
     deity: 'Rama',
     deityDay: 3,
     devanagari: `श्री रामचन्द्र कृपालु भजमन हरण भवभय दारुणम्।
@@ -698,13 +698,13 @@ Iti vadati Tulsidas Shankar, Shesh Muni man ranjanam.
 Mam hriday kunj nivas kuru, Kaamadi khal dal ganjanam.`,
     meaning: `Worship Lord Ramchandra, the compassionate one who removes the terrible fear of worldly existence. His eyes are like fresh lotuses, His face like a lotus, His hands like lotuses, and His feet have the rosy glow of lotuses.
 
-His beauty surpasses countless Kamadevas; He is beautiful as a fresh blue cloud. With His yellow garments shining like lightning — I bow to the pure bridegroom of Janaka's daughter (Sita).
+His beauty surpasses countless Kamadevas; He is beautiful as a fresh blue cloud. With His yellow garments shining like lightning  –  I bow to the pure bridegroom of Janaka's daughter (Sita).
 
 Worship the friend of the poor, Lord of the day, destroyer of the demon and daitya clans. Joy of Raghu's line, source of bliss, moon of Kosala, son of Dasharatha.
 
-Crown on His head, earrings, tilak — beautiful and generous ornaments adorn His body. With arms reaching His knees, bearing arrows and bow, He conquered Khara and Dushana in battle.
+Crown on His head, earrings, tilak  –  beautiful and generous ornaments adorn His body. With arms reaching His knees, bearing arrows and bow, He conquered Khara and Dushana in battle.
 
-Thus says Tulsidas: He who delights the minds of Shankara, Shesha, and the sages — please reside in the grove of my heart and destroy the wicked army of desires.`,
+Thus says Tulsidas: He who delights the minds of Shankara, Shesha, and the sages  –  please reside in the grove of my heart and destroy the wicked army of desires.`,
     significance: 'Written by Goswami Tulsidas, this is one of the most revered aartis of Lord Rama. It is recited daily at Rama temples and during Ram Navami. The composition beautifully describes Rama\'s physical beauty and divine qualities. It is traditionally sung during evening aarti in Ayodhya and at Hanuman temples across North India.',
   },
   {
@@ -747,10 +747,10 @@ Jai Santoshi Mata.`,
 
 Beautiful golden garments are Your adornment, O Mother. A lovely tilak shines on Your forehead with stores of vermillion.
 
-O Mother of Gananayak (Ganesha), Your meditation is auspicious. Your music is delightful — bring welfare to Your devotees.
+O Mother of Gananayak (Ganesha), Your meditation is auspicious. Your music is delightful  –  bring welfare to Your devotees.
 
 Whoever offers You jaggery and chickpeas as bhog, O Mother, quickly attains their heart\'s desires.`,
-    significance: 'Santoshi Maa is worshipped primarily on Fridays. She is believed to be the daughter of Lord Ganesha. The Santoshi Maa Vrat (16 consecutive Fridays) is one of the most popular vratas observed by married women for family harmony and fulfillment of wishes. The offering of gur (jaggery) and chana (chickpeas) is essential — sour foods must be avoided on the vrat day.',
+    significance: 'Santoshi Maa is worshipped primarily on Fridays. She is believed to be the daughter of Lord Ganesha. The Santoshi Maa Vrat (16 consecutive Fridays) is one of the most popular vratas observed by married women for family harmony and fulfillment of wishes. The offering of gur (jaggery) and chana (chickpeas) is essential  –  sour foods must be avoided on the vrat day.',
   },
   {
     slug: 'surya-aarti',
@@ -790,7 +790,7 @@ Sukh samriddhi paave, sab vipda mit jaave.
 Om Jai Surya Bhagwan.`,
     meaning: `Glory to Lord Surya! You are the sacred bestower of light, bringing radiance to the world.
 
-Mounted on a chariot of seven horses, with Aruna as Your charioteer — You are a mass of divine brilliance.
+Mounted on a chariot of seven horses, with Aruna as Your charioteer  –  You are a mass of divine brilliance.
 
 Taking twelve forms (Adityas), You enchant the earth. O son of Kashyapa, Your brilliance grows day by day.
 
@@ -843,11 +843,11 @@ Kahat kavi Sundardas, man vanchit phal paave.
 Jai Jai Shri Shanidev.`,
     meaning: `Glory to Shani Dev, benefactor of devotees! He is the son of Surya and Mother Chhaya.
 
-His dark, large body wears a garland of skulls. He always wears black garments — the pure Shani.
+His dark, large body wears a garland of skulls. He always wears black garments  –  the pure Shani.
 
-In His hand is the Sun\'s umbrella, reigning over the world He has shaped. He always delivers justice — Shani\'s punishment removes all sorrow.
+In His hand is the Sun\'s umbrella, reigning over the world He has shaped. He always delivers justice  –  Shani\'s punishment removes all sorrow.
 
-He regards other women as mothers and desires no one else\'s wealth. He is a learned, righteous soul — know Him as the primordial being.
+He regards other women as mothers and desires no one else\'s wealth. He is a learned, righteous soul  –  know Him as the primordial being.
 
 Says poet Sundardas: whoever sings this aarti of Shani Dev attains their heart\'s desires.`,
     significance: 'Shani Dev Aarti is recited on Saturdays, which is Shani\'s day. Shani (Saturn) is the planet of justice, karma, and discipline. Those undergoing Sade Sati (7.5-year Saturn transit), Shani Mahadasha, or Dhaiyya should recite this aarti regularly. Offering mustard oil, black sesame, and lighting a sesame oil lamp on Saturdays are traditional remedies.',
@@ -884,7 +884,7 @@ Dhyaan jo tera prem son dharat hai, paavat pad nirvani.
 Namo Namo Tulsi Maharani.`,
     meaning: `Salutations to You, O Queen Tulsi! O Tulsi of Vrindavan, salutations to You.
 
-By whatever means one can reach the Lord — bring about that welfare, O auspicious one.
+By whatever means one can reach the Lord  –  bring about that welfare, O auspicious one.
 
 Your flower buds (manjari) are most dear and pleasing to Lord Hari.
 
@@ -939,17 +939,17 @@ Om Jai Gange Mata.`,
 
 Your light is like the moon, Your water flows pure. Whoever seeks Your refuge crosses over (the ocean of existence).
 
-You liberated the sons of King Sagara — the whole world knows this. May Your gracious gaze fall upon us — You are the giver of happiness in all three worlds.
+You liberated the sons of King Sagara  –  the whole world knows this. May Your gracious gaze fall upon us  –  You are the giver of happiness in all three worlds.
 
 Whoever even once comes to Your refuge, You remove the terror of Yama (death) and they attain supreme liberation.
 
-Whoever sings this aarti of Mother Ganga — Her glory is boundless — that person finds happiness.`,
+Whoever sings this aarti of Mother Ganga  –  Her glory is boundless  –  that person finds happiness.`,
     significance: 'Ganga Aarti is performed daily at sunset (Sandhya Aarti) at the ghats of Varanasi, Haridwar, and Rishikesh. The grand Ganga Aarti at Dashashwamedh Ghat in Varanasi is world-famous. Ganga Dussehra (Jyeshtha Shukla Dashami) celebrates the descent of the Ganga. Bathing in the Ganga is believed to wash away sins. The aarti is especially significant during Kartik Purnima and Maha Shivaratri.',
   },
   {
     slug: 'sai-baba-aarti',
     type: 'aarti',
-    title: { en: 'Sai Baba Aarti — Kakad Aarti', hi: 'साईं बाबा आरती — काकड़ आरती' },
+    title: { en: 'Sai Baba Aarti  –  Kakad Aarti', hi: 'साईं बाबा आरती  –  काकड़ आरती' },
     deity: 'Sai Baba',
     devanagari: `शिर्डी माझे पंढरपूर, साईबाबा रमावर।
 शुद्ध भक्तीचा चन्द्रभागा, भाव पुण्डलीक जागा॥
@@ -1018,7 +1018,7 @@ Pati ki salaamati ka, antar se maango neho.
 Karva Chauth ki aarti keejai.`,
     meaning: `Perform the aarti of Karva Chauth. Light the lamp of Karva Chauth.
 
-First worship Gauri (Parvati) with the earthen pot, adorned with all sixteen adornments. A wife serves her husband — the bond spans lifetimes.
+First worship Gauri (Parvati) with the earthen pot, adorned with all sixteen adornments. A wife serves her husband  –  the bond spans lifetimes.
 
 Offer arghya to the rising moon, view the moon through a sieve. From the depths of your heart, pray for your husband\'s well-being.`,
     significance: 'Karva Chauth is observed on Kartik Krishna Chaturthi by married Hindu women for the longevity and health of their husbands. Women fast from sunrise to moonrise without food or water. The fast is broken after sighting the moon through a sieve and then viewing the husband\'s face. It is one of the most widely observed fasts in North India.',
@@ -1026,7 +1026,7 @@ Offer arghya to the rising moon, view the moon through a sieve. From the depths 
   {
     slug: 'diwali-aarti',
     type: 'aarti',
-    title: { en: 'Diwali Aarti — Lakshmi-Ganesh', hi: 'दीपावली आरती — लक्ष्मी-गणेश' },
+    title: { en: 'Diwali Aarti  –  Lakshmi-Ganesh', hi: 'दीपावली आरती  –  लक्ष्मी-गणेश' },
     deity: 'Lakshmi-Ganesha',
     deityDay: 5,
     devanagari: `ॐ जय लक्ष्मी माता, मैया जय लक्ष्मी माता।
@@ -1057,7 +1057,7 @@ Glory to Lord Ganesha! His mother is Parvati and father is Mahadeva.
 
 On the night of Deepavali, Lakshmi and Ganesha are worshipped. Lamps are lit in every home, driving away darkness.
 
-Glory to Lakshmi-Ganesha, the light of Deepavali. Shower happiness and prosperity — bring light to the world.`,
+Glory to Lakshmi-Ganesha, the light of Deepavali. Shower happiness and prosperity  –  bring light to the world.`,
     significance: 'This combined Lakshmi-Ganesh aarti is performed on Diwali night (Kartik Amavasya), the biggest Hindu festival. Ganesha is worshipped first as the remover of obstacles, followed by Lakshmi for wealth and prosperity. New account books (Chopda Pujan) are blessed. Fireworks, rangoli, and diyas mark the celebration. It is essential to perform puja during Pradosh Kaal and Nishita Kaal on Diwali night.',
   },
   {
@@ -1151,7 +1151,7 @@ He manifested in Kali Yuga and gave darshan to a Brahmin. Appearing as an old Br
 
 A weak tribal hunter worshipped Satyanarayan. The Lord gave golden lotuses by the Yamuna.
 
-Whoever worships with devotion attains their heart\'s desires. Such is Lord Satyanarayan — beloved by all.`,
+Whoever worships with devotion attains their heart\'s desires. Such is Lord Satyanarayan  –  beloved by all.`,
     significance: 'Satyanarayan Puja is one of the most commonly performed Hindu pujas, especially on Purnima (full moon day) and Thursdays. It is performed to seek blessings for success, prosperity, and family welfare. The five chapters of the Satyanarayan Katha are recited during the puja. It is commonly performed during housewarmings, weddings, and on achieving success in any endeavor.',
   },
   {
@@ -1212,12 +1212,12 @@ He bears the conch, discus, mace, and lotus in His four arms. On His chest shine
 
 He reclines in the Ocean of Milk on the serpent Shesha's bed. Brahma, Rudra, Sanaka, and Sanandana worship His feet daily.
 
-The Lord assumed ten avatars for the benefit of devotees — Matsya (Fish), Kurma (Tortoise), Varaha (Boar), and Narasimha (Man-Lion), and the form of Vamana (Dwarf).
+The Lord assumed ten avatars for the benefit of devotees  –  Matsya (Fish), Kurma (Tortoise), Varaha (Boar), and Narasimha (Man-Lion), and the form of Vamana (Dwarf).
 
-Parashurama, Rama, Krishna, Buddha, and Kalki — assuming these forms, the Lord destroys adharma and protects dharma.
+Parashurama, Rama, Krishna, Buddha, and Kalki  –  assuming these forms, the Lord destroys adharma and protects dharma.
 
 Says Swami Shivanand: whoever sings this aarti of Shri Vishnu attains happiness and prosperity.`,
-    significance: 'This Vishnu-specific aarti focuses on Lord Vishnu\'s iconic form — four-armed with conch, discus, mace, and lotus — and His Dashavatar (ten incarnations). It is recited on Wednesdays and Thursdays, during Ekadashi, and at Vishnu temples. Vishnu is the Preserver in the Hindu Trinity, maintaining cosmic order (dharma) through His incarnations whenever evil threatens to overwhelm righteousness. The aarti is especially significant during Dev Uthani Ekadashi and Vaikuntha Ekadashi.',
+    significance: 'This Vishnu-specific aarti focuses on Lord Vishnu\'s iconic form  –  four-armed with conch, discus, mace, and lotus  –  and His Dashavatar (ten incarnations). It is recited on Wednesdays and Thursdays, during Ekadashi, and at Vishnu temples. Vishnu is the Preserver in the Hindu Trinity, maintaining cosmic order (dharma) through His incarnations whenever evil threatens to overwhelm righteousness. The aarti is especially significant during Dev Uthani Ekadashi and Vaikuntha Ekadashi.',
   },
 ];
 
@@ -1494,10 +1494,10 @@ Pavantanay sankat haran, Mangal moorti roop.
 Ram Lakhan Sita sahit, hriday basahu Sur Bhoop.`,
     meaning: `Opening Doha: Cleansing the mirror of my mind with the dust of my Guru's lotus feet, I describe the pure glory of Raghu's best (Rama), who grants the four fruits of life. Knowing myself to be ignorant, I remember the Son of the Wind (Hanuman). Grant me strength, wisdom, and knowledge; remove my afflictions and impurities.
 
-(1) Victory to Hanuman, ocean of wisdom and virtue. Victory to the Monkey King, illuminator of the three worlds. (2) You are Rama's envoy, abode of matchless strength. You are named Anjani's son, Son of the Wind. (3) Great hero, mighty as a thunderbolt. You dispel evil thoughts and are the companion of good sense. (4) Your golden body shines in fine attire, with earrings in Your ears and curly hair. (5) In Your hands shine the thunderbolt and the flag; a sacred thread of munja grass adorns Your shoulder. (6) You are Shankara's incarnation, son of Kesari. Your brilliance and valor are revered in the whole world. (7) You are learned, virtuous, and supremely clever, always eager to do Rama's work. (8) You delight in hearing the Lord's story. Rama, Lakshmana, and Sita dwell in Your heart. (9) Assuming a tiny form You appeared to Sita; assuming a terrifying form You burned Lanka. (10) Assuming a gigantic form You slew the demons, accomplishing Ramachandra's tasks. (11) You brought the Sanjeevani herb and revived Lakshmana. Shri Raghuveer embraced You joyfully. (12) Raghupati praised You greatly: "You are as dear to Me as brother Bharata." (13) "A thousand-headed Shesha sings Your glory," said Shripati (Vishnu), embracing You. (14) Sanaka, Brahma, and the great sages, Narada, Sharada, and the Serpent King (15) Yama, Kubera, and the Dikpalas — even poets and scholars cannot describe Your glory. (16) You did Sugriva a great favor — introducing him to Rama, You gave him the kingdom. (17) Vibhishana heeded Your counsel and became Lord of Lanka — the whole world knows. (18) The Sun is thousands of yojanas away; You swallowed it thinking it a sweet fruit. (19) Carrying the Lord's ring in Your mouth, You leaped across the ocean — no wonder! (20) All the difficult tasks in the world become easy by Your grace. (21) You are the gatekeeper at Rama's door; none may enter without Your permission. (22) All happiness lies in Your refuge; with You as protector, why should anyone fear? (23) You alone can control Your brilliance; the three worlds tremble at Your roar. (24) Ghosts and evil spirits dare not approach when the name of Mahaveer is uttered. (25) All diseases and pains are destroyed by constantly chanting "Hanuman Veera." (26) Hanuman rescues from troubles whoever meditates on Him in thought, deed, and word. (27) Rama is the supreme ascetic king, and You accomplish all His tasks. (28) Whoever comes to You with any desire receives limitless fruits of life. (29) Your glory spans all four ages, famous throughout the world as its light. (30) You are the protector of saints and sages, destroyer of demons, beloved of Rama. (31) You are the giver of the eight siddhis and nine nidhis — this boon was granted by Mother Janaki. (32) You possess the elixir of Rama's name; may You always remain Raghupati's servant. (33) Through Your worship one attains Rama, and the sorrows of countless lifetimes are forgotten. (34) At the end of life, one goes to Rama's abode; wherever one is born, one is called Hari's devotee. (35) Why worship other gods? Serving Hanuman alone gives all happiness. (36) All troubles are cut away, all pains destroyed, for whoever remembers mighty Hanuman. (37) Victory, Victory, Victory to Lord Hanuman! Bestow Your grace as the Guru does. (38) Whoever recites this a hundred times is freed from bondage and attains great bliss. (39) Whoever reads this Hanuman Chalisa attains perfection — Lord Shiva is witness. (40) Says Tulsidas, ever Hari's servant: O Lord, make my heart Your dwelling.
+(1) Victory to Hanuman, ocean of wisdom and virtue. Victory to the Monkey King, illuminator of the three worlds. (2) You are Rama's envoy, abode of matchless strength. You are named Anjani's son, Son of the Wind. (3) Great hero, mighty as a thunderbolt. You dispel evil thoughts and are the companion of good sense. (4) Your golden body shines in fine attire, with earrings in Your ears and curly hair. (5) In Your hands shine the thunderbolt and the flag; a sacred thread of munja grass adorns Your shoulder. (6) You are Shankara's incarnation, son of Kesari. Your brilliance and valor are revered in the whole world. (7) You are learned, virtuous, and supremely clever, always eager to do Rama's work. (8) You delight in hearing the Lord's story. Rama, Lakshmana, and Sita dwell in Your heart. (9) Assuming a tiny form You appeared to Sita; assuming a terrifying form You burned Lanka. (10) Assuming a gigantic form You slew the demons, accomplishing Ramachandra's tasks. (11) You brought the Sanjeevani herb and revived Lakshmana. Shri Raghuveer embraced You joyfully. (12) Raghupati praised You greatly: "You are as dear to Me as brother Bharata." (13) "A thousand-headed Shesha sings Your glory," said Shripati (Vishnu), embracing You. (14) Sanaka, Brahma, and the great sages, Narada, Sharada, and the Serpent King (15) Yama, Kubera, and the Dikpalas  –  even poets and scholars cannot describe Your glory. (16) You did Sugriva a great favor  –  introducing him to Rama, You gave him the kingdom. (17) Vibhishana heeded Your counsel and became Lord of Lanka  –  the whole world knows. (18) The Sun is thousands of yojanas away; You swallowed it thinking it a sweet fruit. (19) Carrying the Lord's ring in Your mouth, You leaped across the ocean  –  no wonder! (20) All the difficult tasks in the world become easy by Your grace. (21) You are the gatekeeper at Rama's door; none may enter without Your permission. (22) All happiness lies in Your refuge; with You as protector, why should anyone fear? (23) You alone can control Your brilliance; the three worlds tremble at Your roar. (24) Ghosts and evil spirits dare not approach when the name of Mahaveer is uttered. (25) All diseases and pains are destroyed by constantly chanting "Hanuman Veera." (26) Hanuman rescues from troubles whoever meditates on Him in thought, deed, and word. (27) Rama is the supreme ascetic king, and You accomplish all His tasks. (28) Whoever comes to You with any desire receives limitless fruits of life. (29) Your glory spans all four ages, famous throughout the world as its light. (30) You are the protector of saints and sages, destroyer of demons, beloved of Rama. (31) You are the giver of the eight siddhis and nine nidhis  –  this boon was granted by Mother Janaki. (32) You possess the elixir of Rama's name; may You always remain Raghupati's servant. (33) Through Your worship one attains Rama, and the sorrows of countless lifetimes are forgotten. (34) At the end of life, one goes to Rama's abode; wherever one is born, one is called Hari's devotee. (35) Why worship other gods? Serving Hanuman alone gives all happiness. (36) All troubles are cut away, all pains destroyed, for whoever remembers mighty Hanuman. (37) Victory, Victory, Victory to Lord Hanuman! Bestow Your grace as the Guru does. (38) Whoever recites this a hundred times is freed from bondage and attains great bliss. (39) Whoever reads this Hanuman Chalisa attains perfection  –  Lord Shiva is witness. (40) Says Tulsidas, ever Hari's servant: O Lord, make my heart Your dwelling.
 
 Closing Doha: O Son of the Wind, remover of calamities, embodiment of auspiciousness! Along with Rama, Lakshmana, and Sita, dwell in my heart, O King of Gods.`,
-    significance: 'The Hanuman Chalisa, composed by Goswami Tulsidas in the 16th century, is the single most recited devotional text in Hinduism. "Chalisa" means "forty" — referring to its 40 chaupai (quatrain) verses, framed by opening and closing dohas. It is recited daily by millions, especially on Tuesdays and Saturdays (Hanuman\'s days). It is believed to ward off evil spirits, cure diseases, remove obstacles, and grant strength and courage. During Hanuman Jayanti (Chaitra Purnima), continuous recitation (Hanuman Chalisa Path) is performed in temples.',
+    significance: 'The Hanuman Chalisa, composed by Goswami Tulsidas in the 16th century, is the single most recited devotional text in Hinduism. "Chalisa" means "forty"  –  referring to its 40 chaupai (quatrain) verses, framed by opening and closing dohas. It is recited daily by millions, especially on Tuesdays and Saturdays (Hanuman\'s days). It is believed to ward off evil spirits, cure diseases, remove obstacles, and grant strength and courage. During Hanuman Jayanti (Chaitra Purnima), continuous recitation (Hanuman Chalisa Path) is performed in temples.',
   },
   {
     slug: 'shiv-chalisa',
@@ -1628,7 +1628,7 @@ Nirankar hai jyoti tumhari. Tihun lok pheli ujiyari.
 Shashi lalaat mukh maha vishala. Netra laal bhrikuti vikrala...`,
     meaning: `Opening Doha: Salutations to Durga, bestower of happiness. Salutations to Ambe, remover of sorrow.
 
-The Durga Chalisa praises the Goddess as the formless light that illuminates all three worlds. With the moon on Her forehead, vast face, red eyes, and fierce brows, Her beautiful form delights all who behold Her. She created, sustains, and dissolves the universe. She assumed the fierce Chandi form to slay the demon armies — destroying Mahishasura, Shumbha, Nishumbha, and Raktabeeja. All the gods called upon Her for protection. The chalisa concludes with prayers for Her grace and the promise that reciting it brings all happiness and the supreme state.`,
+The Durga Chalisa praises the Goddess as the formless light that illuminates all three worlds. With the moon on Her forehead, vast face, red eyes, and fierce brows, Her beautiful form delights all who behold Her. She created, sustains, and dissolves the universe. She assumed the fierce Chandi form to slay the demon armies  –  destroying Mahishasura, Shumbha, Nishumbha, and Raktabeeja. All the gods called upon Her for protection. The chalisa concludes with prayers for Her grace and the promise that reciting it brings all happiness and the supreme state.`,
     significance: 'Durga Chalisa is recited during both Chaitra and Sharad Navratri (nine nights in spring and autumn), on Tuesdays and Fridays, and on Ashtami (8th day). It narrates the victories of Goddess Durga over various demons. Regular recitation is believed to protect from enemies, remove fear, and bring courage and prosperity. It is especially powerful during the Durga Puja festival celebrated across Bengal and Eastern India.',
   },
   {
@@ -1662,7 +1662,7 @@ Vighn haran mangal karan, Jai Jai Girijalal.
 || Chaupai ||
 Jai Jai Jai Ganapati Ganraju. Mangal bharan karan shubh kaaju.
 Jai Gajbadan sadan sukhdaata. Vishwa Vinayak buddhi vidhaata...`,
-    meaning: `Opening Doha: Victory to Ganapati, abode of good qualities, eloquent and gracious. Remover of obstacles, bestower of auspiciousness — Victory to the son of Girija (Parvati)!
+    meaning: `Opening Doha: Victory to Ganapati, abode of good qualities, eloquent and gracious. Remover of obstacles, bestower of auspiciousness  –  Victory to the son of Girija (Parvati)!
 
 The Ganesh Chalisa praises Lord Ganesha as the supreme leader of the ganas, elephant-faced bestower of happiness, creator of wisdom. His vermillion-colored form with teeth like pearls is described. He is the first to be worshipped among all gods. The chalisa requests His grace for the welfare of all beings and concludes with the promise that reading it brings all siddhis (spiritual powers), removes all troubles, and grants auspicious happiness.`,
     significance: 'Ganesh Chalisa is recited on Wednesdays, during Ganesh Chaturthi (10-day festival in Bhadrapada), and at the beginning of any new venture or puja. Lord Ganesha is always worshipped first before any other deity. The chalisa invokes His blessings for the removal of obstacles (Vighna-harta) and the bestowal of wisdom (Buddhi-data). It is especially recommended for students and those starting new businesses.',
@@ -1699,7 +1699,7 @@ Jai Jai Surgira gyan ki data. Jai Saraswati buddhi vidhata.
 Shubhra vasan paridhaan kiye shobhit. Shubhra pushp shobhit kar kamlit...`,
     meaning: `Opening Doha: I worship the pair of Saraswati's feet, whose toenails shine like jewels. In the mirror of Her feet, I behold my own reflection beautified.
 
-The Saraswati Chalisa praises the Goddess as the bestower of knowledge and creator of wisdom. She is adorned in white garments and white flowers. She holds a Veena (lute) and a book, dwelling in Brahma's heart. Four-armed, seated on a lotus — Sharada, the giver of knowledge. She is the bestower of intelligence and education. The chalisa requests Her grace to remove dullness and ignorance, and concludes with the promise that daily recitation brings knowledge, wisdom, poetry, and the removal of all obstacles.`,
+The Saraswati Chalisa praises the Goddess as the bestower of knowledge and creator of wisdom. She is adorned in white garments and white flowers. She holds a Veena (lute) and a book, dwelling in Brahma's heart. Four-armed, seated on a lotus  –  Sharada, the giver of knowledge. She is the bestower of intelligence and education. The chalisa requests Her grace to remove dullness and ignorance, and concludes with the promise that daily recitation brings knowledge, wisdom, poetry, and the removal of all obstacles.`,
     significance: 'Saraswati Chalisa is recited on Thursdays, during Vasant Panchami (Saraswati Puja), and before examinations or academic endeavors. Goddess Saraswati is the patron of learning, music, arts, and speech. Students place their books and musical instruments at Her feet during Saraswati Puja. The chalisa is especially beneficial for writers, musicians, students, and scholars seeking Her blessings for eloquence and knowledge.',
   },
   {
@@ -1770,7 +1770,7 @@ Prabhu Vishnu avatar tumhara. Sab jag janat Purushottam pyara...`,
     meaning: `Opening Doha: I meditate today at the feet of Shri Raghubar (Rama). I describe Rama according to my humble understanding.
 
 The Ram Chalisa praises Lord Rama as the avatar of Vishnu, beloved son of Dasharatha and Kausalya. It narrates His life story: the protection of sage Vishwamitra's yajna, the slaying of Tadaka and Subahu, the liberation of Ahalya, the breaking of Shiva's bow to win Sita's hand, and the 14 years of forest exile. The chalisa concludes with the promise that whoever recites it receives Rama's grace, attains their desires, and all troubles are removed.`,
-    significance: 'Ram Chalisa is recited on Wednesdays (Vishnu\'s day), during Ram Navami (Chaitra Shukla Navami), and as part of daily prayers. Lord Rama is revered as Maryada Purushottam — the ideal man who exemplifies dharma, courage, and devotion. The chalisa narrates the key events of the Ramayana. It is especially recommended for those seeking righteousness, family harmony, and divine protection.',
+    significance: 'Ram Chalisa is recited on Wednesdays (Vishnu\'s day), during Ram Navami (Chaitra Shukla Navami), and as part of daily prayers. Lord Rama is revered as Maryada Purushottam  –  the ideal man who exemplifies dharma, courage, and devotion. The chalisa narrates the key events of the Ramayana. It is especially recommended for those seeking righteousness, family harmony, and divine protection.',
   },
   {
     slug: 'vishnu-chalisa',
@@ -1802,7 +1802,7 @@ Patit paavan deen dayalu, tumhi ek sahay.
 || Chaupai ||
 Jai Jai Lakshmipat Jagdeesha. Sevat Kamlaapat pad sheesha.
 Dashavatar tum jagat banaai. Matsya Kurma Varaha sukhdaai...`,
-    meaning: `Opening Doha: Salutations to Lord Narayana! I always bow at Your feet. O purifier of the fallen, compassionate to the humble — You alone are my support.
+    meaning: `Opening Doha: Salutations to Lord Narayana! I always bow at Your feet. O purifier of the fallen, compassionate to the humble  –  You alone are my support.
 
 The Vishnu Chalisa praises the Supreme Preserver as Jagdisha (Lord of the Universe) and consort of Lakshmi. It enumerates His ten avatars (Dashavatar): Matsya (Fish), Kurma (Tortoise), Varaha (Boar), Narasimha (Man-Lion), Vamana (Dwarf), Parashurama, Rama, Krishna, Buddha, and Kalki. His four-armed form with conch, discus, mace, and lotus is described. He reclines on Shesha Naga in the Ocean of Milk while Lakshmi presses His feet. Brahma was born from the lotus in His navel, creating the world. The chalisa concludes with the promise that whoever recites it with love is freed from sins and crosses the ocean of existence.`,
     significance: 'Vishnu Chalisa is recited on Wednesdays and Thursdays, during Ekadashi (11th day of each lunar fortnight), and on Vishnu-related festivals like Vaikuntha Ekadashi, Dev Uthani Ekadashi, and Anant Chaturdashi. Lord Vishnu is the Preserver of the Universe in the Hindu Trinity. The Dashavatar (ten incarnations) represent His intervention whenever dharma declines. Fasting on Ekadashi and reciting this chalisa is considered highly meritorious.',
@@ -1849,10 +1849,10 @@ Jan ke kaaj bilamb na keejai. Aatur dauri maha sukh deejai.
 
 Jaise koodi Sindhu mahan para. Surasa badan paithi bistara.
 Aage jaay Lankini roka. Maarehu laat gai Sur Loka...`,
-    meaning: `Opening Doha: With firm faith, love, and devotion, whoever makes a humble prayer — Hanuman accomplishes all their auspicious tasks.
+    meaning: `Opening Doha: With firm faith, love, and devotion, whoever makes a humble prayer  –  Hanuman accomplishes all their auspicious tasks.
 
 The Bajrang Baan is a powerful prayer invoking Hanuman's warrior aspect. It recalls His leap across the ocean, defeating Surasa and Lankini, comforting Vibhishana, finding Sita, destroying the Ashoka grove, killing Akshaya Kumara, and burning Lanka with His tail ablaze. The prayer then invokes Hanuman with powerful tantric syllables (Om, Hum, Hreem) to destroy enemies and protect devotees. It concludes with a call for Hanuman to rush to aid His devotees.`,
-    significance: 'Bajrang Baan is one of the most powerful Hanuman prayers, more intense than the Hanuman Chalisa. It is recited for protection from evil spirits, black magic, and severe enemies. "Baan" means "arrow" — this prayer is like an arrow of Bajrang (Hanuman). It should be recited with utmost devotion and faith, especially on Tuesdays and Saturdays. It is recommended during severe troubles, court cases, and when facing powerful adversaries. Caution: it is traditionally advised to recite the Hanuman Chalisa before and after the Bajrang Baan.',
+    significance: 'Bajrang Baan is one of the most powerful Hanuman prayers, more intense than the Hanuman Chalisa. It is recited for protection from evil spirits, black magic, and severe enemies. "Baan" means "arrow"  –  this prayer is like an arrow of Bajrang (Hanuman). It should be recited with utmost devotion and faith, especially on Tuesdays and Saturdays. It is recommended during severe troubles, court cases, and when facing powerful adversaries. Caution: it is traditionally advised to recite the Hanuman Chalisa before and after the Bajrang Baan.',
   },
   {
     slug: 'shani-chalisa',
@@ -2138,11 +2138,11 @@ Jata-kataha-sambhrama-bhraman-nilimpa-nirjhari-
 Vilola-vichi-vallari-virajamana-murdhani.
 Dhagad-dhagad-dhagaj-jvalal-lalata-patta-pavake
 Kishora-chandra-shekhare ratih prati-kshanam mama. (2)...`,
-    meaning: `(1) From the dense forest of His matted locks flows the purifying stream (Ganga), and around His neck hangs a garland of great serpents. With the damaru drum sounding "damat-damat," He performed the fierce Tandava dance — may that Shiva bestow auspiciousness upon us.
+    meaning: `(1) From the dense forest of His matted locks flows the purifying stream (Ganga), and around His neck hangs a garland of great serpents. With the damaru drum sounding "damat-damat," He performed the fierce Tandava dance  –  may that Shiva bestow auspiciousness upon us.
 
-(2) With the Ganga whirling and dancing in His matted hair like playful waves, with the fire of the third eye blazing on His forehead — in that Lord who wears the crescent moon, may my devotion increase every moment.
+(2) With the Ganga whirling and dancing in His matted hair like playful waves, with the fire of the third eye blazing on His forehead  –  in that Lord who wears the crescent moon, may my devotion increase every moment.
 
-(3-16) The stotram continues with increasingly powerful imagery: mountains tremble, the universe resonates with His cosmic dance, serpent-jewels glow on His body, elephant-hide drapes His form. He destroys Kama (desire), the three cities (Tripura), worldly existence, Yama (death itself). The poet asks: when will I dwell in the groves of the celestial Ganga, hands clasped above my head, chanting "Shiva, Shiva" — when will I find true happiness?`,
+(3-16) The stotram continues with increasingly powerful imagery: mountains tremble, the universe resonates with His cosmic dance, serpent-jewels glow on His body, elephant-hide drapes His form. He destroys Kama (desire), the three cities (Tripura), worldly existence, Yama (death itself). The poet asks: when will I dwell in the groves of the celestial Ganga, hands clasped above my head, chanting "Shiva, Shiva"  –  when will I find true happiness?`,
     significance: 'The Shiva Tandava Stotram was composed by Ravana, the demon king of Lanka, in praise of Lord Shiva. Despite being a villain in the Ramayana, Ravana was a great devotee of Shiva and a formidable scholar. The 16 verses describe Shiva\'s cosmic dance (Tandava) with extraordinarily complex Sanskrit compound words. It is recited on Mondays, Maha Shivaratri, and during Shravan month. The stotram\'s complex rhythmic structure mimics the sounds of the Tandava dance itself. It is considered one of the most powerful Shiva prayers.',
   },
   {
@@ -2195,11 +2195,11 @@ Poojayasva Vivasvantam Bhaskaram Bhuvaneshvaram. (6)...`,
 
 (3) "O Rama, mighty-armed one, listen to this eternal secret by which you shall conquer all enemies in battle."
 
-(4) "This Aditya Hridayam (Heart of the Sun) is holy, destroyer of all enemies, bringer of victory. Recite it daily — it is imperishable, supremely auspicious."
+(4) "This Aditya Hridayam (Heart of the Sun) is holy, destroyer of all enemies, bringer of victory. Recite it daily  –  it is imperishable, supremely auspicious."
 
 (5) "It is the most auspicious of all auspicious things, destroyer of all sins, queller of worry and grief, the best bestower of long life."
 
-(6) "Worship the radiant rising Sun, saluted by gods and demons alike — Vivasvan, Bhaskara, Lord of the Universe."
+(6) "Worship the radiant rising Sun, saluted by gods and demons alike  –  Vivasvan, Bhaskara, Lord of the Universe."
 
 (7) "He contains the essence of all gods; He is radiant and the source of all rays. He protects the worlds of gods and demons with His beams."
 
@@ -2242,9 +2242,9 @@ Devan aani kari binati tab, chhaandi diyo Ravi kasht nivaaro.
 Ko nahin jaanat hai jag mein Kapi, Sankatmochan naam tihaaro.`,
     meaning: `Worship compassionate Lord Ramchandra, who removes the terrible fear of worldly existence. By His (Hanuman's) strength, great mountains tremble. Diseases and afflictions dare not approach Him.
 
-He who crossed the ocean, removed Sita's grief, and humbly sought the shelter of Rama — sing the Hanuman Bahuk and gain immense strength, wisdom, and knowledge.
+He who crossed the ocean, removed Sita's grief, and humbly sought the shelter of Rama  –  sing the Hanuman Bahuk and gain immense strength, wisdom, and knowledge.
 
-With firm faith, love, and respect, whoever prays — Hanuman accomplishes all their auspicious tasks.
+With firm faith, love, and respect, whoever prays  –  Hanuman accomplishes all their auspicious tasks.
 
 In childhood, You swallowed the Sun, and all three worlds became dark. The world was terrified, and no one could avert this crisis. When the gods came and pleaded, You released the Sun and removed the trouble. Who in the world does not know, O Monkey-lord, that "Sankatmochan" (Remover of Difficulties) is Your name!`,
     significance: 'Hanuman Bahuk was composed by Goswami Tulsidas when he himself was suffering from severe arm pain (bahuk = arm). He wrote this prayer to Hanuman for relief, and tradition holds that his pain was immediately cured. It is recited for healing from physical ailments, especially joint pain, paralysis, and chronic diseases. It is recommended on Tuesdays and Saturdays, and during times of severe illness. The text is considered especially powerful because it was born from Tulsidas\'s own personal suffering and faith.',
@@ -2296,9 +2296,9 @@ Mala drishor-madhukareeva mahotpale ya
 Sa me shriyam dishatu sagara-sambhavayah. (2)...`,
     meaning: `I worship that Indira (Lakshmi), who is the wish-fulfilling tree for worshippers, the source of Indira's bliss, beautiful with boundless joy, with an elephant-like face (auspicious complexion).
 
-(1) She who clings to the body of Hari (Vishnu) adorned with thrills of joy, like a female bee to a tamala tree full of buds — may the side-glance play of Her who has assumed all glories, that auspicious deity, grant me blessings.
+(1) She who clings to the body of Hari (Vishnu) adorned with thrills of joy, like a female bee to a tamala tree full of buds  –  may the side-glance play of Her who has assumed all glories, that auspicious deity, grant me blessings.
 
-(2) The innocent one repeatedly casting on Murari's face glances that come and go with love and modesty — may that ocean-born Goddess, whose eyes are like bees around a great lotus, bestow prosperity upon me.
+(2) The innocent one repeatedly casting on Murari's face glances that come and go with love and modesty  –  may that ocean-born Goddess, whose eyes are like bees around a great lotus, bestow prosperity upon me.
 
 (3-5) The stotram continues describing Lakshmi's intimate presence with Vishnu, Her grace visible in the Kaustubha gem, Her brilliance like lightning on the dark cloud of Vishnu's chest. Each verse is a prayer for the blessings of the daughter of Bhrigu.`,
     significance: 'Kanakadhara Stotram was composed by Adi Shankaracharya when he was a young student. The story goes that during his daily bhiksha (alms-begging), he visited a very poor woman who had nothing to offer except a single dried amla (gooseberry). Moved by her devotion, Shankaracharya composed this 21-verse hymn to Goddess Lakshmi, whereupon golden gooseberries (kanakadhara = stream of gold) rained upon the woman\'s home. The stotram is recited on Fridays and during Diwali for the removal of poverty and the bestowal of wealth.',
@@ -2332,12 +2332,12 @@ Sura-vara-varshini durdhara-dharshini durmukha-marshini harsha-rate
 Tribhuvana-poshini Shankara-toshini kilbisha-moshini ghosha-rate.
 Danuja-niroshini Diti-suta-roshini durmada-shoshini Sindhusute
 Jaya Jaya he Mahishasura-mardini Ramya-kapardini Shailasute. (2)...`,
-    meaning: `(1) O daughter of the mountain, who delights the earth, who entertains the universe, praised by Nandana! O dweller on the peak of the great Vindhya, who sports with Vishnu, praised by Jishnu (Arjuna)! O Bhagavati, wife of the blue-throated Shiva, of vast family and vast deeds — Victory, Victory to the slayer of Mahishasura, She of beautiful braids, daughter of the mountain!
+    meaning: `(1) O daughter of the mountain, who delights the earth, who entertains the universe, praised by Nandana! O dweller on the peak of the great Vindhya, who sports with Vishnu, praised by Jishnu (Arjuna)! O Bhagavati, wife of the blue-throated Shiva, of vast family and vast deeds  –  Victory, Victory to the slayer of Mahishasura, She of beautiful braids, daughter of the mountain!
 
-(2) O rainer of boons upon the gods, unconquerable, patient with the wicked, delighting in joy! Nourisher of the three worlds, pleaser of Shankara, destroyer of sins, delighting in celebration! Angered at the demons and sons of Diti, drier of evil pride, daughter of the ocean — Victory, Victory to the slayer of Mahishasura!
+(2) O rainer of boons upon the gods, unconquerable, patient with the wicked, delighting in joy! Nourisher of the three worlds, pleaser of Shankara, destroyer of sins, delighting in celebration! Angered at the demons and sons of Diti, drier of evil pride, daughter of the ocean  –  Victory, Victory to the slayer of Mahishasura!
 
-(3) O mother of the world, my mother, who loves to dwell in kadamba forests, who delights in laughter! Dwelling in the peaks of the great Himalaya mountains! Sweet as honey, destroyer of Madhu and Kaitabha demons, delighting in dance — Victory, Victory to the slayer of Mahishasura!`,
-    significance: 'Mahishasura Mardini Stotram celebrates Goddess Durga\'s victory over the buffalo-demon Mahishasura. The story is central to the Devi Mahatmyam / Durga Saptashati. This stotram is attributed to Adi Shankaracharya. It is recited during Navratri (especially Ashtami/Navami), on Tuesdays and Fridays, and during Durga Puja. Each verse ends with the iconic refrain "Jaya Jaya he Mahishasura Mardini" — making it one of the most musical and rhythmic Sanskrit compositions. Its complex alliterative style showcases the beauty of Sanskrit poetry.',
+(3) O mother of the world, my mother, who loves to dwell in kadamba forests, who delights in laughter! Dwelling in the peaks of the great Himalaya mountains! Sweet as honey, destroyer of Madhu and Kaitabha demons, delighting in dance  –  Victory, Victory to the slayer of Mahishasura!`,
+    significance: 'Mahishasura Mardini Stotram celebrates Goddess Durga\'s victory over the buffalo-demon Mahishasura. The story is central to the Devi Mahatmyam / Durga Saptashati. This stotram is attributed to Adi Shankaracharya. It is recited during Navratri (especially Ashtami/Navami), on Tuesdays and Fridays, and during Durga Puja. Each verse ends with the iconic refrain "Jaya Jaya he Mahishasura Mardini"  –  making it one of the most musical and rhythmic Sanskrit compositions. Its complex alliterative style showcases the beauty of Sanskrit poetry.',
   },
   {
     slug: 'sri-suktam',
@@ -2414,7 +2414,7 @@ Etavan-asya mahima ato jyayamsh-cha Purushaha.
 Pado-asya vishva bhutani tripad-asya-amritam divi. (3)...`,
     meaning: `(1) The cosmic Purusha has a thousand heads, a thousand eyes, and a thousand feet. He envelops the earth from all sides and extends ten fingers beyond it.
 
-(2) This Purusha is indeed all this — whatever has been and whatever will be. He is the lord of immortality, which He transcends through food (the manifest world).
+(2) This Purusha is indeed all this  –  whatever has been and whatever will be. He is the lord of immortality, which He transcends through food (the manifest world).
 
 (3) Such is His greatness, and the Purusha is even greater than this. All beings are one quarter of Him; His three quarters are the immortal in heaven.
 
@@ -2429,7 +2429,7 @@ Pado-asya vishva bhutani tripad-asya-amritam divi. (3)...`,
     title: { en: 'Rudram Chamakam', hi: 'रुद्रम् चमकम्' },
     deity: 'Shiva/Rudra',
     deityDay: 1,
-    devanagari: `॥ श्री रुद्रम् — नमकम् ॥
+    devanagari: `॥ श्री रुद्रम्  –  नमकम् ॥
 ॐ नमो भगवते रुद्राय॥
 
 ॐ नमस्ते रुद्र मन्यव उतोत इषवे नमः।
@@ -2457,7 +2457,7 @@ Pado-asya vishva bhutani tripad-asya-amritam divi. (3)...`,
 ओजश्च मे सहश्च मे आयुश्च मे जरा च मे
 आत्मा च मे तनूश्च मे शर्म च मे वर्म च मे
 अंगानि च मेऽस्थानि च मे परूंषि च मे शरीराणि च मे॥१॥`,
-    transliteration: `|| Sri Rudram — Namakam ||
+    transliteration: `|| Sri Rudram  –  Namakam ||
 Om Namo Bhagavate Rudraya.
 
 Om Namaste Rudra manyava utota ishave namaha.
@@ -2489,7 +2489,7 @@ Dhitishcha me kratushcha me svarashcha me shlokashcha me...`,
 
 Chamakam (Grant Me):
 "May I have food, may I have inspiration, may I have enterprise, may I have exertion, may I have thought, may I have purpose, may I have voice, may I have fame, may I have hearing, may I have light, may I have heaven, may I have breath (prana, apana, vyana), may I have life force, may I have mind, may I have speech, may I have eyes, may I have ears, may I have skill, may I have strength, may I have energy, may I have endurance, may I have long life, may I have old age, may I have self, may I have body, may I have protection, may I have armor, may I have limbs, may I have bones, may I have joints, may I have bodies."`,
-    significance: 'The Sri Rudram (Namakam and Chamakam) is from the Krishna Yajur Veda (Taittiriya Samhita, Chapter 4.5-4.7). It is the central liturgy of Shiva worship and the most important Vedic hymn dedicated to Rudra-Shiva. The Namakam contains 11 anuvakas (chapters) of salutations, while the Chamakam contains 11 anuvakas of wishes. The Rudra Abhishekam performed in Shiva temples uses this chant. It is especially recited during Maha Shivaratri, Mondays, and Pradosha Vrata. Performing 11 recitations is called Ekadasha Rudram; 121 recitations is Laghu Rudram; 1,331 is Maha Rudram; and 14,641 is Ati Rudram — the grandest Vedic ritual in Hinduism.',
+    significance: 'The Sri Rudram (Namakam and Chamakam) is from the Krishna Yajur Veda (Taittiriya Samhita, Chapter 4.5-4.7). It is the central liturgy of Shiva worship and the most important Vedic hymn dedicated to Rudra-Shiva. The Namakam contains 11 anuvakas (chapters) of salutations, while the Chamakam contains 11 anuvakas of wishes. The Rudra Abhishekam performed in Shiva temples uses this chant. It is especially recited during Maha Shivaratri, Mondays, and Pradosha Vrata. Performing 11 recitations is called Ekadasha Rudram; 121 recitations is Laghu Rudram; 1,331 is Maha Rudram; and 14,641 is Ati Rudram  –  the grandest Vedic ritual in Hinduism.',
   },
 ];
 
@@ -2510,20 +2510,20 @@ const MANTRAS: DevotionalItem[] = [
 Tat Savitur Varenyam
 Bhargo Devasya Dheemahi
 Dhiyo Yo Nah Prachodayat`,
-    meaning: `Om — the primordial sound
-Bhur — the physical world (earth)
-Bhuvah — the mental world (atmosphere)
-Svah — the spiritual world (heaven)
-Tat — that (Supreme Reality)
-Savitur — of the Sun/Creator
-Varenyam — most adorable/worthy of worship
-Bhargo — divine radiance/splendor
-Devasya — of the luminous deity
-Dheemahi — we meditate upon
-Dhiyo — intellect/understanding
-Yo — who/which
-Nah — our
-Prachodayat — may inspire/illuminate
+    meaning: `Om  –  the primordial sound
+Bhur  –  the physical world (earth)
+Bhuvah  –  the mental world (atmosphere)
+Svah  –  the spiritual world (heaven)
+Tat  –  that (Supreme Reality)
+Savitur  –  of the Sun/Creator
+Varenyam  –  most adorable/worthy of worship
+Bhargo  –  divine radiance/splendor
+Devasya  –  of the luminous deity
+Dheemahi  –  we meditate upon
+Dhiyo  –  intellect/understanding
+Yo  –  who/which
+Nah  –  our
+Prachodayat  –  may inspire/illuminate
 
 "We meditate upon the divine radiance of that Supreme Being who illuminates all realms. May that Supreme Light inspire and guide our intellect."`,
     significance: 'The Gayatri Mantra is the most sacred mantra in Hinduism, from the Rig Veda (3.62.10). It was revealed to sage Vishwamitra. Traditionally chanted at the three sandhyas (sunrise, noon, sunset), it is the mantra given during Upanayana (sacred thread ceremony). It is addressed to Savitri (the creative power of the Sun God) and is considered the essence of all the Vedas. Chanting 108 times daily is the standard practice. It enhances intellect, removes sins, and leads to spiritual illumination. It is suitable for all regardless of caste, gender, or background.',
@@ -2542,18 +2542,18 @@ Prachodayat — may inspire/illuminate
 Sugandhim Pushti-vardhanam
 Urvarukam-iva Bandhanat
 Mrityor-mukshiya Maamritat`,
-    meaning: `Om — the primordial sound
-Tryambakam — the three-eyed one (Shiva)
-Yajamahe — we worship/adore
-Sugandhim — the fragrant one
-Pushti-vardhanam — the nourisher/strengthener of all beings
-Urvarukam — like a cucumber/melon
-Iva — like, just as
-Bandhanat — from bondage (of the stem)
-Mrityoh — from death
-Mukshiya — may I be liberated
-Ma — not
-Amritat — from immortality (do not deny me immortality)
+    meaning: `Om  –  the primordial sound
+Tryambakam  –  the three-eyed one (Shiva)
+Yajamahe  –  we worship/adore
+Sugandhim  –  the fragrant one
+Pushti-vardhanam  –  the nourisher/strengthener of all beings
+Urvarukam  –  like a cucumber/melon
+Iva  –  like, just as
+Bandhanat  –  from bondage (of the stem)
+Mrityoh  –  from death
+Mukshiya  –  may I be liberated
+Ma  –  not
+Amritat  –  from immortality (do not deny me immortality)
 
 "We worship the three-eyed Lord Shiva, who is fragrant and nourishes all beings. Like a ripe cucumber is freed from its vine, may He liberate us from death, but not from immortality."`,
     significance: 'The Mahamrityunjaya Mantra (also called Mrita Sanjivini Mantra) is from the Rig Veda (7.59.12), attributed to sage Markandeya. It is the most powerful healing mantra in Hinduism, believed to conquer death and grant immortality. It is chanted for: healing from serious illness, protection from accidents, overcoming fear of death, and during funerary rites. It is recommended to chant 108 times, especially on Mondays, during Maha Shivaratri, on birthdays, and when someone is critically ill. It is one of the two most important Shiva mantras (the other being Om Namah Shivaya).',
@@ -2566,7 +2566,7 @@ Amritat — from immortality (do not deny me immortality)
     deityDay: 0,
     devanagari: `ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः`,
     transliteration: `Om Hraam Hreem Hraum Sah Suryaya Namaha`,
-    meaning: `Om — the primordial sound. Hraam, Hreem, Hraum — the beej (seed) syllables of Surya. Sah — the essence. Suryaya — to the Sun God. Namaha — salutations.
+    meaning: `Om  –  the primordial sound. Hraam, Hreem, Hraum  –  the beej (seed) syllables of Surya. Sah  –  the essence. Suryaya  –  to the Sun God. Namaha  –  salutations.
 
 "I bow to the Sun God with His seed syllables."`,
     significance: 'The Surya Beej Mantra is chanted to strengthen the Sun (Surya) in one\'s horoscope. A strong Sun gives leadership, confidence, vitality, and success in government/authority matters. Chant 7,000 times for a complete cycle (or 108 times daily for 40 days). Best chanted on Sundays at sunrise while facing east. Offer water (Arghya) to the Sun while chanting. Recommended during Surya Mahadasha/Antardasha or when Sun is debilitated in the natal chart.',
@@ -2579,7 +2579,7 @@ Amritat — from immortality (do not deny me immortality)
     deityDay: 1,
     devanagari: `ॐ श्रां श्रीं श्रौं सः चन्द्राय नमः`,
     transliteration: `Om Shraam Shreem Shraum Sah Chandraya Namaha`,
-    meaning: `Om — the primordial sound. Shraam, Shreem, Shraum — the beej syllables of Chandra. Sah — the essence. Chandraya — to the Moon. Namaha — salutations.
+    meaning: `Om  –  the primordial sound. Shraam, Shreem, Shraum  –  the beej syllables of Chandra. Sah  –  the essence. Chandraya  –  to the Moon. Namaha  –  salutations.
 
 "I bow to the Moon with His seed syllables."`,
     significance: 'The Chandra Beej Mantra strengthens the Moon in one\'s horoscope. A strong Moon gives emotional stability, good memory, mental peace, and healthy relationships with the mother. Chant 11,000 times for a complete cycle (or 108 times daily). Best chanted on Mondays during the evening or on Purnima (full moon). Recommended during Chandra Mahadasha/Antardasha, when Moon is debilitated, or during emotional/mental difficulties.',
@@ -2592,7 +2592,7 @@ Amritat — from immortality (do not deny me immortality)
     deityDay: 2,
     devanagari: `ॐ क्रां क्रीं क्रौं सः भौमाय नमः`,
     transliteration: `Om Kraam Kreem Kraum Sah Bhaumaya Namaha`,
-    meaning: `Om — the primordial sound. Kraam, Kreem, Kraum — the beej syllables of Mars. Sah — the essence. Bhaumaya — to Mars (son of the Earth). Namaha — salutations.
+    meaning: `Om  –  the primordial sound. Kraam, Kreem, Kraum  –  the beej syllables of Mars. Sah  –  the essence. Bhaumaya  –  to Mars (son of the Earth). Namaha  –  salutations.
 
 "I bow to Mars with His seed syllables."`,
     significance: 'The Mangal Beej Mantra strengthens Mars in one\'s horoscope. A strong Mars gives courage, physical strength, property ownership, and success in competitions. Chant 10,000 times for a complete cycle (or 108 times daily). Best chanted on Tuesdays. Recommended for Manglik dosha, during Mangal Mahadasha/Antardasha, or when Mars is debilitated. Wearing red coral and offering red flowers enhances the effect.',
@@ -2605,7 +2605,7 @@ Amritat — from immortality (do not deny me immortality)
     deityDay: 3,
     devanagari: `ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः`,
     transliteration: `Om Braam Breem Braum Sah Budhaya Namaha`,
-    meaning: `Om — the primordial sound. Braam, Breem, Braum — the beej syllables of Mercury. Sah — the essence. Budhaya — to Mercury. Namaha — salutations.
+    meaning: `Om  –  the primordial sound. Braam, Breem, Braum  –  the beej syllables of Mercury. Sah  –  the essence. Budhaya  –  to Mercury. Namaha  –  salutations.
 
 "I bow to Mercury with His seed syllables."`,
     significance: 'The Budha Beej Mantra strengthens Mercury in one\'s horoscope. A strong Mercury gives intelligence, communication skills, business acumen, and success in education. Chant 9,000 times for a complete cycle (or 108 times daily). Best chanted on Wednesdays. Recommended during Budha Mahadasha/Antardasha, when Mercury is debilitated, or for students and professionals needing sharp intellect. Wearing emerald (Panna) enhances the effect.',
@@ -2618,7 +2618,7 @@ Amritat — from immortality (do not deny me immortality)
     deityDay: 4,
     devanagari: `ॐ ग्रां ग्रीं ग्रौं सः गुरवे नमः`,
     transliteration: `Om Graam Greem Graum Sah Gurave Namaha`,
-    meaning: `Om — the primordial sound. Graam, Greem, Graum — the beej syllables of Jupiter. Sah — the essence. Gurave — to Jupiter (the Guru/Teacher). Namaha — salutations.
+    meaning: `Om  –  the primordial sound. Graam, Greem, Graum  –  the beej syllables of Jupiter. Sah  –  the essence. Gurave  –  to Jupiter (the Guru/Teacher). Namaha  –  salutations.
 
 "I bow to Jupiter with His seed syllables."`,
     significance: 'The Guru Beej Mantra strengthens Jupiter in one\'s horoscope. A strong Jupiter gives wisdom, spirituality, prosperity, good fortune, and success in teaching/advisory roles. Chant 19,000 times for a complete cycle (or 108 times daily). Best chanted on Thursdays. Recommended during Guru Mahadasha/Antardasha, when Jupiter is debilitated, or for those seeking wisdom and spiritual growth. Wearing yellow sapphire (Pukhraj) enhances the effect.',
@@ -2631,7 +2631,7 @@ Amritat — from immortality (do not deny me immortality)
     deityDay: 5,
     devanagari: `ॐ द्रां द्रीं द्रौं सः शुक्राय नमः`,
     transliteration: `Om Draam Dreem Draum Sah Shukraya Namaha`,
-    meaning: `Om — the primordial sound. Draam, Dreem, Draum — the beej syllables of Venus. Sah — the essence. Shukraya — to Venus. Namaha — salutations.
+    meaning: `Om  –  the primordial sound. Draam, Dreem, Draum  –  the beej syllables of Venus. Sah  –  the essence. Shukraya  –  to Venus. Namaha  –  salutations.
 
 "I bow to Venus with His seed syllables."`,
     significance: 'The Shukra Beej Mantra strengthens Venus in one\'s horoscope. A strong Venus gives beauty, love, luxury, artistic talents, and marital happiness. Chant 16,000 times for a complete cycle (or 108 times daily). Best chanted on Fridays. Recommended during Shukra Mahadasha/Antardasha, when Venus is debilitated, or for those seeking love, marriage, and creative success. Wearing diamond (Heera) or white sapphire enhances the effect.',
@@ -2644,10 +2644,10 @@ Amritat — from immortality (do not deny me immortality)
     deityDay: 6,
     devanagari: `ॐ प्रां प्रीं प्रौं सः शनैश्चराय नमः`,
     transliteration: `Om Praam Preem Praum Sah Shanaischaraya Namaha`,
-    meaning: `Om — the primordial sound. Praam, Preem, Praum — the beej syllables of Saturn. Sah — the essence. Shanaischaraya — to Saturn (the slow-moving one). Namaha — salutations.
+    meaning: `Om  –  the primordial sound. Praam, Preem, Praum  –  the beej syllables of Saturn. Sah  –  the essence. Shanaischaraya  –  to Saturn (the slow-moving one). Namaha  –  salutations.
 
 "I bow to Saturn with His seed syllables."`,
-    significance: 'The Shani Beej Mantra is essential for those undergoing Sade Sati (7.5-year Saturn transit), Shani Mahadasha, or Dhaiyya. A strong Saturn gives discipline, longevity, career stability, and karmic rewards. Chant 23,000 times for a complete cycle (or 108 times daily). Best chanted on Saturdays, especially in the evening. Offer mustard oil to Shani on Saturdays. Wearing blue sapphire (Neelam) — only after expert consultation — can enhance the effect. Feeding crows and helping the poor on Saturdays are traditional remedies.',
+    significance: 'The Shani Beej Mantra is essential for those undergoing Sade Sati (7.5-year Saturn transit), Shani Mahadasha, or Dhaiyya. A strong Saturn gives discipline, longevity, career stability, and karmic rewards. Chant 23,000 times for a complete cycle (or 108 times daily). Best chanted on Saturdays, especially in the evening. Offer mustard oil to Shani on Saturdays. Wearing blue sapphire (Neelam)  –  only after expert consultation  –  can enhance the effect. Feeding crows and helping the poor on Saturdays are traditional remedies.',
   },
   {
     slug: 'rahu-beej-mantra',
@@ -2657,7 +2657,7 @@ Amritat — from immortality (do not deny me immortality)
     deityDay: 6,
     devanagari: `ॐ भ्रां भ्रीं भ्रौं सः राहवे नमः`,
     transliteration: `Om Bhraam Bhreem Bhraum Sah Rahave Namaha`,
-    meaning: `Om — the primordial sound. Bhraam, Bhreem, Bhraum — the beej syllables of Rahu. Sah — the essence. Rahave — to Rahu (the North Node of the Moon). Namaha — salutations.
+    meaning: `Om  –  the primordial sound. Bhraam, Bhreem, Bhraum  –  the beej syllables of Rahu. Sah  –  the essence. Rahave  –  to Rahu (the North Node of the Moon). Namaha  –  salutations.
 
 "I bow to Rahu with His seed syllables."`,
     significance: 'The Rahu Beej Mantra pacifies the malefic effects of Rahu in one\'s horoscope. Rahu represents worldly desires, illusions, foreign influences, and sudden events. Chant 18,000 times for a complete cycle (or 108 times daily). Best chanted on Saturdays or during Rahu Kaal. Recommended during Rahu Mahadasha/Antardasha. Wearing Hessonite (Gomed) can enhance the effect. Donating to leprosy patients and feeding birds are traditional remedies.',
@@ -2670,7 +2670,7 @@ Amritat — from immortality (do not deny me immortality)
     deityDay: 2,
     devanagari: `ॐ स्रां स्रीं स्रौं सः केतवे नमः`,
     transliteration: `Om Sraam Sreem Sraum Sah Ketave Namaha`,
-    meaning: `Om — the primordial sound. Sraam, Sreem, Sraum — the beej syllables of Ketu. Sah — the essence. Ketave — to Ketu (the South Node of the Moon). Namaha — salutations.
+    meaning: `Om  –  the primordial sound. Sraam, Sreem, Sraum  –  the beej syllables of Ketu. Sah  –  the essence. Ketave  –  to Ketu (the South Node of the Moon). Namaha  –  salutations.
 
 "I bow to Ketu with His seed syllables."`,
     significance: 'The Ketu Beej Mantra pacifies the effects of Ketu in one\'s horoscope. Ketu represents spirituality, detachment, past-life karma, and moksha. It can also cause confusion, sudden losses, and mysterious ailments. Chant 17,000 times for a complete cycle (or 108 times daily). Best chanted on Tuesdays or during Ketu periods. Recommended during Ketu Mahadasha/Antardasha. Wearing Cat\'s Eye (Lehsuniya/Vaidurya) can enhance the effect. Donating blankets and feeding dogs are traditional remedies.',
@@ -2689,10 +2689,10 @@ Amritat — from immortality (do not deny me immortality)
 
 Vakratunda Mahakaya Suryakoti Samaprabha.
 Nirvighnam Kuru Me Deva Sarva-Kaaryeshu Sarvada.`,
-    meaning: `Om — the primordial sound. Gam — the beej syllable of Ganesha. Ganapataye — to the Lord of the Ganas. Namaha — salutations.
+    meaning: `Om  –  the primordial sound. Gam  –  the beej syllable of Ganesha. Ganapataye  –  to the Lord of the Ganas. Namaha  –  salutations.
 
-"O Lord with the curved trunk and massive body, whose brilliance equals a billion suns — please make all my endeavors free from obstacles, always."`,
-    significance: 'The Ganesh Mantra "Om Gam Ganapataye Namaha" is the most popular mantra for Lord Ganesha, the remover of obstacles. It is chanted before beginning any new venture — business, education, travel, marriage, or puja. The Vakratunda Shloka is the universal invocation recited at the start of any Hindu ceremony. Chant 108 times daily, especially on Wednesdays and during Ganesh Chaturthi. Offering modak (sweet dumpling) and durva grass (21 blades) pleases Ganesha.',
+"O Lord with the curved trunk and massive body, whose brilliance equals a billion suns  –  please make all my endeavors free from obstacles, always."`,
+    significance: 'The Ganesh Mantra "Om Gam Ganapataye Namaha" is the most popular mantra for Lord Ganesha, the remover of obstacles. It is chanted before beginning any new venture  –  business, education, travel, marriage, or puja. The Vakratunda Shloka is the universal invocation recited at the start of any Hindu ceremony. Chant 108 times daily, especially on Wednesdays and during Ganesh Chaturthi. Offering modak (sweet dumpling) and durva grass (21 blades) pleases Ganesha.',
   },
   {
     slug: 'lakshmi-mantra',
@@ -2708,10 +2708,10 @@ Nirvighnam Kuru Me Deva Sarva-Kaaryeshu Sarvada.`,
 
 Om Shreem Hreem Shreem Kamale Kamalaalaye Praseeda Praseeda
 Om Shreem Hreem Shreem Mahalakshmyai Namaha`,
-    meaning: `Om — the primordial sound. Shreem — the beej syllable of Lakshmi (representing prosperity). Mahalakshmyai — to the Great Lakshmi. Namaha — salutations.
+    meaning: `Om  –  the primordial sound. Shreem  –  the beej syllable of Lakshmi (representing prosperity). Mahalakshmyai  –  to the Great Lakshmi. Namaha  –  salutations.
 
-Extended mantra: "Om Shreem Hreem Shreem — O Lotus-born one who dwells among lotuses, be pleased, be pleased! Salutations to the Great Lakshmi."`,
-    significance: 'The Lakshmi Mantra with the "Shreem" beej is the most powerful mantra for attracting wealth and prosperity. "Shreem" is the seed syllable of Lakshmi, representing all forms of abundance — material, spiritual, and creative. Chant 108 times daily, especially on Fridays and during Diwali. The extended Kamala mantra is used in formal Lakshmi puja. Offering lotus flowers, lighting ghee lamps, and keeping the home clean and fragrant attracts Lakshmi\'s blessings. It is recommended during financial difficulties and for business success.',
+Extended mantra: "Om Shreem Hreem Shreem  –  O Lotus-born one who dwells among lotuses, be pleased, be pleased! Salutations to the Great Lakshmi."`,
+    significance: 'The Lakshmi Mantra with the "Shreem" beej is the most powerful mantra for attracting wealth and prosperity. "Shreem" is the seed syllable of Lakshmi, representing all forms of abundance  –  material, spiritual, and creative. Chant 108 times daily, especially on Fridays and during Diwali. The extended Kamala mantra is used in formal Lakshmi puja. Offering lotus flowers, lighting ghee lamps, and keeping the home clean and fragrant attracts Lakshmi\'s blessings. It is recommended during financial difficulties and for business success.',
   },
   {
     slug: 'saraswati-mantra',
@@ -2731,9 +2731,9 @@ Ya Kundendu-tushaara-haara-dhavala Ya Shubhra-vastra-avrita
 Ya Veena-vara-danda-mandita-kara Ya Shveta-padma-asana.
 Ya Brahma-achyuta-Shankara-prabhritibhir Devaih sada vandita
 Sa mam paatu Saraswati Bhagavati Nihshesha-jadya-apaha.`,
-    meaning: `Om — the primordial sound. Aim — the beej syllable of Saraswati (representing knowledge and speech). Saraswatyai — to Saraswati. Namaha — salutations.
+    meaning: `Om  –  the primordial sound. Aim  –  the beej syllable of Saraswati (representing knowledge and speech). Saraswatyai  –  to Saraswati. Namaha  –  salutations.
 
-"She who is white as the jasmine, moon, and snow-garland; She who is dressed in pure white garments; She whose hands are adorned with the excellent Veena; She who is seated on a white lotus; She who is always worshipped by Brahma, Vishnu, Shankara, and the gods — may that Goddess Saraswati, who removes all forms of ignorance, protect me."`,
+"She who is white as the jasmine, moon, and snow-garland; She who is dressed in pure white garments; She whose hands are adorned with the excellent Veena; She who is seated on a white lotus; She who is always worshipped by Brahma, Vishnu, Shankara, and the gods  –  may that Goddess Saraswati, who removes all forms of ignorance, protect me."`,
     significance: 'The Saraswati Mantra with the "Aim" beej is the most important mantra for knowledge, education, and artistic achievement. "Aim" is the seed syllable of Saraswati, representing Vak (divine speech) and Vidya (knowledge). The accompanying shloka is the universal Saraswati Vandana recited at the start of educational activities. Chant 108 times daily, especially on Thursdays, during Vasant Panchami, and before exams. Students should place books, pens, and instruments before Saraswati while chanting. It removes ignorance (jadya), enhances memory, improves speech, and grants artistic inspiration.',
   },
   {
@@ -2863,7 +2863,7 @@ export function getAllDeities(): string[] {
   return Array.from(deities).sort();
 }
 
-/** Get all slugs for a type — used for generateStaticParams */
+/** Get all slugs for a type  –  used for generateStaticParams */
 export function getDevotionalSlugs(type: DevotionalType): string[] {
   return ALL_DEVOTIONAL_ITEMS
     .filter(item => item.type === type)

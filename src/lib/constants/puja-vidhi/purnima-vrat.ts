@@ -39,9 +39,9 @@ export const PURNIMA_VRAT_PUJA: PujaVidhi = {
       step: 1,
       title: { en: 'Morning Sankalpa & Fasting', hi: 'प्रातःकालीन संकल्प एवं उपवास', sa: 'प्रभातसङ्कल्पः उपवासश्च' },
       description: {
-        en: 'Rise early, bathe, and take the sankalpa for Purnima Vrat. Begin the fast — either nirjala (without water), phalahari (fruits only), or ekabhukta (one meal). Wear clean white or light-coloured clothes. Visit a temple if possible.',
-        hi: 'प्रातःकाल उठें, स्नान करें और पूर्णिमा व्रत का संकल्प लें। उपवास आरम्भ करें — निर्जला (बिना जल), फलाहारी (केवल फल), या एकभुक्त (एक भोजन)। स्वच्छ सफ़ेद या हल्के रंग के वस्त्र पहनें। यदि सम्भव हो तो मन्दिर जाएँ।',
-        sa: 'प्रभाते उत्थाय स्नात्वा पूर्णिमाव्रतस्य सङ्कल्पं कुर्यात्। उपवासम् आरभेत् — निर्जलम् (जलरहितम्), फलाहारम् (फलमात्रम्), अथवा एकभुक्तम् (एकभोजनम्)। शुचिश्वेतवस्त्राणि मन्दवर्णानि वा धारयेत्। यदि शक्यं मन्दिरं गच्छेत्।',
+        en: 'Rise early, bathe, and take the sankalpa for Purnima Vrat. Begin the fast  –  either nirjala (without water), phalahari (fruits only), or ekabhukta (one meal). Wear clean white or light-coloured clothes. Visit a temple if possible.',
+        hi: 'प्रातःकाल उठें, स्नान करें और पूर्णिमा व्रत का संकल्प लें। उपवास आरम्भ करें  –  निर्जला (बिना जल), फलाहारी (केवल फल), या एकभुक्त (एक भोजन)। स्वच्छ सफ़ेद या हल्के रंग के वस्त्र पहनें। यदि सम्भव हो तो मन्दिर जाएँ।',
+        sa: 'प्रभाते उत्थाय स्नात्वा पूर्णिमाव्रतस्य सङ्कल्पं कुर्यात्। उपवासम् आरभेत्  –  निर्जलम् (जलरहितम्), फलाहारम् (फलमात्रम्), अथवा एकभुक्तम् (एकभोजनम्)। शुचिश्वेतवस्त्राणि मन्दवर्णानि वा धारयेत्। यदि शक्यं मन्दिरं गच्छेत्।',
       },
       duration: '10 min',
       essential: true,
@@ -99,9 +99,9 @@ export const PURNIMA_VRAT_PUJA: PujaVidhi = {
       step: 6,
       title: { en: 'Parana (Breaking the Fast)', hi: 'पारणा (व्रत तोड़ना)', sa: 'पारणा (व्रतभञ्जनम्)' },
       description: {
-        en: 'After the Chandra Arghya and puja, break the fast with kheer (rice pudding) — the primary naivedya of Purnima. Share prasad with family. Distribute food, clothes, or donations to the needy. The vrat is considered complete after offering arghya to the moon.',
-        hi: 'चन्द्र अर्घ्य और पूजा के बाद खीर (दूध-चावल) — पूर्णिमा का मुख्य नैवेद्य — से व्रत तोड़ें। परिवार के साथ प्रसाद बाँटें। ज़रूरतमन्दों को भोजन, वस्त्र या दान वितरित करें। चन्द्रमा को अर्घ्य देने के बाद व्रत पूर्ण माना जाता है।',
-        sa: 'चन्द्रार्घ्यपूजानन्तरं क्षीरान्नेन (पायसेन) — पूर्णिमायाः मुख्यनैवेद्येन — व्रतं भञ्जयेत्। कुटुम्बेन सह प्रसादं विभजेत्। दीनेभ्यः अन्नं वस्त्राणि दानानि वा वितरेत्। चन्द्राय अर्घ्यदानानन्तरं व्रतं पूर्णं मन्यते।',
+        en: 'After the Chandra Arghya and puja, break the fast with kheer (rice pudding)  –  the primary naivedya of Purnima. Share prasad with family. Distribute food, clothes, or donations to the needy. The vrat is considered complete after offering arghya to the moon.',
+        hi: 'चन्द्र अर्घ्य और पूजा के बाद खीर (दूध-चावल)  –  पूर्णिमा का मुख्य नैवेद्य  –  से व्रत तोड़ें। परिवार के साथ प्रसाद बाँटें। ज़रूरतमन्दों को भोजन, वस्त्र या दान वितरित करें। चन्द्रमा को अर्घ्य देने के बाद व्रत पूर्ण माना जाता है।',
+        sa: 'चन्द्रार्घ्यपूजानन्तरं क्षीरान्नेन (पायसेन)  –  पूर्णिमायाः मुख्यनैवेद्येन  –  व्रतं भञ्जयेत्। कुटुम्बेन सह प्रसादं विभजेत्। दीनेभ्यः अन्नं वस्त्राणि दानानि वा वितरेत्। चन्द्राय अर्घ्यदानानन्तरं व्रतं पूर्णं मन्यते।',
       },
       duration: '10 min',
       essential: true,
@@ -116,9 +116,9 @@ export const PURNIMA_VRAT_PUJA: PujaVidhi = {
       devanagari: 'ॐ सों सोमाय नमः',
       iast: 'oṃ soṃ somāya namaḥ',
       meaning: {
-        en: 'Obeisance to Soma (the Moon God) — the lord of herbs, nourisher of all life, ruler of the mind.',
-        hi: 'सोम (चन्द्र देव) को नमस्कार — औषधियों के स्वामी, सभी जीवों के पोषक, मन के शासक।',
-        sa: 'सोमाय (चन्द्रदेवाय) नमः — ओषधीनां पतये सर्वजीवपोषकाय मनसः शासकाय।',
+        en: 'Obeisance to Soma (the Moon God)  –  the lord of herbs, nourisher of all life, ruler of the mind.',
+        hi: 'सोम (चन्द्र देव) को नमस्कार  –  औषधियों के स्वामी, सभी जीवों के पोषक, मन के शासक।',
+        sa: 'सोमाय (चन्द्रदेवाय) नमः  –  ओषधीनां पतये सर्वजीवपोषकाय मनसः शासकाय।',
       },
       japaCount: 108,
       usage: { en: 'Chant while offering arghya to the Moon and during meditation', hi: 'चन्द्रमा को अर्घ्य देते समय और ध्यान के दौरान जपें', sa: 'चन्द्रार्घ्यदानकाले ध्यानकाले च जपेत्' },
@@ -129,9 +129,9 @@ export const PURNIMA_VRAT_PUJA: PujaVidhi = {
       devanagari: 'ॐ नमो नारायणाय',
       iast: 'oṃ namo nārāyaṇāya',
       meaning: {
-        en: 'Obeisance to Lord Narayana — the supreme refuge, sustainer of all creation.',
-        hi: 'भगवान नारायण को नमस्कार — सर्वोच्च शरण, समस्त सृष्टि के पालनकर्ता।',
-        sa: 'नारायणाय नमः — सर्वोच्चशरणाय सृष्टिपालकाय।',
+        en: 'Obeisance to Lord Narayana  –  the supreme refuge, sustainer of all creation.',
+        hi: 'भगवान नारायण को नमस्कार  –  सर्वोच्च शरण, समस्त सृष्टि के पालनकर्ता।',
+        sa: 'नारायणाय नमः  –  सर्वोच्चशरणाय सृष्टिपालकाय।',
       },
       japaCount: 108,
       usage: { en: 'Chant during Vishnu puja and throughout the day as Naam japa', hi: 'विष्णु पूजा के दौरान और दिन भर नाम जप के रूप में जपें', sa: 'विष्णुपूजनकाले दिनपर्यन्तं नामजपरूपेण च जपेत्' },
@@ -142,8 +142,8 @@ export const PURNIMA_VRAT_PUJA: PujaVidhi = {
       devanagari: 'क्षीरोदार्णवसम्भूत अत्रिगोत्रसमुद्भव।\nगृहाणार्घ्यं मया दत्तं रोहिणीसहित प्रभो॥',
       iast: 'kṣīrodārṇava­sambhūta atrigotra­samudbhava |\ngṛhāṇārghyaṃ mayā dattaṃ rohiṇīsahita prabho ||',
       meaning: {
-        en: 'O Moon, born from the ocean of milk, descended from Atri\'s lineage — O Lord, along with Rohini, please accept this arghya offered by me.',
-        hi: 'हे चन्द्रमा, क्षीरसागर से उत्पन्न, अत्रि गोत्र से प्रकट — हे प्रभु, रोहिणी सहित, मेरे द्वारा अर्पित यह अर्घ्य स्वीकार करें।',
+        en: 'O Moon, born from the ocean of milk, descended from Atri\'s lineage  –  O Lord, along with Rohini, please accept this arghya offered by me.',
+        hi: 'हे चन्द्रमा, क्षीरसागर से उत्पन्न, अत्रि गोत्र से प्रकट  –  हे प्रभु, रोहिणी सहित, मेरे द्वारा अर्पित यह अर्घ्य स्वीकार करें।',
         sa: 'हे चन्द्र क्षीरोदार्णवसम्भव अत्रिगोत्रसमुद्भव प्रभो रोहिणीसहित मया दत्तम् अर्घ्यं गृहाण।',
       },
       japaCount: 3,
@@ -161,9 +161,9 @@ export const PURNIMA_VRAT_PUJA: PujaVidhi = {
   },
 
   naivedya: {
-    en: 'Kheer (rice pudding made with milk and sugar) is the primary offering on Purnima — white foods are auspicious for the Moon. Also offer white fruits (banana, pear), milk sweets (peda, barfi), and seasonal fruits.',
-    hi: 'खीर (दूध और शक्कर से बना चावल का पायस) पूर्णिमा का मुख्य नैवेद्य है — चन्द्रमा के लिए सफ़ेद भोजन शुभ है। सफ़ेद फल (केला, नाशपाती), दूध की मिठाई (पेड़ा, बर्फ़ी) और मौसमी फल भी अर्पित करें।',
-    sa: 'क्षीरान्नं (क्षीरशर्करानिर्मितं तण्डुलपायसम्) पूर्णिमायाः मुख्यनैवेद्यम् — चन्द्रस्य कृते श्वेताहाराः शुभाः। श्वेतफलानि (कदलीफलानि नाशपात्रफलानि) क्षीरमिष्टान्नानि (पेडकानि बर्फीकानि) ऋतुफलानि चार्पयेत्।',
+    en: 'Kheer (rice pudding made with milk and sugar) is the primary offering on Purnima  –  white foods are auspicious for the Moon. Also offer white fruits (banana, pear), milk sweets (peda, barfi), and seasonal fruits.',
+    hi: 'खीर (दूध और शक्कर से बना चावल का पायस) पूर्णिमा का मुख्य नैवेद्य है  –  चन्द्रमा के लिए सफ़ेद भोजन शुभ है। सफ़ेद फल (केला, नाशपाती), दूध की मिठाई (पेड़ा, बर्फ़ी) और मौसमी फल भी अर्पित करें।',
+    sa: 'क्षीरान्नं (क्षीरशर्करानिर्मितं तण्डुलपायसम्) पूर्णिमायाः मुख्यनैवेद्यम्  –  चन्द्रस्य कृते श्वेताहाराः शुभाः। श्वेतफलानि (कदलीफलानि नाशपात्रफलानि) क्षीरमिष्टान्नानि (पेडकानि बर्फीकानि) ऋतुफलानि चार्पयेत्।',
   },
 
   precautions: [

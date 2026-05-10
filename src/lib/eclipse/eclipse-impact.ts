@@ -63,10 +63,10 @@ function computeEclipseLongitude(eclipse: EclipseData, ayanamshaValue: number): 
   const siderealSun = normalizeDeg(tropicalSun - ayanamshaValue);
 
   if (eclipse.kind === 'solar') {
-    // Solar eclipse occurs at Sun's longitude (New Moon — Sun & Moon conjunct)
+    // Solar eclipse occurs at Sun's longitude (New Moon  –  Sun & Moon conjunct)
     return siderealSun;
   }
-  // Lunar eclipse occurs opposite Sun (Full Moon — Moon is 180° from Sun)
+  // Lunar eclipse occurs opposite Sun (Full Moon  –  Moon is 180° from Sun)
   return normalizeDeg(siderealSun + 180);
 }
 
@@ -133,7 +133,7 @@ const CADENT_HOUSES = new Set([3, 6, 9, 12]);
 const RAHU_ID = 7;
 const KETU_ID = 8;
 
-// Benefic planet IDs: Jupiter (4), Venus (5), Mercury (3), Moon (1) — waxing
+// Benefic planet IDs: Jupiter (4), Venus (5), Mercury (3), Moon (1)  –  waxing
 const BENEFIC_IDS = new Set([1, 3, 4, 5]);
 
 /** Orbs for conjunction and node axis detection */

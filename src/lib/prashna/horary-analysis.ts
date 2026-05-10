@@ -1,7 +1,7 @@
 /**
  * Prashna (Horary) Analysis Engine
  *
- * Implements Prashna Shastra — the branch of Vedic astrology (Jyotish) concerned
+ * Implements Prashna Shastra  –  the branch of Vedic astrology (Jyotish) concerned
  * with answering specific questions by casting a chart for the exact moment the
  * question is asked. Unlike natal (Janma) astrology which reads a birth chart,
  * Prashna reads the "birth chart of the question itself."
@@ -30,7 +30,7 @@
  *
  * Key principles (Prashna Marga Ch.1-3):
  * - Lagna lord represents the querent (the person asking)
- * - Moon is the most important planet in Prashna — it reflects the querent's
+ * - Moon is the most important planet in Prashna  –  it reflects the querent's
  *   mind, intention, and the emotional reality behind the question
  * - The relevant bhava (house) depends on the question category
  * - Benefics in Kendras (1,4,7,10) indicate positive outcomes
@@ -58,13 +58,13 @@ export interface PrashnaInsight {
   finding: LocaleText;
   /** Whether this factor supports a positive, negative, or neutral outcome. */
   nature: 'positive' | 'negative' | 'neutral';
-  /** Raw score contribution — positive values favour the querent, negative oppose. */
+  /** Raw score contribution  –  positive values favour the querent, negative oppose. */
   score: number;
 }
 
 /**
  * Condensed view of a single planet's condition in the Prashna chart.
- * Used by the UI to render the "Planet Digest" card grid — one card per graha
+ * Used by the UI to render the "Planet Digest" card grid  –  one card per graha
  * showing its sign, house, dignity, retrograde status, and role in the query.
  */
 export interface PlanetDigest {
@@ -87,7 +87,7 @@ export interface PlanetDigest {
  * The UI renders this as a multi-section report:
  * - Verdict banner (outcome + score + summary)
  * - Three primary insight cards (Lagna Lord, Moon, Relevant House)
- * - Key Factors list (variable length — only factors that crossed threshold)
+ * - Key Factors list (variable length  –  only factors that crossed threshold)
  * - Timing estimate (based on Moon speed + dasha context)
  * - Guidance paragraph (action recommendation)
  * - Remedies (planetary + category-specific + general if outcome is poor)
@@ -103,9 +103,9 @@ export interface PrashnaAnalysis {
     score: number;
     summary: LocaleText;
   };
-  /** Assessment of the Lagna Lord — represents the querent themselves. */
+  /** Assessment of the Lagna Lord  –  represents the querent themselves. */
   lagnaInsight: PrashnaInsight;
-  /** Assessment of the Moon — the primary Prashna significator (querent's mind). */
+  /** Assessment of the Moon  –  the primary Prashna significator (querent's mind). */
   moonInsight: PrashnaInsight;
   /** Assessment of the house lord relevant to the question category. */
   relevantHouseInsight: PrashnaInsight;
@@ -150,7 +150,7 @@ const CATEGORY_CONFIG: Record<PrashnaCategory, {
   general: {
     label: { en: 'General', hi: 'सामान्य', sa: 'सामान्यम्' },
     houses: [1, 7],       // 1st = querent, 7th = the matter (Prashna Marga convention)
-    karaka: [1],          // Moon — general significator of the querent's mind
+    karaka: [1],          // Moon  –  general significator of the querent's mind
     houseLabel: { en: '1st House (Self)', hi: 'प्रथम भाव (आत्मा)', sa: 'प्रथमभावः (आत्मा)' },
   },
   career: {
@@ -162,7 +162,7 @@ const CATEGORY_CONFIG: Record<PrashnaCategory, {
   marriage: {
     label: { en: 'Marriage & Relationships', hi: 'विवाह एवं सम्बन्ध', sa: 'विवाहः' },
     houses: [7, 2],       // 7th = spouse/partner, 2nd = family/married life
-    karaka: [5],          // Venus — natural karaka for marriage and relationships
+    karaka: [5],          // Venus  –  natural karaka for marriage and relationships
     houseLabel: { en: '7th House (Partnership)', hi: 'सप्तम भाव (साझेदारी)', sa: 'सप्तमभावः (भार्या)' },
   },
   health: {
@@ -215,9 +215,9 @@ const SIGN_LORD: Record<number, number> = {
   7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4,
 };
 
-/** Natural benefics per BPHS — Moon, Mercury, Jupiter, Venus. */
+/** Natural benefics per BPHS  –  Moon, Mercury, Jupiter, Venus. */
 const BENEFIC_IDS = new Set([1, 3, 4, 5]);
-/** Natural malefics per BPHS — Sun, Mars, Saturn, Rahu, Ketu. */
+/** Natural malefics per BPHS  –  Sun, Mars, Saturn, Rahu, Ketu. */
 const MALEFIC_IDS = new Set([0, 2, 6, 7, 8]);
 /** Kendra (angular) houses: strongest positional strength (BPHS Ch.12). */
 const KENDRA = new Set([1, 4, 7, 10]);
@@ -260,7 +260,7 @@ function dignityTri(p: PlanetPosition): LocaleText {
 /**
  * Computes a composite strength score for a single planet in the Prashna context.
  *
- * Scoring heuristic (not a formal Shadbala — simplified for Prashna):
+ * Scoring heuristic (not a formal Shadbala  –  simplified for Prashna):
  * - **Dignity** (BPHS Ch.3-4):
  *     +20 exalted (peak strength, planet delivers its best significations)
  *     +12 own sign (comfortable, strong but not peak)
@@ -270,9 +270,9 @@ function dignityTri(p: PlanetPosition): LocaleText {
  *     In Prashna, retrograde signals delays and reconsideration (Prashna Marga Ch.8).
  *     Rahu/Ketu are always retrograde so no penalty is applied.
  * - **Positional strength** (house placement):
- *     +8 kendra (1,4,7,10) — angular houses give directional strength (Digbala-adjacent)
- *     +6 trikona (1,5,9) — trinal houses are inherently auspicious
- *     -8 dusthana (6,8,12) — malefic houses weaken the planet's ability to deliver
+ *     +8 kendra (1,4,7,10)  –  angular houses give directional strength (Digbala-adjacent)
+ *     +6 trikona (1,5,9)  –  trinal houses are inherently auspicious
+ *     -8 dusthana (6,8,12)  –  malefic houses weaken the planet's ability to deliver
  *
  * Returns a raw integer score (typically -26 to +28 range).
  */
@@ -283,7 +283,7 @@ function planetScore(p: PlanetPosition): number {
   else if (p.isDebilitated) s -= 18;
   if (p.isCombust) s -= 8;
   if (p.isRetrograde && p.planet.id <= 6) s -= 5; // Only true planets, not nodes
-  // Positional strength — kendra > trikona > neutral > dusthana
+  // Positional strength  –  kendra > trikona > neutral > dusthana
   if (KENDRA.has(p.house)) s += 8;
   else if (TRIKONA.has(p.house)) s += 6;
   else if (DUSTHANA.has(p.house)) s -= 8;
@@ -310,11 +310,11 @@ function findPlanet(planets: PlanetPosition[], id: number): PlanetPosition {
 // ──────────────────────────────────────────────────────────────
 
 /**
- * Main entry point — analyses a Prashna (horary) chart for a given question category.
+ * Main entry point  –  analyses a Prashna (horary) chart for a given question category.
  *
  * Algorithm overview (8 scoring stages):
  *   1. **Lagna Lord** (querent): scored via planetScore(), weighted x1.2
- *   2. **Moon** (mind of query): scored + dispositor check, weighted x1.8 (highest —
+ *   2. **Moon** (mind of query): scored + dispositor check, weighted x1.8 (highest  – 
  *      per Prashna Marga, Moon is the single most important factor in Prashna)
  *   3. **Relevant House Lord**: scored + benefic/malefic occupancy, weighted x1.3
  *   4. **Benefic/Malefic distribution in Kendras**: bonus/penalty for classical pattern
@@ -337,7 +337,7 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
   // ── Identify the three key significators ──
   // Moon: the querent's mind and intention (Prashna Marga Ch.3)
   const moon = findPlanet(planets, 1);
-  // Lagna Lord: the querent themselves — the person asking the question
+  // Lagna Lord: the querent themselves  –  the person asking the question
   const ascSign = kundali.ascendant.sign;
   const ascLordId = SIGN_LORD[ascSign];
   const ascLord = findPlanet(planets, ascLordId);
@@ -355,7 +355,7 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
   const factors: PrashnaInsight[] = [];  // Additional factors beyond the 3 primary insights
 
   // ── 1. Lagna Lord (the querent) ──
-  // Weight: 1.2x — important but secondary to Moon in Prashna (unlike natal charts
+  // Weight: 1.2x  –  important but secondary to Moon in Prashna (unlike natal charts
   // where Lagna Lord is paramount). A strong Lagna Lord means the querent is in a
   // good position to act; a weak one means personal challenges regardless of the matter.
   const lagnaScore = planetScore(ascLord);
@@ -363,23 +363,23 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
   const lagnaInsight: PrashnaInsight = {
     label: { en: 'Ascendant Lord', hi: 'लग्नेश', sa: 'लग्नेशः' },
     finding: {
-      en: `${ascLord.planet.name.en} (lord of ${kundali.ascendant.signName.en} Lagna) is ${dignityTri(ascLord).en} in ${ascLord.signName.en}, placed in House ${ascLord.house}. ${lagnaScore > 5 ? 'This indicates the querent is in a strong position to achieve their goal.' : lagnaScore < -5 ? 'The querent faces significant personal challenges regarding this matter.' : 'The querent\'s situation is moderate — neither strongly advantaged nor disadvantaged.'}`,
-      hi: `${ascLord.planet.name.hi} (${kundali.ascendant.signName.hi} लग्न के स्वामी) ${ascLord.signName.hi} में ${dignityTri(ascLord).hi}, भाव ${ascLord.house} में स्थित। ${lagnaScore > 5 ? 'प्रश्नकर्ता अपने लक्ष्य को प्राप्त करने की सशक्त स्थिति में है।' : lagnaScore < -5 ? 'प्रश्नकर्ता को इस विषय में महत्त्वपूर्ण चुनौतियों का सामना करना पड़ सकता है।' : 'प्रश्नकर्ता की स्थिति सामान्य है — न अत्यन्त अनुकूल, न प्रतिकूल।'}`,
-      sa: `${ascLord.planet.name.sa} (${kundali.ascendant.signName.sa} लग्नस्य ईशः) ${ascLord.signName.sa} राशौ ${dignityTri(ascLord).sa}, भावे ${ascLord.house} स्थितः। ${lagnaScore > 5 ? 'प्रश्नकर्ता स्वलक्ष्यप्राप्तौ सबले स्थितौ अस्ति।' : lagnaScore < -5 ? 'प्रश्नकर्ता अस्मिन् विषये महत्त्वपूर्णैः आव्हानैः सम्मुखीभवति।' : 'प्रश्नकर्तुः स्थितिः सामान्या — नातिशुभा नातिप्रतिकूला।'}`,
+      en: `${ascLord.planet.name.en} (lord of ${kundali.ascendant.signName.en} Lagna) is ${dignityTri(ascLord).en} in ${ascLord.signName.en}, placed in House ${ascLord.house}. ${lagnaScore > 5 ? 'This indicates the querent is in a strong position to achieve their goal.' : lagnaScore < -5 ? 'The querent faces significant personal challenges regarding this matter.' : 'The querent\'s situation is moderate  –  neither strongly advantaged nor disadvantaged.'}`,
+      hi: `${ascLord.planet.name.hi} (${kundali.ascendant.signName.hi} लग्न के स्वामी) ${ascLord.signName.hi} में ${dignityTri(ascLord).hi}, भाव ${ascLord.house} में स्थित। ${lagnaScore > 5 ? 'प्रश्नकर्ता अपने लक्ष्य को प्राप्त करने की सशक्त स्थिति में है।' : lagnaScore < -5 ? 'प्रश्नकर्ता को इस विषय में महत्त्वपूर्ण चुनौतियों का सामना करना पड़ सकता है।' : 'प्रश्नकर्ता की स्थिति सामान्य है  –  न अत्यन्त अनुकूल, न प्रतिकूल।'}`,
+      sa: `${ascLord.planet.name.sa} (${kundali.ascendant.signName.sa} लग्नस्य ईशः) ${ascLord.signName.sa} राशौ ${dignityTri(ascLord).sa}, भावे ${ascLord.house} स्थितः। ${lagnaScore > 5 ? 'प्रश्नकर्ता स्वलक्ष्यप्राप्तौ सबले स्थितौ अस्ति।' : lagnaScore < -5 ? 'प्रश्नकर्ता अस्मिन् विषये महत्त्वपूर्णैः आव्हानैः सम्मुखीभवति।' : 'प्रश्नकर्तुः स्थितिः सामान्या  –  नातिशुभा नातिप्रतिकूला।'}`,
     },
     nature: lagnaScore > 5 ? 'positive' : lagnaScore < -5 ? 'negative' : 'neutral',
     score: lagnaScore,
   };
 
-  // ── 2. Moon — the primary significator of the querent in Prashna ──
+  // ── 2. Moon  –  the primary significator of the querent in Prashna ──
   // Per Prashna Marga Ch.3: "The Moon is the life of all horary astrology."
   // The Moon represents the querent's mind, the emotional reality behind the question,
   // and gives the strongest single signal about the outcome.
   //
-  // Weight: 1.8x (highest of all factors) — Moon's condition dominates the verdict.
+  // Weight: 1.8x (highest of all factors)  –  Moon's condition dominates the verdict.
   //
   // Moon's dispositor (lord of the sign Moon occupies) is checked as a proxy for
-  // "applying aspects" — if Moon's dispositor is a natural benefic, the emotional
+  // "applying aspects"  –  if Moon's dispositor is a natural benefic, the emotional
   // undercurrent supports a positive outcome. This is a simplification of the full
   // Prashna Marga aspect analysis (Ithasala/Ishrafa yogas from Tajika).
   const moonScore = planetScore(moon);
@@ -392,8 +392,8 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
   const moonInsight: PrashnaInsight = {
     label: { en: 'Moon (Mind of the Query)', hi: 'चन्द्र (प्रश्न का मन)', sa: 'चन्द्रः (प्रश्नमनः)' },
     finding: {
-      en: `Moon is in ${moon.signName.en} (House ${moon.house}), Nakshatra ${moon.nakshatra.name.en} Pada ${moon.pada}. ${moon.isExalted ? 'Exalted Moon gives exceptional clarity and a strong positive indication.' : moon.isDebilitated ? 'Debilitated Moon suggests mental anxiety and an unfavorable inclination.' : ''} ${moonDispositorBenefic ? 'Moon\'s dispositor is benefic — the emotional undercurrent supports a positive outcome.' : 'Moon\'s dispositor is malefic — there may be hidden anxieties or obstacles.'} ${moon.isRetrograde ? 'Moon is retrograde (rare) — deep introspection needed.' : ''} ${totalMoonScore > 8 ? 'Overall, the Moon strongly favors the querent.' : totalMoonScore < -8 ? 'The Moon indicates difficulties ahead.' : 'The Moon gives a mixed signal.'}`,
-      hi: `चन्द्र ${moon.signName.hi} (भाव ${moon.house}) में, नक्षत्र ${moon.nakshatra.name.hi} पद ${moon.pada}। ${moon.isExalted ? 'उच्च चन्द्र असाधारण स्पष्टता और सशक्त शुभ संकेत देता है।' : moon.isDebilitated ? 'नीच चन्द्र मानसिक चिन्ता और प्रतिकूल झुकाव दर्शाता है।' : ''} ${moonDispositorBenefic ? 'चन्द्र का राशि स्वामी शुभ है — भावनात्मक प्रवाह अनुकूल है।' : 'चन्द्र का राशि स्वामी अशुभ है — छिपी चिन्ता या बाधाएं हो सकती हैं।'} ${totalMoonScore > 8 ? 'कुल मिलाकर, चन्द्र प्रश्नकर्ता के पक्ष में है।' : totalMoonScore < -8 ? 'चन्द्र आगे कठिनाइयों का संकेत देता है।' : 'चन्द्र मिश्रित संकेत दे रहा है।'}`,
+      en: `Moon is in ${moon.signName.en} (House ${moon.house}), Nakshatra ${moon.nakshatra.name.en} Pada ${moon.pada}. ${moon.isExalted ? 'Exalted Moon gives exceptional clarity and a strong positive indication.' : moon.isDebilitated ? 'Debilitated Moon suggests mental anxiety and an unfavorable inclination.' : ''} ${moonDispositorBenefic ? 'Moon\'s dispositor is benefic  –  the emotional undercurrent supports a positive outcome.' : 'Moon\'s dispositor is malefic  –  there may be hidden anxieties or obstacles.'} ${moon.isRetrograde ? 'Moon is retrograde (rare)  –  deep introspection needed.' : ''} ${totalMoonScore > 8 ? 'Overall, the Moon strongly favors the querent.' : totalMoonScore < -8 ? 'The Moon indicates difficulties ahead.' : 'The Moon gives a mixed signal.'}`,
+      hi: `चन्द्र ${moon.signName.hi} (भाव ${moon.house}) में, नक्षत्र ${moon.nakshatra.name.hi} पद ${moon.pada}। ${moon.isExalted ? 'उच्च चन्द्र असाधारण स्पष्टता और सशक्त शुभ संकेत देता है।' : moon.isDebilitated ? 'नीच चन्द्र मानसिक चिन्ता और प्रतिकूल झुकाव दर्शाता है।' : ''} ${moonDispositorBenefic ? 'चन्द्र का राशि स्वामी शुभ है  –  भावनात्मक प्रवाह अनुकूल है।' : 'चन्द्र का राशि स्वामी अशुभ है  –  छिपी चिन्ता या बाधाएं हो सकती हैं।'} ${totalMoonScore > 8 ? 'कुल मिलाकर, चन्द्र प्रश्नकर्ता के पक्ष में है।' : totalMoonScore < -8 ? 'चन्द्र आगे कठिनाइयों का संकेत देता है।' : 'चन्द्र मिश्रित संकेत दे रहा है।'}`,
       sa: `चन्द्रः ${moon.signName.sa} राशौ (भावे ${moon.house}), नक्षत्रम् ${moon.nakshatra.name.sa} पदम् ${moon.pada}। ${totalMoonScore > 8 ? 'चन्द्रः प्रश्नकर्तुः पक्षे बलवान् अस्ति।' : totalMoonScore < -8 ? 'चन्द्रः कठिनतां सूचयति।' : 'चन्द्रः मिश्रसङ्केतं ददाति।'}`,
     },
     nature: totalMoonScore > 5 ? 'positive' : totalMoonScore < -5 ? 'negative' : 'neutral',
@@ -407,7 +407,7 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
   //   b) Occupancy: each benefic in the house adds +6, each malefic subtracts -6.
   //      Per Prashna Marga, benefics in the relevant house "nourish" the matter,
   //      while malefics "damage" or "delay" it.
-  // Weight: 1.3x — the matter's condition is important but the querent (Moon/Lagna)
+  // Weight: 1.3x  –  the matter's condition is important but the querent (Moon/Lagna)
   // must also be strong for it to manifest.
   const relScore = planetScore(relLord);
   const beneficsInRelHouse = planetsInRelHouse.filter(p => BENEFIC_IDS.has(p.planet.id)).length;
@@ -423,9 +423,9 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
   const relevantHouseInsight: PrashnaInsight = {
     label: cfg.houseLabel,
     finding: {
-      en: `House ${primaryHouse} is in ${relHouseData.signName.en}, ruled by ${relLord.planet.name.en} (${dignityTri(relLord).en} in House ${relLord.house}). ${occupantText.en} ${totalRelScore > 5 ? 'This house is well-disposed — the matter asked about has favorable conditions.' : totalRelScore < -5 ? 'This house is afflicted — the matter faces obstacles.' : 'Conditions are moderate for this matter.'}`,
-      hi: `भाव ${primaryHouse} ${relHouseData.signName.hi} में है, स्वामी ${relLord.planet.name.hi} (भाव ${relLord.house} में ${dignityTri(relLord).hi})। ${occupantText.hi} ${totalRelScore > 5 ? 'यह भाव अनुकूल है — पूछा गया विषय शुभ परिस्थितियों में है।' : totalRelScore < -5 ? 'यह भाव पीड़ित है — विषय में बाधाएं हैं।' : 'इस विषय के लिए स्थितियां सामान्य हैं।'}`,
-      sa: `भावः ${primaryHouse} ${relHouseData.signName.sa} राशौ, ईशः ${relLord.planet.name.sa} (भावे ${relLord.house}, ${dignityTri(relLord).sa})। ${occupantText.sa} ${totalRelScore > 5 ? 'अयं भावः अनुकूलः — विषयः शुभपरिस्थितौ अस्ति।' : totalRelScore < -5 ? 'अयं भावः पीडितः — विषये विघ्नाः सन्ति।' : 'अस्मिन् विषये स्थितिः सामान्या।'}`,
+      en: `House ${primaryHouse} is in ${relHouseData.signName.en}, ruled by ${relLord.planet.name.en} (${dignityTri(relLord).en} in House ${relLord.house}). ${occupantText.en} ${totalRelScore > 5 ? 'This house is well-disposed  –  the matter asked about has favorable conditions.' : totalRelScore < -5 ? 'This house is afflicted  –  the matter faces obstacles.' : 'Conditions are moderate for this matter.'}`,
+      hi: `भाव ${primaryHouse} ${relHouseData.signName.hi} में है, स्वामी ${relLord.planet.name.hi} (भाव ${relLord.house} में ${dignityTri(relLord).hi})। ${occupantText.hi} ${totalRelScore > 5 ? 'यह भाव अनुकूल है  –  पूछा गया विषय शुभ परिस्थितियों में है।' : totalRelScore < -5 ? 'यह भाव पीड़ित है  –  विषय में बाधाएं हैं।' : 'इस विषय के लिए स्थितियां सामान्य हैं।'}`,
+      sa: `भावः ${primaryHouse} ${relHouseData.signName.sa} राशौ, ईशः ${relLord.planet.name.sa} (भावे ${relLord.house}, ${dignityTri(relLord).sa})। ${occupantText.sa} ${totalRelScore > 5 ? 'अयं भावः अनुकूलः  –  विषयः शुभपरिस्थितौ अस्ति।' : totalRelScore < -5 ? 'अयं भावः पीडितः  –  विषये विघ्नाः सन्ति।' : 'अस्मिन् विषये स्थितिः सामान्या।'}`,
     },
     nature: totalRelScore > 5 ? 'positive' : totalRelScore < -5 ? 'negative' : 'neutral',
     score: totalRelScore,
@@ -443,9 +443,9 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
     factors.push({
       label: { en: 'Benefics in Angular Houses', hi: 'केन्द्रों में शुभ ग्रह', sa: 'केन्द्रेषु शुभग्रहाः' },
       finding: {
-        en: `${bInK} benefic planet(s) in angular houses (1,4,7,10) — strong support for a positive outcome. Classical texts consider this the most auspicious configuration.`,
-        hi: `${bInK} शुभ ग्रह केन्द्र भावों (1,4,7,10) में — सकारात्मक परिणाम का बलवान समर्थन। शास्त्रों में यह सर्वाधिक शुभ योग माना जाता है।`,
-        sa: `${bInK} शुभग्रहाः केन्द्रभावेषु — शुभफलस्य बलवत् समर्थनम्।`,
+        en: `${bInK} benefic planet(s) in angular houses (1,4,7,10)  –  strong support for a positive outcome. Classical texts consider this the most auspicious configuration.`,
+        hi: `${bInK} शुभ ग्रह केन्द्र भावों (1,4,7,10) में  –  सकारात्मक परिणाम का बलवान समर्थन। शास्त्रों में यह सर्वाधिक शुभ योग माना जाता है।`,
+        sa: `${bInK} शुभग्रहाः केन्द्रभावेषु  –  शुभफलस्य बलवत् समर्थनम्।`,
       },
       nature: 'positive', score: 15,
     });
@@ -455,9 +455,9 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
     factors.push({
       label: { en: 'Malefics in Angular Houses', hi: 'केन्द्रों में पाप ग्रह', sa: 'केन्द्रेषु पापग्रहाः' },
       finding: {
-        en: `${mInK} malefic planet(s) dominate angular houses — obstacles, delays, and resistance are likely. Careful planning is advised.`,
-        hi: `${mInK} पाप ग्रह केन्द्र भावों में प्रबल — बाधाएं, विलम्ब और प्रतिरोध सम्भव। सावधानीपूर्वक योजना बनाएं।`,
-        sa: `${mInK} पापग्रहाः केन्द्रभावेषु — विघ्नाः विलम्बः प्रतिरोधश्च सम्भवतः।`,
+        en: `${mInK} malefic planet(s) dominate angular houses  –  obstacles, delays, and resistance are likely. Careful planning is advised.`,
+        hi: `${mInK} पाप ग्रह केन्द्र भावों में प्रबल  –  बाधाएं, विलम्ब और प्रतिरोध सम्भव। सावधानीपूर्वक योजना बनाएं।`,
+        sa: `${mInK} पापग्रहाः केन्द्रभावेषु  –  विघ्नाः विलम्बः प्रतिरोधश्च सम्भवतः।`,
       },
       nature: 'negative', score: -12,
     });
@@ -475,9 +475,9 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
     factors.push({
       label: { en: 'Exalted Planets', hi: 'उच्च ग्रह', sa: 'उच्चग्रहाः' },
       finding: {
-        en: `${n} ${exalted.length === 1 ? 'is' : 'are'} exalted — bringing peak strength and positive energy. Exalted planets give exceptional results in their significations.`,
-        hi: `${nHi} उच्च ${exalted.length === 1 ? 'है' : 'हैं'} — चरम बल और शुभ ऊर्जा। उच्च ग्रह अपने कारकत्व में असाधारण फल देते हैं।`,
-        sa: `${nHi} उच्चस्थानगताः — विशेषबलं शुभशक्तिं च प्रददति।`,
+        en: `${n} ${exalted.length === 1 ? 'is' : 'are'} exalted  –  bringing peak strength and positive energy. Exalted planets give exceptional results in their significations.`,
+        hi: `${nHi} उच्च ${exalted.length === 1 ? 'है' : 'हैं'}  –  चरम बल और शुभ ऊर्जा। उच्च ग्रह अपने कारकत्व में असाधारण फल देते हैं।`,
+        sa: `${nHi} उच्चस्थानगताः  –  विशेषबलं शुभशक्तिं च प्रददति।`,
       },
       nature: 'positive', score: exalted.length * 5,
     });
@@ -489,9 +489,9 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
     factors.push({
       label: { en: 'Debilitated Planets', hi: 'नीच ग्रह', sa: 'नीचग्रहाः' },
       finding: {
-        en: `${n} ${debilitated.length === 1 ? 'is' : 'are'} debilitated — weakened capacity in ${debilitated.length === 1 ? 'its' : 'their'} domain. This area needs extra effort.`,
-        hi: `${nHi} नीच ${debilitated.length === 1 ? 'है' : 'हैं'} — अपने क्षेत्र में क्षमता कमज़ोर। इस क्षेत्र में अतिरिक्त प्रयास आवश्यक।`,
-        sa: `${nHi} नीचस्थानगताः — स्वक्षेत्रे दुर्बलता। अतिरिक्तप्रयत्नः आवश्यकः।`,
+        en: `${n} ${debilitated.length === 1 ? 'is' : 'are'} debilitated  –  weakened capacity in ${debilitated.length === 1 ? 'its' : 'their'} domain. This area needs extra effort.`,
+        hi: `${nHi} नीच ${debilitated.length === 1 ? 'है' : 'हैं'}  –  अपने क्षेत्र में क्षमता कमज़ोर। इस क्षेत्र में अतिरिक्त प्रयास आवश्यक।`,
+        sa: `${nHi} नीचस्थानगताः  –  स्वक्षेत्रे दुर्बलता। अतिरिक्तप्रयत्नः आवश्यकः।`,
       },
       nature: 'negative', score: -debilitated.length * 5,
     });
@@ -501,26 +501,26 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
   // Only counts true planets that can go retrograde: Mars(2) through Saturn(6).
   // Sun and Moon never retrograde; Rahu/Ketu are always retrograde (excluded).
   // >= 3 retrogrades = -8 penalty. Per Prashna Marga Ch.8, multiple retrogrades
-  // indicate the matter "turns back on itself" — delays, reversals, need to revisit.
+  // indicate the matter "turns back on itself"  –  delays, reversals, need to revisit.
   const retros = planets.filter(p => p.isRetrograde && p.planet.id >= 2 && p.planet.id <= 6);
   if (retros.length >= 3) {
     total -= 8;
     factors.push({
       label: { en: 'Multiple Retrogrades', hi: 'अनेक वक्री ग्रह', sa: 'बहवः वक्रिग्रहाः' },
       finding: {
-        en: `${retros.length} planets are retrograde — delays, reversals, and need for reconsideration are indicated. The matter may not proceed in a straightforward manner.`,
-        hi: `${retros.length} ग्रह वक्री — विलम्ब, उलटफेर और पुनर्विचार की आवश्यकता। कार्य सीधे-सीधे नहीं बढ़ सकता।`,
-        sa: `${retros.length} ग्रहाः वक्रिणः — विलम्बः विपर्ययः पुनर्विचारश्च सूचिताः।`,
+        en: `${retros.length} planets are retrograde  –  delays, reversals, and need for reconsideration are indicated. The matter may not proceed in a straightforward manner.`,
+        hi: `${retros.length} ग्रह वक्री  –  विलम्ब, उलटफेर और पुनर्विचार की आवश्यकता। कार्य सीधे-सीधे नहीं बढ़ सकता।`,
+        sa: `${retros.length} ग्रहाः वक्रिणः  –  विलम्बः विपर्ययः पुनर्विचारश्च सूचिताः।`,
       },
       nature: 'negative', score: -8,
     });
   }
 
   // ── 7. Karaka (natural significator) strength ──
-  // Each category has one or more naisargika karakas — planets that naturally
+  // Each category has one or more naisargika karakas  –  planets that naturally
   // signify the subject matter (e.g. Venus for marriage, Jupiter for wealth).
-  // If the karaka is strong (score > 10): +8 bonus — the natural energy supports the query.
-  // If weak (score < -10): -6 penalty — the domain's natural ruler is compromised.
+  // If the karaka is strong (score > 10): +8 bonus  –  the natural energy supports the query.
+  // If weak (score < -10): -6 penalty  –  the domain's natural ruler is compromised.
   for (const kId of cfg.karaka) {
     const k = findPlanet(planets, kId);
     const kS = planetScore(k);
@@ -529,9 +529,9 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
       factors.push({
         label: { en: `${k.planet.name.en} (Significator)`, hi: `${k.planet.name.hi} (कारक)`, sa: `${k.planet.name.sa} (कारकः)` },
         finding: {
-          en: `${k.planet.name.en}, the natural significator for ${cfg.label.en.toLowerCase()}, is ${dignityTri(k).en} in ${k.signName.en} (House ${k.house}) — a strong positive indicator for your question.`,
-          hi: `${k.planet.name.hi}, ${cfg.label.hi} का नैसर्गिक कारक, ${k.signName.hi} में ${dignityTri(k).hi} (भाव ${k.house}) — आपके प्रश्न के लिए शुभ संकेत।`,
-          sa: `${k.planet.name.sa}, ${cfg.label.sa} कारकः, ${k.signName.sa} राशौ ${dignityTri(k).sa} (भावे ${k.house}) — शुभसूचकम्।`,
+          en: `${k.planet.name.en}, the natural significator for ${cfg.label.en.toLowerCase()}, is ${dignityTri(k).en} in ${k.signName.en} (House ${k.house})  –  a strong positive indicator for your question.`,
+          hi: `${k.planet.name.hi}, ${cfg.label.hi} का नैसर्गिक कारक, ${k.signName.hi} में ${dignityTri(k).hi} (भाव ${k.house})  –  आपके प्रश्न के लिए शुभ संकेत।`,
+          sa: `${k.planet.name.sa}, ${cfg.label.sa} कारकः, ${k.signName.sa} राशौ ${dignityTri(k).sa} (भावे ${k.house})  –  शुभसूचकम्।`,
         },
         nature: 'positive', score: 8,
       });
@@ -540,16 +540,16 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
       factors.push({
         label: { en: `${k.planet.name.en} (Significator)`, hi: `${k.planet.name.hi} (कारक)`, sa: `${k.planet.name.sa} (कारकः)` },
         finding: {
-          en: `${k.planet.name.en}, the natural significator, is ${dignityTri(k).en} in ${k.signName.en} (House ${k.house}) — challenges in this domain.`,
-          hi: `${k.planet.name.hi}, नैसर्गिक कारक, ${k.signName.hi} में ${dignityTri(k).hi} (भाव ${k.house}) — इस क्षेत्र में चुनौतियां।`,
-          sa: `${k.planet.name.sa}, नैसर्गिककारकः, ${k.signName.sa} राशौ ${dignityTri(k).sa} (भावे ${k.house}) — आव्हानानि।`,
+          en: `${k.planet.name.en}, the natural significator, is ${dignityTri(k).en} in ${k.signName.en} (House ${k.house})  –  challenges in this domain.`,
+          hi: `${k.planet.name.hi}, नैसर्गिक कारक, ${k.signName.hi} में ${dignityTri(k).hi} (भाव ${k.house})  –  इस क्षेत्र में चुनौतियां।`,
+          sa: `${k.planet.name.sa}, नैसर्गिककारकः, ${k.signName.sa} राशौ ${dignityTri(k).sa} (भावे ${k.house})  –  आव्हानानि।`,
         },
         nature: 'negative', score: -6,
       });
     }
   }
 
-  // ── 8. 7th House Lord — "the matter" or "the other party" ──
+  // ── 8. 7th House Lord  –  "the matter" or "the other party" ──
   // In Prashna, the 7th house generically represents "the matter being asked about"
   // or "the other party involved" (Prashna Marga Ch.4). Skipped for marriage/legal
   // categories because the 7th house is already their primary house (checked above).
@@ -563,9 +563,9 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
       factors.push({
         label: { en: '7th House (The Matter)', hi: 'सप्तम भाव (विषय)', sa: 'सप्तमभावः (विषयः)' },
         finding: {
-          en: `The 7th house lord ${h7Lord.planet.name.en} is strong (${dignityTri(h7Lord).en}) — the matter itself has favorable conditions.`,
-          hi: `सप्तम भाव स्वामी ${h7Lord.planet.name.hi} बलवान (${dignityTri(h7Lord).hi}) — विषय अनुकूल परिस्थितियों में है।`,
-          sa: `सप्तमभावेशः ${h7Lord.planet.name.sa} बलवान् (${dignityTri(h7Lord).sa}) — विषयः अनुकूलपरिस्थितौ।`,
+          en: `The 7th house lord ${h7Lord.planet.name.en} is strong (${dignityTri(h7Lord).en})  –  the matter itself has favorable conditions.`,
+          hi: `सप्तम भाव स्वामी ${h7Lord.planet.name.hi} बलवान (${dignityTri(h7Lord).hi})  –  विषय अनुकूल परिस्थितियों में है।`,
+          sa: `सप्तमभावेशः ${h7Lord.planet.name.sa} बलवान् (${dignityTri(h7Lord).sa})  –  विषयः अनुकूलपरिस्थितौ।`,
         },
         nature: 'positive', score: 5,
       });
@@ -577,7 +577,7 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
 
   // ── Verdict mapping ──
   // Five tiers with asymmetric thresholds (slightly easier to be "favorable"
-  // than "challenging" — reflects the traditional Prashna Marga optimism where
+  // than "challenging"  –  reflects the traditional Prashna Marga optimism where
   // the act of asking the question at the right moment is itself auspicious).
   //   >= +35: very_favorable  |  +12 to +34: favorable  |  -12 to +11: mixed
   //   -35 to -13: challenging  |  <= -36: difficult
@@ -599,7 +599,7 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
   // ── Remedies ──
   const remedies = buildRemedies(outcome, category, relLord, moon, ascLord, cfg);
 
-  // ── Planet Digest — summary of all 9 grahas with their Prashna roles ──
+  // ── Planet Digest  –  summary of all 9 grahas with their Prashna roles ──
   // Each planet is tagged with its contextual role: Lagna Lord (querent),
   // Relevant House Lord (the matter), Natural Significator (karaka), or
   // simply its house placement. This drives the UI's planet card grid.
@@ -648,12 +648,12 @@ export function analyzePrashna(kundali: KundaliData, category: PrashnaCategory):
 //
 // These builder functions generate the trilingual narrative text
 // for each section of the Prashna report. They are pure functions
-// that take scored data and produce LocaleText output — no
+// that take scored data and produce LocaleText output  –  no
 // additional computation happens here.
 // ──────────────────────────────────────────────────────────────
 
 /**
- * Generates the verdict summary paragraph — the main "bottom line" of the reading.
+ * Generates the verdict summary paragraph  –  the main "bottom line" of the reading.
  * Maps each of the five outcome tiers to a narrative that references the querent's
  * key planets (Lagna Lord, Moon, Relevant House Lord) by name, giving the user
  * a personalised summary rather than a generic statement.
@@ -673,8 +673,8 @@ function buildVerdictSummary(
   switch (outcome) {
     case 'very_favorable':
       return {
-        en: `The Prashna chart is highly auspicious for your ${catEn} question. ${ascLord.planet.name.en} as Lagna lord and Moon in ${moon.signName.en} both support a strongly positive outcome. Conditions are aligned in your favor — proceed with confidence.`,
-        hi: `आपके ${catHi} प्रश्न के लिए प्रश्न कुण्डली अत्यन्त शुभ है। लग्नेश ${ascLord.planet.name.hi} और ${moon.signName.hi} में चन्द्र दोनों सशक्त शुभ परिणाम का समर्थन करते हैं। परिस्थितियां आपके अनुकूल हैं — विश्वासपूर्वक आगे बढ़ें।`,
+        en: `The Prashna chart is highly auspicious for your ${catEn} question. ${ascLord.planet.name.en} as Lagna lord and Moon in ${moon.signName.en} both support a strongly positive outcome. Conditions are aligned in your favor  –  proceed with confidence.`,
+        hi: `आपके ${catHi} प्रश्न के लिए प्रश्न कुण्डली अत्यन्त शुभ है। लग्नेश ${ascLord.planet.name.hi} और ${moon.signName.hi} में चन्द्र दोनों सशक्त शुभ परिणाम का समर्थन करते हैं। परिस्थितियां आपके अनुकूल हैं  –  विश्वासपूर्वक आगे बढ़ें।`,
         sa: `भवतः ${cfg.label.sa} प्रश्नार्थं कुण्डली अतिशुभा। लग्नेशः ${ascLord.planet.name.sa} चन्द्रश्च ${moon.signName.sa} राशौ शुभफलं समर्थयतः। विश्वासपूर्वकं प्रवर्तताम्।`,
       };
     case 'favorable':
@@ -697,8 +697,8 @@ function buildVerdictSummary(
       };
     case 'difficult':
       return {
-        en: `The chart is unfavorable for your ${catEn} question at this time. Key indicators — ${ascLord.planet.name.en}, Moon, and ${relLord.planet.name.en} — are all challenged. This may not be the right time to pursue this matter. Consider waiting, seeking alternative approaches, or performing suggested remedies before proceeding.`,
-        hi: `इस समय ${catHi} प्रश्न के लिए कुण्डली प्रतिकूल है। प्रमुख संकेतक — ${ascLord.planet.name.hi}, चन्द्र और ${relLord.planet.name.hi} — सभी पीड़ित हैं। यह इस विषय को आगे बढ़ाने का सही समय नहीं हो सकता। प्रतीक्षा करें या सुझाए गए उपाय करें।`,
+        en: `The chart is unfavorable for your ${catEn} question at this time. Key indicators  –  ${ascLord.planet.name.en}, Moon, and ${relLord.planet.name.en}  –  are all challenged. This may not be the right time to pursue this matter. Consider waiting, seeking alternative approaches, or performing suggested remedies before proceeding.`,
+        hi: `इस समय ${catHi} प्रश्न के लिए कुण्डली प्रतिकूल है। प्रमुख संकेतक  –  ${ascLord.planet.name.hi}, चन्द्र और ${relLord.planet.name.hi}  –  सभी पीड़ित हैं। यह इस विषय को आगे बढ़ाने का सही समय नहीं हो सकता। प्रतीक्षा करें या सुझाए गए उपाय करें।`,
         sa: `अस्मिन् समये ${cfg.label.sa} प्रश्नार्थं कुण्डली प्रतिकूला। प्रमुखसूचकाः सर्वे पीडिताः। प्रतीक्षा उपायाः वा कर्तव्याः।`,
       };
   }
@@ -715,7 +715,7 @@ function buildVerdictSummary(
  *    - > 12.0°/day: weeks to 1 month
  *    - <= 12.0°/day: 1 to several months
  *    If the overall score is very negative (< -25), timing is declared uncertain
- *    regardless of Moon speed — a severely afflicted chart may not deliver at all.
+ *    regardless of Moon speed  –  a severely afflicted chart may not deliver at all.
  *
  * 2. **Vimshottari Dasha context**: Appends the current Mahadasha-Antardasha for
  *    additional temporal context (which planetary period is active).
@@ -728,14 +728,14 @@ function buildTiming(moon: PlanetPosition, dashas: KundaliData['dashas'], score:
     timingEn = 'Timing is uncertain. The chart suggests significant delays or the matter may not materialize as expected.';
     timingHi = 'समय अनिश्चित है। कुण्डली महत्त्वपूर्ण विलम्ब या विषय के अपेक्षित रूप से न होने का संकेत देती है।';
   } else if (moonSpeed > 13.5) {
-    timingEn = 'The Moon is moving swiftly — results are likely within days to a couple of weeks. Act promptly to capitalize on the favorable momentum.';
-    timingHi = 'चन्द्र तीव्र गति से चल रहा है — परिणाम कुछ दिनों से दो सप्ताह में सम्भव। अनुकूल गति का लाभ उठाने के लिए शीघ्र कार्य करें।';
+    timingEn = 'The Moon is moving swiftly  –  results are likely within days to a couple of weeks. Act promptly to capitalize on the favorable momentum.';
+    timingHi = 'चन्द्र तीव्र गति से चल रहा है  –  परिणाम कुछ दिनों से दो सप्ताह में सम्भव। अनुकूल गति का लाभ उठाने के लिए शीघ्र कार्य करें।';
   } else if (moonSpeed > 12) {
     timingEn = 'The Moon\'s moderate pace suggests results within weeks to a month. Steady, consistent effort will bring the outcome.';
     timingHi = 'चन्द्र की सामान्य गति सप्ताहों से एक मास में परिणाम का संकेत देती है। स्थिर, निरन्तर प्रयास परिणाम लाएगा।';
   } else {
-    timingEn = 'The Moon is moving slowly — the matter may take one to several months to resolve. Patience is essential; do not rush.';
-    timingHi = 'चन्द्र धीमी गति से चल रहा है — विषय को हल होने में एक से कई मास लग सकते हैं। धैर्य आवश्यक है।';
+    timingEn = 'The Moon is moving slowly  –  the matter may take one to several months to resolve. Patience is essential; do not rush.';
+    timingHi = 'चन्द्र धीमी गति से चल रहा है  –  विषय को हल होने में एक से कई मास लग सकते हैं। धैर्य आवश्यक है।';
   }
 
   // Add dasha context
@@ -752,7 +752,7 @@ function buildTiming(moon: PlanetPosition, dashas: KundaliData['dashas'], score:
     timingHi += ' ' + dashaNoteHi;
   }
 
-  // Sanskrit text reuses Hindi for brevity — the timing narrative is long-form prose
+  // Sanskrit text reuses Hindi for brevity  –  the timing narrative is long-form prose
   // that doesn't benefit from a distinct Sanskrit rendering.
   return { en: timingEn, hi: timingHi, sa: timingHi };
 }
@@ -780,18 +780,18 @@ function buildGuidance(
 
   const base = outcome === 'very_favorable' || outcome === 'favorable'
     ? {
-      en: `The chart supports moving forward with your ${catEn} matter. The strength of ${ascLord.planet.name.en} (your significator) and favorable Moon position indicate that your efforts are likely to bear fruit. Focus your energy now — the cosmic alignment is working in your favor.`,
+      en: `The chart supports moving forward with your ${catEn} matter. The strength of ${ascLord.planet.name.en} (your significator) and favorable Moon position indicate that your efforts are likely to bear fruit. Focus your energy now  –  the cosmic alignment is working in your favor.`,
       hi: `कुण्डली आपके ${cfg.label.hi} विषय में आगे बढ़ने का समर्थन करती है। ${ascLord.planet.name.hi} (आपका कारक) का बल और अनुकूल चन्द्र स्थिति बताती है कि आपके प्रयास फलदायी होंगे। अभी अपनी ऊर्जा केन्द्रित करें।`,
       sa: `कुण्डली भवतः ${cfg.label.sa} विषये प्रवर्तनं समर्थयति। ${ascLord.planet.name.sa} बलं शुभचन्द्रस्थितिश्च शुभफलं सूचयति।`,
     }
     : outcome === 'mixed'
     ? {
-      en: `Proceed with cautious optimism regarding your ${catEn} question. The chart has both supportive and challenging elements. Pay special attention to ${moon.signName.en} Moon's areas — emotions, intuition, and timing matter greatly. Avoid hasty decisions; gather more information before committing.`,
+      en: `Proceed with cautious optimism regarding your ${catEn} question. The chart has both supportive and challenging elements. Pay special attention to ${moon.signName.en} Moon's areas  –  emotions, intuition, and timing matter greatly. Avoid hasty decisions; gather more information before committing.`,
       hi: `${cfg.label.hi} प्रश्न के विषय में सतर्क आशावाद के साथ आगे बढ़ें। कुण्डली में समर्थक और चुनौतीपूर्ण दोनों तत्व हैं। जल्दबाजी से बचें; प्रतिबद्ध होने से पहले अधिक जानकारी एकत्र करें।`,
       sa: `सावधानेन आशावादेन प्रवर्तताम्। कुण्डल्यां समर्थकप्रतिकूलतत्त्वानि विद्यन्ते।`,
     }
     : {
-      en: `The chart advises patience and caution with your ${catEn} question. This may not be the optimal time to push forward aggressively. Consider strengthening your position, performing the suggested remedies, and waiting for more favorable conditions. The matter is not permanently blocked — timing adjustments can change the outcome.`,
+      en: `The chart advises patience and caution with your ${catEn} question. This may not be the optimal time to push forward aggressively. Consider strengthening your position, performing the suggested remedies, and waiting for more favorable conditions. The matter is not permanently blocked  –  timing adjustments can change the outcome.`,
       hi: `कुण्डली ${cfg.label.hi} प्रश्न में धैर्य और सावधानी की सलाह देती है। आक्रामक रूप से आगे बढ़ने का यह उचित समय नहीं है। सुझाए गए उपाय करें और अनुकूल परिस्थितियों की प्रतीक्षा करें। विषय स्थायी रूप से अवरुद्ध नहीं है।`,
       sa: `कुण्डली धैर्यं सावधानीं च उपदिशति। उपायान् कुर्यात् अनुकूलकालं प्रतीक्षेत च।`,
     };
@@ -805,7 +805,7 @@ function buildGuidance(
  * Remedy structure (up to 3 remedies):
  * 1. **Weakest planet remedy**: Identifies the weakest among {Lagna Lord, Relevant
  *    House Lord, Moon}, then suggests the classical planetary remedy for that graha.
- *    Only applies to true planets (Sun through Saturn, ids 0-6) — Rahu/Ketu have
+ *    Only applies to true planets (Sun through Saturn, ids 0-6)  –  Rahu/Ketu have
  *    separate traditions not covered here.
  * 2. **Category-specific remedy**: A fixed remedy tied to the question domain
  *    (e.g. Saraswati worship for education, Lakshmi-Kuber for finance).
@@ -839,7 +839,7 @@ function buildRemedies(
   };
 
   // Find the weakest of the three key significators and suggest its remedy.
-  // Sorted ascending by planetScore — index 0 is the most afflicted.
+  // Sorted ascending by planetScore  –  index 0 is the most afflicted.
   const weakest = [ascLord, relLord, moon].sort((a, b) => planetScore(a) - planetScore(b))[0];
   if (weakest.planet.id <= 6 && lordRemedies[weakest.planet.id]) {
     remedies.push({
@@ -849,7 +849,7 @@ function buildRemedies(
     });
   }
 
-  // Category-specific remedies — fixed per question domain, independent of planetary state.
+  // Category-specific remedies  –  fixed per question domain, independent of planetary state.
   // These draw from popular Hindu devotional traditions associated with each life domain.
   const catRemedies: Record<PrashnaCategory, LocaleText> = {
     general: { en: 'Perform Ganesha Puja to remove obstacles. Chant Om Gam Ganapataye Namah 108 times before starting any new endeavor.', hi: 'बाधा दूर करने के लिए गणेश पूजा करें। किसी नए कार्य से पहले ॐ गं गणपतये नमः 108 बार जपें।', sa: 'विघ्ननिवारणार्थं गणेशपूजनं कुर्यात्। ॐ गं गणपतये नमः 108 वारं जपेत्।' },

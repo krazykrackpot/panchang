@@ -1,5 +1,5 @@
 /**
- * iCal Generator — RFC 5545 compliant .ics file builder
+ * iCal Generator  –  RFC 5545 compliant .ics file builder
  *
  * Generates iCalendar format strings for Vedic calendar events
  * (festivals, eclipses, ekadashi, etc.).
@@ -8,7 +8,7 @@
  *
  * Limitation: This generator produces all-day events (DATE values)
  * and timed events (DATE-TIME in UTC). It does NOT handle VTIMEZONE
- * components — timed events must be pre-converted to UTC before passing in.
+ * components  –  timed events must be pre-converted to UTC before passing in.
  */
 
 export interface ICalEvent {
@@ -116,7 +116,7 @@ export function generateICal(options: ICalOptions): string {
     lines.push('BEGIN:VEVENT');
     lines.push(`UID:${event.uid}`);
 
-    // DTSTAMP — required by RFC 5545, use current time in UTC
+    // DTSTAMP  –  required by RFC 5545, use current time in UTC
     const now = new Date();
     const dtstamp = now.toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z');
     lines.push(`DTSTAMP:${dtstamp}`);

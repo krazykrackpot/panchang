@@ -3,7 +3,7 @@ import { getServerSupabase } from '@/lib/supabase/server';
 import { sendEmail } from '@/lib/email/resend-client';
 import { alertEmail } from '@/lib/email/templates/alert';
 
-// Runs daily at 6 AM UTC — checks for dasha transitions and festival reminders
+// Runs daily at 6 AM UTC  –  checks for dasha transitions and festival reminders
 export async function GET(req: Request) {
   try {
   const authHeader = req.headers.get('authorization');

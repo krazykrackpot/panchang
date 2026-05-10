@@ -1,5 +1,5 @@
 /**
- * Shareable Card Infrastructure — shared types and utilities.
+ * Shareable Card Infrastructure  –  shared types and utilities.
  *
  * All shareable cards (birth-poster, daily-vibe, yoga-badge) share these
  * dimensions, colors, and helper functions.

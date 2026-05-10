@@ -55,7 +55,7 @@ export async function GET(req: NextRequest) {
     prefsMap.set(p.id, p.notification_prefs || {});
   }
 
-  // Fetch upcoming festivals (next 7 days) — using a simple date range query
+  // Fetch upcoming festivals (next 7 days)  –  using a simple date range query
   // We'll use a generic list; in production this would come from the calendar API
   const upcomingFestivals = getUpcomingFestivals();
 
@@ -131,7 +131,7 @@ export async function GET(req: NextRequest) {
             tag: pushItem.type,
           });
         } catch (err) {
-          // Push delivery is best-effort — don't fail the cron, but log for debugging
+          // Push delivery is best-effort  –  don't fail the cron, but log for debugging
           console.error('[generate-notifications] push delivery failed:', err);
         }
       }
@@ -147,7 +147,7 @@ export async function GET(req: NextRequest) {
 }
 
 // ---------------------------------------------------------------------------
-// Upcoming festivals helper — generates the next 7 days of festivals
+// Upcoming festivals helper  –  generates the next 7 days of festivals
 // using the Hindu calendar engine. Uses a representative India location
 // since festival dates are calendar-based and don't vary by region.
 // ---------------------------------------------------------------------------

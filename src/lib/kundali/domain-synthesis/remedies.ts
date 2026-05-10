@@ -363,11 +363,11 @@ const PLANET_REMEDIES: Record<number, PlanetRemedyEntry> = {
 /**
  * Computes an internal priority score (1–5) for a weak planet in a domain.
  *
- * 5 — debilitated AND lords the domain house (most urgent)
- * 4 — weak shadbala (< 1.0 rupa) AND lords the domain house
- * 3 — debilitated but not a house lord (still significant)
- * 2 — weak shadbala only (mild)
- * 1 — already acceptable strength, preventive only
+ * 5  –  debilitated AND lords the domain house (most urgent)
+ * 4  –  weak shadbala (< 1.0 rupa) AND lords the domain house
+ * 3  –  debilitated but not a house lord (still significant)
+ * 2  –  weak shadbala only (mild)
+ * 1  –  already acceptable strength, preventive only
  */
 function computePriority(planet: RemedyInput['weakPlanets'][number]): number {
   const isWeakShadbala = planet.shadbalaRupa < 1.0;
@@ -416,7 +416,7 @@ export function selectDomainRemedies(params: RemedyInput): DomainRemedy[] {
     .map((p) => ({ planet: p, priority: computePriority(p) }))
     .sort((a, b) => b.priority - a.priority);
 
-  // Step 4: build remedies — top 3 planets, ≤2 remedies each
+  // Step 4: build remedies  –  top 3 planets, ≤2 remedies each
   const remedies: DomainRemedy[] = [];
 
   for (const { planet, priority } of scored.slice(0, 3)) {

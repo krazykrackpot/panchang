@@ -39,7 +39,7 @@ export interface ExtendedActivity {
   goodHoras: number[];
   relevantHouses: number[];
   /**
-   * Nakshatra hard vetoes — window is disqualified (score → 0) if nakshatra matches.
+   * Nakshatra hard vetoes  –  window is disqualified (score → 0) if nakshatra matches.
    * Per Muhurta Chintamani Ch. 6 + Jyotirnibandha: strong textual consensus that
    * certain nakshatras are absolutely forbidden for specific samskaras.
    * Venus/Jupiter combustion is a separate hard veto checked in the scanner.
@@ -82,7 +82,7 @@ export interface DetailBreakdown {
   taraBala: number;        // 0-10
   chandraBala: number;     // 0-10
   dashaHarmony: number;    // 0-10
-  inauspicious: number;    // 0-10 (subtractive — higher = less penalty)
+  inauspicious: number;    // 0-10 (subtractive  –  higher = less penalty)
 }
 
 export interface InauspiciousPeriod {
@@ -138,7 +138,7 @@ export interface FactorVerdict {
   factor: string;       // 'Tithi', 'Nakshatra', 'Yoga', 'Karana', 'Lagna'
   value: string;        // e.g. 'Dwitiya', 'Rohini'
   verdict: 'good' | 'neutral' | 'bad';
-  reason: string;       // classical citation, e.g. 'Auspicious for marriage — MC Ch. 6'
+  reason: string;       // classical citation, e.g. 'Auspicious for marriage  –  MC Ch. 6'
 }
 
 export interface DaySummary {

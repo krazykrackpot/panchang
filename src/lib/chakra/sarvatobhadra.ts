@@ -1,5 +1,5 @@
 /**
- * Sarvatobhadra Chakra — Vedha (strike) Engine
+ * Sarvatobhadra Chakra  –  Vedha (strike) Engine
  *
  * When a transiting planet occupies a nakshatra, it "strikes" every cell
  * sharing a row, column, or diagonal with that nakshatra's position in the
@@ -216,7 +216,7 @@ export function analyzeSarvatobhadra(
   const favorableTithiSet = new Set<number>();
   const unfavorableTithiSet = new Set<number>();
 
-  // Birth nakshatra positions — we check if vedha lines cross these
+  // Birth nakshatra positions  –  we check if vedha lines cross these
   const birthPositions = NAKSHATRA_POSITIONS.get(birthNakshatraId) ?? [];
 
   for (const transit of transits) {
@@ -292,7 +292,7 @@ export function analyzeSarvatobhadra(
     // classified as favorable (benefic) or unfavorable (malefic).
     //
     // Note: with many planets having vedha, all 7 weekdays CAN be unfavorable
-    // — this is a valid classical outcome. The UI should show which planets
+    //  –  this is a valid classical outcome. The UI should show which planets
     // cause each classification so the user can weight by transit duration
     // (Saturn vedha lasting 13 months matters far more than Moon vedha lasting 1 day).
     if (birthIsAffected) {
@@ -332,11 +332,11 @@ export function analyzeSarvatobhadra(
   if (transitVedhas.length === 0) {
     summary = 'No transits provided for analysis.';
   } else if (birthStruckBy.length === 0) {
-    summary = `No transit planet currently has vedha on your birth nakshatra. This is a neutral period — the current planetary positions do not directly affect you through the SBC grid.`;
+    summary = `No transit planet currently has vedha on your birth nakshatra. This is a neutral period  –  the current planetary positions do not directly affect you through the SBC grid.`;
   } else if (birthMaleficStrikes === 0 && birthBeneficStrikes > 0) {
-    summary = `Birth nakshatra receives ${birthBeneficStrikes} benefic vedha from: ${beneficStrikers.join(', ')}. Overall favorable period — positive influences dominate.`;
+    summary = `Birth nakshatra receives ${birthBeneficStrikes} benefic vedha from: ${beneficStrikers.join(', ')}. Overall favorable period  –  positive influences dominate.`;
   } else if (birthMaleficStrikes > 0 && birthBeneficStrikes === 0) {
-    summary = `Birth nakshatra receives ${birthMaleficStrikes} malefic vedha from: ${maleficStrikers.join(', ')}. Caution advised — slow-transit planets (Saturn, Rahu) carry more weight than fast ones (Sun).`;
+    summary = `Birth nakshatra receives ${birthMaleficStrikes} malefic vedha from: ${maleficStrikers.join(', ')}. Caution advised  –  slow-transit planets (Saturn, Rahu) carry more weight than fast ones (Sun).`;
   } else {
     summary = `Mixed vedha on birth nakshatra: ${birthBeneficStrikes} benefic (${beneficStrikers.join(', ')}) and ${birthMaleficStrikes} malefic (${maleficStrikers.join(', ')}). Slow planets (Jupiter ~13mo, Saturn ~13mo) outweigh fast planets (Moon ~1d, Sun ~13d) in practical impact.`;
   }

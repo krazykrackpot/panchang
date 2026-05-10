@@ -84,16 +84,16 @@
     "mai": "Ketu (Descending Node)"
   },
   "eclipticPlaneLabel": {
-    "en": "Ecliptic Plane — Earth's orbit around the Sun",
-    "hi": "क्रान्तिवृत्त तल — पृथ्वी की सूर्य के चारों ओर कक्षा",
-    "sa": "क्रान्तिवृत्त तल — पृथ्वी की सूर्य के चारों ओर कक्षा",
-    "ta": "Ecliptic Plane — Earth's orbit around the Sun",
-    "te": "Ecliptic Plane — Earth's orbit around the Sun",
-    "bn": "Ecliptic Plane — Earth's orbit around the Sun",
-    "kn": "Ecliptic Plane — Earth's orbit around the Sun",
-    "mr": "Ecliptic Plane — Earth's orbit around the Sun",
-    "gu": "Ecliptic Plane — Earth's orbit around the Sun",
-    "mai": "Ecliptic Plane — Earth's orbit around the Sun"
+    "en": "Ecliptic Plane  –  Earth's orbit around the Sun",
+    "hi": "क्रान्तिवृत्त तल  –  पृथ्वी की सूर्य के चारों ओर कक्षा",
+    "sa": "क्रान्तिवृत्त तल  –  पृथ्वी की सूर्य के चारों ओर कक्षा",
+    "ta": "Ecliptic Plane  –  Earth's orbit around the Sun",
+    "te": "Ecliptic Plane  –  Earth's orbit around the Sun",
+    "bn": "Ecliptic Plane  –  Earth's orbit around the Sun",
+    "kn": "Ecliptic Plane  –  Earth's orbit around the Sun",
+    "mr": "Ecliptic Plane  –  Earth's orbit around the Sun",
+    "gu": "Ecliptic Plane  –  Earth's orbit around the Sun",
+    "mai": "Ecliptic Plane  –  Earth's orbit around the Sun"
   },
   "sun": {
     "en": "Sun",
@@ -240,16 +240,16 @@
     "mai": "Eclipse occurs ONLY when New/Full Moon happens NEAR a node (Rahu/Ketu)"
   },
   "mostMoonsPassWithoutEclipse": {
-    "en": "Most New/Full Moons pass without eclipse — Moon is far from the nodes",
-    "hi": "अधिकांश अमावस्या/पूर्णिमा बिना ग्रहण के गुजरती हैं — चन्द्र पातों से दूर रहता है",
-    "sa": "अधिकांश अमावस्या/पूर्णिमा बिना ग्रहण के गुजरती हैं — चन्द्र पातों से दूर रहता है",
-    "ta": "Most New/Full Moons pass without eclipse — Moon is far from the nodes",
-    "te": "Most New/Full Moons pass without eclipse — Moon is far from the nodes",
-    "bn": "Most New/Full Moons pass without eclipse — Moon is far from the nodes",
-    "kn": "Most New/Full Moons pass without eclipse — Moon is far from the nodes",
-    "mr": "Most New/Full Moons pass without eclipse — Moon is far from the nodes",
-    "gu": "Most New/Full Moons pass without eclipse — Moon is far from the nodes",
-    "mai": "Most New/Full Moons pass without eclipse — Moon is far from the nodes"
+    "en": "Most New/Full Moons pass without eclipse  –  Moon is far from the nodes",
+    "hi": "अधिकांश अमावस्या/पूर्णिमा बिना ग्रहण के गुजरती हैं  –  चन्द्र पातों से दूर रहता है",
+    "sa": "अधिकांश अमावस्या/पूर्णिमा बिना ग्रहण के गुजरती हैं  –  चन्द्र पातों से दूर रहता है",
+    "ta": "Most New/Full Moons pass without eclipse  –  Moon is far from the nodes",
+    "te": "Most New/Full Moons pass without eclipse  –  Moon is far from the nodes",
+    "bn": "Most New/Full Moons pass without eclipse  –  Moon is far from the nodes",
+    "kn": "Most New/Full Moons pass without eclipse  –  Moon is far from the nodes",
+    "mr": "Most New/Full Moons pass without eclipse  –  Moon is far from the nodes",
+    "gu": "Most New/Full Moons pass without eclipse  –  Moon is far from the nodes",
+    "mai": "Most New/Full Moons pass without eclipse  –  Moon is far from the nodes"
   },
   "eclipticPlaneSvg": {
     "en": "Ecliptic Plane",
@@ -300,16 +300,16 @@
     "mai": "Moon (New Moon)"
   },
   "ascendingNodeEclipseHere": {
-    "en": "Ascending Node — Eclipse here!",
-    "hi": "आरोही पात — ग्रहण यहाँ!",
-    "sa": "आरोही पात — ग्रहण यहाँ!",
-    "ta": "Ascending Node — Eclipse here!",
-    "te": "Ascending Node — Eclipse here!",
-    "bn": "Ascending Node — Eclipse here!",
-    "kn": "Ascending Node — Eclipse here!",
-    "mr": "Ascending Node — Eclipse here!",
-    "gu": "Ascending Node — Eclipse here!",
-    "mai": "Ascending Node — Eclipse here!"
+    "en": "Ascending Node  –  Eclipse here!",
+    "hi": "आरोही पात  –  ग्रहण यहाँ!",
+    "sa": "आरोही पात  –  ग्रहण यहाँ!",
+    "ta": "Ascending Node  –  Eclipse here!",
+    "te": "Ascending Node  –  Eclipse here!",
+    "bn": "Ascending Node  –  Eclipse here!",
+    "kn": "Ascending Node  –  Eclipse here!",
+    "mr": "Ascending Node  –  Eclipse here!",
+    "gu": "Ascending Node  –  Eclipse here!",
+    "mai": "Ascending Node  –  Eclipse here!"
   },
   "descendingNodeSvg": {
     "en": "Descending Node",
@@ -324,16 +324,16 @@
     "mai": "Descending Node"
   },
   "solarEclipseCaption": {
-    "en": "⚫ Solar Eclipse — Moon at Rahu node, between Sun & Earth",
-    "hi": "⚫ सूर्य ग्रहण — चन्द्र राहु पात पर, सूर्य और पृथ्वी के बीच",
-    "sa": "⚫ सूर्य ग्रहण — चन्द्र राहु पात पर, सूर्य और पृथ्वी के बीच",
-    "ta": "⚫ Solar Eclipse — Moon at Rahu node, between Sun & Earth",
-    "te": "⚫ Solar Eclipse — Moon at Rahu node, between Sun & Earth",
-    "bn": "⚫ Solar Eclipse — Moon at Rahu node, between Sun & Earth",
-    "kn": "⚫ Solar Eclipse — Moon at Rahu node, between Sun & Earth",
-    "mr": "⚫ Solar Eclipse — Moon at Rahu node, between Sun & Earth",
-    "gu": "⚫ Solar Eclipse — Moon at Rahu node, between Sun & Earth",
-    "mai": "⚫ Solar Eclipse — Moon at Rahu node, between Sun & Earth"
+    "en": "⚫ Solar Eclipse  –  Moon at Rahu node, between Sun & Earth",
+    "hi": "⚫ सूर्य ग्रहण  –  चन्द्र राहु पात पर, सूर्य और पृथ्वी के बीच",
+    "sa": "⚫ सूर्य ग्रहण  –  चन्द्र राहु पात पर, सूर्य और पृथ्वी के बीच",
+    "ta": "⚫ Solar Eclipse  –  Moon at Rahu node, between Sun & Earth",
+    "te": "⚫ Solar Eclipse  –  Moon at Rahu node, between Sun & Earth",
+    "bn": "⚫ Solar Eclipse  –  Moon at Rahu node, between Sun & Earth",
+    "kn": "⚫ Solar Eclipse  –  Moon at Rahu node, between Sun & Earth",
+    "mr": "⚫ Solar Eclipse  –  Moon at Rahu node, between Sun & Earth",
+    "gu": "⚫ Solar Eclipse  –  Moon at Rahu node, between Sun & Earth",
+    "mai": "⚫ Solar Eclipse  –  Moon at Rahu node, between Sun & Earth"
   },
   "newMoonAtNodeSolar": {
     "en": "New Moon (Amavasya) at Rahu or Ketu = Solar Eclipse",
@@ -372,28 +372,28 @@
     "mai": "Penumbra"
   },
   "moonFullMoonBloodMoon": {
-    "en": "Moon (Full Moon) — Blood Moon",
-    "hi": "चन्द्र (पूर्णिमा) — रक्त चन्द्र",
-    "sa": "चन्द्र (पूर्णिमा) — रक्त चन्द्र",
-    "ta": "Moon (Full Moon) — Blood Moon",
-    "te": "Moon (Full Moon) — Blood Moon",
-    "bn": "Moon (Full Moon) — Blood Moon",
-    "kn": "Moon (Full Moon) — Blood Moon",
-    "mr": "Moon (Full Moon) — Blood Moon",
-    "gu": "Moon (Full Moon) — Blood Moon",
-    "mai": "Moon (Full Moon) — Blood Moon"
+    "en": "Moon (Full Moon)  –  Blood Moon",
+    "hi": "चन्द्र (पूर्णिमा)  –  रक्त चन्द्र",
+    "sa": "चन्द्र (पूर्णिमा)  –  रक्त चन्द्र",
+    "ta": "Moon (Full Moon)  –  Blood Moon",
+    "te": "Moon (Full Moon)  –  Blood Moon",
+    "bn": "Moon (Full Moon)  –  Blood Moon",
+    "kn": "Moon (Full Moon)  –  Blood Moon",
+    "mr": "Moon (Full Moon)  –  Blood Moon",
+    "gu": "Moon (Full Moon)  –  Blood Moon",
+    "mai": "Moon (Full Moon)  –  Blood Moon"
   },
   "descendingNodeEclipseHere": {
-    "en": "Descending Node — Eclipse here!",
-    "hi": "अवरोही पात — ग्रहण यहाँ!",
-    "sa": "अवरोही पात — ग्रहण यहाँ!",
-    "ta": "Descending Node — Eclipse here!",
-    "te": "Descending Node — Eclipse here!",
-    "bn": "Descending Node — Eclipse here!",
-    "kn": "Descending Node — Eclipse here!",
-    "mr": "Descending Node — Eclipse here!",
-    "gu": "Descending Node — Eclipse here!",
-    "mai": "Descending Node — Eclipse here!"
+    "en": "Descending Node  –  Eclipse here!",
+    "hi": "अवरोही पात  –  ग्रहण यहाँ!",
+    "sa": "अवरोही पात  –  ग्रहण यहाँ!",
+    "ta": "Descending Node  –  Eclipse here!",
+    "te": "Descending Node  –  Eclipse here!",
+    "bn": "Descending Node  –  Eclipse here!",
+    "kn": "Descending Node  –  Eclipse here!",
+    "mr": "Descending Node  –  Eclipse here!",
+    "gu": "Descending Node  –  Eclipse here!",
+    "mai": "Descending Node  –  Eclipse here!"
   },
   "ascendingNodeSvg": {
     "en": "Ascending Node",
@@ -408,16 +408,16 @@
     "mai": "Ascending Node"
   },
   "lunarEclipseCaption": {
-    "en": "🔴 Lunar Eclipse — Moon at Ketu node, in Earth's shadow",
-    "hi": "🔴 चन्द्र ग्रहण — चन्द्र केतु पात पर, पृथ्वी की छाया में",
-    "sa": "🔴 चन्द्र ग्रहण — चन्द्र केतु पात पर, पृथ्वी की छाया में",
-    "ta": "🔴 Lunar Eclipse — Moon at Ketu node, in Earth's shadow",
-    "te": "🔴 Lunar Eclipse — Moon at Ketu node, in Earth's shadow",
-    "bn": "🔴 Lunar Eclipse — Moon at Ketu node, in Earth's shadow",
-    "kn": "🔴 Lunar Eclipse — Moon at Ketu node, in Earth's shadow",
-    "mr": "🔴 Lunar Eclipse — Moon at Ketu node, in Earth's shadow",
-    "gu": "🔴 Lunar Eclipse — Moon at Ketu node, in Earth's shadow",
-    "mai": "🔴 Lunar Eclipse — Moon at Ketu node, in Earth's shadow"
+    "en": "🔴 Lunar Eclipse  –  Moon at Ketu node, in Earth's shadow",
+    "hi": "🔴 चन्द्र ग्रहण  –  चन्द्र केतु पात पर, पृथ्वी की छाया में",
+    "sa": "🔴 चन्द्र ग्रहण  –  चन्द्र केतु पात पर, पृथ्वी की छाया में",
+    "ta": "🔴 Lunar Eclipse  –  Moon at Ketu node, in Earth's shadow",
+    "te": "🔴 Lunar Eclipse  –  Moon at Ketu node, in Earth's shadow",
+    "bn": "🔴 Lunar Eclipse  –  Moon at Ketu node, in Earth's shadow",
+    "kn": "🔴 Lunar Eclipse  –  Moon at Ketu node, in Earth's shadow",
+    "mr": "🔴 Lunar Eclipse  –  Moon at Ketu node, in Earth's shadow",
+    "gu": "🔴 Lunar Eclipse  –  Moon at Ketu node, in Earth's shadow",
+    "mai": "🔴 Lunar Eclipse  –  Moon at Ketu node, in Earth's shadow"
   },
   "fullMoonAtNodeLunar": {
     "en": "Full Moon (Purnima) at Rahu or Ketu = Lunar Eclipse (Blood Moon)",

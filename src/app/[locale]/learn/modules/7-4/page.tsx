@@ -25,17 +25,17 @@ function Page1() {
     <div className="space-y-6">
       <KeyTakeaway
         points={[
-          'The 7-day week is a mathematical consequence of 7 visible planets and 24 hours — not a cultural invention.',
+          'The 7-day week is a mathematical consequence of 7 visible planets and 24 hours  –  not a cultural invention.',
           'The "jump of 3" (24 mod 7 = 3) transforms the Chaldean speed order into the familiar weekday sequence.',
           'Sanskrit vara names (Ravivara, Somavara...) encode the same planetary assignments as Latin and English names.',
         ]}
         locale={locale}
       />
       <section>
-        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Hora from Ahoratra — Etymology & the Seven Visible Planets</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-3">The Sanskrit word &quot;Ahoratra&quot; is a compound of &quot;Aha&quot; (day) and &quot;Ratra&quot; (night) — it denotes one complete cycle of daylight and darkness. By a well-attested etymological process, the first syllable (a-) and the last portion (-ratra) were dropped, yielding the middle portion: &quot;hora.&quot; This word entered Greek as &quot;hora&quot; (ὥρα), passed through Latin, and eventually became the English &quot;hour.&quot; Whether the borrowing went from India to Greece or vice versa is debated, but the linguistic kinship is undeniable.</p>
-        <p className="text-text-secondary text-sm leading-relaxed mb-3">A hora is 1/24th of an Ahoratra — one planetary hour. Each hora is ruled by one of the seven classical &quot;planets&quot; (grahas) visible to the naked eye. These seven are ranked by their apparent orbital period as seen from Earth, from slowest to fastest: Saturn (~29.5 years), Jupiter (~12 years), Mars (~2 years), Sun (~1 year), Venus (~225 days), Mercury (~88 days), Moon (~27 days). This ranking is called the Chaldean order, after the Babylonian astronomers who first systematized it.</p>
-        <p className="text-text-secondary text-sm leading-relaxed">Crucially, Rahu and Ketu are excluded from this system. They are not visible celestial bodies — they are mathematical points (lunar nodes) where the Moon&apos;s orbital plane intersects the ecliptic. Only the seven bodies observable with the naked eye participate in the Chaldean sequence.</p>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Hora from Ahoratra  –  Etymology & the Seven Visible Planets</h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">The Sanskrit word &quot;Ahoratra&quot; is a compound of &quot;Aha&quot; (day) and &quot;Ratra&quot; (night)  –  it denotes one complete cycle of daylight and darkness. By a well-attested etymological process, the first syllable (a-) and the last portion (-ratra) were dropped, yielding the middle portion: &quot;hora.&quot; This word entered Greek as &quot;hora&quot; (ὥρα), passed through Latin, and eventually became the English &quot;hour.&quot; Whether the borrowing went from India to Greece or vice versa is debated, but the linguistic kinship is undeniable.</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">A hora is 1/24th of an Ahoratra  –  one planetary hour. Each hora is ruled by one of the seven classical &quot;planets&quot; (grahas) visible to the naked eye. These seven are ranked by their apparent orbital period as seen from Earth, from slowest to fastest: Saturn (~29.5 years), Jupiter (~12 years), Mars (~2 years), Sun (~1 year), Venus (~225 days), Mercury (~88 days), Moon (~27 days). This ranking is called the Chaldean order, after the Babylonian astronomers who first systematized it.</p>
+        <p className="text-text-secondary text-sm leading-relaxed">Crucially, Rahu and Ketu are excluded from this system. They are not visible celestial bodies  –  they are mathematical points (lunar nodes) where the Moon&apos;s orbital plane intersects the ecliptic. Only the seven bodies observable with the naked eye participate in the Chaldean sequence.</p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">The Chaldean Sequence</h4>
@@ -55,8 +55,8 @@ function Page2() {
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>The 24-Hora System & the &quot;Jump of 3&quot;</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">Each Ahoratra (day-night cycle) is divided into exactly 24 horas. The first hora of any day is ruled by that day&apos;s planetary lord. Subsequent horas cycle through the Chaldean order: Saturn &rarr; Jupiter &rarr; Mars &rarr; Sun &rarr; Venus &rarr; Mercury &rarr; Moon, repeating endlessly.</p>
-        <p className="text-text-secondary text-sm leading-relaxed mb-3">The key insight is arithmetic: 24 divided by 7 gives 3 complete cycles (3 &times; 7 = 21) with a remainder of 3. That remainder — <span className="text-gold-light font-semibold">24 mod 7 = 3</span> — is the engine of the weekday sequence. After 24 horas, the next day&apos;s first hora ruler is exactly 3 steps forward in the Chaldean order from the current day&apos;s ruler.</p>
-        <p className="text-text-secondary text-sm leading-relaxed">This &quot;jump of 3&quot; transforms the speed-ranked Chaldean order into the familiar weekday order. It is not arbitrary, not culturally imposed, and not mythological — it is a strict mathematical consequence of dividing 24 hours among 7 planets.</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">The key insight is arithmetic: 24 divided by 7 gives 3 complete cycles (3 &times; 7 = 21) with a remainder of 3. That remainder  –  <span className="text-gold-light font-semibold">24 mod 7 = 3</span>  –  is the engine of the weekday sequence. After 24 horas, the next day&apos;s first hora ruler is exactly 3 steps forward in the Chaldean order from the current day&apos;s ruler.</p>
+        <p className="text-text-secondary text-sm leading-relaxed">This &quot;jump of 3&quot; transforms the speed-ranked Chaldean order into the familiar weekday order. It is not arbitrary, not culturally imposed, and not mythological  –  it is a strict mathematical consequence of dividing 24 hours among 7 planets.</p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Example: Saturday &rarr; Sunday &rarr; Monday &rarr; ...</h4>
@@ -80,7 +80,7 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Sanskrit Vara Names & Their Planetary Rulers</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-3">The seven weekday names encode the same planetary assignments across Sanskrit, Latin, and English — powerful evidence that the Hora system was a shared framework of the ancient world.</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">The seven weekday names encode the same planetary assignments across Sanskrit, Latin, and English  –  powerful evidence that the Hora system was a shared framework of the ancient world.</p>
       </section>
       <section className="overflow-x-auto">
         <table className="w-full text-xs border-collapse">
@@ -105,7 +105,7 @@ function Page3() {
       </section>
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3 mt-4" style={{ fontFamily: 'var(--font-heading)' }}>Classical Sources</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-3">The hora-weekday derivation appears in multiple ancient Indian texts. The <span className="text-gold-light font-medium">Surya Siddhanta</span> (likely 4th-5th century CE) describes the division of the day into 24 horas and the Chaldean ordering of planets. <span className="text-gold-light font-medium">Varahamihira&apos;s Brihat Samhita</span> (6th century CE) explicitly states the principle &quot;horeshvaro dineshvarah&quot; — the lord of the first hora is the lord of the day.</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">The hora-weekday derivation appears in multiple ancient Indian texts. The <span className="text-gold-light font-medium">Surya Siddhanta</span> (likely 4th-5th century CE) describes the division of the day into 24 horas and the Chaldean ordering of planets. <span className="text-gold-light font-medium">Varahamihira&apos;s Brihat Samhita</span> (6th century CE) explicitly states the principle &quot;horeshvaro dineshvarah&quot;  –  the lord of the first hora is the lord of the day.</p>
         <p className="text-text-secondary text-sm leading-relaxed">Even earlier, <span className="text-gold-light font-medium">Kautilya&apos;s Arthashastra</span> (c. 3rd century BCE) references the seven-day week and planetary time-keeping in the context of state administration.</p>
       </section>
     </div>
@@ -120,8 +120,8 @@ function Page4() {
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Why Exactly 7 Days? The Mathematical Inevitability</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">The 7-day week feels arbitrary until you understand its origin. Ancient astronomers observed 7 celestial bodies that moved against the fixed stars: Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn. These are the only objects visible to the naked eye that have independent motion. Uranus (magnitude 5.7, barely visible) and Neptune (invisible) were unknown.</p>
-        <p className="text-text-secondary text-sm leading-relaxed mb-3">Given P = 7 planets and H = 24 hours per day, the daily ruler advances by H mod P = 24 mod 7 = 3 positions. This generates a cycle of length 7 (since gcd(3,7) = 1). If there were 8 visible planets, the advance would be 24 mod 8 = 0 — every day would have the same ruler (no weekday cycle). If there were 5 planets, 24 mod 5 = 4, generating a 5-day week. The 7-day week is not culturally arbitrary — it is the unique mathematical consequence of 7 visible planets and 24 hours.</p>
-        <p className="text-text-secondary text-sm leading-relaxed">Why 24 hours? The Babylonians used a base-60 (sexagesimal) counting system. They divided the day-night cycle into 12 + 12 = 24 parts, matching their 12 zodiacal constellations. This 24-hour division was adopted by Egypt, Greece, India, and eventually the entire world. Had they used base-10, we might have 20 hours per day, 20 mod 7 = 6, and a different weekday sequence — but still exactly 7 days.</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">Given P = 7 planets and H = 24 hours per day, the daily ruler advances by H mod P = 24 mod 7 = 3 positions. This generates a cycle of length 7 (since gcd(3,7) = 1). If there were 8 visible planets, the advance would be 24 mod 8 = 0  –  every day would have the same ruler (no weekday cycle). If there were 5 planets, 24 mod 5 = 4, generating a 5-day week. The 7-day week is not culturally arbitrary  –  it is the unique mathematical consequence of 7 visible planets and 24 hours.</p>
+        <p className="text-text-secondary text-sm leading-relaxed">Why 24 hours? The Babylonians used a base-60 (sexagesimal) counting system. They divided the day-night cycle into 12 + 12 = 24 parts, matching their 12 zodiacal constellations. This 24-hour division was adopted by Egypt, Greece, India, and eventually the entire world. Had they used base-10, we might have 20 hours per day, 20 mod 7 = 6, and a different weekday sequence  –  but still exactly 7 days.</p>
       </section>
     </div>
   );

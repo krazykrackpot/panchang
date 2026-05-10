@@ -1,4 +1,4 @@
-// archetype-data.ts — Cosmic Blueprint archetype definitions
+// archetype-data.ts  –  Cosmic Blueprint archetype definitions
 // Maps Vedic planetary archetypes to psychological profiles for the Cosmic Blueprint feature.
 import type { LocaleText } from '@/types/panchang';
 
@@ -17,13 +17,13 @@ export interface ArchetypeDefinition {
   chapterThemes: string[];
 }
 
-// Maps planet ID to archetype — 0=Sun through 8=Ketu
+// Maps planet ID to archetype  –  0=Sun through 8=Ketu
 export const ARCHETYPES: Record<number, ArchetypeDefinition> = {
   0: {
     id: 'sovereign',
     name: { en: 'The Sovereign', hi: 'सम्राट', sa: 'सम्राट्' },
     planetId: 0,
-    coreDescription: 'Your identity is anchored in purpose and authority. You process the world through a lens of significance — everything connects to your core mission. You naturally command attention and create order from chaos. Your strength is clarity of vision.',
+    coreDescription: 'Your identity is anchored in purpose and authority. You process the world through a lens of significance  –  everything connects to your core mission. You naturally command attention and create order from chaos. Your strength is clarity of vision.',
     traits: ['purpose-driven', 'authoritative', 'decisive', 'dignified'],
     blindSpot: 'Need for recognition can overshadow collaborative instincts. You may struggle to lead without needing to be seen leading.',
     shadowDescription: 'When the Sun is your weakest influence, identity feels unstable. You seek external validation instead of generating your own sense of purpose.',
@@ -47,11 +47,11 @@ export const ARCHETYPES: Record<number, ArchetypeDefinition> = {
     id: 'warrior',
     name: { en: 'The Warrior', hi: 'योद्धा', sa: 'योद्धा' },
     planetId: 2,
-    coreDescription: 'Action is your language. You process the world through what can be done, fixed, built, or fought for. Courage comes naturally — you advance where others hesitate. Physical vitality and competitive drive define your approach.',
+    coreDescription: 'Action is your language. You process the world through what can be done, fixed, built, or fought for. Courage comes naturally  –  you advance where others hesitate. Physical vitality and competitive drive define your approach.',
     traits: ['action-oriented', 'courageous', 'competitive', 'direct'],
     blindSpot: 'Impatience with process. You may push through obstacles that required patience, not force. Relationships suffer when everything becomes a competition.',
     shadowDescription: 'When Mars is your weakest influence, assertiveness feels foreign. You avoid confrontation even when it\'s necessary, leading to passive resentment.',
-    growthArea: 'Learning to assert needs directly without aggression or avoidance — finding the middle ground.',
+    growthArea: 'Learning to assert needs directly without aggression or avoidance  –  finding the middle ground.',
     chapterDescription: 'A Mars chapter brings energy, ambition, and conflict to the surface. Property matters, sibling dynamics, and technical skills become prominent. Physical vitality peaks but so do risks of injury or surgery.',
     chapterThemes: ['ambition', 'property', 'siblings', 'physical energy', 'technical skill', 'surgery risk'],
   },
@@ -59,7 +59,7 @@ export const ARCHETYPES: Record<number, ArchetypeDefinition> = {
     id: 'analyst',
     name: { en: 'The Analyst', hi: 'विश्लेषक', sa: 'विश्लेषकः' },
     planetId: 3,
-    coreDescription: 'Your mind is your primary instrument. You process the world through pattern recognition, communication, and logical frameworks. Adaptability is your superpower — you shift between domains with ease. Learning is compulsive, not optional.',
+    coreDescription: 'Your mind is your primary instrument. You process the world through pattern recognition, communication, and logical frameworks. Adaptability is your superpower  –  you shift between domains with ease. Learning is compulsive, not optional.',
     traits: ['analytical', 'adaptable', 'articulate', 'curious'],
     blindSpot: 'Overthinking paralysis. You can analyze a situation from 12 angles and still feel unprepared to act. Communication substitutes for connection.',
     shadowDescription: 'When Mercury is your weakest influence, clear thinking feels effortful. You may struggle with focus, misread social cues, or find written/verbal expression frustrating.',
@@ -83,7 +83,7 @@ export const ARCHETYPES: Record<number, ArchetypeDefinition> = {
     id: 'harmonizer',
     name: { en: 'The Harmonizer', hi: 'सामंजस्यकारी', sa: 'सामञ्जस्यकारी' },
     planetId: 5,
-    coreDescription: 'Beauty and connection are your compass. You process the world through aesthetics, relationships, and sensory experience. Creating harmony — in environments, relationships, and art — is your instinct. Diplomacy comes naturally.',
+    coreDescription: 'Beauty and connection are your compass. You process the world through aesthetics, relationships, and sensory experience. Creating harmony  –  in environments, relationships, and art  –  is your instinct. Diplomacy comes naturally.',
     traits: ['aesthetic', 'diplomatic', 'sensual', 'relational'],
     blindSpot: 'Conflict avoidance masquerading as diplomacy. You may sacrifice your truth to keep the peace, then resent the cost. Comfort can become a trap.',
     shadowDescription: 'When Venus is your weakest influence, pleasure feels guilt-inducing. Relationships lack depth or feel transactional. Creative expression stalls.',
@@ -95,7 +95,7 @@ export const ARCHETYPES: Record<number, ArchetypeDefinition> = {
     id: 'architect',
     name: { en: 'The Architect', hi: 'वास्तुकार', sa: 'वास्तुकारः' },
     planetId: 6,
-    coreDescription: 'Structure is your safety net and your art. You process the world through systems, long-term planning, and endurance. Discipline isn\'t imposed on you — it\'s how you think. You build things that last because you cannot tolerate fragility.',
+    coreDescription: 'Structure is your safety net and your art. You process the world through systems, long-term planning, and endurance. Discipline isn\'t imposed on you  –  it\'s how you think. You build things that last because you cannot tolerate fragility.',
     traits: ['disciplined', 'structured', 'enduring', 'methodical'],
     blindSpot: 'Rigidity disguised as thoroughness. You may resist change even when the structure is no longer serving its purpose. Isolation feels productive but becomes habitual.',
     shadowDescription: 'When Saturn is your weakest influence, structure feels oppressive rather than supportive. You may rebel against responsibility or struggle with chronic procrastination.',
@@ -119,7 +119,7 @@ export const ARCHETYPES: Record<number, ArchetypeDefinition> = {
     id: 'mystic',
     name: { en: 'The Mystic', hi: 'रहस्यवादी', sa: 'रहस्यवादी' },
     planetId: 8,
-    coreDescription: 'Detachment is your gift. You process the world through intuition and subtraction — what can be released, simplified, transcended. Spiritual insight comes naturally. You see through surfaces to underlying patterns others miss.',
+    coreDescription: 'Detachment is your gift. You process the world through intuition and subtraction  –  what can be released, simplified, transcended. Spiritual insight comes naturally. You see through surfaces to underlying patterns others miss.',
     traits: ['intuitive', 'detached', 'perceptive', 'spiritual'],
     blindSpot: 'Disconnection masquerading as transcendence. You may check out of practical reality or relationships under the guise of being "above it all." Apathy and escapism are close neighbors of detachment.',
     shadowDescription: 'When Ketu is your weakest influence, spiritual life feels empty or performative. You may cling to material security with unusual intensity, fearing the loss you sense is inevitable.',
@@ -140,23 +140,23 @@ export const YOGA_PSYCH_INSIGHTS: Record<string, string> = {
   shasha: 'Saturn in a Kendra in its own/exalted sign provides structured discipline and endurance.',
   bhadra: 'Mercury in a Kendra in its own/exalted sign sharpens communication and intellectual precision.',
   viparita_raja: 'Challenge becomes fuel. Hardship in specific life areas paradoxically unlocks authority and growth.',
-  neecha_bhanga: 'A debilitated planet with cancellation — what looks like weakness becomes your unexpected strength.',
-  kemadruma: 'Moon without planetary support. Emotional self-reliance is your path — you learned early to be your own anchor.',
+  neecha_bhanga: 'A debilitated planet with cancellation  –  what looks like weakness becomes your unexpected strength.',
+  kemadruma: 'Moon without planetary support. Emotional self-reliance is your path  –  you learned early to be your own anchor.',
   sade_sati: 'Saturn\'s 7.5-year transit over your Moon. A period of pressure that forges emotional maturity and resilience.',
 };
 
-// Lagna modifier descriptions — keyed by rashi ID (1=Aries through 12=Pisces)
+// Lagna modifier descriptions  –  keyed by rashi ID (1=Aries through 12=Pisces)
 export const LAGNA_MODIFIERS: Record<number, string> = {
-  1: 'through Aries\'s direct, pioneering energy — you lead with action, not deliberation',
-  2: 'through Taurus\'s grounded, sensory lens — you build steadily, valuing tangible results',
-  3: 'through Gemini\'s curious, communicative style — you adapt quickly and connect widely',
-  4: 'through Cancer\'s protective, nurturing instinct — you create safety for yourself and others',
-  5: 'through Leo\'s dignified, expressive nature — you command attention naturally',
-  6: 'through Virgo\'s precise, service-oriented approach — you improve everything you touch',
-  7: 'through Libra\'s diplomatic, harmony-seeking lens — you mediate, balance, and beautify',
-  8: 'through Scorpio\'s intense, investigative depth — you see beneath surfaces instinctively',
-  9: 'through Sagittarius\'s expansive, philosophical vision — you seek meaning in everything',
-  10: 'through Capricorn\'s disciplined, ambitious structure — you build for the long term',
-  11: 'through Aquarius\'s innovative, community-minded perspective — you think systemically',
-  12: 'through Pisces\'s intuitive, compassionate awareness — you absorb the world\'s feelings',
+  1: 'through Aries\'s direct, pioneering energy  –  you lead with action, not deliberation',
+  2: 'through Taurus\'s grounded, sensory lens  –  you build steadily, valuing tangible results',
+  3: 'through Gemini\'s curious, communicative style  –  you adapt quickly and connect widely',
+  4: 'through Cancer\'s protective, nurturing instinct  –  you create safety for yourself and others',
+  5: 'through Leo\'s dignified, expressive nature  –  you command attention naturally',
+  6: 'through Virgo\'s precise, service-oriented approach  –  you improve everything you touch',
+  7: 'through Libra\'s diplomatic, harmony-seeking lens  –  you mediate, balance, and beautify',
+  8: 'through Scorpio\'s intense, investigative depth  –  you see beneath surfaces instinctively',
+  9: 'through Sagittarius\'s expansive, philosophical vision  –  you seek meaning in everything',
+  10: 'through Capricorn\'s disciplined, ambitious structure  –  you build for the long term',
+  11: 'through Aquarius\'s innovative, community-minded perspective  –  you think systemically',
+  12: 'through Pisces\'s intuitive, compassionate awareness  –  you absorb the world\'s feelings',
 };

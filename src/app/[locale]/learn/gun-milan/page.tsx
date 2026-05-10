@@ -52,14 +52,14 @@ export default function LearnGunMilanPage() {
       </div>
 
       <KeyTakeaway locale={locale} points={[
-        'Gun Milan scores compatibility on 8 factors (kutas) totalling 36 points — 18+ is the minimum threshold for marriage.',
-        'Nadi Kuta (8 points) is the single heaviest factor — a Nadi Dosha (0/8) is considered a serious red flag.',
+        'Gun Milan scores compatibility on 8 factors (kutas) totalling 36 points  –  18+ is the minimum threshold for marriage.',
+        'Nadi Kuta (8 points) is the single heaviest factor  –  a Nadi Dosha (0/8) is considered a serious red flag.',
         'Gun Milan is a screening tool. Chart-level analysis (7th house, Venus, dasha compatibility) is equally important.',
       ]} />
 
       <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
-        <BeginnerNote term="Nakshatra" explanation="The Moon's constellation at birth — the foundation of all Gun Milan calculations" />
-        <BeginnerNote term="Kuta" explanation="A matching factor or criterion — literally 'peak' or 'point' in Sanskrit" />
+        <BeginnerNote term="Nakshatra" explanation="The Moon's constellation at birth  –  the foundation of all Gun Milan calculations" />
+        <BeginnerNote term="Kuta" explanation="A matching factor or criterion  –  literally 'peak' or 'point' in Sanskrit" />
         <BeginnerNote term="Dosha" explanation="A defect or affliction in the chart that may indicate challenges" />
       </div>
 
@@ -153,8 +153,8 @@ export default function LearnGunMilanPage() {
           <AlertTriangle size={20} className="text-amber-400 mt-0.5 flex-shrink-0" />
           <p className="text-amber-300 text-sm font-medium">
             {isHi
-              ? 'मांगलिक दोष गुण मिलान के 36 अंकों से अलग है — यह एक स्वतन्त्र जाँच है।'
-              : 'Mangal Dosha is separate from the 36-point Gun Milan score — it is an independent check.'}
+              ? 'मांगलिक दोष गुण मिलान के 36 अंकों से अलग है  –  यह एक स्वतन्त्र जाँच है।'
+              : 'Mangal Dosha is separate from the 36-point Gun Milan score  –  it is an independent check.'}
           </p>
         </div>
         <p style={bf}>{t('mangalContent')}</p>
@@ -190,11 +190,11 @@ export default function LearnGunMilanPage() {
         <p style={bf}>{t('regionalContent')}</p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="p-4 rounded-xl bg-white/[0.03] border border-gold-primary/10">
-            <h4 className="text-gold-light font-semibold text-sm mb-1">{isHi ? 'उत्तर भारत — अष्ट कूट' : 'North India — Ashta Kuta'}</h4>
+            <h4 className="text-gold-light font-semibold text-sm mb-1">{isHi ? 'उत्तर भारत  –  अष्ट कूट' : 'North India  –  Ashta Kuta'}</h4>
             <p className="text-text-secondary text-xs">{isHi ? '8 कारक, 36 अंक। नक्षत्र आधारित।' : '8 factors, 36 points. Nakshatra-based.'}</p>
           </div>
           <div className="p-4 rounded-xl bg-white/[0.03] border border-gold-primary/10">
-            <h4 className="text-gold-light font-semibold text-sm mb-1">{isHi ? 'दक्षिण भारत — दश कूट / पोरुत्तम' : 'South India — Dasha Kuta / Poruttham'}</h4>
+            <h4 className="text-gold-light font-semibold text-sm mb-1">{isHi ? 'दक्षिण भारत  –  दश कूट / पोरुत्तम' : 'South India  –  Dasha Kuta / Poruttham'}</h4>
             <p className="text-text-secondary text-xs">{isHi ? '10 कारक, रज्जु + वेध + स्त्री दीर्घ अतिरिक्त।' : '10 factors, includes Rajju + Vedha + Stree Deergha.'}</p>
           </div>
         </div>

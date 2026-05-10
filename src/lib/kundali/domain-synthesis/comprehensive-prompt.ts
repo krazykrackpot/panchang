@@ -1,5 +1,5 @@
 /**
- * Comprehensive Prompt Builder — Single-Call AI Reading
+ * Comprehensive Prompt Builder  –  Single-Call AI Reading
  *
  * Builds a rich prompt containing the FULL birth chart data (planet positions,
  * houses, dashas, yogas, doshas) and requests structured JSON output covering
@@ -84,7 +84,7 @@ export function buildPlanetTable(planets: PlanetPosition[]): string {
     const degree = p.degree.padEnd(11);
     const nakshatra = getNakshatraName(p.nakshatra.id).padEnd(16);
     const pada = String(p.pada).padEnd(4);
-    const retro = p.isRetrograde ? 'R' : '—';
+    const retro = p.isRetrograde ? 'R' : ' – ';
     return `${name} | ${sign} | ${house} | ${degree} | ${nakshatra} | ${pada} | ${retro}`;
   });
 
@@ -100,7 +100,7 @@ export function buildHouseCusps(kundali: KundaliData): string {
 
   const lines = kundali.houses.map((h) => {
     const sign = getRashiName(h.sign);
-    return `House ${String(h.house).padStart(2)}: ${sign} (${h.degree.toFixed(1)}°) — Lord: ${h.lord}`;
+    return `House ${String(h.house).padStart(2)}: ${sign} (${h.degree.toFixed(1)}°)  –  Lord: ${h.lord}`;
   });
 
   return lines.join('\n');
@@ -203,7 +203,7 @@ export function buildDomainScoresSummary(reading: PersonalReading): string {
         .join(', ');
 
       return [
-        `## ${d.domain.toUpperCase()} — Score: ${d.overallRating.score.toFixed(1)}/10 (${d.overallRating.rating})`,
+        `## ${d.domain.toUpperCase()}  –  Score: ${d.overallRating.score.toFixed(1)}/10 (${d.overallRating.rating})`,
         `Natal promise: ${d.natalPromise.rating.score.toFixed(1)}/10 (${d.natalPromise.rating.rating})`,
         `Current activation: ${d.currentActivation.overallActivationScore.toFixed(1)}/10`,
         `Dasha active for this domain: ${d.currentActivation.isDashaActive ? 'YES' : 'no'}`,
@@ -248,7 +248,7 @@ export function buildComprehensivePrompt(
   const systemPrompt = `You are a senior Jyotish consultant with 30 years of experience in Vedic astrology, well-versed in BPHS (Brihat Parashara Hora Shastra), Phaladeepika, and Saravali. You are giving a private reading to a client.
 
 IMPORTANT RULES:
-- Address the native as "you" — second person throughout.
+- Address the native as "you"  –  second person throughout.
 - Be SPECIFIC: cite actual degree positions, house numbers, planetary placements, nakshatra padas.
 - Reference classical texts (BPHS, Phaladeepika, Saravali) when they support your observations.
 - Each domain reading must begin with: "If you remember nothing else from this reading, [complete the sentence]."
@@ -266,7 +266,7 @@ You MUST respond with valid JSON only. No markdown, no backticks, no explanation
 
 Response format:
 {
-  "overallInsight": "A 2-3 sentence master insight synthesizing all domains — the single most important thing to understand about this chart.",
+  "overallInsight": "A 2-3 sentence master insight synthesizing all domains  –  the single most important thing to understand about this chart.",
   "health": { "reading": "..." },
   "wealth": { "reading": "..." },
   "career": { "reading": "..." },
@@ -278,11 +278,11 @@ Response format:
 }`.trim();
 
   // -----------------------------------------------------------------------
-  // User payload — full chart data
+  // User payload  –  full chart data
   // -----------------------------------------------------------------------
   const sections = [
     '=== BIRTH DATA ===',
-    // Name excluded intentionally — reading is chart-based, not name-based.
+    // Name excluded intentionally  –  reading is chart-based, not name-based.
     // Including name would cause cache misses for the same birth data with different names.
     `Date: ${kundali.birthData.date}`,
     `Time: ${kundali.birthData.time}`,
@@ -306,7 +306,7 @@ Response format:
     '=== VIMSHOTTARI DASHA (current) ===',
     buildDashaChain(kundali.dashas),
     '',
-    '=== DOMAIN ANALYSIS (from rule engine — use as foundation, not ceiling) ===',
+    '=== DOMAIN ANALYSIS (from rule engine  –  use as foundation, not ceiling) ===',
     buildDomainScoresSummary(reading),
   ];
 
@@ -334,7 +334,7 @@ Response format:
 // Response parser
 // ---------------------------------------------------------------------------
 
-/** Parsed AI reading — one entry per domain plus overall insight. */
+/** Parsed AI reading  –  one entry per domain plus overall insight. */
 export interface ParsedAIReading {
   overallInsight: string;
   domains: Record<string, string>; // domain key → reading prose

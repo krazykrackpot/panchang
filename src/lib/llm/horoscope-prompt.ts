@@ -86,16 +86,16 @@ export function buildFallbackHoroscope(data: HoroscopePromptData, locale: string
 
   if (locale === 'hi') {
     const parts: string[] = [];
-    if (moon) parts.push(`चन्द्रमा आपके ${moon.houseFromSign}वें भाव में — ${getHouseKeywordHi(moon.houseFromSign)}`);
-    if (jupiter) parts.push(`गुरु ${jupiter.houseFromSign}वें भाव में — ${getHouseKeywordHi(jupiter.houseFromSign)}`);
-    if (saturn) parts.push(`शनि ${saturn.houseFromSign}वें भाव में — ${getHouseKeywordHi(saturn.houseFromSign)}`);
+    if (moon) parts.push(`चन्द्रमा आपके ${moon.houseFromSign}वें भाव में  –  ${getHouseKeywordHi(moon.houseFromSign)}`);
+    if (jupiter) parts.push(`गुरु ${jupiter.houseFromSign}वें भाव में  –  ${getHouseKeywordHi(jupiter.houseFromSign)}`);
+    if (saturn) parts.push(`शनि ${saturn.houseFromSign}वें भाव में  –  ${getHouseKeywordHi(saturn.houseFromSign)}`);
     return parts.join('। ') + '।';
   }
 
   const parts: string[] = [];
-  if (moon) parts.push(`Moon transits your ${ordinal(moon.houseFromSign)} house — ${getHouseKeyword(moon.houseFromSign)}`);
-  if (jupiter) parts.push(`Jupiter in ${ordinal(jupiter.houseFromSign)} house — ${getHouseKeyword(jupiter.houseFromSign)}`);
-  if (saturn) parts.push(`Saturn in ${ordinal(saturn.houseFromSign)} house — ${getHouseKeyword(saturn.houseFromSign)}`);
+  if (moon) parts.push(`Moon transits your ${ordinal(moon.houseFromSign)} house  –  ${getHouseKeyword(moon.houseFromSign)}`);
+  if (jupiter) parts.push(`Jupiter in ${ordinal(jupiter.houseFromSign)} house  –  ${getHouseKeyword(jupiter.houseFromSign)}`);
+  if (saturn) parts.push(`Saturn in ${ordinal(saturn.houseFromSign)} house  –  ${getHouseKeyword(saturn.houseFromSign)}`);
   return parts.join('. ') + '.';
 }
 

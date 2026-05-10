@@ -18,13 +18,13 @@ export type CosmicPreset =
   | 'aurora'
   | 'eclipse'
   | 'constellation'
-  | 'celestial'; // fallback — original star field
+  | 'celestial'; // fallback  –  original star field
 
 interface CosmicBackgroundProps {
   preset: CosmicPreset;
 }
 
-// Deterministic particle field — golden angle spread
+// Deterministic particle field  –  golden angle spread
 function makeParticles(count: number, seed: number = 0) {
   return Array.from({ length: count }, (_, i) => ({
     x: ((i * 137.508 + seed * 47) % 100),
@@ -41,7 +41,7 @@ const STARS_FAR = makeParticles(200, 99);
 const DUST_PARTICLES = makeParticles(40, 17);
 
 /**
- * Ken Burns — slow zoom + pan drift over time.
+ * Ken Burns  –  slow zoom + pan drift over time.
  */
 function useKenBurns(frame: number, fps: number, duration: number) {
   const progress = frame / (duration || fps * 10);
@@ -62,7 +62,7 @@ function useKenBurns(frame: number, fps: number, duration: number) {
 /** Multi-layer star field with parallax depth */
 const StarLayers: React.FC<{ frame: number }> = ({ frame }) => (
   <>
-    {/* Far stars — tiny, slow twinkle */}
+    {/* Far stars  –  tiny, slow twinkle */}
     {STARS_FAR.map((star, i) => {
       const opacity = interpolate(
         Math.sin((frame + star.phaseOffset * 50) * 0.02),
@@ -86,7 +86,7 @@ const StarLayers: React.FC<{ frame: number }> = ({ frame }) => (
       );
     })}
 
-    {/* Mid stars — medium, moderate twinkle */}
+    {/* Mid stars  –  medium, moderate twinkle */}
     {STARS_MID.map((star, i) => {
       const opacity = interpolate(
         Math.sin((frame + star.phaseOffset * 30) * 0.04),
@@ -110,7 +110,7 @@ const StarLayers: React.FC<{ frame: number }> = ({ frame }) => (
       );
     })}
 
-    {/* Near stars — bright, fast twinkle, with glow */}
+    {/* Near stars  –  bright, fast twinkle, with glow */}
     {STARS_NEAR.map((star, i) => {
       const opacity = interpolate(
         Math.sin((frame + star.phaseOffset * 20) * 0.07),
@@ -153,7 +153,7 @@ const StarLayers: React.FC<{ frame: number }> = ({ frame }) => (
   </>
 );
 
-/** Cosmic dust — slowly drifting particles */
+/** Cosmic dust  –  slowly drifting particles */
 const CosmicDust: React.FC<{ frame: number; color?: string }> = ({ frame, color = 'rgba(160,120,200,0.15)' }) => (
   <>
     {DUST_PARTICLES.map((p, i) => {
@@ -185,7 +185,7 @@ const CosmicDust: React.FC<{ frame: number; color?: string }> = ({ frame, color 
   </>
 );
 
-/** Lens flare — animated light burst */
+/** Lens flare  –  animated light burst */
 const LensFlare: React.FC<{ frame: number; x: string; y: string; delay?: number; color?: string }> = ({
   frame, x, y, delay = 0, color = '#f0d48a'
 }) => {
@@ -258,21 +258,21 @@ function NebulaPreset({ frame, kb }: { frame: number; kb: ReturnType<typeof useK
       {/* Base space */}
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(160deg, #050816 0%, #0a0220 30%, #12062e 60%, #070419 100%)' }} />
 
-      {/* Primary nebula cloud — upper left */}
+      {/* Primary nebula cloud  –  upper left */}
       <div style={{
         position: 'absolute', left: '-10%', top: '-5%', width: '70%', height: '80%',
         background: 'radial-gradient(ellipse 100% 80% at 40% 30%, rgba(120,40,180,0.35) 0%, rgba(60,20,120,0.15) 40%, transparent 70%)',
         filter: 'blur(40px)',
       }} />
 
-      {/* Secondary nebula cloud — lower right, warm */}
+      {/* Secondary nebula cloud  –  lower right, warm */}
       <div style={{
         position: 'absolute', right: '-15%', bottom: '-10%', width: '65%', height: '70%',
         background: 'radial-gradient(ellipse 90% 100% at 60% 70%, rgba(180,60,40,0.25) 0%, rgba(200,100,50,0.1) 35%, transparent 65%)',
         filter: 'blur(50px)',
       }} />
 
-      {/* Tertiary — cyan highlight */}
+      {/* Tertiary  –  cyan highlight */}
       <div style={{
         position: 'absolute', left: '20%', top: '40%', width: '50%', height: '40%',
         background: 'radial-gradient(ellipse at center, rgba(40,120,200,0.2) 0%, transparent 60%)',
@@ -307,7 +307,7 @@ function NebulaPreset({ frame, kb }: { frame: number; kb: ReturnType<typeof useK
   );
 }
 
-/** Planet view — large planet sphere with atmospheric glow */
+/** Planet view  –  large planet sphere with atmospheric glow */
 function PlanetPreset({ frame, kb }: { frame: number; kb: ReturnType<typeof useKenBurns> }) {
   const planetScale = interpolate(frame, [0, 30], [0.8, 1.0], {
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
@@ -325,7 +325,7 @@ function PlanetPreset({ frame, kb }: { frame: number; kb: ReturnType<typeof useK
 
       <StarLayers frame={frame} />
 
-      {/* Planet — positioned center-bottom, partially out of frame for drama */}
+      {/* Planet  –  positioned center-bottom, partially out of frame for drama */}
       <div style={{
         position: 'absolute',
         left: '50%',
@@ -374,7 +374,7 @@ function PlanetPreset({ frame, kb }: { frame: number; kb: ReturnType<typeof useK
           />
         ))}
 
-        {/* Terminator shadow — dark side */}
+        {/* Terminator shadow  –  dark side */}
         <div style={{
           position: 'absolute', inset: 0,
           borderRadius: '50%',
@@ -393,13 +393,13 @@ function PlanetPreset({ frame, kb }: { frame: number; kb: ReturnType<typeof useK
         }} />
       </div>
 
-      {/* Distant light source — upper left */}
+      {/* Distant light source  –  upper left */}
       <LensFlare frame={frame} x="15%" y="10%" delay={5} color="#aaccff" />
     </div>
   );
 }
 
-/** Sun corona — blazing star close-up with corona rays */
+/** Sun corona  –  blazing star close-up with corona rays */
 function SunCoronaPreset({ frame, kb }: { frame: number; kb: ReturnType<typeof useKenBurns> }) {
   const coronaPulse = interpolate(
     Math.sin(frame * 0.06),
@@ -414,7 +414,7 @@ function SunCoronaPreset({ frame, kb }: { frame: number; kb: ReturnType<typeof u
 
       <StarLayers frame={frame} />
 
-      {/* Sun disc — upper right, partially out of frame */}
+      {/* Sun disc  –  upper right, partially out of frame */}
       <div style={{ position: 'absolute', right: '-25%', top: '-30%', width: 1200, height: 1200 }}>
         {/* Outer corona */}
         <div style={{
@@ -482,7 +482,7 @@ function GalaxyPreset({ frame, kb }: { frame: number; kb: ReturnType<typeof useK
 
       <StarLayers frame={frame} />
 
-      {/* Galaxy center — bright core */}
+      {/* Galaxy center  –  bright core */}
       <div style={{
         position: 'absolute',
         left: '50%', top: '45%',
@@ -525,7 +525,7 @@ function GalaxyPreset({ frame, kb }: { frame: number; kb: ReturnType<typeof useK
   );
 }
 
-/** Deep space void — minimal, vast emptiness with distant light */
+/** Deep space void  –  minimal, vast emptiness with distant light */
 function DeepSpacePreset({ frame, kb }: { frame: number; kb: ReturnType<typeof useKenBurns> }) {
   return (
     <div style={{ position: 'absolute', inset: 0, transform: `scale(${kb.scale}) translate(${kb.translateX}px, ${kb.translateY}px)` }}>
@@ -533,7 +533,7 @@ function DeepSpacePreset({ frame, kb }: { frame: number; kb: ReturnType<typeof u
 
       <StarLayers frame={frame} />
 
-      {/* Distant nebula glow — very faint */}
+      {/* Distant nebula glow  –  very faint */}
       <div style={{
         position: 'absolute', left: '60%', top: '30%', width: '50%', height: '40%',
         background: 'radial-gradient(ellipse at center, rgba(80,40,120,0.08) 0%, transparent 60%)',
@@ -562,7 +562,7 @@ function AuroraPreset({ frame, kb }: { frame: number; kb: ReturnType<typeof useK
 
       <StarLayers frame={frame} />
 
-      {/* Aurora curtains — multiple layers with different phase */}
+      {/* Aurora curtains  –  multiple layers with different phase */}
       {[0, 1, 2].map((i) => {
         const wave = Math.sin(frame * 0.015 + i * 1.5);
         const wave2 = Math.cos(frame * 0.01 + i * 2);
@@ -594,7 +594,7 @@ function AuroraPreset({ frame, kb }: { frame: number; kb: ReturnType<typeof useK
   );
 }
 
-/** Solar eclipse — dramatic ring of light */
+/** Solar eclipse  –  dramatic ring of light */
 function EclipsePreset({ frame, kb }: { frame: number; kb: ReturnType<typeof useKenBurns> }) {
   const coronaIntensity = interpolate(
     Math.sin(frame * 0.04),
@@ -608,7 +608,7 @@ function EclipsePreset({ frame, kb }: { frame: number; kb: ReturnType<typeof use
 
       <StarLayers frame={frame} />
 
-      {/* Eclipse — center of frame */}
+      {/* Eclipse  –  center of frame */}
       <div style={{
         position: 'absolute',
         left: '50%', top: '40%',
@@ -644,7 +644,7 @@ function EclipsePreset({ frame, kb }: { frame: number; kb: ReturnType<typeof use
           );
         })}
 
-        {/* Moon disc — perfectly black */}
+        {/* Moon disc  –  perfectly black */}
         <div style={{
           position: 'absolute', inset: 20,
           borderRadius: '50%',
@@ -652,7 +652,7 @@ function EclipsePreset({ frame, kb }: { frame: number; kb: ReturnType<typeof use
           boxShadow: '0 0 60px rgba(0,0,0,0.8)',
         }} />
 
-        {/* Rim highlight — bright edge */}
+        {/* Rim highlight  –  bright edge */}
         <div style={{
           position: 'absolute', inset: 18,
           borderRadius: '50%',
@@ -666,7 +666,7 @@ function EclipsePreset({ frame, kb }: { frame: number; kb: ReturnType<typeof use
   );
 }
 
-/** Constellation map — connected star patterns */
+/** Constellation map  –  connected star patterns */
 function ConstellationPreset({ frame, kb }: { frame: number; kb: ReturnType<typeof useKenBurns> }) {
   // Stylized constellation lines
   const constellationStars = [
@@ -684,7 +684,7 @@ function ConstellationPreset({ frame, kb }: { frame: number; kb: ReturnType<type
 
       <StarLayers frame={frame} />
 
-      {/* Constellation lines — draw progressively */}
+      {/* Constellation lines  –  draw progressively */}
       <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
         {lines.map(([a, b], i) => {
           const lineOpacity = interpolate(frame, [i * 8 + 15, i * 8 + 30], [0, 0.4], {
@@ -738,7 +738,7 @@ function ConstellationPreset({ frame, kb }: { frame: number; kb: ReturnType<type
   );
 }
 
-/** Fallback — original celestial star field (enhanced) */
+/** Fallback  –  original celestial star field (enhanced) */
 function CelestialPreset({ frame, kb }: { frame: number; kb: ReturnType<typeof useKenBurns> }) {
   return (
     <div style={{ position: 'absolute', inset: 0, transform: `scale(${kb.scale}) translate(${kb.translateX}px, ${kb.translateY}px)` }}>
@@ -753,7 +753,7 @@ function CelestialPreset({ frame, kb }: { frame: number; kb: ReturnType<typeof u
   );
 }
 
-/** Main component — selects preset and wraps with Ken Burns */
+/** Main component  –  selects preset and wraps with Ken Burns */
 export const CosmicBackground: React.FC<CosmicBackgroundProps> = ({ preset }) => {
   const frame = useCurrentFrame();
   const { fps, durationInFrames } = useVideoConfig();
@@ -775,7 +775,7 @@ export const CosmicBackground: React.FC<CosmicBackgroundProps> = ({ preset }) =>
     <AbsoluteFill style={{ overflow: 'hidden' }}>
       {presetMap[preset] ?? presetMap.celestial}
 
-      {/* Global vignette overlay — cinematic framing */}
+      {/* Global vignette overlay  –  cinematic framing */}
       <div style={{
         position: 'absolute', inset: 0,
         background: 'radial-gradient(ellipse 70% 60% at 50% 50%, transparent 50%, rgba(0,0,0,0.5) 100%)',

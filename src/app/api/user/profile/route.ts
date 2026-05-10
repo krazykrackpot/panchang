@@ -10,7 +10,7 @@ import { YOGAS } from '@/lib/constants/yogas';
 import { resolveTimezoneFromCoords } from '@/lib/utils/timezone';
 
 // ---------------------------------------------------------------------------
-// GET /api/user/profile — fetch profile + snapshot summary
+// GET /api/user/profile  –  fetch profile + snapshot summary
 // ---------------------------------------------------------------------------
 export async function GET(req: NextRequest) {
   const supabase = getServerSupabase();
@@ -53,7 +53,7 @@ export async function GET(req: NextRequest) {
       const year = dateParts[0], month = dateParts[1], day = dateParts[2];
       const hour = timeParts[0] || 0, minute = timeParts[1] || 0;
 
-      // ALWAYS resolve timezone from birth coordinates — never use stored birth_timezone
+      // ALWAYS resolve timezone from birth coordinates  –  never use stored birth_timezone
       const birthTzIana = await resolveTimezoneFromCoords(Number(profile.birth_lat), Number(profile.birth_lng));
       let tzOffsetHours = 0;
       try {
@@ -132,7 +132,7 @@ export async function GET(req: NextRequest) {
 }
 
 // ---------------------------------------------------------------------------
-// POST /api/user/profile — save birth data + compute kundali snapshot
+// POST /api/user/profile  –  save birth data + compute kundali snapshot
 // ---------------------------------------------------------------------------
 export async function POST(req: NextRequest) {
   const supabase = getServerSupabase();
@@ -198,7 +198,7 @@ export async function POST(req: NextRequest) {
   // 2. Generate kundali chart
   let kundali;
   try {
-    // ALWAYS resolve timezone from birth coordinates — never trust client-sent timezone
+    // ALWAYS resolve timezone from birth coordinates  –  never trust client-sent timezone
     const resolvedTz = await resolveTimezoneFromCoords(birthLat, birthLng);
     kundali = generateKundali({
       name: name || 'User',
@@ -277,7 +277,7 @@ export async function POST(req: NextRequest) {
 }
 
 // ---------------------------------------------------------------------------
-// DELETE /api/user/profile — delete account and all associated data
+// DELETE /api/user/profile  –  delete account and all associated data
 // ---------------------------------------------------------------------------
 export async function DELETE(req: NextRequest) {
   const supabase = getServerSupabase();

@@ -9,10 +9,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const titles: Record<string, string> = {
-    en: 'Dasha Diary — Dekho Panchang',
-    hi: 'दशा डायरी — देखो पंचांग',
-    ta: 'தசா டைரி — தேக்கோ பஞ்சாங்கம்',
-    bn: 'দশা ডায়েরি — দেখো পঞ্চাং',
+    en: 'Dasha Diary  –  Dekho Panchang',
+    hi: 'दशा डायरी  –  देखो पंचांग',
+    ta: 'தசா டைரி  –  தேக்கோ பஞ்சாங்கம்',
+    bn: 'দশা ডায়েরি  –  দেখো পঞ্চাং',
   };
   const descs: Record<string, string> = {
     en: 'Reflect on your current dasha period with personalised prompts aligned to your natal chart.',

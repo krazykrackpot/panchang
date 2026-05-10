@@ -193,9 +193,9 @@ export const DIWALI_PUJA: PujaVidhi = {
       step: 13,
       title: { en: 'Shri Sukta Paath', hi: 'श्री सूक्त पाठ', sa: 'श्रीसूक्तपाठः' },
       description: {
-        en: 'Recite the Shri Sukta from the Rig Veda — this is the most important recitation during Diwali Lakshmi puja.',
-        hi: 'ऋग्वेद से श्री सूक्त का पाठ करें — दिवाली लक्ष्मी पूजा में यह सबसे महत्वपूर्ण पाठ है।',
-        sa: 'ऋग्वेदस्य श्रीसूक्तं पठेत् — दीपावलीलक्ष्मीपूजने इदं सर्वप्रधानं पठनम्।',
+        en: 'Recite the Shri Sukta from the Rig Veda  –  this is the most important recitation during Diwali Lakshmi puja.',
+        hi: 'ऋग्वेद से श्री सूक्त का पाठ करें  –  दिवाली लक्ष्मी पूजा में यह सबसे महत्वपूर्ण पाठ है।',
+        sa: 'ऋग्वेदस्य श्रीसूक्तं पठेत्  –  दीपावलीलक्ष्मीपूजने इदं सर्वप्रधानं पठनम्।',
       },
       mantraRef: 'shri-sukta',
       duration: '10 min',
@@ -327,9 +327,9 @@ export const DIWALI_PUJA: PujaVidhi = {
       },
       japaCount: 108,
       usage: {
-        en: 'Primary mantra for Diwali Lakshmi puja — chant 108 times with a mala',
-        hi: 'दिवाली लक्ष्मी पूजा का मुख्य मन्त्र — माला से 108 बार जपें',
-        sa: 'दीपावलीलक्ष्मीपूजायाः प्रधानमन्त्रः — मालया अष्टोत्तरशतवारं जपेत्',
+        en: 'Primary mantra for Diwali Lakshmi puja  –  chant 108 times with a mala',
+        hi: 'दिवाली लक्ष्मी पूजा का मुख्य मन्त्र  –  माला से 108 बार जपें',
+        sa: 'दीपावलीलक्ष्मीपूजायाः प्रधानमन्त्रः  –  मालया अष्टोत्तरशतवारं जपेत्',
       },
     },
     {
@@ -370,8 +370,8 @@ export const DIWALI_PUJA: PujaVidhi = {
       devanagari: 'ॐ यक्षाय कुबेराय वैश्रवणाय धनधान्याधिपतये धनधान्यसमृद्धिं मे देहि दापय स्वाहा',
       iast: 'oṃ yakṣāya kuberāya vaiśravaṇāya dhanadhānyādhipataye dhanadhānyasamṛddhiṃ me dehi dāpaya svāhā',
       meaning: {
-        en: 'O Kubera, lord of Yakshas, son of Vishravana, lord of wealth and grain — bestow upon me prosperity of wealth and grain.',
-        hi: 'हे कुबेर, यक्षों के स्वामी, विश्रवण के पुत्र, धन-धान्य के अधिपति — मुझे धन-धान्य की समृद्धि प्रदान करें।',
+        en: 'O Kubera, lord of Yakshas, son of Vishravana, lord of wealth and grain  –  bestow upon me prosperity of wealth and grain.',
+        hi: 'हे कुबेर, यक्षों के स्वामी, विश्रवण के पुत्र, धन-धान्य के अधिपति  –  मुझे धन-धान्य की समृद्धि प्रदान करें।',
         sa: 'हे यक्ष कुबेर वैश्रवण धनधान्याधिपते, मह्यं धनधान्यसमृद्धिं देहि दापय।',
       },
       usage: {
@@ -442,14 +442,14 @@ export const DIWALI_PUJA: PujaVidhi = {
       sa: 'परमशुभत्वार्थं पूर्वोत्तरदिशाभिमुखं पूजां कुर्यात्',
     },
     {
-      en: 'Do not use a broken coconut — it must be whole and uncracked for the puja',
-      hi: 'टूटा हुआ नारियल उपयोग न करें — पूजा के लिए यह पूरा और बिना दरार का होना चाहिए',
-      sa: 'भग्नं नारिकेलं नोपयोजयेत् — पूजार्थं सम्पूर्णम् अभग्नं भवेत्',
+      en: 'Do not use a broken coconut  –  it must be whole and uncracked for the puja',
+      hi: 'टूटा हुआ नारियल उपयोग न करें  –  पूजा के लिए यह पूरा और बिना दरार का होना चाहिए',
+      sa: 'भग्नं नारिकेलं नोपयोजयेत्  –  पूजार्थं सम्पूर्णम् अभग्नं भवेत्',
     },
     {
-      en: 'All 13 lamps must be lit before sunset — do not light them after dark without first completing the puja setup',
-      hi: 'सभी 13 दीपक सूर्यास्त से पहले जलाने चाहिए — पूजा की तैयारी पूरी किए बिना अँधेरे में न जलाएँ',
-      sa: 'सूर्यास्तात् पूर्वं सर्वे त्रयोदश दीपाः प्रज्वालनीयाः — पूजासज्जतां विना अन्धकारे न प्रज्वालयेत्',
+      en: 'All 13 lamps must be lit before sunset  –  do not light them after dark without first completing the puja setup',
+      hi: 'सभी 13 दीपक सूर्यास्त से पहले जलाने चाहिए  –  पूजा की तैयारी पूरी किए बिना अँधेरे में न जलाएँ',
+      sa: 'सूर्यास्तात् पूर्वं सर्वे त्रयोदश दीपाः प्रज्वालनीयाः  –  पूजासज्जतां विना अन्धकारे न प्रज्वालयेत्',
     },
     {
       en: 'Tie the new Bahi Khata (account book) with a red thread (mauli) after the puja and keep it in the safe or treasury',
@@ -457,9 +457,9 @@ export const DIWALI_PUJA: PujaVidhi = {
       sa: 'पूजानन्तरं नवलेखापुस्तकं रक्तसूत्रेण (मौलिना) बध्नीयात् कोषागारे च स्थापयेत्',
     },
     {
-      en: 'Do not sleep on Diwali night — staying awake is believed to please Lakshmi and ensure her continued presence',
-      hi: 'दिवाली की रात सोएँ नहीं — जागरण से लक्ष्मी प्रसन्न होती हैं और उनकी कृपा बनी रहती है',
-      sa: 'दीपावलीरात्रौ न निद्रायात् — जागरणेन लक्ष्मीः प्रसीदति तस्याः सान्निध्यं स्थिरं भवति',
+      en: 'Do not sleep on Diwali night  –  staying awake is believed to please Lakshmi and ensure her continued presence',
+      hi: 'दिवाली की रात सोएँ नहीं  –  जागरण से लक्ष्मी प्रसन्न होती हैं और उनकी कृपा बनी रहती है',
+      sa: 'दीपावलीरात्रौ न निद्रायात्  –  जागरणेन लक्ष्मीः प्रसीदति तस्याः सान्निध्यं स्थिरं भवति',
     },
   ],
 

@@ -91,7 +91,7 @@ const QUESTIONS: ModuleQuestion[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 1 — Aryabhata and the Sine Table                               */
+/*  PAGE 1  –  Aryabhata and the Sine Table                               */
 /* ------------------------------------------------------------------ */
 function Page1() {
   const locale = useModuleLocale();
@@ -104,8 +104,8 @@ function Page1() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>499 ई. में, एक 23 वर्षीय भारतीय गणितज्ञ ने एक ऐसी सारणी बनाई जो खगोल विज्ञान, नौवहन और आखिरकार सभी आधुनिक इंजीनियरिंग की नींव बन गई। आर्यभट की ज्या सारणी — जिसे हम आज sine table कहते हैं — न केवल विश्व में पहली थी, बल्कि अगले हजार वर्षों तक सबसे सटीक भी रही।</>
-            : <>In 499 CE, a 23-year-old Indian mathematician created a table that would become the foundation of astronomy, navigation, and ultimately all modern engineering. Aryabhata's jya table — what we call the sine table — was not only the first in the world but remained the most accurate for the next thousand years.</>}
+            ? <>499 ई. में, एक 23 वर्षीय भारतीय गणितज्ञ ने एक ऐसी सारणी बनाई जो खगोल विज्ञान, नौवहन और आखिरकार सभी आधुनिक इंजीनियरिंग की नींव बन गई। आर्यभट की ज्या सारणी  –  जिसे हम आज sine table कहते हैं  –  न केवल विश्व में पहली थी, बल्कि अगले हजार वर्षों तक सबसे सटीक भी रही।</>
+            : <>In 499 CE, a 23-year-old Indian mathematician created a table that would become the foundation of astronomy, navigation, and ultimately all modern engineering. Aryabhata's jya table  –  what we call the sine table  –  was not only the first in the world but remained the most accurate for the next thousand years.</>}
         </p>
       </section>
 
@@ -120,8 +120,8 @@ function Page1() {
         </p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
-            ? <><span className="text-gold-light font-medium">यूनानियों से अन्तर:</span> ग्रीक गणितज्ञ पूर्ण जीवाओं की सारणी बनाते थे। भारतीयों ने अर्ध-जीवा (ज्या) का उपयोग किया — जो दोगुना सुरुचिपूर्ण और गणना में अधिक सरल है। जीवा(θ) = 2 × ज्या(θ/2)।</>
-            : <><span className="text-gold-light font-medium">Difference from Greeks:</span> Greek mathematicians tabulated full chords. Indians used the half-chord (jya) — twice as elegant and simpler for calculations. chord(θ) = 2 × jya(θ/2).</>}
+            ? <><span className="text-gold-light font-medium">यूनानियों से अन्तर:</span> ग्रीक गणितज्ञ पूर्ण जीवाओं की सारणी बनाते थे। भारतीयों ने अर्ध-जीवा (ज्या) का उपयोग किया  –  जो दोगुना सुरुचिपूर्ण और गणना में अधिक सरल है। जीवा(θ) = 2 × ज्या(θ/2)।</>
+            : <><span className="text-gold-light font-medium">Difference from Greeks:</span> Greek mathematicians tabulated full chords. Indians used the half-chord (jya)  –  twice as elegant and simpler for calculations. chord(θ) = 2 × jya(θ/2).</>}
         </p>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -136,8 +136,8 @@ function Page1() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <>आर्यभट ने 24 ज्या अन्तर-मानों को मात्र 4 श्लोकों में समाया — संस्कृत व्यञ्जन-स्वर जोड़ियों की एक अद्भुत प्रणाली का उपयोग करके। प्रत्येक अक्षर एक विशिष्ट संख्यात्मक मान का प्रतिनिधित्व करता था। यह प्रणाली (जिसे आर्यभट कटपयादि के पूर्वज के रूप में देखते हैं) पूरी सारणी को एक छोटे से स्मृति-सहायक में संकुचित कर देती थी।</>
-            : <>Aryabhata compressed 24 sine difference-values into just 4 verses — using a remarkable system of Sanskrit consonant-vowel pairs. Each syllable represented a specific numerical value. This system (a precursor to the Katapayadi notation) compressed the entire table into a compact mnemonic. Modern computing calls this "delta encoding" — storing differences rather than absolute values.</>}
+            ? <>आर्यभट ने 24 ज्या अन्तर-मानों को मात्र 4 श्लोकों में समाया  –  संस्कृत व्यञ्जन-स्वर जोड़ियों की एक अद्भुत प्रणाली का उपयोग करके। प्रत्येक अक्षर एक विशिष्ट संख्यात्मक मान का प्रतिनिधित्व करता था। यह प्रणाली (जिसे आर्यभट कटपयादि के पूर्वज के रूप में देखते हैं) पूरी सारणी को एक छोटे से स्मृति-सहायक में संकुचित कर देती थी।</>
+            : <>Aryabhata compressed 24 sine difference-values into just 4 verses  –  using a remarkable system of Sanskrit consonant-vowel pairs. Each syllable represented a specific numerical value. This system (a precursor to the Katapayadi notation) compressed the entire table into a compact mnemonic. Modern computing calls this "delta encoding"  –  storing differences rather than absolute values.</>}
         </p>
       </section>
     </div>
@@ -145,7 +145,7 @@ function Page1() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 2 — The Great Mistranslation                                   */
+/*  PAGE 2  –  The Great Mistranslation                                   */
 /* ------------------------------------------------------------------ */
 function Page2() {
   const locale = useModuleLocale();
@@ -211,7 +211,7 @@ function Page2() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 3 — Impact on Astronomy and Navigation                         */
+/*  PAGE 3  –  Impact on Astronomy and Navigation                         */
 /* ------------------------------------------------------------------ */
 function Page3() {
   const locale = useModuleLocale();
@@ -224,8 +224,8 @@ function Page3() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>आर्यभट की ज्या सारणी केवल एक गणितीय जिज्ञासा नहीं थी — यह भारतीय खगोल विज्ञान की रीढ़ बन गई और केरल के गणितज्ञों ने इसे अगले स्तर तक ले जाया।</>
-            : <>Aryabhata's jya table was not merely a mathematical curiosity — it became the backbone of Indian astronomy, and Kerala mathematicians took it to the next level centuries later.</>}
+            ? <>आर्यभट की ज्या सारणी केवल एक गणितीय जिज्ञासा नहीं थी  –  यह भारतीय खगोल विज्ञान की रीढ़ बन गई और केरल के गणितज्ञों ने इसे अगले स्तर तक ले जाया।</>
+            : <>Aryabhata's jya table was not merely a mathematical curiosity  –  it became the backbone of Indian astronomy, and Kerala mathematicians took it to the next level centuries later.</>}
         </p>
       </section>
 
@@ -259,8 +259,8 @@ function Page3() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
-            ? <>~1350 ई. में केरल के माधव ने sine और cosine की अनन्त श्रृंखलाएँ खोजीं — जिन्हें आज "टेलर श्रृंखला" कहते हैं लेकिन जो माधव की थीं। यह sin(x) = x − x³/3! + x⁵/5! − ... है। इसका अर्थ था कि आर्यभट की सारणी की जगह एक अनन्त परिशुद्धता वाली गणितीय सूत्र ले सकती थी।</>
-            : <>Around 1350 CE, Kerala's Madhava discovered infinite series for sine and cosine — called "Taylor series" today but actually Madhava's centuries earlier. The series sin(x) = x − x³/3! + x⁵/5! − ... replaced Aryabhata's table with a formula of infinite precision.</>}
+            ? <>~1350 ई. में केरल के माधव ने sine और cosine की अनन्त श्रृंखलाएँ खोजीं  –  जिन्हें आज "टेलर श्रृंखला" कहते हैं लेकिन जो माधव की थीं। यह sin(x) = x − x³/3! + x⁵/5! − ... है। इसका अर्थ था कि आर्यभट की सारणी की जगह एक अनन्त परिशुद्धता वाली गणितीय सूत्र ले सकती थी।</>
+            : <>Around 1350 CE, Kerala's Madhava discovered infinite series for sine and cosine  –  called "Taylor series" today but actually Madhava's centuries earlier. The series sin(x) = x − x³/3! + x⁵/5! − ... replaced Aryabhata's table with a formula of infinite precision.</>}
         </p>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi

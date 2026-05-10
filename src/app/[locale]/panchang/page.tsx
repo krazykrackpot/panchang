@@ -1,11 +1,11 @@
 /**
- * Panchang Page — Server Component Wrapper
+ * Panchang Page  –  Server Component Wrapper
  *
  * Renders an SEO-visible summary block (server-side, fully crawlable)
  * then mounts the interactive client component below it.
  *
  * The SSR block uses Vercel geo headers to compute today's panchang
- * for the user's approximate location — same pattern as the home page.
+ * for the user's approximate location  –  same pattern as the home page.
  */
 
 import { headers } from 'next/headers';
@@ -19,7 +19,7 @@ import { getCitiesByTier } from '@/lib/constants/cities-extended';
 import type { PanchangData } from '@/types/panchang';
 import PanchangClient from './PanchangClient';
 
-// NO revalidate here — page uses headers() for geo-location.
+// NO revalidate here  –  page uses headers() for geo-location.
 // ISR would cache one user's city and serve wrong panchang to others.
 // CPU protection via API-level caching (s-maxage=43200 on /api/panchang).
 
@@ -55,7 +55,7 @@ async function getServerPanchang(): Promise<ServerPanchangResult> {
       return { panchang, location: { lat, lng, name: locationName, timezone } };
     }
   } catch {
-    // Geo headers unavailable (local dev) — fallback below
+    // Geo headers unavailable (local dev)  –  fallback below
   }
   return { panchang: null, location: null };
 }
@@ -100,7 +100,7 @@ function PanchangSEOBlock({
         </Link>
       </nav>
 
-      {/* Nakshatra Activity Guide — condensed for SEO */}
+      {/* Nakshatra Activity Guide  –  condensed for SEO */}
       {panchang.nakshatra?.id && (() => {
         const nkActivity = getNakshatraActivity(panchang.nakshatra.id);
         if (!nkActivity) return null;
@@ -144,16 +144,16 @@ function PanchangSEOBlock({
           <div className="mt-3 mb-3 text-text-secondary/80 text-xs leading-relaxed space-y-1.5">
             <p>
               {locale === 'hi'
-                ? `इस ${varaName || '—'} को तिथि ${tithiName}, नक्षत्र ${nakName}, और योग ${yogaName || '—'} है।`
-                : `This ${varaName || '—'} brings ${tithiName} Tithi under ${nakName} Nakshatra, with ${yogaName || '—'} Yoga.`}
+                ? `इस ${varaName || ' – '} को तिथि ${tithiName}, नक्षत्र ${nakName}, और योग ${yogaName || ' – '} है।`
+                : `This ${varaName || ' – '} brings ${tithiName} Tithi under ${nakName} Nakshatra, with ${yogaName || ' – '} Yoga.`}
               {' '}
               {locale === 'hi'
-                ? `दिन ${auspLabel} है — ${nakName} नक्षत्र ${nkActivity ? (nkActivity.goodFor.map(g => g.hi).join(', ') || 'सामान्य कार्यों') : 'सामान्य कार्यों'} के लिए अनुकूल रहता है।`
-                : `The day is ${auspLabel} — ${nakName} favors ${nkActivity ? (nkActivity.goodFor.map(g => g.en).join(', ') || 'general activities') : 'general activities'}.`}
+                ? `दिन ${auspLabel} है  –  ${nakName} नक्षत्र ${nkActivity ? (nkActivity.goodFor.map(g => g.hi).join(', ') || 'सामान्य कार्यों') : 'सामान्य कार्यों'} के लिए अनुकूल रहता है।`
+                : `The day is ${auspLabel}  –  ${nakName} favors ${nkActivity ? (nkActivity.goodFor.map(g => g.en).join(', ') || 'general activities') : 'general activities'}.`}
               {' '}
               {locale === 'hi'
-                ? `राहु काल ${panchang.rahuKaal?.start || '—'} से ${panchang.rahuKaal?.end || '—'} तक रहेगा, इस दौरान नए शुभ कार्य न आरम्भ करें।`
-                : `Rahu Kaal runs ${panchang.rahuKaal?.start || '—'}–${panchang.rahuKaal?.end || '—'}; hold off on new beginnings during that window.`}
+                ? `राहु काल ${panchang.rahuKaal?.start || ' – '} से ${panchang.rahuKaal?.end || ' – '} तक रहेगा, इस दौरान नए शुभ कार्य न आरम्भ करें।`
+                : `Rahu Kaal runs ${panchang.rahuKaal?.start || ' – '}–${panchang.rahuKaal?.end || ' – '}; hold off on new beginnings during that window.`}
             </p>
           </div>
         );
@@ -178,7 +178,7 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
   const dateStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
   const latestVideo = await getLatestVideo();
 
-  // VideoObject schema — real video URL makes search result 2x larger on mobile
+  // VideoObject schema  –  real video URL makes search result 2x larger on mobile
   const videoLd = latestVideo ? {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
@@ -197,12 +197,12 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
   } : null;
 
   // Dynamic FAQ schema with today's actual panchang values
-  const tithiEn = panchang?.tithi?.name?.en || '—';
-  const nakEn = panchang?.nakshatra?.name?.en || '—';
-  const yogaEn = panchang?.yoga?.name?.en || '—';
-  const varaEn = panchang?.vara?.name?.en || '—';
-  const rkStart = panchang?.rahuKaal?.start || '—';
-  const rkEnd = panchang?.rahuKaal?.end || '—';
+  const tithiEn = panchang?.tithi?.name?.en || ' – ';
+  const nakEn = panchang?.nakshatra?.name?.en || ' – ';
+  const yogaEn = panchang?.yoga?.name?.en || ' – ';
+  const varaEn = panchang?.vara?.name?.en || ' – ';
+  const rkStart = panchang?.rahuKaal?.start || ' – ';
+  const rkEnd = panchang?.rahuKaal?.end || ' – ';
   const faqLd = panchang ? {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -210,12 +210,12 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
       {
         '@type': 'Question',
         name: `What is today's Tithi?`,
-        acceptedAnswer: { '@type': 'Answer', text: `The Tithi on ${dateStr} is ${tithiEn} (${panchang.tithi?.paksha || ''} Paksha), active until ${panchang.tithi?.endTime || '—'}.` },
+        acceptedAnswer: { '@type': 'Answer', text: `The Tithi on ${dateStr} is ${tithiEn} (${panchang.tithi?.paksha || ''} Paksha), active until ${panchang.tithi?.endTime || ' – '}.` },
       },
       {
         '@type': 'Question',
         name: `What is today's Nakshatra?`,
-        acceptedAnswer: { '@type': 'Answer', text: `${nakEn} Nakshatra is active on ${dateStr}, lasting until ${panchang.nakshatraTransition?.endTime || '—'}.` },
+        acceptedAnswer: { '@type': 'Answer', text: `${nakEn} Nakshatra is active on ${dateStr}, lasting until ${panchang.nakshatraTransition?.endTime || ' – '}.` },
       },
       {
         '@type': 'Question',
@@ -232,7 +232,7 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
 
   return (
     <>
-      {/* VideoObject JSON-LD — real video URL makes search result 2x larger on mobile */}
+      {/* VideoObject JSON-LD  –  real video URL makes search result 2x larger on mobile */}
       {videoLd && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoLd) }} />
       )}
@@ -262,7 +262,7 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
         />
       </div>
 
-      {/* Popular Cities section — server-rendered for SEO crawl paths to /panchang/[city] */}
+      {/* Popular Cities section  –  server-rendered for SEO crawl paths to /panchang/[city] */}
       <PopularCitiesSection locale={locale} />
     </>
   );

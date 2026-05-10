@@ -4,9 +4,9 @@
  * Computes Yamaganda, Gulika Kaal, Rahu Kaal, Varjyam, and Vishti/Bhadra
  * for a given time window. Returns structured data for UI rendering.
  *
- * Yamaganda order (Sun=5→Thu=1, Fri=7, Sat=6) — Dharma Sindhu / Muhurta Chintamani
- * Gulika order (Sun=7→Sat=1) — descending
- * Rahu Kaal order [8, 2, 7, 5, 6, 4, 3] — standard
+ * Yamaganda order (Sun=5→Thu=1, Fri=7, Sat=6)  –  Dharma Sindhu / Muhurta Chintamani
+ * Gulika order (Sun=7→Sat=1)  –  descending
+ * Rahu Kaal order [8, 2, 7, 5, 6, 4, 3]  –  standard
  */
 
 import { calculateKarana } from '@/lib/ephem/astronomical';
@@ -89,7 +89,7 @@ export function isVarjyamActive(moonSid: number): boolean {
   const v1Start = VARJYAM_GHATI[nakIdx];
   if (ghatiPosition >= v1Start && ghatiPosition < v1Start + 4) return true;
 
-  // Secondary Varjyam (dual Thyajyam — only Mula)
+  // Secondary Varjyam (dual Thyajyam  –  only Mula)
   const v2Start = VARJYAM_GHATI_2[nakIdx];
   if (v2Start >= 0 && ghatiPosition >= v2Start && ghatiPosition < v2Start + 4) return true;
 
@@ -134,7 +134,7 @@ export function computeInauspiciousForWindow(
   const yamaganda = computeYamaganda(sunriseUT, sunsetUT, weekday);
   const gulikaKaal = computeGulikaKaal(sunriseUT, sunsetUT, weekday);
 
-  // Vishti/Bhadra — check karana at window midpoint
+  // Vishti/Bhadra  –  check karana at window midpoint
   // calculateKarana returns 1-11; karana 7 = Vishti (Bhadra), the inauspicious moving karana
   const midUT = (windowStartUT + windowEndUT) / 2;
   const midJD = jd + (midUT - 12) / 24;
@@ -171,7 +171,7 @@ export function computeInauspiciousForWindow(
     });
   }
 
-  // Dur Muhurtam — inauspicious muhurta windows (1-2 per day)
+  // Dur Muhurtam  –  inauspicious muhurta windows (1-2 per day)
   const durWindows = computeDurMuhurtam(sunriseUT, sunsetUT, weekday);
   for (const dw of durWindows) {
     if (rangesOverlap(windowStartUT, windowEndUT, dw.start, dw.end)) {
@@ -185,7 +185,7 @@ export function computeInauspiciousForWindow(
     }
   }
 
-  // Varjyam — "time of poison" from nakshatra-based ghati offsets
+  // Varjyam  –  "time of poison" from nakshatra-based ghati offsets
   if (moonSid !== undefined && isVarjyamActive(moonSid)) {
     periods.push({
       name: 'Varjyam',

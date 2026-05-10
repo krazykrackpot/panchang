@@ -63,7 +63,7 @@ const RETROGRADE_GUIDES: Record<number, { dos: SurvivalGuideItem[]; donts: Survi
     donts: [
       { en: 'Start new long-term ventures or major investments', hi: 'नए दीर्घकालिक उद्यम या बड़े निवेश शुरू न करें' },
       { en: 'Sign long-term contracts or make binding commitments', hi: 'दीर्घकालिक अनुबंध या बाध्यकारी प्रतिबद्धताएं न करें' },
-      { en: 'Rush important decisions — delays are natural now', hi: 'महत्वपूर्ण निर्णयों में जल्दबाजी न करें — विलंब स्वाभाविक है' },
+      { en: 'Rush important decisions  –  delays are natural now', hi: 'महत्वपूर्ण निर्णयों में जल्दबाजी न करें  –  विलंब स्वाभाविक है' },
     ],
   },
   // Mercury (3)
@@ -125,7 +125,7 @@ const ECLIPSE_GUIDES: Record<string, { dos: SurvivalGuideItem[]; donts: Survival
     dos: [
       { en: 'Meditate and set positive intentions for the cycle ahead', hi: 'ध्यान करें और आगामी चक्र के लिए सकारात्मक संकल्प लें' },
       { en: 'Perform charity, donate food or clothes', hi: 'दान-पुण्य करें, भोजन या वस्त्र दान करें' },
-      { en: 'Chant mantras — especially Surya mantra (108 times)', hi: 'मंत्र जाप करें — विशेषकर सूर्य मंत्र (108 बार)' },
+      { en: 'Chant mantras  –  especially Surya mantra (108 times)', hi: 'मंत्र जाप करें  –  विशेषकर सूर्य मंत्र (108 बार)' },
     ],
     donts: [
       { en: 'Start new ventures or sign important contracts', hi: 'नए उद्यम शुरू न करें या महत्वपूर्ण अनुबंधों पर हस्ताक्षर न करें' },

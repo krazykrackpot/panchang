@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * /dashboard/journal — Astro Journal browse page.
+ * /dashboard/journal  –  Astro Journal browse page.
  *
  * Layout (top → bottom):
  *   1. Page heading
@@ -32,7 +32,7 @@ import JournalCalendarHeatmap from '@/components/journal/JournalCalendarHeatmap'
 import JournalEntryList from '@/components/journal/JournalEntryList';
 import JournalFiltersBar from '@/components/journal/JournalFilters';
 
-// Lazy-loaded — not critical path; only useful after 15+ entries
+// Lazy-loaded  –  not critical path; only useful after 15+ entries
 const JournalInsights = dynamic(
   () => import('@/components/journal/JournalInsights'),
   { ssr: false },
@@ -132,7 +132,7 @@ export default function JournalPage() {
 
   // -------------------------------------------------------------------------
   // Initial fetch: wait for auth to be initialized before fetching.
-  // Rule F: every branch must terminate loading — fetchEntries handles this.
+  // Rule F: every branch must terminate loading  –  fetchEntries handles this.
   // -------------------------------------------------------------------------
   useEffect(() => {
     if (!initialized) return;

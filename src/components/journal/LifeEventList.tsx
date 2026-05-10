@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * LifeEventList — renders a list of LifeEvent cards with category icon,
+ * LifeEventList  –  renders a list of LifeEvent cards with category icon,
  * significance stars, planetary badges, and a delete button.
  */
 

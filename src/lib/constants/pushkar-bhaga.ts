@@ -1,5 +1,5 @@
 /**
- * Pushkar Bhaga — most auspicious single degree per sign.
+ * Pushkar Bhaga  –  most auspicious single degree per sign.
  * Source: Saravali / Kalaprakashika (standard Jyotish references).
  *
  * Key: 1-based sign number (1=Aries … 12=Pisces).

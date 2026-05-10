@@ -387,7 +387,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
       {meta && (
         <div className="text-center p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15">
           <h2 className="text-gold-gradient text-xl font-bold" style={headingFont}>
-            {selectedDiv} — {isHi ? meta.nameHi : meta.name}
+            {selectedDiv}  –  {isHi ? meta.nameHi : meta.name}
           </h2>
           <p className="text-text-secondary text-sm mt-1">
             {isHi ? meta.meaningHi : meta.meaning}
@@ -630,14 +630,14 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                           {pushk && (pushk.isPushkaraNavamsha || pushk.isPushkaraBhaga) && (
                             <p className="mt-1 text-emerald-400/80">
                               {isHi
-                                ? 'पुष्कर स्थिति — छिपा हुआ आशीर्वाद, शुभ फल में वृद्धि।'
+                                ? 'पुष्कर स्थिति  –  छिपा हुआ आशीर्वाद, शुभ फल में वृद्धि।'
                                 : 'Pushkara placement -- hidden blessing, amplified beneficence.'}
                             </p>
                           )}
                           {gand && gand.isGandanta && (
                             <p className="mt-1 text-red-400/80">
                               {isHi
-                                ? `गण्डान्त (${gand.junction}, ${gand.severity}) — कार्मिक ग्रन्थि।`
+                                ? `गण्डान्त (${gand.junction}, ${gand.severity})  –  कार्मिक ग्रन्थि।`
                                 : `Gandanta (${gand.junction}, ${gand.severity}) -- karmic knot in this domain.`}
                             </p>
                           )}
@@ -651,14 +651,14 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                           {natal?.isRetrograde && (
                             <p className="mt-1 text-amber-400/80">
                               {isHi
-                                ? 'वक्री — गैर-पारम्परिक, पुनर्विचार और परिशोधन से सफलता।'
+                                ? 'वक्री  –  गैर-पारम्परिक, पुनर्विचार और परिशोधन से सफलता।'
                                 : 'Retrograde -- unconventional path, success through review and refinement.'}
                             </p>
                           )}
                           {natal?.isCombust && (
                             <p className="mt-1 text-orange-400/80">
                               {isHi
-                                ? 'अस्त — सूर्य की निकटता से इस क्षेत्र में ग्रह का प्रभाव छिपा है।'
+                                ? 'अस्त  –  सूर्य की निकटता से इस क्षेत्र में ग्रह का प्रभाव छिपा है।'
                                 : 'Combust -- planet\'s influence in this domain overshadowed by Sun proximity.'}
                             </p>
                           )}
@@ -725,7 +725,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
                       {pp.isVargottama && (
                         <p className="text-emerald-400/70 text-[10px] mt-1 italic">
                           {isHi
-                            ? 'वर्गोत्तम — D1 और इस वर्ग में एक ही राशि। बल दोगुना।'
+                            ? 'वर्गोत्तम  –  D1 और इस वर्ग में एक ही राशि। बल दोगुना।'
                             : 'Vargottama -- same sign in D1 and this division. Strength doubled.'}
                         </p>
                       )}
@@ -778,12 +778,12 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
             return (
               <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 to-[#0a0e27] border border-gold-primary/12 p-5">
                 <h4 className="text-gold-light text-sm font-bold uppercase tracking-wider mb-1" style={headingFont}>
-                  {isHi ? 'द्रेक्काण मुख — शास्त्रीय प्रतिमा व्याख्या' : 'Drekkana Faces — Classical Image Interpretations'}
+                  {isHi ? 'द्रेक्काण मुख  –  शास्त्रीय प्रतिमा व्याख्या' : 'Drekkana Faces  –  Classical Image Interpretations'}
                 </h4>
                 <p className="text-text-secondary/60 text-xs mb-4">
                   {isHi
-                    ? 'वराहमिहिर (बृहत्जातक अ.27) — प्रत्येक 10° दशमांश का एक शास्त्रीय चित्र और अर्थ है।'
-                    : 'Varahamihira (Brihat Jataka Ch.27) — each 10\u00b0 decanate has a classical image describing the nature of planets placed there.'}
+                    ? 'वराहमिहिर (बृहत्जातक अ.27)  –  प्रत्येक 10° दशमांश का एक शास्त्रीय चित्र और अर्थ है।'
+                    : 'Varahamihira (Brihat Jataka Ch.27)  –  each 10\u00b0 decanate has a classical image describing the nature of planets placed there.'}
                 </p>
                 <div className="space-y-3">
                   {faceRows.map(({ planet: p, decanate, face }) => {
@@ -1118,7 +1118,7 @@ export default function VargasTab({ kundali, locale, headingFont }: VargasTabPro
 }
 
 /* ──────────────────────────────────────────────────────────────────
- * ExpandableSection — collapsible detail section
+ * ExpandableSection  –  collapsible detail section
  * ────────────────────────────────────────────────────────────────── */
 interface ExpandableSectionProps {
   title: string;

@@ -1,7 +1,7 @@
 import { createContributionOG, OG_SIZE } from '../og-helper';
 
 export const runtime = 'edge';
-export const alt = 'Kerala Invented Calculus — Madhava and the Kerala School';
+export const alt = 'Kerala Invented Calculus  –  Madhava and the Kerala School';
 export const size = OG_SIZE;
 export const contentType = 'image/png';
 

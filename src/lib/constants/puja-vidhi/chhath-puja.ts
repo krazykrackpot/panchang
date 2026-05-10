@@ -6,7 +6,7 @@ export const CHHATH_PUJA: PujaVidhi = {
   deity: { en: 'Surya & Chhathi Maiya', hi: 'सूर्य एवं छठी मइया', sa: 'सूर्यः छठीमाता च' },
 
   samagri: [
-    { name: { en: 'Bamboo Soop (winnowing fan)', hi: 'बाँस का सूप', sa: 'वंशसूर्पम्' }, note: { en: 'Essential vessel for offerings — must be new', hi: 'अर्पण के लिए आवश्यक पात्र — नया होना चाहिए', sa: 'अर्पणार्थम् अनिवार्यं पात्रम् — नवं भवेत्' }, category: 'vessels', essential: true },
+    { name: { en: 'Bamboo Soop (winnowing fan)', hi: 'बाँस का सूप', sa: 'वंशसूर्पम्' }, note: { en: 'Essential vessel for offerings  –  must be new', hi: 'अर्पण के लिए आवश्यक पात्र  –  नया होना चाहिए', sa: 'अर्पणार्थम् अनिवार्यं पात्रम्  –  नवं भवेत्' }, category: 'vessels', essential: true },
     { name: { en: 'Thekua (wheat flour sweets)', hi: 'ठेकुआ (गेहूँ के आटे की मिठाई)', sa: 'गोधूमचूर्णमिष्टान्नम् (ठेकुआ)' }, note: { en: 'Prepared without onion/garlic, with jaggery, ghee, dry fruits', hi: 'प्याज/लहसुन रहित, गुड़, घी, मेवों से बनाया जाता है', sa: 'पलाण्डुलशुनरहितं गुडघृतशुष्कफलैः निर्मितम्' }, category: 'food', essential: true },
     { name: { en: 'Sugarcane', hi: 'गन्ना', sa: 'इक्षुदण्डः' }, quantity: '5-7', category: 'food', essential: true },
     { name: { en: 'Bananas', hi: 'केले', sa: 'कदलीफलानि' }, quantity: '1 bunch', category: 'food', essential: true },
@@ -25,9 +25,9 @@ export const CHHATH_PUJA: PujaVidhi = {
 
   muhurtaType: 'fixed',
   muhurtaDescription: {
-    en: 'Chhath Puja spans 4 days. The critical arghya timings are: Day 3 (Sandhya Arghya) at sunset — stand in water and offer arghya to the setting sun. Day 4 (Usha Arghya) at sunrise — offer arghya to the rising sun while standing in water.',
-    hi: 'छठ पूजा 4 दिनों तक चलती है। महत्वपूर्ण अर्घ्य समय: तीसरा दिन (सन्ध्या अर्घ्य) सूर्यास्त पर — पानी में खड़े होकर डूबते सूर्य को अर्घ्य दें। चौथा दिन (ऊषा अर्घ्य) सूर्योदय पर — पानी में खड़े होकर उगते सूर्य को अर्घ्य दें।',
-    sa: 'छठपूजा चतुर्दिनं व्याप्नोति। महत्त्वपूर्णाः अर्घ्यकालाः: तृतीयदिने (सन्ध्यार्घ्यम्) सूर्यास्तसमये — जले स्थित्वा अस्तगतसूर्याय अर्घ्यं दद्यात्। चतुर्थदिने (ऊषार्घ्यम्) सूर्योदयसमये — जले स्थित्वा उदयमानसूर्याय अर्घ्यं दद्यात्।',
+    en: 'Chhath Puja spans 4 days. The critical arghya timings are: Day 3 (Sandhya Arghya) at sunset  –  stand in water and offer arghya to the setting sun. Day 4 (Usha Arghya) at sunrise  –  offer arghya to the rising sun while standing in water.',
+    hi: 'छठ पूजा 4 दिनों तक चलती है। महत्वपूर्ण अर्घ्य समय: तीसरा दिन (सन्ध्या अर्घ्य) सूर्यास्त पर  –  पानी में खड़े होकर डूबते सूर्य को अर्घ्य दें। चौथा दिन (ऊषा अर्घ्य) सूर्योदय पर  –  पानी में खड़े होकर उगते सूर्य को अर्घ्य दें।',
+    sa: 'छठपूजा चतुर्दिनं व्याप्नोति। महत्त्वपूर्णाः अर्घ्यकालाः: तृतीयदिने (सन्ध्यार्घ्यम्) सूर्यास्तसमये  –  जले स्थित्वा अस्तगतसूर्याय अर्घ्यं दद्यात्। चतुर्थदिने (ऊषार्घ्यम्) सूर्योदयसमये  –  जले स्थित्वा उदयमानसूर्याय अर्घ्यं दद्यात्।',
   },
 
   sankalpa: {
@@ -65,9 +65,9 @@ export const CHHATH_PUJA: PujaVidhi = {
       step: 3,
       title: { en: 'Day 3: Sandhya Arghya (Evening Sun Offering)', hi: 'तीसरा दिन: सन्ध्या अर्घ्य', sa: 'तृतीयदिनम्: सन्ध्यार्घ्यम्' },
       description: {
-        en: 'Prepare all offerings: thekua, rice laddoo, fruits (bananas, coconut, sweet lime), sugarcane, and other items in the bamboo soop. The Vratti, wearing new clothes, goes to a riverbank or water body before sunset. Standing in waist-deep water, the Vratti offers arghya to the setting sun — pouring water and milk through the soop toward the sun while family and community sing Chhath folk songs. Earthen lamps are lit on the soop.',
-        hi: 'सभी अर्पण सामग्री तैयार करें: ठेकुआ, चावल के लड्डू, फल (केले, नारियल, मौसम्बी), गन्ना और अन्य सामान बाँस के सूप में। व्रती नए वस्त्र पहनकर सूर्यास्त से पहले नदी तट या जलाशय पर जाता/जाती है। कमर तक पानी में खड़े होकर, व्रती डूबते सूर्य को अर्घ्य देता/देती है — सूप से सूर्य की दिशा में जल और दूध अर्पित करता/करती है। परिवार और समुदाय छठ के लोकगीत गाते हैं। सूप पर मिट्टी के दीपक जलाए जाते हैं।',
-        sa: 'सर्वाणि अर्पणद्रव्याणि सज्जयेत्: ठेकुआ, तण्डुलमोदकानि, फलानि (कदलीफलानि, नारिकेलानि, मौसम्बी), इक्षुदण्डान्, अन्यानि च वंशसूर्पे। व्रती नववस्त्राणि धृत्वा सूर्यास्तात् पूर्वं नदीतटं जलाशयं वा गच्छति। कटिपर्यन्तं जले स्थित्वा, व्रती अस्तगतसूर्याय अर्घ्यं ददाति — सूर्पेण सूर्यदिशि जलं क्षीरं च अर्पयति। कुटुम्बं समुदायश्च छठलोकगीतानि गायन्ति। सूर्पे मृत्तिकादीपान् प्रज्वालयन्ति।',
+        en: 'Prepare all offerings: thekua, rice laddoo, fruits (bananas, coconut, sweet lime), sugarcane, and other items in the bamboo soop. The Vratti, wearing new clothes, goes to a riverbank or water body before sunset. Standing in waist-deep water, the Vratti offers arghya to the setting sun  –  pouring water and milk through the soop toward the sun while family and community sing Chhath folk songs. Earthen lamps are lit on the soop.',
+        hi: 'सभी अर्पण सामग्री तैयार करें: ठेकुआ, चावल के लड्डू, फल (केले, नारियल, मौसम्बी), गन्ना और अन्य सामान बाँस के सूप में। व्रती नए वस्त्र पहनकर सूर्यास्त से पहले नदी तट या जलाशय पर जाता/जाती है। कमर तक पानी में खड़े होकर, व्रती डूबते सूर्य को अर्घ्य देता/देती है  –  सूप से सूर्य की दिशा में जल और दूध अर्पित करता/करती है। परिवार और समुदाय छठ के लोकगीत गाते हैं। सूप पर मिट्टी के दीपक जलाए जाते हैं।',
+        sa: 'सर्वाणि अर्पणद्रव्याणि सज्जयेत्: ठेकुआ, तण्डुलमोदकानि, फलानि (कदलीफलानि, नारिकेलानि, मौसम्बी), इक्षुदण्डान्, अन्यानि च वंशसूर्पे। व्रती नववस्त्राणि धृत्वा सूर्यास्तात् पूर्वं नदीतटं जलाशयं वा गच्छति। कटिपर्यन्तं जले स्थित्वा, व्रती अस्तगतसूर्याय अर्घ्यं ददाति  –  सूर्पेण सूर्यदिशि जलं क्षीरं च अर्पयति। कुटुम्बं समुदायश्च छठलोकगीतानि गायन्ति। सूर्पे मृत्तिकादीपान् प्रज्वालयन्ति।',
       },
       duration: '2-3 hours',
       essential: true,
@@ -77,9 +77,9 @@ export const CHHATH_PUJA: PujaVidhi = {
       step: 4,
       title: { en: 'Night Vigil (Kosi)', hi: 'रात्रि जागरण (कोसी)', sa: 'रात्रिजागरणम् (कोसी)' },
       description: {
-        en: 'After the evening arghya, a special Kosi ritual may be performed at home — five sugarcane sticks are arranged as a canopy and earthen lamps are lit beneath. The Vratti maintains the nirjala fast through the night, preparing for the dawn arghya.',
-        hi: 'सन्ध्या अर्घ्य के बाद, घर पर विशेष कोसी अनुष्ठान किया जा सकता है — पाँच गन्ने की चँदवा बनाई जाती है और उसके नीचे मिट्टी के दीपक जलाए जाते हैं। व्रती रात भर निर्जल व्रत बनाए रखता/रखती है, भोर के अर्घ्य की तैयारी करता/करती है।',
-        sa: 'सन्ध्यार्घ्यानन्तरं गृहे विशेषं कोसीकर्म कर्तुं शक्यते — पञ्चेक्षुदण्डैः चन्दनिका निर्मीयते तदधः मृत्तिकादीपाः प्रज्वाल्यन्ते। व्रती रात्रौ निर्जलव्रतं पालयति, प्रभातार्घ्यस्य सज्जतां करोति।',
+        en: 'After the evening arghya, a special Kosi ritual may be performed at home  –  five sugarcane sticks are arranged as a canopy and earthen lamps are lit beneath. The Vratti maintains the nirjala fast through the night, preparing for the dawn arghya.',
+        hi: 'सन्ध्या अर्घ्य के बाद, घर पर विशेष कोसी अनुष्ठान किया जा सकता है  –  पाँच गन्ने की चँदवा बनाई जाती है और उसके नीचे मिट्टी के दीपक जलाए जाते हैं। व्रती रात भर निर्जल व्रत बनाए रखता/रखती है, भोर के अर्घ्य की तैयारी करता/करती है।',
+        sa: 'सन्ध्यार्घ्यानन्तरं गृहे विशेषं कोसीकर्म कर्तुं शक्यते  –  पञ्चेक्षुदण्डैः चन्दनिका निर्मीयते तदधः मृत्तिकादीपाः प्रज्वाल्यन्ते। व्रती रात्रौ निर्जलव्रतं पालयति, प्रभातार्घ्यस्य सज्जतां करोति।',
       },
       duration: 'Overnight',
       essential: false,
@@ -143,8 +143,8 @@ export const CHHATH_PUJA: PujaVidhi = {
       devanagari: 'ॐ सूर्याय नमः। ॐ आदित्याय नमः। ॐ भास्कराय नमः।\nएहि सूर्य सहस्रांशो तेजोराशे जगत्पते।\nअनुकम्पय मां भक्त्या गृहाणार्घ्यं दिवाकर॥',
       iast: 'oṃ sūryāya namaḥ | oṃ ādityāya namaḥ | oṃ bhāskarāya namaḥ |\nehi sūrya sahasrāṃśo tejorāśe jagatpate |\nanukampaya māṃ bhaktyā gṛhāṇārghyaṃ divākara ||',
       meaning: {
-        en: 'Salutations to Surya, Aditya, Bhaskara. O thousand-rayed Sun, treasure of radiance, lord of the world — have mercy on me with devotion, O day-maker, accept this arghya.',
-        hi: 'सूर्य, आदित्य, भास्कर को नमन। हे सहस्र किरणों वाले सूर्य, तेज की राशि, जगत के स्वामी — भक्ति से मुझ पर कृपा करें, हे दिवाकर, यह अर्घ्य स्वीकार करें।',
+        en: 'Salutations to Surya, Aditya, Bhaskara. O thousand-rayed Sun, treasure of radiance, lord of the world  –  have mercy on me with devotion, O day-maker, accept this arghya.',
+        hi: 'सूर्य, आदित्य, भास्कर को नमन। हे सहस्र किरणों वाले सूर्य, तेज की राशि, जगत के स्वामी  –  भक्ति से मुझ पर कृपा करें, हे दिवाकर, यह अर्घ्य स्वीकार करें।',
         sa: 'सूर्याय आदित्याय भास्कराय नमः। हे सहस्रांशो सूर्य, तेजोराशे, जगत्पते, मां भक्त्या अनुकम्पय, हे दिवाकर, अर्घ्यं गृहाण।',
       },
       usage: {
@@ -159,9 +159,9 @@ export const CHHATH_PUJA: PujaVidhi = {
       devanagari: 'कांच ही बाँस के बहँगिया, बहँगी लचकत जाय।\nबहँगी लचकत जाय, पूजन कइली छठी माई॥\nहे छठी मइया, तोहरे से बिनती हमार।\nरक्षा करीं लालन के, सुनीं हमार पुकार॥',
       iast: 'kāñca hī bām̐sa ke baham̐giyā, baham̐gī lacakata jāya |\nbaham̐gī lacakata jāya, pūjana kailī chaṭhī māī ||\nhe chaṭhī maiyā, tohare se binatī hamāra |\nrakṣā karīṃ lālana ke, sunīṃ hamāra pukāra ||',
       meaning: {
-        en: 'The bamboo basket sways as I carry it. I worship you, O Chhathi Maiya. O Mother Chhathi, this is my humble prayer — protect my children, hear my call.',
-        hi: 'बाँस की बहँगी लचकती जाती है। हे छठी मइया, मैंने तुम्हारी पूजा की है। हे छठी मइया, तुमसे मेरी विनती है — बच्चों की रक्षा करो, मेरी पुकार सुनो।',
-        sa: 'वंशपात्रं लचमानं गच्छति। हे छठीमातः, त्वां पूजितवती। हे छठीमातः, त्वां प्रति मम विनतिः — बालकानां रक्षां कुरु, मम आह्वानं शृणु।',
+        en: 'The bamboo basket sways as I carry it. I worship you, O Chhathi Maiya. O Mother Chhathi, this is my humble prayer  –  protect my children, hear my call.',
+        hi: 'बाँस की बहँगी लचकती जाती है। हे छठी मइया, मैंने तुम्हारी पूजा की है। हे छठी मइया, तुमसे मेरी विनती है  –  बच्चों की रक्षा करो, मेरी पुकार सुनो।',
+        sa: 'वंशपात्रं लचमानं गच्छति। हे छठीमातः, त्वां पूजितवती। हे छठीमातः, त्वां प्रति मम विनतिः  –  बालकानां रक्षां कुरु, मम आह्वानं शृणु।',
       },
       usage: {
         en: 'Sung as a folk song while walking to the river and during the arghya offering',
@@ -188,36 +188,36 @@ export const CHHATH_PUJA: PujaVidhi = {
   ],
 
   naivedya: {
-    en: 'Thekua (wheat-jaggery-ghee sweet), rice flour laddoo, bananas, coconut, sweet lime, sugarcane, fresh turmeric, ginger, and seasonal fruits — all arranged in the bamboo soop',
-    hi: 'ठेकुआ (गेहूँ-गुड़-घी मिठाई), चावल के आटे के लड्डू, केले, नारियल, मौसम्बी, गन्ना, कच्ची हल्दी, अदरक और मौसमी फल — सब बाँस के सूप में सजाकर',
-    sa: 'ठेकुआ (गोधूमगुडघृतमिष्टान्नम्), तण्डुलचूर्णमोदकानि, कदलीफलानि, नारिकेलानि, मधुरनिम्बूकानि, इक्षुदण्डाः, आर्द्रहरिद्रा, आर्द्रकम्, ऋतुफलानि च — सर्वाणि वंशसूर्पे सज्जयित्वा',
+    en: 'Thekua (wheat-jaggery-ghee sweet), rice flour laddoo, bananas, coconut, sweet lime, sugarcane, fresh turmeric, ginger, and seasonal fruits  –  all arranged in the bamboo soop',
+    hi: 'ठेकुआ (गेहूँ-गुड़-घी मिठाई), चावल के आटे के लड्डू, केले, नारियल, मौसम्बी, गन्ना, कच्ची हल्दी, अदरक और मौसमी फल  –  सब बाँस के सूप में सजाकर',
+    sa: 'ठेकुआ (गोधूमगुडघृतमिष्टान्नम्), तण्डुलचूर्णमोदकानि, कदलीफलानि, नारिकेलानि, मधुरनिम्बूकानि, इक्षुदण्डाः, आर्द्रहरिद्रा, आर्द्रकम्, ऋतुफलानि च  –  सर्वाणि वंशसूर्पे सज्जयित्वा',
   },
 
   precautions: [
     {
-      en: 'Absolute purity must be maintained — no leather footwear, no onion, no garlic, no non-vegetarian food during the entire 4-day period',
-      hi: 'पूर्ण शुद्धता बनाए रखें — सम्पूर्ण 4 दिनों में चमड़े के जूते, प्याज, लहसुन, माँसाहार वर्जित है',
-      sa: 'पूर्णशुद्धिः पालनीया — सम्पूर्णचतुर्दिने चर्मपादत्राणं पलाण्डुं लशुनं मांसाहारं च वर्जयेत्',
+      en: 'Absolute purity must be maintained  –  no leather footwear, no onion, no garlic, no non-vegetarian food during the entire 4-day period',
+      hi: 'पूर्ण शुद्धता बनाए रखें  –  सम्पूर्ण 4 दिनों में चमड़े के जूते, प्याज, लहसुन, माँसाहार वर्जित है',
+      sa: 'पूर्णशुद्धिः पालनीया  –  सम्पूर्णचतुर्दिने चर्मपादत्राणं पलाण्डुं लशुनं मांसाहारं च वर्जयेत्',
     },
     {
-      en: 'The Vratti must stand in water during arghya — do not wear footwear in the water',
-      hi: 'व्रती को अर्घ्य के दौरान पानी में खड़ा होना चाहिए — पानी में जूते न पहनें',
-      sa: 'अर्घ्यसमये व्रती जले स्थातव्यः — जले पादत्राणं न धारयेत्',
+      en: 'The Vratti must stand in water during arghya  –  do not wear footwear in the water',
+      hi: 'व्रती को अर्घ्य के दौरान पानी में खड़ा होना चाहिए  –  पानी में जूते न पहनें',
+      sa: 'अर्घ्यसमये व्रती जले स्थातव्यः  –  जले पादत्राणं न धारयेत्',
     },
     {
-      en: 'The Vratti must observe nirjala (waterless) fast for 36 hours — from Kharna evening to Usha Arghya morning',
-      hi: 'व्रती को 36 घण्टे का निर्जल व्रत रखना चाहिए — खरना की शाम से ऊषा अर्घ्य की सुबह तक',
-      sa: 'व्रती षट्त्रिंशद्होरापर्यन्तं निर्जलव्रतं पालयेत् — खरनासायंकालात् ऊषार्घ्यप्रभातपर्यन्तम्',
+      en: 'The Vratti must observe nirjala (waterless) fast for 36 hours  –  from Kharna evening to Usha Arghya morning',
+      hi: 'व्रती को 36 घण्टे का निर्जल व्रत रखना चाहिए  –  खरना की शाम से ऊषा अर्घ्य की सुबह तक',
+      sa: 'व्रती षट्त्रिंशद्होरापर्यन्तं निर्जलव्रतं पालयेत्  –  खरनासायंकालात् ऊषार्घ्यप्रभातपर्यन्तम्',
     },
     {
-      en: 'All food must be prepared without salt, onion, or garlic — purely sattvic',
-      hi: 'सभी भोजन बिना नमक, प्याज या लहसुन के बनाना चाहिए — पूर्णतः सात्विक',
-      sa: 'सर्वम् अन्नं लवणपलाण्डुलशुनरहितं पचेत् — शुद्धसात्विकम्',
+      en: 'All food must be prepared without salt, onion, or garlic  –  purely sattvic',
+      hi: 'सभी भोजन बिना नमक, प्याज या लहसुन के बनाना चाहिए  –  पूर्णतः सात्विक',
+      sa: 'सर्वम् अन्नं लवणपलाण्डुलशुनरहितं पचेत्  –  शुद्धसात्विकम्',
     },
     {
-      en: 'Ensure the water body is clean — river ghats should be cleaned before the arghya ceremony',
-      hi: 'जलाशय स्वच्छ सुनिश्चित करें — अर्घ्य अनुष्ठान से पहले नदी घाट साफ करने चाहिए',
-      sa: 'जलाशयः शुचिः सुनिश्चित्यताम् — अर्घ्यानुष्ठानात् पूर्वं नदीघट्टाः शोधनीयाः',
+      en: 'Ensure the water body is clean  –  river ghats should be cleaned before the arghya ceremony',
+      hi: 'जलाशय स्वच्छ सुनिश्चित करें  –  अर्घ्य अनुष्ठान से पहले नदी घाट साफ करने चाहिए',
+      sa: 'जलाशयः शुचिः सुनिश्चित्यताम्  –  अर्घ्यानुष्ठानात् पूर्वं नदीघट्टाः शोधनीयाः',
     },
   ],
 

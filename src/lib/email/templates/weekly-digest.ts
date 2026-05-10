@@ -1,4 +1,4 @@
-// Weekly digest email — sent every Monday
+// Weekly digest email  –  sent every Monday
 
 interface DigestDay {
   date: string;       // "Mon, Apr 7"
@@ -44,7 +44,7 @@ export function weeklyDigestEmail(data: DigestData): { subject: string; html: st
     : '';
 
   return {
-    subject: `Your Week Ahead — Dekho Panchang`,
+    subject: `Your Week Ahead  –  Dekho Panchang`,
     html: `
 <!DOCTYPE html>
 <html>
@@ -61,7 +61,7 @@ export function weeklyDigestEmail(data: DigestData): { subject: string; html: st
     <div style="background:#111638;border:1px solid rgba(212,168,83,0.2);border-radius:16px;padding:24px;margin-bottom:20px;">
       <h2 style="color:#f0d48a;font-size:18px;margin:0 0 8px;">Namaste, ${data.name}</h2>
       <p style="color:#9b97a0;font-size:13px;margin:0;">Current period: <span style="color:#e8e6e3;font-weight:bold;">${data.dashaInfo}</span></p>
-      ${data.sadeSatiActive ? '<p style="color:#f87171;font-size:12px;margin:8px 0 0;font-weight:bold;">&#9888; Sade Sati is active — Saturn remedies recommended</p>' : ''}
+      ${data.sadeSatiActive ? '<p style="color:#f87171;font-size:12px;margin:8px 0 0;font-weight:bold;">&#9888; Sade Sati is active  –  Saturn remedies recommended</p>' : ''}
     </div>
 
     <!-- Week forecast -->

@@ -69,9 +69,9 @@ function makeCareerPeakChart(): ConvergenceInput {
   const ascendant = 1;
   const moonSign = 1;
 
-  // Saturn (id=6) in house 3, sign 3 — strong (shadbala > 1.0, not dusthana)
+  // Saturn (id=6) in house 3, sign 3  –  strong (shadbala > 1.0, not dusthana)
   const planets = [
-    makePlanet(6, 3, 3, { shadbala: 1.4 }), // Saturn — lord of house 10 in Aries asc
+    makePlanet(6, 3, 3, { shadbala: 1.4 }), // Saturn  –  lord of house 10 in Aries asc
   ];
 
   // Houses: we need house 10 with lordId=6 (Saturn rules 10th in Aries ascendant = Capricorn)
@@ -138,13 +138,13 @@ function makeCareerPeakChart(): ConvergenceInput {
 
 // ─── Fixture: Quiet Chart ─────────────────────────────────────────────────────
 //
-// A chart where no pattern fires at all — no meaningful convergences.
+// A chart where no pattern fires at all  –  no meaningful convergences.
 // All lords weak (shadbala < 1.0), no transits aligned, neutral dasha.
 
 function makeQuietChart(): ConvergenceInput {
   const planets = [
-    makePlanet(0, 1, 1, { shadbala: 0.5 }), // Sun — weak
-    makePlanet(1, 2, 2, { shadbala: 0.5 }), // Moon — weak
+    makePlanet(0, 1, 1, { shadbala: 0.5 }), // Sun  –  weak
+    makePlanet(1, 2, 2, { shadbala: 0.5 }), // Moon  –  weak
   ];
 
   const houses = Array.from({ length: 12 }, (_, i) => {
@@ -159,7 +159,7 @@ function makeQuietChart(): ConvergenceInput {
     planetHouses: { 0: 1, 1: 2 },
     planetSigns: { 0: 1, 1: 2 },
     transitHouses: {}, // no transits aligned
-    dashaLord: 3,      // Mercury — rules nothing relevant
+    dashaLord: 3,      // Mercury  –  rules nothing relevant
     antarLord: 3,
   };
 

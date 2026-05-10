@@ -1,5 +1,5 @@
 /**
- * Ashtamangala Prashna — Core Engine
+ * Ashtamangala Prashna  –  Core Engine
  * Implements the 8 sacred objects, number-to-object mapping,
  * aruda house calculation, and the main orchestrator function.
  */
@@ -18,7 +18,7 @@ import { generateInterpretation } from './interpretation';
 
 /**
  * The 8 Ashtamangala objects with their planetary rulers,
- * elements, and symbolic meanings — all in Trilingual form.
+ * elements, and symbolic meanings  –  all in Trilingual form.
  */
 export const ASHTAMANGALA_OBJECTS: AshtamangalaObject[] = [
   {

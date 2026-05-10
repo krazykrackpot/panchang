@@ -72,7 +72,7 @@ export interface MemberStatusParams {
   currentSaturnSign: number;
   /** Current transit Jupiter rashi (1-12) */
   currentJupiterSign: number;
-  /** Reference date for "now" — use Date.UTC-constructed dates */
+  /** Reference date for "now"  –  use Date.UTC-constructed dates */
   today: Date;
   /** Authoritative dosha data from tippanni engine (preferred over re-detection) */
   tippanniDoshas?: { name: string; present: boolean; severity: string; effectiveSeverity?: string }[];
@@ -87,7 +87,7 @@ function parseDate(s: string): Date {
   // DashaEntry stores dates as ISO strings like "2026-04-24" or full ISO
   const d = new Date(s);
   if (isNaN(d.getTime())) {
-    return new Date(0); // fallback — should never happen with valid kundali data
+    return new Date(0); // fallback  –  should never happen with valid kundali data
   }
   return d;
 }
@@ -230,36 +230,36 @@ function computeTransitAlerts(
 ): TransitAlert[] {
   const alerts: TransitAlert[] = [];
 
-  // Jupiter transits — positive
+  // Jupiter transits  –  positive
   if (jupiterSign === natalSunSign) {
     alerts.push({
-      description: 'Jupiter transiting natal Sun — favorable period for recognition and authority',
+      description: 'Jupiter transiting natal Sun  –  favorable period for recognition and authority',
       severity: 'positive',
     });
   }
   if (jupiterSign === natalMoonSign) {
     alerts.push({
-      description: 'Jupiter transiting natal Moon — emotional expansion and inner growth',
+      description: 'Jupiter transiting natal Moon  –  emotional expansion and inner growth',
       severity: 'positive',
     });
   }
   if (jupiterSign === ascendantSign) {
     alerts.push({
-      description: 'Jupiter transiting Ascendant — overall growth and new opportunities',
+      description: 'Jupiter transiting Ascendant  –  overall growth and new opportunities',
       severity: 'positive',
     });
   }
 
-  // Saturn transits — challenging
+  // Saturn transits  –  challenging
   if (saturnSign === natalSunSign) {
     alerts.push({
-      description: 'Saturn transiting natal Sun — period of restructuring and discipline',
+      description: 'Saturn transiting natal Sun  –  period of restructuring and discipline',
       severity: 'challenging',
     });
   }
   if (saturnSign === natalMoonSign) {
     alerts.push({
-      description: 'Saturn transiting natal Moon — emotional restraint, patience required',
+      description: 'Saturn transiting natal Moon  –  emotional restraint, patience required',
       severity: 'challenging',
     });
   }
@@ -315,7 +315,7 @@ function computeAttention(
   if (hasPositiveTransit && !sadeSati.isActive) {
     return {
       attention: 'favorable',
-      attentionReason: 'Jupiter transiting key natal position — favorable period',
+      attentionReason: 'Jupiter transiting key natal position  –  favorable period',
     };
   }
 
@@ -326,7 +326,7 @@ function computeAttention(
 }
 
 // ---------------------------------------------------------------------------
-// Dosha flags — extracted from tippanni engine (single source of truth)
+// Dosha flags  –  extracted from tippanni engine (single source of truth)
 // ---------------------------------------------------------------------------
 
 /** 6 Ganda Mula nakshatras: junction nakshatras between elements. */
@@ -341,7 +341,7 @@ const GANDA_MULA_NAK_NAMES: Record<number, string> = {
 /**
  * Extract dosha flags from authoritative tippanni dosha data.
  * Falls back to minimal Ganda Mula check from planet positions (Ganda Mula
- * is not a tippanni dosha — it's a birth nakshatra check).
+ * is not a tippanni dosha  –  it's a birth nakshatra check).
  *
  * IMPORTANT: Manglik and Kaal Sarpa detection is done ONLY via the tippanni
  * engine (generateDoshas in tippanni-engine.ts). No parallel logic here.
@@ -367,8 +367,8 @@ function extractDoshaFlags(
     const kaalSarpDosha = tippanniDoshas.find(d => d.name.toLowerCase().includes('kaal sarp') || d.name.toLowerCase().includes('kala sarp'));
     if (kaalSarpDosha && kaalSarpDosha.present) {
       kaalSarpa = true;
-      // Extract sub-type from name: "Kaal Sarp Dosha — Takshaka"
-      const subMatch = kaalSarpDosha.name.match(/[—–-]\s*(.+)/);
+      // Extract sub-type from name: "Kaal Sarp Dosha  –  Takshaka"
+      const subMatch = kaalSarpDosha.name.match(/[ – –-]\s*(.+)/);
       kaalSarpaType = subMatch ? subMatch[1].trim() : null;
     }
   }
@@ -424,7 +424,7 @@ export function computeMemberStatus(params: MemberStatusParams): MemberStatus {
     ascendantSign,
   );
 
-  // --- Dosha flags (from tippanni engine — single source of truth) ---
+  // --- Dosha flags (from tippanni engine  –  single source of truth) ---
   const doshaFlags = extractDoshaFlags(params.tippanniDoshas, kundali);
 
   // --- Attention level ---

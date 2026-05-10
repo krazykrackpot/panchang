@@ -90,7 +90,7 @@ export const KETU_SHANTI: PujaVidhi = {
     },
     {
       step: 6,
-      title: { en: 'Homa (Fire Offering) — Optional', hi: 'होम (हवन) — वैकल्पिक', sa: 'होमः — वैकल्पिकः' },
+      title: { en: 'Homa (Fire Offering)  –  Optional', hi: 'होम (हवन)  –  वैकल्पिक', sa: 'होमः  –  वैकल्पिकः' },
       description: {
         en: 'If possible, perform a small homa with kusha grass and ghee. Offer seven grains and sesame into the fire while chanting the Ketu Gayatri. Ketu is purified through fire.',
         hi: 'यदि सम्भव हो तो कुशा और घी से लघु होम करें। केतु गायत्री जपते हुए सात अनाज और तिल की आहुति दें। केतु अग्नि से शुद्ध होता है।',
@@ -168,14 +168,14 @@ export const KETU_SHANTI: PujaVidhi = {
 
   precautions: [
     {
-      en: 'Perform the puja after sunset facing south. Ketu is a headless shadow planet — night worship and meditative practice are most effective.',
-      hi: 'पूजा सूर्यास्त के बाद दक्षिण दिशा की ओर मुख कर करें। केतु शिरहीन छाया ग्रह है — रात्रि पूजा और ध्यान साधना सर्वाधिक प्रभावी हैं।',
-      sa: 'सूर्यास्तानन्तरं दक्षिणदिशम् अभिमुखं पूजां कुर्यात्। केतुः शिरहीनछायाग्रहः — रात्रिपूजा ध्यानसाधना च सर्वाधिकप्रभावशालिन्यौ।',
+      en: 'Perform the puja after sunset facing south. Ketu is a headless shadow planet  –  night worship and meditative practice are most effective.',
+      hi: 'पूजा सूर्यास्त के बाद दक्षिण दिशा की ओर मुख कर करें। केतु शिरहीन छाया ग्रह है  –  रात्रि पूजा और ध्यान साधना सर्वाधिक प्रभावी हैं।',
+      sa: 'सूर्यास्तानन्तरं दक्षिणदिशम् अभिमुखं पूजां कुर्यात्। केतुः शिरहीनछायाग्रहः  –  रात्रिपूजा ध्यानसाधना च सर्वाधिकप्रभावशालिन्यौ।',
     },
     {
-      en: 'Ketu favours detachment. On puja day, practice simplicity — avoid luxury, excess, and material obsession.',
-      hi: 'केतु वैराग्य को पसन्द करता है। पूजा के दिन सादगी का पालन करें — विलासिता, अति और भौतिक आसक्ति से बचें।',
-      sa: 'केतुः वैराग्यं प्रीणयति। पूजादिने सादगीं पालयेत् — विलासम् अतिरेकं भौतिकासक्तिं च वर्जयेत्।',
+      en: 'Ketu favours detachment. On puja day, practice simplicity  –  avoid luxury, excess, and material obsession.',
+      hi: 'केतु वैराग्य को पसन्द करता है। पूजा के दिन सादगी का पालन करें  –  विलासिता, अति और भौतिक आसक्ति से बचें।',
+      sa: 'केतुः वैराग्यं प्रीणयति। पूजादिने सादगीं पालयेत्  –  विलासम् अतिरेकं भौतिकासक्तिं च वर्जयेत्।',
     },
     {
       en: 'Feeding stray dogs on Tuesday is a powerful and simple daily Ketu remedy.',

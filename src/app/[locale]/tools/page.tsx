@@ -13,11 +13,11 @@ import type { ReactNode } from 'react';
 const r2 = (n: number) => Math.round(n * 100) / 100;
 
 /* ════════════════════════════════════════════════════════════════════
-   20 INLINE SVG ICONS — bold, multi-layered, dramatic (128x128)
+   20 INLINE SVG ICONS  –  bold, multi-layered, dramatic (128x128)
    Gradient IDs use unique 2-letter prefixes to avoid collisions.
    ════════════════════════════════════════════════════════════════════ */
 
-/* 1. Rahu Kaal — Dramatic sun/eclipse with shadow biting */
+/* 1. Rahu Kaal  –  Dramatic sun/eclipse with shadow biting */
 function RahuKaalSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -39,7 +39,7 @@ function RahuKaalSVG() {
           <line key={i} x1={r2(32 + inner * Math.cos(a))} y1={r2(32 + inner * Math.sin(a))} x2={r2(32 + outer * Math.cos(a))} y2={r2(32 + outer * Math.sin(a))} stroke="url(#rk1)" strokeWidth={i % 2 === 0 ? '2.5' : '1.5'} strokeLinecap="round" opacity={i % 2 === 0 ? 0.9 : 0.5} />
         );
       })}
-      {/* Eclipse shadow — Rahu biting the sun */}
+      {/* Eclipse shadow  –  Rahu biting the sun */}
       <circle cx="38" cy="28" r="12" fill="#0a0520" opacity="0.85" />
       <circle cx="40" cy="26" r="8" fill="#0a0520" opacity="0.6" />
       {/* Warning dots */}
@@ -50,7 +50,7 @@ function RahuKaalSVG() {
   );
 }
 
-/* 2. Choghadiya — Bold 8-segment dharma wheel */
+/* 2. Choghadiya  –  Bold 8-segment dharma wheel */
 function ChoghadiyaSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -81,7 +81,7 @@ function ChoghadiyaSVG() {
   );
 }
 
-/* 3. Hora — Planetary clock with 7 symbols */
+/* 3. Hora  –  Planetary clock with 7 symbols */
 function HoraSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -109,7 +109,7 @@ function HoraSVG() {
   );
 }
 
-/* 4. Dinacharya — Sun/Moon dual cycle */
+/* 4. Dinacharya  –  Sun/Moon dual cycle */
 function DinacharyaSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -142,7 +142,7 @@ function DinacharyaSVG() {
   );
 }
 
-/* 5. Vedic Time — Hourglass with sand particles */
+/* 5. Vedic Time  –  Hourglass with sand particles */
 function VedicTimeSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -176,7 +176,7 @@ function VedicTimeSVG() {
   );
 }
 
-/* 5b. Chandrabalam — crescent moon over 12-sign wheel */
+/* 5b. Chandrabalam  –  crescent moon over 12-sign wheel */
 function ChandrabalamSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -204,7 +204,7 @@ function ChandrabalamSVG() {
   );
 }
 
-/* 5c. Tarabalam — 9-pointed star with nakshatra dots */
+/* 5c. Tarabalam  –  9-pointed star with nakshatra dots */
 function TarabalamSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -231,7 +231,7 @@ function TarabalamSVG() {
   );
 }
 
-/* 6. Rashi Calculator — Zodiac wheel with 12 marks */
+/* 6. Rashi Calculator  –  Zodiac wheel with 12 marks */
 function RashiCalcSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -264,7 +264,7 @@ function RashiCalcSVG() {
   );
 }
 
-/* 7. Sade Sati — Saturn with rings + "7.5" badge (from page.tsx, IDs renamed) */
+/* 7. Sade Sati  –  Saturn with rings + "7.5" badge (from page.tsx, IDs renamed) */
 function SadeSatiSVG() {
   return (
     <svg width={128} height={128} viewBox="0 0 64 64" fill="none" aria-hidden="true">
@@ -283,7 +283,7 @@ function SadeSatiSVG() {
   );
 }
 
-/* 8. Kaal Sarpa — Serpentine axis through a chart */
+/* 8. Kaal Sarpa  –  Serpentine axis through a chart */
 function KaalSarpaSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -295,7 +295,7 @@ function KaalSarpaSVG() {
       {/* Chart diamond */}
       <polygon points="32,6 58,32 32,58 6,32" fill="url(#ks1)" opacity="0.06" stroke="url(#ks1)" strokeWidth="2" />
       <polygon points="32,19 45,32 32,45 19,32" fill="url(#ks1)" opacity="0.08" stroke="url(#ks1)" strokeWidth="1" />
-      {/* Serpent body — sinuous S-curve axis */}
+      {/* Serpent body  –  sinuous S-curve axis */}
       <path d="M 14 14 C 22 20, 26 28, 32 32 C 38 36, 42 44, 50 50" fill="none" stroke="url(#ks1)" strokeWidth="3" opacity="0.7" strokeLinecap="round" />
       <path d="M 14 14 C 20 18, 24 26, 30 30" fill="none" stroke="#f0d48a" strokeWidth="1.5" opacity="0.3" />
       {/* Rahu head (top-left) */}
@@ -312,7 +312,7 @@ function KaalSarpaSVG() {
   );
 }
 
-/* 9. Mangal Dosha — Mars symbol over heart */
+/* 9. Mangal Dosha  –  Mars symbol over heart */
 function MangalDoshaSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -323,7 +323,7 @@ function MangalDoshaSVG() {
       <circle cx="32" cy="32" r="28" fill="url(#md1g)" />
       {/* Heart shape */}
       <path d="M 32 50 C 16 38 8 26 16 18 C 22 12 30 16 32 22 C 34 16 42 12 48 18 C 56 26 48 38 32 50 Z" fill="url(#md1)" opacity="0.12" stroke="url(#md1)" strokeWidth="2.5" strokeLinejoin="round" />
-      {/* Mars symbol ♂ — circle + arrow */}
+      {/* Mars symbol ♂  –  circle + arrow */}
       <circle cx="30" cy="30" r="8" fill="none" stroke="url(#md1)" strokeWidth="2.5" opacity="0.7" />
       <line x1="36" y1="24" x2="46" y2="14" stroke="url(#md1)" strokeWidth="2.5" strokeLinecap="round" opacity="0.8" />
       <polyline points="40,14 46,14 46,20" fill="none" stroke="url(#md1)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.7" />
@@ -337,7 +337,7 @@ function MangalDoshaSVG() {
   );
 }
 
-/* 10. Cosmic Blueprint — Nested rings with pentagram star */
+/* 10. Cosmic Blueprint  –  Nested rings with pentagram star */
 function CosmicBlueprintSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -371,7 +371,7 @@ function CosmicBlueprintSVG() {
   );
 }
 
-/* 11. Prashna — Crystal ball with question energy */
+/* 11. Prashna  –  Crystal ball with question energy */
 function PrashnaSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -400,7 +400,7 @@ function PrashnaSVG() {
   );
 }
 
-/* 12. Sarvatobhadra — Nested squares with diagonals */
+/* 12. Sarvatobhadra  –  Nested squares with diagonals */
 function SarvatobhadraSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -430,7 +430,7 @@ function SarvatobhadraSVG() {
   );
 }
 
-/* 13. Medical Jyotish — Caduceus serpents on rod */
+/* 13. Medical Jyotish  –  Caduceus serpents on rod */
 function MedicalSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -460,7 +460,7 @@ function MedicalSVG() {
   );
 }
 
-/* 14. Financial Jyotish — Ascending chart with planetary markers */
+/* 14. Financial Jyotish  –  Ascending chart with planetary markers */
 function FinancialSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -476,7 +476,7 @@ function FinancialSVG() {
       {[16, 26, 36, 46].map((x) => (
         <line key={x} x1={x} y1="14" x2={x} y2="54" stroke="url(#fj1)" strokeWidth="0.5" opacity="0.15" />
       ))}
-      {/* Chart line — ascending with dips */}
+      {/* Chart line  –  ascending with dips */}
       <polyline points="10,48 18,42 24,44 30,34 36,28 42,30 48,18 54,12" fill="none" stroke="url(#fj1)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.7" />
       {/* Area fill */}
       <polygon points="10,48 18,42 24,44 30,34 36,28 42,30 48,18 54,12 54,52 10,52" fill="url(#fj1)" opacity="0.08" />
@@ -492,7 +492,7 @@ function FinancialSVG() {
   );
 }
 
-/* 15. Mundane Jyotish — Globe with meridians */
+/* 15. Mundane Jyotish  –  Globe with meridians */
 function MundaneSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -522,7 +522,7 @@ function MundaneSVG() {
   );
 }
 
-/* 16. Baby Names — Book/scroll with Devanagari अ */
+/* 16. Baby Names  –  Book/scroll with Devanagari अ */
 function BabyNamesSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -552,7 +552,7 @@ function BabyNamesSVG() {
   );
 }
 
-/* 17. Kaal Nirnaya — Compass/clock with directional pointer */
+/* 17. Kaal Nirnaya  –  Compass/clock with directional pointer */
 function KaalNirnayaSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -574,7 +574,7 @@ function KaalNirnayaSVG() {
         const a = (Math.PI * 2 * (i + 0.5)) / 4 - Math.PI / 2;
         return <line key={`m${i}`} x1={r2(32 + 23 * Math.cos(a))} y1={r2(32 + 23 * Math.sin(a))} x2={r2(32 + 26 * Math.cos(a))} y2={r2(32 + 26 * Math.sin(a))} stroke="url(#kn1)" strokeWidth="1" opacity="0.35" />;
       })}
-      {/* Compass needle — north-pointing */}
+      {/* Compass needle  –  north-pointing */}
       <polygon points="32,8 35,30 32,32 29,30" fill="url(#kn1)" opacity="0.6" stroke="url(#kn1)" strokeWidth="1.5" />
       <polygon points="32,56 29,34 32,32 35,34" fill="url(#kn1)" opacity="0.25" stroke="url(#kn1)" strokeWidth="1" />
       <circle cx="32" cy="32" r="4" fill="url(#kn1)" opacity="0.2" stroke="url(#kn1)" strokeWidth="2" />
@@ -586,7 +586,7 @@ function KaalNirnayaSVG() {
   );
 }
 
-/* 18. Nadi Jyotish — Palm leaf with veins */
+/* 18. Nadi Jyotish  –  Palm leaf with veins */
 function NadiSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -595,7 +595,7 @@ function NadiSVG() {
         <linearGradient id="nj1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
       </defs>
       <circle cx="32" cy="32" r="28" fill="url(#nj1g)" />
-      {/* Palm leaf — pointed oval */}
+      {/* Palm leaf  –  pointed oval */}
       <ellipse cx="32" cy="30" rx="14" ry="24" fill="url(#nj1)" opacity="0.1" stroke="url(#nj1)" strokeWidth="2.5" transform="rotate(-10 32 30)" />
       {/* Central vein */}
       <line x1="32" y1="8" x2="32" y2="52" stroke="url(#nj1)" strokeWidth="2" opacity="0.5" transform="rotate(-10 32 30)" />
@@ -618,7 +618,7 @@ function NadiSVG() {
   );
 }
 
-/* 19. Lunar Calendar — 5 moon phases in an arc */
+/* 19. Lunar Calendar  –  5 moon phases in an arc */
 function LunarCalendarSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -652,7 +652,7 @@ function LunarCalendarSVG() {
   );
 }
 
-/* 20. Live Sky — Constellation map with connected stars */
+/* 20. Live Sky  –  Constellation map with connected stars */
 function LiveSkySVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -693,7 +693,7 @@ function LiveSkySVG() {
   );
 }
 
-/* 21. Chandra Darshan — Thin crescent Moon above western horizon */
+/* 21. Chandra Darshan  –  Thin crescent Moon above western horizon */
 function ChandraDarshanSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -844,12 +844,12 @@ export default function ToolsPage() {
         </h1>
         <p className="text-text-secondary text-sm">
           {locale === 'ta'
-            ? '22 சக்திவாய்ந்த வேத ஜோதிட கணிப்பான்கள் — உங்கள் அட்டையைத் தேர்ந்தெடுங்கள்'
+            ? '22 சக்திவாய்ந்த வேத ஜோதிட கணிப்பான்கள்  –  உங்கள் அட்டையைத் தேர்ந்தெடுங்கள்'
             : locale === 'bn'
-              ? '22টি শক্তিশালী বৈদিক জ্যোতিষ গণক — আপনার কার্ড বেছে নিন'
+              ? '22টি শক্তিশালী বৈদিক জ্যোতিষ গণক  –  আপনার কার্ড বেছে নিন'
               : isDevanagari
-                ? '22 शक्तिशाली वैदिक ज्योतिष गणक — अपना कार्ड चुनें'
-                : '22 powerful Vedic astrology calculators — pick your card'}
+                ? '22 शक्तिशाली वैदिक ज्योतिष गणक  –  अपना कार्ड चुनें'
+                : '22 powerful Vedic astrology calculators  –  pick your card'}
         </p>
       </motion.div>
 

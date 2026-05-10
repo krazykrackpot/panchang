@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * /dashboard/life-events — Life Event Timeline page.
+ * /dashboard/life-events  –  Life Event Timeline page.
  *
  * Layout (top → bottom):
  *   1. Page heading + back link
@@ -94,7 +94,7 @@ export default function LifeEventsPage() {
   const { events, loading, total, addEvent, fetchEvents, deleteEvent } = useLifeEventsStore();
 
   // -------------------------------------------------------------------------
-  // Initial fetch — wait for auth before fetching (Rule F: all branches terminate loading)
+  // Initial fetch  –  wait for auth before fetching (Rule F: all branches terminate loading)
   // -------------------------------------------------------------------------
   useEffect(() => {
     if (!initialized) return;
@@ -108,7 +108,7 @@ export default function LifeEventsPage() {
   }, [initialized, session]);
 
   // -------------------------------------------------------------------------
-  // Submit handler — delegates to store, which calls POST /api/life-events
+  // Submit handler  –  delegates to store, which calls POST /api/life-events
   // -------------------------------------------------------------------------
   const handleSubmit = useCallback(
     async (data: Parameters<typeof addEvent>[1]) => {

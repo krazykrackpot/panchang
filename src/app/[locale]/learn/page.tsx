@@ -19,7 +19,7 @@ import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import LearningPath from '@/components/learn/LearningPath';
 import ReviewSession from '@/components/learn/ReviewSession';
 
-// MUST match module-sequence.ts — never hardcode these numbers
+// MUST match module-sequence.ts  –  never hardcode these numbers
 import { TOTAL_MODULES, PHASE_INFO } from '@/lib/learn/module-sequence';
 const STATS = { modules: TOTAL_MODULES, references: 68, labs: 6, phases: PHASE_INFO.length };
 
@@ -29,7 +29,7 @@ export default function LearnPage() {
   const isDevanagari = isDevanagariLocale(locale);
   const hf = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
-  /** Safe trilingual access — falls back to en for unknown locales */
+  /** Safe trilingual access  –  falls back to en for unknown locales */
   const tri = (obj: LocaleText | Record<string, string>) => tl(obj, locale);
 
   // Item 3: Reference library toggle
@@ -203,7 +203,7 @@ export default function LearnPage() {
           <div className="flex flex-wrap items-center gap-4 mb-8">
             <Link href="/learn/modules/0-1" className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gold-primary/20 border-2 border-gold-primary/40 text-gold-light text-lg font-bold hover:bg-gold-primary/30 hover:border-gold-primary/60 transition-all">
               <Sparkles className="w-6 h-6" />
-              {locale === 'hi' ? 'सीखना शुरू करें — मॉड्यूल 0.1' : locale === 'ta' ? 'கற்றலைத் தொடங்குங்கள்' : locale === 'bn' ? 'শেখা শুরু করুন' : 'Start Learning — Module 0.1'}
+              {locale === 'hi' ? 'सीखना शुरू करें  –  मॉड्यूल 0.1' : locale === 'ta' ? 'கற்றலைத் தொடங்குங்கள்' : locale === 'bn' ? 'শেখা শুরু করুন' : 'Start Learning  –  Module 0.1'}
               <ArrowRight className="w-5 h-5" />
             </Link>
             {hydrated && streak.streakDays > 0 && (
@@ -233,10 +233,10 @@ export default function LearnPage() {
             <ShareRow
               pageTitle={t('heroTitle')}
               shareText={locale === 'en'
-                ? 'Learn Vedic Astrology — 104 free modules from basics to advanced — Dekho Panchang'
+                ? 'Learn Vedic Astrology  –  104 free modules from basics to advanced  –  Dekho Panchang'
                 : isDevanagari
-                  ? 'वैदिक ज्योतिष सीखें — 104 निःशुल्क मॉड्यूल — Dekho Panchang'
-                  : 'वैदिकज्योतिषं पठतु — 104 निःशुल्कमॉड्यूलाः — Dekho Panchang'}
+                  ? 'वैदिक ज्योतिष सीखें  –  104 निःशुल्क मॉड्यूल  –  Dekho Panchang'
+                  : 'वैदिकज्योतिषं पठतु  –  104 निःशुल्कमॉड्यूलाः  –  Dekho Panchang'}
               locale={locale as Locale}
             />
           </div>
@@ -252,10 +252,10 @@ export default function LearnPage() {
           <div className="flex items-center gap-3">
             <GraduationCap className="w-5 h-5 text-violet-400" />
             <span className="text-text-primary font-medium" style={bf}>
-              {locale === 'hi' ? 'मेरा सीखने का डैशबोर्ड — प्रगति, स्ट्रीक, बैज' :
-               locale === 'ta' ? 'என் கற்றல் டாஷ்போர்ட் — முன்னேற்றம், தொடர், பதக்கங்கள்' :
-               locale === 'bn' ? 'আমার শেখার ড্যাশবোর্ড — অগ্রগতি, ধারাবাহিকতা, ব্যাজ' :
-               'My Learning Dashboard — progress, streak, badges'}
+              {locale === 'hi' ? 'मेरा सीखने का डैशबोर्ड  –  प्रगति, स्ट्रीक, बैज' :
+               locale === 'ta' ? 'என் கற்றல் டாஷ்போர்ட்  –  முன்னேற்றம், தொடர், பதக்கங்கள்' :
+               locale === 'bn' ? 'আমার শেখার ড্যাশবোর্ড  –  অগ্রগতি, ধারাবাহিকতা, ব্যাজ' :
+               'My Learning Dashboard  –  progress, streak, badges'}
             </span>
           </div>
           <ArrowRight className="w-5 h-5 text-violet-400 group-hover:translate-x-1 transition-transform" />
@@ -279,10 +279,10 @@ export default function LearnPage() {
          'Your Learning Journey'}
       </h2>
       <p className="text-text-secondary text-sm mb-8 max-w-2xl" style={bf}>
-        {locale === 'hi' ? '12 चरण, मूल बातों से लेकर उन्नत भविष्यवाणी तक — क्रमानुसार ऊपर बढ़ें।' :
-         locale === 'ta' ? '12 நிலைகள், அடிப்படையிலிருந்து மேம்பட்ட கணிப்பு வரை — வரிசையாக மேலே செல்லுங்கள்.' :
-         locale === 'bn' ? '12টি পর্যায়, মূল বিষয় থেকে উন্নত ভবিষ্যদ্বাণী পর্যন্ত — ক্রমানুসারে উপরে উঠুন।' :
-         '12 phases, from foundations to advanced prediction — work your way up.'}
+        {locale === 'hi' ? '12 चरण, मूल बातों से लेकर उन्नत भविष्यवाणी तक  –  क्रमानुसार ऊपर बढ़ें।' :
+         locale === 'ta' ? '12 நிலைகள், அடிப்படையிலிருந்து மேம்பட்ட கணிப்பு வரை  –  வரிசையாக மேலே செல்லுங்கள்.' :
+         locale === 'bn' ? '12টি পর্যায়, মূল বিষয় থেকে উন্নত ভবিষ্যদ্বাণী পর্যন্ত  –  ক্রমানুসারে উপরে উঠুন।' :
+         '12 phases, from foundations to advanced prediction  –  work your way up.'}
       </p>
       <div className="mb-16">
         <LearningPath />
@@ -350,10 +350,10 @@ export default function LearnPage() {
                 </h3>
                 <p className="text-amber-200/55 text-sm leading-relaxed" style={bf}>
                   {locale === 'en'
-                    ? 'Parashara · Varahamihira · Jaimini · Krishnamurti · Surya Siddhanta — all free via archive.org'
+                    ? 'Parashara · Varahamihira · Jaimini · Krishnamurti · Surya Siddhanta  –  all free via archive.org'
                     : isDevanagari
-                    ? 'पाराशर · वराहमिहिर · जैमिनी · कृष्णमूर्ति · सूर्य सिद्धान्त — archive.org पर निःशुल्क'
-                    : 'पाराशरः · वराहमिहिरः · जैमिनिः · कृष्णमूर्तिः — archive.org इत्यत्र निःशुल्काः'}
+                    ? 'पाराशर · वराहमिहिर · जैमिनी · कृष्णमूर्ति · सूर्य सिद्धान्त  –  archive.org पर निःशुल्क'
+                    : 'पाराशरः · वराहमिहिरः · जैमिनिः · कृष्णमूर्तिः  –  archive.org इत्यत्र निःशुल्काः'}
                 </p>
               </div>
               <div className="flex-shrink-0 flex items-center gap-2 text-amber-400/70 group-hover:text-amber-400 transition-colors">
@@ -395,9 +395,9 @@ export default function LearnPage() {
                 </h3>
                 <p className="text-purple-200/55 text-sm leading-relaxed" style={bf}>
                   {locale === 'en'
-                    ? 'Sine · Zero · Calculus · Pythagoras · Speed of Light — 8-slide visual stories for mobile'
+                    ? 'Sine · Zero · Calculus · Pythagoras · Speed of Light  –  8-slide visual stories for mobile'
                     : isDevanagari
-                    ? 'ज्या · शून्य · कलन · पाइथागोरस · प्रकाश गति — 8 स्लाइड दृश्य कहानियाँ'
+                    ? 'ज्या · शून्य · कलन · पाइथागोरस · प्रकाश गति  –  8 स्लाइड दृश्य कहानियाँ'
                     : 'ज्या · शून्यम् · कलनम् · पाइथागोरसः · प्रकाशगतिः'}
                 </p>
               </div>

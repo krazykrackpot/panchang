@@ -82,8 +82,8 @@ export const META_RULES: MetaRule[] = [
       return {
         ruleId: 'career-health-clash',
         text: {
-          en: 'Your career is accelerating but your body is sounding alarms — pace yourself or risk burnout. The chart asks you to honor both ambition and wellness.',
-          hi: 'करियर तेज हो रहा है लेकिन शरीर चेतावनी दे रहा है — स्वयं को गति दें या बर्नआउट का जोखिम उठाएँ।',
+          en: 'Your career is accelerating but your body is sounding alarms  –  pace yourself or risk burnout. The chart asks you to honor both ambition and wellness.',
+          hi: 'करियर तेज हो रहा है लेकिन शरीर चेतावनी दे रहा है  –  स्वयं को गति दें या बर्नआउट का जोखिम उठाएँ।',
         },
         severity: 2,
       };
@@ -106,8 +106,8 @@ export const META_RULES: MetaRule[] = [
       return {
         ruleId: 'wealth-relationship-tension',
         text: {
-          en: "Financial growth comes at the cost of partnership harmony — the chart asks you to balance money and love. Don't let career success become an excuse to neglect your closest relationship.",
-          hi: 'वित्तीय वृद्धि साझेदारी सद्भाव की कीमत पर — कुंडली धन और प्रेम को संतुलित करने कहती है।',
+          en: "Financial growth comes at the cost of partnership harmony  –  the chart asks you to balance money and love. Don't let career success become an excuse to neglect your closest relationship.",
+          hi: 'वित्तीय वृद्धि साझेदारी सद्भाव की कीमत पर  –  कुंडली धन और प्रेम को संतुलित करने कहती है।',
         },
         severity: 2,
       };
@@ -128,8 +128,8 @@ export const META_RULES: MetaRule[] = [
       return {
         ruleId: 'spiritual-career-conflict',
         text: {
-          en: "You're being pulled between worldly ambition and inner calling — this tension is the lesson itself. Don't force a choice; let the path reveal itself through patience.",
-          hi: 'सांसारिक महत्वाकांक्षा और आंतरिक पुकार के बीच खिंचाव — यह तनाव ही पाठ है।',
+          en: "You're being pulled between worldly ambition and inner calling  –  this tension is the lesson itself. Don't force a choice; let the path reveal itself through patience.",
+          hi: 'सांसारिक महत्वाकांक्षा और आंतरिक पुकार के बीच खिंचाव  –  यह तनाव ही पाठ है।',
         },
         severity: 1,
       };
@@ -147,8 +147,8 @@ export const META_RULES: MetaRule[] = [
       return {
         ruleId: 'multiple-high-activation',
         text: {
-          en: 'This is an exceptionally intense period — multiple life areas are demanding transformation simultaneously. Prioritize ruthlessly: not everything can be addressed at once. Focus on the highest-significance pattern first.',
-          hi: 'यह असाधारण रूप से तीव्र अवधि — कई जीवन क्षेत्र एक साथ परिवर्तन की माँग कर रहे हैं। सर्वोच्च महत्व के पैटर्न पर पहले ध्यान दें।',
+          en: 'This is an exceptionally intense period  –  multiple life areas are demanding transformation simultaneously. Prioritize ruthlessly: not everything can be addressed at once. Focus on the highest-significance pattern first.',
+          hi: 'यह असाधारण रूप से तीव्र अवधि  –  कई जीवन क्षेत्र एक साथ परिवर्तन की माँग कर रहे हैं। सर्वोच्च महत्व के पैटर्न पर पहले ध्यान दें।',
         },
         severity: 3,
       };
@@ -165,8 +165,8 @@ export const META_RULES: MetaRule[] = [
       return {
         ruleId: 'all-quiet',
         text: {
-          en: 'No major convergence patterns are currently active. This is a consolidation period — use this quiet window to prepare, save, build skills, and strengthen foundations for the next wave of activation.',
-          hi: 'कोई बड़ा संयोग पैटर्न सक्रिय नहीं। यह स्थिरीकरण काल — अगली सक्रियता लहर की तैयारी, बचत, कौशल निर्माण और नींव मजबूत करने का समय।',
+          en: 'No major convergence patterns are currently active. This is a consolidation period  –  use this quiet window to prepare, save, build skills, and strengthen foundations for the next wave of activation.',
+          hi: 'कोई बड़ा संयोग पैटर्न सक्रिय नहीं। यह स्थिरीकरण काल  –  अगली सक्रियता लहर की तैयारी, बचत, कौशल निर्माण और नींव मजबूत करने का समय।',
         },
         severity: 1,
       };
@@ -183,7 +183,7 @@ export const META_RULES: MetaRule[] = [
       return {
         ruleId: 'dasha-transition-amplifier',
         text: {
-          en: 'A major dasha transition is approaching within 6 months. Decisions made now carry amplified significance — they will define the tone of the next cycle. The current patterns will shift dramatically. Act with deliberation.',
+          en: 'A major dasha transition is approaching within 6 months. Decisions made now carry amplified significance  –  they will define the tone of the next cycle. The current patterns will shift dramatically. Act with deliberation.',
           hi: '6 महीने के भीतर बड़ा दशा संक्रमण। अभी लिए गए निर्णय अगले चक्र की दिशा तय करेंगे। वर्तमान पैटर्न नाटकीय रूप से बदलेंगे।',
         },
         severity: 3,
@@ -213,8 +213,8 @@ export const META_RULES: MetaRule[] = [
           return {
             ruleId: 'double-benefic',
             text: {
-              en: `Rare double blessing in ${themeNameEn}: ${patternNames}. Multiple protective forces align — this is your green light. The effect is multiplicative, not additive.`,
-              hi: `${themeNameHi} में दुर्लभ दोहरा आशीर्वाद: ${patternNames}। कई सुरक्षात्मक बल संरेखित — यह आपकी हरी बत्ती है।`,
+              en: `Rare double blessing in ${themeNameEn}: ${patternNames}. Multiple protective forces align  –  this is your green light. The effect is multiplicative, not additive.`,
+              hi: `${themeNameHi} में दुर्लभ दोहरा आशीर्वाद: ${patternNames}। कई सुरक्षात्मक बल संरेखित  –  यह आपकी हरी बत्ती है।`,
             },
             severity: 1,
           };
@@ -247,7 +247,7 @@ export const META_RULES: MetaRule[] = [
             ruleId: 'double-malefic',
             text: {
               en: `Compounding pressure in ${themeNameEn}: ${patternNames}. Multiple challenges in the same area demand active response, not passive endurance. Seek professional guidance.`,
-              hi: `${themeNameHi} में संयुक्त दबाव: ${patternNames}। सचेत नेविगेशन की माँग — निष्क्रिय सहन की नहीं।`,
+              hi: `${themeNameHi} में संयुक्त दबाव: ${patternNames}। सचेत नेविगेशन की माँग  –  निष्क्रिय सहन की नहीं।`,
             },
             severity: 3,
           };
@@ -285,8 +285,8 @@ export const META_RULES: MetaRule[] = [
       return {
         ruleId: 'retrograde-amplifier',
         text: {
-          en: `${retroListEn} ${allRetro.length === 1 ? 'is' : 'are'} retrograde in your convergence pattern, intensifying effects inward — you may feel impacts more psychologically than externally. Inner work, reflection, and journaling are especially productive.`,
-          hi: `${retroListHi} आपके संयोग पैटर्न में वक्री — प्रभाव बाहरी से अधिक मनोवैज्ञानिक। आंतरिक कार्य और चिंतन विशेष रूप से उत्पादक।`,
+          en: `${retroListEn} ${allRetro.length === 1 ? 'is' : 'are'} retrograde in your convergence pattern, intensifying effects inward  –  you may feel impacts more psychologically than externally. Inner work, reflection, and journaling are especially productive.`,
+          hi: `${retroListHi} आपके संयोग पैटर्न में वक्री  –  प्रभाव बाहरी से अधिक मनोवैज्ञानिक। आंतरिक कार्य और चिंतन विशेष रूप से उत्पादक।`,
         },
         severity: 1,
       };
@@ -318,8 +318,8 @@ export const META_RULES: MetaRule[] = [
           return {
             ruleId: 'ashtakavarga-boost',
             text: {
-              en: `${planetName} transiting ${signName} has exceptional Ashtakavarga strength (${sav} bindus) — its effects will be pronounced and unmistakable.`,
-              hi: `${planetName} ${signName} में गोचर — असाधारण अष्टकवर्ग शक्ति (${sav} बिन्दु) — प्रभाव स्पष्ट और अचूक।`,
+              en: `${planetName} transiting ${signName} has exceptional Ashtakavarga strength (${sav} bindus)  –  its effects will be pronounced and unmistakable.`,
+              hi: `${planetName} ${signName} में गोचर  –  असाधारण अष्टकवर्ग शक्ति (${sav} बिन्दु)  –  प्रभाव स्पष्ट और अचूक।`,
             },
             severity: 1,
           };
@@ -354,8 +354,8 @@ export const META_RULES: MetaRule[] = [
           return {
             ruleId: 'ashtakavarga-weakness',
             text: {
-              en: `${planetName} transiting ${signName} has weak Ashtakavarga support (${sav} bindus) — effects may be muted or delayed. Don't overreact; this transit lacks strength to deliver full impact.`,
-              hi: `${planetName} ${signName} में गोचर — कमजोर अष्टकवर्ग समर्थन (${sav} बिन्दु) — प्रभाव मंद या विलंबित।`,
+              en: `${planetName} transiting ${signName} has weak Ashtakavarga support (${sav} bindus)  –  effects may be muted or delayed. Don't overreact; this transit lacks strength to deliver full impact.`,
+              hi: `${planetName} ${signName} में गोचर  –  कमजोर अष्टकवर्ग समर्थन (${sav} बिन्दु)  –  प्रभाव मंद या विलंबित।`,
             },
             severity: 1,
           };
@@ -382,8 +382,8 @@ export const META_RULES: MetaRule[] = [
       return {
         ruleId: 'navamsha-confirmation',
         text: {
-          en: `Your ${themeListEn} convergence pattern${patternListEn} is confirmed in the Navamsha (D9) chart — deeper karmic significance, not just a surface-level transit. This carries weight across multiple dimensions.`,
-          hi: `${themeListHi} संयोग पैटर्न नवांश (D9) कुंडली में पुष्ट — गहरा कार्मिक महत्व, केवल सतही गोचर नहीं।`,
+          en: `Your ${themeListEn} convergence pattern${patternListEn} is confirmed in the Navamsha (D9) chart  –  deeper karmic significance, not just a surface-level transit. This carries weight across multiple dimensions.`,
+          hi: `${themeListHi} संयोग पैटर्न नवांश (D9) कुंडली में पुष्ट  –  गहरा कार्मिक महत्व, केवल सतही गोचर नहीं।`,
         },
         severity: 2,
       };

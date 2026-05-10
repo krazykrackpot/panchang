@@ -8,7 +8,7 @@
  *   - Dusthana placement (6/8/12) (+15)
  *   - Low Shadbala (< 40% of required minimum) (+25)
  *   - Retrograde in dusthana (+10)
- *   - Exalted / own sign (negative score — no remedy needed)
+ *   - Exalted / own sign (negative score  –  no remedy needed)
  *
  * Planets are classified into need levels:
  *   critical  (score >= 60)
@@ -46,7 +46,7 @@ const SIGN_LORD: Record<number, number> = {
   7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4,
 };
 
-/** Gemstone color hex for visual swatch — keyed by planet id */
+/** Gemstone color hex for visual swatch  –  keyed by planet id */
 export const GEMSTONE_COLORS: Record<number, string> = {
   0: '#e0115f', // Ruby red
   1: '#fafaf0', // Pearl white
@@ -88,13 +88,13 @@ export function generateGemstoneRecommendations(
     // 1. Debilitated
     if (planet.isDebilitated) {
       score += 35;
-      reasons.push('Debilitated (neecha) — planet at weakest dignity');
+      reasons.push('Debilitated (neecha)  –  planet at weakest dignity');
     }
 
     // 2. Combust (too close to Sun)
     if (planet.isCombust) {
       score += 20;
-      reasons.push('Combust by Sun — significations weakened');
+      reasons.push('Combust by Sun  –  significations weakened');
     }
 
     // 3. Dusthana placement
@@ -110,13 +110,13 @@ export function generateGemstoneRecommendations(
       reasons.push(`Low Shadbala strength (${sb.totalStrength.toFixed(0)}%)`);
     }
 
-    // 5. Retrograde in dusthana — extra affliction
+    // 5. Retrograde in dusthana  –  extra affliction
     if (planet.isRetrograde && DUSTHANA_HOUSES.has(planet.house)) {
       score += 10;
-      reasons.push('Retrograde in dusthana — compounded weakness');
+      reasons.push('Retrograde in dusthana  –  compounded weakness');
     }
 
-    // 6. Mrityu Bhaga — critical degree
+    // 6. Mrityu Bhaga  –  critical degree
     if (planet.isMrityuBhaga) {
       score += 10;
       reasons.push('At Mrityu Bhaga (critical degree)');
@@ -127,19 +127,19 @@ export function generateGemstoneRecommendations(
     // Exalted
     if (planet.isExalted) {
       score -= 30;
-      reasons.push('Exalted — naturally strong');
+      reasons.push('Exalted  –  naturally strong');
     }
 
     // Own sign
     if (planet.isOwnSign) {
       score -= 20;
-      reasons.push('In own sign — comfortable and strong');
+      reasons.push('In own sign  –  comfortable and strong');
     }
 
     // Vargottama
     if (planet.isVargottama) {
       score -= 10;
-      reasons.push('Vargottama — dignified across vargas');
+      reasons.push('Vargottama  –  dignified across vargas');
     }
 
     // --- Cautions ---
@@ -148,21 +148,21 @@ export function generateGemstoneRecommendations(
     // but wearing it for a non-functional benefic in dusthana can be risky.
     if (NATURAL_MALEFICS.has(pid) && pid !== lagnaLordId) {
       cautions.push(
-        'Natural malefic — consult a jyotishi before wearing. Gemstone amplifies the planet, including negative effects.'
+        'Natural malefic  –  consult a jyotishi before wearing. Gemstone amplifies the planet, including negative effects.'
       );
     }
 
-    // Saturn gemstone caution — Blue Sapphire is notoriously sensitive
+    // Saturn gemstone caution  –  Blue Sapphire is notoriously sensitive
     if (pid === 6) {
       cautions.push(
         'Blue Sapphire (Neelam) is extremely potent. Wear for 3-day trial period first. Remove immediately if adverse effects.'
       );
     }
 
-    // Rahu/Ketu — shadow planets, amplification is unpredictable
+    // Rahu/Ketu  –  shadow planets, amplification is unpredictable
     if (pid === 7 || pid === 8) {
       cautions.push(
-        'Shadow planet gemstone — effects can be unpredictable. Prefer mantra remedies unless specifically advised by a jyotishi.'
+        'Shadow planet gemstone  –  effects can be unpredictable. Prefer mantra remedies unless specifically advised by a jyotishi.'
       );
     }
 

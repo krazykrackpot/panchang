@@ -1,5 +1,5 @@
 /**
- * Personal Financial Windows — scores each month of the next 12 months
+ * Personal Financial Windows  –  scores each month of the next 12 months
  * based on dasha lords, their relation to wealth houses, dignity, and
  * retrograde periods.
  *
@@ -41,7 +41,7 @@ const PLANET_ID_BY_NAME: Record<string, number> = {
   Venus: 5, Saturn: 6, Rahu: 7, Ketu: 8,
 };
 
-/** Mercury retrograde rough schedule — approximation.
+/** Mercury retrograde rough schedule  –  approximation.
  *  Mercury goes retrograde ~3 times/year for ~3 weeks each.
  *  We flag months that overlap a retrograde window (rough dates for 2026-2028).
  *  This is a static approximation; a full ephemeris is not available here.
@@ -150,15 +150,15 @@ export function computeFinancialWindows(
       const { rulesWealthHouse, inWealthHouse, isExalted } = wealthScore(mahaId, kundali);
       if (rulesWealthHouse) {
         score += 20;
-        activities.push(`${mahaName} lords a wealth house — general prosperity signified`);
+        activities.push(`${mahaName} lords a wealth house  –  general prosperity signified`);
       }
       if (inWealthHouse) {
         score += 15;
-        activities.push(`${mahaName} is placed in a wealth house — focus on savings & gains`);
+        activities.push(`${mahaName} is placed in a wealth house  –  focus on savings & gains`);
       }
       if (isExalted) {
         score += 10;
-        activities.push(`${mahaName} is exalted — strong financial significations`);
+        activities.push(`${mahaName} is exalted  –  strong financial significations`);
       }
     }
 
@@ -167,11 +167,11 @@ export function computeFinancialWindows(
       const { rulesWealthHouse, inWealthHouse, isExalted } = wealthScore(antarId, kundali);
       if (rulesWealthHouse) {
         score += 15;
-        activities.push(`${antarName} antardasha lords a wealth house — good for investments`);
+        activities.push(`${antarName} antardasha lords a wealth house  –  good for investments`);
       }
       if (inWealthHouse) {
         score += 10;
-        activities.push(`${antarName} placed in wealth house — monitor income streams`);
+        activities.push(`${antarName} placed in wealth house  –  monitor income streams`);
       }
       if (isExalted) {
         score += 8;
@@ -181,41 +181,41 @@ export function computeFinancialWindows(
     // ── Jupiter / Venus bonus (natural karakas for wealth) ───────────────────
     if (mahaId === 4 || antarId === 4) {
       score += 12;
-      activities.push('Jupiter period — excellent for banking, loans, expansion');
+      activities.push('Jupiter period  –  excellent for banking, loans, expansion');
     }
     if (mahaId === 5 || antarId === 5) {
       score += 8;
-      activities.push('Venus period — favourable for luxury purchases, partnerships');
+      activities.push('Venus period  –  favourable for luxury purchases, partnerships');
     }
 
     // ── Mercury retrograde penalty ───────────────────────────────────────────
     if (isMercuryRetroMonth(year, month)) {
       score -= 10;
-      cautions.push('Mercury retrograde — avoid signing new contracts or major financial agreements');
+      cautions.push('Mercury retrograde  –  avoid signing new contracts or major financial agreements');
     }
 
     // ── Saturn/Rahu/Ketu malefic penalty ────────────────────────────────────
     if (mahaId === 6 || antarId === 6) {
       score -= 5;
-      cautions.push('Saturn period — avoid risky speculation; stick to long-term fixed assets');
+      cautions.push('Saturn period  –  avoid risky speculation; stick to long-term fixed assets');
     }
     if (mahaId === 7 || antarId === 7) {
       score -= 5;
-      cautions.push('Rahu period — be cautious with foreign currency, crypto, and speculative investments');
+      cautions.push('Rahu period  –  be cautious with foreign currency, crypto, and speculative investments');
     }
     if (mahaId === 8 || antarId === 8) {
       score -= 8;
-      cautions.push('Ketu period — losses possible; avoid major financial commitments');
+      cautions.push('Ketu period  –  losses possible; avoid major financial commitments');
     }
     if (mahaId === 2 || antarId === 2) {
       score -= 3;
-      cautions.push('Mars period — risk of impulsive spending; think twice before major purchases');
+      cautions.push('Mars period  –  risk of impulsive spending; think twice before major purchases');
     }
 
     // ── Ensure at least a baseline activity suggestion ───────────────────────
     if (activities.length === 0) {
       const planetName = mahaName || 'Current';
-      activities.push(`${planetName} period — review existing investments and maintain discipline`);
+      activities.push(`${planetName} period  –  review existing investments and maintain discipline`);
     }
 
     rawScores.push(score);

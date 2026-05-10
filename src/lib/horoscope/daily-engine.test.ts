@@ -31,7 +31,7 @@ describe('Daily Horoscope Engine', () => {
     }
   });
 
-  it('is deterministic — same input produces same output', () => {
+  it('is deterministic  –  same input produces same output', () => {
     const a = generateDailyHoroscope({ moonSign: 5, date: '2026-06-15' });
     const b = generateDailyHoroscope({ moonSign: 5, date: '2026-06-15' });
     expect(a).toEqual(b);

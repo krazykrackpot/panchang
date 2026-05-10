@@ -11,7 +11,7 @@ export default async function Layout({ children, params }: { children: React.Rea
   const { locale } = await params;
   return (
     <>
-      <LearnArticleLD route="/learn/smarta-vaishnava" locale={locale} title="Smarta & Vaishnava Calendar Systems — When Festivals Differ" description="Why Smarta and Vaishnava traditions sometimes observe the same festival on different days. Udaya Tithi, Viddha rejection, and Ekadashi rules explained." />
+      <LearnArticleLD route="/learn/smarta-vaishnava" locale={locale} title="Smarta & Vaishnava Calendar Systems  –  When Festivals Differ" description="Why Smarta and Vaishnava traditions sometimes observe the same festival on different days. Udaya Tithi, Viddha rejection, and Ekadashi rules explained." />
       {children}
     </>
   );

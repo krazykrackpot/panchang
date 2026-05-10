@@ -52,7 +52,7 @@ const LABELS: Record<string, Record<string, string>> = {
     faq4q: 'Are spiritual practices affected during Holashtak?',
     faq4a: 'Spiritual practices are actually considered MORE powerful during Holashtak, not less. Fasting, prayer, mantra chanting, meditation, and charitable acts are encouraged and believed to yield enhanced results.',
     faq5q: 'What is the difference between Holashtak and Panchak?',
-    faq5a: 'Panchak is based on the Moon\'s nakshatra position (nakshatras 23-27) and occurs approximately monthly for ~2.5 days. Holashtak is based on the lunar calendar month and tithi (Phalguna Shukla 8-15) and occurs once a year for 8 days before Holi. They restrict different things — Panchak focuses on wood/fuel/travel/cremation, while Holashtak restricts ceremonies and new ventures.',
+    faq5a: 'Panchak is based on the Moon\'s nakshatra position (nakshatras 23-27) and occurs approximately monthly for ~2.5 days. Holashtak is based on the lunar calendar month and tithi (Phalguna Shukla 8-15) and occurs once a year for 8 days before Holi. They restrict different things  –  Panchak focuses on wood/fuel/travel/cremation, while Holashtak restricts ceremonies and new ventures.',
     learnMore: 'Learn More About Holashtak',
     seeAlso: 'See Also',
   },
@@ -97,7 +97,7 @@ const EIGHT_DAYS = [
   { day: 4, tithi: 'Ekadashi', tithiHi: 'एकादशी', desc: { en: 'Fasting day. Spiritual practices emphasized', hi: 'उपवास दिवस। आध्यात्मिक साधना पर ज़ोर' } },
   { day: 5, tithi: 'Dwadashi', tithiHi: 'द्वादशी', desc: { en: 'Holi preparations begin', hi: 'होली की तैयारी शुरू' } },
   { day: 6, tithi: 'Trayodashi', tithiHi: 'त्रयोदशी', desc: { en: 'Community gathering for Holika Dahan prep', hi: 'होलिका दहन की तैयारी' } },
-  { day: 7, tithi: 'Chaturdashi', tithiHi: 'चतुर्दशी', desc: { en: 'Holika Dahan eve — pyre assembled', hi: 'होलिका दहन की पूर्व संध्या' } },
+  { day: 7, tithi: 'Chaturdashi', tithiHi: 'चतुर्दशी', desc: { en: 'Holika Dahan eve  –  pyre assembled', hi: 'होलिका दहन की पूर्व संध्या' } },
   { day: 8, tithi: 'Purnima', tithiHi: 'पूर्णिमा', desc: { en: 'Holika Dahan night, Holi colors next day', hi: 'होलिका दहन, अगले दिन रंग' } },
 ];
 

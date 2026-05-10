@@ -11,7 +11,7 @@ export default async function Layout({ children, params }: { children: React.Rea
   const { locale } = await params;
   return (
     <>
-      <LearnArticleLD route="/learn/dasha-sandhi" locale={locale} title="Dasha Sandhi — Junction Periods Between Planetary Dashas" description="Understanding Dasha Sandhi — the critical transition windows between Maha, Antar, and Pratyantar Dashas." />
+      <LearnArticleLD route="/learn/dasha-sandhi" locale={locale} title="Dasha Sandhi  –  Junction Periods Between Planetary Dashas" description="Understanding Dasha Sandhi  –  the critical transition windows between Maha, Antar, and Pratyantar Dashas." />
       {children}
     </>
   );

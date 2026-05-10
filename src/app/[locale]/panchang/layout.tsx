@@ -17,7 +17,7 @@ export default async function PanchangLayout({ children, params }: { children: R
   const eventJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Event',
-    name: `Daily Panchang — ${today}`,
+    name: `Daily Panchang  –  ${today}`,
     description: 'Hindu Vedic Panchang with Tithi, Nakshatra, Yoga, Karana, Muhurta timings, sunrise/sunset, and planetary positions.',
     startDate: today,
     endDate: today,

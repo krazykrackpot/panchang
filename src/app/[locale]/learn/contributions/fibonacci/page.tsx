@@ -9,7 +9,7 @@ import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/contributions-fibonacci.json';
 
-export const revalidate = 604800; // 7 days — static educational content
+export const revalidate = 604800; // 7 days  –  static educational content
 
 
 
@@ -32,7 +32,7 @@ const TIMELINE = [
     year: '~200 BCE',
     who: 'Bharata Muni',
     text: 'Natyashastra',
-    event: { en: 'FIRST: Sequence emerges from tala (rhythmic cycle) analysis — musical discovery, 22 shrutis', hi: 'पहला: ताल विश्लेषण से अनुक्रम उभरता है — संगीत खोज, 22 श्रुतियाँ', sa: 'पहला: ताल विश्लेषण से अनुक्रम उभरता है — संगीत खोज, 22 श्रुतियाँ', mai: 'पहला: ताल विश्लेषण से अनुक्रम उभरता है — संगीत खोज, 22 श्रुतियाँ', mr: 'पहला: ताल विश्लेषण से अनुक्रम उभरता है — संगीत खोज, 22 श्रुतियाँ', ta: 'முதல்: தாள (தாள சுழற்சி) பகுப்பாய்வில் இருந்து வரிசை உருவாகிறது — இசை கண்டுபிடிப்பு, 22 சுருதிகள்', te: 'మొదటి: తాళ (లయ చక్రం) విశ్లేషణ నుండి శ్రేణి ఉద్భవిస్తుంది — సంగీత ఆవిష్కరణ, 22 శ్రుతులు', bn: 'প্রথম: তাল (ছন্দ চক্র) বিশ্লেষণ থেকে অনুক্রম উদ্ভূত — সংগীত আবিষ্কার, ২২ শ্রুতি', kn: 'ಮೊದಲು: ತಾಳ (ಲಯ ಚಕ್ರ) ವಿಶ್ಲೇಷಣೆಯಿಂದ ಅನುಕ್ರಮ ಹೊರಹೊಮ್ಮುತ್ತದೆ — ಸಂಗೀತ ಶೋಧನೆ, 22 ಶ್ರುತಿಗಳು', gu: 'પ્રથમ: તાલ (લયબદ્ધ ચક્ર) વિશ્લેષણમાંથી ક્રમ ઉભરે છે — સંગીત શોધ, 22 શ્રુતિ' },
+    event: { en: 'FIRST: Sequence emerges from tala (rhythmic cycle) analysis  –  musical discovery, 22 shrutis', hi: 'पहला: ताल विश्लेषण से अनुक्रम उभरता है  –  संगीत खोज, 22 श्रुतियाँ', sa: 'पहला: ताल विश्लेषण से अनुक्रम उभरता है  –  संगीत खोज, 22 श्रुतियाँ', mai: 'पहला: ताल विश्लेषण से अनुक्रम उभरता है  –  संगीत खोज, 22 श्रुतियाँ', mr: 'पहला: ताल विश्लेषण से अनुक्रम उभरता है  –  संगीत खोज, 22 श्रुतियाँ', ta: 'முதல்: தாள (தாள சுழற்சி) பகுப்பாய்வில் இருந்து வரிசை உருவாகிறது  –  இசை கண்டுபிடிப்பு, 22 சுருதிகள்', te: 'మొదటి: తాళ (లయ చక్రం) విశ్లేషణ నుండి శ్రేణి ఉద్భవిస్తుంది  –  సంగీత ఆవిష్కరణ, 22 శ్రుతులు', bn: 'প্রথম: তাল (ছন্দ চক্র) বিশ্লেষণ থেকে অনুক্রম উদ্ভূত  –  সংগীত আবিষ্কার, ২২ শ্রুতি', kn: 'ಮೊದಲು: ತಾಳ (ಲಯ ಚಕ್ರ) ವಿಶ್ಲೇಷಣೆಯಿಂದ ಅನುಕ್ರಮ ಹೊರಹೊಮ್ಮುತ್ತದೆ  –  ಸಂಗೀತ ಶೋಧನೆ, 22 ಶ್ರುತಿಗಳು', gu: 'પ્રથમ: તાલ (લયબદ્ધ ચક્ર) વિશ્લેષણમાંથી ક્રમ ઉભરે છે  –  સંગીત શોધ, 22 શ્રુતિ' },
     color: 'border-gold-primary/70',
     badge: { en: 'MUSIC', hi: 'संगीत', sa: 'संगीत', mai: 'संगीत', mr: 'संगीत', ta: 'இசை', te: 'సంగీతం', bn: 'সংগীত', kn: 'ಸಂಗೀತ', gu: 'સંગીત' },
     badgeColor: 'bg-gold-primary/20 text-gold-primary',
@@ -41,7 +41,7 @@ const TIMELINE = [
     year: '~200 BCE',
     who: 'Pingala',
     text: 'Chandahshastra',
-    event: { en: "Sequence in Sanskrit prosody (laghu/guru syllables); discovers Meruprastara (Pascal's Triangle) — diagonals give Fibonacci numbers", hi: 'संस्कृत छंद-विज्ञान में अनुक्रम (लघु/गुरु अक्षर); मेरुप्रस्तार की खोज — विकर्ण फिबोनाची संख्याएँ देते हैं', sa: 'संस्कृत छंद-विज्ञान में अनुक्रम (लघु/गुरु अक्षर); मेरुप्रस्तार की खोज — विकर्ण फिबोनाची संख्याएँ देते हैं', mai: 'संस्कृत छंद-विज्ञान में अनुक्रम (लघु/गुरु अक्षर); मेरुप्रस्तार की खोज — विकर्ण फिबोनाची संख्याएँ देते हैं', mr: 'संस्कृत छंद-विज्ञान में अनुक्रम (लघु/गुरु अक्षर); मेरुप्रस्तार की खोज — विकर्ण फिबोनाची संख्याएँ देते हैं', ta: "சமஸ்கிருத யாப்பிலக்கணத்தில் (லகு/குரு எழுத்துக்கள்) வரிசை; மேருப்ரஸ்தாரத்தை (பாஸ்கல் முக்கோணம்) கண்டறிகிறார் — மூலைவிட்டங்கள் ஃபிபொனாச்சி எண்களைத் தருகின்றன", te: "సంస్కృత ఛందస్సులో (లఘు/గురు అక్షరాలు) శ్రేణి; మేరుప్రస్తారం (పాస్కల్ త్రిభుజం) కనుగొన్నారు — వికర్ణాలు ఫిబొనాచ్చి సంఖ్యలను ఇస్తాయి", bn: "সংস্কৃত ছন্দশাস্ত্রে (লঘু/গুরু অক্ষর) অনুক্রম; মেরুপ্রস্তার (প্যাসকেলের ত্রিভুজ) আবিষ্কার — কর্ণগুলি ফিবোনাচ্চি সংখ্যা দেয়", kn: "ಸಂಸ್ಕೃತ ಛಂದಸ್ಸಿನಲ್ಲಿ (ಲಘು/ಗುರು ಅಕ್ಷರಗಳು) ಅನುಕ್ರಮ; ಮೇರುಪ್ರಸ್ತಾರ (ಪ್ಯಾಸ್ಕಲ್ ತ್ರಿಕೋಣ) ಶೋಧನೆ — ಕರ್ಣಗಳು ಫಿಬೊನಾಚ್ಚಿ ಸಂಖ್ಯೆಗಳನ್ನು ನೀಡುತ್ತವೆ", gu: "સંસ્કૃત છંદશાસ્ત્રમાં (લઘુ/ગુરુ અક્ષરો) ક્રમ; મેરુપ્રસ્તાર (પાસ્કલનો ત્રિકોણ) શોધે છે — વિકર્ણ ફિબોનાચ્ચી સંખ્યાઓ આપે છે" },
+    event: { en: "Sequence in Sanskrit prosody (laghu/guru syllables); discovers Meruprastara (Pascal's Triangle)  –  diagonals give Fibonacci numbers", hi: 'संस्कृत छंद-विज्ञान में अनुक्रम (लघु/गुरु अक्षर); मेरुप्रस्तार की खोज  –  विकर्ण फिबोनाची संख्याएँ देते हैं', sa: 'संस्कृत छंद-विज्ञान में अनुक्रम (लघु/गुरु अक्षर); मेरुप्रस्तार की खोज  –  विकर्ण फिबोनाची संख्याएँ देते हैं', mai: 'संस्कृत छंद-विज्ञान में अनुक्रम (लघु/गुरु अक्षर); मेरुप्रस्तार की खोज  –  विकर्ण फिबोनाची संख्याएँ देते हैं', mr: 'संस्कृत छंद-विज्ञान में अनुक्रम (लघु/गुरु अक्षर); मेरुप्रस्तार की खोज  –  विकर्ण फिबोनाची संख्याएँ देते हैं', ta: "சமஸ்கிருத யாப்பிலக்கணத்தில் (லகு/குரு எழுத்துக்கள்) வரிசை; மேருப்ரஸ்தாரத்தை (பாஸ்கல் முக்கோணம்) கண்டறிகிறார்  –  மூலைவிட்டங்கள் ஃபிபொனாச்சி எண்களைத் தருகின்றன", te: "సంస్కృత ఛందస్సులో (లఘు/గురు అక్షరాలు) శ్రేణి; మేరుప్రస్తారం (పాస్కల్ త్రిభుజం) కనుగొన్నారు  –  వికర్ణాలు ఫిబొనాచ్చి సంఖ్యలను ఇస్తాయి", bn: "সংস্কৃত ছন্দশাস্ত্রে (লঘু/গুরু অক্ষর) অনুক্রম; মেরুপ্রস্তার (প্যাসকেলের ত্রিভুজ) আবিষ্কার  –  কর্ণগুলি ফিবোনাচ্চি সংখ্যা দেয়", kn: "ಸಂಸ್ಕೃತ ಛಂದಸ್ಸಿನಲ್ಲಿ (ಲಘು/ಗುರು ಅಕ್ಷರಗಳು) ಅನುಕ್ರಮ; ಮೇರುಪ್ರಸ್ತಾರ (ಪ್ಯಾಸ್ಕಲ್ ತ್ರಿಕೋಣ) ಶೋಧನೆ  –  ಕರ್ಣಗಳು ಫಿಬೊನಾಚ್ಚಿ ಸಂಖ್ಯೆಗಳನ್ನು ನೀಡುತ್ತವೆ", gu: "સંસ્કૃત છંદશાસ્ત્રમાં (લઘુ/ગુરુ અક્ષરો) ક્રમ; મેરુપ્રસ્તાર (પાસ્કલનો ત્રિકોણ) શોધે છે  –  વિકર્ણ ફિબોનાચ્ચી સંખ્યાઓ આપે છે" },
     color: 'border-amber-400/60',
     badge: { en: 'POETRY', hi: 'कविता', sa: 'कविता', mai: 'कविता', mr: 'कविता', ta: 'கவிதை', te: 'కవిత్వం', bn: 'কবিতা', kn: 'ಕಾವ್ಯ', gu: 'કવિતા' },
     badgeColor: 'bg-amber-500/20 text-amber-400',
@@ -50,7 +50,7 @@ const TIMELINE = [
     year: '~600 CE',
     who: 'Virahanka',
     text: 'Vrittajatisamuccaya',
-    event: { en: 'First EXPLICIT recurrence relation: F(n) = F(n−1) + F(n−2) — the defining rule, stated clearly for the first time', hi: 'पहला स्पष्ट पुनरावृत्ति संबंध: F(n) = F(n−1) + F(n−2) — पहली बार स्पष्ट रूप से कहा गया', sa: 'पहला स्पष्ट पुनरावृत्ति संबंध: F(n) = F(n−1) + F(n−2) — पहली बार स्पष्ट रूप से कहा गया', mai: 'पहला स्पष्ट पुनरावृत्ति संबंध: F(n) = F(n−1) + F(n−2) — पहली बार स्पष्ट रूप से कहा गया', mr: 'पहला स्पष्ट पुनरावृत्ति संबंध: F(n) = F(n−1) + F(n−2) — पहली बार स्पष्ट रूप से कहा गया', ta: 'முதல் வெளிப்படையான மீண்டொரு தொடர்பு: F(n) = F(n−1) + F(n−2) — வரையறுக்கும் விதி, முதன்முறையாக தெளிவாகக் கூறப்பட்டது', te: 'మొదటి స్పష్టమైన పునరావృత్తి సంబంధం: F(n) = F(n−1) + F(n−2) — నిర్వచించే నియమం, మొదటిసారిగా స్పష్టంగా చెప్పబడింది', bn: 'প্রথম সুস্পষ্ট পুনরাবৃত্তি সম্পর্ক: F(n) = F(n−1) + F(n−2) — সংজ্ঞায়িত নিয়ম, প্রথমবার স্পষ্টভাবে বলা হয়েছে', kn: 'ಮೊದಲ ಸ್ಪಷ್ಟ ಪುನರಾವರ್ತನೆ ಸಂಬಂಧ: F(n) = F(n−1) + F(n−2) — ವ್ಯಾಖ್ಯಾನಿಸುವ ನಿಯಮ, ಮೊದಲ ಬಾರಿಗೆ ಸ್ಪಷ್ಟವಾಗಿ ಹೇಳಲಾಗಿದೆ', gu: 'પ્રથમ સ્પષ્ટ પુનરાવર્તન સંબંધ: F(n) = F(n−1) + F(n−2) — વ્યાખ્યાયિત નિયમ, પ્રથમ વખત સ્પષ્ટ રીતે જણાવાયો' },
+    event: { en: 'First EXPLICIT recurrence relation: F(n) = F(n−1) + F(n−2)  –  the defining rule, stated clearly for the first time', hi: 'पहला स्पष्ट पुनरावृत्ति संबंध: F(n) = F(n−1) + F(n−2)  –  पहली बार स्पष्ट रूप से कहा गया', sa: 'पहला स्पष्ट पुनरावृत्ति संबंध: F(n) = F(n−1) + F(n−2)  –  पहली बार स्पष्ट रूप से कहा गया', mai: 'पहला स्पष्ट पुनरावृत्ति संबंध: F(n) = F(n−1) + F(n−2)  –  पहली बार स्पष्ट रूप से कहा गया', mr: 'पहला स्पष्ट पुनरावृत्ति संबंध: F(n) = F(n−1) + F(n−2)  –  पहली बार स्पष्ट रूप से कहा गया', ta: 'முதல் வெளிப்படையான மீண்டொரு தொடர்பு: F(n) = F(n−1) + F(n−2)  –  வரையறுக்கும் விதி, முதன்முறையாக தெளிவாகக் கூறப்பட்டது', te: 'మొదటి స్పష్టమైన పునరావృత్తి సంబంధం: F(n) = F(n−1) + F(n−2)  –  నిర్వచించే నియమం, మొదటిసారిగా స్పష్టంగా చెప్పబడింది', bn: 'প্রথম সুস্পষ্ট পুনরাবৃত্তি সম্পর্ক: F(n) = F(n−1) + F(n−2)  –  সংজ্ঞায়িত নিয়ম, প্রথমবার স্পষ্টভাবে বলা হয়েছে', kn: 'ಮೊದಲ ಸ್ಪಷ್ಟ ಪುನರಾವರ್ತನೆ ಸಂಬಂಧ: F(n) = F(n−1) + F(n−2)  –  ವ್ಯಾಖ್ಯಾನಿಸುವ ನಿಯಮ, ಮೊದಲ ಬಾರಿಗೆ ಸ್ಪಷ್ಟವಾಗಿ ಹೇಳಲಾಗಿದೆ', gu: 'પ્રથમ સ્પષ્ટ પુનરાવર્તન સંબંધ: F(n) = F(n−1) + F(n−2)  –  વ્યાખ્યાયિત નિયમ, પ્રથમ વખત સ્પષ્ટ રીતે જણાવાયો' },
     color: 'border-emerald-400/60',
     badge: { en: 'RECURRENCE', hi: 'पुनरावृत्ति', sa: 'पुनरावृत्ति', mai: 'पुनरावृत्ति', mr: 'पुनरावृत्ति', ta: 'மீண்டும் வருதல்', te: 'పునరావృత్తి', bn: 'পুনরাবৃত্তি', kn: 'ಪುನರಾವರ್ತನೆ', gu: 'પુનરાવર્તન' },
     badgeColor: 'bg-emerald-500/20 text-emerald-400',
@@ -68,7 +68,7 @@ const TIMELINE = [
     year: '1150 CE',
     who: 'Hemachandra',
     text: 'Chandonushasana',
-    event: { en: 'Independent derivation — 52 years before Fibonacci. Full explicit statement of the recurrence. Sometimes called the Hemachandra-Fibonacci sequence.', hi: 'स्वतंत्र व्युत्पत्ति — फिबोनाची से 52 साल पहले। कभी-कभी हेमचंद्र-फिबोनाची अनुक्रम कहा जाता है।', sa: 'स्वतंत्र व्युत्पत्ति — फिबोनाची से 52 साल पहले। कभी-कभी हेमचंद्र-फिबोनाची अनुक्रम कहा जाता है।', mai: 'स्वतंत्र व्युत्पत्ति — फिबोनाची से 52 साल पहले। कभी-कभी हेमचंद्र-फिबोनाची अनुक्रम कहा जाता है।', mr: 'स्वतंत्र व्युत्पत्ति — फिबोनाची से 52 साल पहले। कभी-कभी हेमचंद्र-फिबोनाची अनुक्रम कहा जाता है।', ta: 'சுதந்திர வருவிப்பு — ஃபிபொனாச்சிக்கு 52 ஆண்டுகள் முன்னதாக. மீண்டொரு தொடர்பின் முழு வெளிப்படையான அறிக்கை. சில நேரங்களில் ஹேமசந்திர-ஃபிபொனாச்சி வரிசை எனப்படுகிறது.', te: 'స్వతంత్ర వ్యుత్పత్తి — ఫిబొనాచ్చి కంటే 52 సంవత్సరాల ముందు. పునరావృత్తి యొక్క పూర్తి స్పష్ట ప్రకటన. కొన్నిసార్లు హేమచంద్ర-ఫిబొనాచ్చి శ్రేణి అని పిలువబడుతుంది.', bn: 'স্বতন্ত্র উদ্ভাবন — ফিবোনাচ্চির ৫২ বছর আগে। পুনরাবৃত্তির সম্পূর্ণ সুস্পষ্ট বিবৃতি। কখনও কখনও হেমচন্দ্র-ফিবোনাচ্চি অনুক্রম বলা হয়।', kn: 'ಸ್ವತಂತ್ರ ವ್ಯುತ್ಪತ್ತಿ — ಫಿಬೊನಾಚ್ಚಿಗಿಂತ 52 ವರ್ಷ ಮೊದಲು. ಪುನರಾವರ್ತನೆಯ ಪೂರ್ಣ ಸ್ಪಷ್ಟ ಹೇಳಿಕೆ. ಕೆಲವೊಮ್ಮೆ ಹೇಮಚಂದ್ರ-ಫಿಬೊನಾಚ್ಚಿ ಅನುಕ್ರಮ ಎಂದು ಕರೆಯಲಾಗುತ್ತದೆ.', gu: 'સ્વતંત્ર વ્યુત્પત્તિ — ફિબોનાચ્ચી કરતાં 52 વર્ષ અગાઉ. પુનરાવર્તનનું સંપૂર્ણ સ્પષ્ટ નિવેદન. ક્યારેક હેમચંદ્ર-ફિબોનાચ્ચી ક્રમ કહેવાય છે.' },
+    event: { en: 'Independent derivation  –  52 years before Fibonacci. Full explicit statement of the recurrence. Sometimes called the Hemachandra-Fibonacci sequence.', hi: 'स्वतंत्र व्युत्पत्ति  –  फिबोनाची से 52 साल पहले। कभी-कभी हेमचंद्र-फिबोनाची अनुक्रम कहा जाता है।', sa: 'स्वतंत्र व्युत्पत्ति  –  फिबोनाची से 52 साल पहले। कभी-कभी हेमचंद्र-फिबोनाची अनुक्रम कहा जाता है।', mai: 'स्वतंत्र व्युत्पत्ति  –  फिबोनाची से 52 साल पहले। कभी-कभी हेमचंद्र-फिबोनाची अनुक्रम कहा जाता है।', mr: 'स्वतंत्र व्युत्पत्ति  –  फिबोनाची से 52 साल पहले। कभी-कभी हेमचंद्र-फिबोनाची अनुक्रम कहा जाता है।', ta: 'சுதந்திர வருவிப்பு  –  ஃபிபொனாச்சிக்கு 52 ஆண்டுகள் முன்னதாக. மீண்டொரு தொடர்பின் முழு வெளிப்படையான அறிக்கை. சில நேரங்களில் ஹேமசந்திர-ஃபிபொனாச்சி வரிசை எனப்படுகிறது.', te: 'స్వతంత్ర వ్యుత్పత్తి  –  ఫిబొనాచ్చి కంటే 52 సంవత్సరాల ముందు. పునరావృత్తి యొక్క పూర్తి స్పష్ట ప్రకటన. కొన్నిసార్లు హేమచంద్ర-ఫిబొనాచ్చి శ్రేణి అని పిలువబడుతుంది.', bn: 'স্বতন্ত্র উদ্ভাবন  –  ফিবোনাচ্চির ৫২ বছর আগে। পুনরাবৃত্তির সম্পূর্ণ সুস্পষ্ট বিবৃতি। কখনও কখনও হেমচন্দ্র-ফিবোনাচ্চি অনুক্রম বলা হয়।', kn: 'ಸ್ವತಂತ್ರ ವ್ಯುತ್ಪತ್ತಿ  –  ಫಿಬೊನಾಚ್ಚಿಗಿಂತ 52 ವರ್ಷ ಮೊದಲು. ಪುನರಾವರ್ತನೆಯ ಪೂರ್ಣ ಸ್ಪಷ್ಟ ಹೇಳಿಕೆ. ಕೆಲವೊಮ್ಮೆ ಹೇಮಚಂದ್ರ-ಫಿಬೊನಾಚ್ಚಿ ಅನುಕ್ರಮ ಎಂದು ಕರೆಯಲಾಗುತ್ತದೆ.', gu: 'સ્વતંત્ર વ્યુત્પત્તિ  –  ફિબોનાચ્ચી કરતાં 52 વર્ષ અગાઉ. પુનરાવર્તનનું સંપૂર્ણ સ્પષ્ટ નિવેદન. ક્યારેક હેમચંદ્ર-ફિબોનાચ્ચી ક્રમ કહેવાય છે.' },
     color: 'border-violet-400/60',
     badge: { en: '52 YRS EARLIER', hi: '52 साल पहले', sa: '52 साल पहले', mai: '52 साल पहले', mr: '52 साल पहले', ta: '52 ஆண்டுகள் முன்னதாக', te: '52 సంవత్సరాల ముందు', bn: '52 বছর আগে', kn: '52 ವರ್ಷಗಳ ಮುಂಚೆ', gu: '52 વર્ષ અગાઉ' },
     badgeColor: 'bg-violet-500/20 text-violet-400',
@@ -77,7 +77,7 @@ const TIMELINE = [
     year: '1202 CE',
     who: 'Leonardo Fibonacci',
     text: 'Liber Abaci',
-    event: { en: "Introduces sequence to Europe via rabbit-breeding problem — 1,400 years after Bharata Muni. Gets naming credit in the West.", hi: 'खरगोश-प्रजनन समस्या के माध्यम से यूरोप में अनुक्रम पेश करता है — भरत मुनि के 1,400 साल बाद।', sa: 'खरगोश-प्रजनन समस्या के माध्यम से यूरोप में अनुक्रम पेश करता है — भरत मुनि के 1,400 साल बाद।', mai: 'खरगोश-प्रजनन समस्या के माध्यम से यूरोप में अनुक्रम पेश करता है — भरत मुनि के 1,400 साल बाद।', mr: 'खरगोश-प्रजनन समस्या के माध्यम से यूरोप में अनुक्रम पेश करता है — भरत मुनि के 1,400 साल बाद।', ta: "முயல்-வளர்ப்புப் பிரச்சனை மூலம் ஐரோப்பாவுக்கு வரிசையை அறிமுகப்படுத்துகிறார் — பரத முனிக்குப் பின் 1,400 ஆண்டுகள். மேற்கில் பெயர் பெறுகிறார்.", te: "కుందేలు-పెంపకం సమస్య ద్వారా యూరప్‌కు శ్రేణిని పరిచయం చేస్తారు — భరత ముని తర్వాత 1,400 సంవత్సరాలు. పశ్చిమంలో నామకరణ ఘనత పొందారు.", bn: "খরগোশ-প্রজনন সমস্যার মাধ্যমে ইউরোপে অনুক্রম পরিচয় করান — ভরত মুনির ১,৪০০ বছর পরে। পশ্চিমে নামকরণের কৃতিত্ব পান।", kn: "ಮೊಲ-ಸಂತಾನೋತ್ಪತ್ತಿ ಸಮಸ್ಯೆ ಮೂಲಕ ಯೂರೋಪ್‌ಗೆ ಅನುಕ್ರಮವನ್ನು ಪರಿಚಯಿಸುತ್ತಾರೆ — ಭರತ ಮುನಿಯ 1,400 ವರ್ಷಗಳ ನಂತರ. ಪಶ್ಚಿಮದಲ್ಲಿ ನಾಮಕರಣ ಶ್ರೇಯಸ್ಸು ಪಡೆಯುತ್ತಾರೆ.", gu: "સસલા-ઉછેર સમસ્યા દ્વારા યુરોપમાં ક્રમ રજૂ કરે છે — ભરત મુનિના 1,400 વર્ષ પછી. પશ્ચિમમાં નામાંકન શ્રેય મેળવે છે." },
+    event: { en: "Introduces sequence to Europe via rabbit-breeding problem  –  1,400 years after Bharata Muni. Gets naming credit in the West.", hi: 'खरगोश-प्रजनन समस्या के माध्यम से यूरोप में अनुक्रम पेश करता है  –  भरत मुनि के 1,400 साल बाद।', sa: 'खरगोश-प्रजनन समस्या के माध्यम से यूरोप में अनुक्रम पेश करता है  –  भरत मुनि के 1,400 साल बाद।', mai: 'खरगोश-प्रजनन समस्या के माध्यम से यूरोप में अनुक्रम पेश करता है  –  भरत मुनि के 1,400 साल बाद।', mr: 'खरगोश-प्रजनन समस्या के माध्यम से यूरोप में अनुक्रम पेश करता है  –  भरत मुनि के 1,400 साल बाद।', ta: "முயல்-வளர்ப்புப் பிரச்சனை மூலம் ஐரோப்பாவுக்கு வரிசையை அறிமுகப்படுத்துகிறார்  –  பரத முனிக்குப் பின் 1,400 ஆண்டுகள். மேற்கில் பெயர் பெறுகிறார்.", te: "కుందేలు-పెంపకం సమస్య ద్వారా యూరప్‌కు శ్రేణిని పరిచయం చేస్తారు  –  భరత ముని తర్వాత 1,400 సంవత్సరాలు. పశ్చిమంలో నామకరణ ఘనత పొందారు.", bn: "খরগোশ-প্রজনন সমস্যার মাধ্যমে ইউরোপে অনুক্রম পরিচয় করান  –  ভরত মুনির ১,৪০০ বছর পরে। পশ্চিমে নামকরণের কৃতিত্ব পান।", kn: "ಮೊಲ-ಸಂತಾನೋತ್ಪತ್ತಿ ಸಮಸ್ಯೆ ಮೂಲಕ ಯೂರೋಪ್‌ಗೆ ಅನುಕ್ರಮವನ್ನು ಪರಿಚಯಿಸುತ್ತಾರೆ  –  ಭರತ ಮುನಿಯ 1,400 ವರ್ಷಗಳ ನಂತರ. ಪಶ್ಚಿಮದಲ್ಲಿ ನಾಮಕರಣ ಶ್ರೇಯಸ್ಸು ಪಡೆಯುತ್ತಾರೆ.", gu: "સસલા-ઉછેર સમસ્યા દ્વારા યુરોપમાં ક્રમ રજૂ કરે છે  –  ભરત મુનિના 1,400 વર્ષ પછી. પશ્ચિમમાં નામાંકન શ્રેય મેળવે છે." },
     color: 'border-red-400/40',
     badge: { en: 'EUROPE', hi: 'यूरोप', sa: 'यूरोप', mai: 'यूरोप', mr: 'यूरोप', ta: 'ஐரோப்பா', te: 'యూరప్', bn: 'ইউরোপ', kn: 'ಯೂರೋಪ್', gu: 'યુરોપ' },
     badgeColor: 'bg-red-500/20 text-red-400',
@@ -94,14 +94,14 @@ const NATURE_EXAMPLES = [
 ];
 
 const SANSKRIT_TERMS = [
-  { term: 'Tala', transliteration: 'tāla', meaning: 'rhythmic cycle — where Bharata Muni found the sequence', devanagari: 'ताल' },
-  { term: 'Matra', transliteration: 'mātrā', meaning: 'time unit / beat in tala — the counting unit', devanagari: 'मात्रा' },
-  { term: 'Laghu', transliteration: 'laghu', meaning: "light / short — short syllable or beat (= 0 in Pingala's binary)", devanagari: 'लघु' },
-  { term: 'Guru', transliteration: 'guru', meaning: "heavy / long — long syllable or beat (= 1 in Pingala's binary)", devanagari: 'गुरु' },
-  { term: 'Meruprastara', transliteration: 'Meru-prastāra', meaning: "Mount Meru's Triangle — Pascal's triangle, 1,800 years before Pascal", devanagari: 'मेरुप्रस्तार' },
+  { term: 'Tala', transliteration: 'tāla', meaning: 'rhythmic cycle  –  where Bharata Muni found the sequence', devanagari: 'ताल' },
+  { term: 'Matra', transliteration: 'mātrā', meaning: 'time unit / beat in tala  –  the counting unit', devanagari: 'मात्रा' },
+  { term: 'Laghu', transliteration: 'laghu', meaning: "light / short  –  short syllable or beat (= 0 in Pingala's binary)", devanagari: 'लघु' },
+  { term: 'Guru', transliteration: 'guru', meaning: "heavy / long  –  long syllable or beat (= 1 in Pingala's binary)", devanagari: 'गुरु' },
+  { term: 'Meruprastara', transliteration: 'Meru-prastāra', meaning: "Mount Meru's Triangle  –  Pascal's triangle, 1,800 years before Pascal", devanagari: 'मेरुप्रस्तार' },
   { term: 'Natyashastra', transliteration: 'Nāṭya-śāstra', meaning: 'Treatise on Performing Arts by Bharata Muni (~200 BCE)', devanagari: 'नाट्यशास्त्र' },
   { term: 'Chandahshastra', transliteration: 'Chandaḥ-śāstra', meaning: 'Treatise on Prosody by Pingala (~200 BCE)', devanagari: 'छन्दशास्त्र' },
-  { term: 'Shruti', transliteration: 'śruti', meaning: '22 microtonal intervals — the mathematical foundation of Indian music in Natyashastra', devanagari: 'श्रुति' },
+  { term: 'Shruti', transliteration: 'śruti', meaning: '22 microtonal intervals  –  the mathematical foundation of Indian music in Natyashastra', devanagari: 'श्रुति' },
 ];
 
 /* ═══════════════════════════════════════════════════════════════
@@ -176,8 +176,8 @@ function MeruprastaraSVG({ hi }: { hi: boolean }) {
       </svg>
       <div className="text-center mt-2 text-xs text-text-secondary/60">
         {hi
-          ? 'मेरुप्रस्तार — सोने में हाइलाइट किए गए विकर्ण: 1, 1, 2, 3, 5, 8... (फिबोनाची)'
-          : 'Meruprastara — diagonals highlighted in gold: 1, 1, 2, 3, 5, 8... (Fibonacci)'}
+          ? 'मेरुप्रस्तार  –  सोने में हाइलाइट किए गए विकर्ण: 1, 1, 2, 3, 5, 8... (फिबोनाची)'
+          : 'Meruprastara  –  diagonals highlighted in gold: 1, 1, 2, 3, 5, 8... (Fibonacci)'}
       </div>
     </div>
   );
@@ -266,10 +266,10 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 pb-20 space-y-2">
 
-        {/* ═══ SECTION 1 — BHARATA MUNI ═══ */}
+        {/* ═══ SECTION 1  –  BHARATA MUNI ═══ */}
         <LessonSection number={1} title={t('s1Title')} variant="highlight">
           <div className="mb-4 inline-flex items-center gap-2 bg-gold-primary/15 border border-gold-primary/30 rounded-full px-4 py-1.5 text-xs font-bold text-gold-light uppercase tracking-wider">
-            {hi ? 'सबसे पुरानी खोज — संगीत से' : 'Earliest Discovery — From Music'}
+            {hi ? 'सबसे पुरानी खोज  –  संगीत से' : 'Earliest Discovery  –  From Music'}
           </div>
           <p>{t('s1Body')}</p>
 
@@ -297,8 +297,8 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
             ))}
             <div className="text-text-secondary/60 text-xs italic pl-2">
               {hi
-                ? 'यह फिबोनाची अनुक्रम है: 1, 2, 3, 5, 8... — भरत मुनि ने संगीत में खोजा।'
-                : 'This is the Fibonacci sequence: 1, 2, 3, 5, 8... — discovered by Bharata Muni in music.'}
+                ? 'यह फिबोनाची अनुक्रम है: 1, 2, 3, 5, 8...  –  भरत मुनि ने संगीत में खोजा।'
+                : 'This is the Fibonacci sequence: 1, 2, 3, 5, 8...  –  discovered by Bharata Muni in music.'}
             </div>
           </div>
 
@@ -314,12 +314,12 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
           </div>
         </LessonSection>
 
-        {/* ═══ SECTION 2 — PINGALA ═══ */}
+        {/* ═══ SECTION 2  –  PINGALA ═══ */}
         <LessonSection number={2} title={t('s2Title')}>
           <p>{t('s2Body')}</p>
           <div className="mt-6">
             <div className="text-gold-light font-semibold text-sm mb-4 uppercase tracking-wider">
-              {hi ? 'मेरुप्रस्तार — पास्कल से 1,800 साल पहले' : 'Meruprastara — 1,800 years before Pascal'}
+              {hi ? 'मेरुप्रस्तार  –  पास्कल से 1,800 साल पहले' : 'Meruprastara  –  1,800 years before Pascal'}
             </div>
             <div className="bg-white/[0.02] border border-gold-primary/10 rounded-xl p-4">
               <MeruprastaraSVG hi={hi} />
@@ -332,7 +332,7 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
           </div>
         </LessonSection>
 
-        {/* ═══ SECTION 3 — VIRAHANKA ═══ */}
+        {/* ═══ SECTION 3  –  VIRAHANKA ═══ */}
         <LessonSection number={3} title={t('s3Title')} variant="highlight">
           <p>{t('s3Body')}</p>
           <div
@@ -351,12 +351,12 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
             </div>
             <div className="font-mono text-gold-primary text-lg">F(n) = F(n−1) + F(n−2)</div>
             <div className="text-text-secondary/60 text-xs mt-1">
-              {hi ? 'विरहांका, ~600 ईस्वी — फिबोनाची से 600 साल पहले' : 'Virahanka, ~600 CE — 600 years before Fibonacci'}
+              {hi ? 'विरहांका, ~600 ईस्वी  –  फिबोनाची से 600 साल पहले' : 'Virahanka, ~600 CE  –  600 years before Fibonacci'}
             </div>
           </div>
         </LessonSection>
 
-        {/* ═══ SECTION 4 — HEMACHANDRA ═══ */}
+        {/* ═══ SECTION 4  –  HEMACHANDRA ═══ */}
         <LessonSection number={4} title={t('s4Title')}>
           <p>{t('s4Body')}</p>
           <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -373,7 +373,7 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
           </div>
         </LessonSection>
 
-        {/* ═══ SECTION 5 — HOW FIBONACCI GOT CREDIT ═══ */}
+        {/* ═══ SECTION 5  –  HOW FIBONACCI GOT CREDIT ═══ */}
         <LessonSection number={5} title={t('s5Title')} variant="highlight">
           <p>{t('s5Body')}</p>
           <div className="mt-5 bg-white/[0.02] border border-amber-500/20 rounded-xl p-5">
@@ -402,7 +402,7 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
           </div>
         </LessonSection>
 
-        {/* ═══ SECTION 6 — NATURE ═══ */}
+        {/* ═══ SECTION 6  –  NATURE ═══ */}
         <LessonSection number={6} title={t('s6Title')}>
           <p>{t('s6Body')}</p>
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -419,12 +419,12 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
           <div className="mt-5 bg-gold-primary/5 border border-gold-primary/15 rounded-lg p-4 text-sm text-text-secondary">
             <span className="text-gold-light font-semibold">{hi ? 'स्वर्णिम अनुपात: ' : 'Golden Ratio: '}</span>
             {hi
-              ? 'phi = 1.6180339... — उत्तराधिकारी फिबोनाची भिन्नों 1/1, 2/1, 3/2, 5/3, 8/5, 13/8... का सीमा मान।'
-              : 'phi = 1.6180339... — the limit of successive Fibonacci fractions 1/1, 2/1, 3/2, 5/3, 8/5, 13/8...'}
+              ? 'phi = 1.6180339...  –  उत्तराधिकारी फिबोनाची भिन्नों 1/1, 2/1, 3/2, 5/3, 8/5, 13/8... का सीमा मान।'
+              : 'phi = 1.6180339...  –  the limit of successive Fibonacci fractions 1/1, 2/1, 3/2, 5/3, 8/5, 13/8...'}
           </div>
         </LessonSection>
 
-        {/* ═══ SECTION 7 — UNIVERSALITY ═══ */}
+        {/* ═══ SECTION 7  –  UNIVERSALITY ═══ */}
         <LessonSection number={7} title={t('s7Title')} variant="highlight">
           <p>{t('s7Body')}</p>
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -446,7 +446,7 @@ export default async function FibonacciPage({ params }: { params: Promise<{ loca
           </div>
         </LessonSection>
 
-        {/* ═══ SECTION 8 — TIMELINE ═══ */}
+        {/* ═══ SECTION 8  –  TIMELINE ═══ */}
         <LessonSection number={8} title={t('s8Title')}>
           <p className="mb-6">{t('s8Body')}</p>
           <div className="space-y-3">

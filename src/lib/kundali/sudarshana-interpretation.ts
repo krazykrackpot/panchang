@@ -1,5 +1,5 @@
 /**
- * Sudarshana Chakra — Rich Interpretation Engine
+ * Sudarshana Chakra  –  Rich Interpretation Engine
  *
  * Generates meaningful annual prognosis from the triple-reference chart.
  * Consumes planet positions from KundaliData and produces detailed
@@ -89,8 +89,8 @@ export const EDUCATIONAL_NOTE =
 
 // Extended house descriptions for Sudarshana annual context
 const HOUSE_DESC: Record<number, string> = {
-  1: 'Focus turns inward to self, health, and personal identity. This is a year of new beginnings — how the world perceives you undergoes renewal. Physical vitality and self-expression take center stage.',
-  2: 'Wealth, family bonds, and speech are highlighted. Financial matters demand attention — income, savings, and family resources. What you value and how you communicate it shapes this year.',
+  1: 'Focus turns inward to self, health, and personal identity. This is a year of new beginnings  –  how the world perceives you undergoes renewal. Physical vitality and self-expression take center stage.',
+  2: 'Wealth, family bonds, and speech are highlighted. Financial matters demand attention  –  income, savings, and family resources. What you value and how you communicate it shapes this year.',
   3: 'Courage, initiative, and communication drive the year. Relationships with siblings matter. Short journeys, new skills, and bold self-expression bring growth.',
   4: 'Domestic life, emotional security, and property matters come into focus. Your connection to mother, home, and inner peace defines this period. Land, vehicles, and education may feature.',
   5: 'Creativity, intelligence, and children are central themes. Romance, speculation, and past-life merit come alive. This is a year for creative expression and joyful pursuits.',
@@ -105,15 +105,15 @@ const HOUSE_DESC: Record<number, string> = {
 
 // What each planet brings when it occupies or lords an activated house
 const PLANET_THEMES: Record<number, string> = {
-  0: 'brings authority, recognition, and vitality — expect leadership opportunities and matters of self-esteem to surface.',
-  1: 'brings emotional sensitivity, public connection, and nurturing energy — intuition guides decisions and relationships deepen.',
-  2: 'brings energy, courage, and assertiveness — initiative pays off but impulsive actions need checking.',
-  3: 'brings intellect, communication skills, and adaptability — learning, trade, and analytical thinking are favored.',
-  4: 'brings wisdom, expansion, and good fortune — growth through ethics, education, and spiritual pursuits.',
-  5: 'brings harmony, refinement, and material comfort — relationships, creativity, and aesthetic pleasures are enhanced.',
-  6: 'brings discipline, endurance, and karmic lessons — patience is required but lasting structures are built.',
-  7: 'brings intensity, sudden changes, and unconventional paths — desires amplify and unexpected opportunities arise.',
-  8: 'brings detachment, spiritual insight, and liberation themes — past karmic patterns may surface for resolution.',
+  0: 'brings authority, recognition, and vitality  –  expect leadership opportunities and matters of self-esteem to surface.',
+  1: 'brings emotional sensitivity, public connection, and nurturing energy  –  intuition guides decisions and relationships deepen.',
+  2: 'brings energy, courage, and assertiveness  –  initiative pays off but impulsive actions need checking.',
+  3: 'brings intellect, communication skills, and adaptability  –  learning, trade, and analytical thinking are favored.',
+  4: 'brings wisdom, expansion, and good fortune  –  growth through ethics, education, and spiritual pursuits.',
+  5: 'brings harmony, refinement, and material comfort  –  relationships, creativity, and aesthetic pleasures are enhanced.',
+  6: 'brings discipline, endurance, and karmic lessons  –  patience is required but lasting structures are built.',
+  7: 'brings intensity, sudden changes, and unconventional paths  –  desires amplify and unexpected opportunities arise.',
+  8: 'brings detachment, spiritual insight, and liberation themes  –  past karmic patterns may surface for resolution.',
 };
 
 const HOUSE_THEMES_SHORT: Record<number, string> = {
@@ -194,7 +194,7 @@ export function buildDetailedRingAnalysis(
   const signNameEn = tl(rashi.name, 'en');
   const baseTheme = HOUSE_DESC[activatedHouse] ?? '';
   const signSpecific = `Through ${signNameEn} (${signElement}, ${signQuality}), ` +
-    `this activation is colored by ${lordPlanetName}'s influence — ` +
+    `this activation is colored by ${lordPlanetName}'s influence  –  ` +
     `${PLANET_THEMES[lordPlanetId] ?? ''}` +
     (planetsPresent.length > 0
       ? ` Planets present in this sign (${planetsPresent.map(p => p.name).join(', ')}) add their own flavor to the year's themes.`
@@ -225,7 +225,7 @@ export function buildConvergenceNote(
   // Check for same house number
   if (lagna.house === chandra.house && chandra.house === surya.house) {
     parts.push(
-      `All three references — Lagna, Chandra, and Surya — activate the ${ordinal(lagna.house)} house simultaneously. ` +
+      `All three references  –  Lagna, Chandra, and Surya  –  activate the ${ordinal(lagna.house)} house simultaneously. ` +
       `This rare triple convergence creates an exceptionally powerful focus on ${HOUSE_THEMES_SHORT[lagna.house]?.toLowerCase() ?? 'this life area'}. ` +
       `Events in this domain will be unmistakably prominent this year.`
     );
@@ -247,7 +247,7 @@ export function buildConvergenceNote(
     parts.push('Strong kendra (angular house) activation indicates a year of stability, achievement, and tangible results in the material world.');
   }
   if (trikonaCoverage >= 2) {
-    parts.push('Multiple trikona (trinal house) activation signals auspicious developments — fortune, dharma, and creative expression are divinely supported.');
+    parts.push('Multiple trikona (trinal house) activation signals auspicious developments  –  fortune, dharma, and creative expression are divinely supported.');
   }
   if (dusthanaCoverage >= 2) {
     parts.push('Multiple dusthana (6/8/12) activation suggests a period of inner transformation. Challenges may arise, but they serve as catalysts for growth and spiritual development.');
@@ -275,7 +275,7 @@ export function buildYearDelta(
   parts.push(`This year's shift to the ${ordinal(currentLagna.house)} house marks a natural progression from ${HOUSE_THEMES_SHORT[prevLagnaHouse]?.toLowerCase() ?? ''} to ${HOUSE_THEMES_SHORT[currentLagna.house]?.toLowerCase() ?? ''}.`);
 
   if (prevChandraHouse !== prevLagnaHouse || currentChandra.house !== currentLagna.house) {
-    parts.push(`The emotional landscape (Chandra) moves from the ${ordinal(prevChandraHouse)} to the ${ordinal(currentChandra.house)} house — ${HOUSE_THEMES_SHORT[currentChandra.house]?.toLowerCase() ?? ''} now shapes your emotional world.`);
+    parts.push(`The emotional landscape (Chandra) moves from the ${ordinal(prevChandraHouse)} to the ${ordinal(currentChandra.house)} house  –  ${HOUSE_THEMES_SHORT[currentChandra.house]?.toLowerCase() ?? ''} now shapes your emotional world.`);
   }
 
   return parts.join(' ');
@@ -392,7 +392,7 @@ export function buildDashaContext(
   };
 
   const dashaInfluence = antarName
-    ? `${mahaName}-${antarName} dasha is running. ${DASHA_INFLUENCE[mahaName] ?? ''} The ${antarName} sub-period adds its own layer — this combination makes age ${age} uniquely different from the same house activation in other 12-year cycles.`
+    ? `${mahaName}-${antarName} dasha is running. ${DASHA_INFLUENCE[mahaName] ?? ''} The ${antarName} sub-period adds its own layer  –  this combination makes age ${age} uniquely different from the same house activation in other 12-year cycles.`
     : `${mahaName} Mahadasha is running. ${DASHA_INFLUENCE[mahaName] ?? ''}`;
 
   return { mahadasha: mahaName, antardasha: antarName, dashaInfluence };

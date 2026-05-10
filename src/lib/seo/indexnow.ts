@@ -1,5 +1,5 @@
 /**
- * IndexNow helper — notifies Bing, Yandex, and Google (since late 2024) of
+ * IndexNow helper  –  notifies Bing, Yandex, and Google (since late 2024) of
  * new or updated URLs so they get crawled quickly.
  *
  * Protocol: POST a JSON body to https://api.indexnow.org/indexnow with your
@@ -8,11 +8,11 @@
  * (file lives at public/a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6.txt)
  *
  * Response codes:
- *   200 / 202 — accepted
- *   400       — invalid request
- *   403       — key not found / mismatch
- *   422       — URLs don't belong to declared host
- *   429       — rate limited — back off and retry later
+ *   200 / 202  –  accepted
+ *   400        –  invalid request
+ *   403        –  key not found / mismatch
+ *   422        –  URLs don't belong to declared host
+ *   429        –  rate limited  –  back off and retry later
  *
  * Limit: up to 10,000 URLs per submission.
  */
@@ -31,7 +31,7 @@ export interface IndexNowResult {
 /**
  * Submit a list of site-relative paths to IndexNow.
  * Paths must start with `/` (e.g. `/en/panchang/delhi`).
- * Does not throw — any failure is returned in the result object so callers
+ * Does not throw  –  any failure is returned in the result object so callers
  * can log it without disrupting other cron work.
  */
 export async function submitUrlsToIndexNow(paths: string[]): Promise<IndexNowResult> {

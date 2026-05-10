@@ -1,5 +1,5 @@
 /**
- * Audit Verification Tests — 2026-04-24
+ * Audit Verification Tests  –  2026-04-24
  *
  * Automated checks for all issues found in the comprehensive audit.
  * These test the computation engines directly (no browser needed).
@@ -121,7 +121,7 @@ describe('Yoga calculation', () => {
 
 describe('Polar sunrise/sunset', () => {
   it('approximateSunrise returns null for extreme polar latitudes in summer', () => {
-    // Tromso, Norway (69.6°N) on June 21 — midnight sun, no sunrise
+    // Tromso, Norway (69.6°N) on June 21  –  midnight sun, no sunrise
     const jd = dateToJD(2026, 6, 21, 0);
     const result = approximateSunrise(jd, 69.6, 19.0);
     expect(result).toBeNull();
@@ -189,7 +189,7 @@ describe('Midnight crossing logic', () => {
 });
 
 // ---------------------------------------------------------------------------
-// R2-C3: Birth date UTC construction — dasha dates must be timezone-independent
+// R2-C3: Birth date UTC construction  –  dasha dates must be timezone-independent
 // ---------------------------------------------------------------------------
 
 describe('Birth date UTC construction (R2-C3)', () => {
@@ -249,7 +249,7 @@ describe('Birth date UTC construction (R2-C3)', () => {
 });
 
 // ---------------------------------------------------------------------------
-// R2-C1: addYears precision — uses millisecond arithmetic, not month truncation
+// R2-C1: addYears precision  –  uses millisecond arithmetic, not month truncation
 // ---------------------------------------------------------------------------
 
 describe('addYears precision (R2-C1)', () => {
@@ -300,7 +300,7 @@ describe('addYears precision (R2-C1)', () => {
 });
 
 // ---------------------------------------------------------------------------
-// R2-I5: Weekday alignment — JD-based weekday matches JS Date.getDay()
+// R2-I5: Weekday alignment  –  JD-based weekday matches JS Date.getDay()
 // ---------------------------------------------------------------------------
 
 describe('Weekday alignment (R2-I5)', () => {
@@ -348,7 +348,7 @@ describe('Karana transition sanity (C3)', () => {
 });
 
 // ---------------------------------------------------------------------------
-// I9: New Moon detection — all Amant months start near New Moon
+// I9: New Moon detection  –  all Amant months start near New Moon
 // ---------------------------------------------------------------------------
 
 describe('New Moon detection for all Amant months (I9)', () => {

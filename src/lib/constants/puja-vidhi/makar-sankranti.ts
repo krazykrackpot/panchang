@@ -6,7 +6,7 @@ export const MAKAR_SANKRANTI_PUJA: PujaVidhi = {
   deity: { en: 'Surya (Sun God)', hi: 'सूर्य (सूर्य देव)', sa: 'सूर्यः (सूर्यदेवः)' },
 
   samagri: [
-    { name: { en: 'Til (sesame seeds — black and white)', hi: 'तिल (काले और सफेद)', sa: 'तिलाः (कृष्णाः शुक्लाः च)' }, category: 'food', essential: true },
+    { name: { en: 'Til (sesame seeds  –  black and white)', hi: 'तिल (काले और सफेद)', sa: 'तिलाः (कृष्णाः शुक्लाः च)' }, category: 'food', essential: true },
     { name: { en: 'Gur (jaggery)', hi: 'गुड़', sa: 'गुडम्' }, category: 'food', essential: true },
     { name: { en: 'Khichdi ingredients (rice and urad dal)', hi: 'खिचड़ी सामग्री (चावल और उड़द दाल)', sa: 'खिच्चिकासामग्री (तण्डुलाः माषदालं च)' }, category: 'food', essential: true },
     { name: { en: 'New pot for Arghya (copper or brass)', hi: 'अर्घ्य के लिए नया पात्र (ताम्बे या पीतल का)', sa: 'अर्घ्यार्थं नवपात्रम् (ताम्रं पीतलं वा)' }, quantity: '1', category: 'vessels', essential: true },
@@ -24,9 +24,9 @@ export const MAKAR_SANKRANTI_PUJA: PujaVidhi = {
 
   muhurtaType: 'computed',
   muhurtaDescription: {
-    en: 'Surya Arghya must be offered at the exact Sankranti moment — when the Sun transitions from Dhanu (Sagittarius) to Makara (Capricorn) rashi. The punya kaal (auspicious period) extends for 16 ghatikas (about 6.5 hours) after the Sankranti moment. Ideally, arghya is offered to the rising sun in the morning.',
-    hi: 'सूर्य अर्घ्य ठीक संक्रान्ति काल में — जब सूर्य धनु से मकर राशि में प्रवेश करता है — देना चाहिए। पुण्यकाल संक्रान्ति क्षण के बाद 16 घटी (लगभग 6.5 घण्टे) तक रहता है। आदर्श रूप से, प्रातः उदित सूर्य को अर्घ्य दें।',
-    sa: 'सूर्यार्घ्यं संक्रान्तिकाले — यदा सूर्यो धनुराशेः मकरराशिं प्रविशति — तदा दद्यात्। पुण्यकालः संक्रान्तिक्षणानन्तरं षोडशघटिकाः (प्रायः सार्धषड्होराः) यावत् तिष्ठति। प्रातः उदिताय सूर्याय अर्घ्यं दद्यात्।',
+    en: 'Surya Arghya must be offered at the exact Sankranti moment  –  when the Sun transitions from Dhanu (Sagittarius) to Makara (Capricorn) rashi. The punya kaal (auspicious period) extends for 16 ghatikas (about 6.5 hours) after the Sankranti moment. Ideally, arghya is offered to the rising sun in the morning.',
+    hi: 'सूर्य अर्घ्य ठीक संक्रान्ति काल में  –  जब सूर्य धनु से मकर राशि में प्रवेश करता है  –  देना चाहिए। पुण्यकाल संक्रान्ति क्षण के बाद 16 घटी (लगभग 6.5 घण्टे) तक रहता है। आदर्श रूप से, प्रातः उदित सूर्य को अर्घ्य दें।',
+    sa: 'सूर्यार्घ्यं संक्रान्तिकाले  –  यदा सूर्यो धनुराशेः मकरराशिं प्रविशति  –  तदा दद्यात्। पुण्यकालः संक्रान्तिक्षणानन्तरं षोडशघटिकाः (प्रायः सार्धषड्होराः) यावत् तिष्ठति। प्रातः उदिताय सूर्याय अर्घ्यं दद्यात्।',
   },
   muhurtaWindow: { type: 'brahma_muhurta' },
 
@@ -103,9 +103,9 @@ export const MAKAR_SANKRANTI_PUJA: PujaVidhi = {
       step: 6,
       title: { en: 'Aditya Hridayam Recitation', hi: 'आदित्य हृदयम् पाठ', sa: 'आदित्यहृदयपाठः' },
       description: {
-        en: 'Recite the Aditya Hridayam — the sacred hymn taught by sage Agastya to Lord Rama before his battle with Ravana. This is the most powerful Surya stotra and grants victory, health, and removal of all enemies.',
-        hi: 'आदित्य हृदयम् का पाठ करें — रावण के विरुद्ध युद्ध से पूर्व ऋषि अगस्त्य द्वारा भगवान राम को सिखाया गया पवित्र स्तोत्र। यह सबसे शक्तिशाली सूर्य स्तोत्र है जो विजय, स्वास्थ्य और समस्त शत्रुओं का नाश प्रदान करता है।',
-        sa: 'आदित्यहृदयं पठेत् — रावणेन सह युद्धात् पूर्वम् अगस्त्यमुनिना श्रीरामाय उपदिष्टं पवित्रस्तोत्रम्। इदं सर्वशक्तिमत्सूर्यस्तोत्रं विजयम् आरोग्यं सर्वशत्रुविनाशं च ददाति।',
+        en: 'Recite the Aditya Hridayam  –  the sacred hymn taught by sage Agastya to Lord Rama before his battle with Ravana. This is the most powerful Surya stotra and grants victory, health, and removal of all enemies.',
+        hi: 'आदित्य हृदयम् का पाठ करें  –  रावण के विरुद्ध युद्ध से पूर्व ऋषि अगस्त्य द्वारा भगवान राम को सिखाया गया पवित्र स्तोत्र। यह सबसे शक्तिशाली सूर्य स्तोत्र है जो विजय, स्वास्थ्य और समस्त शत्रुओं का नाश प्रदान करता है।',
+        sa: 'आदित्यहृदयं पठेत्  –  रावणेन सह युद्धात् पूर्वम् अगस्त्यमुनिना श्रीरामाय उपदिष्टं पवित्रस्तोत्रम्। इदं सर्वशक्तिमत्सूर्यस्तोत्रं विजयम् आरोग्यं सर्वशत्रुविनाशं च ददाति।',
       },
       mantraRef: 'aditya-hridayam',
       duration: '15 min',
@@ -140,9 +140,9 @@ export const MAKAR_SANKRANTI_PUJA: PujaVidhi = {
       step: 9,
       title: { en: 'Kite Flying (Regional Celebration)', hi: 'पतंग उड़ाना (क्षेत्रीय उत्सव)', sa: 'पतङ्गोड्डयनम् (प्रादेशिकोत्सवः)' },
       description: {
-        en: 'In Gujarat, Rajasthan, and other regions, kite flying is an integral part of Makar Sankranti celebrations. Fly kites in the afternoon sun — the exposure to sunlight during the transition of seasons is considered beneficial for health, as winter UV rays help cure skin ailments.',
-        hi: 'गुजरात, राजस्थान और अन्य क्षेत्रों में पतंग उड़ाना मकर संक्रान्ति का अभिन्न अंग है। दोपहर की धूप में पतंग उड़ाएँ — ऋतु-परिवर्तन में सूर्य प्रकाश शरीर के लिए लाभकारी माना जाता है, शीतकालीन पराबैंगनी किरणें त्वचा रोगों में सहायक होती हैं।',
-        sa: 'गुर्जरराजस्थानादिप्रदेशेषु पतङ्गोड्डयनं मकरसंक्रान्तेः अभिन्नम् अङ्गम्। अपराह्णसूर्ये पतङ्गम् उड्डयेत् — ऋतुसन्धौ सूर्यप्रकाशः शरीराय हितकरो मन्यते शैत्यकालीनाः पराबैंगनीकिरणाः त्वग्रोगेषु सहायकाः।',
+        en: 'In Gujarat, Rajasthan, and other regions, kite flying is an integral part of Makar Sankranti celebrations. Fly kites in the afternoon sun  –  the exposure to sunlight during the transition of seasons is considered beneficial for health, as winter UV rays help cure skin ailments.',
+        hi: 'गुजरात, राजस्थान और अन्य क्षेत्रों में पतंग उड़ाना मकर संक्रान्ति का अभिन्न अंग है। दोपहर की धूप में पतंग उड़ाएँ  –  ऋतु-परिवर्तन में सूर्य प्रकाश शरीर के लिए लाभकारी माना जाता है, शीतकालीन पराबैंगनी किरणें त्वचा रोगों में सहायक होती हैं।',
+        sa: 'गुर्जरराजस्थानादिप्रदेशेषु पतङ्गोड्डयनं मकरसंक्रान्तेः अभिन्नम् अङ्गम्। अपराह्णसूर्ये पतङ्गम् उड्डयेत्  –  ऋतुसन्धौ सूर्यप्रकाशः शरीराय हितकरो मन्यते शैत्यकालीनाः पराबैंगनीकिरणाः त्वग्रोगेषु सहायकाः।',
       },
       duration: '60 min',
       essential: false,
@@ -175,9 +175,9 @@ export const MAKAR_SANKRANTI_PUJA: PujaVidhi = {
       },
       japaCount: 108,
       usage: {
-        en: 'Primary mantra for Surya Arghya — chant while pouring water towards the sun',
-        hi: 'सूर्य अर्घ्य का मुख्य मन्त्र — सूर्य की ओर जल प्रवाहित करते हुए जपें',
-        sa: 'सूर्यार्घ्यस्य प्रधानमन्त्रः — सूर्याभिमुखं जलं प्रवाहयन् जपेत्',
+        en: 'Primary mantra for Surya Arghya  –  chant while pouring water towards the sun',
+        hi: 'सूर्य अर्घ्य का मुख्य मन्त्र  –  सूर्य की ओर जल प्रवाहित करते हुए जपें',
+        sa: 'सूर्यार्घ्यस्य प्रधानमन्त्रः  –  सूर्याभिमुखं जलं प्रवाहयन् जपेत्',
       },
     },
     {
@@ -186,9 +186,9 @@ export const MAKAR_SANKRANTI_PUJA: PujaVidhi = {
       devanagari: 'ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः',
       iast: 'oṃ hrāṃ hrīṃ hrauṃ saḥ sūryāya namaḥ',
       meaning: {
-        en: 'Salutations to Lord Surya through his seed sounds — Hraam, Hreem, Hraum — the vibrational essence of solar energy',
-        hi: 'सूर्य देव को उनके बीज ध्वनियों — ह्रां, ह्रीं, ह्रौं — सौर ऊर्जा के कम्पन सार — के माध्यम से नमन',
-        sa: 'सूर्यदेवाय तस्य बीजध्वनिभिः — ह्रां ह्रीं ह्रौं — सौरशक्तेः कम्पनसारैः नमः',
+        en: 'Salutations to Lord Surya through his seed sounds  –  Hraam, Hreem, Hraum  –  the vibrational essence of solar energy',
+        hi: 'सूर्य देव को उनके बीज ध्वनियों  –  ह्रां, ह्रीं, ह्रौं  –  सौर ऊर्जा के कम्पन सार  –  के माध्यम से नमन',
+        sa: 'सूर्यदेवाय तस्य बीजध्वनिभिः  –  ह्रां ह्रीं ह्रौं  –  सौरशक्तेः कम्पनसारैः नमः',
       },
       japaCount: 108,
       usage: {
@@ -208,9 +208,9 @@ export const MAKAR_SANKRANTI_PUJA: PujaVidhi = {
         sa: 'ततो युद्धपरिश्रान्तं चिन्तया स्थितं रामं दृष्ट्वा रावणं च युद्धाय अग्रतः उपस्थितं दृष्ट्वा अगस्त्यमुनिः आगत्य अवदत्।',
       },
       usage: {
-        en: 'Opening verse of the Aditya Hridayam from Ramayana — recite the full 31 verses for complete benefit',
-        hi: 'रामायण के आदित्य हृदयम् का प्रथम श्लोक — पूर्ण लाभ के लिए सम्पूर्ण 31 श्लोक पढ़ें',
-        sa: 'रामायणस्य आदित्यहृदयस्य प्रथमश्लोकः — सम्पूर्णफलार्थम् एकत्रिंशत्श्लोकान् पठेत्',
+        en: 'Opening verse of the Aditya Hridayam from Ramayana  –  recite the full 31 verses for complete benefit',
+        hi: 'रामायण के आदित्य हृदयम् का प्रथम श्लोक  –  पूर्ण लाभ के लिए सम्पूर्ण 31 श्लोक पढ़ें',
+        sa: 'रामायणस्य आदित्यहृदयस्य प्रथमश्लोकः  –  सम्पूर्णफलार्थम् एकत्रिंशत्श्लोकान् पठेत्',
       },
     },
   ],
@@ -254,29 +254,29 @@ export const MAKAR_SANKRANTI_PUJA: PujaVidhi = {
 
   precautions: [
     {
-      en: 'Arghya must be offered before the Sankranti moment passes — check the exact time of Sun\'s ingress into Makara rashi',
-      hi: 'संक्रान्ति क्षण बीतने से पहले अर्घ्य देना अनिवार्य है — सूर्य के मकर राशि प्रवेश का सही समय जाँचें',
-      sa: 'संक्रान्तिक्षणात् पूर्वम् अर्घ्यं दद्यात् — सूर्यस्य मकरराशिप्रवेशस्य सम्यक्कालं जानीयात्',
+      en: 'Arghya must be offered before the Sankranti moment passes  –  check the exact time of Sun\'s ingress into Makara rashi',
+      hi: 'संक्रान्ति क्षण बीतने से पहले अर्घ्य देना अनिवार्य है  –  सूर्य के मकर राशि प्रवेश का सही समय जाँचें',
+      sa: 'संक्रान्तिक्षणात् पूर्वम् अर्घ्यं दद्यात्  –  सूर्यस्य मकरराशिप्रवेशस्य सम्यक्कालं जानीयात्',
     },
     {
-      en: 'Donate sesame (til) — do not merely consume it. Til daan is the primary dharmic act of Makar Sankranti',
-      hi: 'तिल का दान करें — केवल खाएँ नहीं। तिल दान मकर संक्रान्ति का प्रमुख धार्मिक कार्य है',
-      sa: 'तिलान् दद्यात् — केवलं न भक्षयेत्। तिलदानं मकरसंक्रान्तेः प्रधानधर्मकर्म',
+      en: 'Donate sesame (til)  –  do not merely consume it. Til daan is the primary dharmic act of Makar Sankranti',
+      hi: 'तिल का दान करें  –  केवल खाएँ नहीं। तिल दान मकर संक्रान्ति का प्रमुख धार्मिक कार्य है',
+      sa: 'तिलान् दद्यात्  –  केवलं न भक्षयेत्। तिलदानं मकरसंक्रान्तेः प्रधानधर्मकर्म',
     },
     {
-      en: 'Bathe in flowing water (river or stream) if possible — standing water is less meritorious on this day',
-      hi: 'सम्भव हो तो बहते जल (नदी या नाले) में स्नान करें — इस दिन ठहरे जल में स्नान कम पुण्यकारी है',
-      sa: 'शक्ये सति प्रवाहिजले (नद्यां स्रोतसि वा) स्नायात् — अस्मिन् दिने स्थिरजलस्नानं न्यूनपुण्यकरम्',
+      en: 'Bathe in flowing water (river or stream) if possible  –  standing water is less meritorious on this day',
+      hi: 'सम्भव हो तो बहते जल (नदी या नाले) में स्नान करें  –  इस दिन ठहरे जल में स्नान कम पुण्यकारी है',
+      sa: 'शक्ये सति प्रवाहिजले (नद्यां स्रोतसि वा) स्नायात्  –  अस्मिन् दिने स्थिरजलस्नानं न्यूनपुण्यकरम्',
     },
     {
-      en: 'Avoid tamasic food on this day — consume sattvik food, especially til, gur, and khichdi',
-      hi: 'इस दिन तामसिक भोजन से बचें — सात्विक भोजन, विशेषकर तिल, गुड़ और खिचड़ी खाएँ',
-      sa: 'अस्मिन् दिने तामसम् आहारं वर्जयेत् — सात्त्विकम् आहारं विशेषतः तिलं गुडं खिच्चिकां च सेवेत',
+      en: 'Avoid tamasic food on this day  –  consume sattvik food, especially til, gur, and khichdi',
+      hi: 'इस दिन तामसिक भोजन से बचें  –  सात्विक भोजन, विशेषकर तिल, गुड़ और खिचड़ी खाएँ',
+      sa: 'अस्मिन् दिने तामसम् आहारं वर्जयेत्  –  सात्त्विकम् आहारं विशेषतः तिलं गुडं खिच्चिकां च सेवेत',
     },
     {
-      en: 'Use a copper or brass vessel for arghya — do not use steel, plastic, or glass',
-      hi: 'अर्घ्य के लिए ताम्बे या पीतल का पात्र उपयोग करें — स्टील, प्लास्टिक या काँच का प्रयोग न करें',
-      sa: 'अर्घ्यार्थं ताम्रं पीतलपात्रं वा उपयोजयेत् — इस्पातं प्लास्टिकं काचं वा न उपयोजयेत्',
+      en: 'Use a copper or brass vessel for arghya  –  do not use steel, plastic, or glass',
+      hi: 'अर्घ्य के लिए ताम्बे या पीतल का पात्र उपयोग करें  –  स्टील, प्लास्टिक या काँच का प्रयोग न करें',
+      sa: 'अर्घ्यार्थं ताम्रं पीतलपात्रं वा उपयोजयेत्  –  इस्पातं प्लास्टिकं काचं वा न उपयोजयेत्',
     },
   ],
 

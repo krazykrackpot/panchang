@@ -185,7 +185,7 @@ function AnimatedKaranaWheel({
               stroke={`${color}22`}
               strokeWidth="0.3"
             />
-            {/* Slot number — show on hover or every 5th */}
+            {/* Slot number  –  show on hover or every 5th */}
             {(isHovered || isSelected || i % 5 === 0) && (
               <text
                 x={numX} y={numY}
@@ -231,7 +231,7 @@ function AnimatedKaranaWheel({
         );
       })}
 
-      {/* Orbiting Moon dot — Moon-Sun difference / 6 degrees */}
+      {/* Orbiting Moon dot  –  Moon-Sun difference / 6 degrees */}
       <motion.g
         animate={{ rotate: 360 }}
         transition={{ duration: 50, repeat: Infinity, ease: 'linear' }}
@@ -280,7 +280,7 @@ function AnimatedKaranaWheel({
 }
 
 /* ------------------------------------------------------------------ */
-/*  AngularSeparationDiagram — 6 degree increments                     */
+/*  AngularSeparationDiagram  –  6 degree increments                     */
 /* ------------------------------------------------------------------ */
 function AngularSeparationDiagram({ locale }: { locale: Locale }) {
   const isDevanagari = isDevanagariLocale(locale);
@@ -473,7 +473,7 @@ export default function KaranaPage() {
           <div className="mt-8 prose prose-invert max-w-none text-text-secondary">
             <p className="text-lg leading-relaxed">
               {locale === 'en'
-                ? `A Karana is half a Tithi, i.e., the time for the Moon to gain 6° over the Sun. There are 60 Karanas in a full lunar month (30 Tithis x 2). However, only 11 distinct Karanas exist: 7 "Chara" (movable) Karanas that cycle repeatedly through positions 2-58, and 4 "Sthira" (fixed) Karanas that appear only once each — Kimstughna at position 1 (first half of Shukla Pratipada), and Shakuni, Chatushpada, and Naga occupying the last three positions (58-60). The Chara Karanas (Bava through Vishti) repeat 8 times across the month.`
+                ? `A Karana is half a Tithi, i.e., the time for the Moon to gain 6° over the Sun. There are 60 Karanas in a full lunar month (30 Tithis x 2). However, only 11 distinct Karanas exist: 7 "Chara" (movable) Karanas that cycle repeatedly through positions 2-58, and 4 "Sthira" (fixed) Karanas that appear only once each  –  Kimstughna at position 1 (first half of Shukla Pratipada), and Shakuni, Chatushpada, and Naga occupying the last three positions (58-60). The Chara Karanas (Bava through Vishti) repeat 8 times across the month.`
                 : msg('karanaDescription', locale)}
             </p>
             <motion.div
@@ -543,7 +543,7 @@ export default function KaranaPage() {
                     </p>
                     <p>
                       <span className="text-gold-dark">{msg('angularSpanLabel', locale)}</span>{' '}
-                      {(selectedKarana * 6)}° — {((selectedKarana + 1) * 6)}°
+                      {(selectedKarana * 6)}°  –  {((selectedKarana + 1) * 6)}°
                     </p>
                     <p>
                       <span className="text-gold-dark">{msg('withinTithiLabel', locale)}</span>{' '}

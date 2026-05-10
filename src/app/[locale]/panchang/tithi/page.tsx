@@ -325,7 +325,7 @@ export default function TithiPage() {
           <div className="mt-8 text-text-secondary leading-relaxed">
             <p className="text-lg">
               {locale === 'en'
-                ? `A Tithi is defined as the time it takes for the Moon to gain 12° of longitude over the Sun. Since the Moon moves approximately 13.2° per day and the Sun about 1° per day, the relative angular gain is about 12° per day — hence roughly one Tithi per day. However, because the Moon's orbital speed varies (perigee vs. apogee), a Tithi can last between 19 to 26 hours.`
+                ? `A Tithi is defined as the time it takes for the Moon to gain 12° of longitude over the Sun. Since the Moon moves approximately 13.2° per day and the Sun about 1° per day, the relative angular gain is about 12° per day  –  hence roughly one Tithi per day. However, because the Moon's orbital speed varies (perigee vs. apogee), a Tithi can last between 19 to 26 hours.`
                 : msg('tithiDescription', locale)}
             </p>
             <motion.div
@@ -377,7 +377,7 @@ export default function TithiPage() {
                 <div className="text-text-secondary text-sm">
                   <p><span className="text-gold-dark">{msg('deityLabel', locale)}</span> {TITHIS[selectedTithi].deity[locale]}</p>
                   <p className="mt-1"><span className="text-gold-dark">{msg('tithiNumberLabel', locale)}</span> {selectedTithi + 1} / 30</p>
-                  <p className="mt-1"><span className="text-gold-dark">{msg('angularSpanLabel', locale)}</span> {selectedTithi * 12}° — {(selectedTithi + 1) * 12}°</p>
+                  <p className="mt-1"><span className="text-gold-dark">{msg('angularSpanLabel', locale)}</span> {selectedTithi * 12}°  –  {(selectedTithi + 1) * 12}°</p>
                 </div>
               </motion.div>
             )}
@@ -505,7 +505,7 @@ export default function TithiPage() {
             },
             {
               name: { en: 'Purnima', hi: 'पूर्णिमा', sa: 'पूर्णिमा' },
-              desc: { en: 'The 15th tithi of Shukla Paksha — Full Moon. The Moon and Sun are in direct opposition (180° apart). Auspicious for rituals, meditation, and charity.', hi: 'शुक्ल पक्ष की 15वीं तिथि — पूर्ण चन्द्रमा। चन्द्रमा और सूर्य प्रत्यक्ष विपरीत (180° अन्तर)। अनुष्ठान, ध्यान और दान के लिए शुभ।', sa: 'शुक्लपक्षस्य पञ्चदशी तिथिः — पूर्णचन्द्रः।' },
+              desc: { en: 'The 15th tithi of Shukla Paksha  –  Full Moon. The Moon and Sun are in direct opposition (180° apart). Auspicious for rituals, meditation, and charity.', hi: 'शुक्ल पक्ष की 15वीं तिथि  –  पूर्ण चन्द्रमा। चन्द्रमा और सूर्य प्रत्यक्ष विपरीत (180° अन्तर)। अनुष्ठान, ध्यान और दान के लिए शुभ।', sa: 'शुक्लपक्षस्य पञ्चदशी तिथिः  –  पूर्णचन्द्रः।' },
               svgIcon: (
                 <svg viewBox="0 0 40 40" className="w-10 h-10">
                   <defs>
@@ -521,7 +521,7 @@ export default function TithiPage() {
             },
             {
               name: { en: 'Amavasya', hi: 'अमावस्या', sa: 'अमावस्या' },
-              desc: { en: 'The 30th tithi (15th of Krishna Paksha) — New Moon. The Moon and Sun are in conjunction (0° apart). Associated with ancestral rites (Pitru Tarpan).', hi: '30वीं तिथि (कृष्ण पक्ष की 15वीं) — अमावस्या। चन्द्रमा और सूर्य युति में (0° अन्तर)। पितृ तर्पण से सम्बन्धित।', sa: 'त्रिंशत्तमी तिथिः — अमावस्या। चन्द्रसूर्ययुतिः।' },
+              desc: { en: 'The 30th tithi (15th of Krishna Paksha)  –  New Moon. The Moon and Sun are in conjunction (0° apart). Associated with ancestral rites (Pitru Tarpan).', hi: '30वीं तिथि (कृष्ण पक्ष की 15वीं)  –  अमावस्या। चन्द्रमा और सूर्य युति में (0° अन्तर)। पितृ तर्पण से सम्बन्धित।', sa: 'त्रिंशत्तमी तिथिः  –  अमावस्या। चन्द्रसूर्ययुतिः।' },
               svgIcon: (
                 <svg viewBox="0 0 40 40" className="w-10 h-10">
                   <circle cx="20" cy="20" r="15" fill="#1a1f4e" stroke="#8a6d2b" strokeWidth="1" />

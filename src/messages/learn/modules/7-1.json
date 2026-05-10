@@ -1,15 +1,15 @@
 {
   "title": {
-    "en": "Yoga — The 27 Sun-Moon Combinations",
-    "hi": "योग — सूर्य-चन्द्र के 27 संयोग",
-    "sa": "योगः — सूर्यचन्द्रयोः सप्तविंशतिसंयोगाः",
-    "ta": "யோகம் — 27 சூரிய-சந்திர சேர்க்கைகள்",
-    "te": "యోగం — 27 సూర్య-చంద్ర సంయోగాలు",
-    "bn": "যোগ — ২৭টি সূর্য-চন্দ্র সংযোগ",
-    "kn": "ಯೋಗ — 27 ಸೂರ್ಯ-ಚಂದ್ರ ಸಂಯೋಗಗಳು",
-    "mr": "योग — 27 सूर्य-चंद्र संयोग",
-    "gu": "યોગ — 27 સૂર્ય-ચંદ્ર સંયોગ",
-    "mai": "योग — सूर्य-चन्द्रक 27 संयोग"
+    "en": "Yoga  –  The 27 Sun-Moon Combinations",
+    "hi": "योग  –  सूर्य-चन्द्र के 27 संयोग",
+    "sa": "योगः  –  सूर्यचन्द्रयोः सप्तविंशतिसंयोगाः",
+    "ta": "யோகம்  –  27 சூரிய-சந்திர சேர்க்கைகள்",
+    "te": "యోగం  –  27 సూర్య-చంద్ర సంయోగాలు",
+    "bn": "যোগ  –  ২৭টি সূর্য-চন্দ্র সংযোগ",
+    "kn": "ಯೋಗ  –  27 ಸೂರ್ಯ-ಚಂದ್ರ ಸಂಯೋಗಗಳು",
+    "mr": "योग  –  27 सूर्य-चंद्र संयोग",
+    "gu": "યોગ  –  27 સૂર્ય-ચંદ્ર સંયોગ",
+    "mai": "योग  –  सूर्य-चन्द्रक 27 संयोग"
   },
   "subtitle": {
     "en": "The sum of sidereal Sun and Moon longitudes, divided into 27 segments of 13°20′, yields a yoga that colours the day's energy",
@@ -261,16 +261,16 @@
       },
       "correctAnswer": false,
       "explanation": {
-        "en": "False. Panchang Yoga is a purely astronomical measure — the Sun-Moon sum divided into 27 segments. It has no connection to yogic physical practices (asanas, pranayama). The word \"yoga\" simply means \"combination\" or \"union\" in Sanskrit.",
-        "hi": "असत्य। पंचांग योग एक विशुद्ध खगोलीय माप है — सूर्य-चन्द्र योग को 27 खण्डों में विभाजित किया जाता है। इसका शारीरिक योग (आसन, प्राणायाम) से कोई सम्बन्ध नहीं है। \"योग\" शब्द का अर्थ संस्कृत में \"संयोग\" या \"मिलन\" होता है।",
-        "sa": "असत्य। पंचांग योग एक विशुद्ध खगोलीय माप है — सूर्य-चन्द्र योग को 27 खण्डों में विभाजित किया जाता है। इसका शारीरिक योग (आसन, प्राणायाम) से कोई सम्बन्ध नहीं है। \"योग\" शब्द का अर्थ संस्कृत में \"संयोग\" या \"मिलन\" होता है।",
-        "ta": "False. Panchang Yoga is a purely astronomical measure — the Sun-Moon sum divided into 27 segments. It has no connection to yogic physical practices (asanas, pranayama). The word \"yoga\" simply means \"combination\" or \"union\" in Sanskrit.",
-        "te": "False. Panchang Yoga is a purely astronomical measure — the Sun-Moon sum divided into 27 segments. It has no connection to yogic physical practices (asanas, pranayama). The word \"yoga\" simply means \"combination\" or \"union\" in Sanskrit.",
-        "bn": "False. Panchang Yoga is a purely astronomical measure — the Sun-Moon sum divided into 27 segments. It has no connection to yogic physical practices (asanas, pranayama). The word \"yoga\" simply means \"combination\" or \"union\" in Sanskrit.",
-        "kn": "False. Panchang Yoga is a purely astronomical measure — the Sun-Moon sum divided into 27 segments. It has no connection to yogic physical practices (asanas, pranayama). The word \"yoga\" simply means \"combination\" or \"union\" in Sanskrit.",
-        "mr": "असत्य। पंचांग योग एक विशुद्ध खगोलीय माप है — सूर्य-चन्द्र योग को 27 खण्डों में विभाजित किया जाता है। इसका शारीरिक योग (आसन, प्राणायाम) से कोई सम्बन्ध नहीं है। \"योग\" शब्द का अर्थ संस्कृत में \"संयोग\" या \"मिलन\" होता है।",
-        "gu": "False. Panchang Yoga is a purely astronomical measure — the Sun-Moon sum divided into 27 segments. It has no connection to yogic physical practices (asanas, pranayama). The word \"yoga\" simply means \"combination\" or \"union\" in Sanskrit.",
-        "mai": "असत्य। पंचांग योग एक विशुद्ध खगोलीय माप है — सूर्य-चन्द्र योग को 27 खण्डों में विभाजित किया जाता है। इसका शारीरिक योग (आसन, प्राणायाम) से कोई सम्बन्ध नहीं है। \"योग\" शब्द का अर्थ संस्कृत में \"संयोग\" या \"मिलन\" होता है।"
+        "en": "False. Panchang Yoga is a purely astronomical measure  –  the Sun-Moon sum divided into 27 segments. It has no connection to yogic physical practices (asanas, pranayama). The word \"yoga\" simply means \"combination\" or \"union\" in Sanskrit.",
+        "hi": "असत्य। पंचांग योग एक विशुद्ध खगोलीय माप है  –  सूर्य-चन्द्र योग को 27 खण्डों में विभाजित किया जाता है। इसका शारीरिक योग (आसन, प्राणायाम) से कोई सम्बन्ध नहीं है। \"योग\" शब्द का अर्थ संस्कृत में \"संयोग\" या \"मिलन\" होता है।",
+        "sa": "असत्य। पंचांग योग एक विशुद्ध खगोलीय माप है  –  सूर्य-चन्द्र योग को 27 खण्डों में विभाजित किया जाता है। इसका शारीरिक योग (आसन, प्राणायाम) से कोई सम्बन्ध नहीं है। \"योग\" शब्द का अर्थ संस्कृत में \"संयोग\" या \"मिलन\" होता है।",
+        "ta": "False. Panchang Yoga is a purely astronomical measure  –  the Sun-Moon sum divided into 27 segments. It has no connection to yogic physical practices (asanas, pranayama). The word \"yoga\" simply means \"combination\" or \"union\" in Sanskrit.",
+        "te": "False. Panchang Yoga is a purely astronomical measure  –  the Sun-Moon sum divided into 27 segments. It has no connection to yogic physical practices (asanas, pranayama). The word \"yoga\" simply means \"combination\" or \"union\" in Sanskrit.",
+        "bn": "False. Panchang Yoga is a purely astronomical measure  –  the Sun-Moon sum divided into 27 segments. It has no connection to yogic physical practices (asanas, pranayama). The word \"yoga\" simply means \"combination\" or \"union\" in Sanskrit.",
+        "kn": "False. Panchang Yoga is a purely astronomical measure  –  the Sun-Moon sum divided into 27 segments. It has no connection to yogic physical practices (asanas, pranayama). The word \"yoga\" simply means \"combination\" or \"union\" in Sanskrit.",
+        "mr": "असत्य। पंचांग योग एक विशुद्ध खगोलीय माप है  –  सूर्य-चन्द्र योग को 27 खण्डों में विभाजित किया जाता है। इसका शारीरिक योग (आसन, प्राणायाम) से कोई सम्बन्ध नहीं है। \"योग\" शब्द का अर्थ संस्कृत में \"संयोग\" या \"मिलन\" होता है।",
+        "gu": "False. Panchang Yoga is a purely astronomical measure  –  the Sun-Moon sum divided into 27 segments. It has no connection to yogic physical practices (asanas, pranayama). The word \"yoga\" simply means \"combination\" or \"union\" in Sanskrit.",
+        "mai": "असत्य। पंचांग योग एक विशुद्ध खगोलीय माप है  –  सूर्य-चन्द्र योग को 27 खण्डों में विभाजित किया जाता है। इसका शारीरिक योग (आसन, प्राणायाम) से कोई सम्बन्ध नहीं है। \"योग\" शब्द का अर्थ संस्कृत में \"संयोग\" या \"मिलन\" होता है।"
       }
     },
     {
@@ -585,16 +585,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Dhruva means \"fixed\" or \"steady,\" making it ideal for activities that require permanence and stability — housewarming (griha-pravesha), marriage, planting trees, and laying foundations.",
-        "hi": "ध्रुव का अर्थ \"स्थिर\" है, इसलिए यह स्थायित्व वाले कार्यों के लिए आदर्श है — गृह-प्रवेश, विवाह, वृक्षारोपण और नींव रखना।",
-        "sa": "ध्रुव का अर्थ \"स्थिर\" है, इसलिए यह स्थायित्व वाले कार्यों के लिए आदर्श है — गृह-प्रवेश, विवाह, वृक्षारोपण और नींव रखना।",
-        "ta": "Dhruva means \"fixed\" or \"steady,\" making it ideal for activities that require permanence and stability — housewarming (griha-pravesha), marriage, planting trees, and laying foundations.",
-        "te": "Dhruva means \"fixed\" or \"steady,\" making it ideal for activities that require permanence and stability — housewarming (griha-pravesha), marriage, planting trees, and laying foundations.",
-        "bn": "Dhruva means \"fixed\" or \"steady,\" making it ideal for activities that require permanence and stability — housewarming (griha-pravesha), marriage, planting trees, and laying foundations.",
-        "kn": "Dhruva means \"fixed\" or \"steady,\" making it ideal for activities that require permanence and stability — housewarming (griha-pravesha), marriage, planting trees, and laying foundations.",
-        "mr": "ध्रुव का अर्थ \"स्थिर\" है, इसलिए यह स्थायित्व वाले कार्यों के लिए आदर्श है — गृह-प्रवेश, विवाह, वृक्षारोपण और नींव रखना।",
-        "gu": "Dhruva means \"fixed\" or \"steady,\" making it ideal for activities that require permanence and stability — housewarming (griha-pravesha), marriage, planting trees, and laying foundations.",
-        "mai": "ध्रुव का अर्थ \"स्थिर\" है, इसलिए यह स्थायित्व वाले कार्यों के लिए आदर्श है — गृह-प्रवेश, विवाह, वृक्षारोपण और नींव रखना।"
+        "en": "Dhruva means \"fixed\" or \"steady,\" making it ideal for activities that require permanence and stability  –  housewarming (griha-pravesha), marriage, planting trees, and laying foundations.",
+        "hi": "ध्रुव का अर्थ \"स्थिर\" है, इसलिए यह स्थायित्व वाले कार्यों के लिए आदर्श है  –  गृह-प्रवेश, विवाह, वृक्षारोपण और नींव रखना।",
+        "sa": "ध्रुव का अर्थ \"स्थिर\" है, इसलिए यह स्थायित्व वाले कार्यों के लिए आदर्श है  –  गृह-प्रवेश, विवाह, वृक्षारोपण और नींव रखना।",
+        "ta": "Dhruva means \"fixed\" or \"steady,\" making it ideal for activities that require permanence and stability  –  housewarming (griha-pravesha), marriage, planting trees, and laying foundations.",
+        "te": "Dhruva means \"fixed\" or \"steady,\" making it ideal for activities that require permanence and stability  –  housewarming (griha-pravesha), marriage, planting trees, and laying foundations.",
+        "bn": "Dhruva means \"fixed\" or \"steady,\" making it ideal for activities that require permanence and stability  –  housewarming (griha-pravesha), marriage, planting trees, and laying foundations.",
+        "kn": "Dhruva means \"fixed\" or \"steady,\" making it ideal for activities that require permanence and stability  –  housewarming (griha-pravesha), marriage, planting trees, and laying foundations.",
+        "mr": "ध्रुव का अर्थ \"स्थिर\" है, इसलिए यह स्थायित्व वाले कार्यों के लिए आदर्श है  –  गृह-प्रवेश, विवाह, वृक्षारोपण और नींव रखना।",
+        "gu": "Dhruva means \"fixed\" or \"steady,\" making it ideal for activities that require permanence and stability  –  housewarming (griha-pravesha), marriage, planting trees, and laying foundations.",
+        "mai": "ध्रुव का अर्थ \"स्थिर\" है, इसलिए यह स्थायित्व वाले कार्यों के लिए आदर्श है  –  गृह-प्रवेश, विवाह, वृक्षारोपण और नींव रखना।"
       },
       "options": [
         {

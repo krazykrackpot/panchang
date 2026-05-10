@@ -49,7 +49,7 @@ const PLANET_NAMES: Record<number, Record<string, string>> = {
   8: { en: 'Ketu',    hi: 'केतु',    ta: 'கேது',    bn: 'কেতু' },
 };
 
-// Ring configuration — large, bold visualization
+// Ring configuration  –  large, bold visualization
 const OUTER_R = 400;
 const MID_R = 300;
 const INNER_R = 200;
@@ -120,8 +120,8 @@ export default function SudarshanaTab({ kundali, locale }: SudarshanaTabProps) {
         </h2>
         <p className="text-text-secondary text-sm max-w-xl mx-auto mb-3">
           {isEn
-            ? 'Three concentric rings show your chart from three perspectives — Lagna (identity), Moon (emotions), and Sun (soul purpose) — simultaneously for each year of life.'
-            : 'तीन संकेन्द्रित वलय आपकी कुण्डली को तीन दृष्टिकोणों से दर्शाते हैं — लग्न (पहचान), चन्द्र (भावनाएँ), और सूर्य (आत्म-उद्देश्य)।'}
+            ? 'Three concentric rings show your chart from three perspectives  –  Lagna (identity), Moon (emotions), and Sun (soul purpose)  –  simultaneously for each year of life.'
+            : 'तीन संकेन्द्रित वलय आपकी कुण्डली को तीन दृष्टिकोणों से दर्शाते हैं  –  लग्न (पहचान), चन्द्र (भावनाएँ), और सूर्य (आत्म-उद्देश्य)।'}
         </p>
         <details className="inline-block text-left bg-white/[0.02] border border-gold-primary/10 rounded-xl max-w-lg mx-auto">
           <summary className="px-4 py-2 cursor-pointer text-xs text-gold-primary hover:text-gold-light transition-colors">
@@ -229,7 +229,7 @@ export default function SudarshanaTab({ kundali, locale }: SudarshanaTabProps) {
         </div>
       )}
 
-      {/* This Year's Focus — practical convergence/divergence summary */}
+      {/* This Year's Focus  –  practical convergence/divergence summary */}
       <ThisYearFocus
         lagnaHouse={data.interpretation.lagna.house}
         chandraHouse={data.interpretation.chandra.house}
@@ -248,7 +248,7 @@ export default function SudarshanaTab({ kundali, locale }: SudarshanaTabProps) {
       {/* Detailed ring analysis */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 rounded-2xl p-6 space-y-4">
         <h3 className="text-gold-light font-semibold">
-          {isEn ? `Age ${age} — Annual Analysis` : `आयु ${age} — वार्षिक विश्लेषण`}
+          {isEn ? `Age ${age}  –  Annual Analysis` : `आयु ${age}  –  वार्षिक विश्लेषण`}
         </h3>
 
         <DetailedRingSection
@@ -364,7 +364,7 @@ export default function SudarshanaTab({ kundali, locale }: SudarshanaTabProps) {
   );
 }
 
-// ─── This Year's Focus — practical convergence/divergence summary ──────────
+// ─── This Year's Focus  –  practical convergence/divergence summary ──────────
 
 // Short house theme labels for the focus summary
 const HOUSE_THEME_SHORT: Record<number, { en: string; hi: string }> = {
@@ -414,22 +414,22 @@ function ThisYearFocus({
 
   if (allSame) {
     const theme = lt(lagnaHouse);
-    summaryEn = `Strong convergence at age ${age} — all three references (Lagna, Moon, Sun) activate the ${ordinal(lagnaHouse)} house. "${theme.en}" is THE dominant theme this year. Focus your energy here for maximum impact. This level of alignment is rare and signals a pivotal year.`;
-    summaryHi = `आयु ${age} पर तीव्र अभिसरण — तीनों संदर्भ (लग्न, चन्द्र, सूर्य) ${lagnaHouse}वाँ भाव सक्रिय करते हैं। "${theme.hi}" इस वर्ष का प्रमुख विषय है। अधिकतम प्रभाव के लिए यहाँ अपनी ऊर्जा केन्द्रित करें।`;
+    summaryEn = `Strong convergence at age ${age}  –  all three references (Lagna, Moon, Sun) activate the ${ordinal(lagnaHouse)} house. "${theme.en}" is THE dominant theme this year. Focus your energy here for maximum impact. This level of alignment is rare and signals a pivotal year.`;
+    summaryHi = `आयु ${age} पर तीव्र अभिसरण  –  तीनों संदर्भ (लग्न, चन्द्र, सूर्य) ${lagnaHouse}वाँ भाव सक्रिय करते हैं। "${theme.hi}" इस वर्ष का प्रमुख विषय है। अधिकतम प्रभाव के लिए यहाँ अपनी ऊर्जा केन्द्रित करें।`;
   } else if (twoSame) {
     // Find which two match and which is different
     const matchedHouse = houses.find((h, i) => houses.indexOf(h) !== i)!;
     const differentHouse = houses.find(h => h !== matchedHouse)!;
     const matchTheme = lt(matchedHouse);
     const diffTheme = lt(differentHouse);
-    summaryEn = `Partial convergence at age ${age} — two references align on the ${ordinal(matchedHouse)} house ("${matchTheme.en}"), making it your primary arena. But the third ring activates the ${ordinal(differentHouse)} house ("${diffTheme.en}"), adding a secondary thread. Prioritize "${matchTheme.en}" while keeping "${diffTheme.en}" on your radar.`;
-    summaryHi = `आयु ${age} पर आंशिक अभिसरण — दो संदर्भ ${matchedHouse}वें भाव ("${matchTheme.hi}") पर एकत्र हैं, जो प्राथमिक क्षेत्र है। तीसरा वलय ${differentHouse}वाँ भाव ("${diffTheme.hi}") सक्रिय करता है। "${matchTheme.hi}" को प्राथमिकता दें, "${diffTheme.hi}" पर भी ध्यान रखें।`;
+    summaryEn = `Partial convergence at age ${age}  –  two references align on the ${ordinal(matchedHouse)} house ("${matchTheme.en}"), making it your primary arena. But the third ring activates the ${ordinal(differentHouse)} house ("${diffTheme.en}"), adding a secondary thread. Prioritize "${matchTheme.en}" while keeping "${diffTheme.en}" on your radar.`;
+    summaryHi = `आयु ${age} पर आंशिक अभिसरण  –  दो संदर्भ ${matchedHouse}वें भाव ("${matchTheme.hi}") पर एकत्र हैं, जो प्राथमिक क्षेत्र है। तीसरा वलय ${differentHouse}वाँ भाव ("${diffTheme.hi}") सक्रिय करता है। "${matchTheme.hi}" को प्राथमिकता दें, "${diffTheme.hi}" पर भी ध्यान रखें।`;
   } else {
     const t1 = lt(lagnaHouse);
     const t2 = lt(chandraHouse);
     const t3 = lt(suryaHouse);
-    summaryEn = `Divergent focus at age ${age} — your identity (Lagna → "${t1.en}"), emotions (Moon → "${t2.en}"), and purpose (Sun → "${t3.en}") are activated in different life areas. Expect to juggle multiple priorities. This is a year of breadth rather than depth — balance is key.`;
-    summaryHi = `आयु ${age} पर विविध केन्द्र — आपकी पहचान (लग्न → "${t1.hi}"), भावनाएँ (चन्द्र → "${t2.hi}"), और उद्देश्य (सूर्य → "${t3.hi}") विभिन्न क्षेत्रों में सक्रिय हैं। अनेक प्राथमिकताओं को सँभालने की अपेक्षा करें — सन्तुलन महत्त्वपूर्ण है।`;
+    summaryEn = `Divergent focus at age ${age}  –  your identity (Lagna → "${t1.en}"), emotions (Moon → "${t2.en}"), and purpose (Sun → "${t3.en}") are activated in different life areas. Expect to juggle multiple priorities. This is a year of breadth rather than depth  –  balance is key.`;
+    summaryHi = `आयु ${age} पर विविध केन्द्र  –  आपकी पहचान (लग्न → "${t1.hi}"), भावनाएँ (चन्द्र → "${t2.hi}"), और उद्देश्य (सूर्य → "${t3.hi}") विभिन्न क्षेत्रों में सक्रिय हैं। अनेक प्राथमिकताओं को सँभालने की अपेक्षा करें  –  सन्तुलन महत्त्वपूर्ण है।`;
   }
 
   return (
@@ -473,7 +473,7 @@ function DetailedRingSection({
 
   return (
     <div className="bg-white/[0.02] border border-white/5 rounded-xl overflow-hidden">
-      {/* Header — always visible */}
+      {/* Header  –  always visible */}
       <button
         type="button"
         onClick={() => setExpanded(!expanded)}
@@ -530,7 +530,7 @@ function DetailedRingSection({
           )}
           {ring.planetsPresent.length === 0 && (
             <p className="text-xs text-text-secondary/50 italic">
-              {isEn ? 'No planets occupy this sign — themes are shaped primarily by the sign lord.' : 'इस राशि में कोई ग्रह नहीं — विषय मुख्यतः राशि स्वामी द्वारा निर्धारित।'}
+              {isEn ? 'No planets occupy this sign  –  themes are shaped primarily by the sign lord.' : 'इस राशि में कोई ग्रह नहीं  –  विषय मुख्यतः राशि स्वामी द्वारा निर्धारित।'}
             </p>
           )}
         </div>
@@ -586,13 +586,13 @@ function SudarshanaChakra({
       {/* Background radial glow */}
       <circle cx={CX} cy={CY} r={OUTER_R + 40} fill="url(#sc-bg-glow)" />
 
-      {/* Ring borders — Lagna (outer) */}
+      {/* Ring borders  –  Lagna (outer) */}
       <circle cx={CX} cy={CY} r={OUTER_R} fill="none" stroke="rgba(212,168,83,0.5)" strokeWidth={3} />
       <circle cx={CX} cy={CY} r={MID_R} fill="none" stroke="rgba(212,168,83,0.25)" strokeWidth={2} />
-      {/* Ring borders — Chandra (middle) */}
+      {/* Ring borders  –  Chandra (middle) */}
       <circle cx={CX} cy={CY} r={MID_R} fill="none" stroke="rgba(236,240,241,0.35)" strokeWidth={2.5} />
       <circle cx={CX} cy={CY} r={INNER_R} fill="none" stroke="rgba(236,240,241,0.2)" strokeWidth={2} />
-      {/* Ring borders — Surya (inner) */}
+      {/* Ring borders  –  Surya (inner) */}
       <circle cx={CX} cy={CY} r={INNER_R} fill="none" stroke="rgba(230,126,34,0.4)" strokeWidth={2.5} />
       <circle cx={CX} cy={CY} r={CENTER_R} fill="none" stroke="rgba(230,126,34,0.25)" strokeWidth={2} />
       {/* Center fill */}
@@ -646,7 +646,7 @@ function SudarshanaChakra({
         );
       })}
 
-      {/* Transit planet overlay — rendered on the outer ring with distinct style */}
+      {/* Transit planet overlay  –  rendered on the outer ring with distinct style */}
       {transitPlanets && transitPlanets.length > 0 && (() => {
         // Place transit planets on the outer ring based on their rashi position
         const lagnaStart = lagnaRing.startSign;
@@ -666,7 +666,7 @@ function SudarshanaChakra({
 
               return (
                 <g key={`transit-${tp.id}`}>
-                  {/* Dashed circle outline — distinct from solid natal dots */}
+                  {/* Dashed circle outline  –  distinct from solid natal dots */}
                   <circle cx={dx} cy={dy} r={7} fill="none" stroke={tColor} strokeWidth={2} strokeDasharray="3 2" opacity={0.85} />
                   <circle cx={dx} cy={dy} r={3} fill={tColor} opacity={0.6} />
                   {/* "T:" prefix label */}

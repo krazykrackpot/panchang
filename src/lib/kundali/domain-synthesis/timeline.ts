@@ -194,7 +194,7 @@ function computeDashaTriggers(
     const levelLabel = level === 'maha' ? 'Mahadasha' : 'Antardasha';
     const levelLabelHi = level === 'maha' ? 'महादशा' : 'अन्तर्दशा';
 
-    // End date for the window — use entry endDate or 1 month for display
+    // End date for the window  –  use entry endDate or 1 month for display
     const endDateStr = entry.endDate;
 
     triggers.push({
@@ -204,8 +204,8 @@ function computeDashaTriggers(
       planets: [pid],
       nature,
       description: {
-        en: `${pName.en} ${levelLabel} begins — activates your ${domainConfig.name.en} domain`,
-        hi: `${pName.hi ?? pName.en} ${levelLabelHi} आरम्भ — आपके ${domainConfig.name.hi ?? domainConfig.name.en} क्षेत्र को सक्रिय करता है`,
+        en: `${pName.en} ${levelLabel} begins  –  activates your ${domainConfig.name.en} domain`,
+        hi: `${pName.hi ?? pName.en} ${levelLabelHi} आरम्भ  –  आपके ${domainConfig.name.hi ?? domainConfig.name.en} क्षेत्र को सक्रिय करता है`,
       },
     });
   }
@@ -260,7 +260,7 @@ function computeTransitTriggers(
     const daysPerDeg = signDurationDays / 30;
     const daysToNextSign = degRemaining * daysPerDeg;
 
-    // Rahu/Ketu move in reverse — next sign is currentSign - 1
+    // Rahu/Ketu move in reverse  –  next sign is currentSign - 1
     const isRetro = pid === 7 || pid === 8;
 
     // Project forward through signs until we exceed the window
@@ -274,7 +274,7 @@ function computeTransitTriggers(
       const pName = grahaNameLocale(pid);
       const rName = rashiNameLocale(sign);
 
-      // Already transiting — mark from now
+      // Already transiting  –  mark from now
       const startD = new Date(windowStart);
       const endD = new Date(windowStart);
       endD.setDate(endD.getDate() + Math.round(daysToNextSign));
@@ -286,8 +286,8 @@ function computeTransitTriggers(
           planets: [pid],
           nature,
           description: {
-            en: `${pName.en} transiting ${rName.en} (${ordinal(house)} house) — impacts ${domainConfig.name.en}`,
-            hi: `${pName.hi ?? pName.en} ${rName.hi ?? rName.en} में गोचर (${house}वाँ भाव) — ${domainConfig.name.hi ?? domainConfig.name.en} पर प्रभाव`,
+            en: `${pName.en} transiting ${rName.en} (${ordinal(house)} house)  –  impacts ${domainConfig.name.en}`,
+            hi: `${pName.hi ?? pName.en} ${rName.hi ?? rName.en} में गोचर (${house}वाँ भाव)  –  ${domainConfig.name.hi ?? domainConfig.name.en} पर प्रभाव`,
           },
         });
       }
@@ -324,8 +324,8 @@ function computeTransitTriggers(
             planets: [pid],
             nature,
             description: {
-              en: `${pName.en} enters ${rName.en} (${ordinal(house)} house) — impacts ${domainConfig.name.en}`,
-              hi: `${pName.hi ?? pName.en} ${rName.hi ?? rName.en} में प्रवेश (${house}वाँ भाव) — ${domainConfig.name.hi ?? domainConfig.name.en} पर प्रभाव`,
+              en: `${pName.en} enters ${rName.en} (${ordinal(house)} house)  –  impacts ${domainConfig.name.en}`,
+              hi: `${pName.hi ?? pName.en} ${rName.hi ?? rName.en} में प्रवेश (${house}वाँ भाव)  –  ${domainConfig.name.hi ?? domainConfig.name.en} पर प्रभाव`,
             },
           });
         }
@@ -403,8 +403,8 @@ function computeEclipseTriggers(
       planets: [7, 8], // Rahu + Ketu
       nature: 'challenge',
       description: {
-        en: `Eclipse window near Rahu-Ketu axis — heightened sensitivity for ${domainConfig.name.en}`,
-        hi: `राहु-केतु अक्ष पर ग्रहण काल — ${domainConfig.name.hi ?? domainConfig.name.en} के लिए संवेदनशील अवधि`,
+        en: `Eclipse window near Rahu-Ketu axis  –  heightened sensitivity for ${domainConfig.name.en}`,
+        hi: `राहु-केतु अक्ष पर ग्रहण काल  –  ${domainConfig.name.hi ?? domainConfig.name.en} के लिए संवेदनशील अवधि`,
       },
     });
   }

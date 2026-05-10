@@ -172,17 +172,17 @@ export default function LearnNakshatrasPage() {
         <div className="mt-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 p-4 text-sm text-text-secondary leading-relaxed">
           {lo === 'en' ? (
             <>
-              <p className="mb-2"><strong className="text-gold-light">Starting point:</strong> The mapping begins at <strong className="text-gold-primary">Ashwini</strong> — the very first nakshatra at 0° Aries (the start of the sidereal zodiac). <strong className="text-gold-primary">Ketu</strong> is assigned to Ashwini. From there, the remaining 8 planets follow in a fixed sequence, moving forward through the zodiac in nakshatra order:</p>
+              <p className="mb-2"><strong className="text-gold-light">Starting point:</strong> The mapping begins at <strong className="text-gold-primary">Ashwini</strong>  –  the very first nakshatra at 0° Aries (the start of the sidereal zodiac). <strong className="text-gold-primary">Ketu</strong> is assigned to Ashwini. From there, the remaining 8 planets follow in a fixed sequence, moving forward through the zodiac in nakshatra order:</p>
               <p className="my-2 text-gold-primary font-mono text-xs text-center tracking-wide">Ketu → Venus → Sun → Moon → Mars → Rahu → Jupiter → Saturn → Mercury</p>
               <p className="mb-2">So the first 9 nakshatras are: <span className="text-text-primary">Ashwini = <strong>Ketu</strong>, Bharani = <strong>Venus</strong>, Krittika = <strong>Sun</strong>, Rohini = <strong>Moon</strong>, Mrigashira = <strong>Mars</strong>, Ardra = <strong>Rahu</strong>, Punarvasu = <strong>Jupiter</strong>, Pushya = <strong>Saturn</strong>, Ashlesha = <strong>Mercury</strong></span>. Then the cycle restarts: Magha (#10) = Ketu again, and so on for a third round from Moola (#19). Three complete rounds × 9 planets = 27 nakshatras covered, each planet ruling exactly 3.</p>
-              <p><strong>Why this order and starting point?</strong> This is the <strong>Vimshottari Dasha sequence</strong> — derived by ancient rishis from the relationship between planets and the lunar nodes (Rahu-Ketu). Ketu begins the cycle because it represents the karmic starting point (past life). The dasha years (Ketu=7, Venus=20, Sun=6, Moon=10, Mars=7, Rahu=18, Jupiter=16, Saturn=19, Mercury=17) total exactly <strong>120 years</strong> — the ideal human lifespan per the Vedas. Your birth Moon&apos;s nakshatra lord determines which dasha you&apos;re born into.</p>
+              <p><strong>Why this order and starting point?</strong> This is the <strong>Vimshottari Dasha sequence</strong>  –  derived by ancient rishis from the relationship between planets and the lunar nodes (Rahu-Ketu). Ketu begins the cycle because it represents the karmic starting point (past life). The dasha years (Ketu=7, Venus=20, Sun=6, Moon=10, Mars=7, Rahu=18, Jupiter=16, Saturn=19, Mercury=17) total exactly <strong>120 years</strong>  –  the ideal human lifespan per the Vedas. Your birth Moon&apos;s nakshatra lord determines which dasha you&apos;re born into.</p>
             </>
           ) : (
             <>
-              <p className="mb-2"><strong className="text-gold-light">प्रारम्भ बिन्दु:</strong> मैपिंग <strong className="text-gold-primary">अश्विनी</strong> — प्रथम नक्षत्र (0° मेष, नाक्षत्र राशिचक्र का आरम्भ) से शुरू होती है। <strong className="text-gold-primary">केतु</strong> अश्विनी को सौंपा जाता है। उसके बाद शेष 8 ग्रह राशिचक्र में आगे बढ़ते हुए एक निश्चित क्रम में आते हैं:</p>
+              <p className="mb-2"><strong className="text-gold-light">प्रारम्भ बिन्दु:</strong> मैपिंग <strong className="text-gold-primary">अश्विनी</strong>  –  प्रथम नक्षत्र (0° मेष, नाक्षत्र राशिचक्र का आरम्भ) से शुरू होती है। <strong className="text-gold-primary">केतु</strong> अश्विनी को सौंपा जाता है। उसके बाद शेष 8 ग्रह राशिचक्र में आगे बढ़ते हुए एक निश्चित क्रम में आते हैं:</p>
               <p className="my-2 text-gold-primary font-mono text-xs text-center tracking-wide">केतु → शुक्र → सूर्य → चन्द्र → मंगल → राहु → गुरु → शनि → बुध</p>
               <p className="mb-2">प्रथम 9 नक्षत्र: <span className="text-text-primary">अश्विनी = <strong>केतु</strong>, भरणी = <strong>शुक्र</strong>, कृत्तिका = <strong>सूर्य</strong>, रोहिणी = <strong>चन्द्र</strong>, मृगशिरा = <strong>मंगल</strong>, आर्द्रा = <strong>राहु</strong>, पुनर्वसु = <strong>गुरु</strong>, पुष्य = <strong>शनि</strong>, आश्लेषा = <strong>बुध</strong></span>। फिर चक्र पुनः आरम्भ: मघा (#10) = केतु, और तीसरा चक्र मूल (#19) से। तीन चक्र × 9 ग्रह = 27 नक्षत्र।</p>
-              <p><strong>यह क्रम और प्रारम्भ बिन्दु क्यों?</strong> यह <strong>विंशोत्तरी दशा क्रम</strong> है — ऋषियों ने चान्द्र नोड्स (राहु-केतु) से ग्रहों के सम्बन्ध से निकाला। केतु चक्र आरम्भ करता है क्योंकि वह कार्मिक प्रारम्भ बिन्दु (पूर्वजन्म) का प्रतिनिधित्व करता है। दशा वर्ष कुल <strong>120 वर्ष</strong> = वैदिक आदर्श जीवनकाल। जन्म चन्द्र का नक्षत्र स्वामी निर्धारित करता है कि आप किस दशा में जन्मे।</p>
+              <p><strong>यह क्रम और प्रारम्भ बिन्दु क्यों?</strong> यह <strong>विंशोत्तरी दशा क्रम</strong> है  –  ऋषियों ने चान्द्र नोड्स (राहु-केतु) से ग्रहों के सम्बन्ध से निकाला। केतु चक्र आरम्भ करता है क्योंकि वह कार्मिक प्रारम्भ बिन्दु (पूर्वजन्म) का प्रतिनिधित्व करता है। दशा वर्ष कुल <strong>120 वर्ष</strong> = वैदिक आदर्श जीवनकाल। जन्म चन्द्र का नक्षत्र स्वामी निर्धारित करता है कि आप किस दशा में जन्मे।</p>
             </>
           )}
         </div>
@@ -311,49 +311,49 @@ export default function LearnNakshatrasPage() {
       <LessonSection number={7} title={lo === 'en' ? 'Rashi–Nakshatra Relationship' : 'राशि-नक्षत्र सम्बन्ध'}>
         {lo === 'en' ? (
           <div className="space-y-3">
-            <p>The zodiac (360°) is divided <strong>two ways simultaneously</strong> — and understanding both is the key to Vedic astrology:</p>
+            <p>The zodiac (360°) is divided <strong>two ways simultaneously</strong>  –  and understanding both is the key to Vedic astrology:</p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 my-4">
               <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 p-4 text-center">
                 <div className="text-3xl font-bold text-gold-light">12</div>
                 <div className="text-gold-primary text-sm font-semibold mt-1">Rashis (Signs)</div>
-                <div className="text-text-secondary/70 text-xs mt-1">30° each — based on the <strong>Sun&apos;s</strong> annual path. Your &quot;Sun sign&quot; in Western astrology. In Vedic astrology, the <strong>Moon&apos;s</strong> rashi matters more.</div>
+                <div className="text-text-secondary/70 text-xs mt-1">30° each  –  based on the <strong>Sun&apos;s</strong> annual path. Your &quot;Sun sign&quot; in Western astrology. In Vedic astrology, the <strong>Moon&apos;s</strong> rashi matters more.</div>
               </div>
               <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 p-4 text-center">
                 <div className="text-3xl font-bold text-gold-light">27</div>
                 <div className="text-gold-primary text-sm font-semibold mt-1">Nakshatras (Stars)</div>
-                <div className="text-text-secondary/70 text-xs mt-1">13°20&apos; each — based on the <strong>Moon&apos;s</strong> daily position among star groups. Each has a deity, ruler, and unique personality. The Moon visits one nakshatra per day.</div>
+                <div className="text-text-secondary/70 text-xs mt-1">13°20&apos; each  –  based on the <strong>Moon&apos;s</strong> daily position among star groups. Each has a deity, ruler, and unique personality. The Moon visits one nakshatra per day.</div>
               </div>
               <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 p-4 text-center">
                 <div className="text-3xl font-bold text-gold-light">108</div>
                 <div className="text-gold-primary text-sm font-semibold mt-1">Padas (Quarters)</div>
-                <div className="text-text-secondary/70 text-xs mt-1">3°20&apos; each — 27 × 4 = 108, the sacred number. Each pada maps to one Navamsha (D9) sign. 108 padas ÷ 12 signs = 9 padas per rashi.</div>
+                <div className="text-text-secondary/70 text-xs mt-1">3°20&apos; each  –  27 × 4 = 108, the sacred number. Each pada maps to one Navamsha (D9) sign. 108 padas ÷ 12 signs = 9 padas per rashi.</div>
               </div>
             </div>
-            <p className="text-sm"><strong>The beautiful math:</strong> 12 rashis × 9 padas = 108. 27 nakshatras × 4 padas = 108. This is why 108 is sacred in Hinduism — it&apos;s the meeting point of the solar (rashi) and lunar (nakshatra) systems. A mala has 108 beads for this reason.</p>
-            <p className="text-sm">These two systems <strong>overlap</strong> — some nakshatras span two rashis (e.g., Krittika starts in Aries, ends in Taurus). This is why people born in the same nakshatra but different padas can have different rashis. Hover over any segment below to see the relationship.</p>
+            <p className="text-sm"><strong>The beautiful math:</strong> 12 rashis × 9 padas = 108. 27 nakshatras × 4 padas = 108. This is why 108 is sacred in Hinduism  –  it&apos;s the meeting point of the solar (rashi) and lunar (nakshatra) systems. A mala has 108 beads for this reason.</p>
+            <p className="text-sm">These two systems <strong>overlap</strong>  –  some nakshatras span two rashis (e.g., Krittika starts in Aries, ends in Taurus). This is why people born in the same nakshatra but different padas can have different rashis. Hover over any segment below to see the relationship.</p>
           </div>
         ) : (
           <div className="space-y-3">
-            <p>राशिचक्र (360°) <strong>दो तरीकों से एक साथ</strong> विभाजित है — दोनों को समझना वैदिक ज्योतिष की कुंजी है:</p>
+            <p>राशिचक्र (360°) <strong>दो तरीकों से एक साथ</strong> विभाजित है  –  दोनों को समझना वैदिक ज्योतिष की कुंजी है:</p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 my-4">
               <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 p-4 text-center">
                 <div className="text-3xl font-bold text-gold-light">12</div>
                 <div className="text-gold-primary text-sm font-semibold mt-1">राशियाँ</div>
-                <div className="text-text-secondary/70 text-xs mt-1">30° प्रत्येक — <strong>सूर्य</strong> के वार्षिक पथ पर आधारित। वैदिक ज्योतिष में <strong>चन्द्र</strong> की राशि अधिक महत्वपूर्ण।</div>
+                <div className="text-text-secondary/70 text-xs mt-1">30° प्रत्येक  –  <strong>सूर्य</strong> के वार्षिक पथ पर आधारित। वैदिक ज्योतिष में <strong>चन्द्र</strong> की राशि अधिक महत्वपूर्ण।</div>
               </div>
               <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 p-4 text-center">
                 <div className="text-3xl font-bold text-gold-light">27</div>
                 <div className="text-gold-primary text-sm font-semibold mt-1">नक्षत्र</div>
-                <div className="text-text-secondary/70 text-xs mt-1">13°20&apos; प्रत्येक — <strong>चन्द्रमा</strong> की दैनिक स्थिति। प्रत्येक का एक देवता, स्वामी और अद्वितीय व्यक्तित्व। चन्द्र प्रतिदिन एक नक्षत्र पार करता है।</div>
+                <div className="text-text-secondary/70 text-xs mt-1">13°20&apos; प्रत्येक  –  <strong>चन्द्रमा</strong> की दैनिक स्थिति। प्रत्येक का एक देवता, स्वामी और अद्वितीय व्यक्तित्व। चन्द्र प्रतिदिन एक नक्षत्र पार करता है।</div>
               </div>
               <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 p-4 text-center">
                 <div className="text-3xl font-bold text-gold-light">108</div>
                 <div className="text-gold-primary text-sm font-semibold mt-1">पाद (चतुर्थांश)</div>
-                <div className="text-text-secondary/70 text-xs mt-1">3°20&apos; प्रत्येक — 27 × 4 = 108, पवित्र संख्या। प्रत्येक पाद एक नवांश (D9) राशि से जुड़ता है। 108 ÷ 12 = 9 पाद प्रति राशि।</div>
+                <div className="text-text-secondary/70 text-xs mt-1">3°20&apos; प्रत्येक  –  27 × 4 = 108, पवित्र संख्या। प्रत्येक पाद एक नवांश (D9) राशि से जुड़ता है। 108 ÷ 12 = 9 पाद प्रति राशि।</div>
               </div>
             </div>
-            <p className="text-sm"><strong>सुन्दर गणित:</strong> 12 राशियाँ × 9 पाद = 108। 27 नक्षत्र × 4 पाद = 108। इसीलिए हिन्दू धर्म में 108 पवित्र है — यह सौर (राशि) और चान्द्र (नक्षत्र) प्रणालियों का मिलन बिन्दु है। माला में 108 मनके इसीलिए होते हैं।</p>
-            <p className="text-sm">ये दोनों प्रणालियाँ <strong>ओवरलैप</strong> करती हैं — कुछ नक्षत्र दो राशियों में फैले हैं। इसीलिए एक ही नक्षत्र के भिन्न पादों में जन्मे लोगों की राशि भिन्न हो सकती है।</p>
+            <p className="text-sm"><strong>सुन्दर गणित:</strong> 12 राशियाँ × 9 पाद = 108। 27 नक्षत्र × 4 पाद = 108। इसीलिए हिन्दू धर्म में 108 पवित्र है  –  यह सौर (राशि) और चान्द्र (नक्षत्र) प्रणालियों का मिलन बिन्दु है। माला में 108 मनके इसीलिए होते हैं।</p>
+            <p className="text-sm">ये दोनों प्रणालियाँ <strong>ओवरलैप</strong> करती हैं  –  कुछ नक्षत्र दो राशियों में फैले हैं। इसीलिए एक ही नक्षत्र के भिन्न पादों में जन्मे लोगों की राशि भिन्न हो सकती है।</p>
           </div>
         )}
         <div className="mt-6">
@@ -515,7 +515,7 @@ export default function LearnNakshatrasPage() {
         {/* Worked example */}
         <div className="mt-4 p-4 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] rounded-lg border border-gold-primary/15">
           <div className="text-gold-primary font-semibold text-sm mb-3">
-            {lo === 'en' ? 'Worked Example — Finding the Moon\'s Nakshatra' : 'उदाहरण — चन्द्रमा का नक्षत्र ज्ञात करना'}
+            {lo === 'en' ? 'Worked Example  –  Finding the Moon\'s Nakshatra' : 'उदाहरण  –  चन्द्रमा का नक्षत्र ज्ञात करना'}
           </div>
           <div className="space-y-2.5 text-sm">
             <div className="flex items-start gap-2">
@@ -555,8 +555,8 @@ export default function LearnNakshatrasPage() {
           </div>
           <div className="mt-3 pt-3 border-t border-gold-primary/10 text-xs text-text-secondary">
             {lo === 'en'
-              ? 'Result: Moon at tropical 54°30\' is in Krittika Nakshatra, Pada 2 (sidereal 30°23\' in Taurus). Without subtracting the Ayanamsha, the same Moon would appear to be at 54°30\' — in Mrigashira — which is the Western (tropical) position, not the Vedic one.'
-              : 'परिणाम: सायन 54°30\' पर चन्द्रमा कृत्तिका नक्षत्र, पाद 2 (निरयन 30°23\' वृषभ) में है। अयनांश घटाए बिना, वही चन्द्रमा 54°30\' — मृगशिरा में प्रतीत होता — जो पश्चिमी (सायन) स्थिति है, वैदिक नहीं।'}
+              ? 'Result: Moon at tropical 54°30\' is in Krittika Nakshatra, Pada 2 (sidereal 30°23\' in Taurus). Without subtracting the Ayanamsha, the same Moon would appear to be at 54°30\'  –  in Mrigashira  –  which is the Western (tropical) position, not the Vedic one.'
+              : 'परिणाम: सायन 54°30\' पर चन्द्रमा कृत्तिका नक्षत्र, पाद 2 (निरयन 30°23\' वृषभ) में है। अयनांश घटाए बिना, वही चन्द्रमा 54°30\'  –  मृगशिरा में प्रतीत होता  –  जो पश्चिमी (सायन) स्थिति है, वैदिक नहीं।'}
           </div>
         </div>
 
@@ -564,8 +564,8 @@ export default function LearnNakshatrasPage() {
         <div className="mt-4 p-3 bg-gold-primary/5 rounded-lg border border-gold-primary/15">
           <p className="text-gold-light text-sm font-medium">
             {lo === 'en'
-              ? 'The Ayanamsha grows by ~50" (arcseconds) every year. Two millennia ago it was nearly 0° — the tropical and sidereal zodiacs were aligned. Today the gap is ~24°, which is why a Western "Taurus Sun" often becomes an "Aries Sun" in Vedic astrology. This same correction applies to every planet, and determines the correct Nakshatra for each.'
-              : 'अयनांश प्रति वर्ष ~50" (कला-विकला) बढ़ता है। दो सहस्राब्दी पूर्व यह लगभग 0° था — सायन और निरयन राशिचक्र संरेखित थे। आज अन्तर ~24° है, इसीलिए पश्चिमी "वृषभ सूर्य" प्रायः वैदिक ज्योतिष में "मेष सूर्य" बन जाता है। यही सुधार प्रत्येक ग्रह पर लागू होता है, और प्रत्येक का सही नक्षत्र निर्धारित करता है।'}
+              ? 'The Ayanamsha grows by ~50" (arcseconds) every year. Two millennia ago it was nearly 0°  –  the tropical and sidereal zodiacs were aligned. Today the gap is ~24°, which is why a Western "Taurus Sun" often becomes an "Aries Sun" in Vedic astrology. This same correction applies to every planet, and determines the correct Nakshatra for each.'
+              : 'अयनांश प्रति वर्ष ~50" (कला-विकला) बढ़ता है। दो सहस्राब्दी पूर्व यह लगभग 0° था  –  सायन और निरयन राशिचक्र संरेखित थे। आज अन्तर ~24° है, इसीलिए पश्चिमी "वृषभ सूर्य" प्रायः वैदिक ज्योतिष में "मेष सूर्य" बन जाता है। यही सुधार प्रत्येक ग्रह पर लागू होता है, और प्रत्येक का सही नक्षत्र निर्धारित करता है।'}
           </p>
         </div>
 
@@ -576,8 +576,8 @@ export default function LearnNakshatrasPage() {
           </h4>
           <p className="text-text-primary text-sm leading-relaxed">
             {lo === 'en'
-              ? 'The precession that drives the Ayanamsha is one of three Milankovitch cycles — long-period variations in Earth\'s orbital geometry that govern ice ages and major climate shifts. Serbian mathematician Milutin Milankovitch formalized these in the 1920s, but Indian astronomers had already been tracking precession for over a millennium.'
-              : 'अयनांश को चलाने वाली अयन-गति तीन मिलांकोविच चक्रों में से एक है — पृथ्वी की कक्षीय ज्यामिति में दीर्घ-अवधि परिवर्तन जो हिमयुगों और प्रमुख जलवायु परिवर्तनों को नियन्त्रित करते हैं। सर्बियाई गणितज्ञ मिलुटिन मिलांकोविच ने इन्हें 1920 के दशक में सूत्रबद्ध किया, परन्तु भारतीय खगोलविद् इसके एक सहस्राब्दी पूर्व से अयन-गति को ट्रैक कर रहे थे।'}
+              ? 'The precession that drives the Ayanamsha is one of three Milankovitch cycles  –  long-period variations in Earth\'s orbital geometry that govern ice ages and major climate shifts. Serbian mathematician Milutin Milankovitch formalized these in the 1920s, but Indian astronomers had already been tracking precession for over a millennium.'
+              : 'अयनांश को चलाने वाली अयन-गति तीन मिलांकोविच चक्रों में से एक है  –  पृथ्वी की कक्षीय ज्यामिति में दीर्घ-अवधि परिवर्तन जो हिमयुगों और प्रमुख जलवायु परिवर्तनों को नियन्त्रित करते हैं। सर्बियाई गणितज्ञ मिलुटिन मिलांकोविच ने इन्हें 1920 के दशक में सूत्रबद्ध किया, परन्तु भारतीय खगोलविद् इसके एक सहस्राब्दी पूर्व से अयन-गति को ट्रैक कर रहे थे।'}
           </p>
 
           <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -589,8 +589,8 @@ export default function LearnNakshatrasPage() {
               <div className="text-gold-light font-mono text-xs mb-2">~26,000 {lo === 'en' ? 'years' : 'वर्ष'}</div>
               <p className="text-text-secondary text-xs leading-relaxed">
                 {lo === 'en'
-                  ? 'Earth\'s axis traces a slow cone, like a wobbling top. This shifts where the equinox falls against the background stars — the exact phenomenon the Ayanamsha measures. One full cycle takes ~26,000 years.'
-                  : 'पृथ्वी का अक्ष एक लट्टू की तरह धीरे-धीरे शंकु बनाता है। इससे विषुव बिन्दु पृष्ठभूमि तारों के सापेक्ष खिसकता है — ठीक वही घटना जिसे अयनांश मापता है। एक पूर्ण चक्र ~26,000 वर्ष लेता है।'}
+                  ? 'Earth\'s axis traces a slow cone, like a wobbling top. This shifts where the equinox falls against the background stars  –  the exact phenomenon the Ayanamsha measures. One full cycle takes ~26,000 years.'
+                  : 'पृथ्वी का अक्ष एक लट्टू की तरह धीरे-धीरे शंकु बनाता है। इससे विषुव बिन्दु पृष्ठभूमि तारों के सापेक्ष खिसकता है  –  ठीक वही घटना जिसे अयनांश मापता है। एक पूर्ण चक्र ~26,000 वर्ष लेता है।'}
               </p>
               <div className="mt-2 px-2 py-1 rounded bg-gold-primary/10 text-gold-light text-xs font-semibold text-center">
                 = {lo === 'en' ? 'Ayanamsha' : 'अयनांश'}
@@ -605,7 +605,7 @@ export default function LearnNakshatrasPage() {
               <div className="text-text-secondary font-mono text-xs mb-2">~41,000 {lo === 'en' ? 'years' : 'वर्ष'}</div>
               <p className="text-text-secondary text-xs leading-relaxed">
                 {lo === 'en'
-                  ? 'Earth\'s axial tilt oscillates between 22.1° and 24.5° over ~41,000 years. Currently ~23.44° and decreasing. This changes the intensity of seasons — greater tilt means more extreme summers and winters.'
+                  ? 'Earth\'s axial tilt oscillates between 22.1° and 24.5° over ~41,000 years. Currently ~23.44° and decreasing. This changes the intensity of seasons  –  greater tilt means more extreme summers and winters.'
                   : 'पृथ्वी का अक्षीय झुकाव ~41,000 वर्षों में 22.1° और 24.5° के बीच दोलन करता है। वर्तमान में ~23.44° और घट रहा है। इससे ऋतुओं की तीव्रता बदलती है।'}
               </p>
               <div className="mt-2 px-2 py-1 rounded bg-white/5 text-text-secondary text-xs text-center">
@@ -633,19 +633,19 @@ export default function LearnNakshatrasPage() {
           <div className="mt-4 p-3 bg-gold-primary/5 rounded-lg border border-gold-primary/10 space-y-3">
             <p className="text-gold-light/80 text-xs leading-relaxed">
               {lo === 'en'
-                ? 'The Surya Siddhanta (c. 4th century CE) records a precession rate of 54" per year — remarkably close to the modern value of 50.3". The text calls this phenomenon "Ayana Chalana" (movement of the solstices). Indian astronomy independently discovered and quantified precession over 1,500 years before Milankovitch linked it to ice ages.'
-                : 'सूर्य सिद्धान्त (लगभग चौथी शताब्दी ई.) में अयन-गति की दर 54" प्रति वर्ष दर्ज है — आधुनिक मान 50.3" के अत्यन्त निकट। ग्रन्थ इस घटना को "अयन चलन" कहता है। भारतीय खगोल विज्ञान ने अयन-गति को मिलांकोविच से 1,500 वर्ष पूर्व स्वतन्त्र रूप से खोजा और मापा।'}
+                ? 'The Surya Siddhanta (c. 4th century CE) records a precession rate of 54" per year  –  remarkably close to the modern value of 50.3". The text calls this phenomenon "Ayana Chalana" (movement of the solstices). Indian astronomy independently discovered and quantified precession over 1,500 years before Milankovitch linked it to ice ages.'
+                : 'सूर्य सिद्धान्त (लगभग चौथी शताब्दी ई.) में अयन-गति की दर 54" प्रति वर्ष दर्ज है  –  आधुनिक मान 50.3" के अत्यन्त निकट। ग्रन्थ इस घटना को "अयन चलन" कहता है। भारतीय खगोल विज्ञान ने अयन-गति को मिलांकोविच से 1,500 वर्ष पूर्व स्वतन्त्र रूप से खोजा और मापा।'}
             </p>
             <p className="text-text-secondary text-xs leading-relaxed">
               {lo === 'en'
-                ? 'Indian astronomers\' direct contribution was to precession. Obliquity was known implicitly — the Surya Siddhanta gives the ecliptic obliquity as 24° (close to the modern ~23.44°), and this value was essential for converting between ecliptic and equatorial coordinates. However, the slow oscillation of obliquity over 41,000 years was not tracked as a separate cycle. Eccentricity variation (~100,000 year cycle) was not formulated in classical Indian texts — Earth\'s orbit was modeled as having a fixed eccentricity. The insight that all three cycles interlock to drive ice ages was Milankovitch\'s unique contribution in the 1920s.'
-                : 'भारतीय खगोलविदों का प्रत्यक्ष योगदान अयन-गति (precession) में था। अक्षीय झुकाव (obliquity) परोक्ष रूप से ज्ञात था — सूर्य सिद्धान्त क्रान्तिवृत्त झुकाव 24° देता है (आधुनिक ~23.44° के निकट), और यह मान क्रान्तिवृत्तीय-विषुवतीय निर्देशांक रूपान्तरण के लिए आवश्यक था। परन्तु 41,000 वर्षों में झुकाव का धीमा दोलन एक पृथक चक्र के रूप में नहीं मापा गया। विकेन्द्रता परिवर्तन (~100,000 वर्ष चक्र) शास्त्रीय भारतीय ग्रन्थों में सूत्रबद्ध नहीं था — पृथ्वी की कक्षा को स्थिर विकेन्द्रता वाला माना गया। तीनों चक्रों का परस्पर गुँथकर हिमयुग चलाना — यह मिलांकोविच का विशिष्ट योगदान (1920 का दशक) था।'}
+                ? 'Indian astronomers\' direct contribution was to precession. Obliquity was known implicitly  –  the Surya Siddhanta gives the ecliptic obliquity as 24° (close to the modern ~23.44°), and this value was essential for converting between ecliptic and equatorial coordinates. However, the slow oscillation of obliquity over 41,000 years was not tracked as a separate cycle. Eccentricity variation (~100,000 year cycle) was not formulated in classical Indian texts  –  Earth\'s orbit was modeled as having a fixed eccentricity. The insight that all three cycles interlock to drive ice ages was Milankovitch\'s unique contribution in the 1920s.'
+                : 'भारतीय खगोलविदों का प्रत्यक्ष योगदान अयन-गति (precession) में था। अक्षीय झुकाव (obliquity) परोक्ष रूप से ज्ञात था  –  सूर्य सिद्धान्त क्रान्तिवृत्त झुकाव 24° देता है (आधुनिक ~23.44° के निकट), और यह मान क्रान्तिवृत्तीय-विषुवतीय निर्देशांक रूपान्तरण के लिए आवश्यक था। परन्तु 41,000 वर्षों में झुकाव का धीमा दोलन एक पृथक चक्र के रूप में नहीं मापा गया। विकेन्द्रता परिवर्तन (~100,000 वर्ष चक्र) शास्त्रीय भारतीय ग्रन्थों में सूत्रबद्ध नहीं था  –  पृथ्वी की कक्षा को स्थिर विकेन्द्रता वाला माना गया। तीनों चक्रों का परस्पर गुँथकर हिमयुग चलाना  –  यह मिलांकोविच का विशिष्ट योगदान (1920 का दशक) था।'}
             </p>
           </div>
         </div>
       </LessonSection>
 
-      {/* ─── 12. Yogatara — The Junction Stars ─── */}
+      {/* ─── 12. Yogatara  –  The Junction Stars ─── */}
       <LessonSection title={t('yogataraTitle')}>
         <p>{t('yogataraContent')}</p>
         <div className="mt-4 overflow-x-auto">
@@ -688,8 +688,8 @@ export default function LearnNakshatrasPage() {
         <div className="mt-3 p-3 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light/70 text-xs">
             {lo === 'en'
-              ? 'Magnitude (Mag.) measures apparent brightness — lower is brighter. Stars below ~1.0 are among the brightest in the sky. Notable: Arcturus (Swati, -0.05) is the 4th brightest star; Aldebaran (Rohini, 0.85) and Spica (Chitra, 0.97) are also first-magnitude stars.'
-              : 'कान्ति (Mag.) आभासी चमक को मापती है — कम मान = अधिक चमकीला। ~1.0 से कम वाले तारे आकाश के सबसे चमकीले हैं। उल्लेखनीय: आर्कटुरस (स्वाती, -0.05) चौथा सबसे चमकीला तारा है; अल्डेबरन (रोहिणी, 0.85) और स्पाइका (चित्रा, 0.97) भी प्रथम-कान्ति तारे हैं।'}
+              ? 'Magnitude (Mag.) measures apparent brightness  –  lower is brighter. Stars below ~1.0 are among the brightest in the sky. Notable: Arcturus (Swati, -0.05) is the 4th brightest star; Aldebaran (Rohini, 0.85) and Spica (Chitra, 0.97) are also first-magnitude stars.'
+              : 'कान्ति (Mag.) आभासी चमक को मापती है  –  कम मान = अधिक चमकीला। ~1.0 से कम वाले तारे आकाश के सबसे चमकीले हैं। उल्लेखनीय: आर्कटुरस (स्वाती, -0.05) चौथा सबसे चमकीला तारा है; अल्डेबरन (रोहिणी, 0.85) और स्पाइका (चित्रा, 0.97) भी प्रथम-कान्ति तारे हैं।'}
           </p>
         </div>
       </LessonSection>

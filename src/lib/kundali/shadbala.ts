@@ -9,7 +9,7 @@ import {
 } from '@/lib/constants/dignities';
 
 // ---------------------------------------------------------------------------
-// Input types (local — not imported)
+// Input types (local  –  not imported)
 // ---------------------------------------------------------------------------
 
 interface PlanetInput {
@@ -23,7 +23,7 @@ interface PlanetInput {
   isDebilitated: boolean;
   isOwnSign: boolean;
   navamshaSign: number;     // 1-12, sign in D9
-  eclipticLatitude?: number; // degrees — used for Graha Yuddha winner determination
+  eclipticLatitude?: number; // degrees  –  used for Graha Yuddha winner determination
 }
 
 interface ShadBalaInput {
@@ -86,16 +86,16 @@ const PLANET_NAMES = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Sat
 
 /** Sidereal longitude of exaltation point for each planet (id 0-6) */
 const EXALTATION_DEG: Record<number, number> = {
-  0: 10,   // Sun — Aries 10°
-  1: 33,   // Moon — Taurus 3°
-  2: 298,  // Mars — Capricorn 28°
-  3: 165,  // Mercury — Virgo 15°
-  4: 95,   // Jupiter — Cancer 5°
-  5: 357,  // Venus — Pisces 27°
-  6: 200,  // Saturn — Libra 20°
+  0: 10,   // Sun  –  Aries 10°
+  1: 33,   // Moon  –  Taurus 3°
+  2: 298,  // Mars  –  Capricorn 28°
+  3: 165,  // Mercury  –  Virgo 15°
+  4: 95,   // Jupiter  –  Cancer 5°
+  5: 357,  // Venus  –  Pisces 27°
+  6: 200,  // Saturn  –  Libra 20°
 };
 
-/** Naisargika Bala (natural strength) — fixed values */
+/** Naisargika Bala (natural strength)  –  fixed values */
 const NAISARGIKA: Record<number, number> = {
   0: 60.00,
   1: 51.43,
@@ -168,13 +168,13 @@ function ucchaBala(p: PlanetInput): number {
   return (180 - diff) / 3; // 0–60
 }
 
-// ── Saptavargaja Bala — proper multi-varga dignity ───────────────────────────
+// ── Saptavargaja Bala  –  proper multi-varga dignity ───────────────────────────
 // Computes dignity across 6 vargas: D1, D2, D3, D9, D12, D27
 // (D60 requires a 720-entry lookup table per source and is excluded)
 // Each varga contributes dignity points per BPHS:
 //   Uccha/Moolatrikona=45, Own=30, Friend=15, Neutral=7.5, Enemy=3.75, Neecha=1.875
 
-// Dignity constants imported from @/lib/constants/dignities (Lesson Q — single source of truth)
+// Dignity constants imported from @/lib/constants/dignities (Lesson Q  –  single source of truth)
 // Aliases for backward compatibility with _SB suffixed references below
 const SIGN_LORDS_SB = SIGN_LORDS_ARRAY;
 const EXALTATION_SIGN_SB = EXALTATION_SIGNS;
@@ -207,7 +207,7 @@ function vargaDignityPoints(planetId: number, sign: number, degInSign?: number):
   const mt = MOOLATRIKONA[planetId];
   if (mt?.sign === sign) {
     if (degInSign !== undefined) {
-      // D1: check actual degree — outside range falls through to own-sign check
+      // D1: check actual degree  –  outside range falls through to own-sign check
       if (degInSign >= mt.startDeg && degInSign < mt.endDeg) return 45;
     } else {
       // Non-D1 vargas: grant Moolatrikona at sign level (no degree info available)
@@ -226,24 +226,24 @@ function computeVargaSigns(p: PlanetInput): number[] {
   const sign = p.sign;
   const degInSign = p.longitude % 30;
 
-  // D1 — Rashi (natal sign)
+  // D1  –  Rashi (natal sign)
   const d1 = sign;
 
-  // D2 — Hora: odd signs 0-15→Leo(5), 15-30→Cancer(4); even signs reversed
+  // D2  –  Hora: odd signs 0-15→Leo(5), 15-30→Cancer(4); even signs reversed
   const isOddSign_ = sign % 2 === 1;
   const d2 = degInSign < 15 ? (isOddSign_ ? 5 : 4) : (isOddSign_ ? 4 : 5);
 
-  // D3 — Drekkana: 0-10°=own, 10-20°=5th, 20-30°=9th
+  // D3  –  Drekkana: 0-10°=own, 10-20°=5th, 20-30°=9th
   const d3Offset = degInSign < 10 ? 0 : degInSign < 20 ? 4 : 8;
   const d3 = ((sign - 1 + d3Offset) % 12) + 1;
 
-  // D9 — Navamsha (pre-computed in PlanetInput)
+  // D9  –  Navamsha (pre-computed in PlanetInput)
   const d9 = p.navamshaSign;
 
-  // D12 — Dwadashamsha: 12 equal parts, starting from own sign
+  // D12  –  Dwadashamsha: 12 equal parts, starting from own sign
   const d12 = ((sign - 1 + Math.floor(degInSign * 12 / 30)) % 12) + 1;
 
-  // D27 — Saptavimshamsha: 27 parts; start from Aries(fire), Cancer(earth), Libra(air), Capricorn(water)
+  // D27  –  Saptavimshamsha: 27 parts; start from Aries(fire), Cancer(earth), Libra(air), Capricorn(water)
   const d27PartIdx = Math.floor(degInSign * 27 / 30);
   const d27Start = [1, 5, 9].includes(sign) ? 1
     : [2, 6, 10].includes(sign) ? 4
@@ -337,14 +337,14 @@ function computeDigBala(p: PlanetInput, ascendantDeg: number): number {
 // ---------------------------------------------------------------------------
 
 /**
- * Natonnata Bala — graduated diurnal/nocturnal strength (BPHS Ch.27).
+ * Natonnata Bala  –  graduated diurnal/nocturnal strength (BPHS Ch.27).
  *
  * Uses a sinusoidal curve rather than a binary 60/0 toggle:
  * - Day-strong planets (Sun, Jupiter, Saturn): strength rises from 0 at sunrise
  *   to 60 at local noon, then falls back to 0 at sunset. During night = 0.
  * - Night-strong planets (Moon, Mars, Venus): strength rises from 0 at sunset
  *   to 60 at local midnight, then falls back to 0 at sunrise. During day = 0.
- * - Mercury (Mishra — both day and night strong): always 60.
+ * - Mercury (Mishra  –  both day and night strong): always 60.
  *
  * Formula: 60 × sin(π × fraction), where fraction is the position within
  * the day or night period (0 at start, 0.5 at midpoint, 1 at end).
@@ -358,7 +358,7 @@ function natonnataBala(
   sunsetHour: number,
 ): number {
   // Mercury is always fully strong (60 Shashtiamsas) regardless of birth time.
-  // Classical source: BPHS Ch.27 — "Budha is Mishra (both day and night strong)."
+  // Classical source: BPHS Ch.27  –  "Budha is Mishra (both day and night strong)."
   if (p.id === 3) return 60;
 
   // Day-strong: Sun(0), Jupiter(4), Saturn(6)
@@ -406,7 +406,7 @@ function pakshaBala(p: PlanetInput, sunLong: number, moonLong: number): number {
 }
 
 /**
- * Tribhaga Bala — the "three-thirds" strength.
+ * Tribhaga Bala  –  the "three-thirds" strength.
  * Divides the actual day (sunrise→sunset) and night (sunset→sunrise) each into 3
  * equal portions based on computed sunrise/sunset (not hardcoded 6 AM).
  * BPHS rule:
@@ -543,13 +543,13 @@ function ayanaBala(p: PlanetInput, ayanamsha: number): number {
 
   let value: number;
   if (p.id === 0 || p.id === 2 || p.id === 4) {
-    // Sun, Mars, Jupiter — strong in northern declination
+    // Sun, Mars, Jupiter  –  strong in northern declination
     value = ((24 + dec) * 60) / 48;
   } else if (p.id === 1 || p.id === 5 || p.id === 6) {
-    // Moon, Venus, Saturn — strong in southern declination
+    // Moon, Venus, Saturn  –  strong in southern declination
     value = ((24 - dec) * 60) / 48;
   } else {
-    // Mercury — always benefits from declination magnitude
+    // Mercury  –  always benefits from declination magnitude
     value = ((24 + Math.abs(dec)) * 60) / 48;
   }
 
@@ -569,7 +569,7 @@ function yuddhaBala(planets: PlanetInput[]): Record<number, number> {
       const b = eligible[j];
       const diff = arcDiff(a.longitude, b.longitude);
       if (diff <= 1) {
-        // Planetary war (Graha Yuddha) — winner determined by lower absolute
+        // Planetary war (Graha Yuddha)  –  winner determined by lower absolute
         // ecliptic latitude.  Source: BPHS Ch.28 ("that planet whose latitude
         // is less wins the war").  This is also the rule used in graha-yuddha.ts.
         //
@@ -578,7 +578,7 @@ function yuddhaBala(planets: PlanetInput[]): Record<number, number> {
         // the classical rule and gave wrong results for every planetary war.
         //
         // Fallback: if eclipticLatitude was not supplied (older call sites), fall
-        // back to the longitude comparison to avoid a breaking change — but this
+        // back to the longitude comparison to avoid a breaking change  –  but this
         // path should not occur in normal usage since kundali-calc now passes it.
         const aLat = a.eclipticLatitude;
         const bLat = b.eclipticLatitude;
@@ -668,7 +668,7 @@ function computeKalaBala(
 // ---------------------------------------------------------------------------
 
 /**
- * Cheshta Bala — strength from planetary motion (BPHS Ch.27).
+ * Cheshta Bala  –  strength from planetary motion (BPHS Ch.27).
  *
  * Two modes:
  * - 'bphs_strict' (default): Retrograde = 60 virupas (maximum).
@@ -762,13 +762,13 @@ function getAspectStrength(aspectingPlanetId: number, houseDistance: number): nu
  * aspects as full strength.
  *
  * @param p          The planet being assessed
- * @param allPlanets All 9 planets (0-8) including Rahu/Ketu — they contribute
+ * @param allPlanets All 9 planets (0-8) including Rahu/Ketu  –  they contribute
  *                   aspects as malefics per BPHS: Rahu/Ketu aspect 5th, 7th, 9th
  *                   from their position (same as Jupiter but as malefics).
  */
 function computeDrikBala(p: PlanetInput, allPlanets: PlanetInput[]): number {
   const beneficIds = new Set([1, 3, 4, 5]); // Moon, Mercury, Jupiter, Venus (natural)
-  // Rahu (7) and Ketu (8) are shadow-planet malefics — not in beneficIds
+  // Rahu (7) and Ketu (8) are shadow-planet malefics  –  not in beneficIds
   const BASE_SCORE = 7.5;
   let drikBala = 0;
 

@@ -92,7 +92,7 @@ const QUESTIONS: ModuleQuestion[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 1 — The Passage and Its Context                                */
+/*  PAGE 1  –  The Passage and Its Context                                */
 /* ------------------------------------------------------------------ */
 function Page1() {
   const locale = useModuleLocale();
@@ -105,8 +105,8 @@ function Page1() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>14वीं शताब्दी ईस्वी में, विजयनगर साम्राज्य के प्रधानमंत्री और महान संस्कृत विद्वान सायणाचार्य ने ऋग्वेद पर एक व्यापक टिप्पणी लिखी। भजन 1.50.4 पर टिप्पणी करते समय — सूर्य देवता को एक भजन — उन्होंने एक कथन लिखा जो 21वीं शताब्दी में वैज्ञानिकों को चौंका देगा।</>
-            : <>In the 14th century CE, Sayanacharya — prime minister of the Vijayanagara Empire and great Sanskrit scholar — wrote a comprehensive commentary on the Rig Veda. While commenting on hymn 1.50.4 — a hymn to the Sun god — he wrote a statement that would astonish scientists in the 21st century.</>}
+            ? <>14वीं शताब्दी ईस्वी में, विजयनगर साम्राज्य के प्रधानमंत्री और महान संस्कृत विद्वान सायणाचार्य ने ऋग्वेद पर एक व्यापक टिप्पणी लिखी। भजन 1.50.4 पर टिप्पणी करते समय  –  सूर्य देवता को एक भजन  –  उन्होंने एक कथन लिखा जो 21वीं शताब्दी में वैज्ञानिकों को चौंका देगा।</>
+            : <>In the 14th century CE, Sayanacharya  –  prime minister of the Vijayanagara Empire and great Sanskrit scholar  –  wrote a comprehensive commentary on the Rig Veda. While commenting on hymn 1.50.4  –  a hymn to the Sun god  –  he wrote a statement that would astonish scientists in the 21st century.</>}
         </p>
       </section>
 
@@ -121,7 +121,7 @@ function Page1() {
           <p className="text-text-secondary text-xs mt-2 leading-relaxed">
             {t('thusItIsRememberedO', locale)}
           </p>
-          <p className="text-text-secondary text-xs mt-1">— {t('sayanaRigvedabhashyaCommentaryOnHymn', locale)}</p>
+          <p className="text-text-secondary text-xs mt-1"> –  {t('sayanaRigvedabhashyaCommentaryOnHymn', locale)}</p>
         </blockquote>
       </section>
 
@@ -146,7 +146,7 @@ function Page1() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 2 — The Scholarly Debate                                       */
+/*  PAGE 2  –  The Scholarly Debate                                       */
 /* ------------------------------------------------------------------ */
 function Page2() {
   const locale = useModuleLocale();
@@ -195,8 +195,8 @@ function Page2() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <>प्रश्न अनिर्णीत रहता है। संख्यात्मक समझौता उल्लेखनीय है और इसे खारिज नहीं किया जाना चाहिए। लेकिन संदेहकर्ताओं के तर्क भी वैध हैं। यह एक ऐसा मामला है जहाँ ईमानदार विद्वत्ता दोनों संभावनाओं को स्वीकार करती है — एक उल्लेखनीय प्राचीन माप, या एक उल्लेखनीय संयोग।</>
-            : <>The question remains undecided. The numerical agreement is remarkable and should not be dismissed. But the sceptics' arguments are also valid. This is a case where honest scholarship acknowledges both possibilities — a remarkable ancient measurement, or a remarkable coincidence.</>}
+            ? <>प्रश्न अनिर्णीत रहता है। संख्यात्मक समझौता उल्लेखनीय है और इसे खारिज नहीं किया जाना चाहिए। लेकिन संदेहकर्ताओं के तर्क भी वैध हैं। यह एक ऐसा मामला है जहाँ ईमानदार विद्वत्ता दोनों संभावनाओं को स्वीकार करती है  –  एक उल्लेखनीय प्राचीन माप, या एक उल्लेखनीय संयोग।</>
+            : <>The question remains undecided. The numerical agreement is remarkable and should not be dismissed. But the sceptics' arguments are also valid. This is a case where honest scholarship acknowledges both possibilities  –  a remarkable ancient measurement, or a remarkable coincidence.</>}
         </p>
       </section>
     </div>
@@ -204,7 +204,7 @@ function Page2() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 3 — Sayana and the Broader Tradition                           */
+/*  PAGE 3  –  Sayana and the Broader Tradition                           */
 /* ------------------------------------------------------------------ */
 function Page3() {
   const locale = useModuleLocale();

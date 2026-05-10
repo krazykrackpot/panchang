@@ -1,27 +1,27 @@
 {
   "title": {
-    "en": "Panchang Integration — The Five Limbs Together",
-    "hi": "पंचांग समन्वय — पाँच अंगों का समग्र विश्लेषण",
-    "sa": "पञ्चाङ्ग-समन्वयः — पञ्चाङ्गानां समग्रविश्लेषणम्",
-    "mai": "पंचांग समन्वय — पाँच अंगक समग्र विश्लेषण",
-    "mr": "पंचांग समन्वय — पाच अंगांचे समग्र विश्लेषण",
-    "ta": "பஞ்சாங்க ஒருங்கிணைப்பு — ஐந்து அங்கங்களின் இணைவு",
-    "te": "పంచాంగ సమన్వయం — ఐదు అంగాల సమగ్ర విశ్లేషణ",
-    "bn": "পঞ্চাঙ্গ সমন্বয় — পাঁচ অঙ্গের সমগ্র বিশ্লেষণ",
-    "kn": "ಪಂಚಾಂಗ ಸಮನ್ವಯ — ಐದು ಅಂಗಗಳ ಸಮಗ್ರ ವಿಶ್ಲೇಷಣೆ",
-    "gu": "પંચાંગ સમન્વય — પાંચ અંગોનું સમગ્ર વિશ્લેષણ"
+    "en": "Panchang Integration  –  The Five Limbs Together",
+    "hi": "पंचांग समन्वय  –  पाँच अंगों का समग्र विश्लेषण",
+    "sa": "पञ्चाङ्ग-समन्वयः  –  पञ्चाङ्गानां समग्रविश्लेषणम्",
+    "mai": "पंचांग समन्वय  –  पाँच अंगक समग्र विश्लेषण",
+    "mr": "पंचांग समन्वय  –  पाच अंगांचे समग्र विश्लेषण",
+    "ta": "பஞ்சாங்க ஒருங்கிணைப்பு  –  ஐந்து அங்கங்களின் இணைவு",
+    "te": "పంచాంగ సమన్వయం  –  ఐదు అంగాల సమగ్ర విశ్లేషణ",
+    "bn": "পঞ্চাঙ্গ সমন্বয়  –  পাঁচ অঙ্গের সমগ্র বিশ্লেষণ",
+    "kn": "ಪಂಚಾಂಗ ಸಮನ್ವಯ  –  ಐದು ಅಂಗಗಳ ಸಮಗ್ರ ವಿಶ್ಲೇಷಣೆ",
+    "gu": "પંચાંગ સમન્વય  –  પાંચ અંગોનું સમગ્ર વિશ્લેષણ"
   },
   "subtitle": {
-    "en": "Tithi, Vara, Nakshatra, Yoga, and Karana unite to form the Panchang — a five-dimensional lens on the quality of any moment",
-    "hi": "तिथि, वार, नक्षत्र, योग और करण मिलकर पंचांग बनाते हैं — किसी भी क्षण की गुणवत्ता को देखने का पंच-आयामी दृष्टिकोण",
-    "sa": "तिथि-वार-नक्षत्र-योग-करणानि मिलित्वा पञ्चाङ्गं रचयन्ति — कस्यापि क्षणस्य गुणवत्तायाः पञ्चायामी दृष्टिकोणः",
-    "ta": "திதி, வாரம், நட்சத்திரம், யோகம், கரணம் இணைந்து பஞ்சாங்கத்தை உருவாக்குகின்றன — எந்த நேரத்தின் தரத்தையும் காணும் ஐந்து பரிமாண கண்ணோட்டம்",
-    "te": "తిథి, వారం, నక్షత్రం, యోగం, కరణం కలిసి పంచాంగాన్ని ఏర్పరుస్తాయి — ఏ క్షణం నాణ్యతనైనా చూసే ఐదు కోణాల దృష్టి",
-    "bn": "তিথি, বার, নক্ষত্র, যোগ ও করণ মিলে পঞ্চাঙ্গ গঠন করে — যেকোনো মুহূর্তের গুণমান দেখার পঞ্চমাত্রিক দৃষ্টিভঙ্গি",
-    "kn": "ತಿಥಿ, ವಾರ, ನಕ್ಷತ್ರ, ಯೋಗ ಮತ್ತು ಕರಣ ಸೇರಿ ಪಂಚಾಂಗವನ್ನು ರಚಿಸುತ್ತವೆ — ಯಾವುದೇ ಕ್ಷಣದ ಗುಣಮಟ್ಟವನ್ನು ನೋಡುವ ಐದು ಆಯಾಮದ ದೃಷ್ಟಿಕೋನ",
-    "mr": "तिथी, वार, नक्षत्र, योग आणि करण मिळून पंचांग तयार होते — कोणत्याही क्षणाची गुणवत्ता पाहण्याचा पंचमितीय दृष्टिकोन",
-    "gu": "તિથિ, વાર, નક્ષત્ર, યોગ અને કરણ મળીને પંચાંગ બનાવે છે — કોઈપણ ક્ષણની ગુણવત્તા જોવાનો પંચ-પરિમાણીય દૃષ્ટિકોણ",
-    "mai": "तिथि, वार, नक्षत्र, योग आ करण मिलिकय पंचांग बनबैत अछि — कोनो भी क्षणक गुणवत्ता देखबाक पंच-आयामी दृष्टिकोण"
+    "en": "Tithi, Vara, Nakshatra, Yoga, and Karana unite to form the Panchang  –  a five-dimensional lens on the quality of any moment",
+    "hi": "तिथि, वार, नक्षत्र, योग और करण मिलकर पंचांग बनाते हैं  –  किसी भी क्षण की गुणवत्ता को देखने का पंच-आयामी दृष्टिकोण",
+    "sa": "तिथि-वार-नक्षत्र-योग-करणानि मिलित्वा पञ्चाङ्गं रचयन्ति  –  कस्यापि क्षणस्य गुणवत्तायाः पञ्चायामी दृष्टिकोणः",
+    "ta": "திதி, வாரம், நட்சத்திரம், யோகம், கரணம் இணைந்து பஞ்சாங்கத்தை உருவாக்குகின்றன  –  எந்த நேரத்தின் தரத்தையும் காணும் ஐந்து பரிமாண கண்ணோட்டம்",
+    "te": "తిథి, వారం, నక్షత్రం, యోగం, కరణం కలిసి పంచాంగాన్ని ఏర్పరుస్తాయి  –  ఏ క్షణం నాణ్యతనైనా చూసే ఐదు కోణాల దృష్టి",
+    "bn": "তিথি, বার, নক্ষত্র, যোগ ও করণ মিলে পঞ্চাঙ্গ গঠন করে  –  যেকোনো মুহূর্তের গুণমান দেখার পঞ্চমাত্রিক দৃষ্টিভঙ্গি",
+    "kn": "ತಿಥಿ, ವಾರ, ನಕ್ಷತ್ರ, ಯೋಗ ಮತ್ತು ಕರಣ ಸೇರಿ ಪಂಚಾಂಗವನ್ನು ರಚಿಸುತ್ತವೆ  –  ಯಾವುದೇ ಕ್ಷಣದ ಗುಣಮಟ್ಟವನ್ನು ನೋಡುವ ಐದು ಆಯಾಮದ ದೃಷ್ಟಿಕೋನ",
+    "mr": "तिथी, वार, नक्षत्र, योग आणि करण मिळून पंचांग तयार होते  –  कोणत्याही क्षणाची गुणवत्ता पाहण्याचा पंचमितीय दृष्टिकोन",
+    "gu": "તિથિ, વાર, નક્ષત્ર, યોગ અને કરણ મળીને પંચાંગ બનાવે છે  –  કોઈપણ ક્ષણની ગુણવત્તા જોવાનો પંચ-પરિમાણીય દૃષ્ટિકોણ",
+    "mai": "तिथि, वार, नक्षत्र, योग आ करण मिलिकय पंचांग बनबैत अछि  –  कोनो भी क्षणक गुणवत्ता देखबाक पंच-आयामी दृष्टिकोण"
   },
   "crossRefs": [
     {
@@ -696,16 +696,16 @@
       "id": "q8_1_10",
       "type": "true_false",
       "question": {
-        "en": "The principle \"no single bad element overrides all good\" is universally true in muhurta selection — there are no exceptions.",
-        "hi": "\"कोई एक बुरा तत्व सभी अच्छे तत्वों को निरस्त नहीं करता\" यह सिद्धान्त मुहूर्त चयन में सर्वदा सत्य है — कोई अपवाद नहीं है।",
-        "sa": "\"कोई एक बुरा तत्व सभी अच्छे तत्वों को निरस्त नहीं करता\" यह सिद्धान्त मुहूर्त चयन में सर्वदा सत्य है — कोई अपवाद नहीं है।",
-        "ta": "The principle \"no single bad element overrides all good\" is universally true in muhurta selection — there are no exceptions.",
-        "te": "The principle \"no single bad element overrides all good\" is universally true in muhurta selection — there are no exceptions.",
-        "bn": "The principle \"no single bad element overrides all good\" is universally true in muhurta selection — there are no exceptions.",
-        "kn": "The principle \"no single bad element overrides all good\" is universally true in muhurta selection — there are no exceptions.",
-        "mr": "\"कोई एक बुरा तत्व सभी अच्छे तत्वों को निरस्त नहीं करता\" यह सिद्धान्त मुहूर्त चयन में सर्वदा सत्य है — कोई अपवाद नहीं है।",
-        "gu": "The principle \"no single bad element overrides all good\" is universally true in muhurta selection — there are no exceptions.",
-        "mai": "\"कोई एक बुरा तत्व सभी अच्छे तत्वों को निरस्त नहीं करता\" यह सिद्धान्त मुहूर्त चयन में सर्वदा सत्य है — कोई अपवाद नहीं है।"
+        "en": "The principle \"no single bad element overrides all good\" is universally true in muhurta selection  –  there are no exceptions.",
+        "hi": "\"कोई एक बुरा तत्व सभी अच्छे तत्वों को निरस्त नहीं करता\" यह सिद्धान्त मुहूर्त चयन में सर्वदा सत्य है  –  कोई अपवाद नहीं है।",
+        "sa": "\"कोई एक बुरा तत्व सभी अच्छे तत्वों को निरस्त नहीं करता\" यह सिद्धान्त मुहूर्त चयन में सर्वदा सत्य है  –  कोई अपवाद नहीं है।",
+        "ta": "The principle \"no single bad element overrides all good\" is universally true in muhurta selection  –  there are no exceptions.",
+        "te": "The principle \"no single bad element overrides all good\" is universally true in muhurta selection  –  there are no exceptions.",
+        "bn": "The principle \"no single bad element overrides all good\" is universally true in muhurta selection  –  there are no exceptions.",
+        "kn": "The principle \"no single bad element overrides all good\" is universally true in muhurta selection  –  there are no exceptions.",
+        "mr": "\"कोई एक बुरा तत्व सभी अच्छे तत्वों को निरस्त नहीं करता\" यह सिद्धान्त मुहूर्त चयन में सर्वदा सत्य है  –  कोई अपवाद नहीं है।",
+        "gu": "The principle \"no single bad element overrides all good\" is universally true in muhurta selection  –  there are no exceptions.",
+        "mai": "\"कोई एक बुरा तत्व सभी अच्छे तत्वों को निरस्त नहीं करता\" यह सिद्धान्त मुहूर्त चयन में सर्वदा सत्य है  –  कोई अपवाद नहीं है।"
       },
       "correctAnswer": false,
       "explanation": {

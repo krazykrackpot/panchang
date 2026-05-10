@@ -41,8 +41,8 @@ export const BAISAKHI_PUJA: PujaVidhi = {
       step: 1,
       title: { en: 'Early Morning Bath & Preparation', hi: 'प्रातः स्नान एवं तैयारी', sa: 'प्रातःस्नानं सज्जता च' },
       description: {
-        en: 'Rise before dawn and take a ritual bath. Wear new or clean bright-coloured clothes — Punjabi men typically wear kurta-pyjama with a colourful turban, women wear bright salwar-kameez or phulkari dupatta. Clean and decorate the house entrance with rangoli patterns. Place wheat sheaves and marigold garlands at the doorway as symbols of the harvest.',
-        hi: 'भोर से पहले उठकर स्नान करें। नए या साफ चमकीले रंग के कपड़े पहनें — पंजाबी पुरुष रंगीन पगड़ी के साथ कुर्ता-पायजामा पहनते हैं, महिलाएँ चमकीली सलवार-कमीज़ या फुलकारी दुपट्टा पहनती हैं। घर के प्रवेश द्वार को रंगोली से सजाएँ। फसल के प्रतीक के रूप में द्वार पर गेहूँ की बालियाँ और गेंदे की मालाएँ लगाएँ।',
+        en: 'Rise before dawn and take a ritual bath. Wear new or clean bright-coloured clothes  –  Punjabi men typically wear kurta-pyjama with a colourful turban, women wear bright salwar-kameez or phulkari dupatta. Clean and decorate the house entrance with rangoli patterns. Place wheat sheaves and marigold garlands at the doorway as symbols of the harvest.',
+        hi: 'भोर से पहले उठकर स्नान करें। नए या साफ चमकीले रंग के कपड़े पहनें  –  पंजाबी पुरुष रंगीन पगड़ी के साथ कुर्ता-पायजामा पहनते हैं, महिलाएँ चमकीली सलवार-कमीज़ या फुलकारी दुपट्टा पहनती हैं। घर के प्रवेश द्वार को रंगोली से सजाएँ। फसल के प्रतीक के रूप में द्वार पर गेहूँ की बालियाँ और गेंदे की मालाएँ लगाएँ।',
         sa: 'प्रभातात् पूर्वम् उत्थाय विधिवत् स्नायात्। नवानि शुभ्राणि उज्ज्वलवर्णवस्त्राणि धारयेत्। गृहद्वारं रङ्गवल्ल्या सज्जयेत्। सस्यप्रतीकरूपेण द्वारे गोधूमशिखराणि स्थलपद्ममालाश्च स्थापयेत्।',
       },
       duration: '20 min',
@@ -51,7 +51,7 @@ export const BAISAKHI_PUJA: PujaVidhi = {
     },
     {
       step: 2,
-      title: { en: 'Surya Puja — Gratitude to the Sun', hi: 'सूर्य पूजा — सूर्य को कृतज्ञता', sa: 'सूर्यपूजा — सूर्याय कृतज्ञता' },
+      title: { en: 'Surya Puja  –  Gratitude to the Sun', hi: 'सूर्य पूजा  –  सूर्य को कृतज्ञता', sa: 'सूर्यपूजा  –  सूर्याय कृतज्ञता' },
       description: {
         en: 'Face east at sunrise and offer water (arghya) to the Sun with both hands. Place a kalash (sacred pot) with mango leaves and a coconut on a clean altar. Light the ghee lamp and incense. Offer akshat, kumkum, flowers, and fruits. Chant the Surya Namaskar mantras and the Gayatri Mantra. Thank Surya Devata for ripening the wheat harvest and sustaining all life.',
         hi: 'सूर्योदय पर पूर्व दिशा में मुख करके दोनों हाथों से सूर्य को जल (अर्घ्य) अर्पित करें। स्वच्छ वेदी पर आम के पत्तों और नारियल सहित कलश स्थापित करें। घी का दीपक और अगरबत्ती जलाएँ। अक्षत, कुमकुम, फूल और फल अर्पित करें। सूर्य नमस्कार मन्त्र और गायत्री मन्त्र का जाप करें। गेहूँ की फसल पकाने और सम्पूर्ण जीवन के पालन के लिए सूर्य देवता का धन्यवाद करें।',
@@ -141,9 +141,9 @@ export const BAISAKHI_PUJA: PujaVidhi = {
         sa: 'एक ईश्वरः, सत्यं तस्य नाम, सः सृष्टिकर्ता, निर्भयः, निर्वैरः, अकालमूर्तिः, अजन्मा, स्वयम्भूः, गुरुप्रसादेन ज्ञेयः।',
       },
       usage: {
-        en: 'The foundational Sikh prayer — recite during Baisakhi morning prayers at the Gurdwara',
-        hi: 'मूलभूत सिख प्रार्थना — बैसाखी प्रातः प्रार्थना में गुरुद्वारे में पढ़ें',
-        sa: 'मूलभूतसिखप्रार्थना — बैसाख्यां प्रातःप्रार्थनायां गुरुद्वारे पठेत्',
+        en: 'The foundational Sikh prayer  –  recite during Baisakhi morning prayers at the Gurdwara',
+        hi: 'मूलभूत सिख प्रार्थना  –  बैसाखी प्रातः प्रार्थना में गुरुद्वारे में पढ़ें',
+        sa: 'मूलभूतसिखप्रार्थना  –  बैसाख्यां प्रातःप्रार्थनायां गुरुद्वारे पठेत्',
       },
     },
   ],
@@ -156,14 +156,14 @@ export const BAISAKHI_PUJA: PujaVidhi = {
 
   precautions: [
     {
-      en: 'Offer gratitude to the land and farmers — Baisakhi is fundamentally a harvest thanksgiving. Do not waste food on this day.',
-      hi: 'भूमि और किसानों के प्रति कृतज्ञता व्यक्त करें — बैसाखी मूल रूप से फसल धन्यवाद उत्सव है। इस दिन भोजन बर्बाद न करें।',
-      sa: 'भूम्यै कृषकेभ्यश्च कृतज्ञतां वदेत् — बैसाखी मूलतः सस्यधन्यवादोत्सवः। अस्मिन् दिने अन्नं न नाशयेत्।',
+      en: 'Offer gratitude to the land and farmers  –  Baisakhi is fundamentally a harvest thanksgiving. Do not waste food on this day.',
+      hi: 'भूमि और किसानों के प्रति कृतज्ञता व्यक्त करें  –  बैसाखी मूल रूप से फसल धन्यवाद उत्सव है। इस दिन भोजन बर्बाद न करें।',
+      sa: 'भूम्यै कृषकेभ्यश्च कृतज्ञतां वदेत्  –  बैसाखी मूलतः सस्यधन्यवादोत्सवः। अस्मिन् दिने अन्नं न नाशयेत्।',
     },
     {
-      en: 'Respect both Hindu and Sikh traditions — Baisakhi has dual significance. Participate with communal harmony.',
-      hi: 'हिन्दू और सिख दोनों परम्पराओं का सम्मान करें — बैसाखी का दोहरा महत्व है। सामुदायिक सद्भाव के साथ भाग लें।',
-      sa: 'हिन्दूसिखपरम्परयोः उभयोः सम्मानं कुर्यात् — बैसाख्याः द्विविधं महत्त्वम्। सामुदायिकसौहार्देन भागं गृह्णीयात्।',
+      en: 'Respect both Hindu and Sikh traditions  –  Baisakhi has dual significance. Participate with communal harmony.',
+      hi: 'हिन्दू और सिख दोनों परम्पराओं का सम्मान करें  –  बैसाखी का दोहरा महत्व है। सामुदायिक सद्भाव के साथ भाग लें।',
+      sa: 'हिन्दूसिखपरम्परयोः उभयोः सम्मानं कुर्यात्  –  बैसाख्याः द्विविधं महत्त्वम्। सामुदायिकसौहार्देन भागं गृह्णीयात्।',
     },
     {
       en: 'If visiting a Gurdwara, cover your head and remove shoes before entering. Do not bring tobacco or alcohol.',
@@ -171,9 +171,9 @@ export const BAISAKHI_PUJA: PujaVidhi = {
       sa: 'गुरुद्वारं गच्छन् प्रवेशात् पूर्वं शिरः आवृणुयात् पादुके च अपनयेत्। धूम्रपानं मद्यं वा न आनयेत्।',
     },
     {
-      en: 'Share food and prasad generously with neighbours and the less fortunate — the spirit of seva (selfless service) is central to Baisakhi.',
-      hi: 'पड़ोसियों और जरूरतमन्दों के साथ उदारतापूर्वक भोजन और प्रसाद बाँटें — सेवा (निःस्वार्थ सेवा) की भावना बैसाखी का केन्द्र है।',
-      sa: 'पार्श्ववासिभ्यः दरिद्रेभ्यश्च औदार्येण अन्नं प्रसादं च वितरेत् — सेवाभावना (निःस्वार्थसेवा) बैसाख्याः केन्द्रम्।',
+      en: 'Share food and prasad generously with neighbours and the less fortunate  –  the spirit of seva (selfless service) is central to Baisakhi.',
+      hi: 'पड़ोसियों और जरूरतमन्दों के साथ उदारतापूर्वक भोजन और प्रसाद बाँटें  –  सेवा (निःस्वार्थ सेवा) की भावना बैसाखी का केन्द्र है।',
+      sa: 'पार्श्ववासिभ्यः दरिद्रेभ्यश्च औदार्येण अन्नं प्रसादं च वितरेत्  –  सेवाभावना (निःस्वार्थसेवा) बैसाख्याः केन्द्रम्।',
     },
   ],
 

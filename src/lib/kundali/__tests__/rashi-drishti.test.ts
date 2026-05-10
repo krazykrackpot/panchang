@@ -1,14 +1,14 @@
 import { describe, it, expect } from 'vitest';
 import { getSignAspects, computeRashiDrishti } from '../rashi-drishti';
 
-describe('Rashi Drishti — getSignAspects', () => {
-  it('Aries (1, movable) aspects Leo(5), Scorpio(8), Aquarius(11) — NOT Taurus(2)', () => {
+describe('Rashi Drishti  –  getSignAspects', () => {
+  it('Aries (1, movable) aspects Leo(5), Scorpio(8), Aquarius(11)  –  NOT Taurus(2)', () => {
     const aspects = getSignAspects(1);
     expect(aspects).toEqual([5, 8, 11]);
     expect(aspects).not.toContain(2);
   });
 
-  it('Taurus (2, fixed) aspects Cancer(4), Libra(7), Capricorn(10) — NOT Aries(1)', () => {
+  it('Taurus (2, fixed) aspects Cancer(4), Libra(7), Capricorn(10)  –  NOT Aries(1)', () => {
     const aspects = getSignAspects(2);
     expect(aspects).toEqual([4, 7, 10]);
     expect(aspects).not.toContain(1);
@@ -19,16 +19,16 @@ describe('Rashi Drishti — getSignAspects', () => {
     expect(aspects).toEqual([6, 9, 12]);
   });
 
-  it('Cancer (4, movable) aspects Leo(5), Scorpio(8), Aquarius(11) — NOT Taurus(2)? No, Cancer adjacent to Leo(5)', () => {
+  it('Cancer (4, movable) aspects Leo(5), Scorpio(8), Aquarius(11)  –  NOT Taurus(2)? No, Cancer adjacent to Leo(5)', () => {
     // Cancer=4 is movable, aspects Fixed signs except adjacent.
     // Adjacent to Cancer(4): Gemini(3) and Leo(5). Leo is Fixed.
-    // So Cancer aspects: Taurus(2), Scorpio(8), Aquarius(11) — NOT Leo(5)
+    // So Cancer aspects: Taurus(2), Scorpio(8), Aquarius(11)  –  NOT Leo(5)
     const aspects = getSignAspects(4);
     expect(aspects).toEqual([2, 8, 11]);
     expect(aspects).not.toContain(5);
   });
 
-  it('Leo (5, fixed) aspects Aries(1), Libra(7), Capricorn(10) — NOT Cancer(4)', () => {
+  it('Leo (5, fixed) aspects Aries(1), Libra(7), Capricorn(10)  –  NOT Cancer(4)', () => {
     // Leo=5 is fixed, aspects Movable signs except adjacent.
     // Adjacent: Cancer(4) and Virgo(6). Cancer is Movable.
     // So Leo aspects: Aries(1), Libra(7), Capricorn(10)
@@ -44,7 +44,7 @@ describe('Rashi Drishti — getSignAspects', () => {
   });
 });
 
-describe('Rashi Drishti — computeRashiDrishti', () => {
+describe('Rashi Drishti  –  computeRashiDrishti', () => {
   it('returns exactly 12 entries', () => {
     const results = computeRashiDrishti();
     expect(results).toHaveLength(12);

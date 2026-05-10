@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * JournalCalendarHeatmap — GitHub-style 90-day mood heatmap.
+ * JournalCalendarHeatmap  –  GitHub-style 90-day mood heatmap.
  *
  * Grid: 7 rows (Mon–Sun) × ~13 weeks.
  * Color: keyed by mood level (1-5) or empty.
@@ -67,7 +67,7 @@ function getLabels(locale: string) {
 // Mood cell colours (index 0 = no entry, 1-5 = mood levels)
 // ---------------------------------------------------------------------------
 const CELL_BG = [
-  'bg-[#111633]',          // 0 — no entry
+  'bg-[#111633]',          // 0  –  no entry
   'bg-red-500/40',         // 1
   'bg-orange-500/40',      // 2
   'bg-yellow-500/40',      // 3
@@ -227,7 +227,7 @@ export default function JournalCalendarHeatmap({ entries, locale, onDateClick }:
                     onMouseEnter={(e) => !isFuture && handleMouseEnter(e, dateStr)}
                     onMouseLeave={handleMouseLeave}
                     disabled={isFuture}
-                    aria-label={`${dateStr}${entry ? ` — Mood ${mood}` : ''}`}
+                    aria-label={`${dateStr}${entry ? `  –  Mood ${mood}` : ''}`}
                     className={[
                       'w-3.5 h-3.5 rounded-sm transition-all',
                       isFuture

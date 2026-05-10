@@ -72,7 +72,7 @@ export default function SignCalculatorPage() {
           setPlaceName(data.birth_place || '');
           setPlaceLat(data.birth_lat);
           setPlaceLng(data.birth_lng);
-          // ALWAYS resolve timezone from coordinates — never trust stored birth_timezone
+          // ALWAYS resolve timezone from coordinates  –  never trust stored birth_timezone
           if (data.birth_lat && data.birth_lng) {
             resolveTimezoneFromCoords(Number(data.birth_lat), Number(data.birth_lng)).then(tz => setPlaceTimezone(tz));
           }
@@ -162,7 +162,7 @@ export default function SignCalculatorPage() {
           {locale === 'en' || isTamil ? (
             <>
               <p className="text-text-secondary/80 text-base leading-relaxed mb-4">
-                Your Moon sign (Rashi) is the cornerstone of Vedic astrology — more important than your Western Sun sign. While your Sun sign changes roughly once a month, the Moon moves through all 12 signs every 27.3 days, spending about 2.25 days in each sign. Your Moon sign at the exact moment of birth determines your emotional nature, mental patterns, and the starting point for Vimshottari Dasha — the 120-year predictive timeline that is uniquely Vedic.
+                Your Moon sign (Rashi) is the cornerstone of Vedic astrology  –  more important than your Western Sun sign. While your Sun sign changes roughly once a month, the Moon moves through all 12 signs every 27.3 days, spending about 2.25 days in each sign. Your Moon sign at the exact moment of birth determines your emotional nature, mental patterns, and the starting point for Vimshottari Dasha  –  the 120-year predictive timeline that is uniquely Vedic.
               </p>
               <p className="text-text-secondary/80 text-base leading-relaxed">
                 Unlike Western astrology which uses the tropical zodiac, Vedic astrology uses the sidereal zodiac corrected by Ayanamsha (currently ~24°). This means your Vedic Moon sign is often one sign behind your Western sign. Enter your birth details below to discover your true sidereal Moon sign, Nakshatra (birth star), and Ascendant (Lagna).
@@ -171,7 +171,7 @@ export default function SignCalculatorPage() {
           ) : (
             <>
               <p className="text-text-secondary/80 text-base leading-relaxed mb-4" style={bodyFont}>
-                आपकी चन्द्र राशि वैदिक ज्योतिष की आधारशिला है — पश्चिमी सूर्य राशि से अधिक महत्वपूर्ण। जबकि सूर्य राशि लगभग एक महीने में बदलती है, चन्द्रमा हर 27.3 दिनों में सभी 12 राशियों से गुजरता है। जन्म के सटीक समय पर आपकी चन्द्र राशि आपकी भावनात्मक प्रकृति और विंशोत्तरी दशा — 120 वर्षों की भविष्यवाणी समयरेखा — का आरंभ बिंदु निर्धारित करती है।
+                आपकी चन्द्र राशि वैदिक ज्योतिष की आधारशिला है  –  पश्चिमी सूर्य राशि से अधिक महत्वपूर्ण। जबकि सूर्य राशि लगभग एक महीने में बदलती है, चन्द्रमा हर 27.3 दिनों में सभी 12 राशियों से गुजरता है। जन्म के सटीक समय पर आपकी चन्द्र राशि आपकी भावनात्मक प्रकृति और विंशोत्तरी दशा  –  120 वर्षों की भविष्यवाणी समयरेखा  –  का आरंभ बिंदु निर्धारित करती है।
               </p>
               <p className="text-text-secondary/80 text-base leading-relaxed" style={bodyFont}>
                 पश्चिमी ज्योतिष उष्णकटिबंधीय राशि चक्र का उपयोग करता है जबकि वैदिक ज्योतिष अयनांश (~24°) द्वारा सही किया गया नक्षत्र राशि चक्र उपयोग करता है। अपनी सही नक्षत्र चन्द्र राशि, नक्षत्र और लग्न जानने के लिए नीचे अपना जन्म विवरण दर्ज करें।
@@ -218,8 +218,8 @@ export default function SignCalculatorPage() {
         </div>
         <p className="text-text-secondary/70 text-xs text-center mt-4" style={bodyFont}>
           {locale === 'en'
-            ? 'Location is essential — Moon moves ~13° per day and timezone affects calculations.'
-            : 'स्थान आवश्यक है — चन्द्रमा प्रतिदिन ~13° चलता है और समयक्षेत्र गणना को प्रभावित करता है।'}
+            ? 'Location is essential  –  Moon moves ~13° per day and timezone affects calculations.'
+            : 'स्थान आवश्यक है  –  चन्द्रमा प्रतिदिन ~13° चलता है और समयक्षेत्र गणना को प्रभावित करता है।'}
         </p>
       </div>
 
@@ -288,14 +288,14 @@ export default function SignCalculatorPage() {
                 <div>
                   <span className="text-amber-400 font-bold">{isTamil ? 'சூரிய ராசி' : locale === 'en' ? 'Sun Sign' : 'सूर्य राशि'}</span>
                   {locale === 'en'
-                    ? ' — Your core identity, ego, and life purpose. It shows how you express your will and where you shine most brightly. In Vedic astrology, this is often one sign behind your Western sign.'
-                    : ' — आपकी मूल पहचान, अहंकार और जीवन उद्देश्य। यह दर्शाती है कि आप अपनी इच्छाशक्ति कैसे व्यक्त करते हैं।'}
+                    ? '  –  Your core identity, ego, and life purpose. It shows how you express your will and where you shine most brightly. In Vedic astrology, this is often one sign behind your Western sign.'
+                    : '  –  आपकी मूल पहचान, अहंकार और जीवन उद्देश्य। यह दर्शाती है कि आप अपनी इच्छाशक्ति कैसे व्यक्त करते हैं।'}
                 </div>
                 <div>
                   <span className="text-indigo-400 font-bold">{isTamil ? 'சந்திர ராசி' : locale === 'en' ? 'Moon Sign' : 'चन्द्र राशि'}</span>
                   {locale === 'en'
-                    ? ' — Your emotional nature, instincts, and subconscious mind. This is the MOST important sign in Vedic astrology — more than Sun sign. It determines your Nakshatra, Dasha system, and how transits affect you.'
-                    : ' — आपका भावनात्मक स्वभाव, सहज वृत्ति और अवचेतन मन। वैदिक ज्योतिष में यह सबसे महत्वपूर्ण राशि है — सूर्य राशि से भी अधिक। यह आपका नक्षत्र, दशा और गोचर प्रभाव निर्धारित करती है।'}
+                    ? '  –  Your emotional nature, instincts, and subconscious mind. This is the MOST important sign in Vedic astrology  –  more than Sun sign. It determines your Nakshatra, Dasha system, and how transits affect you.'
+                    : '  –  आपका भावनात्मक स्वभाव, सहज वृत्ति और अवचेतन मन। वैदिक ज्योतिष में यह सबसे महत्वपूर्ण राशि है  –  सूर्य राशि से भी अधिक। यह आपका नक्षत्र, दशा और गोचर प्रभाव निर्धारित करती है।'}
                 </div>
               </div>
             </div>
@@ -339,10 +339,10 @@ export default function SignCalculatorPage() {
               >
                 <h3 className="text-gold-light text-lg font-bold mb-2" style={headingFont}>
                   {locale === 'en'
-                    ? 'The 24° Shift — Why Your Western Sign Is Different'
+                    ? 'The 24° Shift  –  Why Your Western Sign Is Different'
                     : isTamil
-                      ? '24° மாற்றம் — உங்கள் மேற்கத்திய ராசி ஏன் வேறுபட்டது'
-                      : '24° का अंतर — आपकी पश्चिमी राशि अलग क्यों है'}
+                      ? '24° மாற்றம்  –  உங்கள் மேற்கத்திய ராசி ஏன் வேறுபட்டது'
+                      : '24° का अंतर  –  आपकी पश्चिमी राशि अलग क्यों है'}
                 </h3>
                 <p className="text-text-secondary text-sm mb-5 leading-relaxed" style={bodyFont}>
                   {locale === 'en' ? (
@@ -380,7 +380,7 @@ export default function SignCalculatorPage() {
                           <td className="py-2.5 px-3 text-center">
                             {p.isShifted
                               ? <span className="text-gold-primary font-semibold">&#10022; YES</span>
-                              : <span className="text-text-secondary/50">—</span>
+                              : <span className="text-text-secondary/50"> – </span>
                             }
                           </td>
                         </tr>

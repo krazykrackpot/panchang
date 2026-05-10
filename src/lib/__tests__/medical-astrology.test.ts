@@ -504,7 +504,7 @@ describe('computeDiseaseProfile', () => {
     const cardiac = result.signaturePatterns.find((p) => p.id === 'cardiac_risk');
     expect(cardiac).toBeDefined();
     // With Mars in 4th + Saturn in 10th + debilitations, house 4 should be vulnerable
-    // so cardiac pattern may or may not be present based on threshold — just check it runs
+    // so cardiac pattern may or may not be present based on threshold  –  just check it runs
     expect(typeof cardiac!.present).toBe('boolean');
   });
 });

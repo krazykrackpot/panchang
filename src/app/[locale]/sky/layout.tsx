@@ -4,22 +4,22 @@ const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com
 
 const META: Record<string, { title: string; description: string }> = {
   en: {
-    title: 'Live Sky Map — Current Sidereal Planetary Positions',
+    title: 'Live Sky Map  –  Current Sidereal Planetary Positions',
     description:
       'Real-time polar sky map showing all 9 Vedic grahas at their current sidereal positions (Lahiri ayanamsha). Includes rashi, nakshatra, retrograde status and daily speed.',
   },
   hi: {
-    title: 'लाइव आकाश मानचित्र — वर्तमान ग्रह स्थितियाँ',
+    title: 'लाइव आकाश मानचित्र  –  वर्तमान ग्रह स्थितियाँ',
     description:
       'लाहिरी अयनांश के साथ सभी 9 वैदिक ग्रहों की वर्तमान पाक्षिक स्थिति दर्शाने वाला रियल-टाइम आकाश मानचित्र।',
   },
   ta: {
-    title: 'நேரடி வானவியல் வரைபடம் — தற்போதைய கிரக நிலைகள்',
+    title: 'நேரடி வானவியல் வரைபடம்  –  தற்போதைய கிரக நிலைகள்',
     description:
       'லாஹிரி அயனாம்சத்துடன் அனைத்து 9 வேத கிரகங்களின் தற்போதைய நாக்ஷத்ர நிலைகளை காட்டும் நேர்நேர வான வரைபடம்.',
   },
   bn: {
-    title: 'লাইভ আকাশ মানচিত্র — বর্তমান গ্রহ অবস্থান',
+    title: 'লাইভ আকাশ মানচিত্র  –  বর্তমান গ্রহ অবস্থান',
     description:
       'লাহিরি অয়নাংশ সহ সমস্ত ৯টি বৈদিক গ্রহের বর্তমান নক্ষত্র অবস্থান দেখানো রিয়েল-টাইম আকাশ মানচিত্র।',
   },

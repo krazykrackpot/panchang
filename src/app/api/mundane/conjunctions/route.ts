@@ -2,8 +2,8 @@
  * GET /api/mundane/conjunctions
  *
  * Returns the Great Conjunction timeline (Jupiter-Saturn conjunctions 1800-2100).
- * No authentication required — public data.
- * Cached at CDN level for 24 hours — results are deterministic and don't change.
+ * No authentication required  –  public data.
+ * Cached at CDN level for 24 hours  –  results are deterministic and don't change.
  */
 
 import { NextResponse } from 'next/server';
@@ -26,7 +26,7 @@ export async function GET(request: Request) {
 
     return NextResponse.json(data, {
       headers: {
-        // Cache for 24 hours — conjunction data is fully deterministic
+        // Cache for 24 hours  –  conjunction data is fully deterministic
         'Cache-Control': 'public, max-age=86400, stale-while-revalidate=3600',
       },
     });

@@ -1,19 +1,19 @@
 {
   "title": {
-    "en": "Kerala School — When India Invented Calculus",
-    "hi": "केरल स्कूल — जब भारत ने कलनशास्त्र की खोज की",
-    "sa": "केरल स्कूल — जब भारत ने कलनशास्त्र की खोज की",
-    "mai": "केरल स्कूल — जब भारत ने कलनशास्त्र की खोज की",
-    "mr": "केरल स्कूल — जब भारत ने कलनशास्त्र की खोज की",
-    "ta": "கேரள பள்ளி — இந்தியா கணிதவியலைக் கண்டுபிடித்தபோது",
-    "te": "కేరళ పాఠశాల — భారతదేశం కలనగణితాన్ని కనుగొన్నప్పుడు",
-    "bn": "কেরল স্কুল — যখন ভারত ক্যালকুলাস আবিষ্কার করেছিল",
-    "kn": "ಕೇರಳ ಶಾಲೆ — ಭಾರತ ಕಲನಶಾಸ್ತ್ರ ಕಂಡುಹಿಡಿದಾಗ",
-    "gu": "કેરળ શાળા — જ્યારે ભારતે ગણિતવિદ્યાની શોધ કરી"
+    "en": "Kerala School  –  When India Invented Calculus",
+    "hi": "केरल स्कूल  –  जब भारत ने कलनशास्त्र की खोज की",
+    "sa": "केरल स्कूल  –  जब भारत ने कलनशास्त्र की खोज की",
+    "mai": "केरल स्कूल  –  जब भारत ने कलनशास्त्र की खोज की",
+    "mr": "केरल स्कूल  –  जब भारत ने कलनशास्त्र की खोज की",
+    "ta": "கேரள பள்ளி  –  இந்தியா கணிதவியலைக் கண்டுபிடித்தபோது",
+    "te": "కేరళ పాఠశాల  –  భారతదేశం కలనగణితాన్ని కనుగొన్నప్పుడు",
+    "bn": "কেরল স্কুল  –  যখন ভারত ক্যালকুলাস আবিষ্কার করেছিল",
+    "kn": "ಕೇರಳ ಶಾಲೆ  –  ಭಾರತ ಕಲನಶಾಸ್ತ್ರ ಕಂಡುಹಿಡಿದಾಗ",
+    "gu": "કેરળ શાળા  –  જ્યારે ભારતે ગણિતવિદ્યાની શોધ કરી"
   },
   "subtitle": {
-    "en": "Madhava\"s infinite series for π, sine, cosine, and arctangent — with correction terms, worked examples, and the story of the world\"s first calculus textbook",
-    "hi": "माधव की π, sine, cosine और arctangent के लिए अनन्त श्रेणी — सुधार पदों, हल किए गए उदाहरणों, और विश्व की पहली कलनशास्त्र पाठ्यपुस्तक की कहानी"
+    "en": "Madhava\"s infinite series for π, sine, cosine, and arctangent  –  with correction terms, worked examples, and the story of the world\"s first calculus textbook",
+    "hi": "माधव की π, sine, cosine और arctangent के लिए अनन्त श्रेणी  –  सुधार पदों, हल किए गए उदाहरणों, और विश्व की पहली कलनशास्त्र पाठ्यपुस्तक की कहानी"
   },
   "crossRefs": [
     {
@@ -150,8 +150,8 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "It is called the \"Leibniz formula for π\" after Gottfried Leibniz who published it in 1674. However, Madhava derived this series around 1350 CE — approximately 324 years earlier. More accurately, it should be called the Madhava-Leibniz series.",
-        "hi": "इसे गॉटफ्रीड लाइबनिज (1674) के नाम पर \"लाइबनिज सूत्र\" कहा जाता है। लेकिन माधव ने यह श्रेणी ~1350 ई. में व्युत्पन्न की — लगभग 324 वर्ष पहले। अधिक सटीक रूप से, इसे माधव-लाइबनिज श्रेणी कहा जाना चाहिए।"
+        "en": "It is called the \"Leibniz formula for π\" after Gottfried Leibniz who published it in 1674. However, Madhava derived this series around 1350 CE  –  approximately 324 years earlier. More accurately, it should be called the Madhava-Leibniz series.",
+        "hi": "इसे गॉटफ्रीड लाइबनिज (1674) के नाम पर \"लाइबनिज सूत्र\" कहा जाता है। लेकिन माधव ने यह श्रेणी ~1350 ई. में व्युत्पन्न की  –  लगभग 324 वर्ष पहले। अधिक सटीक रूप से, इसे माधव-लाइबनिज श्रेणी कहा जाना चाहिए।"
       },
       "options": [
         {
@@ -213,8 +213,8 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "The raw series converges extremely slowly — you need millions of terms for 6 correct decimals. Madhava's correction terms transform this: with just 50 terms plus correction, he achieved 11 correct decimal places. Europe did not develop comparable acceleration techniques until Euler in the 1740s, nearly 400 years later.",
-        "hi": "कच्ची श्रेणी अत्यन्त धीमी अभिसरित होती है — 6 सही दशमलव के लिए लाखों पदों की आवश्यकता। माधव के सुधार पद इसे बदल देते हैं: केवल 50 पदों और सुधार के साथ 11 सही दशमलव। यूरोप में ऑयलर (1740 के दशक) तक तुलनीय तकनीक विकसित नहीं हुई।"
+        "en": "The raw series converges extremely slowly  –  you need millions of terms for 6 correct decimals. Madhava's correction terms transform this: with just 50 terms plus correction, he achieved 11 correct decimal places. Europe did not develop comparable acceleration techniques until Euler in the 1740s, nearly 400 years later.",
+        "hi": "कच्ची श्रेणी अत्यन्त धीमी अभिसरित होती है  –  6 सही दशमलव के लिए लाखों पदों की आवश्यकता। माधव के सुधार पद इसे बदल देते हैं: केवल 50 पदों और सुधार के साथ 11 सही दशमलव। यूरोप में ऑयलर (1740 के दशक) तक तुलनीय तकनीक विकसित नहीं हुई।"
       },
       "options": [
         {
@@ -331,8 +331,8 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "Nilakantha proposed that Mercury and Venus orbit the Sun, while the Sun orbits Earth — a partially heliocentric model. This is geometrically identical to the Tychonic system proposed by Tycho Brahe in 1588, a full 88 years later. Nilakantha\"s model correctly predicted Mercury and Venus positions better than any previous model.",
-        "hi": "नीलकण्ठ ने प्रस्तावित किया कि बुध और शुक्र सूर्य की परिक्रमा करते हैं, जबकि सूर्य पृथ्वी की — आंशिक सौर-केन्द्रीय मॉडल। यह ब्राहे (1588) की टाइकोनिक प्रणाली से ज्यामितीय रूप से समरूप है, पूरे 88 वर्ष बाद।"
+        "en": "Nilakantha proposed that Mercury and Venus orbit the Sun, while the Sun orbits Earth  –  a partially heliocentric model. This is geometrically identical to the Tychonic system proposed by Tycho Brahe in 1588, a full 88 years later. Nilakantha\"s model correctly predicted Mercury and Venus positions better than any previous model.",
+        "hi": "नीलकण्ठ ने प्रस्तावित किया कि बुध और शुक्र सूर्य की परिक्रमा करते हैं, जबकि सूर्य पृथ्वी की  –  आंशिक सौर-केन्द्रीय मॉडल। यह ब्राहे (1588) की टाइकोनिक प्रणाली से ज्यामितीय रूप से समरूप है, पूरे 88 वर्ष बाद।"
       },
       "options": [
         {
@@ -394,8 +394,8 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "The series is called the \"Taylor series\" (Brook Taylor, 1715) or \"Maclaurin series\" (Colin Maclaurin, 1742). Madhava derived it around 1400 CE — more than 300 years before either European mathematician. The Kerala texts contain not just the result but full proofs.",
-        "hi": "इस श्रेणी को \"टेलर श्रेणी\" (ब्रुक टेलर, 1715) या \"मैक्लॉरिन श्रेणी\" (कॉलिन मैक्लॉरिन, 1742) कहा जाता है। माधव ने इसे ~1400 ई. में व्युत्पन्न किया — दोनों यूरोपीय गणितज्ञों से 300+ वर्ष पहले।"
+        "en": "The series is called the \"Taylor series\" (Brook Taylor, 1715) or \"Maclaurin series\" (Colin Maclaurin, 1742). Madhava derived it around 1400 CE  –  more than 300 years before either European mathematician. The Kerala texts contain not just the result but full proofs.",
+        "hi": "इस श्रेणी को \"टेलर श्रेणी\" (ब्रुक टेलर, 1715) या \"मैक्लॉरिन श्रेणी\" (कॉलिन मैक्लॉरिन, 1742) कहा जाता है। माधव ने इसे ~1400 ई. में व्युत्पन्न किया  –  दोनों यूरोपीय गणितज्ञों से 300+ वर्ष पहले।"
       },
       "options": [
         {
@@ -466,7 +466,7 @@
       "type": "true_false",
       "question": {
         "en": "The Jesuit missionaries in Kerala have been conclusively proven to have transmitted Kerala mathematical results to Europe before Newton.",
-        "hi": "केरल में जेसुइट मिशनरियों ने न्यूटन से पहले केरल गणितीय परिणामों को यूरोप तक पहुँचाया — यह निर्णायक रूप से प्रमाणित हो चुका है।"
+        "hi": "केरल में जेसुइट मिशनरियों ने न्यूटन से पहले केरल गणितीय परिणामों को यूरोप तक पहुँचाया  –  यह निर्णायक रूप से प्रमाणित हो चुका है।"
       },
       "correctAnswer": 2,
       "explanation": {
@@ -483,8 +483,8 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "Parameshvara conducted 55 years of continuous, systematic astronomical observations — the most extensive observational program before the invention of the telescope. He used these empirical data to create the Drigganita system, which corrected planetary positions based on actual observations rather than inherited theoretical models.",
-        "hi": "परमेश्वर ने 55 वर्षों तक निरन्तर, व्यवस्थित खगोलीय प्रेक्षण किए — दूरबीन के आविष्कार से पहले सबसे व्यापक प्रेक्षण कार्यक्रम। उन्होंने इन अनुभवजन्य आँकड़ों से दृग्गणित प्रणाली बनाई।"
+        "en": "Parameshvara conducted 55 years of continuous, systematic astronomical observations  –  the most extensive observational program before the invention of the telescope. He used these empirical data to create the Drigganita system, which corrected planetary positions based on actual observations rather than inherited theoretical models.",
+        "hi": "परमेश्वर ने 55 वर्षों तक निरन्तर, व्यवस्थित खगोलीय प्रेक्षण किए  –  दूरबीन के आविष्कार से पहले सबसे व्यापक प्रेक्षण कार्यक्रम। उन्होंने इन अनुभवजन्य आँकड़ों से दृग्गणित प्रणाली बनाई।"
       },
       "options": [
         {

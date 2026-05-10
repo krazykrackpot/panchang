@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 
-// Mock jsPDF since it needs DOM — must be a constructor (called with `new`)
+// Mock jsPDF since it needs DOM  –  must be a constructor (called with `new`)
 const mockSave = vi.fn();
 vi.mock('jspdf', () => {
   class MockJsPDF {

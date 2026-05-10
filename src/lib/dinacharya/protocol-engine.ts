@@ -105,7 +105,7 @@ const MOVABLE_NAKSHATRAS = new Set([1, 6, 7, 13, 15, 22, 27]);
 const SHARP_NAKSHATRAS = new Set([5, 14, 18, 19]);
 // Soft (Mridu): art, romance, ceremony
 const SOFT_NAKSHATRAS = new Set([3, 10, 11, 16]);
-// Mixed (Mishra): flexible, depends on hora — everything else: 2, 9, 17, 20, 23, 24, 25
+// Mixed (Mishra): flexible, depends on hora  –  everything else: 2, 9, 17, 20, 23, 24, 25
 
 function classifyNakshatra(id: number): string {
   if (FIXED_NAKSHATRAS.has(id)) return 'fixed';
@@ -135,7 +135,7 @@ const NAKSHATRA_FOCUS: Record<string, { traditional: string; modern: string }> =
   },
   mixed: {
     traditional: 'Flexible energy, follow the hora lord for guidance',
-    modern: 'Adapt to what comes — check current hora for best activity',
+    modern: 'Adapt to what comes  –  check current hora for best activity',
   },
 };
 
@@ -158,7 +158,7 @@ const NAKSHATRA_AVOID: Record<string, { traditional: string; modern: string }> =
   },
   mixed: {
     traditional: 'No specific avoidances, but check inauspicious periods',
-    modern: 'Watch your dead zones — otherwise flexible',
+    modern: 'Watch your dead zones  –  otherwise flexible',
   },
 };
 
@@ -189,51 +189,51 @@ function addHours(hhmm: string, hours: number): string {
 function computeEnergyPhases(sunrise: string, sunset: string): EnergyPhase[] {
   const phases: EnergyPhase[] = [];
 
-  // Kapha time: sunrise to sunrise+4h — slow, grounding
+  // Kapha time: sunrise to sunrise+4h  –  slow, grounding
   phases.push({
     label: { traditional: 'Kapha Kala', modern: 'Grounding Phase' },
     startTime: sunrise,
     endTime: addHours(sunrise, 4),
     level: 'medium',
     description: {
-      traditional: 'Kapha dominates — slow, steady energy ideal for routine and grounding practices',
-      modern: 'Slow start window — best for exercise, meditation, and establishing momentum',
+      traditional: 'Kapha dominates  –  slow, steady energy ideal for routine and grounding practices',
+      modern: 'Slow start window  –  best for exercise, meditation, and establishing momentum',
     },
   });
 
-  // Pitta time: sunrise+4h to sunrise+8h — peak productivity
+  // Pitta time: sunrise+4h to sunrise+8h  –  peak productivity
   phases.push({
     label: { traditional: 'Pitta Kala', modern: 'Peak Performance' },
     startTime: addHours(sunrise, 4),
     endTime: addHours(sunrise, 8),
     level: 'high',
     description: {
-      traditional: 'Pitta dominates — digestive fire and mental sharpness at their peak',
-      modern: 'Your highest-output window — tackle the hardest work here',
+      traditional: 'Pitta dominates  –  digestive fire and mental sharpness at their peak',
+      modern: 'Your highest-output window  –  tackle the hardest work here',
     },
   });
 
-  // Vata time: sunrise+8h to sunset — creative, variable
+  // Vata time: sunrise+8h to sunset  –  creative, variable
   phases.push({
     label: { traditional: 'Vata Kala', modern: 'Creative Phase' },
     startTime: addHours(sunrise, 8),
     endTime: sunset,
     level: 'medium',
     description: {
-      traditional: 'Vata dominates — creative but scattered energy, needs anchoring',
-      modern: 'Creative but variable — good for brainstorming, risky for detail work',
+      traditional: 'Vata dominates  –  creative but scattered energy, needs anchoring',
+      modern: 'Creative but variable  –  good for brainstorming, risky for detail work',
     },
   });
 
-  // Evening Kapha: sunset to sunset+4h — winding down
+  // Evening Kapha: sunset to sunset+4h  –  winding down
   phases.push({
     label: { traditional: 'Sayam Kapha', modern: 'Wind-Down Phase' },
     startTime: sunset,
     endTime: addHours(sunset, 4),
     level: 'low',
     description: {
-      traditional: 'Evening Kapha — body seeks rest, ideal for light food and family time',
-      modern: 'Recovery zone — light dinner, reading, screen-free time',
+      traditional: 'Evening Kapha  –  body seeks rest, ideal for light food and family time',
+      modern: 'Recovery zone  –  light dinner, reading, screen-free time',
     },
   });
 
@@ -262,36 +262,36 @@ const NUTRITION_BY_TITHI: Record<TithiType, { agniLevel: NutritionWindow['agniLe
   nanda: {
     agniLevel: 'strong',
     advice: {
-      traditional: 'Nanda tithi — strong digestive fire, favor protein-rich foods and ghee',
-      modern: 'High metabolism day — eat freely, favor protein and healthy fats',
+      traditional: 'Nanda tithi  –  strong digestive fire, favor protein-rich foods and ghee',
+      modern: 'High metabolism day  –  eat freely, favor protein and healthy fats',
     },
   },
   bhadra: {
     agniLevel: 'moderate',
     advice: {
-      traditional: 'Bhadra tithi — balanced agni, take regular warm meals',
-      modern: 'Standard metabolism — stick to regular meals, warm food preferred',
+      traditional: 'Bhadra tithi  –  balanced agni, take regular warm meals',
+      modern: 'Standard metabolism  –  stick to regular meals, warm food preferred',
     },
   },
   jaya: {
     agniLevel: 'strong',
     advice: {
-      traditional: 'Jaya tithi — victorious energy, feast day with celebration foods',
-      modern: 'High-energy day — refuel generously, celebration meals welcome',
+      traditional: 'Jaya tithi  –  victorious energy, feast day with celebration foods',
+      modern: 'High-energy day  –  refuel generously, celebration meals welcome',
     },
   },
   rikta: {
     agniLevel: 'low',
     advice: {
-      traditional: 'Rikta tithi — diminished agni, light meals or fasting recommended',
-      modern: 'Low metabolism day — light meals, intermittent fasting works well',
+      traditional: 'Rikta tithi  –  diminished agni, light meals or fasting recommended',
+      modern: 'Low metabolism day  –  light meals, intermittent fasting works well',
     },
   },
   purna: {
     agniLevel: 'moderate',
     advice: {
-      traditional: 'Purna tithi — complete energy, balanced meals maintain equilibrium',
-      modern: 'Balanced day — moderate portions, no extremes',
+      traditional: 'Purna tithi  –  complete energy, balanced meals maintain equilibrium',
+      modern: 'Balanced day  –  moderate portions, no extremes',
     },
   },
 };
@@ -306,7 +306,7 @@ function computeNutrition(sunrise: string, sunset: string, tithiNumber: number):
   const eatingStart = addHours(sunrise, 1);
   const eatEnd = addHours(sunset, -1);
 
-  // Best meal time: midday (pitta peak) — sunrise+5h roughly
+  // Best meal time: midday (pitta peak)  –  sunrise+5h roughly
   const bestMealTime = addHours(sunrise, 5);
 
   return {
@@ -328,12 +328,12 @@ function computeMoonPhase(tithiNumber: number): { percent: number; label: { trad
   const isWaxing = tithiNumber <= 15;
   const label = isWaxing
     ? {
-        traditional: 'Shukla Paksha — building, accumulating energy',
-        modern: 'Anabolic phase — optimal for starting new projects and building',
+        traditional: 'Shukla Paksha  –  building, accumulating energy',
+        modern: 'Anabolic phase  –  optimal for starting new projects and building',
       }
     : {
-        traditional: 'Krishna Paksha — releasing, purifying energy',
-        modern: 'Catabolic phase — optimal for completing, editing, and letting go',
+        traditional: 'Krishna Paksha  –  releasing, purifying energy',
+        modern: 'Catabolic phase  –  optimal for completing, editing, and letting go',
       };
 
   return { percent, label };
@@ -352,7 +352,7 @@ const PRAKRITI_ADVICE: Record<Dosha, { traditional: string; modern: string }> = 
   },
   kapha: {
     traditional: 'Start morning active, avoid heavy breakfast. Movement during Kapha hours (6-10 AM) is essential.',
-    modern: 'Front-load your day. 6-10 AM is your optimization window — high-intensity work and exercise. Afternoon: coast.',
+    modern: 'Front-load your day. 6-10 AM is your optimization window  –  high-intensity work and exercise. Afternoon: coast.',
   },
 };
 
@@ -372,7 +372,7 @@ function computeDeadZones(params: {
       endTime: params.rahuKaal.end,
       advice: {
         traditional: 'Avoid initiating important activities during Rahu Kaal',
-        modern: 'Dead zone — schedule low-stakes admin tasks here',
+        modern: 'Dead zone  –  schedule low-stakes admin tasks here',
       },
     });
   }
@@ -383,7 +383,7 @@ function computeDeadZones(params: {
       startTime: params.yamaganda.start,
       endTime: params.yamaganda.end,
       advice: {
-        traditional: 'Period of obstruction — avoid new beginnings',
+        traditional: 'Period of obstruction  –  avoid new beginnings',
         modern: 'Avoid commitments and sign-offs during this window',
       },
     });
@@ -396,8 +396,8 @@ function computeDeadZones(params: {
         startTime: v.start,
         endTime: v.end,
         advice: {
-          traditional: 'Varjyam — avoid auspicious activities and important decisions',
-          modern: 'Pause important decisions — use for routine or rest',
+          traditional: 'Varjyam  –  avoid auspicious activities and important decisions',
+          modern: 'Pause important decisions  –  use for routine or rest',
         },
       });
     }

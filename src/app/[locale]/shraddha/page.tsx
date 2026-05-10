@@ -73,7 +73,7 @@ function findTithiDateInYear(tithiNum: number, paksha: 'shukla' | 'krishna', yea
     }
   }
 
-  // Return dates found (Pitru Paksha is typically around Sep/Oct — prioritize those)
+  // Return dates found (Pitru Paksha is typically around Sep/Oct  –  prioritize those)
   const sepOctDates = results.filter(d => {
     const m = parseInt(d.split('-')[1]);
     return m >= 8 && m <= 10;
@@ -119,9 +119,9 @@ export default function ShraddhaPage() {
         defaultOpen={true}
       >
         {isDevanagari ? (
-          <p>श्राद्ध वार्षिक अनुष्ठान है जिसमें मृत पूर्वजों को उनकी पुण्यतिथि पर — ग्रेगोरियन नहीं, हिन्दू चन्द्र तिथि के अनुसार — भोजन और प्रार्थना अर्पित की जाती है। यह सबसे महत्वपूर्ण कर्तव्यों में से एक है — माना जाता है कि इससे दिवंगत आत्मा को शांति मिलती है और परिवार को आशीर्वाद प्राप्त होता है। प्रतिवर्ष तिथि बदलती है क्योंकि यह मृत्यु की चन्द्र तिथि पर आधारित है।</p>
+          <p>श्राद्ध वार्षिक अनुष्ठान है जिसमें मृत पूर्वजों को उनकी पुण्यतिथि पर  –  ग्रेगोरियन नहीं, हिन्दू चन्द्र तिथि के अनुसार  –  भोजन और प्रार्थना अर्पित की जाती है। यह सबसे महत्वपूर्ण कर्तव्यों में से एक है  –  माना जाता है कि इससे दिवंगत आत्मा को शांति मिलती है और परिवार को आशीर्वाद प्राप्त होता है। प्रतिवर्ष तिथि बदलती है क्योंकि यह मृत्यु की चन्द्र तिथि पर आधारित है।</p>
         ) : (
-          <p>Shraddha is the annual ritual of offering food and prayers to deceased ancestors on the anniversary of their passing — by Hindu lunar calendar, not Gregorian date. It&apos;s one of the most important duties — believed to bring peace to the departed soul and blessings to the family. The date changes every year because it follows the lunar tithi of death.</p>
+          <p>Shraddha is the annual ritual of offering food and prayers to deceased ancestors on the anniversary of their passing  –  by Hindu lunar calendar, not Gregorian date. It&apos;s one of the most important duties  –  believed to bring peace to the departed soul and blessings to the family. The date changes every year because it follows the lunar tithi of death.</p>
         )}
       </InfoBlock>
 

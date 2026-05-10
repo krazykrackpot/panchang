@@ -1,6 +1,6 @@
 /**
  * Fetches the latest YouTube video from the channel's public RSS feed.
- * Zero API quota — uses Atom XML feed. Cached in-memory for 1 hour.
+ * Zero API quota  –  uses Atom XML feed. Cached in-memory for 1 hour.
  */
 
 const CHANNEL_ID = 'UCbUSikGE9CjE8rXiCWQFQ9g'; // @DekhoPanchang
@@ -29,7 +29,7 @@ export async function getLatestVideo(): Promise<LatestVideo | null> {
 
     const xml = await res.text();
 
-    // Parse first <entry> from Atom feed — simple regex, no XML parser needed
+    // Parse first <entry> from Atom feed  –  simple regex, no XML parser needed
     const entryMatch = xml.match(/<entry>([\s\S]*?)<\/entry>/);
     if (!entryMatch) return null;
 
@@ -57,7 +57,7 @@ export async function getLatestVideo(): Promise<LatestVideo | null> {
 
 /**
  * Fetch all videos from the channel RSS feed (up to 15, which is YouTube's feed limit).
- * Zero API quota — uses Atom XML feed. Cached 1 hour.
+ * Zero API quota  –  uses Atom XML feed. Cached 1 hour.
  */
 export async function getAllVideos(): Promise<LatestVideo[]> {
   const now = Date.now();

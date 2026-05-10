@@ -3,7 +3,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
-export const revalidate = 604800; // 7 days — static text page
+export const revalidate = 604800; // 7 days  –  static text page
 import {
   Calculator,
   Sun,
@@ -22,7 +22,7 @@ import {
 } from 'lucide-react';
 
 // ---------------------------------------------------------------------------
-// Inline multilingual content — SSR server component, no client JS
+// Inline multilingual content  –  SSR server component, no client JS
 // ---------------------------------------------------------------------------
 
 const CONTENT = {
@@ -38,8 +38,8 @@ const CONTENT = {
         icon: 'compass',
         heading: 'Overview & Mission',
         body: [
-          'Dekho Panchang was built on a single conviction: astronomical accuracy is non-negotiable. The Vedic calendar tradition rests on observations that ancient Indian astronomers refined over millennia — observations so precise that the Surya Siddhanta\'s sidereal year (365.2563627 days) differs from the modern value by less than two seconds per year.',
-          'We honour that tradition by doing every computation from first principles. Planetary positions, tithi boundaries, nakshatra transitions, sunrise/sunset times, dasha dates — all are calculated using peer-reviewed astronomical algorithms and verified against independent reference data before release.',
+          'Dekho Panchang was built on a single conviction: astronomical accuracy is non-negotiable. The Vedic calendar tradition rests on observations that ancient Indian astronomers refined over millennia  –  observations so precise that the Surya Siddhanta\'s sidereal year (365.2563627 days) differs from the modern value by less than two seconds per year.',
+          'We honour that tradition by doing every computation from first principles. Planetary positions, tithi boundaries, nakshatra transitions, sunrise/sunset times, dasha dates  –  all are calculated using peer-reviewed astronomical algorithms and verified against independent reference data before release.',
           'There are no external astrology APIs. Every result you see on this site is a direct product of mathematics, running on our servers, from the parameters you provide. This means every result is fully reproducible: given the same date, time, and geographic coordinates, the same calculation will always produce the same answer.',
         ],
       },
@@ -49,10 +49,10 @@ const CONTENT = {
         heading: 'Planetary Position Engine',
         body: [
           'Accurate planetary positions are the foundation of everything else. We use a two-tier engine:',
-          '**Primary — Swiss Ephemeris (DE431 / VSOP87):** The Swiss Ephemeris is based on JPL\'s DE431 lunar theory and the VSOP87 planetary theory, the same mathematical foundations used by major observatories worldwide. It achieves sub-arcsecond accuracy for all planets from 13,200 BCE to 17,191 CE — far beyond what any panchang calculation requires.',
-          '**Fallback — Jean Meeus "Astronomical Algorithms" (1991):** When the full Swiss Ephemeris is not available, we fall back to Jean Meeus\'s algorithms, the gold standard for computational astronomy in software. Accuracy: Sun positions within ~0.01°, Moon within ~0.5°. This fallback is clearly flagged in the output via internal warnings.',
-          '**Corrections applied:** All positions include nutation (the 18.6-year wobble of Earth\'s rotational axis), aberration (the apparent shift of stars due to Earth\'s orbital velocity), and light-time correction (the time taken for reflected sunlight to reach the observer — significant for outer planets). The result is the apparent topocentric position as seen from the observer\'s location.',
-          '**Ayanamsha:** We use the Lahiri Ayanamsha (Chitrapaksha) by default — the official standard adopted by India\'s Calendar Reform Committee in 1957. The current value is approximately 24°09\'. All planetary positions displayed on this site are sidereal (nirayana), computed by subtracting the Lahiri ayanamsha from the tropical ecliptic longitude.',
+          '**Primary  –  Swiss Ephemeris (DE431 / VSOP87):** The Swiss Ephemeris is based on JPL\'s DE431 lunar theory and the VSOP87 planetary theory, the same mathematical foundations used by major observatories worldwide. It achieves sub-arcsecond accuracy for all planets from 13,200 BCE to 17,191 CE  –  far beyond what any panchang calculation requires.',
+          '**Fallback  –  Jean Meeus "Astronomical Algorithms" (1991):** When the full Swiss Ephemeris is not available, we fall back to Jean Meeus\'s algorithms, the gold standard for computational astronomy in software. Accuracy: Sun positions within ~0.01°, Moon within ~0.5°. This fallback is clearly flagged in the output via internal warnings.',
+          '**Corrections applied:** All positions include nutation (the 18.6-year wobble of Earth\'s rotational axis), aberration (the apparent shift of stars due to Earth\'s orbital velocity), and light-time correction (the time taken for reflected sunlight to reach the observer  –  significant for outer planets). The result is the apparent topocentric position as seen from the observer\'s location.',
+          '**Ayanamsha:** We use the Lahiri Ayanamsha (Chitrapaksha) by default  –  the official standard adopted by India\'s Calendar Reform Committee in 1957. The current value is approximately 24°09\'. All planetary positions displayed on this site are sidereal (nirayana), computed by subtracting the Lahiri ayanamsha from the tropical ecliptic longitude.',
           '**Verification:** Computed positions have been cross-checked against NASA/JPL Horizons ephemeris data for multiple test dates and locations, confirming agreement within instrument-grade tolerances.',
         ],
       },
@@ -63,7 +63,7 @@ const CONTENT = {
         subsections: [
           {
             title: 'Tithi (Lunar Day)',
-            text: 'A tithi is defined as 12° of elongation between the Moon and the Sun along the ecliptic. There are 30 tithis in a lunar month (15 in Shukla Paksha, 15 in Krishna Paksha). We compute the exact moment the elongation crosses each 12° boundary using a bisection algorithm, converging to within 0.0001° — producing start and end times accurate to the nearest minute. Because the Moon\'s elliptical orbit causes its speed to vary from ~12°/day to ~15°/day, no fixed-duration approximation is used. All boundaries are computed from the precise instantaneous elongation.',
+            text: 'A tithi is defined as 12° of elongation between the Moon and the Sun along the ecliptic. There are 30 tithis in a lunar month (15 in Shukla Paksha, 15 in Krishna Paksha). We compute the exact moment the elongation crosses each 12° boundary using a bisection algorithm, converging to within 0.0001°  –  producing start and end times accurate to the nearest minute. Because the Moon\'s elliptical orbit causes its speed to vary from ~12°/day to ~15°/day, no fixed-duration approximation is used. All boundaries are computed from the precise instantaneous elongation.',
           },
           {
             title: 'Nakshatra (Lunar Mansion)',
@@ -75,7 +75,7 @@ const CONTENT = {
           },
           {
             title: 'Karana (Half-Tithi)',
-            text: 'A karana is half a tithi — 6° of Sun-Moon elongation. Each tithi contains two karanas. The cycle of 11 karanas (4 fixed Sthira karanas + 7 repeating Chara karanas) follows the rules in Brihat Parashara Hora Shastra exactly: Vishti (Bhadra) falls at positions 7, 14, 21, and 28 of the 60-karana cycle. This enables classical muhurta inauspiciousness calculations that flag Vishti karanas automatically.',
+            text: 'A karana is half a tithi  –  6° of Sun-Moon elongation. Each tithi contains two karanas. The cycle of 11 karanas (4 fixed Sthira karanas + 7 repeating Chara karanas) follows the rules in Brihat Parashara Hora Shastra exactly: Vishti (Bhadra) falls at positions 7, 14, 21, and 28 of the 60-karana cycle. This enables classical muhurta inauspiciousness calculations that flag Vishti karanas automatically.',
           },
           {
             title: 'Vara (Weekday)',
@@ -88,7 +88,7 @@ const CONTENT = {
         icon: 'sun',
         heading: 'Sunrise, Sunset & Moonrise',
         body: [
-          '**Sunrise/Sunset Algorithm:** We use the Meeus algorithm with the full geometric solar position, not simplified tables. Atmospheric refraction of exactly 34\' (arcminutes) is applied at the horizon — matching the classical definition used in Indian panchang tradition. The "upper limb" convention is used: sunrise is the moment the upper edge of the Sun\'s disc first appears above the geometrical horizon after applying refraction.',
+          '**Sunrise/Sunset Algorithm:** We use the Meeus algorithm with the full geometric solar position, not simplified tables. Atmospheric refraction of exactly 34\' (arcminutes) is applied at the horizon  –  matching the classical definition used in Indian panchang tradition. The "upper limb" convention is used: sunrise is the moment the upper edge of the Sun\'s disc first appears above the geometrical horizon after applying refraction.',
           '**Observer elevation:** Altitude above sea level is factored into the horizon dip calculation. This matters for mountainous regions: at 2000 m elevation, sunrise can be several minutes earlier than at sea level due to the extended line of sight.',
           '**Accuracy:** Sunrise and sunset times computed by this engine are within ±1 minute of NASA solar tables and United States Naval Observatory (USNO) data for all test locations (including equatorial, mid-latitude, and high-latitude sites). Polar day/night edge cases are handled gracefully.',
           '**Moonrise/Moonset:** The Moon requires special treatment because its parallax (~1°) is the largest of any solar system body visible to the naked eye. We apply horizontal parallax correction (the difference between the Moon\'s geocentric and topocentric positions) before computing rise/set times. This correction can shift the computed moonrise by up to 60 minutes depending on the Moon\'s distance and the observer\'s latitude.',
@@ -111,10 +111,10 @@ const CONTENT = {
         heading: 'Kundali (Birth Chart) Computation',
         body: [
           '**House (Bhava) System:** We use the Whole Sign house system by default, the oldest and most widely used system in classical Jyotish. The Lagna (Ascendant) degree is computed from the Local Sidereal Time and the observer\'s geographic latitude using the standard astronomical formula. All 12 bhavas are then whole signs counted from the Lagna sign.',
-          '**Planetary Dignities (per BPHS Ch. 3–4):** Each planet\'s condition is assessed by its placement in its sign of exaltation, debilitation, moolatrikona, own sign, or friend/enemy sign. The canonical tables from Brihat Parashara Hora Shastra are used — exaltation degrees, moolatrikona ranges, and natural friendship/enmity tables are defined once in a single canonical source file and referenced everywhere to prevent drift.',
-          '**Shadbala (Six-fold Strength):** All six components are computed per BPHS Ch. 21–27: Sthana Bala (positional strength — uccha, moolatrikona, own sign, great friend, friend, neutral, enemy, great enemy, debilitation), Dig Bala (directional strength — Jupiter/Mercury strong in East/1st, Sun/Mars in South/10th, Saturn in West/7th, Moon/Venus in North/4th), Kaala Bala (temporal strength — day/night, paksha, tribhaga, abda, masa, vara, hora, ayana), Cheshta Bala (motional strength — retrograde planets get the maximum), Naisargika Bala (permanent natural strength — Sun > Moon > Venus > Jupiter > Mercury > Mars > Saturn), Drik Bala (aspectual strength from other planets).',
+          '**Planetary Dignities (per BPHS Ch. 3–4):** Each planet\'s condition is assessed by its placement in its sign of exaltation, debilitation, moolatrikona, own sign, or friend/enemy sign. The canonical tables from Brihat Parashara Hora Shastra are used  –  exaltation degrees, moolatrikona ranges, and natural friendship/enmity tables are defined once in a single canonical source file and referenced everywhere to prevent drift.',
+          '**Shadbala (Six-fold Strength):** All six components are computed per BPHS Ch. 21–27: Sthana Bala (positional strength  –  uccha, moolatrikona, own sign, great friend, friend, neutral, enemy, great enemy, debilitation), Dig Bala (directional strength  –  Jupiter/Mercury strong in East/1st, Sun/Mars in South/10th, Saturn in West/7th, Moon/Venus in North/4th), Kaala Bala (temporal strength  –  day/night, paksha, tribhaga, abda, masa, vara, hora, ayana), Cheshta Bala (motional strength  –  retrograde planets get the maximum), Naisargika Bala (permanent natural strength  –  Sun > Moon > Venus > Jupiter > Mercury > Mars > Saturn), Drik Bala (aspectual strength from other planets).',
           '**Ashtakavarga:** The Sarvashtakavarga and Prashtarashtakavarga are computed following BPHS Ch. 66–72 exactly. Each planet contributes bindus (dots) to the 12 rashi positions based on its natal placement relative to the other planets and the Lagna. The total bindus across all 8 significators give the Sarvashtakavarga, used for transit strength prediction.',
-          '**Yoga Detection:** 30+ classical yogas are detected, including all five Mahapurusha Yogas (Ruchaka, Bhadra, Hamsa, Malavya, Shasha), Gajakesari Yoga, Chandra-Mangala Yoga, Adhi Yoga, Neecha Bhanga Raja Yoga, Viparita Raja Yoga, and major Raja Yoga combinations. Each yoga has a frequency-validated detection condition — we measure expected occurrence rates in random charts to ensure "rare" yogas are not triggering in 40% of charts (a common failure mode in other implementations).',
+          '**Yoga Detection:** 30+ classical yogas are detected, including all five Mahapurusha Yogas (Ruchaka, Bhadra, Hamsa, Malavya, Shasha), Gajakesari Yoga, Chandra-Mangala Yoga, Adhi Yoga, Neecha Bhanga Raja Yoga, Viparita Raja Yoga, and major Raja Yoga combinations. Each yoga has a frequency-validated detection condition  –  we measure expected occurrence rates in random charts to ensure "rare" yogas are not triggering in 40% of charts (a common failure mode in other implementations).',
           '**Combustion and Planetary War (Graha Yuddha):** Combustion is computed with BPHS-specified orbs, with reduced orbs for retrograde Mercury (12°) and Venus (8°) per BPHS. Planetary war is detected when two planets are within 1° of each other in longitude; the winner is determined by northern latitude (greater positive latitude = victor), per the Surya Siddhanta rule.',
         ],
       },
@@ -123,8 +123,8 @@ const CONTENT = {
         icon: 'zap',
         heading: 'Festival & Vrat Engine',
         body: [
-          '**Tithi-based determination:** Every festival and vrat is defined by its masa (month), paksha (fortnight), and tithi — exactly as prescribed in the Dharmasindhu and Nirnaya Sindhu. These are the canonical texts governing festival observance in the Smarta and Vaishnava traditions respectively. The engine evaluates each tithi\'s presence across the calendar day to determine the correct observance date.',
-          '**Amanta month convention:** All festival definitions use Amanta (new-moon-to-new-moon) month names, the convention used in all major Jyotish references. During Krishna Paksha, Purnimanta months are one month ahead of Amanta — the engine always compares against the Amanta masa to prevent the class of error where festivals fall a full month early.',
+          '**Tithi-based determination:** Every festival and vrat is defined by its masa (month), paksha (fortnight), and tithi  –  exactly as prescribed in the Dharmasindhu and Nirnaya Sindhu. These are the canonical texts governing festival observance in the Smarta and Vaishnava traditions respectively. The engine evaluates each tithi\'s presence across the calendar day to determine the correct observance date.',
+          '**Amanta month convention:** All festival definitions use Amanta (new-moon-to-new-moon) month names, the convention used in all major Jyotish references. During Krishna Paksha, Purnimanta months are one month ahead of Amanta  –  the engine always compares against the Amanta masa to prevent the class of error where festivals fall a full month early.',
           '**Kala-Vyapti rules:** The "time prevalence" rule determines which calendar day gets a tithi that spans two days. The nine classical kala windows (Madhyahna, Pradosh, Nishita, Arunodaya, Chandrodaya, Pratah, Aparahna, Sunrise, Sunset) are evaluated in priority order per Nirnaya Sindhu. For example, Ekadashi fasting is observed on the day when Ekadashi tithi is present at Arunodaya (pre-dawn), not merely any time during the calendar day.',
           '**Adhika Masa (Leap Month) Detection:** The intercalary month is detected astronomically from New Moon positions: when two consecutive New Moons fall within the same solar month (i.e., the Sun does not transit a rashi boundary between them), the first lunar month is declared Adhika. This produces correctly-placed leap months verified against the Indian Government\'s official Saka calendar.',
         ],
@@ -140,7 +140,7 @@ const CONTENT = {
           },
           {
             title: 'Surya Siddhanta (c. 400 CE)',
-            desc: 'The foundational astronomical text used for core constants: sidereal year length, planetary revolution periods, and eclipse computation theory. The text\'s formula for the Moon\'s mean motion (13°10\'35" per day) informs our anomaly calculations. The Graha Yuddha (planetary war) victor rule — greater northern latitude wins — is sourced directly from this text.',
+            desc: 'The foundational astronomical text used for core constants: sidereal year length, planetary revolution periods, and eclipse computation theory. The text\'s formula for the Moon\'s mean motion (13°10\'35" per day) informs our anomaly calculations. The Graha Yuddha (planetary war) victor rule  –  greater northern latitude wins  –  is sourced directly from this text.',
           },
           {
             title: 'Dharmasindhu & Nirnaya Sindhu (c. 17th–18th century)',
@@ -182,7 +182,7 @@ const CONTENT = {
           '**No external astrology APIs.** Every value computed by Dekho Panchang is derivable from the input parameters (date, time, latitude, longitude) alone. Given the same inputs, the same outputs will always result. This is a deliberate architectural choice: it means our results are auditable, and any discrepancy can be traced to a specific algorithm step.',
           '**Timezone from coordinates only.** We never use the browser\'s system timezone for birth chart computations. Geographic coordinates are converted to an IANA timezone identifier using a coordinate-based lookup, and all local-time conversions use that resolved timezone. This prevents the class of error where a birth time of "10:30 IST" is silently computed as "10:30 in the server\'s timezone."',
           '**Historical timezone corrections.** Our timezone resolution is aware of historical timezone changes. For example, India operated on UTC+6:30 from September 1941 to October 1945 during World War II, and on UTC+5:30:20 (LMT-based) before 1906. Birth charts for these periods use the correct historical offset.',
-          '**Single canonical source for constants.** Every Jyotish constant (exaltation degrees, moolatrikona ranges, sign lords, natural friendships, karana cycles, nakshatra boundaries) is defined exactly once in a canonical source file and imported everywhere else in the codebase. This eliminates the class of error — common in multi-file astrological software — where the same table has different values in different modules, producing inconsistent results on different pages.',
+          '**Single canonical source for constants.** Every Jyotish constant (exaltation degrees, moolatrikona ranges, sign lords, natural friendships, karana cycles, nakshatra boundaries) is defined exactly once in a canonical source file and imported everywhere else in the codebase. This eliminates the class of error  –  common in multi-file astrological software  –  where the same table has different values in different modules, producing inconsistent results on different pages.',
           '**Midnight-crossing time ranges.** Choghadiya, Hora, Varjyam, and Amrit Kalam windows that cross midnight are handled with wrap-aware comparison logic (`if end < start, check now >= start OR now < end`), preventing the "NOW badge never appears for night slots" class of bug.',
         ],
       },
@@ -193,7 +193,7 @@ const CONTENT = {
     badge: 'पारदर्शिता और कठोरता',
     title: 'हमारी पद्धति',
     subtitle:
-      'देखो पंचांग पर प्रत्येक गणना मूल सिद्धान्तों से की जाती है — वही गणित जो उज्जैन की वेधशालाओं में प्रयुक्त होती थी। कोई बाहरी API नहीं, कोई अनुमान नहीं।',
+      'देखो पंचांग पर प्रत्येक गणना मूल सिद्धान्तों से की जाती है  –  वही गणित जो उज्जैन की वेधशालाओं में प्रयुक्त होती थी। कोई बाहरी API नहीं, कोई अनुमान नहीं।',
 
     sections: [
       {
@@ -201,8 +201,8 @@ const CONTENT = {
         icon: 'compass',
         heading: 'सिंहावलोकन और मिशन',
         body: [
-          'देखो पंचांग एक दृढ़ विश्वास पर बना है: खगोलीय सटीकता अनिवार्य है। पंचांग की प्रत्येक गणना — तिथि, नक्षत्र, योग, करण, वार — शास्त्रीय ज्योतिष नियमों और प्रमाणित खगोलीय एल्गोरिदम से की जाती है।',
-          'कोई बाहरी ज्योतिष API नहीं है। इस साइट पर दिखाई देने वाला प्रत्येक परिणाम शुद्ध गणित का प्रत्यक्ष परिणाम है — आपके द्वारा प्रदान किए गए मापदण्डों से। समान इनपुट, हमेशा समान आउटपुट।',
+          'देखो पंचांग एक दृढ़ विश्वास पर बना है: खगोलीय सटीकता अनिवार्य है। पंचांग की प्रत्येक गणना  –  तिथि, नक्षत्र, योग, करण, वार  –  शास्त्रीय ज्योतिष नियमों और प्रमाणित खगोलीय एल्गोरिदम से की जाती है।',
+          'कोई बाहरी ज्योतिष API नहीं है। इस साइट पर दिखाई देने वाला प्रत्येक परिणाम शुद्ध गणित का प्रत्यक्ष परिणाम है  –  आपके द्वारा प्रदान किए गए मापदण्डों से। समान इनपुट, हमेशा समान आउटपुट।',
         ],
       },
       {
@@ -210,8 +210,8 @@ const CONTENT = {
         icon: 'star',
         heading: 'ग्रह स्थिति इंजन',
         body: [
-          'हम दो-स्तरीय इंजन का उपयोग करते हैं: प्राथमिक — स्विस एफेमेरिस (DE431 / VSOP87), जो JPL की चन्द्र सिद्धान्त पर आधारित है और उप-आर्क-सेकंड सटीकता प्रदान करती है। द्वितीयक — जीन मीउस के "Astronomical Algorithms" — सूर्य ~0.01°, चन्द्र ~0.5° सटीकता।',
-          'लाहिड़ी अयनांश (चित्रपक्ष) डिफ़ॉल्ट रूप से उपयोग किया जाता है — 1957 में भारत की कैलेण्डर सुधार समिति द्वारा अपनाया गया आधिकारिक मानक। सभी ग्रह स्थितियाँ निरायण (सायन राशिचक्र से अयनांश घटाकर) प्रदर्शित की जाती हैं।',
+          'हम दो-स्तरीय इंजन का उपयोग करते हैं: प्राथमिक  –  स्विस एफेमेरिस (DE431 / VSOP87), जो JPL की चन्द्र सिद्धान्त पर आधारित है और उप-आर्क-सेकंड सटीकता प्रदान करती है। द्वितीयक  –  जीन मीउस के "Astronomical Algorithms"  –  सूर्य ~0.01°, चन्द्र ~0.5° सटीकता।',
+          'लाहिड़ी अयनांश (चित्रपक्ष) डिफ़ॉल्ट रूप से उपयोग किया जाता है  –  1957 में भारत की कैलेण्डर सुधार समिति द्वारा अपनाया गया आधिकारिक मानक। सभी ग्रह स्थितियाँ निरायण (सायन राशिचक्र से अयनांश घटाकर) प्रदर्शित की जाती हैं।',
         ],
       },
       {
@@ -219,11 +219,11 @@ const CONTENT = {
         icon: 'layers',
         heading: 'पंचांग तत्व',
         body: [
-          'तिथि: सूर्य-चन्द्र के बीच 12° के अन्तर पर आधारित। सटीक समय bisection एल्गोरिदम से निकाला जाता है — कोई निश्चित अवधि का अनुमान नहीं।',
-          'नक्षत्र: चन्द्र का निरायण देशान्तर ÷ 13°20\' — प्रत्येक सीमा आर्क-मिनट तक सटीक।',
-          'योग: (सूर्य + चन्द्र का निरायण देशान्तर) ÷ 13°20\' — 27 योग चक्र।',
-          'करण: अर्ध-तिथि, BPHS के अनुसार 11 करणों का चक्र — विष्टि/भद्र का स्वचालित पहचान।',
-          'वार: जूलियन दिवस संख्या से व्युत्पन्न — 0=रविवार, शास्त्रीय ज्योतिष की परम्परा के अनुसार।',
+          'तिथि: सूर्य-चन्द्र के बीच 12° के अन्तर पर आधारित। सटीक समय bisection एल्गोरिदम से निकाला जाता है  –  कोई निश्चित अवधि का अनुमान नहीं।',
+          'नक्षत्र: चन्द्र का निरायण देशान्तर ÷ 13°20\'  –  प्रत्येक सीमा आर्क-मिनट तक सटीक।',
+          'योग: (सूर्य + चन्द्र का निरायण देशान्तर) ÷ 13°20\'  –  27 योग चक्र।',
+          'करण: अर्ध-तिथि, BPHS के अनुसार 11 करणों का चक्र  –  विष्टि/भद्र का स्वचालित पहचान।',
+          'वार: जूलियन दिवस संख्या से व्युत्पन्न  –  0=रविवार, शास्त्रीय ज्योतिष की परम्परा के अनुसार।',
         ],
       },
       {
@@ -271,7 +271,7 @@ function SectionIcon({ name }: { name: string }) {
   }
 }
 
-// Render bold **text** inline (simple server-side transform — no markdown library needed)
+// Render bold **text** inline (simple server-side transform  –  no markdown library needed)
 function RichText({ text, bodyFont }: { text: string; bodyFont?: React.CSSProperties }) {
   const parts = text.split(/\*\*(.*?)\*\*/g);
   return (
@@ -304,7 +304,7 @@ export default async function MethodologyPage() {
 
   return (
     <main className="min-h-screen py-16 px-4">
-      {/* BreadcrumbList JSON-LD — E-E-A-T + rich results */}
+      {/* BreadcrumbList JSON-LD  –  E-E-A-T + rich results */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }}
@@ -358,7 +358,7 @@ export default async function MethodologyPage() {
                 </div>
               )}
 
-              {/* Subsections (Panchang Elements) — only in EN */}
+              {/* Subsections (Panchang Elements)  –  only in EN */}
               {'subsections' in section && enSection && 'subsections' in enSection && (
                 <div className="space-y-6 mt-2">
                   {(enSection.subsections as { title: string; text: string }[]).map((sub, i) => (
@@ -438,7 +438,7 @@ export default async function MethodologyPage() {
         })}
       </div>
 
-      {/* CTA — cross-link to About and Learn */}
+      {/* CTA  –  cross-link to About and Learn */}
       <div className="max-w-4xl mx-auto mt-14 grid sm:grid-cols-2 gap-4">
         <a
           href={`/${locale}/about`}
@@ -468,7 +468,7 @@ export default async function MethodologyPage() {
           </div>
           <p className="text-text-secondary text-sm leading-relaxed">
             {locale === 'hi'
-              ? '100+ मॉड्यूल — पंचांग मूल बातों से लेकर उन्नत Shadbala तक।'
+              ? '100+ मॉड्यूल  –  पंचांग मूल बातों से लेकर उन्नत Shadbala तक।'
               : '100+ modules covering Panchang basics to advanced Shadbala and Jaimini.'}
           </p>
         </a>

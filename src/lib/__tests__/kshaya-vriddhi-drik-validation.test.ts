@@ -5,7 +5,7 @@
  * Fetched 2026-04-22.
  *
  * Kshaya tithi: a tithi that starts and ends entirely between two sunrises
- *   (no sunrise falls within it — it is "skipped").
+ *   (no sunrise falls within it  –  it is "skipped").
  * Vriddhi tithi: a tithi active at two consecutive sunrises (spans 2 days).
  */
 
@@ -22,7 +22,7 @@ function panchang(year: number, month: number, day: number) {
   });
 }
 
-describe('Kshaya/Vriddhi Tithi — Drik Panchang cross-validation (Delhi 2026)', () => {
+describe('Kshaya/Vriddhi Tithi  –  Drik Panchang cross-validation (Delhi 2026)', () => {
   describe('Kshaya tithis', () => {
     it('Jan 6: K. Chaturthi is kshaya (08:01-06:52 next day, ends before sunrise)', () => {
       // Drik: Tritiya until 08:01 → Chaturthi 08:01 to 06:52 Jan 7 → sunrise ~07:15
@@ -48,7 +48,7 @@ describe('Kshaya/Vriddhi Tithi — Drik Panchang cross-validation (Delhi 2026)',
 
   describe('Vriddhi tithis', () => {
     it('Jan 9: K. Saptami is vriddhi (active at both Jan 9 and Jan 10 sunrises)', () => {
-      // Drik: Saptami starts 07:05 Jan 9, ends 08:23 Jan 10 — spans 2 sunrises
+      // Drik: Saptami starts 07:05 Jan 9, ends 08:23 Jan 10  –  spans 2 sunrises
       const p = panchang(2026, 1, 9);
       expect(p.vriddhiTithi).toBe(true);
       expect(p.tithi.name.en).toContain('Saptami');

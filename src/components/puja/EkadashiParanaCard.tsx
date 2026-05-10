@@ -37,12 +37,12 @@ const LABELS = {
     rules: 'Rules',
     afterSunrise: 'After sunrise',
     afterHariVasara: 'After Hari Vasara ends',
-    hariVasaraNote: 'First quarter of Dwadashi tithi is Hari Vasara — breaking fast during this is prohibited (Padma Purana)',
+    hariVasaraNote: 'First quarter of Dwadashi tithi is Hari Vasara  –  breaking fast during this is prohibited (Padma Purana)',
     notDuringMadhyahna: 'NOT during Madhyahna',
     madhyahnaNote: 'Midday period when parana is not recommended',
     beforeDwadashi: 'Before Dwadashi tithi ends',
     dwadashiNote: 'Parana must be completed before Dwadashi ends, otherwise the vrat is broken improperly',
-    earlyEndWarning: 'Dwadashi ends before Hari Vasara — parana immediately at sunrise',
+    earlyEndWarning: 'Dwadashi ends before Hari Vasara  –  parana immediately at sunrise',
     sunrise: 'Sunrise',
     hariVasara: 'Hari Vasara',
     parana: 'Parana',
@@ -59,12 +59,12 @@ const LABELS = {
     rules: 'नियम',
     afterSunrise: 'सूर्योदय के बाद',
     afterHariVasara: 'हरि वासर समाप्ति के बाद',
-    hariVasaraNote: 'द्वादशी तिथि का प्रथम चतुर्थांश हरि वासर है — इस काल में पारण वर्जित है (पद्म पुराण)',
+    hariVasaraNote: 'द्वादशी तिथि का प्रथम चतुर्थांश हरि वासर है  –  इस काल में पारण वर्जित है (पद्म पुराण)',
     notDuringMadhyahna: 'मध्याह्न में नहीं',
     madhyahnaNote: 'मध्यदिन का काल जिसमें पारण अनुशंसित नहीं',
     beforeDwadashi: 'द्वादशी तिथि समाप्ति से पहले',
     dwadashiNote: 'द्वादशी समाप्ति से पहले पारण पूर्ण होना चाहिए, अन्यथा व्रत अनुचित रूप से भंग होता है',
-    earlyEndWarning: 'द्वादशी हरि वासर से पहले समाप्त — सूर्योदय पर तुरन्त पारण करें',
+    earlyEndWarning: 'द्वादशी हरि वासर से पहले समाप्त  –  सूर्योदय पर तुरन्त पारण करें',
     sunrise: 'सूर्योदय',
     hariVasara: 'हरि वासर',
     parana: 'पारण',
@@ -81,12 +81,12 @@ const LABELS = {
     rules: 'नियमाः',
     afterSunrise: 'सूर्योदयानन्तरम्',
     afterHariVasara: 'हरिवासरसमाप्त्यनन्तरम्',
-    hariVasaraNote: 'द्वादशीतिथेः प्रथमचतुर्थांशः हरिवासरः — अस्मिन् काले पारणं निषिद्धम् (पद्मपुराणम्)',
+    hariVasaraNote: 'द्वादशीतिथेः प्रथमचतुर्थांशः हरिवासरः  –  अस्मिन् काले पारणं निषिद्धम् (पद्मपुराणम्)',
     notDuringMadhyahna: 'मध्याह्ने न',
     madhyahnaNote: 'मध्यदिनकालः यत्र पारणम् अननुशंसितम्',
     beforeDwadashi: 'द्वादशीतिथिसमाप्तेः पूर्वम्',
     dwadashiNote: 'द्वादशीसमाप्तेः पूर्वं पारणं सम्पन्नं भवेत्, अन्यथा व्रतं अयथावत् भज्यते',
-    earlyEndWarning: 'द्वादशी हरिवासरात् पूर्वं समाप्यते — सूर्योदये तत्क्षणं पारणं कुर्यात्',
+    earlyEndWarning: 'द्वादशी हरिवासरात् पूर्वं समाप्यते  –  सूर्योदये तत्क्षणं पारणं कुर्यात्',
     sunrise: 'सूर्योदयः',
     hariVasara: 'हरिवासरः',
     parana: 'पारणम्',
@@ -243,7 +243,7 @@ export default function EkadashiParanaCard({
       {/* ═══ Visual Timeline Bar ═══ */}
       <div className="mb-6">
         <div className="relative h-8 rounded-lg overflow-hidden bg-bg-tertiary/40 border border-white/5">
-          {/* Hari Vasara segment (sunrise → HV end) — blue */}
+          {/* Hari Vasara segment (sunrise → HV end)  –  blue */}
           {!hvSameAsSunrise && (
             <div
               className="absolute top-0 bottom-0 bg-purple-500/30 border-r border-purple-400/40"
@@ -251,7 +251,7 @@ export default function EkadashiParanaCard({
             />
           )}
 
-          {/* Parana window (paranaStart → paranaEnd) — green */}
+          {/* Parana window (paranaStart → paranaEnd)  –  green */}
           <div
             className="absolute top-0 bottom-0 bg-emerald-500/35 border-x border-emerald-400/50"
             style={{ left: `${pct(paranaStartMin)}%`, width: `${pct(paranaEndMin) - pct(paranaStartMin)}%` }}
@@ -263,13 +263,13 @@ export default function EkadashiParanaCard({
             </div>
           </div>
 
-          {/* Madhyahna segment — red */}
+          {/* Madhyahna segment  –  red */}
           <div
             className="absolute top-0 bottom-0 bg-rose-500/25 border-x border-rose-400/30"
             style={{ left: `${pct(madhStartMin)}%`, width: `${pct(madhEndMin) - pct(madhStartMin)}%` }}
           />
 
-          {/* Post-madhyahna acceptable zone (madhEndMin → dwEndMin) — amber */}
+          {/* Post-madhyahna acceptable zone (madhEndMin → dwEndMin)  –  amber */}
           {madhEndMin < dwEndMin && (
             <div
               className="absolute top-0 bottom-0 bg-amber-500/15 border-x border-amber-400/20"
@@ -354,7 +354,7 @@ export default function EkadashiParanaCard({
           </span>
         </div>
         <p className="text-emerald-200 text-sm font-bold" style={headingFont}>
-          {fmtShortDate(paranaDate)} — {ll.breakFast}
+          {fmtShortDate(paranaDate)}  –  {ll.breakFast}
         </p>
       </div>
 
@@ -382,7 +382,7 @@ export default function EkadashiParanaCard({
         {/* Rule 3: NOT during Madhyahna */}
         <RuleRow
           ok={false}
-          label={`${ll.notDuringMadhyahna} (${paranaMadhyahnaStart} — ${paranaMadhyahnaEnd})`}
+          label={`${ll.notDuringMadhyahna} (${paranaMadhyahnaStart}  –  ${paranaMadhyahnaEnd})`}
           note={ll.madhyahnaNote}
           isDevanagari={isDevanagari}
         />

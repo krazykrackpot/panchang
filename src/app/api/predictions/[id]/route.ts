@@ -4,7 +4,7 @@ import { getServerSupabase } from '@/lib/supabase/server';
 const VALID_OUTCOMES = ['correct', 'partially_correct', 'incorrect'] as const;
 
 // ---------------------------------------------------------------------------
-// PATCH /api/predictions/[id] — rate a prediction (set outcome + note)
+// PATCH /api/predictions/[id]  –  rate a prediction (set outcome + note)
 // ---------------------------------------------------------------------------
 export async function PATCH(
   req: NextRequest,
@@ -81,7 +81,7 @@ export async function PATCH(
 }
 
 // ---------------------------------------------------------------------------
-// DELETE /api/predictions/[id] — delete a prediction
+// DELETE /api/predictions/[id]  –  delete a prediction
 // ---------------------------------------------------------------------------
 export async function DELETE(
   req: NextRequest,

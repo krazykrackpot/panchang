@@ -1,5 +1,5 @@
 /**
- * /api/ai-reading — Single comprehensive AI reading for all 8 life domains.
+ * /api/ai-reading  –  Single comprehensive AI reading for all 8 life domains.
  *
  * Flow:
  * 1. Receive kundali data + PersonalReading from client
@@ -92,7 +92,7 @@ async function extractUserId(
           }
         } catch (cookieErr) {
           console.error('[ai-reading] Cookie auth parse failed:', cookieErr);
-          /* invalid cookie — fall through to anon */
+          /* invalid cookie  –  fall through to anon */
         }
       }
     }
@@ -126,12 +126,12 @@ export async function POST(request: NextRequest) {
     const claude = getClaudeClient();
     if (!claude) {
       return NextResponse.json(
-        { error: 'AI readings not configured — ANTHROPIC_API_KEY missing' },
+        { error: 'AI readings not configured  –  ANTHROPIC_API_KEY missing' },
         { status: 503 },
       );
     }
 
-    // Auth — require sign-in for AI readings (prevents anonymous abuse)
+    // Auth  –  require sign-in for AI readings (prevents anonymous abuse)
     const { userId, tier } = await extractUserId(request);
     if (!userId) {
       return NextResponse.json(
@@ -156,7 +156,7 @@ export async function POST(request: NextRequest) {
 
       if (cacheError) {
         console.error('[ai-reading] Cache lookup failed:', cacheError.message);
-        // Continue to LLM call — cache miss is not fatal
+        // Continue to LLM call  –  cache miss is not fatal
       }
 
       if (cached?.reading_json) {
@@ -229,7 +229,7 @@ export async function POST(request: NextRequest) {
     };
 
     if (supabase && userId) {
-      // Upsert handles both insert and update (on conflict) — no need to delete first
+      // Upsert handles both insert and update (on conflict)  –  no need to delete first
       const { error: insertErr } = await supabase.from('ai_readings').upsert(
         {
           user_id: userId,

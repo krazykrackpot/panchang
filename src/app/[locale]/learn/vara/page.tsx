@@ -9,7 +9,7 @@ import { isIndicLocale } from '@/lib/utils/locale-fonts';
 
 const t_ = L as unknown as Record<string, LocaleText>;
 
-/** Style-only VARA data — all translatable text lives in vara.json keyed by vara_{i}_{field} */
+/** Style-only VARA data  –  all translatable text lives in vara.json keyed by vara_{i}_{field} */
 const VARA_STYLES = [
   { day: 0, color: 'text-amber-400', border: 'border-amber-500/20', bg: 'bg-amber-500/5' },
   { day: 1, color: 'text-blue-300', border: 'border-blue-500/20', bg: 'bg-blue-500/5' },
@@ -48,7 +48,7 @@ const SKIP3_KEYS = [
   { abbr: 'Ve', key: 'skipVenus', color: 'text-pink-300', border: 'border-pink-500/25' },
 ];
 
-/* Static cross-cultural table — not locale-dependent, always displayed in original scripts */
+/* Static cross-cultural table  –  not locale-dependent, always displayed in original scripts */
 const CROSS_CULTURAL = [
   { planet: 'Sun', sa: 'रविवासरः', hi: 'रविवार', en: 'Sunday', latin: 'Dies Solis / Dimanche', jp: '日曜日 (Nichiyōbi)' },
   { planet: 'Moon', sa: 'सोमवासरः', hi: 'सोमवार', en: 'Monday', latin: 'Dies Lunae / Lundi', jp: '月曜日 (Getsuyōbi)' },

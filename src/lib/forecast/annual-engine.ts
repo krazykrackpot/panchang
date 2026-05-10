@@ -1,5 +1,5 @@
 /**
- * Annual Forecast Engine — Orchestrator
+ * Annual Forecast Engine  –  Orchestrator
  * Combines Varshaphal, monthly transits, dasha narrative, and year rating
  * into a single structured forecast.
  */

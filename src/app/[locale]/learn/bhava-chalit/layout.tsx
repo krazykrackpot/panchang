@@ -11,7 +11,7 @@ export default async function Layout({ children, params }: { children: React.Rea
   const { locale } = await params;
   return (
     <>
-      <LearnArticleLD route="/learn/bhava-chalit" locale={locale} title="Bhava Chalit — House System Explained" description="Understand the Bhava Chalit chart: how it differs from the Rashi chart, when to use it, and the expert debate on whole-sign vs house-based systems." />
+      <LearnArticleLD route="/learn/bhava-chalit" locale={locale} title="Bhava Chalit  –  House System Explained" description="Understand the Bhava Chalit chart: how it differs from the Rashi chart, when to use it, and the expert debate on whole-sign vs house-based systems." />
       {children}
     </>
   );

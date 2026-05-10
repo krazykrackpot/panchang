@@ -446,7 +446,7 @@ export default function KPSubLordLabPage() {
               <div>
                 <h2 className="text-xl font-bold text-white mb-1">{t('chooseDegree')}</h2>
                 <p className="text-white/60 text-sm mb-5">
-                  In astrology, every planet, house cusp, and sensitive point has a precise longitude — a number from 0° to 360°.
+                  In astrology, every planet, house cusp, and sensitive point has a precise longitude  –  a number from 0° to 360°.
                   Pick any degree and we'll reveal its KP three-level ruler.
                 </p>
 
@@ -471,7 +471,7 @@ export default function KPSubLordLabPage() {
                 </div>
 
                 <WhyBox heading={t('whyDoesThisMatter')}>
-                  Regular Western astrology just says a planet is "in Aries" — that's 1 of 12 signs (30° slice).
+                  Regular Western astrology just says a planet is "in Aries"  –  that's 1 of 12 signs (30° slice).
                   KP astrology doesn't stop there. It keeps zooming in, narrowing down to a single small sliver of sky
                   with millimetre-like precision. This three-level zoom is what makes KP famous for specific predictions.
                 </WhyBox>
@@ -479,7 +479,7 @@ export default function KPSubLordLabPage() {
                 <div className="mt-4 p-4 rounded-xl bg-white/5 border border-white/8 text-sm text-white/70">
                   <span className="text-white font-semibold">Your selected degree: </span>
                   <span className="font-mono text-violet-300">{degree.toFixed(2)}°</span>
-                  <span className="text-white/40 ml-2">— falls in {result.sign.name.en} ({result.nak.name.en})</span>
+                  <span className="text-white/40 ml-2"> –  falls in {result.sign.name.en} ({result.nak.name.en})</span>
                 </div>
               </div>
             )}
@@ -489,7 +489,7 @@ export default function KPSubLordLabPage() {
               <div>
                 <h2 className="text-xl font-bold text-white mb-1">What is KP Astrology?</h2>
                 <p className="text-white/60 text-sm mb-5">
-                  KP stands for <strong className="text-white">Krishnamurti Paddhati</strong> — a system invented by K.S. Krishnamurti
+                  KP stands for <strong className="text-white">Krishnamurti Paddhati</strong>  –  a system invented by K.S. Krishnamurti
                   in the 1960s that dramatically improves prediction accuracy by introducing a three-level zoom.
                 </p>
 
@@ -502,7 +502,7 @@ export default function KPSubLordLabPage() {
                       <div className="text-green-300 font-semibold text-sm">Sign Lord (Rashi Adhipati)</div>
                       <div className="text-white/65 text-xs mt-0.5">
                         The zodiac is divided into 12 equal signs of 30° each. Every sign has a ruling planet.
-                        Eg: 0–30° = Aries, ruled by Mars. Simple — 12 buckets.
+                        Eg: 0–30° = Aries, ruled by Mars. Simple  –  12 buckets.
                       </div>
                     </div>
                   </div>
@@ -512,7 +512,7 @@ export default function KPSubLordLabPage() {
                       <div className="text-blue-300 font-semibold text-sm">Star Lord (Nakshatra Adhipati)</div>
                       <div className="text-white/65 text-xs mt-0.5">
                         Now zoom in further. The zodiac is also split into 27 equal star mansions (Nakshatras) of 13.33° each.
-                        Each Nakshatra has its own planetary ruler. This gives 27 buckets — much more specific.
+                        Each Nakshatra has its own planetary ruler. This gives 27 buckets  –  much more specific.
                       </div>
                     </div>
                   </div>
@@ -521,7 +521,7 @@ export default function KPSubLordLabPage() {
                     <div>
                       <div className="text-violet-300 font-semibold text-sm">Sub Lord (KP's Secret Weapon)</div>
                       <div className="text-white/65 text-xs mt-0.5">
-                        Each Nakshatra is further split into 9 sub-divisions using the <strong className="text-white">Vimshottari proportion</strong> —
+                        Each Nakshatra is further split into 9 sub-divisions using the <strong className="text-white">Vimshottari proportion</strong>  – 
                         the same 120-year planetary period system. This gives 27 × 9 = 243 slices. The Sub Lord is the
                         finest-grain ruler and is used for event timing and house analysis.
                       </div>
@@ -564,7 +564,7 @@ export default function KPSubLordLabPage() {
 
                 <ResultBanner
                   label={`Sign Lord (Rashi Adhipati) for ${result.deg.toFixed(2)}°`}
-                  value={`${GRAHAS[result.signLordId].symbol} ${GRAHAS[result.signLordId].name.en} — ${result.sign.name.en}`}
+                  value={`${GRAHAS[result.signLordId].symbol} ${GRAHAS[result.signLordId].name.en}  –  ${result.sign.name.en}`}
                 />
 
                 <div className="mt-4 grid grid-cols-3 sm:grid-cols-6 gap-2">
@@ -575,7 +575,7 @@ export default function KPSubLordLabPage() {
                     </div>
                   ))}
                 </div>
-                <p className="text-white/35 text-xs text-center mt-1">First 6 signs shown — pattern continues for all 12</p>
+                <p className="text-white/35 text-xs text-center mt-1">First 6 signs shown  –  pattern continues for all 12</p>
               </div>
             )}
 
@@ -590,7 +590,7 @@ export default function KPSubLordLabPage() {
 
                 <ConceptBox label="Why 27 Nakshatras?">
                   The Moon takes approximately 27.3 days to orbit the Earth. Ancient astronomers divided the zodiac
-                  into 27 equal portions — one for each day of the Moon's journey. Each portion was named after a star
+                  into 27 equal portions  –  one for each day of the Moon's journey. Each portion was named after a star
                   cluster the Moon passes through. These became the 27 Nakshatras.
                 </ConceptBox>
 
@@ -624,13 +624,13 @@ export default function KPSubLordLabPage() {
 
                 <ResultBanner
                   label={`Star Lord (Nakshatra Adhipati) for ${result.deg.toFixed(2)}°`}
-                  value={`${GRAHAS[VIMSHOTTARI[result.starLordIdx].id].symbol} ${GRAHAS[VIMSHOTTARI[result.starLordIdx].id].name.en} — ${result.nak.name.en}`}
+                  value={`${GRAHAS[VIMSHOTTARI[result.starLordIdx].id].symbol} ${GRAHAS[VIMSHOTTARI[result.starLordIdx].id].name.en}  –  ${result.nak.name.en}`}
                 />
 
                 <WhyBox heading={t('whyDoesThisMatter')}>
                   The Star Lord is determined entirely by which Nakshatra you're in. Each of the 27 Nakshatras has
                   a fixed planetary ruler assigned by the Vimshottari Dasha system. These 9 planets rule 3 Nakshatras each.
-                  The Star Lord is considered the primary indicator of events in KP — more important than the Sign Lord.
+                  The Star Lord is considered the primary indicator of events in KP  –  more important than the Sign Lord.
                 </WhyBox>
               </div>
             )}
@@ -683,7 +683,7 @@ export default function KPSubLordLabPage() {
 
                 <ResultBanner
                   label={`Sub Lord for ${result.deg.toFixed(2)}°`}
-                  value={`${GRAHAS[result.currentSub.planetId].symbol} ${GRAHAS[result.currentSub.planetId].name.en} (${result.currentSub.startDeg.toFixed(3)}° — ${result.currentSub.endDeg.toFixed(3)}°)`}
+                  value={`${GRAHAS[result.currentSub.planetId].symbol} ${GRAHAS[result.currentSub.planetId].name.en} (${result.currentSub.startDeg.toFixed(3)}°  –  ${result.currentSub.endDeg.toFixed(3)}°)`}
                 />
 
                 {/* Sub-division table */}
@@ -774,7 +774,7 @@ export default function KPSubLordLabPage() {
                 <WhyBox heading={t('whyDoesThisMatter')}>
                   <strong className="text-indigo-200">How KP astrologers use this:</strong> They analyse which houses
                   each of these three lords signify. If the Sub Lord signifies the 7th house (marriage), and you're
-                  running a relevant dasha period, marriage is predicted. The Sub Lord is the deciding factor —
+                  running a relevant dasha period, marriage is predicted. The Sub Lord is the deciding factor  – 
                   without a supportive Sub Lord, even a perfect Sign + Star combination may not manifest.
                 </WhyBox>
 

@@ -28,13 +28,13 @@ const GANDA_MULA = [
     criticalPadas: '1, 2',
     nature: { en: 'Swift, healing, energetic', hi: 'तीव्र, उपचारक, ऊर्जावान', sa: 'तीव्र, उपचारक, ऊर्जावान', mai: 'तीव्र, उपचारक, ऊर्जावान', mr: 'तीव्र, उपचारक, ऊर्जावान', ta: 'தீவ்ர, உபசாரக, ஊர்ஜாவாந', te: 'తీవ్ర, ఉపచారక, ఊర్జావాన', bn: 'তীব্র, উপচারক, ঊর্জাবান', kn: 'ತೀವ್ರ, ಉಪಚಾರಕ, ಊರ್ಜಾವಾನ', gu: 'તીવ્ર, ઉપચારક, ઊર્જાવાન' },
     effects: {
-      en: 'Birth in Ashwini may affect the father\'s health or career. The native is inherently a healer — drawn to medicine, alternative therapies, or emergency services. Pada 1-2 (in Aries navamsha) intensifies the fire element, making the child extremely restless and action-oriented. Positive: exceptional courage, pioneering spirit, and quick decision-making. The twin Ashwini Kumaras grant regenerative abilities.',
-      hi: 'अश्विनी में जन्म पिता के स्वास्थ्य या कैरियर को प्रभावित कर सकता है। जातक जन्मजात उपचारक होता है — चिकित्सा, वैकल्पिक चिकित्सा, या आपातकालीन सेवाओं की ओर आकर्षित। पाद 1-2 (मेष नवांश में) अग्नि तत्व को तीव्र करता है। सकारात्मक: असाधारण साहस, अग्रणी भावना और शीघ्र निर्णय क्षमता।',
+      en: 'Birth in Ashwini may affect the father\'s health or career. The native is inherently a healer  –  drawn to medicine, alternative therapies, or emergency services. Pada 1-2 (in Aries navamsha) intensifies the fire element, making the child extremely restless and action-oriented. Positive: exceptional courage, pioneering spirit, and quick decision-making. The twin Ashwini Kumaras grant regenerative abilities.',
+      hi: 'अश्विनी में जन्म पिता के स्वास्थ्य या कैरियर को प्रभावित कर सकता है। जातक जन्मजात उपचारक होता है  –  चिकित्सा, वैकल्पिक चिकित्सा, या आपातकालीन सेवाओं की ओर आकर्षित। पाद 1-2 (मेष नवांश में) अग्नि तत्व को तीव्र करता है। सकारात्मक: असाधारण साहस, अग्रणी भावना और शीघ्र निर्णय क्षमता।',
     },
     upayas: {
       en: [
         'Perform Ashwini Nakshatra Shanti Puja on the 27th day after birth',
-        'Recite Ketu Beej Mantra: "Om Sram Sreem Sroum Sah Ketave Namah" — 17,000 times',
+        'Recite Ketu Beej Mantra: "Om Sram Sreem Sroum Sah Ketave Namah"  –  17,000 times',
         'Donate a cow, blankets, and saptadhanya (seven grains) to a temple or Brahmin',
         'Worship Lord Ganesha on Tuesdays and Saturdays',
         'Father should not see the newborn for 12 days (traditional; 27 days for pada 1)',
@@ -42,7 +42,7 @@ const GANDA_MULA = [
       ],
       hi: [
         'जन्म के 27वें दिन अश्विनी नक्षत्र शान्ति पूजा',
-        'केतु बीज मन्त्र: "ॐ स्रां स्रीं स्रौं सः केतवे नमः" — 17,000 बार',
+        'केतु बीज मन्त्र: "ॐ स्रां स्रीं स्रौं सः केतवे नमः"  –  17,000 बार',
         'गाय, कम्बल और सप्तधान्य का दान',
         'मंगलवार और शनिवार को भगवान गणेश की पूजा',
         'पिता 12 दिनों तक नवजात को न देखें (पाद 1 के लिए 27 दिन)',
@@ -58,24 +58,24 @@ const GANDA_MULA = [
     criticalPadas: '3, 4',
     nature: { en: 'Mystical, penetrating, coiling', hi: 'रहस्यमय, भेदक, कुण्डलित', sa: 'रहस्यमय, भेदक, कुण्डलित', mai: 'रहस्यमय, भेदक, कुण्डलित', mr: 'रहस्यमय, भेदक, कुण्डलित', ta: 'ரஹஸ்யமய, भேதக, குண்டலித', te: 'రహస్యమయ, భేదక, కుణ్డలిత', bn: 'রহস্যময, ভেদক, কুণ্ডলিত', kn: 'ರಹಸ್ಯಮಯ, ಭೇದಕ, ಕುಣ್ಡಲಿತ', gu: 'રહસ્યમય, ભેદક, કુણ્ડલિત' },
     effects: {
-      en: 'Ashlesha is ruled by the Nagas — serpent deities of the underworld. Birth here may create tension with in-laws, especially mother-in-law. The native possesses deep intuition, hypnotic charm, and psychological penetration. Pada 3-4 (at the Cancer-Leo junction) is most challenging. Negative tendencies: manipulation, jealousy, possessiveness. Positive: extraordinary research ability, kundalini awakening potential, and healing through tantra/yoga.',
+      en: 'Ashlesha is ruled by the Nagas  –  serpent deities of the underworld. Birth here may create tension with in-laws, especially mother-in-law. The native possesses deep intuition, hypnotic charm, and psychological penetration. Pada 3-4 (at the Cancer-Leo junction) is most challenging. Negative tendencies: manipulation, jealousy, possessiveness. Positive: extraordinary research ability, kundalini awakening potential, and healing through tantra/yoga.',
       hi: 'आश्लेषा नागों (पाताल के सर्प देवताओं) द्वारा शासित। यहाँ जन्म ससुराल, विशेषकर सास के साथ तनाव उत्पन्न कर सकता है। जातक में गहन अन्तर्ज्ञान, सम्मोहक आकर्षण और मनोवैज्ञानिक भेदन शक्ति। पाद 3-4 सबसे चुनौतीपूर्ण। नकारात्मक: छल, ईर्ष्या। सकारात्मक: असाधारण अनुसन्धान क्षमता, कुण्डलिनी जागरण और तन्त्र/योग से उपचार।',
     },
     upayas: {
       en: [
-        'Perform Naga Puja (Serpent worship) — especially on Nag Panchami',
-        'Recite Budh Beej Mantra: "Om Bram Breem Broum Sah Budhaye Namah" — 9,000 times',
+        'Perform Naga Puja (Serpent worship)  –  especially on Nag Panchami',
+        'Recite Budh Beej Mantra: "Om Bram Breem Broum Sah Budhaye Namah"  –  9,000 times',
         'Donate green cloth, moong dal, emerald (if affordable), and books',
         'Offer milk to a Naga idol or anthill on auspicious days',
-        'Worship Lord Vishnu — recite Vishnu Sahasranama weekly',
+        'Worship Lord Vishnu  –  recite Vishnu Sahasranama weekly',
         'Keep a silver serpent idol at home for protection',
       ],
       hi: [
-        'नाग पूजा — विशेषकर नाग पंचमी पर',
-        'बुध बीज मन्त्र: "ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः" — 9,000 बार',
+        'नाग पूजा  –  विशेषकर नाग पंचमी पर',
+        'बुध बीज मन्त्र: "ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः"  –  9,000 बार',
         'हरा वस्त्र, मूंग दाल, पन्ना (यदि सम्भव) और पुस्तकों का दान',
         'शुभ दिनों पर नाग प्रतिमा या बाँबी में दूध अर्पण',
-        'भगवान विष्णु की पूजा — साप्ताहिक विष्णु सहस्रनाम पाठ',
+        'भगवान विष्णु की पूजा  –  साप्ताहिक विष्णु सहस्रनाम पाठ',
         'घर में चाँदी की सर्प प्रतिमा रखें',
       ],
     },
@@ -88,13 +88,13 @@ const GANDA_MULA = [
     criticalPadas: '1, 2',
     nature: { en: 'Royal, ancestral, authoritative', hi: 'राजसी, पैतृक, अधिकारपूर्ण', sa: 'राजसी, पैतृक, अधिकारपूर्ण', mai: 'राजसी, पैतृक, अधिकारपूर्ण', mr: 'राजसी, पैतृक, अधिकारपूर्ण', ta: 'ராஜஸீ, பைதிருக, அधிகாரபூர்ண', te: 'రాజసీ, పైతృక, అధికారపూర్ణ', bn: 'রাজসী, পৈতৃক, অধিকারপূর্ণ', kn: 'ರಾಜಸೀ, ಪೈತೃಕ, ಅಧಿಕಾರಪೂರ್ಣ', gu: 'રાજસી, પૈતૃક, અધિકારપૂર્ણ' },
     effects: {
-      en: 'Magha is the throne room of the zodiac — ruled by the Pitris (ancestors). Birth here may affect the mother\'s health. The native carries strong ancestral karma, a natural sense of authority, and expects respect. Pada 1 (Aries navamsha, Ketu-Mars) is most intense. The native may struggle with ego, entitlement, or inability to accept subordinate roles. Positive: leadership, generosity, connection to lineage, and ability to command large groups.',
-      hi: 'मघा राशिचक्र का सिंहासन कक्ष — पितरों (पूर्वजों) द्वारा शासित। यहाँ जन्म माता के स्वास्थ्य को प्रभावित कर सकता है। जातक में दृढ़ पूर्वज कर्म, प्राकृतिक अधिकार भावना। पाद 1 सबसे तीव्र। जातक अहम्, अधिकार-भावना से संघर्ष कर सकता है। सकारात्मक: नेतृत्व, उदारता, वंश से जुड़ाव।',
+      en: 'Magha is the throne room of the zodiac  –  ruled by the Pitris (ancestors). Birth here may affect the mother\'s health. The native carries strong ancestral karma, a natural sense of authority, and expects respect. Pada 1 (Aries navamsha, Ketu-Mars) is most intense. The native may struggle with ego, entitlement, or inability to accept subordinate roles. Positive: leadership, generosity, connection to lineage, and ability to command large groups.',
+      hi: 'मघा राशिचक्र का सिंहासन कक्ष  –  पितरों (पूर्वजों) द्वारा शासित। यहाँ जन्म माता के स्वास्थ्य को प्रभावित कर सकता है। जातक में दृढ़ पूर्वज कर्म, प्राकृतिक अधिकार भावना। पाद 1 सबसे तीव्र। जातक अहम्, अधिकार-भावना से संघर्ष कर सकता है। सकारात्मक: नेतृत्व, उदारता, वंश से जुड़ाव।',
     },
     upayas: {
       en: [
         'Perform Pitru Tarpan (ancestor offerings) on Amavasya',
-        'Recite Ketu Beej Mantra: "Om Sram Sreem Sroum Sah Ketave Namah" — 17,000 times',
+        'Recite Ketu Beej Mantra: "Om Sram Sreem Sroum Sah Ketave Namah"  –  17,000 times',
         'Donate blankets, sesame seeds, and perform Anna Daan (food donation)',
         'Worship ancestors through Shraddha ceremony annually',
         'Mother should not see the newborn for 12 days (traditional)',
@@ -102,7 +102,7 @@ const GANDA_MULA = [
       ],
       hi: [
         'अमावस्या पर पितृ तर्पण',
-        'केतु बीज मन्त्र: "ॐ स्रां स्रीं स्रौं सः केतवे नमः" — 17,000 बार',
+        'केतु बीज मन्त्र: "ॐ स्रां स्रीं स्रौं सः केतवे नमः"  –  17,000 बार',
         'कम्बल, तिल और अन्न दान',
         'वार्षिक श्राद्ध कर्म द्वारा पूर्वज पूजन',
         'माता 12 दिनों तक नवजात को न देखें',
@@ -118,23 +118,23 @@ const GANDA_MULA = [
     criticalPadas: '3, 4',
     nature: { en: 'Protective, senior, fierce', hi: 'रक्षात्मक, ज्येष्ठ, उग्र', sa: 'रक्षात्मक, ज्येष्ठ, उग्र', mai: 'रक्षात्मक, ज्येष्ठ, उग्र', mr: 'रक्षात्मक, ज्येष्ठ, उग्र', ta: 'ரக்ஷாத்மக, ஜ்யேஷ்ठ, உக்ர', te: 'రక్షాత్మక, జ్యేష్ఠ, ఉగ్ర', bn: 'রক্ষাত্মক, জ্যেষ্ঠ, উগ্র', kn: 'ರಕ್ಷಾತ್ಮಕ, ಜ್ಯೇಷ್ಠ, ಉಗ್ರ', gu: 'રક્ષાત્મક, જ્યેષ્ઠ, ઉગ્ર' },
     effects: {
-      en: 'Jyeshtha means "the eldest" — ruled by Indra, king of heaven. Birth here may create rivalry with or separation from elder siblings. The native has a fierce protective instinct and will fight for those they love. Pada 3-4 (at the Scorpio-Sagittarius cusp) intensifies transformation. Negative: jealousy of those in power, chronic dissatisfaction. Positive: strategic brilliance, protective leadership, and deep occult knowledge.',
-      hi: 'ज्येष्ठा अर्थात् "सबसे बड़ा" — इन्द्र (स्वर्ग के राजा) द्वारा शासित। यहाँ जन्म बड़े भाई-बहनों से प्रतिद्वंद्विता या अलगाव उत्पन्न कर सकता है। जातक में प्रबल रक्षात्मक प्रवृत्ति। पाद 3-4 परिवर्तन को तीव्र करता है। नकारात्मक: सत्तासीनों से ईर्ष्या। सकारात्मक: रणनीतिक प्रतिभा, रक्षात्मक नेतृत्व।',
+      en: 'Jyeshtha means "the eldest"  –  ruled by Indra, king of heaven. Birth here may create rivalry with or separation from elder siblings. The native has a fierce protective instinct and will fight for those they love. Pada 3-4 (at the Scorpio-Sagittarius cusp) intensifies transformation. Negative: jealousy of those in power, chronic dissatisfaction. Positive: strategic brilliance, protective leadership, and deep occult knowledge.',
+      hi: 'ज्येष्ठा अर्थात् "सबसे बड़ा"  –  इन्द्र (स्वर्ग के राजा) द्वारा शासित। यहाँ जन्म बड़े भाई-बहनों से प्रतिद्वंद्विता या अलगाव उत्पन्न कर सकता है। जातक में प्रबल रक्षात्मक प्रवृत्ति। पाद 3-4 परिवर्तन को तीव्र करता है। नकारात्मक: सत्तासीनों से ईर्ष्या। सकारात्मक: रणनीतिक प्रतिभा, रक्षात्मक नेतृत्व।',
     },
     upayas: {
       en: [
         'Perform Jyeshtha Nakshatra Shanti Puja',
-        'Recite Budh Beej Mantra: "Om Bram Breem Broum Sah Budhaye Namah" — 9,000 times',
+        'Recite Budh Beej Mantra: "Om Bram Breem Broum Sah Budhaye Namah"  –  9,000 times',
         'Donate green vegetables, books, and emerald on Wednesdays',
-        'Worship Lord Indra — offer Arghya (water offering) facing East at sunrise',
+        'Worship Lord Indra  –  offer Arghya (water offering) facing East at sunrise',
         'Elder siblings should avoid seeing newborn for 12 days (pada 3-4: 27 days)',
-        'Maintain good relationship with elder siblings — serve them respectfully',
+        'Maintain good relationship with elder siblings  –  serve them respectfully',
       ],
       hi: [
         'ज्येष्ठा नक्षत्र शान्ति पूजा',
-        'बुध बीज मन्त्र: "ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः" — 9,000 बार',
+        'बुध बीज मन्त्र: "ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः"  –  9,000 बार',
         'बुधवार को हरी सब्जियाँ, पुस्तकें और पन्ना दान',
-        'इन्द्र देव की पूजा — सूर्योदय में पूर्व की ओर अर्घ्य',
+        'इन्द्र देव की पूजा  –  सूर्योदय में पूर्व की ओर अर्घ्य',
         'बड़ा भाई/बहन 12 दिनों तक नवजात को न देखें (पाद 3-4: 27 दिन)',
         'बड़े भाई-बहनों से अच्छा सम्बन्ध रखें',
       ],
@@ -148,16 +148,16 @@ const GANDA_MULA = [
     criticalPadas: '1',
     nature: { en: 'Uprooting, foundational, destructive-creative', hi: 'उन्मूलक, मूलभूत, विनाशात्मक-सृजनात्मक', sa: 'उन्मूलक, मूलभूत, विनाशात्मक-सृजनात्मक', mai: 'उन्मूलक, मूलभूत, विनाशात्मक-सृजनात्मक', mr: 'उन्मूलक, मूलभूत, विनाशात्मक-सृजनात्मक', ta: 'உந்மூலக, மூலभூத, விநாஶாத்மக-ஸிருஜநாத்மக', te: 'ఉన్మూలక, మూలభూత, వినాశాత్మక-సృజనాత్మక', bn: 'উন্মূলক, মূলভূত, বিনাশাত্মক-সৃজনাত্মক', kn: 'ಉನ್ಮೂಲಕ, ಮೂಲಭೂತ, ವಿನಾಶಾತ್ಮಕ-ಸೃಜನಾತ್ಮಕ', gu: 'ઉન્મૂલક, મૂલભૂત, વિનાશાત્મક-સૃજનાત્મક' },
     effects: {
-      en: 'Moola is the most feared Ganda Mula nakshatra — the "root" that uproots. Ruled by Nirriti (goddess of destruction and dissolution), it sits at the galactic center of the Milky Way. Pada 1 is the most inauspicious and traditionally requires extensive shanti. Birth here may bring financial hardship to the family or health issues to the father in the child\'s early years. HOWEVER: Moola natives often become great researchers, philosophers, spiritual seekers, and truth-finders. They tear down illusions to reach the foundation of reality. Many great saints were born in Moola.',
-      hi: 'मूल सबसे भयंकर गण्ड मूल नक्षत्र — "जड़" जो उखाड़ता है। निर्ऋति (विनाश और विलय की देवी) द्वारा शासित, आकाशगंगा के केन्द्र पर स्थित। पाद 1 सबसे अशुभ और पारम्परिक रूप से व्यापक शान्ति अपेक्षित। यहाँ जन्म बच्चे के प्रारम्भिक वर्षों में परिवार को आर्थिक कठिनाई या पिता को स्वास्थ्य समस्या ला सकता है। परन्तु: मूल जातक प्रायः महान शोधकर्ता, दार्शनिक, आध्यात्मिक साधक और सत्यान्वेषी बनते हैं। वे भ्रमों को नष्ट कर यथार्थ की नींव तक पहुँचते हैं। अनेक महान सन्त मूल में जन्मे थे।',
+      en: 'Moola is the most feared Ganda Mula nakshatra  –  the "root" that uproots. Ruled by Nirriti (goddess of destruction and dissolution), it sits at the galactic center of the Milky Way. Pada 1 is the most inauspicious and traditionally requires extensive shanti. Birth here may bring financial hardship to the family or health issues to the father in the child\'s early years. HOWEVER: Moola natives often become great researchers, philosophers, spiritual seekers, and truth-finders. They tear down illusions to reach the foundation of reality. Many great saints were born in Moola.',
+      hi: 'मूल सबसे भयंकर गण्ड मूल नक्षत्र  –  "जड़" जो उखाड़ता है। निर्ऋति (विनाश और विलय की देवी) द्वारा शासित, आकाशगंगा के केन्द्र पर स्थित। पाद 1 सबसे अशुभ और पारम्परिक रूप से व्यापक शान्ति अपेक्षित। यहाँ जन्म बच्चे के प्रारम्भिक वर्षों में परिवार को आर्थिक कठिनाई या पिता को स्वास्थ्य समस्या ला सकता है। परन्तु: मूल जातक प्रायः महान शोधकर्ता, दार्शनिक, आध्यात्मिक साधक और सत्यान्वेषी बनते हैं। वे भ्रमों को नष्ट कर यथार्थ की नींव तक पहुँचते हैं। अनेक महान सन्त मूल में जन्मे थे।',
     },
     upayas: {
       en: [
         'CRITICAL: Perform Moola Nakshatra Shanti Maha Puja within 27 days of birth',
-        'Recite Ketu Beej Mantra: "Om Sram Sreem Sroum Sah Ketave Namah" — 17,000 times over 40 days',
+        'Recite Ketu Beej Mantra: "Om Sram Sreem Sroum Sah Ketave Namah"  –  17,000 times over 40 days',
         'Perform Maha Mrityunjaya Havan for protection and longevity',
         'Donate a cow, gold, blankets, and saptadhanya (seven grains)',
-        'Worship Lord Ganesha daily — He removes all Mula obstacles',
+        'Worship Lord Ganesha daily  –  He removes all Mula obstacles',
         'Father should not see the newborn for 27 days (pada 1) or 12 days (other padas)',
         'Keep a Cat\'s Eye gemstone (Vaidurya) after astrological consultation',
         'Perform Rudra Abhishek on Mondays for Shiva\'s protection',
@@ -165,13 +165,13 @@ const GANDA_MULA = [
       ],
       hi: [
         'अत्यावश्यक: जन्म के 27 दिनों के भीतर मूल नक्षत्र शान्ति महापूजा',
-        'केतु बीज मन्त्र: "ॐ स्रां स्रीं स्रौं सः केतवे नमः" — 40 दिनों में 17,000 बार',
+        'केतु बीज मन्त्र: "ॐ स्रां स्रीं स्रौं सः केतवे नमः"  –  40 दिनों में 17,000 बार',
         'सुरक्षा और दीर्घायु के लिए महामृत्युंजय हवन',
         'गाय, सोना, कम्बल और सप्तधान्य का दान',
-        'प्रतिदिन भगवान गणेश की पूजा — वे सभी मूल बाधाएँ दूर करते हैं',
+        'प्रतिदिन भगवान गणेश की पूजा  –  वे सभी मूल बाधाएँ दूर करते हैं',
         'पिता 27 दिनों (पाद 1) या 12 दिनों (अन्य पाद) तक नवजात को न देखें',
         'ज्योतिषीय परामर्श के बाद वैदूर्य (लहसुनिया) रत्न धारण',
-        'सोमवार को रुद्राभिषेक — शिव की सुरक्षा हेतु',
+        'सोमवार को रुद्राभिषेक  –  शिव की सुरक्षा हेतु',
         'प्रथम वर्ष में बच्चे की मासिक जयन्ती पर ब्राह्मण और गरीबों को भोजन',
       ],
     },
@@ -184,23 +184,23 @@ const GANDA_MULA = [
     criticalPadas: '4',
     nature: { en: 'Gentle, nourishing, concluding', hi: 'सौम्य, पोषक, समापन', sa: 'सौम्य, पोषक, समापन', mai: 'सौम्य, पोषक, समापन', mr: 'सौम्य, पोषक, समापन', ta: 'ஸௌம்ய, போஷக, ஸமாபந', te: 'సౌమ్య, పోషక, సమాపన', bn: 'সৌম্য, পোষক, সমাপন', kn: 'ಸೌಮ್ಯ, ಪೋಷಕ, ಸಮಾಪನ', gu: 'સૌમ્ય, પોષક, સમાપન' },
     effects: {
-      en: 'Revati is the gentlest and most benign of the Ganda Mula nakshatras — the last nakshatra of the zodiac, signifying completion and spiritual transcendence. Ruled by Pushan (nourisher), the dosha effect is mild. Only Pada 4 (at the very end of Pisces, the Pisces-Aries junction) carries significant Ganda Mula energy. Birth here may delay the welfare of younger siblings. The native is exceptionally compassionate, artistic, and spiritually evolved. They are natural caregivers and guides for others\' journeys.',
-      hi: 'रेवती गण्ड मूल नक्षत्रों में सबसे सौम्य — राशिचक्र का अन्तिम नक्षत्र, पूर्णता और आध्यात्मिक अतिक्रमण का प्रतीक। पूषन (पोषक) द्वारा शासित, दोष का प्रभाव हल्का। केवल पाद 4 (मीन के अन्त में) में महत्त्वपूर्ण गण्ड मूल ऊर्जा। यहाँ जन्म छोटे भाई-बहनों के कल्याण में विलम्ब कर सकता है। जातक असाधारण रूप से दयालु, कलात्मक और आध्यात्मिक रूप से विकसित।',
+      en: 'Revati is the gentlest and most benign of the Ganda Mula nakshatras  –  the last nakshatra of the zodiac, signifying completion and spiritual transcendence. Ruled by Pushan (nourisher), the dosha effect is mild. Only Pada 4 (at the very end of Pisces, the Pisces-Aries junction) carries significant Ganda Mula energy. Birth here may delay the welfare of younger siblings. The native is exceptionally compassionate, artistic, and spiritually evolved. They are natural caregivers and guides for others\' journeys.',
+      hi: 'रेवती गण्ड मूल नक्षत्रों में सबसे सौम्य  –  राशिचक्र का अन्तिम नक्षत्र, पूर्णता और आध्यात्मिक अतिक्रमण का प्रतीक। पूषन (पोषक) द्वारा शासित, दोष का प्रभाव हल्का। केवल पाद 4 (मीन के अन्त में) में महत्त्वपूर्ण गण्ड मूल ऊर्जा। यहाँ जन्म छोटे भाई-बहनों के कल्याण में विलम्ब कर सकता है। जातक असाधारण रूप से दयालु, कलात्मक और आध्यात्मिक रूप से विकसित।',
     },
     upayas: {
       en: [
-        'Perform Revati Nakshatra Shanti Puja — lighter ceremony than Moola',
-        'Recite Budh Beej Mantra: "Om Bram Breem Broum Sah Budhaye Namah" — 9,000 times',
+        'Perform Revati Nakshatra Shanti Puja  –  lighter ceremony than Moola',
+        'Recite Budh Beej Mantra: "Om Bram Breem Broum Sah Budhaye Namah"  –  9,000 times',
         'Donate green items, books, and sweets to children',
-        'Worship Lord Vishnu — recite Vishnu Sahasranama',
+        'Worship Lord Vishnu  –  recite Vishnu Sahasranama',
         'Offer food to fish (symbolizing Pushan\'s protection of water creatures)',
         'Younger siblings should avoid seeing newborn for 12 days (pada 4 only)',
       ],
       hi: [
-        'रेवती नक्षत्र शान्ति पूजा — मूल से हल्की विधि',
-        'बुध बीज मन्त्र: "ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः" — 9,000 बार',
+        'रेवती नक्षत्र शान्ति पूजा  –  मूल से हल्की विधि',
+        'बुध बीज मन्त्र: "ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः"  –  9,000 बार',
         'हरी वस्तुएँ, पुस्तकें और बच्चों को मिठाइयाँ दान',
-        'भगवान विष्णु की पूजा — विष्णु सहस्रनाम पाठ',
+        'भगवान विष्णु की पूजा  –  विष्णु सहस्रनाम पाठ',
         'मछलियों को भोजन (पूषन की जल जीवों की रक्षा का प्रतीक)',
         'छोटे भाई-बहन 12 दिनों तक नवजात को न देखें (केवल पाद 4)',
       ],
@@ -480,20 +480,20 @@ export default function GandaMulaModule() {
           <div className="text-text-secondary space-y-4 leading-relaxed">
             {!isDevanagariLocale(locale) ? (
               <>
-                <p>In Vedic astrology, <strong className="text-gold-primary">Ganda Mula</strong> (also called <em>Mula Nakshatra</em>) refers to <strong>6 specific nakshatras</strong> that fall at the junction points where a water sign transitions into a fire sign. The word "Ganda" means a knot or joint, and "Mula" means root — together signifying a karmic knot at the root of one&apos;s birth.</p>
-                <p>These junctions create a turbulent energetic transition. Water (emotion, dissolution) collides with fire (action, creation), producing a powerful but unstable energy at the moment of birth. This is neither inherently good nor bad — it is <strong>intense</strong>.</p>
+                <p>In Vedic astrology, <strong className="text-gold-primary">Ganda Mula</strong> (also called <em>Mula Nakshatra</em>) refers to <strong>6 specific nakshatras</strong> that fall at the junction points where a water sign transitions into a fire sign. The word "Ganda" means a knot or joint, and "Mula" means root  –  together signifying a karmic knot at the root of one&apos;s birth.</p>
+                <p>These junctions create a turbulent energetic transition. Water (emotion, dissolution) collides with fire (action, creation), producing a powerful but unstable energy at the moment of birth. This is neither inherently good nor bad  –  it is <strong>intense</strong>.</p>
                 <p>The three water-fire junctions in the zodiac are:</p>
                 <ul className="list-disc ml-6 space-y-1">
                   <li><strong>Pisces → Aries</strong>: Revati (27) and Ashwini (1)</li>
                   <li><strong>Cancer → Leo</strong>: Ashlesha (9) and Magha (10)</li>
                   <li><strong>Scorpio → Sagittarius</strong>: Jyeshtha (18) and Moola (19)</li>
                 </ul>
-                <p>Birth in these nakshatras — especially in the <strong>critical padas</strong> closest to the junction — is believed to create challenges for specific family members (father, mother, siblings, in-laws) and requires <strong>Ganda Mula Shanti Puja</strong> to mitigate the effects.</p>
+                <p>Birth in these nakshatras  –  especially in the <strong>critical padas</strong> closest to the junction  –  is believed to create challenges for specific family members (father, mother, siblings, in-laws) and requires <strong>Ganda Mula Shanti Puja</strong> to mitigate the effects.</p>
                 <p className="text-gold-primary/80 font-semibold">Important: Ganda Mula does not mean the child is cursed. Many great leaders, saints, and achievers were born in these nakshatras. The shanti puja channels the intense energy constructively.</p>
               </>
             ) : (
               <>
-                <p>वैदिक ज्योतिष में <strong className="text-gold-primary">गण्ड मूल</strong> (मूल नक्षत्र भी कहा जाता है) उन <strong>6 विशिष्ट नक्षत्रों</strong> को कहते हैं जो जल राशि से अग्नि राशि के संक्रमण बिन्दु पर स्थित हैं। &quot;गण्ड&quot; का अर्थ है गाँठ और &quot;मूल&quot; का अर्थ है जड़ — मिलकर जन्म की जड़ में एक कार्मिक गाँठ।</p>
+                <p>वैदिक ज्योतिष में <strong className="text-gold-primary">गण्ड मूल</strong> (मूल नक्षत्र भी कहा जाता है) उन <strong>6 विशिष्ट नक्षत्रों</strong> को कहते हैं जो जल राशि से अग्नि राशि के संक्रमण बिन्दु पर स्थित हैं। &quot;गण्ड&quot; का अर्थ है गाँठ और &quot;मूल&quot; का अर्थ है जड़  –  मिलकर जन्म की जड़ में एक कार्मिक गाँठ।</p>
                 <p>ये सन्धियाँ एक अशान्त ऊर्जा संक्रमण उत्पन्न करती हैं। जल (भावना, विलय) अग्नि (क्रिया, सृष्टि) से टकराता है, जन्म के क्षण में एक शक्तिशाली किन्तु अस्थिर ऊर्जा उत्पन्न करता है।</p>
                 <p>राशिचक्र में तीन जल-अग्नि सन्धियाँ:</p>
                 <ul className="list-disc ml-6 space-y-1">
@@ -501,7 +501,7 @@ export default function GandaMulaModule() {
                   <li><strong>कर्क → सिंह</strong>: आश्लेषा (9) और मघा (10)</li>
                   <li><strong>वृश्चिक → धनु</strong>: ज्येष्ठा (18) और मूल (19)</li>
                 </ul>
-                <p>इन नक्षत्रों में जन्म — विशेषकर सन्धि के निकटतम <strong>संवेदनशील पादों</strong> में — विशिष्ट परिवार के सदस्यों के लिए चुनौतियाँ उत्पन्न करता है और <strong>गण्ड मूल शान्ति पूजा</strong> आवश्यक होती है।</p>
+                <p>इन नक्षत्रों में जन्म  –  विशेषकर सन्धि के निकटतम <strong>संवेदनशील पादों</strong> में  –  विशिष्ट परिवार के सदस्यों के लिए चुनौतियाँ उत्पन्न करता है और <strong>गण्ड मूल शान्ति पूजा</strong> आवश्यक होती है।</p>
                 <p className="text-gold-primary/80 font-semibold">महत्त्वपूर्ण: गण्ड मूल का अर्थ यह नहीं कि बच्चा अभिशप्त है। अनेक महान नेता, सन्त और उपलब्धिकर्ता इन नक्षत्रों में जन्मे। शान्ति पूजा तीव्र ऊर्जा को रचनात्मक रूप देती है।</p>
               </>
             )}

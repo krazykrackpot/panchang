@@ -1,5 +1,5 @@
 /**
- * Legacy Panchang calculator — prefer src/lib/ephem/panchang-calc.ts for new code.
+ * Legacy Panchang calculator  –  prefer src/lib/ephem/panchang-calc.ts for new code.
  *
  * This module uses the older astronomy/ layer. The canonical panchang computation
  * lives in ephem/panchang-calc.ts (which uses the Meeus/Swiss Ephemeris engine).
@@ -13,7 +13,7 @@ import { getSolarPosition } from '../astronomy/solar';
 import { getLunarPosition } from '../astronomy/lunar';
 import { getSunTimes } from '../astronomy/sunrise';
 import { getAyanamsha as getAyanamsa, toSidereal as _toSidereal, type AyanamshaType as AyanamsaType } from '../ephem/astronomical';
-/** Adapter: Module B's toSidereal takes (lon, jd, ayanamsha?) — we have pre-computed ayanamsha. */
+/** Adapter: Module B's toSidereal takes (lon, jd, ayanamsha?)  –  we have pre-computed ayanamsha. */
 const tropicalToSidereal = (lon: number, ayanamsa: number) => _toSidereal(lon, 0, ayanamsa);
 import {
   type PanchangData, type TithiInfo, type NakshatraInfo, type YogaInfo, type KaranaInfo, type RahuKalamInfo,
@@ -77,7 +77,7 @@ export function calculateTithi(sunLon: number, moonLon: number): TithiInfo {
  * The 27 nakshatras divide the sidereal zodiac into equal 13°20' (13.333°) arcs
  * (Surya Siddhanta Ch. 8). Each nakshatra has 4 padas of 3°20' (3.333°) each.
  *
- * The nakshatra is determined solely by the Moon's position — it indicates
+ * The nakshatra is determined solely by the Moon's position  –  it indicates
  * the lunar mansion the Moon currently occupies. This is the most fundamental
  * element of the Vedic calendar and governs muhurta selection.
  *
@@ -193,11 +193,11 @@ export function calculateKarana(sunLon: number, moonLon: number): KaranaInfo {
   let nature: 'Movable' | 'Fixed' | 'Unstable';
 
   if (karanaNum === 0) {
-    // First karana of the cycle — Kimstughna (fixed, occurs only once)
+    // First karana of the cycle  –  Kimstughna (fixed, occurs only once)
     name = 'Kimstughna';
     nature = 'Fixed';
   } else if (karanaNum >= 57) {
-    // Last 3 karanas: Shakuni (58th), Chatushpada (59th), Naga (60th) — all fixed
+    // Last 3 karanas: Shakuni (58th), Chatushpada (59th), Naga (60th)  –  all fixed
     // These sthira karanas are considered inauspicious for new undertakings
     const fixedIndex = karanaNum - 57;
     name = KARANA_NAMES[7 + fixedIndex];
@@ -284,11 +284,11 @@ export interface PanchangInput {
  * The panchang (five limbs) is computed at the moment of local sunrise,
  * following the traditional convention that the Hindu day begins at sunrise
  * (not midnight). The five limbs are:
- *   1. Tithi    — lunar day (Moon-Sun elongation / 12°)
- *   2. Nakshatra — lunar mansion (Moon's sidereal position / 13°20')
- *   3. Yoga     — Sun+Moon combination ((sunLon + moonLon) / 13°20')
- *   4. Karana   — half-tithi (Moon-Sun elongation / 6°)
- *   5. Vara     — weekday (computed from the civil date)
+ *   1. Tithi     –  lunar day (Moon-Sun elongation / 12°)
+ *   2. Nakshatra  –  lunar mansion (Moon's sidereal position / 13°20')
+ *   3. Yoga      –  Sun+Moon combination ((sunLon + moonLon) / 13°20')
+ *   4. Karana    –  half-tithi (Moon-Sun elongation / 6°)
+ *   5. Vara      –  weekday (computed from the civil date)
  *
  * All longitudes are converted from tropical to sidereal using the
  * specified ayanamsha (default: Lahiri/Chitrapaksha).
@@ -296,7 +296,7 @@ export interface PanchangInput {
 export function calculatePanchang(input: PanchangInput): PanchangData {
   const { year, month, day, latitude, longitude, timezoneOffset, locationName = 'Custom Location', ayanamsaType = 'lahiri' } = input;
 
-  // Step 1: Compute local sunrise — the panchang day starts at sunrise
+  // Step 1: Compute local sunrise  –  the panchang day starts at sunrise
   const sunTimes = getSunTimes(year, month, day, latitude, longitude, timezoneOffset);
 
   // Step 2: Compute Julian Day at the moment of sunrise (in UT)
@@ -321,7 +321,7 @@ export function calculatePanchang(input: PanchangInput): PanchangData {
   const yoga = calculateYoga(sunLonSidereal, moonLonSidereal);
   const karana = calculateKarana(sunLonSidereal, moonLonSidereal);
 
-  // Vara (weekday) — derived from the civil calendar date
+  // Vara (weekday)  –  derived from the civil calendar date
   // Lesson O: dayOfWeek uses JS convention: 0=Sunday, 1=Monday, ..., 6=Saturday
   const date = new Date(year, month - 1, day);
   const dayOfWeek = date.getDay();

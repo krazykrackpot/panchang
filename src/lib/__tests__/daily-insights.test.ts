@@ -120,7 +120,7 @@ function makePanchang(overrides: Partial<PanchangData> = {}): PanchangData {
       deity: { en: 'Yama', hi: 'यम', sa: 'यमः' },
     },
     nakshatra: {
-      id: 13,  // Hasta — kshipra
+      id: 13,  // Hasta  –  kshipra
       name: { en: 'Hasta', hi: 'हस्त', sa: 'हस्तः' },
       deity: { en: 'Savitar', hi: 'सवितृ', sa: 'सवितृ' },
       ruler: 'Moon',
@@ -131,7 +131,7 @@ function makePanchang(overrides: Partial<PanchangData> = {}): PanchangData {
       nature: { en: 'Kshipra (Swift)', hi: 'क्षिप्र', sa: 'क्षिप्रम्' },
     },
     yoga: {
-      number: 21, // Siddhi — very auspicious
+      number: 21, // Siddhi  –  very auspicious
       name: { en: 'Siddhi', hi: 'सिद्धि', sa: 'सिद्धिः' },
       nature: 'auspicious',
       meaning: { en: 'Accomplishment', hi: 'सिद्धि', sa: 'सिद्धिः' },
@@ -498,7 +498,7 @@ describe('generateDailyInsights', () => {
 
     it('handles missing rahuKaal', () => {
       const panchang = makePanchang();
-      // @ts-expect-error — testing missing field
+      // @ts-expect-error  –  testing missing field
       delete panchang.rahuKaal;
       const input: DailyInsightsInput = {
         personalReading: makePersonalReading(),

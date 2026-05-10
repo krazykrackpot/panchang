@@ -69,8 +69,8 @@ function Page1() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>सर्वार्थ सिद्धि योग मुहूर्त शास्त्र के सबसे शक्तिशाली और व्यावहारिक योगों में से एक है। "सर्वार्थ" = सभी उद्देश्य, "सिद्धि" = सफलता — जब विशिष्ट वार (सप्ताह का दिन) विशिष्ट नक्षत्रों के साथ संयोग करते हैं, तो यह योग बनता है। इस योग में प्रारम्भ किए गए कार्य सफल होने की अधिक सम्भावना रखते हैं। यह अन्य अशुभ कारकों (विष्टि करण, कुछ अशुभ योगों) को भी कम कर सकता है।</>
-            : <>Sarvartha Siddhi Yoga is one of the most powerful and practical yogas in muhurta shastra. &quot;Sarvartha&quot; = all purposes, &quot;Siddhi&quot; = success — when specific weekdays combine with specific nakshatras, this yoga forms. Activities initiated during this yoga have a higher probability of success. It can even mitigate certain negative factors like Vishti Karana or some inauspicious yogas.</>}
+            ? <>सर्वार्थ सिद्धि योग मुहूर्त शास्त्र के सबसे शक्तिशाली और व्यावहारिक योगों में से एक है। "सर्वार्थ" = सभी उद्देश्य, "सिद्धि" = सफलता  –  जब विशिष्ट वार (सप्ताह का दिन) विशिष्ट नक्षत्रों के साथ संयोग करते हैं, तो यह योग बनता है। इस योग में प्रारम्भ किए गए कार्य सफल होने की अधिक सम्भावना रखते हैं। यह अन्य अशुभ कारकों (विष्टि करण, कुछ अशुभ योगों) को भी कम कर सकता है।</>
+            : <>Sarvartha Siddhi Yoga is one of the most powerful and practical yogas in muhurta shastra. &quot;Sarvartha&quot; = all purposes, &quot;Siddhi&quot; = success  –  when specific weekdays combine with specific nakshatras, this yoga forms. Activities initiated during this yoga have a higher probability of success. It can even mitigate certain negative factors like Vishti Karana or some inauspicious yogas.</>}
         </p>
       </section>
 
@@ -102,8 +102,8 @@ function Page2() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>अमृत सिद्धि योग वार और तिथि के विशिष्ट संयोजन से बनता है — जैसे रविवार + द्वितीया, सोमवार + सप्तमी, मंगलवार + षष्ठी, बुधवार + द्वादशी, गुरुवार + एकादशी, शुक्रवार + दशमी, शनिवार + नवमी। "अमृत" = अमृत/अमरत्व — इस योग में प्रारम्भ किए गए कार्यों पर अमृत जैसी सफलता बरसती है। सिद्ध योग एक अन्य शुभ संयोजन है जो वार, तिथि, और नक्षत्र तीनों की अनुकूलता से बनता है।</>
-            : <>Amrita Siddhi Yoga forms from specific weekday-tithi combinations — Sunday + Dvitiya, Monday + Saptami, Tuesday + Shashthi, Wednesday + Dvadashi, Thursday + Ekadashi, Friday + Dashami, Saturday + Navami. &quot;Amrita&quot; = nectar/immortality — activities initiated during this yoga receive nectar-like success. Siddha Yoga is another auspicious combination formed from the favorability of weekday, tithi, AND nakshatra together.</>}
+            ? <>अमृत सिद्धि योग वार और तिथि के विशिष्ट संयोजन से बनता है  –  जैसे रविवार + द्वितीया, सोमवार + सप्तमी, मंगलवार + षष्ठी, बुधवार + द्वादशी, गुरुवार + एकादशी, शुक्रवार + दशमी, शनिवार + नवमी। "अमृत" = अमृत/अमरत्व  –  इस योग में प्रारम्भ किए गए कार्यों पर अमृत जैसी सफलता बरसती है। सिद्ध योग एक अन्य शुभ संयोजन है जो वार, तिथि, और नक्षत्र तीनों की अनुकूलता से बनता है।</>
+            : <>Amrita Siddhi Yoga forms from specific weekday-tithi combinations  –  Sunday + Dvitiya, Monday + Saptami, Tuesday + Shashthi, Wednesday + Dvadashi, Thursday + Ekadashi, Friday + Dashami, Saturday + Navami. &quot;Amrita&quot; = nectar/immortality  –  activities initiated during this yoga receive nectar-like success. Siddha Yoga is another auspicious combination formed from the favorability of weekday, tithi, AND nakshatra together.</>}
         </p>
       </section>
 
@@ -113,8 +113,8 @@ function Page2() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
-            ? <>कुछ अशुभ योग इतने प्रबल हैं कि कोई भी शुभ योग उन्हें नहीं काट सकता। इनमें शामिल हैं: (1) ग्रहण काल — सूर्य या चन्द्र ग्रहण के दौरान कोई शुभ कार्य नहीं; (2) पंचक — चन्द्र धनिष्ठा से रेवती (नक्षत्र 23-27) में हो; (3) विष्टि/भद्रा करण — अत्यन्त अशुभ, विशेषकर यात्रा और विवाह के लिए; (4) राहु काल — रोज़ाना का अशुभ कालखण्ड।</>
-            : <>Certain inauspicious yogas are so powerful that no positive yoga can override them. These include: (1) Eclipse period — no auspicious work during solar or lunar eclipse; (2) Panchaka — Moon in Dhanishtha to Revati (nakshatras 23-27); (3) Vishti/Bhadra Karana — extremely inauspicious, especially for travel and marriage; (4) Rahu Kala — the daily inauspicious period that must always be avoided for important beginnings.</>}
+            ? <>कुछ अशुभ योग इतने प्रबल हैं कि कोई भी शुभ योग उन्हें नहीं काट सकता। इनमें शामिल हैं: (1) ग्रहण काल  –  सूर्य या चन्द्र ग्रहण के दौरान कोई शुभ कार्य नहीं; (2) पंचक  –  चन्द्र धनिष्ठा से रेवती (नक्षत्र 23-27) में हो; (3) विष्टि/भद्रा करण  –  अत्यन्त अशुभ, विशेषकर यात्रा और विवाह के लिए; (4) राहु काल  –  रोज़ाना का अशुभ कालखण्ड।</>
+            : <>Certain inauspicious yogas are so powerful that no positive yoga can override them. These include: (1) Eclipse period  –  no auspicious work during solar or lunar eclipse; (2) Panchaka  –  Moon in Dhanishtha to Revati (nakshatras 23-27); (3) Vishti/Bhadra Karana  –  extremely inauspicious, especially for travel and marriage; (4) Rahu Kala  –  the daily inauspicious period that must always be avoided for important beginnings.</>}
         </p>
       </section>
     </div>
@@ -132,8 +132,8 @@ function Page3() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>विवाह मुहूर्त सबसे जटिल मुहूर्त है क्योंकि इसमें सबसे अधिक शर्तें एक साथ पूरी होनी चाहिए। शास्त्रीय नियम: (1) तिथि — रिक्त तिथियाँ (4/9/14) वर्जित, अमावस्या वर्जित; (2) नक्षत्र — भरणी, कृत्तिका, आर्द्रा, आश्लेषा, मघा, विशाखा, ज्येष्ठा, मूल वर्जित; (3) वार — मंगलवार और शनिवार वर्जित; (4) योग — व्याघात, वज्र, परिघ, विष्कम्भ वर्जित; (5) मुहूर्त लग्न में सप्तम भाव पाप ग्रहों से मुक्त; (6) चन्द्र शुक्ल पक्ष में हो।</>
-            : <>Marriage muhurta is the most complex because the greatest number of conditions must be simultaneously satisfied. Classical rules: (1) Tithi — Rikta tithis (4/9/14) forbidden, Amavasya forbidden; (2) Nakshatra — Bharani, Krittika, Ardra, Ashlesha, Magha, Vishakha, Jyeshtha, Moola forbidden; (3) Vara — Tuesday and Saturday forbidden; (4) Yoga — Vyaghata, Vajra, Parigha, Vishkambha forbidden; (5) The 7th house in the muhurta lagna must be free of malefics; (6) Moon should be in Shukla Paksha.</>}
+            ? <>विवाह मुहूर्त सबसे जटिल मुहूर्त है क्योंकि इसमें सबसे अधिक शर्तें एक साथ पूरी होनी चाहिए। शास्त्रीय नियम: (1) तिथि  –  रिक्त तिथियाँ (4/9/14) वर्जित, अमावस्या वर्जित; (2) नक्षत्र  –  भरणी, कृत्तिका, आर्द्रा, आश्लेषा, मघा, विशाखा, ज्येष्ठा, मूल वर्जित; (3) वार  –  मंगलवार और शनिवार वर्जित; (4) योग  –  व्याघात, वज्र, परिघ, विष्कम्भ वर्जित; (5) मुहूर्त लग्न में सप्तम भाव पाप ग्रहों से मुक्त; (6) चन्द्र शुक्ल पक्ष में हो।</>
+            : <>Marriage muhurta is the most complex because the greatest number of conditions must be simultaneously satisfied. Classical rules: (1) Tithi  –  Rikta tithis (4/9/14) forbidden, Amavasya forbidden; (2) Nakshatra  –  Bharani, Krittika, Ardra, Ashlesha, Magha, Vishakha, Jyeshtha, Moola forbidden; (3) Vara  –  Tuesday and Saturday forbidden; (4) Yoga  –  Vyaghata, Vajra, Parigha, Vishkambha forbidden; (5) The 7th house in the muhurta lagna must be free of malefics; (6) Moon should be in Shukla Paksha.</>}
         </p>
       </section>
 
@@ -158,7 +158,7 @@ function Page3() {
           {tl({ en: 'Try It: Muhurta AI Tool', hi: 'इसे आज़माएँ: मुहूर्त AI उपकरण', sa: 'इसे आज़माएँ: मुहूर्त AI उपकरण' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
-          {tl({ en: 'Our Muhurta AI tool applies all these classical rules automatically — it scores potential muhurtas across 20+ activity types including marriage, weighing tithi, nakshatra, yoga, karana, vara, Rahu Kala, Yamaganda, and Panchaka. It finds the optimal windows within your specified date range and explains why each factor is favorable or unfavorable.', hi: 'हमारा मुहूर्त AI उपकरण इन सभी शास्त्रीय नियमों को स्वचालित रूप से लागू करता है — यह विवाह सहित 20+ गतिविधि प्रकारों में सम्भावित मुहूर्तों को तिथि, नक्षत्र, योग, करण, वार, राहु काल, यमगण्ड, और पंचक के आधार पर मूल्यांकित करता है।', sa: 'हमारा मुहूर्त AI उपकरण इन सभी शास्त्रीय नियमों को स्वचालित रूप से लागू करता है।' }, locale)}
+          {tl({ en: 'Our Muhurta AI tool applies all these classical rules automatically  –  it scores potential muhurtas across 20+ activity types including marriage, weighing tithi, nakshatra, yoga, karana, vara, Rahu Kala, Yamaganda, and Panchaka. It finds the optimal windows within your specified date range and explains why each factor is favorable or unfavorable.', hi: 'हमारा मुहूर्त AI उपकरण इन सभी शास्त्रीय नियमों को स्वचालित रूप से लागू करता है  –  यह विवाह सहित 20+ गतिविधि प्रकारों में सम्भावित मुहूर्तों को तिथि, नक्षत्र, योग, करण, वार, राहु काल, यमगण्ड, और पंचक के आधार पर मूल्यांकित करता है।', sa: 'हमारा मुहूर्त AI उपकरण इन सभी शास्त्रीय नियमों को स्वचालित रूप से लागू करता है।' }, locale)}
         </p>
       </section>
     </div>

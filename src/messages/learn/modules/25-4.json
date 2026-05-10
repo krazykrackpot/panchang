@@ -1,19 +1,19 @@
 {
   "title": {
-    "en": "Negative Numbers — Debt Before Descartes",
-    "hi": "ऋण संख्याएँ — देकार्त से पहले ऋण",
-    "sa": "ऋण संख्याएँ — देकार्त से पहले ऋण",
-    "mai": "ऋण संख्याएँ — देकार्त से पहले ऋण",
-    "mr": "ऋण संख्याएँ — देकार्त से पहले ऋण",
-    "ta": "Negative Numbers — Debt Before Descartes",
-    "te": "Negative Numbers — Debt Before Descartes",
-    "bn": "Negative Numbers — Debt Before Descartes",
-    "kn": "Negative Numbers — Debt Before Descartes",
-    "gu": "Negative Numbers — Debt Before Descartes"
+    "en": "Negative Numbers  –  Debt Before Descartes",
+    "hi": "ऋण संख्याएँ  –  देकार्त से पहले ऋण",
+    "sa": "ऋण संख्याएँ  –  देकार्त से पहले ऋण",
+    "mai": "ऋण संख्याएँ  –  देकार्त से पहले ऋण",
+    "mr": "ऋण संख्याएँ  –  देकार्त से पहले ऋण",
+    "ta": "Negative Numbers  –  Debt Before Descartes",
+    "te": "Negative Numbers  –  Debt Before Descartes",
+    "bn": "Negative Numbers  –  Debt Before Descartes",
+    "kn": "Negative Numbers  –  Debt Before Descartes",
+    "gu": "Negative Numbers  –  Debt Before Descartes"
   },
   "subtitle": {
-    "en": "How Brahmagupta formalised rules for negative numbers in 628 CE — 1000 years before Europe accepted them — and why Descartes called them \"false\"",
-    "hi": "ब्रह्मगुप्त ने 628 ई. में ऋण संख्याओं के नियम कैसे औपचारिक किए — यूरोप की स्वीकृति से 1000 वर्ष पहले — और देकार्त ने उन्हें \"असत्य\" क्यों कहा"
+    "en": "How Brahmagupta formalised rules for negative numbers in 628 CE  –  1000 years before Europe accepted them  –  and why Descartes called them \"false\"",
+    "hi": "ब्रह्मगुप्त ने 628 ई. में ऋण संख्याओं के नियम कैसे औपचारिक किए  –  यूरोप की स्वीकृति से 1000 वर्ष पहले  –  और देकार्त ने उन्हें \"असत्य\" क्यों कहा"
   },
   "crossRefs": [
     {
@@ -72,7 +72,7 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Brahmagupta (598–668 CE) was the first mathematician in history to formally define the rules of arithmetic with negative numbers in his Brahmasphutasiddhanta (628 CE). He laid out rules for adding, subtracting, multiplying, and dividing positive numbers (\"dhana\" — wealth), negative numbers (\"rina\" — debt), and zero. The Greek Diophantus encountered negative solutions but dismissed them as \"absurd.\" Brahmagupta accepted them as full mathematical entities.",
+        "en": "Brahmagupta (598–668 CE) was the first mathematician in history to formally define the rules of arithmetic with negative numbers in his Brahmasphutasiddhanta (628 CE). He laid out rules for adding, subtracting, multiplying, and dividing positive numbers (\"dhana\"  –  wealth), negative numbers (\"rina\"  –  debt), and zero. The Greek Diophantus encountered negative solutions but dismissed them as \"absurd.\" Brahmagupta accepted them as full mathematical entities.",
         "hi": "ब्रह्मगुप्त (598–668 ई.) इतिहास में पहले गणितज्ञ थे जिन्होंने अपने ब्रह्मस्फुटसिद्धान्त (628 ई.) में ऋण संख्याओं के साथ गणित के नियम औपचारिक रूप से परिभाषित किए। ग्रीक डायोफेन्टस को ऋण समाधान मिले लेकिन उन्होंने उन्हें \"बेतुका\" कहकर अस्वीकार कर दिया। ब्रह्मगुप्त ने उन्हें पूर्ण गणितीय सत्ताओं के रूप में स्वीकार किया।"
       },
       "options": [
@@ -135,7 +135,7 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "\"Dhana\" (धन) is the Sanskrit word meaning \"wealth\" or \"assets\" that Brahmagupta used for positive numbers. The accounting metaphor was deliberate: positive numbers represent assets you possess (dhana = wealth), and negative numbers represent debts you owe (rina = debt/negative). This practical framing — rooted in commerce and accounting — made negative numbers intuitively understandable in the Indian context, unlike in Greece where numbers had to be lengths and therefore couldn't be negative.",
+        "en": "\"Dhana\" (धन) is the Sanskrit word meaning \"wealth\" or \"assets\" that Brahmagupta used for positive numbers. The accounting metaphor was deliberate: positive numbers represent assets you possess (dhana = wealth), and negative numbers represent debts you owe (rina = debt/negative). This practical framing  –  rooted in commerce and accounting  –  made negative numbers intuitively understandable in the Indian context, unlike in Greece where numbers had to be lengths and therefore couldn't be negative.",
         "hi": "\"धन\" संस्कृत शब्द है जिसका अर्थ \"सम्पत्ति\" या \"परिसम्पत्ति\" है, जिसे ब्रह्मगुप्त ने धनात्मक संख्याओं के लिए प्रयोग किया। लेखांकन रूपक जानबूझकर था: धनात्मक संख्याएँ आपके पास मौजूद परिसम्पत्तियों (धन) को और ऋण संख्याएँ आपके द्वारा देय ऋणों (ऋण) को दर्शाती हैं।"
       },
       "options": [
@@ -198,8 +198,8 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "\"Rina\" (ऋण) means \"debt\" in Sanskrit — the term Brahmagupta used for negative numbers. The word \"rina\" is still used in modern Hindi/Sanskrit to mean debt or loan. This monetary framing made negative numbers immediately practical: if you have 3 coins (dhana = +3) and owe 5 coins (rina = −5), your net worth is −2 (you are in debt). Commerce had used debts for millennia; Brahmagupta simply formalised the mathematics.",
-        "hi": "\"ऋण\" संस्कृत में \"कर्ज\" का अर्थ रखता है — वह शब्द जो ब्रह्मगुप्त ने ऋण संख्याओं के लिए प्रयोग किया। \"ऋण\" आधुनिक हिन्दी/संस्कृत में अभी भी कर्ज का अर्थ रखता है। इस मौद्रिक रूपरेखा ने ऋण संख्याओं को तत्काल व्यावहारिक बना दिया: यदि आपके पास 3 सिक्के (धन = +3) हैं और आप 5 सिक्के देने हैं (ऋण = −5), तो आपकी शुद्ध सम्पत्ति −2 है।"
+        "en": "\"Rina\" (ऋण) means \"debt\" in Sanskrit  –  the term Brahmagupta used for negative numbers. The word \"rina\" is still used in modern Hindi/Sanskrit to mean debt or loan. This monetary framing made negative numbers immediately practical: if you have 3 coins (dhana = +3) and owe 5 coins (rina = −5), your net worth is −2 (you are in debt). Commerce had used debts for millennia; Brahmagupta simply formalised the mathematics.",
+        "hi": "\"ऋण\" संस्कृत में \"कर्ज\" का अर्थ रखता है  –  वह शब्द जो ब्रह्मगुप्त ने ऋण संख्याओं के लिए प्रयोग किया। \"ऋण\" आधुनिक हिन्दी/संस्कृत में अभी भी कर्ज का अर्थ रखता है। इस मौद्रिक रूपरेखा ने ऋण संख्याओं को तत्काल व्यावहारिक बना दिया: यदि आपके पास 3 सिक्के (धन = +3) हैं और आप 5 सिक्के देने हैं (ऋण = −5), तो आपकी शुद्ध सम्पत्ति −2 है।"
       },
       "options": [
         {
@@ -387,7 +387,7 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "The practical origin of negative numbers in India was accounting and debt in commerce. Indian merchants had been recording debts (rina = what you owe) and assets (dhana = what you have) for centuries before Brahmagupta. The natural question — \"what is your net worth if your debts exceed your assets?\" — required negative numbers. Greek mathematics, by contrast, was heavily geometric (numbers as lengths), which made negative lengths physically meaningless and blocked acceptance.",
+        "en": "The practical origin of negative numbers in India was accounting and debt in commerce. Indian merchants had been recording debts (rina = what you owe) and assets (dhana = what you have) for centuries before Brahmagupta. The natural question  –  \"what is your net worth if your debts exceed your assets?\"  –  required negative numbers. Greek mathematics, by contrast, was heavily geometric (numbers as lengths), which made negative lengths physically meaningless and blocked acceptance.",
         "hi": "भारत में ऋण संख्याओं की व्यावहारिक उत्पत्ति वाणिज्य में लेखांकन और ऋण था। ब्रह्मगुप्त से सदियों पहले भारतीय व्यापारी ऋण (ऋण = जो देना है) और परिसम्पत्ति (धन = जो पास है) रिकॉर्ड करते थे। ग्रीक गणित, इसके विपरीत, अत्यधिक ज्यामितीय था (संख्याएँ लम्बाई के रूप में), जिसने ऋण लम्बाइयों को भौतिक रूप से अर्थहीन बना दिया।"
       },
       "options": [
@@ -450,8 +450,8 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "628 CE — the year Brahmagupta completed the Brahmasphutasiddhanta. This text contains the world's first formal rules for negative number arithmetic. The Brahmasphutasiddhanta also contains his zero rules (Module 25-1), Pythagorean triples, and what is now called \"Brahmagupta's formula\" for cyclic quadrilaterals. All in one text, 628 CE — a remarkable achievement in the history of mathematics.",
-        "hi": "628 ई. — वह वर्ष जब ब्रह्मगुप्त ने ब्रह्मस्फुटसिद्धान्त पूरा किया। इस ग्रन्थ में ऋण संख्या गणित के विश्व के पहले औपचारिक नियम हैं। ब्रह्मस्फुटसिद्धान्त में उनके शून्य नियम (मॉड्यूल 25-1), पाइथागोरस त्रिक, और जिसे अब \"ब्रह्मगुप्त का सूत्र\" (चक्रीय चतुर्भुज के लिए) कहते हैं, भी हैं।"
+        "en": "628 CE  –  the year Brahmagupta completed the Brahmasphutasiddhanta. This text contains the world's first formal rules for negative number arithmetic. The Brahmasphutasiddhanta also contains his zero rules (Module 25-1), Pythagorean triples, and what is now called \"Brahmagupta's formula\" for cyclic quadrilaterals. All in one text, 628 CE  –  a remarkable achievement in the history of mathematics.",
+        "hi": "628 ई.  –  वह वर्ष जब ब्रह्मगुप्त ने ब्रह्मस्फुटसिद्धान्त पूरा किया। इस ग्रन्थ में ऋण संख्या गणित के विश्व के पहले औपचारिक नियम हैं। ब्रह्मस्फुटसिद्धान्त में उनके शून्य नियम (मॉड्यूल 25-1), पाइथागोरस त्रिक, और जिसे अब \"ब्रह्मगुप्त का सूत्र\" (चक्रीय चतुर्भुज के लिए) कहते हैं, भी हैं।"
       },
       "options": [
         {
@@ -513,8 +513,8 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Mahavira (9th century CE), a Jain mathematician, extended and refined Brahmagupta's work on negative numbers in his Ganitasarasangraha (~850 CE). He worked extensively with what he called \"negative quantities\" in the context of algebra and geometric progressions. Mahavira also worked on square roots of negative numbers — anticipating complex numbers — though he ultimately declared that the square root of a negative number \"does not exist\" (not yet grasping the complex number concept).",
-        "hi": "महावीर (9वीं शताब्दी ई.), एक जैन गणितज्ञ, ने अपने गणितसारसंग्रह (~850 ई.) में ब्रह्मगुप्त के ऋण संख्याओं के कार्य का विस्तार और परिशोधन किया। उन्होंने बीजगणित और ज्यामितीय श्रेढ़ी के संदर्भ में \"ऋण राशियों\" के साथ व्यापक कार्य किया। महावीर ने ऋण संख्याओं के वर्गमूल पर भी काम किया — जटिल संख्याओं की आशा करते हुए।"
+        "en": "Mahavira (9th century CE), a Jain mathematician, extended and refined Brahmagupta's work on negative numbers in his Ganitasarasangraha (~850 CE). He worked extensively with what he called \"negative quantities\" in the context of algebra and geometric progressions. Mahavira also worked on square roots of negative numbers  –  anticipating complex numbers  –  though he ultimately declared that the square root of a negative number \"does not exist\" (not yet grasping the complex number concept).",
+        "hi": "महावीर (9वीं शताब्दी ई.), एक जैन गणितज्ञ, ने अपने गणितसारसंग्रह (~850 ई.) में ब्रह्मगुप्त के ऋण संख्याओं के कार्य का विस्तार और परिशोधन किया। उन्होंने बीजगणित और ज्यामितीय श्रेढ़ी के संदर्भ में \"ऋण राशियों\" के साथ व्यापक कार्य किया। महावीर ने ऋण संख्याओं के वर्गमूल पर भी काम किया  –  जटिल संख्याओं की आशा करते हुए।"
       },
       "options": [
         {
@@ -589,8 +589,8 @@
       },
       "correctAnswer": 0,
       "explanation": {
-        "en": "True. Mahavira's Ganitasarasangraha (~850 CE) explicitly extended and refined Brahmagupta's work. Mahavira applied negative quantities to problems in series, permutations, combinations, and algebra. He also grappled with square roots of negative numbers — an early encounter with what would later become complex numbers. While he concluded that negative numbers \"have no square root\" (missing the complex number insight), his systematic treatment of negative arithmetic was a significant advance over Brahmagupta.",
-        "hi": "सत्य। महावीर के गणितसारसंग्रह (~850 ई.) ने ब्रह्मगुप्त के कार्य का स्पष्ट रूप से विस्तार और परिशोधन किया। महावीर ने श्रेढ़ी, क्रमचय, संचय और बीजगणित में ऋण राशियों को लागू किया। उन्होंने ऋण संख्याओं के वर्गमूल के साथ भी संघर्ष किया — जो जटिल संख्याओं से एक प्रारम्भिक मुठभेड़ थी।"
+        "en": "True. Mahavira's Ganitasarasangraha (~850 CE) explicitly extended and refined Brahmagupta's work. Mahavira applied negative quantities to problems in series, permutations, combinations, and algebra. He also grappled with square roots of negative numbers  –  an early encounter with what would later become complex numbers. While he concluded that negative numbers \"have no square root\" (missing the complex number insight), his systematic treatment of negative arithmetic was a significant advance over Brahmagupta.",
+        "hi": "सत्य। महावीर के गणितसारसंग्रह (~850 ई.) ने ब्रह्मगुप्त के कार्य का स्पष्ट रूप से विस्तार और परिशोधन किया। महावीर ने श्रेढ़ी, क्रमचय, संचय और बीजगणित में ऋण राशियों को लागू किया। उन्होंने ऋण संख्याओं के वर्गमूल के साथ भी संघर्ष किया  –  जो जटिल संख्याओं से एक प्रारम्भिक मुठभेड़ थी।"
       }
     }
   ],
@@ -735,18 +735,18 @@
     "sa": "à¤®à¤¹à¤¾à¤µà¥à¤° à¤à¤° à¤­à¤¾à¤¸à¥à¤à¤° à¤à¤¾ à¤¯à¥à¤à¤¦à¤¾à¤¨"
   },
   "dhanaAndRinaBrahmaguptasRules628": {
-    "en": "Dhana and Rina — Brahmagupta's Rules (628 CE)",
-    "hi": "धन और ऋण — ब्रह्मगुप्त के 628 ई. के नियम",
-    "sa": "धन और ऋण — ब्रह्मगुप्त के 628 ई. के नियम"
+    "en": "Dhana and Rina  –  Brahmagupta's Rules (628 CE)",
+    "hi": "धन और ऋण  –  ब्रह्मगुप्त के 628 ई. के नियम",
+    "sa": "धन और ऋण  –  ब्रह्मगुप्त के 628 ई. के नियम"
   },
   "balanceSheetsLoansInterestAllOn": {
-    "en": "Balance sheets, loans, interest — all on negative numbers. Brahmagupta's \"dhana-rina\" is in today's entire financial system.",
-    "hi": "बैलेंस शीट, ऋण, ब्याज — सब ऋण संख्याओं पर। ब्रह्मगुप्त का \"धन-ऋण\" आज की पूरी वित्तीय प्रणाली में है।",
-    "sa": "बैलेंस शीट, ऋण, ब्याज — सब ऋण संख्याओं पर। ब्रह्मगुप्त का \"धन-ऋण\" आज की पूरी वित्तीय प्रणाली में है।"
+    "en": "Balance sheets, loans, interest  –  all on negative numbers. Brahmagupta's \"dhana-rina\" is in today's entire financial system.",
+    "hi": "बैलेंस शीट, ऋण, ब्याज  –  सब ऋण संख्याओं पर। ब्रह्मगुप्त का \"धन-ऋण\" आज की पूरी वित्तीय प्रणाली में है।",
+    "sa": "बैलेंस शीट, ऋण, ब्याज  –  सब ऋण संख्याओं पर। ब्रह्मगुप्त का \"धन-ऋण\" आज की पूरी वित्तीय प्रणाली में है।"
   },
   "twosComplementBinaryRepresentationOfNegative": {
-    "en": "Two's complement — binary representation of negative numbers in computers. In every CPU.",
-    "hi": "Two's complement — कम्प्यूटर में ऋण संख्याओं का बाइनरी प्रतिनिधित्व। हर CPU में।",
-    "sa": "Two's complement — कम्प्यूटर में ऋण संख्याओं का बाइनरी प्रतिनिधित्व। हर CPU में।"
+    "en": "Two's complement  –  binary representation of negative numbers in computers. In every CPU.",
+    "hi": "Two's complement  –  कम्प्यूटर में ऋण संख्याओं का बाइनरी प्रतिनिधित्व। हर CPU में।",
+    "sa": "Two's complement  –  कम्प्यूटर में ऋण संख्याओं का बाइनरी प्रतिनिधित्व। हर CPU में।"
   }
 }

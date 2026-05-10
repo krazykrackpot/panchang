@@ -75,7 +75,7 @@ function Page2() {
         <ExampleChart
           ascendant={1}
           planets={{ 12: [5], 5: [4], 3: [6] }}
-          title={tl({ en: 'Aries Lagna — Venus in Pisces (12th), Jupiter in 5th, Saturn in 3rd', hi: 'मेष लग्न — शुक्र मीन में (12वें), बृहस्पति 5वें में, शनि 3रे में', sa: 'मेष लग्न — शुक्र मीन में (12वें), बृहस्पति 5वें में, शनि 3रे में' }, locale)}
+          title={tl({ en: 'Aries Lagna  –  Venus in Pisces (12th), Jupiter in 5th, Saturn in 3rd', hi: 'मेष लग्न  –  शुक्र मीन में (12वें), बृहस्पति 5वें में, शनि 3रे में', sa: 'मेष लग्न  –  शुक्र मीन में (12वें), बृहस्पति 5वें में, शनि 3रे में' }, locale)}
           highlight={[7, 12]}
         />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">

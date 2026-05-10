@@ -17,7 +17,7 @@ const t_ = LJ as unknown as Record<string, LocaleText>;
 
 // ── Panchanga elements at TP ──────────────────────────────────────────
 const PANCHANGA_ELEMENTS = [
-  { element: 'Tithi Lord', hi: 'तिथि स्वामी', role: 'Year Lord — dominant influence', icon: Sun },
+  { element: 'Tithi Lord', hi: 'तिथि स्वामी', role: 'Year Lord  –  dominant influence', icon: Sun },
   { element: 'Nakshatra', hi: 'नक्षत्र', role: 'Emotional tone and focus areas', icon: Moon },
   { element: 'Yoga', hi: 'योग', role: 'General fortune or challenge pattern', icon: BarChart3 },
   { element: 'Karana', hi: 'करण', role: 'Pace of events unfolding', icon: Calendar },
@@ -49,7 +49,7 @@ export default function LearnTithiPraveshaPage() {
       </div>
 
       <KeyTakeaway locale={locale} points={[
-        'Tithi Pravesha finds the exact moment your birth Sun-Moon angle recurs each year — your Vedic birthday.',
+        'Tithi Pravesha finds the exact moment your birth Sun-Moon angle recurs each year  –  your Vedic birthday.',
         'The tithi lord at that moment becomes your Year Lord, the dominant planetary influence for the coming year.',
         'Unlike Western solar returns, TP captures the full panchanga (tithi, nakshatra, yoga, karana, vara) for richer prediction.',
       ]} />

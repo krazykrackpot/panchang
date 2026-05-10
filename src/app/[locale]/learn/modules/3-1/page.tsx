@@ -30,22 +30,22 @@ function Page1() {
     <div className="space-y-6">
       <KeyTakeaway
         points={[
-          'Parashara described each of the 12 rashis with a specific form, direction, element, and body part — these descriptions drive chart interpretation.',
-          'The Kalapurusha (Cosmic Person) maps Aries to the head and Pisces to the feet — each sign governs a body region.',
+          'Parashara described each of the 12 rashis with a specific form, direction, element, and body part  –  these descriptions drive chart interpretation.',
+          'The Kalapurusha (Cosmic Person) maps Aries to the head and Pisces to the feet  –  each sign governs a body region.',
         ]}
         locale={locale}
       />
       <section>
-        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>The Kalapurusha — The Cosmic Body</h3>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>The Kalapurusha  –  The Cosmic Body</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          Parashara begins his description of the Rashis (BPHS Ch.4) with a remarkable concept: the entire zodiac is the body of the <span className="text-gold-light font-bold">Kalapurusha</span> (कालपुरुष) — the "Cosmic Person" or "Time Being." Each sign corresponds to a specific body part, creating a direct bridge between astrology and the physical body.
+          Parashara begins his description of the Rashis (BPHS Ch.4) with a remarkable concept: the entire zodiac is the body of the <span className="text-gold-light font-bold">Kalapurusha</span> (कालपुरुष)  –  the "Cosmic Person" or "Time Being." Each sign corresponds to a specific body part, creating a direct bridge between astrology and the physical body.
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          This is not just a poetic metaphor — it has practical consequences. When a sign is afflicted in your chart (malefic planets, lord in dusthana), the corresponding body part may be vulnerable to disease or injury. This is the foundation of <span className="text-gold-light">Medical Astrology</span> (Vaidya Jyotish) and its connection to Ayurveda.
+          This is not just a poetic metaphor  –  it has practical consequences. When a sign is afflicted in your chart (malefic planets, lord in dusthana), the corresponding body part may be vulnerable to disease or injury. This is the foundation of <span className="text-gold-light">Medical Astrology</span> (Vaidya Jyotish) and its connection to Ayurveda.
         </p>
         <div className="flex flex-wrap gap-3 my-2">
-          <BeginnerNote term="Kalapurusha" explanation="The 'Cosmic Person' — a concept where the 12 zodiac signs map to the human body from head (Aries) to feet (Pisces)." />
-          <BeginnerNote term="Dusthana" explanation="The 'difficult' houses in a chart — houses 6, 8, and 12 — associated with enemies, transformation, and loss respectively." />
+          <BeginnerNote term="Kalapurusha" explanation="The 'Cosmic Person'  –  a concept where the 12 zodiac signs map to the human body from head (Aries) to feet (Pisces)." />
+          <BeginnerNote term="Dusthana" explanation="The 'difficult' houses in a chart  –  houses 6, 8, and 12  –  associated with enemies, transformation, and loss respectively." />
         </div>
 
         {/* Kalapurusha body mapping */}
@@ -72,21 +72,21 @@ function Page1() {
               </div>
             ))}
           </div>
-          <p className="text-text-tertiary text-xs mt-2">The body flows from head (Aries) to feet (Pisces) — initiative to dissolution, action to surrender.</p>
+          <p className="text-text-tertiary text-xs mt-2">The body flows from head (Aries) to feet (Pisces)  –  initiative to dissolution, action to surrender.</p>
         </div>
 
-        <WhyItMatters locale={locale}>The 12 rashis are the 'neighbourhoods' planets live in. A planet's rashi determines its character in your chart — and the Kalapurusha body map connects your chart directly to your physical health.</WhyItMatters>
+        <WhyItMatters locale={locale}>The 12 rashis are the 'neighbourhoods' planets live in. A planet's rashi determines its character in your chart  –  and the Kalapurusha body map connects your chart directly to your physical health.</WhyItMatters>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
-          BPHS Ch.4 opens: <em>"O Brahmin, now I tell you about the nature of the Rashis."</em> Parashara describes each sign's physical form (Ram, Bull, Twins...), the direction it faces, the terrain it inhabits (forest, water, market, etc.), its caste (Brahmana, Kshatriya, Vaishya, Shudra), and its gender. These aren't arbitrary — each detail encodes the sign's fundamental energy pattern. A "forest-dwelling" sign (Aries, Leo) has different energy from a "water-dwelling" sign (Cancer, Pisces).
+          BPHS Ch.4 opens: <em>"O Brahmin, now I tell you about the nature of the Rashis."</em> Parashara describes each sign's physical form (Ram, Bull, Twins...), the direction it faces, the terrain it inhabits (forest, water, market, etc.), its caste (Brahmana, Kshatriya, Vaishya, Shudra), and its gender. These aren't arbitrary  –  each detail encodes the sign's fundamental energy pattern. A "forest-dwelling" sign (Aries, Leo) has different energy from a "water-dwelling" sign (Cancer, Pisces).
         </p>
       </section>
 
       <section>
-        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Parashara's Sign Descriptions — Complete Table</h3>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Parashara's Sign Descriptions  –  Complete Table</h3>
         <div className="overflow-x-auto bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
           <table className="w-full text-xs">
             <thead><tr className="border-b border-gold-primary/15">
@@ -132,16 +132,16 @@ function Page1() {
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <p><span className="text-red-300 font-bold">Misconception:</span> "The sign descriptions are just poetic metaphors with no practical use."<br />
-          <span className="text-emerald-300">Reality:</span> Each attribute has practical application. Prashna (horary) astrology uses sign habitats to determine WHERE lost objects might be found — an object lost during a Cancer Lagna may be near water. Medical astrology uses the body mapping for health predictions.</p>
+          <span className="text-emerald-300">Reality:</span> Each attribute has practical application. Prashna (horary) astrology uses sign habitats to determine WHERE lost objects might be found  –  an object lost during a Cancer Lagna may be near water. Medical astrology uses the body mapping for health predictions.</p>
           <p><span className="text-red-300 font-bold">Misconception:</span> "Aquarius is a water sign because it's the 'water bearer'."<br />
-          <span className="text-emerald-300">Reality:</span> Aquarius is an AIR sign. The water bearer (man pouring water from a pot) represents the distribution of knowledge, not the water element itself. The water signs are Cancer, Scorpio, and Pisces — all depicted as water creatures.</p>
+          <span className="text-emerald-300">Reality:</span> Aquarius is an AIR sign. The water bearer (man pouring water from a pot) represents the distribution of knowledge, not the water element itself. The water signs are Cancer, Scorpio, and Pisces  –  all depicted as water creatures.</p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
-          <span className="text-blue-300 font-bold">Fully used.</span> Sign descriptions from BPHS are used in every chart interpretation. The Kalapurusha body mapping is the basis of medical astrology. Sign habitats are used in Prashna. The form descriptions (biped/quadruped/insect/water) affect how signs express — a human-form sign (Gemini, Virgo, Libra) produces more intellectual expression than an animal-form sign (Aries, Taurus, Leo).
+          <span className="text-blue-300 font-bold">Fully used.</span> Sign descriptions from BPHS are used in every chart interpretation. The Kalapurusha body mapping is the basis of medical astrology. Sign habitats are used in Prashna. The form descriptions (biped/quadruped/insect/water) affect how signs express  –  a human-form sign (Gemini, Virgo, Libra) produces more intellectual expression than an animal-form sign (Aries, Taurus, Leo).
         </p>
       </section>
     </div>

@@ -17,12 +17,12 @@ import WhyItMatters from '@/components/learn/WhyItMatters';
 import ClassicalReference from '@/components/learn/ClassicalReference';
 import BeginnerNote from '@/components/learn/BeginnerNote';
 
-/* Simple labels migrated to src/messages/learn/shadbala.json — accessed via LT + tj() */
+/* Simple labels migrated to src/messages/learn/shadbala.json  –  accessed via LT + tj() */
 /* Array data kept inline since it contains mixed data + translations */
 const L = {
   sthanaSubParts: [
     { name: { en: 'Uccha Bala', hi: 'उच्च बल', sa: 'उच्चबलम्' }, desc: { en: 'Exaltation strength. Maximum at exact exaltation degree, zero at debilitation degree. Linear interpolation between. Sun peaks at 10° Aries, Moon at 3° Taurus, etc.', hi: 'उच्च शक्ति। सटीक उच्च अंश पर अधिकतम, नीच अंश पर शून्य। सूर्य 10° मेष पर, चन्द्र 3° वृषभ पर चरम।', sa: 'उच्चशक्तिः। उच्चांशे अधिकतमम्, नीचांशे शून्यम्।' } },
-    { name: { en: 'Saptavargaja Bala', hi: 'सप्तवर्गज बल', sa: 'सप्तवर्गजबलम्' }, desc: { en: 'Strength from 7 divisional charts (Rashi, Hora, Drekkana, Saptamsha, Navamsha, Dwadashamsha, Trimshamsha). In each varga, the planet can be in own sign, exaltation, moolatrikona, or friendly sign — each level adds points.', hi: '7 वर्ग कुण्डलियों से बल (राशि, होरा, द्रेक्काण, सप्तमांश, नवमांश, द्वादशांश, त्रिंशांश)। प्रत्येक वर्ग में स्वराशि, उच्च, मूलत्रिकोण या मित्र राशि से अंक मिलते हैं।', sa: '7 वर्गकुण्डलीभ्यः बलम्।' } },
+    { name: { en: 'Saptavargaja Bala', hi: 'सप्तवर्गज बल', sa: 'सप्तवर्गजबलम्' }, desc: { en: 'Strength from 7 divisional charts (Rashi, Hora, Drekkana, Saptamsha, Navamsha, Dwadashamsha, Trimshamsha). In each varga, the planet can be in own sign, exaltation, moolatrikona, or friendly sign  –  each level adds points.', hi: '7 वर्ग कुण्डलियों से बल (राशि, होरा, द्रेक्काण, सप्तमांश, नवमांश, द्वादशांश, त्रिंशांश)। प्रत्येक वर्ग में स्वराशि, उच्च, मूलत्रिकोण या मित्र राशि से अंक मिलते हैं।', sa: '7 वर्गकुण्डलीभ्यः बलम्।' } },
     { name: { en: 'Ojha-Yugma Bala', hi: 'ओज-युग्म बल', sa: 'ओजयुग्मबलम्' }, desc: { en: 'Odd-even sign strength. Moon and Venus gain strength in even signs (Taurus, Cancer, Virgo, Scorpio, Capricorn, Pisces). Other planets gain in odd signs (Aries, Gemini, Leo, Libra, Sagittarius, Aquarius).', hi: 'विषम-सम राशि बल। चन्द्र और शुक्र सम राशियों में बलवान। अन्य ग्रह विषम राशियों में बलवान।', sa: 'विषमसमराशिबलम्। चन्द्रशुक्रौ समराशिषु बलिनौ।' } },
     { name: { en: 'Kendradi Bala', hi: 'केन्द्रादि बल', sa: 'केन्द्रादिबलम्' }, desc: { en: 'Angular house strength. Planets in Kendras (1,4,7,10) get 60 Shashtiamshas, in Panapharas (2,5,8,11) get 30, in Apoklimas (3,6,9,12) get 15. Kendra placement is inherently powerful.', hi: 'केन्द्र भाव बल। केन्द्र (1,4,7,10) में 60 षष्ट्यंश, पणफर (2,5,8,11) में 30, आपोक्लिम (3,6,9,12) में 15।', sa: 'केन्द्रभावबलम्। केन्द्रे 60, पणफरे 30, आपोक्लिमे 15 षष्ट्यंशाः।' } },
     { name: { en: 'Drekkana Bala', hi: 'द्रेक्काण बल', sa: 'द्रेक्काणबलम्' }, desc: { en: 'Decanate strength. Male planets (Sun, Mars, Jupiter) gain in the 1st drekkana (0°-10°), neutral planets (Mercury, Saturn) in the 2nd (10°-20°), female planets (Moon, Venus) in the 3rd (20°-30°).', hi: 'द्रेक्काण बल। पुरुष ग्रह (सूर्य, मंगल, गुरु) प्रथम, तटस्थ (बुध, शनि) द्वितीय, स्त्री (चन्द्र, शुक्र) तृतीय द्रेक्काण में बलवान।', sa: 'पुंग्रहाः प्रथमे, तटस्थाः द्वितीये, स्त्रीग्रहाः तृतीये द्रेक्काणे बलिनः।' } },
@@ -57,9 +57,9 @@ const L = {
 
   formulaTitle: { en: 'The Shadbala Ratio', hi: 'षड्बल अनुपात', sa: 'षड्बलानुपातः' },
   formulaDesc: {
-    en: 'The most useful number for comparison is the Shadbala Ratio: actual Shadbala divided by required Shadbala. A ratio above 1.0 means the planet meets its threshold. The highest ratio planet is the chart\'s strongest performer. Example: if Jupiter has 450 Shashtiamshas and needs 390, its ratio is 450/390 = 1.15 — adequately strong. If Saturn has 250 and needs 300, its ratio is 0.83 — weak and in need of remedial support.',
-    hi: 'तुलना के लिए सबसे उपयोगी संख्या षड्बल अनुपात है: वास्तविक षड्बल / आवश्यक षड्बल। 1.0 से ऊपर अनुपात = ग्रह सीमा पूरी करता है। उच्चतम अनुपात ग्रह = सबसे प्रबल प्रदर्शक। उदाहरण: गुरु 450 षष्ट्यंश, आवश्यक 390 → अनुपात 1.15 — पर्याप्त। शनि 250, आवश्यक 300 → 0.83 — दुर्बल।',
-    sa: 'तुलनार्थं षड्बलानुपातः उपयोगितमः — वास्तविकषड्बलम् / आवश्यकषड्बलम्।',
+    en: 'The most useful number for comparison is the Shadbala Ratio: actual Shadbala divided by required Shadbala. A ratio above 1.0 means the planet meets its threshold. The highest ratio planet is the chart\'s strongest performer. Example: if Jupiter has 450 Shashtiamshas and needs 390, its ratio is 450/390 = 1.15  –  adequately strong. If Saturn has 250 and needs 300, its ratio is 0.83  –  weak and in need of remedial support.',
+    hi: 'तुलना के लिए सबसे उपयोगी संख्या षड्बल अनुपात है: वास्तविक षड्बल / आवश्यक षड्बल। 1.0 से ऊपर अनुपात = ग्रह सीमा पूरी करता है। उच्चतम अनुपात ग्रह = सबसे प्रबल प्रदर्शक। उदाहरण: गुरु 450 षष्ट्यंश, आवश्यक 390 → अनुपात 1.15  –  पर्याप्त। शनि 250, आवश्यक 300 → 0.83  –  दुर्बल।',
+    sa: 'तुलनार्थं षड्बलानुपातः उपयोगितमः  –  वास्तविकषड्बलम् / आवश्यकषड्बलम्।',
   },
 
   linksTitle: { en: 'Continue Learning', hi: 'आगे पढ़ें', sa: 'अग्रे पठत' },
@@ -105,13 +105,13 @@ export default function LearnShadbalaPage() {
       <KeyTakeaway
         points={[
           'Six sources of planetary strength determine how powerfully each planet can deliver its results in your chart.',
-          'Think of Shadbala like a job interview score — you are rated on location (Sthana), timing (Kala), direction (Dig), aspects (Drik), effort (Cheshta), and natural talent (Naisargika).',
+          'Think of Shadbala like a job interview score  –  you are rated on location (Sthana), timing (Kala), direction (Dig), aspects (Drik), effort (Cheshta), and natural talent (Naisargika).',
           'A planet above its minimum threshold is "strong enough" to deliver good results; below it needs remedial support.',
         ]}
         locale={locale}
       />
 
-      <ClassicalReference shortName="BPHS" chapter="Ch. 27-35" topic="Shadbala — the six-fold strength system for evaluating planetary potency" />
+      <ClassicalReference shortName="BPHS" chapter="Ch. 27-35" topic="Shadbala  –  the six-fold strength system for evaluating planetary potency" />
 
       {/* ═══ What is Shadbala ═══ */}
       <motion.section initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
@@ -151,12 +151,12 @@ export default function LearnShadbalaPage() {
                       {/* WhyItMatters for each Bala */}
                       {i === 0 && (
                         <WhyItMatters locale={locale}>
-                          Positional strength matters because a planet in its own sign or exaltation is like an expert working in their own lab — they have all the tools and authority to deliver results. A planet in an enemy sign is like working in hostile territory.
+                          Positional strength matters because a planet in its own sign or exaltation is like an expert working in their own lab  –  they have all the tools and authority to deliver results. A planet in an enemy sign is like working in hostile territory.
                         </WhyItMatters>
                       )}
                       {i === 1 && (
                         <WhyItMatters locale={locale}>
-                          Why does directional strength matter? Jupiter is strongest in the East (1st house) because it is a natural teacher — it does best when it is front and center. Mars and Sun peak in the South (10th house) because warrior energy blazes brightest at the zenith.
+                          Why does directional strength matter? Jupiter is strongest in the East (1st house) because it is a natural teacher  –  it does best when it is front and center. Mars and Sun peak in the South (10th house) because warrior energy blazes brightest at the zenith.
                         </WhyItMatters>
                       )}
                       {i === 2 && (
@@ -166,17 +166,17 @@ export default function LearnShadbalaPage() {
                       )}
                       {i === 3 && (
                         <WhyItMatters locale={locale}>
-                          Motional strength measures effort. A retrograde planet is closest to Earth and appears to &quot;fight harder&quot; — gaining Cheshta Bala. A combust planet near the Sun loses its independent motion and weakens.
+                          Motional strength measures effort. A retrograde planet is closest to Earth and appears to &quot;fight harder&quot;  –  gaining Cheshta Bala. A combust planet near the Sun loses its independent motion and weakens.
                         </WhyItMatters>
                       )}
                       {i === 4 && (
                         <WhyItMatters locale={locale}>
-                          Natural strength is the inherent luminosity hierarchy: Sun is the king (60 points), Saturn the servant (8.6 points). This never changes regardless of chart placement — it is the planet&apos;s intrinsic wattage.
+                          Natural strength is the inherent luminosity hierarchy: Sun is the king (60 points), Saturn the servant (8.6 points). This never changes regardless of chart placement  –  it is the planet&apos;s intrinsic wattage.
                         </WhyItMatters>
                       )}
                       {i === 5 && (
                         <WhyItMatters locale={locale}>
-                          Aspectual strength reflects social support. A planet aspected by benefics (Jupiter, Venus) gains confidence and power. One bombarded by malefic aspects (Saturn, Mars) is weakened by opposition — like a leader facing constant criticism.
+                          Aspectual strength reflects social support. A planet aspected by benefics (Jupiter, Venus) gains confidence and power. One bombarded by malefic aspects (Saturn, Mars) is weakened by opposition  –  like a leader facing constant criticism.
                         </WhyItMatters>
                       )}
 
@@ -196,7 +196,7 @@ export default function LearnShadbalaPage() {
                       {/* BeginnerNotes for Sthana sub-parts */}
                       {i === 0 && (
                         <div className="text-text-secondary text-sm leading-relaxed space-y-1">
-                          <p>Key terms: <BeginnerNote term="Sthana Bala" explanation="Positional strength. How well-placed a planet is by sign, house, and divisional chart." />, <BeginnerNote term="Kendradi" explanation="Classification by house type: Kendra (angular: 1,4,7,10), Panapara (succedent: 2,5,8,11), Apoklima (cadent: 3,6,9,12)." />, <BeginnerNote term="Ojha-Yugma" explanation="Odd-even sign strength. Moon/Venus gain in even signs; others gain in odd signs." />, <BeginnerNote term="Drekkana" explanation="Decanate — each sign is divided into three 10-degree portions, each with different gender affinity." /></p>
+                          <p>Key terms: <BeginnerNote term="Sthana Bala" explanation="Positional strength. How well-placed a planet is by sign, house, and divisional chart." />, <BeginnerNote term="Kendradi" explanation="Classification by house type: Kendra (angular: 1,4,7,10), Panapara (succedent: 2,5,8,11), Apoklima (cadent: 3,6,9,12)." />, <BeginnerNote term="Ojha-Yugma" explanation="Odd-even sign strength. Moon/Venus gain in even signs; others gain in odd signs." />, <BeginnerNote term="Drekkana" explanation="Decanate  –  each sign is divided into three 10-degree portions, each with different gender affinity." /></p>
                         </div>
                       )}
 
@@ -248,7 +248,7 @@ export default function LearnShadbalaPage() {
                       {/* BeginnerNote for Naisargika Bala */}
                       {i === 4 && (
                         <div className="text-text-secondary text-sm leading-relaxed">
-                          <p>Learn more: <BeginnerNote term="Naisargika Bala" explanation="Natural or inherent strength. Fixed for each planet regardless of chart placement. Based on luminosity — the brighter the planet, the higher its natural strength." /></p>
+                          <p>Learn more: <BeginnerNote term="Naisargika Bala" explanation="Natural or inherent strength. Fixed for each planet regardless of chart placement. Based on luminosity  –  the brighter the planet, the higher its natural strength." /></p>
                         </div>
                       )}
 
@@ -324,7 +324,7 @@ export default function LearnShadbalaPage() {
       </motion.section>
 
       <WhyItMatters locale={locale}>
-        The Shadbala Ratio is the single most useful number in strength analysis. A ratio of 1.5 means the planet is 50% stronger than its minimum — it will deliver results with ease. A ratio of 0.7 means the planet is 30% below threshold — expect delays and weakness in its significations. Focus remedies on your lowest-ratio planet for maximum impact.
+        The Shadbala Ratio is the single most useful number in strength analysis. A ratio of 1.5 means the planet is 50% stronger than its minimum  –  it will deliver results with ease. A ratio of 0.7 means the planet is 30% below threshold  –  expect delays and weakness in its significations. Focus remedies on your lowest-ratio planet for maximum impact.
       </WhyItMatters>
 
       {/* ═══ Reading Your Shadbala ═══ */}

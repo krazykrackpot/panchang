@@ -122,7 +122,7 @@ function mockMatchResult(score: number = 25): MatchResult {
 
 // ── Tests ────────────────────────────────────────────────────
 
-describe('Mangal Dosha Engine — house severity', () => {
+describe('Mangal Dosha Engine  –  house severity', () => {
   // Engine house severity: 7,8=severe; 1,4=moderate; 2,12=mild; others=none
   function severityForHouse(house: number, sign: number): string {
     const planets = [
@@ -182,7 +182,7 @@ describe('Manglik Detection (via engine)', () => {
 
   it('does not detect Manglik when Mars is safe from all 3 reference points', () => {
     // Mars in house 3, sign 3; asc sign 1; moon sign 1 (house from moon: ((3-1+12)%12)+1=3);
-    // venus sign 1 (house from venus: 3) — all non-mangal houses
+    // venus sign 1 (house from venus: 3)  –  all non-mangal houses
     const chart = mockChart({ marsHouse: 3, marsSign: 3, moonSign: 1, venusSign: 1, venusHouse: 1 });
     const result = analyzeMangalDosha(chart.planets, chart.ascendant.sign);
     expect(result.present).toBe(false);
@@ -203,7 +203,7 @@ describe('Manglik Cancellation', () => {
 
   it('identifies Jupiter aspect cancellation', () => {
     // Jupiter in house 1 aspects house 5 (5th), house 7 (7th), house 9 (9th)
-    // Mars in house 7 — Jupiter aspects it from house 1
+    // Mars in house 7  –  Jupiter aspects it from house 1
     const chart1 = mockChart({ marsHouse: 7, marsSign: 7, jupiterHouse: 1 });
     const chart2 = mockChart({ marsHouse: 3 }); // not manglik
     const match = mockMatchResult();
@@ -338,7 +338,7 @@ describe('Full Report Integration', () => {
   });
 
   it('detects Nadi Dosha when both partners have same nadi', () => {
-    // Ashwini (1) = Aadi, Punarvasu (7) = Aadi — same nadi
+    // Ashwini (1) = Aadi, Punarvasu (7) = Aadi  –  same nadi
     const chart1 = mockChart({ moonNak: 1, moonSign: 1 });
     const chart2 = mockChart({ moonNak: 7, moonSign: 4 });
     const match = mockMatchResult(18);

@@ -19,7 +19,7 @@ export interface KakshyaPosition {
 }
 
 /**
- * Kakshya lord sequence — BPHS Ch.70.
+ * Kakshya lord sequence  –  BPHS Ch.70.
  * Saturn(6), Jupiter(4), Mars(2), Sun(0), Venus(5), Mercury(3), Moon(1), Lagna(99)
  */
 const KAKSHYA_LORDS = [6, 4, 2, 0, 5, 3, 1, 99] as const;
@@ -90,10 +90,10 @@ export function getKakshyaBavScore(
 
   let bavScore: number;
   if (kakshya.kakshyaLord === 99) {
-    // Lagna kakshya — use SAV score for this sign
+    // Lagna kakshya  –  use SAV score for this sign
     bavScore = savTable[signIndex] ?? 0;
   } else {
-    // Planet kakshya — use that planet's BAV row for this sign
+    // Planet kakshya  –  use that planet's BAV row for this sign
     const planetRow = bpiTable[kakshya.kakshyaLord];
     bavScore = planetRow ? (planetRow[signIndex] ?? 0) : 0;
   }

@@ -154,7 +154,7 @@ describe('hora-calculator', () => {
       new Date(2026, 3, 19),
       '06:00', '18:00', '06:00',
       0, // Sunday
-      390, // 06:30 — within first hora (06:00-07:00)
+      390, // 06:30  –  within first hora (06:00-07:00)
     );
     expect(data.currentHora).not.toBeNull();
     expect(data.currentHora!.horaNumber).toBe(1);
@@ -168,7 +168,7 @@ describe('hora-calculator', () => {
       new Date(2026, 3, 19),
       '06:00', '18:00', '06:00',
       0, // Sunday
-      1110, // 18:30 — first night hora
+      1110, // 18:30  –  first night hora
     );
     expect(data.currentHora).not.toBeNull();
     expect(data.currentHora!.horaNumber).toBe(13);

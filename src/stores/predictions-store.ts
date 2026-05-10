@@ -107,7 +107,7 @@ export const usePredictionsStore = create<PredictionsState>((set, get) => ({
   stats: null,
 
   // ---------------------------------------------------------------------------
-  // trackPrediction — POST /api/predictions
+  // trackPrediction  –  POST /api/predictions
   // ---------------------------------------------------------------------------
   trackPrediction: async (token, input) => {
     set({ loading: true });
@@ -148,12 +148,12 @@ export const usePredictionsStore = create<PredictionsState>((set, get) => ({
     } catch (err) {
       console.error('[predictions] trackPrediction error:', err);
       set({ loading: false });
-      return { error: 'Network error — please try again' };
+      return { error: 'Network error  –  please try again' };
     }
   },
 
   // ---------------------------------------------------------------------------
-  // fetchPredictions — GET /api/predictions
+  // fetchPredictions  –  GET /api/predictions
   // ---------------------------------------------------------------------------
   fetchPredictions: async (token, outcome, domain) => {
     set({ loading: true });
@@ -188,12 +188,12 @@ export const usePredictionsStore = create<PredictionsState>((set, get) => ({
     } catch (err) {
       console.error('[predictions] fetchPredictions error:', err);
       set({ loading: false });
-      return { error: 'Network error — please try again' };
+      return { error: 'Network error  –  please try again' };
     }
   },
 
   // ---------------------------------------------------------------------------
-  // ratePrediction — PATCH /api/predictions/[id]
+  // ratePrediction  –  PATCH /api/predictions/[id]
   // ---------------------------------------------------------------------------
   ratePrediction: async (token, id, input) => {
     set({ loading: true });
@@ -235,12 +235,12 @@ export const usePredictionsStore = create<PredictionsState>((set, get) => ({
     } catch (err) {
       console.error('[predictions] ratePrediction error:', err);
       set({ loading: false });
-      return { error: 'Network error — please try again' };
+      return { error: 'Network error  –  please try again' };
     }
   },
 
   // ---------------------------------------------------------------------------
-  // deletePrediction — DELETE /api/predictions/[id]
+  // deletePrediction  –  DELETE /api/predictions/[id]
   // ---------------------------------------------------------------------------
   deletePrediction: async (token, id) => {
     set({ loading: true });
@@ -273,12 +273,12 @@ export const usePredictionsStore = create<PredictionsState>((set, get) => ({
     } catch (err) {
       console.error('[predictions] deletePrediction error:', err);
       set({ loading: false });
-      return { error: 'Network error — please try again' };
+      return { error: 'Network error  –  please try again' };
     }
   },
 
   // ---------------------------------------------------------------------------
-  // fetchStats — compute stats from all predictions (loads all, no filter)
+  // fetchStats  –  compute stats from all predictions (loads all, no filter)
   // ---------------------------------------------------------------------------
   fetchStats: async (token) => {
     set({ loading: true });
@@ -297,7 +297,7 @@ export const usePredictionsStore = create<PredictionsState>((set, get) => ({
       }
 
       const predictions = data.predictions ?? [];
-      // Don't overwrite the current filtered list — only update stats and total
+      // Don't overwrite the current filtered list  –  only update stats and total
       set((state) => ({
         stats: computeStats(predictions),
         // Only update predictions if not already loaded (avoids clobbering active filter view)
@@ -309,7 +309,7 @@ export const usePredictionsStore = create<PredictionsState>((set, get) => ({
     } catch (err) {
       console.error('[predictions] fetchStats error:', err);
       set({ loading: false });
-      return { error: 'Network error — please try again' };
+      return { error: 'Network error  –  please try again' };
     }
   },
 }));

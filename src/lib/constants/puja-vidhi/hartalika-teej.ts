@@ -35,11 +35,11 @@ export const HARTALIKA_TEEJ_PUJA: PujaVidhi = {
   vidhiSteps: [
     {
       step: 1,
-      title: { en: 'Morning — Bath & Shringar', hi: 'प्रातः — स्नान एवं श्रृंगार', sa: 'प्रातः — स्नानं शृङ्गारश्च' },
+      title: { en: 'Morning  –  Bath & Shringar', hi: 'प्रातः  –  स्नान एवं श्रृंगार', sa: 'प्रातः  –  स्नानं शृङ्गारश्च' },
       description: {
-        en: 'Wake before sunrise and take a purifying bath. Apply the 16 shringar items (adornments) — this is a mandatory part of the Teej tradition. Wear a red or green sari/outfit as married women.',
-        hi: 'सूर्योदय से पहले उठें और शुद्धि स्नान करें। 16 श्रृंगार लगाएँ — यह तीज परम्परा का अनिवार्य भाग है। सुहागिन स्त्रियाँ लाल या हरी साड़ी/वस्त्र पहनें।',
-        sa: 'सूर्योदयात् प्राक् उत्तिष्ठेत् शुद्धिस्नानं कुर्यात्। षोडशशृङ्गारं कुर्यात् — एतत् तीजपरम्परायाः अनिवार्यम्। सधवाः रक्तं हरितं वा वस्त्रं धारयेयुः।',
+        en: 'Wake before sunrise and take a purifying bath. Apply the 16 shringar items (adornments)  –  this is a mandatory part of the Teej tradition. Wear a red or green sari/outfit as married women.',
+        hi: 'सूर्योदय से पहले उठें और शुद्धि स्नान करें। 16 श्रृंगार लगाएँ  –  यह तीज परम्परा का अनिवार्य भाग है। सुहागिन स्त्रियाँ लाल या हरी साड़ी/वस्त्र पहनें।',
+        sa: 'सूर्योदयात् प्राक् उत्तिष्ठेत् शुद्धिस्नानं कुर्यात्। षोडशशृङ्गारं कुर्यात्  –  एतत् तीजपरम्परायाः अनिवार्यम्। सधवाः रक्तं हरितं वा वस्त्रं धारयेयुः।',
       },
       essential: true,
       stepType: 'preparation',
@@ -144,7 +144,7 @@ export const HARTALIKA_TEEJ_PUJA: PujaVidhi = {
     },
     {
       step: 10,
-      title: { en: 'Parana — Breaking the Fast', hi: 'पारण — उपवास समाप्ति', sa: 'पारणम् — उपवाससमाप्तिः' },
+      title: { en: 'Parana  –  Breaking the Fast', hi: 'पारण  –  उपवास समाप्ति', sa: 'पारणम्  –  उपवाससमाप्तिः' },
       description: {
         en: 'After visarjan and next day sunrise, break the nirjala fast with water, then fruits, then a light sattvic meal. Receive blessings from elders. Share prasad with other women who observed the vrat.',
         hi: 'विसर्जन और अगले दिन सूर्योदय के बाद निर्जला व्रत जल से तोड़ें, फिर फल, फिर हल्का सात्विक भोजन लें। बड़ों से आशीर्वाद लें। व्रत रखने वाली अन्य महिलाओं के साथ प्रसाद बाँटें।',
@@ -180,9 +180,9 @@ export const HARTALIKA_TEEJ_PUJA: PujaVidhi = {
       devanagari: 'ॐ नमः शिवायै च नमः शिवाय',
       iast: 'oṃ namaḥ śivāyai ca namaḥ śivāya',
       meaning: {
-        en: 'Om, salutations to Goddess Shivaa (Parvati) and salutations to Lord Shiva — the divine couple.',
-        hi: 'ॐ, देवी शिवा (पार्वती) और भगवान शिव — दिव्य दम्पती — को नमस्कार।',
-        sa: 'ॐ, शिवायै (पार्वत्यै) नमः शिवाय च नमः — दिव्यदम्पती।',
+        en: 'Om, salutations to Goddess Shivaa (Parvati) and salutations to Lord Shiva  –  the divine couple.',
+        hi: 'ॐ, देवी शिवा (पार्वती) और भगवान शिव  –  दिव्य दम्पती  –  को नमस्कार।',
+        sa: 'ॐ, शिवायै (पार्वत्यै) नमः शिवाय च नमः  –  दिव्यदम्पती।',
       },
       japaCount: 108,
       usage: {
@@ -194,21 +194,21 @@ export const HARTALIKA_TEEJ_PUJA: PujaVidhi = {
   ],
 
   naivedya: {
-    en: 'Offer seasonal fruits, milk sweets, paan, coconut, and kheer. Since it is a nirjala fast, the naivedya is offered to the deity — the devotee does not consume anything until parana.',
-    hi: 'मौसमी फल, दूध की मिठाई, पान, नारियल और खीर अर्पित करें। निर्जला व्रत होने से नैवेद्य देवता को अर्पित होता है — व्रती पारण तक कुछ नहीं खाती।',
-    sa: 'ऋतुफलानि, क्षीरमिष्टान्नानि, ताम्बूलं, नारिकेलं, क्षीरान्नं च अर्पयेत्। निर्जलव्रतत्वात् नैवेद्यं देवतायै अर्प्यते — व्रतिनी पारणपर्यन्तं किमपि न भक्षयति।',
+    en: 'Offer seasonal fruits, milk sweets, paan, coconut, and kheer. Since it is a nirjala fast, the naivedya is offered to the deity  –  the devotee does not consume anything until parana.',
+    hi: 'मौसमी फल, दूध की मिठाई, पान, नारियल और खीर अर्पित करें। निर्जला व्रत होने से नैवेद्य देवता को अर्पित होता है  –  व्रती पारण तक कुछ नहीं खाती।',
+    sa: 'ऋतुफलानि, क्षीरमिष्टान्नानि, ताम्बूलं, नारिकेलं, क्षीरान्नं च अर्पयेत्। निर्जलव्रतत्वात् नैवेद्यं देवतायै अर्प्यते  –  व्रतिनी पारणपर्यन्तं किमपि न भक्षयति।',
   },
 
   precautions: [
     {
-      en: 'This is a nirjala (waterless) fast — not even a single drop of water is to be consumed from the evening before until the next morning sunrise.',
-      hi: 'यह निर्जला (जलरहित) व्रत है — पूर्व सन्ध्या से अगली सुबह सूर्योदय तक एक बूँद पानी भी नहीं पीना है।',
-      sa: 'एतद् निर्जलव्रतम् — पूर्वसन्ध्यातः अग्रिमप्रातःसूर्योदयपर्यन्तम् एकम् अपि जलबिन्दुं न पिबेत्।',
+      en: 'This is a nirjala (waterless) fast  –  not even a single drop of water is to be consumed from the evening before until the next morning sunrise.',
+      hi: 'यह निर्जला (जलरहित) व्रत है  –  पूर्व सन्ध्या से अगली सुबह सूर्योदय तक एक बूँद पानी भी नहीं पीना है।',
+      sa: 'एतद् निर्जलव्रतम्  –  पूर्वसन्ध्यातः अग्रिमप्रातःसूर्योदयपर्यन्तम् एकम् अपि जलबिन्दुं न पिबेत्।',
     },
     {
-      en: 'Do not sleep during the night — the jagran (night vigil) is an essential part of the vrat.',
-      hi: 'रात में नहीं सोना — जागरण व्रत का अनिवार्य अंग है।',
-      sa: 'रात्रौ न स्वपेत् — जागरणं व्रतस्य अनिवार्यम् अङ्गम्।',
+      en: 'Do not sleep during the night  –  the jagran (night vigil) is an essential part of the vrat.',
+      hi: 'रात में नहीं सोना  –  जागरण व्रत का अनिवार्य अंग है।',
+      sa: 'रात्रौ न स्वपेत्  –  जागरणं व्रतस्य अनिवार्यम् अङ्गम्।',
     },
     {
       en: 'Married women must wear all 16 shringar items. Removing any saubhagya symbol is considered inauspicious.',
@@ -216,16 +216,16 @@ export const HARTALIKA_TEEJ_PUJA: PujaVidhi = {
       sa: 'सधवाः सर्वान् षोडशशृङ्गारान् अवश्यं धारयेयुः। सौभाग्यचिह्नम् अपनयनम् अशुभं मन्यते।',
     },
     {
-      en: 'The clay idols must be made fresh — do not use old or pre-made idols. Immerse them the next morning without fail.',
-      hi: 'मिट्टी की मूर्तियाँ ताज़ी बनाएँ — पुरानी या पहले से बनी मूर्तियाँ न लें। अगली सुबह अवश्य विसर्जन करें।',
-      sa: 'मृत्तिकामूर्तयः नवरचिताः स्युः — पुरातनाः पूर्वरचिताः वा न उपयोज्याः। अग्रिमप्रातः अवश्यं विसर्जयेत्।',
+      en: 'The clay idols must be made fresh  –  do not use old or pre-made idols. Immerse them the next morning without fail.',
+      hi: 'मिट्टी की मूर्तियाँ ताज़ी बनाएँ  –  पुरानी या पहले से बनी मूर्तियाँ न लें। अगली सुबह अवश्य विसर्जन करें।',
+      sa: 'मृत्तिकामूर्तयः नवरचिताः स्युः  –  पुरातनाः पूर्वरचिताः वा न उपयोज्याः। अग्रिमप्रातः अवश्यं विसर्जयेत्।',
     },
   ],
 
   phala: {
-    en: 'Hartalika Teej vrat is considered the most meritorious vrat for married women. It grants saubhagya (eternal marital auspiciousness), long life of the spouse, and reunion with the same husband in every birth — just as Parvati obtained Shiva through her penance. Unmarried women gain a worthy husband.',
-    hi: 'हरतालिका तीज व्रत विवाहित स्त्रियों का सबसे पुण्यदायी व्रत माना जाता है। यह सौभाग्य (शाश्वत वैवाहिक शुभता), पति की दीर्घायु, और प्रत्येक जन्म में उसी पति के साथ पुनर्मिलन प्रदान करता है — जैसे पार्वती ने तपस्या से शिव प्राप्त किए। अविवाहित स्त्रियों को योग्य पति प्राप्त होता है।',
-    sa: 'हरतालिकातीजव्रतं विवाहितानां स्त्रीणां सर्वपुण्यतमं व्रतं मन्यते। सौभाग्यं (शाश्वतवैवाहिकशुभता), पतिदीर्घायुः, प्रतिजन्मनि तेनैव पतिना पुनर्मिलनं च ददाति — यथा पार्वती तपसा शिवं प्राप्तवती। अविवाहिताः योग्यपतिं लभन्ते।',
+    en: 'Hartalika Teej vrat is considered the most meritorious vrat for married women. It grants saubhagya (eternal marital auspiciousness), long life of the spouse, and reunion with the same husband in every birth  –  just as Parvati obtained Shiva through her penance. Unmarried women gain a worthy husband.',
+    hi: 'हरतालिका तीज व्रत विवाहित स्त्रियों का सबसे पुण्यदायी व्रत माना जाता है। यह सौभाग्य (शाश्वत वैवाहिक शुभता), पति की दीर्घायु, और प्रत्येक जन्म में उसी पति के साथ पुनर्मिलन प्रदान करता है  –  जैसे पार्वती ने तपस्या से शिव प्राप्त किए। अविवाहित स्त्रियों को योग्य पति प्राप्त होता है।',
+    sa: 'हरतालिकातीजव्रतं विवाहितानां स्त्रीणां सर्वपुण्यतमं व्रतं मन्यते। सौभाग्यं (शाश्वतवैवाहिकशुभता), पतिदीर्घायुः, प्रतिजन्मनि तेनैव पतिना पुनर्मिलनं च ददाति  –  यथा पार्वती तपसा शिवं प्राप्तवती। अविवाहिताः योग्यपतिं लभन्ते।',
   },
 
   visarjan: {

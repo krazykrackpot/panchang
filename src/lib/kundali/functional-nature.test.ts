@@ -61,7 +61,7 @@ describe('calculateFunctionalNature', () => {
   });
 
   // Classic yoga karaka tests
-  it('Aries lagna (1): Saturn (6) is Yoga Karaka — owns 10H (kendra) + 11H', () => {
+  it('Aries lagna (1): Saturn (6) is Yoga Karaka  –  owns 10H (kendra) + 11H', () => {
     // Aries: 10H=Capricorn (Saturn), 11H=Aquarius (Saturn); no trikona → neutral
     // Actually Aries YK: no classical YK for Aries
     const result = calculateFunctionalNature(1);

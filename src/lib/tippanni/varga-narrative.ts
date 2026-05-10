@@ -4,13 +4,13 @@
  * Transforms structured DeepVargaResult data into coherent multi-paragraph
  * prose (EN + HI). Up to 7 paragraphs, each a pure function of the data:
  *
- *   P1 — Chart Identity (ascendant, lagna lord, dispositor chain)
- *   P2 — Dignity Shifts (D1↔Dxx, vargottama, pushkara, gandanta)
- *   P3 — Key House & Lordship (lords, argala, jaimini, parivartana)
- *   P4 — Yogas & Strengths (yogas, varga visesha, SAV overlay)
- *   P5 — Promise vs Delivery (scores, verdict)
- *   P6 — Timing & Dasha (dasha lord placement, combustion/retro)
- *   P7 — Practical Guidance (actionable insights)
+ *   P1  –  Chart Identity (ascendant, lagna lord, dispositor chain)
+ *   P2  –  Dignity Shifts (D1↔Dxx, vargottama, pushkara, gandanta)
+ *   P3  –  Key House & Lordship (lords, argala, jaimini, parivartana)
+ *   P4  –  Yogas & Strengths (yogas, varga visesha, SAV overlay)
+ *   P5  –  Promise vs Delivery (scores, verdict)
+ *   P6  –  Timing & Dasha (dasha lord placement, combustion/retro)
+ *   P7  –  Practical Guidance (actionable insights)
  *
  * Planet IDs: 0=Sun, 1=Moon, 2=Mars, 3=Mercury, 4=Jupiter,
  *             5=Venus, 6=Saturn, 7=Rahu, 8=Ketu
@@ -121,7 +121,7 @@ function shiftMagnitude(ds: DignityShift): number {
 }
 
 // ---------------------------------------------------------------------------
-// P1 — Chart Identity
+// P1  –  Chart Identity
 // ---------------------------------------------------------------------------
 
 function buildP1(cc: CrossCorrelation, chartId: string, domain: VargaDomain): { en: string; hi: string } {
@@ -163,16 +163,16 @@ function buildP1(cc: CrossCorrelation, chartId: string, domain: VargaDomain): { 
   if (dc.chain.length > 0) {
     if (dc.finalDispositor !== null) {
       parts_en.push(
-        `The dispositor chain terminates at ${pEN(dc.finalDispositor)} — ` +
+        `The dispositor chain terminates at ${pEN(dc.finalDispositor)}  –  ` +
         `this planet's significations colour the entire ${DOMAIN_LABEL_EN[domain]} theme.`
       );
       parts_hi.push(
-        `अधिपति-श्रृंखला ${pHI(dc.finalDispositor)} पर समाप्त होती है — ` +
+        `अधिपति-श्रृंखला ${pHI(dc.finalDispositor)} पर समाप्त होती है  –  ` +
         `यह ग्रह सम्पूर्ण ${DOMAIN_LABEL_HI[domain]} के विषय को प्रभावित करता है।`
       );
     } else if (dc.isCircular) {
-      parts_en.push('The dispositor chain forms a closed loop — multiple planets share control over this domain.');
-      parts_hi.push('अधिपति-श्रृंखला एक वृत्ताकार पाश बनाती है — अनेक ग्रह इस क्षेत्र पर सम्मिलित नियन्त्रण रखते हैं।');
+      parts_en.push('The dispositor chain forms a closed loop  –  multiple planets share control over this domain.');
+      parts_hi.push('अधिपति-श्रृंखला एक वृत्ताकार पाश बनाती है  –  अनेक ग्रह इस क्षेत्र पर सम्मिलित नियन्त्रण रखते हैं।');
     }
   }
 
@@ -180,7 +180,7 @@ function buildP1(cc: CrossCorrelation, chartId: string, domain: VargaDomain): { 
 }
 
 // ---------------------------------------------------------------------------
-// P2 — Dignity Shifts
+// P2  –  Dignity Shifts
 // ---------------------------------------------------------------------------
 
 function buildP2(cc: CrossCorrelation): { en: string; hi: string } {
@@ -203,11 +203,11 @@ function buildP2(cc: CrossCorrelation): { en: string; hi: string } {
 
     parts_en.push(
       `${pEN(ds.planetId)} moves from ${sEN(ds.d1Sign)} (D1, ${DIGNITY_EN[ds.d1Dignity]}) ` +
-      `to ${sEN(ds.dxxSign)} (${DIGNITY_EN[ds.dxxDignity]}) — a significant ${dir}.`
+      `to ${sEN(ds.dxxSign)} (${DIGNITY_EN[ds.dxxDignity]})  –  a significant ${dir}.`
     );
     parts_hi.push(
       `${pHI(ds.planetId)} ${sHI(ds.d1Sign)} (D1, ${DIGNITY_HI[ds.d1Dignity]}) से ` +
-      `${sHI(ds.dxxSign)} (${DIGNITY_HI[ds.dxxDignity]}) में जाता है — उल्लेखनीय ${dirHi}।`
+      `${sHI(ds.dxxSign)} (${DIGNITY_HI[ds.dxxDignity]}) में जाता है  –  उल्लेखनीय ${dirHi}।`
     );
   }
 
@@ -216,11 +216,11 @@ function buildP2(cc: CrossCorrelation): { en: string; hi: string } {
     const names_en = cc.vargottamaPlanets.map(pEN).join(', ');
     const names_hi = cc.vargottamaPlanets.map(pHI).join(', ');
     parts_en.push(
-      `${names_en} ${cc.vargottamaPlanets.length === 1 ? 'is' : 'are'} Vargottama (same sign in D1 and this varga) — ` +
+      `${names_en} ${cc.vargottamaPlanets.length === 1 ? 'is' : 'are'} Vargottama (same sign in D1 and this varga)  –  ` +
       `a mark of consistent strength.`
     );
     parts_hi.push(
-      `${names_hi} वर्गोत्तम ${cc.vargottamaPlanets.length === 1 ? 'है' : 'हैं'} (D1 और इस वर्ग में एक ही राशि) — ` +
+      `${names_hi} वर्गोत्तम ${cc.vargottamaPlanets.length === 1 ? 'है' : 'हैं'} (D1 और इस वर्ग में एक ही राशि)  –  ` +
       `यह निरन्तर बल का चिह्न है।`
     );
   }
@@ -230,8 +230,8 @@ function buildP2(cc: CrossCorrelation): { en: string; hi: string } {
   if (pushkara.length > 0) {
     const names_en = pushkara.map(p => pEN(p.planetId)).join(', ');
     const names_hi = pushkara.map(p => pHI(p.planetId)).join(', ');
-    parts_en.push(`${names_en} ${pushkara.length === 1 ? 'occupies' : 'occupy'} a Pushkara position — exceptionally benefic placement.`);
-    parts_hi.push(`${names_hi} पुष्कर स्थान में ${pushkara.length === 1 ? 'है' : 'हैं'} — अत्यन्त शुभ स्थिति।`);
+    parts_en.push(`${names_en} ${pushkara.length === 1 ? 'occupies' : 'occupy'} a Pushkara position  –  exceptionally benefic placement.`);
+    parts_hi.push(`${names_hi} पुष्कर स्थान में ${pushkara.length === 1 ? 'है' : 'हैं'}  –  अत्यन्त शुभ स्थिति।`);
   }
 
   // Gandanta
@@ -239,11 +239,11 @@ function buildP2(cc: CrossCorrelation): { en: string; hi: string } {
   if (gandanta.length > 0) {
     for (const g of gandanta.slice(0, 2)) {
       parts_en.push(
-        `${pEN(g.planetId)} is at a Gandanta junction (${g.junction}, ${g.severity} severity) — ` +
+        `${pEN(g.planetId)} is at a Gandanta junction (${g.junction}, ${g.severity} severity)  –  ` +
         `a zone of karmic intensity requiring conscious navigation.`
       );
       parts_hi.push(
-        `${pHI(g.planetId)} गण्डान्त सन्धि (${g.junction}, ${g.severity === 'severe' ? 'गम्भीर' : g.severity === 'moderate' ? 'मध्यम' : 'सौम्य'}) पर है — ` +
+        `${pHI(g.planetId)} गण्डान्त सन्धि (${g.junction}, ${g.severity === 'severe' ? 'गम्भीर' : g.severity === 'moderate' ? 'मध्यम' : 'सौम्य'}) पर है  –  ` +
         `यह कार्मिक तीव्रता का क्षेत्र है जिसमें सचेतन प्रयास आवश्यक है।`
       );
     }
@@ -253,7 +253,7 @@ function buildP2(cc: CrossCorrelation): { en: string; hi: string } {
 }
 
 // ---------------------------------------------------------------------------
-// P3 — Key House & Lordship
+// P3  –  Key House & Lordship
 // ---------------------------------------------------------------------------
 
 function buildP3(cc: CrossCorrelation, domain: VargaDomain): { en: string; hi: string } {
@@ -307,11 +307,11 @@ function buildP3(cc: CrossCorrelation, domain: VargaDomain): { en: string; hi: s
   for (const pv of cc.parivartanas.slice(0, 2)) {
     parts_en.push(
       `${pEN(pv.planet1Id)} and ${pEN(pv.planet2Id)} form a Parivartana Yoga ` +
-      `(mutual exchange between ${sEN(pv.sign1)} and ${sEN(pv.sign2)}) — ${pv.significance.en || 'strengthening both houses'}.`
+      `(mutual exchange between ${sEN(pv.sign1)} and ${sEN(pv.sign2)})  –  ${pv.significance.en || 'strengthening both houses'}.`
     );
     parts_hi.push(
       `${pHI(pv.planet1Id)} और ${pHI(pv.planet2Id)} परिवर्तन योग बनाते हैं ` +
-      `(${sHI(pv.sign1)} और ${sHI(pv.sign2)} का आपसी विनिमय) — ${pv.significance.hi || pv.significance.en || 'दोनों भावों को बल प्रदान करता है'}।`
+      `(${sHI(pv.sign1)} और ${sHI(pv.sign2)} का आपसी विनिमय)  –  ${pv.significance.hi || pv.significance.en || 'दोनों भावों को बल प्रदान करता है'}।`
     );
   }
 
@@ -323,7 +323,7 @@ function buildP3(cc: CrossCorrelation, domain: VargaDomain): { en: string; hi: s
 }
 
 // ---------------------------------------------------------------------------
-// P4 — Yogas & Strengths
+// P4  –  Yogas & Strengths
 // ---------------------------------------------------------------------------
 
 function buildP4(cc: CrossCorrelation, chartId: string): { en: string; hi: string } {
@@ -336,10 +336,10 @@ function buildP4(cc: CrossCorrelation, chartId: string): { en: string; hi: strin
       const planetNames_en = yoga.planets.map(pEN).join(', ');
       const planetNames_hi = yoga.planets.map(pHI).join(', ');
       parts_en.push(
-        `${yoga.name} forms in your ${chartId} (involving ${planetNames_en}) — ${yoga.significance.en || 'a notable combination'}.`
+        `${yoga.name} forms in your ${chartId} (involving ${planetNames_en})  –  ${yoga.significance.en || 'a notable combination'}.`
       );
       parts_hi.push(
-        `${yoga.name} आपके ${chartId} में बनता है (${planetNames_hi} सम्मिलित) — ${yoga.significance.hi || yoga.significance.en || 'एक उल्लेखनीय योग'}।`
+        `${yoga.name} आपके ${chartId} में बनता है (${planetNames_hi} सम्मिलित)  –  ${yoga.significance.hi || yoga.significance.en || 'एक उल्लेखनीय योग'}।`
       );
     }
   }
@@ -401,7 +401,7 @@ function buildP4(cc: CrossCorrelation, chartId: string): { en: string; hi: strin
 }
 
 // ---------------------------------------------------------------------------
-// P5 — Promise vs Delivery
+// P5  –  Promise vs Delivery
 // ---------------------------------------------------------------------------
 
 function buildP5(pd: PromiseDeliveryScore, domain: VargaDomain): { en: string; hi: string } {
@@ -419,7 +419,7 @@ function buildP5(pd: PromiseDeliveryScore, domain: VargaDomain): { en: string; h
 }
 
 // ---------------------------------------------------------------------------
-// P6 — Timing & Dasha
+// P6  –  Timing & Dasha
 // ---------------------------------------------------------------------------
 
 function buildP6(cc: CrossCorrelation, chartId: string, domain: VargaDomain): { en: string; hi: string } {
@@ -452,24 +452,24 @@ function buildP6(cc: CrossCorrelation, chartId: string, domain: VargaDomain): { 
     parts_en.push(`Trikona placement (${ordinal(dl.house)}) brings dharmic support to ${DOMAIN_LABEL_EN[domain]} during this period.`);
     parts_hi.push(`त्रिकोण स्थिति (${hindiOrdinal(dl.house)}) इस अवधि में ${DOMAIN_LABEL_HI[domain]} को धार्मिक सहयोग देती है।`);
   } else if (dusthanas.includes(dl.house)) {
-    parts_en.push(`Dusthana placement (${ordinal(dl.house)}) indicates challenges in ${DOMAIN_LABEL_EN[domain]} — patience and remedial measures are advised.`);
-    parts_hi.push(`दुःस्थान स्थिति (${hindiOrdinal(dl.house)}) ${DOMAIN_LABEL_HI[domain]} में चुनौतियों का संकेत है — धैर्य और उपचार आवश्यक हैं।`);
+    parts_en.push(`Dusthana placement (${ordinal(dl.house)}) indicates challenges in ${DOMAIN_LABEL_EN[domain]}  –  patience and remedial measures are advised.`);
+    parts_hi.push(`दुःस्थान स्थिति (${hindiOrdinal(dl.house)}) ${DOMAIN_LABEL_HI[domain]} में चुनौतियों का संकेत है  –  धैर्य और उपचार आवश्यक हैं।`);
   }
 
   // Dignity-based commentary
   if (dl.dignity === 'exalted' || dl.dignity === 'own') {
-    parts_en.push(`The dasha lord is strong here — favourable outcomes are likely.`);
-    parts_hi.push(`दशा स्वामी यहाँ बलवान है — अनुकूल परिणाम सम्भावित हैं।`);
+    parts_en.push(`The dasha lord is strong here  –  favourable outcomes are likely.`);
+    parts_hi.push(`दशा स्वामी यहाँ बलवान है  –  अनुकूल परिणाम सम्भावित हैं।`);
   } else if (dl.dignity === 'debilitated' || dl.dignity === 'enemy') {
-    parts_en.push(`The dasha lord is weakened — this period may require extra effort in ${DOMAIN_LABEL_EN[domain]}.`);
-    parts_hi.push(`दशा स्वामी दुर्बल है — ${DOMAIN_LABEL_HI[domain]} में इस अवधि में अतिरिक्त प्रयास आवश्यक हो सकता है।`);
+    parts_en.push(`The dasha lord is weakened  –  this period may require extra effort in ${DOMAIN_LABEL_EN[domain]}.`);
+    parts_hi.push(`दशा स्वामी दुर्बल है  –  ${DOMAIN_LABEL_HI[domain]} में इस अवधि में अतिरिक्त प्रयास आवश्यक हो सकता है।`);
   }
 
   return { en: parts_en.join(' '), hi: parts_hi.join(' ') };
 }
 
 // ---------------------------------------------------------------------------
-// P7 — Practical Guidance
+// P7  –  Practical Guidance
 // ---------------------------------------------------------------------------
 
 function buildP7(
@@ -484,45 +484,45 @@ function buildP7(
   const improved = cc.dignityShifts.filter(ds => ds.shift === 'improved');
   if (improved.length > 0) {
     const best = improved.sort((a, b) => shiftMagnitude(b) - shiftMagnitude(a))[0];
-    insights_en.push(`Leverage ${pEN(best.planetId)}'s strengthened position — its significations are amplified in this domain.`);
-    insights_hi.push(`${pHI(best.planetId)} की सुदृढ़ स्थिति का लाभ उठाएँ — इसके कारकत्व इस क्षेत्र में प्रबल हैं।`);
+    insights_en.push(`Leverage ${pEN(best.planetId)}'s strengthened position  –  its significations are amplified in this domain.`);
+    insights_hi.push(`${pHI(best.planetId)} की सुदृढ़ स्थिति का लाभ उठाएँ  –  इसके कारकत्व इस क्षेत्र में प्रबल हैं।`);
   }
 
   // Insight from dignity declines
   const declined = cc.dignityShifts.filter(ds => ds.shift === 'declined');
   if (declined.length > 0) {
     const worst = declined.sort((a, b) => shiftMagnitude(b) - shiftMagnitude(a))[0];
-    insights_en.push(`Be mindful of ${pEN(worst.planetId)}'s weakened state — remedial measures (gemstone, mantra, charity) may help.`);
-    insights_hi.push(`${pHI(worst.planetId)} की दुर्बल स्थिति के प्रति सचेत रहें — उपचार (रत्न, मन्त्र, दान) सहायक हो सकते हैं।`);
+    insights_en.push(`Be mindful of ${pEN(worst.planetId)}'s weakened state  –  remedial measures (gemstone, mantra, charity) may help.`);
+    insights_hi.push(`${pHI(worst.planetId)} की दुर्बल स्थिति के प्रति सचेत रहें  –  उपचार (रत्न, मन्त्र, दान) सहायक हो सकते हैं।`);
   }
 
   // Insight from gandanta
   const gandanta = cc.gandantaChecks.filter(g => g.isGandanta && g.severity !== 'none');
   if (gandanta.length > 0) {
-    insights_en.push(`Gandanta placements indicate karmic lessons — embrace transformation rather than resisting it.`);
-    insights_hi.push(`गण्डान्त स्थितियाँ कार्मिक शिक्षा दर्शाती हैं — परिवर्तन को स्वीकार करें, प्रतिरोध न करें।`);
+    insights_en.push(`Gandanta placements indicate karmic lessons  –  embrace transformation rather than resisting it.`);
+    insights_hi.push(`गण्डान्त स्थितियाँ कार्मिक शिक्षा दर्शाती हैं  –  परिवर्तन को स्वीकार करें, प्रतिरोध न करें।`);
   }
 
   // Insight from promise/delivery gap
   if (pd.d1Promise > 60 && pd.dxxDelivery < 40) {
-    insights_en.push(`There is a significant gap between promise and delivery — focused effort and appropriate timing (muhurta selection) can bridge it.`);
-    insights_hi.push(`वचन और फल में बड़ा अन्तर है — केन्द्रित प्रयास और उचित समय (मुहूर्त चयन) से इसे पाटा जा सकता है।`);
+    insights_en.push(`There is a significant gap between promise and delivery  –  focused effort and appropriate timing (muhurta selection) can bridge it.`);
+    insights_hi.push(`वचन और फल में बड़ा अन्तर है  –  केन्द्रित प्रयास और उचित समय (मुहूर्त चयन) से इसे पाटा जा सकता है।`);
   } else if (pd.dxxDelivery > pd.d1Promise + 15) {
-    insights_en.push(`The divisional chart delivers more than the natal promise — this domain has hidden potential waiting to unfold.`);
-    insights_hi.push(`वर्ग-चार्ट जन्मकुण्डली के वचन से अधिक फल देता है — इस क्षेत्र में छिपी सम्भावनाएँ प्रकट होने की प्रतीक्षा में हैं।`);
+    insights_en.push(`The divisional chart delivers more than the natal promise  –  this domain has hidden potential waiting to unfold.`);
+    insights_hi.push(`वर्ग-चार्ट जन्मकुण्डली के वचन से अधिक फल देता है  –  इस क्षेत्र में छिपी सम्भावनाएँ प्रकट होने की प्रतीक्षा में हैं।`);
   }
 
   // Vargottama insight
   if (cc.vargottamaPlanets.length > 0) {
     const names_en = cc.vargottamaPlanets.map(pEN).join(' and ');
     const names_hi = cc.vargottamaPlanets.map(pHI).join(' और ');
-    insights_en.push(`${names_en}'s Vargottama status is a natural asset — trust the consistency it brings to ${DOMAIN_LABEL_EN[domain]}.`);
-    insights_hi.push(`${names_hi} की वर्गोत्तम स्थिति एक स्वाभाविक सम्पदा है — ${DOMAIN_LABEL_HI[domain]} में इसकी निरन्तरता पर भरोसा रखें।`);
+    insights_en.push(`${names_en}'s Vargottama status is a natural asset  –  trust the consistency it brings to ${DOMAIN_LABEL_EN[domain]}.`);
+    insights_hi.push(`${names_hi} की वर्गोत्तम स्थिति एक स्वाभाविक सम्पदा है  –  ${DOMAIN_LABEL_HI[domain]} में इसकी निरन्तरता पर भरोसा रखें।`);
   }
 
   if (insights_en.length === 0) {
-    insights_en.push(`Continue nurturing ${DOMAIN_LABEL_EN[domain]} with awareness and intention — the planetary pattern supports steady growth.`);
-    insights_hi.push(`${DOMAIN_LABEL_HI[domain]} को जागरूकता और संकल्प से पोषित करते रहें — ग्रह-स्थिति स्थिर विकास का समर्थन करती है।`);
+    insights_en.push(`Continue nurturing ${DOMAIN_LABEL_EN[domain]} with awareness and intention  –  the planetary pattern supports steady growth.`);
+    insights_hi.push(`${DOMAIN_LABEL_HI[domain]} को जागरूकता और संकल्प से पोषित करते रहें  –  ग्रह-स्थिति स्थिर विकास का समर्थन करती है।`);
   }
 
   // Cap at 4 insights

@@ -82,10 +82,10 @@ const COMBUST_ORBS: Record<number, number> = {
 export function computePlanetLatitude(planetId: number, jd: number): number {
   const T = (jd - 2451545.0) / 36525.0;
 
-  // Sun — always on the ecliptic
+  // Sun  –  always on the ecliptic
   if (planetId === 0) return 0;
 
-  // Moon — full perturbation series (max ±5.15°)
+  // Moon  –  full perturbation series (max ±5.15°)
   if (planetId === 1) {
     const Mp = normalizeDeg(134.963 + 477198.868 * T); // Moon mean anomaly
     const F  = normalizeDeg(93.272  + 483202.018 * T); // argument of latitude
@@ -104,13 +104,13 @@ export function computePlanetLatitude(planetId: number, jd: number): number {
     return lat;
   }
 
-  // Rahu (ascending node) and Ketu (descending node) — ecliptic latitude = 0
+  // Rahu (ascending node) and Ketu (descending node)  –  ecliptic latitude = 0
   //
   // By definition the lunar nodes are the points where the Moon's orbit
   // INTERSECTS the ecliptic.  A point on the ecliptic has zero ecliptic
   // latitude.  The Moon itself has non-zero latitude (up to ±5.15°) because
   // its orbit is inclined ~5° to the ecliptic, but at the nodes the Moon's
-  // path crosses zero — the nodes themselves are always ON the ecliptic.
+  // path crosses zero  –  the nodes themselves are always ON the ecliptic.
   //
   // HISTORICAL BUG (now fixed): the code returned ±Moon latitude for Rahu/Ketu,
   // presumably confusing the inclination of the Moon's ORBIT with the latitude

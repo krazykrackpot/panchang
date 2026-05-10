@@ -14,13 +14,13 @@ import { dateToJD } from '@/lib/ephem/astronomical';
 
 // Reference JD values
 const JD_1990_MID = dateToJD(1990, 6, 15, 12);   // ~JD 2448057.0
-// 5 days after spring equinox 2000 — Sun at ~5° tropical Aries, sidereal ~341° Pisces.
+// 5 days after spring equinox 2000  –  Sun at ~5° tropical Aries, sidereal ~341° Pisces.
 // The exact equinox moment (Sun=359.9998°) rounds to sign 12 (Pisces) via getRashiNumber,
 // since 359.9998/30 = 11.9999... which floor() → 11 → sign 12. Using March 25 gives
 // Sun clearly in tropical Aries (sign 1) while sidereal remains Pisces (sign 12).
 const JD_NEAR_EQUINOX_2000 = dateToJD(2000, 3, 25, 12);
 
-describe('computeComparison — 1990-06-15 (Lahiri, default)', () => {
+describe('computeComparison  –  1990-06-15 (Lahiri, default)', () => {
   const result = computeComparison(JD_1990_MID);
 
   it('returns exactly 9 planet entries', () => {
@@ -104,7 +104,7 @@ describe('computeComparison — 1990-06-15 (Lahiri, default)', () => {
 
   it('precessionData has correct yearlyRate (Lahiri ~50.3 arcsec/yr)', () => {
     const rate = result.precessionData.yearlyRate;
-    // 50.3 arcsec/yr = 0.013972 deg/yr — allow ±0.001 tolerance
+    // 50.3 arcsec/yr = 0.013972 deg/yr  –  allow ±0.001 tolerance
     expect(rate).toBeCloseTo(50.3 / 3600, 4);
   });
 
@@ -145,7 +145,7 @@ describe('computeComparison — 1990-06-15 (Lahiri, default)', () => {
   });
 });
 
-describe('computeComparison — spring equinox edge case (Mar 25 2000)', () => {
+describe('computeComparison  –  spring equinox edge case (Mar 25 2000)', () => {
   // 5 days after vernal equinox: Sun at ~5° tropical Aries, sidereal ~341° Pisces.
   // This demonstrates the key Western/Vedic divergence: what the West calls Aries
   // is still Pisces in the Vedic sky due to the ~24° ayanamsha gap.
@@ -153,7 +153,7 @@ describe('computeComparison — spring equinox edge case (Mar 25 2000)', () => {
   const sun = result.planets.find((p) => p.id === 0)!;
 
   it('near-equinox Sun is tropical Aries (sign 1)', () => {
-    // Sun at ~5° tropical Aries — comfortably inside the sign
+    // Sun at ~5° tropical Aries  –  comfortably inside the sign
     expect(sun.tropicalSign).toBe(1);
     expect(sun.tropicalLongitude).toBeGreaterThan(0);
     expect(sun.tropicalLongitude).toBeLessThan(30);
@@ -171,7 +171,7 @@ describe('computeComparison — spring equinox edge case (Mar 25 2000)', () => {
   });
 });
 
-describe('computeComparison — KP ayanamsha', () => {
+describe('computeComparison  –  KP ayanamsha', () => {
   const result = computeComparison(JD_1990_MID, 'kp');
 
   it('returns 9 planets with KP ayanamsha type', () => {
@@ -188,7 +188,7 @@ describe('computeComparison — KP ayanamsha', () => {
   });
 });
 
-describe('computeComparison — hookLine content', () => {
+describe('computeComparison  –  hookLine content', () => {
   it('hookLine mentions a sign name when Sun is shifted', () => {
     // For most dates, the Sun will be shifted and the hookLine will name a sign
     const result = computeComparison(JD_NEAR_EQUINOX_2000);

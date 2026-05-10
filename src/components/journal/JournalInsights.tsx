@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * JournalInsights — Displays astrological pattern analysis from journal entries.
+ * JournalInsights  –  Displays astrological pattern analysis from journal entries.
  *
  * Shows best/worst conditions, all detected patterns with mood/energy bars,
  * delta badges, strength indicators, and sample sizes.
@@ -27,7 +27,7 @@ const LABELS = {
     subtitle: 'Mood & energy correlations with planetary conditions',
     notEnoughTitle: 'Patterns Emerging...',
     notEnoughDesc: (have: number, need: number) =>
-      `You have ${have} entries. Keep journaling — patterns emerge after ${need} entries.`,
+      `You have ${have} entries. Keep journaling  –  patterns emerge after ${need} entries.`,
     bestTitle: 'Best Conditions',
     worstTitle: 'Watch Out',
     allPatternsTitle: 'All Patterns',
@@ -49,7 +49,7 @@ const LABELS = {
     subtitle: 'ग्रहीय स्थितियों के साथ मनोदशा और ऊर्जा सम्बन्ध',
     notEnoughTitle: 'प्रतिमान उभर रहे हैं...',
     notEnoughDesc: (have: number, need: number) =>
-      `आपके पास ${have} प्रविष्टियाँ हैं। जर्नल लिखते रहें — ${need} प्रविष्टियों के बाद प्रतिमान दिखेंगे।`,
+      `आपके पास ${have} प्रविष्टियाँ हैं। जर्नल लिखते रहें  –  ${need} प्रविष्टियों के बाद प्रतिमान दिखेंगे।`,
     bestTitle: 'सर्वोत्तम स्थितियाँ',
     worstTitle: 'सावधान रहें',
     allPatternsTitle: 'सभी प्रतिमान',
@@ -313,7 +313,7 @@ export default function JournalInsights({ entries, locale }: JournalInsightsProp
   // Don't render at all if zero entries
   if (entries.length === 0) return null;
 
-  // Not enough data — show progress
+  // Not enough data  –  show progress
   if (!insights.hasEnoughData) {
     return <NotEnoughData insights={insights} locale={locale} />;
   }

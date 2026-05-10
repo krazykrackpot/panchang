@@ -6,7 +6,7 @@
  * full VSOP87 series (thousands of terms); instead it uses a simplified model:
  *
  *   1. Evaluate mean orbital elements as polynomials in T (Julian centuries)
- *      — coefficients from Meeus Ch. 31, Table 31.A (Simon et al. 1994)
+ *       –  coefficients from Meeus Ch. 31, Table 31.A (Simon et al. 1994)
  *   2. Compute the equation of centre (Keplerian correction for elliptical orbit)
  *      using a 3-term series expansion of Kepler's equation
  *   3. Convert heliocentric → geocentric via simplified parallax correction
@@ -47,10 +47,10 @@ export interface PlanetPosition {
  * where T is Julian centuries from J2000.0.
  */
 interface OrbitalElements {
-  L: number[];  // Mean longitude (degrees) — position if orbit were circular
-  a: number;    // Semi-major axis (AU) — used for geocentric parallax correction
-  e: number[];  // Eccentricity — shape of the ellipse (0 = circle, 1 = parabola)
-  w: number[];  // Longitude of perihelion (degrees) — direction of closest approach to Sun
+  L: number[];  // Mean longitude (degrees)  –  position if orbit were circular
+  a: number;    // Semi-major axis (AU)  –  used for geocentric parallax correction
+  e: number[];  // Eccentricity  –  shape of the ellipse (0 = circle, 1 = parabola)
+  w: number[];  // Longitude of perihelion (degrees)  –  direction of closest approach to Sun
 }
 
 // Orbital element polynomials for each planet.
@@ -130,9 +130,9 @@ function getHeliocentricLongitude(planet: string, T: number): number {
   // Equation of centre: converts mean anomaly → true anomaly.
   // This is the series expansion of Kepler's equation E - e·sin(E) = M,
   // expressed as ν - M (true anomaly minus mean anomaly).
-  // Term 1: ~(2e)·sin(M) — dominant elliptical correction
-  // Term 2: ~(5/4)e²·sin(2M) — second-order correction
-  // Term 3: ~(13/12)e³·sin(3M) — third-order, significant only for Mercury
+  // Term 1: ~(2e)·sin(M)  –  dominant elliptical correction
+  // Term 2: ~(5/4)e²·sin(2M)  –  second-order correction
+  // Term 3: ~(13/12)e³·sin(3M)  –  third-order, significant only for Mercury
   const C = (2 * e - e * e * e / 4) * Math.sin(Mrad) * 180 / Math.PI
     + (5 / 4) * e * e * Math.sin(2 * Mrad) * 180 / Math.PI
     + (13 / 12) * e * e * e * Math.sin(3 * Mrad) * 180 / Math.PI;
@@ -145,7 +145,7 @@ function getHeliocentricLongitude(planet: string, T: number): number {
  * Get Earth's heliocentric longitude (needed to convert other planets to geocentric).
  * Uses the same equation-of-centre approach but with only 2 terms, since Earth's
  * eccentricity (~0.0167) is small enough that the e³ term is negligible.
- * Accuracy: ~0.01° — more than sufficient for the geocentric conversion.
+ * Accuracy: ~0.01°  –  more than sufficient for the geocentric conversion.
  */
 function getEarthLongitude(T: number): number {
   const L = normalizeAngle(100.466449 + 35999.3728519 * T - 0.00000568 * T * T);
@@ -174,7 +174,7 @@ function getEarthLongitude(T: number): number {
  * where R is the planet's distance in AU.
  *
  * Neither method accounts for orbital inclination (all planets assumed
- * coplanar) or mutual perturbations — these are the main sources of the
+ * coplanar) or mutual perturbations  –  these are the main sources of the
  * ±0.5-2° error in this simplified model.
  */
 function helioToGeo(planetLon: number, earthLon: number, planetDistance: number, isInner: boolean): number {
@@ -200,7 +200,7 @@ function helioToGeo(planetLon: number, earthLon: number, planetDistance: number,
 }
 
 /**
- * Mean lunar ascending node (Rahu) — Meeus Ch. 47, eq. 47.7.
+ * Mean lunar ascending node (Rahu)  –  Meeus Ch. 47, eq. 47.7.
  *
  * This is the MEAN node, not the true (osculating) node. The mean node
  * moves uniformly retrograde at ~19.35°/year (one full cycle in ~18.6 years).
@@ -210,7 +210,7 @@ function helioToGeo(planetLon: number, earthLon: number, planetDistance: number,
  * retrograde (moving westward through the zodiac). Ketu = Rahu + 180°.
  *
  * Lesson W: Ketu's speed is the SAME as Rahu's (both retrograde). Never
- * negate Ketu's speed — only add 180° to the longitude.
+ * negate Ketu's speed  –  only add 180° to the longitude.
  */
 function getMeanNode(T: number): number {
   return normalizeAngle(125.0445479 - 1934.1362891 * T + 0.0020754 * T * T + T * T * T / 467441.0);
@@ -224,7 +224,7 @@ function getMeanNode(T: number): number {
  *   2. Convert to geocentric via helioToGeo()
  *   3. Detect retrograde by comparing position at jd vs jd+1 (1-day finite difference)
  *
- * For Rahu/Ketu (lunar nodes), the mean node formula is used directly —
+ * For Rahu/Ketu (lunar nodes), the mean node formula is used directly  – 
  * they are always retrograde by definition.
  *
  * Retrograde detection: a planet appears retrograde (moving westward) when
@@ -234,12 +234,12 @@ function getMeanNode(T: number): number {
 export function getPlanetPosition(planet: PlanetId, jd: number): PlanetPosition {
   const T = julianCenturies(jd);
 
-  // Rahu (ascending node) — always retrograde, uses mean node formula
+  // Rahu (ascending node)  –  always retrograde, uses mean node formula
   if (planet === 'rahu') {
     return { longitude: getMeanNode(T), isRetrograde: true };
   }
 
-  // Ketu (descending node) — diametrically opposite Rahu, also always retrograde
+  // Ketu (descending node)  –  diametrically opposite Rahu, also always retrograde
   if (planet === 'ketu') {
     return { longitude: normalizeAngle(getMeanNode(T) + 180), isRetrograde: true };
   }
@@ -248,7 +248,7 @@ export function getPlanetPosition(planet: PlanetId, jd: number): PlanetPosition 
   const planetLon = getHeliocentricLongitude(planet, T);
 
   const isInner = planet === 'mercury' || planet === 'venus';
-  // Mean semi-major axes in AU — used as approximate distances for the
+  // Mean semi-major axes in AU  –  used as approximate distances for the
   // geocentric parallax calculation. Using mean values introduces some error
   // when a planet is near perihelion/aphelion, but < 0.5° for all planets.
   const distances: Record<string, number> = {

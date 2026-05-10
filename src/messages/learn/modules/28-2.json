@@ -12,8 +12,8 @@
     "gu": "અષ્ટમંગલ પ્રશ્ન"
   },
   "subtitle": {
-    "en": "The Kerala tradition of horary divination using 8 auspicious objects — cowrie shells cast thrice to build a chart from Deva Prashna methodology",
-    "hi": "8 शुभ वस्तुओं का उपयोग करके होरारी भविष्यवाणी की केरल परम्परा — देव प्रश्न पद्धति से कुण्डली बनाने के लिए तीन बार कौड़ियाँ फेंकना"
+    "en": "The Kerala tradition of horary divination using 8 auspicious objects  –  cowrie shells cast thrice to build a chart from Deva Prashna methodology",
+    "hi": "8 शुभ वस्तुओं का उपयोग करके होरारी भविष्यवाणी की केरल परम्परा  –  देव प्रश्न पद्धति से कुण्डली बनाने के लिए तीन बार कौड़ियाँ फेंकना"
   },
   "crossRefs": [
     {
@@ -57,8 +57,8 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "Ashtamangala means 'eight auspicious' — eight sacred objects are used: Mirror (Darpana), Gold (Kanaka), Turmeric/Kumkuma, Full Vessel (Purna Kumbha), Lamp (Deepa), Book/Scripture (Grantha), Bull (Vrishabha), and Fan (Vyajana). These eight items are placed before the deity and the querent selects cowrie shells from among them.",
-        "hi": "अष्टमंगल का अर्थ 'आठ शुभ' है — आठ पवित्र वस्तुओं का उपयोग होता है: दर्पण, कनक (स्वर्ण), कुंकुम/हल्दी, पूर्ण कुम्भ, दीप, ग्रन्थ, वृषभ, और व्यजन (पंखा)।"
+        "en": "Ashtamangala means 'eight auspicious'  –  eight sacred objects are used: Mirror (Darpana), Gold (Kanaka), Turmeric/Kumkuma, Full Vessel (Purna Kumbha), Lamp (Deepa), Book/Scripture (Grantha), Bull (Vrishabha), and Fan (Vyajana). These eight items are placed before the deity and the querent selects cowrie shells from among them.",
+        "hi": "अष्टमंगल का अर्थ 'आठ शुभ' है  –  आठ पवित्र वस्तुओं का उपयोग होता है: दर्पण, कनक (स्वर्ण), कुंकुम/हल्दी, पूर्ण कुम्भ, दीप, ग्रन्थ, वृषभ, और व्यजन (पंखा)।"
       },
       "options": [
         { "en": "5", "hi": "5" },
@@ -76,7 +76,7 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Cowrie shells are cast three times. The first cast determines the Lagna (Ascendant), the second determines the position of the Moon, and the third gives additional planetary information. The number of upright shells in each cast is divided by 12 — the remainder gives the rashi (sign) number.",
+        "en": "Cowrie shells are cast three times. The first cast determines the Lagna (Ascendant), the second determines the position of the Moon, and the third gives additional planetary information. The number of upright shells in each cast is divided by 12  –  the remainder gives the rashi (sign) number.",
         "hi": "कौड़ियाँ तीन बार फेंकी जाती हैं। पहली बार लग्न निर्धारित होता है, दूसरी बार चन्द्रमा की स्थिति, और तीसरी बार अतिरिक्त ग्रहीय जानकारी मिलती है।"
       },
       "options": [

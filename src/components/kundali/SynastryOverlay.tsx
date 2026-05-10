@@ -259,7 +259,7 @@ export default function SynastryOverlay({ chartA, chartB, nameA, nameB, locale, 
                           {RASHIS[c.signId - 1]?.name[locale as Locale]}
                         </div>
                         <div className="text-text-tertiary text-[10px]">
-                          {c.degreeA} / {c.degreeB} — {c.orb}° {t(L.orb, locale)}
+                          {c.degreeA} / {c.degreeB}  –  {c.orb}° {t(L.orb, locale)}
                         </div>
                       </div>
                     </div>
@@ -427,7 +427,7 @@ export default function SynastryOverlay({ chartA, chartB, nameA, nameB, locale, 
                       <td
                         key={colId}
                         className="p-2 text-center cursor-default group relative"
-                        title={`${asp.type} (${asp.orb}°) — ${asp.isHarmonious ? 'harmonious' : 'tense'}`}
+                        title={`${asp.type} (${asp.orb}°)  –  ${asp.isHarmonious ? 'harmonious' : 'tense'}`}
                       >
                         <div className="flex flex-col items-center gap-0.5">
                           <span className={`w-3 h-3 rounded-full ${dotStyle?.color ?? 'bg-gray-500'} inline-block`} />

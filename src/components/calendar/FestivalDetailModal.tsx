@@ -286,13 +286,13 @@ export default function FestivalDetailModal({
                           )}
                         </div>
 
-                        {/* Recommended window — prominent */}
+                        {/* Recommended window  –  prominent */}
                         <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-3 text-center mb-3">
                           <div className="text-xs text-emerald-400/70 uppercase tracking-wider mb-1" style={headingFont}>
                             {tl(LP.paranaWindow, locale)}
                           </div>
                           <div className="text-2xl font-bold text-emerald-300 font-mono tracking-tight">
-                            {paranaStart} — {paranaEnd}
+                            {paranaStart}  –  {paranaEnd}
                           </div>
                         </div>
 
@@ -336,7 +336,7 @@ export default function FestivalDetailModal({
                               </div>
                             )}
 
-                            {/* Hari Vasara — show contextually */}
+                            {/* Hari Vasara  –  show contextually */}
                             {paranaHariVasaraEnd && (
                               <div className={`flex items-center justify-between text-xs rounded-lg px-3 py-2 ${
                                 paranaHariVasaraEnd === paranaSunrise
@@ -386,8 +386,8 @@ export default function FestivalDetailModal({
                           <div className="rounded-lg bg-red-500/10 border border-red-500/20 px-3 py-2 mb-3">
                             <p className="text-red-300 text-xs leading-relaxed" style={bodyFont}>
                               {!isDevanagariLocale(locale)
-                                ? 'Dwadashi ends very early — break fast immediately after sunrise. Hari Vasara restriction is overridden by Dwadashi deadline.'
-                                : 'द्वादशी बहुत जल्दी समाप्त हो रही है — सूर्योदय के तुरंत बाद पारण करें। द्वादशी की समय सीमा के कारण हरि वासर प्रतिबंध लागू नहीं।'}
+                                ? 'Dwadashi ends very early  –  break fast immediately after sunrise. Hari Vasara restriction is overridden by Dwadashi deadline.'
+                                : 'द्वादशी बहुत जल्दी समाप्त हो रही है  –  सूर्योदय के तुरंत बाद पारण करें। द्वादशी की समय सीमा के कारण हरि वासर प्रतिबंध लागू नहीं।'}
                             </p>
                           </div>
                         )}
@@ -459,7 +459,7 @@ export default function FestivalDetailModal({
                               <div className="flex items-center gap-3 mb-2">
                                 <div className="flex-1 rounded-lg bg-[#1a1040]/40 p-3 text-center">
                                   <div className="text-xl font-bold text-amber-300 font-mono">
-                                    {sutakStart} — {sutakEnd}
+                                    {sutakStart}  –  {sutakEnd}
                                   </div>
                                 </div>
                               </div>
@@ -484,7 +484,7 @@ export default function FestivalDetailModal({
                   </div>
                 )}
 
-                {/* Puja Vidhi — inline */}
+                {/* Puja Vidhi  –  inline */}
                 {hasPujaVidhi && resolvedPujaSlug && <InlinePujaVidhi puja={PUJA_VIDHIS[resolvedPujaSlug]} locale={locale} headingFont={headingFont} bodyFont={bodyFont} />}
               </div>
             </div>

@@ -35,9 +35,9 @@ export const PRAKRITI_QUESTIONS: PrakritiQuestion[] = [
       hi: 'आपकी पाचन शक्ति कैसी है?',
     },
     options: [
-      { label: { en: 'Irregular — sometimes strong, sometimes weak', hi: 'अनियमित — कभी अच्छी, कभी कमज़ोर' }, dosha: 'vata' },
-      { label: { en: 'Strong — I get irritable if I miss a meal', hi: 'तेज़ — भोजन छूटने पर चिड़चिड़ाहट' }, dosha: 'pitta' },
-      { label: { en: 'Slow but steady — I can skip meals easily', hi: 'धीमी लेकिन स्थिर — भोजन छोड़ सकता हूँ' }, dosha: 'kapha' },
+      { label: { en: 'Irregular  –  sometimes strong, sometimes weak', hi: 'अनियमित  –  कभी अच्छी, कभी कमज़ोर' }, dosha: 'vata' },
+      { label: { en: 'Strong  –  I get irritable if I miss a meal', hi: 'तेज़  –  भोजन छूटने पर चिड़चिड़ाहट' }, dosha: 'pitta' },
+      { label: { en: 'Slow but steady  –  I can skip meals easily', hi: 'धीमी लेकिन स्थिर  –  भोजन छोड़ सकता हूँ' }, dosha: 'kapha' },
     ],
   },
   {
@@ -48,8 +48,8 @@ export const PRAKRITI_QUESTIONS: PrakritiQuestion[] = [
     },
     options: [
       { label: { en: 'Light sleeper, wake up easily, variable', hi: 'हल्की नींद, आसानी से जागना' }, dosha: 'vata' },
-      { label: { en: 'Moderate — I sleep well but wake alert', hi: 'मध्यम — अच्छी नींद, सतर्क जागना' }, dosha: 'pitta' },
-      { label: { en: 'Deep, heavy sleeper — hard to wake up', hi: 'गहरी, भारी नींद — जागना कठिन' }, dosha: 'kapha' },
+      { label: { en: 'Moderate  –  I sleep well but wake alert', hi: 'मध्यम  –  अच्छी नींद, सतर्क जागना' }, dosha: 'pitta' },
+      { label: { en: 'Deep, heavy sleeper  –  hard to wake up', hi: 'गहरी, भारी नींद  –  जागना कठिन' }, dosha: 'kapha' },
     ],
   },
   {

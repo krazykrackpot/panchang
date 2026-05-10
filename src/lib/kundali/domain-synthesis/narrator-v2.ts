@@ -1,11 +1,11 @@
 /**
- * Narrator V2 — Emotionally Intelligent Domain Narrative Enhancement
+ * Narrator V2  –  Emotionally Intelligent Domain Narrative Enhancement
  *
  * Three composable functions that wrap/enhance the existing narrator's output:
  *
- * 1. narrateWithEmpathy  — Progressive disclosure for difficult readings (adhama/atyadhama)
- * 2. narrateStrength      — Celebratory + actionable language for strong readings (uttama)
- * 3. generateActionPlan   — Structured modern guidance for ALL domains
+ * 1. narrateWithEmpathy   –  Progressive disclosure for difficult readings (adhama/atyadhama)
+ * 2. narrateStrength       –  Celebratory + actionable language for strong readings (uttama)
+ * 3. generateActionPlan    –  Structured modern guidance for ALL domains
  *
  * Output is bilingual (en + hi). Devanagari-script locales (mr, mai, sa)
  * receive hi text via the isDevanagariLocale pattern.
@@ -113,7 +113,7 @@ function findChallengeTrigger(triggers: TimelineTrigger[]): TimelineTrigger | un
 
 /** Find the best natal sub-score from houseScores or lord qualities */
 function findBestStrength(reading: DomainReading): { en: string; hi: string } {
-  // Check supporting yogas first — most meaningful
+  // Check supporting yogas first  –  most meaningful
   if (reading.natalPromise.supportingYogas.length > 0) {
     const best = reading.natalPromise.supportingYogas.reduce(
       (a, b) => (b.strength > a.strength ? b : a),
@@ -204,7 +204,7 @@ function formatDate(iso: string, locale: string): string {
 
 /**
  * Get upcoming favorable days for this domain's primary weekday.
- * Returns dates within the next 7 days only — this is a "this week" plan,
+ * Returns dates within the next 7 days only  –  this is a "this week" plan,
  * not a 3-week forecast. If the weekday already passed this week, we still
  * include next week's occurrence so there's always at least one result.
  */
@@ -238,13 +238,13 @@ const LIFESTYLE_TEMPLATES: Record<DomainType, LifestyleTemplate[]> = {
   career: [
     {
       condition: r => (r.overallRating.rating === 'adhama' || r.overallRating.rating === 'atyadhama') && r.currentActivation.transitInfluences.some(t => t.planetId === 6),
-      en: 'This is a consolidation period. Focus on skill-building and deepening expertise, not promotions or job changes. Saturn demands patience — invest in your craft.',
-      hi: 'यह एक समेकन काल है। पदोन्नति या नौकरी बदलने के बजाय कौशल-निर्माण पर ध्यान दें। शनि धैर्य की मांग करता है — अपनी कला में निवेश करें।',
+      en: 'This is a consolidation period. Focus on skill-building and deepening expertise, not promotions or job changes. Saturn demands patience  –  invest in your craft.',
+      hi: 'यह एक समेकन काल है। पदोन्नति या नौकरी बदलने के बजाय कौशल-निर्माण पर ध्यान दें। शनि धैर्य की मांग करता है  –  अपनी कला में निवेश करें।',
     },
     {
       condition: r => r.overallRating.rating === 'uttama',
-      en: 'Your career energy is at its peak. This is the time for bold professional moves — launch that project, seek that promotion, or pivot to your true calling.',
-      hi: 'आपकी करियर ऊर्जा चरम पर है। यह साहसिक पेशेवर कदम उठाने का समय है — वह प्रोजेक्ट शुरू करें, पदोन्नति के लिए प्रयास करें।',
+      en: 'Your career energy is at its peak. This is the time for bold professional moves  –  launch that project, seek that promotion, or pivot to your true calling.',
+      hi: 'आपकी करियर ऊर्जा चरम पर है। यह साहसिक पेशेवर कदम उठाने का समय है  –  वह प्रोजेक्ट शुरू करें, पदोन्नति के लिए प्रयास करें।',
     },
     {
       condition: () => true,
@@ -272,8 +272,8 @@ const LIFESTYLE_TEMPLATES: Record<DomainType, LifestyleTemplate[]> = {
   health: [
     {
       condition: r => (r.overallRating.rating === 'adhama' || r.overallRating.rating === 'atyadhama') && r.currentActivation.transitInfluences.some(t => t.planetId === 2),
-      en: 'Pay extra attention to inflammation, stress, and energy management. Regular moderate exercise is crucial now — avoid extremes. Prioritize sleep and anti-inflammatory foods.',
-      hi: 'सूजन, तनाव और ऊर्जा प्रबंधन पर विशेष ध्यान दें। नियमित मध्यम व्यायाम अभी महत्वपूर्ण है — चरम सीमाओं से बचें। नींद और सूजन-रोधी आहार को प्राथमिकता दें।',
+      en: 'Pay extra attention to inflammation, stress, and energy management. Regular moderate exercise is crucial now  –  avoid extremes. Prioritize sleep and anti-inflammatory foods.',
+      hi: 'सूजन, तनाव और ऊर्जा प्रबंधन पर विशेष ध्यान दें। नियमित मध्यम व्यायाम अभी महत्वपूर्ण है  –  चरम सीमाओं से बचें। नींद और सूजन-रोधी आहार को प्राथमिकता दें।',
     },
     {
       condition: r => r.overallRating.rating === 'uttama',
@@ -330,7 +330,7 @@ const LIFESTYLE_TEMPLATES: Record<DomainType, LifestyleTemplate[]> = {
   spiritual: [
     {
       condition: r => r.overallRating.rating === 'uttama',
-      en: 'Your spiritual receptivity is exceptionally high. Meditation, pilgrimages, and deep study will yield profound insights. Trust your intuition — it is a reliable guide now.',
+      en: 'Your spiritual receptivity is exceptionally high. Meditation, pilgrimages, and deep study will yield profound insights. Trust your intuition  –  it is a reliable guide now.',
       hi: 'आपकी आध्यात्मिक ग्रहणशीलता असाधारण रूप से उच्च है। ध्यान, तीर्थयात्रा और गहन अध्ययन गहन अंतर्दृष्टि देंगे।',
     },
     {
@@ -342,7 +342,7 @@ const LIFESTYLE_TEMPLATES: Record<DomainType, LifestyleTemplate[]> = {
   education: [
     {
       condition: r => r.overallRating.rating === 'uttama',
-      en: 'Your intellectual absorption is at its peak. Take on challenging courses, certifications, or research. Your capacity for deep learning is maximized — use this window well.',
+      en: 'Your intellectual absorption is at its peak. Take on challenging courses, certifications, or research. Your capacity for deep learning is maximized  –  use this window well.',
       hi: 'आपकी बौद्धिक अवशोषण क्षमता चरम पर है। चुनौतीपूर्ण पाठ्यक्रम, प्रमाणपत्र या शोध करें।',
     },
     {
@@ -394,7 +394,7 @@ const WEEKLY_PRACTICES: Record<DomainType, { en: string; hi: string }[]> = {
     { en: 'Plan one undistracted, device-free evening with your partner this week. Focus on listening and being present.', hi: 'इस सप्ताह अपने साथी के साथ एक बिना ध्यान भटकाए, डिवाइस-मुक्त शाम की योजना बनाएं।' },
   ],
   children:     [
-    { en: 'Set aside one hour this week for a creative activity with your children — art, cooking, or storytelling. No screens, just presence.', hi: 'इस सप्ताह बच्चों के साथ एक रचनात्मक गतिविधि के लिए एक घंटा अलग रखें — कला, खाना बनाना या कहानी सुनाना।' },
+    { en: 'Set aside one hour this week for a creative activity with your children  –  art, cooking, or storytelling. No screens, just presence.', hi: 'इस सप्ताह बच्चों के साथ एक रचनात्मक गतिविधि के लिए एक घंटा अलग रखें  –  कला, खाना बनाना या कहानी सुनाना।' },
   ],
   family:       [
     { en: 'Call or visit one family member you have not connected with recently. Express gratitude for something specific they have done for you.', hi: 'एक ऐसे परिवार के सदस्य को कॉल करें या मिलें जिनसे आप हाल ही में नहीं मिले। उन्होंने आपके लिए जो किया उसके लिए कृतज्ञता व्यक्त करें।' },
@@ -403,7 +403,7 @@ const WEEKLY_PRACTICES: Record<DomainType, { en: string; hi: string }[]> = {
     { en: 'Commit to 10 minutes of silent meditation every morning this week. If the mind wanders, gently return to the breath without self-criticism.', hi: 'इस सप्ताह हर सुबह 10 मिनट मौन ध्यान के लिए प्रतिबद्ध हों। यदि मन भटके, तो आत्म-आलोचना के बिना धीरे से श्वास पर लौटें।' },
   ],
   education:    [
-    { en: 'Spend 30 minutes daily reading or studying a topic that genuinely excites you — unrelated to obligations. Curiosity-driven learning sticks deeper.', hi: 'प्रतिदिन 30 मिनट एक ऐसे विषय को पढ़ने या अध्ययन करने में बिताएं जो आपको सचमुच उत्साहित करता है।' },
+    { en: 'Spend 30 minutes daily reading or studying a topic that genuinely excites you  –  unrelated to obligations. Curiosity-driven learning sticks deeper.', hi: 'प्रतिदिन 30 मिनट एक ऐसे विषय को पढ़ने या अध्ययन करने में बिताएं जो आपको सचमुच उत्साहित करता है।' },
   ],
   currentPeriod:[
     { en: 'Journal for 5 minutes each evening about what went well today and what you are grateful for.', hi: 'हर शाम 5 मिनट इस बारे में लिखें कि आज क्या अच्छा रहा और आप किसके लिए आभारी हैं।' },
@@ -411,7 +411,7 @@ const WEEKLY_PRACTICES: Record<DomainType, { en: string; hi: string }[]> = {
 };
 
 // ---------------------------------------------------------------------------
-// 1. narrateWithEmpathy — Progressive disclosure for difficult readings
+// 1. narrateWithEmpathy  –  Progressive disclosure for difficult readings
 // ---------------------------------------------------------------------------
 
 /**
@@ -505,7 +505,7 @@ export function narrateWithEmpathy(domainReading: DomainReading, locale: string)
 }
 
 // ---------------------------------------------------------------------------
-// 2. narrateStrength — Celebratory language for strong readings
+// 2. narrateStrength  –  Celebratory language for strong readings
 // ---------------------------------------------------------------------------
 
 /**
@@ -558,24 +558,24 @@ export function narrateStrength(domainReading: DomainReading, locale: string): L
   const factorsHi = topFactorsHi.length > 0 ? topFactorsHi.join(', ') : 'कई मजबूत स्थितियां';
 
   // Validate
-  const validateEn = `Your ${domEn} is exceptionally well-supported — this is a rare alignment of ${factorsEn}.`;
-  const validateHi = `आपका ${domHi} असाधारण रूप से अच्छी तरह से समर्थित है — यह ${factorsHi} का एक दुर्लभ संयोग है।`;
+  const validateEn = `Your ${domEn} is exceptionally well-supported  –  this is a rare alignment of ${factorsEn}.`;
+  const validateHi = `आपका ${domHi} असाधारण रूप से अच्छी तरह से समर्थित है  –  यह ${factorsHi} का एक दुर्लभ संयोग है।`;
 
-  // Amplify — domain-specific bold move suggestion
+  // Amplify  –  domain-specific bold move suggestion
   const amplifyMap: Record<DomainType, { en: string; hi: string }> = {
     health:       { en: 'This is your window for establishing powerful health routines and peak physical performance.', hi: 'यह शक्तिशाली स्वास्थ्य दिनचर्या और शिखर शारीरिक प्रदर्शन स्थापित करने का आपका अवसर है।' },
     wealth:       { en: 'This is your window for bold financial moves: investments, business expansion, or launching income streams.', hi: 'यह साहसिक वित्तीय कदमों का आपका अवसर है: निवेश, व्यापार विस्तार, या आय स्रोत शुरू करना।' },
     career:       { en: 'This is your window for bold career moves: launch that project, seek that promotion, or make your vision public.', hi: 'यह साहसिक करियर कदमों का आपका अवसर है: वह प्रोजेक्ट शुरू करें, पदोन्नति मांगें, या अपना दृष्टिकोण सार्वजनिक करें।' },
-    marriage:     { en: 'This is your window for deepening commitment — heartfelt conversations, shared adventures, and renewed vows carry special power now.', hi: 'यह प्रतिबद्धता गहरा करने का आपका अवसर है — हार्दिक बातचीत, साझा साहसिक कार्य और नवीनीकृत प्रतिज्ञाओं में अभी विशेष शक्ति है।' },
+    marriage:     { en: 'This is your window for deepening commitment  –  heartfelt conversations, shared adventures, and renewed vows carry special power now.', hi: 'यह प्रतिबद्धता गहरा करने का आपका अवसर है  –  हार्दिक बातचीत, साझा साहसिक कार्य और नवीनीकृत प्रतिज्ञाओं में अभी विशेष शक्ति है।' },
     children:     { en: 'This is your window for nurturing creative bonds with children and inspiring their growth with your wisdom.', hi: 'यह बच्चों के साथ रचनात्मक बंधन पोषित करने और अपने ज्ञान से उनके विकास को प्रेरित करने का आपका अवसर है।' },
-    family:       { en: 'This is your window for strengthening family bonds — reunions, property decisions, and honoring traditions bring lasting rewards.', hi: 'यह पारिवारिक बंधन मजबूत करने का आपका अवसर है — पुनर्मिलन, संपत्ति निर्णय और परंपराओं का सम्मान स्थायी पुरस्कार लाते हैं।' },
-    spiritual:    { en: 'This is your window for deep spiritual breakthroughs — pilgrimages, retreats, and intensive meditation yield profound insights now.', hi: 'यह गहन आध्यात्मिक सफलताओं का आपका अवसर है — तीर्थयात्रा, एकांतवास और गहन ध्यान अभी गहन अंतर्दृष्टि देते हैं।' },
-    education:    { en: 'This is your window for ambitious learning — advanced degrees, challenging certifications, or mastering a new discipline.', hi: 'यह महत्वाकांक्षी सीखने का आपका अवसर है — उन्नत डिग्री, चुनौतीपूर्ण प्रमाणपत्र, या एक नई विधा में महारत।' },
+    family:       { en: 'This is your window for strengthening family bonds  –  reunions, property decisions, and honoring traditions bring lasting rewards.', hi: 'यह पारिवारिक बंधन मजबूत करने का आपका अवसर है  –  पुनर्मिलन, संपत्ति निर्णय और परंपराओं का सम्मान स्थायी पुरस्कार लाते हैं।' },
+    spiritual:    { en: 'This is your window for deep spiritual breakthroughs  –  pilgrimages, retreats, and intensive meditation yield profound insights now.', hi: 'यह गहन आध्यात्मिक सफलताओं का आपका अवसर है  –  तीर्थयात्रा, एकांतवास और गहन ध्यान अभी गहन अंतर्दृष्टि देते हैं।' },
+    education:    { en: 'This is your window for ambitious learning  –  advanced degrees, challenging certifications, or mastering a new discipline.', hi: 'यह महत्वाकांक्षी सीखने का आपका अवसर है  –  उन्नत डिग्री, चुनौतीपूर्ण प्रमाणपत्र, या एक नई विधा में महारत।' },
     currentPeriod:{ en: 'This is your window for taking initiative across all life areas.', hi: 'यह जीवन के सभी क्षेत्रों में पहल करने का आपका अवसर है।' },
   };
   const amplify = amplifyMap[domain] ?? amplifyMap.currentPeriod;
 
-  // Timeline — find when the favorable period ends
+  // Timeline  –  find when the favorable period ends
   const positiveTrigger = findPositiveTrigger(domainReading.timelineTriggers);
   const challengeTrigger = findChallengeTrigger(domainReading.timelineTriggers);
   let timelineEn: string;
@@ -604,19 +604,19 @@ export function narrateStrength(domainReading: DomainReading, locale: string): L
 }
 
 // ---------------------------------------------------------------------------
-// Lifestyle enrichment — injects chart-specific context into generic templates
+// Lifestyle enrichment  –  injects chart-specific context into generic templates
 // ---------------------------------------------------------------------------
 
 /**
  * Takes a generic lifestyle template and appends concrete chart context:
  * dasha lord, active transits, and supporting yogas. This prevents the
- * "could apply to anyone" problem — every lifestyle blurb names something
+ * "could apply to anyone" problem  –  every lifestyle blurb names something
  * specific to this person's chart.
  */
 function enrichLifestyle(base: LocaleText, reading: DomainReading): LocaleText {
   const parts: { en: string[]; hi: string[] } = { en: [], hi: [] };
 
-  // Dasha context — always available
+  // Dasha context  –  always available
   const mdEn = PLANET_NAMES_EN[reading.currentActivation.mahaDashaLordId] ?? 'your dasha lord';
   const mdHi = PLANET_NAMES_HI[reading.currentActivation.mahaDashaLordId] ?? 'आपका दशा स्वामी';
   const adEn = PLANET_NAMES_EN[reading.currentActivation.antarDashaLordId] ?? '';
@@ -627,7 +627,7 @@ function enrichLifestyle(base: LocaleText, reading: DomainReading): LocaleText {
     parts.hi.push(`आपकी ${mdHi}–${adHi} दशा अवधि पृष्ठभूमि को आकार देती है`);
   }
 
-  // Active transit — name the most relevant one
+  // Active transit  –  name the most relevant one
   const transit = reading.currentActivation.transitInfluences[0];
   if (transit) {
     const tpEn = PLANET_NAMES_EN[transit.planetId] ?? 'a planet';
@@ -643,7 +643,7 @@ function enrichLifestyle(base: LocaleText, reading: DomainReading): LocaleText {
     }
   }
 
-  // Supporting yoga — if present, name the strongest
+  // Supporting yoga  –  if present, name the strongest
   const yogas = reading.natalPromise.supportingYogas;
   if (yogas.length > 0) {
     const best = yogas.reduce((a, b) => (b.strength > a.strength ? b : a), yogas[0]);
@@ -664,7 +664,7 @@ function enrichLifestyle(base: LocaleText, reading: DomainReading): LocaleText {
 }
 
 // ---------------------------------------------------------------------------
-// 3. generateActionPlan — Structured modern guidance for ALL domains
+// 3. generateActionPlan  –  Structured modern guidance for ALL domains
 // ---------------------------------------------------------------------------
 
 /**
@@ -728,7 +728,7 @@ function buildAvoidGuidance(reading: DomainReading, locale: string): LocaleText 
     }
   }
 
-  // Challenge timeline triggers — only surface if within 6 months (actionable)
+  // Challenge timeline triggers  –  only surface if within 6 months (actionable)
   const challenge = findChallengeTrigger(reading.timelineTriggers);
   if (challenge) {
     const challengeDate = new Date(challenge.startDate);
@@ -741,8 +741,8 @@ function buildAvoidGuidance(reading: DomainReading, locale: string): LocaleText 
       const pEn = pIds.map(id => PLANET_NAMES_EN[id]).filter(Boolean).join(' and ') || 'a challenging transit';
       const pHi = pIds.map(id => PLANET_NAMES_HI[id]).filter(Boolean).join(' और ') || 'एक चुनौतीपूर्ण गोचर';
       return {
-        en: `Around ${dateEn}, ${pEn}'s influence intensifies — avoid initiating major ${domEn} commitments in that window. Prepare by building your foundation now.`,
-        hi: `${dateEn} के आसपास ${pHi} का प्रभाव तीव्र होगा — उस अवधि में प्रमुख ${domHi} प्रतिबद्धताओं से बचें। अभी से अपनी नींव मजबूत करें।`,
+        en: `Around ${dateEn}, ${pEn}'s influence intensifies  –  avoid initiating major ${domEn} commitments in that window. Prepare by building your foundation now.`,
+        hi: `${dateEn} के आसपास ${pHi} का प्रभाव तीव्र होगा  –  उस अवधि में प्रमुख ${domHi} प्रतिबद्धताओं से बचें। अभी से अपनी नींव मजबूत करें।`,
       };
     }
   }

@@ -23,33 +23,33 @@ export const PAGE_META: Record<string, PageMeta> = {
   // ─── Core ─────────────────────────────────────────────────
   '/panchang': {
     title: {
-      en: "Today's Panchang — Tithi, Nakshatra, Rahu Kaal & Muhurta Times",
-      hi: 'आज का पंचांग — तिथि, नक्षत्र, योग, करण',
-      sa: 'दैनिकपञ्चाङ्गम् — तिथिः नक्षत्रं योगः करणम्',
-      gu: 'આજનું પંચાંગ — તિથિ, નક્ષત્ર, યોગ | Dekho Panchang',
-      kn: 'ಇಂದಿನ ಪಂಚಾಂಗ — ತಿಥಿ, ನಕ್ಷತ್ರ, ಯೋಗ | Dekho Panchang',
-      te: 'నేటి పంచాంగం — తిథి, నక్షత్రం, యోగం | Dekho Panchang',
-      bn: 'আজকের পঞ্চাঙ্গ — তিথি, নক্ষত্র, যোগ | Dekho Panchang',
+      en: "Today's Panchang  –  Tithi, Nakshatra, Rahu Kaal & Muhurta Times",
+      hi: 'आज का पंचांग  –  तिथि, नक्षत्र, योग, करण',
+      sa: 'दैनिकपञ्चाङ्गम्  –  तिथिः नक्षत्रं योगः करणम्',
+      gu: 'આજનું પંચાંગ  –  તિથિ, નક્ષત્ર, યોગ | Dekho Panchang',
+      kn: 'ಇಂದಿನ ಪಂಚಾಂಗ  –  ತಿಥಿ, ನಕ್ಷತ್ರ, ಯೋಗ | Dekho Panchang',
+      te: 'నేటి పంచాంగం  –  తిథి, నక్షత్రం, యోగం | Dekho Panchang',
+      bn: 'আজকের পঞ্চাঙ্গ  –  তিথি, নক্ষত্র, যোগ | Dekho Panchang',
     },
     description: {
-      en: 'Check today\'s Panchang for your city — Tithi, Nakshatra, Yoga, Karana, Rahu Kaal, Shubh Muhurat, sunrise & sunset. Free, accurate, updated daily for any location worldwide.',
-      hi: 'आज का पंचांग अपने शहर के लिए देखें — तिथि, नक्षत्र, योग, करण, राहु काल, शुभ मुहूर्त। निःशुल्क, सटीक, प्रतिदिन अपडेट।',
-      sa: 'अद्य स्वनगरस्य पञ्चाङ्गं पश्यतु — तिथिः नक्षत्रं योगः करणं राहुकालः शुभमुहूर्तः सूर्योदयः सूर्यास्तश्च।',
-      gu: 'આજનું પંચાંગ તમારા શહેર માટે તપાસો — તિથિ, નક્ષત્ર, રાહુ કાળ, શુભ મુહૂર્ત. મફત અને સચોટ.',
-      kn: 'ನಿಮ್ಮ ನಗಗಕ್ಕೆ ಇಂದಿನ ಪಂಚಾಂಗ ಪರಿಶೀಲಿಸಿ — ತಿಥಿ, ನಕ್ಷತ್ರ, ರಾಹು ಕಾಲ, ಶುಭ ಮುಹೂರ್ತ. ಉಚಿತ ಮತ್ತು ನಿಖರ.',
-      te: 'మీ నగరం కోసం నేటి పంచాంగం చూడండి — తిథి, నక్షత్రం, రాహు కాలం, శుభ ముహూర్తం. ఉచితం మరియు ఖచ్చితం.',
-      bn: 'আজকের পঞ্চাঙ্গ আপনার শহরের জন্য দেখুন — তিথি, নক্ষত্র, রাহু কাল, শুভ মুহূর্ত. বিনামূল্যে ও সঠিক.',
+      en: 'Check today\'s Panchang for your city  –  Tithi, Nakshatra, Yoga, Karana, Rahu Kaal, Shubh Muhurat, sunrise & sunset. Free, accurate, updated daily for any location worldwide.',
+      hi: 'आज का पंचांग अपने शहर के लिए देखें  –  तिथि, नक्षत्र, योग, करण, राहु काल, शुभ मुहूर्त। निःशुल्क, सटीक, प्रतिदिन अपडेट।',
+      sa: 'अद्य स्वनगरस्य पञ्चाङ्गं पश्यतु  –  तिथिः नक्षत्रं योगः करणं राहुकालः शुभमुहूर्तः सूर्योदयः सूर्यास्तश्च।',
+      gu: 'આજનું પંચાંગ તમારા શહેર માટે તપાસો  –  તિથિ, નક્ષત્ર, રાહુ કાળ, શુભ મુહૂર્ત. મફત અને સચોટ.',
+      kn: 'ನಿಮ್ಮ ನಗಗಕ್ಕೆ ಇಂದಿನ ಪಂಚಾಂಗ ಪರಿಶೀಲಿಸಿ  –  ತಿಥಿ, ನಕ್ಷತ್ರ, ರಾಹು ಕಾಲ, ಶುಭ ಮುಹೂರ್ತ. ಉಚಿತ ಮತ್ತು ನಿಖರ.',
+      te: 'మీ నగరం కోసం నేటి పంచాంగం చూడండి  –  తిథి, నక్షత్రం, రాహు కాలం, శుభ ముహూర్తం. ఉచితం మరియు ఖచ్చితం.',
+      bn: 'আজকের পঞ্চাঙ্গ আপনার শহরের জন্য দেখুন  –  তিথি, নক্ষত্র, রাহু কাল, শুভ মুহূর্ত. বিনামূল্যে ও সঠিক.',
     },
     keywords: ['panchang today', 'aaj ka panchang', 'daily panchang', 'tithi today', 'nakshatra today', 'rahu kaal today', 'shubh muhurat today', 'hindu calendar'],
   },
   '/panchang/auspicious': {
     title: {
-      en: 'Auspicious Timings Today — Muhurta, Abhijit, Amrit Kalam',
-      hi: 'आज के शुभ मुहूर्त — अभिजित, अमृत काल, ब्रह्म मुहूर्त',
-      sa: 'अद्य शुभमुहूर्ताः — अभिजित्, अमृतकालः, ब्रह्ममुहूर्तः',
+      en: 'Auspicious Timings Today  –  Muhurta, Abhijit, Amrit Kalam',
+      hi: 'आज के शुभ मुहूर्त  –  अभिजित, अमृत काल, ब्रह्म मुहूर्त',
+      sa: 'अद्य शुभमुहूर्ताः  –  अभिजित्, अमृतकालः, ब्रह्ममुहूर्तः',
     },
     description: {
-      en: 'Check today\'s Shubh Muhurat — Brahma Muhurta, Abhijit, Amrit Kalam, Godhuli & more. Find the best time to start anything today. Free, location-aware.',
+      en: 'Check today\'s Shubh Muhurat  –  Brahma Muhurta, Abhijit, Amrit Kalam, Godhuli & more. Find the best time to start anything today. Free, location-aware.',
       hi: 'आज के शुभ समय: ब्रह्म मुहूर्त, अभिजित मुहूर्त, विजय मुहूर्त, अमृत काल, गोधूलि, संध्या काल और विशेष योग।',
       sa: 'अद्य शुभसमयाः: ब्रह्ममुहूर्तः, अभिजित्मुहूर्तः, विजयमुहूर्तः, अमृतकालः, गोधूलिः, सन्ध्याकालः।',
     },
@@ -57,12 +57,12 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/panchang/inauspicious': {
     title: {
-      en: 'Inauspicious Timings Today — Rahu Kaal, Yamaganda, Varjyam',
-      hi: 'आज के अशुभ समय — राहु काल, यमगण्ड, वर्ज्यम',
-      sa: 'अद्य अशुभसमयाः — राहुकालः, यमगण्डः, वर्ज्यम्',
+      en: 'Inauspicious Timings Today  –  Rahu Kaal, Yamaganda, Varjyam',
+      hi: 'आज के अशुभ समय  –  राहु काल, यमगण्ड, वर्ज्यम',
+      sa: 'अद्य अशुभसमयाः  –  राहुकालः, यमगण्डः, वर्ज्यम्',
     },
     description: {
-      en: 'Avoid bad timings today — Rahu Kaal, Yamaganda, Gulika Kaal, Varjyam, Dur Muhurtam & Bhadra for your city. Check before starting anything important.',
+      en: 'Avoid bad timings today  –  Rahu Kaal, Yamaganda, Gulika Kaal, Varjyam, Dur Muhurtam & Bhadra for your city. Check before starting anything important.',
       hi: 'आज के अशुभ समय: राहु काल, यमगण्ड, गुलिक काल, दुर्मुहूर्त, वर्ज्यम, भद्रा, गण्ड मूल, पंचक।',
       sa: 'अद्य अशुभसमयाः: राहुकालः, यमगण्डः, गुलिककालः, दुर्मुहूर्तम्, वर्ज्यम्, भद्रा, गण्डमूलम्, पञ्चकम्।',
     },
@@ -70,12 +70,12 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/kundali': {
     title: {
-      en: 'Free Kundali — Vedic Birth Chart Generator',
-      hi: 'निःशुल्क कुण्डली — वैदिक जन्म कुण्डली',
-      sa: 'निःशुल्कजन्मकुण्डली — वैदिकजन्मपत्रिका',
+      en: 'Free Kundali  –  Vedic Birth Chart Generator',
+      hi: 'निःशुल्क कुण्डली  –  वैदिक जन्म कुण्डली',
+      sa: 'निःशुल्कजन्मकुण्डली  –  वैदिकजन्मपत्रिका',
     },
     description: {
-      en: 'Create your free Kundali in seconds — 19 charts, 15 dasha systems, 75+ yogas, Shadbala & AI-powered reading. No signup required.',
+      en: 'Create your free Kundali in seconds  –  19 charts, 15 dasha systems, 75+ yogas, Shadbala & AI-powered reading. No signup required.',
       hi: 'ग्रह स्थिति, विंशोत्तरी दशा, योग, षड्बल और विस्तृत टिप्पणी के साथ अपनी निःशुल्क वैदिक जन्म कुण्डली बनाएं।',
       sa: 'ग्रहस्थितिः विंशोत्तरीदशा योगाः षड्बलं विस्तृतटिप्पणी च सहितं निःशुल्कं वैदिकजन्मकुण्डलीं रचयतु।',
     },
@@ -83,12 +83,12 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/matching': {
     title: {
-      en: 'Kundali Matching — Ashta Kuta Guna Milan',
-      hi: 'कुण्डली मिलान — अष्ट कूट गुण मिलान',
-      sa: 'कुण्डलीमेलनम् — अष्टकूटगुणमेलनम्',
+      en: 'Kundali Matching  –  Ashta Kuta Guna Milan',
+      hi: 'कुण्डली मिलान  –  अष्ट कूट गुण मिलान',
+      sa: 'कुण्डलीमेलनम्  –  अष्टकूटगुणमेलनम्',
     },
     description: {
-      en: 'Free Kundali matching — 36-point Guna Milan with Nadi Dosha check. Get instant compatibility score for marriage. No signup needed.',
+      en: 'Free Kundali matching  –  36-point Guna Milan with Nadi Dosha check. Get instant compatibility score for marriage. No signup needed.',
       hi: '36 अंकों वाली अष्ट कूट गुण मिलान प्रणाली से निःशुल्क कुण्डली मिलान। नाड़ी दोष विश्लेषण सहित।',
       sa: 'षट्त्रिंशदङ्काभिः अष्टकूटगुणमेलनप्रणाल्या निःशुल्कं कुण्डलीमेलनम्।',
     },
@@ -96,12 +96,12 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/calendar': {
     title: {
-      en: 'Hindu Festival Calendar 2026 — Vrat, Ekadashi, Purnima',
-      hi: 'हिन्दू त्योहार कैलेंडर 2026 — व्रत, एकादशी, पूर्णिमा',
-      sa: 'हिन्दूपर्वपञ्चाङ्गम् २०२६ — व्रतम् एकादशी पूर्णिमा',
+      en: 'Hindu Festival Calendar 2026  –  Vrat, Ekadashi, Purnima',
+      hi: 'हिन्दू त्योहार कैलेंडर 2026  –  व्रत, एकादशी, पूर्णिमा',
+      sa: 'हिन्दूपर्वपञ्चाङ्गम् २०२६  –  व्रतम् एकादशी पूर्णिमा',
     },
     description: {
-      en: 'All 180+ Hindu festivals & vrat dates for 2026 — Ekadashi, Purnima, Amavasya, Chaturthi. Location-aware with exact timings for your city.',
+      en: 'All 180+ Hindu festivals & vrat dates for 2026  –  Ekadashi, Purnima, Amavasya, Chaturthi. Location-aware with exact timings for your city.',
       hi: '180+ त्योहार, व्रत, एकादशी, पूर्णिमा, अमावस्या तिथियों के साथ पूर्ण हिन्दू त्योहार कैलेंडर।',
       sa: '१८०+ पर्वाणि व्रतानि एकादशी पूर्णिमा अमावस्या तिथिभिः सह सम्पूर्णं हिन्दूपर्वपञ्चाङ्गम्।',
     },
@@ -111,41 +111,41 @@ export const PAGE_META: Record<string, PageMeta> = {
   // ─── Hindu Calendar (yearly SEO pages) ───────────────────────
   '/hindu-calendar/2026': {
     title: {
-      en: 'Hindu Calendar 2026 — Complete Festival, Vrat & Eclipse Dates',
-      hi: 'हिन्दू कैलेंडर 2026 — सम्पूर्ण त्योहार, व्रत एवं ग्रहण तिथियाँ',
-      sa: 'हिन्दूपञ्चाङ्गम् २०२६ — सम्पूर्णपर्वव्रतग्रहणतिथयः',
+      en: 'Hindu Calendar 2026  –  Complete Festival, Vrat & Eclipse Dates',
+      hi: 'हिन्दू कैलेंडर 2026  –  सम्पूर्ण त्योहार, व्रत एवं ग्रहण तिथियाँ',
+      sa: 'हिन्दूपञ्चाङ्गम् २०२६  –  सम्पूर्णपर्वव्रतग्रहणतिथयः',
     },
     description: {
-      en: 'Complete Hindu calendar for 2026 — all 180+ festivals, 24 Ekadashi vrat dates, eclipses, Purnima & Amavasya. Month-by-month with exact dates for every major Hindu festival.',
-      hi: '2026 का सम्पूर्ण हिन्दू कैलेंडर — 180+ त्योहार, 24 एकादशी व्रत तिथियाँ, ग्रहण, पूर्णिमा एवं अमावस्या। प्रत्येक प्रमुख हिन्दू त्योहार की सटीक तिथियाँ।',
-      sa: '२०२६ वर्षस्य सम्पूर्णं हिन्दूपञ्चाङ्गम् — १८०+ पर्वाणि २४ एकादशीव्रततिथयः ग्रहणानि पूर्णिमा अमावास्या च।',
+      en: 'Complete Hindu calendar for 2026  –  all 180+ festivals, 24 Ekadashi vrat dates, eclipses, Purnima & Amavasya. Month-by-month with exact dates for every major Hindu festival.',
+      hi: '2026 का सम्पूर्ण हिन्दू कैलेंडर  –  180+ त्योहार, 24 एकादशी व्रत तिथियाँ, ग्रहण, पूर्णिमा एवं अमावस्या। प्रत्येक प्रमुख हिन्दू त्योहार की सटीक तिथियाँ।',
+      sa: '२०२६ वर्षस्य सम्पूर्णं हिन्दूपञ्चाङ्गम्  –  १८०+ पर्वाणि २४ एकादशीव्रततिथयः ग्रहणानि पूर्णिमा अमावास्या च।',
     },
     keywords: ['hindu calendar 2026', 'hindu panchang 2026', 'हिन्दू कैलेंडर 2026', 'hindu festival dates 2026', 'vrat dates 2026', 'ekadashi 2026', 'diwali 2026 date', 'holi 2026 date'],
   },
   '/hindu-calendar/2027': {
     title: {
-      en: 'Hindu Calendar 2027 — Complete Festival, Vrat & Eclipse Dates',
-      hi: 'हिन्दू कैलेंडर 2027 — सम्पूर्ण त्योहार, व्रत एवं ग्रहण तिथियाँ',
-      sa: 'हिन्दूपञ्चाङ्गम् २०२७ — सम्पूर्णपर्वव्रतग्रहणतिथयः',
+      en: 'Hindu Calendar 2027  –  Complete Festival, Vrat & Eclipse Dates',
+      hi: 'हिन्दू कैलेंडर 2027  –  सम्पूर्ण त्योहार, व्रत एवं ग्रहण तिथियाँ',
+      sa: 'हिन्दूपञ्चाङ्गम् २०२७  –  सम्पूर्णपर्वव्रतग्रहणतिथयः',
     },
     description: {
-      en: 'Complete Hindu calendar for 2027 — all 180+ festivals, 24 Ekadashi vrat dates, eclipses, Purnima & Amavasya. Month-by-month with exact dates for every major Hindu festival.',
-      hi: '2027 का सम्पूर्ण हिन्दू कैलेंडर — 180+ त्योहार, 24 एकादशी व्रत तिथियाँ, ग्रहण, पूर्णिमा एवं अमावस्या। प्रत्येक प्रमुख हिन्दू त्योहार की सटीक तिथियाँ।',
-      sa: '२०२७ वर्षस्य सम्पूर्णं हिन्दूपञ्चाङ्गम् — १८०+ पर्वाणि २४ एकादशीव्रततिथयः ग्रहणानि पूर्णिमा अमावास्या च।',
+      en: 'Complete Hindu calendar for 2027  –  all 180+ festivals, 24 Ekadashi vrat dates, eclipses, Purnima & Amavasya. Month-by-month with exact dates for every major Hindu festival.',
+      hi: '2027 का सम्पूर्ण हिन्दू कैलेंडर  –  180+ त्योहार, 24 एकादशी व्रत तिथियाँ, ग्रहण, पूर्णिमा एवं अमावस्या। प्रत्येक प्रमुख हिन्दू त्योहार की सटीक तिथियाँ।',
+      sa: '२०२७ वर्षस्य सम्पूर्णं हिन्दूपञ्चाङ्गम्  –  १८०+ पर्वाणि २४ एकादशीव्रततिथयः ग्रहणानि पूर्णिमा अमावास्या च।',
     },
     keywords: ['hindu calendar 2027', 'hindu panchang 2027', 'हिन्दू कैलेंडर 2027', 'hindu festival dates 2027', 'vrat dates 2027', 'diwali 2027 date', 'holi 2027 date', 'navratri 2027'],
   },
 
   '/ekadashi': {
     title: {
-      en: 'Ekadashi 2026 — All 24 Dates, Names, Stories & Benefits | Dekho Panchang',
-      hi: 'एकादशी 2026 — सभी 24 तिथियाँ, नाम, कथाएँ और लाभ | देखो पञ्चाङ्ग',
-      sa: 'एकादशी २०२६ — सर्वाः २४ तिथयः नामानि कथाः लाभाः च',
+      en: 'Ekadashi 2026  –  All 24 Dates, Names, Stories & Benefits | Dekho Panchang',
+      hi: 'एकादशी 2026  –  सभी 24 तिथियाँ, नाम, कथाएँ और लाभ | देखो पञ्चाङ्ग',
+      sa: 'एकादशी २०२६  –  सर्वाः २४ तिथयः नामानि कथाः लाभाः च',
     },
     description: {
       en: 'Complete list of all 24 Ekadashi dates in 2026 with names, stories from Padma Purana & Bhavishya Purana, and spiritual benefits. Nirjala, Devshayani, Mokshada and more.',
-      hi: '2026 की सभी 24 एकादशी तिथियों की सम्पूर्ण सूची — निर्जला, देवशयनी, मोक्षदा सहित नाम, पद्म पुराण की कथाएँ और आध्यात्मिक लाभ।',
-      sa: '२०२६ वर्षस्य सर्वासां २४ एकादशीनां तिथिसूची — निर्जला देवशयनी मोक्षदा सहित नामानि कथाः लाभाः च।',
+      hi: '2026 की सभी 24 एकादशी तिथियों की सम्पूर्ण सूची  –  निर्जला, देवशयनी, मोक्षदा सहित नाम, पद्म पुराण की कथाएँ और आध्यात्मिक लाभ।',
+      sa: '२०२६ वर्षस्य सर्वासां २४ एकादशीनां तिथिसूची  –  निर्जला देवशयनी मोक्षदा सहित नामानि कथाः लाभाः च।',
     },
     keywords: ['ekadashi 2026', 'ekadashi dates 2026', 'ekadashi list 2026', 'ekadashi calendar', 'nirjala ekadashi 2026', 'devshayani ekadashi 2026', 'ekadashi vrat dates'],
   },
@@ -153,9 +153,9 @@ export const PAGE_META: Record<string, PageMeta> = {
   // ─── Tools ────────────────────────────────────────────────
   '/financial-astrology': {
     title: {
-      en: 'Financial Astrology — Dhana Yogas, Wealth Timing & Sector Guide',
-      hi: 'वित्तीय ज्योतिष — धन योग, धन समय एवं क्षेत्र मार्गदर्शन',
-      sa: 'वित्तज्योतिषम् — धनयोगाः धनसमयः क्षेत्रमार्गदर्शनम्',
+      en: 'Financial Astrology  –  Dhana Yogas, Wealth Timing & Sector Guide',
+      hi: 'वित्तीय ज्योतिष  –  धन योग, धन समय एवं क्षेत्र मार्गदर्शन',
+      sa: 'वित्तज्योतिषम्  –  धनयोगाः धनसमयः क्षेत्रमार्गदर्शनम्',
     },
     description: {
       en: 'Discover your Dhana yoga activations, personal financial windows, hora-based timing guide, and top sectors from your Vedic birth chart. Traditional Vedic knowledge for self-awareness only.',
@@ -166,7 +166,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/glossary': {
     title: {
-      en: 'Vedic Astrology Glossary — 50+ Terms Explained',
+      en: 'Vedic Astrology Glossary  –  50+ Terms Explained',
       hi: 'वैदिक ज्योतिष शब्दावली',
       sa: 'वैदिकज्योतिषशब्दकोशः',
     },
@@ -179,9 +179,9 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/mundane': {
     title: {
-      en: 'Mundane Astrology — National Charts, World Forecast & Great Conjunctions',
-      hi: 'मुण्डेन ज्योतिष — राष्ट्रीय कुण्डलियाँ, विश्व पूर्वानुमान एवं महायोग',
-      sa: 'मुण्डेनज्योतिषम् — राष्ट्रकुण्डलयः विश्वपूर्वानुमानं महायोगश्च',
+      en: 'Mundane Astrology  –  National Charts, World Forecast & Great Conjunctions',
+      hi: 'मुण्डेन ज्योतिष  –  राष्ट्रीय कुण्डलियाँ, विश्व पूर्वानुमान एवं महायोग',
+      sa: 'मुण्डेनज्योतिषम्  –  राष्ट्रकुण्डलयः विश्वपूर्वानुमानं महायोगश्च',
     },
     description: {
       en: 'Explore foundation charts for 22 nations, Jupiter-Saturn Great Conjunction cycles, and domain-by-domain world forecasts using Vedic mundane astrology. For educational purposes only.',
@@ -192,9 +192,9 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/nadi-jyotish': {
     title: {
-      en: 'Nadi Jyotish — Bhrigu Nandi Nadi Planet Reading',
-      hi: 'नाड़ी ज्योतिष — भृगु नंदी नाड़ी ग्रह पठन',
-      sa: 'नाड़ीज्योतिषम् — भृगुनन्दिनाड़ीग्रहपठनम्',
+      en: 'Nadi Jyotish  –  Bhrigu Nandi Nadi Planet Reading',
+      hi: 'नाड़ी ज्योतिष  –  भृगु नंदी नाड़ी ग्रह पठन',
+      sa: 'नाड़ीज्योतिषम्  –  भृगुनन्दिनाड़ीग्रहपठनम्',
     },
     description: {
       en: 'Bhrigu Nandi Nadi reading: planet-in-sign base predictions, aspect and conjunction modifiers, karmic profile, and life themes from your Vedic birth chart.',
@@ -205,9 +205,9 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/medical-astrology': {
     title: {
-      en: 'Medical Astrology — Prakriti, Body Map & Health Timeline',
-      hi: 'चिकित्सा ज्योतिष — प्रकृति, देह मानचित्र एवं स्वास्थ्य समयरेखा',
-      sa: 'चिकित्साज्योतिषम् — प्रकृतिः देहमानचित्रं स्वास्थ्यसमयरेखा',
+      en: 'Medical Astrology  –  Prakriti, Body Map & Health Timeline',
+      hi: 'चिकित्सा ज्योतिष  –  प्रकृति, देह मानचित्र एवं स्वास्थ्य समयरेखा',
+      sa: 'चिकित्साज्योतिषम्  –  प्रकृतिः देहमानचित्रं स्वास्थ्यसमयरेखा',
     },
     description: {
       en: 'Discover your Ayurvedic constitution (Prakriti), body vulnerability map, health timeline, and disease susceptibility patterns from your Vedic birth chart. For self-awareness only.',
@@ -218,9 +218,9 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/varshaphal': {
     title: {
-      en: 'Varshaphal — Annual Horoscope (Tajika System)',
-      hi: 'वर्षफल — वार्षिक कुण्डली (ताजिक प्रणाली)',
-      sa: 'वर्षफलम् — वार्षिककुण्डली (ताजिकपद्धतिः)',
+      en: 'Varshaphal  –  Annual Horoscope (Tajika System)',
+      hi: 'वर्षफल  –  वार्षिक कुण्डली (ताजिक प्रणाली)',
+      sa: 'वर्षफलम्  –  वार्षिककुण्डली (ताजिकपद्धतिः)',
     },
     description: {
       en: 'Generate your Varshaphal (annual horoscope) using the Tajika system. Solar return chart, Muntha, Sahams, Varsheshvara, and Mudda Dasha analysis.',
@@ -231,22 +231,22 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/tithi-pravesha': {
     title: {
-      en: 'Tithi Pravesha — Vedic Birthday Calculator',
-      hi: 'तिथि प्रवेश — वैदिक जन्मदिन',
-      sa: 'तिथिप्रवेशः — वैदिकजन्मदिवसगणकम्',
+      en: 'Tithi Pravesha  –  Vedic Birthday Calculator',
+      hi: 'तिथि प्रवेश  –  वैदिक जन्मदिन',
+      sa: 'तिथिप्रवेशः  –  वैदिकजन्मदिवसगणकम्',
     },
     description: {
-      en: 'Find your Vedic birthday (Tithi Pravesha) — the exact date when your birth tithi recurs each year. Discover your year lord and annual theme based on classical Jyotish.',
-      hi: 'अपना वैदिक जन्मदिन (तिथि प्रवेश) खोजें — वह सटीक तिथि जब आपकी जन्म तिथि हर वर्ष पुनः आती है।',
-      sa: 'भवतः वैदिकजन्मदिवसं (तिथिप्रवेशम्) अन्विष्यतु — यत्र भवतः जन्मतिथिः प्रतिवर्षं पुनरागच्छति।',
+      en: 'Find your Vedic birthday (Tithi Pravesha)  –  the exact date when your birth tithi recurs each year. Discover your year lord and annual theme based on classical Jyotish.',
+      hi: 'अपना वैदिक जन्मदिन (तिथि प्रवेश) खोजें  –  वह सटीक तिथि जब आपकी जन्म तिथि हर वर्ष पुनः आती है।',
+      sa: 'भवतः वैदिकजन्मदिवसं (तिथिप्रवेशम्) अन्विष्यतु  –  यत्र भवतः जन्मतिथिः प्रतिवर्षं पुनरागच्छति।',
     },
     keywords: ['tithi pravesha', 'vedic birthday', 'vedic birthday calculator', 'annual tithi', 'tithi lord', 'vedic astrology'],
   },
   '/kp-system': {
     title: {
-      en: 'KP System — Krishnamurti Paddhati Chart',
-      hi: 'केपी प्रणाली — कृष्णमूर्ति पद्धति',
-      sa: 'केपीपद्धतिः — कृष्णमूर्तिपद्धतिः',
+      en: 'KP System  –  Krishnamurti Paddhati Chart',
+      hi: 'केपी प्रणाली  –  कृष्णमूर्ति पद्धति',
+      sa: 'केपीपद्धतिः  –  कृष्णमूर्तिपद्धतिः',
     },
     description: {
       en: 'Generate KP (Krishnamurti Paddhati) chart with Placidus houses, 249 sub-lord table, significators, and ruling planets for precise predictions.',
@@ -257,8 +257,8 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/tropical-compare': {
     title: {
-      en: 'Sidereal vs Tropical — Your Real Star Signs',
-      hi: 'सायन बनाम निरयन — आपकी असली राशि',
+      en: 'Sidereal vs Tropical  –  Your Real Star Signs',
+      hi: 'सायन बनाम निरयन  –  आपकी असली राशि',
       sa: 'सायनं निरयनं च',
     },
     description: {
@@ -270,9 +270,9 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/sign-shift': {
     title: {
-      en: 'Why Your Western Horoscope Might Be Wrong — Sign Shift Calculator',
-      hi: 'आपकी पश्चिमी राशि गलत क्यों हो सकती है — राशि परिवर्तन',
-      sa: 'पाश्चात्यराशिः कुतः भ्रान्ता स्यात् — राशिपरिवर्तनम्',
+      en: 'Why Your Western Horoscope Might Be Wrong  –  Sign Shift Calculator',
+      hi: 'आपकी पश्चिमी राशि गलत क्यों हो सकती है  –  राशि परिवर्तन',
+      sa: 'पाश्चात्यराशिः कुतः भ्रान्ता स्यात्  –  राशिपरिवर्तनम्',
     },
     description: {
       en: 'See how the 24° ayanamsha shift between tropical and sidereal zodiacs changes your entire birth chart. Compare all 9 planets side by side and discover your true Vedic signs.',
@@ -283,12 +283,12 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/sign-calculator': {
     title: {
-      en: 'Sun & Moon Sign Calculator — Find Your Rashi',
-      hi: 'सूर्य और चन्द्र राशि गणक — अपनी राशि जानें',
-      sa: 'सूर्यचन्द्रराशिगणकम् — स्वराशिं जानीयात्',
+      en: 'Sun & Moon Sign Calculator  –  Find Your Rashi',
+      hi: 'सूर्य और चन्द्र राशि गणक  –  अपनी राशि जानें',
+      sa: 'सूर्यचन्द्रराशिगणकम्  –  स्वराशिं जानीयात्',
     },
     description: {
-      en: 'Find your real Vedic Sun sign, Moon sign & Nakshatra — enter your birth details and get results instantly. Free, accurate, no signup.',
+      en: 'Find your real Vedic Sun sign, Moon sign & Nakshatra  –  enter your birth details and get results instantly. Free, accurate, no signup.',
       hi: 'अपनी वैदिक सूर्य राशि, चन्द्र राशि और जन्म नक्षत्र तुरंत जानें। निःशुल्क और सटीक।',
       sa: 'स्वस्य वैदिकसूर्यराशिं चन्द्रराशिं जन्मनक्षत्रं च शीघ्रं जानीयात्।',
     },
@@ -296,12 +296,12 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/sade-sati': {
     title: {
-      en: 'Sade Sati Calculator — Saturn Transit Analysis',
-      hi: 'साढ़े साती गणक — शनि गोचर विश्लेषण',
-      sa: 'साडेसातिगणकम् — शनिगोचरविश्लेषणम्',
+      en: 'Sade Sati Calculator  –  Saturn Transit Analysis',
+      hi: 'साढ़े साती गणक  –  शनि गोचर विश्लेषण',
+      sa: 'साडेसातिगणकम्  –  शनिगोचरविश्लेषणम्',
     },
     description: {
-      en: 'Is Sade Sati active for you? Check now — enter your Moon sign for instant phase analysis, start/end dates, intensity score & remedies. Free calculator.',
+      en: 'Is Sade Sati active for you? Check now  –  enter your Moon sign for instant phase analysis, start/end dates, intensity score & remedies. Free calculator.',
       hi: 'जानें कि क्या आपकी चन्द्र राशि पर साढ़े साती सक्रिय है। चरण विश्लेषण, तिथियां और उपाय।',
       sa: 'स्वचन्द्रराश्यां साडेसातिः सक्रिया किं वेति जानीयात्। चरणविश्लेषणं तिथयः उपायाश्च।',
     },
@@ -309,9 +309,9 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/muhurta-ai': {
     title: {
-      en: 'Shubh Muhurta Finder — Auspicious Dates & Times for 20 Activities',
-      hi: 'शुभ मुहूर्त खोजक — 20 कार्यों के लिए शुभ तिथि एवं समय',
-      sa: 'शुभमुहूर्तान्वेषकम् — 20 कार्याणां कृते शुभतिथिसमयौ',
+      en: 'Shubh Muhurta Finder  –  Auspicious Dates & Times for 20 Activities',
+      hi: 'शुभ मुहूर्त खोजक  –  20 कार्यों के लिए शुभ तिथि एवं समय',
+      sa: 'शुभमुहूर्तान्वेषकम्  –  20 कार्याणां कृते शुभतिथिसमयौ',
     },
     description: {
       en: 'Find the most auspicious date and time for marriage, griha pravesh, business, and 18 more activities. 36-rule Vedic scoring with 15-minute precision. Free.',
@@ -322,8 +322,8 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/cosmic-blueprint': {
     title: {
-      en: 'Cosmic Blueprint — Your Vedic Personality Profile',
-      hi: 'कॉस्मिक ब्लूप्रिंट — आपका वैदिक व्यक्तित्व',
+      en: 'Cosmic Blueprint  –  Your Vedic Personality Profile',
+      hi: 'कॉस्मिक ब्लूप्रिंट  –  आपका वैदिक व्यक्तित्व',
       sa: 'दैवनिर्माणम्',
     },
     description: {
@@ -335,9 +335,9 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/vrat-calendar': {
     title: {
-      en: 'Vrat Calendar — Follow & Track Your Vrats',
-      hi: 'व्रत कैलेंडर — अपने व्रतों का अनुसरण करें',
-      sa: 'व्रतपञ्चाङ्गम् — व्रतानि अनुसरतु',
+      en: 'Vrat Calendar  –  Follow & Track Your Vrats',
+      hi: 'व्रत कैलेंडर  –  अपने व्रतों का अनुसरण करें',
+      sa: 'व्रतपञ्चाङ्गम्  –  व्रतानि अनुसरतु',
     },
     description: {
       en: 'Follow Ekadashi, Pradosham, Purnima, Sankashti Chaturthi, and more. Get personalized reminders before each vrat.',
@@ -348,21 +348,21 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/charts': {
     title: {
-      en: 'Vedic Charts & Tools — Kundali, Divisional, KP & More',
-      hi: 'वैदिक कुण्डली और उपकरण — कुण्डली, वर्ग, केपी आदि',
+      en: 'Vedic Charts & Tools  –  Kundali, Divisional, KP & More',
+      hi: 'वैदिक कुण्डली और उपकरण  –  कुण्डली, वर्ग, केपी आदि',
       sa: 'वैदिककुण्डलीसाधनानि',
     },
     description: {
-      en: 'Access all Vedic astrology chart tools — Kundali, Varshaphal, KP System, Prashna, matching, and more. Free, accurate, and instant.',
-      hi: 'सभी वैदिक ज्योतिष कुण्डली उपकरण — कुण्डली, वर्षफल, केपी, प्रश्न, मिलान आदि।',
+      en: 'Access all Vedic astrology chart tools  –  Kundali, Varshaphal, KP System, Prashna, matching, and more. Free, accurate, and instant.',
+      hi: 'सभी वैदिक ज्योतिष कुण्डली उपकरण  –  कुण्डली, वर्षफल, केपी, प्रश्न, मिलान आदि।',
       sa: 'सर्वाणि वैदिकज्योतिषकुण्डलीसाधनानि।',
     },
     keywords: ['vedic charts', 'kundali tools', 'birth chart', 'divisional charts', 'kp system'],
   },
   '/rituals': {
     title: {
-      en: 'Hindu Rituals & Puja Vidhi — Step-by-Step Guides',
-      hi: 'हिंदू अनुष्ठान और पूजा विधि — चरणबद्ध मार्गदर्शिका',
+      en: 'Hindu Rituals & Puja Vidhi  –  Step-by-Step Guides',
+      hi: 'हिंदू अनुष्ठान और पूजा विधि  –  चरणबद्ध मार्गदर्शिका',
       sa: 'हिन्दूअनुष्ठानानि पूजाविधिश्च',
     },
     description: {
@@ -374,9 +374,9 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/lunar-calendar': {
     title: {
-      en: 'Lunar Lifestyle Calendar — Moon Phase Energy Guide',
-      hi: 'चंद्र जीवनशैली कैलेंडर — चंद्र ऊर्जा मार्गदर्शिका',
-      sa: 'चन्द्रकलापत्रम् — चन्द्रशक्तिमार्गदर्शिका',
+      en: 'Lunar Lifestyle Calendar  –  Moon Phase Energy Guide',
+      hi: 'चंद्र जीवनशैली कैलेंडर  –  चंद्र ऊर्जा मार्गदर्शिका',
+      sa: 'चन्द्रकलापत्रम्  –  चन्द्रशक्तिमार्गदर्शिका',
     },
     description: {
       en: 'Track the Moon\'s daily energy with our precision lunar calendar. See best/avoid activities for each day based on Vedic Panchang.',
@@ -387,9 +387,9 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/baby-names': {
     title: {
-      en: 'Baby Names by Nakshatra — Vedic Name Finder',
-      hi: 'नक्षत्र के अनुसार बच्चे का नाम — वैदिक नाम खोजक',
-      sa: 'नक्षत्रानुसारं शिशुनाम — वैदिकनामान्वेषकम्',
+      en: 'Baby Names by Nakshatra  –  Vedic Name Finder',
+      hi: 'नक्षत्र के अनुसार बच्चे का नाम  –  वैदिक नाम खोजक',
+      sa: 'नक्षत्रानुसारं शिशुनाम  –  वैदिकनामान्वेषकम्',
     },
     description: {
       en: 'Find the perfect baby name based on birth Nakshatra syllables. Traditional Vedic naming with Sanskrit meanings and auspicious letters.',
@@ -400,9 +400,9 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/prashna': {
     title: {
-      en: 'Prashna Kundali — Vedic Horary Astrology',
-      hi: 'प्रश्न कुण्डली — वैदिक प्रश्न ज्योतिष',
-      sa: 'प्रश्नकुण्डली — वैदिकप्रश्नज्योतिषम्',
+      en: 'Prashna Kundali  –  Vedic Horary Astrology',
+      hi: 'प्रश्न कुण्डली  –  वैदिक प्रश्न ज्योतिष',
+      sa: 'प्रश्नकुण्डली  –  वैदिकप्रश्नज्योतिषम्',
     },
     description: {
       en: 'Cast a Prashna (horary) chart for immediate answers. Vedic horary astrology based on the exact moment of your question.',
@@ -413,9 +413,9 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/horoscope': {
     title: {
-      en: 'Daily Horoscope 2026 — All 12 Zodiac Signs | Vedic Rashifal Today',
-      hi: 'दैनिक राशिफल 2026 — सभी 12 राशियाँ | आज का राशिफल',
-      sa: 'दैनिकराशिफलम् — द्वादशराशयः',
+      en: 'Daily Horoscope 2026  –  All 12 Zodiac Signs | Vedic Rashifal Today',
+      hi: 'दैनिक राशिफल 2026  –  सभी 12 राशियाँ | आज का राशिफल',
+      sa: 'दैनिकराशिफलम्  –  द्वादशराशयः',
     },
     description: {
       en: 'Free daily horoscope for all 12 zodiac signs based on real Vedic planetary transits. Check your Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, Pisces horoscope today.',
@@ -444,9 +444,9 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/transits': {
     title: {
-      en: 'Planet Transits (Gochar) — Live Planetary Positions',
-      hi: 'ग्रह गोचर — वर्तमान ग्रह स्थिति',
-      sa: 'ग्रहगोचरम् — वर्तमानग्रहस्थितिः',
+      en: 'Planet Transits (Gochar)  –  Live Planetary Positions',
+      hi: 'ग्रह गोचर  –  वर्तमान ग्रह स्थिति',
+      sa: 'ग्रहगोचरम्  –  वर्तमानग्रहस्थितिः',
     },
     description: {
       en: 'Live planetary transit positions with sign ingress dates, retrograde periods, and transit effects for all 9 Vedic planets.',
@@ -457,7 +457,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/retrograde': {
     title: {
-      en: 'Retrograde Calendar 2026 — Mercury, Venus, Mars, Jupiter, Saturn',
+      en: 'Retrograde Calendar 2026  –  Mercury, Venus, Mars, Jupiter, Saturn',
       hi: 'वक्री ग्रह कैलेंडर 2026',
       sa: 'वक्रीग्रहपञ्चाङ्गम् २०२६',
     },
@@ -472,9 +472,9 @@ export const PAGE_META: Record<string, PageMeta> = {
   // ─── Deep dives ───────────────────────────────────────────
   '/panchang/tithi': {
     title: {
-      en: 'Tithi — The Lunar Day in Vedic Astrology',
-      hi: 'तिथि — वैदिक ज्योतिष में चान्द्र दिवस',
-      sa: 'तिथिः — वैदिकज्योतिषे चान्द्रदिवसः',
+      en: 'Tithi  –  The Lunar Day in Vedic Astrology',
+      hi: 'तिथि  –  वैदिक ज्योतिष में चान्द्र दिवस',
+      sa: 'तिथिः  –  वैदिकज्योतिषे चान्द्रदिवसः',
     },
     description: {
       en: 'Complete guide to all 30 Tithis in the Hindu Panchang. Shukla and Krishna Paksha, Purnima, Amavasya, and their spiritual significance.',
@@ -485,9 +485,9 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/panchang/nakshatra': {
     title: {
-      en: '27 Nakshatras — Lunar Mansions in Vedic Astrology',
-      hi: '27 नक्षत्र — वैदिक ज्योतिष में चन्द्र भवन',
-      sa: '२७ नक्षत्राणि — वैदिकज्योतिषे चन्द्रभवनानि',
+      en: '27 Nakshatras  –  Lunar Mansions in Vedic Astrology',
+      hi: '27 नक्षत्र  –  वैदिक ज्योतिष में चन्द्र भवन',
+      sa: '२७ नक्षत्राणि  –  वैदिकज्योतिषे चन्द्रभवनानि',
     },
     description: {
       en: 'Explore all 27 Nakshatras with deities, ruling planets, symbols, padas, and personality traits. The foundation of Vedic astrology.',
@@ -499,72 +499,72 @@ export const PAGE_META: Record<string, PageMeta> = {
 
   // ─── Rashi Detail Pages (12) ──────────────────────────────
   '/panchang/rashi/mesh': {
-    title: { en: "Aries (Mesh) — Personality, Career, Love & Today's Horoscope", hi: 'मेष राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'मेषराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
-    description: { en: "Complete Aries (Mesh Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Vedic astrology analysis with lucky numbers, colors, and compatible signs.", hi: 'मेष राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'मेषराशेः सम्पूर्णमार्गदर्शनम् — व्यक्तित्वं वृत्तिः स्वास्थ्यं सम्बन्धाः।' },
+    title: { en: "Aries (Mesh)  –  Personality, Career, Love & Today's Horoscope", hi: 'मेष राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'मेषराशिः  –  व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Aries (Mesh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Vedic astrology analysis with lucky numbers, colors, and compatible signs.", hi: 'मेष राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'मेषराशेः सम्पूर्णमार्गदर्शनम्  –  व्यक्तित्वं वृत्तिः स्वास्थ्यं सम्बन्धाः।' },
     keywords: ['aries vedic astrology', 'mesh rashi', 'aries personality', 'aries horoscope today', 'mesh rashi career'],
   },
   '/panchang/rashi/vrishabh': {
-    title: { en: "Taurus (Vrishabh) — Personality, Career, Love & Today's Horoscope", hi: 'वृषभ राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'वृषभराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
-    description: { en: "Complete Taurus (Vrishabh Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Venus-ruled earth sign analysis.", hi: 'वृषभ राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'वृषभराशेः सम्पूर्णमार्गदर्शनम्।' },
+    title: { en: "Taurus (Vrishabh)  –  Personality, Career, Love & Today's Horoscope", hi: 'वृषभ राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'वृषभराशिः  –  व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Taurus (Vrishabh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Venus-ruled earth sign analysis.", hi: 'वृषभ राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'वृषभराशेः सम्पूर्णमार्गदर्शनम्।' },
     keywords: ['taurus vedic astrology', 'vrishabh rashi', 'taurus personality', 'taurus horoscope today'],
   },
   '/panchang/rashi/mithun': {
-    title: { en: "Gemini (Mithun) — Personality, Career, Love & Today's Horoscope", hi: 'मिथुन राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'मिथुनराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
-    description: { en: "Complete Gemini (Mithun Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Mercury-ruled air sign analysis.", hi: 'मिथुन राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'मिथुनराशेः सम्पूर्णमार्गदर्शनम्।' },
+    title: { en: "Gemini (Mithun)  –  Personality, Career, Love & Today's Horoscope", hi: 'मिथुन राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'मिथुनराशिः  –  व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Gemini (Mithun Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Mercury-ruled air sign analysis.", hi: 'मिथुन राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'मिथुनराशेः सम्पूर्णमार्गदर्शनम्।' },
     keywords: ['gemini vedic astrology', 'mithun rashi', 'gemini personality', 'gemini horoscope today'],
   },
   '/panchang/rashi/kark': {
-    title: { en: "Cancer (Kark) — Personality, Career, Love & Today's Horoscope", hi: 'कर्क राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'कर्कटराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
-    description: { en: "Complete Cancer (Kark Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Moon-ruled water sign analysis.", hi: 'कर्क राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'कर्कटराशेः सम्पूर्णमार्गदर्शनम्।' },
+    title: { en: "Cancer (Kark)  –  Personality, Career, Love & Today's Horoscope", hi: 'कर्क राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'कर्कटराशिः  –  व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Cancer (Kark Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Moon-ruled water sign analysis.", hi: 'कर्क राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'कर्कटराशेः सम्पूर्णमार्गदर्शनम्।' },
     keywords: ['cancer vedic astrology', 'kark rashi', 'cancer personality', 'cancer horoscope today'],
   },
   '/panchang/rashi/simha': {
-    title: { en: "Leo (Simha) — Personality, Career, Love & Today's Horoscope", hi: 'सिंह राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'सिंहराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
-    description: { en: "Complete Leo (Simha Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Sun-ruled fire sign analysis.", hi: 'सिंह राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'सिंहराशेः सम्पूर्णमार्गदर्शनम्।' },
+    title: { en: "Leo (Simha)  –  Personality, Career, Love & Today's Horoscope", hi: 'सिंह राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'सिंहराशिः  –  व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Leo (Simha Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Sun-ruled fire sign analysis.", hi: 'सिंह राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'सिंहराशेः सम्पूर्णमार्गदर्शनम्।' },
     keywords: ['leo vedic astrology', 'simha rashi', 'leo personality', 'leo horoscope today'],
   },
   '/panchang/rashi/kanya': {
-    title: { en: "Virgo (Kanya) — Personality, Career, Love & Today's Horoscope", hi: 'कन्या राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'कन्याराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
-    description: { en: "Complete Virgo (Kanya Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Mercury-ruled earth sign analysis.", hi: 'कन्या राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'कन्याराशेः सम्पूर्णमार्गदर्शनम्।' },
+    title: { en: "Virgo (Kanya)  –  Personality, Career, Love & Today's Horoscope", hi: 'कन्या राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'कन्याराशिः  –  व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Virgo (Kanya Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Mercury-ruled earth sign analysis.", hi: 'कन्या राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'कन्याराशेः सम्पूर्णमार्गदर्शनम्।' },
     keywords: ['virgo vedic astrology', 'kanya rashi', 'virgo personality', 'virgo horoscope today'],
   },
   '/panchang/rashi/tula': {
-    title: { en: "Libra (Tula) — Personality, Career, Love & Today's Horoscope", hi: 'तुला राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'तुलाराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
-    description: { en: "Complete Libra (Tula Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Venus-ruled air sign analysis.", hi: 'तुला राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'तुलाराशेः सम्पूर्णमार्गदर्शनम्।' },
+    title: { en: "Libra (Tula)  –  Personality, Career, Love & Today's Horoscope", hi: 'तुला राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'तुलाराशिः  –  व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Libra (Tula Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Venus-ruled air sign analysis.", hi: 'तुला राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'तुलाराशेः सम्पूर्णमार्गदर्शनम्।' },
     keywords: ['libra vedic astrology', 'tula rashi', 'libra personality', 'libra horoscope today'],
   },
   '/panchang/rashi/vrishchik': {
-    title: { en: "Scorpio (Vrishchik) — Personality, Career, Love & Today's Horoscope", hi: 'वृश्चिक राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'वृश्चिकराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
-    description: { en: "Complete Scorpio (Vrishchik Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Mars-ruled water sign analysis.", hi: 'वृश्चिक राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'वृश्चिकराशेः सम्पूर्णमार्गदर्शनम्।' },
+    title: { en: "Scorpio (Vrishchik)  –  Personality, Career, Love & Today's Horoscope", hi: 'वृश्चिक राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'वृश्चिकराशिः  –  व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Scorpio (Vrishchik Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Mars-ruled water sign analysis.", hi: 'वृश्चिक राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'वृश्चिकराशेः सम्पूर्णमार्गदर्शनम्।' },
     keywords: ['scorpio vedic astrology', 'vrishchik rashi', 'scorpio personality', 'scorpio horoscope today'],
   },
   '/panchang/rashi/dhanu': {
-    title: { en: "Sagittarius (Dhanu) — Personality, Career, Love & Today's Horoscope", hi: 'धनु राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'धनुराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
-    description: { en: "Complete Sagittarius (Dhanu Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Jupiter-ruled fire sign analysis.", hi: 'धनु राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'धनुराशेः सम्पूर्णमार्गदर्शनम्।' },
+    title: { en: "Sagittarius (Dhanu)  –  Personality, Career, Love & Today's Horoscope", hi: 'धनु राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'धनुराशिः  –  व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Sagittarius (Dhanu Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Jupiter-ruled fire sign analysis.", hi: 'धनु राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'धनुराशेः सम्पूर्णमार्गदर्शनम्।' },
     keywords: ['sagittarius vedic astrology', 'dhanu rashi', 'sagittarius personality', 'sagittarius horoscope today'],
   },
   '/panchang/rashi/makar': {
-    title: { en: "Capricorn (Makar) — Personality, Career, Love & Today's Horoscope", hi: 'मकर राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'मकरराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
-    description: { en: "Complete Capricorn (Makar Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Saturn-ruled earth sign analysis.", hi: 'मकर राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'मकरराशेः सम्पूर्णमार्गदर्शनम्।' },
+    title: { en: "Capricorn (Makar)  –  Personality, Career, Love & Today's Horoscope", hi: 'मकर राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'मकरराशिः  –  व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Capricorn (Makar Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Saturn-ruled earth sign analysis.", hi: 'मकर राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'मकरराशेः सम्पूर्णमार्गदर्शनम्।' },
     keywords: ['capricorn vedic astrology', 'makar rashi', 'capricorn personality', 'capricorn horoscope today'],
   },
   '/panchang/rashi/kumbh': {
-    title: { en: "Aquarius (Kumbh) — Personality, Career, Love & Today's Horoscope", hi: 'कुम्भ राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'कुम्भराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
-    description: { en: "Complete Aquarius (Kumbh Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Saturn-ruled air sign analysis.", hi: 'कुम्भ राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'कुम्भराशेः सम्पूर्णमार्गदर्शनम्।' },
+    title: { en: "Aquarius (Kumbh)  –  Personality, Career, Love & Today's Horoscope", hi: 'कुम्भ राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'कुम्भराशिः  –  व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Aquarius (Kumbh Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Saturn-ruled air sign analysis.", hi: 'कुम्भ राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'कुम्भराशेः सम्पूर्णमार्गदर्शनम्।' },
     keywords: ['aquarius vedic astrology', 'kumbh rashi', 'aquarius personality', 'aquarius horoscope today'],
   },
   '/panchang/rashi/meen': {
-    title: { en: "Pisces (Meen) — Personality, Career, Love & Today's Horoscope", hi: 'मीन राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'मीनराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
-    description: { en: "Complete Pisces (Meen Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Jupiter-ruled water sign analysis.", hi: 'मीन राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'मीनराशेः सम्पूर्णमार्गदर्शनम्।' },
+    title: { en: "Pisces (Meen)  –  Personality, Career, Love & Today's Horoscope", hi: 'मीन राशि  –  व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'मीनराशिः  –  व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Pisces (Meen Rashi) guide  –  personality traits, career aptitude, health, relationships, and daily horoscope. Jupiter-ruled water sign analysis.", hi: 'मीन राशि का पूरा मार्गदर्शन  –  व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'मीनराशेः सम्पूर्णमार्गदर्शनम्।' },
     keywords: ['pisces vedic astrology', 'meen rashi', 'pisces personality', 'pisces horoscope today'],
   },
 
   // ─── Dosha Checkers ────────────────────────────────────────
   '/mangal-dosha': {
     title: {
-      en: 'Mangal Dosha Calculator — Check Mars Dosha in Your Chart',
-      hi: 'मंगल दोष गणक — अपनी कुण्डली में मंगल दोष जाँचें',
-      sa: 'मङ्गलदोषगणकम् — स्वकुण्डल्यां मङ्गलदोषं परीक्षतु',
+      en: 'Mangal Dosha Calculator  –  Check Mars Dosha in Your Chart',
+      hi: 'मंगल दोष गणक  –  अपनी कुण्डली में मंगल दोष जाँचें',
+      sa: 'मङ्गलदोषगणकम्  –  स्वकुण्डल्यां मङ्गलदोषं परीक्षतु',
     },
     description: {
       en: 'Free Mangal Dosha (Kuja Dosha) calculator. Check if Mars Dosha is present in your birth chart, its severity, affected life areas, cancellation conditions, and remedies.',
@@ -575,9 +575,9 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/kaal-sarp': {
     title: {
-      en: 'Kaal Sarp Dosha Calculator — Check if Present in Your Kundali',
-      hi: 'काल सर्प दोष गणक — क्या आपकी कुण्डली में है?',
-      sa: 'कालसर्पदोषगणकम् — स्वकुण्डल्यां विद्यते किम्?',
+      en: 'Kaal Sarp Dosha Calculator  –  Check if Present in Your Kundali',
+      hi: 'काल सर्प दोष गणक  –  क्या आपकी कुण्डली में है?',
+      sa: 'कालसर्पदोषगणकम्  –  स्वकुण्डल्यां विद्यते किम्?',
     },
     description: {
       en: 'Free Kaal Sarp Dosha checker. Check all 12 types of Kaal Sarp Yoga based on Rahu-Ketu axis in your birth chart. Severity analysis and remedies.',
@@ -588,9 +588,9 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/pitra-dosha': {
     title: {
-      en: 'Pitra Dosha Check — Ancestral Karma in Your Birth Chart',
-      hi: 'पितृ दोष जाँच — जन्म कुण्डली में पैतृक कर्म',
-      sa: 'पितृदोषपरीक्षा — जन्मकुण्डल्यां पैतृककर्म',
+      en: 'Pitra Dosha Check  –  Ancestral Karma in Your Birth Chart',
+      hi: 'पितृ दोष जाँच  –  जन्म कुण्डली में पैतृक कर्म',
+      sa: 'पितृदोषपरीक्षा  –  जन्मकुण्डल्यां पैतृककर्म',
     },
     description: {
       en: 'Free Pitra Dosha checker. Analyze Sun-Rahu conjunction, 9th house affliction, and ancestral karma indicators in your Vedic birth chart. Severity and Shraddha remedies.',
@@ -607,83 +607,83 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['shraddha', 'pitru paksha', 'death anniversary tithi', 'shradh dates'],
   },
   '/vedic-time': {
-    title: { en: 'Vedic Time — Ghati, Pala, Muhurta', hi: 'वैदिक समय — घटी, पल, मुहूर्त', sa: 'वैदिकसमयः — घटी पलः मुहूर्तः' },
+    title: { en: 'Vedic Time  –  Ghati, Pala, Muhurta', hi: 'वैदिक समय  –  घटी, पल, मुहूर्त', sa: 'वैदिकसमयः  –  घटी पलः मुहूर्तः' },
     description: { en: 'Convert between modern and Vedic time units. Ghati, Pala, Vipala, Prahara, and Muhurta explained with live conversions.', hi: 'आधुनिक और वैदिक समय इकाइयों के बीच रूपांतरण। घटी, पल, विपल, प्रहर और मुहूर्त।', sa: 'आधुनिकवैदिककालमानयोः रूपान्तरणम्।' },
     keywords: ['vedic time', 'ghati', 'pala', 'muhurta', 'hindu time units'],
   },
   '/upagraha': {
-    title: { en: 'Upagraha — Shadow Sub-Planets', hi: 'उपग्रह — छाया उप-ग्रह', sa: 'उपग्रहाः — छायोपग्रहाः' },
+    title: { en: 'Upagraha  –  Shadow Sub-Planets', hi: 'उपग्रह  –  छाया उप-ग्रह', sa: 'उपग्रहाः  –  छायोपग्रहाः' },
     description: { en: 'Calculate Upagrahas (shadow sub-planets) including Dhuma, Vyatipata, Parivesha, Indra Chapa, and Upaketu in your chart.', hi: 'अपनी कुण्डली में धूम, व्यतीपात, परिवेश, इन्द्रचाप और उपकेतु की गणना करें।', sa: 'स्वकुण्डल्यां धूमव्यतीपातपरिवेशेन्द्रचापोपकेतूनां गणनां कुर्यात्।' },
     keywords: ['upagraha', 'shadow planets', 'dhuma', 'vyatipata', 'upaketu'],
   },
   '/devotional': {
-    title: { en: 'Devotional Library — Aarti, Chalisa, Stotram, Mantra with Meaning', hi: 'भक्ति संग्रह — आरती, चालीसा, स्तोत्र, मन्त्र अर्थ सहित', sa: 'भक्तिसंग्रहः — आरती चालीसा स्तोत्रं मन्त्रं अर्थसहितम्' },
-    description: { en: 'Complete collection of Hindu aartis, chalisas, stotrams and mantras — full Devanagari text, English transliteration, meaning, and significance. Hanuman Chalisa, Gayatri Mantra, Vishnu Sahasranama and 50+ sacred texts.', hi: 'हिन्दू आरती, चालीसा, स्तोत्र और मन्त्रों का सम्पूर्ण संग्रह — पूर्ण देवनागरी पाठ, अंग्रेजी लिप्यन्तरण, अर्थ और महत्व।', sa: 'हिन्दूआरती-चालीसा-स्तोत्र-मन्त्राणां सम्पूर्णसंग्रहः।' },
+    title: { en: 'Devotional Library  –  Aarti, Chalisa, Stotram, Mantra with Meaning', hi: 'भक्ति संग्रह  –  आरती, चालीसा, स्तोत्र, मन्त्र अर्थ सहित', sa: 'भक्तिसंग्रहः  –  आरती चालीसा स्तोत्रं मन्त्रं अर्थसहितम्' },
+    description: { en: 'Complete collection of Hindu aartis, chalisas, stotrams and mantras  –  full Devanagari text, English transliteration, meaning, and significance. Hanuman Chalisa, Gayatri Mantra, Vishnu Sahasranama and 50+ sacred texts.', hi: 'हिन्दू आरती, चालीसा, स्तोत्र और मन्त्रों का सम्पूर्ण संग्रह  –  पूर्ण देवनागरी पाठ, अंग्रेजी लिप्यन्तरण, अर्थ और महत्व।', sa: 'हिन्दूआरती-चालीसा-स्तोत्र-मन्त्राणां सम्पूर्णसंग्रहः।' },
     keywords: ['aarti', 'chalisa', 'stotram', 'mantra', 'hanuman chalisa', 'gayatri mantra', 'vishnu sahasranama', 'hindu devotional', 'aarti lyrics hindi', 'chalisa in hindi'],
   },
   '/puja': {
-    title: { en: 'Puja Vidhi — Step-by-Step Hindu Worship Guides', hi: 'पूजा विधि — हिन्दू पूजा मार्गदर्शिका', sa: 'पूजाविधिः — हिन्दूपूजामार्गदर्शिका' },
+    title: { en: 'Puja Vidhi  –  Step-by-Step Hindu Worship Guides', hi: 'पूजा विधि  –  हिन्दू पूजा मार्गदर्शिका', sa: 'पूजाविधिः  –  हिन्दूपूजामार्गदर्शिका' },
     description: { en: 'Complete puja vidhi guides with mantras, samagri lists, and procedures for 30+ Hindu festivals, vrats, and graha shanti pujas.', hi: '30+ हिन्दू त्योहारों, व्रतों और ग्रह शान्ति पूजाओं की मन्त्र, सामग्री और विधि सहित पूर्ण मार्गदर्शिका।', sa: '३०+ हिन्दूपर्वाणां व्रतानां ग्रहशान्तिपूजानां च मन्त्रसामग्रीविधिसहितं मार्गदर्शिका।' },
     keywords: ['puja vidhi', 'hindu puja', 'puja mantras', 'puja samagri', 'festival puja'],
   },
   '/sankalpa': {
-    title: { en: 'Sankalpa Generator — Sacred Resolution for Puja', hi: 'सङ्कल्प जनक — पूजा के लिए पवित्र सङ्कल्प', sa: 'सङ्कल्पजनकम् — पूजार्थं पवित्रसङ्कल्पः' },
-    description: { en: 'Generate personalized Sankalpa text in Devanagari with real Panchang data — Samvatsara, Tithi, Nakshatra, Gotra, and location.', hi: 'वास्तविक पंचांग तिथि, संवत्सर, नक्षत्र, गोत्र सहित व्यक्तिगत सङ्कल्प बनाएं।', sa: 'वास्तविकपञ्चाङ्गदत्तैः सह व्यक्तिगतसङ्कल्पं रचयतु।' },
+    title: { en: 'Sankalpa Generator  –  Sacred Resolution for Puja', hi: 'सङ्कल्प जनक  –  पूजा के लिए पवित्र सङ्कल्प', sa: 'सङ्कल्पजनकम्  –  पूजार्थं पवित्रसङ्कल्पः' },
+    description: { en: 'Generate personalized Sankalpa text in Devanagari with real Panchang data  –  Samvatsara, Tithi, Nakshatra, Gotra, and location.', hi: 'वास्तविक पंचांग तिथि, संवत्सर, नक्षत्र, गोत्र सहित व्यक्तिगत सङ्कल्प बनाएं।', sa: 'वास्तविकपञ्चाङ्गदत्तैः सह व्यक्तिगतसङ्कल्पं रचयतु।' },
     keywords: ['sankalpa', 'sankalp generator', 'puja sankalpa', 'sacred resolution'],
   },
   '/prashna-ashtamangala': {
-    title: { en: 'Ashtamangala Prashna — Kerala Horary Divination', hi: 'अष्टमंगल प्रश्न — केरल होरारी दैवज्ञ', sa: 'अष्टमङ्गलप्रश्नम् — केरलहोरारीदैवज्ञम्' },
+    title: { en: 'Ashtamangala Prashna  –  Kerala Horary Divination', hi: 'अष्टमंगल प्रश्न  –  केरल होरारी दैवज्ञ', sa: 'अष्टमङ्गलप्रश्नम्  –  केरलहोरारीदैवज्ञम्' },
     description: { en: 'Cast an Ashtamangala Prashna chart using the Kerala horary tradition. Pick 3 numbers (1-108) for divination with 8 sacred objects.', hi: 'केरल प्रश्न परम्परा से अष्टमंगल प्रश्न कुण्डली बनाएं।', sa: 'केरलप्रश्नपरम्परया अष्टमङ्गलप्रश्नकुण्डलीं रचयतु।' },
     keywords: ['ashtamangala prashna', 'kerala astrology', 'horary divination'],
   },
   '/rahu-kaal': {
-    title: { en: 'Rahu Kaal Today — Exact Time for Your City', hi: 'आज का राहु काल — आपके शहर का सटीक समय', sa: 'अद्य राहुकालः — भवतः नगरस्य यथार्थसमयः', mai: 'आइ के राहु काल — अहाँ के शहर के सटीक समय' },
-    description: { en: 'Rahu Kaal, Yamaganda & Gulika Kaal times for any city — accurate to the minute. Plus Choghadiya, Hora chart, and what to avoid during Rahu Kaal. Updated daily.', hi: 'राहु काल, यमगण्ड और गुलिक काल — किसी भी शहर के लिए मिनट-स्तरीय सटीकता। चौघड़िया, होरा, वर्जित कार्य। रोज़ अपडेट।', sa: 'राहुकालयमगण्डगुलिककालसमयाः — कस्यापि नगरस्य कृते निमेषस्तरीयसटीकता।' },
+    title: { en: 'Rahu Kaal Today  –  Exact Time for Your City', hi: 'आज का राहु काल  –  आपके शहर का सटीक समय', sa: 'अद्य राहुकालः  –  भवतः नगरस्य यथार्थसमयः', mai: 'आइ के राहु काल  –  अहाँ के शहर के सटीक समय' },
+    description: { en: 'Rahu Kaal, Yamaganda & Gulika Kaal times for any city  –  accurate to the minute. Plus Choghadiya, Hora chart, and what to avoid during Rahu Kaal. Updated daily.', hi: 'राहु काल, यमगण्ड और गुलिक काल  –  किसी भी शहर के लिए मिनट-स्तरीय सटीकता। चौघड़िया, होरा, वर्जित कार्य। रोज़ अपडेट।', sa: 'राहुकालयमगण्डगुलिककालसमयाः  –  कस्यापि नगरस्य कृते निमेषस्तरीयसटीकता।' },
     keywords: ['rahu kaal today', 'rahu kalam today', 'rahukaal timings', 'inauspicious time today', 'rahu kaal by city', 'rahu kaal time', 'today rahu kaal', 'आज का राहु काल'],
   },
   '/choghadiya': {
-    title: { en: 'Choghadiya Today — Best Time to Start Anything | Free', hi: 'आज का चौघड़िया — किसी भी कार्य का शुभ समय | मुफ़्त', sa: 'अद्य चौघड़िया — कार्यारम्भस्य शुभकालः' },
-    description: { en: 'Check today\'s Choghadiya now — find Amrit, Shubh & Labh slots for your city. Best times for travel, business, shopping & auspicious activities. Free, accurate, no signup.', hi: 'आज का चौघड़िया अभी देखें — अपने शहर के लिए अमृत, शुभ और लाभ काल। यात्रा, व्यापार, खरीदारी के लिए। मुफ़्त और सटीक।', sa: 'अद्यतनचौघड़ियासमयं पश्यतु — स्वनगरस्य कृते अमृत-शुभ-लाभकालः।' },
+    title: { en: 'Choghadiya Today  –  Best Time to Start Anything | Free', hi: 'आज का चौघड़िया  –  किसी भी कार्य का शुभ समय | मुफ़्त', sa: 'अद्य चौघड़िया  –  कार्यारम्भस्य शुभकालः' },
+    description: { en: 'Check today\'s Choghadiya now  –  find Amrit, Shubh & Labh slots for your city. Best times for travel, business, shopping & auspicious activities. Free, accurate, no signup.', hi: 'आज का चौघड़िया अभी देखें  –  अपने शहर के लिए अमृत, शुभ और लाभ काल। यात्रा, व्यापार, खरीदारी के लिए। मुफ़्त और सटीक।', sa: 'अद्यतनचौघड़ियासमयं पश्यतु  –  स्वनगरस्य कृते अमृत-शुभ-लाभकालः।' },
     keywords: ['choghadiya today', 'choghadiya timings', 'auspicious time today', 'shubh muhurat'],
   },
   '/hora': {
-    title: { en: 'Hora — Planetary Hours Calculator', hi: 'होरा — ग्रह घंटे गणक', sa: 'होरा — ग्रहघण्टागणकम्' },
+    title: { en: 'Hora  –  Planetary Hours Calculator', hi: 'होरा  –  ग्रह घंटे गणक', sa: 'होरा  –  ग्रहघण्टागणकम्' },
     description: { en: 'Calculate planetary hours (Hora) for any day and location. Know which planet rules each hour for muhurta selection and daily planning.', hi: 'किसी भी दिन और स्थान के लिए ग्रह होरा गणना करें। मुहूर्त चयन और दैनिक योजना के लिए प्रत्येक घंटे का ग्रह स्वामी जानें।', sa: 'कस्यापि दिनस्य स्थानस्य च कृते ग्रहहोरां गणयतु। मुहूर्तचयनाय दैनिकयोजनायै च प्रत्येकघण्टायाः ग्रहस्वामिनं जानीयात्।' },
     keywords: ['hora', 'planetary hours', 'hora calculator', 'graha hora', 'planetary hour ruler', 'best time for activity'],
   },
   '/chandrabalam': {
-    title: { en: 'Chandrabalam Today — Moon Strength for All 12 Signs', hi: 'आज का चन्द्रबल — सभी 12 राशियों के लिए चन्द्र बल', sa: 'अद्य चन्द्रबलम् — द्वादशराशिषु चन्द्रबलम्' },
+    title: { en: 'Chandrabalam Today  –  Moon Strength for All 12 Signs', hi: 'आज का चन्द्रबल  –  सभी 12 राशियों के लिए चन्द्र बल', sa: 'अद्य चन्द्रबलम्  –  द्वादशराशिषु चन्द्रबलम्' },
     description: { en: 'Check today\'s Chandrabalam (Moon strength) for all 12 zodiac signs. See if the Moon\'s transit is favorable or unfavorable for your birth rashi based on Muhurta Chintamani rules.', hi: 'सभी 12 राशियों के लिए आज का चन्द्रबल देखें। मुहूर्त चिन्तामणि नियमों के आधार पर जानें चन्द्र गोचर आपकी जन्म राशि के लिए अनुकूल है या प्रतिकूल।', sa: 'द्वादशराशिषु अद्यतनचन्द्रबलं पश्यतु। मुहूर्तचिन्तामणिनियमानुसारं चन्द्रगोचरः अनुकूलः प्रतिकूलो वा इति जानीयात्।' },
     keywords: ['chandrabalam', 'moon strength', 'chandrabalam today', 'moon transit', 'muhurta chintamani'],
   },
   '/tarabalam': {
-    title: { en: 'Tarabalam Today — Star Strength for All 27 Nakshatras', hi: 'आज का ताराबल — सभी 27 नक्षत्रों के लिए तारा बल', sa: 'अद्य ताराबलम् — सप्तविंशतिनक्षत्रेषु ताराबलम्' },
+    title: { en: 'Tarabalam Today  –  Star Strength for All 27 Nakshatras', hi: 'आज का ताराबल  –  सभी 27 नक्षत्रों के लिए तारा बल', sa: 'अद्य ताराबलम्  –  सप्तविंशतिनक्षत्रेषु ताराबलम्' },
     description: { en: 'Check today\'s Tarabalam (star strength) for all 27 nakshatras. The 9 tara cycle shows which birth nakshatras have favorable or unfavorable star strength today.', hi: 'सभी 27 नक्षत्रों के लिए आज का ताराबल देखें। 9 तारा चक्र दर्शाता है कि किन जन्म नक्षत्रों के लिए आज ताराबल अनुकूल है।', sa: 'सप्तविंशतिनक्षत्रेषु अद्यतनताराबलं पश्यतु। नवताराचक्रः दर्शयति कस्य जन्मनक्षत्रस्य अद्य ताराबलम् अनुकूलम् इति।' },
     keywords: ['tarabalam', 'star strength', 'tarabalam today', 'nakshatra tara', '9 taras'],
   },
   '/chandra-darshan': {
-    title: { en: 'Chandra Darshan Today — Moon Sighting Calculator', hi: 'चन्द्र दर्शन — नव चन्द्र दृश्यता गणक', sa: 'चन्द्रदर्शनम् — नवचन्द्रदृश्यतागणकम्' },
+    title: { en: 'Chandra Darshan Today  –  Moon Sighting Calculator', hi: 'चन्द्र दर्शन  –  नव चन्द्र दृश्यता गणक', sa: 'चन्द्रदर्शनम्  –  नवचन्द्रदृश्यतागणकम्' },
     description: { en: 'Is the new crescent Moon visible tonight? Calculate Moon age, elongation, and visibility conditions for your location. Includes upcoming Chandra Darshan dates for 6 months.', hi: 'क्या आज रात नव चन्द्रमा दृश्य है? अपने स्थान के लिए चन्द्र आयु, दूरी और दृश्यता स्थितियों की गणना करें।', sa: 'किम् अद्य रात्रौ नवचन्द्रः दृश्यते? स्वस्थानस्य कृते चन्द्रवयः दूरी दृश्यतास्थितिश्च गणयतु।' },
     keywords: ['chandra darshan', 'moon sighting', 'new moon visibility', 'hilal', 'crescent moon', 'moon age calculator'],
   },
   '/kaal-nirnaya': {
-    title: { en: 'Kaal Nirnaya — Hindu Time Reckoning', hi: 'काल निर्णय — हिन्दू कालगणना', sa: 'कालनिर्णयः — हिन्दूकालगणना' },
-    description: { en: 'Hindu time reckoning system — Kali Ahargana, Vikram Samvat, Shaka Samvat, Julian Day, and astronomical time calculations.', hi: 'कलि अहर्गण, विक्रम संवत्, शक संवत्, जूलियन दिन सहित हिन्दू कालगणना।', sa: 'कल्यहर्गणं विक्रमसंवत् शकसंवत् जूलियनदिनं सहितं हिन्दूकालगणना।' },
+    title: { en: 'Kaal Nirnaya  –  Hindu Time Reckoning', hi: 'काल निर्णय  –  हिन्दू कालगणना', sa: 'कालनिर्णयः  –  हिन्दूकालगणना' },
+    description: { en: 'Hindu time reckoning system  –  Kali Ahargana, Vikram Samvat, Shaka Samvat, Julian Day, and astronomical time calculations.', hi: 'कलि अहर्गण, विक्रम संवत्, शक संवत्, जूलियन दिन सहित हिन्दू कालगणना।', sa: 'कल्यहर्गणं विक्रमसंवत् शकसंवत् जूलियनदिनं सहितं हिन्दूकालगणना।' },
     keywords: ['kaal nirnaya', 'vikram samvat', 'hindu calendar', 'kali ahargana'],
   },
   '/nivas-shool': {
-    title: { en: 'Nivas Shool — Directional Defect Calculator', hi: 'निवास शूल — दिशा दोष गणक', sa: 'निवासशूलम् — दिशादोषगणकम्' },
+    title: { en: 'Nivas Shool  –  Directional Defect Calculator', hi: 'निवास शूल  –  दिशा दोष गणक', sa: 'निवासशूलम्  –  दिशादोषगणकम्' },
     description: { en: 'Check Nivas Shool (directional defect) for construction, travel, and relocation based on the current weekday and Panchang.', hi: 'वर्तमान वार और पंचांग के आधार पर निर्माण, यात्रा और स्थानांतरण के लिए निवास शूल जांचें।', sa: 'वर्तमानवारपञ्चाङ्गाधारेण निर्माणयात्रास्थानान्तराय निवासशूलं परीक्षतु।' },
     keywords: ['nivas shool', 'disha shool', 'directional defect', 'vastu direction'],
   },
   '/sky': {
-    title: { en: 'Live Sky Map — Sidereal Planetary Positions Today', hi: 'लाइव आकाश मानचित्र — आज की ग्रह स्थितियाँ', sa: 'नभोमानचित्रम् — अद्य ग्रहस्थितयः' },
-    description: { en: 'Real-time polar sky map showing all 9 Vedic grahas at their current sidereal positions (Lahiri ayanamsha). Rashi, nakshatra, retrograde status, and daily speed.', hi: 'वर्तमान साइडेरियल स्थितियों पर सभी 9 वैदिक ग्रहों को दिखाने वाला रियल-टाइम आकाश मानचित्र — राशि, नक्षत्र, वक्री स्थिति।', sa: 'लाहिर्यायनांशेन सह नवग्रहाणां वर्तमानस्थितिं दर्शयत् नभोमानचित्रम्।' },
+    title: { en: 'Live Sky Map  –  Sidereal Planetary Positions Today', hi: 'लाइव आकाश मानचित्र  –  आज की ग्रह स्थितियाँ', sa: 'नभोमानचित्रम्  –  अद्य ग्रहस्थितयः' },
+    description: { en: 'Real-time polar sky map showing all 9 Vedic grahas at their current sidereal positions (Lahiri ayanamsha). Rashi, nakshatra, retrograde status, and daily speed.', hi: 'वर्तमान साइडेरियल स्थितियों पर सभी 9 वैदिक ग्रहों को दिखाने वाला रियल-टाइम आकाश मानचित्र  –  राशि, नक्षत्र, वक्री स्थिति।', sa: 'लाहिर्यायनांशेन सह नवग्रहाणां वर्तमानस्थितिं दर्शयत् नभोमानचित्रम्।' },
     keywords: ['live sky map', 'planet positions today', 'vedic astrology sky', 'sidereal planets', 'graha positions'],
   },
   '/muhurat': {
-    title: { en: 'Muhurat Calendar — 36-Rule Classical Constraint Engine', hi: 'मुहूर्त कैलेंडर — 36 शास्त्रीय नियमों का बाधा-आधारित इंजन', sa: 'मुहूर्तपञ्चाङ्गम् — षट्त्रिंशत्नियमबाधायन्त्रम्' },
-    description: { en: 'Monthly muhurat calendar with 36 classical rules. Fatal doshas (Ganda Yoga, Dagdha Tithi, Gandanta) vetoed outright — not scored through. Each date gets 0-100 with pandit-style reasoning citing Muhurta Chintamani, Dharma Sindhu, and BPHS.', hi: '36 शास्त्रीय नियमों वाला मासिक मुहूर्त कैलेंडर। घातक दोष (गण्ड योग, दग्ध तिथि, गण्डान्त) सीधे वर्ज्य। प्रत्येक तिथि को मुहूर्त चिन्तामणि, धर्मसिन्धु और BPHS के उद्धरणों सहित 0-100 अंक।', sa: 'षट्त्रिंशत्शास्त्रीयनियमैः मासिकमुहूर्तपञ्चाङ्गम्। घातकदोषाः साक्षात् वर्ज्याः।' },
+    title: { en: 'Muhurat Calendar  –  36-Rule Classical Constraint Engine', hi: 'मुहूर्त कैलेंडर  –  36 शास्त्रीय नियमों का बाधा-आधारित इंजन', sa: 'मुहूर्तपञ्चाङ्गम्  –  षट्त्रिंशत्नियमबाधायन्त्रम्' },
+    description: { en: 'Monthly muhurat calendar with 36 classical rules. Fatal doshas (Ganda Yoga, Dagdha Tithi, Gandanta) vetoed outright  –  not scored through. Each date gets 0-100 with pandit-style reasoning citing Muhurta Chintamani, Dharma Sindhu, and BPHS.', hi: '36 शास्त्रीय नियमों वाला मासिक मुहूर्त कैलेंडर। घातक दोष (गण्ड योग, दग्ध तिथि, गण्डान्त) सीधे वर्ज्य। प्रत्येक तिथि को मुहूर्त चिन्तामणि, धर्मसिन्धु और BPHS के उद्धरणों सहित 0-100 अंक।', sa: 'षट्त्रिंशत्शास्त्रीयनियमैः मासिकमुहूर्तपञ्चाङ्गम्। घातकदोषाः साक्षात् वर्ज्याः।' },
     keywords: ['muhurat calendar', 'shubh muhurat', 'auspicious dates', 'marriage dates', 'muhurta chintamani', 'classical muhurta scoring'],
   },
 
@@ -739,118 +739,118 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['travel muhurat 2026', 'yatra muhurat', 'journey muhurat', 'safe travel time astrology'],
   },
   '/regional': {
-    title: { en: 'Regional Hindu Calendars — Tamil, Telugu, Bengali, Gujarati', hi: 'क्षेत्रीय हिन्दू कैलेंडर', sa: 'प्रादेशिकहिन्दूपञ्चाङ्गानि' },
-    description: { en: 'Regional Hindu calendar variants — Tamil, Telugu, Bengali, Marathi, Gujarati, Malayalam, and Kannada Panchang.', hi: 'तमिल, तेलुगु, बंगाली, मराठी, गुजराती, मलयालम और कन्नड़ पंचांग।', sa: 'तमिलतेलुगुबङ्गालमराठीगुजरातीमलयालकन्नडपञ्चाङ्गानि।' },
+    title: { en: 'Regional Hindu Calendars  –  Tamil, Telugu, Bengali, Gujarati', hi: 'क्षेत्रीय हिन्दू कैलेंडर', sa: 'प्रादेशिकहिन्दूपञ्चाङ्गानि' },
+    description: { en: 'Regional Hindu calendar variants  –  Tamil, Telugu, Bengali, Marathi, Gujarati, Malayalam, and Kannada Panchang.', hi: 'तमिल, तेलुगु, बंगाली, मराठी, गुजराती, मलयालम और कन्नड़ पंचांग।', sa: 'तमिलतेलुगुबङ्गालमराठीगुजरातीमलयालकन्नडपञ्चाङ्गानि।' },
     keywords: ['tamil calendar', 'telugu calendar', 'bengali calendar', 'regional panchang'],
   },
   '/calendar/regional/tamil': {
     // Tamil script in title helps this result stand out for Tamil-speaking searches
-    title: { en: 'Tamil Calendar (தமிழ் நாள்காட்டி) 2026 — Panchangam & Festivals | Dekho Panchang', hi: 'तमिल कैलेंडर (தமிழ் நாள்காட்டி) 2026 — पंचांगम् और त्योहार | Dekho Panchang', sa: 'तमिलपञ्चाङ्गम् (தமிழ் நாள்காட்டி) 2026 — पर्वाणि च।' },
-    description: { en: 'Complete Tamil Panchangam guide — 12 solar months from Chithirai to Panguni, festivals like Pongal, Chithirai Thiruvizha, Karthigai Deepam, and how Tamil calendar differs from North Indian systems.', hi: 'सम्पूर्ण तमिल पंचांगम् — चित्तिरै से पंगुनि तक 12 सौर मास, पोंगल, चित्तिरै तिरुविळा, कार्तिगै दीपम् जैसे त्योहार।', sa: 'सम्पूर्णतमिलपञ्चाङ्गम् — चित्तिरैतः पङ्गुनिपर्यन्तं १२ सौरमासाः पर्वाणि च।' },
+    title: { en: 'Tamil Calendar (தமிழ் நாள்காட்டி) 2026  –  Panchangam & Festivals | Dekho Panchang', hi: 'तमिल कैलेंडर (தமிழ் நாள்காட்டி) 2026  –  पंचांगम् और त्योहार | Dekho Panchang', sa: 'तमिलपञ्चाङ्गम् (தமிழ் நாள்காட்டி) 2026  –  पर्वाणि च।' },
+    description: { en: 'Complete Tamil Panchangam guide  –  12 solar months from Chithirai to Panguni, festivals like Pongal, Chithirai Thiruvizha, Karthigai Deepam, and how Tamil calendar differs from North Indian systems.', hi: 'सम्पूर्ण तमिल पंचांगम्  –  चित्तिरै से पंगुनि तक 12 सौर मास, पोंगल, चित्तिरै तिरुविळा, कार्तिगै दीपम् जैसे त्योहार।', sa: 'सम्पूर्णतमिलपञ्चाङ्गम्  –  चित्तिरैतः पङ्गुनिपर्यन्तं १२ सौरमासाः पर्वाणि च।' },
     keywords: ['tamil calendar', 'tamil panchangam', 'tamil months', 'pongal', 'puthandu', 'chithirai', 'karthigai deepam', 'தமிழ் நாள்காட்டி', 'தமிழ் பஞ்சாங்கம்'],
   },
   '/calendar/regional/bengali': {
     // Bengali script (বাংলা) in title makes this result stand out for Bangladeshi users searching in their script
-    title: { en: 'Bengali Calendar (বাংলা পঞ্জিকা) 2026 — Tithi, Festivals & Ekadashi | Dekho Panchang', hi: 'बंगाली पंचांग (বাংলা পঞ্জিকা) 2026 — तिथि, त्योहार और एकादशी | Dekho Panchang', sa: 'বাংলা পঞ্জিকা 2026 — बङ्गालपञ्जिका पर्वाणि च।' },
-    description: { en: 'Complete Bengali Panjika guide — 12 months from Boishakh to Choitro, Durga Puja schedule, Poila Boishakh, Kali Puja, Saraswati Puja, and how Bengali calendar differs from other systems.', hi: 'सम्पूर्ण बंगाली पंजिका — बैशाख से चैत्र तक 12 मास, दुर्गा पूजा, पहला बैशाख, काली पूजा, सरस्वती पूजा।', sa: 'সম্পূর্ণ বাংলা পঞ্জিকা — বৈশাখ থেকে চৈত্র।' },
+    title: { en: 'Bengali Calendar (বাংলা পঞ্জিকা) 2026  –  Tithi, Festivals & Ekadashi | Dekho Panchang', hi: 'बंगाली पंचांग (বাংলা পঞ্জিকা) 2026  –  तिथि, त्योहार और एकादशी | Dekho Panchang', sa: 'বাংলা পঞ্জিকা 2026  –  बङ्गालपञ्जिका पर्वाणि च।' },
+    description: { en: 'Complete Bengali Panjika guide  –  12 months from Boishakh to Choitro, Durga Puja schedule, Poila Boishakh, Kali Puja, Saraswati Puja, and how Bengali calendar differs from other systems.', hi: 'सम्पूर्ण बंगाली पंजिका  –  बैशाख से चैत्र तक 12 मास, दुर्गा पूजा, पहला बैशाख, काली पूजा, सरस्वती पूजा।', sa: 'সম্পূর্ণ বাংলা পঞ্জিকা  –  বৈশাখ থেকে চৈত্র।' },
     keywords: ['bengali calendar', 'bangla panjika', 'bengali months', 'durga puja', 'poila boishakh', 'kali puja', 'saraswati puja', 'বাংলা পঞ্জিকা', 'বাংলা ক্যালেন্ডার'],
   },
   '/calendar/regional/gujarati': {
     // Gujarati script (ગુજરાતી) in title makes this result stand out for Gujarati-script searchers
     title: {
-      en: 'ગુજરાતી પંચાંગ (Gujarati Calendar) 2026 — તિથિ, તહેવાર, એકાદશી | Dekho Panchang',
-      hi: 'ગુજરાતી પંચાંગ (गुजराती कैलेंडर) 2026 — तिथि, त्योहार, एकादशी | Dekho Panchang',
-      sa: 'ગુજરાતી પંચાંગ 2026 — गुजरातपञ्चाङ्गम् पर्वाणि च।',
-      gu: 'ગુજરાતી પંચાંગ 2026 — તિથિ, નક્ષત્ર, વ્રત અને ગુજરાતી તહેવારો | Dekho Panchang',
+      en: 'ગુજરાતી પંચાંગ (Gujarati Calendar) 2026  –  તિથિ, તહેવાર, એકાદશી | Dekho Panchang',
+      hi: 'ગુજરાતી પંચાંગ (गुजराती कैलेंडर) 2026  –  तिथि, त्योहार, एकादशी | Dekho Panchang',
+      sa: 'ગુજરાતી પંચાંગ 2026  –  गुजरातपञ्चाङ्गम् पर्वाणि च।',
+      gu: 'ગુજરાતી પંચાંગ 2026  –  તિથિ, નક્ષત્ર, વ્રત અને ગુજરાતી તહેવારો | Dekho Panchang',
     },
     description: {
-      en: 'Complete Gujarati Panchang — Vikram Samvat calendar, Uttarayan (Makar Sankranti), Navratri, Diwali & Bestu Varas (Gujarati New Year), Janmashtami. Tithi, Ekadashi, and key festival dates for the Gujarati community worldwide.',
-      hi: 'सम्पूर्ण गुजराती पंचांग — विक्रम सम्वत, उत्तरायण, नवरात्रि, दीवाली और बेस्तु वारस (गुजराती नव वर्ष), जन्माष्टमी। विश्व भर के गुजराती समुदाय के लिए तिथि, एकादशी और मुख्य त्योहारों की तारीखें।',
-      sa: 'सम्पूर्णगुजरातपञ्चाङ्गम् — विक्रमसम्वत् उत्तरायणम् नवरात्रिः दीपावली बेस्तुवारस् च।',
+      en: 'Complete Gujarati Panchang  –  Vikram Samvat calendar, Uttarayan (Makar Sankranti), Navratri, Diwali & Bestu Varas (Gujarati New Year), Janmashtami. Tithi, Ekadashi, and key festival dates for the Gujarati community worldwide.',
+      hi: 'सम्पूर्ण गुजराती पंचांग  –  विक्रम सम्वत, उत्तरायण, नवरात्रि, दीवाली और बेस्तु वारस (गुजराती नव वर्ष), जन्माष्टमी। विश्व भर के गुजराती समुदाय के लिए तिथि, एकादशी और मुख्य त्योहारों की तारीखें।',
+      sa: 'सम्पूर्णगुजरातपञ्चाङ्गम्  –  विक्रमसम्वत् उत्तरायणम् नवरात्रिः दीपावली बेस्तुवारस् च।',
       gu: 'ગુજરાત અને વિશ્વભરના ગુજરાતી સમુદાય માટે સંપૂર્ણ વૈદિક પંચાંગ. વિક્રમ સંવત, તિથિ, નવરાત્રિ, દિવાળી, જન્માષ્ટમી તારીખો.',
     },
     keywords: ['gujarati panchang', 'gujarati calendar 2026', 'vikram samvat', 'uttarayan', 'navratri gujarat', 'bestu varas', 'gujarati new year', 'diwali 2026', 'ગુજરાતી પંચાંગ', 'gujarati tithi today'],
   },
   '/about': {
-    title: { en: 'About Dekho Panchang — Vedic Astronomy Made Accessible', hi: 'देखो पंचांग के बारे में', sa: 'देखोपञ्चाङ्गस्य विषये' },
+    title: { en: 'About Dekho Panchang  –  Vedic Astronomy Made Accessible', hi: 'देखो पंचांग के बारे में', sa: 'देखोपञ्चाङ्गस्य विषये' },
     description: { en: 'Dekho Panchang brings the precision of Vedic astronomical calculations to the modern web. Built with pure mathematics, no external APIs.', hi: 'देखो पंचांग वैदिक खगोलीय गणनाओं की सटीकता को आधुनिक वेब पर लाता है।', sa: 'देखोपञ्चाङ्गं वैदिकखगोलगणनानां सम्यक्तां आधुनिकजालपृष्ठे आनयति।' },
     keywords: ['about dekho panchang', 'vedic astronomy', 'panchang calculator'],
   },
   '/vs/drik-panchang': {
-    title: { en: 'Dekho Panchang vs Drik Panchang — Feature Comparison 2026', hi: 'देखो पंचांग vs दृक् पंचांग — सुविधा तुलना 2026', sa: 'देखोपञ्चाङ्गं विरुद्ध दृक्पञ्चाङ्गम् — सुविधातुलना' },
+    title: { en: 'Dekho Panchang vs Drik Panchang  –  Feature Comparison 2026', hi: 'देखो पंचांग vs दृक् पंचांग  –  सुविधा तुलना 2026', sa: 'देखोपञ्चाङ्गं विरुद्ध दृक्पञ्चाङ्गम्  –  सुविधातुलना' },
     description: { en: 'Objective feature comparison between Dekho Panchang and Drik Panchang. AI interpretation, Muhurta AI, 10 languages, 106-module learning path, modern UI vs legacy platform.', hi: 'देखो पंचांग और दृक् पंचांग के बीच निष्पक्ष सुविधा तुलना। AI व्याख्या, मुहूर्त AI, 10 भाषाएँ, 106-मॉड्यूल शिक्षण पथ, आधुनिक UI।', sa: 'देखोपञ्चाङ्गस्य दृक्पञ्चाङ्गस्य च सुविधातुलना।' },
     keywords: ['dekho panchang vs drik panchang', 'panchang comparison', 'best panchang app', 'vedic astrology platform comparison', 'drik panchang alternative'],
   },
   '/pricing': {
-    title: { en: 'Pricing — Dekho Panchang Plans', hi: 'मूल्य — देखो पंचांग योजनाएं', sa: 'मूल्यम् — देखोपञ्चाङ्गयोजनाः' },
+    title: { en: 'Pricing  –  Dekho Panchang Plans', hi: 'मूल्य  –  देखो पंचांग योजनाएं', sa: 'मूल्यम्  –  देखोपञ्चाङ्गयोजनाः' },
     description: { en: 'Choose your plan. Free tier with full Panchang and basic Kundali. Pro and Jyotishi tiers for advanced features.', hi: 'अपनी योजना चुनें। पूर्ण पंचांग और मूल कुण्डली के साथ निःशुल्क स्तर।', sa: 'स्वयोजनां चिनुत। पूर्णपञ्चाङ्गमूलकुण्डल्या सह निःशुल्कस्तरः।' },
     keywords: ['dekho panchang pricing', 'vedic astrology plans'],
   },
 
   // ─── Panchang Deep Dives ─────────────────────────────────
   '/panchang/yoga': {
-    title: { en: '27 Yogas — Sun-Moon Combinations in Panchang', hi: '27 योग — पंचांग में सूर्य-चन्द्र संयोजन', sa: '२७ योगाः — पञ्चाङ्गे सूर्यचन्द्रसंयोजनानि' },
+    title: { en: '27 Yogas  –  Sun-Moon Combinations in Panchang', hi: '27 योग  –  पंचांग में सूर्य-चन्द्र संयोजन', sa: '२७ योगाः  –  पञ्चाङ्गे सूर्यचन्द्रसंयोजनानि' },
     description: { en: 'Complete guide to the 27 Panchang Yogas formed by the sum of Sun and Moon longitudes. Auspicious and inauspicious yogas.', hi: 'सूर्य और चन्द्र देशान्तरों के योग से बने 27 पंचांग योगों का पूर्ण मार्गदर्शन।', sa: 'सूर्यचन्द्रदेशान्तरयोगेन निर्मिता २७ पञ्चाङ्गयोगानां सम्पूर्णमार्गदर्शनम्।' },
     keywords: ['panchang yoga', '27 yogas', 'vishkambha', 'siddhi yoga'],
   },
   '/panchang/karana': {
-    title: { en: '11 Karanas — Half-Tithis in Vedic Calendar', hi: '11 करण — वैदिक कैलेंडर में अर्ध-तिथि', sa: '११ करणानि — वैदिकपञ्चाङ्गे अर्धतिथयः' },
-    description: { en: 'All 11 Karanas explained — 7 Chara and 4 Sthira. Vishti (Bhadra) Karana effects and timing.', hi: 'सभी 11 करणों की व्याख्या — 7 चर और 4 स्थिर। विष्टि (भद्रा) करण।', sa: 'सर्वेषां ११ करणानां व्याख्या — ७ चराणि ४ स्थिराणि च।' },
+    title: { en: '11 Karanas  –  Half-Tithis in Vedic Calendar', hi: '11 करण  –  वैदिक कैलेंडर में अर्ध-तिथि', sa: '११ करणानि  –  वैदिकपञ्चाङ्गे अर्धतिथयः' },
+    description: { en: 'All 11 Karanas explained  –  7 Chara and 4 Sthira. Vishti (Bhadra) Karana effects and timing.', hi: 'सभी 11 करणों की व्याख्या  –  7 चर और 4 स्थिर। विष्टि (भद्रा) करण।', sa: 'सर्वेषां ११ करणानां व्याख्या  –  ७ चराणि ४ स्थिराणि च।' },
     keywords: ['karana', 'half tithi', 'vishti bhadra', 'chara karana'],
   },
   '/panchang/grahan': {
-    title: { en: 'Grahan — Eclipses in Hindu Astronomy', hi: 'ग्रहण — हिन्दू खगोलशास्त्र में', sa: 'ग्रहणम् — हिन्दूखगोलशास्त्रे' },
+    title: { en: 'Grahan  –  Eclipses in Hindu Astronomy', hi: 'ग्रहण  –  हिन्दू खगोलशास्त्र में', sa: 'ग्रहणम्  –  हिन्दूखगोलशास्त्रे' },
     description: { en: 'Solar and lunar eclipses from a Vedic perspective. Sutak timing, do\'s and don\'ts, and spiritual significance.', hi: 'वैदिक दृष्टिकोण से सूर्य और चन्द्र ग्रहण। सूतक समय, करने और न करने योग्य कार्य।', sa: 'वैदिकदृष्टिकोणेन सूर्यचन्द्रग्रहणम्।' },
     keywords: ['grahan', 'eclipse hindu', 'sutak', 'eclipse puja'],
   },
   '/panchang/rashi': {
-    title: { en: '12 Rashis — Vedic Zodiac Signs', hi: '12 राशियाँ — वैदिक राशिचक्र', sa: '१२ राशयः — वैदिकराशिचक्रम्' },
+    title: { en: '12 Rashis  –  Vedic Zodiac Signs', hi: '12 राशियाँ  –  वैदिक राशिचक्र', sa: '१२ राशयः  –  वैदिकराशिचक्रम्' },
     description: { en: 'All 12 Vedic Rashis (zodiac signs) with rulers, elements, qualities, and significations.', hi: 'स्वामी, तत्व, गुण और संकेतों के साथ सभी 12 वैदिक राशियाँ।', sa: 'स्वामिभिः तत्त्वैः गुणैः सङ्केतैश्च सह सर्वाः १२ वैदिकराशयः।' },
     keywords: ['rashi', 'vedic zodiac', '12 signs', 'zodiac signs vedic'],
   },
   '/panchang/masa': {
-    title: { en: 'Hindu Months (Masa) — Lunar Calendar System', hi: 'हिन्दू मास — चान्द्र कैलेंडर', sa: 'हिन्दूमासाः — चान्द्रपञ्चाङ्गम्' },
+    title: { en: 'Hindu Months (Masa)  –  Lunar Calendar System', hi: 'हिन्दू मास  –  चान्द्र कैलेंडर', sa: 'हिन्दूमासाः  –  चान्द्रपञ्चाङ्गम्' },
     description: { en: 'Hindu lunar months from Chaitra to Phalguna. Amanta vs Purnimant systems, Adhika Masa, and seasonal mapping.', hi: 'चैत्र से फाल्गुन तक हिन्दू चान्द्र मास। अमान्त बनाम पूर्णिमान्त, अधिक मास।', sa: 'चैत्रात् फाल्गुनपर्यन्तं हिन्दूचान्द्रमासाः।' },
     keywords: ['hindu months', 'masa', 'lunar month', 'amanta purnimant'],
   },
   '/panchang/samvatsara': {
-    title: { en: '60 Samvatsaras — Jupiter Cycle in Vedic Calendar', hi: '60 संवत्सर — बृहस्पति चक्र', sa: '६० संवत्सराः — बृहस्पतिचक्रम्' },
+    title: { en: '60 Samvatsaras  –  Jupiter Cycle in Vedic Calendar', hi: '60 संवत्सर  –  बृहस्पति चक्र', sa: '६० संवत्सराः  –  बृहस्पतिचक्रम्' },
     description: { en: 'The 60 Samvatsara names from Prabhava to Akshaya. Jupiter\'s 60-year cycle and its significance in Vedic timekeeping.', hi: 'प्रभव से अक्षय तक 60 संवत्सर। बृहस्पति का 60 वर्षीय चक्र।', sa: 'प्रभवात् अक्षयपर्यन्तं ६० संवत्सराः। बृहस्पतेः ६० वर्षीयचक्रम्।' },
     keywords: ['samvatsara', '60 year cycle', 'jupiter cycle', 'vikram samvat'],
   },
   '/panchang/muhurta': {
-    title: { en: '30 Muhurtas — Time Divisions in Hindu Day', hi: '30 मुहूर्त — हिन्दू दिन के समय विभाग', sa: '३० मुहूर्ताः — हिन्दूदिनस्य कालविभागाः' },
+    title: { en: '30 Muhurtas  –  Time Divisions in Hindu Day', hi: '30 मुहूर्त  –  हिन्दू दिन के समय विभाग', sa: '३० मुहूर्ताः  –  हिन्दूदिनस्य कालविभागाः' },
     description: { en: 'The 30 Muhurtas (48-minute time divisions) of the Hindu day. Abhijit and Brahma Muhurta, auspicious and inauspicious periods.', hi: 'हिन्दू दिन के 30 मुहूर्त (48 मिनट)। अभिजित और ब्रह्म मुहूर्त।', sa: 'हिन्दूदिनस्य ३० मुहूर्ताः। अभिजित् ब्रह्ममुहूर्तश्च।' },
     keywords: ['muhurta', 'abhijit muhurta', 'brahma muhurta', '30 muhurtas'],
   },
   '/panchang/nivas': {
-    title: { en: 'Nivas & Shool — Directional & Elemental Energies Today', hi: 'निवास और शूल — आज की दिशात्मक और तात्विक ऊर्जाएं', sa: 'निवासः शूलश्च — अद्यतनदिशात्मकतात्विकशक्तयः' },
+    title: { en: 'Nivas & Shool  –  Directional & Elemental Energies Today', hi: 'निवास और शूल  –  आज की दिशात्मक और तात्विक ऊर्जाएं', sa: 'निवासः शूलश्च  –  अद्यतनदिशात्मकतात्विकशक्तयः' },
     description: { en: 'Disha Shool, Shiva Vaas, Agni Vaas, Chandra Vaas, and Rahu Vaas for today. Directional and elemental energies that influence rituals and activities.', hi: 'आज के लिए दिशा शूल, शिव वास, अग्नि वास, चंद्र वास और राहु वास। अनुष्ठानों और गतिविधियों को प्रभावित करने वाली दिशात्मक और तात्विक ऊर्जाएं।', sa: 'अद्य दिशाशूलः शिववासः अग्निवासः चन्द्रवासः राहुवासश्च। अनुष्ठानानि कार्याणि च प्रभावयन्त्यः दिशात्मकतात्विकशक्तयः।' },
     keywords: ['disha shool', 'shiva vaas', 'agni vaas', 'chandra vaas', 'rahu vaas', 'nivas shool panchang'],
   },
   '/panchang/planets': {
-    title: { en: 'Planetary Positions Today — Navagraha in Signs & Nakshatras', hi: 'आज की ग्रह स्थिति — राशि और नक्षत्र में नवग्रह', sa: 'अद्यतनग्रहस्थितिः — राशिनक्षत्रेषु नवग्रहाः' },
-    description: { en: "Today's Navagraha positions — Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu with sign, longitude, nakshatra, and retrograde status.", hi: 'आज की नवग्रह स्थिति — सूर्य, चंद्र, मंगल, बुध, गुरु, शुक्र, शनि, राहु, केतु की राशि, अंश, नक्षत्र और वक्री स्थिति।', sa: 'अद्यतननवग्रहस्थितिः — सूर्यचन्द्रमङ्गलबुधगुरुशुक्रशनिराहुकेतुनां राशिः अंशः नक्षत्रं वक्रत्वं च।' },
+    title: { en: 'Planetary Positions Today  –  Navagraha in Signs & Nakshatras', hi: 'आज की ग्रह स्थिति  –  राशि और नक्षत्र में नवग्रह', sa: 'अद्यतनग्रहस्थितिः  –  राशिनक्षत्रेषु नवग्रहाः' },
+    description: { en: "Today's Navagraha positions  –  Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu with sign, longitude, nakshatra, and retrograde status.", hi: 'आज की नवग्रह स्थिति  –  सूर्य, चंद्र, मंगल, बुध, गुरु, शुक्र, शनि, राहु, केतु की राशि, अंश, नक्षत्र और वक्री स्थिति।', sa: 'अद्यतननवग्रहस्थितिः  –  सूर्यचन्द्रमङ्गलबुधगुरुशुक्रशनिराहुकेतुनां राशिः अंशः नक्षत्रं वक्रत्वं च।' },
     keywords: ['planetary positions today', 'navagraha', 'graha sthiti', 'planet signs', 'retrograde planets'],
   },
   '/panchang/remedies': {
-    title: { en: "Today's Vedic Remedies — Mantras, Charity, Gemstones", hi: 'आज के वैदिक उपाय — मंत्र, दान, रत्न', sa: 'अद्यतनवैदिकोपचाराः — मन्त्राः दानं रत्नानि च' },
-    description: { en: "Vara-based remedy prescriptions for today — Beej Mantra, recommended charity, lucky color, gemstone, and optimal Hora windows for maximum effect.", hi: 'आज के वार-आधारित उपाय — बीज मंत्र, अनुशंसित दान, शुभ रंग, रत्न और अधिकतम प्रभाव के लिए इष्ट होरा समय।', sa: 'अद्यतनवाराधारितोपचाराः — बीजमन्त्रः अनुशंसितदानं शुभवर्णः रत्नं च।' },
+    title: { en: "Today's Vedic Remedies  –  Mantras, Charity, Gemstones", hi: 'आज के वैदिक उपाय  –  मंत्र, दान, रत्न', sa: 'अद्यतनवैदिकोपचाराः  –  मन्त्राः दानं रत्नानि च' },
+    description: { en: "Vara-based remedy prescriptions for today  –  Beej Mantra, recommended charity, lucky color, gemstone, and optimal Hora windows for maximum effect.", hi: 'आज के वार-आधारित उपाय  –  बीज मंत्र, अनुशंसित दान, शुभ रंग, रत्न और अधिकतम प्रभाव के लिए इष्ट होरा समय।', sa: 'अद्यतनवाराधारितोपचाराः  –  बीजमन्त्रः अनुशंसितदानं शुभवर्णः रत्नं च।' },
     keywords: ['vedic remedies today', 'beej mantra', 'vara remedies', 'daily remedies', 'gemstone recommendation'],
   },
   '/panchang/yearly': {
-    title: { en: 'Yearly Panchang Calendar — Month by Month View', hi: 'वार्षिक पंचांग — मासिक दृश्य', sa: 'वार्षिकपञ्चाङ्गम् — मासिकदृश्यम्' },
+    title: { en: 'Yearly Panchang Calendar  –  Month by Month View', hi: 'वार्षिक पंचांग  –  मासिक दृश्य', sa: 'वार्षिकपञ्चाङ्गम्  –  मासिकदृश्यम्' },
     description: { en: 'Complete yearly Panchang calendar with daily Tithi, Nakshatra, and festivals for every month.', hi: 'प्रत्येक मास की दैनिक तिथि, नक्षत्र और त्योहारों के साथ पूर्ण वार्षिक पंचांग।', sa: 'प्रत्येकमासस्य दैनिकतिथिनक्षत्रपर्वभिः सह सम्पूर्णं वार्षिकपञ्चाङ्गम्।' },
     keywords: ['yearly panchang', 'annual calendar', 'monthly panchang', 'panchang 2026'],
   },
   // ─── Interactive Labs ─────────────────────────────────────
   '/learn/labs/panchang': {
     title: { en: 'Interactive Lab: Compute Your Panchang Step by Step', hi: 'इंटरैक्टिव लैब: अपना पंचांग चरणबद्ध गणना करें', sa: 'अन्तरक्रियात्मकप्रयोगशाला: पञ्चाङ्गं क्रमशः गणयतु' },
-    description: { en: 'Enter a date and location — watch the engine compute Julian Day, Sun/Moon positions, Tithi, Nakshatra, Yoga, Karana, and Vara with intermediate values.', hi: 'तिथि और स्थान दर्ज करें — इंजन को जूलियन दिन, सूर्य/चन्द्र स्थिति, तिथि, नक्षत्र, योग, करण और वार गणना करते देखें।', sa: 'दिनाङ्कं स्थानं च दत्तवान् — यन्त्रस्य गणनां पश्यतु।' },
+    description: { en: 'Enter a date and location  –  watch the engine compute Julian Day, Sun/Moon positions, Tithi, Nakshatra, Yoga, Karana, and Vara with intermediate values.', hi: 'तिथि और स्थान दर्ज करें  –  इंजन को जूलियन दिन, सूर्य/चन्द्र स्थिति, तिथि, नक्षत्र, योग, करण और वार गणना करते देखें।', sa: 'दिनाङ्कं स्थानं च दत्तवान्  –  यन्त्रस्य गणनां पश्यतु।' },
     keywords: ['panchang calculator', 'tithi calculation', 'interactive astrology', 'vedic astronomy lab'],
   },
   '/learn/labs/moon': {
-    title: { en: 'Interactive Lab: Trace the Moon — 60 Sine Terms', hi: 'इंटरैक्टिव लैब: चन्द्र खोज — 60 ज्या पद', sa: 'अन्तरक्रियात्मकप्रयोगशाला: चन्द्रान्वेषणम्' },
+    title: { en: 'Interactive Lab: Trace the Moon  –  60 Sine Terms', hi: 'इंटरैक्टिव लैब: चन्द्र खोज  –  60 ज्या पद', sa: 'अन्तरक्रियात्मकप्रयोगशाला: चन्द्रान्वेषणम्' },
     description: { en: 'Trace how the Meeus algorithm finds the Moon using 60 sine terms. See fundamental arguments, individual term contributions, and final longitude.', hi: 'देखें कि Meeus एल्गोरिथ्म 60 ज्या पदों से चन्द्रमा को कैसे खोजता है।', sa: 'Meeus गणितेन ६० ज्यापदैः चन्द्रं कथम् अन्विष्यति इति पश्यतु।' },
     keywords: ['moon position calculator', 'meeus algorithm', 'lunar longitude', 'astronomical computation'],
   },
@@ -860,8 +860,8 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['dasha calculator', 'vimshottari dasha', 'planetary periods', 'dasha timeline'],
   },
   '/learn/labs/shadbala': {
-    title: { en: 'Interactive Lab: Shadbala — 6-Fold Planetary Strength', hi: 'इंटरैक्टिव लैब: षड्बल विश्लेषण', sa: 'अन्तरक्रियात्मकप्रयोगशाला: षड्बलविश्लेषणम्' },
-    description: { en: 'Generate your birth chart and see all 6 strengths per planet — Sthana, Dig, Kala, Cheshta, Naisargika, Drig. Find your chart captain.', hi: 'अपनी जन्म कुण्डली बनाएं और प्रत्येक ग्रह की 6 शक्तियाँ देखें।', sa: 'स्वजन्मकुण्डलीं रचयतु प्रतिग्रहस्य ६ शक्तीः पश्यतु।' },
+    title: { en: 'Interactive Lab: Shadbala  –  6-Fold Planetary Strength', hi: 'इंटरैक्टिव लैब: षड्बल विश्लेषण', sa: 'अन्तरक्रियात्मकप्रयोगशाला: षड्बलविश्लेषणम्' },
+    description: { en: 'Generate your birth chart and see all 6 strengths per planet  –  Sthana, Dig, Kala, Cheshta, Naisargika, Drig. Find your chart captain.', hi: 'अपनी जन्म कुण्डली बनाएं और प्रत्येक ग्रह की 6 शक्तियाँ देखें।', sa: 'स्वजन्मकुण्डलीं रचयतु प्रतिग्रहस्य ६ शक्तीः पश्यतु।' },
     keywords: ['shadbala calculator', 'planetary strength', 'vedic astrology strength', 'chart analysis'],
   },
   '/learn/labs/kp': {
@@ -877,177 +877,177 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['vedanga jyotisha', 'aryabhata', 'indian astronomy', 'brahmagupta zero', 'madhava calculus'],
   },
   '/learn/observatories': {
-    title: { en: 'Jantar Mantar — India\'s Stone Astronomical Observatories', hi: 'जन्तर मन्तर — भारत की पत्थर वेधशालाएं', sa: 'जन्तरमन्तरम् — भारतस्य प्रस्तरवेधशालाः' },
+    title: { en: 'Jantar Mantar  –  India\'s Stone Astronomical Observatories', hi: 'जन्तर मन्तर  –  भारत की पत्थर वेधशालाएं', sa: 'जन्तरमन्तरम्  –  भारतस्य प्रस्तरवेधशालाः' },
     description: { en: 'Maharaja Jai Singh\'s 5 stone observatories: Samrat Yantra (27m sundial), Jai Prakash, Rashivalaya. 2-arcsecond accuracy without telescopes. UNESCO World Heritage.', hi: 'महाराजा जयसिंह की 5 पत्थर वेधशालाएं: सम्राट यंत्र, जयप्रकाश, राशिवलय। बिना दूरबीन 2 आर्कसेकण्ड सटीकता।', sa: 'महाराजजयसिंहस्य ५ प्रस्तरवेधशालाः। दूरदर्शिनं विना २ चापकलासम्यक्ता।' },
     keywords: ['jantar mantar', 'jai singh observatory', 'samrat yantra', 'indian observatory', 'stone instruments'],
   },
 
   '/learn/planetary-cycles': {
-    title: { en: 'Planetary Orbital Periods — Surya Siddhanta vs NASA', hi: 'ग्रह कक्षीय काल — सूर्य सिद्धान्त बनाम NASA', sa: 'ग्रहकक्षीयकालाः — सूर्यसिद्धान्तः NASA च' },
+    title: { en: 'Planetary Orbital Periods  –  Surya Siddhanta vs NASA', hi: 'ग्रह कक्षीय काल  –  सूर्य सिद्धान्त बनाम NASA', sa: 'ग्रहकक्षीयकालाः  –  सूर्यसिद्धान्तः NASA च' },
     description: { en: 'How ancient Indians knew planetary orbits: Saturn 29.5yr (Sade Sati = quarter orbit), Jupiter 12yr (sign/year), Moon 27.3d (27 Nakshatras). Surya Siddhanta vs NASA comparison.', hi: 'प्राचीन भारतीयों ने ग्रह कक्षाएं कैसे जानीं: शनि 29.5 वर्ष, बृहस्पति 12 वर्ष, चन्द्र 27.3 दिन।', sa: 'प्राचीनभारतीयाः ग्रहकक्षाः कथम् अजानन्।' },
     keywords: ['planetary orbits vedic', 'surya siddhanta accuracy', 'sade sati orbital', 'ancient indian astronomy'],
   },
 
   // ─── Learning Tracks ─────────────────────────────────────
   '/learn/track/cosmology': {
-    title: { en: 'Hindu Cosmology & Foundations — Complete Learning Track', hi: 'हिन्दू ब्रह्माण्ड विज्ञान — सम्पूर्ण पाठ्यक्रम', sa: 'हिन्दूब्रह्माण्डविज्ञानम् — सम्पूर्णपाठ्यक्रमः' },
+    title: { en: 'Hindu Cosmology & Foundations  –  Complete Learning Track', hi: 'हिन्दू ब्रह्माण्ड विज्ञान  –  सम्पूर्ण पाठ्यक्रम', sa: 'हिन्दूब्रह्माण्डविज्ञानम्  –  सम्पूर्णपाठ्यक्रमः' },
     description: { en: 'Learn the Hindu worldview: cosmic time scales, Navagraha, 12 Rashis, 27 Nakshatras, Ayanamsha, and the mathematical framework of Jyotish. 30+ modules.', hi: 'हिन्दू विश्वदृष्टि सीखें: ब्रह्माण्डीय समय, नवग्रह, 12 राशि, 27 नक्षत्र, अयनांश।', sa: 'हिन्दूविश्वदृष्टिं शिक्षतु।' },
     keywords: ['hindu cosmology course', 'vedic astronomy', 'navagraha', 'rashis', 'nakshatras'],
   },
   '/learn/track/panchang': {
-    title: { en: 'Panchang — Learn the Daily Cosmic Calendar', hi: 'पंचांग — दैनिक ब्रह्माण्डीय कैलेंडर सीखें', sa: 'पञ्चाङ्गम् — दैनिकब्रह्माण्डपञ्चाङ्गं शिक्षतु' },
+    title: { en: 'Panchang  –  Learn the Daily Cosmic Calendar', hi: 'पंचांग  –  दैनिक ब्रह्माण्डीय कैलेंडर सीखें', sa: 'पञ्चाङ्गम्  –  दैनिकब्रह्माण्डपञ्चाङ्गं शिक्षतु' },
     description: { en: 'Master the Hindu Panchang: Tithi, Nakshatra, Yoga, Karana, Vara, Muhurta, Hora, festivals, and calendar systems. 15+ modules.', hi: 'हिन्दू पंचांग में दक्षता: तिथि, नक्षत्र, योग, करण, वार, मुहूर्त, होरा।', sa: 'हिन्दूपञ्चाङ्गे दक्षता।' },
     keywords: ['panchang course', 'tithi', 'muhurta', 'hindu calendar', 'vedic timekeeping'],
   },
   '/learn/track/kundali': {
-    title: { en: 'Kundali — Learn Birth Chart Reading from Basics to Advanced', hi: 'कुण्डली — जन्म कुण्डली पठन सीखें', sa: 'कुण्डली — जन्मकुण्डलीपठनं शिक्षतु' },
+    title: { en: 'Kundali  –  Learn Birth Chart Reading from Basics to Advanced', hi: 'कुण्डली  –  जन्म कुण्डली पठन सीखें', sa: 'कुण्डली  –  जन्मकुण्डलीपठनं शिक्षतु' },
     description: { en: 'Complete Kundali course: houses, dashas, yogas, Shadbala, predictions, matching, remedies, Jaimini, KP system. 45+ modules, 5 interactive labs.', hi: 'सम्पूर्ण कुण्डली पाठ्यक्रम: भाव, दशा, योग, षड्बल, भविष्यवाणी, मिलान, उपाय।', sa: 'सम्पूर्णकुण्डलीपाठ्यक्रमः।' },
     keywords: ['kundali course', 'birth chart reading', 'vedic astrology course', 'jyotish learning'],
   },
 
   // ─── Cosmology ───────────────────────────────────────────
   '/learn/cosmology': {
-    title: { en: 'Hindu Cosmology — Yugas, Kalpas, Brahma\'s 311 Trillion Year Lifespan', hi: 'हिन्दू ब्रह्माण्ड विज्ञान — युग, कल्प, ब्रह्मा का 311 ट्रिलियन वर्ष जीवनकाल', sa: 'हिन्दूब्रह्माण्डविज्ञानम् — युगाः कल्पाः ब्रह्मणः 311 लक्षकोटिवर्षायुः' },
-    description: { en: 'From Truti (29.6μs) to Brahma\'s lifespan (311 trillion years). The only ancient civilization to think in billions of years — matching modern cosmology. Yugas, Manvantaras, Kalpas explained.', hi: 'त्रुटि (29.6μs) से ब्रह्मा के जीवनकाल (311 ट्रिलियन वर्ष) तक। अरबों वर्षों में सोचने वाली एकमात्र प्राचीन सभ्यता।', sa: 'त्रुटितः (29.6μs) ब्रह्मायुः (311 लक्षकोटिवर्षाणि) पर्यन्तम्।' },
+    title: { en: 'Hindu Cosmology  –  Yugas, Kalpas, Brahma\'s 311 Trillion Year Lifespan', hi: 'हिन्दू ब्रह्माण्ड विज्ञान  –  युग, कल्प, ब्रह्मा का 311 ट्रिलियन वर्ष जीवनकाल', sa: 'हिन्दूब्रह्माण्डविज्ञानम्  –  युगाः कल्पाः ब्रह्मणः 311 लक्षकोटिवर्षायुः' },
+    description: { en: 'From Truti (29.6μs) to Brahma\'s lifespan (311 trillion years). The only ancient civilization to think in billions of years  –  matching modern cosmology. Yugas, Manvantaras, Kalpas explained.', hi: 'त्रुटि (29.6μs) से ब्रह्मा के जीवनकाल (311 ट्रिलियन वर्ष) तक। अरबों वर्षों में सोचने वाली एकमात्र प्राचीन सभ्यता।', sa: 'त्रुटितः (29.6μs) ब्रह्मायुः (311 लक्षकोटिवर्षाणि) पर्यन्तम्।' },
     keywords: ['hindu cosmology', 'yugas', 'kalpa', 'manvantara', 'brahma lifespan', 'vedic time', 'kali yuga'],
   },
 
   // ─── Prediction Guides ────────────────────────────────────
   '/learn/career': {
-    title: { en: 'Career Prediction — 10th House, D10 & Amatyakaraka Guide', hi: 'कैरियर भविष्यवाणी — 10वां भाव, D10 एवं अमात्यकारक', sa: 'व्यवसायभविष्यवाणी' },
+    title: { en: 'Career Prediction  –  10th House, D10 & Amatyakaraka Guide', hi: 'कैरियर भविष्यवाणी  –  10वां भाव, D10 एवं अमात्यकारक', sa: 'व्यवसायभविष्यवाणी' },
     description: { en: 'Predict career from your Vedic chart: 10th house sign, lord placement, D10 Dasamsha, Amatyakaraka, and career timing through dashas and transits.', hi: 'वैदिक कुण्डली से कैरियर भविष्यवाणी: 10वां भाव, स्वामी, D10, अमात्यकारक, दशा-गोचर।', sa: 'वैदिककुण्डल्या व्यवसायभविष्यवाणी।' },
     keywords: ['career astrology', '10th house', 'dasamsha', 'vedic career prediction'],
   },
   '/learn/marriage': {
-    title: { en: 'Marriage Prediction — 7th House, D9 Navamsha & Timing', hi: 'विवाह भविष्यवाणी — 7वां भाव, D9 नवांश', sa: 'विवाहभविष्यवाणी' },
+    title: { en: 'Marriage Prediction  –  7th House, D9 Navamsha & Timing', hi: 'विवाह भविष्यवाणी  –  7वां भाव, D9 नवांश', sa: 'विवाहभविष्यवाणी' },
     description: { en: 'Predict marriage from your chart: 7th house, Venus, Navamsha (D9), Darakaraka, timing through dashas, delay indicators, and Mangal Dosha analysis.', hi: 'कुण्डली से विवाह भविष्यवाणी: 7वां भाव, शुक्र, नवांश, दारकारक, समय निर्धारण।', sa: 'कुण्डल्या विवाहभविष्यवाणी।' },
     keywords: ['marriage prediction', '7th house', 'navamsha', 'marriage timing', 'mangal dosha'],
   },
   '/learn/wealth': {
-    title: { en: 'Wealth Prediction — Dhana Yogas, 2nd/11th House Analysis', hi: 'धन भविष्यवाणी — धन योग, 2/11 भाव', sa: 'धनभविष्यवाणी' },
+    title: { en: 'Wealth Prediction  –  Dhana Yogas, 2nd/11th House Analysis', hi: 'धन भविष्यवाणी  –  धन योग, 2/11 भाव', sa: 'धनभविष्यवाणी' },
     description: { en: 'Predict wealth from your chart: 2nd/11th house analysis, Dhana Yogas, Lakshmi Yoga, wealth timing, Ashtakavarga scoring, and poverty remedies.', hi: 'कुण्डली से धन भविष्यवाणी: 2/11 भाव, धन योग, लक्ष्मी योग, अष्टकवर्ग।', sa: 'कुण्डल्या धनभविष्यवाणी।' },
     keywords: ['wealth astrology', 'dhana yoga', '2nd house', '11th house', 'lakshmi yoga'],
   },
 
   '/learn/health': {
-    title: { en: 'Medical Astrology — Planet-Body Mapping & Health Prediction', hi: 'चिकित्सा ज्योतिष — ग्रह-शरीर मानचित्रण', sa: 'चिकित्साज्योतिषम्' },
+    title: { en: 'Medical Astrology  –  Planet-Body Mapping & Health Prediction', hi: 'चिकित्सा ज्योतिष  –  ग्रह-शरीर मानचित्रण', sa: 'चिकित्साज्योतिषम्' },
     description: { en: 'Zodiac body map, planet-disease correlations, health per lagna sign, Ayurvedic constitution from chart, timing of health events.', hi: 'राशि शरीर मानचित्र, ग्रह-रोग सम्बन्ध, लग्न अनुसार स्वास्थ्य, आयुर्वेदिक प्रकृति।', sa: 'राशिशरीरमानचित्रं ग्रहरोगसम्बन्धाः।' },
     keywords: ['medical astrology', 'health prediction', 'zodiac body parts', 'ayurvedic astrology'],
   },
   '/learn/ayurveda-jyotish': {
-    title: { en: 'Ayurveda & Jyotish — The Twin Vedic Sciences', hi: 'आयुर्वेद एवं ज्योतिष — जुड़वाँ वैदिक विद्याएँ', sa: 'आयुर्वेदज्योतिषम् — युग्मवैदिकविद्ये' },
+    title: { en: 'Ayurveda & Jyotish  –  The Twin Vedic Sciences', hi: 'आयुर्वेद एवं ज्योतिष  –  जुड़वाँ वैदिक विद्याएँ', sa: 'आयुर्वेदज्योतिषम्  –  युग्मवैदिकविद्ये' },
     description: { en: 'Deep connection between Ayurveda and Vedic Astrology: Prakriti from birth chart, Kala Purusha body mapping, dasha health windows, Ritu-dosha cycles, planetary herbs and remedies.', hi: 'आयुर्वेद और वैदिक ज्योतिष का गहन सम्बन्ध: जन्म कुण्डली से प्रकृति, काल पुरुष, दशा स्वास्थ्य, ऋतु-दोष चक्र, ग्रह जड़ी-बूटियाँ।', sa: 'आयुर्वेदवैदिकज्योतिषयोः गहनसम्बन्धः।' },
     keywords: ['ayurveda astrology', 'prakriti birth chart', 'kala purusha', 'dosha planets', 'vedic health', 'planetary herbs'],
   },
   '/learn/children': {
-    title: { en: 'Children Prediction — 5th House, D7 & Fertility Analysis', hi: 'सन्तान भविष्यवाणी — 5वां भाव, D7', sa: 'सन्तानभविष्यवाणी' },
+    title: { en: 'Children Prediction  –  5th House, D7 & Fertility Analysis', hi: 'सन्तान भविष्यवाणी  –  5वां भाव, D7', sa: 'सन्तानभविष्यवाणी' },
     description: { en: 'Predict children from your chart: 5th house, Jupiter, D7 Saptamsha, Putrakaraka, fertility sphutas, timing of childbirth.', hi: 'कुण्डली से सन्तान भविष्यवाणी: 5वां भाव, बृहस्पति, D7, पुत्रकारक, प्रजनन।', sa: 'कुण्डल्या सन्तानभविष्यवाणी।' },
     keywords: ['children prediction', '5th house', 'saptamsha', 'fertility astrology'],
   },
   '/learn/retrograde-effects': {
-    title: { en: 'Retrograde Planets — Natal & Transit Effects for All 5', hi: 'वक्री ग्रह — जन्म एवं गोचर प्रभाव', sa: 'वक्रीग्रहाः — जन्मगोचरप्रभावाः' },
-    description: { en: 'Mercury, Venus, Mars, Jupiter, Saturn retrograde effects in birth chart and transit. Orbital mechanics, Cheshta Bala, practical dos and don\'ts.', hi: 'बुध, शुक्र, मंगल, बृहस्पति, शनि वक्री प्रभाव — जन्म कुण्डली और गोचर में।', sa: 'बुधशुक्रमङ्गलबृहस्पतिशनिवक्रीप्रभावाः।' },
+    title: { en: 'Retrograde Planets  –  Natal & Transit Effects for All 5', hi: 'वक्री ग्रह  –  जन्म एवं गोचर प्रभाव', sa: 'वक्रीग्रहाः  –  जन्मगोचरप्रभावाः' },
+    description: { en: 'Mercury, Venus, Mars, Jupiter, Saturn retrograde effects in birth chart and transit. Orbital mechanics, Cheshta Bala, practical dos and don\'ts.', hi: 'बुध, शुक्र, मंगल, बृहस्पति, शनि वक्री प्रभाव  –  जन्म कुण्डली और गोचर में।', sa: 'बुधशुक्रमङ्गलबृहस्पतिशनिवक्रीप्रभावाः।' },
     keywords: ['retrograde planets', 'mercury retrograde', 'vakri graha', 'retrograde effects'],
   },
 
   '/learn/retrograde-visualizer': {
-    title: { en: 'Retrograde Motion Visualizer — Interactive Animation', hi: 'वक्री गति दृश्यावलोकन — अन्तरक्रियात्मक चित्रण', sa: 'वक्रीगतिदृश्यावलोकनम्' },
+    title: { en: 'Retrograde Motion Visualizer  –  Interactive Animation', hi: 'वक्री गति दृश्यावलोकन  –  अन्तरक्रियात्मक चित्रण', sa: 'वक्रीगतिदृश्यावलोकनम्' },
     description: { en: 'Interactive Canvas animation showing why planets appear to reverse direction. Heliocentric and geocentric views, planet selector, speed controls.', hi: 'अन्तरक्रियात्मक चित्रण जो दिखाता है कि ग्रह उल्टी दिशा में क्यों जाते प्रतीत होते हैं। सौर-केन्द्रीय और भू-केन्द्रीय दृश्य।', sa: 'वक्रीगतिकारणं दर्शयत् अन्तरक्रियात्मकं चित्रणम्।' },
     keywords: ['retrograde motion', 'retrograde visualizer', 'vakri graha animation', 'planetary retrograde explained'],
   },
 
   '/learn/yoga-animator': {
-    title: { en: 'Yoga Formation Animator — Watch Jyotish Yogas Form', hi: 'योग निर्माण एनीमेटर — ज्योतिष योग बनते देखें', sa: 'योगनिर्माणचित्रणम्' },
+    title: { en: 'Yoga Formation Animator  –  Watch Jyotish Yogas Form', hi: 'योग निर्माण एनीमेटर  –  ज्योतिष योग बनते देखें', sa: 'योगनिर्माणचित्रणम्' },
     description: { en: 'Interactive step-by-step animation showing how planets form classical Vedic astrology yogas. Mahapurusha, Raja, Dhana, Lunar, and Dosha yogas with condition checklists.', hi: 'अन्तरक्रियात्मक एनीमेशन जो दिखाता है कि ग्रह कैसे वैदिक ज्योतिष योग बनाते हैं। महापुरुष, राज, धन, चन्द्र और दोष योग।', sa: 'ग्रहाः कथं ज्योतिषयोगान् निर्मान्ति तद्दर्शकं चित्रणम्।' },
     keywords: ['yoga formation', 'jyotish yoga animation', 'mahapurusha yoga', 'raja yoga', 'gajakesari yoga', 'vedic astrology yogas interactive'],
   },
 
   '/learn/advanced-houses': {
-    title: { en: 'MKS, Badhaka, Maraka — Advanced House Concepts', hi: 'मारक कारक स्थान, बाधक, मारक', sa: 'मारककारकस्थानम् बाधकः मारकश्च' },
+    title: { en: 'MKS, Badhaka, Maraka  –  Advanced House Concepts', hi: 'मारक कारक स्थान, बाधक, मारक', sa: 'मारककारकस्थानम् बाधकः मारकश्च' },
     description: { en: 'Marana Karaka Sthana (death places), Badhakesh (obstruction lord), Maraka (death-inflicting lords), and functional benefic/malefic per lagna.', hi: 'मारक कारक स्थान, बाधकेश, मारक ग्रह, और प्रत्येक लग्न के लिए कार्यात्मक शुभ/अशुभ।', sa: 'मारककारकस्थानम् बाधकेशः मारकग्रहाः प्रतिलग्नं कार्यात्मकशुभाशुभाश्च।' },
     keywords: ['marana karaka sthana', 'badhaka', 'maraka', 'yogakaraka', 'functional malefic'],
   },
   '/learn/bhava-chalit': {
-    title: { en: 'Bhava Chalit — House System Explained', hi: 'भाव चलित — भाव पद्धति की व्याख्या', sa: 'भावचलितम् — भावपद्धतिव्याख्या' },
-    description: { en: 'Understand the Bhava Chalit chart: how it differs from the Rashi chart, when to use it, the expert debate on whole-sign vs house-based systems, and worked examples.', hi: 'भाव चलित कुण्डली को समझें: राशि कुण्डली से कैसे भिन्न है, कब उपयोग करें, और विशेषज्ञ बहस।', sa: 'भावचलितकुण्डलीं जानीत — राशिकुण्डल्याः भेदः, विशेषज्ञविवादश्च।' },
+    title: { en: 'Bhava Chalit  –  House System Explained', hi: 'भाव चलित  –  भाव पद्धति की व्याख्या', sa: 'भावचलितम्  –  भावपद्धतिव्याख्या' },
+    description: { en: 'Understand the Bhava Chalit chart: how it differs from the Rashi chart, when to use it, the expert debate on whole-sign vs house-based systems, and worked examples.', hi: 'भाव चलित कुण्डली को समझें: राशि कुण्डली से कैसे भिन्न है, कब उपयोग करें, और विशेषज्ञ बहस।', sa: 'भावचलितकुण्डलीं जानीत  –  राशिकुण्डल्याः भेदः, विशेषज्ञविवादश्च।' },
     keywords: ['bhava chalit', 'house system', 'equal house', 'sripati', 'bhava madhya', 'rashi vs bhava chalit'],
   },
   '/learn/compatibility': {
-    title: { en: 'Advanced Compatibility — Beyond Ashta Kuta', hi: 'उन्नत अनुकूलता — अष्ट कूट से परे', sa: 'उन्नतमेलनम् — अष्टकूटात् परम्' },
-    description: { en: 'Chart-level marriage compatibility: 7th house comparison, Venus assessment, Navamsha matching, dasha compatibility, Mangal Dosha full analysis.', hi: 'चार्ट-स्तरीय विवाह अनुकूलता: 7वां भाव, शुक्र, नवांश, दशा अनुकूलता, मंगल दोष।', sa: 'चक्रस्तरीयविवाहमेलनम् — सप्तमभावः शुक्रः नवांशः दशामेलनम् मङ्गलदोषश्च।' },
+    title: { en: 'Advanced Compatibility  –  Beyond Ashta Kuta', hi: 'उन्नत अनुकूलता  –  अष्ट कूट से परे', sa: 'उन्नतमेलनम्  –  अष्टकूटात् परम्' },
+    description: { en: 'Chart-level marriage compatibility: 7th house comparison, Venus assessment, Navamsha matching, dasha compatibility, Mangal Dosha full analysis.', hi: 'चार्ट-स्तरीय विवाह अनुकूलता: 7वां भाव, शुक्र, नवांश, दशा अनुकूलता, मंगल दोष।', sa: 'चक्रस्तरीयविवाहमेलनम्  –  सप्तमभावः शुक्रः नवांशः दशामेलनम् मङ्गलदोषश्च।' },
     keywords: ['advanced compatibility', 'chart matching', 'navamsha compatibility', 'mangal dosha full'],
   },
   '/learn/compatibility-advanced': {
-    title: { en: 'Advanced Compatibility — Dasha Alignment & Rajju Dosha', hi: 'उन्नत अनुकूलता — दशा संरेखण एवं राज्जु दोष', sa: 'उन्नतमेलनम् — दशासंरेखणं राज्जुदोषश्च' },
-    description: { en: 'Dasha comparison in synastry and Rajju Dosha (South Indian nakshatra cord matching). Worked examples, 27-nakshatra Rajju mapping table, cancellation conditions, compatibility flowchart.', hi: 'सिनैस्ट्री में दशा तुलना और राज्जु दोष (दक्षिण भारतीय नक्षत्र रज्जु मिलान)। कार्यरत उदाहरण, 27-नक्षत्र राज्जु तालिका, निरसन शर्तें।', sa: 'सिनैस्ट्रीदशातुलना राज्जुदोषश्च — उदाहरणानि, नक्षत्रराज्जुतालिका, निरसनशर्ताः।' },
+    title: { en: 'Advanced Compatibility  –  Dasha Alignment & Rajju Dosha', hi: 'उन्नत अनुकूलता  –  दशा संरेखण एवं राज्जु दोष', sa: 'उन्नतमेलनम्  –  दशासंरेखणं राज्जुदोषश्च' },
+    description: { en: 'Dasha comparison in synastry and Rajju Dosha (South Indian nakshatra cord matching). Worked examples, 27-nakshatra Rajju mapping table, cancellation conditions, compatibility flowchart.', hi: 'सिनैस्ट्री में दशा तुलना और राज्जु दोष (दक्षिण भारतीय नक्षत्र रज्जु मिलान)। कार्यरत उदाहरण, 27-नक्षत्र राज्जु तालिका, निरसन शर्तें।', sa: 'सिनैस्ट्रीदशातुलना राज्जुदोषश्च  –  उदाहरणानि, नक्षत्रराज्जुतालिका, निरसनशर्ताः।' },
     keywords: ['dasha comparison', 'rajju dosha', 'nakshatra cord', 'south indian matching', 'dasha sandhi'],
   },
   '/learn/combustion': {
-    title: { en: 'Combustion (Asta) — When Planets Get Too Close to the Sun', hi: 'अस्त ग्रह — जब ग्रह सूर्य के बहुत निकट', sa: 'अस्तग्रहाः' },
+    title: { en: 'Combustion (Asta)  –  When Planets Get Too Close to the Sun', hi: 'अस्त ग्रह  –  जब ग्रह सूर्य के बहुत निकट', sa: 'अस्तग्रहाः' },
     description: { en: 'Planet combustion distances, effects per planet when combust, remedies. SVG diagram showing combustion zones for Moon, Mercury, Venus, Mars, Jupiter, Saturn.', hi: 'ग्रह अस्त दूरी, प्रत्येक ग्रह पर प्रभाव, उपाय।', sa: 'ग्रहास्तदूरी प्रभावाः उपायाश्च।' },
     keywords: ['combustion astrology', 'asta graha', 'combust planet', 'planet near sun'],
   },
   '/learn/transit-guide': {
-    title: { en: 'Transit Guide — Saturn, Jupiter, Rahu-Ketu Through 12 Houses', hi: 'गोचर मार्गदर्शिका — शनि, बृहस्पति, राहु-केतु', sa: 'गोचरमार्गदर्शिका' },
+    title: { en: 'Transit Guide  –  Saturn, Jupiter, Rahu-Ketu Through 12 Houses', hi: 'गोचर मार्गदर्शिका  –  शनि, बृहस्पति, राहु-केतु', sa: 'गोचरमार्गदर्शिका' },
     description: { en: 'House-by-house transit effects for Saturn (2.5yr), Jupiter (1yr), Rahu-Ketu (1.5yr). Star ratings, double transit theory, practical timing.', hi: 'शनि, बृहस्पति, राहु-केतु का भाव-दर-भाव गोचर प्रभाव।', sa: 'शनिबृहस्पतिराहुकेतूनां भावशः गोचरप्रभावाः।' },
     keywords: ['saturn transit', 'jupiter transit', 'rahu ketu transit', 'gochar effects'],
   },
   '/learn/hora': {
-    title: { en: 'Hora — Planetary Hours & Best Times for Activities', hi: 'होरा — ग्रह घण्टे एवं कार्य हेतु उत्तम समय', sa: 'होरा — ग्रहघण्टाः कार्यार्थम् उत्तमसमयः' },
-    description: { en: 'The 24 planetary hours (Hora) system: Chaldean order, weekday derivation, which hora for which activity, computation formula.', hi: '24 ग्रह होरा: कैल्डियन क्रम, वार व्युत्पत्ति, कौन सी होरा किस कार्य के लिए।', sa: '24 ग्रहहोराः — कार्यानुसारं होराचयनम्।' },
+    title: { en: 'Hora  –  Planetary Hours & Best Times for Activities', hi: 'होरा  –  ग्रह घण्टे एवं कार्य हेतु उत्तम समय', sa: 'होरा  –  ग्रहघण्टाः कार्यार्थम् उत्तमसमयः' },
+    description: { en: 'The 24 planetary hours (Hora) system: Chaldean order, weekday derivation, which hora for which activity, computation formula.', hi: '24 ग्रह होरा: कैल्डियन क्रम, वार व्युत्पत्ति, कौन सी होरा किस कार्य के लिए।', sa: '24 ग्रहहोराः  –  कार्यानुसारं होराचयनम्।' },
     keywords: ['hora', 'planetary hours', 'best time for activity', 'chaldean order'],
   },
 
   // ─── Practitioner References ──────────────────────────────
   '/learn/planet-in-house': {
-    title: { en: 'Planet in House — 108 Vedic Astrology Interpretations', hi: 'ग्रह भाव में — 108 वैदिक ज्योतिष व्याख्याएँ', sa: 'ग्रहः भावे — 108 वैदिकज्योतिषव्याख्याः' },
+    title: { en: 'Planet in House  –  108 Vedic Astrology Interpretations', hi: 'ग्रह भाव में  –  108 वैदिक ज्योतिष व्याख्याएँ', sa: 'ग्रहः भावे  –  108 वैदिकज्योतिषव्याख्याः' },
     description: { en: 'What does each planet mean in each house? Interactive guide to all 108 planet-house combinations with career, relationship, and health implications.', hi: 'प्रत्येक ग्रह प्रत्येक भाव में क्या अर्थ रखता है? 108 ग्रह-भाव संयोजनों की इंटरैक्टिव मार्गदर्शिका।', sa: 'प्रत्येकः ग्रहः प्रत्येकस्मिन् भावे किमर्थं करोति? 108 ग्रहभावसंयोजनानां मार्गदर्शिका।' },
     keywords: ['planet in house', 'vedic astrology interpretation', 'mars in 7th house', 'jupiter in 10th'],
   },
   '/learn/aspects': {
-    title: { en: 'Planetary Aspects (Drishti) — Visual Guide', hi: 'ग्रह दृष्टि — दृश्य मार्गदर्शिका', sa: 'ग्रहदृष्टिः — दृश्यमार्गदर्शिका' },
+    title: { en: 'Planetary Aspects (Drishti)  –  Visual Guide', hi: 'ग्रह दृष्टि  –  दृश्य मार्गदर्शिका', sa: 'ग्रहदृष्टिः  –  दृश्यमार्गदर्शिका' },
     description: { en: 'Interactive aspect wheel showing Jupiter, Mars, Saturn special aspects. Strength percentages, key combinations, and practical effects.', hi: 'बृहस्पति, मंगल, शनि विशेष दृष्टि। शक्ति प्रतिशत, प्रमुख संयोजन और प्रभाव।', sa: 'बृहस्पतिमङ्गलशनिविशेषदृष्टयः। शक्तिप्रतिशतं प्रमुखसंयोजनानि प्रभावाश्च।' },
     keywords: ['planetary aspects', 'drishti', 'jupiter aspect', 'saturn aspect', 'mars aspect'],
   },
   '/learn/remedies': {
-    title: { en: 'Vedic Remedies — Gemstones, Mantras, Charity for All 9 Planets', hi: 'वैदिक उपाय — सभी 9 ग्रहों के रत्न, मंत्र, दान', sa: 'वैदिकोपायाः — सर्वेषां 9 ग्रहाणां रत्नमन्त्रदानानि' },
-    description: { en: 'Complete remedial reference for all 9 Vedic planets: gemstones, beej mantras, deity worship, fasting days, charity items, and colors. Includes remedy selection flowchart.', hi: 'सभी 9 ग्रहों का पूर्ण उपचार: रत्न, बीज मंत्र, देवता पूजा, उपवास, दान और रंग।', sa: 'सर्वेषां 9 ग्रहाणां सम्पूर्णोपचारः — रत्नानि बीजमन्त्राः देवतापूजा उपवासः दानं वर्णाश्च।' },
+    title: { en: 'Vedic Remedies  –  Gemstones, Mantras, Charity for All 9 Planets', hi: 'वैदिक उपाय  –  सभी 9 ग्रहों के रत्न, मंत्र, दान', sa: 'वैदिकोपायाः  –  सर्वेषां 9 ग्रहाणां रत्नमन्त्रदानानि' },
+    description: { en: 'Complete remedial reference for all 9 Vedic planets: gemstones, beej mantras, deity worship, fasting days, charity items, and colors. Includes remedy selection flowchart.', hi: 'सभी 9 ग्रहों का पूर्ण उपचार: रत्न, बीज मंत्र, देवता पूजा, उपवास, दान और रंग।', sa: 'सर्वेषां 9 ग्रहाणां सम्पूर्णोपचारः  –  रत्नानि बीजमन्त्राः देवतापूजा उपवासः दानं वर्णाश्च।' },
     keywords: ['vedic remedies', 'gemstone astrology', 'planet mantras', 'jyotish remedies', 'graha shanti'],
   },
 
   // ─── Kundali Deep Dives ───────────────────────────────────
   '/learn/planets': {
-    title: { en: 'Planetary Positions — Reading Your Birth Chart', hi: 'ग्रह स्थिति — जन्म कुण्डली पढ़ना', sa: 'ग्रहस्थितयः — जन्मकुण्डलीपठनम्' },
-    description: { en: 'Understand planet positions in Vedic astrology: signs, houses, nakshatras, padas, retrogrades, and dignities. Complete guide to reading the planets table.', hi: 'वैदिक ज्योतिष में ग्रह स्थिति: राशि, भाव, नक्षत्र, पाद, वक्री और गरिमा।', sa: 'वैदिकज्योतिषे ग्रहस्थितयः — राशिभावनक्षत्रपादवक्रीगरिमाः।' },
+    title: { en: 'Planetary Positions  –  Reading Your Birth Chart', hi: 'ग्रह स्थिति  –  जन्म कुण्डली पढ़ना', sa: 'ग्रहस्थितयः  –  जन्मकुण्डलीपठनम्' },
+    description: { en: 'Understand planet positions in Vedic astrology: signs, houses, nakshatras, padas, retrogrades, and dignities. Complete guide to reading the planets table.', hi: 'वैदिक ज्योतिष में ग्रह स्थिति: राशि, भाव, नक्षत्र, पाद, वक्री और गरिमा।', sa: 'वैदिकज्योतिषे ग्रहस्थितयः  –  राशिभावनक्षत्रपादवक्रीगरिमाः।' },
     keywords: ['planet positions', 'vedic astrology', 'birth chart reading', 'planetary dignities'],
   },
   '/learn/ashtakavarga': {
-    title: { en: 'Ashtakavarga — 8-Fold Bindu Scoring System', hi: 'अष्टकवर्ग — 8 स्रोत बिन्दु अंक पद्धति', sa: 'अष्टकवर्गः — अष्टस्रोतबिन्दुपद्धतिः' },
-    description: { en: 'Complete guide to Ashtakavarga: BAV, SAV, bindu scoring, transit prediction, Trikona Shodhana, and Kakshya divisions.', hi: 'अष्टकवर्ग: BAV, SAV, बिन्दु अंक, गोचर भविष्यवाणी, त्रिकोण शोधन।', sa: 'अष्टकवर्गः — BAV, SAV, बिन्दुअङ्कः, गोचरभविष्यवाणी।' },
+    title: { en: 'Ashtakavarga  –  8-Fold Bindu Scoring System', hi: 'अष्टकवर्ग  –  8 स्रोत बिन्दु अंक पद्धति', sa: 'अष्टकवर्गः  –  अष्टस्रोतबिन्दुपद्धतिः' },
+    description: { en: 'Complete guide to Ashtakavarga: BAV, SAV, bindu scoring, transit prediction, Trikona Shodhana, and Kakshya divisions.', hi: 'अष्टकवर्ग: BAV, SAV, बिन्दु अंक, गोचर भविष्यवाणी, त्रिकोण शोधन।', sa: 'अष्टकवर्गः  –  BAV, SAV, बिन्दुअङ्कः, गोचरभविष्यवाणी।' },
     keywords: ['ashtakavarga', 'bindu', 'transit prediction', 'sarvashtakavarga'],
   },
   '/learn/ashtakavarga-dasha': {
-    title: { en: 'Ashtakavarga Dasha — Timing Predictions from Bindu Scores', hi: 'अष्टकवर्ग दशा — बिन्दु अंकों से समय भविष्यवाणी', sa: 'अष्टकवर्गदशा — बिन्दुअङ्कैः कालभविष्यवाणी' },
+    title: { en: 'Ashtakavarga Dasha  –  Timing Predictions from Bindu Scores', hi: 'अष्टकवर्ग दशा  –  बिन्दु अंकों से समय भविष्यवाणी', sa: 'अष्टकवर्गदशा  –  बिन्दुअङ्कैः कालभविष्यवाणी' },
     description: { en: 'Predict Maha Dasha quality using Ashtakavarga bindu totals. Step-by-step method from BPHS Ch.66-72 with transit scoring, Kakshya timing, and practical prediction rules.', hi: 'अष्टकवर्ग बिन्दु योग से महा दशा गुणवत्ता की भविष्यवाणी। BPHS अ.66-72 से चरणबद्ध विधि।', sa: 'अष्टकवर्गबिन्दुयोगैः महादशागुणवत्तायाः भविष्यवाणी।' },
     keywords: ['ashtakavarga dasha', 'dasha prediction', 'bindu scoring', 'transit timing', 'BPHS ashtakavarga'],
   },
   '/learn/shadbala': {
-    title: { en: 'Shadbala — Six-Fold Planetary Strength', hi: 'षड्बल — छह प्रकार का ग्रह बल', sa: 'षड्बलम् — षड्विधग्रहबलम्' },
-    description: { en: 'Complete Shadbala guide: Sthana, Dig, Kala, Cheshta, Naisargika, Drig Bala with minimum thresholds and chart captain identification.', hi: 'षड्बल: स्थान, दिग्, काल, चेष्टा, नैसर्गिक, दृग् बल। न्यूनतम सीमा और चार्ट कप्तान।', sa: 'षड्बलम् — स्थानदिग्कालचेष्टानैसर्गिकदृग्बलानि।' },
+    title: { en: 'Shadbala  –  Six-Fold Planetary Strength', hi: 'षड्बल  –  छह प्रकार का ग्रह बल', sa: 'षड्बलम्  –  षड्विधग्रहबलम्' },
+    description: { en: 'Complete Shadbala guide: Sthana, Dig, Kala, Cheshta, Naisargika, Drig Bala with minimum thresholds and chart captain identification.', hi: 'षड्बल: स्थान, दिग्, काल, चेष्टा, नैसर्गिक, दृग् बल। न्यूनतम सीमा और चार्ट कप्तान।', sa: 'षड्बलम्  –  स्थानदिग्कालचेष्टानैसर्गिकदृग्बलानि।' },
     keywords: ['shadbala', 'planetary strength', 'vedic astrology', 'chart analysis'],
   },
   '/learn/bhavabala': {
-    title: { en: 'Bhavabala — House Strength Analysis', hi: 'भावबल — भाव शक्ति विश्लेषण', sa: 'भावबलम् — भावशक्तिविश्लेषणम्' },
-    description: { en: 'House strength in Vedic astrology: Bhavadhipati, Bhava Dig, and Bhava Drishti Bala. 12 house significations and remedies.', hi: 'वैदिक ज्योतिष में भाव शक्ति: भावाधिपति, भाव दिग्, भाव दृष्टि बल।', sa: 'वैदिकज्योतिषे भावशक्तिः — भावाधिपतिदिग्दृष्टिबलानि।' },
+    title: { en: 'Bhavabala  –  House Strength Analysis', hi: 'भावबल  –  भाव शक्ति विश्लेषण', sa: 'भावबलम्  –  भावशक्तिविश्लेषणम्' },
+    description: { en: 'House strength in Vedic astrology: Bhavadhipati, Bhava Dig, and Bhava Drishti Bala. 12 house significations and remedies.', hi: 'वैदिक ज्योतिष में भाव शक्ति: भावाधिपति, भाव दिग्, भाव दृष्टि बल।', sa: 'वैदिकज्योतिषे भावशक्तिः  –  भावाधिपतिदिग्दृष्टिबलानि।' },
     keywords: ['bhavabala', 'house strength', 'vedic houses', '12 bhavas'],
   },
   '/learn/avasthas': {
-    title: { en: 'Avasthas — Planetary States & Moods', hi: 'अवस्थाएँ — ग्रह दशाएँ', sa: 'अवस्थाः — ग्रहदशाः' },
-    description: { en: 'All 5 avastha systems from BPHS: Baladi, Jagradadi, Deeptadi, Lajjitadi, Shayanadi. How planets deliver results.', hi: 'BPHS से 5 अवस्था प्रणालियाँ: बालादि, जागृतादि, दीप्तादि, लज्जितादि, शयनादि।', sa: 'BPHS तः 5 अवस्थाप्रणाल्यः — बालादिजागृतादिदीप्तादिलज्जितादिशयनादयः।' },
+    title: { en: 'Avasthas  –  Planetary States & Moods', hi: 'अवस्थाएँ  –  ग्रह दशाएँ', sa: 'अवस्थाः  –  ग्रहदशाः' },
+    description: { en: 'All 5 avastha systems from BPHS: Baladi, Jagradadi, Deeptadi, Lajjitadi, Shayanadi. How planets deliver results.', hi: 'BPHS से 5 अवस्था प्रणालियाँ: बालादि, जागृतादि, दीप्तादि, लज्जितादि, शयनादि।', sa: 'BPHS तः 5 अवस्थाप्रणाल्यः  –  बालादिजागृतादिदीप्तादिलज्जितादिशयनादयः।' },
     keywords: ['avasthas', 'planetary states', 'baladi', 'deeptadi', 'lajjitadi'],
   },
   '/learn/nadi-amsha': {
-    title: { en: 'Nadi Amsha (D-150) — The Finest Divisional Chart', hi: 'नाडी अंश (D-150) — सूक्ष्मतम विभागीय चार्ट', sa: 'नाडीअंशः (D-150) — सूक्ष्मतमविभागीयचक्रम्' },
+    title: { en: 'Nadi Amsha (D-150)  –  The Finest Divisional Chart', hi: 'नाडी अंश (D-150)  –  सूक्ष्मतम विभागीय चार्ट', sa: 'नाडीअंशः (D-150)  –  सूक्ष्मतमविभागीयचक्रम्' },
     description: { en: 'Understanding Nadi Amsha (D-150): the 150th divisional chart for subtle karmic analysis, twin differentiation, and birth time rectification. Calculation method, classical sources, and interpretation.', hi: 'नाडी अंश (D-150): सूक्ष्म कार्मिक विश्लेषण, जुड़वाँ विभेदन और जन्म समय शोधन के लिए 150वाँ विभागीय चार्ट।', sa: 'नाडीअंशः (D-150): सूक्ष्मकर्मविश्लेषणाय यमकविभेदनाय जन्मकालशोधनाय च 150तमविभागीयचक्रम्।' },
     keywords: ['nadi amsha', 'd-150', 'divisional chart', 'varga', 'nadi astrology', 'twin differentiation', 'birth time rectification'],
   },
@@ -1057,214 +1057,214 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['pancha pakshi', 'five birds', 'tamil astrology', 'kerala astrology', 'timing system', 'nakshatra bird'],
   },
   '/learn/dasha-sandhi': {
-    title: { en: 'Dasha Sandhi — Junction Periods Between Planetary Dashas', hi: 'दशा सन्धि — ग्रह दशाओं के संक्रमण काल', sa: 'दशासन्धिः — ग्रहदशासंक्रमणकालाः' },
-    description: { en: 'Understanding Dasha Sandhi — the critical transition windows between Maha, Antar, and Pratyantar Dashas. Calculation method, effects, and remedies from BPHS and Phaladeepika.', hi: 'दशा सन्धि — महादशा, अन्तर्दशा और प्रत्यन्तर दशा के बीच के संवेदनशील संक्रमण काल। गणना, प्रभाव और उपाय।', sa: 'दशासन्धिः — महादशान्तर्दशाप्रत्यन्तरदशानां मध्ये संवेदनशीलसंक्रमणकालाः। गणना प्रभावः उपायाश्च।' },
+    title: { en: 'Dasha Sandhi  –  Junction Periods Between Planetary Dashas', hi: 'दशा सन्धि  –  ग्रह दशाओं के संक्रमण काल', sa: 'दशासन्धिः  –  ग्रहदशासंक्रमणकालाः' },
+    description: { en: 'Understanding Dasha Sandhi  –  the critical transition windows between Maha, Antar, and Pratyantar Dashas. Calculation method, effects, and remedies from BPHS and Phaladeepika.', hi: 'दशा सन्धि  –  महादशा, अन्तर्दशा और प्रत्यन्तर दशा के बीच के संवेदनशील संक्रमण काल। गणना, प्रभाव और उपाय।', sa: 'दशासन्धिः  –  महादशान्तर्दशाप्रत्यन्तरदशानां मध्ये संवेदनशीलसंक्रमणकालाः। गणना प्रभावः उपायाश्च।' },
     keywords: ['dasha sandhi', 'dasha transition', 'maha dasha sandhi', 'planetary period junction', 'dasha change effects'],
   },
   '/learn/sphutas': {
-    title: { en: 'Sphutas — Sensitive Points (Yogi, Prana, Mrityu)', hi: 'स्फुट — संवेदनशील बिन्दु', sa: 'स्फुटाः — संवेदनशीलबिन्दवः' },
+    title: { en: 'Sphutas  –  Sensitive Points (Yogi, Prana, Mrityu)', hi: 'स्फुट  –  संवेदनशील बिन्दु', sa: 'स्फुटाः  –  संवेदनशीलबिन्दवः' },
     description: { en: 'Yogi & Avayogi Points, Prana Sphuta, Deha Sphuta, Mrityu Sphuta, fertility sphutas. Cosmic GPS coordinates in your chart.', hi: 'योगी, अवयोगी बिन्दु, प्राण, देह, मृत्यु स्फुट। कुण्डली के संवेदनशील बिन्दु।', sa: 'योग्यवयोगिबिन्दू प्राणदेहमृत्युस्फुटाः।' },
     keywords: ['sphutas', 'yogi point', 'avayogi', 'prana sphuta', 'sensitive points'],
   },
   '/learn/argala': {
-    title: { en: 'Argala — Planetary Intervention System (Jaimini)', hi: 'अर्गला — ग्रह हस्तक्षेप पद्धति', sa: 'अर्गला — ग्रहहस्तक्षेपपद्धतिः' },
-    description: { en: 'Argala (bolt) and Virodha Argala: how planets intervene in house affairs. Dhana, Sukha, Labha, Putra Argala explained.', hi: 'अर्गला और विरोध अर्गला: ग्रह भाव मामलों में कैसे हस्तक्षेप करते हैं।', sa: 'अर्गला विरोधार्गला च — ग्रहाः भावकार्येषु कथं हस्तक्षेपं कुर्वन्ति।' },
+    title: { en: 'Argala  –  Planetary Intervention System (Jaimini)', hi: 'अर्गला  –  ग्रह हस्तक्षेप पद्धति', sa: 'अर्गला  –  ग्रहहस्तक्षेपपद्धतिः' },
+    description: { en: 'Argala (bolt) and Virodha Argala: how planets intervene in house affairs. Dhana, Sukha, Labha, Putra Argala explained.', hi: 'अर्गला और विरोध अर्गला: ग्रह भाव मामलों में कैसे हस्तक्षेप करते हैं।', sa: 'अर्गला विरोधार्गला च  –  ग्रहाः भावकार्येषु कथं हस्तक्षेपं कुर्वन्ति।' },
     keywords: ['argala', 'virodha argala', 'jaimini', 'planetary intervention'],
   },
   '/learn/jaimini': {
-    title: { en: 'Jaimini Astrology — Sign-Based System', hi: 'जैमिनी ज्योतिष — राशि आधारित', sa: 'जैमिनीज्योतिषम् — राश्याधारितम्' },
-    description: { en: 'Jaimini system: Chara Karakas, Atmakaraka, Rashi Drishti, Arudha Padas, Karakamsha, and Chara Dasha.', hi: 'जैमिनी: चर कारक, आत्मकारक, राशि दृष्टि, आरूढ़ पद, कारकांश और चर दशा।', sa: 'जैमिनीपद्धतिः — चरकारकाः आत्मकारकः राशिदृष्टिः आरूढपदानि कारकांशः चरदशा च।' },
+    title: { en: 'Jaimini Astrology  –  Sign-Based System', hi: 'जैमिनी ज्योतिष  –  राशि आधारित', sa: 'जैमिनीज्योतिषम्  –  राश्याधारितम्' },
+    description: { en: 'Jaimini system: Chara Karakas, Atmakaraka, Rashi Drishti, Arudha Padas, Karakamsha, and Chara Dasha.', hi: 'जैमिनी: चर कारक, आत्मकारक, राशि दृष्टि, आरूढ़ पद, कारकांश और चर दशा।', sa: 'जैमिनीपद्धतिः  –  चरकारकाः आत्मकारकः राशिदृष्टिः आरूढपदानि कारकांशः चरदशा च।' },
     keywords: ['jaimini astrology', 'chara karaka', 'atmakaraka', 'rashi drishti', 'arudha pada'],
   },
   '/learn/sade-sati': {
-    title: { en: 'Sade Sati — Saturn\'s 7.5-Year Transit', hi: 'साढ़े साती — शनि का 7.5 वर्ष गोचर', sa: 'साडेसाती — शनेः सार्धसप्तवर्षीयगोचरः' },
-    description: { en: 'Complete Sade Sati guide: 3 phases, severity factors, life cycle patterns, remedies, and myths debunked.', hi: 'साढ़े साती: 3 चरण, तीव्रता कारक, जीवन चक्र, उपाय और मिथक।', sa: 'साडेसाती — त्रयः चरणाः तीव्रताकारकाः जीवनचक्रम् उपायाः मिथकाश्च।' },
+    title: { en: 'Sade Sati  –  Saturn\'s 7.5-Year Transit', hi: 'साढ़े साती  –  शनि का 7.5 वर्ष गोचर', sa: 'साडेसाती  –  शनेः सार्धसप्तवर्षीयगोचरः' },
+    description: { en: 'Complete Sade Sati guide: 3 phases, severity factors, life cycle patterns, remedies, and myths debunked.', hi: 'साढ़े साती: 3 चरण, तीव्रता कारक, जीवन चक्र, उपाय और मिथक।', sa: 'साडेसाती  –  त्रयः चरणाः तीव्रताकारकाः जीवनचक्रम् उपायाः मिथकाश्च।' },
     keywords: ['sade sati', 'saturn transit', 'shani sade sati', 'saturn 7.5 years'],
   },
 
-  // ─── Learn core topics (missing entries — added for canonical coverage) ───────
+  // ─── Learn core topics (missing entries  –  added for canonical coverage) ───────
   '/learn/grahas': {
     title: { en: 'The Nine Grahas (Planets) in Vedic Astrology', hi: 'वैदिक ज्योतिष में नव ग्रह', sa: 'वैदिकज्योतिषे नवग्रहाः' },
-    description: { en: 'Complete guide to the nine Grahas: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu — their significations, natures, and roles in Jyotish.', hi: 'नौ ग्रहों का सम्पूर्ण मार्गदर्शन — सूर्य, चन्द्र, मंगल, बुध, बृहस्पति, शुक्र, शनि, राहु, केतु।', sa: 'नवग्रहाणां सम्पूर्णमार्गदर्शनम्।' },
+    description: { en: 'Complete guide to the nine Grahas: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu  –  their significations, natures, and roles in Jyotish.', hi: 'नौ ग्रहों का सम्पूर्ण मार्गदर्शन  –  सूर्य, चन्द्र, मंगल, बुध, बृहस्पति, शुक्र, शनि, राहु, केतु।', sa: 'नवग्रहाणां सम्पूर्णमार्गदर्शनम्।' },
     keywords: ['grahas vedic astrology', 'nine planets jyotish', 'navagraha', 'planets in astrology'],
   },
   '/learn/rashis': {
     title: { en: 'The 12 Rashis (Zodiac Signs) in Vedic Astrology', hi: 'वैदिक ज्योतिष में 12 राशियाँ', sa: 'वैदिकज्योतिषे द्वादशराशयः' },
-    description: { en: 'Learn the 12 Rashis from Mesha to Meena — their elements, qualities, ruling planets, and meanings in Jyotish birth chart interpretation.', hi: 'मेष से मीन तक 12 राशियाँ — तत्त्व, गुण, स्वामी ग्रह और जन्म कुण्डली में अर्थ।', sa: 'मेषादिमीनान्तं द्वादशराशयः।' },
+    description: { en: 'Learn the 12 Rashis from Mesha to Meena  –  their elements, qualities, ruling planets, and meanings in Jyotish birth chart interpretation.', hi: 'मेष से मीन तक 12 राशियाँ  –  तत्त्व, गुण, स्वामी ग्रह और जन्म कुण्डली में अर्थ।', sa: 'मेषादिमीनान्तं द्वादशराशयः।' },
     keywords: ['12 rashis', 'zodiac signs vedic', 'mesha aries', 'vedic zodiac'],
   },
   '/learn/nakshatras': {
-    title: { en: 'The 27 Nakshatras — Lunar Mansions in Jyotish', hi: '27 नक्षत्र — ज्योतिष में चन्द्र मंडल', sa: 'सप्तविंशतिनक्षत्राणि — ज्योतिषे चन्द्रमण्डलम्' },
-    description: { en: 'Complete reference for all 27 Nakshatras — their deities, ruling planets, qualities, syllables, and roles in birth chart analysis and muhurta.', hi: '27 नक्षत्रों का सम्पूर्ण संदर्भ — देवता, स्वामी ग्रह, गुण, अक्षर और कुण्डली विश्लेषण में भूमिका।', sa: 'सर्वेषां सप्तविंशतिनक्षत्राणां सम्पूर्णः सन्दर्भः।' },
+    title: { en: 'The 27 Nakshatras  –  Lunar Mansions in Jyotish', hi: '27 नक्षत्र  –  ज्योतिष में चन्द्र मंडल', sa: 'सप्तविंशतिनक्षत्राणि  –  ज्योतिषे चन्द्रमण्डलम्' },
+    description: { en: 'Complete reference for all 27 Nakshatras  –  their deities, ruling planets, qualities, syllables, and roles in birth chart analysis and muhurta.', hi: '27 नक्षत्रों का सम्पूर्ण संदर्भ  –  देवता, स्वामी ग्रह, गुण, अक्षर और कुण्डली विश्लेषण में भूमिका।', sa: 'सर्वेषां सप्तविंशतिनक्षत्राणां सम्पूर्णः सन्दर्भः।' },
     keywords: ['27 nakshatras', 'lunar mansions', 'nakshatra astrology', 'birth star'],
   },
   '/learn/tithis': {
-    title: { en: 'Tithis — The 30 Lunar Days in Hindu Calendar', hi: 'तिथियाँ — हिन्दू पंचांग में 30 चन्द्र दिवस', sa: 'तिथयः — हिन्दुपञ्चाङ्गे त्रिंशच्चन्द्रदिवसाः' },
-    description: { en: 'Learn the 30 Tithis of the Hindu lunar month — from Pratipada to Amavasya. Their meanings, ruling deities, auspicious and inauspicious nature.', hi: 'प्रतिपदा से अमावस्या तक 30 तिथियाँ — अर्थ, अधिदेवता, शुभ और अशुभ स्वभाव।', sa: 'प्रतिपदादि अमावस्यान्तं त्रिंशत् तिथयः।' },
+    title: { en: 'Tithis  –  The 30 Lunar Days in Hindu Calendar', hi: 'तिथियाँ  –  हिन्दू पंचांग में 30 चन्द्र दिवस', sa: 'तिथयः  –  हिन्दुपञ्चाङ्गे त्रिंशच्चन्द्रदिवसाः' },
+    description: { en: 'Learn the 30 Tithis of the Hindu lunar month  –  from Pratipada to Amavasya. Their meanings, ruling deities, auspicious and inauspicious nature.', hi: 'प्रतिपदा से अमावस्या तक 30 तिथियाँ  –  अर्थ, अधिदेवता, शुभ और अशुभ स्वभाव।', sa: 'प्रतिपदादि अमावस्यान्तं त्रिंशत् तिथयः।' },
     keywords: ['tithi', 'lunar day', 'panchang tithi', 'pratipada purnima amavasya'],
   },
   '/learn/yogas': {
-    title: { en: 'Yogas in Vedic Astrology — Raj, Dhana, Dosha Yogas', hi: 'वैदिक ज्योतिष में योग — राज, धन, दोष योग', sa: 'वैदिकज्योतिषे योगाः — राजयोगः धनयोगः' },
-    description: { en: 'Master the major yogas of Jyotish — Pancha Mahapurusha, Raj Yoga, Dhana Yoga, Neecha Bhanga, and dosha yogas. How they form and what they mean in your chart.', hi: 'पञ्च महापुरुष, राज योग, धन योग, नीच भंग और दोष योगों की सम्पूर्ण जानकारी।', sa: 'पञ्चमहापुरुषाः राजयोगाः धनयोगाः नीचभङ्गाश्च।' },
+    title: { en: 'Yogas in Vedic Astrology  –  Raj, Dhana, Dosha Yogas', hi: 'वैदिक ज्योतिष में योग  –  राज, धन, दोष योग', sa: 'वैदिकज्योतिषे योगाः  –  राजयोगः धनयोगः' },
+    description: { en: 'Master the major yogas of Jyotish  –  Pancha Mahapurusha, Raj Yoga, Dhana Yoga, Neecha Bhanga, and dosha yogas. How they form and what they mean in your chart.', hi: 'पञ्च महापुरुष, राज योग, धन योग, नीच भंग और दोष योगों की सम्पूर्ण जानकारी।', sa: 'पञ्चमहापुरुषाः राजयोगाः धनयोगाः नीचभङ्गाश्च।' },
     keywords: ['yogas in astrology', 'raj yoga', 'dhana yoga', 'pancha mahapurusha'],
   },
   '/learn/karanas': {
-    title: { en: 'Karanas — The 11 Half-Day Units in Panchang', hi: 'करण — पंचांग में 11 अर्द्ध-दिवस इकाइयाँ', sa: 'करणानि — पञ्चाङ्गे एकादशार्धदिवसाः' },
-    description: { en: 'Learn the 11 Karanas (half-Tithis) used in Panchang: Bava, Balava, Kaulava, Taitila, Garaja, Vanija, Vishti (Bhadra), Sakuni, Chatushpada, Naga, Kimstughna.', hi: '11 करण — बव, बालव, कौलव, तैतिल, गर, वणिज, विष्टि, शकुनि, चतुष्पद, नाग, किंस्तुघ्न।', sa: 'पञ्चाङ्गस्य एकादशकरणानि।' },
+    title: { en: 'Karanas  –  The 11 Half-Day Units in Panchang', hi: 'करण  –  पंचांग में 11 अर्द्ध-दिवस इकाइयाँ', sa: 'करणानि  –  पञ्चाङ्गे एकादशार्धदिवसाः' },
+    description: { en: 'Learn the 11 Karanas (half-Tithis) used in Panchang: Bava, Balava, Kaulava, Taitila, Garaja, Vanija, Vishti (Bhadra), Sakuni, Chatushpada, Naga, Kimstughna.', hi: '11 करण  –  बव, बालव, कौलव, तैतिल, गर, वणिज, विष्टि, शकुनि, चतुष्पद, नाग, किंस्तुघ्न।', sa: 'पञ्चाङ्गस्य एकादशकरणानि।' },
     keywords: ['karana panchang', 'half tithi', 'bhadra karana', 'vishti karana'],
   },
   '/learn/muhurtas': {
-    title: { en: 'Muhurta — Auspicious Timing in Vedic Astrology', hi: 'मुहूर्त — वैदिक ज्योतिष में शुभ समय', sa: 'मुहूर्तः — वैदिकज्योतिषे शुभकालः' },
+    title: { en: 'Muhurta  –  Auspicious Timing in Vedic Astrology', hi: 'मुहूर्त  –  वैदिक ज्योतिष में शुभ समय', sa: 'मुहूर्तः  –  वैदिकज्योतिषे शुभकालः' },
     description: { en: 'Learn how to choose auspicious Muhurtas for marriage, travel, business, and ceremonies. Tithi, Nakshatra, Vara, and Yoga combinations explained.', hi: 'विवाह, यात्रा, व्यापार और उत्सवों के लिए शुभ मुहूर्त कैसे चुनें।', sa: 'विवाहयात्राव्यापारोत्सवेभ्यः शुभमुहूर्तचयनम्।' },
     keywords: ['muhurta', 'auspicious timing', 'shubh muhurat', 'vedic timing'],
   },
   '/learn/muhurta-selection': {
-    title: { en: 'Muhurta Selection — Classical Rules for Choosing Auspicious Times', hi: 'मुहूर्त चयन — शुभ समय निर्धारण के शास्त्रीय नियम', sa: 'मुहूर्तचयनम् — शुभकालनिर्धारणस्य शास्त्रीयनियमाः' },
+    title: { en: 'Muhurta Selection  –  Classical Rules for Choosing Auspicious Times', hi: 'मुहूर्त चयन  –  शुभ समय निर्धारण के शास्त्रीय नियम', sa: 'मुहूर्तचयनम्  –  शुभकालनिर्धारणस्य शास्त्रीयनियमाः' },
     description: { en: 'Learn the classical rules for selecting auspicious Muhurtas for marriage and ceremonies. Nakshatra, Tithi, Lagna, Venus/Jupiter combustion, and Panchanga Shuddhi from Muhurta Chintamani and Dharmasindhu.', hi: 'विवाह व संस्कारों हेतु शुभ मुहूर्त चयन के शास्त्रीय नियम। मुहूर्त चिन्तामणि और धर्मसिन्धु से नक्षत्र, तिथि, लग्न, शुक्र/गुरु अस्त और पंचांग शुद्धि।', sa: 'विवाहसंस्कारेभ्यः शुभमुहूर्तचयनस्य शास्त्रीयनियमाः।' },
     keywords: ['muhurta selection', 'vivah muhurat', 'marriage muhurta rules', 'panchanga shuddhi', 'lagna muhurta', 'venus combustion marriage', 'muhurta chintamani'],
   },
   '/learn/eclipses': {
-    title: { en: 'Grahan — Eclipses in Vedic Astrology', hi: 'ग्रहण — वैदिक ज्योतिष में ग्रहण', sa: 'ग्रहणम् — वैदिकज्योतिषे सूर्यचन्द्रग्रहणम्' },
-    description: { en: 'Complete guide to solar and lunar eclipses in Jyotish — the Rahu-Ketu mythology, how eclipses are calculated, eclipse types, Sutak rules, and eclipse effects in your Kundali.', hi: 'ज्योतिष में सूर्य और चन्द्र ग्रहणों की सम्पूर्ण मार्गदर्शिका — राहु-केतु पौराणिक कथा, गणना, प्रकार, सूतक नियम और कुण्डली में प्रभाव।', sa: 'ज्योतिषे सूर्यचन्द्रग्रहणानाम् सम्पूर्णः मार्गदर्शिका।' },
+    title: { en: 'Grahan  –  Eclipses in Vedic Astrology', hi: 'ग्रहण  –  वैदिक ज्योतिष में ग्रहण', sa: 'ग्रहणम्  –  वैदिकज्योतिषे सूर्यचन्द्रग्रहणम्' },
+    description: { en: 'Complete guide to solar and lunar eclipses in Jyotish  –  the Rahu-Ketu mythology, how eclipses are calculated, eclipse types, Sutak rules, and eclipse effects in your Kundali.', hi: 'ज्योतिष में सूर्य और चन्द्र ग्रहणों की सम्पूर्ण मार्गदर्शिका  –  राहु-केतु पौराणिक कथा, गणना, प्रकार, सूतक नियम और कुण्डली में प्रभाव।', sa: 'ज्योतिषे सूर्यचन्द्रग्रहणानाम् सम्पूर्णः मार्गदर्शिका।' },
     keywords: ['grahan vedic astrology', 'solar eclipse jyotish', 'lunar eclipse sutak', 'rahu ketu eclipse', 'eclipse kundali'],
   },
   '/learn/kundali': {
-    title: { en: 'Reading a Kundali — Vedic Birth Chart Interpretation', hi: 'कुण्डली पढ़ना — वैदिक जन्म कुण्डली व्याख्या', sa: 'कुण्डलीपठनम् — वैदिकजन्मकुण्डलीव्याख्या' },
-    description: { en: 'Step-by-step guide to reading a Vedic birth chart (Kundali): houses, planets, signs, aspects, dashas, and yogas. From beginner to advanced interpretation.', hi: 'वैदिक जन्म कुण्डली पढ़ने की चरणबद्ध मार्गदर्शिका — भाव, ग्रह, राशि, दशा और योग।', sa: 'वैदिकजन्मकुण्डलीपठनस्य क्रमबद्धमार्गदर्शिका।' },
+    title: { en: 'Reading a Kundali  –  Vedic Birth Chart Interpretation', hi: 'कुण्डली पढ़ना  –  वैदिक जन्म कुण्डली व्याख्या', sa: 'कुण्डलीपठनम्  –  वैदिकजन्मकुण्डलीव्याख्या' },
+    description: { en: 'Step-by-step guide to reading a Vedic birth chart (Kundali): houses, planets, signs, aspects, dashas, and yogas. From beginner to advanced interpretation.', hi: 'वैदिक जन्म कुण्डली पढ़ने की चरणबद्ध मार्गदर्शिका  –  भाव, ग्रह, राशि, दशा और योग।', sa: 'वैदिकजन्मकुण्डलीपठनस्य क्रमबद्धमार्गदर्शिका।' },
     keywords: ['how to read kundali', 'birth chart interpretation', 'jyotish chart', 'kundali reading'],
   },
   '/learn/lagna': {
-    title: { en: 'Lagna (Ascendant) — The Most Important Point in Kundali', hi: 'लग्न — कुण्डली का सबसे महत्त्वपूर्ण बिन्दु', sa: 'लग्नम् — कुण्डल्यां सर्वाधिकमहत्त्वपूर्णः बिन्दुः' },
-    description: { en: 'Understand the Lagna (rising sign / ascendant) in Vedic astrology — how it is calculated, its role as chart ruler, and its meaning for personality and life path.', hi: 'वैदिक ज्योतिष में लग्न — गणना, कुण्डली में भूमिका और व्यक्तित्व पर प्रभाव।', sa: 'वैदिकज्योतिषे लग्नस्य गणना कुण्डल्यां भूमिका च।' },
+    title: { en: 'Lagna (Ascendant)  –  The Most Important Point in Kundali', hi: 'लग्न  –  कुण्डली का सबसे महत्त्वपूर्ण बिन्दु', sa: 'लग्नम्  –  कुण्डल्यां सर्वाधिकमहत्त्वपूर्णः बिन्दुः' },
+    description: { en: 'Understand the Lagna (rising sign / ascendant) in Vedic astrology  –  how it is calculated, its role as chart ruler, and its meaning for personality and life path.', hi: 'वैदिक ज्योतिष में लग्न  –  गणना, कुण्डली में भूमिका और व्यक्तित्व पर प्रभाव।', sa: 'वैदिकज्योतिषे लग्नस्य गणना कुण्डल्यां भूमिका च।' },
     keywords: ['lagna astrology', 'ascendant vedic', 'rising sign jyotish', 'udaya lagna'],
   },
   '/learn/matching': {
-    title: { en: 'Kundali Matching — How Guna Milan Works', hi: 'कुण्डली मिलान — गुण मिलान कैसे काम करता है', sa: 'कुण्डलीमेलनम् — गुणमेलनं कथं कार्यं करोति' },
-    description: { en: 'Learn the 8-factor Ashta Kuta Guna Milan system for marriage compatibility — Varna, Vashya, Tara, Yoni, Graha Maitri, Gana, Bhakoot, Nadi, and Nadi Dosha.', hi: 'विवाह अनुकूलता के लिए अष्ट कूट गुण मिलान — वर्ण, वश्य, तारा, योनि, ग्रह मैत्री, गण, भकूट, नाड़ी।', sa: 'विवाहानुकूलतायां अष्टकूटगुणमेलनम्।' },
+    title: { en: 'Kundali Matching  –  How Guna Milan Works', hi: 'कुण्डली मिलान  –  गुण मिलान कैसे काम करता है', sa: 'कुण्डलीमेलनम्  –  गुणमेलनं कथं कार्यं करोति' },
+    description: { en: 'Learn the 8-factor Ashta Kuta Guna Milan system for marriage compatibility  –  Varna, Vashya, Tara, Yoni, Graha Maitri, Gana, Bhakoot, Nadi, and Nadi Dosha.', hi: 'विवाह अनुकूलता के लिए अष्ट कूट गुण मिलान  –  वर्ण, वश्य, तारा, योनि, ग्रह मैत्री, गण, भकूट, नाड़ी।', sa: 'विवाहानुकूलतायां अष्टकूटगुणमेलनम्।' },
     keywords: ['kundali matching', 'guna milan', 'ashta kuta', 'marriage compatibility astrology'],
   },
   '/learn/smarta-vaishnava': {
-    title: { en: 'Smarta & Vaishnava Calendar Systems — When Festivals Differ', hi: 'स्मार्त एवं वैष्णव पंचांग पद्धति — त्योहारों में अंतर कब', sa: 'स्मार्तवैष्णवपञ्चाङ्गपद्धती — पर्वसु भेदः कदा' },
+    title: { en: 'Smarta & Vaishnava Calendar Systems  –  When Festivals Differ', hi: 'स्मार्त एवं वैष्णव पंचांग पद्धति  –  त्योहारों में अंतर कब', sa: 'स्मार्तवैष्णवपञ्चाङ्गपद्धती  –  पर्वसु भेदः कदा' },
     description: { en: 'Why Smarta and Vaishnava traditions sometimes observe the same festival on different days. Udaya Tithi vs Viddha rejection, Ekadashi Parana rules, and regional variations explained.', hi: 'स्मार्त और वैष्णव परम्पराएँ एक ही त्योहार अलग-अलग दिन क्यों मनाती हैं। उदय तिथि, विद्धा अस्वीकृति, एकादशी पारण नियम।', sa: 'स्मार्तवैष्णवपरम्परयोः एकस्मिन् पर्वणि भिन्नदिनानि कुतः।' },
     keywords: ['smarta vaishnava', 'festival date difference', 'udaya tithi', 'viddha tithi', 'ekadashi rules', 'dharmasindhu nirnayasindhu'],
   },
   '/learn/vara': {
-    title: { en: 'Vara — The 7 Weekdays in Vedic Astrology', hi: 'वार — वैदिक ज्योतिष में 7 दिन', sa: 'वाराः — वैदिकज्योतिषे सप्तदिनानि' },
-    description: { en: 'Learn the 7 Varas (weekdays) in Jyotish — their ruling planets, auspicious activities, and role in Panchang and Muhurta.', hi: '7 वार — रवि से शनि तक — स्वामी ग्रह, शुभ कार्य और मुहूर्त में भूमिका।', sa: 'रव्यादिशन्यन्तं सप्तवाराः।' },
+    title: { en: 'Vara  –  The 7 Weekdays in Vedic Astrology', hi: 'वार  –  वैदिक ज्योतिष में 7 दिन', sa: 'वाराः  –  वैदिकज्योतिषे सप्तदिनानि' },
+    description: { en: 'Learn the 7 Varas (weekdays) in Jyotish  –  their ruling planets, auspicious activities, and role in Panchang and Muhurta.', hi: '7 वार  –  रवि से शनि तक  –  स्वामी ग्रह, शुभ कार्य और मुहूर्त में भूमिका।', sa: 'रव्यादिशन्यन्तं सप्तवाराः।' },
     keywords: ['vara weekday astrology', 'panchang vara', 'day of week jyotish'],
   },
   '/learn/vargas': {
-    title: { en: 'Varga Charts — Divisional Charts in Vedic Astrology', hi: 'वर्ग कुण्डलियाँ — वैदिक ज्योतिष में विभागीय चार्ट', sa: 'वर्गकुण्डलयः — वैदिकज्योतिषे विभागीयपत्रिकाः' },
-    description: { en: 'Master the 16 Varga charts — Rasi, Hora, Drekkana, Navamsha, Dashamsha, and more. How divisional charts reveal deeper life themes.', hi: '16 वर्ग कुण्डलियाँ — राशि, होरा, द्रेक्काण, नवमांश, दशमांश आदि।', sa: 'षोडशवर्गकुण्डलयः।' },
+    title: { en: 'Varga Charts  –  Divisional Charts in Vedic Astrology', hi: 'वर्ग कुण्डलियाँ  –  वैदिक ज्योतिष में विभागीय चार्ट', sa: 'वर्गकुण्डलयः  –  वैदिकज्योतिषे विभागीयपत्रिकाः' },
+    description: { en: 'Master the 16 Varga charts  –  Rasi, Hora, Drekkana, Navamsha, Dashamsha, and more. How divisional charts reveal deeper life themes.', hi: '16 वर्ग कुण्डलियाँ  –  राशि, होरा, द्रेक्काण, नवमांश, दशमांश आदि।', sa: 'षोडशवर्गकुण्डलयः।' },
     keywords: ['varga charts', 'divisional charts', 'navamsha', 'shodashamsha astrology'],
   },
   '/learn/dashas': {
-    title: { en: 'Dashas — Planetary Period Systems in Vedic Astrology', hi: 'दशा — वैदिक ज्योतिष में ग्रहकाल प्रणाली', sa: 'दशाः — वैदिकज्योतिषे ग्रहकालप्रणाली' },
-    description: { en: 'Complete guide to Vimshottari Dasha — maha dasha, antar dasha, pratyantar dasha, and how planetary periods shape life events.', hi: 'विंशोत्तरी दशा — महादशा, अन्तर्दशा, प्रत्यन्तर दशा और जीवन घटनाओं पर प्रभाव।', sa: 'विंशोत्तरीदशा — महादशा अन्तर्दशा प्रत्यन्तर्दशा च।' },
+    title: { en: 'Dashas  –  Planetary Period Systems in Vedic Astrology', hi: 'दशा  –  वैदिक ज्योतिष में ग्रहकाल प्रणाली', sa: 'दशाः  –  वैदिकज्योतिषे ग्रहकालप्रणाली' },
+    description: { en: 'Complete guide to Vimshottari Dasha  –  maha dasha, antar dasha, pratyantar dasha, and how planetary periods shape life events.', hi: 'विंशोत्तरी दशा  –  महादशा, अन्तर्दशा, प्रत्यन्तर दशा और जीवन घटनाओं पर प्रभाव।', sa: 'विंशोत्तरीदशा  –  महादशा अन्तर्दशा प्रत्यन्तर्दशा च।' },
     keywords: ['dasha system', 'vimshottari dasha', 'mahadasha', 'planetary periods vedic'],
   },
   '/learn/doshas': {
-    title: { en: 'Doshas in Vedic Astrology — Manglik, Kaal Sarp, Sade Sati', hi: 'वैदिक ज्योतिष में दोष — मांगलिक, काल सर्प, साढ़े साती', sa: 'वैदिकज्योतिषे दोषाः' },
-    description: { en: 'Understand the major Doshas in Jyotish — Manglik Dosha, Kaal Sarp Dosha, Sade Sati, Ganda Mula, and Pitra Dosha. Their formation, effects, and remedies.', hi: 'ज्योतिष के प्रमुख दोष — मांगलिक, काल सर्प, साढ़े साती, गण्ड मूल, पितृ दोष — निर्माण, प्रभाव और उपाय।', sa: 'ज्योतिषस्य प्रमुखदोषाः।' },
+    title: { en: 'Doshas in Vedic Astrology  –  Manglik, Kaal Sarp, Sade Sati', hi: 'वैदिक ज्योतिष में दोष  –  मांगलिक, काल सर्प, साढ़े साती', sa: 'वैदिकज्योतिषे दोषाः' },
+    description: { en: 'Understand the major Doshas in Jyotish  –  Manglik Dosha, Kaal Sarp Dosha, Sade Sati, Ganda Mula, and Pitra Dosha. Their formation, effects, and remedies.', hi: 'ज्योतिष के प्रमुख दोष  –  मांगलिक, काल सर्प, साढ़े साती, गण्ड मूल, पितृ दोष  –  निर्माण, प्रभाव और उपाय।', sa: 'ज्योतिषस्य प्रमुखदोषाः।' },
     keywords: ['manglik dosha', 'kaal sarp dosha', 'astrological doshas', 'pitra dosha'],
   },
   '/learn/grahan-yoga': {
-    title: { en: 'Grahan Yoga — Eclipse Yoga in the Birth Chart', hi: 'ग्रहण योग — जन्म कुण्डली में ग्रहण', sa: 'ग्रहणयोगः — जन्मकुण्डल्यां ग्रहणम्' },
-    description: { en: 'Complete guide to Grahan Yoga: Sun/Moon conjunct Rahu/Ketu. Four types, house-wise effects, cancellation rules, classical references, severity assessment, and remedies.', hi: 'ग्रहण योग: सूर्य/चन्द्र की राहु/केतु से युति। चार प्रकार, भाव अनुसार प्रभाव, भंग नियम, शास्त्रीय सन्दर्भ और उपाय।', sa: 'ग्रहणयोगः — सूर्यचन्द्रयोः राहुकेतुभ्यां युतिः। चत्वारः प्रकाराः भावफलानि भङ्गनियमाः च।' },
+    title: { en: 'Grahan Yoga  –  Eclipse Yoga in the Birth Chart', hi: 'ग्रहण योग  –  जन्म कुण्डली में ग्रहण', sa: 'ग्रहणयोगः  –  जन्मकुण्डल्यां ग्रहणम्' },
+    description: { en: 'Complete guide to Grahan Yoga: Sun/Moon conjunct Rahu/Ketu. Four types, house-wise effects, cancellation rules, classical references, severity assessment, and remedies.', hi: 'ग्रहण योग: सूर्य/चन्द्र की राहु/केतु से युति। चार प्रकार, भाव अनुसार प्रभाव, भंग नियम, शास्त्रीय सन्दर्भ और उपाय।', sa: 'ग्रहणयोगः  –  सूर्यचन्द्रयोः राहुकेतुभ्यां युतिः। चत्वारः प्रकाराः भावफलानि भङ्गनियमाः च।' },
     keywords: ['grahan yoga', 'eclipse yoga', 'sun rahu conjunction', 'moon rahu conjunction', 'chandra grahan yoga', 'surya grahan yoga'],
   },
   '/learn/doshas-detailed': {
-    title: { en: 'Doshas Comprehensive Guide — Mangal, Kaal Sarpa, Pitra, Kemdrum, Guru Chandal, Grahan', hi: 'दोष विस्तृत मार्गदर्शिका — मंगल, काल सर्प, पित्र, केमद्रुम, गुरु चाण्डाल, ग्रहण', sa: 'दोषविस्तृतमार्गदर्शिका' },
-    description: { en: 'In-depth guide to all major Jyotish doshas: detection methods, severity levels, cancellation conditions, effects, remedies, and classical references with worked examples.', hi: 'ज्योतिष के सभी प्रमुख दोषों का गहन अध्ययन — पहचान विधि, गंभीरता स्तर, रद्दीकरण शर्तें, प्रभाव और उपचार।', sa: 'ज्योतिषस्य सर्वेषां प्रमुखदोषाणां विस्तृतमार्गदर्शिका।' },
+    title: { en: 'Doshas Comprehensive Guide  –  Mangal, Kaal Sarpa, Pitra, Kemdrum, Guru Chandal, Grahan', hi: 'दोष विस्तृत मार्गदर्शिका  –  मंगल, काल सर्प, पित्र, केमद्रुम, गुरु चाण्डाल, ग्रहण', sa: 'दोषविस्तृतमार्गदर्शिका' },
+    description: { en: 'In-depth guide to all major Jyotish doshas: detection methods, severity levels, cancellation conditions, effects, remedies, and classical references with worked examples.', hi: 'ज्योतिष के सभी प्रमुख दोषों का गहन अध्ययन  –  पहचान विधि, गंभीरता स्तर, रद्दीकरण शर्तें, प्रभाव और उपचार।', sa: 'ज्योतिषस्य सर्वेषां प्रमुखदोषाणां विस्तृतमार्गदर्शिका।' },
     keywords: ['mangal dosha detailed', 'kaal sarpa dosha types', 'pitra dosha', 'kemadruma dosha', 'guru chandal dosha', 'grahan dosha', 'dosha cancellation'],
   },
   '/learn/gochar': {
-    title: { en: 'Gochar — Planetary Transits in Vedic Astrology', hi: 'गोचर — वैदिक ज्योतिष में ग्रह गोचर', sa: 'गोचरः — वैदिकज्योतिषे ग्रहगोचरः' },
-    description: { en: 'Learn how planetary transits (Gochar) interact with your natal chart — Jupiter, Saturn, Rahu-Ketu transits and their effects on life areas.', hi: 'ग्रह गोचर — बृहस्पति, शनि, राहु-केतु का जन्म कुण्डली पर प्रभाव।', sa: 'ग्रहगोचरः — ग्रहाणां जन्मकुण्डल्यां प्रभावः।' },
+    title: { en: 'Gochar  –  Planetary Transits in Vedic Astrology', hi: 'गोचर  –  वैदिक ज्योतिष में ग्रह गोचर', sa: 'गोचरः  –  वैदिकज्योतिषे ग्रहगोचरः' },
+    description: { en: 'Learn how planetary transits (Gochar) interact with your natal chart  –  Jupiter, Saturn, Rahu-Ketu transits and their effects on life areas.', hi: 'ग्रह गोचर  –  बृहस्पति, शनि, राहु-केतु का जन्म कुण्डली पर प्रभाव।', sa: 'ग्रहगोचरः  –  ग्रहाणां जन्मकुण्डल्यां प्रभावः।' },
     keywords: ['gochar transit', 'planetary transits vedic', 'jupiter transit', 'saturn transit'],
   },
   '/learn/advanced': {
-    title: { en: 'Advanced Vedic Astrology — Deeper Jyotish Techniques', hi: 'उन्नत वैदिक ज्योतिष — गहन ज्योतिष तकनीकें', sa: 'उन्नतवैदिकज्योतिषम्' },
-    description: { en: 'Advanced Jyotish topics — Jaimini Sutras, Ashtakavarga, Shadbala, Bhavabala, Argala, Varga charts, special lagnas, and predictive techniques.', hi: 'उन्नत ज्योतिष — जैमिनी सूत्र, अष्टकवर्ग, षड्बल, भावबल, अर्गल, वर्ग कुण्डली।', sa: 'उन्नतज्योतिषम् — जैमिनीसूत्राणि अष्टकवर्गः षड्बलं भावबलम्।' },
+    title: { en: 'Advanced Vedic Astrology  –  Deeper Jyotish Techniques', hi: 'उन्नत वैदिक ज्योतिष  –  गहन ज्योतिष तकनीकें', sa: 'उन्नतवैदिकज्योतिषम्' },
+    description: { en: 'Advanced Jyotish topics  –  Jaimini Sutras, Ashtakavarga, Shadbala, Bhavabala, Argala, Varga charts, special lagnas, and predictive techniques.', hi: 'उन्नत ज्योतिष  –  जैमिनी सूत्र, अष्टकवर्ग, षड्बल, भावबल, अर्गल, वर्ग कुण्डली।', sa: 'उन्नतज्योतिषम्  –  जैमिनीसूत्राणि अष्टकवर्गः षड्बलं भावबलम्।' },
     keywords: ['advanced vedic astrology', 'jaimini astrology', 'advanced jyotish', 'predictive astrology'],
   },
   '/learn/ayanamsha': {
-    title: { en: 'Ayanamsha — The Vedic Sidereal Correction Explained', hi: 'अयनांश — वैदिक नाक्षत्र संशोधन की व्याख्या', sa: 'अयनांशः — वैदिकनाक्षत्रसंशोधनम्' },
-    description: { en: 'Understand Ayanamsha — the difference between tropical and sidereal zodiacs. Lahiri, Raman, Krishnamurti ayanamshas compared.', hi: 'अयनांश — उष्णकटिबंधीय और नाक्षत्र राशिचक्र का अंतर। लाहिड़ी, रमण, कृष्णमूर्ति अयनांश।', sa: 'अयनांशः — उष्णकटिबन्धीय नाक्षत्रराशिचक्रयोः भेदः।' },
+    title: { en: 'Ayanamsha  –  The Vedic Sidereal Correction Explained', hi: 'अयनांश  –  वैदिक नाक्षत्र संशोधन की व्याख्या', sa: 'अयनांशः  –  वैदिकनाक्षत्रसंशोधनम्' },
+    description: { en: 'Understand Ayanamsha  –  the difference between tropical and sidereal zodiacs. Lahiri, Raman, Krishnamurti ayanamshas compared.', hi: 'अयनांश  –  उष्णकटिबंधीय और नाक्षत्र राशिचक्र का अंतर। लाहिड़ी, रमण, कृष्णमूर्ति अयनांश।', sa: 'अयनांशः  –  उष्णकटिबन्धीय नाक्षत्रराशिचक्रयोः भेदः।' },
     keywords: ['ayanamsha', 'lahiri ayanamsha', 'sidereal zodiac', 'tropical vs sidereal'],
   },
   '/learn/bhavas': {
     title: { en: 'The 12 Bhavas (Houses) in Vedic Astrology', hi: 'वैदिक ज्योतिष में 12 भाव', sa: 'वैदिकज्योतिषे द्वादशभावाः' },
-    description: { en: 'Complete guide to the 12 Bhavas (houses) in Jyotish — their significations, natural rulers, Kendra/Trikona/Dusthana classification, and interpretation.', hi: 'ज्योतिष के 12 भाव — अर्थ, प्राकृतिक स्वामी, केन्द्र/त्रिकोण/दुःस्थान वर्गीकरण।', sa: 'ज्योतिषस्य द्वादशभावाः।' },
+    description: { en: 'Complete guide to the 12 Bhavas (houses) in Jyotish  –  their significations, natural rulers, Kendra/Trikona/Dusthana classification, and interpretation.', hi: 'ज्योतिष के 12 भाव  –  अर्थ, प्राकृतिक स्वामी, केन्द्र/त्रिकोण/दुःस्थान वर्गीकरण।', sa: 'ज्योतिषस्य द्वादशभावाः।' },
     keywords: ['12 houses vedic astrology', 'bhavas jyotish', 'kendra trikona', 'house astrology'],
   },
   '/learn/calculations': {
     title: { en: 'How Vedic Astrology Calculations Work', hi: 'वैदिक ज्योतिष गणनाएँ कैसे काम करती हैं', sa: 'वैदिकज्योतिषगणनाः' },
-    description: { en: 'The mathematics behind Vedic astrology — Julian Day Number, sidereal time, tropical to sidereal conversion, and Lahiri Ayanamsha calculation.', hi: 'वैदिक ज्योतिष का गणित — जूलियन दिन संख्या, नाक्षत्र समय, ग्रह स्थिति और लाहिड़ी अयनांश।', sa: 'वैदिकज्योतिषस्य गणितम्।' },
+    description: { en: 'The mathematics behind Vedic astrology  –  Julian Day Number, sidereal time, tropical to sidereal conversion, and Lahiri Ayanamsha calculation.', hi: 'वैदिक ज्योतिष का गणित  –  जूलियन दिन संख्या, नाक्षत्र समय, ग्रह स्थिति और लाहिड़ी अयनांश।', sa: 'वैदिकज्योतिषस्य गणितम्।' },
     keywords: ['vedic astrology calculation', 'julian day number', 'astronomical calculation', 'ayanamsha calculation'],
   },
   '/learn/classical-texts': {
-    title: { en: 'Classical Texts of Vedic Astrology — Brihat Parashari & More', hi: 'वैदिक ज्योतिष के शास्त्रीय ग्रन्थ', sa: 'वैदिकज्योतिषस्य शास्त्रीयग्रन्थाः' },
-    description: { en: 'Overview of the major classical texts of Jyotish — Brihat Parashari Hora Shastra, Saravali, Phaladeepika, Jataka Parijata, Brihat Jataka, and Jaimini Sutras.', hi: 'ज्योतिष के प्रमुख ग्रन्थ — बृहत् पाराशरी, सारावली, फलदीपिका, जातक परिजात।', sa: 'ज्योतिषस्य प्रमुखशास्त्रीयग्रन्थाः।' },
+    title: { en: 'Classical Texts of Vedic Astrology  –  Brihat Parashari & More', hi: 'वैदिक ज्योतिष के शास्त्रीय ग्रन्थ', sa: 'वैदिकज्योतिषस्य शास्त्रीयग्रन्थाः' },
+    description: { en: 'Overview of the major classical texts of Jyotish  –  Brihat Parashari Hora Shastra, Saravali, Phaladeepika, Jataka Parijata, Brihat Jataka, and Jaimini Sutras.', hi: 'ज्योतिष के प्रमुख ग्रन्थ  –  बृहत् पाराशरी, सारावली, फलदीपिका, जातक परिजात।', sa: 'ज्योतिषस्य प्रमुखशास्त्रीयग्रन्थाः।' },
     keywords: ['classical astrology texts', 'brihat parashari', 'jaimini sutras', 'saravali astrology'],
   },
   '/learn/masa': {
-    title: { en: 'Masa — The Hindu Lunar Month System', hi: 'मास — हिन्दू चन्द्र मास प्रणाली', sa: 'मासः — हिन्दुचन्द्रमासप्रणाली' },
-    description: { en: 'Learn the Hindu Masa (lunar month) system — Chaitra to Phalguna, Amanta vs Purnimanta traditions, Adhika Masa (leap month), and regional variations.', hi: 'हिन्दू मास — चैत्र से फाल्गुन, अमान्त और पूर्णिमान्त परम्परा, अधिक मास।', sa: 'हिन्दुमासप्रणाली — चैत्रादिफाल्गुनान्तः अमान्तः पूर्णिमान्तः अधिकमासश्च।' },
+    title: { en: 'Masa  –  The Hindu Lunar Month System', hi: 'मास  –  हिन्दू चन्द्र मास प्रणाली', sa: 'मासः  –  हिन्दुचन्द्रमासप्रणाली' },
+    description: { en: 'Learn the Hindu Masa (lunar month) system  –  Chaitra to Phalguna, Amanta vs Purnimanta traditions, Adhika Masa (leap month), and regional variations.', hi: 'हिन्दू मास  –  चैत्र से फाल्गुन, अमान्त और पूर्णिमान्त परम्परा, अधिक मास।', sa: 'हिन्दुमासप्रणाली  –  चैत्रादिफाल्गुनान्तः अमान्तः पूर्णिमान्तः अधिकमासश्च।' },
     keywords: ['hindu month', 'masa panchang', 'chaitra masa', 'lunar calendar month'],
   },
 
   '/learn/birth-chart': {
     title: { en: 'Understanding Your Birth Chart (Kundali)', hi: 'अपनी जन्म कुण्डली को समझें', sa: 'जन्मकुण्डलीं बोधत' },
-    description: { en: 'Complete beginner guide to reading a Vedic birth chart — 12 houses, 9 planets, 12 signs, degrees, chart styles, and common misconceptions.', hi: 'वैदिक जन्म कुण्डली पढ़ने की सम्पूर्ण शुरुआती मार्गदर्शिका — 12 भाव, 9 ग्रह, 12 राशियाँ, अंश, चार्ट शैली।', sa: 'वैदिकजन्मकुण्डलीपठनस्य सम्पूर्णमार्गदर्शिका।' },
+    description: { en: 'Complete beginner guide to reading a Vedic birth chart  –  12 houses, 9 planets, 12 signs, degrees, chart styles, and common misconceptions.', hi: 'वैदिक जन्म कुण्डली पढ़ने की सम्पूर्ण शुरुआती मार्गदर्शिका  –  12 भाव, 9 ग्रह, 12 राशियाँ, अंश, चार्ट शैली।', sa: 'वैदिकजन्मकुण्डलीपठनस्य सम्पूर्णमार्गदर्शिका।' },
     keywords: ['birth chart', 'kundali', 'janam kundli', 'vedic chart reading', 'how to read birth chart'],
   },
   '/learn/tippanni': {
-    title: { en: 'Tippanni — Chart Interpretation Guide', hi: 'टिप्पणी — कुण्डली व्याख्या मार्गदर्शिका', sa: 'टिप्पणी — कुण्डलीव्याख्यामार्गदर्शिका' },
-    description: { en: 'How Tippanni (interpretive commentary) transforms raw chart data into life insights — personality, planets, yogas, doshas, dashas, and remedies.', hi: 'कैसे टिप्पणी कच्चे कुण्डली डेटा को जीवन अन्तर्दृष्टि में बदलती है — व्यक्तित्व, ग्रह, योग, दोष, दशा, उपाय।', sa: 'टिप्पणी कथं कुण्डलीसमाचारं जीवनबोधे परिणमयति।' },
+    title: { en: 'Tippanni  –  Chart Interpretation Guide', hi: 'टिप्पणी  –  कुण्डली व्याख्या मार्गदर्शिका', sa: 'टिप्पणी  –  कुण्डलीव्याख्यामार्गदर्शिका' },
+    description: { en: 'How Tippanni (interpretive commentary) transforms raw chart data into life insights  –  personality, planets, yogas, doshas, dashas, and remedies.', hi: 'कैसे टिप्पणी कच्चे कुण्डली डेटा को जीवन अन्तर्दृष्टि में बदलती है  –  व्यक्तित्व, ग्रह, योग, दोष, दशा, उपाय।', sa: 'टिप्पणी कथं कुण्डलीसमाचारं जीवनबोधे परिणमयति।' },
     keywords: ['tippanni', 'chart interpretation', 'kundali reading', 'vedic astrology interpretation'],
   },
   '/learn/transits': {
     title: { en: 'Understanding Planetary Transits (Gochar)', hi: 'ग्रह गोचर को समझें', sa: 'ग्रहगोचरं बोधत' },
-    description: { en: 'How planetary transits activate your birth chart — slow planets, Ashtakavarga scores, Transit Radar, Sade Sati, and practical transit advice.', hi: 'कैसे ग्रह गोचर आपकी जन्म कुण्डली सक्रिय करते हैं — धीमे ग्रह, अष्टकवर्ग, गोचर रडार, साढ़े साती।', sa: 'ग्रहगोचरः जन्मकुण्डलीं कथं सक्रियां करोति।' },
+    description: { en: 'How planetary transits activate your birth chart  –  slow planets, Ashtakavarga scores, Transit Radar, Sade Sati, and practical transit advice.', hi: 'कैसे ग्रह गोचर आपकी जन्म कुण्डली सक्रिय करते हैं  –  धीमे ग्रह, अष्टकवर्ग, गोचर रडार, साढ़े साती।', sa: 'ग्रहगोचरः जन्मकुण्डलीं कथं सक्रियां करोति।' },
     keywords: ['planetary transits', 'gochar', 'transit astrology', 'ashtakavarga transit', 'sade sati'],
   },
   '/learn/patrika': {
-    title: { en: 'Patrika — Your Complete Astrological Document', hi: 'पत्रिका — सम्पूर्ण ज्योतिषीय दस्तावेज़', sa: 'पत्रिका — सम्पूर्णज्योतिषदस्तावेजः' },
-    description: { en: 'What is a Janam Patrika — traditional vs digital format, contents, how to read it, when you need it, and export features.', hi: 'जन्म पत्रिका क्या है — पारम्परिक बनाम डिजिटल, विषयवस्तु, कैसे पढ़ें, कब चाहिए।', sa: 'जन्मपत्रिका किम् — पारम्परिकं डिजिटलं च।' },
+    title: { en: 'Patrika  –  Your Complete Astrological Document', hi: 'पत्रिका  –  सम्पूर्ण ज्योतिषीय दस्तावेज़', sa: 'पत्रिका  –  सम्पूर्णज्योतिषदस्तावेजः' },
+    description: { en: 'What is a Janam Patrika  –  traditional vs digital format, contents, how to read it, when you need it, and export features.', hi: 'जन्म पत्रिका क्या है  –  पारम्परिक बनाम डिजिटल, विषयवस्तु, कैसे पढ़ें, कब चाहिए।', sa: 'जन्मपत्रिका किम्  –  पारम्परिकं डिजिटलं च।' },
     keywords: ['patrika', 'janam patri', 'birth chart document', 'kundali document'],
   },
 
   // ─── Date Listing Pages ──────────────────────────────────
   '/dates/ekadashi': {
-    title: { en: 'Ekadashi 2026 — All Dates, Timings & Parana Schedule', hi: 'एकादशी 2026 — सभी तिथियाँ, समय और पारण', sa: 'एकादशी २०२६ — सर्वतिथयः समयश्च' },
-    description: { en: 'Complete list of all Ekadashi dates in 2026 with exact start/end timings, paksha, and fasting guidelines. Shukla and Krishna Ekadashi calendar.', hi: '2026 की सभी एकादशी तिथियों की पूरी सूची — सटीक आरम्भ/समाप्ति समय, पक्ष और व्रत दिशानिर्देश।', sa: '२०२६ वर्षस्य सर्वासां एकादशीतिथीनां सूची — सम्यक्कालः पक्षश्च।' },
+    title: { en: 'Ekadashi 2026  –  All Dates, Timings & Parana Schedule', hi: 'एकादशी 2026  –  सभी तिथियाँ, समय और पारण', sa: 'एकादशी २०२६  –  सर्वतिथयः समयश्च' },
+    description: { en: 'Complete list of all Ekadashi dates in 2026 with exact start/end timings, paksha, and fasting guidelines. Shukla and Krishna Ekadashi calendar.', hi: '2026 की सभी एकादशी तिथियों की पूरी सूची  –  सटीक आरम्भ/समाप्ति समय, पक्ष और व्रत दिशानिर्देश।', sa: '२०२६ वर्षस्य सर्वासां एकादशीतिथीनां सूची  –  सम्यक्कालः पक्षश्च।' },
     keywords: ['ekadashi 2026', 'ekadashi dates', 'ekadashi vrat', 'ekadashi calendar', 'ekadashi timings'],
   },
   '/dates/purnima': {
-    title: { en: 'Purnima 2026 — Full Moon Dates, Timings & Significance', hi: 'पूर्णिमा 2026 — सभी तिथियाँ और समय', sa: 'पूर्णिमा २०२६ — सर्वतिथयः समयश्च' },
-    description: { en: 'All Purnima (full moon) dates in 2026 with exact timings. Guru Purnima, Sharad Purnima, and monthly full moon schedule.', hi: '2026 की सभी पूर्णिमा तिथियों की सूची — गुरु पूर्णिमा, शरद पूर्णिमा और मासिक पूर्णिमा कार्यक्रम।', sa: '२०२६ वर्षस्य सर्वपूर्णिमातिथिसूची।' },
+    title: { en: 'Purnima 2026  –  Full Moon Dates, Timings & Significance', hi: 'पूर्णिमा 2026  –  सभी तिथियाँ और समय', sa: 'पूर्णिमा २०२६  –  सर्वतिथयः समयश्च' },
+    description: { en: 'All Purnima (full moon) dates in 2026 with exact timings. Guru Purnima, Sharad Purnima, and monthly full moon schedule.', hi: '2026 की सभी पूर्णिमा तिथियों की सूची  –  गुरु पूर्णिमा, शरद पूर्णिमा और मासिक पूर्णिमा कार्यक्रम।', sa: '२०२६ वर्षस्य सर्वपूर्णिमातिथिसूची।' },
     keywords: ['purnima 2026', 'full moon dates', 'purnima calendar', 'purnima timings'],
   },
   '/dates/amavasya': {
-    title: { en: 'Amavasya 2026 — New Moon Dates, Timings & Rituals', hi: 'अमावस्या 2026 — सभी तिथियाँ और समय', sa: 'अमावस्या २०२६ — सर्वतिथयः समयश्च' },
-    description: { en: 'Complete Amavasya (new moon) dates in 2026 with exact timings. Pitru Tarpan, Shani Puja, and monthly new moon schedule.', hi: '2026 की सभी अमावस्या तिथियों की सूची — पितृ तर्पण, शनि पूजा और मासिक अमावस्या।', sa: '२०२६ वर्षस्य सर्वामावस्यातिथिसूची।' },
+    title: { en: 'Amavasya 2026  –  New Moon Dates, Timings & Rituals', hi: 'अमावस्या 2026  –  सभी तिथियाँ और समय', sa: 'अमावस्या २०२६  –  सर्वतिथयः समयश्च' },
+    description: { en: 'Complete Amavasya (new moon) dates in 2026 with exact timings. Pitru Tarpan, Shani Puja, and monthly new moon schedule.', hi: '2026 की सभी अमावस्या तिथियों की सूची  –  पितृ तर्पण, शनि पूजा और मासिक अमावस्या।', sa: '२०२६ वर्षस्य सर्वामावस्यातिथिसूची।' },
     keywords: ['amavasya 2026', 'new moon dates', 'amavasya calendar', 'amavasya timings'],
   },
   '/dates/pradosham': {
-    title: { en: 'Pradosham 2026 — All Dates, Timings & Vrat Guide', hi: 'प्रदोष 2026 — सभी तिथियाँ और व्रत मार्गदर्शन', sa: 'प्रदोषम् २०२६ — सर्वतिथयः व्रतमार्गदर्शनं च' },
-    description: { en: 'All Pradosham dates in 2026 with timings. Shani Pradosham, Soma Pradosham schedule and Shiva worship guidelines.', hi: '2026 की सभी प्रदोष तिथियाँ — शनि प्रदोष, सोम प्रदोष और शिव पूजा मार्गदर्शन।', sa: '२०२६ वर्षस्य सर्वप्रदोषतिथिसूची।' },
+    title: { en: 'Pradosham 2026  –  All Dates, Timings & Vrat Guide', hi: 'प्रदोष 2026  –  सभी तिथियाँ और व्रत मार्गदर्शन', sa: 'प्रदोषम् २०२६  –  सर्वतिथयः व्रतमार्गदर्शनं च' },
+    description: { en: 'All Pradosham dates in 2026 with timings. Shani Pradosham, Soma Pradosham schedule and Shiva worship guidelines.', hi: '2026 की सभी प्रदोष तिथियाँ  –  शनि प्रदोष, सोम प्रदोष और शिव पूजा मार्गदर्शन।', sa: '२०२६ वर्षस्य सर्वप्रदोषतिथिसूची।' },
     keywords: ['pradosham 2026', 'pradosh vrat', 'shani pradosham', 'soma pradosham'],
   },
   '/dates/chaturthi': {
-    title: { en: 'Chaturthi 2026 — Sankashti & Vinayaka Dates & Timings', hi: 'चतुर्थी 2026 — संकष्टी और विनायक तिथियाँ', sa: 'चतुर्थी २०२६ — सङ्कष्टिविनायकतिथयः' },
-    description: { en: 'All Chaturthi dates in 2026 — Sankashti Chaturthi (Krishna) and Vinayaka Chaturthi (Shukla) with exact timings and Ganesh Puja guidelines.', hi: '2026 की सभी चतुर्थी तिथियाँ — संकष्टी चतुर्थी और विनायक चतुर्थी।', sa: '२०२६ वर्षस्य सर्वचतुर्थीतिथिसूची।' },
+    title: { en: 'Chaturthi 2026  –  Sankashti & Vinayaka Dates & Timings', hi: 'चतुर्थी 2026  –  संकष्टी और विनायक तिथियाँ', sa: 'चतुर्थी २०२६  –  सङ्कष्टिविनायकतिथयः' },
+    description: { en: 'All Chaturthi dates in 2026  –  Sankashti Chaturthi (Krishna) and Vinayaka Chaturthi (Shukla) with exact timings and Ganesh Puja guidelines.', hi: '2026 की सभी चतुर्थी तिथियाँ  –  संकष्टी चतुर्थी और विनायक चतुर्थी।', sa: '२०२६ वर्षस्य सर्वचतुर्थीतिथिसूची।' },
     keywords: ['chaturthi 2026', 'sankashti chaturthi', 'vinayaka chaturthi', 'ganesh chaturthi dates'],
   },
 
   // ─── Matching ─────────────────────────────────────────────
   '/matching/compatibility': {
-    title: { en: 'Vedic Rashi Compatibility Chart — All 12 Signs', hi: 'वैदिक राशि संगतता चार्ट — सभी 12 राशियाँ', sa: 'वैदिकराशिसंगततासारिणी' },
+    title: { en: 'Vedic Rashi Compatibility Chart  –  All 12 Signs', hi: 'वैदिक राशि संगतता चार्ट  –  सभी 12 राशियाँ', sa: 'वैदिकराशिसंगततासारिणी' },
     description: { en: 'Interactive 12×12 Vedic compatibility heatmap. Check rashi-to-rashi compatibility scores based on Ashta Kuta matching.', hi: '12×12 वैदिक संगतता हीटमैप। अष्ट कूट मिलान पर आधारित राशि संगतता स्कोर।', sa: '12×12 संगततासारिणी।' },
     keywords: ['rashi compatibility chart', 'vedic zodiac compatibility', 'ashta kuta chart'],
   },
@@ -1272,83 +1272,83 @@ export const PAGE_META: Record<string, PageMeta> = {
   // ─── Learn ────────────────────────────────────────────────
   '/learn': {
     title: {
-      en: 'Learn Vedic Astrology (Jyotish) — Free Course',
-      hi: 'वैदिक ज्योतिष सीखें — निःशुल्क पाठ्यक्रम',
-      sa: 'वैदिकज्योतिषं शिक्षतु — निःशुल्कपाठ्यक्रमः',
+      en: 'Learn Vedic Astrology (Jyotish)  –  Free Course',
+      hi: 'वैदिक ज्योतिष सीखें  –  निःशुल्क पाठ्यक्रम',
+      sa: 'वैदिकज्योतिषं शिक्षतु  –  निःशुल्कपाठ्यक्रमः',
     },
     description: {
-      en: 'Learn Vedic astrology free — 127+ interactive modules from basics to advanced. Grahas, Rashis, Nakshatras, Kundali reading, Muhurta & more. Start now.',
+      en: 'Learn Vedic astrology free  –  127+ interactive modules from basics to advanced. Grahas, Rashis, Nakshatras, Kundali reading, Muhurta & more. Start now.',
       hi: 'वैदिक ज्योतिष का निःशुल्क पूर्ण पाठ्यक्रम। ग्रह, राशि, नक्षत्र, तिथि, योग, कुण्डली पढ़ना सीखें।',
       sa: 'वैदिकज्योतिषस्य निःशुल्कः सम्पूर्णपाठ्यक्रमः। ग्रहान् राशीन् नक्षत्राणि तिथीन् योगान् कुण्डलीपठनं च शिक्षतु।',
     },
     keywords: ['learn vedic astrology', 'jyotish course', 'astrology tutorial', 'free astrology course'],
   },
   '/learn/rahu-kaal': {
-    title: { en: 'Rahu Kaal — The Shadow Period in Vedic Astrology', hi: 'राहु काल — वैदिक ज्योतिष में छाया का समय', sa: 'राहुकालः — वैदिकज्योतिषे छायाकालः' },
-    description: { en: 'Learn about Rahu Kaal — the daily 1.5-hour inauspicious window ruled by Rahu. Daily rotation sequence, difference from Yamaganda and Gulika, and common misconceptions.', hi: 'राहु काल के बारे में जानें — राहु द्वारा शासित दैनिक डेढ़ घंटे की अशुभ अवधि। दैनिक क्रम, यमगण्ड और गुलिक से अंतर।', sa: 'राहुकालं जानीयात् — राहुणा शासितं दैनिकम् अशुभकालखण्डम्।' },
+    title: { en: 'Rahu Kaal  –  The Shadow Period in Vedic Astrology', hi: 'राहु काल  –  वैदिक ज्योतिष में छाया का समय', sa: 'राहुकालः  –  वैदिकज्योतिषे छायाकालः' },
+    description: { en: 'Learn about Rahu Kaal  –  the daily 1.5-hour inauspicious window ruled by Rahu. Daily rotation sequence, difference from Yamaganda and Gulika, and common misconceptions.', hi: 'राहु काल के बारे में जानें  –  राहु द्वारा शासित दैनिक डेढ़ घंटे की अशुभ अवधि। दैनिक क्रम, यमगण्ड और गुलिक से अंतर।', sa: 'राहुकालं जानीयात्  –  राहुणा शासितं दैनिकम् अशुभकालखण्डम्।' },
     keywords: ['rahu kaal', 'rahu kalam', 'inauspicious time', 'yamaganda', 'gulika kaal', 'vedic astrology'],
   },
   '/learn/prashna': {
-    title: { en: 'Prashna Kundali — Vedic Horary Astrology Guide', hi: 'प्रश्न कुण्डली — वैदिक प्रश्न ज्योतिष मार्गदर्शिका', sa: 'प्रश्नकुण्डली — वैदिकप्रश्नज्योतिषमार्गदर्शिका' },
-    description: { en: 'Complete guide to Prashna (horary) astrology — chart casting, Arudha Lagna, Moon analysis, Prashna Yogas, and the Kerala Ashtamangala tradition.', hi: 'प्रश्न ज्योतिष का पूर्ण मार्गदर्शन — कुण्डली निर्माण, आरूढ़ लग्न, चन्द्र विश्लेषण, प्रश्न योग और केरल अष्टमंगल परम्परा।', sa: 'प्रश्नज्योतिषस्य सम्पूर्णमार्गदर्शिका — कुण्डलीनिर्माणम् आरूढलग्नम् च।' },
+    title: { en: 'Prashna Kundali  –  Vedic Horary Astrology Guide', hi: 'प्रश्न कुण्डली  –  वैदिक प्रश्न ज्योतिष मार्गदर्शिका', sa: 'प्रश्नकुण्डली  –  वैदिकप्रश्नज्योतिषमार्गदर्शिका' },
+    description: { en: 'Complete guide to Prashna (horary) astrology  –  chart casting, Arudha Lagna, Moon analysis, Prashna Yogas, and the Kerala Ashtamangala tradition.', hi: 'प्रश्न ज्योतिष का पूर्ण मार्गदर्शन  –  कुण्डली निर्माण, आरूढ़ लग्न, चन्द्र विश्लेषण, प्रश्न योग और केरल अष्टमंगल परम्परा।', sa: 'प्रश्नज्योतिषस्य सम्पूर्णमार्गदर्शिका  –  कुण्डलीनिर्माणम् आरूढलग्नम् च।' },
     keywords: ['prashna kundali', 'horary astrology', 'prashna marga', 'ashtamangala prashna', 'vedic horary'],
   },
   '/learn/tithi-pravesha': {
-    title: { en: 'Tithi Pravesha — Vedic Birthday Chart Guide', hi: 'तिथि प्रवेश — वैदिक जन्मदिन कुण्डली मार्गदर्शिका', sa: 'तिथिप्रवेशः — वैदिकजन्मदिवसकुण्डलीमार्गदर्शिका' },
-    description: { en: 'Learn Tithi Pravesha — the Vedic birthday chart based on Sun-Moon angle recurrence. Year lord, panchanga reading, comparison with Western solar returns.', hi: 'तिथि प्रवेश सीखें — सूर्य-चन्द्र कोण पुनरावृत्ति पर आधारित वैदिक जन्मदिन कुण्डली। वर्ष स्वामी, पंचांग पठन।', sa: 'तिथिप्रवेशं शिक्षतु — सूर्यचन्द्रकोणपुनरावृत्त्याधारिता वैदिकजन्मदिवसकुण्डली।' },
+    title: { en: 'Tithi Pravesha  –  Vedic Birthday Chart Guide', hi: 'तिथि प्रवेश  –  वैदिक जन्मदिन कुण्डली मार्गदर्शिका', sa: 'तिथिप्रवेशः  –  वैदिकजन्मदिवसकुण्डलीमार्गदर्शिका' },
+    description: { en: 'Learn Tithi Pravesha  –  the Vedic birthday chart based on Sun-Moon angle recurrence. Year lord, panchanga reading, comparison with Western solar returns.', hi: 'तिथि प्रवेश सीखें  –  सूर्य-चन्द्र कोण पुनरावृत्ति पर आधारित वैदिक जन्मदिन कुण्डली। वर्ष स्वामी, पंचांग पठन।', sa: 'तिथिप्रवेशं शिक्षतु  –  सूर्यचन्द्रकोणपुनरावृत्त्याधारिता वैदिकजन्मदिवसकुण्डली।' },
     keywords: ['tithi pravesha', 'vedic birthday', 'annual chart', 'year lord', 'solar return vedic'],
   },
   '/learn/kaal-sarp': {
-    title: { en: 'Kaal Sarpa Dosha — Types, Effects, Cancellation & Honest Context', hi: 'काल सर्प दोष — प्रकार, प्रभाव, निवारण और ईमानदार संदर्भ', sa: 'कालसर्पदोषः — प्रकाराः प्रभावाः निवारणं शास्त्रीयसन्दर्भश्च' },
-    description: { en: 'Complete guide to Kaal Sarpa Dosha — 12 types, ascending vs descending, cancellation conditions, remedies, and honest disclosure that it is not found in BPHS.', hi: 'काल सर्प दोष का पूर्ण मार्गदर्शन — 12 प्रकार, आरोही बनाम अवरोही, निवारण शर्तें, उपाय, और BPHS में अनुपस्थिति का ईमानदार खुलासा।', sa: 'कालसर्पदोषस्य सम्पूर्णमार्गदर्शिका — द्वादशप्रकाराः निवारणशर्ताः उपायाश्च।' },
+    title: { en: 'Kaal Sarpa Dosha  –  Types, Effects, Cancellation & Honest Context', hi: 'काल सर्प दोष  –  प्रकार, प्रभाव, निवारण और ईमानदार संदर्भ', sa: 'कालसर्पदोषः  –  प्रकाराः प्रभावाः निवारणं शास्त्रीयसन्दर्भश्च' },
+    description: { en: 'Complete guide to Kaal Sarpa Dosha  –  12 types, ascending vs descending, cancellation conditions, remedies, and honest disclosure that it is not found in BPHS.', hi: 'काल सर्प दोष का पूर्ण मार्गदर्शन  –  12 प्रकार, आरोही बनाम अवरोही, निवारण शर्तें, उपाय, और BPHS में अनुपस्थिति का ईमानदार खुलासा।', sa: 'कालसर्पदोषस्य सम्पूर्णमार्गदर्शिका  –  द्वादशप्रकाराः निवारणशर्ताः उपायाश्च।' },
     keywords: ['kaal sarpa dosha', 'kaal sarpa yoga', 'rahu ketu axis', 'kaal amrita', 'dosha remedies'],
   },
   '/learn/tarabalam': {
-    title: { en: 'Tara Bala — Star Strength for Daily Auspiciousness', hi: 'तारा बल — दैनिक शुभत्व के लिए नक्षत्र शक्ति', sa: 'ताराबलम् — दैनिकशुभत्वाय नक्षत्रशक्तिः' },
-    description: { en: 'Learn Tara Bala — the 9 Taras from birth nakshatra to transit nakshatra. Janma, Sampat, Vipat, Kshema, Pratyari, Sadhaka, Vadha, Mitra, Atimitra explained.', hi: 'तारा बल सीखें — जन्म नक्षत्र से गोचर नक्षत्र तक 9 तारे। जन्म, सम्पत्, विपत्, क्षेम, प्रत्यरि, साधक, वध, मित्र, अतिमित्र।', sa: 'ताराबलं शिक्षतु — जन्मनक्षत्रात् गोचरनक्षत्रपर्यन्तं नवताराः।' },
+    title: { en: 'Tara Bala  –  Star Strength for Daily Auspiciousness', hi: 'तारा बल  –  दैनिक शुभत्व के लिए नक्षत्र शक्ति', sa: 'ताराबलम्  –  दैनिकशुभत्वाय नक्षत्रशक्तिः' },
+    description: { en: 'Learn Tara Bala  –  the 9 Taras from birth nakshatra to transit nakshatra. Janma, Sampat, Vipat, Kshema, Pratyari, Sadhaka, Vadha, Mitra, Atimitra explained.', hi: 'तारा बल सीखें  –  जन्म नक्षत्र से गोचर नक्षत्र तक 9 तारे। जन्म, सम्पत्, विपत्, क्षेम, प्रत्यरि, साधक, वध, मित्र, अतिमित्र।', sa: 'ताराबलं शिक्षतु  –  जन्मनक्षत्रात् गोचरनक्षत्रपर्यन्तं नवताराः।' },
     keywords: ['tara bala', 'tarabalam', 'star strength', 'nine taras', 'daily auspiciousness', 'nakshatra compatibility'],
   },
 
   // ─── Missing Pages (SEO gap fill) ────────────────────────
   '/annual-forecast': {
-    title: { en: 'Annual Vedic Forecast — Planetary Transits & Predictions', hi: 'वार्षिक वैदिक भविष्यवाणी — ग्रह गोचर और पूर्वानुमान', sa: 'वार्षिकवैदिकभविष्यवाणी — ग्रहगोचरः पूर्वानुमानम्' },
+    title: { en: 'Annual Vedic Forecast  –  Planetary Transits & Predictions', hi: 'वार्षिक वैदिक भविष्यवाणी  –  ग्रह गोचर और पूर्वानुमान', sa: 'वार्षिकवैदिकभविष्यवाणी  –  ग्रहगोचरः पूर्वानुमानम्' },
     description: { en: 'Year-ahead Vedic forecast based on planetary transits of Jupiter, Saturn, Rahu-Ketu. Personalized predictions for all 12 Moon signs.', hi: 'बृहस्पति, शनि, राहु-केतु गोचर पर आधारित वार्षिक वैदिक भविष्यवाणी। सभी 12 चन्द्र राशियों के लिए व्यक्तिगत पूर्वानुमान।', sa: 'बृहस्पतिशनिराहुकेतुगोचराधारितं वार्षिकं वैदिकभविष्यवाणी। सर्वासां १२ चन्द्रराशीनां कृते पूर्वानुमानम्।' },
     keywords: ['annual forecast', 'yearly horoscope', 'vedic predictions', 'planetary transits year'],
   },
   '/kundali/compare': {
-    title: { en: 'Compare Birth Charts — Side-by-Side Kundali Analysis', hi: 'जन्म कुण्डली तुलना — अगल-बगल विश्लेषण', sa: 'जन्मकुण्डलीतुलना — पार्श्वशः विश्लेषणम्' },
+    title: { en: 'Compare Birth Charts  –  Side-by-Side Kundali Analysis', hi: 'जन्म कुण्डली तुलना  –  अगल-बगल विश्लेषण', sa: 'जन्मकुण्डलीतुलना  –  पार्श्वशः विश्लेषणम्' },
     description: { en: 'Compare two Vedic birth charts side by side. Analyze planet positions, house placements, dashas, and compatibility between any two Kundalis.', hi: 'दो वैदिक जन्म कुण्डलियों की अगल-बगल तुलना। ग्रह स्थिति, भाव, दशा और अनुकूलता विश्लेषण।', sa: 'द्वयोः वैदिकजन्मकुण्डल्योः पार्श्वशः तुलना। ग्रहस्थितिभावदशानुकूलताविश्लेषणम्।' },
     keywords: ['compare kundali', 'birth chart comparison', 'kundali side by side', 'chart synastry vedic'],
   },
   '/kundali/rectify': {
-    title: { en: 'Birth Time Rectification — Correct Your Birth Time', hi: 'जन्म समय शुद्धि — अपना जन्म समय सही करें', sa: 'जन्मसमयशुद्धिः — जन्मसमयं संशोधयतु' },
+    title: { en: 'Birth Time Rectification  –  Correct Your Birth Time', hi: 'जन्म समय शुद्धि  –  अपना जन्म समय सही करें', sa: 'जन्मसमयशुद्धिः  –  जन्मसमयं संशोधयतु' },
     description: { en: 'Rectify your birth time using major life events. Vedic birth time rectification based on Dasha periods, transit triggers, and divisional chart verification.', hi: 'प्रमुख जीवन घटनाओं से अपना जन्म समय शुद्ध करें। दशा, गोचर और वर्ग कुण्डली सत्यापन।', sa: 'प्रमुखजीवनघटनाभिः स्वजन्मसमयं शोधयतु। दशागोचरवर्गकुण्डलीसत्यापनम्।' },
     keywords: ['birth time rectification', 'correct birth time', 'kundali rectification', 'vedic rectification'],
   },
   '/learn/library': {
-    title: { en: 'Jyotish Reference Library — Classical Texts & Resources', hi: 'ज्योतिष सन्दर्भ पुस्तकालय — शास्त्रीय ग्रन्थ एवं संसाधन', sa: 'ज्योतिषसन्दर्भपुस्तकालयः — शास्त्रीयग्रन्थाः संसाधनानि च' },
-    description: { en: 'Curated library of classical Jyotish texts, astronomical treatises, and reference materials. From Surya Siddhanta to Brihat Parashari Hora Shastra.', hi: 'सूर्य सिद्धान्त से बृहत् पाराशरी होरा शास्त्र तक — शास्त्रीय ज्योतिष ग्रन्थों का संग्रह।', sa: 'सूर्यसिद्धान्तात् बृहत्पाराशरीपर्यन्तं शास्त्रीयज्योतिषग्रन्थसङ्ग्रहः।' },
+    title: { en: 'Jyotish Reference Library  –  Classical Texts & Resources', hi: 'ज्योतिष सन्दर्भ पुस्तकालय  –  शास्त्रीय ग्रन्थ एवं संसाधन', sa: 'ज्योतिषसन्दर्भपुस्तकालयः  –  शास्त्रीयग्रन्थाः संसाधनानि च' },
+    description: { en: 'Curated library of classical Jyotish texts, astronomical treatises, and reference materials. From Surya Siddhanta to Brihat Parashari Hora Shastra.', hi: 'सूर्य सिद्धान्त से बृहत् पाराशरी होरा शास्त्र तक  –  शास्त्रीय ज्योतिष ग्रन्थों का संग्रह।', sa: 'सूर्यसिद्धान्तात् बृहत्पाराशरीपर्यन्तं शास्त्रीयज्योतिषग्रन्थसङ्ग्रहः।' },
     keywords: ['jyotish library', 'vedic astrology books', 'classical texts astrology', 'surya siddhanta'],
   },
   '/calendar/regional/mithila': {
-    title: { en: 'Mithila Panchang — Regional Calendar for Bihar & Jharkhand', hi: 'मिथिला पंचांग — बिहार और झारखण्ड का क्षेत्रीय कैलेंडर', sa: 'मिथिलापञ्चाङ्गम् — बिहारझारखण्डयोः प्रादेशिकपञ्चाङ्गम्' },
+    title: { en: 'Mithila Panchang  –  Regional Calendar for Bihar & Jharkhand', hi: 'मिथिला पंचांग  –  बिहार और झारखण्ड का क्षेत्रीय कैलेंडर', sa: 'मिथिलापञ्चाङ्गम्  –  बिहारझारखण्डयोः प्रादेशिकपञ्चाङ्गम्' },
     description: { en: 'Mithila regional Panchang for Bihar and Jharkhand. Maithili festivals, Chhath Puja, Sama-Chakeva, Jitiya, and Madhushravani with traditional calendar.', hi: 'बिहार और झारखण्ड का मिथिला पंचांग। मैथिली त्योहार, छठ पूजा, सामा-चकेवा, जिउतिया, मधुश्रावणी।', sa: 'बिहारझारखण्डयोः मिथिलापञ्चाङ्गम्। मैथिलीपर्वाणि छठपूजा सामचकेवा जीवितपुत्रिका च।' },
     keywords: ['mithila panchang', 'bihar calendar', 'jharkhand panchang', 'chhath puja', 'maithili festivals'],
   },
   '/stories': {
-    title: { en: 'Vedic Stories — Mythology Behind the Stars', hi: 'वैदिक कथाएँ — तारों के पीछे की पौराणिक कथाएँ', sa: 'वैदिककथाः — नक्षत्राणां पृष्ठतः पौराणिककथाः' },
-    description: { en: 'Stories from Hindu mythology connected to astronomy and astrology — Navagraha origins, Nakshatra legends, Rahu-Ketu and the cosmic serpent.', hi: 'खगोलशास्त्र और ज्योतिष से जुड़ी हिन्दू पौराणिक कथाएँ — नवग्रह उत्पत्ति, नक्षत्र कथाएँ, राहु-केतु।', sa: 'खगोलज्योतिषसम्बद्धाः हिन्दूपौराणिककथाः — नवग्रहोत्पत्तिः नक्षत्रकथाः राहुकेतू च।' },
+    title: { en: 'Vedic Stories  –  Mythology Behind the Stars', hi: 'वैदिक कथाएँ  –  तारों के पीछे की पौराणिक कथाएँ', sa: 'वैदिककथाः  –  नक्षत्राणां पृष्ठतः पौराणिककथाः' },
+    description: { en: 'Stories from Hindu mythology connected to astronomy and astrology  –  Navagraha origins, Nakshatra legends, Rahu-Ketu and the cosmic serpent.', hi: 'खगोलशास्त्र और ज्योतिष से जुड़ी हिन्दू पौराणिक कथाएँ  –  नवग्रह उत्पत्ति, नक्षत्र कथाएँ, राहु-केतु।', sa: 'खगोलज्योतिषसम्बद्धाः हिन्दूपौराणिककथाः  –  नवग्रहोत्पत्तिः नक्षत्रकथाः राहुकेतू च।' },
     keywords: ['vedic stories', 'hindu mythology astronomy', 'navagraha stories', 'nakshatra legends'],
   },
 
   // ─── Learn Contributions (India's Mathematical & Astronomical Heritage) ───
   '/learn/contributions/zero': {
-    title: { en: 'Zero — The Most Dangerous Idea in History (Born in India)', hi: 'शून्य — इतिहास का सबसे खतरनाक विचार (भारत में जन्मा)', sa: 'शून्यम् — इतिहासस्य भयङ्करतमः विचारः (भारते जातम्)' },
+    title: { en: 'Zero  –  The Most Dangerous Idea in History (Born in India)', hi: 'शून्य  –  इतिहास का सबसे खतरनाक विचार (भारत में जन्मा)', sa: 'शून्यम्  –  इतिहासस्य भयङ्करतमः विचारः (भारते जातम्)' },
     description: { en: 'How a "nothing" from India terrified Europe and transformed mathematics. Brahmagupta\'s rules for zero arithmetic to the decimal revolution that changed the world.', hi: 'भारत के "कुछ नहीं" ने यूरोप को भयभीत कर गणित बदल दिया। ब्रह्मगुप्त से दशमलव क्रान्ति तक।', sa: 'भारतस्य "किमपि न" इत्यस्य विचारेण यूरोपं भयभीतं गणितं च परिवर्तितम्।' },
     keywords: ['invention of zero', 'brahmagupta zero', 'indian mathematics', 'decimal system origin'],
   },
   '/learn/contributions/pi': {
-    title: { en: 'Pi = 3.1416 — How Aryabhata Nailed It in 499 CE', hi: 'π = 3.1416 — आर्यभट ने 499 CE में कैसे सटीक गणना की', sa: 'π = 3.1416 — आर्यभटः 499 CE वर्षे कथं सुनिश्चितं गणितवान्' },
+    title: { en: 'Pi = 3.1416  –  How Aryabhata Nailed It in 499 CE', hi: 'π = 3.1416  –  आर्यभट ने 499 CE में कैसे सटीक गणना की', sa: 'π = 3.1416  –  आर्यभटः 499 CE वर्षे कथं सुनिश्चितं गणितवान्' },
     description: { en: 'Aryabhata calculated Pi to 4 decimal places in 499 CE. Madhava then cracked infinite series 250 years before Leibniz. The Indian story of Pi nobody tells.', hi: 'आर्यभट ने 499 CE में पाई की 4 दशमलव तक गणना की। माधव ने लाइबनिट्ज़ से 250 वर्ष पहले अनन्त श्रृंखला खोजी।', sa: 'आर्यभटः 499 CE वर्षे पाई 4 दशमलवस्थानपर्यन्तं गणितवान्।' },
     keywords: ['pi india', 'madhava series', 'aryabhata pi', 'indian mathematics pi'],
   },
@@ -1358,17 +1358,17 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['sine function india', 'aryabhata jya', 'trigonometry origin', 'indian trigonometry'],
   },
   '/learn/contributions/pythagoras': {
-    title: { en: 'The "Pythagorean" Theorem Was Indian — Baudhayana Had It 300 Years Earlier', hi: '"पाइथागोरस" प्रमेय भारतीय था — बौधायन के पास 300 वर्ष पहले था', sa: '"पाइथागोरस" प्रमेयं भारतीयम् आसीत् — बौधायनः 300 वर्षैः पूर्वम्' },
+    title: { en: 'The "Pythagorean" Theorem Was Indian  –  Baudhayana Had It 300 Years Earlier', hi: '"पाइथागोरस" प्रमेय भारतीय था  –  बौधायन के पास 300 वर्ष पहले था', sa: '"पाइथागोरस" प्रमेयं भारतीयम् आसीत्  –  बौधायनः 300 वर्षैः पूर्वम्' },
     description: { en: 'Baudhayana\'s Shulba Sutras (800 BCE) describe the diagonal theorem 300 years before Pythagoras was born. The proof Pythagoras gets credit for isn\'t his.', hi: 'बौधायन के शुल्ब सूत्र (800 BCE) में विकर्ण प्रमेय पाइथागोरस के जन्म से 300 वर्ष पहले है।', sa: 'बौधायनस्य शुल्बसूत्रेषु (800 BCE) विकर्णप्रमेयं पाइथागोरसजन्मनः 300 वर्षैः पूर्वम्।' },
     keywords: ['pythagorean theorem india', 'shulba sutras', 'baudhayana', 'vedic geometry'],
   },
   '/learn/contributions/fibonacci': {
-    title: { en: 'The "Fibonacci" Sequence Was Indian — And It Started With Music', hi: '"फिबोनैचि" अनुक्रम भारतीय था — और यह संगीत से शुरू हुआ', sa: '"फिबोनैचि" अनुक्रमः भारतीयः आसीत् — सङ्गीतात् आरब्धम्' },
-    description: { en: 'Pingala described this sequence in 200 BCE — for Sanskrit poetry rhythms. Hemachandra formalized it in 1150 CE. Fibonacci showed up in 1202 CE. Do the maths.', hi: 'पिंगल ने 200 BCE में संस्कृत कविता की लय के लिए इसका वर्णन किया। हेमचन्द्र 1150 CE। फिबोनैचि 1202 CE।', sa: 'पिङ्गलः 200 BCE वर्षे संस्कृतकवितायाः लयार्थम् एतद् वर्णितवान्।' },
+    title: { en: 'The "Fibonacci" Sequence Was Indian  –  And It Started With Music', hi: '"फिबोनैचि" अनुक्रम भारतीय था  –  और यह संगीत से शुरू हुआ', sa: '"फिबोनैचि" अनुक्रमः भारतीयः आसीत्  –  सङ्गीतात् आरब्धम्' },
+    description: { en: 'Pingala described this sequence in 200 BCE  –  for Sanskrit poetry rhythms. Hemachandra formalized it in 1150 CE. Fibonacci showed up in 1202 CE. Do the maths.', hi: 'पिंगल ने 200 BCE में संस्कृत कविता की लय के लिए इसका वर्णन किया। हेमचन्द्र 1150 CE। फिबोनैचि 1202 CE।', sa: 'पिङ्गलः 200 BCE वर्षे संस्कृतकवितायाः लयार्थम् एतद् वर्णितवान्।' },
     keywords: ['fibonacci india', 'pingala sequence', 'hemachandra', 'sanskrit prosody mathematics'],
   },
   '/learn/contributions/binary': {
-    title: { en: 'Binary Code — 1,800 Years Before Computers (Pingala, 300 BCE)', hi: 'बाइनरी कोड — कम्प्यूटर से 1,800 वर्ष पहले (पिंगल, 300 BCE)', sa: 'द्व्याधारीसंकेतः — सङ्गणकेभ्यः 1800 वर्षैः पूर्वम् (पिङ्गलः)' },
+    title: { en: 'Binary Code  –  1,800 Years Before Computers (Pingala, 300 BCE)', hi: 'बाइनरी कोड  –  कम्प्यूटर से 1,800 वर्ष पहले (पिंगल, 300 BCE)', sa: 'द्व्याधारीसंकेतः  –  सङ्गणकेभ्यः 1800 वर्षैः पूर्वम् (पिङ्गलः)' },
     description: { en: 'Pingala encoded Sanskrit poetry as 0s and 1s (laghu/guru) in 300 BCE. His system is structurally identical to modern binary. He even described a binary-to-decimal converter.', hi: 'पिंगल ने 300 BCE में संस्कृत कविता को 0 और 1 (लघु/गुरु) में कोड किया। उनकी प्रणाली आधुनिक बाइनरी से मेल खाती है।', sa: 'पिङ्गलः 300 BCE वर्षे संस्कृतकविताम् 0-1 (लघुगुरु) रूपेण सङ्केतितवान्।' },
     keywords: ['binary system india', 'pingala', 'chandahshastra', 'laghu guru binary'],
   },
@@ -1378,91 +1378,91 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['calculus india', 'madhava kerala school', 'infinite series', 'indian calculus'],
   },
   '/learn/contributions/negative-numbers': {
-    title: { en: 'Negative Numbers — When India Said "Less Than Nothing" and Europe Said "Impossible"', hi: 'ऋणात्मक संख्याएँ — जब भारत ने "शून्य से कम" कहा और यूरोप ने "असम्भव"', sa: 'ऋणसंख्याः — यदा भारतः "शून्यात् न्यूनम्" अवदत् यूरोपश्च "असम्भवम्"' },
+    title: { en: 'Negative Numbers  –  When India Said "Less Than Nothing" and Europe Said "Impossible"', hi: 'ऋणात्मक संख्याएँ  –  जब भारत ने "शून्य से कम" कहा और यूरोप ने "असम्भव"', sa: 'ऋणसंख्याः  –  यदा भारतः "शून्यात् न्यूनम्" अवदत् यूरोपश्च "असम्भवम्"' },
     description: { en: 'Brahmagupta wrote complete rules for negative numbers in 628 CE. Europe rejected the concept as "absurd" for another 1,000 years. Debt as negative, fortune as positive.', hi: 'ब्रह्मगुप्त ने 628 CE में ऋणात्मक संख्याओं के पूरे नियम लिखे। यूरोप ने इसे 1,000 वर्ष और "बेतुका" माना।', sa: 'ब्रह्मगुप्तः 628 CE वर्षे ऋणसंख्यानां सम्पूर्णनियमान् लिखितवान्।' },
     keywords: ['negative numbers india', 'brahmagupta', 'brahmasphutasiddhanta', 'indian algebra'],
   },
   '/learn/contributions/kerala-school': {
-    title: { en: 'The Kerala School — When India Invented Calculus 250 Years Before Europe', hi: 'केरल स्कूल — जब भारत ने यूरोप से 250 वर्ष पहले कलन का आविष्कार किया', sa: 'केरलविद्यापीठम् — यदा भारतः यूरोपात् 250 वर्षैः पूर्वं कलनम् आविष्कृतवान्' },
+    title: { en: 'The Kerala School  –  When India Invented Calculus 250 Years Before Europe', hi: 'केरल स्कूल  –  जब भारत ने यूरोप से 250 वर्ष पहले कलन का आविष्कार किया', sa: 'केरलविद्यापीठम्  –  यदा भारतः यूरोपात् 250 वर्षैः पूर्वं कलनम् आविष्कृतवान्' },
     description: { en: '300 years of breakthroughs that Europe took credit for. Madhava, Nilakantha, and Jyeshtadeva built infinite series, calculus, and astronomical models in Kerala (1300-1600 CE).', hi: '300 वर्षों की उपलब्धियाँ जिनका श्रेय यूरोप ने लिया। माधव, नीलकण्ठ और ज्येष्ठदेव (1300-1600 CE)।', sa: '300 वर्षाणां सिद्धयः यासां श्रेयः यूरोपः गृहीतवान्। माधवनीलकण्ठज्येष्ठदेवाः (1300-1600 CE)।' },
     keywords: ['kerala school mathematics', 'madhava', 'nilakantha', 'indian scientific revolution'],
   },
   '/learn/contributions/speed-of-light': {
-    title: { en: 'The Speed of Light — In a 14th-Century Sanskrit Commentary', hi: 'प्रकाश की गति — 14वीं सदी के संस्कृत भाष्य में', sa: 'प्रकाशगतिः — चतुर्दशशतकस्य संस्कृतभाष्ये' },
-    description: { en: 'Sayana\'s commentary on Rig Veda 1.50.4 gives the speed of sunlight as 2,202 yojanas in half a nimesha — remarkably close to 186,000 mi/s. Coincidence or calculation?', hi: 'सायण के ऋग्वेद भाष्य में सूर्यप्रकाश की गति 2,202 योजन प्रति अर्ध निमेष — 186,000 mi/s के निकट। संयोग या गणना?', sa: 'सायणस्य ऋग्वेदभाष्ये सूर्यप्रकाशगतिः 2202 योजनानि अर्धनिमेषे — 186,000 mi/s समीपम्।' },
+    title: { en: 'The Speed of Light  –  In a 14th-Century Sanskrit Commentary', hi: 'प्रकाश की गति  –  14वीं सदी के संस्कृत भाष्य में', sa: 'प्रकाशगतिः  –  चतुर्दशशतकस्य संस्कृतभाष्ये' },
+    description: { en: 'Sayana\'s commentary on Rig Veda 1.50.4 gives the speed of sunlight as 2,202 yojanas in half a nimesha  –  remarkably close to 186,000 mi/s. Coincidence or calculation?', hi: 'सायण के ऋग्वेद भाष्य में सूर्यप्रकाश की गति 2,202 योजन प्रति अर्ध निमेष  –  186,000 mi/s के निकट। संयोग या गणना?', sa: 'सायणस्य ऋग्वेदभाष्ये सूर्यप्रकाशगतिः 2202 योजनानि अर्धनिमेषे  –  186,000 mi/s समीपम्।' },
     keywords: ['speed of light vedas', 'sayana commentary', 'rig veda science', 'ancient indian science'],
   },
   '/learn/contributions/earth-rotation': {
-    title: { en: 'India Knew the Earth Rotates — 1,000 Years Before Europe (Aryabhata)', hi: 'भारत जानता था कि पृथ्वी घूमती है — यूरोप से 1,000 वर्ष पहले (आर्यभट)', sa: 'भारतः जानाति स्म पृथिवी भ्रमति इति — यूरोपात् 1000 वर्षैः पूर्वम् (आर्यभटः)' },
+    title: { en: 'India Knew the Earth Rotates  –  1,000 Years Before Europe (Aryabhata)', hi: 'भारत जानता था कि पृथ्वी घूमती है  –  यूरोप से 1,000 वर्ष पहले (आर्यभट)', sa: 'भारतः जानाति स्म पृथिवी भ्रमति इति  –  यूरोपात् 1000 वर्षैः पूर्वम् (आर्यभटः)' },
     description: { en: 'In 499 CE, Aryabhata declared "the Earth rotates on its axis like a wheel on a spindle." Copernicus said the same thing in 1543 CE. The Aryabhatiya that changed astronomy.', hi: '499 CE में आर्यभट ने घोषणा की "पृथ्वी अपनी धुरी पर घूमती है।" कोपरनिकस ने 1543 CE में यही कहा।', sa: '499 CE वर्षे आर्यभटः "पृथिवी स्वधुर्यां भ्रमति" इति घोषितवान्। कोपर्निकस् 1543 CE वर्षे।' },
     keywords: ['aryabhata earth rotation', 'aryabhatiya', 'indian astronomy', 'heliocentric india'],
   },
   '/learn/contributions/gravity': {
-    title: { en: 'Gravity — 500 Years Before Newton\'s Apple (Bhaskaracharya, 1150 CE)', hi: 'गुरुत्वाकर्षण — न्यूटन के सेब से 500 वर्ष पहले (भास्कराचार्य, 1150 CE)', sa: 'गुरुत्वाकर्षणम् — न्यूटनसेवात् 500 वर्षैः पूर्वम् (भास्कराचार्यः, 1150 CE)' },
-    description: { en: '"The earth attracts all objects towards itself by an inherent force" — Bhaskaracharya wrote this in 1150 CE. Newton published Principia in 1687. Read the original Sanskrit verse.', hi: '"पृथ्वी सभी वस्तुओं को अपनी ओर खींचती है" — भास्कराचार्य ने 1150 CE में लिखा। न्यूटन का प्रिंसिपिया 1687 में आया।', sa: '"पृथिवी सर्ववस्तूनि स्वशक्त्या आकर्षति" — भास्कराचार्यः 1150 CE वर्षे लिखितवान्।' },
+    title: { en: 'Gravity  –  500 Years Before Newton\'s Apple (Bhaskaracharya, 1150 CE)', hi: 'गुरुत्वाकर्षण  –  न्यूटन के सेब से 500 वर्ष पहले (भास्कराचार्य, 1150 CE)', sa: 'गुरुत्वाकर्षणम्  –  न्यूटनसेवात् 500 वर्षैः पूर्वम् (भास्कराचार्यः, 1150 CE)' },
+    description: { en: '"The earth attracts all objects towards itself by an inherent force"  –  Bhaskaracharya wrote this in 1150 CE. Newton published Principia in 1687. Read the original Sanskrit verse.', hi: '"पृथ्वी सभी वस्तुओं को अपनी ओर खींचती है"  –  भास्कराचार्य ने 1150 CE में लिखा। न्यूटन का प्रिंसिपिया 1687 में आया।', sa: '"पृथिवी सर्ववस्तूनि स्वशक्त्या आकर्षति"  –  भास्कराचार्यः 1150 CE वर्षे लिखितवान्।' },
     keywords: ['gravity india', 'bhaskaracharya gravity', 'varahamihira', 'indian physics'],
   },
   '/learn/contributions/cosmic-time': {
-    title: { en: '4.32 Billion Years — How Did the Ancients Know? (Vedic Cosmic Time)', hi: '4.32 अरब वर्ष — प्राचीन लोगों को कैसे पता था? (वैदिक ब्रह्माण्डीय काल)', sa: '432 कोटिवर्षाणि — प्राचीनाः कथं ज्ञातवन्तः? (वैदिकब्रह्माण्डकालः)' },
-    description: { en: 'Hindu cosmology says Earth is 4.32 billion years old. Modern science says 4.54 billion. The only ancient civilisation that thought in billions — Yugas, Kalpas, and Brahma\'s 311 trillion year lifespan.', hi: 'हिन्दू ब्रह्माण्ड विज्ञान: पृथ्वी 4.32 अरब वर्ष पुरानी। आधुनिक विज्ञान: 4.54 अरब। अरबों में सोचने वाली एकमात्र प्राचीन सभ्यता।', sa: 'हिन्दूब्रह्माण्डविज्ञानम्: पृथिवी 432 कोटिवर्षपुरातना। आधुनिकविज्ञानम्: 454 कोटिवर्ष।' },
+    title: { en: '4.32 Billion Years  –  How Did the Ancients Know? (Vedic Cosmic Time)', hi: '4.32 अरब वर्ष  –  प्राचीन लोगों को कैसे पता था? (वैदिक ब्रह्माण्डीय काल)', sa: '432 कोटिवर्षाणि  –  प्राचीनाः कथं ज्ञातवन्तः? (वैदिकब्रह्माण्डकालः)' },
+    description: { en: 'Hindu cosmology says Earth is 4.32 billion years old. Modern science says 4.54 billion. The only ancient civilisation that thought in billions  –  Yugas, Kalpas, and Brahma\'s 311 trillion year lifespan.', hi: 'हिन्दू ब्रह्माण्ड विज्ञान: पृथ्वी 4.32 अरब वर्ष पुरानी। आधुनिक विज्ञान: 4.54 अरब। अरबों में सोचने वाली एकमात्र प्राचीन सभ्यता।', sa: 'हिन्दूब्रह्माण्डविज्ञानम्: पृथिवी 432 कोटिवर्षपुरातना। आधुनिकविज्ञानम्: 454 कोटिवर्ष।' },
     keywords: ['hindu cosmic time', 'yuga kalpa', 'brahma lifespan', 'vedic cosmology time'],
   },
   '/learn/contributions/al-khwarizmi': {
-    title: { en: "Al-Khwarizmi & Hindu Mathematics — The True Origin of 'Arabic' Numerals", hi: "अल-ख्वारिज्मी और हिन्दू गणित — 'अरबी' अंकों का वास्तविक मूल", sa: "अल्-ख्वारिज्मी हिन्दूगणितं च — 'अरबी' अङ्कानां वास्तविकमूलम्" },
+    title: { en: "Al-Khwarizmi & Hindu Mathematics  –  The True Origin of 'Arabic' Numerals", hi: "अल-ख्वारिज्मी और हिन्दू गणित  –  'अरबी' अंकों का वास्तविक मूल", sa: "अल्-ख्वारिज्मी हिन्दूगणितं च  –  'अरबी' अङ्कानां वास्तविकमूलम्" },
     description: { en: "How Al-Khwarizmi transmitted Indian mathematics to the Arabic world. The 'Father of Algebra' explicitly credited Hindu mathematicians for the decimal system, zero, and arithmetic methods.", hi: "अल-ख्वारिज्मी ने भारतीय गणित को अरबी दुनिया तक कैसे पहुँचाया। 'बीजगणित के पिता' ने दशमलव प्रणाली, शून्य और अंकगणित विधियों का श्रेय हिन्दू गणितज्ञों को दिया।", sa: "अल्-ख्वारिज्मी भारतीयगणितं अरबीजगति कथं संचरितवान्। दशमलवप्रणाल्याः शून्यस्य अङ्कगणितविधीनां च श्रेयः हिन्दूगणितज्ञेभ्यः दत्तवान्।" },
     keywords: ['al-khwarizmi hindu mathematics', 'arabic numerals indian origin', 'algorithm etymology', 'brahmagupta al-khwarizmi', 'hindu numeral system'],
   },
   '/learn/contributions/timeline': {
-    title: { en: '2,000 Years of Indian Science — A Visual Timeline (800 BCE to 1600 CE)', hi: '2,000 वर्षों का भारतीय विज्ञान — एक दृश्य समयरेखा (800 BCE से 1600 CE)', sa: '2000 वर्षाणां भारतीयविज्ञानम् — दृश्यकालसूची (800 BCE तः 1600 CE)' },
-    description: { en: 'From Baudhayana\'s geometry to Madhava\'s calculus — 2,400 years of breakthroughs that European textbooks rarely mention. Interactive visual timeline with 50+ milestones.', hi: 'बौधायन की ज्यामिति से माधव के कलन तक — 2,400 वर्षों की उपलब्धियाँ। 50+ मील के पत्थरों के साथ संवादी दृश्य समयरेखा।', sa: 'बौधायनज्यामितेः माधवकलनपर्यन्तम् — 2400 वर्षाणां सिद्धयः। 50+ प्रमुखघटनाभिः संवादीदृश्यकालसूची।' },
+    title: { en: '2,000 Years of Indian Science  –  A Visual Timeline (800 BCE to 1600 CE)', hi: '2,000 वर्षों का भारतीय विज्ञान  –  एक दृश्य समयरेखा (800 BCE से 1600 CE)', sa: '2000 वर्षाणां भारतीयविज्ञानम्  –  दृश्यकालसूची (800 BCE तः 1600 CE)' },
+    description: { en: 'From Baudhayana\'s geometry to Madhava\'s calculus  –  2,400 years of breakthroughs that European textbooks rarely mention. Interactive visual timeline with 50+ milestones.', hi: 'बौधायन की ज्यामिति से माधव के कलन तक  –  2,400 वर्षों की उपलब्धियाँ। 50+ मील के पत्थरों के साथ संवादी दृश्य समयरेखा।', sa: 'बौधायनज्यामितेः माधवकलनपर्यन्तम्  –  2400 वर्षाणां सिद्धयः। 50+ प्रमुखघटनाभिः संवादीदृश्यकालसूची।' },
     keywords: ['indian mathematics timeline', 'indian astronomy history', 'ancient indian science', 'mathematical contributions india'],
   },
 
   // ─── Chandra Darshan ──────────────────────────────────────
   '/learn/chandra-darshan': {
-    title: { en: 'Chandra Darshan — Science of New Moon Sighting | Dekho Panchang', hi: 'चन्द्र दर्शन — नव चन्द्र दर्शन का विज्ञान | Dekho Panchang', sa: 'चन्द्रदर्शनम् — नवचन्द्रदर्शनविज्ञानम् | Dekho Panchang' },
-    description: { en: 'Learn the art and science of Chandra Darshan — how Moon age, elongation, and altitude determine crescent visibility. Covers Hindu, Islamic (Hilal), and historical traditions.', hi: 'चन्द्र दर्शन की कला और विज्ञान सीखें — चन्द्र आयु, दूरी और ऊँचाई कैसे दृश्यता निर्धारित करती है। हिन्दू, इस्लामी (हिलाल) और ऐतिहासिक परम्पराएँ।', sa: 'चन्द्रदर्शनस्य कलां विज्ञानं च अधिगच्छतु — चन्द्रवयः दूरी उन्नतिश्च कथं दृश्यतां निर्धारयन्ति।' },
+    title: { en: 'Chandra Darshan  –  Science of New Moon Sighting | Dekho Panchang', hi: 'चन्द्र दर्शन  –  नव चन्द्र दर्शन का विज्ञान | Dekho Panchang', sa: 'चन्द्रदर्शनम्  –  नवचन्द्रदर्शनविज्ञानम् | Dekho Panchang' },
+    description: { en: 'Learn the art and science of Chandra Darshan  –  how Moon age, elongation, and altitude determine crescent visibility. Covers Hindu, Islamic (Hilal), and historical traditions.', hi: 'चन्द्र दर्शन की कला और विज्ञान सीखें  –  चन्द्र आयु, दूरी और ऊँचाई कैसे दृश्यता निर्धारित करती है। हिन्दू, इस्लामी (हिलाल) और ऐतिहासिक परम्पराएँ।', sa: 'चन्द्रदर्शनस्य कलां विज्ञानं च अधिगच्छतु  –  चन्द्रवयः दूरी उन्नतिश्च कथं दृश्यतां निर्धारयन्ति।' },
     keywords: ['chandra darshan', 'moon sighting science', 'hilal visibility', 'crescent moon', 'shukla dwitiya', 'moon age elongation'],
   },
 
   // ─── Panchak & Holashtak ───────────────────────────────────
   '/learn/panchak': {
-    title: { en: 'Panchak — The 5 Inauspicious Nakshatras | Dekho Panchang', hi: 'पंचक — 5 अशुभ नक्षत्र | Dekho Panchang', sa: 'पञ्चकम् — ५ अशुभनक्षत्राणि | Dekho Panchang' },
-    description: { en: 'Complete guide to Panchak — the inauspicious period when Moon transits Dhanishtha through Revati. Activities to avoid, cremation rules, and regional practices.', hi: 'पंचक की पूरी जानकारी — धनिष्ठा से रेवती तक चन्द्र का गोचर। वर्जित कार्य, अंत्येष्टि नियम और क्षेत्रीय प्रथाएँ।', sa: 'पञ्चकस्य सम्पूर्णमार्गदर्शनम् — धनिष्ठातः रेवतीपर्यन्तं चन्द्रगोचरः।' },
+    title: { en: 'Panchak  –  The 5 Inauspicious Nakshatras | Dekho Panchang', hi: 'पंचक  –  5 अशुभ नक्षत्र | Dekho Panchang', sa: 'पञ्चकम्  –  ५ अशुभनक्षत्राणि | Dekho Panchang' },
+    description: { en: 'Complete guide to Panchak  –  the inauspicious period when Moon transits Dhanishtha through Revati. Activities to avoid, cremation rules, and regional practices.', hi: 'पंचक की पूरी जानकारी  –  धनिष्ठा से रेवती तक चन्द्र का गोचर। वर्जित कार्य, अंत्येष्टि नियम और क्षेत्रीय प्रथाएँ।', sa: 'पञ्चकस्य सम्पूर्णमार्गदर्शनम्  –  धनिष्ठातः रेवतीपर्यन्तं चन्द्रगोचरः।' },
     keywords: ['panchak', 'panchak nakshatra', 'inauspicious nakshatra', 'dhanishtha panchak', 'cremation panchak'],
   },
   '/learn/holashtak': {
-    title: { en: 'Holashtak — 8 Inauspicious Days Before Holi | Dekho Panchang', hi: 'होलाष्टक — होली से पूर्व 8 अशुभ दिन | Dekho Panchang', sa: 'होलाष्टकम् — होलिकापूर्वम् ८ अशुभदिनानि | Dekho Panchang' },
-    description: { en: 'Complete guide to Holashtak — the 8 inauspicious days before Holi from Phalguna Shukla Ashtami to Purnima. Activities to avoid and spiritual significance.', hi: 'होलाष्टक — होली से पहले फाल्गुन शुक्ल अष्टमी से पूर्णिमा तक 8 अशुभ दिनों की पूरी जानकारी।', sa: 'होलाष्टकम् — फाल्गुनशुक्लाष्टमीतः पूर्णिमापर्यन्तम् ८ अशुभदिनानां सम्पूर्णमार्गदर्शनम्।' },
+    title: { en: 'Holashtak  –  8 Inauspicious Days Before Holi | Dekho Panchang', hi: 'होलाष्टक  –  होली से पूर्व 8 अशुभ दिन | Dekho Panchang', sa: 'होलाष्टकम्  –  होलिकापूर्वम् ८ अशुभदिनानि | Dekho Panchang' },
+    description: { en: 'Complete guide to Holashtak  –  the 8 inauspicious days before Holi from Phalguna Shukla Ashtami to Purnima. Activities to avoid and spiritual significance.', hi: 'होलाष्टक  –  होली से पहले फाल्गुन शुक्ल अष्टमी से पूर्णिमा तक 8 अशुभ दिनों की पूरी जानकारी।', sa: 'होलाष्टकम्  –  फाल्गुनशुक्लाष्टमीतः पूर्णिमापर्यन्तम् ८ अशुभदिनानां सम्पूर्णमार्गदर्शनम्।' },
     keywords: ['holashtak', 'holashtak 2026', '8 days before holi', 'inauspicious days holi', 'holashtak dates'],
   },
   '/panchak': {
-    title: { en: 'Panchak Today — Check Inauspicious Nakshatra Period | Dekho Panchang', hi: 'आज का पंचक — अशुभ नक्षत्र काल जांचें | Dekho Panchang', sa: 'अद्य पञ्चकम् — अशुभनक्षत्रकालं परीक्षयतु | Dekho Panchang' },
+    title: { en: 'Panchak Today  –  Check Inauspicious Nakshatra Period | Dekho Panchang', hi: 'आज का पंचक  –  अशुभ नक्षत्र काल जांचें | Dekho Panchang', sa: 'अद्य पञ्चकम्  –  अशुभनक्षत्रकालं परीक्षयतु | Dekho Panchang' },
     description: { en: 'Is Panchak active today? Check current Moon nakshatra, Panchak type, activities to avoid, and upcoming Panchak dates for your location.', hi: 'क्या आज पंचक है? वर्तमान चन्द्र नक्षत्र, पंचक प्रकार, वर्जित कार्य और आगामी पंचक तिथियाँ जांचें।', sa: 'अद्य पञ्चकं किम्? वर्तमानचन्द्रनक्षत्रं पञ्चकप्रकारं वर्जितकार्याणि च परीक्षयतु।' },
     keywords: ['panchak today', 'panchak check', 'is panchak today', 'panchak dates', 'moon nakshatra panchak'],
   },
   '/holashtak': {
-    title: { en: 'Holashtak 2026 — 8 Inauspicious Days Before Holi | Dekho Panchang', hi: 'होलाष्टक 2026 — होली से पूर्व 8 अशुभ दिन | Dekho Panchang', sa: 'होलाष्टकम् 2026 — होलिकापूर्वम् ८ अशुभदिनानि | Dekho Panchang' },
+    title: { en: 'Holashtak 2026  –  8 Inauspicious Days Before Holi | Dekho Panchang', hi: 'होलाष्टक 2026  –  होली से पूर्व 8 अशुभ दिन | Dekho Panchang', sa: 'होलाष्टकम् 2026  –  होलिकापूर्वम् ८ अशुभदिनानि | Dekho Panchang' },
     description: { en: 'Is Holashtak active today? Check which day of the 8-day inauspicious period before Holi, activities to avoid, and Holashtak dates for 2026-2027.', hi: 'क्या आज होलाष्टक है? होली से पहले 8 दिन की अशुभ अवधि, वर्जित कार्य और 2026-2027 की तिथियाँ।', sa: 'अद्य होलाष्टकं किम्? होलिकापूर्वम् ८ दिनानाम् अशुभकालः वर्जितकार्याणि 2026-2027 तिथ्यश्च।' },
     keywords: ['holashtak 2026', 'holashtak today', 'holashtak dates', 'inauspicious days before holi', 'holashtak period'],
   },
   '/dates/ganda-mool': {
     title: {
-      en: 'Ganda Mool Nakshatra Dates 2026 — Complete List with Timings',
-      hi: 'गण्ड मूल नक्षत्र तिथियां 2026 — समय सहित पूरी सूची',
+      en: 'Ganda Mool Nakshatra Dates 2026  –  Complete List with Timings',
+      hi: 'गण्ड मूल नक्षत्र तिथियां 2026  –  समय सहित पूरी सूची',
       sa: 'गण्डमूलनक्षत्रतिथयः 2026',
     },
     description: {
       en: 'Complete list of Ganda Mool Nakshatra dates for 2026 with exact start/end timings. Ashwini, Ashlesha, Magha, Jyeshtha, Mula, Revati transit dates for any location.',
-      hi: '2026 के लिए गण्ड मूल नक्षत्र तिथियों की पूरी सूची — सटीक समय सहित। किसी भी स्थान के लिए अश्विनी, आश्लेषा, मघा, ज्येष्ठा, मूल, रेवती गोचर तिथियां।',
+      hi: '2026 के लिए गण्ड मूल नक्षत्र तिथियों की पूरी सूची  –  सटीक समय सहित। किसी भी स्थान के लिए अश्विनी, आश्लेषा, मघा, ज्येष्ठा, मूल, रेवती गोचर तिथियां।',
       sa: '2026 वर्षस्य गण्डमूलनक्षत्रतिथीनां सम्पूर्णसूची। अश्विनी आश्लेषा मघा ज्येष्ठा मूलं रेवती गोचरतिथयः।',
     },
     keywords: ['ganda mool nakshatra', 'ganda mool dates 2026', 'ganda mool timings', 'ganda mool shanti puja', 'inauspicious nakshatra'],
   },
   '/calendar/regional/iskcon': {
     title: {
-      en: 'ISKCON Vaishnava Calendar 2026 — Festivals, Ekadashi, Acharya Days',
-      hi: 'इस्कॉन वैष्णव पंचांग 2026 — पर्व, एकादशी, आचार्य दिवस',
+      en: 'ISKCON Vaishnava Calendar 2026  –  Festivals, Ekadashi, Acharya Days',
+      hi: 'इस्कॉन वैष्णव पंचांग 2026  –  पर्व, एकादशी, आचार्य दिवस',
       sa: 'इस्कॉनवैष्णवपञ्चाङ्गम् 2026',
     },
     description: {
@@ -1473,74 +1473,74 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['iskcon calendar 2026', 'gaudiya vaishnava calendar', 'gaura purnima', 'janmashtami', 'ekadashi iskcon', 'maha dvadashi'],
   },
   '/learn/varshaphal': {
-    title: { en: 'Varshaphal — Vedic Solar Return & Tajika System', hi: 'वर्षफल — वैदिक सौर प्रत्यागमन और ताजिक पद्धति', sa: 'वर्षफलम् — वैदिकसौरप्रत्यागमनं ताजिकपद्धतिः च' },
-    description: { en: 'Learn Varshaphal — the Vedic solar return chart. Tajika system, Muntha, Sahams, Mudda Dasha, 16 Tajika Yogas, and Varshesha explained with classical sources.', hi: 'वर्षफल — वैदिक सौर प्रत्यागमन कुण्डली। ताजिक पद्धति, मुन्था, सहम, मुद्दा दशा, 16 ताजिक योग और वर्षेश शास्त्रीय स्रोतों सहित।', sa: 'वर्षफलम् — वैदिकसौरप्रत्यागमनकुण्डली।' },
+    title: { en: 'Varshaphal  –  Vedic Solar Return & Tajika System', hi: 'वर्षफल  –  वैदिक सौर प्रत्यागमन और ताजिक पद्धति', sa: 'वर्षफलम्  –  वैदिकसौरप्रत्यागमनं ताजिकपद्धतिः च' },
+    description: { en: 'Learn Varshaphal  –  the Vedic solar return chart. Tajika system, Muntha, Sahams, Mudda Dasha, 16 Tajika Yogas, and Varshesha explained with classical sources.', hi: 'वर्षफल  –  वैदिक सौर प्रत्यागमन कुण्डली। ताजिक पद्धति, मुन्था, सहम, मुद्दा दशा, 16 ताजिक योग और वर्षेश शास्त्रीय स्रोतों सहित।', sa: 'वर्षफलम्  –  वैदिकसौरप्रत्यागमनकुण्डली।' },
     keywords: ['varshaphal', 'vedic solar return', 'tajika system', 'muntha', 'mudda dasha', 'tajika yogas', 'varshesha', 'annual horoscope vedic'],
   },
   '/learn/kp-system': {
-    title: { en: 'KP System — Krishnamurti Paddhati Explained', hi: 'केपी पद्धति — कृष्णमूर्ति पद्धति विस्तार से', sa: 'केपीपद्धतिः — कृष्णमूर्तिपद्धतिः' },
-    description: { en: 'Complete guide to KP (Krishnamurti Paddhati) astrology — sub-lord theory, Placidus houses, KP Number 1-249, significators, and ruling planets for precise predictions.', hi: 'केपी ज्योतिष की सम्पूर्ण मार्गदर्शिका — उप-स्वामी सिद्धान्त, प्लेसिडस भाव, केपी संख्या 1-249, कारक और शासक ग्रह।', sa: 'केपीज्योतिषस्य सम्पूर्णमार्गदर्शिका।' },
+    title: { en: 'KP System  –  Krishnamurti Paddhati Explained', hi: 'केपी पद्धति  –  कृष्णमूर्ति पद्धति विस्तार से', sa: 'केपीपद्धतिः  –  कृष्णमूर्तिपद्धतिः' },
+    description: { en: 'Complete guide to KP (Krishnamurti Paddhati) astrology  –  sub-lord theory, Placidus houses, KP Number 1-249, significators, and ruling planets for precise predictions.', hi: 'केपी ज्योतिष की सम्पूर्ण मार्गदर्शिका  –  उप-स्वामी सिद्धान्त, प्लेसिडस भाव, केपी संख्या 1-249, कारक और शासक ग्रह।', sa: 'केपीज्योतिषस्य सम्पूर्णमार्गदर्शिका।' },
     keywords: ['kp system', 'krishnamurti paddhati', 'sub lord theory', 'placidus houses', 'kp number', 'horary astrology kp', 'significators kp'],
   },
   '/learn/mangal-dosha': {
-    title: { en: 'Mangal Dosha — Mars & Marriage Compatibility Guide', hi: 'मांगलिक दोष — मंगल और विवाह अनुकूलता', sa: 'माङ्गलिकदोषः — कुजदोषः विवाहानुकूलता च' },
-    description: { en: 'Complete guide to Mangal Dosha (Manglik/Kuja Dosha) — formation in 6 houses, severity levels, 10+ BPHS cancellation rules, misconceptions debunked, and classical remedies.', hi: 'मांगलिक दोष की सम्पूर्ण मार्गदर्शिका — 6 भावों में निर्माण, तीव्रता, 10+ बीपीएचएस निवारण नियम, भ्रम निवारण, शास्त्रीय उपाय।', sa: 'माङ्गलिकदोषस्य सम्पूर्णमार्गदर्शिका।' },
+    title: { en: 'Mangal Dosha  –  Mars & Marriage Compatibility Guide', hi: 'मांगलिक दोष  –  मंगल और विवाह अनुकूलता', sa: 'माङ्गलिकदोषः  –  कुजदोषः विवाहानुकूलता च' },
+    description: { en: 'Complete guide to Mangal Dosha (Manglik/Kuja Dosha)  –  formation in 6 houses, severity levels, 10+ BPHS cancellation rules, misconceptions debunked, and classical remedies.', hi: 'मांगलिक दोष की सम्पूर्ण मार्गदर्शिका  –  6 भावों में निर्माण, तीव्रता, 10+ बीपीएचएस निवारण नियम, भ्रम निवारण, शास्त्रीय उपाय।', sa: 'माङ्गलिकदोषस्य सम्पूर्णमार्गदर्शिका।' },
     keywords: ['mangal dosha', 'manglik dosha', 'kuja dosha', 'mars marriage', 'mangal dosha cancellation', 'manglik remedies', 'chevvai dosham'],
   },
   '/learn/panchang-guide': {
     title: { en: 'What is Panchang? Complete Guide to the 5 Limbs', hi: 'पंचांग क्या है? सम्पूर्ण मार्गदर्शिका', sa: 'पञ्चाङ्गं किम्? सम्पूर्णमार्गदर्शिका' },
-    description: { en: 'Complete guide to Panchang — the 5 limbs (Tithi, Nakshatra, Yoga, Karana, Vara), sunrise-based calendar, Amanta vs Purnimanta months, and how to use it daily.', hi: 'पंचांग की सम्पूर्ण मार्गदर्शिका — तिथि, नक्षत्र, योग, करण, वार, सूर्योदय कैलेण्डर, अमान्त बनाम पूर्णिमान्त, दैनिक उपयोग।', sa: 'पञ्चाङ्गस्य सम्पूर्णमार्गदर्शिका — तिथिः नक्षत्रं योगः करणं वारः।' },
+    description: { en: 'Complete guide to Panchang  –  the 5 limbs (Tithi, Nakshatra, Yoga, Karana, Vara), sunrise-based calendar, Amanta vs Purnimanta months, and how to use it daily.', hi: 'पंचांग की सम्पूर्ण मार्गदर्शिका  –  तिथि, नक्षत्र, योग, करण, वार, सूर्योदय कैलेण्डर, अमान्त बनाम पूर्णिमान्त, दैनिक उपयोग।', sa: 'पञ्चाङ्गस्य सम्पूर्णमार्गदर्शिका  –  तिथिः नक्षत्रं योगः करणं वारः।' },
     keywords: ['what is panchang', 'panchang guide', 'tithi nakshatra yoga karana vara', 'vedic calendar', 'hindu almanac', 'amanta purnimanta'],
   },
   '/learn/choghadiya': {
-    title: { en: 'Choghadiya — Auspicious Time Periods Guide', hi: 'चौघड़िया — शुभ समय अवधि मार्गदर्शिका', sa: 'चौघड़िया — शुभकालमार्गदर्शिका' },
-    description: { en: 'Complete guide to Choghadiya — the 7 types (Amrit, Shubh, Labh, Char, Rog, Kaal, Udveg), weekday rotation, daily timing decisions, and comparison with Hora system.', hi: 'चौघड़िया की सम्पूर्ण मार्गदर्शिका — 7 प्रकार (अमृत, शुभ, लाभ, चर, रोग, काल, उद्वेग), साप्ताहिक क्रम, दैनिक समय-निर्धारण।', sa: 'चौघड़ियामार्गदर्शिका — सप्तप्रकाराः।' },
+    title: { en: 'Choghadiya  –  Auspicious Time Periods Guide', hi: 'चौघड़िया  –  शुभ समय अवधि मार्गदर्शिका', sa: 'चौघड़िया  –  शुभकालमार्गदर्शिका' },
+    description: { en: 'Complete guide to Choghadiya  –  the 7 types (Amrit, Shubh, Labh, Char, Rog, Kaal, Udveg), weekday rotation, daily timing decisions, and comparison with Hora system.', hi: 'चौघड़िया की सम्पूर्ण मार्गदर्शिका  –  7 प्रकार (अमृत, शुभ, लाभ, चर, रोग, काल, उद्वेग), साप्ताहिक क्रम, दैनिक समय-निर्धारण।', sa: 'चौघड़ियामार्गदर्शिका  –  सप्तप्रकाराः।' },
     keywords: ['choghadiya', 'chaughadia', 'auspicious time', 'amrit choghadiya', 'shubh muhurat', 'gujarati panchang', 'daily timing vedic'],
   },
   '/learn/gun-milan': {
     title: {
-      en: 'Gun Milan — 36-Point Kundali Matching (Ashta Kuta) Guide',
-      hi: 'गुण मिलान — 36 अंक कुण्डली मिलान (अष्ट कूट) मार्गदर्शिका',
-      sa: 'गुणमेलनम् — ३६ अङ्ककुण्डलीमेलनमार्गदर्शिका',
+      en: 'Gun Milan  –  36-Point Kundali Matching (Ashta Kuta) Guide',
+      hi: 'गुण मिलान  –  36 अंक कुण्डली मिलान (अष्ट कूट) मार्गदर्शिका',
+      sa: 'गुणमेलनम्  –  ३६ अङ्ककुण्डलीमेलनमार्गदर्शिका',
     },
     description: {
-      en: 'Complete guide to Gun Milan (Ashta Kuta matching) — all 8 kutas explained with scoring, Nadi Dosha, Mangal Dosha, score interpretation (18+ minimum), and North vs South Indian traditions.',
-      hi: 'गुण मिलान (अष्ट कूट) की सम्पूर्ण मार्गदर्शिका — सभी 8 कूट, अंक व्याख्या, नाड़ी दोष, मांगलिक दोष और उत्तर बनाम दक्षिण भारतीय परम्पराएँ।',
-      sa: 'गुणमेलनस्य सम्पूर्णमार्गदर्शिका — अष्टकूटानि नाडीदोषः माङ्गलिकदोषश्च।',
+      en: 'Complete guide to Gun Milan (Ashta Kuta matching)  –  all 8 kutas explained with scoring, Nadi Dosha, Mangal Dosha, score interpretation (18+ minimum), and North vs South Indian traditions.',
+      hi: 'गुण मिलान (अष्ट कूट) की सम्पूर्ण मार्गदर्शिका  –  सभी 8 कूट, अंक व्याख्या, नाड़ी दोष, मांगलिक दोष और उत्तर बनाम दक्षिण भारतीय परम्पराएँ।',
+      sa: 'गुणमेलनस्य सम्पूर्णमार्गदर्शिका  –  अष्टकूटानि नाडीदोषः माङ्गलिकदोषश्च।',
     },
     keywords: ['gun milan', 'kundali matching', '36 gun milan', 'ashta kuta', 'guna milap', 'marriage compatibility', 'nadi dosha', 'horoscope matching'],
   },
   '/learn/hindu-calendar': {
     title: {
-      en: 'Hindu Calendar System — Vikram Samvat, Months, Seasons & Panchang',
-      hi: 'हिन्दू कैलेंडर — विक्रम सम्वत, मास, ऋतुएँ एवं पंचांग',
-      sa: 'हिन्दूपञ्चाङ्गम् — विक्रमसम्वत् मासाः ऋतवः पञ्चाङ्गं च',
+      en: 'Hindu Calendar System  –  Vikram Samvat, Months, Seasons & Panchang',
+      hi: 'हिन्दू कैलेंडर  –  विक्रम सम्वत, मास, ऋतुएँ एवं पंचांग',
+      sa: 'हिन्दूपञ्चाङ्गम्  –  विक्रमसम्वत् मासाः ऋतवः पञ्चाङ्गं च',
     },
     description: {
-      en: 'Complete guide to the Hindu calendar — Vikram Samvat vs Shaka vs Gregorian, 12 lunar months, 6 Ritus (seasons), Amanta vs Purnimanta, Adhika Masa, and how to read a traditional panchang.',
-      hi: 'हिन्दू कैलेंडर की सम्पूर्ण मार्गदर्शिका — विक्रम सम्वत, 12 चन्द्र मास, 6 ऋतुएँ, अमान्त बनाम पूर्णिमान्त, अधिक मास और पंचांग पढ़ना।',
-      sa: 'हिन्दूपञ्चाङ्गस्य सम्पूर्णमार्गदर्शिका — विक्रमसम्वत् मासाः ऋतवः अधिकमासश्च।',
+      en: 'Complete guide to the Hindu calendar  –  Vikram Samvat vs Shaka vs Gregorian, 12 lunar months, 6 Ritus (seasons), Amanta vs Purnimanta, Adhika Masa, and how to read a traditional panchang.',
+      hi: 'हिन्दू कैलेंडर की सम्पूर्ण मार्गदर्शिका  –  विक्रम सम्वत, 12 चन्द्र मास, 6 ऋतुएँ, अमान्त बनाम पूर्णिमान्त, अधिक मास और पंचांग पढ़ना।',
+      sa: 'हिन्दूपञ्चाङ्गस्य सम्पूर्णमार्गदर्शिका  –  विक्रमसम्वत् मासाः ऋतवः अधिकमासश्च।',
     },
     keywords: ['hindu calendar', 'vikram samvat', 'hindu calendar 2026', 'panchang calendar', 'amanta purnimanta', 'hindu months', 'adhika masa', 'indian calendar'],
   },
   '/learn/nakshatra-baby-names': {
     title: {
-      en: 'Baby Names by Nakshatra — Starting Syllables for All 27 Stars',
-      hi: 'नक्षत्र अनुसार शिशु नाम — 27 नक्षत्रों के प्रारम्भिक अक्षर',
-      sa: 'नक्षत्रानुसारं शिशुनामानि — सप्तविंशतिनक्षत्राणां प्रारम्भिकाक्षराणि',
+      en: 'Baby Names by Nakshatra  –  Starting Syllables for All 27 Stars',
+      hi: 'नक्षत्र अनुसार शिशु नाम  –  27 नक्षत्रों के प्रारम्भिक अक्षर',
+      sa: 'नक्षत्रानुसारं शिशुनामानि  –  सप्तविंशतिनक्षत्राणां प्रारम्भिकाक्षराणि',
     },
     description: {
-      en: 'Find the right baby name by birth Nakshatra — complete syllable table for all 27 Nakshatras and 108 Padas. Namakarana ceremony, Moon vs Lagna Nakshatra, and modern naming tips.',
-      hi: 'जन्म नक्षत्र से सही शिशु नाम खोजें — 27 नक्षत्रों और 108 पदों की सम्पूर्ण अक्षर तालिका। नामकरण संस्कार, चन्द्र बनाम लग्न नक्षत्र।',
-      sa: 'जन्मनक्षत्रेण शिशुनाम अन्विष्यतु — सप्तविंशतिनक्षत्राणां अक्षरसारणी।',
+      en: 'Find the right baby name by birth Nakshatra  –  complete syllable table for all 27 Nakshatras and 108 Padas. Namakarana ceremony, Moon vs Lagna Nakshatra, and modern naming tips.',
+      hi: 'जन्म नक्षत्र से सही शिशु नाम खोजें  –  27 नक्षत्रों और 108 पदों की सम्पूर्ण अक्षर तालिका। नामकरण संस्कार, चन्द्र बनाम लग्न नक्षत्र।',
+      sa: 'जन्मनक्षत्रेण शिशुनाम अन्विष्यतु  –  सप्तविंशतिनक्षत्राणां अक्षरसारणी।',
     },
     keywords: ['nakshatra baby names', 'baby name by birth star', 'name letter by nakshatra', 'namakarana', 'hindu baby names', 'nakshatra pada names', 'vedic naming'],
   },
   '/rudraksha': {
     title: {
-      en: 'Rudraksha Recommendation — Find Your Ideal Bead by Birth Chart',
-      hi: 'रुद्राक्ष अनुशंसा — जन्म कुण्डली द्वारा उचित रुद्राक्ष खोजें',
-      sa: 'रुद्राक्षानुशंसा — जन्मकुण्डलीद्वारा',
+      en: 'Rudraksha Recommendation  –  Find Your Ideal Bead by Birth Chart',
+      hi: 'रुद्राक्ष अनुशंसा  –  जन्म कुण्डली द्वारा उचित रुद्राक्ष खोजें',
+      sa: 'रुद्राक्षानुशंसा  –  जन्मकुण्डलीद्वारा',
     },
     description: {
       en: 'Find the right Rudraksha based on your Vedic birth chart. Recommendations by Rashi lord and Nakshatra lord with mukhi, deity, mantra, benefits, and wearing instructions.',
@@ -1551,259 +1551,259 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/learn/guru': {
     title: {
-      en: 'Guru (Jupiter) in Vedic Astrology — Complete Guide',
-      hi: 'गुरु (बृहस्पति) — वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका',
-      sa: 'गुरुग्रहः — वैदिकज्योतिषे सम्पूर्णमार्गदर्शिका',
+      en: 'Guru (Jupiter) in Vedic Astrology  –  Complete Guide',
+      hi: 'गुरु (बृहस्पति)  –  वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका',
+      sa: 'गुरुग्रहः  –  वैदिकज्योतिषे सम्पूर्णमार्गदर्शिका',
     },
     description: {
-      en: 'Comprehensive guide to Guru (Jupiter) in Jyotish — dignities, significations, effects in 12 signs and 12 houses, Vimshottari Dasha, remedies, and mythology.',
-      hi: 'ज्योतिष में गुरु (बृहस्पति) की सम्पूर्ण मार्गदर्शिका — गरिमा, कारकत्व, 12 राशियों और 12 भावों में फल, विंशोत्तरी दशा, उपाय और पौराणिक कथा।',
-      sa: 'ज्योतिषे गुरुग्रहस्य सम्पूर्णमार्गदर्शिका — गरिमा, कारकत्वम्, द्वादशराशिषु द्वादशभावेषु च फलम्।',
+      en: 'Comprehensive guide to Guru (Jupiter) in Jyotish  –  dignities, significations, effects in 12 signs and 12 houses, Vimshottari Dasha, remedies, and mythology.',
+      hi: 'ज्योतिष में गुरु (बृहस्पति) की सम्पूर्ण मार्गदर्शिका  –  गरिमा, कारकत्व, 12 राशियों और 12 भावों में फल, विंशोत्तरी दशा, उपाय और पौराणिक कथा।',
+      sa: 'ज्योतिषे गुरुग्रहस्य सम्पूर्णमार्गदर्शिका  –  गरिमा, कारकत्वम्, द्वादशराशिषु द्वादशभावेषु च फलम्।',
     },
     keywords: ['guru in astrology', 'jupiter vedic astrology', 'brihaspati', 'guru mahadasha', 'yellow sapphire', 'jupiter in signs', 'jupiter in houses'],
   },
   '/learn/shukra': {
     title: {
-      en: 'Shukra (Venus) in Vedic Astrology — Complete Guide',
-      hi: 'शुक्र — वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका',
-      sa: 'शुक्रग्रहः — वैदिकज्योतिषे सम्पूर्णमार्गदर्शिका',
+      en: 'Shukra (Venus) in Vedic Astrology  –  Complete Guide',
+      hi: 'शुक्र  –  वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका',
+      sa: 'शुक्रग्रहः  –  वैदिकज्योतिषे सम्पूर्णमार्गदर्शिका',
     },
     description: {
-      en: 'Comprehensive guide to Shukra (Venus) in Jyotish — dignities, significations, effects in 12 signs and 12 houses, Vimshottari Dasha, remedies, and mythology.',
-      hi: 'ज्योतिष में शुक्र की सम्पूर्ण मार्गदर्शिका — गरिमा, कारकत्व, 12 राशियों और 12 भावों में फल, विंशोत्तरी दशा, उपाय और पौराणिक कथा।',
-      sa: 'ज्योतिषे शुक्रग्रहस्य सम्पूर्णमार्गदर्शिका — गरिमा, कारकत्वम्, द्वादशराशिषु द्वादशभावेषु च फलम्।',
+      en: 'Comprehensive guide to Shukra (Venus) in Jyotish  –  dignities, significations, effects in 12 signs and 12 houses, Vimshottari Dasha, remedies, and mythology.',
+      hi: 'ज्योतिष में शुक्र की सम्पूर्ण मार्गदर्शिका  –  गरिमा, कारकत्व, 12 राशियों और 12 भावों में फल, विंशोत्तरी दशा, उपाय और पौराणिक कथा।',
+      sa: 'ज्योतिषे शुक्रग्रहस्य सम्पूर्णमार्गदर्शिका  –  गरिमा, कारकत्वम्, द्वादशराशिषु द्वादशभावेषु च फलम्।',
     },
     keywords: ['shukra in astrology', 'venus vedic astrology', 'shukra mahadasha', 'diamond heera', 'venus in signs', 'venus in houses', 'shukra remedies'],
   },
   '/learn/shani': {
     title: {
-      en: 'Shani (Saturn) in Vedic Astrology — Complete Guide',
-      hi: 'शनि — वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका',
-      sa: 'शनिग्रहः — वैदिकज्योतिषे सम्पूर्णमार्गदर्शिका',
+      en: 'Shani (Saturn) in Vedic Astrology  –  Complete Guide',
+      hi: 'शनि  –  वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका',
+      sa: 'शनिग्रहः  –  वैदिकज्योतिषे सम्पूर्णमार्गदर्शिका',
     },
     description: {
-      en: 'Comprehensive guide to Shani (Saturn) in Jyotish — dignities, significations, effects in 12 signs and 12 houses, Vimshottari Dasha, Sade Sati, remedies, and mythology.',
-      hi: 'ज्योतिष में शनि की सम्पूर्ण मार्गदर्शिका — गरिमा, कारकत्व, 12 राशियों और 12 भावों में फल, विंशोत्तरी दशा, साढ़ेसाती, उपाय और पौराणिक कथा।',
-      sa: 'ज्योतिषे शनिग्रहस्य सम्पूर्णमार्गदर्शिका — गरिमा, कारकत्वम्, द्वादशराशिषु द्वादशभावेषु च फलम्।',
+      en: 'Comprehensive guide to Shani (Saturn) in Jyotish  –  dignities, significations, effects in 12 signs and 12 houses, Vimshottari Dasha, Sade Sati, remedies, and mythology.',
+      hi: 'ज्योतिष में शनि की सम्पूर्ण मार्गदर्शिका  –  गरिमा, कारकत्व, 12 राशियों और 12 भावों में फल, विंशोत्तरी दशा, साढ़ेसाती, उपाय और पौराणिक कथा।',
+      sa: 'ज्योतिषे शनिग्रहस्य सम्पूर्णमार्गदर्शिका  –  गरिमा, कारकत्वम्, द्वादशराशिषु द्वादशभावेषु च फलम्।',
     },
     keywords: ['shani in astrology', 'saturn vedic astrology', 'shani mahadasha', 'blue sapphire neelam', 'sade sati', 'saturn in signs', 'saturn in houses', 'shani remedies'],
   },
   '/learn/rahu': {
     title: {
-      en: 'Rahu (North Node) in Vedic Astrology — Complete Guide',
-      hi: 'राहु — वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका',
-      sa: 'राहुग्रहः — वैदिकज्योतिषे सम्पूर्णमार्गदर्शिका',
+      en: 'Rahu (North Node) in Vedic Astrology  –  Complete Guide',
+      hi: 'राहु  –  वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका',
+      sa: 'राहुग्रहः  –  वैदिकज्योतिषे सम्पूर्णमार्गदर्शिका',
     },
     description: {
-      en: 'Comprehensive guide to Rahu (North Lunar Node) in Jyotish — the shadow planet of obsession, illusion, and worldly desire. Dignities, effects in 12 signs and houses, 18-year dasha, remedies, and mythology.',
-      hi: 'ज्योतिष में राहु (उत्तर चन्द्र पात) की सम्पूर्ण मार्गदर्शिका — जुनून, माया और सांसारिक इच्छा का छाया ग्रह। गरिमा, 12 राशियों और भावों में फल, 18 वर्षीय दशा, उपाय और पौराणिक कथा।',
-      sa: 'ज्योतिषे राहुग्रहस्य सम्पूर्णमार्गदर्शिका — छायाग्रहः, द्वादशराशिषु द्वादशभावेषु च फलम्।',
+      en: 'Comprehensive guide to Rahu (North Lunar Node) in Jyotish  –  the shadow planet of obsession, illusion, and worldly desire. Dignities, effects in 12 signs and houses, 18-year dasha, remedies, and mythology.',
+      hi: 'ज्योतिष में राहु (उत्तर चन्द्र पात) की सम्पूर्ण मार्गदर्शिका  –  जुनून, माया और सांसारिक इच्छा का छाया ग्रह। गरिमा, 12 राशियों और भावों में फल, 18 वर्षीय दशा, उपाय और पौराणिक कथा।',
+      sa: 'ज्योतिषे राहुग्रहस्य सम्पूर्णमार्गदर्शिका  –  छायाग्रहः, द्वादशराशिषु द्वादशभावेषु च फलम्।',
     },
     keywords: ['rahu in astrology', 'north node vedic astrology', 'rahu mahadasha', 'hessonite gomed', 'rahu in signs', 'rahu in houses', 'rahu ketu axis', 'rahu remedies', 'shadow planet'],
   },
   '/learn/ketu': {
     title: {
-      en: 'Ketu (South Node) in Vedic Astrology — Complete Guide',
-      hi: 'केतु — वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका',
-      sa: 'केतुग्रहः — वैदिकज्योतिषे सम्पूर्णमार्गदर्शिका',
+      en: 'Ketu (South Node) in Vedic Astrology  –  Complete Guide',
+      hi: 'केतु  –  वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका',
+      sa: 'केतुग्रहः  –  वैदिकज्योतिषे सम्पूर्णमार्गदर्शिका',
     },
     description: {
-      en: 'Comprehensive guide to Ketu (South Lunar Node) in Jyotish — the shadow planet of detachment, moksha, and past-life karma. Dignities, effects in 12 signs and houses, 7-year dasha, remedies, and mythology.',
-      hi: 'ज्योतिष में केतु (दक्षिण चन्द्र पात) की सम्पूर्ण मार्गदर्शिका — वैराग्य, मोक्ष और पूर्व जन्म कर्म का छाया ग्रह। गरिमा, 12 राशियों और भावों में फल, 7 वर्षीय दशा, उपाय और पौराणिक कथा।',
-      sa: 'ज्योतिषे केतुग्रहस्य सम्पूर्णमार्गदर्शिका — मोक्षकारकः, द्वादशराशिषु द्वादशभावेषु च फलम्।',
+      en: 'Comprehensive guide to Ketu (South Lunar Node) in Jyotish  –  the shadow planet of detachment, moksha, and past-life karma. Dignities, effects in 12 signs and houses, 7-year dasha, remedies, and mythology.',
+      hi: 'ज्योतिष में केतु (दक्षिण चन्द्र पात) की सम्पूर्ण मार्गदर्शिका  –  वैराग्य, मोक्ष और पूर्व जन्म कर्म का छाया ग्रह। गरिमा, 12 राशियों और भावों में फल, 7 वर्षीय दशा, उपाय और पौराणिक कथा।',
+      sa: 'ज्योतिषे केतुग्रहस्य सम्पूर्णमार्गदर्शिका  –  मोक्षकारकः, द्वादशराशिषु द्वादशभावेषु च फलम्।',
     },
     keywords: ['ketu in astrology', 'south node vedic astrology', 'ketu mahadasha', 'cats eye lehsunia', 'ketu in signs', 'ketu in houses', 'moksha planet', 'ketu remedies', 'shadow planet'],
   },
   '/learn/surya': {
-    title: { en: 'Surya (Sun) in Vedic Astrology — Complete Guide', hi: 'सूर्य — वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका', sa: 'सूर्यग्रहः — सम्पूर्णमार्गदर्शिका' },
-    description: { en: 'Comprehensive guide to Surya (Sun) in Jyotish — Atmakaraka, dignities, effects in 12 signs and 12 houses, 6-year dasha, Ruby remedy, and mythology.', hi: 'ज्योतिष में सूर्य की सम्पूर्ण मार्गदर्शिका — आत्मकारक, गरिमा, 12 राशियों और भावों में फल, 6 वर्षीय दशा, माणिक्य उपाय और पौराणिक कथा।', sa: 'ज्योतिषे सूर्यग्रहस्य सम्पूर्णमार्गदर्शिका।' },
+    title: { en: 'Surya (Sun) in Vedic Astrology  –  Complete Guide', hi: 'सूर्य  –  वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका', sa: 'सूर्यग्रहः  –  सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Comprehensive guide to Surya (Sun) in Jyotish  –  Atmakaraka, dignities, effects in 12 signs and 12 houses, 6-year dasha, Ruby remedy, and mythology.', hi: 'ज्योतिष में सूर्य की सम्पूर्ण मार्गदर्शिका  –  आत्मकारक, गरिमा, 12 राशियों और भावों में फल, 6 वर्षीय दशा, माणिक्य उपाय और पौराणिक कथा।', sa: 'ज्योतिषे सूर्यग्रहस्य सम्पूर्णमार्गदर्शिका।' },
     keywords: ['surya in astrology', 'sun vedic astrology', 'surya mahadasha', 'ruby manikya', 'sun in signs', 'sun in houses', 'atmakaraka', 'surya remedies'],
   },
   '/learn/chandra': {
-    title: { en: 'Chandra (Moon) in Vedic Astrology — Complete Guide', hi: 'चन्द्र — वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका', sa: 'चन्द्रग्रहः — सम्पूर्णमार्गदर्शिका' },
-    description: { en: 'Comprehensive guide to Chandra (Moon) in Jyotish — Manokaraka, dignities, effects in 12 signs and 12 houses, 10-year dasha, Pearl remedy, and mythology.', hi: 'ज्योतिष में चन्द्र की सम्पूर्ण मार्गदर्शिका — मनोकारक, गरिमा, 12 राशियों और भावों में फल, 10 वर्षीय दशा, मोती उपाय।', sa: 'ज्योतिषे चन्द्रग्रहस्य सम्पूर्णमार्गदर्शिका।' },
+    title: { en: 'Chandra (Moon) in Vedic Astrology  –  Complete Guide', hi: 'चन्द्र  –  वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका', sa: 'चन्द्रग्रहः  –  सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Comprehensive guide to Chandra (Moon) in Jyotish  –  Manokaraka, dignities, effects in 12 signs and 12 houses, 10-year dasha, Pearl remedy, and mythology.', hi: 'ज्योतिष में चन्द्र की सम्पूर्ण मार्गदर्शिका  –  मनोकारक, गरिमा, 12 राशियों और भावों में फल, 10 वर्षीय दशा, मोती उपाय।', sa: 'ज्योतिषे चन्द्रग्रहस्य सम्पूर्णमार्गदर्शिका।' },
     keywords: ['chandra in astrology', 'moon vedic astrology', 'chandra mahadasha', 'pearl moti', 'moon in signs', 'moon in houses', 'manokaraka'],
   },
   '/learn/mangal': {
-    title: { en: 'Mangal (Mars) in Vedic Astrology — Complete Guide', hi: 'मंगल — वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका', sa: 'मङ्गलग्रहः — सम्पूर्णमार्गदर्शिका' },
-    description: { en: 'Comprehensive guide to Mangal (Mars) in Jyotish — Bhumikaraka, dignities, effects in 12 signs and 12 houses, 7-year dasha, Red Coral remedy, and Mangal Dosha.', hi: 'ज्योतिष में मंगल की सम्पूर्ण मार्गदर्शिका — भूमिकारक, गरिमा, 12 राशियों और भावों में फल, 7 वर्षीय दशा, मूंगा उपाय।', sa: 'ज्योतिषे मङ्गलग्रहस्य सम्पूर्णमार्गदर्शिका।' },
+    title: { en: 'Mangal (Mars) in Vedic Astrology  –  Complete Guide', hi: 'मंगल  –  वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका', sa: 'मङ्गलग्रहः  –  सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Comprehensive guide to Mangal (Mars) in Jyotish  –  Bhumikaraka, dignities, effects in 12 signs and 12 houses, 7-year dasha, Red Coral remedy, and Mangal Dosha.', hi: 'ज्योतिष में मंगल की सम्पूर्ण मार्गदर्शिका  –  भूमिकारक, गरिमा, 12 राशियों और भावों में फल, 7 वर्षीय दशा, मूंगा उपाय।', sa: 'ज्योतिषे मङ्गलग्रहस्य सम्पूर्णमार्गदर्शिका।' },
     keywords: ['mangal in astrology', 'mars vedic astrology', 'mangal mahadasha', 'red coral moonga', 'mars in signs', 'mars in houses', 'mangal dosha'],
   },
   '/learn/budha': {
-    title: { en: 'Budha (Mercury) in Vedic Astrology — Complete Guide', hi: 'बुध — वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका', sa: 'बुधग्रहः — सम्पूर्णमार्गदर्शिका' },
-    description: { en: 'Comprehensive guide to Budha (Mercury) in Jyotish — Vakkaraka, dignities, effects in 12 signs and 12 houses, 17-year dasha, Emerald remedy, and Budhaditya Yoga.', hi: 'ज्योतिष में बुध की सम्पूर्ण मार्गदर्शिका — वाक्कारक, गरिमा, 12 राशियों और भावों में फल, 17 वर्षीय दशा, पन्ना उपाय।', sa: 'ज्योतिषे बुधग्रहस्य सम्पूर्णमार्गदर्शिका।' },
+    title: { en: 'Budha (Mercury) in Vedic Astrology  –  Complete Guide', hi: 'बुध  –  वैदिक ज्योतिष में सम्पूर्ण मार्गदर्शिका', sa: 'बुधग्रहः  –  सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Comprehensive guide to Budha (Mercury) in Jyotish  –  Vakkaraka, dignities, effects in 12 signs and 12 houses, 17-year dasha, Emerald remedy, and Budhaditya Yoga.', hi: 'ज्योतिष में बुध की सम्पूर्ण मार्गदर्शिका  –  वाक्कारक, गरिमा, 12 राशियों और भावों में फल, 17 वर्षीय दशा, पन्ना उपाय।', sa: 'ज्योतिषे बुधग्रहस्य सम्पूर्णमार्गदर्शिका।' },
     keywords: ['budha in astrology', 'mercury vedic astrology', 'budha mahadasha', 'emerald panna', 'mercury in signs', 'mercury in houses', 'budhaditya yoga'],
   },
   '/learn/mesha': {
-    title: { en: 'Mesha (Aries) Rashi — Complete Vedic Astrology Guide', hi: 'मेष राशि — वैदिक ज्योतिष सम्पूर्ण मार्गदर्शिका', sa: 'मेषराशिः — सम्पूर्णमार्गदर्शिका' },
-    description: { en: 'Complete guide to Mesha (Aries) in Vedic astrology — fire sign ruled by Mars. Personality, nakshatras, planetary dignities, each planet in Aries, career, compatibility, and remedies.', hi: 'वैदिक ज्योतिष में मेष राशि की सम्पूर्ण मार्गदर्शिका — मंगल शासित अग्नि राशि। व्यक्तित्व, नक्षत्र, ग्रह गरिमा, करियर, अनुकूलता और उपाय।', sa: 'मेषराशेः सम्पूर्णमार्गदर्शिका।' },
+    title: { en: 'Mesha (Aries) Rashi  –  Complete Vedic Astrology Guide', hi: 'मेष राशि  –  वैदिक ज्योतिष सम्पूर्ण मार्गदर्शिका', sa: 'मेषराशिः  –  सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Mesha (Aries) in Vedic astrology  –  fire sign ruled by Mars. Personality, nakshatras, planetary dignities, each planet in Aries, career, compatibility, and remedies.', hi: 'वैदिक ज्योतिष में मेष राशि की सम्पूर्ण मार्गदर्शिका  –  मंगल शासित अग्नि राशि। व्यक्तित्व, नक्षत्र, ग्रह गरिमा, करियर, अनुकूलता और उपाय।', sa: 'मेषराशेः सम्पूर्णमार्गदर्शिका।' },
     keywords: ['mesha rashi', 'aries vedic astrology', 'mesha characteristics', 'aries personality', 'planets in aries', 'mesha compatibility'],
   },
   '/learn/vrishabha': {
-    title: { en: 'Vrishabha (Taurus) Rashi — Complete Vedic Astrology Guide', hi: 'वृषभ राशि — सम्पूर्ण मार्गदर्शिका', sa: 'वृषभराशिः — सम्पूर्णमार्गदर्शिका' },
-    description: { en: 'Complete guide to Vrishabha (Taurus) in Vedic astrology — earth sign ruled by Venus. Moon exalted here. Personality, nakshatras, planetary dignities, career, compatibility.', hi: 'वैदिक ज्योतिष में वृषभ राशि — शुक्र शासित पृथ्वी राशि। चन्द्र यहाँ उच्च। व्यक्तित्व, नक्षत्र, ग्रह गरिमा, करियर, अनुकूलता।', sa: 'वृषभराशेः सम्पूर्णमार्गदर्शिका।' },
+    title: { en: 'Vrishabha (Taurus) Rashi  –  Complete Vedic Astrology Guide', hi: 'वृषभ राशि  –  सम्पूर्ण मार्गदर्शिका', sa: 'वृषभराशिः  –  सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Vrishabha (Taurus) in Vedic astrology  –  earth sign ruled by Venus. Moon exalted here. Personality, nakshatras, planetary dignities, career, compatibility.', hi: 'वैदिक ज्योतिष में वृषभ राशि  –  शुक्र शासित पृथ्वी राशि। चन्द्र यहाँ उच्च। व्यक्तित्व, नक्षत्र, ग्रह गरिमा, करियर, अनुकूलता।', sa: 'वृषभराशेः सम्पूर्णमार्गदर्शिका।' },
     keywords: ['vrishabha rashi', 'taurus vedic astrology', 'vrishabha characteristics', 'moon exalted taurus', 'planets in taurus'],
   },
   '/learn/mithuna': {
-    title: { en: 'Mithuna (Gemini) Rashi — Complete Vedic Astrology Guide', hi: 'मिथुन राशि — सम्पूर्ण मार्गदर्शिका', sa: 'मिथुनराशिः — सम्पूर्णमार्गदर्शिका' },
-    description: { en: 'Complete guide to Mithuna (Gemini) in Vedic astrology — air sign ruled by Mercury. Personality, nakshatras, planetary dignities, career, compatibility.', hi: 'वैदिक ज्योतिष में मिथुन राशि — बुध शासित वायु राशि। व्यक्तित्व, नक्षत्र, ग्रह गरिमा, करियर, अनुकूलता।', sa: 'मिथुनराशेः सम्पूर्णमार्गदर्शिका।' },
+    title: { en: 'Mithuna (Gemini) Rashi  –  Complete Vedic Astrology Guide', hi: 'मिथुन राशि  –  सम्पूर्ण मार्गदर्शिका', sa: 'मिथुनराशिः  –  सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Mithuna (Gemini) in Vedic astrology  –  air sign ruled by Mercury. Personality, nakshatras, planetary dignities, career, compatibility.', hi: 'वैदिक ज्योतिष में मिथुन राशि  –  बुध शासित वायु राशि। व्यक्तित्व, नक्षत्र, ग्रह गरिमा, करियर, अनुकूलता।', sa: 'मिथुनराशेः सम्पूर्णमार्गदर्शिका।' },
     keywords: ['mithuna rashi', 'gemini vedic astrology', 'mithuna characteristics', 'mercury sign', 'planets in gemini'],
   },
   '/learn/karka': {
-    title: { en: 'Karka (Cancer) Rashi — Complete Vedic Astrology Guide', hi: 'कर्क राशि — सम्पूर्ण मार्गदर्शिका', sa: 'कर्कराशिः — सम्पूर्णमार्गदर्शिका' },
-    description: { en: 'Complete guide to Karka (Cancer) in Vedic astrology — water sign ruled by Moon. Jupiter exalted here. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में कर्क राशि — चन्द्र शासित जल राशि। गुरु यहाँ उच्च। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'कर्कराशेः सम्पूर्णमार्गदर्शिका।' },
+    title: { en: 'Karka (Cancer) Rashi  –  Complete Vedic Astrology Guide', hi: 'कर्क राशि  –  सम्पूर्ण मार्गदर्शिका', sa: 'कर्कराशिः  –  सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Karka (Cancer) in Vedic astrology  –  water sign ruled by Moon. Jupiter exalted here. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में कर्क राशि  –  चन्द्र शासित जल राशि। गुरु यहाँ उच्च। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'कर्कराशेः सम्पूर्णमार्गदर्शिका।' },
     keywords: ['karka rashi', 'cancer vedic astrology', 'karka characteristics', 'jupiter exalted cancer', 'planets in cancer'],
   },
   '/learn/simha': {
-    title: { en: 'Simha (Leo) Rashi — Complete Vedic Astrology Guide', hi: 'सिंह राशि — सम्पूर्ण मार्गदर्शिका', sa: 'सिंहराशिः — सम्पूर्णमार्गदर्शिका' },
-    description: { en: 'Complete guide to Simha (Leo) in Vedic astrology — fire sign ruled by Sun. Personality, nakshatras, planetary dignities, career, compatibility.', hi: 'वैदिक ज्योतिष में सिंह राशि — सूर्य शासित अग्नि राशि। व्यक्तित्व, नक्षत्र, ग्रह गरिमा, करियर, अनुकूलता।', sa: 'सिंहराशेः सम्पूर्णमार्गदर्शिका।' },
+    title: { en: 'Simha (Leo) Rashi  –  Complete Vedic Astrology Guide', hi: 'सिंह राशि  –  सम्पूर्ण मार्गदर्शिका', sa: 'सिंहराशिः  –  सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Simha (Leo) in Vedic astrology  –  fire sign ruled by Sun. Personality, nakshatras, planetary dignities, career, compatibility.', hi: 'वैदिक ज्योतिष में सिंह राशि  –  सूर्य शासित अग्नि राशि। व्यक्तित्व, नक्षत्र, ग्रह गरिमा, करियर, अनुकूलता।', sa: 'सिंहराशेः सम्पूर्णमार्गदर्शिका।' },
     keywords: ['simha rashi', 'leo vedic astrology', 'simha characteristics', 'sun sign leo', 'planets in leo'],
   },
   '/learn/kanya': {
-    title: { en: 'Kanya (Virgo) Rashi — Complete Vedic Astrology Guide', hi: 'कन्या राशि — सम्पूर्ण मार्गदर्शिका', sa: 'कन्याराशिः — सम्पूर्णमार्गदर्शिका' },
-    description: { en: 'Complete guide to Kanya (Virgo) in Vedic astrology — earth sign ruled by Mercury. Mercury exalted here. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में कन्या राशि — बुध शासित पृथ्वी राशि। बुध यहाँ उच्च। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'कन्याराशेः सम्पूर्णमार्गदर्शिका।' },
+    title: { en: 'Kanya (Virgo) Rashi  –  Complete Vedic Astrology Guide', hi: 'कन्या राशि  –  सम्पूर्ण मार्गदर्शिका', sa: 'कन्याराशिः  –  सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Kanya (Virgo) in Vedic astrology  –  earth sign ruled by Mercury. Mercury exalted here. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में कन्या राशि  –  बुध शासित पृथ्वी राशि। बुध यहाँ उच्च। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'कन्याराशेः सम्पूर्णमार्गदर्शिका।' },
     keywords: ['kanya rashi', 'virgo vedic astrology', 'kanya characteristics', 'mercury exalted virgo', 'planets in virgo'],
   },
   '/learn/tula': {
-    title: { en: 'Tula (Libra) Rashi — Complete Vedic Astrology Guide', hi: 'तुला राशि — सम्पूर्ण मार्गदर्शिका', sa: 'तुलाराशिः — सम्पूर्णमार्गदर्शिका' },
-    description: { en: 'Complete guide to Tula (Libra) in Vedic astrology — air sign ruled by Venus. Saturn exalted, Sun debilitated here. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में तुला राशि — शुक्र शासित वायु राशि। शनि उच्च, सूर्य नीच। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'तुलाराशेः सम्पूर्णमार्गदर्शिका।' },
+    title: { en: 'Tula (Libra) Rashi  –  Complete Vedic Astrology Guide', hi: 'तुला राशि  –  सम्पूर्ण मार्गदर्शिका', sa: 'तुलाराशिः  –  सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Tula (Libra) in Vedic astrology  –  air sign ruled by Venus. Saturn exalted, Sun debilitated here. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में तुला राशि  –  शुक्र शासित वायु राशि। शनि उच्च, सूर्य नीच। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'तुलाराशेः सम्पूर्णमार्गदर्शिका।' },
     keywords: ['tula rashi', 'libra vedic astrology', 'tula characteristics', 'saturn exalted libra', 'sun debilitated libra'],
   },
   '/learn/vrishchika': {
-    title: { en: 'Vrishchika (Scorpio) Rashi — Complete Vedic Astrology Guide', hi: 'वृश्चिक राशि — सम्पूर्ण मार्गदर्शिका', sa: 'वृश्चिकराशिः — सम्पूर्णमार्गदर्शिका' },
-    description: { en: 'Complete guide to Vrishchika (Scorpio) in Vedic astrology — water sign ruled by Mars. Moon debilitated here. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में वृश्चिक राशि — मंगल शासित जल राशि। चन्द्र यहाँ नीच। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'वृश्चिकराशेः सम्पूर्णमार्गदर्शिका।' },
+    title: { en: 'Vrishchika (Scorpio) Rashi  –  Complete Vedic Astrology Guide', hi: 'वृश्चिक राशि  –  सम्पूर्ण मार्गदर्शिका', sa: 'वृश्चिकराशिः  –  सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Vrishchika (Scorpio) in Vedic astrology  –  water sign ruled by Mars. Moon debilitated here. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में वृश्चिक राशि  –  मंगल शासित जल राशि। चन्द्र यहाँ नीच। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'वृश्चिकराशेः सम्पूर्णमार्गदर्शिका।' },
     keywords: ['vrishchika rashi', 'scorpio vedic astrology', 'vrishchika characteristics', 'moon debilitated scorpio', 'planets in scorpio'],
   },
   '/learn/dhanu': {
-    title: { en: 'Dhanu (Sagittarius) Rashi — Complete Vedic Astrology Guide', hi: 'धनु राशि — सम्पूर्ण मार्गदर्शिका', sa: 'धनुराशिः — सम्पूर्णमार्गदर्शिका' },
-    description: { en: 'Complete guide to Dhanu (Sagittarius) in Vedic astrology — fire sign ruled by Jupiter. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में धनु राशि — गुरु शासित अग्नि राशि। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'धनुराशेः सम्पूर्णमार्गदर्शिका।' },
+    title: { en: 'Dhanu (Sagittarius) Rashi  –  Complete Vedic Astrology Guide', hi: 'धनु राशि  –  सम्पूर्ण मार्गदर्शिका', sa: 'धनुराशिः  –  सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Dhanu (Sagittarius) in Vedic astrology  –  fire sign ruled by Jupiter. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में धनु राशि  –  गुरु शासित अग्नि राशि। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'धनुराशेः सम्पूर्णमार्गदर्शिका।' },
     keywords: ['dhanu rashi', 'sagittarius vedic astrology', 'dhanu characteristics', 'jupiter sign', 'planets in sagittarius'],
   },
   '/learn/makara': {
-    title: { en: 'Makara (Capricorn) Rashi — Complete Vedic Astrology Guide', hi: 'मकर राशि — सम्पूर्ण मार्गदर्शिका', sa: 'मकरराशिः — सम्पूर्णमार्गदर्शिका' },
-    description: { en: 'Complete guide to Makara (Capricorn) in Vedic astrology — earth sign ruled by Saturn. Mars exalted, Jupiter debilitated here. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में मकर राशि — शनि शासित पृथ्वी राशि। मंगल उच्च, गुरु नीच। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'मकरराशेः सम्पूर्णमार्गदर्शिका।' },
+    title: { en: 'Makara (Capricorn) Rashi  –  Complete Vedic Astrology Guide', hi: 'मकर राशि  –  सम्पूर्ण मार्गदर्शिका', sa: 'मकरराशिः  –  सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Makara (Capricorn) in Vedic astrology  –  earth sign ruled by Saturn. Mars exalted, Jupiter debilitated here. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में मकर राशि  –  शनि शासित पृथ्वी राशि। मंगल उच्च, गुरु नीच। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'मकरराशेः सम्पूर्णमार्गदर्शिका।' },
     keywords: ['makara rashi', 'capricorn vedic astrology', 'makara characteristics', 'mars exalted capricorn', 'jupiter debilitated capricorn'],
   },
   '/learn/kumbha': {
-    title: { en: 'Kumbha (Aquarius) Rashi — Complete Vedic Astrology Guide', hi: 'कुम्भ राशि — सम्पूर्ण मार्गदर्शिका', sa: 'कुम्भराशिः — सम्पूर्णमार्गदर्शिका' },
-    description: { en: 'Complete guide to Kumbha (Aquarius) in Vedic astrology — air sign ruled by Saturn (co-ruled by Rahu). Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में कुम्भ राशि — शनि शासित (राहु सह-शासित) वायु राशि। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'कुम्भराशेः सम्पूर्णमार्गदर्शिका।' },
+    title: { en: 'Kumbha (Aquarius) Rashi  –  Complete Vedic Astrology Guide', hi: 'कुम्भ राशि  –  सम्पूर्ण मार्गदर्शिका', sa: 'कुम्भराशिः  –  सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Kumbha (Aquarius) in Vedic astrology  –  air sign ruled by Saturn (co-ruled by Rahu). Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में कुम्भ राशि  –  शनि शासित (राहु सह-शासित) वायु राशि। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'कुम्भराशेः सम्पूर्णमार्गदर्शिका।' },
     keywords: ['kumbha rashi', 'aquarius vedic astrology', 'kumbha characteristics', 'saturn rahu sign', 'planets in aquarius'],
   },
   '/learn/meena': {
-    title: { en: 'Meena (Pisces) Rashi — Complete Vedic Astrology Guide', hi: 'मीन राशि — सम्पूर्ण मार्गदर्शिका', sa: 'मीनराशिः — सम्पूर्णमार्गदर्शिका' },
-    description: { en: 'Complete guide to Meena (Pisces) in Vedic astrology — water sign ruled by Jupiter. Venus exalted, Mercury debilitated here. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में मीन राशि — गुरु शासित जल राशि। शुक्र उच्च, बुध नीच। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'मीनराशेः सम्पूर्णमार्गदर्शिका।' },
+    title: { en: 'Meena (Pisces) Rashi  –  Complete Vedic Astrology Guide', hi: 'मीन राशि  –  सम्पूर्ण मार्गदर्शिका', sa: 'मीनराशिः  –  सम्पूर्णमार्गदर्शिका' },
+    description: { en: 'Complete guide to Meena (Pisces) in Vedic astrology  –  water sign ruled by Jupiter. Venus exalted, Mercury debilitated here. Personality, nakshatras, career, compatibility.', hi: 'वैदिक ज्योतिष में मीन राशि  –  गुरु शासित जल राशि। शुक्र उच्च, बुध नीच। व्यक्तित्व, नक्षत्र, करियर, अनुकूलता।', sa: 'मीनराशेः सम्पूर्णमार्गदर्शिका।' },
     keywords: ['meena rashi', 'pisces vedic astrology', 'meena characteristics', 'venus exalted pisces', 'mercury debilitated pisces'],
   },
   '/learn/amrit-siddhi-yoga': {
-    title: { en: 'Amrit Siddhi Yoga — When Nakshatra Meets Weekday', hi: 'अमृत सिद्धि योग — नक्षत्र और वार का संगम', sa: 'अमृतसिद्धियोगः' },
-    description: { en: 'Learn about Amrit Siddhi Yoga — the rare luni-solar combination when specific nakshatras align with specific weekdays, creating windows of extraordinary auspiciousness.', hi: 'अमृत सिद्धि योग — विशिष्ट नक्षत्रों और वारों के संयोग से बनने वाला दुर्लभ शुभ योग।', sa: 'अमृतसिद्धियोगस्य विवरणम्।' },
+    title: { en: 'Amrit Siddhi Yoga  –  When Nakshatra Meets Weekday', hi: 'अमृत सिद्धि योग  –  नक्षत्र और वार का संगम', sa: 'अमृतसिद्धियोगः' },
+    description: { en: 'Learn about Amrit Siddhi Yoga  –  the rare luni-solar combination when specific nakshatras align with specific weekdays, creating windows of extraordinary auspiciousness.', hi: 'अमृत सिद्धि योग  –  विशिष्ट नक्षत्रों और वारों के संयोग से बनने वाला दुर्लभ शुभ योग।', sa: 'अमृतसिद्धियोगस्य विवरणम्।' },
     keywords: ['amrit siddhi yoga', 'auspicious yoga', 'nakshatra weekday combination', 'muhurta yoga', 'vedic timing'],
   },
   '/learn/dwipushkar-yoga': {
-    title: { en: 'Dwipushkar Yoga — Double Auspiciousness in Vedic Timing', hi: 'द्विपुष्कर योग — वैदिक समय में दोहरी शुभता', sa: 'द्विपुष्करयोगः' },
+    title: { en: 'Dwipushkar Yoga  –  Double Auspiciousness in Vedic Timing', hi: 'द्विपुष्कर योग  –  वैदिक समय में दोहरी शुभता', sa: 'द्विपुष्करयोगः' },
     description: { en: 'Dwipushkar Yoga doubles the fruit of any action performed during its window. Learn the tithi-nakshatra-weekday combination that creates this powerful muhurta yoga.', hi: 'द्विपुष्कर योग इस अवधि में किये गये किसी भी कार्य का फल दोगुना करता है।', sa: 'द्विपुष्करयोगस्य विवरणम्।' },
     keywords: ['dwipushkar yoga', 'double auspicious', 'muhurta yoga', 'vedic timing', 'tithi nakshatra combination'],
   },
   '/learn/guru-pushya-yoga': {
-    title: { en: 'Guru Pushya Yoga — The Most Auspicious Combination', hi: 'गुरु पुष्य योग — सर्वाधिक शुभ संयोग', sa: 'गुरुपुष्ययोगः' },
-    description: { en: 'Guru Pushya Yoga occurs when Thursday (Jupiter\'s day) coincides with Pushya nakshatra — considered the single most auspicious time for new ventures, purchases, and investments.', hi: 'गुरु पुष्य योग तब बनता है जब गुरुवार पुष्य नक्षत्र के साथ आता है — नये कार्य, खरीद और निवेश के लिए सर्वाधिक शुभ।', sa: 'गुरुपुष्ययोगस्य विवरणम्।' },
+    title: { en: 'Guru Pushya Yoga  –  The Most Auspicious Combination', hi: 'गुरु पुष्य योग  –  सर्वाधिक शुभ संयोग', sa: 'गुरुपुष्ययोगः' },
+    description: { en: 'Guru Pushya Yoga occurs when Thursday (Jupiter\'s day) coincides with Pushya nakshatra  –  considered the single most auspicious time for new ventures, purchases, and investments.', hi: 'गुरु पुष्य योग तब बनता है जब गुरुवार पुष्य नक्षत्र के साथ आता है  –  नये कार्य, खरीद और निवेश के लिए सर्वाधिक शुभ।', sa: 'गुरुपुष्ययोगस्य विवरणम्।' },
     keywords: ['guru pushya yoga', 'thursday pushya', 'most auspicious yoga', 'buying gold', 'new ventures timing'],
   },
   '/learn/ravi-pushya-yoga': {
-    title: { en: 'Ravi Pushya Yoga — Solar Power Meets Lunar Grace', hi: 'रवि पुष्य योग — सौर शक्ति और चन्द्र कृपा', sa: 'रविपुष्ययोगः' },
+    title: { en: 'Ravi Pushya Yoga  –  Solar Power Meets Lunar Grace', hi: 'रवि पुष्य योग  –  सौर शक्ति और चन्द्र कृपा', sa: 'रविपुष्ययोगः' },
     description: { en: 'Ravi Pushya Yoga forms when Sunday (Sun\'s day) coincides with Pushya nakshatra. Highly auspicious for government work, health remedies, and authority-related undertakings.', hi: 'रवि पुष्य योग तब बनता है जब रविवार पुष्य नक्षत्र के साथ आता है। सरकारी कार्य, स्वास्थ्य उपचार के लिए अत्यन्त शुभ।', sa: 'रविपुष्ययोगस्य विवरणम्।' },
     keywords: ['ravi pushya yoga', 'sunday pushya', 'auspicious yoga', 'government work timing', 'health remedies timing'],
   },
   '/learn/sarvartha-siddhi-yoga': {
-    title: { en: 'Sarvartha Siddhi Yoga — When All Purposes Succeed', hi: 'सर्वार्थ सिद्धि योग — जब सभी कार्य सिद्ध हों', sa: 'सर्वार्थसिद्धियोगः' },
+    title: { en: 'Sarvartha Siddhi Yoga  –  When All Purposes Succeed', hi: 'सर्वार्थ सिद्धि योग  –  जब सभी कार्य सिद्ध हों', sa: 'सर्वार्थसिद्धियोगः' },
     description: { en: 'Sarvartha Siddhi Yoga ("accomplishment of all purposes") forms from specific tithi-nakshatra-weekday alignments. One of the most powerful muhurta yogas in classical Jyotish.', hi: 'सर्वार्थ सिद्धि योग विशिष्ट तिथि-नक्षत्र-वार संयोग से बनता है। शास्त्रीय ज्योतिष में सबसे शक्तिशाली मुहूर्त योगों में एक।', sa: 'सर्वार्थसिद्धियोगस्य विवरणम्।' },
     keywords: ['sarvartha siddhi yoga', 'all purposes yoga', 'muhurta yoga', 'auspicious timing', 'tithi nakshatra weekday'],
   },
   '/learn/siddha-yoga': {
-    title: { en: 'Siddha Yoga — Accomplished Timing in Vedic Astrology', hi: 'सिद्ध योग — वैदिक ज्योतिष में सिद्ध समय', sa: 'सिद्धयोगः' },
+    title: { en: 'Siddha Yoga  –  Accomplished Timing in Vedic Astrology', hi: 'सिद्ध योग  –  वैदिक ज्योतिष में सिद्ध समय', sa: 'सिद्धयोगः' },
     description: { en: 'Siddha Yoga forms when specific weekdays combine with specific tithis, creating naturally accomplished timing windows. Learn the classical combinations and their applications.', hi: 'सिद्ध योग विशिष्ट वारों और तिथियों के संयोग से बनता है, स्वाभाविक रूप से सिद्ध समय खिड़कियाँ निर्मित करता है।', sa: 'सिद्धयोगस्य विवरणम्।' },
     keywords: ['siddha yoga', 'accomplished yoga', 'weekday tithi combination', 'muhurta timing', 'vedic calendar yoga'],
   },
   '/learn/tripushkar-yoga': {
-    title: { en: 'Tripushkar Yoga — Triple Auspiciousness in Vedic Timing', hi: 'त्रिपुष्कर योग — वैदिक समय में तिगुनी शुभता', sa: 'त्रिपुष्करयोगः' },
-    description: { en: 'Tripushkar Yoga triples the fruit of actions — even rarer than Dwipushkar. Learn the specific tithi-nakshatra-weekday combination and when to use this powerful window.', hi: 'त्रिपुष्कर योग कार्यों का फल तिगुना करता है — द्विपुष्कर से भी दुर्लभ।', sa: 'त्रिपुष्करयोगस्य विवरणम्।' },
+    title: { en: 'Tripushkar Yoga  –  Triple Auspiciousness in Vedic Timing', hi: 'त्रिपुष्कर योग  –  वैदिक समय में तिगुनी शुभता', sa: 'त्रिपुष्करयोगः' },
+    description: { en: 'Tripushkar Yoga triples the fruit of actions  –  even rarer than Dwipushkar. Learn the specific tithi-nakshatra-weekday combination and when to use this powerful window.', hi: 'त्रिपुष्कर योग कार्यों का फल तिगुना करता है  –  द्विपुष्कर से भी दुर्लभ।', sa: 'त्रिपुष्करयोगस्य विवरणम्।' },
     keywords: ['tripushkar yoga', 'triple auspicious', 'muhurta yoga', 'rarest yoga', 'vedic timing combination'],
   },
   '/caesarean-muhurta': {
     title: {
       en: 'Caesarean Birth Time Suggester | Best Muhurta for C-Section',
-      hi: 'सिजेरियन जन्म मुहूर्त — सी-सेक्शन के लिए सर्वश्रेष्ठ समय',
-      sa: 'शस्त्रक्रियाजन्ममुहूर्तम् — सर्वोत्तमजन्मकालनिर्णयः',
+      hi: 'सिजेरियन जन्म मुहूर्त  –  सी-सेक्शन के लिए सर्वश्रेष्ठ समय',
+      sa: 'शस्त्रक्रियाजन्ममुहूर्तम्  –  सर्वोत्तमजन्मकालनिर्णयः',
     },
     description: {
-      en: 'Find the most auspicious birth time for a planned C-section delivery. 5-pillar classical scoring — lagna strength, Moon strength, benefic distribution, dasha trajectory & structural defects. 15-minute resolution across your hospital date range.',
-      hi: 'नियोजित सिजेरियन प्रसव के लिए सर्वाधिक शुभ जन्म समय खोजें। 5 शास्त्रीय स्तम्भ — लग्न बल, चन्द्र बल, शुभ ग्रह वितरण, दशा प्रक्षेपण और संरचनात्मक दोष। 15 मिनट के अंतराल पर विश्लेषण।',
-      sa: 'नियोजितशस्त्रक्रियाप्रसवार्थं सर्वोत्तमजन्ममुहूर्तं प्राप्नुयात्। पञ्चस्तम्भशास्त्रीयमूल्याङ्कनम् — लग्नबलं चन्द्रबलं शुभग्रहवितरणं दशामार्गश्च। पञ्चदशनिमेषान्तरेण विश्लेषणम्।',
+      en: 'Find the most auspicious birth time for a planned C-section delivery. 5-pillar classical scoring  –  lagna strength, Moon strength, benefic distribution, dasha trajectory & structural defects. 15-minute resolution across your hospital date range.',
+      hi: 'नियोजित सिजेरियन प्रसव के लिए सर्वाधिक शुभ जन्म समय खोजें। 5 शास्त्रीय स्तम्भ  –  लग्न बल, चन्द्र बल, शुभ ग्रह वितरण, दशा प्रक्षेपण और संरचनात्मक दोष। 15 मिनट के अंतराल पर विश्लेषण।',
+      sa: 'नियोजितशस्त्रक्रियाप्रसवार्थं सर्वोत्तमजन्ममुहूर्तं प्राप्नुयात्। पञ्चस्तम्भशास्त्रीयमूल्याङ्कनम्  –  लग्नबलं चन्द्रबलं शुभग्रहवितरणं दशामार्गश्च। पञ्चदशनिमेषान्तरेण विश्लेषणम्।',
     },
     keywords: ['caesarean muhurta', 'c-section birth time', 'best birth time astrology', 'caesarean birth chart', 'birth election vedic', 'lagna strength baby', 'planned delivery muhurta', 'jyotish birth time', 'gandanta avoidance', 'dasha trajectory baby'],
   },
   '/learn/vivah-muhurta': {
     title: {
-      en: 'Vivah Muhurta — How Marriage Dates Are Selected in Vedic Astrology',
-      hi: 'विवाह मुहूर्त — वैदिक ज्योतिष में शुभ विवाह तिथि कैसे चुनें',
-      sa: 'विवाहमुहूर्तम् — वैदिकज्योतिषे शुभविवाहतिथिनिर्धारणम्',
+      en: 'Vivah Muhurta  –  How Marriage Dates Are Selected in Vedic Astrology',
+      hi: 'विवाह मुहूर्त  –  वैदिक ज्योतिष में शुभ विवाह तिथि कैसे चुनें',
+      sa: 'विवाहमुहूर्तम्  –  वैदिकज्योतिषे शुभविवाहतिथिनिर्धारणम्',
     },
     description: {
-      en: 'The complete classical guide to selecting auspicious marriage dates — solar months, 11 blessed nakshatras, Venus/Jupiter combustion, lagna selection, prohibited karanas & tithis. Based on Muhurta Chintamani, Brihat Samhita & BPHS.',
-      hi: 'शुभ विवाह तिथि चयन का सम्पूर्ण शास्त्रीय मार्गदर्शक — सौर मास, 11 शुभ नक्षत्र, शुक्र/गुरु अस्त, लग्न चयन, निषिद्ध करण और तिथियाँ। मुहूर्त चिंतामणि, बृहत् संहिता और बीएचपीएस पर आधारित।',
+      en: 'The complete classical guide to selecting auspicious marriage dates  –  solar months, 11 blessed nakshatras, Venus/Jupiter combustion, lagna selection, prohibited karanas & tithis. Based on Muhurta Chintamani, Brihat Samhita & BPHS.',
+      hi: 'शुभ विवाह तिथि चयन का सम्पूर्ण शास्त्रीय मार्गदर्शक  –  सौर मास, 11 शुभ नक्षत्र, शुक्र/गुरु अस्त, लग्न चयन, निषिद्ध करण और तिथियाँ। मुहूर्त चिंतामणि, बृहत् संहिता और बीएचपीएस पर आधारित।',
       sa: 'शुभविवाहतिथिनिर्वाचनस्य शास्त्रीयमार्गदर्शकम्।',
     },
     keywords: ['vivah muhurta', 'marriage muhurta', 'wedding date astrology', 'shubh vivah muhurat', 'marriage nakshatra', 'hindu wedding date selection', 'venus combustion marriage', 'jupiter combustion wedding', 'lagna for marriage', 'auspicious marriage date vedic'],
   },
   '/learn/caesarean-muhurta': {
     title: {
-      en: 'Caesarean Muhurta — Classical Rules for Birth Time Election',
-      hi: 'सिजेरियन मुहूर्त — जन्म समय चयन के शास्त्रीय नियम',
-      sa: 'शस्त्रक्रियाजन्ममुहूर्तम् — जन्मकालनिर्वाचनस्य शास्त्रीयनियमाः',
+      en: 'Caesarean Muhurta  –  Classical Rules for Birth Time Election',
+      hi: 'सिजेरियन मुहूर्त  –  जन्म समय चयन के शास्त्रीय नियम',
+      sa: 'शस्त्रक्रियाजन्ममुहूर्तम्  –  जन्मकालनिर्वाचनस्य शास्त्रीयनियमाः',
     },
     description: {
-      en: 'Learn the classical Jyotish rules for electing a C-section birth time. Covers the 5 scoring pillars — lagna shuddhi, Moon strength, benefic/malefic distribution, dasha trajectory, and structural defects like Gandanta. Based on BPHS, Muhurta Chintamani & Prasna Marga.',
-      hi: 'सिजेरियन जन्म समय चयन के शास्त्रीय ज्योतिष नियम सीखें। 5 मूल्यांकन स्तम्भ — लग्न शुद्धि, चन्द्र बल, शुभ-अशुभ ग्रह वितरण, दशा प्रक्षेपण और गण्डान्त जैसे संरचनात्मक दोष।',
-      sa: 'शस्त्रक्रियाजन्मकालनिर्वाचनस्य शास्त्रीयज्योतिषनियमान् अधिगच्छतु। पञ्चमूल्याङ्कनस्तम्भाः — लग्नशुद्धिः चन्द्रबलं शुभाशुभग्रहवितरणं दशामार्गः गण्डान्तादिसंरचनादोषाश्च।',
+      en: 'Learn the classical Jyotish rules for electing a C-section birth time. Covers the 5 scoring pillars  –  lagna shuddhi, Moon strength, benefic/malefic distribution, dasha trajectory, and structural defects like Gandanta. Based on BPHS, Muhurta Chintamani & Prasna Marga.',
+      hi: 'सिजेरियन जन्म समय चयन के शास्त्रीय ज्योतिष नियम सीखें। 5 मूल्यांकन स्तम्भ  –  लग्न शुद्धि, चन्द्र बल, शुभ-अशुभ ग्रह वितरण, दशा प्रक्षेपण और गण्डान्त जैसे संरचनात्मक दोष।',
+      sa: 'शस्त्रक्रियाजन्मकालनिर्वाचनस्य शास्त्रीयज्योतिषनियमान् अधिगच्छतु। पञ्चमूल्याङ्कनस्तम्भाः  –  लग्नशुद्धिः चन्द्रबलं शुभाशुभग्रहवितरणं दशामार्गः गण्डान्तादिसंरचनादोषाश्च।',
     },
     keywords: ['caesarean muhurta rules', 'birth time election jyotish', 'lagna shuddhi', 'gandanta avoidance', 'muhurta chintamani birth', 'prasna marga birth', 'BPHS birth election', 'dasha trajectory newborn', 'janma nakshatra dosha'],
   },
   '/videos': {
-    title: { en: 'Videos — Dekho Panchang', hi: 'वीडियो — देखो पंचांग', sa: 'चलचित्राणि — देखो पञ्चाङ्गम्' },
-    description: { en: 'Watch Vedic astrology videos — daily panchang shorts, Sade Sati explained, nakshatra guides, and spiritual knowledge from Dekho Panchang.', hi: 'वैदिक ज्योतिष वीडियो देखें — दैनिक पंचांग शॉर्ट्स, साढ़े साती विवरण, नक्षत्र मार्गदर्शिका और आध्यात्मिक ज्ञान।', sa: 'वैदिकज्योतिषचलचित्राणि — दैनिकपञ्चाङ्गम्, साढेसात्याः विवरणम्।' },
+    title: { en: 'Videos  –  Dekho Panchang', hi: 'वीडियो  –  देखो पंचांग', sa: 'चलचित्राणि  –  देखो पञ्चाङ्गम्' },
+    description: { en: 'Watch Vedic astrology videos  –  daily panchang shorts, Sade Sati explained, nakshatra guides, and spiritual knowledge from Dekho Panchang.', hi: 'वैदिक ज्योतिष वीडियो देखें  –  दैनिक पंचांग शॉर्ट्स, साढ़े साती विवरण, नक्षत्र मार्गदर्शिका और आध्यात्मिक ज्ञान।', sa: 'वैदिकज्योतिषचलचित्राणि  –  दैनिकपञ्चाङ्गम्, साढेसात्याः विवरणम्।' },
     keywords: ['vedic astrology videos', 'panchang video', 'jyotish youtube', 'dekho panchang videos', 'sade sati video', 'daily panchang shorts'],
   },
   '/vivah-muhurat/2026': {
     title: {
-      en: 'Shubh Vivah Muhurat 2026 — Auspicious Hindu Marriage Dates',
-      hi: 'शुभ विवाह मुहूर्त 2026 — हिन्दू विवाह की शुभ तिथियाँ',
-      sa: 'शुभविवाहमुहूर्तम् २०२६ — हिन्दुविवाहशुभतिथयः',
-      ta: 'சுப விவாஹ முகூர்த்தம் 2026 — இந்து திருமண சுப நாட்கள்',
-      bn: 'শুভ বিবাহ মুহূর্ত 2026 — হিন্দু বিবাহের শুভ তারিখ',
+      en: 'Shubh Vivah Muhurat 2026  –  Auspicious Hindu Marriage Dates',
+      hi: 'शुभ विवाह मुहूर्त 2026  –  हिन्दू विवाह की शुभ तिथियाँ',
+      sa: 'शुभविवाहमुहूर्तम् २०२६  –  हिन्दुविवाहशुभतिथयः',
+      ta: 'சுப விவாஹ முகூர்த்தம் 2026  –  இந்து திருமண சுப நாட்கள்',
+      bn: 'শুভ বিবাহ মুহূর্ত 2026  –  হিন্দু বিবাহের শুভ তারিখ',
     },
     description: {
       en: 'Complete list of auspicious Hindu marriage dates for 2026 with nakshatra, tithi, lagna windows, and Vedic scores. Computed using 36 classical rules from Muhurta Chintamani and BPHS. Free and location-aware.',
-      hi: '2026 के सभी शुभ हिन्दू विवाह मुहूर्त — नक्षत्र, तिथि, लग्न और वैदिक स्कोर। मुहूर्त चिन्तामणि और BPHS के 36 शास्त्रीय नियमों से गणना। निःशुल्क।',
-      sa: '२०२६ वर्षस्य सर्वाणि शुभविवाहमुहूर्तानि — नक्षत्रं तिथिः लग्नं वैदिकाङ्कः। मुहूर्तचिन्तामणेः BPHS च ३६ शास्त्रीयनियमैः गणितम्।',
-      ta: '2026 ஆண்டுக்கான அனைத்து சுப இந்து திருமண நாட்கள் — நட்சத்திரம், திதி, லக்னம் மற்றும் வேத மதிப்பெண்கள்.',
-      bn: '2026 সালের সকল শুভ হিন্দু বিবাহ তারিখ — নক্ষত্র, তিথি, লগ্ন এবং বৈদিক স্কোর।',
+      hi: '2026 के सभी शुभ हिन्दू विवाह मुहूर्त  –  नक्षत्र, तिथि, लग्न और वैदिक स्कोर। मुहूर्त चिन्तामणि और BPHS के 36 शास्त्रीय नियमों से गणना। निःशुल्क।',
+      sa: '२०२६ वर्षस्य सर्वाणि शुभविवाहमुहूर्तानि  –  नक्षत्रं तिथिः लग्नं वैदिकाङ्कः। मुहूर्तचिन्तामणेः BPHS च ३६ शास्त्रीयनियमैः गणितम्।',
+      ta: '2026 ஆண்டுக்கான அனைத்து சுப இந்து திருமண நாட்கள்  –  நட்சத்திரம், திதி, லக்னம் மற்றும் வேத மதிப்பெண்கள்.',
+      bn: '2026 সালের সকল শুভ হিন্দু বিবাহ তারিখ  –  নক্ষত্র, তিথি, লগ্ন এবং বৈদিক স্কোর।',
     },
     keywords: ['shubh vivah muhurat 2026', 'vivah muhurat 2026', 'marriage dates 2026', 'hindu wedding dates 2026', 'shadi muhurat 2026', 'auspicious marriage dates 2026', 'vivah shubh muhurat', 'wedding muhurta 2026'],
   },
   '/vivah-muhurat/2027': {
     title: {
-      en: 'Shubh Vivah Muhurat 2027 — Auspicious Hindu Marriage Dates',
-      hi: 'शुभ विवाह मुहूर्त 2027 — हिन्दू विवाह की शुभ तिथियाँ',
-      sa: 'शुभविवाहमुहूर्तम् २०२७ — हिन्दुविवाहशुभतिथयः',
-      ta: 'சுப விவாஹ முகூர்த்தம் 2027 — இந்து திருமண சுப நாட்கள்',
-      bn: 'শুভ বিবাহ মুহূর্ত 2027 — হিন্দু বিবাহের শুভ তারিখ',
+      en: 'Shubh Vivah Muhurat 2027  –  Auspicious Hindu Marriage Dates',
+      hi: 'शुभ विवाह मुहूर्त 2027  –  हिन्दू विवाह की शुभ तिथियाँ',
+      sa: 'शुभविवाहमुहूर्तम् २०२७  –  हिन्दुविवाहशुभतिथयः',
+      ta: 'சுப விவாஹ முகூர்த்தம் 2027  –  இந்து திருமண சுப நாட்கள்',
+      bn: 'শুভ বিবাহ মুহূর্ত 2027  –  হিন্দু বিবাহের শুভ তারিখ',
     },
     description: {
       en: 'Complete list of auspicious Hindu marriage dates for 2027 with nakshatra, tithi, lagna windows, and Vedic scores. Computed using 36 classical rules from Muhurta Chintamani and BPHS. Free and location-aware.',
-      hi: '2027 के सभी शुभ हिन्दू विवाह मुहूर्त — नक्षत्र, तिथि, लग्न और वैदिक स्कोर। मुहूर्त चिन्तामणि और BPHS के 36 शास्त्रीय नियमों से गणना। निःशुल्क।',
-      sa: '२०२७ वर्षस्य सर्वाणि शुभविवाहमुहूर्तानि — नक्षत्रं तिथिः लग्नं वैदिकाङ्कः। मुहूर्तचिन्तामणेः BPHS च ३६ शास्त्रीयनियमैः गणितम्।',
-      ta: '2027 ஆண்டுக்கான அனைத்து சுப இந்து திருமண நாட்கள் — நட்சத்திரம், திதி, லக்னம் மற்றும் வேத மதிப்பெண்கள்.',
-      bn: '2027 সালের সকল শুভ হিন্দু বিবাহ তারিখ — নক্ষত্র, তিথি, লগ্ন এবং বৈদিক স্কোর।',
+      hi: '2027 के सभी शुभ हिन्दू विवाह मुहूर्त  –  नक्षत्र, तिथि, लग्न और वैदिक स्कोर। मुहूर्त चिन्तामणि और BPHS के 36 शास्त्रीय नियमों से गणना। निःशुल्क।',
+      sa: '२०२७ वर्षस्य सर्वाणि शुभविवाहमुहूर्तानि  –  नक्षत्रं तिथिः लग्नं वैदिकाङ्कः। मुहूर्तचिन्तामणेः BPHS च ३६ शास्त्रीयनियमैः गणितम्।',
+      ta: '2027 ஆண்டுக்கான அனைத்து சுப இந்து திருமண நாட்கள்  –  நட்சத்திரம், திதி, லக்னம் மற்றும் வேத மதிப்பெண்கள்.',
+      bn: '2027 সালের সকল শুভ হিন্দু বিবাহ তারিখ  –  নক্ষত্র, তিথি, লগ্ন এবং বৈদিক স্কোর।',
     },
     keywords: ['shubh vivah muhurat 2027', 'vivah muhurat 2027', 'marriage dates 2027', 'hindu wedding dates 2027', 'shadi muhurat 2027', 'auspicious marriage dates 2027'],
   },

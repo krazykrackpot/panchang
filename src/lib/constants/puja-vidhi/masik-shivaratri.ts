@@ -114,9 +114,9 @@ export const MASIK_SHIVARATRI_PUJA: PujaVidhi = {
       },
       japaCount: 108,
       usage: {
-        en: 'The supreme Shiva mantra — chant 108 times during abhisheka and japa',
-        hi: 'परम शिव मन्त्र — अभिषेक और जप के दौरान 108 बार जपें',
-        sa: 'परमशिवमन्त्रः — अभिषेके जपे च अष्टोत्तरशतवारं जपेत्',
+        en: 'The supreme Shiva mantra  –  chant 108 times during abhisheka and japa',
+        hi: 'परम शिव मन्त्र  –  अभिषेक और जप के दौरान 108 बार जपें',
+        sa: 'परमशिवमन्त्रः  –  अभिषेके जपे च अष्टोत्तरशतवारं जपेत्',
       },
     },
     {

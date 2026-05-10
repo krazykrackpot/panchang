@@ -39,7 +39,7 @@ function findActiveDasha(
 }
 
 export async function GET(req: NextRequest) {
-  // Auth check — same pattern as transit-alerts
+  // Auth check  –  same pattern as transit-alerts
   const authHeader = req.headers.get('authorization');
   if (authHeader !== `Bearer ${process.env.CRON_SECRET?.trim()}`) {
     return new NextResponse('Unauthorized', { status: 401 });

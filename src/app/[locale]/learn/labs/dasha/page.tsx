@@ -178,7 +178,7 @@ function NakshatraNakshMap({ nakNum }: { nakNum: number }) {
           </div>
         ))}
       </div>
-      <p className="text-text-secondary/60 text-xs text-center mt-2">Your birth Nakshatra #{nakNum} is highlighted above — that planet starts your Dasha sequence.</p>
+      <p className="text-text-secondary/60 text-xs text-center mt-2">Your birth Nakshatra #{nakNum} is highlighted above  –  that planet starts your Dasha sequence.</p>
     </div>
   );
 }
@@ -398,7 +398,7 @@ export default function DashaLabPage() {
               <WhyBox heading={t('whatIsThis')}>
                 Imagine your life as a long road trip. Different planets take turns "driving" for multi-year stretches. When your Sun Dasha is active, solar themes dominate: identity, authority, vitality, father. When the Moon Dasha runs, lunar themes rise: mind, emotions, mother, public. The planet driving shapes the opportunities and challenges that tend to emerge during that period.
                 <br /><br />
-                This is the Vimshottari Dasha system — "Vimshottari" means 120 in Sanskrit, because the full cycle takes exactly 120 years.
+                This is the Vimshottari Dasha system  –  "Vimshottari" means 120 in Sanskrit, because the full cycle takes exactly 120 years.
               </WhyBox>
 
               <DashaCycleDiagram />
@@ -415,7 +415,7 @@ export default function DashaLabPage() {
 
               <div className="p-4 rounded-xl bg-amber-500/8 border border-amber-500/20">
                 <p className="text-text-primary text-sm leading-relaxed">
-                  <strong className="text-amber-300">But why does your birth time matter?</strong> Because you're born mid-way through a planetary period. The Moon's position in your birth chart tells us exactly how far into the first period you are — and therefore when every subsequent period starts. This is why an accurate birth time is so critical.
+                  <strong className="text-amber-300">But why does your birth time matter?</strong> Because you're born mid-way through a planetary period. The Moon's position in your birth chart tells us exactly how far into the first period you are  –  and therefore when every subsequent period starts. This is why an accurate birth time is so critical.
                 </p>
               </div>
               <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('nextStep')} />
@@ -428,7 +428,7 @@ export default function DashaLabPage() {
               title={t('step2Title')}
               subtitle={t('step2Subtitle')}>
               <WhyBox heading={t('whatIsThis')}>
-                Of all the planets, the Moon moves the fastest through the Nakshatras — completing one full round in just 27 days. This makes it ideal as a "clock hand" — by knowing exactly where in which Nakshatra the Moon was at birth, we know precisely how far into that Nakshatra's planetary period you arrived. That fraction becomes your starting Dasha balance.
+                Of all the planets, the Moon moves the fastest through the Nakshatras  –  completing one full round in just 27 days. This makes it ideal as a "clock hand"  –  by knowing exactly where in which Nakshatra the Moon was at birth, we know precisely how far into that Nakshatra's planetary period you arrived. That fraction becomes your starting Dasha balance.
               </WhyBox>
 
               <div className="space-y-2 mb-4">
@@ -456,7 +456,7 @@ export default function DashaLabPage() {
               title={t('step3Title')}
               subtitle={t('step3Subtitle')}>
               <WhyBox heading={t('whatIsThis')}>
-                The 27 Nakshatras are divided equally among 9 planets — 3 Nakshatras per planet. Your birth Nakshatra tells us which planet "owns" the chapter you're being born into. Since you're born somewhere in the middle of that Nakshatra, you don't get the full period — only what's left. The remaining fraction becomes your "dasha balance" at birth.
+                The 27 Nakshatras are divided equally among 9 planets  –  3 Nakshatras per planet. Your birth Nakshatra tells us which planet "owns" the chapter you're being born into. Since you're born somewhere in the middle of that Nakshatra, you don't get the full period  –  only what's left. The remaining fraction becomes your "dasha balance" at birth.
               </WhyBox>
 
               <NakshatraNakshMap nakNum={calc.nakNum} />
@@ -536,7 +536,7 @@ export default function DashaLabPage() {
                     <span className="text-2xl">{GRAHAS[calc.currentSeg.planetId].symbol}</span>
                     <div>
                       <div className="text-white font-bold text-lg">{calc.currentSeg.planetName} {t('mahaDasha')}</div>
-                      <div className="text-text-secondary text-xs">{formatDate(calc.currentSeg.startDate)} — {formatDate(calc.currentSeg.endDate)}</div>
+                      <div className="text-text-secondary text-xs">{formatDate(calc.currentSeg.startDate)}  –  {formatDate(calc.currentSeg.endDate)}</div>
                     </div>
                   </div>
                 </div>
@@ -557,7 +557,7 @@ export default function DashaLabPage() {
                           {seg.isPartial && <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300">{t('partial')}</span>}
                           {isCurrent && <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 animate-pulse">{t('now')}</span>}
                         </div>
-                        <div className="text-xs text-text-secondary/60 font-mono">{formatDate(seg.startDate)} — {formatDate(seg.endDate)}</div>
+                        <div className="text-xs text-text-secondary/60 font-mono">{formatDate(seg.startDate)}  –  {formatDate(seg.endDate)}</div>
                       </div>
                       <div className="text-xs font-mono text-text-secondary flex-shrink-0">{formatDuration(seg.durationYears)}</div>
                     </div>

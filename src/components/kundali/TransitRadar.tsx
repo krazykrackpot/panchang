@@ -17,7 +17,7 @@ interface TransitRadarProps {
 
 
 const LABELS = {
-  title: { en: "Transit Radar — What's Activating Your Chart", hi: "गोचर राडार — आपकी कुण्डली पर वर्तमान प्रभाव", sa: "गोचर राडार — आपकी कुण्डली पर वर्तमान प्रभाव", ta: "கோசார ரேடார் — உங்கள் ஜாதகத்தில் செயல்படுவது", bn: "গোচর রাডার — আপনার কুণ্ডলীতে বর্তমান প্রভাব" },
+  title: { en: "Transit Radar  –  What's Activating Your Chart", hi: "गोचर राडार  –  आपकी कुण्डली पर वर्तमान प्रभाव", sa: "गोचर राडार  –  आपकी कुण्डली पर वर्तमान प्रभाव", ta: "கோசார ரேடார்  –  உங்கள் ஜாதகத்தில் செயல்படுவது", bn: "গোচর রাডার  –  আপনার কুণ্ডলীতে বর্তমান প্রভাব" },
   subtitle: { en: 'Current slow-planet positions mapped to your Ashtakavarga strength', hi: 'धीमे ग्रहों की वर्तमान स्थिति और आपकी अष्टकवर्ग शक्ति', sa: 'धीमे ग्रहों की वर्तमान स्थिति और आपकी अष्टकवर्ग शक्ति', ta: 'மெதுவான கிரகங்களின் நிலை மற்றும் உங்கள் அஷ்டகவர்க்க வலிமை', bn: 'ধীর গ্রহের বর্তমান অবস্থান এবং আপনার অষ্টকবর্গ শক্তি' },
   upcoming: { en: 'Upcoming Sign Changes (Next 6 Months)', hi: 'आगामी परिवर्तन (अगले 6 माह)', sa: 'आगामी परिवर्तन (अगले 6 माह)', ta: 'வரவிருக்கும் ராசி மாற்றங்கள் (அடுத்த 6 மாதங்கள்)', bn: 'আসন্ন রাশি পরিবর্তন (পরবর্তী ৬ মাস)' },
 };
@@ -26,14 +26,14 @@ const I18N = {
   vedha: { en: 'Vedha', hi: 'वेध', ta: 'வேதா', bn: 'বেধ' },
   favorable: { en: 'Favorable', hi: 'शुभ', ta: 'சுபம்', bn: 'শুভ' },
   fromMoon: { en: 'from Moon', hi: 'चंद्र से', ta: 'சந்திரனிலிருந்து', bn: 'চন্দ্র থেকে' },
-  gocharaFavorable: { en: ' — Gochara favorable', hi: ' — गोचर अनुकूल', ta: ' — கோசாரம் சுபம்', bn: ' — গোচর অনুকূল' },
-  obstructedByVedha: { en: ' — obstructed by Vedha', hi: ' — वेध से बाधित', ta: ' — வேதாவால் தடைபட்டது', bn: ' — বেধ দ্বারা বাধিত' },
-  doubleTransitTitle: { en: 'Double Transit — Jupiter + Saturn', hi: 'द्वि-गोचर सक्रिय — गुरु + शनि', ta: 'இரட்டை கோசாரம் — குரு + சனி', bn: 'দ্বৈত গোচর — বৃহস্পতি + শনি' },
+  gocharaFavorable: { en: '  –  Gochara favorable', hi: '  –  गोचर अनुकूल', ta: '  –  கோசாரம் சுபம்', bn: '  –  গোচর অনুকূল' },
+  obstructedByVedha: { en: '  –  obstructed by Vedha', hi: '  –  वेध से बाधित', ta: '  –  வேதாவால் தடைபட்டது', bn: '  –  বেধ দ্বারা বাধিত' },
+  doubleTransitTitle: { en: 'Double Transit  –  Jupiter + Saturn', hi: 'द्वि-गोचर सक्रिय  –  गुरु + शनि', ta: 'இரட்டை கோசாரம்  –  குரு + சனி', bn: 'দ্বৈত গোচর  –  বৃহস্পতি + শনি' },
   doubleTransitDesc: {
-    en: 'Both Jupiter and Saturn activate these houses by aspect or placement — events in these life areas may manifest.',
-    hi: 'गुरु और शनि दोनों इन भावों को दृष्टि/स्थिति से सक्रिय कर रहे हैं — इन क्षेत्रों में घटनाएं प्रकट हो सकती हैं।',
-    ta: 'குரு மற்றும் சனி இரண்டும் இந்த பாவங்களை பார்வை/நிலையால் செயல்படுத்துகின்றன — இந்த வாழ்க்கைப் பகுதிகளில் நிகழ்வுகள் வெளிப்படலாம்.',
-    bn: 'বৃহস্পতি এবং শনি উভয়ই এই ভাবগুলিকে দৃষ্টি/অবস্থান দ্বারা সক্রিয় করছে — এই জীবন ক্ষেত্রে ঘটনা প্রকাশ পেতে পারে।',
+    en: 'Both Jupiter and Saturn activate these houses by aspect or placement  –  events in these life areas may manifest.',
+    hi: 'गुरु और शनि दोनों इन भावों को दृष्टि/स्थिति से सक्रिय कर रहे हैं  –  इन क्षेत्रों में घटनाएं प्रकट हो सकती हैं।',
+    ta: 'குரு மற்றும் சனி இரண்டும் இந்த பாவங்களை பார்வை/நிலையால் செயல்படுத்துகின்றன  –  இந்த வாழ்க்கைப் பகுதிகளில் நிகழ்வுகள் வெளிப்படலாம்.',
+    bn: 'বৃহস্পতি এবং শনি উভয়ই এই ভাবগুলিকে দৃষ্টি/অবস্থান দ্বারা সক্রিয় করছে  –  এই জীবন ক্ষেত্রে ঘটনা প্রকাশ পেতে পারে।',
   },
 } satisfies Record<string, Record<string, string>>;
 
@@ -84,7 +84,7 @@ export default function TransitRadar({ ascendantSign, savTable, locale, natalMoo
       {/* Transit rows */}
       <div className="px-6 sm:px-8 pb-4 space-y-3">
         {transits.map(t => {
-          // Blend SAV quality with Gochara quality — use the more favorable of the two.
+          // Blend SAV quality with Gochara quality  –  use the more favorable of the two.
           // Gochara alone is too harsh (most houses are "bad"), SAV alone ignores classical rules.
           // Ranking: strong > moderate/neutral > weak > adverse
           const QUALITY_RANK: Record<string, number> = { strong: 4, moderate: 3, neutral: 3, weak: 2, adverse: 1 };

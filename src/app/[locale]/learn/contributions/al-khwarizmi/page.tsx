@@ -9,7 +9,7 @@ import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/contributions-al-khwarizmi.json';
 
-export const revalidate = 604800; // 7 days — static educational content
+export const revalidate = 604800; // 7 days  –  static educational content
 
 
 
@@ -39,8 +39,8 @@ const INDIAN_SOURCES = [
 ];
 
 const SANSKRIT_TERMS = [
-  { term: 'Hisab al-Hind', transliteration: 'ḥisāb al-hind', meaning: 'Hindu calculation — the Arabic name for Indian arithmetic', devanagari: 'हिसाब अल-हिन्द' },
-  { term: 'Shunya', transliteration: 'śūnya', meaning: 'void/empty — became Arabic sifr, then Latin zephirum, then zero', devanagari: 'शून्य' },
+  { term: 'Hisab al-Hind', transliteration: 'ḥisāb al-hind', meaning: 'Hindu calculation  –  the Arabic name for Indian arithmetic', devanagari: 'हिसाब अल-हिन्द' },
+  { term: 'Shunya', transliteration: 'śūnya', meaning: 'void/empty  –  became Arabic sifr, then Latin zephirum, then zero', devanagari: 'शून्य' },
   { term: 'Brahmasphutasiddhanta', transliteration: 'Brahma-sphuṭa-siddhānta', meaning: 'The Correctly Established Doctrine of Brahma (628 CE)', devanagari: 'ब्रह्मस्फुटसिद्धान्त' },
   { term: 'Algoritmi', transliteration: 'al-Khwārizmī', meaning: 'Latinized name that gave us the word "algorithm"', devanagari: 'अल्गोरित्मी' },
 ];
@@ -104,7 +104,7 @@ export default async function AlKhwarizmiPage({ params }: { params: Promise<{ lo
                 {hi ? 'किताब अल-जम्अ वल-तफ़रीक़ बि-हिसाब अल-हिन्द' : 'Kitab al-Jam\' wa-l-Tafriq bi-Hisab al-Hind'}
               </span>
               <span className="text-text-secondary mt-2 text-sm sm:text-base">
-                {hi ? '"हिन्दू गणना के अनुसार जोड़ और घटाव की पुस्तक" — अल-ख्वारिज्मी, ~825 ईस्वी' : '"The Book of Addition and Subtraction According to Hindu Calculation" — Al-Khwarizmi, ~825 CE'}
+                {hi ? '"हिन्दू गणना के अनुसार जोड़ और घटाव की पुस्तक"  –  अल-ख्वारिज्मी, ~825 ईस्वी' : '"The Book of Addition and Subtraction According to Hindu Calculation"  –  Al-Khwarizmi, ~825 CE'}
               </span>
             </div>
           </div>
@@ -189,7 +189,7 @@ export default async function AlKhwarizmiPage({ params }: { params: Promise<{ lo
             {[
               { term: { en: '"Arabic Numerals"', hi: '"अरबी अंक"', sa: '"अरबीअङ्काः"', mai: '"अरबी अंक"', mr: '"अरबी अंक"', ta: '"அரபு எண்கள்"', te: '"అరబిక్ అంకెలు"', bn: '"আরবি সংখ্যা"', kn: '"ಅರೇಬಿಕ್ ಅಂಕಿಗಳು"', gu: '"અરબી અંકો"' }, desc: { en: 'What Europe called them', hi: 'यूरोप ने इन्हें क्या कहा', sa: 'यूरोपः तान् किम् अवदत्', mai: 'यूरोप एकरा की कहलक', mr: 'युरोपने त्यांना काय म्हटले', ta: 'ஐரோப்பா அவற்றை எவ்வாறு அழைத்தது', te: 'ఐరోపా వాటిని ఏమని పిలిచింది', bn: 'ইউরোপ এগুলিকে কী বলেছিল', kn: 'ಯೂರೋಪ್ ಅವುಗಳನ್ನು ಏನೆಂದು ಕರೆಯಿತು', gu: 'યુરોપે તેમને શું કહ્યા' }, color: 'border-red-500/30' },
               { term: { en: '"Hindu Numerals"', hi: '"हिन्दू अंक"', sa: '"हिन्दूअङ्काः"', mai: '"हिन्दू अंक"', mr: '"हिंदू अंक"', ta: '"இந்து எண்கள்"', te: '"హిందూ అంకెలు"', bn: '"হিন্দু সংখ্যা"', kn: '"ಹಿಂದೂ ಅಂಕಿಗಳು"', gu: '"હિન્દુ અંકો"' }, desc: { en: 'What Arabs called them (al-arqam al-hindiyyah)', hi: 'अरबों ने इन्हें क्या कहा (अल-अरक़ाम अल-हिन्दिय्या)', sa: 'अरबाः तान् किम् अवदन् (अल्-अर्क़ाम् अल्-हिन्दिय्या)', mai: 'अरब लोक एकरा की कहलनि (अल-अरक़ाम अल-हिन्दिय्या)', mr: 'अरबांनी त्यांना काय म्हटले (अल-अरक़ाम अल-हिन्दिय्या)', ta: 'அரபியர் அவற்றை எவ்வாறு அழைத்தனர் (அல்-அர்காம் அல்-ஹிந்தியா)', te: 'అరబ్బులు వాటిని ఏమని పిలిచారు (అల్-అర్కాం అల్-హిందియ్యా)', bn: 'আরবরা এগুলিকে কী বলেছিল (আল-আরকাম আল-হিন্দিয়্যা)', kn: 'ಅರಬ್ಬರು ಅವುಗಳನ್ನು ಏನೆಂದು ಕರೆದರು (ಅಲ್-ಅರ್ಕಾಮ್ ಅಲ್-ಹಿಂದಿಯ್ಯಾ)', gu: 'અરબોએ તેમને શું કહ્યા (અલ-અરકામ અલ-હિન્દિય્યા)' }, color: 'border-emerald-500/30' },
-              { term: { en: '"Hindsa"', hi: '"हिन्दसा"', sa: '"हिन्दसा"', mai: '"हिन्दसा"', mr: '"हिन्दसा"', ta: '"ஹிந்த்ஸா"', te: '"హిందసా"', bn: '"হিন্দসা"', kn: '"ಹಿಂದ್ಸಾ"', gu: '"હિન્દસા"' }, desc: { en: 'Arabic word for numerals — from "Hind" (India)', hi: 'अंकों का अरबी शब्द — "हिन्द" (भारत) से', sa: 'अङ्कानां अरबीशब्दः — "हिन्द" (भारतम्) इत्यस्मात्', mai: 'अंकक अरबी शब्द — "हिन्द" (भारत) सँ', mr: 'अंकांसाठी अरबी शब्द — "हिंद" (भारत) पासून', ta: 'எண்களுக்கான அரபு வார்த்தை — "ஹிந்த்" (இந்தியா) இலிருந்து', te: 'అంకెలకు అరబిక్ పదం — "హింద్" (భారతదేశం) నుండి', bn: 'সংখ্যার জন্য আরবি শব্দ — "হিন্দ" (ভারত) থেকে', kn: 'ಅಂಕಿಗಳ ಅರೇಬಿಕ್ ಪದ — "ಹಿಂದ್" (ಭಾರತ) ಇಂದ', gu: 'અંકો માટે અરબી શબ્દ — "હિન્દ" (ભારત) પરથી' }, color: 'border-blue-500/30' },
+              { term: { en: '"Hindsa"', hi: '"हिन्दसा"', sa: '"हिन्दसा"', mai: '"हिन्दसा"', mr: '"हिन्दसा"', ta: '"ஹிந்த்ஸா"', te: '"హిందసా"', bn: '"হিন্দসা"', kn: '"ಹಿಂದ್ಸಾ"', gu: '"હિન્દસા"' }, desc: { en: 'Arabic word for numerals  –  from "Hind" (India)', hi: 'अंकों का अरबी शब्द  –  "हिन्द" (भारत) से', sa: 'अङ्कानां अरबीशब्दः  –  "हिन्द" (भारतम्) इत्यस्मात्', mai: 'अंकक अरबी शब्द  –  "हिन्द" (भारत) सँ', mr: 'अंकांसाठी अरबी शब्द  –  "हिंद" (भारत) पासून', ta: 'எண்களுக்கான அரபு வார்த்தை  –  "ஹிந்த்" (இந்தியா) இலிருந்து', te: 'అంకెలకు అరబిక్ పదం  –  "హింద్" (భారతదేశం) నుండి', bn: 'সংখ্যার জন্য আরবি শব্দ  –  "হিন্দ" (ভারত) থেকে', kn: 'ಅಂಕಿಗಳ ಅರೇಬಿಕ್ ಪದ  –  "ಹಿಂದ್" (ಭಾರತ) ಇಂದ', gu: 'અંકો માટે અરબી શબ્દ  –  "હિન્દ" (ભારત) પરથી' }, color: 'border-blue-500/30' },
             ].map((item, i) => (
               <div
                 key={i}
@@ -230,7 +230,7 @@ export default async function AlKhwarizmiPage({ params }: { params: Promise<{ lo
               ))}
             </div>
             <div className="text-text-secondary/60 text-xs mt-4 italic">
-              {hi ? 'शब्द "एल्गोरिदम" अल-ख्वारिज्मी के नाम से आया — लेकिन जो प्रक्रियाएँ उन्होंने वर्णित कीं, वे भारतीय मूल की थीं' : 'The word "algorithm" came from his name — but the procedures he described were Indian in origin'}
+              {hi ? 'शब्द "एल्गोरिदम" अल-ख्वारिज्मी के नाम से आया  –  लेकिन जो प्रक्रियाएँ उन्होंने वर्णित कीं, वे भारतीय मूल की थीं' : 'The word "algorithm" came from his name  –  but the procedures he described were Indian in origin'}
             </div>
           </div>
         </LessonSection>

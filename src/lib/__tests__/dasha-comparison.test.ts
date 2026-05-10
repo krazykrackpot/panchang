@@ -124,8 +124,8 @@ describe('compareDashas', () => {
     expect(result.summary.length).toBeGreaterThan(10);
   });
 
-  it('respects the year window — excludes periods outside range', () => {
-    // Only look at 2026-2028 — should only see Jupiter + Venus
+  it('respects the year window  –  excludes periods outside range', () => {
+    // Only look at 2026-2028  –  should only see Jupiter + Venus
     const result = compareDashas(chart1Dashas, chart2Dashas, 1, 1, 2026, 2028);
     for (const entry of result.entries) {
       expect(entry.chart1Period.planet).toBe('Jupiter');

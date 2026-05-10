@@ -68,7 +68,7 @@ describe('monthly-transit', () => {
 
   it('houses are calculated relative to ascendant sign', () => {
     const savTable = Array(12).fill(25);
-    // Ascendant sign 4 (Cancer) — house should be (sign - 4 + 12) % 12 + 1
+    // Ascendant sign 4 (Cancer)  –  house should be (sign - 4 + 12) % 12 + 1
     const result = computeMonthlyTransits(4, savTable, 2026);
     for (const m of result) {
       for (const p of m.planets) {

@@ -1,5 +1,5 @@
 /**
- * Birth Time Rectification — Main Orchestrator
+ * Birth Time Rectification  –  Main Orchestrator
  *
  * Ties together candidate generation, chart computation, event matching,
  * and scoring into a single entry point.
@@ -46,7 +46,7 @@ export function rectifyBirthTime(input: RectificationInput): RectificationResult
 
   for (const cand of candidates) {
     // Build a BirthData object for generateKundali
-    // Per Lesson L: timezone is a numeric offset — generateKundali's resolveTimezone
+    // Per Lesson L: timezone is a numeric offset  –  generateKundali's resolveTimezone
     // handles both numeric and IANA strings, so passing the number as a string is safe.
     const birthData = {
       name: 'Rectification Candidate',
@@ -56,7 +56,7 @@ export function rectifyBirthTime(input: RectificationInput): RectificationResult
       lat: input.birthLat,
       lng: input.birthLng,
       timezone: String(input.birthTimezone),
-      ayanamsha: 'lahiri', // Default Lahiri — most widely used
+      ayanamsha: 'lahiri', // Default Lahiri  –  most widely used
     };
 
     try {
@@ -71,7 +71,7 @@ export function rectifyBirthTime(input: RectificationInput): RectificationResult
       });
     } catch (err) {
       // Skip candidates that fail chart computation (e.g. edge cases at midnight)
-      // Log but don't block — per Lesson A, never silently swallow
+      // Log but don't block  –  per Lesson A, never silently swallow
       console.error(`[rectification] Chart computation failed for ${cand.time}:`, err);
     }
   }

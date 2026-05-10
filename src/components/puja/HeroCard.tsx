@@ -94,7 +94,7 @@ export default function HeroCard({
           )}
         </div>
 
-        {/* Deity name — THE HERO TEXT */}
+        {/* Deity name  –  THE HERO TEXT */}
         <h1
           className="text-4xl sm:text-5xl lg:text-6xl font-black bg-gradient-to-r from-gold-light via-gold-primary to-gold-dark bg-clip-text text-transparent leading-tight"
           style={{ fontFamily: headingFont }}

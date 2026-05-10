@@ -1,5 +1,5 @@
 /**
- * Birth Time Rectification — Candidate Generator (Phase 1)
+ * Birth Time Rectification  –  Candidate Generator (Phase 1)
  *
  * Generates birth time candidates within the search window and computes
  * the ascendant degree/sign for each using the fast calcAscendant function.

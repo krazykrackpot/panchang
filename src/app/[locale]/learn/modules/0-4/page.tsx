@@ -35,7 +35,7 @@ function Page1() {
     <div className="space-y-6">
       <KeyTakeaway
         points={[
-          'The Panchang has five elements (tithi, nakshatra, yoga, karana, vara) — each describes a different quality of the day.',
+          'The Panchang has five elements (tithi, nakshatra, yoga, karana, vara)  –  each describes a different quality of the day.',
           'Learning to read today\'s Panchang helps you understand why certain days feel auspicious or challenging.',
         ]}
         locale={locale}
@@ -48,9 +48,9 @@ function Page1() {
           {t('openThePanchangPageOnOur', locale)}
         </p>
         <div className="flex flex-wrap gap-3 my-2">
-          <BeginnerNote term="Vara" explanation="The weekday — each of the 7 days is ruled by a planet (e.g., Sunday = Sun, Monday = Moon)." />
+          <BeginnerNote term="Vara" explanation="The weekday  –  each of the 7 days is ruled by a planet (e.g., Sunday = Sun, Monday = Moon)." />
           <BeginnerNote term="Yoga (Panchang)" explanation="One of 27 luni-solar combinations formed by adding the Sun's and Moon's longitudes. Not the same as yogas in a birth chart." />
-          <BeginnerNote term="Karana" explanation="Half a tithi — there are 11 types that cycle through the lunar month, used for muhurta timing." />
+          <BeginnerNote term="Karana" explanation="Half a tithi  –  there are 11 types that cycle through the lunar month, used for muhurta timing." />
         </div>
       </section>
 
@@ -87,7 +87,7 @@ function Page1() {
         </p>
       </section>
 
-      <WhyItMatters locale={locale}>The Panchang is not a relic — it is a daily cosmic weather report. Learning to read its five elements lets you understand why certain days feel auspicious or challenging.</WhyItMatters>
+      <WhyItMatters locale={locale}>The Panchang is not a relic  –  it is a daily cosmic weather report. Learning to read its five elements lets you understand why certain days feel auspicious or challenging.</WhyItMatters>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
@@ -161,11 +161,11 @@ function Page2() {
         </p>
       </section>
 
-      {/* Live Panchang widget — learner identifies the 5 elements in real data */}
+      {/* Live Panchang widget  –  learner identifies the 5 elements in real data */}
       <div className="mt-6 rounded-2xl border border-gold-primary/20 bg-bg-secondary/30 p-4">
-        <h4 className="text-gold-light font-bold text-sm mb-2">See It Live — Today&apos;s Panchang</h4>
+        <h4 className="text-gold-light font-bold text-sm mb-2">See It Live  –  Today&apos;s Panchang</h4>
         <p className="text-text-secondary text-xs mb-3">
-          This is the real panchang for your location right now. Can you identify all 5 elements — Tithi, Vara, Nakshatra, Yoga, and Karana?
+          This is the real panchang for your location right now. Can you identify all 5 elements  –  Tithi, Vara, Nakshatra, Yoga, and Karana?
         </p>
         <TodayPanchangWidget />
       </div>

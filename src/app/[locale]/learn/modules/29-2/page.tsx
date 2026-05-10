@@ -134,8 +134,8 @@ function Page3() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>वैदिक परम्परा में विशिष्ट तिथियों पर उपवास और आहार नियम हैं जो चन्द्र चक्र के शारीरिक प्रभावों पर आधारित हैं। एकादशी (11वीं तिथि) सबसे महत्वपूर्ण उपवास दिन है — इस दिन पाचक अग्नि प्राकृतिक रूप से मन्द होती है, जिससे उपवास शारीरिक रूप से लाभकारी होता है। पूर्णिमा पर शरीर में जल प्रतिधारण बढ़ती है (चन्द्र का ज्वारीय प्रभाव), इसलिए हल्का भोजन श्रेष्ठ है। अमावस्या पर विषहरण (डिटॉक्स) उपयुक्त है।</>
-            : <>Vedic tradition prescribes specific fasting and dietary rules on particular tithis, based on the Moon cycle&apos;s physical effects on the body. Ekadashi (11th tithi) is the most important fasting day — digestive fire is naturally low on this day, making fasting physically beneficial. On Purnima (Full Moon), water retention in the body increases (lunar tidal effect), so light meals are recommended. Amavasya (New Moon) is suitable for detoxification.</>}
+            ? <>वैदिक परम्परा में विशिष्ट तिथियों पर उपवास और आहार नियम हैं जो चन्द्र चक्र के शारीरिक प्रभावों पर आधारित हैं। एकादशी (11वीं तिथि) सबसे महत्वपूर्ण उपवास दिन है  –  इस दिन पाचक अग्नि प्राकृतिक रूप से मन्द होती है, जिससे उपवास शारीरिक रूप से लाभकारी होता है। पूर्णिमा पर शरीर में जल प्रतिधारण बढ़ती है (चन्द्र का ज्वारीय प्रभाव), इसलिए हल्का भोजन श्रेष्ठ है। अमावस्या पर विषहरण (डिटॉक्स) उपयुक्त है।</>
+            : <>Vedic tradition prescribes specific fasting and dietary rules on particular tithis, based on the Moon cycle&apos;s physical effects on the body. Ekadashi (11th tithi) is the most important fasting day  –  digestive fire is naturally low on this day, making fasting physically beneficial. On Purnima (Full Moon), water retention in the body increases (lunar tidal effect), so light meals are recommended. Amavasya (New Moon) is suitable for detoxification.</>}
         </p>
       </section>
 
@@ -145,8 +145,8 @@ function Page3() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <>प्रत्येक वार के शासक ग्रह के अनुरूप कुछ खाद्य पदार्थ विशेष रूप से लाभकारी माने जाते हैं। रविवार (सूर्य) — गेहूँ, गुड़। सोमवार (चन्द्र) — चावल, दूध। मंगलवार (मंगल) — दाल, मसूर। बुधवार (बुध) — मूँग, हरी सब्जियाँ। गुरुवार (गुरु) — चना, घी। शुक्रवार (शुक्र) — खीर, मिठाई। शनिवार (शनि) — तिल, सरसों का तेल। यह "ग्रहीय पोषण" का सिद्धान्त है।</>
-            : <>Each weekday&apos;s ruling planet is associated with foods that are especially beneficial. Sunday (Sun) — wheat, jaggery. Monday (Moon) — rice, milk. Tuesday (Mars) — lentils, masoor dal. Wednesday (Mercury) — moong, green vegetables. Thursday (Jupiter) — chickpeas, ghee. Friday (Venus) — kheer, sweets. Saturday (Saturn) — sesame, mustard oil. This is the principle of &quot;planetary nutrition&quot; — aligning diet with cosmic rhythms.</>}
+            ? <>प्रत्येक वार के शासक ग्रह के अनुरूप कुछ खाद्य पदार्थ विशेष रूप से लाभकारी माने जाते हैं। रविवार (सूर्य)  –  गेहूँ, गुड़। सोमवार (चन्द्र)  –  चावल, दूध। मंगलवार (मंगल)  –  दाल, मसूर। बुधवार (बुध)  –  मूँग, हरी सब्जियाँ। गुरुवार (गुरु)  –  चना, घी। शुक्रवार (शुक्र)  –  खीर, मिठाई। शनिवार (शनि)  –  तिल, सरसों का तेल। यह "ग्रहीय पोषण" का सिद्धान्त है।</>
+            : <>Each weekday&apos;s ruling planet is associated with foods that are especially beneficial. Sunday (Sun)  –  wheat, jaggery. Monday (Moon)  –  rice, milk. Tuesday (Mars)  –  lentils, masoor dal. Wednesday (Mercury)  –  moong, green vegetables. Thursday (Jupiter)  –  chickpeas, ghee. Friday (Venus)  –  kheer, sweets. Saturday (Saturn)  –  sesame, mustard oil. This is the principle of &quot;planetary nutrition&quot;  –  aligning diet with cosmic rhythms.</>}
         </p>
       </section>
     </div>

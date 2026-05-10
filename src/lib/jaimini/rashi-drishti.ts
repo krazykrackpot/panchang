@@ -1,4 +1,4 @@
-// rashi-drishti.ts — Jaimini Rashi Drishti (Sign Aspect) System
+// rashi-drishti.ts  –  Jaimini Rashi Drishti (Sign Aspect) System
 // Source: Jaimini Sutras Ch. 1
 //
 // Rules (signs are 1-based):

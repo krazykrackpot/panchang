@@ -13,8 +13,8 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const LABELS = {
   title: {
-    en: 'Ashtakavarga Dasha — Timing Predictions from Bindu Scores',
-    hi: 'अष्टकवर्ग दशा — बिन्दु अंकों से समय भविष्यवाणी',
+    en: 'Ashtakavarga Dasha  –  Timing Predictions from Bindu Scores',
+    hi: 'अष्टकवर्ग दशा  –  बिन्दु अंकों से समय भविष्यवाणी',
   },
   subtitle: {
     en: 'Using Ashtakavarga bindu totals to predict dasha period quality and transit outcomes',
@@ -67,7 +67,7 @@ const PREDICTION_CHECKLIST = [
 const CLASSICAL_REFS = [
   { text: { en: 'BPHS Ch.66-72', hi: 'बृहत् पराशर होरा शास्त्र अ.66-72' }, desc: { en: 'Comprehensive rules for predicting dasha results from Ashtakavarga bindus. Covers BAV totals, transit scoring, and Shodhana-based timing.', hi: 'अष्टकवर्ग बिन्दुओं से दशा परिणामों की भविष्यवाणी के व्यापक नियम।' } },
   { text: { en: 'Phaladeepika Ch.18 (Mantreshwara)', hi: 'फलदीपिका अ.18 (मन्त्रेश्वर)' }, desc: { en: 'Mantreshwara\'s rules on bindu-based timing: how to use reduced Ashtakavarga scores to time events within a dasha period.', hi: 'बिन्दु-आधारित समय निर्धारण पर मन्त्रेश्वर के नियम।' } },
-  { text: { en: 'Jataka Parijata on Transit Scoring', hi: 'जातक पारिजात — गोचर अंक' }, desc: { en: 'Vaidyanatha Dikshita\'s method of combining Ashtakavarga with Vimshottari Dasha for precise period-level predictions.', hi: 'सटीक अवधि-स्तरीय भविष्यवाणी के लिए अष्टकवर्ग को विंशोत्तरी दशा से जोड़ने की विधि।' } },
+  { text: { en: 'Jataka Parijata on Transit Scoring', hi: 'जातक पारिजात  –  गोचर अंक' }, desc: { en: 'Vaidyanatha Dikshita\'s method of combining Ashtakavarga with Vimshottari Dasha for precise period-level predictions.', hi: 'सटीक अवधि-स्तरीय भविष्यवाणी के लिए अष्टकवर्ग को विंशोत्तरी दशा से जोड़ने की विधि।' } },
 ];
 
 // ─── Component ───────────────────────────────────────────────────────────────
@@ -103,14 +103,14 @@ export default function LearnAshtakavargaDashaPage() {
       <LessonSection number={1} title={l({ en: 'What is Ashtakavarga Dasha?', hi: 'अष्टकवर्ग दशा क्या है?' })}>
         <p style={bodyFont}>
           {l({
-            en: 'Ashtakavarga Dasha is a method of predicting the quality of planetary dasha periods using bindu (point) totals from the Ashtakavarga system. While standard Vimshottari Dasha interpretation focuses on the dasha lord\'s dignity, house rulership, and aspects, Ashtakavarga Dasha adds a numerical dimension — how much "support" each planet has across the zodiac.',
+            en: 'Ashtakavarga Dasha is a method of predicting the quality of planetary dasha periods using bindu (point) totals from the Ashtakavarga system. While standard Vimshottari Dasha interpretation focuses on the dasha lord\'s dignity, house rulership, and aspects, Ashtakavarga Dasha adds a numerical dimension  –  how much "support" each planet has across the zodiac.',
             hi: 'अष्टकवर्ग दशा, अष्टकवर्ग प्रणाली के बिन्दु (अंक) योग का उपयोग करके ग्रह दशा काल की गुणवत्ता की भविष्यवाणी करने की विधि है। जहाँ मानक विंशोत्तरी दशा व्याख्या दशा स्वामी की गरिमा, भाव स्वामित्व और दृष्टि पर केन्द्रित होती है, अष्टकवर्ग दशा एक संख्यात्मक आयाम जोड़ती है।',
           })}
         </p>
         <p className="mt-3" style={bodyFont}>
           {l({
-            en: 'A planet might be well-placed by sign (exalted, own sign) but have low Ashtakavarga support — meaning its dasha won\'t deliver the full promise. Conversely, a debilitated planet with high bindu totals can surprise with better-than-expected results during its dasha.',
-            hi: 'एक ग्रह राशि के अनुसार अच्छी स्थिति में हो सकता है (उच्च, स्वराशि) लेकिन अष्टकवर्ग समर्थन कम हो — अर्थात् उसकी दशा पूर्ण वादा पूरा नहीं करेगी। इसके विपरीत, उच्च बिन्दु योग वाला नीच ग्रह अपनी दशा में अपेक्षा से बेहतर परिणाम दे सकता है।',
+            en: 'A planet might be well-placed by sign (exalted, own sign) but have low Ashtakavarga support  –  meaning its dasha won\'t deliver the full promise. Conversely, a debilitated planet with high bindu totals can surprise with better-than-expected results during its dasha.',
+            hi: 'एक ग्रह राशि के अनुसार अच्छी स्थिति में हो सकता है (उच्च, स्वराशि) लेकिन अष्टकवर्ग समर्थन कम हो  –  अर्थात् उसकी दशा पूर्ण वादा पूरा नहीं करेगी। इसके विपरीत, उच्च बिन्दु योग वाला नीच ग्रह अपनी दशा में अपेक्षा से बेहतर परिणाम दे सकता है।',
           })}
         </p>
         <div className="mt-4 p-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl">
@@ -119,7 +119,7 @@ export default function LearnAshtakavargaDashaPage() {
           </p>
           <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
             {l({
-              en: 'BPHS (Brihat Parashara Hora Shastra) Chapters 66-72 provide the foundation. Phaladeepika Chapter 18 by Mantreshwara offers practical rules for bindu-based timing. These texts establish that Ashtakavarga scores are not just for transit analysis — they fundamentally modify dasha predictions.',
+              en: 'BPHS (Brihat Parashara Hora Shastra) Chapters 66-72 provide the foundation. Phaladeepika Chapter 18 by Mantreshwara offers practical rules for bindu-based timing. These texts establish that Ashtakavarga scores are not just for transit analysis  –  they fundamentally modify dasha predictions.',
               hi: 'बृहत् पराशर होरा शास्त्र (BPHS) अध्याय 66-72 आधार प्रदान करते हैं। मन्त्रेश्वर की फलदीपिका अध्याय 18 बिन्दु-आधारित समय निर्धारण के व्यावहारिक नियम देती है।',
             })}
           </p>
@@ -143,7 +143,7 @@ export default function LearnAshtakavargaDashaPage() {
             </h4>
             <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
               {l({
-                en: 'Each planet\'s individual bindu score in each of the 12 signs. Tells you how strong a planet is in a specific sign — for both natal placement and transit.',
+                en: 'Each planet\'s individual bindu score in each of the 12 signs. Tells you how strong a planet is in a specific sign  –  for both natal placement and transit.',
                 hi: 'प्रत्येक ग्रह का 12 राशियों में व्यक्तिगत बिन्दु अंक। बताता है कि एक ग्रह किसी विशेष राशि में कितना बलवान है।',
               })}
             </p>
@@ -190,7 +190,7 @@ export default function LearnAshtakavargaDashaPage() {
         </div>
       </LessonSection>
 
-      {/* ─── Section 3: Method — Step-by-Step ─── */}
+      {/* ─── Section 3: Method  –  Step-by-Step ─── */}
       <LessonSection number={3} title={l({ en: 'Method: Predicting Dasha Results', hi: 'विधि: दशा परिणामों की भविष्यवाणी' })} variant="highlight">
         <p style={bodyFont}>
           {l({
@@ -298,7 +298,7 @@ export default function LearnAshtakavargaDashaPage() {
         {/* Kakshya */}
         <div className="mt-4 p-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl">
           <h4 className="text-gold-light text-sm font-bold mb-2" style={headingFont}>
-            {l({ en: 'Kakshya — Finer Timing Within a Sign', hi: 'कक्ष्या — राशि के भीतर सूक्ष्म समय' })}
+            {l({ en: 'Kakshya  –  Finer Timing Within a Sign', hi: 'कक्ष्या  –  राशि के भीतर सूक्ष्म समय' })}
           </h4>
           <p className="text-text-secondary text-xs leading-relaxed mb-3" style={bodyFont}>
             {l({
@@ -332,8 +332,8 @@ export default function LearnAshtakavargaDashaPage() {
       <LessonSection number={5} title={l({ en: 'BAV Scoring Table (Example)', hi: 'BAV अंक तालिका (उदाहरण)' })}>
         <p style={bodyFont}>
           {l({
-            en: 'Below is a complete Bhinnashtakavarga table for an example chart. Each row shows a planet\'s bindu score in each of the 12 signs. The rightmost column shows the total — this total determines dasha quality.',
-            hi: 'नीचे एक उदाहरण कुण्डली की पूर्ण भिन्नाष्टकवर्ग तालिका है। प्रत्येक पंक्ति प्रत्येक 12 राशियों में ग्रह का बिन्दु अंक दिखाती है। दाँयां स्तम्भ कुल दिखाता है — यही दशा गुणवत्ता निर्धारित करता है।',
+            en: 'Below is a complete Bhinnashtakavarga table for an example chart. Each row shows a planet\'s bindu score in each of the 12 signs. The rightmost column shows the total  –  this total determines dasha quality.',
+            hi: 'नीचे एक उदाहरण कुण्डली की पूर्ण भिन्नाष्टकवर्ग तालिका है। प्रत्येक पंक्ति प्रत्येक 12 राशियों में ग्रह का बिन्दु अंक दिखाती है। दाँयां स्तम्भ कुल दिखाता है  –  यही दशा गुणवत्ता निर्धारित करता है।',
           })}
         </p>
 
@@ -466,8 +466,8 @@ export default function LearnAshtakavargaDashaPage() {
           {/* Flowchart nodes */}
           {[
             { q: { en: 'Is the dasha lord\'s BAV total >= 40?', hi: 'क्या दशा स्वामी का BAV कुल >= 40 है?' }, yes: { en: 'Highly Favorable Period', hi: 'अत्यन्त अनुकूल काल' }, no: { en: 'Continue checking...', hi: 'आगे जाँचें...' }, yesColor: 'text-emerald-300', noColor: 'text-amber-400' },
-            { q: { en: 'Is BAV total >= 30?', hi: 'क्या BAV कुल >= 30 है?' }, yes: { en: 'Favorable — good with some challenges', hi: 'अनुकूल — कुछ चुनौतियों के साथ अच्छा' }, no: { en: 'Continue checking...', hi: 'आगे जाँचें...' }, yesColor: 'text-emerald-400', noColor: 'text-amber-400' },
-            { q: { en: 'Is BAV total >= 20?', hi: 'क्या BAV कुल >= 20 है?' }, yes: { en: 'Moderate — mixed results, plan carefully', hi: 'मध्यम — मिश्रित, सावधानी से योजना बनाएँ' }, no: { en: 'Challenging — remedies recommended', hi: 'कठिन — उपचार अनुशंसित' }, yesColor: 'text-amber-400', noColor: 'text-red-400' },
+            { q: { en: 'Is BAV total >= 30?', hi: 'क्या BAV कुल >= 30 है?' }, yes: { en: 'Favorable  –  good with some challenges', hi: 'अनुकूल  –  कुछ चुनौतियों के साथ अच्छा' }, no: { en: 'Continue checking...', hi: 'आगे जाँचें...' }, yesColor: 'text-emerald-400', noColor: 'text-amber-400' },
+            { q: { en: 'Is BAV total >= 20?', hi: 'क्या BAV कुल >= 20 है?' }, yes: { en: 'Moderate  –  mixed results, plan carefully', hi: 'मध्यम  –  मिश्रित, सावधानी से योजना बनाएँ' }, no: { en: 'Challenging  –  remedies recommended', hi: 'कठिन  –  उपचार अनुशंसित' }, yesColor: 'text-amber-400', noColor: 'text-red-400' },
           ].map((node, i) => (
             <motion.div
               key={i}
@@ -525,9 +525,9 @@ export default function LearnAshtakavargaDashaPage() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             { href: '/learn/ashtakavarga', label: { en: 'Ashtakavarga Fundamentals', hi: 'अष्टकवर्ग मूल तत्त्व' } },
-            { href: '/learn/dashas', label: { en: 'Dashas — Planetary Periods', hi: 'दशाएँ — ग्रह अवधि' } },
+            { href: '/learn/dashas', label: { en: 'Dashas  –  Planetary Periods', hi: 'दशाएँ  –  ग्रह अवधि' } },
             { href: '/learn/transit-guide', label: { en: 'Transit Guide (Gochar)', hi: 'गोचर मार्गदर्शिका' } },
-            { href: '/learn/shadbala', label: { en: 'Shadbala — Six-Fold Strength', hi: 'षड्बल — छह प्रकार का बल' } },
+            { href: '/learn/shadbala', label: { en: 'Shadbala  –  Six-Fold Strength', hi: 'षड्बल  –  छह प्रकार का बल' } },
             { href: '/kundali', label: { en: 'Generate Your Kundali', hi: 'अपनी कुण्डली बनाएँ' } },
             { href: '/transits', label: { en: 'Current Transits', hi: 'वर्तमान गोचर' } },
           ].map((mod) => (

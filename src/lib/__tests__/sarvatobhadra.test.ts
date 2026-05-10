@@ -162,7 +162,7 @@ describe('computeVedha', () => {
   });
 
   it('vedha from Anuradha (center) includes weekday cells', () => {
-    // Anuradha is at (4,4) — center of the grid
+    // Anuradha is at (4,4)  –  center of the grid
     const lines = computeVedha({ row: 4, col: 4 });
     const allWeekdays = lines.flatMap(l => l.affectedWeekdays);
     // The center row and column should include some weekday cells
@@ -282,7 +282,7 @@ describe('analyzeSarvatobhadra', () => {
     // Find a weekday that would be hit by both a benefic and malefic transit
     const result = analyzeSarvatobhadra(1, [
       { planetId: 4, nakshatraId: 7 },   // Jupiter (benefic)
-      { planetId: 6, nakshatraId: 7 },   // Saturn (malefic) — same nakshatra
+      { planetId: 6, nakshatraId: 7 },   // Saturn (malefic)  –  same nakshatra
     ]);
     // Days hit by Saturn should not be in favorableDays
     for (const d of result.unfavorableDays) {

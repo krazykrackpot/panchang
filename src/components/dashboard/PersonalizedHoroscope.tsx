@@ -168,7 +168,7 @@ export default function PersonalizedHoroscope({
         setKundali(JSON.parse(raw) as KundaliData);
       }
     } catch {
-      // sessionStorage unavailable or corrupt — no kundali
+      // sessionStorage unavailable or corrupt  –  no kundali
     }
     setLoading(false);
   }, []);

@@ -1,4 +1,4 @@
-// archetype-engine.ts — Cosmic Blueprint synthesis engine
+// archetype-engine.ts  –  Cosmic Blueprint synthesis engine
 // Combines Shadbala, Dasha, and Yoga data into a psychological archetype profile.
 import { ARCHETYPES, YOGA_PSYCH_INSIGHTS, LAGNA_MODIFIERS, type ArchetypeId } from '@/lib/constants/archetype-data';
 import type { ShadBalaComplete } from './shadbala';
@@ -213,7 +213,7 @@ export function generateCosmicBlueprint(input: BlueprintInput): CosmicBlueprint 
       name: nextChapterDef.name,
       dashaLord: nextDashaLordId,
       startDate: nextDasha?.startDate ?? now,
-      transitionNote: `Shifting from ${currentChapterDef.name.en.replace('The ', '').toLowerCase()} to ${nextChapterDef.name.en.replace('The ', '').toLowerCase()} — ${
+      transitionNote: `Shifting from ${currentChapterDef.name.en.replace('The ', '').toLowerCase()} to ${nextChapterDef.name.en.replace('The ', '').toLowerCase()}  –  ${
         currentChapterDef.chapterThemes[0]} gives way to ${nextChapterDef.chapterThemes[0]}.`,
     },
     persona: {

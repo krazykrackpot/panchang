@@ -171,7 +171,7 @@ export default function CosmicBlueprintPage() {
 
         <GoldDivider />
 
-        {/* Birth Form — shown when no blueprint yet */}
+        {/* Birth Form  –  shown when no blueprint yet */}
         {!blueprint && (
           <div className="mt-8">
             <BirthForm onSubmit={handleGenerate} loading={loading} />

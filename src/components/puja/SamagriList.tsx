@@ -69,7 +69,7 @@ export default function SamagriList({ items, slug, locale }: SamagriListProps) {
   useEffect(() => {
     try {
       localStorage.setItem(storageKey, JSON.stringify(checked));
-    } catch { /* quota exceeded — ignore */ }
+    } catch { /* quota exceeded  –  ignore */ }
   }, [checked, storageKey]);
 
   const toggle = useCallback((idx: number) => {

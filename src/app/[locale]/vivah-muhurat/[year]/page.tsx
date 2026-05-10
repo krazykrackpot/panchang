@@ -1,5 +1,5 @@
 /**
- * Shubh Vivah Muhurat [year] — Server Component (shell) + Client Island (data)
+ * Shubh Vivah Muhurat [year]  –  Server Component (shell) + Client Island (data)
  *
  * The server renders the SEO-rich static content (headings, restriction explanations,
  * cross-links, FAQs). The actual date scanning happens in the client island which
@@ -38,22 +38,22 @@ const LABELS: Record<string, Record<string, string>> = {
     bn: 'নিষিদ্ধ কাল',
   },
   chaturmasNote: {
-    en: 'Chaturmas (Devshayani to Prabodhini Ekadashi) — marriages traditionally avoided during this four-month period per Dharmasindhu.',
-    hi: 'चातुर्मास (देवशयनी से प्रबोधिनी एकादशी) — धर्मसिन्धु के अनुसार इस चार मास के काल में विवाह वर्जित।',
-    ta: 'சாதுர்மாஸ் (தேவசயனி முதல் பிரபோதினி ஏகாதசி வரை) — இந்த நான்கு மாத காலத்தில் திருமணம் தவிர்க்கப்படும்.',
-    bn: 'চাতুর্মাস (দেবশয়নী থেকে প্রবোধিনী একাদশী) — এই চার মাসে বিবাহ নিষিদ্ধ।',
+    en: 'Chaturmas (Devshayani to Prabodhini Ekadashi)  –  marriages traditionally avoided during this four-month period per Dharmasindhu.',
+    hi: 'चातुर्मास (देवशयनी से प्रबोधिनी एकादशी)  –  धर्मसिन्धु के अनुसार इस चार मास के काल में विवाह वर्जित।',
+    ta: 'சாதுர்மாஸ் (தேவசயனி முதல் பிரபோதினி ஏகாதசி வரை)  –  இந்த நான்கு மாத காலத்தில் திருமணம் தவிர்க்கப்படும்.',
+    bn: 'চাতুর্মাস (দেবশয়নী থেকে প্রবোধিনী একাদশী)  –  এই চার মাসে বিবাহ নিষিদ্ধ।',
   },
   combustionNote: {
-    en: 'Venus or Jupiter combustion — when either benefic is too close to the Sun, marriages are prohibited per Muhurta Chintamani.',
-    hi: 'शुक्र या गुरु अस्त — जब कोई भी शुभ ग्रह सूर्य के अत्यधिक निकट हो, मुहूर्त चिन्तामणि के अनुसार विवाह वर्जित।',
-    ta: 'சுக்ர அல்லது குரு அஸ்தம் — முகூர்த்த சிந்தாமணி படி திருமணம் தடை.',
-    bn: 'শুক্র বা গুরু অস্ত — মুহূর্ত চিন্তামণি অনুসারে বিবাহ নিষিদ্ধ।',
+    en: 'Venus or Jupiter combustion  –  when either benefic is too close to the Sun, marriages are prohibited per Muhurta Chintamani.',
+    hi: 'शुक्र या गुरु अस्त  –  जब कोई भी शुभ ग्रह सूर्य के अत्यधिक निकट हो, मुहूर्त चिन्तामणि के अनुसार विवाह वर्जित।',
+    ta: 'சுக்ர அல்லது குரு அஸ்தம்  –  முகூர்த்த சிந்தாமணி படி திருமணம் தடை.',
+    bn: 'শুক্র বা গুরু অস্ত  –  মুহূর্ত চিন্তামণি অনুসারে বিবাহ নিষিদ্ধ।',
   },
   kharmasNote: {
-    en: 'Kharmas (Sun in Sagittarius) — inauspicious solar month for new beginnings per classical texts.',
-    hi: 'खरमास (सूर्य धनु राशि में) — शास्त्रीय ग्रन्थों के अनुसार नए कार्यों के लिए अशुभ सौर मास।',
-    ta: 'கர்மாஸ் (சூரியன் தனுசு ராசியில்) — புதிய தொடக்கங்களுக்கு அசுப சூரிய மாதம்.',
-    bn: 'খরমাস (সূর্য ধনু রাশিতে) — নতুন কাজের জন্য অশুভ সৌর মাস।',
+    en: 'Kharmas (Sun in Sagittarius)  –  inauspicious solar month for new beginnings per classical texts.',
+    hi: 'खरमास (सूर्य धनु राशि में)  –  शास्त्रीय ग्रन्थों के अनुसार नए कार्यों के लिए अशुभ सौर मास।',
+    ta: 'கர்மாஸ் (சூரியன் தனுசு ராசியில்)  –  புதிய தொடக்கங்களுக்கு அசுப சூரிய மாதம்.',
+    bn: 'খরমাস (সূর্য ধনু রাশিতে)  –  নতুন কাজের জন্য অশুভ সৌর মাস।',
   },
   crossLinkMuhurtaAi: {
     en: 'Find personalised muhurta with birth data',
@@ -80,8 +80,8 @@ const LABELS: Record<string, Record<string, string>> = {
     bn: 'মুহূর্ত চিন্তামণি, ধর্মসিন্ধু এবং BPHS থেকে 36 শাস্ত্রীয় নিয়মে গণনা করা হয়েছে।',
   },
   seoIntro: {
-    en: 'Looking for the most auspicious date for a Hindu wedding? This page lists every Shubh Vivah Muhurat — computed from classical Jyotish texts using a 36-rule scoring engine that evaluates Panchanga Shuddhi (tithi, nakshatra, yoga, karana, vara), planetary positions, lagna strength, and special yogas. Each date shows its score, the best 2-hour lagna window, and the active nakshatra and tithi. Dates during Venus/Jupiter combustion, Chaturmas, and Kharmas are automatically excluded.',
-    hi: 'हिन्दू विवाह के लिए सबसे शुभ तिथि खोज रहे हैं? यह पृष्ठ प्रत्येक शुभ विवाह मुहूर्त प्रदर्शित करता है — 36-नियम स्कोरिंग इंजन से गणना जो पंचांग शुद्धि (तिथि, नक्षत्र, योग, करण, वार), ग्रह स्थिति, लग्न बल और विशेष योगों का मूल्यांकन करता है। प्रत्येक तिथि का अंक, सर्वोत्तम 2 घंटे की लग्न खिड़की, और सक्रिय नक्षत्र व तिथि दिखाई गई है।',
+    en: 'Looking for the most auspicious date for a Hindu wedding? This page lists every Shubh Vivah Muhurat  –  computed from classical Jyotish texts using a 36-rule scoring engine that evaluates Panchanga Shuddhi (tithi, nakshatra, yoga, karana, vara), planetary positions, lagna strength, and special yogas. Each date shows its score, the best 2-hour lagna window, and the active nakshatra and tithi. Dates during Venus/Jupiter combustion, Chaturmas, and Kharmas are automatically excluded.',
+    hi: 'हिन्दू विवाह के लिए सबसे शुभ तिथि खोज रहे हैं? यह पृष्ठ प्रत्येक शुभ विवाह मुहूर्त प्रदर्शित करता है  –  36-नियम स्कोरिंग इंजन से गणना जो पंचांग शुद्धि (तिथि, नक्षत्र, योग, करण, वार), ग्रह स्थिति, लग्न बल और विशेष योगों का मूल्यांकन करता है। प्रत्येक तिथि का अंक, सर्वोत्तम 2 घंटे की लग्न खिड़की, और सक्रिय नक्षत्र व तिथि दिखाई गई है।',
     ta: 'இந்து திருமணத்திற்கான மிகவும் சுபமான நாளை தேடுகிறீர்களா? இந்தப் பக்கம் ஒவ்வொரு சுப விவாஹ முகூர்த்தத்தையும் பட்டியலிடுகிறது.',
     bn: 'হিন্দু বিবাহের জন্য সবচেয়ে শুভ তারিখ খুঁজছেন? এই পৃষ্ঠাটি প্রতিটি শুভ বিবাহ মুহূর্ত প্রদর্শন করে।',
   },
@@ -163,7 +163,7 @@ export default async function VivahMuhuratPage({
         </div>
       </section>
 
-      {/* Client island — handles scanning, month-by-month display, location selector */}
+      {/* Client island  –  handles scanning, month-by-month display, location selector */}
       <section className="mx-auto mt-10 max-w-5xl px-4">
         <VivahClient year={year} locale={locale} />
       </section>

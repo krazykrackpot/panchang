@@ -28,7 +28,7 @@ function Page1() {
     <div className="space-y-6">
       <KeyTakeaway
         points={[
-          'A tithi is one "lunar day" — defined by every 12 degrees of angular separation between the Moon and Sun, yielding 30 tithis per lunar month.',
+          'A tithi is one "lunar day"  –  defined by every 12 degrees of angular separation between the Moon and Sun, yielding 30 tithis per lunar month.',
           'Tithis are the foundation of the Hindu calendar and determine when festivals, vratas (fasts), and rituals are observed.',
         ]}
         locale={locale}
@@ -94,7 +94,7 @@ function Page2() {
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
-          {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;अमावस्या सदैव अशुभ और पूर्णिमा सदैव शुभ होती है।&quot; वास्तव में अमावस्या पितृ कर्म, तान्त्रिक साधना और गहन ध्यान के लिए अत्यन्त शुभ मानी जाती है। दीपावली जैसे अनेक शक्तिशाली त्योहार अमावस्या पर पड़ते हैं। इसी प्रकार पूर्णिमा सर्वत्र शुभ नहीं — गोपनीयता या एकान्तवास चाहने वाले कार्यों के लिए अमावस्या अधिक उपयुक्त है।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Amavasya is always bad and Purnima is always good.&quot; In reality, Amavasya is considered highly auspicious for Pitru Karma (ancestral rites), tantric practices, and deep meditation. Many powerful festivals like Diwali fall on Amavasya. Similarly, Purnima is not universally positive — certain activities requiring secrecy or withdrawal are better on Amavasya.</>}
+          {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;अमावस्या सदैव अशुभ और पूर्णिमा सदैव शुभ होती है।&quot; वास्तव में अमावस्या पितृ कर्म, तान्त्रिक साधना और गहन ध्यान के लिए अत्यन्त शुभ मानी जाती है। दीपावली जैसे अनेक शक्तिशाली त्योहार अमावस्या पर पड़ते हैं। इसी प्रकार पूर्णिमा सर्वत्र शुभ नहीं  –  गोपनीयता या एकान्तवास चाहने वाले कार्यों के लिए अमावस्या अधिक उपयुक्त है।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Amavasya is always bad and Purnima is always good.&quot; In reality, Amavasya is considered highly auspicious for Pitru Karma (ancestral rites), tantric practices, and deep meditation. Many powerful festivals like Diwali fall on Amavasya. Similarly, Purnima is not universally positive  –  certain activities requiring secrecy or withdrawal are better on Amavasya.</>}
         </p>
       </section>
 
@@ -144,7 +144,7 @@ function Page3() {
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ', sa: 'सामान्याः भ्रान्तयः' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
-          {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;क्षय तिथि का अर्थ है कि वह तिथि अस्तित्व में ही नहीं आई।&quot; क्षय का अर्थ मात्र इतना है कि वह तिथि दो सूर्योदयों के बीच आरम्भ और समाप्त हो गई, अतः कोई भी दिन उसके नाम पर नहीं रखा जाता। खगोलीय रूप से वह तिथि अवश्य घटित हुई — वह इतनी लघु थी कि किसी सूर्योदय पर उपस्थित न रह सकी। क्षय तिथियाँ दुर्लभ (वर्ष में कुछ ही) होती हैं और उनके त्योहार दायित्व सामान्यतः निकटवर्ती तिथि पर स्थानान्तरित हो जाते हैं।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;A Kshaya tithi means the tithi ceases to exist.&quot; Kshaya simply means that tithi started and ended between two sunrises, so no day is named after it. The tithi still occurred astronomically — it was just too short to be present at any sunrise. Kshaya tithis are uncommon (a few per year) and their festival obligations typically shift to the adjacent tithi.</>}
+          {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;क्षय तिथि का अर्थ है कि वह तिथि अस्तित्व में ही नहीं आई।&quot; क्षय का अर्थ मात्र इतना है कि वह तिथि दो सूर्योदयों के बीच आरम्भ और समाप्त हो गई, अतः कोई भी दिन उसके नाम पर नहीं रखा जाता। खगोलीय रूप से वह तिथि अवश्य घटित हुई  –  वह इतनी लघु थी कि किसी सूर्योदय पर उपस्थित न रह सकी। क्षय तिथियाँ दुर्लभ (वर्ष में कुछ ही) होती हैं और उनके त्योहार दायित्व सामान्यतः निकटवर्ती तिथि पर स्थानान्तरित हो जाते हैं।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;A Kshaya tithi means the tithi ceases to exist.&quot; Kshaya simply means that tithi started and ended between two sunrises, so no day is named after it. The tithi still occurred astronomically  –  it was just too short to be present at any sunrise. Kshaya tithis are uncommon (a few per year) and their festival obligations typically shift to the adjacent tithi.</>}
         </p>
       </section>
 

@@ -1,5 +1,5 @@
 /**
- * Dasha Harmony Scoring — rates antardasha lord compatibility with an activity.
+ * Dasha Harmony Scoring  –  rates antardasha lord compatibility with an activity.
  *
  * Uses the activity's goodHoras (benefic planet list) as a proxy for which
  * planet periods favor the activity. Antardasha lord is weighted higher than
@@ -33,6 +33,6 @@ export function scoreDashaHarmony(
     return { score: 0, label: 'Malefic antardasha lord suppresses this activity', favorable: false };
   }
 
-  // Neutral — non-matching, non-malefic
+  // Neutral  –  non-matching, non-malefic
   return { score: 3, label: 'Neutral dasha period', favorable: true };
 }

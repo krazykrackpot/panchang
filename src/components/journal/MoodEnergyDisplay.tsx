@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * MoodEnergyDisplay — small read-only mood + energy indicator.
+ * MoodEnergyDisplay  –  small read-only mood + energy indicator.
  *
  * Mood levels use a colour ramp (red → emerald).
  * Energy levels use vertical bar segments of increasing height.
@@ -74,7 +74,7 @@ export default function MoodEnergyDisplay({ mood, energy, size = 'md' }: Props) 
         </div>
       </div>
 
-      {/* Energy — vertical bars of increasing height */}
+      {/* Energy  –  vertical bars of increasing height */}
       <div>
         <p className={labelCls}>Energy</p>
         <div className={`flex items-end ${gap}`}>

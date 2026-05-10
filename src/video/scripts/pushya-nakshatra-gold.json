@@ -13,7 +13,7 @@
     {
       "id": 1,
       "duration": 6,
-      "narration": "There is one day — sometimes just a few hours — when buying gold is considered the most auspicious act in the universe. Ancient sages discovered it. Modern jewelers profit from it.",
+      "narration": "There is one day  –  sometimes just a few hours  –  when buying gold is considered the most auspicious act in the universe. Ancient sages discovered it. Modern jewelers profit from it.",
       "visualType": "cosmic_text",
       "textOverlay": "THE *BEST* DAY\nTO BUY *GOLD*",
       "textStyle": "burst",
@@ -24,18 +24,18 @@
     {
       "id": 2,
       "duration": 10,
-      "narration": "It's called Guru Pushya Yoga. It happens when the Moon enters Pushya nakshatra — the 8th lunar mansion — on a Thursday. Jupiter's star. Jupiter's day. Double abundance. This alignment occurs only 3 to 4 times a year.",
+      "narration": "It's called Guru Pushya Yoga. It happens when the Moon enters Pushya nakshatra  –  the 8th lunar mansion  –  on a Thursday. Jupiter's star. Jupiter's day. Double abundance. This alignment occurs only 3 to 4 times a year.",
       "visualType": "cosmic_text",
       "textOverlay": "Thursday + *Pushya* =\n*Guru Pushya Yoga*",
       "textStyle": "glow",
       "cosmicPreset": "constellation",
       "transition": "zoom",
-      "videoPrompt": "Moon drifting into a specific star cluster (Pushya — stars in Cancer), the star cluster lighting up with brilliant golden energy, Jupiter appearing in the distance glowing warm yellow, alignment beam connecting Moon-Pushya-Jupiter, sacred golden triangle forming in the sky, cosmic celebration energy, 4K cinematic, warm and mystical"
+      "videoPrompt": "Moon drifting into a specific star cluster (Pushya  –  stars in Cancer), the star cluster lighting up with brilliant golden energy, Jupiter appearing in the distance glowing warm yellow, alignment beam connecting Moon-Pushya-Jupiter, sacred golden triangle forming in the sky, cosmic celebration energy, 4K cinematic, warm and mystical"
     },
     {
       "id": 3,
       "duration": 10,
-      "narration": "Pushya is ruled by Brihaspati — Jupiter — the guru of the gods. The planet of expansion, abundance, and divine grace. Thursday — Guruvar — is Jupiter's own day. When Moon, star, and day all align under Jupiter... the cosmos opens a door to prosperity.",
+      "narration": "Pushya is ruled by Brihaspati  –  Jupiter  –  the guru of the gods. The planet of expansion, abundance, and divine grace. Thursday  –  Guruvar  –  is Jupiter's own day. When Moon, star, and day all align under Jupiter... the cosmos opens a door to prosperity.",
       "visualType": "planet_render",
       "planet": "jupiter",
       "textOverlay": "BRIHASPATI\nGuru of the Gods",
@@ -58,7 +58,7 @@
     {
       "id": 5,
       "duration": 8,
-      "narration": "The next Guru Pushya Yoga is coming. Will you know when? Will you be ready? Find the exact date and muhurta — free — at Dekho Panchang.",
+      "narration": "The next Guru Pushya Yoga is coming. Will you know when? Will you be ready? Find the exact date and muhurta  –  free  –  at Dekho Panchang.",
       "visualType": "cta",
       "textOverlay": "dekhopanchang.com",
       "cosmicPreset": "nebula",

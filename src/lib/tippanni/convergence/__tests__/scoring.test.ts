@@ -12,9 +12,9 @@ import { TippanniSection } from '../types';
 // ── Mock pattern ──────────────────────────────────────────────────────────────
 //
 // 3 conditions:
-//   C0 — natal planet-in-house: Mars (id=2) in house 10
-//   C1 — transit planet-in-house-from-moon: Saturn (id=6) in house 4
-//   C2 — dasha lord-is-planet: planet 4 (Jupiter)
+//   C0  –  natal planet-in-house: Mars (id=2) in house 10
+//   C1  –  transit planet-in-house-from-moon: Saturn (id=6) in house 4
+//   C2  –  dasha lord-is-planet: planet 4 (Jupiter)
 //
 // Significance = 3
 
@@ -128,7 +128,7 @@ function makeInput({
 
 describe('scorePattern', () => {
   // ── Test 1: Full match (all 3 conditions pass) ────────────────────────────
-  describe('full match — all 3 conditions satisfied', () => {
+  describe('full match  –  all 3 conditions satisfied', () => {
     it('returns a non-null MatchedPattern', () => {
       const result = scorePattern(MOCK_PATTERN, makeInput());
       expect(result).not.toBeNull();
@@ -171,7 +171,7 @@ describe('scorePattern', () => {
   });
 
   // ── Test 2: Partial match (2 of 3 conditions pass) ───────────────────────
-  describe('partial match — 2 of 3 conditions satisfied (dasha misses)', () => {
+  describe('partial match  –  2 of 3 conditions satisfied (dasha misses)', () => {
     const partialInput = makeInput({ dashaIsJupiter: false }); // C2 fails
 
     it('returns a non-null MatchedPattern', () => {
@@ -203,7 +203,7 @@ describe('scorePattern', () => {
   });
 
   // ── Test 3: No match / insufficient matches ───────────────────────────────
-  describe('no match — 0 conditions satisfied', () => {
+  describe('no match  –  0 conditions satisfied', () => {
     const noMatchInput = makeInput({
       marsInHouse10: false,
       saturnTransitHouse4: false,
@@ -216,7 +216,7 @@ describe('scorePattern', () => {
     });
   });
 
-  describe('single match — only 1 condition satisfied', () => {
+  describe('single match  –  only 1 condition satisfied', () => {
     const singleMatchInput = makeInput({
       marsInHouse10: true,       // C0 passes
       saturnTransitHouse4: false, // C1 fails

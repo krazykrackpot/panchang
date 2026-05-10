@@ -1,7 +1,7 @@
 /**
  * Onboarding email scheduler.
  * Determines which email to send based on user signup date.
- * Does NOT send emails — just resolves the correct day/template.
+ * Does NOT send emails  –  just resolves the correct day/template.
  */
 
 import { getOnboardingEmail } from './onboarding-templates';

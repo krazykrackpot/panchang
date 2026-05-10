@@ -46,12 +46,12 @@ const PLANET_NATURE: Record<number, { en: string; hi: string }> = {
     hi: 'शनि अनुशासन, कर्म, विलम्ब, कठोर परिश्रम, दीर्घायु और जीवन के पाठ का प्रतिनिधित्व करता है। यह संरचना, जिम्मेदारी, सहनशक्ति और पूर्व कर्मों के परिणामों पर शासन करता है।',
   },
   7: {
-    en: 'Rahu is the north lunar node — desire, obsession, foreign influences, unconventional paths, and material ambition. It amplifies whichever house it occupies.',
-    hi: 'राहु उत्तर चन्द्र पात है — इच्छा, जुनून, विदेशी प्रभाव, अपरम्परागत मार्ग और भौतिक महत्वाकांक्षा। यह जिस भाव में हो उसे तीव्र करता है।',
+    en: 'Rahu is the north lunar node  –  desire, obsession, foreign influences, unconventional paths, and material ambition. It amplifies whichever house it occupies.',
+    hi: 'राहु उत्तर चन्द्र पात है  –  इच्छा, जुनून, विदेशी प्रभाव, अपरम्परागत मार्ग और भौतिक महत्वाकांक्षा। यह जिस भाव में हो उसे तीव्र करता है।',
   },
   8: {
-    en: 'Ketu is the south lunar node — detachment, spirituality, past-life karma, and liberation. It diminishes material desire in its house and pushes toward transcendence.',
-    hi: 'केतु दक्षिण चन्द्र पात है — वैराग्य, आध्यात्मिकता, पूर्वजन्म कर्म और मोक्ष। यह अपने भाव में भौतिक इच्छा को कम करता है और पारलौकिकता की ओर प्रेरित करता है।',
+    en: 'Ketu is the south lunar node  –  detachment, spirituality, past-life karma, and liberation. It diminishes material desire in its house and pushes toward transcendence.',
+    hi: 'केतु दक्षिण चन्द्र पात है  –  वैराग्य, आध्यात्मिकता, पूर्वजन्म कर्म और मोक्ष। यह अपने भाव में भौतिक इच्छा को कम करता है और पारलौकिकता की ओर प्रेरित करता है।',
   },
 };
 
@@ -159,9 +159,9 @@ function getUnshiftedNote(planetId: number, house: number, locale: string): stri
   if (!h) return '';
 
   if (locale === 'hi') {
-    return `${planetName} दोनों कुंडलियों में भाव ${house} (${h.keywords_hi}) में स्थित है — इस ग्रह के ${h.keywords_hi} विषय किसी भी भाव पद्धति में समान रहते हैं।`;
+    return `${planetName} दोनों कुंडलियों में भाव ${house} (${h.keywords_hi}) में स्थित है  –  इस ग्रह के ${h.keywords_hi} विषय किसी भी भाव पद्धति में समान रहते हैं।`;
   }
-  return `${planetName} remains in House ${house} (${h.keywords_en}) in both charts — this planet's ${h.keywords_en.toLowerCase()} themes are consistent regardless of the house system used.`;
+  return `${planetName} remains in House ${house} (${h.keywords_en}) in both charts  –  this planet's ${h.keywords_en.toLowerCase()} themes are consistent regardless of the house system used.`;
 }
 
 // ─── Impact interpretation text ─────────────────────────────────────────
@@ -169,15 +169,15 @@ function getUnshiftedNote(planetId: number, house: number, locale: string): stri
 const IMPACT_INTERPRETATION: Record<'minor' | 'moderate' | 'significant', { en: string; hi: string }> = {
   minor: {
     en: 'Your Rashi chart and Bhava Chalit largely agree. For most planets, the sign-based and house-based readings will be identical. Focus your attention on any shifted planet below for the nuanced difference in that specific life area.',
-    hi: 'आपकी राशि कुंडली और भाव चलित कुंडली काफी हद तक एकमत हैं। अधिकांश ग्रहों के लिए, राशि-आधारित और भाव-आधारित पठन समान होंगे। किसी भी स्थानांतरित ग्रह पर ध्यान दें — वहीं सूक्ष्म अन्तर दिखेगा।',
+    hi: 'आपकी राशि कुंडली और भाव चलित कुंडली काफी हद तक एकमत हैं। अधिकांश ग्रहों के लिए, राशि-आधारित और भाव-आधारित पठन समान होंगे। किसी भी स्थानांतरित ग्रह पर ध्यान दें  –  वहीं सूक्ष्म अन्तर दिखेगा।',
   },
   moderate: {
-    en: 'Several planets express through different houses than their Rashi positions suggest. This means your Rashi chart gives one picture, but the lived reality may differ in these specific areas. Pay attention to the shifted planets — these are where your life experience may not match a simple sign-based reading.',
-    hi: 'कई ग्रह अपनी राशि स्थिति से भिन्न भावों द्वारा कार्य करते हैं। इसका अर्थ है कि राशि कुण्डली एक चित्र दिखाती है, किन्तु वास्तविक जीवन इन विशिष्ट क्षेत्रों में भिन्न हो सकता है। स्थानान्तरित ग्रहों पर ध्यान दें — यही वे क्षेत्र हैं जहाँ आपका अनुभव सरल राशि-आधारित पठन से मेल नहीं खा सकता।',
+    en: 'Several planets express through different houses than their Rashi positions suggest. This means your Rashi chart gives one picture, but the lived reality may differ in these specific areas. Pay attention to the shifted planets  –  these are where your life experience may not match a simple sign-based reading.',
+    hi: 'कई ग्रह अपनी राशि स्थिति से भिन्न भावों द्वारा कार्य करते हैं। इसका अर्थ है कि राशि कुण्डली एक चित्र दिखाती है, किन्तु वास्तविक जीवन इन विशिष्ट क्षेत्रों में भिन्न हो सकता है। स्थानान्तरित ग्रहों पर ध्यान दें  –  यही वे क्षेत्र हैं जहाँ आपका अनुभव सरल राशि-आधारित पठन से मेल नहीं खा सकता।',
   },
   significant: {
-    en: 'Many planets fall in different houses in the Bhava Chalit — your chart is highly sensitive to the house system used. This is common when the ascendant degree is near the middle of a sign. You should read BOTH the Rashi and Bhava Chalit interpretations together for a complete picture of how each planet expresses in your life.',
-    hi: 'भाव चलित में अनेक ग्रह भिन्न भावों में आते हैं — आपकी कुण्डली भाव पद्धति के प्रति अत्यन्त संवेदनशील है। यह तब सामान्य है जब लग्न अंश राशि के मध्य के निकट हो। सम्पूर्ण चित्र के लिए राशि और भाव चलित दोनों व्याख्याएँ साथ पढ़ें।',
+    en: 'Many planets fall in different houses in the Bhava Chalit  –  your chart is highly sensitive to the house system used. This is common when the ascendant degree is near the middle of a sign. You should read BOTH the Rashi and Bhava Chalit interpretations together for a complete picture of how each planet expresses in your life.',
+    hi: 'भाव चलित में अनेक ग्रह भिन्न भावों में आते हैं  –  आपकी कुण्डली भाव पद्धति के प्रति अत्यन्त संवेदनशील है। यह तब सामान्य है जब लग्न अंश राशि के मध्य के निकट हो। सम्पूर्ण चित्र के लिए राशि और भाव चलित दोनों व्याख्याएँ साथ पढ़ें।',
   },
 };
 
@@ -187,10 +187,10 @@ const LABELS = {
   title: { en: 'Bhava Chalit Chart', hi: 'भाव चलित कुंडली' },
   whatIsTitle: { en: 'What is Bhava Chalit?', hi: 'भाव चलित क्या है?' },
   whatIsBody: {
-    en: 'In Vedic astrology, there are two ways to read your chart:\n\n- Rashi Chart (D1): planets are placed by sign — simple, used for basic readings\n- Bhava Chalit: planets are placed by actual house cusps — more nuanced, used for prediction\n\nWhen a planet is near the edge of a sign, the Bhava Chalit may place it in a different house than the Rashi chart. This does not mean one is wrong — they answer different questions. The Rashi chart shows your inherent nature; the Bhava Chalit shows how themes actually manifest in your life.',
-    hi: 'वैदिक ज्योतिष में कुंडली पढ़ने के दो तरीके हैं:\n\n- राशि कुंडली (D1): ग्रह राशि के अनुसार रखे जाते हैं — सरल, मूल पठन के लिए\n- भाव चलित: ग्रह वास्तविक भाव सन्धियों के अनुसार रखे जाते हैं — अधिक सूक्ष्म, भविष्यवाणी के लिए\n\nजब कोई ग्रह राशि की सीमा के निकट होता है, तो भाव चलित उसे राशि कुंडली से भिन्न भाव में रख सकती है। इसका अर्थ यह नहीं कि कोई गलत है — दोनों अलग-अलग प्रश्नों का उत्तर देती हैं। राशि कुंडली आपके स्वाभाविक गुण दिखाती है; भाव चलित दिखाती है कि विषय जीवन में कैसे प्रकट होते हैं।',
+    en: 'In Vedic astrology, there are two ways to read your chart:\n\n- Rashi Chart (D1): planets are placed by sign  –  simple, used for basic readings\n- Bhava Chalit: planets are placed by actual house cusps  –  more nuanced, used for prediction\n\nWhen a planet is near the edge of a sign, the Bhava Chalit may place it in a different house than the Rashi chart. This does not mean one is wrong  –  they answer different questions. The Rashi chart shows your inherent nature; the Bhava Chalit shows how themes actually manifest in your life.',
+    hi: 'वैदिक ज्योतिष में कुंडली पढ़ने के दो तरीके हैं:\n\n- राशि कुंडली (D1): ग्रह राशि के अनुसार रखे जाते हैं  –  सरल, मूल पठन के लिए\n- भाव चलित: ग्रह वास्तविक भाव सन्धियों के अनुसार रखे जाते हैं  –  अधिक सूक्ष्म, भविष्यवाणी के लिए\n\nजब कोई ग्रह राशि की सीमा के निकट होता है, तो भाव चलित उसे राशि कुंडली से भिन्न भाव में रख सकती है। इसका अर्थ यह नहीं कि कोई गलत है  –  दोनों अलग-अलग प्रश्नों का उत्तर देती हैं। राशि कुंडली आपके स्वाभाविक गुण दिखाती है; भाव चलित दिखाती है कि विषय जीवन में कैसे प्रकट होते हैं।',
   },
-  shiftedTitle: { en: 'Shifted Planets — Detailed Interpretation', hi: 'स्थानांतरित ग्रह — विस्तृत व्याख्या' },
+  shiftedTitle: { en: 'Shifted Planets  –  Detailed Interpretation', hi: 'स्थानांतरित ग्रह  –  विस्तृत व्याख्या' },
   unshiftedTitle: { en: 'Unshifted Planets', hi: 'अपरिवर्तित ग्रह' },
   allPlanetsTitle: { en: 'All Planets', hi: 'सभी ग्रह' },
   bhavaBoundaries: { en: 'Bhava Boundaries', hi: 'भाव सीमाएँ' },
@@ -210,8 +210,8 @@ const LABELS = {
   learnMore: { en: 'Learn more about Kundali', hi: 'कुंडली के बारे में और जानें' },
   expertDebateTitle: { en: 'Expert Perspectives & Recommendation', hi: 'विशेषज्ञ दृष्टिकोण एवं अनुशंसा' },
   expertDebateBody: {
-    en: 'The Rashi chart uses whole-sign houses — each sign equals one house. The Bhava Chalit uses degree-based houses — the ascendant degree becomes the midpoint of House 1, and each house spans 30° centered on that cusp. This fundamental difference means planets near sign boundaries can shift houses.\n\nExperts disagree on which to trust: K.N. Rao\'s school strongly advocates Bhava Chalit for all predictive work (dashas, transits, event timing). The traditional Parashari school prefers whole-sign Rashi charts for everything. KP (Krishnamurti) practitioners use Placidus houses (similar concept, unequal houses). South Indian tradition emphasizes divisional charts over Bhava Chalit.\n\nOur recommendation: Check both. When D1 and Bhava Chalit agree (planet in same house), that is the strongest reading — trust it fully. When they disagree, use Bhava Chalit for prediction and timing, and D1 for personality and inherent nature. For yogas, use D1 (most definitions are sign-based).',
-    hi: 'राशि कुण्डली सम्पूर्ण-राशि भावों का उपयोग करती है — प्रत्येक राशि = एक भाव। भाव चलित अंश-आधारित भावों का उपयोग करती है — लग्न अंश भाव 1 का मध्य बिन्दु बनता है, और प्रत्येक भाव उस सन्धि पर केन्द्रित 30° तक फैलता है। इस मूल भेद के कारण राशि सीमाओं के निकट ग्रह भाव बदल सकते हैं।\n\nविशेषज्ञ असहमत हैं: के.एन. राव का सम्प्रदाय सभी भविष्यवाणी कार्य (दशा, गोचर, घटना समय) के लिए भाव चलित का दृढ़ समर्थन करता है। परम्परागत पराशरी सम्प्रदाय सब कुछ के लिए सम्पूर्ण-राशि कुण्डली को प्राथमिकता देता है। KP (कृष्णमूर्ति) अभ्यासी प्लेसिडस भावों का उपयोग करते हैं। दक्षिण भारतीय परम्परा वर्ग कुण्डलियों पर बल देती है।\n\nहमारी अनुशंसा: दोनों जाँचें। जब D1 और भाव चलित सहमत हों (ग्रह एक ही भाव में), तो वह सबसे मजबूत पठन है। जब वे असहमत हों, तो भविष्यवाणी के लिए भाव चलित और व्यक्तित्व के लिए D1 का उपयोग करें। योगों के लिए D1 का उपयोग करें।',
+    en: 'The Rashi chart uses whole-sign houses  –  each sign equals one house. The Bhava Chalit uses degree-based houses  –  the ascendant degree becomes the midpoint of House 1, and each house spans 30° centered on that cusp. This fundamental difference means planets near sign boundaries can shift houses.\n\nExperts disagree on which to trust: K.N. Rao\'s school strongly advocates Bhava Chalit for all predictive work (dashas, transits, event timing). The traditional Parashari school prefers whole-sign Rashi charts for everything. KP (Krishnamurti) practitioners use Placidus houses (similar concept, unequal houses). South Indian tradition emphasizes divisional charts over Bhava Chalit.\n\nOur recommendation: Check both. When D1 and Bhava Chalit agree (planet in same house), that is the strongest reading  –  trust it fully. When they disagree, use Bhava Chalit for prediction and timing, and D1 for personality and inherent nature. For yogas, use D1 (most definitions are sign-based).',
+    hi: 'राशि कुण्डली सम्पूर्ण-राशि भावों का उपयोग करती है  –  प्रत्येक राशि = एक भाव। भाव चलित अंश-आधारित भावों का उपयोग करती है  –  लग्न अंश भाव 1 का मध्य बिन्दु बनता है, और प्रत्येक भाव उस सन्धि पर केन्द्रित 30° तक फैलता है। इस मूल भेद के कारण राशि सीमाओं के निकट ग्रह भाव बदल सकते हैं।\n\nविशेषज्ञ असहमत हैं: के.एन. राव का सम्प्रदाय सभी भविष्यवाणी कार्य (दशा, गोचर, घटना समय) के लिए भाव चलित का दृढ़ समर्थन करता है। परम्परागत पराशरी सम्प्रदाय सब कुछ के लिए सम्पूर्ण-राशि कुण्डली को प्राथमिकता देता है। KP (कृष्णमूर्ति) अभ्यासी प्लेसिडस भावों का उपयोग करते हैं। दक्षिण भारतीय परम्परा वर्ग कुण्डलियों पर बल देती है।\n\nहमारी अनुशंसा: दोनों जाँचें। जब D1 और भाव चलित सहमत हों (ग्रह एक ही भाव में), तो वह सबसे मजबूत पठन है। जब वे असहमत हों, तो भविष्यवाणी के लिए भाव चलित और व्यक्तित्व के लिए D1 का उपयोग करें। योगों के लिए D1 का उपयोग करें।',
   },
   showExpertDebate: { en: 'Show expert perspectives', hi: 'विशेषज्ञ दृष्टिकोण दिखाएँ' },
   hideExpertDebate: { en: 'Hide expert perspectives', hi: 'विशेषज्ञ दृष्टिकोण छिपाएँ' },
@@ -280,7 +280,7 @@ export default function BhavaChalitTab({ ascendant, planets, locale }: BhavaChal
 
   return (
     <div className="space-y-6">
-      {/* 1. What is Bhava Chalit — prominent explanation at TOP */}
+      {/* 1. What is Bhava Chalit  –  prominent explanation at TOP */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 p-5">
         <h3 className="text-gold-light font-bold text-lg mb-3 flex items-center gap-2">
           <Info className="w-5 h-5 text-gold-primary shrink-0" />
@@ -354,7 +354,7 @@ export default function BhavaChalitTab({ ascendant, planets, locale }: BhavaChal
         </p>
       </div>
 
-      {/* 3. Shifted Planets — rich interpretation */}
+      {/* 3. Shifted Planets  –  rich interpretation */}
       {shiftedPlanets.length > 0 && (
         <div className="space-y-4">
           <h3 className="text-gold-light font-bold text-base flex items-center gap-2">

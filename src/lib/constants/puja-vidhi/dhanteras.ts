@@ -102,9 +102,9 @@ export const DHANTERAS_PUJA: PujaVidhi = {
       step: 6,
       title: { en: 'Yama Deepa (13 Lamps)', hi: 'यम दीपक (13 दीपक)', sa: 'यमदीपाः (त्रयोदशदीपाः)' },
       description: {
-        en: 'Light 13 earthen diyas filled with ghee or mustard oil. Place them outside the main door facing SOUTH — this is the Yama Deepa, lit to ward off untimely death (apamrityu). One diya should be placed facing south in the evening and left to burn through the night.',
-        hi: 'घी या सरसों के तेल से भरे 13 मिट्टी के दीपक जलाएँ। इन्हें मुख्य द्वार के बाहर दक्षिण दिशा में रखें — यह यम दीपक है, जो अकाल मृत्यु (अपमृत्यु) से बचाने के लिए जलाया जाता है। एक दीपक शाम को दक्षिण दिशा में रखकर रात भर जलने दें।',
-        sa: 'घृतेन सर्षपतैलेन वा पूर्णान् त्रयोदश मृत्तिकादीपान् प्रज्वालयेत्। मुख्यद्वारस्य बहिः दक्षिणदिशि स्थापयेत् — इमे यमदीपाः, अकालमृत्योः (अपमृत्योः) निवारणार्थं प्रज्वाल्यन्ते। एकं दीपं सायं दक्षिणदिशि स्थापयित्वा रात्रौ ज्वलन्तं त्यजेत्।',
+        en: 'Light 13 earthen diyas filled with ghee or mustard oil. Place them outside the main door facing SOUTH  –  this is the Yama Deepa, lit to ward off untimely death (apamrityu). One diya should be placed facing south in the evening and left to burn through the night.',
+        hi: 'घी या सरसों के तेल से भरे 13 मिट्टी के दीपक जलाएँ। इन्हें मुख्य द्वार के बाहर दक्षिण दिशा में रखें  –  यह यम दीपक है, जो अकाल मृत्यु (अपमृत्यु) से बचाने के लिए जलाया जाता है। एक दीपक शाम को दक्षिण दिशा में रखकर रात भर जलने दें।',
+        sa: 'घृतेन सर्षपतैलेन वा पूर्णान् त्रयोदश मृत्तिकादीपान् प्रज्वालयेत्। मुख्यद्वारस्य बहिः दक्षिणदिशि स्थापयेत्  –  इमे यमदीपाः, अकालमृत्योः (अपमृत्योः) निवारणार्थं प्रज्वाल्यन्ते। एकं दीपं सायं दक्षिणदिशि स्थापयित्वा रात्रौ ज्वलन्तं त्यजेत्।',
       },
       duration: '10 min',
       essential: true,
@@ -149,9 +149,9 @@ export const DHANTERAS_PUJA: PujaVidhi = {
       },
       japaCount: 108,
       usage: {
-        en: 'Primary mantra for Dhanteras — chant 108 times during Dhanvantari puja for health and longevity',
-        hi: 'धनतेरस का मुख्य मन्त्र — स्वास्थ्य और दीर्घायु के लिए धन्वन्तरि पूजा में 108 बार जपें',
-        sa: 'धनत्रयोदश्याः प्रधानमन्त्रः — स्वास्थ्यदीर्घायुषे धन्वन्तरिपूजने अष्टोत्तरशतवारं जपेत्',
+        en: 'Primary mantra for Dhanteras  –  chant 108 times during Dhanvantari puja for health and longevity',
+        hi: 'धनतेरस का मुख्य मन्त्र  –  स्वास्थ्य और दीर्घायु के लिए धन्वन्तरि पूजा में 108 बार जपें',
+        sa: 'धनत्रयोदश्याः प्रधानमन्त्रः  –  स्वास्थ्यदीर्घायुषे धन्वन्तरिपूजने अष्टोत्तरशतवारं जपेत्',
       },
     },
     {
@@ -204,24 +204,24 @@ export const DHANTERAS_PUJA: PujaVidhi = {
 
   precautions: [
     {
-      en: 'The 13 Yama Deepa must be placed outside the main door facing SOUTH — this is critical for the ritual to ward off untimely death',
-      hi: '13 यम दीपक मुख्य द्वार के बाहर दक्षिण दिशा में रखने चाहिए — अकाल मृत्यु निवारण अनुष्ठान के लिए यह अत्यन्त महत्वपूर्ण है',
-      sa: 'त्रयोदशयमदीपाः मुख्यद्वारस्य बहिः दक्षिणदिशि स्थापनीयाः — अकालमृत्युनिवारणकर्मणः इदम् अत्यावश्यकम्',
+      en: 'The 13 Yama Deepa must be placed outside the main door facing SOUTH  –  this is critical for the ritual to ward off untimely death',
+      hi: '13 यम दीपक मुख्य द्वार के बाहर दक्षिण दिशा में रखने चाहिए  –  अकाल मृत्यु निवारण अनुष्ठान के लिए यह अत्यन्त महत्वपूर्ण है',
+      sa: 'त्रयोदशयमदीपाः मुख्यद्वारस्य बहिः दक्षिणदिशि स्थापनीयाः  –  अकालमृत्युनिवारणकर्मणः इदम् अत्यावश्यकम्',
     },
     {
-      en: 'Do not buy iron on Dhanteras — buy gold, silver, brass, or steel',
-      hi: 'धनतेरस पर लोहा न खरीदें — सोना, चाँदी, पीतल या स्टील खरीदें',
-      sa: 'धनत्रयोदश्यां लौहं न क्रीणीयात् — सुवर्णं रजतं कांस्यं लोहपात्रं वा क्रीणीयात्',
+      en: 'Do not buy iron on Dhanteras  –  buy gold, silver, brass, or steel',
+      hi: 'धनतेरस पर लोहा न खरीदें  –  सोना, चाँदी, पीतल या स्टील खरीदें',
+      sa: 'धनत्रयोदश्यां लौहं न क्रीणीयात्  –  सुवर्णं रजतं कांस्यं लोहपात्रं वा क्रीणीयात्',
     },
     {
-      en: 'The Yama Deepa should be kept burning the entire night — do not extinguish them',
-      hi: 'यम दीपक पूरी रात जलते रहने चाहिए — इन्हें बुझाएँ नहीं',
-      sa: 'यमदीपाः सम्पूर्णां रात्रिं ज्वलन्तः भवेयुः — तान् न निर्वापयेत्',
+      en: 'The Yama Deepa should be kept burning the entire night  –  do not extinguish them',
+      hi: 'यम दीपक पूरी रात जलते रहने चाहिए  –  इन्हें बुझाएँ नहीं',
+      sa: 'यमदीपाः सम्पूर्णां रात्रिं ज्वलन्तः भवेयुः  –  तान् न निर्वापयेत्',
     },
     {
-      en: 'Face North while performing Lakshmi puja — North is the direction of Kubera (wealth)',
-      hi: 'लक्ष्मी पूजा करते समय उत्तर दिशा की ओर मुख करें — उत्तर कुबेर (धन) की दिशा है',
-      sa: 'लक्ष्मीपूजने उत्तराभिमुखं तिष्ठेत् — उत्तरा कुबेरस्य (धनस्य) दिक्',
+      en: 'Face North while performing Lakshmi puja  –  North is the direction of Kubera (wealth)',
+      hi: 'लक्ष्मी पूजा करते समय उत्तर दिशा की ओर मुख करें  –  उत्तर कुबेर (धन) की दिशा है',
+      sa: 'लक्ष्मीपूजने उत्तराभिमुखं तिष्ठेत्  –  उत्तरा कुबेरस्य (धनस्य) दिक्',
     },
   ],
 

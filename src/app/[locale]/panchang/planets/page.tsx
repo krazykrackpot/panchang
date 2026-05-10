@@ -177,12 +177,12 @@ export default function PlanetsPage() {
                                 </span>
                               </div>
                             </td>
-                            <td className="px-5 py-4 font-mono text-text-secondary">{planet.longitude !== undefined ? `${planet.longitude.toFixed(2)}°` : '—'}</td>
+                            <td className="px-5 py-4 font-mono text-text-secondary">{planet.longitude !== undefined ? `${planet.longitude.toFixed(2)}°` : ' – '}</td>
                             <td className="px-5 py-4">
                               <span className="text-text-secondary" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{(nak?.name[locale] || nak?.name?.en || '')}</span>
                             </td>
                             <td className="px-5 py-4 text-center">
-                              {planet.isRetrograde ? <span className="text-red-400 font-bold text-lg">R</span> : <span className="text-text-secondary/55">—</span>}
+                              {planet.isRetrograde ? <span className="text-red-400 font-bold text-lg">R</span> : <span className="text-text-secondary/55"> – </span>}
                             </td>
                           </motion.tr>
                         );

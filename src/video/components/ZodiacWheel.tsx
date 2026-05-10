@@ -27,7 +27,7 @@ export const ZodiacWheel: React.FC<ZodiacWheelProps> = ({
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Slow rotation — 1 full turn in 30 seconds
+  // Slow rotation  –  1 full turn in 30 seconds
   const rotation = interpolate(frame, [0, fps * 30], [0, 360], {
     extrapolateRight: 'extend',
   });

@@ -21,7 +21,7 @@ import PMSG from '@/messages/pages/panchang-inline.json';
 const msg = (key: string, locale: string): string =>
   lt((PMSG as unknown as Record<string, LocaleText>)[key], locale);
 
-// Section heading — same component as PanchangClient
+// Section heading  –  same component as PanchangClient
 function SectionHeading({
   icon,
   title,
@@ -243,7 +243,7 @@ export default function AuspiciousTimingsPage() {
                   {msg('raviYoga', locale)}
                 </span>
                 <span className="text-amber-400/70 text-xs font-mono">
-                  {panchang.raviYogaWindow.start} — {panchang.raviYogaWindow.end}{panchang.raviYogaWindow.endDate ? `, ${panchang.raviYogaWindow.endDate.split('-').slice(1).join('/')}` : ''}
+                  {panchang.raviYogaWindow.start}  –  {panchang.raviYogaWindow.end}{panchang.raviYogaWindow.endDate ? `, ${panchang.raviYogaWindow.endDate.split('-').slice(1).join('/')}` : ''}
                 </span>
                 <span className="text-amber-400/70 text-xs">{'· ' + msg('highlyAuspicious', locale)}</span>
               </div>
@@ -293,19 +293,19 @@ export default function AuspiciousTimingsPage() {
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }}
                 className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center">
                 <div className="text-indigo-400 text-xs uppercase tracking-wider font-bold mb-2">{t('brahmaMuhurta')}</div>
-                <div className="font-mono text-xl font-bold text-amber-300">{panchang.brahmaMuhurta.start} — {panchang.brahmaMuhurta.end}</div>
+                <div className="font-mono text-xl font-bold text-amber-300">{panchang.brahmaMuhurta.start}  –  {panchang.brahmaMuhurta.end}</div>
                 <div className="text-text-secondary text-xs mt-2 leading-relaxed">{t('brahmaMuhurtaDesc')}</div>
               </motion.div>
             )}
 
-            {/* Abhijit Muhurta — not auspicious on Wednesdays (available=false) */}
+            {/* Abhijit Muhurta  –  not auspicious on Wednesdays (available=false) */}
             {panchang.abhijitMuhurta.available !== false ? (
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}
                 className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center border-2 border-gold-primary/40 bg-gradient-to-br from-gold-primary/10 to-transparent">
                 <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-2">
                   {msg('abhijitMuhurta', locale)}
                 </div>
-                <div className="font-mono text-xl font-bold text-amber-300">{panchang.abhijitMuhurta.start} — {panchang.abhijitMuhurta.end}</div>
+                <div className="font-mono text-xl font-bold text-amber-300">{panchang.abhijitMuhurta.start}  –  {panchang.abhijitMuhurta.end}</div>
                 <div className="text-text-secondary text-xs mt-2 leading-relaxed">
                   {msg('mostAuspiciousVictory', locale)}
                 </div>
@@ -316,7 +316,7 @@ export default function AuspiciousTimingsPage() {
                 <div className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-2">
                   {msg('abhijitMuhurta', locale)}
                 </div>
-                <div className="font-mono text-xl font-bold text-amber-400/60">{panchang.abhijitMuhurta.start} — {panchang.abhijitMuhurta.end}</div>
+                <div className="font-mono text-xl font-bold text-amber-400/60">{panchang.abhijitMuhurta.start}  –  {panchang.abhijitMuhurta.end}</div>
                 <div className="text-amber-400/70 text-xs mt-2 leading-relaxed">
                   {tl({ en: 'Not auspicious today (Wednesday)', hi: 'आज शुभ नहीं (बुधवार)', ta: 'இன்று சுபமில்லை (புதன்கிழமை)', bn: 'আজ শুভ নয় (বুধবার)' })}
                 </div>
@@ -330,23 +330,23 @@ export default function AuspiciousTimingsPage() {
                 <div className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-2">
                   {msg('vijayaMuhurta', locale)}
                 </div>
-                <div className="font-mono text-xl font-bold text-amber-300">{panchang.vijayaMuhurta.start} — {panchang.vijayaMuhurta.end}</div>
+                <div className="font-mono text-xl font-bold text-amber-300">{panchang.vijayaMuhurta.start}  –  {panchang.vijayaMuhurta.end}</div>
                 <div className="text-text-secondary text-xs mt-2 leading-relaxed">
                   {msg('tenthMuhurtaVictory', locale)}
                 </div>
               </motion.div>
             )}
 
-            {/* Amrit Kalam — show all windows */}
+            {/* Amrit Kalam  –  show all windows */}
             {((panchang as any).amritKalamAll as Array<{ start: string; end: string }> | undefined)?.length || panchang.amritKalam ? (
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.14 }}
                 className="rounded-xl p-5 text-center border border-emerald-500/30 bg-gradient-to-br from-emerald-500/5 to-transparent">
                 <div className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-2">{t('amritKalam')}</div>
                 {((panchang as any).amritKalamAll as Array<{ start: string; end: string }> || [panchang.amritKalam]).map((a: { start: string; end: string }, i: number) => (
-                  <div key={i} className="font-mono text-xl font-bold text-amber-300">{a.start} — {a.end}</div>
+                  <div key={i} className="font-mono text-xl font-bold text-amber-300">{a.start}  –  {a.end}</div>
                 ))}
                 <div className="text-emerald-400/60 text-[10px] mt-1.5 font-medium uppercase tracking-wider">{isDevanagari ? 'अत्यन्त शुभ' : 'Highly Auspicious'}</div>
-                <div className="text-text-secondary text-xs mt-1.5 leading-relaxed">{isDevanagari ? 'नक्षत्र-आधारित अमृत काल — दिन का सबसे शुभ खण्ड। नए कार्य, पूजा और महत्वपूर्ण निर्णयों के लिए श्रेष्ठ।' : 'The nectar period derived from the current nakshatra — the most auspicious window of the day. Ideal for new beginnings, worship, and important decisions.'}</div>
+                <div className="text-text-secondary text-xs mt-1.5 leading-relaxed">{isDevanagari ? 'नक्षत्र-आधारित अमृत काल  –  दिन का सबसे शुभ खण्ड। नए कार्य, पूजा और महत्वपूर्ण निर्णयों के लिए श्रेष्ठ।' : 'The nectar period derived from the current nakshatra  –  the most auspicious window of the day. Ideal for new beginnings, worship, and important decisions.'}</div>
               </motion.div>
             ) : null}
 
@@ -355,7 +355,7 @@ export default function AuspiciousTimingsPage() {
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.17 }}
                 className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center border border-amber-600/30 bg-gradient-to-br from-amber-600/5 to-transparent">
                 <div className="text-amber-500 text-xs uppercase tracking-wider font-bold mb-2">{t('godhuli')}</div>
-                <div className="font-mono text-xl font-bold text-amber-300">{panchang.godhuli.start} — {panchang.godhuli.end}</div>
+                <div className="font-mono text-xl font-bold text-amber-300">{panchang.godhuli.start}  –  {panchang.godhuli.end}</div>
                 <div className="text-text-secondary text-xs mt-2 leading-relaxed">{t('godhuliDesc')}</div>
               </motion.div>
             )}
@@ -367,7 +367,7 @@ export default function AuspiciousTimingsPage() {
                 <div className="text-orange-400 text-xs uppercase tracking-wider font-bold mb-2">
                   {msg('morningSandhya', locale)}
                 </div>
-                <div className="font-mono text-xl font-bold text-orange-300">{panchang.sandhyaKaal.morning.start} — {panchang.sandhyaKaal.morning.end}</div>
+                <div className="font-mono text-xl font-bold text-orange-300">{panchang.sandhyaKaal.morning.start}  –  {panchang.sandhyaKaal.morning.end}</div>
                 <div className="text-text-secondary text-xs mt-2 leading-relaxed">
                   {msg('morningSandhyaDesc', locale)}
                 </div>
@@ -381,7 +381,7 @@ export default function AuspiciousTimingsPage() {
                 <div className="text-purple-400 text-xs uppercase tracking-wider font-bold mb-2">
                   {msg('eveningSandhya', locale)}
                 </div>
-                <div className="font-mono text-xl font-bold text-purple-300">{panchang.sandhyaKaal.evening.start} — {panchang.sandhyaKaal.evening.end}</div>
+                <div className="font-mono text-xl font-bold text-purple-300">{panchang.sandhyaKaal.evening.start}  –  {panchang.sandhyaKaal.evening.end}</div>
                 <div className="text-text-secondary text-xs mt-2 leading-relaxed">
                   {msg('eveningSandhyaDesc', locale)}
                 </div>
@@ -393,7 +393,7 @@ export default function AuspiciousTimingsPage() {
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.26 }}
                 className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center">
                 <div className="text-blue-400 text-xs uppercase tracking-wider font-bold mb-2">{t('nishitaKaal')}</div>
-                <div className="font-mono text-xl font-bold text-blue-300">{panchang.nishitaKaal.start} — {panchang.nishitaKaal.end}</div>
+                <div className="font-mono text-xl font-bold text-blue-300">{panchang.nishitaKaal.start}  –  {panchang.nishitaKaal.end}</div>
                 <div className="text-text-secondary text-xs mt-2 leading-relaxed">{t('nishitaKaalDesc')}</div>
               </motion.div>
             )}
@@ -572,7 +572,7 @@ export default function AuspiciousTimingsPage() {
               <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.05 }}
                 className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/30 p-3 sm:p-4 md:p-6 text-center">
                 <div className="text-red-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('rahuKaal')}</div>
-                <div className="font-mono text-2xl font-bold text-red-300">{panchang.rahuKaal.start} — {panchang.rahuKaal.end}</div>
+                <div className="font-mono text-2xl font-bold text-red-300">{panchang.rahuKaal.start}  –  {panchang.rahuKaal.end}</div>
                 <div className="text-red-300/60 text-[10px] mt-1.5 font-medium uppercase tracking-wider">{isDevanagari ? 'अशुभ' : 'Inauspicious'}</div>
                 <div className="text-text-secondary text-xs mt-1.5 leading-relaxed">{isDevanagari ? 'राहु द्वारा शासित 90 मिनट की अशुभ अवधि। नए कार्य, यात्रा और महत्वपूर्ण निर्णय टालें। प्रत्येक वार को भिन्न समय।' : 'A 90-minute inauspicious window ruled by Rahu, the shadow planet of illusion. Avoid starting new ventures, travel, or important decisions. Rotates daily based on the weekday.'}</div>
               </motion.div>
@@ -581,7 +581,7 @@ export default function AuspiciousTimingsPage() {
               <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.08 }}
                 className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-orange-500/30 p-3 sm:p-4 md:p-6 text-center">
                 <div className="text-orange-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('yamaganda')}</div>
-                <div className="font-mono text-2xl font-bold text-orange-300">{panchang.yamaganda.start} — {panchang.yamaganda.end}</div>
+                <div className="font-mono text-2xl font-bold text-orange-300">{panchang.yamaganda.start}  –  {panchang.yamaganda.end}</div>
                 <div className="text-orange-300/60 text-[10px] mt-1.5 font-medium uppercase tracking-wider">{isDevanagari ? 'अशुभ' : 'Inauspicious'}</div>
                 <div className="text-text-secondary text-xs mt-1.5 leading-relaxed">{isDevanagari ? 'यम (मृत्यु के देवता) द्वारा शासित अशुभ काल। यात्रा और नए कार्यों के लिए विशेष रूप से प्रतिकूल।' : 'An inauspicious period ruled by Yama, the lord of death. Particularly unfavorable for travel and initiating new activities. Like Rahu Kaal, it rotates by weekday.'}</div>
               </motion.div>
@@ -590,7 +590,7 @@ export default function AuspiciousTimingsPage() {
               <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.11 }}
                 className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-yellow-500/30 p-3 sm:p-4 md:p-6 text-center">
                 <div className="text-yellow-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('gulikaKaal')}</div>
-                <div className="font-mono text-2xl font-bold text-yellow-300">{panchang.gulikaKaal.start} — {panchang.gulikaKaal.end}</div>
+                <div className="font-mono text-2xl font-bold text-yellow-300">{panchang.gulikaKaal.start}  –  {panchang.gulikaKaal.end}</div>
                 <div className="text-yellow-300/60 text-[10px] mt-1.5 font-medium uppercase tracking-wider">{isDevanagari ? 'अशुभ' : 'Inauspicious'}</div>
                 <div className="text-text-secondary text-xs mt-1.5 leading-relaxed">{isDevanagari ? 'शनि-पुत्र गुलिक द्वारा शासित अवधि। यात्रा और वित्तीय निर्णयों के लिए प्रतिकूल।' : 'Ruled by Gulika, son of Saturn. Unfavorable for travel and financial decisions. Considered the weakest of the three inauspicious periods but still to be avoided for new beginnings.'}</div>
               </motion.div>
@@ -602,7 +602,7 @@ export default function AuspiciousTimingsPage() {
                   <div className="text-red-500 text-xs uppercase tracking-widest mb-2 font-bold">{msg('durMuhurtam', locale)}</div>
                   <div className="text-text-secondary/50 text-[10px] mb-2">{msg('kaalaPrakashika', locale)}</div>
                   {panchang.durMuhurtam.map((w: { start: string; end: string }, i: number) => (
-                    <div key={i} className="font-mono text-lg font-bold text-red-400 leading-tight">{w.start} — {w.end}</div>
+                    <div key={i} className="font-mono text-lg font-bold text-red-400 leading-tight">{w.start}  –  {w.end}</div>
                   ))}
                   {panchang.durMuhurtamAlt && panchang.durMuhurtamAlt.length > 0 && (
                     <details className="mt-3">
@@ -611,7 +611,7 @@ export default function AuspiciousTimingsPage() {
                       </summary>
                       <div className="mt-2 text-center">
                         {panchang.durMuhurtamAlt.map((w: { start: string; end: string }, i: number) => (
-                          <div key={i} className="font-mono text-sm text-red-400/60 leading-tight">{w.start} — {w.end}</div>
+                          <div key={i} className="font-mono text-sm text-red-400/60 leading-tight">{w.start}  –  {w.end}</div>
                         ))}
                       </div>
                     </details>
@@ -625,7 +625,7 @@ export default function AuspiciousTimingsPage() {
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.15 }}
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-700/30 p-3 sm:p-4 md:p-6 text-center">
                   <div className="text-red-500 text-xs uppercase tracking-widest mb-2 font-bold">{msg('vishaGhatika', locale)}</div>
-                  <div className="font-mono text-lg font-bold text-red-400">{panchang.vishaGhatika.start} — {panchang.vishaGhatika.end}</div>
+                  <div className="font-mono text-lg font-bold text-red-400">{panchang.vishaGhatika.start}  –  {panchang.vishaGhatika.end}</div>
                   <div className="text-text-secondary text-xs mt-2">{msg('vishaGhatikaDesc', locale)}</div>
                 </motion.div>
               )}
@@ -638,7 +638,7 @@ export default function AuspiciousTimingsPage() {
                   <div className="text-red-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('varjyam')}</div>
                   {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                   {((panchang as any).varjyamAll || [panchang.varjyam]).map((v: { start: string; end: string }, i: number) => (
-                    <div key={i} className="font-mono text-xl font-bold text-red-300">{v.start} — {v.end}</div>
+                    <div key={i} className="font-mono text-xl font-bold text-red-300">{v.start}  –  {v.end}</div>
                   ))}
                   <div className="text-red-300/60 text-[10px] mt-1.5 font-medium uppercase tracking-wider">{isDevanagari ? 'अशुभ' : 'Inauspicious'}</div>
                   <div className="text-text-secondary text-xs mt-1.5 leading-relaxed">{isDevanagari ? 'नक्षत्र-आधारित अशुभ काल। प्रत्येक नक्षत्र में एक विशिष्ट घटी-खण्ड वर्ज्य है। शुभ कार्य टालें।' : 'A nakshatra-based inauspicious period. Each nakshatra has a specific ghati span that is varjya (forbidden). Avoid auspicious activities during this window.'}</div>
@@ -653,7 +653,7 @@ export default function AuspiciousTimingsPage() {
                   {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                   {((panchang as any).bhadraAll || [panchang.bhadra]).map((b: { start: string; end: string; endDate?: string }, i: number) => (
                     <div key={i} className="font-mono text-xl font-bold text-orange-300">
-                      {b.start} — {b.end}{b.endDate ? `, ${b.endDate.split('-').reverse().join('/')}` : ''}
+                      {b.start}  –  {b.end}{b.endDate ? `, ${b.endDate.split('-').reverse().join('/')}` : ''}
                     </div>
                   ))}
                   <div className="text-text-secondary text-xs mt-2">{msg('inauspiciousKarana', locale)}</div>
@@ -673,7 +673,7 @@ export default function AuspiciousTimingsPage() {
                   {(panchang.gandaMoola as any).start && (
                     <div className="font-mono text-lg font-bold text-red-300 mt-1">
                       {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                      {(panchang.gandaMoola as any).start} — {(panchang.gandaMoola as any).end}
+                      {(panchang.gandaMoola as any).start}  –  {(panchang.gandaMoola as any).end}
                     </div>
                   )}
                   <div className="text-text-secondary text-xs mt-2">{msg('inauspiciousNakshatraJunction', locale)}</div>
@@ -686,7 +686,7 @@ export default function AuspiciousTimingsPage() {
                   className="rounded-xl border border-amber-500/25 bg-gradient-to-br from-amber-500/5 to-transparent p-3 sm:p-4 md:p-6 text-center">
                   <div className="text-amber-400 text-xs uppercase tracking-widest mb-2 font-bold">{msg('aadalYoga', locale)}</div>
                   <div className="font-mono text-xl font-bold text-amber-300">
-                    {panchang.aadalYoga.start} — {panchang.aadalYoga.end}
+                    {panchang.aadalYoga.start}  –  {panchang.aadalYoga.end}
                   </div>
                   <div className="text-text-secondary text-xs mt-2">{msg('aadalYogaDesc', locale)}</div>
                 </motion.div>
@@ -698,7 +698,7 @@ export default function AuspiciousTimingsPage() {
                   className="rounded-xl border border-rose-500/25 bg-gradient-to-br from-rose-500/5 to-transparent p-3 sm:p-4 md:p-6 text-center">
                   <div className="text-rose-400 text-xs uppercase tracking-widest mb-2 font-bold">{msg('vidaalYoga', locale)}</div>
                   <div className="font-mono text-xl font-bold text-rose-300">
-                    {panchang.vidaalYoga.start} — {panchang.vidaalYoga.end}
+                    {panchang.vidaalYoga.start}  –  {panchang.vidaalYoga.end}
                   </div>
                   <div className="text-text-secondary text-xs mt-2">{msg('vidaalYogaDesc', locale)}</div>
                 </motion.div>

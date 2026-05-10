@@ -1,5 +1,5 @@
 /**
- * Tests for Varga Deep Analysis — Promise/Delivery Scoring Engine
+ * Tests for Varga Deep Analysis  –  Promise/Delivery Scoring Engine
  */
 import { describe, it, expect } from 'vitest';
 import {

@@ -23,15 +23,15 @@ describe('predictDashaFromAshtakavarga', () => {
   // A BAV row with total = 32 (favorable)
   const midRow = [3, 3, 2, 3, 2, 3, 3, 2, 3, 3, 2, 3]; // sum = 32
 
-  // Full 7×12 table — index 0=Sun, 1=Moon, 2=Mars, 3=Mercury, 4=Jupiter, 5=Venus, 6=Saturn
+  // Full 7×12 table  –  index 0=Sun, 1=Moon, 2=Mars, 3=Mercury, 4=Jupiter, 5=Venus, 6=Saturn
   const reducedBpi: number[][] = [
-    highRow,  // Sun — 42
-    midRow,   // Moon — 32
-    lowRow,   // Mars — 15
-    midRow,   // Mercury — 32
-    highRow,  // Jupiter — 42
-    midRow,   // Venus — 32
-    lowRow,   // Saturn — 15
+    highRow,  // Sun  –  42
+    midRow,   // Moon  –  32
+    lowRow,   // Mars  –  15
+    midRow,   // Mercury  –  32
+    highRow,  // Jupiter  –  42
+    midRow,   // Venus  –  32
+    lowRow,   // Saturn  –  15
   ];
 
   const pinda = [120, 95, 50, 95, 130, 100, 55];

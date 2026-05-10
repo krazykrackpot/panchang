@@ -9,12 +9,12 @@ import { RASHIS } from '@/lib/constants/rashis';
 import type { LocaleText, PanchangData } from '@/types/panchang';
 
 /**
- * Instagram image generation API — produces 1080x1080 PNG images for social media.
+ * Instagram image generation API  –  produces 1080x1080 PNG images for social media.
  *
  * Query params:
- *   ?type=panchang              — Daily panchang card (Ujjain)
- *   ?type=nakshatra&id=N        — Nakshatra spotlight (1-27, defaults to today's nakshatra)
- *   ?type=moonsign&rashi=N&topic=love — Moon sign carousel slide (rashi 1-12)
+ *   ?type=panchang               –  Daily panchang card (Ujjain)
+ *   ?type=nakshatra&id=N         –  Nakshatra spotlight (1-27, defaults to today's nakshatra)
+ *   ?type=moonsign&rashi=N&topic=love  –  Moon sign carousel slide (rashi 1-12)
  *
  * Uses Satori (via next/og ImageResponse) for server-side rendering.
  * Satori CSS limitations: no CSS grid, limited position:absolute, no pseudo-elements.
@@ -52,11 +52,11 @@ const MOON_SIGN_TRAITS: Record<string, Record<number, { title: string; text: str
     2: { title: 'Your Love Language', text: 'Sensory devotion. You show love through touch, food, comfort, and creating a beautiful shared space.' },
     3: { title: 'Your Love Language', text: 'Words and wit. You show love through conversation, humor, and keeping things intellectually alive.' },
     4: { title: 'Your Love Language', text: 'Nurturing presence. You show love by feeding, sheltering, and emotionally holding your partner.' },
-    5: { title: 'Your Love Language', text: 'Grand gestures. You show love dramatically — public declarations, generous gifts, undivided attention.' },
+    5: { title: 'Your Love Language', text: 'Grand gestures. You show love dramatically  –  public declarations, generous gifts, undivided attention.' },
     6: { title: 'Your Love Language', text: 'Acts of service. You show love by fixing, organizing, and quietly making your partner\'s life easier.' },
     7: { title: 'Your Love Language', text: 'Harmony and partnership. You show love by creating balance, beauty, and treating your partner as an equal.' },
-    8: { title: 'Your Love Language', text: 'Emotional depth. You show love through total vulnerability — or not at all. No half-measures.' },
-    9: { title: 'Your Love Language', text: 'Shared adventure. You show love by exploring together — travel, philosophy, new experiences, growth.' },
+    8: { title: 'Your Love Language', text: 'Emotional depth. You show love through total vulnerability  –  or not at all. No half-measures.' },
+    9: { title: 'Your Love Language', text: 'Shared adventure. You show love by exploring together  –  travel, philosophy, new experiences, growth.' },
     10: { title: 'Your Love Language', text: 'Quiet commitment. You show love through loyalty, reliability, and building something lasting together.' },
     11: { title: 'Your Love Language', text: 'Intellectual freedom. You show love by respecting independence and sharing visionary ideas about the future.' },
     12: { title: 'Your Love Language', text: 'Spiritual connection. You show love through empathy, intuition, and dissolving the boundary between self and other.' },

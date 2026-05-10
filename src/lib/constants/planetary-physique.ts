@@ -1,5 +1,5 @@
 /**
- * Planetary Physique — body characteristics associated with each planet.
+ * Planetary Physique  –  body characteristics associated with each planet.
  *
  * When a planet strongly influences the ascendant (lagna lord, in lagna,
  * or aspects lagna), it imprints physical characteristics on the native.

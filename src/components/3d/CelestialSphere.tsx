@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * CelestialSphere — Three.js 3D ecliptic sphere with planets, nakshatras, and orbit controls.
+ * CelestialSphere  –  Three.js 3D ecliptic sphere with planets, nakshatras, and orbit controls.
  *
  * Architecture:
  * - Canvas fills its container; parent must set height.
@@ -10,7 +10,7 @@
  * - Planet positions refreshed every 60s from /api/sky/positions.
  *
  * NOTE: This file uses @react-three/fiber and @react-three/drei.
- * THREE.js cannot run server-side — this component must be dynamically imported
+ * THREE.js cannot run server-side  –  this component must be dynamically imported
  * with { ssr: false } in the consuming page.
  */
 
@@ -24,7 +24,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
 
 // ---------------------------------------------------------------------------
-// Constants — hoisted from render path (perf rule)
+// Constants  –  hoisted from render path (perf rule)
 // ---------------------------------------------------------------------------
 
 const ECLIPTIC_TILT = 23.4 * (Math.PI / 180);
@@ -73,7 +73,7 @@ function fmtDeg(deg: number): string {
 // Sub-components
 // ---------------------------------------------------------------------------
 
-/** Ecliptic ring — thicker and more prominent */
+/** Ecliptic ring  –  thicker and more prominent */
 function EclipticRing() {
   return (
     <mesh rotation={[Math.PI / 2, 0, 0]}>
@@ -395,7 +395,7 @@ function EarthCenter() {
   );
 }
 
-/** Camera reset helper — lives inside Canvas */
+/** Camera reset helper  –  lives inside Canvas */
 function CameraResetter({ resetSignal }: { resetSignal: number }) {
   const { camera } = useThree();
   useEffect(() => {

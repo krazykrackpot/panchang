@@ -1,5 +1,5 @@
 /**
- * Disease Susceptibility Profile — aggregates body map scores and matches
+ * Disease Susceptibility Profile  –  aggregates body map scores and matches
  * classical disease signature patterns from the chart.
  *
  * Sources: BPHS Ch.24, Sarvartha Chintamani, Phala Deepika

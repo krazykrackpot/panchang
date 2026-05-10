@@ -18,9 +18,9 @@ import { DOMAIN_CONFIGS } from './config';
 // ---------------------------------------------------------------------------
 
 export interface CrossDomainInput {
-  /** House lord mapping — one entry per house (12 entries). */
+  /** House lord mapping  –  one entry per house (12 entries). */
   houseLords: { house: number; lordId: number }[];
-  /** Planet house placement — one entry per planet (up to 9 entries). */
+  /** Planet house placement  –  one entry per planet (up to 9 entries). */
   planetHouses: { planetId: number; house: number }[];
 }
 
@@ -142,8 +142,8 @@ export function detectCrossDomainLinks(input: CrossDomainInput): CrossDomainLink
           linkedDomain: domainB.id as DomainType,
           linkType: 'depends_on',
           explanation: {
-            en: `${domainA.name.en} and ${domainB.name.en} are deeply intertwined — ${pName} rules key houses in both domains, meaning shifts in one area directly ripple into the other.`,
-            hi: `${domainA.name.hi} और ${domainB.name.hi} गहराई से जुड़े हैं — ${pNameH} दोनों क्षेत्रों में महत्वपूर्ण भावों का स्वामी है, जिसका अर्थ है कि एक क्षेत्र में बदलाव सीधे दूसरे को प्रभावित करता है।`,
+            en: `${domainA.name.en} and ${domainB.name.en} are deeply intertwined  –  ${pName} rules key houses in both domains, meaning shifts in one area directly ripple into the other.`,
+            hi: `${domainA.name.hi} और ${domainB.name.hi} गहराई से जुड़े हैं  –  ${pNameH} दोनों क्षेत्रों में महत्वपूर्ण भावों का स्वामी है, जिसका अर्थ है कि एक क्षेत्र में बदलाव सीधे दूसरे को प्रभावित करता है।`,
           },
         });
         continue;
@@ -175,8 +175,8 @@ export function detectCrossDomainLinks(input: CrossDomainInput): CrossDomainLink
           linkedDomain: domainB.id as DomainType,
           linkType: 'supports',
           explanation: {
-            en: `${pName}, a key indicator of ${domainA.name.en}, sits in house ${overlapHouse} — a primary house for ${domainB.name.en}. This placement bridges both life areas, making them mutually reinforcing.`,
-            hi: `${pNameH}, जो ${domainA.name.hi} का प्रमुख कारक है, भाव ${overlapHouse} में स्थित है — जो ${domainB.name.hi} का प्राथमिक भाव है। यह स्थिति दोनों जीवन क्षेत्रों को जोड़ती है और उन्हें परस्पर सुदृढ़ बनाती है।`,
+            en: `${pName}, a key indicator of ${domainA.name.en}, sits in house ${overlapHouse}  –  a primary house for ${domainB.name.en}. This placement bridges both life areas, making them mutually reinforcing.`,
+            hi: `${pNameH}, जो ${domainA.name.hi} का प्रमुख कारक है, भाव ${overlapHouse} में स्थित है  –  जो ${domainB.name.hi} का प्राथमिक भाव है। यह स्थिति दोनों जीवन क्षेत्रों को जोड़ती है और उन्हें परस्पर सुदृढ़ बनाती है।`,
           },
         });
         continue;
@@ -185,7 +185,7 @@ export function detectCrossDomainLinks(input: CrossDomainInput): CrossDomainLink
       // ---- Rule 3: Conflict -----------------------------------------------
       // A natural malefic (Sun=0, Mars=2, Saturn=6, Rahu=7, Ketu=8) that is a
       // primary planet of domain A occupies a dusthana (6/8/12) from a primary
-      // house of domain B — creating tension between the domains.
+      // house of domain B  –  creating tension between the domains.
       const MALEFIC_IDS = new Set([0, 2, 6, 7, 8]);
       let conflictPlanetId: number | null = null;
 
@@ -211,8 +211,8 @@ export function detectCrossDomainLinks(input: CrossDomainInput): CrossDomainLink
           linkedDomain: domainB.id as DomainType,
           linkType: 'conflicts',
           explanation: {
-            en: `${pName}, important for ${domainA.name.en}, creates tension in ${domainB.name.en} — occupying a challenging position from key ${domainB.name.en} houses. Progress in one area may require sacrifice in the other.`,
-            hi: `${pNameH}, जो ${domainA.name.hi} के लिए महत्वपूर्ण है, ${domainB.name.hi} में तनाव पैदा करता है — प्रमुख ${domainB.name.hi} भावों से चुनौतीपूर्ण स्थिति में स्थित है। एक क्षेत्र में प्रगति के लिए दूसरे में त्याग आवश्यक हो सकता है।`,
+            en: `${pName}, important for ${domainA.name.en}, creates tension in ${domainB.name.en}  –  occupying a challenging position from key ${domainB.name.en} houses. Progress in one area may require sacrifice in the other.`,
+            hi: `${pNameH}, जो ${domainA.name.hi} के लिए महत्वपूर्ण है, ${domainB.name.hi} में तनाव पैदा करता है  –  प्रमुख ${domainB.name.hi} भावों से चुनौतीपूर्ण स्थिति में स्थित है। एक क्षेत्र में प्रगति के लिए दूसरे में त्याग आवश्यक हो सकता है।`,
           },
         });
       }

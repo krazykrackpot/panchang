@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const meta = await getPageMetadata('/learn/lagna', locale);
-  const title = typeof meta.title === 'string' ? meta.title : 'Lagna — The Ascendant';
+  const title = typeof meta.title === 'string' ? meta.title : 'Lagna  –  The Ascendant';
   const description = typeof meta.description === 'string' ? meta.description : '';
 
   const faqLD = generateFAQLD('/learn/lagna', locale);

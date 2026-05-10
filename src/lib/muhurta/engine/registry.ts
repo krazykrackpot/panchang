@@ -1,5 +1,5 @@
 /**
- * Muhurta Engine — Rule Registry
+ * Muhurta Engine  –  Rule Registry
  */
 
 import type { MuhurtaRule, RuleScope } from './types';

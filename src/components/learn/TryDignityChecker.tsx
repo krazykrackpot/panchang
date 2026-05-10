@@ -5,7 +5,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 
 /**
  * Planetary dignity data from BPHS (Brihat Parashara Hora Shastra).
- * Rahu/Ketu excluded — only visible planets Sun through Saturn.
+ * Rahu/Ketu excluded  –  only visible planets Sun through Saturn.
  *
  * Fields: ownSigns (array of rashi IDs), exaltSign, exaltDeg, debilSign,
  * moolatrikonSign, moolatrikonDegRange [start, end].

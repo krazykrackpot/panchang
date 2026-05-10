@@ -2,7 +2,7 @@ import { getLocale } from 'next-intl/server';
 import { Link } from '@/lib/i18n/navigation';
 import { Calendar, Sparkles, MapPin, ChevronRight } from 'lucide-react';
 
-export const revalidate = 86400; // 24 hours — festival listing changes rarely
+export const revalidate = 86400; // 24 hours  –  festival listing changes rarely
 
 // ─── Festival data ────────────────────────────────────────────────────────────
 
@@ -10,121 +10,121 @@ const FESTIVALS = [
   {
     slug: 'makar-sankranti',
     name: { en: 'Makar Sankranti', hi: 'मकर संक्रान्ति' },
-    desc: { en: "Sun's northward transit — sesame sweets, kite flying, Ganga bathing.", hi: 'सूर्य की उत्तरायण यात्रा — तिल, पतंग, गंगा स्नान।' },
+    desc: { en: "Sun's northward transit  –  sesame sweets, kite flying, Ganga bathing.", hi: 'सूर्य की उत्तरायण यात्रा  –  तिल, पतंग, गंगा स्नान।' },
     month: 'January',
   },
   {
     slug: 'vasant-panchami',
     name: { en: 'Vasant Panchami', hi: 'वसंत पंचमी' },
-    desc: { en: 'Goddess Saraswati puja — start of spring, day to begin new learning.', hi: 'सरस्वती पूजा — वसन्त आगमन, विद्यारम्भ का शुभ दिन।' },
+    desc: { en: 'Goddess Saraswati puja  –  start of spring, day to begin new learning.', hi: 'सरस्वती पूजा  –  वसन्त आगमन, विद्यारम्भ का शुभ दिन।' },
     month: 'January–February',
   },
   {
     slug: 'holika-dahan',
     name: { en: 'Holika Dahan', hi: 'होलिका दहन' },
-    desc: { en: 'Bonfire ritual on Purnima eve symbolising victory of devotion over evil.', hi: 'पूर्णिमा की रात्रि होलिका दहन — भक्ति की असुर पर विजय।' },
+    desc: { en: 'Bonfire ritual on Purnima eve symbolising victory of devotion over evil.', hi: 'पूर्णिमा की रात्रि होलिका दहन  –  भक्ति की असुर पर विजय।' },
     month: 'February–March',
   },
   {
     slug: 'holi',
     name: { en: 'Holi', hi: 'होली' },
-    desc: { en: 'Festival of colours — spring celebration of joy, love, and renewal.', hi: 'रंगों का त्योहार — वसन्त उत्सव, प्रेम और आनन्द का पर्व।' },
+    desc: { en: 'Festival of colours  –  spring celebration of joy, love, and renewal.', hi: 'रंगों का त्योहार  –  वसन्त उत्सव, प्रेम और आनन्द का पर्व।' },
     month: 'February–March',
   },
   {
     slug: 'ram-navami',
     name: { en: 'Ram Navami', hi: 'रामनवमी' },
-    desc: { en: 'Birthday of Lord Rama — Madhyahna Muhurta puja on Chaitra Shukla Navami.', hi: 'भगवान राम का जन्मोत्सव — चैत्र शुक्ल नवमी पर मध्याह्न मुहूर्त पूजा।' },
+    desc: { en: 'Birthday of Lord Rama  –  Madhyahna Muhurta puja on Chaitra Shukla Navami.', hi: 'भगवान राम का जन्मोत्सव  –  चैत्र शुक्ल नवमी पर मध्याह्न मुहूर्त पूजा।' },
     month: 'March–April',
   },
   {
     slug: 'hanuman-jayanti',
     name: { en: 'Hanuman Jayanti', hi: 'हनुमान जयन्ती' },
-    desc: { en: 'Birth anniversary of Hanuman — sunrise abhishek, Sundarkand path.', hi: 'हनुमान जन्मोत्सव — सूर्योदय अभिषेक, सुन्दरकाण्ड पाठ।' },
+    desc: { en: 'Birth anniversary of Hanuman  –  sunrise abhishek, Sundarkand path.', hi: 'हनुमान जन्मोत्सव  –  सूर्योदय अभिषेक, सुन्दरकाण्ड पाठ।' },
     month: 'April',
   },
   {
     slug: 'akshaya-tritiya',
     name: { en: 'Akshaya Tritiya', hi: 'अक्षय तृतीया' },
-    desc: { en: 'All-day auspicious muhurta — ideal for gold purchase, weddings, new ventures.', hi: 'सम्पूर्ण दिन शुभ मुहूर्त — स्वर्ण क्रय, विवाह, नए उद्यम के लिए उत्तम।' },
+    desc: { en: 'All-day auspicious muhurta  –  ideal for gold purchase, weddings, new ventures.', hi: 'सम्पूर्ण दिन शुभ मुहूर्त  –  स्वर्ण क्रय, विवाह, नए उद्यम के लिए उत्तम।' },
     month: 'April–May',
   },
   {
     slug: 'guru-purnima',
     name: { en: 'Guru Purnima', hi: 'गुरु पूर्णिमा' },
-    desc: { en: 'Full Moon honouring the Guru — Vyasa Puja, gratitude, spiritual renewal.', hi: 'गुरु सम्मान की पूर्णिमा — व्यास पूजा, कृतज्ञता, आध्यात्मिक नवीकरण।' },
+    desc: { en: 'Full Moon honouring the Guru  –  Vyasa Puja, gratitude, spiritual renewal.', hi: 'गुरु सम्मान की पूर्णिमा  –  व्यास पूजा, कृतज्ञता, आध्यात्मिक नवीकरण।' },
     month: 'June–July',
   },
   {
     slug: 'hartalika-teej',
     name: { en: 'Hartalika Teej', hi: 'हरतालिका तीज' },
-    desc: { en: "Women's fast for Shiva–Parvati union — Pradosh Kaal puja, no food or water.", hi: 'शिव-पार्वती मिलन का व्रत — प्रदोष काल पूजा, निर्जला उपवास।' },
+    desc: { en: "Women's fast for Shiva–Parvati union  –  Pradosh Kaal puja, no food or water.", hi: 'शिव-पार्वती मिलन का व्रत  –  प्रदोष काल पूजा, निर्जला उपवास।' },
     month: 'August–September',
   },
   {
     slug: 'ganesh-chaturthi',
     name: { en: 'Ganesh Chaturthi', hi: 'गणेश चतुर्थी' },
-    desc: { en: 'Ten-day festival of Ganesha — Madhyahna Muhurta installation, immersion on Anant Chaturdashi.', hi: 'दस दिवसीय गणेश उत्सव — मध्याह्न स्थापना, अनन्त चतुर्दशी पर विसर्जन।' },
+    desc: { en: 'Ten-day festival of Ganesha  –  Madhyahna Muhurta installation, immersion on Anant Chaturdashi.', hi: 'दस दिवसीय गणेश उत्सव  –  मध्याह्न स्थापना, अनन्त चतुर्दशी पर विसर्जन।' },
     month: 'August–September',
   },
   {
     slug: 'dussehra',
     name: { en: 'Dussehra', hi: 'दशहरा' },
-    desc: { en: "Vijayadashami — Aparahna Muhurta Ravana dahan, Shastra Puja, Shami worship.", hi: 'विजयादशमी — अपराह्न मुहूर्त रावण दहन, शस्त्र पूजा, शमी पूजन।' },
+    desc: { en: "Vijayadashami  –  Aparahna Muhurta Ravana dahan, Shastra Puja, Shami worship.", hi: 'विजयादशमी  –  अपराह्न मुहूर्त रावण दहन, शस्त्र पूजा, शमी पूजन।' },
     month: 'October',
   },
   {
     slug: 'dhanteras',
     name: { en: 'Dhanteras', hi: 'धनतेरस' },
-    desc: { en: 'Dhanvantari Jayanti — Pradosh Kaal gold and silver purchase, Yama Deepam.', hi: 'धनवंतरि जयन्ती — प्रदोष काल स्वर्ण-रजत क्रय, यम दीपम।' },
+    desc: { en: 'Dhanvantari Jayanti  –  Pradosh Kaal gold and silver purchase, Yama Deepam.', hi: 'धनवंतरि जयन्ती  –  प्रदोष काल स्वर्ण-रजत क्रय, यम दीपम।' },
     month: 'October–November',
   },
   {
     slug: 'narak-chaturdashi',
     name: { en: 'Narak Chaturdashi', hi: 'नरक चतुर्दशी' },
-    desc: { en: 'Chhoti Diwali — Arunodaya Kaal oil bath before sunrise, Abhyanga Snana.', hi: 'छोटी दीपावली — अरुणोदय काल में सूर्योदय से पूर्व अभ्यंग स्नान।' },
+    desc: { en: 'Chhoti Diwali  –  Arunodaya Kaal oil bath before sunrise, Abhyanga Snana.', hi: 'छोटी दीपावली  –  अरुणोदय काल में सूर्योदय से पूर्व अभ्यंग स्नान।' },
     month: 'October–November',
   },
   {
     slug: 'diwali',
     name: { en: 'Diwali', hi: 'दीपावली' },
-    desc: { en: 'Festival of lights — Lakshmi Puja at Pradosh Kaal, fireworks, diyas.', hi: 'दीपों का पर्व — प्रदोष काल लक्ष्मी पूजा, आतिशबाजी, दीपोत्सव।' },
+    desc: { en: 'Festival of lights  –  Lakshmi Puja at Pradosh Kaal, fireworks, diyas.', hi: 'दीपों का पर्व  –  प्रदोष काल लक्ष्मी पूजा, आतिशबाजी, दीपोत्सव।' },
     month: 'October–November',
   },
   {
     slug: 'govardhan-puja',
     name: { en: 'Govardhan Puja', hi: 'गोवर्धन पूजा' },
-    desc: { en: "Krishna's victory over Indra — Annakut offering, Go Puja at sunrise.", hi: 'इन्द्र पर कृष्ण की विजय — अन्नकूट भोग, सूर्योदय पर गो पूजा।' },
+    desc: { en: "Krishna's victory over Indra  –  Annakut offering, Go Puja at sunrise.", hi: 'इन्द्र पर कृष्ण की विजय  –  अन्नकूट भोग, सूर्योदय पर गो पूजा।' },
     month: 'October–November',
   },
   {
     slug: 'bhai-dooj',
     name: { en: 'Bhai Dooj', hi: 'भाई दूज' },
-    desc: { en: "Brothers' day — sisters apply tilak at Madhyahna, blessing ritual.", hi: "भाई-बहन का पर्व — मध्याह्न में बहन का तिलक, आशीर्वाद अनुष्ठान।" },
+    desc: { en: "Brothers' day  –  sisters apply tilak at Madhyahna, blessing ritual.", hi: "भाई-बहन का पर्व  –  मध्याह्न में बहन का तिलक, आशीर्वाद अनुष्ठान।" },
     month: 'October–November',
   },
   {
     slug: 'chhath-puja',
     name: { en: 'Chhath Puja', hi: 'छठ पूजा' },
-    desc: { en: 'Four-day Sun worship — Arghya at sunset then sunrise, riverbank rituals.', hi: 'चार दिवसीय सूर्य उपासना — सायं व प्रातः अर्घ्य, नदी तट पर अनुष्ठान।' },
+    desc: { en: 'Four-day Sun worship  –  Arghya at sunset then sunrise, riverbank rituals.', hi: 'चार दिवसीय सूर्य उपासना  –  सायं व प्रातः अर्घ्य, नदी तट पर अनुष्ठान।' },
     month: 'October–November',
   },
   {
     slug: 'janmashtami',
     name: { en: 'Janmashtami', hi: 'जन्माष्टमी' },
-    desc: { en: "Krishna's birth at Nishita Kaal midnight — fasting, Dahi Handi, bhajan.", hi: 'निशीथ काल में कृष्ण जन्म — उपवास, दही हांडी, भजन-कीर्तन।' },
+    desc: { en: "Krishna's birth at Nishita Kaal midnight  –  fasting, Dahi Handi, bhajan.", hi: 'निशीथ काल में कृष्ण जन्म  –  उपवास, दही हांडी, भजन-कीर्तन।' },
     month: 'August',
   },
   {
     slug: 'raksha-bandhan',
     name: { en: 'Raksha Bandhan', hi: 'रक्षाबंधन' },
-    desc: { en: "Bond of protection — tying rakhi during Aparahna, avoiding Bhadra.", hi: 'रक्षा का बंधन — अपराह्न में राखी, भद्रा काल का परिहार।' },
+    desc: { en: "Bond of protection  –  tying rakhi during Aparahna, avoiding Bhadra.", hi: 'रक्षा का बंधन  –  अपराह्न में राखी, भद्रा काल का परिहार।' },
     month: 'July–August',
   },
   {
     slug: 'maha-shivaratri',
     name: { en: 'Maha Shivaratri', hi: 'महाशिवरात्रि' },
-    desc: { en: "Night of Shiva — four Prahar pujas, Nishita Kaal as the most sacred watch.", hi: 'शिव की महारात्रि — चार प्रहर पूजा, निशीथ काल सर्वाधिक पवित्र।' },
+    desc: { en: "Night of Shiva  –  four Prahar pujas, Nishita Kaal as the most sacred watch.", hi: 'शिव की महारात्रि  –  चार प्रहर पूजा, निशीथ काल सर्वाधिक पवित्र।' },
     month: 'February–March',
   },
 ] as const;
@@ -139,7 +139,7 @@ const TOP_CITIES = [
   { slug: 'new-york',   name: 'New York' },
 ] as const;
 
-// All 15 cities — linked from the "View all cities" section on each card
+// All 15 cities  –  linked from the "View all cities" section on each card
 const ALL_CITIES = [
   { slug: 'delhi',       name: 'Delhi' },
   { slug: 'mumbai',      name: 'Mumbai' },
@@ -168,10 +168,10 @@ export default async function FestivalsHubPage() {
   const isHindi = locale === 'hi';
 
   const label = {
-    heading:    isHindi ? 'हिन्दू त्योहार — तिथि, मुहूर्त और समय' : 'Hindu Festival Dates & Timings',
+    heading:    isHindi ? 'हिन्दू त्योहार  –  तिथि, मुहूर्त और समय' : 'Hindu Festival Dates & Timings',
     subheading: isHindi
       ? `२०${CURRENT_YEAR - 2000} और २०${NEXT_YEAR - 2000} के लिए भारत और विश्व के शहरों में सटीक तिथि, मुहूर्त और पूजा समय।`
-      : `Exact dates, Tithi, Muhurta, and city-specific puja timings for ${CURRENT_YEAR} & ${NEXT_YEAR} — computed from classical Vedic algorithms for ${ALL_CITIES.length} cities.`,
+      : `Exact dates, Tithi, Muhurta, and city-specific puja timings for ${CURRENT_YEAR} & ${NEXT_YEAR}  –  computed from classical Vedic algorithms for ${ALL_CITIES.length} cities.`,
     introPara: isHindi
       ? 'प्रत्येक त्योहार पृष्ठ पर आपको मिलेगा: काल-व्याप्ति आधारित सटीक तारीख, सूर्योदय और तिथि समय, शहर-विशेष पूजा मुहूर्त, व्रत एवं अनुष्ठान विधि, और ऐतिहासिक-पौराणिक संदर्भ।'
       : 'Every festival page shows: the exact date by Kala-Vyapti (tithi prevalence) rule, city-specific sunrise and tithi times, the auspicious puja muhurta window, observance rituals, and the mythology behind the celebration.',
@@ -269,7 +269,7 @@ export default async function FestivalsHubPage() {
                   {desc}
                 </p>
 
-                {/* City pills — top 6, both years */}
+                {/* City pills  –  top 6, both years */}
                 <div className="space-y-3">
                   {[CURRENT_YEAR, NEXT_YEAR].map((yr) => (
                     <div key={yr}>

@@ -15,13 +15,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const puja = PUJA_VIDHIS[slug];
 
   if (!puja) {
-    return { title: 'Puja Vidhi — Dekho Panchang' };
+    return { title: 'Puja Vidhi  –  Dekho Panchang' };
   }
 
   const loc = locale as 'en' | 'hi';
   const deity = puja.deity[loc] || puja.deity.en;
   const deityEn = puja.deity.en;
-  const title = `${deity} Puja Vidhi — Step by Step with Mantras | Dekho Panchang`;
+  const title = `${deity} Puja Vidhi  –  Step by Step with Mantras | Dekho Panchang`;
   const description = `Complete ${deityEn} puja vidhi with step-by-step procedure, mantras in Devanagari & IAST, samagri list, and auspicious timing. ${puja.muhurtaDescription.en}`.slice(0, 160);
 
   return {

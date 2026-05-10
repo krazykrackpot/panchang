@@ -8,7 +8,7 @@ import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/contributions-binary.json';
 
-export const revalidate = 604800; // 7 days — static educational content
+export const revalidate = 604800; // 7 days  –  static educational content
 
 
 /* ═══════════════════════════════════════════════════════════════
@@ -32,11 +32,11 @@ const MERU = [
 ];
 
 const SANSKRIT_TERMS = [
-  { term: 'Chandahshastra', transliteration: 'Chandaḥśāstra', meaning: 'Science of meters — Pingala\'s prosody treatise (~200 BCE)', devanagari: 'छन्दःशास्त्र' },
-  { term: 'Laghu', transliteration: 'laghu', meaning: 'light/short syllable — maps to binary 0', devanagari: 'लघु' },
-  { term: 'Guru', transliteration: 'guru', meaning: 'heavy/long syllable — maps to binary 1', devanagari: 'गुरु' },
-  { term: 'Meru Prastara', transliteration: 'meru-prastāra', meaning: 'Mountain arrangement — Pingala\'s Pascal Triangle', devanagari: 'मेरु प्रस्तार' },
-  { term: 'Mishrau cha', transliteration: 'miśrau ca', meaning: 'mixing rule — generates Fibonacci sequence', devanagari: 'मिश्रौ च' },
+  { term: 'Chandahshastra', transliteration: 'Chandaḥśāstra', meaning: 'Science of meters  –  Pingala\'s prosody treatise (~200 BCE)', devanagari: 'छन्दःशास्त्र' },
+  { term: 'Laghu', transliteration: 'laghu', meaning: 'light/short syllable  –  maps to binary 0', devanagari: 'लघु' },
+  { term: 'Guru', transliteration: 'guru', meaning: 'heavy/long syllable  –  maps to binary 1', devanagari: 'गुरु' },
+  { term: 'Meru Prastara', transliteration: 'meru-prastāra', meaning: 'Mountain arrangement  –  Pingala\'s Pascal Triangle', devanagari: 'मेरु प्रस्तार' },
+  { term: 'Mishrau cha', transliteration: 'miśrau ca', meaning: 'mixing rule  –  generates Fibonacci sequence', devanagari: 'मिश्रौ च' },
 ];
 
 /* ═══════════════════════════════════════════════════════════════

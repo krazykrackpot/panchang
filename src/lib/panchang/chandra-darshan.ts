@@ -1,5 +1,5 @@
 /**
- * Chandra Darshan — New Crescent Moon Visibility Calculator
+ * Chandra Darshan  –  New Crescent Moon Visibility Calculator
  *
  * Computes whether the young crescent Moon is visible after sunset on a given date.
  * Uses a simplified Yallop/Odeh visibility model based on:
@@ -9,7 +9,7 @@
  *
  * Accuracy note: Moon longitude from Meeus has ~0.5deg error; elongation-based
  * visibility thresholds are generous enough to absorb this. The model errs on the
- * side of "possible" rather than "definite" — real naked-eye sighting depends on
+ * side of "possible" rather than "definite"  –  real naked-eye sighting depends on
  * atmospheric conditions, observer skill, and horizon obstruction.
  */
 
@@ -272,7 +272,7 @@ export function computeChandraDarshan(
     bestViewingTime = formatTime(viewingHoursUT, tzOffset);
   }
 
-  // 11. Direction — always western horizon for new crescent
+  // 11. Direction  –  always western horizon for new crescent
   const direction = {
     en: 'Western horizon, slightly above where the Sun set',
     hi: 'पश्चिमी क्षितिज, जहाँ सूर्यास्त हुआ उससे थोड़ा ऊपर',
@@ -303,13 +303,13 @@ function getDescription(
   switch (assessment) {
     case 'not_visible':
       return {
-        en: `The crescent Moon is not visible tonight. Moon age is ${ageStr} hours with ${elongStr}\u00b0 elongation — too close to the Sun for naked-eye sighting.`,
-        hi: `आज रात चन्द्र दर्शन सम्भव नहीं है। चन्द्रमा की आयु ${ageStr} घण्टे और ${elongStr}\u00b0 दूरी — सूर्य से बहुत निकट।`,
+        en: `The crescent Moon is not visible tonight. Moon age is ${ageStr} hours with ${elongStr}\u00b0 elongation  –  too close to the Sun for naked-eye sighting.`,
+        hi: `आज रात चन्द्र दर्शन सम्भव नहीं है। चन्द्रमा की आयु ${ageStr} घण्टे और ${elongStr}\u00b0 दूरी  –  सूर्य से बहुत निकट।`,
       };
     case 'difficult':
       return {
-        en: `Difficult sighting conditions. Moon age is ${ageStr} hours with ${elongStr}\u00b0 elongation. Binoculars may help — look west just after sunset with a clear horizon.`,
-        hi: `कठिन दर्शन स्थिति। चन्द्रमा की आयु ${ageStr} घण्टे और ${elongStr}\u00b0 दूरी। दूरबीन सहायक हो सकती है — सूर्यास्त के तुरन्त बाद पश्चिम में देखें।`,
+        en: `Difficult sighting conditions. Moon age is ${ageStr} hours with ${elongStr}\u00b0 elongation. Binoculars may help  –  look west just after sunset with a clear horizon.`,
+        hi: `कठिन दर्शन स्थिति। चन्द्रमा की आयु ${ageStr} घण्टे और ${elongStr}\u00b0 दूरी। दूरबीन सहायक हो सकती है  –  सूर्यास्त के तुरन्त बाद पश्चिम में देखें।`,
       };
     case 'visible':
       return {
@@ -318,15 +318,15 @@ function getDescription(
       };
     case 'easily_visible':
       return {
-        en: `The crescent Moon is easily visible tonight. Moon age is ${ageStr} hours with ${elongStr}\u00b0 elongation — a beautiful thin crescent in the western sky after sunset.`,
-        hi: `आज रात चन्द्र दर्शन सुगमता से सम्भव है। चन्द्रमा की आयु ${ageStr} घण्टे और ${elongStr}\u00b0 दूरी — सूर्यास्त के बाद पश्चिमी आकाश में सुन्दर पतला चन्द्रमा।`,
+        en: `The crescent Moon is easily visible tonight. Moon age is ${ageStr} hours with ${elongStr}\u00b0 elongation  –  a beautiful thin crescent in the western sky after sunset.`,
+        hi: `आज रात चन्द्र दर्शन सुगमता से सम्भव है। चन्द्रमा की आयु ${ageStr} घण्टे और ${elongStr}\u00b0 दूरी  –  सूर्यास्त के बाद पश्चिमी आकाश में सुन्दर पतला चन्द्रमा।`,
       };
   }
 }
 
 /**
  * Compute upcoming Chandra Darshan dates for the next N months.
- * Returns one entry per lunation — the first evening after each new Moon
+ * Returns one entry per lunation  –  the first evening after each new Moon
  * when the crescent becomes visible.
  */
 export function getUpcomingDarshan(

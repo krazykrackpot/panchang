@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
 
 // ---------------------------------------------------------------------------
-// GET /api/user/readings — last 12 months of domain reading snapshots
+// GET /api/user/readings  –  last 12 months of domain reading snapshots
 // ---------------------------------------------------------------------------
 export async function GET(req: NextRequest) {
   const supabase = getServerSupabase();
@@ -33,7 +33,7 @@ export async function GET(req: NextRequest) {
 }
 
 // ---------------------------------------------------------------------------
-// POST /api/user/readings — store a new monthly reading snapshot
+// POST /api/user/readings  –  store a new monthly reading snapshot
 // ---------------------------------------------------------------------------
 export async function POST(req: NextRequest) {
   const supabase = getServerSupabase();
@@ -79,7 +79,7 @@ export async function POST(req: NextRequest) {
       typeof scores.career !== 'number' || typeof scores.marriage !== 'number' ||
       typeof scores.children !== 'number' || typeof scores.family !== 'number' ||
       typeof scores.spiritual !== 'number' || typeof scores.education !== 'number') {
-    return NextResponse.json({ error: 'Missing or invalid scores object — all 8 domain scores required' }, { status: 400 });
+    return NextResponse.json({ error: 'Missing or invalid scores object  –  all 8 domain scores required' }, { status: 400 });
   }
 
   // Upsert: reading_month column enables simple ON CONFLICT

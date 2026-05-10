@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const toolLD = generateToolLD(
-    'Devotional Library — Aarti, Chalisa, Stotram, Mantra',
+    'Devotional Library  –  Aarti, Chalisa, Stotram, Mantra',
     'Complete collection of 55+ Hindu devotional texts with full Devanagari text, transliteration, meaning, and significance.',
     `${BASE_URL}/${locale}/devotional`,
   );

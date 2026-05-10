@@ -12,11 +12,11 @@ export async function generateMetadata({
 
   const title = tl(
     {
-      en: 'Astro Journal — Dekho Panchang',
-      hi: 'ज्योतिष डायरी — देखो पंचांग',
-      sa: 'ज्योतिष-दैनिकी — देखो पंचांग',
-      ta: 'ஜோதிட ஜர்னல் — தேக்கோ பஞ்சாங்கம்',
-      bn: 'জ্যোতিষ জার্নাল — দেখো পঞ্চাঙ্গ',
+      en: 'Astro Journal  –  Dekho Panchang',
+      hi: 'ज्योतिष डायरी  –  देखो पंचांग',
+      sa: 'ज्योतिष-दैनिकी  –  देखो पंचांग',
+      ta: 'ஜோதிட ஜர்னல்  –  தேக்கோ பஞ்சாங்கம்',
+      bn: 'জ্যোতিষ জার্নাল  –  দেখো পঞ্চাঙ্গ',
     },
     locale,
   );

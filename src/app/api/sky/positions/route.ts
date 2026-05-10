@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
       },
       {
         headers: {
-          // Cache at CDN edge for 60s — matches client auto-refresh interval
+          // Cache at CDN edge for 60s  –  matches client auto-refresh interval
           'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120',
         },
       }

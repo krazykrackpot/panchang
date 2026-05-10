@@ -212,8 +212,8 @@ export function computeDignityShifts(
       shift,
       isVargottama,
       narrative: {
-        en: `${PLANET_NAMES[pid].en}: ${d1Dignity} in D1 → ${dxxDignity} in Dxx${isVargottama ? ' (Vargottama)' : ''} — ${shift}`,
-        hi: `${PLANET_NAMES[pid].hi}: D1 में ${d1Dignity} → Dxx में ${dxxDignity}${isVargottama ? ' (वर्गोत्तम)' : ''} — ${shift}`,
+        en: `${PLANET_NAMES[pid].en}: ${d1Dignity} in D1 → ${dxxDignity} in Dxx${isVargottama ? ' (Vargottama)' : ''}  –  ${shift}`,
+        hi: `${PLANET_NAMES[pid].hi}: D1 में ${d1Dignity} → Dxx में ${dxxDignity}${isVargottama ? ' (वर्गोत्तम)' : ''}  –  ${shift}`,
       },
     });
   }
@@ -517,8 +517,8 @@ export function detectYogasInDxx(
         name: 'Gajakesari',
         planets: [1, 4],
         significance: {
-          en: 'Jupiter in kendra from Moon — fame, wisdom, prosperity',
-          hi: 'चन्द्र से केन्द्र में गुरु — यश, ज्ञान, समृद्धि',
+          en: 'Jupiter in kendra from Moon  –  fame, wisdom, prosperity',
+          hi: 'चन्द्र से केन्द्र में गुरु  –  यश, ज्ञान, समृद्धि',
         },
       });
     }
@@ -532,8 +532,8 @@ export function detectYogasInDxx(
       name: 'Budhaditya',
       planets: [0, 3],
       significance: {
-        en: 'Sun-Mercury conjunction — intelligence, eloquence',
-        hi: 'सूर्य-बुध युति — बुद्धि, वाक्पटुता',
+        en: 'Sun-Mercury conjunction  –  intelligence, eloquence',
+        hi: 'सूर्य-बुध युति  –  बुद्धि, वाक्पटुता',
       },
     });
   }
@@ -555,8 +555,8 @@ export function detectYogasInDxx(
         name: mahapurushaNames[pid],
         planets: [pid],
         significance: {
-          en: `${PLANET_NAMES[pid].en} in kendra in ${dig} sign — Mahapurusha yoga`,
-          hi: `${PLANET_NAMES[pid].hi} केन्द्र में ${dig} राशि — महापुरुष योग`,
+          en: `${PLANET_NAMES[pid].en} in kendra in ${dig} sign  –  Mahapurusha yoga`,
+          hi: `${PLANET_NAMES[pid].hi} केन्द्र में ${dig} राशि  –  महापुरुष योग`,
         },
       });
     }
@@ -682,7 +682,7 @@ export function buildDispositorChain(
       break;
     }
 
-    // Rahu/Ketu don't own signs — treat their dispositor as the sign lord
+    // Rahu/Ketu don't own signs  –  treat their dispositor as the sign lord
     if (current >= 7) {
       // Continue to the sign lord
     }
@@ -704,12 +704,12 @@ export function buildDispositorChain(
       en: finalDispositor !== null
         ? `Dispositor chain ends at ${PLANET_NAMES[finalDispositor]?.en ?? 'Planet'} (self-disposed)`
         : isCircular
-          ? 'Dispositor chain forms a circular loop — no single final dispositor'
+          ? 'Dispositor chain forms a circular loop  –  no single final dispositor'
           : 'Dispositor chain incomplete',
       hi: finalDispositor !== null
         ? `अधिपति श्रृंखला ${PLANET_NAMES[finalDispositor]?.hi ?? 'ग्रह'} पर समाप्त (स्व-राशि)`
         : isCircular
-          ? 'अधिपति श्रृंखला वृत्ताकार — कोई एकल अन्तिम अधिपति नहीं'
+          ? 'अधिपति श्रृंखला वृत्ताकार  –  कोई एकल अन्तिम अधिपति नहीं'
           : 'अधिपति श्रृंखला अपूर्ण',
     },
   };
@@ -731,7 +731,7 @@ function computePromiseDeliveryForChart(
   const keyHouses = DOMAIN_KEY_HOUSES[domain] || [1, 7];
   const primaryHouse = keyHouses[0] === 1 && keyHouses.length > 1 ? keyHouses[1] : keyHouses[0];
 
-  // D1 promise — use natal data
+  // D1 promise  –  use natal data
   const d1LagnaSign = kundali.ascendant.sign;
   const d1HouseSign = signOfHouse(d1LagnaSign, primaryHouse);
   const d1HouseLord = SIGN_LORD[d1HouseSign];
@@ -755,7 +755,7 @@ function computePromiseDeliveryForChart(
     - ([6, 8, 12].includes(d1LordHouse) ? 15 : 0)
     + (DIGNITY_RANK[d1LordDignity] >= 5 ? 15 : DIGNITY_RANK[d1LordDignity] <= 2 ? -10 : 0);
 
-  // Dxx delivery — use divisional chart data
+  // Dxx delivery  –  use divisional chart data
   const dxxHouseSign = signOfHouse(dxxChart.ascendantSign, primaryHouse);
   const dxxHouseLord = SIGN_LORD[dxxHouseSign];
   const dxxLordHouse = getPlanetHouse(dxxChart, dxxHouseLord);
@@ -784,7 +784,7 @@ function computePromiseDeliveryForChart(
 }
 
 // ---------------------------------------------------------------------------
-// Narrative builder — synthesize human-readable insight from analysis factors
+// Narrative builder  –  synthesize human-readable insight from analysis factors
 // ---------------------------------------------------------------------------
 
 function buildNarrative(
@@ -828,27 +828,27 @@ function buildNarrative(
     8: { en: 'Ketu', hi: 'केतु', ta: 'கேது', bn: 'কেতু', role: 'detachment and spiritual insight', roleTa: 'பற்றின்மை மற்றும் ஆன்மீக அறிவு', roleBn: 'বিচ্ছিন্নতা এবং আধ্যাত্মিক অন্তর্দৃষ্টি' },
   };
 
-  // 1. Big picture — what does this mean for the user?
+  // 1. Big picture  –  what does this mean for the user?
   if (pd.d1Promise >= 70 && pd.dxxDelivery >= 70) {
-    parts.push(`Your chart shows strong natural talent for ${dl.en}, and the deeper analysis confirms this will translate into real results. This is one of your life's genuine strengths — lean into it.`);
+    parts.push(`Your chart shows strong natural talent for ${dl.en}, and the deeper analysis confirms this will translate into real results. This is one of your life's genuine strengths  –  lean into it.`);
     partsHi.push(`आपकी कुण्डली ${dl.hi} के लिए प्रबल प्राकृतिक प्रतिभा दर्शाती है, और गहन विश्लेषण पुष्टि करता है कि यह वास्तविक परिणामों में बदलेगा। यह आपके जीवन की एक वास्तविक शक्ति है।`);
     partsTa.push(`உங்கள் ஜாதகம் ${dl.ta} க்கு வலுவான இயற்கை திறமையைக் காட்டுகிறது, மேலும் ஆழமான பகுப்பாய்வு இது உண்மையான முடிவுகளில் மாறும் என்பதை உறுதிப்படுத்துகிறது. இது உங்கள் வாழ்க்கையின் உண்மையான பலம்.`);
     partsBn.push(`আপনার জাতক ${dl.bn} জন্য শক্তিশালী প্রাকৃতিক প্রতিভা দেখায়, এবং গভীর বিশ্লেষণ নিশ্চিত করে যে এটি বাস্তব ফলাফলে রূপান্তরিত হবে। এটি আপনার জীবনের প্রকৃত শক্তি।`);
   } else if (pd.d1Promise >= 70) {
-    parts.push(`You have strong potential for ${dl.en}, but turning that potential into results will require patience and the right timing. Don't be discouraged by slow progress — the foundation is solid, and the right planetary period will accelerate things.`);
-    partsHi.push(`${dl.hi} के लिए आपमें प्रबल क्षमता है, किन्तु इसे फल में बदलने के लिए धैर्य और सही समय चाहिए। धीमी प्रगति से निराश न हों — नींव मज़बूत है।`);
-    partsTa.push(`${dl.ta} க்கு உங்களிடம் வலுவான திறன் உள்ளது, ஆனால் அந்த திறனை முடிவுகளாக மாற்ற பொறுமையும் சரியான நேரமும் தேவை. மெதுவான முன்னேற்றத்தால் சோர்வடையாதீர்கள் — அடித்தளம் உறுதியானது.`);
-    partsBn.push(`${dl.bn} জন্য আপনার মধ্যে শক্তিশালী সম্ভাবনা রয়েছে, তবে সেই সম্ভাবনাকে ফলাফলে রূপান্তরিত করতে ধৈর্য এবং সঠিক সময় প্রয়োজন। ধীর অগ্রগতিতে নিরুৎসাহিত হবেন না — ভিত্তি মজবুত।`);
+    parts.push(`You have strong potential for ${dl.en}, but turning that potential into results will require patience and the right timing. Don't be discouraged by slow progress  –  the foundation is solid, and the right planetary period will accelerate things.`);
+    partsHi.push(`${dl.hi} के लिए आपमें प्रबल क्षमता है, किन्तु इसे फल में बदलने के लिए धैर्य और सही समय चाहिए। धीमी प्रगति से निराश न हों  –  नींव मज़बूत है।`);
+    partsTa.push(`${dl.ta} க்கு உங்களிடம் வலுவான திறன் உள்ளது, ஆனால் அந்த திறனை முடிவுகளாக மாற்ற பொறுமையும் சரியான நேரமும் தேவை. மெதுவான முன்னேற்றத்தால் சோர்வடையாதீர்கள்  –  அடித்தளம் உறுதியானது.`);
+    partsBn.push(`${dl.bn} জন্য আপনার মধ্যে শক্তিশালী সম্ভাবনা রয়েছে, তবে সেই সম্ভাবনাকে ফলাফলে রূপান্তরিত করতে ধৈর্য এবং সঠিক সময় প্রয়োজন। ধীর অগ্রগতিতে নিরুৎসাহিত হবেন না  –  ভিত্তি মজবুত।`);
   } else if (pd.dxxDelivery >= 70) {
     parts.push(`While ${dl.en} may not be the first thing people notice about your chart, the deeper analysis reveals hidden support. When the right planetary period activates, you may surprise yourself with what you achieve here.`);
     partsHi.push(`हालाँकि ${dl.hi} आपकी कुण्डली की पहली दृष्टि में स्पष्ट नहीं, गहन विश्लेषण छिपा सहयोग दर्शाता है। सही ग्रह काल में आप स्वयं चकित हो सकते हैं।`);
     partsTa.push(`${dl.ta} உங்கள் ஜாதகத்தில் முதலில் தெளிவாக தெரியாவிட்டாலும், ஆழமான பகுப்பாய்வு மறைந்த ஆதரவை வெளிப்படுத்துகிறது. சரியான கிரக காலம் செயல்படும்போது, நீங்கள் இங்கு அடைவதை பார்த்து ஆச்சரியப்படலாம்.`);
     partsBn.push(`যদিও ${dl.bn} আপনার জাতকে প্রথমে স্পষ্ট নয়, গভীর বিশ্লেষণ লুকানো সহায়তা প্রকাশ করে। সঠিক গ্রহ কাল সক্রিয় হলে, আপনি এখানে যা অর্জন করেন তা দেখে নিজেই অবাক হতে পারেন।`);
   } else {
-    parts.push(`For ${dl.en}, your chart indicates a steady but measured path. Don't expect fireworks — instead, consistent effort over time will yield meaningful results. Focus on building skills and relationships in this area.`);
-    partsHi.push(`${dl.hi} के लिए आपकी कुण्डली स्थिर किन्तु मापित मार्ग दर्शाती है। धमाकेदार परिणाम की अपेक्षा न करें — निरंतर प्रयास से सार्थक फल मिलेंगे।`);
-    partsTa.push(`${dl.ta} க்கு, உங்கள் ஜாதகம் நிலையான ஆனால் அளவிடப்பட்ட பாதையை சுட்டிக்காட்டுகிறது. வெடிப்பான முடிவுகளை எதிர்பார்க்காதீர்கள் — பதிலாக, காலப்போக்கில் தொடர்ந்த முயற்சி அர்த்தமுள்ள முடிவுகளை தரும்.`);
-    partsBn.push(`${dl.bn} এর জন্য, আপনার জাতক একটি স্থির কিন্তু পরিমিত পথ নির্দেশ করে। বিস্ফোরক ফলাফল আশা করবেন না — পরিবর্তে, সময়ের সাথে ধারাবাহিক প্রচেষ্টা অর্থপূর্ণ ফলাফল দেবে।`);
+    parts.push(`For ${dl.en}, your chart indicates a steady but measured path. Don't expect fireworks  –  instead, consistent effort over time will yield meaningful results. Focus on building skills and relationships in this area.`);
+    partsHi.push(`${dl.hi} के लिए आपकी कुण्डली स्थिर किन्तु मापित मार्ग दर्शाती है। धमाकेदार परिणाम की अपेक्षा न करें  –  निरंतर प्रयास से सार्थक फल मिलेंगे।`);
+    partsTa.push(`${dl.ta} க்கு, உங்கள் ஜாதகம் நிலையான ஆனால் அளவிடப்பட்ட பாதையை சுட்டிக்காட்டுகிறது. வெடிப்பான முடிவுகளை எதிர்பார்க்காதீர்கள்  –  பதிலாக, காலப்போக்கில் தொடர்ந்த முயற்சி அர்த்தமுள்ள முடிவுகளை தரும்.`);
+    partsBn.push(`${dl.bn} এর জন্য, আপনার জাতক একটি স্থির কিন্তু পরিমিত পথ নির্দেশ করে। বিস্ফোরক ফলাফল আশা করবেন না  –  পরিবর্তে, সময়ের সাথে ধারাবাহিক প্রচেষ্টা অর্থপূর্ণ ফলাফল দেবে।`);
   }
 
   // 2. Planets that are your allies in this domain
@@ -858,27 +858,27 @@ function buildNarrative(
       return { en: `${p.en} (${p.role})`, hi: `${p.hi} (${p.role})`, ta: `${p.ta} (${p.roleTa})`, bn: `${p.bn} (${p.roleBn})` };
     });
     if (allies.length === 1) {
-      parts.push(`${allies[0].en} is especially powerful for ${dl.en} — this planet occupies the same strong position in both your birth chart and this specialized chart, meaning its influence is dependable and consistent.`);
-      partsHi.push(`${allies[0].hi} ${dl.hi} के लिए विशेष रूप से शक्तिशाली है — यह ग्रह दोनों चार्ट में समान बलवान स्थिति में है।`);
-      partsTa.push(`${allies[0].ta} ${dl.ta} க்கு விசேஷமாக வலுவானது — இந்த கிரகம் உங்கள் ஜன்ம ஜாதகம் மற்றும் இந்த சிறப்பு ஜாதகம் இரண்டிலும் ஒரே வலுவான நிலையில் உள்ளது.`);
-      partsBn.push(`${allies[0].bn} ${dl.bn} এর জন্য বিশেষভাবে শক্তিশালী — এই গ্রহটি আপনার জন্ম জাতক এবং এই বিশেষ জাতক উভয়তেই একই শক্তিশালী অবস্থানে রয়েছে।`);
+      parts.push(`${allies[0].en} is especially powerful for ${dl.en}  –  this planet occupies the same strong position in both your birth chart and this specialized chart, meaning its influence is dependable and consistent.`);
+      partsHi.push(`${allies[0].hi} ${dl.hi} के लिए विशेष रूप से शक्तिशाली है  –  यह ग्रह दोनों चार्ट में समान बलवान स्थिति में है।`);
+      partsTa.push(`${allies[0].ta} ${dl.ta} க்கு விசேஷமாக வலுவானது  –  இந்த கிரகம் உங்கள் ஜன்ம ஜாதகம் மற்றும் இந்த சிறப்பு ஜாதகம் இரண்டிலும் ஒரே வலுவான நிலையில் உள்ளது.`);
+      partsBn.push(`${allies[0].bn} ${dl.bn} এর জন্য বিশেষভাবে শক্তিশালী  –  এই গ্রহটি আপনার জন্ম জাতক এবং এই বিশেষ জাতক উভয়তেই একই শক্তিশালী অবস্থানে রয়েছে।`);
     } else {
       const enList = allies.map(a => a.en).join(' and ');
-      parts.push(`${enList} are especially powerful for ${dl.en} — these planets hold consistent strength across multiple chart layers, making their influence reliable.`);
+      parts.push(`${enList} are especially powerful for ${dl.en}  –  these planets hold consistent strength across multiple chart layers, making their influence reliable.`);
       partsHi.push(`${allies.map(a => a.hi).join(' और ')} ${dl.hi} के लिए विशेष रूप से शक्तिशाली हैं।`);
-      partsTa.push(`${allies.map(a => a.ta).join(' மற்றும் ')} ${dl.ta} க்கு விசேஷமாக வலுவானவை — இந்த கிரகங்கள் பல ஜாதக அடுக்குகளில் தொடர்ந்து வலிமையை கொண்டுள்ளன.`);
-      partsBn.push(`${allies.map(a => a.bn).join(' এবং ')} ${dl.bn} এর জন্য বিশেষভাবে শক্তিশালী — এই গ্রহগুলি একাধিক জাতক স্তরে ধারাবাহিক শক্তি ধারণ করে।`);
+      partsTa.push(`${allies.map(a => a.ta).join(' மற்றும் ')} ${dl.ta} க்கு விசேஷமாக வலுவானவை  –  இந்த கிரகங்கள் பல ஜாதக அடுக்குகளில் தொடர்ந்து வலிமையை கொண்டுள்ளன.`);
+      partsBn.push(`${allies.map(a => a.bn).join(' এবং ')} ${dl.bn} এর জন্য বিশেষভাবে শক্তিশালী  –  এই গ্রহগুলি একাধিক জাতক স্তরে ধারাবাহিক শক্তি ধারণ করে।`);
     }
   }
 
-  // 3. Tailwinds and headwinds — what's working for/against you
+  // 3. Tailwinds and headwinds  –  what's working for/against you
   if (pushkaraCount > 0 && gandantaCount === 0) {
-    parts.push(`You have natural good fortune backing ${dl.en} — like a tailwind that makes effort go further. Take advantage of this during favorable planetary periods.`);
-    partsHi.push(`${dl.hi} में आपके पास प्राकृतिक सौभाग्य का सहारा है — अनुकूल ग्रह काल में इसका लाभ उठाएं।`);
-    partsTa.push(`${dl.ta} க்கு இயற்கையான நல்ல அதிர்ஷ்டம் ஆதரவாக உள்ளது — சாதகமான கிரக காலங்களில் இதை பயன்படுத்திக் கொள்ளுங்கள்.`);
-    partsBn.push(`${dl.bn} এর পেছনে প্রাকৃতিক সৌভাগ্য সহায়তা করছে — অনুকূল গ্রহ কালে এর সুবিধা নিন।`);
+    parts.push(`You have natural good fortune backing ${dl.en}  –  like a tailwind that makes effort go further. Take advantage of this during favorable planetary periods.`);
+    partsHi.push(`${dl.hi} में आपके पास प्राकृतिक सौभाग्य का सहारा है  –  अनुकूल ग्रह काल में इसका लाभ उठाएं।`);
+    partsTa.push(`${dl.ta} க்கு இயற்கையான நல்ல அதிர்ஷ்டம் ஆதரவாக உள்ளது  –  சாதகமான கிரக காலங்களில் இதை பயன்படுத்திக் கொள்ளுங்கள்.`);
+    partsBn.push(`${dl.bn} এর পেছনে প্রাকৃতিক সৌভাগ্য সহায়তা করছে  –  অনুকূল গ্রহ কালে এর সুবিধা নিন।`);
   } else if (gandantaCount > 0 && pushkaraCount === 0) {
-    parts.push(`There's a karmic knot around ${dl.en} that may create periods of confusion or setbacks. These are growth moments, not permanent blocks — working through them builds lasting strength.`);
+    parts.push(`There's a karmic knot around ${dl.en} that may create periods of confusion or setbacks. These are growth moments, not permanent blocks  –  working through them builds lasting strength.`);
     partsHi.push(`${dl.hi} के आसपास एक कार्मिक गांठ है जो भ्रम या बाधा उत्पन्न कर सकती है। ये विकास के क्षण हैं, स्थायी अवरोध नहीं।`);
     partsTa.push(`${dl.ta} மேல் ஒரு கார்மிக் முடிச்சு உள்ளது, இது குழப்பம் அல்லது தடைகளை உருவாக்கலாம். இவை வளர்ச்சி நேரங்கள், நிரந்தர தடைகள் அல்ல.`);
     partsBn.push(`${dl.bn} এর চারপাশে একটি কার্মিক গ্রন্থি রয়েছে যা বিভ্রান্তি বা বাধার সময়কাল তৈরি করতে পারে। এগুলি বৃদ্ধির মুহূর্ত, স্থায়ী বাধা নয়।`);
@@ -889,14 +889,14 @@ function buildNarrative(
     partsBn.push(`আকর্ষণীয়ভাবে, ${dl.bn} প্রাকৃতিক আশীর্বাদ এবং কার্মিক চ্যালেঞ্জ উভয়ই দেখায়। সহজতার পর্যায়গুলি আপনার সংকল্প পরীক্ষা করার সময়কালের সাথে পর্যায়ক্রমে আসবে।`);
   }
 
-  // 4. Special combinations — in plain language
+  // 4. Special combinations  –  in plain language
   if (yogas.length > 0) {
     const count = yogas.length;
     if (count >= 3) {
-      parts.push(`Multiple special planetary combinations (${count} found) strengthen this area of your life — this is above average and suggests natural talent or fortunate circumstances.`);
-      partsHi.push(`अनेक विशेष ग्रह संयोजन (${count}) इस जीवन क्षेत्र को सुदृढ़ करते हैं — यह औसत से ऊपर है और प्राकृतिक प्रतिभा का संकेत है।`);
-      partsTa.push(`பல சிறப்பு கிரக சேர்க்கைகள் (${count} கண்டறியப்பட்டன) உங்கள் வாழ்க்கையின் இந்த பகுதியை வலுப்படுத்துகின்றன — இது சராசரிக்கு மேலே மற்றும் இயற்கையான திறமையை சுட்டிக்காட்டுகிறது.`);
-      partsBn.push(`একাধিক বিশেষ গ্রহ সংমিশ্রণ (${count}টি পাওয়া গেছে) আপনার জীবনের এই ক্ষেত্রটিকে শক্তিশালী করে — এটি গড়ের উপরে এবং প্রাকৃতিক প্রতিভার ইঙ্গিত দেয়।`);
+      parts.push(`Multiple special planetary combinations (${count} found) strengthen this area of your life  –  this is above average and suggests natural talent or fortunate circumstances.`);
+      partsHi.push(`अनेक विशेष ग्रह संयोजन (${count}) इस जीवन क्षेत्र को सुदृढ़ करते हैं  –  यह औसत से ऊपर है और प्राकृतिक प्रतिभा का संकेत है।`);
+      partsTa.push(`பல சிறப்பு கிரக சேர்க்கைகள் (${count} கண்டறியப்பட்டன) உங்கள் வாழ்க்கையின் இந்த பகுதியை வலுப்படுத்துகின்றன  –  இது சராசரிக்கு மேலே மற்றும் இயற்கையான திறமையை சுட்டிக்காட்டுகிறது.`);
+      partsBn.push(`একাধিক বিশেষ গ্রহ সংমিশ্রণ (${count}টি পাওয়া গেছে) আপনার জীবনের এই ক্ষেত্রটিকে শক্তিশালী করে  –  এটি গড়ের উপরে এবং প্রাকৃতিক প্রতিভার ইঙ্গিত দেয়।`);
     } else {
       parts.push(`A special planetary combination supports ${dl.en}, adding an extra boost during its activation period.`);
       partsHi.push(`एक विशेष ग्रह संयोजन ${dl.hi} को सहयोग करता है, सक्रियण काल में अतिरिक्त बल देता है।`);
@@ -909,10 +909,10 @@ function buildNarrative(
   const improvements = cross.dignityShifts.filter(d => d.shift === 'improved');
   const declines = cross.dignityShifts.filter(d => d.shift === 'declined');
   if (improvements.length > declines.length) {
-    parts.push(`The deeper chart reveals hidden strengths that aren't obvious from a surface reading — you may find that ${dl.en} improves in ways you didn't initially expect.`);
-    partsHi.push(`गहन चार्ट ऐसी छिपी शक्तियां दर्शाता है जो सतही पढ़ने से स्पष्ट नहीं — ${dl.hi} अप्रत्याशित रूप से सुधर सकता है।`);
-    partsTa.push(`ஆழமான ஜாதகம் மேற்பரப்பு வாசிப்பில் தெளிவாக தெரியாத மறைந்த பலங்களை வெளிப்படுத்துகிறது — ${dl.ta} நீங்கள் ஆரம்பத்தில் எதிர்பார்க்காத வழிகளில் மேம்படலாம்.`);
-    partsBn.push(`গভীর জাতক এমন লুকানো শক্তি প্রকাশ করে যা পৃষ্ঠীয় পাঠে স্পষ্ট নয় — ${dl.bn} এমনভাবে উন্নত হতে পারে যা আপনি প্রাথমিকভাবে প্রত্যাশা করেননি।`);
+    parts.push(`The deeper chart reveals hidden strengths that aren't obvious from a surface reading  –  you may find that ${dl.en} improves in ways you didn't initially expect.`);
+    partsHi.push(`गहन चार्ट ऐसी छिपी शक्तियां दर्शाता है जो सतही पढ़ने से स्पष्ट नहीं  –  ${dl.hi} अप्रत्याशित रूप से सुधर सकता है।`);
+    partsTa.push(`ஆழமான ஜாதகம் மேற்பரப்பு வாசிப்பில் தெளிவாக தெரியாத மறைந்த பலங்களை வெளிப்படுத்துகிறது  –  ${dl.ta} நீங்கள் ஆரம்பத்தில் எதிர்பார்க்காத வழிகளில் மேம்படலாம்.`);
+    partsBn.push(`গভীর জাতক এমন লুকানো শক্তি প্রকাশ করে যা পৃষ্ঠীয় পাঠে স্পষ্ট নয়  –  ${dl.bn} এমনভাবে উন্নত হতে পারে যা আপনি প্রাথমিকভাবে প্রত্যাশা করেননি।`);
   } else if (declines.length > improvements.length) {
     parts.push(`Some of the promise visible in your birth chart faces friction when examined more deeply. This doesn't negate the potential, but suggests that ${dl.en} will require more deliberate effort than it might initially appear.`);
     partsHi.push(`जन्म कुण्डली में दिखने वाली कुछ संभावनाएं गहन परीक्षा में बाधा दर्शाती हैं। ${dl.hi} के लिए प्रत्याशा से अधिक सचेत प्रयास की आवश्यकता होगी।`);
@@ -936,7 +936,7 @@ export function buildDeepVargaAnalysis(
   kundali: KundaliData,
   chartId: string,
 ): DeepVargaResult | null {
-  // Get the divisional chart — D9 may live on navamshaChart rather than divisionalCharts
+  // Get the divisional chart  –  D9 may live on navamshaChart rather than divisionalCharts
   let dxxChart = kundali.divisionalCharts?.[chartId] ?? null;
   if (!dxxChart && chartId === 'D9' && kundali.navamshaChart) {
     // navamshaChart is ChartData; synthesise a DivisionalChart-compatible object
@@ -1047,9 +1047,9 @@ export function buildDeepVargaAnalysis(
 const COMBUSTION_ORBS: Record<number, number> = {
   1: 12, // Moon
   2: 17, // Mars
-  3: 14, // Mercury (12° when retrograde — handled in function)
+  3: 14, // Mercury (12° when retrograde  –  handled in function)
   4: 11, // Jupiter
-  5: 10, // Venus (8° when retrograde — handled in function)
+  5: 10, // Venus (8° when retrograde  –  handled in function)
   6: 15, // Saturn
 };
 
@@ -1058,28 +1058,28 @@ const COMBUSTION_EXCLUDED = new Set([0, 7, 8]);
 
 const COMBUSTION_NARRATIVES: Record<number, { en: string; hi: string }> = {
   1: {
-    en: 'Moon is combust — emotional significations are overshadowed by ego. Mental peace requires conscious detachment from self-image.',
-    hi: 'चन्द्र अस्त — भावनात्मक अर्थ अहंकार से ढके हैं। मानसिक शांति के लिए आत्म-छवि से सचेत विरक्ति आवश्यक है।',
+    en: 'Moon is combust  –  emotional significations are overshadowed by ego. Mental peace requires conscious detachment from self-image.',
+    hi: 'चन्द्र अस्त  –  भावनात्मक अर्थ अहंकार से ढके हैं। मानसिक शांति के लिए आत्म-छवि से सचेत विरक्ति आवश्यक है।',
   },
   2: {
-    en: 'Mars is combust — courage and initiative are filtered through ego. Assertiveness may manifest as aggression or be suppressed entirely.',
-    hi: 'मंगल अस्त — साहस और पहल अहंकार से छनकर आते हैं। दृढ़ता आक्रामकता बन सकती है या पूर्णतः दब सकती है।',
+    en: 'Mars is combust  –  courage and initiative are filtered through ego. Assertiveness may manifest as aggression or be suppressed entirely.',
+    hi: 'मंगल अस्त  –  साहस और पहल अहंकार से छनकर आते हैं। दृढ़ता आक्रामकता बन सकती है या पूर्णतः दब सकती है।',
   },
   3: {
-    en: 'Mercury is combust — intellect and communication are coloured by self-interest. Objective analysis requires deliberate effort.',
-    hi: 'बुध अस्त — बुद्धि और संवाद स्वार्थ से रंगे हैं। वस्तुनिष्ठ विश्लेषण के लिए सचेत प्रयास आवश्यक है।',
+    en: 'Mercury is combust  –  intellect and communication are coloured by self-interest. Objective analysis requires deliberate effort.',
+    hi: 'बुध अस्त  –  बुद्धि और संवाद स्वार्थ से रंगे हैं। वस्तुनिष्ठ विश्लेषण के लिए सचेत प्रयास आवश्यक है।',
   },
   4: {
-    en: 'Jupiter is combust — wisdom and expansion are filtered through ego. Dharmic growth requires conscious humility.',
-    hi: 'गुरु अस्त — ज्ञान और विस्तार अहंकार से छनते हैं। धार्मिक विकास के लिए सचेत विनम्रता आवश्यक है।',
+    en: 'Jupiter is combust  –  wisdom and expansion are filtered through ego. Dharmic growth requires conscious humility.',
+    hi: 'गुरु अस्त  –  ज्ञान और विस्तार अहंकार से छनते हैं। धार्मिक विकास के लिए सचेत विनम्रता आवश्यक है।',
   },
   5: {
-    en: 'Venus is combust — spouse-related significations are overshadowed by ego. The partner may feel eclipsed by your personality.',
-    hi: 'शुक्र अस्त — जीवनसाथी से जुड़े अर्थ अहंकार से ढके हैं। साथी आपके व्यक्तित्व से ग्रसित महसूस कर सकता है।',
+    en: 'Venus is combust  –  spouse-related significations are overshadowed by ego. The partner may feel eclipsed by your personality.',
+    hi: 'शुक्र अस्त  –  जीवनसाथी से जुड़े अर्थ अहंकार से ढके हैं। साथी आपके व्यक्तित्व से ग्रसित महसूस कर सकता है।',
   },
   6: {
-    en: 'Saturn is combust — discipline and karmic lessons are tangled with self-image. Authority issues surface in this domain.',
-    hi: 'शनि अस्त — अनुशासन और कर्म-पाठ आत्म-छवि से उलझे हैं। इस क्षेत्र में अधिकार के मुद्दे उभरते हैं।',
+    en: 'Saturn is combust  –  discipline and karmic lessons are tangled with self-image. Authority issues surface in this domain.',
+    hi: 'शनि अस्त  –  अनुशासन और कर्म-पाठ आत्म-छवि से उलझे हैं। इस क्षेत्र में अधिकार के मुद्दे उभरते हैं।',
   },
 };
 
@@ -1147,29 +1147,29 @@ export function computeCombustionInDxx(
 // Factor 17: Retrogression in Divisional Charts
 // ---------------------------------------------------------------------------
 
-/** Only classical planets can be meaningfully retrograde (Sun/Moon never, Rahu/Ketu always — ignored) */
+/** Only classical planets can be meaningfully retrograde (Sun/Moon never, Rahu/Ketu always  –  ignored) */
 const RETRO_ELIGIBLE = new Set([2, 3, 4, 5, 6]);
 
 const RETRO_NARRATIVES: Record<number, { en: string; hi: string }> = {
   2: {
-    en: 'Mars retrograde — assertiveness is internalized. In this domain, anger simmers beneath the surface rather than erupting. Actions are deliberate but delayed.',
-    hi: 'मंगल वक्री — दृढ़ता अंतर्मुखी हो जाती है। इस क्षेत्र में क्रोध सतह के नीचे सुलगता है, विस्फोट नहीं होता। कार्य सोच-समझकर पर विलंबित होते हैं।',
+    en: 'Mars retrograde  –  assertiveness is internalized. In this domain, anger simmers beneath the surface rather than erupting. Actions are deliberate but delayed.',
+    hi: 'मंगल वक्री  –  दृढ़ता अंतर्मुखी हो जाती है। इस क्षेत्र में क्रोध सतह के नीचे सुलगता है, विस्फोट नहीं होता। कार्य सोच-समझकर पर विलंबित होते हैं।',
   },
   3: {
-    en: 'Mercury retrograde — communication follows non-linear paths. Revisiting past decisions and re-evaluating commitments is natural.',
-    hi: 'बुध वक्री — संवाद अरेखीय मार्गों से होता है। पिछले निर्णयों पर पुनर्विचार और प्रतिबद्धताओं का पुनर्मूल्यांकन स्वाभाविक है।',
+    en: 'Mercury retrograde  –  communication follows non-linear paths. Revisiting past decisions and re-evaluating commitments is natural.',
+    hi: 'बुध वक्री  –  संवाद अरेखीय मार्गों से होता है। पिछले निर्णयों पर पुनर्विचार और प्रतिबद्धताओं का पुनर्मूल्यांकन स्वाभाविक है।',
   },
   4: {
-    en: 'Jupiter retrograde — wisdom is introspective. Growth comes through inner reflection rather than outward expansion. Unconventional dharmic path.',
-    hi: 'गुरु वक्री — ज्ञान अंतर्मुखी है। विकास बाहरी विस्तार के बजाय आंतरिक चिंतन से आता है। अपरंपरागत धार्मिक मार्ग।',
+    en: 'Jupiter retrograde  –  wisdom is introspective. Growth comes through inner reflection rather than outward expansion. Unconventional dharmic path.',
+    hi: 'गुरु वक्री  –  ज्ञान अंतर्मुखी है। विकास बाहरी विस्तार के बजाय आंतरिक चिंतन से आता है। अपरंपरागत धार्मिक मार्ग।',
   },
   5: {
-    en: 'Venus retrograde — relationships and aesthetics are experienced internally. Past-life romantic patterns resurface. Artistic expression is deeply personal.',
-    hi: 'शुक्र वक्री — रिश्ते और सौंदर्य आंतरिक रूप से अनुभव होते हैं। पूर्वजन्म के प्रेम प्रतिरूप पुनः उभरते हैं। कलात्मक अभिव्यक्ति गहन व्यक्तिगत है।',
+    en: 'Venus retrograde  –  relationships and aesthetics are experienced internally. Past-life romantic patterns resurface. Artistic expression is deeply personal.',
+    hi: 'शुक्र वक्री  –  रिश्ते और सौंदर्य आंतरिक रूप से अनुभव होते हैं। पूर्वजन्म के प्रेम प्रतिरूप पुनः उभरते हैं। कलात्मक अभिव्यक्ति गहन व्यक्तिगत है।',
   },
   6: {
-    en: 'Saturn retrograde — karmic lessons are self-imposed rather than externally enforced. Discipline comes from within but career path is non-linear.',
-    hi: 'शनि वक्री — कर्म-पाठ बाहरी बाध्यता के बजाय स्वयं-आरोपित हैं। अनुशासन भीतर से आता है पर कैरियर पथ अरेखीय है।',
+    en: 'Saturn retrograde  –  karmic lessons are self-imposed rather than externally enforced. Discipline comes from within but career path is non-linear.',
+    hi: 'शनि वक्री  –  कर्म-पाठ बाहरी बाध्यता के बजाय स्वयं-आरोपित हैं। अनुशासन भीतर से आता है पर कैरियर पथ अरेखीय है।',
   },
 };
 

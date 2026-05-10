@@ -359,7 +359,7 @@ export default function DinacharyaPage() {
           <EnergyTimeline phases={protocol.energyPhases} voice={voice} />
         </SectionCard>
 
-        {/* ── Day Timeline — auspicious/inauspicious windows ── */}
+        {/* ── Day Timeline  –  auspicious/inauspicious windows ── */}
         {rawPanchang && (
           <SectionCard
             title={voice === 'traditional' ? 'Shubha-Ashubha Kala' : 'Sacred Timings'}
@@ -559,14 +559,14 @@ function EnergyTimeline({
   phases: EnergyPhase[];
   voice: VoiceMode;
 }) {
-  // Current time in minutes since midnight — recalculated client-side
+  // Current time in minutes since midnight  –  recalculated client-side
   const nowMins = currentMinutes();
   const nowHour = Math.floor(nowMins / 60);
   const nowMin = nowMins % 60;
   // "HH:MM" for display
   const nowLabel = `${String(nowHour).padStart(2, '0')}:${String(nowMin).padStart(2, '0')}`;
 
-  // Height of the full 24-hour column (px) — same on all breakpoints via inline style
+  // Height of the full 24-hour column (px)  –  same on all breakpoints via inline style
   const TOTAL_HEIGHT = 960; // px; 40px per hour, readable on all screen sizes
 
   // Convert "HH:MM" → minutes since midnight
@@ -676,7 +676,7 @@ function EnergyTimeline({
                 </span>
               </div>
 
-              {/* Description — only show if the block is tall enough (≥ 70px) */}
+              {/* Description  –  only show if the block is tall enough (≥ 70px) */}
               {phaseHeight >= 70 && (
                 <p className="text-[#8a8478] text-[11px] leading-relaxed mt-1 line-clamp-2">
                   {phase.description[voice]}

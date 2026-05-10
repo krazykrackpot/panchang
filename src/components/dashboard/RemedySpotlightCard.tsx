@@ -90,7 +90,7 @@ export default function RemedySpotlightCard({ planetPositions, locale }: Props) 
             : undefined
         );
       }
-      // Default to 1.0 if no data — skip planet
+      // Default to 1.0 if no data  –  skip planet
       if (ratio == null) continue;
 
       if (!weakest || ratio < weakest.ratio) {

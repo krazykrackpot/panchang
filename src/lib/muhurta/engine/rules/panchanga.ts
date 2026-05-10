@@ -1,5 +1,5 @@
 /**
- * Panchanga Rules — 6 rules extracted from scorePanchangFactors()
+ * Panchanga Rules  –  6 rules extracted from scorePanchangFactors()
  *
  * Each rule is a self-contained MuhurtaRule that evaluates one panchanga
  * element (tithi, nakshatra, yoga, karana, vara, panchaka) and returns
@@ -10,7 +10,7 @@
 
 import type { MuhurtaRule, RuleAssessment, RuleContext } from '../types';
 
-// Inauspicious yogas per MC Ch.6 — split into hard and moderate
+// Inauspicious yogas per MC Ch.6  –  split into hard and moderate
 // Hard: classically considered muhurta-breakers for new beginnings
 const HARD_INAUSPICIOUS_YOGAS = new Set([10, 17, 27]); // Ganda, Vyatipata, Vaidhriti
 // Moderate: inauspicious but less severe
@@ -18,7 +18,7 @@ const MODERATE_INAUSPICIOUS_YOGAS = new Set([1, 6, 9, 13, 15, 19]); // Vishkambh
 // Combined for backward compat
 const INAUSPICIOUS_YOGAS = new Set([...HARD_INAUSPICIOUS_YOGAS, ...MODERATE_INAUSPICIOUS_YOGAS]);
 
-// Samskara activities — hard inauspicious yoga = absolute veto
+// Samskara activities  –  hard inauspicious yoga = absolute veto
 const YOGA_VETO_ACTIVITIES = new Set(['marriage', 'engagement', 'griha_pravesh', 'upanayana', 'mundan', 'namakarana']);
 
 // Dagdha (burnt) tithi-weekday combinations per MC Ch.3
@@ -33,7 +33,7 @@ const DAGDHA_TITHI: Record<number, number> = {
   6: 9,  // Saturday + Navami
 };
 
-// Nakshatra Gandanta — water-fire sign junctions (last/first 3°20' = 3.333°)
+// Nakshatra Gandanta  –  water-fire sign junctions (last/first 3°20' = 3.333°)
 // These are the nakshatra IDs at the boundaries:
 // Ashlesha(9)→Magha(10), Jyeshtha(18)→Mula(19), Revati(27)→Ashwini(1)
 const GANDANTA_END_NAKSHATRAS = new Set([9, 18, 27]); // last portion is gandanta
@@ -173,10 +173,10 @@ const nakshatraQuality: MuhurtaRule = {
 };
 
 // ---------------------------------------------------------------------------
-// 3. yoga-quality (HARDENED — classical rejection logic)
+// 3. yoga-quality (HARDENED  –  classical rejection logic)
 //
 // Classical rule (MC Ch.6, Jyotirnibandha):
-//   - Ganda, Vyatipata, Vaidhriti are muhurta-breakers — they CANNOT be
+//   - Ganda, Vyatipata, Vaidhriti are muhurta-breakers  –  they CANNOT be
 //     overridden by strong lagna or other positives
 //   - For samskaras (marriage, etc.): hard inauspicious yoga = absolute veto
 //   - For other activities: heavy penalty (-8), tier 2 (lagna cannot cancel
@@ -198,7 +198,7 @@ const yogaQuality: MuhurtaRule = {
     const yoga = ctx.snap.yoga;
 
     // Hard inauspicious yogas: Ganda(10), Vyatipata(17), Vaidhriti(27)
-    // These are classical muhurta-breakers — no amount of positive factors can save them
+    // These are classical muhurta-breakers  –  no amount of positive factors can save them
     if (HARD_INAUSPICIOUS_YOGAS.has(yoga)) {
       // For samskaras: absolute veto (Tier 0)
       if (YOGA_VETO_ACTIVITIES.has(ctx.activity)) {
@@ -209,9 +209,9 @@ const yogaQuality: MuhurtaRule = {
           vetoed: true,
           severity: 'critical',
           reason: {
-            en: 'Severely inauspicious Yoga — samskara forbidden',
-            hi: 'अत्यन्त अशुभ योग — संस्कार वर्जित',
-            sa: 'अत्यन्तम् अशुभयोगः — संस्कारवर्जितम्',
+            en: 'Severely inauspicious Yoga  –  samskara forbidden',
+            hi: 'अत्यन्त अशुभ योग  –  संस्कार वर्जित',
+            sa: 'अत्यन्तम् अशुभयोगः  –  संस्कारवर्जितम्',
           },
         });
       }
@@ -232,7 +232,7 @@ const yogaQuality: MuhurtaRule = {
 
     // Moderate inauspicious yogas: Vishkambha(1), Atiganda(6), Shula(9),
     // Vyaghata(13), Vajra(15), Parigha(19)
-    // Heavy penalty but not a veto — still makes "Excellent" nearly impossible
+    // Heavy penalty but not a veto  –  still makes "Excellent" nearly impossible
     if (MODERATE_INAUSPICIOUS_YOGAS.has(yoga)) {
       return assess(ctx, this, {
         tier: 2,
@@ -243,7 +243,7 @@ const yogaQuality: MuhurtaRule = {
       });
     }
 
-    // Auspicious yoga — all others
+    // Auspicious yoga  –  all others
     return assess(ctx, this, {
       tier: 3,
       points: 4,
@@ -282,31 +282,31 @@ const karanaQuality: MuhurtaRule = {
       let severity: RuleAssessment['severity'];
 
       if (signModality === 0) {
-        // Mukha — Bhadra head active on earth, most inauspicious
+        // Mukha  –  Bhadra head active on earth, most inauspicious
         points = -5;
         severity = 'major';
         reason = {
-          en: 'Vishti Mukha (Bhadra Head) — most severe, Moon in movable sign',
-          hi: 'विष्टि मुख (भद्रा शीर्ष) — सर्वाधिक अशुभ, चन्द्र चर राशि में',
-          sa: 'विष्टिमुखम् (भद्राशीर्षम्) — सर्वाधिकम् अशुभम्, चन्द्रः चरराशौ',
+          en: 'Vishti Mukha (Bhadra Head)  –  most severe, Moon in movable sign',
+          hi: 'विष्टि मुख (भद्रा शीर्ष)  –  सर्वाधिक अशुभ, चन्द्र चर राशि में',
+          sa: 'विष्टिमुखम् (भद्राशीर्षम्)  –  सर्वाधिकम् अशुभम्, चन्द्रः चरराशौ',
         };
       } else if (signModality === 1) {
-        // Madhya — Bhadra middle, moderate severity
+        // Madhya  –  Bhadra middle, moderate severity
         points = -3;
         severity = 'moderate';
         reason = {
-          en: 'Vishti Madhya (Bhadra Middle) — moderate severity, Moon in fixed sign',
-          hi: 'विष्टि मध्य (भद्रा मध्य) — मध्यम अशुभ, चन्द्र स्थिर राशि में',
-          sa: 'विष्टिमध्यम् (भद्रामध्यम्) — मध्यमम् अशुभम्, चन्द्रः स्थिरराशौ',
+          en: 'Vishti Madhya (Bhadra Middle)  –  moderate severity, Moon in fixed sign',
+          hi: 'विष्टि मध्य (भद्रा मध्य)  –  मध्यम अशुभ, चन्द्र स्थिर राशि में',
+          sa: 'विष्टिमध्यम् (भद्रामध्यम्)  –  मध्यमम् अशुभम्, चन्द्रः स्थिरराशौ',
         };
       } else {
-        // Puchha — Bhadra tail, least severe for human activities
+        // Puchha  –  Bhadra tail, least severe for human activities
         points = -2;
         severity = 'minor';
         reason = {
-          en: 'Vishti Puchha (Bhadra Tail) — reduced severity, Moon in dual sign',
-          hi: 'विष्टि पुच्छ (भद्रा पुच्छ) — न्यून अशुभ, चन्द्र द्विस्वभाव राशि में',
-          sa: 'विष्टिपुच्छम् (भद्रापुच्छम्) — न्यूनम् अशुभम्, चन्द्रः द्विस्वभावराशौ',
+          en: 'Vishti Puchha (Bhadra Tail)  –  reduced severity, Moon in dual sign',
+          hi: 'विष्टि पुच्छ (भद्रा पुच्छ)  –  न्यून अशुभ, चन्द्र द्विस्वभाव राशि में',
+          sa: 'विष्टिपुच्छम् (भद्रापुच्छम्)  –  न्यूनम् अशुभम्, चन्द्रः द्विस्वभावराशौ',
         };
       }
 
@@ -333,7 +333,7 @@ const karanaQuality: MuhurtaRule = {
     }
 
     if (k === 11) {
-      // Kimstughna — auspicious sthira karana
+      // Kimstughna  –  auspicious sthira karana
       return assess(ctx, this, {
         tier: 4,
         points: 2,
@@ -344,7 +344,7 @@ const karanaQuality: MuhurtaRule = {
     }
 
     if (k >= 1 && k <= 6) {
-      // Chara karanas — generally favourable
+      // Chara karanas  –  generally favourable
       return assess(ctx, this, {
         tier: 4,
         points: 2,
@@ -354,7 +354,7 @@ const karanaQuality: MuhurtaRule = {
       });
     }
 
-    // Unknown karana — neutral
+    // Unknown karana  –  neutral
     return assess(ctx, this, {
       tier: 4,
       points: 0,
@@ -391,7 +391,7 @@ const varaQuality: MuhurtaRule = {
     }
 
     if (wd === 2) {
-      // Tuesday — Mars day, most strongly avoided
+      // Tuesday  –  Mars day, most strongly avoided
       return assess(ctx, this, {
         tier: 4,
         points: -4,
@@ -403,7 +403,7 @@ const varaQuality: MuhurtaRule = {
     }
 
     if (wd === 6) {
-      // Saturday — Saturn's day
+      // Saturday  –  Saturn's day
       return assess(ctx, this, {
         tier: 4,
         points: -3,
@@ -415,7 +415,7 @@ const varaQuality: MuhurtaRule = {
     }
 
     if (wd === 0) {
-      // Sunday — mild penalty
+      // Sunday  –  mild penalty
       return assess(ctx, this, {
         tier: 4,
         points: -1,
@@ -426,7 +426,7 @@ const varaQuality: MuhurtaRule = {
       });
     }
 
-    // Other weekday not in good list — neutral
+    // Other weekday not in good list  –  neutral
     return assess(ctx, this, {
       tier: 4,
       points: 0,
@@ -482,7 +482,7 @@ const panchaka: MuhurtaRule = {
 //   Table: Sun=Dwadashi, Mon=Ekadashi, Tue=Panchami, Wed=Tritiya,
 //          Thu=Shashthi, Fri=Ashtami, Sat=Navami
 //
-// Tier 2, -6 points — NOT cancellable by lagna (same tier).
+// Tier 2, -6 points  –  NOT cancellable by lagna (same tier).
 // Only Godhuli Lagna (Tier 1) can override a dagdha tithi.
 // ---------------------------------------------------------------------------
 const dagdhaTithi: MuhurtaRule = {
@@ -500,7 +500,7 @@ const dagdhaTithi: MuhurtaRule = {
     const dagdhaTithiForDay = DAGDHA_TITHI[weekday];
 
     if (dagdhaTithiForDay === undefined || pakshaRelTithi !== dagdhaTithiForDay) {
-      return null; // No dagdha — rule does not fire
+      return null; // No dagdha  –  rule does not fire
     }
 
     return assess(ctx, this, {
@@ -509,9 +509,9 @@ const dagdhaTithi: MuhurtaRule = {
       maxPoints: 0,
       severity: 'major',
       reason: {
-        en: 'Dagdha (burnt) Tithi — inauspicious tithi-weekday combination',
-        hi: 'दग्ध तिथि — अशुभ तिथि-वार संयोग',
-        sa: 'दग्धतिथिः — अशुभतिथिवारसंयोगः',
+        en: 'Dagdha (burnt) Tithi  –  inauspicious tithi-weekday combination',
+        hi: 'दग्ध तिथि  –  अशुभ तिथि-वार संयोग',
+        sa: 'दग्धतिथिः  –  अशुभतिथिवारसंयोगः',
       },
     });
   },
@@ -523,7 +523,7 @@ const dagdhaTithi: MuhurtaRule = {
 // Classical rule (BPHS, Muhurta Chintamani):
 //   The last 3°20' (200') of Ashlesha(9), Jyeshtha(18), Revati(27)
 //   and the first 3°20' of Magha(10), Mula(19), Ashwini(1) are
-//   "gandanta" — water-fire sign junctions where the Moon is unstable.
+//   "gandanta"  –  water-fire sign junctions where the Moon is unstable.
 //
 //   For samskaras (esp. mundan, namakarana): Tier 0 veto
 //   For other activities: Tier 2, -6 points
@@ -574,9 +574,9 @@ const nakshatraGandanta: MuhurtaRule = {
         vetoed: true,
         severity: 'critical',
         reason: {
-          en: 'Nakshatra Gandanta — water-fire junction, child samskara forbidden',
-          hi: 'नक्षत्र गण्डान्त — जल-अग्नि सन्धि, बाल संस्कार वर्जित',
-          sa: 'नक्षत्रगण्डान्तम् — जलाग्निसन्धिः, बालसंस्कारवर्जितम्',
+          en: 'Nakshatra Gandanta  –  water-fire junction, child samskara forbidden',
+          hi: 'नक्षत्र गण्डान्त  –  जल-अग्नि सन्धि, बाल संस्कार वर्जित',
+          sa: 'नक्षत्रगण्डान्तम्  –  जलाग्निसन्धिः, बालसंस्कारवर्जितम्',
         },
       });
     }
@@ -588,9 +588,9 @@ const nakshatraGandanta: MuhurtaRule = {
       maxPoints: 0,
       severity: 'major',
       reason: {
-        en: 'Nakshatra Gandanta — Moon at water-fire junction (unstable)',
-        hi: 'नक्षत्र गण्डान्त — चन्द्र जल-अग्नि सन्धि पर (अस्थिर)',
-        sa: 'नक्षत्रगण्डान्तम् — चन्द्रः जलाग्निसन्धौ (अस्थिरः)',
+        en: 'Nakshatra Gandanta  –  Moon at water-fire junction (unstable)',
+        hi: 'नक्षत्र गण्डान्त  –  चन्द्र जल-अग्नि सन्धि पर (अस्थिर)',
+        sa: 'नक्षत्रगण्डान्तम्  –  चन्द्रः जलाग्निसन्धौ (अस्थिरः)',
       },
     });
   },

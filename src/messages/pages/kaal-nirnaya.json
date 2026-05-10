@@ -12,16 +12,16 @@
     "mr": "काल निर्णय"
   },
   "subtitle": {
-    "en": "The Science of Sacred Time — from Paramanu to Kalpa",
-    "hi": "पवित्र काल का विज्ञान — परमाणु से कल्प तक",
-    "sa": "पवित्र काल विज्ञानम् — परमाणु तः कल्प पर्यन्तम्",
-    "ta": "The Science of Sacred Time — from Paramanu to Kalpa",
-    "te": "The Science of Sacred Time — from Paramanu to Kalpa",
-    "bn": "The Science of Sacred Time — from Paramanu to Kalpa",
-    "kn": "The Science of Sacred Time — from Paramanu to Kalpa",
-    "gu": "The Science of Sacred Time — from Paramanu to Kalpa",
-    "mai": "पवित्र काल का विज्ञान — परमाणु से कल्प तक",
-    "mr": "पवित्र काल का विज्ञान — परमाणु से कल्प तक"
+    "en": "The Science of Sacred Time  –  from Paramanu to Kalpa",
+    "hi": "पवित्र काल का विज्ञान  –  परमाणु से कल्प तक",
+    "sa": "पवित्र काल विज्ञानम्  –  परमाणु तः कल्प पर्यन्तम्",
+    "ta": "The Science of Sacred Time  –  from Paramanu to Kalpa",
+    "te": "The Science of Sacred Time  –  from Paramanu to Kalpa",
+    "bn": "The Science of Sacred Time  –  from Paramanu to Kalpa",
+    "kn": "The Science of Sacred Time  –  from Paramanu to Kalpa",
+    "gu": "The Science of Sacred Time  –  from Paramanu to Kalpa",
+    "mai": "पवित्र काल का विज्ञान  –  परमाणु से कल्प तक",
+    "mr": "पवित्र काल का विज्ञान  –  परमाणु से कल्प तक"
   },
   "kaalMaan": {
     "en": "Hindu Time Units (Kaal Maan)",
@@ -72,16 +72,16 @@
     "mr": "एक महायुग में चार युग होते हैं। मिलकर वे 4,320,000 वर्ष तक फैले हैं।"
   },
   "ayanamsha": {
-    "en": "Ayanamsha — The Precession of Equinoxes",
-    "hi": "अयनांश — विषुव अग्रगमन",
-    "sa": "अयनांश — विषुव अग्रगमनम्",
-    "ta": "Ayanamsha — The Precession of Equinoxes",
-    "te": "Ayanamsha — The Precession of Equinoxes",
-    "bn": "Ayanamsha — The Precession of Equinoxes",
-    "kn": "Ayanamsha — The Precession of Equinoxes",
-    "gu": "Ayanamsha — The Precession of Equinoxes",
-    "mai": "अयनांश — विषुव अग्रगमन",
-    "mr": "अयनांश — विषुव अग्रगमन"
+    "en": "Ayanamsha  –  The Precession of Equinoxes",
+    "hi": "अयनांश  –  विषुव अग्रगमन",
+    "sa": "अयनांश  –  विषुव अग्रगमनम्",
+    "ta": "Ayanamsha  –  The Precession of Equinoxes",
+    "te": "Ayanamsha  –  The Precession of Equinoxes",
+    "bn": "Ayanamsha  –  The Precession of Equinoxes",
+    "kn": "Ayanamsha  –  The Precession of Equinoxes",
+    "gu": "Ayanamsha  –  The Precession of Equinoxes",
+    "mai": "अयनांश  –  विषुव अग्रगमन",
+    "mr": "अयनांश  –  विषुव अग्रगमन"
   },
   "ayanamshaDesc": {
     "en": "The tropical zodiac drifts relative to the fixed stars due to Earth's axial precession. Ayanamsha is the correction applied to convert tropical longitudes to sidereal.",
@@ -96,16 +96,16 @@
     "mr": "पृथ्वी के अक्षीय अग्रगमन के कारण उष्णकटिबंधीय राशिचक्र स्थिर तारों के सापेक्ष विचलित होता है।"
   },
   "panchangaSystem": {
-    "en": "The Panchanga System — Five Limbs of Time",
-    "hi": "पंचांग प्रणाली — काल के पाँच अंग",
-    "sa": "पञ्चाङ्ग प्रणाली — कालस्य पञ्च अङ्गानि",
-    "ta": "The Panchanga System — Five Limbs of Time",
-    "te": "The Panchanga System — Five Limbs of Time",
-    "bn": "The Panchanga System — Five Limbs of Time",
-    "kn": "The Panchanga System — Five Limbs of Time",
-    "gu": "The Panchanga System — Five Limbs of Time",
-    "mai": "पंचांग प्रणाली — काल के पाँच अंग",
-    "mr": "पंचांग प्रणाली — काल के पाँच अंग"
+    "en": "The Panchanga System  –  Five Limbs of Time",
+    "hi": "पंचांग प्रणाली  –  काल के पाँच अंग",
+    "sa": "पञ्चाङ्ग प्रणाली  –  कालस्य पञ्च अङ्गानि",
+    "ta": "The Panchanga System  –  Five Limbs of Time",
+    "te": "The Panchanga System  –  Five Limbs of Time",
+    "bn": "The Panchanga System  –  Five Limbs of Time",
+    "kn": "The Panchanga System  –  Five Limbs of Time",
+    "gu": "The Panchanga System  –  Five Limbs of Time",
+    "mai": "पंचांग प्रणाली  –  काल के पाँच अंग",
+    "mr": "पंचांग प्रणाली  –  काल के पाँच अंग"
   },
   "panchangaDesc": {
     "en": "Panchanga (पञ्च + अङ्ग = five + limbs) describes the day through five astronomical measurements, giving a complete picture of the day's cosmic energy.",
@@ -120,16 +120,16 @@
     "mr": "पंचांग पाँच खगोलशास्त्रीय मापों के माध्यम से दिन का वर्णन करता है।"
   },
   "muhurtaTitle": {
-    "en": "Muhurta — Electional Astrology",
-    "hi": "मुहूर्त — शुभ काल का निर्धारण",
-    "sa": "मुहूर्त — शुभ काल निर्धारणम्",
-    "ta": "Muhurta — Electional Astrology",
-    "te": "Muhurta — Electional Astrology",
-    "bn": "Muhurta — Electional Astrology",
-    "kn": "Muhurta — Electional Astrology",
-    "gu": "Muhurta — Electional Astrology",
-    "mai": "मुहूर्त — शुभ काल का निर्धारण",
-    "mr": "मुहूर्त — शुभ काल का निर्धारण"
+    "en": "Muhurta  –  Electional Astrology",
+    "hi": "मुहूर्त  –  शुभ काल का निर्धारण",
+    "sa": "मुहूर्त  –  शुभ काल निर्धारणम्",
+    "ta": "Muhurta  –  Electional Astrology",
+    "te": "Muhurta  –  Electional Astrology",
+    "bn": "Muhurta  –  Electional Astrology",
+    "kn": "Muhurta  –  Electional Astrology",
+    "gu": "Muhurta  –  Electional Astrology",
+    "mai": "मुहूर्त  –  शुभ काल का निर्धारण",
+    "mr": "मुहूर्त  –  शुभ काल का निर्धारण"
   },
   "muhurtaDesc": {
     "en": "Muhurta is the art of selecting auspicious moments for undertaking activities. A day has 30 Muhurtas (~48 min each), each ruled by a deity with specific qualities.",
@@ -156,16 +156,16 @@
     "mr": "आज का काल डेटा"
   },
   "todayDataDesc": {
-    "en": "Live astronomical data for today — fetched from our calculation engine.",
-    "hi": "आज के लिए लाइव खगोलशास्त्रीय डेटा — हमारे गणना इंजन से प्राप्त।",
-    "sa": "अद्यतनः खगोलशास्त्रीय डेटा — अस्माकं गणना यन्त्रात् प्राप्तः।",
-    "ta": "Live astronomical data for today — fetched from our calculation engine.",
-    "te": "Live astronomical data for today — fetched from our calculation engine.",
-    "bn": "Live astronomical data for today — fetched from our calculation engine.",
-    "kn": "Live astronomical data for today — fetched from our calculation engine.",
-    "gu": "Live astronomical data for today — fetched from our calculation engine.",
-    "mai": "आज के लिए लाइव खगोलशास्त्रीय डेटा — हमारे गणना इंजन से प्राप्त।",
-    "mr": "आज के लिए लाइव खगोलशास्त्रीय डेटा — हमारे गणना इंजन से प्राप्त।"
+    "en": "Live astronomical data for today  –  fetched from our calculation engine.",
+    "hi": "आज के लिए लाइव खगोलशास्त्रीय डेटा  –  हमारे गणना इंजन से प्राप्त।",
+    "sa": "अद्यतनः खगोलशास्त्रीय डेटा  –  अस्माकं गणना यन्त्रात् प्राप्तः।",
+    "ta": "Live astronomical data for today  –  fetched from our calculation engine.",
+    "te": "Live astronomical data for today  –  fetched from our calculation engine.",
+    "bn": "Live astronomical data for today  –  fetched from our calculation engine.",
+    "kn": "Live astronomical data for today  –  fetched from our calculation engine.",
+    "gu": "Live astronomical data for today  –  fetched from our calculation engine.",
+    "mai": "आज के लिए लाइव खगोलशास्त्रीय डेटा  –  हमारे गणना इंजन से प्राप्त।",
+    "mr": "आज के लिए लाइव खगोलशास्त्रीय डेटा  –  हमारे गणना इंजन से प्राप्त।"
   },
   "nowBadge": {
     "en": "NOW",
@@ -324,16 +324,16 @@
     "mr": "द्वितीय परार्ध"
   },
   "theThirtyKalpas": {
-    "en": "The 30 Kalpas — Days of Brahma",
-    "hi": "30 कल्प — ब्रह्मा के दिन",
-    "sa": "30 कल्प — ब्रह्मा के दिन",
-    "ta": "30 கல்பங்கள் — பிரம்மாவின் நாட்கள்",
-    "te": "30 కల్పాలు — బ్రహ్మ దినాలు",
-    "bn": "30 কল্প — ব্রহ্মার দিনগুলি",
-    "kn": "30 ಕಲ್ಪಗಳು — ಬ್ರಹ್ಮನ ದಿನಗಳು",
-    "gu": "30 કલ્પ — બ્રહ્માના દિવસ",
-    "mai": "30 कल्प — ब्रह्मा के दिन",
-    "mr": "30 कल्प — ब्रह्मा के दिन"
+    "en": "The 30 Kalpas  –  Days of Brahma",
+    "hi": "30 कल्प  –  ब्रह्मा के दिन",
+    "sa": "30 कल्प  –  ब्रह्मा के दिन",
+    "ta": "30 கல்பங்கள்  –  பிரம்மாவின் நாட்கள்",
+    "te": "30 కల్పాలు  –  బ్రహ్మ దినాలు",
+    "bn": "30 কল্প  –  ব্রহ্মার দিনগুলি",
+    "kn": "30 ಕಲ್ಪಗಳು  –  ಬ್ರಹ್ಮನ ದಿನಗಳು",
+    "gu": "30 કલ્પ  –  બ્રહ્માના દિવસ",
+    "mai": "30 कल्प  –  ब्रह्मा के दिन",
+    "mr": "30 कल्प  –  ब्रह्मा के दिन"
   },
   "level": {
     "en": "Level",
@@ -600,16 +600,16 @@
     "mai": "~12 min either side of local noon"
   },
   "abhijitMuhurtaDesc": {
-    "en": "Most auspicious of the day — all activities",
-    "hi": "दिन का सर्वश्रेष्ठ — सभी कार्यों के लिए",
-    "sa": "दिनस्य सर्वश्रेष्ठम् — सर्वकार्येभ्यः",
-    "ta": "Most auspicious of the day — all activities",
-    "te": "Most auspicious of the day — all activities",
-    "bn": "Most auspicious of the day — all activities",
-    "kn": "Most auspicious of the day — all activities",
-    "mr": "Most auspicious of the day — all activities",
-    "gu": "Most auspicious of the day — all activities",
-    "mai": "Most auspicious of the day — all activities"
+    "en": "Most auspicious of the day  –  all activities",
+    "hi": "दिन का सर्वश्रेष्ठ  –  सभी कार्यों के लिए",
+    "sa": "दिनस्य सर्वश्रेष्ठम्  –  सर्वकार्येभ्यः",
+    "ta": "Most auspicious of the day  –  all activities",
+    "te": "Most auspicious of the day  –  all activities",
+    "bn": "Most auspicious of the day  –  all activities",
+    "kn": "Most auspicious of the day  –  all activities",
+    "mr": "Most auspicious of the day  –  all activities",
+    "gu": "Most auspicious of the day  –  all activities",
+    "mai": "Most auspicious of the day  –  all activities"
   },
   "vijayaMuhurta": {
     "en": "Vijaya Muhurta",
@@ -672,16 +672,16 @@
     "mai": "Moon's most auspicious window"
   },
   "amritKalamDesc": {
-    "en": "Lunar nectar period — excellent for all",
-    "hi": "चंद्र अमृत काल — सभी कार्यों के लिए उत्तम",
-    "sa": "चन्द्र अमृतकालः — सर्वकार्येभ्यः उत्तमम्",
-    "ta": "Lunar nectar period — excellent for all",
-    "te": "Lunar nectar period — excellent for all",
-    "bn": "Lunar nectar period — excellent for all",
-    "kn": "Lunar nectar period — excellent for all",
-    "mr": "Lunar nectar period — excellent for all",
-    "gu": "Lunar nectar period — excellent for all",
-    "mai": "Lunar nectar period — excellent for all"
+    "en": "Lunar nectar period  –  excellent for all",
+    "hi": "चंद्र अमृत काल  –  सभी कार्यों के लिए उत्तम",
+    "sa": "चन्द्र अमृतकालः  –  सर्वकार्येभ्यः उत्तमम्",
+    "ta": "Lunar nectar period  –  excellent for all",
+    "te": "Lunar nectar period  –  excellent for all",
+    "bn": "Lunar nectar period  –  excellent for all",
+    "kn": "Lunar nectar period  –  excellent for all",
+    "mr": "Lunar nectar period  –  excellent for all",
+    "gu": "Lunar nectar period  –  excellent for all",
+    "mai": "Lunar nectar period  –  excellent for all"
   },
   "seeTodayMuhurtas": {
     "en": "See Today's Muhurtas",

@@ -27,24 +27,24 @@ function Page1() {
     <div className="space-y-6">
       <KeyTakeaway
         points={[
-          'Gana (temperament): Deva (divine), Manushya (human), Rakshasa (demonic) — 9 nakshatras each. Scores 6 points in matching.',
+          'Gana (temperament): Deva (divine), Manushya (human), Rakshasa (demonic)  –  9 nakshatras each. Scores 6 points in matching.',
           'Yoni (animal nature): 14 animal pairs representing sexual and instinctual compatibility. Scores 4 points.',
-          'Nadi (constitution): Aadi/Madhya/Antya cycling through nakshatras. Scores 8 points — the highest single kuta.',
+          'Nadi (constitution): Aadi/Madhya/Antya cycling through nakshatras. Scores 8 points  –  the highest single kuta.',
         ]}
         locale={locale}
       />
       <section>
-        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{isHi ? 'गण वर्गीकरण — देव, मनुष्य, राक्षस' : 'Gana Classification — Deva, Manushya, Rakshasa'}</h3>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{isHi ? 'गण वर्गीकरण  –  देव, मनुष्य, राक्षस' : 'Gana Classification  –  Deva, Manushya, Rakshasa'}</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           Each of the 27 nakshatras is assigned to one of three ganas (temperaments), with 9 nakshatras per gana. This classification reflects the fundamental nature and disposition of a person born under that nakshatra.
         </p>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
           <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Deva Gana (Divine):</span> Ashwini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Shravana, Revati. Gentle, spiritual, generous temperament. Naturally inclined towards dharma and social harmony.</p>
           <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Manushya Gana (Human):</span> Bharani, Rohini, Ardra, Purva Phalguni, Uttara Phalguni, Purva Ashadha, Uttara Ashadha, Purva Bhadrapada, Uttara Bhadrapada. Balanced, practical, worldly temperament. Mix of spiritual and material inclinations.</p>
-          <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Rakshasa Gana (Demonic):</span> Krittika, Ashlesha, Magha, Chitra, Vishakha, Jyeshtha, Mula, Dhanishtha, Shatabhisha. Intense, independent, fierce temperament. Strong-willed, unconventional, and direct. NOT evil — the term &quot;Rakshasa&quot; here means assertive power, not malevolence.</p>
+          <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Rakshasa Gana (Demonic):</span> Krittika, Ashlesha, Magha, Chitra, Vishakha, Jyeshtha, Mula, Dhanishtha, Shatabhisha. Intense, independent, fierce temperament. Strong-willed, unconventional, and direct. NOT evil  –  the term &quot;Rakshasa&quot; here means assertive power, not malevolence.</p>
         </div>
         <WhyItMatters locale={locale}>
-          Gana compatibility is crucial in marriage matching. Deva-Deva and Manushya-Manushya matches score full points. Deva-Manushya is acceptable. Deva-Rakshasa is challenging. Rakshasa-Rakshasa can actually work well — two intense personalities may understand each other better than a gentle-fierce pairing.
+          Gana compatibility is crucial in marriage matching. Deva-Deva and Manushya-Manushya matches score full points. Deva-Manushya is acceptable. Deva-Rakshasa is challenging. Rakshasa-Rakshasa can actually work well  –  two intense personalities may understand each other better than a gentle-fierce pairing.
         </WhyItMatters>
       </section>
 
@@ -78,9 +78,9 @@ function Page2() {
   return (
     <div className="space-y-6">
       <section>
-        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{isHi ? 'योनि सारणी — 14 पशु प्रतीक' : 'Yoni Table — 14 Animal Symbols'}</h3>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{isHi ? 'योनि सारणी  –  14 पशु प्रतीक' : 'Yoni Table  –  14 Animal Symbols'}</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          Each nakshatra is assigned a Yoni (animal symbol) representing sexual and instinctual compatibility. There are 14 animal types, each appearing in a male-female pair across 2 nakshatras (14 x 2 = 28, but only 27 nakshatras exist — Abhijit, the 28th, is omitted in the standard system). Matching yonis of the same animal scores full 4 points. Friendly animals score well; enemy animals score 0.
+          Each nakshatra is assigned a Yoni (animal symbol) representing sexual and instinctual compatibility. There are 14 animal types, each appearing in a male-female pair across 2 nakshatras (14 x 2 = 28, but only 27 nakshatras exist  –  Abhijit, the 28th, is omitted in the standard system). Matching yonis of the same animal scores full 4 points. Friendly animals score well; enemy animals score 0.
         </p>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 overflow-x-auto">
           <table className="w-full text-xs">
@@ -105,7 +105,7 @@ function Page2() {
               <tr className="border-b border-white/5"><td className="py-1 pr-2">Tiger</td><td className="py-1 pr-2">Chitra</td><td className="py-1 pr-2">Vishakha</td><td className="py-1">Cow</td></tr>
               <tr className="border-b border-white/5"><td className="py-1 pr-2">Hare</td><td className="py-1 pr-2">Anuradha</td><td className="py-1 pr-2">Jyeshtha</td><td className="py-1">Dog</td></tr>
               <tr className="border-b border-white/5"><td className="py-1 pr-2">Monkey</td><td className="py-1 pr-2">P.Ashadha</td><td className="py-1 pr-2">Shravana</td><td className="py-1">Sheep</td></tr>
-              <tr className="border-b border-white/5"><td className="py-1 pr-2">Mongoose</td><td className="py-1 pr-2">U.Ashadha</td><td className="py-1 pr-2">—</td><td className="py-1">Serpent</td></tr>
+              <tr className="border-b border-white/5"><td className="py-1 pr-2">Mongoose</td><td className="py-1 pr-2">U.Ashadha</td><td className="py-1 pr-2"> – </td><td className="py-1">Serpent</td></tr>
               <tr><td className="py-1 pr-2">Lion</td><td className="py-1 pr-2">Dhanishtha</td><td className="py-1 pr-2">P.Bhadrapada</td><td className="py-1">Elephant</td></tr>
             </tbody>
           </table>
@@ -122,25 +122,25 @@ function Page3() {
   return (
     <div className="space-y-6">
       <section>
-        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{isHi ? 'नाड़ी सारणी — आदि, मध्य, अन्त्य' : 'Nadi Table — Aadi, Madhya, Antya'}</h3>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{isHi ? 'नाड़ी सारणी  –  आदि, मध्य, अन्त्य' : 'Nadi Table  –  Aadi, Madhya, Antya'}</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           Nadi Kuta carries the highest weight of 8 out of 36 points. The 27 nakshatras are divided into three nadis corresponding to Ayurvedic body constitutions. The assignment cycles in groups of three: Aadi (Vata), Madhya (Pitta), Antya (Kapha), repeating across all 27.
         </p>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
-          <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Aadi Nadi (Vata):</span> Ashwini, Ardra, Punarvasu, U.Phalguni, Hasta, Jyeshtha, Mula, Shatabhisha, P.Bhadrapada. Air/ether constitution — restless, creative, variable energy.</p>
-          <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Madhya Nadi (Pitta):</span> Bharani, Mrigashira, Pushya, P.Phalguni, Chitra, Anuradha, P.Ashadha, Dhanishtha, U.Bhadrapada. Fire/water constitution — intense, driven, sharp intellect.</p>
-          <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Antya Nadi (Kapha):</span> Krittika, Rohini, Ashlesha, Magha, Swati, Vishakha, U.Ashadha, Shravana, Revati. Earth/water constitution — stable, nurturing, enduring.</p>
+          <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Aadi Nadi (Vata):</span> Ashwini, Ardra, Punarvasu, U.Phalguni, Hasta, Jyeshtha, Mula, Shatabhisha, P.Bhadrapada. Air/ether constitution  –  restless, creative, variable energy.</p>
+          <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Madhya Nadi (Pitta):</span> Bharani, Mrigashira, Pushya, P.Phalguni, Chitra, Anuradha, P.Ashadha, Dhanishtha, U.Bhadrapada. Fire/water constitution  –  intense, driven, sharp intellect.</p>
+          <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Antya Nadi (Kapha):</span> Krittika, Rohini, Ashlesha, Magha, Swati, Vishakha, U.Ashadha, Shravana, Revati. Earth/water constitution  –  stable, nurturing, enduring.</p>
         </div>
-        <p className="text-text-secondary text-sm leading-relaxed mt-3">When both partners share the same nadi, it scores 0 points and triggers Nadi Dosha — the most feared incompatibility. The Ayurvedic logic is that identical constitutions amplify imbalances rather than complement them. However, Nadi Dosha has well-documented cancellation conditions: same rashi but different nakshatras, same nakshatra but different rashis, or friendly rashi lords.</p>
+        <p className="text-text-secondary text-sm leading-relaxed mt-3">When both partners share the same nadi, it scores 0 points and triggers Nadi Dosha  –  the most feared incompatibility. The Ayurvedic logic is that identical constitutions amplify imbalances rather than complement them. However, Nadi Dosha has well-documented cancellation conditions: same rashi but different nakshatras, same nakshatra but different rashis, or friendly rashi lords.</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example — Full Kuta Scoring'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example  –  Full Kuta Scoring'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
-          <span className="text-gold-light font-medium">Bride:</span> Rohini (4th nakshatra) — Manushya gana, Serpent yoni, Antya nadi.
+          <span className="text-gold-light font-medium">Bride:</span> Rohini (4th nakshatra)  –  Manushya gana, Serpent yoni, Antya nadi.
         </p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
-          <span className="text-gold-light font-medium">Groom:</span> Hasta (13th nakshatra) — Deva gana, Buffalo yoni, Aadi nadi.
+          <span className="text-gold-light font-medium">Groom:</span> Hasta (13th nakshatra)  –  Deva gana, Buffalo yoni, Aadi nadi.
         </p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Gana:</span> Manushya-Deva = 5/6 points. <span className="text-gold-light font-medium">Yoni:</span> Serpent-Buffalo = neutral = 2/4 points. <span className="text-gold-light font-medium">Nadi:</span> Antya-Aadi = different = 8/8 points (full score, no Nadi Dosha).
@@ -153,7 +153,7 @@ function Page3() {
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
-          <span className="text-gold-light font-medium">Myth:</span> &quot;Rakshasa gana people are evil.&quot; &quot;Rakshasa&quot; in this context means intense, independent, and fiercely self-determined — not malevolent. Many leaders, innovators, and artists have Rakshasa gana nakshatras.
+          <span className="text-gold-light font-medium">Myth:</span> &quot;Rakshasa gana people are evil.&quot; &quot;Rakshasa&quot; in this context means intense, independent, and fiercely self-determined  –  not malevolent. Many leaders, innovators, and artists have Rakshasa gana nakshatras.
         </p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Myth:</span> &quot;Nadi Dosha absolutely prevents marriage.&quot; Nadi Dosha affects roughly 1 in 3 random matches. Millions of successful marriages exist despite it. The cancellation conditions are well-documented and widely accepted.
@@ -167,7 +167,7 @@ function Page3() {
         question="How many points does Nadi Kuta carry in the Ashta Kuta system?"
         options={['3 points', '5 points', '7 points', '8 points']}
         correctIndex={3}
-        explanation="Nadi Kuta carries 8 out of 36 points — the highest single kuta. When both partners share the same nadi, it scores 0 and triggers Nadi Dosha."
+        explanation="Nadi Kuta carries 8 out of 36 points  –  the highest single kuta. When both partners share the same nadi, it scores 0 and triggers Nadi Dosha."
       />
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">

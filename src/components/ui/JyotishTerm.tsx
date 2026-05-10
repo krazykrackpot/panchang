@@ -31,7 +31,7 @@ function getSeenTerms(): Set<string> {
     if (!raw) return new Set();
     return new Set(JSON.parse(raw) as string[]);
   } catch {
-    // localStorage unavailable (SSR guard, private browsing, etc.) — degrade gracefully
+    // localStorage unavailable (SSR guard, private browsing, etc.)  –  degrade gracefully
     return new Set();
   }
 }
@@ -42,7 +42,7 @@ function markTermSeen(term: string): void {
     seen.add(term);
     localStorage.setItem(SEEN_STORAGE_KEY, JSON.stringify([...seen]));
   } catch {
-    // localStorage write failed — ignore, progressive enhancement
+    // localStorage write failed  –  ignore, progressive enhancement
   }
 }
 
@@ -117,7 +117,7 @@ export default function JyotishTerm({ term, children, showOnce = false }: Jyotis
     }
   }
 
-  // If entry not found, render plain text — no crash
+  // If entry not found, render plain text  –  no crash
   if (!entry) {
     return <>{children ?? term}</>;
   }

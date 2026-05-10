@@ -158,7 +158,7 @@ export default function EclipseWatchCard({ ascendantSign, locale }: Props) {
                 {eclipseTypeLabel} ({eclipseInfo.type})
               </p>
               <p className="text-text-secondary text-xs">
-                {formattedDate} — <span className="text-gold-primary font-bold">{eclipseInfo.daysUntil} {L.daysAway}</span>
+                {formattedDate}  –  <span className="text-gold-primary font-bold">{eclipseInfo.daysUntil} {L.daysAway}</span>
               </p>
             </div>
           </div>

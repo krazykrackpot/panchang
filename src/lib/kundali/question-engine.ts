@@ -1,9 +1,9 @@
 /**
- * Question-Answering Engine — "Will I get married this year?"
+ * Question-Answering Engine  –  "Will I get married this year?"
  *
  * Maps common life questions to specific chart factors, then generates
  * a deterministic answer from existing computed data (KundaliData,
- * TippanniContent, PersonalReading). No LLM/AI — pure chart logic.
+ * TippanniContent, PersonalReading). No LLM/AI  –  pure chart logic.
  *
  * A pandit doesn't say "your 7th house is in Libra." A pandit says:
  * "YES, marriage is indicated this year. Here's why: [3 specific factors]."
@@ -87,7 +87,7 @@ export interface QuestionAnswer {
   verdict: 'yes' | 'likely' | 'mixed' | 'unlikely' | 'challenging';
   /** Confidence score 0-100 */
   confidence: number;
-  /** The pandit's answer — 2-4 sentences */
+  /** The pandit's answer  –  2-4 sentences */
   answer: string;
   /** Chart factors that support the answer */
   evidence: ChartEvidence[];
@@ -133,8 +133,8 @@ export function answerQuestion(
       evidence.push({
         factor: `${capitalize(qDef.domain)} domain rating: ${domainReading.overallRating.rating} (${domainReading.overallRating.score.toFixed(1)}/10)`,
         interpretation: isGood
-          ? `Your ${qDef.domain} domain is strong — the chart supports positive outcomes here.`
-          : `Your ${qDef.domain} domain faces challenges — effort and timing matter more.`,
+          ? `Your ${qDef.domain} domain is strong  –  the chart supports positive outcomes here.`
+          : `Your ${qDef.domain} domain faces challenges  –  effort and timing matter more.`,
         supports: isGood ? 'positive' : ratingVal >= 4 ? 'neutral' : 'negative',
       });
       positiveScore += isGood ? 20 : ratingVal >= 4 ? 10 : 0;
@@ -173,8 +173,8 @@ export function answerQuestion(
       evidence.push({
         factor: `${strength.planetName} strength: ${strength.strength}%`,
         interpretation: isStrong
-          ? `${strength.planetName} is strong in your chart — supports this area.`
-          : `${strength.planetName} is weak (${strength.strength}%) — this factor needs remedial support.`,
+          ? `${strength.planetName} is strong in your chart  –  supports this area.`
+          : `${strength.planetName} is weak (${strength.strength}%)  –  this factor needs remedial support.`,
         supports: isStrong ? 'positive' : strength.strength >= 40 ? 'neutral' : 'negative',
       });
       positiveScore += isStrong ? 10 : 0;
@@ -230,8 +230,8 @@ export function answerQuestion(
     });
     if (isRelevantPlanet) {
       evidence.push({
-        factor: `${tippanni.dashaInsight.currentMaha} — directly relevant`,
-        interpretation: `The current dasha lord directly governs this life area — this period is significant for your question.`,
+        factor: `${tippanni.dashaInsight.currentMaha}  –  directly relevant`,
+        interpretation: `The current dasha lord directly governs this life area  –  this period is significant for your question.`,
         supports: 'positive',
       });
       positiveScore += 15;
@@ -258,10 +258,10 @@ export function answerQuestion(
   }
 
   // ── Compute verdict ──
-  // Cap confidence conservatively — astrology shows tendencies, not certainties
+  // Cap confidence conservatively  –  astrology shows tendencies, not certainties
   const totalScore = positiveScore + negativeScore;
   const positiveRatio = totalScore > 0 ? positiveScore / totalScore : 0.5;
-  // Cap at 75% — no chart reading should claim >75% certainty
+  // Cap at 75%  –  no chart reading should claim >75% certainty
   const confidence = Math.min(75, Math.max(20, Math.round(positiveRatio * 80)));
 
   let verdict: QuestionAnswer['verdict'];
@@ -275,7 +275,7 @@ export function answerQuestion(
   const positiveFactors = evidence.filter(e => e.supports === 'positive').length;
   const negativeFactors = evidence.filter(e => e.supports === 'negative').length;
 
-  // Get timing first — used by 'when' type answers
+  // Get timing first  –  used by 'when' type answers
   let timing: string | undefined;
   if (personalReading && qDef.domain) {
     const domainReading = personalReading.domains.find(d => d.domain === qDef.domain);
@@ -290,25 +290,25 @@ export function answerQuestion(
     const strongestDomain = personalReading?.domains.reduce((best, d) =>
       d.overallRating.score > (best?.overallRating.score || 0) ? d : best, personalReading.domains[0]);
     answer = strongestDomain
-      ? `Your strongest area right now is ${strongestDomain.domain} (${strongestDomain.overallRating.rating}). ${tl(strongestDomain.headline, locale)} Focus your energy here — this is where your chart gives you the most support.`
+      ? `Your strongest area right now is ${strongestDomain.domain} (${strongestDomain.overallRating.rating}). ${tl(strongestDomain.headline, locale)} Focus your energy here  –  this is where your chart gives you the most support.`
       : 'Focus on the life area where your chart shows the most strength. See the domain ratings above.';
   } else if (qDef.id === 'best_period') {
     answer = tippanni.dashaInsight.upcoming
       ? `Your current period: ${tippanni.dashaInsight.currentMaha}. ${tippanni.dashaInsight.upcoming}. The next positive shift comes with the dasha transition described above.`
       : `You are in ${tippanni.dashaInsight.currentMaha}. Check the dasha timeline for your next favorable period.`;
   } else if (qDef.type === 'when') {
-    // "When" questions — focus on timing, frame as possibility not certainty
+    // "When" questions  –  focus on timing, frame as possibility not certainty
     const conditionText = positiveRatio >= 0.6
       ? 'Your chart shows favorable conditions for this.'
       : positiveRatio >= 0.4
-        ? 'Your chart shows mixed conditions — some support exists but timing matters.'
+        ? 'Your chart shows mixed conditions  –  some support exists but timing matters.'
         : 'Your chart suggests this area needs strengthening before the timing aligns.';
     const timingText = timing
       ? `The next significant window is: ${timing.replace('Next significant window: ', '')}.`
       : `Look to your current ${tippanni.dashaInsight.currentMaha} period and upcoming dasha transitions for timing clues.`;
-    answer = `${conditionText} ${timingText} ${evidence[0]?.interpretation || ''} Remember: chart indicators show potential and tendencies — your choices and effort shape the actual outcome.`;
+    answer = `${conditionText} ${timingText} ${evidence[0]?.interpretation || ''} Remember: chart indicators show potential and tendencies  –  your choices and effort shape the actual outcome.`;
   } else if (qDef.type === 'how') {
-    // "How" questions — assessment, not yes/no
+    // "How" questions  –  assessment, not yes/no
     const assessmentText = positiveRatio >= 0.6
       ? 'The chart indicators in this area are generally favorable.'
       : positiveRatio >= 0.4
@@ -316,20 +316,20 @@ export function answerQuestion(
         : 'This area faces some challenges according to your chart factors.';
     answer = `${assessmentText} ${positiveFactors} factor${positiveFactors !== 1 ? 's' : ''} support strength here${negativeFactors > 0 ? `, while ${negativeFactors} factor${negativeFactors !== 1 ? 's' : ''} suggest${negativeFactors === 1 ? 's' : ''} areas for attention` : ''}. ${evidence[0]?.interpretation || ''}`;
   } else if (qDef.type === 'what') {
-    // "What" questions — guidance, descriptive
+    // "What" questions  –  guidance, descriptive
     answer = evidence.length > 0
       ? `Based on your chart: ${evidence.map(e => e.interpretation).filter(Boolean).slice(0, 2).join(' ')} ${timing ? `Timing note: ${timing.replace('Next significant window: ', '')}.` : ''}`
       : 'See the evidence factors below for chart-specific guidance.';
   } else {
-    // 'yesno' — frame as tendencies, not absolutes
+    // 'yesno'  –  frame as tendencies, not absolutes
     const verdictText = verdict === 'yes'
-      ? 'The chart indicators are favorable — if you choose to pursue this, the conditions support you.'
+      ? 'The chart indicators are favorable  –  if you choose to pursue this, the conditions support you.'
       : verdict === 'likely'
-        ? 'Most chart factors lean positive — conditions are generally supportive, though not guaranteed.'
+        ? 'Most chart factors lean positive  –  conditions are generally supportive, though not guaranteed.'
         : verdict === 'mixed'
-          ? 'Mixed signals — some chart factors support this, others create resistance. Timing and effort will be decisive.'
+          ? 'Mixed signals  –  some chart factors support this, others create resistance. Timing and effort will be decisive.'
           : verdict === 'unlikely'
-            ? 'The chart suggests challenges here — success is possible but requires deliberate effort and good timing.'
+            ? 'The chart suggests challenges here  –  success is possible but requires deliberate effort and good timing.'
             : 'This area faces significant chart-level obstacles. Remedies and patience are recommended before major action.';
 
     answer = `${verdictText} ${evidence[0]?.interpretation || ''}`;
@@ -337,7 +337,7 @@ export function answerQuestion(
 
   // ── Advice ──
   const advice = verdict === 'yes' || verdict === 'likely'
-    ? `Conditions are supportive. ${evidence.find(e => e.supports === 'positive')?.factor || 'Your chart strengths'} work in your favor — but remember, astrology shows tendencies, not certainties. Your actions matter most.`
+    ? `Conditions are supportive. ${evidence.find(e => e.supports === 'positive')?.factor || 'Your chart strengths'} work in your favor  –  but remember, astrology shows tendencies, not certainties. Your actions matter most.`
     : verdict === 'mixed'
       ? 'Consider waiting for a stronger transit window, or strengthen the weaker factors through the remedies suggested in your reading. Patience and preparation improve outcomes.'
       : `Focus on strengthening the chart factors that need support. ${evidence.find(e => e.supports === 'negative')?.factor || 'See remedies below'} deserves attention. Remedies and right timing can shift the balance.`;

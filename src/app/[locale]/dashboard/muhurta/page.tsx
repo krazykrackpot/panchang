@@ -37,7 +37,7 @@ export default function MuhurtaPage() {
   const hf = (isDevanagariLocale(locale)) ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = (isDevanagariLocale(locale)) ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const user = useAuthStore(s => s.user);
-  // Panchang data depends on WHERE the user is NOW — use current location, not birth location
+  // Panchang data depends on WHERE the user is NOW  –  use current location, not birth location
   const locationStore = useLocationStore();
   const [muhurtas, setMuhurtas] = useState<PersonalMuhurta[]>([]);
   const [loading, setLoading] = useState(true);
@@ -55,7 +55,7 @@ export default function MuhurtaPage() {
     const lat = locationStore.lat;
     const lng = locationStore.lng;
     if (lat === null || lng === null) {
-      // Location not yet detected — don't fetch with bogus coords
+      // Location not yet detected  –  don't fetch with bogus coords
       if (!locationStore.detecting) setLoading(false);
       return;
     }

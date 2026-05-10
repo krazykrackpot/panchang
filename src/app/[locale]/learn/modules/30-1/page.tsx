@@ -73,8 +73,8 @@ function Page1() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>बृहत् पाराशर होरा शास्त्र (BPHS) वैदिक ज्योतिष का सबसे महत्वपूर्ण और व्यापक ग्रन्थ है। यह महर्षि पाराशर और उनके शिष्य मैत्रेय के बीच संवाद के रूप में लगभग 100 अध्यायों में संरचित है। "होरा" शब्द "अहोरात्र" (दिन और रात) से निकला है — होरा शास्त्र = समय का विज्ञान। यह ग्रन्थ ग्रह स्वभाव, राशि गुण, वर्ग, दशा, योग, बल, और उपचार — ज्योतिष के लगभग हर विषय को कवर करता है।</>
-            : <>Brihat Parashara Hora Shastra (BPHS) is the most important and comprehensive text of Vedic astrology. It is structured as a dialogue between Maharishi Parashara and his student Maitreya across approximately 100 chapters. The word &quot;Hora&quot; derives from &quot;Ahoratri&quot; (day and night) — Hora Shastra = the science of time. This text covers virtually every topic in Jyotish: planetary nature, sign qualities, vargas, dashas, yogas, strengths, and remedies.</>}
+            ? <>बृहत् पाराशर होरा शास्त्र (BPHS) वैदिक ज्योतिष का सबसे महत्वपूर्ण और व्यापक ग्रन्थ है। यह महर्षि पाराशर और उनके शिष्य मैत्रेय के बीच संवाद के रूप में लगभग 100 अध्यायों में संरचित है। "होरा" शब्द "अहोरात्र" (दिन और रात) से निकला है  –  होरा शास्त्र = समय का विज्ञान। यह ग्रन्थ ग्रह स्वभाव, राशि गुण, वर्ग, दशा, योग, बल, और उपचार  –  ज्योतिष के लगभग हर विषय को कवर करता है।</>
+            : <>Brihat Parashara Hora Shastra (BPHS) is the most important and comprehensive text of Vedic astrology. It is structured as a dialogue between Maharishi Parashara and his student Maitreya across approximately 100 chapters. The word &quot;Hora&quot; derives from &quot;Ahoratri&quot; (day and night)  –  Hora Shastra = the science of time. This text covers virtually every topic in Jyotish: planetary nature, sign qualities, vargas, dashas, yogas, strengths, and remedies.</>}
         </p>
       </section>
 
@@ -106,8 +106,8 @@ function Page2() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>BPHS को आरम्भ से अन्त तक पढ़ने का प्रयास एक सामान्य गलती है — यह एक उपन्यास नहीं, एक विश्वकोश है। प्रभावी दृष्टिकोण: पहले अध्याय 3-4 (ग्रह गुण और राशि स्वभाव) को पूर्ण रूप से समझें — यह सम्पूर्ण ज्योतिष का आधार है। फिर अध्याय 17-26 (भाव कारकत्व) पढ़ें — प्रत्येक भाव के अर्थ और उसमें ग्रहों के फल। इसके बाद अध्याय 46-52 (दशा) और 27-36 (योग) पर जाएँ।</>
-            : <>A common mistake is trying to read BPHS from start to finish — it is an encyclopedia, not a novel. The effective approach: first thoroughly understand Chapters 3-4 (planetary qualities and sign nature) — this is the foundation of all Jyotish. Then read Chapters 17-26 (house significations) — the meaning of each house and results of planets in them. After that, move to Chapters 46-52 (dashas) and 27-36 (yogas).</>}
+            ? <>BPHS को आरम्भ से अन्त तक पढ़ने का प्रयास एक सामान्य गलती है  –  यह एक उपन्यास नहीं, एक विश्वकोश है। प्रभावी दृष्टिकोण: पहले अध्याय 3-4 (ग्रह गुण और राशि स्वभाव) को पूर्ण रूप से समझें  –  यह सम्पूर्ण ज्योतिष का आधार है। फिर अध्याय 17-26 (भाव कारकत्व) पढ़ें  –  प्रत्येक भाव के अर्थ और उसमें ग्रहों के फल। इसके बाद अध्याय 46-52 (दशा) और 27-36 (योग) पर जाएँ।</>
+            : <>A common mistake is trying to read BPHS from start to finish  –  it is an encyclopedia, not a novel. The effective approach: first thoroughly understand Chapters 3-4 (planetary qualities and sign nature)  –  this is the foundation of all Jyotish. Then read Chapters 17-26 (house significations)  –  the meaning of each house and results of planets in them. After that, move to Chapters 46-52 (dashas) and 27-36 (yogas).</>}
         </p>
       </section>
 
@@ -117,8 +117,8 @@ function Page2() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <>BPHS को बिना टीका (भाष्य) के पढ़ना कठिन है क्योंकि मूल श्लोक अत्यन्त संक्षिप्त हैं। प्रमुख अंग्रेजी अनुवाद: गिरीश चन्द्र शर्मा (2 खण्ड) और आर. सन्थानम का अनुवाद। हिन्दी में: सीताराम झा का भाष्य। प्रत्येक टीकाकार अपनी परम्परा से व्याख्या करता है — इसलिए एक से अधिक टीका पढ़ना महत्वपूर्ण है। जब दो टीकाकार भिन्न व्याख्या दें, तो मूल श्लोक पर लौटें।</>
-            : <>Reading BPHS without commentary (bhashya) is challenging because the original shlokas are extremely concise. Key English translations: Girish Chandra Sharma (2 volumes) and R. Santhanam&apos;s translation. Each commentator interprets from their tradition — so reading multiple commentaries is important. When two commentators disagree, return to the original shloka and apply the rules to real charts to see which interpretation holds.</>}
+            ? <>BPHS को बिना टीका (भाष्य) के पढ़ना कठिन है क्योंकि मूल श्लोक अत्यन्त संक्षिप्त हैं। प्रमुख अंग्रेजी अनुवाद: गिरीश चन्द्र शर्मा (2 खण्ड) और आर. सन्थानम का अनुवाद। हिन्दी में: सीताराम झा का भाष्य। प्रत्येक टीकाकार अपनी परम्परा से व्याख्या करता है  –  इसलिए एक से अधिक टीका पढ़ना महत्वपूर्ण है। जब दो टीकाकार भिन्न व्याख्या दें, तो मूल श्लोक पर लौटें।</>
+            : <>Reading BPHS without commentary (bhashya) is challenging because the original shlokas are extremely concise. Key English translations: Girish Chandra Sharma (2 volumes) and R. Santhanam&apos;s translation. Each commentator interprets from their tradition  –  so reading multiple commentaries is important. When two commentators disagree, return to the original shloka and apply the rules to real charts to see which interpretation holds.</>}
         </p>
       </section>
     </div>
@@ -136,8 +136,8 @@ function Page3() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>आधुनिक ज्योतिष में BPHS का महत्व अटल है। जब भी किसी योग, दशा फल, या ग्रहीय नियम पर विवाद हो, BPHS अन्तिम सन्दर्भ होता है। हमारा ज्योतिष इंजन — कुण्डली गणना, योग पहचान, दशा गणना, और शड्बल — सभी BPHS के नियमों पर आधारित हैं। जब हमने मूलत्रिकोण अंश, ग्रह मैत्री सारणी, या उच्च-नीच अंश में विसंगति पाई, तो BPHS अध्याय 3-4 ही प्रामाणिक स्रोत बना।</>
-            : <>In modern practice, BPHS&apos;s importance is unshakeable. Whenever there is a dispute about a yoga, dasha result, or planetary rule, BPHS is the final reference. Our Jyotish engine — kundali computation, yoga detection, dasha calculation, and shadbala — is all based on BPHS rules. When we found discrepancies in moolatrikona degrees, planetary friendship tables, or exaltation-debilitation degrees, BPHS Chapters 3-4 was the authoritative source.</>}
+            ? <>आधुनिक ज्योतिष में BPHS का महत्व अटल है। जब भी किसी योग, दशा फल, या ग्रहीय नियम पर विवाद हो, BPHS अन्तिम सन्दर्भ होता है। हमारा ज्योतिष इंजन  –  कुण्डली गणना, योग पहचान, दशा गणना, और शड्बल  –  सभी BPHS के नियमों पर आधारित हैं। जब हमने मूलत्रिकोण अंश, ग्रह मैत्री सारणी, या उच्च-नीच अंश में विसंगति पाई, तो BPHS अध्याय 3-4 ही प्रामाणिक स्रोत बना।</>
+            : <>In modern practice, BPHS&apos;s importance is unshakeable. Whenever there is a dispute about a yoga, dasha result, or planetary rule, BPHS is the final reference. Our Jyotish engine  –  kundali computation, yoga detection, dasha calculation, and shadbala  –  is all based on BPHS rules. When we found discrepancies in moolatrikona degrees, planetary friendship tables, or exaltation-debilitation degrees, BPHS Chapters 3-4 was the authoritative source.</>}
         </p>
       </section>
 
@@ -147,8 +147,8 @@ function Page3() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <>विद्वानों में BPHS के रचनाकाल पर मतभेद है। परम्परा के अनुसार यह महर्षि पाराशर (वेद व्यास के पिता) की रचना है और इसकी तिथि अत्यन्त प्राचीन है। आधुनिक शोध सुझाता है कि वर्तमान संस्करण 7वीं-8वीं शताब्दी ई. का संकलन है जो पुरानी मौखिक परम्पराओं को एकत्रित करता है। यह विवाद ग्रन्थ के मूल्य को कम नहीं करता — चाहे 500 ई.पू. हो या 700 ई., इसके नियम आज भी प्रभावी और सत्यापनीय हैं।</>
-            : <>Scholars debate BPHS&apos;s authorship date. Tradition credits Maharishi Parashara (father of Veda Vyasa), placing it in deep antiquity. Modern research suggests the current version is a 7th-8th century CE compilation gathering older oral traditions. This debate does not diminish the text&apos;s value — whether 500 BCE or 700 CE, its rules remain effective and verifiable in chart analysis today.</>}
+            ? <>विद्वानों में BPHS के रचनाकाल पर मतभेद है। परम्परा के अनुसार यह महर्षि पाराशर (वेद व्यास के पिता) की रचना है और इसकी तिथि अत्यन्त प्राचीन है। आधुनिक शोध सुझाता है कि वर्तमान संस्करण 7वीं-8वीं शताब्दी ई. का संकलन है जो पुरानी मौखिक परम्पराओं को एकत्रित करता है। यह विवाद ग्रन्थ के मूल्य को कम नहीं करता  –  चाहे 500 ई.पू. हो या 700 ई., इसके नियम आज भी प्रभावी और सत्यापनीय हैं।</>
+            : <>Scholars debate BPHS&apos;s authorship date. Tradition credits Maharishi Parashara (father of Veda Vyasa), placing it in deep antiquity. Modern research suggests the current version is a 7th-8th century CE compilation gathering older oral traditions. This debate does not diminish the text&apos;s value  –  whether 500 BCE or 700 CE, its rules remain effective and verifiable in chart analysis today.</>}
         </p>
       </section>
     </div>

@@ -41,7 +41,7 @@ export function extractDashaForDate(
     const mahaEnd = new Date(maha.endDate).getTime();
 
     if (dateMs >= mahaStart && dateMs < mahaEnd) {
-      // Found the maha dasha — now find the antar dasha
+      // Found the maha dasha  –  now find the antar dasha
       if (maha.subPeriods && maha.subPeriods.length > 0) {
         for (const antar of maha.subPeriods) {
           const antarStart = new Date(antar.startDate).getTime();
@@ -51,7 +51,7 @@ export function extractDashaForDate(
           }
         }
       }
-      // No matching antar dasha found — return maha only
+      // No matching antar dasha found  –  return maha only
       return { mahaDasha: maha.planet, antarDasha: maha.planet };
     }
   }
@@ -142,7 +142,7 @@ export function buildPlanetarySnapshot(
       id: p.id,
       name: tl(p.name, 'en'),
       sign: p.rashi ?? 0,
-      signName: '', // Kept lean — sign name can be derived from sign number
+      signName: '', // Kept lean  –  sign name can be derived from sign number
       nakshatra: '', // Kept lean
       degree: p.longitude ?? 0,
       isRetrograde: p.isRetrograde ?? false,

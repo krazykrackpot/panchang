@@ -1,6 +1,6 @@
 import type { LocaleText } from '@/types/panchang';
 /**
- * Daily Horoscope Engine — pure, deterministic computation.
+ * Daily Horoscope Engine  –  pure, deterministic computation.
  * No external API calls, no LLM. Same (moonSign + date) = same result.
  *
  * Scoring factors:
@@ -291,7 +291,7 @@ const PRACTICAL_REMEDIES: Record<QualityTier, BilingualText[]> = {
   challenging: [
     { en: 'Avoid starting new ventures today. Focus on completing existing tasks.', hi: 'आज नए कार्य शुरू करने से बचें। मौजूदा कार्यों को पूरा करने पर ध्यान दें।' },
     { en: 'Feed black sesame seeds to birds to mitigate challenging planetary energy.', hi: 'चुनौतीपूर्ण ग्रह ऊर्जा को कम करने के लिए पक्षियों को काले तिल खिलाएं।' },
-    { en: 'Spend time near water — a river, lake, or even a fountain — to calm restless energy.', hi: 'बेचैन ऊर्जा को शांत करने के लिए पानी के पास समय बिताएं — नदी, झील या फव्वारा।' },
+    { en: 'Spend time near water  –  a river, lake, or even a fountain  –  to calm restless energy.', hi: 'बेचैन ऊर्जा को शांत करने के लिए पानी के पास समय बिताएं  –  नदी, झील या फव्वारा।' },
   ],
 };
 
@@ -330,14 +330,14 @@ const DONTS_POOL: Record<QualityTier, BilingualText[]> = {
   ],
   mixed: [
     { en: 'Don\'t take on more commitments than you can handle.', hi: 'जितना संभाल सकते हैं उससे अधिक प्रतिबद्धताएँ न लें।' },
-    { en: 'Don\'t engage in arguments — save debates for another day.', hi: 'बहस में न पड़ें — वाद-विवाद दूसरे दिन के लिए रखें।' },
+    { en: 'Don\'t engage in arguments  –  save debates for another day.', hi: 'बहस में न पड़ें  –  वाद-विवाद दूसरे दिन के लिए रखें।' },
     { en: 'Don\'t lend or borrow money today if avoidable.', hi: 'यदि संभव हो तो आज पैसे उधार न दें या लें।' },
   ],
   challenging: [
     { en: 'Don\'t start any important new project today.', hi: 'आज कोई भी महत्वपूर्ण नई परियोजना शुरू न करें।' },
     { en: 'Don\'t make hasty decisions about relationships.', hi: 'रिश्तों के बारे में जल्दबाज़ी में निर्णय न लें।' },
     { en: 'Don\'t invest in speculative assets today.', hi: 'आज सट्टेबाज़ी वाली संपत्तियों में निवेश न करें।' },
-    { en: 'Don\'t confront authority figures — diplomacy is key.', hi: 'अधिकारियों से टकराव न करें — कूटनीति ज़रूरी है।' },
+    { en: 'Don\'t confront authority figures  –  diplomacy is key.', hi: 'अधिकारियों से टकराव न करें  –  कूटनीति ज़रूरी है।' },
   ],
 };
 
@@ -405,7 +405,7 @@ export function generateDailyHoroscope(input: DailyEngineInput): DailyHoroscope 
   const tithiResult = calculateTithi(jd);
   const yogaNum = calculateYoga(jd);
 
-  // Weekday — local timezone is correct: weekday is a calendar concept, not astronomical.
+  // Weekday  –  local timezone is correct: weekday is a calendar concept, not astronomical.
   // Same date = same weekday regardless of server timezone. (See Lesson L/O in CLAUDE.md)
   const dateObj = new Date(year, month - 1, day);
   const weekday = dateObj.getDay(); // 0=Sun

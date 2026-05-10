@@ -13,11 +13,11 @@ import type { ReactNode } from 'react';
 const r2 = (n: number) => Math.round(n * 100) / 100;
 
 /* ════════════════════════════════════════════════════════════════════
-   8 INLINE SVG ICONS — bold, multi-layered, dramatic (128x128)
+   8 INLINE SVG ICONS  –  bold, multi-layered, dramatic (128x128)
    Gradient IDs use unique 2-letter prefixes to avoid collisions.
    ════════════════════════════════════════════════════════════════════ */
 
-/* 1. Kundali — Diamond-shaped North Indian chart grid */
+/* 1. Kundali  –  Diamond-shaped North Indian chart grid */
 function KundaliSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -30,7 +30,7 @@ function KundaliSVG() {
       <polygon points="32,4 60,32 32,60 4,32" fill="url(#ku1)" opacity="0.06" stroke="url(#ku1)" strokeWidth="2.5" strokeLinejoin="round" />
       {/* Inner diamond */}
       <polygon points="32,18 46,32 32,46 18,32" fill="url(#ku1)" opacity="0.1" stroke="url(#ku1)" strokeWidth="2" strokeLinejoin="round" />
-      {/* House division lines — the 4 diagonal cuts */}
+      {/* House division lines  –  the 4 diagonal cuts */}
       <line x1="4" y1="32" x2="32" y2="4" stroke="url(#ku1)" strokeWidth="1.2" opacity="0.35" />
       <line x1="32" y1="4" x2="60" y2="32" stroke="url(#ku1)" strokeWidth="1.2" opacity="0.35" />
       <line x1="60" y1="32" x2="32" y2="60" stroke="url(#ku1)" strokeWidth="1.2" opacity="0.35" />
@@ -59,7 +59,7 @@ function KundaliSVG() {
   );
 }
 
-/* 2. Matching — Two interlocking rings with stars */
+/* 2. Matching  –  Two interlocking rings with stars */
 function MatchingSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -95,7 +95,7 @@ function MatchingSVG() {
   );
 }
 
-/* 3. Chart Comparison — Two overlapping diamond charts */
+/* 3. Chart Comparison  –  Two overlapping diamond charts */
 function ComparisonSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -122,10 +122,10 @@ function ComparisonSVG() {
       {/* Connecting arrows */}
       <path d="M 24 28 Q 28 30 32 32" fill="none" stroke="#f0d48a" strokeWidth="1.5" opacity="0.4" strokeDasharray="2 1.5" />
       <path d="M 40 36 Q 36 34 32 32" fill="none" stroke="#f0d48a" strokeWidth="1.5" opacity="0.4" strokeDasharray="2 1.5" />
-      {/* Planet dots — left chart */}
+      {/* Planet dots  –  left chart */}
       <circle cx="18" cy="22" r="1.5" fill="#f0d48a" opacity="0.45" />
       <circle cx="30" cy="14" r="1.2" fill="#f0d48a" opacity="0.35" />
-      {/* Planet dots — right chart */}
+      {/* Planet dots  –  right chart */}
       <circle cx="48" cy="30" r="1.5" fill="#f0d48a" opacity="0.45" />
       <circle cx="44" cy="50" r="1.2" fill="#f0d48a" opacity="0.35" />
       {/* Cosmic accent dots */}
@@ -137,7 +137,7 @@ function ComparisonSVG() {
   );
 }
 
-/* 4. Annual Forecast — Calendar page with star burst */
+/* 4. Annual Forecast  –  Calendar page with star burst */
 function AnnualForecastSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -184,7 +184,7 @@ function AnnualForecastSVG() {
   );
 }
 
-/* 5. Varshaphal — Sun with radiating orbit and return arrow */
+/* 5. Varshaphal  –  Sun with radiating orbit and return arrow */
 function VarshaphalSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -209,7 +209,7 @@ function VarshaphalSVG() {
           <line key={i} x1={r2(32 + inner * Math.cos(a))} y1={r2(32 + inner * Math.sin(a))} x2={r2(32 + outer * Math.cos(a))} y2={r2(32 + outer * Math.sin(a))} stroke="url(#vp1)" strokeWidth={i % 2 === 0 ? '2' : '1.2'} strokeLinecap="round" opacity={i % 2 === 0 ? 0.7 : 0.4} />
         );
       })}
-      {/* Return arrow on orbit — planet returning to birth position */}
+      {/* Return arrow on orbit  –  planet returning to birth position */}
       <circle cx="54" cy="32" r="3.5" fill="url(#vp1)" opacity="0.35" stroke="url(#vp1)" strokeWidth="1.5" />
       <circle cx="54" cy="32" r="1.5" fill="#f0d48a" opacity="0.5" />
       {/* Arrow head showing return direction */}
@@ -228,7 +228,7 @@ function VarshaphalSVG() {
   );
 }
 
-/* 6. Tithi Pravesha — Moon phase cycle with chart center */
+/* 6. Tithi Pravesha  –  Moon phase cycle with chart center */
 function TithiPraveshaSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -239,7 +239,7 @@ function TithiPraveshaSVG() {
       <circle cx="32" cy="32" r="28" fill="url(#tp1g)" />
       {/* Outer orbit ring */}
       <circle cx="32" cy="32" r="26" fill="none" stroke="url(#tp1)" strokeWidth="1.5" opacity="0.3" />
-      {/* Moon phases around the orbit — 8 phases */}
+      {/* Moon phases around the orbit  –  8 phases */}
       {Array.from({ length: 8 }, (_, i) => {
         const a = (Math.PI * 2 * i) / 8 - Math.PI / 2;
         const cx = r2(32 + 22 * Math.cos(a));
@@ -247,13 +247,13 @@ function TithiPraveshaSVG() {
         const phase = i / 8; // 0=new, 0.5=full
         const r = 3.5;
         if (phase < 0.02) {
-          // New moon — empty circle
+          // New moon  –  empty circle
           return <circle key={i} cx={cx} cy={cy} r={r} fill="none" stroke="url(#tp1)" strokeWidth="1.2" opacity="0.35" />;
         } else if (phase > 0.45 && phase < 0.55) {
-          // Full moon — filled
+          // Full moon  –  filled
           return <circle key={i} cx={cx} cy={cy} r={r} fill="url(#tp1)" opacity="0.45" stroke="url(#tp1)" strokeWidth="1.2" />;
         } else {
-          // Partial — crescent approximation
+          // Partial  –  crescent approximation
           const lit = phase < 0.5 ? phase * 2 : (1 - phase) * 2;
           return (
             <g key={i}>
@@ -283,7 +283,7 @@ function TithiPraveshaSVG() {
   );
 }
 
-/* 7. KP System — Concentric rings with degree markers and pointer */
+/* 7. KP System  –  Concentric rings with degree markers and pointer */
 function KPSystemSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -292,7 +292,7 @@ function KPSystemSVG() {
         <linearGradient id="kp1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
       </defs>
       <circle cx="32" cy="32" r="28" fill="url(#kp1g)" />
-      {/* Outermost ring — sign divisions */}
+      {/* Outermost ring  –  sign divisions */}
       <circle cx="32" cy="32" r="27" fill="none" stroke="url(#kp1)" strokeWidth="2.5" opacity="0.6" />
       {/* 12 sign divisions */}
       {Array.from({ length: 12 }, (_, i) => {
@@ -309,7 +309,7 @@ function KPSystemSVG() {
       {/* Sub-lord ring */}
       <circle cx="32" cy="32" r="15" fill="none" stroke="url(#kp1)" strokeWidth="1" opacity="0.3" />
       <circle cx="32" cy="32" r="15" fill="url(#kp1)" opacity="0.05" />
-      {/* Cuspal pointer — dramatic line from center to edge */}
+      {/* Cuspal pointer  –  dramatic line from center to edge */}
       <line x1="32" y1="32" x2="32" y2="5" stroke="url(#kp1)" strokeWidth="2.5" strokeLinecap="round" opacity="0.7" />
       <polygon points="32,5 29,10 35,10" fill="url(#kp1)" opacity="0.6" />
       {/* Secondary pointer */}
@@ -330,7 +330,7 @@ function KPSystemSVG() {
   );
 }
 
-/* 8. Sade Sati — Saturn ring planet with shadow */
+/* 8. Sade Sati  –  Saturn ring planet with shadow */
 function SadeSatiSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -343,7 +343,7 @@ function SadeSatiSVG() {
       <circle cx="32" cy="28" r="12" fill="url(#st1)" opacity="0.15" stroke="url(#st1)" strokeWidth="2.5" />
       <circle cx="32" cy="28" r="7" fill="url(#st1)" opacity="0.25" />
       <circle cx="32" cy="28" r="3.5" fill="#f0d48a" opacity="0.35" />
-      {/* Saturn's rings — tilted ellipses */}
+      {/* Saturn's rings  –  tilted ellipses */}
       <ellipse cx="32" cy="28" rx="24" ry="7" fill="none" stroke="url(#st1)" strokeWidth="3" opacity="0.6" transform="rotate(-15 32 28)" />
       <ellipse cx="32" cy="28" rx="20" ry="5.5" fill="none" stroke="url(#st1)" strokeWidth="1.5" opacity="0.35" transform="rotate(-15 32 28)" />
       <ellipse cx="32" cy="28" rx="27" ry="8.5" fill="none" stroke="url(#st1)" strokeWidth="1" opacity="0.2" transform="rotate(-15 32 28)" />

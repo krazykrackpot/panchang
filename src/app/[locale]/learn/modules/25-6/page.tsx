@@ -90,7 +90,7 @@ const QUESTIONS: ModuleQuestion[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 1 — The Musical Origin                                         */
+/*  PAGE 1  –  The Musical Origin                                         */
 /* ------------------------------------------------------------------ */
 function Page1() {
   const locale = useModuleLocale();
@@ -103,8 +103,8 @@ function Page1() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>फिबोनाची अनुक्रम (1, 1, 2, 3, 5, 8, 13, 21…) को पश्चिम में इटालियन गणितज्ञ लियोनार्डो ऑफ पीसा (फिबोनाची) के नाम पर जाना जाता है, जिन्होंने 1202 ईस्वी में लिबेर अबासी में खरगोश की आबादी की समस्या में इसका उपयोग किया। लेकिन भारतीय संगीतशास्त्री और गणितज्ञ इसी अनुक्रम को कम से कम 1,000 वर्ष पहले — संगीत और कविता के माध्यम से — जानते थे।</>
-            : <>The Fibonacci sequence (1, 1, 2, 3, 5, 8, 13, 21…) is named in the West after Italian mathematician Leonardo of Pisa (Fibonacci), who used it in a rabbit population problem in Liber Abaci in 1202 CE. But Indian musicologists and mathematicians knew the same sequence at least 1,000 years earlier — through the mathematics of music and poetry.</>}
+            ? <>फिबोनाची अनुक्रम (1, 1, 2, 3, 5, 8, 13, 21…) को पश्चिम में इटालियन गणितज्ञ लियोनार्डो ऑफ पीसा (फिबोनाची) के नाम पर जाना जाता है, जिन्होंने 1202 ईस्वी में लिबेर अबासी में खरगोश की आबादी की समस्या में इसका उपयोग किया। लेकिन भारतीय संगीतशास्त्री और गणितज्ञ इसी अनुक्रम को कम से कम 1,000 वर्ष पहले  –  संगीत और कविता के माध्यम से  –  जानते थे।</>
+            : <>The Fibonacci sequence (1, 1, 2, 3, 5, 8, 13, 21…) is named in the West after Italian mathematician Leonardo of Pisa (Fibonacci), who used it in a rabbit population problem in Liber Abaci in 1202 CE. But Indian musicologists and mathematicians knew the same sequence at least 1,000 years earlier  –  through the mathematics of music and poetry.</>}
         </p>
       </section>
 
@@ -114,8 +114,8 @@ function Page1() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
-            ? <>संस्कृत कविता में दो प्रकार के अक्षर होते हैं: <span className="text-gold-light font-medium">लघु (L)</span> — 1 मात्रा, और <span className="text-gold-light font-medium">गुरु (G)</span> — 2 मात्राएँ। प्रश्न: n मात्राओं की एक पंक्ति को लघु और गुरु अक्षरों का उपयोग करके कितने तरीकों से भरा जा सकता है?</>
-            : <>Sanskrit poetry uses two types of syllables: <span className="text-gold-light font-medium">laghu (L)</span> — 1 beat, and <span className="text-gold-light font-medium">guru (G)</span> — 2 beats. The question: how many ways can a line of n beats be filled using laghus and gurus?</>}
+            ? <>संस्कृत कविता में दो प्रकार के अक्षर होते हैं: <span className="text-gold-light font-medium">लघु (L)</span>  –  1 मात्रा, और <span className="text-gold-light font-medium">गुरु (G)</span>  –  2 मात्राएँ। प्रश्न: n मात्राओं की एक पंक्ति को लघु और गुरु अक्षरों का उपयोग करके कितने तरीकों से भरा जा सकता है?</>
+            : <>Sanskrit poetry uses two types of syllables: <span className="text-gold-light font-medium">laghu (L)</span>  –  1 beat, and <span className="text-gold-light font-medium">guru (G)</span>  –  2 beats. The question: how many ways can a line of n beats be filled using laghus and gurus?</>}
         </p>
         <div className="mt-3 space-y-1 font-mono text-xs">
           <p className="text-text-secondary"><span className="text-gold-light">n=1:</span> {t('l1Way', locale)}</p>
@@ -135,8 +135,8 @@ function Page1() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <>नाट्यशास्त्र के रचयिता भरत मुनि (लगभग 200 ईसा पूर्व) ने काव्य-छन्दों के विश्लेषण में इस पैटर्न का पहली बार वर्णन किया। उनका कार्य ताल — भारतीय शास्त्रीय संगीत की लयबद्ध चक्र प्रणाली — के साथ गहराई से जुड़ा था, जहाँ अक्षरों के संयोजन को गिनने की आवश्यकता थी। यह फिबोनाची से 1,400 वर्ष पहले था।</>
-            : <>Bharata Muni (c. 200 BCE), author of the Natyashastra, first described this pattern in analysing poetic meters. His work was deeply connected to tala — the rhythmic cycle system of Indian classical music — where counting syllable combinations was a practical necessity. This was 1,400 years before Fibonacci.</>}
+            ? <>नाट्यशास्त्र के रचयिता भरत मुनि (लगभग 200 ईसा पूर्व) ने काव्य-छन्दों के विश्लेषण में इस पैटर्न का पहली बार वर्णन किया। उनका कार्य ताल  –  भारतीय शास्त्रीय संगीत की लयबद्ध चक्र प्रणाली  –  के साथ गहराई से जुड़ा था, जहाँ अक्षरों के संयोजन को गिनने की आवश्यकता थी। यह फिबोनाची से 1,400 वर्ष पहले था।</>
+            : <>Bharata Muni (c. 200 BCE), author of the Natyashastra, first described this pattern in analysing poetic meters. His work was deeply connected to tala  –  the rhythmic cycle system of Indian classical music  –  where counting syllable combinations was a practical necessity. This was 1,400 years before Fibonacci.</>}
         </p>
       </section>
     </div>
@@ -144,7 +144,7 @@ function Page1() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 2 — From Virahanka to Hemachandra                             */
+/*  PAGE 2  –  From Virahanka to Hemachandra                             */
 /* ------------------------------------------------------------------ */
 function Page2() {
   const locale = useModuleLocale();
@@ -157,8 +157,8 @@ function Page2() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>भरत मुनि के बाद, भारतीय गणितज्ञों की एक श्रृंखला ने इस अनुक्रम को और परिष्कृत किया। प्रत्येक ने पिछले पर निर्माण किया, अन्ततः एक स्पष्ट गणितीय सूत्र तक पहुँचा — जो फिबोनाची से बहुत पहले।</>
-            : <>After Bharata Muni, a chain of Indian mathematicians refined the sequence further. Each built on the previous, eventually arriving at an explicit mathematical formula — long before Fibonacci.</>}
+            ? <>भरत मुनि के बाद, भारतीय गणितज्ञों की एक श्रृंखला ने इस अनुक्रम को और परिष्कृत किया। प्रत्येक ने पिछले पर निर्माण किया, अन्ततः एक स्पष्ट गणितीय सूत्र तक पहुँचा  –  जो फिबोनाची से बहुत पहले।</>
+            : <>After Bharata Muni, a chain of Indian mathematicians refined the sequence further. Each built on the previous, eventually arriving at an explicit mathematical formula  –  long before Fibonacci.</>}
         </p>
       </section>
 
@@ -206,8 +206,8 @@ function Page2() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <>भारतीय शास्त्रीय संगीत गणितीय रूप से सटीक है। ताल प्रणाली को अनुक्रमों, चक्रों और संयोजनों की सटीक गणना की आवश्यकता है। एक संगीतकार को यह जानने की आवश्यकता होती है कि 8-बीट चक्र में कितने अलग-अलग लय पैटर्न संभव हैं — यह ठीक वही प्रश्न है जो फिबोनाची संख्याओं की ओर ले जाता है। भारतीय परम्परा में गणित और संगीत कभी अलग नहीं थे।</>
-            : <>Indian classical music is mathematically precise. The tala system requires exact counting of sequences, cycles, and combinations. A musician needs to know how many distinct rhythmic patterns are possible in an 8-beat cycle — this is precisely the question that leads to Fibonacci numbers. In the Indian tradition, mathematics and music were never separate.</>}
+            ? <>भारतीय शास्त्रीय संगीत गणितीय रूप से सटीक है। ताल प्रणाली को अनुक्रमों, चक्रों और संयोजनों की सटीक गणना की आवश्यकता है। एक संगीतकार को यह जानने की आवश्यकता होती है कि 8-बीट चक्र में कितने अलग-अलग लय पैटर्न संभव हैं  –  यह ठीक वही प्रश्न है जो फिबोनाची संख्याओं की ओर ले जाता है। भारतीय परम्परा में गणित और संगीत कभी अलग नहीं थे।</>
+            : <>Indian classical music is mathematically precise. The tala system requires exact counting of sequences, cycles, and combinations. A musician needs to know how many distinct rhythmic patterns are possible in an 8-beat cycle  –  this is precisely the question that leads to Fibonacci numbers. In the Indian tradition, mathematics and music were never separate.</>}
         </p>
       </section>
     </div>
@@ -215,7 +215,7 @@ function Page2() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 3 — Transmission to Fibonacci and Legacy                      */
+/*  PAGE 3  –  Transmission to Fibonacci and Legacy                      */
 /* ------------------------------------------------------------------ */
 function Page3() {
   const locale = useModuleLocale();
@@ -228,8 +228,8 @@ function Page3() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>भारत से यूरोप तक ज्ञान का प्रवाह अरब-इस्लामी दुनिया से होकर गया। 8वीं शताब्दी ईस्वी से, अरब विद्वानों ने भारतीय गणितीय ग्रन्थों का बड़े पैमाने पर अनुवाद और विस्तार किया। यही वह मार्ग था जिससे होकर फिबोनाची — जिन्होंने उत्तरी अफ्रीका में अरब गणितज्ञों से सीखा — इस अनुक्रम तक पहुँचे।</>
-            : <>The flow of knowledge from India to Europe passed through the Arab-Islamic world. From the 8th century CE, Arab scholars translated and expanded Indian mathematical texts on a large scale. This was the path by which Fibonacci — who learned from Arab mathematicians in North Africa — encountered the sequence.</>}
+            ? <>भारत से यूरोप तक ज्ञान का प्रवाह अरब-इस्लामी दुनिया से होकर गया। 8वीं शताब्दी ईस्वी से, अरब विद्वानों ने भारतीय गणितीय ग्रन्थों का बड़े पैमाने पर अनुवाद और विस्तार किया। यही वह मार्ग था जिससे होकर फिबोनाची  –  जिन्होंने उत्तरी अफ्रीका में अरब गणितज्ञों से सीखा  –  इस अनुक्रम तक पहुँचे।</>
+            : <>The flow of knowledge from India to Europe passed through the Arab-Islamic world. From the 8th century CE, Arab scholars translated and expanded Indian mathematical texts on a large scale. This was the path by which Fibonacci  –  who learned from Arab mathematicians in North Africa  –  encountered the sequence.</>}
         </p>
       </section>
 
@@ -261,8 +261,8 @@ function Page3() {
         </ul>
         <p className="text-text-secondary text-xs leading-relaxed mt-3">
           {isHi
-            ? <>नाम से परे, महत्त्वपूर्ण बात यह है: भारतीय संगीत की गणितीय परम्परा ने — ताल और छन्द के माध्यम से — एक अनुक्रम की खोज की जो प्रकृति के संरचनात्मक सिद्धान्तों में दिखाई देता है, और यह खोज 1,000 वर्षों से अधिक समय के लिए यूरोप से पहले हुई।</>
-            : <>Beyond the name, the important point is this: India's mathematical tradition of music — through tala and meter — discovered a sequence that appears in nature's structural principles, and this discovery preceded Europe by over 1,000 years.</>}
+            ? <>नाम से परे, महत्त्वपूर्ण बात यह है: भारतीय संगीत की गणितीय परम्परा ने  –  ताल और छन्द के माध्यम से  –  एक अनुक्रम की खोज की जो प्रकृति के संरचनात्मक सिद्धान्तों में दिखाई देता है, और यह खोज 1,000 वर्षों से अधिक समय के लिए यूरोप से पहले हुई।</>
+            : <>Beyond the name, the important point is this: India's mathematical tradition of music  –  through tala and meter  –  discovered a sequence that appears in nature's structural principles, and this discovery preceded Europe by over 1,000 years.</>}
         </p>
       </section>
     </div>

@@ -95,7 +95,7 @@ export const useLocationStore = create<LocationState>((set, get) => ({
         const res = await fetch('https://ipapi.co/json/');
         const data = await res.json();
         if (data.latitude && data.longitude) {
-          // Use reverseGeocode on the actual coordinates — IP data.city often mismatches
+          // Use reverseGeocode on the actual coordinates  –  IP data.city often mismatches
           // the lat/lng (ISP routing points can be hundreds of km from the user's city)
           const name = await reverseGeocode(data.latitude, data.longitude);
           const timezone = data.timezone || (typeof window !== 'undefined' ? Intl.DateTimeFormat().resolvedOptions().timeZone : null);

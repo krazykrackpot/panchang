@@ -1,5 +1,5 @@
 /**
- * Muhurta Engine — Layer 3: Reasoning
+ * Muhurta Engine  –  Layer 3: Reasoning
  *
  * Converts an EvaluationResult into a human-readable MuhurtaVerdict
  * (pandit-style assessment) with strengths, concerns, mitigations,
@@ -16,7 +16,7 @@ import type {
 } from './types';
 import type { LocaleText } from '@/types/panchang';
 
-// Severity sort order — critical first
+// Severity sort order  –  critical first
 const SEVERITY_ORDER: Record<AssessmentSeverity, number> = {
   critical: 0,
   major: 1,
@@ -179,7 +179,7 @@ export function generateVerdict(
       // Negative, active concern
       concerns.push(assessmentToVerdictPoint(a, false));
     } else if (a.points < 0 && a.cancelled) {
-      // Negative but cancelled — show as mitigation (strikethrough in UI)
+      // Negative but cancelled  –  show as mitigation (strikethrough in UI)
       mitigations.push(assessmentToVerdictPoint(a, true));
     }
     // points === 0 or points > 0 && cancelled: informational only, omit

@@ -12,7 +12,7 @@ import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import LT from '@/messages/learn/aspects.json';
 
-/* Labels migrated to src/messages/learn/aspects.json — accessed via LT + t() */
+/* Labels migrated to src/messages/learn/aspects.json  –  accessed via LT + t() */
 
 /* ── Planet data for diagram ─────────────────────────────────────── */
 const PLANETS = [
@@ -47,13 +47,13 @@ const KEY_COMBOS = [
     effect: { en: 'Passionate but conflictual marriage (Mangal Dosha from aspect). Spouse is energetic and assertive. Needs outlet for aggression.', hi: 'जोशपूर्ण किन्तु संघर्षपूर्ण विवाह (दृष्टि से मांगलिक दोष)। जीवनसाथी ऊर्जावान और दृढ़। आक्रामकता के लिए निकास आवश्यक।', sa: 'उत्साहपूर्णं किन्तु संघर्षपूर्णं विवाहम् (दृष्ट्या मङ्गलदोषः)।' },
     nature: 'malefic' },
   { combo: { en: 'Jupiter aspecting Moon', hi: 'बृहस्पति की चन्द्र पर दृष्टि', sa: 'बृहस्पतेः चन्द्रे दृष्टिः' },
-    effect: { en: 'Gaja Kesari potential — emotional wisdom, optimism, generosity. The mind is blessed with philosophical depth and contentment.', hi: 'गज केसरी की सम्भावना — भावनात्मक ज्ञान, आशावाद, उदारता। मन दार्शनिक गहराई और सन्तोष से आशीर्वादित।', sa: 'गजकेसरीसम्भावना — भावनात्मकज्ञानम्, आशावादः, औदार्यम्।' },
+    effect: { en: 'Gaja Kesari potential  –  emotional wisdom, optimism, generosity. The mind is blessed with philosophical depth and contentment.', hi: 'गज केसरी की सम्भावना  –  भावनात्मक ज्ञान, आशावाद, उदारता। मन दार्शनिक गहराई और सन्तोष से आशीर्वादित।', sa: 'गजकेसरीसम्भावना  –  भावनात्मकज्ञानम्, आशावादः, औदार्यम्।' },
     nature: 'benefic' },
   { combo: { en: 'Saturn aspecting Moon', hi: 'शनि की चन्द्र पर दृष्टि', sa: 'शनेः चन्द्रे दृष्टिः' },
     effect: { en: 'Emotional restriction, discipline, and potential for depression (Visha Yoga tendency). The mind becomes serious, brooding, and prone to worry. However, it also gives deep focus and emotional resilience over time.', hi: 'भावनात्मक प्रतिबन्ध, अनुशासन और अवसाद की सम्भावना (विष योग प्रवृत्ति)। मन गम्भीर और चिन्ताग्रस्त होता है, किन्तु गहन एकाग्रता और भावनात्मक दृढ़ता भी देता है।', sa: 'भावनात्मकप्रतिबन्धः, अनुशासनम्, अवसादसम्भावना च (विषयोगप्रवृत्तिः)।' },
     nature: 'malefic' },
   { combo: { en: 'Mars aspecting Saturn', hi: 'मंगल की शनि पर दृष्टि', sa: 'मङ्गलस्य शनौ दृष्टिः' },
-    effect: { en: 'Friction, frustration, accident-prone periods. Fire (Mars) meets ice (Saturn) — creates intense tension. Can manifest as muscular-skeletal issues, workplace conflicts, or engineering/military excellence when channelled.', hi: 'घर्षण, निराशा, दुर्घटना-प्रवण काल। अग्नि (मंगल) और हिम (शनि) का मिलन — तीव्र तनाव। सही दिशा में अभियान्त्रिकी/सैन्य उत्कृष्टता में परिवर्तित हो सकता है।', sa: 'घर्षणम्, निराशा, दुर्घटनाप्रवणकालः। अग्निः (मङ्गलः) हिमेन (शनिना) सह — तीव्रतनावः।' },
+    effect: { en: 'Friction, frustration, accident-prone periods. Fire (Mars) meets ice (Saturn)  –  creates intense tension. Can manifest as muscular-skeletal issues, workplace conflicts, or engineering/military excellence when channelled.', hi: 'घर्षण, निराशा, दुर्घटना-प्रवण काल। अग्नि (मंगल) और हिम (शनि) का मिलन  –  तीव्र तनाव। सही दिशा में अभियान्त्रिकी/सैन्य उत्कृष्टता में परिवर्तित हो सकता है।', sa: 'घर्षणम्, निराशा, दुर्घटनाप्रवणकालः। अग्निः (मङ्गलः) हिमेन (शनिना) सह  –  तीव्रतनावः।' },
     nature: 'malefic' },
 ];
 

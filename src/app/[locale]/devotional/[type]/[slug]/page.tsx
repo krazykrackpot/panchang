@@ -78,10 +78,10 @@ export default function DevotionalItemPage() {
 
   const handleShare = () => {
     const url = window.location.href;
-    const text = `${item.title.en} — ${typeName}`;
+    const text = `${item.title.en}  –  ${typeName}`;
     if (navigator.share) {
       navigator.share({ title: text, url }).catch(() => {
-        // User cancelled — not an error
+        // User cancelled  –  not an error
       });
     } else {
       // Fallback: open WhatsApp share

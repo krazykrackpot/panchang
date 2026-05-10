@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * VivahClient — Client island for the Vivah Muhurat page.
+ * VivahClient  –  Client island for the Vivah Muhurat page.
  *
  * Scans the full year via /api/muhurta-scan on mount, using the user's
  * location from useLocationStore (falls back to Delhi if not set).
@@ -182,13 +182,13 @@ export default function VivahClient({ year, locale }: VivahClientProps) {
       try {
         await navigator.share({ title: text, url });
       } catch {
-        // User cancelled share — not an error
+        // User cancelled share  –  not an error
       }
     } else {
       try {
         await navigator.clipboard.writeText(`${text}\n${url}`);
       } catch {
-        // Clipboard API not available — not critical
+        // Clipboard API not available  –  not critical
       }
     }
   };

@@ -1,5 +1,5 @@
 /**
- * Maasaphal — Monthly Solar Return Charts (Tajika)
+ * Maasaphal  –  Monthly Solar Return Charts (Tajika)
  *
  * For each month within the Varshaphal year, finds the moment when the Sun
  * returns to the same sidereal degree it occupied 1/12th further along its
@@ -61,7 +61,7 @@ export function computeMaasaphal(
   birthLng: number,
   timezone: string,
 ): MaasaphalChart[] {
-  // Silence unused-variable warning — timezone kept for future localised display
+  // Silence unused-variable warning  –  timezone kept for future localised display
   void timezone;
 
   const charts: MaasaphalChart[] = [];
@@ -213,7 +213,7 @@ function buildMonthSummary(month: number, lagnaSign: number, yogas: string[]): s
   return `Month ${month} (${MONTH_NAMES[(month - 1) % 12]}): Lagna in ${rashi}. ${yogaText}`;
 }
 
-// ─── Date helpers (Date.UTC — no local timezone bias) ─────────────────────────
+// ─── Date helpers (Date.UTC  –  no local timezone bias) ─────────────────────────
 
 function formatIsoDate(d: Date): string {
   const y = d.getUTCFullYear();

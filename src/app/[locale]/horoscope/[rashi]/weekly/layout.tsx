@@ -104,7 +104,7 @@ export default async function Layout({ children, params }: { children: React.Rea
   const articleLD = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `${vedicName} (${name}) Weekly Horoscope — ${week.label}`,
+    headline: `${vedicName} (${name}) Weekly Horoscope  –  ${week.label}`,
     description: `Weekly Vedic horoscope for ${name} (${vedicName}) with daily scores, career, love, health, finance predictions and lucky days.`,
     url: `${BASE_URL}/${locale}/horoscope/${rashi}/weekly`,
     datePublished: week.start,

@@ -1,15 +1,15 @@
 {
   "title": {
-    "en": "Paksha — The Lunar Fortnight",
-    "hi": "पक्ष — चान्द्र पखवाड़ा",
-    "sa": "पक्षः — चान्द्रपक्षः",
-    "ta": "பக்ஷம் — சந்திர பக்ஷம்",
-    "te": "పక్షం — చంద్ర పక్షం",
-    "bn": "পক্ষ — চান্দ্র পক্ষ",
-    "kn": "ಪಕ್ಷ — ಚಂದ್ರ ಪಕ್ಷ",
-    "mr": "पक्ष — चांद्र पंधरवडा",
-    "gu": "પક્ષ — ચંદ્ર પખવાડિયું",
-    "mai": "पक्ष — चान्द्र पखवाड़ा"
+    "en": "Paksha  –  The Lunar Fortnight",
+    "hi": "पक्ष  –  चान्द्र पखवाड़ा",
+    "sa": "पक्षः  –  चान्द्रपक्षः",
+    "ta": "பக்ஷம்  –  சந்திர பக்ஷம்",
+    "te": "పక్షం  –  చంద్ర పక్షం",
+    "bn": "পক্ষ  –  চান্দ্র পক্ষ",
+    "kn": "ಪಕ್ಷ  –  ಚಂದ್ರ ಪಕ್ಷ",
+    "mr": "पक्ष  –  चांद्र पंधरवडा",
+    "gu": "પક્ષ  –  ચંદ્ર પખવાડિયું",
+    "mai": "पक्ष  –  चान्द्र पखवाड़ा"
   },
   "subtitle": {
     "en": "Shukla and Krishna Paksha divide the lunar month into bright and dark halves, shaping rituals and calendars",
@@ -383,16 +383,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Shraddha rites are primarily associated with Krishna Paksha (the waning/dark fortnight). The most important Shraddha period is Pitru Paksha — the Krishna Paksha of Ashwin month (September-October), when 16 consecutive days are dedicated to ancestral offerings.",
-        "hi": "श्राद्ध कर्म मुख्य रूप से कृष्ण पक्ष (ह्रासमान/अन्धकार पखवाड़ा) से जुड़े हैं। सबसे महत्वपूर्ण श्राद्ध काल पितृ पक्ष है — आश्विन मास (सितम्बर-अक्टूबर) का कृष्ण पक्ष, जब लगातार 16 दिन पितृ तर्पण को समर्पित होते हैं।",
-        "sa": "श्राद्ध कर्म मुख्य रूप से कृष्ण पक्ष (ह्रासमान/अन्धकार पखवाड़ा) से जुड़े हैं। सबसे महत्वपूर्ण श्राद्ध काल पितृ पक्ष है — आश्विन मास (सितम्बर-अक्टूबर) का कृष्ण पक्ष, जब लगातार 16 दिन पितृ तर्पण को समर्पित होते हैं।",
-        "ta": "Shraddha rites are primarily associated with Krishna Paksha (the waning/dark fortnight). The most important Shraddha period is Pitru Paksha — the Krishna Paksha of Ashwin month (September-October), when 16 consecutive days are dedicated to ancestral offerings.",
-        "te": "Shraddha rites are primarily associated with Krishna Paksha (the waning/dark fortnight). The most important Shraddha period is Pitru Paksha — the Krishna Paksha of Ashwin month (September-October), when 16 consecutive days are dedicated to ancestral offerings.",
-        "bn": "Shraddha rites are primarily associated with Krishna Paksha (the waning/dark fortnight). The most important Shraddha period is Pitru Paksha — the Krishna Paksha of Ashwin month (September-October), when 16 consecutive days are dedicated to ancestral offerings.",
-        "kn": "Shraddha rites are primarily associated with Krishna Paksha (the waning/dark fortnight). The most important Shraddha period is Pitru Paksha — the Krishna Paksha of Ashwin month (September-October), when 16 consecutive days are dedicated to ancestral offerings.",
-        "mr": "श्राद्ध कर्म मुख्य रूप से कृष्ण पक्ष (ह्रासमान/अन्धकार पखवाड़ा) से जुड़े हैं। सबसे महत्वपूर्ण श्राद्ध काल पितृ पक्ष है — आश्विन मास (सितम्बर-अक्टूबर) का कृष्ण पक्ष, जब लगातार 16 दिन पितृ तर्पण को समर्पित होते हैं।",
-        "gu": "Shraddha rites are primarily associated with Krishna Paksha (the waning/dark fortnight). The most important Shraddha period is Pitru Paksha — the Krishna Paksha of Ashwin month (September-October), when 16 consecutive days are dedicated to ancestral offerings.",
-        "mai": "श्राद्ध कर्म मुख्य रूप से कृष्ण पक्ष (ह्रासमान/अन्धकार पखवाड़ा) से जुड़े हैं। सबसे महत्वपूर्ण श्राद्ध काल पितृ पक्ष है — आश्विन मास (सितम्बर-अक्टूबर) का कृष्ण पक्ष, जब लगातार 16 दिन पितृ तर्पण को समर्पित होते हैं।"
+        "en": "Shraddha rites are primarily associated with Krishna Paksha (the waning/dark fortnight). The most important Shraddha period is Pitru Paksha  –  the Krishna Paksha of Ashwin month (September-October), when 16 consecutive days are dedicated to ancestral offerings.",
+        "hi": "श्राद्ध कर्म मुख्य रूप से कृष्ण पक्ष (ह्रासमान/अन्धकार पखवाड़ा) से जुड़े हैं। सबसे महत्वपूर्ण श्राद्ध काल पितृ पक्ष है  –  आश्विन मास (सितम्बर-अक्टूबर) का कृष्ण पक्ष, जब लगातार 16 दिन पितृ तर्पण को समर्पित होते हैं।",
+        "sa": "श्राद्ध कर्म मुख्य रूप से कृष्ण पक्ष (ह्रासमान/अन्धकार पखवाड़ा) से जुड़े हैं। सबसे महत्वपूर्ण श्राद्ध काल पितृ पक्ष है  –  आश्विन मास (सितम्बर-अक्टूबर) का कृष्ण पक्ष, जब लगातार 16 दिन पितृ तर्पण को समर्पित होते हैं।",
+        "ta": "Shraddha rites are primarily associated with Krishna Paksha (the waning/dark fortnight). The most important Shraddha period is Pitru Paksha  –  the Krishna Paksha of Ashwin month (September-October), when 16 consecutive days are dedicated to ancestral offerings.",
+        "te": "Shraddha rites are primarily associated with Krishna Paksha (the waning/dark fortnight). The most important Shraddha period is Pitru Paksha  –  the Krishna Paksha of Ashwin month (September-October), when 16 consecutive days are dedicated to ancestral offerings.",
+        "bn": "Shraddha rites are primarily associated with Krishna Paksha (the waning/dark fortnight). The most important Shraddha period is Pitru Paksha  –  the Krishna Paksha of Ashwin month (September-October), when 16 consecutive days are dedicated to ancestral offerings.",
+        "kn": "Shraddha rites are primarily associated with Krishna Paksha (the waning/dark fortnight). The most important Shraddha period is Pitru Paksha  –  the Krishna Paksha of Ashwin month (September-October), when 16 consecutive days are dedicated to ancestral offerings.",
+        "mr": "श्राद्ध कर्म मुख्य रूप से कृष्ण पक्ष (ह्रासमान/अन्धकार पखवाड़ा) से जुड़े हैं। सबसे महत्वपूर्ण श्राद्ध काल पितृ पक्ष है  –  आश्विन मास (सितम्बर-अक्टूबर) का कृष्ण पक्ष, जब लगातार 16 दिन पितृ तर्पण को समर्पित होते हैं।",
+        "gu": "Shraddha rites are primarily associated with Krishna Paksha (the waning/dark fortnight). The most important Shraddha period is Pitru Paksha  –  the Krishna Paksha of Ashwin month (September-October), when 16 consecutive days are dedicated to ancestral offerings.",
+        "mai": "श्राद्ध कर्म मुख्य रूप से कृष्ण पक्ष (ह्रासमान/अन्धकार पखवाड़ा) से जुड़े हैं। सबसे महत्वपूर्ण श्राद्ध काल पितृ पक्ष है  –  आश्विन मास (सितम्बर-अक्टूबर) का कृष्ण पक्ष, जब लगातार 16 दिन पितृ तर्पण को समर्पित होते हैं।"
       },
       "options": [
         {
@@ -583,28 +583,28 @@
       },
       "options": [
         {
-          "en": "Krishna Paksha — the waning Moon brings purification",
-          "hi": "कृष्ण पक्ष — घटता चन्द्रमा शुद्धि लाता है",
-          "sa": "कृष्ण पक्ष — घटता चन्द्रमा शुद्धि लाता है",
-          "ta": "Krishna Paksha — the waning Moon brings purification",
-          "te": "Krishna Paksha — the waning Moon brings purification",
-          "bn": "Krishna Paksha — the waning Moon brings purification",
-          "kn": "Krishna Paksha — the waning Moon brings purification",
-          "mr": "कृष्ण पक्ष — घटता चन्द्रमा शुद्धि लाता है",
-          "gu": "Krishna Paksha — the waning Moon brings purification",
-          "mai": "कृष्ण पक्ष — घटता चन्द्रमा शुद्धि लाता है"
+          "en": "Krishna Paksha  –  the waning Moon brings purification",
+          "hi": "कृष्ण पक्ष  –  घटता चन्द्रमा शुद्धि लाता है",
+          "sa": "कृष्ण पक्ष  –  घटता चन्द्रमा शुद्धि लाता है",
+          "ta": "Krishna Paksha  –  the waning Moon brings purification",
+          "te": "Krishna Paksha  –  the waning Moon brings purification",
+          "bn": "Krishna Paksha  –  the waning Moon brings purification",
+          "kn": "Krishna Paksha  –  the waning Moon brings purification",
+          "mr": "कृष्ण पक्ष  –  घटता चन्द्रमा शुद्धि लाता है",
+          "gu": "Krishna Paksha  –  the waning Moon brings purification",
+          "mai": "कृष्ण पक्ष  –  घटता चन्द्रमा शुद्धि लाता है"
         },
         {
-          "en": "Shukla Paksha — the waxing Moon symbolizes growth",
-          "hi": "शुक्ल पक्ष — बढ़ता चन्द्रमा वृद्धि का प्रतीक है",
-          "sa": "शुक्ल पक्ष — बढ़ता चन्द्रमा वृद्धि का प्रतीक है",
-          "ta": "Shukla Paksha — the waxing Moon symbolizes growth",
-          "te": "Shukla Paksha — the waxing Moon symbolizes growth",
-          "bn": "Shukla Paksha — the waxing Moon symbolizes growth",
-          "kn": "Shukla Paksha — the waxing Moon symbolizes growth",
-          "mr": "शुक्ल पक्ष — बढ़ता चन्द्रमा वृद्धि का प्रतीक है",
-          "gu": "Shukla Paksha — the waxing Moon symbolizes growth",
-          "mai": "शुक्ल पक्ष — बढ़ता चन्द्रमा वृद्धि का प्रतीक है"
+          "en": "Shukla Paksha  –  the waxing Moon symbolizes growth",
+          "hi": "शुक्ल पक्ष  –  बढ़ता चन्द्रमा वृद्धि का प्रतीक है",
+          "sa": "शुक्ल पक्ष  –  बढ़ता चन्द्रमा वृद्धि का प्रतीक है",
+          "ta": "Shukla Paksha  –  the waxing Moon symbolizes growth",
+          "te": "Shukla Paksha  –  the waxing Moon symbolizes growth",
+          "bn": "Shukla Paksha  –  the waxing Moon symbolizes growth",
+          "kn": "Shukla Paksha  –  the waxing Moon symbolizes growth",
+          "mr": "शुक्ल पक्ष  –  बढ़ता चन्द्रमा वृद्धि का प्रतीक है",
+          "gu": "Shukla Paksha  –  the waxing Moon symbolizes growth",
+          "mai": "शुक्ल पक्ष  –  बढ़ता चन्द्रमा वृद्धि का प्रतीक है"
         },
         {
           "en": "Both are equally favorable",
@@ -619,16 +619,16 @@
           "mai": "दोनों समान रूप से अनुकूल हैं"
         },
         {
-          "en": "Neither — only nakshatra matters",
-          "hi": "दोनों नहीं — केवल नक्षत्र ही महत्वपूर्ण है",
-          "sa": "दोनों नहीं — केवल नक्षत्र ही महत्वपूर्ण है",
-          "ta": "Neither — only nakshatra matters",
-          "te": "Neither — only nakshatra matters",
-          "bn": "Neither — only nakshatra matters",
-          "kn": "Neither — only nakshatra matters",
-          "mr": "दोनों नहीं — केवल नक्षत्र ही महत्वपूर्ण है",
-          "gu": "Neither — only nakshatra matters",
-          "mai": "दोनों नहीं — केवल नक्षत्र ही महत्वपूर्ण है"
+          "en": "Neither  –  only nakshatra matters",
+          "hi": "दोनों नहीं  –  केवल नक्षत्र ही महत्वपूर्ण है",
+          "sa": "दोनों नहीं  –  केवल नक्षत्र ही महत्वपूर्ण है",
+          "ta": "Neither  –  only nakshatra matters",
+          "te": "Neither  –  only nakshatra matters",
+          "bn": "Neither  –  only nakshatra matters",
+          "kn": "Neither  –  only nakshatra matters",
+          "mr": "दोनों नहीं  –  केवल नक्षत्र ही महत्वपूर्ण है",
+          "gu": "Neither  –  only nakshatra matters",
+          "mai": "दोनों नहीं  –  केवल नक्षत्र ही महत्वपूर्ण है"
         }
       ]
     },

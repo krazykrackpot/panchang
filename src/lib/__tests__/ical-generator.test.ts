@@ -207,7 +207,7 @@ describe('generateICal', () => {
 
     const result = generateICal({ calName: 'Test', events });
 
-    // Find the DESCRIPTION line(s) — they should be folded
+    // Find the DESCRIPTION line(s)  –  they should be folded
     const allLines = result.split('\r\n');
     const descLineIdx = allLines.findIndex(l => l.startsWith('DESCRIPTION:'));
     expect(descLineIdx).toBeGreaterThan(-1);

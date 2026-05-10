@@ -201,9 +201,9 @@ describe('detectVargottama', () => {
     // Aries ascendant D9: house 0 = Aries(1), house 3 = Cancer(4)
     const d9 = makeDivisionalChart(1, { 0: 0, 1: 3, 4: 8 });
     const planets = [
-      makePlanetPosition(0, 1, 1, 15),   // Sun Aries — vargottama (D9 house 0 = Aries)
-      makePlanetPosition(1, 4, 4, 105),  // Moon Cancer — vargottama (D9 house 3 = Cancer)
-      makePlanetPosition(4, 2, 5, 45),   // Jupiter Taurus — NOT vargottama (D9 house 8 = Scorpio)
+      makePlanetPosition(0, 1, 1, 15),   // Sun Aries  –  vargottama (D9 house 0 = Aries)
+      makePlanetPosition(1, 4, 4, 105),  // Moon Cancer  –  vargottama (D9 house 3 = Cancer)
+      makePlanetPosition(4, 2, 5, 45),   // Jupiter Taurus  –  NOT vargottama (D9 house 8 = Scorpio)
     ];
     const kundali = makeMinimalKundali(1, planets);
     const vargottama = detectVargottama(kundali, d9);
@@ -283,7 +283,7 @@ describe('detectParivartana', () => {
   });
 
   it('returns empty array when no exchange exists', () => {
-    // All planets in own signs — no exchange
+    // All planets in own signs  –  no exchange
     const chart = makeDivisionalChart(1, { 2: 0 }); // Mars in Aries (own sign, no exchange partner)
     const parivartanas = detectParivartana(chart);
     expect(parivartanas).toHaveLength(0);

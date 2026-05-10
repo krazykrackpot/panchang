@@ -83,7 +83,7 @@ export interface DomainWeights {
 /**
  * Declarative specification for one life domain.
  * Used by the synthesis engine to know which houses, planets, charts, and
- * karakas to examine — and with what relative importance.
+ * karakas to examine  –  and with what relative importance.
  */
 export interface DomainConfig {
   /** Unique domain identifier. */
@@ -267,8 +267,8 @@ export interface DomainRemedy {
 // ---------------------------------------------------------------------------
 
 /**
- * A connection between two domains — e.g. health affecting career, or
- * marriage affecting wealth — that the narrative should surface.
+ * A connection between two domains  –  e.g. health affecting career, or
+ * marriage affecting wealth  –  that the narrative should surface.
  */
 export interface CrossDomainLink {
   linkedDomain: DomainType;
@@ -326,7 +326,7 @@ export interface DomainReading {
 /**
  * A standalone "current period" card that cuts across all domains and
  * describes what the native's overall dasha + transit moment means for them
- * right now — regardless of any specific life area.
+ * right now  –  regardless of any specific life area.
  */
 export interface CurrentPeriodReading {
   /** Maha-dasha and antar-dasha period summary. */

@@ -87,39 +87,39 @@ const VARA_GLOW: Record<number, string> = {
 
 const TITHI_SUGGESTIONS: Record<number, LocaleText> = {
   1: {
-    en: 'Pratipada — Worship Agni. Good for new beginnings.',
-    hi: 'प्रतिपदा — अग्नि पूजा। नई शुरुआत के लिए शुभ।',
-    sa: 'प्रतिपदा — अग्निपूजा। नवारम्भाय शुभम्।',
+    en: 'Pratipada  –  Worship Agni. Good for new beginnings.',
+    hi: 'प्रतिपदा  –  अग्नि पूजा। नई शुरुआत के लिए शुभ।',
+    sa: 'प्रतिपदा  –  अग्निपूजा। नवारम्भाय शुभम्।',
   },
   4: {
-    en: 'Chaturthi — Worship Ganesha. Vinayaka Chaturthi day.',
-    hi: 'चतुर्थी — गणेश पूजा। विनायक चतुर्थी दिन।',
-    sa: 'चतुर्थी — गणेशपूजा। विनायकचतुर्थीदिनम्।',
+    en: 'Chaturthi  –  Worship Ganesha. Vinayaka Chaturthi day.',
+    hi: 'चतुर्थी  –  गणेश पूजा। विनायक चतुर्थी दिन।',
+    sa: 'चतुर्थी  –  गणेशपूजा। विनायकचतुर्थीदिनम्।',
   },
   8: {
-    en: 'Ashtami — Worship Durga/Krishna. Sacred fasting day.',
-    hi: 'अष्टमी — दुर्गा/कृष्ण पूजा। पवित्र उपवास दिन।',
-    sa: 'अष्टमी — दुर्गा/कृष्णपूजा। पवित्रोपवासदिनम्।',
+    en: 'Ashtami  –  Worship Durga/Krishna. Sacred fasting day.',
+    hi: 'अष्टमी  –  दुर्गा/कृष्ण पूजा। पवित्र उपवास दिन।',
+    sa: 'अष्टमी  –  दुर्गा/कृष्णपूजा। पवित्रोपवासदिनम्।',
   },
   11: {
-    en: 'Ekadashi — Worship Vishnu. Observe Ekadashi Vrat.',
-    hi: 'एकादशी — विष्णु पूजा। एकादशी व्रत रखें।',
-    sa: 'एकादशी — विष्णुपूजा। एकादशीव्रतं पालयेत्।',
+    en: 'Ekadashi  –  Worship Vishnu. Observe Ekadashi Vrat.',
+    hi: 'एकादशी  –  विष्णु पूजा। एकादशी व्रत रखें।',
+    sa: 'एकादशी  –  विष्णुपूजा। एकादशीव्रतं पालयेत्।',
   },
   14: {
-    en: 'Chaturdashi — Worship Shiva. Pradosham observance.',
-    hi: 'चतुर्दशी — शिव पूजा। प्रदोषम् व्रत।',
-    sa: 'चतुर्दशी — शिवपूजा। प्रदोषव्रतम्।',
+    en: 'Chaturdashi  –  Worship Shiva. Pradosham observance.',
+    hi: 'चतुर्दशी  –  शिव पूजा। प्रदोषम् व्रत।',
+    sa: 'चतुर्दशी  –  शिवपूजा। प्रदोषव्रतम्।',
   },
   15: {
-    en: 'Purnima — Full Moon worship. Sacred bathing day.',
-    hi: 'पूर्णिमा — पूर्ण चन्द्र पूजा। पवित्र स्नान दिवस।',
-    sa: 'पूर्णिमा — पूर्णचन्द्रपूजा। पवित्रस्नानदिवसः।',
+    en: 'Purnima  –  Full Moon worship. Sacred bathing day.',
+    hi: 'पूर्णिमा  –  पूर्ण चन्द्र पूजा। पवित्र स्नान दिवस।',
+    sa: 'पूर्णिमा  –  पूर्णचन्द्रपूजा। पवित्रस्नानदिवसः।',
   },
   30: {
-    en: 'Amavasya — Worship ancestors (Pitris). Tarpana day.',
-    hi: 'अमावस्या — पितरों की पूजा। तर्पण दिवस।',
-    sa: 'अमावस्या — पितृपूजा। तर्पणदिवसः।',
+    en: 'Amavasya  –  Worship ancestors (Pitris). Tarpana day.',
+    hi: 'अमावस्या  –  पितरों की पूजा। तर्पण दिवस।',
+    sa: 'अमावस्या  –  पितृपूजा। तर्पणदिवसः।',
   },
 };
 
@@ -242,8 +242,8 @@ export default function DevotionalPage() {
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto">
           {isHi
-            ? 'आरती, चालीसा, स्तोत्र और मन्त्र — पूर्ण देवनागरी पाठ, अर्थ और महत्व सहित'
-            : 'Aartis, Chalisas, Stotrams & Mantras — complete Devanagari text with transliteration and meaning'}
+            ? 'आरती, चालीसा, स्तोत्र और मन्त्र  –  पूर्ण देवनागरी पाठ, अर्थ और महत्व सहित'
+            : 'Aartis, Chalisas, Stotrams & Mantras  –  complete Devanagari text with transliteration and meaning'}
         </p>
         <p className="text-gold-dark text-sm mt-2">
           {ALL_DEVOTIONAL_ITEMS.length}{' '}
@@ -415,7 +415,7 @@ export default function DevotionalPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={
-                isHi ? 'खोजें — हनुमान चालीसा, गायत्री मन्त्र...' : 'Search — Hanuman Chalisa, Gayatri Mantra...'
+                isHi ? 'खोजें  –  हनुमान चालीसा, गायत्री मन्त्र...' : 'Search  –  Hanuman Chalisa, Gayatri Mantra...'
               }
               className="w-full pl-10 pr-4 py-3 rounded-xl bg-bg-secondary border border-gold-primary/10 text-text-primary placeholder:text-text-secondary/50 focus:border-gold-primary/40 focus:outline-none transition-colors"
             />

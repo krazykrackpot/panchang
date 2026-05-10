@@ -1,15 +1,15 @@
 {
   "title": {
-    "en": "Muhurta Mastery — Beyond the Basics",
-    "hi": "मुहूर्त निपुणता — मूल बातों से आगे",
-    "sa": "मुहूर्तनैपुण्यम् — मूलातः परम्",
-    "mai": "मुहूर्त निपुणता — मूल बातों से आगे",
-    "mr": "मुहूर्त प्रावीण्य — मूलभूत गोष्टींपलीकडे",
-    "ta": "முகூர்த்த தேர்ச்சி — அடிப்படைக்கு அப்பால்",
-    "te": "ముహూర్త ప్రావీణ్యం — ప్రాథమికాలకు అతీతం",
-    "bn": "মুহূর্ত দক্ষতা — মৌলিক বিষয়ের বাইরে",
-    "kn": "ಮುಹೂರ್ತ ಪ್ರಾವೀಣ್ಯ — ಮೂಲ ವಿಷಯಗಳ ಆಚೆ",
-    "gu": "મુહૂર્ત નિપુણતા — મૂળ બાબતોથી આગળ"
+    "en": "Muhurta Mastery  –  Beyond the Basics",
+    "hi": "मुहूर्त निपुणता  –  मूल बातों से आगे",
+    "sa": "मुहूर्तनैपुण्यम्  –  मूलातः परम्",
+    "mai": "मुहूर्त निपुणता  –  मूल बातों से आगे",
+    "mr": "मुहूर्त प्रावीण्य  –  मूलभूत गोष्टींपलीकडे",
+    "ta": "முகூர்த்த தேர்ச்சி  –  அடிப்படைக்கு அப்பால்",
+    "te": "ముహూర్త ప్రావీణ్యం  –  ప్రాథమికాలకు అతీతం",
+    "bn": "মুহূর্ত দক্ষতা  –  মৌলিক বিষয়ের বাইরে",
+    "kn": "ಮುಹೂರ್ತ ಪ್ರಾವೀಣ್ಯ  –  ಮೂಲ ವಿಷಯಗಳ ಆಚೆ",
+    "gu": "મુહૂર્ત નિપુણતા  –  મૂળ બાબતોથી આગળ"
   },
   "subtitle": {
     "en": "Advanced muhurta selection: Sarvartha Siddhi Yoga, Amrita Siddhi Yoga, Siddha Yoga, and deep-dive into Vivaha (marriage) muhurta with all classical conditions",
@@ -72,8 +72,8 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Sarvartha Siddhi Yoga occurs when specific weekdays combine with specific nakshatras — for example, Sunday + Pushya, Monday + Hasta, Tuesday + Ashwini, etc. This yoga is considered universally auspicious (Sarvartha = all purposes, Siddhi = success) and can override certain negative factors. It is one of the most practically used yogas in muhurta selection.",
-        "hi": "सर्वार्थ सिद्धि योग तब होता है जब विशिष्ट वार विशिष्ट नक्षत्रों के साथ मिलते हैं — जैसे रविवार + पुष्य, सोमवार + हस्त, मंगलवार + अश्विनी आदि।"
+        "en": "Sarvartha Siddhi Yoga occurs when specific weekdays combine with specific nakshatras  –  for example, Sunday + Pushya, Monday + Hasta, Tuesday + Ashwini, etc. This yoga is considered universally auspicious (Sarvartha = all purposes, Siddhi = success) and can override certain negative factors. It is one of the most practically used yogas in muhurta selection.",
+        "hi": "सर्वार्थ सिद्धि योग तब होता है जब विशिष्ट वार विशिष्ट नक्षत्रों के साथ मिलते हैं  –  जैसे रविवार + पुष्य, सोमवार + हस्त, मंगलवार + अश्विनी आदि।"
       },
       "options": [
         { "en": "A planetary yoga in the birth chart", "hi": "जन्म कुण्डली में एक ग्रहीय योग" },
@@ -110,7 +110,7 @@
       },
       "correctAnswer": 0,
       "explanation": {
-        "en": "Amrita Siddhi Yoga occurs when specific weekdays combine with specific tithis — for example, Sunday + Dvitiya, Monday + Saptami, Wednesday + Dvadashi, etc. 'Amrita' means nectar/immortality and 'Siddhi' means success — this yoga is said to bestow nectar-like success on activities initiated during it. Unlike Sarvartha Siddhi (weekday + nakshatra), Amrita Siddhi uses weekday + tithi.",
+        "en": "Amrita Siddhi Yoga occurs when specific weekdays combine with specific tithis  –  for example, Sunday + Dvitiya, Monday + Saptami, Wednesday + Dvadashi, etc. 'Amrita' means nectar/immortality and 'Siddhi' means success  –  this yoga is said to bestow nectar-like success on activities initiated during it. Unlike Sarvartha Siddhi (weekday + nakshatra), Amrita Siddhi uses weekday + tithi.",
         "hi": "अमृत सिद्धि योग तब होता है जब विशिष्ट वार विशिष्ट तिथियों के साथ मिलते हैं। 'अमृत' का अर्थ अमृत और 'सिद्धि' का अर्थ सफलता है।"
       },
       "options": [

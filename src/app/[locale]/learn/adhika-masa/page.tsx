@@ -13,9 +13,9 @@ const LABELS = {
   howDetected: { en: 'How is it detected?', hi: 'इसका पता कैसे चलता है?' },
   howDetectedDesc: { en: 'A lunar month in which no solar Sankranti (Sun entering a new sidereal sign) occurs is declared Adhika. If the Sun is in the same sign at both the starting and ending New Moon conjunctions, no transit happened within that month.', hi: 'जिस चन्द्र मास में कोई सौर संक्रान्ति (सूर्य का नई राशि में प्रवेश) नहीं होती, वह अधिक मास है। यदि आरम्भ और अन्त दोनों अमावस्या पर सूर्य एक ही राशि में हो, तो कोई संक्रान्ति नहीं हुई।' },
   naming: { en: 'Naming Convention', hi: 'नामकरण नियम' },
-  namingDesc: { en: 'The Adhika month takes the name of the natural (Nija) month it precedes. For example, in 2029 the Sun stays in Pisces (Meena) across two consecutive New Moons — the Adhika month is called "Adhika Chaitra" because Chaitra is the natural month that follows.', hi: 'अधिक मास अपने बाद आने वाले निज मास का नाम लेता है। उदाहरण: 2029 में सूर्य दो क्रमिक अमावस्या पर मीन राशि में रहता है — अधिक मास "अधिक चैत्र" कहलाता है।' },
+  namingDesc: { en: 'The Adhika month takes the name of the natural (Nija) month it precedes. For example, in 2029 the Sun stays in Pisces (Meena) across two consecutive New Moons  –  the Adhika month is called "Adhika Chaitra" because Chaitra is the natural month that follows.', hi: 'अधिक मास अपने बाद आने वाले निज मास का नाम लेता है। उदाहरण: 2029 में सूर्य दो क्रमिक अमावस्या पर मीन राशि में रहता है  –  अधिक मास "अधिक चैत्र" कहलाता है।' },
   festivals: { en: 'Festivals During Adhika Masa', hi: 'अधिक मास में त्योहार' },
-  festivalsDesc: { en: 'Festivals are NOT observed during Adhika months — only during the Nija (regular) month. However, the Adhika month itself is considered sacred for extra spiritual practices like japa, daan, and Vishnu puja.', hi: 'अधिक मास में त्योहार नहीं मनाये जाते — केवल निज मास में। परन्तु अधिक मास स्वयं जप, दान और विष्णु पूजा के लिए पवित्र माना जाता है।' },
+  festivalsDesc: { en: 'Festivals are NOT observed during Adhika months  –  only during the Nija (regular) month. However, the Adhika month itself is considered sacred for extra spiritual practices like japa, daan, and Vishnu puja.', hi: 'अधिक मास में त्योहार नहीं मनाये जाते  –  केवल निज मास में। परन्तु अधिक मास स्वयं जप, दान और विष्णु पूजा के लिए पवित्र माना जाता है।' },
   examples: { en: 'Recent & Upcoming Examples', hi: 'हाल के और आगामी उदाहरण' },
   learnMore: { en: 'Learn the full algorithm', hi: 'पूरा एल्गोरिदम सीखें' },
   relatedTopics: { en: 'Related Topics', hi: 'सम्बन्धित विषय' },
@@ -23,7 +23,7 @@ const LABELS = {
 
 const EXAMPLES = [
   { year: 2026, month: 'Adhika Jyeshtha', period: 'May – Jun', hi: 'अधिक ज्येष्ठ' },
-  { year: 2027, month: 'No Adhika', period: '—', hi: 'कोई अधिक मास नहीं' },
+  { year: 2027, month: 'No Adhika', period: ' – ', hi: 'कोई अधिक मास नहीं' },
   { year: 2029, month: 'Adhika Chaitra', period: 'Mar – Apr', hi: 'अधिक चैत्र' },
   { year: 2031, month: 'Adhika Shravana', period: 'Aug – Sep', hi: 'अधिक श्रावण' },
 ];
@@ -65,7 +65,7 @@ export default function AdhikaMasaPage() {
           <span className="text-text-primary font-medium">Lunar Year: 354.37 days</span>
           <div className="flex-1 h-3 rounded-full bg-blue-500/20 border border-blue-500/30" style={{ width: '97%' }} />
         </div>
-        <p className="text-text-secondary text-sm">{isHi ? '10.88 दिन का अन्तर प्रतिवर्ष संचित होता है — ~32.5 महीनों में ~33 दिन, जो एक अतिरिक्त मास की आवश्यकता बनाता है।' : 'The 10.88-day gap accumulates each year — ~33 days in ~32.5 months, requiring an extra month to be inserted.'}</p>
+        <p className="text-text-secondary text-sm">{isHi ? '10.88 दिन का अन्तर प्रतिवर्ष संचित होता है  –  ~32.5 महीनों में ~33 दिन, जो एक अतिरिक्त मास की आवश्यकता बनाता है।' : 'The 10.88-day gap accumulates each year  –  ~33 days in ~32.5 months, requiring an extra month to be inserted.'}</p>
       </div>
 
       {/* Content sections */}
@@ -88,8 +88,8 @@ export default function AdhikaMasaPage() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>पद्म पुराण के अनुसार, जब अधिक मास को कोई देवता स्वामी नहीं मिला (क्योंकि सभी 12 मासों के पहले से स्वामी थे), तो यह मास भगवान विष्णु के पास गया। विष्णु ने इसे अपनाया और इसे &quot;पुरुषोत्तम&quot; (सर्वश्रेष्ठ पुरुष) नाम दिया। इसलिए इसे &quot;मल मास&quot; (अशुद्ध मास — क्योंकि इसमें त्योहार नहीं मनाये जाते) और &quot;पुरुषोत्तम मास&quot; (पवित्र मास — क्योंकि विष्णु पूजा विशेष रूप से फलदायी है) दोनों कहते हैं।</>
-            : <>According to the Padma Purana, when Adhika Masa could not find a deity patron (since all 12 months already had one), it approached Lord Vishnu. Vishnu adopted it and gave it the name &quot;Purushottam&quot; (Supreme Being). Hence it is called both &quot;Mal Maas&quot; (impure month — because festivals are not observed) and &quot;Purushottam Maas&quot; (sacred month — because Vishnu worship is especially fruitful).</>}
+            ? <>पद्म पुराण के अनुसार, जब अधिक मास को कोई देवता स्वामी नहीं मिला (क्योंकि सभी 12 मासों के पहले से स्वामी थे), तो यह मास भगवान विष्णु के पास गया। विष्णु ने इसे अपनाया और इसे &quot;पुरुषोत्तम&quot; (सर्वश्रेष्ठ पुरुष) नाम दिया। इसलिए इसे &quot;मल मास&quot; (अशुद्ध मास  –  क्योंकि इसमें त्योहार नहीं मनाये जाते) और &quot;पुरुषोत्तम मास&quot; (पवित्र मास  –  क्योंकि विष्णु पूजा विशेष रूप से फलदायी है) दोनों कहते हैं।</>
+            : <>According to the Padma Purana, when Adhika Masa could not find a deity patron (since all 12 months already had one), it approached Lord Vishnu. Vishnu adopted it and gave it the name &quot;Purushottam&quot; (Supreme Being). Hence it is called both &quot;Mal Maas&quot; (impure month  –  because festivals are not observed) and &quot;Purushottam Maas&quot; (sacred month  –  because Vishnu worship is especially fruitful).</>}
         </p>
       </div>
 
@@ -125,12 +125,12 @@ export default function AdhikaMasaPage() {
       {/* Metonic Cycle */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-blue-500/15">
         <h3 className="text-lg font-semibold text-blue-300 mb-3" style={hf}>
-          {isHi ? 'मेटोनिक चक्र — 19 वर्षों का प्रतिमान' : 'The Metonic Cycle — The 19-Year Pattern'}
+          {isHi ? 'मेटोनिक चक्र  –  19 वर्षों का प्रतिमान' : 'The Metonic Cycle  –  The 19-Year Pattern'}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
-            ? <>19 सौर वर्षों में ठीक 235 चन्द्र मास होते हैं (19 × 12 = 228 + 7 अधिक = 235)। इसका अर्थ है कि 19 वर्षों में ठीक 7 अधिक मास आते हैं। यह मेटोनिक चक्र कहलाता है, जिसे ग्रीक खगोलविद मेटन ने 432 ई.पू. में खोजा था — किन्तु भारतीय ज्योतिष ग्रन्थ इसे इससे भी पहले वर्णित करते हैं। यही कारण है कि अधिक मास लगभग हर 32.5 महीनों में आता है (235/7 ≈ 33.6 महीने प्रति अधिक मास)।</>
-            : <>In 19 solar years there are exactly 235 lunar months (19 × 12 = 228 + 7 Adhika = 235). This means exactly 7 Adhika months occur in 19 years. This is the Metonic cycle, discovered by the Greek astronomer Meton in 432 BCE — though Indian astronomical texts describe it even earlier. This is why Adhika Masa occurs approximately every 32.5 months (235/7 ≈ 33.6 months per Adhika).</>}
+            ? <>19 सौर वर्षों में ठीक 235 चन्द्र मास होते हैं (19 × 12 = 228 + 7 अधिक = 235)। इसका अर्थ है कि 19 वर्षों में ठीक 7 अधिक मास आते हैं। यह मेटोनिक चक्र कहलाता है, जिसे ग्रीक खगोलविद मेटन ने 432 ई.पू. में खोजा था  –  किन्तु भारतीय ज्योतिष ग्रन्थ इसे इससे भी पहले वर्णित करते हैं। यही कारण है कि अधिक मास लगभग हर 32.5 महीनों में आता है (235/7 ≈ 33.6 महीने प्रति अधिक मास)।</>
+            : <>In 19 solar years there are exactly 235 lunar months (19 × 12 = 228 + 7 Adhika = 235). This means exactly 7 Adhika months occur in 19 years. This is the Metonic cycle, discovered by the Greek astronomer Meton in 432 BCE  –  though Indian astronomical texts describe it even earlier. This is why Adhika Masa occurs approximately every 32.5 months (235/7 ≈ 33.6 months per Adhika).</>}
         </p>
       </div>
 
@@ -170,7 +170,7 @@ export default function AdhikaMasaPage() {
         <BookOpen className="w-6 h-6 text-gold-primary flex-shrink-0" />
         <div className="flex-1">
           <div className="text-gold-light font-semibold">{tl(LABELS.learnMore, locale)}</div>
-          <div className="text-text-secondary text-sm">Module 27.2 — Detection algorithm, Amanta vs Purnimanta, Kshaya Masa</div>
+          <div className="text-text-secondary text-sm">Module 27.2  –  Detection algorithm, Amanta vs Purnimanta, Kshaya Masa</div>
         </div>
         <ArrowRight className="w-5 h-5 text-gold-primary flex-shrink-0" />
       </Link>

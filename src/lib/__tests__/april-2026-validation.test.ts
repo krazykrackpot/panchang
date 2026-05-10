@@ -31,7 +31,7 @@ function parseTimeToMinutes(time: string): number {
 // ANCHOR TESTS: Known dates verified against Prokerala
 // ──────────────────────────────────────────────────
 
-describe('April 2026 — Anchor dates (verified against Prokerala)', () => {
+describe('April 2026  –  Anchor dates (verified against Prokerala)', () => {
   it('Apr 1: Wednesday, Shukla Paksha', () => {
     const p = panchangFor(1);
     expect(p.vara.day).toBe(3); // Wednesday
@@ -78,7 +78,7 @@ describe('April 2026 — Anchor dates (verified against Prokerala)', () => {
 // CONSISTENCY TESTS: All 30 days
 // ──────────────────────────────────────────────────
 
-describe('April 2026 — All 30 days structural consistency', () => {
+describe('April 2026  –  All 30 days structural consistency', () => {
   const results = Array.from({ length: 30 }, (_, i) => ({
     day: i + 1,
     p: panchangFor(i + 1),
@@ -202,7 +202,7 @@ describe('April 2026 — All 30 days structural consistency', () => {
 // OUTPUT TABLE: Print full month for manual cross-check
 // ──────────────────────────────────────────────────
 
-describe('April 2026 — Full month table (for manual cross-check)', () => {
+describe('April 2026  –  Full month table (for manual cross-check)', () => {
   it('prints panchang summary for all 30 days', () => {
     const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const rows: string[] = [];
@@ -223,7 +223,7 @@ describe('April 2026 — Full month table (for manual cross-check)', () => {
       );
     }
 
-    console.log('\n=== APRIL 2026 PANCHANG — New Delhi ===\n');
+    console.log('\n=== APRIL 2026 PANCHANG  –  New Delhi ===\n');
     console.log(rows.join('\n'));
     console.log('\n');
     expect(true).toBe(true);

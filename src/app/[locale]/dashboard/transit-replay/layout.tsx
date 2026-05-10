@@ -9,10 +9,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const titles: Record<string, string> = {
-    en: 'Transit Replay — Dekho Panchang',
-    hi: 'गोचर रिप्ले — देखो पंचांग',
-    ta: 'கோசார ரீப்ளே — தேக்கோ பஞ்சாங்கம்',
-    bn: 'গোচর রিপ্লে — দেখো পঞ্চাং',
+    en: 'Transit Replay  –  Dekho Panchang',
+    hi: 'गोचर रिप्ले  –  देखो पंचांग',
+    ta: 'கோசார ரீப்ளே  –  தேக்கோ பஞ்சாங்கம்',
+    bn: 'গোচর রিপ্লে  –  দেখো পঞ্চাং',
   };
   const descs: Record<string, string> = {
     en: 'See the exact planetary positions on any date and how they aspect your natal chart.',

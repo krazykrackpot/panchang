@@ -1,5 +1,5 @@
 /**
- * Narrator V2 — Emotionally Intelligent Narrative Enhancement Tests
+ * Narrator V2  –  Emotionally Intelligent Narrative Enhancement Tests
  *
  * Verifies:
  * 1. narrateWithEmpathy produces 5-section narrative for adhama/atyadhama domains
@@ -81,7 +81,7 @@ function makeMockReading(overrides: Partial<{
 }
 
 // ---------------------------------------------------------------------------
-// Adhama mock — weak career reading
+// Adhama mock  –  weak career reading
 // ---------------------------------------------------------------------------
 
 const adhamaReading = makeMockReading({
@@ -121,7 +121,7 @@ const adhamaReading = makeMockReading({
 });
 
 // ---------------------------------------------------------------------------
-// Atyadhama mock — very weak health reading
+// Atyadhama mock  –  very weak health reading
 // ---------------------------------------------------------------------------
 
 const atyadhamaReading = makeMockReading({
@@ -138,7 +138,7 @@ const atyadhamaReading = makeMockReading({
 });
 
 // ---------------------------------------------------------------------------
-// Uttama mock — strong marriage reading
+// Uttama mock  –  strong marriage reading
 // ---------------------------------------------------------------------------
 
 const uttamaReading = makeMockReading({
@@ -172,7 +172,7 @@ const uttamaReading = makeMockReading({
 });
 
 // ---------------------------------------------------------------------------
-// Madhyama mock — moderate wealth reading
+// Madhyama mock  –  moderate wealth reading
 // ---------------------------------------------------------------------------
 
 const madhyamaReading = makeMockReading({
@@ -254,7 +254,7 @@ describe('narrateStrength', () => {
     // Should mention top factors
     expect(result.en).toContain('Venus-Jupiter conjunction');
 
-    // Amplify — bold move suggestion
+    // Amplify  –  bold move suggestion
     expect(result.en).toContain('window for');
 
     // Timeline
@@ -382,9 +382,9 @@ describe('generateActionPlan', () => {
   });
 
   it('avoid guidance falls back to generic when challenge is >6 months away', () => {
-    // uttamaReading challenge starts 2027-08-01 — well beyond 6 months
+    // uttamaReading challenge starts 2027-08-01  –  well beyond 6 months
     const plan = generateActionPlan(uttamaReading, 'en');
-    // Should NOT mention "August 2027" — too far away to be actionable
+    // Should NOT mention "August 2027"  –  too far away to be actionable
     expect(plan.avoid.en).not.toContain('2027');
     // Should get generic or transit-based avoid text instead
     expect(plan.avoid.en).toBeTruthy();

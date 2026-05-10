@@ -183,7 +183,7 @@ describe('Timezone Utils', () => {
     expect(offset).toBe(0);
   });
 
-  it('should throw on invalid timezone — never silently return 0', () => {
+  it('should throw on invalid timezone  –  never silently return 0', () => {
     expect(() => getUTCOffsetForDate(2026, 1, 1, 'Invalid/Zone')).toThrow('Invalid timezone');
   });
 

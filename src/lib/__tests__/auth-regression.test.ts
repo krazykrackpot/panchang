@@ -1,6 +1,6 @@
 /**
  * Regression tests for auth, signup triggers, checkout, and profile flows.
- * These test the logic layers — not the actual Supabase/Stripe connections.
+ * These test the logic layers  –  not the actual Supabase/Stripe connections.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
@@ -55,7 +55,7 @@ describe('Supabase Client Configuration', () => {
   });
 });
 
-// ── 2. Checkout Route — env var trimming ───────────────────────────────
+// ── 2. Checkout Route  –  env var trimming ───────────────────────────────
 
 describe('Checkout env var trimming', () => {
   it('trims trailing whitespace from Stripe price IDs', () => {
@@ -92,7 +92,7 @@ describe('Checkout env var trimming', () => {
   });
 });
 
-// ── 3. Profile API — birth panchang computation ────────────────────────
+// ── 3. Profile API  –  birth panchang computation ────────────────────────
 
 describe('Birth Panchang Computation', () => {
   it('computes tithi from birth date/time/timezone', async () => {
@@ -169,7 +169,7 @@ describe('Birth Panchang Computation', () => {
 
 // ── 4. Vedic Time Computation ──────────────────────────────────────────
 
-describe('Vedic Time — Ishtakala Computation', () => {
+describe('Vedic Time  –  Ishtakala Computation', () => {
   it('60-ghati clock: sunrise is 00:00:00, 30 ghati ≈ midday', async () => {
     const { getSunTimes } = await import('@/lib/astronomy/sunrise');
     const { dateToJD } = await import('@/lib/ephem/astronomical');
@@ -214,7 +214,7 @@ describe('Vedic Time — Ishtakala Computation', () => {
   it('sunset position in 60-ghati clock varies with day length', async () => {
     const { getSunTimes } = await import('@/lib/astronomy/sunrise');
 
-    // Bern, Apr 3 (spring — days longer than 12h)
+    // Bern, Apr 3 (spring  –  days longer than 12h)
     const today = getSunTimes(2026, 4, 3, 46.948, 7.447, 2);
     const tomorrow = getSunTimes(2026, 4, 4, 46.948, 7.447, 2);
 
@@ -253,7 +253,7 @@ describe('Samvat Year Calculations', () => {
   });
 });
 
-// ── 6. Panchang Accuracy — Drik Cross-check ────────────────────────────
+// ── 6. Panchang Accuracy  –  Drik Cross-check ────────────────────────────
 
 describe('Panchang Accuracy vs Drik Panchang (Bern, Apr 3 2026)', () => {
   it('sunrise within 2 minutes of Drik (07:06)', async () => {
@@ -301,7 +301,7 @@ describe('Panchang Accuracy vs Drik Panchang (Bern, Apr 3 2026)', () => {
       locationName: 'Bern', ayanamsaType: 'lahiri', timezone: 'Europe/Zurich',
     });
     expect(p.tithiTransition?.endDate).toBe('2026-04-04');
-    // Our value: 06:39, Drik: 06:38 — within 2 min
+    // Our value: 06:39, Drik: 06:38  –  within 2 min
     const [h, m] = (p.tithiTransition?.endTime || '00:00').split(':').map(Number);
     const endMin = h * 60 + m;
     const drikMin = 6 * 60 + 38;

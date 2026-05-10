@@ -38,9 +38,9 @@ export const ONAM_PUJA: PujaVidhi = {
       step: 1,
       title: { en: 'Pookalam (Flower Carpet)', hi: 'पूकलम (फूलों की रंगोली)', sa: 'पूकलम् (पुष्परङ्गवल्ली)' },
       description: {
-        en: 'Create an elaborate Pookalam (flower rangoli) at the entrance of the home using fresh flowers of multiple colours — thumba, mukkutti, chembarathi, and other local flowers. The pattern grows larger each day of the ten-day celebration. On Thiruvonam, it should be the grandest.',
-        hi: 'घर के प्रवेश द्वार पर विभिन्न रंगों के ताज़े फूलों — तुम्बा, मुक्कुट्टि, चेम्बरती और अन्य स्थानीय फूलों — से विस्तृत पूकलम (फूलों की रंगोली) बनाएँ। दस दिवसीय उत्सव में प्रतिदिन पैटर्न बड़ा होता है। तिरुवोणम पर यह सबसे भव्य होना चाहिए।',
-        sa: 'गृहप्रवेशद्वारे विविधवर्णनवपुष्पैः — तुम्बा मुक्कुट्टि चेम्बरती अन्यैः स्थानीयपुष्पैश्च — विस्तृतं पूकलम् (पुष्परङ्गवल्लीम्) रचयेत्। दशदिवसोत्सवे प्रतिदिनं चित्रं विशालतरं भवति। तिरुवोणदिने भव्यतमं स्यात्।',
+        en: 'Create an elaborate Pookalam (flower rangoli) at the entrance of the home using fresh flowers of multiple colours  –  thumba, mukkutti, chembarathi, and other local flowers. The pattern grows larger each day of the ten-day celebration. On Thiruvonam, it should be the grandest.',
+        hi: 'घर के प्रवेश द्वार पर विभिन्न रंगों के ताज़े फूलों  –  तुम्बा, मुक्कुट्टि, चेम्बरती और अन्य स्थानीय फूलों  –  से विस्तृत पूकलम (फूलों की रंगोली) बनाएँ। दस दिवसीय उत्सव में प्रतिदिन पैटर्न बड़ा होता है। तिरुवोणम पर यह सबसे भव्य होना चाहिए।',
+        sa: 'गृहप्रवेशद्वारे विविधवर्णनवपुष्पैः  –  तुम्बा मुक्कुट्टि चेम्बरती अन्यैः स्थानीयपुष्पैश्च  –  विस्तृतं पूकलम् (पुष्परङ्गवल्लीम्) रचयेत्। दशदिवसोत्सवे प्रतिदिनं चित्रं विशालतरं भवति। तिरुवोणदिने भव्यतमं स्यात्।',
       },
       duration: '45 min',
       essential: true,
@@ -63,9 +63,9 @@ export const ONAM_PUJA: PujaVidhi = {
       step: 3,
       title: { en: 'Onasadya (Grand Feast)', hi: 'ओणसद्या (भव्य भोज)', sa: 'ओणसद्या (भव्यभोजनम्)' },
       description: {
-        en: 'Prepare and serve the Onasadya — the grand vegetarian feast of 26+ dishes on banana leaves. Traditional items include avial, olan, kalan, pachadi, payasam (pradhaman), sambar, rasam, pickles, chips, and rice. Everyone sits on the floor. The feast is served in a specific order from left to right on the leaf.',
-        hi: 'ओणसद्या — केले के पत्तों पर 26+ व्यंजनों का भव्य शाकाहारी भोज — तैयार करें और परोसें। पारम्परिक व्यंजनों में अवियल, ओलन, कालन, पचड़ी, पायसम (प्रधमन), सांभर, रसम, अचार, चिप्स और चावल शामिल हैं। सभी ज़मीन पर बैठते हैं। भोज पत्ते पर बाएँ से दाएँ एक निश्चित क्रम में परोसा जाता है।',
-        sa: 'ओणसद्यां — कदलीपत्रेषु षड्विंशत्यधिकव्यञ्जनानां भव्यं शाकाहारभोजनम् — सज्जयेत् परिवेषयेत् च। पारम्परिकव्यञ्जनेषु अवियल् ओलन् कालन् पचडी पायसम् (प्रधमन्) सांभर् रसम् आचारः चिप्स् तण्डुलाश्च सन्ति। सर्वे भूमौ उपविशन्ति। भोजनं पत्रे वामतो दक्षिणं निश्चितक्रमेण परिवेष्यते।',
+        en: 'Prepare and serve the Onasadya  –  the grand vegetarian feast of 26+ dishes on banana leaves. Traditional items include avial, olan, kalan, pachadi, payasam (pradhaman), sambar, rasam, pickles, chips, and rice. Everyone sits on the floor. The feast is served in a specific order from left to right on the leaf.',
+        hi: 'ओणसद्या  –  केले के पत्तों पर 26+ व्यंजनों का भव्य शाकाहारी भोज  –  तैयार करें और परोसें। पारम्परिक व्यंजनों में अवियल, ओलन, कालन, पचड़ी, पायसम (प्रधमन), सांभर, रसम, अचार, चिप्स और चावल शामिल हैं। सभी ज़मीन पर बैठते हैं। भोज पत्ते पर बाएँ से दाएँ एक निश्चित क्रम में परोसा जाता है।',
+        sa: 'ओणसद्यां  –  कदलीपत्रेषु षड्विंशत्यधिकव्यञ्जनानां भव्यं शाकाहारभोजनम्  –  सज्जयेत् परिवेषयेत् च। पारम्परिकव्यञ्जनेषु अवियल् ओलन् कालन् पचडी पायसम् (प्रधमन्) सांभर् रसम् आचारः चिप्स् तण्डुलाश्च सन्ति। सर्वे भूमौ उपविशन्ति। भोजनं पत्रे वामतो दक्षिणं निश्चितक्रमेण परिवेष्यते।',
       },
       duration: '60 min',
       essential: true,
@@ -87,9 +87,9 @@ export const ONAM_PUJA: PujaVidhi = {
       step: 5,
       title: { en: 'Evening Lamp and Prayer', hi: 'सन्ध्या दीप और प्रार्थना', sa: 'सन्ध्यादीपः प्रार्थना च' },
       description: {
-        en: 'Light the Nilavilakku in the evening. Offer fresh flowers at the Pookalam. Pray for Mahabali\'s blessings — that his spirit of justice, generosity, and equality may prevail. On the day after Thiruvonam, bid farewell to Mahabali until next year.',
-        hi: 'सन्ध्या में नीलविलक्कु जलाएँ। पूकलम पर ताज़े फूल अर्पित करें। महाबलि के आशीर्वाद की प्रार्थना करें — कि उनकी न्याय, उदारता और समानता की भावना बनी रहे। तिरुवोणम के अगले दिन, अगले वर्ष तक महाबलि को विदाई दें।',
-        sa: 'सायंकाले नीलविलक्कुं प्रज्वालयेत्। पूकलमे नवपुष्पाणि समर्पयेत्। महाबलेः अनुग्रहं प्रार्थयेत् — तस्य न्यायोदारतासाम्यभावना प्रवर्ततामिति। तिरुवोणानन्तरदिने आगामिवर्षपर्यन्तं महाबलये विदायं ददाति।',
+        en: 'Light the Nilavilakku in the evening. Offer fresh flowers at the Pookalam. Pray for Mahabali\'s blessings  –  that his spirit of justice, generosity, and equality may prevail. On the day after Thiruvonam, bid farewell to Mahabali until next year.',
+        hi: 'सन्ध्या में नीलविलक्कु जलाएँ। पूकलम पर ताज़े फूल अर्पित करें। महाबलि के आशीर्वाद की प्रार्थना करें  –  कि उनकी न्याय, उदारता और समानता की भावना बनी रहे। तिरुवोणम के अगले दिन, अगले वर्ष तक महाबलि को विदाई दें।',
+        sa: 'सायंकाले नीलविलक्कुं प्रज्वालयेत्। पूकलमे नवपुष्पाणि समर्पयेत्। महाबलेः अनुग्रहं प्रार्थयेत्  –  तस्य न्यायोदारतासाम्यभावना प्रवर्ततामिति। तिरुवोणानन्तरदिने आगामिवर्षपर्यन्तं महाबलये विदायं ददाति।',
       },
       duration: '15 min',
       essential: true,
@@ -133,9 +133,9 @@ export const ONAM_PUJA: PujaVidhi = {
   ],
 
   naivedya: {
-    en: 'The Onasadya (grand feast) IS the naivedya — 26+ vegetarian dishes including payasam (pradhaman), avial, olan, kalan, pachadi, kootu curry, sambar, rasam, banana chips, sharkkaravaratti, and rice. Ada pradhaman (rice flake payasam) and palada pradhaman are the signature desserts.',
-    hi: 'ओणसद्या (भव्य भोज) ही नैवेद्य है — 26+ शाकाहारी व्यंजन जिसमें पायसम (प्रधमन), अवियल, ओलन, कालन, पचड़ी, कूटु करी, सांभर, रसम, केले के चिप्स, शर्करावरट्टि और चावल शामिल हैं। अडा प्रधमन (चावल के फ्लेक का पायसम) और पालदा प्रधमन विशेष मिठाइयाँ हैं।',
-    sa: 'ओणसद्या (भव्यभोजनम्) एव नैवेद्यम् — षड्विंशत्यधिकशाकाहारव्यञ्जनानि यत्र पायसम् (प्रधमन्) अवियल् ओलन् कालन् पचडी कूटुव्यञ्जनं सांभर् रसम् कदलीचिप्स् शर्करावरट्टि तण्डुलाश्च सन्ति। अडाप्रधमन् पालदाप्रधमन् च विशेषमिष्टान्ने स्तः।',
+    en: 'The Onasadya (grand feast) IS the naivedya  –  26+ vegetarian dishes including payasam (pradhaman), avial, olan, kalan, pachadi, kootu curry, sambar, rasam, banana chips, sharkkaravaratti, and rice. Ada pradhaman (rice flake payasam) and palada pradhaman are the signature desserts.',
+    hi: 'ओणसद्या (भव्य भोज) ही नैवेद्य है  –  26+ शाकाहारी व्यंजन जिसमें पायसम (प्रधमन), अवियल, ओलन, कालन, पचड़ी, कूटु करी, सांभर, रसम, केले के चिप्स, शर्करावरट्टि और चावल शामिल हैं। अडा प्रधमन (चावल के फ्लेक का पायसम) और पालदा प्रधमन विशेष मिठाइयाँ हैं।',
+    sa: 'ओणसद्या (भव्यभोजनम्) एव नैवेद्यम्  –  षड्विंशत्यधिकशाकाहारव्यञ्जनानि यत्र पायसम् (प्रधमन्) अवियल् ओलन् कालन् पचडी कूटुव्यञ्जनं सांभर् रसम् कदलीचिप्स् शर्करावरट्टि तण्डुलाश्च सन्ति। अडाप्रधमन् पालदाप्रधमन् च विशेषमिष्टान्ने स्तः।',
   },
 
   precautions: [
@@ -145,9 +145,9 @@ export const ONAM_PUJA: PujaVidhi = {
       sa: 'ओणम् सार्वभौमः सस्योत्सवः यं सर्वे केरलवासिनो धर्मनिरपेक्षतया आचरन्ति। पूजापक्षो हिन्दुः, किन्तु भोजनं क्रीडाः सामुदायिकोत्सवाश्च सार्वभौमिकाः।',
     },
     {
-      en: 'Use only fresh, locally sourced flowers for the Pookalam — artificial flowers are considered inauspicious. The Pookalam must be made fresh each morning.',
-      hi: 'पूकलम के लिए केवल ताज़े, स्थानीय फूलों का उपयोग करें — कृत्रिम फूल अशुभ माने जाते हैं। पूकलम प्रतिदिन प्रातः ताज़ा बनाना चाहिए।',
-      sa: 'पूकलमार्थं केवलं नवानि स्थानीयपुष्पाणि प्रयुज्यन्ताम् — कृत्रिमपुष्पाणि अशुभानि मन्यन्ते। पूकलम् प्रतिदिनं प्रातः नवं रचनीयम्।',
+      en: 'Use only fresh, locally sourced flowers for the Pookalam  –  artificial flowers are considered inauspicious. The Pookalam must be made fresh each morning.',
+      hi: 'पूकलम के लिए केवल ताज़े, स्थानीय फूलों का उपयोग करें  –  कृत्रिम फूल अशुभ माने जाते हैं। पूकलम प्रतिदिन प्रातः ताज़ा बनाना चाहिए।',
+      sa: 'पूकलमार्थं केवलं नवानि स्थानीयपुष्पाणि प्रयुज्यन्ताम्  –  कृत्रिमपुष्पाणि अशुभानि मन्यन्ते। पूकलम् प्रतिदिनं प्रातः नवं रचनीयम्।',
     },
     {
       en: 'The Onasadya must be purely vegetarian. Non-vegetarian food is strictly avoided on Thiruvonam day, even in communities that normally consume it.',
@@ -162,8 +162,8 @@ export const ONAM_PUJA: PujaVidhi = {
   ],
 
   phala: {
-    en: 'Onam celebrates the golden age of Mahabali\'s rule — a time of equality, prosperity, and justice. Observing Onam brings agricultural abundance, family unity, communal harmony, and the blessings of both Mahabali (prosperity) and Vamana (divine grace). It is believed that Mahabali\'s spirit visits Kerala during Onam to bless his people.',
-    hi: 'ओणम महाबलि के शासन के स्वर्णयुग — समानता, समृद्धि और न्याय के काल — का उत्सव है। ओणम मनाने से कृषि प्रचुरता, पारिवारिक एकता, सामुदायिक सद्भाव, और महाबलि (समृद्धि) तथा वामन (दिव्य कृपा) दोनों का आशीर्वाद मिलता है। ऐसी मान्यता है कि ओणम के दौरान महाबलि की आत्मा केरल आती है अपनी प्रजा को आशीर्वाद देने।',
-    sa: 'ओणम् महाबलिशासनस्य सुवर्णयुगम् — साम्यसमृद्धिन्यायकालम् — आचरति। ओणमाचरणेन कृषिप्राचुर्यं कुटुम्बैक्यं सामुदायिकसद्भावः महाबलेः (समृद्धेः) वामनस्य (दिव्यानुग्रहस्य) चानुग्रहो लभ्यते। ओणमवसरे महाबलेः आत्मा केरलं प्रति आगच्छति स्वप्रजाम् अनुग्रहीतुमिति विश्वस्यते।',
+    en: 'Onam celebrates the golden age of Mahabali\'s rule  –  a time of equality, prosperity, and justice. Observing Onam brings agricultural abundance, family unity, communal harmony, and the blessings of both Mahabali (prosperity) and Vamana (divine grace). It is believed that Mahabali\'s spirit visits Kerala during Onam to bless his people.',
+    hi: 'ओणम महाबलि के शासन के स्वर्णयुग  –  समानता, समृद्धि और न्याय के काल  –  का उत्सव है। ओणम मनाने से कृषि प्रचुरता, पारिवारिक एकता, सामुदायिक सद्भाव, और महाबलि (समृद्धि) तथा वामन (दिव्य कृपा) दोनों का आशीर्वाद मिलता है। ऐसी मान्यता है कि ओणम के दौरान महाबलि की आत्मा केरल आती है अपनी प्रजा को आशीर्वाद देने।',
+    sa: 'ओणम् महाबलिशासनस्य सुवर्णयुगम्  –  साम्यसमृद्धिन्यायकालम्  –  आचरति। ओणमाचरणेन कृषिप्राचुर्यं कुटुम्बैक्यं सामुदायिकसद्भावः महाबलेः (समृद्धेः) वामनस्य (दिव्यानुग्रहस्य) चानुग्रहो लभ्यते। ओणमवसरे महाबलेः आत्मा केरलं प्रति आगच्छति स्वप्रजाम् अनुग्रहीतुमिति विश्वस्यते।',
   },
 };

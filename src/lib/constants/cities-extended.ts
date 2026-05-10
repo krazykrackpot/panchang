@@ -15,7 +15,7 @@ export interface CityDataWithTier extends CityData {
 }
 
 // ---------------------------------------------------------------------------
-// Compact Indian city helper — expands [slug, en, hi, state, lat, lng, pop]
+// Compact Indian city helper  –  expands [slug, en, hi, state, lat, lng, pop]
 // All Indian cities: timezone='Asia/Kolkata', Devanagari locales copy hi, others copy en
 // ---------------------------------------------------------------------------
 type IndianCityTuple = [string, string, string, string, number, number, number];
@@ -34,7 +34,7 @@ function expandIndian(data: IndianCityTuple[], tier: 1 | 2 | 3): CityDataWithTie
 }
 
 // ---------------------------------------------------------------------------
-// Tier 1 — existing 55 cities (41 Indian + 14 international)
+// Tier 1  –  existing 55 cities (41 Indian + 14 international)
 // ---------------------------------------------------------------------------
 const TIER1_INDIAN: IndianCityTuple[] = [
   ['delhi', 'Delhi', 'दिल्ली', 'Delhi', 28.6139, 77.2090, 32000000],
@@ -98,7 +98,7 @@ const TIER1_INTERNATIONAL: CityDataWithTier[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// Tier 2 — Indian cities pop >300k, state capitals, major district HQs (~200)
+// Tier 2  –  Indian cities pop >300k, state capitals, major district HQs (~200)
 // ---------------------------------------------------------------------------
 const TIER2_INDIAN: IndianCityTuple[] = [
   // Uttar Pradesh
@@ -251,10 +251,10 @@ const TIER2_INDIAN: IndianCityTuple[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// Tier 3 — Smaller cities, district HQs, pilgrimage towns (~350)
+// Tier 3  –  Smaller cities, district HQs, pilgrimage towns (~350)
 // ---------------------------------------------------------------------------
 const TIER3_INDIAN: IndianCityTuple[] = [
-  // Uttar Pradesh — smaller cities
+  // Uttar Pradesh  –  smaller cities
   ['shahjahanpur', 'Shahjahanpur', 'शाहजहाँपुर', 'Uttar Pradesh', 27.8826, 79.9050, 350000],
   ['rampur', 'Rampur', 'रामपुर', 'Uttar Pradesh', 28.7936, 79.0260, 350000],
   ['sitapur', 'Sitapur', 'सीतापुर', 'Uttar Pradesh', 27.5710, 80.6822, 200000],
@@ -273,7 +273,7 @@ const TIER3_INDIAN: IndianCityTuple[] = [
   ['ballia', 'Ballia', 'बलिया', 'Uttar Pradesh', 25.7584, 84.1484, 120000],
   ['azamgarh', 'Azamgarh', 'आज़मगढ़', 'Uttar Pradesh', 26.0684, 83.1858, 130000],
   ['basti', 'Basti', 'बस्ती', 'Uttar Pradesh', 26.7987, 82.7334, 130000],
-  // Rajasthan — smaller
+  // Rajasthan  –  smaller
   ['pali', 'Pali', 'पाली', 'Rajasthan', 25.7711, 73.3234, 250000],
   ['tonk', 'Tonk', 'टोंक', 'Rajasthan', 26.1665, 75.7885, 200000],
   ['chittorgarh', 'Chittorgarh', 'चित्तौड़गढ़', 'Rajasthan', 24.8829, 74.6230, 130000],
@@ -283,7 +283,7 @@ const TIER3_INDIAN: IndianCityTuple[] = [
   ['mount-abu', 'Mount Abu', 'माउंट आबू', 'Rajasthan', 24.5925, 72.7156, 30000],
   ['pushkar', 'Pushkar', 'पुष्कर', 'Rajasthan', 26.4898, 74.5511, 25000],
   ['nathdwara', 'Nathdwara', 'नाथद्वारा', 'Rajasthan', 24.9380, 73.8238, 50000],
-  // Maharashtra — smaller
+  // Maharashtra  –  smaller
   ['ahmednagar', 'Ahmednagar', 'अहमदनगर', 'Maharashtra', 19.0948, 74.7480, 400000],
   ['jalgaon', 'Jalgaon', 'जलगाँव', 'Maharashtra', 21.0077, 75.5626, 500000],
   ['latur', 'Latur', 'लातूर', 'Maharashtra', 18.4088, 76.5604, 400000],
@@ -293,14 +293,14 @@ const TIER3_INDIAN: IndianCityTuple[] = [
   ['parbhani', 'Parbhani', 'परभणी', 'Maharashtra', 19.2610, 76.7747, 350000],
   ['shirdi', 'Shirdi', 'शिरडी', 'Maharashtra', 19.7668, 74.4770, 50000],
   ['pandharpur', 'Pandharpur', 'पंढरपुर', 'Maharashtra', 17.6813, 75.3221, 100000],
-  // Gujarat — smaller
+  // Gujarat  –  smaller
   ['mehsana', 'Mehsana', 'महेसाणा', 'Gujarat', 23.5880, 72.3693, 200000],
   ['navsari', 'Navsari', 'नवसारी', 'Gujarat', 20.9467, 72.9520, 200000],
   ['porbandar', 'Porbandar', 'पोरबंदर', 'Gujarat', 21.6417, 69.6293, 200000],
   ['dwarka', 'Dwarka', 'द्वारका', 'Gujarat', 22.2442, 68.9685, 40000],
   ['somnath', 'Somnath', 'सोमनाथ', 'Gujarat', 20.8880, 70.4013, 50000],
   ['pavagadh', 'Pavagadh', 'पावागढ़', 'Gujarat', 22.4612, 73.5126, 15000],
-  // Bihar — smaller
+  // Bihar  –  smaller
   ['begusarai', 'Begusarai', 'बेगूसराय', 'Bihar', 25.4182, 86.1272, 250000],
   ['samastipur', 'Samastipur', 'समस्तीपुर', 'Bihar', 25.8629, 85.7857, 200000],
   ['sasaram', 'Sasaram', 'सासाराम', 'Bihar', 24.9520, 84.0311, 180000],
@@ -308,13 +308,13 @@ const TIER3_INDIAN: IndianCityTuple[] = [
   ['motihari', 'Motihari', 'मोतिहारी', 'Bihar', 26.6466, 84.9160, 150000],
   ['bodh-gaya', 'Bodh Gaya', 'बोधगया', 'Bihar', 24.6961, 84.9869, 50000],
   ['rajgir', 'Rajgir', 'राजगीर', 'Bihar', 25.0285, 85.4156, 50000],
-  // Madhya Pradesh — smaller
+  // Madhya Pradesh  –  smaller
   ['ujjain', 'Ujjain', 'उज्जैन', 'Madhya Pradesh', 23.1765, 75.7885, 550000],
   ['khajuraho', 'Khajuraho', 'खजुराहो', 'Madhya Pradesh', 24.8318, 79.9199, 30000],
   ['orchha', 'Orchha', 'ओरछा', 'Madhya Pradesh', 25.3519, 78.6407, 15000],
   ['omkareshwar', 'Omkareshwar', 'ओंकारेश्वर', 'Madhya Pradesh', 22.2449, 76.1510, 10000],
   ['mahakaleshwar', 'Mahakaleshwar', 'महाकालेश्वर', 'Madhya Pradesh', 23.1828, 75.7682, 550000],
-  // Pilgrimage towns — pan India
+  // Pilgrimage towns  –  pan India
   ['vrindavan', 'Vrindavan', 'वृन्दावन', 'Uttar Pradesh', 27.5810, 77.6960, 70000],
   ['kedarnath', 'Kedarnath', 'केदारनाथ', 'Uttarakhand', 30.7346, 79.0669, 500],
   ['badrinath', 'Badrinath', 'बद्रीनाथ', 'Uttarakhand', 30.7433, 79.4938, 1000],
@@ -360,7 +360,7 @@ const TIER3_INDIAN: IndianCityTuple[] = [
   ['baharampur', 'Baharampur', 'बहरामपुर', 'West Bengal', 24.1005, 88.2510, 200000],
   ['raiganj', 'Raiganj', 'रायगंज', 'West Bengal', 25.6175, 88.1261, 200000],
   ['bankura', 'Bankura', 'बांकुरा', 'West Bengal', 23.2324, 87.0618, 170000],
-  // Tamil Nadu — smaller
+  // Tamil Nadu  –  smaller
   ['thoothukudi', 'Thoothukudi', 'तूतीकोरिन', 'Tamil Nadu', 8.7642, 78.1348, 350000],
   ['dindigul', 'Dindigul', 'डिंडीगुल', 'Tamil Nadu', 10.3624, 77.9695, 250000],
   ['hosur', 'Hosur', 'होसूर', 'Tamil Nadu', 12.7409, 77.8253, 200000],
@@ -368,23 +368,23 @@ const TIER3_INDIAN: IndianCityTuple[] = [
   ['nagapattinam', 'Nagapattinam', 'नागपट्टिनम', 'Tamil Nadu', 10.7672, 79.8449, 120000],
   ['chidambaram', 'Chidambaram', 'चिदंबरम', 'Tamil Nadu', 11.3991, 79.6912, 80000],
   ['srirangam', 'Srirangam', 'श्रीरंगम', 'Tamil Nadu', 10.8563, 78.6892, 60000],
-  // Karnataka — smaller
+  // Karnataka  –  smaller
   ['bijapur', 'Bijapur', 'बीजापुर', 'Karnataka', 16.8302, 75.7100, 350000],
   ['raichur', 'Raichur', 'रायचूर', 'Karnataka', 16.2076, 77.3463, 250000],
   ['hassan', 'Hassan', 'हासन', 'Karnataka', 13.0072, 76.0962, 200000],
   ['mandya', 'Mandya', 'मंड्या', 'Karnataka', 12.5222, 76.8952, 200000],
   ['udupi', 'Udupi', 'उडुपी', 'Karnataka', 13.3409, 74.7421, 200000],
   ['dharmasthala', 'Dharmasthala', 'धर्मस्थल', 'Karnataka', 12.9571, 75.3759, 10000],
-  // Andhra Pradesh — smaller
+  // Andhra Pradesh  –  smaller
   ['ongole', 'Ongole', 'ओंगोल', 'Andhra Pradesh', 15.5057, 80.0499, 300000],
   ['eluru', 'Eluru', 'एलूरु', 'Andhra Pradesh', 16.7107, 81.0952, 300000],
   ['srikakulam', 'Srikakulam', 'श्रीकाकुलम', 'Andhra Pradesh', 18.2949, 83.8938, 200000],
   ['machilipatnam', 'Machilipatnam', 'मछलीपट्टनम', 'Andhra Pradesh', 16.1875, 81.1389, 200000],
-  // Telangana — smaller
+  // Telangana  –  smaller
   ['khammam', 'Khammam', 'खम्मम', 'Telangana', 17.2473, 80.1514, 300000],
   ['mahbubnagar', 'Mahbubnagar', 'महबूबनगर', 'Telangana', 16.7488, 77.9850, 200000],
   ['nalgonda', 'Nalgonda', 'नलगोंडा', 'Telangana', 17.0500, 79.2667, 200000],
-  // Kerala — smaller
+  // Kerala  –  smaller
   ['alappuzha', 'Alappuzha', 'अलप्पुझा', 'Kerala', 9.4981, 76.3388, 200000],
   ['kottayam', 'Kottayam', 'कोट्टायम', 'Kerala', 9.5916, 76.5222, 200000],
   ['pathanamthitta', 'Pathanamthitta', 'पतनमतिट्टा', 'Kerala', 9.2648, 76.7870, 80000],
@@ -394,12 +394,12 @@ const TIER3_INDIAN: IndianCityTuple[] = [
   ['margao', 'Margao', 'मडगाँव', 'Goa', 15.2832, 73.9862, 100000],
   ['mapusa', 'Mapusa', 'मापुसा', 'Goa', 15.5933, 73.8140, 50000],
   ['vasco', 'Vasco', 'वास्को', 'Goa', 15.3991, 73.8136, 120000],
-  // Punjab — smaller
+  // Punjab  –  smaller
   ['hoshiarpur', 'Hoshiarpur', 'होशियारपुर', 'Punjab', 31.5143, 75.9115, 200000],
   ['moga', 'Moga', 'मोगा', 'Punjab', 30.8162, 75.1717, 200000],
   ['phagwara', 'Phagwara', 'फगवाड़ा', 'Punjab', 31.2240, 75.7708, 150000],
   ['kapurthala', 'Kapurthala', 'कपूरथला', 'Punjab', 31.3798, 75.3773, 120000],
-  // Haryana — smaller
+  // Haryana  –  smaller
   ['bhiwani', 'Bhiwani', 'भिवानी', 'Haryana', 28.7751, 76.1394, 200000],
   ['rewari', 'Rewari', 'रेवाड़ी', 'Haryana', 28.1971, 76.6190, 200000],
   ['jind', 'Jind', 'जींद', 'Haryana', 29.3162, 76.3237, 200000],

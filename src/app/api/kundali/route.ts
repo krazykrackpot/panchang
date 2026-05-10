@@ -52,7 +52,7 @@ export async function POST(request: Request) {
     const kundali = generateKundali(body);
 
     return NextResponse.json(kundali, {
-      headers: { 'Cache-Control': 'no-store' }, // Never cache — birth data varies per request
+      headers: { 'Cache-Control': 'no-store' }, // Never cache  –  birth data varies per request
     });
   } catch (err) {
     console.error('[API/kundali] Generation failed:', err);

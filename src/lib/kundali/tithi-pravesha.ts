@@ -1,5 +1,5 @@
 /**
- * Tithi Pravesha — Annual chart from Tithi birthday
+ * Tithi Pravesha  –  Annual chart from Tithi birthday
  * The exact moment when the Sun returns to the same tithi as at birth.
  * PVR Narasimha Rao's signature technique for annual predictions.
  * Reference: Vedic Astrology: An Integrated Approach (PVR)
@@ -40,7 +40,7 @@ export function calculateTithiPravesha(
   const birthTithiNum = birthTithi.number;
   const birthPaksha = birthTithiNum <= 15 ? 'shukla' as const : 'krishna' as const;
 
-  // Birth Sun sidereal longitude — used to pick the correct lunar month
+  // Birth Sun sidereal longitude  –  used to pick the correct lunar month
   const birthSunSid = toSidereal(sunLongitude(birthJDSunrise), birthJDSunrise);
 
   // Scan the target year: collect ALL occurrences of the birth tithi
@@ -78,7 +78,7 @@ export function calculateTithiPravesha(
       }
       const praveshaJD = (loRefine + hiRefine) / 2;
 
-      // Sidereal Sun distance from natal position — closer = correct month
+      // Sidereal Sun distance from natal position  –  closer = correct month
       const scanSunSid = toSidereal(sunLongitude(praveshaJD), praveshaJD);
       let sunDist = Math.abs(scanSunSid - birthSunSid);
       if (sunDist > 180) sunDist = 360 - sunDist;

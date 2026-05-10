@@ -34,7 +34,7 @@ interface SavedPerson {
 const LABELS = {
   en: {
     title: "Today's Horoscope",
-    subtitle: 'Based on actual planetary transits — not generic predictions',
+    subtitle: 'Based on actual planetary transits  –  not generic predictions',
     selectSign: 'Select your Moon sign to see your forecast',
     overallScore: 'Overall Score',
     career: 'Career',
@@ -52,7 +52,7 @@ const LABELS = {
   },
   hi: {
     title: 'आज का राशिफल',
-    subtitle: 'वास्तविक ग्रह गोचर पर आधारित — सामान्य राशिफल नहीं',
+    subtitle: 'वास्तविक ग्रह गोचर पर आधारित  –  सामान्य राशिफल नहीं',
     selectSign: 'अपनी चन्द्र राशि चुनें',
     overallScore: 'समग्र स्कोर',
     career: 'करियर',
@@ -70,7 +70,7 @@ const LABELS = {
   },
   sa: {
     title: 'अद्य राशिफलम्',
-    subtitle: 'वास्तविकग्रहगोचरेण आधारितम् — सामान्यराशिफलं न',
+    subtitle: 'वास्तविकग्रहगोचरेण आधारितम्  –  सामान्यराशिफलं न',
     selectSign: 'स्वचन्द्रराशिं चिनुत',
     overallScore: 'समग्रः अङ्कः',
     career: 'वृत्तिः',
@@ -88,7 +88,7 @@ const LABELS = {
   },
   ta: {
     title: 'இன்றைய ராசிபலன்',
-    subtitle: 'உண்மையான கிரக பெயர்ச்சிகளின் அடிப்படையில் — பொதுவான கணிப்பு அல்ல',
+    subtitle: 'உண்மையான கிரக பெயர்ச்சிகளின் அடிப்படையில்  –  பொதுவான கணிப்பு அல்ல',
     selectSign: 'உங்கள் சந்திர ராசியைத் தேர்ந்தெடுக்கவும்',
     overallScore: 'ஒட்டுமொத்த மதிப்பெண்',
     career: 'தொழில்',
@@ -106,7 +106,7 @@ const LABELS = {
   },
   te: {
     title: 'నేటి రాశిఫలం',
-    subtitle: 'వాస్తవ గ్రహ గోచారాల ఆధారంగా — సామాన్య అంచనాలు కాదు',
+    subtitle: 'వాస్తవ గ్రహ గోచారాల ఆధారంగా  –  సామాన్య అంచనాలు కాదు',
     selectSign: 'మీ చంద్ర రాశిని ఎంచుకోండి',
     overallScore: 'మొత్తం స్కోర్',
     career: 'వృత్తి',
@@ -124,7 +124,7 @@ const LABELS = {
   },
   bn: {
     title: 'আজকের রাশিফল',
-    subtitle: 'প্রকৃত গ্রহ গোচরের ভিত্তিতে — সাধারণ ভবিষ্যদ্বাণী নয়',
+    subtitle: 'প্রকৃত গ্রহ গোচরের ভিত্তিতে  –  সাধারণ ভবিষ্যদ্বাণী নয়',
     selectSign: 'আপনার চন্দ্র রাশি নির্বাচন করুন',
     overallScore: 'সামগ্রিক স্কোর',
     career: 'কর্মজীবন',
@@ -142,7 +142,7 @@ const LABELS = {
   },
   kn: {
     title: 'ಇಂದಿನ ರಾಶಿಭವಿಷ್ಯ',
-    subtitle: 'ನಿಜವಾದ ಗ್ರಹ ಗೋಚಾರಗಳ ಆಧಾರದ ಮೇಲೆ — ಸಾಮಾನ್ಯ ಭವಿಷ್ಯವಲ್ಲ',
+    subtitle: 'ನಿಜವಾದ ಗ್ರಹ ಗೋಚಾರಗಳ ಆಧಾರದ ಮೇಲೆ  –  ಸಾಮಾನ್ಯ ಭವಿಷ್ಯವಲ್ಲ',
     selectSign: 'ನಿಮ್ಮ ಚಂದ್ರ ರಾಶಿಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿ',
     overallScore: 'ಒಟ್ಟಾರೆ ಸ್ಕೋರ್',
     career: 'ವೃತ್ತಿ',
@@ -160,7 +160,7 @@ const LABELS = {
   },
   mr: {
     title: 'आजचे राशीभविष्य',
-    subtitle: 'वास्तविक ग्रह गोचरावर आधारित — सामान्य भविष्य नाही',
+    subtitle: 'वास्तविक ग्रह गोचरावर आधारित  –  सामान्य भविष्य नाही',
     selectSign: 'आपली चंद्र राशी निवडा',
     overallScore: 'एकूण गुण',
     career: 'करिअर',
@@ -178,7 +178,7 @@ const LABELS = {
   },
   gu: {
     title: 'આજનું રાશિભવિષ્ય',
-    subtitle: 'વાસ્તવિક ગ્રહ ગોચર પર આધારિત — સામાન્ય ભવિષ્ય નહીં',
+    subtitle: 'વાસ્તવિક ગ્રહ ગોચર પર આધારિત  –  સામાન્ય ભવિષ્ય નહીં',
     selectSign: 'તમારી ચંદ્ર રાશિ પસંદ કરો',
     overallScore: 'કુલ સ્કોર',
     career: 'કારકિર્દી',
@@ -196,7 +196,7 @@ const LABELS = {
   },
   mai: {
     title: 'आइक राशिफल',
-    subtitle: 'वास्तविक ग्रह गोचर पर आधारित — सामान्य राशिफल नहि',
+    subtitle: 'वास्तविक ग्रह गोचर पर आधारित  –  सामान्य राशिफल नहि',
     selectSign: 'अपन चंद्र राशि चुनू',
     overallScore: 'समग्र स्कोर',
     career: 'करियर',
@@ -401,7 +401,7 @@ export function HubClient({ locale }: HubClientProps) {
   return (
     <section className="py-8 px-4">
       <div className="max-w-5xl mx-auto">
-        {/* Person switcher — visible when user has saved charts with moonSign */}
+        {/* Person switcher  –  visible when user has saved charts with moonSign */}
         {(birthRashi > 0 || savedPeople.length > 0) && (
           <div className="flex items-center gap-2 mb-6 overflow-x-auto pb-1">
             <Users className="w-4 h-4 text-text-secondary shrink-0" />
@@ -447,7 +447,7 @@ export function HubClient({ locale }: HubClientProps) {
           </div>
         )}
 
-        {/* Moon sign banner — shown when user has birth data */}
+        {/* Moon sign banner  –  shown when user has birth data */}
         {birthRashi > 0 && birthRashi <= 12 && (
           <div className="mb-6 flex items-center gap-3 rounded-xl bg-gold-primary/8 border border-gold-primary/20 px-4 py-3">
             <RashiIconById id={birthRashi} size={28} />
@@ -489,7 +489,7 @@ export function HubClient({ locale }: HubClientProps) {
                       {isHi ? 'आज की विशेष राशि' : 'Featured Sign of the Day'}
                     </p>
                     <p className="text-gold-light text-sm font-bold mt-0.5" style={bodyFont}>
-                      {(fRashi.name[lk] ?? fRashi.name.en) as string} ({fRashi.name.en}) — {featured.score}/10
+                      {(fRashi.name[lk] ?? fRashi.name.en) as string} ({fRashi.name.en})  –  {featured.score}/10
                     </p>
                   </div>
                   <Link href={`/horoscope/${fRashi.slug}` as '/horoscope'}
@@ -652,14 +652,14 @@ export function HubClient({ locale }: HubClientProps) {
                 })}
               </div>
 
-              {/* WhatsApp Share Banner — viral distribution to family groups */}
+              {/* WhatsApp Share Banner  –  viral distribution to family groups */}
               <WhatsAppShareBanner
-                shareText={`${horoscope.moonSignName[lk]} — ${L.title}\n${L.overallScore}: ${horoscope.overallScore}/10`}
+                shareText={`${horoscope.moonSignName[lk]}  –  ${L.title}\n${L.overallScore}: ${horoscope.overallScore}/10`}
                 url={`https://dekhopanchang.com/${locale}/horoscope`}
                 locale={locale as Locale}
               />
 
-              {/* CTA — generate kundali */}
+              {/* CTA  –  generate kundali */}
               <div className="bg-gradient-to-br from-gold-primary/10 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 rounded-2xl p-6 text-center">
                 <h3 className="text-gold-light text-lg font-bold mb-2" style={headingFont}>{L.ctaTitle}</h3>
                 <p className="text-text-secondary text-sm mb-4" style={bodyFont}>{L.ctaDesc}</p>

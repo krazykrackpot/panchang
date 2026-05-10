@@ -7,7 +7,7 @@ export const VAT_SAVITRI_PUJA: PujaVidhi = {
 
   samagri: [
     { name: { en: 'Sacred thread (kalava/mauli)', hi: 'कलावा/मौली (पवित्र धागा)', sa: 'कलावम् (पवित्रसूत्रम्)' }, essential: true, note: { en: 'Red and yellow thread for wrapping around the banyan tree during circumambulation', hi: 'परिक्रमा के दौरान बरगद के पेड़ के चारों ओर लपेटने के लिए लाल और पीला धागा', sa: 'प्रदक्षिणायां वटवृक्षं परितः वेष्टनार्थं रक्तपीतसूत्रम्' } },
-    { name: { en: 'Banyan tree (vat vriksha)', hi: 'बरगद का पेड़ (वट वृक्ष)', sa: 'वटवृक्षः' }, essential: true, note: { en: 'The entire puja centres around the banyan tree — it represents eternal life', hi: 'पूरी पूजा बरगद के पेड़ के चारों ओर केन्द्रित है — यह शाश्वत जीवन का प्रतीक है', sa: 'सर्वा पूजा वटवृक्षं केन्द्रीकृत्य — स शाश्वतजीवनस्य प्रतीकः' } },
+    { name: { en: 'Banyan tree (vat vriksha)', hi: 'बरगद का पेड़ (वट वृक्ष)', sa: 'वटवृक्षः' }, essential: true, note: { en: 'The entire puja centres around the banyan tree  –  it represents eternal life', hi: 'पूरी पूजा बरगद के पेड़ के चारों ओर केन्द्रित है  –  यह शाश्वत जीवन का प्रतीक है', sa: 'सर्वा पूजा वटवृक्षं केन्द्रीकृत्य  –  स शाश्वतजीवनस्य प्रतीकः' } },
     { name: { en: 'Water pot (kalash)', hi: 'जल कलश', sa: 'जलकलशः' }, essential: true },
     { name: { en: 'Turmeric and kumkum', hi: 'हल्दी और कुमकुम', sa: 'हरिद्रा कुङ्कुमं च' }, category: 'puja_items' },
     { name: { en: 'Incense sticks', hi: 'अगरबत्ती', sa: 'धूपम्' }, category: 'puja_items' },
@@ -34,7 +34,7 @@ export const VAT_SAVITRI_PUJA: PujaVidhi = {
   vidhiSteps: [
     {
       step: 1,
-      title: { en: 'Previous Evening — Fast Begins', hi: 'पूर्व सन्ध्या — व्रत आरम्भ', sa: 'पूर्वसन्ध्या — व्रतारम्भः' },
+      title: { en: 'Previous Evening  –  Fast Begins', hi: 'पूर्व सन्ध्या  –  व्रत आरम्भ', sa: 'पूर्वसन्ध्या  –  व्रतारम्भः' },
       description: {
         en: 'On the evening before Vat Savitri, eat a light sattvic meal before sunset. Resolve to observe the vrat. Prepare all puja samagri and the sacred thread (kalava).',
         hi: 'वट सावित्री से एक शाम पहले सूर्यास्त से पहले हल्का सात्विक भोजन करें। व्रत का संकल्प लें। सभी पूजा सामग्री और कलावा (पवित्र धागा) तैयार रखें।',
@@ -46,7 +46,7 @@ export const VAT_SAVITRI_PUJA: PujaVidhi = {
     },
     {
       step: 2,
-      title: { en: 'Morning — Bath & Shringar', hi: 'प्रातः — स्नान एवं श्रृंगार', sa: 'प्रातः — स्नानं शृङ्गारश्च' },
+      title: { en: 'Morning  –  Bath & Shringar', hi: 'प्रातः  –  स्नान एवं श्रृंगार', sa: 'प्रातः  –  स्नानं शृङ्गारश्च' },
       description: {
         en: 'Wake before sunrise. Take a purifying bath. Wear a red or yellow sari and full saubhagya items (sindoor, bangles, mangalsutra, bindi).',
         hi: 'सूर्योदय से पहले उठें। शुद्धि स्नान करें। लाल या पीली साड़ी और पूरी सौभाग्य सामग्री (सिन्दूर, चूड़ियाँ, मंगलसूत्र, बिन्दी) पहनें।',
@@ -120,7 +120,7 @@ export const VAT_SAVITRI_PUJA: PujaVidhi = {
     },
     {
       step: 8,
-      title: { en: 'Parana — Breaking the Fast', hi: 'पारण — उपवास समाप्ति', sa: 'पारणम् — उपवाससमाप्तिः' },
+      title: { en: 'Parana  –  Breaking the Fast', hi: 'पारण  –  उपवास समाप्ति', sa: 'पारणम्  –  उपवाससमाप्तिः' },
       description: {
         en: 'After completing the puja and katha, break the fast the next morning after sunrise. Begin with water, then fruits, then a light meal. Receive blessings from the husband and elders.',
         hi: 'पूजा और कथा पूर्ण करने के बाद अगली सुबह सूर्योदय के बाद व्रत तोड़ें। पहले जल, फिर फल, फिर हल्का भोजन लें। पति और बड़ों से आशीर्वाद लें।',
@@ -157,8 +157,8 @@ export const VAT_SAVITRI_PUJA: PujaVidhi = {
       iast: 'vaṭa vṛkṣaṃ mahāpuṇyaṃ sadā haritapallavām | iṣṭadaṃ sarvabhūtānāṃ vaṭavṛkṣaṃ namāmyaham ||',
       meaning: {
         en: 'I bow to the banyan tree, supremely meritorious, ever green-leaved, the wish-fulfiller for all beings.',
-        hi: 'मैं बरगद के पेड़ को प्रणाम करता/करती हूँ — जो महापुण्यदायी, सदा हरे पत्तों वाला, सभी प्राणियों की इच्छाएँ पूर्ण करने वाला है।',
-        sa: 'वटवृक्षं नमामि — महापुण्यं सदाहरितपल्लवं सर्वभूतानाम् इष्टदं च।',
+        hi: 'मैं बरगद के पेड़ को प्रणाम करता/करती हूँ  –  जो महापुण्यदायी, सदा हरे पत्तों वाला, सभी प्राणियों की इच्छाएँ पूर्ण करने वाला है।',
+        sa: 'वटवृक्षं नमामि  –  महापुण्यं सदाहरितपल्लवं सर्वभूतानाम् इष्टदं च।',
       },
       japaCount: 7,
       usage: {

@@ -8,7 +8,7 @@
  *  - transit-to-natal aspects (conjunction 0°, sextile 60°, square 90°, trine 120°, opposition 180°)
  *  - notable conditions (retrograde stations, close conjunctions, mutual aspects)
  *
- * No auth required — all data is computed from inputs, nothing is stored.
+ * No auth required  –  all data is computed from inputs, nothing is stored.
  */
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -207,7 +207,7 @@ export async function POST(req: NextRequest) {
             const diff = angularDiff(tp.siderealLongitude, np.longitude);
             if (diff <= 10) {
               notableConditions.push(
-                `${tp.name} near natal ${np.planet.name.en} — eclipse sensitivity window`
+                `${tp.name} near natal ${np.planet.name.en}  –  eclipse sensitivity window`
               );
             }
           }

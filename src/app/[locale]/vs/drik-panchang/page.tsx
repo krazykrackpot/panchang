@@ -22,8 +22,8 @@ const LABELS = {
     'দেখো পঞ্চাঙ্গ vs দৃক পঞ্চাঙ্গ',
   ),
   subtitle: L(
-    'Drik Panchang is a dashboard of indicators. Dekho Panchang is the GPS that tells you the best route — it filters, ranks, explains, and personalises.',
-    'दृक् पंचांग संकेतकों का डैशबोर्ड है। देखो पंचांग वह GPS है जो आपको सर्वोत्तम मार्ग बताता है — छानता है, रैंक करता है, समझाता है, और व्यक्तिगत बनाता है।',
+    'Drik Panchang is a dashboard of indicators. Dekho Panchang is the GPS that tells you the best route  –  it filters, ranks, explains, and personalises.',
+    'दृक् पंचांग संकेतकों का डैशबोर्ड है। देखो पंचांग वह GPS है जो आपको सर्वोत्तम मार्ग बताता है  –  छानता है, रैंक करता है, समझाता है, और व्यक्तिगत बनाता है।',
     'டிரிக் பஞ்சாங்கம் குறிகாட்டிகளின் டாஷ்போர்டு. டெக்கோ பஞ்சாங்கம் சிறந்த பாதையை காட்டும் GPS.',
     'দৃক পঞ্চাঙ্গ সূচকগুলির ড্যাশবোর্ড। দেখো পঞ্চাঙ্গ হলো GPS যা আপনাকে সেরা পথ দেখায়।',
   ),
@@ -38,8 +38,8 @@ const LABELS = {
   scoreTitle: L('Feature Score', 'सुविधा स्कोर', 'அம்ச மதிப்பெண்', 'বৈশিষ্ট্য স্কোর'),
   whyTitle: L('Why Dekho Panchang?', 'देखो पंचांग क्यों?', 'ஏன் டெக்கோ பஞ்சாங்கம்?', 'কেন দেখো পঞ্চাঙ্গ?'),
   bottomLine: L(
-    'Dekho Panchang is a 36-rule muhurta engine with classical cancellation logic that no other platform models — built on Swiss Ephemeris (NASA JPL DE441), 11 ayanamsha systems, 15+ Dasha systems, 150+ Yogas, AI interpretation with pandit-style reasoning chains, and 10 languages. It doesn\'t just show data — it reasons about your life like a classically trained Jyotishi. 100% nakshatra/tithi/yoga accuracy verified. Where other platforms give you tables to interpret yourself, Dekho Panchang gives you answers.',
-    'देखो पंचांग एक 36-नियम मुहूर्त इंजन है जो शास्त्रीय निवारण तर्क को मॉडल करता है — कोई अन्य मंच ऐसा नहीं करता। Swiss Ephemeris (NASA JPL DE441), 11 अयनांश पद्धतियाँ, 15+ दशा, 150+ योग, पण्डित-शैली तर्क श्रृंखलाओं के साथ AI व्याख्या, 10 भाषाएँ। यह केवल डेटा नहीं दिखाता — शास्त्रीय रूप से प्रशिक्षित ज्योतिषी की तरह आपके जीवन के बारे में तर्क करता है। 100% नक्षत्र/तिथि/योग सटीकता सत्यापित। जहाँ अन्य मंच आपको तालिकाएँ देते हैं, देखो पंचांग आपको उत्तर देता है।',
+    'Dekho Panchang is a 36-rule muhurta engine with classical cancellation logic that no other platform models  –  built on Swiss Ephemeris (NASA JPL DE441), 11 ayanamsha systems, 15+ Dasha systems, 150+ Yogas, AI interpretation with pandit-style reasoning chains, and 10 languages. It doesn\'t just show data  –  it reasons about your life like a classically trained Jyotishi. 100% nakshatra/tithi/yoga accuracy verified. Where other platforms give you tables to interpret yourself, Dekho Panchang gives you answers.',
+    'देखो पंचांग एक 36-नियम मुहूर्त इंजन है जो शास्त्रीय निवारण तर्क को मॉडल करता है  –  कोई अन्य मंच ऐसा नहीं करता। Swiss Ephemeris (NASA JPL DE441), 11 अयनांश पद्धतियाँ, 15+ दशा, 150+ योग, पण्डित-शैली तर्क श्रृंखलाओं के साथ AI व्याख्या, 10 भाषाएँ। यह केवल डेटा नहीं दिखाता  –  शास्त्रीय रूप से प्रशिक्षित ज्योतिषी की तरह आपके जीवन के बारे में तर्क करता है। 100% नक्षत्र/तिथि/योग सटीकता सत्यापित। जहाँ अन्य मंच आपको तालिकाएँ देते हैं, देखो पंचांग आपको उत्तर देता है।',
   ),
 };
 
@@ -59,22 +59,22 @@ const ROWS: CompRow[] = [
   {
     feature: 'Personalized Tippanni (Interpretive Commentary)',
     featureHi: 'व्यक्तिगत टिप्पणी (व्याख्यात्मक भाष्य)',
-    dekho: 'AI-powered narrative for YOUR chart — personality, career, relationships, remedies',
+    dekho: 'AI-powered narrative for YOUR chart  –  personality, career, relationships, remedies',
     drik: 'Generic planetary position tables without personalized interpretation',
     dekhoYes: true, drikYes: false, highlight: true,
   },
   {
     feature: '36-Rule Muhurta Engine with Classical Cancellation',
-    featureHi: '33-नियम मुहूर्त इंजन — शास्त्रीय निवारण सहित',
+    featureHi: '33-नियम मुहूर्त इंजन  –  शास्त्रीय निवारण सहित',
     dekho: '36 rules from 7 texts (MC, Dharma Sindhu, BPHS, Brihat Samhita, Prashna Marga, B.V. Raman, Kalaprakashika). 5-tier authority: strong lagna cancels weak karana (MC Ch.7). Godhuli override for marriage (BS Ch.103). Planets-in-ascendant cancellation. Pandit-style reasoning with citations.',
-    drik: 'Binary pass/fail on Panchanga Shuddhi — no scoring, no cancellation logic, no reasoning',
+    drik: 'Binary pass/fail on Panchanga Shuddhi  –  no scoring, no cancellation logic, no reasoning',
     dekhoYes: true, drikYes: false, highlight: true,
   },
   {
     feature: 'Personalised Muhurta Scoring (Tara Bala + Dasha)',
     featureHi: 'व्यक्तिगत मुहूर्त स्कोरिंग (ताराबल + दशा)',
     dekho: 'Birth chart integration: Tara Bala, Chandra Bala, Dasha Harmony personalise every window. Score: 0-100 with grade differentiation (excellent/good/fair/marginal).',
-    drik: 'No personalised muhurta scoring — same result regardless of birth chart',
+    drik: 'No personalised muhurta scoring  –  same result regardless of birth chart',
     dekhoYes: true, drikYes: false, highlight: true,
   },
   {
@@ -94,14 +94,14 @@ const ROWS: CompRow[] = [
   {
     feature: '11 Ayanamsha Systems',
     featureHi: '11 अयनांश पद्धतियाँ',
-    dekho: 'Lahiri, KP, Raman, BV Raman, Yukteshwar, JN Bhasin, Fagan-Bradley, True Chitra, True Revati, True Pushya, Galactic Center — all via Swiss Ephemeris. Consistently plumbed through shadbala, sade-sati, transits.',
+    dekho: 'Lahiri, KP, Raman, BV Raman, Yukteshwar, JN Bhasin, Fagan-Bradley, True Chitra, True Revati, True Pushya, Galactic Center  –  all via Swiss Ephemeris. Consistently plumbed through shadbala, sade-sati, transits.',
     drik: '2-3 ayanamsha options (Lahiri + Raman)',
     dekhoYes: true, drikYes: true, highlight: true,
   },
   {
     feature: 'Dur Muhurtam + Varjyam + Abhijit in Muhurta Scoring',
     featureHi: 'दुर्मुहूर्त + वर्ज्यम + अभिजित मुहूर्त स्कोरिंग में',
-    dekho: 'All three integrated into the scoring engine — windows during Dur Muhurtam are penalised, Abhijit gets bonus, Varjyam from Prashna Marga ghati tables. No contradictions between panchang display and muhurta recommendations.',
+    dekho: 'All three integrated into the scoring engine  –  windows during Dur Muhurtam are penalised, Abhijit gets bonus, Varjyam from Prashna Marga ghati tables. No contradictions between panchang display and muhurta recommendations.',
     drik: 'Shown on panchang page but not integrated into muhurta date selection logic',
     dekhoYes: true, drikYes: false,
   },
@@ -115,8 +115,8 @@ const ROWS: CompRow[] = [
   {
     feature: 'Multilingual UI',
     featureHi: 'बहुभाषी इंटरफ़ेस',
-    dekho: '10 languages: EN, HI, SA, TA, TE, BN, KN, MR, GU, Maithili — native terminology, not translated English',
-    drik: '2 languages: English, Hindi — translated English feel',
+    dekho: '10 languages: EN, HI, SA, TA, TE, BN, KN, MR, GU, Maithili  –  native terminology, not translated English',
+    drik: '2 languages: English, Hindi  –  translated English feel',
     dekhoYes: true, drikYes: true,
   },
   {
@@ -129,7 +129,7 @@ const ROWS: CompRow[] = [
   {
     feature: 'Panchang Accuracy',
     featureHi: 'पंचांग सटीकता',
-    dekho: 'Swiss Ephemeris (NASA JPL DE441) — planetary positions to arc-seconds. Tithi transitions accurate to \u00b11-2 minutes. 5 Ayanamsha options.',
+    dekho: 'Swiss Ephemeris (NASA JPL DE441)  –  planetary positions to arc-seconds. Tithi transitions accurate to \u00b11-2 minutes. 5 Ayanamsha options.',
     drik: 'Established computation engine',
     dekhoYes: true, drikYes: true, highlight: true,
   },
@@ -164,7 +164,7 @@ const ROWS: CompRow[] = [
   {
     feature: 'Prashna (Horary)',
     featureHi: 'प्रश्न (होरारी)',
-    dekho: 'KP Horary + Kerala Ashtamangala Prashna — two distinct horary systems',
+    dekho: 'KP Horary + Kerala Ashtamangala Prashna  –  two distinct horary systems',
     drik: 'Not available',
     dekhoYes: true, drikYes: false,
   },
@@ -185,7 +185,7 @@ const ROWS: CompRow[] = [
   {
     feature: 'Learning Curriculum',
     featureHi: 'शिक्षण पाठ्यक्रम',
-    dekho: '106 structured modules across 12 phases — from beginner to advanced Jyotish',
+    dekho: '106 structured modules across 12 phases  –  from beginner to advanced Jyotish',
     drik: 'Reference articles (unstructured)',
     dekhoYes: true, drikYes: false, highlight: true,
   },
@@ -206,13 +206,13 @@ const ROWS: CompRow[] = [
   {
     feature: 'Open / Free Access',
     featureHi: 'मुफ़्त पहुँच',
-    dekho: 'All features free — no paywall (AI calls have small daily limits)',
+    dekho: 'All features free  –  no paywall (AI calls have small daily limits)',
     drik: 'Free with ads',
     dekhoYes: true, drikYes: true,
   },
   {
-    feature: '255 Festivals — All Traditions & Regions',
-    featureHi: '255 त्योहार — सभी परम्पराएँ और क्षेत्र',
+    feature: '255 Festivals  –  All Traditions & Regions',
+    featureHi: '255 त्योहार  –  सभी परम्पराएँ और क्षेत्र',
     dekho: '255 festivals across Hindu (Vaishnava/Shaiva/Shakta), Jain, Sikh, Buddhist. All 24 named Ekadashis, 12 Sankrantis, Pitru Paksha, regional New Years (Ugadi, Vishu, Bihu, Puthandu), multi-day families (Diwali, Navaratri, Pongal), 15+ saint jayantis. Tradition + region tagging.',
     drik: 'Festival calendar with dates and basic descriptions',
     dekhoYes: true, drikYes: true, highlight: true,
@@ -220,7 +220,7 @@ const ROWS: CompRow[] = [
   {
     feature: 'Devotional Library (55+ Texts)',
     featureHi: 'भक्ति पुस्तकालय (55+ पाठ)',
-    dekho: '55+ sacred texts — Devanagari + transliteration + meaning',
+    dekho: '55+ sacred texts  –  Devanagari + transliteration + meaning',
     drik: 'Aarti & Chalisa collection (text only)',
     dekhoYes: true, drikYes: true, highlight: true,
   },
@@ -234,14 +234,14 @@ const ROWS: CompRow[] = [
   {
     feature: 'Premium PDF Kundali Report',
     featureHi: 'प्रीमियम PDF कुण्डली रिपोर्ट',
-    dekho: '12-section professional report — personality, yogas, doshas, dashas, Nadi Amsha, remedies',
+    dekho: '12-section professional report  –  personality, yogas, doshas, dashas, Nadi Amsha, remedies',
     drik: 'Basic chart printout',
     dekhoYes: true, drikYes: false, highlight: true,
   },
   {
     feature: 'Transit Articles with Moon-Sign Effects',
-    featureHi: 'गोचर लेख — चन्द्र राशि प्रभाव सहित',
-    dekho: '4 editorial transit articles — Jupiter, Rahu, Ketu with 12 Moon-sign interpretations',
+    featureHi: 'गोचर लेख  –  चन्द्र राशि प्रभाव सहित',
+    dekho: '4 editorial transit articles  –  Jupiter, Rahu, Ketu with 12 Moon-sign interpretations',
     drik: 'Transit dates only, no interpretation',
     dekhoYes: true, drikYes: false, highlight: true,
   },
@@ -290,7 +290,7 @@ const ROWS: CompRow[] = [
   {
     feature: 'Special Auspicious Yogas Display',
     featureHi: 'विशेष शुभ योग प्रदर्शन',
-    dekho: '7 special yogas highlighted on panchang — Sarvartha Siddhi, Amrit Siddhi, Guru Pushya, etc.',
+    dekho: '7 special yogas highlighted on panchang  –  Sarvartha Siddhi, Amrit Siddhi, Guru Pushya, etc.',
     drik: 'Listed but not highlighted prominently',
     dekhoYes: true, drikYes: true,
   },
@@ -318,7 +318,7 @@ const ROWS: CompRow[] = [
   {
     feature: 'Auto Twitter / Social Posting',
     featureHi: 'स्वचालित ट्विटर / सोशल पोस्टिंग',
-    dekho: 'Daily rotating content — panchang, nakshatra, yoga, transit, matching tips',
+    dekho: 'Daily rotating content  –  panchang, nakshatra, yoga, transit, matching tips',
     drik: 'Not available',
     dekhoYes: true, drikYes: false,
   },
@@ -340,12 +340,12 @@ const ROWS: CompRow[] = [
     feature: 'PWA with Offline Panchang',
     featureHi: 'PWA ऑफ़लाइन पंचांग सहित',
     dekho: 'Installable app, offline cached panchang, home screen shortcuts',
-    drik: 'Native apps (iOS/Android) — no PWA',
+    drik: 'Native apps (iOS/Android)  –  no PWA',
     dekhoYes: true, drikYes: true,
   },
   {
     feature: 'Horoscope with Transit Impact + Remedies',
-    featureHi: 'राशिफल — गोचर प्रभाव एवं उपाय सहित',
+    featureHi: 'राशिफल  –  गोचर प्रभाव एवं उपाय सहित',
     dekho: 'Daily/weekly/monthly with transit positions, dos/don\'ts, remedies, compatibility',
     drik: 'Basic daily rashifal',
     dekhoYes: true, drikYes: true,
@@ -416,7 +416,7 @@ const ROWS: CompRow[] = [
   {
     feature: 'Dosha Cancellation Analysis',
     featureHi: 'दोष निवारण विश्लेषण',
-    dekho: 'Mangal, Kaal Sarpa, Pitra — shows which cancellation conditions are met',
+    dekho: 'Mangal, Kaal Sarpa, Pitra  –  shows which cancellation conditions are met',
     drik: 'Basic dosha detection only',
     dekhoYes: true, drikYes: true,
   },
@@ -430,14 +430,14 @@ const ROWS: CompRow[] = [
   {
     feature: 'Interactive Learning Labs',
     featureHi: 'इंटरैक्टिव शिक्षण प्रयोगशाला',
-    dekho: '5 simulators — Panchang, Moon phases, Dasha, Shadbala, KP',
+    dekho: '5 simulators  –  Panchang, Moon phases, Dasha, Shadbala, KP',
     drik: 'Not available',
     dekhoYes: true, drikYes: false,
   },
   {
     feature: 'Precomputed Tithi Tables',
     featureHi: 'पूर्व-गणित तिथि सारणियाँ',
-    dekho: '168 JSON files — 55 cities \u00d7 3 years. Instant panchang, no computation delay.',
+    dekho: '168 JSON files  –  55 cities \u00d7 3 years. Instant panchang, no computation delay.',
     drik: 'Server-computed each request',
     dekhoYes: true, drikYes: false,
   },
@@ -451,7 +451,7 @@ const ROWS: CompRow[] = [
   {
     feature: 'Years of Data / Trust',
     featureHi: 'डेटा के वर्ष / विश्वास',
-    dekho: 'Launched 2026 — built on Swiss Ephemeris (est. 1997) and classical shastras (2000+ years)',
+    dekho: 'Launched 2026  –  built on Swiss Ephemeris (est. 1997) and classical shastras (2000+ years)',
     drik: '15+ years of platform trust',
     dekhoYes: true, drikYes: true,
   },
@@ -472,29 +472,29 @@ const WHY_CARDS: WhyCard[] = [
     icon: Brain,
     title: 'AI-Powered Interpretation',
     titleHi: 'AI-संचालित व्याख्या',
-    body: 'Your chart isn\'t just calculated — it\'s interpreted. Our Tippanni engine generates narrative commentary on your personality, dashas, yogas, and life areas.',
-    bodyHi: 'आपकी कुण्डली केवल गणना नहीं — व्याख्या की जाती है। हमारा टिप्पणी इंजन आपके व्यक्तित्व, दशा, योग और जीवन क्षेत्रों पर विवरणात्मक भाष्य तैयार करता है।',
+    body: 'Your chart isn\'t just calculated  –  it\'s interpreted. Our Tippanni engine generates narrative commentary on your personality, dashas, yogas, and life areas.',
+    bodyHi: 'आपकी कुण्डली केवल गणना नहीं  –  व्याख्या की जाती है। हमारा टिप्पणी इंजन आपके व्यक्तित्व, दशा, योग और जीवन क्षेत्रों पर विवरणात्मक भाष्य तैयार करता है।',
   },
   {
     icon: Sparkles,
     title: '36-Rule Muhurta Engine',
     titleHi: '33-नियम मुहूर्त इंजन',
-    body: '"When should I start my business?" — our engine evaluates 33 classical rules from 7 texts, applies 5-tier cancellation logic (strong lagna cancels weak karana per MC Ch.7), and gives you a pandit-style verdict with citations. Not binary pass/fail — nuanced, personalised scoring.',
-    bodyHi: '"मैं अपना व्यवसाय कब शुरू करूँ?" — हमारा इंजन 7 ग्रन्थों से 33 शास्त्रीय नियमों का मूल्यांकन करता है, 5-स्तरीय निवारण तर्क लागू करता है (शक्तिशाली लग्न दुर्बल करण का निवारण करता है — MC Ch.7), और उद्धरणों के साथ पण्डित-शैली निर्णय देता है।',
+    body: '"When should I start my business?"  –  our engine evaluates 33 classical rules from 7 texts, applies 5-tier cancellation logic (strong lagna cancels weak karana per MC Ch.7), and gives you a pandit-style verdict with citations. Not binary pass/fail  –  nuanced, personalised scoring.',
+    bodyHi: '"मैं अपना व्यवसाय कब शुरू करूँ?"  –  हमारा इंजन 7 ग्रन्थों से 33 शास्त्रीय नियमों का मूल्यांकन करता है, 5-स्तरीय निवारण तर्क लागू करता है (शक्तिशाली लग्न दुर्बल करण का निवारण करता है  –  MC Ch.7), और उद्धरणों के साथ पण्डित-शैली निर्णय देता है।',
   },
   {
     icon: Globe,
     title: '10 Languages, Native Feel',
     titleHi: '10 भाषाएँ, मूल अनुभव',
-    body: 'Not "translated English" — proper terminology in Sanskrit, Tamil, Bengali, Kannada, Maithili, and more. Even URLs use native transliteration.',
-    bodyHi: '"अनुवादित अंग्रेज़ी" नहीं — संस्कृत, तमिल, बांग्ला, कन्नड़, मैथिली आदि में उचित शब्दावली। URL भी देशी लिप्यंतरण में हैं।',
+    body: 'Not "translated English"  –  proper terminology in Sanskrit, Tamil, Bengali, Kannada, Maithili, and more. Even URLs use native transliteration.',
+    bodyHi: '"अनुवादित अंग्रेज़ी" नहीं  –  संस्कृत, तमिल, बांग्ला, कन्नड़, मैथिली आदि में उचित शब्दावली। URL भी देशी लिप्यंतरण में हैं।',
   },
   {
     icon: BookOpen,
     title: '106-Module Learning Path',
     titleHi: '106-मॉड्यूल शिक्षण पथ',
-    body: 'From "What is a Tithi?" to advanced Jaimini Chara Dasha — structured learning with progress tracking, spaced repetition, and interactive labs.',
-    bodyHi: '"तिथि क्या है?" से लेकर उन्नत जैमिनी चर दशा तक — प्रगति ट्रैकिंग, स्पेस्ड रिपिटिशन और इंटरैक्टिव लैब्स के साथ संरचित शिक्षण।',
+    body: 'From "What is a Tithi?" to advanced Jaimini Chara Dasha  –  structured learning with progress tracking, spaced repetition, and interactive labs.',
+    bodyHi: '"तिथि क्या है?" से लेकर उन्नत जैमिनी चर दशा तक  –  प्रगति ट्रैकिंग, स्पेस्ड रिपिटिशन और इंटरैक्टिव लैब्स के साथ संरचित शिक्षण।',
   },
   {
     icon: Palette,
@@ -507,8 +507,8 @@ const WHY_CARDS: WhyCard[] = [
     icon: Shield,
     title: 'Verified Accuracy',
     titleHi: 'सत्यापित सटीकता',
-    body: 'Built on Swiss Ephemeris (NASA JPL DE441) — the gold standard for astronomical computation. Planetary positions accurate to arc-seconds. Tithi, nakshatra, yoga, and sunrise verified across 3+ timezones. Classical foundations: BPHS, Surya Siddhanta, Muhurta Chintamani.',
-    bodyHi: 'स्विस एफेमेरिस (NASA JPL DE441) पर निर्मित — खगोलीय गणना का स्वर्ण मानक। ग्रह स्थितियाँ आर्क-सेकंड तक सटीक। तिथि, नक्षत्र, योग और सूर्योदय 3+ समय क्षेत्रों में सत्यापित। शास्त्रीय आधार: बृहत् पराशर होरा शास्त्र, सूर्य सिद्धांत, मुहूर्त चिंतामणि।',
+    body: 'Built on Swiss Ephemeris (NASA JPL DE441)  –  the gold standard for astronomical computation. Planetary positions accurate to arc-seconds. Tithi, nakshatra, yoga, and sunrise verified across 3+ timezones. Classical foundations: BPHS, Surya Siddhanta, Muhurta Chintamani.',
+    bodyHi: 'स्विस एफेमेरिस (NASA JPL DE441) पर निर्मित  –  खगोलीय गणना का स्वर्ण मानक। ग्रह स्थितियाँ आर्क-सेकंड तक सटीक। तिथि, नक्षत्र, योग और सूर्योदय 3+ समय क्षेत्रों में सत्यापित। शास्त्रीय आधार: बृहत् पराशर होरा शास्त्र, सूर्य सिद्धांत, मुहूर्त चिंतामणि।',
   },
 ];
 
@@ -534,8 +534,8 @@ export default function VsDrikPanchangPage() {
   const comparisonLD = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: 'Dekho Panchang vs Drik Panchang — Feature Comparison',
-    description: 'Objective feature comparison between Dekho Panchang and Drik Panchang — two Vedic astrology platforms.',
+    name: 'Dekho Panchang vs Drik Panchang  –  Feature Comparison',
+    description: 'Objective feature comparison between Dekho Panchang and Drik Panchang  –  two Vedic astrology platforms.',
     url: `https://dekhopanchang.com/${locale}/vs/drik-panchang`,
     mainEntity: {
       '@type': 'Table',

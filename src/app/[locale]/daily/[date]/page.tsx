@@ -10,7 +10,7 @@ import { getCityBySlug } from '@/lib/constants/cities';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
-export const revalidate = 86400; // 24 hours — daily page for a past date is permanent
+export const revalidate = 86400; // 24 hours  –  daily page for a past date is permanent
 
 const HOROSCOPE_LABELS: Record<string, Record<string, string>> = {
   en: { heading: "Today's Horoscope by Rashi", score: 'Score', lucky: 'Lucky', readMore: 'Read more' },
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title,
     description,
-    // Ephemeral templated content — intentionally not indexed. Users can still
+    // Ephemeral templated content  –  intentionally not indexed. Users can still
     // reach these pages via the daily hub (/daily) and deep links.
     robots: { index: false, follow: true },
     alternates: {

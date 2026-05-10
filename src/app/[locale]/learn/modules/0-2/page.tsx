@@ -35,7 +35,7 @@ function Page1() {
     <div className="space-y-6">
       <KeyTakeaway
         points={[
-          'The Hindu calendar is lunisolar — it tracks both the Moon and the Sun, unlike purely solar (Gregorian) or purely lunar (Islamic) calendars.',
+          'The Hindu calendar is lunisolar  –  it tracks both the Moon and the Sun, unlike purely solar (Gregorian) or purely lunar (Islamic) calendars.',
           'This system explains why festivals like Diwali shift dates every year but always fall in the same season.',
         ]}
         locale={locale}
@@ -79,16 +79,16 @@ function Page1() {
         </div>
 
         <div className="flex flex-wrap gap-3 my-3">
-          <BeginnerNote term="Tithi" explanation="A lunar day — one of 30 divisions of the lunar month, determined by the angular distance between Sun and Moon." />
+          <BeginnerNote term="Tithi" explanation="A lunar day  –  one of 30 divisions of the lunar month, determined by the angular distance between Sun and Moon." />
           <BeginnerNote term="Panchang" explanation="The five-element Vedic almanac: tithi, nakshatra, yoga, karana, and vara (weekday)." />
         </div>
         <p className="text-text-secondary text-sm leading-relaxed">
           {t('diwaliIsAlwaysOnKartik', locale)}
         </p>
-        <WhyItMatters locale={locale}>Understanding the lunar calendar lets you know why Hindu festivals shift dates every year — and predict them yourself.</WhyItMatters>
+        <WhyItMatters locale={locale}>Understanding the lunar calendar lets you know why Hindu festivals shift dates every year  –  and predict them yourself.</WhyItMatters>
       </section>
 
-      {/* Classical Origin — Gold card */}
+      {/* Classical Origin  –  Gold card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
           {t('classicalOrigin', locale)}
@@ -105,7 +105,7 @@ function Page1() {
         question="Why does Diwali fall on different Gregorian dates each year?"
         options={['Leap years', 'Lunar calendar', 'Time zones', 'Random']}
         correctIndex={1}
-        explanation="The Hindu calendar is lunisolar — months follow the Moon, so dates shift relative to the solar Gregorian calendar."
+        explanation="The Hindu calendar is lunisolar  –  months follow the Moon, so dates shift relative to the solar Gregorian calendar."
       />
     </div>
   );
@@ -123,7 +123,7 @@ function Page2() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {t('ifYouAskANorth', locale)}
         </p>
-        <BeginnerNote term="Amanta / Purnimanta" explanation="Two systems for when a lunar month ends — Amanta ends at new moon (used in South India), Purnimanta ends at full moon (used in North India)." />
+        <BeginnerNote term="Amanta / Purnimanta" explanation="Two systems for when a lunar month ends  –  Amanta ends at new moon (used in South India), Purnimanta ends at full moon (used in North India)." />
 
         <div className="grid gap-3 mb-4">
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4">
@@ -200,28 +200,28 @@ function Page3() {
         <ul className="text-text-secondary text-sm space-y-2 ml-4 mb-4">
           <li>
             <span className="text-gold-light font-medium">{t('masaMonth', locale)}</span>{' '}
-            — {t('whatLunarMonthIsIt', locale)}
+             –  {t('whatLunarMonthIsIt', locale)}
           </li>
           <li>
             <span className="text-gold-light font-medium">{t('tithi', locale)}</span>{' '}
-            — {t('whatTithiIsItShukla', locale)}
+             –  {t('whatTithiIsItShukla', locale)}
           </li>
           <li>
             <span className="text-gold-light font-medium">{t('nakshatra', locale)}</span>{' '}
-            — {t('whichNakshatraIsTheMoon', locale)}
+             –  {t('whichNakshatraIsTheMoon', locale)}
           </li>
           <li>
             <span className="text-gold-light font-medium">{t('nextFestival', locale)}</span>{' '}
-            — {t('whatTithiMasaDoesIt', locale)}
+             –  {t('whatTithiMasaDoesIt', locale)}
           </li>
           <li>
             <span className="text-gold-light font-medium">{t('sunriseSunset', locale)}</span>{' '}
-            — {t('noticeHowRahuKaalAnd', locale)}
+             –  {t('noticeHowRahuKaalAnd', locale)}
           </li>
         </ul>
       </section>
 
-      {/* Red — Misconceptions */}
+      {/* Red  –  Misconceptions */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
           {t('commonMisconceptions', locale)}
@@ -244,7 +244,7 @@ function Page3() {
         </div>
       </section>
 
-      {/* Blue — Modern Relevance */}
+      {/* Blue  –  Modern Relevance */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">
           {t('modernRelevance', locale)}

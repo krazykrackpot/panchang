@@ -89,7 +89,7 @@ export const SHUKRA_SHANTI: PujaVidhi = {
     },
     {
       step: 6,
-      title: { en: 'Homa (Fire Offering) — Optional', hi: 'होम (हवन) — वैकल्पिक', sa: 'होमः — वैकल्पिकः' },
+      title: { en: 'Homa (Fire Offering)  –  Optional', hi: 'होम (हवन)  –  वैकल्पिक', sa: 'होमः  –  वैकल्पिकः' },
       description: {
         en: 'If possible, perform a small homa with ghee and sandalwood sticks. Offer rice and white flowers into the fire while chanting the Shukra Gayatri.',
         hi: 'यदि सम्भव हो तो घी और चन्दन की लकड़ी से लघु होम करें। शुक्र गायत्री का जाप करते हुए चावल और सफ़ेद फूलों की आहुति दें।',
@@ -167,14 +167,14 @@ export const SHUKRA_SHANTI: PujaVidhi = {
 
   precautions: [
     {
-      en: 'Face east during the puja. White and pastel colours are appropriate. Maintain personal grooming and cleanliness — Venus appreciates beauty and order.',
-      hi: 'पूजा में पूर्व दिशा की ओर मुख करें। सफ़ेद और हल्के रंग उचित हैं। व्यक्तिगत सज्जा और स्वच्छता बनाए रखें — शुक्र सौन्दर्य और व्यवस्था को महत्व देता है।',
-      sa: 'पूजायां प्राग्दिशम् अभिमुखं कुर्यात्। श्वेतमन्दवर्णाः उचिताः। व्यक्तिगतसज्जां शुचितां च पालयेत् — शुक्रः सौन्दर्यं व्यवस्थां च महत्त्वं ददाति।',
+      en: 'Face east during the puja. White and pastel colours are appropriate. Maintain personal grooming and cleanliness  –  Venus appreciates beauty and order.',
+      hi: 'पूजा में पूर्व दिशा की ओर मुख करें। सफ़ेद और हल्के रंग उचित हैं। व्यक्तिगत सज्जा और स्वच्छता बनाए रखें  –  शुक्र सौन्दर्य और व्यवस्था को महत्व देता है।',
+      sa: 'पूजायां प्राग्दिशम् अभिमुखं कुर्यात्। श्वेतमन्दवर्णाः उचिताः। व्यक्तिगतसज्जां शुचितां च पालयेत्  –  शुक्रः सौन्दर्यं व्यवस्थां च महत्त्वं ददाति।',
     },
     {
-      en: 'Avoid harsh speech, conflicts, and disrespect towards women on Friday — these aggravate Venus afflictions.',
-      hi: 'शुक्रवार को कठोर वाणी, विवाद और स्त्रियों के प्रति अनादर से बचें — ये शुक्र दोष को बढ़ाते हैं।',
-      sa: 'शुक्रवासरे कठोरवाणीं विवादं स्त्रीणाम् अनादरं च वर्जयेत् — एते शुक्रदोषं वर्धयन्ति।',
+      en: 'Avoid harsh speech, conflicts, and disrespect towards women on Friday  –  these aggravate Venus afflictions.',
+      hi: 'शुक्रवार को कठोर वाणी, विवाद और स्त्रियों के प्रति अनादर से बचें  –  ये शुक्र दोष को बढ़ाते हैं।',
+      sa: 'शुक्रवासरे कठोरवाणीं विवादं स्त्रीणाम् अनादरं च वर्जयेत्  –  एते शुक्रदोषं वर्धयन्ति।',
     },
     {
       en: 'Wearing white clothes and using fragrances on Fridays is a simple daily Shukra remedy.',

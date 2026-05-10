@@ -1,6 +1,6 @@
 import type { LocaleText } from '@/types/panchang';
 /**
- * Avasthas — 5 Planetary State Systems
+ * Avasthas  –  5 Planetary State Systems
  * Determines HOW a planet expresses its energy based on its position.
  * Reference: BPHS Ch.44-45, Phala Deepika Ch.15, Saravali Ch.5
  */
@@ -18,7 +18,7 @@ export interface PlanetAvasthas {
   shayanadi: { state: string; name: Tri; activity: string }; // Activity
 }
 
-// ─── Sign lordship — canonical source: @/lib/constants/dignities ────────────
+// ─── Sign lordship  –  canonical source: @/lib/constants/dignities ────────────
 import {
   SIGN_LORDS as SIGN_LORD,
   EXALTATION_SIGNS as EXALTATION,
@@ -33,7 +33,7 @@ const ENEMIES: Record<number, Set<number>> = {
   3: new Set([1]), 4: new Set([3,5]), 5: new Set([0,1]), 6: new Set([0,1,2]),
 };
 
-// ─── 1. BALADI AVASTHA (Age-Based) — BPHS Ch.44 ─────────────────────────────
+// ─── 1. BALADI AVASTHA (Age-Based)  –  BPHS Ch.44 ─────────────────────────────
 // Each sign divided into 5 sectors of 6° each.
 // Odd signs: Bala→Kumara→Yuva→Vriddha→Mrita
 // Even signs: Mrita→Vriddha→Yuva→Kumara→Bala (reversed)
@@ -52,7 +52,7 @@ function getBaladi(degInSign: number, sign: number): typeof BALADI_NAMES[0] {
   return BALADI_NAMES[isOdd ? sector : 4 - sector];
 }
 
-// ─── 2. JAGRADADI AVASTHA (Wakefulness) — BPHS Ch.44 ────────────────────────
+// ─── 2. JAGRADADI AVASTHA (Wakefulness)  –  BPHS Ch.44 ────────────────────────
 // Exalted or own sign = Jagrat (Awake, full power)
 // Friend's sign = Swapna (Dreaming, half power)
 // Neutral / enemy / combust = Sushupta (Deep sleep, quarter power)
@@ -64,7 +64,7 @@ const JAGRADADI: Record<string, { name: Tri; quality: 'full' | 'half' | 'quarter
 };
 
 function getJagradadi(pid: number, sign: number): { state: string } & typeof JAGRADADI['jagrat'] {
-  // Rahu/Ketu — always Sushupta (they have no own signs in Parashara system)
+  // Rahu/Ketu  –  always Sushupta (they have no own signs in Parashara system)
   if (pid >= 7) return { state: 'sushupta', ...JAGRADADI.sushupta };
   // Own sign or exaltation → Jagrat
   if ((OWN[pid] || []).includes(sign) || EXALTATION[pid] === sign) return { state: 'jagrat', ...JAGRADADI.jagrat };
@@ -75,7 +75,7 @@ function getJagradadi(pid: number, sign: number): { state: string } & typeof JAG
   return { state: 'sushupta', ...JAGRADADI.sushupta };
 }
 
-// ─── 3. DEEPTADI AVASTHA (Luminosity) — BPHS Ch.44 ─────────────────────────
+// ─── 3. DEEPTADI AVASTHA (Luminosity)  –  BPHS Ch.44 ─────────────────────────
 // 9 states in descending strength order:
 // Deepta > Swastha > Mudita > Shanta > Dina > Dukhita > Vikala > Khala
 //
@@ -101,7 +101,7 @@ const DEEPTADI_NAMES: Record<string, { name: Tri; luminosity: number }> = {
 function getDeeptadi(p: PlanetPosition, allPlanets: PlanetPosition[]): { state: string } & typeof DEEPTADI_NAMES['deepta'] {
   const pid = p.planet.id;
 
-  // Rahu/Ketu — always Dina
+  // Rahu/Ketu  –  always Dina
   if (pid >= 7) return { state: 'dina', ...DEEPTADI_NAMES.dina };
 
   // Exaltation → Deepta
@@ -137,7 +137,7 @@ function getDeeptadi(p: PlanetPosition, allPlanets: PlanetPosition[]): { state: 
         Math.abs(p.latitude) > Math.abs(warRival.latitude) ||
         (Math.abs(p.latitude) === Math.abs(warRival.latitude) && p.longitude < warRival.longitude);
       if (isLoser) return { state: 'khala', ...DEEPTADI_NAMES.khala };
-      // The winner stays at its dignity-based state — fall through to sign check
+      // The winner stays at its dignity-based state  –  fall through to sign check
     }
   }
 
@@ -150,7 +150,7 @@ function getDeeptadi(p: PlanetPosition, allPlanets: PlanetPosition[]): { state: 
   return { state: 'shanta', ...DEEPTADI_NAMES.shanta };
 }
 
-// ─── 4. LAJJITADI AVASTHA (Emotional States) — BPHS Ch.45 ──────────────────
+// ─── 4. LAJJITADI AVASTHA (Emotional States)  –  BPHS Ch.45 ──────────────────
 // 6 states based on house position + conjunctions + aspects
 
 const LAJJITADI_NAMES: Record<string, { name: Tri; effect: 'benefic' | 'malefic' | 'neutral' }> = {
@@ -192,7 +192,7 @@ function getLajjitadi(p: PlanetPosition, allPlanets: PlanetPosition[]): { state:
   const pid = p.planet.id;
   const house = p.house;
 
-  // Rahu/Ketu — always Mudita (they don't have emotional states in BPHS)
+  // Rahu/Ketu  –  always Mudita (they don't have emotional states in BPHS)
   if (pid >= 7) return { state: 'mudita', ...LAJJITADI_NAMES.mudita };
 
   // 1. Lajjita (Ashamed): In 5th house conjunct Saturn, Rahu, or Ketu
@@ -230,11 +230,11 @@ function getLajjitadi(p: PlanetPosition, allPlanets: PlanetPosition[]): { state:
   }
 
   // 6. Mudita (Delighted): In friend's sign, or aspected by benefic Jupiter/Venus
-  // Default — most planets that don't meet above conditions are content
+  // Default  –  most planets that don't meet above conditions are content
   return { state: 'mudita', ...LAJJITADI_NAMES.mudita };
 }
 
-// ─── 5. SHAYANADI AVASTHA (Activity States) — BPHS Ch.45 / Phala Deepika ───
+// ─── 5. SHAYANADI AVASTHA (Activity States)  –  BPHS Ch.45 / Phala Deepika ───
 // 12 states determined by the planet's navamsha position (1-9) within its natal sign
 // and whether the sign is Movable (Chara), Fixed (Sthira), or Dual (Dwiswabhava).
 //

@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const toolLD = generateToolLD(
-    'KP System — Krishnamurti Paddhati',
+    'KP System  –  Krishnamurti Paddhati',
     'KP astrology chart with Placidus houses, sub-lords, and significator analysis.',
     `https://dekhopanchang.com/${locale}/kp-system`,
   );

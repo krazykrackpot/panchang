@@ -47,7 +47,7 @@ export default function ActivityGuidePage() {
           fetchPanchang(pos.coords.latitude, pos.coords.longitude);
         },
         () => {
-          // Geolocation denied — show error, don't hardcode a location
+          // Geolocation denied  –  show error, don't hardcode a location
           setLoading(false);
         }
       );

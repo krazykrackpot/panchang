@@ -38,25 +38,25 @@ const DOMAIN_LABELS: Record<DomainType, string> = {
 
 const DOMAIN_STRONG_ADVICE: Record<DomainType, string> = {
   currentPeriod: 'A favorable window is opening.',
-  health: 'Vitality is strong — great time for health initiatives!',
-  wealth: 'Financial prospects are favorable — consider investments.',
+  health: 'Vitality is strong  –  great time for health initiatives!',
+  wealth: 'Financial prospects are favorable  –  consider investments.',
   career: 'Favorable period for professional growth!',
   marriage: 'Harmonious energy for relationships and partnerships.',
   children: 'Positive energy for matters related to children and creativity.',
   family: 'Good time for family bonding and domestic harmony.',
-  spiritual: 'Spiritual insights are heightened — deepen your practice.',
+  spiritual: 'Spiritual insights are heightened  –  deepen your practice.',
   education: 'Excellent period for learning and intellectual pursuits.',
 };
 
 const DOMAIN_WEAK_ADVICE: Record<DomainType, string> = {
   currentPeriod: 'Navigate this period with mindfulness.',
   health: 'Pay extra attention to wellness and rest.',
-  wealth: 'Be cautious with finances — avoid impulsive spending.',
+  wealth: 'Be cautious with finances  –  avoid impulsive spending.',
   career: 'Patience and communication are key at work.',
   marriage: 'Patience and open communication are key in relationships.',
   children: 'Be attentive to children and creative projects.',
   family: 'Family dynamics may need extra care and attention.',
-  spiritual: 'Spiritual challenges may arise — stay grounded.',
+  spiritual: 'Spiritual challenges may arise  –  stay grounded.',
   education: 'Focus and discipline in studies will be needed.',
 };
 
@@ -149,14 +149,14 @@ export async function GET(req: NextRequest) {
       const advice = topTransit.quality === 'strong'
         ? DOMAIN_STRONG_ADVICE[domainMapping!.domain]
         : DOMAIN_WEAK_ADVICE[domainMapping!.domain];
-      body = `${topTransit.planetName.en} is transiting your ${ordinal(topTransit.house)} house (${zoneLabel}, ${topTransit.savBindu} bindus). Your **${domainLabel}** domain is ${topTransit.quality === 'strong' ? 'activated' : 'facing pressure'} — ${advice}`;
+      body = `${topTransit.planetName.en} is transiting your ${ordinal(topTransit.house)} house (${zoneLabel}, ${topTransit.savBindu} bindus). Your **${domainLabel}** domain is ${topTransit.quality === 'strong' ? 'activated' : 'facing pressure'}  –  ${advice}`;
     } else {
-      body = `${topTransit.planetName.en} is transiting your ${ordinal(topTransit.house)} house (${topTransit.signName.en}, ${topTransit.savBindu} bindus). ${topTransit.quality === 'strong' ? 'Favorable period — take action!' : 'Navigate carefully.'}`;
+      body = `${topTransit.planetName.en} is transiting your ${ordinal(topTransit.house)} house (${topTransit.signName.en}, ${topTransit.savBindu} bindus). ${topTransit.quality === 'strong' ? 'Favorable period  –  take action!' : 'Navigate carefully.'}`;
     }
 
     const alertTitle = `Transit Alert: ${topTransit.planetName.en} in ${topTransit.signName.en}`;
 
-    // Build push URL — link to domain deep dive if domain is known
+    // Build push URL  –  link to domain deep dive if domain is known
     const pushUrl = domainMapping
       ? `/en/kundali?domain=${domainMapping.domain}`
       : '/en/kundali';
@@ -178,7 +178,7 @@ export async function GET(req: NextRequest) {
       read: false,
     });
 
-    // Send web push notification (non-blocking — don't fail the cron if push fails)
+    // Send web push notification (non-blocking  –  don't fail the cron if push fails)
     try {
       await sendPushToUser(snap.user_id, {
         title: alertTitle,

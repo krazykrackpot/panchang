@@ -40,7 +40,7 @@ export const HANUMAN_JAYANTI_PUJA: PujaVidhi = {
       step: 1,
       title: { en: 'Preparation', hi: 'तैयारी', sa: 'सज्जता' },
       description: {
-        en: 'Rise before sunrise. Bathe and wear clean clothes (red/orange preferred). Clean the puja area and place a red cloth on the platform. Install the Hanuman idol/image facing South (as Hanuman faces South — Dakshinamukhi).',
+        en: 'Rise before sunrise. Bathe and wear clean clothes (red/orange preferred). Clean the puja area and place a red cloth on the platform. Install the Hanuman idol/image facing South (as Hanuman faces South  –  Dakshinamukhi).',
         hi: 'सूर्योदय से पहले उठें। स्नान करें और स्वच्छ वस्त्र (लाल/केसरिया श्रेष्ठ) पहनें। पूजा स्थल साफ करें और चौकी पर लाल कपड़ा बिछाएँ। हनुमान मूर्ति/चित्र दक्षिणमुखी स्थापित करें।',
         sa: 'सूर्योदयात् पूर्वम् उत्तिष्ठेत्। स्नात्वा शुचिवस्त्राणि (रक्तकाषायवर्णानि श्रेष्ठानि) धारयेत्। पूजास्थलं शोधयेत् वेदिकायां रक्तवस्त्रं विस्तारयेत्। हनुमन्मूर्तिं दक्षिणाभिमुखीं स्थापयेत्।',
       },
@@ -76,9 +76,9 @@ export const HANUMAN_JAYANTI_PUJA: PujaVidhi = {
       step: 4,
       title: { en: 'Abhishek with Sindoor & Oil', hi: 'सिन्दूर एवं तेल से अभिषेक', sa: 'सिन्दूरतैलाभिषेकः' },
       description: {
-        en: 'Apply sindoor (vermilion) generously to the Hanuman idol — this is the most important ritual of Hanuman puja. Then anoint with chameli (jasmine) oil. Sindoor symbolizes Hanuman\'s devotion to Sita.',
-        hi: 'हनुमान मूर्ति पर भरपूर सिन्दूर लगाएँ — यह हनुमान पूजा का सबसे महत्वपूर्ण अनुष्ठान है। फिर चमेली के तेल से अभिषेक करें। सिन्दूर सीता माता के प्रति हनुमान जी की भक्ति का प्रतीक है।',
-        sa: 'हनुमन्मूर्तौ प्रचुरं सिन्दूरं लेपयेत् — इदम् हनुमत्पूजायाः सर्वप्रधानम् अनुष्ठानम्। ततः चमेलीतैलेन अभिषिञ्चेत्। सिन्दूरं सीतायाः प्रति हनुमतो भक्तेः प्रतीकम्।',
+        en: 'Apply sindoor (vermilion) generously to the Hanuman idol  –  this is the most important ritual of Hanuman puja. Then anoint with chameli (jasmine) oil. Sindoor symbolizes Hanuman\'s devotion to Sita.',
+        hi: 'हनुमान मूर्ति पर भरपूर सिन्दूर लगाएँ  –  यह हनुमान पूजा का सबसे महत्वपूर्ण अनुष्ठान है। फिर चमेली के तेल से अभिषेक करें। सिन्दूर सीता माता के प्रति हनुमान जी की भक्ति का प्रतीक है।',
+        sa: 'हनुमन्मूर्तौ प्रचुरं सिन्दूरं लेपयेत्  –  इदम् हनुमत्पूजायाः सर्वप्रधानम् अनुष्ठानम्। ततः चमेलीतैलेन अभिषिञ्चेत्। सिन्दूरं सीतायाः प्रति हनुमतो भक्तेः प्रतीकम्।',
       },
       duration: '5 min',
       essential: true,
@@ -196,9 +196,9 @@ export const HANUMAN_JAYANTI_PUJA: PujaVidhi = {
       },
       japaCount: 108,
       usage: {
-        en: 'Primary beej mantra for Hanuman Jayanti — chant 108 times with a mala',
-        hi: 'हनुमान जयन्ती का मुख्य बीज मन्त्र — माला से 108 बार जपें',
-        sa: 'हनुमज्जयन्त्याः प्रधानबीजमन्त्रः — मालया अष्टोत्तरशतवारं जपेत्',
+        en: 'Primary beej mantra for Hanuman Jayanti  –  chant 108 times with a mala',
+        hi: 'हनुमान जयन्ती का मुख्य बीज मन्त्र  –  माला से 108 बार जपें',
+        sa: 'हनुमज्जयन्त्याः प्रधानबीजमन्त्रः  –  मालया अष्टोत्तरशतवारं जपेत्',
       },
     },
     {
@@ -223,14 +223,14 @@ export const HANUMAN_JAYANTI_PUJA: PujaVidhi = {
       devanagari: 'मनोजवं मारुततुल्यवेगम् जितेन्द्रियं बुद्धिमतां वरिष्ठम्। वातात्मजं वानरयूथमुख्यं श्रीरामदूतं शरणं प्रपद्ये॥',
       iast: 'manojavaṃ mārutatulyavegam jitendriyaṃ buddhimatāṃ variṣṭham | vātātmajaṃ vānarayūthamukhyaṃ śrīrāmadūtaṃ śaraṇaṃ prapadye ||',
       meaning: {
-        en: 'I take refuge in the messenger of Shri Rama — who is swift as the mind, fast as the wind, master of his senses, foremost among the wise, son of the Wind God, and chief of the monkey army.',
-        hi: 'मैं श्रीराम के दूत की शरण लेता हूँ — जो मन की तरह तेज, पवन के समान वेगवान, जितेन्द्रिय, बुद्धिमानों में श्रेष्ठ, वायुपुत्र और वानरों के मुखिया हैं।',
+        en: 'I take refuge in the messenger of Shri Rama  –  who is swift as the mind, fast as the wind, master of his senses, foremost among the wise, son of the Wind God, and chief of the monkey army.',
+        hi: 'मैं श्रीराम के दूत की शरण लेता हूँ  –  जो मन की तरह तेज, पवन के समान वेगवान, जितेन्द्रिय, बुद्धिमानों में श्रेष्ठ, वायुपुत्र और वानरों के मुखिया हैं।',
         sa: 'मनोजवं मारुततुल्यवेगं जितेन्द्रियं बुद्धिमतां वरिष्ठं वातात्मजं वानरयूथमुख्यं श्रीरामदूतं शरणं प्रपद्ये।',
       },
       usage: {
-        en: 'Opening dhyana shloka — recite at the beginning of Hanuman puja for meditation',
-        hi: 'ध्यान श्लोक — हनुमान पूजा के आरम्भ में ध्यान हेतु पढ़ें',
-        sa: 'ध्यानश्लोकः — हनुमत्पूजारम्भे ध्यानार्थं पठेत्',
+        en: 'Opening dhyana shloka  –  recite at the beginning of Hanuman puja for meditation',
+        hi: 'ध्यान श्लोक  –  हनुमान पूजा के आरम्भ में ध्यान हेतु पढ़ें',
+        sa: 'ध्यानश्लोकः  –  हनुमत्पूजारम्भे ध्यानार्थं पठेत्',
       },
     },
   ],
@@ -274,19 +274,19 @@ export const HANUMAN_JAYANTI_PUJA: PujaVidhi = {
 
   precautions: [
     {
-      en: 'Maintain brahmacharya (celibacy) on Hanuman Jayanti — Hanuman is a Brahmachari deity',
-      hi: 'हनुमान जयन्ती पर ब्रह्मचर्य का पालन करें — हनुमान ब्रह्मचारी देवता हैं',
-      sa: 'हनुमज्जयन्त्यां ब्रह्मचर्यं पालयेत् — हनुमान् ब्रह्मचारी देवता',
+      en: 'Maintain brahmacharya (celibacy) on Hanuman Jayanti  –  Hanuman is a Brahmachari deity',
+      hi: 'हनुमान जयन्ती पर ब्रह्मचर्य का पालन करें  –  हनुमान ब्रह्मचारी देवता हैं',
+      sa: 'हनुमज्जयन्त्यां ब्रह्मचर्यं पालयेत्  –  हनुमान् ब्रह्मचारी देवता',
     },
     {
-      en: 'Apply sindoor only with the ring finger — do not use other fingers',
-      hi: 'सिन्दूर केवल अनामिका (रिंग फिंगर) से लगाएँ — अन्य अंगुलियों का प्रयोग न करें',
-      sa: 'अनामिकया एव सिन्दूरं लेपयेत् — अन्याभिः अङ्गुलीभिः न लेपयेत्',
+      en: 'Apply sindoor only with the ring finger  –  do not use other fingers',
+      hi: 'सिन्दूर केवल अनामिका (रिंग फिंगर) से लगाएँ  –  अन्य अंगुलियों का प्रयोग न करें',
+      sa: 'अनामिकया एव सिन्दूरं लेपयेत्  –  अन्याभिः अङ्गुलीभिः न लेपयेत्',
     },
     {
-      en: 'Do not offer tulsi (basil) to Hanuman — it is considered inauspicious',
-      hi: 'हनुमान जी को तुलसी अर्पित न करें — इसे अशुभ माना जाता है',
-      sa: 'हनुमते तुलसीं न समर्पयेत् — अशुभम् इति मन्यते',
+      en: 'Do not offer tulsi (basil) to Hanuman  –  it is considered inauspicious',
+      hi: 'हनुमान जी को तुलसी अर्पित न करें  –  इसे अशुभ माना जाता है',
+      sa: 'हनुमते तुलसीं न समर्पयेत्  –  अशुभम् इति मन्यते',
     },
     {
       en: 'Face South while worshipping Hanuman (Dakshinamukhi Hanuman)',

@@ -72,10 +72,10 @@ const NAKSHATRA_DOMAIN_AFFINITY: Record<NakshatraType, DomainType[]> = {
 };
 
 const NAKSHATRA_TYPE_LABELS: Record<NakshatraType, LocaleText> = {
-  kshipra: { en: 'Swift (Kshipra) — favours quick actions and career moves', hi: 'क्षिप्र — शीघ्र कार्य और करियर के लिए अनुकूल', sa: 'क्षिप्रम् — शीघ्रकार्याय कर्मणे च अनुकूलम्' },
-  ugra:    { en: 'Fierce (Ugra) — favours competition and bold action', hi: 'उग्र — प्रतिस्पर्धा और साहसिक कार्य के लिए अनुकूल', sa: 'उग्रम् — प्रतिस्पर्धायै साहसकर्मणे च अनुकूलम्' },
-  sthira:  { en: 'Fixed (Sthira) — favours long-term plans and stability', hi: 'स्थिर — दीर्घकालिक योजना और स्थिरता के लिए अनुकूल', sa: 'स्थिरम् — दीर्घकालयोजनायै स्थैर्याय च अनुकूलम्' },
-  mridu:   { en: 'Soft (Mridu) — favours relationships and creativity', hi: 'मृदु — संबंध और रचनात्मकता के लिए अनुकूल', sa: 'मृदु — सम्बन्धाय सृजनशीलतायै च अनुकूलम्' },
+  kshipra: { en: 'Swift (Kshipra)  –  favours quick actions and career moves', hi: 'क्षिप्र  –  शीघ्र कार्य और करियर के लिए अनुकूल', sa: 'क्षिप्रम्  –  शीघ्रकार्याय कर्मणे च अनुकूलम्' },
+  ugra:    { en: 'Fierce (Ugra)  –  favours competition and bold action', hi: 'उग्र  –  प्रतिस्पर्धा और साहसिक कार्य के लिए अनुकूल', sa: 'उग्रम्  –  प्रतिस्पर्धायै साहसकर्मणे च अनुकूलम्' },
+  sthira:  { en: 'Fixed (Sthira)  –  favours long-term plans and stability', hi: 'स्थिर  –  दीर्घकालिक योजना और स्थिरता के लिए अनुकूल', sa: 'स्थिरम्  –  दीर्घकालयोजनायै स्थैर्याय च अनुकूलम्' },
+  mridu:   { en: 'Soft (Mridu)  –  favours relationships and creativity', hi: 'मृदु  –  संबंध और रचनात्मकता के लिए अनुकूल', sa: 'मृदु  –  सम्बन्धाय सृजनशीलतायै च अनुकूलम्' },
 };
 
 // ---------------------------------------------------------------------------
@@ -299,8 +299,8 @@ function generateDomainHeadline(
 
   if (score >= 8) {
     return {
-      en: `Excellent day for ${domainNameEn.toLowerCase()} — Moon in your ${ordinal(moonHouse)} house amplifies this area`,
-      hi: `${domainNameHi} के लिए उत्तम दिन — चंद्रमा आपके ${moonHouse}वें भाव में इस क्षेत्र को प्रबल करता है`,
+      en: `Excellent day for ${domainNameEn.toLowerCase()}  –  Moon in your ${ordinal(moonHouse)} house amplifies this area`,
+      hi: `${domainNameHi} के लिए उत्तम दिन  –  चंद्रमा आपके ${moonHouse}वें भाव में इस क्षेत्र को प्रबल करता है`,
       sa: `${domainConfig.name.sa || domainNameEn} कृते उत्तमं दिनम्`,
     };
   }
@@ -313,14 +313,14 @@ function generateDomainHeadline(
   }
   if (score >= 4) {
     return {
-      en: `Mixed energies around ${domainNameEn.toLowerCase()} — proceed with awareness`,
-      hi: `${domainNameHi} में मिश्रित ऊर्जा — सावधानी से आगे बढ़ें`,
+      en: `Mixed energies around ${domainNameEn.toLowerCase()}  –  proceed with awareness`,
+      hi: `${domainNameHi} में मिश्रित ऊर्जा  –  सावधानी से आगे बढ़ें`,
       sa: `${domainConfig.name.sa || domainNameEn} विषये मिश्रम्`,
     };
   }
   return {
-    en: `Challenging day for ${domainNameEn.toLowerCase()} — patience recommended`,
-    hi: `${domainNameHi} के लिए चुनौतीपूर्ण दिन — धैर्य रखें`,
+    en: `Challenging day for ${domainNameEn.toLowerCase()}  –  patience recommended`,
+    hi: `${domainNameHi} के लिए चुनौतीपूर्ण दिन  –  धैर्य रखें`,
     sa: `${domainConfig.name.sa || domainNameEn} कृते कठिनं दिनम्`,
   };
 }
@@ -437,7 +437,7 @@ export function generateDailyInsights(input: DailyInsightsInput): DailyInsights 
     // 3. Nakshatra quality (20%)
     const nakshatraScore = scoreNakshatraForDomain(moonNakshatraId, domainId);
 
-    // 4. Yoga quality (10%) — same for all domains
+    // 4. Yoga quality (10%)  –  same for all domains
     const yogaScoreForDomain = yogaScore;
 
     // 5. Hora relevance (10%)
@@ -469,9 +469,9 @@ export function generateDailyInsights(input: DailyInsightsInput): DailyInsights 
           start: todayPanchang.amritKalam.start,
           end: todayPanchang.amritKalam.end,
           reason: {
-            en: 'Amrit Kalam — most auspicious window of the day',
-            hi: 'अमृत काल — दिन की सबसे शुभ अवधि',
-            sa: 'अमृतकालः — दिनस्य सर्वोत्तमा शुभावधिः',
+            en: 'Amrit Kalam  –  most auspicious window of the day',
+            hi: 'अमृत काल  –  दिन की सबसे शुभ अवधि',
+            sa: 'अमृतकालः  –  दिनस्य सर्वोत्तमा शुभावधिः',
           } as LocaleText,
         }
       : undefined;
@@ -482,9 +482,9 @@ export function generateDailyInsights(input: DailyInsightsInput): DailyInsights 
           start: todayPanchang.rahuKaal.start,
           end: todayPanchang.rahuKaal.end,
           reason: {
-            en: 'Rahu Kaal — avoid starting new ventures',
-            hi: 'राहु काल — नए कार्य शुरू करने से बचें',
-            sa: 'राहुकालः — नूतनकार्यारम्भं त्यज',
+            en: 'Rahu Kaal  –  avoid starting new ventures',
+            hi: 'राहु काल  –  नए कार्य शुरू करने से बचें',
+            sa: 'राहुकालः  –  नूतनकार्यारम्भं त्यज',
           } as LocaleText,
         }
       : undefined;
@@ -552,7 +552,7 @@ function getAscendantFromReading(reading: PersonalReading): number {
   // we infer from the current period's transit data.
   const currentPeriod = reading.currentPeriod;
   if (currentPeriod.keyTransits.length > 0) {
-    // transitHouse is relative to ascendant — we can use transitSign - transitHouse + 1
+    // transitHouse is relative to ascendant  –  we can use transitSign - transitHouse + 1
     const t = currentPeriod.keyTransits[0];
     const asc = ((t.transitSign - t.transitHouse + 1 + 12) % 12) || 12;
     return asc;

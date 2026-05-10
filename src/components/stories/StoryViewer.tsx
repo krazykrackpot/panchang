@@ -406,7 +406,7 @@ function SlideContent({
               transition={{ delay: 0.6 }}
               className="text-gold-dark text-xs uppercase tracking-widest font-bold"
             >
-              — {l(slide.sourceText)}
+               –  {l(slide.sourceText)}
             </motion.p>
           )}
         </div>

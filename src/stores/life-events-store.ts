@@ -40,7 +40,7 @@ export const useLifeEventsStore = create<LifeEventsState>((set, get) => ({
   filters: { limit: 50, offset: 0 },
 
   // ---------------------------------------------------------------------------
-  // addEvent — POST /api/life-events
+  // addEvent  –  POST /api/life-events
   // ---------------------------------------------------------------------------
   addEvent: async (token, input) => {
     set({ loading: true });
@@ -84,12 +84,12 @@ export const useLifeEventsStore = create<LifeEventsState>((set, get) => ({
     } catch (err) {
       console.error('[life-events] addEvent error:', err);
       set({ loading: false });
-      return { error: 'Network error — please try again' };
+      return { error: 'Network error  –  please try again' };
     }
   },
 
   // ---------------------------------------------------------------------------
-  // fetchEvents — GET /api/life-events with filters
+  // fetchEvents  –  GET /api/life-events with filters
   // ---------------------------------------------------------------------------
   fetchEvents: async (token, filters) => {
     set({ loading: true });
@@ -127,12 +127,12 @@ export const useLifeEventsStore = create<LifeEventsState>((set, get) => ({
     } catch (err) {
       console.error('[life-events] fetchEvents error:', err);
       set({ loading: false });
-      return { error: 'Network error — please try again' };
+      return { error: 'Network error  –  please try again' };
     }
   },
 
   // ---------------------------------------------------------------------------
-  // deleteEvent — DELETE /api/life-events/[id]
+  // deleteEvent  –  DELETE /api/life-events/[id]
   // ---------------------------------------------------------------------------
   deleteEvent: async (token, id) => {
     set({ loading: true });
@@ -161,12 +161,12 @@ export const useLifeEventsStore = create<LifeEventsState>((set, get) => ({
     } catch (err) {
       console.error('[life-events] deleteEvent error:', err);
       set({ loading: false });
-      return { error: 'Network error — please try again' };
+      return { error: 'Network error  –  please try again' };
     }
   },
 
   // ---------------------------------------------------------------------------
-  // setFilters — merge partial update into current filters
+  // setFilters  –  merge partial update into current filters
   // ---------------------------------------------------------------------------
   setFilters: (filters) => {
     set((state) => ({

@@ -1,5 +1,5 @@
 /**
- * Domain Narrator — Unit Tests
+ * Domain Narrator  –  Unit Tests
  *
  * Verifies all 9 narrative functions + the composition helper.
  */
@@ -218,7 +218,7 @@ describe('narrateVargaConfirmation', () => {
       chartId: 'D9',
       promiseScore: 72,
       deliveryScore: 78,
-      verdict: { en: 'Venus is exalted here — marriage stability is affirmed.', hi: 'शुक्र यहां उच्च है — विवाह स्थिरता की पुष्टि है।' },
+      verdict: { en: 'Venus is exalted here  –  marriage stability is affirmed.', hi: 'शुक्र यहां उच्च है  –  विवाह स्थिरता की पुष्टि है।' },
       keyFindings: ['Venus exalted in D9', '7th lord well-placed'],
     });
     assertBilingual(result);

@@ -1,15 +1,15 @@
 {
   "title": {
-    "en": "Sunrise — 2-Pass Hour Angle Method",
-    "hi": "सूर्योदय — 2-पास घण्टा कोण विधि",
-    "sa": "सूर्योदयः — 2-पासघण्टाकोणविधिः",
-    "ta": "சூரிய உதயம் — 2-பாஸ் மணி கோண முறை",
-    "te": "సూర్యోదయం — 2-పాస్ గంట కోణ పద్ధతి",
-    "bn": "সূর্যোদয় — 2-পাস ঘণ্টা কোণ পদ্ধতি",
-    "kn": "ಸೂರ್ಯೋದಯ — 2-ಪಾಸ್ ಗಂಟೆ ಕೋನ ವಿಧಾನ",
-    "mr": "सूर्योदय — 2-पास तास कोन पद्धती",
-    "gu": "સૂર્યોદય — 2-પાસ કલાક ખૂણો પદ્ધતિ",
-    "mai": "सूर्योदय — 2-पास घण्टा कोण विधि"
+    "en": "Sunrise  –  2-Pass Hour Angle Method",
+    "hi": "सूर्योदय  –  2-पास घण्टा कोण विधि",
+    "sa": "सूर्योदयः  –  2-पासघण्टाकोणविधिः",
+    "ta": "சூரிய உதயம்  –  2-பாஸ் மணி கோண முறை",
+    "te": "సూర్యోదయం  –  2-పాస్ గంట కోణ పద్ధతి",
+    "bn": "সূর্যোদয়  –  2-পাস ঘণ্টা কোণ পদ্ধতি",
+    "kn": "ಸೂರ್ಯೋದಯ  –  2-ಪಾಸ್ ಗಂಟೆ ಕೋನ ವಿಧಾನ",
+    "mr": "सूर्योदय  –  2-पास तास कोन पद्धती",
+    "gu": "સૂર્યોદય  –  2-પાસ કલાક ખૂણો પદ્ધતિ",
+    "mai": "सूर्योदय  –  2-पास घण्टा कोण विधि"
   },
   "subtitle": {
     "en": "Computing sunrise and sunset to minute-level accuracy using atmospheric refraction and the Sun's changing declination",
@@ -245,8 +245,8 @@
       ],
       "correctAnswer": 1,
       "explanation": {
-        "en": "Near the equinoxes (March and September), the Sun's declination changes rapidly — about 0.4° in 12 hours. Since sunrise is ~6 hours before noon, using noon's declination introduces a ~0.2° declination error, which translates to ~4 minutes of sunrise time error at mid-latitudes.",
-        "hi": "विषुवों (मार्च और सितम्बर) के निकट सूर्य की क्रान्ति तेज़ी से बदलती है — 12 घण्टों में लगभग 0.4°। सूर्योदय मध्याह्न से ~6 घण्टे पहले है, अतः मध्याह्न की क्रान्ति उपयोग करने से ~0.2° क्रान्ति त्रुटि आती है, जो मध्य अक्षांशों पर ~4 मिनट सूर्योदय समय त्रुटि में बदलती है।"
+        "en": "Near the equinoxes (March and September), the Sun's declination changes rapidly  –  about 0.4° in 12 hours. Since sunrise is ~6 hours before noon, using noon's declination introduces a ~0.2° declination error, which translates to ~4 minutes of sunrise time error at mid-latitudes.",
+        "hi": "विषुवों (मार्च और सितम्बर) के निकट सूर्य की क्रान्ति तेज़ी से बदलती है  –  12 घण्टों में लगभग 0.4°। सूर्योदय मध्याह्न से ~6 घण्टे पहले है, अतः मध्याह्न की क्रान्ति उपयोग करने से ~0.2° क्रान्ति त्रुटि आती है, जो मध्य अक्षांशों पर ~4 मिनट सूर्योदय समय त्रुटि में बदलती है।"
       }
     },
     {

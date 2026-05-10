@@ -85,7 +85,7 @@ export async function GET(request: Request) {
           };
         }
       }
-    } catch { /* tithi table enrichment is optional — don't fail the API */ }
+    } catch { /* tithi table enrichment is optional  –  don't fail the API */ }
 
     // Enrich with festivals/vrats for this date
     let festivals: { name: LocaleText; type: string; category: string; description: LocaleText; slug?: string; pujaMuhurat?: { start: string; end: string; name: string }; paranaStart?: string; paranaEnd?: string; paranaDate?: string }[] | undefined;

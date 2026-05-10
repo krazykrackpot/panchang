@@ -1,7 +1,7 @@
 /**
  * Lunar position calculations
  * Based on Jean Meeus, "Astronomical Algorithms" (2nd ed.), Chapter 47
- * Simplified — uses the largest periodic terms for ~0.5° accuracy.
+ * Simplified  –  uses the largest periodic terms for ~0.5° accuracy.
  *
  * The full ELP-2000/82 theory (Chapront-Touzé & Chapront) contains thousands
  * of periodic terms. This implementation retains the ~50 largest longitude/
@@ -29,18 +29,18 @@ export interface LunarPosition {
   longitude: number;     // Ecliptic longitude (degrees), geometric (not apparent)
   latitude: number;      // Ecliptic latitude (degrees), geocentric
   distance: number;      // Distance from Earth centre (km), mean ~385,000
-  parallax: number;      // Horizontal parallax (degrees) — angular radius of Earth as seen from Moon
+  parallax: number;      // Horizontal parallax (degrees)  –  angular radius of Earth as seen from Moon
 }
 
 /**
  * Compute the Moon's geocentric ecliptic position for a given Julian Day.
  *
  * Uses the five fundamental arguments of lunar theory (Meeus Ch. 47, Table 47.A/B):
- *   Lp — Moon's mean longitude (origin of the periodic series)
- *   D  — Mean elongation of the Moon from the Sun
- *   M  — Sun's mean anomaly (Earth's orbital eccentricity effect)
- *   Mp — Moon's mean anomaly (Moon's own elliptical orbit)
- *   F  — Moon's argument of latitude (distance from ascending node)
+ *   Lp  –  Moon's mean longitude (origin of the periodic series)
+ *   D   –  Mean elongation of the Moon from the Sun
+ *   M   –  Sun's mean anomaly (Earth's orbital eccentricity effect)
+ *   Mp  –  Moon's mean anomaly (Moon's own elliptical orbit)
+ *   F   –  Moon's argument of latitude (distance from ascending node)
  *
  * Each periodic term is a sinusoidal function of an integer linear combination
  * of these five arguments: sin(d·D + m·M + mp·Mp + f·F). The coefficients
@@ -58,20 +58,20 @@ export function getLunarPosition(jd: number): LunarPosition {
   // This is the origin from which the periodic corrections are applied.
   const Lp = normalizeAngle(218.3164477 + 481267.88123421 * T - 0.0015786 * T2 + T3 / 538841.0 - T4 / 65194000.0);
 
-  // D: Mean elongation of the Moon — angular separation between the mean
+  // D: Mean elongation of the Moon  –  angular separation between the mean
   // longitudes of the Moon and Sun. Controls lunation-dependent terms (Meeus eq. 47.2).
   const D = normalizeAngle(297.8501921 + 445267.1114034 * T - 0.0018819 * T2 + T3 / 545868.0 - T4 / 113065000.0);
 
-  // M: Sun's mean anomaly — the Sun's position in its (Earth's) elliptical orbit.
+  // M: Sun's mean anomaly  –  the Sun's position in its (Earth's) elliptical orbit.
   // Terms involving M are multiplied by the eccentricity factor E (Meeus eq. 47.6),
   // since Earth's orbital eccentricity is slowly decreasing (Meeus eq. 47.4).
   const M = normalizeAngle(357.5291092 + 35999.0502909 * T - 0.0001536 * T2 + T3 / 24490000.0);
 
-  // Mp: Moon's mean anomaly — the Moon's position in its own elliptical orbit.
+  // Mp: Moon's mean anomaly  –  the Moon's position in its own elliptical orbit.
   // The largest periodic term (±6.289° in longitude) depends on Mp alone (Meeus eq. 47.5).
   const Mp = normalizeAngle(134.9633964 + 477198.8675055 * T + 0.0087414 * T2 + T3 / 69699.0 - T4 / 14712000.0);
 
-  // F: Moon's argument of latitude — angular distance from the ascending node.
+  // F: Moon's argument of latitude  –  angular distance from the ascending node.
   // Governs the Moon's excursion above/below the ecliptic; dominant in latitude terms.
   const F = normalizeAngle(93.2720950 + 483202.0175233 * T - 0.0036539 * T2 - T3 / 3526000.0 + T4 / 863310000.0);
 
@@ -96,11 +96,11 @@ export function getLunarPosition(jd: number): LunarPosition {
   // Each row: [D multiplier, M multiplier, Mp multiplier, F multiplier, sinCoeff, cosCoeff]
   //   sinCoeff → contribution to ΣL (longitude), cosCoeff → contribution to ΣR (distance)
   //
-  // The largest term [0,0,1,0] with sinCoeff=6288774 is the "equation of the centre" —
+  // The largest term [0,0,1,0] with sinCoeff=6288774 is the "equation of the centre"  – 
   // the Moon's elliptical orbit correction (~6.289° amplitude).
-  // The second term [2,0,-1,0] (sinCoeff=1274027, ~1.274°) is the "evection" —
+  // The second term [2,0,-1,0] (sinCoeff=1274027, ~1.274°) is the "evection"  – 
   // a perturbation caused by the Sun's gravitational pull on the Moon's orbit.
-  // The third term [2,0,0,0] (sinCoeff=658314, ~0.658°) is the "variation" —
+  // The third term [2,0,0,0] (sinCoeff=658314, ~0.658°) is the "variation"  – 
   // another solar perturbation that depends on elongation D.
   const lrTerms: [number, number, number, number, number, number][] = [
     [0, 0, 1, 0, 6288774, -20905355],
@@ -171,7 +171,7 @@ export function getLunarPosition(jd: number): LunarPosition {
   // Periodic terms for latitude (ΣB) from Meeus Table 47.B.
   // Each row: [D multiplier, M multiplier, Mp multiplier, F multiplier, sinCoeff]
   // The dominant term [0,0,0,1] with coeff=5128122 (~5.128°) is the Moon's
-  // maximum geocentric latitude — the inclination of the Moon's orbit to the ecliptic.
+  // maximum geocentric latitude  –  the inclination of the Moon's orbit to the ecliptic.
   const bTerms: [number, number, number, number, number][] = [
     [0, 0, 0, 1, 5128122],
     [0, 0, 1, 1, 280602],
@@ -216,10 +216,10 @@ export function getLunarPosition(jd: number): LunarPosition {
 
   // Additional additive corrections not covered by the main periodic tables
   // (Meeus p. 342). These account for:
-  //   A1 — the effect of Venus on the Moon's longitude (~0.004°)
-  //   A2 — the effect of Jupiter on the Moon's longitude (~0.0003°)
-  //   A3 — a latitude correction related to the Moon's flattened orbit
-  //   Lp-F term — the "reduction to the ecliptic" correction
+  //   A1  –  the effect of Venus on the Moon's longitude (~0.004°)
+  //   A2  –  the effect of Jupiter on the Moon's longitude (~0.0003°)
+  //   A3  –  a latitude correction related to the Moon's flattened orbit
+  //   Lp-F term  –  the "reduction to the ecliptic" correction
   const A1 = degToRad(normalizeAngle(119.75 + 131.849 * T));
   const A2 = degToRad(normalizeAngle(53.09 + 479264.290 * T));
   const A3 = degToRad(normalizeAngle(313.45 + 481266.484 * T));

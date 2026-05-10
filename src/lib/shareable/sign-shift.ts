@@ -1,5 +1,5 @@
 /**
- * Sign Shift Engine — computes personalized Western vs Vedic sign comparison.
+ * Sign Shift Engine  –  computes personalized Western vs Vedic sign comparison.
  *
  * Can work from existing KundaliData (fast, no re-computation) or from
  * a ComparisonResult (for the standalone tropical-compare flow).
@@ -7,7 +7,7 @@
  * The "shift" is caused by the precession of the equinoxes (~24.2° Lahiri
  * as of 2026). Tropical (Western) longitude = sidereal + ayanamsha.
  * When the addition pushes a planet across a sign boundary, the planet
- * is in a DIFFERENT sign in the two systems — that's the "shift".
+ * is in a DIFFERENT sign in the two systems  –  that's the "shift".
  */
 
 import { RASHIS } from '@/lib/constants/rashis';
@@ -98,8 +98,8 @@ function computeElementContrast(planets: SignShiftPlanet[]): SignShiftData['elem
         hi: `पश्चिमी ज्योतिष कहता है आप ${tropicalProfile.dominantHi} व्यक्ति हैं। वैदिक कहता है आप वास्तव में ${siderealProfile.dominantHi} हैं।`,
       }
     : {
-        en: `Both systems agree — you're a ${siderealProfile.dominant} person.`,
-        hi: `दोनों प्रणालियाँ सहमत हैं — आप ${siderealProfile.dominantHi} व्यक्ति हैं।`,
+        en: `Both systems agree  –  you're a ${siderealProfile.dominant} person.`,
+        hi: `दोनों प्रणालियाँ सहमत हैं  –  आप ${siderealProfile.dominantHi} व्यक्ति हैं।`,
       };
   return { tropical: tropicalProfile, sidereal: siderealProfile, shifted, contrastLine };
 }
@@ -229,7 +229,7 @@ export function decodeSignShiftParams(encoded: string): SignShiftData | null {
       const tropId = parseInt(tropStr, 10);
       const sidId = parseInt(sidStr, 10);
 
-      // Planet name from RASHIS-adjacent GRAHAS — but we only need the id for lookup
+      // Planet name from RASHIS-adjacent GRAHAS  –  but we only need the id for lookup
       // We'll use a simple mapping here since we don't import GRAHAS to keep it light
       const planetNames: Record<number, LocaleText> = {
         0: { en: 'Sun', hi: 'सूर्य' },

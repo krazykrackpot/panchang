@@ -29,7 +29,7 @@ export default async function Layout({
   const { locale, year } = await params;
 
   const toolLD = generateToolLD(
-    `Hindu Calendar ${year} — Complete Festival, Vrat & Eclipse Dates`,
+    `Hindu Calendar ${year}  –  Complete Festival, Vrat & Eclipse Dates`,
     `All Hindu festivals, Ekadashi vrat dates, eclipses, Purnima, Amavasya, and panchang events for ${year}. Month-by-month calendar with exact dates computed using Vedic astronomical algorithms.`,
     `https://dekhopanchang.com/${locale}/hindu-calendar/${year}`
   );
@@ -43,7 +43,7 @@ export default async function Layout({
   const articleLD = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `Hindu Calendar ${year} — Complete Festival & Vrat Dates`,
+    headline: `Hindu Calendar ${year}  –  Complete Festival & Vrat Dates`,
     description: `Complete month-by-month Hindu calendar for ${year} with all major festivals, Ekadashi vrat dates, eclipses, and panchang events.`,
     url: `https://dekhopanchang.com/${locale}/hindu-calendar/${year}`,
     publisher: {

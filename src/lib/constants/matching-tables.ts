@@ -1,5 +1,5 @@
 /**
- * Shared nakshatra-based matching tables — used by both ashta-kuta.ts and dasha-koota.ts.
+ * Shared nakshatra-based matching tables  –  used by both ashta-kuta.ts and dasha-koota.ts.
  * Single source of truth (Lesson Q/S: constants must live in ONE file).
  *
  * All arrays are 27-element, 0-indexed by (nakshatra_id - 1).
@@ -19,7 +19,7 @@ export const NAKSHATRA_YONI = [0, 1, 2, 3, 3, 4, 5, 2, 5, 6, 6, 7, 8, 9, 8, 9, 1
 
 export const YONI_LABELS = ['Horse', 'Elephant', 'Sheep', 'Serpent', 'Dog', 'Cat', 'Rat', 'Cow', 'Buffalo', 'Tiger', 'Deer', 'Monkey', 'Mongoose', 'Lion'] as const;
 
-// 7 classical enemy pairs — each animal has exactly one sworn enemy
+// 7 classical enemy pairs  –  each animal has exactly one sworn enemy
 export const YONI_ENEMIES: readonly [number, number][] = [
   [0, 8],  // Horse-Buffalo
   [1, 13], // Elephant-Lion

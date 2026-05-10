@@ -9,7 +9,7 @@ export const LAGNA_INTERPRETATIONS: Record<number, { title: string; personality:
   0: {
     title: 'Aries Ascendant (Mesha Lagna)',
     personality: 'You are naturally courageous, energetic, and pioneering. Your approach to life is direct and assertive. You have strong leadership qualities and prefer to forge your own path rather than follow others.',
-    career: 'You excel in roles requiring initiative — entrepreneurship, military, sports, surgery, or any field demanding decisive action and physical energy.',
+    career: 'You excel in roles requiring initiative  –  entrepreneurship, military, sports, surgery, or any field demanding decisive action and physical energy.',
     health: 'Watch for headaches, inflammation, and overexertion. Your fiery constitution benefits from cooling activities and adequate rest.',
   },
   1: {
@@ -99,7 +99,7 @@ export const PLANET_IN_HOUSE: Record<string, Record<number, string>> = {
     1: 'Moon in the 1st house gives an emotional, intuitive, and receptive personality. You are deeply influenced by your environment and have strong nurturing instincts.',
     2: 'Moon in the 2nd house indicates fluctuating finances but good imagination. Family life is emotionally rich. Your speech has an emotional quality that touches others.',
     3: 'Moon in the 3rd house gives emotional courage and strong bonds with siblings. You may travel frequently and have a changeable mind that adapts quickly.',
-    4: 'Moon in the 4th house is very strong — it brings emotional contentment, a comfortable home, and a loving relationship with your mother. Inner peace comes naturally.',
+    4: 'Moon in the 4th house is very strong  –  it brings emotional contentment, a comfortable home, and a loving relationship with your mother. Inner peace comes naturally.',
     5: 'Moon in the 5th house gives emotional intelligence, creative talent, and strong bonding with children. Romance is emotionally fulfilling. Intuition guides your speculations.',
     6: 'Moon in the 6th house indicates emotional challenges from enemies or health issues. Service to others is healing. Maternal relatives play a significant role.',
     7: 'Moon in the 7th house brings an emotionally nurturing partner. Partnerships are based on emotional connection. Public dealings are influenced by emotional intelligence.',
@@ -114,11 +114,11 @@ export const PLANET_IN_HOUSE: Record<string, Record<number, string>> = {
     2: 'Jupiter in the 2nd house is excellent for wealth, family happiness, and eloquent speech. Your values are noble and you attract financial abundance through wisdom.',
     3: 'Jupiter in the 3rd house gives wise counsel, good relationships with siblings, and success through communication. Short journeys bring learning opportunities.',
     4: 'Jupiter in the 4th house brings domestic happiness, property, vehicles, and a comfortable home. Education is blessed and your mother is wise and supportive.',
-    5: 'Jupiter in the 5th house is one of the best placements — it gives intelligence, good children, spiritual merit, and success in education and speculation.',
+    5: 'Jupiter in the 5th house is one of the best placements  –  it gives intelligence, good children, spiritual merit, and success in education and speculation.',
     6: 'Jupiter in the 6th house helps overcome obstacles through wisdom. You excel in service and healing. Legal matters generally resolve in your favor.',
     7: 'Jupiter in the 7th house brings a wise and noble spouse. Partnerships are fortunate and business ventures prosper through ethical dealing.',
     8: 'Jupiter in the 8th house protects from sudden harm and gives interest in occult wisdom. Longevity is favored and you may benefit from inheritance.',
-    9: 'Jupiter in the 9th house is extremely fortunate — it indicates great wisdom, spiritual advancement, prosperity, and blessings from teachers and father.',
+    9: 'Jupiter in the 9th house is extremely fortunate  –  it indicates great wisdom, spiritual advancement, prosperity, and blessings from teachers and father.',
     10: 'Jupiter in the 10th house brings career success, ethical leadership, and social respect. Professional life is guided by higher principles and attracts prosperity.',
     11: 'Jupiter in the 11th house fulfills ambitions and brings gains through knowledge. Your social network includes wise and influential people.',
     12: 'Jupiter in the 12th house favors spiritual growth, foreign travel, and charitable deeds. Expenses go toward good causes and moksha is attainable.',
@@ -140,7 +140,7 @@ export const PLANET_IN_HOUSE: Record<string, Record<number, string>> = {
   mars: {
     1: 'Mars in the 1st house gives courage, energy, and a competitive spirit. You are assertive and action-oriented. Physical vitality is strong but watch for impulsiveness.',
     2: 'Mars in the 2nd house indicates aggressive speech and fighting for financial security. Family life may have conflicts. Earnings come through effort and courage.',
-    3: 'Mars in the 3rd house is excellent — it gives valor, adventurous spirit, and strong siblings. You excel in competitive fields and bold communication.',
+    3: 'Mars in the 3rd house is excellent  –  it gives valor, adventurous spirit, and strong siblings. You excel in competitive fields and bold communication.',
     4: 'Mars in the 4th house brings energy to domestic life but possible property disputes. Real estate dealings are active. Relationship with mother may be intense.',
     5: 'Mars in the 5th house gives competitive intelligence, athletic children, and risk-taking in speculation. Education may be in technical or military fields.',
     6: 'Mars in the 6th house is powerful for defeating enemies and overcoming obstacles. Excellent placement for military, surgery, or competitive careers.',
@@ -168,7 +168,7 @@ export const PLANET_IN_HOUSE: Record<string, Record<number, string>> = {
   mercury: {
     1: 'Mercury in the 1st house gives a youthful, communicative, and intellectually curious personality. You are witty, adaptable, and skilled in multiple areas.',
     2: 'Mercury in the 2nd house is excellent for wealth through intellect and communication. Your speech is clever and persuasive. Family values education.',
-    3: 'Mercury in the 3rd house is very strong — it gives excellent communication skills, writing talent, and harmonious sibling relationships.',
+    3: 'Mercury in the 3rd house is very strong  –  it gives excellent communication skills, writing talent, and harmonious sibling relationships.',
     4: 'Mercury in the 4th house gives an educated home environment and intellectual interests. Real estate transactions are favorable. Learning continues at home.',
     5: 'Mercury in the 5th house gives sharp intelligence, skill in speculation, and intellectually gifted children. Creative writing and teaching abilities are strong.',
     6: 'Mercury in the 6th house helps solve problems analytically. Good for medical, legal, or service professions. You outthink your opponents.',
@@ -181,7 +181,7 @@ export const PLANET_IN_HOUSE: Record<string, Record<number, string>> = {
   },
   rahu: {
     1: 'Rahu in the 1st house gives an unconventional personality with worldly ambitions. You may break social norms and forge a unique path. Foreign connections are beneficial.',
-    2: 'Rahu in the 2nd house creates unusual patterns with wealth — sudden gains and losses. Speech may be unconventional. Foreign food and cultures attract you.',
+    2: 'Rahu in the 2nd house creates unusual patterns with wealth  –  sudden gains and losses. Speech may be unconventional. Foreign food and cultures attract you.',
     3: 'Rahu in the 3rd house gives courage through unconventional means. Communication through modern media is favored. Siblings may have unusual paths.',
     4: 'Rahu in the 4th house creates unique domestic situations. Property in foreign places is possible. Mother may be unconventional or from a different background.',
     5: 'Rahu in the 5th house gives unusual intelligence and unconventional approach to creativity. Children may follow unique paths. Speculation carries risk and reward.',

@@ -7,11 +7,11 @@ import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
-export const revalidate = 604800; // 7 days — static educational content
+export const revalidate = 604800; // 7 days  –  static educational content
 
 
 /* ════════════════════════════════════════════════════════════════
-   LABELS — bilingual (en / hi)
+   LABELS  –  bilingual (en / hi)
    ════════════════════════════════════════════════════════════════ */
 
 const TIMELINE = [
@@ -46,7 +46,7 @@ const TIMELINE = [
   {
     year: '1687 CE',
     person: 'Isaac Newton',
-    text: { en: 'Principia Mathematica: F = Gm₁m₂/r² — the quantitative law of universal gravitation', hi: 'प्रिंसिपिया मैथमेटिका: F = Gm₁m₂/r² — सार्वभौमिक गुरुत्वाकर्षण का मात्रात्मक नियम', sa: 'प्रिंसिपिया मैथमेटिका: F = Gm₁m₂/r² — सार्वभौमिक गुरुत्वाकर्षण का मात्रात्मक नियम', mai: 'प्रिंसिपिया मैथमेटिका: F = Gm₁m₂/r² — सार्वभौमिक गुरुत्वाकर्षण का मात्रात्मक नियम', mr: 'प्रिंसिपिया मैथमेटिका: F = Gm₁m₂/r² — सार्वभौमिक गुरुत्वाकर्षण का मात्रात्मक नियम', ta: 'ப்ரின்சிப்பியா மேத்தமாட்டிக்கா: F = Gm₁m₂/r² — உலகளாவிய ஈர்ப்பின் அளவு விதி', te: 'ప్రిన్సిపియా మేథమాటికా: F = Gm₁m₂/r² — విశ్వగురుత్వాకర్షణ పరిమాణ నియమం', bn: 'প্রিন্সিপিয়া ম্যাথমেটিকা: F = Gm₁m₂/r² — সার্বজনীন মহাকর্ষের পরিমাণগত সূত্র', kn: 'ಪ್ರಿನ್ಸಿಪಿಯಾ ಮ್ಯಾಥಮೆಟಿಕಾ: F = Gm₁m₂/r² — ಸಾರ್ವತ್ರಿಕ ಗುರುತ್ವಾಕರ್ಷಣದ ಪರಿಮಾಣಾತ್ಮಕ ನಿಯಮ', gu: 'પ્રિન્સિપિયા મેથેમેટિકા: F = Gm₁m₂/r² — સાર્વત્રિક ગુરુત્વાકર્ષણનો પરિમાણાત્મક નિયમ' },
+    text: { en: 'Principia Mathematica: F = Gm₁m₂/r²  –  the quantitative law of universal gravitation', hi: 'प्रिंसिपिया मैथमेटिका: F = Gm₁m₂/r²  –  सार्वभौमिक गुरुत्वाकर्षण का मात्रात्मक नियम', sa: 'प्रिंसिपिया मैथमेटिका: F = Gm₁m₂/r²  –  सार्वभौमिक गुरुत्वाकर्षण का मात्रात्मक नियम', mai: 'प्रिंसिपिया मैथमेटिका: F = Gm₁m₂/r²  –  सार्वभौमिक गुरुत्वाकर्षण का मात्रात्मक नियम', mr: 'प्रिंसिपिया मैथमेटिका: F = Gm₁m₂/r²  –  सार्वभौमिक गुरुत्वाकर्षण का मात्रात्मक नियम', ta: 'ப்ரின்சிப்பியா மேத்தமாட்டிக்கா: F = Gm₁m₂/r²  –  உலகளாவிய ஈர்ப்பின் அளவு விதி', te: 'ప్రిన్సిపియా మేథమాటికా: F = Gm₁m₂/r²  –  విశ్వగురుత్వాకర్షణ పరిమాణ నియమం', bn: 'প্রিন্সিপিয়া ম্যাথমেটিকা: F = Gm₁m₂/r²  –  সার্বজনীন মহাকর্ষের পরিমাণগত সূত্র', kn: 'ಪ್ರಿನ್ಸಿಪಿಯಾ ಮ್ಯಾಥಮೆಟಿಕಾ: F = Gm₁m₂/r²  –  ಸಾರ್ವತ್ರಿಕ ಗುರುತ್ವಾಕರ್ಷಣದ ಪರಿಮಾಣಾತ್ಮಕ ನಿಯಮ', gu: 'પ્રિન્સિપિયા મેથેમેટિકા: F = Gm₁m₂/r²  –  સાર્વત્રિક ગુરુત્વાકર્ષણનો પરિમાણાત્મક નિયમ' },
     color: '#34d399',
     gap: null,
   },
@@ -197,18 +197,18 @@ export default async function GravityPage({ params }: { params: Promise<{ locale
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div className="p-4 rounded-xl bg-gold-primary/8 border border-gold-primary/20">
-            <p className="text-gold-light font-semibold text-sm mb-2">{tl({ en: 'India — Description (505–1150 CE)', hi: 'भारत — वर्णन (505-1150 CE)', sa: 'भारतवर्षम् — वर्णनम् (505–1150 CE)' }, locale)}</p>
+            <p className="text-gold-light font-semibold text-sm mb-2">{tl({ en: 'India  –  Description (505–1150 CE)', hi: 'भारत  –  वर्णन (505-1150 CE)', sa: 'भारतवर्षम्  –  वर्णनम् (505–1150 CE)' }, locale)}</p>
             <p className="text-text-secondary text-xs leading-relaxed">{t('s4India')}</p>
           </div>
           <div className="p-4 rounded-xl bg-emerald-500/8 border border-emerald-500/20">
-            <p className="text-emerald-300 font-semibold text-sm mb-2">{tl({ en: 'Newton — Quantitative Law (1687 CE)', hi: 'न्यूटन — मात्रात्मक नियम (1687 CE)', sa: 'न्यूटनः — मात्रात्मकः नियमः (1687 CE)' }, locale)}</p>
+            <p className="text-emerald-300 font-semibold text-sm mb-2">{tl({ en: 'Newton  –  Quantitative Law (1687 CE)', hi: 'न्यूटन  –  मात्रात्मक नियम (1687 CE)', sa: 'न्यूटनः  –  मात्रात्मकः नियमः (1687 CE)' }, locale)}</p>
             <p className="text-text-secondary text-xs leading-relaxed">{t('s4Newton')}</p>
           </div>
         </div>
 
         {/* F = Gm1m2/r2 visual */}
         <div className="p-4 rounded-xl bg-white/[0.03] border border-white/8 text-center">
-          <p className="text-text-secondary text-xs mb-2">{tl({ en: "Newton's formula — what India did NOT have", hi: "न्यूटन का सूत्र — जो भारत में नहीं था", sa: "न्यूटन का सूत्र — जो भारत में नहीं था" }, locale)}</p>
+          <p className="text-text-secondary text-xs mb-2">{tl({ en: "Newton's formula  –  what India did NOT have", hi: "न्यूटन का सूत्र  –  जो भारत में नहीं था", sa: "न्यूटन का सूत्र  –  जो भारत में नहीं था" }, locale)}</p>
           <p className="text-text-primary text-2xl font-mono font-bold">F = G · m₁m₂ / r²</p>
           <p className="text-text-secondary text-xs mt-2">{tl({ en: 'G = gravitational constant | r = distance between masses', hi: 'G = गुरुत्वाकर्षण स्थिरांक | r = दोनों द्रव्यमानों के बीच दूरी', sa: 'G = गुरुत्वाकर्षणस्थिरांकः | r = द्रव्यमानयोः मध्ये दूरत्वम्' }, locale)}</p>
         </div>

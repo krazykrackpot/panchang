@@ -16,27 +16,27 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 /* ── Planet combustion data ──────────────────────────────────────── */
 const PLANETS = [
   { name: { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्रः' }, deg: 12, retroDeg: null, color: '#c0c0c0',
-    effect: { en: 'Emotional instability, mind overshadowed by ego, mother\'s health concerns, difficulty in public image. This is common — roughly 25% of charts have it. The mind becomes servant to willpower rather than an independent faculty.', hi: 'भावनात्मक अस्थिरता, अहंकार से मन आच्छादित, माता के स्वास्थ्य की चिन्ता, सार्वजनिक छवि में कठिनाई। लगभग 25% कुण्डलियों में यह होता है।', sa: 'भावनात्मकअस्थिरता, अहङ्कारेण मनः आच्छादितम्, मातुः स्वास्थ्यचिन्ता।' },
+    effect: { en: 'Emotional instability, mind overshadowed by ego, mother\'s health concerns, difficulty in public image. This is common  –  roughly 25% of charts have it. The mind becomes servant to willpower rather than an independent faculty.', hi: 'भावनात्मक अस्थिरता, अहंकार से मन आच्छादित, माता के स्वास्थ्य की चिन्ता, सार्वजनिक छवि में कठिनाई। लगभग 25% कुण्डलियों में यह होता है।', sa: 'भावनात्मकअस्थिरता, अहङ्कारेण मनः आच्छादितम्, मातुः स्वास्थ्यचिन्ता।' },
     remedy: { en: 'Pearl gemstone, Monday fasting, Chandra Namaskar', hi: 'मोती रत्न, सोमवार व्रत, चन्द्र नमस्कार', sa: 'मुक्तारत्नम्, सोमवासरव्रतम्' },
     rating: 2 },
   { name: { en: 'Mercury', hi: 'बुध', sa: 'बुधः' }, deg: 14, retroDeg: 12, color: '#4ade80',
-    effect: { en: 'Communication becomes unclear, business judgment clouded, education disrupted, skin issues possible. THE MOST COMMON combustion — roughly 60% of charts, since Mercury never strays far from the Sun. Less harmful precisely because of its frequency.', hi: 'संवाद अस्पष्ट, व्यापार निर्णय धुँधला, शिक्षा बाधित, त्वचा समस्याएँ। सबसे सामान्य अस्त — लगभग 60% कुण्डलियों में, क्योंकि बुध सूर्य से कभी दूर नहीं जाता।', sa: 'संवादः अस्पष्टः, वाणिज्यनिर्णयः धूमिलः, शिक्षा बाधिता। सर्वसामान्यः अस्तः।' },
+    effect: { en: 'Communication becomes unclear, business judgment clouded, education disrupted, skin issues possible. THE MOST COMMON combustion  –  roughly 60% of charts, since Mercury never strays far from the Sun. Less harmful precisely because of its frequency.', hi: 'संवाद अस्पष्ट, व्यापार निर्णय धुँधला, शिक्षा बाधित, त्वचा समस्याएँ। सबसे सामान्य अस्त  –  लगभग 60% कुण्डलियों में, क्योंकि बुध सूर्य से कभी दूर नहीं जाता।', sa: 'संवादः अस्पष्टः, वाणिज्यनिर्णयः धूमिलः, शिक्षा बाधिता। सर्वसामान्यः अस्तः।' },
     remedy: { en: 'Emerald gemstone, Wednesday Vishnu worship, green charity', hi: 'पन्ना रत्न, बुधवार विष्णु पूजा, हरित दान', sa: 'मरकतरत्नम्, बुधवासरे विष्णुपूजा' },
     rating: 1 },
   { name: { en: 'Venus', hi: 'शुक्र', sa: 'शुक्रः' }, deg: 10, retroDeg: 8, color: '#f472b6',
-    effect: { en: 'Relationship confusion, lack of romantic expression, spouse difficulties, kidney and reproductive issues possible. The planet of love loses its charm under the Sun\'s domineering presence — love becomes duty rather than joy.', hi: 'सम्बन्ध भ्रम, रोमांटिक अभिव्यक्ति की कमी, जीवनसाथी कठिनाइयाँ, वृक्क समस्याएँ सम्भव। प्रेम का ग्रह सूर्य के प्रभुत्व में आकर्षण खो देता है।', sa: 'सम्बन्धभ्रमः, प्रणयाभिव्यक्तेः अभावः, जीवनसहचरकठिनताः।' },
+    effect: { en: 'Relationship confusion, lack of romantic expression, spouse difficulties, kidney and reproductive issues possible. The planet of love loses its charm under the Sun\'s domineering presence  –  love becomes duty rather than joy.', hi: 'सम्बन्ध भ्रम, रोमांटिक अभिव्यक्ति की कमी, जीवनसाथी कठिनाइयाँ, वृक्क समस्याएँ सम्भव। प्रेम का ग्रह सूर्य के प्रभुत्व में आकर्षण खो देता है।', sa: 'सम्बन्धभ्रमः, प्रणयाभिव्यक्तेः अभावः, जीवनसहचरकठिनताः।' },
     remedy: { en: 'Diamond or white sapphire, Friday fasting, Lakshmi puja', hi: 'हीरा या श्वेत पुखराज, शुक्रवार व्रत, लक्ष्मी पूजा', sa: 'वज्रम् अथवा श्वेतपुष्परागः, शुक्रवासरव्रतम्' },
     rating: 2 },
   { name: { en: 'Mars', hi: 'मंगल', sa: 'मङ्गलः' }, deg: 17, retroDeg: null, color: '#ef4444',
-    effect: { en: 'Courage suppressed, action blocked, blood and heat issues, sibling problems. The warrior planet loses its fighting spirit — initiative gives way to passivity, and the native may struggle to assert themselves in competitive situations.', hi: 'साहस दमित, कार्य अवरुद्ध, रक्त-ताप समस्याएँ, भाई-बहन समस्याएँ। योद्धा ग्रह अपनी लड़ाकू भावना खो देता है — पहल निष्क्रियता में बदल जाती है।', sa: 'शौर्यं दमितम्, कर्म अवरुद्धम्, रक्ततापपीडा, भ्रातृसमस्याः।' },
+    effect: { en: 'Courage suppressed, action blocked, blood and heat issues, sibling problems. The warrior planet loses its fighting spirit  –  initiative gives way to passivity, and the native may struggle to assert themselves in competitive situations.', hi: 'साहस दमित, कार्य अवरुद्ध, रक्त-ताप समस्याएँ, भाई-बहन समस्याएँ। योद्धा ग्रह अपनी लड़ाकू भावना खो देता है  –  पहल निष्क्रियता में बदल जाती है।', sa: 'शौर्यं दमितम्, कर्म अवरुद्धम्, रक्ततापपीडा, भ्रातृसमस्याः।' },
     remedy: { en: 'Red coral, Tuesday Hanuman puja, donate red lentils', hi: 'मूंगा, मंगलवार हनुमान पूजा, लाल मसूर दान', sa: 'प्रवालम्, मङ्गलवासरे हनुमत्पूजा' },
     rating: 2 },
   { name: { en: 'Jupiter', hi: 'गुरु', sa: 'गुरुः' }, deg: 11, retroDeg: null, color: '#facc15',
-    effect: { en: 'Poor judgment, lack of wise counsel, children delayed, liver issues possible. THE MOST HARMFUL combustion — Jupiter is the great benefic, teacher of the gods. When the Guru is silenced, the native loses access to divine wisdom and makes avoidable mistakes.', hi: 'खराब निर्णय, बुद्धिमान परामर्श की कमी, सन्तान विलम्ब, यकृत समस्याएँ। सबसे हानिकारक अस्त — गुरु महान शुभ ग्रह है, देवताओं का शिक्षक। जब गुरु मौन है, जातक दिव्य ज्ञान से वंचित रहता है।', sa: 'निर्णयदोषः, विवेकपरामर्शाभावः, सन्तानविलम्बः। सर्वाधिकहानिकरः अस्तः — गुरुः महाशुभग्रहः।' },
+    effect: { en: 'Poor judgment, lack of wise counsel, children delayed, liver issues possible. THE MOST HARMFUL combustion  –  Jupiter is the great benefic, teacher of the gods. When the Guru is silenced, the native loses access to divine wisdom and makes avoidable mistakes.', hi: 'खराब निर्णय, बुद्धिमान परामर्श की कमी, सन्तान विलम्ब, यकृत समस्याएँ। सबसे हानिकारक अस्त  –  गुरु महान शुभ ग्रह है, देवताओं का शिक्षक। जब गुरु मौन है, जातक दिव्य ज्ञान से वंचित रहता है।', sa: 'निर्णयदोषः, विवेकपरामर्शाभावः, सन्तानविलम्बः। सर्वाधिकहानिकरः अस्तः  –  गुरुः महाशुभग्रहः।' },
     remedy: { en: 'Yellow sapphire, Thursday guru puja, donate turmeric', hi: 'पुखराज, गुरुवार गुरु पूजा, हल्दी दान', sa: 'पुष्परागः, गुरुवासरे गुरुपूजा' },
     rating: 3 },
   { name: { en: 'Saturn', hi: 'शनि', sa: 'शनिः' }, deg: 15, retroDeg: null, color: '#60a5fa',
-    effect: { en: 'Discipline breaks down, structural collapse, chronic issues worsen, career instability. Saturn\'s patient, methodical energy is disrupted by the Sun\'s impatience — long-term plans get derailed by ego-driven impulsive decisions.', hi: 'अनुशासन टूट जाता है, संरचनात्मक पतन, दीर्घकालिक समस्याएँ बिगड़ती हैं, करियर अस्थिरता। शनि की धैर्यपूर्ण ऊर्जा सूर्य की अधीरता से बाधित — दीर्घकालिक योजनाएँ अहंकार-प्रेरित आवेगी निर्णयों से पटरी से उतरती हैं।', sa: 'अनुशासनं भग्नम्, संरचनात्मकपतनम्, दीर्घकालिकसमस्याः वर्धन्ते, वृत्तिअस्थिरता।' },
+    effect: { en: 'Discipline breaks down, structural collapse, chronic issues worsen, career instability. Saturn\'s patient, methodical energy is disrupted by the Sun\'s impatience  –  long-term plans get derailed by ego-driven impulsive decisions.', hi: 'अनुशासन टूट जाता है, संरचनात्मक पतन, दीर्घकालिक समस्याएँ बिगड़ती हैं, करियर अस्थिरता। शनि की धैर्यपूर्ण ऊर्जा सूर्य की अधीरता से बाधित  –  दीर्घकालिक योजनाएँ अहंकार-प्रेरित आवेगी निर्णयों से पटरी से उतरती हैं।', sa: 'अनुशासनं भग्नम्, संरचनात्मकपतनम्, दीर्घकालिकसमस्याः वर्धन्ते, वृत्तिअस्थिरता।' },
     remedy: { en: 'Blue sapphire (with caution), Saturday Shani puja, donate black sesame', hi: 'नीलम (सावधानी से), शनिवार शनि पूजा, काले तिल दान', sa: 'नीलमणिः (सावधानेन), शनिवासरे शनिपूजा' },
     rating: 2 },
 ];
@@ -65,7 +65,7 @@ function CombustionDiagram({ locale }: { locale: Locale }) {
       {/* Background glow */}
       <circle cx={cx} cy={cy} r="180" fill="url(#comb-sun)" opacity="0.15" />
 
-      {/* Concentric combustion rings — sorted outermost first */}
+      {/* Concentric combustion rings  –  sorted outermost first */}
       {[...PLANETS].sort((a, b) => b.deg - a.deg).map((p, i) => {
         const r = scale(p.deg);
         const labelAngle = -90 + i * 55; // spread labels around
@@ -90,7 +90,7 @@ function CombustionDiagram({ locale }: { locale: Locale }) {
 
       {/* Legend */}
       <text x={cx} y="385" fill="#a0a0b8" fontSize="10" textAnchor="middle">
-        {tl({ en: 'Distance in degrees (° longitude) — R = retrograde distance', hi: 'दूरी अंशों में (° देशान्तर) — R = वक्री दूरी', sa: 'दूरी अंशों में (° देशान्तर) — R = वक्री दूरी' }, locale)}
+        {tl({ en: 'Distance in degrees (° longitude)  –  R = retrograde distance', hi: 'दूरी अंशों में (° देशान्तर)  –  R = वक्री दूरी', sa: 'दूरी अंशों में (° देशान्तर)  –  R = वक्री दूरी' }, locale)}
       </text>
     </svg>
   );

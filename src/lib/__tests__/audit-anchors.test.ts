@@ -1,8 +1,8 @@
 /**
- * AUDIT TEST SUITE — Layer 1: Anchor Tests (Classical Logic Correctness)
+ * AUDIT TEST SUITE  –  Layer 1: Anchor Tests (Classical Logic Correctness)
  *
  * Tests that known inputs produce known outputs based on classical Vedic formulas.
- * These are MATH tests — they can never go stale because the rules don't change.
+ * These are MATH tests  –  they can never go stale because the rules don't change.
  *
  * Source: BPHS, Prashna Marga, Muhurta Chintamani, Nirṇaya Sindhu
  */
@@ -100,7 +100,7 @@ describe('Anchor: Whole-sign house assignment', () => {
 });
 
 // ═══════════════════════════════════════════════════════════════════════
-// GROUP 3: Timezone Pipeline — Birth Location Timezone, NOT Browser
+// GROUP 3: Timezone Pipeline  –  Birth Location Timezone, NOT Browser
 // ═══════════════════════════════════════════════════════════════════════
 describe('Anchor: Timezone pipeline', () => {
   it('Brahmapur with IST → Moon in Capricorn (Uttara Ashadha P4)', () => {
@@ -115,15 +115,15 @@ describe('Anchor: Timezone pipeline', () => {
     const wrong = computeBirthSigns('1968-06-13', '23:03', 19.31, 84.79, 'Europe/Zurich');
     // With CEST (+2 instead of +5.5), Moon shifts ~3° → crosses Uttara Ashadha/Shravana boundary
     expect(correct.moonNakshatra).toBe(21); // Uttara Ashadha
-    expect(wrong.moonNakshatra).toBe(22);   // Shravana (wrong — crossed boundary)
+    expect(wrong.moonNakshatra).toBe(22);   // Shravana (wrong  –  crossed boundary)
     expect(wrong.moonNakshatra).not.toBe(correct.moonNakshatra);
   });
 
-  it('Empty timezone throws — never silently defaults to UTC', () => {
+  it('Empty timezone throws  –  never silently defaults to UTC', () => {
     expect(() => resolveTimezone('', 1968, 6, 13)).toThrow('Timezone is required');
   });
 
-  it('Invalid timezone throws — never returns 0', () => {
+  it('Invalid timezone throws  –  never returns 0', () => {
     expect(() => resolveTimezone('Invalid/Zone', 2026, 1, 1)).toThrow('Invalid timezone');
   });
 

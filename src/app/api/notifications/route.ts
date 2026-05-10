@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
 
 // ---------------------------------------------------------------------------
-// GET /api/notifications — fetch user's most recent 20 notifications
+// GET /api/notifications  –  fetch user's most recent 20 notifications
 // ---------------------------------------------------------------------------
 export async function GET(req: NextRequest) {
   const supabase = getServerSupabase();
@@ -27,7 +27,7 @@ export async function GET(req: NextRequest) {
       .limit(20);
 
     if (error) {
-      // Table may not exist yet — return empty instead of 500 to stop console spam
+      // Table may not exist yet  –  return empty instead of 500 to stop console spam
       console.error('[notifications] query error:', error.message);
       return NextResponse.json({ notifications: [], unreadCount: 0 });
     }
@@ -47,7 +47,7 @@ export async function GET(req: NextRequest) {
 }
 
 // ---------------------------------------------------------------------------
-// POST /api/notifications — mark_read / mark_all_read actions
+// POST /api/notifications  –  mark_read / mark_all_read actions
 // ---------------------------------------------------------------------------
 export async function POST(req: NextRequest) {
   const supabase = getServerSupabase();

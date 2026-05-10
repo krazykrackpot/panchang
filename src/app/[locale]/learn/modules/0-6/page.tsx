@@ -33,7 +33,7 @@ function Page1() {
     <div className="space-y-6">
       <KeyTakeaway
         points={[
-          'Hindu festivals are not arbitrary dates — each one is timed to a specific astronomical event (full moon, solstice, planetary alignment).',
+          'Hindu festivals are not arbitrary dates  –  each one is timed to a specific astronomical event (full moon, solstice, planetary alignment).',
           'Understanding the astronomy behind rituals connects ancient tradition with observable sky phenomena.',
         ]}
         locale={locale}
@@ -52,8 +52,8 @@ function Page1() {
           {t('everWonderedWhyFastSpecifically', locale)}
         </p>
         <div className="flex flex-wrap gap-3 my-2">
-          <BeginnerNote term="Sankalpa" explanation="A spoken cosmic timestamp recited before every puja — it names the current year, month, tithi, nakshatra, and yoga to anchor the ritual in astronomical time." />
-          <BeginnerNote term="Muhurta" explanation="An auspicious time window selected using multiple Panchang factors — used for weddings, housewarming, business launches, and other important events." />
+          <BeginnerNote term="Sankalpa" explanation="A spoken cosmic timestamp recited before every puja  –  it names the current year, month, tithi, nakshatra, and yoga to anchor the ritual in astronomical time." />
+          <BeginnerNote term="Muhurta" explanation="An auspicious time window selected using multiple Panchang factors  –  used for weddings, housewarming, business launches, and other important events." />
         </div>
       </section>
 
@@ -66,7 +66,7 @@ function Page1() {
         </p>
       </section>
 
-      <WhyItMatters locale={locale}>Every Hindu ritual — from daily puja to once-in-a-lifetime ceremonies — is timed to astronomical events. Understanding the link between ritual and sky lets you see that tradition is encoded astronomy.</WhyItMatters>
+      <WhyItMatters locale={locale}>Every Hindu ritual  –  from daily puja to once-in-a-lifetime ceremonies  –  is timed to astronomical events. Understanding the link between ritual and sky lets you see that tradition is encoded astronomy.</WhyItMatters>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-purple-400/20 bg-gradient-to-br from-purple-900/10 to-transparent">
         <p className="text-text-secondary text-sm leading-relaxed">

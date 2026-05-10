@@ -8,7 +8,7 @@ export const SATYANARAYAN_PUJA: PujaVidhi = {
   samagri: [
     { name: { en: 'Banana leaves (for altar setup)', hi: 'केले के पत्ते (वेदी सज्जा के लिए)', sa: 'कदलीपत्राणि (वेदिसज्जायै)' }, quantity: '5-7', category: 'other', essential: true },
     { name: { en: 'Panchamrit (milk, curd, ghee, honey, sugar)', hi: 'पंचामृत (दूध, दही, घी, शहद, शक्कर)', sa: 'पञ्चामृतम् (क्षीरं, दधि, घृतं, मधु, शर्करा)' }, category: 'food', essential: true },
-    { name: { en: 'Suji/Sooji (semolina for sheera prasad)', hi: 'सूजी (शीरा प्रसाद के लिए)', sa: 'गोधूमसूक्ष्मचूर्णम् (शीरानैवेद्यार्थम्)' }, quantity: '500g', note: { en: 'For making sheera — the essential Satyanarayan prasad', hi: 'शीरा बनाने के लिए — सत्यनारायण का अनिवार्य प्रसाद', sa: 'शीरानिर्माणार्थम् — सत्यनारायणस्य अनिवार्यं नैवेद्यम्' }, category: 'food', essential: true },
+    { name: { en: 'Suji/Sooji (semolina for sheera prasad)', hi: 'सूजी (शीरा प्रसाद के लिए)', sa: 'गोधूमसूक्ष्मचूर्णम् (शीरानैवेद्यार्थम्)' }, quantity: '500g', note: { en: 'For making sheera  –  the essential Satyanarayan prasad', hi: 'शीरा बनाने के लिए  –  सत्यनारायण का अनिवार्य प्रसाद', sa: 'शीरानिर्माणार्थम्  –  सत्यनारायणस्य अनिवार्यं नैवेद्यम्' }, category: 'food', essential: true },
     { name: { en: 'Tulsi leaves', hi: 'तुलसी के पत्ते', sa: 'तुलसीपत्राणि' }, category: 'flowers', essential: true },
     { name: { en: 'Fruits (banana, apple, pomegranate, coconut)', hi: 'फल (केला, सेब, अनार, नारियल)', sa: 'फलानि (कदलीफलम्, सेवफलम्, दाडिमम्, नारिकेलम्)' }, category: 'food', essential: true },
     { name: { en: 'Singhada (water chestnut flour/fruit)', hi: 'सिंघाड़ा (आटा/फल)', sa: 'श्रृङ्गाटकम्' }, category: 'food', essential: false },
@@ -26,9 +26,9 @@ export const SATYANARAYAN_PUJA: PujaVidhi = {
 
   muhurtaType: 'fixed',
   muhurtaDescription: {
-    en: 'Satyanarayan Puja is typically performed on Purnima (full moon day) evening, but can be done on any auspicious occasion — house warming, new job, after recovery from illness, fulfillment of a wish, or any Shukla Paksha day. Evening (after 4 PM) is the preferred time.',
-    hi: 'सत्यनारायण पूजा सामान्यतः पूर्णिमा (पूर्ण चन्द्र) की शाम को की जाती है, किन्तु किसी भी शुभ अवसर पर — गृह प्रवेश, नई नौकरी, रोग मुक्ति के बाद, मनोकामना पूर्ति, या किसी भी शुक्ल पक्ष के दिन — की जा सकती है। सायं (4 बजे के बाद) उत्तम समय है।',
-    sa: 'सत्यनारायणपूजा प्रायः पूर्णिमायां सायं क्रियते, किन्तु कस्मिन्नपि शुभावसरे — गृहप्रवेशे, नवकर्मणि, रोगमुक्त्यनन्तरं, मनोरथसिद्धौ, शुक्लपक्षस्य कस्मिन्नपि दिने — कर्तुं शक्या। सायंकालः (चतुर्वादनानन्तरम्) उत्तमः।',
+    en: 'Satyanarayan Puja is typically performed on Purnima (full moon day) evening, but can be done on any auspicious occasion  –  house warming, new job, after recovery from illness, fulfillment of a wish, or any Shukla Paksha day. Evening (after 4 PM) is the preferred time.',
+    hi: 'सत्यनारायण पूजा सामान्यतः पूर्णिमा (पूर्ण चन्द्र) की शाम को की जाती है, किन्तु किसी भी शुभ अवसर पर  –  गृह प्रवेश, नई नौकरी, रोग मुक्ति के बाद, मनोकामना पूर्ति, या किसी भी शुक्ल पक्ष के दिन  –  की जा सकती है। सायं (4 बजे के बाद) उत्तम समय है।',
+    sa: 'सत्यनारायणपूजा प्रायः पूर्णिमायां सायं क्रियते, किन्तु कस्मिन्नपि शुभावसरे  –  गृहप्रवेशे, नवकर्मणि, रोगमुक्त्यनन्तरं, मनोरथसिद्धौ, शुक्लपक्षस्य कस्मिन्नपि दिने  –  कर्तुं शक्या। सायंकालः (चतुर्वादनानन्तरम्) उत्तमः।',
   },
   muhurtaWindow: { type: 'aparahna' },
 
@@ -66,11 +66,11 @@ export const SATYANARAYAN_PUJA: PujaVidhi = {
     },
     {
       step: 3,
-      title: { en: 'Katha — Chapter 1: The Merchant\'s Story', hi: 'कथा — अध्याय 1: व्यापारी की कथा', sa: 'कथा — प्रथमोऽध्यायः: वणिक्कथा' },
+      title: { en: 'Katha  –  Chapter 1: The Merchant\'s Story', hi: 'कथा  –  अध्याय 1: व्यापारी की कथा', sa: 'कथा  –  प्रथमोऽध्यायः: वणिक्कथा' },
       description: {
-        en: 'Read Chapter 1 of the Satyanarayan Katha. A poor Brahmin receives the Satyanarayan vrat vidhi from Lord Vishnu himself. A woodcutter hears about it and performs the puja — his poverty is destroyed and he gains wealth. This chapter establishes that Satyanarayan puja is accessible to all, regardless of caste or status.',
-        hi: 'सत्यनारायण कथा का अध्याय 1 पढ़ें। एक गरीब ब्राह्मण को स्वयं भगवान विष्णु से सत्यनारायण व्रत विधि प्राप्त होती है। एक लकड़हारा इसके बारे में सुनकर पूजा करता है — उसकी दरिद्रता नष्ट होती है और धन प्राप्त होता है। यह अध्याय स्थापित करता है कि सत्यनारायण पूजा जाति या स्थिति की परवाह किए बिना सभी के लिए सुलभ है।',
-        sa: 'सत्यनारायणकथायाः प्रथमोऽध्यायं पठेत्। दरिद्रब्राह्मणः स्वयं विष्णोः सत्यनारायणव्रतविधिं प्राप्नोति। काष्ठच्छेदकः श्रुत्वा पूजां करोति — तस्य दारिद्र्यं विनश्यति धनं च प्राप्नोति। अयम् अध्यायः स्थापयति सत्यनारायणपूजा सर्वेभ्यः सुलभा जातिस्थित्यनपेक्षया।',
+        en: 'Read Chapter 1 of the Satyanarayan Katha. A poor Brahmin receives the Satyanarayan vrat vidhi from Lord Vishnu himself. A woodcutter hears about it and performs the puja  –  his poverty is destroyed and he gains wealth. This chapter establishes that Satyanarayan puja is accessible to all, regardless of caste or status.',
+        hi: 'सत्यनारायण कथा का अध्याय 1 पढ़ें। एक गरीब ब्राह्मण को स्वयं भगवान विष्णु से सत्यनारायण व्रत विधि प्राप्त होती है। एक लकड़हारा इसके बारे में सुनकर पूजा करता है  –  उसकी दरिद्रता नष्ट होती है और धन प्राप्त होता है। यह अध्याय स्थापित करता है कि सत्यनारायण पूजा जाति या स्थिति की परवाह किए बिना सभी के लिए सुलभ है।',
+        sa: 'सत्यनारायणकथायाः प्रथमोऽध्यायं पठेत्। दरिद्रब्राह्मणः स्वयं विष्णोः सत्यनारायणव्रतविधिं प्राप्नोति। काष्ठच्छेदकः श्रुत्वा पूजां करोति  –  तस्य दारिद्र्यं विनश्यति धनं च प्राप्नोति। अयम् अध्यायः स्थापयति सत्यनारायणपूजा सर्वेभ्यः सुलभा जातिस्थित्यनपेक्षया।',
       },
       duration: '10 min',
       essential: true,
@@ -90,11 +90,11 @@ export const SATYANARAYAN_PUJA: PujaVidhi = {
     },
     {
       step: 5,
-      title: { en: 'Katha — Chapter 2: The Woodcutter\'s Prosperity', hi: 'कथा — अध्याय 2: लकड़हारे की समृद्धि', sa: 'कथा — द्वितीयोऽध्यायः: काष्ठच्छेदकसमृद्धिः' },
+      title: { en: 'Katha  –  Chapter 2: The Woodcutter\'s Prosperity', hi: 'कथा  –  अध्याय 2: लकड़हारे की समृद्धि', sa: 'कथा  –  द्वितीयोऽध्यायः: काष्ठच्छेदकसमृद्धिः' },
       description: {
-        en: 'Read Chapter 2. A devout merchant named Sadhu performs the Satyanarayan puja regularly and prospers. A king named Ulkamukh and his minister Shatananda encounter the merchant during the puja and join in — they too receive prosperity and children. This chapter shows the contagious nature of Satyanarayan\'s grace.',
-        hi: 'अध्याय 2 पढ़ें। साधु नामक एक धार्मिक व्यापारी नियमित रूप से सत्यनारायण पूजा करता है और समृद्ध होता है। उल्कामुख नामक राजा और उसके मन्त्री शतानन्द पूजा के दौरान व्यापारी से मिलते हैं और सम्मिलित होते हैं — उन्हें भी समृद्धि और सन्तान की प्राप्ति होती है। यह अध्याय सत्यनारायण की कृपा के संक्रामक स्वभाव को दर्शाता है।',
-        sa: 'द्वितीयोऽध्यायं पठेत्। साधुनामा धार्मिकवणिक् नित्यं सत्यनारायणपूजां करोति समृद्धश्च भवति। उल्कामुखनामा राजा तस्य मन्त्री शतानन्दश्च पूजाकाले वणिजं मिलित्वा सम्मिलन्ति — तौ अपि समृद्धिं सन्तानं च प्राप्नुतः। अयम् अध्यायः सत्यनारायणकृपायाः सङ्क्रामकस्वभावं दर्शयति।',
+        en: 'Read Chapter 2. A devout merchant named Sadhu performs the Satyanarayan puja regularly and prospers. A king named Ulkamukh and his minister Shatananda encounter the merchant during the puja and join in  –  they too receive prosperity and children. This chapter shows the contagious nature of Satyanarayan\'s grace.',
+        hi: 'अध्याय 2 पढ़ें। साधु नामक एक धार्मिक व्यापारी नियमित रूप से सत्यनारायण पूजा करता है और समृद्ध होता है। उल्कामुख नामक राजा और उसके मन्त्री शतानन्द पूजा के दौरान व्यापारी से मिलते हैं और सम्मिलित होते हैं  –  उन्हें भी समृद्धि और सन्तान की प्राप्ति होती है। यह अध्याय सत्यनारायण की कृपा के संक्रामक स्वभाव को दर्शाता है।',
+        sa: 'द्वितीयोऽध्यायं पठेत्। साधुनामा धार्मिकवणिक् नित्यं सत्यनारायणपूजां करोति समृद्धश्च भवति। उल्कामुखनामा राजा तस्य मन्त्री शतानन्दश्च पूजाकाले वणिजं मिलित्वा सम्मिलन्ति  –  तौ अपि समृद्धिं सन्तानं च प्राप्नुतः। अयम् अध्यायः सत्यनारायणकृपायाः सङ्क्रामकस्वभावं दर्शयति।',
       },
       duration: '10 min',
       essential: true,
@@ -128,9 +128,9 @@ export const SATYANARAYAN_PUJA: PujaVidhi = {
       step: 8,
       title: { en: 'Aarti after Chapter 4 & Katha Chapter 5: Conclusion', hi: 'अध्याय 4 के बाद आरती एवं कथा अध्याय 5: उपसंहार', sa: 'चतुर्थाध्यायानन्तरम् आरात्रिकं पञ्चमोऽध्यायश्च: उपसंहारः' },
       description: {
-        en: 'Perform brief aarti after Chapter 4, then read Chapter 5 — the conclusion. Suta Muni summarizes the glory of Satyanarayan vrat: whoever hears or performs this katha with devotion attains all desires, is freed from sorrow, and gains lasting prosperity. The critical warning is repeated — the prasad must be consumed by ALL present; refusing it brings misfortune.',
-        hi: 'अध्याय 4 के बाद संक्षिप्त आरती करें, फिर अध्याय 5 — उपसंहार पढ़ें। सूत मुनि सत्यनारायण व्रत की महिमा का सार प्रस्तुत करते हैं: जो कोई भक्तिपूर्वक यह कथा सुनता या करता है, वह सभी मनोकामनाएँ प्राप्त करता है, दुखों से मुक्त होता है, और स्थायी समृद्धि पाता है। महत्वपूर्ण चेतावनी दोहराई जाती है — प्रसाद सभी उपस्थित लोगों को खाना चाहिए; इसे अस्वीकार करने से दुर्भाग्य आता है।',
-        sa: 'चतुर्थाध्यायानन्तरम् आरात्रिकं कुर्यात्, ततः पञ्चमोऽध्यायम् — उपसंहारं पठेत्। सूतमुनिः सत्यनारायणव्रतमाहात्म्यं सारयति: यः कश्चित् भक्त्या इमां कथां शृणोति करोति वा सः सर्वान् मनोरथान् प्राप्नोति दुःखात् मुच्यते स्थिरसमृद्धिं च लभते। महत्त्वपूर्णा चेतावनी पुनरुच्यते — प्रसादं सर्वैः उपस्थितैः भक्षितव्यम्; तस्य अस्वीकारे दुर्भाग्यम् आगच्छति।',
+        en: 'Perform brief aarti after Chapter 4, then read Chapter 5  –  the conclusion. Suta Muni summarizes the glory of Satyanarayan vrat: whoever hears or performs this katha with devotion attains all desires, is freed from sorrow, and gains lasting prosperity. The critical warning is repeated  –  the prasad must be consumed by ALL present; refusing it brings misfortune.',
+        hi: 'अध्याय 4 के बाद संक्षिप्त आरती करें, फिर अध्याय 5  –  उपसंहार पढ़ें। सूत मुनि सत्यनारायण व्रत की महिमा का सार प्रस्तुत करते हैं: जो कोई भक्तिपूर्वक यह कथा सुनता या करता है, वह सभी मनोकामनाएँ प्राप्त करता है, दुखों से मुक्त होता है, और स्थायी समृद्धि पाता है। महत्वपूर्ण चेतावनी दोहराई जाती है  –  प्रसाद सभी उपस्थित लोगों को खाना चाहिए; इसे अस्वीकार करने से दुर्भाग्य आता है।',
+        sa: 'चतुर्थाध्यायानन्तरम् आरात्रिकं कुर्यात्, ततः पञ्चमोऽध्यायम्  –  उपसंहारं पठेत्। सूतमुनिः सत्यनारायणव्रतमाहात्म्यं सारयति: यः कश्चित् भक्त्या इमां कथां शृणोति करोति वा सः सर्वान् मनोरथान् प्राप्नोति दुःखात् मुच्यते स्थिरसमृद्धिं च लभते। महत्त्वपूर्णा चेतावनी पुनरुच्यते  –  प्रसादं सर्वैः उपस्थितैः भक्षितव्यम्; तस्य अस्वीकारे दुर्भाग्यम् आगच्छति।',
       },
       duration: '10 min',
       essential: true,
@@ -140,9 +140,9 @@ export const SATYANARAYAN_PUJA: PujaVidhi = {
       step: 9,
       title: { en: 'Final Aarti & Sheera Prasad Distribution', hi: 'अन्तिम आरती एवं शीरा प्रसाद वितरण', sa: 'अन्तिमम् आरात्रिकं शीराप्रसादवितरणं च' },
       description: {
-        en: 'Perform the final grand aarti singing "Om Jai Lakshmi Ramana". Offer the sheera (semolina halwa prepared with ghee, sugar, and dry fruits) as naivedya. After offering, distribute sheera prasad to EVERY person present — this is the most critical part of the entire puja. No one should leave without eating prasad. Untie the red thread from the kalash and tie it on the wrists of all family members.',
-        hi: '"ॐ जय लक्ष्मी रमणा" गाते हुए अन्तिम भव्य आरती करें। शीरा (घी, चीनी और मेवों से बना सूजी का हलवा) नैवेद्य के रूप में अर्पित करें। अर्पण के बाद शीरा प्रसाद प्रत्येक उपस्थित व्यक्ति को बाँटें — यह पूरी पूजा का सबसे महत्वपूर्ण भाग है। कोई भी प्रसाद खाए बिना न जाए। कलश से लाल धागा खोलकर सभी परिवारजनों की कलाई पर बाँधें।',
-        sa: '"ॐ जय लक्ष्मी रमणा" इति गायन् अन्तिमं भव्यम् आरात्रिकं कुर्यात्। शीरां (घृतशर्कराशुष्कफलैः निर्मितं गोधूमसूक्ष्मचूर्णपाकम्) नैवेद्यरूपेण अर्पयेत्। अर्पणानन्तरं शीराप्रसादं प्रत्येकम् उपस्थितं जनं वितरेत् — एतत् सम्पूर्णपूजायाः सर्वमहत्त्वपूर्णम् अंशम्। कोऽपि प्रसादम् अभक्षयित्वा न गच्छेत्। कलशात् रक्तसूत्रं विमुच्य सर्वपरिजनानां मणिबन्धे बध्नीयात्।',
+        en: 'Perform the final grand aarti singing "Om Jai Lakshmi Ramana". Offer the sheera (semolina halwa prepared with ghee, sugar, and dry fruits) as naivedya. After offering, distribute sheera prasad to EVERY person present  –  this is the most critical part of the entire puja. No one should leave without eating prasad. Untie the red thread from the kalash and tie it on the wrists of all family members.',
+        hi: '"ॐ जय लक्ष्मी रमणा" गाते हुए अन्तिम भव्य आरती करें। शीरा (घी, चीनी और मेवों से बना सूजी का हलवा) नैवेद्य के रूप में अर्पित करें। अर्पण के बाद शीरा प्रसाद प्रत्येक उपस्थित व्यक्ति को बाँटें  –  यह पूरी पूजा का सबसे महत्वपूर्ण भाग है। कोई भी प्रसाद खाए बिना न जाए। कलश से लाल धागा खोलकर सभी परिवारजनों की कलाई पर बाँधें।',
+        sa: '"ॐ जय लक्ष्मी रमणा" इति गायन् अन्तिमं भव्यम् आरात्रिकं कुर्यात्। शीरां (घृतशर्कराशुष्कफलैः निर्मितं गोधूमसूक्ष्मचूर्णपाकम्) नैवेद्यरूपेण अर्पयेत्। अर्पणानन्तरं शीराप्रसादं प्रत्येकम् उपस्थितं जनं वितरेत्  –  एतत् सम्पूर्णपूजायाः सर्वमहत्त्वपूर्णम् अंशम्। कोऽपि प्रसादम् अभक्षयित्वा न गच्छेत्। कलशात् रक्तसूत्रं विमुच्य सर्वपरिजनानां मणिबन्धे बध्नीयात्।',
       },
       duration: '15 min',
       essential: true,
@@ -174,14 +174,14 @@ export const SATYANARAYAN_PUJA: PujaVidhi = {
       devanagari: 'सत्यनारायणं देवं वन्दे सत्यपराक्रमम्। सत्यं सत्यस्वरूपं च सत्यमेव सदा भजे॥',
       iast: 'satyanārāyaṇaṃ devaṃ vande satyaparākramam | satyaṃ satyasvarūpaṃ ca satyameva sadā bhaje ||',
       meaning: {
-        en: 'I worship Lord Satyanarayan, the god of truth and valor. He is truth itself, his form is truth — I forever worship that truth.',
-        hi: 'मैं सत्यनारायण भगवान की वन्दना करता हूँ जो सत्य और पराक्रम के देव हैं। वे सत्यस्वरूप हैं — मैं सदा उस सत्य की पूजा करता हूँ।',
+        en: 'I worship Lord Satyanarayan, the god of truth and valor. He is truth itself, his form is truth  –  I forever worship that truth.',
+        hi: 'मैं सत्यनारायण भगवान की वन्दना करता हूँ जो सत्य और पराक्रम के देव हैं। वे सत्यस्वरूप हैं  –  मैं सदा उस सत्य की पूजा करता हूँ।',
         sa: 'सत्यपराक्रमं सत्यनारायणदेवं वन्दे। सत्यं सत्यस्वरूपं सत्यमेव सदा भजे।',
       },
       usage: {
-        en: 'Recite at the beginning and end of each katha chapter. This stuti encapsulates the essence of Satyanarayan — the lord of truth.',
-        hi: 'प्रत्येक कथा अध्याय के आरम्भ और अन्त में पढ़ें। यह स्तुति सत्यनारायण — सत्य के स्वामी — के सार को समाहित करती है।',
-        sa: 'प्रत्येकस्य कथाध्यायस्य आरम्भे अन्ते च पठेत्। इयं स्तुतिः सत्यनारायणस्य — सत्यस्वामिनः — सारं समाहरति।',
+        en: 'Recite at the beginning and end of each katha chapter. This stuti encapsulates the essence of Satyanarayan  –  the lord of truth.',
+        hi: 'प्रत्येक कथा अध्याय के आरम्भ और अन्त में पढ़ें। यह स्तुति सत्यनारायण  –  सत्य के स्वामी  –  के सार को समाहित करती है।',
+        sa: 'प्रत्येकस्य कथाध्यायस्य आरम्भे अन्ते च पठेत्। इयं स्तुतिः सत्यनारायणस्य  –  सत्यस्वामिनः  –  सारं समाहरति।',
       },
     },
     {
@@ -190,9 +190,9 @@ export const SATYANARAYAN_PUJA: PujaVidhi = {
       devanagari: 'शान्ताकारं भुजगशयनं पद्मनाभं सुरेशम्। विश्वाधारं गगनसदृशं मेघवर्णं शुभाङ्गम्। लक्ष्मीकान्तं कमलनयनं योगिभिर्ध्यानगम्यम्। वन्दे विष्णुं भवभयहरं सर्वलोकैकनाथम्॥',
       iast: 'śāntākāraṃ bhujagaśayanaṃ padmanābhaṃ sureśam | viśvādhāraṃ gaganasadṛśaṃ meghavarṇaṃ śubhāṅgam | lakṣmīkāntaṃ kamalanayanaṃ yogibhirdhyānagamyam | vande viṣṇuṃ bhavabhayaharaṃ sarvalokaikanātham ||',
       meaning: {
-        en: 'I worship Lord Vishnu — who has a serene form, who reclines on the serpent Shesha, from whose navel the lotus springs, lord of the gods, support of the universe, vast as the sky, dark as rain clouds, with auspicious limbs, beloved of Lakshmi, lotus-eyed, accessible to yogis through meditation, destroyer of the fear of worldly existence, sole lord of all worlds.',
-        hi: 'मैं भगवान विष्णु की वन्दना करता हूँ — जिनका स्वरूप शान्त है, जो शेषनाग पर शयन करते हैं, जिनकी नाभि से कमल प्रकट होता है, देवताओं के ईश्वर, विश्व के आधार, आकाश सदृश, मेघ जैसे वर्ण वाले, शुभ अंगों वाले, लक्ष्मी के प्रिय, कमलनयन, योगियों को ध्यान द्वारा प्राप्य, भवभय को हरने वाले, सभी लोकों के एकमात्र नाथ।',
-        sa: 'विष्णुं वन्दे — शान्ताकारं भुजगशयनं पद्मनाभं सुरेशं विश्वाधारं गगनसदृशं मेघवर्णं शुभाङ्गं लक्ष्मीकान्तं कमलनयनं योगिध्यानगम्यं भवभयहरं सर्वलोकैकनाथम्।',
+        en: 'I worship Lord Vishnu  –  who has a serene form, who reclines on the serpent Shesha, from whose navel the lotus springs, lord of the gods, support of the universe, vast as the sky, dark as rain clouds, with auspicious limbs, beloved of Lakshmi, lotus-eyed, accessible to yogis through meditation, destroyer of the fear of worldly existence, sole lord of all worlds.',
+        hi: 'मैं भगवान विष्णु की वन्दना करता हूँ  –  जिनका स्वरूप शान्त है, जो शेषनाग पर शयन करते हैं, जिनकी नाभि से कमल प्रकट होता है, देवताओं के ईश्वर, विश्व के आधार, आकाश सदृश, मेघ जैसे वर्ण वाले, शुभ अंगों वाले, लक्ष्मी के प्रिय, कमलनयन, योगियों को ध्यान द्वारा प्राप्य, भवभय को हरने वाले, सभी लोकों के एकमात्र नाथ।',
+        sa: 'विष्णुं वन्दे  –  शान्ताकारं भुजगशयनं पद्मनाभं सुरेशं विश्वाधारं गगनसदृशं मेघवर्णं शुभाङ्गं लक्ष्मीकान्तं कमलनयनं योगिध्यानगम्यं भवभयहरं सर्वलोकैकनाथम्।',
       },
       usage: {
         en: 'Recite at the very beginning of Satyanarayan Puja during dhyana (meditation). This shloka evokes the complete form of Vishnu.',
@@ -203,7 +203,7 @@ export const SATYANARAYAN_PUJA: PujaVidhi = {
   ],
 
   aarti: {
-    name: { en: 'Om Jai Lakshmi Ramana — Satyanarayan Aarti', hi: 'ॐ जय लक्ष्मी रमणा — सत्यनारायण आरती', sa: 'ॐ जय लक्ष्मी रमणा — सत्यनारायणारात्रिकम्' },
+    name: { en: 'Om Jai Lakshmi Ramana  –  Satyanarayan Aarti', hi: 'ॐ जय लक्ष्मी रमणा  –  सत्यनारायण आरती', sa: 'ॐ जय लक्ष्मी रमणा  –  सत्यनारायणारात्रिकम्' },
     devanagari: `ॐ जय लक्ष्मी रमणा, स्वामी जय लक्ष्मी रमणा।
 सत्यनारायण स्वामी, जन पातक हरणा॥
 ॐ जय लक्ष्मी रमणा॥
@@ -265,21 +265,21 @@ oṃ jaya lakṣmī ramaṇā ||`,
   },
 
   naivedya: {
-    en: 'Sheera (semolina halwa) is THE essential prasad — prepared with ghee, sugar, cardamom, saffron, and dry fruits (cashew, raisin). Also offer fruits, panchamrit, and Tulsi water. The sheera must be prepared fresh on the day of puja.',
-    hi: 'शीरा (सूजी का हलवा) अनिवार्य प्रसाद है — घी, चीनी, इलायची, केसर और मेवों (काजू, किशमिश) से बनाया जाता है। फल, पंचामृत और तुलसी जल भी अर्पित करें। शीरा पूजा के दिन ताज़ा बनाना चाहिए।',
-    sa: 'शीरा (गोधूमसूक्ष्मचूर्णपाकः) अनिवार्यं नैवेद्यम् — घृतशर्कराएलाकेसरशुष्कफलैः (काजूद्राक्षा) निर्मितम्। फलानि पञ्चामृतं तुलसीजलं च अर्पयेत्। शीरा पूजादिने नवीना निर्मातव्या।',
+    en: 'Sheera (semolina halwa) is THE essential prasad  –  prepared with ghee, sugar, cardamom, saffron, and dry fruits (cashew, raisin). Also offer fruits, panchamrit, and Tulsi water. The sheera must be prepared fresh on the day of puja.',
+    hi: 'शीरा (सूजी का हलवा) अनिवार्य प्रसाद है  –  घी, चीनी, इलायची, केसर और मेवों (काजू, किशमिश) से बनाया जाता है। फल, पंचामृत और तुलसी जल भी अर्पित करें। शीरा पूजा के दिन ताज़ा बनाना चाहिए।',
+    sa: 'शीरा (गोधूमसूक्ष्मचूर्णपाकः) अनिवार्यं नैवेद्यम्  –  घृतशर्कराएलाकेसरशुष्कफलैः (काजूद्राक्षा) निर्मितम्। फलानि पञ्चामृतं तुलसीजलं च अर्पयेत्। शीरा पूजादिने नवीना निर्मातव्या।',
   },
 
   precautions: [
     {
-      en: 'EVERY person present during the katha MUST eat the prasad (sheera). Refusing prasad brings misfortune — this is the central lesson of Chapter 4 of the Katha. Even a small amount must be consumed.',
-      hi: 'कथा के दौरान उपस्थित प्रत्येक व्यक्ति को प्रसाद (शीरा) खाना अनिवार्य है। प्रसाद अस्वीकार करने से दुर्भाग्य आता है — यह कथा के अध्याय 4 का केन्द्रीय शिक्षा है। थोड़ी सी मात्रा भी अवश्य लेनी चाहिए।',
-      sa: 'कथाकाले उपस्थितः प्रत्येकः जनः प्रसादं (शीरां) भक्षयेदेव। प्रसादस्य अस्वीकारे दुर्भाग्यम् आगच्छति — एषा कथायाः चतुर्थाध्यायस्य केन्द्रीया शिक्षा। स्वल्पमात्रम् अपि अवश्यं ग्रहणीयम्।',
+      en: 'EVERY person present during the katha MUST eat the prasad (sheera). Refusing prasad brings misfortune  –  this is the central lesson of Chapter 4 of the Katha. Even a small amount must be consumed.',
+      hi: 'कथा के दौरान उपस्थित प्रत्येक व्यक्ति को प्रसाद (शीरा) खाना अनिवार्य है। प्रसाद अस्वीकार करने से दुर्भाग्य आता है  –  यह कथा के अध्याय 4 का केन्द्रीय शिक्षा है। थोड़ी सी मात्रा भी अवश्य लेनी चाहिए।',
+      sa: 'कथाकाले उपस्थितः प्रत्येकः जनः प्रसादं (शीरां) भक्षयेदेव। प्रसादस्य अस्वीकारे दुर्भाग्यम् आगच्छति  –  एषा कथायाः चतुर्थाध्यायस्य केन्द्रीया शिक्षा। स्वल्पमात्रम् अपि अवश्यं ग्रहणीयम्।',
     },
     {
-      en: 'Prasad distribution is the MOST important part of the entire puja — more important than the katha reading itself. No one should leave without receiving and consuming prasad.',
-      hi: 'प्रसाद वितरण पूरी पूजा का सबसे महत्वपूर्ण अंश है — कथा पाठ से भी अधिक महत्वपूर्ण। कोई भी प्रसाद लिए और खाए बिना न जाए।',
-      sa: 'प्रसादवितरणं सम्पूर्णपूजायाः सर्वमहत्त्वपूर्णम् अंशम् — कथापठनादपि अधिकमहत्त्वपूर्णम्। कोऽपि प्रसादं अगृहीत्वा अभक्षयित्वा च न गच्छेत्।',
+      en: 'Prasad distribution is the MOST important part of the entire puja  –  more important than the katha reading itself. No one should leave without receiving and consuming prasad.',
+      hi: 'प्रसाद वितरण पूरी पूजा का सबसे महत्वपूर्ण अंश है  –  कथा पाठ से भी अधिक महत्वपूर्ण। कोई भी प्रसाद लिए और खाए बिना न जाए।',
+      sa: 'प्रसादवितरणं सम्पूर्णपूजायाः सर्वमहत्त्वपूर्णम् अंशम्  –  कथापठनादपि अधिकमहत्त्वपूर्णम्। कोऽपि प्रसादं अगृहीत्वा अभक्षयित्वा च न गच्छेत्।',
     },
     {
       en: 'If you make a sankalpa (vow) to perform Satyanarayan Puja, you MUST fulfill it. Forgetting or neglecting the vow brings adverse consequences (as shown in the Katha).',

@@ -6,7 +6,7 @@ export const AKSHAYA_TRITIYA_PUJA: PujaVidhi = {
   deity: { en: 'Lakshmi-Vishnu', hi: 'लक्ष्मी-विष्णु', sa: 'लक्ष्मीविष्णू' },
 
   samagri: [
-    { name: { en: 'Gold or silver item (even small — coin, ring, or chain)', hi: 'सोना या चाँदी की वस्तु (छोटी भी हो — सिक्का, अँगूठी या चेन)', sa: 'स्वर्णं रजतं वा (लघु अपि — नाणकम् अङ्गुलीयकं शृङ्खला वा)' }, essential: true, note: { en: 'Buying gold/silver on Akshaya Tritiya is believed to bring inexhaustible prosperity', hi: 'अक्षय तृतीया पर सोना/चाँदी ख़रीदने से अक्षय समृद्धि आती है', sa: 'अक्षयतृतीयायाम् स्वर्णरजतक्रयणेन अक्षयसमृद्धिः भवति' } },
+    { name: { en: 'Gold or silver item (even small  –  coin, ring, or chain)', hi: 'सोना या चाँदी की वस्तु (छोटी भी हो  –  सिक्का, अँगूठी या चेन)', sa: 'स्वर्णं रजतं वा (लघु अपि  –  नाणकम् अङ्गुलीयकं शृङ्खला वा)' }, essential: true, note: { en: 'Buying gold/silver on Akshaya Tritiya is believed to bring inexhaustible prosperity', hi: 'अक्षय तृतीया पर सोना/चाँदी ख़रीदने से अक्षय समृद्धि आती है', sa: 'अक्षयतृतीयायाम् स्वर्णरजतक्रयणेन अक्षयसमृद्धिः भवति' } },
     { name: { en: 'Tulsi leaves (holy basil)', hi: 'तुलसी के पत्ते', sa: 'तुलसीपत्राणि' }, essential: true, category: 'flowers' },
     { name: { en: 'Charity items (clothes, food, water pots)', hi: 'दान की वस्तुएँ (वस्त्र, भोजन, जल के बर्तन)', sa: 'दानसामग्री (वस्त्राणि, अन्नम्, जलपात्राणि)' }, essential: true },
     { name: { en: 'Vishnu idol or image', hi: 'विष्णु मूर्ति या चित्र', sa: 'विष्णुमूर्तिः अथवा चित्रम्' } },
@@ -22,9 +22,9 @@ export const AKSHAYA_TRITIYA_PUJA: PujaVidhi = {
 
   muhurtaType: 'fixed',
   muhurtaDescription: {
-    en: 'Akshaya Tritiya falls on Vaishakha Shukla Tritiya. The entire day is auspicious — no specific muhurta is required. Any activity performed on this day yields akshaya (inexhaustible) results. Puja, charity, and purchases can be done at any time during the day.',
-    hi: 'अक्षय तृतीया वैशाख शुक्ल तृतीया को पड़ती है। पूरा दिन शुभ है — किसी विशेष मुहूर्त की आवश्यकता नहीं। इस दिन किया गया कोई भी कार्य अक्षय (अनन्त) फल देता है। पूजा, दान और ख़रीदारी दिन में कभी भी की जा सकती है।',
-    sa: 'अक्षयतृतीया वैशाखशुक्लतृतीयायां भवति। सकलं दिनं शुभम् — विशिष्टमुहूर्तस्य आवश्यकता नास्ति। अस्मिन् दिने कृतं किमपि कर्म अक्षयफलं ददाति। पूजा दानं क्रयणं च दिने कदापि कर्तुं शक्यम्।',
+    en: 'Akshaya Tritiya falls on Vaishakha Shukla Tritiya. The entire day is auspicious  –  no specific muhurta is required. Any activity performed on this day yields akshaya (inexhaustible) results. Puja, charity, and purchases can be done at any time during the day.',
+    hi: 'अक्षय तृतीया वैशाख शुक्ल तृतीया को पड़ती है। पूरा दिन शुभ है  –  किसी विशेष मुहूर्त की आवश्यकता नहीं। इस दिन किया गया कोई भी कार्य अक्षय (अनन्त) फल देता है। पूजा, दान और ख़रीदारी दिन में कभी भी की जा सकती है।',
+    sa: 'अक्षयतृतीया वैशाखशुक्लतृतीयायां भवति। सकलं दिनं शुभम्  –  विशिष्टमुहूर्तस्य आवश्यकता नास्ति। अस्मिन् दिने कृतं किमपि कर्म अक्षयफलं ददाति। पूजा दानं क्रयणं च दिने कदापि कर्तुं शक्यम्।',
   },
 
   sankalpa: {
@@ -36,7 +36,7 @@ export const AKSHAYA_TRITIYA_PUJA: PujaVidhi = {
   vidhiSteps: [
     {
       step: 1,
-      title: { en: 'Morning — Bath & Sankalpa', hi: 'प्रातः — स्नान एवं संकल्प', sa: 'प्रातः — स्नानसङ्कल्पौ' },
+      title: { en: 'Morning  –  Bath & Sankalpa', hi: 'प्रातः  –  स्नान एवं संकल्प', sa: 'प्रातः  –  स्नानसङ्कल्पौ' },
       description: {
         en: 'Take a purifying morning bath. Wear clean yellow or white clothes. Sit before the altar and take the formal sankalpa for Akshaya Tritiya puja and daan.',
         hi: 'प्रातः शुद्धि स्नान करें। स्वच्छ पीले या सफ़ेद वस्त्र पहनें। वेदी के सामने बैठकर अक्षय तृतीया पूजा और दान के लिए विधिवत् संकल्प करें।',
@@ -98,7 +98,7 @@ export const AKSHAYA_TRITIYA_PUJA: PujaVidhi = {
     },
     {
       step: 6,
-      title: { en: 'Charity — Daan (The Core Act)', hi: 'दान (मुख्य कर्म)', sa: 'दानम् (प्रधानकर्म)' },
+      title: { en: 'Charity  –  Daan (The Core Act)', hi: 'दान (मुख्य कर्म)', sa: 'दानम् (प्रधानकर्म)' },
       description: {
         en: 'Akshaya Tritiya is primarily a day of daan (charity). Donate clothes, food grains, water pots (for summer), gold/silver coins, fruits, and money to the needy. Anna daan (food charity) and jala daan (water charity) are especially meritorious on this day.',
         hi: 'अक्षय तृतीया मुख्यतः दान का दिन है। ज़रूरतमन्दों को वस्त्र, अनाज, जल के बर्तन (गर्मी के लिए), सोने/चाँदी के सिक्के, फल और धन दान करें। इस दिन अन्न दान और जल दान विशेष पुण्यदायी हैं।',
@@ -112,9 +112,9 @@ export const AKSHAYA_TRITIYA_PUJA: PujaVidhi = {
       step: 7,
       title: { en: 'Gold/Silver Purchase (Optional)', hi: 'सोना/चाँदी ख़रीदना (वैकल्पिक)', sa: 'स्वर्णरजतक्रयणम् (ऐच्छिकम्)' },
       description: {
-        en: 'Purchase gold or silver — even a small amount. This tradition symbolises that wealth acquired on Akshaya Tritiya is inexhaustible (akshaya = never diminishing). Even a gold coin or small piece of silver suffices.',
-        hi: 'सोना या चाँदी ख़रीदें — थोड़ी सी भी। यह परम्परा दर्शाती है कि अक्षय तृतीया पर प्राप्त धन अक्षय (कभी न घटने वाला) होता है। एक स्वर्ण मुद्रा या चाँदी का छोटा टुकड़ा भी पर्याप्त है।',
-        sa: 'स्वर्णं रजतं वा क्रीणीयात् — अल्पम् अपि। एषा परम्परा दर्शयति अक्षयतृतीयायां प्राप्तं धनम् अक्षयं (कदापि न क्षीयते) भवतीति। एकं स्वर्णनाणकं लघुरजतखण्डं वा पर्याप्तम्।',
+        en: 'Purchase gold or silver  –  even a small amount. This tradition symbolises that wealth acquired on Akshaya Tritiya is inexhaustible (akshaya = never diminishing). Even a gold coin or small piece of silver suffices.',
+        hi: 'सोना या चाँदी ख़रीदें  –  थोड़ी सी भी। यह परम्परा दर्शाती है कि अक्षय तृतीया पर प्राप्त धन अक्षय (कभी न घटने वाला) होता है। एक स्वर्ण मुद्रा या चाँदी का छोटा टुकड़ा भी पर्याप्त है।',
+        sa: 'स्वर्णं रजतं वा क्रीणीयात्  –  अल्पम् अपि। एषा परम्परा दर्शयति अक्षयतृतीयायां प्राप्तं धनम् अक्षयं (कदापि न क्षीयते) भवतीति। एकं स्वर्णनाणकं लघुरजतखण्डं वा पर्याप्तम्।',
       },
       essential: false,
       stepType: 'offering',
@@ -147,9 +147,9 @@ export const AKSHAYA_TRITIYA_PUJA: PujaVidhi = {
       },
       japaCount: 108,
       usage: {
-        en: 'The eight-syllable Narayana mantra. Chant 108 times during the puja. This is the Ashtakshari mantra — the supreme Vaishnava mantra.',
-        hi: 'आठ अक्षरों का नारायण मन्त्र। पूजा के दौरान 108 बार जपें। यह अष्टाक्षरी मन्त्र — वैष्णवों का सर्वोच्च मन्त्र है।',
-        sa: 'अष्टाक्षरनारायणमन्त्रः। पूजायां १०८ वारं जपेत्। एषः अष्टाक्षरीमन्त्रः — वैष्णवानां परममन्त्रः।',
+        en: 'The eight-syllable Narayana mantra. Chant 108 times during the puja. This is the Ashtakshari mantra  –  the supreme Vaishnava mantra.',
+        hi: 'आठ अक्षरों का नारायण मन्त्र। पूजा के दौरान 108 बार जपें। यह अष्टाक्षरी मन्त्र  –  वैष्णवों का सर्वोच्च मन्त्र है।',
+        sa: 'अष्टाक्षरनारायणमन्त्रः। पूजायां १०८ वारं जपेत्। एषः अष्टाक्षरीमन्त्रः  –  वैष्णवानां परममन्त्रः।',
       },
     },
     {
@@ -196,8 +196,8 @@ export const AKSHAYA_TRITIYA_PUJA: PujaVidhi = {
   ],
 
   phala: {
-    en: 'Akshaya Tritiya is one of the most sacred tithis in the Hindu calendar. Any act of merit — charity, puja, japa, new beginnings — performed on this day yields akshaya (inexhaustible, never-diminishing) results. The Brahma Purana states that daan on Akshaya Tritiya is equal to daan at all tirthas combined. This is the day Treta Yuga began, the day the Ganges descended to earth, and the day Kubera received his wealth from Shiva.',
-    hi: 'अक्षय तृतीया हिन्दू पञ्चाँग की सबसे पवित्र तिथियों में से एक है। इस दिन किया गया कोई भी पुण्य कर्म — दान, पूजा, जप, नई शुरुआत — अक्षय (कभी न घटने वाला) फल देता है। ब्रह्म पुराण के अनुसार अक्षय तृतीया पर दान सभी तीर्थों के दान के बराबर है। यही दिन है जब त्रेता युग आरम्भ हुआ, गंगा पृथ्वी पर अवतरित हुईं, और कुबेर को शिव से उनका धन प्राप्त हुआ।',
-    sa: 'अक्षयतृतीया हिन्दूपञ्चाङ्गस्य पवित्रतमासु तिथिषु अन्यतमा। अस्मिन् दिने कृतं किमपि पुण्यकर्म — दानं पूजा जपः नवारम्भः — अक्षयफलं ददाति। ब्रह्मपुराणे उक्तम् अक्षयतृतीयायां दानं सर्वतीर्थदानसमम्। एतद्दिने त्रेतायुगः आरब्धः, गङ्गा पृथिव्याम् अवतीर्णा, कुबेरः शिवात् स्वधनं प्राप्तवान्।',
+    en: 'Akshaya Tritiya is one of the most sacred tithis in the Hindu calendar. Any act of merit  –  charity, puja, japa, new beginnings  –  performed on this day yields akshaya (inexhaustible, never-diminishing) results. The Brahma Purana states that daan on Akshaya Tritiya is equal to daan at all tirthas combined. This is the day Treta Yuga began, the day the Ganges descended to earth, and the day Kubera received his wealth from Shiva.',
+    hi: 'अक्षय तृतीया हिन्दू पञ्चाँग की सबसे पवित्र तिथियों में से एक है। इस दिन किया गया कोई भी पुण्य कर्म  –  दान, पूजा, जप, नई शुरुआत  –  अक्षय (कभी न घटने वाला) फल देता है। ब्रह्म पुराण के अनुसार अक्षय तृतीया पर दान सभी तीर्थों के दान के बराबर है। यही दिन है जब त्रेता युग आरम्भ हुआ, गंगा पृथ्वी पर अवतरित हुईं, और कुबेर को शिव से उनका धन प्राप्त हुआ।',
+    sa: 'अक्षयतृतीया हिन्दूपञ्चाङ्गस्य पवित्रतमासु तिथिषु अन्यतमा। अस्मिन् दिने कृतं किमपि पुण्यकर्म  –  दानं पूजा जपः नवारम्भः  –  अक्षयफलं ददाति। ब्रह्मपुराणे उक्तम् अक्षयतृतीयायां दानं सर्वतीर्थदानसमम्। एतद्दिने त्रेतायुगः आरब्धः, गङ्गा पृथिव्याम् अवतीर्णा, कुबेरः शिवात् स्वधनं प्राप्तवान्।',
   },
 };

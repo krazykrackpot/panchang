@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * DailyVibeCard — the "Daily Energy Weather" shareable card.
+ * DailyVibeCard  –  the "Daily Energy Weather" shareable card.
  *
  * Renders using Satori-compatible layout (flexbox only, no CSS grid).
  * Dark navy background with gold accents matching the app's design system.
@@ -126,7 +126,7 @@ export default function DailyVibeCard({ data, format, locale }: DailyVibeCardPro
             </div>
           </div>
 
-          {/* Vibe title — the hero */}
+          {/* Vibe title  –  the hero */}
           <div
             style={{
               textAlign: 'center' as const,

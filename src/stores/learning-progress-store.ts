@@ -16,7 +16,7 @@ export interface ReviewItem {
   correctIndex: number;   // correct answer index
   explanation: string;    // en explanation
   explanationHi: string;  // hi explanation
-  nextReviewDate: string; // ISO date (YYYY-MM-DD) — when to show again
+  nextReviewDate: string; // ISO date (YYYY-MM-DD)  –  when to show again
   interval: number;       // days until next review (starts at 1, doubles on correct)
   easeFactor: number;     // SM-2 ease factor (starts at 2.5)
 }
@@ -138,7 +138,7 @@ function writeProgressToStorage(progress: Record<string, ModuleProgress>): void 
   try {
     window.localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
   } catch {
-    // Storage quota exceeded — silently ignore
+    // Storage quota exceeded  –  silently ignore
   }
 }
 
@@ -176,7 +176,7 @@ function writeStreakToStorage(streak: StreakData): void {
   try {
     window.localStorage.setItem(STREAK_KEY, JSON.stringify(streak));
   } catch {
-    // Storage quota exceeded — silently ignore
+    // Storage quota exceeded  –  silently ignore
   }
 }
 
@@ -195,7 +195,7 @@ function writeReviewToStorage(queue: ReviewItem[]): void {
   try {
     window.localStorage.setItem(REVIEW_KEY, JSON.stringify(queue));
   } catch {
-    // Storage quota exceeded — silently ignore
+    // Storage quota exceeded  –  silently ignore
   }
 }
 
@@ -400,13 +400,13 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
     const yesterday = getDaysAgoStr(1);
     const twoDaysAgo = getDaysAgoStr(2);
 
-    // Already active today — no change needed
+    // Already active today  –  no change needed
     if (current.lastActiveDate === today) return;
 
     let newStreak: StreakData;
 
     if (current.lastActiveDate === yesterday) {
-      // Consecutive day — increment streak
+      // Consecutive day  –  increment streak
       const newDays = current.streakDays + 1;
       newStreak = {
         ...current,
@@ -415,7 +415,7 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
         longestStreak: Math.max(current.longestStreak, newDays),
       };
     } else if (current.lastActiveDate === twoDaysAgo && current.streakFreezeAvailable) {
-      // Missed one day but freeze is available — use freeze, keep streak
+      // Missed one day but freeze is available  –  use freeze, keep streak
       const newDays = current.streakDays + 1;
       newStreak = {
         ...current,
@@ -434,7 +434,7 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
         longestStreak: Math.max(current.longestStreak, 1),
       };
     } else {
-      // Streak broken — reset to 1
+      // Streak broken  –  reset to 1
       newStreak = {
         ...current,
         streakDays: 1,

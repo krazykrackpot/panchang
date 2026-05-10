@@ -3,7 +3,7 @@
 import type { BirthPosterData } from '@/lib/shareable/birth-poster';
 
 /* ════════════════════════════════════════════════════════════════
-   BirthPosterCard — Astro-Aesthetic Birth Poster
+   BirthPosterCard  –  Astro-Aesthetic Birth Poster
    "Spotify Wrapped for Jyotish"
 
    Renders as a styled div suitable for:
@@ -103,10 +103,10 @@ function MiniNorthChart({ houses, size }: { houses: number[][]; size: number }) 
 }
 
 const ELEMENT_COLORS: Record<number, string> = {
-  0: '#f59e0b', // fire  — amber
-  1: '#10b981', // earth — emerald
-  2: '#38bdf8', // air   — sky
-  3: '#818cf8', // water — indigo
+  0: '#f59e0b', // fire   –  amber
+  1: '#10b981', // earth  –  emerald
+  2: '#38bdf8', // air    –  sky
+  3: '#818cf8', // water  –  indigo
 };
 
 
@@ -397,7 +397,7 @@ export default function BirthPosterCard({ data, format, locale }: BirthPosterCar
         <div style={{ fontSize: isCompact ? 10 : 12, color: 'rgba(212, 168, 83, 0.5)' }}>
           dekhopanchang.com
         </div>
-        {/* QR placeholder — a small styled box with initials */}
+        {/* QR placeholder  –  a small styled box with initials */}
         <div style={{
           width: isCompact ? 36 : 48,
           height: isCompact ? 36 : 48,

@@ -1,5 +1,5 @@
 /**
- * Transit Activation — Lightweight current transit computation
+ * Transit Activation  –  Lightweight current transit computation
  *
  * Computes approximate current sidereal longitudes for slow planets
  * (Jupiter, Saturn, Rahu, Ketu) using mean daily motion from J2000.0

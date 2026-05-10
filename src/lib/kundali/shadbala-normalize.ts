@@ -1,7 +1,7 @@
 import type { ShadBalaComplete } from './shadbala';
 
 // ---------------------------------------------------------------------------
-// NormalizedBala — 6 bala axes scaled to 0-100 plus passthrough fields
+// NormalizedBala  –  6 bala axes scaled to 0-100 plus passthrough fields
 // needed for drill-down tables.
 // ---------------------------------------------------------------------------
 

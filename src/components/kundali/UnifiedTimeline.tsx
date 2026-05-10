@@ -1,11 +1,11 @@
 'use client';
 
 /**
- * UnifiedTimeline — Combines Vimshottari Dasha bands with transit event
+ * UnifiedTimeline  –  Combines Vimshottari Dasha bands with transit event
  * markers (from computeKeyDates) on a single horizontal timeline.
  *
- * D3 is used for scaleTime + zoom math only — DOM is React SVG.
- * Standalone component — does NOT import or extend DashaTimeline.tsx.
+ * D3 is used for scaleTime + zoom math only  –  DOM is React SVG.
+ * Standalone component  –  does NOT import or extend DashaTimeline.tsx.
  */
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';

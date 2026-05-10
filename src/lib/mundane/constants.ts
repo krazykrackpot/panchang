@@ -1,7 +1,7 @@
 /**
  * Mundane Astrology Constants
  *
- * House significations differ from natal astrology — each house represents
+ * House significations differ from natal astrology  –  each house represents
  * national/collective themes rather than individual life areas.
  *
  * Classical basis: Raphael's Mundane Astrology, Baigent/Campion/Harvey
@@ -188,15 +188,15 @@ export const TRANSIT_PLANET_NAMES: Record<number, { en: string; hi: string; ta: 
 // Planet nature for mundane transit scoring
 // benefic = positive influence, malefic = negative, neutral = context-dependent
 export const PLANET_MUNDANE_NATURE: Record<number, 'benefic' | 'malefic' | 'neutral'> = {
-  0: 'neutral',   // Sun — authority; good for govt (10th) but harsh elsewhere
-  1: 'benefic',   // Moon — public welfare
-  2: 'malefic',   // Mars — conflict, war
-  3: 'neutral',   // Mercury — commerce, media
-  4: 'benefic',   // Jupiter — growth, prosperity
-  5: 'benefic',   // Venus — culture, peace
-  6: 'malefic',   // Saturn — hardship, delay, but good in 3/6/11
-  7: 'malefic',   // Rahu — sudden disruption, foreign influence
-  8: 'malefic',   // Ketu — separatism, hidden crises
+  0: 'neutral',   // Sun  –  authority; good for govt (10th) but harsh elsewhere
+  1: 'benefic',   // Moon  –  public welfare
+  2: 'malefic',   // Mars  –  conflict, war
+  3: 'neutral',   // Mercury  –  commerce, media
+  4: 'benefic',   // Jupiter  –  growth, prosperity
+  5: 'benefic',   // Venus  –  culture, peace
+  6: 'malefic',   // Saturn  –  hardship, delay, but good in 3/6/11
+  7: 'malefic',   // Rahu  –  sudden disruption, foreign influence
+  8: 'malefic',   // Ketu  –  separatism, hidden crises
 };
 
 // Houses where Saturn is actually beneficial in mundane astrology

@@ -162,7 +162,7 @@ export const NAKSHATRA_SYLLABLES: Record<number, { en: string; hi: string; sa: s
     { en: 'Ja', hi: 'जा', sa: 'जा', ta: 'ஜா', te: 'జా', bn: 'জা', kn: 'ಜಾ', mr: 'जा', gu: 'જા', mai: 'जा' },
     { en: 'Ji', hi: 'जी', sa: 'जी', ta: 'ஜி', te: 'జి', bn: 'জি', kn: 'ಜಿ', mr: 'जी', gu: 'જિ', mai: 'जी' },
   ],
-  // 22. Shravana — Ju, Je, Jo, Gha (not Kh-series)
+  // 22. Shravana  –  Ju, Je, Jo, Gha (not Kh-series)
   22: [
     { en: 'Ju', hi: 'जू', sa: 'जू', ta: 'ஜு', te: 'జు', bn: 'জু', kn: 'ಜು', mr: 'जू', gu: 'જુ', mai: 'जू' },
     { en: 'Je', hi: 'जे', sa: 'जे', ta: 'ஜே', te: 'జే', bn: 'জে', kn: 'ಜೇ', mr: 'जे', gu: 'જે', mai: 'जे' },

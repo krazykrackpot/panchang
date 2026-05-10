@@ -75,7 +75,7 @@ function Page2() {
         <ExampleChart
           ascendant={4}
           planets={{ 7: [6], 1: [0, 3], 4: [1], 9: [4], 11: [5] }}
-          title={tl({ en: 'Cancer Lagna — Saturn in Capricorn (7th) — BAV Analysis', hi: 'कर्क लग्न — शनि मकर (7वें) में — BAV विश्लेषण', sa: 'कर्कलग्नम् — मकरे शनिः (सप्तमे) — BAV विश्लेषणम्' }, locale)}
+          title={tl({ en: 'Cancer Lagna  –  Saturn in Capricorn (7th)  –  BAV Analysis', hi: 'कर्क लग्न  –  शनि मकर (7वें) में  –  BAV विश्लेषण', sa: 'कर्कलग्नम्  –  मकरे शनिः (सप्तमे)  –  BAV विश्लेषणम्' }, locale)}
           highlight={[7]}
         />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
@@ -152,7 +152,7 @@ function Page4() {
           {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;उच्च SAV अंक वाला भाव हमेशा शुभ परिणाम देता है।&quot; SAV शक्ति (तीव्रता) को मापता है, दिशा (शुभ/अशुभ) को नहीं। 6वें भाव में उच्च SAV शत्रुओं/प्रतिस्पर्धियों का मजबूत प्रभाव दर्शा सकता है। 8वें में उच्च SAV तीव्र परिवर्तनों का संकेत हो सकता है। शुभ/अशुभ निर्णय भाव की प्रकृति और ग्रहों पर निर्भर करता है।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;A house with high SAV always gives good results.&quot; SAV measures strength (intensity), not direction (benefic/malefic). High SAV in the 6th house could mean strong enemies/competitors. High SAV in the 8th could indicate intense transformations. The benefic/malefic determination depends on the house&rsquo;s nature and the planets involved.</>}
         </p>
         <p className="text-text-secondary text-xs leading-relaxed">
-          {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;अष्टकवर्ग षड्बल का विकल्प है।&quot; ये पूर्णतया भिन्न प्रणालियाँ हैं। षड्बल ग्रह की अन्तर्निहित शक्ति मापता है। अष्टकवर्ग किसी विशिष्ट राशि स्थान पर शुभ प्रभाव मापता है। एक ग्रह कम षड्बल रख सकता है किन्तु उच्च अष्टकवर्ग बिन्दुओं वाली राशि से गोचर कर अच्छे परिणाम दे सकता है — और विपरीत भी।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Ashtakavarga replaces Shadbala.&quot; These are completely different systems. Shadbala measures a planet&rsquo;s inherent potency. Ashtakavarga measures the benefic support at a specific sign location. A planet can have low Shadbala but transit through a sign with high Ashtakavarga bindus and still deliver good results — and vice versa.</>}
+          {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;अष्टकवर्ग षड्बल का विकल्प है।&quot; ये पूर्णतया भिन्न प्रणालियाँ हैं। षड्बल ग्रह की अन्तर्निहित शक्ति मापता है। अष्टकवर्ग किसी विशिष्ट राशि स्थान पर शुभ प्रभाव मापता है। एक ग्रह कम षड्बल रख सकता है किन्तु उच्च अष्टकवर्ग बिन्दुओं वाली राशि से गोचर कर अच्छे परिणाम दे सकता है  –  और विपरीत भी।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Ashtakavarga replaces Shadbala.&quot; These are completely different systems. Shadbala measures a planet&rsquo;s inherent potency. Ashtakavarga measures the benefic support at a specific sign location. A planet can have low Shadbala but transit through a sign with high Ashtakavarga bindus and still deliver good results  –  and vice versa.</>}
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">

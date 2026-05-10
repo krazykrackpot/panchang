@@ -37,14 +37,14 @@ const STORY_ACCENTS = [
 const L = {
   en: {
     title: 'Web Stories',
-    subtitle: 'Swipe through India\'s greatest mathematical discoveries — 8 slides each, built for mobile.',
+    subtitle: 'Swipe through India\'s greatest mathematical discoveries  –  8 slides each, built for mobile.',
     badge: '5 Stories',
     slideCount: 'slides',
     swipeToExplore: 'Tap to explore',
   },
   hi: {
     title: 'वेब स्टोरीज़',
-    subtitle: 'भारत की महानतम गणितीय खोजों को स्वाइप करें — प्रत्येक 8 स्लाइड, मोबाइल के लिए।',
+    subtitle: 'भारत की महानतम गणितीय खोजों को स्वाइप करें  –  प्रत्येक 8 स्लाइड, मोबाइल के लिए।',
     badge: '5 स्टोरीज़',
     slideCount: 'स्लाइड',
     swipeToExplore: 'खोलने के लिए टैप करें',
@@ -85,8 +85,8 @@ export default function StoriesIndexPage() {
             <ShareRow
               pageTitle={l.title}
               shareText={locale === 'en'
-                ? 'India\'s greatest math discoveries as swipeable Web Stories — Dekho Panchang'
-                : 'भारत की महानतम गणितीय खोजें — वेब स्टोरीज़ — Dekho Panchang'}
+                ? 'India\'s greatest math discoveries as swipeable Web Stories  –  Dekho Panchang'
+                : 'भारत की महानतम गणितीय खोजें  –  वेब स्टोरीज़  –  Dekho Panchang'}
               locale={locale}
             />
           </div>

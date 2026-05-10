@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * TrajectoryCard — full-width card showing all 8 domain trends at a glance.
+ * TrajectoryCard  –  full-width card showing all 8 domain trends at a glance.
  *
  * Renders sparkline charts, delta badges, and callout boxes for the
  * biggest gain / biggest drop domains.
@@ -144,7 +144,7 @@ export default function TrajectoryCard({ trajectory, locale, compact = false }: 
   const bodyStyle = getBodyFont(locale);
 
   // If history exists but every domain delta is 0, showing em dashes for all
-  // trends is confusing — fall back to the snapshot (score-bar) view instead.
+  // trends is confusing  –  fall back to the snapshot (score-bar) view instead.
   const allStable = trajectory.domains.every((d) => d.delta === 0);
   const isSnapshot = !trajectory.hasHistory || allStable;
 

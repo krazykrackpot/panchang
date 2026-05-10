@@ -1,4 +1,4 @@
-// src/lib/caesarean/index.ts — barrel re-export
+// src/lib/caesarean/index.ts  –  barrel re-export
 export { scoreBirthSlot } from './scorer';
 export { scanCaesareanSlots } from './scanner';
 export type {

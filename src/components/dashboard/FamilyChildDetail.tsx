@@ -36,7 +36,7 @@ export default function FamilyChildDetail({ childName, dynamics, locale, onClose
       {/* Header */}
       <div className="flex items-center justify-between">
         <h3 className="text-gold-light text-lg font-semibold" style={headingStyle}>
-          {childName} — {label('bond', locale)}
+          {childName}  –  {label('bond', locale)}
         </h3>
         <button
           onClick={onClose}

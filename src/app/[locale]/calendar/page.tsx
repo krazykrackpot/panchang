@@ -176,7 +176,7 @@ export default function CalendarPage() {
     }
   }, [calUser, birthDataStore.isSet, birthDataStore.birthNakshatra, birthDataStore.birthRashi, personalRelevance]);
 
-  // Location — null until resolved (no hardcoded default)
+  // Location  –  null until resolved (no hardcoded default)
   const [location, setLocation] = useState<LocationData | null>(null);
   const [detectingLocation, setDetectingLocation] = useState(true);
   const [showLocationSearch, setShowLocationSearch] = useState(false);
@@ -187,7 +187,7 @@ export default function CalendarPage() {
   const [modalDetail, setModalDetail] = useState<FestivalDetail | null>(null);
   const [modalEkadashi, setModalEkadashi] = useState<EkadashiDetail | null>(null);
 
-  // Auto-detect location on mount — NO hardcoded defaults. User MUST have a location.
+  // Auto-detect location on mount  –  NO hardcoded defaults. User MUST have a location.
   useEffect(() => {
     const browserTz = -new Date().getTimezoneOffset() / 60;
     // Location store timezone takes priority over browser timezone
@@ -223,7 +223,7 @@ export default function CalendarPage() {
           }
           setDetectingLocation(false);
         },
-        () => tryIPLookup(), // Geolocation denied — try IP
+        () => tryIPLookup(), // Geolocation denied  –  try IP
         { timeout: 5000 }
       );
     } else {
@@ -281,7 +281,7 @@ export default function CalendarPage() {
         const m = parseInt(f.date.split('-')[1]);
         if (m !== selectedMonth + 1) return false;
       } else {
-        // Lunar month filter — match against Purnimant month name
+        // Lunar month filter  –  match against Purnimant month name
         const hinduMonth = HINDU_MONTHS[selectedMonth]?.en.toLowerCase();
         const festivalMasa = (f as { masa?: { purnimanta?: string } }).masa?.purnimanta;
         if (!festivalMasa || festivalMasa !== hinduMonth) return false;
@@ -373,8 +373,8 @@ export default function CalendarPage() {
           <ShareRow
             pageTitle={msg('sharePageTitle', locale)}
             shareText={locale === 'en'
-              ? 'Hindu Festival Calendar with Ekadashi, Purnima & Vrat details — Dekho Panchang'
-              : 'हिन्दू त्योहार पंचांग — एकादशी, पूर्णिमा और व्रत विवरण सहित — Dekho Panchang'}
+              ? 'Hindu Festival Calendar with Ekadashi, Purnima & Vrat details  –  Dekho Panchang'
+              : 'हिन्दू त्योहार पंचांग  –  एकादशी, पूर्णिमा और व्रत विवरण सहित  –  Dekho Panchang'}
             locale={locale}
           />
         </div>
@@ -391,7 +391,7 @@ export default function CalendarPage() {
         </button>
       </div>
 
-      {/* Location — REQUIRED. If null and not detecting, force user to enter. */}
+      {/* Location  –  REQUIRED. If null and not detecting, force user to enter. */}
       {detectingLocation ? (
         <div className="flex flex-col items-center gap-3 mb-8 py-8">
           <Loader2 className="w-8 h-8 text-gold-primary animate-spin" />
@@ -641,7 +641,7 @@ export default function CalendarPage() {
         </div>
       )}
 
-      {/* Festival & Vrat lists — separated */}
+      {/* Festival & Vrat lists  –  separated */}
       {viewMode !== 'grid' && loading ? (
         <div className="flex items-center justify-center py-20">
           <div className="animate-spin rounded-full h-12 w-12 border-2 border-gold-primary border-t-transparent" />
@@ -708,7 +708,7 @@ export default function CalendarPage() {
                         {msg('parana', locale)}:
                       </span>
                       <span className="font-mono text-xs font-bold text-gold-light">
-                        {f.paranaStart} — {f.paranaEnd}
+                        {f.paranaStart}  –  {f.paranaEnd}
                       </span>
                       <span className="text-xs font-bold text-gold-primary">
                         {(() => {

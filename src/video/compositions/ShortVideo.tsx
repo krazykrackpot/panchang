@@ -47,7 +47,7 @@ export const ShortVideo: React.FC<ShortVideoProps> = ({ script, theme, includeAu
         );
       })}
 
-      {/* Voiceover audio per scene — only when --with-audio */}
+      {/* Voiceover audio per scene  –  only when --with-audio */}
       {includeAudio && script.scenes.map((scene, i) => {
         const { startFrame, durationFrames } = sceneFrames[i];
         return (
@@ -64,7 +64,7 @@ export const ShortVideo: React.FC<ShortVideoProps> = ({ script, theme, includeAu
         );
       })}
 
-      {/* Background music — full duration, lower volume */}
+      {/* Background music  –  full duration, lower volume */}
       {includeAudio && musicTrack && (
         <Sequence from={0} durationInFrames={totalFrames}>
           <Audio

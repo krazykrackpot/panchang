@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { getStoredConsent, storeConsent, updateConsentMode } from './consent-mode';
 
-// Inline LABELS pattern — matches the privacy/terms pages. The cookie banner is
+// Inline LABELS pattern  –  matches the privacy/terms pages. The cookie banner is
 // the first thing every user sees; copy must exist for every locale we ship.
 // English is the safety net; regional translations should be reviewed by native
 // speakers but we prefer translated copy over an English fallback for compliance.
@@ -98,7 +98,7 @@ interface CookieConsentProps {
 }
 
 export default function CookieConsent({ locale }: CookieConsentProps) {
-  // null = pre-mount (SSR) — render nothing to avoid hydration mismatch.
+  // null = pre-mount (SSR)  –  render nothing to avoid hydration mismatch.
   // false = decided already, hide. true = undecided, show.
   const [show, setShow] = useState<boolean | null>(null);
 
@@ -127,7 +127,7 @@ export default function CookieConsent({ locale }: CookieConsentProps) {
 
   const handleReject = () => {
     storeConsent('rejected');
-    // No gtag update — Consent Mode v2 defaults already 'denied'.
+    // No gtag update  –  Consent Mode v2 defaults already 'denied'.
     setShow(false);
   };
 

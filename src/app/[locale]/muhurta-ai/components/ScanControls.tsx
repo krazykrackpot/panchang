@@ -117,7 +117,7 @@ export default function ScanControls({
         </div>
       </div>
 
-      {/* Scan Button — prominent in heatmap mode, subtle refresh in calendar mode */}
+      {/* Scan Button  –  prominent in heatmap mode, subtle refresh in calendar mode */}
       {viewMode === 'heatmap' ? (
         <button
           onClick={onScan}

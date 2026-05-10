@@ -70,7 +70,7 @@ export async function GET(request: Request) {
     for (const sub of subscribers) {
       try {
         const email = emailMap.get(sub.id);
-        // Use panchang location ONLY — panchang data depends on where the user IS,
+        // Use panchang location ONLY  –  panchang data depends on where the user IS,
         // not where they were born. If no panchang location is set, skip this user
         // rather than sending email with wrong-location data.
         const lat = sub.panchang_location_lat;
@@ -78,7 +78,7 @@ export async function GET(request: Request) {
         const tz = sub.panchang_location_timezone;
         const locName = sub.panchang_location_name;
         if (!email || !lat || !lng || !tz) {
-          // No panchang location configured — skip user, don't send wrong data
+          // No panchang location configured  –  skip user, don't send wrong data
           continue;
         }
 
@@ -176,6 +176,6 @@ function getTimezoneOffset(timezone: string, date: Date): number {
     return (local.getTime() - utc.getTime()) / (3600 * 1000);
   } catch (err) {
     console.error('[daily-panchang] TZ resolution failed for:', timezone, '- defaulting to UTC');
-    return 0; // Default to UTC, not IST — serves global users correctly
+    return 0; // Default to UTC, not IST  –  serves global users correctly
   }
 }

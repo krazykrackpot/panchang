@@ -51,7 +51,7 @@ describe('computeInauspiciousForWindow', () => {
   it('detects Rahu Kaal overlap', () => {
     // Monday Rahu Kaal: order[1]=2, segment 2-1=1 → sunrise + 1*1.5 = 7.5 to 9.0
     const periods = computeInauspiciousForWindow(
-      8.0, 8.25, // window 8:00-8:15 UT — inside Rahu Kaal
+      8.0, 8.25, // window 8:00-8:15 UT  –  inside Rahu Kaal
       6.0, 18.0, 1, // sunrise, sunset, Monday
       10, // nakshatra
       2460691.0, // jd

@@ -119,7 +119,7 @@ export const CONTRIBUTION_JSONLD: Record<string, ContributionJsonLdParams> = {
 
   zero: {
     slug: 'zero',
-    headline: 'Zero — The Most Dangerous Idea in History',
+    headline: 'Zero  –  The Most Dangerous Idea in History',
     description:
       'Zero was invented in India. Brahmagupta defined zero arithmetic in 628 CE. The Bakhshali manuscript (c. 300 CE) contains the oldest physical zero dot on Earth.',
     datePublished: '2026-04-10',
@@ -144,7 +144,7 @@ export const CONTRIBUTION_JSONLD: Record<string, ContributionJsonLdParams> = {
 
   pi: {
     slug: 'pi',
-    headline: 'Pi = 3.1416 — How Aryabhata Nailed It in 499 CE',
+    headline: 'Pi = 3.1416  –  How Aryabhata Nailed It in 499 CE',
     description:
       'Aryabhata computed pi accurate to 4 decimal places in 499 CE and hinted at its irrationality 1,262 years before Lambert proved it in Europe.',
     datePublished: '2026-04-10',
@@ -152,12 +152,12 @@ export const CONTRIBUTION_JSONLD: Record<string, ContributionJsonLdParams> = {
       {
         question: 'How did Aryabhata calculate pi?',
         answer:
-          'In Aryabhatiya verse 10 (499 CE), Aryabhata encoded: (100+4) x 8 + 62,000 = 62,832. Divided by diameter 20,000 gives 3.1416 — accurate to 0.0001% of the true value.',
+          'In Aryabhatiya verse 10 (499 CE), Aryabhata encoded: (100+4) x 8 + 62,000 = 62,832. Divided by diameter 20,000 gives 3.1416  –  accurate to 0.0001% of the true value.',
       },
       {
         question: 'Did Aryabhata know pi was irrational?',
         answer:
-          'Aryabhata used the word "asannah" (approaching/approximate), implying he knew pi could not be expressed exactly as a fraction. Lambert formally proved irrationality in 1761 — 1,262 years later.',
+          'Aryabhata used the word "asannah" (approaching/approximate), implying he knew pi could not be expressed exactly as a fraction. Lambert formally proved irrationality in 1761  –  1,262 years later.',
       },
       {
         question: 'Who computed pi to 11 decimal places?',
@@ -169,7 +169,7 @@ export const CONTRIBUTION_JSONLD: Record<string, ContributionJsonLdParams> = {
 
   binary: {
     slug: 'binary',
-    headline: 'Binary Code — 1,800 Years Before Computers',
+    headline: 'Binary Code  –  1,800 Years Before Computers',
     description:
       'Pingala invented binary encoding around 200 BCE while studying Sanskrit poetry meters. He also discovered Pascal\'s Triangle and the Fibonacci sequence.',
     datePublished: '2026-04-10',
@@ -182,7 +182,7 @@ export const CONTRIBUTION_JSONLD: Record<string, ContributionJsonLdParams> = {
       {
         question: 'What is Meru Prastara?',
         answer:
-          'Meru Prastara (Mountain Arrangement) is Pingala\'s name for what Europe calls Pascal\'s Triangle. Pingala described it around 200 BCE — 1,850 years before Pascal published it in 1653 CE.',
+          'Meru Prastara (Mountain Arrangement) is Pingala\'s name for what Europe calls Pascal\'s Triangle. Pingala described it around 200 BCE  –  1,850 years before Pascal published it in 1653 CE.',
       },
       {
         question: 'Did Pingala discover the Fibonacci sequence?',
@@ -196,7 +196,7 @@ export const CONTRIBUTION_JSONLD: Record<string, ContributionJsonLdParams> = {
     slug: 'calculus',
     headline: 'Calculus Was Invented in Kerala, Not Cambridge',
     description:
-      'Madhava of Sangamagrama discovered infinite series for pi, sine, cosine, and arctangent around 1375 CE — 250-300 years before Newton and Leibniz.',
+      'Madhava of Sangamagrama discovered infinite series for pi, sine, cosine, and arctangent around 1375 CE  –  250-300 years before Newton and Leibniz.',
     datePublished: '2026-04-10',
     faqs: [
       {
@@ -219,9 +219,9 @@ export const CONTRIBUTION_JSONLD: Record<string, ContributionJsonLdParams> = {
 
   'cosmic-time': {
     slug: 'cosmic-time',
-    headline: '4.32 Billion Years — How Did the Ancients Know?',
+    headline: '4.32 Billion Years  –  How Did the Ancients Know?',
     description:
-      'Ancient Indian texts describe cosmic cycles of 4.32 billion years — within 5% of the modern scientific estimate for Earth\'s age (4.54 billion years).',
+      'Ancient Indian texts describe cosmic cycles of 4.32 billion years  –  within 5% of the modern scientific estimate for Earth\'s age (4.54 billion years).',
     datePublished: '2026-04-10',
     faqs: [
       {
@@ -237,14 +237,14 @@ export const CONTRIBUTION_JSONLD: Record<string, ContributionJsonLdParams> = {
       {
         question: 'What did Carl Sagan say about Hindu cosmology?',
         answer:
-          'Carl Sagan noted that Hinduism is "the only religion in which the time scales correspond to those of modern scientific cosmology," with cycles running up to 8.64 billion years — longer than the age of Earth or the Sun.',
+          'Carl Sagan noted that Hinduism is "the only religion in which the time scales correspond to those of modern scientific cosmology," with cycles running up to 8.64 billion years  –  longer than the age of Earth or the Sun.',
       },
     ],
   },
 
   'earth-rotation': {
     slug: 'earth-rotation',
-    headline: 'India Knew the Earth Rotates — 1,000 Years Before Europe',
+    headline: 'India Knew the Earth Rotates  –  1,000 Years Before Europe',
     description:
       'In 499 CE, Aryabhata stated that the Earth rotates on its axis, causing stars to appear to rise and set. He also calculated Earth\'s circumference to 99.4% accuracy.',
     datePublished: '2026-04-10',
@@ -252,7 +252,7 @@ export const CONTRIBUTION_JSONLD: Record<string, ContributionJsonLdParams> = {
       {
         question: 'Who first said the Earth rotates?',
         answer:
-          'Aryabhata wrote in 499 CE (Aryabhatiya, Golapada verse 9) that the Earth rotates on its axis and the apparent movement of stars is due to this rotation — using a boat analogy similar to Galileo\'s argument 1,100 years later.',
+          'Aryabhata wrote in 499 CE (Aryabhatiya, Golapada verse 9) that the Earth rotates on its axis and the apparent movement of stars is due to this rotation  –  using a boat analogy similar to Galileo\'s argument 1,100 years later.',
       },
       {
         question: 'How accurate was Aryabhata\'s Earth circumference?',
@@ -269,9 +269,9 @@ export const CONTRIBUTION_JSONLD: Record<string, ContributionJsonLdParams> = {
 
   fibonacci: {
     slug: 'fibonacci',
-    headline: "The 'Fibonacci' Sequence Was Indian — And It Started With Music",
+    headline: "The 'Fibonacci' Sequence Was Indian  –  And It Started With Music",
     description:
-      'The Fibonacci sequence was described by Bharata Muni (~200 BCE) in the Natyashastra, Virahanka (~600 CE), and Hemachandra (1150 CE) — all before Fibonacci (1202 CE).',
+      'The Fibonacci sequence was described by Bharata Muni (~200 BCE) in the Natyashastra, Virahanka (~600 CE), and Hemachandra (1150 CE)  –  all before Fibonacci (1202 CE).',
     datePublished: '2026-04-10',
     faqs: [
       {
@@ -287,22 +287,22 @@ export const CONTRIBUTION_JSONLD: Record<string, ContributionJsonLdParams> = {
       {
         question: 'What is the Hemachandra-Fibonacci sequence?',
         answer:
-          'Jain mathematician Hemachandra independently derived the same sequence in his Chandonushasana (1150 CE) — 52 years before Fibonacci\'s Liber Abaci. Some modern histories call it the Hemachandra-Fibonacci sequence.',
+          'Jain mathematician Hemachandra independently derived the same sequence in his Chandonushasana (1150 CE)  –  52 years before Fibonacci\'s Liber Abaci. Some modern histories call it the Hemachandra-Fibonacci sequence.',
       },
     ],
   },
 
   gravity: {
     slug: 'gravity',
-    headline: "Gravity — 500 Years Before Newton's Apple",
+    headline: "Gravity  –  500 Years Before Newton's Apple",
     description:
-      'Bhaskaracharya II wrote in 1150 CE that the Earth attracts objects by its own force in all directions — 537 years before Newton\'s Principia.',
+      'Bhaskaracharya II wrote in 1150 CE that the Earth attracts objects by its own force in all directions  –  537 years before Newton\'s Principia.',
     datePublished: '2026-04-10',
     faqs: [
       {
         question: 'Did Indians know about gravity before Newton?',
         answer:
-          'Bhaskaracharya II (1150 CE) wrote in the Siddhanta Shiromani that the Earth attracts objects by its own force and this force acts in all directions — 537 years before Newton\'s Principia (1687).',
+          'Bhaskaracharya II (1150 CE) wrote in the Siddhanta Shiromani that the Earth attracts objects by its own force and this force acts in all directions  –  537 years before Newton\'s Principia (1687).',
       },
       {
         question: 'What is the Sanskrit verse about gravity?',
@@ -312,22 +312,22 @@ export const CONTRIBUTION_JSONLD: Record<string, ContributionJsonLdParams> = {
       {
         question: 'How is Indian gravity different from Newton\'s?',
         answer:
-          'Bhaskaracharya described gravitational attraction qualitatively — that Earth pulls objects in all directions. Newton quantified it with F = Gm1m2/r2 and proved it was universal. India described the phenomenon; Newton gave the mathematics.',
+          'Bhaskaracharya described gravitational attraction qualitatively  –  that Earth pulls objects in all directions. Newton quantified it with F = Gm1m2/r2 and proved it was universal. India described the phenomenon; Newton gave the mathematics.',
       },
     ],
   },
 
   'kerala-school': {
     slug: 'kerala-school',
-    headline: 'The Kerala School — When India Invented Calculus 250 Years Before Europe',
+    headline: 'The Kerala School  –  When India Invented Calculus 250 Years Before Europe',
     description:
-      'Between 1350 and 1550 CE, mathematicians in Kerala discovered infinite series, the foundations of calculus, and computed pi to 11 decimal places — predating Newton by 250 years.',
+      'Between 1350 and 1550 CE, mathematicians in Kerala discovered infinite series, the foundations of calculus, and computed pi to 11 decimal places  –  predating Newton by 250 years.',
     datePublished: '2026-04-10',
     faqs: [
       {
         question: 'What did the Kerala School of Mathematics discover?',
         answer:
-          'The Kerala School discovered infinite series for pi, sine, cosine, and arctangent, convergence acceleration techniques, and partial heliocentric planetary models — all 250-340 years before equivalent European discoveries.',
+          'The Kerala School discovered infinite series for pi, sine, cosine, and arctangent, convergence acceleration techniques, and partial heliocentric planetary models  –  all 250-340 years before equivalent European discoveries.',
       },
       {
         question: 'Why did the Kerala School develop in Kerala specifically?',
@@ -344,7 +344,7 @@ export const CONTRIBUTION_JSONLD: Record<string, ContributionJsonLdParams> = {
 
   'negative-numbers': {
     slug: 'negative-numbers',
-    headline: "Negative Numbers — When India Said 'Less Than Nothing' and Europe Said 'Impossible'",
+    headline: "Negative Numbers  –  When India Said 'Less Than Nothing' and Europe Said 'Impossible'",
     description:
       'Brahmagupta defined formal arithmetic rules for negative numbers in 628 CE, using the concepts of dhana (fortune) and rina (debt). Europe resisted negative numbers until the 18th century.',
     datePublished: '2026-04-10',
@@ -352,7 +352,7 @@ export const CONTRIBUTION_JSONLD: Record<string, ContributionJsonLdParams> = {
       {
         question: 'Who invented negative numbers?',
         answer:
-          'Brahmagupta gave the first formal arithmetic rules for negative numbers in 628 CE (Brahmasphutasiddhanta, Chapter 18). He used "dhana" (fortune = positive) and "rina" (debt = negative) — practical terms from commerce.',
+          'Brahmagupta gave the first formal arithmetic rules for negative numbers in 628 CE (Brahmasphutasiddhanta, Chapter 18). He used "dhana" (fortune = positive) and "rina" (debt = negative)  –  practical terms from commerce.',
       },
       {
         question: 'Why did Europe reject negative numbers?',
@@ -362,14 +362,14 @@ export const CONTRIBUTION_JSONLD: Record<string, ContributionJsonLdParams> = {
       {
         question: 'What rules did Brahmagupta give for negative numbers?',
         answer:
-          'Brahmagupta stated: a negative times a negative is positive, a negative times a positive is negative, zero minus a positive is negative, and zero minus a negative is positive — all correct and still used today.',
+          'Brahmagupta stated: a negative times a negative is positive, a negative times a positive is negative, zero minus a positive is negative, and zero minus a negative is positive  –  all correct and still used today.',
       },
     ],
   },
 
   pythagoras: {
     slug: 'pythagoras',
-    headline: "The 'Pythagorean' Theorem Was Indian — Baudhayana Had It 300 Years Earlier",
+    headline: "The 'Pythagorean' Theorem Was Indian  –  Baudhayana Had It 300 Years Earlier",
     description:
       'The Baudhayana Sulba Sutra (~800 BCE) contains the earliest known statement of a2 + b2 = c2, nearly 300 years before Pythagoras was born.',
     datePublished: '2026-04-10',
@@ -377,37 +377,37 @@ export const CONTRIBUTION_JSONLD: Record<string, ContributionJsonLdParams> = {
       {
         question: 'Did Baudhayana discover the Pythagorean theorem before Pythagoras?',
         answer:
-          'Yes. The Baudhayana Sulba Sutra (~800 BCE) contains the explicit general statement of a2 + b2 = c2 for constructing Vedic fire altars. Pythagoras was born around 570 BCE — nearly 300 years later.',
+          'Yes. The Baudhayana Sulba Sutra (~800 BCE) contains the explicit general statement of a2 + b2 = c2 for constructing Vedic fire altars. Pythagoras was born around 570 BCE  –  nearly 300 years later.',
       },
       {
         question: 'What are the Sulba Sutras?',
         answer:
-          'The Sulba Sutras are Vedic appendices on geometry for fire altar construction. "Sulba" means cord/rope — these were rope-and-peg geometry manuals. Four survive: Baudhayana (~800 BCE), Apastamba (~600 BCE), Katyayana (~300 BCE), and Manava (~750 BCE).',
+          'The Sulba Sutras are Vedic appendices on geometry for fire altar construction. "Sulba" means cord/rope  –  these were rope-and-peg geometry manuals. Four survive: Baudhayana (~800 BCE), Apastamba (~600 BCE), Katyayana (~300 BCE), and Manava (~750 BCE).',
       },
       {
         question: 'What else did the Sulba Sutras contain?',
         answer:
-          'Beyond the Pythagorean theorem, they contain area-preserving transformations, methods for squaring the circle, approximations of sqrt(2), and construction of complex altar shapes — anticipating integral geometry by two millennia.',
+          'Beyond the Pythagorean theorem, they contain area-preserving transformations, methods for squaring the circle, approximations of sqrt(2), and construction of complex altar shapes  –  anticipating integral geometry by two millennia.',
       },
     ],
   },
 
   'speed-of-light': {
     slug: 'speed-of-light',
-    headline: 'The Speed of Light — In a 14th-Century Sanskrit Commentary',
+    headline: 'The Speed of Light  –  In a 14th-Century Sanskrit Commentary',
     description:
-      'Sayana\'s 14th-century commentary on Rig Veda 1.50.4 gives a value for the speed of sunlight astonishingly close to the modern measurement — 300 years before Ole Romer.',
+      'Sayana\'s 14th-century commentary on Rig Veda 1.50.4 gives a value for the speed of sunlight astonishingly close to the modern measurement  –  300 years before Ole Romer.',
     datePublished: '2026-04-10',
     faqs: [
       {
         question: 'Did ancient Indians know the speed of light?',
         answer:
-          'Sayana (14th century CE), minister of the Vijayanagara Empire, wrote in his Rig Veda commentary that sunlight traverses 2,202 yojanas in half a nimesha — a value remarkably close to the modern speed of light.',
+          'Sayana (14th century CE), minister of the Vijayanagara Empire, wrote in his Rig Veda commentary that sunlight traverses 2,202 yojanas in half a nimesha  –  a value remarkably close to the modern speed of light.',
       },
       {
         question: 'How does Sayana\'s value compare to the modern speed of light?',
         answer:
-          'Using standard conversions for yojana and nimesha, Sayana\'s value yields approximately 299,000 km/s — strikingly close to the modern value of 299,792 km/s. Ole Romer made the first European measurement in the 1670s.',
+          'Using standard conversions for yojana and nimesha, Sayana\'s value yields approximately 299,000 km/s  –  strikingly close to the modern value of 299,792 km/s. Ole Romer made the first European measurement in the 1670s.',
       },
       {
         question: 'What is the source verse for the speed of light?',
@@ -419,9 +419,9 @@ export const CONTRIBUTION_JSONLD: Record<string, ContributionJsonLdParams> = {
 
   'al-khwarizmi': {
     slug: 'al-khwarizmi',
-    headline: "Al-Khwarizmi & Hindu Mathematics — How the 'Father of Algebra' Built on Indian Foundations",
+    headline: "Al-Khwarizmi & Hindu Mathematics  –  How the 'Father of Algebra' Built on Indian Foundations",
     description:
-      "Al-Khwarizmi's foundational work explicitly transmitted Indian mathematics — the Hindu decimal system, zero, and arithmetic methods — to the Arabic-speaking world. The word 'algorithm' derives from his name, but the procedures were Indian in origin.",
+      "Al-Khwarizmi's foundational work explicitly transmitted Indian mathematics  –  the Hindu decimal system, zero, and arithmetic methods  –  to the Arabic-speaking world. The word 'algorithm' derives from his name, but the procedures were Indian in origin.",
     datePublished: '2026-04-16',
     faqs: [
       {
@@ -437,14 +437,14 @@ export const CONTRIBUTION_JSONLD: Record<string, ContributionJsonLdParams> = {
       {
         question: 'What does "algorithm" have to do with India?',
         answer:
-          'The word "algorithm" comes from the Latinized form of Al-Khwarizmi\'s name ("Algoritmi"). However, the computational procedures he described — Hindu arithmetic methods — were Indian in origin, transmitted from Brahmagupta and other Indian mathematicians.',
+          'The word "algorithm" comes from the Latinized form of Al-Khwarizmi\'s name ("Algoritmi"). However, the computational procedures he described  –  Hindu arithmetic methods  –  were Indian in origin, transmitted from Brahmagupta and other Indian mathematicians.',
       },
     ],
   },
 
   timeline: {
     slug: 'timeline',
-    headline: '2,000 Years of Indian Science — A Visual Timeline',
+    headline: '2,000 Years of Indian Science  –  A Visual Timeline',
     description:
       'From Vedic mathematics to the Kerala School, India\'s contributions to science span two millennia. Most are still attributed to later European discoverers.',
     datePublished: '2026-04-10',

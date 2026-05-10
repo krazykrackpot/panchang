@@ -108,7 +108,7 @@ export const useSubscriptionStore = create<SubscriptionState>((set, get) => ({
         });
       }
     } catch {
-      // silently fail — usage will default to 0
+      // silently fail  –  usage will default to 0
     }
   },
 

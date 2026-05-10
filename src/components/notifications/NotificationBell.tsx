@@ -78,11 +78,11 @@ export default function NotificationBell() {
       setNotifications(data.notifications || []);
       setUnreadCount(data.unreadCount || 0);
     } catch {
-      // Silently fail — non-critical UI feature
+      // Silently fail  –  non-critical UI feature
     }
   }, [session?.access_token]);
 
-  // Fetch on mount and poll every 60 seconds — only when authenticated
+  // Fetch on mount and poll every 60 seconds  –  only when authenticated
   useEffect(() => {
     authFailedRef.current = false; // reset on new session
     if (!session?.access_token) return;

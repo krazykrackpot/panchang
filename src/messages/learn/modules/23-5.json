@@ -1,15 +1,15 @@
 {
   "title": {
-    "en": "Prashna Yogas — Horary Combinations",
-    "hi": "प्रश्न योग — होरारी संयोजन",
-    "sa": "प्रश्न योग — होरारी संयोजन",
-    "mai": "प्रश्न योग — होरारी संयोजन",
-    "mr": "प्रश्न योग — होरारी संयोजन",
-    "ta": "Prashna Yogas — Horary Combinations",
-    "te": "Prashna Yogas — Horary Combinations",
-    "bn": "Prashna Yogas — Horary Combinations",
-    "kn": "Prashna Yogas — Horary Combinations",
-    "gu": "Prashna Yogas — Horary Combinations"
+    "en": "Prashna Yogas  –  Horary Combinations",
+    "hi": "प्रश्न योग  –  होरारी संयोजन",
+    "sa": "प्रश्न योग  –  होरारी संयोजन",
+    "mai": "प्रश्न योग  –  होरारी संयोजन",
+    "mr": "प्रश्न योग  –  होरारी संयोजन",
+    "ta": "Prashna Yogas  –  Horary Combinations",
+    "te": "Prashna Yogas  –  Horary Combinations",
+    "bn": "Prashna Yogas  –  Horary Combinations",
+    "kn": "Prashna Yogas  –  Horary Combinations",
+    "gu": "Prashna Yogas  –  Horary Combinations"
   },
   "subtitle": {
     "en": "Specific planetary combinations that give immediate yes/no answers to questions",
@@ -103,8 +103,8 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "A Prashna chart is cast at the exact moment when the question is asked (or when it arrives to the astrologer). The principle is that the cosmic configuration at the moment of the question contains the answer — the universe reflects the querent\"s concern at that precise instant.",
-        "hi": "प्रश्न कुण्डली ठीक उस क्षण बनाई जाती है जब प्रश्न पूछा जाता है (या जब वह ज्योतिषी तक पहुँचता है)। सिद्धान्त यह है कि प्रश्न के क्षण की ब्रह्माण्डीय विन्यास उत्तर समाहित करती है — ब्रह्माण्ड उस सटीक क्षण जिज्ञासु की चिन्ता को प्रतिबिम्बित करता है।"
+        "en": "A Prashna chart is cast at the exact moment when the question is asked (or when it arrives to the astrologer). The principle is that the cosmic configuration at the moment of the question contains the answer  –  the universe reflects the querent\"s concern at that precise instant.",
+        "hi": "प्रश्न कुण्डली ठीक उस क्षण बनाई जाती है जब प्रश्न पूछा जाता है (या जब वह ज्योतिषी तक पहुँचता है)। सिद्धान्त यह है कि प्रश्न के क्षण की ब्रह्माण्डीय विन्यास उत्तर समाहित करती है  –  ब्रह्माण्ड उस सटीक क्षण जिज्ञासु की चिन्ता को प्रतिबिम्बित करता है।"
       },
       "options": [
         {
@@ -191,16 +191,16 @@
           "gu": "A question asked in writing"
         },
         {
-          "en": "A silent/unspoken question — the chart at consultation IS the question",
-          "hi": "मौन/अनकहा प्रश्न — परामर्श के समय की कुण्डली ही प्रश्न है",
-          "sa": "मौन/अनकहा प्रश्न — परामर्श के समय की कुण्डली ही प्रश्न है",
-          "mai": "मौन/अनकहा प्रश्न — परामर्श के समय की कुण्डली ही प्रश्न है",
-          "mr": "मौन/अनकहा प्रश्न — परामर्श के समय की कुण्डली ही प्रश्न है",
-          "ta": "A silent/unspoken question — the chart at consultation IS the question",
-          "te": "A silent/unspoken question — the chart at consultation IS the question",
-          "bn": "A silent/unspoken question — the chart at consultation IS the question",
-          "kn": "A silent/unspoken question — the chart at consultation IS the question",
-          "gu": "A silent/unspoken question — the chart at consultation IS the question"
+          "en": "A silent/unspoken question  –  the chart at consultation IS the question",
+          "hi": "मौन/अनकहा प्रश्न  –  परामर्श के समय की कुण्डली ही प्रश्न है",
+          "sa": "मौन/अनकहा प्रश्न  –  परामर्श के समय की कुण्डली ही प्रश्न है",
+          "mai": "मौन/अनकहा प्रश्न  –  परामर्श के समय की कुण्डली ही प्रश्न है",
+          "mr": "मौन/अनकहा प्रश्न  –  परामर्श के समय की कुण्डली ही प्रश्न है",
+          "ta": "A silent/unspoken question  –  the chart at consultation IS the question",
+          "te": "A silent/unspoken question  –  the chart at consultation IS the question",
+          "bn": "A silent/unspoken question  –  the chart at consultation IS the question",
+          "kn": "A silent/unspoken question  –  the chart at consultation IS the question",
+          "gu": "A silent/unspoken question  –  the chart at consultation IS the question"
         },
         {
           "en": "A question about a mute person",
@@ -245,16 +245,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "The 1st house (Lagna) always represents the querent — the person asking the question. The 7th house represents the subject of inquiry or the \"other party.\" The relevant house per question type also matters: 10th for career questions, 7th for marriage, 5th for children, etc.",
-        "hi": "प्रथम भाव (लग्न) सदैव जिज्ञासु — प्रश्न पूछने वाले व्यक्ति का प्रतिनिधित्व करता है। सप्तम भाव पूछताछ के विषय या \"दूसरे पक्ष\" का प्रतिनिधित्व करता है। प्रश्न प्रकार के अनुसार सम्बन्धित भाव भी महत्वपूर्ण है: कैरियर प्रश्नों के लिए दशम, विवाह के लिए सप्तम, संतान के लिए पंचम आदि।",
-        "sa": "प्रथम भाव (लग्न) सदैव जिज्ञासु — प्रश्न पूछने वाले व्यक्ति का प्रतिनिधित्व करता है। सप्तम भाव पूछताछ के विषय या \"दूसरे पक्ष\" का प्रतिनिधित्व करता है। प्रश्न प्रकार के अनुसार सम्बन्धित भाव भी महत्वपूर्ण है: कैरियर प्रश्नों के लिए दशम, विवाह के लिए सप्तम, संतान के लिए पंचम आदि।",
-        "mai": "प्रथम भाव (लग्न) सदैव जिज्ञासु — प्रश्न पूछने वाले व्यक्ति का प्रतिनिधित्व करता है। सप्तम भाव पूछताछ के विषय या \"दूसरे पक्ष\" का प्रतिनिधित्व करता है। प्रश्न प्रकार के अनुसार सम्बन्धित भाव भी महत्वपूर्ण है: कैरियर प्रश्नों के लिए दशम, विवाह के लिए सप्तम, संतान के लिए पंचम आदि।",
-        "mr": "प्रथम भाव (लग्न) सदैव जिज्ञासु — प्रश्न पूछने वाले व्यक्ति का प्रतिनिधित्व करता है। सप्तम भाव पूछताछ के विषय या \"दूसरे पक्ष\" का प्रतिनिधित्व करता है। प्रश्न प्रकार के अनुसार सम्बन्धित भाव भी महत्वपूर्ण है: कैरियर प्रश्नों के लिए दशम, विवाह के लिए सप्तम, संतान के लिए पंचम आदि।",
-        "ta": "The 1st house (Lagna) always represents the querent — the person asking the question. The 7th house represents the subject of inquiry or the \"other party.\" The relevant house per question type also matters: 10th for career questions, 7th for marriage, 5th for children, etc.",
-        "te": "The 1st house (Lagna) always represents the querent — the person asking the question. The 7th house represents the subject of inquiry or the \"other party.\" The relevant house per question type also matters: 10th for career questions, 7th for marriage, 5th for children, etc.",
-        "bn": "The 1st house (Lagna) always represents the querent — the person asking the question. The 7th house represents the subject of inquiry or the \"other party.\" The relevant house per question type also matters: 10th for career questions, 7th for marriage, 5th for children, etc.",
-        "kn": "The 1st house (Lagna) always represents the querent — the person asking the question. The 7th house represents the subject of inquiry or the \"other party.\" The relevant house per question type also matters: 10th for career questions, 7th for marriage, 5th for children, etc.",
-        "gu": "The 1st house (Lagna) always represents the querent — the person asking the question. The 7th house represents the subject of inquiry or the \"other party.\" The relevant house per question type also matters: 10th for career questions, 7th for marriage, 5th for children, etc."
+        "en": "The 1st house (Lagna) always represents the querent  –  the person asking the question. The 7th house represents the subject of inquiry or the \"other party.\" The relevant house per question type also matters: 10th for career questions, 7th for marriage, 5th for children, etc.",
+        "hi": "प्रथम भाव (लग्न) सदैव जिज्ञासु  –  प्रश्न पूछने वाले व्यक्ति का प्रतिनिधित्व करता है। सप्तम भाव पूछताछ के विषय या \"दूसरे पक्ष\" का प्रतिनिधित्व करता है। प्रश्न प्रकार के अनुसार सम्बन्धित भाव भी महत्वपूर्ण है: कैरियर प्रश्नों के लिए दशम, विवाह के लिए सप्तम, संतान के लिए पंचम आदि।",
+        "sa": "प्रथम भाव (लग्न) सदैव जिज्ञासु  –  प्रश्न पूछने वाले व्यक्ति का प्रतिनिधित्व करता है। सप्तम भाव पूछताछ के विषय या \"दूसरे पक्ष\" का प्रतिनिधित्व करता है। प्रश्न प्रकार के अनुसार सम्बन्धित भाव भी महत्वपूर्ण है: कैरियर प्रश्नों के लिए दशम, विवाह के लिए सप्तम, संतान के लिए पंचम आदि।",
+        "mai": "प्रथम भाव (लग्न) सदैव जिज्ञासु  –  प्रश्न पूछने वाले व्यक्ति का प्रतिनिधित्व करता है। सप्तम भाव पूछताछ के विषय या \"दूसरे पक्ष\" का प्रतिनिधित्व करता है। प्रश्न प्रकार के अनुसार सम्बन्धित भाव भी महत्वपूर्ण है: कैरियर प्रश्नों के लिए दशम, विवाह के लिए सप्तम, संतान के लिए पंचम आदि।",
+        "mr": "प्रथम भाव (लग्न) सदैव जिज्ञासु  –  प्रश्न पूछने वाले व्यक्ति का प्रतिनिधित्व करता है। सप्तम भाव पूछताछ के विषय या \"दूसरे पक्ष\" का प्रतिनिधित्व करता है। प्रश्न प्रकार के अनुसार सम्बन्धित भाव भी महत्वपूर्ण है: कैरियर प्रश्नों के लिए दशम, विवाह के लिए सप्तम, संतान के लिए पंचम आदि।",
+        "ta": "The 1st house (Lagna) always represents the querent  –  the person asking the question. The 7th house represents the subject of inquiry or the \"other party.\" The relevant house per question type also matters: 10th for career questions, 7th for marriage, 5th for children, etc.",
+        "te": "The 1st house (Lagna) always represents the querent  –  the person asking the question. The 7th house represents the subject of inquiry or the \"other party.\" The relevant house per question type also matters: 10th for career questions, 7th for marriage, 5th for children, etc.",
+        "bn": "The 1st house (Lagna) always represents the querent  –  the person asking the question. The 7th house represents the subject of inquiry or the \"other party.\" The relevant house per question type also matters: 10th for career questions, 7th for marriage, 5th for children, etc.",
+        "kn": "The 1st house (Lagna) always represents the querent  –  the person asking the question. The 7th house represents the subject of inquiry or the \"other party.\" The relevant house per question type also matters: 10th for career questions, 7th for marriage, 5th for children, etc.",
+        "gu": "The 1st house (Lagna) always represents the querent  –  the person asking the question. The 7th house represents the subject of inquiry or the \"other party.\" The relevant house per question type also matters: 10th for career questions, 7th for marriage, 5th for children, etc."
       },
       "options": [
         {
@@ -345,8 +345,8 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Lagna lord (representing the querent) going to the 7th house (the subject of inquiry/desired outcome) shows the querent is moving toward what they seek. It\"s one of the strongest favorable yogas — the person\"s energy and destiny are directed toward the desired object.",
-        "hi": "लग्न स्वामी (जिज्ञासु का प्रतिनिधि) सप्तम भाव (पूछताछ का विषय/वांछित परिणाम) में जाना दर्शाता है कि जिज्ञासु जो खोज रहा है उसकी ओर बढ़ रहा है। यह सबसे मजबूत अनुकूल योगों में से एक है — व्यक्ति की ऊर्जा और भाग्य वांछित वस्तु की ओर निर्देशित हैं।"
+        "en": "Lagna lord (representing the querent) going to the 7th house (the subject of inquiry/desired outcome) shows the querent is moving toward what they seek. It\"s one of the strongest favorable yogas  –  the person\"s energy and destiny are directed toward the desired object.",
+        "hi": "लग्न स्वामी (जिज्ञासु का प्रतिनिधि) सप्तम भाव (पूछताछ का विषय/वांछित परिणाम) में जाना दर्शाता है कि जिज्ञासु जो खोज रहा है उसकी ओर बढ़ रहा है। यह सबसे मजबूत अनुकूल योगों में से एक है  –  व्यक्ति की ऊर्जा और भाग्य वांछित वस्तु की ओर निर्देशित हैं।"
       },
       "options": [
         {
@@ -416,16 +416,16 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "Moon \"void of course\" means the Moon makes no applying aspect to any planet before leaving its current sign. In Prashna, this indicates nothing will come of the matter — no outcome, no resolution. The question fizzles out without a definitive result.",
-        "hi": "चन्द्र \"शून्य पथ\" का अर्थ है कि चन्द्रमा अपनी वर्तमान राशि छोड़ने से पहले किसी भी ग्रह से कोई आगामी दृष्टि नहीं बनाता। प्रश्न में, यह दर्शाता है कि मामले से कुछ नहीं होगा — कोई परिणाम नहीं, कोई समाधान नहीं। प्रश्न बिना निश्चित परिणाम के समाप्त हो जाता है।",
-        "sa": "चन्द्र \"शून्य पथ\" का अर्थ है कि चन्द्रमा अपनी वर्तमान राशि छोड़ने से पहले किसी भी ग्रह से कोई आगामी दृष्टि नहीं बनाता। प्रश्न में, यह दर्शाता है कि मामले से कुछ नहीं होगा — कोई परिणाम नहीं, कोई समाधान नहीं। प्रश्न बिना निश्चित परिणाम के समाप्त हो जाता है।",
-        "mai": "चन्द्र \"शून्य पथ\" का अर्थ है कि चन्द्रमा अपनी वर्तमान राशि छोड़ने से पहले किसी भी ग्रह से कोई आगामी दृष्टि नहीं बनाता। प्रश्न में, यह दर्शाता है कि मामले से कुछ नहीं होगा — कोई परिणाम नहीं, कोई समाधान नहीं। प्रश्न बिना निश्चित परिणाम के समाप्त हो जाता है।",
-        "mr": "चन्द्र \"शून्य पथ\" का अर्थ है कि चन्द्रमा अपनी वर्तमान राशि छोड़ने से पहले किसी भी ग्रह से कोई आगामी दृष्टि नहीं बनाता। प्रश्न में, यह दर्शाता है कि मामले से कुछ नहीं होगा — कोई परिणाम नहीं, कोई समाधान नहीं। प्रश्न बिना निश्चित परिणाम के समाप्त हो जाता है।",
-        "ta": "Moon \"void of course\" means the Moon makes no applying aspect to any planet before leaving its current sign. In Prashna, this indicates nothing will come of the matter — no outcome, no resolution. The question fizzles out without a definitive result.",
-        "te": "Moon \"void of course\" means the Moon makes no applying aspect to any planet before leaving its current sign. In Prashna, this indicates nothing will come of the matter — no outcome, no resolution. The question fizzles out without a definitive result.",
-        "bn": "Moon \"void of course\" means the Moon makes no applying aspect to any planet before leaving its current sign. In Prashna, this indicates nothing will come of the matter — no outcome, no resolution. The question fizzles out without a definitive result.",
-        "kn": "Moon \"void of course\" means the Moon makes no applying aspect to any planet before leaving its current sign. In Prashna, this indicates nothing will come of the matter — no outcome, no resolution. The question fizzles out without a definitive result.",
-        "gu": "Moon \"void of course\" means the Moon makes no applying aspect to any planet before leaving its current sign. In Prashna, this indicates nothing will come of the matter — no outcome, no resolution. The question fizzles out without a definitive result."
+        "en": "Moon \"void of course\" means the Moon makes no applying aspect to any planet before leaving its current sign. In Prashna, this indicates nothing will come of the matter  –  no outcome, no resolution. The question fizzles out without a definitive result.",
+        "hi": "चन्द्र \"शून्य पथ\" का अर्थ है कि चन्द्रमा अपनी वर्तमान राशि छोड़ने से पहले किसी भी ग्रह से कोई आगामी दृष्टि नहीं बनाता। प्रश्न में, यह दर्शाता है कि मामले से कुछ नहीं होगा  –  कोई परिणाम नहीं, कोई समाधान नहीं। प्रश्न बिना निश्चित परिणाम के समाप्त हो जाता है।",
+        "sa": "चन्द्र \"शून्य पथ\" का अर्थ है कि चन्द्रमा अपनी वर्तमान राशि छोड़ने से पहले किसी भी ग्रह से कोई आगामी दृष्टि नहीं बनाता। प्रश्न में, यह दर्शाता है कि मामले से कुछ नहीं होगा  –  कोई परिणाम नहीं, कोई समाधान नहीं। प्रश्न बिना निश्चित परिणाम के समाप्त हो जाता है।",
+        "mai": "चन्द्र \"शून्य पथ\" का अर्थ है कि चन्द्रमा अपनी वर्तमान राशि छोड़ने से पहले किसी भी ग्रह से कोई आगामी दृष्टि नहीं बनाता। प्रश्न में, यह दर्शाता है कि मामले से कुछ नहीं होगा  –  कोई परिणाम नहीं, कोई समाधान नहीं। प्रश्न बिना निश्चित परिणाम के समाप्त हो जाता है।",
+        "mr": "चन्द्र \"शून्य पथ\" का अर्थ है कि चन्द्रमा अपनी वर्तमान राशि छोड़ने से पहले किसी भी ग्रह से कोई आगामी दृष्टि नहीं बनाता। प्रश्न में, यह दर्शाता है कि मामले से कुछ नहीं होगा  –  कोई परिणाम नहीं, कोई समाधान नहीं। प्रश्न बिना निश्चित परिणाम के समाप्त हो जाता है।",
+        "ta": "Moon \"void of course\" means the Moon makes no applying aspect to any planet before leaving its current sign. In Prashna, this indicates nothing will come of the matter  –  no outcome, no resolution. The question fizzles out without a definitive result.",
+        "te": "Moon \"void of course\" means the Moon makes no applying aspect to any planet before leaving its current sign. In Prashna, this indicates nothing will come of the matter  –  no outcome, no resolution. The question fizzles out without a definitive result.",
+        "bn": "Moon \"void of course\" means the Moon makes no applying aspect to any planet before leaving its current sign. In Prashna, this indicates nothing will come of the matter  –  no outcome, no resolution. The question fizzles out without a definitive result.",
+        "kn": "Moon \"void of course\" means the Moon makes no applying aspect to any planet before leaving its current sign. In Prashna, this indicates nothing will come of the matter  –  no outcome, no resolution. The question fizzles out without a definitive result.",
+        "gu": "Moon \"void of course\" means the Moon makes no applying aspect to any planet before leaving its current sign. In Prashna, this indicates nothing will come of the matter  –  no outcome, no resolution. The question fizzles out without a definitive result."
       },
       "options": [
         {
@@ -453,16 +453,16 @@
           "gu": "A delayed but eventual success"
         },
         {
-          "en": "No outcome — the matter will not materialize",
-          "hi": "कोई परिणाम नहीं — मामला साकार नहीं होगा",
-          "sa": "कोई परिणाम नहीं — मामला साकार नहीं होगा",
-          "mai": "कोई परिणाम नहीं — मामला साकार नहीं होगा",
-          "mr": "कोई परिणाम नहीं — मामला साकार नहीं होगा",
-          "ta": "No outcome — the matter will not materialize",
-          "te": "No outcome — the matter will not materialize",
-          "bn": "No outcome — the matter will not materialize",
-          "kn": "No outcome — the matter will not materialize",
-          "gu": "No outcome — the matter will not materialize"
+          "en": "No outcome  –  the matter will not materialize",
+          "hi": "कोई परिणाम नहीं  –  मामला साकार नहीं होगा",
+          "sa": "कोई परिणाम नहीं  –  मामला साकार नहीं होगा",
+          "mai": "कोई परिणाम नहीं  –  मामला साकार नहीं होगा",
+          "mr": "कोई परिणाम नहीं  –  मामला साकार नहीं होगा",
+          "ta": "No outcome  –  the matter will not materialize",
+          "te": "No outcome  –  the matter will not materialize",
+          "bn": "No outcome  –  the matter will not materialize",
+          "kn": "No outcome  –  the matter will not materialize",
+          "gu": "No outcome  –  the matter will not materialize"
         },
         {
           "en": "A change of plans",
@@ -524,16 +524,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Applying aspects (where a faster planet moves toward an exact aspect with a slower one) indicate that the event is approaching — it WILL happen. The closer the aspect to exact, the sooner the event. Separating aspects (the aspect has already been exact) indicate the opportunity has passed.",
-        "hi": "आगामी दृष्टि (जहाँ तीव्र ग्रह धीमे ग्रह के साथ सटीक दृष्टि की ओर बढ़ रहा है) दर्शाती है कि घटना निकट आ रही है — यह होगी। दृष्टि जितनी सटीक के निकट, घटना उतनी शीघ्र। वियोजी दृष्टि (दृष्टि पहले ही सटीक हो चुकी है) दर्शाती है कि अवसर बीत चुका है।",
-        "sa": "आगामी दृष्टि (जहाँ तीव्र ग्रह धीमे ग्रह के साथ सटीक दृष्टि की ओर बढ़ रहा है) दर्शाती है कि घटना निकट आ रही है — यह होगी। दृष्टि जितनी सटीक के निकट, घटना उतनी शीघ्र। वियोजी दृष्टि (दृष्टि पहले ही सटीक हो चुकी है) दर्शाती है कि अवसर बीत चुका है।",
-        "mai": "आगामी दृष्टि (जहाँ तीव्र ग्रह धीमे ग्रह के साथ सटीक दृष्टि की ओर बढ़ रहा है) दर्शाती है कि घटना निकट आ रही है — यह होगी। दृष्टि जितनी सटीक के निकट, घटना उतनी शीघ्र। वियोजी दृष्टि (दृष्टि पहले ही सटीक हो चुकी है) दर्शाती है कि अवसर बीत चुका है।",
-        "mr": "आगामी दृष्टि (जहाँ तीव्र ग्रह धीमे ग्रह के साथ सटीक दृष्टि की ओर बढ़ रहा है) दर्शाती है कि घटना निकट आ रही है — यह होगी। दृष्टि जितनी सटीक के निकट, घटना उतनी शीघ्र। वियोजी दृष्टि (दृष्टि पहले ही सटीक हो चुकी है) दर्शाती है कि अवसर बीत चुका है।",
-        "ta": "Applying aspects (where a faster planet moves toward an exact aspect with a slower one) indicate that the event is approaching — it WILL happen. The closer the aspect to exact, the sooner the event. Separating aspects (the aspect has already been exact) indicate the opportunity has passed.",
-        "te": "Applying aspects (where a faster planet moves toward an exact aspect with a slower one) indicate that the event is approaching — it WILL happen. The closer the aspect to exact, the sooner the event. Separating aspects (the aspect has already been exact) indicate the opportunity has passed.",
-        "bn": "Applying aspects (where a faster planet moves toward an exact aspect with a slower one) indicate that the event is approaching — it WILL happen. The closer the aspect to exact, the sooner the event. Separating aspects (the aspect has already been exact) indicate the opportunity has passed.",
-        "kn": "Applying aspects (where a faster planet moves toward an exact aspect with a slower one) indicate that the event is approaching — it WILL happen. The closer the aspect to exact, the sooner the event. Separating aspects (the aspect has already been exact) indicate the opportunity has passed.",
-        "gu": "Applying aspects (where a faster planet moves toward an exact aspect with a slower one) indicate that the event is approaching — it WILL happen. The closer the aspect to exact, the sooner the event. Separating aspects (the aspect has already been exact) indicate the opportunity has passed."
+        "en": "Applying aspects (where a faster planet moves toward an exact aspect with a slower one) indicate that the event is approaching  –  it WILL happen. The closer the aspect to exact, the sooner the event. Separating aspects (the aspect has already been exact) indicate the opportunity has passed.",
+        "hi": "आगामी दृष्टि (जहाँ तीव्र ग्रह धीमे ग्रह के साथ सटीक दृष्टि की ओर बढ़ रहा है) दर्शाती है कि घटना निकट आ रही है  –  यह होगी। दृष्टि जितनी सटीक के निकट, घटना उतनी शीघ्र। वियोजी दृष्टि (दृष्टि पहले ही सटीक हो चुकी है) दर्शाती है कि अवसर बीत चुका है।",
+        "sa": "आगामी दृष्टि (जहाँ तीव्र ग्रह धीमे ग्रह के साथ सटीक दृष्टि की ओर बढ़ रहा है) दर्शाती है कि घटना निकट आ रही है  –  यह होगी। दृष्टि जितनी सटीक के निकट, घटना उतनी शीघ्र। वियोजी दृष्टि (दृष्टि पहले ही सटीक हो चुकी है) दर्शाती है कि अवसर बीत चुका है।",
+        "mai": "आगामी दृष्टि (जहाँ तीव्र ग्रह धीमे ग्रह के साथ सटीक दृष्टि की ओर बढ़ रहा है) दर्शाती है कि घटना निकट आ रही है  –  यह होगी। दृष्टि जितनी सटीक के निकट, घटना उतनी शीघ्र। वियोजी दृष्टि (दृष्टि पहले ही सटीक हो चुकी है) दर्शाती है कि अवसर बीत चुका है।",
+        "mr": "आगामी दृष्टि (जहाँ तीव्र ग्रह धीमे ग्रह के साथ सटीक दृष्टि की ओर बढ़ रहा है) दर्शाती है कि घटना निकट आ रही है  –  यह होगी। दृष्टि जितनी सटीक के निकट, घटना उतनी शीघ्र। वियोजी दृष्टि (दृष्टि पहले ही सटीक हो चुकी है) दर्शाती है कि अवसर बीत चुका है।",
+        "ta": "Applying aspects (where a faster planet moves toward an exact aspect with a slower one) indicate that the event is approaching  –  it WILL happen. The closer the aspect to exact, the sooner the event. Separating aspects (the aspect has already been exact) indicate the opportunity has passed.",
+        "te": "Applying aspects (where a faster planet moves toward an exact aspect with a slower one) indicate that the event is approaching  –  it WILL happen. The closer the aspect to exact, the sooner the event. Separating aspects (the aspect has already been exact) indicate the opportunity has passed.",
+        "bn": "Applying aspects (where a faster planet moves toward an exact aspect with a slower one) indicate that the event is approaching  –  it WILL happen. The closer the aspect to exact, the sooner the event. Separating aspects (the aspect has already been exact) indicate the opportunity has passed.",
+        "kn": "Applying aspects (where a faster planet moves toward an exact aspect with a slower one) indicate that the event is approaching  –  it WILL happen. The closer the aspect to exact, the sooner the event. Separating aspects (the aspect has already been exact) indicate the opportunity has passed.",
+        "gu": "Applying aspects (where a faster planet moves toward an exact aspect with a slower one) indicate that the event is approaching  –  it WILL happen. The closer the aspect to exact, the sooner the event. Separating aspects (the aspect has already been exact) indicate the opportunity has passed."
       },
       "options": [
         {
@@ -603,8 +603,8 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "A combust Lagna lord means the querent (represented by the Lagna lord) is weakened, overwhelmed, or unable to act effectively. The Sun's overpowering light \"burns\" the querent's capacity. This is an unfavorable indication — the person lacks the strength to achieve their desired outcome.",
-        "hi": "अस्त लग्न स्वामी का अर्थ है कि जिज्ञासु (लग्न स्वामी द्वारा प्रतिनिधित्व) दुर्बल, अभिभूत, या प्रभावी ढंग से कार्य करने में असमर्थ है। सूर्य का अत्यधिक प्रकाश जिज्ञासु की क्षमता को \"जला\" देता है। यह प्रतिकूल संकेत है — व्यक्ति में अपना वांछित परिणाम प्राप्त करने की शक्ति नहीं है।"
+        "en": "A combust Lagna lord means the querent (represented by the Lagna lord) is weakened, overwhelmed, or unable to act effectively. The Sun's overpowering light \"burns\" the querent's capacity. This is an unfavorable indication  –  the person lacks the strength to achieve their desired outcome.",
+        "hi": "अस्त लग्न स्वामी का अर्थ है कि जिज्ञासु (लग्न स्वामी द्वारा प्रतिनिधित्व) दुर्बल, अभिभूत, या प्रभावी ढंग से कार्य करने में असमर्थ है। सूर्य का अत्यधिक प्रकाश जिज्ञासु की क्षमता को \"जला\" देता है। यह प्रतिकूल संकेत है  –  व्यक्ति में अपना वांछित परिणाम प्राप्त करने की शक्ति नहीं है।"
       }
     },
     {

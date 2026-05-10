@@ -1,5 +1,5 @@
 /**
- * useAIReading — Client-side hook for fetching and caching AI readings.
+ * useAIReading  –  Client-side hook for fetching and caching AI readings.
  *
  * Manages the lifecycle of a single comprehensive AI reading call:
  * 1. Check if readings are already loaded (from a previous call)

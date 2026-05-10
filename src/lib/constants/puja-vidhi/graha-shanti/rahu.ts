@@ -168,14 +168,14 @@ export const RAHU_SHANTI: PujaVidhi = {
 
   precautions: [
     {
-      en: 'Perform the puja after sunset facing south-west. Rahu is a shadow planet — nighttime worship is more effective.',
-      hi: 'पूजा सूर्यास्त के बाद नैऋत्य दिशा की ओर मुख कर करें। राहु छाया ग्रह है — रात्रि पूजा अधिक प्रभावी है।',
-      sa: 'सूर्यास्तानन्तरं नैऋतदिशम् अभिमुखं पूजां कुर्यात्। राहुः छायाग्रहः — रात्रिपूजा अधिकप्रभावशालिनी।',
+      en: 'Perform the puja after sunset facing south-west. Rahu is a shadow planet  –  nighttime worship is more effective.',
+      hi: 'पूजा सूर्यास्त के बाद नैऋत्य दिशा की ओर मुख कर करें। राहु छाया ग्रह है  –  रात्रि पूजा अधिक प्रभावी है।',
+      sa: 'सूर्यास्तानन्तरं नैऋतदिशम् अभिमुखं पूजां कुर्यात्। राहुः छायाग्रहः  –  रात्रिपूजा अधिकप्रभावशालिनी।',
     },
     {
-      en: 'Avoid intoxicants, gambling, and deceptive behaviour — Rahu amplifies these tendencies when afflicted.',
-      hi: 'मादक पदार्थ, जुआ और छलपूर्ण व्यवहार से बचें — पीड़ित राहु इन प्रवृत्तियों को बढ़ाता है।',
-      sa: 'मादकपदार्थान् द्यूतं छलपूर्णव्यवहारं च वर्जयेत् — पीडितराहुः एताः प्रवृत्तीः वर्धयति।',
+      en: 'Avoid intoxicants, gambling, and deceptive behaviour  –  Rahu amplifies these tendencies when afflicted.',
+      hi: 'मादक पदार्थ, जुआ और छलपूर्ण व्यवहार से बचें  –  पीड़ित राहु इन प्रवृत्तियों को बढ़ाता है।',
+      sa: 'मादकपदार्थान् द्यूतं छलपूर्णव्यवहारं च वर्जयेत्  –  पीडितराहुः एताः प्रवृत्तीः वर्धयति।',
     },
     {
       en: 'Rahu and Ketu shanti should ideally be performed together for complete nodal axis balancing.',

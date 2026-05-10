@@ -1,5 +1,5 @@
 /**
- * D60 (Shashtiamsha) divisional chart — BPHS Ch.6
+ * D60 (Shashtiamsha) divisional chart  –  BPHS Ch.6
  *
  * Each sign is split into 60 parts of 0.5° each.
  * Odd signs (0-based even index): count from the same sign.

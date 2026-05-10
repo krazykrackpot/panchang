@@ -5,7 +5,7 @@ import { type CityData } from '@/lib/constants/cities';
 import { ALL_CITIES } from '@/lib/constants/cities-extended';
 import { isDevanagariLocale, getHeadingFont } from '@/lib/utils/locale-fonts';
 
-export const revalidate = 604800; // 7 days — city listing is static
+export const revalidate = 604800; // 7 days  –  city listing is static
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -15,7 +15,7 @@ function cityName(city: CityData, locale: string): string {
 }
 
 /**
- * International states — cities whose `state` field is a country name rather
+ * International states  –  cities whose `state` field is a country name rather
  * than an Indian state/UT. We detect by checking against a known set.
  */
 const INTERNATIONAL_STATES = new Set([
@@ -34,8 +34,8 @@ const LABELS: Record<string, Record<string, string>> = {
     pageTitle: 'Panchang by City',
     pageSubtitle: '55+ locations across India and the global Hindu diaspora',
     intro:
-      'Every city-specific Panchang page computes Tithi, Nakshatra, Yoga, Karana, Rahu Kaal, Yamaganda, Gulika, sunrise, and sunset for the exact coordinates of that location — using classical Vedic algorithms with Lahiri Ayanamsha. Choose your city below for timings precise to the minute.',
-    indiaSection: 'India — by State',
+      'Every city-specific Panchang page computes Tithi, Nakshatra, Yoga, Karana, Rahu Kaal, Yamaganda, Gulika, sunrise, and sunset for the exact coordinates of that location  –  using classical Vedic algorithms with Lahiri Ayanamsha. Choose your city below for timings precise to the minute.',
+    indiaSection: 'India  –  by State',
     internationalSection: 'Global Hindu Diaspora',
     internationalSubtitle:
       'Accurate Vedic Panchang for the Hindu diaspora worldwide',
@@ -46,14 +46,14 @@ const LABELS: Record<string, Record<string, string>> = {
     cities: 'cities',
     whyTitle: 'Why city-specific Panchang?',
     whyText:
-      'Panchang timings — especially Rahu Kaal, Yamaganda, Gulika, and Muhurta windows — depend on local sunrise and sunset, which differ by longitude, latitude, and season. A Panchang computed for Delhi can be off by 20–90 minutes for cities like Chennai or Chandigarh. Every page here uses coordinates precise to the city centre.',
+      'Panchang timings  –  especially Rahu Kaal, Yamaganda, Gulika, and Muhurta windows  –  depend on local sunrise and sunset, which differ by longitude, latitude, and season. A Panchang computed for Delhi can be off by 20–90 minutes for cities like Chennai or Chandigarh. Every page here uses coordinates precise to the city centre.',
   },
   hi: {
     pageTitle: 'शहर के अनुसार पंचांग',
     pageSubtitle: 'भारत और वैश्विक हिंदू डायस्पोरा के 55+ स्थान',
     intro:
       'प्रत्येक शहर-विशिष्ट पंचांग पृष्ठ उस स्थान के सटीक निर्देशांक के आधार पर तिथि, नक्षत्र, योग, करण, राहु काल, यमगण्ड, गुलिक, सूर्योदय और सूर्यास्त की गणना करता है। नीचे से अपना शहर चुनें।',
-    indiaSection: 'भारत — राज्य के अनुसार',
+    indiaSection: 'भारत  –  राज्य के अनुसार',
     internationalSection: 'वैश्विक हिंदू डायस्पोरा',
     internationalSubtitle: 'विश्वभर में हिंदू डायस्पोरा के लिए सटीक वैदिक पंचांग',
     breadcrumbHome: 'होम',
@@ -63,7 +63,7 @@ const LABELS: Record<string, Record<string, string>> = {
     cities: 'शहर',
     whyTitle: 'शहर-विशिष्ट पंचांग क्यों?',
     whyText:
-      'पंचांग समय — विशेष रूप से राहु काल, यमगण्ड, गुलिक और मुहूर्त — स्थानीय सूर्योदय और सूर्यास्त पर निर्भर करते हैं। दिल्ली का पंचांग चेन्नई या चंडीगढ़ के लिए 20–90 मिनट तक गलत हो सकता है।',
+      'पंचांग समय  –  विशेष रूप से राहु काल, यमगण्ड, गुलिक और मुहूर्त  –  स्थानीय सूर्योदय और सूर्यास्त पर निर्भर करते हैं। दिल्ली का पंचांग चेन्नई या चंडीगढ़ के लिए 20–90 मिनट तक गलत हो सकता है।',
   },
 };
 
@@ -112,7 +112,7 @@ function StateCard({
           {group.state}
         </h3>
         <span className="ml-auto text-xs text-text-secondary bg-gold-primary/10 border border-gold-primary/20 rounded-full px-2 py-0.5">
-          {group.cities.length} {/* city count badge — label omitted for brevity at small sizes */}
+          {group.cities.length} {/* city count badge  –  label omitted for brevity at small sizes */}
         </span>
       </div>
 

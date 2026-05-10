@@ -76,7 +76,7 @@ function computeCurrentTransits(): TransitInfo[] {
     const nakEnd = nakId * NAK_SPAN;
 
     // Use actual speed to estimate entry/exit dates
-    // Speed is tropical degrees/day — close enough for sidereal estimation
+    // Speed is tropical degrees/day  –  close enough for sidereal estimation
     const speed = Math.abs(p.speed) || 0.01; // avoid division by zero
     const isRetro = p.isRetrograde;
 
@@ -165,7 +165,7 @@ export default function SarvatobhadraPage() {
         const moonNak = kundali?.planets?.find((p: { planet: { id: number } }) => p.planet.id === 1)?.nakshatra?.id;
         if (moonNak && moonNak >= 1 && moonNak <= 27) setBirthNakId(moonNak);
       }
-    } catch { /* sessionStorage unavailable or parse error — user picks manually */ }
+    } catch { /* sessionStorage unavailable or parse error  –  user picks manually */ }
   }, [searchParams]);
 
   // Compute real transit positions from the ephemeris engine
@@ -327,12 +327,12 @@ export default function SarvatobhadraPage() {
             <p className="text-sm text-text-secondary leading-relaxed">
               {locale === 'hi'
                 ? 'सर्वतोभद्र चक्र एक 9×9 ग्रिड है जो 28 नक्षत्रों, 7 वारों, 30 तिथियों, स्वरों और दिशाओं को एक संरचित मानचित्र में व्यवस्थित करता है। जब कोई गोचर ग्रह ग्रिड की किसी कोष्ठ पर स्थित होता है, तो वह उसी पंक्ति, स्तम्भ और विकर्ण पर "वेध" (पीड़ा/प्रभाव) डालता है। शुभ ग्रहों का वेध अनुकूल होता है; अशुभ ग्रहों का वेध प्रतिकूल।'
-                : 'The Sarvatobhadra Chakra is a 9×9 grid that maps all 28 nakshatras, 7 weekdays, 30 tithis, vowels, and directions into one structured chart. When a transiting planet occupies a cell, it casts "vedha" (aspect/affliction) along its row, column, and both diagonals — affecting every element in those lines. Benefic planets create favorable vedha; malefic planets create unfavorable vedha.'}
+                : 'The Sarvatobhadra Chakra is a 9×9 grid that maps all 28 nakshatras, 7 weekdays, 30 tithis, vowels, and directions into one structured chart. When a transiting planet occupies a cell, it casts "vedha" (aspect/affliction) along its row, column, and both diagonals  –  affecting every element in those lines. Benefic planets create favorable vedha; malefic planets create unfavorable vedha.'}
             </p>
             <div className="grid sm:grid-cols-3 gap-3 text-xs">
               <div className="bg-gold-primary/5 rounded-lg p-3 border border-gold-primary/10">
                 <p className="text-gold-light font-medium mb-1">{locale === 'hi' ? 'जन्म नक्षत्र वेध' : 'Birth Nakshatra Vedha'}</p>
-                <p className="text-text-secondary">{locale === 'hi' ? 'यदि किसी ग्रह की वेध रेखा आपके जन्म नक्षत्र से गुज़रती है, तो वह ग्रह आप पर सीधा प्रभाव डालता है।' : 'When a planet\'s vedha line passes through YOUR birth nakshatra, that planet directly influences you — for good (benefic) or challenge (malefic).'}</p>
+                <p className="text-text-secondary">{locale === 'hi' ? 'यदि किसी ग्रह की वेध रेखा आपके जन्म नक्षत्र से गुज़रती है, तो वह ग्रह आप पर सीधा प्रभाव डालता है।' : 'When a planet\'s vedha line passes through YOUR birth nakshatra, that planet directly influences you  –  for good (benefic) or challenge (malefic).'}</p>
               </div>
               <div className="bg-gold-primary/5 rounded-lg p-3 border border-gold-primary/10">
                 <p className="text-gold-light font-medium mb-1">{locale === 'hi' ? 'प्रभाव अवधि' : 'Duration of Effect'}</p>
@@ -431,7 +431,7 @@ export default function SarvatobhadraPage() {
               </div>
             ) : (
               <div className="space-y-6">
-                {/* Gantt Chart — Calendar Timeline */}
+                {/* Gantt Chart  –  Calendar Timeline */}
                 <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 sm:p-6">
                   <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-1 font-bold">
                     {locale === 'hi' ? 'गोचर समयरेखा' : 'Transit Timeline'}
@@ -513,7 +513,7 @@ export default function SarvatobhadraPage() {
                                         : struck ? 'bg-red-500/50 border border-red-400/60' : 'bg-red-500/15 border border-red-400/15'
                                     }`}
                                     style={{ left: `${leftPct}%`, width: `${widthPct}%` }}
-                                    title={`${formatDate(t.entryDate)} — ${formatDate(t.exitDate)}${t.isRetrograde ? ' (R)' : ''}`}
+                                    title={`${formatDate(t.entryDate)}  –  ${formatDate(t.exitDate)}${t.isRetrograde ? ' (R)' : ''}`}
                                   >
                                     {widthPct > 8 && (
                                       <span className={`text-[8px] sm:text-[9px] font-medium truncate px-1 ${
@@ -554,7 +554,7 @@ export default function SarvatobhadraPage() {
           </div>
         </div>
 
-        {/* Transit Vedha Details — full width, below the grid+timeline flex row */}
+        {/* Transit Vedha Details  –  full width, below the grid+timeline flex row */}
         {analysis && (
           <div className="mt-8 space-y-6">
             <div>
@@ -597,7 +597,7 @@ export default function SarvatobhadraPage() {
 
                       {transit && (
                         <p className="text-[11px] text-text-secondary/70 mb-1">
-                          {formatD(transit.entryDate)} — {formatD(transit.exitDate)}
+                          {formatD(transit.entryDate)}  –  {formatD(transit.exitDate)}
                           {transit.isRetrograde ? ' (℞)' : ''}
                           <span className="ml-1 text-text-secondary/40">({tv.transitDuration})</span>
                         </p>

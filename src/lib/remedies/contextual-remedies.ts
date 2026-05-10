@@ -112,15 +112,15 @@ const PLANET_CHARITY: Record<number, LocaleText> = {
 
 /** Navagraha Stotra beej mantras per planet */
 const PLANET_MANTRA: Record<number, LocaleText> = {
-  0: { en: 'Om Hraam Hreem Hraum Sah Suryaya Namah — recite 7000 times', hi: 'ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः — 7000 बार जप करें' },
-  1: { en: 'Om Shraam Shreem Shraum Sah Chandraya Namah — recite 11000 times', hi: 'ॐ श्रां श्रीं श्रौं सः चन्द्राय नमः — 11000 बार जप करें' },
-  2: { en: 'Om Kraam Kreem Kraum Sah Bhaumaya Namah — recite 10000 times', hi: 'ॐ क्रां क्रीं क्रौं सः भौमाय नमः — 10000 बार जप करें' },
-  3: { en: 'Om Braam Breem Braum Sah Budhaya Namah — recite 9000 times', hi: 'ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः — 9000 बार जप करें' },
-  4: { en: 'Om Graam Greem Graum Sah Gurave Namah — recite 19000 times', hi: 'ॐ ग्रां ग्रीं ग्रौं सः गुरवे नमः — 19000 बार जप करें' },
-  5: { en: 'Om Draam Dreem Draum Sah Shukraya Namah — recite 16000 times', hi: 'ॐ द्रां द्रीं द्रौं सः शुक्राय नमः — 16000 बार जप करें' },
-  6: { en: 'Om Praam Preem Praum Sah Shanaischaraya Namah — recite 23000 times', hi: 'ॐ प्रां प्रीं प्रौं सः शनैश्चराय नमः — 23000 बार जप करें' },
-  7: { en: 'Om Bhraam Bhreem Bhraum Sah Rahave Namah — recite 18000 times', hi: 'ॐ भ्रां भ्रीं भ्रौं सः राहवे नमः — 18000 बार जप करें' },
-  8: { en: 'Om Sraam Sreem Sraum Sah Ketave Namah — recite 17000 times', hi: 'ॐ स्रां स्रीं स्रौं सः केतवे नमः — 17000 बार जप करें' },
+  0: { en: 'Om Hraam Hreem Hraum Sah Suryaya Namah  –  recite 7000 times', hi: 'ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः  –  7000 बार जप करें' },
+  1: { en: 'Om Shraam Shreem Shraum Sah Chandraya Namah  –  recite 11000 times', hi: 'ॐ श्रां श्रीं श्रौं सः चन्द्राय नमः  –  11000 बार जप करें' },
+  2: { en: 'Om Kraam Kreem Kraum Sah Bhaumaya Namah  –  recite 10000 times', hi: 'ॐ क्रां क्रीं क्रौं सः भौमाय नमः  –  10000 बार जप करें' },
+  3: { en: 'Om Braam Breem Braum Sah Budhaya Namah  –  recite 9000 times', hi: 'ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः  –  9000 बार जप करें' },
+  4: { en: 'Om Graam Greem Graum Sah Gurave Namah  –  recite 19000 times', hi: 'ॐ ग्रां ग्रीं ग्रौं सः गुरवे नमः  –  19000 बार जप करें' },
+  5: { en: 'Om Draam Dreem Draum Sah Shukraya Namah  –  recite 16000 times', hi: 'ॐ द्रां द्रीं द्रौं सः शुक्राय नमः  –  16000 बार जप करें' },
+  6: { en: 'Om Praam Preem Praum Sah Shanaischaraya Namah  –  recite 23000 times', hi: 'ॐ प्रां प्रीं प्रौं सः शनैश्चराय नमः  –  23000 बार जप करें' },
+  7: { en: 'Om Bhraam Bhreem Bhraum Sah Rahave Namah  –  recite 18000 times', hi: 'ॐ भ्रां भ्रीं भ्रौं सः राहवे नमः  –  18000 बार जप करें' },
+  8: { en: 'Om Sraam Sreem Sraum Sah Ketave Namah  –  recite 17000 times', hi: 'ॐ स्रां स्रीं स्रौं सः केतवे नमः  –  17000 बार जप करें' },
 };
 
 /** Gemstone names per planet */
@@ -136,7 +136,7 @@ const PLANET_GEMSTONE: Record<number, LocaleText> = {
   8: { en: 'Cat\'s Eye (Lehsunia)', hi: 'लहसुनिया' },
 };
 
-/** Deity associated with lagna sign — for lagna lord remedies */
+/** Deity associated with lagna sign  –  for lagna lord remedies */
 const SIGN_DEITY: Record<number, LocaleText> = {
   1:  { en: 'Lord Hanuman or Kartikeya', hi: 'हनुमान जी या कार्तिकेय' },
   2:  { en: 'Goddess Lakshmi', hi: 'देवी लक्ष्मी' },
@@ -152,7 +152,7 @@ const SIGN_DEITY: Record<number, LocaleText> = {
   12: { en: 'Lord Vishnu or Matsya Avatar', hi: 'भगवान विष्णु या मत्स्य अवतार' },
 };
 
-/** Yoga karaka planets per ascendant (simplified — Saturn is yogakaraka for Taurus & Libra) */
+/** Yoga karaka planets per ascendant (simplified  –  Saturn is yogakaraka for Taurus & Libra) */
 const YOGA_KARAKA_SATURN: Set<number> = new Set([2, 7]); // Taurus (2) and Libra (7)
 
 // ─── Severity scoring ───────────────────────────────────────────────────────
@@ -321,7 +321,7 @@ function buildSadeSati(phase: string, ascendantSign: number): ContextualRemedy {
   const phaseLabel = phase === 'rising' ? 'rising (pre-peak)' : phase === 'peak' ? 'peak' : 'setting (post-peak)';
   const phaseHi = phase === 'rising' ? 'उदय (पूर्व-चरम)' : phase === 'peak' ? 'चरम' : 'अस्त (उत्तर-चरम)';
 
-  // Saturn is yoga karaka for Taurus and Libra ascendants — effects are mixed, not purely negative
+  // Saturn is yoga karaka for Taurus and Libra ascendants  –  effects are mixed, not purely negative
   const isYogaKaraka = YOGA_KARAKA_SATURN.has(ascendantSign);
 
   return {
@@ -329,8 +329,8 @@ function buildSadeSati(phase: string, ascendantSign: number): ContextualRemedy {
     afflictionName: { en: 'Sade Sati (Saturn\'s 7.5-year transit)', hi: 'साढ़ेसाती (शनि की साढ़ेसाती)' },
     severity,
     explanation: {
-      en: `You are in the ${phaseLabel} phase of Sade Sati. Saturn is transiting over your natal Moon, creating a period of karmic lessons, delays, and restructuring in life.${isYogaKaraka ? ' However, Saturn is a yoga karaka for your ascendant — effects may be mixed with career gains.' : ''}`,
-      hi: `आप साढ़ेसाती के ${phaseHi} चरण में हैं। शनि आपके जन्म चन्द्रमा पर गोचर कर रहा है, जो जीवन में कर्मिक सबक, देरी और पुनर्गठन का समय लाता है।${isYogaKaraka ? ' हालांकि, शनि आपके लग्न के लिए योगकारक है — करियर लाभ के साथ मिश्रित प्रभाव हो सकते हैं।' : ''}`,
+      en: `You are in the ${phaseLabel} phase of Sade Sati. Saturn is transiting over your natal Moon, creating a period of karmic lessons, delays, and restructuring in life.${isYogaKaraka ? ' However, Saturn is a yoga karaka for your ascendant  –  effects may be mixed with career gains.' : ''}`,
+      hi: `आप साढ़ेसाती के ${phaseHi} चरण में हैं। शनि आपके जन्म चन्द्रमा पर गोचर कर रहा है, जो जीवन में कर्मिक सबक, देरी और पुनर्गठन का समय लाता है।${isYogaKaraka ? ' हालांकि, शनि आपके लग्न के लिए योगकारक है  –  करियर लाभ के साथ मिश्रित प्रभाव हो सकते हैं।' : ''}`,
     },
     remedies: [
       {
@@ -345,7 +345,7 @@ function buildSadeSati(phase: string, ascendantSign: number): ContextualRemedy {
       },
       ...(isYogaKaraka ? [{
         type: 'gemstone' as const,
-        title: { en: 'Blue Sapphire (Neelam) — with trial', hi: 'नीलम — परीक्षण सहित' },
+        title: { en: 'Blue Sapphire (Neelam)  –  with trial', hi: 'नीलम  –  परीक्षण सहित' },
         description: {
           en: 'Since Saturn is yoga karaka for your ascendant, Blue Sapphire may be beneficial. Wear for a 3-day trial period first. Remove immediately if adverse effects occur. Consult a jyotishi.',
           hi: 'चूंकि शनि आपके लग्न के लिए योगकारक है, नीलम लाभकारी हो सकता है। पहले 3 दिन परीक्षण करें। प्रतिकूल प्रभाव होने पर तुरन्त हटा दें। किसी ज्योतिषी से परामर्श लें।',
@@ -458,8 +458,8 @@ function buildDebilitatedPlanet(planet: PlanetInput, ascendantSign: number): Con
   // Check for Neechabhanga (cancellation of debilitation)
   // Simplified: lord of the sign where the planet is debilitated is in a kendra from lagna or Moon
   const neechabhangaNote = {
-    en: ' Check if Neechabhanga Raja Yoga applies — if so, the debilitation is partially cancelled and remedies may be less urgent.',
-    hi: ' जांचें कि क्या नीचभंग राजयोग लागू है — यदि हां, तो नीच अंशतः निष्प्रभावी है और उपायों की तत्काल आवश्यकता कम हो सकती है।',
+    en: ' Check if Neechabhanga Raja Yoga applies  –  if so, the debilitation is partially cancelled and remedies may be less urgent.',
+    hi: ' जांचें कि क्या नीचभंग राजयोग लागू है  –  यदि हां, तो नीच अंशतः निष्प्रभावी है और उपायों की तत्काल आवश्यकता कम हो सकती है।',
   };
 
   // Only recommend gemstone if the planet is a functional benefic (lagna lord, trikona lord, etc.)
@@ -509,12 +509,12 @@ function buildDebilitatedPlanet(planet: PlanetInput, ascendantSign: number): Con
     remedies.push({
       type: 'gemstone',
       title: {
-        en: `${(PLANET_GEMSTONE[pid] ?? { en: 'Gemstone' }).en} — Cautiously`,
-        hi: `${(PLANET_GEMSTONE[pid] ?? { hi: 'रत्न' }).hi} — सावधानी से`,
+        en: `${(PLANET_GEMSTONE[pid] ?? { en: 'Gemstone' }).en}  –  Cautiously`,
+        hi: `${(PLANET_GEMSTONE[pid] ?? { hi: 'रत्न' }).hi}  –  सावधानी से`,
       },
       description: {
-        en: `${name.en} is your lagna lord and debilitated — wearing ${(PLANET_GEMSTONE[pid] ?? { en: 'its gemstone' }).en} can strengthen it. Consult a jyotishi for carat weight and activation.`,
-        hi: `${name.hi} आपका लग्नेश है और नीच है — ${(PLANET_GEMSTONE[pid] ?? { hi: 'इसका रत्न' }).hi} धारण करने से यह सुदृढ़ हो सकता है। रत्ती और अभिमंत्रण के लिए किसी ज्योतिषी से परामर्श लें।`,
+        en: `${name.en} is your lagna lord and debilitated  –  wearing ${(PLANET_GEMSTONE[pid] ?? { en: 'its gemstone' }).en} can strengthen it. Consult a jyotishi for carat weight and activation.`,
+        hi: `${name.hi} आपका लग्नेश है और नीच है  –  ${(PLANET_GEMSTONE[pid] ?? { hi: 'इसका रत्न' }).hi} धारण करने से यह सुदृढ़ हो सकता है। रत्ती और अभिमंत्रण के लिए किसी ज्योतिषी से परामर्श लें।`,
       },
       frequency: 'once',
       planetId: pid,
@@ -548,8 +548,8 @@ function buildCombustPlanet(planet: PlanetInput): ContextualRemedy {
     },
     severity: 'mild',
     explanation: {
-      en: `${name.en} is too close to the Sun and has become combust (asta). Its significations — the areas of life it governs — become weakened as the Sun's brilliance overpowers it.`,
-      hi: `${name.hi} सूर्य के अत्यंत निकट है और अस्त हो गया है। इसके कारकत्व — जीवन के वे क्षेत्र जिन पर इसका अधिकार है — कमज़ोर हो जाते हैं क्योंकि सूर्य का तेज इसे ढक लेता है।`,
+      en: `${name.en} is too close to the Sun and has become combust (asta). Its significations  –  the areas of life it governs  –  become weakened as the Sun's brilliance overpowers it.`,
+      hi: `${name.hi} सूर्य के अत्यंत निकट है और अस्त हो गया है। इसके कारकत्व  –  जीवन के वे क्षेत्र जिन पर इसका अधिकार है  –  कमज़ोर हो जाते हैं क्योंकि सूर्य का तेज इसे ढक लेता है।`,
     },
     remedies: [
       {
@@ -678,7 +678,7 @@ function detect7thHouseAffliction(planets: PlanetInput[], ascendantSign: number)
   const maleficsIn7 = planets.filter(p => p.house === 7 && MALEFICS.has(p.id));
   // 7th lord in dusthana
   const seventhLordInDusthana = seventhLord && DUSTHANA.has(seventhLord.house);
-  // Venus weak (debilitated or combust) — Venus is karaka for marriage
+  // Venus weak (debilitated or combust)  –  Venus is karaka for marriage
   const venusWeak = venus && (venus.isDebilitated || venus.isCombust);
 
   if (maleficsIn7.length === 0 && !seventhLordInDusthana && !venusWeak) {
@@ -711,8 +711,8 @@ function detect7thHouseAffliction(planets: PlanetInput[], ascendantSign: number)
         type: 'mantra',
         title: { en: 'Shukra Stotra', hi: 'शुक्र स्तोत्र' },
         description: {
-          en: 'Recite the Shukra Stotra or Shukra Beej Mantra on Fridays. Venus is the karaka (significator) for marriage — strengthening Venus improves relationship prospects.',
-          hi: 'शुक्रवार को शुक्र स्तोत्र या शुक्र बीज मंत्र का पाठ करें। शुक्र विवाह का कारक है — शुक्र को सुदृढ़ करने से सम्बंधों की संभावनाएं बेहतर होती हैं।',
+          en: 'Recite the Shukra Stotra or Shukra Beej Mantra on Fridays. Venus is the karaka (significator) for marriage  –  strengthening Venus improves relationship prospects.',
+          hi: 'शुक्रवार को शुक्र स्तोत्र या शुक्र बीज मंत्र का पाठ करें। शुक्र विवाह का कारक है  –  शुक्र को सुदृढ़ करने से सम्बंधों की संभावनाएं बेहतर होती हैं।',
         },
         frequency: 'weekly on Friday',
         planetId: 5,
@@ -822,8 +822,8 @@ function detect10thHouseAffliction(planets: PlanetInput[], ascendantSign: number
         type: 'lifestyle',
         title: { en: 'Structured Career Approach', hi: 'व्यवस्थित करियर दृष्टिकोण' },
         description: {
-          en: 'Saturn in 10th favors disciplined, structured career paths — government, law, management, engineering. Avoid shortcuts. Build expertise methodically. Success comes after sustained effort.',
-          hi: 'दसवें भाव में शनि अनुशासित, व्यवस्थित करियर पथ — सरकारी नौकरी, कानून, प्रबंधन, इंजीनियरिंग — का पक्ष लेता है। शॉर्टकट से बचें। विशेषज्ञता व्यवस्थित रूप से बनाएं। सफलता निरंतर प्रयास के बाद आती है।',
+          en: 'Saturn in 10th favors disciplined, structured career paths  –  government, law, management, engineering. Avoid shortcuts. Build expertise methodically. Success comes after sustained effort.',
+          hi: 'दसवें भाव में शनि अनुशासित, व्यवस्थित करियर पथ  –  सरकारी नौकरी, कानून, प्रबंधन, इंजीनियरिंग  –  का पक्ष लेता है। शॉर्टकट से बचें। विशेषज्ञता व्यवस्थित रूप से बनाएं। सफलता निरंतर प्रयास के बाद आती है।',
         },
         planetId: 6,
       },
@@ -836,8 +836,8 @@ function detect10thHouseAffliction(planets: PlanetInput[], ascendantSign: number
         type: 'mantra',
         title: { en: 'Rahu Mantra', hi: 'राहु मंत्र' },
         description: {
-          en: 'Recite Rahu Beej Mantra on Saturdays. Rahu in 10th can bring sudden rise and fall — the mantra stabilizes its energy.',
-          hi: 'शनिवार को राहु बीज मंत्र का जप करें। दसवें भाव में राहु अचानक उत्थान और पतन ला सकता है — मंत्र इसकी ऊर्जा को स्थिर करता है।',
+          en: 'Recite Rahu Beej Mantra on Saturdays. Rahu in 10th can bring sudden rise and fall  –  the mantra stabilizes its energy.',
+          hi: 'शनिवार को राहु बीज मंत्र का जप करें। दसवें भाव में राहु अचानक उत्थान और पतन ला सकता है  –  मंत्र इसकी ऊर्जा को स्थिर करता है।',
         },
         frequency: 'weekly on Saturday',
         planetId: 7,
@@ -1058,8 +1058,8 @@ function detectPitruDosha(planets: PlanetInput[]): ContextualRemedy | null {
         type: 'mantra',
         title: { en: 'Pitru Gayatri Mantra', hi: 'पितृ गायत्री मंत्र' },
         description: {
-          en: 'Recite "Om Pitrubhyah Devatabhyah Mahayogibhyashcha Eva Cha, Namah Swadhaayai Swaahayai Nityam Eva Namo Namah" — 108 times on Amavasya or Saturdays.',
-          hi: '"ॐ पितृभ्यः देवताभ्यः महायोगिभ्यश्च एव च, नमः स्वधायै स्वाहायै नित्यम् एव नमो नमः" — अमावस्या या शनिवार को 108 बार जप करें।',
+          en: 'Recite "Om Pitrubhyah Devatabhyah Mahayogibhyashcha Eva Cha, Namah Swadhaayai Swaahayai Nityam Eva Namo Namah"  –  108 times on Amavasya or Saturdays.',
+          hi: '"ॐ पितृभ्यः देवताभ्यः महायोगिभ्यश्च एव च, नमः स्वधायै स्वाहायै नित्यम् एव नमो नमः"  –  अमावस्या या शनिवार को 108 बार जप करें।',
         },
         frequency: 'weekly on Saturday',
         planetId: 0,
@@ -1128,8 +1128,8 @@ function buildSummary(afflictions: ContextualRemedy[]): LocaleText {
   if (severe.length > 0) {
     const severeNames = severe.map(a => a.afflictionName.en).join(', ');
     return {
-      en: `${total} affliction${total > 1 ? 's' : ''} detected. ${severe.length} severe: ${severeNames}. Focus remedies on the severe afflictions first — they have the highest impact on life outcomes. Start with mantras and charity, which have no side effects, before considering gemstones.`,
-      hi: `${total} दोष पाए गए। ${severe.length} गंभीर: ${severe.map(a => a.afflictionName.hi).join(', ')}। पहले गंभीर दोषों के उपायों पर ध्यान दें — इनका जीवन पर सर्वाधिक प्रभाव है। रत्नों से पहले मंत्र और दान से शुरू करें, जिनका कोई दुष्प्रभाव नहीं है।`,
+      en: `${total} affliction${total > 1 ? 's' : ''} detected. ${severe.length} severe: ${severeNames}. Focus remedies on the severe afflictions first  –  they have the highest impact on life outcomes. Start with mantras and charity, which have no side effects, before considering gemstones.`,
+      hi: `${total} दोष पाए गए। ${severe.length} गंभीर: ${severe.map(a => a.afflictionName.hi).join(', ')}। पहले गंभीर दोषों के उपायों पर ध्यान दें  –  इनका जीवन पर सर्वाधिक प्रभाव है। रत्नों से पहले मंत्र और दान से शुरू करें, जिनका कोई दुष्प्रभाव नहीं है।`,
     };
   }
 

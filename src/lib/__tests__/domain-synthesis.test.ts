@@ -10,7 +10,7 @@ import { DOMAIN_CONFIGS } from '@/lib/kundali/domain-synthesis/config';
 // Helpers
 // ---------------------------------------------------------------------------
 
-/** Neutral baseline input — produces a middling score. */
+/** Neutral baseline input  –  produces a middling score. */
 function neutralInput(): ScorerInput {
   return {
     houseBhavabala: 5,

@@ -28,8 +28,8 @@ export const RELATIONSHIP_PATTERNS: ConvergencePattern[] = [
       hi: 'विवाह पर विचार करें तो यह शुभ है।',
     },
     laypersonNote: {
-      en: 'Three planetary forces support partnership — rare and auspicious.',
-      hi: 'तीन ग्रहीय बल साझेदारी का समर्थन — दुर्लभ और शुभ।',
+      en: 'Three planetary forces support partnership  –  rare and auspicious.',
+      hi: 'तीन ग्रहीय बल साझेदारी का समर्थन  –  दुर्लभ और शुभ।',
     },
     relatedSections: [
       TippanniSection.PlanetInsights,
@@ -62,8 +62,8 @@ export const RELATIONSHIP_PATTERNS: ConvergencePattern[] = [
       hi: 'अस्थायी दबाव में स्थायी निर्णय न लें।',
     },
     laypersonNote: {
-      en: 'Three forces stress your relationship area — the universe forcing a reckoning.',
-      hi: 'तीन बल संबंध क्षेत्र पर दबाव — सत्य प्रकट करने के लिए।',
+      en: 'Three forces stress your relationship area  –  the universe forcing a reckoning.',
+      hi: 'तीन बल संबंध क्षेत्र पर दबाव  –  सत्य प्रकट करने के लिए।',
     },
     relatedSections: [
       TippanniSection.PlanetInsights,
@@ -93,7 +93,7 @@ export const RELATIONSHIP_PATTERNS: ConvergencePattern[] = [
       },
     },
     advice: {
-      en: "Invest in your key relationships — they're bearing fruit.",
+      en: "Invest in your key relationships  –  they're bearing fruit.",
       hi: 'प्रमुख संबंधों में निवेश करें।',
     },
     laypersonNote: {
@@ -152,7 +152,7 @@ export const RELATIONSHIP_PATTERNS: ConvergencePattern[] = [
     ],
     text: {
       full: {
-        en: "A convergence of love energies. Benefic planets bless your 5th house natally, Venus transits your 5th house of romance, and your dasha activates this same theme. This is a window for new romantic encounters — spontaneous, meaningful, and potentially life-changing. Open yourself to connection.",
+        en: "A convergence of love energies. Benefic planets bless your 5th house natally, Venus transits your 5th house of romance, and your dasha activates this same theme. This is a window for new romantic encounters  –  spontaneous, meaningful, and potentially life-changing. Open yourself to connection.",
         hi: 'प्रेम ऊर्जाओं का संयोग। शुभ ग्रह पंचम भाव में जन्म से, शुक्र गोचर प्रेम का भाव, दशा इसी विषय को सक्रिय। नए रोमांटिक मिलन की खिड़की।',
       },
       mild: {
@@ -166,7 +166,7 @@ export const RELATIONSHIP_PATTERNS: ConvergencePattern[] = [
     },
     laypersonNote: {
       en: 'Three forces aligned on your romance area create a window where love finds you.',
-      hi: 'तीन बल प्रेम क्षेत्र पर — प्यार खोजने की खिड़की।',
+      hi: 'तीन बल प्रेम क्षेत्र पर  –  प्यार खोजने की खिड़की।',
     },
     relatedSections: [
       TippanniSection.PlanetInsights,
@@ -195,7 +195,7 @@ export const RELATIONSHIP_PATTERNS: ConvergencePattern[] = [
       },
     },
     advice: {
-      en: 'Invest in your committed relationships — this is a season for deepening, not searching. Joint financial decisions carry favorable energy.',
+      en: 'Invest in your committed relationships  –  this is a season for deepening, not searching. Joint financial decisions carry favorable energy.',
       hi: 'प्रतिबद्ध संबंधों में निवेश करें। साझा वित्तीय निर्णय अनुकूल।',
     },
     laypersonNote: {
@@ -218,8 +218,8 @@ export const RELATIONSHIP_PATTERNS: ConvergencePattern[] = [
     ],
     text: {
       full: {
-        en: "Venus retrograde during activation of your 5th house of romance — a classic 'ex returns' signature. Past lovers and unfinished chapters resurface. This isn't about going back — it's understanding what you truly value in love.",
-        hi: "शुक्र वक्री पंचम भाव सक्रियता के दौरान — 'पुराना प्रेम लौटता है' का शास्त्रीय संकेत।",
+        en: "Venus retrograde during activation of your 5th house of romance  –  a classic 'ex returns' signature. Past lovers and unfinished chapters resurface. This isn't about going back  –  it's understanding what you truly value in love.",
+        hi: "शुक्र वक्री पंचम भाव सक्रियता के दौरान  –  'पुराना प्रेम लौटता है' का शास्त्रीय संकेत।",
       },
       mild: {
         en: "Venus retrograde is stirring old romantic memories. Reflect but don't act impulsively.",

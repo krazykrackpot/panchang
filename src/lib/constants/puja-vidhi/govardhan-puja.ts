@@ -51,8 +51,8 @@ export const GOVARDHAN_PUJA: PujaVidhi = {
       title: { en: 'Gau Puja (Cow Worship)', hi: 'गौ पूजा', sa: 'गोपूजा' },
       description: {
         en: 'Worship the cow by applying tilak of kumkum and haldi, offering garlands, and feeding her fresh green fodder and jaggery. The cow represents Kamadhenu and is central to this festival.',
-        hi: 'गाय की पूजा करें — कुमकुम और हल्दी का तिलक लगाएँ, माला अर्पित करें, और ताज़ा हरा चारा एवं गुड़ खिलाएँ। गाय कामधेनु का प्रतीक है और इस पर्व में केन्द्रीय भूमिका रखती है।',
-        sa: 'गोः पूजनं कुर्यात् — कुङ्कुमहरिद्राभ्यां तिलकं कृत्वा मालाम् अर्पयेत्, नवहरिततृणं गुडं च भोजयेत्। गौः कामधेनोः प्रतीकम् अस्ति अस्मिन् पर्वणि च प्रधाना।',
+        hi: 'गाय की पूजा करें  –  कुमकुम और हल्दी का तिलक लगाएँ, माला अर्पित करें, और ताज़ा हरा चारा एवं गुड़ खिलाएँ। गाय कामधेनु का प्रतीक है और इस पर्व में केन्द्रीय भूमिका रखती है।',
+        sa: 'गोः पूजनं कुर्यात्  –  कुङ्कुमहरिद्राभ्यां तिलकं कृत्वा मालाम् अर्पयेत्, नवहरिततृणं गुडं च भोजयेत्। गौः कामधेनोः प्रतीकम् अस्ति अस्मिन् पर्वणि च प्रधाना।',
       },
       duration: '10 min',
       essential: true,
@@ -111,7 +111,7 @@ export const GOVARDHAN_PUJA: PujaVidhi = {
       step: 7,
       title: { en: 'Prasad Distribution', hi: 'प्रसाद वितरण', sa: 'प्रसादवितरणम्' },
       description: {
-        en: 'Distribute the annakut prasad to all family members and neighbours. Share the food with devotion — this is considered a key act of merit on Govardhan Puja day.',
+        en: 'Distribute the annakut prasad to all family members and neighbours. Share the food with devotion  –  this is considered a key act of merit on Govardhan Puja day.',
         hi: 'अन्नकूट का प्रसाद सभी परिवारजनों और पड़ोसियों में वितरित करें। भक्तिपूर्वक भोजन बाँटना गोवर्धन पूजा के दिन प्रमुख पुण्य कर्म माना जाता है।',
         sa: 'अन्नकूटप्रसादं सर्वेषां कुटुम्बसदस्यानां प्रतिवेशिनां च मध्ये वितरेत्। भक्त्या अन्नवितरणं गोवर्धनपूजादिने प्रधानपुण्यकर्म मन्यते।',
       },
@@ -128,9 +128,9 @@ export const GOVARDHAN_PUJA: PujaVidhi = {
       devanagari: 'गोवर्धन धराधार गोकुलत्राणकारक।\nविष्णुबाहु कृतारम्भ लक्ष्मीकान्त नमोऽस्तु ते॥',
       iast: 'govardhana dharādhāra gokulatrāṇakāraka |\nviṣṇubāhu kṛtārambha lakṣmīkānta namo\'stu te ||',
       meaning: {
-        en: 'O Govardhan, upholder of the earth, protector of Gokula! O Lord whose arms are those of Vishnu, beloved of Lakshmi — I bow to you.',
-        hi: 'हे गोवर्धन, पृथ्वी के आधार, गोकुल के रक्षक! हे विष्णु भुजाओं वाले, लक्ष्मीकान्त — आपको नमस्कार।',
-        sa: 'हे गोवर्धन, धराधार, गोकुलत्राणकारक! हे विष्णुबाहो, लक्ष्मीकान्त — तुभ्यं नमः।',
+        en: 'O Govardhan, upholder of the earth, protector of Gokula! O Lord whose arms are those of Vishnu, beloved of Lakshmi  –  I bow to you.',
+        hi: 'हे गोवर्धन, पृथ्वी के आधार, गोकुल के रक्षक! हे विष्णु भुजाओं वाले, लक्ष्मीकान्त  –  आपको नमस्कार।',
+        sa: 'हे गोवर्धन, धराधार, गोकुलत्राणकारक! हे विष्णुबाहो, लक्ष्मीकान्त  –  तुभ्यं नमः।',
       },
       usage: {
         en: 'Chant during Govardhan parikrama and while offering flowers to the hill.',

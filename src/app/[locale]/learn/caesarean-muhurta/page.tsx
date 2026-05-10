@@ -22,7 +22,7 @@ export default function LearnCaesareanMuhurtaPage() {
   const headingFont = getHeadingFont(locale);
   const isIndic = isIndicLocale(locale);
 
-  // takeawayPoints is an array of LocaleText — resolve each to the current locale
+  // takeawayPoints is an array of LocaleText  –  resolve each to the current locale
   const takeawayPoints = (LJ.takeawayPoints as unknown as LocaleText[]).map(
     (pt) => lt(pt, locale)
   );
@@ -52,19 +52,19 @@ export default function LearnCaesareanMuhurtaPage() {
         <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-6">
           <BeginnerNote
             term="Muhurta"
-            explanation="Electional astrology — choosing an auspicious time for an important activity based on planetary positions"
+            explanation="Electional astrology  –  choosing an auspicious time for an important activity based on planetary positions"
           />
           <BeginnerNote
             term="Lagna"
-            explanation="The ascendant or rising sign — the zodiac sign on the eastern horizon at the moment of birth"
+            explanation="The ascendant or rising sign  –  the zodiac sign on the eastern horizon at the moment of birth"
           />
           <BeginnerNote
             term="Gandanta"
-            explanation="The junction of water and fire signs (Cancer-Leo, Scorpio-Sagittarius, Pisces-Aries) — classically the most dangerous zone for the Moon at birth"
+            explanation="The junction of water and fire signs (Cancer-Leo, Scorpio-Sagittarius, Pisces-Aries)  –  classically the most dangerous zone for the Moon at birth"
           />
           <BeginnerNote
             term="Vimshottari Dasha"
-            explanation="The 120-year planetary period system used in Vedic astrology — the starting dasha at birth is determined by the Moon's nakshatra"
+            explanation="The 120-year planetary period system used in Vedic astrology  –  the starting dasha at birth is determined by the Moon's nakshatra"
           />
         </div>
 
@@ -115,7 +115,7 @@ export default function LearnCaesareanMuhurtaPage() {
 
         {/* Section 3: Lagna Strength */}
         <LessonSection number={3} title={t('lagnaTitle')}>
-          <ClassicalReference shortName="BPHS" chapter="Ch. 6-7" topic="Lagna Shuddhi — rules for ascendant strength and dignity evaluation" />
+          <ClassicalReference shortName="BPHS" chapter="Ch. 6-7" topic="Lagna Shuddhi  –  rules for ascendant strength and dignity evaluation" />
           <p style={bodyFont || undefined}>{t('lagnaContent')}</p>
 
           <div className="mt-5 space-y-4">
@@ -172,7 +172,7 @@ export default function LearnCaesareanMuhurtaPage() {
           {/* Gandanta explanation */}
           <div className="mt-5 p-4 rounded-lg bg-red-500/5 border border-red-500/20">
             <p className="text-red-300 text-sm font-semibold mb-2">
-              {isIndic ? 'गंडांत — कठोर निषेध क्षेत्र' : 'Gandanta — Hard Veto Zones'}
+              {isIndic ? 'गंडांत  –  कठोर निषेध क्षेत्र' : 'Gandanta  –  Hard Veto Zones'}
             </p>
             <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont || undefined}>
               {t('gandantaExplain')}
@@ -194,7 +194,7 @@ export default function LearnCaesareanMuhurtaPage() {
 
         {/* Section 5: Janma Nakshatra Doshas */}
         <LessonSection number={5} title={t('nakshatraDoshaTitle')}>
-          <ClassicalReference shortName="MC" chapter="Ch. 4" topic="Janma Nakshatra Dosha — classical warnings for specific nakshatras and padas" />
+          <ClassicalReference shortName="MC" chapter="Ch. 4" topic="Janma Nakshatra Dosha  –  classical warnings for specific nakshatras and padas" />
           <p style={bodyFont || undefined}>{t('nakshatraDoshaContent')}</p>
 
           <div className="mt-5 overflow-x-auto bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
@@ -250,7 +250,7 @@ export default function LearnCaesareanMuhurtaPage() {
 
         {/* Section 6: Benefic/Malefic Distribution */}
         <LessonSection number={6} title={t('distributionTitle')}>
-          <ClassicalReference shortName="BPHS" chapter="Ch. 11" topic="Benefic and malefic planet placement — kendras, trikonas, upachaya houses" />
+          <ClassicalReference shortName="BPHS" chapter="Ch. 11" topic="Benefic and malefic planet placement  –  kendras, trikonas, upachaya houses" />
           <p style={bodyFont || undefined}>{t('distributionContent')}</p>
 
           <div className="mt-5 space-y-4">
@@ -291,7 +291,7 @@ export default function LearnCaesareanMuhurtaPage() {
 
         {/* Section 7: Dasha Trajectory */}
         <LessonSection number={7} title={t('dashaTitle')}>
-          <ClassicalReference shortName="BPHS" chapter="Dasha chapters" topic="Vimshottari Dasha system — planetary periods, starting dasha at birth" />
+          <ClassicalReference shortName="BPHS" chapter="Dasha chapters" topic="Vimshottari Dasha system  –  planetary periods, starting dasha at birth" />
           <p style={bodyFont || undefined}>{t('dashaContent')}</p>
 
           {/* Dasha ranking table */}
@@ -400,7 +400,7 @@ export default function LearnCaesareanMuhurtaPage() {
           <WhyItMatters locale={locale}>
             {isIndic
               ? 'सीजेरियन मुहूर्त शास्त्रीय ज्ञान और आधुनिक चिकित्सा वास्तविकता के बीच सेतु है। लक्ष्य डॉक्टर की योजना को बाधित करना नहीं बल्कि चिकित्सकीय रूप से सुरक्षित सीमाओं के भीतर सर्वोत्तम संभव क्षण खोजना है।'
-              : 'Caesarean muhurta bridges classical wisdom and modern medical reality. The goal is not to override the doctor\'s plan but to find the best possible moment within medically safe boundaries. Families who approach this with flexibility and respect for the medical team get the best outcomes — both clinically and astrologically.'}
+              : 'Caesarean muhurta bridges classical wisdom and modern medical reality. The goal is not to override the doctor\'s plan but to find the best possible moment within medically safe boundaries. Families who approach this with flexibility and respect for the medical team get the best outcomes  –  both clinically and astrologically.'}
           </WhyItMatters>
 
           <div className="mt-5 space-y-4">
@@ -432,7 +432,7 @@ export default function LearnCaesareanMuhurtaPage() {
                 color: 'border-emerald-500/20 hover:border-emerald-500/40',
               },
               {
-                label: isIndic ? 'मुहूर्त AI — शुभ समय खोजें' : 'Muhurta AI — Find Auspicious Times',
+                label: isIndic ? 'मुहूर्त AI  –  शुभ समय खोजें' : 'Muhurta AI  –  Find Auspicious Times',
                 href: '/muhurta-ai' as const,
                 color: 'border-emerald-500/20 hover:border-emerald-500/40',
               },

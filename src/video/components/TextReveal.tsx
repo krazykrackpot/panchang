@@ -2,7 +2,7 @@ import React from 'react';
 import { AbsoluteFill, useCurrentFrame, useVideoConfig, interpolate } from 'remotion';
 
 /**
- * Kinetic typography — text appears word by word or line by line.
+ * Kinetic typography  –  text appears word by word or line by line.
  * Gold color for emphasis words (wrapped in *asterisks* in the input).
  */
 

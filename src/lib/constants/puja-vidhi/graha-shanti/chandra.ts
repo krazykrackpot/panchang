@@ -168,9 +168,9 @@ export const CHANDRA_SHANTI: PujaVidhi = {
 
   precautions: [
     {
-      en: 'Perform the puja in the evening facing north-east. White is the essential colour — clothes, flowers, and offerings should all be white.',
-      hi: 'पूजा सायं ईशान दिशा की ओर मुख कर करें। सफ़ेद रंग आवश्यक है — वस्त्र, फूल और अर्पण सभी सफ़ेद होने चाहिए।',
-      sa: 'सायं ईशानदिशम् अभिमुखं पूजां कुर्यात्। श्वेतवर्णः अनिवार्यः — वस्त्राणि पुष्पाणि अर्पणानि च सर्वाणि श्वेतानि भवेयुः।',
+      en: 'Perform the puja in the evening facing north-east. White is the essential colour  –  clothes, flowers, and offerings should all be white.',
+      hi: 'पूजा सायं ईशान दिशा की ओर मुख कर करें। सफ़ेद रंग आवश्यक है  –  वस्त्र, फूल और अर्पण सभी सफ़ेद होने चाहिए।',
+      sa: 'सायं ईशानदिशम् अभिमुखं पूजां कुर्यात्। श्वेतवर्णः अनिवार्यः  –  वस्त्राणि पुष्पाणि अर्पणानि च सर्वाणि श्वेतानि भवेयुः।',
     },
     {
       en: 'Avoid anger, arguments, and negative emotions on the puja day. Chandra governs the mind, so mental calm is essential.',

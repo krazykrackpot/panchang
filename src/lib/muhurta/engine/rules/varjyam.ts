@@ -1,5 +1,5 @@
 /**
- * Varjyam Rule — "time of poison" from nakshatra-based ghati offsets
+ * Varjyam Rule  –  "time of poison" from nakshatra-based ghati offsets
  *
  * Varjyam is a Tier 4 (cancellable) inauspicious period. A strong lagna
  * (Tier 2) can cancel it per MC Ch.7: "a properly chosen lagna removes
@@ -42,9 +42,9 @@ const varjyam: MuhurtaRule = {
       maxPoints: 0,
       severity: 'moderate',
       reason: {
-        en: 'Varjyam active — inauspicious lunar window',
-        hi: 'वर्ज्यम् सक्रिय — अशुभ चन्द्र काल',
-        sa: 'वर्ज्यं प्रवर्तते — अशुभचन्द्रकालः',
+        en: 'Varjyam active  –  inauspicious lunar window',
+        hi: 'वर्ज्यम् सक्रिय  –  अशुभ चन्द्र काल',
+        sa: 'वर्ज्यं प्रवर्तते  –  अशुभचन्द्रकालः',
       },
       cancelledBy: ['lagna-quality'],
     });

@@ -25,9 +25,9 @@ export const AMAVASYA_TARPAN_PUJA: PujaVidhi = {
   muhurtaWindow: { type: 'madhyahna' },
 
   sankalpa: {
-    en: 'On this Amavasya tithi, I perform tarpan for my departed ancestors — paternal and maternal — seeking their blessings, peace of their souls, and freedom from pitru dosha.',
-    hi: 'इस अमावस्या तिथि पर, मैं अपने दिवंगत पितृगण — पैतृक एवं मातृक — के लिए तर्पण करता/करती हूँ, उनके आशीर्वाद, उनकी आत्मा की शान्ति और पितृ दोष से मुक्ति हेतु।',
-    sa: 'अस्यां अमावस्यायां तिथौ पितृणां मातृणां च दिवंगतानां निमित्तं तर्पणं करोमि — तेषां आशीर्वादाय आत्मशान्तये पितृदोषनिवारणाय च।',
+    en: 'On this Amavasya tithi, I perform tarpan for my departed ancestors  –  paternal and maternal  –  seeking their blessings, peace of their souls, and freedom from pitru dosha.',
+    hi: 'इस अमावस्या तिथि पर, मैं अपने दिवंगत पितृगण  –  पैतृक एवं मातृक  –  के लिए तर्पण करता/करती हूँ, उनके आशीर्वाद, उनकी आत्मा की शान्ति और पितृ दोष से मुक्ति हेतु।',
+    sa: 'अस्यां अमावस्यायां तिथौ पितृणां मातृणां च दिवंगतानां निमित्तं तर्पणं करोमि  –  तेषां आशीर्वादाय आत्मशान्तये पितृदोषनिवारणाय च।',
   },
 
   vidhiSteps: [
@@ -68,8 +68,8 @@ export const AMAVASYA_TARPAN_PUJA: PujaVidhi = {
       step: 4,
       title: { en: 'Tarpan (Water-Sesame Offering)', hi: 'तर्पण (जल-तिल अर्पण)', sa: 'तर्पणम् (जलतिलार्पणम्)' },
       description: {
-        en: 'Facing south, pour water mixed with black sesame from the right hand between the thumb and index finger (pitru tirtha). Offer three anjalis (palmfuls) each for father, grandfather, and great-grandfather — then for maternal ancestors. Recite the tarpan mantra with each offering.',
-        hi: 'दक्षिण दिशा की ओर मुख करके, दाहिने हाथ के अँगूठे और तर्जनी के बीच से (पितृ तीर्थ) काले तिल मिश्रित जल अर्पित करें। पिता, पितामह और प्रपितामह — प्रत्येक के लिए तीन-तीन अंजलि दें, फिर मातृ पक्ष के पितरों के लिए। प्रत्येक अर्पण के साथ तर्पण मन्त्र का उच्चारण करें।',
+        en: 'Facing south, pour water mixed with black sesame from the right hand between the thumb and index finger (pitru tirtha). Offer three anjalis (palmfuls) each for father, grandfather, and great-grandfather  –  then for maternal ancestors. Recite the tarpan mantra with each offering.',
+        hi: 'दक्षिण दिशा की ओर मुख करके, दाहिने हाथ के अँगूठे और तर्जनी के बीच से (पितृ तीर्थ) काले तिल मिश्रित जल अर्पित करें। पिता, पितामह और प्रपितामह  –  प्रत्येक के लिए तीन-तीन अंजलि दें, फिर मातृ पक्ष के पितरों के लिए। प्रत्येक अर्पण के साथ तर्पण मन्त्र का उच्चारण करें।',
         sa: 'दक्षिणाभिमुखः अङ्गुष्ठतर्जन्योः मध्ये (पितृतीर्थेन) कृष्णतिलमिश्रितजलं अर्पयेत्। पित्रे पितामहाय प्रपितामहाय च प्रत्येकं त्रिरञ्जलिं दद्यात्, ततः मातृपक्षपितृभ्यः। प्रत्यर्पणं तर्पणमन्त्रं जपेत्।',
       },
       mantraRef: 'pitru-tarpan',
@@ -165,14 +165,14 @@ export const AMAVASYA_TARPAN_PUJA: PujaVidhi = {
 
   precautions: [
     {
-      en: 'Always face south while performing tarpan — south is the direction of Yama and the pitru loka.',
-      hi: 'तर्पण करते समय सदैव दक्षिण दिशा की ओर मुख रखें — दक्षिण यम और पितृलोक की दिशा है।',
-      sa: 'तर्पणे सदा दक्षिणाभिमुखं तिष्ठेत् — दक्षिणा यमस्य पितृलोकस्य च दिक्।',
+      en: 'Always face south while performing tarpan  –  south is the direction of Yama and the pitru loka.',
+      hi: 'तर्पण करते समय सदैव दक्षिण दिशा की ओर मुख रखें  –  दक्षिण यम और पितृलोक की दिशा है।',
+      sa: 'तर्पणे सदा दक्षिणाभिमुखं तिष्ठेत्  –  दक्षिणा यमस्य पितृलोकस्य च दिक्।',
     },
     {
-      en: 'Use darbha/kusha grass — it is considered essential for all pitru karma as it conducts spiritual energy.',
-      hi: 'दर्भ/कुशा घास का उपयोग करें — पितृ कर्म में यह अनिवार्य माना जाता है क्योंकि यह आध्यात्मिक ऊर्जा का संवाहक है।',
-      sa: 'दर्भ/कुशं प्रयोजयेत् — सर्वेषु पितृकर्मसु अनिवार्यं तत् आध्यात्मिकशक्तिसंवाहकत्वात्।',
+      en: 'Use darbha/kusha grass  –  it is considered essential for all pitru karma as it conducts spiritual energy.',
+      hi: 'दर्भ/कुशा घास का उपयोग करें  –  पितृ कर्म में यह अनिवार्य माना जाता है क्योंकि यह आध्यात्मिक ऊर्जा का संवाहक है।',
+      sa: 'दर्भ/कुशं प्रयोजयेत्  –  सर्वेषु पितृकर्मसु अनिवार्यं तत् आध्यात्मिकशक्तिसंवाहकत्वात्।',
     },
     {
       en: 'Perform tarpan before eating any food. The performer must be in a fasting state.',

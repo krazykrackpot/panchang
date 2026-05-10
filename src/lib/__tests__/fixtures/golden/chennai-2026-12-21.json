@@ -19,5 +19,5 @@
     "rahuKaal":    { "start": "07:51", "end": "09:16" }
   },
   "tolerances": { "timeMinutes": 5 },
-  "notes": "Winter solstice — shortest day. Chennai is near-equatorial so day length varies less than Delhi. Tithi/nakshatra/yoga match Delhi Dec 21 Drik data (same IST date). Sunrise/sunset are computed for Chennai coordinates."
+  "notes": "Winter solstice  –  shortest day. Chennai is near-equatorial so day length varies less than Delhi. Tithi/nakshatra/yoga match Delhi Dec 21 Drik data (same IST date). Sunrise/sunset are computed for Chennai coordinates."
 }

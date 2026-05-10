@@ -14,7 +14,7 @@ export default async function Layout({ children, params }: { children: React.Rea
       <LearnArticleLD
         route="/learn/karka"
         locale={locale}
-        title="Karka (Cancer) in Vedic Astrology — Complete Rashi Guide"
+        title="Karka (Cancer) in Vedic Astrology  –  Complete Rashi Guide"
         description="Comprehensive guide to Karka Rashi (Cancer) covering planetary dignities, nakshatras, personality, career, compatibility, remedies, and mythology from classical Jyotish sources."
       />
       {children}

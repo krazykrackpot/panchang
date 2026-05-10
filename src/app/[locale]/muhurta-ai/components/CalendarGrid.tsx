@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { DaySummary } from '@/types/muhurta-ai';
 
 // ---------------------------------------------------------------------------
-// ShuddhiDots — 5 dots showing how many panchanga factors are favourable
+// ShuddhiDots  –  5 dots showing how many panchanga factors are favourable
 // ---------------------------------------------------------------------------
 export function ShuddhiDots({ filled }: { filled: number }) {
   return (
@@ -81,7 +81,7 @@ export default function CalendarGrid({
   // Build grid cells: null = empty padding cell, DaySummary | number = real day
   const grid = useMemo(() => {
     const daysInMonth = new Date(Date.UTC(year, month, 0)).getUTCDate();
-    // 0=Sun .. 6=Sat — matches our header order
+    // 0=Sun .. 6=Sat  –  matches our header order
     const firstDow = new Date(Date.UTC(year, month - 1, 1)).getUTCDay();
 
     const dayMap = new Map<string, DaySummary>();

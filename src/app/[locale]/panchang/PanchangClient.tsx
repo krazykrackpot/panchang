@@ -65,7 +65,7 @@ import dynamic from 'next/dynamic';
 
 const DailyVibeCard = dynamic(() => import('@/components/shareable/DailyVibeCard'), { ssr: false });
 
-// Module-level msg helper — resolves inline locale labels from JSON
+// Module-level msg helper  –  resolves inline locale labels from JSON
 const msg = (key: string, locale: string): string =>
   lt((PMSG as unknown as Record<string, LocaleText>)[key], locale);
 
@@ -92,7 +92,7 @@ function hasTransitionPassed(
   return nowMinutes >= endMinutes;
 }
 
-// Format transition time — ALWAYS includes date
+// Format transition time  –  ALWAYS includes date
 const MONTH_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const MONTH_SHORT_HI = ['जन.','फर.','मार्च','अप्रै.','मई','जून','जुला.','अग.','सित.','अक्टू.','नव.','दिस.'];
 function formatTransitionTime(time: string, date: string | undefined, _selectedDate: string, locale: string): string {
@@ -107,7 +107,7 @@ interface LocationData {
   lng: number;
   name: string;
   tz: number;
-  /** IANA timezone resolved from coordinates — NEVER use browser timezone for panchang calculations */
+  /** IANA timezone resolved from coordinates  –  NEVER use browser timezone for panchang calculations */
   ianaTimezone: string;
 }
 
@@ -173,7 +173,7 @@ function InsightBlock({ insight }: { insight: PanchangInsight | undefined }) {
 }
 
 // ---------------------------------------------------------------------------
-// Daily Video Card — lite YouTube embed (thumbnail first, iframe on click)
+// Daily Video Card  –  lite YouTube embed (thumbnail first, iframe on click)
 // ---------------------------------------------------------------------------
 function DailyVideoCard({ videoId, title, thumbnail, isDevanagari }: { videoId: string; title: string; thumbnail: string; isDevanagari: boolean }) {
   const [playing, setPlaying] = useState(false);
@@ -225,7 +225,7 @@ function DailyVideoCard({ videoId, title, thumbnail, isDevanagari }: { videoId: 
 }
 
 interface PanchangClientProps {
-  /** Server-computed panchang from Vercel geo headers — eliminates LCP waterfall */
+  /** Server-computed panchang from Vercel geo headers  –  eliminates LCP waterfall */
   serverPanchang?: PanchangData | null;
   /** Server-resolved location from Vercel geo headers */
   serverLocation?: { lat: number; lng: number; name: string; timezone: string } | null;
@@ -238,13 +238,13 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
   const tNav = useTranslations('nav');
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
-  // Safe multilingual accessor — falls back to 'en' when locale key missing
+  // Safe multilingual accessor  –  falls back to 'en' when locale key missing
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const tl = (obj: any): string => _tl(obj, locale);
 
   const { tradition, setTradition } = usePreferenceStore();
 
-  // Initialize from server data when available — renders panchang on first paint (no loading spinner)
+  // Initialize from server data when available  –  renders panchang on first paint (no loading spinner)
   const [panchang, setPanchang] = useState<PanchangData | null>(serverPanchang ?? null);
   const [loading, setLoading] = useState(!serverPanchang);
   const [location, setLocation] = useState<LocationData>(() => {
@@ -267,7 +267,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
   const authUser = useAuthStore(s => s.user);
   const [personalDay, setPersonalDay] = useState<PersonalizedDay | null>(null);
 
-  // Hindu months computation removed — now on /panchang/masa subpage
+  // Hindu months computation removed  –  now on /panchang/masa subpage
   const [now, setNow] = useState<Date>(new Date());
   const [showCalcDetails, setShowCalcDetails] = useState(false);
   const [showVibeCard, setShowVibeCard] = useState(false);
@@ -316,7 +316,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
     const urlName = params.get('name');
 
     if (urlLat && urlLng) {
-      // URL params provided — use them, resolve timezone from coordinates
+      // URL params provided  –  use them, resolve timezone from coordinates
       const lat = parseFloat(urlLat);
       const lng = parseFloat(urlLng);
       if (!isNaN(lat) && !isNaN(lng)) {
@@ -329,7 +329,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
       }
     }
 
-    // No URL params — detect from browser geolocation / IP
+    // No URL params  –  detect from browser geolocation / IP
     if ('geolocation' in navigator) {
       setDetectingLocation(true);
       navigator.geolocation.getCurrentPosition(
@@ -421,9 +421,9 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
     return msg('neutral', locale);
   };
 
-  // Muhurta index tracking removed — now on /panchang/muhurta subpage
+  // Muhurta index tracking removed  –  now on /panchang/muhurta subpage
 
-  // Personal overlay — fetch snapshot and compute personalized day
+  // Personal overlay  –  fetch snapshot and compute personalized day
   useEffect(() => {
     if (!authUser || !panchang) return;
     const supabase = getSupabase();
@@ -451,7 +451,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
       });
   }, [authUser, panchang]);
 
-  // Compute balam when birth data changes — also persist manual selections
+  // Compute balam when birth data changes  –  also persist manual selections
   useEffect(() => {
     if (birthNakshatra && birthRashi && panchang) {
       const todayNakshatra = panchang.nakshatra.id;
@@ -496,7 +496,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
 
       <AdUnit placement="leaderboard" className="max-w-4xl mx-auto" />
 
-      {/* Date & Location — compact single row */}
+      {/* Date & Location  –  compact single row */}
       <div className="mb-8">
         <div className="flex flex-wrap items-center justify-center gap-3">
           {/* Date */}
@@ -521,7 +521,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
           </div>
         </div>
 
-        {/* Location search with autocomplete — uses shared LocationSearch component */}
+        {/* Location search with autocomplete  –  uses shared LocationSearch component */}
         {showLocationSearch && (
           <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="flex justify-center mt-3">
             <LocationSearch
@@ -552,7 +552,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
         </div>
       ) : panchang ? (
         <>
-          {/* Actions — compact row */}
+          {/* Actions  –  compact row */}
           <div className="flex flex-wrap items-center justify-center gap-1.5 mb-8">
             <div className="flex items-center gap-1.5">
               <button
@@ -568,7 +568,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
               </button>
               <PrintButton
                 contentRef={panchangContentRef}
-                title={`Panchang — ${panchang.date}`}
+                title={`Panchang  –  ${panchang.date}`}
                 label={msg('print', locale)}
                 className="inline-flex items-center gap-1.5 px-3 py-2 sm:px-2.5 sm:py-1 text-xs font-medium rounded-md border border-gold-primary/15 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all"
               />
@@ -581,8 +581,8 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                 locationName={location.name}
               />
               <ShareButton
-                title={`Panchang — ${panchang.date}`}
-                text={`Today's Panchang — ${panchang.tithi?.name?.[locale] || panchang.tithi?.name?.en || ''}, ${panchang.nakshatra?.name?.[locale] || panchang.nakshatra?.name?.en || ''}, ${panchang.yoga?.name?.[locale] || panchang.yoga?.name?.en || ''} | dekhopanchang.com`}
+                title={`Panchang  –  ${panchang.date}`}
+                text={`Today's Panchang  –  ${panchang.tithi?.name?.[locale] || panchang.tithi?.name?.en || ''}, ${panchang.nakshatra?.name?.[locale] || panchang.nakshatra?.name?.en || ''}, ${panchang.yoga?.name?.[locale] || panchang.yoga?.name?.en || ''} | dekhopanchang.com`}
                 url={`https://dekhopanchang.com/${locale}/panchang`}
                 locale={locale}
               />
@@ -678,7 +678,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                                 {fest.pujaMuhurat.name}:
                               </span>
                               <span className={`font-mono text-xs font-bold ${isMajor ? 'text-gold-light' : 'text-emerald-300'}`}>
-                                {fest.pujaMuhurat.start} — {fest.pujaMuhurat.end}
+                                {fest.pujaMuhurat.start}  –  {fest.pujaMuhurat.end}
                               </span>
                             </div>
                           )}
@@ -689,7 +689,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                                 {msg('parana', locale)}
                               </span>
                               <span className={`font-mono text-xs font-bold ${isEkadashi ? 'text-emerald-300' : 'text-purple-300'}`}>
-                                {fest.paranaStart} — {fest.paranaEnd}
+                                {fest.paranaStart}  –  {fest.paranaEnd}
                               </span>
                             </div>
                           )}
@@ -716,11 +716,11 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
               <div className="space-y-3 text-sm text-text-secondary leading-relaxed">
                 <p>पंचांग पाँच खगोलीय तत्वों से बना है जो दिन की शुभता और गुणवत्ता बताते हैं:</p>
                 <ul className="space-y-2 pl-2">
-                  <li><span className="text-gold-light font-semibold">तिथि</span> — चंद्र दिन। चंद्रमा की कला (घटती-बढ़ती) पर आधारित, जो त्योहारों और व्रतों का निर्धारण करती है।</li>
-                  <li><span className="text-gold-light font-semibold">नक्षत्र</span> — चंद्र मंज़िल। आकाश के 27 तारा-समूहों में से एक जिसमें चंद्रमा वर्तमान में है। नामकरण और कुंडली मिलान में उपयोगी।</li>
-                  <li><span className="text-gold-light font-semibold">योग</span> — सूर्य-चंद्र संयोग। (व्यायाम योग नहीं!) सूर्य और चंद्रमा की देशांतर स्थितियों के योग से बनता है। 27 प्रकार होते हैं — शुभ या अशुभ।</li>
-                  <li><span className="text-gold-light font-semibold">करण</span> — आधा चंद्र दिन। तिथि का आधा भाग, 11 प्रकार के। विभिन्न कार्यों के लिए उपयुक्तता बताता है।</li>
-                  <li><span className="text-gold-light font-semibold">वार</span> — सप्ताह का दिन। प्रत्येक दिन एक ग्रह के स्वामित्व में होता है।</li>
+                  <li><span className="text-gold-light font-semibold">तिथि</span>  –  चंद्र दिन। चंद्रमा की कला (घटती-बढ़ती) पर आधारित, जो त्योहारों और व्रतों का निर्धारण करती है।</li>
+                  <li><span className="text-gold-light font-semibold">नक्षत्र</span>  –  चंद्र मंज़िल। आकाश के 27 तारा-समूहों में से एक जिसमें चंद्रमा वर्तमान में है। नामकरण और कुंडली मिलान में उपयोगी।</li>
+                  <li><span className="text-gold-light font-semibold">योग</span>  –  सूर्य-चंद्र संयोग। (व्यायाम योग नहीं!) सूर्य और चंद्रमा की देशांतर स्थितियों के योग से बनता है। 27 प्रकार होते हैं  –  शुभ या अशुभ।</li>
+                  <li><span className="text-gold-light font-semibold">करण</span>  –  आधा चंद्र दिन। तिथि का आधा भाग, 11 प्रकार के। विभिन्न कार्यों के लिए उपयुक्तता बताता है।</li>
+                  <li><span className="text-gold-light font-semibold">वार</span>  –  सप्ताह का दिन। प्रत्येक दिन एक ग्रह के स्वामित्व में होता है।</li>
                 </ul>
                 <p className="pt-1 text-gold-primary/80 font-medium">ये पाँचों तत्व मिलकर किसी भी कार्य के लिए सबसे शुभ समय निर्धारित करते हैं।</p>
               </div>
@@ -728,11 +728,11 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
               <div className="space-y-3 text-sm text-text-secondary leading-relaxed">
                 <p>Panchang is made of five celestial elements that reveal the quality and auspiciousness of a day:</p>
                 <ul className="space-y-2 pl-2">
-                  <li><span className="text-gold-light font-semibold">Tithi</span> — Lunar Day. Based on the Moon&apos;s phase (waxing or waning), it determines festivals and fasting days.</li>
-                  <li><span className="text-gold-light font-semibold">Nakshatra</span> — Lunar Mansion. One of 27 star-groups that the Moon passes through. Used for naming ceremonies and compatibility matching.</li>
-                  <li><span className="text-gold-light font-semibold">Yoga</span> — Sun-Moon Combination. (Not the exercise kind!) Formed by adding the longitudes of the Sun and Moon. There are 27 types — each considered favorable or unfavorable.</li>
-                  <li><span className="text-gold-light font-semibold">Karana</span> — Half Lunar Day. Half of a Tithi, with 11 types. Each is suited to specific kinds of work or activity.</li>
-                  <li><span className="text-gold-light font-semibold">Vara</span> — Weekday. Each day of the week is ruled by a planet that influences its overall energy.</li>
+                  <li><span className="text-gold-light font-semibold">Tithi</span>  –  Lunar Day. Based on the Moon&apos;s phase (waxing or waning), it determines festivals and fasting days.</li>
+                  <li><span className="text-gold-light font-semibold">Nakshatra</span>  –  Lunar Mansion. One of 27 star-groups that the Moon passes through. Used for naming ceremonies and compatibility matching.</li>
+                  <li><span className="text-gold-light font-semibold">Yoga</span>  –  Sun-Moon Combination. (Not the exercise kind!) Formed by adding the longitudes of the Sun and Moon. There are 27 types  –  each considered favorable or unfavorable.</li>
+                  <li><span className="text-gold-light font-semibold">Karana</span>  –  Half Lunar Day. Half of a Tithi, with 11 types. Each is suited to specific kinds of work or activity.</li>
+                  <li><span className="text-gold-light font-semibold">Vara</span>  –  Weekday. Each day of the week is ruled by a planet that influences its overall energy.</li>
                 </ul>
                 <p className="pt-1 text-gold-primary/80 font-medium">Together, these five elements determine the most auspicious time for any activity.</p>
               </div>
@@ -758,7 +758,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
             </Link>
           </div>
 
-          {/* Today's Energy Weather — always visible */}
+          {/* Today's Energy Weather  –  always visible */}
           {panchang && (() => {
             const vibeData = generateDailyVibe(panchang, locale);
             return (
@@ -835,10 +835,10 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                     <div className="flex items-center justify-center gap-3 mt-4">
                       <button
                         onClick={() => {
-                          const text = `${vibeData.vibeTitle.en} — Today's Energy Weather\n${vibeData.keyTransit}\nBest for: ${vibeData.bestFor.join(', ')}\nEnergy: ${vibeData.energyScore}%\n\nhttps://dekhopanchang.com/${locale}/panchang`;
+                          const text = `${vibeData.vibeTitle.en}  –  Today's Energy Weather\n${vibeData.keyTransit}\nBest for: ${vibeData.bestFor.join(', ')}\nEnergy: ${vibeData.energyScore}%\n\nhttps://dekhopanchang.com/${locale}/panchang`;
                           if (navigator.share) {
                             navigator.share({ title: 'Today\'s Energy Weather', text }).catch(() => {
-                              // User cancelled share — safe to ignore
+                              // User cancelled share  –  safe to ignore
                             });
                           } else {
                             navigator.clipboard.writeText(text).then(() => {
@@ -879,7 +879,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
             const nextNakData = nakTr ? NAKSHATRAS[nakTr.nextNumber - 1] : null;
             const nakPassed = tp(nakTr);
 
-            // Yoga / Karana — keep simple active-switching
+            // Yoga / Karana  –  keep simple active-switching
             const yogaPassed = tp(panchang.yogaTransition);
             const activeYoga = yogaPassed && panchang.yogaTransition ? YOGAS[panchang.yogaTransition.nextNumber - 1] : panchang.yoga;
             const karanaPassed = tp(panchang.karanaTransition);
@@ -916,7 +916,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                       <>
                         <div className="mt-2 pt-2 border-t border-gold-primary/10">
                           <div className="font-mono text-sm text-amber-300 font-bold">
-                            {fmt(tithiTr.startTime, tithiTr.startDate)} — {fmt(tithiTr.endTime, tithiTr.endDate)}
+                            {fmt(tithiTr.startTime, tithiTr.startDate)}  –  {fmt(tithiTr.endTime, tithiTr.endDate)}
                           </div>
                         </div>
                       </>
@@ -943,7 +943,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                         {locale === 'hi' ? 'क्षय तिथि' : locale === 'ta' ? 'க்ஷய திதி' : locale === 'bn' ? 'ক্ষয় তিথি' : 'Kshaya Tithi'}
                       </span>
                       <span className="text-text-secondary ml-1">
-                        — {tl(panchang.kshayaTithi.tithi.name)} ({panchang.kshayaTithi.start}–{panchang.kshayaTithi.end})
+                         –  {tl(panchang.kshayaTithi.tithi.name)} ({panchang.kshayaTithi.start}–{panchang.kshayaTithi.end})
                       </span>
                     </div>
                   )}
@@ -954,7 +954,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                         {locale === 'hi' ? 'वृद्धि तिथि' : locale === 'ta' ? 'விருத்தி திதி' : locale === 'bn' ? 'বৃদ্ধি তিথি' : 'Vriddhi Tithi'}
                       </span>
                       <span className="text-text-secondary ml-1">
-                        — {tl(panchang.tithi.name)} {locale === 'hi' ? 'दो सूर्योदय तक' : locale === 'ta' ? 'இரண்டு சூரிய உதயம் வரை' : locale === 'bn' ? 'দুই সূর্যোদয় জুড়ে' : 'spans two sunrises'}
+                         –  {tl(panchang.tithi.name)} {locale === 'hi' ? 'दो सूर्योदय तक' : locale === 'ta' ? 'இரண்டு சூரிய உதயம் வரை' : locale === 'bn' ? 'দুই সূর্যোদয় জুড়ে' : 'spans two sunrises'}
                       </span>
                     </div>
                   )}
@@ -963,11 +963,11 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                     {panchang.tithi.paksha === 'shukla'
                       ? msg('shukla', locale)
                       : msg('krishna', locale)
-                    }{' — '}{msg('deity', locale)}{' '}{tl(panchang.tithi.deity)}
+                    }{'  –  '}{msg('deity', locale)}{' '}{tl(panchang.tithi.deity)}
                   </div>
                   {/* Tithi insight */}
                   <InsightBlock insight={getTithiInsight(panchang.tithi.number, panchang.tithi.paksha as 'shukla' | 'krishna')} />
-                  {/* Masa / Paksha — both systems */}
+                  {/* Masa / Paksha  –  both systems */}
                   <div className="mt-3 pt-3 border-t border-gold-primary/10 grid grid-cols-2 gap-2 text-xs">
                     <div>
                       <div className="text-text-secondary/60 uppercase tracking-wider text-[10px]">{msg('amant', locale)}</div>
@@ -1015,7 +1015,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                   whileHover={{ scale: 1.05, y: -6 }}
                   className="relative rounded-2xl bg-gradient-to-br from-indigo-900/20 via-[#1a1040]/50 to-[#0a0e27] border border-indigo-400/20 p-3 sm:p-4 md:p-6 text-center hover:border-indigo-400/40 transition-all cursor-default"
                 >
-                  {/* Auspiciousness badge — uses ACTIVE nakshatra's nature (switches after transition).
+                  {/* Auspiciousness badge  –  uses ACTIVE nakshatra's nature (switches after transition).
                       nakshatra.nature is a descriptive LocaleText (e.g. "Soft, Tender", "Sharp, Fierce").
                       Map to auspicious/inauspicious/neutral using classical gana categories. */}
                   {(() => {
@@ -1047,7 +1047,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                     {nakTr && (
                       <div className="mt-2 pt-2 border-t border-gold-primary/10">
                         <div className="font-mono text-sm text-amber-300 font-bold">
-                          {fmt(nakTr.startTime, nakTr.startDate)} — {fmt(nakTr.endTime, nakTr.endDate)}
+                          {fmt(nakTr.startTime, nakTr.startDate)}  –  {fmt(nakTr.endTime, nakTr.endDate)}
                         </div>
                       </div>
                     )}
@@ -1068,11 +1068,11 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                   )}
                   {/* Nakshatra contextual tip */}
                   <div className="text-text-secondary/70 text-xs mt-1.5 leading-snug">
-                    {msg('nature', locale)}{' '}{tl(panchang.nakshatra.nature)}{' — '}{msg('ruler', locale)}{' '}{tl(panchang.nakshatra.rulerName)}
+                    {msg('nature', locale)}{' '}{tl(panchang.nakshatra.nature)}{'  –  '}{msg('ruler', locale)}{' '}{tl(panchang.nakshatra.rulerName)}
                   </div>
                   {/* Nakshatra insight */}
                   <InsightBlock insight={getNakshatraInsight(panchang.nakshatra.id)} />
-                  {/* Nakshatra deep details — expandable */}
+                  {/* Nakshatra deep details  –  expandable */}
                   {(() => {
                     const detail = NAKSHATRA_DETAILS.find(d => d.id === panchang.nakshatra.id);
                     if (!detail) return null;
@@ -1136,7 +1136,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                     {panchang.yogaTransition && (
                       <div className="mt-2 pt-2 border-t border-gold-primary/10">
                         <div className="font-mono text-sm text-amber-300 font-bold">
-                          {fmt(panchang.yogaTransition.startTime, panchang.yogaTransition.startDate)} — {fmt(panchang.yogaTransition.endTime, panchang.yogaTransition.endDate)}
+                          {fmt(panchang.yogaTransition.startTime, panchang.yogaTransition.startDate)}  –  {fmt(panchang.yogaTransition.endTime, panchang.yogaTransition.endDate)}
                         </div>
                       </div>
                     )}
@@ -1172,7 +1172,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                   whileHover={{ scale: 1.05, y: -6 }}
                   className="relative rounded-2xl bg-gradient-to-br from-teal-900/15 via-[#1a1040]/50 to-[#0a0e27] border border-teal-400/15 p-3 sm:p-4 md:p-6 text-center hover:border-teal-400/35 transition-all cursor-default"
                 >
-                  {/* Auspiciousness badge — derived from karana type: chara=auspicious, sthira=inauspicious, special=neutral */}
+                  {/* Auspiciousness badge  –  derived from karana type: chara=auspicious, sthira=inauspicious, special=neutral */}
                   <div className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-[11px] sm:text-[9px] font-bold border ${getNatureBg(activeKarana.type === 'chara' ? 'auspicious' : activeKarana.type === 'sthira' ? 'inauspicious' : 'neutral')} ${getNatureColor(activeKarana.type === 'chara' ? 'auspicious' : activeKarana.type === 'sthira' ? 'inauspicious' : 'neutral')}`}>
                     {getNatureLabel(activeKarana.type === 'chara' ? 'auspicious' : activeKarana.type === 'sthira' ? 'inauspicious' : 'neutral')}
                   </div>
@@ -1187,7 +1187,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                     {panchang.karanaTransition && (
                       <div className="mt-2 pt-2 border-t border-gold-primary/10">
                         <div className="font-mono text-sm text-amber-300 font-bold">
-                          {fmt(panchang.karanaTransition.startTime, panchang.karanaTransition.startDate)} — {fmt(panchang.karanaTransition.endTime, panchang.karanaTransition.endDate)}
+                          {fmt(panchang.karanaTransition.startTime, panchang.karanaTransition.startDate)}  –  {fmt(panchang.karanaTransition.endTime, panchang.karanaTransition.endDate)}
                         </div>
                       </div>
                     )}
@@ -1225,7 +1225,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                   whileHover={{ scale: 1.05, y: -6 }}
                   className="relative rounded-2xl bg-gradient-to-br from-orange-900/15 via-[#1a1040]/50 to-[#0a0e27] border border-orange-400/15 p-3 sm:p-4 md:p-6 text-center hover:border-orange-400/35 transition-all cursor-default"
                 >
-                  {/* Auspiciousness badge — derived from weekday lord: Sun/Mon/Thu/Fri=auspicious, Tue/Sat=inauspicious, Wed=neutral */}
+                  {/* Auspiciousness badge  –  derived from weekday lord: Sun/Mon/Thu/Fri=auspicious, Tue/Sat=inauspicious, Wed=neutral */}
                   {(() => {
                     const varaNature = [0, 1, 4, 5].includes(panchang.vara.day) ? 'auspicious' : [2, 6].includes(panchang.vara.day) ? 'inauspicious' : 'neutral';
                     return (
@@ -1260,7 +1260,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                   })()}
                   {/* Vara contextual tip */}
                   <div className="text-text-secondary/70 text-xs mt-1.5 leading-snug">
-                    {msg('ruledBy', locale)}{' '}{tl(panchang.vara.ruler)}{' — '}{
+                    {msg('ruledBy', locale)}{' '}{tl(panchang.vara.ruler)}{'  –  '}{
                       panchang.vara.day === 0 ? msg('varaSun', locale)
                       : panchang.vara.day === 1 ? msg('varaMon', locale)
                       : panchang.vara.day === 2 ? msg('varaTue', locale)
@@ -1378,7 +1378,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
             </AnimatePresence>
           </div>
 
-          {/* ═══ TIMES — BOLD ═══ */}
+          {/* ═══ TIMES  –  BOLD ═══ */}
           <GoldDivider />
           <p className="text-text-secondary/60 text-xs text-center mt-4 -mb-2 max-w-lg mx-auto">
             {isDevanagari
@@ -1446,8 +1446,8 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center">
                   <div className="flex justify-center mb-2"><Sun className="w-10 h-10 text-gold-primary" /></div>
                   <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{msg('dayDuration', locale)}{locale === 'en' ? ' (दिनमान)' : ''}</div>
-                  <div className="text-gold-light font-bold text-lg font-mono mt-1">{panchang.dinamana || '—'}</div>
-                  <div className="text-text-secondary text-xs mt-1.5 uppercase tracking-wider">{msg('nightLabel', locale)}{locale === 'en' ? ' (रात्रिमान)' : ''}: <span className="font-mono text-text-primary">{panchang.ratrimana || '—'}</span></div>
+                  <div className="text-gold-light font-bold text-lg font-mono mt-1">{panchang.dinamana || ' – '}</div>
+                  <div className="text-text-secondary text-xs mt-1.5 uppercase tracking-wider">{msg('nightLabel', locale)}{locale === 'en' ? ' (रात्रिमान)' : ''}: <span className="font-mono text-text-primary">{panchang.ratrimana || ' – '}</span></div>
                 </motion.div>
 
                 {/* Madhyahna */}
@@ -1455,7 +1455,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center">
                   <div className="flex justify-center mb-2"><Clock className="w-10 h-10 text-gold-primary" /></div>
                   <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{msg('madhyahna', locale)}</div>
-                  <div className="text-gold-light font-bold text-2xl font-mono mt-1">{panchang.madhyahna || '—'}</div>
+                  <div className="text-gold-light font-bold text-2xl font-mono mt-1">{panchang.madhyahna || ' – '}</div>
                   <div className="text-text-secondary text-xs mt-1">{msg('localMidday', locale)}</div>
                 </motion.div>
               </div>
@@ -1476,7 +1476,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
               <div className="text-gold-dark text-[11px] sm:text-[10px] uppercase tracking-wider font-bold">{isDevanagari ? 'अयन' : 'Ayana'}</div>
               <div className="text-gold-light font-bold text-sm mt-0.5" style={headingFont}>{_tl(panchang.ayana, locale) || '\u2014'}</div>
             </div>
-            {/* Chandrabalam — personalized if birth data available */}
+            {/* Chandrabalam  –  personalized if birth data available */}
             <Link href="/chandrabalam"
               className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border p-4 text-center hover:border-gold-primary/40 transition-all group block ${balamResult ? (balamResult.chandrabalam.favorable ? 'border-emerald-500/25' : 'border-red-500/25') : 'border-gold-primary/12'}`}>
               <div className="flex justify-center mb-1.5"><Moon className="w-8 h-8 text-gold-primary group-hover:scale-110 transition-transform" /></div>
@@ -1495,7 +1495,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                 {isDevanagari ? 'सभी 12 राशियाँ \u2192' : 'All 12 signs \u2192'}
               </div>
             </Link>
-            {/* Tarabalam — personalized if birth data available */}
+            {/* Tarabalam  –  personalized if birth data available */}
             <Link href="/tarabalam"
               className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border p-4 text-center hover:border-gold-primary/40 transition-all group block ${balamResult ? (balamResult.tarabalam.favorable ? 'border-emerald-500/25' : 'border-red-500/25') : 'border-gold-primary/12'}`}>
               <div className="flex justify-center mb-1.5"><Sparkles className="w-8 h-8 text-gold-primary group-hover:scale-110 transition-transform" /></div>
@@ -1521,7 +1521,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
             </Link>
           </div>
 
-          {/* ═══ REGIONAL QUICK-ACCESS — locale-aware featured tools ═══ */}
+          {/* ═══ REGIONAL QUICK-ACCESS  –  locale-aware featured tools ═══ */}
           {(() => {
             // Regional specialization: surface the most-used tools for each locale.
             // Tamil: Pancha-Pakshi + Gowri Panchangam are the primary daily systems.
@@ -1570,8 +1570,8 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
             );
           })()}
 
-          {/* ═══ MEGA CARD GRID — tarot-style cards linking to subpages ═══ */}
-          {/* Row 1: 5 cards — reordered by locale */}
+          {/* ═══ MEGA CARD GRID  –  tarot-style cards linking to subpages ═══ */}
+          {/* Row 1: 5 cards  –  reordered by locale */}
           <div className="grid grid-cols-1 min-[400px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-5 my-14 auto-rows-fr">
             {reorderCards([
               {
@@ -1581,7 +1581,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                 preview: isDevanagari ? 'अभिजित · अमृत काल · राहु काल · वर्ज्यम' : 'Abhijit · Amrit Kalam · Rahu Kaal · Varjyam',
                 color: 'emerald',
                 glowColor: '#34d399',
-                // Tarot: Dramatic sun/hourglass hybrid — cosmic clock
+                // Tarot: Dramatic sun/hourglass hybrid  –  cosmic clock
                 svg: <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true"><defs><radialGradient id="tc1r" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#34d399" stopOpacity="0.3"/><stop offset="100%" stopColor="#34d399" stopOpacity="0"/></radialGradient><linearGradient id="tc1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a"/><stop offset="50%" stopColor="#d4a853"/><stop offset="100%" stopColor="#8a6d2b"/></linearGradient></defs><circle cx="32" cy="32" r="28" fill="url(#tc1r)"/><circle cx="32" cy="32" r="14" fill="url(#tc1)" opacity="0.15" stroke="url(#tc1)" strokeWidth="2.5"/><circle cx="32" cy="32" r="7" fill="url(#tc1)" opacity="0.35"/><circle cx="32" cy="32" r="3" fill="#f0d48a" opacity="0.7"/>{Array.from({length:12},(_,i)=>{const a=Math.PI*2*i/12;const inner=i%2===0?17:18;const outer=i%2===0?28:24;return <line key={i} x1={r2(32+inner*Math.cos(a))} y1={r2(32+inner*Math.sin(a))} x2={r2(32+outer*Math.cos(a))} y2={r2(32+outer*Math.sin(a))} stroke="url(#tc1)" strokeWidth={i%2===0?"2.5":"1.5"} strokeLinecap="round" opacity={i%2===0?0.9:0.5}/>})}<path d="M29,18 L32,32 L35,18 Z" fill="url(#tc1)" opacity="0.25"/><path d="M29,46 L32,32 L35,46 Z" fill="url(#tc1)" opacity="0.25"/><circle cx="32" cy="18" r="1.5" fill="#f0d48a" opacity="0.6"/><circle cx="32" cy="46" r="1.5" fill="#f0d48a" opacity="0.6"/></svg>,
               },
               {
@@ -1618,7 +1618,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                 href: '/panchang/nivas',
                 title: isDevanagari ? 'निवास एवं शूल' : 'Nivas & Shool',
                 subtitle: isDevanagari ? 'दिशा एवं देव निवास' : 'Directions & Abodes',
-                preview: `${isDevanagari ? 'शूल' : 'Shool'}: ${panchang.dishaShool?.direction?.[locale] || panchang.dishaShool?.direction?.en || '—'}`,
+                preview: `${isDevanagari ? 'शूल' : 'Shool'}: ${panchang.dishaShool?.direction?.[locale] || panchang.dishaShool?.direction?.en || ' – '}`,
                 color: 'indigo',
                 glowColor: '#f43f5e',
                 // Tarot: Bold compass rose with decorative cardinal points
@@ -1638,7 +1638,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
             ))}
           </div>
 
-          {/* Row 2: 5 cards — reordered by locale */}
+          {/* Row 2: 5 cards  –  reordered by locale */}
           <div className="grid grid-cols-1 min-[400px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-5 -mt-8 mb-14 auto-rows-fr">
             {reorderCards([
               {
@@ -1668,7 +1668,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                 preview: `${tl(panchang.amantMasa || panchang.masa)}`,
                 color: 'gold',
                 glowColor: '#d4a853',
-                // Tarot: Moon phase arc — 5 phases from new to full
+                // Tarot: Moon phase arc  –  5 phases from new to full
                 svg: <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true"><defs><radialGradient id="tc8r" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#d4a853" stopOpacity="0.2"/><stop offset="100%" stopColor="#d4a853" stopOpacity="0"/></radialGradient><linearGradient id="tc8" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a"/><stop offset="50%" stopColor="#d4a853"/><stop offset="100%" stopColor="#8a6d2b"/></linearGradient></defs><circle cx="32" cy="32" r="28" fill="url(#tc8r)"/><path d="M 6,40 Q 16,20 32,16 Q 48,20 58,40" fill="none" stroke="url(#tc8)" strokeWidth="1" opacity="0.25"/><circle cx="10" cy="36" r="5" fill="none" stroke="url(#tc8)" strokeWidth="1.5" opacity="0.4"/><circle cx="10" cy="36" r="5" fill="url(#tc8)" opacity="0.05"/><circle cx="22" cy="26" r="6" fill="none" stroke="url(#tc8)" strokeWidth="1.8" opacity="0.55"/><path d="M 22,20 A 6,6 0 0,1 22,32 A 3,6 0 0,0 22,20" fill="url(#tc8)" opacity="0.25"/><circle cx="34" cy="22" r="7" fill="none" stroke="url(#tc8)" strokeWidth="2" opacity="0.7"/><path d="M 34,15 A 7,7 0 0,1 34,29 A 2,7 0 0,0 34,15" fill="url(#tc8)" opacity="0.3"/><circle cx="46" cy="28" r="6" fill="none" stroke="url(#tc8)" strokeWidth="1.8" opacity="0.6"/><path d="M 46,22 A 6,6 0 0,1 46,34 A 1,6 0 0,0 46,22" fill="url(#tc8)" opacity="0.35"/><circle cx="56" cy="36" r="5" fill="url(#tc8)" opacity="0.35" stroke="url(#tc8)" strokeWidth="2"/><circle cx="56" cy="36" r="2" fill="#f0d48a" opacity="0.5"/>{[[14,48,0.6],[28,44,0.8],[42,46,0.7],[52,48,0.5],[8,46,0.4]].map(([cx,cy,rr],i)=><circle key={i} cx={cx} cy={cy} r={rr} fill="#f0d48a" opacity={0.2+i*0.04}/>)}</svg>,
               },
               {
@@ -1685,7 +1685,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                 href: '/panchang/activity-guide',
                 title: isDevanagari ? 'नक्षत्र मार्गदर्शन' : 'Activity Guide',
                 subtitle: isDevanagari ? 'नक्षत्र गतिविधि' : 'Nakshatra Activities',
-                preview: `${tl(panchang.nakshatra?.name) || '—'} — ${isDevanagari ? 'अनुकूल कार्य' : 'Favorable actions'}`,
+                preview: `${tl(panchang.nakshatra?.name) || ' – '}  –  ${isDevanagari ? 'अनुकूल कार्य' : 'Favorable actions'}`,
                 color: 'gold',
                 glowColor: '#d4a853',
                 // Tarot: Large bold pentagram/guiding star with layered depth
@@ -1705,7 +1705,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
             ))}
           </div>
 
-          {/* ═══ COMPACT DAY TIMELINE — Sacred Timings preview ═══ */}
+          {/* ═══ COMPACT DAY TIMELINE  –  Sacred Timings preview ═══ */}
           <div className="mb-10 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 hover:border-gold-primary/40 transition-all">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-gold-light text-base font-bold" style={headingFont}>
@@ -1724,7 +1724,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
             />
           </div>
 
-          {/* ═══ SPECIAL AUSPICIOUS YOGAS — highlight when active ═══ */}
+          {/* ═══ SPECIAL AUSPICIOUS YOGAS  –  highlight when active ═══ */}
           {panchang.specialYogas && panchang.specialYogas.filter(y => y.isActive).length > 0 && (
             <div className="mb-10">
               <h3 className="text-lg font-bold text-gold-gradient mb-4 text-center" style={headingFont}>
@@ -1774,7 +1774,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
               {panchang.holashtak?.isActive && (
                 <div className="rounded-xl bg-red-500/8 border border-red-500/20 p-4 caution-glow">
                   <h4 className="text-red-400 font-bold text-sm mb-1" style={headingFont}>
-                    {isDevanagari ? `⚠ होलाष्टक — दिवस ${panchang.holashtak.dayNumber}/8` : `⚠ Holashtak — Day ${panchang.holashtak.dayNumber}/8`}
+                    {isDevanagari ? `⚠ होलाष्टक  –  दिवस ${panchang.holashtak.dayNumber}/8` : `⚠ Holashtak  –  Day ${panchang.holashtak.dayNumber}/8`}
                   </h4>
                   <p className="text-text-secondary text-xs">
                     {panchang.holashtak.description[isDevanagari ? 'hi' : 'en']}
@@ -1785,7 +1785,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
           )}
 
           <GoldDivider />
-          {/* Sections removed — now live on subpages. Mega card grid above links to them. */}
+          {/* Sections removed  –  now live on subpages. Mega card grid above links to them. */}
         </>
       ) : null}
 
@@ -1832,13 +1832,13 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
 
       <AdUnit placement="rectangle" className="max-w-xl mx-auto" />
 
-      {/* ═══ CALCULATION PROOF — TRANSPARENT AUDIT TRAIL ═══ */}
+      {/* ═══ CALCULATION PROOF  –  TRANSPARENT AUDIT TRAIL ═══ */}
       {panchang && location && (
         <div className="my-8 max-w-2xl mx-auto">
           <details className="group rounded-2xl border border-gold-primary/10 bg-bg-secondary/30">
             <summary className="flex items-center gap-3 cursor-pointer px-6 py-4 text-gold-primary text-sm font-medium hover:text-gold-light transition-colors">
               <span className="w-4 h-4 text-gold-primary group-open:rotate-90 transition-transform inline-block">&#9656;</span>
-              {isDevanagari ? 'गणना प्रमाण — यह डेटा कैसे गणना किया गया' : 'Calculation Proof — How This Data Was Computed'}
+              {isDevanagari ? 'गणना प्रमाण  –  यह डेटा कैसे गणना किया गया' : 'Calculation Proof  –  How This Data Was Computed'}
             </summary>
             <div className="px-6 pb-5 space-y-4 text-sm text-text-secondary">
               <p className="text-text-secondary/70">
@@ -1848,11 +1848,11 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
               </p>
               <div className="grid grid-cols-2 gap-x-6 gap-y-2 bg-bg-primary/50 rounded-xl p-4 border border-white/5 font-mono text-xs">
                 <div className="text-text-secondary/50">{isDevanagari ? 'अक्षांश' : 'Latitude'}</div>
-                <div className="text-text-primary">{location.lat?.toFixed(4) || '—'}°</div>
+                <div className="text-text-primary">{location.lat?.toFixed(4) || ' – '}°</div>
                 <div className="text-text-secondary/50">{isDevanagari ? 'देशांतर' : 'Longitude'}</div>
-                <div className="text-text-primary">{location.lng?.toFixed(4) || '—'}°</div>
+                <div className="text-text-primary">{location.lng?.toFixed(4) || ' – '}°</div>
                 <div className="text-text-secondary/50">{isDevanagari ? 'समय क्षेत्र' : 'Timezone'}</div>
-                <div className="text-text-primary">{location.tz ? `UTC${location.tz >= 0 ? '+' : ''}${location.tz}` : '—'}</div>
+                <div className="text-text-primary">{location.tz ? `UTC${location.tz >= 0 ? '+' : ''}${location.tz}` : ' – '}</div>
                 <div className="text-text-secondary/50">{isDevanagari ? 'अयनांश' : 'Ayanamsha'}</div>
                 <div className="text-text-primary">Lahiri (Chitrapaksha)</div>
                 <div className="text-text-secondary/50">{isDevanagari ? 'सूर्य अवनति' : 'Sun Depression'}</div>
@@ -1874,7 +1874,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
         </div>
       )}
 
-      {/* ═══ DEEP DIVE LINKS — BIG ICONS ═══ */}
+      {/* ═══ DEEP DIVE LINKS  –  BIG ICONS ═══ */}
       <div className="my-14">
         <h2 className="text-3xl font-bold text-gold-gradient mb-10 text-center" style={headingFont}>
           {msg('exploreElements', locale)}
@@ -1936,19 +1936,19 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
         </div>
       </div>
 
-      {/* ═══ EDITORIAL — crawlable content for SEO ═══ */}
+      {/* ═══ EDITORIAL  –  crawlable content for SEO ═══ */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-16 pb-8 border-t border-gold-primary/8">
         <h2 className="text-lg font-semibold text-gold-dark/80 mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
           {_tl({ en: 'Understanding the Five Elements of Panchang', hi: 'पंचांग के पाँच तत्त्वों को समझें', sa: 'पञ्चाङ्गस्य पञ्चतत्त्वानि' }, locale)}
         </h2>
         <p className="text-text-secondary text-sm leading-relaxed mb-3" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-          {_tl({ en: 'Tithi is the lunar day, determined by the angular distance between the Sun and Moon. There are 30 tithis in a lunar month — 15 in the waxing phase (Shukla Paksha) and 15 in the waning phase (Krishna Paksha). Each tithi has a presiding deity and specific qualities that make certain activities favourable or unfavourable. Ekadashi (the 11th tithi) is considered sacred for fasting, while Purnima (full moon) and Amavasya (new moon) are significant for rituals and ancestor worship.', hi: 'तिथि चन्द्र दिवस है, जो सूर्य और चन्द्रमा के बीच कोणीय दूरी से निर्धारित होती है। एक चन्द्र मास में 30 तिथियाँ होती हैं — शुक्ल पक्ष में 15 और कृष्ण पक्ष में 15। प्रत्येक तिथि का एक अधिष्ठाता देवता और विशिष्ट गुण होते हैं। एकादशी उपवास के लिए पवित्र मानी जाती है, जबकि पूर्णिमा और अमावस्या अनुष्ठानों के लिए महत्त्वपूर्ण हैं।' }, locale)}
+          {_tl({ en: 'Tithi is the lunar day, determined by the angular distance between the Sun and Moon. There are 30 tithis in a lunar month  –  15 in the waxing phase (Shukla Paksha) and 15 in the waning phase (Krishna Paksha). Each tithi has a presiding deity and specific qualities that make certain activities favourable or unfavourable. Ekadashi (the 11th tithi) is considered sacred for fasting, while Purnima (full moon) and Amavasya (new moon) are significant for rituals and ancestor worship.', hi: 'तिथि चन्द्र दिवस है, जो सूर्य और चन्द्रमा के बीच कोणीय दूरी से निर्धारित होती है। एक चन्द्र मास में 30 तिथियाँ होती हैं  –  शुक्ल पक्ष में 15 और कृष्ण पक्ष में 15। प्रत्येक तिथि का एक अधिष्ठाता देवता और विशिष्ट गुण होते हैं। एकादशी उपवास के लिए पवित्र मानी जाती है, जबकि पूर्णिमा और अमावस्या अनुष्ठानों के लिए महत्त्वपूर्ण हैं।' }, locale)}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-          {_tl({ en: 'Nakshatra is the lunar mansion — one of 27 constellations that the Moon transits through approximately every day. Each nakshatra spans 13°20\' of the zodiac and has a ruling planet, deity, and nature (Dhruva/fixed, Chara/movable, Ugra/fierce, Mridu/gentle, etc.) that colours the quality of the day. The nakshatra at the time of your birth determines your Vimshottari Dasha sequence — the planetary period system that is the backbone of Vedic predictive astrology.', hi: 'नक्षत्र चन्द्र भवन है — 27 तारामण्डलों में से एक जिनसे चन्द्रमा प्रतिदिन लगभग गुजरता है। प्रत्येक नक्षत्र राशि चक्र के 13°20\' में फैला है और इसका एक शासक ग्रह, देवता और स्वभाव (ध्रुव, चर, उग्र, मृदु आदि) होता है जो दिन की गुणवत्ता को रंगता है।' }, locale)}
+          {_tl({ en: 'Nakshatra is the lunar mansion  –  one of 27 constellations that the Moon transits through approximately every day. Each nakshatra spans 13°20\' of the zodiac and has a ruling planet, deity, and nature (Dhruva/fixed, Chara/movable, Ugra/fierce, Mridu/gentle, etc.) that colours the quality of the day. The nakshatra at the time of your birth determines your Vimshottari Dasha sequence  –  the planetary period system that is the backbone of Vedic predictive astrology.', hi: 'नक्षत्र चन्द्र भवन है  –  27 तारामण्डलों में से एक जिनसे चन्द्रमा प्रतिदिन लगभग गुजरता है। प्रत्येक नक्षत्र राशि चक्र के 13°20\' में फैला है और इसका एक शासक ग्रह, देवता और स्वभाव (ध्रुव, चर, उग्र, मृदु आदि) होता है जो दिन की गुणवत्ता को रंगता है।' }, locale)}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-          {_tl({ en: 'Yoga is the luni-solar combination formed by adding the longitudes of the Sun and Moon and dividing by 13°20\'. There are 27 yogas, each with distinct qualities — from the highly auspicious Siddhi (accomplishment) and Shubha (auspicious) to the challenging Vishkambha (obstruction) and Vaidhriti (destruction). Karana is the half-tithi — there are 11 karanas that repeat in a cycle, with Vishti (Bhadra) being the most inauspicious. Vara is simply the weekday, each ruled by a planet: Sunday by Sun, Monday by Moon, through Saturday by Saturn.', hi: 'योग सूर्य और चन्द्रमा के देशान्तर जोड़कर 13°20\' से भाग देने से बनने वाला सूर्य-चन्द्र संयोजन है। 27 योग हैं, प्रत्येक विशिष्ट गुणों के साथ। करण अर्ध-तिथि है — 11 करण एक चक्र में दोहराते हैं, विष्टि (भद्रा) सबसे अशुभ। वार सप्ताह का दिन है, प्रत्येक एक ग्रह शासित।' }, locale)}
+          {_tl({ en: 'Yoga is the luni-solar combination formed by adding the longitudes of the Sun and Moon and dividing by 13°20\'. There are 27 yogas, each with distinct qualities  –  from the highly auspicious Siddhi (accomplishment) and Shubha (auspicious) to the challenging Vishkambha (obstruction) and Vaidhriti (destruction). Karana is the half-tithi  –  there are 11 karanas that repeat in a cycle, with Vishti (Bhadra) being the most inauspicious. Vara is simply the weekday, each ruled by a planet: Sunday by Sun, Monday by Moon, through Saturday by Saturn.', hi: 'योग सूर्य और चन्द्रमा के देशान्तर जोड़कर 13°20\' से भाग देने से बनने वाला सूर्य-चन्द्र संयोजन है। 27 योग हैं, प्रत्येक विशिष्ट गुणों के साथ। करण अर्ध-तिथि है  –  11 करण एक चक्र में दोहराते हैं, विष्टि (भद्रा) सबसे अशुभ। वार सप्ताह का दिन है, प्रत्येक एक ग्रह शासित।' }, locale)}
         </p>
       </div>
 

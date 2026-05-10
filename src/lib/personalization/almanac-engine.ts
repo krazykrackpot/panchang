@@ -1,5 +1,5 @@
 /**
- * Almanac Engine — generates a "Year in the Stars" retrospective report.
+ * Almanac Engine  –  generates a "Year in the Stars" retrospective report.
  *
  * Queries:
  *   - astro_journal (mood, energy, nakshatra, dasha) filtered by year
@@ -173,7 +173,7 @@ export async function generateAlmanac(
 }
 
 // ---------------------------------------------------------------------------
-// Internal row shapes (minimal — only what we SELECT)
+// Internal row shapes (minimal  –  only what we SELECT)
 // ---------------------------------------------------------------------------
 
 interface JournalRow {
@@ -314,7 +314,7 @@ function buildDashaInsight(journal: JournalRow[]): string {
   };
 
   const mahaTheme = themes[maha] ?? 'transformation';
-  return `You spent ${topCount} ${monthWord} in ${dashaDesc} — themes: ${mahaTheme}`;
+  return `You spent ${topCount} ${monthWord} in ${dashaDesc}  –  themes: ${mahaTheme}`;
 }
 
 function buildLifeEventSummary(lifeEvents: LifeEventRow[]): LifeEventSummary[] {
@@ -473,7 +473,7 @@ function buildPersonalDiscoveries(
       'July', 'August', 'September', 'October', 'November', 'December',
     ];
     discoveries.push(
-      `You journaled most in ${monthNames[parseInt(bestMonth, 10) - 1]} (${bestCount} entries) — a month of deep self-reflection.`,
+      `You journaled most in ${monthNames[parseInt(bestMonth, 10) - 1]} (${bestCount} entries)  –  a month of deep self-reflection.`,
     );
   }
 
@@ -484,7 +484,7 @@ function buildPersonalDiscoveries(
     if (overallMood >= 3.8) {
       discoveries.push(`Overall, ${journal[0]?.entry_date.slice(0, 4)} was a high-energy year for you with an average mood of ${round1(overallMood)}/5.`);
     } else if (overallMood <= 2.5) {
-      discoveries.push(`This was a challenging year emotionally (avg mood ${round1(overallMood)}/5) — growth often comes through difficulty.`);
+      discoveries.push(`This was a challenging year emotionally (avg mood ${round1(overallMood)}/5)  –  growth often comes through difficulty.`);
     }
   }
 
@@ -492,11 +492,11 @@ function buildPersonalDiscoveries(
   if (accuracy.total >= 5 && accuracy.accuracy > 0) {
     if (accuracy.accuracy >= 70) {
       discoveries.push(
-        `Your predictions were ${accuracy.accuracy}% accurate — your astrological intuition is well-calibrated.`,
+        `Your predictions were ${accuracy.accuracy}% accurate  –  your astrological intuition is well-calibrated.`,
       );
     } else if (accuracy.accuracy < 40) {
       discoveries.push(
-        `Your predictions were ${accuracy.accuracy}% accurate this year — a reminder that free will plays a large role.`,
+        `Your predictions were ${accuracy.accuracy}% accurate this year  –  a reminder that free will plays a large role.`,
       );
     }
   }

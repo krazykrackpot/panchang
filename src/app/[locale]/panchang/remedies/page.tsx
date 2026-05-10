@@ -179,7 +179,7 @@ export default function RemediesPage() {
                     {dayHoraWindows.map((hw, i) => (
                       <div key={i} className="px-3 py-1.5 rounded-lg bg-gold-primary/8 border border-gold-primary/15">
                         <span className="font-mono text-xs text-gold-light">{hw.start}</span>
-                        <span className="text-text-secondary/50 mx-1">—</span>
+                        <span className="text-text-secondary/50 mx-1"> – </span>
                         <span className="font-mono text-xs text-gold-light">{hw.end}</span>
                       </div>
                     ))}

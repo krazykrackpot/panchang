@@ -1,8 +1,8 @@
 /**
- * Graha Rules — 2 rules for planetary transit and dignity factors
+ * Graha Rules  –  2 rules for planetary transit and dignity factors
  *
- * 1. transit-strength — benefics in kendras/trikonas, no retrograde benefics
- * 2. pushkar-navamsha-bhaga — Moon in Pushkar Navamsha or Pushkar Bhaga
+ * 1. transit-strength  –  benefics in kendras/trikonas, no retrograde benefics
+ * 2. pushkar-navamsha-bhaga  –  Moon in Pushkar Navamsha or Pushkar Bhaga
  *
  * Simplified version of scoreTransitFactors() in ai-recommender.ts,
  * refactored as self-contained MuhurtaRule objects.
@@ -108,7 +108,7 @@ const transitStrength: MuhurtaRule = {
 // ---------------------------------------------------------------------------
 // 2. pushkar-navamsha-bhaga
 // Moon in Pushkar Navamsha (+8) or Pushkar Bhaga (+10, within 0.8°)
-// Pushkar positions purify per Saravali — cancels Panchaka.
+// Pushkar positions purify per Saravali  –  cancels Panchaka.
 // ---------------------------------------------------------------------------
 const pushkarNavamshaBhaga: MuhurtaRule = {
   id: 'pushkar-navamsha-bhaga',
@@ -141,9 +141,9 @@ const pushkarNavamshaBhaga: MuhurtaRule = {
         maxPoints: 10,
         severity: 'positive',
         reason: {
-          en: 'Moon in both Pushkar Navamsha and Bhaga — extraordinary auspiciousness',
-          hi: 'चन्द्र पुष्कर नवांश एवं भाग दोनों में — असाधारण शुभत्व',
-          sa: 'चन्द्रः पुष्करनवांशे भागे च — असाधारणशुभत्वम्',
+          en: 'Moon in both Pushkar Navamsha and Bhaga  –  extraordinary auspiciousness',
+          hi: 'चन्द्र पुष्कर नवांश एवं भाग दोनों में  –  असाधारण शुभत्व',
+          sa: 'चन्द्रः पुष्करनवांशे भागे च  –  असाधारणशुभत्वम्',
         },
         cancels: ['panchaka'],
       });
@@ -156,9 +156,9 @@ const pushkarNavamshaBhaga: MuhurtaRule = {
         maxPoints: 10,
         severity: 'positive',
         reason: {
-          en: 'Moon in Pushkar Bhaga — most auspicious degree',
-          hi: 'चन्द्र पुष्कर भाग में — सर्वाधिक शुभ अंश',
-          sa: 'चन्द्रः पुष्करभागे — परमशुभांशः',
+          en: 'Moon in Pushkar Bhaga  –  most auspicious degree',
+          hi: 'चन्द्र पुष्कर भाग में  –  सर्वाधिक शुभ अंश',
+          sa: 'चन्द्रः पुष्करभागे  –  परमशुभांशः',
         },
         cancels: ['panchaka'],
       });
@@ -171,9 +171,9 @@ const pushkarNavamshaBhaga: MuhurtaRule = {
         maxPoints: 10,
         severity: 'positive',
         reason: {
-          en: 'Moon in Pushkar Navamsha — supremely auspicious',
-          hi: 'चन्द्र पुष्कर नवांश में — अत्यंत शुभ',
-          sa: 'चन्द्रः पुष्करनवांशे — अत्यन्तशुभम्',
+          en: 'Moon in Pushkar Navamsha  –  supremely auspicious',
+          hi: 'चन्द्र पुष्कर नवांश में  –  अत्यंत शुभ',
+          sa: 'चन्द्रः पुष्करनवांशे  –  अत्यन्तशुभम्',
         },
         cancels: ['panchaka'],
       });

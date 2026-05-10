@@ -5,7 +5,7 @@
  * and generates in-app alerts. Uses the calendar API to fetch upcoming
  * vrat dates and schedules browser notifications.
  *
- * This is a client-side-only module — the server-side cron does NOT
+ * This is a client-side-only module  –  the server-side cron does NOT
  * know individual user vrat preferences (stored in localStorage).
  */
 
@@ -51,7 +51,7 @@ export function generateVratAlerts(
 
   // 1. Check tithi-based vrats from calendar entries
   for (const entry of calendarEntries) {
-    // Match by calendarSlug — e.g., 'ekadashi', 'chaturthi', 'purnima', etc.
+    // Match by calendarSlug  –  e.g., 'ekadashi', 'chaturthi', 'purnima', etc.
     const entrySlug = entry.slug || '';
 
     // Find which followed vrats match this calendar entry
@@ -59,7 +59,7 @@ export function generateVratAlerts(
       const calSlug = slugToCalendar.get(followedSlug);
       if (!calSlug || calSlug !== entrySlug) continue;
 
-      // Parse the date — assume midnight local time as the start of the vrat day
+      // Parse the date  –  assume midnight local time as the start of the vrat day
       const vratDate = new Date(entry.date + 'T05:00:00'); // approximate sunrise
       const alertTime = new Date(vratDate.getTime() - windowMs);
 

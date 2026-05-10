@@ -34,7 +34,7 @@ function Page1() {
     <div className="space-y-6">
       <KeyTakeaway
         points={[
-          'A Kundali (birth chart) is a map of the sky at your exact birth moment — it shows where all 9 planets were placed across 12 houses.',
+          'A Kundali (birth chart) is a map of the sky at your exact birth moment  –  it shows where all 9 planets were placed across 12 houses.',
           'Each house represents a life area (career, relationships, health) and the planets in it shape your experiences in that domain.',
         ]}
         locale={locale}
@@ -62,13 +62,13 @@ function Page1() {
           {t('theLagnaWhichSignWasRising', locale)}
         </p>
         <div className="flex flex-wrap gap-3 my-2">
-          <BeginnerNote term="Kundali" explanation="A Vedic birth chart — a map of the sky at the exact moment and place of birth, showing all 9 planets across 12 houses." />
-          <BeginnerNote term="Bhava" explanation="A house in the chart — one of 12 sectors, each governing a specific area of life (e.g., 7th house = marriage)." />
-          <BeginnerNote term="Graha" explanation="Literally 'that which seizes' — the 9 Vedic planets including Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, and Ketu." />
+          <BeginnerNote term="Kundali" explanation="A Vedic birth chart  –  a map of the sky at the exact moment and place of birth, showing all 9 planets across 12 houses." />
+          <BeginnerNote term="Bhava" explanation="A house in the chart  –  one of 12 sectors, each governing a specific area of life (e.g., 7th house = marriage)." />
+          <BeginnerNote term="Graha" explanation="Literally 'that which seizes'  –  the 9 Vedic planets including Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, and Ketu." />
         </div>
       </section>
 
-      <WhyItMatters locale={locale}>A Kundali is your cosmic fingerprint. Every prediction in Vedic astrology — from career timing to relationship compatibility — starts from this one chart.</WhyItMatters>
+      <WhyItMatters locale={locale}>A Kundali is your cosmic fingerprint. Every prediction in Vedic astrology  –  from career timing to relationship compatibility  –  starts from this one chart.</WhyItMatters>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
@@ -159,11 +159,11 @@ function Page2() {
         </p>
       </section>
 
-      {/* Chart reading guide — helps learner decode chart symbols */}
+      {/* Chart reading guide  –  helps learner decode chart symbols */}
       <div className="mt-4 rounded-2xl border border-gold-primary/20 bg-bg-secondary/30 p-4">
         <h4 className="text-gold-light font-bold text-sm mb-2">Reading the Chart at a Glance</h4>
         <div className="text-xs text-text-secondary space-y-1">
-          <p>&bull; The diamond shape is the North Indian chart — each triangle is one house</p>
+          <p>&bull; The diamond shape is the North Indian chart  –  each triangle is one house</p>
           <p>&bull; The top diamond (center-top) is always the 1st house (Lagna/Ascendant)</p>
           <p>&bull; Su = Sun, Mo = Moon, Ma = Mars, Me = Mercury, Ju = Jupiter, Ve = Venus, Sa = Saturn, Ra = Rahu, Ke = Ketu</p>
           <p>&bull; Numbers (1-12) indicate the zodiac sign occupying that house</p>
@@ -189,7 +189,7 @@ function Page3() {
 
       {/* Prominent CTA to generate a chart */}
       <div className="rounded-2xl border border-gold-primary/20 bg-bg-secondary/30 p-5">
-        <h4 className="text-gold-light font-bold text-sm mb-2">Try It — Generate Your Chart</h4>
+        <h4 className="text-gold-light font-bold text-sm mb-2">Try It  –  Generate Your Chart</h4>
         <p className="text-text-secondary text-xs mb-3">
           Click below to generate your Vedic birth chart. Come back here to learn how to read it.
         </p>

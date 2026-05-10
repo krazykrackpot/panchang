@@ -20,9 +20,9 @@ export const RAKSHA_BANDHAN_PUJA: PujaVidhi = {
 
   muhurtaType: 'computed',
   muhurtaDescription: {
-    en: 'Raksha Bandhan is performed during Aparahna (afternoon) on Shravana Purnima. Bhadra Kaal must be strictly avoided — tying Rakhi during Bhadra brings ill fortune. Check the Panchang for Bhadra timing and avoid it completely.',
-    hi: 'रक्षा बन्धन श्रावण पूर्णिमा को अपराह्न (दोपहर बाद) में किया जाता है। भद्रा काल से सख्ती से बचना चाहिए — भद्रा में राखी बाँधना अशुभ होता है। भद्रा का समय पंचांग से देखें और उससे पूर्णतः बचें।',
-    sa: 'रक्षाबन्धनं श्रावणपूर्णिमायाम् अपराह्णे क्रियते। भद्राकालः सर्वथा वर्जनीयः — भद्रायां रक्षासूत्रबन्धनम् अशुभम्। पञ्चाङ्गतः भद्राकालं ज्ञात्वा सर्वथा वर्जयेत्।',
+    en: 'Raksha Bandhan is performed during Aparahna (afternoon) on Shravana Purnima. Bhadra Kaal must be strictly avoided  –  tying Rakhi during Bhadra brings ill fortune. Check the Panchang for Bhadra timing and avoid it completely.',
+    hi: 'रक्षा बन्धन श्रावण पूर्णिमा को अपराह्न (दोपहर बाद) में किया जाता है। भद्रा काल से सख्ती से बचना चाहिए  –  भद्रा में राखी बाँधना अशुभ होता है। भद्रा का समय पंचांग से देखें और उससे पूर्णतः बचें।',
+    sa: 'रक्षाबन्धनं श्रावणपूर्णिमायाम् अपराह्णे क्रियते। भद्राकालः सर्वथा वर्जनीयः  –  भद्रायां रक्षासूत्रबन्धनम् अशुभम्। पञ्चाङ्गतः भद्राकालं ज्ञात्वा सर्वथा वर्जयेत्।',
   },
   muhurtaWindow: { type: 'aparahna' },
 
@@ -144,9 +144,9 @@ export const RAKSHA_BANDHAN_PUJA: PujaVidhi = {
         sa: 'येन बन्धनेन महाबलः दानवेन्द्रो बली राजा बद्धः, तेनैव त्वां बध्नामि। हे रक्षे, मा चल मा चल।',
       },
       usage: {
-        en: 'The sister chants this mantra while tying the rakhi on the brother\'s wrist — the central mantra of Raksha Bandhan',
-        hi: 'भाई की कलाई पर राखी बाँधते समय बहन इस मन्त्र का उच्चारण करती है — रक्षा बन्धन का मुख्य मन्त्र',
-        sa: 'भ्रातुः मणिबन्धे रक्षासूत्रं बध्नन्ती भगिनी इमं मन्त्रं पठति — रक्षाबन्धनस्य प्रधानमन्त्रः',
+        en: 'The sister chants this mantra while tying the rakhi on the brother\'s wrist  –  the central mantra of Raksha Bandhan',
+        hi: 'भाई की कलाई पर राखी बाँधते समय बहन इस मन्त्र का उच्चारण करती है  –  रक्षा बन्धन का मुख्य मन्त्र',
+        sa: 'भ्रातुः मणिबन्धे रक्षासूत्रं बध्नन्ती भगिनी इमं मन्त्रं पठति  –  रक्षाबन्धनस्य प्रधानमन्त्रः',
       },
     },
     {
@@ -171,8 +171,8 @@ export const RAKSHA_BANDHAN_PUJA: PujaVidhi = {
       devanagari: 'ॐ सर्वेभ्यो भयेभ्यो रक्ष रक्ष स्वाहा',
       iast: 'oṃ sarvebhyo bhayebhyo rakṣa rakṣa svāhā',
       meaning: {
-        en: 'O Lord, protect from all fears — protect, protect! Svaha.',
-        hi: 'हे भगवान, सभी भयों से रक्षा करो — रक्षा करो, रक्षा करो! स्वाहा।',
+        en: 'O Lord, protect from all fears  –  protect, protect! Svaha.',
+        hi: 'हे भगवान, सभी भयों से रक्षा करो  –  रक्षा करो, रक्षा करो! स्वाहा।',
         sa: 'सर्वेभ्यो भयेभ्यो रक्ष रक्ष इति।',
       },
       usage: {
@@ -199,9 +199,9 @@ export const RAKSHA_BANDHAN_PUJA: PujaVidhi = {
 
   precautions: [
     {
-      en: 'Strictly avoid Bhadra Kaal — tying Rakhi during Bhadra is considered inauspicious and harmful. Calculate Bhadra timing from the Panchang.',
-      hi: 'भद्रा काल से सख्ती से बचें — भद्रा में राखी बाँधना अशुभ और हानिकारक माना जाता है। पंचांग से भद्रा का समय गणना करें।',
-      sa: 'भद्राकालं सर्वथा वर्जयेत् — भद्रायां रक्षासूत्रबन्धनम् अशुभं हानिकरं च मन्यते। पञ्चाङ्गतः भद्राकालं गणयेत्।',
+      en: 'Strictly avoid Bhadra Kaal  –  tying Rakhi during Bhadra is considered inauspicious and harmful. Calculate Bhadra timing from the Panchang.',
+      hi: 'भद्रा काल से सख्ती से बचें  –  भद्रा में राखी बाँधना अशुभ और हानिकारक माना जाता है। पंचांग से भद्रा का समय गणना करें।',
+      sa: 'भद्राकालं सर्वथा वर्जयेत्  –  भद्रायां रक्षासूत्रबन्धनम् अशुभं हानिकरं च मन्यते। पञ्चाङ्गतः भद्राकालं गणयेत्।',
     },
     {
       en: 'The Rakhi should be tied on the right wrist of the brother',
@@ -214,9 +214,9 @@ export const RAKSHA_BANDHAN_PUJA: PujaVidhi = {
       sa: 'यदि भद्रा सम्पूर्णं प्रातःकालम् अपराह्णं च व्याप्नोति, तदा भद्रासमाप्त्यनन्तरं प्रदोषकाले (सायम्) रक्षासूत्रं बध्नीयात्',
     },
     {
-      en: 'Do not use a broken or already-used Rakhi — it must be new and auspicious',
-      hi: 'टूटी या पहले से प्रयुक्त राखी का उपयोग न करें — यह नई और शुभ होनी चाहिए',
-      sa: 'भग्नं पूर्वप्रयुक्तं वा रक्षासूत्रं नोपयोजयेत् — नवं शुभं च भवेत्',
+      en: 'Do not use a broken or already-used Rakhi  –  it must be new and auspicious',
+      hi: 'टूटी या पहले से प्रयुक्त राखी का उपयोग न करें  –  यह नई और शुभ होनी चाहिए',
+      sa: 'भग्नं पूर्वप्रयुक्तं वा रक्षासूत्रं नोपयोजयेत्  –  नवं शुभं च भवेत्',
     },
   ],
 

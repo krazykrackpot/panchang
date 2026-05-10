@@ -101,7 +101,7 @@ function formatDate(iso: string): string {
 }
 
 function formatDateRange(start: string, end: string): string {
-  return `${formatDate(start)} — ${formatDate(end)}`;
+  return `${formatDate(start)}  –  ${formatDate(end)}`;
 }
 
 // ---------------------------------------------------------------------------
@@ -258,7 +258,7 @@ function YearAheadSection({
           <Calendar className="w-4 h-4 text-gold-light" />
         </div>
         <h3 className="text-lg font-semibold text-gold-light">
-          {locale === 'hi' ? `${yearPredictions.year} — वर्ष का पूर्वानुमान` : `${yearPredictions.year} — Year Ahead`}
+          {locale === 'hi' ? `${yearPredictions.year}  –  वर्ष का पूर्वानुमान` : `${yearPredictions.year}  –  Year Ahead`}
         </h3>
       </div>
 
@@ -342,7 +342,7 @@ export function KeyDatesSection({ keyDates, locale }: { keyDates: KeyDate[]; loc
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="text-xs font-mono text-text-secondary">
                       {formatDate(kd.date)}
-                      {kd.endDate ? ` — ${formatDate(kd.endDate)}` : ''}
+                      {kd.endDate ? `  –  ${formatDate(kd.endDate)}` : ''}
                     </span>
                     <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium border ${impact.bg} ${impact.border} ${impact.text}`}>
                       {tl(impactLabel, locale)}
@@ -595,7 +595,7 @@ export default function SummaryCurrentPeriod({
       {/* B: Year Ahead */}
       <YearAheadSection yearPredictions={yearPredictions} locale={locale} />
 
-      {/* C: Key Dates — rendered at top level in kundali/page.tsx, not here (to keep it visible across all views) */}
+      {/* C: Key Dates  –  rendered at top level in kundali/page.tsx, not here (to keep it visible across all views) */}
 
       {/* Expandable: Full Dasha Timeline */}
       {dashaSynthesis && (

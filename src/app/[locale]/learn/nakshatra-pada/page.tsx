@@ -41,13 +41,13 @@ export default function NakshatraPadaIndex() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
-            ? <>प्रत्येक नक्षत्र 13°20&apos; (800 कला-मिनट) का क्षेत्र कवर करता है। इसे चार समान भागों में विभाजित करने पर प्रत्येक भाग 3°20&apos; (200 कला-मिनट) का होता है — यही एक &quot;पद&quot; है। 27 नक्षत्र × 4 पद = 108 पद — यह संख्या वैदिक परम्परा में पवित्र है (108 जप माला मनकों का आधार)।</>
-            : <>Each nakshatra spans 13°20&apos; (800 arcminutes) of the zodiac. Dividing this into four equal parts gives segments of 3°20&apos; (200 arcminutes) each — this is one &quot;pada.&quot; 27 nakshatras × 4 padas = 108 padas — a number sacred in Vedic tradition (the basis for the 108 japa mala beads).</>}
+            ? <>प्रत्येक नक्षत्र 13°20&apos; (800 कला-मिनट) का क्षेत्र कवर करता है। इसे चार समान भागों में विभाजित करने पर प्रत्येक भाग 3°20&apos; (200 कला-मिनट) का होता है  –  यही एक &quot;पद&quot; है। 27 नक्षत्र × 4 पद = 108 पद  –  यह संख्या वैदिक परम्परा में पवित्र है (108 जप माला मनकों का आधार)।</>
+            : <>Each nakshatra spans 13°20&apos; (800 arcminutes) of the zodiac. Dividing this into four equal parts gives segments of 3°20&apos; (200 arcminutes) each  –  this is one &quot;pada.&quot; 27 nakshatras × 4 padas = 108 padas  –  a number sacred in Vedic tradition (the basis for the 108 japa mala beads).</>}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
-            ? <>प्रत्येक पद एक नवांश राशि से मेल खाता है। पहला नक्षत्र (अश्विनी) मेष राशि में है, अतः इसके चार पद मेष, वृषभ, मिथुन और कर्क नवांश से जुड़ते हैं। यह प्रतिमान क्रमशः दोहराता है — हर नवाँ पद मेष नवांश पर लौटता है। नवांश (D-9) कुण्डली वस्तुतः पदों का ही विस्तार है।</>
-            : <>Each pada maps to a navamsha sign. The first nakshatra (Ashwini) is in Aries, so its four padas correspond to Aries, Taurus, Gemini, and Cancer navamshas. This pattern repeats cyclically — every 9th pada returns to Aries navamsha. The Navamsha (D-9) chart is effectively an expansion of the pada system.</>}
+            ? <>प्रत्येक पद एक नवांश राशि से मेल खाता है। पहला नक्षत्र (अश्विनी) मेष राशि में है, अतः इसके चार पद मेष, वृषभ, मिथुन और कर्क नवांश से जुड़ते हैं। यह प्रतिमान क्रमशः दोहराता है  –  हर नवाँ पद मेष नवांश पर लौटता है। नवांश (D-9) कुण्डली वस्तुतः पदों का ही विस्तार है।</>
+            : <>Each pada maps to a navamsha sign. The first nakshatra (Ashwini) is in Aries, so its four padas correspond to Aries, Taurus, Gemini, and Cancer navamshas. This pattern repeats cyclically  –  every 9th pada returns to Aries navamsha. The Navamsha (D-9) chart is effectively an expansion of the pada system.</>}
         </p>
       </div>
 
@@ -66,14 +66,14 @@ export default function NakshatraPadaIndex() {
           <p>
             <span className="text-gold-light font-medium">{isHi ? '2. विंशोत्तरी दशा:' : '2. Vimshottari Dasha:'}</span>{' '}
             {isHi
-              ? <>दशा प्रारम्भिक ग्रह नक्षत्र से निर्धारित होता है, किन्तु शेष दशा अवधि पद के भीतर चन्द्रमा की सटीक स्थिति से गणित होती है। 0.5° चन्द्र भोगांश त्रुटि पद बदल सकती है, जो दशा प्रारम्भिक ग्रह ही बदल देती है — यही कारण है कि सटीक चन्द्र गणना इतनी महत्त्वपूर्ण है।</>
-              : <>The dasha starting planet is determined by the nakshatra, but the remaining dasha duration is calculated from the Moon&apos;s exact position within the pada. A 0.5° Moon longitude error can change the pada, which changes the dasha starting planet entirely — this is why accurate Moon computation is so critical.</>}
+              ? <>दशा प्रारम्भिक ग्रह नक्षत्र से निर्धारित होता है, किन्तु शेष दशा अवधि पद के भीतर चन्द्रमा की सटीक स्थिति से गणित होती है। 0.5° चन्द्र भोगांश त्रुटि पद बदल सकती है, जो दशा प्रारम्भिक ग्रह ही बदल देती है  –  यही कारण है कि सटीक चन्द्र गणना इतनी महत्त्वपूर्ण है।</>
+              : <>The dasha starting planet is determined by the nakshatra, but the remaining dasha duration is calculated from the Moon&apos;s exact position within the pada. A 0.5° Moon longitude error can change the pada, which changes the dasha starting planet entirely  –  this is why accurate Moon computation is so critical.</>}
           </p>
           <p>
             <span className="text-gold-light font-medium">{isHi ? '3. अष्टकूट मिलान:' : '3. Ashta Kuta matching:'}</span>{' '}
             {isHi
-              ? <>गुण मिलान में नाडी कूट (8 अंक) नक्षत्र पद पर निर्भर करता है। यह 36 में से 8 अंक — सर्वाधिक भारांक — देता है। पद की एक त्रुटि नाडी दोष का गलत निदान कर सकती है।</>
-              : <>In Guna matching, Nadi Kuta (8 points) depends on the nakshatra pada. This carries the highest weight — 8 out of 36 points. A single pada error can produce a false Nadi Dosha diagnosis.</>}
+              ? <>गुण मिलान में नाडी कूट (8 अंक) नक्षत्र पद पर निर्भर करता है। यह 36 में से 8 अंक  –  सर्वाधिक भारांक  –  देता है। पद की एक त्रुटि नाडी दोष का गलत निदान कर सकती है।</>
+              : <>In Guna matching, Nadi Kuta (8 points) depends on the nakshatra pada. This carries the highest weight  –  8 out of 36 points. A single pada error can produce a false Nadi Dosha diagnosis.</>}
           </p>
         </div>
       </div>
@@ -115,7 +115,7 @@ export default function NakshatraPadaIndex() {
                           className="inline-flex flex-col items-center gap-1 px-3 py-2 rounded-lg border border-white/5 hover:border-gold-primary/30 hover:bg-gold-primary/5 transition-all group">
                           <div className="flex items-center gap-1.5">
                             <div className={`w-2 h-2 rounded-full ${dotColor}`} />
-                            <span className="text-gold-light text-sm font-bold group-hover:text-gold-primary">{profile?.syllable || '—'}</span>
+                            <span className="text-gold-light text-sm font-bold group-hover:text-gold-primary">{profile?.syllable || ' – '}</span>
                           </div>
                           <span className="text-text-secondary/40 text-[10px]">{NAVAMSHA_SIGNS[navamshaIndex]}</span>
                         </Link>
@@ -146,8 +146,8 @@ export default function NakshatraPadaIndex() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
-            ? <>108 पदों को 12 नवांश राशियों पर मैप करने का नियम सरल है: प्रथम पद (अश्विनी पद 1) = मेष नवांश, दूसरा = वृषभ, तीसरा = मिथुन ... 12वाँ = मीन, 13वाँ पुनः मेष। प्रत्येक अग्नि राशि (मेष/सिंह/धनु) का प्रथम पद मेष नवांश से आरम्भ होता है। प्रत्येक पृथ्वी राशि (वृषभ/कन्या/मकर) मकर से। प्रत्येक वायु राशि (मिथुन/तुला/कुम्भ) तुला से। प्रत्येक जल राशि (कर्क/वृश्चिक/मीन) कर्क से। यही कारण है कि नवांश को &quot;D-9&quot; कहते हैं — 9 पद = 1 पूर्ण राशि (9 × 3°20&apos; = 30°)।</>
-            : <>The rule for mapping 108 padas to 12 navamsha signs is simple: first pada (Ashwini pada 1) = Aries navamsha, second = Taurus, third = Gemini ... 12th = Pisces, 13th back to Aries. Each fire sign (Aries/Leo/Sagittarius) starts its first pada from Aries navamsha. Each earth sign (Taurus/Virgo/Capricorn) from Capricorn. Each air sign (Gemini/Libra/Aquarius) from Libra. Each water sign (Cancer/Scorpio/Pisces) from Cancer. This is why the navamsha is called &quot;D-9&quot; — 9 padas = 1 full sign (9 × 3°20&apos; = 30°).</>}
+            ? <>108 पदों को 12 नवांश राशियों पर मैप करने का नियम सरल है: प्रथम पद (अश्विनी पद 1) = मेष नवांश, दूसरा = वृषभ, तीसरा = मिथुन ... 12वाँ = मीन, 13वाँ पुनः मेष। प्रत्येक अग्नि राशि (मेष/सिंह/धनु) का प्रथम पद मेष नवांश से आरम्भ होता है। प्रत्येक पृथ्वी राशि (वृषभ/कन्या/मकर) मकर से। प्रत्येक वायु राशि (मिथुन/तुला/कुम्भ) तुला से। प्रत्येक जल राशि (कर्क/वृश्चिक/मीन) कर्क से। यही कारण है कि नवांश को &quot;D-9&quot; कहते हैं  –  9 पद = 1 पूर्ण राशि (9 × 3°20&apos; = 30°)।</>
+            : <>The rule for mapping 108 padas to 12 navamsha signs is simple: first pada (Ashwini pada 1) = Aries navamsha, second = Taurus, third = Gemini ... 12th = Pisces, 13th back to Aries. Each fire sign (Aries/Leo/Sagittarius) starts its first pada from Aries navamsha. Each earth sign (Taurus/Virgo/Capricorn) from Capricorn. Each air sign (Gemini/Libra/Aquarius) from Libra. Each water sign (Cancer/Scorpio/Pisces) from Cancer. This is why the navamsha is called &quot;D-9&quot;  –  9 padas = 1 full sign (9 × 3°20&apos; = 30°).</>}
         </p>
       </div>
 

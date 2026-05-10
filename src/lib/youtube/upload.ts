@@ -1,7 +1,7 @@
 /**
- * YouTube Upload Utility — uploads Shorts to the @dekhopanchang channel.
+ * YouTube Upload Utility  –  uploads Shorts to the @dekhopanchang channel.
  *
- * Uses YouTube Data API v3 via raw fetch (no googleapis package — it's 50MB+
+ * Uses YouTube Data API v3 via raw fetch (no googleapis package  –  it's 50MB+
  * and causes OOM during tsc). OAuth2 refresh token flow handled manually.
  *
  * Required env vars:
@@ -50,7 +50,7 @@ export interface YouTubeUploadOptions {
   description: string;
   /** Tags for discovery */
   tags: string[];
-  /** Category ID — 22 = "People & Blogs", 27 = "Education" */
+  /** Category ID  –  22 = "People & Blogs", 27 = "Education" */
   categoryId?: string;
   /** Privacy: 'public' | 'private' | 'unlisted' */
   privacy?: 'public' | 'private' | 'unlisted';
@@ -91,7 +91,7 @@ export async function uploadToYouTube(opts: YouTubeUploadOptions): Promise<strin
     },
   };
 
-  // Step 1: Initiate resumable upload — get the upload URI
+  // Step 1: Initiate resumable upload  –  get the upload URI
   const initRes = await fetch(UPLOAD_URL, {
     method: 'POST',
     headers: {

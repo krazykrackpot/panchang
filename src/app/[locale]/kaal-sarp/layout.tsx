@@ -19,11 +19,11 @@ export default async function Layout({ children, params }: { children: React.Rea
   const breadcrumbLD = generateBreadcrumbLD(`/${locale}/kaal-sarp`, locale);
   const faqLD = generateFAQLD('/kaal-sarp', locale);
   const expertiseLD = generateExpertiseArticleLD({
-    title: 'Kaal Sarp Dosha — 12 Serpent Formations of Rahu-Ketu Axis',
+    title: 'Kaal Sarp Dosha  –  12 Serpent Formations of Rahu-Ketu Axis',
     description: 'Comprehensive Kaal Sarp Dosha analysis covering all 12 types (Anant to Sheshnag) based on Rahu-Ketu axis alignment in the birth chart.',
     url: `https://dekhopanchang.com/${locale}/kaal-sarp`,
     locale,
-    citations: ['Brihat Parashara Hora Shastra — Rahu-Ketu Chapter', 'Lal Kitab — Sarpa Dosha Remedies'],
+    citations: ['Brihat Parashara Hora Shastra  –  Rahu-Ketu Chapter', 'Lal Kitab  –  Sarpa Dosha Remedies'],
     expertise: ['Kaal Sarp Dosha', 'Rahu-Ketu Axis Analysis', 'Dosha Identification', 'Vedic Remedial Measures'],
   });
   return (

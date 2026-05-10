@@ -11,17 +11,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const toolLD = generateToolLD(
-    'Medical Astrology — Prakriti & Body Map',
+    'Medical Astrology  –  Prakriti & Body Map',
     'Discover your Ayurvedic constitution (Prakriti), body vulnerability map, health timeline, and disease susceptibility patterns from your Vedic birth chart.',
     `https://dekhopanchang.com/${locale}/medical-astrology`,
   );
   const breadcrumbLD = generateBreadcrumbLD(`/${locale}/medical-astrology`, locale);
   const expertiseLD = generateExpertiseArticleLD({
-    title: 'Medical Astrology (Chikitsa Jyotish) — Prakriti & Body Map',
+    title: 'Medical Astrology (Chikitsa Jyotish)  –  Prakriti & Body Map',
     description: 'Vedic medical astrology analysis covering Ayurvedic constitution (Prakriti), body vulnerability mapping, health timeline, and disease susceptibility patterns.',
     url: `https://dekhopanchang.com/${locale}/medical-astrology`,
     locale,
-    citations: ['Brihat Parashara Hora Shastra — Disease Chapter', 'Charaka Samhita — Prakriti Classification', 'Jataka Parijata — Medical Indicators'],
+    citations: ['Brihat Parashara Hora Shastra  –  Disease Chapter', 'Charaka Samhita  –  Prakriti Classification', 'Jataka Parijata  –  Medical Indicators'],
     expertise: ['Medical Astrology (Chikitsa Jyotish)', 'Ayurvedic Constitution (Prakriti)', 'Planetary Health Indicators', 'Vedic Disease Analysis'],
   });
   return (

@@ -485,7 +485,7 @@ describe('getSunTimes', () => {
   });
 
   it('should handle polar region (Tromso, 69.6N) in summer without crashing', () => {
-    // June 21 at 69.6N — should be near midnight sun; clamp triggers
+    // June 21 at 69.6N  –  should be near midnight sun; clamp triggers
     const times = getSunTimes(2024, 6, 21, 69.6496, 18.9560, 2);
     expect(times.sunrise).toBeInstanceOf(Date);
     expect(times.sunset).toBeInstanceOf(Date);
@@ -494,7 +494,7 @@ describe('getSunTimes', () => {
   });
 
   it('should handle polar region in winter without crashing', () => {
-    // December 21 at 69.6N — near polar night
+    // December 21 at 69.6N  –  near polar night
     const times = getSunTimes(2024, 12, 21, 69.6496, 18.9560, 1);
     expect(times.sunrise).toBeInstanceOf(Date);
     expect(times.sunset).toBeInstanceOf(Date);

@@ -24,16 +24,16 @@ const CelestialSphere3D = dynamic(
 );
 
 // --------------------------------------------------------------------------
-// Inline labels (page-specific i18n — not in global locale files)
+// Inline labels (page-specific i18n  –  not in global locale files)
 // --------------------------------------------------------------------------
 
 const LABELS = {
   title: { en: 'Live Sky Map', hi: 'लाइव आकाश मानचित्र', ta: 'நேரடி வான வரைபடம்', bn: 'লাইভ আকাশ মানচিত্র' },
   subtitle: {
-    en: 'Current Sidereal Planetary Positions — Lahiri Ayanamsha',
-    hi: 'वर्तमान ग्रह स्थितियाँ — लाहिरी अयनांश',
-    ta: 'தற்போதைய கிரக நிலைகள் — லாஹிரி அயனாம்சம்',
-    bn: 'বর্তমান গ্রহ অবস্থান — লাহিরি অয়নাংশ',
+    en: 'Current Sidereal Planetary Positions  –  Lahiri Ayanamsha',
+    hi: 'वर्तमान ग्रह स्थितियाँ  –  लाहिरी अयनांश',
+    ta: 'தற்போதைய கிரக நிலைகள்  –  லாஹிரி அயனாம்சம்',
+    bn: 'বর্তমান গ্রহ অবস্থান  –  লাহিরি অয়নাংশ',
   },
   disclaimer: {
     en: 'Positions calculated using Lahiri ayanamsha (Indian government standard). Planetary longitudes computed via Swiss Ephemeris (sub-arcsecond accuracy); Meeus algorithms used as fallback when Swiss Ephemeris is unavailable.',
@@ -54,7 +54,7 @@ const LABELS = {
   loading: { en: 'Loading positions…', hi: 'स्थितियाँ लोड हो रही हैं…', ta: 'நிலைகள் ஏற்றப்படுகின்றன…', bn: 'অবস্থান লোড হচ্ছে…' },
 };
 
-// Planet names (en only — used in table)
+// Planet names (en only  –  used in table)
 const PLANET_NAMES: Record<number, string> = {
   0: 'Sun', 1: 'Moon', 2: 'Mars', 3: 'Mercury', 4: 'Jupiter',
   5: 'Venus', 6: 'Saturn', 7: 'Rahu', 8: 'Ketu',

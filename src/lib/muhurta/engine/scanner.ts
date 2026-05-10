@@ -1,5 +1,5 @@
 /**
- * Muhurta Engine — Unified Scanner (Layer 3 of the 3-layer muhurta architecture)
+ * Muhurta Engine  –  Unified Scanner (Layer 3 of the 3-layer muhurta architecture)
  *
  * WHAT THIS FILE DOES:
  *   This is the entry point for muhurta computation. It iterates across a date range,
@@ -27,7 +27,7 @@
  * DAY-LEVEL VETO OPTIMISATION:
  *   Before generating windows, a dummy evaluation is run at ~2h after sunrise.
  *   If day-level rules veto (e.g., Venus combustion, Adhika Masa), ALL windows for
- *   that day are skipped — saving significant computation.
+ *   that day are skipped  –  saving significant computation.
  *
  * PERSONAL FACTORS (when birth data provided):
  *   - Tara Bala: transit nakshatra's relationship to birth nakshatra (9 taras, 3 inauspicious)
@@ -108,7 +108,7 @@ export interface ScoredWindow {
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-// Tara Bala (Star Strength) — 9 taras from the Muhurta Chintamani.
+// Tara Bala (Star Strength)  –  9 taras from the Muhurta Chintamani.
 // Computed as: tara = ((transitNakshatra - birthNakshatra + 27) % 27) mod 9 + 1
 // Taras 3 (Vipat/danger), 5 (Pratyari/obstacle), 7 (Vadha/death) are inauspicious.
 // The remaining 6 are auspicious, with Sampat(2) and Kshema(4) being the best.
@@ -347,7 +347,7 @@ function buildScoredWindow(
     };
   }
 
-  // Chandra Bala — Moon in auspicious house from birth rashi
+  // Chandra Bala  –  Moon in auspicious house from birth rashi
   // Houses 1, 3, 6, 7, 10, 11 from birth rashi are considered auspicious
   let chandraBala: boolean | undefined;
   if (birthRashi) {
@@ -440,7 +440,7 @@ export function unifiedScan(opts: UnifiedScanOptions): ScoredWindow[] {
  *
  * RATIONALE: A 30-day range at 15-min windows from sunrise to sunset (~12 hours)
  * produces ~1440 evaluations. Two-pass with topDays=5 reduces this to ~240
- * coarse + ~240 fine ≈ 480 evaluations — a 3× speedup with minimal quality loss.
+ * coarse + ~240 fine ≈ 480 evaluations  –  a 3× speedup with minimal quality loss.
  */
 function twoPassScan(
   opts: UnifiedScanOptions,

@@ -26,7 +26,7 @@ export interface SmartaVaishnavNote {
  * observation time, and postpone to the next day. Smartas generally accept
  * the Udaya Tithi (tithi at sunrise) regardless of Viddha.
  *
- * Ekadashi is the most frequent divergence — happens 4-6 times per year.
+ * Ekadashi is the most frequent divergence  –  happens 4-6 times per year.
  */
 export const SMARTA_VAISHNAVA_NOTES: Record<string, SmartaVaishnavNote> = {
   // ── Ekadashi (all 24 instances) ──
@@ -39,8 +39,8 @@ export const SMARTA_VAISHNAVA_NOTES: Record<string, SmartaVaishnavNote> = {
       hi: 'वैष्णव एकादशी विद्धा नियम के कारण 1 दिन भिन्न हो सकती है',
     },
     detail: {
-      en: 'Vaishnavas reject an Ekadashi that is "touched" (viddha) by Dashami at the Arunodaya window (96 min before sunrise). If Dashami is still active at Arunodaya, Vaishnavas postpone fasting to the next day (Dwadashi) — this is called "Mahadvadashi". Smartas accept the regular Udaya Tithi and fast on the standard Ekadashi day. This divergence occurs 4-6 times per year.',
-      hi: 'वैष्णव उस एकादशी को अस्वीकार करते हैं जो अरुणोदय काल (सूर्योदय से 96 मिनट पहले) में दशमी से "विद्ध" (स्पर्शित) होती है। ऐसे में वे अगले दिन (द्वादशी) व्रत रखते हैं — इसे "महाद्वादशी" कहते हैं। स्मार्त उदय तिथि के अनुसार सामान्य एकादशी पर व्रत रखते हैं। यह भेद वर्ष में 4-6 बार होता है।',
+      en: 'Vaishnavas reject an Ekadashi that is "touched" (viddha) by Dashami at the Arunodaya window (96 min before sunrise). If Dashami is still active at Arunodaya, Vaishnavas postpone fasting to the next day (Dwadashi)  –  this is called "Mahadvadashi". Smartas accept the regular Udaya Tithi and fast on the standard Ekadashi day. This divergence occurs 4-6 times per year.',
+      hi: 'वैष्णव उस एकादशी को अस्वीकार करते हैं जो अरुणोदय काल (सूर्योदय से 96 मिनट पहले) में दशमी से "विद्ध" (स्पर्शित) होती है। ऐसे में वे अगले दिन (द्वादशी) व्रत रखते हैं  –  इसे "महाद्वादशी" कहते हैं। स्मार्त उदय तिथि के अनुसार सामान्य एकादशी पर व्रत रखते हैं। यह भेद वर्ष में 4-6 बार होता है।',
     },
   },
 
@@ -52,7 +52,7 @@ export const SMARTA_VAISHNAVA_NOTES: Record<string, SmartaVaishnavNote> = {
       hi: 'स्मार्त और वैष्णव अलग-अलग दिन मना सकते हैं',
     },
     detail: {
-      en: 'Smartas observe Janmashtami when Krishna Ashtami is active at Nishita (midnight) — this is the "Smarta Janmashtami". Vaishnavas additionally require that Rohini Nakshatra coincide, and may defer to the next day if Ashtami is Viddha by Saptami at Arunodaya. In many years both dates align, but when they diverge, Vaishnavas celebrate one day later.',
+      en: 'Smartas observe Janmashtami when Krishna Ashtami is active at Nishita (midnight)  –  this is the "Smarta Janmashtami". Vaishnavas additionally require that Rohini Nakshatra coincide, and may defer to the next day if Ashtami is Viddha by Saptami at Arunodaya. In many years both dates align, but when they diverge, Vaishnavas celebrate one day later.',
       hi: 'स्मार्त जन्माष्टमी तब मनाते हैं जब कृष्ण अष्टमी निशीथ (मध्यरात्रि) में सक्रिय हो। वैष्णव अतिरिक्त रूप से रोहिणी नक्षत्र का संयोग चाहते हैं, और यदि अष्टमी अरुणोदय में सप्तमी से विद्ध हो तो अगले दिन मनाते हैं।',
     },
   },

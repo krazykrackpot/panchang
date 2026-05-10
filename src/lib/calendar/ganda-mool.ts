@@ -64,14 +64,14 @@ export function computeGandaMoolDates(
     const nak = getNakshatraNumber(toSidereal(moonLongitude(jd), jd));
 
     if (!inGM && gmSet.has(nak) && !gmSet.has(prevNak)) {
-      // Entered a GM nakshatra — refine start
+      // Entered a GM nakshatra  –  refine start
       gmStartJd = refineBoundary(jd - step, jd, (j) => {
         const n = getNakshatraNumber(toSidereal(moonLongitude(j), j));
         return gmSet.has(n);
       });
       inGM = true;
     } else if (inGM && !gmSet.has(nak) && gmSet.has(prevNak)) {
-      // Exited a GM nakshatra — refine end
+      // Exited a GM nakshatra  –  refine end
       const gmEndJd = refineBoundary(jd - step, jd, (j) => {
         const n = getNakshatraNumber(toSidereal(moonLongitude(j), j));
         return gmSet.has(n);

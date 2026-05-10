@@ -60,15 +60,15 @@ const t = (label: LocaleText, locale: Locale): string => tl(label, locale);
 // ---------------------------------------------------------------------------
 
 const HOUSE_EFFECTS: Record<number, LocaleText> = {
-  1: L('Self, personality, health — aggressive temperament, frequent conflicts', 'आत्मा, व्यक्तित्व, स्वास्थ्य — आक्रामक स्वभाव, बार-बार संघर्ष', 'आत्मा, व्यक्तित्वम्, स्वास्थ्यम् — आक्रामकस्वभावः'),
-  2: L('Family, wealth, speech — harsh speech, family disputes, financial instability', 'परिवार, धन, वाणी — कठोर वाणी, पारिवारिक विवाद, आर्थिक अस्थिरता', 'कुटुम्बम्, धनम्, वाक् — कठोरवाणी, कुटुम्बकलहः'),
-  4: L('Home, domestic peace, mother — disturbance in domestic life, property issues', 'घर, गृह शान्ति, माता — गृह जीवन में अशान्ति, सम्पत्ति समस्या', 'गृहम्, गृहशान्तिः, माता — गृहजीवने अशान्तिः'),
-  7: L('Marriage, spouse, partnerships — most critical placement, delays or conflicts in marriage', 'विवाह, जीवनसाथी, साझेदारी — सबसे गम्भीर स्थान, विवाह में विलम्ब या संघर्ष', 'विवाहः, पत्नी/पतिः — सर्वाधिकगम्भीरस्थानम्, विवाहे विलम्बः कलहः वा'),
-  8: L('Longevity, in-laws, sudden events — health issues, troubled relationship with in-laws', 'आयु, ससुराल, अचानक घटनाएं — स्वास्थ्य समस्या, ससुराल से कठिन सम्बन्ध', 'आयुः, श्वशुरकुलम् — स्वास्थ्यसमस्या, श्वशुरकुलेन कठिनसम्बन्धः'),
-  12: L('Expenditure, bed pleasures, foreign lands — excessive spending, marital dissatisfaction', 'व्यय, शयन सुख, विदेश — अत्यधिक खर्च, वैवाहिक असन्तोष', 'व्ययः, शयनसुखम् — अत्यधिकव्ययः, वैवाहिकासन्तोषः'),
+  1: L('Self, personality, health  –  aggressive temperament, frequent conflicts', 'आत्मा, व्यक्तित्व, स्वास्थ्य  –  आक्रामक स्वभाव, बार-बार संघर्ष', 'आत्मा, व्यक्तित्वम्, स्वास्थ्यम्  –  आक्रामकस्वभावः'),
+  2: L('Family, wealth, speech  –  harsh speech, family disputes, financial instability', 'परिवार, धन, वाणी  –  कठोर वाणी, पारिवारिक विवाद, आर्थिक अस्थिरता', 'कुटुम्बम्, धनम्, वाक्  –  कठोरवाणी, कुटुम्बकलहः'),
+  4: L('Home, domestic peace, mother  –  disturbance in domestic life, property issues', 'घर, गृह शान्ति, माता  –  गृह जीवन में अशान्ति, सम्पत्ति समस्या', 'गृहम्, गृहशान्तिः, माता  –  गृहजीवने अशान्तिः'),
+  7: L('Marriage, spouse, partnerships  –  most critical placement, delays or conflicts in marriage', 'विवाह, जीवनसाथी, साझेदारी  –  सबसे गम्भीर स्थान, विवाह में विलम्ब या संघर्ष', 'विवाहः, पत्नी/पतिः  –  सर्वाधिकगम्भीरस्थानम्, विवाहे विलम्बः कलहः वा'),
+  8: L('Longevity, in-laws, sudden events  –  health issues, troubled relationship with in-laws', 'आयु, ससुराल, अचानक घटनाएं  –  स्वास्थ्य समस्या, ससुराल से कठिन सम्बन्ध', 'आयुः, श्वशुरकुलम्  –  स्वास्थ्यसमस्या, श्वशुरकुलेन कठिनसम्बन्धः'),
+  12: L('Expenditure, bed pleasures, foreign lands  –  excessive spending, marital dissatisfaction', 'व्यय, शयन सुख, विदेश  –  अत्यधिक खर्च, वैवाहिक असन्तोष', 'व्ययः, शयनसुखम्  –  अत्यधिकव्ययः, वैवाहिकासन्तोषः'),
 };
 
-/** Delegate to shared engine — fixes the critical planet.id===3 (Mercury) bug */
+/** Delegate to shared engine  –  fixes the critical planet.id===3 (Mercury) bug */
 function analyzeChart(kundali: KundaliData): MangalDoshaResult {
   return engineAnalyze(kundali.planets, kundali.ascendant.sign);
 }
@@ -159,7 +159,7 @@ export default function MangalDoshaPage() {
         {locale === 'en' ? (
           <div className="space-y-3">
             <p><strong>Mangal Dosha</strong> (also called Kuja Dosha or Chevvai Dosham) occurs when Mars occupies the 1st, 2nd, 4th, 7th, 8th, or 12th house from the Lagna (Ascendant), Moon, or Venus in a birth chart. A person with this combination is called a <strong>Manglik</strong>.</p>
-            <p>Mars is a fiery, aggressive planet representing energy, courage, and conflict. When placed in houses related to marriage (7th), family (2nd, 4th), or intimacy (8th, 12th), its intense energy can cause friction in relationships. However, <strong>many cancellation conditions exist</strong> — and not all Mangliks experience difficulties.</p>
+            <p>Mars is a fiery, aggressive planet representing energy, courage, and conflict. When placed in houses related to marriage (7th), family (2nd, 4th), or intimacy (8th, 12th), its intense energy can cause friction in relationships. However, <strong>many cancellation conditions exist</strong>  –  and not all Mangliks experience difficulties.</p>
             <p>This tool checks Mars from all three reference points (Lagna, Moon, Venus) and evaluates cancellation conditions to give you a complete picture.</p>
           </div>
         ) : (

@@ -37,7 +37,7 @@ export async function parseGateError(res: Response): Promise<GateError | null> {
       };
     }
   } catch {
-    // JSON parse failed — not a gate error
+    // JSON parse failed  –  not a gate error
   }
   return null;
 }

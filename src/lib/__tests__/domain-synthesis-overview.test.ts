@@ -22,9 +22,9 @@ import {
 describe('generateLifeOverview', () => {
   const baseInput: OverviewInput = {
     ascendantSign: 1,            // Aries
-    atmakarakaPlanetId: 4,       // Jupiter — "a teacher"
+    atmakarakaPlanetId: 4,       // Jupiter  –  "a teacher"
     strongestHouseNumber: 10,    // career and public impact
-    currentMahadashaLordId: 6,   // Saturn — "discipline, karmic reckoning, and endurance"
+    currentMahadashaLordId: 6,   // Saturn  –  "discipline, karmic reckoning, and endurance"
     nativeAge: 38,               // consolidation phase
   };
 
@@ -225,7 +225,7 @@ describe('detectCrossDomainLinks', () => {
 
     // Result is capped at 5
     expect(links.length).toBeLessThanOrEqual(5);
-    // Each (source-implied) domain pair is unique — verified by checking that
+    // Each (source-implied) domain pair is unique  –  verified by checking that
     // the same linkedDomain does not appear with the same explanation text twice
     const explanations = links.map((l) => l.explanation.en);
     const uniqueExplanations = new Set(explanations);

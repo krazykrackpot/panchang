@@ -31,11 +31,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const western1 = r1.name.en;
   const western2 = r2.name.en;
 
-  // Title under 60 chars: "Aries & Scorpio — 36-Point Vedic Match Score"
+  // Title under 60 chars: "Aries & Scorpio  –  36-Point Vedic Match Score"
   const title = tl({
-    en: `${western1} & ${western2} — 36-Point Vedic Match Score`,
-    hi: `${name1} और ${name2} — 36 अंक वैदिक मिलान`,
-    sa: `${name1} ${name2} च — ३६ अङ्कवैदिकमेलनम्`,
+    en: `${western1} & ${western2}  –  36-Point Vedic Match Score`,
+    hi: `${name1} और ${name2}  –  36 अंक वैदिक मिलान`,
+    sa: `${name1} ${name2} च  –  ३६ अङ्कवैदिकमेलनम्`,
   }, locale);
 
   // Description under 155 chars

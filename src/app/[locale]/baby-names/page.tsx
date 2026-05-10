@@ -54,7 +54,7 @@ export default function BabyNamesPage() {
           setBirthPlaceName(data.birth_place || '');
           setBirthLat(data.birth_lat);
           setBirthLng(data.birth_lng);
-          // ALWAYS resolve timezone from coordinates — never trust stored birth_timezone
+          // ALWAYS resolve timezone from coordinates  –  never trust stored birth_timezone
           if (data.birth_lat && data.birth_lng) {
             resolveTimezoneFromCoords(Number(data.birth_lat), Number(data.birth_lng)).then(tz => setBirthTz(tz));
           }
@@ -107,7 +107,7 @@ export default function BabyNamesPage() {
           {locale === 'en' || isTamil ? (
             <>
               <p className="text-text-secondary/80 text-base leading-relaxed mb-4">
-                In the Vedic tradition, a child&apos;s name begins with the syllable (Akshara) determined by their birth Nakshatra and Pada. Each of the 27 Nakshatras has 4 Padas, yielding 108 sacred syllables — one for each bead of the Japa Mala. This system ensures the name resonates with the child&apos;s cosmic blueprint, aligning their identity with the vibrational frequency of their birth star.
+                In the Vedic tradition, a child&apos;s name begins with the syllable (Akshara) determined by their birth Nakshatra and Pada. Each of the 27 Nakshatras has 4 Padas, yielding 108 sacred syllables  –  one for each bead of the Japa Mala. This system ensures the name resonates with the child&apos;s cosmic blueprint, aligning their identity with the vibrational frequency of their birth star.
               </p>
               <p className="text-text-secondary/80 text-base leading-relaxed">
                 The tradition dates to the Namakarana Samskara, one of the 16 sacred rites (Shodasha Samskaras) prescribed in the Grihya Sutras. Enter the child&apos;s birth details to discover the recommended starting syllables and curated name suggestions.
@@ -116,7 +116,7 @@ export default function BabyNamesPage() {
           ) : (
             <>
               <p className="text-text-secondary/80 text-base leading-relaxed mb-4" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                वैदिक परम्परा में, शिशु का नाम उनके जन्म नक्षत्र और पद द्वारा निर्धारित अक्षर से प्रारम्भ होता है। 27 नक्षत्रों में से प्रत्येक के 4 पद होते हैं, जिनसे 108 पवित्र अक्षर निकलते हैं — जप माला के प्रत्येक मनके के लिए एक। यह प्रणाली सुनिश्चित करती है कि नाम शिशु की ब्रह्मांडीय रचना के साथ प्रतिध्वनित हो।
+                वैदिक परम्परा में, शिशु का नाम उनके जन्म नक्षत्र और पद द्वारा निर्धारित अक्षर से प्रारम्भ होता है। 27 नक्षत्रों में से प्रत्येक के 4 पद होते हैं, जिनसे 108 पवित्र अक्षर निकलते हैं  –  जप माला के प्रत्येक मनके के लिए एक। यह प्रणाली सुनिश्चित करती है कि नाम शिशु की ब्रह्मांडीय रचना के साथ प्रतिध्वनित हो।
               </p>
               <p className="text-text-secondary/80 text-base leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                 यह परम्परा नामकरण संस्कार से आती है, जो गृह्य सूत्रों में वर्णित 16 पवित्र संस्कारों (षोडश संस्कार) में से एक है। अनुशंसित आरम्भिक अक्षर और नाम सुझाव जानने के लिए जन्म विवरण दर्ज करें।
@@ -162,7 +162,7 @@ export default function BabyNamesPage() {
         </div>
       </div>
 
-      {/* Birth details — compact row */}
+      {/* Birth details  –  compact row */}
       <div className="mb-8 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
         <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-3 text-center">
           {isTamil ? 'பிறப்பு விவரங்களை உள்ளிடுங்கள் (நட்சத்திரம் தானாக கணிக்கப்படும்)' : locale === 'en' ? 'Enter Birth Details (auto-detects Nakshatra)' : 'जन्म विवरण दर्ज करें (नक्षत्र स्वतः पहचानेगा)'}
@@ -233,8 +233,8 @@ export default function BabyNamesPage() {
               </h3>
               <p className="text-text-secondary text-sm leading-relaxed">
                 {locale === 'en'
-                  ? 'Each nakshatra (birth star) is divided into 4 quarters called "Padas." Each pada is associated with a specific starting syllable for the baby\'s name. In the Hindu naming tradition (Namakarana), the child\'s name should begin with the syllable of their birth pada — this is believed to align the child\'s identity with their cosmic vibration. Your baby\'s pada is determined by the exact position of the Moon at the time of birth.'
-                  : 'प्रत्येक नक्षत्र (जन्म तारा) को 4 भागों में बाँटा जाता है जिन्हें "पाद" कहते हैं। प्रत्येक पाद एक विशिष्ट प्रारम्भिक अक्षर से जुड़ा होता है। हिन्दू नामकरण परम्परा में बच्चे का नाम उनके जन्म पाद के अक्षर से शुरू होना चाहिए — माना जाता है कि यह बच्चे की पहचान को उनके ब्रह्मांडीय कम्पन से जोड़ता है। पाद जन्म के समय चन्द्रमा की सटीक स्थिति से निर्धारित होता है।'}
+                  ? 'Each nakshatra (birth star) is divided into 4 quarters called "Padas." Each pada is associated with a specific starting syllable for the baby\'s name. In the Hindu naming tradition (Namakarana), the child\'s name should begin with the syllable of their birth pada  –  this is believed to align the child\'s identity with their cosmic vibration. Your baby\'s pada is determined by the exact position of the Moon at the time of birth.'
+                  : 'प्रत्येक नक्षत्र (जन्म तारा) को 4 भागों में बाँटा जाता है जिन्हें "पाद" कहते हैं। प्रत्येक पाद एक विशिष्ट प्रारम्भिक अक्षर से जुड़ा होता है। हिन्दू नामकरण परम्परा में बच्चे का नाम उनके जन्म पाद के अक्षर से शुरू होना चाहिए  –  माना जाता है कि यह बच्चे की पहचान को उनके ब्रह्मांडीय कम्पन से जोड़ता है। पाद जन्म के समय चन्द्रमा की सटीक स्थिति से निर्धारित होता है।'}
               </p>
             </div>
 
@@ -242,7 +242,7 @@ export default function BabyNamesPage() {
             <div className="mb-8">
               <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-3 text-center">
                 {isTamil ? 'பாதத்தைத் தேர்ந்தெடுக்கவும்' : locale === 'en' ? 'Select Pada (Quarter)' : 'पाद चुनें (चतुर्थांश)'}
-                {detectedPada > 0 && <span className="text-gold-primary font-normal ml-2">— {isTamil ? `பாதம் ${detectedPada} பிறப்பு நேரத்திலிருந்து கணிக்கப்பட்டது` : locale === 'en' ? `Pada ${detectedPada} detected from birth time` : `जन्म समय से पाद ${detectedPada} पहचाना`}</span>}
+                {detectedPada > 0 && <span className="text-gold-primary font-normal ml-2"> –  {isTamil ? `பாதம் ${detectedPada} பிறப்பு நேரத்திலிருந்து கணிக்கப்பட்டது` : locale === 'en' ? `Pada ${detectedPada} detected from birth time` : `जन्म समय से पाद ${detectedPada} पहचाना`}</span>}
               </label>
               <div className="flex justify-center gap-3">
                 <button onClick={() => setSelectedPada(0)}
@@ -266,7 +266,7 @@ export default function BabyNamesPage() {
 
             <GoldDivider />
 
-            {/* Syllables — the main result */}
+            {/* Syllables  –  the main result */}
             <div className="my-8">
               <h3 className="text-gold-light text-xl font-bold mb-2 text-center" style={headingFont}>
                 {isTamil ? 'பரிந்துரைக்கப்பட்ட எழுத்துகள்' : locale === 'en' ? 'Name Starting Syllables' : 'नाम के प्रारम्भिक अक्षर'}
@@ -306,7 +306,7 @@ export default function BabyNamesPage() {
         )}
       </AnimatePresence>
 
-      {/* Ready Reckoner — full Nakshatra × Pada syllable table */}
+      {/* Ready Reckoner  –  full Nakshatra × Pada syllable table */}
       <GoldDivider />
       <div className="my-10">
         <h3 className="text-gold-gradient text-2xl font-bold mb-2 text-center" style={headingFont}>
@@ -314,8 +314,8 @@ export default function BabyNamesPage() {
         </h3>
         <p className="text-text-secondary/70 text-sm text-center mb-6">
           {locale === 'en'
-            ? 'All 27 Nakshatras × 4 Padas — find the starting syllable for any birth star'
-            : 'सभी 27 नक्षत्र × 4 पाद — किसी भी जन्म तारे के लिए प्रारम्भिक अक्षर'}
+            ? 'All 27 Nakshatras × 4 Padas  –  find the starting syllable for any birth star'
+            : 'सभी 27 नक्षत्र × 4 पाद  –  किसी भी जन्म तारे के लिए प्रारम्भिक अक्षर'}
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {NAKSHATRAS.map(n => {
@@ -356,7 +356,7 @@ export default function BabyNamesPage() {
                           : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-gold-primary/8'
                       }`}>
                         <div className={`font-bold ${isThisPada ? 'text-gold-light text-lg' : 'text-text-secondary text-sm'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                          {syl ? (!isDevanagariLocale(locale) ? syl.en : syl.hi) : '—'}
+                          {syl ? (!isDevanagariLocale(locale) ? syl.en : syl.hi) : ' – '}
                         </div>
                         <div className="text-xs text-text-secondary/55 mt-0.5">P{pi + 1}</div>
                       </div>

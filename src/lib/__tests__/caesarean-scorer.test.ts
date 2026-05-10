@@ -23,7 +23,7 @@ describe('scoreBirthSlot', () => {
       lagnaSign: 9, lagnaDegreesInSign: 15, lagnaLordId: 4, // Sagittarius, lord = Jupiter
       lagnaLordSign: 9, lagnaLordHouse: 1, // Jupiter in own sign in lagna
       moonSign: 2, moonHouse: 5, moonSidDeg: 40, // Taurus, trikona
-      moonNakshatraId: 4, moonNakshatraPada: 2, // Rohini — Deva gana, no dosha
+      moonNakshatraId: 4, moonNakshatraPada: 2, // Rohini  –  Deva gana, no dosha
       planets: [
         { id: 4, sign: 9, house: 1, longitude: 260, isRetrograde: false }, // Jupiter in 1st
       ],

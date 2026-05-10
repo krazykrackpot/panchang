@@ -17,7 +17,7 @@ import type { LocaleText } from '@/types/panchang';
  * ┌─────────────┬──────────────────────────┬─────────────────────────────┐
  * │ Rule        │ Window                   │ Classical Reason             │
  * ├─────────────┼──────────────────────────┼─────────────────────────────┤
- * │ sunrise     │ At sunrise (default)     │ Udaya Tithi — Surya Siddhanta│
+ * │ sunrise     │ At sunrise (default)     │ Udaya Tithi  –  Surya Siddhanta│
  * │ pratah      │ 1st 1/5 of daytime       │ Morning rituals              │
  * │ madhyahna   │ Middle 1/5 of daytime    │ Deity born at midday         │
  * │             │ (~10:45 AM – 1:30 PM)    │ (Rama, Ganesha, Saraswati)   │
@@ -119,14 +119,14 @@ export const MAJOR_FESTIVALS: FestivalDef[] = [
   // Jyeshtha
   { masa: 'jyeshtha', paksha: 'shukla', tithi: 10, slug: 'ganga-dussehra',  type: 'major', category: 'festival',
     name: { en: 'Ganga Dussehra', hi: 'गंगा दशहरा', sa: 'गङ्गादशहरा' } },
-  // Nirjala Ekadashi (Jyeshtha Shukla 11) — handled by the generic Ekadashi loop
+  // Nirjala Ekadashi (Jyeshtha Shukla 11)  –  handled by the generic Ekadashi loop
   // with name resolved from EKADASHI_NAMES. Do NOT duplicate here.
   { masa: 'jyeshtha', paksha: 'shukla', tithi: 15, slug: 'vat-savitri-vrat', type: 'major', category: 'vrat',
     name: { en: 'Vat Savitri Vrat', hi: 'वट सावित्री व्रत', sa: 'वटसावित्रीव्रतम्' } },
   // Ashadha
   { masa: 'ashadha', paksha: 'shukla', tithi: 2,  slug: 'jagannath-rath-yatra', type: 'major', category: 'festival',
     name: { en: 'Jagannath Rath Yatra', hi: 'जगन्नाथ रथ यात्रा', sa: 'जगन्नाथरथयात्रा' } },
-  // Devshayani Ekadashi (Ashadha Shukla 11) — handled by the generic Ekadashi loop
+  // Devshayani Ekadashi (Ashadha Shukla 11)  –  handled by the generic Ekadashi loop
   // with name resolved from EKADASHI_NAMES. Do NOT duplicate here.
   { masa: 'ashadha', paksha: 'shukla', tithi: 15, slug: 'guru-purnima',     type: 'major', category: 'festival' },
   // Shravana
@@ -155,14 +155,14 @@ export const MAJOR_FESTIVALS: FestivalDef[] = [
   { masa: 'ashwina', paksha: 'shukla',  tithi: 10, slug: 'dussehra',        type: 'major', category: 'festival' },
   { masa: 'ashwina', paksha: 'shukla',  tithi: 15, slug: 'sharad-purnima', type: 'major', category: 'festival',
     name: { en: 'Sharad Purnima', hi: 'शरद पूर्णिमा', sa: 'शारदपूर्णिमा' } },
-  // Karwa Chauth — fast broken at moonrise (chandrodaya rule)
+  // Karwa Chauth  –  fast broken at moonrise (chandrodaya rule)
   // In Purnimant: "Kartika Krishna 4". Our matching uses getNextHinduMonth(amanta)
   // for Krishna, so def.masa must be getNextHinduMonth(bhadrapada) = ashwina...
   // but that gives wrong month. Use 'kartika' and it matches amanta=ashwina via
   // getNextHinduMonth. The entry in Ashwina Krishna (Amant) = Kartika Krishna (Purnimant).
   { masa: 'kartika', paksha: 'krishna', tithi: 4,  slug: 'karwa-chauth',     type: 'major', category: 'vrat', muhurtaRule: 'chandrodaya',
     name: { en: 'Karwa Chauth', hi: 'करवा चौथ', sa: 'करकचतुर्थी' } },
-  // Kartika — Diwali cluster (Dhanteras, Narak Chaturdashi are Kartika Krishna, NOT Ashwina)
+  // Kartika  –  Diwali cluster (Dhanteras, Narak Chaturdashi are Kartika Krishna, NOT Ashwina)
   { masa: 'kartika', paksha: 'krishna', tithi: 13, slug: 'dhanteras',       type: 'major', category: 'festival', muhurtaRule: 'pradosh',
     name: { en: 'Dhanteras', hi: 'धनतेरस', sa: 'धन्वन्तरित्रयोदशी' } },
   { masa: 'kartika', paksha: 'krishna', tithi: 14, slug: 'narak-chaturdashi', type: 'major', category: 'festival', muhurtaRule: 'nishita',
@@ -189,7 +189,7 @@ export const EKADASHI_DEFS: FestivalDef[] = [
   { masa: 'chaitra',      paksha: 'krishna', tithi: 11, slug: 'papamochani-ekadashi',     type: 'vrat', category: 'ekadashi' },
   { masa: 'vaishakha',    paksha: 'shukla',  tithi: 11, slug: 'mohini-ekadashi',          type: 'vrat', category: 'ekadashi' },
   { masa: 'vaishakha',    paksha: 'krishna', tithi: 11, slug: 'varuthini-ekadashi',       type: 'vrat', category: 'ekadashi' },
-  // Jyeshtha Shukla 11 = Nirjala Ekadashi — defined above as a named major festival, not here as generic
+  // Jyeshtha Shukla 11 = Nirjala Ekadashi  –  defined above as a named major festival, not here as generic
   { masa: 'jyeshtha',     paksha: 'krishna', tithi: 11, slug: 'apara-ekadashi',           type: 'vrat', category: 'ekadashi' },
   { masa: 'ashadha',      paksha: 'shukla',  tithi: 11, slug: 'devshayani-ekadashi',      type: 'vrat', category: 'ekadashi' },
   { masa: 'ashadha',      paksha: 'krishna', tithi: 11, slug: 'yogini-ekadashi',          type: 'vrat', category: 'ekadashi' },
@@ -218,12 +218,12 @@ export const MONTHLY_VRATS: FestivalDef[] = [
   { tithi: 15, slug: 'purnima',            type: 'vrat', category: 'purnima',    recurring: true, paksha: 'shukla' },
   // Amavasya
   { tithi: 15, slug: 'amavasya',           type: 'vrat', category: 'amavasya',   recurring: true, paksha: 'krishna' },
-  // Sankashti Chaturthi — fast broken at moonrise (chandrodaya rule)
+  // Sankashti Chaturthi  –  fast broken at moonrise (chandrodaya rule)
   { tithi: 4,  slug: 'chaturthi',          type: 'vrat', category: 'chaturthi',  recurring: true, paksha: 'krishna', muhurtaRule: 'chandrodaya' },
   // Vinayaka Chaturthi (Shukla)
   { tithi: 4,  slug: 'vinayaka-chaturthi', type: 'vrat', category: 'chaturthi',  recurring: true, paksha: 'shukla',
     name: { en: 'Vinayaka Chaturthi', hi: 'विनायक चतुर्थी', sa: 'विनायकचतुर्थी' } },
-  // Pradosham — both pakshas
+  // Pradosham  –  both pakshas
   { tithi: 13, slug: 'pradosham-shukla',   type: 'vrat', category: 'pradosham',  recurring: true, paksha: 'shukla' },
   { tithi: 13, slug: 'pradosham-krishna',  type: 'vrat', category: 'pradosham',  recurring: true, paksha: 'krishna' },
   // Masik Shivaratri (Krishna Chaturdashi)
@@ -240,9 +240,9 @@ export const MONTHLY_VRATS: FestivalDef[] = [
     name: { en: 'Skanda Shashthi', hi: 'स्कन्द षष्ठी', sa: 'स्कन्दषष्ठी' } },
 ];
 
-// ─── Solar Festivals (Sun entering a sidereal sign — use solarMonth field) ───
+// ─── Solar Festivals (Sun entering a sidereal sign  –  use solarMonth field) ───
 // solarMonth uses sign number: 1=Aries/Mesh, 2=Taurus/Vrishabha, ..., 10=Capricorn/Makara, 12=Pisces/Meena
-// tithi is set to 1 as placeholder — actual date is computed from solar ingress in the generator.
+// tithi is set to 1 as placeholder  –  actual date is computed from solar ingress in the generator.
 
 export const SOLAR_FESTIVALS: FestivalDef[] = [
   // Capricorn ingress cluster (~Jan 14)
@@ -297,7 +297,7 @@ export const SOLAR_FESTIVALS: FestivalDef[] = [
 // ─── Regional Festivals (masa-specific, region-tagged) ───
 
 export const REGIONAL_FESTIVALS: FestivalDef[] = [
-  // Chaitra — New Year cluster
+  // Chaitra  –  New Year cluster
   { masa: 'chaitra', paksha: 'shukla', tithi: 1, slug: 'ugadi', type: 'regional', category: 'festival', region: 'telugu',
     name: { en: 'Ugadi', hi: 'उगादि', sa: 'युगादिः' } },
   { masa: 'chaitra', paksha: 'shukla', tithi: 1, slug: 'gudi-padwa', type: 'regional', category: 'festival', region: 'marathi',
@@ -333,7 +333,7 @@ export const REGIONAL_FESTIVALS: FestivalDef[] = [
     name: { en: 'Radha Ashtami', hi: 'राधा अष्टमी', sa: 'राधाष्टमी' } },
   { masa: 'bhadrapada', paksha: 'shukla', tithi: 12, slug: 'vamana-jayanti', type: 'regional', category: 'jayanti', tradition: 'vaishnava',
     name: { en: 'Vamana Jayanti', hi: 'वामन जयन्ती', sa: 'वामनजयन्ती' } },
-  // Ashwina — Durga Puja cluster
+  // Ashwina  –  Durga Puja cluster
   { masa: 'ashwina', paksha: 'shukla', tithi: 6, slug: 'durga-puja-shashti', type: 'regional', category: 'festival', region: 'bengali', tradition: 'shakta',
     name: { en: 'Durga Puja Shashti', hi: 'दुर्गा पूजा षष्ठी', sa: 'दुर्गापूजाषष्ठी' } },
   { masa: 'ashwina', paksha: 'shukla', tithi: 7, slug: 'durga-puja-saptami', type: 'regional', category: 'festival', region: 'bengali', tradition: 'shakta',
@@ -352,7 +352,7 @@ export const REGIONAL_FESTIVALS: FestivalDef[] = [
     name: { en: 'Meera Jayanti', hi: 'मीरा जयन्ती', sa: 'मीराजयन्ती' } },
   { masa: 'ashwina', paksha: 'shukla', tithi: 9, slug: 'akshaya-navami', type: 'regional', category: 'festival', region: 'odisha',
     name: { en: 'Akshaya Navami', hi: 'अक्षय नवमी', sa: 'अक्षयनवमी' } },
-  // Kartika — Diwali extensions & Bengal
+  // Kartika  –  Diwali extensions & Bengal
   { masa: 'kartika', paksha: 'krishna', tithi: 14, slug: 'kali-puja', type: 'regional', category: 'festival', region: 'bengali', tradition: 'shakta',
     name: { en: 'Kali Puja', hi: 'काली पूजा', sa: 'कालीपूजा' } },
   { masa: 'kartika', paksha: 'krishna', tithi: 14, slug: 'roop-chaturdashi', type: 'regional', category: 'festival', family: 'diwali',
@@ -365,7 +365,7 @@ export const REGIONAL_FESTIVALS: FestivalDef[] = [
     name: { en: 'Ahoi Ashtami', hi: 'अहोई अष्टमी', sa: 'अहोईअष्टमी' } },
   { masa: 'kartika', paksha: 'shukla', tithi: 15, slug: 'dev-diwali', type: 'regional', category: 'festival', region: 'varanasi',
     name: { en: 'Dev Diwali', hi: 'देव दीवाली', sa: 'देवदीपावलिः' } },
-  // Magha — Bengal Saraswati
+  // Magha  –  Bengal Saraswati
   { masa: 'magha', paksha: 'shukla', tithi: 5, slug: 'saraswati-puja-bengali', type: 'regional', category: 'festival', region: 'bengali',
     name: { en: 'Saraswati Puja', hi: 'सरस्वती पूजा', sa: 'सरस्वतीपूजा' } },
   { masa: 'magha', paksha: 'shukla', tithi: 9, slug: 'madhvacharya-jayanti', type: 'regional', category: 'jayanti', tradition: 'vaishnava',
@@ -444,10 +444,10 @@ export const ADDITIONAL_VRATS: FestivalDef[] = [
     name: { en: 'Jyeshtha Purnima', hi: 'ज्येष्ठ पूर्णिमा', sa: 'ज्येष्ठापूर्णिमा' } },
   { masa: 'ashwina', paksha: 'shukla', tithi: 15, slug: 'ashwina-purnima', type: 'vrat', category: 'purnima',
     name: { en: 'Ashwina Purnima', hi: 'अश्विन पूर्णिमा', sa: 'आश्विनपूर्णिमा' } },
-  // Masik Ekadashi (Shukla) — generic recurring for months without a named one
+  // Masik Ekadashi (Shukla)  –  generic recurring for months without a named one
   { tithi: 11, slug: 'ekadashi-shukla', type: 'vrat', category: 'ekadashi', recurring: true, paksha: 'shukla',
     name: { en: 'Shukla Ekadashi', hi: 'शुक्ल एकादशी', sa: 'शुक्लैकादशी' } },
-  // Masik Ekadashi (Krishna) — generic recurring
+  // Masik Ekadashi (Krishna)  –  generic recurring
   { tithi: 11, slug: 'ekadashi-krishna', type: 'vrat', category: 'ekadashi', recurring: true, paksha: 'krishna',
     name: { en: 'Krishna Ekadashi', hi: 'कृष्ण एकादशी', sa: 'कृष्णैकादशी' } },
   // Masik Panchami (Nag Panchami is monthly in some traditions)
@@ -686,10 +686,10 @@ export const MORE_REGIONAL_FESTIVALS: FestivalDef[] = [
   // Vivah Panchami
   { masa: 'margashirsha', paksha: 'shukla', tithi: 5, slug: 'vivah-panchami', type: 'regional', category: 'festival', tradition: 'vaishnava',
     name: { en: 'Vivah Panchami (Sita-Rama Wedding)', hi: 'विवाह पंचमी', sa: 'विवाहपञ्चमी' } },
-  // Skanda Shashthi (annual — Kartika)
+  // Skanda Shashthi (annual  –  Kartika)
   { masa: 'kartika', paksha: 'shukla', tithi: 6, slug: 'skanda-shashthi-kartik', type: 'regional', category: 'festival', region: 'tamil', tradition: 'shaiva',
     name: { en: 'Skanda Shashthi (Kartik)', hi: 'स्कन्द षष्ठी (कार्तिक)', sa: 'स्कन्दषष्ठी' } },
-  // Mandala Puja (48-day Ayyappa season — start)
+  // Mandala Puja (48-day Ayyappa season  –  start)
   { masa: 'kartika', paksha: 'shukla', tithi: 1, slug: 'mandala-puja-begins', type: 'regional', category: 'festival', region: 'kerala', tradition: 'shaiva',
     name: { en: 'Mandala Puja Begins (Ayyappa Season)', hi: 'मण्डल पूजा आरम्भ', sa: 'मण्डलपूजारम्भः' } },
   // Arudra Darshan
@@ -700,7 +700,7 @@ export const MORE_REGIONAL_FESTIVALS: FestivalDef[] = [
     name: { en: 'Bhairava Ashtami (Kalashtami)', hi: 'भैरव अष्टमी (कालाष्टमी)', sa: 'भैरवाष्टमी' } },
 ];
 
-// ─── Nirjala Ekadashi (standalone — Jyeshtha Shukla 11) ───
+// ─── Nirjala Ekadashi (standalone  –  Jyeshtha Shukla 11) ───
 // This was noted as handled by the Ekadashi loop but we add it separately for
 // completeness in the catalog count. The generator should deduplicate by slug.
 export const NIRJALA_EKADASHI: FestivalDef[] = [

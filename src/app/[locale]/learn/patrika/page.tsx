@@ -62,7 +62,7 @@ export default function PatrikaPage() {
       </LessonSection>
 
       {/* New: Chart Layout Deep Dive */}
-      <LessonSection number={0} title={isHi ? 'कुण्डली प्रारूप — उत्तर, दक्षिण और पूर्व भारतीय' : 'Chart Layouts — North, South, and East Indian'}>
+      <LessonSection number={0} title={isHi ? 'कुण्डली प्रारूप  –  उत्तर, दक्षिण और पूर्व भारतीय' : 'Chart Layouts  –  North, South, and East Indian'}>
         <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
             <h4 className="text-gold-light font-bold text-sm mb-2" style={headingFont}>
@@ -70,8 +70,8 @@ export default function PatrikaPage() {
             </h4>
             <p className="text-text-secondary text-xs leading-relaxed mb-2">
               {isHi
-                ? <>12 भाव निश्चित स्थितियों पर हैं — शीर्ष हीरा सदैव प्रथम भाव (लग्न) है। राशियाँ घूमती हैं: यदि लग्न वृषभ है, तो शीर्ष हीरा में &quot;2&quot; लिखा होगा, और ग्रह भावों में रखे जाते हैं। भाव स्थिति स्थिर, राशि परिवर्तनशील। यह मुहूर्त के लिए उपयोगी है क्योंकि भावों को तुरन्त देख सकते हैं (7वाँ भाव सदैव नीचे, 10वाँ सदैव बायें)।</>
-                : <>12 houses occupy fixed positions — the top diamond is always the 1st house (Lagna). Signs rotate: if the Ascendant is Taurus, the top diamond shows &quot;2&quot;, and planets are placed in their house positions. House positions fixed, signs variable. This is useful for muhurta because houses are instantly readable (7th always at bottom, 10th always at left).</>}
+                ? <>12 भाव निश्चित स्थितियों पर हैं  –  शीर्ष हीरा सदैव प्रथम भाव (लग्न) है। राशियाँ घूमती हैं: यदि लग्न वृषभ है, तो शीर्ष हीरा में &quot;2&quot; लिखा होगा, और ग्रह भावों में रखे जाते हैं। भाव स्थिति स्थिर, राशि परिवर्तनशील। यह मुहूर्त के लिए उपयोगी है क्योंकि भावों को तुरन्त देख सकते हैं (7वाँ भाव सदैव नीचे, 10वाँ सदैव बायें)।</>
+                : <>12 houses occupy fixed positions  –  the top diamond is always the 1st house (Lagna). Signs rotate: if the Ascendant is Taurus, the top diamond shows &quot;2&quot;, and planets are placed in their house positions. House positions fixed, signs variable. This is useful for muhurta because houses are instantly readable (7th always at bottom, 10th always at left).</>}
             </p>
           </div>
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
@@ -80,8 +80,8 @@ export default function PatrikaPage() {
             </h4>
             <p className="text-text-secondary text-xs leading-relaxed mb-2">
               {isHi
-                ? <>12 राशियाँ निश्चित स्थितियों पर हैं — मीन सदैव ऊपर-बायें, मेष ऊपर-दूसरे, इत्यादि (घड़ी की दिशा में)। भाव घूमते हैं: लग्न जिस राशि में हो, उस कोष्ठ से प्रथम भाव आरम्भ होता है। राशि स्थिति स्थिर, भाव परिवर्तनशील। यह जन्म कुण्डली विश्लेषण के लिए उपयोगी है क्योंकि ग्रहों की राशि स्थिति तुरन्त दिखती है और दो कुण्डलियों की तुलना सरल है।</>
-                : <>12 signs occupy fixed positions — Pisces is always top-left, Aries top-second, etc. (clockwise). Houses rotate: the 1st house starts from whichever box contains the Ascendant sign. Sign positions fixed, houses variable. This is useful for natal chart analysis because planetary sign positions are instantly visible and comparing two charts is easy.</>}
+                ? <>12 राशियाँ निश्चित स्थितियों पर हैं  –  मीन सदैव ऊपर-बायें, मेष ऊपर-दूसरे, इत्यादि (घड़ी की दिशा में)। भाव घूमते हैं: लग्न जिस राशि में हो, उस कोष्ठ से प्रथम भाव आरम्भ होता है। राशि स्थिति स्थिर, भाव परिवर्तनशील। यह जन्म कुण्डली विश्लेषण के लिए उपयोगी है क्योंकि ग्रहों की राशि स्थिति तुरन्त दिखती है और दो कुण्डलियों की तुलना सरल है।</>
+                : <>12 signs occupy fixed positions  –  Pisces is always top-left, Aries top-second, etc. (clockwise). Houses rotate: the 1st house starts from whichever box contains the Ascendant sign. Sign positions fixed, houses variable. This is useful for natal chart analysis because planetary sign positions are instantly visible and comparing two charts is easy.</>}
             </p>
           </div>
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
@@ -100,8 +100,8 @@ export default function PatrikaPage() {
             </h4>
             <p className="text-text-secondary text-xs leading-relaxed">
               {isHi
-                ? <>हमारा ऐप दोनों प्रमुख प्रारूप प्रदान करता है — उत्तर भारतीय हीरा (डिफ़ॉल्ट) और दक्षिण भारतीय वर्ग (टॉगल द्वारा)। उत्तर भारतीय प्रारूप मुहूर्त विश्लेषण के लिए डिफ़ॉल्ट है क्योंकि भाव स्थितियाँ तुरन्त पठनीय हैं। दक्षिण भारतीय प्रारूप जन्म कुण्डली तुलना के लिए बेहतर है। दोनों में ग्रह स्थान समान हैं — केवल प्रदर्शन भिन्न है।</>
-                : <>Our app offers both major formats — North Indian diamond (default) and South Indian square (via toggle). North Indian is default for muhurta analysis because house positions are instantly readable. South Indian is better for natal chart comparison. Planet placements are identical in both — only the display differs.</>}
+                ? <>हमारा ऐप दोनों प्रमुख प्रारूप प्रदान करता है  –  उत्तर भारतीय हीरा (डिफ़ॉल्ट) और दक्षिण भारतीय वर्ग (टॉगल द्वारा)। उत्तर भारतीय प्रारूप मुहूर्त विश्लेषण के लिए डिफ़ॉल्ट है क्योंकि भाव स्थितियाँ तुरन्त पठनीय हैं। दक्षिण भारतीय प्रारूप जन्म कुण्डली तुलना के लिए बेहतर है। दोनों में ग्रह स्थान समान हैं  –  केवल प्रदर्शन भिन्न है।</>
+                : <>Our app offers both major formats  –  North Indian diamond (default) and South Indian square (via toggle). North Indian is default for muhurta analysis because house positions are instantly readable. South Indian is better for natal chart comparison. Planet placements are identical in both  –  only the display differs.</>}
             </p>
           </div>
         </div>
@@ -145,12 +145,12 @@ export default function PatrikaPage() {
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
             <h4 className="text-emerald-400 font-bold text-xs uppercase tracking-widest mb-2">{isHi ? 'प्रथम दृष्टि में क्या देखें' : 'What to Look for at First Glance'}</h4>
             <ul className="text-text-secondary text-xs space-y-2">
-              <li>{isHi ? '• लग्न (प्रथम भाव) — जातक का मूल स्वभाव और शारीरिक बनावट' : '• Lagna (1st house) — the native\'s core personality and physical constitution'}</li>
-              <li>{isHi ? '• चन्द्र राशि — मानसिक प्रकृति, भावनात्मक प्रतिक्रिया' : '• Moon sign — mental nature, emotional responses'}</li>
-              <li>{isHi ? '• सूर्य राशि — आत्मा, पिता, अधिकार, जीवन उद्देश्य' : '• Sun sign — soul, father, authority, life purpose'}</li>
-              <li>{isHi ? '• केन्द्र भाव (1, 4, 7, 10) में ग्रह — जीवन के स्तम्भ' : '• Planets in Kendra houses (1, 4, 7, 10) — pillars of life'}</li>
-              <li>{isHi ? '• त्रिकोण भाव (1, 5, 9) में ग्रह — पुण्य और भाग्य' : '• Planets in Trikona houses (1, 5, 9) — merit and fortune'}</li>
-              <li>{isHi ? '• दुष्टस्थान (6, 8, 12) में ग्रह — चुनौतियाँ और रूपान्तरण' : '• Planets in Dusthana (6, 8, 12) — challenges and transformation'}</li>
+              <li>{isHi ? '• लग्न (प्रथम भाव)  –  जातक का मूल स्वभाव और शारीरिक बनावट' : '• Lagna (1st house)  –  the native\'s core personality and physical constitution'}</li>
+              <li>{isHi ? '• चन्द्र राशि  –  मानसिक प्रकृति, भावनात्मक प्रतिक्रिया' : '• Moon sign  –  mental nature, emotional responses'}</li>
+              <li>{isHi ? '• सूर्य राशि  –  आत्मा, पिता, अधिकार, जीवन उद्देश्य' : '• Sun sign  –  soul, father, authority, life purpose'}</li>
+              <li>{isHi ? '• केन्द्र भाव (1, 4, 7, 10) में ग्रह  –  जीवन के स्तम्भ' : '• Planets in Kendra houses (1, 4, 7, 10)  –  pillars of life'}</li>
+              <li>{isHi ? '• त्रिकोण भाव (1, 5, 9) में ग्रह  –  पुण्य और भाग्य' : '• Planets in Trikona houses (1, 5, 9)  –  merit and fortune'}</li>
+              <li>{isHi ? '• दुष्टस्थान (6, 8, 12) में ग्रह  –  चुनौतियाँ और रूपान्तरण' : '• Planets in Dusthana (6, 8, 12)  –  challenges and transformation'}</li>
             </ul>
           </div>
         </div>

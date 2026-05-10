@@ -30,7 +30,7 @@ const GAURABDA_YEAR = 540;
 const ISKCON_EVENTS_2026: ISKCONEvent[] = [
   // Major Festivals
   { name: { en: 'Nityananda Trayodashi', hi: 'नित्यानन्द त्रयोदशी' }, date: '2026-02-01', type: 'appearance', description: { en: 'Appearance day of Lord Nityananda, the merciful incarnation of Balarama and Chaitanya Mahaprabhu\'s closest associate.', hi: 'भगवान नित्यानन्द का प्रकट दिवस, बलराम के करुणामय अवतार और चैतन्य महाप्रभु के निकटतम सहयोगी।' } },
-  { name: { en: 'Gaura Purnima', hi: 'गौर पूर्णिमा' }, date: '2026-03-03', type: 'appearance', description: { en: 'Appearance day of Sri Chaitanya Mahaprabhu (1486 CE) — the golden avatar who inaugurated the Sankirtan movement. The most important festival in the Gaudiya Vaishnava calendar.', hi: 'श्री चैतन्य महाप्रभु (1486 ई.) का प्रकट दिवस — स्वर्ण अवतार जिन्होंने संकीर्तन आन्दोलन का आरम्भ किया। गौड़ीय वैष्णव पंचांग का सर्वाधिक महत्वपूर्ण पर्व।' } },
+  { name: { en: 'Gaura Purnima', hi: 'गौर पूर्णिमा' }, date: '2026-03-03', type: 'appearance', description: { en: 'Appearance day of Sri Chaitanya Mahaprabhu (1486 CE)  –  the golden avatar who inaugurated the Sankirtan movement. The most important festival in the Gaudiya Vaishnava calendar.', hi: 'श्री चैतन्य महाप्रभु (1486 ई.) का प्रकट दिवस  –  स्वर्ण अवतार जिन्होंने संकीर्तन आन्दोलन का आरम्भ किया। गौड़ीय वैष्णव पंचांग का सर्वाधिक महत्वपूर्ण पर्व।' } },
   { name: { en: 'Jagannath Rath Yatra', hi: 'जगन्नाथ रथ यात्रा' }, date: '2026-06-25', type: 'festival', description: { en: 'The great chariot festival of Lord Jagannath, Baladeva, and Subhadra. ISKCON celebrates this worldwide following the Puri tradition.', hi: 'भगवान जगन्नाथ, बलदेव और सुभद्रा का महान रथ उत्सव। इस्कॉन पुरी परम्परा का पालन करते हुए विश्वभर में मनाता है।' } },
   { name: { en: 'Guru Purnima (Vyasa Puja)', hi: 'गुरु पूर्णिमा (व्यास पूजा)' }, date: '2026-07-31', type: 'festival', description: { en: 'Honoring Srila Vyasadeva and the guru parampara (disciplic succession).', hi: 'श्रील व्यासदेव और गुरु परम्परा का सम्मान।' } },
   { name: { en: 'Balarama Jayanti', hi: 'बलराम जयन्ती' }, date: '2026-08-08', type: 'appearance', description: { en: 'Appearance day of Lord Balarama, the first expansion of Krishna and source of all spiritual strength.', hi: 'भगवान बलराम का प्रकट दिवस, कृष्ण का प्रथम विस्तार और समस्त आध्यात्मिक बल का स्रोत।' } },
@@ -50,7 +50,7 @@ const ISKCON_EVENTS_2026: ISKCONEvent[] = [
   // Monthly Ekadashis (with Maha Dvadashi rule note)
   { name: { en: 'Putrada Ekadashi', hi: 'पुत्रदा एकादशी' }, date: '2026-01-06', type: 'ekadashi', description: { en: 'Shukla Paksha Ekadashi of Pausha. Grants the boon of worthy progeny.', hi: 'पौष शुक्ल एकादशी। सुयोग्य सन्तान का वरदान।' } },
   { name: { en: 'Sat-tila Ekadashi', hi: 'षट्तिला एकादशी' }, date: '2026-01-20', type: 'ekadashi', description: { en: 'Krishna Paksha Ekadashi of Magha. Six types of sesame are used in the observance.', hi: 'माघ कृष्ण एकादशी। छह प्रकार के तिल का प्रयोग।' } },
-  { name: { en: 'Pandava Nirjala Ekadashi', hi: 'पाण्डव निर्जला एकादशी' }, date: '2026-06-06', type: 'ekadashi', description: { en: 'The strictest Ekadashi — complete fast without food or water for 24 hours. Equivalent merit of all 24 Ekadashis. Also known as Bhimseni Ekadashi.', hi: 'सर्वाधिक कठोर एकादशी — 24 घंटे बिना अन्न-जल पूर्ण उपवास। सभी 24 एकादशियों के समान पुण्य। भीमसेनी एकादशी भी कहते हैं।' } },
+  { name: { en: 'Pandava Nirjala Ekadashi', hi: 'पाण्डव निर्जला एकादशी' }, date: '2026-06-06', type: 'ekadashi', description: { en: 'The strictest Ekadashi  –  complete fast without food or water for 24 hours. Equivalent merit of all 24 Ekadashis. Also known as Bhimseni Ekadashi.', hi: 'सर्वाधिक कठोर एकादशी  –  24 घंटे बिना अन्न-जल पूर्ण उपवास। सभी 24 एकादशियों के समान पुण्य। भीमसेनी एकादशी भी कहते हैं।' } },
 ];
 
 const LABELS = {
@@ -65,8 +65,8 @@ const LABELS = {
   },
   ekadashiRule: { en: 'Ekadashi Rules (Vaishnava)', hi: 'एकादशी नियम (वैष्णव)' },
   ekadashiRuleText: {
-    en: 'ISKCON follows stricter Ekadashi rules than Smarta tradition. If the Ekadashi tithi is present for less than 50% of the period between sunrise on Ekadashi day and sunrise on Dvadashi day, the fast is postponed to Dvadashi — called "Maha Dvadashi." This ensures devotees fast on a day when the Ekadashi tithi is astronomically dominant. Additionally, ISKCON devotees avoid all grains and beans on Ekadashi (not just rice), including wheat, corn, mustard, and sesame. The parana (fast-breaking) window is strictly observed between sunrise and one-third of the daytime on Dvadashi.',
-    hi: 'इस्कॉन स्मार्त परम्परा से कठोर एकादशी नियमों का पालन करता है। यदि एकादशी तिथि एकादशी दिन के सूर्योदय और द्वादशी दिन के सूर्योदय के बीच 50% से कम समय तक रहती है, तो व्रत द्वादशी पर स्थगित किया जाता है — जिसे "महा द्वादशी" कहते हैं। इसके अतिरिक्त, इस्कॉन भक्त एकादशी पर सभी अनाज और दालों से परहेज करते हैं (केवल चावल नहीं), गेहूं, मक्का, सरसों, तिल सहित।',
+    en: 'ISKCON follows stricter Ekadashi rules than Smarta tradition. If the Ekadashi tithi is present for less than 50% of the period between sunrise on Ekadashi day and sunrise on Dvadashi day, the fast is postponed to Dvadashi  –  called "Maha Dvadashi." This ensures devotees fast on a day when the Ekadashi tithi is astronomically dominant. Additionally, ISKCON devotees avoid all grains and beans on Ekadashi (not just rice), including wheat, corn, mustard, and sesame. The parana (fast-breaking) window is strictly observed between sunrise and one-third of the daytime on Dvadashi.',
+    hi: 'इस्कॉन स्मार्त परम्परा से कठोर एकादशी नियमों का पालन करता है। यदि एकादशी तिथि एकादशी दिन के सूर्योदय और द्वादशी दिन के सूर्योदय के बीच 50% से कम समय तक रहती है, तो व्रत द्वादशी पर स्थगित किया जाता है  –  जिसे "महा द्वादशी" कहते हैं। इसके अतिरिक्त, इस्कॉन भक्त एकादशी पर सभी अनाज और दालों से परहेज करते हैं (केवल चावल नहीं), गेहूं, मक्का, सरसों, तिल सहित।',
   },
   festivals: { en: 'Festivals & Holy Days', hi: 'पर्व एवं पवित्र दिवस' },
   appearance: { en: 'Appearance', hi: 'प्रकट' },
@@ -166,7 +166,7 @@ export default function ISKCONCalendarPage() {
 
         {/* Events by month */}
         <h2 className={`text-2xl font-bold text-gold-light mb-6 ${isDev ? 'font-devanagari-heading' : ''}`}>
-          {L('festivals')} — 2026
+          {L('festivals')}  –  2026
         </h2>
 
         <div className="space-y-8">

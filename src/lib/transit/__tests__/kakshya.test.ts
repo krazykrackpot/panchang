@@ -63,7 +63,7 @@ describe('getKakshyaPosition', () => {
 });
 
 describe('getKakshyaBavScore', () => {
-  // Dummy 7×12 BAV table — planet rows 0-6, sign columns 0-11
+  // Dummy 7×12 BAV table  –  planet rows 0-6, sign columns 0-11
   const bpiTable: number[][] = [
     [3, 4, 5, 2, 1, 6, 3, 4, 2, 5, 1, 3], // Sun (0)
     [4, 2, 3, 5, 6, 1, 4, 3, 5, 2, 6, 1], // Moon (1)

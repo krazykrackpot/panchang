@@ -56,7 +56,7 @@ export default function RashiNakshatraWheel({ locale }: Props) {
 
       <div className="flex justify-center">
         <svg viewBox="0 0 600 600" className="w-full max-w-[500px]" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
-          {/* Outer ring — 12 Rashis */}
+          {/* Outer ring  –  12 Rashis */}
           {RASHIS.map((r, i) => {
             const startAngle = i * 30;
             const endAngle = (i + 1) * 30;
@@ -89,7 +89,7 @@ export default function RashiNakshatraWheel({ locale }: Props) {
             );
           })}
 
-          {/* Inner ring — 27 Nakshatras */}
+          {/* Inner ring  –  27 Nakshatras */}
           {NAKSHATRAS.map((n, i) => {
             const startAngle = i * (360 / 27);
             const endAngle = (i + 1) * (360 / 27);

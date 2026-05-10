@@ -58,7 +58,7 @@ export function detectYogas(
 
   // --- Pancha Mahapurusha Yogas ---
   // These occur when Mars, Mercury, Jupiter, Venus, or Saturn are in their own sign or exalted, and in a Kendra
-  // Dignity constants from canonical @/lib/constants/dignities (Lesson Q — single source of truth)
+  // Dignity constants from canonical @/lib/constants/dignities (Lesson Q  –  single source of truth)
   // Note: canonical uses 1-based signs; this file uses 0-based signIndex, so we convert with +1
   const mahapurushaNames: Record<string, string> = {
     mars: 'Ruchaka',

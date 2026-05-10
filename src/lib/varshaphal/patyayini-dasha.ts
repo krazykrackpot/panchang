@@ -1,5 +1,5 @@
 /**
- * Patyayini Dasha — Degree-traversed proportional annual periods
+ * Patyayini Dasha  –  Degree-traversed proportional annual periods
  *
  * Each planet's period is proportional to the degrees it has traversed in its
  * current sign at the time of the solar return. Planets that have covered more

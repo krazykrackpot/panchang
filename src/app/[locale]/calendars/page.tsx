@@ -68,14 +68,14 @@ function FestivalsSVG() {
         <radialGradient id="fe1f" cx="50%" cy="60%" r="50%"><stop offset="0%" stopColor="#f0d48a" stopOpacity="0.6" /><stop offset="100%" stopColor="#d4a853" stopOpacity="0" /></radialGradient>
       </defs>
       <circle cx="32" cy="32" r="28" fill="url(#fe1g)" />
-      {/* Diya base — ornate bowl */}
+      {/* Diya base  –  ornate bowl */}
       <ellipse cx="32" cy="42" rx="16" ry="6" fill="url(#fe1)" opacity="0.12" stroke="url(#fe1)" strokeWidth="2.5" />
       <path d="M 16 42 Q 18 50 32 52 Q 46 50 48 42" fill="url(#fe1)" opacity="0.15" stroke="url(#fe1)" strokeWidth="2" />
       {/* Inner oil */}
       <ellipse cx="32" cy="42" rx="12" ry="4" fill="url(#fe1)" opacity="0.2" />
       {/* Wick */}
       <line x1="32" y1="38" x2="32" y2="26" stroke="url(#fe1)" strokeWidth="1.5" opacity="0.5" />
-      {/* Flame — layered teardrop */}
+      {/* Flame  –  layered teardrop */}
       <ellipse cx="32" cy="18" rx="6" ry="10" fill="url(#fe1f)" opacity="0.15" />
       <path d="M 32 8 C 28 14 26 20 32 26 C 38 20 36 14 32 8 Z" fill="url(#fe1)" opacity="0.35" stroke="url(#fe1)" strokeWidth="1.5" />
       <path d="M 32 12 C 30 16 29 20 32 24 C 35 20 34 16 32 12 Z" fill="#f0d48a" opacity="0.5" />
@@ -155,13 +155,13 @@ function TransitsSVG() {
       {/* Central body (Sun) */}
       <circle cx="32" cy="32" r="5" fill="url(#tr1)" opacity="0.3" stroke="url(#tr1)" strokeWidth="2" />
       <circle cx="32" cy="32" r="2" fill="#f0d48a" opacity="0.7" />
-      {/* Orbit 1 — inner */}
+      {/* Orbit 1  –  inner */}
       <circle cx="32" cy="32" r="11" fill="none" stroke="url(#tr1)" strokeWidth="1.2" opacity="0.3" strokeDasharray="3 2" />
       <circle cx={r2(32 + 11 * Math.cos(0.8))} cy={r2(32 + 11 * Math.sin(0.8))} r="2.5" fill="url(#tr1)" opacity="0.55" stroke="url(#tr1)" strokeWidth="1.5" />
-      {/* Orbit 2 — middle */}
+      {/* Orbit 2  –  middle */}
       <circle cx="32" cy="32" r="18" fill="none" stroke="url(#tr1)" strokeWidth="1" opacity="0.25" strokeDasharray="4 3" />
       <circle cx={r2(32 + 18 * Math.cos(3.5))} cy={r2(32 + 18 * Math.sin(3.5))} r="3" fill="url(#tr1)" opacity="0.5" stroke="url(#tr1)" strokeWidth="1.5" />
-      {/* Orbit 3 — outer */}
+      {/* Orbit 3  –  outer */}
       <circle cx="32" cy="32" r="25" fill="none" stroke="url(#tr1)" strokeWidth="0.8" opacity="0.2" strokeDasharray="5 4" />
       <circle cx={r2(32 + 25 * Math.cos(5.2))} cy={r2(32 + 25 * Math.sin(5.2))} r="3.5" fill="url(#tr1)" opacity="0.45" stroke="url(#tr1)" strokeWidth="1.5" />
       {/* Motion trail arcs */}
@@ -186,9 +186,9 @@ function RetrogradeSVG() {
         <linearGradient id="re1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
       </defs>
       <circle cx="32" cy="32" r="28" fill="url(#re1g)" />
-      {/* Outer spiral — large backward loop */}
+      {/* Outer spiral  –  large backward loop */}
       <path d="M 48 18 C 56 28, 52 44, 38 48 C 24 52, 12 42, 12 32 C 12 22, 22 14, 32 14" fill="none" stroke="url(#re1)" strokeWidth="2.5" opacity="0.6" strokeLinecap="round" />
-      {/* Inner spiral — tighter */}
+      {/* Inner spiral  –  tighter */}
       <path d="M 32 14 C 38 14, 44 20, 44 28 C 44 36, 38 40, 32 40 C 26 40, 22 36, 22 30" fill="none" stroke="url(#re1)" strokeWidth="2" opacity="0.45" strokeLinecap="round" />
       {/* Innermost curl */}
       <path d="M 22 30 C 22 26, 26 24, 30 24 C 34 24, 36 28, 34 30" fill="none" stroke="url(#re1)" strokeWidth="1.5" opacity="0.35" strokeLinecap="round" />
@@ -219,7 +219,7 @@ function EclipsesSVG() {
         <radialGradient id="ec1c" cx="40%" cy="40%" r="50%"><stop offset="0%" stopColor="#f0d48a" stopOpacity="0.4" /><stop offset="100%" stopColor="#d4a853" stopOpacity="0" /></radialGradient>
       </defs>
       <circle cx="32" cy="32" r="28" fill="url(#ec1g)" />
-      {/* Corona rays — visible during eclipse */}
+      {/* Corona rays  –  visible during eclipse */}
       {Array.from({ length: 16 }, (_, i) => {
         const a = (Math.PI * 2 * i) / 16;
         const inner = 17;
@@ -233,10 +233,10 @@ function EclipsesSVG() {
       <circle cx="28" cy="32" r="15" fill="url(#ec1c)" />
       <circle cx="28" cy="32" r="8" fill="url(#ec1)" opacity="0.25" />
       <circle cx="28" cy="32" r="3" fill="#f0d48a" opacity="0.5" />
-      {/* Moon shadow — dark disc overlapping */}
+      {/* Moon shadow  –  dark disc overlapping */}
       <circle cx="36" cy="30" r="14" fill="#0a0520" opacity="0.85" />
       <circle cx="38" cy="28" r="10" fill="#0a0520" opacity="0.6" />
-      {/* Moon edge highlight — thin crescent of light */}
+      {/* Moon edge highlight  –  thin crescent of light */}
       <path d="M 42 18 A 14 14 0 0 1 42 42" fill="none" stroke="url(#ec1)" strokeWidth="1.5" opacity="0.4" />
       {/* Diamond ring effect */}
       <circle cx="22" cy="22" r="2.5" fill="#f0d48a" opacity="0.6" />
@@ -250,7 +250,7 @@ function EclipsesSVG() {
   );
 }
 
-/* 6. Celestial Events — Dramatic starburst with concentric explosion rings */
+/* 6. Celestial Events  –  Dramatic starburst with concentric explosion rings */
 function CelestialEventsSVG() {
   return (
     <svg viewBox="0 0 64 64" width={160} height={160} aria-hidden="true">
@@ -270,7 +270,7 @@ function CelestialEventsSVG() {
         const outer = i % 2 === 0 ? 30 : 22;
         return <line key={i} x1={r2(32 + inner * Math.cos(a))} y1={r2(32 + inner * Math.sin(a))} x2={r2(32 + outer * Math.cos(a))} y2={r2(32 + outer * Math.sin(a))} stroke="url(#ce1)" strokeWidth={i % 2 === 0 ? '3' : '1.5'} opacity={i % 2 === 0 ? 0.5 : 0.25} strokeLinecap="round" />;
       })}
-      {/* Core — bright center */}
+      {/* Core  –  bright center */}
       <circle cx="32" cy="32" r="8" fill="url(#ce1)" opacity="0.15" />
       <circle cx="32" cy="32" r="4" fill="url(#ce1)" opacity="0.35" />
       <circle cx="32" cy="32" r="2" fill="#f0d48a" opacity="0.7" />
@@ -286,7 +286,7 @@ function CelestialEventsSVG() {
   );
 }
 
-/* 7. Muhurat Calendar — Bold 12-segment auspicious wheel with glowing sectors */
+/* 7. Muhurat Calendar  –  Bold 12-segment auspicious wheel with glowing sectors */
 function MuhuratCalendarSVG() {
   return (
     <svg viewBox="0 0 64 64" width={160} height={160} aria-hidden="true">
@@ -304,7 +304,7 @@ function MuhuratCalendarSVG() {
         const a = (Math.PI * 2 * i) / 12 - Math.PI / 2;
         return <line key={i} x1={r2(32 + 10 * Math.cos(a))} y1={r2(32 + 10 * Math.sin(a))} x2={r2(32 + 28 * Math.cos(a))} y2={r2(32 + 28 * Math.sin(a))} stroke="url(#mc1)" strokeWidth="1.5" opacity="0.25" />;
       })}
-      {/* Auspicious sector highlights — bold arcs */}
+      {/* Auspicious sector highlights  –  bold arcs */}
       {[0, 2, 5, 8, 10].map((i) => {
         const a1 = (Math.PI * 2 * i) / 12 - Math.PI / 2;
         const a2 = (Math.PI * 2 * (i + 1)) / 12 - Math.PI / 2;
@@ -316,10 +316,10 @@ function MuhuratCalendarSVG() {
         const isMajor = i % 3 === 0;
         return <circle key={`m${i}`} cx={r2(32 + 26 * Math.cos(a))} cy={r2(32 + 26 * Math.sin(a))} r={isMajor ? 2.5 : 1.5} fill="#f0d48a" opacity={isMajor ? 0.6 : 0.35} />;
       })}
-      {/* Clock hands — bold */}
+      {/* Clock hands  –  bold */}
       <line x1="32" y1="32" x2="32" y2="10" stroke="url(#mc1)" strokeWidth="3" strokeLinecap="round" opacity="0.75" />
       <line x1="32" y1="32" x2="48" y2="24" stroke="url(#mc1)" strokeWidth="2.5" strokeLinecap="round" opacity="0.55" />
-      {/* Center jewel — large */}
+      {/* Center jewel  –  large */}
       <circle cx="32" cy="32" r="6" fill="url(#mc1)" opacity="0.2" stroke="url(#mc1)" strokeWidth="2.5" />
       <circle cx="32" cy="32" r="3" fill="#f0d48a" opacity="0.45" />
       <circle cx="32" cy="32" r="1.5" fill="#f0d48a" opacity="0.8" />
@@ -327,7 +327,7 @@ function MuhuratCalendarSVG() {
   );
 }
 
-/* 8. Regional — Bold compass rose with directional spokes and region dots */
+/* 8. Regional  –  Bold compass rose with directional spokes and region dots */
 function RegionalSVG() {
   return (
     <svg viewBox="0 0 64 64" width={160} height={160} aria-hidden="true">
@@ -339,7 +339,7 @@ function RegionalSVG() {
       {/* Outer ring */}
       <circle cx="32" cy="32" r="28" fill="none" stroke="url(#rg1)" strokeWidth="2.5" opacity="0.45" />
       <circle cx="32" cy="32" r="22" fill="none" stroke="url(#rg1)" strokeWidth="1.5" opacity="0.25" />
-      {/* 4 cardinal compass points — bold diamond arrows */}
+      {/* 4 cardinal compass points  –  bold diamond arrows */}
       <path d="M 32 2 L 36 14 L 32 10 L 28 14 Z" fill="url(#rg1)" opacity="0.5" stroke="url(#rg1)" strokeWidth="1.5" /> {/* N */}
       <path d="M 62 32 L 50 36 L 54 32 L 50 28 Z" fill="url(#rg1)" opacity="0.4" stroke="url(#rg1)" strokeWidth="1" /> {/* E */}
       <path d="M 32 62 L 28 50 L 32 54 L 36 50 Z" fill="url(#rg1)" opacity="0.35" stroke="url(#rg1)" strokeWidth="1" /> {/* S */}
@@ -356,7 +356,7 @@ function RegionalSVG() {
         const a = (Math.PI * 2 * i) / 16;
         return <line key={`t${i}`} x1={r2(32 + 26 * Math.cos(a))} y1={r2(32 + 26 * Math.sin(a))} x2={r2(32 + 28 * Math.cos(a))} y2={r2(32 + 28 * Math.sin(a))} stroke="url(#rg1)" strokeWidth={i % 4 === 0 ? '2' : '1'} opacity={i % 4 === 0 ? 0.5 : 0.3} />;
       })}
-      {/* Region marker dots — scattered in the inner field */}
+      {/* Region marker dots  –  scattered in the inner field */}
       {[[26, 20, 2.5], [38, 24, 2], [22, 32, 2.2], [40, 34, 1.8], [28, 40, 2.3], [36, 42, 2], [32, 28, 3]].map(([cx, cy, rr], i) => (
         <g key={`r${i}`}>
           <circle cx={cx} cy={cy} r={(rr as number) + 2} fill="url(#rg1)" opacity="0.06" />
@@ -380,14 +380,14 @@ function EkadashiSVG() {
         <linearGradient id="ek1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
       </defs>
       <circle cx="32" cy="32" r="28" fill="url(#ek1g)" />
-      {/* Crescent moon — waxing */}
+      {/* Crescent moon  –  waxing */}
       <circle cx="26" cy="26" r="16" fill="url(#ek1)" opacity="0.15" stroke="url(#ek1)" strokeWidth="2.5" />
       <circle cx="34" cy="22" r="14" fill="#0a0e27" /> {/* shadow bite */}
       {/* Moon surface details */}
       <circle cx="20" cy="24" r="2" fill="url(#ek1)" opacity="0.1" />
       <circle cx="24" cy="32" r="1.5" fill="url(#ek1)" opacity="0.08" />
       <circle cx="18" cy="30" r="1" fill="url(#ek1)" opacity="0.06" />
-      {/* XI numeral — bold serif */}
+      {/* XI numeral  –  bold serif */}
       <text x="38" y="48" textAnchor="middle" fill="#f0d48a" fontSize="16" fontWeight="bold" opacity="0.45" fontFamily="serif">XI</text>
       {/* Decorative underline */}
       <line x1="28" y1="50" x2="48" y2="50" stroke="url(#ek1)" strokeWidth="1.5" opacity="0.25" strokeLinecap="round" />
@@ -415,7 +415,7 @@ function PurnimaSVG() {
         <radialGradient id="pu1m" cx="45%" cy="40%" r="50%"><stop offset="0%" stopColor="#f0d48a" stopOpacity="0.35" /><stop offset="100%" stopColor="#d4a853" stopOpacity="0.05" /></radialGradient>
       </defs>
       <circle cx="32" cy="32" r="28" fill="url(#pu1g)" />
-      {/* Glow rays — radiating outward */}
+      {/* Glow rays  –  radiating outward */}
       {Array.from({ length: 16 }, (_, i) => {
         const a = (Math.PI * 2 * i) / 16;
         const inner = 18;
@@ -424,10 +424,10 @@ function PurnimaSVG() {
           <line key={i} x1={r2(32 + inner * Math.cos(a))} y1={r2(32 + inner * Math.sin(a))} x2={r2(32 + outer * Math.cos(a))} y2={r2(32 + outer * Math.sin(a))} stroke="url(#pu1)" strokeWidth={i % 2 === 0 ? '2' : '1.2'} strokeLinecap="round" opacity={i % 2 === 0 ? 0.4 : 0.2} />
         );
       })}
-      {/* Moon body — full luminous disc */}
+      {/* Moon body  –  full luminous disc */}
       <circle cx="32" cy="32" r="16" fill="url(#pu1m)" stroke="url(#pu1)" strokeWidth="2.5" />
       <circle cx="32" cy="32" r="16" fill="url(#pu1)" opacity="0.2" />
-      {/* Surface details — maria */}
+      {/* Surface details  –  maria */}
       <circle cx="28" cy="28" r="3" fill="url(#pu1)" opacity="0.1" />
       <circle cx="36" cy="30" r="2" fill="url(#pu1)" opacity="0.08" />
       <circle cx="30" cy="36" r="2.5" fill="url(#pu1)" opacity="0.07" />
@@ -456,7 +456,7 @@ function AmavasyaSVG() {
         <linearGradient id="am1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
       </defs>
       <circle cx="32" cy="32" r="28" fill="url(#am1g)" />
-      {/* Dark moon body — barely visible disc */}
+      {/* Dark moon body  –  barely visible disc */}
       <circle cx="32" cy="32" r="16" fill="url(#am1)" opacity="0.04" stroke="url(#am1)" strokeWidth="2" />
       <circle cx="32" cy="32" r="16" fill="none" stroke="url(#am1)" strokeWidth="0.8" opacity="0.15" strokeDasharray="4 2" />
       {/* Subtle surface hint */}
@@ -465,7 +465,7 @@ function AmavasyaSVG() {
       {/* Inner shadow rings */}
       <circle cx="32" cy="32" r="12" fill="none" stroke="url(#am1)" strokeWidth="0.6" opacity="0.1" />
       <circle cx="32" cy="32" r="8" fill="none" stroke="url(#am1)" strokeWidth="0.5" opacity="0.08" />
-      {/* Scattered stars — the sky shines on Amavasya */}
+      {/* Scattered stars  –  the sky shines on Amavasya */}
       {[[10, 10, 2], [52, 12, 1.8], [8, 46, 1.5], [54, 50, 2.2], [16, 26, 1.2], [48, 28, 1.4], [22, 52, 1.6], [42, 54, 1.3], [12, 36, 1], [50, 38, 1.1], [26, 8, 1.5], [38, 8, 1.3], [6, 56, 0.8], [58, 20, 1], [36, 58, 0.9]].map(([cx, cy, r], i) => (
         <g key={i}>
           <circle cx={cx} cy={cy} r={r as number} fill="#f0d48a" opacity={0.15 + (i % 5) * 0.06} />
@@ -483,7 +483,7 @@ function AmavasyaSVG() {
   );
 }
 
-/* 12. Pradosham — Prabha Mandala: Shiva's cosmic fire ring with crescent moon center */
+/* 12. Pradosham  –  Prabha Mandala: Shiva's cosmic fire ring with crescent moon center */
 function PradoshamSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -492,10 +492,10 @@ function PradoshamSVG() {
         <linearGradient id="pd1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
       </defs>
       <circle cx="32" cy="32" r="30" fill="url(#pd1g)" />
-      {/* Outer fire ring — bold, fills the card */}
+      {/* Outer fire ring  –  bold, fills the card */}
       <circle cx="32" cy="32" r="28" fill="none" stroke="url(#pd1)" strokeWidth="3.5" opacity="0.5" />
       <circle cx="32" cy="32" r="24" fill="none" stroke="url(#pd1)" strokeWidth="1.5" opacity="0.25" />
-      {/* 20 fire tongues — dramatic, outward-pointing */}
+      {/* 20 fire tongues  –  dramatic, outward-pointing */}
       {Array.from({ length: 20 }, (_, i) => {
         const a = (Math.PI * 2 * i) / 20;
         const inner = 24;
@@ -505,10 +505,10 @@ function PradoshamSVG() {
       })}
       {/* Inner sacred space */}
       <circle cx="32" cy="32" r="18" fill="url(#pd1)" opacity="0.05" />
-      {/* Crescent moon — Shiva's crown, bold and centered */}
+      {/* Crescent moon  –  Shiva's crown, bold and centered */}
       <circle cx="32" cy="26" r="10" fill="url(#pd1)" opacity="0.2" stroke="url(#pd1)" strokeWidth="2.5" />
       <circle cx="38" cy="23" r="8" fill="#0a0520" />
-      {/* Three horizontal lines — tripundra (Shiva's forehead mark) */}
+      {/* Three horizontal lines  –  tripundra (Shiva's forehead mark) */}
       <line x1="24" y1="38" x2="40" y2="38" stroke="url(#pd1)" strokeWidth="2.5" opacity="0.55" strokeLinecap="round" />
       <line x1="25" y1="42" x2="39" y2="42" stroke="url(#pd1)" strokeWidth="2" opacity="0.4" strokeLinecap="round" />
       <line x1="26" y1="46" x2="38" y2="46" stroke="url(#pd1)" strokeWidth="1.5" opacity="0.3" strokeLinecap="round" />
@@ -524,7 +524,7 @@ function PradoshamSVG() {
   );
 }
 
-/* 13. Chaturthi — Sacred Om (ॐ) with lotus petals and swastik — Ganesha's abstract symbols */
+/* 13. Chaturthi  –  Sacred Om (ॐ) with lotus petals and swastik  –  Ganesha's abstract symbols */
 function ChaturthiSVG() {
   return (
     <svg viewBox="0 0 64 64" width={128} height={128} aria-hidden="true">
@@ -535,7 +535,7 @@ function ChaturthiSVG() {
       <circle cx="32" cy="32" r="30" fill="url(#ct1g)" />
       {/* Outer sacred circle */}
       <circle cx="32" cy="32" r="28" fill="none" stroke="url(#ct1)" strokeWidth="2.5" opacity="0.35" />
-      {/* 8 lotus petals — large, bold, filling the ring */}
+      {/* 8 lotus petals  –  large, bold, filling the ring */}
       {Array.from({ length: 8 }, (_, i) => {
         const a = (Math.PI * 2 * i) / 8;
         const tipX = r2(32 + 26 * Math.cos(a));
@@ -553,9 +553,9 @@ function ChaturthiSVG() {
       })}
       {/* Inner circle */}
       <circle cx="32" cy="32" r="12" fill="url(#ct1)" opacity="0.08" stroke="url(#ct1)" strokeWidth="2" />
-      {/* Bold Om symbol — the centerpiece */}
+      {/* Bold Om symbol  –  the centerpiece */}
       <text x="32" y="40" textAnchor="middle" fill="url(#ct1)" fontSize="24" fontWeight="bold" opacity="0.65" style={{ fontFamily: 'serif' }}>ॐ</text>
-      {/* Swastik marks at 4 corners — small, sacred */}
+      {/* Swastik marks at 4 corners  –  small, sacred */}
       {[[-1, -1], [1, -1], [1, 1], [-1, 1]].map(([dx, dy], i) => {
         const cx = 32 + dx * 22;
         const cy = 32 + dy * 22;

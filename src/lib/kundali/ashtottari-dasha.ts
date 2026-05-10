@@ -1,5 +1,5 @@
 /**
- * Ashtottari Dasha System — 108-year planetary period cycle
+ * Ashtottari Dasha System  –  108-year planetary period cycle
  *
  * Classical reference: BPHS (Brihat Parashara Hora Shastra) Ch. 20
  *
@@ -11,7 +11,7 @@
  *
  * Sequence: Sun(6) → Moon(15) → Mars(8) → Mercury(17) → Saturn(10)
  *           → Jupiter(19) → Venus(21) → Rahu(12) = 108 years
- * Reference: BPHS Ch.20 — mainstream reading excludes Ketu, not Rahu
+ * Reference: BPHS Ch.20  –  mainstream reading excludes Ketu, not Rahu
  */
 
 import type { DashaEntry } from '@/types/kundali';
@@ -218,10 +218,10 @@ const SIGN_LORD: Record<number, number> = {
  *
  * Two classical criteria (either suffices):
  *
- * 1. **Krishna Paksha** — Moon in waning phase (Sun-Moon diff > 180°).
+ * 1. **Krishna Paksha**  –  Moon in waning phase (Sun-Moon diff > 180°).
  *    This is the widely-cited rule from several commentaries.
  *
- * 2. **BPHS rule** — Rahu in a kendra (1, 4, 7, 10) or trikona (1, 5, 9) from
+ * 2. **BPHS rule**  –  Rahu in a kendra (1, 4, 7, 10) or trikona (1, 5, 9) from
  *    the Lagna lord. Per BPHS Ch.20: "When Rahu is in a Kendra or Trikona from
  *    the lord of the Lagna, the Ashtottari dasha is applicable."
  *
@@ -229,8 +229,8 @@ const SIGN_LORD: Record<number, number> = {
  *
  * @param sunLongitude - Sidereal Sun longitude (0-360)
  * @param moonLongitude - Sidereal Moon longitude (0-360)
- * @param ascSign - Ascendant sign 1-12 (optional — needed for BPHS rule)
- * @param rahuLongitude - Sidereal Rahu longitude 0-360 (optional — needed for BPHS rule)
+ * @param ascSign - Ascendant sign 1-12 (optional  –  needed for BPHS rule)
+ * @param rahuLongitude - Sidereal Rahu longitude 0-360 (optional  –  needed for BPHS rule)
  * @returns true if Ashtottari is applicable
  */
 export function isAshtottariApplicable(
@@ -243,18 +243,18 @@ export function isAshtottariApplicable(
   const diff = ((moonLongitude - sunLongitude) % 360 + 360) % 360;
   const isKrishnaPaksha = diff > 180;
 
-  // Criterion 2: BPHS — Rahu in kendra/trikona from Lagna lord
+  // Criterion 2: BPHS  –  Rahu in kendra/trikona from Lagna lord
   let isRahuKendraTrikona = false;
   if (ascSign != null && rahuLongitude != null) {
     const lagnaLordId = SIGN_LORD[ascSign];
-    // We need the Lagna lord's sign — but we only have longitudes for Rahu.
+    // We need the Lagna lord's sign  –  but we only have longitudes for Rahu.
     // The Lagna lord's house position relative to Rahu matters, so we compute
     // which sign Rahu occupies, then check its house offset from the Lagna lord's sign.
     // Since we don't receive all planet longitudes here, we use ascSign's lord
     // and check Rahu's position from it. The "from Lagna lord" means: count houses
     // from the sign the Lagna lord occupies. But we don't have the Lagna lord's
     // actual position. So we check Rahu's sign position relative to the Lagna lord's
-    // OWN sign(s) — a conservative approach.
+    // OWN sign(s)  –  a conservative approach.
     // Actually, the classical rule is about Rahu's house from the Lagna lord.
     // Without knowing which house the Lagna lord is in, we check from ascSign
     // (since the Lagna lord rules ascSign, checking from ascSign is the standard

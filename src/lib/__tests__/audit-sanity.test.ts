@@ -1,12 +1,12 @@
 /**
- * AUDIT TEST SUITE — Layer 3: Cross-Source Sanity Checks (Soft Warnings)
+ * AUDIT TEST SUITE  –  Layer 3: Cross-Source Sanity Checks (Soft Warnings)
  *
  * Compares our output against Prokerala for the same location (Ujjain).
- * NOT a hard fail — flags deviations >15 min as warnings.
+ * NOT a hard fail  –  flags deviations >15 min as warnings.
  * Only runs when SANITY_CHECK=true env var is set.
  *
  * Purpose: catch drift if someone accidentally changes a ghati table or
- * formula constant. NOT a correctness test — our source is Prashna Marga,
+ * formula constant. NOT a correctness test  –  our source is Prashna Marga,
  * not Prokerala.
  */
 import { describe, it, expect } from 'vitest';

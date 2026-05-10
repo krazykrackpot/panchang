@@ -49,7 +49,7 @@ const QUESTIONS: ModuleQuestion[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 1 — What Is Kaal Sarpa Dosha?                                 */
+/*  PAGE 1  –  What Is Kaal Sarpa Dosha?                                 */
 /* ------------------------------------------------------------------ */
 function Page1() {
   const locale = useModuleLocale();
@@ -62,8 +62,8 @@ function Page1() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>काल सर्प दोष एक ज्योतिषीय स्थिति है जो तब बनती है जब जन्म कुण्डली में सभी सात ग्रह (सूर्य, चन्द्र, मंगल, बुध, गुरु, शुक्र, शनि) राहु-केतु अक्ष के एक ओर स्थित होते हैं। यह अवधारणा शास्त्रीय ग्रन्थों जैसे बृहत् पाराशर होरा शास्त्र (BPHS) या फलदीपिका में नहीं मिलती — यह 18वीं-19वीं शताब्दी की उत्तर-शास्त्रीय परम्परा से उत्पन्न हुई है।</>
-            : <>Kaal Sarpa Dosha is an astrological condition that forms when all seven planets (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) are positioned on one side of the Rahu-Ketu axis in the birth chart. Notably, this concept is NOT found in classical texts such as Brihat Parashara Hora Shastra (BPHS) or Phaladeepika — it originated in the post-classical tradition of the 18th-19th century.</>}
+            ? <>काल सर्प दोष एक ज्योतिषीय स्थिति है जो तब बनती है जब जन्म कुण्डली में सभी सात ग्रह (सूर्य, चन्द्र, मंगल, बुध, गुरु, शुक्र, शनि) राहु-केतु अक्ष के एक ओर स्थित होते हैं। यह अवधारणा शास्त्रीय ग्रन्थों जैसे बृहत् पाराशर होरा शास्त्र (BPHS) या फलदीपिका में नहीं मिलती  –  यह 18वीं-19वीं शताब्दी की उत्तर-शास्त्रीय परम्परा से उत्पन्न हुई है।</>
+            : <>Kaal Sarpa Dosha is an astrological condition that forms when all seven planets (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) are positioned on one side of the Rahu-Ketu axis in the birth chart. Notably, this concept is NOT found in classical texts such as Brihat Parashara Hora Shastra (BPHS) or Phaladeepika  –  it originated in the post-classical tradition of the 18th-19th century.</>}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
@@ -92,7 +92,7 @@ function Page1() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 2 — The 12 Types                                              */
+/*  PAGE 2  –  The 12 Types                                              */
 /* ------------------------------------------------------------------ */
 function Page2() {
   const locale = useModuleLocale();
@@ -148,7 +148,7 @@ function Page2() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 3 — Cancellation & Remedies                                   */
+/*  PAGE 3  –  Cancellation & Remedies                                   */
 /* ------------------------------------------------------------------ */
 function Page3() {
   const locale = useModuleLocale();
@@ -181,7 +181,7 @@ function Page3() {
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
             <span className="text-gold-light font-semibold">{tl({ en: 'Nodes in upachaya houses:', hi: 'उपचय भावों में नोड:', sa: 'उपचय भावों में नोड:' }, locale)}</span>{' '}
-            {tl({ en: 'If Rahu or Ketu occupy upachaya houses (3rd, 6th, or 11th), the dosha is weakened. Upachaya houses are houses of growth — malefics placed here improve over time.', hi: 'यदि राहु या केतु उपचय भावों (3, 6, 11) में हैं, तो दोष कमज़ोर होता है। उपचय भाव वृद्धि के भाव हैं — यहाँ पापग्रह समय के साथ सुधरते हैं।', sa: 'यदि राहु या केतु उपचय भावों में हैं तो दोष कमज़ोर।' }, locale)}
+            {tl({ en: 'If Rahu or Ketu occupy upachaya houses (3rd, 6th, or 11th), the dosha is weakened. Upachaya houses are houses of growth  –  malefics placed here improve over time.', hi: 'यदि राहु या केतु उपचय भावों (3, 6, 11) में हैं, तो दोष कमज़ोर होता है। उपचय भाव वृद्धि के भाव हैं  –  यहाँ पापग्रह समय के साथ सुधरते हैं।', sa: 'यदि राहु या केतु उपचय भावों में हैं तो दोष कमज़ोर।' }, locale)}
           </p>
         </div>
       </section>
@@ -193,7 +193,7 @@ function Page3() {
         <div className="space-y-2">
           <p className="text-text-secondary text-xs leading-relaxed">
             <span className="text-gold-light font-semibold">{tl({ en: 'Kaal Sarp Nivaran Puja:', hi: 'काल सर्प निवारण पूजा:', sa: 'काल सर्प निवारण पूजा:' }, locale)}</span>{' '}
-            {tl({ en: 'Performed at Trimbakeshwar (Nashik, Maharashtra) — one of the 12 Jyotirlingas. This is considered the most effective remedy by practitioners who recognize this dosha.', hi: 'त्र्यम्बकेश्वर (नासिक, महाराष्ट्र) में की जाती है — 12 ज्योतिर्लिंगों में से एक। इस दोष को मानने वाले ज्योतिषियों द्वारा यह सबसे प्रभावी उपाय माना जाता है।', sa: 'त्र्यम्बकेश्वर में काल सर्प निवारण पूजा।' }, locale)}
+            {tl({ en: 'Performed at Trimbakeshwar (Nashik, Maharashtra)  –  one of the 12 Jyotirlingas. This is considered the most effective remedy by practitioners who recognize this dosha.', hi: 'त्र्यम्बकेश्वर (नासिक, महाराष्ट्र) में की जाती है  –  12 ज्योतिर्लिंगों में से एक। इस दोष को मानने वाले ज्योतिषियों द्वारा यह सबसे प्रभावी उपाय माना जाता है।', sa: 'त्र्यम्बकेश्वर में काल सर्प निवारण पूजा।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
             <span className="text-gold-light font-semibold">{tl({ en: 'Nag Panchami worship:', hi: 'नाग पंचमी पूजा:', sa: 'नाग पंचमी पूजा:' }, locale)}</span>{' '}

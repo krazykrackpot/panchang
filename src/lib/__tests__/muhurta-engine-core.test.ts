@@ -142,7 +142,7 @@ describe('Panchanga Rules', () => {
     it('scores -5 for Krishna Navami (tithi=24) due to avoidTithis', () => {
       // tithi 24 = Krishna paksha, pakshaRelTithi = 9, which is in avoidTithis
       // Krishna non-good = -3, plus avoid = -5, total = -8
-      // But the task says "scores -5" — avoidTithi adds -5 on top of base
+      // But the task says "scores -5"  –  avoidTithi adds -5 on top of base
       const result = rule.evaluate(makeCtx({ tithi: 24 }));
       expect(result).not.toBeNull();
       // pakshaRelTithi=9, not in goodTithis, isKrishna=true => -3
@@ -209,7 +209,7 @@ describe('Panchanga Rules', () => {
     const rule = PANCHANGA_RULES.find(r => r.id === 'yoga-quality')!;
 
     it('scores -6 for moderate inauspicious yoga (1=Vishkambha)', () => {
-      // Vishkambha is moderate inauspicious — tier 2, -6 points
+      // Vishkambha is moderate inauspicious  –  tier 2, -6 points
       const result = rule.evaluate(makeCtx({ yoga: 1 }));
       expect(result).not.toBeNull();
       expect(result!.points).toBe(-6);
@@ -217,7 +217,7 @@ describe('Panchanga Rules', () => {
     });
 
     it('vetoes hard inauspicious yoga for samskara (marriage)', () => {
-      // makeCtx defaults to marriage — Ganda + marriage = Tier 0 absolute veto
+      // makeCtx defaults to marriage  –  Ganda + marriage = Tier 0 absolute veto
       const result = rule.evaluate(makeCtx({ yoga: 10 }));
       expect(result).not.toBeNull();
       expect(result!.vetoed).toBe(true);
@@ -226,7 +226,7 @@ describe('Panchanga Rules', () => {
     });
 
     it('scores -8 for hard inauspicious yoga (Ganda) on non-samskara', () => {
-      // Override activity to business — Ganda = tier 2, -8 (not a veto)
+      // Override activity to business  –  Ganda = tier 2, -8 (not a veto)
       const ctx = makeCtx({ yoga: 10 });
       (ctx as { activity: string }).activity = 'business';
       const result = rule.evaluate(ctx);
@@ -285,7 +285,7 @@ describe('Evaluator', () => {
 
   it('returns score=0 with vetoes for forbidden nakshatra (Ardra for marriage)', () => {
     registerRules(PANCHANGA_RULES);
-    const ctx = makeCtx({ nakshatra: 6 }); // Ardra — hard veto for marriage
+    const ctx = makeCtx({ nakshatra: 6 }); // Ardra  –  hard veto for marriage
     const result = evaluateWindow(ctx);
 
     expect(result.score).toBe(0);

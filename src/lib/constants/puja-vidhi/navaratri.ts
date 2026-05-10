@@ -45,9 +45,9 @@ export const NAVARATRI_PUJA: PujaVidhi = {
       step: 1,
       title: { en: 'Ghatasthapana (Day 1)', hi: 'घटस्थापना (प्रथम दिन)', sa: 'घटस्थापनम् (प्रथमदिनम्)' },
       description: {
-        en: 'Clean the puja area and spread a red cloth on the platform. Fill a copper/brass kalash with water, place mango leaves around its rim, and set a coconut on top wrapped in red cloth. Place the kalash on a bed of soil mixed with barley seeds. Light the Akhand Jyoti. Day 1 is dedicated to Maa Shailaputri — the daughter of the mountains.',
-        hi: 'पूजा स्थल को साफ कर चौकी पर लाल कपड़ा बिछाएँ। ताम्बे/पीतल के कलश में जल भरें, किनारे पर आम के पत्ते रखें, और ऊपर लाल कपड़े में लिपटा नारियल रखें। मिट्टी और जौ के बीजों की क्यारी पर कलश स्थापित करें। अखण्ड ज्योति प्रज्वलित करें। प्रथम दिन माँ शैलपुत्री — पर्वतराज की पुत्री — को समर्पित है।',
-        sa: 'पूजास्थलं शोधयित्वा वेदिकायां रक्तवस्त्रं विस्तारयेत्। ताम्रकलशे जलं पूरयेत्, मुखे आम्रपत्राणि न्यस्येत्, उपरि रक्तवस्त्रवेष्टितनारिकेलं स्थापयेत्। मृद्यवबीजशय्यायां कलशं स्थापयेत्। अखण्डज्योतिं प्रज्वालयेत्। प्रथमदिनं माशैलपुत्र्यै — गिरिराजसुतायै — समर्पितम्।',
+        en: 'Clean the puja area and spread a red cloth on the platform. Fill a copper/brass kalash with water, place mango leaves around its rim, and set a coconut on top wrapped in red cloth. Place the kalash on a bed of soil mixed with barley seeds. Light the Akhand Jyoti. Day 1 is dedicated to Maa Shailaputri  –  the daughter of the mountains.',
+        hi: 'पूजा स्थल को साफ कर चौकी पर लाल कपड़ा बिछाएँ। ताम्बे/पीतल के कलश में जल भरें, किनारे पर आम के पत्ते रखें, और ऊपर लाल कपड़े में लिपटा नारियल रखें। मिट्टी और जौ के बीजों की क्यारी पर कलश स्थापित करें। अखण्ड ज्योति प्रज्वलित करें। प्रथम दिन माँ शैलपुत्री  –  पर्वतराज की पुत्री  –  को समर्पित है।',
+        sa: 'पूजास्थलं शोधयित्वा वेदिकायां रक्तवस्त्रं विस्तारयेत्। ताम्रकलशे जलं पूरयेत्, मुखे आम्रपत्राणि न्यस्येत्, उपरि रक्तवस्त्रवेष्टितनारिकेलं स्थापयेत्। मृद्यवबीजशय्यायां कलशं स्थापयेत्। अखण्डज्योतिं प्रज्वालयेत्। प्रथमदिनं माशैलपुत्र्यै  –  गिरिराजसुतायै  –  समर्पितम्।',
       },
       duration: '30 min',
       essential: true,
@@ -55,11 +55,11 @@ export const NAVARATRI_PUJA: PujaVidhi = {
     },
     {
       step: 2,
-      title: { en: 'Day 2 — Brahmacharini Puja', hi: 'द्वितीय दिन — ब्रह्मचारिणी पूजा', sa: 'द्वितीयदिनम् — ब्रह्मचारिणीपूजनम्' },
+      title: { en: 'Day 2  –  Brahmacharini Puja', hi: 'द्वितीय दिन  –  ब्रह्मचारिणी पूजा', sa: 'द्वितीयदिनम्  –  ब्रह्मचारिणीपूजनम्' },
       description: {
-        en: 'Worship Maa Brahmacharini — the austere form of Parvati who performed intense tapas. Offer sugar, fruits, and white flowers. Chant the Durga Beej Mantra 108 times. Maintain the Akhand Jyoti by replenishing ghee/oil.',
-        hi: 'माँ ब्रह्मचारिणी — पार्वती के तपस्विनी रूप — की पूजा करें। शक्कर, फल और सफेद फूल अर्पित करें। दुर्गा बीज मन्त्र 108 बार जपें। घी/तेल डालकर अखण्ड ज्योति बनाए रखें।',
-        sa: 'माब्रह्मचारिणीं — पार्वत्याः तपस्विनीरूपं — पूजयेत्। शर्करां फलानि श्वेतपुष्पाणि च समर्पयेत्। दुर्गाबीजमन्त्रम् अष्टोत्तरशतवारं जपेत्। घृततैलपूरणेन अखण्डज्योतिं रक्षेत्।',
+        en: 'Worship Maa Brahmacharini  –  the austere form of Parvati who performed intense tapas. Offer sugar, fruits, and white flowers. Chant the Durga Beej Mantra 108 times. Maintain the Akhand Jyoti by replenishing ghee/oil.',
+        hi: 'माँ ब्रह्मचारिणी  –  पार्वती के तपस्विनी रूप  –  की पूजा करें। शक्कर, फल और सफेद फूल अर्पित करें। दुर्गा बीज मन्त्र 108 बार जपें। घी/तेल डालकर अखण्ड ज्योति बनाए रखें।',
+        sa: 'माब्रह्मचारिणीं  –  पार्वत्याः तपस्विनीरूपं  –  पूजयेत्। शर्करां फलानि श्वेतपुष्पाणि च समर्पयेत्। दुर्गाबीजमन्त्रम् अष्टोत्तरशतवारं जपेत्। घृततैलपूरणेन अखण्डज्योतिं रक्षेत्।',
       },
       mantraRef: 'durga-beej',
       duration: '20 min',
@@ -68,11 +68,11 @@ export const NAVARATRI_PUJA: PujaVidhi = {
     },
     {
       step: 3,
-      title: { en: 'Day 3 — Chandraghanta Puja', hi: 'तृतीय दिन — चन्द्रघण्टा पूजा', sa: 'तृतीयदिनम् — चन्द्रघण्टापूजनम्' },
+      title: { en: 'Day 3  –  Chandraghanta Puja', hi: 'तृतीय दिन  –  चन्द्रघण्टा पूजा', sa: 'तृतीयदिनम्  –  चन्द्रघण्टापूजनम्' },
       description: {
-        en: 'Worship Maa Chandraghanta — adorned with a half-moon bell on her forehead, she destroys evil. Offer milk-based sweets and yellow flowers. Ring a bell during the puja to invoke her grace.',
-        hi: 'माँ चन्द्रघण्टा — माथे पर अर्धचन्द्र घण्टी धारिणी, दुष्टों का नाश करने वाली — की पूजा करें। दूध से बनी मिठाई और पीले फूल अर्पित करें। कृपा प्राप्ति हेतु पूजा में घण्टी बजाएँ।',
-        sa: 'माचन्द्रघण्टां — ललाटे अर्धचन्द्रघण्टाधारिणीं दुष्टविनाशिनीं — पूजयेत्। क्षीरमिष्टान्नानि पीतपुष्पाणि च समर्पयेत्। कृपाप्राप्त्यर्थं पूजने घण्टां वादयेत्।',
+        en: 'Worship Maa Chandraghanta  –  adorned with a half-moon bell on her forehead, she destroys evil. Offer milk-based sweets and yellow flowers. Ring a bell during the puja to invoke her grace.',
+        hi: 'माँ चन्द्रघण्टा  –  माथे पर अर्धचन्द्र घण्टी धारिणी, दुष्टों का नाश करने वाली  –  की पूजा करें। दूध से बनी मिठाई और पीले फूल अर्पित करें। कृपा प्राप्ति हेतु पूजा में घण्टी बजाएँ।',
+        sa: 'माचन्द्रघण्टां  –  ललाटे अर्धचन्द्रघण्टाधारिणीं दुष्टविनाशिनीं  –  पूजयेत्। क्षीरमिष्टान्नानि पीतपुष्पाणि च समर्पयेत्। कृपाप्राप्त्यर्थं पूजने घण्टां वादयेत्।',
       },
       duration: '20 min',
       essential: true,
@@ -80,11 +80,11 @@ export const NAVARATRI_PUJA: PujaVidhi = {
     },
     {
       step: 4,
-      title: { en: 'Day 4 — Kushmanda Puja', hi: 'चतुर्थ दिन — कूष्माण्डा पूजा', sa: 'चतुर्थदिनम् — कूष्माण्डापूजनम्' },
+      title: { en: 'Day 4  –  Kushmanda Puja', hi: 'चतुर्थ दिन  –  कूष्माण्डा पूजा', sa: 'चतुर्थदिनम्  –  कूष्माण्डापूजनम्' },
       description: {
-        en: 'Worship Maa Kushmanda — the creator of the cosmic egg (Brahmanda) with her smile. Offer malpua (sweet pancake) and petha (pumpkin sweet). She radiates like the sun and bestows cosmic energy.',
-        hi: 'माँ कूष्माण्डा — अपनी मुस्कान से ब्रह्माण्ड की रचना करने वाली — की पूजा करें। मालपुआ और पेठा अर्पित करें। वे सूर्य के समान तेजस्वी हैं और ब्रह्माण्डीय ऊर्जा प्रदान करती हैं।',
-        sa: 'माकूष्माण्डां — स्मितेन ब्रह्माण्डसृष्टिकर्त्रीं — पूजयेत्। मालपूयं कूष्माण्डमिष्टान्नं च समर्पयेत्। सूर्यवत् तेजस्विनी सा ब्रह्माण्डीयशक्तिं ददाति।',
+        en: 'Worship Maa Kushmanda  –  the creator of the cosmic egg (Brahmanda) with her smile. Offer malpua (sweet pancake) and petha (pumpkin sweet). She radiates like the sun and bestows cosmic energy.',
+        hi: 'माँ कूष्माण्डा  –  अपनी मुस्कान से ब्रह्माण्ड की रचना करने वाली  –  की पूजा करें। मालपुआ और पेठा अर्पित करें। वे सूर्य के समान तेजस्वी हैं और ब्रह्माण्डीय ऊर्जा प्रदान करती हैं।',
+        sa: 'माकूष्माण्डां  –  स्मितेन ब्रह्माण्डसृष्टिकर्त्रीं  –  पूजयेत्। मालपूयं कूष्माण्डमिष्टान्नं च समर्पयेत्। सूर्यवत् तेजस्विनी सा ब्रह्माण्डीयशक्तिं ददाति।',
       },
       duration: '20 min',
       essential: true,
@@ -92,11 +92,11 @@ export const NAVARATRI_PUJA: PujaVidhi = {
     },
     {
       step: 5,
-      title: { en: 'Day 5 — Skandamata Puja', hi: 'पञ्चम दिन — स्कन्दमाता पूजा', sa: 'पञ्चमदिनम् — स्कन्दमातापूजनम्' },
+      title: { en: 'Day 5  –  Skandamata Puja', hi: 'पञ्चम दिन  –  स्कन्दमाता पूजा', sa: 'पञ्चमदिनम्  –  स्कन्दमातापूजनम्' },
       description: {
-        en: 'Worship Maa Skandamata — the mother of Kartikeya (Skanda). Offer bananas and other fruits. She grants wisdom and salvation. Sit in meditation after the puja.',
-        hi: 'माँ स्कन्दमाता — कार्तिकेय (स्कन्द) की माता — की पूजा करें। केला और अन्य फल अर्पित करें। वे ज्ञान और मोक्ष प्रदान करती हैं। पूजा के बाद ध्यान में बैठें।',
-        sa: 'मास्कन्दमातां — कार्तिकेयस्य (स्कन्दस्य) मातरं — पूजयेत्। कदलीफलानि अन्यफलानि च समर्पयेत्। ज्ञानमोक्षौ ददाति। पूजनानन्तरं ध्यानम् आसीत।',
+        en: 'Worship Maa Skandamata  –  the mother of Kartikeya (Skanda). Offer bananas and other fruits. She grants wisdom and salvation. Sit in meditation after the puja.',
+        hi: 'माँ स्कन्दमाता  –  कार्तिकेय (स्कन्द) की माता  –  की पूजा करें। केला और अन्य फल अर्पित करें। वे ज्ञान और मोक्ष प्रदान करती हैं। पूजा के बाद ध्यान में बैठें।',
+        sa: 'मास्कन्दमातां  –  कार्तिकेयस्य (स्कन्दस्य) मातरं  –  पूजयेत्। कदलीफलानि अन्यफलानि च समर्पयेत्। ज्ञानमोक्षौ ददाति। पूजनानन्तरं ध्यानम् आसीत।',
       },
       duration: '20 min',
       essential: true,
@@ -104,11 +104,11 @@ export const NAVARATRI_PUJA: PujaVidhi = {
     },
     {
       step: 6,
-      title: { en: 'Day 6 — Katyayani Puja', hi: 'षष्ठ दिन — कात्यायनी पूजा', sa: 'षष्ठदिनम् — कात्यायनीपूजनम्' },
+      title: { en: 'Day 6  –  Katyayani Puja', hi: 'षष्ठ दिन  –  कात्यायनी पूजा', sa: 'षष्ठदिनम्  –  कात्यायनीपूजनम्' },
       description: {
-        en: 'Worship Maa Katyayani — born in the ashrama of sage Katyayana, she is the warrior form who slew Mahishasura. Offer honey and recite the Navarna Mantra. Unmarried girls worship her for a good husband.',
-        hi: 'माँ कात्यायनी — ऋषि कात्यायन के आश्रम में जन्मी, महिषासुर का वध करने वाली योद्धा रूप — की पूजा करें। शहद अर्पित करें और नवार्ण मन्त्र पढ़ें। अविवाहित कन्याएँ अच्छे वर के लिए इनकी पूजा करती हैं।',
-        sa: 'माकात्यायनीं — कात्यायनमुनेः आश्रमे जातां महिषासुरमर्दिनीं योद्धारूपां — पूजयेत्। मधु समर्पयेत् नवार्णमन्त्रं च पठेत्। अविवाहिताः कन्याः सद्वरप्राप्त्यर्थं तां पूजयन्ति।',
+        en: 'Worship Maa Katyayani  –  born in the ashrama of sage Katyayana, she is the warrior form who slew Mahishasura. Offer honey and recite the Navarna Mantra. Unmarried girls worship her for a good husband.',
+        hi: 'माँ कात्यायनी  –  ऋषि कात्यायन के आश्रम में जन्मी, महिषासुर का वध करने वाली योद्धा रूप  –  की पूजा करें। शहद अर्पित करें और नवार्ण मन्त्र पढ़ें। अविवाहित कन्याएँ अच्छे वर के लिए इनकी पूजा करती हैं।',
+        sa: 'माकात्यायनीं  –  कात्यायनमुनेः आश्रमे जातां महिषासुरमर्दिनीं योद्धारूपां  –  पूजयेत्। मधु समर्पयेत् नवार्णमन्त्रं च पठेत्। अविवाहिताः कन्याः सद्वरप्राप्त्यर्थं तां पूजयन्ति।',
       },
       mantraRef: 'navarna-mantra',
       duration: '20 min',
@@ -117,11 +117,11 @@ export const NAVARATRI_PUJA: PujaVidhi = {
     },
     {
       step: 7,
-      title: { en: 'Day 7 — Kaalratri Puja & Saraswati Sthapana', hi: 'सप्तम दिन — कालरात्रि पूजा एवं सरस्वती स्थापना', sa: 'सप्तमदिनम् — कालरात्रिपूजनं सरस्वतीस्थापना च' },
+      title: { en: 'Day 7  –  Kaalratri Puja & Saraswati Sthapana', hi: 'सप्तम दिन  –  कालरात्रि पूजा एवं सरस्वती स्थापना', sa: 'सप्तमदिनम्  –  कालरात्रिपूजनं सरस्वतीस्थापना च' },
       description: {
-        en: 'Worship Maa Kaalratri — the fiercest form, dark as night, who destroys ignorance and evil spirits. Offer jaggery or gur. On this day, also perform Saraswati Sthapana by placing books and instruments before the altar for blessing.',
-        hi: 'माँ कालरात्रि — सबसे भयंकर रूप, रात्रि के समान श्यामवर्णा, अज्ञान और दुष्ट आत्माओं का नाश करने वाली — की पूजा करें। गुड़ अर्पित करें। इसी दिन सरस्वती स्थापना भी करें — पुस्तकें और वाद्ययन्त्र वेदी के सामने रखें।',
-        sa: 'माकालरात्रिं — भयङ्करतमां रात्रिकृष्णवर्णां अज्ञानदुष्टात्मविनाशिनीं — पूजयेत्। गुडं समर्पयेत्। अस्मिन् दिने सरस्वतीस्थापनमपि कुर्यात् — पुस्तकानि वाद्ययन्त्राणि च वेदिकायाः पुरतः स्थापयेत्।',
+        en: 'Worship Maa Kaalratri  –  the fiercest form, dark as night, who destroys ignorance and evil spirits. Offer jaggery or gur. On this day, also perform Saraswati Sthapana by placing books and instruments before the altar for blessing.',
+        hi: 'माँ कालरात्रि  –  सबसे भयंकर रूप, रात्रि के समान श्यामवर्णा, अज्ञान और दुष्ट आत्माओं का नाश करने वाली  –  की पूजा करें। गुड़ अर्पित करें। इसी दिन सरस्वती स्थापना भी करें  –  पुस्तकें और वाद्ययन्त्र वेदी के सामने रखें।',
+        sa: 'माकालरात्रिं  –  भयङ्करतमां रात्रिकृष्णवर्णां अज्ञानदुष्टात्मविनाशिनीं  –  पूजयेत्। गुडं समर्पयेत्। अस्मिन् दिने सरस्वतीस्थापनमपि कुर्यात्  –  पुस्तकानि वाद्ययन्त्राणि च वेदिकायाः पुरतः स्थापयेत्।',
       },
       duration: '25 min',
       essential: true,
@@ -129,11 +129,11 @@ export const NAVARATRI_PUJA: PujaVidhi = {
     },
     {
       step: 8,
-      title: { en: 'Day 8 — Mahagauri Puja, Ashtami Havan & Kanya Pujan', hi: 'अष्टम दिन — महागौरी पूजा, अष्टमी हवन एवं कन्या पूजन', sa: 'अष्टमदिनम् — महागौरीपूजनम्, अष्टमीहवनं कन्यापूजनं च' },
+      title: { en: 'Day 8  –  Mahagauri Puja, Ashtami Havan & Kanya Pujan', hi: 'अष्टम दिन  –  महागौरी पूजा, अष्टमी हवन एवं कन्या पूजन', sa: 'अष्टमदिनम्  –  महागौरीपूजनम्, अष्टमीहवनं कन्यापूजनं च' },
       description: {
-        en: 'Worship Maa Mahagauri — radiant white, the purest form, who fulfils all wishes. Perform the Ashtami Havan with ghee and samagri while chanting the Durga Gayatri. Then perform Kanya Pujan — invite 9 young girls (representing 9 Devi forms), wash their feet, offer tilak, gifts, food, and sweets, and seek their blessings.',
-        hi: 'माँ महागौरी — श्वेत तेजस्विनी, सबसे पवित्र रूप, सभी मनोकामनाएँ पूर्ण करने वाली — की पूजा करें। दुर्गा गायत्री मन्त्र के साथ घी और सामग्री से अष्टमी हवन करें। फिर कन्या पूजन करें — 9 कन्याओं (नौ देवी स्वरूप) को आमन्त्रित कर उनके पैर धोएँ, तिलक लगाएँ, उपहार, भोजन और मिठाई दें, और उनका आशीर्वाद लें।',
-        sa: 'मामहागौरीं — श्वेततेजस्विनीं पवित्रतमां सर्वमनोरथसिद्धिकरीं — पूजयेत्। दुर्गागायत्रीमन्त्रेण घृतसामग्र्या अष्टमीहवनं कुर्यात्। ततः कन्यापूजनं कुर्यात् — नवकन्याः (नवदेवीस्वरूपाः) आमन्त्र्य तासां पादौ प्रक्षाल्य तिलकं कृत्वा उपहारान् भोजनं मिष्टान्नानि च दत्त्वा तासाम् आशीर्वादं गृह्णीयात्।',
+        en: 'Worship Maa Mahagauri  –  radiant white, the purest form, who fulfils all wishes. Perform the Ashtami Havan with ghee and samagri while chanting the Durga Gayatri. Then perform Kanya Pujan  –  invite 9 young girls (representing 9 Devi forms), wash their feet, offer tilak, gifts, food, and sweets, and seek their blessings.',
+        hi: 'माँ महागौरी  –  श्वेत तेजस्विनी, सबसे पवित्र रूप, सभी मनोकामनाएँ पूर्ण करने वाली  –  की पूजा करें। दुर्गा गायत्री मन्त्र के साथ घी और सामग्री से अष्टमी हवन करें। फिर कन्या पूजन करें  –  9 कन्याओं (नौ देवी स्वरूप) को आमन्त्रित कर उनके पैर धोएँ, तिलक लगाएँ, उपहार, भोजन और मिठाई दें, और उनका आशीर्वाद लें।',
+        sa: 'मामहागौरीं  –  श्वेततेजस्विनीं पवित्रतमां सर्वमनोरथसिद्धिकरीं  –  पूजयेत्। दुर्गागायत्रीमन्त्रेण घृतसामग्र्या अष्टमीहवनं कुर्यात्। ततः कन्यापूजनं कुर्यात्  –  नवकन्याः (नवदेवीस्वरूपाः) आमन्त्र्य तासां पादौ प्रक्षाल्य तिलकं कृत्वा उपहारान् भोजनं मिष्टान्नानि च दत्त्वा तासाम् आशीर्वादं गृह्णीयात्।',
       },
       mantraRef: 'durga-gayatri',
       duration: '60 min',
@@ -142,11 +142,11 @@ export const NAVARATRI_PUJA: PujaVidhi = {
     },
     {
       step: 9,
-      title: { en: 'Day 9 — Siddhidatri Puja & Navami Havan', hi: 'नवम दिन — सिद्धिदात्री पूजा एवं नवमी हवन', sa: 'नवमदिनम् — सिद्धिदात्रीपूजनं नवमीहवनं च' },
+      title: { en: 'Day 9  –  Siddhidatri Puja & Navami Havan', hi: 'नवम दिन  –  सिद्धिदात्री पूजा एवं नवमी हवन', sa: 'नवमदिनम्  –  सिद्धिदात्रीपूजनं नवमीहवनं च' },
       description: {
-        en: 'Worship Maa Siddhidatri — the bestower of all 8 Siddhis (supernatural powers). Perform the final Navami Havan with 108 ahutis (oblations) of ghee. Offer special bhog and sweets. Check the barley sprouts grown in the kalash — tall green sprouts signify a prosperous year.',
-        hi: 'माँ सिद्धिदात्री — सभी 8 सिद्धियों (अलौकिक शक्तियों) की दाता — की पूजा करें। 108 आहुतियों के साथ अन्तिम नवमी हवन करें। विशेष भोग और मिठाई अर्पित करें। कलश में उगे जौ के अंकुर देखें — लम्बे हरे अंकुर सम्पन्न वर्ष का संकेत हैं।',
-        sa: 'मासिद्धिदात्रीं — सर्वाष्टसिद्धिप्रदायिनीं — पूजयेत्। अष्टोत्तरशतघृताहुतिभिः अन्तिमं नवमीहवनं कुर्यात्। विशेषभोगमिष्टान्नानि च समर्पयेत्। कलशे प्ररूढान् यवाङ्कुरान् पश्येत् — दीर्घहरिताङ्कुराः समृद्धवर्षसूचकाः।',
+        en: 'Worship Maa Siddhidatri  –  the bestower of all 8 Siddhis (supernatural powers). Perform the final Navami Havan with 108 ahutis (oblations) of ghee. Offer special bhog and sweets. Check the barley sprouts grown in the kalash  –  tall green sprouts signify a prosperous year.',
+        hi: 'माँ सिद्धिदात्री  –  सभी 8 सिद्धियों (अलौकिक शक्तियों) की दाता  –  की पूजा करें। 108 आहुतियों के साथ अन्तिम नवमी हवन करें। विशेष भोग और मिठाई अर्पित करें। कलश में उगे जौ के अंकुर देखें  –  लम्बे हरे अंकुर सम्पन्न वर्ष का संकेत हैं।',
+        sa: 'मासिद्धिदात्रीं  –  सर्वाष्टसिद्धिप्रदायिनीं  –  पूजयेत्। अष्टोत्तरशतघृताहुतिभिः अन्तिमं नवमीहवनं कुर्यात्। विशेषभोगमिष्टान्नानि च समर्पयेत्। कलशे प्ररूढान् यवाङ्कुरान् पश्येत्  –  दीर्घहरिताङ्कुराः समृद्धवर्षसूचकाः।',
       },
       duration: '45 min',
       essential: true,
@@ -158,7 +158,7 @@ export const NAVARATRI_PUJA: PujaVidhi = {
       description: {
         en: 'Each morning: wake before sunrise, bathe, light fresh incense, offer red flowers and kumkum to the Durga idol, replenish the Akhand Jyoti with ghee, sprinkle water on the barley sprouts, chant the Durga Beej Mantra 108 times, and perform aarti. In the evening, repeat aarti and offer naivedya.',
         hi: 'प्रतिदिन प्रातः: सूर्योदय से पहले उठें, स्नान करें, ताजी अगरबत्ती जलाएँ, दुर्गा मूर्ति पर लाल फूल और कुमकुम अर्पित करें, अखण्ड ज्योति में घी डालें, जौ के अंकुरों पर जल छिड़कें, दुर्गा बीज मन्त्र 108 बार जपें, और आरती करें। सायं पुनः आरती और नैवेद्य अर्पित करें।',
-        sa: 'प्रतिदिनं प्रातः — सूर्योदयात् पूर्वम् उत्थाय स्नात्वा नवधूपं प्रज्वाल्य दुर्गामूर्तौ रक्तपुष्पाणि कुङ्कुमं च समर्प्य अखण्डज्योतौ घृतं दत्त्वा यवाङ्कुरेषु जलं सिञ्च्य दुर्गाबीजमन्त्रम् अष्टोत्तरशतवारं जपित्वा आरात्रिकं कुर्यात्। सायं पुनः आरात्रिकं नैवेद्यं च समर्पयेत्।',
+        sa: 'प्रतिदिनं प्रातः  –  सूर्योदयात् पूर्वम् उत्थाय स्नात्वा नवधूपं प्रज्वाल्य दुर्गामूर्तौ रक्तपुष्पाणि कुङ्कुमं च समर्प्य अखण्डज्योतौ घृतं दत्त्वा यवाङ्कुरेषु जलं सिञ्च्य दुर्गाबीजमन्त्रम् अष्टोत्तरशतवारं जपित्वा आरात्रिकं कुर्यात्। सायं पुनः आरात्रिकं नैवेद्यं च समर्पयेत्।',
       },
       mantraRef: 'durga-beej',
       duration: '30 min',
@@ -192,9 +192,9 @@ export const NAVARATRI_PUJA: PujaVidhi = {
       },
       japaCount: 108,
       usage: {
-        en: 'Primary beej mantra for daily Navaratri puja — chant 108 times each morning',
-        hi: 'दैनिक नवरात्रि पूजा का मुख्य बीज मन्त्र — प्रतिदिन प्रातः 108 बार जपें',
-        sa: 'दैनिकनवरात्रिपूजायाः प्रधानबीजमन्त्रः — प्रतिप्रातः अष्टोत्तरशतवारं जपेत्',
+        en: 'Primary beej mantra for daily Navaratri puja  –  chant 108 times each morning',
+        hi: 'दैनिक नवरात्रि पूजा का मुख्य बीज मन्त्र  –  प्रतिदिन प्रातः 108 बार जपें',
+        sa: 'दैनिकनवरात्रिपूजायाः प्रधानबीजमन्त्रः  –  प्रतिप्रातः अष्टोत्तरशतवारं जपेत्',
       },
     },
     {
@@ -203,15 +203,15 @@ export const NAVARATRI_PUJA: PujaVidhi = {
       devanagari: 'ॐ ऐं ह्रीं क्लीं चामुण्डायै विच्चे',
       iast: 'oṃ aiṃ hrīṃ klīṃ cāmuṇḍāyai vicce',
       meaning: {
-        en: 'Om — the primordial sound; Aim — Saraswati beej; Hreem — Lakshmi beej; Kleem — Kali beej; salutations to Chamunda — the slayer of Chanda and Munda',
-        hi: 'ॐ — आदि ध्वनि; ऐं — सरस्वती बीज; ह्रीं — लक्ष्मी बीज; क्लीं — काली बीज; चामुण्डा — चण्ड-मुण्ड संहारिणी — को नमन',
-        sa: 'ॐ — प्रणवः; ऐं — सरस्वतीबीजम्; ह्रीं — लक्ष्मीबीजम्; क्लीं — कालीबीजम्; चण्डमुण्डसंहारिण्यै चामुण्डायै नमः',
+        en: 'Om  –  the primordial sound; Aim  –  Saraswati beej; Hreem  –  Lakshmi beej; Kleem  –  Kali beej; salutations to Chamunda  –  the slayer of Chanda and Munda',
+        hi: 'ॐ  –  आदि ध्वनि; ऐं  –  सरस्वती बीज; ह्रीं  –  लक्ष्मी बीज; क्लीं  –  काली बीज; चामुण्डा  –  चण्ड-मुण्ड संहारिणी  –  को नमन',
+        sa: 'ॐ  –  प्रणवः; ऐं  –  सरस्वतीबीजम्; ह्रीं  –  लक्ष्मीबीजम्; क्लीं  –  कालीबीजम्; चण्डमुण्डसंहारिण्यै चामुण्डायै नमः',
       },
       japaCount: 108,
       usage: {
-        en: 'The most powerful Durga mantra from Durga Saptashati — chant 108 times daily during Navaratri',
-        hi: 'दुर्गा सप्तशती का सबसे शक्तिशाली दुर्गा मन्त्र — नवरात्रि में प्रतिदिन 108 बार जपें',
-        sa: 'दुर्गासप्तशत्याः शक्तिशालिदुर्गामन्त्रः — नवरात्रौ प्रतिदिनम् अष्टोत्तरशतवारं जपेत्',
+        en: 'The most powerful Durga mantra from Durga Saptashati  –  chant 108 times daily during Navaratri',
+        hi: 'दुर्गा सप्तशती का सबसे शक्तिशाली दुर्गा मन्त्र  –  नवरात्रि में प्रतिदिन 108 बार जपें',
+        sa: 'दुर्गासप्तशत्याः शक्तिशालिदुर्गामन्त्रः  –  नवरात्रौ प्रतिदिनम् अष्टोत्तरशतवारं जपेत्',
       },
     },
     {
@@ -225,9 +225,9 @@ export const NAVARATRI_PUJA: PujaVidhi = {
         sa: 'कात्यायनीं विद्मः। कन्यकुमारीं धीमहि। दुर्गिः नः प्रचोदयात्।',
       },
       usage: {
-        en: 'Chant during the Ashtami Havan — 108 times with each ghee oblation',
-        hi: 'अष्टमी हवन के दौरान जपें — प्रत्येक घी की आहुति के साथ 108 बार',
-        sa: 'अष्टमीहवने जपेत् — प्रतिघृताहुत्या अष्टोत्तरशतवारम्',
+        en: 'Chant during the Ashtami Havan  –  108 times with each ghee oblation',
+        hi: 'अष्टमी हवन के दौरान जपें  –  प्रत्येक घी की आहुति के साथ 108 बार',
+        sa: 'अष्टमीहवने जपेत्  –  प्रतिघृताहुत्या अष्टोत्तरशतवारम्',
       },
     },
     {
@@ -241,9 +241,9 @@ export const NAVARATRI_PUJA: PujaVidhi = {
         sa: 'जय जय हे महिषासुरमर्दिनि रम्यकपर्दिनि शैलसुते!',
       },
       usage: {
-        en: 'Refrain verse from the Mahishasura Mardini Stotram — recite during evening aarti on all 9 days',
-        hi: 'महिषासुरमर्दिनी स्तोत्र का स्थायी — सभी 9 दिनों की सन्ध्या आरती में पढ़ें',
-        sa: 'महिषासुरमर्दिनीस्तोत्रस्य ध्रुवपदम् — सर्वेषु नवदिनेषु सन्ध्यारात्रिके पठेत्',
+        en: 'Refrain verse from the Mahishasura Mardini Stotram  –  recite during evening aarti on all 9 days',
+        hi: 'महिषासुरमर्दिनी स्तोत्र का स्थायी  –  सभी 9 दिनों की सन्ध्या आरती में पढ़ें',
+        sa: 'महिषासुरमर्दिनीस्तोत्रस्य ध्रुवपदम्  –  सर्वेषु नवदिनेषु सन्ध्यारात्रिके पठेत्',
       },
     },
   ],
@@ -256,7 +256,7 @@ export const NAVARATRI_PUJA: PujaVidhi = {
       note: {
         en: 'The primary scripture for Navaratri. Ideally recite all 13 chapters over 9 days. Can be divided: Ch 1 on Day 1, Ch 2-4 on Days 2-4, Ch 5-8 on Days 5-8, Ch 9-13 on Day 9.',
         hi: 'नवरात्रि का प्रमुख ग्रन्थ। आदर्श रूप से 9 दिनों में सभी 13 अध्याय पढ़ें। विभाजन: अध्याय 1 दिन 1, अध्याय 2-4 दिन 2-4, अध्याय 5-8 दिन 5-8, अध्याय 9-13 दिन 9 पर।',
-        sa: 'नवरात्रेः प्रधानग्रन्थः। नवदिनेषु सर्वान् त्रयोदशाध्यायान् पठेत्। विभागः — अध्यायः १ दिने १, अध्यायाः २-४ दिनेषु २-४, अध्यायाः ५-८ दिनेषु ५-८, अध्यायाः ९-१३ दिने ९।',
+        sa: 'नवरात्रेः प्रधानग्रन्थः। नवदिनेषु सर्वान् त्रयोदशाध्यायान् पठेत्। विभागः  –  अध्यायः १ दिने १, अध्यायाः २-४ दिनेषु २-४, अध्यायाः ५-८ दिनेषु ५-८, अध्यायाः ९-१३ दिने ९।',
       },
     },
     {
@@ -281,20 +281,20 @@ export const NAVARATRI_PUJA: PujaVidhi = {
 
   naivedya: {
     en: 'Halwa, poori, chana (chickpea curry), kheer, fresh fruits, coconut, seasonal sweets, and special prasad for Kanya Pujan including poori-chana and halwa',
-    hi: 'हलवा, पूरी, चने, खीर, ताजे फल, नारियल, मौसमी मिठाई, और कन्या पूजन के लिए विशेष प्रसाद — पूरी-चने और हलवा',
-    sa: 'हल्वा, पूरिका, चणकव्यञ्जनम्, पायसम्, नवफलानि, नारिकेलम्, ऋतुमिष्टान्नानि, कन्यापूजनार्थं विशेषप्रसादः — पूरिकाचणकं हल्वा च',
+    hi: 'हलवा, पूरी, चने, खीर, ताजे फल, नारियल, मौसमी मिठाई, और कन्या पूजन के लिए विशेष प्रसाद  –  पूरी-चने और हलवा',
+    sa: 'हल्वा, पूरिका, चणकव्यञ्जनम्, पायसम्, नवफलानि, नारिकेलम्, ऋतुमिष्टान्नानि, कन्यापूजनार्थं विशेषप्रसादः  –  पूरिकाचणकं हल्वा च',
   },
 
   precautions: [
     {
-      en: 'The Akhand Jyoti (eternal lamp) must not extinguish during all 9 days — keep sufficient ghee/oil and a windshield around it',
-      hi: 'अखण्ड ज्योति सभी 9 दिनों में बुझनी नहीं चाहिए — पर्याप्त घी/तेल और हवा से बचाव रखें',
-      sa: 'अखण्डज्योतिः सर्वेषु नवदिनेषु न निर्वापणीया — पर्याप्तघृततैलं वायुरक्षणं च कुर्यात्',
+      en: 'The Akhand Jyoti (eternal lamp) must not extinguish during all 9 days  –  keep sufficient ghee/oil and a windshield around it',
+      hi: 'अखण्ड ज्योति सभी 9 दिनों में बुझनी नहीं चाहिए  –  पर्याप्त घी/तेल और हवा से बचाव रखें',
+      sa: 'अखण्डज्योतिः सर्वेषु नवदिनेषु न निर्वापणीया  –  पर्याप्तघृततैलं वायुरक्षणं च कुर्यात्',
     },
     {
-      en: 'Consume only sattvik food during the 9 days — no non-vegetarian food, no alcohol, no onion, no garlic',
-      hi: 'नौ दिनों में केवल सात्विक भोजन करें — माँसाहार, मद्य, प्याज और लहसुन वर्जित हैं',
-      sa: 'नवदिनेषु सात्त्विकम् आहारमेव सेवेत — मांसं मद्यं पलाण्डुं लशुनं च वर्जयेत्',
+      en: 'Consume only sattvik food during the 9 days  –  no non-vegetarian food, no alcohol, no onion, no garlic',
+      hi: 'नौ दिनों में केवल सात्विक भोजन करें  –  माँसाहार, मद्य, प्याज और लहसुन वर्जित हैं',
+      sa: 'नवदिनेषु सात्त्विकम् आहारमेव सेवेत  –  मांसं मद्यं पलाण्डुं लशुनं च वर्जयेत्',
     },
     {
       en: 'Do not cut hair or nails during Navaratri',
@@ -307,9 +307,9 @@ export const NAVARATRI_PUJA: PujaVidhi = {
       sa: 'नवदिनेषु ब्रह्मचर्यं मनःशरीरशुद्धिं च पालयेत्',
     },
     {
-      en: 'Ensure the barley sown on Day 1 is sprinkled with water daily — do not let the soil dry out',
-      hi: 'प्रथम दिन बोए गए जौ पर प्रतिदिन जल छिड़कें — मिट्टी सूखने न दें',
-      sa: 'प्रथमदिने वपिताः यवाः प्रतिदिनं जलेन सिच्यन्ताम् — मृत्तिकां शुष्कां न भवेत्',
+      en: 'Ensure the barley sown on Day 1 is sprinkled with water daily  –  do not let the soil dry out',
+      hi: 'प्रथम दिन बोए गए जौ पर प्रतिदिन जल छिड़कें  –  मिट्टी सूखने न दें',
+      sa: 'प्रथमदिने वपिताः यवाः प्रतिदिनं जलेन सिच्यन्ताम्  –  मृत्तिकां शुष्कां न भवेत्',
     },
   ],
 

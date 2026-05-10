@@ -11,7 +11,7 @@ import { locales } from '@/lib/i18n/config';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
-/** Format "2026-08-22" → "Aug 22" (short, for title — saves characters) */
+/** Format "2026-08-22" → "Aug 22" (short, for title  –  saves characters) */
 function fmtShortDate(dateStr: string): string {
   const [y, m, d] = dateStr.split('-').map(Number);
   const date = new Date(Date.UTC(y, m - 1, d));
@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const def = MAJOR_FESTIVALS.find(f => f.slug === slug);
 
   if (!cityData || !detail || !def) {
-    return { title: 'Festival — Dekho Panchang' };
+    return { title: 'Festival  –  Dekho Panchang' };
   }
 
   const festivalNameEn = tl(detail.name, 'en');
@@ -79,22 +79,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       }
     }
   } catch {
-    // If computation fails, fall back to generic title — don't block metadata
+    // If computation fails, fall back to generic title  –  don't block metadata
     console.error(`[festival-meta] Failed to compute date for ${slug}/${year}/${city}`);
   }
 
   // Build title with actual date (under 60 chars target)
-  // e.g. "Ganesh Chaturthi 2027 Mumbai — Aug 22, Puja 11:05 AM"
+  // e.g. "Ganesh Chaturthi 2027 Mumbai  –  Aug 22, Puja 11:05 AM"
   let title: string;
   if (festivalDate) {
     const shortDate = fmtShortDate(festivalDate);
     if (pujaMuhuratStr) {
-      title = `${festivalNameEn} ${year} ${cityNameEn} — ${shortDate}, Puja ${pujaMuhuratStr}`;
+      title = `${festivalNameEn} ${year} ${cityNameEn}  –  ${shortDate}, Puja ${pujaMuhuratStr}`;
     } else {
-      title = `${festivalNameEn} ${year} ${cityNameEn} — ${shortDate}, Sunrise ${sunriseStr}`;
+      title = `${festivalNameEn} ${year} ${cityNameEn}  –  ${shortDate}, Sunrise ${sunriseStr}`;
     }
   } else {
-    title = `${festivalNameEn} ${year} in ${cityNameEn} — Date & Puja Time`;
+    title = `${festivalNameEn} ${year} in ${cityNameEn}  –  Date & Puja Time`;
   }
 
   // Build description with actual timings (under 155 chars)

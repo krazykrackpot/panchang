@@ -1,5 +1,5 @@
 /**
- * Mudda Dasha — Vimshottari Dasha compressed to one solar year (365.25 days)
+ * Mudda Dasha  –  Vimshottari Dasha compressed to one solar year (365.25 days)
  * Used in Varshaphal annual chart predictions
  */
 

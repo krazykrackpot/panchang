@@ -31,8 +31,8 @@ export const MAHA_NAVAMI_PUJA: PujaVidhi = {
   muhurtaWindow: { type: 'madhyahna' },
 
   sankalpa: {
-    en: 'On this sacred Maha Navami, the ninth day of Sharadiya Navratri, I worship Goddess Durga in her Siddhidatri form — the bestower of all siddhis. I perform this havan and puja for the destruction of evil, attainment of spiritual powers, and the grace of the Divine Mother before the victory of Vijaya Dashami.',
-    hi: 'इस पवित्र महा नवमी पर, शारदीय नवरात्रि के नवें दिन, मैं देवी दुर्गा की सिद्धिदात्री स्वरूप — सभी सिद्धियों की दात्री — की पूजा करता/करती हूँ। विजया दशमी की विजय से पूर्व, बुराई के विनाश, आध्यात्मिक शक्तियों की प्राप्ति और दिव्य माता की कृपा हेतु मैं यह हवन और पूजा करता/करती हूँ।',
+    en: 'On this sacred Maha Navami, the ninth day of Sharadiya Navratri, I worship Goddess Durga in her Siddhidatri form  –  the bestower of all siddhis. I perform this havan and puja for the destruction of evil, attainment of spiritual powers, and the grace of the Divine Mother before the victory of Vijaya Dashami.',
+    hi: 'इस पवित्र महा नवमी पर, शारदीय नवरात्रि के नवें दिन, मैं देवी दुर्गा की सिद्धिदात्री स्वरूप  –  सभी सिद्धियों की दात्री  –  की पूजा करता/करती हूँ। विजया दशमी की विजय से पूर्व, बुराई के विनाश, आध्यात्मिक शक्तियों की प्राप्ति और दिव्य माता की कृपा हेतु मैं यह हवन और पूजा करता/करती हूँ।',
     sa: 'अस्मिन् पवित्रे महानवम्यां शारदीयनवरात्रस्य नवमदिवसे सर्वसिद्धिप्रदात्रीं सिद्धिदात्रीस्वरूपां दुर्गादेवीं पूजयामि। विजयादशम्याः विजयात् पूर्वं दुष्टविनाशार्थम् आध्यात्मिकशक्तिप्राप्त्यर्थं दिव्यमातुः कृपार्थं च हवनपूजनमहं करिष्ये।',
   },
 
@@ -65,9 +65,9 @@ export const MAHA_NAVAMI_PUJA: PujaVidhi = {
       step: 3,
       title: { en: 'Durga Mahishasura Mardini Puja', hi: 'दुर्गा महिषासुर मर्दिनी पूजा', sa: 'दुर्गामहिषासुरमर्दिनीपूजनम्' },
       description: {
-        en: 'Worship Goddess Durga as Mahishasura Mardini — the slayer of the buffalo demon. Offer red flowers, kumkum, red chunri, and coconut. Apply sindoor to the Devi. Recite Durga Saptashati or Mahishasura Mardini Stotram. This commemorates the final battle before Vijaya Dashami.',
-        hi: 'देवी दुर्गा की महिषासुर मर्दिनी — महिषासुर का वध करने वाली — के रूप में पूजा करें। लाल फूल, कुमकुम, लाल चुनरी और नारियल अर्पित करें। देवी को सिन्दूर लगाएँ। दुर्गा सप्तशती या महिषासुर मर्दिनी स्तोत्रम् का पाठ करें। यह विजया दशमी से पूर्व अन्तिम युद्ध का स्मरण है।',
-        sa: 'महिषासुरमर्दिनीरूपेण — महिषासुरघातिनीरूपेण — दुर्गादेवीं पूजयेत्। रक्तपुष्पाणि कुङ्कुमं रक्तचुनरीं नारिकेलं चार्पयेत्। देव्यै सिन्दूरं लिम्पेत्। दुर्गासप्तशतीं महिषासुरमर्दिनीस्तोत्रं वा पठेत्। एतद् विजयादशम्याः पूर्वम् अन्तिमयुद्धस्य स्मरणम्।',
+        en: 'Worship Goddess Durga as Mahishasura Mardini  –  the slayer of the buffalo demon. Offer red flowers, kumkum, red chunri, and coconut. Apply sindoor to the Devi. Recite Durga Saptashati or Mahishasura Mardini Stotram. This commemorates the final battle before Vijaya Dashami.',
+        hi: 'देवी दुर्गा की महिषासुर मर्दिनी  –  महिषासुर का वध करने वाली  –  के रूप में पूजा करें। लाल फूल, कुमकुम, लाल चुनरी और नारियल अर्पित करें। देवी को सिन्दूर लगाएँ। दुर्गा सप्तशती या महिषासुर मर्दिनी स्तोत्रम् का पाठ करें। यह विजया दशमी से पूर्व अन्तिम युद्ध का स्मरण है।',
+        sa: 'महिषासुरमर्दिनीरूपेण  –  महिषासुरघातिनीरूपेण  –  दुर्गादेवीं पूजयेत्। रक्तपुष्पाणि कुङ्कुमं रक्तचुनरीं नारिकेलं चार्पयेत्। देव्यै सिन्दूरं लिम्पेत्। दुर्गासप्तशतीं महिषासुरमर्दिनीस्तोत्रं वा पठेत्। एतद् विजयादशम्याः पूर्वम् अन्तिमयुद्धस्य स्मरणम्।',
       },
       duration: '30 min',
       essential: true,
@@ -89,8 +89,8 @@ export const MAHA_NAVAMI_PUJA: PujaVidhi = {
       step: 5,
       title: { en: 'Sandhi Puja (Ashtami-Navami Junction)', hi: 'सन्धि पूजा (अष्टमी-नवमी सन्धि)', sa: 'सन्धिपूजा (अष्टमीनवमीसन्धिः)' },
       description: {
-        en: 'Perform the auspicious Sandhi Puja at the exact junction when Ashtami tithi ends and Navami begins. Light 108 earthen lamps. Offer special prayers to Durga as Chamunda — the fierce form who slayed Chanda and Munda. This is the most powerful moment of the entire Navratri.',
-        hi: 'ठीक उस सन्धिकाल में सन्धि पूजा करें जब अष्टमी तिथि समाप्त होती है और नवमी आरम्भ होती है। 108 मिट्टी के दीपक जलाएँ। दुर्गा को चामुण्डा रूप में — जिन्होंने चण्ड और मुण्ड का वध किया — विशेष प्रार्थना अर्पित करें। यह सम्पूर्ण नवरात्रि का सबसे शक्तिशाली क्षण है।',
+        en: 'Perform the auspicious Sandhi Puja at the exact junction when Ashtami tithi ends and Navami begins. Light 108 earthen lamps. Offer special prayers to Durga as Chamunda  –  the fierce form who slayed Chanda and Munda. This is the most powerful moment of the entire Navratri.',
+        hi: 'ठीक उस सन्धिकाल में सन्धि पूजा करें जब अष्टमी तिथि समाप्त होती है और नवमी आरम्भ होती है। 108 मिट्टी के दीपक जलाएँ। दुर्गा को चामुण्डा रूप में  –  जिन्होंने चण्ड और मुण्ड का वध किया  –  विशेष प्रार्थना अर्पित करें। यह सम्पूर्ण नवरात्रि का सबसे शक्तिशाली क्षण है।',
         sa: 'यदा अष्टमीतिथिः समाप्यते नवमी चारभ्यते तदा सन्धिकाले सन्धिपूजां कुर्यात्। अष्टोत्तरशतं मृत्तिकादीपान् प्रज्वालयेत्। चण्डमुण्डघातिनीं चामुण्डारूपिणीं दुर्गां विशेषप्रार्थनयार्चयेत्। एष सम्पूर्णनवरात्रस्य सर्वशक्तिमत्क्षणः।',
       },
       duration: '30 min',
@@ -101,9 +101,9 @@ export const MAHA_NAVAMI_PUJA: PujaVidhi = {
       step: 6,
       title: { en: 'Aarti & Conclusion', hi: 'आरती एवं समापन', sa: 'आरतिः समापनं च' },
       description: {
-        en: 'Perform the Durga Aarti with camphor and ghee lamp. Offer fruits, sweets, and coconut as final naivedya. Distribute prasad to all devotees. The atmosphere is charged with anticipation of Vijaya Dashami — the day of ultimate victory over evil.',
-        hi: 'कपूर और घी के दीपक से दुर्गा आरती करें। फल, मिठाई और नारियल अन्तिम नैवेद्य के रूप में अर्पित करें। सभी भक्तों को प्रसाद बाँटें। विजया दशमी — बुराई पर अन्तिम विजय के दिन — की प्रतीक्षा से वातावरण भक्तिमय है।',
-        sa: 'कर्पूरेण घृतदीपेन च दुर्गाआरतिं कुर्यात्। फलानि मिष्टान्नानि नारिकेलं चान्तिमनैवेद्यरूपेण अर्पयेत्। सर्वभक्तेभ्यः प्रसादं विभजेत्। विजयादशम्याः — दुष्टोपरि अन्तिमविजयस्य — प्रतीक्षया वातावरणं भक्तिमयम्।',
+        en: 'Perform the Durga Aarti with camphor and ghee lamp. Offer fruits, sweets, and coconut as final naivedya. Distribute prasad to all devotees. The atmosphere is charged with anticipation of Vijaya Dashami  –  the day of ultimate victory over evil.',
+        hi: 'कपूर और घी के दीपक से दुर्गा आरती करें। फल, मिठाई और नारियल अन्तिम नैवेद्य के रूप में अर्पित करें। सभी भक्तों को प्रसाद बाँटें। विजया दशमी  –  बुराई पर अन्तिम विजय के दिन  –  की प्रतीक्षा से वातावरण भक्तिमय है।',
+        sa: 'कर्पूरेण घृतदीपेन च दुर्गाआरतिं कुर्यात्। फलानि मिष्टान्नानि नारिकेलं चान्तिमनैवेद्यरूपेण अर्पयेत्। सर्वभक्तेभ्यः प्रसादं विभजेत्। विजयादशम्याः  –  दुष्टोपरि अन्तिमविजयस्य  –  प्रतीक्षया वातावरणं भक्तिमयम्।',
       },
       duration: '15 min',
       essential: true,
@@ -118,8 +118,8 @@ export const MAHA_NAVAMI_PUJA: PujaVidhi = {
       devanagari: 'ॐ दुं दुर्गायै नमः',
       iast: 'oṃ duṃ durgāyai namaḥ',
       meaning: {
-        en: 'Obeisance to Goddess Durga — the invincible one who removes all difficulties.',
-        hi: 'देवी दुर्गा को नमस्कार — अजेय देवी जो सभी कठिनाइयों को दूर करती हैं।',
+        en: 'Obeisance to Goddess Durga  –  the invincible one who removes all difficulties.',
+        hi: 'देवी दुर्गा को नमस्कार  –  अजेय देवी जो सभी कठिनाइयों को दूर करती हैं।',
         sa: 'अजेयायै सर्वकष्टनिवारिण्यै दुर्गादेव्यै नमः।',
       },
       japaCount: 108,
@@ -131,8 +131,8 @@ export const MAHA_NAVAMI_PUJA: PujaVidhi = {
       devanagari: 'सिद्धगन्धर्वयक्षाद्यैरसुरैरमरैरपि।\nसेव्यमाना सदा भूयात् सिद्धिदा सिद्धिदायिनी॥',
       iast: 'siddhagandharva­yakṣādyair asurair amarair api |\nsevyamānā sadā bhūyāt siddhidā siddhidāyinī ||',
       meaning: {
-        en: 'She who is served by Siddhas, Gandharvas, Yakshas, Asuras, and Devas alike — may the bestower of all siddhis always be gracious.',
-        hi: 'जिनकी सेवा सिद्ध, गन्धर्व, यक्ष, असुर और देवता सभी करते हैं — वे सभी सिद्धियों की दात्री सदा कृपालु हों।',
+        en: 'She who is served by Siddhas, Gandharvas, Yakshas, Asuras, and Devas alike  –  may the bestower of all siddhis always be gracious.',
+        hi: 'जिनकी सेवा सिद्ध, गन्धर्व, यक्ष, असुर और देवता सभी करते हैं  –  वे सभी सिद्धियों की दात्री सदा कृपालु हों।',
         sa: 'सिद्धगन्धर्वयक्षासुरामरैः सेव्यमाना सर्वसिद्धिप्रदात्री सिद्धिदायिनी सदा कृपालु भवतु।',
       },
       japaCount: 9,

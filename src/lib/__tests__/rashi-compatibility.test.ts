@@ -72,7 +72,7 @@ describe('RASHI_PAIR_CONTENT', () => {
   });
 
   it('enemy lords + 6/8 distance have low scores (<= 18)', () => {
-    // Sun (Leo 5) vs Saturn (Capricorn 10) — enemies, 6 apart
+    // Sun (Leo 5) vs Saturn (Capricorn 10)  –  enemies, 6 apart
     const p = getPairContent(5, 10);
     expect(p).toBeDefined();
     expect(p!.score).toBeLessThanOrEqual(18);

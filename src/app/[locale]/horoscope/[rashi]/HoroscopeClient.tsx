@@ -26,7 +26,7 @@ const LABELS = {
   en: {
     backToAll: 'All Signs',
     horoscopeToday: 'Horoscope Today',
-    subtitle: 'Based on actual planetary transits — not generic predictions',
+    subtitle: 'Based on actual planetary transits  –  not generic predictions',
     overallScore: 'Overall Score',
     career: 'Career',
     love: 'Love',
@@ -71,7 +71,7 @@ const LABELS = {
   hi: {
     backToAll: 'सभी राशियाँ',
     horoscopeToday: 'आज का राशिफल',
-    subtitle: 'वास्तविक ग्रह गोचर पर आधारित — सामान्य राशिफल नहीं',
+    subtitle: 'वास्तविक ग्रह गोचर पर आधारित  –  सामान्य राशिफल नहीं',
     overallScore: 'समग्र स्कोर',
     career: 'करियर',
     love: 'प्रेम',
@@ -248,7 +248,7 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
   const vedicName = tl(rashi.name, locale);
   const westernName = rashi.name.en;
 
-  // Birth data store (localStorage) — only available client-side
+  // Birth data store (localStorage)  –  only available client-side
   const { birthRashi, birthNakshatra, birthName, loadFromStorage } = useBirthDataStore();
   useEffect(() => { loadFromStorage(); }, [loadFromStorage]);
 
@@ -256,7 +256,7 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
   const isOwnSign = birthRashi === rashi.id && birthRashi > 0;
 
   const [horoscope, setHoroscope] = useState<DailyHoroscope>(initialHoroscope);
-  const [loading, setLoading] = useState(false); // Start false — we have SSR data
+  const [loading, setLoading] = useState(false); // Start false  –  we have SSR data
   const today = new Date();
   const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
   const [date, setDate] = useState(initialDate || todayStr);
@@ -268,7 +268,7 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
   // Track whether the user has changed date or person (to skip initial fetch)
   const isInitialMount = useRef(true);
 
-  // Re-fetch when date changes or birth data changes (skip initial mount — SSR data is already loaded)
+  // Re-fetch when date changes or birth data changes (skip initial mount  –  SSR data is already loaded)
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
@@ -281,7 +281,7 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
       }
     }
 
-    // Build URL — nakshatra param is appended when viewing own sign with known birth nakshatra
+    // Build URL  –  nakshatra param is appended when viewing own sign with known birth nakshatra
     // URL params take priority over cached state (URL is the source of truth for rashi)
     let url = `/api/horoscope/daily?moonSign=${rashi.id}&date=${date}`;
     if (birthRashi === rashi.id && birthNakshatra > 0) {
@@ -311,7 +311,7 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
       const raw = sessionStorage.getItem('kundali-data');
       if (raw) kundali = JSON.parse(raw) as KundaliData;
     } catch {
-      // sessionStorage unavailable or parse error — skip personalization
+      // sessionStorage unavailable or parse error  –  skip personalization
     }
 
     if (!kundali) return;
@@ -382,7 +382,7 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
           </div>
         )}
 
-        {/* Tier 3: Personalized Insight panel — shown when user has kundali data in sessionStorage */}
+        {/* Tier 3: Personalized Insight panel  –  shown when user has kundali data in sessionStorage */}
         {isOwnSign && (personalLoading || personalForecast) && (
           <motion.div
             initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
@@ -462,7 +462,7 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
                 </p>
               </div>
 
-              {/* Tier 2: Tara Bala indicator — shown when score was personalized with birth nakshatra */}
+              {/* Tier 2: Tara Bala indicator  –  shown when score was personalized with birth nakshatra */}
               {horoscope.taraBala && (
                 <div className={`flex items-center gap-2 mb-5 rounded-lg px-3 py-2 text-xs font-medium border ${
                   horoscope.taraBala.isAuspicious
@@ -472,7 +472,7 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
                   <Star className={`w-3.5 h-3.5 ${horoscope.taraBala.isAuspicious ? 'fill-emerald-400 text-emerald-400' : 'fill-red-400 text-red-400'}`} />
                   <span>
                     {L.taraBala}: <strong>{horoscope.taraBala.taraName}</strong>
-                    {' — '}
+                    {'  –  '}
                     {horoscope.taraBala.isAuspicious ? L.taraAuspicious : L.taraInauspicious}
                   </span>
                 </div>
@@ -694,9 +694,9 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
               </Link>
             </div>
 
-            {/* WhatsApp Share Banner — viral distribution to family groups */}
+            {/* WhatsApp Share Banner  –  viral distribution to family groups */}
             <WhatsAppShareBanner
-              shareText={`${vedicName} (${westernName}) — ${L.horoscopeToday}\n${L.overallScore}: ${horoscope.overallScore}/10`}
+              shareText={`${vedicName} (${westernName})  –  ${L.horoscopeToday}\n${L.overallScore}: ${horoscope.overallScore}/10`}
               url={`https://dekhopanchang.com/${locale}/horoscope/${rashiSlug}`}
               locale={locale as Locale}
             />
@@ -723,12 +723,12 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
           </motion.div>
         )}
 
-        {/* Sign-up CTA — guests only */}
+        {/* Sign-up CTA  –  guests only */}
         <div className="mt-8">
           <CrossSellCTA
             headline={isHi
-              ? 'अपनी कुण्डली सहेजें और ईमेल से दैनिक राशिफल पाएँ — निःशुल्क'
-              : 'Save your chart & get daily rashifal by email — free'}
+              ? 'अपनी कुण्डली सहेजें और ईमेल से दैनिक राशिफल पाएँ  –  निःशुल्क'
+              : 'Save your chart & get daily rashifal by email  –  free'}
             subtext={isHi
               ? 'व्यक्तिगत गोचर विश्लेषण, साढ़े साती जाँच, और रोज़ सूर्योदय पर ईमेल'
               : 'Personalised transit analysis, Sade Sati check, and daily sunrise email'}
@@ -737,7 +737,7 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
           />
         </div>
 
-        {/* Other signs grid — internal linking */}
+        {/* Other signs grid  –  internal linking */}
         <div className="mt-12">
           <h2 className="text-gold-light text-xl font-bold mb-6 text-center" style={headingFont}>
             {L.otherSigns}

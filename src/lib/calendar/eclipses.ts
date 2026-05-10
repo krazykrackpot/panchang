@@ -3,7 +3,7 @@
  *
  * Computes eclipses from first principles:
  * 1. Find all New Moons (Amavasya, tithi #30) and Full Moons (Purnima, tithi #15)
- *    from the tithi table — exact conjunction/opposition times.
+ *    from the tithi table  –  exact conjunction/opposition times.
  * 2. At each lunation, compute Moon's ecliptic latitude via Swiss Ephemeris.
  * 3. Use latitude to determine if an eclipse occurs and its type.
  *
@@ -82,7 +82,7 @@ function jdToUtcDate(jd: number): string {
 export function generateEclipseCalendar(year: number): EclipseEvent[] {
   const eclipses: EclipseEvent[] = [];
 
-  // Build tithi table — gives us every Amavasya and Purnima with exact JD
+  // Build tithi table  –  gives us every Amavasya and Purnima with exact JD
   const table = buildYearlyTithiTable(year, 0, 0, 'UTC');
   const newMoons: TithiEntry[] = lookupAllTithiByNumber(table, 30); // Amavasya
   const fullMoons: TithiEntry[] = lookupAllTithiByNumber(table, 15); // Purnima
@@ -101,7 +101,7 @@ export function generateEclipseCalendar(year: number): EclipseEvent[] {
     // Moon+Sun combined radius: ~0.53° average. Partial limit: ~1.55° average.
     const speedFactor = moonSpeed / 13.2;
     // Widen by 0.15° for ephemeris precision
-    const solarPartialLimit = 1.25 * speedFactor + 0.26 + 0.15; // ~1.66° average — generous
+    const solarPartialLimit = 1.25 * speedFactor + 0.26 + 0.15; // ~1.66° average  –  generous
     const solarCentralLimit = 0.53 * speedFactor + 0.26 + 0.10; // ~0.89° average
 
     if (moonLat < solarPartialLimit) {
@@ -138,9 +138,9 @@ export function generateEclipseCalendar(year: number): EclipseEvent[] {
         nodeName: NODE_NAMES[node],
         eclipseLongitude: toSidereal(sunL, jd), // Sidereal Sun longitude at eclipse
         description: {
-          en: `${magnitude.charAt(0).toUpperCase() + magnitude.slice(1)} Solar Eclipse at ${nodeLabel} — Sun and Moon conjoin at the ${node === 'rahu' ? 'ascending' : 'descending'} node.`,
-          hi: `${MAG_NAMES[magnitude].hi} सूर्य ग्रहण ${nodeLabelHi} पर — सूर्य और चन्द्रमा ${node === 'rahu' ? 'आरोही' : 'अवरोही'} पात पर युति करते हैं।`,
-          sa: `${MAG_NAMES[magnitude].sa} सूर्यग्रहणम् — सूर्यचन्द्रौ ${node === 'rahu' ? 'राहौ' : 'केतौ'} युज्येते।`,
+          en: `${magnitude.charAt(0).toUpperCase() + magnitude.slice(1)} Solar Eclipse at ${nodeLabel}  –  Sun and Moon conjoin at the ${node === 'rahu' ? 'ascending' : 'descending'} node.`,
+          hi: `${MAG_NAMES[magnitude].hi} सूर्य ग्रहण ${nodeLabelHi} पर  –  सूर्य और चन्द्रमा ${node === 'rahu' ? 'आरोही' : 'अवरोही'} पात पर युति करते हैं।`,
+          sa: `${MAG_NAMES[magnitude].sa} सूर्यग्रहणम्  –  सूर्यचन्द्रौ ${node === 'rahu' ? 'राहौ' : 'केतौ'} युज्येते।`,
         },
       });
     }
@@ -162,7 +162,7 @@ export function generateEclipseCalendar(year: number): EclipseEvent[] {
     // Scale thresholds by Moon's speed (proxy for distance/shadow size)
     // Widen by 0.15° to account for ephemeris precision limits (~0.1° error)
     const speedFactor = moonSpeed / 13.2;
-    const penLimit = 1.28 * speedFactor + 0.26 + 0.15;   // ~1.69° average — generous to never miss
+    const penLimit = 1.28 * speedFactor + 0.26 + 0.15;   // ~1.69° average  –  generous to never miss
     const partialLimit = 0.72 * speedFactor + 0.26 + 0.10; // ~1.08° average
     const totalLimit = 0.72 * speedFactor - 0.26 + 0.10;  // ~0.56° average
 
@@ -202,9 +202,9 @@ export function generateEclipseCalendar(year: number): EclipseEvent[] {
         nodeName: NODE_NAMES[node],
         eclipseLongitude: toSidereal(moonLon, jd), // Sidereal Moon longitude at eclipse
         description: {
-          en: `${magnitude.charAt(0).toUpperCase() + magnitude.slice(1)} Lunar Eclipse at ${nodeLabel} — Full Moon passes through Earth's shadow at the ${node === 'rahu' ? 'ascending' : 'descending'} node.`,
-          hi: `${MAG_NAMES[magnitude].hi} चन्द्र ग्रहण ${nodeLabelHi} पर — पूर्णिमा का चन्द्रमा ${node === 'rahu' ? 'आरोही' : 'अवरोही'} पात पर पृथ्वी की छाया से गुजरता है।`,
-          sa: `${MAG_NAMES[magnitude].sa} चन्द्रग्रहणम् — पूर्णिमायां चन्द्रः ${node === 'rahu' ? 'राहौ' : 'केतौ'} पृथिव्याः छायायां प्रविशति।`,
+          en: `${magnitude.charAt(0).toUpperCase() + magnitude.slice(1)} Lunar Eclipse at ${nodeLabel}  –  Full Moon passes through Earth's shadow at the ${node === 'rahu' ? 'ascending' : 'descending'} node.`,
+          hi: `${MAG_NAMES[magnitude].hi} चन्द्र ग्रहण ${nodeLabelHi} पर  –  पूर्णिमा का चन्द्रमा ${node === 'rahu' ? 'आरोही' : 'अवरोही'} पात पर पृथ्वी की छाया से गुजरता है।`,
+          sa: `${MAG_NAMES[magnitude].sa} चन्द्रग्रहणम्  –  पूर्णिमायां चन्द्रः ${node === 'rahu' ? 'राहौ' : 'केतौ'} पृथिव्याः छायायां प्रविशति।`,
         },
       });
     }

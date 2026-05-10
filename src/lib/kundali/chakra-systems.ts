@@ -1,6 +1,6 @@
 import type { LocaleText } from '@/types/panchang';
 /**
- * Chakra Systems — Sudarsana, Sarvatobhadra, Kota
+ * Chakra Systems  –  Sudarsana, Sarvatobhadra, Kota
  * Reference: BPHS Ch.22, Tajika Neelakanthi
  */
 
@@ -10,7 +10,7 @@ import type { PlanetPosition } from '@/types/kundali';
 type Tri = LocaleText;
 
 // ─── SUDARSANA CHAKRA ───────────────────────────────────────────────────────
-// Three concentric rings: Lagna, Moon, Sun — each showing 12 houses
+// Three concentric rings: Lagna, Moon, Sun  –  each showing 12 houses
 // Each year of life activates the next house in all three rings simultaneously
 
 export interface SudarsanaRing {
@@ -65,7 +65,7 @@ export function buildSudarsanaChakra(
 
 // ─── SARVATOBHADRA CHAKRA ───────────────────────────────────────────────────
 // 9×9 grid with nakshatras, vowels, weekdays mapped to cells
-// Used for transit analysis — check which nakshatras are aspected
+// Used for transit analysis  –  check which nakshatras are aspected
 
 export interface SarvatobhadraCell {
   row: number;
@@ -92,15 +92,15 @@ export function buildSarvatobhadraChakra(): SarvatobhadraCell[] {
       if (r === 4 && c === 4) {
         grid.push({ row: r, col: c, content: 'OM', type: 'empty' });
       } else if (r === 0 || r === 8 || c === 0 || c === 8) {
-        // Border cells — nakshatras
+        // Border cells  –  nakshatras
         const idx = (r === 0 ? c : r === 8 ? (16 - c) : c === 8 ? (8 + r) : (24 - r)) % 27;
         const nakNum = SB_NAKSHATRAS_ORDER[idx] || 1;
         grid.push({ row: r, col: c, content: `N${nakNum}`, type: 'nakshatra', nakshatra: nakNum });
       } else if (r === 1 || r === 7 || c === 1 || c === 7) {
-        // Second ring — signs
+        // Second ring  –  signs
         grid.push({ row: r, col: c, content: '', type: 'sign' });
       } else {
-        // Inner ring — vowels/weekdays
+        // Inner ring  –  vowels/weekdays
         grid.push({ row: r, col: c, content: '', type: 'vowel' });
       }
     }
@@ -109,7 +109,7 @@ export function buildSarvatobhadraChakra(): SarvatobhadraCell[] {
 }
 
 // ─── KOTA CHAKRA ────────────────────────────────────────────────────────────
-// Fortress diagram — classifies planets as residing in different zones of a fort
+// Fortress diagram  –  classifies planets as residing in different zones of a fort
 // Used for transit strength analysis
 // Zones: Stambha (pillar), Praakara (outer wall), Durgaantara (space between walls), Durga (inner fort)
 

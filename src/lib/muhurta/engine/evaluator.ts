@@ -1,14 +1,14 @@
 /**
- * Muhurta Engine — Evaluator (Layer 2 of the 3-layer muhurta architecture)
+ * Muhurta Engine  –  Evaluator (Layer 2 of the 3-layer muhurta architecture)
  *
  * ARCHITECTURE OVERVIEW:
- *   Layer 1: Rules (individual checks — tithi quality, nakshatra suitability, etc.)
- *   Layer 2: Evaluator (THIS FILE — runs rules, resolves conflicts, scores)
+ *   Layer 1: Rules (individual checks  –  tithi quality, nakshatra suitability, etc.)
+ *   Layer 2: Evaluator (THIS FILE  –  runs rules, resolves conflicts, scores)
  *   Layer 3: Scanner (iterates date ranges, generates time windows, calls evaluator)
  *
  * WHAT THIS FILE DOES:
  *   1. Collects all rule assessments for a given muhurta window (day-level + window-level).
- *   2. Resolves CANCELLATIONS using a 5-tier authority system — the key innovation
+ *   2. Resolves CANCELLATIONS using a 5-tier authority system  –  the key innovation
  *      of this engine that distinguishes it from simple additive scoring.
  *   3. Computes per-category scores clamped to category maximums.
  *   4. Normalises the raw score to 0-100 with dynamic denominator.
@@ -20,21 +20,21 @@
  *   For example, Godhuli Lagna (Tier 1) cancels most negative assessments because
  *   "even inauspicious factors are neutralised during Godhuli" (MC Ch.6).
  *
- *   Tier 0: ABSOLUTE VETO — cannot be cancelled by anything.
+ *   Tier 0: ABSOLUTE VETO  –  cannot be cancelled by anything.
  *           Examples: Venus/Jupiter combustion for marriage (Dharma Sindhu explicit prohibition),
- *           Adhika Masa, Chaturmas. These are hard blocks — no positive factor overrides them.
+ *           Adhika Masa, Chaturmas. These are hard blocks  –  no positive factor overrides them.
  *
- *   Tier 1: SUPREME POSITIVE — cancels everything except Tier 0.
+ *   Tier 1: SUPREME POSITIVE  –  cancels everything except Tier 0.
  *           Example: Godhuli Lagna (~±12 min around sunset). MC states this period is
  *           so powerful it overrides all other muhurta defects.
  *
- *   Tier 2: STRONG FACTOR — can cancel Tier 4 negatives.
+ *   Tier 2: STRONG FACTOR  –  can cancel Tier 4 negatives.
  *           Examples: auspicious tithi-nakshatra combination, strong lagna.
  *
- *   Tier 3: MODERATE FACTOR — can cancel Tier 5+ (if any existed).
+ *   Tier 3: MODERATE FACTOR  –  can cancel Tier 5+ (if any existed).
  *           Standard positive assessments.
  *
- *   Tier 4: WEAK NEGATIVE — can be cancelled by Tier 1 or Tier 2 positives.
+ *   Tier 4: WEAK NEGATIVE  –  can be cancelled by Tier 1 or Tier 2 positives.
  *           Examples: Krishna Paksha penalty, mildly inauspicious yoga.
  *
  *   CANCELLATION RULE: A positive assessment at tier N can cancel a negative
@@ -65,7 +65,7 @@ import type {
   WindowBreakdown,
 } from './types';
 
-// Category max-point caps — ceiling for each scoring category.
+// Category max-point caps  –  ceiling for each scoring category.
 // Raw sums are clamped to [0, max] to prevent a single dominant category
 // from overshadowing others (e.g., 5 special yogas shouldn't score 50).
 const CATEGORY_MAX: Record<string, number> = {
@@ -88,11 +88,11 @@ const BASE_MAX = 25 + 15 + 20 + 12;
  * from Muhurta Chintamani example charts.
  */
 function assignGrade(score: number): MuhurtaGrade {
-  if (score >= 75) return 'excellent'; // All factors align — proceed with confidence
+  if (score >= 75) return 'excellent'; // All factors align  –  proceed with confidence
   if (score >= 60) return 'good';      // Strongly favourable, minor blemishes acceptable
   if (score >= 45) return 'fair';      // Acceptable if no better window available
   if (score >= 30) return 'marginal';  // Use only if urgent; remedial measures advised
-  return 'poor';                        // Avoid — significant inauspicious factors present
+  return 'poor';                        // Avoid  –  significant inauspicious factors present
 }
 
 /**
@@ -139,7 +139,7 @@ function toResolved(assessments: RuleAssessment[]): ResolvedAssessment[] {
  * - Tier 0 assessments CANNOT be cancelled by anything.
  * - Tier 1 (Godhuli) cancels everything except Tier 0.
  * - Otherwise, canceller.tier <= target.tier - 2 (e.g., Tier 2 cancels Tier 4).
- * - First canceller wins — if two cancellers target the same assessment, first one (by tier) takes it.
+ * - First canceller wins  –  if two cancellers target the same assessment, first one (by tier) takes it.
  */
 function resolveCancellations(
   resolved: ResolvedAssessment[]
@@ -214,12 +214,12 @@ function computeBreakdown(resolved: ResolvedAssessment[]): WindowBreakdown {
 }
 
 /**
- * Main evaluator — runs all rules, resolves cancellations, and produces a 0-100 score.
+ * Main evaluator  –  runs all rules, resolves cancellations, and produces a 0-100 score.
  *
  * EXECUTION FLOW:
  *   1. Run DAY-level rules first (checks that apply to the entire day, e.g., Adhika Masa,
  *      Chaturmas, Venus combustion). If ANY day-level rule vetoes, the entire day is
- *      blocked — no need to evaluate individual time windows.
+ *      blocked  –  no need to evaluate individual time windows.
  *
  *   2. Run WINDOW-level rules (checks specific to this time slot, e.g., Rahu Kaal overlap,
  *      lagna sign, Varjyam). If any window-level rule vetoes, this window is blocked.
@@ -238,13 +238,13 @@ function computeBreakdown(resolved: ResolvedAssessment[]): WindowBreakdown {
  * @returns EvaluationResult with score, grade, breakdown, assessments, and cancellations
  */
 export function evaluateWindow(ctx: RuleContext): EvaluationResult {
-  // 1. Run day-level rules — these apply to the entire day (vetoes block all windows)
+  // 1. Run day-level rules  –  these apply to the entire day (vetoes block all windows)
   const dayResult = collectAssessments(ctx, 'day');
   if (dayResult.vetoes.length > 0) {
     return makeVetoResult(dayResult.assessments, dayResult.vetoes);
   }
 
-  // 2. Run window-level rules — specific to this time slot
+  // 2. Run window-level rules  –  specific to this time slot
   const windowResult = collectAssessments(ctx, 'window');
   if (windowResult.vetoes.length > 0) {
     const allAssessments = [...dayResult.assessments, ...windowResult.assessments];
@@ -299,7 +299,7 @@ export function evaluateWindow(ctx: RuleContext): EvaluationResult {
   //
   // Hard inauspicious (Ganda, Vyatipata, Vaidhriti): cap at 55 ("Fair")
   // Moderate inauspicious (Vishkambha, Atiganda, etc.): cap at 70 ("Good" max)
-  // Check ORIGINAL points — an inauspicious yoga is a structural defect that
+  // Check ORIGINAL points  –  an inauspicious yoga is a structural defect that
   // persists even if a tier-1 positive (benefics in ascendant) "cancels" it numerically.
   // Classical logic: Ganda Yoga is Ganda Yoga regardless of Jupiter in lagna.
   // The cancellation system helps with minor defects (karana, vara) but NOT ashubha yoga.

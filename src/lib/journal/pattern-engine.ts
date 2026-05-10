@@ -1,5 +1,5 @@
 /**
- * Astrological Journal — Pattern Analysis Engine
+ * Astrological Journal  –  Pattern Analysis Engine
  *
  * Takes an array of JournalEntry and computes mood/energy correlations
  * with planetary conditions (moon sign, nakshatra, weekday, tithi type,

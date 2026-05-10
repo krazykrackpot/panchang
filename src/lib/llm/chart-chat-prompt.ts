@@ -24,7 +24,7 @@ export function buildChartChatSystemPrompt(kundali: KundaliData, locale: string)
   lines.push('1. ONLY reference the chart data provided below. Do NOT invent or guess planet positions.');
   lines.push('2. Always cite specific house numbers, signs, and planets from the data.');
   lines.push('3. If you are unsure about something, say so honestly.');
-  lines.push('4. Keep answers focused and practical — 2-4 paragraphs max.');
+  lines.push('4. Keep answers focused and practical  –  2-4 paragraphs max.');
   lines.push('5. Reference classical texts (BPHS, Phaladeepika) when relevant.');
   if (locale === 'hi') {
     lines.push('6. Respond in Hindi (Devanagari script). Use Sanskrit terms with Hindi explanation.');
@@ -111,9 +111,9 @@ export function buildChartChatSystemPrompt(kundali: KundaliData, locale: string)
   if (kundali.sphutas) {
     const yogiPlanetName = PLANET_NAME_MAP[kundali.sphutas.yogiPoint.yogiPlanet] ?? `Planet ${kundali.sphutas.yogiPoint.yogiPlanet}`;
     lines.push('## Sensitive Points (Sphutas)');
-    lines.push(`- Yogi Point: ${kundali.sphutas.yogiPoint.degree.toFixed(1)}° in sign ${kundali.sphutas.yogiPoint.sign} — MOST BENEFIC degree`);
+    lines.push(`- Yogi Point: ${kundali.sphutas.yogiPoint.degree.toFixed(1)}° in sign ${kundali.sphutas.yogiPoint.sign}  –  MOST BENEFIC degree`);
     lines.push(`- Yogi Planet: ${yogiPlanetName} (brings maximum good fortune)`);
-    lines.push(`- Avayogi Point: ${kundali.sphutas.avayogiPoint.degree.toFixed(1)}° — most challenging degree`);
+    lines.push(`- Avayogi Point: ${kundali.sphutas.avayogiPoint.degree.toFixed(1)}°  –  most challenging degree`);
     lines.push(`- Prana Sphuta (vitality): ${kundali.sphutas.pranaSphuta.degree.toFixed(1)}°`);
     lines.push(`- Mrityu Sphuta (longevity): ${kundali.sphutas.mrityuSphuta.degree.toFixed(1)}°`);
     lines.push('');

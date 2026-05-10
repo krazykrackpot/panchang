@@ -132,16 +132,16 @@
     "mr": "नक्षत्र"
   },
   "birthChart": {
-    "en": "Birth Chart (D1 — Rashi)",
-    "hi": "जन्म कुण्डली (D1 — राशि)",
-    "sa": "जन्मकुण्डली (D1 — राशिः)",
-    "ta": "Birth Chart (D1 — Rashi)",
-    "te": "Birth Chart (D1 — Rashi)",
-    "bn": "Birth Chart (D1 — Rashi)",
-    "kn": "Birth Chart (D1 — Rashi)",
-    "mr": "Birth Chart (D1 — Rashi)",
-    "gu": "Birth Chart (D1 — Rashi)",
-    "mai": "Birth Chart (D1 — Rashi)"
+    "en": "Birth Chart (D1  –  Rashi)",
+    "hi": "जन्म कुण्डली (D1  –  राशि)",
+    "sa": "जन्मकुण्डली (D1  –  राशिः)",
+    "ta": "Birth Chart (D1  –  Rashi)",
+    "te": "Birth Chart (D1  –  Rashi)",
+    "bn": "Birth Chart (D1  –  Rashi)",
+    "kn": "Birth Chart (D1  –  Rashi)",
+    "mr": "Birth Chart (D1  –  Rashi)",
+    "gu": "Birth Chart (D1  –  Rashi)",
+    "mai": "Birth Chart (D1  –  Rashi)"
   },
   "planetaryPositions": {
     "en": "Planetary Positions",

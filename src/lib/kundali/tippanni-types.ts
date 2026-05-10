@@ -151,7 +151,7 @@ export interface YearPredictionSection {
   keyAdvice: string;
 }
 
-/** Life stage context — adapts tippanni to user's current phase of life */
+/** Life stage context  –  adapts tippanni to user's current phase of life */
 export interface LifeStageInfo {
   age: number;
   stage: string;
@@ -173,10 +173,10 @@ export interface TippanniContent {
   remedies: RemedySection;
   strengthOverview: StrengthEntry[];
 
-  /** Life stage context — reorders and reframes content based on user's age */
+  /** Life stage context  –  reorders and reframes content based on user's age */
   lifeStage?: LifeStageInfo;
 
-  /** Unified chart narrative — the "pandit's opening statement" weaving top threads */
+  /** Unified chart narrative  –  the "pandit's opening statement" weaving top threads */
   chartNarrative?: import('./chart-narrative').UnifiedNarrative;
 
   dashaSynthesis?: DashaSynthesis;

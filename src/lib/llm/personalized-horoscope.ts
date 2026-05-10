@@ -99,10 +99,10 @@ export function buildPersonalizedPrompt(data: PersonalizedHoroscopeData, locale:
   lines.push('');
 
   lines.push(`TODAY'S TRANSITS (from ascendant):`);
-  lines.push(`Moon in ${rashiName(data.moonTransitSign)} — ${ordinal(data.moonTransitHouse)} house from lagna`);
+  lines.push(`Moon in ${rashiName(data.moonTransitSign)}  –  ${ordinal(data.moonTransitHouse)} house from lagna`);
   for (const t of data.slowTransits) {
     const quality = t.savBindu >= 28 ? 'STRONG' : t.savBindu < 22 ? 'WEAK' : 'moderate';
-    lines.push(`${t.planet} in ${rashiName(t.sign)} — ${ordinal(t.house)} house (SAV: ${t.savBindu} bindus = ${quality})${t.isRetrograde ? ' [RETROGRADE]' : ''}`);
+    lines.push(`${t.planet} in ${rashiName(t.sign)}  –  ${ordinal(t.house)} house (SAV: ${t.savBindu} bindus = ${quality})${t.isRetrograde ? ' [RETROGRADE]' : ''}`);
   }
   lines.push('');
 
@@ -137,17 +137,17 @@ export function buildPersonalizedFallback(data: PersonalizedHoroscopeData, local
   if (locale === 'hi') {
     const parts: string[] = [];
     parts.push(`${c.currentMahaDasha}/${c.currentAntarDasha} दशा चल रही है।`);
-    parts.push(`चन्द्रमा आपके ${moonHouse}वें भाव में — ${getHouseKeywordHi(moonHouse)}।`);
-    if (strongTransits.length > 0) parts.push(`${strongTransits.map(t => t.planet).join(', ')} गोचर बलवान (SAV ${strongTransits[0].savBindu}+) — अनुकूल प्रभाव।`);
-    if (weakTransits.length > 0) parts.push(`${weakTransits.map(t => t.planet).join(', ')} गोचर दुर्बल — सावधानी बरतें।`);
+    parts.push(`चन्द्रमा आपके ${moonHouse}वें भाव में  –  ${getHouseKeywordHi(moonHouse)}।`);
+    if (strongTransits.length > 0) parts.push(`${strongTransits.map(t => t.planet).join(', ')} गोचर बलवान (SAV ${strongTransits[0].savBindu}+)  –  अनुकूल प्रभाव।`);
+    if (weakTransits.length > 0) parts.push(`${weakTransits.map(t => t.planet).join(', ')} गोचर दुर्बल  –  सावधानी बरतें।`);
     return parts.join(' ');
   }
 
   const parts: string[] = [];
   parts.push(`Running ${c.currentMahaDasha}/${c.currentAntarDasha} dasha.`);
-  parts.push(`Moon transits your ${ordinal(moonHouse)} house — ${getHouseKeyword(moonHouse)}.`);
-  if (strongTransits.length > 0) parts.push(`${strongTransits.map(t => t.planet).join(', ')} transit${strongTransits.length > 1 ? 's are' : ' is'} strong (SAV ${strongTransits[0].savBindu}+) — favorable influence.`);
-  if (weakTransits.length > 0) parts.push(`${weakTransits.map(t => t.planet).join(', ')} transit${weakTransits.length > 1 ? 's are' : ' is'} weak — exercise caution.`);
+  parts.push(`Moon transits your ${ordinal(moonHouse)} house  –  ${getHouseKeyword(moonHouse)}.`);
+  if (strongTransits.length > 0) parts.push(`${strongTransits.map(t => t.planet).join(', ')} transit${strongTransits.length > 1 ? 's are' : ' is'} strong (SAV ${strongTransits[0].savBindu}+)  –  favorable influence.`);
+  if (weakTransits.length > 0) parts.push(`${weakTransits.map(t => t.planet).join(', ')} transit${weakTransits.length > 1 ? 's are' : ' is'} weak  –  exercise caution.`);
   return parts.join(' ');
 }
 

@@ -1,5 +1,5 @@
 /**
- * Ashtakavarga Shodhana — Trikona, Ekadhipatya, Pinda
+ * Ashtakavarga Shodhana  –  Trikona, Ekadhipatya, Pinda
  *
  * This module implements the two classical reduction passes applied to raw
  * Bhinnashtakavarga (BAV) tables and computes Pinda Ashtakavarga per planet.
@@ -12,7 +12,7 @@
 // ---------------------------------------------------------------------------
 
 /**
- * Trikona groups — each tuple is the three 0-based sign indices that share
+ * Trikona groups  –  each tuple is the three 0-based sign indices that share
  * the same element (Fire, Earth, Air, Water).
  */
 const TRIKONA_GROUPS: [number, number, number][] = [
@@ -23,7 +23,7 @@ const TRIKONA_GROUPS: [number, number, number][] = [
 ];
 
 /**
- * Ekadhipatya (dual-rulership) pairs — [sign-index-A, sign-index-B, lord-planet-id].
+ * Ekadhipatya (dual-rulership) pairs  –  [sign-index-A, sign-index-B, lord-planet-id].
  * Sign indices are 0-based (Aries=0 … Pisces=11).
  * Rahu id=7, Ketu id=8 are checked separately.
  *
@@ -51,7 +51,7 @@ const GRAHA_GUNA = [5, 5, 8, 5, 10, 7, 5] as const;
 const RASHI_GUNA = [7, 5, 6, 8] as const;
 
 // ---------------------------------------------------------------------------
-// Task 2 — Trikona Shodhana
+// Task 2  –  Trikona Shodhana
 // ---------------------------------------------------------------------------
 
 /**
@@ -75,7 +75,7 @@ export function trikonaShodhana(bpiTable: number[][]): number[][] {
 }
 
 // ---------------------------------------------------------------------------
-// Task 3 — Ekadhipatya Shodhana
+// Task 3  –  Ekadhipatya Shodhana
 // ---------------------------------------------------------------------------
 
 /**
@@ -145,7 +145,7 @@ export function ekadhipatyaShodhana(
 }
 
 // ---------------------------------------------------------------------------
-// Task 4 — Pinda Ashtakavarga
+// Task 4  –  Pinda Ashtakavarga
 // ---------------------------------------------------------------------------
 
 /**
@@ -173,7 +173,7 @@ export function computePindaAshtakavarga(reducedBpiTable: number[][]): number[] 
 
 /**
  * Apply Trikona Shodhana to the Sarvashtakavarga (SAV) row.
- * This is an OPTIONAL additional step — JHora does not do this by default,
+ * This is an OPTIONAL additional step  –  JHora does not do this by default,
  * but some texts prescribe it for transit timing.
  *
  * Same trikona logic as per-planet, but applied to the single 12-element SAV row.

@@ -89,16 +89,16 @@ export default function LearnMuhurtaSelectionPage() {
       </div>
 
       <KeyTakeaway locale={locale} points={[
-        'The nakshatra (Moon\'s constellation) is the primary factor — more important than tithi, weekday, or yoga.',
-        'Venus or Jupiter combustion is an absolute prohibition for marriage — no amount of good panchanga can override it.',
-        'The lagna (ascendant) is the most powerful corrective factor — Muhurta Chintamani says it can remove all other defects.',
+        'The nakshatra (Moon\'s constellation) is the primary factor  –  more important than tithi, weekday, or yoga.',
+        'Venus or Jupiter combustion is an absolute prohibition for marriage  –  no amount of good panchanga can override it.',
+        'The lagna (ascendant) is the most powerful corrective factor  –  Muhurta Chintamani says it can remove all other defects.',
       ]} />
 
       <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
-        <BeginnerNote term="Panchanga Shuddhi" explanation="When all five panchang elements (Tithi, Nakshatra, Yoga, Karana, Vara) are favourable — the gold standard for muhurta" />
-        <BeginnerNote term="Lagna" explanation="The zodiac sign rising on the eastern horizon at a specific time and place — changes every ~2 hours" />
-        <BeginnerNote term="Combustion (Asta)" explanation="When a planet is too close to the Sun to be visible — its beneficent influence is considered nullified" />
-        <BeginnerNote term="Rikta Tithi" explanation="The 4th, 9th, and 14th tithis — considered 'empty' and forbidden for auspicious activities" />
+        <BeginnerNote term="Panchanga Shuddhi" explanation="When all five panchang elements (Tithi, Nakshatra, Yoga, Karana, Vara) are favourable  –  the gold standard for muhurta" />
+        <BeginnerNote term="Lagna" explanation="The zodiac sign rising on the eastern horizon at a specific time and place  –  changes every ~2 hours" />
+        <BeginnerNote term="Combustion (Asta)" explanation="When a planet is too close to the Sun to be visible  –  its beneficent influence is considered nullified" />
+        <BeginnerNote term="Rikta Tithi" explanation="The 4th, 9th, and 14th tithis  –  considered 'empty' and forbidden for auspicious activities" />
       </div>
 
       {/* ── Introduction ── */}
@@ -282,7 +282,7 @@ export default function LearnMuhurtaSelectionPage() {
         <ClassicalReference
           shortName="Muhurta Chintamani"
           author="Daivagna Acharya Shri Ram"
-          chapter="Ch. 6 — with Visha Ghati nuance"
+          chapter="Ch. 6  –  with Visha Ghati nuance"
         />
       </LessonSection>
 
@@ -311,10 +311,10 @@ export default function LearnMuhurtaSelectionPage() {
         <p style={bf}>{t('summaryContent')}</p>
         <div className="mt-4 space-y-2">
           {[
-            { num: '1', text: isHi ? 'शुक्र/गुरु अस्त न हों — सर्वोपरि' : 'Venus/Jupiter must not be combust — overrides everything', cls: 'text-red-400' },
-            { num: '2', text: isHi ? 'नक्षत्र शुभ हो — प्रमुख पंचांग कारक' : 'Nakshatra must be favourable — primary panchanga filter', cls: 'text-emerald-400' },
-            { num: '3', text: isHi ? 'लग्न सुचुना हो — सबसे शक्तिशाली सुधार' : 'Lagna should be well-chosen — most powerful corrective', cls: 'text-gold-primary' },
-            { num: '4', text: isHi ? 'तिथि, योग, करण, वार — सहायक गुणवत्ता' : 'Tithi, yoga, karana, vara — supporting quality', cls: 'text-text-secondary' },
+            { num: '1', text: isHi ? 'शुक्र/गुरु अस्त न हों  –  सर्वोपरि' : 'Venus/Jupiter must not be combust  –  overrides everything', cls: 'text-red-400' },
+            { num: '2', text: isHi ? 'नक्षत्र शुभ हो  –  प्रमुख पंचांग कारक' : 'Nakshatra must be favourable  –  primary panchanga filter', cls: 'text-emerald-400' },
+            { num: '3', text: isHi ? 'लग्न सुचुना हो  –  सबसे शक्तिशाली सुधार' : 'Lagna should be well-chosen  –  most powerful corrective', cls: 'text-gold-primary' },
+            { num: '4', text: isHi ? 'तिथि, योग, करण, वार  –  सहायक गुणवत्ता' : 'Tithi, yoga, karana, vara  –  supporting quality', cls: 'text-text-secondary' },
             { num: '5', text: isHi ? 'शुक्ल पक्ष वरीय, कृष्ण में उत्तम नक्षत्र/लग्न हो तो अनुमत' : 'Shukla Paksha preferred; Krishna allowed when nakshatra + lagna are strong', cls: 'text-text-secondary' },
           ].map((item) => (
             <div key={item.num} className="flex items-start gap-3">
@@ -331,8 +331,8 @@ export default function LearnMuhurtaSelectionPage() {
       <BeginnerNote
         term={isHi ? 'मुहूर्त में अयनांश' : 'Ayanamsha in Muhurta'}
         explanation={isHi
-          ? 'इस पृष्ठ पर सभी मुहूर्त नियम और हमारा मुहूर्त AI इंजन लाहिरी (चित्रपक्ष) अयनांश का उपयोग करते हैं — भारत सरकार का मानक, जिस पर मुहूर्त चिन्तामणि और धर्म सिन्धु के मूल नियम आधारित हैं। यदि आपने अपनी कुण्डली के लिए केपी या रमन अयनांश चुना है, तो भी मुहूर्त स्कोरिंग लाहिरी पर ही रहता है ताकि शास्त्रीय नियम सही नक्षत्र सीमाओं पर लागू हों।'
-          : 'All muhurta rules on this page and our Muhurta AI engine use Lahiri (Chitrapaksha) ayanamsha — the Indian government standard on which the original rules from Muhurta Chintamani and Dharma Sindhu were composed. Even if you have selected KP or Raman ayanamsha for your birth chart, muhurta scoring remains Lahiri-based so that classical rules are applied against the correct nakshatra boundaries.'}
+          ? 'इस पृष्ठ पर सभी मुहूर्त नियम और हमारा मुहूर्त AI इंजन लाहिरी (चित्रपक्ष) अयनांश का उपयोग करते हैं  –  भारत सरकार का मानक, जिस पर मुहूर्त चिन्तामणि और धर्म सिन्धु के मूल नियम आधारित हैं। यदि आपने अपनी कुण्डली के लिए केपी या रमन अयनांश चुना है, तो भी मुहूर्त स्कोरिंग लाहिरी पर ही रहता है ताकि शास्त्रीय नियम सही नक्षत्र सीमाओं पर लागू हों।'
+          : 'All muhurta rules on this page and our Muhurta AI engine use Lahiri (Chitrapaksha) ayanamsha  –  the Indian government standard on which the original rules from Muhurta Chintamani and Dharma Sindhu were composed. Even if you have selected KP or Raman ayanamsha for your birth chart, muhurta scoring remains Lahiri-based so that classical rules are applied against the correct nakshatra boundaries.'}
       />
 
       {/* ── Source disclaimer ── */}

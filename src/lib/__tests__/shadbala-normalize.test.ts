@@ -53,7 +53,7 @@ describe('normalizeShadbala', () => {
     }
   });
 
-  it('normalizes relative to max in dataset — Sun=200 becomes 100, Moon=100 becomes 50', () => {
+  it('normalizes relative to max in dataset  –  Sun=200 becomes 100, Moon=100 becomes 50', () => {
     const data: ShadBalaComplete[] = [
       makePlanet({ planet: 'Sun', planetId: 0, sthanaBala: 200, digBala: 60, kalaBala: 90, cheshtaBala: 45, naisargikaBala: 60, drikBala: 10 }),
       makePlanet({ planet: 'Moon', planetId: 1, sthanaBala: 100, digBala: 30, kalaBala: 45, cheshtaBala: 22.5, naisargikaBala: 30, drikBala: 10 }),
@@ -71,7 +71,7 @@ describe('normalizeShadbala', () => {
       makePlanet({ planet: 'Moon', planetId: 1, sthanaBala: 80, digBala: 30, kalaBala: 50, cheshtaBala: 20, naisargikaBala: 30, drikBala: -20 }),
     ];
     const result = normalizeShadbala(data);
-    // All drikBala values must be 0-100 — no negatives
+    // All drikBala values must be 0-100  –  no negatives
     for (const item of result) {
       expect(item.drikBala).toBeGreaterThanOrEqual(0);
       expect(item.drikBala).toBeLessThanOrEqual(100);

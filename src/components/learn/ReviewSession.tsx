@@ -27,7 +27,7 @@ export default function ReviewSession({ locale }: ReviewSessionProps) {
     const sorted = [...all].sort((a, b) => a.easeFactor - b.easeFactor);
     return sorted.slice(0, MAX_REVIEW_QUESTIONS);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Computed once on mount — stable across the session
+  }, []); // Computed once on mount  –  stable across the session
 
   const [currentIdx, setCurrentIdx] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
@@ -197,10 +197,10 @@ export default function ReviewSession({ locale }: ReviewSessionProps) {
               {correctCount}/{dueItems.length}{' '}
               {tl({ en: 'correct', hi: 'सही', sa: 'शुद्धम्' }, locale as Locale)}
               {correctCount === dueItems.length
-                ? ` — ${tl({ en: 'Perfect recall!', hi: 'उत्तम स्मरण!', sa: 'उत्तमं स्मरणम्!' }, locale as Locale)}`
+                ? `  –  ${tl({ en: 'Perfect recall!', hi: 'उत्तम स्मरण!', sa: 'उत्तमं स्मरणम्!' }, locale as Locale)}`
                 : correctCount >= Math.ceil(dueItems.length * 0.6)
-                ? ` — ${tl({ en: 'Keep it up!', hi: 'ऐसे ही जारी रखें!', sa: 'एवमेव चालयतु!' }, locale as Locale)}`
-                : ` — ${tl({ en: 'Review again soon.', hi: 'जल्दी ही पुनः दोहराएँ।', sa: 'शीघ्रं पुनः स्मरतु।' }, locale as Locale)}`}
+                ? `  –  ${tl({ en: 'Keep it up!', hi: 'ऐसे ही जारी रखें!', sa: 'एवमेव चालयतु!' }, locale as Locale)}`
+                : `  –  ${tl({ en: 'Review again soon.', hi: 'जल्दी ही पुनः दोहराएँ।', sa: 'शीघ्रं पुनः स्मरतु।' }, locale as Locale)}`}
             </p>
             <button
               onClick={handleDismiss}

@@ -94,7 +94,7 @@ export default function ChartSouth({ data, title, size = 500, selectedHouse, onS
             <stop offset="70%" stopColor="#d4a853" />
             <stop offset="100%" stopColor="#7a5e22" />
           </linearGradient>
-          {/* No blur filter — crisp text */}
+          {/* No blur filter  –  crisp text */}
         </defs>
 
         {/* Background */}
@@ -112,7 +112,7 @@ export default function ChartSouth({ data, title, size = 500, selectedHouse, onS
           </g>
         ))}
 
-        {/* Center area — classical label */}
+        {/* Center area  –  classical label */}
         <rect x={pad + cell} y={pad + cell} width={cell * 2} height={cell * 2} fill="rgba(212,168,83,0.015)" stroke="rgba(212,168,83,0.08)" strokeWidth="0.5" />
         <text x={totalW / 2} y={totalW / 2 - 6} fill="rgba(212,168,83,0.15)" fontSize="12" textAnchor="middle" fontFamily="var(--font-heading)" letterSpacing="3">
           {isDevanagari ? 'कुण्डली' : 'KUNDALI'}
@@ -191,7 +191,7 @@ export default function ChartSouth({ data, title, size = 500, selectedHouse, onS
                 </>
               )}
 
-              {/* Natal Planets — abbreviation + colored dot */}
+              {/* Natal Planets  –  abbreviation + colored dot */}
               {planetsInSign.map((planetId, pIdx) => {
                 const color = PLANET_COLORS[planetId] || '#e8e6e3';
                 const count = planetsInSign.length;
@@ -217,7 +217,7 @@ export default function ChartSouth({ data, title, size = 500, selectedHouse, onS
                 );
               })}
 
-              {/* Transit Planets — outlined style */}
+              {/* Transit Planets  –  outlined style */}
               {transitData && (() => {
                 const tHouse = ((sign - transitData.ascendantSign + 12) % 12) + 1;
                 const tPlanets = transitData.houses[tHouse - 1] || [];

@@ -1,5 +1,5 @@
 /**
- * Karmic Profile — Past-life analysis for BNN readings.
+ * Karmic Profile  –  Past-life analysis for BNN readings.
  *
  * Three primary indicators:
  *  1. Ketu's sign + house      → primary past-life indicator
@@ -156,8 +156,8 @@ export function computeKarmicProfile(kundali: KundaliData, locale: string): Karm
   const rahuHouseName = locale === 'hi' ? HOUSE_NAMES_HI[rahuHouse] : HOUSE_NAMES_EN[rahuHouse];
 
   const dharmaPath = locale === 'hi'
-    ? `नवम भाव के स्वामी ${ninthLordName} ${ninthLordSignName} में हैं, जो इस जन्म का धर्म विरासत दर्शाता है। राहु ${rahuSignName} में ${rahuHouseName} भाव में है — ${rahuSignName} की ऊर्जाओं और ${rahuHouseName} भाव के विषयों में कदम रखना ही इस आत्मा का आगे बढ़ने का मार्ग है।`
-    : `The 9th lord ${ninthLordName} in ${ninthLordSignName} indicates the dharmic inheritance of this incarnation. Rahu in ${rahuSignName} in the ${rahuHouseName} house points the way forward — stepping into the energies of ${rahuSignName} and the themes of the ${rahuHouseName} house is the soul\'s evolutionary directive.`;
+    ? `नवम भाव के स्वामी ${ninthLordName} ${ninthLordSignName} में हैं, जो इस जन्म का धर्म विरासत दर्शाता है। राहु ${rahuSignName} में ${rahuHouseName} भाव में है  –  ${rahuSignName} की ऊर्जाओं और ${rahuHouseName} भाव के विषयों में कदम रखना ही इस आत्मा का आगे बढ़ने का मार्ग है।`
+    : `The 9th lord ${ninthLordName} in ${ninthLordSignName} indicates the dharmic inheritance of this incarnation. Rahu in ${rahuSignName} in the ${rahuHouseName} house points the way forward  –  stepping into the energies of ${rahuSignName} and the themes of the ${rahuHouseName} house is the soul\'s evolutionary directive.`;
 
   // Summary
   const summary = locale === 'hi'

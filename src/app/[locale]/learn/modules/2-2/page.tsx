@@ -31,7 +31,7 @@ function Page1() {
     <div className="space-y-6">
       <KeyTakeaway
         points={[
-          'Planets have natural friendships and enmities — Jupiter and Sun are friends, Saturn and Sun are enemies.',
+          'Planets have natural friendships and enmities  –  Jupiter and Sun are friends, Saturn and Sun are enemies.',
           'Temporary friendship (based on chart positions) can override natural relationships, turning an enemy into a friend for your specific chart.',
         ]}
         locale={locale}
@@ -39,7 +39,7 @@ function Page1() {
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Why Planets Have Relationships</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          In Module 2.1, we learned each Graha's individual nature. But planets don't act in isolation — they interact. A planet's strength depends significantly on <span className="text-gold-light font-bold">whose sign it occupies</span>. Just as a person performs differently in a friend's house versus an enemy's territory, a planet's expression changes based on the sign lord's relationship with it.
+          In Module 2.1, we learned each Graha's individual nature. But planets don't act in isolation  –  they interact. A planet's strength depends significantly on <span className="text-gold-light font-bold">whose sign it occupies</span>. Just as a person performs differently in a friend's house versus an enemy's territory, a planet's expression changes based on the sign lord's relationship with it.
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           Jyotish defines <span className="text-gold-light font-bold">two types</span> of planetary relationships:
@@ -55,15 +55,15 @@ function Page1() {
           </div>
           <div className="p-4 rounded-xl bg-blue-500/5 border border-blue-500/15">
             <div className="text-blue-300 font-bold text-sm mb-1">Tatkalika (Temporary/Chart-specific)</div>
-            <p className="text-text-secondary text-xs">Relationships based on where planets are placed in a specific chart. If Mars is in the 3rd house from Jupiter, Mars is Jupiter's temporary friend — but only in THIS chart.</p>
+            <p className="text-text-secondary text-xs">Relationships based on where planets are placed in a specific chart. If Mars is in the 3rd house from Jupiter, Mars is Jupiter's temporary friend  –  but only in THIS chart.</p>
           </div>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Classical Origin — Parashara's Derivation Method</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Classical Origin  –  Parashara's Derivation Method</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          Parashara doesn't just LIST friends and enemies — he provides the <span className="text-gold-light">mathematical rule</span> for deriving them (BPHS Ch.3, v.55):
+          Parashara doesn't just LIST friends and enemies  –  he provides the <span className="text-gold-light">mathematical rule</span> for deriving them (BPHS Ch.3, v.55):
         </p>
         <div className="p-3 rounded-lg bg-bg-primary/50 border border-gold-primary/10 font-mono text-xs text-emerald-300 mb-3">
           <div>From a planet's MOOLATRIKONA sign:</div>
@@ -72,7 +72,7 @@ function Page1() {
           <div>→ Neither friend nor enemy = <span className="text-amber-400">NEUTRAL</span></div>
         </div>
         <p className="text-text-secondary text-xs leading-relaxed">
-          <span className="text-gold-light font-medium">Example for Sun:</span> Sun's moolatrikona is Leo (5th sign). From Leo: 2nd=Virgo (Mercury), 4th=Scorpio (Mars), 5th=Sagittarius (Jupiter), 8th=Pisces (Jupiter), 9th=Aries (Mars), 12th=Cancer (Moon). So Sun's friends = Moon, Mars, Jupiter. Mercury appears only once (2nd) — some texts count it as friend, others neutral. Saturn and Venus don't appear → enemies.
+          <span className="text-gold-light font-medium">Example for Sun:</span> Sun's moolatrikona is Leo (5th sign). From Leo: 2nd=Virgo (Mercury), 4th=Scorpio (Mars), 5th=Sagittarius (Jupiter), 8th=Pisces (Jupiter), 9th=Aries (Mars), 12th=Cancer (Moon). So Sun's friends = Moon, Mars, Jupiter. Mercury appears only once (2nd)  –  some texts count it as friend, others neutral. Saturn and Venus don't appear → enemies.
         </p>
       </section>
 
@@ -90,7 +90,7 @@ function Page1() {
             <tbody className="divide-y divide-gold-primary/5">
               {[
                 { p: 'Sun', f: 'Moon, Mars, Jupiter', n: 'Mercury', e: 'Venus, Saturn' },
-                { p: 'Moon', f: 'Sun, Mercury', n: 'Mars, Jupiter, Venus, Saturn', e: '—' },
+                { p: 'Moon', f: 'Sun, Mercury', n: 'Mars, Jupiter, Venus, Saturn', e: ' – ' },
                 { p: 'Mars', f: 'Sun, Moon, Jupiter', n: 'Venus, Saturn', e: 'Mercury' },
                 { p: 'Mercury', f: 'Sun, Venus', n: 'Mars, Jupiter, Saturn', e: 'Moon' },
                 { p: 'Jupiter', f: 'Sun, Moon, Mars', n: 'Saturn', e: 'Mercury, Venus' },
@@ -110,7 +110,7 @@ function Page1() {
         </div>
       </section>
 
-      <WhyItMatters locale={locale}>A planet's strength depends on whose sign it sits in. Knowing the friendship matrix tells you immediately whether a planet in your chart is comfortable or struggling — and why.</WhyItMatters>
+      <WhyItMatters locale={locale}>A planet's strength depends on whose sign it sits in. Knowing the friendship matrix tells you immediately whether a planet in your chart is comfortable or struggling  –  and why.</WhyItMatters>
     </div>
   );
 }
@@ -121,7 +121,7 @@ function Page2() {
   return (
     <div className="space-y-6">
       <section>
-        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Temporary Friendship — Chart-Specific Dynamics</h3>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Temporary Friendship  –  Chart-Specific Dynamics</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           While natural friendships are universal, <span className="text-gold-light font-bold">temporary (Tatkalika) friendships</span> depend on the specific birth chart. The rule is simple:
         </p>
@@ -130,7 +130,7 @@ function Page2() {
           <div className="text-red-300">Planets in houses 1, 5, 6, 7, 8, 9 from a planet = <span className="text-gold-light">Temporary ENEMY</span></div>
         </div>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          Think of it this way: planets "nearby" (2-4 houses away or 10-12 houses away) are like neighbors — they become temporary allies. Planets "across" the chart (5-9 houses away) are distant and become temporary rivals.
+          Think of it this way: planets "nearby" (2-4 houses away or 10-12 houses away) are like neighbors  –  they become temporary allies. Planets "across" the chart (5-9 houses away) are distant and become temporary rivals.
         </p>
       </section>
 
@@ -162,7 +162,7 @@ function Page2() {
       <ExampleChart
         ascendant={1}
         planets={{ 12: [5], 2: [2] }}
-        title="Venus in Aries (12th), Mars in 2nd — Compound Friendship"
+        title="Venus in Aries (12th), Mars in 2nd  –  Compound Friendship"
         highlight={[12, 2]}
       />
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
@@ -174,17 +174,17 @@ function Page2() {
           <div>1. Natural relationship: Mars → Venus = <span className="text-amber-300">Neutral</span></div>
           <div>2. Temporary: Mars in 3rd from Venus = <span className="text-emerald-300">Temp Friend</span> (3rd is friendly house)</div>
           <div>3. Compound: Neutral + Temp Friend = <span className="text-emerald-400 font-bold">Mitra (Friend)</span></div>
-          <div>4. Venus in Aries: Venus has <span className="text-emerald-300">Mitra Kshetra</span> dignity — decent strength</div>
+          <div>4. Venus in Aries: Venus has <span className="text-emerald-300">Mitra Kshetra</span> dignity  –  decent strength</div>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
-          <p><span className="text-red-300 font-bold">Misconception:</span> "Planetary relationships are reciprocal — if A is B's friend, B must be A's friend."<br />
+          <p><span className="text-red-300 font-bold">Misconception:</span> "Planetary relationships are reciprocal  –  if A is B's friend, B must be A's friend."<br />
           <span className="text-emerald-300">Reality:</span> NOT always! Sun considers Mercury neutral, but Mercury considers Sun a FRIEND. This asymmetry is intentional and adds nuance.</p>
           <p><span className="text-red-300 font-bold">Misconception:</span> "Benefic planets are always friends with each other."<br />
-          <span className="text-emerald-300">Reality:</span> Jupiter and Venus — both strong benefics — are ENEMIES. Their rivalry (Deva Guru vs Asura Guru) creates the Guru Chandal dynamic when they interact.</p>
+          <span className="text-emerald-300">Reality:</span> Jupiter and Venus  –  both strong benefics  –  are ENEMIES. Their rivalry (Deva Guru vs Asura Guru) creates the Guru Chandal dynamic when they interact.</p>
         </div>
       </section>
 

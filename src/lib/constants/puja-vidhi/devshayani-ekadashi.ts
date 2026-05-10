@@ -63,9 +63,9 @@ export const DEVSHAYANI_EKADASHI_PUJA: PujaVidhi = {
       step: 3,
       title: { en: 'Sankalpa for Chaturmas', hi: 'चातुर्मास संकल्प', sa: 'चातुर्माससङ्कल्पः' },
       description: {
-        en: 'Take the Chaturmas vow — resolve to observe heightened spiritual discipline for the next four months. Traditionally, this includes additional fasting, charity, mantra japa, and abstaining from certain foods (onion, garlic, brinjal depending on tradition).',
-        hi: 'चातुर्मास का संकल्प लें — अगले चार माह तक उन्नत आध्यात्मिक अनुशासन पालने का निश्चय करें। पारम्परिक रूप से इसमें अतिरिक्त उपवास, दान, मंत्र जप, और कुछ खाद्य पदार्थों (प्याज, लहसुन, बैंगन — परम्परा अनुसार) का त्याग शामिल है।',
-        sa: 'चातुर्मासव्रतं गृह्णीयात् — आगामिचतुर्मासान् यावत् उन्नतं आध्यात्मिकानुशासनम् आचरितुं निश्चयं कुर्यात्। पारम्परिकं उपवासदानमन्त्रजपाः केषाञ्चित् खाद्यपदार्थानां त्यागश्च अत्र सन्ति।',
+        en: 'Take the Chaturmas vow  –  resolve to observe heightened spiritual discipline for the next four months. Traditionally, this includes additional fasting, charity, mantra japa, and abstaining from certain foods (onion, garlic, brinjal depending on tradition).',
+        hi: 'चातुर्मास का संकल्प लें  –  अगले चार माह तक उन्नत आध्यात्मिक अनुशासन पालने का निश्चय करें। पारम्परिक रूप से इसमें अतिरिक्त उपवास, दान, मंत्र जप, और कुछ खाद्य पदार्थों (प्याज, लहसुन, बैंगन  –  परम्परा अनुसार) का त्याग शामिल है।',
+        sa: 'चातुर्मासव्रतं गृह्णीयात्  –  आगामिचतुर्मासान् यावत् उन्नतं आध्यात्मिकानुशासनम् आचरितुं निश्चयं कुर्यात्। पारम्परिकं उपवासदानमन्त्रजपाः केषाञ्चित् खाद्यपदार्थानां त्यागश्च अत्र सन्ति।',
       },
       duration: '5 min',
       essential: true,
@@ -116,7 +116,7 @@ export const DEVSHAYANI_EKADASHI_PUJA: PujaVidhi = {
       devanagari: 'सुप्ते त्वयि जगन्नाथ जगत् सुप्तं भवेदिदम्।\nविबुद्धे त्वयि बुध्येत जगत् सर्वं चराचरम्॥',
       iast: 'supte tvayi jagannātha jagat suptaṃ bhavedidaṃ |\nvibuddhe tvayi budhyeta jagat sarvaṃ carācaram ||',
       meaning: {
-        en: 'O Lord of the Universe, when You sleep, the entire world sleeps. When You awaken, all beings — moving and non-moving — awaken.',
+        en: 'O Lord of the Universe, when You sleep, the entire world sleeps. When You awaken, all beings  –  moving and non-moving  –  awaken.',
         hi: 'हे जगन्नाथ, जब आप सोते हैं तो सम्पूर्ण संसार सो जाता है। जब आप जागते हैं तो सभी चराचर प्राणी जाग उठते हैं।',
         sa: 'हे जगन्नाथ, त्वयि सुप्ते इदं सकलं जगत् सुप्तं भवेत्। त्वयि विबुद्धे सर्वं चराचरजगत् बुध्येत।',
       },
@@ -138,9 +138,9 @@ export const DEVSHAYANI_EKADASHI_PUJA: PujaVidhi = {
       },
       japaCount: 108,
       usage: {
-        en: 'The twelve-syllable Vishnu mantra — chant 108 times during the vrat.',
-        hi: 'द्वादशाक्षर विष्णु मंत्र — व्रत के दौरान 108 बार जाप करें।',
-        sa: 'द्वादशाक्षरो विष्णुमन्त्रः — व्रतकाले अष्टोत्तरशतवारं जपेत्।',
+        en: 'The twelve-syllable Vishnu mantra  –  chant 108 times during the vrat.',
+        hi: 'द्वादशाक्षर विष्णु मंत्र  –  व्रत के दौरान 108 बार जाप करें।',
+        sa: 'द्वादशाक्षरो विष्णुमन्त्रः  –  व्रतकाले अष्टोत्तरशतवारं जपेत्।',
       },
     },
   ],
@@ -177,9 +177,9 @@ export const DEVSHAYANI_EKADASHI_PUJA: PujaVidhi = {
       sa: 'अस्मिन् दिने ब्रह्मचर्यं सत्यवादित्वं करुणां च पालयेत्। क्रोधं कठोरवाणीं च वर्जयेत्।',
     },
     {
-      en: 'The significance lies in internal transformation during Chaturmas — external rituals are meaningless without inner resolve for spiritual growth.',
-      hi: 'चातुर्मास में आन्तरिक परिवर्तन ही सार है — आध्यात्मिक विकास के आन्तरिक संकल्प के बिना बाहरी कर्मकाण्ड अर्थहीन हैं।',
-      sa: 'चातुर्मासे आन्तरिकपरिवर्तनमेव सारः — आध्यात्मिकविकासस्य आन्तरिकसङ्कल्पं विना बाह्यकर्मकाण्डाः निरर्थकाः।',
+      en: 'The significance lies in internal transformation during Chaturmas  –  external rituals are meaningless without inner resolve for spiritual growth.',
+      hi: 'चातुर्मास में आन्तरिक परिवर्तन ही सार है  –  आध्यात्मिक विकास के आन्तरिक संकल्प के बिना बाहरी कर्मकाण्ड अर्थहीन हैं।',
+      sa: 'चातुर्मासे आन्तरिकपरिवर्तनमेव सारः  –  आध्यात्मिकविकासस्य आन्तरिकसङ्कल्पं विना बाह्यकर्मकाण्डाः निरर्थकाः।',
     },
   ],
 

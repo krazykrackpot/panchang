@@ -1,15 +1,15 @@
 {
   "title": {
-    "en": "Tithi Calculations — Parana, Kshaya, Vriddhi",
-    "hi": "तिथि गणना — पारण, क्षय, वृद्धि",
-    "sa": "तिथिगणनम् — पारणम्, क्षयः, वृद्धिश्च",
-    "ta": "திதி கணக்கீடுகள் — பாரண, க்ஷய, விருத்தி",
-    "te": "తిథి గణనలు — పారణ, క్షయ, వృద్ధి",
-    "bn": "তিথি গণনা — পারণ, ক্ষয়, বৃদ্ধি",
-    "kn": "ತಿಥಿ ಲೆಕ್ಕಾಚಾರ — ಪಾರಣ, ಕ್ಷಯ, ವೃದ್ಧಿ",
-    "mr": "तिथी गणना — पारण, क्षय, वृद्धी",
-    "gu": "તિથિ ગણતરી — પારણ, ક્ષય, વૃદ્ધિ",
-    "mai": "तिथि गणना — पारण, क्षय, वृद्धि"
+    "en": "Tithi Calculations  –  Parana, Kshaya, Vriddhi",
+    "hi": "तिथि गणना  –  पारण, क्षय, वृद्धि",
+    "sa": "तिथिगणनम्  –  पारणम्, क्षयः, वृद्धिश्च",
+    "ta": "திதி கணக்கீடுகள்  –  பாரண, க்ஷய, விருத்தி",
+    "te": "తిథి గణనలు  –  పారణ, క్షయ, వృద్ధి",
+    "bn": "তিথি গণনা  –  পারণ, ক্ষয়, বৃদ্ধি",
+    "kn": "ತಿಥಿ ಲೆಕ್ಕಾಚಾರ  –  ಪಾರಣ, ಕ್ಷಯ, ವೃದ್ಧಿ",
+    "mr": "तिथी गणना  –  पारण, क्षय, वृद्धी",
+    "gu": "તિથિ ગણતરી  –  પારણ, ક્ષય, વૃદ્ધિ",
+    "mai": "तिथि गणना  –  पारण, क्षय, वृद्धि"
   },
   "subtitle": {
     "en": "Kshaya (lost) and Vriddhi (adhika) tithis, tithi-at-sunrise rules, and practical Ekadashi parana timing",
@@ -196,16 +196,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "When the Moon moves slowly (near apogee), a tithi can last long enough to be present at three consecutive sunrises. This means the same tithi governs two successive calendar days — it is repeated or \"vriddhi\" (augmented).",
-        "hi": "जब चन्द्रमा मन्द गति (अपभू के निकट) से चलता है, तो एक तिथि इतनी दीर्घ हो सकती है कि तीन क्रमागत सूर्योदयों पर उपस्थित रहे। इसका अर्थ है कि एक ही तिथि दो लगातार दिनों पर शासन करती है — यह \"वृद्धि\" (बढ़ी हुई) तिथि कहलाती है।",
-        "sa": "जब चन्द्रमा मन्द गति (अपभू के निकट) से चलता है, तो एक तिथि इतनी दीर्घ हो सकती है कि तीन क्रमागत सूर्योदयों पर उपस्थित रहे। इसका अर्थ है कि एक ही तिथि दो लगातार दिनों पर शासन करती है — यह \"वृद्धि\" (बढ़ी हुई) तिथि कहलाती है।",
-        "ta": "When the Moon moves slowly (near apogee), a tithi can last long enough to be present at three consecutive sunrises. This means the same tithi governs two successive calendar days — it is repeated or \"vriddhi\" (augmented).",
-        "te": "When the Moon moves slowly (near apogee), a tithi can last long enough to be present at three consecutive sunrises. This means the same tithi governs two successive calendar days — it is repeated or \"vriddhi\" (augmented).",
-        "bn": "When the Moon moves slowly (near apogee), a tithi can last long enough to be present at three consecutive sunrises. This means the same tithi governs two successive calendar days — it is repeated or \"vriddhi\" (augmented).",
-        "kn": "When the Moon moves slowly (near apogee), a tithi can last long enough to be present at three consecutive sunrises. This means the same tithi governs two successive calendar days — it is repeated or \"vriddhi\" (augmented).",
-        "mr": "जब चन्द्रमा मन्द गति (अपभू के निकट) से चलता है, तो एक तिथि इतनी दीर्घ हो सकती है कि तीन क्रमागत सूर्योदयों पर उपस्थित रहे। इसका अर्थ है कि एक ही तिथि दो लगातार दिनों पर शासन करती है — यह \"वृद्धि\" (बढ़ी हुई) तिथि कहलाती है।",
-        "gu": "When the Moon moves slowly (near apogee), a tithi can last long enough to be present at three consecutive sunrises. This means the same tithi governs two successive calendar days — it is repeated or \"vriddhi\" (augmented).",
-        "mai": "जब चन्द्रमा मन्द गति (अपभू के निकट) से चलता है, तो एक तिथि इतनी दीर्घ हो सकती है कि तीन क्रमागत सूर्योदयों पर उपस्थित रहे। इसका अर्थ है कि एक ही तिथि दो लगातार दिनों पर शासन करती है — यह \"वृद्धि\" (बढ़ी हुई) तिथि कहलाती है।"
+        "en": "When the Moon moves slowly (near apogee), a tithi can last long enough to be present at three consecutive sunrises. This means the same tithi governs two successive calendar days  –  it is repeated or \"vriddhi\" (augmented).",
+        "hi": "जब चन्द्रमा मन्द गति (अपभू के निकट) से चलता है, तो एक तिथि इतनी दीर्घ हो सकती है कि तीन क्रमागत सूर्योदयों पर उपस्थित रहे। इसका अर्थ है कि एक ही तिथि दो लगातार दिनों पर शासन करती है  –  यह \"वृद्धि\" (बढ़ी हुई) तिथि कहलाती है।",
+        "sa": "जब चन्द्रमा मन्द गति (अपभू के निकट) से चलता है, तो एक तिथि इतनी दीर्घ हो सकती है कि तीन क्रमागत सूर्योदयों पर उपस्थित रहे। इसका अर्थ है कि एक ही तिथि दो लगातार दिनों पर शासन करती है  –  यह \"वृद्धि\" (बढ़ी हुई) तिथि कहलाती है।",
+        "ta": "When the Moon moves slowly (near apogee), a tithi can last long enough to be present at three consecutive sunrises. This means the same tithi governs two successive calendar days  –  it is repeated or \"vriddhi\" (augmented).",
+        "te": "When the Moon moves slowly (near apogee), a tithi can last long enough to be present at three consecutive sunrises. This means the same tithi governs two successive calendar days  –  it is repeated or \"vriddhi\" (augmented).",
+        "bn": "When the Moon moves slowly (near apogee), a tithi can last long enough to be present at three consecutive sunrises. This means the same tithi governs two successive calendar days  –  it is repeated or \"vriddhi\" (augmented).",
+        "kn": "When the Moon moves slowly (near apogee), a tithi can last long enough to be present at three consecutive sunrises. This means the same tithi governs two successive calendar days  –  it is repeated or \"vriddhi\" (augmented).",
+        "mr": "जब चन्द्रमा मन्द गति (अपभू के निकट) से चलता है, तो एक तिथि इतनी दीर्घ हो सकती है कि तीन क्रमागत सूर्योदयों पर उपस्थित रहे। इसका अर्थ है कि एक ही तिथि दो लगातार दिनों पर शासन करती है  –  यह \"वृद्धि\" (बढ़ी हुई) तिथि कहलाती है।",
+        "gu": "When the Moon moves slowly (near apogee), a tithi can last long enough to be present at three consecutive sunrises. This means the same tithi governs two successive calendar days  –  it is repeated or \"vriddhi\" (augmented).",
+        "mai": "जब चन्द्रमा मन्द गति (अपभू के निकट) से चलता है, तो एक तिथि इतनी दीर्घ हो सकती है कि तीन क्रमागत सूर्योदयों पर उपस्थित रहे। इसका अर्थ है कि एक ही तिथि दो लगातार दिनों पर शासन करती है  –  यह \"वृद्धि\" (बढ़ी हुई) तिथि कहलाती है।"
       },
       "options": [
         {
@@ -620,16 +620,16 @@
       },
       "correctAnswer": false,
       "explanation": {
-        "en": "False. Kshaya tithis are relatively rare — typically only a few occur per year. They require the Moon to be near perigee (fastest motion) and the Sun to be near aphelion (slowest motion) simultaneously, creating the conditions for a very short tithi.",
-        "hi": "असत्य। क्षय तिथियाँ अपेक्षाकृत दुर्लभ हैं — सामान्यतः वर्ष में केवल कुछ ही होती हैं। इसके लिए चन्द्रमा का उपभू (तीव्रतम गति) के निकट और सूर्य का अपसौर (मन्दतम गति) के निकट एक साथ होना आवश्यक है, जो अत्यन्त लघु तिथि की स्थिति उत्पन्न करता है।",
-        "sa": "असत्य। क्षय तिथियाँ अपेक्षाकृत दुर्लभ हैं — सामान्यतः वर्ष में केवल कुछ ही होती हैं। इसके लिए चन्द्रमा का उपभू (तीव्रतम गति) के निकट और सूर्य का अपसौर (मन्दतम गति) के निकट एक साथ होना आवश्यक है, जो अत्यन्त लघु तिथि की स्थिति उत्पन्न करता है।",
-        "ta": "False. Kshaya tithis are relatively rare — typically only a few occur per year. They require the Moon to be near perigee (fastest motion) and the Sun to be near aphelion (slowest motion) simultaneously, creating the conditions for a very short tithi.",
-        "te": "False. Kshaya tithis are relatively rare — typically only a few occur per year. They require the Moon to be near perigee (fastest motion) and the Sun to be near aphelion (slowest motion) simultaneously, creating the conditions for a very short tithi.",
-        "bn": "False. Kshaya tithis are relatively rare — typically only a few occur per year. They require the Moon to be near perigee (fastest motion) and the Sun to be near aphelion (slowest motion) simultaneously, creating the conditions for a very short tithi.",
-        "kn": "False. Kshaya tithis are relatively rare — typically only a few occur per year. They require the Moon to be near perigee (fastest motion) and the Sun to be near aphelion (slowest motion) simultaneously, creating the conditions for a very short tithi.",
-        "mr": "असत्य। क्षय तिथियाँ अपेक्षाकृत दुर्लभ हैं — सामान्यतः वर्ष में केवल कुछ ही होती हैं। इसके लिए चन्द्रमा का उपभू (तीव्रतम गति) के निकट और सूर्य का अपसौर (मन्दतम गति) के निकट एक साथ होना आवश्यक है, जो अत्यन्त लघु तिथि की स्थिति उत्पन्न करता है।",
-        "gu": "False. Kshaya tithis are relatively rare — typically only a few occur per year. They require the Moon to be near perigee (fastest motion) and the Sun to be near aphelion (slowest motion) simultaneously, creating the conditions for a very short tithi.",
-        "mai": "असत्य। क्षय तिथियाँ अपेक्षाकृत दुर्लभ हैं — सामान्यतः वर्ष में केवल कुछ ही होती हैं। इसके लिए चन्द्रमा का उपभू (तीव्रतम गति) के निकट और सूर्य का अपसौर (मन्दतम गति) के निकट एक साथ होना आवश्यक है, जो अत्यन्त लघु तिथि की स्थिति उत्पन्न करता है।"
+        "en": "False. Kshaya tithis are relatively rare  –  typically only a few occur per year. They require the Moon to be near perigee (fastest motion) and the Sun to be near aphelion (slowest motion) simultaneously, creating the conditions for a very short tithi.",
+        "hi": "असत्य। क्षय तिथियाँ अपेक्षाकृत दुर्लभ हैं  –  सामान्यतः वर्ष में केवल कुछ ही होती हैं। इसके लिए चन्द्रमा का उपभू (तीव्रतम गति) के निकट और सूर्य का अपसौर (मन्दतम गति) के निकट एक साथ होना आवश्यक है, जो अत्यन्त लघु तिथि की स्थिति उत्पन्न करता है।",
+        "sa": "असत्य। क्षय तिथियाँ अपेक्षाकृत दुर्लभ हैं  –  सामान्यतः वर्ष में केवल कुछ ही होती हैं। इसके लिए चन्द्रमा का उपभू (तीव्रतम गति) के निकट और सूर्य का अपसौर (मन्दतम गति) के निकट एक साथ होना आवश्यक है, जो अत्यन्त लघु तिथि की स्थिति उत्पन्न करता है।",
+        "ta": "False. Kshaya tithis are relatively rare  –  typically only a few occur per year. They require the Moon to be near perigee (fastest motion) and the Sun to be near aphelion (slowest motion) simultaneously, creating the conditions for a very short tithi.",
+        "te": "False. Kshaya tithis are relatively rare  –  typically only a few occur per year. They require the Moon to be near perigee (fastest motion) and the Sun to be near aphelion (slowest motion) simultaneously, creating the conditions for a very short tithi.",
+        "bn": "False. Kshaya tithis are relatively rare  –  typically only a few occur per year. They require the Moon to be near perigee (fastest motion) and the Sun to be near aphelion (slowest motion) simultaneously, creating the conditions for a very short tithi.",
+        "kn": "False. Kshaya tithis are relatively rare  –  typically only a few occur per year. They require the Moon to be near perigee (fastest motion) and the Sun to be near aphelion (slowest motion) simultaneously, creating the conditions for a very short tithi.",
+        "mr": "असत्य। क्षय तिथियाँ अपेक्षाकृत दुर्लभ हैं  –  सामान्यतः वर्ष में केवल कुछ ही होती हैं। इसके लिए चन्द्रमा का उपभू (तीव्रतम गति) के निकट और सूर्य का अपसौर (मन्दतम गति) के निकट एक साथ होना आवश्यक है, जो अत्यन्त लघु तिथि की स्थिति उत्पन्न करता है।",
+        "gu": "False. Kshaya tithis are relatively rare  –  typically only a few occur per year. They require the Moon to be near perigee (fastest motion) and the Sun to be near aphelion (slowest motion) simultaneously, creating the conditions for a very short tithi.",
+        "mai": "असत्य। क्षय तिथियाँ अपेक्षाकृत दुर्लभ हैं  –  सामान्यतः वर्ष में केवल कुछ ही होती हैं। इसके लिए चन्द्रमा का उपभू (तीव्रतम गति) के निकट और सूर्य का अपसौर (मन्दतम गति) के निकट एक साथ होना आवश्यक है, जो अत्यन्त लघु तिथि की स्थिति उत्पन्न करता है।"
       }
     },
     {
@@ -649,16 +649,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Purnima is tithi 15, spanning from 168 to 180 degrees. It ends the moment elongation reaches exactly 180 degrees. At 179 degrees (from our example), Purnima is nearing its end — the binary search would find the exact minute when 180 degrees is reached.",
-        "hi": "पूर्णिमा 15वीं तिथि है, 168 से 180 अंश तक। यह उस क्षण समाप्त होती है जब कोणीय दूरी ठीक 180 अंश तक पहुँचती है। हमारे उदाहरण में 179 अंश पर पूर्णिमा समाप्ति के निकट है — द्विभाजन खोज ठीक वह मिनट ज्ञात करेगी जब 180 अंश प्राप्त होते हैं।",
-        "sa": "पूर्णिमा 15वीं तिथि है, 168 से 180 अंश तक। यह उस क्षण समाप्त होती है जब कोणीय दूरी ठीक 180 अंश तक पहुँचती है। हमारे उदाहरण में 179 अंश पर पूर्णिमा समाप्ति के निकट है — द्विभाजन खोज ठीक वह मिनट ज्ञात करेगी जब 180 अंश प्राप्त होते हैं।",
-        "ta": "Purnima is tithi 15, spanning from 168 to 180 degrees. It ends the moment elongation reaches exactly 180 degrees. At 179 degrees (from our example), Purnima is nearing its end — the binary search would find the exact minute when 180 degrees is reached.",
-        "te": "Purnima is tithi 15, spanning from 168 to 180 degrees. It ends the moment elongation reaches exactly 180 degrees. At 179 degrees (from our example), Purnima is nearing its end — the binary search would find the exact minute when 180 degrees is reached.",
-        "bn": "Purnima is tithi 15, spanning from 168 to 180 degrees. It ends the moment elongation reaches exactly 180 degrees. At 179 degrees (from our example), Purnima is nearing its end — the binary search would find the exact minute when 180 degrees is reached.",
-        "kn": "Purnima is tithi 15, spanning from 168 to 180 degrees. It ends the moment elongation reaches exactly 180 degrees. At 179 degrees (from our example), Purnima is nearing its end — the binary search would find the exact minute when 180 degrees is reached.",
-        "mr": "पूर्णिमा 15वीं तिथि है, 168 से 180 अंश तक। यह उस क्षण समाप्त होती है जब कोणीय दूरी ठीक 180 अंश तक पहुँचती है। हमारे उदाहरण में 179 अंश पर पूर्णिमा समाप्ति के निकट है — द्विभाजन खोज ठीक वह मिनट ज्ञात करेगी जब 180 अंश प्राप्त होते हैं।",
-        "gu": "Purnima is tithi 15, spanning from 168 to 180 degrees. It ends the moment elongation reaches exactly 180 degrees. At 179 degrees (from our example), Purnima is nearing its end — the binary search would find the exact minute when 180 degrees is reached.",
-        "mai": "पूर्णिमा 15वीं तिथि है, 168 से 180 अंश तक। यह उस क्षण समाप्त होती है जब कोणीय दूरी ठीक 180 अंश तक पहुँचती है। हमारे उदाहरण में 179 अंश पर पूर्णिमा समाप्ति के निकट है — द्विभाजन खोज ठीक वह मिनट ज्ञात करेगी जब 180 अंश प्राप्त होते हैं।"
+        "en": "Purnima is tithi 15, spanning from 168 to 180 degrees. It ends the moment elongation reaches exactly 180 degrees. At 179 degrees (from our example), Purnima is nearing its end  –  the binary search would find the exact minute when 180 degrees is reached.",
+        "hi": "पूर्णिमा 15वीं तिथि है, 168 से 180 अंश तक। यह उस क्षण समाप्त होती है जब कोणीय दूरी ठीक 180 अंश तक पहुँचती है। हमारे उदाहरण में 179 अंश पर पूर्णिमा समाप्ति के निकट है  –  द्विभाजन खोज ठीक वह मिनट ज्ञात करेगी जब 180 अंश प्राप्त होते हैं।",
+        "sa": "पूर्णिमा 15वीं तिथि है, 168 से 180 अंश तक। यह उस क्षण समाप्त होती है जब कोणीय दूरी ठीक 180 अंश तक पहुँचती है। हमारे उदाहरण में 179 अंश पर पूर्णिमा समाप्ति के निकट है  –  द्विभाजन खोज ठीक वह मिनट ज्ञात करेगी जब 180 अंश प्राप्त होते हैं।",
+        "ta": "Purnima is tithi 15, spanning from 168 to 180 degrees. It ends the moment elongation reaches exactly 180 degrees. At 179 degrees (from our example), Purnima is nearing its end  –  the binary search would find the exact minute when 180 degrees is reached.",
+        "te": "Purnima is tithi 15, spanning from 168 to 180 degrees. It ends the moment elongation reaches exactly 180 degrees. At 179 degrees (from our example), Purnima is nearing its end  –  the binary search would find the exact minute when 180 degrees is reached.",
+        "bn": "Purnima is tithi 15, spanning from 168 to 180 degrees. It ends the moment elongation reaches exactly 180 degrees. At 179 degrees (from our example), Purnima is nearing its end  –  the binary search would find the exact minute when 180 degrees is reached.",
+        "kn": "Purnima is tithi 15, spanning from 168 to 180 degrees. It ends the moment elongation reaches exactly 180 degrees. At 179 degrees (from our example), Purnima is nearing its end  –  the binary search would find the exact minute when 180 degrees is reached.",
+        "mr": "पूर्णिमा 15वीं तिथि है, 168 से 180 अंश तक। यह उस क्षण समाप्त होती है जब कोणीय दूरी ठीक 180 अंश तक पहुँचती है। हमारे उदाहरण में 179 अंश पर पूर्णिमा समाप्ति के निकट है  –  द्विभाजन खोज ठीक वह मिनट ज्ञात करेगी जब 180 अंश प्राप्त होते हैं।",
+        "gu": "Purnima is tithi 15, spanning from 168 to 180 degrees. It ends the moment elongation reaches exactly 180 degrees. At 179 degrees (from our example), Purnima is nearing its end  –  the binary search would find the exact minute when 180 degrees is reached.",
+        "mai": "पूर्णिमा 15वीं तिथि है, 168 से 180 अंश तक। यह उस क्षण समाप्त होती है जब कोणीय दूरी ठीक 180 अंश तक पहुँचती है। हमारे उदाहरण में 179 अंश पर पूर्णिमा समाप्ति के निकट है  –  द्विभाजन खोज ठीक वह मिनट ज्ञात करेगी जब 180 अंश प्राप्त होते हैं।"
       },
       "options": [
         {
@@ -718,7 +718,7 @@
       "correctAnswer": 1,
       "explanation": { "en": "Vaishnava Ekadashi requires a 'pure' Ekadashi free from Dashami contamination at sunrise. If Dashami is still present at sunrise, Vaishnavas fast the next day. Smartha tradition accepts Ekadashi even with Dashami present.", "hi": "वैष्णव एकादशी के लिए सूर्योदय पर दशमी वेध रहित 'शुद्ध' एकादशी आवश्यक है। यदि सूर्योदय पर दशमी उपस्थित हो, तो वैष्णव अगले दिन उपवास रखते हैं।", "sa": "वैष्णव एकादशी के लिए शुद्ध एकादशी आवश्यक है।", "ta": "Vaishnava Ekadashi requires a pure Ekadashi free from Dashami.", "te": "Vaishnava Ekadashi requires a pure Ekadashi free from Dashami.", "bn": "Vaishnava Ekadashi requires a pure Ekadashi free from Dashami.", "kn": "Vaishnava Ekadashi requires a pure Ekadashi free from Dashami.", "mr": "वैष्णव एकादशी के लिए शुद्ध एकादशी आवश्यक है।", "gu": "Vaishnava Ekadashi requires a pure Ekadashi free from Dashami.", "mai": "वैष्णव एकादशी के लिए शुद्ध एकादशी आवश्यक है।" },
       "options": [
-        { "en": "No difference — both observe on the same day always", "hi": "कोई अन्तर नहीं — दोनों सदैव एक ही दिन मनाते हैं", "sa": "कोई अन्तर नहीं", "ta": "No difference", "te": "No difference", "bn": "No difference", "kn": "No difference", "mr": "कोई अन्तर नहीं", "gu": "No difference", "mai": "कोई अन्तर नहीं" },
+        { "en": "No difference  –  both observe on the same day always", "hi": "कोई अन्तर नहीं  –  दोनों सदैव एक ही दिन मनाते हैं", "sa": "कोई अन्तर नहीं", "ta": "No difference", "te": "No difference", "bn": "No difference", "kn": "No difference", "mr": "कोई अन्तर नहीं", "gu": "No difference", "mai": "कोई अन्तर नहीं" },
         { "en": "Vaishnava requires Dashami-free Ekadashi; Smartha accepts Dashami Viddha", "hi": "वैष्णव को दशमी-मुक्त एकादशी चाहिए; स्मार्त दशमी वेध स्वीकार करता है", "sa": "वैष्णव को शुद्ध एकादशी चाहिए", "ta": "Vaishnava requires pure Ekadashi; Smartha accepts Dashami Viddha", "te": "Vaishnava requires pure Ekadashi", "bn": "Vaishnava requires pure Ekadashi", "kn": "Vaishnava requires pure Ekadashi", "mr": "वैष्णव को शुद्ध एकादशी चाहिए", "gu": "Vaishnava requires pure Ekadashi", "mai": "वैष्णव को शुद्ध एकादशी चाहिए" },
         { "en": "Smartha fasts on Dwadashi instead", "hi": "स्मार्त द्वादशी पर उपवास रखता है", "sa": "स्मार्त द्वादशी पर उपवास रखता है", "ta": "Smartha fasts on Dwadashi", "te": "Smartha fasts on Dwadashi", "bn": "Smartha fasts on Dwadashi", "kn": "Smartha fasts on Dwadashi", "mr": "स्मार्त द्वादशी पर उपवास रखता है", "gu": "Smartha fasts on Dwadashi", "mai": "स्मार्त द्वादशी पर उपवास रखता है" },
         { "en": "Vaishnava never fasts", "hi": "वैष्णव कभी उपवास नहीं रखता", "sa": "वैष्णव कभी उपवास नहीं रखता", "ta": "Vaishnava never fasts", "te": "Vaishnava never fasts", "bn": "Vaishnava never fasts", "kn": "Vaishnava never fasts", "mr": "वैष्णव कभी उपवास नहीं रखता", "gu": "Vaishnava never fasts", "mai": "वैष्णव कभी उपवास नहीं रखता" }

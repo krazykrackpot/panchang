@@ -1,5 +1,5 @@
 /**
- * Monthly Personal Calendar — orchestrates per-day quality scoring.
+ * Monthly Personal Calendar  –  orchestrates per-day quality scoring.
  *
  * Combines:
  *   - Tara Bala + Chandra Bala (personal, from birth nakshatra/rashi)

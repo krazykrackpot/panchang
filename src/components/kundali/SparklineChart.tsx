@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * SparklineChart — tiny SVG line chart for domain score trends.
+ * SparklineChart  –  tiny SVG line chart for domain score trends.
  *
  * Renders a smooth polyline with a gradient fill beneath it.
  * Trend determines colour: gold for stable, emerald for rising, red for falling.
@@ -15,7 +15,7 @@
 interface SparklineChartProps {
   /** 6-12 monthly scores (0-10). */
   data: number[];
-  /** Direction of the trend — determines line colour. */
+  /** Direction of the trend  –  determines line colour. */
   trend: 'rising' | 'falling' | 'stable';
   /** SVG width in px. Default 120. */
   width?: number;
@@ -79,7 +79,7 @@ export default function SparklineChart({
   const innerW = width - padX * 2;
   const innerH = height - padY * 2;
 
-  // ---- Edge case: single data point — render a dot ----
+  // ---- Edge case: single data point  –  render a dot ----
   if (data.length === 1) {
     const cx = width / 2;
     const cy = height / 2;
@@ -112,7 +112,7 @@ export default function SparklineChart({
 
   const points = data.map((v, i) => {
     const x = padX + (i / (data.length - 1)) * innerW;
-    // Invert Y — SVG y=0 is top
+    // Invert Y  –  SVG y=0 is top
     const y = padY + (1 - (v - min) / range) * innerH;
     return { x, y };
   });

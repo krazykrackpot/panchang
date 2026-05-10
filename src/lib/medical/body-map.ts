@@ -1,5 +1,5 @@
 /**
- * Body Vulnerability Map — scores each of the 12 body regions (0-100)
+ * Body Vulnerability Map  –  scores each of the 12 body regions (0-100)
  * based on house affliction analysis.
  *
  * Sources: BPHS Ch.24-25 (Roga Sthana), Sarvartha Chintamani
@@ -41,7 +41,7 @@ export function computeBodyMap(kundali: KundaliData): BodyRegionResult[] {
     planetDebilMap.set(p.planet.id, p.isDebilitated);
   }
 
-  // Rahu/Ketu axis — Rahu house and Ketu house (always opposite)
+  // Rahu/Ketu axis  –  Rahu house and Ketu house (always opposite)
   const rahuPlanet = kundali.planets.find((p) => p.planet.id === 7);
   const rahuHouse = rahuPlanet?.house ?? null;
   const ketuHouse = rahuHouse != null

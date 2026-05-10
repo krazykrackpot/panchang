@@ -433,7 +433,7 @@ export default function MatchingPage() {
         </div>
       )}
 
-      {/* Results — Dasha Koota (South Indian 10pt) */}
+      {/* Results  –  Dasha Koota (South Indian 10pt) */}
       <AnimatePresence>
         {dashaResult && (
           <motion.div
@@ -512,10 +512,10 @@ export default function MatchingPage() {
                 </div>
                 <div className="text-text-secondary text-sm">
                   {isDevanagari
-                    ? 'दोनों नक्षत्र एक ही रज्जु (शरीर अंग) समूह में हैं — यह विवाह की स्थिरता के लिए चिन्ता का विषय है।'
+                    ? 'दोनों नक्षत्र एक ही रज्जु (शरीर अंग) समूह में हैं  –  यह विवाह की स्थिरता के लिए चिन्ता का विषय है।'
                     : isTamil
-                      ? 'இரு நட்சத்திரங்களும் ஒரே ரஜ்ஜு குழுவில் உள்ளன — இது திருமண நிலைத்தன்மைக்கு கவலையளிக்கிறது.'
-                      : 'Both nakshatras fall in the same Rajju (body part) group — this is a concern for marital stability.'}
+                      ? 'இரு நட்சத்திரங்களும் ஒரே ரஜ்ஜு குழுவில் உள்ளன  –  இது திருமண நிலைத்தன்மைக்கு கவலையளிக்கிறது.'
+                      : 'Both nakshatras fall in the same Rajju (body part) group  –  this is a concern for marital stability.'}
                 </div>
               </motion.div>
             )}
@@ -532,10 +532,10 @@ export default function MatchingPage() {
                 </div>
                 <div className="text-text-secondary text-sm">
                   {isDevanagari
-                    ? 'नक्षत्र जोड़ी में वेध (पीड़ा) है — शास्त्रीय ग्रन्थों के अनुसार यह अशुभ संयोग है।'
+                    ? 'नक्षत्र जोड़ी में वेध (पीड़ा) है  –  शास्त्रीय ग्रन्थों के अनुसार यह अशुभ संयोग है।'
                     : isTamil
-                      ? 'நட்சத்திர ஜோடியில் வேதை (பீடை) உள்ளது — சாஸ்திர நூல்களின்படி இது அசுப கூட்டணி.'
-                      : 'The nakshatra pair has Vedha (affliction) — considered inauspicious per classical texts.'}
+                      ? 'நட்சத்திர ஜோடியில் வேதை (பீடை) உள்ளது  –  சாஸ்திர நூல்களின்படி இது அசுப கூட்டணி.'
+                      : 'The nakshatra pair has Vedha (affliction)  –  considered inauspicious per classical texts.'}
                 </div>
               </motion.div>
             )}
@@ -547,9 +547,9 @@ export default function MatchingPage() {
               defaultOpen={true}
             >
               {isDevanagari ? (
-                <p>दशकूट पद्धति दक्षिण भारतीय विवाह मिलान प्रणाली है जो 10 कूटों पर संगतता को अंकित करती है (अधिकतम 10 अंक): दिन (1.5 अंक) — नक्षत्र दिवस अनुकूलता, गण (1.5 अंक) — स्वभाव मिलान, महेन्द्र (1 अंक) — समृद्धि, स्त्री दीर्घ (1 अंक) — वधू की दीर्घायु, योनि (1 अंक) — शारीरिक अनुकूलता, राशि (1 अंक) — चन्द्र राशि मिलान, राश्यधिपति (1 अंक) — ग्रह मैत्री, वश्य (1 अंक) — परस्पर आकर्षण, रज्जु (1 अंक) — विवाह स्थिरता, वेध (1 अंक) — नक्षत्र पीड़ा अभाव। 8+ = उत्तम, 5-7 = अच्छा, 5 से कम = चुनौतीपूर्ण।</p>
+                <p>दशकूट पद्धति दक्षिण भारतीय विवाह मिलान प्रणाली है जो 10 कूटों पर संगतता को अंकित करती है (अधिकतम 10 अंक): दिन (1.5 अंक)  –  नक्षत्र दिवस अनुकूलता, गण (1.5 अंक)  –  स्वभाव मिलान, महेन्द्र (1 अंक)  –  समृद्धि, स्त्री दीर्घ (1 अंक)  –  वधू की दीर्घायु, योनि (1 अंक)  –  शारीरिक अनुकूलता, राशि (1 अंक)  –  चन्द्र राशि मिलान, राश्यधिपति (1 अंक)  –  ग्रह मैत्री, वश्य (1 अंक)  –  परस्पर आकर्षण, रज्जु (1 अंक)  –  विवाह स्थिरता, वेध (1 अंक)  –  नक्षत्र पीड़ा अभाव। 8+ = उत्तम, 5-7 = अच्छा, 5 से कम = चुनौतीपूर्ण।</p>
               ) : (
-                <p>The Dasha Koota system is the South Indian marriage matching method that scores compatibility on 10 dimensions (max 10 points): Dina (1.5pts) — nakshatra day compatibility, Gana (1.5pts) — temperament, Mahendra (1pt) — prosperity, Stree Deergha (1pt) — bride&apos;s longevity, Yoni (1pt) — physical compatibility, Rashi (1pt) — Moon sign match, Rashiadhipati (1pt) — sign lord friendship, Vasya (1pt) — mutual attraction, Rajju (1pt) — marriage durability, Vedha (1pt) — absence of nakshatra affliction. 8+ = Excellent, 5-7 = Good, below 5 = Challenging.</p>
+                <p>The Dasha Koota system is the South Indian marriage matching method that scores compatibility on 10 dimensions (max 10 points): Dina (1.5pts)  –  nakshatra day compatibility, Gana (1.5pts)  –  temperament, Mahendra (1pt)  –  prosperity, Stree Deergha (1pt)  –  bride&apos;s longevity, Yoni (1pt)  –  physical compatibility, Rashi (1pt)  –  Moon sign match, Rashiadhipati (1pt)  –  sign lord friendship, Vasya (1pt)  –  mutual attraction, Rajju (1pt)  –  marriage durability, Vedha (1pt)  –  absence of nakshatra affliction. 8+ = Excellent, 5-7 = Good, below 5 = Challenging.</p>
               )}
             </InfoBlock>
 
@@ -603,7 +603,7 @@ export default function MatchingPage() {
         )}
       </AnimatePresence>
 
-      {/* Results — Ashta Kuta (North Indian 36pt) */}
+      {/* Results  –  Ashta Kuta (North Indian 36pt) */}
       <AnimatePresence>
         {result && (
           <motion.div
@@ -670,7 +670,7 @@ export default function MatchingPage() {
               );
             })()}
 
-            {/* Narrative verdict — shown before the kuta breakdown */}
+            {/* Narrative verdict  –  shown before the kuta breakdown */}
             {(() => {
               const verdict = getOverallVerdict(result.totalScore);
               const verdictBorder: Record<string, string> = {
@@ -690,7 +690,7 @@ export default function MatchingPage() {
               return (
                 <div className={`mt-6 mb-8 rounded-xl border p-5 max-w-lg mx-auto text-left ${verdictBorder[verdict.tier]}`}>
                   <div className={`font-bold text-lg mb-2 ${verdictTextColor[verdict.tier]}`} style={headingFont}>
-                    {boyName} &amp; {girlName} — {verdict.headline}
+                    {boyName} &amp; {girlName}  –  {verdict.headline}
                   </div>
                   <p className="text-text-secondary text-sm leading-relaxed">{verdict.body}</p>
                 </div>
@@ -721,12 +721,12 @@ export default function MatchingPage() {
                 </div>
                 <div className="text-text-secondary text-sm">
                   {locale === 'hi'
-                    ? 'समान नक्षत्र और पाद — आनुवंशिक अनुकूलता। नाड़ी दोष पूर्णतया निरस्त। यह शुभ संकेत है।'
+                    ? 'समान नक्षत्र और पाद  –  आनुवंशिक अनुकूलता। नाड़ी दोष पूर्णतया निरस्त। यह शुभ संकेत है।'
                     : locale === 'ta'
-                      ? 'ஒரே நட்சத்திரம் மற்றும் பாதம் — மரபணு இணக்கம். நாடி தோஷம் முற்றிலும் நீக்கப்பட்டது.'
+                      ? 'ஒரே நட்சத்திரம் மற்றும் பாதம்  –  மரபணு இணக்கம். நாடி தோஷம் முற்றிலும் நீக்கப்பட்டது.'
                       : locale === 'bn'
-                        ? 'একই নক্ষত্র এবং পাদ জিনগত সামঞ্জস্য নির্দেশ করে। নাড়ী দোষ সম্পূর্ণরূপে নিরস্ত — এটি একটি শুভ সংকেত।'
-                        : 'Same nakshatra and pada indicates genetic compatibility. Nadi Dosha is fully cancelled — this is a positive indicator.'}
+                        ? 'একই নক্ষত্র এবং পাদ জিনগত সামঞ্জস্য নির্দেশ করে। নাড়ী দোষ সম্পূর্ণরূপে নিরস্ত  –  এটি একটি শুভ সংকেত।'
+                        : 'Same nakshatra and pada indicates genetic compatibility. Nadi Dosha is fully cancelled  –  this is a positive indicator.'}
                 </div>
               </motion.div>
             )}
@@ -738,9 +738,9 @@ export default function MatchingPage() {
               defaultOpen={true}
             >
               {isDevanagari ? (
-                <p>अष्ट कूट पद्धति 8 आयामों पर संगतता को अंकित करती है (अधिकतम 36 अंक): वर्ण (1 अंक) — आध्यात्मिक अनुकूलता, वश्य (2 अंक) — परस्पर आकर्षण, तारा (3 अंक) — नक्षत्र सामंजस्य, योनि (4 अंक) — शारीरिक अनुकूलता, ग्रह मैत्री (5 अंक) — मानसिक तालमेल, गण (6 अंक) — स्वभाव मिलान (देव/मनुष्य/राक्षस), भकूट (7 अंक) — समग्र समृद्धि, नाड़ी (8 अंक) — स्वास्थ्य व आनुवंशिक अनुकूलता (एक ही नाड़ी = गंभीर दोष)। 28+ = उत्तम, 18-27 = अच्छा, 18 से कम = चुनौतीपूर्ण। ये दिशानिर्देश हैं, फैसले नहीं — कम अंकों वाले कई सफल विवाह हुए हैं।</p>
+                <p>अष्ट कूट पद्धति 8 आयामों पर संगतता को अंकित करती है (अधिकतम 36 अंक): वर्ण (1 अंक)  –  आध्यात्मिक अनुकूलता, वश्य (2 अंक)  –  परस्पर आकर्षण, तारा (3 अंक)  –  नक्षत्र सामंजस्य, योनि (4 अंक)  –  शारीरिक अनुकूलता, ग्रह मैत्री (5 अंक)  –  मानसिक तालमेल, गण (6 अंक)  –  स्वभाव मिलान (देव/मनुष्य/राक्षस), भकूट (7 अंक)  –  समग्र समृद्धि, नाड़ी (8 अंक)  –  स्वास्थ्य व आनुवंशिक अनुकूलता (एक ही नाड़ी = गंभीर दोष)। 28+ = उत्तम, 18-27 = अच्छा, 18 से कम = चुनौतीपूर्ण। ये दिशानिर्देश हैं, फैसले नहीं  –  कम अंकों वाले कई सफल विवाह हुए हैं।</p>
               ) : (
-                <p>The Ashta Kuta system scores compatibility on 8 dimensions (max 36 points): Varna (1pt) — spiritual compatibility, Vashya (2pts) — mutual attraction, Tara (3pts) — birth star harmony, Yoni (4pts) — physical compatibility, Graha Maitri (5pts) — mental wavelength, Gana (6pts) — temperament match (gentle/mixed/intense), Bhakoot (7pts) — overall prosperity, Nadi (8pts) — health and genetic compatibility (same Nadi = serious concern). 28+ = Excellent, 18–27 = Good, below 18 = Challenging. These are guidelines, not verdicts — many happy marriages have low scores.</p>
+                <p>The Ashta Kuta system scores compatibility on 8 dimensions (max 36 points): Varna (1pt)  –  spiritual compatibility, Vashya (2pts)  –  mutual attraction, Tara (3pts)  –  birth star harmony, Yoni (4pts)  –  physical compatibility, Graha Maitri (5pts)  –  mental wavelength, Gana (6pts)  –  temperament match (gentle/mixed/intense), Bhakoot (7pts)  –  overall prosperity, Nadi (8pts)  –  health and genetic compatibility (same Nadi = serious concern). 28+ = Excellent, 18–27 = Good, below 18 = Challenging. These are guidelines, not verdicts  –  many happy marriages have low scores.</p>
               )}
             </InfoBlock>
 
@@ -887,7 +887,7 @@ export default function MatchingPage() {
               const bNak = boyComputed?.nakshatra;
               const gNak = girlComputed?.nakshatra;
               if (!bNak || !gNak) return null;
-              // 11 Veda pairs (each arrows the other — one dominates)
+              // 11 Veda pairs (each arrows the other  –  one dominates)
               const VEDA_PAIRS: [number, number][] = [
                 [4, 5], // Rohini / Mrigashira
                 [6, 7], // Ardra / Punarvasu
@@ -917,8 +917,8 @@ export default function MatchingPage() {
                   </h3>
                   <p className="text-text-secondary/70 text-xs mb-3" style={lk !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                     {lk === 'en'
-                      ? `${sn(bNak)} and ${sn(gNak)} form a classical Nakshatra Veda pair — these stars "arrow" each other in traditional compatibility texts. One partner tends to have greater influence in the relationship. Source: Nakshatra compatibility texts.`
-                      : `${sn(bNak)} और ${sn(gNak)} शास्त्रीय नक्षत्र वेध जोड़ी बनाते हैं — ये नक्षत्र पारम्परिक मिलान ग्रन्थों में एक-दूसरे को "वेध" करते हैं। एक साथी का सम्बन्ध में अधिक प्रभाव होता है।`}
+                      ? `${sn(bNak)} and ${sn(gNak)} form a classical Nakshatra Veda pair  –  these stars "arrow" each other in traditional compatibility texts. One partner tends to have greater influence in the relationship. Source: Nakshatra compatibility texts.`
+                      : `${sn(bNak)} और ${sn(gNak)} शास्त्रीय नक्षत्र वेध जोड़ी बनाते हैं  –  ये नक्षत्र पारम्परिक मिलान ग्रन्थों में एक-दूसरे को "वेध" करते हैं। एक साथी का सम्बन्ध में अधिक प्रभाव होता है।`}
                   </p>
                   <div className="flex items-center gap-3 justify-center">
                     <span className="text-amber-300 font-bold">{sn(bNak)}</span>
@@ -928,7 +928,7 @@ export default function MatchingPage() {
                   </div>
                   <p className="text-text-secondary/70 text-xs text-center mt-2" style={lk !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                     {lk === 'en'
-                      ? `The ${dominant === 'boy' ? 'boy/groom' : 'girl/bride'}'s nakshatra (${sn(Math.min(bNak, gNak))}) traditionally has stronger influence. Veda pairs are additional insight — consult the full Ashta Kuta score for the overall picture.`
+                      ? `The ${dominant === 'boy' ? 'boy/groom' : 'girl/bride'}'s nakshatra (${sn(Math.min(bNak, gNak))}) traditionally has stronger influence. Veda pairs are additional insight  –  consult the full Ashta Kuta score for the overall picture.`
                       : `${dominant === 'boy' ? 'वर' : 'वधू'} का नक्षत्र (${sn(Math.min(bNak, gNak))}) परम्परागत रूप से अधिक प्रभावशाली। पूर्ण चित्र के लिए अष्ट कूट देखें।`}
                   </p>
                 </motion.div>
@@ -1014,8 +1014,8 @@ export default function MatchingPage() {
                   const boyName = boyBirth.name || (isTamil ? 'மணமகன்' : locale === 'en' ? 'Groom' : 'वर');
                   const girlName = girlBirth.name || (isTamil ? 'மணமகள்' : locale === 'en' ? 'Bride' : 'வधू');
                   const msg = locale === 'en'
-                    ? `${boyName} & ${girlName} — Ashta Kuta Score: ${result.totalScore}/${result.maxScore} (${result.percentage}%) — ${result.verdictText.en}\n\nCheck your compatibility: https://dekhopanchang.com/en/matching`
-                    : `${boyName} और ${girlName} — अष्ट कूट अंक: ${result.totalScore}/${result.maxScore} (${result.percentage}%) — ${result.verdictText.hi}\n\nअपनी अनुकूलता जाँचें: https://dekhopanchang.com/hi/matching`;
+                    ? `${boyName} & ${girlName}  –  Ashta Kuta Score: ${result.totalScore}/${result.maxScore} (${result.percentage}%)  –  ${result.verdictText.en}\n\nCheck your compatibility: https://dekhopanchang.com/en/matching`
+                    : `${boyName} और ${girlName}  –  अष्ट कूट अंक: ${result.totalScore}/${result.maxScore} (${result.percentage}%)  –  ${result.verdictText.hi}\n\nअपनी अनुकूलता जाँचें: https://dekhopanchang.com/hi/matching`;
                   window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
                 }}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 text-sm font-medium hover:bg-emerald-500/20 transition-colors"
@@ -1054,7 +1054,7 @@ export default function MatchingPage() {
                 })()}
                 title={locale === 'en' ? 'Cosmic Compatibility Card' : 'ब्रह्मांडीय अनुकूलता कार्ड'}
                 text={locale === 'en'
-                  ? `Scored ${result.totalScore}/${result.maxScore} — ${result.verdictText.en}`
+                  ? `Scored ${result.totalScore}/${result.maxScore}  –  ${result.verdictText.en}`
                   : `अष्ट कूट अंक: ${result.totalScore}/${result.maxScore}`}
               />
               <PrintButton

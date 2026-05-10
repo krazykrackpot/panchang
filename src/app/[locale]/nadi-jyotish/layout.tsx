@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const toolLD = generateToolLD(
-    'Nadi Jyotish — BNN Planet Reading',
+    'Nadi Jyotish  –  BNN Planet Reading',
     'Bhrigu Nandi Nadi reading: planet-in-sign predictions, aspect modifiers, karmic profile, and life themes from your Vedic birth chart.',
     `https://dekhopanchang.com/${locale}/nadi-jyotish`,
   );

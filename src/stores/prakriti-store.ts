@@ -16,7 +16,7 @@ export const usePrakritiStore = create<PrakritiState>((set) => {
       const saved = localStorage.getItem('panchang_prakriti');
       if (saved) initial = JSON.parse(saved) as typeof initial;
     } catch {
-      // Ignore parse errors — corrupted localStorage data is non-fatal; start fresh
+      // Ignore parse errors  –  corrupted localStorage data is non-fatal; start fresh
       console.error('[prakriti-store] Failed to parse localStorage data, starting fresh');
     }
   }

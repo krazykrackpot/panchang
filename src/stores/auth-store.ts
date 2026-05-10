@@ -32,7 +32,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       return;
     }
 
-    // Check if we have an OAuth hash in the URL — give Supabase time to process it
+    // Check if we have an OAuth hash in the URL  –  give Supabase time to process it
     if (typeof window !== 'undefined' && window.location.hash.includes('access_token')) {
       await new Promise(r => setTimeout(r, 1000));
     }
@@ -124,7 +124,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       localStorage.removeItem('dekho-panchang-learn-progress');
       localStorage.removeItem('dekho-panchang-learn-streak');
     } catch (err) {
-      // SSR or private browsing — storage APIs may not be available
+      // SSR or private browsing  –  storage APIs may not be available
       console.warn('[Auth] Failed to clear cached data on sign-out:', err);
     }
   },

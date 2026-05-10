@@ -169,7 +169,7 @@ function KalaPurushaDiagram({ locale }: { locale: string }) {
           );
         })}
         <text x="350" y="406" textAnchor="middle" fill="rgba(212,168,83,0.4)" fontSize="9" fontStyle="italic">
-          Kala Purusha — Aries (Head) to Pisces (Feet)
+          Kala Purusha  –  Aries (Head) to Pisces (Feet)
         </text>
       </svg>
     </div>
@@ -450,7 +450,7 @@ export default function AyurvedaJyotishPage() {
         <div className="mb-6 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5">
           <DashaTimeline locale={locale} />
           <p className="text-text-tertiary text-xs mt-3 text-center italic">
-            120-year Vimshottari Dasha cycle — each period activates its planetary dosha
+            120-year Vimshottari Dasha cycle  –  each period activates its planetary dosha
           </p>
         </div>
 

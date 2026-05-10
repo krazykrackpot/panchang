@@ -1,15 +1,15 @@
 {
   "title": {
-    "en": "Ayurvedic Timing — Dosha & Dinacharya",
-    "hi": "आयुर्वेदिक समय — दोष और दिनचर्या",
-    "sa": "आयुर्वेदकालः — दोषदिनचर्या",
-    "mai": "आयुर्वेदिक समय — दोष और दिनचर्या",
-    "mr": "आयुर्वेदिक वेळ — दोष आणि दिनचर्या",
-    "ta": "ஆயுர்வேத நேரம் — தோஷம் & தினசரி",
-    "te": "ఆయుర్వేద సమయం — దోషం & దినచర్య",
-    "bn": "আয়ুর্বেদিক সময় — দোষ ও দিনচর্যা",
-    "kn": "ಆಯುರ್ವೇದ ಸಮಯ — ದೋಷ ಮತ್ತು ದಿನಚರ್ಯೆ",
-    "gu": "આયુર્વેદિક સમય — દોષ અને દિનચર્યા"
+    "en": "Ayurvedic Timing  –  Dosha & Dinacharya",
+    "hi": "आयुर्वेदिक समय  –  दोष और दिनचर्या",
+    "sa": "आयुर्वेदकालः  –  दोषदिनचर्या",
+    "mai": "आयुर्वेदिक समय  –  दोष और दिनचर्या",
+    "mr": "आयुर्वेदिक वेळ  –  दोष आणि दिनचर्या",
+    "ta": "ஆயுர்வேத நேரம்  –  தோஷம் & தினசரி",
+    "te": "ఆయుర్వేద సమయం  –  దోషం & దినచర్య",
+    "bn": "আয়ুর্বেদিক সময়  –  দোষ ও দিনচর্যা",
+    "kn": "ಆಯುರ್ವೇದ ಸಮಯ  –  ದೋಷ ಮತ್ತು ದಿನಚರ್ಯೆ",
+    "gu": "આયુર્વેદિક સમય  –  દોષ અને દિનચર્યા"
   },
   "subtitle": {
     "en": "Determining Prakriti from the birth chart, hora-based daily routines aligned with planetary rhythms, and tithi-aligned nutrition and fasting",
@@ -57,7 +57,7 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "Saturn is the primary significator of Vata dosha. Saturn's cold, dry, slow qualities directly correspond to Vata's nature. Rahu also contributes to Vata imbalance. When Saturn is prominent in a chart (strong in lagna or influencing the Moon), the native tends toward a Vata constitution — thin frame, dry skin, irregular digestion, anxiety-prone.",
+        "en": "Saturn is the primary significator of Vata dosha. Saturn's cold, dry, slow qualities directly correspond to Vata's nature. Rahu also contributes to Vata imbalance. When Saturn is prominent in a chart (strong in lagna or influencing the Moon), the native tends toward a Vata constitution  –  thin frame, dry skin, irregular digestion, anxiety-prone.",
         "hi": "शनि वात दोष का प्राथमिक कारक है। शनि के शीत, शुष्क, मन्द गुण सीधे वात की प्रकृति से मेल खाते हैं।"
       },
       "options": [
@@ -76,7 +76,7 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Dinacharya is the Ayurvedic daily routine aligned with natural rhythms. In Jyotish context, this extends to hora-based scheduling — each hour of the day is ruled by a planet, and activities matching that planet's nature are most effective during its hora. Brahma Muhurta (96 minutes before sunrise) is ideal for spiritual practice and study.",
+        "en": "Dinacharya is the Ayurvedic daily routine aligned with natural rhythms. In Jyotish context, this extends to hora-based scheduling  –  each hour of the day is ruled by a planet, and activities matching that planet's nature are most effective during its hora. Brahma Muhurta (96 minutes before sunrise) is ideal for spiritual practice and study.",
         "hi": "दिनचर्या प्राकृतिक लय के अनुरूप आयुर्वेदिक दैनिक दिनचर्या है। ज्योतिष सन्दर्भ में, यह होरा-आधारित समय-निर्धारण तक विस्तारित होती है।"
       },
       "options": [
@@ -95,7 +95,7 @@
       },
       "correctAnswer": 0,
       "explanation": {
-        "en": "Ekadashi (11th tithi of both Shukla and Krishna paksha) is the most important fasting day. Ayurveda explains this through the lunar cycle's effect on body fluids — on Ekadashi, digestive fire is naturally low, making fasting beneficial. This aligns with Jyotish as Ekadashi is lorded by Rudra/Shiva and is considered highly sattvic.",
+        "en": "Ekadashi (11th tithi of both Shukla and Krishna paksha) is the most important fasting day. Ayurveda explains this through the lunar cycle's effect on body fluids  –  on Ekadashi, digestive fire is naturally low, making fasting beneficial. This aligns with Jyotish as Ekadashi is lorded by Rudra/Shiva and is considered highly sattvic.",
         "hi": "एकादशी (शुक्ल और कृष्ण दोनों पक्ष की 11वीं तिथि) सबसे महत्वपूर्ण उपवास दिन है।"
       },
       "options": [

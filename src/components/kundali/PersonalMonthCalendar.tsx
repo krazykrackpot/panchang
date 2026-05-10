@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * Personal Month Calendar — color-coded days based on natal chart + transits.
+ * Personal Month Calendar  –  color-coded days based on natal chart + transits.
  *
  * Shows a monthly grid where each day is colored by personal quality
  * (excellent/good/neutral/caution/challenging). Highlights best and worst
@@ -214,7 +214,7 @@ export default function PersonalMonthCalendar({ snapshot, lat, lng, timezone, lo
             <div className="rounded-lg bg-white/[0.03] p-2">
               <span className="text-text-secondary/60">Tara Bala</span>
               <p className={`font-medium ${selectedDay.taraBala.favorable ? 'text-emerald-400' : 'text-amber-400'}`}>
-                {selectedDay.taraBala.name || '—'} {selectedDay.taraBala.favorable ? '✓' : '✗'}
+                {selectedDay.taraBala.name || ' – '} {selectedDay.taraBala.favorable ? '✓' : '✗'}
               </p>
             </div>
             <div className="rounded-lg bg-white/[0.03] p-2">
@@ -226,7 +226,7 @@ export default function PersonalMonthCalendar({ snapshot, lat, lng, timezone, lo
             <div className="rounded-lg bg-white/[0.03] p-2 col-span-2">
               <span className="text-text-secondary/60">{isHi ? 'वार गुण' : 'Vara Quality'}</span>
               <p className={`font-medium ${selectedDay.varaQuality === 'Auspicious' || selectedDay.varaQuality === 'Most Auspicious' ? 'text-emerald-400' : selectedDay.varaQuality === 'Caution' ? 'text-amber-400' : 'text-gold-primary'}`}>
-                {selectedDay.varaQuality} {selectedDay.varaBestFor ? `— ${selectedDay.varaBestFor}` : ''}
+                {selectedDay.varaQuality} {selectedDay.varaBestFor ? ` –  ${selectedDay.varaBestFor}` : ''}
               </p>
             </div>
           </div>

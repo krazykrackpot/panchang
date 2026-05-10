@@ -101,7 +101,7 @@ export default function DashasPage() {
             <GrahaIconById id={PLANET_ID[currentMaha.planet] ?? 0} size={40} />
             <div className="flex-1">
               <p className="text-gold-light font-bold text-lg" style={hf}>{tl(currentMaha.planetName, locale)} {tl({ en: 'Mahadasha', hi: 'महादशा', sa: 'महादशा', ta: 'மகாதசை', te: 'మహాదశ', bn: 'মহাদশা', kn: 'ಮಹಾದಶೆ', gu: 'મહાદશા', mai: 'महादशा', mr: 'महादशा' }, locale)}</p>
-              <p className="text-text-secondary text-xs font-mono">{currentMaha.startDate} — {currentMaha.endDate} ({yearsDiff(currentMaha.startDate, currentMaha.endDate)} {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्षाणि', ta: 'ஆண்டுகள்', te: 'సంవత్సరాలు', bn: 'বছর', kn: 'ವರ್ಷಗಳು', gu: 'વર્ષો', mai: 'वर्ष', mr: 'वर्षे' }, locale)})</p>
+              <p className="text-text-secondary text-xs font-mono">{currentMaha.startDate}  –  {currentMaha.endDate} ({yearsDiff(currentMaha.startDate, currentMaha.endDate)} {tl({ en: 'years', hi: 'वर्ष', sa: 'वर्षाणि', ta: 'ஆண்டுகள்', te: 'సంవత్సరాలు', bn: 'বছর', kn: 'ವರ್ಷಗಳು', gu: 'વર્ષો', mai: 'वर्ष', mr: 'वर्षे' }, locale)})</p>
               <div className="mt-2 h-2 bg-bg-tertiary/40 rounded-full overflow-hidden">
                 <div className="h-full bg-gradient-to-r from-gold-primary to-gold-light rounded-full" style={{ width: `${progressPercent(currentMaha.startDate, currentMaha.endDate)}%` }} />
               </div>
@@ -115,7 +115,7 @@ export default function DashasPage() {
               <GrahaIconById id={PLANET_ID[currentAntar.planet] ?? 0} size={28} />
               <div className="flex-1">
                 <p className="text-gold-light font-semibold text-sm" style={bf}>{tl(currentAntar.planetName, locale)} {tl({ en: 'Antardasha', hi: 'अंतर्दशा', sa: 'अन्तर्दशा', ta: 'அந்தர்தசை', te: 'అంతర్దశ', bn: 'অন্তর্দশা', kn: 'ಅಂತರ್ದಶೆ', gu: 'અંતર્દશા', mai: 'अन्तर्दशा', mr: 'अंतर्दशा' }, locale)}</p>
-                <p className="text-text-secondary text-xs font-mono">{currentAntar.startDate} — {currentAntar.endDate}</p>
+                <p className="text-text-secondary text-xs font-mono">{currentAntar.startDate}  –  {currentAntar.endDate}</p>
                 <div className="mt-1 h-1.5 bg-bg-tertiary/40 rounded-full overflow-hidden">
                   <div className="h-full bg-gold-primary/60 rounded-full" style={{ width: `${progressPercent(currentAntar.startDate, currentAntar.endDate)}%` }} />
                 </div>
@@ -162,7 +162,7 @@ export default function DashasPage() {
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-text-secondary/70 text-xs font-mono">{d.startDate.slice(0, 4)}—{d.endDate.slice(0, 4)} ({yearsDiff(d.startDate, d.endDate)}y)</span>
+                      <span className="text-text-secondary/70 text-xs font-mono">{d.startDate.slice(0, 4)} – {d.endDate.slice(0, 4)} ({yearsDiff(d.startDate, d.endDate)}y)</span>
                       {d.subPeriods && d.subPeriods.length > 0 && <ChevronDown className={`w-4 h-4 text-gold-primary/40 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />}
                     </div>
                   </div>
@@ -177,7 +177,7 @@ export default function DashasPage() {
                         <div key={j} className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs ${isCurrentAntar ? 'bg-gold-primary/10 border border-gold-primary/20' : ''}`}>
                           <GrahaIconById id={PLANET_ID[s.planet] ?? 0} size={14} />
                           <span className={isCurrentAntar ? 'text-gold-light font-bold' : 'text-text-secondary'} style={bf}>{tl(s.planetName, locale)}</span>
-                          <span className="text-text-secondary/65 font-mono ml-auto">{s.startDate} — {s.endDate}</span>
+                          <span className="text-text-secondary/65 font-mono ml-auto">{s.startDate}  –  {s.endDate}</span>
                           {isCurrentAntar && <span className="text-gold-primary text-xs font-bold">{tl({ en: 'NOW', hi: 'अभी', sa: 'अधुना', ta: 'இப்போது', te: 'ఇప్పుడు', bn: 'এখন', kn: 'ಈಗ', gu: 'હવે', mai: 'अखन', mr: 'आत्ता' }, locale)}</span>}
                         </div>
                       );

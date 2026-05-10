@@ -1,6 +1,6 @@
 import type { LocaleText } from '@/types/panchang';
 /**
- * Rashi Compatibility Content — 78 unique pair entries
+ * Rashi Compatibility Content  –  78 unique pair entries
  *
  * Each pair's content is programmatically generated from three astrological factors:
  * 1. Element compatibility (Fire/Earth/Air/Water)
@@ -140,16 +140,16 @@ const ELEMENT_COMPAT: Record<string, ElementText> = {
       sa: 'उभे राशी तीव्रभावनाप्रधाने क्रियाशीले च स्तः, परस्परं उत्साहं वर्धयतः। साझम् अग्नितत्त्वं तात्कालिकं बोधं जनयति, किन्तु अहङ्कारसङ्घर्षोऽपि भवति यदा न कोऽपि नम्रतां स्वीकरोति।',
     },
     romance: {
-      en: 'Romantic chemistry ignites fast — sparks fly from the first meeting. Passion runs deep but can burn out if both compete for the spotlight. They need to channel fire into shared adventures rather than power struggles.',
-      hi: 'रोमांटिक रसायन तेज़ी से जलता है — पहली मुलाक़ात से ही चिंगारी उड़ती है। जुनून गहरा है लेकिन प्रतिस्पर्धा से बचना ज़रूरी है।',
-      sa: 'प्रणयरसायनं शीघ्रं प्रज्वलति — प्रथममिलनादेव विस्फुलिङ्गाः उत्पतन्ति। अनुरागो गहनः, किन्तु उभयोः प्रतिस्पर्धायां दग्धो भवितुं शक्नोति। शक्तिसङ्घर्षं विहाय साहसिकयात्रासु अग्निं नियोजयेयुः।',
+      en: 'Romantic chemistry ignites fast  –  sparks fly from the first meeting. Passion runs deep but can burn out if both compete for the spotlight. They need to channel fire into shared adventures rather than power struggles.',
+      hi: 'रोमांटिक रसायन तेज़ी से जलता है  –  पहली मुलाक़ात से ही चिंगारी उड़ती है। जुनून गहरा है लेकिन प्रतिस्पर्धा से बचना ज़रूरी है।',
+      sa: 'प्रणयरसायनं शीघ्रं प्रज्वलति  –  प्रथममिलनादेव विस्फुलिङ्गाः उत्पतन्ति। अनुरागो गहनः, किन्तु उभयोः प्रतिस्पर्धायां दग्धो भवितुं शक्नोति। शक्तिसङ्घर्षं विहाय साहसिकयात्रासु अग्निं नियोजयेयुः।',
     },
   },
   'earth-earth': {
     temperament: {
-      en: 'Two earth signs create a bedrock of stability, reliability, and practical wisdom. They build together methodically, valuing security and tangible results. The risk is stagnation — comfort can breed complacency if neither pushes for growth.',
+      en: 'Two earth signs create a bedrock of stability, reliability, and practical wisdom. They build together methodically, valuing security and tangible results. The risk is stagnation  –  comfort can breed complacency if neither pushes for growth.',
       hi: 'दो पृथ्वी राशियाँ स्थिरता, विश्वसनीयता और व्यावहारिक बुद्धि की नींव बनाती हैं। दोनों सुरक्षा और मूर्त परिणाम को महत्व देती हैं।',
-      sa: 'द्वे पृथ्वीराशी स्थैर्यस्य विश्वसनीयतायाः व्यावहारिकप्रज्ञायाश्च आधारशिलां रचयतः। ते क्रमशः निर्मान्ति, सुरक्षां मूर्तफलं च मन्यमाने। भयं स्थैर्यजन्यालस्यस्य — सुखं प्रमादं जनयति यदा न कोऽपि वृद्धिं प्रेरयति।',
+      sa: 'द्वे पृथ्वीराशी स्थैर्यस्य विश्वसनीयतायाः व्यावहारिकप्रज्ञायाश्च आधारशिलां रचयतः। ते क्रमशः निर्मान्ति, सुरक्षां मूर्तफलं च मन्यमाने। भयं स्थैर्यजन्यालस्यस्य  –  सुखं प्रमादं जनयति यदा न कोऽपि वृद्धिं प्रेरयति।',
     },
     romance: {
       en: 'Romance is steady, sensual, and deeply loyal. They express love through acts of service and material comfort. However, both may struggle to articulate emotions, leading to unspoken resentments that build over time.',
@@ -159,21 +159,21 @@ const ELEMENT_COMPAT: Record<string, ElementText> = {
   },
   'air-air': {
     temperament: {
-      en: 'Two air signs create an intellectually vibrant bond full of ideas, conversation, and social engagement. Mental stimulation is their love language. The challenge is grounding — both may float between plans without committing to action.',
+      en: 'Two air signs create an intellectually vibrant bond full of ideas, conversation, and social engagement. Mental stimulation is their love language. The challenge is grounding  –  both may float between plans without committing to action.',
       hi: 'दो वायु राशियाँ विचारों, संवाद और सामाजिक जुड़ाव से भरा बौद्धिक रूप से जीवंत बंधन बनाती हैं।',
-      sa: 'द्वे वायुराशी विचारैः संवादेन सामाजिकसंलग्नतया च पूर्णं बौद्धिकतेजस्वि बन्धनं रचयतः। मानसिकं प्रेरणं तयोः प्रेमभाषा अस्ति। आव्हानं स्थैर्ये — उभे योजनानां मध्ये विचरतः, कर्मणि न बध्नीतः।',
+      sa: 'द्वे वायुराशी विचारैः संवादेन सामाजिकसंलग्नतया च पूर्णं बौद्धिकतेजस्वि बन्धनं रचयतः। मानसिकं प्रेरणं तयोः प्रेमभाषा अस्ति। आव्हानं स्थैर्ये  –  उभे योजनानां मध्ये विचरतः, कर्मणि न बध्नीतः।',
     },
     romance: {
-      en: 'Romance thrives on mental connection — witty banter, shared interests, and intellectual exploration. Emotional depth can be lacking, as both tend to rationalize feelings rather than sitting with them.',
-      hi: 'प्रेम मानसिक जुड़ाव पर फलता-फूलता है — बुद्धिमत्तापूर्ण बातचीत और साझा रुचियाँ। भावनात्मक गहराई की कमी हो सकती है।',
-      sa: 'प्रणयो मानसिकसम्बन्धे पुष्यति — चतुरपरिहासः, साझारुचयः, बौद्धिकान्वेषणं च। भावनात्मिका गहनता न्यूना भवितुम् अर्हति, यतः उभौ भावनानां युक्तिकरणं कुरुतः, न तु तासु स्थितौ तिष्ठतः।',
+      en: 'Romance thrives on mental connection  –  witty banter, shared interests, and intellectual exploration. Emotional depth can be lacking, as both tend to rationalize feelings rather than sitting with them.',
+      hi: 'प्रेम मानसिक जुड़ाव पर फलता-फूलता है  –  बुद्धिमत्तापूर्ण बातचीत और साझा रुचियाँ। भावनात्मक गहराई की कमी हो सकती है।',
+      sa: 'प्रणयो मानसिकसम्बन्धे पुष्यति  –  चतुरपरिहासः, साझारुचयः, बौद्धिकान्वेषणं च। भावनात्मिका गहनता न्यूना भवितुम् अर्हति, यतः उभौ भावनानां युक्तिकरणं कुरुतः, न तु तासु स्थितौ तिष्ठतः।',
     },
   },
   'water-water': {
     temperament: {
-      en: 'Two water signs share an ocean-deep emotional bond, intuitive understanding, and psychic sensitivity. They feel each other without words. The danger is codependency — they can drown in shared emotions without an anchor of rationality.',
+      en: 'Two water signs share an ocean-deep emotional bond, intuitive understanding, and psychic sensitivity. They feel each other without words. The danger is codependency  –  they can drown in shared emotions without an anchor of rationality.',
       hi: 'दो जल राशियाँ गहरे भावनात्मक बंधन, सहज समझ और मानसिक संवेदनशीलता साझा करती हैं। ख़तरा सह-निर्भरता का है।',
-      sa: 'द्वे जलराशी सागरगम्भीरं भावबन्धनं, सहजबोधं, मानसिकसंवेदनशीलतां च विभजतः। तौ विना वचनैः परस्परम् अनुभवतः। भयं सहनिर्भरतायाः — तौ युक्तेः आलम्बनं विना साझाभावेषु निमज्जितौ भवेताम्।',
+      sa: 'द्वे जलराशी सागरगम्भीरं भावबन्धनं, सहजबोधं, मानसिकसंवेदनशीलतां च विभजतः। तौ विना वचनैः परस्परम् अनुभवतः। भयं सहनिर्भरतायाः  –  तौ युक्तेः आलम्बनं विना साझाभावेषु निमज्जितौ भवेताम्।',
     },
     romance: {
       en: 'Romance is deeply soulful, nurturing, and all-consuming. They create a private emotional world that outsiders rarely penetrate. Mood swings can amplify each other, turning minor upsets into tidal waves of feeling.',
@@ -183,9 +183,9 @@ const ELEMENT_COMPAT: Record<string, ElementText> = {
   },
   'fire-earth': {
     temperament: {
-      en: 'Fire\'s spontaneous energy meets Earth\'s methodical steadiness — a pairing that can either forge steel or smother flames. Earth provides grounding that fire needs, while fire brings excitement that earth secretly craves.',
-      hi: 'अग्नि की स्वतःस्फूर्त ऊर्जा पृथ्वी की व्यवस्थित स्थिरता से मिलती है — यह जोड़ी या तो इस्पात गढ़ती है या लपटों को दबाती है।',
-      sa: 'अग्नेः स्वतःस्फूर्तं तेजः पृथिव्याः क्रमबद्धस्थैर्येण मिलति — एषा युगलता लोहं वा निर्माति ज्वालां वा निवारयति। पृथिवी अग्नये आवश्यकं स्थैर्यं ददाति, अग्निश्च पृथिव्यै गूढमभिलषितम् उत्साहम् आनयति।',
+      en: 'Fire\'s spontaneous energy meets Earth\'s methodical steadiness  –  a pairing that can either forge steel or smother flames. Earth provides grounding that fire needs, while fire brings excitement that earth secretly craves.',
+      hi: 'अग्नि की स्वतःस्फूर्त ऊर्जा पृथ्वी की व्यवस्थित स्थिरता से मिलती है  –  यह जोड़ी या तो इस्पात गढ़ती है या लपटों को दबाती है।',
+      sa: 'अग्नेः स्वतःस्फूर्तं तेजः पृथिव्याः क्रमबद्धस्थैर्येण मिलति  –  एषा युगलता लोहं वा निर्माति ज्वालां वा निवारयति। पृथिवी अग्नये आवश्यकं स्थैर्यं ददाति, अग्निश्च पृथिव्यै गूढमभिलषितम् उत्साहम् आनयति।',
     },
     romance: {
       en: 'Fire desires passion and grand gestures, while Earth shows love through quiet reliability and sensual comfort. Misunderstandings arise when fire feels restricted and earth feels destabilized.',
@@ -195,9 +195,9 @@ const ELEMENT_COMPAT: Record<string, ElementText> = {
   },
   'fire-air': {
     temperament: {
-      en: 'Air fans fire\'s flames into a brilliant blaze — this is one of the most naturally synergistic element pairings. Both are active, outgoing, and future-oriented. The combination sparkles with intellectual and creative energy.',
-      hi: 'वायु अग्नि की लपटों को शानदार ज्वाला में बदलती है — यह सबसे स्वाभाविक रूप से तालमेल वाली जोड़ियों में से एक है।',
-      sa: 'वायुः अग्नेः ज्वालाः उज्ज्वलप्रभायां वर्धयति — एतत् सर्वाधिकं स्वाभाविकसामञ्जस्ययुक्तं तत्त्वयुगलम्। उभौ क्रियाशीलौ बहिर्मुखौ भविष्योन्मुखौ च। संयोगो बौद्धिकसृजनात्मकतेजसा स्फुरति।',
+      en: 'Air fans fire\'s flames into a brilliant blaze  –  this is one of the most naturally synergistic element pairings. Both are active, outgoing, and future-oriented. The combination sparkles with intellectual and creative energy.',
+      hi: 'वायु अग्नि की लपटों को शानदार ज्वाला में बदलती है  –  यह सबसे स्वाभाविक रूप से तालमेल वाली जोड़ियों में से एक है।',
+      sa: 'वायुः अग्नेः ज्वालाः उज्ज्वलप्रभायां वर्धयति  –  एतत् सर्वाधिकं स्वाभाविकसामञ्जस्ययुक्तं तत्त्वयुगलम्। उभौ क्रियाशीलौ बहिर्मुखौ भविष्योन्मुखौ च। संयोगो बौद्धिकसृजनात्मकतेजसा स्फुरति।',
     },
     romance: {
       en: 'Romance is exciting, spontaneous, and never dull. Fire brings passion while air brings variety and mental stimulation. Both value independence, making this a relationship of equals who inspire each other.',
@@ -207,21 +207,21 @@ const ELEMENT_COMPAT: Record<string, ElementText> = {
   },
   'fire-water': {
     temperament: {
-      en: 'Fire and water create steam — intense, transformative, but volatile. Fire\'s directness can scald water\'s sensitivity, while water\'s emotional depth can extinguish fire\'s enthusiasm. When balanced, they produce powerful creative and healing energy.',
-      hi: 'अग्नि और जल भाप बनाते हैं — तीव्र, परिवर्तनकारी, लेकिन अस्थिर। संतुलित होने पर वे शक्तिशाली सृजनात्मक ऊर्जा उत्पन्न करते हैं।',
-      sa: 'अग्निजले वाष्पम् उत्पादयतः — तीव्रं परिवर्तनकारि किन्तु चञ्चलम्। अग्नेः ऋजुता जलस्य संवेदनशीलतां दहति, जलस्य भावगम्भीरता च अग्नेः उत्साहं शमयति। सामयस्थे सति ते शक्तिशालिनीं सृजनात्मिकचिकित्सकशक्तिम् उत्पादयतः।',
+      en: 'Fire and water create steam  –  intense, transformative, but volatile. Fire\'s directness can scald water\'s sensitivity, while water\'s emotional depth can extinguish fire\'s enthusiasm. When balanced, they produce powerful creative and healing energy.',
+      hi: 'अग्नि और जल भाप बनाते हैं  –  तीव्र, परिवर्तनकारी, लेकिन अस्थिर। संतुलित होने पर वे शक्तिशाली सृजनात्मक ऊर्जा उत्पन्न करते हैं।',
+      sa: 'अग्निजले वाष्पम् उत्पादयतः  –  तीव्रं परिवर्तनकारि किन्तु चञ्चलम्। अग्नेः ऋजुता जलस्य संवेदनशीलतां दहति, जलस्य भावगम्भीरता च अग्नेः उत्साहं शमयति। सामयस्थे सति ते शक्तिशालिनीं सृजनात्मिकचिकित्सकशक्तिम् उत्पादयतः।',
     },
     romance: {
-      en: 'The attraction is magnetic — fire is drawn to water\'s mystery, water to fire\'s warmth. But fire evaporates water\'s feelings with bluntness, and water dampens fire\'s joy with moodiness. Requires extraordinary emotional intelligence from both.',
-      hi: 'आकर्षण चुंबकीय है — अग्नि जल के रहस्य की ओर खिंचती है, जल अग्नि की गर्मी की ओर। लेकिन दोनों को असाधारण भावनात्मक बुद्धि की आवश्यकता है।',
-      sa: 'आकर्षणं चुम्बकवत् — अग्निः जलस्य रहस्येण आकृष्यते, जलं च अग्नेः उष्णतया। किन्तु अग्निः स्पष्टवादेन जलस्य भावान् शोषयति, जलं च मनोदशापरिवर्तनेन अग्नेः आनन्दं म्लानयति। उभयतः असाधारणभावबुद्धिः अपेक्ष्यते।',
+      en: 'The attraction is magnetic  –  fire is drawn to water\'s mystery, water to fire\'s warmth. But fire evaporates water\'s feelings with bluntness, and water dampens fire\'s joy with moodiness. Requires extraordinary emotional intelligence from both.',
+      hi: 'आकर्षण चुंबकीय है  –  अग्नि जल के रहस्य की ओर खिंचती है, जल अग्नि की गर्मी की ओर। लेकिन दोनों को असाधारण भावनात्मक बुद्धि की आवश्यकता है।',
+      sa: 'आकर्षणं चुम्बकवत्  –  अग्निः जलस्य रहस्येण आकृष्यते, जलं च अग्नेः उष्णतया। किन्तु अग्निः स्पष्टवादेन जलस्य भावान् शोषयति, जलं च मनोदशापरिवर्तनेन अग्नेः आनन्दं म्लानयति। उभयतः असाधारणभावबुद्धिः अपेक्ष्यते।',
     },
   },
   'earth-air': {
     temperament: {
-      en: 'Earth and air operate on fundamentally different wavelengths — earth is slow, tangible, and rooted, while air is quick, abstract, and restless. This pairing challenges both to grow beyond their comfort zones.',
-      hi: 'पृथ्वी और वायु मूलभूत रूप से अलग तरंगदैर्ध्य पर काम करती हैं — पृथ्वी धीमी और ठोस है, जबकि वायु तेज़ और अमूर्त है।',
-      sa: 'पृथिवी वायुश्च मूलतः भिन्नतरङ्गदैर्घ्ये प्रवर्तेते — पृथिवी मन्दा स्थूला स्थिरमूला च, वायुस्तु शीघ्रः सूक्ष्मः चञ्चलश्च। एतद् युगलं उभौ स्वसुखक्षेत्रात् परं वर्धितुं प्रेरयति।',
+      en: 'Earth and air operate on fundamentally different wavelengths  –  earth is slow, tangible, and rooted, while air is quick, abstract, and restless. This pairing challenges both to grow beyond their comfort zones.',
+      hi: 'पृथ्वी और वायु मूलभूत रूप से अलग तरंगदैर्ध्य पर काम करती हैं  –  पृथ्वी धीमी और ठोस है, जबकि वायु तेज़ और अमूर्त है।',
+      sa: 'पृथिवी वायुश्च मूलतः भिन्नतरङ्गदैर्घ्ये प्रवर्तेते  –  पृथिवी मन्दा स्थूला स्थिरमूला च, वायुस्तु शीघ्रः सूक्ष्मः चञ्चलश्च। एतद् युगलं उभौ स्वसुखक्षेत्रात् परं वर्धितुं प्रेरयति।',
     },
     romance: {
       en: 'Romance requires patience and translation between love languages. Earth shows love through stability and touch; air through words and ideas. They can build something lasting if earth appreciates air\'s intellect and air values earth\'s dependability.',
@@ -231,9 +231,9 @@ const ELEMENT_COMPAT: Record<string, ElementText> = {
   },
   'earth-water': {
     temperament: {
-      en: 'Earth and water form one of nature\'s most harmonious pairings — water nourishes earth, earth gives water form and direction. Together they create fertile ground for growth, comfort, and emotional security.',
-      hi: 'पृथ्वी और जल प्रकृति की सबसे सामंजस्यपूर्ण जोड़ियों में से एक बनाते हैं — जल पृथ्वी को पोषित करता है, पृथ्वी जल को दिशा देती है।',
-      sa: 'पृथिवी जलं च प्रकृतेः सर्वाधिकसामञ्जस्ययुक्तं युगलम् — जलं पृथिवीं पोषयति, पृथिवी जलाय रूपं दिशां च ददाति। मिलित्वा ते वृद्ध्यै सुखाय भावसुरक्षायै च उर्वरां भूमिं रचयतः।',
+      en: 'Earth and water form one of nature\'s most harmonious pairings  –  water nourishes earth, earth gives water form and direction. Together they create fertile ground for growth, comfort, and emotional security.',
+      hi: 'पृथ्वी और जल प्रकृति की सबसे सामंजस्यपूर्ण जोड़ियों में से एक बनाते हैं  –  जल पृथ्वी को पोषित करता है, पृथ्वी जल को दिशा देती है।',
+      sa: 'पृथिवी जलं च प्रकृतेः सर्वाधिकसामञ्जस्ययुक्तं युगलम्  –  जलं पृथिवीं पोषयति, पृथिवी जलाय रूपं दिशां च ददाति। मिलित्वा ते वृद्ध्यै सुखाय भावसुरक्षायै च उर्वरां भूमिं रचयतः।',
     },
     romance: {
       en: 'Romance is deeply nurturing, loyal, and emotionally rich. Earth provides the safety water needs to open up, while water helps earth access buried emotions. This combination builds the kind of love that weathers all storms.',
@@ -243,9 +243,9 @@ const ELEMENT_COMPAT: Record<string, ElementText> = {
   },
   'air-water': {
     temperament: {
-      en: 'Air and water speak different emotional languages — air intellectualizes while water feels deeply. Air can seem cold and detached to water, while water appears overwhelmingly emotional to air. Understanding requires conscious effort from both.',
-      hi: 'वायु और जल अलग-अलग भावनात्मक भाषाएँ बोलते हैं — वायु बौद्धिक होती है जबकि जल गहराई से महसूस करता है।',
-      sa: 'वायुजले भिन्नभावभाषे वदतः — वायुः बुद्ध्या विश्लेषयति यदा जलं गहनम् अनुभवति। वायुः जलाय शीतलो विरक्तश्च प्रतिभाति, जलं तु वायवे अत्यधिकभावनाशीलम्। अवबोधो उभयतः सचेतनप्रयत्नम् अपेक्षते।',
+      en: 'Air and water speak different emotional languages  –  air intellectualizes while water feels deeply. Air can seem cold and detached to water, while water appears overwhelmingly emotional to air. Understanding requires conscious effort from both.',
+      hi: 'वायु और जल अलग-अलग भावनात्मक भाषाएँ बोलते हैं  –  वायु बौद्धिक होती है जबकि जल गहराई से महसूस करता है।',
+      sa: 'वायुजले भिन्नभावभाषे वदतः  –  वायुः बुद्ध्या विश्लेषयति यदा जलं गहनम् अनुभवति। वायुः जलाय शीतलो विरक्तश्च प्रतिभाति, जलं तु वायवे अत्यधिकभावनाशीलम्। अवबोधो उभयतः सचेतनप्रयत्नम् अपेक्षते।',
     },
     romance: {
       en: 'The attraction stems from fascination with the unfamiliar. Air is intrigued by water\'s emotional depth, water by air\'s intellectual sparkle. Long-term success depends on air learning to feel and water learning to articulate.',
@@ -272,9 +272,9 @@ const LORD_REL_TEXT: Record<Relation, LordRelText> = {
       sa: 'एकस्य एव ग्रहस्वामिनः साझाकरणेन उभयोः राश्योः परस्परसंवादशैल्याः सहजबोधो भवति। संभाषणं स्वाभाविकं प्रवहति, साझाशब्दसम्पत्त्या अनुक्तसङ्केतानां सहजावबोधेन च। विवादो विरलः, यद्यपि प्रतिध्वनिकक्षचिन्तनस्य भयम् अस्ति।',
     },
     career: {
-      en: 'Professional collaboration benefits from shared planetary energy — both approach work with similar values, timing, and strategy. They can build an empire together, though they may share the same blind spots. Complementary skill sets within the shared framework are key.',
-      hi: 'व्यावसायिक सहयोग साझा ग्रहीय ऊर्जा से लाभान्वित होता है — दोनों समान मूल्यों और रणनीति के साथ काम करते हैं।',
-      sa: 'व्यावसायिकसहयोगः साझाग्रहशक्त्या लाभं प्राप्नोति — उभौ समानमूल्यैः कालनिर्णयेन रणनीत्या च कार्यं प्रति गच्छतः। ते मिलित्वा साम्राज्यं निर्मातुं शक्नुवन्तः, यद्यपि समानान्धबिन्दून् विभजेयुः।',
+      en: 'Professional collaboration benefits from shared planetary energy  –  both approach work with similar values, timing, and strategy. They can build an empire together, though they may share the same blind spots. Complementary skill sets within the shared framework are key.',
+      hi: 'व्यावसायिक सहयोग साझा ग्रहीय ऊर्जा से लाभान्वित होता है  –  दोनों समान मूल्यों और रणनीति के साथ काम करते हैं।',
+      sa: 'व्यावसायिकसहयोगः साझाग्रहशक्त्या लाभं प्राप्नोति  –  उभौ समानमूल्यैः कालनिर्णयेन रणनीत्या च कार्यं प्रति गच्छतः। ते मिलित्वा साम्राज्यं निर्मातुं शक्नुवन्तः, यद्यपि समानान्धबिन्दून् विभजेयुः।',
     },
   },
   friend: {
@@ -291,9 +291,9 @@ const LORD_REL_TEXT: Record<Relation, LordRelText> = {
   },
   neutral: {
     communication: {
-      en: 'Their planetary rulers maintain a neutral relationship — neither naturally supportive nor conflicting. Communication works but requires conscious effort. Neither instinctively understands the other\'s wavelength, demanding patience and active listening.',
-      hi: 'उनके ग्रह स्वामी तटस्थ संबंध रखते हैं — न स्वाभाविक रूप से सहायक, न विरोधी। संवाद सचेतन प्रयास माँगता है।',
-      sa: 'तयोः ग्रहस्वामिनौ तटस्थसम्बन्धं पालयतः — न स्वाभाविकसहायकौ न विरोधिनौ। संवादो भवति किन्तु सचेतनप्रयत्नम् अपेक्षते। न कश्चित् सहजतया अपरस्य तरङ्गदैर्घ्यम् अवगच्छति, धैर्यं सक्रियश्रवणं च अपेक्ष्यते।',
+      en: 'Their planetary rulers maintain a neutral relationship  –  neither naturally supportive nor conflicting. Communication works but requires conscious effort. Neither instinctively understands the other\'s wavelength, demanding patience and active listening.',
+      hi: 'उनके ग्रह स्वामी तटस्थ संबंध रखते हैं  –  न स्वाभाविक रूप से सहायक, न विरोधी। संवाद सचेतन प्रयास माँगता है।',
+      sa: 'तयोः ग्रहस्वामिनौ तटस्थसम्बन्धं पालयतः  –  न स्वाभाविकसहायकौ न विरोधिनौ। संवादो भवति किन्तु सचेतनप्रयत्नम् अपेक्षते। न कश्चित् सहजतया अपरस्य तरङ्गदैर्घ्यम् अवगच्छति, धैर्यं सक्रियश्रवणं च अपेक्ष्यते।',
     },
     career: {
       en: 'Professional compatibility is workable but unremarkable. They can collaborate effectively on structured projects with clear role definitions. Success depends more on individual maturity than inherent planetary synergy.',
@@ -303,9 +303,9 @@ const LORD_REL_TEXT: Record<Relation, LordRelText> = {
   },
   enemy: {
     communication: {
-      en: 'Their ruling planets are in natural enmity, creating an undercurrent of friction in communication. Misinterpretation is common — what one intends as helpful advice, the other perceives as criticism. Conscious diplomacy is essential.',
+      en: 'Their ruling planets are in natural enmity, creating an undercurrent of friction in communication. Misinterpretation is common  –  what one intends as helpful advice, the other perceives as criticism. Conscious diplomacy is essential.',
       hi: 'उनके स्वामी ग्रहों में प्राकृतिक शत्रुता है, जो संवाद में घर्षण की अन्तर्धारा बनाती है। गलत व्याख्या आम है।',
-      sa: 'तयोः अधिपतिग्रहौ स्वाभाविकवैरे स्तः, येन संवादे घर्षणस्य अन्तर्धारा जायते। मिथ्याव्याख्या सामान्या — यत् एकः सहायकपरामर्शरूपेण इच्छति, तत् अपरः समालोचनारूपेण गृह्णाति। सचेतनकूटनीतिः अत्यावश्यका।',
+      sa: 'तयोः अधिपतिग्रहौ स्वाभाविकवैरे स्तः, येन संवादे घर्षणस्य अन्तर्धारा जायते। मिथ्याव्याख्या सामान्या  –  यत् एकः सहायकपरामर्शरूपेण इच्छति, तत् अपरः समालोचनारूपेण गृह्णाति। सचेतनकूटनीतिः अत्यावश्यका।',
     },
     career: {
       en: 'Professional partnership faces inherent tension from clashing planetary energies. Competing ambitions and differing work styles create friction. Success is possible but requires clearly defined boundaries and mutual respect for separate domains.',
@@ -327,9 +327,9 @@ interface DistanceText {
 const DISTANCE_TEXT: Record<number, DistanceText> = {
   1: {
     challenges: {
-      en: 'Being the same sign intensifies all shared traits — both strengths and weaknesses are doubled. The biggest challenge is lack of perspective; neither can offer what the other is missing. Ego battles arise from seeing your own flaws mirrored back.',
-      hi: 'एक ही राशि होने से सभी साझा गुण तीव्र हो जाते हैं — ताकत और कमज़ोरी दोनों दोगुनी होती हैं।',
-      sa: 'एकराशित्वेन सर्वे साझागुणाः तीव्रीभवन्ति — बलानि दौर्बल्यानि च द्विगुणानि। महत्तमं आव्हानं दृष्टिकोणाभावः; न कश्चित् अपरस्य न्यूनतां पूरयितुं शक्नोति। स्वदोषान् प्रतिबिम्बितान् दृष्ट्वा अहङ्कारयुद्धानि जायन्ते।',
+      en: 'Being the same sign intensifies all shared traits  –  both strengths and weaknesses are doubled. The biggest challenge is lack of perspective; neither can offer what the other is missing. Ego battles arise from seeing your own flaws mirrored back.',
+      hi: 'एक ही राशि होने से सभी साझा गुण तीव्र हो जाते हैं  –  ताकत और कमज़ोरी दोनों दोगुनी होती हैं।',
+      sa: 'एकराशित्वेन सर्वे साझागुणाः तीव्रीभवन्ति  –  बलानि दौर्बल्यानि च द्विगुणानि। महत्तमं आव्हानं दृष्टिकोणाभावः; न कश्चित् अपरस्य न्यूनतां पूरयितुं शक्नोति। स्वदोषान् प्रतिबिम्बितान् दृष्ट्वा अहङ्कारयुद्धानि जायन्ते।',
     },
     remedies: {
       en: 'Cultivate individual interests and separate friend circles to maintain distinct identities. Practice the art of compromise since natural tendencies align too closely. Worship the rashi\'s ruling deity together for harmony.',
@@ -368,28 +368,28 @@ const DISTANCE_TEXT: Record<number, DistanceText> = {
       sa: 'चतुर्थ-दशमभावाक्षः गृहजीवनस्य व्यावसायिकमहत्त्वाकाङ्क्षायाश्च मध्ये तनावं जनयति। एकः भागी गार्हस्थ्यसुखं वाञ्छति यदा अपरः लोककीर्तिम् अनुसरति। पोषणावश्यकतानां व्यावसायिकवृद्ध्योः सामयस्थापनं मुख्यं संघर्षम्।',
     },
     remedies: {
-      en: 'Create a shared home ritual that both partners value — cooking together, evening prayers, or garden time. Honor the Moon with Monday fasts and white offerings to strengthen emotional bonding. Set career boundaries that protect family time.',
+      en: 'Create a shared home ritual that both partners value  –  cooking together, evening prayers, or garden time. Honor the Moon with Monday fasts and white offerings to strengthen emotional bonding. Set career boundaries that protect family time.',
       hi: 'एक साझा घरेलू अनुष्ठान बनाएँ जो दोनों साथी महत्व दें। सोमवार का व्रत रखें और भावनात्मक जुड़ाव मज़बूत करें।',
-      sa: 'उभौ भागिनौ यत् मन्येते तादृशं साझागृहविधिं रचयतम् — सहपाकः सायंप्रार्थना उद्यानकालो वा। भावबन्धनं दृढयितुं सोमवासरे उपवासेन श्वेतार्पणेन च चन्द्रं सम्मानयतम्। कुटुम्बकालरक्षार्थं व्यावसायिकसीमाः निर्धारयतम्।',
+      sa: 'उभौ भागिनौ यत् मन्येते तादृशं साझागृहविधिं रचयतम्  –  सहपाकः सायंप्रार्थना उद्यानकालो वा। भावबन्धनं दृढयितुं सोमवासरे उपवासेन श्वेतार्पणेन च चन्द्रं सम्मानयतम्। कुटुम्बकालरक्षार्थं व्यावसायिकसीमाः निर्धारयतम्।',
     },
   },
   5: {
     challenges: {
       en: 'The 5/9 trine is naturally excellent, yet challenges exist: over-optimism leads to unrealistic expectations, and both may assume the relationship will sustain itself without effort. Complacency from perceived ease is the hidden trap.',
       hi: '5/9 त्रिकोण स्वाभाविक रूप से उत्कृष्ट है, फिर भी अति-आशावाद अवास्तविक अपेक्षाओं की ओर ले जाता है।',
-      sa: 'पञ्चम-नवमत्रिकोणः स्वाभाविकतया उत्तमः, तथापि आव्हानानि सन्ति — अत्याशावादः अवास्तविकाशासु नयति, उभौ च मन्येयातां यत् सम्बन्धः प्रयत्नं विना स्वयं स्थास्यति। अनुभूतसौकर्यात् जातं आत्मसन्तोषं गुप्तजालम्।',
+      sa: 'पञ्चम-नवमत्रिकोणः स्वाभाविकतया उत्तमः, तथापि आव्हानानि सन्ति  –  अत्याशावादः अवास्तविकाशासु नयति, उभौ च मन्येयातां यत् सम्बन्धः प्रयत्नं विना स्वयं स्थास्यति। अनुभूतसौकर्यात् जातं आत्मसन्तोषं गुप्तजालम्।',
     },
     remedies: {
-      en: 'Don\'t take the natural harmony for granted — invest in growth together through spiritual practice or creative projects. Worship Jupiter on Thursdays with yellow offerings. Engage in philosophical discussions to deepen the dharmic bond.',
-      hi: 'प्राकृतिक सामंजस्य को हल्के में न लें — आध्यात्मिक अभ्यास से एक साथ विकास में निवेश करें। गुरुवार को पीले वस्त्र अर्पित करें।',
-      sa: 'स्वाभाविकसामञ्जस्यं सामान्यं मा मन्यध्वम् — आध्यात्मिकाभ्यासेन सृजनात्मकयोजनाभिर्वा मिलित्वा वृद्धौ निवेशं कुरुतम्। गुरुवासरे पीतार्पणैः बृहस्पतिं पूजयतम्। धार्मिकबन्धनं गहनयितुं दार्शनिकसंवादे प्रवर्तध्वम्।',
+      en: 'Don\'t take the natural harmony for granted  –  invest in growth together through spiritual practice or creative projects. Worship Jupiter on Thursdays with yellow offerings. Engage in philosophical discussions to deepen the dharmic bond.',
+      hi: 'प्राकृतिक सामंजस्य को हल्के में न लें  –  आध्यात्मिक अभ्यास से एक साथ विकास में निवेश करें। गुरुवार को पीले वस्त्र अर्पित करें।',
+      sa: 'स्वाभाविकसामञ्जस्यं सामान्यं मा मन्यध्वम्  –  आध्यात्मिकाभ्यासेन सृजनात्मकयोजनाभिर्वा मिलित्वा वृद्धौ निवेशं कुरुतम्। गुरुवासरे पीतार्पणैः बृहस्पतिं पूजयतम्। धार्मिकबन्धनं गहनयितुं दार्शनिकसंवादे प्रवर्तध्वम्।',
     },
   },
   6: {
     challenges: {
-      en: 'The 6/8 axis is one of the most challenging — it brings conflicts around health, debts, secrets, and power dynamics. One partner may feel dominated or undermined. Hidden resentments, unaddressed grievances, and control issues plague this pairing.',
-      hi: '6/8 अक्ष सबसे चुनौतीपूर्ण में से एक है — यह स्वास्थ्य, ऋण, रहस्य और सत्ता की गतिशीलता के बारे में संघर्ष लाता है।',
-      sa: 'षष्ठ-अष्टमभावाक्षः सर्वाधिकचुनौतीपूर्णेषु एकः — सः स्वास्थ्ये ऋणे रहस्ये सत्ताव्यवस्थायां च संघर्षान् आनयति। एकः भागी शासितः अवमानितो वा अनुभवेत्। गुप्तवैमनस्यानि असम्बोधितपरिवादाः नियन्त्रणसमस्याश्च एतद् युगलं पीडयन्ति।',
+      en: 'The 6/8 axis is one of the most challenging  –  it brings conflicts around health, debts, secrets, and power dynamics. One partner may feel dominated or undermined. Hidden resentments, unaddressed grievances, and control issues plague this pairing.',
+      hi: '6/8 अक्ष सबसे चुनौतीपूर्ण में से एक है  –  यह स्वास्थ्य, ऋण, रहस्य और सत्ता की गतिशीलता के बारे में संघर्ष लाता है।',
+      sa: 'षष्ठ-अष्टमभावाक्षः सर्वाधिकचुनौतीपूर्णेषु एकः  –  सः स्वास्थ्ये ऋणे रहस्ये सत्ताव्यवस्थायां च संघर्षान् आनयति। एकः भागी शासितः अवमानितो वा अनुभवेत्। गुप्तवैमनस्यानि असम्बोधितपरिवादाः नियन्त्रणसमस्याश्च एतद् युगलं पीडयन्ति।',
     },
     remedies: {
       en: 'Prioritize individual health and self-care to avoid codependent patterns. Perform Rahu-Ketu shanti puja to ease the karmic intensity. Maintain absolute transparency about finances and hidden matters. Seek counseling early rather than late.',
@@ -404,9 +404,9 @@ const DISTANCE_TEXT: Record<number, DistanceText> = {
       sa: 'प्रथम-सप्तमविपक्षः शक्तिशालम् आकर्षणं किन्तु समानतया शक्तिशालं तनावं जनयति। प्रत्येकं भागी अपरस्य न्यूनतां मूर्तयति, येन सम्बन्धः चुम्बकवत् आकर्षकः कुण्ठाप्रदश्च भवति। वैयक्तिकपरिचयं विना विपरीतदृष्टिकोणानाम् एकीकरणम् आव्हानम्।',
     },
     remedies: {
-      en: 'Practice seeing your partner as a mirror — what triggers you reveals your own shadow. Perform Venus puja on Fridays for marital harmony. Develop shared goals that require both skill sets, turning opposition into complementarity.',
+      en: 'Practice seeing your partner as a mirror  –  what triggers you reveals your own shadow. Perform Venus puja on Fridays for marital harmony. Develop shared goals that require both skill sets, turning opposition into complementarity.',
       hi: 'अपने साथी को दर्पण के रूप में देखने का अभ्यास करें। शुक्रवार को शुक्र पूजा करें। साझा लक्ष्य विकसित करें जो दोनों कौशल सेट की आवश्यकता हो।',
-      sa: 'भागिनं दर्पणरूपेण द्रष्टुम् अभ्यसतम् — यत् त्वां प्रेरयति तत् तव छायां प्रकटयति। वैवाहिकसामञ्जस्यार्थं शुक्रवासरे शुक्रपूजां कुरुतम्। उभयकौशलसम्पत्तिम् अपेक्षमाणान् साझालक्ष्यान् विकसयतम्, विपक्षं पूरकत्वे परिवर्तयन्तः।',
+      sa: 'भागिनं दर्पणरूपेण द्रष्टुम् अभ्यसतम्  –  यत् त्वां प्रेरयति तत् तव छायां प्रकटयति। वैवाहिकसामञ्जस्यार्थं शुक्रवासरे शुक्रपूजां कुरुतम्। उभयकौशलसम्पत्तिम् अपेक्षमाणान् साझालक्ष्यान् विकसयतम्, विपक्षं पूरकत्वे परिवर्तयन्तः।',
     },
   },
   8: {
@@ -428,9 +428,9 @@ const DISTANCE_TEXT: Record<number, DistanceText> = {
       sa: 'उच्चस्तरात् पञ्चम-नवमत्रिकोणः परमशुभः, किन्तु आव्हानं भिन्नदार्शनिकाध्यात्मिकदिशासु विद्यते। एकः सम्प्रदायवादी स्यात्, अपरः प्रगतिशीलः। बौद्धिकाहङ्कारः गुरुग्रन्थिर्वा बन्धनं विघ्नयेत्।',
     },
     remedies: {
-      en: 'Explore each other\'s belief systems with genuine curiosity rather than judgment. Travel to sacred places together. Worship Jupiter with turmeric offerings on Thursdays. Teach each other — the 5/9 axis thrives when both are simultaneously teacher and student.',
+      en: 'Explore each other\'s belief systems with genuine curiosity rather than judgment. Travel to sacred places together. Worship Jupiter with turmeric offerings on Thursdays. Teach each other  –  the 5/9 axis thrives when both are simultaneously teacher and student.',
       hi: 'एक-दूसरे की विश्वास प्रणालियों को निर्णय के बजाय जिज्ञासा से जानें। पवित्र स्थानों की एक साथ यात्रा करें। गुरुवार को हल्दी अर्पित करें।',
-      sa: 'निर्णयात् परं सत्यजिज्ञासया परस्परविश्वासपद्धतीः अन्वेषयतम्। मिलित्वा पुण्यस्थलानि गच्छतम्। गुरुवासरे हरिद्रार्पणैः बृहस्पतिं पूजयतम्। परस्परं शिक्षयतम् — पञ्चम-नवमाक्षः तदा पुष्यति यदा उभौ एककालं गुरुशिष्यौ भवतः।',
+      sa: 'निर्णयात् परं सत्यजिज्ञासया परस्परविश्वासपद्धतीः अन्वेषयतम्। मिलित्वा पुण्यस्थलानि गच्छतम्। गुरुवासरे हरिद्रार्पणैः बृहस्पतिं पूजयतम्। परस्परं शिक्षयतम्  –  पञ्चम-नवमाक्षः तदा पुष्यति यदा उभौ एककालं गुरुशिष्यौ भवतः।',
     },
   },
   10: {
@@ -447,9 +447,9 @@ const DISTANCE_TEXT: Record<number, DistanceText> = {
   },
   11: {
     challenges: {
-      en: 'The 3/11 axis from the gains side is supportive — the main challenge is keeping the relationship from becoming purely transactional or social. Friendship is strong but deeper emotional or spiritual bonding may be neglected.',
-      hi: '3/11 अक्ष लाभ पक्ष से सहायक है — मुख्य चुनौती संबंध को पूर्णतः लेन-देन या सामाजिक बनने से रोकना है।',
-      sa: 'लाभपक्षात् तृतीय-एकादशभावाक्षः सहायकः — मुख्यम् आव्हानं सम्बन्धं केवलं व्यावहारिकं सामाजिकं वा भवितुं निवारयितुम्। मैत्री दृढा किन्तु गहनभावात्मिकाध्यात्मिकबन्धनम् उपेक्षितं स्यात्।',
+      en: 'The 3/11 axis from the gains side is supportive  –  the main challenge is keeping the relationship from becoming purely transactional or social. Friendship is strong but deeper emotional or spiritual bonding may be neglected.',
+      hi: '3/11 अक्ष लाभ पक्ष से सहायक है  –  मुख्य चुनौती संबंध को पूर्णतः लेन-देन या सामाजिक बनने से रोकना है।',
+      sa: 'लाभपक्षात् तृतीय-एकादशभावाक्षः सहायकः  –  मुख्यम् आव्हानं सम्बन्धं केवलं व्यावहारिकं सामाजिकं वा भवितुं निवारयितुम्। मैत्री दृढा किन्तु गहनभावात्मिकाध्यात्मिकबन्धनम् उपेक्षितं स्यात्।',
     },
     remedies: {
       en: 'Move beyond social friendship into vulnerable emotional sharing. Pursue a shared humanitarian cause to elevate the 11th house energy. Donate together on Saturdays. Celebrate each other\'s achievements genuinely rather than competitively.',
@@ -464,9 +464,9 @@ const DISTANCE_TEXT: Record<number, DistanceText> = {
       sa: 'हानिपक्षात् द्वितीय-द्वादशभावाक्षः आध्यात्मिकतया शक्तिशालः किन्तु भौतिकतया क्षयकारी। एकः भागी अनुभवेत् यत् सः सततम् अपरार्थं त्यजति। गुप्तभयानि अस्वीकृतव्ययाः पलायनवृत्तयश्च भयम् उत्पादयन्ति।',
     },
     remedies: {
-      en: 'Channel the 12th house energy into shared spiritual practice — meditation, temple visits, or charitable service. Chant Vishnu Sahasranama together for divine protection. Be vigilant about balanced giving and receiving in the relationship.',
-      hi: 'बारहवें भाव की ऊर्जा को साझा आध्यात्मिक अभ्यास में प्रवाहित करें — ध्यान, मंदिर दर्शन, या दान सेवा। विष्णु सहस्रनाम का जाप करें।',
-      sa: 'द्वादशभावशक्तिं साझाध्यात्मिकाभ्यासे नियोजयतम् — ध्यानं देवालययात्रा दानसेवा वा। दिव्यरक्षणार्थं मिलित्वा विष्णुसहस्रनाम जपतम्। सम्बन्धे समदानप्रतिग्रहणविषये सजागौ भवतम्।',
+      en: 'Channel the 12th house energy into shared spiritual practice  –  meditation, temple visits, or charitable service. Chant Vishnu Sahasranama together for divine protection. Be vigilant about balanced giving and receiving in the relationship.',
+      hi: 'बारहवें भाव की ऊर्जा को साझा आध्यात्मिक अभ्यास में प्रवाहित करें  –  ध्यान, मंदिर दर्शन, या दान सेवा। विष्णु सहस्रनाम का जाप करें।',
+      sa: 'द्वादशभावशक्तिं साझाध्यात्मिकाभ्यासे नियोजयतम्  –  ध्यानं देवालययात्रा दानसेवा वा। दिव्यरक्षणार्थं मिलित्वा विष्णुसहस्रनाम जपतम्। सम्बन्धे समदानप्रतिग्रहणविषये सजागौ भवतम्।',
     },
   },
 };
@@ -487,13 +487,13 @@ function getHouseDistance(r1: number, r2: number): number {
 
 // Distance quality: positive distances get bonus, negative get penalty
 const DISTANCE_SCORE_MOD: Record<number, number> = {
-  1: 2,    // same sign — moderate
-  2: -2,   // 2/12 — resource tension
-  3: 3,    // 3/11 — good friendship
-  4: 1,    // 4/10 — comfort/career tension
-  5: 5,    // 5/9 trine — excellent
-  6: -5,   // 6/8 — challenging
-  7: 2,    // 1/7 opposition — attraction
+  1: 2,    // same sign  –  moderate
+  2: -2,   // 2/12  –  resource tension
+  3: 3,    // 3/11  –  good friendship
+  4: 1,    // 4/10  –  comfort/career tension
+  5: 5,    // 5/9 trine  –  excellent
+  6: -5,   // 6/8  –  challenging
+  7: 2,    // 1/7 opposition  –  attraction
   // distances 8-12 mirror 6-2 (since we use min distance)
 };
 
@@ -579,9 +579,9 @@ function generateOneLiner(r1: number, r2: number, score: number): ML {
 
   if (r1 === r2) {
     return {
-      en: `Two ${n1.en} natives share identical strengths and shadows — a ${qualityEn} pairing that mirrors the self.`,
-      hi: `दो ${n1.hi} जातक समान शक्तियाँ और छायाएँ साझा करते हैं — एक ${qualityHi} जोड़ी।`,
-      sa: `द्वौ ${n1.sa} जातकौ समानबलानि छायाश्च विभजतः — आत्मप्रतिबिम्बकं ${qualitySa} युगलम्।`,
+      en: `Two ${n1.en} natives share identical strengths and shadows  –  a ${qualityEn} pairing that mirrors the self.`,
+      hi: `दो ${n1.hi} जातक समान शक्तियाँ और छायाएँ साझा करते हैं  –  एक ${qualityHi} जोड़ी।`,
+      sa: `द्वौ ${n1.sa} जातकौ समानबलानि छायाश्च विभजतः  –  आत्मप्रतिबिम्बकं ${qualitySa} युगलम्।`,
     };
   }
 
@@ -598,9 +598,9 @@ function generateOneLiner(r1: number, r2: number, score: number): ML {
   const distDescSa = dist === 7 ? 'विपक्षाक्षे' : dist === 5 ? 'त्रिकोणसामञ्जस्ये' : `${dist}-भावान्तरे`;
 
   return {
-    en: `${n1.en} and ${n2.en} — ${elemDescEn}, ${dist === 7 ? 'opposite axis' : dist === 5 ? 'trine harmony' : `${dist} houses apart`} — a ${qualityEn} bond scoring ${score}/36.`,
-    hi: `${n1.hi} और ${n2.hi} — ${elemDescHi} — ${qualityHi} बंधन, अंक ${score}/36।`,
-    sa: `${n1.sa} ${n2.sa} च — ${elemDescSa}, ${distDescSa} — ${qualitySa} बन्धनम्, अङ्काः ${score}/36।`,
+    en: `${n1.en} and ${n2.en}  –  ${elemDescEn}, ${dist === 7 ? 'opposite axis' : dist === 5 ? 'trine harmony' : `${dist} houses apart`}  –  a ${qualityEn} bond scoring ${score}/36.`,
+    hi: `${n1.hi} और ${n2.hi}  –  ${elemDescHi}  –  ${qualityHi} बंधन, अंक ${score}/36।`,
+    sa: `${n1.sa} ${n2.sa} च  –  ${elemDescSa}, ${distDescSa}  –  ${qualitySa} बन्धनम्, अङ्काः ${score}/36।`,
   };
 }
 

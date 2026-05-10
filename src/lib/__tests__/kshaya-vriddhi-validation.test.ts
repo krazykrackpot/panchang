@@ -5,12 +5,12 @@
  * (sunrise to next sunrise) without being active at either sunrise. It is
  * "skipped" from the sunrise-based panchang perspective.
  *
- * Vriddhi tithi: a tithi that spans two consecutive sunrises — the same tithi
+ * Vriddhi tithi: a tithi that spans two consecutive sunrises  –  the same tithi
  * prevails at both today's and tomorrow's sunrise. Also called "adhika" tithi.
  *
  * Two detection mechanisms are tested:
- *   1. computePanchang() — daily panchang engine (kshayaTithi / vriddhiTithi fields)
- *   2. buildYearlyTithiTable() — yearly tithi table (isKshaya / isVriddhi flags)
+ *   1. computePanchang()  –  daily panchang engine (kshayaTithi / vriddhiTithi fields)
+ *   2. buildYearlyTithiTable()  –  yearly tithi table (isKshaya / isVriddhi flags)
  *
  * Test dates were found by scanning all of 2026 with both engines (Delhi, Bern,
  * New York). Cross-checked for internal consistency between the two engines.
@@ -50,10 +50,10 @@ function panchang(year: number, month: number, day: number, loc: Omit<PanchangIn
 }
 
 // ═══════════════════════════════════════════════════════════════════════
-// SECTION 1: computePanchang — Vriddhi (doubled) tithi detection
+// SECTION 1: computePanchang  –  Vriddhi (doubled) tithi detection
 // ═══════════════════════════════════════════════════════════════════════
 
-describe('computePanchang — Vriddhi tithi detection', () => {
+describe('computePanchang  –  Vriddhi tithi detection', () => {
   // These dates have vriddhi tithis confirmed by full-year scan.
   // The same tithi prevails at both today's and tomorrow's sunrise.
 
@@ -110,10 +110,10 @@ describe('computePanchang — Vriddhi tithi detection', () => {
 });
 
 // ═══════════════════════════════════════════════════════════════════════
-// SECTION 2: computePanchang — Kshaya (skipped) tithi detection
+// SECTION 2: computePanchang  –  Kshaya (skipped) tithi detection
 // ═══════════════════════════════════════════════════════════════════════
 
-describe('computePanchang — Kshaya tithi detection', () => {
+describe('computePanchang  –  Kshaya tithi detection', () => {
   // These dates have kshaya tithis confirmed by full-year scan.
   // An intermediate tithi starts and ends entirely within the panchang day
   // without being active at either sunrise.
@@ -169,10 +169,10 @@ describe('computePanchang — Kshaya tithi detection', () => {
 });
 
 // ═══════════════════════════════════════════════════════════════════════
-// SECTION 3: computePanchang — Normal dates (no kshaya, no vriddhi)
+// SECTION 3: computePanchang  –  Normal dates (no kshaya, no vriddhi)
 // ═══════════════════════════════════════════════════════════════════════
 
-describe('computePanchang — Normal dates (no kshaya/vriddhi)', () => {
+describe('computePanchang  –  Normal dates (no kshaya/vriddhi)', () => {
   it('Delhi 2026-04-22: regular tithi day', () => {
     const p = panchang(2026, 4, 22, DELHI);
     expect(p.kshayaTithi).toBeUndefined();
@@ -193,10 +193,10 @@ describe('computePanchang — Normal dates (no kshaya/vriddhi)', () => {
 });
 
 // ═══════════════════════════════════════════════════════════════════════
-// SECTION 4: computePanchang — Kshaya tithi has valid start/end times
+// SECTION 4: computePanchang  –  Kshaya tithi has valid start/end times
 // ═══════════════════════════════════════════════════════════════════════
 
-describe('computePanchang — Kshaya tithi time fields', () => {
+describe('computePanchang  –  Kshaya tithi time fields', () => {
   it('kshaya tithi has non-empty start and end time strings', () => {
     const p = panchang(2026, 1, 6, DELHI);
     expect(p.kshayaTithi).toBeDefined();
@@ -205,7 +205,7 @@ describe('computePanchang — Kshaya tithi time fields', () => {
   }, 30000);
 
   it('kshaya tithi start time is before end time (same-day case)', () => {
-    // Delhi 2026-04-20: Kshaya Chaturthi 07:28-04:15 — this wraps past midnight
+    // Delhi 2026-04-20: Kshaya Chaturthi 07:28-04:15  –  this wraps past midnight
     // so start > end in HH:MM is acceptable (spans into next day).
     // But Delhi 2026-05-22: Kshaya Saptami 06:25-05:04 also wraps.
     // We just check the fields are present and well-formed.
@@ -226,10 +226,10 @@ describe('computePanchang — Kshaya tithi time fields', () => {
 });
 
 // ═══════════════════════════════════════════════════════════════════════
-// SECTION 5: buildYearlyTithiTable — Kshaya & Vriddhi flags
+// SECTION 5: buildYearlyTithiTable  –  Kshaya & Vriddhi flags
 // ═══════════════════════════════════════════════════════════════════════
 
-describe('buildYearlyTithiTable — Kshaya flags', () => {
+describe('buildYearlyTithiTable  –  Kshaya flags', () => {
   const delhiTable = buildYearlyTithiTable(2026, 28.6139, 77.2090, 'Asia/Kolkata');
 
   it('Delhi 2026 has 25-40 kshaya tithi entries', () => {
@@ -243,7 +243,7 @@ describe('buildYearlyTithiTable — Kshaya flags', () => {
   it('kshaya entries have duration < 25 hours (shorter than normal ~24h tithi)', () => {
     const kshaya = delhiTable.entries.filter(e => e.isKshaya);
     for (const e of kshaya) {
-      // Kshaya means no sunrise falls in the tithi — typically shorter duration.
+      // Kshaya means no sunrise falls in the tithi  –  typically shorter duration.
       // But duration can still be 20-24h if it barely misses both sunrises.
       expect(e.durationHours).toBeLessThan(27);
       expect(e.durationHours).toBeGreaterThan(0);
@@ -265,7 +265,7 @@ describe('buildYearlyTithiTable — Kshaya flags', () => {
   }, 120000);
 });
 
-describe('buildYearlyTithiTable — Vriddhi flags', () => {
+describe('buildYearlyTithiTable  –  Vriddhi flags', () => {
   const delhiTable = buildYearlyTithiTable(2026, 28.6139, 77.2090, 'Asia/Kolkata');
 
   it('Delhi 2026 has 8-15 vriddhi tithi entries', () => {
@@ -293,10 +293,10 @@ describe('buildYearlyTithiTable — Vriddhi flags', () => {
 });
 
 // ═══════════════════════════════════════════════════════════════════════
-// SECTION 6: Cross-engine consistency — tithi table vs computePanchang
+// SECTION 6: Cross-engine consistency  –  tithi table vs computePanchang
 // ═══════════════════════════════════════════════════════════════════════
 
-describe('Cross-engine consistency — tithi table vriddhi vs computePanchang vriddhi', () => {
+describe('Cross-engine consistency  –  tithi table vriddhi vs computePanchang vriddhi', () => {
   // When the tithi table says a tithi is vriddhi on a given sunriseDate,
   // computePanchang for that date should also report vriddhiTithi = true.
 
@@ -321,7 +321,7 @@ describe('Cross-engine consistency — tithi table vriddhi vs computePanchang vr
   }
 });
 
-describe('Cross-engine consistency — tithi table kshaya dates appear as kshaya in computePanchang', () => {
+describe('Cross-engine consistency  –  tithi table kshaya dates appear as kshaya in computePanchang', () => {
   // The tithi table's kshaya means "no sunrise in this tithi's span."
   // computePanchang's kshaya means "an intermediate tithi is entirely skipped
   // between this sunrise and the next." They should agree: if tithi N is
@@ -349,10 +349,10 @@ describe('Cross-engine consistency — tithi table kshaya dates appear as kshaya
 });
 
 // ═══════════════════════════════════════════════════════════════════════
-// SECTION 7: Multi-location comparison — same date, different detection
+// SECTION 7: Multi-location comparison  –  same date, different detection
 // ═══════════════════════════════════════════════════════════════════════
 
-describe('Location-dependent kshaya/vriddhi — same date, different result', () => {
+describe('Location-dependent kshaya/vriddhi  –  same date, different result', () => {
   // Because sunrise times differ by location, a tithi can be kshaya in one
   // location but not another. This tests that our engine correctly accounts
   // for location.
@@ -362,7 +362,7 @@ describe('Location-dependent kshaya/vriddhi — same date, different result', ()
     const ny = panchang(2026, 1, 6, NEW_YORK);
     // Delhi has kshaya Chaturthi on this date
     expect(delhi.kshayaTithi).toBeDefined();
-    // NY may or may not — the key is that the engine runs without error
+    // NY may or may not  –  the key is that the engine runs without error
     // and returns a valid result for both locations.
     expect(ny.tithi.number).toBeGreaterThanOrEqual(1);
     expect(ny.tithi.number).toBeLessThanOrEqual(30);

@@ -36,7 +36,7 @@ export default function SignupPrompt() {
     try {
       if (sessionStorage.getItem(SESSION_KEY)) return;
     } catch {
-      // sessionStorage unavailable (private browsing) — continue
+      // sessionStorage unavailable (private browsing)  –  continue
       console.error('[SignupPrompt] sessionStorage read failed');
     }
 
@@ -46,10 +46,10 @@ export default function SignupPrompt() {
       setShow(true);
     };
 
-    // Timer trigger — 60 seconds on site
+    // Timer trigger  –  60 seconds on site
     const timer = setTimeout(trigger, DELAY_MS);
 
-    // Scroll trigger — 50% of page
+    // Scroll trigger  –  50% of page
     const onScroll = () => {
       const scrolled = window.scrollY + window.innerHeight;
       const docHeight = document.documentElement.scrollHeight;

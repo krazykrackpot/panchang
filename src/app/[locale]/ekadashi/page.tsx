@@ -7,10 +7,10 @@ import Link from 'next/link';
 // ─── Static labels (EN + HI) ───
 
 const LABELS = {
-  title: { en: 'Ekadashi 2026 — All 24 Sacred Fasting Dates', hi: 'एकादशी 2026 — सभी 24 पवित्र व्रत तिथियाँ' },
+  title: { en: 'Ekadashi 2026  –  All 24 Sacred Fasting Dates', hi: 'एकादशी 2026  –  सभी 24 पवित्र व्रत तिथियाँ' },
   subtitle: {
     en: 'Complete list of all 24 Ekadashi dates in 2026 with names, stories from Padma Purana & Bhavishya Purana, and spiritual benefits. Each Ekadashi is dedicated to Lord Vishnu.',
-    hi: '2026 की सभी 24 एकादशी तिथियों की सम्पूर्ण सूची — पद्म पुराण और भविष्य पुराण की कथाओं और आध्यात्मिक लाभों सहित। प्रत्येक एकादशी भगवान विष्णु को समर्पित है।',
+    hi: '2026 की सभी 24 एकादशी तिथियों की सम्पूर्ण सूची  –  पद्म पुराण और भविष्य पुराण की कथाओं और आध्यात्मिक लाभों सहित। प्रत्येक एकादशी भगवान विष्णु को समर्पित है।',
   },
   shukla: { en: 'Shukla Paksha', hi: 'शुक्ल पक्ष' } as LocaleText,
   krishna: { en: 'Krishna Paksha', hi: 'कृष्ण पक्ष' } as LocaleText,
@@ -27,12 +27,12 @@ const LABELS = {
   viewCalendar: { en: 'View Full Festival Calendar', hi: 'सम्पूर्ण त्योहार कैलेंडर देखें' } as LocaleText,
   aboutEkadashi: { en: 'About Ekadashi', hi: 'एकादशी के बारे में' } as LocaleText,
   aboutText: {
-    en: 'Ekadashi (Sanskrit: एकादशी, "the eleventh") falls on the 11th tithi of each lunar fortnight — twice a month, once in Shukla Paksha (bright half) and once in Krishna Paksha (dark half). There are 24 named Ekadashis in a regular year, each with a unique story from the Padma Purana, Bhavishya Purana, or Brahma Vaivarta Purana. Fasting on Ekadashi is considered the most important of all Vaishnava observances, dedicated to Lord Vishnu.',
-    hi: 'एकादशी (संस्कृत: एकादशी, "ग्यारहवीं") प्रत्येक चन्द्र पक्ष की 11वीं तिथि पर आती है — महीने में दो बार, एक शुक्ल पक्ष में और एक कृष्ण पक्ष में। सामान्य वर्ष में 24 नामित एकादशियाँ होती हैं, प्रत्येक की पद्म पुराण, भविष्य पुराण या ब्रह्म वैवर्त पुराण से एक अनूठी कथा है।',
+    en: 'Ekadashi (Sanskrit: एकादशी, "the eleventh") falls on the 11th tithi of each lunar fortnight  –  twice a month, once in Shukla Paksha (bright half) and once in Krishna Paksha (dark half). There are 24 named Ekadashis in a regular year, each with a unique story from the Padma Purana, Bhavishya Purana, or Brahma Vaivarta Purana. Fasting on Ekadashi is considered the most important of all Vaishnava observances, dedicated to Lord Vishnu.',
+    hi: 'एकादशी (संस्कृत: एकादशी, "ग्यारहवीं") प्रत्येक चन्द्र पक्ष की 11वीं तिथि पर आती है  –  महीने में दो बार, एक शुक्ल पक्ष में और एक कृष्ण पक्ष में। सामान्य वर्ष में 24 नामित एकादशियाँ होती हैं, प्रत्येक की पद्म पुराण, भविष्य पुराण या ब्रह्म वैवर्त पुराण से एक अनूठी कथा है।',
   } as LocaleText,
   nirjalaNote: {
-    en: 'Nirjala Ekadashi (Jyeshtha Shukla) is the most powerful — fasting without even water on this single day equals the merit of all 24 Ekadashis combined.',
-    hi: 'निर्जला एकादशी (ज्येष्ठ शुक्ल) सबसे शक्तिशाली है — केवल इस एक दिन बिना जल के व्रत रखना सभी 24 एकादशियों के पुण्य के बराबर है।',
+    en: 'Nirjala Ekadashi (Jyeshtha Shukla) is the most powerful  –  fasting without even water on this single day equals the merit of all 24 Ekadashis combined.',
+    hi: 'निर्जला एकादशी (ज्येष्ठ शुक्ल) सबसे शक्तिशाली है  –  केवल इस एक दिन बिना जल के व्रत रखना सभी 24 एकादशियों के पुण्य के बराबर है।',
   } as LocaleText,
 } as const;
 
@@ -70,7 +70,7 @@ interface EkadashiCard {
 
 /**
  * Compute 2026 Ekadashi dates using the festival generator.
- * Uses a neutral reference location (0,0 UTC) — Ekadashi date is the same
+ * Uses a neutral reference location (0,0 UTC)  –  Ekadashi date is the same
  * across all locations (tithi 11 sunrise date varies by at most 1 day at
  * extreme longitudes, but the canonical date is universal).
  */
@@ -386,7 +386,7 @@ export default async function EkadashiPage({ params }: { params: Promise<{ local
 
       <OrnamentalDivider />
 
-      {/* CTA — Link to festival calendar */}
+      {/* CTA  –  Link to festival calendar */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 pb-20 text-center">
         <Link
           href="/calendar"

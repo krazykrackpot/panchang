@@ -1,5 +1,5 @@
 /**
- * Panchang Snapshot — computes the 5 panchanga elements + Moon position
+ * Panchang Snapshot  –  computes the 5 panchanga elements + Moon position
  * for a given Julian Day and location.
  *
  * Used by the muhurta engine's context-builder to evaluate each time window.
@@ -22,7 +22,7 @@ export interface PanchangSnapshot {
   karana: number;
   weekday: number;     // 0=Sunday per Math.floor(jd + 1.5) % 7
   moonSign: number;    // 1-12 rashi
-  moonSid: number;     // Moon's sidereal longitude (degrees) — needed for Varjyam + Gandanta checks
+  moonSid: number;     // Moon's sidereal longitude (degrees)  –  needed for Varjyam + Gandanta checks
 }
 
 /**
@@ -37,7 +37,7 @@ export function getPanchangSnapshot(jd: number, _lat: number, _lng: number): Pan
   const karana = calculateKarana(jd);
   const moonSign = getRashiNumber(moonSid);
 
-  // Weekday from JD — Math.floor(jd + 1.5) % 7 gives 0=Sunday,
+  // Weekday from JD  –  Math.floor(jd + 1.5) % 7 gives 0=Sunday,
   // matching Date.getUTCDay() and all hora/choghadiya/Rahu Kaal lookup tables.
   const weekday = Math.floor(jd + 1.5) % 7; // 0=Sunday
 

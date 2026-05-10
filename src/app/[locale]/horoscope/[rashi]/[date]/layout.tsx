@@ -12,7 +12,7 @@ export const revalidate = 3600; // ISR: revalidate every hour
 
 export function generateStaticParams() {
   const rashiSlugs = RASHIS.map(r => r.slug);
-  // Pre-generate next 7 days — ISR handles older/future dates on-demand
+  // Pre-generate next 7 days  –  ISR handles older/future dates on-demand
   const dates: string[] = [];
   const now = new Date();
   for (let i = 0; i < 7; i++) {
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const r = getRashiBySlug(slug);
   if (!r) return {};
 
-  // Validate date format — return empty metadata for non-dates
+  // Validate date format  –  return empty metadata for non-dates
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return {};
 
   const vedicName = tl(r.name, locale);

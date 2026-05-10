@@ -1,4 +1,4 @@
-// Yoga Formation Animator — animation data for key Jyotish yogas.
+// Yoga Formation Animator  –  animation data for key Jyotish yogas.
 // Planet IDs: 0=Sun, 1=Moon, 2=Mars, 3=Mercury, 4=Jupiter, 5=Venus, 6=Saturn, 7=Rahu, 8=Ketu
 // Houses are 1-based (1=Lagna). fromLagna=true means house counted from Lagna;
 // fromLagna=false means house counted from Moon.
@@ -33,7 +33,7 @@ export interface YogaAnimation {
   descriptionBn: string;
   classical: string;   // BPHS chapter / verse reference
   conditions: YogaCondition[];
-  // Ordered steps — planets animate to position one by one
+  // Ordered steps  –  planets animate to position one by one
   planets: YogaPlanetStep[];
   frequency: string;   // human-readable, e.g. "~8% of charts"
   frequencyHi: string;
@@ -277,9 +277,9 @@ export const YOGA_ANIMATIONS: YogaAnimation[] = [
     category: 'lunar',
     classical: 'Phaladeepika Ch.6 v.1',
     description: 'Jupiter occupies a kendra from the Moon (houses 1, 4, 7, or 10 counted from Moon). Bestows fame, wealth, and the intelligence of an elephant (gaja) combined with the strength of a lion (kesari).',
-    descriptionHi: 'बृहस्पति चन्द्र से केन्द्र (चन्द्र से 1, 4, 7 या 10वें भाव) में हो। हाथी जैसी बुद्धि और सिंह जैसी शक्ति — प्रसिद्धि और धन देता है।',
+    descriptionHi: 'बृहस्पति चन्द्र से केन्द्र (चन्द्र से 1, 4, 7 या 10वें भाव) में हो। हाथी जैसी बुद्धि और सिंह जैसी शक्ति  –  प्रसिद्धि और धन देता है।',
     descriptionTa: 'வியாழன் சந்திரனிடமிருந்து கேந்திரத்தில் (1, 4, 7, அல்லது 10ஆம் வீட்டில்) இருக்கும்போது. யானையின் அறிவும் சிங்கத்தின் வலிமையும் கொடுக்கும்.',
-    descriptionBn: 'বৃহস্পতি চাঁদ থেকে কেন্দ্রে (১, ৪, ৭, বা ১০ নম্বর ঘরে) থাকলে। হাতির মতো বুদ্ধি ও সিংহের মতো শক্তি — খ্যাতি ও সম্পদ প্রদান করে।',
+    descriptionBn: 'বৃহস্পতি চাঁদ থেকে কেন্দ্রে (১, ৪, ৭, বা ১০ নম্বর ঘরে) থাকলে। হাতির মতো বুদ্ধি ও সিংহের মতো শক্তি  –  খ্যাতি ও সম্পদ প্রদান করে।',
     conditions: [
       {
         text: 'Moon is placed in any house (acts as reference point)',
@@ -545,9 +545,9 @@ export const YOGA_ANIMATIONS: YogaAnimation[] = [
     category: 'dosha',
     classical: 'Manasagari / Saravali',
     description: 'All seven planets (Sun through Saturn) fall between Rahu and Ketu on one side of the nodal axis. Creates obstacles, delays, and karmic intensity, but also deep spiritual focus when elevated.',
-    descriptionHi: 'सातों ग्रह (सूर्य से शनि) राहु-केतु के बीच एक ही ओर हों। बाधाएं, विलम्ब और कर्मिक तीव्रता — उच्च स्तर पर आध्यात्मिक गहराई भी।',
+    descriptionHi: 'सातों ग्रह (सूर्य से शनि) राहु-केतु के बीच एक ही ओर हों। बाधाएं, विलम्ब और कर्मिक तीव्रता  –  उच्च स्तर पर आध्यात्मिक गहराई भी।',
     descriptionTa: 'ஏழு கிரகங்களும் (சூரியன் முதல் சனி வரை) ராகு-கேது இடையே ஒரு பக்கத்தில் இருக்கும்போது. தடைகள், தாமதங்கள், ஆன்மீக ஆழம்.',
-    descriptionBn: 'সাতটি গ্রহ (সূর্য থেকে শনি) রাহু-কেতুর মাঝে একপাশে থাকলে। বাধা, বিলম্ব, কর্মিক তীব্রতা — উন্নত স্তরে আধ্যাত্মিক গভীরতা।',
+    descriptionBn: 'সাতটি গ্রহ (সূর্য থেকে শনি) রাহু-কেতুর মাঝে একপাশে থাকলে। বাধা, বিলম্ব, কর্মিক তীব্রতা  –  উন্নত স্তরে আধ্যাত্মিক গভীরতা।',
     conditions: [
       {
         text: 'Rahu and Ketu are placed (they are always 180° apart)',
@@ -590,9 +590,9 @@ export const YOGA_ANIMATIONS: YogaAnimation[] = [
     category: 'dosha',
     classical: 'BPHS Ch.73 v.5',
     description: 'Mars is placed in the 1st, 4th, 7th, 8th, or 12th house from Lagna (or Moon or Venus). Traditionally considered to create friction in marriage; modern interpretation: intense energy requiring channeling.',
-    descriptionHi: 'मंगल लग्न (या चन्द्र या शुक्र) से 1, 4, 7, 8 या 12वें भाव में हो। विवाह में तनाव — आधुनिक व्याख्या: उर्जा को सही दिशा देने की आवश्यकता।',
+    descriptionHi: 'मंगल लग्न (या चन्द्र या शुक्र) से 1, 4, 7, 8 या 12वें भाव में हो। विवाह में तनाव  –  आधुनिक व्याख्या: उर्जा को सही दिशा देने की आवश्यकता।',
     descriptionTa: 'செவ்வாய் லக்னத்திலிருந்து (அல்லது சந்திரன் அல்லது சுக்கிரனிலிருந்து) 1, 4, 7, 8, அல்லது 12ஆம் வீட்டில் இருக்கும்போது. திருமண வாழ்க்கையில் சவால்கள்.',
-    descriptionBn: 'মঙ্গল লগ্ন (বা চাঁদ বা শুক্র) থেকে ১, ৪, ৭, ৮ বা ১২শ ঘরে থাকলে। বিবাহে উত্তেজনা — আধুনিক ব্যাখ্যা: শক্তি চ্যানেলিং প্রয়োজন।',
+    descriptionBn: 'মঙ্গল লগ্ন (বা চাঁদ বা শুক্র) থেকে ১, ৪, ৭, ৮ বা ১২শ ঘরে থাকলে। বিবাহে উত্তেজনা  –  আধুনিক ব্যাখ্যা: শক্তি চ্যানেলিং প্রয়োজন।',
     conditions: [
       {
         text: 'Mars is placed in the 1st, 4th, 7th, 8th, or 12th house from Lagna',

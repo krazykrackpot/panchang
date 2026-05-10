@@ -8,7 +8,7 @@ import { NAKSHATRA_DETAILS } from '@/lib/constants/nakshatra-details';
 import type { LocaleText, PanchangData } from '@/types/panchang';
 
 /**
- * YouTube Shorts slide generator — TAROT-CARD STYLE 1080x1920 slides.
+ * YouTube Shorts slide generator  –  TAROT-CARD STYLE 1080x1920 slides.
  *
  * Each slide uses the same dramatic aesthetic as TarotCard.tsx:
  * deep indigo background, ornate double gold borders, corner flourishes,
@@ -55,14 +55,14 @@ function getTodayPanchang(): { panchang: PanchangData; festivals: FestivalEntry[
 // SHARED ORNAMENTAL ELEMENTS (matching TarotCard aesthetic)
 // ═══════════════════════════════════════════════════════════════
 
-/** Full-slide tarot frame — deep indigo bg, double gold border, corner flourishes */
+/** Full-slide tarot frame  –  deep indigo bg, double gold border, corner flourishes */
 function TarotFrame({ children, glowColor }: { children: React.ReactNode; glowColor?: string }) {
   const glow = glowColor || C.gold;
   return (
     <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', background: `linear-gradient(180deg, ${C.bgTop}, ${C.bgMid} 40%, ${C.bg})`, fontFamily: 'sans-serif', color: C.text, position: 'relative' }}>
       {/* Celestial glow */}
       <div style={{ display: 'flex', position: 'absolute', top: '15%', left: '50%', transform: 'translateX(-50%)', width: '600px', height: '600px', borderRadius: '50%', background: `radial-gradient(circle, ${glow}12, transparent 70%)` }} />
-      {/* Ornate border — single elegant gold frame */}
+      {/* Ornate border  –  single elegant gold frame */}
       <div style={{ display: 'flex', position: 'absolute', top: '20px', left: '20px', right: '20px', bottom: '20px', borderRadius: '20px', border: `2px solid ${C.gold}45` }} />
       {/* Content area */}
       <div style={{ display: 'flex', flexDirection: 'column', flex: 1, padding: '48px 44px', position: 'relative', zIndex: 1 }}>
@@ -86,7 +86,7 @@ function StarSeparator({ size }: { size?: number }) {
   );
 }
 
-/** Brand header — DEKHO PANCHANG with gold gradient line */
+/** Brand header  –  DEKHO PANCHANG with gold gradient line */
 function BrandMark() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
@@ -125,14 +125,14 @@ function Slide1({ panchang, festivals }: { panchang: PanchangData; festivals: Fe
     <TarotFrame glowColor={C.gold}>
       <BrandMark />
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, justifyContent: 'center', gap: '32px' }}>
-        {/* Gayatri — reverent */}
+        {/* Gayatri  –  reverent */}
         <div style={{ display: 'flex', fontSize: '18px', color: `${C.gold}70`, textAlign: 'center', lineHeight: '2', letterSpacing: '2px' }}>
           ॐ भूर्भुवः स्वः । तत्सवितुर्वरेण्यं
         </div>
 
         <StarSeparator size={18} />
 
-        {/* Date — massive and bold */}
+        {/* Date  –  massive and bold */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
           <div style={{ display: 'flex', fontSize: '28px', color: C.goldDark, letterSpacing: '6px', fontWeight: 600 }}>{dayName.toUpperCase()}</div>
           <div style={{ display: 'flex', fontSize: '72px', fontWeight: 900, color: C.goldLight, letterSpacing: '-1px' }}>{monthDay}</div>
@@ -163,7 +163,7 @@ function Slide1({ panchang, festivals }: { panchang: PanchangData; festivals: Fe
 }
 
 // ═══════════════════════════════════════════════════════════════
-// SLIDE 2: PANCHA ANGA — dramatic data cards
+// SLIDE 2: PANCHA ANGA  –  dramatic data cards
 // ═══════════════════════════════════════════════════════════════
 
 function Slide2({ panchang }: { panchang: PanchangData }) {
@@ -176,7 +176,7 @@ function Slide2({ panchang }: { panchang: PanchangData }) {
       <StarSeparator />
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', flex: 1, justifyContent: 'center', marginTop: '16px' }}>
         <DataCard icon="☽" label="TITHI" value={L(panchang.tithi.name)} sub={panchang.tithi.paksha === 'shukla' ? 'Shukla Paksha' : 'Krishna Paksha'} accentColor={C.purple} />
-        <DataCard icon="✦" label="NAKSHATRA" value={L(panchang.nakshatra.name)} sub={`Pada ${panchang.nakshatra.pada || '—'}`} accentColor={C.blue} />
+        <DataCard icon="✦" label="NAKSHATRA" value={L(panchang.nakshatra.name)} sub={`Pada ${panchang.nakshatra.pada || ' – '}`} accentColor={C.blue} />
         <DataCard icon="☉" label="YOGA" value={L(panchang.yoga.name)} sub={panchang.yoga.nature === 'auspicious' ? 'Auspicious' : panchang.yoga.nature === 'inauspicious' ? 'Inauspicious' : 'Neutral'} accentColor={C.emerald} />
         <DataCard icon="◈" label="KARANA" value={L(panchang.karana.name)} accentColor="#fb923c" />
         <DataCard icon="⊕" label="VARA" value={L(panchang.vara.name)} sub={L(panchang.vara.ruler)} accentColor={C.gold} />
@@ -186,7 +186,7 @@ function Slide2({ panchang }: { panchang: PanchangData }) {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// SLIDE 3: TIMINGS — celestial clock
+// SLIDE 3: TIMINGS  –  celestial clock
 // ═══════════════════════════════════════════════════════════════
 
 function Slide3({ panchang }: { panchang: PanchangData }) {
@@ -202,18 +202,18 @@ function Slide3({ panchang }: { panchang: PanchangData }) {
         <DataCard icon="🌇" label="SUNSET" value={panchang.sunset} accentColor="#f43f5e" />
         <DataCard icon="🌙" label="MOONRISE" value={panchang.moonrise} accentColor={C.purple} />
 
-        {/* Rahu Kaal — dramatic red accent */}
+        {/* Rahu Kaal  –  dramatic red accent */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '20px', background: `linear-gradient(135deg, #1a0000ee, ${C.bg}ee)`, borderRadius: '20px', border: `1px solid ${C.red}30`, borderLeft: `4px solid ${C.red}90`, padding: '24px 28px' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '64px', height: '64px', borderRadius: '50%', background: `radial-gradient(circle, ${C.red}25, ${C.red}08)`, border: `2px solid ${C.red}50`, fontSize: '28px', flexShrink: 0 }}>⚠</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
             <div style={{ display: 'flex', fontSize: '12px', color: C.redLight, letterSpacing: '4px', fontWeight: 700 }}>RAHU KAAL</div>
-            <div style={{ display: 'flex', fontSize: '32px', color: '#ff9999', fontWeight: 800 }}>{panchang.rahuKaal.start} — {panchang.rahuKaal.end}</div>
+            <div style={{ display: 'flex', fontSize: '32px', color: '#ff9999', fontWeight: 800 }}>{panchang.rahuKaal.start}  –  {panchang.rahuKaal.end}</div>
           </div>
         </div>
 
         {/* Abhijit Muhurta */}
         {panchang.abhijitMuhurta && (
-          <DataCard icon="✧" label="ABHIJIT MUHURTA" value={`${panchang.abhijitMuhurta.start} — ${panchang.abhijitMuhurta.end}`} sub="Most auspicious window" accentColor={C.emerald} />
+          <DataCard icon="✧" label="ABHIJIT MUHURTA" value={`${panchang.abhijitMuhurta.start}  –  ${panchang.abhijitMuhurta.end}`} sub="Most auspicious window" accentColor={C.emerald} />
         )}
       </div>
     </TarotFrame>
@@ -245,7 +245,7 @@ function Slide4({ panchang }: { panchang: PanchangData }) {
           </div>
         </div>
 
-        {/* Name — massive */}
+        {/* Name  –  massive */}
         <div style={{ display: 'flex', fontSize: '52px', fontWeight: 900, color: C.goldLight, letterSpacing: '2px' }}>
           {nak ? L(nak.name) : 'Nakshatra'}
         </div>
@@ -287,7 +287,7 @@ function Slide4({ panchang }: { panchang: PanchangData }) {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// SLIDE 5: CTA OUTRO — dramatic brand close
+// SLIDE 5: CTA OUTRO  –  dramatic brand close
 // ═══════════════════════════════════════════════════════════════
 
 function Slide5() {

@@ -67,7 +67,7 @@ const TIMELINE_SEGMENTS = [
 ] as const;
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 1 — The Problem + Udaya Tithi + Madhyahna                     */
+/*  PAGE 1  –  The Problem + Udaya Tithi + Madhyahna                     */
 /* ------------------------------------------------------------------ */
 function Page1() {
   const locale = useModuleLocale();
@@ -139,7 +139,7 @@ function Page1() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 2 — Pradosh, Nishita, Arunodaya, Aparahna, Chandrodaya        */
+/*  PAGE 2  –  Pradosh, Nishita, Arunodaya, Aparahna, Chandrodaya        */
 /* ------------------------------------------------------------------ */
 function Page2() {
   const locale = useModuleLocale();
@@ -215,7 +215,7 @@ function Page2() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 3 — Algorithm, Timeline, Quick Reference Table                 */
+/*  PAGE 3  –  Algorithm, Timeline, Quick Reference Table                 */
 /* ------------------------------------------------------------------ */
 function Page3() {
   const locale = useModuleLocale();

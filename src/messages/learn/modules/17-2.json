@@ -12,16 +12,16 @@
     "mai": "विवाह मुहूर्त"
   },
   "subtitle": {
-    "en": "The most complex Muhurta selection — suitable nakshatras, lagna requirements, Venus/Jupiter conditions, and seasonal restrictions",
-    "hi": "सर्वाधिक जटिल मुहूर्त चयन — उपयुक्त नक्षत्र, लग्न आवश्यकताएँ, शुक्र/बृहस्पति की स्थिति, और ऋतु प्रतिबन्ध",
-    "sa": "सर्वाधिकजटिलं मुहूर्तचयनम् — उपयुक्तनक्षत्राणि, लग्नावश्यकताः, शुक्र/बृहस्पतिस्थितिश्च",
-    "ta": "மிகவும் சிக்கலான முகூர்த்த தேர்வு — பொருத்தமான நட்சத்திரங்கள், லக்ன தேவைகள், சுக்கிர/குரு நிலை",
-    "te": "అత్యంత సంక్లిష్ట ముహూర్తం ఎంపిక — అనుకూల నక్షత్రాలు, లగ్న అవసరాలు, శుక్ర/గురు స్థితి",
-    "bn": "সবচেয়ে জটিল মুহূর্ত নির্বাচন — উপযুক্ত নক্ষত্র, লগ্ন আবশ্যকতা, শুক্র/বৃহস্পতি অবস্থান",
-    "kn": "ಅತ್ಯಂತ ಸಂಕೀರ್ಣ ಮುಹೂರ್ತ ಆಯ್ಕೆ — ಸೂಕ್ತ ನಕ್ಷತ್ರಗಳು, ಲಗ್ನ ಅವಶ್ಯಕತೆಗಳು, ಶುಕ್ರ/ಗುರು ಸ್ಥಿತಿ",
-    "mr": "सर्वाधिक गुंतागुंतीची मुहूर्त निवड — योग्य नक्षत्रे, लग्न आवश्यकता, शुक्र/गुरू स्थिती",
-    "gu": "સૌથી જટિલ મુહૂર્ત પસંદગી — યોગ્ય નક્ષત્રો, લગ્ન આવશ્યકતાઓ, શુક્ર/ગુરુની સ્થિતિ",
-    "mai": "सर्वाधिक जटिल मुहूर्त चयन — उपयुक्त नक्षत्र, लग्न आवश्यकता, शुक्र/बृहस्पतिक स्थिति"
+    "en": "The most complex Muhurta selection  –  suitable nakshatras, lagna requirements, Venus/Jupiter conditions, and seasonal restrictions",
+    "hi": "सर्वाधिक जटिल मुहूर्त चयन  –  उपयुक्त नक्षत्र, लग्न आवश्यकताएँ, शुक्र/बृहस्पति की स्थिति, और ऋतु प्रतिबन्ध",
+    "sa": "सर्वाधिकजटिलं मुहूर्तचयनम्  –  उपयुक्तनक्षत्राणि, लग्नावश्यकताः, शुक्र/बृहस्पतिस्थितिश्च",
+    "ta": "மிகவும் சிக்கலான முகூர்த்த தேர்வு  –  பொருத்தமான நட்சத்திரங்கள், லக்ன தேவைகள், சுக்கிர/குரு நிலை",
+    "te": "అత్యంత సంక్లిష్ట ముహూర్తం ఎంపిక  –  అనుకూల నక్షత్రాలు, లగ్న అవసరాలు, శుక్ర/గురు స్థితి",
+    "bn": "সবচেয়ে জটিল মুহূর্ত নির্বাচন  –  উপযুক্ত নক্ষত্র, লগ্ন আবশ্যকতা, শুক্র/বৃহস্পতি অবস্থান",
+    "kn": "ಅತ್ಯಂತ ಸಂಕೀರ್ಣ ಮುಹೂರ್ತ ಆಯ್ಕೆ  –  ಸೂಕ್ತ ನಕ್ಷತ್ರಗಳು, ಲಗ್ನ ಅವಶ್ಯಕತೆಗಳು, ಶುಕ್ರ/ಗುರು ಸ್ಥಿತಿ",
+    "mr": "सर्वाधिक गुंतागुंतीची मुहूर्त निवड  –  योग्य नक्षत्रे, लग्न आवश्यकता, शुक्र/गुरू स्थिती",
+    "gu": "સૌથી જટિલ મુહૂર્ત પસંદગી  –  યોગ્ય નક્ષત્રો, લગ્ન આવશ્યકતાઓ, શુક્ર/ગુરુની સ્થિતિ",
+    "mai": "सर्वाधिक जटिल मुहूर्त चयन  –  उपयुक्त नक्षत्र, लग्न आवश्यकता, शुक्र/बृहस्पतिक स्थिति"
   },
   "crossRefs": [
     {
@@ -369,16 +369,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Waxing Moon (Shukla Paksha) symbolizes growth and increasing brightness — a metaphor for the marriage growing in happiness. Additionally, the Moon is stronger during Shukla Paksha (greater Paksha Bala), ensuring emotional stability at the start of married life.",
-        "hi": "शुक्ल पक्ष (बढ़ता चन्द्रमा) वृद्धि और बढ़ती चमक का प्रतीक है — विवाह में बढ़ते सुख का रूपक। साथ ही, शुक्ल पक्ष में चन्द्रमा बलवान होता है (अधिक पक्ष बल), जो वैवाहिक जीवन के आरम्भ में भावनात्मक स्थिरता सुनिश्चित करता है।",
-        "sa": "शुक्ल पक्ष (बढ़ता चन्द्रमा) वृद्धि और बढ़ती चमक का प्रतीक है — विवाह में बढ़ते सुख का रूपक। साथ ही, शुक्ल पक्ष में चन्द्रमा बलवान होता है (अधिक पक्ष बल), जो वैवाहिक जीवन के आरम्भ में भावनात्मक स्थिरता सुनिश्चित करता है।",
-        "ta": "Waxing Moon (Shukla Paksha) symbolizes growth and increasing brightness — a metaphor for the marriage growing in happiness. Additionally, the Moon is stronger during Shukla Paksha (greater Paksha Bala), ensuring emotional stability at the start of married life.",
-        "te": "Waxing Moon (Shukla Paksha) symbolizes growth and increasing brightness — a metaphor for the marriage growing in happiness. Additionally, the Moon is stronger during Shukla Paksha (greater Paksha Bala), ensuring emotional stability at the start of married life.",
-        "bn": "Waxing Moon (Shukla Paksha) symbolizes growth and increasing brightness — a metaphor for the marriage growing in happiness. Additionally, the Moon is stronger during Shukla Paksha (greater Paksha Bala), ensuring emotional stability at the start of married life.",
-        "kn": "Waxing Moon (Shukla Paksha) symbolizes growth and increasing brightness — a metaphor for the marriage growing in happiness. Additionally, the Moon is stronger during Shukla Paksha (greater Paksha Bala), ensuring emotional stability at the start of married life.",
-        "mr": "शुक्ल पक्ष (बढ़ता चन्द्रमा) वृद्धि और बढ़ती चमक का प्रतीक है — विवाह में बढ़ते सुख का रूपक। साथ ही, शुक्ल पक्ष में चन्द्रमा बलवान होता है (अधिक पक्ष बल), जो वैवाहिक जीवन के आरम्भ में भावनात्मक स्थिरता सुनिश्चित करता है।",
-        "gu": "Waxing Moon (Shukla Paksha) symbolizes growth and increasing brightness — a metaphor for the marriage growing in happiness. Additionally, the Moon is stronger during Shukla Paksha (greater Paksha Bala), ensuring emotional stability at the start of married life.",
-        "mai": "शुक्ल पक्ष (बढ़ता चन्द्रमा) वृद्धि और बढ़ती चमक का प्रतीक है — विवाह में बढ़ते सुख का रूपक। साथ ही, शुक्ल पक्ष में चन्द्रमा बलवान होता है (अधिक पक्ष बल), जो वैवाहिक जीवन के आरम्भ में भावनात्मक स्थिरता सुनिश्चित करता है।"
+        "en": "Waxing Moon (Shukla Paksha) symbolizes growth and increasing brightness  –  a metaphor for the marriage growing in happiness. Additionally, the Moon is stronger during Shukla Paksha (greater Paksha Bala), ensuring emotional stability at the start of married life.",
+        "hi": "शुक्ल पक्ष (बढ़ता चन्द्रमा) वृद्धि और बढ़ती चमक का प्रतीक है  –  विवाह में बढ़ते सुख का रूपक। साथ ही, शुक्ल पक्ष में चन्द्रमा बलवान होता है (अधिक पक्ष बल), जो वैवाहिक जीवन के आरम्भ में भावनात्मक स्थिरता सुनिश्चित करता है।",
+        "sa": "शुक्ल पक्ष (बढ़ता चन्द्रमा) वृद्धि और बढ़ती चमक का प्रतीक है  –  विवाह में बढ़ते सुख का रूपक। साथ ही, शुक्ल पक्ष में चन्द्रमा बलवान होता है (अधिक पक्ष बल), जो वैवाहिक जीवन के आरम्भ में भावनात्मक स्थिरता सुनिश्चित करता है।",
+        "ta": "Waxing Moon (Shukla Paksha) symbolizes growth and increasing brightness  –  a metaphor for the marriage growing in happiness. Additionally, the Moon is stronger during Shukla Paksha (greater Paksha Bala), ensuring emotional stability at the start of married life.",
+        "te": "Waxing Moon (Shukla Paksha) symbolizes growth and increasing brightness  –  a metaphor for the marriage growing in happiness. Additionally, the Moon is stronger during Shukla Paksha (greater Paksha Bala), ensuring emotional stability at the start of married life.",
+        "bn": "Waxing Moon (Shukla Paksha) symbolizes growth and increasing brightness  –  a metaphor for the marriage growing in happiness. Additionally, the Moon is stronger during Shukla Paksha (greater Paksha Bala), ensuring emotional stability at the start of married life.",
+        "kn": "Waxing Moon (Shukla Paksha) symbolizes growth and increasing brightness  –  a metaphor for the marriage growing in happiness. Additionally, the Moon is stronger during Shukla Paksha (greater Paksha Bala), ensuring emotional stability at the start of married life.",
+        "mr": "शुक्ल पक्ष (बढ़ता चन्द्रमा) वृद्धि और बढ़ती चमक का प्रतीक है  –  विवाह में बढ़ते सुख का रूपक। साथ ही, शुक्ल पक्ष में चन्द्रमा बलवान होता है (अधिक पक्ष बल), जो वैवाहिक जीवन के आरम्भ में भावनात्मक स्थिरता सुनिश्चित करता है।",
+        "gu": "Waxing Moon (Shukla Paksha) symbolizes growth and increasing brightness  –  a metaphor for the marriage growing in happiness. Additionally, the Moon is stronger during Shukla Paksha (greater Paksha Bala), ensuring emotional stability at the start of married life.",
+        "mai": "शुक्ल पक्ष (बढ़ता चन्द्रमा) वृद्धि और बढ़ती चमक का प्रतीक है  –  विवाह में बढ़ते सुख का रूपक। साथ ही, शुक्ल पक्ष में चन्द्रमा बलवान होता है (अधिक पक्ष बल), जो वैवाहिक जीवन के आरम्भ में भावनात्मक स्थिरता सुनिश्चित करता है।"
       },
       "options": [
         {
@@ -731,7 +731,7 @@
       "type": "mcq",
       "question": { "en": "Which type of Lagna is preferred for a marriage Muhurta chart?", "hi": "विवाह मुहूर्त कुण्डली हेतु किस प्रकार का लग्न पसन्दीदा है?", "sa": "विवाह मुहूर्त हेतु किस प्रकार का लग्न पसन्दीदा है?", "ta": "Which type of Lagna is preferred for marriage Muhurta?", "te": "Which type of Lagna is preferred for marriage Muhurta?", "bn": "Which type of Lagna is preferred for marriage Muhurta?", "kn": "Which type of Lagna is preferred for marriage Muhurta?", "mr": "विवाह मुहूर्त हेतु किस प्रकार का लग्न पसन्दीदा है?", "gu": "Which type of Lagna is preferred for marriage Muhurta?", "mai": "विवाह मुहूर्त हेतु किस प्रकार का लग्न पसन्दीदा है?" },
       "correctAnswer": 1,
-      "explanation": { "en": "Fixed signs (Taurus, Leo, Scorpio, Aquarius) are preferred because they represent stability and permanence — essential qualities for a lasting marriage.", "hi": "स्थिर राशियाँ (वृषभ, सिंह, वृश्चिक, कुम्भ) पसन्दीदा हैं क्योंकि ये स्थिरता और स्थायित्व दर्शाती हैं।", "sa": "स्थिर राशियाँ पसन्दीदा हैं।", "ta": "Fixed signs are preferred for stability.", "te": "Fixed signs are preferred for stability.", "bn": "Fixed signs are preferred for stability.", "kn": "Fixed signs are preferred for stability.", "mr": "स्थिर राशियाँ पसन्दीदा हैं।", "gu": "Fixed signs are preferred for stability.", "mai": "स्थिर राशियाँ पसन्दीदा हैं।" },
+      "explanation": { "en": "Fixed signs (Taurus, Leo, Scorpio, Aquarius) are preferred because they represent stability and permanence  –  essential qualities for a lasting marriage.", "hi": "स्थिर राशियाँ (वृषभ, सिंह, वृश्चिक, कुम्भ) पसन्दीदा हैं क्योंकि ये स्थिरता और स्थायित्व दर्शाती हैं।", "sa": "स्थिर राशियाँ पसन्दीदा हैं।", "ta": "Fixed signs are preferred for stability.", "te": "Fixed signs are preferred for stability.", "bn": "Fixed signs are preferred for stability.", "kn": "Fixed signs are preferred for stability.", "mr": "स्थिर राशियाँ पसन्दीदा हैं।", "gu": "Fixed signs are preferred for stability.", "mai": "स्थिर राशियाँ पसन्दीदा हैं।" },
       "options": [
         { "en": "Movable signs (Cardinal)", "hi": "चर राशियाँ", "sa": "चर राशियाँ", "ta": "Movable signs", "te": "Movable signs", "bn": "Movable signs", "kn": "Movable signs", "mr": "चर राशियाँ", "gu": "Movable signs", "mai": "चर राशियाँ" },
         { "en": "Fixed signs (Sthira)", "hi": "स्थिर राशियाँ", "sa": "स्थिर राशियाँ", "ta": "Fixed signs", "te": "Fixed signs", "bn": "Fixed signs", "kn": "Fixed signs", "mr": "स्थिर राशियाँ", "gu": "Fixed signs", "mai": "स्थिर राशियाँ" },

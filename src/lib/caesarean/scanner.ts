@@ -9,7 +9,7 @@
  *
  * Performance: for a 7-day range at 15-min resolution with 8am-5pm hours,
  * that's 7 x 36 = 252 evaluations. Each evaluation computes ascendant +
- * planet positions + panchang snapshot — roughly 2-5ms each on modern
+ * planet positions + panchang snapshot  –  roughly 2-5ms each on modern
  * hardware, so total scan time is ~0.5-1.2 seconds.
  *
  * Design: noon planet positions are reused for all windows on the same day
@@ -71,11 +71,11 @@ export function scanCaesareanSlots(input: CaesareanScanInput): CaesareanScanResu
     // Resolve timezone offset for this specific date (DST-aware)
     const tzOffset = getUTCOffsetForDate(y, m, d, timezone);
 
-    // JD at noon UT for this date — used for ayanamsha and planet positions
+    // JD at noon UT for this date  –  used for ayanamsha and planet positions
     const jdNoon = dateToJD(y, m, d, 12);
     const ayanamsha = getAyanamsha(jdNoon, 'lahiri');
 
-    // Planet positions at noon UT (sufficient for house placement —
+    // Planet positions at noon UT (sufficient for house placement  – 
     // planets other than Moon move slowly, and Moon data comes from
     // per-window panchang snapshot below)
     const noonPlanets = getPlanetaryPositions(jdNoon);

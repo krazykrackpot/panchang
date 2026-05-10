@@ -1,5 +1,5 @@
 /**
- * Eclipse Data Table — 2024-2035
+ * Eclipse Data Table  –  2024-2035
  *
  * Source: NASA Five Millennium Canon of Solar Eclipses & Lunar Eclipses
  * https://eclipse.gsfc.nasa.gov/
@@ -10,14 +10,14 @@
  *
  * This table provides enrichment data (Saros numbers, contact times for lunar,
  * shadow geometry). Eclipse DETECTION is done by the engine (eclipses.ts) using
- * tithi table + Moon ecliptic latitude — not from this table.
+ * tithi table + Moon ecliptic latitude  –  not from this table.
  */
 
 export interface LunarEclipseData {
   kind: 'lunar';
   date: string;           // YYYY-MM-DD
   type: 'total' | 'partial' | 'penumbral';
-  // UTC contact times (HH:MM format) — same for all observers
+  // UTC contact times (HH:MM format)  –  same for all observers
   p1: string;             // Penumbral first contact
   u1: string | null;      // Umbral first contact (null for penumbral)
   max: string;            // Greatest eclipse
@@ -294,7 +294,7 @@ export const ECLIPSE_TABLE: EclipseData[] = [
   },
 
   // ═══════════════════════════════════════════════════════════════════
-  // 2031-2035 (abbreviated — key eclipses only)
+  // 2031-2035 (abbreviated  –  key eclipses only)
   // ═══════════════════════════════════════════════════════════════════
   {
     kind: 'solar', date: '2031-05-21', type: 'annular',

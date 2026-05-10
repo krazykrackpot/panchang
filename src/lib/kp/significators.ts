@@ -227,7 +227,7 @@ export function calculateCuspalAnalysis(
     const fmtHouses = (houses: number[], lang: 'en' | 'hi' | 'sa') =>
       houses.length > 0
         ? houses.map(h => `${h} (${(HOUSE_MATTERS[h] ?? { en: '?', hi: '?', sa: '?' })[lang]})`).join(', ')
-        : '—';
+        : ' – ';
 
     const subName = cusp.subLordInfo.subLord.name;
     const sssName = cusp.subLordInfo.subSubLord.name;
@@ -239,8 +239,8 @@ export function calculateCuspalAnalysis(
           sa: `${subName.sa} (${matter.sa} भावस्य उपस्वामी) ${fmtHouses(signified, 'sa')} प्रभावयति। ${matter.sa} फलितं भवति।`,
         }
       : {
-          en: `${subName.en} (sub-lord of the ${matter.en} cusp) influences ${fmtHouses(signified, 'en')}. However, ${matter.en.toLowerCase()} requires support from houses ${fmtHouses(required, 'en')} — which are not adequately signified. This area faces delays or denial.`,
-          hi: `${subName.hi} (${matter.hi} भाव के उप-स्वामी) ${fmtHouses(signified, 'hi')} को प्रभावित करते हैं। किन्तु ${matter.hi} के लिए ${fmtHouses(required, 'hi')} का सहयोग आवश्यक है — जो पर्याप्त रूप से सूचित नहीं है। इस क्षेत्र में विलम्ब या अभाव है।`,
+          en: `${subName.en} (sub-lord of the ${matter.en} cusp) influences ${fmtHouses(signified, 'en')}. However, ${matter.en.toLowerCase()} requires support from houses ${fmtHouses(required, 'en')}  –  which are not adequately signified. This area faces delays or denial.`,
+          hi: `${subName.hi} (${matter.hi} भाव के उप-स्वामी) ${fmtHouses(signified, 'hi')} को प्रभावित करते हैं। किन्तु ${matter.hi} के लिए ${fmtHouses(required, 'hi')} का सहयोग आवश्यक है  –  जो पर्याप्त रूप से सूचित नहीं है। इस क्षेत्र में विलम्ब या अभाव है।`,
           sa: `${subName.sa} (${matter.sa} उपस्वामी) ${fmtHouses(signified, 'sa')} सूचयति। आवश्यकाः ${fmtHouses(required, 'sa')}। ${matter.sa} विलम्बः अभावो वा।`,
         };
 

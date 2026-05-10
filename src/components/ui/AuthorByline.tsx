@@ -13,7 +13,7 @@ const BYLINE: Record<string, { contentBy: string; tagline: string }> = {
 };
 
 /**
- * E-E-A-T author attribution byline — small, unobtrusive footer element
+ * E-E-A-T author attribution byline  –  small, unobtrusive footer element
  * linking to the About page with author credentials.
  */
 export default function AuthorByline({ className = '' }: { className?: string }) {
@@ -30,7 +30,7 @@ export default function AuthorByline({ className = '' }: { className?: string })
       <Link href="/about" className="text-gold-primary hover:text-gold-light transition-colors">
         Aditya Kumar
       </Link>
-      <span> — {b.tagline}</span>
+      <span>  –  {b.tagline}</span>
     </div>
   );
 }

@@ -1,10 +1,10 @@
 /**
- * Lagna Rules — ascendant-based scoring for muhurta selection
+ * Lagna Rules  –  ascendant-based scoring for muhurta selection
  *
  * 3 rules:
- *   1. lagna-quality — scores the sidereal lagna sign (Tier 2 when strong, cancels defects)
- *   2. navamsha-shuddhi — D9 lagna quality (Tier 3)
- *   3. krishna-paksha-adjustment — conditional penalty for waning Moon dates
+ *   1. lagna-quality  –  scores the sidereal lagna sign (Tier 2 when strong, cancels defects)
+ *   2. navamsha-shuddhi  –  D9 lagna quality (Tier 3)
+ *   3. krishna-paksha-adjustment  –  conditional penalty for waning Moon dates
  *
  * Sources: Muhurta Chintamani (MC) Ch.6-7, Dharmasindhu
  */
@@ -16,18 +16,18 @@ import { toSidereal, getRashiNumber } from '@/lib/ephem/astronomical';
 // Vivah lagna suitability: rashi index 1-12 → score
 // Matches VIVAH_LAGNA_SCORE in classical-checks.ts
 const VIVAH_LAGNA_SCORE: Record<number, number> = {
-  1: -2,  // Mesha (Aries) — Mars-ruled, aggressive for marriage
-  2: 6,   // Vrishabha (Taurus) — Venus-ruled, excellent
-  3: 8,   // Mithuna (Gemini) — MC top pick
-  4: 5,   // Karka (Cancer) — Moon-ruled, emotional, good
-  5: 2,   // Simha (Leo) — Sun-ruled, neutral
-  6: 8,   // Kanya (Virgo) — MC top pick
-  7: 8,   // Tula (Libra) — MC top pick, Venus-ruled
-  8: -3,  // Vrischika (Scorpio) — Mars-ruled, 8th natural sign
-  9: 5,   // Dhanu (Sagittarius) — Jupiter-ruled, good
-  10: 1,  // Makara (Capricorn) — Saturn-ruled, neutral
-  11: 1,  // Kumbha (Aquarius) — Saturn-ruled, neutral
-  12: 5,  // Meena (Pisces) — Jupiter-ruled, good
+  1: -2,  // Mesha (Aries)  –  Mars-ruled, aggressive for marriage
+  2: 6,   // Vrishabha (Taurus)  –  Venus-ruled, excellent
+  3: 8,   // Mithuna (Gemini)  –  MC top pick
+  4: 5,   // Karka (Cancer)  –  Moon-ruled, emotional, good
+  5: 2,   // Simha (Leo)  –  Sun-ruled, neutral
+  6: 8,   // Kanya (Virgo)  –  MC top pick
+  7: 8,   // Tula (Libra)  –  MC top pick, Venus-ruled
+  8: -3,  // Vrischika (Scorpio)  –  Mars-ruled, 8th natural sign
+  9: 5,   // Dhanu (Sagittarius)  –  Jupiter-ruled, good
+  10: 1,  // Makara (Capricorn)  –  Saturn-ruled, neutral
+  11: 1,  // Kumbha (Aquarius)  –  Saturn-ruled, neutral
+  12: 5,  // Meena (Pisces)  –  Jupiter-ruled, good
 };
 
 // Generic lagna scores for non-marriage activities
@@ -68,7 +68,7 @@ const lagnaQuality: MuhurtaRule = {
   category: 'lagna',
   scope: 'window',
   effect: 'bonus',
-  tier: 3, // dynamic — upgraded to Tier 2 when score >= 6
+  tier: 3, // dynamic  –  upgraded to Tier 2 when score >= 6
   appliesTo: 'all',
   source: 'MC Ch.7',
   evaluate(ctx: RuleContext): RuleAssessment | null {
@@ -94,9 +94,9 @@ const lagnaQuality: MuhurtaRule = {
       maxPoints: 8,
       severity,
       reason: {
-        en: `${rashiName} Lagna — ${isStrong ? 'excellent, removes defects' : score >= 3 ? 'acceptable' : score >= 0 ? 'neutral' : 'unfavourable'}`,
-        hi: `${rashiName} लग्न — ${isStrong ? 'उत्कृष्ट, दोष निवारक' : score >= 3 ? 'स्वीकार्य' : score >= 0 ? 'तटस्थ' : 'प्रतिकूल'}`,
-        sa: `${rashiName} लग्नम् — ${isStrong ? 'उत्तमम्, दोषनिवारकम्' : score >= 3 ? 'स्वीकार्यम्' : score >= 0 ? 'मध्यमम्' : 'अशुभम्'}`,
+        en: `${rashiName} Lagna  –  ${isStrong ? 'excellent, removes defects' : score >= 3 ? 'acceptable' : score >= 0 ? 'neutral' : 'unfavourable'}`,
+        hi: `${rashiName} लग्न  –  ${isStrong ? 'उत्कृष्ट, दोष निवारक' : score >= 3 ? 'स्वीकार्य' : score >= 0 ? 'तटस्थ' : 'प्रतिकूल'}`,
+        sa: `${rashiName} लग्नम्  –  ${isStrong ? 'उत्तमम्, दोषनिवारकम्' : score >= 3 ? 'स्वीकार्यम्' : score >= 0 ? 'मध्यमम्' : 'अशुभम्'}`,
       },
     });
 
@@ -111,7 +111,7 @@ const lagnaQuality: MuhurtaRule = {
 
 // ---------------------------------------------------------------------------
 // 2. navamsha-shuddhi
-// MC: Navamsha Shuddhi emphasised for Vivah — D9 lagna should be auspicious.
+// MC: Navamsha Shuddhi emphasised for Vivah  –  D9 lagna should be auspicious.
 // Navamsha spans 3°20' (~13.3 minutes), finest-grained classical tool.
 // ---------------------------------------------------------------------------
 const navamshaShuddhi: MuhurtaRule = {
@@ -145,9 +145,9 @@ const navamshaShuddhi: MuhurtaRule = {
       maxPoints: 4,
       severity,
       reason: {
-        en: `Navamsha in ${rashiName} — ${score >= 3 ? 'auspicious D9' : score >= 1 ? 'acceptable D9' : score === 0 ? 'neutral D9' : 'weak D9'}`,
-        hi: `नवांश ${rashiName} में — ${score >= 3 ? 'शुभ डी9' : score >= 1 ? 'स्वीकार्य डी9' : score === 0 ? 'तटस्थ डी9' : 'दुर्बल डी9'}`,
-        sa: `नवांशः ${rashiName} — ${score >= 3 ? 'शुभनवांशः' : score >= 1 ? 'स्वीकार्यः' : score === 0 ? 'मध्यमः' : 'दुर्बलः'}`,
+        en: `Navamsha in ${rashiName}  –  ${score >= 3 ? 'auspicious D9' : score >= 1 ? 'acceptable D9' : score === 0 ? 'neutral D9' : 'weak D9'}`,
+        hi: `नवांश ${rashiName} में  –  ${score >= 3 ? 'शुभ डी9' : score >= 1 ? 'स्वीकार्य डी9' : score === 0 ? 'तटस्थ डी9' : 'दुर्बल डी9'}`,
+        sa: `नवांशः ${rashiName}  –  ${score >= 3 ? 'शुभनवांशः' : score >= 1 ? 'स्वीकार्यः' : score === 0 ? 'मध्यमः' : 'दुर्बलः'}`,
       },
     });
   },
@@ -169,7 +169,7 @@ const krishnaPakshaAdjustment: MuhurtaRule = {
   source: 'MC Ch.6, Dharmasindhu',
   evaluate(ctx: RuleContext): RuleAssessment | null {
     const isKrishna = ctx.snap.tithi > 15;
-    if (!isKrishna) return null; // Shukla Paksha — not applicable
+    if (!isKrishna) return null; // Shukla Paksha  –  not applicable
 
     const hasGoodNakshatra = ctx.activityRules.goodNakshatras.includes(ctx.snap.nakshatra);
     const lagnaScore = ctx.lagnaSign != null
@@ -185,25 +185,25 @@ const krishnaPakshaAdjustment: MuhurtaRule = {
       points = -1;
       severity = 'minor';
       reason = {
-        en: 'Krishna Paksha — mitigated by good nakshatra + strong lagna',
-        hi: 'कृष्ण पक्ष — शुभ नक्षत्र + बलवान लग्न से शमित',
-        sa: 'कृष्णपक्षः — शुभनक्षत्रबलवल्लग्नाभ्यां शमितः',
+        en: 'Krishna Paksha  –  mitigated by good nakshatra + strong lagna',
+        hi: 'कृष्ण पक्ष  –  शुभ नक्षत्र + बलवान लग्न से शमित',
+        sa: 'कृष्णपक्षः  –  शुभनक्षत्रबलवल्लग्नाभ्यां शमितः',
       };
     } else if (hasGoodNakshatra) {
       points = -3;
       severity = 'moderate';
       reason = {
-        en: 'Krishna Paksha — good nakshatra but lagna is weak',
-        hi: 'कृष्ण पक्ष — शुभ नक्षत्र किन्तु लग्न दुर्बल',
-        sa: 'कृष्णपक्षः — शुभनक्षत्रं किन्तु लग्नं दुर्बलम्',
+        en: 'Krishna Paksha  –  good nakshatra but lagna is weak',
+        hi: 'कृष्ण पक्ष  –  शुभ नक्षत्र किन्तु लग्न दुर्बल',
+        sa: 'कृष्णपक्षः  –  शुभनक्षत्रं किन्तु लग्नं दुर्बलम्',
       };
     } else {
       points = -6;
       severity = 'major';
       reason = {
-        en: 'Krishna Paksha — no supporting factors',
-        hi: 'कृष्ण पक्ष — कोई सहायक कारक नहीं',
-        sa: 'कृष्णपक्षः — सहायककारकाभावः',
+        en: 'Krishna Paksha  –  no supporting factors',
+        hi: 'कृष्ण पक्ष  –  कोई सहायक कारक नहीं',
+        sa: 'कृष्णपक्षः  –  सहायककारकाभावः',
       };
     }
 
@@ -220,7 +220,7 @@ const krishnaPakshaAdjustment: MuhurtaRule = {
 // ---------------------------------------------------------------------------
 // 4. planets-in-ascendant (Muhurta Chintamani Ch.7)
 // "Venus, Mercury, or Jupiter in the ascendant completely destroy all adverse
-// influences." — Tier 1 override, cancels all Tier 3/4 negatives.
+// influences."  –  Tier 1 override, cancels all Tier 3/4 negatives.
 // ---------------------------------------------------------------------------
 const planetsInAscendant: MuhurtaRule = {
   id: 'planets-in-ascendant',
@@ -234,7 +234,7 @@ const planetsInAscendant: MuhurtaRule = {
   evaluate(ctx: RuleContext): RuleAssessment | null {
     if (ctx.lagnaSign == null || !ctx.planets || ctx.planets.length === 0) return null;
 
-    // Venus (5), Mercury (3), Jupiter (4) — check if any is in lagna sign
+    // Venus (5), Mercury (3), Jupiter (4)  –  check if any is in lagna sign
     const beneficIds = [5, 3, 4];
     const beneficNames = { 3: 'Mercury', 4: 'Jupiter', 5: 'Venus' };
     const inLagna: number[] = [];
@@ -258,9 +258,9 @@ const planetsInAscendant: MuhurtaRule = {
       maxPoints: 10,
       severity: 'positive',
       reason: {
-        en: `${names} in ascendant — destroys all adverse influences`,
-        hi: `${names} लग्न में — सभी दोषों का नाश`,
-        sa: `लग्ने ${names} — सर्वदोषनाशकः`,
+        en: `${names} in ascendant  –  destroys all adverse influences`,
+        hi: `${names} लग्न में  –  सभी दोषों का नाश`,
+        sa: `लग्ने ${names}  –  सर्वदोषनाशकः`,
       },
       cancels: [
         'tithi-quality',
@@ -280,7 +280,7 @@ const planetsInAscendant: MuhurtaRule = {
 };
 
 // ---------------------------------------------------------------------------
-// 5. eighth-house-vacancy (B.V. Raman — Marriage/Engagement only)
+// 5. eighth-house-vacancy (B.V. Raman  –  Marriage/Engagement only)
 // "The 8th house must be unoccupied at the time of marriage."
 // ---------------------------------------------------------------------------
 const eighthHouseVacancy: MuhurtaRule = {
@@ -315,9 +315,9 @@ const eighthHouseVacancy: MuhurtaRule = {
         maxPoints: 3,
         severity: 'moderate',
         reason: {
-          en: `8th house occupied — ${occupants.length} planet(s) in house of longevity`,
-          hi: `अष्टम भाव अशून्य — आयु भाव में ${occupants.length} ग्रह`,
-          sa: `अष्टमभावे ग्रहाः — आयुर्भावे ${occupants.length} ग्रहाः`,
+          en: `8th house occupied  –  ${occupants.length} planet(s) in house of longevity`,
+          hi: `अष्टम भाव अशून्य  –  आयु भाव में ${occupants.length} ग्रह`,
+          sa: `अष्टमभावे ग्रहाः  –  आयुर्भावे ${occupants.length} ग्रहाः`,
         },
       });
     }
@@ -328,16 +328,16 @@ const eighthHouseVacancy: MuhurtaRule = {
       maxPoints: 3,
       severity: 'positive',
       reason: {
-        en: '8th house vacant — auspicious for marital longevity',
-        hi: 'अष्टम भाव शून्य — दाम्पत्य दीर्घायु हेतु शुभ',
-        sa: 'अष्टमभावः शून्यः — दाम्पत्यदीर्घायुषे शुभम्',
+        en: '8th house vacant  –  auspicious for marital longevity',
+        hi: 'अष्टम भाव शून्य  –  दाम्पत्य दीर्घायु हेतु शुभ',
+        sa: 'अष्टमभावः शून्यः  –  दाम्पत्यदीर्घायुषे शुभम्',
       },
     });
   },
 };
 
 // ---------------------------------------------------------------------------
-// 6. seventh-house-vacancy (MC + B.V. Raman — Marriage/Engagement)
+// 6. seventh-house-vacancy (MC + B.V. Raman  –  Marriage/Engagement)
 // 7th house is the marriage house. Malefics there damage marital harmony.
 // Rahu, Ketu, Saturn, Mars = -4; Sun = -2 (lesser malefic).
 // Exception: Waxing Moon in 7th is sometimes tolerated (near Purnima).
@@ -370,7 +370,7 @@ const seventhHouseVacancy: MuhurtaRule = {
       if (!(planet.id in maleficPenalty)) continue;
       const sidSign = getRashiNumber(toSidereal(planet.longitude, ctx.midpointJD));
       if (sidSign === seventhSign) {
-        // Moon (id=1) exception — not in maleficPenalty, so won't reach here
+        // Moon (id=1) exception  –  not in maleficPenalty, so won't reach here
         totalPenalty += maleficPenalty[planet.id]!;
         occupants.push(maleficNames[planet.id]!);
       }
@@ -383,9 +383,9 @@ const seventhHouseVacancy: MuhurtaRule = {
         maxPoints: 3,
         severity: 'positive',
         reason: {
-          en: '7th house (marriage house) vacant — auspicious',
-          hi: 'सप्तम भाव (विवाह भाव) शून्य — शुभ',
-          sa: 'सप्तमभावः शून्यः — शुभम्',
+          en: '7th house (marriage house) vacant  –  auspicious',
+          hi: 'सप्तम भाव (विवाह भाव) शून्य  –  शुभ',
+          sa: 'सप्तमभावः शून्यः  –  शुभम्',
         },
       });
     }
@@ -396,16 +396,16 @@ const seventhHouseVacancy: MuhurtaRule = {
       maxPoints: 3,
       severity: totalPenalty <= -4 ? 'major' : 'moderate',
       reason: {
-        en: `${occupants.join(', ')} in 7th house — damages marital harmony`,
-        hi: `${occupants.join(', ')} सप्तम भाव में — दाम्पत्य सुख को हानि`,
-        sa: `सप्तमभावे ${occupants.join(', ')} — दाम्पत्यसुखहानिः`,
+        en: `${occupants.join(', ')} in 7th house  –  damages marital harmony`,
+        hi: `${occupants.join(', ')} सप्तम भाव में  –  दाम्पत्य सुख को हानि`,
+        sa: `सप्तमभावे ${occupants.join(', ')}  –  दाम्पत्यसुखहानिः`,
       },
     });
   },
 };
 
 // ---------------------------------------------------------------------------
-// 7. malefics-aspecting-seventh (MC + B.V. Raman — Marriage/Engagement)
+// 7. malefics-aspecting-seventh (MC + B.V. Raman  –  Marriage/Engagement)
 // Vedic aspects on the 7th house from malefics: -3 points per malefic.
 // All planets aspect 7th from their position. Mars also aspects 4th/8th.
 // Saturn also aspects 3rd/10th.
@@ -426,7 +426,7 @@ const maleficsAspectingSeventh: MuhurtaRule = {
     const seventhSign = ((ctx.lagnaSign - 1 + 6) % 12) + 1;
 
     // Malefic ids to check: Mars(2), Saturn(6), Rahu(7), Ketu(8)
-    // Sun(0) excluded — its aspects are not traditionally checked for this rule
+    // Sun(0) excluded  –  its aspects are not traditionally checked for this rule
     const maleficIds = [2, 6, 7, 8];
     const maleficNames: Record<number, string> = { 2: 'Mars', 6: 'Saturn', 7: 'Rahu', 8: 'Ketu' };
     const aspecting: string[] = [];
@@ -465,18 +465,18 @@ const maleficsAspectingSeventh: MuhurtaRule = {
       maxPoints: 0,
       severity: aspecting.length >= 2 ? 'major' : 'moderate',
       reason: {
-        en: `${aspecting.join(', ')} aspect${aspecting.length > 1 ? '' : 's'} 7th house — adverse for marriage`,
-        hi: `${aspecting.join(', ')} की सप्तम भाव पर दृष्टि — विवाह हेतु प्रतिकूल`,
-        sa: `${aspecting.join(', ')} सप्तमभावे दृष्टिः — विवाहे प्रतिकूलम्`,
+        en: `${aspecting.join(', ')} aspect${aspecting.length > 1 ? '' : 's'} 7th house  –  adverse for marriage`,
+        hi: `${aspecting.join(', ')} की सप्तम भाव पर दृष्टि  –  विवाह हेतु प्रतिकूल`,
+        sa: `${aspecting.join(', ')} सप्तमभावे दृष्टिः  –  विवाहे प्रतिकूलम्`,
       },
     });
   },
 };
 
 // ---------------------------------------------------------------------------
-// 8. venus-in-sixth (MC — Marriage/Engagement)
+// 8. venus-in-sixth (MC  –  Marriage/Engagement)
 // Venus (karaka of marriage) in 6th house from lagna = -3 points.
-// 6th house = enemies, obstacles, debts — terrible for Venus.
+// 6th house = enemies, obstacles, debts  –  terrible for Venus.
 // ---------------------------------------------------------------------------
 const venusInSixth: MuhurtaRule = {
   id: 'venus-in-sixth',
@@ -504,16 +504,16 @@ const venusInSixth: MuhurtaRule = {
       maxPoints: 0,
       severity: 'moderate',
       reason: {
-        en: 'Venus (marriage karaka) in 6th house — obstacles to conjugal happiness',
-        hi: 'शुक्र (विवाह कारक) षष्ठ भाव में — दाम्पत्य सुख में बाधा',
-        sa: 'शुक्रः (विवाहकारकः) षष्ठभावे — दाम्पत्यसुखबाधा',
+        en: 'Venus (marriage karaka) in 6th house  –  obstacles to conjugal happiness',
+        hi: 'शुक्र (विवाह कारक) षष्ठ भाव में  –  दाम्पत्य सुख में बाधा',
+        sa: 'शुक्रः (विवाहकारकः) षष्ठभावे  –  दाम्पत्यसुखबाधा',
       },
     });
   },
 };
 
 // ---------------------------------------------------------------------------
-// 9. mars-in-eighth-extra (B.V. Raman — Marriage/Engagement)
+// 9. mars-in-eighth-extra (B.V. Raman  –  Marriage/Engagement)
 // Mars in 8th house gets an extra -2 penalty on top of the generic
 // eighth-house-vacancy rule (-3). Mars in 8th = violence/accident to
 // spouse, the worst malefic placement for marriage. Total = -5.
@@ -544,16 +544,16 @@ const marsInEighthExtra: MuhurtaRule = {
       maxPoints: 0,
       severity: 'major',
       reason: {
-        en: 'Mars in 8th house — severe danger to marital longevity (additional penalty)',
-        hi: 'मंगल अष्टम भाव में — दाम्पत्य दीर्घायु को गंभीर खतरा (अतिरिक्त दंड)',
-        sa: 'कुजः अष्टमभावे — दाम्पत्यदीर्घायुषे गम्भीरभयम् (अतिरिक्तदण्डः)',
+        en: 'Mars in 8th house  –  severe danger to marital longevity (additional penalty)',
+        hi: 'मंगल अष्टम भाव में  –  दाम्पत्य दीर्घायु को गंभीर खतरा (अतिरिक्त दंड)',
+        sa: 'कुजः अष्टमभावे  –  दाम्पत्यदीर्घायुषे गम्भीरभयम् (अतिरिक्तदण्डः)',
       },
     });
   },
 };
 
 // ---------------------------------------------------------------------------
-// 10. jupiter-venus-aspecting-lagna (MC Ch.7 — all activities)
+// 10. jupiter-venus-aspecting-lagna (MC Ch.7  –  all activities)
 // Jupiter or Venus ASPECTING lagna (not just occupying) also confers
 // significant benefit. +5 points per aspecting benefic (Tier 2).
 // Jupiter aspects from houses 5, 7, 9 (i.e. offsets 5, 7, 9 from Jupiter).
@@ -605,9 +605,9 @@ const jupiterVenusAspectingLagna: MuhurtaRule = {
       maxPoints: 10,
       severity: 'positive',
       reason: {
-        en: `${aspecting.join(' & ')} aspect${aspecting.length > 1 ? '' : 's'} lagna — strong benefic influence`,
-        hi: `${aspecting.join(' व ')} की लग्न पर दृष्टि — प्रबल शुभ प्रभाव`,
-        sa: `${aspecting.join(' ')} लग्ने दृष्टिः — प्रबलशुभप्रभावः`,
+        en: `${aspecting.join(' & ')} aspect${aspecting.length > 1 ? '' : 's'} lagna  –  strong benefic influence`,
+        hi: `${aspecting.join(' व ')} की लग्न पर दृष्टि  –  प्रबल शुभ प्रभाव`,
+        sa: `${aspecting.join(' ')} लग्ने दृष्टिः  –  प्रबलशुभप्रभावः`,
       },
     });
   },

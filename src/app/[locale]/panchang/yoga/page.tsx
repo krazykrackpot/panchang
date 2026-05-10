@@ -144,7 +144,7 @@ function AnimatedYogaWheel({ locale, onSelect }: { locale: Locale; onSelect: (id
         );
       })}
 
-      {/* Orbiting indicator — combined Sun+Moon dot */}
+      {/* Orbiting indicator  –  combined Sun+Moon dot */}
       <motion.g
         animate={{ rotate: 360 }}
         transition={{ duration: 45, repeat: Infinity, ease: 'linear' }}
@@ -328,7 +328,7 @@ export default function YogaPage() {
           <div className="mt-8 prose prose-invert max-w-none text-text-secondary">
             <p className="text-lg leading-relaxed">
               {locale === 'en'
-                ? `A Yoga is determined by the sum of the sidereal longitudes of the Sun and Moon. The 360° arc is divided into 27 equal parts of 13°20' each. When the combined longitude of Sun and Moon falls within a particular segment, that Yoga is in effect. Unlike Tithi (which depends on the difference), Yoga depends on the sum — hence it captures the combined "energy" of both luminaries. Each Yoga lasts approximately one day but varies because both the Sun and Moon are in continuous motion.`
+                ? `A Yoga is determined by the sum of the sidereal longitudes of the Sun and Moon. The 360° arc is divided into 27 equal parts of 13°20' each. When the combined longitude of Sun and Moon falls within a particular segment, that Yoga is in effect. Unlike Tithi (which depends on the difference), Yoga depends on the sum  –  hence it captures the combined "energy" of both luminaries. Each Yoga lasts approximately one day but varies because both the Sun and Moon are in continuous motion.`
                 : msg('yogaDescription', locale)}
             </p>
             <motion.div
@@ -382,7 +382,7 @@ export default function YogaPage() {
                 <div className="text-text-secondary text-sm">
                   <p><span className="text-gold-dark">{msg('yogaNumberLabel', locale)}</span> {selectedYoga + 1} / 27</p>
                   <p className="mt-1"><span className="text-gold-dark">{msg('meaningLabel', locale)}</span> {YOGAS[selectedYoga].meaning[locale]}</p>
-                  <p className="mt-1"><span className="text-gold-dark">{msg('angularSpanLabel', locale)}</span> {(selectedYoga * 13.333).toFixed(1)}° — {((selectedYoga + 1) * 13.333).toFixed(1)}°</p>
+                  <p className="mt-1"><span className="text-gold-dark">{msg('angularSpanLabel', locale)}</span> {(selectedYoga * 13.333).toFixed(1)}°  –  {((selectedYoga + 1) * 13.333).toFixed(1)}°</p>
                 </div>
               </motion.div>
             )}

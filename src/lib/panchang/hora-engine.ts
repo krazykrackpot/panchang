@@ -1,5 +1,5 @@
 /**
- * Hora Engine — Planetary Hour Computation
+ * Hora Engine  –  Planetary Hour Computation
  *
  * Computes 24 planetary hours (12 day + 12 night) using the Chaldean sequence.
  * Day horas: sunrise to sunset divided into 12 equal parts.

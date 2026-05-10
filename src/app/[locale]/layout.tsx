@@ -7,7 +7,7 @@ import { locales, visibleLocales, type Locale } from '@/lib/i18n/config';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import StarField from '@/components/layout/StarField';
-// SignupPrompt (full-screen modal) removed — too aggressive, hurts bounce rate.
+// SignupPrompt (full-screen modal) removed  –  too aggressive, hurts bounce rate.
 // SignupBanner (subtle bottom-right card, 10s delay, 7-day dismiss) in ClientShell handles this.
 import { Analytics } from '@vercel/analytics/react';
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
           url: `${BASE_URL}/${locale}/opengraph-image`,
           width: 1200,
           height: 630,
-          alt: 'Dekho Panchang — Vedic Astrology',
+          alt: 'Dekho Panchang  –  Vedic Astrology',
         },
       ],
     },
@@ -129,10 +129,10 @@ export default async function LocaleLayout({
       </head>
       <body className={`${inter.variable} ${cinzel.variable} ${cormorant.variable} ${notoDevanagari.variable} ${notoTamil.variable} ${notoTelugu.variable} ${notoBengali.variable} ${notoKannada.variable} ${notoGujarati.variable} min-h-screen bg-bg-primary text-text-primary antialiased`} suppressHydrationWarning>
         <Script id="theme-init" strategy="beforeInteractive">{`try{localStorage.removeItem('theme');document.documentElement.classList.remove('light');document.documentElement.classList.add('dark')}catch(e){}`}</Script>
-        {/* Google Consent Mode v2 — MUST run before adsbygoogle.js below so
+        {/* Google Consent Mode v2  –  MUST run before adsbygoogle.js below so
             consent defaults are set before AdSense initializes. */}
         <Script id="consent-default" strategy="beforeInteractive">{CONSENT_DEFAULT_SCRIPT}</Script>
-        {/* Google AdSense — loads after consent defaults are set */}
+        {/* Google AdSense  –  loads after consent defaults are set */}
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4787764488539456"
@@ -152,7 +152,7 @@ export default async function LocaleLayout({
           dangerouslySetInnerHTML={{ __html: safeJsonLd(generateSoftwareApplicationLD()) }}
         />
         <NextIntlClientProvider locale={locale} messages={messages}>
-          {/* Skip to main content — accessibility */}
+          {/* Skip to main content  –  accessibility */}
           <a
             href="#main-content"
             className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold-primary focus:text-bg-primary focus:rounded-lg focus:font-semibold"
@@ -168,7 +168,7 @@ export default async function LocaleLayout({
           <Footer />
           <ClientShell locale={locale} />
           <Analytics />
-          {/* AdSense script removed from global layout — loaded on-demand by AdUnit component
+          {/* AdSense script removed from global layout  –  loaded on-demand by AdUnit component
              only on pages that actually render ads. Saves 356KB+ on ad-free pages. */}
         </NextIntlClientProvider>
       </body>

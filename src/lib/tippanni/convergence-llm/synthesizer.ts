@@ -33,7 +33,7 @@ export interface ChartSummary {
 }
 
 /**
- * Non-streaming synthesis — returns full result when complete.
+ * Non-streaming synthesis  –  returns full result when complete.
  */
 export async function generateLLMSynthesis(
   convergence: ConvergenceResult,
@@ -79,7 +79,7 @@ export async function generateLLMSynthesis(
 }
 
 /**
- * Streaming synthesis — returns a ReadableStream of SSE events.
+ * Streaming synthesis  –  returns a ReadableStream of SSE events.
  * Each event is either: { type: 'text', text: '...' } or { type: 'done', usage: {...} }
  */
 export async function generateLLMSynthesisStream(

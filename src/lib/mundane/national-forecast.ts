@@ -68,18 +68,18 @@ export interface NationalForecastResult {
 
 // Planet transit descriptions over mundane houses (house → planet → effect)
 const TRANSIT_DESCRIPTIONS: Record<number, Partial<Record<number, string>>> = {
-  1:  { 4: 'Jupiter transiting 1st — national prosperity and public morale uplift', 6: 'Saturn transiting 1st — period of austerity and national testing', 2: 'Mars transiting 1st — tension in national affairs', 7: 'Rahu transiting 1st — foreign influence, public confusion' },
-  2:  { 4: 'Jupiter over 2nd — economic expansion, treasury gains', 6: 'Saturn over 2nd — fiscal austerity, reduced revenue', 2: 'Mars over 2nd — economic conflicts, sudden expenditure', 7: 'Rahu over 2nd — speculative boom and bust, foreign funds' },
-  3:  { 4: 'Jupiter over 3rd — communications flourish, diplomatic progress', 6: 'Saturn over 3rd — infrastructure delays, press restrictions', 2: 'Mars over 3rd — transport accidents, media conflicts' },
-  4:  { 4: 'Jupiter over 4th — agricultural prosperity, land value gains', 6: 'Saturn over 4th — drought risk, land disputes, housing stress', 2: 'Mars over 4th — natural calamities, opposition unrest' },
-  5:  { 4: 'Jupiter over 5th — markets rise, cultural renaissance', 6: 'Saturn over 5th — market corrections, entertainment sector stress', 2: 'Mars over 5th — speculative volatility' },
-  6:  { 4: 'Jupiter over 6th — improved public health, military strength', 6: 'Saturn over 6th — chronic health issues, labour unrest (but stabilising)', 2: 'Mars over 6th — military action, epidemic risk' },
-  7:  { 4: 'Jupiter over 7th — diplomatic gains, favourable treaties', 6: 'Saturn over 7th — strained diplomacy, slow negotiations', 2: 'Mars over 7th — border tensions, conflict risk', 7: 'Rahu over 7th — unconventional foreign partnerships' },
-  8:  { 4: 'Jupiter over 8th — managed debt, resilience in crises', 6: 'Saturn over 8th — debt burden, tax reforms, mortality concerns', 2: 'Mars over 8th — accidents, natural disasters, sudden losses', 7: 'Rahu over 8th — hidden crises, pandemic risk' },
-  9:  { 4: 'Jupiter over 9th — judicial reforms, educational expansion, international respect', 6: 'Saturn over 9th — legal delays, religious tensions', 2: 'Mars over 9th — legal conflicts, religious controversies' },
-  10: { 4: 'Jupiter over 10th — strong government leadership, international prestige', 6: 'Saturn over 10th — leadership challenges, government accountability scrutiny', 2: 'Mars over 10th — government boldness or aggression', 0: 'Sun over 10th — heightened focus on government and leadership' },
-  11: { 4: 'Jupiter over 11th — parliamentary gains, income expansion', 6: 'Saturn over 11th — delayed reforms but eventual gains', 2: 'Mars over 11th — conflicts within legislature' },
-  12: { 4: 'Jupiter over 12th — hidden blessings, spiritual national revival', 6: 'Saturn over 12th — foreign expenditure drain, isolation', 2: 'Mars over 12th — espionage concerns, foreign military threat', 7: 'Rahu over 12th — foreign debt, covert operations' },
+  1:  { 4: 'Jupiter transiting 1st  –  national prosperity and public morale uplift', 6: 'Saturn transiting 1st  –  period of austerity and national testing', 2: 'Mars transiting 1st  –  tension in national affairs', 7: 'Rahu transiting 1st  –  foreign influence, public confusion' },
+  2:  { 4: 'Jupiter over 2nd  –  economic expansion, treasury gains', 6: 'Saturn over 2nd  –  fiscal austerity, reduced revenue', 2: 'Mars over 2nd  –  economic conflicts, sudden expenditure', 7: 'Rahu over 2nd  –  speculative boom and bust, foreign funds' },
+  3:  { 4: 'Jupiter over 3rd  –  communications flourish, diplomatic progress', 6: 'Saturn over 3rd  –  infrastructure delays, press restrictions', 2: 'Mars over 3rd  –  transport accidents, media conflicts' },
+  4:  { 4: 'Jupiter over 4th  –  agricultural prosperity, land value gains', 6: 'Saturn over 4th  –  drought risk, land disputes, housing stress', 2: 'Mars over 4th  –  natural calamities, opposition unrest' },
+  5:  { 4: 'Jupiter over 5th  –  markets rise, cultural renaissance', 6: 'Saturn over 5th  –  market corrections, entertainment sector stress', 2: 'Mars over 5th  –  speculative volatility' },
+  6:  { 4: 'Jupiter over 6th  –  improved public health, military strength', 6: 'Saturn over 6th  –  chronic health issues, labour unrest (but stabilising)', 2: 'Mars over 6th  –  military action, epidemic risk' },
+  7:  { 4: 'Jupiter over 7th  –  diplomatic gains, favourable treaties', 6: 'Saturn over 7th  –  strained diplomacy, slow negotiations', 2: 'Mars over 7th  –  border tensions, conflict risk', 7: 'Rahu over 7th  –  unconventional foreign partnerships' },
+  8:  { 4: 'Jupiter over 8th  –  managed debt, resilience in crises', 6: 'Saturn over 8th  –  debt burden, tax reforms, mortality concerns', 2: 'Mars over 8th  –  accidents, natural disasters, sudden losses', 7: 'Rahu over 8th  –  hidden crises, pandemic risk' },
+  9:  { 4: 'Jupiter over 9th  –  judicial reforms, educational expansion, international respect', 6: 'Saturn over 9th  –  legal delays, religious tensions', 2: 'Mars over 9th  –  legal conflicts, religious controversies' },
+  10: { 4: 'Jupiter over 10th  –  strong government leadership, international prestige', 6: 'Saturn over 10th  –  leadership challenges, government accountability scrutiny', 2: 'Mars over 10th  –  government boldness or aggression', 0: 'Sun over 10th  –  heightened focus on government and leadership' },
+  11: { 4: 'Jupiter over 11th  –  parliamentary gains, income expansion', 6: 'Saturn over 11th  –  delayed reforms but eventual gains', 2: 'Mars over 11th  –  conflicts within legislature' },
+  12: { 4: 'Jupiter over 12th  –  hidden blessings, spiritual national revival', 6: 'Saturn over 12th  –  foreign expenditure drain, isolation', 2: 'Mars over 12th  –  espionage concerns, foreign military threat', 7: 'Rahu over 12th  –  foreign debt, covert operations' },
 };
 
 /** Get which house a transit planet occupies relative to natal lagna */
@@ -255,10 +255,10 @@ export function computeNationalForecast(
       bn: `${nation.name.bn} সাধারণত অনুকূল সময়ে রয়েছে, কিছু ক্ষেত্রে মনোযোগ প্রয়োজন।`,
     },
     neutral: {
-      en: `${nation.name.en} faces mixed cosmic influences — stability in some domains, pressure in others.`,
-      hi: `${nation.name.hi} मिश्रित ब्रह्मांडीय प्रभावों का सामना कर रहा है — कुछ क्षेत्रों में स्थिरता, कुछ में दबाव।`,
-      ta: `${nation.name.ta} கலவையான கோடான தாக்கங்களை எதிர்கொள்கிறது — சில துறைகளில் நிலைப்பாடு, சிலவற்றில் அழுத்தம்.`,
-      bn: `${nation.name.bn} মিশ্র মহাজাগতিক প্রভাবের মুখোমুখি — কিছু ক্ষেত্রে স্থিতিশীলতা, কিছুতে চাপ।`,
+      en: `${nation.name.en} faces mixed cosmic influences  –  stability in some domains, pressure in others.`,
+      hi: `${nation.name.hi} मिश्रित ब्रह्मांडीय प्रभावों का सामना कर रहा है  –  कुछ क्षेत्रों में स्थिरता, कुछ में दबाव।`,
+      ta: `${nation.name.ta} கலவையான கோடான தாக்கங்களை எதிர்கொள்கிறது  –  சில துறைகளில் நிலைப்பாடு, சிலவற்றில் அழுத்தம்.`,
+      bn: `${nation.name.bn} মিশ্র মহাজাগতিক প্রভাবের মুখোমুখি  –  কিছু ক্ষেত্রে স্থিতিশীলতা, কিছুতে চাপ।`,
     },
     caution: {
       en: `${nation.name.en} faces notable pressures in this period. Saturn and malefic influences call for careful governance.`,

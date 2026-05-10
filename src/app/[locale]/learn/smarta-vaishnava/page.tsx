@@ -7,13 +7,13 @@ import { BookOpen, ArrowRight, Scale, Globe } from 'lucide-react';
 
 const LABELS = {
   title: { en: 'Smarta & Vaishnava Calendar Systems', hi: 'स्मार्त और वैष्णव पंचांग पद्धतियाँ' },
-  subtitle: { en: 'Why professional panchangs sometimes disagree by ±1 day — and which system to follow', hi: 'व्यावसायिक पंचांग कभी-कभी ±1 दिन से क्यों भिन्न होते हैं — और कौन सी पद्धति अपनाएँ' },
+  subtitle: { en: 'Why professional panchangs sometimes disagree by ±1 day  –  and which system to follow', hi: 'व्यावसायिक पंचांग कभी-कभी ±1 दिन से क्यों भिन्न होते हैं  –  और कौन सी पद्धति अपनाएँ' },
   sameAstronomy: { en: 'Same Astronomy, Different Rules', hi: 'एक ही खगोल, भिन्न नियम' },
-  sameAstronomyDesc: { en: 'Both Smarta and Vaishnava traditions use the same astronomical calculations — the same Moon, the same tithis, the same sunrise. The only difference is which DATE-SELECTION rule applies when a tithi spans two consecutive solar days.', hi: 'स्मार्त और वैष्णव दोनों परम्पराएँ एक ही खगोलीय गणना का उपयोग करती हैं — वही चन्द्रमा, वही तिथियाँ, वही सूर्योदय। अन्तर केवल इसमें है कि जब तिथि दो लगातार सौर दिनों में फैली हो तो कौन सा तिथि-चयन नियम लागू हो।' },
+  sameAstronomyDesc: { en: 'Both Smarta and Vaishnava traditions use the same astronomical calculations  –  the same Moon, the same tithis, the same sunrise. The only difference is which DATE-SELECTION rule applies when a tithi spans two consecutive solar days.', hi: 'स्मार्त और वैष्णव दोनों परम्पराएँ एक ही खगोलीय गणना का उपयोग करती हैं  –  वही चन्द्रमा, वही तिथियाँ, वही सूर्योदय। अन्तर केवल इसमें है कि जब तिथि दो लगातार सौर दिनों में फैली हो तो कौन सा तिथि-चयन नियम लागू हो।' },
   viddhaKey: { en: 'The Viddha Concept', hi: 'विद्ध अवधारणा' },
-  viddhaKeyDesc: { en: 'A tithi is "Viddha" (contaminated) when the previous tithi is present at sunrise. Smartas ignore this — they use the tithi at the required Kala window. Vaishnavas reject the Viddha day entirely and observe the festival on the next day when the tithi is "Shuddha" (pure).', hi: 'तिथि "विद्ध" (दूषित) तब होती है जब सूर्योदय पर पिछली तिथि विद्यमान हो। स्मार्त इसे अनदेखा करते हैं — वे आवश्यक काल विन्डो पर तिथि का उपयोग करते हैं। वैष्णव विद्ध दिन को पूर्णतः अस्वीकार करते हैं और अगले दिन त्योहार मनाते हैं जब तिथि "शुद्ध" हो।' },
+  viddhaKeyDesc: { en: 'A tithi is "Viddha" (contaminated) when the previous tithi is present at sunrise. Smartas ignore this  –  they use the tithi at the required Kala window. Vaishnavas reject the Viddha day entirely and observe the festival on the next day when the tithi is "Shuddha" (pure).', hi: 'तिथि "विद्ध" (दूषित) तब होती है जब सूर्योदय पर पिछली तिथि विद्यमान हो। स्मार्त इसे अनदेखा करते हैं  –  वे आवश्यक काल विन्डो पर तिथि का उपयोग करते हैं। वैष्णव विद्ध दिन को पूर्णतः अस्वीकार करते हैं और अगले दिन त्योहार मनाते हैं जब तिथि "शुद्ध" हो।' },
   ekadashi: { en: 'Ekadashi: The Biggest Battleground', hi: 'एकादशी: सबसे बड़ा विवाद बिन्दु' },
-  ekadashiDesc: { en: 'Smarta and Vaishnava Ekadashi dates differ about 4–6 times per year. Smarta: fast when Ekadashi is at sunrise. Vaishnava: Ekadashi must be "Shuddha" — if Dashami touches sunrise, skip to the next day.', hi: 'स्मार्त और वैष्णव एकादशी तिथियाँ वर्ष में लगभग 4-6 बार भिन्न होती हैं। स्मार्त: सूर्योदय पर एकादशी होने पर उपवास। वैष्णव: एकादशी "शुद्ध" होनी चाहिए — दशमी सूर्योदय को स्पर्श करे तो अगले दिन उपवास।' },
+  ekadashiDesc: { en: 'Smarta and Vaishnava Ekadashi dates differ about 4–6 times per year. Smarta: fast when Ekadashi is at sunrise. Vaishnava: Ekadashi must be "Shuddha"  –  if Dashami touches sunrise, skip to the next day.', hi: 'स्मार्त और वैष्णव एकादशी तिथियाँ वर्ष में लगभग 4-6 बार भिन्न होती हैं। स्मार्त: सूर्योदय पर एकादशी होने पर उपवास। वैष्णव: एकादशी "शुद्ध" होनी चाहिए  –  दशमी सूर्योदय को स्पर्श करे तो अगले दिन उपवास।' },
   learnMore: { en: 'Learn the full curriculum', hi: 'पूरा पाठ्यक्रम सीखें' },
   relatedTopics: { en: 'Related Topics', hi: 'सम्बन्धित विषय' },
 } as const;
@@ -87,7 +87,7 @@ export default function SmartaVaishnavPage() {
             </li>
             <li className="flex items-start gap-2">
               <span className="text-amber-400 mt-0.5">-</span>
-              <span>{isHi ? 'विद्ध तिथि स्वीकृत — काल विन्डो निर्णायक' : 'Viddha tithi accepted — Kala window decides'}</span>
+              <span>{isHi ? 'विद्ध तिथि स्वीकृत  –  काल विन्डो निर्णायक' : 'Viddha tithi accepted  –  Kala window decides'}</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-amber-400 mt-0.5">-</span>
@@ -108,11 +108,11 @@ export default function SmartaVaishnavPage() {
           <ul className="space-y-2 text-text-primary text-sm">
             <li className="flex items-start gap-2">
               <span className="text-blue-300 mt-0.5">-</span>
-              <span>{isHi ? 'शुद्ध तिथि — सूर्योदय पर तिथि "शुद्ध" होनी चाहिए' : 'Shuddha Tithi — tithi must be "pure" at sunrise'}</span>
+              <span>{isHi ? 'शुद्ध तिथि  –  सूर्योदय पर तिथि "शुद्ध" होनी चाहिए' : 'Shuddha Tithi  –  tithi must be "pure" at sunrise'}</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-blue-300 mt-0.5">-</span>
-              <span>{isHi ? 'विद्ध तिथि अस्वीकृत — अगले दिन खिसकाएँ' : 'Viddha tithi rejected — shift to next day'}</span>
+              <span>{isHi ? 'विद्ध तिथि अस्वीकृत  –  अगले दिन खिसकाएँ' : 'Viddha tithi rejected  –  shift to next day'}</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-blue-300 mt-0.5">-</span>
@@ -174,7 +174,7 @@ export default function SmartaVaishnavPage() {
         <BookOpen className="w-6 h-6 text-gold-primary flex-shrink-0" />
         <div className="flex-1">
           <div className="text-gold-light font-semibold">{tl(LABELS.learnMore, locale)}</div>
-          <div className="text-text-secondary text-sm">Module 27.3 — Viddha rules, Ekadashi deep dive, geographic variation, quiz</div>
+          <div className="text-text-secondary text-sm">Module 27.3  –  Viddha rules, Ekadashi deep dive, geographic variation, quiz</div>
         </div>
         <ArrowRight className="w-5 h-5 text-gold-primary flex-shrink-0" />
       </Link>

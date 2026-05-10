@@ -61,13 +61,13 @@ describe('Golden panchang fixtures (accuracy vs Prokerala/Shubh)', () => {
   const fixtures = loadFixtures();
 
   if (fixtures.length === 0) {
-    it.skip('no fixtures found — add JSON files under fixtures/golden/ (see README)', () => {});
+    it.skip('no fixtures found  –  add JSON files under fixtures/golden/ (see README)', () => {});
     return;
   }
 
   for (const fx of fixtures) {
     describe(`${fx.location.name} @ ${fx.date} (source: ${fx.source})`, () => {
-      // Default tolerance is 5 min — ephemeris-vs-Prokerala commonly differ 2-4 min
+      // Default tolerance is 5 min  –  ephemeris-vs-Prokerala commonly differ 2-4 min
       // on sunrise/sunset/Rahu-kaal due to refraction and horizon-dip assumptions.
       // Tighten per-fixture via `tolerances.timeMinutes` when you want stricter.
       const tolerance = fx.tolerances?.timeMinutes ?? 5;

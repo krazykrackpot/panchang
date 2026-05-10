@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
 
     const currentChartIds = familyCharts.map(c => c.id).sort();
 
-    // 3. Cache check — skip if forceRecompute
+    // 3. Cache check  –  skip if forceRecompute
     if (!forceRecompute) {
       const { data: cached } = await supabase
         .from('family_readings')
@@ -146,7 +146,7 @@ export async function POST(req: NextRequest) {
     });
 
     // Map Graha[] to PlanetPosition-compatible objects for transit analysis
-    // Graha uses `rashi` (1-12), PlanetPosition uses `sign` (1-12) — same semantics
+    // Graha uses `rashi` (1-12), PlanetPosition uses `sign` (1-12)  –  same semantics
     const transitPlanets = (panchang.planets ?? []).map(g => ({
       id: g.id,
       name: g.name,
@@ -154,7 +154,7 @@ export async function POST(req: NextRequest) {
       sign: g.rashi ?? Math.floor((g.longitude ?? 0) / 30) + 1,
       degree: (g.longitude ?? 0) % 30,
       isRetrograde: g.isRetrograde ?? false,
-      house: 0, // Not needed for transit analysis — houses require an ascendant
+      house: 0, // Not needed for transit analysis  –  houses require an ascendant
     })) as unknown as PlanetPosition[];
 
     // 6. Compute family reading
@@ -172,7 +172,7 @@ export async function POST(req: NextRequest) {
       }, { onConflict: 'user_id' });
 
     if (upsertError) {
-      // Non-fatal — we still return the computed result
+      // Non-fatal  –  we still return the computed result
       console.error('[family-synthesis] cache upsert error:', upsertError);
     }
 

@@ -3,7 +3,7 @@ import { tl } from '@/lib/utils/trilingual';
 import type { KundaliData } from '@/types/kundali';
 
 /* ════════════════════════════════════════════════════════════════
-   Birth Poster Data — assembles all fields for the shareable card
+   Birth Poster Data  –  assembles all fields for the shareable card
    from a KundaliData object. Pure computation, no React.
    ════════════════════════════════════════════════════════════════ */
 
@@ -57,7 +57,7 @@ const ARCHETYPE_MAP: Record<string, { en: string; hi: string }> = {
 
 /**
  * Resolve the element index (0-3) for a given rashi id (1-12).
- * Falls back to 0 (fire) if rashi not found — should not happen with valid data.
+ * Falls back to 0 (fire) if rashi not found  –  should not happen with valid data.
  */
 function rashiElementIndex(rashiId: number): number {
   const rashi = RASHIS.find(r => r.id === rashiId);
@@ -81,7 +81,7 @@ function computeHouseLordElements(kundali: KundaliData): number[] {
       result.push(0);
       continue;
     }
-    // Find where the ruler planet sits — its sign's element
+    // Find where the ruler planet sits  –  its sign's element
     const rulerName = rashi.ruler; // e.g. "Mars", "Venus", etc.
     const planet = kundali.planets.find(p => p.planet.name.en === rulerName);
     if (planet) {
@@ -109,7 +109,7 @@ function computeElementDistribution(kundali: KundaliData) {
 
   const total = counts.fire + counts.earth + counts.air + counts.water;
   const max = Math.max(counts.fire, counts.earth, counts.air, counts.water);
-  // Find dominant — check for ties
+  // Find dominant  –  check for ties
   const dominants = ELEMENT_NAMES.filter(e => counts[e] === max);
   const dominant = dominants.length === 1 ? dominants[0] : 'tie';
   const percentage = total > 0 ? Math.round((max / total) * 100) : 0;
@@ -140,7 +140,7 @@ function getCurrentDashaLabel(kundali: KundaliData, locale: string): string {
 }
 
 /**
- * Find the most notable yoga — prefer strong auspicious ones.
+ * Find the most notable yoga  –  prefer strong auspicious ones.
  */
 function getStandoutYoga(kundali: KundaliData, locale: string): string {
   if (!kundali.yogasComplete) return '';

@@ -25,7 +25,7 @@ export default async function Layout({
   const { locale, year } = await params;
 
   const toolLD = generateToolLD(
-    `Shubh Vivah Muhurat ${year} — Auspicious Marriage Dates`,
+    `Shubh Vivah Muhurat ${year}  –  Auspicious Marriage Dates`,
     `All auspicious Hindu marriage dates for ${year}, computed using classical Muhurta Chintamani rules with 36-factor Vedic scoring.`,
     `https://dekhopanchang.com/${locale}/vivah-muhurat/${year}`
   );

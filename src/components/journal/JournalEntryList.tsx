@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * JournalEntryList — vertical list of journal entry cards.
+ * JournalEntryList  –  vertical list of journal entry cards.
  *
  * Each card shows: date, MoodEnergyDisplay, note, tags, planetary badges, delete button.
  * Empty state rendered when entries array is empty.

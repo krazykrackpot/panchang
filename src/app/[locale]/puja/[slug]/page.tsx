@@ -391,7 +391,7 @@ export default function PujaVidhiPage() {
   // Compute the next festival date for this puja (MUST be before computedMuhurta)
   const festivalDate = useMemo(() => {
     if (!puja || !userLat || !userLng) return undefined;
-    // Skip graha_shanti — those are done on demand, not on a fixed date
+    // Skip graha_shanti  –  those are done on demand, not on a fixed date
     if (puja.category === 'graha_shanti') return undefined;
 
     // Weekly vrats: compute next occurrence of that weekday
@@ -442,7 +442,7 @@ export default function PujaVidhiPage() {
         return new Date(y, m - 1, d);
       }
     } catch {
-      // Fail silently — date is optional
+      // Fail silently  –  date is optional
     }
     return undefined;
   }, [puja, userLat, userLng, userTimezone]);
@@ -922,7 +922,7 @@ export default function PujaVidhiPage() {
           </SectionAccordion>
         )}
 
-        {/* Vrat Katha cross-link — if a related katha exists */}
+        {/* Vrat Katha cross-link  –  if a related katha exists */}
         {(() => {
           const katha = getVratKathaByFestivalSlug(slug);
           if (!katha) return null;
@@ -937,7 +937,7 @@ export default function PujaVidhiPage() {
                 <div>
                   <div className="text-gold-light text-sm font-bold">{kathaTitle}</div>
                   <div className="text-text-secondary text-xs">
-                    {locale === 'hi' ? 'व्रत विधि, फल और कब करें — पढ़ें' : 'Vrat vidhi, benefits & when to observe'}
+                    {locale === 'hi' ? 'व्रत विधि, फल और कब करें  –  पढ़ें' : 'Vrat vidhi, benefits & when to observe'}
                   </div>
                 </div>
               </div>

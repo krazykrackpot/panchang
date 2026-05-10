@@ -95,10 +95,10 @@ function getAspectDescription(
   const influence = getAspectInfluence(planetId);
 
   if (locale === 'hi') {
-    return `${planetName} की दृष्टि ${aspectedHouse}वें भाव पर${isSpecial ? ' (विशेष दृष्टि)' : ''} — ${influence.hi}`;
+    return `${planetName} की दृष्टि ${aspectedHouse}वें भाव पर${isSpecial ? ' (विशेष दृष्टि)' : ''}  –  ${influence.hi}`;
   }
 
-  return `${planetName} aspects the ${aspectedHouse}${ordinal(aspectedHouse)} house${isSpecial ? ' (special aspect)' : ''} — ${influence.en}`;
+  return `${planetName} aspects the ${aspectedHouse}${ordinal(aspectedHouse)} house${isSpecial ? ' (special aspect)' : ''}  –  ${influence.en}`;
 }
 
 function ordinal(n: number): string {

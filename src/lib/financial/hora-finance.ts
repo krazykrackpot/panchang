@@ -5,7 +5,7 @@
  * the classical planet→sector mapping and hora favorability tables.
  *
  * This module works with HoraEntry data produced by the existing
- * hora-calculator.ts — it does NOT re-implement hora computation.
+ * hora-calculator.ts  –  it does NOT re-implement hora computation.
  */
 
 import type { HoraEntry } from '@/lib/hora/hora-calculator';
@@ -35,7 +35,7 @@ export interface FinancialHora {
 const FAVORABILITY_LABELS: Record<HoraFavorability, string> = {
   excellent: 'Excellent for finance',
   good: 'Good for finance',
-  neutral: 'Neutral — proceed with caution',
+  neutral: 'Neutral  –  proceed with caution',
   avoid: 'Avoid financial decisions',
 };
 
@@ -54,7 +54,7 @@ const PLANET_FINANCIAL_ACTIVITIES: Record<number, string[]> = {
     'Travel for business or client meetings',
   ],
   2: [  // Mars
-    'Defer signing new contracts — Mars hora favours action, not paperwork',
+    'Defer signing new contracts  –  Mars hora favours action, not paperwork',
     'Physical inspections of real estate are fine',
     'Resolve disputes with courage; avoid new debt',
   ],

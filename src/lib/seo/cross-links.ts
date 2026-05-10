@@ -4,11 +4,11 @@
  * Every tool page should link to its related learn pages ("Deepen Your Knowledge")
  * and every learn page should link to its related tool pages ("Try the Tool").
  *
- * This is the SINGLE source of truth — consumed by the <RelatedLinks> component.
+ * This is the SINGLE source of truth  –  consumed by the <RelatedLinks> component.
  */
 
 export interface CrossLinkEntry {
-  /** Display label (English — will be looked up by locale at render time) */
+  /** Display label (English  –  will be looked up by locale at render time) */
   label: string;
   /** Route path (without locale prefix, e.g. "/sade-sati" or "/learn/rashis") */
   href: string;

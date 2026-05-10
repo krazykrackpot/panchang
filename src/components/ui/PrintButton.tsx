@@ -36,19 +36,19 @@ function cleanHtmlForPrint(html: string): string {
   cleaned = cleaned.replace(/\bbg-bg-secondary\b/g, '');
 
   // Replace text-gold-gradient with a visible class (handled by print CSS)
-  // No structural changes needed — the print CSS handles color overrides
+  // No structural changes needed  –  the print CSS handles color overrides
 
   return cleaned;
 }
 
 const PRINT_CSS = `
-  /* Google Fonts — Inter for Latin, Noto Sans Devanagari for Hindi/Sanskrit */
+  /* Google Fonts  –  Inter for Latin, Noto Sans Devanagari for Hindi/Sanskrit */
   @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&family=Tiro+Devanagari+Sanskrit&display=swap');
 
   /* ── Reset ── */
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  /* ── Base body — light theme ── */
+  /* ── Base body  –  light theme ── */
   body {
     font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
     color: #1a1a1a;
@@ -144,7 +144,7 @@ const PRINT_CSS = `
   /* Clean up rounded corners for print */
   .rounded-xl, .rounded-2xl, .rounded-lg, .rounded-3xl { border-radius: 4px !important; }
 
-  /* Remove shadows — they render as gray blobs on print */
+  /* Remove shadows  –  they render as gray blobs on print */
   [class*="shadow"] { box-shadow: none !important; }
 
   /* Remove backdrop blur */
@@ -173,8 +173,8 @@ export default function PrintButton({ contentRef, contentHtml, title = 'Dekho Pa
 
     const printWindow = window.open('', '_blank');
     if (!printWindow) {
-      // Guard: popup blocker may prevent window.open — jsPDF/print quirk (Lesson E)
-      console.error('[PrintButton] Failed to open print window — popup may be blocked');
+      // Guard: popup blocker may prevent window.open  –  jsPDF/print quirk (Lesson E)
+      console.error('[PrintButton] Failed to open print window  –  popup may be blocked');
       return;
     }
 
@@ -213,7 +213,7 @@ export default function PrintButton({ contentRef, contentHtml, title = 'Dekho Pa
         });
     } else {
       // Fallback for browsers that don't support document.fonts (very old browsers)
-      // This is the only acceptable setTimeout — guarded by a capability check and documented (Lesson E)
+      // This is the only acceptable setTimeout  –  guarded by a capability check and documented (Lesson E)
       printWindow.print();
     }
   }, [contentRef, contentHtml, title]);

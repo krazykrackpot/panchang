@@ -42,7 +42,7 @@ export default function TransitForecastWidget({ locale }: Props) {
       .finally(() => setLoading(false));
   }, [user]);
 
-  // Not logged in — show CTA
+  // Not logged in  –  show CTA
   if (!user) {
     return (
       <div className="rounded-xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-5 text-center">

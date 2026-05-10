@@ -46,7 +46,7 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
     place: initialData?.place || '',
     lat: initialData?.lat || 0,
     lng: initialData?.lng || 0,
-    timezone: initialData?.timezone || '', // Must come from LocationSearch — never use browser timezone
+    timezone: initialData?.timezone || '', // Must come from LocationSearch  –  never use browser timezone
     ayanamsha: initialData?.ayanamsha || 'lahiri',
     chartStyle: (initialData?.chartStyle || 'north') as ChartStyle,
     relationship: (initialData?.relationship || 'self') as ChartRelationship,
@@ -55,10 +55,10 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
   const [placeTimezone, setPlaceTimezone] = useState<string | null>(null);
   const user = useAuthStore(s => s.user);
 
-  // Pre-fill from user profile if logged in — but NOT when editing an existing chart
+  // Pre-fill from user profile if logged in  –  but NOT when editing an existing chart
   useEffect(() => {
     if (!user) return;
-    if (initialData?.name) return; // Editing an existing chart — don't overwrite with profile data
+    if (initialData?.name) return; // Editing an existing chart  –  don't overwrite with profile data
     const supabase = getSupabase();
     if (!supabase) return;
 
@@ -88,7 +88,7 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
         if (!newData.timezone && loc?.timezone) newData.timezone = loc.timezone;
 
         if (Object.keys(newData).length > 0) {
-          // ALWAYS resolve timezone from birth coordinates — never trust stored timezone.
+          // ALWAYS resolve timezone from birth coordinates  –  never trust stored timezone.
           // Stored timezone may be stale, wrong (browser tz instead of birth location tz), or corrupted.
           delete newData.timezone;
           setFormData(prev => ({ ...prev, ...newData }));
@@ -107,7 +107,7 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // ALWAYS resolve timezone from birth coordinates at submit time — never trust any stored value
+    // ALWAYS resolve timezone from birth coordinates at submit time  –  never trust any stored value
     if (!formData.lat || !formData.lng) {
       setLocationError(true);
       return;

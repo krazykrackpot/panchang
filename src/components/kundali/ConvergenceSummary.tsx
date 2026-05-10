@@ -13,9 +13,9 @@ const LABELS = {
   title: { en: 'Your Chart Synthesis', hi: 'आपका कुंडली संश्लेषण', sa: 'भवदीय कुण्डली संश्लेषणम्' },
   insights: { en: 'insights', hi: 'अंतर्दृष्टि', sa: 'अन्तर्दृष्टयः' },
   quiet: {
-    en: 'No major convergence patterns active — consolidation period',
-    hi: 'कोई प्रमुख अभिसरण प्रतिरूप सक्रिय नहीं — समेकन काल',
-    sa: 'न कोऽपि प्रमुख अभिसरण प्रतिरूपः सक्रियः — समेकनकालः',
+    en: 'No major convergence patterns active  –  consolidation period',
+    hi: 'कोई प्रमुख अभिसरण प्रतिरूप सक्रिय नहीं  –  समेकन काल',
+    sa: 'न कोऽपि प्रमुख अभिसरण प्रतिरूपः सक्रियः  –  समेकनकालः',
   },
   advice: { en: 'Advice', hi: 'सलाह', sa: 'उपदेशः' },
   simpleExplanation: { en: 'In Simple Terms', hi: 'सरल शब्दों में', sa: 'सरलभाषया' },

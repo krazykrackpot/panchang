@@ -37,7 +37,7 @@ export const TitleCard: React.FC<TitleCardProps> = ({ text }) => {
         padding: 80,
       }}
     >
-      {/* Main title — letter by letter reveal */}
+      {/* Main title  –  letter by letter reveal */}
       <div
         style={{
           transform: `scale(${containerScale})`,

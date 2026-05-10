@@ -20,7 +20,7 @@ import type { LocaleText } from '@/types/panchang';
  *    uses it for tithi data (instant JSON read). Then computes only
  *    Moon position + sunrise/sunset per day (~31 lightweight calls).
  * 2. FALLBACK: if no precomputed table (arbitrary location), computes
- *    tithi directly from calculateTithi() per day — still fast because
+ *    tithi directly from calculateTithi() per day  –  still fast because
  *    it's just 31 Sun+Moon elongation calls, not the full yearly scan.
  *
  * Never calls computePanchang (all 9 planets) or builds the full yearly
@@ -81,7 +81,7 @@ export async function GET(request: Request) {
       const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
       const tzOffset = getUTCOffsetForDate(year, month, d, timezone);
 
-      // 1. Sunrise/sunset — Meeus 2-pass (±1 min, fast)
+      // 1. Sunrise/sunset  –  Meeus 2-pass (±1 min, fast)
       let sunrise = '';
       let sunset = '';
       try {
@@ -96,7 +96,7 @@ export async function GET(request: Request) {
         : 12 - tzOffset;
       const jdSunrise = dateToJD(year, month, d, sunriseUT);
 
-      // 3. Tithi — from precomputed table (fast) or per-day calculation (fallback)
+      // 3. Tithi  –  from precomputed table (fast) or per-day calculation (fallback)
       let tithiNumber: number;
       let tithiName: LocaleText;
       let paksha: 'shukla' | 'krishna';
@@ -113,7 +113,7 @@ export async function GET(request: Request) {
         const tithiResult = calculateTithi(jdSunrise);
         tithiNumber = tithiResult.number;
         const tithiConst = TITHIS[tithiNumber - 1];
-        tithiName = tithiConst?.name ?? { en: '—', hi: '—', sa: '—' };
+        tithiName = tithiConst?.name ?? { en: ' – ', hi: ' – ', sa: ' – ' };
         paksha = tithiNumber <= 15 ? 'shukla' : 'krishna';
       }
 
@@ -123,7 +123,7 @@ export async function GET(request: Request) {
       const nakshatraNum = getNakshatraNumber(moonSid);
       const moonRashi = getRashiNumber(moonSid);
 
-      // 5. Yoga — Sun + Moon sidereal sum (Swiss Eph for both)
+      // 5. Yoga  –  Sun + Moon sidereal sum (Swiss Eph for both)
       const yogaNum = calculateYoga(jdSunrise);
 
       days.push({

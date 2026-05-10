@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const toolLD = generateToolLD(
-    'Varshaphal — Annual Horoscope',
+    'Varshaphal  –  Annual Horoscope',
     'Tajika annual horoscope with solar return chart, Muntha, Sahams, and Mudda Dasha.',
     `https://dekhopanchang.com/${locale}/varshaphal`,
   );

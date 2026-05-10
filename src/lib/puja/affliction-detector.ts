@@ -1,5 +1,5 @@
 /**
- * Affliction Detector — analyzes kundali planets and identifies
+ * Affliction Detector  –  analyzes kundali planets and identifies
  * afflicted grahas that need remedial (graha shanti) pujas.
  */
 

@@ -23,15 +23,15 @@ export interface FestivalEntry {
   slug?: string;       // Key for looking up rich details in FESTIVAL_DETAILS
   // Parana (fast-breaking) info
   paranaDate?: string;            // YYYY-MM-DD (often next day)
-  paranaStart?: string;           // HH:MM — start of recommended window
-  paranaEnd?: string;             // HH:MM — end of recommended window
+  paranaStart?: string;           // HH:MM  –  start of recommended window
+  paranaEnd?: string;             // HH:MM  –  end of recommended window
   paranaNote?: LocaleText;        // Instructions for breaking fast
-  paranaSunrise?: string;         // HH:MM — sunrise on parana day
-  paranaHariVasaraEnd?: string;   // HH:MM — end of Hari Vasara (1/4 daytime)
-  paranaDwadashiEnd?: string;     // HH:MM — when Dwadashi tithi ends
+  paranaSunrise?: string;         // HH:MM  –  sunrise on parana day
+  paranaHariVasaraEnd?: string;   // HH:MM  –  end of Hari Vasara (1/4 daytime)
+  paranaDwadashiEnd?: string;     // HH:MM  –  when Dwadashi tithi ends
   paranaEarlyEnd?: boolean;       // true if Dwadashi ends before Hari Vasara
-  paranaMadhyahnaStart?: string;  // HH:MM — start of Madhyahna (midday, avoid parana)
-  paranaMadhyahnaEnd?: string;    // HH:MM — end of Madhyahna
+  paranaMadhyahnaStart?: string;  // HH:MM  –  start of Madhyahna (midday, avoid parana)
+  paranaMadhyahnaEnd?: string;    // HH:MM  –  end of Madhyahna
   // Eclipse info
   eclipseType?: 'solar' | 'lunar';
   eclipseMagnitude?: string; // 'total' | 'partial' | 'annular' | 'penumbral'
@@ -128,7 +128,7 @@ function findAmavasyaDate(year: number, month: number, lat: number, lon: number)
  * 2. If the tithi prevails at sunrise on TWO consecutive days (Dwi-Ekadashi),
  *    observe the SECOND day.
  * 3. If the tithi starts after sunrise on day X and ends before sunrise on day X+1
- *    (i.e., it never prevails at ANY sunrise), observe day X — the day it started.
+ *    (i.e., it never prevails at ANY sunrise), observe day X  –  the day it started.
  */
 function findEkadashiDate(year: number, month: number, targetTithi: number, lat: number, lon: number): string {
   const startDate = new Date(year, month - 1, 1);
@@ -209,14 +209,14 @@ function findEkadashiDates(year: number, month: number, lat: number, lon: number
 }
 
 /**
- * Find Chaturthi (tithi 4 — Shukla, tithi 19 — Krishna) dates.
+ * Find Chaturthi (tithi 4  –  Shukla, tithi 19  –  Krishna) dates.
  */
 function findChaturthiDate(year: number, month: number, lat: number, lon: number): string {
   return findTithiDate(year, month, 19, lat, lon);
 }
 
 /**
- * Find Pradosham (tithi 13 — trayodashi) dates.
+ * Find Pradosham (tithi 13  –  trayodashi) dates.
  */
 function findPradoshamDates(year: number, month: number, lat: number, lon: number): { shukla: string; krishna: string } {
   return {
@@ -268,7 +268,7 @@ function resolveTz(dateStr: string, timezone: string | number): number {
   // Try as IANA string first
   const num = parseFloat(timezone);
   if (!isNaN(num) && timezone === String(num)) return num; // Pure number passed as string
-  // IANA timezone — resolve per-date
+  // IANA timezone  –  resolve per-date
   const [y, m, d] = dateStr.split('-').map(Number);
   return getUTCOffsetForDate(y, m, d, timezone);
 }
@@ -364,7 +364,7 @@ function computeEkadashiParana(ekadashiDate: string, lat = DEFAULT_LAT, lon = DE
   let dwadashiStartH = 0;
 
   if (tithiAtSunrise === dwadashiNum) {
-    // Dwadashi already active at sunrise — scan backward (10-min steps + binary search)
+    // Dwadashi already active at sunrise  –  scan backward (10-min steps + binary search)
     let foundStart = false;
     for (let h = -10 / 60; h >= -48; h -= 10 / 60) {
       if (calculateTithi(baseJd + h / 24).number !== dwadashiNum) {
@@ -380,7 +380,7 @@ function computeEkadashiParana(ekadashiDate: string, lat = DEFAULT_LAT, lon = DE
     }
     if (!foundStart) dwadashiStartH = -48;
   } else {
-    // Dwadashi starts after sunrise — scan forward
+    // Dwadashi starts after sunrise  –  scan forward
     for (let h = 10 / 60; h <= 36; h += 10 / 60) {
       if (calculateTithi(baseJd + h / 24).number === dwadashiNum) {
         let lo = h - 10 / 60, hi = h;
@@ -446,19 +446,19 @@ function computeEkadashiParana(ekadashiDate: string, lat = DEFAULT_LAT, lon = DE
   let recEndUT: number;
 
   if (earlyEnd) {
-    // Dwadashi ends before we can start — break fast ASAP after sunrise
+    // Dwadashi ends before we can start  –  break fast ASAP after sunrise
     recStartUT = sunriseUT;
     recEndUT = dwadashiEndUT;
   } else if (earliestUT < madhyahnaStartUT) {
-    // Window opens before Madhyahna — use pre-Madhyahna window
+    // Window opens before Madhyahna  –  use pre-Madhyahna window
     recStartUT = earliestUT;
     recEndUT = Math.min(madhyahnaStartUT, effectiveDeadline);
   } else if (earliestUT >= madhyahnaEndUT) {
-    // Hari Vasara ends after Madhyahna — use post-Madhyahna window
+    // Hari Vasara ends after Madhyahna  –  use post-Madhyahna window
     recStartUT = earliestUT;
     recEndUT = effectiveDeadline;
   } else {
-    // Hari Vasara ends during Madhyahna — wait until Madhyahna ends
+    // Hari Vasara ends during Madhyahna  –  wait until Madhyahna ends
     recStartUT = madhyahnaEndUT;
     recEndUT = effectiveDeadline;
   }
@@ -468,8 +468,8 @@ function computeEkadashiParana(ekadashiDate: string, lat = DEFAULT_LAT, lon = DE
   const hvDisplayStr = hariVasaraAlreadyOver ? sunriseStr : ft(hariVasaraEndUT);
 
   const hvStatus = hariVasaraAlreadyOver
-    ? { en: 'Hari Vasara ended before sunrise — no restriction.', hi: 'हरि वासर सूर्योदय से पहले समाप्त — कोई प्रतिबन्ध नहीं।', sa: 'हरिवासरः सूर्योदयात् पूर्वं समाप्तः।' }
-    : { en: `Hari Vasara ends: ${hvDisplayStr} — do not break fast before this.`, hi: `हरि वासर समाप्ति: ${hvDisplayStr} — इससे पहले पारण न करें।`, sa: `हरिवासरान्तः: ${hvDisplayStr}।` };
+    ? { en: 'Hari Vasara ended before sunrise  –  no restriction.', hi: 'हरि वासर सूर्योदय से पहले समाप्त  –  कोई प्रतिबन्ध नहीं।', sa: 'हरिवासरः सूर्योदयात् पूर्वं समाप्तः।' }
+    : { en: `Hari Vasara ends: ${hvDisplayStr}  –  do not break fast before this.`, hi: `हरि वासर समाप्ति: ${hvDisplayStr}  –  इससे पहले पारण न करें।`, sa: `हरिवासरान्तः: ${hvDisplayStr}।` };
 
   return {
     paranaDate,
@@ -487,11 +487,11 @@ function computeEkadashiParana(ekadashiDate: string, lat = DEFAULT_LAT, lon = DE
         '',
         `Sunrise: ${sunriseStr}`,
         hvStatus.en,
-        `Madhyahna: ${madhStartStr} to ${madhEndStr} — avoid parana during midday.`,
-        `Dwadashi ends: ${dwEndStr} — must break fast before this.`,
+        `Madhyahna: ${madhStartStr} to ${madhEndStr}  –  avoid parana during midday.`,
+        `Dwadashi ends: ${dwEndStr}  –  must break fast before this.`,
         '',
         earlyEnd
-          ? `⚠ Dwadashi ends early — break fast ASAP after sunrise, before ${dwEndStr}.`
+          ? `⚠ Dwadashi ends early  –  break fast ASAP after sunrise, before ${dwEndStr}.`
           : hariVasaraAlreadyOver
           ? `Best time: After sunrise (${sunriseStr}), before Madhyahna (${madhStartStr}).`
           : recStartUT >= madhyahnaEndUT
@@ -503,11 +503,11 @@ function computeEkadashiParana(ekadashiDate: string, lat = DEFAULT_LAT, lon = DE
         '',
         `सूर्योदय: ${sunriseStr}`,
         hvStatus.hi,
-        `मध्याह्न: ${madhStartStr} से ${madhEndStr} — दोपहर में पारण से बचें।`,
-        `द्वादशी समाप्ति: ${dwEndStr} — इससे पहले पारण अवश्य करें।`,
+        `मध्याह्न: ${madhStartStr} से ${madhEndStr}  –  दोपहर में पारण से बचें।`,
+        `द्वादशी समाप्ति: ${dwEndStr}  –  इससे पहले पारण अवश्य करें।`,
         '',
         earlyEnd
-          ? `⚠ द्वादशी शीघ्र समाप्त — सूर्योदय के बाद ${dwEndStr} से पहले यथाशीघ्र पारण करें।`
+          ? `⚠ द्वादशी शीघ्र समाप्त  –  सूर्योदय के बाद ${dwEndStr} से पहले यथाशीघ्र पारण करें।`
           : hariVasaraAlreadyOver
           ? `सर्वोत्तम: सूर्योदय (${sunriseStr}) के बाद, मध्याह्न (${madhStartStr}) से पहले।`
           : recStartUT >= madhyahnaEndUT
@@ -629,7 +629,7 @@ function computePradoshamParana(pradoshamDate: string, lat = DEFAULT_LAT, lon = 
  * - The month is NAMED after the Sankranti (Sun entering a new sidereal sign)
  *   that occurs within it
  * - If NO Sankranti occurs within a lunar month → it is Adhika (intercalary)
- * - If TWO Sankrantis occur → it is Kshaya (lost month) — very rare
+ * - If TWO Sankrantis occur → it is Kshaya (lost month)  –  very rare
  *
  * Returns an array of lunar months, each with:
  * - name: Hindu month name (e.g., 'chaitra', 'vaishakha')
@@ -731,7 +731,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
     date: findSankrantiDate(year, 10),
     type: 'major',
     category: 'sankranti',
-    description: { en: 'Sun enters Capricorn — harvest festival', hi: 'सूर्य मकर राशि में — फसल का त्योहार', sa: 'सूर्यः मकरराशौ प्रविशति — शस्योत्सवः' },
+    description: { en: 'Sun enters Capricorn  –  harvest festival', hi: 'सूर्य मकर राशि में  –  फसल का त्योहार', sa: 'सूर्यः मकरराशौ प्रविशति  –  शस्योत्सवः' },
     slug: 'makar-sankranti',
   });
 
@@ -742,7 +742,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
     tithi: 'Magha Shukla 5',
     type: 'major',
     category: 'festival',
-    description: { en: 'Festival of Saraswati — beginning of spring', hi: 'सरस्वती का त्योहार — वसन्त ऋतु का आरम्भ', sa: 'सरस्वतीपूजनम् — वसन्तर्तोः आरम्भः' },
+    description: { en: 'Festival of Saraswati  –  beginning of spring', hi: 'सरस्वती का त्योहार  –  वसन्त ऋतु का आरम्भ', sa: 'सरस्वतीपूजनम्  –  वसन्तर्तोः आरम्भः' },
     slug: 'vasant-panchami',
   });
 
@@ -753,7 +753,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
     tithi: 'Phalguna Krishna 14',
     type: 'major',
     category: 'festival',
-    description: { en: 'Great Night of Lord Shiva — fasting and all-night worship', hi: 'भगवान शिव की महारात्रि — उपवास और रात्रि जागरण', sa: 'शिवस्य महारात्रिः — उपवासः रात्रिजागरणं च' },
+    description: { en: 'Great Night of Lord Shiva  –  fasting and all-night worship', hi: 'भगवान शिव की महारात्रि  –  उपवास और रात्रि जागरण', sa: 'शिवस्य महारात्रिः  –  उपवासः रात्रिजागरणं च' },
     slug: 'maha-shivaratri',
   });
 
@@ -764,7 +764,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
     tithi: 'Phalguna Purnima',
     type: 'major',
     category: 'festival',
-    description: { en: 'Festival of Colors — celebrating spring and good over evil', hi: 'रंगों का त्योहार — वसन्त और सत्य की विजय', sa: 'रङ्गोत्सवः — वसन्तस्य सत्यविजयस्य च उत्सवः' },
+    description: { en: 'Festival of Colors  –  celebrating spring and good over evil', hi: 'रंगों का त्योहार  –  वसन्त और सत्य की विजय', sa: 'रङ्गोत्सवः  –  वसन्तस्य सत्यविजयस्य च उत्सवः' },
     slug: 'holi',
   });
 
@@ -797,7 +797,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
     tithi: 'Ashadha Purnima',
     type: 'major',
     category: 'festival',
-    description: { en: 'Day of the Guru — honoring teachers and Sage Vyasa', hi: 'गुरु का दिन — शिक्षकों और व्यास ऋषि का सम्मान', sa: 'गुरोः दिनम् — आचार्याणां व्यासमुनेश्च सम्मानम्' },
+    description: { en: 'Day of the Guru  –  honoring teachers and Sage Vyasa', hi: 'गुरु का दिन  –  शिक्षकों और व्यास ऋषि का सम्मान', sa: 'गुरोः दिनम्  –  आचार्याणां व्यासमुनेश्च सम्मानम्' },
     slug: 'guru-purnima',
   });
 
@@ -808,7 +808,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
     tithi: 'Shravana Purnima',
     type: 'major',
     category: 'festival',
-    description: { en: 'Bond of protection — sisters tie rakhi on brothers\' wrists', hi: 'रक्षा का बन्धन — भाई-बहन का त्योहार', sa: 'रक्षायाः बन्धनम् — भ्रातृभगिन्योः उत्सवः' },
+    description: { en: 'Bond of protection  –  sisters tie rakhi on brothers\' wrists', hi: 'रक्षा का बन्धन  –  भाई-बहन का त्योहार', sa: 'रक्षायाः बन्धनम्  –  भ्रातृभगिन्योः उत्सवः' },
     slug: 'raksha-bandhan',
   });
 
@@ -852,7 +852,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
     tithi: 'Ashwina Shukla 10',
     type: 'major',
     category: 'festival',
-    description: { en: 'Victory of good over evil — Rama\'s victory over Ravana', hi: 'बुराई पर अच्छाई की विजय — राम की रावण पर विजय', sa: 'अधर्मोपरि धर्मस्य विजयः — रामस्य रावणोपरि विजयः' },
+    description: { en: 'Victory of good over evil  –  Rama\'s victory over Ravana', hi: 'बुराई पर अच्छाई की विजय  –  राम की रावण पर विजय', sa: 'अधर्मोपरि धर्मस्य विजयः  –  रामस्य रावणोपरि विजयः' },
     slug: 'dussehra',
   });
 
@@ -863,11 +863,11 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
     tithi: 'Kartika Amavasya',
     type: 'major',
     category: 'festival',
-    description: { en: 'Festival of Lights — Lakshmi Puja and celebration of light over darkness', hi: 'दीपों का त्योहार — लक्ष्मी पूजा', sa: 'दीपानाम् उत्सवः — लक्ष्मीपूजनम्' },
+    description: { en: 'Festival of Lights  –  Lakshmi Puja and celebration of light over darkness', hi: 'दीपों का त्योहार  –  लक्ष्मी पूजा', sa: 'दीपानाम् उत्सवः  –  लक्ष्मीपूजनम्' },
     slug: 'diwali',
   });
 
-  // ── Vrat Days (monthly recurring) — with Parana (fast-breaking) times ──
+  // ── Vrat Days (monthly recurring)  –  with Parana (fast-breaking) times ──
   for (let m = 1; m <= 12; m++) {
     // Purnima
     const purnimaDate = findPurnimaDate(year, m, lat, lon);
@@ -888,12 +888,12 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
       date: amavasyaDate,
       type: 'vrat',
       category: 'amavasya',
-      description: { en: 'New Moon — ancestral offerings', hi: 'अमावस्या — पितृ तर्पण', sa: 'अमावास्या — पितृतर्पणम्' },
+      description: { en: 'New Moon  –  ancestral offerings', hi: 'अमावस्या  –  पितृ तर्पण', sa: 'अमावास्या  –  पितृतर्पणम्' },
       slug: 'amavasya',
       ...computeAmavasyaParana(amavasyaDate, lat, lon, resolveTz(amavasyaDate, timezone)),
     });
 
-    // Ekadashi (Shukla & Krishna) — named from lunar month calendar
+    // Ekadashi (Shukla & Krishna)  –  named from lunar month calendar
     const ekadashi = findEkadashiDates(year, m, lat, lon);
 
     // Look up each Ekadashi's lunar month using the Amanta calendar
@@ -929,7 +929,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
       category: 'ekadashi',
       description: shuklaEkadashiDetail
         ? shuklaEkadashiDetail.benefit
-        : { en: 'Fasting for Lord Vishnu — Shukla Paksha', hi: 'विष्णु व्रत — शुक्ल पक्ष', sa: 'विष्णुव्रतम् — शुक्लपक्षे' },
+        : { en: 'Fasting for Lord Vishnu  –  Shukla Paksha', hi: 'विष्णु व्रत  –  शुक्ल पक्ष', sa: 'विष्णुव्रतम्  –  शुक्लपक्षे' },
       slug: shuklaEkSlug,
       ...computeEkadashiParana(ekadashi.shukla, lat, lon, resolveTz(ekadashi.shukla, timezone)),
     });
@@ -942,7 +942,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
       category: 'ekadashi',
       description: krishnaEkadashiDetail
         ? krishnaEkadashiDetail.benefit
-        : { en: 'Fasting for Lord Vishnu — Krishna Paksha', hi: 'विष्णु व्रत — कृष्ण पक्ष', sa: 'विष्णुव्रतम् — कृष्णपक्षे' },
+        : { en: 'Fasting for Lord Vishnu  –  Krishna Paksha', hi: 'विष्णु व्रत  –  कृष्ण पक्ष', sa: 'विष्णुव्रतम्  –  कृष्णपक्षे' },
       slug: krishnaEkSlug,
       ...computeEkadashiParana(ekadashi.krishna, lat, lon, resolveTz(ekadashi.krishna, timezone)),
     });
@@ -954,7 +954,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
       date: chaturthiDate,
       type: 'vrat',
       category: 'chaturthi',
-      description: { en: 'Fasting for Lord Ganesha — moonrise ends fast', hi: 'गणेश व्रत — चन्द्रोदय पर व्रत समाप्त', sa: 'गणेशव्रतम् — चन्द्रोदये व्रतसमाप्तिः' },
+      description: { en: 'Fasting for Lord Ganesha  –  moonrise ends fast', hi: 'गणेश व्रत  –  चन्द्रोदय पर व्रत समाप्त', sa: 'गणेशव्रतम्  –  चन्द्रोदये व्रतसमाप्तिः' },
       slug: 'chaturthi',
       ...computeChaturthiParana(chaturthiDate, lat, lon, resolveTz(chaturthiDate, timezone)),
     });
@@ -966,7 +966,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
       date: pradosham.shukla,
       type: 'vrat',
       category: 'pradosham',
-      description: { en: 'Twilight worship of Lord Shiva — Shukla Trayodashi', hi: 'शिव की संध्याकालीन पूजा — शुक्ल त्रयोदशी', sa: 'शिवस्य सन्ध्याकालपूजनम् — शुक्लत्रयोदश्यां' },
+      description: { en: 'Twilight worship of Lord Shiva  –  Shukla Trayodashi', hi: 'शिव की संध्याकालीन पूजा  –  शुक्ल त्रयोदशी', sa: 'शिवस्य सन्ध्याकालपूजनम्  –  शुक्लत्रयोदश्यां' },
       slug: 'pradosham',
       ...computePradoshamParana(pradosham.shukla, lat, lon, resolveTz(pradosham.shukla, timezone)),
     });
@@ -975,7 +975,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
       date: pradosham.krishna,
       type: 'vrat',
       category: 'pradosham',
-      description: { en: 'Twilight worship of Lord Shiva — Krishna Trayodashi', hi: 'शिव की संध्याकालीन पूजा — कृष्ण त्रयोदशी', sa: 'शिवस्य सन्ध्याकालपूजनम् — कृष्णत्रयोदश्यां' },
+      description: { en: 'Twilight worship of Lord Shiva  –  Krishna Trayodashi', hi: 'शिव की संध्याकालीन पूजा  –  कृष्ण त्रयोदशी', sa: 'शिवस्य सन्ध्याकालपूजनम्  –  कृष्णत्रयोदश्यां' },
       slug: 'pradosham',
       ...computePradoshamParana(pradosham.krishna, lat, lon, resolveTz(pradosham.krishna, timezone)),
     });

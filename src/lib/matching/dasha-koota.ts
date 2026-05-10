@@ -1,26 +1,26 @@
 /**
- * Dasha Koota (10-fold) Horoscope Matching Engine — South Indian System
+ * Dasha Koota (10-fold) Horoscope Matching Engine  –  South Indian System
  *
  * Computes compatibility score between two birth charts using the
  * traditional 10-point South Indian Guna Milan system.
  *
  * The 10 Kutas and their max points:
- *  1. Dina Koota       (Nakshatra compat.)   — 1.5 points
- *  2. Gana Koota       (Temperament)         — 1.5 points
- *  3. Mahendra Koota   (Prosperity)          — 1   point
- *  4. Stree Deergha    (Female longevity)    — 1   point
- *  5. Yoni Koota       (Sexual compat.)      — 1   point
- *  6. Rashi Koota      (Sign compat.)        — 1   point
- *  7. Rashiadhipati    (Sign lord friendship) — 1   point
- *  8. Vasya Koota      (Obedience/attraction) — 1   point
- *  9. Rajju Koota      (Marriage durability)  — 1   point
- * 10. Vedha Koota      (Affliction)          — 1   point
- * Total                                      — 10  points
+ *  1. Dina Koota       (Nakshatra compat.)    –  1.5 points
+ *  2. Gana Koota       (Temperament)          –  1.5 points
+ *  3. Mahendra Koota   (Prosperity)           –  1   point
+ *  4. Stree Deergha    (Female longevity)     –  1   point
+ *  5. Yoni Koota       (Sexual compat.)       –  1   point
+ *  6. Rashi Koota      (Sign compat.)         –  1   point
+ *  7. Rashiadhipati    (Sign lord friendship)  –  1   point
+ *  8. Vasya Koota      (Obedience/attraction)  –  1   point
+ *  9. Rajju Koota      (Marriage durability)   –  1   point
+ * 10. Vedha Koota      (Affliction)           –  1   point
+ * Total                                       –  10  points
  */
 
 import type { LocaleText } from '@/types/panchang';
 
-// Single source of truth — shared with ashta-kuta.ts (Lesson Q/S: no duplicate constants)
+// Single source of truth  –  shared with ashta-kuta.ts (Lesson Q/S: no duplicate constants)
 import { NAKSHATRA_GANA, NAKSHATRA_YONI, YONI_ENEMIES } from '@/lib/constants/matching-tables';
 
 // Rashi lord (planet IDs: 0=Sun, 1=Moon, 2=Mars, 3=Mercury, 4=Jupiter, 5=Venus, 6=Saturn)
@@ -41,14 +41,14 @@ const GRAHA_MAITRI: Record<number, Record<number, number>> = {
 const RASHI_VASHYA = [0, 0, 1, 2, 3, 1, 1, 4, 0, 3, 1, 2]; // Aries..Pisces
 
 // ── Rajju assignment ──
-// Sira(0), Kantha(1), Udara(2) — 3-group cyclic
+// Sira(0), Kantha(1), Udara(2)  –  3-group cyclic
 // Mapping: nakshatra ID → rajju group
 const NAKSHATRA_RAJJU: Record<number, number> = {
-  // Sira (head) — 0
+  // Sira (head)  –  0
   1: 0, 6: 0, 7: 0, 12: 0, 13: 0, 18: 0, 19: 0, 24: 0, 25: 0,
-  // Kantha (neck) — 1
+  // Kantha (neck)  –  1
   2: 1, 5: 1, 8: 1, 11: 1, 14: 1, 17: 1, 20: 1, 23: 1, 26: 1,
-  // Udara (stomach) — 2
+  // Udara (stomach)  –  2
   3: 2, 4: 2, 9: 2, 10: 2, 15: 2, 16: 2, 21: 2, 22: 2, 27: 2,
 };
 
@@ -85,7 +85,7 @@ export interface DashaKootaMatchResult {
 }
 
 // ──────────────────────────────────────────────────────────────
-// 1. Dina Koota (1.5 points) — Nakshatra compatibility
+// 1. Dina Koota (1.5 points)  –  Nakshatra compatibility
 // ──────────────────────────────────────────────────────────────
 // Count nakshatras from girl to boy. remainder = count % 9.
 // If remainder is 2,4,6,8,0(=9) → full points. Others → 0.
@@ -101,7 +101,7 @@ function computeDina(boy: DashaKootaInput, girl: DashaKootaInput): number {
 }
 
 // ──────────────────────────────────────────────────────────────
-// 2. Gana Koota (1.5 points) — Temperament
+// 2. Gana Koota (1.5 points)  –  Temperament
 // ──────────────────────────────────────────────────────────────
 // Deva-Deva=1.5, Manushya-Manushya=1.5, Rakshasa-Rakshasa=1.5,
 // Deva-Manushya=1, Manushya-Rakshasa=0.5, Deva-Rakshasa=0.
@@ -120,7 +120,7 @@ function computeGana(boy: DashaKootaInput, girl: DashaKootaInput): number {
 }
 
 // ──────────────────────────────────────────────────────────────
-// 3. Mahendra Koota (1 point) — Prosperity
+// 3. Mahendra Koota (1 point)  –  Prosperity
 // ──────────────────────────────────────────────────────────────
 // Count boy's nakshatra from girl's. If (count-1) % 9 gives 0,2,4,6 → 1 point.
 
@@ -134,7 +134,7 @@ function computeMahendra(boy: DashaKootaInput, girl: DashaKootaInput): number {
 }
 
 // ──────────────────────────────────────────────────────────────
-// 4. Stree Deergha (1 point) — Female longevity
+// 4. Stree Deergha (1 point)  –  Female longevity
 // ──────────────────────────────────────────────────────────────
 // Boy's nakshatra - girl's nakshatra >= 13 → 1 point.
 
@@ -144,7 +144,7 @@ function computeStreeDeergha(boy: DashaKootaInput, girl: DashaKootaInput): numbe
 }
 
 // ──────────────────────────────────────────────────────────────
-// 5. Yoni Koota (1 point) — Sexual compatibility
+// 5. Yoni Koota (1 point)  –  Sexual compatibility
 // ──────────────────────────────────────────────────────────────
 // Same yoni = 1, enemy = 0, neutral = 0.5.
 
@@ -162,7 +162,7 @@ function computeYoni(boy: DashaKootaInput, girl: DashaKootaInput): number {
 }
 
 // ──────────────────────────────────────────────────────────────
-// 6. Rashi Koota (1 point) — Sign compatibility (same as Bhakut)
+// 6. Rashi Koota (1 point)  –  Sign compatibility (same as Bhakut)
 // ──────────────────────────────────────────────────────────────
 // 2/12, 6/8 = bad (0). 1/1 (same), 1/7, 5/9, 3/11 = good (1).
 
@@ -175,7 +175,7 @@ function computeRashi(boy: DashaKootaInput, girl: DashaKootaInput): number {
 }
 
 // ──────────────────────────────────────────────────────────────
-// 7. Rashiadhipati (1 point) — Sign lord friendship
+// 7. Rashiadhipati (1 point)  –  Sign lord friendship
 // ──────────────────────────────────────────────────────────────
 // Same as Graha Maitri: Lords friends=1, neutral=0.5, enemies=0.
 
@@ -193,7 +193,7 @@ function computeRashiadhipati(boy: DashaKootaInput, girl: DashaKootaInput): numb
 }
 
 // ──────────────────────────────────────────────────────────────
-// 8. Vasya Koota (1 point) — Obedience/attraction
+// 8. Vasya Koota (1 point)  –  Obedience/attraction
 // ──────────────────────────────────────────────────────────────
 
 function computeVasya(boy: DashaKootaInput, girl: DashaKootaInput): number {
@@ -207,7 +207,7 @@ function computeVasya(boy: DashaKootaInput, girl: DashaKootaInput): number {
 }
 
 // ──────────────────────────────────────────────────────────────
-// 9. Rajju Koota (1 point) — Durability of marriage
+// 9. Rajju Koota (1 point)  –  Durability of marriage
 // ──────────────────────────────────────────────────────────────
 // Same rajju → 0 (dosha), different → 1.
 
@@ -219,7 +219,7 @@ function computeRajju(boy: DashaKootaInput, girl: DashaKootaInput): number {
 }
 
 // ──────────────────────────────────────────────────────────────
-// 10. Vedha Koota (1 point) — Affliction
+// 10. Vedha Koota (1 point)  –  Affliction
 // ──────────────────────────────────────────────────────────────
 // If both nakshatras form a vedha pair → 0. Otherwise → 1.
 
@@ -237,7 +237,7 @@ function computeVedha(boy: DashaKootaInput, girl: DashaKootaInput): number {
 // ──────────────────────────────────────────────────────────────
 
 export function calculateDashaKoota(boy: DashaKootaInput, girl: DashaKootaInput): DashaKootaMatchResult {
-  // Input validation — prevent silently wrong scores from out-of-range lookups
+  // Input validation  –  prevent silently wrong scores from out-of-range lookups
   if (boy.moonNakshatra < 1 || boy.moonNakshatra > 27 || girl.moonNakshatra < 1 || girl.moonNakshatra > 27) {
     throw new Error(`moonNakshatra must be 1-27, got boy=${boy.moonNakshatra} girl=${girl.moonNakshatra}`);
   }
@@ -249,7 +249,7 @@ export function calculateDashaKoota(boy: DashaKootaInput, girl: DashaKootaInput)
       name: { en: 'Dina', hi: 'दिन' },
       maxPoints: 1.5,
       scored: computeDina(boy, girl),
-      description: { en: 'Nakshatra day compatibility — health and mutual well-being', hi: 'नक्षत्र दिन अनुकूलता — स्वास्थ्य और परस्पर कल्याण' },
+      description: { en: 'Nakshatra day compatibility  –  health and mutual well-being', hi: 'नक्षत्र दिन अनुकूलता  –  स्वास्थ्य और परस्पर कल्याण' },
     },
     {
       name: { en: 'Gana', hi: 'गण' },
@@ -285,7 +285,7 @@ export function calculateDashaKoota(boy: DashaKootaInput, girl: DashaKootaInput)
       name: { en: 'Rashiadhipati', hi: 'राश्यधिपति' },
       maxPoints: 1,
       scored: computeRashiadhipati(boy, girl),
-      description: { en: 'Friendship between sign lords — mental wavelength', hi: 'राशि स्वामियों की मित्रता — मानसिक तालमेल' },
+      description: { en: 'Friendship between sign lords  –  mental wavelength', hi: 'राशि स्वामियों की मित्रता  –  मानसिक तालमेल' },
     },
     {
       name: { en: 'Vasya', hi: 'वश्य' },
@@ -316,19 +316,19 @@ export function calculateDashaKoota(boy: DashaKootaInput, girl: DashaKootaInput)
 
   if (totalScored >= 8) {
     verdict = 'excellent';
-    verdictText = { en: 'Excellent Match — Highly Recommended', hi: 'उत्तम मेल — अत्यन्त अनुशंसित' };
+    verdictText = { en: 'Excellent Match  –  Highly Recommended', hi: 'उत्तम मेल  –  अत्यन्त अनुशंसित' };
   } else if (totalScored >= 6) {
     verdict = 'good';
-    verdictText = { en: 'Good Match — Recommended', hi: 'अच्छा मेल — अनुशंसित' };
+    verdictText = { en: 'Good Match  –  Recommended', hi: 'अच्छा मेल  –  अनुशंसित' };
   } else if (totalScored >= 5) {
     verdict = 'average';
-    verdictText = { en: 'Average Match — Acceptable with Remedies', hi: 'सामान्य मेल — उपायों के साथ स्वीकार्य' };
+    verdictText = { en: 'Average Match  –  Acceptable with Remedies', hi: 'सामान्य मेल  –  उपायों के साथ स्वीकार्य' };
   } else if (totalScored >= 3.5) {
     verdict = 'below_average';
-    verdictText = { en: 'Below Average — Proceed with Caution', hi: 'औसत से कम — सावधानी से आगे बढ़ें' };
+    verdictText = { en: 'Below Average  –  Proceed with Caution', hi: 'औसत से कम  –  सावधानी से आगे बढ़ें' };
   } else {
     verdict = 'not_recommended';
-    verdictText = { en: 'Not Recommended — Significant Incompatibility', hi: 'अनुशंसित नहीं — महत्वपूर्ण असंगति' };
+    verdictText = { en: 'Not Recommended  –  Significant Incompatibility', hi: 'अनुशंसित नहीं  –  महत्वपूर्ण असंगति' };
   }
 
   return {

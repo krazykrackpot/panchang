@@ -63,9 +63,9 @@ export const KAMADA_EKADASHI_PUJA: PujaVidhi = {
       step: 3,
       title: { en: 'Kamada Ekadashi Vrat Katha', hi: 'कामदा एकादशी व्रत कथा', sa: 'कामदैकादशीव्रतकथा' },
       description: {
-        en: 'Listen to the Kamada Ekadashi Vrat Katha from the Varaha Purana. It tells the story of Gandharva Lalit and Apsara Lalita — how Lalit was cursed to become a demon and was liberated when Lalita observed this Ekadashi vrat with devotion.',
-        hi: 'वराह पुराण से कामदा एकादशी व्रत कथा सुनें। यह गन्धर्व ललित और अप्सरा ललिता की कहानी बताती है — कैसे ललित को राक्षस बनने का शाप मिला और ललिता द्वारा भक्तिपूर्वक इस एकादशी व्रत के पालन से मुक्त हुआ।',
-        sa: 'वराहपुराणात् कामदैकादशीव्रतकथां शृणुयात्। इयं गन्धर्वललितस्य अप्सरसः ललितायाश्च कथां वदति — यथा ललितो राक्षसत्वशापं प्राप्तः ललितया भक्त्या अस्य एकादशीव्रतस्य पालनेन मुक्तः।',
+        en: 'Listen to the Kamada Ekadashi Vrat Katha from the Varaha Purana. It tells the story of Gandharva Lalit and Apsara Lalita  –  how Lalit was cursed to become a demon and was liberated when Lalita observed this Ekadashi vrat with devotion.',
+        hi: 'वराह पुराण से कामदा एकादशी व्रत कथा सुनें। यह गन्धर्व ललित और अप्सरा ललिता की कहानी बताती है  –  कैसे ललित को राक्षस बनने का शाप मिला और ललिता द्वारा भक्तिपूर्वक इस एकादशी व्रत के पालन से मुक्त हुआ।',
+        sa: 'वराहपुराणात् कामदैकादशीव्रतकथां शृणुयात्। इयं गन्धर्वललितस्य अप्सरसः ललितायाश्च कथां वदति  –  यथा ललितो राक्षसत्वशापं प्राप्तः ललितया भक्त्या अस्य एकादशीव्रतस्य पालनेन मुक्तः।',
       },
       duration: '15 min',
       essential: true,
@@ -75,9 +75,9 @@ export const KAMADA_EKADASHI_PUJA: PujaVidhi = {
       step: 4,
       title: { en: 'Vishnu Mantra Japa', hi: 'विष्णु मंत्र जप', sa: 'विष्णुमन्त्रजपः' },
       description: {
-        en: 'Chant the Dwadashakshara Vishnu Mantra (Om Namo Bhagavate Vasudevaya) 108 times on a tulsi mala. Keep your mind focused on your wish while chanting — this is the Kamada (desire-fulfilling) aspect.',
-        hi: 'तुलसी माला पर द्वादशाक्षर विष्णु मंत्र (ॐ नमो भगवते वासुदेवाय) का 108 बार जाप करें। जाप करते हुए अपनी मनोकामना पर ध्यान केन्द्रित रखें — यही कामदा (कामनापूर्ति) का पहलू है।',
-        sa: 'तुलसीमालायां द्वादशाक्षरविष्णुमन्त्रं (ॐ नमो भगवते वासुदेवाय) अष्टोत्तरशतवारं जपेत्। जपकाले स्वमनोरथे मनः स्थिरं कुर्यात् — इदमेव कामदा (कामनापूर्ति) स्वरूपम्।',
+        en: 'Chant the Dwadashakshara Vishnu Mantra (Om Namo Bhagavate Vasudevaya) 108 times on a tulsi mala. Keep your mind focused on your wish while chanting  –  this is the Kamada (desire-fulfilling) aspect.',
+        hi: 'तुलसी माला पर द्वादशाक्षर विष्णु मंत्र (ॐ नमो भगवते वासुदेवाय) का 108 बार जाप करें। जाप करते हुए अपनी मनोकामना पर ध्यान केन्द्रित रखें  –  यही कामदा (कामनापूर्ति) का पहलू है।',
+        sa: 'तुलसीमालायां द्वादशाक्षरविष्णुमन्त्रं (ॐ नमो भगवते वासुदेवाय) अष्टोत्तरशतवारं जपेत्। जपकाले स्वमनोरथे मनः स्थिरं कुर्यात्  –  इदमेव कामदा (कामनापूर्ति) स्वरूपम्।',
       },
       duration: '20 min',
       essential: true,
@@ -87,9 +87,9 @@ export const KAMADA_EKADASHI_PUJA: PujaVidhi = {
       step: 5,
       title: { en: 'Aarti and Naivedya', hi: 'आरती और नैवेद्य', sa: 'आरात्रिकं नैवेद्यं च' },
       description: {
-        en: 'Perform aarti with ghee lamp and camphor. Offer non-grain naivedya — fruits, milk, dry fruits, and coconut. Distribute prasad to devotees. Night jagran (staying awake) is recommended for maximum benefit.',
-        hi: 'घी के दीपक और कपूर से आरती करें। अनाज-रहित नैवेद्य — फल, दूध, मेवे और नारियल — अर्पित करें। भक्तों में प्रसाद वितरित करें। अधिकतम लाभ के लिए रात्रि जागरण की सिफारिश है।',
-        sa: 'घृतदीपेन कर्पूरेण च आरात्रिकं कुर्यात्। अन्नरहितनैवेद्यं — फलानि दुग्धं शुष्कफलानि नारिकेलं च — समर्पयेत्। भक्तेषु प्रसादं वितरेत्। अधिकतमलाभाय रात्रिजागरणम् अनुशस्यते।',
+        en: 'Perform aarti with ghee lamp and camphor. Offer non-grain naivedya  –  fruits, milk, dry fruits, and coconut. Distribute prasad to devotees. Night jagran (staying awake) is recommended for maximum benefit.',
+        hi: 'घी के दीपक और कपूर से आरती करें। अनाज-रहित नैवेद्य  –  फल, दूध, मेवे और नारियल  –  अर्पित करें। भक्तों में प्रसाद वितरित करें। अधिकतम लाभ के लिए रात्रि जागरण की सिफारिश है।',
+        sa: 'घृतदीपेन कर्पूरेण च आरात्रिकं कुर्यात्। अन्नरहितनैवेद्यं  –  फलानि दुग्धं शुष्कफलानि नारिकेलं च  –  समर्पयेत्। भक्तेषु प्रसादं वितरेत्। अधिकतमलाभाय रात्रिजागरणम् अनुशस्यते।',
       },
       duration: '10 min',
       essential: true,
@@ -104,9 +104,9 @@ export const KAMADA_EKADASHI_PUJA: PujaVidhi = {
       devanagari: 'कामदेव नमस्तुभ्यं सर्वकामप्रदायक।\nपापं हर सदा विष्णो त्वं हि लोकहितो प्रभो॥',
       iast: 'kāmadeva namastubhyaṃ sarvakāmapradāyaka |\npāpaṃ hara sadā viṣṇo tvaṃ hi lokahito prabho ||',
       meaning: {
-        en: 'Salutations to You, O fulfiller of all desires. O Vishnu, always remove sin — You are the benefactor of the world, O Lord.',
-        hi: 'सभी कामनाओं को पूर्ण करने वाले, आपको नमस्कार। हे विष्णु, सदा पाप हरें — आप संसार के हितकारी हैं, हे प्रभु।',
-        sa: 'सर्वकामप्रदायक, तुभ्यं नमः। हे विष्णो, सदा पापं हर — त्वं हि लोकहितः प्रभो।',
+        en: 'Salutations to You, O fulfiller of all desires. O Vishnu, always remove sin  –  You are the benefactor of the world, O Lord.',
+        hi: 'सभी कामनाओं को पूर्ण करने वाले, आपको नमस्कार। हे विष्णु, सदा पाप हरें  –  आप संसार के हितकारी हैं, हे प्रभु।',
+        sa: 'सर्वकामप्रदायक, तुभ्यं नमः। हे विष्णो, सदा पापं हर  –  त्वं हि लोकहितः प्रभो।',
       },
       usage: {
         en: 'Chant during the main puja while offering tulsi and flowers.',
@@ -134,9 +134,9 @@ export const KAMADA_EKADASHI_PUJA: PujaVidhi = {
   ],
 
   naivedya: {
-    en: 'Offer non-grain naivedya: fresh fruits (banana, pomegranate, apple), milk, panchamrit, dry fruits (almonds, cashews), and coconut water. Sattvic food only — no onion, garlic, or grains.',
-    hi: 'अनाज-रहित नैवेद्य अर्पित करें: ताज़े फल (केला, अनार, सेब), दूध, पंचामृत, मेवे (बादाम, काजू), और नारियल पानी। केवल सात्विक भोजन — प्याज, लहसुन या अनाज नहीं।',
-    sa: 'अन्नरहितं नैवेद्यं समर्पयेत्: नवफलानि (कदलीफलं दाडिमं सेवफलं च) दुग्धं पञ्चामृतं शुष्कफलानि (वातामफलं काजूफलं च) नारिकेलजलं च। सात्त्विकम् एव — पलाण्डुं लशुनम् अन्नं वा न।',
+    en: 'Offer non-grain naivedya: fresh fruits (banana, pomegranate, apple), milk, panchamrit, dry fruits (almonds, cashews), and coconut water. Sattvic food only  –  no onion, garlic, or grains.',
+    hi: 'अनाज-रहित नैवेद्य अर्पित करें: ताज़े फल (केला, अनार, सेब), दूध, पंचामृत, मेवे (बादाम, काजू), और नारियल पानी। केवल सात्विक भोजन  –  प्याज, लहसुन या अनाज नहीं।',
+    sa: 'अन्नरहितं नैवेद्यं समर्पयेत्: नवफलानि (कदलीफलं दाडिमं सेवफलं च) दुग्धं पञ्चामृतं शुष्कफलानि (वातामफलं काजूफलं च) नारिकेलजलं च। सात्त्विकम् एव  –  पलाण्डुं लशुनम् अन्नं वा न।',
   },
 
   parana: {
@@ -155,9 +155,9 @@ export const KAMADA_EKADASHI_PUJA: PujaVidhi = {
       sa: 'एकादश्यां अन्नाहारं कठोरतया वर्जयेत्। केवलं फलानि दुग्धम् अनुमतपदार्थाश्च (साबूदाना मखानम् आलुकम् इत्यादि) स्वीकार्याः।',
     },
     {
-      en: 'Desires prayed for should be dharmic (righteous) — this vrat is not intended for selfish or harmful wishes.',
-      hi: 'प्रार्थित कामनाएँ धार्मिक (न्यायसंगत) होनी चाहिए — यह व्रत स्वार्थी या हानिकारक इच्छाओं के लिए नहीं है।',
-      sa: 'प्रार्थिताः कामनाः धार्मिकाः (न्यायसंगताः) भवेयुः — इदं व्रतं स्वार्थपूर्णानां हानिकराणां वा इच्छानां कृते नास्ति।',
+      en: 'Desires prayed for should be dharmic (righteous)  –  this vrat is not intended for selfish or harmful wishes.',
+      hi: 'प्रार्थित कामनाएँ धार्मिक (न्यायसंगत) होनी चाहिए  –  यह व्रत स्वार्थी या हानिकारक इच्छाओं के लिए नहीं है।',
+      sa: 'प्रार्थिताः कामनाः धार्मिकाः (न्यायसंगताः) भवेयुः  –  इदं व्रतं स्वार्थपूर्णानां हानिकराणां वा इच्छानां कृते नास्ति।',
     },
     {
       en: 'Maintain silence (mauna) during the japa for best results. Avoid gossip, anger, and negativity throughout the day.',

@@ -48,7 +48,7 @@ const PLANET_SHORT: Record<number, string> = {
   0: 'Su', 1: 'Mo', 2: 'Ma', 3: 'Me', 4: 'Ju', 5: 'Ve', 6: 'Sa', 7: 'Ra', 8: 'Ke',
 };
 
-/** Planets shown in swimlane — exclude Sun(0) and Moon(1), they change signs every 1-2.5 days */
+/** Planets shown in swimlane  –  exclude Sun(0) and Moon(1), they change signs every 1-2.5 days */
 const SWIMLANE_PLANET_IDS = [4, 6, 7, 8, 2, 5, 3]; // Jupiter, Saturn, Rahu, Ketu, Mars, Venus, Mercury
 const SLOW_PLANET_IDS = new Set([4, 6, 7, 8]);
 
@@ -190,7 +190,7 @@ export default function TransitsPage() {
     return grouped;
   }, [filteredEvents]);
 
-  // Swimlane bars (always from full events, not filtered — filter dims rows instead)
+  // Swimlane bars (always from full events, not filtered  –  filter dims rows instead)
   const swimlaneData = useMemo(() => buildSwimlaneBars(events, year), [events, year]);
 
   // TODAY line position (fraction of year elapsed)
@@ -201,7 +201,7 @@ export default function TransitsPage() {
     return (now.getTime() - start.getTime()) / (daysInYear(year) * 86400000);
   }, [year]);
 
-  // All 12 Sankrantis — exact moment Sun enters 0° of each sidereal sign
+  // All 12 Sankrantis  –  exact moment Sun enters 0° of each sidereal sign
   const allSankrantis = useMemo(() => {
     const getSidSunLon = (jd: number) => normalizeDeg(toSidereal(sunLongitude(jd), jd));
     const approxMonths = [4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3];
@@ -230,7 +230,7 @@ export default function TransitsPage() {
   }, [allSankrantis]);
   const selectedSankranti = allSankrantis[selectedSankrantiIdx];
 
-  // Current transits summary — find the most recent transit for each slow planet (Mars-Ketu)
+  // Current transits summary  –  find the most recent transit for each slow planet (Mars-Ketu)
   const currentTransits = useMemo(() => {
     const today = new Date().toISOString().split('T')[0];
     const slowPlanets = [2, 3, 4, 5, 6, 7, 8]; // Mars through Ketu
@@ -238,7 +238,7 @@ export default function TransitsPage() {
       const planetEvents = events.filter(e => e.planetId === pid && e.date <= today);
       const latest = planetEvents[planetEvents.length - 1];
       if (!latest) {
-        // Planet hasn't changed sign this year — find from ALL events
+        // Planet hasn't changed sign this year  –  find from ALL events
         const allForPlanet = events.filter(e => e.planetId === pid);
         if (allForPlanet.length > 0) {
           return { planetId: pid, sign: allForPlanet[0].fromSign, signName: allForPlanet[0].fromSignName, planetName: allForPlanet[0].planetName };
@@ -256,7 +256,7 @@ export default function TransitsPage() {
     return { total: filteredEvents.length, major: majorCount, planets: uniquePlanets };
   }, [filteredEvents]);
 
-  // Jupiter Vedha — 12 classical blocking pairs: Jupiter sign → Saturn sign that blocks
+  // Jupiter Vedha  –  12 classical blocking pairs: Jupiter sign → Saturn sign that blocks
   // Source: Gochar classics; when Saturn is in the listed sign, Jupiter's transit is Vedha-blocked
   const JUPITER_VEDHA: Record<number, number> = {
     1: 11, 2: 9, 3: 10, 4: 8, 5: 7, 6: 5,
@@ -277,7 +277,7 @@ export default function TransitsPage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentTransits]);
 
-  // JYOTISH-15: Mesha Sankranti — exact moment Sun enters 0° sidereal Aries (binary search)
+  // JYOTISH-15: Mesha Sankranti  –  exact moment Sun enters 0° sidereal Aries (binary search)
   const meshaSankranti = useMemo(() => {
     // Approximate date: around April 14 each year (Lahiri)
     const approxJD = dateToJD(year, 4, 13);
@@ -299,26 +299,26 @@ export default function TransitsPage() {
     }
     const jdResult = (lo + hi) / 2;
     const dateResult = jdToDate(jdResult);
-    // House themes for mundane astrology — used by all Sankrantis
+    // House themes for mundane astrology  –  used by all Sankrantis
     const SANKRANTI_HOUSES_DATA = [
-      { en: '1H — World — Global identity, new world-era theme for the solar year', hi: '1H — विश्व — वार्षिक सौर-काल का वैश्विक विषय', sa: '1H — विश्वम् — वार्षिकसौरकालस्य वैश्विकविषयः', mai: '1H — विश्व — वार्षिक सौर-कालक वैश्विक विषय', mr: '1H — विश्व — वार्षिक सौर-कालाचा जागतिक विषय', ta: '1H — உலகம் — சூரிய ஆண்டின் உலகளாவிய அடையாளம்', te: '1H — ప్రపంచం — సౌర సంవత్సర ప్రపంచ గుర్తింపు', bn: '1H — বিশ্ব — সৌর বর্ষের বৈশ্বিক পরিচয়', kn: '1H — ವಿಶ್ವ — ಸೌರ ವರ್ಷದ ಜಾಗತಿಕ ಗುರುತು', gu: '1H — વિશ્વ — સૌર વર્ષનો વૈશ્વિક વિષય' },
-      { en: '2H — Wealth — Global economy, food production, financial trends', hi: '2H — धन — वैश्विक अर्थव्यवस्था, खाद्य उत्पादन', sa: '2H — धनम् — वैश्विकार्थव्यवस्था, अन्नोत्पादनम्', mai: '2H — धन — वैश्विक अर्थव्यवस्था, खाद्य उत्पादन', mr: '2H — धन — जागतिक अर्थव्यवस्था, अन्न उत्पादन', ta: '2H — செல்வம் — உலகப் பொருளாதாரம், உணவு உற்பத்தி', te: '2H — ధనం — ప్రపంచ ఆర్థిక వ్యవస్థ, ఆహార ఉత్పత్తి', bn: '2H — ধন — বিশ্ব অর্থনীতি, খাদ্য উৎপাদন', kn: '2H — ಸಂಪತ್ತು — ಜಾಗತಿಕ ಆರ್ಥಿಕತೆ, ಆಹಾರ ಉತ್ಪಾದನೆ', gu: '2H — ધન — વૈશ્વિક અર્થતંત્ર, ખાદ્ય ઉત્પાદન' },
-      { en: '3H — Communication — Media, transport, trade, neighbouring nations', hi: '3H — संचार — मीडिया, परिवहन, व्यापार', sa: '3H — सञ्चारः — माध्यमानि, परिवहनम्, वाणिज्यम्', mai: '3H — संचार — मीडिया, परिवहन, व्यापार', mr: '3H — संचार — माध्यमे, वाहतूक, व्यापार', ta: '3H — தொடர்பு — ஊடகம், போக்குவரத்து, வர்த்தகம்', te: '3H — సంవహనం — మీడియా, రవాణా, వాణిజ్యం', bn: '3H — যোগাযোগ — গণমাধ্যম, পরিবহন, বাণিজ্য', kn: '3H — ಸಂವಹನ — ಮಾಧ್ಯಮ, ಸಾರಿಗೆ, ವ್ಯಾಪಾರ', gu: '3H — સંચાર — મીડિયા, પરિવહન, વ્યાપાર' },
-      { en: '4H — Land — Agriculture, crops, weather, masses, and real estate', hi: '4H — भूमि — कृषि, फसल, मौसम, जनता', sa: '4H — भूमिः — कृषिः, सस्यानि, ऋतुः, जनताः', mai: '4H — भूमि — कृषि, फसल, मौसम, जनता', mr: '4H — भूमी — शेती, पिके, हवामान, जनता', ta: '4H — நிலம் — விவசாயம், பயிர்கள், வானிலை, மக்கள்', te: '4H — భూమి — వ్యవసాయం, పంటలు, వాతావరణం, ప్రజలు', bn: '4H — ভূমি — কৃষি, ফসল, আবহাওয়া, জনতা', kn: '4H — ಭೂಮಿ — ಕೃಷಿ, ಬೆಳೆಗಳು, ಹವಾಮಾನ, ಜನಸಾಮಾನ್ಯರು', gu: '4H — ભૂમિ — ખેતી, પાક, હવામાન, જનતા' },
-      { en: '5H — Creativity — Children, arts, entertainment, stock markets', hi: '5H — रचना — बच्चे, कला, मनोरंजन, शेयर बाज़ार', sa: '5H — सृजनम् — बालाः, कलाः, विनोदः, अंशविपणिः', mai: '5H — रचना — बच्चा, कला, मनोरंजन, शेयर बाजार', mr: '5H — सर्जनशीलता — मुले, कला, मनोरंजन, शेअर बाजार', ta: '5H — படைப்பு — குழந்தைகள், கலைகள், பொழுதுபோக்கு, பங்கு சந்தை', te: '5H — సృజనాత్మకత — పిల్లలు, కళలు, వినోదం, స్టాక్ మార్కెట్', bn: '5H — সৃজনশীলতা — সন্তান, শিল্পকলা, বিনোদন, শেয়ার বাজার', kn: '5H — ಸೃಜನಶೀಲತೆ — ಮಕ್ಕಳು, ಕಲೆಗಳು, ಮನರಂಜನೆ, ಷೇರು ಮಾರುಕಟ್ಟೆ', gu: '5H — સર્જનાત્મકતા — બાળકો, કલા, મનોરંજન, શેર બજાર' },
-      { en: '6H — Health — Epidemics, public health, labour disputes, military', hi: '6H — स्वास्थ्य — महामारी, सार्वजनिक स्वास्थ्य, सेना', sa: '6H — स्वास्थ्यम् — महामारी, सार्वजनिकस्वास्थ्यम्, सैन्यम्', mai: '6H — स्वास्थ्य — महामारी, सार्वजनिक स्वास्थ्य, सेना', mr: '6H — आरोग्य — महामारी, सार्वजनिक आरोग्य, सैन्य', ta: '6H — ஆரோக்கியம் — தொற்றுநோய்கள், பொது சுகாதாரம், இராணுவம்', te: '6H — ఆరోగ్యం — మహమ్మారి, ప్రజారోగ్యం, సైన్యం', bn: '6H — স্বাস্থ্য — মহামারী, জনস্বাস্থ্য, সেনাবাহিনী', kn: '6H — ಆರೋಗ್ಯ — ಸಾಂಕ್ರಾಮಿಕ, ಸಾರ್ವಜನಿಕ ಆರೋಗ್ಯ, ಸೈನ್ಯ', gu: '6H — આરોગ્ય — મહામારી, જાહેર આરોગ્ય, સેના' },
-      { en: '7H — Alliances — Wars, treaties, international relations', hi: '7H — संधि — युद्ध, सन्धियाँ, अन्तर्राष्ट्रीय सम्बन्ध', sa: '7H — सन्धिः — युद्धम्, सन्धयः, अन्तर्राष्ट्रीयसम्बन्धाः', mai: '7H — संधि — युद्ध, सन्धियाँ, अन्तर्राष्ट्रीय सम्बन्ध', mr: '7H — संधी — युद्ध, करार, आंतरराष्ट्रीय संबंध', ta: '7H — கூட்டணிகள் — போர்கள், ஒப்பந்தங்கள், சர்வதேச உறவுகள்', te: '7H — కూటమిలు — యుద్ధాలు, ఒప్పందాలు, అంతర్జాతీయ సంబంధాలు', bn: '7H — জোট — যুদ্ধ, চুক্তি, আন্তর্জাতিক সম্পর্ক', kn: '7H — ಮೈತ್ರಿ — ಯುದ್ಧ, ಒಪ್ಪಂದ, ಅಂತರರಾಷ್ಟ್ರೀಯ ಸಂಬಂಧ', gu: '7H — જોડાણ — યુદ્ધ, સંધિ, આંતરરાષ્ટ્રીય સંબંધ' },
-      { en: '8H — Transformation — Deaths, natural disasters, hidden powers', hi: '8H — रूपांतरण — मृत्यु, प्राकृतिक आपदाएँ, गुप्त शक्तियाँ', sa: '8H — रूपान्तरणम् — मृत्युः, प्राकृतिकविपत्तयः, गुप्तशक्तयः', mai: '8H — रूपांतरण — मृत्यु, प्राकृतिक आपदा, गुप्त शक्ति', mr: '8H — रूपांतरण — मृत्यू, नैसर्गिक आपत्ती, गुप्त शक्ती', ta: '8H — மாற்றம் — மரணம், இயற்கை பேரழிவுகள், மறைந்த சக்திகள்', te: '8H — పరివర్తన — మరణాలు, ప్రకృతి విపత్తులు, గుప్త శక్తులు', bn: '8H — রূপান্তর — মৃত্যু, প্রাকৃতিক দুর্যোগ, গুপ্ত শক্তি', kn: '8H — ಪರಿವರ್ತನೆ — ಮರಣ, ನೈಸರ್ಗಿಕ ವಿಪತ್ತು, ಗುಪ್ತ ಶಕ್ತಿ', gu: '8H — પરિવર્તન — મૃત્યુ, કુદરતી આપત્તિ, ગુપ્ત શક્તિ' },
-      { en: '9H — Dharma — Religion, law, higher education, long journeys', hi: '9H — धर्म — धर्म, कानून, उच्च शिक्षा', sa: '9H — धर्मः — धर्मः, विधिः, उच्चशिक्षा', mai: '9H — धर्म — धर्म, कानून, उच्च शिक्षा', mr: '9H — धर्म — धर्म, कायदा, उच्च शिक्षण', ta: '9H — தர்மம் — மதம், சட்டம், உயர் கல்வி', te: '9H — ధర్మం — మతం, చట్టం, ఉన్నత విద్య', bn: '9H — ধর্ম — ধর্ম, আইন, উচ্চশিক্ষা', kn: '9H — ಧರ್ಮ — ಧರ್ಮ, ಕಾನೂನು, ಉನ್ನತ ಶಿಕ್ಷಣ', gu: '9H — ધર્મ — ધર્મ, કાયદો, ઉચ્ચ શિક્ષણ' },
-      { en: '10H — Governments — Rulers, leadership, national authority', hi: '10H — सरकार — शासक, नेतृत्व, राष्ट्रीय अधिकार', sa: '10H — शासनम् — शासकाः, नेतृत्वम्, राष्ट्रीयाधिकारः', mai: '10H — सरकार — शासक, नेतृत्व, राष्ट्रीय अधिकार', mr: '10H — सरकार — शासक, नेतृत्व, राष्ट्रीय अधिकार', ta: '10H — அரசாங்கம் — ஆட்சியாளர்கள், தலைமை, தேசிய அதிகாரம்', te: '10H — ప్రభుత్వం — పాలకులు, నాయకత్వం, జాతీయ అధికారం', bn: '10H — সরকার — শাসক, নেতৃত্ব, জাতীয় কর্তৃত্ব', kn: '10H — ಸರ್ಕಾರ — ಆಡಳಿತಗಾರರು, ನಾಯಕತ್ವ, ರಾಷ್ಟ್ರೀಯ ಅಧಿಕಾರ', gu: '10H — સરકાર — શાસક, નેતૃત્વ, રાષ્ટ્રીય સત્તા' },
-      { en: '11H — Gains — Profits for nations, social movements, aspirations', hi: '11H — लाभ — राष्ट्रीय लाभ, सामाजिक आन्दोलन', sa: '11H — लाभः — राष्ट्रीयलाभः, सामाजिकान्दोलनम्', mai: '11H — लाभ — राष्ट्रीय लाभ, सामाजिक आंदोलन', mr: '11H — लाभ — राष्ट्रीय नफा, सामाजिक चळवळी', ta: '11H — லாபம் — தேசிய இலாபங்கள், சமூக இயக்கங்கள்', te: '11H — లాభం — జాతీయ లాభాలు, సామాజిక ఉద్యమాలు', bn: '11H — লাভ — জাতীয় মুনাফা, সামাজিক আন্দোলন', kn: '11H — ಲಾಭ — ರಾಷ್ಟ್ರೀಯ ಲಾಭ, ಸಾಮಾಜಿಕ ಚಳವಳಿ', gu: '11H — લાભ — રાષ્ટ્રીય લાભ, સામાજિક આંદોલન' },
-      { en: '12H — Liberation — Foreign influence, losses, spirituality, hidden enemies', hi: '12H — मोक्ष — विदेशी प्रभाव, हानि, आध्यात्मिकता', sa: '12H — मोक्षः — विदेशप्रभावः, हानिः, आध्यात्मिकता', mai: '12H — मोक्ष — विदेशी प्रभाव, हानि, आध्यात्मिकता', mr: '12H — मोक्ष — परदेशी प्रभाव, हानी, अध्यात्म', ta: '12H — விடுதலை — வெளிநாட்டு செல்வாக்கு, இழப்புகள், ஆன்மீகம்', te: '12H — మోక్షం — విదేశీ ప్రభావం, నష్టాలు, ఆధ్యాత్మికత', bn: '12H — মোক্ষ — বিদেশি প্রভাব, ক্ষতি, আধ্যাত্মিকতা', kn: '12H — ಮೋಕ್ಷ — ವಿದೇಶಿ ಪ್ರಭಾವ, ನಷ್ಟ, ಆಧ್ಯಾತ್ಮಿಕತೆ', gu: '12H — મોક્ષ — વિદેશી પ્રભાવ, હાનિ, આધ્યાત્મિકતા' },
+      { en: '1H  –  World  –  Global identity, new world-era theme for the solar year', hi: '1H  –  विश्व  –  वार्षिक सौर-काल का वैश्विक विषय', sa: '1H  –  विश्वम्  –  वार्षिकसौरकालस्य वैश्विकविषयः', mai: '1H  –  विश्व  –  वार्षिक सौर-कालक वैश्विक विषय', mr: '1H  –  विश्व  –  वार्षिक सौर-कालाचा जागतिक विषय', ta: '1H  –  உலகம்  –  சூரிய ஆண்டின் உலகளாவிய அடையாளம்', te: '1H  –  ప్రపంచం  –  సౌర సంవత్సర ప్రపంచ గుర్తింపు', bn: '1H  –  বিশ্ব  –  সৌর বর্ষের বৈশ্বিক পরিচয়', kn: '1H  –  ವಿಶ್ವ  –  ಸೌರ ವರ್ಷದ ಜಾಗತಿಕ ಗುರುತು', gu: '1H  –  વિશ્વ  –  સૌર વર્ષનો વૈશ્વિક વિષય' },
+      { en: '2H  –  Wealth  –  Global economy, food production, financial trends', hi: '2H  –  धन  –  वैश्विक अर्थव्यवस्था, खाद्य उत्पादन', sa: '2H  –  धनम्  –  वैश्विकार्थव्यवस्था, अन्नोत्पादनम्', mai: '2H  –  धन  –  वैश्विक अर्थव्यवस्था, खाद्य उत्पादन', mr: '2H  –  धन  –  जागतिक अर्थव्यवस्था, अन्न उत्पादन', ta: '2H  –  செல்வம்  –  உலகப் பொருளாதாரம், உணவு உற்பத்தி', te: '2H  –  ధనం  –  ప్రపంచ ఆర్థిక వ్యవస్థ, ఆహార ఉత్పత్తి', bn: '2H  –  ধন  –  বিশ্ব অর্থনীতি, খাদ্য উৎপাদন', kn: '2H  –  ಸಂಪತ್ತು  –  ಜಾಗತಿಕ ಆರ್ಥಿಕತೆ, ಆಹಾರ ಉತ್ಪಾದನೆ', gu: '2H  –  ધન  –  વૈશ્વિક અર્થતંત્ર, ખાદ્ય ઉત્પાદન' },
+      { en: '3H  –  Communication  –  Media, transport, trade, neighbouring nations', hi: '3H  –  संचार  –  मीडिया, परिवहन, व्यापार', sa: '3H  –  सञ्चारः  –  माध्यमानि, परिवहनम्, वाणिज्यम्', mai: '3H  –  संचार  –  मीडिया, परिवहन, व्यापार', mr: '3H  –  संचार  –  माध्यमे, वाहतूक, व्यापार', ta: '3H  –  தொடர்பு  –  ஊடகம், போக்குவரத்து, வர்த்தகம்', te: '3H  –  సంవహనం  –  మీడియా, రవాణా, వాణిజ్యం', bn: '3H  –  যোগাযোগ  –  গণমাধ্যম, পরিবহন, বাণিজ্য', kn: '3H  –  ಸಂವಹನ  –  ಮಾಧ್ಯಮ, ಸಾರಿಗೆ, ವ್ಯಾಪಾರ', gu: '3H  –  સંચાર  –  મીડિયા, પરિવહન, વ્યાપાર' },
+      { en: '4H  –  Land  –  Agriculture, crops, weather, masses, and real estate', hi: '4H  –  भूमि  –  कृषि, फसल, मौसम, जनता', sa: '4H  –  भूमिः  –  कृषिः, सस्यानि, ऋतुः, जनताः', mai: '4H  –  भूमि  –  कृषि, फसल, मौसम, जनता', mr: '4H  –  भूमी  –  शेती, पिके, हवामान, जनता', ta: '4H  –  நிலம்  –  விவசாயம், பயிர்கள், வானிலை, மக்கள்', te: '4H  –  భూమి  –  వ్యవసాయం, పంటలు, వాతావరణం, ప్రజలు', bn: '4H  –  ভূমি  –  কৃষি, ফসল, আবহাওয়া, জনতা', kn: '4H  –  ಭೂಮಿ  –  ಕೃಷಿ, ಬೆಳೆಗಳು, ಹವಾಮಾನ, ಜನಸಾಮಾನ್ಯರು', gu: '4H  –  ભૂમિ  –  ખેતી, પાક, હવામાન, જનતા' },
+      { en: '5H  –  Creativity  –  Children, arts, entertainment, stock markets', hi: '5H  –  रचना  –  बच्चे, कला, मनोरंजन, शेयर बाज़ार', sa: '5H  –  सृजनम्  –  बालाः, कलाः, विनोदः, अंशविपणिः', mai: '5H  –  रचना  –  बच्चा, कला, मनोरंजन, शेयर बाजार', mr: '5H  –  सर्जनशीलता  –  मुले, कला, मनोरंजन, शेअर बाजार', ta: '5H  –  படைப்பு  –  குழந்தைகள், கலைகள், பொழுதுபோக்கு, பங்கு சந்தை', te: '5H  –  సృజనాత్మకత  –  పిల్లలు, కళలు, వినోదం, స్టాక్ మార్కెట్', bn: '5H  –  সৃজনশীলতা  –  সন্তান, শিল্পকলা, বিনোদন, শেয়ার বাজার', kn: '5H  –  ಸೃಜನಶೀಲತೆ  –  ಮಕ್ಕಳು, ಕಲೆಗಳು, ಮನರಂಜನೆ, ಷೇರು ಮಾರುಕಟ್ಟೆ', gu: '5H  –  સર્જનાત્મકતા  –  બાળકો, કલા, મનોરંજન, શેર બજાર' },
+      { en: '6H  –  Health  –  Epidemics, public health, labour disputes, military', hi: '6H  –  स्वास्थ्य  –  महामारी, सार्वजनिक स्वास्थ्य, सेना', sa: '6H  –  स्वास्थ्यम्  –  महामारी, सार्वजनिकस्वास्थ्यम्, सैन्यम्', mai: '6H  –  स्वास्थ्य  –  महामारी, सार्वजनिक स्वास्थ्य, सेना', mr: '6H  –  आरोग्य  –  महामारी, सार्वजनिक आरोग्य, सैन्य', ta: '6H  –  ஆரோக்கியம்  –  தொற்றுநோய்கள், பொது சுகாதாரம், இராணுவம்', te: '6H  –  ఆరోగ్యం  –  మహమ్మారి, ప్రజారోగ్యం, సైన్యం', bn: '6H  –  স্বাস্থ্য  –  মহামারী, জনস্বাস্থ্য, সেনাবাহিনী', kn: '6H  –  ಆರೋಗ್ಯ  –  ಸಾಂಕ್ರಾಮಿಕ, ಸಾರ್ವಜನಿಕ ಆರೋಗ್ಯ, ಸೈನ್ಯ', gu: '6H  –  આરોગ્ય  –  મહામારી, જાહેર આરોગ્ય, સેના' },
+      { en: '7H  –  Alliances  –  Wars, treaties, international relations', hi: '7H  –  संधि  –  युद्ध, सन्धियाँ, अन्तर्राष्ट्रीय सम्बन्ध', sa: '7H  –  सन्धिः  –  युद्धम्, सन्धयः, अन्तर्राष्ट्रीयसम्बन्धाः', mai: '7H  –  संधि  –  युद्ध, सन्धियाँ, अन्तर्राष्ट्रीय सम्बन्ध', mr: '7H  –  संधी  –  युद्ध, करार, आंतरराष्ट्रीय संबंध', ta: '7H  –  கூட்டணிகள்  –  போர்கள், ஒப்பந்தங்கள், சர்வதேச உறவுகள்', te: '7H  –  కూటమిలు  –  యుద్ధాలు, ఒప్పందాలు, అంతర్జాతీయ సంబంధాలు', bn: '7H  –  জোট  –  যুদ্ধ, চুক্তি, আন্তর্জাতিক সম্পর্ক', kn: '7H  –  ಮೈತ್ರಿ  –  ಯುದ್ಧ, ಒಪ್ಪಂದ, ಅಂತರರಾಷ್ಟ್ರೀಯ ಸಂಬಂಧ', gu: '7H  –  જોડાણ  –  યુદ્ધ, સંધિ, આંતરરાષ્ટ્રીય સંબંધ' },
+      { en: '8H  –  Transformation  –  Deaths, natural disasters, hidden powers', hi: '8H  –  रूपांतरण  –  मृत्यु, प्राकृतिक आपदाएँ, गुप्त शक्तियाँ', sa: '8H  –  रूपान्तरणम्  –  मृत्युः, प्राकृतिकविपत्तयः, गुप्तशक्तयः', mai: '8H  –  रूपांतरण  –  मृत्यु, प्राकृतिक आपदा, गुप्त शक्ति', mr: '8H  –  रूपांतरण  –  मृत्यू, नैसर्गिक आपत्ती, गुप्त शक्ती', ta: '8H  –  மாற்றம்  –  மரணம், இயற்கை பேரழிவுகள், மறைந்த சக்திகள்', te: '8H  –  పరివర్తన  –  మరణాలు, ప్రకృతి విపత్తులు, గుప్త శక్తులు', bn: '8H  –  রূপান্তর  –  মৃত্যু, প্রাকৃতিক দুর্যোগ, গুপ্ত শক্তি', kn: '8H  –  ಪರಿವರ್ತನೆ  –  ಮರಣ, ನೈಸರ್ಗಿಕ ವಿಪತ್ತು, ಗುಪ್ತ ಶಕ್ತಿ', gu: '8H  –  પરિવર્તન  –  મૃત્યુ, કુદરતી આપત્તિ, ગુપ્ત શક્તિ' },
+      { en: '9H  –  Dharma  –  Religion, law, higher education, long journeys', hi: '9H  –  धर्म  –  धर्म, कानून, उच्च शिक्षा', sa: '9H  –  धर्मः  –  धर्मः, विधिः, उच्चशिक्षा', mai: '9H  –  धर्म  –  धर्म, कानून, उच्च शिक्षा', mr: '9H  –  धर्म  –  धर्म, कायदा, उच्च शिक्षण', ta: '9H  –  தர்மம்  –  மதம், சட்டம், உயர் கல்வி', te: '9H  –  ధర్మం  –  మతం, చట్టం, ఉన్నత విద్య', bn: '9H  –  ধর্ম  –  ধর্ম, আইন, উচ্চশিক্ষা', kn: '9H  –  ಧರ್ಮ  –  ಧರ್ಮ, ಕಾನೂನು, ಉನ್ನತ ಶಿಕ್ಷಣ', gu: '9H  –  ધર્મ  –  ધર્મ, કાયદો, ઉચ્ચ શિક્ષણ' },
+      { en: '10H  –  Governments  –  Rulers, leadership, national authority', hi: '10H  –  सरकार  –  शासक, नेतृत्व, राष्ट्रीय अधिकार', sa: '10H  –  शासनम्  –  शासकाः, नेतृत्वम्, राष्ट्रीयाधिकारः', mai: '10H  –  सरकार  –  शासक, नेतृत्व, राष्ट्रीय अधिकार', mr: '10H  –  सरकार  –  शासक, नेतृत्व, राष्ट्रीय अधिकार', ta: '10H  –  அரசாங்கம்  –  ஆட்சியாளர்கள், தலைமை, தேசிய அதிகாரம்', te: '10H  –  ప్రభుత్వం  –  పాలకులు, నాయకత్వం, జాతీయ అధికారం', bn: '10H  –  সরকার  –  শাসক, নেতৃত্ব, জাতীয় কর্তৃত্ব', kn: '10H  –  ಸರ್ಕಾರ  –  ಆಡಳಿತಗಾರರು, ನಾಯಕತ್ವ, ರಾಷ್ಟ್ರೀಯ ಅಧಿಕಾರ', gu: '10H  –  સરકાર  –  શાસક, નેતૃત્વ, રાષ્ટ્રીય સત્તા' },
+      { en: '11H  –  Gains  –  Profits for nations, social movements, aspirations', hi: '11H  –  लाभ  –  राष्ट्रीय लाभ, सामाजिक आन्दोलन', sa: '11H  –  लाभः  –  राष्ट्रीयलाभः, सामाजिकान्दोलनम्', mai: '11H  –  लाभ  –  राष्ट्रीय लाभ, सामाजिक आंदोलन', mr: '11H  –  लाभ  –  राष्ट्रीय नफा, सामाजिक चळवळी', ta: '11H  –  லாபம்  –  தேசிய இலாபங்கள், சமூக இயக்கங்கள்', te: '11H  –  లాభం  –  జాతీయ లాభాలు, సామాజిక ఉద్యమాలు', bn: '11H  –  লাভ  –  জাতীয় মুনাফা, সামাজিক আন্দোলন', kn: '11H  –  ಲಾಭ  –  ರಾಷ್ಟ್ರೀಯ ಲಾಭ, ಸಾಮಾಜಿಕ ಚಳವಳಿ', gu: '11H  –  લાભ  –  રાષ્ટ્રીય લાભ, સામાજિક આંદોલન' },
+      { en: '12H  –  Liberation  –  Foreign influence, losses, spirituality, hidden enemies', hi: '12H  –  मोक्ष  –  विदेशी प्रभाव, हानि, आध्यात्मिकता', sa: '12H  –  मोक्षः  –  विदेशप्रभावः, हानिः, आध्यात्मिकता', mai: '12H  –  मोक्ष  –  विदेशी प्रभाव, हानि, आध्यात्मिकता', mr: '12H  –  मोक्ष  –  परदेशी प्रभाव, हानी, अध्यात्म', ta: '12H  –  விடுதலை  –  வெளிநாட்டு செல்வாக்கு, இழப்புகள், ஆன்மீகம்', te: '12H  –  మోక్షం  –  విదేశీ ప్రభావం, నష్టాలు, ఆధ్యాత్మికత', bn: '12H  –  মোক্ষ  –  বিদেশি প্রভাব, ক্ষতি, আধ্যাত্মিকতা', kn: '12H  –  ಮೋಕ್ಷ  –  ವಿದೇಶಿ ಪ್ರಭಾವ, ನಷ್ಟ, ಆಧ್ಯಾತ್ಮಿಕತೆ', gu: '12H  –  મોક્ષ  –  વિદેશી પ્રભાવ, હાનિ, આધ્યાત્મિકતા' },
     ];
-    // Planets in each house at Sankranti (approximate — use current transits)
+    // Planets in each house at Sankranti (approximate  –  use current transits)
     return { date: dateResult, houseThemes: SANKRANTI_HOUSES_DATA };
   }, [year]);
 
-  // QW-12: Ashtama Shani — Saturn in 8th from natal Moon = 2.5yr of extreme difficulty
+  // QW-12: Ashtama Shani  –  Saturn in 8th from natal Moon = 2.5yr of extreme difficulty
   const ashtamaShani = useMemo(() => {
     if (!hasBirthData || birthRashi <= 0) return null;
     const sat = currentTransits.find(c => c.planetId === 6);
@@ -355,10 +355,10 @@ export default function TransitsPage() {
             <p>A <strong>transit</strong> (Gochara) is the <em>current</em> movement of a planet through the zodiac. While your birth chart is fixed, transiting planets keep moving and activate different areas of your life as they pass through different signs.</p>
             <p><strong>How transits affect you:</strong></p>
             <ul className="list-disc ml-4 space-y-1 text-xs">
-              <li><strong className="text-amber-300">Jupiter transits</strong> (12 months per sign) — expansion, opportunities, and wisdom in the life area ruled by that sign. Jupiter in your 7th house from Moon = new relationships or marriage.</li>
-              <li><strong className="text-indigo-300">Saturn transits</strong> (2.5 years per sign) — discipline, hard work, and restructuring. Saturn in your 10th house from Moon = career pressure but also career-defining achievements.</li>
-              <li><strong className="text-slate-300">Rahu/Ketu transits</strong> (18 months per sign) — obsessions, unconventional paths, and karmic lessons. Rahu in your 1st house = identity transformation.</li>
-              <li><strong className="text-red-400">Mars transits</strong> (45 days per sign) — energy, conflict, and initiative. Mars in your 2nd house = financial drive but watch for impulsive spending.</li>
+              <li><strong className="text-amber-300">Jupiter transits</strong> (12 months per sign)  –  expansion, opportunities, and wisdom in the life area ruled by that sign. Jupiter in your 7th house from Moon = new relationships or marriage.</li>
+              <li><strong className="text-indigo-300">Saturn transits</strong> (2.5 years per sign)  –  discipline, hard work, and restructuring. Saturn in your 10th house from Moon = career pressure but also career-defining achievements.</li>
+              <li><strong className="text-slate-300">Rahu/Ketu transits</strong> (18 months per sign)  –  obsessions, unconventional paths, and karmic lessons. Rahu in your 1st house = identity transformation.</li>
+              <li><strong className="text-red-400">Mars transits</strong> (45 days per sign)  –  energy, conflict, and initiative. Mars in your 2nd house = financial drive but watch for impulsive spending.</li>
             </ul>
             <p><strong>Key rule:</strong> Transits are read from your <em>Moon sign</em> (Chandra Rashi), not your ascendant. The house a transiting planet occupies from your Moon determines which life area is activated.</p>
           </div>
@@ -366,10 +366,10 @@ export default function TransitsPage() {
           <div className="space-y-3">
             <p><strong>गोचर</strong> राशिचक्र में ग्रहों की <em>वर्तमान</em> गति है। आपकी जन्म कुण्डली स्थिर है, लेकिन गोचर ग्रह चलते रहते हैं और विभिन्न राशियों से गुजरते हुए जीवन के अलग-अलग क्षेत्रों को सक्रिय करते हैं।</p>
             <ul className="list-disc ml-4 space-y-1 text-xs">
-              <li><strong className="text-amber-300">बृहस्पति गोचर</strong> (प्रति राशि 12 माह) — विस्तार, अवसर और ज्ञान।</li>
-              <li><strong className="text-indigo-300">शनि गोचर</strong> (प्रति राशि 2.5 वर्ष) — अनुशासन, कठोर परिश्रम और पुनर्गठन।</li>
-              <li><strong className="text-slate-300">राहु/केतु गोचर</strong> (प्रति राशि 18 माह) — जुनून, अपरम्परागत मार्ग और कर्म पाठ।</li>
-              <li><strong className="text-red-400">मंगल गोचर</strong> (प्रति राशि 45 दिन) — ऊर्जा, संघर्ष और पहल।</li>
+              <li><strong className="text-amber-300">बृहस्पति गोचर</strong> (प्रति राशि 12 माह)  –  विस्तार, अवसर और ज्ञान।</li>
+              <li><strong className="text-indigo-300">शनि गोचर</strong> (प्रति राशि 2.5 वर्ष)  –  अनुशासन, कठोर परिश्रम और पुनर्गठन।</li>
+              <li><strong className="text-slate-300">राहु/केतु गोचर</strong> (प्रति राशि 18 माह)  –  जुनून, अपरम्परागत मार्ग और कर्म पाठ।</li>
+              <li><strong className="text-red-400">मंगल गोचर</strong> (प्रति राशि 45 दिन)  –  ऊर्जा, संघर्ष और पहल।</li>
             </ul>
             <p><strong>मुख्य नियम:</strong> गोचर आपकी <em>चन्द्र राशि</em> से पढ़ा जाता है, लग्न से नहीं।</p>
           </div>
@@ -468,7 +468,7 @@ export default function TransitsPage() {
                 </h2>
                 <p className="text-text-secondary text-xs mb-4 text-center md:text-left" suppressHydrationWarning>
                   {new Date().toLocaleDateString(locale === 'hi' ? 'hi-IN' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
-                  {' — Gochara'}
+                  {'  –  Gochara'}
                 </p>
                 <div className="grid grid-cols-2 gap-1.5 mb-4">
                   {currentTransits.map(ct => (
@@ -497,7 +497,7 @@ export default function TransitsPage() {
                       <strong className="text-[#e0d4ff]">
                         {locale === 'hi' ? `गुरु आपके ${jupiterInsight.house}वें भाव में` : `Jupiter in your ${jupiterInsight.house}${jupiterInsight.house === 1 ? 'st' : jupiterInsight.house === 2 ? 'nd' : jupiterInsight.house === 3 ? 'rd' : 'th'} house`}
                       </strong>
-                      {' — '}{jupiterInsight.effect}
+                      {'  –  '}{jupiterInsight.effect}
                     </p>
                   </div>
                 )}
@@ -518,8 +518,8 @@ export default function TransitsPage() {
                     <p className="text-text-secondary/80 text-xs leading-relaxed" style={bodyFont}>
                       <span className="text-red-400 font-bold">{msg('ashtamaShaniActive', locale)}</span>
                       {' '}{locale === 'en'
-                        ? `Saturn in ${ashtamaShani.saturnSign.en} is 8th from your Moon — intense karmic pressure.`
-                        : `शनि ${ashtamaShani.saturnSign.hi} में आपके चन्द्र से 8वें भाव में — गहन कार्मिक दबाव।`}
+                        ? `Saturn in ${ashtamaShani.saturnSign.en} is 8th from your Moon  –  intense karmic pressure.`
+                        : `शनि ${ashtamaShani.saturnSign.hi} में आपके चन्द्र से 8वें भाव में  –  गहन कार्मिक दबाव।`}
                     </p>
                   </div>
                 )}
@@ -804,7 +804,7 @@ export default function TransitsPage() {
         </>
       )}
 
-      {/* Sankranti Explorer — all 12 Sun sign ingresses */}
+      {/* Sankranti Explorer  –  all 12 Sun sign ingresses */}
       {allSankrantis.length > 0 && selectedSankranti && (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
           className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 rounded-2xl p-6 mt-10">
@@ -813,11 +813,11 @@ export default function TransitsPage() {
           </h2>
           <p className="text-text-secondary/70 text-xs text-center mb-4" style={bodyFont}>
             {locale === 'en'
-              ? `Sun enters 0° sidereal ${selectedSankranti.name?.en || ''} (${selectedSankranti.name?.sa || selectedSankranti.name?.hi || ''})${selectedSankrantiIdx === 0 ? ' — the astrological new year (Brihat Samhita)' : ''}`
-              : `सूर्य ${selectedSankranti.name?.hi || ''} (${selectedSankranti.name?.en || ''}) राशि में प्रवेश${selectedSankrantiIdx === 0 ? ' — ज्योतिषीय नव वर्ष' : ''}`}
+              ? `Sun enters 0° sidereal ${selectedSankranti.name?.en || ''} (${selectedSankranti.name?.sa || selectedSankranti.name?.hi || ''})${selectedSankrantiIdx === 0 ? '  –  the astrological new year (Brihat Samhita)' : ''}`
+              : `सूर्य ${selectedSankranti.name?.hi || ''} (${selectedSankranti.name?.en || ''}) राशि में प्रवेश${selectedSankrantiIdx === 0 ? '  –  ज्योतिषीय नव वर्ष' : ''}`}
           </p>
 
-          {/* Sankranti selector — 12 rashi pills */}
+          {/* Sankranti selector  –  12 rashi pills */}
           <div className="flex flex-wrap justify-center gap-1.5 mb-5">
             {allSankrantis.map((s, idx) => {
               const isPast = s.date < new Date();
@@ -850,7 +850,7 @@ export default function TransitsPage() {
             </div>
           </div>
 
-          {/* House themes — only for Mesha Sankranti (mundane astrology) */}
+          {/* House themes  –  only for Mesha Sankranti (mundane astrology) */}
           {selectedSankrantiIdx === 0 && meshaSankranti && (
             <>
               <h3 className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-3 text-center">

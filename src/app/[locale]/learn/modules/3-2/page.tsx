@@ -30,17 +30,17 @@ function Page1() {
     <div className="space-y-6">
       <KeyTakeaway
         points={[
-          'Signs are classified as Movable (Chara), Fixed (Sthira), or Dual (Dwiswabhava) — this quality shapes how the sign expresses energy.',
+          'Signs are classified as Movable (Chara), Fixed (Sthira), or Dual (Dwiswabhava)  –  this quality shapes how the sign expresses energy.',
           'Combining modality (movable/fixed/dual) with element (fire/earth/air/water) creates 12 unique personality-energy patterns.',
         ]}
         locale={locale}
       />
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Three Qualities (Gunas): How Signs Act</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-3">Every sign has a fundamental quality that determines HOW it operates. Quality is the engine of behavior — it tells you whether a sign initiates, sustains, or adapts. Understanding quality is essential for both personality reading and muhurta (timing) work.</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">Every sign has a fundamental quality that determines HOW it operates. Quality is the engine of behavior  –  it tells you whether a sign initiates, sustains, or adapts. Understanding quality is essential for both personality reading and muhurta (timing) work.</p>
         <div className="flex flex-wrap gap-3 my-2">
-          <BeginnerNote term="Tattva (Element)" explanation="One of four fundamental energies — Fire (Agni), Earth (Prithvi), Air (Vayu), or Water (Jala) — that defines what kind of energy a sign carries." />
-          <BeginnerNote term="Guna (Quality)" explanation="A sign's mode of action — Chara (movable/cardinal) initiates, Sthira (fixed) sustains, Dwiswabhava (dual/mutable) adapts." />
+          <BeginnerNote term="Tattva (Element)" explanation="One of four fundamental energies  –  Fire (Agni), Earth (Prithvi), Air (Vayu), or Water (Jala)  –  that defines what kind of energy a sign carries." />
+          <BeginnerNote term="Guna (Quality)" explanation="A sign's mode of action  –  Chara (movable/cardinal) initiates, Sthira (fixed) sustains, Dwiswabhava (dual/mutable) adapts." />
           <BeginnerNote term="Chara / Sthira / Dwiswabhava" explanation="The three modalities: Chara signs (Aries, Cancer, Libra, Capricorn) start things; Sthira signs (Taurus, Leo, Scorpio, Aquarius) hold things; Dwiswabhava signs (Gemini, Virgo, Sagittarius, Pisces) change things." />
         </div>
       </section>
@@ -84,14 +84,14 @@ function Page1() {
         </p>
       </section>
 
-      <WhyItMatters locale={locale}>The modality-element combination is not just theory — it directly affects muhurta selection. Starting a business under a movable sign, laying a foundation under a fixed sign, or beginning studies under a dual sign can make a real difference in outcome.</WhyItMatters>
+      <WhyItMatters locale={locale}>The modality-element combination is not just theory  –  it directly affects muhurta selection. Starting a business under a movable sign, laying a foundation under a fixed sign, or beginning studies under a dual sign can make a real difference in outcome.</WhyItMatters>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15 mt-4">
         <h4 className="text-amber-300 text-xs uppercase tracking-widest font-bold mb-3">Quality and Activity Timing</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
-          <p><span className="text-gold-light font-medium">Starting a business?</span> Choose a Chara (Movable) Lagna — Aries, Cancer, Libra, or Capricorn rising at the muhurta moment.</p>
-          <p><span className="text-gold-light font-medium">Laying a foundation?</span> Choose a Sthira (Fixed) Lagna — Taurus, Leo, Scorpio, or Aquarius for permanence.</p>
-          <p><span className="text-gold-light font-medium">Starting a course?</span> Choose a Dwiswabhava (Dual) Lagna — Gemini, Virgo, Sagittarius, or Pisces for learning and growth.</p>
+          <p><span className="text-gold-light font-medium">Starting a business?</span> Choose a Chara (Movable) Lagna  –  Aries, Cancer, Libra, or Capricorn rising at the muhurta moment.</p>
+          <p><span className="text-gold-light font-medium">Laying a foundation?</span> Choose a Sthira (Fixed) Lagna  –  Taurus, Leo, Scorpio, or Aquarius for permanence.</p>
+          <p><span className="text-gold-light font-medium">Starting a course?</span> Choose a Dwiswabhava (Dual) Lagna  –  Gemini, Virgo, Sagittarius, or Pisces for learning and growth.</p>
         </div>
       </section>
     </div>
@@ -105,11 +105,11 @@ function Page2() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Four Elements (Tattvas): What Energy Signs Carry</h3>
-        <p className="text-text-secondary text-sm leading-relaxed mb-3">While quality tells you HOW a sign acts, the element tells you WHAT kind of energy it carries. The four Tattvas (elements) are fundamental to Indian philosophy — they appear in Ayurveda, Yoga, and Tantra as well as Jyotish. Each element contains 3 signs, one of each quality.</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">While quality tells you HOW a sign acts, the element tells you WHAT kind of energy it carries. The four Tattvas (elements) are fundamental to Indian philosophy  –  they appear in Ayurveda, Yoga, and Tantra as well as Jyotish. Each element contains 3 signs, one of each quality.</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Agni (Fire) — Action and Transformation</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Agni (Fire)  –  Action and Transformation</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           <span className="text-red-300 font-bold">Signs: Aries (Cardinal), Leo (Fixed), Sagittarius (Mutable)</span>
         </p>
@@ -120,7 +120,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
-        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">Prithvi (Earth) — Material and Stability</h4>
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">Prithvi (Earth)  –  Material and Stability</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           <span className="text-amber-300 font-bold">Signs: Taurus (Fixed), Virgo (Mutable), Capricorn (Cardinal)</span>
         </p>
@@ -131,7 +131,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-cyan-500/15">
-        <h4 className="text-cyan-400 text-xs uppercase tracking-widest font-bold mb-3">Vayu (Air) — Intellect and Connection</h4>
+        <h4 className="text-cyan-400 text-xs uppercase tracking-widest font-bold mb-3">Vayu (Air)  –  Intellect and Connection</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           <span className="text-cyan-300 font-bold">Signs: Gemini (Mutable), Libra (Cardinal), Aquarius (Fixed)</span>
         </p>
@@ -142,7 +142,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-400 text-xs uppercase tracking-widest font-bold mb-3">Jala (Water) — Emotion and Intuition</h4>
+        <h4 className="text-blue-400 text-xs uppercase tracking-widest font-bold mb-3">Jala (Water)  –  Emotion and Intuition</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           <span className="text-blue-300 font-bold">Signs: Cancer (Cardinal), Scorpio (Fixed), Pisces (Mutable)</span>
         </p>
@@ -154,13 +154,13 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 mt-4">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">Reading Element Balance in a Chart</h4>
-        <p className="text-text-secondary text-sm leading-relaxed mb-2">Count how many of the 9 planets fall in each element group. A balanced chart has planets spread across all 4 elements. Most charts are imbalanced — and that imbalance IS the person&apos;s temperament:</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-2">Count how many of the 9 planets fall in each element group. A balanced chart has planets spread across all 4 elements. Most charts are imbalanced  –  and that imbalance IS the person&apos;s temperament:</p>
         <div className="space-y-1 text-text-secondary text-xs leading-relaxed mt-2">
           <p><span className="text-gold-light font-medium">4+ planets in Fire:</span> Dominant leader, high energy, needs to learn patience and empathy</p>
           <p><span className="text-gold-light font-medium">4+ planets in Earth:</span> Material achiever, practical builder, needs to develop spiritual awareness</p>
           <p><span className="text-gold-light font-medium">4+ planets in Air:</span> Intellectual communicator, social butterfly, needs to develop emotional depth</p>
           <p><span className="text-gold-light font-medium">4+ planets in Water:</span> Emotional empath, intuitive healer, needs to develop practical grounding</p>
-          <p><span className="text-gold-light font-medium">0 planets in an element:</span> That element&apos;s qualities are the person&apos;s blindspot — the area they must consciously develop</p>
+          <p><span className="text-gold-light font-medium">0 planets in an element:</span> That element&apos;s qualities are the person&apos;s blindspot  –  the area they must consciously develop</p>
         </div>
       </section>
     </div>
@@ -173,7 +173,7 @@ function Page3() {
   return (
     <div className="space-y-6">
       <section>
-        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>The Quality-Element Matrix — 12 Unique Combinations</h3>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>The Quality-Element Matrix  –  12 Unique Combinations</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">Every sign is a unique combination of one quality and one element. 3 qualities x 4 elements = exactly 12, which is why there are exactly 12 signs. This is the fundamental mathematical structure of the zodiac, not an arbitrary choice.</p>
       </section>
 
@@ -188,27 +188,27 @@ function Page3() {
           <tbody className="divide-y divide-gold-primary/5">
             <tr className="hover:bg-gold-primary/3">
               <td className="py-2 px-2 text-red-400 font-bold">Agni (Fire)</td>
-              <td className="py-2 px-2 text-text-secondary">Aries — initiates action</td>
-              <td className="py-2 px-2 text-text-secondary">Leo — sustains authority</td>
-              <td className="py-2 px-2 text-text-secondary">Sagittarius — adapts philosophy</td>
+              <td className="py-2 px-2 text-text-secondary">Aries  –  initiates action</td>
+              <td className="py-2 px-2 text-text-secondary">Leo  –  sustains authority</td>
+              <td className="py-2 px-2 text-text-secondary">Sagittarius  –  adapts philosophy</td>
             </tr>
             <tr className="hover:bg-gold-primary/3">
               <td className="py-2 px-2 text-amber-400 font-bold">Prithvi (Earth)</td>
-              <td className="py-2 px-2 text-text-secondary">Capricorn — initiates structures</td>
-              <td className="py-2 px-2 text-text-secondary">Taurus — sustains wealth</td>
-              <td className="py-2 px-2 text-text-secondary">Virgo — adapts through service</td>
+              <td className="py-2 px-2 text-text-secondary">Capricorn  –  initiates structures</td>
+              <td className="py-2 px-2 text-text-secondary">Taurus  –  sustains wealth</td>
+              <td className="py-2 px-2 text-text-secondary">Virgo  –  adapts through service</td>
             </tr>
             <tr className="hover:bg-gold-primary/3">
               <td className="py-2 px-2 text-cyan-400 font-bold">Vayu (Air)</td>
-              <td className="py-2 px-2 text-text-secondary">Libra — initiates relationships</td>
-              <td className="py-2 px-2 text-text-secondary">Aquarius — sustains ideals</td>
-              <td className="py-2 px-2 text-text-secondary">Gemini — adapts communication</td>
+              <td className="py-2 px-2 text-text-secondary">Libra  –  initiates relationships</td>
+              <td className="py-2 px-2 text-text-secondary">Aquarius  –  sustains ideals</td>
+              <td className="py-2 px-2 text-text-secondary">Gemini  –  adapts communication</td>
             </tr>
             <tr className="hover:bg-gold-primary/3">
               <td className="py-2 px-2 text-blue-400 font-bold">Jala (Water)</td>
-              <td className="py-2 px-2 text-text-secondary">Cancer — initiates nurturing</td>
-              <td className="py-2 px-2 text-text-secondary">Scorpio — sustains intensity</td>
-              <td className="py-2 px-2 text-text-secondary">Pisces — adapts spiritually</td>
+              <td className="py-2 px-2 text-text-secondary">Cancer  –  initiates nurturing</td>
+              <td className="py-2 px-2 text-text-secondary">Scorpio  –  sustains intensity</td>
+              <td className="py-2 px-2 text-text-secondary">Pisces  –  adapts spiritually</td>
             </tr>
           </tbody>
         </table>
@@ -237,7 +237,7 @@ function Page3() {
           </div>
           <div>
             <p className="text-gold-light font-medium text-xs mb-1">Fruitfulness</p>
-            <p className="text-xs">Water signs (Cancer, Scorpio, Pisces) are Fruitful — favorable for conception and fertility questions. Fire signs are Barren. Earth and Air signs are Semi-fruitful.</p>
+            <p className="text-xs">Water signs (Cancer, Scorpio, Pisces) are Fruitful  –  favorable for conception and fertility questions. Fire signs are Barren. Earth and Air signs are Semi-fruitful.</p>
           </div>
         </div>
       </section>
@@ -246,11 +246,11 @@ function Page3() {
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <p><span className="text-red-300 font-bold">MISCONCEPTION: &apos;Aquarius is a water sign because of the water-bearer symbol.&apos;</span><br />
-          <span className="text-emerald-300">REALITY: Aquarius is an AIR sign. The water-bearer represents the distribution of knowledge and humanitarian ideals — NOT the water element.</span></p>
+          <span className="text-emerald-300">REALITY: Aquarius is an AIR sign. The water-bearer represents the distribution of knowledge and humanitarian ideals  –  NOT the water element.</span></p>
           <p><span className="text-red-300 font-bold">MISCONCEPTION: &apos;Fixed signs never change.&apos;</span><br />
-          <span className="text-emerald-300">REALITY: Fixed signs resist change but CAN change — they just take longer. Think of them as having high inertia, not immobility.</span></p>
+          <span className="text-emerald-300">REALITY: Fixed signs resist change but CAN change  –  they just take longer. Think of them as having high inertia, not immobility.</span></p>
           <p><span className="text-red-300 font-bold">MISCONCEPTION: &apos;Mutable signs are weak.&apos;</span><br />
-          <span className="text-emerald-300">REALITY: Mutable signs are adaptable, not weak. Flexibility is a strength — these signs survive by evolving. The greatest teachers (Sagittarius) and healers (Virgo) are Mutable.</span></p>
+          <span className="text-emerald-300">REALITY: Mutable signs are adaptable, not weak. Flexibility is a strength  –  these signs survive by evolving. The greatest teachers (Sagittarius) and healers (Virgo) are Mutable.</span></p>
         </div>
       </section>
     </div>

@@ -49,7 +49,7 @@ interface DayTimelineProps {
 function collectWindows(panchang: PanchangData): TimeWindow[] {
   const windows: TimeWindow[] = [];
 
-  // — Auspicious —
+  //  –  Auspicious  – 
   if (panchang.brahmaMuhurta) {
     windows.push({
       name: 'Brahma Muhurta',
@@ -83,7 +83,7 @@ function collectWindows(panchang: PanchangData): TimeWindow[] {
     });
   }
 
-  // Amrit Kalam — array or single
+  // Amrit Kalam  –  array or single
   const amritWindows = panchang.amritKalamAll ?? (panchang.amritKalam ? [panchang.amritKalam] : []);
   amritWindows.forEach((w, i) => {
     windows.push({
@@ -129,7 +129,7 @@ function collectWindows(panchang: PanchangData): TimeWindow[] {
     });
   }
 
-  // — Inauspicious —
+  //  –  Inauspicious  – 
   if (panchang.rahuKaal) {
     windows.push({
       name: 'Rahu Kaal',
@@ -163,7 +163,7 @@ function collectWindows(panchang: PanchangData): TimeWindow[] {
     });
   }
 
-  // Varjyam — array or single
+  // Varjyam  –  array or single
   const varjyamWindows = panchang.varjyamAll ?? (panchang.varjyam ? [panchang.varjyam] : []);
   varjyamWindows.forEach((w, i) => {
     windows.push({
@@ -176,7 +176,7 @@ function collectWindows(panchang: PanchangData): TimeWindow[] {
     });
   });
 
-  // Dur Muhurtam — array
+  // Dur Muhurtam  –  array
   if (panchang.durMuhurtam) {
     panchang.durMuhurtam.forEach((w, i) => {
       windows.push({
@@ -201,7 +201,7 @@ function collectWindows(panchang: PanchangData): TimeWindow[] {
     });
   }
 
-  // Bhadra — array or single
+  // Bhadra  –  array or single
   const bhadraWindows = panchang.bhadraAll ?? (panchang.bhadra ? [panchang.bhadra] : []);
   bhadraWindows.forEach((w, i) => {
     windows.push({
@@ -210,7 +210,7 @@ function collectWindows(panchang: PanchangData): TimeWindow[] {
       startTime: w.start,
       endTime: w.end,
       type: 'inauspicious',
-      description: 'Vishti karana — avoid auspicious work',
+      description: 'Vishti karana  –  avoid auspicious work',
     });
   });
 
@@ -328,7 +328,7 @@ export default function DayTimeline({
                 </span>
               </div>
 
-              {/* Description — hidden in compact mode */}
+              {/* Description  –  hidden in compact mode */}
               {!compact && (
                 <p className="text-text-secondary text-xs mt-1 leading-relaxed">
                   {w.description}
@@ -358,7 +358,7 @@ export default function DayTimeline({
         </div>
       )}
 
-      {/* Legend — only in full mode */}
+      {/* Legend  –  only in full mode */}
       {!compact && (
         <div className="flex items-center gap-4 mt-5 pt-3 border-t border-white/[0.06]">
           <span className="flex items-center gap-1.5 text-text-secondary text-xs">

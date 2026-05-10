@@ -597,8 +597,8 @@ export function MonthlyClient({ rashi, locale }: MonthlyClientProps) {
             {/* Share */}
             <div className="flex justify-center">
               <ShareButton
-                title={`${vedicName} (${westernName}) — ${L.monthlyHoroscope}`}
-                text={`${westernName} Monthly Horoscope — Score: ${overallMonthlyScore}/10 | dekhopanchang.com`}
+                title={`${vedicName} (${westernName})  –  ${L.monthlyHoroscope}`}
+                text={`${westernName} Monthly Horoscope  –  Score: ${overallMonthlyScore}/10 | dekhopanchang.com`}
                 url={`https://dekhopanchang.com/${locale}/horoscope/${rashiSlug}/monthly`}
                 locale={locale as Locale}
               />

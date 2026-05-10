@@ -1,15 +1,15 @@
 {
   "title": {
-    "en": "Why 7 Days? — Chaldean Order & Indian Origins",
-    "hi": "सात दिन क्यों? — कल्दी क्रम और भारतीय उत्पत्ति",
-    "sa": "सप्तदिनानि किमर्थम्? — काल्दीक्रमः भारतीयोत्पत्तिश्च",
-    "ta": "ஏன் 7 நாட்கள்? — கால்டியன் வரிசை & இந்திய தோற்றம்",
-    "te": "ఎందుకు 7 రోజులు? — కాల్డియన్ క్రమం & భారతీయ మూలాలు",
-    "bn": "কেন ৭ দিন? — ক্যাল্ডীয় ক্রম ও ভারতীয় উৎপত্তি",
-    "kn": "ಏಕೆ 7 ದಿನಗಳು? — ಕಾಲ್ಡಿಯನ್ ಕ್ರಮ & ಭಾರತೀಯ ಮೂಲ",
-    "mr": "सात दिवस का? — कॅल्डियन क्रम आणि भारतीय उत्पत्ती",
-    "gu": "કેમ 7 દિવસ? — કાલ્ડિયન ક્રમ & ભારતીય ઉત્પત્તિ",
-    "mai": "सात दिन किएँ? — कल्दी क्रम आ भारतीय उत्पत्ति"
+    "en": "Why 7 Days?  –  Chaldean Order & Indian Origins",
+    "hi": "सात दिन क्यों?  –  कल्दी क्रम और भारतीय उत्पत्ति",
+    "sa": "सप्तदिनानि किमर्थम्?  –  काल्दीक्रमः भारतीयोत्पत्तिश्च",
+    "ta": "ஏன் 7 நாட்கள்?  –  கால்டியன் வரிசை & இந்திய தோற்றம்",
+    "te": "ఎందుకు 7 రోజులు?  –  కాల్డియన్ క్రమం & భారతీయ మూలాలు",
+    "bn": "কেন ৭ দিন?  –  ক্যাল্ডীয় ক্রম ও ভারতীয় উৎপত্তি",
+    "kn": "ಏಕೆ 7 ದಿನಗಳು?  –  ಕಾಲ್ಡಿಯನ್ ಕ್ರಮ & ಭಾರತೀಯ ಮೂಲ",
+    "mr": "सात दिवस का?  –  कॅल्डियन क्रम आणि भारतीय उत्पत्ती",
+    "gu": "કેમ 7 દિવસ?  –  કાલ્ડિયન ક્રમ & ભારતીય ઉત્પત્તિ",
+    "mai": "सात दिन किएँ?  –  कल्दी क्रम आ भारतीय उत्पत्ति"
   },
   "subtitle": {
     "en": "The Hora cycle, Chaldean planetary ordering, and the surprising link between ancient Babylon and the Vedic week",
@@ -103,16 +103,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Hora derives from the Sanskrit \"Ahoratra\" — the compound of \"Aha\" (day) and \"Ratra\" (night). By dropping the first and last syllables (a- and -ratra), the middle portion \"hora\" remains. This etymological derivation is given in Surya Siddhanta and later commentaries.",
-        "hi": "होरा संस्कृत \"अहोरात्र\" से व्युत्पन्न है — \"अह\" (दिन) और \"रात्र\" (रात) का समास। प्रथम और अन्तिम अक्षर (अ- और -रात्र) हटाने पर मध्य भाग \"होरा\" शेष रहता है। यह व्युत्पत्ति सूर्य सिद्धान्त और परवर्ती टीकाओं में दी गयी है।",
-        "sa": "होरा संस्कृत \"अहोरात्र\" से व्युत्पन्न है — \"अह\" (दिन) और \"रात्र\" (रात) का समास। प्रथम और अन्तिम अक्षर (अ- और -रात्र) हटाने पर मध्य भाग \"होरा\" शेष रहता है। यह व्युत्पत्ति सूर्य सिद्धान्त और परवर्ती टीकाओं में दी गयी है।",
-        "ta": "Hora derives from the Sanskrit \"Ahoratra\" — the compound of \"Aha\" (day) and \"Ratra\" (night). By dropping the first and last syllables (a- and -ratra), the middle portion \"hora\" remains. This etymological derivation is given in Surya Siddhanta and later commentaries.",
-        "te": "Hora derives from the Sanskrit \"Ahoratra\" — the compound of \"Aha\" (day) and \"Ratra\" (night). By dropping the first and last syllables (a- and -ratra), the middle portion \"hora\" remains. This etymological derivation is given in Surya Siddhanta and later commentaries.",
-        "bn": "Hora derives from the Sanskrit \"Ahoratra\" — the compound of \"Aha\" (day) and \"Ratra\" (night). By dropping the first and last syllables (a- and -ratra), the middle portion \"hora\" remains. This etymological derivation is given in Surya Siddhanta and later commentaries.",
-        "kn": "Hora derives from the Sanskrit \"Ahoratra\" — the compound of \"Aha\" (day) and \"Ratra\" (night). By dropping the first and last syllables (a- and -ratra), the middle portion \"hora\" remains. This etymological derivation is given in Surya Siddhanta and later commentaries.",
-        "mr": "होरा संस्कृत \"अहोरात्र\" से व्युत्पन्न है — \"अह\" (दिन) और \"रात्र\" (रात) का समास। प्रथम और अन्तिम अक्षर (अ- और -रात्र) हटाने पर मध्य भाग \"होरा\" शेष रहता है। यह व्युत्पत्ति सूर्य सिद्धान्त और परवर्ती टीकाओं में दी गयी है।",
-        "gu": "Hora derives from the Sanskrit \"Ahoratra\" — the compound of \"Aha\" (day) and \"Ratra\" (night). By dropping the first and last syllables (a- and -ratra), the middle portion \"hora\" remains. This etymological derivation is given in Surya Siddhanta and later commentaries.",
-        "mai": "होरा संस्कृत \"अहोरात्र\" से व्युत्पन्न है — \"अह\" (दिन) और \"रात्र\" (रात) का समास। प्रथम और अन्तिम अक्षर (अ- और -रात्र) हटाने पर मध्य भाग \"होरा\" शेष रहता है। यह व्युत्पत्ति सूर्य सिद्धान्त और परवर्ती टीकाओं में दी गयी है।"
+        "en": "Hora derives from the Sanskrit \"Ahoratra\"  –  the compound of \"Aha\" (day) and \"Ratra\" (night). By dropping the first and last syllables (a- and -ratra), the middle portion \"hora\" remains. This etymological derivation is given in Surya Siddhanta and later commentaries.",
+        "hi": "होरा संस्कृत \"अहोरात्र\" से व्युत्पन्न है  –  \"अह\" (दिन) और \"रात्र\" (रात) का समास। प्रथम और अन्तिम अक्षर (अ- और -रात्र) हटाने पर मध्य भाग \"होरा\" शेष रहता है। यह व्युत्पत्ति सूर्य सिद्धान्त और परवर्ती टीकाओं में दी गयी है।",
+        "sa": "होरा संस्कृत \"अहोरात्र\" से व्युत्पन्न है  –  \"अह\" (दिन) और \"रात्र\" (रात) का समास। प्रथम और अन्तिम अक्षर (अ- और -रात्र) हटाने पर मध्य भाग \"होरा\" शेष रहता है। यह व्युत्पत्ति सूर्य सिद्धान्त और परवर्ती टीकाओं में दी गयी है।",
+        "ta": "Hora derives from the Sanskrit \"Ahoratra\"  –  the compound of \"Aha\" (day) and \"Ratra\" (night). By dropping the first and last syllables (a- and -ratra), the middle portion \"hora\" remains. This etymological derivation is given in Surya Siddhanta and later commentaries.",
+        "te": "Hora derives from the Sanskrit \"Ahoratra\"  –  the compound of \"Aha\" (day) and \"Ratra\" (night). By dropping the first and last syllables (a- and -ratra), the middle portion \"hora\" remains. This etymological derivation is given in Surya Siddhanta and later commentaries.",
+        "bn": "Hora derives from the Sanskrit \"Ahoratra\"  –  the compound of \"Aha\" (day) and \"Ratra\" (night). By dropping the first and last syllables (a- and -ratra), the middle portion \"hora\" remains. This etymological derivation is given in Surya Siddhanta and later commentaries.",
+        "kn": "Hora derives from the Sanskrit \"Ahoratra\"  –  the compound of \"Aha\" (day) and \"Ratra\" (night). By dropping the first and last syllables (a- and -ratra), the middle portion \"hora\" remains. This etymological derivation is given in Surya Siddhanta and later commentaries.",
+        "mr": "होरा संस्कृत \"अहोरात्र\" से व्युत्पन्न है  –  \"अह\" (दिन) और \"रात्र\" (रात) का समास। प्रथम और अन्तिम अक्षर (अ- और -रात्र) हटाने पर मध्य भाग \"होरा\" शेष रहता है। यह व्युत्पत्ति सूर्य सिद्धान्त और परवर्ती टीकाओं में दी गयी है।",
+        "gu": "Hora derives from the Sanskrit \"Ahoratra\"  –  the compound of \"Aha\" (day) and \"Ratra\" (night). By dropping the first and last syllables (a- and -ratra), the middle portion \"hora\" remains. This etymological derivation is given in Surya Siddhanta and later commentaries.",
+        "mai": "होरा संस्कृत \"अहोरात्र\" से व्युत्पन्न है  –  \"अह\" (दिन) और \"रात्र\" (रात) का समास। प्रथम और अन्तिम अक्षर (अ- और -रात्र) हटाने पर मध्य भाग \"होरा\" शेष रहता है। यह व्युत्पत्ति सूर्य सिद्धान्त और परवर्ती टीकाओं में दी गयी है।"
       },
       "options": [
         {
@@ -182,16 +182,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Ahoratra is a Sanskrit compound: \"Aha\" (day/daylight) + \"Ratra\" (night). Together it denotes one complete diurnal cycle of day and night — a full 24-hour period. This is the fundamental time-unit from which the hora (1/24 of a day) is derived.",
-        "hi": "अहोरात्र एक संस्कृत समास है: \"अह\" (दिन/दिवस) + \"रात्र\" (रात्रि)। मिलकर यह दिन और रात के एक पूर्ण चक्र — 24 घण्टे की अवधि — को दर्शाता है। यही वह मूल समय-इकाई है जिससे होरा (दिन का 1/24 भाग) व्युत्पन्न है।",
-        "sa": "अहोरात्र एक संस्कृत समास है: \"अह\" (दिन/दिवस) + \"रात्र\" (रात्रि)। मिलकर यह दिन और रात के एक पूर्ण चक्र — 24 घण्टे की अवधि — को दर्शाता है। यही वह मूल समय-इकाई है जिससे होरा (दिन का 1/24 भाग) व्युत्पन्न है।",
-        "ta": "Ahoratra is a Sanskrit compound: \"Aha\" (day/daylight) + \"Ratra\" (night). Together it denotes one complete diurnal cycle of day and night — a full 24-hour period. This is the fundamental time-unit from which the hora (1/24 of a day) is derived.",
-        "te": "Ahoratra is a Sanskrit compound: \"Aha\" (day/daylight) + \"Ratra\" (night). Together it denotes one complete diurnal cycle of day and night — a full 24-hour period. This is the fundamental time-unit from which the hora (1/24 of a day) is derived.",
-        "bn": "Ahoratra is a Sanskrit compound: \"Aha\" (day/daylight) + \"Ratra\" (night). Together it denotes one complete diurnal cycle of day and night — a full 24-hour period. This is the fundamental time-unit from which the hora (1/24 of a day) is derived.",
-        "kn": "Ahoratra is a Sanskrit compound: \"Aha\" (day/daylight) + \"Ratra\" (night). Together it denotes one complete diurnal cycle of day and night — a full 24-hour period. This is the fundamental time-unit from which the hora (1/24 of a day) is derived.",
-        "mr": "अहोरात्र एक संस्कृत समास है: \"अह\" (दिन/दिवस) + \"रात्र\" (रात्रि)। मिलकर यह दिन और रात के एक पूर्ण चक्र — 24 घण्टे की अवधि — को दर्शाता है। यही वह मूल समय-इकाई है जिससे होरा (दिन का 1/24 भाग) व्युत्पन्न है।",
-        "gu": "Ahoratra is a Sanskrit compound: \"Aha\" (day/daylight) + \"Ratra\" (night). Together it denotes one complete diurnal cycle of day and night — a full 24-hour period. This is the fundamental time-unit from which the hora (1/24 of a day) is derived.",
-        "mai": "अहोरात्र एक संस्कृत समास है: \"अह\" (दिन/दिवस) + \"रात्र\" (रात्रि)। मिलकर यह दिन और रात के एक पूर्ण चक्र — 24 घण्टे की अवधि — को दर्शाता है। यही वह मूल समय-इकाई है जिससे होरा (दिन का 1/24 भाग) व्युत्पन्न है।"
+        "en": "Ahoratra is a Sanskrit compound: \"Aha\" (day/daylight) + \"Ratra\" (night). Together it denotes one complete diurnal cycle of day and night  –  a full 24-hour period. This is the fundamental time-unit from which the hora (1/24 of a day) is derived.",
+        "hi": "अहोरात्र एक संस्कृत समास है: \"अह\" (दिन/दिवस) + \"रात्र\" (रात्रि)। मिलकर यह दिन और रात के एक पूर्ण चक्र  –  24 घण्टे की अवधि  –  को दर्शाता है। यही वह मूल समय-इकाई है जिससे होरा (दिन का 1/24 भाग) व्युत्पन्न है।",
+        "sa": "अहोरात्र एक संस्कृत समास है: \"अह\" (दिन/दिवस) + \"रात्र\" (रात्रि)। मिलकर यह दिन और रात के एक पूर्ण चक्र  –  24 घण्टे की अवधि  –  को दर्शाता है। यही वह मूल समय-इकाई है जिससे होरा (दिन का 1/24 भाग) व्युत्पन्न है।",
+        "ta": "Ahoratra is a Sanskrit compound: \"Aha\" (day/daylight) + \"Ratra\" (night). Together it denotes one complete diurnal cycle of day and night  –  a full 24-hour period. This is the fundamental time-unit from which the hora (1/24 of a day) is derived.",
+        "te": "Ahoratra is a Sanskrit compound: \"Aha\" (day/daylight) + \"Ratra\" (night). Together it denotes one complete diurnal cycle of day and night  –  a full 24-hour period. This is the fundamental time-unit from which the hora (1/24 of a day) is derived.",
+        "bn": "Ahoratra is a Sanskrit compound: \"Aha\" (day/daylight) + \"Ratra\" (night). Together it denotes one complete diurnal cycle of day and night  –  a full 24-hour period. This is the fundamental time-unit from which the hora (1/24 of a day) is derived.",
+        "kn": "Ahoratra is a Sanskrit compound: \"Aha\" (day/daylight) + \"Ratra\" (night). Together it denotes one complete diurnal cycle of day and night  –  a full 24-hour period. This is the fundamental time-unit from which the hora (1/24 of a day) is derived.",
+        "mr": "अहोरात्र एक संस्कृत समास है: \"अह\" (दिन/दिवस) + \"रात्र\" (रात्रि)। मिलकर यह दिन और रात के एक पूर्ण चक्र  –  24 घण्टे की अवधि  –  को दर्शाता है। यही वह मूल समय-इकाई है जिससे होरा (दिन का 1/24 भाग) व्युत्पन्न है।",
+        "gu": "Ahoratra is a Sanskrit compound: \"Aha\" (day/daylight) + \"Ratra\" (night). Together it denotes one complete diurnal cycle of day and night  –  a full 24-hour period. This is the fundamental time-unit from which the hora (1/24 of a day) is derived.",
+        "mai": "अहोरात्र एक संस्कृत समास है: \"अह\" (दिन/दिवस) + \"रात्र\" (रात्रि)। मिलकर यह दिन और रात के एक पूर्ण चक्र  –  24 घण्टे की अवधि  –  को दर्शाता है। यही वह मूल समय-इकाई है जिससे होरा (दिन का 1/24 भाग) व्युत्पन्न है।"
       },
       "options": [
         {
@@ -498,65 +498,65 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "24 mod 7 = 3. This remainder is the key to the entire weekday sequence. After 24 horas (one full day), the ruler of the next day's first hora is 3 positions forward in the Chaldean order. Starting from Saturn (Saturday): 3 forward = Sun (Sunday), 3 forward = Moon (Monday), 3 forward = Mars (Tuesday), and so on — producing the familiar 7-day cycle.",
-        "hi": "24 mod 7 = 3। यह शेषफल सम्पूर्ण वार-क्रम की कुञ्जी है। 24 होराओं (एक पूर्ण दिन) के बाद, अगले दिन की प्रथम होरा का स्वामी कैल्डियन क्रम में 3 स्थान आगे होता है। शनि (शनिवार) से: 3 आगे = सूर्य (रविवार), 3 आगे = चन्द्र (सोमवार), 3 आगे = मंगल (मंगलवार), इत्यादि — परिचित 7-दिवसीय चक्र बनता है।",
-        "sa": "24 mod 7 = 3। यह शेषफल सम्पूर्ण वार-क्रम की कुञ्जी है। 24 होराओं (एक पूर्ण दिन) के बाद, अगले दिन की प्रथम होरा का स्वामी कैल्डियन क्रम में 3 स्थान आगे होता है। शनि (शनिवार) से: 3 आगे = सूर्य (रविवार), 3 आगे = चन्द्र (सोमवार), 3 आगे = मंगल (मंगलवार), इत्यादि — परिचित 7-दिवसीय चक्र बनता है।",
-        "ta": "24 mod 7 = 3. This remainder is the key to the entire weekday sequence. After 24 horas (one full day), the ruler of the next day's first hora is 3 positions forward in the Chaldean order. Starting from Saturn (Saturday): 3 forward = Sun (Sunday), 3 forward = Moon (Monday), 3 forward = Mars (Tuesday), and so on — producing the familiar 7-day cycle.",
-        "te": "24 mod 7 = 3. This remainder is the key to the entire weekday sequence. After 24 horas (one full day), the ruler of the next day's first hora is 3 positions forward in the Chaldean order. Starting from Saturn (Saturday): 3 forward = Sun (Sunday), 3 forward = Moon (Monday), 3 forward = Mars (Tuesday), and so on — producing the familiar 7-day cycle.",
-        "bn": "24 mod 7 = 3. This remainder is the key to the entire weekday sequence. After 24 horas (one full day), the ruler of the next day's first hora is 3 positions forward in the Chaldean order. Starting from Saturn (Saturday): 3 forward = Sun (Sunday), 3 forward = Moon (Monday), 3 forward = Mars (Tuesday), and so on — producing the familiar 7-day cycle.",
-        "kn": "24 mod 7 = 3. This remainder is the key to the entire weekday sequence. After 24 horas (one full day), the ruler of the next day's first hora is 3 positions forward in the Chaldean order. Starting from Saturn (Saturday): 3 forward = Sun (Sunday), 3 forward = Moon (Monday), 3 forward = Mars (Tuesday), and so on — producing the familiar 7-day cycle.",
-        "mr": "24 mod 7 = 3। यह शेषफल सम्पूर्ण वार-क्रम की कुञ्जी है। 24 होराओं (एक पूर्ण दिन) के बाद, अगले दिन की प्रथम होरा का स्वामी कैल्डियन क्रम में 3 स्थान आगे होता है। शनि (शनिवार) से: 3 आगे = सूर्य (रविवार), 3 आगे = चन्द्र (सोमवार), 3 आगे = मंगल (मंगलवार), इत्यादि — परिचित 7-दिवसीय चक्र बनता है।",
-        "gu": "24 mod 7 = 3. This remainder is the key to the entire weekday sequence. After 24 horas (one full day), the ruler of the next day's first hora is 3 positions forward in the Chaldean order. Starting from Saturn (Saturday): 3 forward = Sun (Sunday), 3 forward = Moon (Monday), 3 forward = Mars (Tuesday), and so on — producing the familiar 7-day cycle.",
-        "mai": "24 mod 7 = 3। यह शेषफल सम्पूर्ण वार-क्रम की कुञ्जी है। 24 होराओं (एक पूर्ण दिन) के बाद, अगले दिन की प्रथम होरा का स्वामी कैल्डियन क्रम में 3 स्थान आगे होता है। शनि (शनिवार) से: 3 आगे = सूर्य (रविवार), 3 आगे = चन्द्र (सोमवार), 3 आगे = मंगल (मंगलवार), इत्यादि — परिचित 7-दिवसीय चक्र बनता है।"
+        "en": "24 mod 7 = 3. This remainder is the key to the entire weekday sequence. After 24 horas (one full day), the ruler of the next day's first hora is 3 positions forward in the Chaldean order. Starting from Saturn (Saturday): 3 forward = Sun (Sunday), 3 forward = Moon (Monday), 3 forward = Mars (Tuesday), and so on  –  producing the familiar 7-day cycle.",
+        "hi": "24 mod 7 = 3। यह शेषफल सम्पूर्ण वार-क्रम की कुञ्जी है। 24 होराओं (एक पूर्ण दिन) के बाद, अगले दिन की प्रथम होरा का स्वामी कैल्डियन क्रम में 3 स्थान आगे होता है। शनि (शनिवार) से: 3 आगे = सूर्य (रविवार), 3 आगे = चन्द्र (सोमवार), 3 आगे = मंगल (मंगलवार), इत्यादि  –  परिचित 7-दिवसीय चक्र बनता है।",
+        "sa": "24 mod 7 = 3। यह शेषफल सम्पूर्ण वार-क्रम की कुञ्जी है। 24 होराओं (एक पूर्ण दिन) के बाद, अगले दिन की प्रथम होरा का स्वामी कैल्डियन क्रम में 3 स्थान आगे होता है। शनि (शनिवार) से: 3 आगे = सूर्य (रविवार), 3 आगे = चन्द्र (सोमवार), 3 आगे = मंगल (मंगलवार), इत्यादि  –  परिचित 7-दिवसीय चक्र बनता है।",
+        "ta": "24 mod 7 = 3. This remainder is the key to the entire weekday sequence. After 24 horas (one full day), the ruler of the next day's first hora is 3 positions forward in the Chaldean order. Starting from Saturn (Saturday): 3 forward = Sun (Sunday), 3 forward = Moon (Monday), 3 forward = Mars (Tuesday), and so on  –  producing the familiar 7-day cycle.",
+        "te": "24 mod 7 = 3. This remainder is the key to the entire weekday sequence. After 24 horas (one full day), the ruler of the next day's first hora is 3 positions forward in the Chaldean order. Starting from Saturn (Saturday): 3 forward = Sun (Sunday), 3 forward = Moon (Monday), 3 forward = Mars (Tuesday), and so on  –  producing the familiar 7-day cycle.",
+        "bn": "24 mod 7 = 3. This remainder is the key to the entire weekday sequence. After 24 horas (one full day), the ruler of the next day's first hora is 3 positions forward in the Chaldean order. Starting from Saturn (Saturday): 3 forward = Sun (Sunday), 3 forward = Moon (Monday), 3 forward = Mars (Tuesday), and so on  –  producing the familiar 7-day cycle.",
+        "kn": "24 mod 7 = 3. This remainder is the key to the entire weekday sequence. After 24 horas (one full day), the ruler of the next day's first hora is 3 positions forward in the Chaldean order. Starting from Saturn (Saturday): 3 forward = Sun (Sunday), 3 forward = Moon (Monday), 3 forward = Mars (Tuesday), and so on  –  producing the familiar 7-day cycle.",
+        "mr": "24 mod 7 = 3। यह शेषफल सम्पूर्ण वार-क्रम की कुञ्जी है। 24 होराओं (एक पूर्ण दिन) के बाद, अगले दिन की प्रथम होरा का स्वामी कैल्डियन क्रम में 3 स्थान आगे होता है। शनि (शनिवार) से: 3 आगे = सूर्य (रविवार), 3 आगे = चन्द्र (सोमवार), 3 आगे = मंगल (मंगलवार), इत्यादि  –  परिचित 7-दिवसीय चक्र बनता है।",
+        "gu": "24 mod 7 = 3. This remainder is the key to the entire weekday sequence. After 24 horas (one full day), the ruler of the next day's first hora is 3 positions forward in the Chaldean order. Starting from Saturn (Saturday): 3 forward = Sun (Sunday), 3 forward = Moon (Monday), 3 forward = Mars (Tuesday), and so on  –  producing the familiar 7-day cycle.",
+        "mai": "24 mod 7 = 3। यह शेषफल सम्पूर्ण वार-क्रम की कुञ्जी है। 24 होराओं (एक पूर्ण दिन) के बाद, अगले दिन की प्रथम होरा का स्वामी कैल्डियन क्रम में 3 स्थान आगे होता है। शनि (शनिवार) से: 3 आगे = सूर्य (रविवार), 3 आगे = चन्द्र (सोमवार), 3 आगे = मंगल (मंगलवार), इत्यादि  –  परिचित 7-दिवसीय चक्र बनता है।"
       },
       "options": [
         {
-          "en": "2 — it skips 2 planets each day",
-          "hi": "2 — प्रत्येक दिन 2 ग्रह छोड़ता है",
-          "sa": "2 — प्रत्येक दिन 2 ग्रह छोड़ता है",
-          "ta": "2 — it skips 2 planets each day",
-          "te": "2 — it skips 2 planets each day",
-          "bn": "2 — it skips 2 planets each day",
-          "kn": "2 — it skips 2 planets each day",
-          "mr": "2 — प्रत्येक दिन 2 ग्रह छोड़ता है",
-          "gu": "2 — it skips 2 planets each day",
-          "mai": "2 — प्रत्येक दिन 2 ग्रह छोड़ता है"
+          "en": "2  –  it skips 2 planets each day",
+          "hi": "2  –  प्रत्येक दिन 2 ग्रह छोड़ता है",
+          "sa": "2  –  प्रत्येक दिन 2 ग्रह छोड़ता है",
+          "ta": "2  –  it skips 2 planets each day",
+          "te": "2  –  it skips 2 planets each day",
+          "bn": "2  –  it skips 2 planets each day",
+          "kn": "2  –  it skips 2 planets each day",
+          "mr": "2  –  प्रत्येक दिन 2 ग्रह छोड़ता है",
+          "gu": "2  –  it skips 2 planets each day",
+          "mai": "2  –  प्रत्येक दिन 2 ग्रह छोड़ता है"
         },
         {
-          "en": "3 — it creates the \"jump of 3\" that generates the weekday sequence",
-          "hi": "3 — यह \"3 का छलांग\" बनाता है जो वार-क्रम उत्पन्न करता है",
-          "sa": "3 — यह \"3 का छलांग\" बनाता है जो वार-क्रम उत्पन्न करता है",
-          "ta": "3 — it creates the \"jump of 3\" that generates the weekday sequence",
-          "te": "3 — it creates the \"jump of 3\" that generates the weekday sequence",
-          "bn": "3 — it creates the \"jump of 3\" that generates the weekday sequence",
-          "kn": "3 — it creates the \"jump of 3\" that generates the weekday sequence",
-          "mr": "3 — यह \"3 का छलांग\" बनाता है जो वार-क्रम उत्पन्न करता है",
-          "gu": "3 — it creates the \"jump of 3\" that generates the weekday sequence",
-          "mai": "3 — यह \"3 का छलांग\" बनाता है जो वार-क्रम उत्पन्न करता है"
+          "en": "3  –  it creates the \"jump of 3\" that generates the weekday sequence",
+          "hi": "3  –  यह \"3 का छलांग\" बनाता है जो वार-क्रम उत्पन्न करता है",
+          "sa": "3  –  यह \"3 का छलांग\" बनाता है जो वार-क्रम उत्पन्न करता है",
+          "ta": "3  –  it creates the \"jump of 3\" that generates the weekday sequence",
+          "te": "3  –  it creates the \"jump of 3\" that generates the weekday sequence",
+          "bn": "3  –  it creates the \"jump of 3\" that generates the weekday sequence",
+          "kn": "3  –  it creates the \"jump of 3\" that generates the weekday sequence",
+          "mr": "3  –  यह \"3 का छलांग\" बनाता है जो वार-क्रम उत्पन्न करता है",
+          "gu": "3  –  it creates the \"jump of 3\" that generates the weekday sequence",
+          "mai": "3  –  यह \"3 का छलांग\" बनाता है जो वार-क्रम उत्पन्न करता है"
         },
         {
-          "en": "4 — it divides the week into halves",
-          "hi": "4 — यह सप्ताह को आधे में विभाजित करता है",
-          "sa": "4 — यह सप्ताह को आधे में विभाजित करता है",
-          "ta": "4 — it divides the week into halves",
-          "te": "4 — it divides the week into halves",
-          "bn": "4 — it divides the week into halves",
-          "kn": "4 — it divides the week into halves",
-          "mr": "4 — यह सप्ताह को आधे में विभाजित करता है",
-          "gu": "4 — it divides the week into halves",
-          "mai": "4 — यह सप्ताह को आधे में विभाजित करता है"
+          "en": "4  –  it divides the week into halves",
+          "hi": "4  –  यह सप्ताह को आधे में विभाजित करता है",
+          "sa": "4  –  यह सप्ताह को आधे में विभाजित करता है",
+          "ta": "4  –  it divides the week into halves",
+          "te": "4  –  it divides the week into halves",
+          "bn": "4  –  it divides the week into halves",
+          "kn": "4  –  it divides the week into halves",
+          "mr": "4  –  यह सप्ताह को आधे में विभाजित करता है",
+          "gu": "4  –  it divides the week into halves",
+          "mai": "4  –  यह सप्ताह को आधे में विभाजित करता है"
         },
         {
-          "en": "5 — it corresponds to the Panchangas",
-          "hi": "5 — यह पंचांगों से सम्बन्धित है",
-          "sa": "5 — यह पंचांगों से सम्बन्धित है",
-          "ta": "5 — it corresponds to the Panchangas",
-          "te": "5 — it corresponds to the Panchangas",
-          "bn": "5 — it corresponds to the Panchangas",
-          "kn": "5 — it corresponds to the Panchangas",
-          "mr": "5 — यह पंचांगों से सम्बन्धित है",
-          "gu": "5 — it corresponds to the Panchangas",
-          "mai": "5 — यह पंचांगों से सम्बन्धित है"
+          "en": "5  –  it corresponds to the Panchangas",
+          "hi": "5  –  यह पंचांगों से सम्बन्धित है",
+          "sa": "5  –  यह पंचांगों से सम्बन्धित है",
+          "ta": "5  –  it corresponds to the Panchangas",
+          "te": "5  –  it corresponds to the Panchangas",
+          "bn": "5  –  it corresponds to the Panchangas",
+          "kn": "5  –  it corresponds to the Panchangas",
+          "mr": "5  –  यह पंचांगों से सम्बन्धित है",
+          "gu": "5  –  it corresponds to the Panchangas",
+          "mai": "5  –  यह पंचांगों से सम्बन्धित है"
         }
       ]
     },
@@ -577,16 +577,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Varahamihira's Brihat Samhita (6th century CE) explicitly describes the hora system and states that the planet ruling the first hora of a day is the lord (ruler) of that entire day. This principle — \"horeshvaro dineshvarah\" — is the mechanism that generates the weekday order from the Chaldean planetary sequence.",
-        "hi": "वराहमिहिर की बृहत् संहिता (छठी शताब्दी ई.) होरा प्रणाली का वर्णन करती है और स्पष्ट रूप से कहती है कि किसी दिन की प्रथम होरा का ग्रह उस पूरे दिन का स्वामी होता है। यह सिद्धान्त — \"होरेश्वरो दिनेश्वरः\" — वह तन्त्र है जो कैल्डियन ग्रह-क्रम से वार-क्रम उत्पन्न करता है।",
-        "sa": "वराहमिहिर की बृहत् संहिता (छठी शताब्दी ई.) होरा प्रणाली का वर्णन करती है और स्पष्ट रूप से कहती है कि किसी दिन की प्रथम होरा का ग्रह उस पूरे दिन का स्वामी होता है। यह सिद्धान्त — \"होरेश्वरो दिनेश्वरः\" — वह तन्त्र है जो कैल्डियन ग्रह-क्रम से वार-क्रम उत्पन्न करता है।",
-        "ta": "Varahamihira's Brihat Samhita (6th century CE) explicitly describes the hora system and states that the planet ruling the first hora of a day is the lord (ruler) of that entire day. This principle — \"horeshvaro dineshvarah\" — is the mechanism that generates the weekday order from the Chaldean planetary sequence.",
-        "te": "Varahamihira's Brihat Samhita (6th century CE) explicitly describes the hora system and states that the planet ruling the first hora of a day is the lord (ruler) of that entire day. This principle — \"horeshvaro dineshvarah\" — is the mechanism that generates the weekday order from the Chaldean planetary sequence.",
-        "bn": "Varahamihira's Brihat Samhita (6th century CE) explicitly describes the hora system and states that the planet ruling the first hora of a day is the lord (ruler) of that entire day. This principle — \"horeshvaro dineshvarah\" — is the mechanism that generates the weekday order from the Chaldean planetary sequence.",
-        "kn": "Varahamihira's Brihat Samhita (6th century CE) explicitly describes the hora system and states that the planet ruling the first hora of a day is the lord (ruler) of that entire day. This principle — \"horeshvaro dineshvarah\" — is the mechanism that generates the weekday order from the Chaldean planetary sequence.",
-        "mr": "वराहमिहिर की बृहत् संहिता (छठी शताब्दी ई.) होरा प्रणाली का वर्णन करती है और स्पष्ट रूप से कहती है कि किसी दिन की प्रथम होरा का ग्रह उस पूरे दिन का स्वामी होता है। यह सिद्धान्त — \"होरेश्वरो दिनेश्वरः\" — वह तन्त्र है जो कैल्डियन ग्रह-क्रम से वार-क्रम उत्पन्न करता है।",
-        "gu": "Varahamihira's Brihat Samhita (6th century CE) explicitly describes the hora system and states that the planet ruling the first hora of a day is the lord (ruler) of that entire day. This principle — \"horeshvaro dineshvarah\" — is the mechanism that generates the weekday order from the Chaldean planetary sequence.",
-        "mai": "वराहमिहिर की बृहत् संहिता (छठी शताब्दी ई.) होरा प्रणाली का वर्णन करती है और स्पष्ट रूप से कहती है कि किसी दिन की प्रथम होरा का ग्रह उस पूरे दिन का स्वामी होता है। यह सिद्धान्त — \"होरेश्वरो दिनेश्वरः\" — वह तन्त्र है जो कैल्डियन ग्रह-क्रम से वार-क्रम उत्पन्न करता है।"
+        "en": "Varahamihira's Brihat Samhita (6th century CE) explicitly describes the hora system and states that the planet ruling the first hora of a day is the lord (ruler) of that entire day. This principle  –  \"horeshvaro dineshvarah\"  –  is the mechanism that generates the weekday order from the Chaldean planetary sequence.",
+        "hi": "वराहमिहिर की बृहत् संहिता (छठी शताब्दी ई.) होरा प्रणाली का वर्णन करती है और स्पष्ट रूप से कहती है कि किसी दिन की प्रथम होरा का ग्रह उस पूरे दिन का स्वामी होता है। यह सिद्धान्त  –  \"होरेश्वरो दिनेश्वरः\"  –  वह तन्त्र है जो कैल्डियन ग्रह-क्रम से वार-क्रम उत्पन्न करता है।",
+        "sa": "वराहमिहिर की बृहत् संहिता (छठी शताब्दी ई.) होरा प्रणाली का वर्णन करती है और स्पष्ट रूप से कहती है कि किसी दिन की प्रथम होरा का ग्रह उस पूरे दिन का स्वामी होता है। यह सिद्धान्त  –  \"होरेश्वरो दिनेश्वरः\"  –  वह तन्त्र है जो कैल्डियन ग्रह-क्रम से वार-क्रम उत्पन्न करता है।",
+        "ta": "Varahamihira's Brihat Samhita (6th century CE) explicitly describes the hora system and states that the planet ruling the first hora of a day is the lord (ruler) of that entire day. This principle  –  \"horeshvaro dineshvarah\"  –  is the mechanism that generates the weekday order from the Chaldean planetary sequence.",
+        "te": "Varahamihira's Brihat Samhita (6th century CE) explicitly describes the hora system and states that the planet ruling the first hora of a day is the lord (ruler) of that entire day. This principle  –  \"horeshvaro dineshvarah\"  –  is the mechanism that generates the weekday order from the Chaldean planetary sequence.",
+        "bn": "Varahamihira's Brihat Samhita (6th century CE) explicitly describes the hora system and states that the planet ruling the first hora of a day is the lord (ruler) of that entire day. This principle  –  \"horeshvaro dineshvarah\"  –  is the mechanism that generates the weekday order from the Chaldean planetary sequence.",
+        "kn": "Varahamihira's Brihat Samhita (6th century CE) explicitly describes the hora system and states that the planet ruling the first hora of a day is the lord (ruler) of that entire day. This principle  –  \"horeshvaro dineshvarah\"  –  is the mechanism that generates the weekday order from the Chaldean planetary sequence.",
+        "mr": "वराहमिहिर की बृहत् संहिता (छठी शताब्दी ई.) होरा प्रणाली का वर्णन करती है और स्पष्ट रूप से कहती है कि किसी दिन की प्रथम होरा का ग्रह उस पूरे दिन का स्वामी होता है। यह सिद्धान्त  –  \"होरेश्वरो दिनेश्वरः\"  –  वह तन्त्र है जो कैल्डियन ग्रह-क्रम से वार-क्रम उत्पन्न करता है।",
+        "gu": "Varahamihira's Brihat Samhita (6th century CE) explicitly describes the hora system and states that the planet ruling the first hora of a day is the lord (ruler) of that entire day. This principle  –  \"horeshvaro dineshvarah\"  –  is the mechanism that generates the weekday order from the Chaldean planetary sequence.",
+        "mai": "वराहमिहिर की बृहत् संहिता (छठी शताब्दी ई.) होरा प्रणाली का वर्णन करती है और स्पष्ट रूप से कहती है कि किसी दिन की प्रथम होरा का ग्रह उस पूरे दिन का स्वामी होता है। यह सिद्धान्त  –  \"होरेश्वरो दिनेश्वरः\"  –  वह तन्त्र है जो कैल्डियन ग्रह-क्रम से वार-क्रम उत्पन्न करता है।"
       },
       "options": [
         {
@@ -656,16 +656,16 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "Saturday is Shanivara in Sanskrit, named after Shani (Saturn). The English \"Saturday\" also derives from Saturn — \"Saturn's day.\" This parallel naming across Sanskrit and Latin/Germanic languages is direct evidence that both traditions independently connected Saturn to the same day via the same Hora system.",
-        "hi": "शनिवार (Shanivara) शनि (Saturn) के नाम पर है। अंग्रेज़ी \"Saturday\" भी शनि से व्युत्पन्न है — \"Saturn's day\"। संस्कृत और लैटिन/जर्मनिक भाषाओं में यह समानान्तर नामकरण इस बात का प्रत्यक्ष प्रमाण है कि दोनों परम्पराओं ने एक ही होरा प्रणाली से शनि को एक ही दिन से जोड़ा।",
-        "sa": "शनिवार (Shanivara) शनि (Saturn) के नाम पर है। अंग्रेज़ी \"Saturday\" भी शनि से व्युत्पन्न है — \"Saturn's day\"। संस्कृत और लैटिन/जर्मनिक भाषाओं में यह समानान्तर नामकरण इस बात का प्रत्यक्ष प्रमाण है कि दोनों परम्पराओं ने एक ही होरा प्रणाली से शनि को एक ही दिन से जोड़ा।",
-        "ta": "Saturday is Shanivara in Sanskrit, named after Shani (Saturn). The English \"Saturday\" also derives from Saturn — \"Saturn's day.\" This parallel naming across Sanskrit and Latin/Germanic languages is direct evidence that both traditions independently connected Saturn to the same day via the same Hora system.",
-        "te": "Saturday is Shanivara in Sanskrit, named after Shani (Saturn). The English \"Saturday\" also derives from Saturn — \"Saturn's day.\" This parallel naming across Sanskrit and Latin/Germanic languages is direct evidence that both traditions independently connected Saturn to the same day via the same Hora system.",
-        "bn": "Saturday is Shanivara in Sanskrit, named after Shani (Saturn). The English \"Saturday\" also derives from Saturn — \"Saturn's day.\" This parallel naming across Sanskrit and Latin/Germanic languages is direct evidence that both traditions independently connected Saturn to the same day via the same Hora system.",
-        "kn": "Saturday is Shanivara in Sanskrit, named after Shani (Saturn). The English \"Saturday\" also derives from Saturn — \"Saturn's day.\" This parallel naming across Sanskrit and Latin/Germanic languages is direct evidence that both traditions independently connected Saturn to the same day via the same Hora system.",
-        "mr": "शनिवार (Shanivara) शनि (Saturn) के नाम पर है। अंग्रेज़ी \"Saturday\" भी शनि से व्युत्पन्न है — \"Saturn's day\"। संस्कृत और लैटिन/जर्मनिक भाषाओं में यह समानान्तर नामकरण इस बात का प्रत्यक्ष प्रमाण है कि दोनों परम्पराओं ने एक ही होरा प्रणाली से शनि को एक ही दिन से जोड़ा।",
-        "gu": "Saturday is Shanivara in Sanskrit, named after Shani (Saturn). The English \"Saturday\" also derives from Saturn — \"Saturn's day.\" This parallel naming across Sanskrit and Latin/Germanic languages is direct evidence that both traditions independently connected Saturn to the same day via the same Hora system.",
-        "mai": "शनिवार (Shanivara) शनि (Saturn) के नाम पर है। अंग्रेज़ी \"Saturday\" भी शनि से व्युत्पन्न है — \"Saturn's day\"। संस्कृत और लैटिन/जर्मनिक भाषाओं में यह समानान्तर नामकरण इस बात का प्रत्यक्ष प्रमाण है कि दोनों परम्पराओं ने एक ही होरा प्रणाली से शनि को एक ही दिन से जोड़ा।"
+        "en": "Saturday is Shanivara in Sanskrit, named after Shani (Saturn). The English \"Saturday\" also derives from Saturn  –  \"Saturn's day.\" This parallel naming across Sanskrit and Latin/Germanic languages is direct evidence that both traditions independently connected Saturn to the same day via the same Hora system.",
+        "hi": "शनिवार (Shanivara) शनि (Saturn) के नाम पर है। अंग्रेज़ी \"Saturday\" भी शनि से व्युत्पन्न है  –  \"Saturn's day\"। संस्कृत और लैटिन/जर्मनिक भाषाओं में यह समानान्तर नामकरण इस बात का प्रत्यक्ष प्रमाण है कि दोनों परम्पराओं ने एक ही होरा प्रणाली से शनि को एक ही दिन से जोड़ा।",
+        "sa": "शनिवार (Shanivara) शनि (Saturn) के नाम पर है। अंग्रेज़ी \"Saturday\" भी शनि से व्युत्पन्न है  –  \"Saturn's day\"। संस्कृत और लैटिन/जर्मनिक भाषाओं में यह समानान्तर नामकरण इस बात का प्रत्यक्ष प्रमाण है कि दोनों परम्पराओं ने एक ही होरा प्रणाली से शनि को एक ही दिन से जोड़ा।",
+        "ta": "Saturday is Shanivara in Sanskrit, named after Shani (Saturn). The English \"Saturday\" also derives from Saturn  –  \"Saturn's day.\" This parallel naming across Sanskrit and Latin/Germanic languages is direct evidence that both traditions independently connected Saturn to the same day via the same Hora system.",
+        "te": "Saturday is Shanivara in Sanskrit, named after Shani (Saturn). The English \"Saturday\" also derives from Saturn  –  \"Saturn's day.\" This parallel naming across Sanskrit and Latin/Germanic languages is direct evidence that both traditions independently connected Saturn to the same day via the same Hora system.",
+        "bn": "Saturday is Shanivara in Sanskrit, named after Shani (Saturn). The English \"Saturday\" also derives from Saturn  –  \"Saturn's day.\" This parallel naming across Sanskrit and Latin/Germanic languages is direct evidence that both traditions independently connected Saturn to the same day via the same Hora system.",
+        "kn": "Saturday is Shanivara in Sanskrit, named after Shani (Saturn). The English \"Saturday\" also derives from Saturn  –  \"Saturn's day.\" This parallel naming across Sanskrit and Latin/Germanic languages is direct evidence that both traditions independently connected Saturn to the same day via the same Hora system.",
+        "mr": "शनिवार (Shanivara) शनि (Saturn) के नाम पर है। अंग्रेज़ी \"Saturday\" भी शनि से व्युत्पन्न है  –  \"Saturn's day\"। संस्कृत और लैटिन/जर्मनिक भाषाओं में यह समानान्तर नामकरण इस बात का प्रत्यक्ष प्रमाण है कि दोनों परम्पराओं ने एक ही होरा प्रणाली से शनि को एक ही दिन से जोड़ा।",
+        "gu": "Saturday is Shanivara in Sanskrit, named after Shani (Saturn). The English \"Saturday\" also derives from Saturn  –  \"Saturn's day.\" This parallel naming across Sanskrit and Latin/Germanic languages is direct evidence that both traditions independently connected Saturn to the same day via the same Hora system.",
+        "mai": "शनिवार (Shanivara) शनि (Saturn) के नाम पर है। अंग्रेज़ी \"Saturday\" भी शनि से व्युत्पन्न है  –  \"Saturn's day\"। संस्कृत और लैटिन/जर्मनिक भाषाओं में यह समानान्तर नामकरण इस बात का प्रत्यक्ष प्रमाण है कि दोनों परम्पराओं ने एक ही होरा प्रणाली से शनि को एक ही दिन से जोड़ा।"
       },
       "options": [
         {
@@ -764,16 +764,16 @@
       },
       "correctAnswer": false,
       "explanation": {
-        "en": "False. Rahu and Ketu are lunar nodes — mathematical points where the Moon's orbit intersects the ecliptic. They are not visible celestial bodies and were unknown to Babylonian astronomers who established the Chaldean order. The 7-planet sequence includes only the bodies visible to the naked eye: Saturn, Jupiter, Mars, Sun, Venus, Mercury, and Moon. Rahu and Ketu are uniquely Indian additions to the Navagraha (nine planets) system.",
-        "hi": "असत्य। राहु और केतु चान्द्र पात (lunar nodes) हैं — गणितीय बिन्दु जहाँ चन्द्रमा की कक्षा क्रान्तिवृत्त को काटती है। ये दृश्य खगोलीय पिण्ड नहीं हैं और बेबीलोनियाई खगोलविदों को ज्ञात नहीं थे। 7-ग्रह अनुक्रम में केवल नग्न नेत्रों से दिखने वाले पिण्ड हैं: शनि, बृहस्पति, मंगल, सूर्य, शुक्र, बुध, और चन्द्र। राहु-केतु नवग्रह प्रणाली में विशिष्ट भारतीय योगदान हैं।",
-        "sa": "असत्य। राहु और केतु चान्द्र पात (lunar nodes) हैं — गणितीय बिन्दु जहाँ चन्द्रमा की कक्षा क्रान्तिवृत्त को काटती है। ये दृश्य खगोलीय पिण्ड नहीं हैं और बेबीलोनियाई खगोलविदों को ज्ञात नहीं थे। 7-ग्रह अनुक्रम में केवल नग्न नेत्रों से दिखने वाले पिण्ड हैं: शनि, बृहस्पति, मंगल, सूर्य, शुक्र, बुध, और चन्द्र। राहु-केतु नवग्रह प्रणाली में विशिष्ट भारतीय योगदान हैं।",
-        "ta": "False. Rahu and Ketu are lunar nodes — mathematical points where the Moon's orbit intersects the ecliptic. They are not visible celestial bodies and were unknown to Babylonian astronomers who established the Chaldean order. The 7-planet sequence includes only the bodies visible to the naked eye: Saturn, Jupiter, Mars, Sun, Venus, Mercury, and Moon. Rahu and Ketu are uniquely Indian additions to the Navagraha (nine planets) system.",
-        "te": "False. Rahu and Ketu are lunar nodes — mathematical points where the Moon's orbit intersects the ecliptic. They are not visible celestial bodies and were unknown to Babylonian astronomers who established the Chaldean order. The 7-planet sequence includes only the bodies visible to the naked eye: Saturn, Jupiter, Mars, Sun, Venus, Mercury, and Moon. Rahu and Ketu are uniquely Indian additions to the Navagraha (nine planets) system.",
-        "bn": "False. Rahu and Ketu are lunar nodes — mathematical points where the Moon's orbit intersects the ecliptic. They are not visible celestial bodies and were unknown to Babylonian astronomers who established the Chaldean order. The 7-planet sequence includes only the bodies visible to the naked eye: Saturn, Jupiter, Mars, Sun, Venus, Mercury, and Moon. Rahu and Ketu are uniquely Indian additions to the Navagraha (nine planets) system.",
-        "kn": "False. Rahu and Ketu are lunar nodes — mathematical points where the Moon's orbit intersects the ecliptic. They are not visible celestial bodies and were unknown to Babylonian astronomers who established the Chaldean order. The 7-planet sequence includes only the bodies visible to the naked eye: Saturn, Jupiter, Mars, Sun, Venus, Mercury, and Moon. Rahu and Ketu are uniquely Indian additions to the Navagraha (nine planets) system.",
-        "mr": "असत्य। राहु और केतु चान्द्र पात (lunar nodes) हैं — गणितीय बिन्दु जहाँ चन्द्रमा की कक्षा क्रान्तिवृत्त को काटती है। ये दृश्य खगोलीय पिण्ड नहीं हैं और बेबीलोनियाई खगोलविदों को ज्ञात नहीं थे। 7-ग्रह अनुक्रम में केवल नग्न नेत्रों से दिखने वाले पिण्ड हैं: शनि, बृहस्पति, मंगल, सूर्य, शुक्र, बुध, और चन्द्र। राहु-केतु नवग्रह प्रणाली में विशिष्ट भारतीय योगदान हैं।",
-        "gu": "False. Rahu and Ketu are lunar nodes — mathematical points where the Moon's orbit intersects the ecliptic. They are not visible celestial bodies and were unknown to Babylonian astronomers who established the Chaldean order. The 7-planet sequence includes only the bodies visible to the naked eye: Saturn, Jupiter, Mars, Sun, Venus, Mercury, and Moon. Rahu and Ketu are uniquely Indian additions to the Navagraha (nine planets) system.",
-        "mai": "असत्य। राहु और केतु चान्द्र पात (lunar nodes) हैं — गणितीय बिन्दु जहाँ चन्द्रमा की कक्षा क्रान्तिवृत्त को काटती है। ये दृश्य खगोलीय पिण्ड नहीं हैं और बेबीलोनियाई खगोलविदों को ज्ञात नहीं थे। 7-ग्रह अनुक्रम में केवल नग्न नेत्रों से दिखने वाले पिण्ड हैं: शनि, बृहस्पति, मंगल, सूर्य, शुक्र, बुध, और चन्द्र। राहु-केतु नवग्रह प्रणाली में विशिष्ट भारतीय योगदान हैं।"
+        "en": "False. Rahu and Ketu are lunar nodes  –  mathematical points where the Moon's orbit intersects the ecliptic. They are not visible celestial bodies and were unknown to Babylonian astronomers who established the Chaldean order. The 7-planet sequence includes only the bodies visible to the naked eye: Saturn, Jupiter, Mars, Sun, Venus, Mercury, and Moon. Rahu and Ketu are uniquely Indian additions to the Navagraha (nine planets) system.",
+        "hi": "असत्य। राहु और केतु चान्द्र पात (lunar nodes) हैं  –  गणितीय बिन्दु जहाँ चन्द्रमा की कक्षा क्रान्तिवृत्त को काटती है। ये दृश्य खगोलीय पिण्ड नहीं हैं और बेबीलोनियाई खगोलविदों को ज्ञात नहीं थे। 7-ग्रह अनुक्रम में केवल नग्न नेत्रों से दिखने वाले पिण्ड हैं: शनि, बृहस्पति, मंगल, सूर्य, शुक्र, बुध, और चन्द्र। राहु-केतु नवग्रह प्रणाली में विशिष्ट भारतीय योगदान हैं।",
+        "sa": "असत्य। राहु और केतु चान्द्र पात (lunar nodes) हैं  –  गणितीय बिन्दु जहाँ चन्द्रमा की कक्षा क्रान्तिवृत्त को काटती है। ये दृश्य खगोलीय पिण्ड नहीं हैं और बेबीलोनियाई खगोलविदों को ज्ञात नहीं थे। 7-ग्रह अनुक्रम में केवल नग्न नेत्रों से दिखने वाले पिण्ड हैं: शनि, बृहस्पति, मंगल, सूर्य, शुक्र, बुध, और चन्द्र। राहु-केतु नवग्रह प्रणाली में विशिष्ट भारतीय योगदान हैं।",
+        "ta": "False. Rahu and Ketu are lunar nodes  –  mathematical points where the Moon's orbit intersects the ecliptic. They are not visible celestial bodies and were unknown to Babylonian astronomers who established the Chaldean order. The 7-planet sequence includes only the bodies visible to the naked eye: Saturn, Jupiter, Mars, Sun, Venus, Mercury, and Moon. Rahu and Ketu are uniquely Indian additions to the Navagraha (nine planets) system.",
+        "te": "False. Rahu and Ketu are lunar nodes  –  mathematical points where the Moon's orbit intersects the ecliptic. They are not visible celestial bodies and were unknown to Babylonian astronomers who established the Chaldean order. The 7-planet sequence includes only the bodies visible to the naked eye: Saturn, Jupiter, Mars, Sun, Venus, Mercury, and Moon. Rahu and Ketu are uniquely Indian additions to the Navagraha (nine planets) system.",
+        "bn": "False. Rahu and Ketu are lunar nodes  –  mathematical points where the Moon's orbit intersects the ecliptic. They are not visible celestial bodies and were unknown to Babylonian astronomers who established the Chaldean order. The 7-planet sequence includes only the bodies visible to the naked eye: Saturn, Jupiter, Mars, Sun, Venus, Mercury, and Moon. Rahu and Ketu are uniquely Indian additions to the Navagraha (nine planets) system.",
+        "kn": "False. Rahu and Ketu are lunar nodes  –  mathematical points where the Moon's orbit intersects the ecliptic. They are not visible celestial bodies and were unknown to Babylonian astronomers who established the Chaldean order. The 7-planet sequence includes only the bodies visible to the naked eye: Saturn, Jupiter, Mars, Sun, Venus, Mercury, and Moon. Rahu and Ketu are uniquely Indian additions to the Navagraha (nine planets) system.",
+        "mr": "असत्य। राहु और केतु चान्द्र पात (lunar nodes) हैं  –  गणितीय बिन्दु जहाँ चन्द्रमा की कक्षा क्रान्तिवृत्त को काटती है। ये दृश्य खगोलीय पिण्ड नहीं हैं और बेबीलोनियाई खगोलविदों को ज्ञात नहीं थे। 7-ग्रह अनुक्रम में केवल नग्न नेत्रों से दिखने वाले पिण्ड हैं: शनि, बृहस्पति, मंगल, सूर्य, शुक्र, बुध, और चन्द्र। राहु-केतु नवग्रह प्रणाली में विशिष्ट भारतीय योगदान हैं।",
+        "gu": "False. Rahu and Ketu are lunar nodes  –  mathematical points where the Moon's orbit intersects the ecliptic. They are not visible celestial bodies and were unknown to Babylonian astronomers who established the Chaldean order. The 7-planet sequence includes only the bodies visible to the naked eye: Saturn, Jupiter, Mars, Sun, Venus, Mercury, and Moon. Rahu and Ketu are uniquely Indian additions to the Navagraha (nine planets) system.",
+        "mai": "असत्य। राहु और केतु चान्द्र पात (lunar nodes) हैं  –  गणितीय बिन्दु जहाँ चन्द्रमा की कक्षा क्रान्तिवृत्त को काटती है। ये दृश्य खगोलीय पिण्ड नहीं हैं और बेबीलोनियाई खगोलविदों को ज्ञात नहीं थे। 7-ग्रह अनुक्रम में केवल नग्न नेत्रों से दिखने वाले पिण्ड हैं: शनि, बृहस्पति, मंगल, सूर्य, शुक्र, बुध, और चन्द्र। राहु-केतु नवग्रह प्रणाली में विशिष्ट भारतीय योगदान हैं।"
       }
     }
   ]

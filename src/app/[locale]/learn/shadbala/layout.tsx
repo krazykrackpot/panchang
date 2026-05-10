@@ -11,7 +11,7 @@ export default async function Layout({ children, params }: { children: React.Rea
   const { locale } = await params;
   return (
     <>
-      <LearnArticleLD route="/learn/shadbala" locale={locale} title="Shadbala — Six-Fold Planetary Strength" description="How to assess planet strength using Shadbala calculations." />
+      <LearnArticleLD route="/learn/shadbala" locale={locale} title="Shadbala  –  Six-Fold Planetary Strength" description="How to assess planet strength using Shadbala calculations." />
       {children}
     </>
   );

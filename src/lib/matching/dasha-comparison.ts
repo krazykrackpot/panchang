@@ -62,7 +62,7 @@ export function classifyPeriod(planet: string, _ascSign: number): PeriodQuality 
   if (BENEFICS.includes(planet)) return 'favorable';
   if (MALEFICS.includes(planet)) return 'challenging';
 
-  // Sun, Moon, Mars, Mercury — context-dependent, classify as neutral
+  // Sun, Moon, Mars, Mercury  –  context-dependent, classify as neutral
   return 'neutral';
 }
 
@@ -87,12 +87,12 @@ function getInterpretation(
   alignment: 'aligned' | 'mixed' | 'tension',
 ): string {
   if (alignment === 'aligned') {
-    return `Both partners experience ${p1} and ${p2} periods simultaneously — a time of mutual growth, shared optimism, and aligned goals.`;
+    return `Both partners experience ${p1} and ${p2} periods simultaneously  –  a time of mutual growth, shared optimism, and aligned goals.`;
   }
   if (alignment === 'tension') {
-    return `${p1} and ${p2} running together creates contrasting energies — one partner may feel restricted while the other pushes forward. Patience and communication are key.`;
+    return `${p1} and ${p2} running together creates contrasting energies  –  one partner may feel restricted while the other pushes forward. Patience and communication are key.`;
   }
-  return `A mixed period with ${p1} and ${p2} — neither strongly aligned nor in opposition. Everyday dynamics dominate over planetary influence.`;
+  return `A mixed period with ${p1} and ${p2}  –  neither strongly aligned nor in opposition. Everyday dynamics dominate over planetary influence.`;
 }
 
 /* ─── Flatten Maha Dashas into Segments ─────────────────────────────────── */
@@ -141,7 +141,7 @@ export function compareDashas(
   endYear: number,
 ): DashaComparisonResult {
   if (!chart1Dashas.length || !chart2Dashas.length) {
-    console.warn('[dasha-comparison] One or both charts have no dasha data — chart1:', chart1Dashas.length, 'chart2:', chart2Dashas.length);
+    console.warn('[dasha-comparison] One or both charts have no dasha data  –  chart1:', chart1Dashas.length, 'chart2:', chart2Dashas.length);
     return { entries: [], alignmentWindows: [], summary: 'Dasha data unavailable for one or both charts.' };
   }
 
@@ -188,7 +188,7 @@ export function compareDashas(
     });
   }
 
-  // Build alignment windows — group consecutive entries with the same alignment type
+  // Build alignment windows  –  group consecutive entries with the same alignment type
   // Only track 'aligned' and 'tension' windows (skip mixed)
   const alignmentWindows: AlignmentWindow[] = [];
   let currentWindow: AlignmentWindow | null = null;
@@ -230,7 +230,7 @@ export function compareDashas(
     } else if (tensionPct >= 50) {
       summary = `Challenging period: ${tensionPct}% of the timeline shows tension between dashas. Patience, communication, and mutual understanding will be important.`;
     } else {
-      summary = `Mixed dynamics: ${alignedPct}% aligned, ${tensionPct}% tension. The relationship will experience varied phases — adaptability is key.`;
+      summary = `Mixed dynamics: ${alignedPct}% aligned, ${tensionPct}% tension. The relationship will experience varied phases  –  adaptability is key.`;
     }
   }
 
@@ -244,7 +244,7 @@ export function getPlanetColor(planetName: string): string {
   if (id !== undefined && GRAHAS[id]) {
     return GRAHAS[id].color;
   }
-  console.warn(`[dasha-comparison] Unknown planet "${planetName}" — using fallback gold`);
+  console.warn(`[dasha-comparison] Unknown planet "${planetName}"  –  using fallback gold`);
   return '#d4a853'; // fallback gold
 }
 

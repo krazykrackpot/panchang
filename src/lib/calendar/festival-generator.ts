@@ -1,5 +1,5 @@
 /**
- * Festival Calendar Generator V2 — table-based lookup
+ * Festival Calendar Generator V2  –  table-based lookup
  *
  * Uses the pre-computed yearly tithi table + declarative festival definitions
  * to generate the complete festival calendar. Replaces the scanning-based approach.
@@ -15,7 +15,7 @@ import { resolveSolarFestivals } from '@/lib/calendar/solar-festivals';
  *   'asc'  = scan the eastern horizon (ascendant / lagna)
  *   'desc' = scan the western horizon (descendant / 7th cusp)
  *
- * For Diwali Lakshmi Puja, tradition prescribes "Vrishabha Lagna" — but at
+ * For Diwali Lakshmi Puja, tradition prescribes "Vrishabha Lagna"  –  but at
  * evening time Taurus (30°-60°) is setting in the west, not rising in the east.
  * The classical "Vrishabha Kaal" matches the period when the *descendant*
  * (ascendant + 180°) transits Taurus.  Pass mode='desc' for this case.
@@ -25,7 +25,7 @@ function findSthiraLagna(
   minDeg: number, maxDeg: number, scanHours: number,
   mode: 'asc' | 'desc' = 'asc',
 ): { startUT: number; endUT: number } | null {
-  // Ascendant calculation — mirrors kundali-calc.ts calculateTropicalAscendant()
+  // Ascendant calculation  –  mirrors kundali-calc.ts calculateTropicalAscendant()
   //
   // The raw atan2(y, x) result is the IC (Imum Coeli, nadir of the chart).
   // Adding 180° converts it to the Ascendant (ASC, eastern horizon).
@@ -33,7 +33,7 @@ function findSthiraLagna(
   // HISTORICAL BUG 1 (now fixed): this local copy of the formula omitted the
   //   asc = normalizeDeg(asc + 180)  step that kundali-calc.ts applies at
   //   line 47 before subtracting the ayanamsha.  Without it the function was
-  //   returning the Descendant instead of the Ascendant — 180° inverted.
+  //   returning the Descendant instead of the Ascendant  –  180° inverted.
   //   Festival lagna windows (e.g. Diwali Lakshmi Puja Vrishabha Kaal) were
   //   therefore computing against the wrong sign entirely.
   //
@@ -56,7 +56,7 @@ function findSthiraLagna(
     let asc = Math.atan2(y, x) * 180 / Math.PI;
     // atan2 returns IC; add 180° to get the Ascendant (Bug 1 fix)
     asc = normalizeDeg(asc + 180);
-    // Convert tropical to sidereal — full cubic Meeus polynomial (Bug 2 fix)
+    // Convert tropical to sidereal  –  full cubic Meeus polynomial (Bug 2 fix)
     const ayan = 23.85306 + 1.39722 * T + 0.00018 * T * T - 0.000005 * T * T * T;
     return normalizeDeg(asc - ayan);
   }
@@ -143,7 +143,7 @@ function resolveEkadashiName(entry: TithiEntry): { name: LocaleText; detail?: Ek
     return { name: detail.name, detail };
   }
 
-  // Use Amant month for Ekadashi name lookup — Ekadashi names (Nirjala, Devshayani,
+  // Use Amant month for Ekadashi name lookup  –  Ekadashi names (Nirjala, Devshayani,
   // Kamika, etc.) follow the Amant convention used by all reference sources (Prokerala,
   // Drik Panchang). Using Purnimant here causes wrong names during Adhika months
   // because Purnimant advances by 1 during Krishna Paksha.
@@ -198,8 +198,8 @@ function computeEkadashiParanaFromTable(
   // Madhyahna = 3rd fifth of daytime. Parana MUST avoid this period.
   // Ideal parana = first 1/5 of daytime (Pratahkala) = classical standard.
   const dayLen = sunsetUT - sunriseUT;
-  const pratahEndUT = sunriseUT + dayLen / 5;         // End of first 1/5 — ideal parana deadline
-  const madhStartUT = sunriseUT + dayLen * (2 / 5);   // Madhyahna start — hard avoid
+  const pratahEndUT = sunriseUT + dayLen / 5;         // End of first 1/5  –  ideal parana deadline
+  const madhStartUT = sunriseUT + dayLen * (2 / 5);   // Madhyahna start  –  hard avoid
   const madhEndUT = sunriseUT + dayLen * (3 / 5);     // Madhyahna end
 
   const ft = (ut: number) => formatTime(((ut % 24) + 24) % 24, tz);
@@ -216,7 +216,7 @@ function computeEkadashiParanaFromTable(
   let recEndUT: number;
 
   if (dwEndUTHours <= earliestUT) {
-    // Dwadashi ends before we can even start — break fast ASAP at sunrise
+    // Dwadashi ends before we can even start  –  break fast ASAP at sunrise
     recStartUT = sunriseUT;
     recEndUT = dwEndUTHours;
   } else if (earliestUT < pratahEndUT) {
@@ -224,15 +224,15 @@ function computeEkadashiParanaFromTable(
     recStartUT = earliestUT;
     recEndUT = Math.min(pratahEndUT, effectiveDeadline);
   } else if (earliestUT < madhStartUT) {
-    // HV ended after Pratahkala but before Madhyahna — use window up to Madhyahna
+    // HV ended after Pratahkala but before Madhyahna  –  use window up to Madhyahna
     recStartUT = earliestUT;
     recEndUT = Math.min(madhStartUT, effectiveDeadline);
   } else if (earliestUT >= madhEndUT) {
-    // HV ended after Madhyahna — use window after Madhyahna
+    // HV ended after Madhyahna  –  use window after Madhyahna
     recStartUT = earliestUT;
     recEndUT = effectiveDeadline;
   } else {
-    // HV ends during Madhyahna — wait until Madhyahna ends
+    // HV ends during Madhyahna  –  wait until Madhyahna ends
     recStartUT = madhEndUT;
     recEndUT = effectiveDeadline;
   }
@@ -333,7 +333,7 @@ function computePujaMuhurat(
   const srNextUT = approximateSunriseSafe(jdNext, lat, lon);
   const nightLen = (srNextUT + 24) - ssUT; // hours from sunset to next sunrise
 
-  // Madhyahna = middle 1/5 of daytime (2/5 to 3/5) — matches The classical definition
+  // Madhyahna = middle 1/5 of daytime (2/5 to 3/5)  –  matches The classical definition
   const madhStart = srUT + dayLen * (2 / 5);
   const madhEnd = srUT + dayLen * (3 / 5);
   // Aparahna = 3/5 to 4/5 of daytime
@@ -342,7 +342,7 @@ function computePujaMuhurat(
 
   switch (slug) {
     case 'diwali': {
-      // Lakshmi Puja during Vrishabha Kaal — when Taurus (30°-60°) is on the
+      // Lakshmi Puja during Vrishabha Kaal  –  when Taurus (30°-60°) is on the
       // western horizon (descendant / 7th cusp).  At evening time, the ascendant
       // is in Scorpio; Taurus is the setting sign.  The classical "Vrishabha Kaal"
       // matches this descendant-based window.
@@ -427,7 +427,7 @@ function getKalaWindow(y: number, m: number, d: number, lat: number, lon: number
         if (mrUT < srUT) mrJd += 1;
         return { startJd: mrJd - 0.5 / 24, endJd: mrJd + 0.5 / 24 }; // ±30 min around moonrise
       }
-      // Moon doesn't rise — fall back to pradosh window
+      // Moon doesn't rise  –  fall back to pradosh window
       return { startJd: ssJd, endJd: ssJd + 2.4 / 24 };
     }
     default:           return { startJd: srJd - 0.01, endJd: srJd + 0.01 }; // tight sunrise window
@@ -546,10 +546,10 @@ export function generateFestivalCalendarV2(
         type: sf.type,
         category: sf.category,
         description: sf.isUttarayana
-          ? { en: 'Sun enters Capricorn — marks the northward journey (Uttarayana). Sacred bathing, charity, and sesame offerings.', hi: 'सूर्य मकर राशि में प्रवेश — उत्तरायण का आरम्भ। पवित्र स्नान, दान और तिल।', sa: 'सूर्यः मकरराशिं प्रविशति — उत्तरायणारम्भः।' }
+          ? { en: 'Sun enters Capricorn  –  marks the northward journey (Uttarayana). Sacred bathing, charity, and sesame offerings.', hi: 'सूर्य मकर राशि में प्रवेश  –  उत्तरायण का आरम्भ। पवित्र स्नान, दान और तिल।', sa: 'सूर्यः मकरराशिं प्रविशति  –  उत्तरायणारम्भः।' }
           : sf.isDakshinayana
-            ? { en: `Sun enters Cancer — marks the southward journey (Dakshinayana).`, hi: 'सूर्य कर्क राशि में प्रवेश — दक्षिणायन का आरम्भ।', sa: 'सूर्यः कर्कराशिं प्रविशति — दक्षिणायनारम्भः।' }
-            : { en: `Sun enters ${sf.signName.en} — ${sf.name.en}.`, hi: `सूर्य ${sf.signName.hi} राशि में प्रवेश — ${sf.name.hi}।`, sa: `सूर्यः ${sf.signName.sa} राशिं प्रविशति।` },
+            ? { en: `Sun enters Cancer  –  marks the southward journey (Dakshinayana).`, hi: 'सूर्य कर्क राशि में प्रवेश  –  दक्षिणायन का आरम्भ।', sa: 'सूर्यः कर्कराशिं प्रविशति  –  दक्षिणायनारम्भः।' }
+            : { en: `Sun enters ${sf.signName.en}  –  ${sf.name.en}.`, hi: `सूर्य ${sf.signName.hi} राशि में प्रवेश  –  ${sf.name.hi}।`, sa: `सूर्यः ${sf.signName.sa} राशिं प्रविशति।` },
         slug: sf.slug,
       });
     }
@@ -610,7 +610,7 @@ export function generateFestivalCalendarV2(
         ? { en: `${match.paksha === 'shukla' ? 'Shukla' : 'Krishna'} Pradosham`, hi: `${match.paksha === 'shukla' ? 'शुक्ल' : 'कृष्ण'} प्रदोष`, sa: `${match.paksha === 'shukla' ? 'शुक्ल' : 'कृष्ण'}प्रदोषः` }
         : catDetail?.name || { en: def.slug, hi: def.slug, sa: def.slug };
 
-      // Check if a named major festival already exists on this date — use its name.
+      // Check if a named major festival already exists on this date  –  use its name.
       // E.g., "Guru Purnima" instead of generic "Purnima Vrat" for Jul 29.
       const existingMajor = festivals.find(f =>
         f.date === match.sunriseDate && f.type === 'major' &&
@@ -664,7 +664,7 @@ export function generateFestivalCalendarV2(
   try {
     const eclipses = generateEclipseCalendar(year);
     // ... eclipse handling (keep existing logic)
-    // For now, skip eclipse integration — can be added later
+    // For now, skip eclipse integration  –  can be added later
   } catch (err) { console.error('[festival-generator] eclipse computation failed:', err); }
 
   // ── Sort, deduplicate, filter to year ───

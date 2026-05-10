@@ -83,7 +83,7 @@ export default function NakshatraDetailPage() {
           </motion.div>
           <div className="text-center sm:text-left flex-1">
             <div className="text-gold-dark text-sm font-mono mb-2">
-              #{id} of 27 · {nak.startDeg.toFixed(1)}° — {nak.endDeg.toFixed(1)}°
+              #{id} of 27 · {nak.startDeg.toFixed(1)}°  –  {nak.endDeg.toFixed(1)}°
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold mb-3" style={headingFont}>
               <span className="text-gold-gradient">{nak.name[locale]}</span>
@@ -110,7 +110,7 @@ export default function NakshatraDetailPage() {
           { label: msg('gunaLabel', locale), value: detail.guna[locale] },
           { label: msg('tattvaLabel', locale), value: detail.tattva[locale] },
           { label: msg('animalLabel', locale), value: detail.associatedAnimal[locale] },
-          { label: msg('degreesLabel', locale), value: `${nak.startDeg.toFixed(1)}° — ${nak.endDeg.toFixed(1)}°` },
+          { label: msg('degreesLabel', locale), value: `${nak.startDeg.toFixed(1)}°  –  ${nak.endDeg.toFixed(1)}°` },
         ].map((item, i) => (
           <motion.div
             key={item.label}
@@ -143,8 +143,8 @@ export default function NakshatraDetailPage() {
               </h4>
               <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
                 {locale === 'en'
-                  ? `${nak.name.en} is one of the 6 Ganda Mula nakshatras — positioned at a water-fire sign junction. Birth in this nakshatra may require a Ganda Mula Shanti Puja. The effects and remedies depend on the birth pada.`
-                  : `${nak.name.hi} 6 गण्ड मूल नक्षत्रों में से एक है — जल-अग्नि राशि सन्धि पर स्थित। इस नक्षत्र में जन्म के लिए गण्ड मूल शान्ति पूजा आवश्यक हो सकती है। प्रभाव और उपाय जन्म पाद पर निर्भर करते हैं।`}
+                  ? `${nak.name.en} is one of the 6 Ganda Mula nakshatras  –  positioned at a water-fire sign junction. Birth in this nakshatra may require a Ganda Mula Shanti Puja. The effects and remedies depend on the birth pada.`
+                  : `${nak.name.hi} 6 गण्ड मूल नक्षत्रों में से एक है  –  जल-अग्नि राशि सन्धि पर स्थित। इस नक्षत्र में जन्म के लिए गण्ड मूल शान्ति पूजा आवश्यक हो सकती है। प्रभाव और उपाय जन्म पाद पर निर्भर करते हैं।`}
               </p>
               <Link
                 href="/learn/modules/24-1"
@@ -210,7 +210,7 @@ export default function NakshatraDetailPage() {
                   {tl({ en: `Pada ${pada}`, hi: `पाद ${pada}`, sa: `पाद ${pada}`, ta: `Pada ${pada}`, te: `Pada ${pada}`, bn: `Pada ${pada}`, kn: `Pada ${pada}`, gu: `Pada ${pada}`, mai: `पाद ${pada}`, mr: `पाद ${pada}` }, locale)}
                 </div>
                 <div className="text-text-secondary text-xs font-mono mb-1">
-                  {start.toFixed(2)}° — {end.toFixed(2)}°
+                  {start.toFixed(2)}°  –  {end.toFixed(2)}°
                 </div>
                 <div className="text-gold-light text-sm font-semibold" style={bodyFont}>
                   {tl({ en: `Navamsha: ${rashiNames[navamshaRashi - 1]}`, hi: `नवांश: ${rashiNamesHi[navamshaRashi - 1]}`, sa: `नवांश: ${rashiNamesHi[navamshaRashi - 1]}`, ta: `Navamsha: ${rashiNames[navamshaRashi - 1]}`, te: `Navamsha: ${rashiNames[navamshaRashi - 1]}`, bn: `Navamsha: ${rashiNames[navamshaRashi - 1]}`, kn: `Navamsha: ${rashiNames[navamshaRashi - 1]}`, gu: `Navamsha: ${rashiNames[navamshaRashi - 1]}`, mai: `नवांश: ${rashiNamesHi[navamshaRashi - 1]}`, mr: `नवांश: ${rashiNamesHi[navamshaRashi - 1]}` }, locale)}
@@ -223,7 +223,7 @@ export default function NakshatraDetailPage() {
 
       <GoldDivider />
 
-      {/* Share Nakshatra Card — shown when user has birth data */}
+      {/* Share Nakshatra Card  –  shown when user has birth data */}
       {birthNakshatra > 0 && (
         <div className="flex justify-center my-8">
           <NakshatraShareButton

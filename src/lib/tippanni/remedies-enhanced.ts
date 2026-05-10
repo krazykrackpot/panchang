@@ -53,7 +53,7 @@ export const PLANET_REMEDIES_FULL: Record<number, PlanetRemedyFull> = {
       day: { en: 'Sunday', hi: 'रविवार', sa: 'रविवासरः' },
       deity: { en: 'Lord Surya / Shiva', hi: 'भगवान सूर्य / शिव', sa: 'सूर्यदेवः / शिवः' },
     },
-    fasting: { en: 'Sundays — eat once before sunset', hi: 'रविवार — सूर्यास्त से पहले एक बार भोजन', sa: 'रविवासरे — सूर्यास्तात् पूर्वम् एकवारं भोजनम्' },
+    fasting: { en: 'Sundays  –  eat once before sunset', hi: 'रविवार  –  सूर्यास्त से पहले एक बार भोजन', sa: 'रविवासरे  –  सूर्यास्तात् पूर्वम् एकवारं भोजनम्' },
     color: { en: 'Red, Copper, Orange', hi: 'लाल, ताम्र, नारंगी', sa: 'रक्तः ताम्रः नारङ्गश्च' },
     direction: { en: 'East', hi: 'पूर्व', sa: 'पूर्वा' },
   },
@@ -74,7 +74,7 @@ export const PLANET_REMEDIES_FULL: Record<number, PlanetRemedyFull> = {
       day: { en: 'Monday', hi: 'सोमवार', sa: 'सोमवासरः' },
       deity: { en: 'Lord Shiva / Parvati', hi: 'भगवान शिव / पार्वती', sa: 'शिवः / पार्वती' },
     },
-    fasting: { en: 'Mondays — eat kheer or milk-based food', hi: 'सोमवार — खीर या दूध-आधारित भोजन', sa: 'सोमवासरे — पायसं दुग्धाधारितं भोजनं वा' },
+    fasting: { en: 'Mondays  –  eat kheer or milk-based food', hi: 'सोमवार  –  खीर या दूध-आधारित भोजन', sa: 'सोमवासरे  –  पायसं दुग्धाधारितं भोजनं वा' },
     color: { en: 'White, Silver, Cream', hi: 'सफेद, रजत, क्रीम', sa: 'श्वेतः रजतः क्रीमवर्णश्च' },
     direction: { en: 'Northwest', hi: 'वायव्य', sa: 'वायव्यदिशा' },
   },
@@ -95,7 +95,7 @@ export const PLANET_REMEDIES_FULL: Record<number, PlanetRemedyFull> = {
       day: { en: 'Tuesday', hi: 'मंगलवार', sa: 'मङ्गलवासरः' },
       deity: { en: 'Lord Hanuman / Kartikeya', hi: 'भगवान हनुमान / कार्तिकेय', sa: 'हनुमान् / कार्तिकेयः' },
     },
-    fasting: { en: 'Tuesdays — eat only once, avoid salt', hi: 'मंगलवार — एक बार भोजन, नमक त्यागें', sa: 'मङ्गलवासरे — एकवारं भोजनं, लवणं त्यजेत्' },
+    fasting: { en: 'Tuesdays  –  eat only once, avoid salt', hi: 'मंगलवार  –  एक बार भोजन, नमक त्यागें', sa: 'मङ्गलवासरे  –  एकवारं भोजनं, लवणं त्यजेत्' },
     color: { en: 'Red, Scarlet, Coral', hi: 'लाल, लाली, प्रवाल', sa: 'रक्तः प्रवालवर्णश्च' },
     direction: { en: 'South', hi: 'दक्षिण', sa: 'दक्षिणा' },
   },
@@ -116,7 +116,7 @@ export const PLANET_REMEDIES_FULL: Record<number, PlanetRemedyFull> = {
       day: { en: 'Wednesday', hi: 'बुधवार', sa: 'बुधवासरः' },
       deity: { en: 'Lord Vishnu / Saraswati', hi: 'भगवान विष्णु / सरस्वती', sa: 'विष्णुः / सरस्वती' },
     },
-    fasting: { en: 'Wednesdays — eat green vegetables only', hi: 'बुधवार — केवल हरी सब्जियाँ', sa: 'बुधवासरे — केवलं हरितशाकानि' },
+    fasting: { en: 'Wednesdays  –  eat green vegetables only', hi: 'बुधवार  –  केवल हरी सब्जियाँ', sa: 'बुधवासरे  –  केवलं हरितशाकानि' },
     color: { en: 'Green', hi: 'हरा', sa: 'हरितः' },
     direction: { en: 'North', hi: 'उत्तर', sa: 'उत्तरा' },
   },
@@ -137,7 +137,7 @@ export const PLANET_REMEDIES_FULL: Record<number, PlanetRemedyFull> = {
       day: { en: 'Thursday', hi: 'गुरुवार', sa: 'गुरुवासरः' },
       deity: { en: 'Lord Vishnu / Brihaspati', hi: 'भगवान विष्णु / बृहस्पति', sa: 'विष्णुः / बृहस्पतिः' },
     },
-    fasting: { en: 'Thursdays — eat yellow food, banana, turmeric milk', hi: 'गुरुवार — पीला भोजन, केला, हल्दी दूध', sa: 'गुरुवासरे — पीतभोजनं कदलीफलं हरिद्रादुग्धं च' },
+    fasting: { en: 'Thursdays  –  eat yellow food, banana, turmeric milk', hi: 'गुरुवार  –  पीला भोजन, केला, हल्दी दूध', sa: 'गुरुवासरे  –  पीतभोजनं कदलीफलं हरिद्रादुग्धं च' },
     color: { en: 'Yellow, Gold, Saffron', hi: 'पीला, सुनहरा, केसरिया', sa: 'पीतः सुवर्णवर्णः केसरवर्णश्च' },
     direction: { en: 'Northeast', hi: 'ईशान', sa: 'ईशानदिशा' },
   },
@@ -158,7 +158,7 @@ export const PLANET_REMEDIES_FULL: Record<number, PlanetRemedyFull> = {
       day: { en: 'Friday', hi: 'शुक्रवार', sa: 'शुक्रवासरः' },
       deity: { en: 'Goddess Lakshmi / Devi', hi: 'देवी लक्ष्मी / देवी', sa: 'लक्ष्मीदेवी' },
     },
-    fasting: { en: 'Fridays — eat sweet food, fruits', hi: 'शुक्रवार — मिष्ठान्न, फल', sa: 'शुक्रवासरे — मिष्टान्नं फलानि च' },
+    fasting: { en: 'Fridays  –  eat sweet food, fruits', hi: 'शुक्रवार  –  मिष्ठान्न, फल', sa: 'शुक्रवासरे  –  मिष्टान्नं फलानि च' },
     color: { en: 'White, Pink, Pastel', hi: 'सफेद, गुलाबी, पेस्टल', sa: 'श्वेतः गुलाबी पेस्टलश्च' },
     direction: { en: 'Southeast', hi: 'आग्नेय', sa: 'आग्नेयदिशा' },
   },
@@ -179,7 +179,7 @@ export const PLANET_REMEDIES_FULL: Record<number, PlanetRemedyFull> = {
       day: { en: 'Saturday', hi: 'शनिवार', sa: 'शनिवासरः' },
       deity: { en: 'Lord Shani Dev / Hanuman', hi: 'भगवान शनि देव / हनुमान', sa: 'शनिदेवः / हनुमान्' },
     },
-    fasting: { en: 'Saturdays — eat only once, donate oil', hi: 'शनिवार — एक बार भोजन, तेल दान', sa: 'शनिवासरे — एकवारं भोजनं, तैलदानम्' },
+    fasting: { en: 'Saturdays  –  eat only once, donate oil', hi: 'शनिवार  –  एक बार भोजन, तेल दान', sa: 'शनिवासरे  –  एकवारं भोजनं, तैलदानम्' },
     color: { en: 'Black, Dark Blue, Navy', hi: 'काला, गहरा नीला', sa: 'कृष्णः गहननीलश्च' },
     direction: { en: 'West', hi: 'पश्चिम', sa: 'पश्चिमा' },
   },
@@ -193,14 +193,14 @@ export const PLANET_REMEDIES_FULL: Record<number, PlanetRemedyFull> = {
       weight: '4-6 carats',
     },
     beejMantra: { en: 'Om Bhraam Bhreem Bhraum Sah Rahave Namah', hi: 'ॐ भ्रां भ्रीं भ्रौं सः राहवे नमः', sa: 'ॐ भ्रां भ्रीं भ्रौं सः राहवे नमः' },
-    vedicMantra: { en: 'Om Rahave Namah — Ardha Kaayam Maha Veeryam Chandraaditya Vimardanam', hi: 'ॐ राहवे नमः — अर्धकायं महावीर्यं चन्द्रादित्यविमर्दनम्', sa: 'ॐ राहवे नमः — अर्धकायं महावीर्यं चन्द्रादित्यविमर्दनम्' },
+    vedicMantra: { en: 'Om Rahave Namah  –  Ardha Kaayam Maha Veeryam Chandraaditya Vimardanam', hi: 'ॐ राहवे नमः  –  अर्धकायं महावीर्यं चन्द्रादित्यविमर्दनम्', sa: 'ॐ राहवे नमः  –  अर्धकायं महावीर्यं चन्द्रादित्यविमर्दनम्' },
     count: 18000,
     charity: {
       items: { en: 'Blue/black cloth, lead, blanket, mustard seeds', hi: 'नीला/काला वस्त्र, सीसा, कम्बल, सरसों', sa: 'नीलकृष्णवस्त्रं सीसं कम्बलं सर्षपाश्च' },
       day: { en: 'Saturday', hi: 'शनिवार', sa: 'शनिवासरः' },
       deity: { en: 'Goddess Durga / Saraswati', hi: 'देवी दुर्गा / सरस्वती', sa: 'दुर्गादेवी / सरस्वती' },
     },
-    fasting: { en: 'Saturdays — avoid meat and intoxicants', hi: 'शनिवार — माँस और नशे से बचें', sa: 'शनिवासरे — मांसं मादकद्रव्याणि च वर्जयेत्' },
+    fasting: { en: 'Saturdays  –  avoid meat and intoxicants', hi: 'शनिवार  –  माँस और नशे से बचें', sa: 'शनिवासरे  –  मांसं मादकद्रव्याणि च वर्जयेत्' },
     color: { en: 'Dark Blue, Smoke, Lead Grey', hi: 'गहरा नीला, धूम्र, सीसा ग्रे', sa: 'गहननीलः धूम्रः सीसावर्णश्च' },
     direction: { en: 'Southwest', hi: 'नैऋत्य', sa: 'नैऋत्यदिशा' },
   },
@@ -214,14 +214,14 @@ export const PLANET_REMEDIES_FULL: Record<number, PlanetRemedyFull> = {
       weight: '3-5 carats',
     },
     beejMantra: { en: 'Om Sraam Sreem Sraum Sah Ketave Namah', hi: 'ॐ स्रां स्रीं स्रौं सः केतवे नमः', sa: 'ॐ स्रां स्रीं स्रौं सः केतवे नमः' },
-    vedicMantra: { en: 'Om Ketave Namah — Palasha Pushpa Sankaasham Taarakaagraha Mastakam', hi: 'ॐ केतवे नमः — पलाशपुष्पसङ्काशं ताराकाग्रहमस्तकम्', sa: 'ॐ केतवे नमः — पलाशपुष्पसङ्काशं ताराकाग्रहमस्तकम्' },
+    vedicMantra: { en: 'Om Ketave Namah  –  Palasha Pushpa Sankaasham Taarakaagraha Mastakam', hi: 'ॐ केतवे नमः  –  पलाशपुष्पसङ्काशं ताराकाग्रहमस्तकम्', sa: 'ॐ केतवे नमः  –  पलाशपुष्पसङ्काशं ताराकाग्रहमस्तकम्' },
     count: 17000,
     charity: {
       items: { en: 'Blanket, sour items, sesame, seven grains', hi: 'कम्बल, खट्टे पदार्थ, तिल, सप्तधान्य', sa: 'कम्बलं अम्लपदार्थाः तिलाः सप्तधान्यानि च' },
       day: { en: 'Tuesday or Saturday', hi: 'मंगलवार या शनिवार', sa: 'मङ्गलवासरः शनिवासरः वा' },
       deity: { en: 'Lord Ganesha / Chitragupta', hi: 'भगवान गणेश / चित्रगुप्त', sa: 'गणेशः / चित्रगुप्तः' },
     },
-    fasting: { en: 'Tuesdays — feed stray dogs, donate blankets', hi: 'मंगलवार — आवारा कुत्तों को खिलाएँ, कम्बल दान', sa: 'मङ्गलवासरे — भ्रमणशुनकेभ्यः भोजनं, कम्बलदानं च' },
+    fasting: { en: 'Tuesdays  –  feed stray dogs, donate blankets', hi: 'मंगलवार  –  आवारा कुत्तों को खिलाएँ, कम्बल दान', sa: 'मङ्गलवासरे  –  भ्रमणशुनकेभ्यः भोजनं, कम्बलदानं च' },
     color: { en: 'Grey, Smoke, Brown', hi: 'धूसर, धूम्र, भूरा', sa: 'धूसरः धूम्रः भूरश्च' },
     direction: { en: 'South', hi: 'दक्षिण', sa: 'दक्षिणा' },
   },
@@ -249,7 +249,7 @@ export function getRemediesForWeakPlanets(
     p.isDebilitated || (p.planet.id <= 6 && (shadbala.find(s => s.planet === p.planet.name.en)?.totalStrength ?? 50) < 40)
   );
 
-  // Also consider lagna lord — but only if it is actually weak
+  // Also consider lagna lord  –  but only if it is actually weak
   const signLords: Record<number, number> = { 1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3, 7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4 };
   const lagnaLordId = signLords[ascSign];
 
@@ -282,8 +282,8 @@ export function getRemediesForWeakPlanets(
       name: triLocale(remedy.beejMantra, locale),
       planet: planetName || '',
       description: locale === 'hi'
-        ? `बीज मन्त्र: ${remedy.beejMantra.hi} — ${remedy.count} बार जप करें, ${triLocale(remedy.charity.day, 'hi')} से प्रारम्भ करें। ${triLocale(remedy.charity.deity, 'hi')} को समर्पित।`
-        : `Beej Mantra: ${remedy.beejMantra.en} — chant ${remedy.count} times starting on ${triLocale(remedy.charity.day, 'en')}. Dedicated to ${triLocale(remedy.charity.deity, 'en')}.`,
+        ? `बीज मन्त्र: ${remedy.beejMantra.hi}  –  ${remedy.count} बार जप करें, ${triLocale(remedy.charity.day, 'hi')} से प्रारम्भ करें। ${triLocale(remedy.charity.deity, 'hi')} को समर्पित।`
+        : `Beej Mantra: ${remedy.beejMantra.en}  –  chant ${remedy.count} times starting on ${triLocale(remedy.charity.day, 'en')}. Dedicated to ${triLocale(remedy.charity.deity, 'en')}.`,
     });
 
     // Practices
@@ -291,7 +291,7 @@ export function getRemediesForWeakPlanets(
       name: locale === 'hi' ? `${graha.name.hi} उपचार` : `${graha.name.en} Remedy`,
       planet: planetName || '',
       description: locale === 'hi'
-        ? `व्रत: ${triLocale(remedy.fasting, 'hi')}। दान: ${triLocale(remedy.charity.items, 'hi')} — ${triLocale(remedy.charity.day, 'hi')} को। रंग: ${triLocale(remedy.color, 'hi')}। दिशा: ${triLocale(remedy.direction, 'hi')}।`
+        ? `व्रत: ${triLocale(remedy.fasting, 'hi')}। दान: ${triLocale(remedy.charity.items, 'hi')}  –  ${triLocale(remedy.charity.day, 'hi')} को। रंग: ${triLocale(remedy.color, 'hi')}। दिशा: ${triLocale(remedy.direction, 'hi')}।`
         : `Fast: ${triLocale(remedy.fasting, 'en')}. Donate: ${triLocale(remedy.charity.items, 'en')} on ${triLocale(remedy.charity.day, 'en')}. Wear ${triLocale(remedy.color, 'en')} colors. Face ${triLocale(remedy.direction, 'en')} for meditation.`,
     });
   }
@@ -326,8 +326,8 @@ export function getRemediesForWeakPlanets(
     // For elder/sage stages, append fasting advisory to fasting-related practice items
     if (stage === 'elder' || stage === 'sage') {
       const fastingAdvisory = locale === 'hi'
-        ? ' ध्यान दें: इस आयु में कठोर व्रत की अनुशंसा नहीं है। हल्का भोजन या फलाहार पर्याप्त है — चिकित्सक से परामर्श लें।'
-        : ' Note: Strict fasting is not recommended at this stage of life. Light meals or fruit-based fasting is sufficient — consult your physician.';
+        ? ' ध्यान दें: इस आयु में कठोर व्रत की अनुशंसा नहीं है। हल्का भोजन या फलाहार पर्याप्त है  –  चिकित्सक से परामर्श लें।'
+        : ' Note: Strict fasting is not recommended at this stage of life. Light meals or fruit-based fasting is sufficient  –  consult your physician.';
       for (const item of practices) {
         if (item.description.toLowerCase().includes('fast') || item.description.toLowerCase().includes('व्रत')) {
           item.description += fastingAdvisory;

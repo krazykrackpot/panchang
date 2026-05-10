@@ -70,7 +70,7 @@ export function getSunTimes(
   sunriseMinutes = solarNoonRise - 4 * H0_rise;
   sunsetMinutes = solarNoonSet + 4 * H0_set;
 
-  // Civil twilight (single-pass is fine — less precision needed)
+  // Civil twilight (single-pass is fine  –  less precision needed)
   const H1 = computeHourAngle(jdNoon, -6);
   const dawnMinutes = solarNoon - 4 * H1;
   const duskMinutes = solarNoon + 4 * H1;
@@ -83,7 +83,7 @@ export function getSunTimes(
     // machine's timezone. Consumers must use getHours()/getMinutes() (which
     // return machine-local time = the stored h:m:s) or .getTime() arithmetic.
     // The canonical panchang engine (panchang-calc.ts) does NOT use these Dates
-    // for JD computation — it computes sunrise UT hours independently.
+    // for JD computation  –  it computes sunrise UT hours independently.
     return new Date(year, month - 1, day, h, m, s);
   };
 

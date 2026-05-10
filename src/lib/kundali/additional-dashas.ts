@@ -1,6 +1,6 @@
 import type { LocaleText } from '@/types/panchang';
 /**
- * Additional Dasha Systems — Narayana, Kalachakra, Shoola, Sthira, Sudarsana
+ * Additional Dasha Systems  –  Narayana, Kalachakra, Shoola, Sthira, Sudarsana
  * Reference: BPHS Ch.19-21, Jaimini Sutras
  */
 
@@ -20,7 +20,7 @@ export interface RasiDashaEntry {
 // Derive rashi names from canonical source (src/lib/constants/rashis.ts)
 const RASHI_NAMES: Tri[] = RASHIS.map(r => r.name);
 
-// Dignity constants — canonical source: @/lib/constants/dignities
+// Dignity constants  –  canonical source: @/lib/constants/dignities
 import {
   SIGN_LORDS as SIGN_LORD,
   EXALTATION_SIGNS as EXALTATION,
@@ -117,7 +117,7 @@ export function calculateNarayanaDasha(ascSign: number, planets: PlanetPosition[
 }
 
 // ─── SHOOLA DASHA ───────────────────────────────────────────────────────────
-// Trident dasha — groups of 3 signs. Each trikona set gets equal duration.
+// Trident dasha  –  groups of 3 signs. Each trikona set gets equal duration.
 // Fixed: 9 years per trikona set (3 signs × 3 years each)
 // Reference: Jaimini Sutras, BPHS Ch.20
 
@@ -162,7 +162,7 @@ export function calculateSthiraDasha(ascSign: number, birthDate: Date): RasiDash
 }
 
 // ─── KALACHAKRA DASHA ───────────────────────────────────────────────────────
-// Time-wheel dasha — based on Moon's nakshatra pada.
+// Time-wheel dasha  –  based on Moon's nakshatra pada.
 // Each nakshatra has a specific sequence of signs with specific durations.
 // Total cycle: 83 years (Savya) or 83 years (Apasavya)
 // Simplified implementation using standard Savya/Apasavya patterns.
@@ -213,7 +213,7 @@ export function calculateKalachakraDasha(moonSidLong: number, birthDate: Date): 
   //
   // HISTORICAL BUG (now fixed): the code used `pada * 2` as the startIdx.
   // The pada (0-3) describes how far the Moon is WITHIN the current nakshatra
-  // — it determines how much of the first dasha is already elapsed, but it does
+  //  –  it determines how much of the first dasha is already elapsed, but it does
   // NOT select which sign the dasha starts from.  Using `pada * 2` caused the
   // starting sign to jump by 2 signs per pada, producing wildly different dasha
   // sequences for closely-spaced Moon positions within the same nakshatra.
@@ -222,7 +222,7 @@ export function calculateKalachakraDasha(moonSidLong: number, birthDate: Date): 
   const dashas: RasiDashaEntry[] = [];
   let cur = new Date(birthDate);
 
-  // Remaining dasha of first sign — balance from nakshatra position, not pada
+  // Remaining dasha of first sign  –  balance from nakshatra position, not pada
   const posInNakshatra = (moonSidLong % (360 / 27)) / (360 / 27);
   let firstYears = years[startIdx % 9] * (1 - posInNakshatra);
 
@@ -277,7 +277,7 @@ export function calculateSudarsanaDasha(
   return entries;
 }
 
-// ─── SHOOLA DASHA — BRAHMA / RUDRA / MAHESHWARA LORDS ───────────────────────
+// ─── SHOOLA DASHA  –  BRAHMA / RUDRA / MAHESHWARA LORDS ───────────────────────
 // Jaimini Sutras: Three cosmic lords modify each Shoola period.
 // Brahma = Creator (new beginnings), Rudra = Destroyer (transformation),
 // Maheshwara = Sustainer (preservation, great events).
@@ -432,7 +432,7 @@ function calcGrahaDasha(
 }
 
 /**
- * Shodasottari Dasha — 116-year cycle
+ * Shodasottari Dasha  –  116-year cycle
  * Used when Moon is in Pushya nakshatra at birth
  */
 export function calculateShodasottariDasha(moonSidLong: number, birthDate: Date): GrahaDashaEntry[] {
@@ -445,7 +445,7 @@ export function calculateShodasottariDasha(moonSidLong: number, birthDate: Date)
 }
 
 /**
- * Dwadasottari Dasha — 112-year cycle
+ * Dwadasottari Dasha  –  112-year cycle
  * Used when Lagna is in Taurus
  */
 export function calculateDwadasottariDasha(moonSidLong: number, birthDate: Date): GrahaDashaEntry[] {
@@ -458,7 +458,7 @@ export function calculateDwadasottariDasha(moonSidLong: number, birthDate: Date)
 }
 
 /**
- * Panchottari Dasha — 105-year cycle
+ * Panchottari Dasha  –  105-year cycle
  * Used when Lagna is in Cancer
  */
 export function calculatePanchottariDasha(moonSidLong: number, birthDate: Date): GrahaDashaEntry[] {
@@ -471,7 +471,7 @@ export function calculatePanchottariDasha(moonSidLong: number, birthDate: Date):
 }
 
 /**
- * Satabdika Dasha — 100-year cycle
+ * Satabdika Dasha  –  100-year cycle
  * Used when Lagna is in Sagittarius varga
  */
 export function calculateSatabdikaDasha(moonSidLong: number, birthDate: Date): GrahaDashaEntry[] {
@@ -484,7 +484,7 @@ export function calculateSatabdikaDasha(moonSidLong: number, birthDate: Date): G
 }
 
 /**
- * Chaturaaseethi Sama Dasha — 84-year cycle (equal 12-year periods)
+ * Chaturaaseethi Sama Dasha  –  84-year cycle (equal 12-year periods)
  * Each planet gets 12 years
  */
 export function calculateChaturaaseethiDasha(moonSidLong: number, birthDate: Date): GrahaDashaEntry[] {
@@ -497,7 +497,7 @@ export function calculateChaturaaseethiDasha(moonSidLong: number, birthDate: Dat
 }
 
 /**
- * Shashtihayani Dasha — 60-year cycle
+ * Shashtihayani Dasha  –  60-year cycle
  * Based on Indian lifespan in Kali Yuga
  */
 export function calculateShashtihayaniDasha(moonSidLong: number, birthDate: Date): GrahaDashaEntry[] {
@@ -509,7 +509,7 @@ export function calculateShashtihayaniDasha(moonSidLong: number, birthDate: Date
 }
 
 // ─── MANDOOKA DASHA (Frog Dasha) ─────────────────────────────────────────────
-// Rasi dasha that "jumps" between signs like a frog — skips alternate signs.
+// Rasi dasha that "jumps" between signs like a frog  –  skips alternate signs.
 // Reference: BPHS Ch.20, Jaimini
 
 export function calculateMandookaDasha(ascSign: number, birthDate: Date): RasiDashaEntry[] {
@@ -517,7 +517,7 @@ export function calculateMandookaDasha(ascSign: number, birthDate: Date): RasiDa
   let cur = new Date(birthDate);
   const dir = isOddSign(ascSign) ? 1 : -1;
 
-  // Mandooka ("Frog") Dasha — visits all 12 signs by alternating jumps.
+  // Mandooka ("Frog") Dasha  –  visits all 12 signs by alternating jumps.
   // Pattern: start, +3, +3, +3 (4 signs by triads), then step back to start+1
   // and repeat. This ensures all 12 signs are visited.
   // Odd lagna: zodiacal (forward); Even lagna: reverse.
@@ -579,11 +579,11 @@ export function calculateDrigDasha(ascSign: number, planets: PlanetPosition[], b
 }
 
 // ─── MOOLA DASHA (Root Dasha) ─────────────────────────────────────────────
-// Based on the nakshatra at birth — root spiritual dasha.
+// Based on the nakshatra at birth  –  root spiritual dasha.
 // Reference: BPHS Ch.20
 
 export function calculateMoolaDasha(moonSidLong: number, birthDate: Date): GrahaDashaEntry[] {
-  // Same sequence/periods as Vimshottari (BPHS Ch.20) — total 120 years
+  // Same sequence/periods as Vimshottari (BPHS Ch.20)  –  total 120 years
   return calcGrahaDasha(moonSidLong, birthDate, [
     { planet: 'Ketu', years: 7 }, { planet: 'Venus', years: 20 },
     { planet: 'Sun', years: 6 }, { planet: 'Moon', years: 10 },

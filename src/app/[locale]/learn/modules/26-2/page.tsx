@@ -91,7 +91,7 @@ const QUESTIONS: ModuleQuestion[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 1 — The Concept Before Newton                                  */
+/*  PAGE 1  –  The Concept Before Newton                                  */
 /* ------------------------------------------------------------------ */
 function Page1() {
   const locale = useModuleLocale();
@@ -104,8 +104,8 @@ function Page1() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>न्यूटन के सेब की कहानी प्रसिद्ध है — 1665 में गिरते सेब ने गुरुत्वाकर्षण का नियम प्रेरित किया। लेकिन पृथ्वी को एक ऐसी वस्तु के रूप में देखना जो चीज़ों को अपनी ओर खींचती है, भारत में न्यूटन से 1,000 से अधिक वर्ष पहले से एक स्थापित वैज्ञानिक विचार था।</>
-            : <>Newton's apple story is famous — a falling apple in 1665 inspired the law of gravity. But seeing the Earth as an object that pulls things toward itself was an established scientific idea in India more than 1,000 years before Newton.</>}
+            ? <>न्यूटन के सेब की कहानी प्रसिद्ध है  –  1665 में गिरते सेब ने गुरुत्वाकर्षण का नियम प्रेरित किया। लेकिन पृथ्वी को एक ऐसी वस्तु के रूप में देखना जो चीज़ों को अपनी ओर खींचती है, भारत में न्यूटन से 1,000 से अधिक वर्ष पहले से एक स्थापित वैज्ञानिक विचार था।</>
+            : <>Newton's apple story is famous  –  a falling apple in 1665 inspired the law of gravity. But seeing the Earth as an object that pulls things toward itself was an established scientific idea in India more than 1,000 years before Newton.</>}
         </p>
       </section>
 
@@ -143,7 +143,7 @@ function Page1() {
           <p className="text-gold-light text-xs italic leading-relaxed">
             {t('theEarthHasThePowerOf', locale)}
           </p>
-          <p className="text-text-secondary text-xs mt-1">— {t('bhaskaracharyaSiddhantaShiromaniGoladhyaya1150Ce', locale)}</p>
+          <p className="text-text-secondary text-xs mt-1"> –  {t('bhaskaracharyaSiddhantaShiromaniGoladhyaya1150Ce', locale)}</p>
         </blockquote>
       </section>
     </div>
@@ -151,7 +151,7 @@ function Page1() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 2 — What Newton Added                                          */
+/*  PAGE 2  –  What Newton Added                                          */
 /* ------------------------------------------------------------------ */
 function Page2() {
   const locale = useModuleLocale();
@@ -205,7 +205,7 @@ function Page2() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 3 — Bhaskaracharya's Broader Genius                           */
+/*  PAGE 3  –  Bhaskaracharya's Broader Genius                           */
 /* ------------------------------------------------------------------ */
 function Page3() {
   const locale = useModuleLocale();
@@ -243,8 +243,8 @@ function Page3() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <>1150 ईस्वी में — जब भास्कराचार्य लिख रहे थे — यूरोप गहरे मध्ययुगीन काल में था। विश्वविद्यालय अभी उभर रहे थे (बोलोग्ना 1088, ऑक्सफोर्ड 1096)। वैज्ञानिक विचार मुख्यतः धार्मिक प्रशासन के अधीन था। इसी समय भास्कराचार्य अवकलन गणित के पूर्वाभास, गुरुत्वाकर्षण, और उन्नत बीजगणित लिख रहे थे — यह भारतीय बौद्धिक परम्परा की जीवन्तता का प्रमाण है।</>
-            : <>In 1150 CE — when Bhaskaracharya was writing — Europe was in the deep medieval period. Universities were just emerging (Bologna 1088, Oxford 1096). Scientific thought was largely under religious authority. At this same time, Bhaskaracharya was writing precursors to differential calculus, gravity, and advanced algebra — a testament to the vitality of the Indian intellectual tradition.</>}
+            ? <>1150 ईस्वी में  –  जब भास्कराचार्य लिख रहे थे  –  यूरोप गहरे मध्ययुगीन काल में था। विश्वविद्यालय अभी उभर रहे थे (बोलोग्ना 1088, ऑक्सफोर्ड 1096)। वैज्ञानिक विचार मुख्यतः धार्मिक प्रशासन के अधीन था। इसी समय भास्कराचार्य अवकलन गणित के पूर्वाभास, गुरुत्वाकर्षण, और उन्नत बीजगणित लिख रहे थे  –  यह भारतीय बौद्धिक परम्परा की जीवन्तता का प्रमाण है।</>
+            : <>In 1150 CE  –  when Bhaskaracharya was writing  –  Europe was in the deep medieval period. Universities were just emerging (Bologna 1088, Oxford 1096). Scientific thought was largely under religious authority. At this same time, Bhaskaracharya was writing precursors to differential calculus, gravity, and advanced algebra  –  a testament to the vitality of the Indian intellectual tradition.</>}
         </p>
       </section>
     </div>

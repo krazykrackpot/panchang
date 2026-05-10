@@ -166,7 +166,7 @@ export const PlanetRender: React.FC<PlanetRenderProps> = ({ planet = 'jupiter', 
           filter: 'blur(20px)',
         }} />
 
-        {/* Rings — behind planet for Saturn */}
+        {/* Rings  –  behind planet for Saturn */}
         {style.hasRings && (
           <div style={{
             position: 'absolute',
@@ -263,7 +263,7 @@ export const PlanetRender: React.FC<PlanetRenderProps> = ({ planet = 'jupiter', 
           boxShadow: `inset -4px 0 15px ${style.atmosphere}, -3px 0 20px ${style.atmosphere}`,
         }} />
 
-        {/* Rahu — smoky shadow effect */}
+        {/* Rahu  –  smoky shadow effect */}
         {planet === 'rahu' && (
           <div style={{
             position: 'absolute', inset: -40,
@@ -274,7 +274,7 @@ export const PlanetRender: React.FC<PlanetRenderProps> = ({ planet = 'jupiter', 
           }} />
         )}
 
-        {/* Ketu — fiery tail */}
+        {/* Ketu  –  fiery tail */}
         {planet === 'ketu' && (
           <div style={{
             position: 'absolute',

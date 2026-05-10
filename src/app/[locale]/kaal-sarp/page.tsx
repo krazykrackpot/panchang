@@ -131,9 +131,9 @@ function analyzeKaalSarp(kundali: KundaliData, locale: Locale): KaalSarpResult {
   }
 
   // If no planets outside, they're all between Rahu and Ketu (one direction)
-  // If all outside, they're all between Ketu and Rahu (other direction) — still Kaal Sarp
+  // If all outside, they're all between Ketu and Rahu (other direction)  –  still Kaal Sarp
   if (outsideCount === mainPlanets.length) {
-    // All on the other side — still valid Kaal Sarp
+    // All on the other side  –  still valid Kaal Sarp
     allOneSide = true;
     planetsOutside.length = 0;
     outsideCount = 0;
@@ -170,7 +170,7 @@ function analyzeKaalSarp(kundali: KundaliData, locale: Locale): KaalSarpResult {
 // ---------------------------------------------------------------------------
 
 const REMEDIES: { title: LocaleText; description: LocaleText }[] = [
-  { title: L('Kaal Sarp Dosha Nivaran Puja', 'काल सर्प दोष निवारण पूजा', 'कालसर्पदोषनिवारणपूजा'), description: L('Perform at Trimbakeshwar (Nashik) or Mahakaleshwar (Ujjain) — the most powerful traditional remedy', 'त्र्यम्बकेश्वर (नासिक) या महाकालेश्वर (उज्जैन) में करें — सबसे शक्तिशाली पारम्परिक उपाय', 'त्र्यम्बकेश्वरे महाकालेश्वरे वा कुर्यात्') },
+  { title: L('Kaal Sarp Dosha Nivaran Puja', 'काल सर्प दोष निवारण पूजा', 'कालसर्पदोषनिवारणपूजा'), description: L('Perform at Trimbakeshwar (Nashik) or Mahakaleshwar (Ujjain)  –  the most powerful traditional remedy', 'त्र्यम्बकेश्वर (नासिक) या महाकालेश्वर (उज्जैन) में करें  –  सबसे शक्तिशाली पारम्परिक उपाय', 'त्र्यम्बकेश्वरे महाकालेश्वरे वा कुर्यात्') },
   { title: L('Rahu-Ketu Mantras', 'राहु-केतु मन्त्र', 'राहुकेतुमन्त्राः'), description: L('Chant "Om Rahave Namah" (18,000 times) and "Om Ketave Namah" (17,000 times) during the Dosha period', '"ॐ राहवे नमः" (18,000 बार) और "ॐ केतवे नमः" (17,000 बार) जप करें', '"ॐ राहवे नमः" (१८,००० वारम्) "ॐ केतवे नमः" (१७,००० वारम्) च जपेत्') },
   { title: L('Nag Panchami Worship', 'नाग पंचमी पूजा', 'नागपञ्चमीपूजा'), description: L('Offer milk, rice, and flowers to snake idols or ant hills on Nag Panchami. Worship Nag Devta regularly.', 'नाग पंचमी पर नाग मूर्ति या वल्मीक पर दूध, चावल और फूल अर्पित करें। नियमित नाग देवता पूजा करें।', 'नागपञ्चम्यां नागमूर्तये वल्मीकाय वा दुग्धतण्डुलपुष्पाणि अर्पयेत्') },
   { title: L('Sarpa Suktam Recitation', 'सर्प सूक्तम् पाठ', 'सर्पसूक्तपठनम्'), description: L('Regular recitation of Sarpa Suktam from the Yajurveda helps pacify the serpent energy in the chart', 'यजुर्वेद से सर्प सूक्तम् का नियमित पाठ कुण्डली में सर्प ऊर्जा को शान्त करता है', 'यजुर्वेदात् सर्पसूक्तस्य नियमितपठनं कुण्डल्यां सर्पशक्तिं शमयति') },
@@ -254,14 +254,14 @@ export default function KaalSarpPage() {
         {locale === 'en' ? (
           <div className="space-y-3">
             <p><strong>Kaal Sarp Dosha</strong> occurs when all seven planets (Sun through Saturn) are positioned on one side of the Rahu-Ketu axis in the birth chart. Since Rahu and Ketu are always exactly opposite each other, they create an axis that divides the chart into two halves.</p>
-            <p>When all other planets fall on one side, the native&apos;s karma is heavily influenced by the Rahu-Ketu axis — creating patterns of <strong>sudden upheavals, delays, and karmic debts</strong> from past lives. However, this Dosha also gives the potential for extraordinary achievements once its lessons are learned.</p>
+            <p>When all other planets fall on one side, the native&apos;s karma is heavily influenced by the Rahu-Ketu axis  –  creating patterns of <strong>sudden upheavals, delays, and karmic debts</strong> from past lives. However, this Dosha also gives the potential for extraordinary achievements once its lessons are learned.</p>
             <p>There are <strong>12 types</strong> named after mythological serpents, each defined by which houses Rahu and Ketu occupy. The effects vary dramatically based on the type.</p>
           </div>
         ) : (
           <div className="space-y-3">
             <p><strong>काल सर्प दोष</strong> तब होता है जब सभी सात ग्रह (सूर्य से शनि तक) जन्म कुण्डली में राहु-केतु अक्ष के एक ओर स्थित होते हैं। राहु और केतु सदैव एक-दूसरे के ठीक विपरीत होते हैं, वे कुण्डली को दो भागों में बाँटने वाला अक्ष बनाते हैं।</p>
             <p>जब सभी अन्य ग्रह एक ओर हों, तो <strong>अचानक उथल-पुथल, विलम्ब और पूर्वजन्म कर्मऋण</strong> के प्रतिरूप बनते हैं। किन्तु इसमें पाठ सीखने के बाद असाधारण उपलब्धियों की सम्भावना भी होती है।</p>
-            <p><strong>12 प्रकार</strong> हैं, प्रत्येक पौराणिक सर्पों के नाम पर — राहु और केतु किस भाव में हैं, इससे निर्धारित।</p>
+            <p><strong>12 प्रकार</strong> हैं, प्रत्येक पौराणिक सर्पों के नाम पर  –  राहु और केतु किस भाव में हैं, इससे निर्धारित।</p>
           </div>
         )}
       </InfoBlock>

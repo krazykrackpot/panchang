@@ -39,12 +39,12 @@ const EXAMPLE_HOUSES = [
   { house: 1, rashi: { en: 'Libra (Tula)', hi: 'तुला', sa: 'तुला' }, planets: { en: 'Rahu', hi: 'राहु', sa: 'राहुः' } },
   { house: 2, rashi: { en: 'Scorpio (Vrishchika)', hi: 'वृश्चिक', sa: 'वृश्चिकः' }, planets: { en: 'Jupiter', hi: 'गुरु', sa: 'गुरुः' } },
   { house: 3, rashi: { en: 'Sagittarius (Dhanu)', hi: 'धनु', sa: 'धनुः' }, planets: { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्रः' } },
-  { house: 4, rashi: { en: 'Capricorn (Makara)', hi: 'मकर', sa: 'मकरः' }, planets: { en: '—', hi: '—', sa: '—' } },
+  { house: 4, rashi: { en: 'Capricorn (Makara)', hi: 'मकर', sa: 'मकरः' }, planets: { en: ' – ', hi: ' – ', sa: ' – ' } },
   { house: 5, rashi: { en: 'Aquarius (Kumbha)', hi: 'कुम्भ', sa: 'कुम्भः' }, planets: { en: 'Saturn', hi: 'शनि', sa: 'शनिः' } },
-  { house: 6, rashi: { en: 'Pisces (Meena)', hi: 'मीन', sa: 'मीनः' }, planets: { en: '—', hi: '—', sa: '—' } },
+  { house: 6, rashi: { en: 'Pisces (Meena)', hi: 'मीन', sa: 'मीनः' }, planets: { en: ' – ', hi: ' – ', sa: ' – ' } },
   { house: 7, rashi: { en: 'Aries (Mesha)', hi: 'मेष', sa: 'मेषः' }, planets: { en: 'Ketu', hi: 'केतु', sa: 'केतुः' } },
-  { house: 8, rashi: { en: 'Taurus (Vrishabha)', hi: 'वृषभ', sa: 'वृषभः' }, planets: { en: '—', hi: '—', sa: '—' } },
-  { house: 9, rashi: { en: 'Gemini (Mithuna)', hi: 'मिथुन', sa: 'मिथुनम्' }, planets: { en: '—', hi: '—', sa: '—' } },
+  { house: 8, rashi: { en: 'Taurus (Vrishabha)', hi: 'वृषभ', sa: 'वृषभः' }, planets: { en: ' – ', hi: ' – ', sa: ' – ' } },
+  { house: 9, rashi: { en: 'Gemini (Mithuna)', hi: 'मिथुन', sa: 'मिथुनम्' }, planets: { en: ' – ', hi: ' – ', sa: ' – ' } },
   { house: 10, rashi: { en: 'Cancer (Karka)', hi: 'कर्क', sa: 'कर्कः' }, planets: { en: 'Sun', hi: 'सूर्य', sa: 'सूर्यः' } },
   { house: 11, rashi: { en: 'Leo (Simha)', hi: 'सिंह', sa: 'सिंहः' }, planets: { en: 'Mercury, Venus', hi: 'बुध, शुक्र', sa: 'बुधः, शुक्रः' } },
   { house: 12, rashi: { en: 'Virgo (Kanya)', hi: 'कन्या', sa: 'कन्या' }, planets: { en: 'Mars', hi: 'मंगल', sa: 'मङ्गलः' } },
@@ -53,8 +53,8 @@ const EXAMPLE_HOUSES = [
 // Step 9: Dignity examples for the chart
 const DIGNITY_EXAMPLES = [
   { planet: { en: 'Jupiter in Scorpio', hi: 'वृश्चिक में गुरु', sa: 'वृश्चिके गुरुः' }, status: { en: 'Neutral (friendly sign)', hi: 'तटस्थ (मित्र राशि)', sa: 'तटस्थः (मित्रराशिः)' }, color: '#f0d48a' },
-  { planet: { en: 'Saturn in Aquarius', hi: 'कुम्भ में शनि', sa: 'कुम्भे शनिः' }, status: { en: 'Own Sign (Swa Rashi) — strong', hi: 'स्वराशि — बलवान', sa: 'स्वराशिः — बलवान्' }, color: '#34d399' },
-  { planet: { en: 'Mars in Virgo', hi: 'कन्या में मंगल', sa: 'कन्यायां मङ्गलः' }, status: { en: 'Enemy sign — weakened', hi: 'शत्रु राशि — दुर्बल', sa: 'शत्रुराशिः — दुर्बलः' }, color: '#f87171' },
+  { planet: { en: 'Saturn in Aquarius', hi: 'कुम्भ में शनि', sa: 'कुम्भे शनिः' }, status: { en: 'Own Sign (Swa Rashi)  –  strong', hi: 'स्वराशि  –  बलवान', sa: 'स्वराशिः  –  बलवान्' }, color: '#34d399' },
+  { planet: { en: 'Mars in Virgo', hi: 'कन्या में मंगल', sa: 'कन्यायां मङ्गलः' }, status: { en: 'Enemy sign  –  weakened', hi: 'शत्रु राशि  –  दुर्बल', sa: 'शत्रुराशिः  –  दुर्बलः' }, color: '#f87171' },
   { planet: { en: 'Sun in Cancer', hi: 'कर्क में सूर्य', sa: 'कर्के सूर्यः' }, status: { en: 'Friendly sign (Moon\'s sign)', hi: 'मित्र राशि (चन्द्र की राशि)', sa: 'मित्रराशिः (चन्द्रस्य राशिः)' }, color: '#fbbf24' },
 ];
 
@@ -62,7 +62,7 @@ const DIGNITY_EXAMPLES = [
 const DEEPER_LINKS = [
   { href: '/learn/bhavas', label: { en: 'The 12 Houses', hi: '12 भाव', sa: 'द्वादशभावाः' }, desc: { en: 'Deep dive into each house\'s significations', hi: 'प्रत्येक भाव के संकेतों में गहराई', sa: 'प्रत्येकभावसङ्केतेषु गहनम्' } },
   { href: '/learn/grahas', label: { en: 'The 9 Grahas', hi: '9 ग्रह', sa: 'नवग्रहाः' }, desc: { en: 'Planets, their natures, and rulerships', hi: 'ग्रह, उनके स्वभाव, और स्वामित्व', sa: 'ग्रहाः, तेषां स्वभावाः, स्वामित्वं च' } },
-  { href: '/learn/vargas', label: { en: 'Divisional Charts', hi: 'विभागीय कुण्डलियाँ', sa: 'विभागकुण्डल्यः' }, desc: { en: '16 Shodasvarga charts — D9, D10, and beyond', hi: '16 षोडशवर्ग — D9, D10, और आगे', sa: '16 षोडशवर्गाः — D9, D10, अग्रे च' } },
+  { href: '/learn/vargas', label: { en: 'Divisional Charts', hi: 'विभागीय कुण्डलियाँ', sa: 'विभागकुण्डल्यः' }, desc: { en: '16 Shodasvarga charts  –  D9, D10, and beyond', hi: '16 षोडशवर्ग  –  D9, D10, और आगे', sa: '16 षोडशवर्गाः  –  D9, D10, अग्रे च' } },
   { href: '/learn/dashas', label: { en: 'Dashas', hi: 'दशाएँ', sa: 'दशाः' }, desc: { en: 'The Vimshottari planetary period system', hi: 'विंशोत्तरी ग्रह अवधि प्रणाली', sa: 'विंशोत्तरीग्रहकालखण्डपद्धतिः' } },
   { href: '/learn/nakshatras', label: { en: 'Nakshatras', hi: 'नक्षत्र', sa: 'नक्षत्राणि' }, desc: { en: '27 lunar mansions and their meanings', hi: '27 चान्द्रगृह और उनके अर्थ', sa: '27 चान्द्रगृहाणि तेषाम् अर्थाः च' } },
   { href: '/learn/gochar', label: { en: 'Gochar (Transits)', hi: 'गोचर', sa: 'गोचरः' }, desc: { en: 'Current planet movements and predictions', hi: 'वर्तमान ग्रह गति और भविष्यवाणी', sa: 'वर्तमानग्रहगतिः भविष्यवाणी च' } },
@@ -290,13 +290,13 @@ export default function LearnKundaliPage() {
           {EXAMPLE_HOUSES.map((h) => (
             <div
               key={h.house}
-              className={`rounded-lg p-3 border ${lt(h.planets as LocaleText, locale) !== '—' ? 'border-gold-primary/20 bg-gold-primary/5' : 'border-gold-primary/5 bg-bg-primary/30'}`}
+              className={`rounded-lg p-3 border ${lt(h.planets as LocaleText, locale) !== ' – ' ? 'border-gold-primary/20 bg-gold-primary/5' : 'border-gold-primary/5 bg-bg-primary/30'}`}
             >
               <div className="flex items-center gap-2 mb-1">
                 <span className="w-6 h-6 rounded-full bg-gold-primary/10 flex items-center justify-center text-gold-light text-xs font-bold">{h.house}</span>
                 <span className="text-text-secondary/75 text-xs">{lt(h.rashi as LocaleText, locale)}</span>
               </div>
-              <div className={`text-xs font-semibold ${lt(h.planets as LocaleText, locale) !== '—' ? 'text-gold-light' : 'text-text-secondary/55'}`}>
+              <div className={`text-xs font-semibold ${lt(h.planets as LocaleText, locale) !== ' – ' ? 'text-gold-light' : 'text-text-secondary/55'}`}>
                 {lt(h.planets as LocaleText, locale)}
               </div>
             </div>
@@ -338,7 +338,7 @@ export default function LearnKundaliPage() {
               <div className="w-2 h-8 rounded-full flex-shrink-0" style={{ backgroundColor: d.color }} />
               <div className="flex-1">
                 <span className="text-gold-light text-sm font-semibold">{lt(d.planet as LocaleText, locale)}</span>
-                <span className="text-text-secondary/75 text-sm"> — </span>
+                <span className="text-text-secondary/75 text-sm">  –  </span>
                 <span className="text-sm" style={{ color: d.color }}>{lt(d.status as LocaleText, locale)}</span>
               </div>
             </div>

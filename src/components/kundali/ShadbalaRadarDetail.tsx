@@ -168,7 +168,7 @@ export default function ShadbalaRadarDetail({ selectedAxis, shadbala, locale }: 
     );
   }
 
-  // Other axes — horizontal flex with raw values per planet
+  // Other axes  –  horizontal flex with raw values per planet
   const axisLabel = tl(OTHER_AXIS_LABELS[selectedAxis] ?? { en: selectedAxis }, locale);
 
   return (
@@ -186,7 +186,7 @@ export default function ShadbalaRadarDetail({ selectedAxis, shadbala, locale }: 
               <GrahaIconById id={p.planetId} size={20} />
               <span className="text-[10px] text-gold-light">{tl(PLANET_LABELS[p.planetId], locale)}</span>
               <span className="text-xs font-semibold text-text-primary tabular-nums">
-                {value !== null ? (value >= 0 ? '' : '') + value.toFixed(2) : '—'}
+                {value !== null ? (value >= 0 ? '' : '') + value.toFixed(2) : ' – '}
               </span>
             </div>
           );

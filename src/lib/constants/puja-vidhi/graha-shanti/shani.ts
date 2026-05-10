@@ -168,9 +168,9 @@ export const SHANI_SHANTI: PujaVidhi = {
 
   precautions: [
     {
-      en: 'Face west during the puja. Dark blue or black is essential. Do not consume alcohol on puja day — Saturn punishes indiscipline.',
-      hi: 'पूजा में पश्चिम दिशा की ओर मुख करें। गहरा नीला या काला रंग आवश्यक है। पूजा के दिन मदिरा सेवन न करें — शनि अनुशासनहीनता को दण्डित करता है।',
-      sa: 'पूजायां पश्चिमदिशम् अभिमुखं कुर्यात्। गहननीलः कृष्णवर्णः वा अनिवार्यः। पूजादिने मद्यं न पिबेत् — शनिः अनुशासनहीनतां दण्डयति।',
+      en: 'Face west during the puja. Dark blue or black is essential. Do not consume alcohol on puja day  –  Saturn punishes indiscipline.',
+      hi: 'पूजा में पश्चिम दिशा की ओर मुख करें। गहरा नीला या काला रंग आवश्यक है। पूजा के दिन मदिरा सेवन न करें  –  शनि अनुशासनहीनता को दण्डित करता है।',
+      sa: 'पूजायां पश्चिमदिशम् अभिमुखं कुर्यात्। गहननीलः कृष्णवर्णः वा अनिवार्यः। पूजादिने मद्यं न पिबेत्  –  शनिः अनुशासनहीनतां दण्डयति।',
     },
     {
       en: 'Do not disrespect servants, workers, or the elderly on Saturday. Saturn is the karaka of servants and the old.',

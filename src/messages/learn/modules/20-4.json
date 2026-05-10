@@ -1,15 +1,15 @@
 {
   "title": {
-    "en": "Ruling Planets — KP Timing Method",
-    "hi": "शासक ग्रह — केपी समय-निर्धारण विधि",
-    "sa": "शासकग्रहाः — केपी कालनिर्धारणविधिः",
-    "ta": "ஆளும் கிரகங்கள் — KP நேர நிர்ணய முறை",
-    "te": "పాలక గ్రహాలు — KP సమయ నిర్ణయ పద్ధతి",
-    "bn": "শাসক গ্রহ — কেপি সময় নির্ধারণ পদ্ধতি",
-    "kn": "ಆಡಳಿತ ಗ್ರಹಗಳು — ಕೆಪಿ ಸಮಯ ನಿರ್ಧಾರ ವಿಧಾನ",
-    "mr": "शासक ग्रह — केपी वेळ-निर्धारण पद्धती",
-    "gu": "શાસક ગ્રહ — KP સમય-નિર્ધારણ પદ્ધતિ",
-    "mai": "शासक ग्रह — केपी समय-निर्धारण विधि"
+    "en": "Ruling Planets  –  KP Timing Method",
+    "hi": "शासक ग्रह  –  केपी समय-निर्धारण विधि",
+    "sa": "शासकग्रहाः  –  केपी कालनिर्धारणविधिः",
+    "ta": "ஆளும் கிரகங்கள்  –  KP நேர நிர்ணய முறை",
+    "te": "పాలక గ్రహాలు  –  KP సమయ నిర్ణయ పద్ధతి",
+    "bn": "শাসক গ্রহ  –  কেপি সময় নির্ধারণ পদ্ধতি",
+    "kn": "ಆಡಳಿತ ಗ್ರಹಗಳು  –  ಕೆಪಿ ಸಮಯ ನಿರ್ಧಾರ ವಿಧಾನ",
+    "mr": "शासक ग्रह  –  केपी वेळ-निर्धारण पद्धती",
+    "gu": "શાસક ગ્રહ  –  KP સમય-નિર્ધારણ પદ્ધતિ",
+    "mai": "शासक ग्रह  –  केपी समय-निर्धारण विधि"
   },
   "subtitle": {
     "en": "How the 5 ruling planets at the moment of judgment confirm and time predictions in the KP system",
@@ -190,8 +190,8 @@
       },
       "correctAnswer": false,
       "explanation": {
-        "en": "False. Ruling planets are calculated for the CURRENT moment (time of judgment/query), not from the birth chart. This is what makes them a real-time cosmic pointer — the universe at this moment indicates when the event will occur.",
-        "hi": "असत्य। शासक ग्रह वर्तमान क्षण (निर्णय/प्रश्न के समय) के लिए गणित किए जाते हैं, जन्म कुण्डली से नहीं। यही उन्हें वास्तविक समय का ब्रह्माण्डीय संकेतक बनाता है — इस क्षण ब्रह्माण्ड बताता है कि घटना कब घटित होगी।"
+        "en": "False. Ruling planets are calculated for the CURRENT moment (time of judgment/query), not from the birth chart. This is what makes them a real-time cosmic pointer  –  the universe at this moment indicates when the event will occur.",
+        "hi": "असत्य। शासक ग्रह वर्तमान क्षण (निर्णय/प्रश्न के समय) के लिए गणित किए जाते हैं, जन्म कुण्डली से नहीं। यही उन्हें वास्तविक समय का ब्रह्माण्डीय संकेतक बनाता है  –  इस क्षण ब्रह्माण्ड बताता है कि घटना कब घटित होगी।"
       }
     },
     {
@@ -245,8 +245,8 @@
       ],
       "correctAnswer": 1,
       "explanation": {
-        "en": "Ruling planets are primarily used for TIMING — they indicate which dasha/bhukti/antara sequence will deliver the predicted event. By matching ruling planets with the significator table, KP pinpoints the timing window.",
-        "hi": "शासक ग्रहों का प्राथमिक उपयोग समय-निर्धारण है — ये बताते हैं कि कौन-सा दशा/भुक्ति/अन्तरा क्रम भविष्यवाणित घटना लाएगा। शासक ग्रहों को कारक सारणी से मिलाकर केपी समय खिड़की को इंगित करता है।"
+        "en": "Ruling planets are primarily used for TIMING  –  they indicate which dasha/bhukti/antara sequence will deliver the predicted event. By matching ruling planets with the significator table, KP pinpoints the timing window.",
+        "hi": "शासक ग्रहों का प्राथमिक उपयोग समय-निर्धारण है  –  ये बताते हैं कि कौन-सा दशा/भुक्ति/अन्तरा क्रम भविष्यवाणित घटना लाएगा। शासक ग्रहों को कारक सारणी से मिलाकर केपी समय खिड़की को इंगित करता है।"
       }
     },
     {
@@ -468,8 +468,8 @@
       "id": "q20_4_10",
       "type": "mcq",
       "question": {
-        "en": "In the worked marriage example, if ruling planets at query time are Venus, Moon, Jupiter, Mercury, and Saturn, and Venus signifies houses 2, 7, 11 — what is the most likely marriage period?",
-        "hi": "विवाह के उदाहरण में, यदि प्रश्न समय पर शासक ग्रह शुक्र, चन्द्र, गुरु, बुध और शनि हैं, और शुक्र भाव 2, 7, 11 का कारक है — सर्वाधिक सम्भावित विवाह काल क्या है?"
+        "en": "In the worked marriage example, if ruling planets at query time are Venus, Moon, Jupiter, Mercury, and Saturn, and Venus signifies houses 2, 7, 11  –  what is the most likely marriage period?",
+        "hi": "विवाह के उदाहरण में, यदि प्रश्न समय पर शासक ग्रह शुक्र, चन्द्र, गुरु, बुध और शनि हैं, और शुक्र भाव 2, 7, 11 का कारक है  –  सर्वाधिक सम्भावित विवाह काल क्या है?"
       },
       "options": [
         {

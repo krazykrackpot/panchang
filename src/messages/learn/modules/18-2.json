@@ -1,19 +1,19 @@
 {
   "title": {
-    "en": "Bhavabala — House Strength",
-    "hi": "भावबल — भाव शक्ति",
-    "sa": "भावबलम् — भावशक्तिः",
-    "ta": "பாவபலம் — வீட்டு பலம்",
-    "te": "భావబలం — భావ శక్తి",
-    "bn": "ভাববল — ভাব শক্তি",
-    "kn": "ಭಾವಬಲ — ಭಾವ ಶಕ್ತಿ",
-    "mr": "भावबल — भाव शक्ती",
-    "gu": "ભાવબળ — ભાવ શક્તિ",
-    "mai": "भावबल — भाव शक्ति"
+    "en": "Bhavabala  –  House Strength",
+    "hi": "भावबल  –  भाव शक्ति",
+    "sa": "भावबलम्  –  भावशक्तिः",
+    "ta": "பாவபலம்  –  வீட்டு பலம்",
+    "te": "భావబలం  –  భావ శక్తి",
+    "bn": "ভাববল  –  ভাব শক্তি",
+    "kn": "ಭಾವಬಲ  –  ಭಾವ ಶಕ್ತಿ",
+    "mr": "भावबल  –  भाव शक्ती",
+    "gu": "ભાવબળ  –  ભાવ શક્તિ",
+    "mai": "भावबल  –  भाव शक्ति"
   },
   "subtitle": {
-    "en": "How house strength is computed from the lord's Shadbala, directional dignity, and aspects received — revealing which life areas flourish naturally and which require effort",
-    "hi": "भाव स्वामी के षड्बल, दिशात्मक गरिमा और प्राप्त दृष्टियों से भाव शक्ति की गणना — कौन-से जीवन क्षेत्र स्वाभाविक रूप से फलते हैं और किनमें प्रयास आवश्यक है",
+    "en": "How house strength is computed from the lord's Shadbala, directional dignity, and aspects received  –  revealing which life areas flourish naturally and which require effort",
+    "hi": "भाव स्वामी के षड्बल, दिशात्मक गरिमा और प्राप्त दृष्टियों से भाव शक्ति की गणना  –  कौन-से जीवन क्षेत्र स्वाभाविक रूप से फलते हैं और किनमें प्रयास आवश्यक है",
     "sa": "भावस्वामिनः षड्बलात्, दिशात्मकगरिमायाः, प्राप्तदृष्टीनां च भावबलगणना",
     "ta": "வீட்டு அதிபதியின் ஷட்பலம், திசை கௌரவம் மற்றும் பெறப்பட்ட திருஷ்டிகளிலிருந்து வீட்டு பலம் கணக்கிடுதல்",
     "te": "భావ స్వామి షడ్బలం, దిశాత్మక గౌరవం మరియు పొందిన దృష్టుల నుండి భావ బలం గణన",
@@ -26,31 +26,31 @@
   "crossRefs": [
     {
       "label": {
-        "en": "Module 18-1: Shadbala — Planetary Strength",
-        "hi": "मॉड्यूल 18-1: षड्बल — ग्रह शक्ति",
-        "sa": "मॉड्यूल 18-1: षड्बल — ग्रह शक्ति",
-        "mai": "मॉड्यूल 18-1: षड्बल — ग्रह शक्ति",
-        "mr": "मॉड्यूल 18-1: षड्बल — ग्रह शक्ति",
-        "ta": "Module 18-1: Shadbala — Planetary Strength",
-        "te": "Module 18-1: Shadbala — Planetary Strength",
-        "bn": "Module 18-1: Shadbala — Planetary Strength",
-        "kn": "Module 18-1: Shadbala — Planetary Strength",
-        "gu": "Module 18-1: Shadbala — Planetary Strength"
+        "en": "Module 18-1: Shadbala  –  Planetary Strength",
+        "hi": "मॉड्यूल 18-1: षड्बल  –  ग्रह शक्ति",
+        "sa": "मॉड्यूल 18-1: षड्बल  –  ग्रह शक्ति",
+        "mai": "मॉड्यूल 18-1: षड्बल  –  ग्रह शक्ति",
+        "mr": "मॉड्यूल 18-1: षड्बल  –  ग्रह शक्ति",
+        "ta": "Module 18-1: Shadbala  –  Planetary Strength",
+        "te": "Module 18-1: Shadbala  –  Planetary Strength",
+        "bn": "Module 18-1: Shadbala  –  Planetary Strength",
+        "kn": "Module 18-1: Shadbala  –  Planetary Strength",
+        "gu": "Module 18-1: Shadbala  –  Planetary Strength"
       },
       "href": "/learn/modules/18-1"
     },
     {
       "label": {
-        "en": "Module 18-3: Ashtakavarga — Bindu Scoring",
-        "hi": "मॉड्यूल 18-3: अष्टकवर्ग — बिन्दु अंकन",
-        "sa": "मॉड्यूल 18-3: अष्टकवर्ग — बिन्दु अंकन",
-        "mai": "मॉड्यूल 18-3: अष्टकवर्ग — बिन्दु अंकन",
-        "mr": "मॉड्यूल 18-3: अष्टकवर्ग — बिन्दु अंकन",
-        "ta": "Module 18-3: Ashtakavarga — Bindu Scoring",
-        "te": "Module 18-3: Ashtakavarga — Bindu Scoring",
-        "bn": "Module 18-3: Ashtakavarga — Bindu Scoring",
-        "kn": "Module 18-3: Ashtakavarga — Bindu Scoring",
-        "gu": "Module 18-3: Ashtakavarga — Bindu Scoring"
+        "en": "Module 18-3: Ashtakavarga  –  Bindu Scoring",
+        "hi": "मॉड्यूल 18-3: अष्टकवर्ग  –  बिन्दु अंकन",
+        "sa": "मॉड्यूल 18-3: अष्टकवर्ग  –  बिन्दु अंकन",
+        "mai": "मॉड्यूल 18-3: अष्टकवर्ग  –  बिन्दु अंकन",
+        "mr": "मॉड्यूल 18-3: अष्टकवर्ग  –  बिन्दु अंकन",
+        "ta": "Module 18-3: Ashtakavarga  –  Bindu Scoring",
+        "te": "Module 18-3: Ashtakavarga  –  Bindu Scoring",
+        "bn": "Module 18-3: Ashtakavarga  –  Bindu Scoring",
+        "kn": "Module 18-3: Ashtakavarga  –  Bindu Scoring",
+        "gu": "Module 18-3: Ashtakavarga  –  Bindu Scoring"
       },
       "href": "/learn/modules/18-3"
     },

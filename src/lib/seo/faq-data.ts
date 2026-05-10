@@ -20,7 +20,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       answer: {
         en: 'Panchang is the traditional Vedic Hindu calendar system that tracks five key elements (Pancha Anga): Tithi (lunar day), Nakshatra (lunar mansion), Yoga (Sun-Moon angular relationship), Karana (half-Tithi), and Vara (weekday). Dekho Panchang computes all five elements using classical astronomical algorithms for any location worldwide.',
         hi: 'पंचांग पारंपरिक वैदिक हिन्दू पंचांग पद्धति है जो पाँच प्रमुख अंगों को दर्शाती है: तिथि, नक्षत्र, योग, करण और वार। देखो पंचांग शास्त्रीय खगोलीय गणनाओं द्वारा विश्व के किसी भी स्थान के लिए ये पाँचों अंग प्रस्तुत करता है।',
-        sa: 'पञ्चाङ्गं पारम्परिकं वैदिकं कालगणनापद्धतिः अस्ति यत् पञ्च प्रमुखानि अङ्गानि दर्शयति — तिथिः, नक्षत्रम्, योगः, करणम्, वारश्च। देखो-पञ्चाङ्गम् शास्त्रीयखगोलगणनाभिः विश्वस्य कस्मिन् अपि स्थाने एतानि पञ्चाङ्गानि गणयति।',
+        sa: 'पञ्चाङ्गं पारम्परिकं वैदिकं कालगणनापद्धतिः अस्ति यत् पञ्च प्रमुखानि अङ्गानि दर्शयति  –  तिथिः, नक्षत्रम्, योगः, करणम्, वारश्च। देखो-पञ्चाङ्गम् शास्त्रीयखगोलगणनाभिः विश्वस्य कस्मिन् अपि स्थाने एतानि पञ्चाङ्गानि गणयति।',
       },
     },
     {
@@ -138,9 +138,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'पञ्चाङ्गे योगः कः अस्ति?',
       },
       answer: {
-        en: 'Yoga in Panchang (not to be confused with physical Yoga exercises) is one of the five elements of the Vedic calendar. It is calculated from the combined longitudes of the Sun and Moon — each 13 degree 20 minute segment of their sum defines one of 27 Yogas. Each Yoga has distinct qualities that influence the auspiciousness of the day.',
-        hi: 'पंचांग में योग (शारीरिक योगाभ्यास से भिन्न) वैदिक पंचांग के पाँच अंगों में से एक है। यह सूर्य और चन्द्रमा के संयुक्त रेखांश से गणना होता है — उनके योग के प्रत्येक 13 अंश 20 कला खण्ड से एक योग निर्धारित होता है। प्रत्येक योग दिन की शुभता को प्रभावित करता है।',
-        sa: 'पञ्चाङ्गे योगः (शारीरिकयोगाभ्यासात् भिन्नः) वैदिकपञ्चाङ्गस्य पञ्चसु अङ्गेषु अन्यतमः अस्ति। सूर्यचन्द्रयोः संयुक्तरेखांशात् गण्यते — तयोः योगस्य प्रत्येकं त्रयोदशांशविंशतिकलाखण्डं सप्तविंशतियोगेषु एकं निर्धारयति। प्रत्येकस्य योगस्य दिनशुभत्वं प्रभावयन्तः विशिष्टगुणाः सन्ति।',
+        en: 'Yoga in Panchang (not to be confused with physical Yoga exercises) is one of the five elements of the Vedic calendar. It is calculated from the combined longitudes of the Sun and Moon  –  each 13 degree 20 minute segment of their sum defines one of 27 Yogas. Each Yoga has distinct qualities that influence the auspiciousness of the day.',
+        hi: 'पंचांग में योग (शारीरिक योगाभ्यास से भिन्न) वैदिक पंचांग के पाँच अंगों में से एक है। यह सूर्य और चन्द्रमा के संयुक्त रेखांश से गणना होता है  –  उनके योग के प्रत्येक 13 अंश 20 कला खण्ड से एक योग निर्धारित होता है। प्रत्येक योग दिन की शुभता को प्रभावित करता है।',
+        sa: 'पञ्चाङ्गे योगः (शारीरिकयोगाभ्यासात् भिन्नः) वैदिकपञ्चाङ्गस्य पञ्चसु अङ्गेषु अन्यतमः अस्ति। सूर्यचन्द्रयोः संयुक्तरेखांशात् गण्यते  –  तयोः योगस्य प्रत्येकं त्रयोदशांशविंशतिकलाखण्डं सप्तविंशतियोगेषु एकं निर्धारयति। प्रत्येकस्य योगस्य दिनशुभत्वं प्रभावयन्तः विशिष्टगुणाः सन्ति।',
       },
     },
     {
@@ -180,7 +180,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       answer: {
         en: 'Rashi refers to the 12 zodiac signs in Vedic (sidereal) astrology: Mesha (Aries) through Meena (Pisces). Unlike Western tropical astrology, Vedic Rashis account for the precession of equinoxes using the Ayanamsha correction, placing signs approximately 24 degrees behind their Western counterparts. Your Rashi determines core personality traits and life patterns.',
         hi: 'राशि वैदिक (सायन) ज्योतिष में 12 राशिचक्र चिह्नों को कहते हैं: मेष से मीन तक। पाश्चात्य ज्योतिष के विपरीत, वैदिक राशियाँ अयनांश सुधार का उपयोग करती हैं जो विषुव अयन को ध्यान में रखता है।',
-        sa: 'राशिः वैदिकनिरयणज्योतिषे द्वादशराशिचक्रचिह्नेषु अन्यतमः अस्ति — मेषात् आरभ्य मीनपर्यन्तम्। पाश्चात्यसायनज्योतिषात् भिन्नं वैदिकराशयः अयनांशसंशोधनेन विषुवायनं गणयन्ति, तेन राशयः पाश्चात्यराशिभ्यः प्रायः चतुर्विंशत्यंशैः पृष्ठतः स्थिताः भवन्ति। भवतः राशिः मूलव्यक्तित्वगुणान् जीवनप्रतिरूपाणि च निर्धारयति।',
+        sa: 'राशिः वैदिकनिरयणज्योतिषे द्वादशराशिचक्रचिह्नेषु अन्यतमः अस्ति  –  मेषात् आरभ्य मीनपर्यन्तम्। पाश्चात्यसायनज्योतिषात् भिन्नं वैदिकराशयः अयनांशसंशोधनेन विषुवायनं गणयन्ति, तेन राशयः पाश्चात्यराशिभ्यः प्रायः चतुर्विंशत्यंशैः पृष्ठतः स्थिताः भवन्ति। भवतः राशिः मूलव्यक्तित्वगुणान् जीवनप्रतिरूपाणि च निर्धारयति।',
       },
     },
     {
@@ -202,9 +202,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'अहं स्वकीयां राशिं कथं ज्ञातुं शक्नोमि?',
       },
       answer: {
-        en: 'To find your Vedic Rashi (Moon sign), you need your exact birth date, time, and place. Use our free Kundali generator on Dekho Panchang — enter your birth details and the tool will compute your Moon\'s sidereal position to determine your Rashi along with your complete birth chart, Nakshatras, and planetary positions.',
-        hi: 'अपनी वैदिक राशि (चन्द्र राशि) जानने के लिए आपको अपनी सटीक जन्म तिथि, समय और स्थान की आवश्यकता है। देखो पंचांग पर निःशुल्क कुण्डली जनरेटर का उपयोग करें — अपना जन्म विवरण भरें और उपकरण आपकी राशि, नक्षत्र और ग्रह स्थिति की गणना करेगा।',
-        sa: 'स्वकीयां वैदिकराशिं (चन्द्रराशिम्) ज्ञातुं भवतः सूक्ष्मजन्मतिथिः, कालः, स्थानं च आवश्यकम्। देखो-पञ्चाङ्गे निःशुल्ककुण्डलीजनकम् उपयुज्यताम् — स्वजन्मविवरणं प्रविश्य साधनं भवतः चन्द्रमसः निरयणस्थितिं गणयित्वा राशिं सम्पूर्णजन्मकुण्डलीं नक्षत्राणि ग्रहस्थितींश्च निर्धारयिष्यति।',
+        en: 'To find your Vedic Rashi (Moon sign), you need your exact birth date, time, and place. Use our free Kundali generator on Dekho Panchang  –  enter your birth details and the tool will compute your Moon\'s sidereal position to determine your Rashi along with your complete birth chart, Nakshatras, and planetary positions.',
+        hi: 'अपनी वैदिक राशि (चन्द्र राशि) जानने के लिए आपको अपनी सटीक जन्म तिथि, समय और स्थान की आवश्यकता है। देखो पंचांग पर निःशुल्क कुण्डली जनरेटर का उपयोग करें  –  अपना जन्म विवरण भरें और उपकरण आपकी राशि, नक्षत्र और ग्रह स्थिति की गणना करेगा।',
+        sa: 'स्वकीयां वैदिकराशिं (चन्द्रराशिम्) ज्ञातुं भवतः सूक्ष्मजन्मतिथिः, कालः, स्थानं च आवश्यकम्। देखो-पञ्चाङ्गे निःशुल्ककुण्डलीजनकम् उपयुज्यताम्  –  स्वजन्मविवरणं प्रविश्य साधनं भवतः चन्द्रमसः निरयणस्थितिं गणयित्वा राशिं सम्पूर्णजन्मकुण्डलीं नक्षत्राणि ग्रहस्थितींश्च निर्धारयिष्यति।',
       },
     },
   ],
@@ -220,7 +220,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       answer: {
         en: 'Ashta Kuta is the traditional Vedic method for assessing marriage compatibility by comparing the birth Nakshatras of the bride and groom across 8 categories (Kutas): Varna, Vashya, Tara, Yoni, Graha Maitri, Gana, Bhakoot, and Nadi. The maximum score is 36 Gunas. Dekho Panchang computes all 8 Kutas with detailed breakdowns and recommendations.',
         hi: 'अष्ट कूट वैदिक विवाह मिलान की पारंपरिक पद्धति है जिसमें वर-वधू के जन्म नक्षत्रों की 8 कूटों में तुलना की जाती है: वर्ण, वश्य, तारा, योनि, ग्रह मैत्री, गण, भकूट और नाडी। अधिकतम 36 गुण होते हैं। देखो पंचांग सभी 8 कूटों की विस्तृत गणना प्रस्तुत करता है।',
-        sa: 'अष्टकूटं विवाहसाम्यपरीक्षायै पारम्परिकी वैदिकी पद्धतिः अस्ति यत्र वरवध्वोः जन्मनक्षत्राणाम् अष्टसु कूटेषु तुलना क्रियते — वर्णः, वश्यम्, तारा, योनिः, ग्रहमैत्री, गणः, भकूटः, नाडी च। अधिकतमाङ्काः षट्त्रिंशत् गुणाः भवन्ति। देखो-पञ्चाङ्गं सर्वेषाम् अष्टकूटानां विस्तृतविश्लेषणं प्रस्तौति।',
+        sa: 'अष्टकूटं विवाहसाम्यपरीक्षायै पारम्परिकी वैदिकी पद्धतिः अस्ति यत्र वरवध्वोः जन्मनक्षत्राणाम् अष्टसु कूटेषु तुलना क्रियते  –  वर्णः, वश्यम्, तारा, योनिः, ग्रहमैत्री, गणः, भकूटः, नाडी च। अधिकतमाङ्काः षट्त्रिंशत् गुणाः भवन्ति। देखो-पञ्चाङ्गं सर्वेषाम् अष्टकूटानां विस्तृतविश्लेषणं प्रस्तौति।',
       },
     },
     {
@@ -230,9 +230,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'विवाहाय न्यूनतमं कति गुणाः आवश्यकाः?',
       },
       answer: {
-        en: 'Traditionally, a minimum of 18 out of 36 Gunas is considered acceptable for marriage. Scores above 24 are considered good, and above 30 are excellent. However, individual Kuta scores matter too — a high total with a Nadi Dosha (0 in Nadi Kuta) may still raise concerns. Our matching tool highlights specific Dosha warnings alongside the total score.',
-        hi: 'परम्परागत रूप से 36 में से न्यूनतम 18 गुण विवाह के लिए स्वीकार्य माने जाते हैं। 24 से अधिक गुण अच्छे और 30 से अधिक उत्तम माने जाते हैं। किन्तु व्यक्तिगत कूट भी महत्वपूर्ण हैं — नाडी दोष होने पर कुल गुण अधिक होने पर भी चिन्ता हो सकती है।',
-        sa: 'परम्परया षट्त्रिंशतः गुणेषु न्यूनतमम् अष्टादश गुणाः विवाहाय स्वीकार्याः मन्यन्ते। चतुर्विंशत्यधिकाः उत्तमाः, त्रिंशदधिकाः श्रेष्ठाः च। किन्तु प्रत्येककूटाङ्काः अपि महत्त्वपूर्णाः — नाडीदोषे (नाडीकूटे शून्याङ्के) सति समग्रगुणाः अधिकाः चेदपि चिन्ता भवितुम् अर्हति। अस्माकं मेलनसाधनं समग्राङ्कैः सह विशिष्टदोषचेतावनीः दर्शयति।',
+        en: 'Traditionally, a minimum of 18 out of 36 Gunas is considered acceptable for marriage. Scores above 24 are considered good, and above 30 are excellent. However, individual Kuta scores matter too  –  a high total with a Nadi Dosha (0 in Nadi Kuta) may still raise concerns. Our matching tool highlights specific Dosha warnings alongside the total score.',
+        hi: 'परम्परागत रूप से 36 में से न्यूनतम 18 गुण विवाह के लिए स्वीकार्य माने जाते हैं। 24 से अधिक गुण अच्छे और 30 से अधिक उत्तम माने जाते हैं। किन्तु व्यक्तिगत कूट भी महत्वपूर्ण हैं  –  नाडी दोष होने पर कुल गुण अधिक होने पर भी चिन्ता हो सकती है।',
+        sa: 'परम्परया षट्त्रिंशतः गुणेषु न्यूनतमम् अष्टादश गुणाः विवाहाय स्वीकार्याः मन्यन्ते। चतुर्विंशत्यधिकाः उत्तमाः, त्रिंशदधिकाः श्रेष्ठाः च। किन्तु प्रत्येककूटाङ्काः अपि महत्त्वपूर्णाः  –  नाडीदोषे (नाडीकूटे शून्याङ्के) सति समग्रगुणाः अधिकाः चेदपि चिन्ता भवितुम् अर्हति। अस्माकं मेलनसाधनं समग्राङ्कैः सह विशिष्टदोषचेतावनीः दर्शयति।',
       },
     },
     {
@@ -310,9 +310,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'उत्तरभारतीयदक्षिणभारतीयकुण्डलीशैल्योः कः भेदः?',
       },
       answer: {
-        en: 'The North Indian chart uses a diamond-shaped layout where the houses remain fixed and signs rotate based on the Ascendant. The South Indian chart uses a rectangular grid where the signs remain fixed and houses rotate. Both contain identical astronomical data — the choice is regional preference. Dekho Panchang supports both styles with a toggle switch.',
-        hi: 'उत्तर भारतीय कुण्डली हीरे के आकार की होती है जिसमें भाव स्थिर रहते हैं और राशियाँ लग्न के अनुसार बदलती हैं। दक्षिण भारतीय कुण्डली आयताकार होती है जिसमें राशियाँ स्थिर रहती हैं। दोनों में खगोलीय जानकारी एक समान होती है — चयन क्षेत्रीय प्राथमिकता है।',
-        sa: 'उत्तरभारतीया कुण्डली हीरकाकृतिविन्यासं उपयुज्य भावान् स्थिरान् रक्षति राशयश्च लग्नानुसारं परिवर्तन्ते। दक्षिणभारतीया कुण्डली आयताकारजालिकां उपयुज्य राशीन् स्थिरान् रक्षति भावाश्च परिवर्तन्ते। उभयोः खगोलीयदत्तांशाः समानाः एव — चयनं क्षेत्रीयरुचिम् अनुसरति। देखो-पञ्चाङ्गम् उभयशैल्योः परिवर्तनसुविधया सह समर्थयति।',
+        en: 'The North Indian chart uses a diamond-shaped layout where the houses remain fixed and signs rotate based on the Ascendant. The South Indian chart uses a rectangular grid where the signs remain fixed and houses rotate. Both contain identical astronomical data  –  the choice is regional preference. Dekho Panchang supports both styles with a toggle switch.',
+        hi: 'उत्तर भारतीय कुण्डली हीरे के आकार की होती है जिसमें भाव स्थिर रहते हैं और राशियाँ लग्न के अनुसार बदलती हैं। दक्षिण भारतीय कुण्डली आयताकार होती है जिसमें राशियाँ स्थिर रहती हैं। दोनों में खगोलीय जानकारी एक समान होती है  –  चयन क्षेत्रीय प्राथमिकता है।',
+        sa: 'उत्तरभारतीया कुण्डली हीरकाकृतिविन्यासं उपयुज्य भावान् स्थिरान् रक्षति राशयश्च लग्नानुसारं परिवर्तन्ते। दक्षिणभारतीया कुण्डली आयताकारजालिकां उपयुज्य राशीन् स्थिरान् रक्षति भावाश्च परिवर्तन्ते। उभयोः खगोलीयदत्तांशाः समानाः एव  –  चयनं क्षेत्रीयरुचिम् अनुसरति। देखो-पञ्चाङ्गम् उभयशैल्योः परिवर्तनसुविधया सह समर्थयति।',
       },
     },
     {
@@ -322,9 +322,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'कुण्डल्यै सूक्ष्मजन्मकालः कथं महत्त्वपूर्णः?',
       },
       answer: {
-        en: 'The Ascendant (Lagna) changes approximately every 2 hours, and the Moon changes Nakshatra roughly every day. Even a few minutes\' difference can shift the Lagna, alter house placements, and change the Vimshottari Dasha sequence entirely. Accurate birth time is essential for reliable predictions — our tool allows time input down to the minute for precision.',
+        en: 'The Ascendant (Lagna) changes approximately every 2 hours, and the Moon changes Nakshatra roughly every day. Even a few minutes\' difference can shift the Lagna, alter house placements, and change the Vimshottari Dasha sequence entirely. Accurate birth time is essential for reliable predictions  –  our tool allows time input down to the minute for precision.',
         hi: 'लग्न लगभग प्रत्येक 2 घण्टे में बदलता है और चन्द्रमा प्रतिदिन नक्षत्र बदलता है। कुछ मिनटों का अन्तर भी लग्न बदल सकता है, भाव-स्थिति और विंशोत्तरी दशा क्रम पूर्णतः परिवर्तित हो सकता है। विश्वसनीय भविष्यवाणी के लिए सटीक जन्म समय अत्यावश्यक है।',
-        sa: 'लग्नं प्रायः प्रतिद्विघण्टं परिवर्तते, चन्द्रमाश्च प्रायः प्रतिदिनं नक्षत्रं परिवर्तयति। कतिपयनिमेषाणाम् अन्तरम् अपि लग्नं परिवर्तयितुम्, भावस्थितिं विकल्पयितुम्, विंशोत्तरीदशाक्रमं सम्पूर्णतया परिवर्तयितुं च शक्नोति। विश्वसनीयफलकथनाय सूक्ष्मजन्मकालः अत्यावश्यकः — अस्माकं साधनं निमेषपर्यन्तं सूक्ष्मकालप्रविष्टिम् अनुमन्यते।',
+        sa: 'लग्नं प्रायः प्रतिद्विघण्टं परिवर्तते, चन्द्रमाश्च प्रायः प्रतिदिनं नक्षत्रं परिवर्तयति। कतिपयनिमेषाणाम् अन्तरम् अपि लग्नं परिवर्तयितुम्, भावस्थितिं विकल्पयितुम्, विंशोत्तरीदशाक्रमं सम्पूर्णतया परिवर्तयितुं च शक्नोति। विश्वसनीयफलकथनाय सूक्ष्मजन्मकालः अत्यावश्यकः  –  अस्माकं साधनं निमेषपर्यन्तं सूक्ष्मकालप्रविष्टिम् अनुमन्यते।',
       },
     },
   ],
@@ -350,8 +350,8 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'कृत्रिमप्रज्ञामुहूर्तान्वेषकः कथं कार्यं करोति?',
       },
       answer: {
-        en: 'Our Muhurta engine is a classical constraint-based system with 36 rules from 7 texts (Muhurta Chintamani, Dharma Sindhu, BPHS, Brihat Samhita, Prashna Marga, B.V. Raman, Kalaprakashika). Unlike scoring-only systems, it rejects on fatal flaws first: Ganda/Vyatipata/Vaidhriti yogas are absolute vetoes for samskaras, Dagdha Tithi and Nakshatra Gandanta block windows outright. Only after passing these hard filters does scoring apply. The 5-tier cancellation hierarchy ensures strong lagna can cancel minor defects (weak karana, dur muhurtam) but CANNOT override inauspicious yoga or dagdha tithi — matching classical practice where one fatal dosha invalidates an otherwise good muhurta. Each activity has classically verified nakshatra whitelists (not permissive "everything not forbidden" lists). With birth data, the engine adds Tara Bala (3-cycle degradation), Chandra Bala (with Ashtama Chandra penalty), and Dasha Harmony.',
-        hi: 'हमारा मुहूर्त इंजन 7 शास्त्रीय ग्रन्थों से 36 नियमों वाली बाधा-आधारित प्रणाली है। स्कोरिंग-केवल प्रणालियों के विपरीत, यह पहले घातक दोषों पर वर्ज्य करता है: गण्ड/व्यतीपात/वैधृति योग संस्कारों के लिए पूर्ण निषेध, दग्ध तिथि और नक्षत्र गण्डान्त खिड़कियों को सीधे अवरुद्ध करते हैं। इन कठोर फिल्टर को पार करने के बाद ही स्कोरिंग लागू होती है। बलवान लग्न लघु दोषों का निवारण कर सकता है किन्तु अशुभ योग या दग्ध तिथि का निवारण नहीं — शास्त्रीय प्रथा के अनुसार। प्रत्येक कार्य की शास्त्रीय रूप से सत्यापित नक्षत्र श्वेतसूची है।',
+        en: 'Our Muhurta engine is a classical constraint-based system with 36 rules from 7 texts (Muhurta Chintamani, Dharma Sindhu, BPHS, Brihat Samhita, Prashna Marga, B.V. Raman, Kalaprakashika). Unlike scoring-only systems, it rejects on fatal flaws first: Ganda/Vyatipata/Vaidhriti yogas are absolute vetoes for samskaras, Dagdha Tithi and Nakshatra Gandanta block windows outright. Only after passing these hard filters does scoring apply. The 5-tier cancellation hierarchy ensures strong lagna can cancel minor defects (weak karana, dur muhurtam) but CANNOT override inauspicious yoga or dagdha tithi  –  matching classical practice where one fatal dosha invalidates an otherwise good muhurta. Each activity has classically verified nakshatra whitelists (not permissive "everything not forbidden" lists). With birth data, the engine adds Tara Bala (3-cycle degradation), Chandra Bala (with Ashtama Chandra penalty), and Dasha Harmony.',
+        hi: 'हमारा मुहूर्त इंजन 7 शास्त्रीय ग्रन्थों से 36 नियमों वाली बाधा-आधारित प्रणाली है। स्कोरिंग-केवल प्रणालियों के विपरीत, यह पहले घातक दोषों पर वर्ज्य करता है: गण्ड/व्यतीपात/वैधृति योग संस्कारों के लिए पूर्ण निषेध, दग्ध तिथि और नक्षत्र गण्डान्त खिड़कियों को सीधे अवरुद्ध करते हैं। इन कठोर फिल्टर को पार करने के बाद ही स्कोरिंग लागू होती है। बलवान लग्न लघु दोषों का निवारण कर सकता है किन्तु अशुभ योग या दग्ध तिथि का निवारण नहीं  –  शास्त्रीय प्रथा के अनुसार। प्रत्येक कार्य की शास्त्रीय रूप से सत्यापित नक्षत्र श्वेतसूची है।',
         sa: 'अस्माकं मुहूर्तयन्त्रं षट्त्रिंशत्नियमैः बाधाधारितं शास्त्रीयं यन्त्रम्। घातकदोषाः प्रथमं वर्ज्याः, ततः अङ्कनम्।',
       },
     },
@@ -364,7 +364,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       answer: {
         en: 'Dekho Panchang\'s Muhurta AI supports 20 activities including marriage, housewarming (Griha Pravesh), travel, vehicle purchase, business launch, property purchase, naming ceremony, education start, medical procedures, job joining, gold purchase, loan signing, court hearings, and more. Each activity has specific Vedic rules that the AI applies automatically.',
         hi: 'देखो पंचांग का मुहूर्त AI विवाह, गृह प्रवेश, यात्रा, वाहन खरीद, व्यापार आरम्भ, भूमि खरीद, नामकरण, शिक्षा आरम्भ, चिकित्सा, स्वर्ण खरीद सहित 20 कार्यों का समर्थन करता है। प्रत्येक कार्य के लिए विशिष्ट वैदिक नियम स्वचालित रूप से लागू होते हैं।',
-        sa: 'देखो-पञ्चाङ्गस्य मुहूर्तकृत्रिमप्रज्ञा विंशतिकार्याणि समर्थयति — विवाहः, गृहप्रवेशः, यात्रा, वाहनक्रयः, व्यापारारम्भः, भूमिक्रयः, नामकरणम्, विद्यारम्भः, चिकित्सा, सेवाप्रवेशः, स्वर्णक्रयः, ऋणपत्रम्, न्यायालयश्रवणम् इत्यादीनि। प्रत्येकस्य कार्यस्य विशिष्टवैदिकनियमाः कृत्रिमप्रज्ञया स्वयमेव अनुप्रयुज्यन्ते।',
+        sa: 'देखो-पञ्चाङ्गस्य मुहूर्तकृत्रिमप्रज्ञा विंशतिकार्याणि समर्थयति  –  विवाहः, गृहप्रवेशः, यात्रा, वाहनक्रयः, व्यापारारम्भः, भूमिक्रयः, नामकरणम्, विद्यारम्भः, चिकित्सा, सेवाप्रवेशः, स्वर्णक्रयः, ऋणपत्रम्, न्यायालयश्रवणम् इत्यादीनि। प्रत्येकस्य कार्यस्य विशिष्टवैदिकनियमाः कृत्रिमप्रज्ञया स्वयमेव अनुप्रयुज्यन्ते।',
       },
     },
     {
@@ -374,8 +374,8 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'मुहूर्तकृत्रिमप्रज्ञा अङ्कनाय कम् अयनांशम् उपयुनक्ति?',
       },
       answer: {
-        en: 'The Muhurta AI always uses Lahiri (Chitrapaksha) ayanamsha for scoring, regardless of your kundali ayanamsha preference. This is because all classical muhurta rule tables — from Muhurta Chintamani, Dharma Sindhu, and Prashna Marga — were composed using Lahiri nakshatra boundaries. Applying those rules with a different ayanamsha (KP, Raman) would shift the boundaries and produce less accurate results. Your birth chart and panchang pages still use your chosen ayanamsha for display.',
-        hi: 'मुहूर्त AI स्कोरिंग के लिए सदैव लाहिरी (चित्रपक्ष) अयनांश का उपयोग करता है, चाहे आपकी कुण्डली में कोई भी अयनांश चुना हो। ऐसा इसलिए क्योंकि सभी शास्त्रीय मुहूर्त नियम सारणियाँ — मुहूर्त चिन्तामणि, धर्म सिन्धु और प्रश्न मार्ग — लाहिरी नक्षत्र सीमाओं पर आधारित हैं। भिन्न अयनांश लगाने से नक्षत्र सीमाएँ खिसक जाती हैं और परिणाम कम सटीक होते हैं।',
+        en: 'The Muhurta AI always uses Lahiri (Chitrapaksha) ayanamsha for scoring, regardless of your kundali ayanamsha preference. This is because all classical muhurta rule tables  –  from Muhurta Chintamani, Dharma Sindhu, and Prashna Marga  –  were composed using Lahiri nakshatra boundaries. Applying those rules with a different ayanamsha (KP, Raman) would shift the boundaries and produce less accurate results. Your birth chart and panchang pages still use your chosen ayanamsha for display.',
+        hi: 'मुहूर्त AI स्कोरिंग के लिए सदैव लाहिरी (चित्रपक्ष) अयनांश का उपयोग करता है, चाहे आपकी कुण्डली में कोई भी अयनांश चुना हो। ऐसा इसलिए क्योंकि सभी शास्त्रीय मुहूर्त नियम सारणियाँ  –  मुहूर्त चिन्तामणि, धर्म सिन्धु और प्रश्न मार्ग  –  लाहिरी नक्षत्र सीमाओं पर आधारित हैं। भिन्न अयनांश लगाने से नक्षत्र सीमाएँ खिसक जाती हैं और परिणाम कम सटीक होते हैं।',
         sa: 'मुहूर्तकृत्रिमप्रज्ञा अङ्कनाय सर्वदा लाहिरी (चित्रपक्ष) अयनांशम् उपयुनक्ति, भवतः कुण्डलीअयनांशवरणं यत्किमपि स्यात्। मुहूर्तचिन्तामणि-धर्मसिन्धु-प्रश्नमार्गादिषु सर्वेषु शास्त्रीयमुहूर्तनियमसारणीषु लाहिरीनक्षत्रसीमाः प्रयुक्ताः। भिन्नेन अयनांशेन तासां सीमानां विस्थापनं न्यूनसटीकफलानि च भवेयुः।',
       },
     },
@@ -386,8 +386,8 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'कृत्रिमप्रज्ञामुहूर्तयन्त्रं अन्येभ्यः पञ्चाङ्गस्थलेभ्यः कथं भिन्नम्?',
       },
       answer: {
-        en: 'Most panchang sites use binary pass/fail on Panchanga Shuddhi — a date either passes or fails. Dekho Panchang\'s 36-rule engine scores windows 0-100 with classical cancellation logic from Muhurta Chintamani Ch.7: a strong lagna genuinely cancels a weak karana, not just offsets it numerically. We also personalise scores using your birth chart (Tara Bala, Chandra Bala, Dasha Harmony) and explain each recommendation with chapter-level citations — like a classically trained Jyotishi.',
-        hi: 'अधिकांश पंचांग साइटें पंचांग शुद्धि पर हाँ/ना (pass/fail) प्रणाली उपयोग करती हैं। देखो पंचांग का 36-नियम इंजन मुहूर्त चिन्तामणि अध्याय 7 के शास्त्रीय निवारण तर्क के साथ 0-100 अंकन करता है: बलवान लग्न दुर्बल करण का वास्तविक निवारण करता है। साथ ही, आपकी जन्म कुण्डली से ताराबल, चन्द्रबल और दशा सामंजस्य से व्यक्तिगत अंकन करता है — प्रत्येक सिफारिश शास्त्रीय उद्धरणों के साथ।',
+        en: 'Most panchang sites use binary pass/fail on Panchanga Shuddhi  –  a date either passes or fails. Dekho Panchang\'s 36-rule engine scores windows 0-100 with classical cancellation logic from Muhurta Chintamani Ch.7: a strong lagna genuinely cancels a weak karana, not just offsets it numerically. We also personalise scores using your birth chart (Tara Bala, Chandra Bala, Dasha Harmony) and explain each recommendation with chapter-level citations  –  like a classically trained Jyotishi.',
+        hi: 'अधिकांश पंचांग साइटें पंचांग शुद्धि पर हाँ/ना (pass/fail) प्रणाली उपयोग करती हैं। देखो पंचांग का 36-नियम इंजन मुहूर्त चिन्तामणि अध्याय 7 के शास्त्रीय निवारण तर्क के साथ 0-100 अंकन करता है: बलवान लग्न दुर्बल करण का वास्तविक निवारण करता है। साथ ही, आपकी जन्म कुण्डली से ताराबल, चन्द्रबल और दशा सामंजस्य से व्यक्तिगत अंकन करता है  –  प्रत्येक सिफारिश शास्त्रीय उद्धरणों के साथ।',
         sa: 'अधिकांशपञ्चाङ्गस्थलानि पञ्चाङ्गशुद्ध्या द्वयात्मकप्रणालिम् उपयुञ्जते। देखोपञ्चाङ्गस्य ३६-नियमयन्त्रम् शास्त्रीयनिवारणतर्कैः ० तः १०० पर्यन्तम् अङ्कयति।',
       },
     },
@@ -438,9 +438,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'राहुकालस्य राहुकालमस्य च कः भेदः?',
       },
       answer: {
-        en: 'Rahu Kaal and Rahu Kalam refer to the same inauspicious time period — there is no astrological difference. "Rahu Kaal" is the Hindi/North Indian term while "Rahu Kalam" is the Tamil/South Indian term. Both represent the daily 1.5-hour window ruled by Rahu that is computed identically regardless of the name used.',
-        hi: 'राहु काल और राहु कालम् एक ही अशुभ अवधि के दो नाम हैं — ज्योतिषीय दृष्टि से कोई अन्तर नहीं है। "राहु काल" हिन्दी/उत्तर भारतीय और "राहु कालम्" तमिल/दक्षिण भारतीय शब्द है। दोनों राहु द्वारा शासित दैनिक 1.5 घण्टे की अवधि को दर्शाते हैं।',
-        sa: 'राहुकालः राहुकालमश्च एकाम् एव अशुभावधिं निर्दिशतः — ज्योतिषशास्त्रीयः कोऽपि भेदः नास्ति। "राहुकालः" हिन्दी-उत्तरभारतीयं पदं, "राहुकालम्" तु तमिल-दक्षिणभारतीयं पदम्। उभयम् अपि राहुशासितां दैनिकसार्धघण्टावधिं दर्शयति या नामपरिवर्तनम् अनपेक्ष्य समानतया गण्यते।',
+        en: 'Rahu Kaal and Rahu Kalam refer to the same inauspicious time period  –  there is no astrological difference. "Rahu Kaal" is the Hindi/North Indian term while "Rahu Kalam" is the Tamil/South Indian term. Both represent the daily 1.5-hour window ruled by Rahu that is computed identically regardless of the name used.',
+        hi: 'राहु काल और राहु कालम् एक ही अशुभ अवधि के दो नाम हैं  –  ज्योतिषीय दृष्टि से कोई अन्तर नहीं है। "राहु काल" हिन्दी/उत्तर भारतीय और "राहु कालम्" तमिल/दक्षिण भारतीय शब्द है। दोनों राहु द्वारा शासित दैनिक 1.5 घण्टे की अवधि को दर्शाते हैं।',
+        sa: 'राहुकालः राहुकालमश्च एकाम् एव अशुभावधिं निर्दिशतः  –  ज्योतिषशास्त्रीयः कोऽपि भेदः नास्ति। "राहुकालः" हिन्दी-उत्तरभारतीयं पदं, "राहुकालम्" तु तमिल-दक्षिणभारतीयं पदम्। उभयम् अपि राहुशासितां दैनिकसार्धघण्टावधिं दर्शयति या नामपरिवर्तनम् अनपेक्ष्य समानतया गण्यते।',
       },
     },
     {
@@ -450,7 +450,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'प्रतिदिनं राहुकालः कियत्कालावधिः भवति?',
       },
       answer: {
-        en: 'Rahu Kaal lasts approximately 1.5 hours (90 minutes) each day. The exact duration varies slightly because it depends on day length — daytime (sunrise to sunset) is divided into 8 equal parts, and one part is Rahu Kaal. In summer when days are longer, Rahu Kaal is slightly longer; in winter, slightly shorter.',
+        en: 'Rahu Kaal lasts approximately 1.5 hours (90 minutes) each day. The exact duration varies slightly because it depends on day length  –  daytime (sunrise to sunset) is divided into 8 equal parts, and one part is Rahu Kaal. In summer when days are longer, Rahu Kaal is slightly longer; in winter, slightly shorter.',
         hi: 'राहु काल प्रतिदिन लगभग 1.5 घण्टे (90 मिनट) का होता है। सटीक अवधि थोड़ी भिन्न होती है क्योंकि यह दिन की लम्बाई पर निर्भर करती है। गर्मियों में जब दिन लम्बे होते हैं तो राहु काल कुछ लम्बा होता है; सर्दियों में कुछ छोटा।',
         sa: 'राहुकालः प्रतिदिनं प्रायः सार्धघण्टां (90 निमेषान्) यावत् भवति। दिवसावधेः आश्रितत्वात् सूक्ष्मावधिः किञ्चित् भिद्यते।',
       },
@@ -462,7 +462,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'किं राहुकाले यात्रां कर्तुं शक्नोति?',
       },
       answer: {
-        en: 'Vedic tradition advises against starting a new journey during Rahu Kaal, as it is considered inauspicious for new beginnings. However, continuing a journey already in progress is fine. Routine travel (daily commute, errands) is generally not affected. The restriction applies mainly to first-time or important journeys — house moves, business trips, pilgrimages.',
+        en: 'Vedic tradition advises against starting a new journey during Rahu Kaal, as it is considered inauspicious for new beginnings. However, continuing a journey already in progress is fine. Routine travel (daily commute, errands) is generally not affected. The restriction applies mainly to first-time or important journeys  –  house moves, business trips, pilgrimages.',
         hi: 'वैदिक परम्परा के अनुसार राहु काल में नई यात्रा आरम्भ नहीं करनी चाहिए। लेकिन पहले से चल रही यात्रा जारी रखने में कोई दोष नहीं है। दैनिक आवागमन प्रभावित नहीं होता। प्रतिबन्ध मुख्यतः नई या महत्वपूर्ण यात्राओं पर लागू है।',
         sa: 'वैदिकपरम्परानुसारं राहुकाले नवयात्राम् आरभेत न इति उपदिश्यते। किन्तु पूर्वमारब्धा यात्रा अनुवर्तयितुं शक्या। दैनिकयातायातं न प्रभाव्यते।',
       },
@@ -502,9 +502,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'एकस्मिन् वर्षे कत्यः एकादश्यः भवन्ति?',
       },
       answer: {
-        en: 'There are typically 24 Ekadashis in a year — two per lunar month, one in Shukla Paksha (waxing moon) and one in Krishna Paksha (waning moon). In a leap year (Adhika Masa), two extra Ekadashis are added, totalling 26. Each Ekadashi has a unique name and spiritual significance described in the Puranas.',
-        hi: 'एक वर्ष में सामान्यतः 24 एकादशियाँ होती हैं — प्रत्येक चान्द्र मास में दो, एक शुक्ल पक्ष में और एक कृष्ण पक्ष में। अधिक मास वाले वर्ष में दो अतिरिक्त एकादशियाँ जुड़ जाती हैं।',
-        sa: 'एकस्मिन् वर्षे सामान्यतः चतुर्विंशतिः एकादश्यः भवन्ति — प्रतिचान्द्रमासं द्वे, एका शुक्लपक्षे अपरा कृष्णपक्षे। अधिकमासयुक्ते वर्षे द्वे अतिरिक्ते एकादश्यौ योज्येते, तेन षड्विंशतिः भवन्ति। प्रत्येकस्याः एकादश्याः विशिष्टं नाम पुराणोक्तं आध्यात्मिकमहत्त्वं च अस्ति।',
+        en: 'There are typically 24 Ekadashis in a year  –  two per lunar month, one in Shukla Paksha (waxing moon) and one in Krishna Paksha (waning moon). In a leap year (Adhika Masa), two extra Ekadashis are added, totalling 26. Each Ekadashi has a unique name and spiritual significance described in the Puranas.',
+        hi: 'एक वर्ष में सामान्यतः 24 एकादशियाँ होती हैं  –  प्रत्येक चान्द्र मास में दो, एक शुक्ल पक्ष में और एक कृष्ण पक्ष में। अधिक मास वाले वर्ष में दो अतिरिक्त एकादशियाँ जुड़ जाती हैं।',
+        sa: 'एकस्मिन् वर्षे सामान्यतः चतुर्विंशतिः एकादश्यः भवन्ति  –  प्रतिचान्द्रमासं द्वे, एका शुक्लपक्षे अपरा कृष्णपक्षे। अधिकमासयुक्ते वर्षे द्वे अतिरिक्ते एकादश्यौ योज्येते, तेन षड्विंशतिः भवन्ति। प्रत्येकस्याः एकादश्याः विशिष्टं नाम पुराणोक्तं आध्यात्मिकमहत्त्वं च अस्ति।',
       },
     },
     {
@@ -514,9 +514,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'एकादशीव्रतं किम् अस्ति?',
       },
       answer: {
-        en: 'Ekadashi Vrat involves fasting on the 11th Tithi of each lunar fortnight. Devotees abstain from grains and beans, consuming only fruits, milk, and root vegetables. The fast is broken on Dwadashi (12th Tithi) during the Parana window — the auspicious time calculated from the end of Ekadashi Tithi. Nirjala Ekadashi (Jyeshtha Shukla) is the strictest, observed without water.',
+        en: 'Ekadashi Vrat involves fasting on the 11th Tithi of each lunar fortnight. Devotees abstain from grains and beans, consuming only fruits, milk, and root vegetables. The fast is broken on Dwadashi (12th Tithi) during the Parana window  –  the auspicious time calculated from the end of Ekadashi Tithi. Nirjala Ekadashi (Jyeshtha Shukla) is the strictest, observed without water.',
         hi: 'एकादशी व्रत में प्रत्येक पक्ष की 11वीं तिथि को उपवास रखा जाता है। भक्त अन्न और दालों से परहेज करते हैं। व्रत द्वादशी (12वीं तिथि) को पारण काल में तोड़ा जाता है। निर्जला एकादशी सबसे कठोर व्रत है।',
-        sa: 'एकादशीव्रते प्रत्येकस्य पक्षार्धस्य एकादश्यां तिथौ उपवासः आचर्यते। भक्ताः अन्नशिम्बीभ्यो विरमन्ति, फलानि दुग्धं कन्दमूलानि च एव सेवन्ते। व्रतं द्वादश्यां (द्वादशतिथौ) पारणकाले भिद्यते — एकादशीतिथेः समाप्त्यनन्तरं गणितः शुभकालः। निर्जलैकादशी (ज्येष्ठशुक्ला) सर्वाधिककठोरा, जलं विना आचर्यते।',
+        sa: 'एकादशीव्रते प्रत्येकस्य पक्षार्धस्य एकादश्यां तिथौ उपवासः आचर्यते। भक्ताः अन्नशिम्बीभ्यो विरमन्ति, फलानि दुग्धं कन्दमूलानि च एव सेवन्ते। व्रतं द्वादश्यां (द्वादशतिथौ) पारणकाले भिद्यते  –  एकादशीतिथेः समाप्त्यनन्तरं गणितः शुभकालः। निर्जलैकादशी (ज्येष्ठशुक्ला) सर्वाधिककठोरा, जलं विना आचर्यते।',
       },
     },
   ],
@@ -530,9 +530,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'एकस्मिन् वर्षे कत्यः पूर्णिमाः भवन्ति?',
       },
       answer: {
-        en: 'There are 12 Purnimas (full moons) in a regular year, one per lunar month. In a year with an Adhika Masa (intercalary month), there are 13 Purnimas. Each Purnima is named after its lunar month — for example, Kartik Purnima, Vaishakh Purnima, etc.',
+        en: 'There are 12 Purnimas (full moons) in a regular year, one per lunar month. In a year with an Adhika Masa (intercalary month), there are 13 Purnimas. Each Purnima is named after its lunar month  –  for example, Kartik Purnima, Vaishakh Purnima, etc.',
         hi: 'सामान्य वर्ष में 12 पूर्णिमा होती हैं, प्रत्येक चान्द्र मास में एक। अधिक मास वाले वर्ष में 13 पूर्णिमा होती हैं। प्रत्येक पूर्णिमा अपने चान्द्र मास के नाम से जानी जाती है।',
-        sa: 'सामान्यवर्षे द्वादश पूर्णिमाः (पूर्णचन्द्राः) भवन्ति, प्रतिचान्द्रमासम् एका। अधिकमासयुक्ते वर्षे त्रयोदश पूर्णिमाः भवन्ति। प्रत्येका पूर्णिमा स्वकीयचान्द्रमासस्य नाम्ना ज्ञायते — यथा कार्तिकपूर्णिमा, वैशाखपूर्णिमा इत्यादि।',
+        sa: 'सामान्यवर्षे द्वादश पूर्णिमाः (पूर्णचन्द्राः) भवन्ति, प्रतिचान्द्रमासम् एका। अधिकमासयुक्ते वर्षे त्रयोदश पूर्णिमाः भवन्ति। प्रत्येका पूर्णिमा स्वकीयचान्द्रमासस्य नाम्ना ज्ञायते  –  यथा कार्तिकपूर्णिमा, वैशाखपूर्णिमा इत्यादि।',
       },
     },
     {
@@ -544,7 +544,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       answer: {
         en: 'Several Purnimas hold special significance: Guru Purnima (Ashadha) honours spiritual teachers, Sharad Purnima (Ashwin) is celebrated for the brightest full moon, Kartik Purnima is sacred for holy dips and lighting lamps, and Buddha Purnima (Vaishakh) marks the birth of Gautama Buddha. Holi is celebrated on Phalguna Purnima.',
         hi: 'गुरु पूर्णिमा (आषाढ़) गुरुओं को समर्पित है, शरद पूर्णिमा (आश्विन) सबसे उज्ज्वल पूर्ण चन्द्रमा के लिए प्रसिद्ध है, कार्तिक पूर्णिमा पवित्र स्नान और दीपदान के लिए है, और बुद्ध पूर्णिमा (वैशाख) गौतम बुद्ध के जन्म का प्रतीक है।',
-        sa: 'अनेकाः पूर्णिमाः विशिष्टमहत्त्वं धारयन्ति — गुरुपूर्णिमा (आषाढे) आध्यात्मिकगुरूणां सम्मानार्थम्, शरत्पूर्णिमा (आश्विने) सर्वाधिकदीप्तपूर्णचन्द्रार्थं प्रसिद्धा, कार्तिकपूर्णिमा पवित्रस्नानदीपदानाय पुण्या, बुद्धपूर्णिमा (वैशाखे) च गौतमबुद्धस्य जन्मसूचिका। होलिकोत्सवः फाल्गुनपूर्णिमायाम् आचर्यते।',
+        sa: 'अनेकाः पूर्णिमाः विशिष्टमहत्त्वं धारयन्ति  –  गुरुपूर्णिमा (आषाढे) आध्यात्मिकगुरूणां सम्मानार्थम्, शरत्पूर्णिमा (आश्विने) सर्वाधिकदीप्तपूर्णचन्द्रार्थं प्रसिद्धा, कार्तिकपूर्णिमा पवित्रस्नानदीपदानाय पुण्या, बुद्धपूर्णिमा (वैशाखे) च गौतमबुद्धस्य जन्मसूचिका। होलिकोत्सवः फाल्गुनपूर्णिमायाम् आचर्यते।',
       },
     },
   ],
@@ -574,9 +574,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'शनिप्रदोषसोमप्रदोषयोः कः भेदः?',
       },
       answer: {
-        en: 'When Pradosham (Trayodashi Tithi) falls on a Saturday, it is called Shani Pradosham — considered especially powerful for removing karmic debts and Saturn-related afflictions. When it falls on Monday, it is Soma Pradosham — ideal for devotion to Lord Shiva, as Monday is already Shiva\'s day. Both are observed during the twilight period (1.5 hours before and after sunset).',
-        hi: 'जब प्रदोष (त्रयोदशी तिथि) शनिवार को पड़ता है तो शनि प्रदोष कहलाता है — कर्मऋण और शनि दोष निवारण के लिए विशेष शक्तिशाली। सोमवार को सोम प्रदोष होता है — शिव भक्ति के लिए सर्वोत्तम। दोनों सन्ध्याकाल में मनाए जाते हैं।',
-        sa: 'यदा प्रदोषः (त्रयोदशी तिथिः) शनिवासरे पतति तदा शनिप्रदोषः इति उच्यते — कर्मऋणनिवारणाय शनिजन्यपीडापशमनाय च विशेषशक्तिमान् मन्यते। सोमवासरे पतति चेत् सोमप्रदोषः भवति — शिवभक्त्यै सर्वोत्तमः, यतः सोमवासरः शिवस्य दिनम् एव। उभौ सन्ध्याकाले (सूर्यास्तात् सार्धघण्टापूर्वम् अनन्तरं च) आचर्येते।',
+        en: 'When Pradosham (Trayodashi Tithi) falls on a Saturday, it is called Shani Pradosham  –  considered especially powerful for removing karmic debts and Saturn-related afflictions. When it falls on Monday, it is Soma Pradosham  –  ideal for devotion to Lord Shiva, as Monday is already Shiva\'s day. Both are observed during the twilight period (1.5 hours before and after sunset).',
+        hi: 'जब प्रदोष (त्रयोदशी तिथि) शनिवार को पड़ता है तो शनि प्रदोष कहलाता है  –  कर्मऋण और शनि दोष निवारण के लिए विशेष शक्तिशाली। सोमवार को सोम प्रदोष होता है  –  शिव भक्ति के लिए सर्वोत्तम। दोनों सन्ध्याकाल में मनाए जाते हैं।',
+        sa: 'यदा प्रदोषः (त्रयोदशी तिथिः) शनिवासरे पतति तदा शनिप्रदोषः इति उच्यते  –  कर्मऋणनिवारणाय शनिजन्यपीडापशमनाय च विशेषशक्तिमान् मन्यते। सोमवासरे पतति चेत् सोमप्रदोषः भवति  –  शिवभक्त्यै सर्वोत्तमः, यतः सोमवासरः शिवस्य दिनम् एव। उभौ सन्ध्याकाले (सूर्यास्तात् सार्धघण्टापूर्वम् अनन्तरं च) आचर्येते।',
       },
     },
   ],
@@ -590,9 +590,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'सङ्कष्टीविनायकचतुर्थ्योः कः भेदः?',
       },
       answer: {
-        en: 'Sankashti Chaturthi falls on Krishna Paksha Chaturthi (4th day of the waning moon) and involves fasting until moonrise, followed by Ganesh Puja and moon sighting. Vinayaka Chaturthi falls on Shukla Paksha Chaturthi (4th day of the waxing moon) and is considered ideal for beginning new works. When Sankashti falls on Tuesday, it is called Angaraki Chaturthi — the most auspicious of all monthly Chaturthis.',
-        hi: 'संकष्टी चतुर्थी कृष्ण पक्ष चतुर्थी को पड़ती है — चन्द्रोदय तक उपवास और गणेश पूजा की जाती है। विनायक चतुर्थी शुक्ल पक्ष चतुर्थी को होती है — नए कार्य आरम्भ के लिए शुभ। मंगलवार को पड़ने वाली संकष्टी अंगारकी चतुर्थी कहलाती है — सबसे शुभ।',
-        sa: 'सङ्कष्टीचतुर्थी कृष्णपक्षचतुर्थ्यां (क्षीयमाणचन्द्रस्य चतुर्थदिने) पतति, चन्द्रोदयपर्यन्तम् उपवासः गणेशपूजा चन्द्रदर्शनं च आचर्यते। विनायकचतुर्थी शुक्लपक्षचतुर्थ्यां (वर्धमानचन्द्रस्य चतुर्थदिने) पतति, नवकार्यारम्भाय आदर्शा मन्यते। यदा सङ्कष्टी मङ्गलवासरे पतति तदा अङ्गारकीचतुर्थी इत्युच्यते — सर्वासां मासिकचतुर्थीनां सर्वाधिकशुभा।',
+        en: 'Sankashti Chaturthi falls on Krishna Paksha Chaturthi (4th day of the waning moon) and involves fasting until moonrise, followed by Ganesh Puja and moon sighting. Vinayaka Chaturthi falls on Shukla Paksha Chaturthi (4th day of the waxing moon) and is considered ideal for beginning new works. When Sankashti falls on Tuesday, it is called Angaraki Chaturthi  –  the most auspicious of all monthly Chaturthis.',
+        hi: 'संकष्टी चतुर्थी कृष्ण पक्ष चतुर्थी को पड़ती है  –  चन्द्रोदय तक उपवास और गणेश पूजा की जाती है। विनायक चतुर्थी शुक्ल पक्ष चतुर्थी को होती है  –  नए कार्य आरम्भ के लिए शुभ। मंगलवार को पड़ने वाली संकष्टी अंगारकी चतुर्थी कहलाती है  –  सबसे शुभ।',
+        sa: 'सङ्कष्टीचतुर्थी कृष्णपक्षचतुर्थ्यां (क्षीयमाणचन्द्रस्य चतुर्थदिने) पतति, चन्द्रोदयपर्यन्तम् उपवासः गणेशपूजा चन्द्रदर्शनं च आचर्यते। विनायकचतुर्थी शुक्लपक्षचतुर्थ्यां (वर्धमानचन्द्रस्य चतुर्थदिने) पतति, नवकार्यारम्भाय आदर्शा मन्यते। यदा सङ्कष्टी मङ्गलवासरे पतति तदा अङ्गारकीचतुर्थी इत्युच्यते  –  सर्वासां मासिकचतुर्थीनां सर्वाधिकशुभा।',
       },
     },
   ],
@@ -630,9 +630,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'एकस्मिन् दिने कत्यः चौघड़ियाः भवन्ति?',
       },
       answer: {
-        en: 'There are 16 Choghadiya periods in a full day — 8 during daytime (sunrise to sunset) and 8 during nighttime (sunset to next sunrise). The duration of each period is not a fixed 1.5 hours; it varies by season because daytime and nighttime lengths change throughout the year. Dekho Panchang calculates exact Choghadiya times based on your location\'s actual sunrise and sunset.',
-        hi: 'पूरे दिन में 16 चौघड़िया होते हैं — दिन में 8 (सूर्योदय से सूर्यास्त) और रात में 8 (सूर्यास्त से अगले सूर्योदय तक)। प्रत्येक अवधि निश्चित 1.5 घण्टे की नहीं होती; यह ऋतु के अनुसार बदलती है क्योंकि दिन-रात की अवधि वर्ष भर बदलती रहती है।',
-        sa: 'सम्पूर्णदिने षोडश चौघड़ियाः भवन्ति — दिवसे अष्ट (सूर्योदयात् सूर्यास्तपर्यन्तम्) रात्रौ च अष्ट (सूर्यास्तात् अग्रिमसूर्योदयपर्यन्तम्)। प्रत्येकावधेः कालः निश्चितसार्धघण्टात्मकः न भवति; ऋत्वनुसारं भिद्यते यतः दिवारात्र्योः अवधिः सम्पूर्णवर्षं यावत् परिवर्तते। देखो-पञ्चाङ्गं भवतः स्थानस्य वास्तविकसूर्योदयसूर्यास्तम् अनुसृत्य सूक्ष्मचौघड़ियाकालान् गणयति।',
+        en: 'There are 16 Choghadiya periods in a full day  –  8 during daytime (sunrise to sunset) and 8 during nighttime (sunset to next sunrise). The duration of each period is not a fixed 1.5 hours; it varies by season because daytime and nighttime lengths change throughout the year. Dekho Panchang calculates exact Choghadiya times based on your location\'s actual sunrise and sunset.',
+        hi: 'पूरे दिन में 16 चौघड़िया होते हैं  –  दिन में 8 (सूर्योदय से सूर्यास्त) और रात में 8 (सूर्यास्त से अगले सूर्योदय तक)। प्रत्येक अवधि निश्चित 1.5 घण्टे की नहीं होती; यह ऋतु के अनुसार बदलती है क्योंकि दिन-रात की अवधि वर्ष भर बदलती रहती है।',
+        sa: 'सम्पूर्णदिने षोडश चौघड़ियाः भवन्ति  –  दिवसे अष्ट (सूर्योदयात् सूर्यास्तपर्यन्तम्) रात्रौ च अष्ट (सूर्यास्तात् अग्रिमसूर्योदयपर्यन्तम्)। प्रत्येकावधेः कालः निश्चितसार्धघण्टात्मकः न भवति; ऋत्वनुसारं भिद्यते यतः दिवारात्र्योः अवधिः सम्पूर्णवर्षं यावत् परिवर्तते। देखो-पञ्चाङ्गं भवतः स्थानस्य वास्तविकसूर्योदयसूर्यास्तम् अनुसृत्य सूक्ष्मचौघड़ियाकालान् गणयति।',
       },
     },
   ],
@@ -659,7 +659,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       answer: {
         en: 'Mangal Dosha is considered cancelled (or significantly reduced) in several conditions: Mars in its own sign (Aries/Scorpio) or exalted (Capricorn), Mars aspected by or conjunct benefic Jupiter, both partners being Manglik, Mars in certain Nakshatras (like Mrigashira, Chitra, Dhanishta), and after age 28 when Mars\'s intensity naturally diminishes in some traditions.',
         hi: 'मंगल दोष कई स्थितियों में निरस्त माना जाता है: मंगल अपनी राशि (मेष/वृश्चिक) या उच्च (मकर) में, गुरु की दृष्टि या युति, दोनों वर-वधू मांगलिक, विशेष नक्षत्रों में मंगल, और कुछ परम्पराओं में 28 वर्ष के बाद।',
-        sa: 'मङ्गलदोषः अनेकासु स्थितिषु निरस्तः मन्यते — कुजः स्वराशौ (मेषे/वृश्चिके) वा उच्चराशौ (मकरे), गुरोः दृष्ट्या युत्या वा, उभौ वरवधू माङ्गलिकौ, विशेषनक्षत्रेषु कुजः।',
+        sa: 'मङ्गलदोषः अनेकासु स्थितिषु निरस्तः मन्यते  –  कुजः स्वराशौ (मेषे/वृश्चिके) वा उच्चराशौ (मकरे), गुरोः दृष्ट्या युत्या वा, उभौ वरवधू माङ्गलिकौ, विशेषनक्षत्रेषु कुजः।',
       },
     },
     {
@@ -685,7 +685,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'कालसर्पदोषः कः अस्ति?',
       },
       answer: {
-        en: 'Kaal Sarp Dosha occurs when all seven planets (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) are hemmed between Rahu and Ketu — that is, all planets fall on one side of the Rahu-Ketu axis. This is considered a significant karmic combination that can cause delays, obstacles, and sudden upheavals in life. However, its effects vary greatly depending on which houses Rahu and Ketu occupy.',
+        en: 'Kaal Sarp Dosha occurs when all seven planets (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) are hemmed between Rahu and Ketu  –  that is, all planets fall on one side of the Rahu-Ketu axis. This is considered a significant karmic combination that can cause delays, obstacles, and sudden upheavals in life. However, its effects vary greatly depending on which houses Rahu and Ketu occupy.',
         hi: 'काल सर्प दोष तब होता है जब सभी सात ग्रह (सूर्य, चन्द्र, मंगल, बुध, गुरु, शुक्र, शनि) राहु और केतु के बीच एक ओर हों। यह एक महत्वपूर्ण कर्म संयोजन है जो विलम्ब, बाधाएं और अचानक उथल-पुथल ला सकता है।',
         sa: 'कालसर्पदोषः तदा भवति यदा सर्वे सप्तग्रहाः राहुकेत्वोः एकत्र स्थिताः भवन्ति। एषः महत्त्वपूर्णः कार्मिकसंयोगः अस्ति।',
       },
@@ -699,7 +699,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       answer: {
         en: 'There are 12 types of Kaal Sarp Dosha, named based on which houses Rahu and Ketu occupy: Anant (1-7), Kulik (2-8), Vasuki (3-9), Shankhpal (4-10), Padma (5-11), Mahapadma (6-12), Takshak (7-1), Karkotak (8-2), Shankhachud (9-3), Ghatak (10-4), Vishdhar (11-5), and Sheshnaag (12-6). Each type affects different life areas based on the houses involved.',
         hi: '12 प्रकार हैं: अनन्त (1-7), कुलिक (2-8), वासुकि (3-9), शंखपाल (4-10), पद्म (5-11), महापद्म (6-12), तक्षक (7-1), कर्कोटक (8-2), शंखचूड (9-3), घातक (10-4), विषधर (11-5), शेषनाग (12-6)।',
-        sa: 'द्वादशप्रकाराः सन्ति — अनन्तः, कुलिकः, वासुकिः, शंखपालः, पद्मः, महापद्मः, तक्षकः, कर्कोटकः, शंखचूडः, घातकः, विषधरः, शेषनागश्च।',
+        sa: 'द्वादशप्रकाराः सन्ति  –  अनन्तः, कुलिकः, वासुकिः, शंखपालः, पद्मः, महापद्मः, तक्षकः, कर्कोटकः, शंखचूडः, घातकः, विषधरः, शेषनागश्च।',
       },
     },
     {
@@ -711,7 +711,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       answer: {
         en: 'Traditional remedies include: performing Kaal Sarp Dosha Nivaran Puja at Trimbakeshwar (Nashik) or Mahakaleshwar (Ujjain), chanting Rahu-Ketu mantras, wearing Gomed (Hessonite) for Rahu or Cat\'s Eye for Ketu after consulting a Jyotishi, offering milk and rice to snakes or ant hills on Nag Panchami, and performing Sarpa Suktam recitation. Regular worship of Lord Shiva and Nag Devta is also recommended.',
         hi: 'पारम्परिक उपाय: त्र्यम्बकेश्वर या महाकालेश्वर में काल सर्प दोष निवारण पूजा, राहु-केतु मन्त्र जप, गोमेद या लहसुनिया धारण (ज्योतिषी परामर्श से), नाग पंचमी पर दूध-चावल अर्पण, सर्प सूक्तम् पाठ, और शिव तथा नाग देवता की नियमित पूजा।',
-        sa: 'पारम्परिकोपायाः — त्र्यम्बकेश्वरे महाकालेश्वरे वा कालसर्पदोषनिवारणपूजा, राहुकेतुमन्त्रजपः, गोमेदवैदूर्यधारणम्, नागपञ्चम्यां दुग्धतण्डुलार्पणम्, सर्पसूक्तपठनम्, शिवनागदेवतापूजा च।',
+        sa: 'पारम्परिकोपायाः  –  त्र्यम्बकेश्वरे महाकालेश्वरे वा कालसर्पदोषनिवारणपूजा, राहुकेतुमन्त्रजपः, गोमेदवैदूर्यधारणम्, नागपञ्चम्यां दुग्धतण्डुलार्पणम्, सर्पसूक्तपठनम्, शिवनागदेवतापूजा च।',
       },
     },
   ],
@@ -737,9 +737,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'पितृदोषमङ्गलदोषयोः कः भेदः?',
       },
       answer: {
-        en: 'Mangal Dosha is caused by Mars\'s placement and primarily affects marriage and relationships. Pitra Dosha is caused by Sun-Rahu affliction and relates to ancestral karma — it affects broader life patterns including career blocks, progeny issues, and generational family problems. Mangal Dosha is a single-planet placement check; Pitra Dosha involves multiple factors including the 9th house, Sun, Rahu, and sometimes Saturn.',
-        hi: 'मंगल दोष मंगल की स्थिति से होता है और मुख्यतः विवाह प्रभावित करता है। पितृ दोष सूर्य-राहु पीड़ा से होता है और पैतृक कर्म से सम्बन्धित है — कैरियर अवरोध, सन्तान समस्या और पारिवारिक कठिनाइयाँ प्रभावित करता है।',
-        sa: 'मङ्गलदोषः कुजस्थित्या भवति विवाहं च प्रभावयति। पितृदोषः सूर्यराहुपीडया भवति पैतृककर्मणा सम्बद्धश्च — वृत्तिम् अपत्यं पारिवारिकजीवनं च प्रभावयति।',
+        en: 'Mangal Dosha is caused by Mars\'s placement and primarily affects marriage and relationships. Pitra Dosha is caused by Sun-Rahu affliction and relates to ancestral karma  –  it affects broader life patterns including career blocks, progeny issues, and generational family problems. Mangal Dosha is a single-planet placement check; Pitra Dosha involves multiple factors including the 9th house, Sun, Rahu, and sometimes Saturn.',
+        hi: 'मंगल दोष मंगल की स्थिति से होता है और मुख्यतः विवाह प्रभावित करता है। पितृ दोष सूर्य-राहु पीड़ा से होता है और पैतृक कर्म से सम्बन्धित है  –  कैरियर अवरोध, सन्तान समस्या और पारिवारिक कठिनाइयाँ प्रभावित करता है।',
+        sa: 'मङ्गलदोषः कुजस्थित्या भवति विवाहं च प्रभावयति। पितृदोषः सूर्यराहुपीडया भवति पैतृककर्मणा सम्बद्धश्च  –  वृत्तिम् अपत्यं पारिवारिकजीवनं च प्रभावयति।',
       },
     },
     {
@@ -751,7 +751,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       answer: {
         en: 'Key remedies include: performing Shraddha (ancestral offerings) during Pitru Paksha (16-day period in Ashwin/Bhadrapada month), Pind Daan at sacred sites like Gaya or Varanasi, Tripindi Shraddha for forgotten ancestors, Narayan Nagbali Puja at Trimbakeshwar, regular Tarpan on Amavasya, and feeding Brahmins and crows (considered messengers of ancestors). Chanting Surya and Rahu mantras also helps.',
         hi: 'प्रमुख उपाय: पितृ पक्ष में श्राद्ध, गया या काशी में पिण्ड दान, त्रिपिण्डी श्राद्ध, त्र्यम्बकेश्वर में नारायण नागबलि पूजा, अमावस्या पर तर्पण, ब्राह्मणों और कौओं को भोजन। सूर्य और राहु मन्त्र जप भी लाभदायक है।',
-        sa: 'प्रमुखोपायाः — पितृपक्षे श्राद्धम्, गयायां काश्यां वा पिण्डदानम्, त्रिपिण्डीश्राद्धम्, त्र्यम्बकेश्वरे नारायणनागबलिपूजा, अमावास्यायां तर्पणम्, ब्राह्मणकाकभोजनं च। सूर्यराहुमन्त्रजपः अपि लाभकरः।',
+        sa: 'प्रमुखोपायाः  –  पितृपक्षे श्राद्धम्, गयायां काश्यां वा पिण्डदानम्, त्रिपिण्डीश्राद्धम्, त्र्यम्बकेश्वरे नारायणनागबलिपूजा, अमावास्यायां तर्पणम्, ब्राह्मणकाकभोजनं च। सूर्यराहुमन्त्रजपः अपि लाभकरः।',
       },
     },
   ],
@@ -765,9 +765,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'साढेसातिः कियत्कालं तिष्ठति?',
       },
       answer: {
-        en: 'Sade Sati lasts approximately 7.5 years. It occurs when Saturn transits through three consecutive signs — the sign before your Moon sign (~2.5 years), your Moon sign itself (~2.5 years), and the sign after (~2.5 years). The exact duration varies slightly because Saturn\'s orbital speed is not constant and it retrogrades periodically.',
-        hi: 'साढ़े साती लगभग 7.5 वर्ष तक रहती है। यह तब होती है जब शनि तीन क्रमिक राशियों से गुजरता है — आपकी चन्द्र राशि से पहली (~2.5 वर्ष), स्वयं चन्द्र राशि (~2.5 वर्ष) और उसके बाद की (~2.5 वर्ष)। सटीक अवधि शनि की गति और वक्री होने के कारण थोड़ी भिन्न हो सकती है।',
-        sa: 'साढेसातिः प्रायः सार्धसप्तवर्षाणि तिष्ठति। शनिः त्रिषु क्रमिकराशिषु गच्छति चेत् भवति — चन्द्रराशेः पूर्वराशौ (~२.५ वर्षाणि), स्वयं चन्द्रराशौ (~२.५ वर्षाणि), तदनन्तरराशौ च (~२.५ वर्षाणि)।',
+        en: 'Sade Sati lasts approximately 7.5 years. It occurs when Saturn transits through three consecutive signs  –  the sign before your Moon sign (~2.5 years), your Moon sign itself (~2.5 years), and the sign after (~2.5 years). The exact duration varies slightly because Saturn\'s orbital speed is not constant and it retrogrades periodically.',
+        hi: 'साढ़े साती लगभग 7.5 वर्ष तक रहती है। यह तब होती है जब शनि तीन क्रमिक राशियों से गुजरता है  –  आपकी चन्द्र राशि से पहली (~2.5 वर्ष), स्वयं चन्द्र राशि (~2.5 वर्ष) और उसके बाद की (~2.5 वर्ष)। सटीक अवधि शनि की गति और वक्री होने के कारण थोड़ी भिन्न हो सकती है।',
+        sa: 'साढेसातिः प्रायः सार्धसप्तवर्षाणि तिष्ठति। शनिः त्रिषु क्रमिकराशिषु गच्छति चेत् भवति  –  चन्द्रराशेः पूर्वराशौ (~२.५ वर्षाणि), स्वयं चन्द्रराशौ (~२.५ वर्षाणि), तदनन्तरराशौ च (~२.५ वर्षाणि)।',
       },
     },
     {
@@ -777,9 +777,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'साढेसात्याः त्रयः चरणाः के सन्ति?',
       },
       answer: {
-        en: 'The three phases are: Rising Phase (Saturn in 12th from Moon) — financial pressures, hidden anxieties, and sleep disturbances. Peak Phase (Saturn over Moon sign) — the most intense period with mental pressure, relationship tests, and career challenges, but also deep personal growth. Setting Phase (Saturn in 2nd from Moon) — financial strain eases but family and speech-related matters may surface.',
-        hi: 'तीन चरण हैं: आरम्भ चरण (चन्द्र से 12वाँ) — आर्थिक दबाव, छिपी चिन्ताएँ। चरम चरण (चन्द्र राशि पर) — सबसे तीव्र काल, मानसिक दबाव और कैरियर चुनौतियाँ, किन्तु गहन विकास भी। अवसान चरण (चन्द्र से 2रा) — आर्थिक दबाव कम, पारिवारिक विषय।',
-        sa: 'त्रयः चरणाः सन्ति — उत्थानचरणः (चन्द्रात् द्वादशे शनिः), चरमचरणः (चन्द्रराशौ शनिः), अवसानचरणः (चन्द्रात् द्वितीये शनिः) च।',
+        en: 'The three phases are: Rising Phase (Saturn in 12th from Moon)  –  financial pressures, hidden anxieties, and sleep disturbances. Peak Phase (Saturn over Moon sign)  –  the most intense period with mental pressure, relationship tests, and career challenges, but also deep personal growth. Setting Phase (Saturn in 2nd from Moon)  –  financial strain eases but family and speech-related matters may surface.',
+        hi: 'तीन चरण हैं: आरम्भ चरण (चन्द्र से 12वाँ)  –  आर्थिक दबाव, छिपी चिन्ताएँ। चरम चरण (चन्द्र राशि पर)  –  सबसे तीव्र काल, मानसिक दबाव और कैरियर चुनौतियाँ, किन्तु गहन विकास भी। अवसान चरण (चन्द्र से 2रा)  –  आर्थिक दबाव कम, पारिवारिक विषय।',
+        sa: 'त्रयः चरणाः सन्ति  –  उत्थानचरणः (चन्द्रात् द्वादशे शनिः), चरमचरणः (चन्द्रराशौ शनिः), अवसानचरणः (चन्द्रात् द्वितीये शनिः) च।',
       },
     },
     {
@@ -803,7 +803,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       answer: {
         en: 'Traditional remedies include: reciting Hanuman Chalisa daily (especially on Saturdays), donating black items like sesame seeds, iron, and mustard oil on Saturdays, lighting a mustard oil lamp under a Peepal tree every Saturday evening, and chanting the Shani mantra "Om Sham Shanaishcharaya Namah" 108 times daily. Serving the elderly and disabled is also highly recommended.',
         hi: 'पारम्परिक उपाय: प्रतिदिन हनुमान चालीसा (विशेषकर शनिवार), शनिवार को काली वस्तुएं (तिल, लोहा, सरसों का तेल) दान, शनिवार संध्या पीपल वृक्ष नीचे सरसों का दीपक, और "ॐ शं शनैश्चराय नमः" 108 बार जप। बुजुर्गों और विकलांगों की सेवा भी अत्यन्त लाभदायक है।',
-        sa: 'पारम्परिकोपायाः — प्रतिदिनं हनुमत्चालीसापठनम्, शनिवासरे कृष्णवस्तूनां दानम्, पीपलवृक्षे सार्षपतैलदीपकम्, "ॐ शं शनैश्चराय नमः" इति अष्टोत्तरशतवारं जपश्च।',
+        sa: 'पारम्परिकोपायाः  –  प्रतिदिनं हनुमत्चालीसापठनम्, शनिवासरे कृष्णवस्तूनां दानम्, पीपलवृक्षे सार्षपतैलदीपकम्, "ॐ शं शनैश्चराय नमः" इति अष्टोत्तरशतवारं जपश्च।',
       },
     },
     {
@@ -813,8 +813,8 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'मम चन्द्रराशये साढेसातिः कदा आरभते?',
       },
       answer: {
-        en: 'Sade Sati begins when Saturn enters the sign just before (12th from) your Moon sign. Since Saturn takes about 2.5 years per sign and completes its orbit in ~29.5 years, Sade Sati occurs roughly every 30 years — meaning it happens 2-3 times in an average lifetime. Use our Sade Sati calculator to check exact dates based on your Moon sign or full birth chart.',
-        hi: 'साढ़े साती तब शुरू होती है जब शनि आपकी चन्द्र राशि से ठीक पहले (12वीं) राशि में प्रवेश करता है। शनि ~29.5 वर्ष में एक चक्र पूरा करता है, अतः साढ़े साती लगभग 30 वर्ष में एक बार आती है — जीवनकाल में 2-3 बार। सटीक तिथियों के लिए हमारा गणक उपयोग करें।',
+        en: 'Sade Sati begins when Saturn enters the sign just before (12th from) your Moon sign. Since Saturn takes about 2.5 years per sign and completes its orbit in ~29.5 years, Sade Sati occurs roughly every 30 years  –  meaning it happens 2-3 times in an average lifetime. Use our Sade Sati calculator to check exact dates based on your Moon sign or full birth chart.',
+        hi: 'साढ़े साती तब शुरू होती है जब शनि आपकी चन्द्र राशि से ठीक पहले (12वीं) राशि में प्रवेश करता है। शनि ~29.5 वर्ष में एक चक्र पूरा करता है, अतः साढ़े साती लगभग 30 वर्ष में एक बार आती है  –  जीवनकाल में 2-3 बार। सटीक तिथियों के लिए हमारा गणक उपयोग करें।',
         sa: 'साढेसातिः तदा आरभते यदा शनिः चन्द्रराशेः पूर्वराशौ (द्वादशे) प्रविशति। शनिः ~२९.५ वर्षेषु एकं चक्रं पूरयति, अतः साढेसातिः प्रायः त्रिंशद्वर्षेषु एकवारम् आगच्छति।',
       },
     },
@@ -829,7 +829,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'मुहूर्तः कः अस्ति कथं च महत्त्वपूर्णः?',
       },
       answer: {
-        en: 'Muhurat (auspicious timing) is the Vedic science of selecting the most favourable date and time for important activities. It considers multiple factors — Tithi, Nakshatra, Yoga, planetary positions, Rahu Kaal, and Choghadiya — to maximize the chances of a positive outcome. Starting important activities at the right Muhurat is believed to align your actions with cosmic energies.',
+        en: 'Muhurat (auspicious timing) is the Vedic science of selecting the most favourable date and time for important activities. It considers multiple factors  –  Tithi, Nakshatra, Yoga, planetary positions, Rahu Kaal, and Choghadiya  –  to maximize the chances of a positive outcome. Starting important activities at the right Muhurat is believed to align your actions with cosmic energies.',
         hi: 'मुहूर्त महत्वपूर्ण कार्यों के लिए सबसे अनुकूल तिथि और समय चुनने का वैदिक विज्ञान है। यह तिथि, नक्षत्र, योग, ग्रह स्थिति, राहु काल और चौघड़िया जैसे अनेक कारकों पर विचार करता है।',
         sa: 'मुहूर्तः महत्कार्येषु सर्वाधिकानुकूलतिथिकालचयनस्य वैदिकं शास्त्रम् अस्ति।',
       },
@@ -855,7 +855,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       answer: {
         en: 'The most common activities requiring Muhurat selection include: marriage (Vivah), housewarming (Griha Pravesh), starting a new business (Vyapar Arambh), vehicle purchase, property purchase, naming ceremony (Namkaran), starting education (Vidya Arambh), medical procedures, gold purchase, and travel. Each activity has specific Vedic rules for what constitutes an auspicious time.',
         hi: 'मुहूर्त की सबसे अधिक आवश्यकता वाले कार्य: विवाह, गृह प्रवेश, व्यापार आरम्भ, वाहन खरीद, भूमि खरीद, नामकरण, विद्यारम्भ, चिकित्सा, स्वर्ण खरीद और यात्रा। प्रत्येक कार्य के लिए विशिष्ट वैदिक नियम हैं।',
-        sa: 'मुहूर्तस्य सर्वाधिकावश्यकतायुक्तानि कार्याणि — विवाहः, गृहप्रवेशः, व्यापारारम्भः, वाहनक्रयः, भूमिक्रयः, नामकरणम्, विद्यारम्भः, चिकित्सा, स्वर्णक्रयः, यात्रा च।',
+        sa: 'मुहूर्तस्य सर्वाधिकावश्यकतायुक्तानि कार्याणि  –  विवाहः, गृहप्रवेशः, व्यापारारम्भः, वाहनक्रयः, भूमिक्रयः, नामकरणम्, विद्यारम्भः, चिकित्सा, स्वर्णक्रयः, यात्रा च।',
       },
     },
     {
@@ -865,7 +865,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'किं मुहूर्तः अशुभकुण्डलीं निवारयितुं शक्नोति?',
       },
       answer: {
-        en: 'Muhurat cannot completely override the indications in a birth chart, but it can significantly improve the chances of success for a specific undertaking. Think of it as choosing the best possible starting conditions — like a seed planted in fertile soil at the right season. Classical texts say that a good Muhurat can enhance favourable Dasha results and mitigate challenging planetary periods.',
+        en: 'Muhurat cannot completely override the indications in a birth chart, but it can significantly improve the chances of success for a specific undertaking. Think of it as choosing the best possible starting conditions  –  like a seed planted in fertile soil at the right season. Classical texts say that a good Muhurat can enhance favourable Dasha results and mitigate challenging planetary periods.',
         hi: 'मुहूर्त जन्म कुण्डली के संकेतों को पूरी तरह नहीं बदल सकता, किन्तु किसी विशेष कार्य की सफलता की सम्भावना काफी बढ़ा सकता है। शास्त्रीय ग्रन्थ कहते हैं कि शुभ मुहूर्त अनुकूल दशा फल को बढ़ाता है और चुनौतीपूर्ण ग्रह अवधि को कम करता है।',
         sa: 'मुहूर्तः जन्मकुण्डल्याः सङ्केतान् सम्पूर्णतया निवारयितुं न शक्नोति, किन्तु विशिष्टकार्यस्य सफलतासम्भावनां महत्त्वपूर्णतया वर्धयितुं शक्नोति।',
       },
@@ -906,7 +906,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       },
       answer: {
         en: 'The Hindu calendar contains over 180 major festivals, vrats (fasting days), and observances annually. These include 24 Ekadashis, 12 Purnimas, 12 Amavasyas, Navaratri (twice), Diwali, Holi, and dozens of regional festivals. Dekho Panchang tracks all major festivals with location-aware Tithi timing, so dates are accurate for your specific city.',
-        hi: 'हिन्दू कैलेंडर में प्रतिवर्ष 180+ प्रमुख त्योहार, व्रत और अनुष्ठान हैं — 24 एकादशी, 12 पूर्णिमा, 12 अमावस्या, नवरात्रि, दीवाली, होली और दर्जनों क्षेत्रीय त्योहार। देखो पंचांग सभी प्रमुख त्योहारों को स्थान-आधारित तिथि समय के साथ दर्शाता है।',
+        hi: 'हिन्दू कैलेंडर में प्रतिवर्ष 180+ प्रमुख त्योहार, व्रत और अनुष्ठान हैं  –  24 एकादशी, 12 पूर्णिमा, 12 अमावस्या, नवरात्रि, दीवाली, होली और दर्जनों क्षेत्रीय त्योहार। देखो पंचांग सभी प्रमुख त्योहारों को स्थान-आधारित तिथि समय के साथ दर्शाता है।',
         sa: 'हिन्दूपञ्चाङ्गे प्रतिवर्षम् अशीत्यधिकशतं प्रमुखपर्वाणि व्रतानि अनुष्ठानानि च सन्ति। देखो-पञ्चाङ्गं सर्वाणि प्रमुखपर्वाणि स्थानाधारिततिथिकालेन सह दर्शयति।',
       },
     },
@@ -933,9 +933,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: '२०२६ वर्षे कति एकादश्यः सन्ति?',
       },
       answer: {
-        en: 'There are 24 named Ekadashis in 2026 — two per lunar month, one on Shukla Paksha (bright half) and one on Krishna Paksha (dark half). In years with an Adhika (intercalary) month, there can be 26 Ekadashis.',
-        hi: '2026 में 24 नामित एकादशियाँ हैं — प्रति चन्द्र मास में दो, एक शुक्ल पक्ष में और एक कृष्ण पक्ष में। अधिक मास वाले वर्षों में 26 एकादशियाँ हो सकती हैं।',
-        sa: '२०२६ वर्षे २४ नामिताः एकादश्यः सन्ति — प्रतिमासं द्वे, एका शुक्लपक्षे एका कृष्णपक्षे च।',
+        en: 'There are 24 named Ekadashis in 2026  –  two per lunar month, one on Shukla Paksha (bright half) and one on Krishna Paksha (dark half). In years with an Adhika (intercalary) month, there can be 26 Ekadashis.',
+        hi: '2026 में 24 नामित एकादशियाँ हैं  –  प्रति चन्द्र मास में दो, एक शुक्ल पक्ष में और एक कृष्ण पक्ष में। अधिक मास वाले वर्षों में 26 एकादशियाँ हो सकती हैं।',
+        sa: '२०२६ वर्षे २४ नामिताः एकादश्यः सन्ति  –  प्रतिमासं द्वे, एका शुक्लपक्षे एका कृष्णपक्षे च।',
       },
     },
     {
@@ -957,8 +957,8 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'निर्जलैकादशी का अस्ति?',
       },
       answer: {
-        en: 'Nirjala Ekadashi falls on Jyeshtha Shukla Ekadashi (May/June). "Nirjala" means "without water" — devotees fast for the entire day without consuming even water. Sage Vyasa told Bhima that this single strict fast equals the merit of observing all 24 Ekadashis. It is also called Pandava Ekadashi or Bhimseni Ekadashi.',
-        hi: 'निर्जला एकादशी ज्येष्ठ शुक्ल एकादशी (मई/जून) पर आती है। "निर्जला" का अर्थ है "बिना जल के" — भक्त पूरे दिन जल भी नहीं लेते। व्यास मुनि ने भीम को बताया कि यह एक कठोर व्रत सभी 24 एकादशियों के पुण्य के बराबर है।',
+        en: 'Nirjala Ekadashi falls on Jyeshtha Shukla Ekadashi (May/June). "Nirjala" means "without water"  –  devotees fast for the entire day without consuming even water. Sage Vyasa told Bhima that this single strict fast equals the merit of observing all 24 Ekadashis. It is also called Pandava Ekadashi or Bhimseni Ekadashi.',
+        hi: 'निर्जला एकादशी ज्येष्ठ शुक्ल एकादशी (मई/जून) पर आती है। "निर्जला" का अर्थ है "बिना जल के"  –  भक्त पूरे दिन जल भी नहीं लेते। व्यास मुनि ने भीम को बताया कि यह एक कठोर व्रत सभी 24 एकादशियों के पुण्य के बराबर है।',
         sa: 'निर्जलैकादशी ज्येष्ठशुक्लैकादश्यां पतति। "निर्जला" इति "जलविना" इत्यर्थः। व्यासः भीमम् अवदत् एतत् एकं कठोरव्रतं सर्वासां एकादशीनां पुण्यसमम् इति।',
       },
     },
@@ -1021,8 +1021,8 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'वैदिकज्योतिषे सूर्यराशिचन्द्रराश्योः कः भेदः?',
       },
       answer: {
-        en: 'The Sun sign (Surya Rashi) represents your soul, ego, vitality, and outward identity — it changes roughly once a month. The Moon sign (Chandra Rashi) represents your mind, emotions, instincts, and inner nature — it changes approximately every 2.25 days. In Vedic astrology, the Moon sign is considered more important for daily predictions and compatibility matching, while the Sun sign is used for assessing authority, career, and health.',
-        hi: 'सूर्य राशि आत्मा, अहंकार और बाह्य पहचान का प्रतिनिधित्व करती है — प्रति मास बदलती है। चन्द्र राशि मन, भावनाओं और आन्तरिक स्वभाव का — ~2.25 दिन में बदलती है। वैदिक ज्योतिष में दैनिक फल और मिलान के लिए चन्द्र राशि अधिक महत्वपूर्ण मानी जाती है।',
+        en: 'The Sun sign (Surya Rashi) represents your soul, ego, vitality, and outward identity  –  it changes roughly once a month. The Moon sign (Chandra Rashi) represents your mind, emotions, instincts, and inner nature  –  it changes approximately every 2.25 days. In Vedic astrology, the Moon sign is considered more important for daily predictions and compatibility matching, while the Sun sign is used for assessing authority, career, and health.',
+        hi: 'सूर्य राशि आत्मा, अहंकार और बाह्य पहचान का प्रतिनिधित्व करती है  –  प्रति मास बदलती है। चन्द्र राशि मन, भावनाओं और आन्तरिक स्वभाव का  –  ~2.25 दिन में बदलती है। वैदिक ज्योतिष में दैनिक फल और मिलान के लिए चन्द्र राशि अधिक महत्वपूर्ण मानी जाती है।',
         sa: 'सूर्यराशिः आत्मानम् अहङ्कारं बाह्यस्वरूपं च दर्शयति। चन्द्रराशिः मनसः भावानां आन्तरिकस्वभावस्य च प्रतिनिधित्वं करोति। वैदिकज्योतिषे दैनिकफलाय मेलनाय च चन्द्रराशिः अधिकमहत्त्वपूर्णा मन्यते।',
       },
     },
@@ -1037,7 +1037,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'वैदिकज्योतिषे होरा का अस्ति?',
       },
       answer: {
-        en: 'Hora is a Vedic time-division system where each hour of the day is ruled by one of the 7 classical planets (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) in a fixed sequence. The first Hora of each day is ruled by the planet that governs that weekday — Sunday starts with Sun Hora, Monday with Moon Hora, etc. Different Horas are suited for different activities, making it a practical timing tool.',
+        en: 'Hora is a Vedic time-division system where each hour of the day is ruled by one of the 7 classical planets (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) in a fixed sequence. The first Hora of each day is ruled by the planet that governs that weekday  –  Sunday starts with Sun Hora, Monday with Moon Hora, etc. Different Horas are suited for different activities, making it a practical timing tool.',
         hi: 'होरा वैदिक समय-विभाजन है जिसमें दिन का प्रत्येक घण्टा 7 शास्त्रीय ग्रहों (सूर्य, चन्द्र, मंगल, बुध, गुरु, शुक्र, शनि) में से एक द्वारा शासित होता है। प्रत्येक दिन की प्रथम होरा उस वार के स्वामी ग्रह की होती है।',
         sa: 'होरा वैदिककालविभाजनपद्धतिः अस्ति यत्र दिनस्य प्रत्येकं घण्टं सप्तसु शास्त्रीयग्रहेषु एकेन शासितं भवति।',
       },
@@ -1061,7 +1061,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'होरायाः चौघड़ियायाश्च काले कः भेदः?',
       },
       answer: {
-        en: 'Hora divides the day into 24 one-hour periods (each ruled by a planet in the Chaldean order), while Choghadiya divides only the daytime and nighttime into 8 periods each (~1.5 hours, variable by season). Hora is consistent in duration but varies in planetary ruler; Choghadiya periods vary in duration but follow a fixed naming pattern. Both are valid timing systems — Hora is widely used across India while Choghadiya is especially popular in Gujarat and Western India.',
+        en: 'Hora divides the day into 24 one-hour periods (each ruled by a planet in the Chaldean order), while Choghadiya divides only the daytime and nighttime into 8 periods each (~1.5 hours, variable by season). Hora is consistent in duration but varies in planetary ruler; Choghadiya periods vary in duration but follow a fixed naming pattern. Both are valid timing systems  –  Hora is widely used across India while Choghadiya is especially popular in Gujarat and Western India.',
         hi: 'होरा दिन को 24 एक-एक घण्टे की अवधि में बाँटती है (प्रत्येक एक ग्रह द्वारा शासित), जबकि चौघड़िया दिन और रात को 8-8 अवधियों (~1.5 घण्टे) में। होरा की अवधि स्थिर है; चौघड़िया की ऋतु के अनुसार बदलती है। होरा सम्पूर्ण भारत में और चौघड़िया गुजरात-पश्चिम भारत में अधिक प्रचलित है।',
         sa: 'होरा दिनं चतुर्विंशतिघण्टात्मकेषु विभागेषु विभजति, चौघड़िया तु दिवारात्रम् अष्ट-अष्टविभागेषु। होरा समग्रभारते, चौघड़िया गुजरातपश्चिमभारते च अधिकप्रचलिता।',
       },
@@ -1077,7 +1077,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'वर्षफलम् (वार्षिककुण्डली) किम् अस्ति?',
       },
       answer: {
-        en: 'Varshaphal is the Vedic annual horoscope based on the Tajika system, cast for the exact moment the Sun returns to its natal position each year (Solar Return). It includes a unique chart, Muntha (progressed ascendant), Sahams (Arabic parts), the Varsheshvara (year lord), and Mudda Dasha (annual planetary periods). It provides predictions specific to that solar year — from one birthday to the next.',
+        en: 'Varshaphal is the Vedic annual horoscope based on the Tajika system, cast for the exact moment the Sun returns to its natal position each year (Solar Return). It includes a unique chart, Muntha (progressed ascendant), Sahams (Arabic parts), the Varsheshvara (year lord), and Mudda Dasha (annual planetary periods). It provides predictions specific to that solar year  –  from one birthday to the next.',
         hi: 'वर्षफल ताजिक प्रणाली पर आधारित वैदिक वार्षिक कुण्डली है, जो प्रतिवर्ष सूर्य के जन्मस्थिति पर लौटने के सटीक क्षण (सौर प्रत्यावर्तन) के लिए बनाई जाती है। इसमें मुन्था, साहम, वर्षेश्वर और मुद्दा दशा शामिल हैं।',
         sa: 'वर्षफलं ताजिकपद्धत्याधारितं वैदिकवार्षिकफलम् अस्ति, सूर्यस्य जन्मस्थितौ प्रत्यावर्तनस्य सम्यक्क्षणे रच्यते।',
       },
@@ -1089,7 +1089,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'वार्षिकभविष्यफलं जन्मकुण्डल्याः कथं भिद्यते?',
       },
       answer: {
-        en: 'The birth chart (Janma Kundali) is fixed for life and shows your overall karmic blueprint — personality, career tendencies, and life themes. The annual forecast (Varshaphal) is a temporary chart that changes every solar year, showing the specific themes, opportunities, and challenges active during that particular year. It uses the Tajika system with different aspects (Ithasala, Ishraf, etc.) rather than the standard Parashari aspects used in birth chart analysis.',
+        en: 'The birth chart (Janma Kundali) is fixed for life and shows your overall karmic blueprint  –  personality, career tendencies, and life themes. The annual forecast (Varshaphal) is a temporary chart that changes every solar year, showing the specific themes, opportunities, and challenges active during that particular year. It uses the Tajika system with different aspects (Ithasala, Ishraf, etc.) rather than the standard Parashari aspects used in birth chart analysis.',
         hi: 'जन्म कुण्डली जीवन भर स्थिर रहती है और समग्र कर्म खाका दर्शाती है। वर्षफल एक अस्थायी कुण्डली है जो प्रतिवर्ष बदलती है, उस वर्ष की विशिष्ट थीम, अवसर और चुनौतियाँ दर्शाती है। यह ताजिक प्रणाली (इत्थशाल, ईशराफ आदि) का उपयोग करता है।',
         sa: 'जन्मकुण्डली जीवनपर्यन्तं स्थिरा भवति। वर्षफलं प्रतिसौरवर्षं परिवर्तमाना अस्थायिकुण्डली अस्ति, तद्वर्षस्य विशिष्टविषयान् दर्शयति।',
       },
@@ -1101,7 +1101,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'वर्षफलं कदा द्रष्टव्यम्?',
       },
       answer: {
-        en: 'The ideal time to check your Varshaphal is around your birthday each year, as the solar year runs from one birthday to the next. You can generate it for any year — past, present, or future — to understand the planetary themes active during that period. Many Jyotishis recommend reviewing it alongside your Vimshottari Dasha for a comprehensive picture of the year ahead.',
+        en: 'The ideal time to check your Varshaphal is around your birthday each year, as the solar year runs from one birthday to the next. You can generate it for any year  –  past, present, or future  –  to understand the planetary themes active during that period. Many Jyotishis recommend reviewing it alongside your Vimshottari Dasha for a comprehensive picture of the year ahead.',
         hi: 'वर्षफल देखने का आदर्श समय प्रतिवर्ष जन्मदिन के आसपास है, क्योंकि सौर वर्ष एक जन्मदिन से अगले तक चलता है। आप किसी भी वर्ष (भूत, वर्तमान, भविष्य) के लिए बना सकते हैं। कई ज्योतिषी विंशोत्तरी दशा के साथ मिलाकर देखने की सलाह देते हैं।',
         sa: 'वर्षफलं द्रष्टुं आदर्शकालः प्रतिवर्षं जन्मदिनस्य समीपे अस्ति। भूतवर्तमानभविष्यत्कस्यापि वर्षस्य कृते रचयितुं शक्यते।',
       },
@@ -1129,7 +1129,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'संस्कृतं विना ज्योतिषं शिक्षितुं शक्यते किम्?',
       },
       answer: {
-        en: 'Yes, you can learn Jyotish without Sanskrit fluency. While classical texts (Brihat Parashara Hora Shastra, Brihat Jataka, Phaladeepika) are in Sanskrit, excellent translations exist in English and Hindi. Most technical terms (Rashi, Graha, Bhava, Dasha, Yoga) are Sanskrit words used as-is in all languages. Familiarity with key terms is sufficient — you do not need to read Sanskrit grammar. Our learn section presents all concepts in English, Hindi, and Sanskrit.',
+        en: 'Yes, you can learn Jyotish without Sanskrit fluency. While classical texts (Brihat Parashara Hora Shastra, Brihat Jataka, Phaladeepika) are in Sanskrit, excellent translations exist in English and Hindi. Most technical terms (Rashi, Graha, Bhava, Dasha, Yoga) are Sanskrit words used as-is in all languages. Familiarity with key terms is sufficient  –  you do not need to read Sanskrit grammar. Our learn section presents all concepts in English, Hindi, and Sanskrit.',
         hi: 'हाँ, संस्कृत में प्रवीणता के बिना ज्योतिष सीखा जा सकता है। यद्यपि शास्त्रीय ग्रन्थ संस्कृत में हैं, उनके उत्कृष्ट अनुवाद उपलब्ध हैं। अधिकांश तकनीकी शब्द (राशि, ग्रह, भाव, दशा, योग) सभी भाषाओं में वैसे ही प्रयुक्त होते हैं। मूल शब्दों की जानकारी पर्याप्त है।',
         sa: 'आम्, संस्कृतप्रावीण्यं विना ज्योतिषं शिक्षितुं शक्यते। शास्त्रीयग्रन्थानां (बृहत्पराशरहोराशास्त्रम् इत्यादीनां) उत्कृष्टानुवादाः उपलभ्यन्ते। प्रमुखशब्दानां ज्ञानं पर्याप्तम्।',
       },
@@ -1141,9 +1141,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'ज्योतिषविषयान् केन क्रमेण पठेत्?',
       },
       answer: {
-        en: 'A recommended learning path: (1) Panchang basics — Tithi, Nakshatra, Yoga, Karana, Vara; (2) Rashis and their qualities; (3) Grahas — natural significations and friendships; (4) Bhavas (houses) — what each house represents; (5) Planet-in-sign and planet-in-house effects; (6) Aspects (Drishti); (7) Vimshottari Dasha system; (8) Yogas and Doshas; (9) Divisional charts (D-9 Navamsha first); (10) Transits and predictive techniques.',
-        hi: 'अनुशंसित क्रम: (1) पंचांग मूल — तिथि, नक्षत्र, योग, करण, वार; (2) राशियाँ; (3) ग्रह — स्वाभाविक कारकत्व और मैत्री; (4) भाव; (5) ग्रह-राशि और ग्रह-भाव प्रभाव; (6) दृष्टि; (7) विंशोत्तरी दशा; (8) योग और दोष; (9) वर्ग चार्ट; (10) गोचर।',
-        sa: 'अनुशंसितक्रमः — (१) पञ्चाङ्गमूलानि, (२) राशयः, (३) ग्रहाः, (४) भावाः, (५) ग्रहराशिग्रहभावप्रभावाः, (६) दृष्टयः, (७) विंशोत्तरीदशा, (८) योगदोषाः, (९) वर्गचक्राणि, (१०) गोचरः।',
+        en: 'A recommended learning path: (1) Panchang basics  –  Tithi, Nakshatra, Yoga, Karana, Vara; (2) Rashis and their qualities; (3) Grahas  –  natural significations and friendships; (4) Bhavas (houses)  –  what each house represents; (5) Planet-in-sign and planet-in-house effects; (6) Aspects (Drishti); (7) Vimshottari Dasha system; (8) Yogas and Doshas; (9) Divisional charts (D-9 Navamsha first); (10) Transits and predictive techniques.',
+        hi: 'अनुशंसित क्रम: (1) पंचांग मूल  –  तिथि, नक्षत्र, योग, करण, वार; (2) राशियाँ; (3) ग्रह  –  स्वाभाविक कारकत्व और मैत्री; (4) भाव; (5) ग्रह-राशि और ग्रह-भाव प्रभाव; (6) दृष्टि; (7) विंशोत्तरी दशा; (8) योग और दोष; (9) वर्ग चार्ट; (10) गोचर।',
+        sa: 'अनुशंसितक्रमः  –  (१) पञ्चाङ्गमूलानि, (२) राशयः, (३) ग्रहाः, (४) भावाः, (५) ग्रहराशिग्रहभावप्रभावाः, (६) दृष्टयः, (७) विंशोत्तरीदशा, (८) योगदोषाः, (९) वर्गचक्राणि, (१०) गोचरः।',
       },
     },
   ],
@@ -1171,7 +1171,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       answer: {
         en: 'Use Prashna when: (1) you don\'t know your exact birth time, (2) you have a specific, urgent question that needs an immediate answer, (3) you want to know the outcome of a particular event or decision, or (4) you\'re asking about something not clearly shown in the birth chart (like a lost object or a specific transaction). Prashna is ideal for "will this happen?" type questions with a definite yes/no answer.',
         hi: 'प्रश्न कुण्डली तब उपयोग करें जब: (1) सटीक जन्म समय न पता हो, (2) कोई विशिष्ट, तत्काल प्रश्न हो, (3) किसी विशेष घटना का परिणाम जानना हो, या (4) जन्म कुण्डली में स्पष्ट न दिखे (जैसे खोई वस्तु)। "क्या यह होगा?" प्रकार के हाँ/ना प्रश्नों के लिए आदर्श है।',
-        sa: 'प्रश्नकुण्डल्या उपयोगः कार्यः यदा — (१) सूक्ष्मजन्मकालः न ज्ञातः, (२) विशिष्टः तात्कालिकः प्रश्नः अस्ति, (३) विशिष्टघटनायाः परिणामं ज्ञातुम् इच्छति, (४) जन्मकुण्डल्यां स्पष्टं न दृश्यते। "किम् एतत् भविष्यति?" इति प्रश्नेभ्यः आदर्शा।',
+        sa: 'प्रश्नकुण्डल्या उपयोगः कार्यः यदा  –  (१) सूक्ष्मजन्मकालः न ज्ञातः, (२) विशिष्टः तात्कालिकः प्रश्नः अस्ति, (३) विशिष्टघटनायाः परिणामं ज्ञातुम् इच्छति, (४) जन्मकुण्डल्यां स्पष्टं न दृश्यते। "किम् एतत् भविष्यति?" इति प्रश्नेभ्यः आदर्शा।',
       },
     },
     {
@@ -1181,7 +1181,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'किं प्रश्नकुण्डल्याः सूक्ष्मता प्रश्नस्य गाम्भीर्ये निर्भरा भवति?',
       },
       answer: {
-        en: 'Classical texts emphasize that Prashna works best when the questioner has genuine concern about the matter. A question asked out of idle curiosity or to "test" astrology is unlikely to yield meaningful results. The underlying principle is that the moment of sincere inquiry is cosmically connected to the answer — the chart at that moment reflects the querent\'s karmic situation regarding that specific question.',
+        en: 'Classical texts emphasize that Prashna works best when the questioner has genuine concern about the matter. A question asked out of idle curiosity or to "test" astrology is unlikely to yield meaningful results. The underlying principle is that the moment of sincere inquiry is cosmically connected to the answer  –  the chart at that moment reflects the querent\'s karmic situation regarding that specific question.',
         hi: 'शास्त्रीय ग्रन्थ कहते हैं कि प्रश्न कुण्डली तब सबसे अच्छी काम करती है जब प्रश्नकर्ता को विषय की वास्तविक चिन्ता हो। उत्सुकता या "परीक्षा" हेतु पूछा गया प्रश्न सार्थक परिणाम नहीं देता। सच्ची जिज्ञासा का क्षण ब्रह्माण्डीय रूप से उत्तर से जुड़ा होता है।',
         sa: 'शास्त्रीयग्रन्थाः वदन्ति यत् प्रश्नकुण्डली तदा श्रेष्ठतया कार्यं करोति यदा प्रष्टुः विषये वास्तविकी चिन्ता भवति। सत्याः जिज्ञासायाः क्षणः ब्रह्माण्डीयतया उत्तरेण सम्बद्धः भवति।',
       },
@@ -1197,9 +1197,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'राशिसाम्यतातापपत्रं किं दर्शयति?',
       },
       answer: {
-        en: 'The compatibility heatmap shows the Ashta Kuta Guna Milan score (out of 36) for every possible Moon sign pair — all 144 combinations of the 12 Rashis. Higher scores (shown in green/gold) indicate better compatibility, while lower scores (red) suggest potential challenges. This gives you a quick visual overview of which Moon sign combinations are naturally harmonious according to Vedic matching rules.',
-        hi: 'अनुकूलता हीटमैप प्रत्येक सम्भव चन्द्र राशि जोड़ी के लिए अष्ट कूट गुण मिलान अंक (36 में से) दर्शाता है — 12 राशियों के सभी 144 संयोजन। उच्च अंक (हरा/स्वर्ण) बेहतर अनुकूलता और निम्न (लाल) सम्भावित चुनौतियाँ दर्शाते हैं।',
-        sa: 'साम्यतातापपत्रं प्रत्येकस्य सम्भाव्यचन्द्रराशियुग्मस्य अष्टकूटगुणमेलनाङ्कम् (षट्त्रिंशतः) दर्शयति — द्वादशराशीनां सर्वाणि चतुश्चत्वारिंशदधिकशतसंयोजनानि।',
+        en: 'The compatibility heatmap shows the Ashta Kuta Guna Milan score (out of 36) for every possible Moon sign pair  –  all 144 combinations of the 12 Rashis. Higher scores (shown in green/gold) indicate better compatibility, while lower scores (red) suggest potential challenges. This gives you a quick visual overview of which Moon sign combinations are naturally harmonious according to Vedic matching rules.',
+        hi: 'अनुकूलता हीटमैप प्रत्येक सम्भव चन्द्र राशि जोड़ी के लिए अष्ट कूट गुण मिलान अंक (36 में से) दर्शाता है  –  12 राशियों के सभी 144 संयोजन। उच्च अंक (हरा/स्वर्ण) बेहतर अनुकूलता और निम्न (लाल) सम्भावित चुनौतियाँ दर्शाते हैं।',
+        sa: 'साम्यतातापपत्रं प्रत्येकस्य सम्भाव्यचन्द्रराशियुग्मस्य अष्टकूटगुणमेलनाङ्कम् (षट्त्रिंशतः) दर्शयति  –  द्वादशराशीनां सर्वाणि चतुश्चत्वारिंशदधिकशतसंयोजनानि।',
       },
     },
     {
@@ -1221,9 +1221,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'यदि गुणाङ्काः न्यूनाः किन्तु विवाहम् इच्छामः तर्हि किम्?',
       },
       answer: {
-        en: 'A low Guna score (below 18) does not automatically mean the marriage will fail — it indicates areas that may need extra attention. Remedies include: performing specific Pujas recommended by a Jyotishi, wearing gemstones prescribed for Dosha mitigation, observing Shanti rituals before the wedding, and — most importantly — understanding which specific Kutas scored low so you can consciously work on those relationship areas (communication, temperament, etc.).',
-        hi: 'कम गुण अंक (18 से नीचे) का अर्थ स्वचालित विवाह विफलता नहीं है — यह उन क्षेत्रों को इंगित करता है जिन पर अतिरिक्त ध्यान चाहिए। उपायों में विशिष्ट पूजा, रत्न धारण, शान्ति अनुष्ठान और — सबसे महत्वपूर्ण — कौन से कूट कम हैं यह जानकर उन सम्बन्ध क्षेत्रों पर सचेत रूप से कार्य करना शामिल है।',
-        sa: 'न्यूनगुणाङ्कः (अष्टादशात् न्यूनः) स्वचालितविवाहविफलतां न सूचयति — तेषु क्षेत्रेषु अतिरिक्तध्यानम् आवश्यकम् इति दर्शयति।',
+        en: 'A low Guna score (below 18) does not automatically mean the marriage will fail  –  it indicates areas that may need extra attention. Remedies include: performing specific Pujas recommended by a Jyotishi, wearing gemstones prescribed for Dosha mitigation, observing Shanti rituals before the wedding, and  –  most importantly  –  understanding which specific Kutas scored low so you can consciously work on those relationship areas (communication, temperament, etc.).',
+        hi: 'कम गुण अंक (18 से नीचे) का अर्थ स्वचालित विवाह विफलता नहीं है  –  यह उन क्षेत्रों को इंगित करता है जिन पर अतिरिक्त ध्यान चाहिए। उपायों में विशिष्ट पूजा, रत्न धारण, शान्ति अनुष्ठान और  –  सबसे महत्वपूर्ण  –  कौन से कूट कम हैं यह जानकर उन सम्बन्ध क्षेत्रों पर सचेत रूप से कार्य करना शामिल है।',
+        sa: 'न्यूनगुणाङ्कः (अष्टादशात् न्यूनः) स्वचालितविवाहविफलतां न सूचयति  –  तेषु क्षेत्रेषु अतिरिक्तध्यानम् आवश्यकम् इति दर्शयति।',
       },
     },
   ],
@@ -1237,7 +1237,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'केपी (कृष्णमूर्ति पद्धतिः) ज्योतिषं किम् अस्ति?',
       },
       answer: {
-        en: 'KP System (Krishnamurti Paddhati) is a refined predictive system developed by Prof. K.S. Krishnamurti. It uses the Placidus house system (instead of equal houses), divides each Nakshatra into 9 sub-divisions based on Vimshottari Dasha lords, and creates a unique 249-entry sub-lord table. KP is known for its precision in timing events and answering specific yes/no questions — it is often used alongside traditional Parashari Jyotish.',
+        en: 'KP System (Krishnamurti Paddhati) is a refined predictive system developed by Prof. K.S. Krishnamurti. It uses the Placidus house system (instead of equal houses), divides each Nakshatra into 9 sub-divisions based on Vimshottari Dasha lords, and creates a unique 249-entry sub-lord table. KP is known for its precision in timing events and answering specific yes/no questions  –  it is often used alongside traditional Parashari Jyotish.',
         hi: 'केपी प्रणाली (कृष्णमूर्ति पद्धति) प्रो. के.एस. कृष्णमूर्ति द्वारा विकसित एक परिष्कृत भविष्यवाणी प्रणाली है। यह प्लेसिडस भाव प्रणाली, 249 उप-स्वामी तालिका और नक्षत्रों के 9 उप-विभाजन का उपयोग करती है। केपी घटनाओं के समय और हाँ/ना प्रश्नों में अत्यन्त सटीक है।',
         sa: 'केपीपद्धतिः (कृष्णमूर्तिपद्धतिः) प्रो. कृष्णमूर्तिना विकसिता परिष्कृता भविष्यवाणीपद्धतिः अस्ति। प्लेसिडसभावपद्धतिम्, २४९ उपस्वामिसारणीं, नक्षत्राणां नवोपविभागांश्च उपयुङ्क्ते।',
       },
@@ -1249,9 +1249,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'केपी पारम्परिकवैदिकज्योतिषात् कथं भिद्यते?',
       },
       answer: {
-        en: 'Key differences: (1) KP uses Placidus houses while Vedic uses equal/whole-sign houses; (2) KP introduces "sub-lord" — a finer division beyond Nakshatra lord, giving 249 subdivisions vs 27 Nakshatras; (3) KP uses "ruling planets" at the moment of judgment for confirmation; (4) KP focuses on cuspal sub-lords rather than house lords for prediction; (5) KP is particularly strong for timing events and Prashna (horary) questions.',
-        hi: 'प्रमुख अन्तर: (1) केपी प्लेसिडस भाव, वैदिक समान/पूर्ण राशि भाव; (2) केपी "उप-स्वामी" — नक्षत्र स्वामी से भी सूक्ष्म विभाजन, 249 उपविभाग; (3) केपी निर्णय क्षण के "शासक ग्रह" से पुष्टि; (4) केपी भावेश के बजाय भाव मध्य उप-स्वामी पर ध्यान; (5) घटना समय और प्रश्न में विशेष रूप से प्रबल।',
-        sa: 'प्रमुखभेदाः — (१) केपी प्लेसिडसभावान् उपयुङ्क्ते, (२) "उपस्वामी" — नक्षत्रस्वामिनः अतिसूक्ष्मः विभागः, २४९ उपविभागाः, (३) निर्णयक्षणे "शासकग्रहाः" पुष्ट्यर्थम्, (४) भावमध्योपस्वामिषु ध्यानम्।',
+        en: 'Key differences: (1) KP uses Placidus houses while Vedic uses equal/whole-sign houses; (2) KP introduces "sub-lord"  –  a finer division beyond Nakshatra lord, giving 249 subdivisions vs 27 Nakshatras; (3) KP uses "ruling planets" at the moment of judgment for confirmation; (4) KP focuses on cuspal sub-lords rather than house lords for prediction; (5) KP is particularly strong for timing events and Prashna (horary) questions.',
+        hi: 'प्रमुख अन्तर: (1) केपी प्लेसिडस भाव, वैदिक समान/पूर्ण राशि भाव; (2) केपी "उप-स्वामी"  –  नक्षत्र स्वामी से भी सूक्ष्म विभाजन, 249 उपविभाग; (3) केपी निर्णय क्षण के "शासक ग्रह" से पुष्टि; (4) केपी भावेश के बजाय भाव मध्य उप-स्वामी पर ध्यान; (5) घटना समय और प्रश्न में विशेष रूप से प्रबल।',
+        sa: 'प्रमुखभेदाः  –  (१) केपी प्लेसिडसभावान् उपयुङ्क्ते, (२) "उपस्वामी"  –  नक्षत्रस्वामिनः अतिसूक्ष्मः विभागः, २४९ उपविभागाः, (३) निर्णयक्षणे "शासकग्रहाः" पुष्ट्यर्थम्, (४) भावमध्योपस्वामिषु ध्यानम्।',
       },
     },
     {
@@ -1261,9 +1261,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'केपीपद्धतौ शासकग्रहाः के सन्ति?',
       },
       answer: {
-        en: 'Ruling planets are the lords active at the moment of chart judgment — they include the Lagna sign lord, Lagna Nakshatra lord, Moon sign lord, Moon Nakshatra lord, and the day lord. In KP, ruling planets serve as a confirmation tool: if a significator planet for a particular event is also a ruling planet at the time of analysis, it strongly confirms that the event will manifest. This is a unique KP technique not found in traditional Vedic astrology.',
-        hi: 'शासक ग्रह चार्ट विश्लेषण के क्षण में सक्रिय स्वामी हैं — लग्न राशि स्वामी, लग्न नक्षत्र स्वामी, चन्द्र राशि स्वामी, चन्द्र नक्षत्र स्वामी और वार स्वामी। केपी में यदि किसी घटना का कारक ग्रह विश्लेषण समय का शासक ग्रह भी हो, तो यह घटना की पुष्टि करता है।',
-        sa: 'शासकग्रहाः चक्रविश्लेषणक्षणे सक्रियाः स्वामिनः सन्ति — लग्नराशिस्वामी, लग्ननक्षत्रस्वामी, चन्द्रराशिस्वामी, चन्द्रनक्षत्रस्वामी, वारस्वामी च। केपीपद्धतौ एषः अद्वितीयः पुष्टिसाधनम् अस्ति।',
+        en: 'Ruling planets are the lords active at the moment of chart judgment  –  they include the Lagna sign lord, Lagna Nakshatra lord, Moon sign lord, Moon Nakshatra lord, and the day lord. In KP, ruling planets serve as a confirmation tool: if a significator planet for a particular event is also a ruling planet at the time of analysis, it strongly confirms that the event will manifest. This is a unique KP technique not found in traditional Vedic astrology.',
+        hi: 'शासक ग्रह चार्ट विश्लेषण के क्षण में सक्रिय स्वामी हैं  –  लग्न राशि स्वामी, लग्न नक्षत्र स्वामी, चन्द्र राशि स्वामी, चन्द्र नक्षत्र स्वामी और वार स्वामी। केपी में यदि किसी घटना का कारक ग्रह विश्लेषण समय का शासक ग्रह भी हो, तो यह घटना की पुष्टि करता है।',
+        sa: 'शासकग्रहाः चक्रविश्लेषणक्षणे सक्रियाः स्वामिनः सन्ति  –  लग्नराशिस्वामी, लग्ननक्षत्रस्वामी, चन्द्रराशिस्वामी, चन्द्रनक्षत्रस्वामी, वारस्वामी च। केपीपद्धतौ एषः अद्वितीयः पुष्टिसाधनम् अस्ति।',
       },
     },
   ],
@@ -1276,9 +1276,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'तिथिप्रवेशः किम् अस्ति?',
       },
       answer: {
-        en: 'Tithi Pravesha is the Vedic birthday — the exact moment each year when the same lunar tithi (day) as your birth recurs. It is used in Vedic astrology for annual predictions, similar to the Solar Return in Western astrology but based on the lunar calendar.',
-        hi: 'तिथि प्रवेश वैदिक जन्मदिन है — हर वर्ष वह सटीक क्षण जब आपकी जन्म तिथि पुनः आती है। इसका उपयोग वैदिक ज्योतिष में वार्षिक भविष्यवाणी के लिए किया जाता है।',
-        sa: 'तिथिप्रवेशः वैदिकजन्मदिवसः — प्रतिवर्षं यत् सटीकक्षणं यदा जन्मतिथिः पुनरागच्छति। वैदिकज्योतिषे वार्षिकभविष्यवाण्यर्थम् उपयुज्यते।',
+        en: 'Tithi Pravesha is the Vedic birthday  –  the exact moment each year when the same lunar tithi (day) as your birth recurs. It is used in Vedic astrology for annual predictions, similar to the Solar Return in Western astrology but based on the lunar calendar.',
+        hi: 'तिथि प्रवेश वैदिक जन्मदिन है  –  हर वर्ष वह सटीक क्षण जब आपकी जन्म तिथि पुनः आती है। इसका उपयोग वैदिक ज्योतिष में वार्षिक भविष्यवाणी के लिए किया जाता है।',
+        sa: 'तिथिप्रवेशः वैदिकजन्मदिवसः  –  प्रतिवर्षं यत् सटीकक्षणं यदा जन्मतिथिः पुनरागच्छति। वैदिकज्योतिषे वार्षिकभविष्यवाण्यर्थम् उपयुज्यते।',
       },
     },
     {
@@ -1288,9 +1288,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'तिथिप्रवेशः सामान्यजन्मदिवसात् कथं भिन्नः?',
       },
       answer: {
-        en: 'Your regular birthday follows the solar (Gregorian) calendar and falls on the same date each year. Tithi Pravesha follows the lunar calendar — the exact tithi of your birth — so the date shifts each year, typically by 10-12 days.',
-        hi: 'आपका नियमित जन्मदिन सौर (ग्रेगोरियन) कैलेंडर का अनुसरण करता है। तिथि प्रवेश चंद्र कैलेंडर पर आधारित है — आपकी जन्म तिथि — इसलिए तारीख हर वर्ष 10-12 दिन बदलती है।',
-        sa: 'भवतः नियमितजन्मदिवसः सौरपञ्चाङ्गम् अनुसरति। तिथिप्रवेशः चान्द्रपञ्चाङ्गम् अनुसरति — भवतः जन्मतिथिम् — अतः दिनाङ्कः प्रतिवर्षं १०-१२ दिनानि परिवर्तते।',
+        en: 'Your regular birthday follows the solar (Gregorian) calendar and falls on the same date each year. Tithi Pravesha follows the lunar calendar  –  the exact tithi of your birth  –  so the date shifts each year, typically by 10-12 days.',
+        hi: 'आपका नियमित जन्मदिन सौर (ग्रेगोरियन) कैलेंडर का अनुसरण करता है। तिथि प्रवेश चंद्र कैलेंडर पर आधारित है  –  आपकी जन्म तिथि  –  इसलिए तारीख हर वर्ष 10-12 दिन बदलती है।',
+        sa: 'भवतः नियमितजन्मदिवसः सौरपञ्चाङ्गम् अनुसरति। तिथिप्रवेशः चान्द्रपञ्चाङ्गम् अनुसरति  –  भवतः जन्मतिथिम्  –  अतः दिनाङ्कः प्रतिवर्षं १०-१२ दिनानि परिवर्तते।',
       },
     },
     {
@@ -1300,7 +1300,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'तिथिस्वामी किं दर्शयति?',
       },
       answer: {
-        en: 'Each tithi is ruled by a planet (the Tithi Lord). The lord of your birth tithi influences the theme of your Vedic year — for example, a Jupiter-ruled tithi suggests expansion and wisdom, while a Saturn-ruled one indicates discipline and karmic lessons.',
+        en: 'Each tithi is ruled by a planet (the Tithi Lord). The lord of your birth tithi influences the theme of your Vedic year  –  for example, a Jupiter-ruled tithi suggests expansion and wisdom, while a Saturn-ruled one indicates discipline and karmic lessons.',
         hi: 'प्रत्येक तिथि का एक ग्रह स्वामी होता है। आपकी जन्म तिथि का स्वामी आपके वैदिक वर्ष की थीम को प्रभावित करता है।',
         sa: 'प्रत्येकतिथेः एकः ग्रहस्वामी भवति। भवतः जन्मतिथेः स्वामी भवतः वैदिकवर्षस्य विषयं प्रभावयति।',
       },
@@ -1316,7 +1316,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'शस्त्रक्रियाजन्ममुहूर्तं किम् अस्ति?',
       },
       answer: {
-        en: 'Caesarean muhurta is the Vedic practice of electing the most auspicious birth time for a planned C-section delivery. Since the delivery date range is known in advance, classical Jyotish principles are applied to find a time slot that produces the strongest possible birth chart for the child — optimising lagna strength, Moon placement, benefic distribution, and the starting Vimshottari dasha.',
+        en: 'Caesarean muhurta is the Vedic practice of electing the most auspicious birth time for a planned C-section delivery. Since the delivery date range is known in advance, classical Jyotish principles are applied to find a time slot that produces the strongest possible birth chart for the child  –  optimising lagna strength, Moon placement, benefic distribution, and the starting Vimshottari dasha.',
         hi: 'सिजेरियन मुहूर्त नियोजित सिजेरियन प्रसव के लिए सबसे शुभ जन्म समय चुनने की वैदिक पद्धति है। चूंकि प्रसव की तिथि सीमा पहले से ज्ञात होती है, शास्त्रीय ज्योतिष सिद्धान्तों द्वारा ऐसा समय खोजा जाता है जो शिशु की सर्वश्रेष्ठ जन्म कुण्डली प्रदान करे।',
         sa: 'शस्त्रक्रियाजन्ममुहूर्तं नियोजितशस्त्रक्रियाप्रसवार्थं सर्वोत्तमजन्मकालस्य निर्वाचनं भवति। शास्त्रीयज्योतिषसिद्धान्तैः लग्नबलं चन्द्रस्थानं शुभग्रहवितरणं दशामार्गश्च अनुकूलितम्।',
       },
@@ -1328,9 +1328,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'पञ्चस्तम्भजन्मकालमूल्याङ्कनं कथं कार्यं करोति?',
       },
       answer: {
-        en: 'Each candidate time slot is scored across 5 classical pillars out of 100 points: Lagna Strength (30 pts — lord dignity, kendra/trikona placement, benefic in lagna, Pushkar Navamsha, sandhi buffer), Moon Strength (25 pts — house placement, paksha bala, nakshatra quality, Jupiter aspect), Benefic/Malefic Distribution (20 pts — benefics in kendras/trikonas, malefics in upachaya, clean 8th house), Dasha Trajectory (15 pts — quality and remaining balance of the starting maha dasha), and Structural Defects (10 pts deducted for Gandanta Moon, Kaal Sarpa, combust lagna lord, nodes in lagna, etc.).',
+        en: 'Each candidate time slot is scored across 5 classical pillars out of 100 points: Lagna Strength (30 pts  –  lord dignity, kendra/trikona placement, benefic in lagna, Pushkar Navamsha, sandhi buffer), Moon Strength (25 pts  –  house placement, paksha bala, nakshatra quality, Jupiter aspect), Benefic/Malefic Distribution (20 pts  –  benefics in kendras/trikonas, malefics in upachaya, clean 8th house), Dasha Trajectory (15 pts  –  quality and remaining balance of the starting maha dasha), and Structural Defects (10 pts deducted for Gandanta Moon, Kaal Sarpa, combust lagna lord, nodes in lagna, etc.).',
         hi: 'प्रत्येक उम्मीदवार समय खंड का 100 अंकों में 5 शास्त्रीय स्तम्भों पर मूल्यांकन होता है: लग्न बल (30), चन्द्र बल (25), शुभ/अशुभ ग्रह वितरण (20), दशा प्रक्षेपण (15), और संरचनात्मक दोष (10 कटौती)।',
-        sa: 'प्रत्येकं कालखण्डं शतबिन्दुषु पञ्चशास्त्रीयस्तम्भेषु मूल्याङ्कितम् — लग्नबलं चन्द्रबलं शुभाशुभवितरणं दशामार्गः संरचनादोषाश्च।',
+        sa: 'प्रत्येकं कालखण्डं शतबिन्दुषु पञ्चशास्त्रीयस्तम्भेषु मूल्याङ्कितम्  –  लग्नबलं चन्द्रबलं शुभाशुभवितरणं दशामार्गः संरचनादोषाश्च।',
       },
     },
     {
@@ -1340,9 +1340,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'शस्त्रक्रियाजन्मार्थं कानि नक्षत्राणि वर्जनीयानि?',
       },
       answer: {
-        en: 'Classical texts flag specific Janma Nakshatra Doshas: Ashlesha (4th pada — harm to mother), Magha (1st pada — harm to father), Moola (1st pada — harm to father/family), and Jyeshtha (4th pada — harm to elder brother). Additionally, any Moon in the Gandanta zone (last 3°20\' of a water sign or first 3°20\' of a fire sign) is a hard veto — the tool marks such slots as "Avoid" regardless of other factors.',
-        hi: 'शास्त्रीय ग्रन्थों में विशिष्ट जन्म नक्षत्र दोष बताए गए हैं: आश्लेषा (चौथा पद — माता को हानि), मघा (पहला पद — पिता को हानि), मूल (पहला पद — पिता/परिवार), ज्येष्ठा (चौथा पद — बड़े भाई)। गण्डान्त क्षेत्र में चन्द्रमा होना कठोर निषेध है।',
-        sa: 'शास्त्रेषु विशिष्टजन्मनक्षत्रदोषाः उक्ताः — आश्लेषा (चतुर्थपादः), मघा (प्रथमपादः), मूलम् (प्रथमपादः), ज्येष्ठा (चतुर्थपादः)। गण्डान्तक्षेत्रे चन्द्रमाः कठोरनिषेधः।',
+        en: 'Classical texts flag specific Janma Nakshatra Doshas: Ashlesha (4th pada  –  harm to mother), Magha (1st pada  –  harm to father), Moola (1st pada  –  harm to father/family), and Jyeshtha (4th pada  –  harm to elder brother). Additionally, any Moon in the Gandanta zone (last 3°20\' of a water sign or first 3°20\' of a fire sign) is a hard veto  –  the tool marks such slots as "Avoid" regardless of other factors.',
+        hi: 'शास्त्रीय ग्रन्थों में विशिष्ट जन्म नक्षत्र दोष बताए गए हैं: आश्लेषा (चौथा पद  –  माता को हानि), मघा (पहला पद  –  पिता को हानि), मूल (पहला पद  –  पिता/परिवार), ज्येष्ठा (चौथा पद  –  बड़े भाई)। गण्डान्त क्षेत्र में चन्द्रमा होना कठोर निषेध है।',
+        sa: 'शास्त्रेषु विशिष्टजन्मनक्षत्रदोषाः उक्ताः  –  आश्लेषा (चतुर्थपादः), मघा (प्रथमपादः), मूलम् (प्रथमपादः), ज्येष्ठा (चतुर्थपादः)। गण्डान्तक्षेत्रे चन्द्रमाः कठोरनिषेधः।',
       },
     },
     {
@@ -1352,8 +1352,8 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'नवजातशिशोः प्रारम्भिकविंशोत्तरीदशा कथं महत्त्वपूर्णा?',
       },
       answer: {
-        en: 'The child enters the Vimshottari maha dasha of the Moon\'s nakshatra lord at birth. A Jupiter or Venus dasha (benefic, long duration) gives the child a stable, growth-oriented start, while a Ketu or Rahu dasha can indicate early confusion and instability. The remaining balance also matters — starting Jupiter with only 1 year left means a quick transition to Saturn. The scorer weighs both the dasha lord quality and the remaining balance.',
-        hi: 'शिशु जन्म पर चन्द्र नक्षत्र स्वामी की विंशोत्तरी महादशा में प्रवेश करता है। गुरु या शुक्र दशा स्थिर शुरुआत देती है, जबकि केतु या राहु दशा अस्थिरता सूचित कर सकती है। शेष अवधि भी महत्वपूर्ण है — गुरु दशा केवल 1 वर्ष शेष हो तो शीघ्र शनि में संक्रमण होगा।',
+        en: 'The child enters the Vimshottari maha dasha of the Moon\'s nakshatra lord at birth. A Jupiter or Venus dasha (benefic, long duration) gives the child a stable, growth-oriented start, while a Ketu or Rahu dasha can indicate early confusion and instability. The remaining balance also matters  –  starting Jupiter with only 1 year left means a quick transition to Saturn. The scorer weighs both the dasha lord quality and the remaining balance.',
+        hi: 'शिशु जन्म पर चन्द्र नक्षत्र स्वामी की विंशोत्तरी महादशा में प्रवेश करता है। गुरु या शुक्र दशा स्थिर शुरुआत देती है, जबकि केतु या राहु दशा अस्थिरता सूचित कर सकती है। शेष अवधि भी महत्वपूर्ण है  –  गुरु दशा केवल 1 वर्ष शेष हो तो शीघ्र शनि में संक्रमण होगा।',
         sa: 'शिशुः जन्मसमये चन्द्रनक्षत्रस्वामिनो विंशोत्तरीमहादशां प्रविशति। गुरुशुक्रदशा स्थिरारम्भं ददाति, केतुराहुदशा अस्थिरतां सूचयति। शेषावधिः अपि महत्त्वपूर्णा।',
       },
     },
@@ -1364,9 +1364,9 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         sa: 'पञ्चदशनिमेषस्कैनिंगविन्डो कियत् सूक्ष्मम्?',
       },
       answer: {
-        en: 'The Ascendant (Lagna) moves approximately 1 degree every 4 minutes — so a 15-minute interval captures roughly 3.5–4 degrees of lagna movement. This is fine-grained enough to distinguish different lagna signs and avoid sandhi (junction) zones, while keeping the computation time reasonable for multi-day scans. The scorer also applies a 2-degree sandhi buffer penalty to flag slots where the lagna is too close to a sign boundary, ensuring the recommended time is not on an unstable cusp.',
-        hi: 'लग्न लगभग हर 4 मिनट में 1 अंश चलता है — 15 मिनट के अंतराल में लगभग 3.5-4 अंश का परिवर्तन होता है। यह विभिन्न लग्न राशियों को पहचानने और सन्धि क्षेत्रों से बचने के लिए पर्याप्त सूक्ष्म है। मूल्यांकक 2 अंश की सन्धि बफर कटौती भी लागू करता है।',
-        sa: 'लग्नं प्रतिचतुर्निमेषं प्रायशः एकांशं चलति — पञ्चदशनिमेषान्तरेण ३.५-४ अंशाः परिवर्तन्ते। एतत् भिन्नलग्नराशीनां पहचानार्थं सन्धिक्षेत्रपरिहारार्थं च पर्याप्तसूक्ष्मम्।',
+        en: 'The Ascendant (Lagna) moves approximately 1 degree every 4 minutes  –  so a 15-minute interval captures roughly 3.5–4 degrees of lagna movement. This is fine-grained enough to distinguish different lagna signs and avoid sandhi (junction) zones, while keeping the computation time reasonable for multi-day scans. The scorer also applies a 2-degree sandhi buffer penalty to flag slots where the lagna is too close to a sign boundary, ensuring the recommended time is not on an unstable cusp.',
+        hi: 'लग्न लगभग हर 4 मिनट में 1 अंश चलता है  –  15 मिनट के अंतराल में लगभग 3.5-4 अंश का परिवर्तन होता है। यह विभिन्न लग्न राशियों को पहचानने और सन्धि क्षेत्रों से बचने के लिए पर्याप्त सूक्ष्म है। मूल्यांकक 2 अंश की सन्धि बफर कटौती भी लागू करता है।',
+        sa: 'लग्नं प्रतिचतुर्निमेषं प्रायशः एकांशं चलति  –  पञ्चदशनिमेषान्तरेण ३.५-४ अंशाः परिवर्तन्ते। एतत् भिन्नलग्नराशीनां पहचानार्थं सन्धिक्षेत्रपरिहारार्थं च पर्याप्तसूक्ष्मम्।',
       },
     },
   ],
@@ -1379,7 +1379,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         hi: 'हिन्दू विवाह के लिए कौन से नक्षत्र शुभ हैं?',
       },
       answer: {
-        en: 'Eleven nakshatras are classically auspicious for marriage per the Muhurta Chintamani: Rohini, Mrigashira, Magha, Uttara Phalguni, Hasta, Swati, Anuradha, Moola, Uttarashada, Uttara Bhadrapada, and Revati. Rohini, Uttara Phalguni, and Anuradha are considered the finest of these. Pushya — though the most auspicious nakshatra for almost everything else — is specifically avoided for first marriages.',
+        en: 'Eleven nakshatras are classically auspicious for marriage per the Muhurta Chintamani: Rohini, Mrigashira, Magha, Uttara Phalguni, Hasta, Swati, Anuradha, Moola, Uttarashada, Uttara Bhadrapada, and Revati. Rohini, Uttara Phalguni, and Anuradha are considered the finest of these. Pushya  –  though the most auspicious nakshatra for almost everything else  –  is specifically avoided for first marriages.',
         hi: 'मुहूर्त चिंतामणि के अनुसार ग्यारह नक्षत्र विवाह के लिए शुभ हैं: रोहिणी, मृगशिरा, मघा, उत्तर फाल्गुनी, हस्त, स्वाति, अनुराधा, मूल, उत्तराषाढ़ा, उत्तर भाद्रपद और रेवती। रोहिणी, उत्तर फाल्गुनी और अनुराधा इनमें सर्वश्रेष्ठ माने जाते हैं।',
       },
     },
@@ -1409,8 +1409,8 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         hi: 'विवाह समारोह के लिए सबसे अच्छा लग्न कौन सा है?',
       },
       answer: {
-        en: 'The three best lagnas for marriage are Gemini (communication, partnership), Virgo (service, practical harmony), and Libra (balance, Venus-ruled sign of partnership). Good alternatives include Taurus, Cancer, Sagittarius, and Pisces. The 7th house of the marriage lagna must be vacant — no malefics. Jupiter or Venus in or aspecting the lagna is the strongest blessing.',
-        hi: 'विवाह के लिए तीन सर्वश्रेष्ठ लग्न हैं मिथुन (संवाद, साझेदारी), कन्या (सेवा, व्यावहारिक सामंजस्य), और तुला (संतुलन, शुक्र शासित साझेदारी की राशि)। विवाह लग्न का 7वाँ भाव खाली होना चाहिए — कोई पाप ग्रह नहीं।',
+        en: 'The three best lagnas for marriage are Gemini (communication, partnership), Virgo (service, practical harmony), and Libra (balance, Venus-ruled sign of partnership). Good alternatives include Taurus, Cancer, Sagittarius, and Pisces. The 7th house of the marriage lagna must be vacant  –  no malefics. Jupiter or Venus in or aspecting the lagna is the strongest blessing.',
+        hi: 'विवाह के लिए तीन सर्वश्रेष्ठ लग्न हैं मिथुन (संवाद, साझेदारी), कन्या (सेवा, व्यावहारिक सामंजस्य), और तुला (संतुलन, शुक्र शासित साझेदारी की राशि)। विवाह लग्न का 7वाँ भाव खाली होना चाहिए  –  कोई पाप ग्रह नहीं।',
       },
     },
     {
@@ -1419,8 +1419,8 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         hi: 'मंगलवार को हिन्दू विवाह क्यों नहीं होते?',
       },
       answer: {
-        en: 'Tuesday is ruled by Mars, the planet of aggression, conflict, and impulsive action. Marriages on Tuesday are classically associated with quarrels, heated arguments, and marital discord. This is one of the most widely observed prohibitions across all regional Hindu traditions. Thursday (Jupiter — marriage significator) and Friday (Venus — love) are the preferred weekdays.',
-        hi: 'मंगलवार मंगल द्वारा शासित है — आक्रामकता, संघर्ष और आवेगी कार्रवाई का ग्रह। मंगलवार के विवाह शास्त्रीय रूप से झगड़ों और वैवाहिक कलह से जुड़े हैं। गुरुवार (गुरु — विवाह कारक) और शुक्रवार (शुक्र — प्रेम) पसंदीदा दिन हैं।',
+        en: 'Tuesday is ruled by Mars, the planet of aggression, conflict, and impulsive action. Marriages on Tuesday are classically associated with quarrels, heated arguments, and marital discord. This is one of the most widely observed prohibitions across all regional Hindu traditions. Thursday (Jupiter  –  marriage significator) and Friday (Venus  –  love) are the preferred weekdays.',
+        hi: 'मंगलवार मंगल द्वारा शासित है  –  आक्रामकता, संघर्ष और आवेगी कार्रवाई का ग्रह। मंगलवार के विवाह शास्त्रीय रूप से झगड़ों और वैवाहिक कलह से जुड़े हैं। गुरुवार (गुरु  –  विवाह कारक) और शुक्रवार (शुक्र  –  प्रेम) पसंदीदा दिन हैं।',
       },
     },
     {
@@ -1429,8 +1429,8 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         hi: 'गोधूलि लग्न क्या है और यह विवाह के लिए विशेष क्यों है?',
       },
       answer: {
-        en: 'Godhuli Lagna is the 24-minute window around sunset when cows return home raising dust in the twilight. The Brihat Samhita considers it the most auspicious time for marriage. It evokes homecoming, domesticity, and warmth. This lagna transcends normal lagna rules — it is universally auspicious regardless of which zodiac sign is rising.',
-        hi: 'गोधूलि लग्न सूर्यास्त के आसपास 24 मिनट की खिड़की है जब गायें धूल उड़ाती हुई घर लौटती हैं। बृहत् संहिता इसे विवाह के लिए सबसे शुभ समय मानती है। यह लग्न सामान्य लग्न नियमों से परे है — चाहे कोई भी राशि उदय हो रही हो, यह सार्वभौमिक रूप से शुभ है।',
+        en: 'Godhuli Lagna is the 24-minute window around sunset when cows return home raising dust in the twilight. The Brihat Samhita considers it the most auspicious time for marriage. It evokes homecoming, domesticity, and warmth. This lagna transcends normal lagna rules  –  it is universally auspicious regardless of which zodiac sign is rising.',
+        hi: 'गोधूलि लग्न सूर्यास्त के आसपास 24 मिनट की खिड़की है जब गायें धूल उड़ाती हुई घर लौटती हैं। बृहत् संहिता इसे विवाह के लिए सबसे शुभ समय मानती है। यह लग्न सामान्य लग्न नियमों से परे है  –  चाहे कोई भी राशि उदय हो रही हो, यह सार्वभौमिक रूप से शुभ है।',
       },
     },
   ],
@@ -1473,7 +1473,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         hi: 'शुक्र अस्त क्या है और यह विवाह तिथियों को कैसे प्रभावित करता है?',
       },
       answer: {
-        en: 'Venus (Shukra) combustion occurs when Venus passes within 10 degrees of the Sun (8 degrees when retrograde), per BPHS. Since Venus is the karaka (significator) of marriage, love, and conjugal harmony, marriages performed during Venus combustion are considered inauspicious by all classical texts including Muhurta Chintamani. Our engine applies this as an absolute veto — no marriage muhurta is recommended during Venus combustion regardless of other factors.',
+        en: 'Venus (Shukra) combustion occurs when Venus passes within 10 degrees of the Sun (8 degrees when retrograde), per BPHS. Since Venus is the karaka (significator) of marriage, love, and conjugal harmony, marriages performed during Venus combustion are considered inauspicious by all classical texts including Muhurta Chintamani. Our engine applies this as an absolute veto  –  no marriage muhurta is recommended during Venus combustion regardless of other factors.',
         hi: 'शुक्र अस्त तब होता है जब शुक्र सूर्य के 10 अंश (वक्री में 8 अंश) के भीतर आ जाता है (BPHS)। शुक्र विवाह, प्रेम और दाम्पत्य सुख का कारक होने के कारण शुक्र अस्त में विवाह मुहूर्त चिन्तामणि सहित सभी शास्त्रीय ग्रन्थों में अशुभ माना गया है। हमारा इंजन इसे पूर्ण निषेध के रूप में लागू करता है।',
       },
     },
@@ -1483,8 +1483,8 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         hi: 'विवाह मुहूर्त का अंक कैसे गणना किया जाता है?',
       },
       answer: {
-        en: 'Each marriage muhurta is scored 0-100 using 36 classical rules from 7 texts (Muhurta Chintamani, Dharmasindhu, BPHS, Brihat Samhita, Prashna Marga, B.V. Raman, Kalaprakashika). The score combines: Panchanga factors (tithi, nakshatra, yoga, karana, vara — up to 25 points), planetary positions (up to 15), time quality including hora and choghadiya (up to 20), lagna strength (up to 12), and special yogas like Sarvartha Siddhi or Godhuli Lagna (up to 10). Scores above 72 are Excellent, 58-71 Good, and 50-57 Fair.',
-        hi: 'प्रत्येक विवाह मुहूर्त का मूल्यांकन 7 ग्रन्थों से 36 शास्त्रीय नियमों से 0-100 अंकों पर किया जाता है। अंक में शामिल हैं: पंचांग कारक (तिथि, नक्षत्र, योग, करण, वार — 25 अंक), ग्रह स्थिति (15), होरा-चौघड़िया सहित काल गुणवत्ता (20), लग्न बल (12), और विशेष योग जैसे सर्वार्थ सिद्धि या गोधूलि लग्न (10)। 72+ उत्तम, 58-71 शुभ, 50-57 ठीक।',
+        en: 'Each marriage muhurta is scored 0-100 using 36 classical rules from 7 texts (Muhurta Chintamani, Dharmasindhu, BPHS, Brihat Samhita, Prashna Marga, B.V. Raman, Kalaprakashika). The score combines: Panchanga factors (tithi, nakshatra, yoga, karana, vara  –  up to 25 points), planetary positions (up to 15), time quality including hora and choghadiya (up to 20), lagna strength (up to 12), and special yogas like Sarvartha Siddhi or Godhuli Lagna (up to 10). Scores above 72 are Excellent, 58-71 Good, and 50-57 Fair.',
+        hi: 'प्रत्येक विवाह मुहूर्त का मूल्यांकन 7 ग्रन्थों से 36 शास्त्रीय नियमों से 0-100 अंकों पर किया जाता है। अंक में शामिल हैं: पंचांग कारक (तिथि, नक्षत्र, योग, करण, वार  –  25 अंक), ग्रह स्थिति (15), होरा-चौघड़िया सहित काल गुणवत्ता (20), लग्न बल (12), और विशेष योग जैसे सर्वार्थ सिद्धि या गोधूलि लग्न (10)। 72+ उत्तम, 58-71 शुभ, 50-57 ठीक।',
       },
     },
   ],
@@ -1531,7 +1531,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         hi: 'वैदिक ज्योतिष में लग्न (उदय राशि) क्या है?',
       },
       answer: {
-        en: 'Lagna is the zodiac sign rising on the eastern horizon at the exact moment and place of birth (or event). It determines the 1st house in a Vedic birth chart and all 12 houses rotate from it. The Lagna changes approximately every 2 hours, making it the most time-sensitive factor in a horoscope. In Sanskrit, "Lagna" means "that which is attached" — the sign attached to the eastern horizon at your first breath.',
+        en: 'Lagna is the zodiac sign rising on the eastern horizon at the exact moment and place of birth (or event). It determines the 1st house in a Vedic birth chart and all 12 houses rotate from it. The Lagna changes approximately every 2 hours, making it the most time-sensitive factor in a horoscope. In Sanskrit, "Lagna" means "that which is attached"  –  the sign attached to the eastern horizon at your first breath.',
         hi: 'लग्न जन्म (या घटना) के ठीक उस क्षण और स्थान पर पूर्वी क्षितिज पर उदित होने वाली राशि है। यह कुण्डली में प्रथम भाव निर्धारित करता है और सभी 12 भाव इससे घूमते हैं। लग्न लगभग हर 2 घण्टे में बदलता है, जिससे यह कुण्डली का सबसे समय-संवेदनशील कारक बनता है।',
       },
     },
@@ -1585,8 +1585,8 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         hi: '2026 में कितनी एकादशी हैं?',
       },
       answer: {
-        en: 'There are 24 Ekadashi vrat dates in 2026 — two per lunar month (one in Shukla Paksha and one in Krishna Paksha). If an Adhika Masa (intercalary month) occurs, there may be 26 Ekadashis. Each Ekadashi has a specific name and significance from the Padma Purana.',
-        hi: '2026 में 24 एकादशी व्रत तिथियाँ हैं — प्रत्येक चान्द्र मास में दो (एक शुक्ल पक्ष और एक कृष्ण पक्ष)। यदि अधिक मास आता है तो 26 एकादशी हो सकती हैं। प्रत्येक एकादशी का पद्म पुराण से विशेष नाम और महत्व है।',
+        en: 'There are 24 Ekadashi vrat dates in 2026  –  two per lunar month (one in Shukla Paksha and one in Krishna Paksha). If an Adhika Masa (intercalary month) occurs, there may be 26 Ekadashis. Each Ekadashi has a specific name and significance from the Padma Purana.',
+        hi: '2026 में 24 एकादशी व्रत तिथियाँ हैं  –  प्रत्येक चान्द्र मास में दो (एक शुक्ल पक्ष और एक कृष्ण पक्ष)। यदि अधिक मास आता है तो 26 एकादशी हो सकती हैं। प्रत्येक एकादशी का पद्म पुराण से विशेष नाम और महत्व है।',
       },
     },
     {
@@ -1639,8 +1639,8 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
         hi: '2027 में कितनी एकादशी हैं?',
       },
       answer: {
-        en: 'There are 24 Ekadashi vrat dates in 2027 — two per lunar month (one in Shukla Paksha and one in Krishna Paksha). Each Ekadashi has a unique name and spiritual significance from the Padma Purana and Bhavishya Purana.',
-        hi: '2027 में 24 एकादशी व्रत तिथियाँ हैं — प्रत्येक चान्द्र मास में दो। प्रत्येक एकादशी का पद्म पुराण और भविष्य पुराण से अनन्य नाम और आध्यात्मिक महत्व है।',
+        en: 'There are 24 Ekadashi vrat dates in 2027  –  two per lunar month (one in Shukla Paksha and one in Krishna Paksha). Each Ekadashi has a unique name and spiritual significance from the Padma Purana and Bhavishya Purana.',
+        hi: '2027 में 24 एकादशी व्रत तिथियाँ हैं  –  प्रत्येक चान्द्र मास में दो। प्रत्येक एकादशी का पद्म पुराण और भविष्य पुराण से अनन्य नाम और आध्यात्मिक महत्व है।',
       },
     },
     {
@@ -1682,7 +1682,7 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
  */
 /**
  * Generate FAQPage JSON-LD for per-rashi horoscope pages.
- * Answers are EN-only — Google processes the English version for rich snippets.
+ * Answers are EN-only  –  Google processes the English version for rich snippets.
  * @param rashiName  Vedic rashi name in the page locale (e.g. "Mesh" / "मेष")
  * @param westernName  Western zodiac name in English (e.g. "Aries")
  * @param period  Which page type: daily, weekly, or monthly
@@ -1704,7 +1704,7 @@ export function generateHoroscopeFAQ(
       },
       {
         q: `Is ${westernName} (${rashiName}) a Moon sign or Sun sign in Vedic astrology?`,
-        a: `In Vedic astrology, ${rashiName} (${westernName}) is your Moon sign — determined by the sidereal position of the Moon at the time of your birth. Unlike Western astrology which uses the Sun sign for horoscopes, Vedic daily predictions are based on the Moon sign because the Moon governs the mind, emotions, and daily experiences.`,
+        a: `In Vedic astrology, ${rashiName} (${westernName}) is your Moon sign  –  determined by the sidereal position of the Moon at the time of your birth. Unlike Western astrology which uses the Sun sign for horoscopes, Vedic daily predictions are based on the Moon sign because the Moon governs the mind, emotions, and daily experiences.`,
       },
       {
         q: `How accurate are Vedic daily horoscope predictions for ${westernName}?`,
@@ -1740,11 +1740,11 @@ export function generateHoroscopeFAQ(
       },
       {
         q: `How is the monthly Vedic horoscope for ${westernName} (${rashiName}) calculated?`,
-        a: `The monthly Vedic horoscope is derived from a day-by-day analysis of planetary transits for the entire month. We compute the sidereal positions of the Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, and Ketu and evaluate how each planet's movement affects ${rashiName} across five life areas — career, love, health, finance, and spirituality.`,
+        a: `The monthly Vedic horoscope is derived from a day-by-day analysis of planetary transits for the entire month. We compute the sidereal positions of the Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, and Ketu and evaluate how each planet's movement affects ${rashiName} across five life areas  –  career, love, health, finance, and spirituality.`,
       },
       {
         q: `How accurate are Vedic monthly horoscope predictions?`,
-        a: `Vedic monthly horoscope predictions on Dekho Panchang are grounded in classical Jyotish methodology — transit-based analysis using real sidereal planetary positions. Slower planets like Saturn, Jupiter, and Rahu-Ketu have the most reliable and measurable long-term influence on a Moon sign. Fast-moving planets like the Moon add daily nuance. We present these as directional insights, not deterministic forecasts.`,
+        a: `Vedic monthly horoscope predictions on Dekho Panchang are grounded in classical Jyotish methodology  –  transit-based analysis using real sidereal planetary positions. Slower planets like Saturn, Jupiter, and Rahu-Ketu have the most reliable and measurable long-term influence on a Moon sign. Fast-moving planets like the Moon add daily nuance. We present these as directional insights, not deterministic forecasts.`,
       },
     ],
   };

@@ -1,5 +1,5 @@
 /**
- * Sky positions utility — converts tropical planetary positions to sidereal
+ * Sky positions utility  –  converts tropical planetary positions to sidereal
  * using Lahiri ayanamsha and enriches with rashi/nakshatra/pada metadata.
  *
  * NOTE: All date construction uses Date.UTC to avoid local-timezone bias (Lesson L).
@@ -55,12 +55,12 @@ function dateToJDSafe(date: Date): number {
   );
 }
 
-// getNakshatraPada imported from @/lib/ephem/astronomical (Lesson Q — single source of truth)
+// getNakshatraPada imported from @/lib/ephem/astronomical (Lesson Q  –  single source of truth)
 
 /**
  * Get current sidereal planetary positions using Lahiri ayanamsha.
  *
- * @param date  Optional date — defaults to now (new Date()). Internally uses
+ * @param date  Optional date  –  defaults to now (new Date()). Internally uses
  *              Date.UTC components to avoid local-timezone skew.
  */
 export function getCurrentSkyPositions(date?: Date, ayanamshaValue?: number): SkyPlanetPosition[] {

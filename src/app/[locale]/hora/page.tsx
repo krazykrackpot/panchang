@@ -39,7 +39,7 @@ const PLANET_COLORS: Record<number, string> = {
 const LABELS: Record<string, Record<string, string>> = {
   en: {
     back: 'Panchang',
-    title: 'Hora — Planetary Hours',
+    title: 'Hora  –  Planetary Hours',
     subtitle: 'Each hour of the day is ruled by a planet in the Chaldean sequence. Choose the right hora for your activities.',
     currentHora: 'Current Hora',
     timeRemaining: 'Time Remaining',
@@ -65,7 +65,7 @@ const LABELS: Record<string, Record<string, string>> = {
   },
   hi: {
     back: 'पंचांग',
-    title: 'होरा — ग्रह घण्टे',
+    title: 'होरा  –  ग्रह घण्टे',
     subtitle: 'दिन के प्रत्येक घण्टे पर एक ग्रह का शासन होता है। अपने कार्यों के लिए सही होरा चुनें।',
     currentHora: 'वर्तमान होरा',
     timeRemaining: 'शेष समय',
@@ -91,7 +91,7 @@ const LABELS: Record<string, Record<string, string>> = {
   },
   sa: {
     back: 'पञ्चाङ्गम्',
-    title: 'होरा — ग्रहघण्टाः',
+    title: 'होरा  –  ग्रहघण्टाः',
     subtitle: 'प्रत्येकं दिनस्य घण्टा एकेन ग्रहेण शासितः। स्वकार्याय उचितां होरां चिनुत।',
     currentHora: 'वर्तमानहोरा',
     timeRemaining: 'अवशिष्टसमयः',
@@ -134,7 +134,7 @@ export default function HoraPage() {
     return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
   });
 
-  // Current time state — updates every 30s
+  // Current time state  –  updates every 30s
   const [nowMinutes, setNowMinutes] = useState(() => {
     const now = new Date();
     return now.getHours() * 60 + now.getMinutes();

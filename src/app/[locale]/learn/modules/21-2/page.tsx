@@ -26,7 +26,7 @@ function Page1() {
     <div className="space-y-6">
       <KeyTakeaway
         points={[
-          'Sahams are sensitive points calculated from three factors (like Arabic Parts) — Punya Saham for fortune, Vidya for education, Karma for career.',
+          'Sahams are sensitive points calculated from three factors (like Arabic Parts)  –  Punya Saham for fortune, Vidya for education, Karma for career.',
           'The Saham\'s house position and its lord\'s strength in the Varshaphal chart indicate whether that life theme will flourish in the year.',
         ]}
         locale={locale}
@@ -51,8 +51,8 @@ function Page1() {
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
-            ? <>सहम हेलेनिस्टिक &quot;लॉट&quot; (ग्रीक: &quot;क्लेरोस&quot;) से व्युत्पन्न हैं, जिनमें सबसे प्रसिद्ध लॉट ऑफ फॉर्च्यून (टाइखे) है। ये अरबी मध्यस्थों द्वारा भारतीय ज्योतिष में आए — अरबी &quot;सहम&quot; (बहुवचन: सुहम) का अर्थ &quot;तीर&quot; या &quot;भाग&quot; है। ताजिक नीलकण्ठी और समरसिंह के कर्मप्रकाश जैसे ग्रन्थ भारतीय अनुकूलनों का विवरण देते हैं। यद्यपि सूत्र अपने अरबी/हेलेनिस्टिक मूल से समान हैं, भारतीय ज्योतिषी इन्हें भाव, स्वामित्व और दशाओं के वैदिक ढाँचे में व्याख्यायित करते हैं।</>
-            : <>Sahams derive from the Hellenistic &quot;Lots&quot; (Greek: &quot;Kleros&quot;), the most famous being the Lot of Fortune (Tyche). They entered Indian astrology through Arabic intermediaries — the Arabic &quot;Sahm&quot; (plural: Suham) means &quot;arrow&quot; or &quot;lot.&quot; Texts like Tajika Neelakanthi and Samarasimha&apos;s Karmaprakasha detail the Indian adaptations. While the formulas are identical to their Arabic/Hellenistic originals, Indian astrologers interpret them within the Vedic framework of houses, lordships, and dashas.</>}
+            ? <>सहम हेलेनिस्टिक &quot;लॉट&quot; (ग्रीक: &quot;क्लेरोस&quot;) से व्युत्पन्न हैं, जिनमें सबसे प्रसिद्ध लॉट ऑफ फॉर्च्यून (टाइखे) है। ये अरबी मध्यस्थों द्वारा भारतीय ज्योतिष में आए  –  अरबी &quot;सहम&quot; (बहुवचन: सुहम) का अर्थ &quot;तीर&quot; या &quot;भाग&quot; है। ताजिक नीलकण्ठी और समरसिंह के कर्मप्रकाश जैसे ग्रन्थ भारतीय अनुकूलनों का विवरण देते हैं। यद्यपि सूत्र अपने अरबी/हेलेनिस्टिक मूल से समान हैं, भारतीय ज्योतिषी इन्हें भाव, स्वामित्व और दशाओं के वैदिक ढाँचे में व्याख्यायित करते हैं।</>
+            : <>Sahams derive from the Hellenistic &quot;Lots&quot; (Greek: &quot;Kleros&quot;), the most famous being the Lot of Fortune (Tyche). They entered Indian astrology through Arabic intermediaries  –  the Arabic &quot;Sahm&quot; (plural: Suham) means &quot;arrow&quot; or &quot;lot.&quot; Texts like Tajika Neelakanthi and Samarasimha&apos;s Karmaprakasha detail the Indian adaptations. While the formulas are identical to their Arabic/Hellenistic originals, Indian astrologers interpret them within the Vedic framework of houses, lordships, and dashas.</>}
         </p>
       </section>
     </div>
@@ -74,7 +74,7 @@ function Page2() {
             : <>To interpret a Saham, first compute its zodiacal position using the formula, then analyze: (1) Which HOUSE does the Saham fall in? This shows the life area through which the Saham&apos;s signification manifests. Punya Saham in the 10th = fortune through career; in the 7th = fortune through partnership. (2) Which SIGN is the Saham in? The sign lord becomes the &quot;Saham lord&quot; and its strength, dignity, and Tajika yogas determine the outcome. (3) Does the year lord form Ithasala with the Saham lord? If yes, the Saham&apos;s promise will manifest this year.</>}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
-          For health concerns, Mrityu Saham is examined cautiously. If the year lord forms Ithasala with the Mrityu Saham lord, it warrants attention to health — but does NOT automatically predict death. The natal chart must show corresponding vulnerability (dasha of maraka planets, afflicted 8th house) for any serious concern. In most cases, Mrityu Saham activation indicates transformative endings, lifestyle changes, or metaphorical &quot;death&quot; of a phase of life.
+          For health concerns, Mrityu Saham is examined cautiously. If the year lord forms Ithasala with the Mrityu Saham lord, it warrants attention to health  –  but does NOT automatically predict death. The natal chart must show corresponding vulnerability (dasha of maraka planets, afflicted 8th house) for any serious concern. In most cases, Mrityu Saham activation indicates transformative endings, lifestyle changes, or metaphorical &quot;death&quot; of a phase of life.
         </p>
       </section>
 
@@ -85,8 +85,8 @@ function Page2() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <><span className="text-gold-light font-medium">पुण्य सहम गणना:</span> वर्षफल कुण्डली में — चन्द्र 120 अंश (0 अंश सिंह), सूर्य 45 अंश (15 अंश वृषभ), लग्न 90 अंश (0 अंश कर्क)। पुण्य सहम = 120 + 45 - 90 = 75 अंश = 15 अंश मिथुन। पुण्य सहम मिथुन में द्वादश भाव में पड़ता है। राशि स्वामी = बुध। व्याख्या: भाग्य द्वादश भाव कारकत्वों — विदेशी सम्बन्ध, आध्यात्मिक साधना, या पर्दे के पीछे कार्य — द्वारा आता है। यदि बुध (सहम स्वामी) बलवान है और वर्ष स्वामी बुध से इत्थशाल बनाता है → विदेशी आय या आध्यात्मिक विकास द्वारा भाग्यशाली वर्ष।</>
-            : <><span className="text-gold-light font-medium">Computing Punya Saham:</span> In the Varshaphal chart — Moon at 120 degrees (0 degrees Leo), Sun at 45 degrees (15 degrees Taurus), Lagna at 90 degrees (0 degrees Cancer). Punya Saham = 120 + 45 - 90 = 75 degrees = 15 degrees Gemini. Punya Saham falls in Gemini in the 12th house. Sign lord = Mercury. Interpretation: fortune comes through 12th house significations — foreign connections, spiritual pursuits, or behind-the-scenes work. If Mercury (Saham lord) is strong and the year lord forms Ithasala with Mercury → a fortunate year via foreign income or spiritual growth.</>}
+            ? <><span className="text-gold-light font-medium">पुण्य सहम गणना:</span> वर्षफल कुण्डली में  –  चन्द्र 120 अंश (0 अंश सिंह), सूर्य 45 अंश (15 अंश वृषभ), लग्न 90 अंश (0 अंश कर्क)। पुण्य सहम = 120 + 45 - 90 = 75 अंश = 15 अंश मिथुन। पुण्य सहम मिथुन में द्वादश भाव में पड़ता है। राशि स्वामी = बुध। व्याख्या: भाग्य द्वादश भाव कारकत्वों  –  विदेशी सम्बन्ध, आध्यात्मिक साधना, या पर्दे के पीछे कार्य  –  द्वारा आता है। यदि बुध (सहम स्वामी) बलवान है और वर्ष स्वामी बुध से इत्थशाल बनाता है → विदेशी आय या आध्यात्मिक विकास द्वारा भाग्यशाली वर्ष।</>
+            : <><span className="text-gold-light font-medium">Computing Punya Saham:</span> In the Varshaphal chart  –  Moon at 120 degrees (0 degrees Leo), Sun at 45 degrees (15 degrees Taurus), Lagna at 90 degrees (0 degrees Cancer). Punya Saham = 120 + 45 - 90 = 75 degrees = 15 degrees Gemini. Punya Saham falls in Gemini in the 12th house. Sign lord = Mercury. Interpretation: fortune comes through 12th house significations  –  foreign connections, spiritual pursuits, or behind-the-scenes work. If Mercury (Saham lord) is strong and the year lord forms Ithasala with Mercury → a fortunate year via foreign income or spiritual growth.</>}
         </p>
       </section>
     </div>
@@ -113,8 +113,8 @@ function Page3() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;सहम गुरुत्वाकर्षण प्रभाव वाले वास्तविक खगोलीय पिण्ड हैं।&quot; सहम विशुद्ध गणितीय संरचनाएँ हैं — इनका कोई भौतिक अस्तित्व, कोई द्रव्यमान, कोई गुरुत्वाकर्षण नहीं। ये अमूर्त बिन्दु हैं जो तीन कुण्डली कारकों के प्रतीकात्मक सम्बन्ध को एक संवेदनशील अंश में केन्द्रित करते हैं। इन्हें खगोलीय वस्तुओं के बजाय &quot;ज्योतिषीय सदिश&quot; समझें।</>
-            : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Sahams are real celestial bodies with gravitational influence.&quot; Sahams are purely mathematical constructs — they have no physical existence, no mass, no gravitational pull. They are abstract points that concentrate the symbolic relationship between three chart factors into a single sensitive degree. Think of them as &quot;astrological vectors&quot; rather than celestial objects.</>}
+            ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;सहम गुरुत्वाकर्षण प्रभाव वाले वास्तविक खगोलीय पिण्ड हैं।&quot; सहम विशुद्ध गणितीय संरचनाएँ हैं  –  इनका कोई भौतिक अस्तित्व, कोई द्रव्यमान, कोई गुरुत्वाकर्षण नहीं। ये अमूर्त बिन्दु हैं जो तीन कुण्डली कारकों के प्रतीकात्मक सम्बन्ध को एक संवेदनशील अंश में केन्द्रित करते हैं। इन्हें खगोलीय वस्तुओं के बजाय &quot;ज्योतिषीय सदिश&quot; समझें।</>
+            : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Sahams are real celestial bodies with gravitational influence.&quot; Sahams are purely mathematical constructs  –  they have no physical existence, no mass, no gravitational pull. They are abstract points that concentrate the symbolic relationship between three chart factors into a single sensitive degree. Think of them as &quot;astrological vectors&quot; rather than celestial objects.</>}
         </p>
       </section>
 
@@ -124,8 +124,8 @@ function Page3() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <>हमारा वर्षफल पृष्ठ वार्षिक कुण्डली से स्वचालित रूप से सभी सहम गणित करता है, उनकी राशिचक्रीय स्थितियाँ, भाव स्थान और राशि स्वामी प्रदर्शित करता है। उपकरण यह भी विश्लेषण करता है कि वर्ष स्वामी प्रत्येक सहम स्वामी से ताजिक योग (इत्थशाल/ईषराफ) बनाता है या नहीं, जिससे उपयोगकर्ताओं को तत्काल चित्र मिलता है कि वर्ष में कौन-से जीवन क्षेत्र &quot;सक्रिय&quot; हैं। यह स्वचालन सहम विश्लेषण को सबके लिए सुलभ बनाता है — पहले केवल 5 सहम मैनुअली गणित करने में भी काफी अंकगणितीय प्रयास लगता था।</>
-            : <>Our Varshaphal page computes all Sahams automatically from the annual chart, displaying their zodiacal positions, house placements, and sign lords. The tool also analyzes whether the year lord forms Tajika yogas (Ithasala/Easarapha) with each Saham lord, giving users an immediate picture of which life areas are &quot;activated&quot; for the year. This automation makes Saham analysis accessible to everyone — previously, computing even 5 Sahams manually required significant arithmetic effort.</>}
+            ? <>हमारा वर्षफल पृष्ठ वार्षिक कुण्डली से स्वचालित रूप से सभी सहम गणित करता है, उनकी राशिचक्रीय स्थितियाँ, भाव स्थान और राशि स्वामी प्रदर्शित करता है। उपकरण यह भी विश्लेषण करता है कि वर्ष स्वामी प्रत्येक सहम स्वामी से ताजिक योग (इत्थशाल/ईषराफ) बनाता है या नहीं, जिससे उपयोगकर्ताओं को तत्काल चित्र मिलता है कि वर्ष में कौन-से जीवन क्षेत्र &quot;सक्रिय&quot; हैं। यह स्वचालन सहम विश्लेषण को सबके लिए सुलभ बनाता है  –  पहले केवल 5 सहम मैनुअली गणित करने में भी काफी अंकगणितीय प्रयास लगता था।</>
+            : <>Our Varshaphal page computes all Sahams automatically from the annual chart, displaying their zodiacal positions, house placements, and sign lords. The tool also analyzes whether the year lord forms Tajika yogas (Ithasala/Easarapha) with each Saham lord, giving users an immediate picture of which life areas are &quot;activated&quot; for the year. This automation makes Saham analysis accessible to everyone  –  previously, computing even 5 Sahams manually required significant arithmetic effort.</>}
         </p>
       </section>
     </div>

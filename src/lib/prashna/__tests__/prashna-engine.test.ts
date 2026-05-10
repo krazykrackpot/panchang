@@ -23,7 +23,7 @@ import { analyzePrashna, PRASHNA_CATEGORIES } from '@/lib/prashna/horary-analysi
 import { generateKundali } from '@/lib/ephem/kundali-calc';
 import type { BirthData } from '@/types/kundali';
 
-// Delhi, Jan 15 2025 12:00 — standard test fixture
+// Delhi, Jan 15 2025 12:00  –  standard test fixture
 const DELHI_BIRTH: BirthData = {
   name: 'Test Prashna',
   date: '2025-01-15',

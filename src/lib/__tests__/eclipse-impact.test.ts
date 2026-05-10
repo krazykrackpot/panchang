@@ -1,5 +1,5 @@
 /**
- * Eclipse Impact Engine — Unit Tests
+ * Eclipse Impact Engine  –  Unit Tests
  *
  * Tests cover:
  * - Eclipse longitude computation (solar + lunar)
@@ -188,7 +188,7 @@ describe('analyzeEclipseImpact', () => {
     const result1 = analyzeEclipseImpact(solarEclipse2026, mkChart({}));
     const eclLong = result1.eclipseLongitude;
 
-    // Place planet 15° away — should NOT be conjunct
+    // Place planet 15° away  –  should NOT be conjunct
     const chart = mkChart({
       planets: [mkPlanet(4, (eclLong + 15) % 360, 1)],
     });
@@ -214,7 +214,7 @@ describe('analyzeEclipseImpact', () => {
     const result1 = analyzeEclipseImpact(solarEclipse2026, mkChart({}));
     const eclLong = result1.eclipseLongitude;
 
-    // Place Jupiter (id=4) within 12° — should NOT trigger node axis
+    // Place Jupiter (id=4) within 12°  –  should NOT trigger node axis
     const chart = mkChart({
       planets: [mkPlanet(4, (eclLong + 5) % 360, 1)],
     });
@@ -351,7 +351,7 @@ describe('edge cases', () => {
   });
 
   it('handles house cusps that wrap around 360°', () => {
-    // House 12 starts at 330°, house 1 at 5° — tests the wrap-around logic
+    // House 12 starts at 330°, house 1 at 5°  –  tests the wrap-around logic
     const houses: HouseCusp[] = [
       mkHouseCusp(1, 5),
       mkHouseCusp(2, 35),
@@ -380,8 +380,8 @@ describe('edge cases', () => {
       planets: [
         mkPlanet(0, eclLong + 2, 1),     // Sun, 2° away
         mkPlanet(1, eclLong - 3, 1),     // Moon, 3° away
-        mkPlanet(2, eclLong + 9.5, 1),   // Mars, 9.5° away — still within 10°
-        mkPlanet(3, eclLong + 11, 1),    // Mercury, 11° away — outside
+        mkPlanet(2, eclLong + 9.5, 1),   // Mars, 9.5° away  –  still within 10°
+        mkPlanet(3, eclLong + 11, 1),    // Mercury, 11° away  –  outside
       ],
     });
     const result = analyzeEclipseImpact(solarEclipse2026, chart);

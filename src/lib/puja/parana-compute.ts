@@ -114,7 +114,7 @@ export function computeParana(
         };
       }
 
-      // Moon doesn't rise today — fall back to next_sunrise window
+      // Moon doesn't rise today  –  fall back to next_sunrise window
       return {
         start: sunrise,
         end: addHours(sunrise, 4),

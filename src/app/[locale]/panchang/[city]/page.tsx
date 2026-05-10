@@ -20,7 +20,7 @@ const msg = (key: string, locale: string) => tl((M as unknown as Record<string, 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
 // ──────────────────────────────────────────────────────────────
-// ISR — Tier 2/3 cities generated on first visit, cached 1 hour
+// ISR  –  Tier 2/3 cities generated on first visit, cached 1 hour
 // ──────────────────────────────────────────────────────────────
 
 export const revalidate = 3600;
@@ -73,7 +73,7 @@ export async function generateMetadata({
   const metaNakshatra = metaPanchang.nakshatra.name[locale as 'en' | 'hi'] || metaPanchang.nakshatra.name.en;
 
   // Map IANA timezones to short abbreviations for diaspora cities.
-  // Only shown for non-Indian cities — Indian cities all share IST and don't need it.
+  // Only shown for non-Indian cities  –  Indian cities all share IST and don't need it.
   const TZ_SHORT: Record<string, string> = {
     'America/New_York':       'EST',
     'America/Los_Angeles':    'PST',
@@ -93,20 +93,20 @@ export async function generateMetadata({
   const isDiaspora = city.timezone !== 'Asia/Kolkata';
   const tzShort = isDiaspora ? TZ_SHORT[city.timezone] : null;
 
-  // Diaspora title: "New York Panchang Today (EST) — Dvitiya, Ashwini | Apr 27 | Dekho Panchang"
-  // Indian title:   "Delhi Panchang Today — Dvitiya, Ashwini | Apr 27, 2026 | Dekho Panchang"
+  // Diaspora title: "New York Panchang Today (EST)  –  Dvitiya, Ashwini | Apr 27 | Dekho Panchang"
+  // Indian title:   "Delhi Panchang Today  –  Dvitiya, Ashwini | Apr 27, 2026 | Dekho Panchang"
   const titleEn = tzShort
-    ? `${city.name.en} Panchang Today (${tzShort}) — ${metaTithi}, ${metaNakshatra} | ${shortDateStr} | Dekho Panchang`
-    : `${city.name.en} Panchang Today — ${metaTithi}, ${metaNakshatra} | ${dateStr} | Dekho Panchang`;
-  const titleHi = `${cityName} पंचांग आज — ${metaTithi}, ${metaNakshatra} | ${dateStr} | Dekho Panchang`;
+    ? `${city.name.en} Panchang Today (${tzShort})  –  ${metaTithi}, ${metaNakshatra} | ${shortDateStr} | Dekho Panchang`
+    : `${city.name.en} Panchang Today  –  ${metaTithi}, ${metaNakshatra} | ${dateStr} | Dekho Panchang`;
+  const titleHi = `${cityName} पंचांग आज  –  ${metaTithi}, ${metaNakshatra} | ${dateStr} | Dekho Panchang`;
 
   const title = tl({ en: titleEn, hi: titleHi, sa: titleHi }, locale);
 
   // Diaspora descriptions mention Hindu diaspora / NRI context with timezone for relevance
   const descriptionEn = isDiaspora
     ? `Daily Vedic Panchang for Hindus in ${city.name.en}. Accurate Tithi, Nakshatra, Muhurta times${tzShort ? ` in ${tzShort}` : ''}. Swiss Ephemeris precision.`
-    : `Today's Panchang for ${city.name.en}, ${city.state} — accurate sunrise, sunset, tithi, nakshatra, yoga, karana, Rahu Kaal, Yamaganda & Gulika timings. Vedic calculations using Lahiri Ayanamsha.`;
-  const descriptionHi = `${cityName}, ${city.state} का आज का पंचांग — सटीक सूर्योदय, सूर्यास्त, तिथि, नक्षत्र, योग, करण, राहुकाल, यमगण्ड और गुलिक काल। लाहिरी अयनांश पर आधारित वैदिक गणना।`;
+    : `Today's Panchang for ${city.name.en}, ${city.state}  –  accurate sunrise, sunset, tithi, nakshatra, yoga, karana, Rahu Kaal, Yamaganda & Gulika timings. Vedic calculations using Lahiri Ayanamsha.`;
+  const descriptionHi = `${cityName}, ${city.state} का आज का पंचांग  –  सटीक सूर्योदय, सूर्यास्त, तिथि, नक्षत्र, योग, करण, राहुकाल, यमगण्ड और गुलिक काल। लाहिरी अयनांश पर आधारित वैदिक गणना।`;
 
   const description = tl({ en: descriptionEn, hi: descriptionHi, sa: descriptionHi }, locale);
 
@@ -226,7 +226,7 @@ export default async function CityPanchangPage({
     url: `${BASE_URL}/${locale}/panchang/${citySlug}`,
     mainEntity: {
       '@type': 'Event',
-      name: `Panchang — ${city.name.en} — ${now.toISOString().split('T')[0]}`,
+      name: `Panchang  –  ${city.name.en}  –  ${now.toISOString().split('T')[0]}`,
       startDate: now.toISOString().split('T')[0],
       endDate: now.toISOString().split('T')[0],
       location: {
@@ -282,8 +282,8 @@ export default async function CityPanchangPage({
       <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 p-6 mb-10">
         <p className="text-text-primary/80 text-sm leading-relaxed">
           {locale === 'hi' || locale === 'sa'
-              ? `${cityName}, ${city.state} के लिए आज का पंचांग — ${cityName} के सटीक निर्देशांक (${latStr}, ${lngStr}) के अनुसार गणना किए गए सूर्योदय, सूर्यास्त, तिथि, नक्षत्र, योग, और करण का समय। सभी वैदिक पंचांग तत्व लाहिरी अयनांश और मीउस खगोलीय एल्गोरिदम द्वारा उप-चाप-सेकंड सटीकता के साथ गणना किए गए हैं। यह पृष्ठ प्रतिदिन ${cityName} के स्थानीय समय के अनुसार अपडेट होता है।`
-              : `Today's Panchang for ${city.name.en}, ${city.state} — accurate sunrise, sunset, tithi, nakshatra, yoga, and karana timings computed for ${city.name.en}'s exact coordinates (${latStr}, ${lngStr}). All Vedic calendar elements are calculated using the Lahiri Ayanamsha and Meeus astronomical algorithms for sub-arcsecond accuracy. This page updates daily with ${city.name.en}'s local timings, including Rahu Kaal, Yamaganda Kaal, and Gulika Kaal — essential for planning auspicious activities.`}
+              ? `${cityName}, ${city.state} के लिए आज का पंचांग  –  ${cityName} के सटीक निर्देशांक (${latStr}, ${lngStr}) के अनुसार गणना किए गए सूर्योदय, सूर्यास्त, तिथि, नक्षत्र, योग, और करण का समय। सभी वैदिक पंचांग तत्व लाहिरी अयनांश और मीउस खगोलीय एल्गोरिदम द्वारा उप-चाप-सेकंड सटीकता के साथ गणना किए गए हैं। यह पृष्ठ प्रतिदिन ${cityName} के स्थानीय समय के अनुसार अपडेट होता है।`
+              : `Today's Panchang for ${city.name.en}, ${city.state}  –  accurate sunrise, sunset, tithi, nakshatra, yoga, and karana timings computed for ${city.name.en}'s exact coordinates (${latStr}, ${lngStr}). All Vedic calendar elements are calculated using the Lahiri Ayanamsha and Meeus astronomical algorithms for sub-arcsecond accuracy. This page updates daily with ${city.name.en}'s local timings, including Rahu Kaal, Yamaganda Kaal, and Gulika Kaal  –  essential for planning auspicious activities.`}
         </p>
       </div>
 
@@ -318,7 +318,7 @@ export default async function CityPanchangPage({
         <PanchangCard
           label={msg('nakshatra', locale)}
           value={nakshatraName}
-          detail={`${msg('pada', locale)} ${panchang.nakshatra.pada ?? '—'} · ${msg('ends', locale)}: ${formatTransitionEnd(panchang.nakshatraTransition, loc)}`}
+          detail={`${msg('pada', locale)} ${panchang.nakshatra.pada ?? ' – '} · ${msg('ends', locale)}: ${formatTransitionEnd(panchang.nakshatraTransition, loc)}`}
           gradient="from-[#1b2d69]/50 via-[#101a40]/60 to-[#0a0e27]"
         />
         {/* Yoga */}
@@ -363,7 +363,7 @@ export default async function CityPanchangPage({
             {msg('samvatsara', locale)}
           </div>
           <div className="text-xl font-bold text-gold-light">
-            {panchang.samvatsara?.[loc] || panchang.samvatsara?.en || '—'}
+            {panchang.samvatsara?.[loc] || panchang.samvatsara?.en || ' – '}
           </div>
         </div>
       </div>
@@ -376,17 +376,17 @@ export default async function CityPanchangPage({
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <InauspiciousCard
             label={msg('rahuKaal', locale)}
-            value={panchang.rahuKaal ? `${panchang.rahuKaal.start} – ${panchang.rahuKaal.end}` : '—'}
+            value={panchang.rahuKaal ? `${panchang.rahuKaal.start} – ${panchang.rahuKaal.end}` : ' – '}
             colorClass="text-red-400 border-red-500/20 bg-red-500/5"
           />
           <InauspiciousCard
             label={msg('yamaganda', locale)}
-            value={panchang.yamaganda ? `${panchang.yamaganda.start} – ${panchang.yamaganda.end}` : '—'}
+            value={panchang.yamaganda ? `${panchang.yamaganda.start} – ${panchang.yamaganda.end}` : ' – '}
             colorClass="text-orange-400 border-orange-500/20 bg-orange-500/5"
           />
           <InauspiciousCard
             label={msg('gulikaKaal', locale)}
-            value={panchang.gulikaKaal ? `${panchang.gulikaKaal.start} – ${panchang.gulikaKaal.end}` : '—'}
+            value={panchang.gulikaKaal ? `${panchang.gulikaKaal.start} – ${panchang.gulikaKaal.end}` : ' – '}
             colorClass="text-amber-400 border-amber-500/20 bg-amber-500/5"
           />
         </div>
@@ -402,12 +402,12 @@ export default async function CityPanchangPage({
         className="mb-10"
       />
 
-      {/* ═══ CALCULATION PROOF — TRANSPARENT AUDIT TRAIL ═══ */}
+      {/* ═══ CALCULATION PROOF  –  TRANSPARENT AUDIT TRAIL ═══ */}
       <div className="mb-10">
         <details className="group rounded-2xl border border-gold-primary/10 bg-bg-secondary/30">
           <summary className="flex items-center gap-3 cursor-pointer px-6 py-4 text-gold-primary text-sm font-medium hover:text-gold-light transition-colors">
             <ChevronRight size={16} className="group-open:rotate-90 transition-transform flex-shrink-0" />
-            {isHi ? 'गणना प्रमाण — पारदर्शी लेखा परीक्षा' : 'Calculation Proof — How These Values Were Computed'}
+            {isHi ? 'गणना प्रमाण  –  पारदर्शी लेखा परीक्षा' : 'Calculation Proof  –  How These Values Were Computed'}
           </summary>
           <div className="px-6 pb-5 space-y-4 text-sm text-text-secondary">
             <p className="text-text-secondary/70">
@@ -491,13 +491,13 @@ export default async function CityPanchangPage({
         </div>
       )}
 
-      {/* ═══ CTA — DETAILED PANCHANG ═══ */}
+      {/* ═══ CTA  –  DETAILED PANCHANG ═══ */}
       <div className="rounded-2xl bg-gradient-to-r from-gold-primary/10 via-gold-primary/5 to-transparent border border-gold-primary/20 p-6 text-center mb-12">
         <h3 className="text-lg font-bold text-gold-light mb-2">
             {msg('viewDetailed', locale)}
         </h3>
         <p className="text-text-secondary text-sm mb-4">
-          {locale === 'en' ? `Planetary positions, Choghadiya, Hora, Disha Shool — everything for ${city.name.en}` : `ग्रह स्थिति, चौघड़िया, होरा, दिशा शूल — ${cityName} के लिए सब कुछ`}
+          {locale === 'en' ? `Planetary positions, Choghadiya, Hora, Disha Shool  –  everything for ${city.name.en}` : `ग्रह स्थिति, चौघड़िया, होरा, दिशा शूल  –  ${cityName} के लिए सब कुछ`}
         </p>
         <Link
           href={`/${locale}/panchang?lat=${city.lat}&lng=${city.lng}&name=${encodeURIComponent(city.name.en)}`}
@@ -508,7 +508,7 @@ export default async function CityPanchangPage({
         </Link>
       </div>
 
-      {/* ═══ ABOUT THIS CITY PANCHANG — SEO CONTENT ═══ */}
+      {/* ═══ ABOUT THIS CITY PANCHANG  –  SEO CONTENT ═══ */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold text-gold-light mb-4">
           {`${msg('aboutPanchang', locale)} ${city.name.en}`}
@@ -517,7 +517,7 @@ export default async function CityPanchangPage({
           {isHi ? (
             <>
               <p>
-                {cityName} ({city.state}) के लिए दैनिक वैदिक पंचांग — प्रत्येक दिन {cityName} के अक्षांश {latStr} और देशांतर {lngStr} के अनुसार सटीक गणना। पंचांग के पाँच अंग — तिथि, वार, नक्षत्र, योग, और करण — शुभ मुहूर्त चयन और दैनिक धार्मिक कृत्यों के लिए अनिवार्य हैं।
+                {cityName} ({city.state}) के लिए दैनिक वैदिक पंचांग  –  प्रत्येक दिन {cityName} के अक्षांश {latStr} और देशांतर {lngStr} के अनुसार सटीक गणना। पंचांग के पाँच अंग  –  तिथि, वार, नक्षत्र, योग, और करण  –  शुभ मुहूर्त चयन और दैनिक धार्मिक कृत्यों के लिए अनिवार्य हैं।
               </p>
               <p>
                 सभी गणनाएँ लाहिरी अयनांश (चित्रपक्ष) पर आधारित हैं, जो भारत के अधिकांश पंचांग कर्ताओं द्वारा प्रयुक्त होता है। सूर्योदय और सूर्यास्त का समय {cityName} के भौगोलिक निर्देशांक और {city.timezone} समय क्षेत्र के अनुसार गणना किया गया है।
@@ -526,7 +526,7 @@ export default async function CityPanchangPage({
           ) : (
             <>
               <p>
-                Daily Vedic Panchang for {city.name.en}, {city.state} — calculated each day for the exact latitude {latStr} and longitude {lngStr}. The five limbs of the Panchang — Tithi (lunar day), Vara (weekday), Nakshatra (lunar mansion), Yoga (luni-solar combination), and Karana (half-tithi) — are essential for selecting auspicious timings and daily religious observances.
+                Daily Vedic Panchang for {city.name.en}, {city.state}  –  calculated each day for the exact latitude {latStr} and longitude {lngStr}. The five limbs of the Panchang  –  Tithi (lunar day), Vara (weekday), Nakshatra (lunar mansion), Yoga (luni-solar combination), and Karana (half-tithi)  –  are essential for selecting auspicious timings and daily religious observances.
               </p>
               <p>
                 All calculations use the Lahiri Ayanamsha (Chitrapaksha), the most widely used ayanamsha in Indian astrology. Sunrise and sunset times are computed for {city.name.en}{`'`}s geographic coordinates using the {city.timezone} timezone, accounting for daylight saving transitions where applicable. Rahu Kaal, Yamaganda Kaal, and Gulika Kaal are derived from the classical Vara-based formula.
@@ -563,8 +563,8 @@ export default async function CityPanchangPage({
             ? 'हर सुबह ईमेल पर यह पंचांग पाएँ'
             : 'Get this delivered to your inbox every morning'}
           subtext={isHi
-            ? 'मुफ़्त खाता — सूर्योदय पर दैनिक पंचांग, राहु काल, और राशिफल'
-            : 'Free account — daily panchang, Rahu Kaal, and rashifal at sunrise'}
+            ? 'मुफ़्त खाता  –  सूर्योदय पर दैनिक पंचांग, राहु काल, और राशिफल'
+            : 'Free account  –  daily panchang, Rahu Kaal, and rashifal at sunrise'}
           buttonLabel={isHi ? 'निःशुल्क खाता बनाएँ' : 'Sign Up Free'}
           triggerAuth
         />

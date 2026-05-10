@@ -1,5 +1,5 @@
 /**
- * LearnArticleLD — Server component that injects Article JSON-LD
+ * LearnArticleLD  –  Server component that injects Article JSON-LD
  * for learn topic pages. Placed inside individual topic layouts.
  */
 

@@ -1,5 +1,5 @@
 /**
- * Kaala (Timing) Rules — 7 window-level rules for muhurta scoring
+ * Kaala (Timing) Rules  –  7 window-level rules for muhurta scoring
  *
  * Evaluates hora, choghadiya, Rahu Kaal, Yamaganda, Gulika Kaal,
  * Dur Muhurtam, and Abhijit Muhurta timing at the window level.
@@ -53,7 +53,7 @@ const CHOGHADIYA_DAY_START = [0, 3, 6, 2, 5, 1, 4] as const;
 const AUSPICIOUS_CHOGHADIYA = new Set(['amrit', 'shubh', 'labh']);
 
 // ---------------------------------------------------------------------------
-// 1. hora — Chaldean hora lord matching activity's good horas
+// 1. hora  –  Chaldean hora lord matching activity's good horas
 // ---------------------------------------------------------------------------
 const hora: MuhurtaRule = {
   id: 'hora',
@@ -76,13 +76,13 @@ const hora: MuhurtaRule = {
     let horaIndex: number;
 
     if (midpointLocal >= sunriseLocal && midpointLocal < sunsetLocal) {
-      // Day hora — each hora = dayDuration / 12
+      // Day hora  –  each hora = dayDuration / 12
       const horaDuration = dayDuration / 12;
       const slotInDay = Math.floor((midpointLocal - sunriseLocal) / horaDuration);
       const startIdx = HORA_DAY_START[ctx.weekday];
       horaIndex = (startIdx + Math.min(slotInDay, 11)) % 7;
     } else {
-      // Night hora — each hora = nightDuration / 12
+      // Night hora  –  each hora = nightDuration / 12
       const horaDuration = nightDuration / 12;
       // Night starts at sunset; 12 day horas already elapsed
       let hoursAfterSunset: number;
@@ -122,7 +122,7 @@ const hora: MuhurtaRule = {
 };
 
 // ---------------------------------------------------------------------------
-// 2. choghadiya — Amrit/Shubh/Labh choghadiya
+// 2. choghadiya  –  Amrit/Shubh/Labh choghadiya
 // ---------------------------------------------------------------------------
 const choghadiya: MuhurtaRule = {
   id: 'choghadiya',
@@ -176,7 +176,7 @@ const choghadiya: MuhurtaRule = {
 };
 
 // ---------------------------------------------------------------------------
-// 3. rahu-kaal — Rahu Kaal overlap penalty
+// 3. rahu-kaal  –  Rahu Kaal overlap penalty
 // ---------------------------------------------------------------------------
 const rahuKaal: MuhurtaRule = {
   id: 'rahu-kaal',
@@ -205,7 +205,7 @@ const rahuKaal: MuhurtaRule = {
 };
 
 // ---------------------------------------------------------------------------
-// 4. yamaganda — Yamaganda overlap penalty
+// 4. yamaganda  –  Yamaganda overlap penalty
 // ---------------------------------------------------------------------------
 const yamaganda: MuhurtaRule = {
   id: 'yamaganda',
@@ -234,7 +234,7 @@ const yamaganda: MuhurtaRule = {
 };
 
 // ---------------------------------------------------------------------------
-// 5. gulika-kaal — Gulika Kaal overlap penalty
+// 5. gulika-kaal  –  Gulika Kaal overlap penalty
 // ---------------------------------------------------------------------------
 const gulikaKaal: MuhurtaRule = {
   id: 'gulika-kaal',
@@ -263,7 +263,7 @@ const gulikaKaal: MuhurtaRule = {
 };
 
 // ---------------------------------------------------------------------------
-// 6. dur-muhurtam — Inauspicious muhurta window
+// 6. dur-muhurtam  –  Inauspicious muhurta window
 // ---------------------------------------------------------------------------
 const durMuhurtam: MuhurtaRule = {
   id: 'dur-muhurtam',
@@ -294,7 +294,7 @@ const durMuhurtam: MuhurtaRule = {
 };
 
 // ---------------------------------------------------------------------------
-// 7. abhijit-muhurta — 8th daytime muhurta (bonus, NOT on Wednesdays)
+// 7. abhijit-muhurta  –  8th daytime muhurta (bonus, NOT on Wednesdays)
 // ---------------------------------------------------------------------------
 const abhijitMuhurta: MuhurtaRule = {
   id: 'abhijit-muhurta',
@@ -306,7 +306,7 @@ const abhijitMuhurta: MuhurtaRule = {
   appliesTo: 'all',
   source: 'MC Ch.7, Dharma Sindhu',
   evaluate(ctx: RuleContext): RuleAssessment | null {
-    // Abhijit is NOT auspicious on Wednesdays (weekday 3) — Dharma Sindhu
+    // Abhijit is NOT auspicious on Wednesdays (weekday 3)  –  Dharma Sindhu
     if (ctx.weekday === 3) return null;
 
     const sunriseLocal = ctx.sunriseUT + ctx.tz;
@@ -326,7 +326,7 @@ const abhijitMuhurta: MuhurtaRule = {
         points: 6,
         maxPoints: 6,
         severity: 'positive',
-        reason: { en: 'Window in Abhijit Muhurta — universally auspicious', hi: 'अभिजित मुहूर्त — सर्वशुभ', sa: 'अभिजिन्मुहूर्तम् — सर्वशुभम्' },
+        reason: { en: 'Window in Abhijit Muhurta  –  universally auspicious', hi: 'अभिजित मुहूर्त  –  सर्वशुभ', sa: 'अभिजिन्मुहूर्तम्  –  सर्वशुभम्' },
       });
     }
 

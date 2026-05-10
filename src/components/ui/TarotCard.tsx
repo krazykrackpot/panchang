@@ -47,7 +47,7 @@ export default function TarotCard({
       onClick={onClick}
     >
       <div className="relative w-full h-full rounded-xl overflow-hidden">
-        {/* Background gradient — deep indigo/navy */}
+        {/* Background gradient  –  deep indigo/navy */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#1a0a3e] via-[#0f0825] to-[#0a0520]" />
 
         {/* Subtle celestial noise texture */}
@@ -61,7 +61,7 @@ export default function TarotCard({
         {/* Inner ornate frame (inset 6px) */}
         <div className="absolute inset-[6px] rounded-lg border border-[#d4a853]/15" />
 
-        {/* Corner flourishes — gold angle brackets at each corner of outer border */}
+        {/* Corner flourishes  –  gold angle brackets at each corner of outer border */}
         <div className="absolute top-[3px] left-[3px] w-2.5 h-2.5 border-t border-l border-[#d4a853]/50 rounded-tl-sm" />
         <div className="absolute top-[3px] right-[3px] w-2.5 h-2.5 border-t border-r border-[#d4a853]/50 rounded-tr-sm" />
         <div className="absolute bottom-[3px] left-[3px] w-2.5 h-2.5 border-b border-l border-[#d4a853]/50 rounded-bl-sm" />

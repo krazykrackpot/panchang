@@ -31,8 +31,8 @@ export const ASPECT_MODIFIERS: Record<number, { en: string; hi: string }> = {
     hi: 'बुध की दृष्टि इस ग्रह के क्षेत्र में बुद्धि, वाणिज्यिक कुशाग्रता और संचार स्पष्टता लाती है। संकेतित क्षेत्र में बौद्धिक जुड़ाव और व्यापारिक अवसर बढ़े हैं।',
   },
   4: {
-    en: 'Jupiter\'s aspect is a classical blessing — it expands, protects, and bestows wisdom upon this planet\'s significations. Prosperity, children, dharma, and the grace of teachers uplift the themes indicated. This aspect is the strongest positive modifier in the BNN system.',
-    hi: 'बृहस्पति की दृष्टि एक शास्त्रीय आशीर्वाद है — यह इस ग्रह की कारकत्व का विस्तार, रक्षा और ज्ञान प्रदान करती है। समृद्धि, संतान, धर्म और शिक्षकों की कृपा संकेतित विषयों को ऊँचा उठाती है।',
+    en: 'Jupiter\'s aspect is a classical blessing  –  it expands, protects, and bestows wisdom upon this planet\'s significations. Prosperity, children, dharma, and the grace of teachers uplift the themes indicated. This aspect is the strongest positive modifier in the BNN system.',
+    hi: 'बृहस्पति की दृष्टि एक शास्त्रीय आशीर्वाद है  –  यह इस ग्रह की कारकत्व का विस्तार, रक्षा और ज्ञान प्रदान करती है। समृद्धि, संतान, धर्म और शिक्षकों की कृपा संकेतित विषयों को ऊँचा उठाती है।',
   },
   5: {
     en: 'Venus\' aspect brings beauty, harmony, and material pleasure to this planet\'s domain. Partnership opportunities, creative expression, and sensory enjoyment are amplified. Marriage and relationship themes interweave with the signified areas; luxury and aesthetic refinement grace these life domains.',
@@ -62,8 +62,8 @@ export const CONJUNCTION_MODIFIERS: Record<number, { en: string; hi: string }> =
     hi: 'चन्द्रमा के साथ युति: ग्रह को भावनात्मक गहराई और सार्वजनिक आकर्षण मिलता है। मन संकेतित क्षेत्रों में गहराई से शामिल है। माँ और जनता ग्रह के विषयों को जीवन में प्रबलित करती है।',
   },
   2: {
-    en: 'Conjunction with Mars: energy, competition, and courage amplify the signified domain. The planet is activated with Martian fire — swifter action, bolder outcomes, but also conflict and the need for conscious discipline to prevent aggression.',
-    hi: 'मंगल के साथ युति: ऊर्जा, प्रतिस्पर्धा और साहस संकेतित क्षेत्र को बढ़ाता है। ग्रह मंगल की अग्नि से सक्रिय होता है — त्वरित क्रिया, साहसी परिणाम, लेकिन संघर्ष भी।',
+    en: 'Conjunction with Mars: energy, competition, and courage amplify the signified domain. The planet is activated with Martian fire  –  swifter action, bolder outcomes, but also conflict and the need for conscious discipline to prevent aggression.',
+    hi: 'मंगल के साथ युति: ऊर्जा, प्रतिस्पर्धा और साहस संकेतित क्षेत्र को बढ़ाता है। ग्रह मंगल की अग्नि से सक्रिय होता है  –  त्वरित क्रिया, साहसी परिणाम, लेकिन संघर्ष भी।',
   },
   3: {
     en: 'Conjunction with Mercury: intelligence, skill, and commercial awareness infuse the planet\'s themes. Communication and learning around the signified matters are enhanced. A Budh-Aditya yoga (with Sun) brings particular recognition for intellect in these areas.',
@@ -78,11 +78,11 @@ export const CONJUNCTION_MODIFIERS: Record<number, { en: string; hi: string }> =
     hi: 'शुक्र के साथ युति: सौंदर्य, आनंद और संबंध विषय ग्रह के क्षेत्र में व्याप्त होते हैं। संकेतित क्षेत्र कृपा, सामंजस्य और कलात्मक परिष्करण का गुण प्राप्त करते हैं।',
   },
   6: {
-    en: 'Conjunction with Saturn: discipline, delay, and karmic weight condition the planet\'s expression. The signified areas require sustained effort and patience. Early difficulties or restrictions give way to durable mastery in later years. This conjunction ages well — eventual rewards are lasting.',
+    en: 'Conjunction with Saturn: discipline, delay, and karmic weight condition the planet\'s expression. The signified areas require sustained effort and patience. Early difficulties or restrictions give way to durable mastery in later years. This conjunction ages well  –  eventual rewards are lasting.',
     hi: 'शनि के साथ युति: अनुशासन, विलंब और कार्मिक भार ग्रह की अभिव्यक्ति को प्रभावित करता है। संकेतित क्षेत्रों में निरंतर प्रयास और धैर्य की आवश्यकता है। प्रारंभिक कठिनाइयाँ बाद के वर्षों में स्थायी महारत को जन्म देती हैं।',
   },
   7: {
-    en: 'Conjunction with Rahu: the planet is amplified with shadow-node intensity — obsessive focus, sudden amplification, and unconventional expression dominate. Foreign or technological dimensions are added. The signified areas become areas of intense worldly involvement; illusions may surround them until the native develops discernment.',
+    en: 'Conjunction with Rahu: the planet is amplified with shadow-node intensity  –  obsessive focus, sudden amplification, and unconventional expression dominate. Foreign or technological dimensions are added. The signified areas become areas of intense worldly involvement; illusions may surround them until the native develops discernment.',
     hi: 'राहु के साथ युति: ग्रह छाया-नोड तीव्रता के साथ बढ़ाया जाता है। संकेतित क्षेत्र तीव्र सांसारिक भागीदारी के क्षेत्र बन जाते हैं। भ्रम तब तक उन्हें घेर सकते हैं जब तक मूल्यांकन विकसित न हो।',
   },
   8: {
@@ -97,12 +97,12 @@ export const RETROGRADE_MODIFIERS: Record<number, { en: string; hi: string }> = 
     hi: 'वक्री चन्द्रमा असामान्य है और भावनात्मक अनुभव के बढ़े हुए आन्तरिकीकरण का संकेत देता है। भावनाएँ बाहरी रूप से व्यक्त करने की बजाय गहराई से संसाधित की जाती हैं।',
   },
   2: {
-    en: 'Retrograde Mars turns the planet\'s energy inward — drive, ambition, and courage are intensely internalised. The native reflects deeply before acting; frustration builds when action is blocked. Courage takes time to find external expression but becomes formidably focused once released.',
-    hi: 'वक्री मंगल ग्रह की ऊर्जा को अंदर की ओर मोड़ता है — प्रेरणा, महत्वाकांक्षा और साहस गहराई से आन्तरिक होते हैं। क्रिया अवरुद्ध होने पर निराशा बनती है।',
+    en: 'Retrograde Mars turns the planet\'s energy inward  –  drive, ambition, and courage are intensely internalised. The native reflects deeply before acting; frustration builds when action is blocked. Courage takes time to find external expression but becomes formidably focused once released.',
+    hi: 'वक्री मंगल ग्रह की ऊर्जा को अंदर की ओर मोड़ता है  –  प्रेरणा, महत्वाकांक्षा और साहस गहराई से आन्तरिक होते हैं। क्रिया अवरुद्ध होने पर निराशा बनती है।',
   },
   3: {
-    en: 'Retrograde Mercury deepens intellectual processing — the native thinks things through many times before communicating. This can produce exceptional analytical depth or chronic indecision. Writing produced in solitude is often more powerful than spontaneous speech. Revisiting and refining ideas is this Mercury\'s superpower.',
-    hi: 'वक्री बुध बौद्धिक प्रसंस्करण को गहरा करता है — संचार से पहले चीजों को कई बार सोचा जाता है। एकांत में लिखना प्रायः सहज भाषण से अधिक शक्तिशाली होता है।',
+    en: 'Retrograde Mercury deepens intellectual processing  –  the native thinks things through many times before communicating. This can produce exceptional analytical depth or chronic indecision. Writing produced in solitude is often more powerful than spontaneous speech. Revisiting and refining ideas is this Mercury\'s superpower.',
+    hi: 'वक्री बुध बौद्धिक प्रसंस्करण को गहरा करता है  –  संचार से पहले चीजों को कई बार सोचा जाता है। एकांत में लिखना प्रायः सहज भाषण से अधिक शक्तिशाली होता है।',
   },
   4: {
     en: 'Retrograde Jupiter turns wisdom inward, creating a philosophical depth that resists external dogma. The native is a thinker who arrives at dharma through personal inner work rather than tradition. Children and teachers may arrive later in life. Spiritual wisdom deepens significantly in the second half of life.',
@@ -121,7 +121,7 @@ export const RETROGRADE_MODIFIERS: Record<number, { en: string; hi: string }> = 
     hi: 'वक्री राहु असामान्य है और राहु-राशि विषयों की ओर तीव्र कार्मिक खिंचाव का सुझाव देता है। देशी के जुनून अधिक आन्तरिक होते हैं।',
   },
   8: {
-    en: 'Retrograde Ketu deepens the south node\'s spiritual themes — past-life mastery becomes more consciously accessible. The native has an unusual ability to tap into very deep spiritual resources but may also face more intense karmic processing in the life areas Ketu occupies.',
-    hi: 'वक्री केतु दक्षिण नोड के आध्यात्मिक विषयों को गहरा करता है — पूर्व जीवन महारत अधिक सचेत रूप से सुलभ हो जाती है। बहुत गहरे आध्यात्मिक संसाधनों में टैप करने की असामान्य क्षमता होती है।',
+    en: 'Retrograde Ketu deepens the south node\'s spiritual themes  –  past-life mastery becomes more consciously accessible. The native has an unusual ability to tap into very deep spiritual resources but may also face more intense karmic processing in the life areas Ketu occupies.',
+    hi: 'वक्री केतु दक्षिण नोड के आध्यात्मिक विषयों को गहरा करता है  –  पूर्व जीवन महारत अधिक सचेत रूप से सुलभ हो जाती है। बहुत गहरे आध्यात्मिक संसाधनों में टैप करने की असामान्य क्षमता होती है।',
   },
 };

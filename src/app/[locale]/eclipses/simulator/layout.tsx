@@ -8,10 +8,10 @@ export async function generateMetadata({
   const { locale } = await params;
 
   const titles: Record<string, string> = {
-    en: 'Eclipse Simulator — Interactive Solar & Lunar Eclipse Visualizer',
-    hi: 'ग्रहण अनुकर्त्ता — सूर्य एवं चन्द्र ग्रहण दृश्य प्रदर्शन',
-    ta: 'கிரகண உருவகப்படுத்தி — சூரிய மற்றும் சந்திர கிரகண காட்சி',
-    bn: 'গ্রহণ সিমুলেটর — সূর্য ও চন্দ্রগ্রহণের দৃশ্য প্রদর্শন',
+    en: 'Eclipse Simulator  –  Interactive Solar & Lunar Eclipse Visualizer',
+    hi: 'ग्रहण अनुकर्त्ता  –  सूर्य एवं चन्द्र ग्रहण दृश्य प्रदर्शन',
+    ta: 'கிரகண உருவகப்படுத்தி  –  சூரிய மற்றும் சந்திர கிரகண காட்சி',
+    bn: 'গ্রহণ সিমুলেটর  –  সূর্য ও চন্দ্রগ্রহণের দৃশ্য প্রদর্শন',
   };
 
   const descriptions: Record<string, string> = {

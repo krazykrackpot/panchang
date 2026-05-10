@@ -109,11 +109,11 @@ const L = {
     secMathFormulaInner: 'Inner planets (Mercury, Venus):',
     secMathFormulaExplain: 'Where:',
     secMathFormulaTerms: [
-      { term: 'P_sidereal', meaning: 'The TRUE orbital period — time for the planet to go once around the Sun and return to the same star. This is what we want to find, but cannot directly observe.' },
+      { term: 'P_sidereal', meaning: 'The TRUE orbital period  –  time for the planet to go once around the Sun and return to the same star. This is what we want to find, but cannot directly observe.' },
       { term: 'P_earth', meaning: 'Earth\'s orbital period = 365.26 days. Known precisely from gnomon measurements (see measurement section above).' },
-      { term: 'P_synodic', meaning: 'The OBSERVABLE period — time between two successive identical alignments of Sun-Earth-Planet (e.g., opposition to opposition). This is what ancient astronomers could directly count in days.' },
+      { term: 'P_synodic', meaning: 'The OBSERVABLE period  –  time between two successive identical alignments of Sun-Earth-Planet (e.g., opposition to opposition). This is what ancient astronomers could directly count in days.' },
     ],
-    secMathFormulaWhy: 'Why does this work? Earth orbits faster than outer planets. The synodic period measures how long Earth takes to "lap" the planet — like two runners on a circular track. If you know the track speed of both runners, you can compute the slower runner\'s speed from how often the faster one passes them. For inner planets (Mercury, Venus), THEY are the faster runners, so the formula adds instead of subtracts.',
+    secMathFormulaWhy: 'Why does this work? Earth orbits faster than outer planets. The synodic period measures how long Earth takes to "lap" the planet  –  like two runners on a circular track. If you know the track speed of both runners, you can compute the slower runner\'s speed from how often the faster one passes them. For inner planets (Mercury, Venus), THEY are the faster runners, so the formula adds instead of subtracts.',
     secMathVisual: 'Synodic Period: Earth Overtaking Saturn',
     closing: 'Every time you read a Panchang entry, check your Sade Sati status, or look at your Dasha timeline -- you are using orbital mechanics measured by Indian astronomers who watched the sky for centuries with nothing but their eyes, a gnomon, and extraordinary patience. The numbers are real. The science is sound. The tradition preserves it.',
     relatedLinks: 'Continue Exploring',
@@ -224,11 +224,11 @@ const L = {
     secMathFormulaInner: 'आन्तरिक ग्रह (बुध, शुक्र):',
     secMathFormulaExplain: 'जहाँ:',
     secMathFormulaTerms: [
-      { term: 'P_sidereal', meaning: 'वास्तविक कक्षीय काल — ग्रह को सूर्य की एक पूर्ण परिक्रमा कर उसी तारे पर लौटने में लगने वाला समय। यही हमें ज्ञात करना है, परन्तु सीधे प्रेक्षित नहीं किया जा सकता।' },
+      { term: 'P_sidereal', meaning: 'वास्तविक कक्षीय काल  –  ग्रह को सूर्य की एक पूर्ण परिक्रमा कर उसी तारे पर लौटने में लगने वाला समय। यही हमें ज्ञात करना है, परन्तु सीधे प्रेक्षित नहीं किया जा सकता।' },
       { term: 'P_earth', meaning: 'पृथ्वी का कक्षीय काल = 365.26 दिन। शंकु माप से सटीक रूप से ज्ञात (ऊपर माप विभाग देखें)।' },
-      { term: 'P_synodic', meaning: 'प्रेक्षणीय काल — सूर्य-पृथ्वी-ग्रह के दो क्रमिक समान संरेखणों के बीच का समय (जैसे प्रतियुति से प्रतियुति)। प्राचीन खगोलविद इसे सीधे दिनों में गिन सकते थे।' },
+      { term: 'P_synodic', meaning: 'प्रेक्षणीय काल  –  सूर्य-पृथ्वी-ग्रह के दो क्रमिक समान संरेखणों के बीच का समय (जैसे प्रतियुति से प्रतियुति)। प्राचीन खगोलविद इसे सीधे दिनों में गिन सकते थे।' },
     ],
-    secMathFormulaWhy: 'यह क्यों काम करता है? पृथ्वी बाह्य ग्रहों से तेज़ चलती है। सिनोडिक काल मापता है कि पृथ्वी को ग्रह को "पछाड़ने" में कितना समय लगता है — जैसे गोल मैदान पर दो धावक। यदि दोनों धावकों की गति ज्ञात हो, तो जितनी बार तेज़ धावक धीमे को पार करे, उससे धीमे की गति ज्ञात हो सकती है। आन्तरिक ग्रहों (बुध, शुक्र) के लिए वे तेज़ धावक हैं, इसलिए सूत्र में घटाव के बजाय जोड़ होता है।',
+    secMathFormulaWhy: 'यह क्यों काम करता है? पृथ्वी बाह्य ग्रहों से तेज़ चलती है। सिनोडिक काल मापता है कि पृथ्वी को ग्रह को "पछाड़ने" में कितना समय लगता है  –  जैसे गोल मैदान पर दो धावक। यदि दोनों धावकों की गति ज्ञात हो, तो जितनी बार तेज़ धावक धीमे को पार करे, उससे धीमे की गति ज्ञात हो सकती है। आन्तरिक ग्रहों (बुध, शुक्र) के लिए वे तेज़ धावक हैं, इसलिए सूत्र में घटाव के बजाय जोड़ होता है।',
     secMathVisual: 'सिनोडिक काल: पृथ्वी शनि को पछाड़ रही है',
     closing: 'जब भी आप पञ्चाङ्ग पढ़ते हैं, साढ़े साती जाँचते हैं, या दशा समयरेखा देखते हैं -- आप उन भारतीय खगोलविदों द्वारा मापी गई कक्षीय यांत्रिकी का उपयोग कर रहे हैं जिन्होंने शताब्दियों तक केवल अपनी आँखों, एक शंकु, और असाधारण धैर्य से आकाश का प्रेक्षण किया। संख्याएँ वास्तविक हैं। विज्ञान सुदृढ़ है। परम्परा इसे सुरक्षित रखती है।',
     relatedLinks: 'आगे अन्वेषण करें',
@@ -326,10 +326,10 @@ function NodalDiagram({ locale }: { locale: string }) {
         <circle key={i} cx={20 + (i * 27) % 370} cy={8 + (i * 31) % 195} r={0.4 + (i % 3) * 0.3} fill="#f0d48a" opacity={0.1 + (i % 4) * 0.08} />
       ))}
 
-      {/* Ecliptic plane (horizontal ellipse — the Sun's path) */}
+      {/* Ecliptic plane (horizontal ellipse  –  the Sun's path) */}
       <ellipse cx={cx} cy={cy} rx={r} ry={36} fill="none" stroke="url(#eclipticGrad)" strokeWidth="2.5" strokeDasharray="8 4" />
 
-      {/* Moon orbit (tilted ellipse — ~5.1° exaggerated to 15° for visibility) */}
+      {/* Moon orbit (tilted ellipse  –  ~5.1° exaggerated to 15° for visibility) */}
       <g transform={`rotate(-15, ${cx}, ${cy})`}>
         <ellipse cx={cx} cy={cy} rx={r} ry={36} fill="none" stroke="url(#moonOrbitGrad)" strokeWidth="2.5" />
       </g>
@@ -340,7 +340,7 @@ function NodalDiagram({ locale }: { locale: string }) {
       <line x1="8" y1="24" x2="22" y2="24" stroke="#818cf8" strokeWidth="2" />
       <text x="25" y="27" fill="#818cf8" fontSize="6.5" opacity="0.9">{lt((LJ as unknown as Record<string, LocaleText>)['svgMoonOrbit'], locale)}</text>
 
-      {/* ── Rahu node (ascending) — left intersection ── */}
+      {/* ── Rahu node (ascending)  –  left intersection ── */}
       <circle cx={cx - r + 8} cy={cy + 12} r="14" fill="rgba(239,68,68,0.25)" stroke="#ef4444" strokeWidth="2.5" filter="url(#nodeGlow)" />
       <text x={cx - r + 8} y={cy + 16} textAnchor="middle" fill="#fca5a5" fontSize="10" fontWeight="bold">
         {lt((LJ as unknown as Record<string, LocaleText>)['svgRaAbbr'], locale)}
@@ -356,7 +356,7 @@ function NodalDiagram({ locale }: { locale: string }) {
       <path d={`M ${cx - r - 8} ${cy + 5} L ${cx - r + 8} ${cy - 8} L ${cx - r + 24} ${cy + 5}`} fill="none" stroke="#818cf8" strokeWidth="1" opacity="0.5" markerMid="url(#arrowUp)" />
       <text x={cx - r - 14} y={cy - 2} fill="#818cf8" fontSize="6" opacity="0.6" textAnchor="end">{lt((LJ as unknown as Record<string, LocaleText>)['svgMoonUp'], locale)}</text>
 
-      {/* ── Ketu node (descending) — right intersection ── */}
+      {/* ── Ketu node (descending)  –  right intersection ── */}
       <circle cx={cx + r - 8} cy={cy - 12} r="14" fill="rgba(168,85,247,0.25)" stroke="#a855f7" strokeWidth="2.5" filter="url(#nodeGlow)" />
       <text x={cx + r - 8} y={cy - 8} textAnchor="middle" fill="#c084fc" fontSize="10" fontWeight="bold">
         {lt((LJ as unknown as Record<string, LocaleText>)['svgKeAbbr'], locale)}

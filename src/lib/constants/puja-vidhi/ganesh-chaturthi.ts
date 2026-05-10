@@ -66,8 +66,8 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
       step: 3,
       title: { en: 'Dhyana', hi: 'ध्यान', sa: 'ध्यानम्' },
       description: {
-        en: 'Meditate on Lord Ganesha — elephant-headed, four-armed, holding a noose, goad, modak, and blessing mudra, seated on a lotus with a mouse as his vehicle.',
-        hi: 'भगवान गणेश का ध्यान करें — गजानन, चतुर्भुज, पाश, अंकुश, मोदक और वरदमुद्रा धारी, कमल पर विराजमान, मूषक वाहन।',
+        en: 'Meditate on Lord Ganesha  –  elephant-headed, four-armed, holding a noose, goad, modak, and blessing mudra, seated on a lotus with a mouse as his vehicle.',
+        hi: 'भगवान गणेश का ध्यान करें  –  गजानन, चतुर्भुज, पाश, अंकुश, मोदक और वरदमुद्रा धारी, कमल पर विराजमान, मूषक वाहन।',
         sa: 'गजाननं चतुर्बाहुं पाशाङ्कुशमोदकवरदमुद्राधारिणं पद्मासनस्थं मूषकवाहनं श्रीगणेशं ध्यायेत्।',
       },
       duration: '3 min',
@@ -199,9 +199,9 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
       step: 14,
       title: { en: 'Deepa', hi: 'दीप', sa: 'दीपम्' },
       description: {
-        en: 'Light a ghee lamp and wave it before the idol — 3 times at the feet, 2 at the navel, 1 at the face, then 7 times around the entire form.',
-        hi: 'घी का दीपक जलाकर मूर्ति के सामने आरती करें — 3 बार चरणों पर, 2 बार नाभि पर, 1 बार मुख पर, फिर 7 बार पूरी मूर्ति के चारों ओर।',
-        sa: 'घृतदीपं प्रज्वाल्य मूर्तेः पुरतः आरात्रिकं कुर्यात् — त्रिवारं पादयोः, द्विवारं नाभौ, एकवारं मुखे, ततः सप्तवारं सम्पूर्णमूर्तेः परितः।',
+        en: 'Light a ghee lamp and wave it before the idol  –  3 times at the feet, 2 at the navel, 1 at the face, then 7 times around the entire form.',
+        hi: 'घी का दीपक जलाकर मूर्ति के सामने आरती करें  –  3 बार चरणों पर, 2 बार नाभि पर, 1 बार मुख पर, फिर 7 बार पूरी मूर्ति के चारों ओर।',
+        sa: 'घृतदीपं प्रज्वाल्य मूर्तेः पुरतः आरात्रिकं कुर्यात्  –  त्रिवारं पादयोः, द्विवारं नाभौ, एकवारं मुखे, ततः सप्तवारं सम्पूर्णमूर्तेः परितः।',
       },
       duration: '2 min',
       essential: true,
@@ -315,8 +315,8 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
       devanagari: 'वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ। निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥',
       iast: 'vakratuṇḍa mahākāya sūryakoṭi samaprabha | nirvighnaṃ kuru me deva sarvakāryeṣu sarvadā ||',
       meaning: {
-        en: 'O Lord with the curved trunk and massive body, whose brilliance equals a million suns — make all my endeavors free of obstacles, always.',
-        hi: 'हे वक्रतुण्ड, विशाल शरीर वाले, करोड़ सूर्यों के समान तेजस्वी — मेरे सभी कार्य सदा निर्विघ्न करें।',
+        en: 'O Lord with the curved trunk and massive body, whose brilliance equals a million suns  –  make all my endeavors free of obstacles, always.',
+        hi: 'हे वक्रतुण्ड, विशाल शरीर वाले, करोड़ सूर्यों के समान तेजस्वी  –  मेरे सभी कार्य सदा निर्विघ्न करें।',
         sa: 'हे वक्रतुण्ड महाकाय सूर्यकोटिसमप्रभ, मम सर्वकार्याणि सर्वदा निर्विघ्नानि कुरु।',
       },
       usage: {
@@ -331,9 +331,9 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
       devanagari: 'ॐ गणानां त्वा गणपतिं हवामहे कविं कवीनामुपमश्रवस्तमम्। ज्येष्ठराजं ब्रह्मणां ब्रह्मणस्पत आ नः शृण्वन्नूतिभिः सीद सादनम्॥',
       iast: 'oṃ gaṇānāṃ tvā gaṇapatiṃ havāmahe kaviṃ kavīnāmupamaśravastamam | jyeṣṭharājaṃ brahmaṇāṃ brahmaṇaspata ā naḥ śṛṇvannūtibhiḥ sīda sādanam ||',
       meaning: {
-        en: 'We invoke you, Lord of the Ganas, wisest among the wise, supreme in glory. O eldest king of prayers, Lord of sacred speech — hear our invocations and take your seat among us.',
-        hi: 'हे गणों के स्वामी, बुद्धिमानों में सर्वश्रेष्ठ, कीर्ति में सर्वोच्च — हम आपका आवाहन करते हैं। हे प्रार्थनाओं के ज्येष्ठ राजा, ब्रह्मणस्पति — हमारी पुकार सुनकर हमारे बीच विराजें।',
-        sa: 'हे गणपते, गणानां गणाधिप, कवीनां कवे, उपमश्रवस्तम, ज्येष्ठराजन्, ब्रह्मणस्पते — नः ऊतिभिः शृण्वन् सादने आ सीद।',
+        en: 'We invoke you, Lord of the Ganas, wisest among the wise, supreme in glory. O eldest king of prayers, Lord of sacred speech  –  hear our invocations and take your seat among us.',
+        hi: 'हे गणों के स्वामी, बुद्धिमानों में सर्वश्रेष्ठ, कीर्ति में सर्वोच्च  –  हम आपका आवाहन करते हैं। हे प्रार्थनाओं के ज्येष्ठ राजा, ब्रह्मणस्पति  –  हमारी पुकार सुनकर हमारे बीच विराजें।',
+        sa: 'हे गणपते, गणानां गणाधिप, कवीनां कवे, उपमश्रवस्तम, ज्येष्ठराजन्, ब्रह्मणस्पते  –  नः ऊतिभिः शृण्वन् सादने आ सीद।',
       },
       usage: {
         en: 'Recite at the conclusion of the puja while offering flowers with both hands',
@@ -382,29 +382,29 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
 
   precautions: [
     {
-      en: 'Do NOT look at the moon on Chaturthi night — this causes Chandra Dosha (Mithya Dosha), leading to false accusations',
-      hi: 'चतुर्थी की रात चन्द्रमा को न देखें — इससे चन्द्र दोष (मिथ्या दोष) लगता है, जिससे झूठे आरोप लगते हैं',
-      sa: 'चतुर्थीरात्रौ चन्द्रदर्शनं न कुर्यात् — अनेन चन्द्रदोषः (मिथ्यादोषः) भवति येन मिथ्याभियोगः जायते',
+      en: 'Do NOT look at the moon on Chaturthi night  –  this causes Chandra Dosha (Mithya Dosha), leading to false accusations',
+      hi: 'चतुर्थी की रात चन्द्रमा को न देखें  –  इससे चन्द्र दोष (मिथ्या दोष) लगता है, जिससे झूठे आरोप लगते हैं',
+      sa: 'चतुर्थीरात्रौ चन्द्रदर्शनं न कुर्यात्  –  अनेन चन्द्रदोषः (मिथ्यादोषः) भवति येन मिथ्याभियोगः जायते',
     },
     {
-      en: 'Use only eco-friendly clay idol — avoid Plaster of Paris or chemical paint idols',
-      hi: 'केवल पर्यावरण-अनुकूल मिट्टी की मूर्ति का उपयोग करें — प्लास्टर ऑफ पेरिस या रासायनिक रंग वाली मूर्ति से बचें',
-      sa: 'पर्यावरणानुकूलां मृण्मयीं मूर्तिमेव उपयोजयेत् — रासायनिकवर्णयुक्तां मूर्तिं वर्जयेत्',
+      en: 'Use only eco-friendly clay idol  –  avoid Plaster of Paris or chemical paint idols',
+      hi: 'केवल पर्यावरण-अनुकूल मिट्टी की मूर्ति का उपयोग करें  –  प्लास्टर ऑफ पेरिस या रासायनिक रंग वाली मूर्ति से बचें',
+      sa: 'पर्यावरणानुकूलां मृण्मयीं मूर्तिमेव उपयोजयेत्  –  रासायनिकवर्णयुक्तां मूर्तिं वर्जयेत्',
     },
     {
-      en: 'Durva grass must have 3 or 5 blades — never offer single blades or even-numbered bunches',
-      hi: 'दूर्वा में 3 या 5 पत्तियाँ होनी चाहिए — एक पत्ती या सम संख्या वाले गुच्छे कभी न चढ़ाएँ',
-      sa: 'दूर्वा त्रिपत्रा पञ्चपत्रा वा भवेत् — एकपत्रां समसङ्ख्यापत्रां वा कदापि न समर्पयेत्',
+      en: 'Durva grass must have 3 or 5 blades  –  never offer single blades or even-numbered bunches',
+      hi: 'दूर्वा में 3 या 5 पत्तियाँ होनी चाहिए  –  एक पत्ती या सम संख्या वाले गुच्छे कभी न चढ़ाएँ',
+      sa: 'दूर्वा त्रिपत्रा पञ्चपत्रा वा भवेत्  –  एकपत्रां समसङ्ख्यापत्रां वा कदापि न समर्पयेत्',
     },
     {
-      en: 'Use red or orange flowers only — white flowers are generally not offered to Ganesha',
-      hi: 'केवल लाल या नारंगी फूल ही चढ़ाएँ — सफेद फूल सामान्यतः गणेश को नहीं चढ़ाए जाते',
-      sa: 'रक्तवर्णानि नारङ्गवर्णानि वा पुष्पाणि एव समर्पयेत् — श्वेतपुष्पाणि प्रायशः गणेशाय न समर्पन्ते',
+      en: 'Use red or orange flowers only  –  white flowers are generally not offered to Ganesha',
+      hi: 'केवल लाल या नारंगी फूल ही चढ़ाएँ  –  सफेद फूल सामान्यतः गणेश को नहीं चढ़ाए जाते',
+      sa: 'रक्तवर्णानि नारङ्गवर्णानि वा पुष्पाणि एव समर्पयेत्  –  श्वेतपुष्पाणि प्रायशः गणेशाय न समर्पन्ते',
     },
     {
-      en: 'Tulsi leaves are NEVER offered to Ganesha — this is strictly prohibited in shastra',
-      hi: 'तुलसी के पत्ते गणेश को कभी नहीं चढ़ाए जाते — यह शास्त्रों में पूर्णतः निषिद्ध है',
-      sa: 'तुलसीपत्राणि गणेशाय कदापि न समर्पयेत् — इदं शास्त्रेषु सर्वथा निषिद्धम्',
+      en: 'Tulsi leaves are NEVER offered to Ganesha  –  this is strictly prohibited in shastra',
+      hi: 'तुलसी के पत्ते गणेश को कभी नहीं चढ़ाए जाते  –  यह शास्त्रों में पूर्णतः निषिद्ध है',
+      sa: 'तुलसीपत्राणि गणेशाय कदापि न समर्पयेत्  –  इदं शास्त्रेषु सर्वथा निषिद्धम्',
     },
   ],
 

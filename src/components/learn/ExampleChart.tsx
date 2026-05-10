@@ -4,7 +4,7 @@ import ChartNorth from '@/components/kundali/ChartNorth';
 import type { ChartData } from '@/types/kundali';
 
 /**
- * ExampleChart — renders a North Indian diamond chart for learn module worked examples.
+ * ExampleChart  –  renders a North Indian diamond chart for learn module worked examples.
  *
  * Usage:
  *   <ExampleChart

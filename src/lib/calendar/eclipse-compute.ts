@@ -44,7 +44,7 @@ export interface LocalEclipseResult {
   durationMinutes: number;      // Total visible duration in minutes
   durationFormatted: string;    // "01h 18m 49s" format
 
-  // Sutak — computed per 3 classical traditions
+  // Sutak  –  computed per 3 classical traditions
   sutakApplicable: boolean;     // False if eclipse not visible from location
   sutakStart: string | null;    // Recommended (most aggressive/earliest) HH:MM local
   sutakEnd: string | null;      // HH:MM local time
@@ -157,7 +157,7 @@ function computeLunarLocal(eclipse: LunarEclipseData, lat: number, lng: number, 
   // Normalize all times to handle day wraparound
   let p1N = p1Local;
   let p4N = p4Local;
-  // If eclipse crosses midnight, p4 might be smaller than p1 — add 24
+  // If eclipse crosses midnight, p4 might be smaller than p1  –  add 24
   if (p4N < p1N) p4N += 24;
 
   // Eclipse is visible if ANY part of [p1, p4] overlaps with [moonRise, moonSet]
@@ -182,7 +182,7 @@ function computeLunarLocal(eclipse: LunarEclipseData, lat: number, lng: number, 
   // Visibility note
   let visibilityNote = '';
   if (!visible) {
-    visibilityNote = 'Not visible — Moon below horizon';
+    visibilityNote = 'Not visible  –  Moon below horizon';
   } else if (eclipse.type === 'total') {
     visibilityNote = 'Visible as Total Lunar Eclipse';
   } else if (eclipse.type === 'partial') {
@@ -252,12 +252,12 @@ function computeSutakTraditions(
   sunriseLocal: number,
   sunsetLocal: number,
 ): SutakResult {
-  // 1. Nirnaya Sindhu — fixed 12h (solar) or 9h (lunar) before sparsha
+  // 1. Nirnaya Sindhu  –  fixed 12h (solar) or 9h (lunar) before sparsha
   const nsHours = isSolar ? 12 : 9;
   const nsStart = eclipseStartLocal - nsHours;
   const nsLabel = isSolar ? '12 hours before sparsha' : '9 hours before sparsha';
 
-  // 2. Dharma Sindhu — 4 prahars (solar) or 3 prahars (lunar) before sparsha
+  // 2. Dharma Sindhu  –  4 prahars (solar) or 3 prahars (lunar) before sparsha
   //    A prahar (yama) = 1/8 of the ahoratra (sunrise-to-sunrise = ~24h)
   //    But traditionally, day-prahars and night-prahars have different lengths:
   //    Day prahar = (sunset - sunrise) / 4
@@ -279,7 +279,7 @@ function computeSutakTraditions(
     ? `4 day-prahars (${Math.round(dsPraharLen * 60)}m each) before sparsha`
     : `3 night-prahars (${Math.round(dsPraharLen * 60)}m each) before sparsha`;
 
-  // 3. Muhurta Chintamani — from previous sunrise
+  // 3. Muhurta Chintamani  –  from previous sunrise
   //    If eclipse is today after sunrise, Sutak starts at today's sunrise.
   //    If eclipse is before sunrise (e.g., early morning lunar eclipse),
   //    Sutak starts at previous day's sunrise (~yesterday's sunrise ≈ today's - 24h).
@@ -312,7 +312,7 @@ function computeSutakTraditions(
 // For any observer lat/lng, we compute the apparent angular separation between
 // Sun and Moon as seen from that location (applying lunar parallax), then scan
 // for when separation equals the sum of their apparent radii (contact times).
-// No city lookups, no interpolation — pure calculation from Swiss Ephemeris.
+// No city lookups, no interpolation  –  pure calculation from Swiss Ephemeris.
 
 /** Degrees to radians */
 const DEG2RAD = Math.PI / 180;
@@ -321,7 +321,7 @@ const DEG2RAD = Math.PI / 180;
  * Compute the apparent angular separation between Sun and Moon as seen from
  * a specific point on Earth's surface (topocentric), accounting for lunar parallax.
  *
- * The parallax is crucial for solar eclipses — it can shift the Moon's apparent
+ * The parallax is crucial for solar eclipses  –  it can shift the Moon's apparent
  * position by up to ~1°, which is the entire difference between "no eclipse" and
  * "91% partial eclipse" for a location like Zurich.
  *

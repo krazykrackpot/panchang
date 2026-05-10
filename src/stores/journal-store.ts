@@ -26,7 +26,7 @@ export const useJournalStore = create<JournalState>((set, get) => ({
   total: 0,
 
   // ---------------------------------------------------------------------------
-  // submitCheckin — POST /api/journal
+  // submitCheckin  –  POST /api/journal
   // ---------------------------------------------------------------------------
   submitCheckin: async (token, input) => {
     set({ loading: true });
@@ -69,12 +69,12 @@ export const useJournalStore = create<JournalState>((set, get) => ({
     } catch (err) {
       console.error('[journal] submitCheckin error:', err);
       set({ loading: false });
-      return { error: 'Network error — please try again' };
+      return { error: 'Network error  –  please try again' };
     }
   },
 
   // ---------------------------------------------------------------------------
-  // fetchEntries — GET /api/journal with filters
+  // fetchEntries  –  GET /api/journal with filters
   // ---------------------------------------------------------------------------
   fetchEntries: async (token, filters) => {
     set({ loading: true });
@@ -119,12 +119,12 @@ export const useJournalStore = create<JournalState>((set, get) => ({
     } catch (err) {
       console.error('[journal] fetchEntries error:', err);
       set({ loading: false });
-      return { error: 'Network error — please try again' };
+      return { error: 'Network error  –  please try again' };
     }
   },
 
   // ---------------------------------------------------------------------------
-  // fetchTodayEntry — GET /api/journal?dateFrom=today&dateTo=today
+  // fetchTodayEntry  –  GET /api/journal?dateFrom=today&dateTo=today
   // ---------------------------------------------------------------------------
   fetchTodayEntry: async (token) => {
     set({ loading: true });
@@ -153,12 +153,12 @@ export const useJournalStore = create<JournalState>((set, get) => ({
     } catch (err) {
       console.error('[journal] fetchTodayEntry error:', err);
       set({ loading: false });
-      return { error: 'Network error — please try again' };
+      return { error: 'Network error  –  please try again' };
     }
   },
 
   // ---------------------------------------------------------------------------
-  // deleteEntry — DELETE /api/journal/{id}
+  // deleteEntry  –  DELETE /api/journal/{id}
   // ---------------------------------------------------------------------------
   deleteEntry: async (token, id) => {
     set({ loading: true });
@@ -189,12 +189,12 @@ export const useJournalStore = create<JournalState>((set, get) => ({
     } catch (err) {
       console.error('[journal] deleteEntry error:', err);
       set({ loading: false });
-      return { error: 'Network error — please try again' };
+      return { error: 'Network error  –  please try again' };
     }
   },
 
   // ---------------------------------------------------------------------------
-  // setFilters — merge partial filter update into current filters
+  // setFilters  –  merge partial filter update into current filters
   // ---------------------------------------------------------------------------
   setFilters: (filters) => {
     set((state) => ({

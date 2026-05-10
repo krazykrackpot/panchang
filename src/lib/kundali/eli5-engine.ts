@@ -18,7 +18,7 @@ import { GRAHAS } from '@/lib/constants/grahas';
 
 export interface ELI5Section {
   title: { en: string; hi: string };
-  emoji: string; // internal classification only — not rendered in UI
+  emoji: string; // internal classification only  –  not rendered in UI
   body: { en: string; hi: string };
   learnMoreHref?: string;
   learnMoreLabel?: { en: string; hi: string };
@@ -30,7 +30,7 @@ export interface ELI5Result {
 }
 
 // ---------------------------------------------------------------------------
-// Sign personality data — short traits per rashi (index = sign-1)
+// Sign personality data  –  short traits per rashi (index = sign-1)
 // ---------------------------------------------------------------------------
 
 const SIGN_TRAITS: { en: string[]; hi: string[] }[] = [
@@ -117,8 +117,8 @@ export function generateELI5(kundali: KundaliData): ELI5Result {
       title: { en: 'Your Rising Sign', hi: 'आपकी लग्न राशि' },
       emoji: 'door',
       body: {
-        en: `Your Lagna is ${rashi.name.en}. Think of this as your "front door" — it shapes how the world sees you and how you approach life. ${rashi.name.en} rising people tend to be ${traits.en.join(', ')}. This is a tendency, not a destiny.`,
-        hi: `आपकी लग्न ${rashi.name.hi} है। इसे अपने "मुख्य द्वार" की तरह समझें — यह तय करता है कि दुनिया आपको कैसे देखती है। ${rashi.name.hi} लग्न वाले लोग अक्सर ${traits.hi.join(', ')} होते हैं। यह एक प्रवृत्ति है, भाग्य नहीं।`,
+        en: `Your Lagna is ${rashi.name.en}. Think of this as your "front door"  –  it shapes how the world sees you and how you approach life. ${rashi.name.en} rising people tend to be ${traits.en.join(', ')}. This is a tendency, not a destiny.`,
+        hi: `आपकी लग्न ${rashi.name.hi} है। इसे अपने "मुख्य द्वार" की तरह समझें  –  यह तय करता है कि दुनिया आपको कैसे देखती है। ${rashi.name.hi} लग्न वाले लोग अक्सर ${traits.hi.join(', ')} होते हैं। यह एक प्रवृत्ति है, भाग्य नहीं।`,
       },
       learnMoreHref: '/learn/modules/3-1',
       learnMoreLabel: { en: 'Learn about Rashis', hi: 'राशियों के बारे में जानें' },
@@ -138,15 +138,15 @@ export function generateELI5(kundali: KundaliData): ELI5Result {
       title: { en: 'Your Moon', hi: 'आपका चन्द्र' },
       emoji: 'moon',
       body: {
-        en: `Your Moon is in ${lt(moonSignName, 'en')} in the nakshatra ${lt(moonNakName, 'en')}. The Moon represents your emotional core — how you feel, what comforts you, and your instincts.${moonTraits ? ` ${lt(moonSignName, 'en')} Moon people are often ${moonTraits.en.join(', ')}.` : ''} Your nakshatra adds a unique flavor to this emotional signature.`,
-        hi: `आपका चन्द्र ${lt(moonSignName, 'hi')} राशि में ${lt(moonNakName, 'hi')} नक्षत्र में है। चन्द्र आपके भावनात्मक केंद्र का प्रतिनिधित्व करता है — आप कैसा महसूस करते हैं, क्या आपको सुकून देता है।${moonTraits ? ` ${lt(moonSignName, 'hi')} चन्द्र वाले लोग अक्सर ${moonTraits.hi.join(', ')} होते हैं।` : ''} आपका नक्षत्र इस भावनात्मक पहचान में एक विशेष रंग जोड़ता है।`,
+        en: `Your Moon is in ${lt(moonSignName, 'en')} in the nakshatra ${lt(moonNakName, 'en')}. The Moon represents your emotional core  –  how you feel, what comforts you, and your instincts.${moonTraits ? ` ${lt(moonSignName, 'en')} Moon people are often ${moonTraits.en.join(', ')}.` : ''} Your nakshatra adds a unique flavor to this emotional signature.`,
+        hi: `आपका चन्द्र ${lt(moonSignName, 'hi')} राशि में ${lt(moonNakName, 'hi')} नक्षत्र में है। चन्द्र आपके भावनात्मक केंद्र का प्रतिनिधित्व करता है  –  आप कैसा महसूस करते हैं, क्या आपको सुकून देता है।${moonTraits ? ` ${lt(moonSignName, 'hi')} चन्द्र वाले लोग अक्सर ${moonTraits.hi.join(', ')} होते हैं।` : ''} आपका नक्षत्र इस भावनात्मक पहचान में एक विशेष रंग जोड़ता है।`,
       },
       learnMoreHref: '/learn/modules/4-1',
       learnMoreLabel: { en: 'Learn about Nakshatras', hi: 'नक्षत्रों के बारे में जानें' },
     });
   }
 
-  // --- 3. Strengths — strongest planet by Shadbala ---
+  // --- 3. Strengths  –  strongest planet by Shadbala ---
   const strengthSection = buildStrengthSection(kundali);
   if (strengthSection) sections.push(strengthSection);
 
@@ -206,8 +206,8 @@ function buildStrengthSection(kundali: KundaliData): ELI5Section | null {
     title: { en: 'Your Strengths', hi: 'आपकी शक्तियाँ' },
     emoji: 'star',
     body: {
-      en: `Your strongest planet is ${strongestName} — think of it as your superpower in the area of ${domain.en}. When this planet is strong, its themes come naturally to you. Lean into these areas; they are where you shine brightest.`,
-      hi: `आपका सबसे मज़बूत ग्रह ${strongestNameHi} है — इसे ${domain.hi} के क्षेत्र में अपनी महाशक्ति समझें। जब यह ग्रह बलवान हो, तो इसके विषय आपके लिए स्वाभाविक होते हैं। इन क्षेत्रों में आगे बढ़ें; यहीं आप सबसे चमकते हैं।`,
+      en: `Your strongest planet is ${strongestName}  –  think of it as your superpower in the area of ${domain.en}. When this planet is strong, its themes come naturally to you. Lean into these areas; they are where you shine brightest.`,
+      hi: `आपका सबसे मज़बूत ग्रह ${strongestNameHi} है  –  इसे ${domain.hi} के क्षेत्र में अपनी महाशक्ति समझें। जब यह ग्रह बलवान हो, तो इसके विषय आपके लिए स्वाभाविक होते हैं। इन क्षेत्रों में आगे बढ़ें; यहीं आप सबसे चमकते हैं।`,
     },
     learnMoreHref: '/learn/modules/2-1',
     learnMoreLabel: { en: 'Learn about Grahas', hi: 'ग्रहों के बारे में जानें' },
@@ -257,8 +257,8 @@ function buildYogaSection(kundali: KundaliData): ELI5Section | null {
     title: { en: 'Special Patterns (Yogas)', hi: 'विशेष योग' },
     emoji: 'sparkles',
     body: {
-      en: `Your chart has ${present.length} active yoga${present.length > 1 ? 's' : ''} — special planet combinations. Here are the highlights:\n\n${enLines.join('\n\n')}${moreCount > 0 ? `\n\n...and ${moreCount} more in the detailed view.` : ''}`,
-      hi: `आपकी कुंडली में ${present.length} सक्रिय योग हैं — ग्रहों के विशेष संयोग। मुख्य बातें:\n\n${hiLines.join('\n\n')}${moreCount > 0 ? `\n\n...और ${moreCount} और विस्तृत दृश्य में।` : ''}`,
+      en: `Your chart has ${present.length} active yoga${present.length > 1 ? 's' : ''}  –  special planet combinations. Here are the highlights:\n\n${enLines.join('\n\n')}${moreCount > 0 ? `\n\n...and ${moreCount} more in the detailed view.` : ''}`,
+      hi: `आपकी कुंडली में ${present.length} सक्रिय योग हैं  –  ग्रहों के विशेष संयोग। मुख्य बातें:\n\n${hiLines.join('\n\n')}${moreCount > 0 ? `\n\n...और ${moreCount} और विस्तृत दृश्य में।` : ''}`,
     },
     learnMoreHref: '/learn/modules/6-1',
     learnMoreLabel: { en: 'Learn about Yogas', hi: 'योगों के बारे में जानें' },
@@ -305,8 +305,8 @@ function buildDashaSection(kundali: KundaliData): ELI5Section | null {
     title: { en: 'Current Life Chapter', hi: 'वर्तमान जीवन-अध्याय' },
     emoji: 'book',
     body: {
-      en: `Right now you are in the ${mahaNameEn} Maha Dasha (${mahaStart}–${mahaEnd}), a roughly ${mahaYears}-year chapter where themes of ${mahaThemes.en} take center stage.${antarLine.en} Think of it as the season your life is in — not good or bad, just a particular focus.`,
-      hi: `अभी आप ${mahaNameHi} महादशा (${mahaStart}–${mahaEnd}) में हैं, लगभग ${mahaYears} वर्षों का अध्याय जहाँ ${mahaThemes.hi} मुख्य विषय रहते हैं।${antarLine.hi} इसे अपने जीवन के मौसम की तरह समझें — अच्छा या बुरा नहीं, बस एक विशेष दिशा।`,
+      en: `Right now you are in the ${mahaNameEn} Maha Dasha (${mahaStart}–${mahaEnd}), a roughly ${mahaYears}-year chapter where themes of ${mahaThemes.en} take center stage.${antarLine.en} Think of it as the season your life is in  –  not good or bad, just a particular focus.`,
+      hi: `अभी आप ${mahaNameHi} महादशा (${mahaStart}–${mahaEnd}) में हैं, लगभग ${mahaYears} वर्षों का अध्याय जहाँ ${mahaThemes.hi} मुख्य विषय रहते हैं।${antarLine.hi} इसे अपने जीवन के मौसम की तरह समझें  –  अच्छा या बुरा नहीं, बस एक विशेष दिशा।`,
     },
     learnMoreHref: '/learn/modules/8-1',
     learnMoreLabel: { en: 'Learn about Dashas', hi: 'दशाओं के बारे में जानें' },
@@ -320,36 +320,36 @@ function buildWatchSection(kundali: KundaliData): ELI5Section | null {
   const mars = kundali.planets.find(p => p.planet.id === 2);
   if (mars && [1, 4, 7, 8, 12].includes(mars.house)) {
     items.push({
-      en: `Mars is in your ${ordinal(mars.house)} house, which classical texts flag as "Manglik." This is about timing in relationships, not bad luck. Many people share this placement and have happy marriages — awareness helps you plan, not worry.`,
-      hi: `मंगल आपके ${mars.house}वें भाव में है, जिसे शास्त्र "मांगलिक" कहते हैं। यह रिश्तों के समय के बारे में है, दुर्भाग्य नहीं। बहुत से लोगों की कुंडली में यह है और वे सुखी विवाहित हैं — जानकारी चिंता के लिए नहीं, योजना के लिए है।`,
+      en: `Mars is in your ${ordinal(mars.house)} house, which classical texts flag as "Manglik." This is about timing in relationships, not bad luck. Many people share this placement and have happy marriages  –  awareness helps you plan, not worry.`,
+      hi: `मंगल आपके ${mars.house}वें भाव में है, जिसे शास्त्र "मांगलिक" कहते हैं। यह रिश्तों के समय के बारे में है, दुर्भाग्य नहीं। बहुत से लोगों की कुंडली में यह है और वे सुखी विवाहित हैं  –  जानकारी चिंता के लिए नहीं, योजना के लिए है।`,
     });
   }
 
   // Check for Sade Sati
   if (kundali.sadeSati && kundali.sadeSati.isActive) {
     items.push({
-      en: `Saturn is currently transiting near your Moon — this is called "Sade Sati." It is a period of deep growth through patience. Things may feel slower, but the lessons learned now build lasting foundations.`,
-      hi: `शनि अभी आपके चन्द्र के पास गोचर कर रहा है — इसे "साढ़े साती" कहते हैं। यह धैर्य से गहरे विकास का काल है। चीज़ें धीमी लग सकती हैं, पर अभी सीखे गए सबक स्थायी नींव रखते हैं।`,
+      en: `Saturn is currently transiting near your Moon  –  this is called "Sade Sati." It is a period of deep growth through patience. Things may feel slower, but the lessons learned now build lasting foundations.`,
+      hi: `शनि अभी आपके चन्द्र के पास गोचर कर रहा है  –  इसे "साढ़े साती" कहते हैं। यह धैर्य से गहरे विकास का काल है। चीज़ें धीमी लग सकती हैं, पर अभी सीखे गए सबक स्थायी नींव रखते हैं।`,
     });
   }
 
-  // Check for debilitated planets (non-node, non-combust — just debilitated)
+  // Check for debilitated planets (non-node, non-combust  –  just debilitated)
   const debilitated = kundali.planets.filter(p => p.isDebilitated && p.planet.id <= 6);
   if (debilitated.length > 0) {
     const pNameEn = lt(debilitated[0].planet.name, 'en');
     const pNameHi = lt(debilitated[0].planet.name, 'hi');
     const dom = PLANET_DOMAINS[pNameEn] || { en: 'its domain', hi: 'इसके क्षेत्र' };
     items.push({
-      en: `${pNameEn} is in a less comfortable sign (debilitated). This doesn't mean it can't work — it just works differently. In the area of ${dom.en}, you may need extra conscious effort, which often builds unusual depth.`,
-      hi: `${pNameHi} एक कम अनुकूल राशि में है (नीच)। इसका मतलब यह नहीं कि यह काम नहीं कर सकता — बस अलग तरीके से करता है। ${dom.hi} के क्षेत्र में आपको अतिरिक्त सचेत प्रयास की ज़रूरत हो सकती है, जो अक्सर असाधारण गहराई विकसित करता है।`,
+      en: `${pNameEn} is in a less comfortable sign (debilitated). This doesn't mean it can't work  –  it just works differently. In the area of ${dom.en}, you may need extra conscious effort, which often builds unusual depth.`,
+      hi: `${pNameHi} एक कम अनुकूल राशि में है (नीच)। इसका मतलब यह नहीं कि यह काम नहीं कर सकता  –  बस अलग तरीके से करता है। ${dom.hi} के क्षेत्र में आपको अतिरिक्त सचेत प्रयास की ज़रूरत हो सकती है, जो अक्सर असाधारण गहराई विकसित करता है।`,
     });
   }
 
   if (items.length === 0) {
-    // Nothing challenging found — give a positive default
+    // Nothing challenging found  –  give a positive default
     items.push({
-      en: `No major classical challenges stand out in your chart. This is a good foundation — focus on leveraging your strengths and exploring the yogas above for growth areas.`,
-      hi: `आपकी कुंडली में कोई प्रमुख शास्त्रीय चुनौती नहीं दिखती। यह एक अच्छी नींव है — अपनी शक्तियों का लाभ उठाएँ और ऊपर दिए योगों को विकास के लिए देखें।`,
+      en: `No major classical challenges stand out in your chart. This is a good foundation  –  focus on leveraging your strengths and exploring the yogas above for growth areas.`,
+      hi: `आपकी कुंडली में कोई प्रमुख शास्त्रीय चुनौती नहीं दिखती। यह एक अच्छी नींव है  –  अपनी शक्तियों का लाभ उठाएँ और ऊपर दिए योगों को विकास के लिए देखें।`,
     });
   }
 

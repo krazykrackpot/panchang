@@ -14,8 +14,8 @@ interface Props { locale: string }
  * Static diagrams showing:
  * 1. The two orbital planes and their 5.15° tilt
  * 2. Rahu and Ketu as intersection nodes
- * 3. Solar eclipse geometry (Sun—Moon—Earth aligned at a node)
- * 4. Lunar eclipse geometry (Sun—Earth—Moon aligned at a node)
+ * 3. Solar eclipse geometry (Sun – Moon – Earth aligned at a node)
+ * 4. Lunar eclipse geometry (Sun – Earth – Moon aligned at a node)
  */
 export default function EclipseAnimation({ locale }: Props) {
   const [tab, setTab] = useState<'planes' | 'solar' | 'lunar'>('planes');
@@ -64,7 +64,7 @@ function OrbitalPlanesDiagram({ locale }: { locale: string }) {
   // Oblique view: Sun at center-left, Earth at right, Moon's orbit large and clear
   const W = 800, H = 520, CX = 280, CY = 250;
   const ERX = 220, ERY = 90; // Earth orbit radii (smaller to give room for Moon orbit)
-  const MRX = 140, MRY = 55; // Moon orbit radii — LARGE for clarity
+  const MRX = 140, MRY = 55; // Moon orbit radii  –  LARGE for clarity
   const TILT = 35; // visual tilt in px (exaggerated for visibility)
 
   // Earth at right side of orbit
@@ -72,9 +72,9 @@ function OrbitalPlanesDiagram({ locale }: { locale: string }) {
   const earthX = CX + ERX * Math.cos(earthAngle);
   const earthY = CY + ERY * Math.sin(earthAngle);
 
-  // Moon orbit path — ecliptic-aligned (ghost)
+  // Moon orbit path  –  ecliptic-aligned (ghost)
   const eclipticOrbit = ellipsePath(earthX, earthY, MRX, MRY);
-  // Moon orbit path — tilted
+  // Moon orbit path  –  tilted
   const tiltedOrbit = tiltedEllipsePath(earthX, earthY, MRX, MRY, TILT);
 
   // Nodes: where tilted orbit intersects ecliptic orbit (left and right of Earth)
@@ -105,10 +105,10 @@ function OrbitalPlanesDiagram({ locale }: { locale: string }) {
       <EarthIcon cx={earthX} cy={earthY} r={12} />
       <Label x={earthX} y={earthY + 22} text={msg('earth', locale)} color="#60a5fa" size={10} bold />
 
-      {/* ── Moon's orbit — ecliptic-aligned ghost ── */}
+      {/* ── Moon's orbit  –  ecliptic-aligned ghost ── */}
       <path d={eclipticOrbit} fill="none" stroke="#d4a853" strokeWidth="0.7" strokeDasharray="3 4" opacity="0.2" />
 
-      {/* ── Moon's orbit — TILTED ── */}
+      {/* ── Moon's orbit  –  TILTED ── */}
       <path d={tiltedOrbit} fill="none" stroke="#a78bfa" strokeWidth="2.2" strokeDasharray="8 4" opacity="0.65" />
       <Label x={earthX + MRX + 12} y={earthY - TILT - 8} text={msg('moonOrbit', locale)} color="#a78bfa" size={10} bold />
 
@@ -155,14 +155,14 @@ function OrbitalPlanesDiagram({ locale }: { locale: string }) {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════════
-   DIAGRAM 2: Solar Eclipse — Sun, Moon, Earth aligned at a node
+   DIAGRAM 2: Solar Eclipse  –  Sun, Moon, Earth aligned at a node
    ═══════════════════════════════════════════════════════════════════════════════ */
 function SolarEclipseDiagram({ locale }: { locale: string }) {
   const W = 800, H = 400;
   const Y = 180;
 
   const sunX = 100;
-  const rahuX = 340;    // Rahu node — where eclipse happens
+  const rahuX = 340;    // Rahu node  –  where eclipse happens
   const earthX = 640;
   const ketuY_offset = 50; // Ketu shown on the tilted orbit, above/below ecliptic
 
@@ -181,7 +181,7 @@ function SolarEclipseDiagram({ locale }: { locale: string }) {
       <line x1="30" y1={Y} x2={W - 30} y2={Y} stroke="#d4a853" strokeWidth="2" opacity="0.5" />
       <Label x={50} y={Y - 10} text={msg('eclipticPlaneSvg', locale)} color="#d4a853" size={9} align="start" />
 
-      {/* Moon's tilted orbit line — extends through both nodes */}
+      {/* Moon's tilted orbit line  –  extends through both nodes */}
       <line x1={rahuX - orbitExtent} y1={Y + ketuY_offset} x2={rahuX + orbitExtent} y2={Y - ketuY_offset} stroke="#a78bfa" strokeWidth="1.8" strokeDasharray="7 4" opacity="0.5" />
       <text x={rahuX + orbitExtent + 5} y={Y - ketuY_offset} fontSize="11" fill="#a78bfa" fontWeight="bold" opacity="0.8">5.15°</text>
       <text x={rahuX + orbitExtent + 5} y={Y - ketuY_offset + 12} fontSize="8" fill="#a78bfa" opacity="0.5">{msg('moonOrbitSvg', locale)}</text>
@@ -203,13 +203,13 @@ function SolarEclipseDiagram({ locale }: { locale: string }) {
       <circle cx={rahuX + 5} cy={Y - 3} r="14" fill="#04071a" opacity="0.6" />
       <Label x={rahuX} y={Y - 28} text={msg('moonNewMoon', locale)} color="#94a3b8" size={10} bold />
 
-      {/* ☊ RAHU — where eclipse happens */}
+      {/* ☊ RAHU  –  where eclipse happens */}
       <circle cx={rahuX} cy={Y} r="24" fill="none" stroke="#22c55e" strokeWidth="2.5" opacity="0.6" />
       <text x={rahuX - 30} y={Y + 44} fontSize="14" fill="#f0d48a" fontWeight="bold">☊</text>
       <text x={rahuX - 14} y={Y + 44} fontSize="11" fill="#f0d48a" fontWeight="bold">{msg('rahu', locale)}</text>
       <text x={rahuX - 30} y={Y + 56} fontSize="8" fill="#d4a853" opacity="0.6">{msg('ascendingNodeEclipseHere', locale)}</text>
 
-      {/* ☋ KETU — on the opposite side of the tilted orbit */}
+      {/* ☋ KETU  –  on the opposite side of the tilted orbit */}
       <circle cx={rahuX - orbitExtent + 20} cy={Y + ketuY_offset - 6} r="10" fill="none" stroke="#c4b5fd" strokeWidth="2" opacity="0.6" />
       <text x={rahuX - orbitExtent + 20} y={Y + ketuY_offset - 2} textAnchor="middle" fontSize="12" fill="#c4b5fd" fontWeight="bold">☋</text>
       <text x={rahuX - orbitExtent + 20} y={Y + ketuY_offset + 12} textAnchor="middle" fontSize="9" fill="#c4b5fd" fontWeight="bold">{msg('ketu', locale)}</text>
@@ -233,7 +233,7 @@ function SolarEclipseDiagram({ locale }: { locale: string }) {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════════
-   DIAGRAM 3: Lunar Eclipse — Sun, Earth, Moon aligned at a node
+   DIAGRAM 3: Lunar Eclipse  –  Sun, Earth, Moon aligned at a node
    ═══════════════════════════════════════════════════════════════════════════════ */
 function LunarEclipseDiagram({ locale }: { locale: string }) {
   const W = 800, H = 400;
@@ -241,7 +241,7 @@ function LunarEclipseDiagram({ locale }: { locale: string }) {
 
   const sunX = 100;
   const earthX = 360;
-  const ketuX = 600;    // Ketu node — where eclipse happens
+  const ketuX = 600;    // Ketu node  –  where eclipse happens
   const orbitExtent = 160;
   const ketuY_offset = 50;
 
@@ -254,7 +254,7 @@ function LunarEclipseDiagram({ locale }: { locale: string }) {
       <line x1="30" y1={Y} x2={W - 30} y2={Y} stroke="#d4a853" strokeWidth="2" opacity="0.5" />
       <Label x={50} y={Y - 10} text={msg('eclipticPlaneSvg', locale)} color="#d4a853" size={9} align="start" />
 
-      {/* Moon's tilted orbit line — extends through both nodes */}
+      {/* Moon's tilted orbit line  –  extends through both nodes */}
       <line x1={ketuX - orbitExtent} y1={Y + ketuY_offset} x2={ketuX + orbitExtent} y2={Y - ketuY_offset} stroke="#a78bfa" strokeWidth="1.8" strokeDasharray="7 4" opacity="0.5" />
       <text x={ketuX + orbitExtent + 5} y={Y - ketuY_offset} fontSize="11" fill="#a78bfa" fontWeight="bold" opacity="0.8">5.15°</text>
       <text x={ketuX + orbitExtent + 5} y={Y - ketuY_offset + 12} fontSize="8" fill="#a78bfa" opacity="0.5">{msg('moonOrbitSvg', locale)}</text>
@@ -276,18 +276,18 @@ function LunarEclipseDiagram({ locale }: { locale: string }) {
       <EarthIcon cx={earthX} cy={Y} r={18} />
       <Label x={earthX} y={Y + 30} text={msg('earth', locale)} color="#60a5fa" size={12} bold />
 
-      {/* Moon at Ketu — Blood Moon */}
+      {/* Moon at Ketu  –  Blood Moon */}
       <circle cx={ketuX} cy={Y} r="16" fill="#c0392b" />
       <circle cx={ketuX - 4} cy={Y - 3} r="5" fill="#e74c3c" opacity="0.3" />
       <Label x={ketuX} y={Y - 28} text={msg('moonFullMoonBloodMoon', locale)} color="#fca5a5" size={10} bold />
 
-      {/* ☋ KETU — where this eclipse happens */}
+      {/* ☋ KETU  –  where this eclipse happens */}
       <circle cx={ketuX} cy={Y} r="24" fill="none" stroke="#ef4444" strokeWidth="2.5" opacity="0.6" />
       <text x={ketuX + 30} y={Y + 44} fontSize="14" fill="#c4b5fd" fontWeight="bold">☋</text>
       <text x={ketuX + 46} y={Y + 44} fontSize="11" fill="#c4b5fd" fontWeight="bold">{msg('ketu', locale)}</text>
       <text x={ketuX + 30} y={Y + 56} fontSize="8" fill="#a78bfa" opacity="0.6">{msg('descendingNodeEclipseHere', locale)}</text>
 
-      {/* ☊ RAHU — on the opposite side of the tilted orbit */}
+      {/* ☊ RAHU  –  on the opposite side of the tilted orbit */}
       <circle cx={ketuX + orbitExtent - 20} cy={Y - ketuY_offset + 6} r="10" fill="none" stroke="#f0d48a" strokeWidth="2" opacity="0.6" />
       <text x={ketuX + orbitExtent - 20} y={Y - ketuY_offset + 10} textAnchor="middle" fontSize="12" fill="#f0d48a" fontWeight="bold">☊</text>
       <text x={ketuX + orbitExtent - 20} y={Y - ketuY_offset - 6} textAnchor="middle" fontSize="9" fill="#f0d48a" fontWeight="bold">{msg('rahu', locale)}</text>

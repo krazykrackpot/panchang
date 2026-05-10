@@ -70,7 +70,7 @@ export default function QuickPersonalize({
           onChange={handleNakshatraChange}
           className="bg-[#161b42] border border-[#d4a853]/20 text-[#e6e2d8] rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#d4a853] focus:ring-2 focus:ring-[#d4a853]/15"
         >
-          <option value="">— Any —</option>
+          <option value=""> –  Any  – </option>
           {NAKSHATRAS.map((n) => (
             <option key={n.id} value={n.id}>
               {tl(n.name, locale)}
@@ -87,7 +87,7 @@ export default function QuickPersonalize({
           onChange={handleRashiChange}
           className="bg-[#161b42] border border-[#d4a853]/20 text-[#e6e2d8] rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#d4a853] focus:ring-2 focus:ring-[#d4a853]/15"
         >
-          <option value="">— Any —</option>
+          <option value=""> –  Any  – </option>
           {RASHIS.map((r) => (
             <option key={r.id} value={r.id}>
               {tl(r.name, locale)}

@@ -47,7 +47,7 @@ export const ECLIPSE_INTERPRETATIONS: Record<'solar' | 'lunar', Record<number, E
     2: {
       summary: 'Financial matters and family dynamics undergo significant shifts. Hidden issues around money, speech, or family values come to light.',
       lifeAreas: ['income and savings', 'family relationships', 'speech and communication', 'food habits'],
-      advice: 'Review your financial plans carefully. Avoid major purchases or investments during the eclipse window. Family conversations may be more charged than usual — choose words deliberately.',
+      advice: 'Review your financial plans carefully. Avoid major purchases or investments during the eclipse window. Family conversations may be more charged than usual  –  choose words deliberately.',
       duration: 'Financial shifts manifest over 3-6 months. Family dynamics may take up to a year to settle.',
       remedies: ['Donate white foods (rice, milk) on Fridays', 'Recite Shri Suktam for abundance', 'Feed cows or birds regularly'],
     },
@@ -103,7 +103,7 @@ export const ECLIPSE_INTERPRETATIONS: Record<'solar' | 'lunar', Record<number, E
     10: {
       summary: 'Career, public standing, and authority undergo major realignment. Promotions, career changes, or shifts in your relationship with authority figures are likely.',
       lifeAreas: ['career and profession', 'public reputation', 'government and authority', 'father'],
-      advice: 'Career decisions made now have long-lasting effects. Do not rush job changes but be prepared for unexpected opportunities. Your public image may shift — ensure it aligns with your authentic self.',
+      advice: 'Career decisions made now have long-lasting effects. Do not rush job changes but be prepared for unexpected opportunities. Your public image may shift  –  ensure it aligns with your authentic self.',
       duration: 'Career shifts manifest over 6-12 months. Reputation changes may take up to 2 years to fully settle.',
       remedies: ['Recite Surya mantra for career success', 'Donate red sandalwood or copper on Sundays', 'Offer water to the Sun at sunrise'],
     },
@@ -133,14 +133,14 @@ export const ECLIPSE_INTERPRETATIONS: Record<'solar' | 'lunar', Record<number, E
     2: {
       summary: 'Emotional attachments to money, possessions, or family traditions come to a head. A financial situation reaches resolution or culmination.',
       lifeAreas: ['emotional relationship with money', 'family traditions', 'self-worth and values', 'dietary habits'],
-      advice: 'Review emotional spending patterns. Family secrets or unspoken dynamics may surface — address them with compassion. Reassess what truly has value to you beyond material worth.',
+      advice: 'Review emotional spending patterns. Family secrets or unspoken dynamics may surface  –  address them with compassion. Reassess what truly has value to you beyond material worth.',
       duration: 'Financial emotional patterns shift within 1-3 months. Family dynamics take 3-6 months.',
       remedies: ['Fast on full moon days (Purnima Vrat)', 'Donate dairy products or white foods', 'Recite Lakshmi Ashtottara for value alignment'],
     },
     3: {
       summary: 'Emotional dynamics with siblings or neighbors reach a turning point. A communication project or learning endeavor concludes or transforms.',
       lifeAreas: ['sibling emotional bonds', 'mental patterns and habits', 'writing or teaching projects', 'local community ties'],
-      advice: 'Old ways of thinking and communicating are being released. A writing or creative project may reach completion. Pay attention to recurring thoughts — they reveal what needs to be let go.',
+      advice: 'Old ways of thinking and communicating are being released. A writing or creative project may reach completion. Pay attention to recurring thoughts  –  they reveal what needs to be let go.',
       duration: 'Mental pattern shifts are immediate. Sibling and communication matters resolve within 3 months.',
       remedies: ['Recite Saraswati mantra for mental clarity', 'Donate books or educational materials', 'Practice pranayama to calm the mind'],
     },
@@ -154,21 +154,21 @@ export const ECLIPSE_INTERPRETATIONS: Record<'solar' | 'lunar', Record<number, E
     5: {
       summary: 'Romantic feelings, creative projects, or matters with children reach an emotional crescendo. A love affair or artistic work reaches its natural conclusion or peak.',
       lifeAreas: ['romantic emotions', 'creative fulfillment', 'children\'s wellbeing', 'heart\'s desires'],
-      advice: 'Emotions in romance run high — avoid making permanent decisions based on temporary feelings. A creative project may reach a natural completion point. Children may need extra emotional support.',
+      advice: 'Emotions in romance run high  –  avoid making permanent decisions based on temporary feelings. A creative project may reach a natural completion point. Children may need extra emotional support.',
       duration: 'Romantic culminations within 2 weeks to 1 month. Creative projects resolve within 3 months.',
       remedies: ['Recite Santan Gopal mantra for children\'s welfare', 'Offer sweets at a Hanuman temple', 'Practice heart-opening meditation or kirtan'],
     },
     6: {
       summary: 'Health patterns, work stress, or conflicts with rivals reach an emotional peak. A chronic issue may finally be understood and addressed.',
       lifeAreas: ['health emotions and anxiety', 'work-life balance', 'resolution of conflicts', 'service motivations'],
-      advice: 'Stress and anxiety may peak — this is the clearing before relief. Long-standing health issues may get a definitive diagnosis or treatment path. Workplace grievances surface for resolution.',
+      advice: 'Stress and anxiety may peak  –  this is the clearing before relief. Long-standing health issues may get a definitive diagnosis or treatment path. Workplace grievances surface for resolution.',
       duration: 'Health revelations within 2 weeks. Work stress resolves within 1-3 months.',
       remedies: ['Recite Dhanvantari mantra for healing', 'Donate medicines or health supplies', 'Practice Yoga Nidra for deep rest and restoration'],
     },
     7: {
-      summary: 'A relationship reaches its emotional truth. Partnerships are tested by the light of the full moon — what is real strengthens, what is illusion falls away.',
+      summary: 'A relationship reaches its emotional truth. Partnerships are tested by the light of the full moon  –  what is real strengthens, what is illusion falls away.',
       lifeAreas: ['marriage dynamics', 'partnership emotions', 'public relationships', 'contractual commitments'],
-      advice: 'This is one of the most relationship-sensitive eclipse positions. Give your partner space and avoid ultimatums. The truth of the relationship becomes clear — trust what you feel, not just what you see.',
+      advice: 'This is one of the most relationship-sensitive eclipse positions. Give your partner space and avoid ultimatums. The truth of the relationship becomes clear  –  trust what you feel, not just what you see.',
       duration: 'Relationship revelations within 2 weeks. Full integration of changes over 6 months.',
       remedies: ['Worship Radha-Krishna or Shiva-Parvati together', 'Donate sweets to married couples', 'Recite Swayamvara Parvati mantra for harmony'],
     },
@@ -182,7 +182,7 @@ export const ECLIPSE_INTERPRETATIONS: Record<'solar' | 'lunar', Record<number, E
     9: {
       summary: 'A belief system or philosophical framework you have held reaches its emotional limit. Disillusionment with a teacher or teaching leads to deeper wisdom.',
       lifeAreas: ['faith and belief', 'relationship with guru', 'philosophical understanding', 'sense of meaning'],
-      advice: 'Question what you have accepted on faith alone. A teacher or belief system may disappoint — this clears space for more authentic wisdom. Long-distance matters or legal issues may resolve.',
+      advice: 'Question what you have accepted on faith alone. A teacher or belief system may disappoint  –  this clears space for more authentic wisdom. Long-distance matters or legal issues may resolve.',
       duration: 'Philosophical shifts are immediate and profound. Legal and travel matters resolve within 3-6 months.',
       remedies: ['Recite Guru Paduka Stotram', 'Donate spiritual books or fund education', 'Practice silent meditation or Vipassana'],
     },
@@ -203,7 +203,7 @@ export const ECLIPSE_INTERPRETATIONS: Record<'solar' | 'lunar', Record<number, E
     12: {
       summary: 'The deepest emotional release occurs here. Dreams, subconscious patterns, and spiritual longing reach a peak. Something is ending at the soul level.',
       lifeAreas: ['subconscious patterns', 'spiritual awakening', 'karmic release', 'isolation and retreat'],
-      advice: 'Honor the need for solitude and rest. Vivid dreams carry important messages. This is one of the most spiritually potent eclipse positions — meditation and prayer are especially powerful now.',
+      advice: 'Honor the need for solitude and rest. Vivid dreams carry important messages. This is one of the most spiritually potent eclipse positions  –  meditation and prayer are especially powerful now.',
       duration: 'Spiritual experiences peak within 1-2 weeks. Karmic release patterns unfold over 6-12 months.',
       remedies: ['Practice deep meditation daily for 40 days', 'Recite Vishnu Sahasranama before sleep', 'Donate to orphanages or institutions caring for the helpless'],
     },

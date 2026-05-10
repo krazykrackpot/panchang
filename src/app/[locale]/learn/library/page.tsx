@@ -48,8 +48,8 @@ const TEXTS: Text[] = [
     category: 'astronomy',
     license: 'pd',
     url: 'https://archive.org/details/VedangaJyotisa',
-    desc: 'The oldest surviving Vedic astronomical text — the origin of Jyotish as a Vedanga. Covers tithi, nakshatra, and ritual timing through solar and lunar positions. 36 verses (Rigvedic recension), 43 verses (Yajurvedic). The root from which the entire tradition grew.',
-    descHi: 'सबसे प्राचीन वैदिक ज्योतिष ग्रंथ — वेदांग ज्योतिष की उत्पत्ति। तिथि, नक्षत्र और सौर-चंद्र स्थिति से अनुष्ठान समय की गणना।',
+    desc: 'The oldest surviving Vedic astronomical text  –  the origin of Jyotish as a Vedanga. Covers tithi, nakshatra, and ritual timing through solar and lunar positions. 36 verses (Rigvedic recension), 43 verses (Yajurvedic). The root from which the entire tradition grew.',
+    descHi: 'सबसे प्राचीन वैदिक ज्योतिष ग्रंथ  –  वेदांग ज्योतिष की उत्पत्ति। तिथि, नक्षत्र और सौर-चंद्र स्थिति से अनुष्ठान समय की गणना।',
   },
   {
     name: 'Aryabhatiya',
@@ -170,7 +170,7 @@ const TEXTS: Text[] = [
     category: 'natal',
     license: 'pd',
     url: 'https://archive.org/details/Astrology_Books_by_B_Suryanarayana_Row',
-    desc: 'One of the most cited classical texts on planetary yogas. An extremely detailed catalog of rajayogas, dhana yogas, and negative combinations — over 2,000 slokas covering almost every possible planetary combination. Rao\'s 1899 translation is definitively public domain and remains the standard English version.',
+    desc: 'One of the most cited classical texts on planetary yogas. An extremely detailed catalog of rajayogas, dhana yogas, and negative combinations  –  over 2,000 slokas covering almost every possible planetary combination. Rao\'s 1899 translation is definitively public domain and remains the standard English version.',
     descHi: '2,000 से अधिक श्लोकों में राजयोग, धन योग और दुष्ट योगों का विस्तृत वर्गीकरण। ग्रह योग पहचान का प्रमुख संदर्भ ग्रंथ।',
   },
   {
@@ -181,7 +181,7 @@ const TEXTS: Text[] = [
     category: 'natal',
     license: 'open',
     url: 'https://archive.org/details/BhavarthaRatnakaraByBVRaman',
-    desc: 'Organised by bhava (house), giving sloka-by-sloka planetary combinations for each house\'s significations. Exceptionally practical — used by astrologers as a quick reference for house lord combinations and inter-house relationships. B.V. Raman\'s translation is clear and accessible even for beginners.',
+    desc: 'Organised by bhava (house), giving sloka-by-sloka planetary combinations for each house\'s significations. Exceptionally practical  –  used by astrologers as a quick reference for house lord combinations and inter-house relationships. B.V. Raman\'s translation is clear and accessible even for beginners.',
     descHi: 'भाव-आधारित संरचना में ग्रह संयोगों का श्लोकशः विवरण। भाव स्वामी संयोगों के त्वरित संदर्भ के लिए उत्तम।',
   },
   {
@@ -204,7 +204,7 @@ const TEXTS: Text[] = [
     license: 'open',
     url: 'https://archive.org/details/HoraSaraRSanthanamEng',
     desc: 'A 1,209-sloka natal astrology text by the son of Varahamihira, bridging the style of Varahamihira and the later BPHS tradition. Covers planetary natures, house results, and yogas. Historically significant as one of the earliest post-Varahamihira texts and evidence of how the tradition evolved.',
-    descHi: '1,209 श्लोकों में जन्म ज्योतिष — वराहमिहिर-पुत्र का ग्रंथ। BPHS परम्परा और वराहमिहिर के बीच सेतु।',
+    descHi: '1,209 श्लोकों में जन्म ज्योतिष  –  वराहमिहिर-पुत्र का ग्रंथ। BPHS परम्परा और वराहमिहिर के बीच सेतु।',
   },
   // ── PREDICTIVE / DASHA ─────────────────────────────────────────────────────
   {
@@ -215,7 +215,7 @@ const TEXTS: Text[] = [
     category: 'predictive',
     license: 'open',
     url: 'https://archive.org/details/LaghuParashariOPVerma',
-    desc: 'The essential short text focused exclusively on Vimshottari dasha interpretation — house lord results during maha dasha and antardasha sequences. More compact and immediately applicable than the full BPHS dasha chapters. The standard starter text for learning Vimshottari timing; most practitioners memorise its core slokas.',
+    desc: 'The essential short text focused exclusively on Vimshottari dasha interpretation  –  house lord results during maha dasha and antardasha sequences. More compact and immediately applicable than the full BPHS dasha chapters. The standard starter text for learning Vimshottari timing; most practitioners memorise its core slokas.',
     descHi: 'विंशोत्तरी दशा व्याख्या का आवश्यक लघु ग्रंथ। महादशा और अंतर्दशा में भाव स्वामी फलों का सटीक विवेचन।',
   },
   {
@@ -227,7 +227,7 @@ const TEXTS: Text[] = [
     license: 'open',
     url: 'https://archive.org/details/uttkalamrita-kalidas-ps-sastri',
     desc: 'Covers karakas (planetary significators) and their role in dasha interpretation; also house meanings and yogas. The Karakamsha (navamsha of the atmakaraka) is elaborated in detail here. Widely cited in Jaimini discussions due to overlapping karakatva concepts. Essential for understanding significator-based timing.',
-    descHi: 'ग्रह कारकत्व और दशा व्याख्या में उनकी भूमिका। करकांश का विस्तृत विवेचन — जैमिनी पद्धति के लिए आवश्यक।',
+    descHi: 'ग्रह कारकत्व और दशा व्याख्या में उनकी भूमिका। करकांश का विस्तृत विवेचन  –  जैमिनी पद्धति के लिए आवश्यक।',
   },
   {
     name: 'Deva Keralam / Chandra Kala Nadi (3 vols.)',
@@ -237,7 +237,7 @@ const TEXTS: Text[] = [
     category: 'predictive',
     license: 'open',
     url: 'https://archive.org/details/deva-keralam-1-chandrakala-nadi_202309',
-    desc: '9,181 slokas, fully translated in three volumes. Organised by Moon-sign and nakshatra, giving specific predictions for planetary combinations. Uses transit triggers over natal positions for event timing — a distinct methodology from Vimshottari dasha. One of the most important Nadi predictive texts for detailed life-event timing.',
+    desc: '9,181 slokas, fully translated in three volumes. Organised by Moon-sign and nakshatra, giving specific predictions for planetary combinations. Uses transit triggers over natal positions for event timing  –  a distinct methodology from Vimshottari dasha. One of the most important Nadi predictive texts for detailed life-event timing.',
     descHi: '9,181 श्लोकों में चन्द्र राशि और नक्षत्र आधारित विस्तृत भविष्यवाणी। केरल नाडी पद्धति का प्रमुख ग्रंथ।',
   },
   // ── JAIMINI ────────────────────────────────────────────────────────────────
@@ -249,8 +249,8 @@ const TEXTS: Text[] = [
     category: 'jaimini',
     license: 'pd',
     url: 'https://archive.org/details/in.ernet.dli.2015.486584',
-    desc: 'The foundational text of the Jaimini system — the second major classical Vedic astrology tradition. Covers Chara Karakas (planetary significators that rotate each chart), Chara Dashas (time periods based on signs), Argala (planetary intervention), Arudha padas, and Karakamsha interpretation. All Jaimini features derive from these sutras.',
-    descHi: 'जैमिनी पद्धति का मूल ग्रंथ। चर कारक, चर दशा, अर्गला, आरूढ़ पद और करकांश — सभी जैमिनी सुविधाएं इसी से उद्भूत।',
+    desc: 'The foundational text of the Jaimini system  –  the second major classical Vedic astrology tradition. Covers Chara Karakas (planetary significators that rotate each chart), Chara Dashas (time periods based on signs), Argala (planetary intervention), Arudha padas, and Karakamsha interpretation. All Jaimini features derive from these sutras.',
+    descHi: 'जैमिनी पद्धति का मूल ग्रंथ। चर कारक, चर दशा, अर्गला, आरूढ़ पद और करकांश  –  सभी जैमिनी सुविधाएं इसी से उद्भूत।',
   },
   // ── MUHURTA ────────────────────────────────────────────────────────────────
   {
@@ -261,7 +261,7 @@ const TEXTS: Text[] = [
     category: 'muhurta',
     license: 'open',
     url: 'https://archive.org/details/muhurta-chintamani-kedar-datt-joshi',
-    desc: 'The standard classical reference for Muhurta — selection of auspicious times. Covers nakshatra qualifications for each type of activity, tithi suitability, vara and hora selection, Panchaka dosha, and activity-specific rules for weddings, travel, surgery, business opening, and more. Written at Kashi (~1600 CE). All Muhurta AI scoring rules derive from this text.',
+    desc: 'The standard classical reference for Muhurta  –  selection of auspicious times. Covers nakshatra qualifications for each type of activity, tithi suitability, vara and hora selection, Panchaka dosha, and activity-specific rules for weddings, travel, surgery, business opening, and more. Written at Kashi (~1600 CE). All Muhurta AI scoring rules derive from this text.',
     descHi: 'मुहूर्त शास्त्र का मानक ग्रंथ। नक्षत्र योग्यता, तिथि, वार, होरा और विशेष कार्यों के नियम। विवाह, यात्रा, व्यापार सभी के लिए।',
   },
   {
@@ -296,7 +296,7 @@ const TEXTS: Text[] = [
     license: 'cc0',
     url: 'https://archive.org/details/UJrg_prasna-tantra-by-b.-v.-raman-raman-publication',
     desc: 'Raman\'s systematic treatment of horary astrology covering Prashna chart casting, house significators, and event timing. More systematic than Prasna Marga for modern practitioners. CC0 public domain dedication makes this the legally cleanest modern text in the collection.',
-    descHi: 'होरारी ज्योतिष का व्यवस्थित विवेचन। प्रश्न कुण्डली, भाव कारक और घटना काल — CC0 लाइसेंस।',
+    descHi: 'होरारी ज्योतिष का व्यवस्थित विवेचन। प्रश्न कुण्डली, भाव कारक और घटना काल  –  CC0 लाइसेंस।',
   },
   {
     name: 'Chappanna (Prasna Shastra)',
@@ -318,7 +318,7 @@ const TEXTS: Text[] = [
     category: 'kp',
     license: 'open',
     url: 'https://archive.org/details/kp-readers',
-    desc: 'The foundational texts of the Krishnamurti Padhdhati system — the six-volume series covering: (I) casting the horoscope, (II) fundamental principles, (III) predictive stellar astrology, (IV) marriage and children, (V) transits, (VI) horary. The KP system uses Placidus houses, a 249-division sub-lord table, and refined significators for precise event timing.',
+    desc: 'The foundational texts of the Krishnamurti Padhdhati system  –  the six-volume series covering: (I) casting the horoscope, (II) fundamental principles, (III) predictive stellar astrology, (IV) marriage and children, (V) transits, (VI) horary. The KP system uses Placidus houses, a 249-division sub-lord table, and refined significators for precise event timing.',
     descHi: 'कृष्णमूर्ति पद्धति के छह मूल खंड: कुण्डली निर्माण, मूल सिद्धांत, तारकीय ज्योतिष, विवाह-संतान, गोचर और प्रश्न।',
   },
   {
@@ -330,7 +330,7 @@ const TEXTS: Text[] = [
     license: 'open',
     url: 'https://archive.org/details/in.ernet.dli.2015.352942',
     desc: 'Supplementary KP text covering advanced applications of the sub-lord system, including medical astrology, finance, and fine-grained event timing. Useful for practitioners who have mastered the six KP Readers and wish to extend the system into specialised domains.',
-    descHi: 'उप-स्वामी पद्धति के उन्नत अनुप्रयोग — चिकित्सा ज्योतिष, वित्त और घटना काल का सूक्ष्म निर्धारण।',
+    descHi: 'उप-स्वामी पद्धति के उन्नत अनुप्रयोग  –  चिकित्सा ज्योतिष, वित्त और घटना काल का सूक्ष्म निर्धारण।',
   },
   // ── NADI ───────────────────────────────────────────────────────────────────
   {
@@ -341,8 +341,8 @@ const TEXTS: Text[] = [
     category: 'nadi',
     license: 'open',
     url: 'https://archive.org/details/jyotish-bhrigu-nandi-nadi-rg-rao',
-    desc: 'Key English-language work on the Bhrigu Nandi Nadi system — prediction based on planetary pairs and their inter-relationships rather than standard house analysis. Uses Jupiter as the primary significator and interprets planetary conjunctions in a manner distinct from classical Parashara. Relevant to the Bhrigu Bindu concept used in this application.',
-    descHi: 'भृगु नन्दी नाडी पद्धति — ग्रह युगलों और उनके संबंधों पर आधारित भविष्यवाणी। बृहस्पति प्रमुख कारक।',
+    desc: 'Key English-language work on the Bhrigu Nandi Nadi system  –  prediction based on planetary pairs and their inter-relationships rather than standard house analysis. Uses Jupiter as the primary significator and interprets planetary conjunctions in a manner distinct from classical Parashara. Relevant to the Bhrigu Bindu concept used in this application.',
+    descHi: 'भृगु नन्दी नाडी पद्धति  –  ग्रह युगलों और उनके संबंधों पर आधारित भविष्यवाणी। बृहस्पति प्रमुख कारक।',
   },
   {
     name: 'Brighu Naadi Sangraha',
@@ -422,7 +422,7 @@ export default function LibraryPage() {
           {Object.entries(LICENSE_BADGE).map(([key, b]) => (
             <span key={key} className={`px-2.5 py-1 rounded-full border font-medium ${b.cls}`}>{b.label}</span>
           ))}
-          <span className="text-text-secondary self-center">— license classification</span>
+          <span className="text-text-secondary self-center"> –  license classification</span>
         </div>
       </motion.div>
 
@@ -452,7 +452,7 @@ export default function LibraryPage() {
       {/* Table */}
       <div className="rounded-2xl border border-gold-primary/12 overflow-hidden">
 
-        {/* Table header — desktop */}
+        {/* Table header  –  desktop */}
         <div className="hidden md:grid grid-cols-[2fr_1.4fr_0.8fr_0.9fr_auto] gap-4 px-5 py-3 bg-gold-primary/5 border-b border-gold-primary/10 text-text-secondary text-xs uppercase tracking-wider font-semibold">
           <span>{tl({ en: 'Text', hi: 'ग्रंथ', sa: 'ग्रन्थः' }, locale)}</span>
           <span>{tl({ en: 'Author', hi: 'लेखक', sa: 'रचयिता' }, locale)}</span>
@@ -562,7 +562,7 @@ export default function LibraryPage() {
 
       {/* Footer note */}
       <div className="mt-6 rounded-xl bg-gold-primary/5 border border-gold-primary/10 px-5 py-4 text-text-secondary text-xs leading-relaxed" style={bodyFont}>
-        {tl({ en: 'All texts are freely available on archive.org. "Public Domain" entries are definitively clear (pre-1928 publications or explicitly cleared). "CC0" entries are dedicated to the public domain by their uploader. "Open Access" entries are freely hosted on archive.org — individual copyright status for post-1928 Indian publications may vary, but no active enforcement is known.', hi: 'सभी ग्रंथ archive.org पर निःशुल्क उपलब्ध हैं। "Public Domain" ग्रंथ निश्चित रूप से मुक्त हैं (1928 से पूर्व प्रकाशित)। "CC0" ग्रंथ अपलोडकर्ता द्वारा सार्वजनिक डोमेन में दिए गए हैं। "Open Access" ग्रंथ archive.org पर स्वतंत्र रूप से उपलब्ध हैं।', sa: 'सभी ग्रंथ archive.org पर निःशुल्क उपलब्ध हैं। "Public Domain" ग्रंथ निश्चित रूप से मुक्त हैं (1928 से पूर्व प्रकाशित)। "CC0" ग्रंथ अपलोडकर्ता द्वारा सार्वजनिक डोमेन में दिए गए हैं। "Open Access" ग्रंथ archive.org पर स्वतंत्र रूप से उपलब्ध हैं।' }, locale)}
+        {tl({ en: 'All texts are freely available on archive.org. "Public Domain" entries are definitively clear (pre-1928 publications or explicitly cleared). "CC0" entries are dedicated to the public domain by their uploader. "Open Access" entries are freely hosted on archive.org  –  individual copyright status for post-1928 Indian publications may vary, but no active enforcement is known.', hi: 'सभी ग्रंथ archive.org पर निःशुल्क उपलब्ध हैं। "Public Domain" ग्रंथ निश्चित रूप से मुक्त हैं (1928 से पूर्व प्रकाशित)। "CC0" ग्रंथ अपलोडकर्ता द्वारा सार्वजनिक डोमेन में दिए गए हैं। "Open Access" ग्रंथ archive.org पर स्वतंत्र रूप से उपलब्ध हैं।', sa: 'सभी ग्रंथ archive.org पर निःशुल्क उपलब्ध हैं। "Public Domain" ग्रंथ निश्चित रूप से मुक्त हैं (1928 से पूर्व प्रकाशित)। "CC0" ग्रंथ अपलोडकर्ता द्वारा सार्वजनिक डोमेन में दिए गए हैं। "Open Access" ग्रंथ archive.org पर स्वतंत्र रूप से उपलब्ध हैं।' }, locale)}
       </div>
     </div>
   );

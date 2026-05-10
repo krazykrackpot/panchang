@@ -103,7 +103,7 @@ function checkDashaTransition(snapshot: UserSnapshot): NotificationPayload | nul
 
   const title = `${currentName} Antardasha ending soon`;
   const body = nextName
-    ? `Your ${currentName} Antardasha ends on ${formatDate(currentAntar.endDate)}. ${nextName} Antardasha begins — prepare for a shift in energy and focus.`
+    ? `Your ${currentName} Antardasha ends on ${formatDate(currentAntar.endDate)}. ${nextName} Antardasha begins  –  prepare for a shift in energy and focus.`
     : `Your ${currentName} Antardasha ends on ${formatDate(currentAntar.endDate)}. A new maha dasha period may begin soon.`;
 
   return {
@@ -142,7 +142,7 @@ function checkTransitAlerts(snapshot: UserSnapshot): NotificationPayload[] {
       alerts.push({
         type: 'transit_alert',
         title: 'Sade Sati is active',
-        body: `Saturn's Sade Sati (${phase} phase) is currently active for your Moon sign. This is a period of karmic lessons — patience and discipline are your allies.${ss.endDate ? ` Expected to end around ${formatDate(ss.endDate)}.` : ''}`,
+        body: `Saturn's Sade Sati (${phase} phase) is currently active for your Moon sign. This is a period of karmic lessons  –  patience and discipline are your allies.${ss.endDate ? ` Expected to end around ${formatDate(ss.endDate)}.` : ''}`,
         metadata: {
           subType: 'sade_sati_active',
           phase,
@@ -167,7 +167,7 @@ function checkFestivalReminders(festivals: string[]): NotificationPayload[] {
   return festivals.map((name) => ({
     type: 'festival_reminder' as const,
     title: `Upcoming: ${name}`,
-    body: `${name} is coming up within the next 7 days. This festival is particularly recommended for your chart — consider special puja or observance.`,
+    body: `${name} is coming up within the next 7 days. This festival is particularly recommended for your chart  –  consider special puja or observance.`,
     metadata: { festivalName: name },
   }));
 }

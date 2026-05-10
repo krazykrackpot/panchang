@@ -13,8 +13,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   const title = (katha.title as Record<string, string>)[locale] || katha.title.en;
   const description = locale === 'hi'
-    ? `${title} — विधि, फल और कब करें। Dekho Panchang पर पढ़ें।`
-    : `${title} — Vidhi, benefits, and when to observe. Read on Dekho Panchang.`;
+    ? `${title}  –  विधि, फल और कब करें। Dekho Panchang पर पढ़ें।`
+    : `${title}  –  Vidhi, benefits, and when to observe. Read on Dekho Panchang.`;
 
   // Build hreflang alternates for ALL locales
   const alternateLanguages: Record<string, string> = {};
@@ -64,8 +64,8 @@ export default async function Layout({ children, params }: { children: React.Rea
 
   const title = (katha.title as Record<string, string>)[locale] || katha.title.en;
   const description = locale === 'hi'
-    ? `${title} — विधि, फल और कब करें।`
-    : `${title} — Vidhi, benefits, and when to observe.`;
+    ? `${title}  –  विधि, फल और कब करें।`
+    : `${title}  –  Vidhi, benefits, and when to observe.`;
 
   const articleLD = {
     '@context': 'https://schema.org',

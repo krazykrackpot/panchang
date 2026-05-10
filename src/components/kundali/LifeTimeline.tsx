@@ -4,7 +4,7 @@ import { tl } from '@/lib/utils/trilingual';
 
 // ── Trilingual labels (extracted from inline tl() calls) ─────────────────────
 const LABELS = {
-  title: { en: 'Life Timeline — Complete Synthesis', hi: 'जीवन-रेखा — सम्पूर्ण काल-संश्लेषण', sa: 'जीवन-रेखा — सम्पूर्ण काल-संश्लेषण', ta: 'வாழ்க்கை காலக்கோடு — முழுமையான தொகுப்பு', bn: 'জীবন-রেখা — সম্পূর্ণ কাল-সংশ্লেষণ' },
+  title: { en: 'Life Timeline  –  Complete Synthesis', hi: 'जीवन-रेखा  –  सम्पूर्ण काल-संश्लेषण', sa: 'जीवन-रेखा  –  सम्पूर्ण काल-संश्लेषण', ta: 'வாழ்க்கை காலக்கோடு  –  முழுமையான தொகுப்பு', bn: 'জীবন-রেখা  –  সম্পূর্ণ কাল-সংশ্লেষণ' },
   subtitle: { en: 'All astrological systems synthesized on a single timeline', hi: 'सभी ज्योतिषीय तत्त्वों का कालानुक्रमिक समन्वय', sa: 'सभी ज्योतिषीय तत्त्वों का कालानुक्रमिक समन्वय', ta: 'அனைத்து ஜோதிட அமைப்புகளும் ஒரே காலக்கோட்டில் தொகுக்கப்பட்டது', bn: 'সকল জ্যোতিষ তত্ত্বের কালানুক্রমিক সমন্বয়' },
   vimshottari: { en: 'Vimshottari Dasha', hi: 'विंशोत्तरी दशा', sa: 'विंशोत्तरी दशा', ta: 'விம்சோத்தரி தசா', bn: 'বিংশোত্তরী দশা' },
   sadeSati: { en: 'Sade Sati (♄ transit)', hi: 'साढ़े साती (♄ गोचर)', sa: 'साढ़े साती (♄ गोचर)', ta: 'சாடே சாதி (♄ கோசாரம்)', bn: 'সাড়ে সাতি (♄ গোচর)' },
@@ -23,7 +23,7 @@ const LABELS = {
   recent: { en: 'Recent Key Periods', hi: 'हाल की महत्त्वपूर्ण अवधियाँ', sa: 'हाल की महत्त्वपूर्ण अवधियाँ', ta: 'சமீபத்திய முக்கிய காலங்கள்', bn: 'সাম্প্রতিক গুরুত্বপূর্ণ কাল' },
   synthesis: { en: 'Period-by-Period Synthesis', hi: 'दशा-वार संश्लेषण', sa: 'दशा-वार संश्लेषण', ta: 'காலவாரியான தொகுப்பு', bn: 'দশা-ভিত্তিক সংশ্লেষণ' },
   noteLabel: { en: 'Note:', hi: 'ध्यान दें:', sa: 'ध्यान दें:', ta: 'குறிப்பு:', bn: 'দ্রষ্টব্য:' },
-  noteText: { en: " Sade Sati is based on Saturn's current sky transit — independent of Vimshottari dasha. It repeats every ~30 years regardless of which planet's dasha is running. 'Yes' in different non-consecutive dashas means different Sade Sati cycles, not one long one.", hi: ' साढ़े साती शनि के वर्तमान गोचर (आकाश में स्थिति) पर आधारित है — विंशोत्तरी दशा पर नहीं। यह हर ~30 वर्षों में होती है, चाहे कोई भी दशा चल रही हो। अलग-अलग दशाओं में "हाँ" का अर्थ है भिन्न साढ़े साती चक्र।', sa: ' साढ़े साती शनि के वर्तमान गोचर (आकाश में स्थिति) पर आधारित है — विंशोत्तरी दशा पर नहीं। यह हर ~30 वर्षों में होती है, चाहे कोई भी दशा चल रही हो। अलग-अलग दशाओं में "हाँ" का अर्थ है भिन्न साढ़े साती चक्र।', ta: ' சாடே சாதி சனியின் தற்போதைய வானிலை கோசாரத்தின் அடிப்படையில் — விம்சோத்தரி தசாவிலிருந்து சுதந்திரமானது. இது ஒவ்வொரு ~30 ஆண்டுகளிலும் மீண்டும் வரும், எந்த கிரகத்தின் தசா நடந்தாலும்.', bn: ' সাড়ে সাতি শনির বর্তমান আকাশ গোচরের উপর ভিত্তি করে — বিংশোত্তরী দশা থেকে স্বাধীন। এটি প্রতি ~৩০ বছরে পুনরাবৃত্তি হয়, যেকোনো গ্রহের দশা চলুক না কেন।' },
+  noteText: { en: " Sade Sati is based on Saturn's current sky transit  –  independent of Vimshottari dasha. It repeats every ~30 years regardless of which planet's dasha is running. 'Yes' in different non-consecutive dashas means different Sade Sati cycles, not one long one.", hi: ' साढ़े साती शनि के वर्तमान गोचर (आकाश में स्थिति) पर आधारित है  –  विंशोत्तरी दशा पर नहीं। यह हर ~30 वर्षों में होती है, चाहे कोई भी दशा चल रही हो। अलग-अलग दशाओं में "हाँ" का अर्थ है भिन्न साढ़े साती चक्र।', sa: ' साढ़े साती शनि के वर्तमान गोचर (आकाश में स्थिति) पर आधारित है  –  विंशोत्तरी दशा पर नहीं। यह हर ~30 वर्षों में होती है, चाहे कोई भी दशा चल रही हो। अलग-अलग दशाओं में "हाँ" का अर्थ है भिन्न साढ़े साती चक्र।', ta: ' சாடே சாதி சனியின் தற்போதைய வானிலை கோசாரத்தின் அடிப்படையில்  –  விம்சோத்தரி தசாவிலிருந்து சுதந்திரமானது. இது ஒவ்வொரு ~30 ஆண்டுகளிலும் மீண்டும் வரும், எந்த கிரகத்தின் தசா நடந்தாலும்.', bn: ' সাড়ে সাতি শনির বর্তমান আকাশ গোচরের উপর ভিত্তি করে  –  বিংশোত্তরী দশা থেকে স্বাধীন। এটি প্রতি ~৩০ বছরে পুনরাবৃত্তি হয়, যেকোনো গ্রহের দশা চলুক না কেন।' },
   mahadasha: { en: 'Mahadasha', hi: 'महादशा', sa: 'महादशा', ta: 'மஹாதசா', bn: 'মহাদশা' },
   period: { en: 'Period', hi: 'काल', sa: 'काल', ta: 'காலம்', bn: 'কাল' },
   shadbala: { en: 'Shadbala', hi: 'षड्बल', sa: 'षड्बल', ta: 'ஷட்பலம்', bn: 'ষড়বল' },
@@ -41,7 +41,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ── Layout constants ──────────────────────────────────────────────────────────
 const PX = 30;         // pixels per year
-const ML = 0;          // no left margin in SVG — labels are in a fixed panel outside
+const ML = 0;          // no left margin in SVG  –  labels are in a fixed panel outside
 const LABEL_W = 72;    // fixed labels panel width
 const YEARS = 90;
 const TW = PX * YEARS + 32;
@@ -325,7 +325,7 @@ export default function LifeTimeline({ kundali, locale, isDevanagari, headingFon
           {/* ── Sade Sati overlay ──────────────────────────────────────────── */}
           {data.sadeSatiPeriods.map((ss, i) => {
             const x1 = Math.max(ML, yearToX(ss.startYear));
-            // +1 because endYear is the last year Saturn is in target sign — bar should cover full year
+            // +1 because endYear is the last year Saturn is in target sign  –  bar should cover full year
             const x2 = Math.min(TW - 4, yearToX(ss.endYear + 1));
             if (x2 <= x1) return null;
             const w = x2 - x1;
@@ -649,10 +649,10 @@ function DashaSynthesisTable({ data, locale, headingFont }: {
         const pName = isHi ? (PLANET_HI[activeDasha.planet] ?? activeDasha.planet) : activeDasha.planet;
         const nName = nextDasha ? (isHi ? (PLANET_HI[nextDasha.planet] ?? nextDasha.planet) : nextDasha.planet) : null;
         const qualityDesc = activeDasha.quality === 'strong'
-          ? (isHi ? 'यह एक शक्तिशाली अवधि है — इस ग्रह का बल आपकी कुण्डली में उच्च है, जो अनुकूल परिणाम देता है।' : 'This is a strong period — this planet has high Shadbala in your chart, producing favorable outcomes.')
+          ? (isHi ? 'यह एक शक्तिशाली अवधि है  –  इस ग्रह का बल आपकी कुण्डली में उच्च है, जो अनुकूल परिणाम देता है।' : 'This is a strong period  –  this planet has high Shadbala in your chart, producing favorable outcomes.')
           : activeDasha.quality === 'weak'
-            ? (isHi ? 'यह एक चुनौतीपूर्ण अवधि है — इस ग्रह का बल कम है। धैर्य और उपाय इस समय विशेष महत्वपूर्ण हैं।' : 'This is a challenging period — this planet has low strength in your chart. Patience and remedies are especially important during this time.')
-            : (isHi ? 'यह एक सन्तुलित अवधि है — न अत्यधिक अनुकूल, न प्रतिकूल। परिणाम आपके प्रयास पर निर्भर करेंगे।' : 'This is a balanced period — neither strongly favorable nor challenging. Results will depend largely on your own effort and choices.');
+            ? (isHi ? 'यह एक चुनौतीपूर्ण अवधि है  –  इस ग्रह का बल कम है। धैर्य और उपाय इस समय विशेष महत्वपूर्ण हैं।' : 'This is a challenging period  –  this planet has low strength in your chart. Patience and remedies are especially important during this time.')
+            : (isHi ? 'यह एक सन्तुलित अवधि है  –  न अत्यधिक अनुकूल, न प्रतिकूल। परिणाम आपके प्रयास पर निर्भर करेंगे।' : 'This is a balanced period  –  neither strongly favorable nor challenging. Results will depend largely on your own effort and choices.');
         return (
           <div className="mb-4 rounded-xl p-4 border" style={{ background: `${color.glow}15`, borderColor: `${color.glow}30` }}>
             <div className="flex items-center gap-2 mb-2">
@@ -664,7 +664,7 @@ function DashaSynthesisTable({ data, locale, headingFont }: {
             </div>
             <p className="text-text-secondary text-xs leading-relaxed">{qualityDesc}</p>
             {activeDasha.hasYoga && (
-              <p className="text-emerald-400 text-xs mt-1 font-medium">{isHi ? '✦ इस दशा में सक्रिय योग हैं — अतिरिक्त शुभ प्रभाव।' : '✦ Active yogas present in this dasha — additional auspicious influence.'}</p>
+              <p className="text-emerald-400 text-xs mt-1 font-medium">{isHi ? '✦ इस दशा में सक्रिय योग हैं  –  अतिरिक्त शुभ प्रभाव।' : '✦ Active yogas present in this dasha  –  additional auspicious influence.'}</p>
             )}
             {nName && (
               <p className="text-text-secondary/60 text-xs mt-1">{isHi ? `अगला अध्याय: ${nName} महादशा (~${Math.round(activeDasha.endYear)} से)` : `Next chapter: ${nName} Mahadasha (from ~${Math.round(activeDasha.endYear)})`}</p>
@@ -730,12 +730,12 @@ function DashaSynthesisTable({ data, locale, headingFont }: {
                   <td className="px-3 py-2">
                     {d.hasYoga
                       ? <span className="text-emerald-300 font-semibold">{msg('active')}</span>
-                      : <span className="text-text-secondary opacity-40">—</span>}
+                      : <span className="text-text-secondary opacity-40"> – </span>}
                   </td>
                   <td className="px-3 py-2">
                     {overlappingCycles.length > 0
                       ? <span className="text-orange-300 font-mono">⚠ {overlappingCycles.join(', ')}</span>
-                      : <span className="text-text-secondary opacity-40">—</span>}
+                      : <span className="text-text-secondary opacity-40"> – </span>}
                   </td>
                   <td className="px-3 py-2">
                     <div className="flex items-center gap-2">
@@ -867,7 +867,7 @@ function computeTimeline(kundali: KundaliData): TimelineData {
     }
   }
 
-  // Yoga lords — which planets are involved in strong/present yogas
+  // Yoga lords  –  which planets are involved in strong/present yogas
   const yogaLordPlanets = new Set<string>();
   const yogaNamesByPlanet: Record<string, string[]> = {};
   const yogaNamesByPlanetHi: Record<string, string[]> = {};
@@ -1061,10 +1061,10 @@ function computeTimeline(kundali: KundaliData): TimelineData {
         }
       }
     }
-    // Jupiter Yogi in window — cap at +20 per dasha regardless of how many transits occur
+    // Jupiter Yogi in window  –  cap at +20 per dasha regardless of how many transits occur
     const hasJupYogi = jupiterYogiTransits.some(jt => jt.year >= d.startYear && jt.year <= d.endYear);
     if (hasJupYogi) score += 20;
-    // Saturn Avayogi in window — cap at -15 per dasha
+    // Saturn Avayogi in window  –  cap at -15 per dasha
     const hasSatAvayogi = saturnAvayogiTransits.some(st => st.year >= d.startYear && st.year <= d.endYear);
     if (hasSatAvayogi) score -= 15;
     score = Math.max(5, Math.min(95, score));
@@ -1080,17 +1080,17 @@ function computeTimeline(kundali: KundaliData): TimelineData {
   const allEvents: TimelineEvent[] = [
     ...jupiterYogiTransits,
     ...saturnAvayogiTransits,
-    // Notable dasha starts — deduplicated: one event per dasha (strong OR yoga, not both)
+    // Notable dasha starts  –  deduplicated: one event per dasha (strong OR yoga, not both)
     ...dashas
       .filter(d => d.quality === 'strong' || d.hasYoga)
       .map(d => {
         const isStrong = d.quality === 'strong';
         const yogaNames = yogaNamesByPlanet[d.planet]?.slice(0, 2).join(', ') ?? '';
         const yogaNamesHi = yogaNamesByPlanetHi[d.planet]?.slice(0, 2).join(', ') ?? '';
-        const suffix = isStrong && d.hasYoga ? ` — ★ + ${yogaNames || 'Yoga'}` : isStrong ? ' — ★ Strong' : ` — ${yogaNames || 'Yoga'}`;
-        const suffixHi = isStrong && d.hasYoga ? ` — ★ + ${yogaNamesHi || 'योग'}` : isStrong ? ' — ★ बलवान' : ` — ${yogaNamesHi || 'योग'}`;
-        const suffixTa = isStrong && d.hasYoga ? ' — ★ + யோகம்' : isStrong ? ' — ★ வலுவான' : ' — யோகம்';
-        const suffixBn = isStrong && d.hasYoga ? ' — ★ + যোগ' : isStrong ? ' — ★ শক্তিশালী' : ' — যোগ';
+        const suffix = isStrong && d.hasYoga ? `  –  ★ + ${yogaNames || 'Yoga'}` : isStrong ? '  –  ★ Strong' : `  –  ${yogaNames || 'Yoga'}`;
+        const suffixHi = isStrong && d.hasYoga ? `  –  ★ + ${yogaNamesHi || 'योग'}` : isStrong ? '  –  ★ बलवान' : `  –  ${yogaNamesHi || 'योग'}`;
+        const suffixTa = isStrong && d.hasYoga ? '  –  ★ + யோகம்' : isStrong ? '  –  ★ வலுவான' : '  –  யோகம்';
+        const suffixBn = isStrong && d.hasYoga ? '  –  ★ + যোগ' : isStrong ? '  –  ★ শক্তিশালী' : '  –  যোগ';
         return {
           year: d.startYear,
           type: 'positive' as const,
@@ -1138,10 +1138,10 @@ function computeTimeline(kundali: KundaliData): TimelineData {
       titleHi: `शनि वापसी (${fmtYear(yr)})`,
       titleTa: `சனி மீட்சி (${fmtYear(yr)})`,
       titleBn: `শনি প্রত্যাবর্তন (${fmtYear(yr)})`,
-      desc: 'Saturn returns to its birth position — a major life checkpoint. Reality restructuring, accountability, maturity milestone.',
-      descHi: 'शनि जन्म स्थिति पर लौटता है — जीवन का बड़ा पड़ाव। वास्तविकता पुनर्गठन, जवाबदेही।',
-      descTa: 'சனி பிறப்பு நிலைக்குத் திரும்புகிறார் — வாழ்க்கையின் முக்கிய சோதனைப் புள்ளி. யதார்த்த மறுசீரமைப்பு, பொறுப்புணர்வு.',
-      descBn: 'শনি জন্ম অবস্থানে ফিরে আসে — জীবনের বড় পরীক্ষা। বাস্তবতা পুনর্গঠন, দায়বদ্ধতা।',
+      desc: 'Saturn returns to its birth position  –  a major life checkpoint. Reality restructuring, accountability, maturity milestone.',
+      descHi: 'शनि जन्म स्थिति पर लौटता है  –  जीवन का बड़ा पड़ाव। वास्तविकता पुनर्गठन, जवाबदेही।',
+      descTa: 'சனி பிறப்பு நிலைக்குத் திரும்புகிறார்  –  வாழ்க்கையின் முக்கிய சோதனைப் புள்ளி. யதார்த்த மறுசீரமைப்பு, பொறுப்புணர்வு.',
+      descBn: 'শনি জন্ম অবস্থানে ফিরে আসে  –  জীবনের বড় পরীক্ষা। বাস্তবতা পুনর্গঠন, দায়বদ্ধতা।',
       yearLabel: fmtYear(yr),
       label: ['Saturn Return', fmtYear(yr)],
       labelHi: ['शनि वापसी', fmtYear(yr)],

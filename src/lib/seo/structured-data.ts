@@ -117,14 +117,14 @@ export function generateSoftwareApplicationLD(): object {
     operatingSystem: 'Web',
     url: BASE_URL,
     description:
-      'Free Vedic Astrology — Daily Panchang, Kundali Generator, Muhurta Finder, and Kundali Matching.',
+      'Free Vedic Astrology  –  Daily Panchang, Kundali Generator, Muhurta Finder, and Kundali Matching.',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
     publisher: { '@type': 'Organization', name: 'Dekho Panchang' },
   };
 }
 
 /**
- * Generate Organization JSON-LD — establishes "Dekho Panchang" as a known entity for Google.
+ * Generate Organization JSON-LD  –  establishes "Dekho Panchang" as a known entity for Google.
  * This is critical for brand recognition and avoiding "Did you mean" suggestions.
  */
 export function generateOrganizationLD(): object {
@@ -136,7 +136,7 @@ export function generateOrganizationLD(): object {
     url: BASE_URL,
     logo: `${BASE_URL}/apple-touch-icon.png`,
     description:
-      'Dekho Panchang is a free Vedic astrology platform offering daily Panchang, Kundali generation, Muhurta finding, and Kundali matching — powered by precise astronomical calculations.',
+      'Dekho Panchang is a free Vedic astrology platform offering daily Panchang, Kundali generation, Muhurta finding, and Kundali matching  –  powered by precise astronomical calculations.',
     founder: generatePersonLD(),
     foundingDate: '2026',
     sameAs: [
@@ -150,7 +150,7 @@ export function generateOrganizationLD(): object {
 }
 
 /**
- * Generate Person JSON-LD for the site author — E-E-A-T signal for Google.
+ * Generate Person JSON-LD for the site author  –  E-E-A-T signal for Google.
  * Used on the About page and referenced from Organization schema.
  */
 export function generatePersonLD(): object {
@@ -214,7 +214,7 @@ export function generateHowToLD(opts: {
     '@type': 'HowTo',
     name: opts.name,
     description: opts.description,
-    // All pujas on Dekho Panchang are free guides — no paid service
+    // All pujas on Dekho Panchang are free guides  –  no paid service
     estimatedCost: { '@type': 'MonetaryAmount', currency: 'USD', value: '0' },
     // ISO 8601 duration: default 45 min if not specified
     totalTime: `PT${opts.totalTimeMinutes ?? 45}M`,

@@ -12,7 +12,7 @@ export default async function VideosPage({ params }: { params: Promise<{ locale:
         className="text-3xl sm:text-4xl font-bold text-gold-gradient mb-2 text-center"
         style={{ fontFamily: 'var(--font-heading)' }}
       >
-        {isHi ? 'वीडियो — देखो पंचांग' : 'Videos — Dekho Panchang'}
+        {isHi ? 'वीडियो  –  देखो पंचांग' : 'Videos  –  Dekho Panchang'}
       </h1>
       <p className="text-text-secondary text-center mb-10">
         {isHi ? 'वैदिक ज्योतिष, पंचांग और आध्यात्मिक ज्ञान' : 'Vedic astrology, daily panchang, and spiritual knowledge'}
@@ -21,7 +21,7 @@ export default async function VideosPage({ params }: { params: Promise<{ locale:
       <div className="space-y-10">
         {videos.map((v) => (
           <article key={v.videoId} className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] overflow-hidden">
-            {/* Video embed — primary content (required for Google "watch page" recognition) */}
+            {/* Video embed  –  primary content (required for Google "watch page" recognition) */}
             <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
               <iframe
                 className="absolute inset-0 w-full h-full"
@@ -43,7 +43,7 @@ export default async function VideosPage({ params }: { params: Promise<{ locale:
               </time>
             </div>
 
-            {/* VideoObject JSON-LD — one per video, on a page where video is primary content */}
+            {/* VideoObject JSON-LD  –  one per video, on a page where video is primary content */}
             <script
               type="application/ld+json"
               dangerouslySetInnerHTML={{

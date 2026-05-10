@@ -57,12 +57,12 @@ const STATIC_RETROGRADE_CAUTIONS: RetrogradeCaution[] = [
   {
     planet: 'Venus',
     period: 'Mar–Apr 2025',
-    caution: 'Venus retrograde — avoid luxury purchases, vehicle acquisitions, and aesthetic investments.',
+    caution: 'Venus retrograde  –  avoid luxury purchases, vehicle acquisitions, and aesthetic investments.',
   },
   {
     planet: 'Saturn',
     period: 'Jun–Nov 2026',
-    caution: 'Saturn retrograde — long-term infrastructure and mining investments require extra diligence.',
+    caution: 'Saturn retrograde  –  long-term infrastructure and mining investments require extra diligence.',
   },
 ];
 
@@ -113,7 +113,7 @@ function computeWealthHouseSummary(
   return WEALTH_HOUSES.map(h => {
     const houseSign = ((lagnaSign - 1 + (h - 1)) % 12) + 1;
     const lordId = SIGN_LORD_FINANCIAL[houseSign];
-    const lordName = lordId !== undefined ? (PLANET_NAMES_EN[lordId] ?? '—') : '—';
+    const lordName = lordId !== undefined ? (PLANET_NAMES_EN[lordId] ?? ' – ') : ' – ';
     const planet = lordId !== undefined
       ? kundali.planets.find(p => p.planet?.id === lordId)
       : undefined;
@@ -147,7 +147,7 @@ function yearSummaryFromRating(
     case 'Good':
       return `A constructive year with meaningful financial opportunities. Best months are highlighted below. Sectors of strength: ${sectorStr}.`;
     case 'Mixed':
-      return `A year of mixed financial energies. Strong months exist alongside challenging ones — selectivity is key. Focus areas: ${sectorStr}.`;
+      return `A year of mixed financial energies. Strong months exist alongside challenging ones  –  selectivity is key. Focus areas: ${sectorStr}.`;
     case 'Challenging':
       return `Headwinds in the chart suggest a year for caution and consolidation. Preserve wealth, avoid speculation, and build fundamentals. Patience will be rewarded.`;
   }

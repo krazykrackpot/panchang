@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { analyzeGochara, analyzeDoubleTransit } from '../gochara-engine';
 
-describe('analyzeGochara — Vedha', () => {
+describe('analyzeGochara  –  Vedha', () => {
   const moonSign = 1; // Aries
 
   it('Jupiter in 2nd (good) with no vedha → isGoodHouse=true, vedhaActive=false', () => {
@@ -57,7 +57,7 @@ describe('analyzeGochara — Vedha', () => {
   });
 });
 
-describe('analyzeGochara — BAV quality', () => {
+describe('analyzeGochara  –  BAV quality', () => {
   it('good house + no vedha + high BAV → strong', () => {
     const transits = [
       { id: 0, sign: 5 }, { id: 1, sign: 6 }, { id: 2, sign: 3 },

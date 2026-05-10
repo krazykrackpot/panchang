@@ -89,7 +89,7 @@ export default function MasaPage() {
           {/* Purnimant line */}
           <line x1="50" y1="90" x2="550" y2="90" stroke="#f0d48a" strokeWidth="2" opacity="0.4" />
           <text x="20" y="78" fill="#f0d48a" fontSize="9" fontWeight="bold">Purnimant</text>
-          {/* Purnimant boundaries (Full Moons) — offset ~15 days */}
+          {/* Purnimant boundaries (Full Moons)  –  offset ~15 days */}
           {[125, 275, 425].map((x, i) => (
             <g key={`p${i}`}>
               <circle cx={x} cy={90} r={4} fill="#f0d48a" />
@@ -134,7 +134,7 @@ export default function MasaPage() {
         </div>
       </div>
 
-      {/* Month naming — why are they named this way */}
+      {/* Month naming  –  why are they named this way */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <h3 className="text-gold-light font-bold text-lg mb-4" style={hf}>
           {t('monthNamingTitle', locale)}
@@ -185,7 +185,7 @@ export default function MasaPage() {
                   const days = Math.round((end.getTime() - start.getTime()) / 86400000);
                   const todayStr = `${new Date().getFullYear()}-${(new Date().getMonth()+1).toString().padStart(2,'0')}-${new Date().getDate().toString().padStart(2,'0')}`;
                   const isCurrent = todayStr >= m.startDate && todayStr < m.endDate;
-                  // Use actual computed month name — NOT the hardcoded positional name
+                  // Use actual computed month name  –  NOT the hardcoded positional name
                   const monthName = locale === 'hi' ? m.hi : m.en;
                   return (
                     <tr key={`${m.n}-${m.startDate}`} className={`hover:bg-gold-primary/3 ${isCurrent ? 'bg-gold-primary/8' : ''} ${m.isAdhika ? 'italic' : ''}`}>

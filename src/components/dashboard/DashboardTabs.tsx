@@ -22,7 +22,7 @@ export default function DashboardTabs({ tabs, defaultTab }: DashboardTabsProps) 
 
   return (
     <div>
-      {/* Tab bar — sticky below navbar */}
+      {/* Tab bar  –  sticky below navbar */}
       <div className="sticky top-[72px] z-30 bg-[#0a0e27]/95 backdrop-blur-sm py-3 -mx-4 px-4">
         <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
           {tabs.map(tab => (

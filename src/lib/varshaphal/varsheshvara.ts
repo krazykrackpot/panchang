@@ -64,7 +64,7 @@ const VARSHESHVARA_DESCRIPTIONS: Record<number, LocaleText> = {
   },
 };
 
-// Sign ownership — imported from @/lib/constants/dignities (see import block above)
+// Sign ownership  –  imported from @/lib/constants/dignities (see import block above)
 
 /**
  * Returns true if planetA is in a sign owned by planetB AND

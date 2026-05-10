@@ -29,7 +29,7 @@ import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 const LABELS = {
   en: {
     title: 'Varshaphal',
-    subtitle: 'Tajika Solar Return — Annual Horoscopy',
+    subtitle: 'Tajika Solar Return  –  Annual Horoscopy',
     desc: 'Cast your annual chart for the exact moment the Sun returns to its natal position. Includes Muntha, Varsheshvara, Sahams, Tajika Yogas, and Mudda Dasha.',
     generate: 'Generate Varshaphal',
     generating: 'Calculating Solar Return...',
@@ -48,7 +48,7 @@ const LABELS = {
   },
   hi: {
     title: 'वर्षफल',
-    subtitle: 'ताजिक सूर्य प्रत्यावर्तन — वार्षिक ज्योतिष',
+    subtitle: 'ताजिक सूर्य प्रत्यावर्तन  –  वार्षिक ज्योतिष',
     desc: 'सूर्य जब अपनी जन्म स्थिति पर लौटता है उस क्षण की कुण्डली। मुन्था, वर्षेश्वर, सहम, ताजिक योग और मुद्दा दशा सहित।',
     generate: 'वर्षफल बनाएं',
     generating: 'सूर्य प्रत्यावर्तन की गणना...',
@@ -67,7 +67,7 @@ const LABELS = {
   },
   sa: {
     title: 'वर्षफलम्',
-    subtitle: 'ताजिकसूर्यप्रत्यावर्तनम् — वार्षिकज्योतिषम्',
+    subtitle: 'ताजिकसूर्यप्रत्यावर्तनम्  –  वार्षिकज्योतिषम्',
     desc: 'सूर्यः यदा स्वजन्मस्थानं प्रत्यावर्तते तदा कुण्डली। मुन्था वर्षेश्वरः सहमाः ताजिकयोगाः मुद्दादशा च।',
     generate: 'वर्षफलं रचयतु',
     generating: 'सूर्यप्रत्यावर्तनगणना...',
@@ -105,7 +105,7 @@ const LABELS = {
   },
   te: {
     title: 'వర్షఫలం',
-    subtitle: 'తాజిక సూర్య ప్రత్యావర్తనం — వార్షిక జ్యోతిషం',
+    subtitle: 'తాజిక సూర్య ప్రత్యావర్తనం  –  వార్షిక జ్యోతిషం',
     desc: 'సూర్యుడు తన జన్మ స్థానానికి తిరిగి వచ్చే ఖచ్చితమైన క్షణం కోసం మీ వార్షిక చార్ట్. ముంథా, వర్షేశ్వర, సహాములు, తాజిక యోగాలు మరియు ముద్ద దశ.',
     generate: 'వర్షఫలం రూపొందించు', generating: 'సూర్య ప్రత్యావర్తనం గణించబడుతోంది...',
     name: 'పేరు', date: 'పుట్టిన తేదీ', time: 'పుట్టిన సమయం', place: 'ప్రదేశం', lat: 'అక్షాంశం', lng: 'రేఖాంశం', tz: 'సమయమండలం', year: 'సంవత్సరం',
@@ -123,7 +123,7 @@ const LABELS = {
   },
   bn: {
     title: 'বর্ষফল',
-    subtitle: 'তাজিক সূর্য প্রত্যাবর্তন — বার্ষিক জ্যোতিষ',
+    subtitle: 'তাজিক সূর্য প্রত্যাবর্তন  –  বার্ষিক জ্যোতিষ',
     desc: 'সূর্য যখন তার জন্ম অবস্থানে ফিরে আসে সেই সুনির্দিষ্ট মুহূর্তের চার্ট। মুন্থা, বর্ষেশ্বর, সহম, তাজিক যোগ ও মুদ্দা দশা সহ।',
     generate: 'বর্ষফল তৈরি করুন', generating: 'সূর্য প্রত্যাবর্তন গণনা হচ্ছে...',
     name: 'নাম', date: 'জন্ম তারিখ', time: 'জন্ম সময়', place: 'স্থান', lat: 'অক্ষাংশ', lng: 'দ্রাঘিমাংশ', tz: 'সময় অঞ্চল', year: 'বছর',
@@ -141,7 +141,7 @@ const LABELS = {
   },
   kn: {
     title: 'ವರ್ಷಫಲ',
-    subtitle: 'ತಾಜಿಕ ಸೂರ್ಯ ಪ್ರತ್ಯಾವರ್ತನ — ವಾರ್ಷಿಕ ಜ್ಯೋತಿಷ',
+    subtitle: 'ತಾಜಿಕ ಸೂರ್ಯ ಪ್ರತ್ಯಾವರ್ತನ  –  ವಾರ್ಷಿಕ ಜ್ಯೋತಿಷ',
     desc: 'ಸೂರ್ಯ ತನ್ನ ಜನ್ಮ ಸ್ಥಾನಕ್ಕೆ ಮರಳುವ ನಿಖರ ಕ್ಷಣದ ಚಾರ್ಟ್. ಮುಂಥಾ, ವರ್ಷೇಶ್ವರ, ಸಹಾಮ್‌ಗಳು, ತಾಜಿಕ ಯೋಗಗಳು ಮತ್ತು ಮುದ್ದಾ ದಶೆ.',
     generate: 'ವರ್ಷಫಲ ರಚಿಸಿ', generating: 'ಸೂರ್ಯ ಪ್ರತ್ಯಾವರ್ತನ ಲೆಕ್ಕ ಹಾಕಲಾಗುತ್ತಿದೆ...',
     name: 'ಹೆಸರು', date: 'ಹುಟ್ಟಿದ ದಿನಾಂಕ', time: 'ಹುಟ್ಟಿದ ಸಮಯ', place: 'ಸ್ಥಳ', lat: 'ಅಕ್ಷಾಂಶ', lng: 'ರೇಖಾಂಶ', tz: 'ಸಮಯ ವಲಯ', year: 'ವರ್ಷ',
@@ -158,7 +158,7 @@ const LABELS = {
     noYogas: 'ತಾಜಿಕ ಯೋಗಗಳಿಲ್ಲ',
   },
   mr: {
-    title: 'वर्षफल', subtitle: 'ताजिक सूर्य प्रत्यावर्तन — वार्षिक ज्योतिष',
+    title: 'वर्षफल', subtitle: 'ताजिक सूर्य प्रत्यावर्तन  –  वार्षिक ज्योतिष',
     desc: 'सूर्य जेव्हा त्याच्या जन्म स्थानावर परत येतो त्या क्षणाची कुंडली. मुंथा, वर्षेश्वर, सहम, ताजिक योग आणि मुद्दा दशा.',
     generate: 'वर्षफल बनवा', generating: 'सूर्य प्रत्यावर्तन गणना...',
     name: 'नाव', date: 'जन्मतिथी', time: 'जन्म वेळ', place: 'स्थान', lat: 'अक्षांश', lng: 'रेखांश', tz: 'वेळक्षेत्र', year: 'वर्ष',
@@ -175,7 +175,7 @@ const LABELS = {
     noYogas: 'कोणताही ताजिक योग नाही',
   },
   gu: {
-    title: 'વર્ષફળ', subtitle: 'તાજિક સૂર્ય પ્રત્યાવર્તન — વાર્ષિક જ્યોતિષ',
+    title: 'વર્ષફળ', subtitle: 'તાજિક સૂર્ય પ્રત્યાવર્તન  –  વાર્ષિક જ્યોતિષ',
     desc: 'સૂર્ય જ્યારે તેના જન્મ સ્થાને પાછો આવે ત્યારની ચોક્કસ ક્ષણની કુંડળી. મુંથા, વર્ષેશ્વર, સહામ, તાજિક યોગ અને મુદ્દા દશા.',
     generate: 'વર્ષફળ બનાવો', generating: 'સૂર્ય પ્રત્યાવર્તન ગણતરી...',
     name: 'નામ', date: 'જન્મ તારીખ', time: 'જન્મ સમય', place: 'સ્થળ', lat: 'અક્ષાંશ', lng: 'રેખાંશ', tz: 'સમય ક્ષેત્ર', year: 'વર્ષ',
@@ -192,7 +192,7 @@ const LABELS = {
     noYogas: 'કોઈ તાજિક યોગ નથી',
   },
   mai: {
-    title: 'वर्षफल', subtitle: 'ताजिक सूर्य प्रत्यावर्तन — वार्षिक ज्योतिष',
+    title: 'वर्षफल', subtitle: 'ताजिक सूर्य प्रत्यावर्तन  –  वार्षिक ज्योतिष',
     desc: 'सूर्य जखन अपन जन्म स्थान पर वापस अबैत छथि ओहि क्षणक कुंडली। मुंथा, वर्षेश्वर, सहम, ताजिक योग आ मुद्दा दशा.',
     generate: 'वर्षफल बनाउ', generating: 'सूर्य प्रत्यावर्तन गणना...',
     name: 'नाम', date: 'जन्म तिथि', time: 'जन्म समय', place: 'स्थान', lat: 'अक्षांश', lng: 'देशान्तर', tz: 'समय क्षेत्र', year: 'वर्ष',
@@ -263,7 +263,7 @@ export default function VarshaphalPage() {
           if (loc.name && !placeName) setPlaceName(loc.name);
           if (loc.lat != null && placeLat === null) setPlaceLat(loc.lat);
           if (loc.lng != null && placeLng === null) setPlaceLng(loc.lng);
-          // ALWAYS resolve timezone from coordinates — never trust stored timezone
+          // ALWAYS resolve timezone from coordinates  –  never trust stored timezone
           if (loc.lat != null && loc.lng != null && !placeTimezone) {
             resolveTimezoneFromCoords(loc.lat, loc.lng).then(tz => setPlaceTimezone(tz));
           }
@@ -315,9 +315,9 @@ export default function VarshaphalPage() {
         defaultOpen={false}
       >
         {isDevanagari ? (
-          <p>वर्षफल का अर्थ है &apos;वर्ष का फल&apos; — ताजिक पद्धति पर आधारित आपका वार्षिक कुण्डली फल। प्रत्येक वर्ष जब सूर्य अपनी जन्म-स्थिति पर लौटता है, उस ठीक क्षण की कुण्डली बनती है जो आने वाले 12 महीनों के विषय, चुनौतियां और अवसर दर्शाती है। मुख्य घटक: मुन्था (गतिशील भाग्य बिंदु), सहम (जीवन क्षेत्र के संवेदनशील बिंदु), और मुद्दा दशा (वार्षिक ग्रह अवधि)।</p>
+          <p>वर्षफल का अर्थ है &apos;वर्ष का फल&apos;  –  ताजिक पद्धति पर आधारित आपका वार्षिक कुण्डली फल। प्रत्येक वर्ष जब सूर्य अपनी जन्म-स्थिति पर लौटता है, उस ठीक क्षण की कुण्डली बनती है जो आने वाले 12 महीनों के विषय, चुनौतियां और अवसर दर्शाती है। मुख्य घटक: मुन्था (गतिशील भाग्य बिंदु), सहम (जीवन क्षेत्र के संवेदनशील बिंदु), और मुद्दा दशा (वार्षिक ग्रह अवधि)।</p>
         ) : (
-          <p>Varshaphal means &apos;fruit of the year&apos; — your annual horoscope based on the Tajika system. A new chart is cast for the exact moment the Sun returns to its birth position each year, revealing themes, challenges, and opportunities for the coming 12 months. Key components: Muntha (progressed luck point), Sahams (sensitive life-area points), and Mudda Dasha (annual planetary periods).</p>
+          <p>Varshaphal means &apos;fruit of the year&apos;  –  your annual horoscope based on the Tajika system. A new chart is cast for the exact moment the Sun returns to its birth position each year, revealing themes, challenges, and opportunities for the coming 12 months. Key components: Muntha (progressed luck point), Sahams (sensitive life-area points), and Mudda Dasha (annual planetary periods).</p>
         )}
       </InfoBlock>
 
@@ -392,7 +392,7 @@ export default function VarshaphalPage() {
               <div className="flex items-center gap-4">
                 <RashiIconById id={data.muntha.sign} size={40} />
                 <div>
-                  <p className="text-gold-light font-bold text-lg" style={bodyFont}>{tl(data.muntha.signName, locale)} — {t.house} {data.muntha.house}</p>
+                  <p className="text-gold-light font-bold text-lg" style={bodyFont}>{tl(data.muntha.signName, locale)}  –  {t.house} {data.muntha.house}</p>
                   <p className="text-text-secondary text-sm mt-1" style={bodyFont}>{tl(data.muntha.interpretation, locale)}</p>
                 </div>
               </div>
@@ -431,7 +431,7 @@ export default function VarshaphalPage() {
               </table>
             </div>
 
-            {/* Tajika Yogas — Enhanced 16-yoga display */}
+            {/* Tajika Yogas  –  Enhanced 16-yoga display */}
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-gold-primary text-sm uppercase tracking-wider font-bold">{t.tajikaYogas}</h2>
@@ -453,7 +453,7 @@ export default function VarshaphalPage() {
               </div>
             </div>
 
-            {/* Dasha Section — toggling between Mudda, Varshesha, Patyayini */}
+            {/* Dasha Section  –  toggling between Mudda, Varshesha, Patyayini */}
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6 overflow-x-auto">
               {/* Tab switcher */}
               <div className="flex items-center justify-between mb-4 flex-wrap gap-2">

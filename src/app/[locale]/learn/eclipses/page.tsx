@@ -21,18 +21,18 @@ const ECLIPSE_TYPES = [
     symbol: '☀',
     condition: { en: 'Moon\'s disk completely covers the Sun. |β| < ~0.9°', hi: 'चन्द्र बिम्ब सूर्य को पूर्णतः ढकता है। |β| < ~0.9°' },
     desc: {
-      en: 'The most spectacular celestial event. Day turns to night for up to ~7.5 minutes along the path of totality. The solar corona — the Sun\'s outer atmosphere — blazes into view. Stars appear in daytime. Moon must be near perigee (close to Earth) so its apparent disk is large enough to cover the Sun completely.',
-      hi: 'सबसे शानदार खगोलीय घटना। पूर्णता के पथ पर ~7.5 मिनट तक दिन रात में बदल जाता है। सूर्य का बाहरी वायुमण्डल — कोरोना — दृश्यमान होता है। दिन में तारे दिखते हैं। चन्द्रमा उपभू के निकट होना चाहिए ताकि उसका प्रत्यक्ष बिम्ब सूर्य को पूर्णतः ढकने के लिए पर्याप्त बड़ा हो।',
+      en: 'The most spectacular celestial event. Day turns to night for up to ~7.5 minutes along the path of totality. The solar corona  –  the Sun\'s outer atmosphere  –  blazes into view. Stars appear in daytime. Moon must be near perigee (close to Earth) so its apparent disk is large enough to cover the Sun completely.',
+      hi: 'सबसे शानदार खगोलीय घटना। पूर्णता के पथ पर ~7.5 मिनट तक दिन रात में बदल जाता है। सूर्य का बाहरी वायुमण्डल  –  कोरोना  –  दृश्यमान होता है। दिन में तारे दिखते हैं। चन्द्रमा उपभू के निकट होना चाहिए ताकि उसका प्रत्यक्ष बिम्ब सूर्य को पूर्णतः ढकने के लिए पर्याप्त बड़ा हो।',
     },
   },
   {
     name: { en: 'Annular Solar Eclipse', hi: 'कण्कण सूर्य ग्रहण', sa: 'कण्कण सूर्य ग्रहण', mai: 'कण्कण सूर्य ग्रहण', mr: 'कण्कण सूर्य ग्रहण', ta: 'வளைய சூரிய கிரகணம்', te: 'వలయ సూర్యగ్రహణం', bn: 'বলয়াকার সূর্যগ্রহণ', kn: 'ವಲಯ ಸೂರ್ಯಗ್ರಹಣ', gu: 'વલયાકાર સૂર્યગ્રહણ' },
     color: 'text-orange-400', border: 'border-orange-500/20', bg: 'bg-orange-500/5',
     symbol: '⊙',
-    condition: { en: 'Moon near apogee — apparent disk smaller than Sun. Ring of fire visible.', hi: 'चन्द्रमा अपभू के निकट — प्रत्यक्ष बिम्ब सूर्य से छोटा। अग्नि-वलय दृश्यमान।', sa: 'चन्द्रमा अपभू के निकट — प्रत्यक्ष बिम्ब सूर्य से छोटा। अग्नि-वलय दृश्यमान।', mai: 'चन्द्रमा अपभू के निकट — प्रत्यक्ष बिम्ब सूर्य से छोटा। अग्नि-वलय दृश्यमान।', mr: 'चन्द्रमा अपभू के निकट — प्रत्यक्ष बिम्ब सूर्य से छोटा। अग्नि-वलय दृश्यमान।', ta: 'சந்திரன் அபோஜியின் அருகில் — தோற்ற வட்டம் சூரியனை விட சிறியது. நெருப்பு வளையம் காணக்கூடியது.', te: 'చంద్రుడు అపోజీ సమీపంలో — కనిపించే డిస్క్ సూర్యుడి కంటే చిన్నది. అగ్ని వలయం కనిపిస్తుంది.', bn: 'চন্দ্র অপোজির কাছে — আপাত ডিস্ক সূর্যের চেয়ে ছোট। আগুনের বলয় দৃশ্যমান।', kn: 'ಚಂದ್ರ ಅಪೋಜಿ ಹತ್ತಿರ — ಗೋಚರ ಡಿಸ್ಕ್ ಸೂರ್ಯನಿಗಿಂತ ಚಿಕ್ಕದು. ಬೆಂಕಿಯ ಉಂಗುರ ಗೋಚರ.', gu: 'ચંદ્ર એપોજી નજીક — દેખાતી ડિસ્ક સૂર્ય કરતાં નાની. અગ્નિ વલય દેખાય છે.' },
+    condition: { en: 'Moon near apogee  –  apparent disk smaller than Sun. Ring of fire visible.', hi: 'चन्द्रमा अपभू के निकट  –  प्रत्यक्ष बिम्ब सूर्य से छोटा। अग्नि-वलय दृश्यमान।', sa: 'चन्द्रमा अपभू के निकट  –  प्रत्यक्ष बिम्ब सूर्य से छोटा। अग्नि-वलय दृश्यमान।', mai: 'चन्द्रमा अपभू के निकट  –  प्रत्यक्ष बिम्ब सूर्य से छोटा। अग्नि-वलय दृश्यमान।', mr: 'चन्द्रमा अपभू के निकट  –  प्रत्यक्ष बिम्ब सूर्य से छोटा। अग्नि-वलय दृश्यमान।', ta: 'சந்திரன் அபோஜியின் அருகில்  –  தோற்ற வட்டம் சூரியனை விட சிறியது. நெருப்பு வளையம் காணக்கூடியது.', te: 'చంద్రుడు అపోజీ సమీపంలో  –  కనిపించే డిస్క్ సూర్యుడి కంటే చిన్నది. అగ్ని వలయం కనిపిస్తుంది.', bn: 'চন্দ্র অপোজির কাছে  –  আপাত ডিস্ক সূর্যের চেয়ে ছোট। আগুনের বলয় দৃশ্যমান।', kn: 'ಚಂದ್ರ ಅಪೋಜಿ ಹತ್ತಿರ  –  ಗೋಚರ ಡಿಸ್ಕ್ ಸೂರ್ಯನಿಗಿಂತ ಚಿಕ್ಕದು. ಬೆಂಕಿಯ ಉಂಗುರ ಗೋಚರ.', gu: 'ચંદ્ર એપોજી નજીક  –  દેખાતી ડિસ્ક સૂર્ય કરતાં નાની. અગ્નિ વલય દેખાય છે.' },
     desc: {
-      en: 'The Moon covers the Sun\'s centre but its apparent diameter is slightly smaller (Moon is near apogee — far from Earth), leaving a brilliant ring of sunlight around the dark lunar disk. Annular eclipses produce no corona-viewing opportunity, but the "ring of fire" is striking. They are more frequent than total solar eclipses because the Moon spends more time near apogee.',
-      hi: 'चन्द्रमा सूर्य के केन्द्र को ढकता है परन्तु उसका प्रत्यक्ष व्यास थोड़ा छोटा होता है (चन्द्रमा अपभू के निकट — पृथ्वी से दूर), जिससे अँधेरे चन्द्र बिम्ब के चारों ओर सूर्य के प्रकाश की एक तेजस्वी वलय रहती है।',
+      en: 'The Moon covers the Sun\'s centre but its apparent diameter is slightly smaller (Moon is near apogee  –  far from Earth), leaving a brilliant ring of sunlight around the dark lunar disk. Annular eclipses produce no corona-viewing opportunity, but the "ring of fire" is striking. They are more frequent than total solar eclipses because the Moon spends more time near apogee.',
+      hi: 'चन्द्रमा सूर्य के केन्द्र को ढकता है परन्तु उसका प्रत्यक्ष व्यास थोड़ा छोटा होता है (चन्द्रमा अपभू के निकट  –  पृथ्वी से दूर), जिससे अँधेरे चन्द्र बिम्ब के चारों ओर सूर्य के प्रकाश की एक तेजस्वी वलय रहती है।',
     },
   },
   {
@@ -51,8 +51,8 @@ const ECLIPSE_TYPES = [
     symbol: '🌑',
     condition: { en: 'Moon fully inside Earth\'s umbral shadow. |β| < ~0.5°', hi: 'चन्द्रमा पृथ्वी की उपछाया में पूर्णतः। |β| < ~0.5°' },
     desc: {
-      en: 'The Moon passes completely into the darkest part of Earth\'s shadow (umbra). The Moon does not go dark — instead it turns deep red or copper-orange. Earth\'s atmosphere refracts sunlight, bending red wavelengths (which scatter least) around the planet and onto the Moon. The exact colour depends on atmospheric conditions: clear air produces a bright orange-red; heavy volcanic dust can make the Moon nearly black.',
-      hi: 'चन्द्रमा पृथ्वी की छाया (उपछाया) के सबसे अँधेरे भाग में पूरी तरह प्रवेश करता है। चन्द्रमा काला नहीं होता — बल्कि गहरे लाल या ताम्र-नारंगी रंग में बदल जाता है। पृथ्वी का वायुमण्डल सूर्यप्रकाश को अपवर्तित करता है, लाल तरंगदैर्घ्य को ग्रह के चारों ओर चन्द्रमा पर मोड़ता है।',
+      en: 'The Moon passes completely into the darkest part of Earth\'s shadow (umbra). The Moon does not go dark  –  instead it turns deep red or copper-orange. Earth\'s atmosphere refracts sunlight, bending red wavelengths (which scatter least) around the planet and onto the Moon. The exact colour depends on atmospheric conditions: clear air produces a bright orange-red; heavy volcanic dust can make the Moon nearly black.',
+      hi: 'चन्द्रमा पृथ्वी की छाया (उपछाया) के सबसे अँधेरे भाग में पूरी तरह प्रवेश करता है। चन्द्रमा काला नहीं होता  –  बल्कि गहरे लाल या ताम्र-नारंगी रंग में बदल जाता है। पृथ्वी का वायुमण्डल सूर्यप्रकाश को अपवर्तित करता है, लाल तरंगदैर्घ्य को ग्रह के चारों ओर चन्द्रमा पर मोड़ता है।',
     },
   },
   {
@@ -61,7 +61,7 @@ const ECLIPSE_TYPES = [
     symbol: '◑',
     condition: { en: 'Moon partially enters the umbral shadow. 0.5° < |β| < ~1.0°', hi: 'चन्द्रमा आंशिक रूप से उपछाया में प्रवेश करता है। 0.5° < |β| < ~1.0°', sa: 'चन्द्रमा आंशिक रूप से उपछाया में प्रवेश करता है। 0.5° < |β| < ~1.0°', mai: 'चन्द्रमा आंशिक रूप से उपछाया में प्रवेश करता है। 0.5° < |β| < ~1.0°', mr: 'चन्द्रमा आंशिक रूप से उपछाया में प्रवेश करता है। 0.5° < |β| < ~1.0°', ta: 'சந்திரன் முழு நிழலில் பகுதியாக நுழைகிறது. 0.5° < |β| < ~1.0°', te: 'చంద్రుడు పూర్ణ నీడలో పాక్షికంగా ప్రవేశిస్తాడు. 0.5° < |β| < ~1.0°', bn: 'চন্দ্র পূর্ণ ছায়ায় আংশিকভাবে প্রবেশ করে। 0.5° < |β| < ~1.0°', kn: 'ಚಂದ್ರ ಪೂರ್ಣ ನೆರಳಿಗೆ ಭಾಗಶಃ ಪ್ರವೇಶಿಸುತ್ತಾನೆ. 0.5° < |β| < ~1.0°', gu: 'ચંદ્ર પૂર્ણ છાયામાં આંશિક રીતે પ્રવેશે છે. 0.5° < |β| < ~1.0°' },
     desc: {
-      en: 'Only part of the Moon enters Earth\'s umbral (dark inner) shadow. The umbral portion takes on a reddish-brown hue while the rest of the Moon remains its normal colour. The boundary between the lit and shadowed parts is visibly curved, demonstrating Earth\'s spherical shape — an observation known to ancient Indian astronomers.',
+      en: 'Only part of the Moon enters Earth\'s umbral (dark inner) shadow. The umbral portion takes on a reddish-brown hue while the rest of the Moon remains its normal colour. The boundary between the lit and shadowed parts is visibly curved, demonstrating Earth\'s spherical shape  –  an observation known to ancient Indian astronomers.',
       hi: 'चन्द्रमा का केवल एक भाग पृथ्वी की उपछाया (गहरी आन्तरिक छाया) में प्रवेश करता है। उपछाया वाला भाग लाल-भूरा रंग लेता है जबकि शेष चन्द्रमा अपने सामान्य रंग में रहता है।',
     },
   },
@@ -71,8 +71,8 @@ const ECLIPSE_TYPES = [
     symbol: '○',
     condition: { en: 'Moon enters only the penumbral shadow. 1.0° < |β| < ~1.6°', hi: 'चन्द्रमा केवल उपच्छाया में प्रवेश करता है। 1.0° < |β| < ~1.6°', sa: 'चन्द्रमा केवल उपच्छाया में प्रवेश करता है। 1.0° < |β| < ~1.6°', mai: 'चन्द्रमा केवल उपच्छाया में प्रवेश करता है। 1.0° < |β| < ~1.6°', mr: 'चन्द्रमा केवल उपच्छाया में प्रवेश करता है। 1.0° < |β| < ~1.6°', ta: 'சந்திரன் உபநிழலில் மட்டுமே நுழைகிறது. 1.0° < |β| < ~1.6°', te: 'చంద్రుడు ఉపఛాయలో మాత్రమే ప్రవేశిస్తాడు. 1.0° < |β| < ~1.6°', bn: 'চন্দ্র কেবল উপছায়ায় প্রবেশ করে। 1.0° < |β| < ~1.6°', kn: 'ಚಂದ್ರ ಉಪಛಾಯೆಗೆ ಮಾತ್ರ ಪ್ರವೇಶಿಸುತ್ತಾನೆ. 1.0° < |β| < ~1.6°', gu: 'ચંદ્ર ફક્ત ઉપછાયામાં જ પ્રવેશે છે. 1.0° < |β| < ~1.6°' },
     desc: {
-      en: 'The Moon passes through Earth\'s outer penumbral shadow — a region of partial sunlight, not total blockage. The dimming is subtle and often imperceptible to the naked eye except near maximum phase when the Moon\'s limb closest to the umbra may look slightly dusky. Not listed in most Panchang sutak observances because there is no visible "biting" of the Moon.',
-      hi: 'चन्द्रमा पृथ्वी की बाहरी उपच्छाया से गुज़रता है — आंशिक सूर्यप्रकाश का क्षेत्र, पूर्ण अवरोध नहीं। मंद होना सूक्ष्म होता है और अधिकतम चरण के निकट को छोड़कर नग्न आँखों से अक्सर अगोचर होता है।',
+      en: 'The Moon passes through Earth\'s outer penumbral shadow  –  a region of partial sunlight, not total blockage. The dimming is subtle and often imperceptible to the naked eye except near maximum phase when the Moon\'s limb closest to the umbra may look slightly dusky. Not listed in most Panchang sutak observances because there is no visible "biting" of the Moon.',
+      hi: 'चन्द्रमा पृथ्वी की बाहरी उपच्छाया से गुज़रता है  –  आंशिक सूर्यप्रकाश का क्षेत्र, पूर्ण अवरोध नहीं। मंद होना सूक्ष्म होता है और अधिकतम चरण के निकट को छोड़कर नग्न आँखों से अक्सर अगोचर होता है।',
     },
   },
 ];
@@ -95,13 +95,13 @@ const PHASES = [
     sanskrit: 'मध्य (Madhya)',
     name: { en: 'Maximum Eclipse', hi: 'अधिकतम ग्रहण', sa: 'अधिकतम ग्रहण', mai: 'अधिकतम ग्रहण', mr: 'अधिकतम ग्रहण', ta: 'உச்ச கிரகணம்', te: 'గరిష్ఠ గ్రహణం', bn: 'সর্বোচ্চ গ্রহণ', kn: 'ಗರಿಷ್ಠ ಗ್ರಹಣ', gu: 'મહત્તમ ગ્રહણ' },
     code: 'Max',
-    desc: { en: 'The deepest point of the eclipse — when the shadow\'s centre is nearest to the Moon (lunar) or when the Moon\'s centre is nearest to the Sun\'s centre (solar). This is the moment of greatest spiritual intensity in Vedic tradition.', hi: 'ग्रहण का सबसे गहरा बिन्दु — जब छाया का केन्द्र चन्द्रमा (चन्द्र) के निकटतम हो या जब चन्द्र का केन्द्र सूर्य के केन्द्र के निकटतम हो (सूर्य)।' },
+    desc: { en: 'The deepest point of the eclipse  –  when the shadow\'s centre is nearest to the Moon (lunar) or when the Moon\'s centre is nearest to the Sun\'s centre (solar). This is the moment of greatest spiritual intensity in Vedic tradition.', hi: 'ग्रहण का सबसे गहरा बिन्दु  –  जब छाया का केन्द्र चन्द्रमा (चन्द्र) के निकटतम हो या जब चन्द्र का केन्द्र सूर्य के केन्द्र के निकटतम हो (सूर्य)।' },
   },
   {
     sanskrit: 'मोक्ष (Moksha)',
     name: { en: 'Last Contact', hi: 'अन्तिम सम्पर्क', sa: 'अन्तिम सम्पर्क', mai: 'अन्तिम सम्पर्क', mr: 'अन्तिम सम्पर्क', ta: 'கடைசி தொடர்பு', te: 'అంతిమ స్పర్శ', bn: 'শেষ স্পর্শ', kn: 'ಕೊನೆಯ ಸ್ಪರ್ಶ', gu: 'અંતિમ સ્પર્શ' },
     code: 'P4 / C4',
-    desc: { en: 'Shadow fully leaves the luminary. The eclipse is complete. This is the moment for ritual bath (snan), ending of sutak observances, and beginning of eclipse-completion rituals. The name Moksha — liberation — signals the return to normal sacred time.', hi: 'छाया ज्योतिर्मय को पूर्णतः छोड़ देती है। ग्रहण पूर्ण होता है। यह स्नान, सूतक समाप्ति और ग्रहण-पूर्णता अनुष्ठानों का क्षण है। मोक्ष नाम सामान्य पवित्र समय की वापसी का संकेत देता है।', sa: 'छाया ज्योतिर्मय को पूर्णतः छोड़ देती है। ग्रहण पूर्ण होता है। यह स्नान, सूतक समाप्ति और ग्रहण-पूर्णता अनुष्ठानों का क्षण है। मोक्ष नाम सामान्य पवित्र समय की वापसी का संकेत देता है।', mai: 'छाया ज्योतिर्मय को पूर्णतः छोड़ देती है। ग्रहण पूर्ण होता है। यह स्नान, सूतक समाप्ति और ग्रहण-पूर्णता अनुष्ठानों का क्षण है। मोक्ष नाम सामान्य पवित्र समय की वापसी का संकेत देता है।', mr: 'छाया ज्योतिर्मय को पूर्णतः छोड़ देती है। ग्रहण पूर्ण होता है। यह स्नान, सूतक समाप्ति और ग्रहण-पूर्णता अनुष्ठानों का क्षण है। मोक्ष नाम सामान्य पवित्र समय की वापसी का संकेत देता है।', ta: 'நிழல் முழுமையாக ஒளிர்மண்டலத்தை விட்டு வெளியேறுகிறது. கிரகணம் முடிவடைகிறது. இது சடங்கு குளியல் (ஸ்நானம்), சூதக் ஆசாரங்களின் முடிவு மற்றும் கிரகண-நிறைவு சடங்குகளின் தொடக்கத்திற்கான தருணம். மோக்ஷம் — விடுதலை — என்ற பெயர் இயல்பான புனித காலத்திற்கு திரும்புவதை குறிக்கிறது.', te: 'నీడ పూర్తిగా ప్రకాశ కాయాన్ని వదిలివేస్తుంది. గ్రహణం పూర్తయింది. ఇది ధార్మిక స్నానం (స్నానం), సూతక ఆచరణల ముగింపు మరియు గ్రహణ-పూర్తి కర్మల ప్రారంభం కోసం సమయం. మోక్షం — విమోచన — అనే పేరు సాధారణ పవిత్ర కాలానికి తిరిగి రావడాన్ని సూచిస్తుంది.', bn: 'ছায়া সম্পূর্ণভাবে জ্যোতির্মণ্ডল ছেড়ে যায়। গ্রহণ সম্পূর্ণ। এটি আচার স্নানের (স্নান), সূতক আচরণের সমাপ্তি এবং গ্রহণ-সমাপ্তি অনুষ্ঠানের শুরুর মুহূর্ত। মোক্ষ — মুক্তি — নামটি স্বাভাবিক পবিত্র সময়ে ফিরে আসার সংকেত দেয়।', kn: 'ನೆರಳು ಸಂಪೂರ್ಣವಾಗಿ ಜ್ಯೋತಿರ್ಮಂಡಲವನ್ನು ಬಿಟ್ಟು ಹೊರಡುತ್ತದೆ. ಗ್ರಹಣ ಮುಗಿಯಿತು. ಇದು ಆಚಾರ ಸ್ನಾನ (ಸ್ನಾನ), ಸೂತಕ ಆಚರಣೆಗಳ ಅಂತ್ಯ ಮತ್ತು ಗ್ರಹಣ-ಪೂರ್ಣ ಆಚರಣೆಗಳ ಆರಂಭದ ಕ್ಷಣ. ಮೋಕ್ಷ — ವಿಮೋಚನೆ — ಎಂಬ ಹೆಸರು ಸಾಮಾನ್ಯ ಪವಿತ್ರ ಕಾಲಕ್ಕೆ ಮರಳುವುದನ್ನು ಸೂಚಿಸುತ್ತದೆ.', gu: 'છાયા સંપૂર્ણપણે જ્યોતિર્મંડળ છોડી દે છે. ગ્રહણ પૂર્ણ થાય છે. આ ધાર્મિક સ્નાન (સ્નાન), સૂતક આચરણના અંત અને ગ્રહણ-પૂર્ણ વિધિના આરંભનો સમય છે. મોક્ષ — મુક્તિ — નામ સામાન્ય પવિત્ર સમયમાં પરત આવવાનો સંકેત આપે છે.' },
+    desc: { en: 'Shadow fully leaves the luminary. The eclipse is complete. This is the moment for ritual bath (snan), ending of sutak observances, and beginning of eclipse-completion rituals. The name Moksha  –  liberation  –  signals the return to normal sacred time.', hi: 'छाया ज्योतिर्मय को पूर्णतः छोड़ देती है। ग्रहण पूर्ण होता है। यह स्नान, सूतक समाप्ति और ग्रहण-पूर्णता अनुष्ठानों का क्षण है। मोक्ष नाम सामान्य पवित्र समय की वापसी का संकेत देता है।', sa: 'छाया ज्योतिर्मय को पूर्णतः छोड़ देती है। ग्रहण पूर्ण होता है। यह स्नान, सूतक समाप्ति और ग्रहण-पूर्णता अनुष्ठानों का क्षण है। मोक्ष नाम सामान्य पवित्र समय की वापसी का संकेत देता है।', mai: 'छाया ज्योतिर्मय को पूर्णतः छोड़ देती है। ग्रहण पूर्ण होता है। यह स्नान, सूतक समाप्ति और ग्रहण-पूर्णता अनुष्ठानों का क्षण है। मोक्ष नाम सामान्य पवित्र समय की वापसी का संकेत देता है।', mr: 'छाया ज्योतिर्मय को पूर्णतः छोड़ देती है। ग्रहण पूर्ण होता है। यह स्नान, सूतक समाप्ति और ग्रहण-पूर्णता अनुष्ठानों का क्षण है। मोक्ष नाम सामान्य पवित्र समय की वापसी का संकेत देता है।', ta: 'நிழல் முழுமையாக ஒளிர்மண்டலத்தை விட்டு வெளியேறுகிறது. கிரகணம் முடிவடைகிறது. இது சடங்கு குளியல் (ஸ்நானம்), சூதக் ஆசாரங்களின் முடிவு மற்றும் கிரகண-நிறைவு சடங்குகளின் தொடக்கத்திற்கான தருணம். மோக்ஷம்  –  விடுதலை  –  என்ற பெயர் இயல்பான புனித காலத்திற்கு திரும்புவதை குறிக்கிறது.', te: 'నీడ పూర్తిగా ప్రకాశ కాయాన్ని వదిలివేస్తుంది. గ్రహణం పూర్తయింది. ఇది ధార్మిక స్నానం (స్నానం), సూతక ఆచరణల ముగింపు మరియు గ్రహణ-పూర్తి కర్మల ప్రారంభం కోసం సమయం. మోక్షం  –  విమోచన  –  అనే పేరు సాధారణ పవిత్ర కాలానికి తిరిగి రావడాన్ని సూచిస్తుంది.', bn: 'ছায়া সম্পূর্ণভাবে জ্যোতির্মণ্ডল ছেড়ে যায়। গ্রহণ সম্পূর্ণ। এটি আচার স্নানের (স্নান), সূতক আচরণের সমাপ্তি এবং গ্রহণ-সমাপ্তি অনুষ্ঠানের শুরুর মুহূর্ত। মোক্ষ  –  মুক্তি  –  নামটি স্বাভাবিক পবিত্র সময়ে ফিরে আসার সংকেত দেয়।', kn: 'ನೆರಳು ಸಂಪೂರ್ಣವಾಗಿ ಜ್ಯೋತಿರ್ಮಂಡಲವನ್ನು ಬಿಟ್ಟು ಹೊರಡುತ್ತದೆ. ಗ್ರಹಣ ಮುಗಿಯಿತು. ಇದು ಆಚಾರ ಸ್ನಾನ (ಸ್ನಾನ), ಸೂತಕ ಆಚರಣೆಗಳ ಅಂತ್ಯ ಮತ್ತು ಗ್ರಹಣ-ಪೂರ್ಣ ಆಚರಣೆಗಳ ಆರಂಭದ ಕ್ಷಣ. ಮೋಕ್ಷ  –  ವಿಮೋಚನೆ  –  ಎಂಬ ಹೆಸರು ಸಾಮಾನ್ಯ ಪವಿತ್ರ ಕಾಲಕ್ಕೆ ಮರಳುವುದನ್ನು ಸೂಚಿಸುತ್ತದೆ.', gu: 'છાયા સંપૂર્ણપણે જ્યોતિર્મંડળ છોડી દે છે. ગ્રહણ પૂર્ણ થાય છે. આ ધાર્મિક સ્નાન (સ્નાન), સૂતક આચરણના અંત અને ગ્રહણ-પૂર્ણ વિધિના આરંભનો સમય છે. મોક્ષ  –  મુક્તિ  –  નામ સામાન્ય પવિત્ર સમયમાં પરત આવવાનો સંકેત આપે છે.' },
   },
 ];
 
@@ -182,9 +182,9 @@ const KUNDALI_EFFECTS = [
 /* ─── Cross references ─── */
 const CROSS_REFS = [
   { href: '/eclipses', label: { en: 'Eclipse Calendar', hi: 'ग्रहण कैलेण्डर', sa: 'ग्रहण कैलेण्डर', mai: 'ग्रहण कैलेण्डर', mr: 'ग्रहण कैलेण्डर', ta: 'கிரகண நாள்காட்டி', te: 'గ్రహణ క్యాలెండర్', bn: 'গ্রহণ ক্যালেন্ডার', kn: 'ಗ್ರಹಣ ಕ್ಯಾಲೆಂಡರ್', gu: 'ગ્રહણ કેલેન્ડર' }, desc: { en: 'All upcoming solar & lunar eclipses with timings', hi: 'सभी आगामी सूर्य और चन्द्र ग्रहण समय के साथ', sa: 'सभी आगामी सूर्य और चन्द्र ग्रहण समय के साथ', mai: 'सभी आगामी सूर्य और चन्द्र ग्रहण समय के साथ', mr: 'सभी आगामी सूर्य और चन्द्र ग्रहण समय के साथ', ta: 'அனைத்து வரவிருக்கும் சூரிய & சந்திர கிரகணங்கள் நேரங்களுடன்', te: 'అన్ని రాబోయే సూర్య & చంద్ర గ్రహణాలు సమయాలతో', bn: 'সমস্ত আসন্ন সূর্য ও চন্দ্র গ্রহণ সময়সহ', kn: 'ಎಲ್ಲಾ ಮುಂಬರುವ ಸೂರ್ಯ & ಚಂದ್ರ ಗ್ರಹಣಗಳು ಸಮಯದೊಂದಿಗೆ', gu: 'આગામી તમામ સૂર્ય અને ચંદ્ર ગ્રહણો સમય સાથે' } },
-  { href: '/learn/tithis', label: { en: 'Tithis', hi: 'तिथि', sa: 'तिथि', mai: 'तिथि', mr: 'तिथि', ta: 'திதிகள்', te: 'తిథులు', bn: 'তিথিসমূহ', kn: 'ತಿಥಿಗಳು', gu: 'તિથિઓ' }, desc: { en: 'Amavasya & Purnima — the lunations that can produce eclipses', hi: 'अमावस्या और पूर्णिमा — ग्रहण उत्पन्न करने वाली तिथियाँ', sa: 'अमावस्या और पूर्णिमा — ग्रहण उत्पन्न करने वाली तिथियाँ', mai: 'अमावस्या और पूर्णिमा — ग्रहण उत्पन्न करने वाली तिथियाँ', mr: 'अमावस्या और पूर्णिमा — ग्रहण उत्पन्न करने वाली तिथियाँ', ta: 'அமாவாசை & பூர்ணிமா — கிரகணங்களை உருவாக்கக்கூடிய நிலவு நிலைகள்', te: 'అమావాస్య & పూర్ణిమ — గ్రహణాలను సృష్టించగల చంద్ర దశలు', bn: 'অমাবস্যা ও পূর্ণিমা — যে চান্দ্র দশায় গ্রহণ হতে পারে', kn: 'ಅಮಾವಾಸ್ಯೆ & ಹುಣ್ಣಿಮೆ — ಗ್ರಹಣ ಸೃಷ್ಟಿಸಬಲ್ಲ ಚಂದ್ರ ದಶೆಗಳು', gu: 'અમાવસ્યા અને પૂર્ણિમા — ગ્રહણ ઉત્પન્ન કરી શકતી ચંદ્ર દશાઓ' } },
-  { href: '/learn/nakshatras', label: { en: 'Nakshatras', hi: 'नक्षत्र', sa: 'नक्षत्र', mai: 'नक्षत्र', mr: 'नक्षत्र', ta: 'நட்சத்திரங்கள்', te: 'నక్షత్రాలు', bn: 'নক্ষত্রসমূহ', kn: 'ನಕ್ಷತ್ರಗಳು', gu: 'નક્ષત્રો' }, desc: { en: 'Eclipses in Bharani, Krittika, etc. — nakshatra-based eclipse signification', hi: 'भरणी, कृत्तिका आदि में ग्रहण — नक्षत्र-आधारित ग्रहण महत्त्व', sa: 'भरणी, कृत्तिका आदि में ग्रहण — नक्षत्र-आधारित ग्रहण महत्त्व', mai: 'भरणी, कृत्तिका आदि में ग्रहण — नक्षत्र-आधारित ग्रहण महत्त्व', mr: 'भरणी, कृत्तिका आदि में ग्रहण — नक्षत्र-आधारित ग्रहण महत्त्व', ta: 'பரணி, கிருத்திகை போன்றவற்றில் கிரகணங்கள் — நட்சத்திர அடிப்படையிலான கிரகண பொருள்', te: 'భరణి, కృత్తిక మొదలైన వాటిలో గ్రహణాలు — నక్షత్ర ఆధారిత గ్రహణ సూచన', bn: 'ভরণী, কৃত্তিকা ইত্যাদিতে গ্রহণ — নক্ষত্র-ভিত্তিক গ্রহণ তাৎপর্য', kn: 'ಭರಣಿ, ಕೃತ್ತಿಕಾ ಇತ್ಯಾದಿಗಳಲ್ಲಿ ಗ್ರಹಣಗಳು — ನಕ್ಷತ್ರ ಆಧಾರಿತ ಗ್ರಹಣ ಸೂಚನೆ', gu: 'ભરણી, કૃત્તિકા વગેરેમાં ગ્રહણ — નક્ષત્ર આધારિત ગ્રહણ સૂચન' } },
-  { href: '/learn/rashis', label: { en: 'Rashis', hi: 'राशि', sa: 'राशि', mai: 'राशि', mr: 'राशि', ta: 'ராசிகள்', te: 'రాశులు', bn: 'রাশিসমূহ', kn: 'ರಾಶಿಗಳು', gu: 'રાશિઓ' }, desc: { en: 'Which zodiac sign the eclipse falls in — house and sign effects', hi: 'ग्रहण किस राशि में पड़ता है — भाव और राशि प्रभाव', sa: 'ग्रहण किस राशि में पड़ता है — भाव और राशि प्रभाव', mai: 'ग्रहण किस राशि में पड़ता है — भाव और राशि प्रभाव', mr: 'ग्रहण किस राशि में पड़ता है — भाव और राशि प्रभाव', ta: 'கிரகணம் எந்த ராசியில் விழுகிறது — வீடு மற்றும் ராசி பலன்கள்', te: 'గ్రహణం ఏ రాశిలో పడుతుంది — భావ మరియు రాశి ప్రభావాలు', bn: 'গ্রহণ কোন রাশিতে পড়ে — ভাব ও রাশি প্রভাব', kn: 'ಗ್ರಹಣ ಯಾವ ರಾಶಿಯಲ್ಲಿ ಬೀಳುತ್ತದೆ — ಭಾವ ಮತ್ತು ರಾಶಿ ಪರಿಣಾಮ', gu: 'ગ્રહણ કઈ રાશિમાં પડે છે — ભાવ અને રાશિ અસરો' } },
+  { href: '/learn/tithis', label: { en: 'Tithis', hi: 'तिथि', sa: 'तिथि', mai: 'तिथि', mr: 'तिथि', ta: 'திதிகள்', te: 'తిథులు', bn: 'তিথিসমূহ', kn: 'ತಿಥಿಗಳು', gu: 'તિથિઓ' }, desc: { en: 'Amavasya & Purnima  –  the lunations that can produce eclipses', hi: 'अमावस्या और पूर्णिमा  –  ग्रहण उत्पन्न करने वाली तिथियाँ', sa: 'अमावस्या और पूर्णिमा  –  ग्रहण उत्पन्न करने वाली तिथियाँ', mai: 'अमावस्या और पूर्णिमा  –  ग्रहण उत्पन्न करने वाली तिथियाँ', mr: 'अमावस्या और पूर्णिमा  –  ग्रहण उत्पन्न करने वाली तिथियाँ', ta: 'அமாவாசை & பூர்ணிமா  –  கிரகணங்களை உருவாக்கக்கூடிய நிலவு நிலைகள்', te: 'అమావాస్య & పూర్ణిమ  –  గ్రహణాలను సృష్టించగల చంద్ర దశలు', bn: 'অমাবস্যা ও পূর্ণিমা  –  যে চান্দ্র দশায় গ্রহণ হতে পারে', kn: 'ಅಮಾವಾಸ್ಯೆ & ಹುಣ್ಣಿಮೆ  –  ಗ್ರಹಣ ಸೃಷ್ಟಿಸಬಲ್ಲ ಚಂದ್ರ ದಶೆಗಳು', gu: 'અમાવસ્યા અને પૂર્ણિમા  –  ગ્રહણ ઉત્પન્ન કરી શકતી ચંદ્ર દશાઓ' } },
+  { href: '/learn/nakshatras', label: { en: 'Nakshatras', hi: 'नक्षत्र', sa: 'नक्षत्र', mai: 'नक्षत्र', mr: 'नक्षत्र', ta: 'நட்சத்திரங்கள்', te: 'నక్షత్రాలు', bn: 'নক্ষত্রসমূহ', kn: 'ನಕ್ಷತ್ರಗಳು', gu: 'નક્ષત્રો' }, desc: { en: 'Eclipses in Bharani, Krittika, etc.  –  nakshatra-based eclipse signification', hi: 'भरणी, कृत्तिका आदि में ग्रहण  –  नक्षत्र-आधारित ग्रहण महत्त्व', sa: 'भरणी, कृत्तिका आदि में ग्रहण  –  नक्षत्र-आधारित ग्रहण महत्त्व', mai: 'भरणी, कृत्तिका आदि में ग्रहण  –  नक्षत्र-आधारित ग्रहण महत्त्व', mr: 'भरणी, कृत्तिका आदि में ग्रहण  –  नक्षत्र-आधारित ग्रहण महत्त्व', ta: 'பரணி, கிருத்திகை போன்றவற்றில் கிரகணங்கள்  –  நட்சத்திர அடிப்படையிலான கிரகண பொருள்', te: 'భరణి, కృత్తిక మొదలైన వాటిలో గ్రహణాలు  –  నక్షత్ర ఆధారిత గ్రహణ సూచన', bn: 'ভরণী, কৃত্তিকা ইত্যাদিতে গ্রহণ  –  নক্ষত্র-ভিত্তিক গ্রহণ তাৎপর্য', kn: 'ಭರಣಿ, ಕೃತ್ತಿಕಾ ಇತ್ಯಾದಿಗಳಲ್ಲಿ ಗ್ರಹಣಗಳು  –  ನಕ್ಷತ್ರ ಆಧಾರಿತ ಗ್ರಹಣ ಸೂಚನೆ', gu: 'ભરણી, કૃત્તિકા વગેરેમાં ગ્રહણ  –  નક્ષત્ર આધારિત ગ્રહણ સૂચન' } },
+  { href: '/learn/rashis', label: { en: 'Rashis', hi: 'राशि', sa: 'राशि', mai: 'राशि', mr: 'राशि', ta: 'ராசிகள்', te: 'రాశులు', bn: 'রাশিসমূহ', kn: 'ರಾಶಿಗಳು', gu: 'રાશિઓ' }, desc: { en: 'Which zodiac sign the eclipse falls in  –  house and sign effects', hi: 'ग्रहण किस राशि में पड़ता है  –  भाव और राशि प्रभाव', sa: 'ग्रहण किस राशि में पड़ता है  –  भाव और राशि प्रभाव', mai: 'ग्रहण किस राशि में पड़ता है  –  भाव और राशि प्रभाव', mr: 'ग्रहण किस राशि में पड़ता है  –  भाव और राशि प्रभाव', ta: 'கிரகணம் எந்த ராசியில் விழுகிறது  –  வீடு மற்றும் ராசி பலன்கள்', te: 'గ్రహణం ఏ రాశిలో పడుతుంది  –  భావ మరియు రాశి ప్రభావాలు', bn: 'গ্রহণ কোন রাশিতে পড়ে  –  ভাব ও রাশি প্রভাব', kn: 'ಗ್ರಹಣ ಯಾವ ರಾಶಿಯಲ್ಲಿ ಬೀಳುತ್ತದೆ  –  ಭಾವ ಮತ್ತು ರಾಶಿ ಪರಿಣಾಮ', gu: 'ગ્રહણ કઈ રાશિમાં પડે છે  –  ભાવ અને રાશિ અસરો' } },
 ];
 
 export default function LearnEclipsesPage() {
@@ -290,7 +290,7 @@ export default function LearnEclipsesPage() {
           <p>{t('astro2')}</p>
           <p>{t('astro3')}</p>
 
-          {/* Interactive animation — Solar & Lunar Eclipse */}
+          {/* Interactive animation  –  Solar & Lunar Eclipse */}
           <EclipseAnimation locale={locale} />
 
           {/* Visual: Moon orbital inclination diagram */}
@@ -303,7 +303,7 @@ export default function LearnEclipsesPage() {
                 {/* Ecliptic plane */}
                 <line x1="10" y1="60" x2="310" y2="60" stroke="#d4a853" strokeWidth="1.5" opacity="0.5" />
                 <text x="315" y="63" fontSize="8" fill="#d4a853" opacity="0.6">{t('svgEcliptic')}</text>
-                {/* Moon orbit — tilted line */}
+                {/* Moon orbit  –  tilted line */}
                 <line x1="10" y1="95" x2="310" y2="25" stroke="#8b5cf6" strokeWidth="1.5" opacity="0.6" strokeDasharray="5 3" />
                 {/* 5.15° arc indicator */}
                 <path d="M 160 60 A 20 20 0 0 0 168 43" fill="none" stroke="#8b5cf6" strokeWidth="1" opacity="0.7" />
@@ -378,7 +378,7 @@ export default function LearnEclipsesPage() {
             </div>
           </div>
 
-          {/* Step 3 — with threshold tables */}
+          {/* Step 3  –  with threshold tables */}
           <div className="border border-gold-primary/12 rounded-xl overflow-hidden">
             <div className="bg-gold-primary/8 px-5 py-3 flex items-center gap-3">
               <span className="text-gold-primary font-bold text-lg font-mono">03</span>
@@ -866,7 +866,7 @@ export default function LearnEclipsesPage() {
         </div>
       </motion.section>
 
-      {/* ═══ 9. The 4 Eclipse Types — Node × Type Matrix ═══ */}
+      {/* ═══ 9. The 4 Eclipse Types  –  Node × Type Matrix ═══ */}
       <motion.section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

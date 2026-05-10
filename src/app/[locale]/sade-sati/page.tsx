@@ -40,13 +40,13 @@ const L = (en: string, hi: string, sa?: string, ta?: string, te?: string, bn?: s
 const LABELS = {
   title: L('Sade Sati', 'साढ़े साती', 'साढेसाती', 'ஏழரை சனி', 'సాడే సాతి', 'সাড়ে সাতি', 'ಸಾಡೆ ಸಾತಿ'),
   subtitle: L(
-    "Saturn's 7.5-year transit over your Moon sign — the most transformative period in Vedic astrology",
-    'शनि का आपकी चन्द्र राशि पर 7.5 वर्ष का गोचर — वैदिक ज्योतिष का सर्वाधिक परिवर्तनकारी काल',
-    'शनेः चन्द्रराशौ सार्धसप्तवर्षीयं गोचरम् — वैदिकज्योतिषस्य परमपरिवर्तनकालः',
-    'உங்கள் சந்திர ராசியின் மீது சனியின் 7.5 வருட கோசாரம் — வேத ஜோதிடத்தின் மிக முக்கிய காலம்',
-    'మీ చంద్ర రాశిపై శని 7.5 సంవత్సరాల గోచారం — వేద జ్యోతిషంలో అత్యంత పరివర్తనాత్మక కాలం',
-    'আপনার চন্দ্র রাশির উপর শনির ৭.৫ বছরের গোচর — বৈদিক জ্যোতিষের সবচেয়ে রূপান্তরকারী কাল',
-    'ನಿಮ್ಮ ಚಂದ್ರ ರಾಶಿಯ ಮೇಲೆ ಶನಿಯ 7.5 ವರ್ಷಗಳ ಗೋಚಾರ — ವೈದಿಕ ಜ್ಯೋತಿಷದಲ್ಲಿ ಅತ್ಯಂತ ಪರಿವರ್ತನಾತ್ಮಕ ಅವಧಿ',
+    "Saturn's 7.5-year transit over your Moon sign  –  the most transformative period in Vedic astrology",
+    'शनि का आपकी चन्द्र राशि पर 7.5 वर्ष का गोचर  –  वैदिक ज्योतिष का सर्वाधिक परिवर्तनकारी काल',
+    'शनेः चन्द्रराशौ सार्धसप्तवर्षीयं गोचरम्  –  वैदिकज्योतिषस्य परमपरिवर्तनकालः',
+    'உங்கள் சந்திர ராசியின் மீது சனியின் 7.5 வருட கோசாரம்  –  வேத ஜோதிடத்தின் மிக முக்கிய காலம்',
+    'మీ చంద్ర రాశిపై శని 7.5 సంవత్సరాల గోచారం  –  వేద జ్యోతిషంలో అత్యంత పరివర్తనాత్మక కాలం',
+    'আপনার চন্দ্র রাশির উপর শনির ৭.৫ বছরের গোচর  –  বৈদিক জ্যোতিষের সবচেয়ে রূপান্তরকারী কাল',
+    'ನಿಮ್ಮ ಚಂದ್ರ ರಾಶಿಯ ಮೇಲೆ ಶನಿಯ 7.5 ವರ್ಷಗಳ ಗೋಚಾರ  –  ವೈದಿಕ ಜ್ಯೋತಿಷದಲ್ಲಿ ಅತ್ಯಂತ ಪರಿವರ್ತನಾತ್ಮಕ ಅವಧಿ',
   ),
   saturnIn: L('Saturn is currently in', 'शनि वर्तमान में', 'शनिः सम्प्रति', 'சனி தற்போது', 'శని ప్రస్తుతం', 'শনি বর্তমানে', 'ಶನಿ ಪ್ರಸ್ತುತ'),
   quickTab: L('Quick Check', 'त्वरित जाँच', 'शीघ्रपरीक्षा', 'விரைவு சோதனை', 'త్వరిత తనిఖీ', 'দ্রুত পরীক্ষা', 'ತ್ವರಿತ ಪರಿಶೀಲನೆ'),
@@ -100,7 +100,7 @@ const t = (label: LocaleText, locale: Locale): string => tl(label, locale);
 
 const GENERIC_REMEDIES: { title: LocaleText; description: LocaleText; priority: 'essential' | 'recommended' | 'optional' }[] = [
   { title: L('Hanuman Chalisa', 'हनुमान चालीसा'), description: L('Recite Hanuman Chalisa daily, especially on Saturdays', 'प्रतिदिन हनुमान चालीसा पढ़ें, विशेषकर शनिवार को'), priority: 'essential' },
-  { title: L('Saturday Donations', 'शनिवार दान'), description: L('Donate black items — sesame, iron, mustard oil — on Saturdays', 'शनिवार को काली वस्तुएं — तिल, लोहा, सरसों का तेल — दान करें'), priority: 'essential' },
+  { title: L('Saturday Donations', 'शनिवार दान'), description: L('Donate black items  –  sesame, iron, mustard oil  –  on Saturdays', 'शनिवार को काली वस्तुएं  –  तिल, लोहा, सरसों का तेल  –  दान करें'), priority: 'essential' },
   { title: L('Peepal Tree Lamp', 'पीपल दीपक'), description: L('Light mustard oil lamp under a Peepal tree every Saturday evening', 'प्रत्येक शनिवार संध्या को पीपल वृक्ष के नीचे सरसों के तेल का दीपक जलाएं'), priority: 'recommended' },
   { title: L('Shani Mantra', 'शनि मंत्र'), description: L('Chant "Om Sham Shanaishcharaya Namah" 108 times daily', '"ॐ शं शनैश्चराय नमः" 108 बार प्रतिदिन जाप करें'), priority: 'recommended' },
 ];
@@ -165,7 +165,7 @@ export default function SadeSatiPage() {
   const [selectedChartId, setSelectedChartId] = useState<string | null>(null);
   const [chartsLoading, setChartsLoading] = useState(false);
 
-  /** Compute full sade sati for a birth_data — same logic as handleFullAnalysis */
+  /** Compute full sade sati for a birth_data  –  same logic as handleFullAnalysis */
   const computeSadeSatiForBirthData = useCallback(async (bd: BirthData): Promise<{ analysis: SadeSatiAnalysis; moonSign: number } | null> => {
     // Cache key: birth data hash + today's date (Saturn moves ~0.05°/day, daily granularity is fine)
     const today = new Date().toISOString().slice(0, 10);
@@ -178,7 +178,7 @@ export default function SadeSatiPage() {
         const parsed = JSON.parse(cached);
         if (parsed?.analysis && parsed?.moonSign) return parsed;
       }
-    } catch { /* localStorage unavailable or corrupt — compute fresh */ }
+    } catch { /* localStorage unavailable or corrupt  –  compute fresh */ }
 
     try {
       const [y, m, d] = bd.date.split('-').map(Number);
@@ -211,8 +211,8 @@ export default function SadeSatiPage() {
       };
       const result = { analysis: analyzeSadeSati(input), moonSign: moon?.sign ?? 1 };
 
-      // Cache the result — expires naturally when date changes (new cache key tomorrow)
-      try { localStorage.setItem(cacheKey, JSON.stringify(result)); } catch { /* storage full — fine */ }
+      // Cache the result  –  expires naturally when date changes (new cache key tomorrow)
+      try { localStorage.setItem(cacheKey, JSON.stringify(result)); } catch { /* storage full  –  fine */ }
 
       return result;
     } catch {
@@ -325,7 +325,7 @@ export default function SadeSatiPage() {
       setAnalysis(result);
       setIsFullMode(true);
     } catch {
-      // Silently handle — could add error state
+      // Silently handle  –  could add error state
     } finally {
       setLoading(false);
     }
@@ -363,26 +363,26 @@ export default function SadeSatiPage() {
       <InfoBlock id="sade-sati-intro" title={isTamil ? 'ஏழரை சனி என்றால் என்ன? ஏன் 7.5 வருடங்கள்?' : locale === 'en' ? 'What is Sade Sati and why 7.5 years?' : 'साढ़े साती क्या है और 7.5 वर्ष क्यों?'} defaultOpen>
         {!isDevanagariLocale(locale) ? (
           <div className="space-y-3">
-            <p><strong>Sade Sati</strong> (literally &quot;seven and a half&quot;) is the ~7.5-year period when Saturn transits through three consecutive signs — the sign before your Moon sign, your Moon sign itself, and the sign after. Since Saturn takes ~2.5 years per sign, the total is ~7.5 years.</p>
-            <p><strong>Why the Moon?</strong> In Vedic astrology, your Moon sign (not Sun sign) represents your mind, emotions, and inner world. When Saturn — the planet of discipline, karma, and hard lessons — passes over your Moon, it puts pressure on your emotional foundation. This isn&apos;t punishment — it&apos;s a period of deep maturation.</p>
+            <p><strong>Sade Sati</strong> (literally &quot;seven and a half&quot;) is the ~7.5-year period when Saturn transits through three consecutive signs  –  the sign before your Moon sign, your Moon sign itself, and the sign after. Since Saturn takes ~2.5 years per sign, the total is ~7.5 years.</p>
+            <p><strong>Why the Moon?</strong> In Vedic astrology, your Moon sign (not Sun sign) represents your mind, emotions, and inner world. When Saturn  –  the planet of discipline, karma, and hard lessons  –  passes over your Moon, it puts pressure on your emotional foundation. This isn&apos;t punishment  –  it&apos;s a period of deep maturation.</p>
             <p><strong>The three phases:</strong></p>
             <ul className="list-disc ml-4 space-y-1 text-xs">
-              <li><strong>Rising (12th from Moon)</strong> — Financial pressures, sleep disturbance, hidden anxieties. Saturn approaches your Moon like gathering clouds.</li>
-              <li><strong>Peak (over Moon sign)</strong> — The most intense phase. Mental pressure, relationship tests, career challenges. But also the deepest growth and self-discovery.</li>
-              <li><strong>Setting (2nd from Moon)</strong> — Financial strain eases but family/speech-related issues may surface. Saturn recedes, leaving wisdom behind.</li>
+              <li><strong>Rising (12th from Moon)</strong>  –  Financial pressures, sleep disturbance, hidden anxieties. Saturn approaches your Moon like gathering clouds.</li>
+              <li><strong>Peak (over Moon sign)</strong>  –  The most intense phase. Mental pressure, relationship tests, career challenges. But also the deepest growth and self-discovery.</li>
+              <li><strong>Setting (2nd from Moon)</strong>  –  Financial strain eases but family/speech-related issues may surface. Saturn recedes, leaving wisdom behind.</li>
             </ul>
             <p><strong>Important:</strong> Sade Sati is NOT always bad. Its effects depend on Saturn&apos;s natal position, the Moon&apos;s strength, and your current dasha. For some, it brings career breakthroughs, spiritual awakening, or overdue life corrections. Many successful people achieved their greatest milestones during Sade Sati.</p>
             <p><strong>It occurs 2-3 times</strong> in an average lifetime (every ~30 years when Saturn completes its orbit). The first Sade Sati (childhood) is felt by parents. The second (age 28-37 roughly) is the most impactful. The third (late 50s-60s) brings spiritual depth.</p>
           </div>
         ) : (
           <div className="space-y-3">
-            <p><strong>साढ़े साती</strong> (शाब्दिक अर्थ &quot;साढ़े सात&quot;) वह ~7.5 वर्ष की अवधि है जब शनि तीन क्रमिक राशियों से गुजरता है — आपकी चन्द्र राशि से पहली, स्वयं चन्द्र राशि, और उसके बाद की। शनि ~2.5 वर्ष प्रति राशि लेता है, कुल ~7.5 वर्ष।</p>
-            <p><strong>चन्द्रमा क्यों?</strong> वैदिक ज्योतिष में चन्द्र राशि (सूर्य राशि नहीं) आपके मन, भावनाओं और आन्तरिक संसार का प्रतिनिधित्व करती है। जब शनि — अनुशासन, कर्म और कठिन पाठ का ग्रह — चन्द्रमा पर से गुजरता है, वह भावनात्मक नींव पर दबाव डालता है। यह दण्ड नहीं — गहन परिपक्वता का काल है।</p>
+            <p><strong>साढ़े साती</strong> (शाब्दिक अर्थ &quot;साढ़े सात&quot;) वह ~7.5 वर्ष की अवधि है जब शनि तीन क्रमिक राशियों से गुजरता है  –  आपकी चन्द्र राशि से पहली, स्वयं चन्द्र राशि, और उसके बाद की। शनि ~2.5 वर्ष प्रति राशि लेता है, कुल ~7.5 वर्ष।</p>
+            <p><strong>चन्द्रमा क्यों?</strong> वैदिक ज्योतिष में चन्द्र राशि (सूर्य राशि नहीं) आपके मन, भावनाओं और आन्तरिक संसार का प्रतिनिधित्व करती है। जब शनि  –  अनुशासन, कर्म और कठिन पाठ का ग्रह  –  चन्द्रमा पर से गुजरता है, वह भावनात्मक नींव पर दबाव डालता है। यह दण्ड नहीं  –  गहन परिपक्वता का काल है।</p>
             <p><strong>तीन चरण:</strong></p>
             <ul className="list-disc ml-4 space-y-1 text-xs">
-              <li><strong>आरम्भ (चन्द्र से 12वाँ)</strong> — आर्थिक दबाव, नींद में बाधा, छिपी चिन्ताएँ।</li>
-              <li><strong>चरम (चन्द्र राशि पर)</strong> — सबसे तीव्र। मानसिक दबाव, सम्बन्ध परीक्षा, कैरियर चुनौतियाँ। किन्तु सबसे गहन विकास भी।</li>
-              <li><strong>अवसान (चन्द्र से 2रा)</strong> — आर्थिक दबाव कम, पारिवारिक/वाणी विषय। शनि ज्ञान छोड़कर जाता है।</li>
+              <li><strong>आरम्भ (चन्द्र से 12वाँ)</strong>  –  आर्थिक दबाव, नींद में बाधा, छिपी चिन्ताएँ।</li>
+              <li><strong>चरम (चन्द्र राशि पर)</strong>  –  सबसे तीव्र। मानसिक दबाव, सम्बन्ध परीक्षा, कैरियर चुनौतियाँ। किन्तु सबसे गहन विकास भी।</li>
+              <li><strong>अवसान (चन्द्र से 2रा)</strong>  –  आर्थिक दबाव कम, पारिवारिक/वाणी विषय। शनि ज्ञान छोड़कर जाता है।</li>
             </ul>
             <p><strong>महत्वपूर्ण:</strong> साढ़े साती सदैव बुरी नहीं होती। प्रभाव शनि की जन्म स्थिति, चन्द्रमा की शक्ति और वर्तमान दशा पर निर्भर करते हैं। कई सफल लोगों ने साढ़े साती में सबसे बड़ी उपलब्धियाँ प्राप्त कीं।</p>
             <p><strong>जीवनकाल में 2-3 बार</strong> आती है (~30 वर्ष में एक बार)। पहली (बचपन) माता-पिता पर प्रभावी। दूसरी (28-37 वर्ष) सर्वाधिक प्रभावशाली। तीसरी (50-60 वर्ष) आध्यात्मिक गहनता।</p>
@@ -390,7 +390,7 @@ export default function SadeSatiPage() {
         )}
       </InfoBlock>
 
-      {/* ── Saved Charts — auto sade sati for logged-in users ── */}
+      {/* ── Saved Charts  –  auto sade sati for logged-in users ── */}
       {authUser && savedCharts.length > 0 && (
         <motion.div {...fadeUp} className="mb-10">
           <h2 className="text-lg font-bold text-gold-light mb-4 flex items-center gap-2" style={headingFont}>
@@ -454,7 +454,7 @@ export default function SadeSatiPage() {
         </motion.div>
       )}
 
-      {/* Tabs — for new/quick checks */}
+      {/* Tabs  –  for new/quick checks */}
       <div className="flex justify-center gap-2 mb-10">
         {(['quick', 'full'] as const).map(tb => (
           <button
@@ -472,7 +472,7 @@ export default function SadeSatiPage() {
         ))}
       </div>
 
-      {/* Quick Mode — Moon Sign Grid */}
+      {/* Quick Mode  –  Moon Sign Grid */}
       {tab === 'quick' && (
         <motion.div {...fadeUp} className="max-w-lg mx-auto mb-12">
           <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-3 text-center" style={bodyFont}>
@@ -497,7 +497,7 @@ export default function SadeSatiPage() {
         </motion.div>
       )}
 
-      {/* Full Mode — Birth Details Form */}
+      {/* Full Mode  –  Birth Details Form */}
       {tab === 'full' && (
         <motion.div {...fadeUp} className="max-w-lg mx-auto mb-12 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-3 sm:p-4 md:p-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -542,7 +542,7 @@ export default function SadeSatiPage() {
           <motion.div {...fadeUp} exit={{ opacity: 0 }}>
             <GoldDivider />
 
-            {/* Ashtama Shani — Saturn in 8th from natal Moon: dates + timeline */}
+            {/* Ashtama Shani  –  Saturn in 8th from natal Moon: dates + timeline */}
             {(() => {
               if (!moonRashi) return null;
               const MONTH_EN = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -562,7 +562,7 @@ export default function SadeSatiPage() {
 
               const fmtPeriod = (p: AshtamaShaniPeriod) => {
                 const ms = locale === 'en' ? MONTH_EN : MONTH_HI;
-                return `${ms[p.startMonth]} ${p.startYear} — ${ms[p.endMonth]} ${p.endYear}`;
+                return `${ms[p.startMonth]} ${p.startYear}  –  ${ms[p.endMonth]} ${p.endYear}`;
               };
 
               return (
@@ -581,8 +581,8 @@ export default function SadeSatiPage() {
                   {activePeriod && (
                     <p className="text-text-secondary text-sm max-w-xl mx-auto text-center mb-4">
                       {locale === 'en'
-                        ? 'Ashtama Shani — Saturn transiting the 8th sign from your natal Moon — is considered more severe than individual Sade Sati phases. This period brings deep transformation, unexpected challenges, and intensified karmic lessons in health, longevity, and hidden matters.'
-                        : 'अष्टम शनि — शनि का जन्म चन्द्र से 8वीं राशि में गोचर — साढ़े साती के चरणों से भी अधिक कष्टप्रद माना जाता है। यह अवधि स्वास्थ्य, आयु और छिपे विषयों में गहन परिवर्तन लाती है।'}
+                        ? 'Ashtama Shani  –  Saturn transiting the 8th sign from your natal Moon  –  is considered more severe than individual Sade Sati phases. This period brings deep transformation, unexpected challenges, and intensified karmic lessons in health, longevity, and hidden matters.'
+                        : 'अष्टम शनि  –  शनि का जन्म चन्द्र से 8वीं राशि में गोचर  –  साढ़े साती के चरणों से भी अधिक कष्टप्रद माना जाता है। यह अवधि स्वास्थ्य, आयु और छिपे विषयों में गहन परिवर्तन लाती है।'}
                     </p>
                   )}
 
@@ -621,11 +621,11 @@ export default function SadeSatiPage() {
             {analysis.isActive ? (
               <div className="my-10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-3 sm:p-5 md:p-8 border-2 border-red-500/30 bg-gradient-to-br from-red-500/5 to-transparent text-center">
                 <div className="text-red-400 text-xs uppercase tracking-[0.3em] font-bold mb-2">{t(LABELS.active, locale)}</div>
-                <div className="text-red-300 text-2xl font-bold mb-1" style={headingFont}>{analysis.cycleStart} — {analysis.cycleEnd}</div>
+                <div className="text-red-300 text-2xl font-bold mb-1" style={headingFont}>{analysis.cycleStart}  –  {analysis.cycleEnd}</div>
                 {analysis.currentPhase && (
                   <div className="text-text-secondary text-sm mb-4" style={bodyFont}>{t(LABELS.phase[analysis.currentPhase], locale)}</div>
                 )}
-                {/* Cycle progress bar — full 90° (3 signs) */}
+                {/* Cycle progress bar  –  full 90° (3 signs) */}
                 <div className="max-w-md mx-auto">
                   {/* 3-segment bar: Rising | Peak | Setting */}
                   <div className="relative h-3 rounded-full bg-bg-tertiary/40 overflow-hidden">
@@ -654,15 +654,15 @@ export default function SadeSatiPage() {
                   </div>
                   <p className="text-text-secondary/60 text-xs text-center mt-1">
                     {locale === 'hi'
-                      ? `शनि वर्तमान में ${analysis.saturnDegree.toFixed(1)}° — ${analysis.currentPhase === 'rising' ? 'पहली' : analysis.currentPhase === 'peak' ? 'दूसरी' : 'तीसरी'} राशि में`
+                      ? `शनि वर्तमान में ${analysis.saturnDegree.toFixed(1)}°  –  ${analysis.currentPhase === 'rising' ? 'पहली' : analysis.currentPhase === 'peak' ? 'दूसरी' : 'तीसरी'} राशि में`
                       : `Saturn at ${analysis.saturnDegree.toFixed(1)}° in ${analysis.currentPhase === 'rising' ? '1st' : analysis.currentPhase === 'peak' ? '2nd' : '3rd'} sign of transit`}
                   </p>
                   {/* Retrograde speed explanation */}
                   <div className="mt-3 px-3 py-2 rounded-lg bg-white/[0.03] border border-white/5">
                     <p className="text-text-secondary/70 text-xs leading-relaxed" style={bodyFont}>
                       {locale === 'hi'
-                        ? 'शनि की गति राशि में एकसमान नहीं होती। वक्री (retrograde) स्टेशनों के निकट शनि 0°/दिन तक धीमा हो जाता है — यही काल सबसे तीव्र प्रभाव का होता है। यह वास्तविक गति नहीं बल्कि पृथ्वी से देखी गई भासमान गति है।'
-                        : "Saturn's speed through the sign is not uniform. Near retrograde stations, it slows to 0°/day — this is when effects are felt most intensely. This is apparent (geocentric) speed, not real orbital speed. Saturn's actual orbit is nearly circular; the variation comes from Earth overtaking Saturn, like a slower car appearing to reverse when you pass it."}
+                        ? 'शनि की गति राशि में एकसमान नहीं होती। वक्री (retrograde) स्टेशनों के निकट शनि 0°/दिन तक धीमा हो जाता है  –  यही काल सबसे तीव्र प्रभाव का होता है। यह वास्तविक गति नहीं बल्कि पृथ्वी से देखी गई भासमान गति है।'
+                        : "Saturn's speed through the sign is not uniform. Near retrograde stations, it slows to 0°/day  –  this is when effects are felt most intensely. This is apparent (geocentric) speed, not real orbital speed. Saturn's actual orbit is nearly circular; the variation comes from Earth overtaking Saturn, like a slower car appearing to reverse when you pass it."}
                     </p>
                   </div>
                 </div>
@@ -788,10 +788,10 @@ export default function SadeSatiPage() {
                   // Only show cycles from birth year onwards
                   // For saved charts: use the selected chart's birth data
                   // For full mode: use the birthDate form field
-                  // For quick mode: no birth year available — show all
+                  // For quick mode: no birth year available  –  show all
                   const selectedChart = savedCharts.find(c => c.id === selectedChartId);
                   const bd = selectedChart?.birth_data?.date || birthDate;
-                  if (!bd) return true; // Quick mode — show all
+                  if (!bd) return true; // Quick mode  –  show all
                   const birthYear = parseInt(bd.split('-')[0]);
                   return !birthYear || cycle.endYear >= birthYear;
                 })
@@ -811,7 +811,7 @@ export default function SadeSatiPage() {
                     <div className="flex items-center justify-between mb-1">
                       <div>
                         <span className={`font-mono text-lg font-bold ${cycle.isActive ? 'text-red-300' : 'text-gold-light'}`}>
-                          {cycle.startYear} — {cycle.endYear}
+                          {cycle.startYear}  –  {cycle.endYear}
                         </span>
                         {cycle.isActive && (
                           <span className="ml-3 text-xs px-2 py-0.5 bg-red-500/20 text-red-400 rounded-full font-bold animate-pulse">
@@ -912,7 +912,7 @@ export default function SadeSatiPage() {
               </div>
             </div>
 
-            {/* 5. Remedies — only when Sade Sati is active */}
+            {/* 5. Remedies  –  only when Sade Sati is active */}
             {analysis.isActive && (<>
             <GoldDivider />
             <h2 className="text-3xl font-bold text-gold-gradient my-8 text-center" style={headingFont}>{t(LABELS.remedies, locale)}</h2>

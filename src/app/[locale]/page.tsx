@@ -11,7 +11,7 @@ import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { PanchangData } from '@/types/panchang';
 
-// NO revalidate here — page uses headers() for geo-location.
+// NO revalidate here  –  page uses headers() for geo-location.
 // ISR would cache one user's city and serve it to everyone.
 // CPU protection via API-level caching (s-maxage=43200 on /api/panchang).
 
@@ -127,7 +127,7 @@ function JyotishPillarIcon() {
 
 // Dramatic custom SVG icons for hero cards (128px, bold tarot style)
 function KundaliSVG() {
-  // North Indian diamond chart — bold strokes, filled houses, planet dots
+  // North Indian diamond chart  –  bold strokes, filled houses, planet dots
   return (
     <svg width="128" height="128" viewBox="0 0 64 64" fill="none" aria-hidden="true">
       <defs>
@@ -145,7 +145,7 @@ function KundaliSVG() {
       {/* Diagonal lines */}
       <line x1="4" y1="4" x2="60" y2="60" stroke="#f0d48a" strokeWidth="1.5" opacity="0.35" />
       <line x1="60" y1="4" x2="4" y2="60" stroke="#f0d48a" strokeWidth="1.5" opacity="0.35" />
-      {/* Planet dots — bold, scattered in houses */}
+      {/* Planet dots  –  bold, scattered in houses */}
       <circle cx="20" cy="14" r="4" fill="url(#hk1)" opacity="0.9" />
       <circle cx="50" cy="12" r="3.5" fill="#d4a853" opacity="0.8" />
       <circle cx="14" cy="48" r="3" fill="#f0d48a" opacity="0.7" />
@@ -157,7 +157,7 @@ function KundaliSVG() {
 }
 
 function MuhurtaSVG() {
-  // Auspicious star with clock — bold pentagram + thick hour markers
+  // Auspicious star with clock  –  bold pentagram + thick hour markers
   return (
     <svg width="128" height="128" viewBox="0 0 64 64" fill="none" aria-hidden="true">
       <defs>
@@ -165,9 +165,9 @@ function MuhurtaSVG() {
         <radialGradient id="hm1g" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#4ade80" stopOpacity="0.3" /><stop offset="100%" stopColor="#166534" stopOpacity="0" /></radialGradient>
       </defs>
       <circle cx="32" cy="32" r="31" fill="url(#hm1g)" />
-      {/* Outer ring — thick */}
+      {/* Outer ring  –  thick */}
       <circle cx="32" cy="32" r="30" stroke="#4ade80" strokeWidth="2.5" opacity="0.7" />
-      {/* 12 hour markers — bold ticks */}
+      {/* 12 hour markers  –  bold ticks */}
       {Array.from({ length: 12 }, (_, i) => { const a = (Math.PI * 2 * i) / 12 - Math.PI / 2; return <line key={i} x1={32 + 24 * Math.cos(a)} y1={32 + 24 * Math.sin(a)} x2={32 + 30 * Math.cos(a)} y2={32 + 30 * Math.sin(a)} stroke="#4ade80" strokeWidth={i % 3 === 0 ? 3.5 : 2} strokeLinecap="round" opacity={i % 3 === 0 ? 0.9 : 0.5} />; })}
       {/* Bold 5-pointed star */}
       <polygon points="32,6 38,24 56,24 42,34 47,52 32,42 17,52 22,34 8,24 26,24" stroke="#4ade80" strokeWidth="2.5" fill="#4ade80" fillOpacity="0.2" strokeLinejoin="round" />
@@ -181,7 +181,7 @@ function MuhurtaSVG() {
 }
 
 function CalendarSVG() {
-  // Sacred fire altar (Havan Kund) — pyramid fire with festival garland
+  // Sacred fire altar (Havan Kund)  –  pyramid fire with festival garland
   return (
     <svg width="128" height="128" viewBox="0 0 64 64" fill="none" aria-hidden="true">
       <defs>
@@ -189,19 +189,19 @@ function CalendarSVG() {
         <radialGradient id="hc1g" cx="50%" cy="55%" r="50%"><stop offset="0%" stopColor="#fb923c" stopOpacity="0.35" /><stop offset="100%" stopColor="#7c2d12" stopOpacity="0" /></radialGradient>
       </defs>
       <circle cx="32" cy="36" r="31" fill="url(#hc1g)" />
-      {/* Festival garland arc — draped at top with hanging tassels */}
+      {/* Festival garland arc  –  draped at top with hanging tassels */}
       <path d="M6 14 Q18 22 32 14 Q46 22 58 14" stroke="#fb923c" strokeWidth="2.5" fill="none" opacity="0.7" />
       <path d="M6 14 Q18 24 32 16 Q46 24 58 14" stroke="#fbbf24" strokeWidth="1.5" fill="none" opacity="0.4" />
       {/* Tassels hanging from garland */}
       {[12, 22, 32, 42, 52].map(x => <line key={x} x1={x} y1={x === 32 ? 14 : 18} x2={x} y2={x === 32 ? 20 : 24} stroke="#fb923c" strokeWidth="2" strokeLinecap="round" opacity="0.6" />)}
-      {/* Sacred fire — large, dramatic, 3 layers */}
+      {/* Sacred fire  –  large, dramatic, 3 layers */}
       <path d="M32 18 C24 28, 14 36, 14 46 C14 54, 22 58, 32 58 C42 58, 50 54, 50 46 C50 36, 40 28, 32 18Z" fill="url(#hc1)" fillOpacity="0.6" stroke="#fbbf24" strokeWidth="2.5" strokeLinejoin="round" />
       <path d="M32 26 C28 32, 20 38, 20 46 C20 52, 26 56, 32 56 C38 56, 44 52, 44 46 C44 38, 36 32, 32 26Z" fill="#fbbf24" fillOpacity="0.4" />
       <path d="M32 34 C30 38, 26 42, 26 46 C26 50, 28 52, 32 52 C36 52, 38 50, 38 46 C38 42, 34 38, 32 34Z" fill="#fbbf24" fillOpacity="0.65" />
       {/* Bright core */}
       <ellipse cx="32" cy="48" rx="4" ry="5" fill="#fbbf24" opacity="0.9" />
       <ellipse cx="32" cy="49" rx="2" ry="3" fill="#fef3c7" opacity="1" />
-      {/* Base platform — altar */}
+      {/* Base platform  –  altar */}
       <rect x="10" y="58" width="44" height="4" rx="1" fill="#fb923c" fillOpacity="0.5" stroke="#fb923c" strokeWidth="2" />
       {/* Sparkle dots */}
       <circle cx="12" cy="8" r="1.5" fill="#fbbf24" opacity="0.7" />
@@ -230,10 +230,10 @@ function TithiGridSVG() {
       {[0,1,2,3].map(r => [0,1,2,3,4].map(c => (
         <rect key={`${r}-${c}`} x={12 + c * 9} y={27 + r * 7} width="7" height="5.5" rx="1" fill="url(#tg1)" opacity={0.06} stroke="url(#tg1)" strokeWidth="0.3" strokeOpacity="0.2" />
       )))}
-      {/* Full moon — glowing gold circle */}
+      {/* Full moon  –  glowing gold circle */}
       <circle cx="39" cy="30" r="2.2" fill="url(#tg1m)" />
       <circle cx="39" cy="30" r="3.5" fill="none" stroke="#f0d48a" strokeWidth="0.5" opacity="0.3" />
-      {/* New moon — dark circle */}
+      {/* New moon  –  dark circle */}
       <circle cx="21" cy="37.5" r="2" fill="#1a1040" stroke="#c084fc" strokeWidth="0.5" opacity="0.6" />
       {/* Half moon */}
       <circle cx="30" cy="44.5" r="1.8" fill="#1a1040" stroke="#c084fc" strokeWidth="0.4" />
@@ -247,7 +247,7 @@ function TithiGridSVG() {
 }
 
 function TransitSVG() {
-  // Gochar — dramatic Scorpio-like constellation with a planet transiting through it
+  // Gochar  –  dramatic Scorpio-like constellation with a planet transiting through it
   // Bold stars connected by thick lines, a glowing planet moving along the path
   return (
     <svg width="128" height="128" viewBox="0 0 64 64" fill="none" aria-hidden="true">
@@ -258,7 +258,7 @@ function TransitSVG() {
       </defs>
       {/* Deep space background glow */}
       <circle cx="32" cy="32" r="31" fill="url(#ht1g)" />
-      {/* Constellation lines — thick, bold, connecting the stars */}
+      {/* Constellation lines  –  thick, bold, connecting the stars */}
       <line x1="10" y1="14" x2="22" y2="22" stroke="#60a5fa" strokeWidth="3" opacity="0.8" strokeLinecap="round" />
       <line x1="22" y1="22" x2="18" y2="36" stroke="#60a5fa" strokeWidth="3" opacity="0.8" strokeLinecap="round" />
       <line x1="18" y1="36" x2="30" y2="40" stroke="#60a5fa" strokeWidth="3" opacity="0.8" strokeLinecap="round" />
@@ -270,32 +270,32 @@ function TransitSVG() {
       {/* Stinger */}
       <line x1="44" y1="54" x2="40" y2="50" stroke="#93c5fd" strokeWidth="2.5" strokeLinecap="round" opacity="0.9" />
       <line x1="44" y1="54" x2="42" y2="58" stroke="#93c5fd" strokeWidth="2.5" strokeLinecap="round" opacity="0.9" />
-      {/* Constellation stars — 4-pointed star shapes with glow halos */}
-      {/* Star at (10,14) — medium */}
+      {/* Constellation stars  –  4-pointed star shapes with glow halos */}
+      {/* Star at (10,14)  –  medium */}
       <circle cx="10" cy="14" r="5" fill="url(#ht1)" opacity="0.3" />
       <polygon points="10,8 11.5,12 16,14 11.5,16 10,20 8.5,16 4,14 8.5,12" fill="#bfdbfe" opacity="0.95" />
-      {/* Star at (22,22) — large, bright */}
+      {/* Star at (22,22)  –  large, bright */}
       <circle cx="22" cy="22" r="7" fill="url(#ht1)" opacity="0.3" />
       <polygon points="22,14 24,19.5 30,22 24,24.5 22,30 20,24.5 14,22 20,19.5" fill="#bfdbfe" opacity="1" />
-      {/* Star at (18,36) — medium */}
+      {/* Star at (18,36)  –  medium */}
       <circle cx="18" cy="36" r="5" fill="url(#ht1)" opacity="0.25" />
       <polygon points="18,30.5 19.5,34 24,36 19.5,38 18,41.5 16.5,38 12,36 16.5,34" fill="#bfdbfe" opacity="0.9" />
-      {/* Star at (30,40) — small */}
+      {/* Star at (30,40)  –  small */}
       <circle cx="30" cy="40" r="4" fill="url(#ht1)" opacity="0.2" />
       <polygon points="30,35.5 31.2,38.5 34.5,40 31.2,41.5 30,44.5 28.8,41.5 25.5,40 28.8,38.5" fill="#bfdbfe" opacity="0.85" />
-      {/* Star at (54,38) — large */}
+      {/* Star at (54,38)  –  large */}
       <circle cx="54" cy="38" r="6" fill="url(#ht1)" opacity="0.3" />
       <polygon points="54,31 56,35.5 61,38 56,40.5 54,45 52,40.5 47,38 52,35.5" fill="#bfdbfe" opacity="0.95" />
-      {/* Star at (56,50) — small */}
+      {/* Star at (56,50)  –  small */}
       <circle cx="56" cy="50" r="4" fill="url(#ht1)" opacity="0.2" />
       <polygon points="56,46 57.2,48.5 60,50 57.2,51.5 56,54 54.8,51.5 52,50 54.8,48.5" fill="#bfdbfe" opacity="0.8" />
-      {/* The TRANSITING PLANET — golden, glowing, moving along the constellation */}
+      {/* The TRANSITING PLANET  –  golden, glowing, moving along the constellation */}
       <circle cx="42" cy="32" r="8" fill="url(#ht1p)" />
       <circle cx="42" cy="32" r="5.5" fill="#fbbf24" opacity="0.8" />
       <circle cx="42" cy="32" r="3" fill="#fef3c7" opacity="1" />
       {/* Motion trail behind the planet */}
       <path d="M30 40 Q34 38 42 32" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.4" strokeDasharray="3 2" />
-      {/* Background star dust — tiny 4-pointed twinkles */}
+      {/* Background star dust  –  tiny 4-pointed twinkles */}
       <polygon points="48,8.5 48.6,9.7 50,10 48.6,10.3 48,11.5 47.4,10.3 46,10 47.4,9.7" fill="#93c5fd" opacity="0.55" />
       <polygon points="6,46.5 6.5,47.5 8,48 6.5,48.5 6,49.5 5.5,48.5 4,48 5.5,47.5" fill="#60a5fa" opacity="0.45" />
       <polygon points="36,6 36.7,7.5 38.5,8 36.7,8.5 36,10 35.3,8.5 33.5,8 35.3,7.5" fill="#818cf8" opacity="0.5" />
@@ -306,7 +306,7 @@ function TransitSVG() {
 }
 
 function MatchingSVG() {
-  // Interlocking hearts/circles — bold Venn with spark at intersection
+  // Interlocking hearts/circles  –  bold Venn with spark at intersection
   return (
     <svg width="128" height="128" viewBox="0 0 64 64" fill="none" aria-hidden="true">
       <defs>
@@ -314,13 +314,13 @@ function MatchingSVG() {
         <linearGradient id="hmm1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#f9a8d4" /><stop offset="100%" stopColor="#ec4899" /></linearGradient>
       </defs>
       <circle cx="32" cy="32" r="31" fill="url(#hmm1g)" />
-      {/* Left circle — bold */}
+      {/* Left circle  –  bold */}
       <circle cx="22" cy="32" r="18" stroke="#f472b6" strokeWidth="3" opacity="0.8" />
       <circle cx="22" cy="32" r="18" fill="#f472b6" fillOpacity="0.1" />
-      {/* Right circle — bold */}
+      {/* Right circle  –  bold */}
       <circle cx="42" cy="32" r="18" stroke="#f472b6" strokeWidth="3" opacity="0.8" />
       <circle cx="42" cy="32" r="18" fill="#f472b6" fillOpacity="0.1" />
-      {/* Intersection fill — bright */}
+      {/* Intersection fill  –  bright */}
       <path d="M32 17 A18 18 0 0 1 32 47 A18 18 0 0 1 32 17" fill="#f472b6" opacity="0.35" />
       {/* Spark at center of intersection */}
       <circle cx="32" cy="32" r="5" fill="url(#hmm1)" opacity="0.9" />
@@ -333,7 +333,7 @@ function MatchingSVG() {
 }
 
 function SadeSatiSVG() {
-  // Saturn with rings — dramatic ringed planet + "7.5" badge
+  // Saturn with rings  –  dramatic ringed planet + "7.5" badge
   return (
     <svg width="128" height="128" viewBox="0 0 64 64" fill="none" aria-hidden="true">
       <defs>
@@ -341,13 +341,13 @@ function SadeSatiSVG() {
         <linearGradient id="hs1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#93c5fd" /><stop offset="100%" stopColor="#3b82f6" /></linearGradient>
       </defs>
       <circle cx="32" cy="32" r="31" fill="url(#hs1g)" />
-      {/* Saturn body — large, bold */}
+      {/* Saturn body  –  large, bold */}
       <circle cx="32" cy="30" r="14" fill="url(#hs1)" opacity="0.7" stroke="#60a5fa" strokeWidth="2.5" />
       <circle cx="32" cy="30" r="8" fill="#93c5fd" opacity="0.3" />
-      {/* Rings — thick, dramatic tilt */}
+      {/* Rings  –  thick, dramatic tilt */}
       <ellipse cx="32" cy="30" rx="26" ry="8" stroke="#60a5fa" strokeWidth="3" opacity="0.7" transform="rotate(-15 32 30)" fill="none" />
       <ellipse cx="32" cy="30" rx="22" ry="6" stroke="#93c5fd" strokeWidth="2" opacity="0.4" transform="rotate(-15 32 30)" fill="none" />
-      {/* 7.5 text — bold */}
+      {/* 7.5 text  –  bold */}
       <text x="22" y="56" fill="#60a5fa" fontSize="14" fontWeight="bold" opacity="0.9" fontFamily="var(--font-cinzel)">7.5</text>
       {/* Year arc */}
       <path d="M14 58 Q32 50 50 58" stroke="#60a5fa" strokeWidth="2" fill="none" opacity="0.5" />
@@ -356,7 +356,7 @@ function SadeSatiSVG() {
 }
 
 function PrashnaSVG() {
-  // Crystal ball with stars — bold sphere + question energy
+  // Crystal ball with stars  –  bold sphere + question energy
   return (
     <svg width="128" height="128" viewBox="0 0 64 64" fill="none" aria-hidden="true">
       <defs>
@@ -365,7 +365,7 @@ function PrashnaSVG() {
         <radialGradient id="hp1s" cx="35%" cy="30%" r="50%"><stop offset="0%" stopColor="#c4b5fd" stopOpacity="0.6" /><stop offset="100%" stopColor="#7c3aed" stopOpacity="0.1" /></radialGradient>
       </defs>
       <circle cx="32" cy="32" r="31" fill="url(#hp1g)" />
-      {/* Crystal ball — large, bold, filled */}
+      {/* Crystal ball  –  large, bold, filled */}
       <circle cx="32" cy="28" r="22" fill="url(#hp1s)" stroke="#a78bfa" strokeWidth="3" />
       {/* Shine highlight */}
       <ellipse cx="24" cy="20" rx="6" ry="4" fill="#c4b5fd" opacity="0.3" transform="rotate(-20 24 20)" />
@@ -384,7 +384,7 @@ function PrashnaSVG() {
 }
 
 function LearnSVG() {
-  // Open book with light rays — bold tome emanating knowledge
+  // Open book with light rays  –  bold tome emanating knowledge
   return (
     <svg width="128" height="128" viewBox="0 0 64 64" fill="none" aria-hidden="true">
       <defs>
@@ -392,18 +392,18 @@ function LearnSVG() {
         <radialGradient id="hl1g" cx="50%" cy="40%" r="50%"><stop offset="0%" stopColor="#f0d48a" stopOpacity="0.35" /><stop offset="100%" stopColor="#8a6d2b" stopOpacity="0" /></radialGradient>
       </defs>
       <circle cx="32" cy="32" r="31" fill="url(#hl1g)" />
-      {/* Knowledge rays — emanating upward from book */}
+      {/* Knowledge rays  –  emanating upward from book */}
       {[-40, -20, 0, 20, 40].map((deg, i) => (
         <line key={i} x1="32" y1="36" x2={32 + 24 * Math.sin(deg * Math.PI / 180)} y2={36 - 24 * Math.cos(deg * Math.PI / 180)} stroke="#f0d48a" strokeWidth={i === 2 ? 3 : 2} strokeLinecap="round" opacity={i === 2 ? 0.7 : 0.4} />
       ))}
-      {/* Left page — bold */}
+      {/* Left page  –  bold */}
       <path d="M32 36 L32 56 L8 52 L8 32 Z" fill="#f0d48a" fillOpacity="0.25" stroke="#f0d48a" strokeWidth="2.5" strokeLinejoin="round" />
-      {/* Right page — bold */}
+      {/* Right page  –  bold */}
       <path d="M32 36 L32 56 L56 52 L56 32 Z" fill="#d4a853" fillOpacity="0.2" stroke="#f0d48a" strokeWidth="2.5" strokeLinejoin="round" />
-      {/* Page lines — left */}
+      {/* Page lines  –  left */}
       <line x1="14" y1="38" x2="28" y2="40" stroke="#f0d48a" strokeWidth="2" strokeLinecap="round" opacity="0.5" />
       <line x1="14" y1="44" x2="28" y2="46" stroke="#f0d48a" strokeWidth="2" strokeLinecap="round" opacity="0.35" />
-      {/* Page lines — right */}
+      {/* Page lines  –  right */}
       <line x1="36" y1="40" x2="50" y2="38" stroke="#f0d48a" strokeWidth="2" strokeLinecap="round" opacity="0.5" />
       <line x1="36" y1="46" x2="50" y2="44" stroke="#f0d48a" strokeWidth="2" strokeLinecap="round" opacity="0.35" />
       {/* Spine highlight */}
@@ -445,7 +445,7 @@ const HERO_CARDS: { href: string; glowColor: string; svg: React.ReactNode; subti
     svg: <TithiGridSVG />,
     subtitle: { en: 'Monthly Grid', hi: 'मासिक ग्रिड', ta: 'மாத கட்டம்', bn: 'মাসিক গ্রিড' },
     label: { en: 'Tithi Calendar', hi: 'तिथि पंचांग', sa: 'तिथिपञ्चाङ्गम्', ta: 'திதி நாள்காட்டி', te: 'తిథి పంచాంగం', bn: 'তিথি পঞ্চাঙ্গ', kn: 'ತಿಥಿ ಪಂಚಾಂಗ', mr: 'तिथी पंचांग', gu: 'તિથિ પંચાંગ', mai: 'तिथि पंचांग' },
-    desc: { en: 'Moon phases, Nakshatra & festivals — daily grid', hi: 'चन्द्र कला, नक्षत्र और त्योहार — दैनिक ग्रिड', sa: 'चन्द्रकलाः, नक्षत्राणि, उत्सवाश्च', ta: 'சந்திர கலைகள், நட்சத்திரம் & திருவிழாக்கள்', te: 'చంద్ర కళలు, నక్షత్రం & పండుగలు', bn: 'চন্দ্র কলা, নক্ষত্র ও উৎসব', kn: 'ಚಂದ್ರ ಕಲೆ, ನಕ್ಷತ್ರ & ಹಬ್ಬಗಳು', mr: 'चंद्र कला, नक्षत्र आणि सण', gu: 'ચંદ્ર કળા, નક્ષત્ર અને તહેવાર', mai: 'चन्द्र कला, नक्षत्र आ पर्व' },
+    desc: { en: 'Moon phases, Nakshatra & festivals  –  daily grid', hi: 'चन्द्र कला, नक्षत्र और त्योहार  –  दैनिक ग्रिड', sa: 'चन्द्रकलाः, नक्षत्राणि, उत्सवाश्च', ta: 'சந்திர கலைகள், நட்சத்திரம் & திருவிழாக்கள்', te: 'చంద్ర కళలు, నక్షత్రం & పండుగలు', bn: 'চন্দ্র কলা, নক্ষত্র ও উৎসব', kn: 'ಚಂದ್ರ ಕಲೆ, ನಕ್ಷತ್ರ & ಹಬ್ಬಗಳು', mr: 'चंद्र कला, नक्षत्र आणि सण', gu: 'ચંદ્ર કળા, નક્ષત્ર અને તહેવાર', mai: 'चन्द्र कला, नक्षत्र आ पर्व' },
   },
   {
     href: '/transits', glowColor: '#60a5fa',
@@ -466,14 +466,14 @@ const HERO_CARDS: { href: string; glowColor: string; svg: React.ReactNode; subti
     svg: <SadeSatiSVG />,
     subtitle: { en: 'Saturn Cycle', hi: 'शनि चक्र', ta: 'சனி சுழற்சி', bn: 'শনি চক্র' },
     label: { en: 'Sade Sati', hi: 'साढ़े साती', sa: 'साढेसप्तवर्षम्', ta: 'சனிப்பெயர்ச்சி', te: 'సాడే సాతి', bn: 'সাড়ে সাতি', kn: 'ಸಾಡೆ ಸಾತಿ', mr: 'साडेसाती', gu: 'સાડાસાતી', mai: 'साढ़ेसाती' },
-    desc: { en: "Saturn's 7.5 year cycle — phase & remedies", hi: 'शनि की साढ़े साती — चरण और उपाय', sa: 'शनेः साढेसप्तवर्षचक्रम् — चरणाः उपचाराश्च', ta: 'சனியின் 7.5 ஆண்டு சுழற்சி — கட்டம் & பரிகாரங்கள்', te: 'శని 7.5 సంవత్సరాల చక్రం — దశ & పరిహారాలు', bn: 'শনির ৭.৫ বছরের চক্র — পর্ব ও প্রতিকার', kn: 'ಶನಿ 7.5 ವರ್ಷಗಳ ಚಕ್ರ — ಹಂತ & ಪರಿಹಾರಗಳು', mr: 'शनीची साडेसाती — टप्पे आणि उपाय', gu: 'શનિની સાડાસાતી — તબક્કા અને ઉપાય', mai: 'शनिक साढ़ेसाती — चरण आ उपाय' },
+    desc: { en: "Saturn's 7.5 year cycle  –  phase & remedies", hi: 'शनि की साढ़े साती  –  चरण और उपाय', sa: 'शनेः साढेसप्तवर्षचक्रम्  –  चरणाः उपचाराश्च', ta: 'சனியின் 7.5 ஆண்டு சுழற்சி  –  கட்டம் & பரிகாரங்கள்', te: 'శని 7.5 సంవత్సరాల చక్రం  –  దశ & పరిహారాలు', bn: 'শনির ৭.৫ বছরের চক্র  –  পর্ব ও প্রতিকার', kn: 'ಶನಿ 7.5 ವರ್ಷಗಳ ಚಕ್ರ  –  ಹಂತ & ಪರಿಹಾರಗಳು', mr: 'शनीची साडेसाती  –  टप्पे आणि उपाय', gu: 'શનિની સાડાસાતી  –  તબક્કા અને ઉપાય', mai: 'शनिक साढ़ेसाती  –  चरण आ उपाय' },
   },
   {
     href: '/prashna', glowColor: '#a78bfa',
     svg: <PrashnaSVG />,
     subtitle: { en: 'Horary', hi: 'होरेरी', ta: 'ஹோரேரி', bn: 'হোরারি' },
     label: { en: 'Prashna Kundali', hi: 'प्रश्न कुण्डली', sa: 'प्रश्नकुण्डली', ta: 'பிரச்ன ஜாதகம்', te: 'ప్రశ్న జాతకం', bn: 'প্রশ্ন জাতক', kn: 'ಪ್ರಶ್ನ ಜಾತಕ', mr: 'प्रश्न कुंडली', gu: 'પ્રશ્ન કુંડળી', mai: 'प्रश्न कुंडली' },
-    desc: { en: 'Horary astrology — instant answers to questions', hi: 'होरेरी ज्योतिष — प्रश्नों के तत्काल उत्तर', sa: 'होराज्योतिषम् — प्रश्नानां तात्कालिकोत्तराणि', ta: 'ஹோரேரி ஜோதிடம் — கேள்விகளுக்கு உடனடி பதில்கள்', te: 'హోరరీ జ్యోతిషం — ప్రశ్నలకు తక్షణ సమాధానాలు', bn: 'হোরারি জ্যোতিষ — প্রশ্নের তাৎক্ষণিক উত্তর', kn: 'ಹೋರರಿ ಜ್ಯೋತಿಷ — ಪ್ರಶ್ನೆಗಳಿಗೆ ತಕ್ಷಣದ ಉತ್ತರಗಳು', mr: 'होरारी ज्योतिष — प्रश्नांची तात्काळ उत्तरे', gu: 'હોરરી જ્યોતિષ — પ્રશ્નોના તાત્કાલિક જવાબો', mai: 'होरेरी ज्योतिष — प्रश्नक तत्काल उत्तर' },
+    desc: { en: 'Horary astrology  –  instant answers to questions', hi: 'होरेरी ज्योतिष  –  प्रश्नों के तत्काल उत्तर', sa: 'होराज्योतिषम्  –  प्रश्नानां तात्कालिकोत्तराणि', ta: 'ஹோரேரி ஜோதிடம்  –  கேள்விகளுக்கு உடனடி பதில்கள்', te: 'హోరరీ జ్యోతిషం  –  ప్రశ్నలకు తక్షణ సమాధానాలు', bn: 'হোরারি জ্যোতিষ  –  প্রশ্নের তাৎক্ষণিক উত্তর', kn: 'ಹೋರರಿ ಜ್ಯೋತಿಷ  –  ಪ್ರಶ್ನೆಗಳಿಗೆ ತಕ್ಷಣದ ಉತ್ತರಗಳು', mr: 'होरारी ज्योतिष  –  प्रश्नांची तात्काळ उत्तरे', gu: 'હોરરી જ્યોતિષ  –  પ્રશ્નોના તાત્કાલિક જવાબો', mai: 'होरेरी ज्योतिष  –  प्रश्नक तत्काल उत्तर' },
   },
   {
     href: '/learn', glowColor: '#d4a853',
@@ -527,7 +527,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       serverPanchang = computePanchang({ year, month, day, lat, lng, tzOffset, timezone, locationName });
       serverLocation = { lat, lng, name: locationName };
     }
-  } catch { /* geo headers unavailable (local dev) — widget falls back to client fetch */ }
+  } catch { /* geo headers unavailable (local dev)  –  widget falls back to client fetch */ }
   const isDevanagari = isDevanagariLocale(locale);
   const hf = getHeadingFont(locale);
   const bf = getBodyFont(locale) || {};
@@ -540,7 +540,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] rounded-full bg-gradient-to-br from-gold-primary/5 via-transparent to-gold-dark/3 blur-3xl pointer-events-none" />
 
         <div className="text-center max-w-3xl mx-auto relative z-10 stagger-children">
-          {/* Gayatri Mantra — small, reverent, with sacred reveal */}
+          {/* Gayatri Mantra  –  small, reverent, with sacred reveal */}
           <p className="text-gold-primary/60 text-xs sm:text-sm tracking-[0.2em] leading-relaxed mb-6 sacred-text-reveal"
             style={{ fontFamily: 'var(--font-devanagari-heading)' }}>
             ॐ भूर्भुवः स्वः । तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि । धियो यो नः प्रचोदयात् ॥
@@ -557,7 +557,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             {t('subtitle')}
           </p>
 
-          {/* Three bold CTAs — Panchang, Kundali, Muhurta AI */}
+          {/* Three bold CTAs  –  Panchang, Kundali, Muhurta AI */}
           <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
             <Link href="/panchang" className="px-8 py-3 rounded-xl bg-gold-primary/15 border border-gold-primary/30 text-gold-light font-bold text-sm hover:bg-gold-primary/25 transition-all hover:-translate-y-0.5">
               {L({ en: "Today's Panchang", hi: 'आज का पञ्चाङ्ग', ta: 'இன்றைய பஞ்சாங்கம்', bn: 'আজকের পঞ্চাঙ্গ' }, locale)}
@@ -570,7 +570,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </Link>
           </div>
 
-          {/* Shloka — quiet, fading */}
+          {/* Shloka  –  quiet, fading */}
           <p className="text-gold-primary/40 text-xs sm:text-sm tracking-wide"
             style={{ fontFamily: 'var(--font-devanagari-heading)' }}>
             तमसो मा ज्योतिर्गमय
@@ -578,7 +578,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </section>
 
-      {/* ═══ TODAY'S PANCHANG — immediately after hero ═══ */}
+      {/* ═══ TODAY'S PANCHANG  –  immediately after hero ═══ */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-10 yantra-bg">
         <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8" style={hf}>
           <span className="text-gold-gradient">{t('todayPanchang')}</span>
@@ -591,10 +591,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       <GoldDivider />
 
-      {/* ═══ PROFILE BANNER — for logged-in users, above the cards ═══ */}
+      {/* ═══ PROFILE BANNER  –  for logged-in users, above the cards ═══ */}
       <ProfileBanner locale={locale} bf={bf} />
 
-      {/* ═══ EXPLORE TOOLS — 3×3 tarot card grid ═══ */}
+      {/* ═══ EXPLORE TOOLS  –  3×3 tarot card grid ═══ */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-10">
           <h2 className="text-2xl sm:text-3xl font-bold mb-3" style={hf}>
@@ -605,7 +605,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </p>
         </div>
 
-        {/* 3×3 mega tarot grid — Row 1: Birth Chart, Festivals, Learn. Rows 2-3: remaining 6 */}
+        {/* 3×3 mega tarot grid  –  Row 1: Birth Chart, Festivals, Learn. Rows 2-3: remaining 6 */}
         {(() => {
           // Reorder: Birth Chart (0), Festivals (2), Learn (8) first, then rest
           const row1Indices = [0, 2, 8];
@@ -632,7 +632,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       <AdUnit placement="rectangle" className="max-w-2xl mx-auto" />
 
-      {/* ═══ SECONDARY TOOLS — pill chips ═══ */}
+      {/* ═══ SECONDARY TOOLS  –  pill chips ═══ */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="flex flex-wrap gap-2.5 justify-center stagger-children">
           {SECONDARY_TOOLS.map((tool) => (
@@ -647,25 +647,25 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </section>
 
-      {/* ═══ EDITORIAL — crawlable content for SEO ═══ */}
+      {/* ═══ EDITORIAL  –  crawlable content for SEO ═══ */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 border-t border-gold-primary/8">
         <h2 className="text-lg font-semibold text-gold-dark/80 mb-4" style={hf}>
           {L({ en: 'What is Panchang?', hi: 'पंचांग क्या है?', ta: 'பஞ்சாங்கம் என்றால் என்ன?', bn: 'পঞ্চাঙ্গ কী?' }, locale)}
         </h2>
         <p className="text-text-secondary text-sm leading-relaxed mb-4" style={bf}>
-          {L({ en: 'Panchang (पञ्चाङ्ग) is the traditional Hindu almanac that tracks five key astronomical elements every day: Tithi (lunar day), Nakshatra (lunar mansion), Yoga (luni-solar combination), Karana (half-tithi), and Vara (weekday). For thousands of years, these five limbs have guided daily rituals, agriculture, medicine, and all auspicious timing decisions across the Indian subcontinent. Each element carries specific energetic qualities that influence the nature of the day — from whether it is suitable for starting a new venture to whether it is a day for rest and reflection.', hi: 'पंचांग (पञ्चाङ्ग) पारम्परिक हिन्दू पंचांग है जो प्रतिदिन पाँच प्रमुख खगोलीय तत्त्वों को ट्रैक करता है: तिथि (चन्द्र दिवस), नक्षत्र (चन्द्र भवन), योग (सूर्य-चन्द्र संयोजन), करण (अर्ध-तिथि), और वार (सप्ताह दिवस)। हजारों वर्षों से ये पाँच अंग दैनिक अनुष्ठानों, कृषि, चिकित्सा और सभी शुभ समय निर्णयों का मार्गदर्शन करते आए हैं।', ta: 'பஞ்சாங்கம் என்பது ஐந்து முக்கிய வானியல் கூறுகளை தினமும் கண்காணிக்கும் பாரம்பரிய இந்து நாட்காட்டி: திதி, நட்சத்திரம், யோகம், கரணம் மற்றும் வாரம்.', bn: 'পঞ্চাঙ্গ হল ঐতিহ্যবাহী হিন্দু পঞ্জিকা যা প্রতিদিন পাঁচটি প্রধান জ্যোতির্বিদ্যাগত উপাদান ট্র্যাক করে: তিথি, নক্ষত্র, যোগ, করণ এবং বার।' }, locale)}
+          {L({ en: 'Panchang (पञ्चाङ्ग) is the traditional Hindu almanac that tracks five key astronomical elements every day: Tithi (lunar day), Nakshatra (lunar mansion), Yoga (luni-solar combination), Karana (half-tithi), and Vara (weekday). For thousands of years, these five limbs have guided daily rituals, agriculture, medicine, and all auspicious timing decisions across the Indian subcontinent. Each element carries specific energetic qualities that influence the nature of the day  –  from whether it is suitable for starting a new venture to whether it is a day for rest and reflection.', hi: 'पंचांग (पञ्चाङ्ग) पारम्परिक हिन्दू पंचांग है जो प्रतिदिन पाँच प्रमुख खगोलीय तत्त्वों को ट्रैक करता है: तिथि (चन्द्र दिवस), नक्षत्र (चन्द्र भवन), योग (सूर्य-चन्द्र संयोजन), करण (अर्ध-तिथि), और वार (सप्ताह दिवस)। हजारों वर्षों से ये पाँच अंग दैनिक अनुष्ठानों, कृषि, चिकित्सा और सभी शुभ समय निर्णयों का मार्गदर्शन करते आए हैं।', ta: 'பஞ்சாங்கம் என்பது ஐந்து முக்கிய வானியல் கூறுகளை தினமும் கண்காணிக்கும் பாரம்பரிய இந்து நாட்காட்டி: திதி, நட்சத்திரம், யோகம், கரணம் மற்றும் வாரம்.', bn: 'পঞ্চাঙ্গ হল ঐতিহ্যবাহী হিন্দু পঞ্জিকা যা প্রতিদিন পাঁচটি প্রধান জ্যোতির্বিদ্যাগত উপাদান ট্র্যাক করে: তিথি, নক্ষত্র, যোগ, করণ এবং বার।' }, locale)}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-6" style={bf}>
-          {L({ en: 'Dekho Panchang computes all five elements in real time using astronomical algorithms based on Jean Meeus\'s "Astronomical Algorithms" — the same mathematical foundation used by NASA and modern observatories. Unlike most Panchang websites that rely on pre-computed tables or external APIs, every calculation here runs locally in your browser with sub-arcminute precision. The result is a Panchang that is accurate for any location on Earth, not just Indian cities — whether you are in New York, London, Sydney, or Varanasi, your sunrise, sunset, and muhurta timings reflect your exact coordinates.', hi: 'देखो पंचांग जीन मीयस के "Astronomical Algorithms" पर आधारित खगोलीय एल्गोरिदम का उपयोग करके सभी पाँच तत्त्वों की वास्तविक समय में गणना करता है — वही गणितीय आधार जिसका NASA और आधुनिक वेधशालाएँ उपयोग करती हैं। अधिकांश पंचांग वेबसाइटों के विपरीत जो पूर्व-गणित तालिकाओं या बाहरी API पर निर्भर करती हैं, यहाँ प्रत्येक गणना उप-आर्कमिनट सटीकता से स्थानीय रूप से चलती है।', ta: 'தெகோ பஞ்சாங்கம் ஜீன் மீயஸின் வானியல் கணிதத்தின் அடிப்படையில் அனைத்து ஐந்து கூறுகளையும் நிகழ்நேரத்தில் கணக்கிடுகிறது.', bn: 'দেখো পঞ্চাঙ্গ জিন মিউসের জ্যোতির্বিদ্যা অ্যালগরিদম ব্যবহার করে সমস্ত পাঁচটি উপাদান রিয়েল টাইমে গণনা করে।' }, locale)}
+          {L({ en: 'Dekho Panchang computes all five elements in real time using astronomical algorithms based on Jean Meeus\'s "Astronomical Algorithms"  –  the same mathematical foundation used by NASA and modern observatories. Unlike most Panchang websites that rely on pre-computed tables or external APIs, every calculation here runs locally in your browser with sub-arcminute precision. The result is a Panchang that is accurate for any location on Earth, not just Indian cities  –  whether you are in New York, London, Sydney, or Varanasi, your sunrise, sunset, and muhurta timings reflect your exact coordinates.', hi: 'देखो पंचांग जीन मीयस के "Astronomical Algorithms" पर आधारित खगोलीय एल्गोरिदम का उपयोग करके सभी पाँच तत्त्वों की वास्तविक समय में गणना करता है  –  वही गणितीय आधार जिसका NASA और आधुनिक वेधशालाएँ उपयोग करती हैं। अधिकांश पंचांग वेबसाइटों के विपरीत जो पूर्व-गणित तालिकाओं या बाहरी API पर निर्भर करती हैं, यहाँ प्रत्येक गणना उप-आर्कमिनट सटीकता से स्थानीय रूप से चलती है।', ta: 'தெகோ பஞ்சாங்கம் ஜீன் மீயஸின் வானியல் கணிதத்தின் அடிப்படையில் அனைத்து ஐந்து கூறுகளையும் நிகழ்நேரத்தில் கணக்கிடுகிறது.', bn: 'দেখো পঞ্চাঙ্গ জিন মিউসের জ্যোতির্বিদ্যা অ্যালগরিদম ব্যবহার করে সমস্ত পাঁচটি উপাদান রিয়েল টাইমে গণনা করে।' }, locale)}
         </p>
         <h2 className="text-lg font-semibold text-gold-dark/80 mb-4" style={hf}>
           {L({ en: 'Kundali & Vedic Astrology Tools', hi: 'कुण्डली एवं वैदिक ज्योतिष उपकरण', ta: 'குண்டலி & வேத ஜோதிட கருவிகள்', bn: 'কুণ্ডলী ও বৈদিক জ্যোতিষ সরঞ্জাম' }, locale)}
         </h2>
         <p className="text-text-secondary text-sm leading-relaxed mb-4" style={bf}>
-          {L({ en: 'Beyond daily Panchang, Dekho Panchang offers a complete suite of Vedic astrology tools — all free. Generate your Kundali (birth chart) with precise planetary positions, Vimshottari Dasha timelines, Shadbala strength analysis, Ashtakavarga scores, and detailed Tippanni (interpretive commentary) covering personality, career, relationships, and spiritual path. The Ashta Kuta matching system computes 36-point compatibility for marriage, while the Muhurta AI finds auspicious timings for weddings, house warming, travel, and 20 other life events.', hi: 'दैनिक पंचांग से परे, देखो पंचांग वैदिक ज्योतिष उपकरणों का पूर्ण सूट प्रदान करता है — सभी निःशुल्क। सटीक ग्रह स्थितियों, विंशोत्तरी दशा, षड्बल विश्लेषण, अष्टकवर्ग अंक, और विस्तृत टिप्पणी के साथ अपनी कुण्डली बनाएँ। अष्ट कूट मिलान प्रणाली विवाह के लिए 36-बिन्दु अनुकूलता की गणना करती है।', ta: 'தினசரி பஞ்சாங்கத்தைத் தாண்டி, வேத ஜோதிட கருவிகளின் முழுமையான தொகுப்பை வழங்குகிறோம்.', bn: 'দৈনিক পঞ্চাঙ্গের বাইরে, বৈদিক জ্যোতিষ সরঞ্জামের সম্পূর্ণ সুইট প্রদান করে — সব বিনামূল্যে।' }, locale)}
+          {L({ en: 'Beyond daily Panchang, Dekho Panchang offers a complete suite of Vedic astrology tools  –  all free. Generate your Kundali (birth chart) with precise planetary positions, Vimshottari Dasha timelines, Shadbala strength analysis, Ashtakavarga scores, and detailed Tippanni (interpretive commentary) covering personality, career, relationships, and spiritual path. The Ashta Kuta matching system computes 36-point compatibility for marriage, while the Muhurta AI finds auspicious timings for weddings, house warming, travel, and 20 other life events.', hi: 'दैनिक पंचांग से परे, देखो पंचांग वैदिक ज्योतिष उपकरणों का पूर्ण सूट प्रदान करता है  –  सभी निःशुल्क। सटीक ग्रह स्थितियों, विंशोत्तरी दशा, षड्बल विश्लेषण, अष्टकवर्ग अंक, और विस्तृत टिप्पणी के साथ अपनी कुण्डली बनाएँ। अष्ट कूट मिलान प्रणाली विवाह के लिए 36-बिन्दु अनुकूलता की गणना करती है।', ta: 'தினசரி பஞ்சாங்கத்தைத் தாண்டி, வேத ஜோதிட கருவிகளின் முழுமையான தொகுப்பை வழங்குகிறோம்.', bn: 'দৈনিক পঞ্চাঙ্গের বাইরে, বৈদিক জ্যোতিষ সরঞ্জামের সম্পূর্ণ সুইট প্রদান করে  –  সব বিনামূল্যে।' }, locale)}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-4" style={bf}>
-          {L({ en: 'The learning library contains over 120 in-depth articles covering every aspect of Jyotish Shastra — from foundational concepts like the nine Grahas and twelve Rashis to advanced topics like Jaimini Chara Dasha, KP System sub-lords, and Ashtakavarga transit analysis. Each article includes Sanskrit terminology with Devanagari script, classical references from Brihat Parashara Hora Shastra and Surya Siddhanta, and practical guidance for applying these ancient principles to modern life decisions.', hi: 'शिक्षण पुस्तकालय में ज्योतिष शास्त्र के प्रत्येक पहलू को कवर करने वाले 120 से अधिक गहन लेख हैं — नवग्रह और बारह राशियों जैसी मूलभूत अवधारणाओं से लेकर जैमिनी चर दशा, KP प्रणाली, और अष्टकवर्ग गोचर विश्लेषण जैसे उन्नत विषयों तक। प्रत्येक लेख में संस्कृत शब्दावली, बृहत् पराशर होरा शास्त्र और सूर्य सिद्धान्त से शास्त्रीय सन्दर्भ शामिल हैं।', ta: 'கற்றல் நூலகத்தில் ஜோதிட சாஸ்திரத்தின் ஒவ்வொரு அம்சத்தையும் உள்ளடக்கிய 120க்கும் மேற்பட்ட ஆழமான கட்டுரைகள் உள்ளன.', bn: 'শেখার গ্রন্থাগারে জ্যোতিষ শাস্ত্রের প্রতিটি দিক কভার করে ১২০টিরও বেশি গভীর নিবন্ধ রয়েছে।' }, locale)}
+          {L({ en: 'The learning library contains over 120 in-depth articles covering every aspect of Jyotish Shastra  –  from foundational concepts like the nine Grahas and twelve Rashis to advanced topics like Jaimini Chara Dasha, KP System sub-lords, and Ashtakavarga transit analysis. Each article includes Sanskrit terminology with Devanagari script, classical references from Brihat Parashara Hora Shastra and Surya Siddhanta, and practical guidance for applying these ancient principles to modern life decisions.', hi: 'शिक्षण पुस्तकालय में ज्योतिष शास्त्र के प्रत्येक पहलू को कवर करने वाले 120 से अधिक गहन लेख हैं  –  नवग्रह और बारह राशियों जैसी मूलभूत अवधारणाओं से लेकर जैमिनी चर दशा, KP प्रणाली, और अष्टकवर्ग गोचर विश्लेषण जैसे उन्नत विषयों तक। प्रत्येक लेख में संस्कृत शब्दावली, बृहत् पराशर होरा शास्त्र और सूर्य सिद्धान्त से शास्त्रीय सन्दर्भ शामिल हैं।', ta: 'கற்றல் நூலகத்தில் ஜோதிட சாஸ்திரத்தின் ஒவ்வொரு அம்சத்தையும் உள்ளடக்கிய 120க்கும் மேற்பட்ட ஆழமான கட்டுரைகள் உள்ளன.', bn: 'শেখার গ্রন্থাগারে জ্যোতিষ শাস্ত্রের প্রতিটি দিক কভার করে ১২০টিরও বেশি গভীর নিবন্ধ রয়েছে।' }, locale)}
         </p>
       </section>
 

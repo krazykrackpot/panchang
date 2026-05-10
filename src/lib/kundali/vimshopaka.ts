@@ -1,5 +1,5 @@
 /**
- * Vimshopaka Bala — Dignity-based strength across divisional charts
+ * Vimshopaka Bala  –  Dignity-based strength across divisional charts
  * Reference: BPHS Ch.16
  *
  * Measures how well-placed a planet is across all Shodashavarga (16 divisional charts).
@@ -15,7 +15,7 @@ import {
   MOOLATRIKONA_SIGN as MOOLATRIKONA,
 } from '@/lib/constants/dignities';
 
-// Natural friends for each planet (classical Jyotish — BPHS Ch.3)
+// Natural friends for each planet (classical Jyotish  –  BPHS Ch.3)
 const FRIENDS: Record<number, Set<number>> = {
   0: new Set([1,2,4]),       // Sun: Moon, Mars, Jupiter
   1: new Set([0,3]),         // Moon: Sun, Mercury
@@ -26,10 +26,10 @@ const FRIENDS: Record<number, Set<number>> = {
   6: new Set([3,5]),         // Saturn: Mercury, Venus
 };
 
-// Natural enemies for each planet (classical Jyotish — BPHS Ch.3)
+// Natural enemies for each planet (classical Jyotish  –  BPHS Ch.3)
 // HISTORICAL BUG (now fixed): no ENEMIES table existed.  The dignityScore()
 // function computed "neutral" as "neither planet considers the other a friend"
-// and "enemy" as the else-case — which fired when the SIGN LORD considers the
+// and "enemy" as the else-case  –  which fired when the SIGN LORD considers the
 // PLANET a friend (mutual asymmetry).  This is the opposite of the classical
 // rule: a planet is an enemy of another if the OTHER planet lists it as an
 // enemy.  Without an explicit enemy table, planets that should score 4 (enemy
@@ -44,7 +44,7 @@ const ENEMIES: Record<number, Set<number>> = {
   6: new Set([0,1,2]),       // Saturn: Sun, Moon, Mars
 };
 
-// Shodashavarga (16 charts) weights — BPHS Ch.16, Shloka 1-6.
+// Shodashavarga (16 charts) weights  –  BPHS Ch.16, Shloka 1-6.
 // Exactly 16 vargas with weights summing to 20.
 //
 // HISTORICAL BUG (now fixed): the weights included D5, D6, D8 which are NOT part
@@ -70,7 +70,7 @@ const VARGA_WEIGHTS: Record<string, number> = {
 
 // Dignity points: Exalted=20, Moolatrikona=18, Own=16, Friend=12, Neutral=8, Enemy=4, Debilitated=2
 function dignityScore(planetId: number, sign: number): number {
-  if (planetId >= 7) return 10; // Rahu/Ketu — neutral
+  if (planetId >= 7) return 10; // Rahu/Ketu  –  neutral
   if (EXALTATION[planetId] === sign) return 20;
   if (DEBILITATION[planetId] === sign) return 2;
   if (MOOLATRIKONA[planetId] === sign) return 18;
@@ -80,7 +80,7 @@ function dignityScore(planetId: number, sign: number): number {
   // Check explicit natural enemy table first.
   // "Neutral" = not a friend, not an enemy (the residual category).
   if (ENEMIES[planetId]?.has(lord)) return 4; // enemy's sign
-  return 8; // neutral sign (residual — neither friend nor enemy)
+  return 8; // neutral sign (residual  –  neither friend nor enemy)
 }
 
 export interface VimshopakaBala {

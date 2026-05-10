@@ -330,10 +330,10 @@ function generateOverallSummary(
         (dasha ? ` ${dasha} दशा काल में सावधानी रखें।` : '');
       break;
     case 'mixed':
-      en = 'Your trajectory shows a mixed pattern — some domains rising, others falling.' +
+      en = 'Your trajectory shows a mixed pattern  –  some domains rising, others falling.' +
         (biggestGain ? ` ${gainName} is your bright spot (+${round1(biggestGain.delta)}).` : '') +
         (biggestDrop ? ` ${dropName} requires attention (${round1(biggestDrop.delta)}).` : '');
-      hi = 'आपकी दिशा मिश्रित है — कुछ क्षेत्र बढ़ रहे हैं, कुछ घट रहे हैं।' +
+      hi = 'आपकी दिशा मिश्रित है  –  कुछ क्षेत्र बढ़ रहे हैं, कुछ घट रहे हैं।' +
         (biggestGain ? ` ${gainNameHi} सबसे उज्ज्वल बिंदु है (+${round1(biggestGain.delta)})।` : '') +
         (biggestDrop ? ` ${dropNameHi} पर ध्यान आवश्यक है (${round1(biggestDrop.delta)})।` : '');
       break;

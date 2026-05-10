@@ -55,16 +55,16 @@ export interface PanchangInput {
   day: number;
   lat: number;
   lng: number;
-  tzOffset: number; // hours from UTC (e.g., 5.5 for IST) — resolved for this date
+  tzOffset: number; // hours from UTC (e.g., 5.5 for IST)  –  resolved for this date
   timezone?: string; // IANA timezone (e.g., 'Europe/Zurich') for per-JD DST resolution
   locationName?: string;
-  ayanamshaValue?: number; // Optional pre-computed ayanamsha — when provided, toSidereal()
+  ayanamshaValue?: number; // Optional pre-computed ayanamsha  –  when provided, toSidereal()
                            // uses this instead of hardcoded Lahiri, so panchang respects
                            // the user's ayanamsha choice (KP, Raman, etc.). Defaults to Lahiri.
 }
 
 // ──────────────────────────────────────────────────────────────
-// Binary search helpers — find when a panchang element transitions
+// Binary search helpers  –  find when a panchang element transitions
 // ──────────────────────────────────────────────────────────────
 //
 // Each panchanga element (tithi, nakshatra, yoga, karana) changes at a
@@ -73,7 +73,7 @@ export interface PanchangInput {
 // interval [jdStart, jdEnd] where the element is known to change.
 //
 // 30 iterations of bisection on a ~1-day bracket yields precision of:
-//   1 day / 2³⁰ ≈ 0.08 milliseconds — far more than needed.
+//   1 day / 2³⁰ ≈ 0.08 milliseconds  –  far more than needed.
 // In practice we only need ~minute precision for display, but the extra
 // iterations are negligible in cost and prevent edge-case rounding issues.
 
@@ -177,7 +177,7 @@ function computeTransition(
   if (!foundEnd) return undefined;
 
   // ── Find START time: scan backward until value differs from current ──
-  // We don't assume what the previous value is — just find when the current
+  // We don't assume what the previous value is  –  just find when the current
   // element started by scanning backward until getter returns ANY different value,
   // then binary-search the exact transition point.
   // This is critical for karana where the predecessor in the cycle is non-trivial
@@ -189,7 +189,7 @@ function computeTransition(
   for (let jd = jdSunrise - step; jd >= minJd; jd -= step) {
     const val = getter(jd);
     if (val !== currentValue) {
-      // Found a different value — transition is between here and the next step
+      // Found a different value  –  transition is between here and the next step
       let lo = jd, hi = jd + step;
       for (let i = 0; i < 30; i++) {
         const mid = (lo + hi) / 2;
@@ -259,7 +259,7 @@ function jdToDecimalHoursUT(jd: number, jdRef: number): number {
 }
 
 // ──────────────────────────────────────────────────────────────
-// Choghadiya (चौघड़िया) — "Four-Ghati" auspicious time divisions
+// Choghadiya (चौघड़िया)  –  "Four-Ghati" auspicious time divisions
 // ──────────────────────────────────────────────────────────────
 //
 // Choghadiya divides the day (sunrise→sunset) and night (sunset→next sunrise)
@@ -349,7 +349,7 @@ function computeChoghadiya(sunriseUT: number, sunsetUT: number, weekday: number,
 }
 
 // ──────────────────────────────────────────────────────────────
-// Hora (होरा) — Planetary Hours (Chaldean system)
+// Hora (होरा)  –  Planetary Hours (Chaldean system)
 // ──────────────────────────────────────────────────────────────
 //
 // The hora system divides each day into 24 planetary hours (12 day + 12 night),
@@ -438,11 +438,11 @@ function computeHora(sunriseUT: number, sunsetUT: number, weekday: number, tzOff
 // the same as a degree of arc). Since the window length is proportional to
 // the nakshatra's duration, it varies as the Moon's speed varies.
 //
-// Some nakshatras have TWO Varjyam windows (dual Thyajyam) — e.g., Mula has
+// Some nakshatras have TWO Varjyam windows (dual Thyajyam)  –  e.g., Mula has
 // Varjyam at ghati 20 AND ghati 56. These are stored in VARJYAM_GHATI_2.
 //
 // Classical source: Dharma Sindhu; Kalaprakashika; Muhurta Chintamani.
-// The ghati offsets are from @/lib/constants/varjyam (single source of truth — Lesson Q).
+// The ghati offsets are from @/lib/constants/varjyam (single source of truth  –  Lesson Q).
 //
 // IMPORTANT (from Lesson about Panchang Time Windows):
 //   Windows computed from nakshatra ghati offsets can fall OUTSIDE the current
@@ -492,7 +492,7 @@ function computeAmritVarjyamForNakshatra(
   varjyamWindows.push({ start: formatTime(v1Start, tzOffset), end: formatTime(v1Start + durationHrs, tzOffset) });
   varjyamUTWindows.push({ startUT: v1Start, endUT: v1Start + durationHrs });
 
-  // Secondary Varjyam window (dual Thyajyam — e.g. Mula has 20 AND 56 ghatis)
+  // Secondary Varjyam window (dual Thyajyam  –  e.g. Mula has 20 AND 56 ghatis)
   if (VARJYAM_GHATI_2[nakIdx] >= 0) {
     const v2Start = ingressUT + VARJYAM_GHATI_2[nakIdx] * ghatiToHrs;
     varjyamWindows.push({ start: formatTime(v2Start, tzOffset), end: formatTime(v2Start + durationHrs, tzOffset) });
@@ -553,7 +553,7 @@ function computeAllAmritVarjyam(
 // ──────────────────────────────────────────────────────────────
 
 /**
- * Compute named muhurtas — special time periods with fixed durations relative to sunrise/sunset.
+ * Compute named muhurtas  –  special time periods with fixed durations relative to sunrise/sunset.
  *
  * These are NOT the 30 muhurtas (15 day + 15 night) that divide the day into equal parts.
  * These are specific named periods with cultural and spiritual significance:
@@ -563,7 +563,7 @@ function computeAllAmritVarjyam(
  *     from the variable night muhurta (Drik Panchang and Prokerala confirm this).
  *
  *   - Godhuli ("cow-dust"): ±12 min around sunset. Named for the dust raised by
- *     returning cattle — an auspicious time for marriage ceremonies per Muhurta Chintamani.
+ *     returning cattle  –  an auspicious time for marriage ceremonies per Muhurta Chintamani.
  *
  *   - Sandhya Kaal: ±24 min around sunrise (morning) and sunset (evening).
  *     The twilight period for Sandhyavandana prayers (three daily prayers).
@@ -588,7 +588,7 @@ function computeNamedMuhurtas(
   // const nightMuhurtaDur = nightDurationHrs / 15;
 
   // Brahma Muhurta is a SPECIAL CASE: always fixed 96 min before sunrise,
-  // ends 48 min before sunrise — per Dharmasindhu and all major panchang
+  // ends 48 min before sunrise  –  per Dharmasindhu and all major panchang
   // references (Drik Panchang, Prokerala). NOT derived from variable night muhurta.
   const brahmaStart = sunriseUT - 96 / 60;
   const brahmaEnd = sunriseUT - 48 / 60;
@@ -637,7 +637,7 @@ function computeNamedMuhurtas(
 }
 
 // ──────────────────────────────────────────────────────────────
-// Disha Shool (दिशा शूल) — Directional prohibition
+// Disha Shool (दिशा शूल)  –  Directional prohibition
 // ──────────────────────────────────────────────────────────────
 //
 // Each weekday has a "forbidden direction" (Shool = trident/lance of Shiva)
@@ -696,12 +696,12 @@ const SARVARTHA_SIDDHI: Record<number, Set<number>> = {
 };
 
 // ──────────────────────────────────────────────────────────────
-// Moonrise / Moonset — iterative horizon-crossing calculation
+// Moonrise / Moonset  –  iterative horizon-crossing calculation
 // ──────────────────────────────────────────────────────────────
 //
 // Unlike sunrise/sunset (which can be solved analytically using the Sun's
 // slow-changing declination), moonrise/moonset requires iterative computation
-// because the Moon moves ~13° per day — fast enough that its declination
+// because the Moon moves ~13° per day  –  fast enough that its declination
 // changes significantly during the rise/set event itself.
 //
 // ALGORITHM:
@@ -709,7 +709,7 @@ const SARVARTHA_SIDDHI: Record<number, Set<number>> = {
 //   2. Detect sign changes (below → above horizon = rise; above → below = set).
 //   3. Binary search the exact crossing point to ~1-second precision.
 //   4. Apply topocentric parallax correction (Moon is close enough that
-//      the observer's position on Earth's surface matters — up to ~1° shift).
+//      the observer's position on Earth's surface matters  –  up to ~1° shift).
 //
 // The standard altitude for moonrise/moonset is -0.3° (not -0.8333° like the
 // Sun) because the Moon has no appreciable semidiameter correction at the
@@ -783,7 +783,7 @@ function _meeusMoonParallax(jdAt: number): number {
   const { D, M, Mp, F, E } = _moonFundamentals(jdAt);
   const E2 = E * E;
 
-  // Table 47.A cosine (distance) terms — top 14 terms
+  // Table 47.A cosine (distance) terms  –  top 14 terms
   // Each: [D, M, Mp, F, cosCoeff] where cosCoeff is in meters
   let sumR = 0;
   const DR: [number, number, number, number, number][] = [
@@ -868,7 +868,7 @@ function moonAltitude(jdAt: number, latRad: number, lng: number): number {
  */
 export function calculateMoonriseUT(jd: number, lat: number, lng: number): number | null {
   // Prefer Swiss Ephemeris (sub-minute accuracy), Meeus fallback
-  // Note: tzOffset not available here — moonrise display functions handle the window logic
+  // Note: tzOffset not available here  –  moonrise display functions handle the window logic
   if (isSwissEphAvailable()) {
     const sweResult = swissMoonrise(jd, lat, lng);
     if (sweResult !== null) return sweResult;
@@ -1035,7 +1035,7 @@ function getMoonsetForDisplay(jd: number, lat: number, lng: number, tzOffset: nu
 }
 
 /**
- * Main panchang computation — computes the complete daily almanac for a given date and location.
+ * Main panchang computation  –  computes the complete daily almanac for a given date and location.
  *
  * This is the primary entry point for the panchang page. It orchestrates all sub-computations:
  *   1. Sunrise/sunset (Swiss Ephemeris or Meeus fallback)
@@ -1060,13 +1060,13 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // Compute Julian Day at midnight UT for this date
   const jd = dateToJD(year, month, day, 12 - tzOffset); // Convert local noon to UT
 
-  // Sunrise and sunset — prefer Swiss Ephemeris (sub-minute accuracy), Meeus fallback.
+  // Sunrise and sunset  –  prefer Swiss Ephemeris (sub-minute accuracy), Meeus fallback.
   //
   // Two values needed from sunrise:
-  //   1. sunriseUT — UT decimal hours used for Rahu Kaal, Yamaganda, Hora, Muhurta timing.
+  //   1. sunriseUT  –  UT decimal hours used for Rahu Kaal, Yamaganda, Hora, Muhurta timing.
   //      This is (localSunriseHour - tzOffset) and is what the existing code expects.
-  //   2. jdSunrise — Julian Day of actual sunrise, used for tithi/nakshatra/yoga at sunrise.
-  //      CRITICAL: must use swissSunriseJD directly — NOT dateToJD(year, month, day, sunriseUT)
+  //   2. jdSunrise  –  Julian Day of actual sunrise, used for tithi/nakshatra/yoga at sunrise.
+  //      CRITICAL: must use swissSunriseJD directly  –  NOT dateToJD(year, month, day, sunriseUT)
   //      because for east-of-UTC zones (IST, JST), sunrise UT falls on the previous calendar
   //      day, causing dateToJD to produce a JD one day late.
   let sunriseUT: number;
@@ -1082,7 +1082,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
     const sweSunsetRaw = swissSunset(jd, lat, lng, tzOffset);
     if (sweSunsetRaw !== null) {
       sunsetUT = sweSunsetRaw;
-      // If sunset UT < sunrise UT, sunset crossed midnight UT — add 24h for correct day duration
+      // If sunset UT < sunrise UT, sunset crossed midnight UT  –  add 24h for correct day duration
       if (sunsetUT < sunriseUT) sunsetUT += 24;
     } else {
       const st = getSunTimes(year, month, day, lat, lng, tzOffset);
@@ -1116,7 +1116,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const karanaNum = calculateKarana(jdSunrise);
   const karanaData = KARANAS[karanaNum - 1] || KARANAS[0];
 
-  // 5. Vara — local timezone is intentionally correct here: weekday is a calendar
+  // 5. Vara  –  local timezone is intentionally correct here: weekday is a calendar
   // concept (same date = same weekday regardless of timezone), not an astronomical one.
   // Lesson L does NOT apply because we need the calendar weekday, not a UTC instant.
   const date = new Date(year, month - 1, day);
@@ -1134,7 +1134,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // The segment number is 1-based: segment N occupies
   //   [sunrise + (N-1) * 1/8 day, sunrise + N * 1/8 day].
   // Descending pattern Sun=5→Thu=1, then Fri=7, Sat=6.
-  // Segment orders imported from shared constants (Lesson Q — single source of truth)
+  // Segment orders imported from shared constants (Lesson Q  –  single source of truth)
   const yamaDuration = (sunsetUT - sunriseUT) / 8;
   const yamaSegment = YAMA_ORDER[weekday] - 1;
   const yamaganda = {
@@ -1187,7 +1187,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
     };
   });
 
-  // Abhijit Muhurta — the 8th daytime muhurta (around midday).
+  // Abhijit Muhurta  –  the 8th daytime muhurta (around midday).
   // This is universally considered auspicious EXCEPT on Wednesdays.
   //
   // Classical rule (Muhurta Chintamani, Dharma Sindhu): "On Budha-vara
@@ -1249,12 +1249,12 @@ export function computePanchang(input: PanchangInput): PanchangData {
     // Check if a SECOND transition occurs before next sunrise (meaning an intermediate tithi was skipped)
     const intermediateTithi = tithiTransition.nextNumber;
     // Scan forward from the first transition end to find if the intermediate tithi ends before next sunrise.
-    // Use 15-minute steps (1/96 JD) — 30-minute steps (1/48) can miss very short kshaya tithis (< 2 hours).
+    // Use 15-minute steps (1/96 JD)  –  30-minute steps (1/48) can miss very short kshaya tithis (< 2 hours).
     const step = 1 / 96; // ~15 min
     for (let scanJd = tithiTransition.endJD + step; scanJd < jdNextSunrise; scanJd += step) {
       const t = calculateTithi(scanJd).number;
       if (t !== intermediateTithi) {
-        // The intermediate tithi ended before next sunrise — it's a kshaya tithi
+        // The intermediate tithi ended before next sunrise  –  it's a kshaya tithi
         // Binary search for its exact end time
         let lo = scanJd - step, hi = scanJd;
         for (let i = 0; i < 20; i++) {
@@ -1266,7 +1266,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
         const beforeBoundary = calculateTithi(kshayaEndJd - 1e-6).number;
         const afterBoundary = calculateTithi(kshayaEndJd + 1e-6).number;
         if (beforeBoundary === afterBoundary) {
-          // False positive — binary search converged on a non-transition; skip
+          // False positive  –  binary search converged on a non-transition; skip
           continue;
         }
         const kshayaData = TITHIS[intermediateTithi - 1] || TITHIS[0];
@@ -1341,7 +1341,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
 
   // ── Enhanced fields ──
 
-  // Vikram / Shaka Samvat — new year begins at Chaitra Shukla Pratipada.
+  // Vikram / Shaka Samvat  –  new year begins at Chaitra Shukla Pratipada.
   //
   // masaIndex 0 = Chaitra (derived from Sun's sidereal longitude in getMasa()).
   // Within Chaitra, tithis 1-15 are Shukla Paksha (new year already started),
@@ -1359,17 +1359,17 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // In all other cases (masaIndex === 0 but Krishna Paksha, or Jan-Feb when
   // masaIndex is 10-11 i.e. Pausha/Magha/Phalguna) the previous Samvat applies.
   const pastChaitraShukla1 =
-    masaIndex > 0 && masaIndex <= 8  // Vaishakha(1) through Margashirsha(8) — definitely past new year
+    masaIndex > 0 && masaIndex <= 8  // Vaishakha(1) through Margashirsha(8)  –  definitely past new year
     || (masaIndex === 0 && tithiResult.number <= 15); // Chaitra Shukla Paksha
   const vikramSamvat = pastChaitraShukla1 ? year + 57 : year + 56;
   const shakaSamvat  = pastChaitraShukla1 ? year - 78 : year - 79;
 
-  // Purnimant vs Amant masa — two competing calendar systems used across India
+  // Purnimant vs Amant masa  –  two competing calendar systems used across India
   //
   // DEFINITIONS:
   //   • Amant (South India, Gujarat, Maharashtra): lunar month ends at Amavasya.
   //     The month name tracks the current solar month (masaIndex).
-  //     Month does NOT change during Krishna Paksha — only at Amavasya.
+  //     Month does NOT change during Krishna Paksha  –  only at Amavasya.
   //
   //   • Purnimant (North India, Punjab, Rajasthan): lunar month ends at Purnima.
   //     After Purnima (i.e., during Krishna Paksha, tithis 16–30), Purnimant has
@@ -1380,7 +1380,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // or exactly one month apart (Krishna Paksha).
   //
   // HISTORICAL BUG (now fixed): the code previously advanced Amant (not Purnimant)
-  // during Krishna Paksha — exactly backwards.  Both systems are derived from the
+  // during Krishna Paksha  –  exactly backwards.  Both systems are derived from the
   // same masaIndex (Sun's sidereal position); only the advancement rule differs.
   // Amant masa: use lunar-derived name with Adhika prefix when applicable
   const baseMasa = MASA_NAMES[masaIndex] || MASA_NAMES[0];
@@ -1388,7 +1388,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
     ? { en: `Adhika ${baseMasa.en}`, hi: `अधिक ${baseMasa.hi}`, sa: `अधिक${baseMasa.sa}` }
     : baseMasa;
 
-  // Purnimant masa — the "sandwich" logic:
+  // Purnimant masa  –  the "sandwich" logic:
   //
   // Normal month (no Adhika):
   //   Shukla Paksha (tithi 1-15): same as Amant
@@ -1450,7 +1450,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
 
   // ── New fields ──
 
-  // 1. Vijaya Muhurta — 11th daytime muhurta (0-indexed 10).
+  // 1. Vijaya Muhurta  –  11th daytime muhurta (0-indexed 10).
   // 11th daytime muhurta (Muhurta Chintamani). Cross-validated with Prokerala.
   const muhurtaDuration = dayDuration / 15;
   const vijayaStartUT = sunriseUT + 10 * muhurtaDuration;
@@ -1461,7 +1461,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   };
 
   // 2. Dur Muhurtam (inauspicious muhurta windows by weekday)
-  // Two classical traditions — imported from @/lib/constants/dur-muhurtam.
+  // Two classical traditions  –  imported from @/lib/constants/dur-muhurtam.
   // Weekday index 0=Sunday (matches JD weekday convention).
   const formatDurWindows = (indices: number[]) => indices.map(idx => {
     const s = sunriseUT + idx * muhurtaDuration;
@@ -1473,7 +1473,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // Primary: Kaala Prakashika (matches modern panchangs). Both exposed to UI.
   const durMuhurtam = durMuhurtamA;
 
-  // 3. Ganda Moola — with time window (sunrise to nakshatra end, or full day if no transition)
+  // 3. Ganda Moola  –  with time window (sunrise to nakshatra end, or full day if no transition)
   // Ganda Moola window: sunrise to nakshatra end (standard panchang convention)
   const GANDA_MOOLA_NAKSHATRAS = new Set([1, 9, 10, 18, 19, 27]);
   const gandaMoolaActive = GANDA_MOOLA_NAKSHATRAS.has(nakshatraNum);
@@ -1515,7 +1515,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // Substituting: (tithi + (weekday+1) - 2) % 9 = (tithi + weekday - 1) % 9
   //
   // HISTORICAL BUG (now fixed): the expression used -2 instead of -1, which
-  // shifted every result by -1 mod 9.  Concrete example — Sunday Pratipada:
+  // shifted every result by -1 mod 9.  Concrete example  –  Sunday Pratipada:
   //   Wrong:   (1 + 0 - 2 + 900) % 9 = 8  → Roga (inauspicious)
   //   Correct: (1 + 0 - 1 + 900) % 9 = 0  → Ananda (auspicious)
   // Every Anandadi Yoga label shown in the app was wrong before this fix.
@@ -1547,7 +1547,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // 7. Panchaka (Moon in nakshatras 23-27)
   const PANCHAKA_NAKSHATRAS = new Set([23, 24, 25, 26, 27]);
   const panchakaActive = PANCHAKA_NAKSHATRAS.has(nakshatraNum);
-  // Panchaka type by weekday — Dharma Sindhu / Nirṇaya Sindhu classification.
+  // Panchaka type by weekday  –  Dharma Sindhu / Nirṇaya Sindhu classification.
   // Determines the nature of the Panchaka period when Moon is in nakshatras 23-27.
   //
   // HISTORICAL BUG (now fixed): key 3 (Wednesday = Chora Panchaka) was missing.
@@ -1570,14 +1570,14 @@ export function computePanchang(input: PanchangInput): PanchangData {
     type: panchakaActive ? (PANCHAKA_TYPE[weekday] || PANCHAKA_DEFAULT) : undefined,
   };
 
-  // 7b. Panchak (rich info) — extends basic panchaka with descriptions and avoid-activities
+  // 7b. Panchak (rich info)  –  extends basic panchaka with descriptions and avoid-activities
   const panchakInfo = checkPanchak(nakshatraNum);
 
-  // 7c. Holashtak — 8 inauspicious days before Holi (Phalguna Shukla Ashtami to Purnima)
-  // Uses amanta masa (per Lesson ZC — festival definitions use Amant month names)
+  // 7c. Holashtak  –  8 inauspicious days before Holi (Phalguna Shukla Ashtami to Purnima)
+  // Uses amanta masa (per Lesson ZC  –  festival definitions use Amant month names)
   const holashtak = checkHolashtak(tithiResult.number, amantMasa, tithiResult.number <= 15 ? 'shukla' : 'krishna');
 
-  // 8. Tamil Yoga (Chandrashtama-based) — day quality from Moon-Sun angle modulo
+  // 8. Tamil Yoga (Chandrashtama-based)  –  day quality from Moon-Sun angle modulo
   // (tithiNum + weekday + nakshatraNum) mod 9 → 9 Tamil quality names
   const TAMIL_YOGA_NAMES: LocaleText[] = [
     { en: 'Siddha Yoga', hi: 'सिद्ध योग', sa: 'सिद्धयोगः' },
@@ -1597,7 +1597,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
     nature: TAMIL_YOGA_AUSPICIOUS.has(tamilYogaIdx) ? 'auspicious' as const : 'inauspicious' as const,
   };
 
-  // 9. Mantri Mandala (Planetary cabinet) — planet ruling the day acts as "king"
+  // 9. Mantri Mandala (Planetary cabinet)  –  planet ruling the day acts as "king"
   // The planet ruling the hora at sunrise is the "minister"
   const MANTRI_ROLES: LocaleText[] = [
     { en: 'King', hi: 'राजा', sa: 'राजा' },
@@ -1616,7 +1616,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   //
   // HISTORICAL BUG (now fixed): WEEKDAY_PLANET_MAP was identical to the Hora
   // sequence [0,3,6,2,5,1,4], which is a CHALDEAN order used for computing
-  // hora lords — NOT weekday lords.  As a result Monday→Mercury(3),
+  // hora lords  –  NOT weekday lords.  As a result Monday→Mercury(3),
   // Tuesday→Saturn(6), etc., were all wrong.  Only Sunday was accidentally
   // correct because both arrays start with Sun(0).
   const WEEKDAY_PLANET_MAP = [0, 1, 2, 3, 4, 5, 6]; // Sun Mon Tue Wed Thu Fri Sat → planet IDs
@@ -1685,7 +1685,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const shivaVaasKey = tithiResult.number % 5 === 0 ? 0 : tithiMod;
   const shivaVaas = SHIVA_VAAS_DATA[shivaVaasKey];
 
-  // 9. Agni Vaas (based on weekday) — changes at midnight (next sunrise)
+  // 9. Agni Vaas (based on weekday)  –  changes at midnight (next sunrise)
   const AGNI_VAAS_DATA: Record<number, { name: LocaleText; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed' }> = {
     0: { name: { en: 'Sky (Akasha)',   hi: 'आकाश में',  sa: 'आकाशे' }, nature: 'auspicious' },
     1: { name: { en: 'Earth (Bhumi)', hi: 'भूमि पर',   sa: 'भूमौ' }, nature: 'auspicious' },
@@ -1701,7 +1701,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const agniValidUntil = formatTime(nextDaySunriseUT, tzOffset);
   const agniVaas = { name: agniData.name, nature: agniData.nature, validUntil: agniValidUntil };
 
-  // 10. Chandra Vaas (based on nakshatra pada) — with direction
+  // 10. Chandra Vaas (based on nakshatra pada)  –  with direction
   const CHANDRA_VAAS_DATA: Record<number, { name: LocaleText; direction: LocaleText; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed' }> = {
     1: { name: { en: "Brahma's Abode", hi: 'ब्रह्म लोक',  sa: 'ब्रह्मस्थाने' }, direction: { en: 'East', hi: 'पूर्व', sa: 'पूर्वम्' }, nature: 'auspicious' },
     2: { name: { en: "Indra's Abode",  hi: 'इन्द्र लोक', sa: 'इन्द्रस्थाने' }, direction: { en: 'South', hi: 'दक्षिण', sa: 'दक्षिणम्' }, nature: 'neutral' },
@@ -1722,7 +1722,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   };
   const rahuVaas = { direction: RAHU_VAAS_MAP[weekday] };
 
-  // 12. Udaya Lagna — rising sign windows throughout the day
+  // 12. Udaya Lagna  –  rising sign windows throughout the day
   // Compute ascendant at 10-min intervals from sunrise to next sunrise
   function calcAscendant(jdAt: number): number {
     const T2 = (jdAt - 2451545.0) / 36525.0;
@@ -1776,7 +1776,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
     });
   }
 
-  // ── Visha Ghatika — 25th Ghatika from sunrise is inauspicious (Muhurta Chintamani) ──
+  // ── Visha Ghatika  –  25th Ghatika from sunrise is inauspicious (Muhurta Chintamani) ──
   // 1 Ghatika = 24 minutes. 25th Ghatika starts 24 * 24 = 576 minutes after sunrise.
   const vishaGhatikaStartUT = sunriseUT + 576 / 60; // hours
   const vishaGhatikaEndUT   = vishaGhatikaStartUT + 24 / 60;
@@ -1785,7 +1785,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
     end: formatTime(vishaGhatikaEndUT, tzOffset),
   };
 
-  // ── Dagdha Tithi — 7 "burnt" Tithi+Vara combos (Muhurta Chintamani) ──
+  // ── Dagdha Tithi  –  7 "burnt" Tithi+Vara combos (Muhurta Chintamani) ──
   // Inauspicious for new ventures: Chaturthi+Sun, Panchami+Mon, Saptami+Tue,
   // Ashtami+Wed, Tritiya+Thu, Shashthi+Fri, Dvadashi+Sat
   const DAGDHA_TITHI_TABLE: Record<number, number> = {
@@ -1800,7 +1800,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const currentTithiNum = tithiResult.number > 15 ? tithiResult.number - 15 : tithiResult.number;
   const dagdhaTithi = DAGDHA_TITHI_TABLE[weekday] === currentTithiNum;
 
-  // ── Amrit Siddhi Yoga — 7 supremely auspicious Vara+Nakshatra combos (Muhurta Deepika) ──
+  // ── Amrit Siddhi Yoga  –  7 supremely auspicious Vara+Nakshatra combos (Muhurta Deepika) ──
   // Sunday+Hasta(13), Monday+Mrigashira(5), Tuesday+Ashwini(1),
   // Wednesday+Anuradha(17), Thursday+Pushya(8), Friday+Revati(27), Saturday+Rohini(4)
   const AMRIT_SIDDHI_TABLE: Record<number, number> = {
@@ -1814,7 +1814,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   };
   const amritSiddhiYoga = AMRIT_SIDDHI_TABLE[weekday] === nakshatraNum;
 
-  // ── Bhadra (Vishti Karana) — scan entire panchang day for all Vishti windows ──
+  // ── Bhadra (Vishti Karana)  –  scan entire panchang day for all Vishti windows ──
   // Vishti (#7) recurs every ~7 karanas (~3.5 tithis). Multiple Bhadra windows
   // can fall within one panchang day. Scan sunrise to sunrise+24h.
   const VISHTI_KARANA = 7;
@@ -1829,13 +1829,13 @@ export function computePanchang(input: PanchangInput): PanchangData {
     for (let scan = jdSunrise + scanStep; scan <= scanEnd; scan += scanStep) {
       const isVishti = calculateKarana(scan) === VISHTI_KARANA;
       if (!inBhadra && isVishti) {
-        // Entered Bhadra — refine start
+        // Entered Bhadra  –  refine start
         let lo = scan - scanStep, hi = scan;
         for (let j = 0; j < 12; j++) { const mid = (lo+hi)/2; if (calculateKarana(mid) !== VISHTI_KARANA) lo = mid; else hi = mid; }
         bhadraStartJD = (lo + hi) / 2;
         inBhadra = true;
       } else if (inBhadra && !isVishti) {
-        // Exited Bhadra — refine end
+        // Exited Bhadra  –  refine end
         let lo = scan - scanStep, hi = scan;
         for (let j = 0; j < 12; j++) { const mid = (lo+hi)/2; if (calculateKarana(mid) === VISHTI_KARANA) lo = mid; else hi = mid; }
         const bhadraEndJD = (lo + hi) / 2;
@@ -1924,9 +1924,9 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const TRIPUSHKAR_NAKSHATRAS = new Set([3, 7, 16, 26]);
   const isTripushkar = isDwipushkarTithiMatch && TRIPUSHKAR_NAKSHATRAS.has(nakshatraNum) && isDwipushkarVara;
 
-  // 3. Sarvartha Siddhi — already computed above as `sarvarthaSiddhi`
+  // 3. Sarvartha Siddhi  –  already computed above as `sarvarthaSiddhi`
 
-  // 4. Amrit Siddhi — already computed above as `amritSiddhiYoga`
+  // 4. Amrit Siddhi  –  already computed above as `amritSiddhiYoga`
 
   // 5. Ravi Yoga: Sunday + Pushya(8) nakshatra (Moon's nakshatra)
   const isRaviPushya = weekday === 0 && nakshatraNum === 8;
@@ -1939,54 +1939,54 @@ export function computePanchang(input: PanchangInput): PanchangData {
       name: { en: 'Dwipushkar Yoga', hi: 'द्विपुष्कर योग', sa: 'द्विपुष्करयोगः' },
       isActive: isDwipushkar,
       description: {
-        en: 'Results of actions are doubled — extremely auspicious for new ventures',
-        hi: 'कार्यों का फल दोगुना होता है — नए कार्यों के लिए अत्यंत शुभ',
-        sa: 'कर्मफलं द्विगुणं भवति — नूतनकार्येषु अत्यन्तशुभम्',
+        en: 'Results of actions are doubled  –  extremely auspicious for new ventures',
+        hi: 'कार्यों का फल दोगुना होता है  –  नए कार्यों के लिए अत्यंत शुभ',
+        sa: 'कर्मफलं द्विगुणं भवति  –  नूतनकार्येषु अत्यन्तशुभम्',
       },
     },
     {
       name: { en: 'Tripushkar Yoga', hi: 'त्रिपुष्कर योग', sa: 'त्रिपुष्करयोगः' },
       isActive: isTripushkar,
       description: {
-        en: 'Results of actions are tripled — highly auspicious for important undertakings',
-        hi: 'कार्यों का फल तीन गुना होता है — महत्वपूर्ण कार्यों के लिए अत्यंत शुभ',
-        sa: 'कर्मफलं त्रिगुणं भवति — महत्कार्येषु अत्यन्तशुभम्',
+        en: 'Results of actions are tripled  –  highly auspicious for important undertakings',
+        hi: 'कार्यों का फल तीन गुना होता है  –  महत्वपूर्ण कार्यों के लिए अत्यंत शुभ',
+        sa: 'कर्मफलं त्रिगुणं भवति  –  महत्कार्येषु अत्यन्तशुभम्',
       },
     },
     {
       name: { en: 'Sarvartha Siddhi Yoga', hi: 'सर्वार्थ सिद्धि योग', sa: 'सर्वार्थसिद्धियोगः' },
       isActive: sarvarthaSiddhi,
       description: {
-        en: 'All endeavors succeed — auspicious vara-nakshatra combination',
-        hi: 'सभी कार्यों में सफलता — शुभ वार-नक्षत्र संयोग',
-        sa: 'सर्वकार्येषु सिद्धिः — शुभवारनक्षत्रयोगः',
+        en: 'All endeavors succeed  –  auspicious vara-nakshatra combination',
+        hi: 'सभी कार्यों में सफलता  –  शुभ वार-नक्षत्र संयोग',
+        sa: 'सर्वकार्येषु सिद्धिः  –  शुभवारनक्षत्रयोगः',
       },
     },
     {
       name: { en: 'Amrit Siddhi Yoga', hi: 'अमृत सिद्धि योग', sa: 'अमृतसिद्धियोगः' },
       isActive: amritSiddhiYoga,
       description: {
-        en: 'Supreme auspiciousness — the best vara-nakshatra combination for success',
-        hi: 'परम शुभ — सफलता के लिए सर्वोत्तम वार-नक्षत्र संयोग',
-        sa: 'परमशुभम् — सिद्ध्यर्थं सर्वोत्तमवारनक्षत्रयोगः',
+        en: 'Supreme auspiciousness  –  the best vara-nakshatra combination for success',
+        hi: 'परम शुभ  –  सफलता के लिए सर्वोत्तम वार-नक्षत्र संयोग',
+        sa: 'परमशुभम्  –  सिद्ध्यर्थं सर्वोत्तमवारनक्षत्रयोगः',
       },
     },
     {
       name: { en: 'Ravi Yoga', hi: 'रवि योग', sa: 'रवियोगः' },
       isActive: isRaviPushya,
       description: {
-        en: 'Sunday + Pushya nakshatra — extremely auspicious for new beginnings',
-        hi: 'रविवार + पुष्य नक्षत्र — नई शुरुआत के लिए अत्यंत शुभ',
-        sa: 'रविवारः + पुष्यनक्षत्रम् — नूतनारम्भेषु अत्यन्तशुभम्',
+        en: 'Sunday + Pushya nakshatra  –  extremely auspicious for new beginnings',
+        hi: 'रविवार + पुष्य नक्षत्र  –  नई शुरुआत के लिए अत्यंत शुभ',
+        sa: 'रविवारः + पुष्यनक्षत्रम्  –  नूतनारम्भेषु अत्यन्तशुभम्',
       },
     },
     {
       name: { en: 'Guru Pushya Yoga', hi: 'गुरु पुष्य योग', sa: 'गुरुपुष्ययोगः' },
       isActive: isGuruPushya,
       description: {
-        en: 'Thursday + Pushya nakshatra — most auspicious for buying gold and starting business',
-        hi: 'गुरुवार + पुष्य नक्षत्र — सोना खरीदने और व्यापार शुरू करने के लिए सर्वोत्तम',
-        sa: 'गुरुवारः + पुष्यनक्षत्रम् — स्वर्णक्रयणे वाणिज्यारम्भे च सर्वोत्तमम्',
+        en: 'Thursday + Pushya nakshatra  –  most auspicious for buying gold and starting business',
+        hi: 'गुरुवार + पुष्य नक्षत्र  –  सोना खरीदने और व्यापार शुरू करने के लिए सर्वोत्तम',
+        sa: 'गुरुवारः + पुष्यनक्षत्रम्  –  स्वर्णक्रयणे वाणिज्यारम्भे च सर्वोत्तमम्',
       },
     },
   ];

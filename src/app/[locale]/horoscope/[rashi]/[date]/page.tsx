@@ -1,5 +1,5 @@
 // src/app/[locale]/horoscope/[rashi]/[date]/page.tsx
-// NO 'use client' — Server Component for date-specific long-tail SEO
+// NO 'use client'  –  Server Component for date-specific long-tail SEO
 
 import { notFound } from 'next/navigation';
 import { getRashiBySlug } from '@/lib/constants/rashi-slugs';
@@ -18,7 +18,7 @@ export default async function DateHoroscopePage({ params }: { params: Promise<{ 
   const rashi = getRashiBySlug(slug);
   if (!rashi) return notFound();
 
-  // Validate date format: must be YYYY-MM-DD — anything else (e.g. "weekly", "monthly") is not a date
+  // Validate date format: must be YYYY-MM-DD  –  anything else (e.g. "weekly", "monthly") is not a date
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return notFound();
 
   // Validate the date is a real calendar date (not 2026-13-40)
@@ -41,12 +41,12 @@ export default async function DateHoroscopePage({ params }: { params: Promise<{ 
 
   return (
     <main className="min-h-screen bg-[#0a0e27] pb-20">
-      {/* SSR: H1 with rashi name and formatted date — Google indexes this */}
+      {/* SSR: H1 with rashi name and formatted date  –  Google indexes this */}
       <div className="max-w-4xl mx-auto px-4 pt-8">
         <h1 className="text-2xl sm:text-3xl font-bold text-gold-light text-center">
           {isHi
-            ? `${vedicName} राशिफल — ${formatted}`
-            : `${vedicName} (${westernName}) Horoscope — ${formatted}`}
+            ? `${vedicName} राशिफल  –  ${formatted}`
+            : `${vedicName} (${westernName}) Horoscope  –  ${formatted}`}
         </h1>
 
         {/* SSR: Key horoscope data rendered as visible text for indexing */}
@@ -72,7 +72,7 @@ export default async function DateHoroscopePage({ params }: { params: Promise<{ 
       {/* Client island: interactive widget with full functionality */}
       <HoroscopeClient rashi={rashi} locale={locale} initialHoroscope={horoscope} initialDate={date} />
 
-      {/* SSR: Static editorial content — always indexed */}
+      {/* SSR: Static editorial content  –  always indexed */}
       <RashiArticle rashiId={rashi.id} vedicName={vedicName} westernName={westernName} locale={locale} />
     </main>
   );

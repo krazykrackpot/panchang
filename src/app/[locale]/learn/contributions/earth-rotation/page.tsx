@@ -7,16 +7,16 @@ import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
-export const revalidate = 604800; // 7 days — static educational content
+export const revalidate = 604800; // 7 days  –  static educational content
 
 
 /* ════════════════════════════════════════════════════════════════
-   LABELS — bilingual (en / hi)
+   LABELS  –  bilingual (en / hi)
    ════════════════════════════════════════════════════════════════ */
 
 const TIMELINE = [
   { year: '499 CE', person: 'Aryabhata', event: { en: 'States Earth rotates on its axis, in Aryabhatiya Golapada', hi: 'आर्यभटीय गोलपाद में पृथ्वी के अक्षीय घूर्णन का कथन', sa: 'आर्यभटीय गोलपाद में पृथ्वी के अक्षीय घूर्णन का कथन', mai: 'आर्यभटीय गोलपाद में पृथ्वी के अक्षीय घूर्णन का कथन', mr: 'आर्यभटीय गोलपाद में पृथ्वी के अक्षीय घूर्णन का कथन', ta: 'ஆர்யபடீயம் கோலபாதத்தில் பூமி தன் அச்சில் சுழல்கிறது என்று கூறினார்', te: 'ఆర్యభటీయ గోళపాదలో భూమి తన అక్షంపై తిరుగుతుందని పేర్కొన్నారు', bn: 'আর্যভটীয় গোলপাদে পৃথিবী নিজ অক্ষে ঘোরে বলে বর্ণনা করেন', kn: 'ಆರ್ಯಭಟೀಯ ಗೋಲಪಾದದಲ್ಲಿ ಭೂಮಿ ತನ್ನ ಅಕ್ಷದ ಮೇಲೆ ತಿರುಗುತ್ತದೆ ಎಂದು ಹೇಳಿದರು', gu: 'આર્યભટીય ગોલપાદમાં પૃથ્વી પોતાની ધરી પર ફરે છે તેમ જણાવ્યું' }, color: '#f0d48a' },
-  { year: '628 CE', person: 'Brahmagupta', event: { en: 'Disputes Aryabhata — active scientific debate', hi: 'आर्यभट का विरोध — सक्रिय वैज्ञानिक बहस', sa: 'आर्यभट का विरोध — सक्रिय वैज्ञानिक बहस', mai: 'आर्यभट का विरोध — सक्रिय वैज्ञानिक बहस', mr: 'आर्यभट का विरोध — सक्रिय वैज्ञानिक बहस', ta: 'ஆர்யபடரை மறுத்தார் — சுறுசுறுப்பான அறிவியல் விவாதம்', te: 'ఆర్యభటను వివాదం చేశారు — సజీవ శాస్త్రీయ చర్చ', bn: 'আর্যভটকে বিতর্ক করলেন — সক্রিয় বৈজ্ঞানিক বিতর্ক', kn: 'ಆರ್ಯಭಟರನ್ನು ವಿವಾದಿಸಿದರು — ಸಕ್ರಿಯ ವೈಜ್ಞಾನಿಕ ಚರ್ಚೆ', gu: 'આર્યભટ સાથે મતભેદ — સક્રિય વૈજ્ઞાનિક ચર્ચા' }, color: '#60a5fa' },
+  { year: '628 CE', person: 'Brahmagupta', event: { en: 'Disputes Aryabhata  –  active scientific debate', hi: 'आर्यभट का विरोध  –  सक्रिय वैज्ञानिक बहस', sa: 'आर्यभट का विरोध  –  सक्रिय वैज्ञानिक बहस', mai: 'आर्यभट का विरोध  –  सक्रिय वैज्ञानिक बहस', mr: 'आर्यभट का विरोध  –  सक्रिय वैज्ञानिक बहस', ta: 'ஆர்யபடரை மறுத்தார்  –  சுறுசுறுப்பான அறிவியல் விவாதம்', te: 'ఆర్యభటను వివాదం చేశారు  –  సజీవ శాస్త్రీయ చర్చ', bn: 'আর্যভটকে বিতর্ক করলেন  –  সক্রিয় বৈজ্ঞানিক বিতর্ক', kn: 'ಆರ್ಯಭಟರನ್ನು ವಿವಾದಿಸಿದರು  –  ಸಕ್ರಿಯ ವೈಜ್ಞಾನಿಕ ಚರ್ಚೆ', gu: 'આર્યભટ સાથે મતભેદ  –  સક્રિય વૈજ્ઞાનિક ચર્ચા' }, color: '#60a5fa' },
   { year: '1000 CE', person: 'Al-Biruni', event: { en: 'Arab scholar visits India, translates Aryabhatiya', hi: 'अरब विद्वान भारत आए, आर्यभटीय का अनुवाद किया', sa: 'अरब विद्वान भारत आए, आर्यभटीय का अनुवाद किया', mai: 'अरब विद्वान भारत आए, आर्यभटीय का अनुवाद किया', mr: 'अरब विद्वान भारत आए, आर्यभटीय का अनुवाद किया', ta: 'அரபு அறிஞர் இந்தியா வருகை, ஆர்யபடீயத்தை மொழிபெயர்த்தார்', te: 'అరబ్ పండితుడు భారతదేశాన్ని సందర్శించారు, ఆర్యభటీయను అనువదించారు', bn: 'আরব পণ্ডিত ভারত পরিদর্শন, আর্যভটীয় অনুবাদ করলেন', kn: 'ಅರಬ್ ವಿದ್ವಾಂಸ ಭಾರತಕ್ಕೆ ಭೇಟಿ, ಆರ್ಯಭಟೀಯವನ್ನು ಅನುವಾದಿಸಿದರು', gu: 'અરબ વિદ્વાન ભારત મુલાકાત, આર્યભટીયનો અનુવાદ કર્યો' }, color: '#a78bfa' },
   { year: '1543 CE', person: 'Copernicus', event: { en: 'Publishes heliocentric model in Europe', hi: 'यूरोप में सौर-केंद्रित मॉडल प्रकाशित किया', sa: 'यूरोप में सौर-केंद्रित मॉडल प्रकाशित किया', mai: 'यूरोप में सौर-केंद्रित मॉडल प्रकाशित किया', mr: 'यूरोप में सौर-केंद्रित मॉडल प्रकाशित किया', ta: 'ஐரோப்பாவில் சூரிய மையக் கோட்பாட்டை வெளியிட்டார்', te: 'యూరప్‌లో సూర్యకేంద్ర నమూనాను ప్రచురించారు', bn: 'ইউরোপে সূর্যকেন্দ্রিক মডেল প্রকাশ করলেন', kn: 'ಯುರೋಪ್‌ನಲ್ಲಿ ಸೂರ್ಯಕೇಂದ್ರಿತ ಮಾದರಿ ಪ್ರಕಟಿಸಿದರು', gu: 'યુરોપમાં સૂર્યકેન્દ્રી મોડેલ પ્રકાશિત કર્યું' }, color: '#f87171' },
   { year: '1632 CE', person: 'Galileo', event: { en: 'Imprisoned for teaching Earth moves', hi: 'पृथ्वी के गतिशील होने का पाठ पढ़ाने पर कारावास', sa: 'पृथ्वी के गतिशील होने का पाठ पढ़ाने पर कारावास', mai: 'पृथ्वी के गतिशील होने का पाठ पढ़ाने पर कारावास', mr: 'पृथ्वी के गतिशील होने का पाठ पढ़ाने पर कारावास', ta: 'பூமி நகர்கிறது என்று கற்பித்ததற்காக சிறையில் அடைக்கப்பட்டார்', te: 'భూమి కదులుతుందని బోధించినందుకు జైలు', bn: 'পৃথিবী ঘোরে শেখানোর জন্য কারাবন্দী', kn: 'ಭೂಮಿ ಚಲಿಸುತ್ತದೆ ಎಂದು ಕಲಿಸಿದ್ದಕ್ಕೆ ಸೆರೆಮನೆ', gu: 'પૃથ્વી ફરે છે તે શીખવવા બદલ કેદ' }, color: '#f87171' },
@@ -70,7 +70,7 @@ export default async function EarthRotationPage({ params }: { params: Promise<{ 
 
         <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
           <p className="text-emerald-300 text-xs">
-            {tl({ en: "✦ Aryabhata used the boat analogy — a person on a moving boat sees the stationary shore moving backward. This is the same starting point as Einstein\'s principle of relativity.", hi: "✦ आर्यभट ने नाव के उपमा का उपयोग किया — एक चलती नाव पर एक व्यक्ति स्थिर किनारे को पीछे जाते देखता है। यह आइंस्टाइन के सापेक्षता के सिद्धांत का वही प्रारंभिक बिंदु है।", sa: "✦ आर्यभट ने नाव के उपमा का उपयोग किया — एक चलती नाव पर एक व्यक्ति स्थिर किनारे को पीछे जाते देखता है। यह आइंस्टाइन के सापेक्षता के सिद्धांत का वही प्रारंभिक बिंदु है।" }, locale)}
+            {tl({ en: "✦ Aryabhata used the boat analogy  –  a person on a moving boat sees the stationary shore moving backward. This is the same starting point as Einstein\'s principle of relativity.", hi: "✦ आर्यभट ने नाव के उपमा का उपयोग किया  –  एक चलती नाव पर एक व्यक्ति स्थिर किनारे को पीछे जाते देखता है। यह आइंस्टाइन के सापेक्षता के सिद्धांत का वही प्रारंभिक बिंदु है।", sa: "✦ आर्यभट ने नाव के उपमा का उपयोग किया  –  एक चलती नाव पर एक व्यक्ति स्थिर किनारे को पीछे जाते देखता है। यह आइंस्टाइन के सापेक्षता के सिद्धांत का वही प्रारंभिक बिंदु है।" }, locale)}
           </p>
         </div>
       </div>
@@ -88,7 +88,7 @@ export default async function EarthRotationPage({ params }: { params: Promise<{ 
             <div className="text-red-300 font-semibold text-sm mb-2">{tl({ en: 'Ptolemaic Model (~150 CE)', hi: 'टॉलेमी का मॉडल (~150 CE)', sa: 'टॉलेमी-प्रतिरूपम् (~150 CE)' }, locale)}</div>
             <ul className="text-text-secondary text-xs space-y-1">
               <li>• {tl({ en: 'Earth fixed at center', hi: 'पृथ्वी केंद्र में स्थिर', sa: 'पृथ्वी केन्द्रे स्थिरा' }, locale)}</li>
-              <li>• {tl({ en: 'Sun, Moon, planets orbit Earth', hi: 'सूर्य, चंद्रमा, ग्रह — पृथ्वी के चारों ओर घूमते हैं', sa: 'सूर्यः चन्द्रः ग्रहाश्च पृथ्वीं परिभ्रमन्ति' }, locale)}</li>
+              <li>• {tl({ en: 'Sun, Moon, planets orbit Earth', hi: 'सूर्य, चंद्रमा, ग्रह  –  पृथ्वी के चारों ओर घूमते हैं', sa: 'सूर्यः चन्द्रः ग्रहाश्च पृथ्वीं परिभ्रमन्ति' }, locale)}</li>
               <li>• {tl({ en: 'Dominated Europe for 1,400 years', hi: '1,400 वर्षों तक यूरोप में प्रभुत्व', sa: '1,400 वर्षाणि यूरोपे प्रभुत्वम् अकरोत्' }, locale)}</li>
               <li>• {tl({ en: 'Accepted as Church dogma', hi: 'चर्च द्वारा हठधर्मिता के रूप में स्वीकृत', sa: 'चर्च-सिद्धान्तरूपेण स्वीकृतम्' }, locale)}</li>
             </ul>
@@ -115,10 +115,10 @@ export default async function EarthRotationPage({ params }: { params: Promise<{ 
         <div className="p-4 rounded-xl bg-blue-500/8 border border-blue-500/15">
           <p className="text-blue-200 font-semibold text-xs mb-2">{tl({ en: "Brahmagupta's Objection (628 CE)", hi: "ब्रह्मगुप्त की आपत्ति (628 CE)", sa: "ब्रह्मगुप्त की आपत्ति (628 CE)" }, locale)}</p>
           <p className="text-text-secondary text-sm italic">
-            {tl({ en: '"If the Earth rotates, why does an object thrown upward not land to the west?" — Brahmasphutasiddhanta, Ch. 11', hi: '"यदि पृथ्वी घूमती है, तो ऊपर फेंकी गई वस्तु पश्चिम में क्यों नहीं गिरती?" — ब्रह्मस्फुटसिद्धांत, अध्याय 11', sa: '"यदि पृथ्वी भ्रमति, तर्हि ऊर्ध्वं क्षिप्तं द्रव्यं पश्चिमे किमर्थं न पतति?" — ब्रह्मस्फुटसिद्धान्तः, अध्यायः 11' }, locale)}
+            {tl({ en: '"If the Earth rotates, why does an object thrown upward not land to the west?"  –  Brahmasphutasiddhanta, Ch. 11', hi: '"यदि पृथ्वी घूमती है, तो ऊपर फेंकी गई वस्तु पश्चिम में क्यों नहीं गिरती?"  –  ब्रह्मस्फुटसिद्धांत, अध्याय 11', sa: '"यदि पृथ्वी भ्रमति, तर्हि ऊर्ध्वं क्षिप्तं द्रव्यं पश्चिमे किमर्थं न पतति?"  –  ब्रह्मस्फुटसिद्धान्तः, अध्यायः 11' }, locale)}
           </p>
           <p className="text-text-secondary text-xs mt-2">
-            {tl({ en: "→ Answer: Newton\'s inertia — the object carries the Earth\'s motion with it. Discovered 1,059 years later.", hi: "→ उत्तर: न्यूटन का जड़त्व — वस्तु पृथ्वी की गति को साथ लेती है। 1,059 वर्षों में खोजा गया।", sa: "→ उत्तर: न्यूटन का जड़त्व — वस्तु पृथ्वी की गति को साथ लेती है। 1,059 वर्षों में खोजा गया।" }, locale)}
+            {tl({ en: "→ Answer: Newton\'s inertia  –  the object carries the Earth\'s motion with it. Discovered 1,059 years later.", hi: "→ उत्तर: न्यूटन का जड़त्व  –  वस्तु पृथ्वी की गति को साथ लेती है। 1,059 वर्षों में खोजा गया।", sa: "→ उत्तर: न्यूटन का जड़त्व  –  वस्तु पृथ्वी की गति को साथ लेती है। 1,059 वर्षों में खोजा गया।" }, locale)}
           </p>
         </div>
       </div>
@@ -155,16 +155,16 @@ export default async function EarthRotationPage({ params }: { params: Promise<{ 
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-4 rounded-xl bg-white/[0.03] border border-gold-primary/10">
-            <div className="text-text-secondary text-xs mb-2 font-semibold">{tl({ en: 'Sidereal Day — Aryabhata', hi: 'नाक्षत्र दिन — आर्यभट', sa: 'नाक्षत्रदिनम् — आर्यभटः' }, locale)}</div>
+            <div className="text-text-secondary text-xs mb-2 font-semibold">{tl({ en: 'Sidereal Day  –  Aryabhata', hi: 'नाक्षत्र दिन  –  आर्यभट', sa: 'नाक्षत्रदिनम्  –  आर्यभटः' }, locale)}</div>
             <div className="text-gold-light text-lg font-mono">23h 56m 4.1s</div>
           </div>
           <div className="p-4 rounded-xl bg-white/[0.03] border border-gold-primary/10">
-            <div className="text-text-secondary text-xs mb-2 font-semibold">{tl({ en: 'Sidereal Day — Modern', hi: 'नाक्षत्र दिन — आधुनिक', sa: 'नाक्षत्रदिनम् — आधुनिकम्' }, locale)}</div>
+            <div className="text-text-secondary text-xs mb-2 font-semibold">{tl({ en: 'Sidereal Day  –  Modern', hi: 'नाक्षत्र दिन  –  आधुनिक', sa: 'नाक्षत्रदिनम्  –  आधुनिकम्' }, locale)}</div>
             <div className="text-emerald-400 text-lg font-mono">23h 56m 4.091s</div>
           </div>
         </div>
         <p className="text-text-secondary text-xs mt-3 italic">
-          {tl({ en: "→ Difference: 0.009 seconds. After 1,500 years. This is not because he guessed lucky — it\'s because he had a mathematical model.", hi: "→ अंतर: 0.009 सेकंड। 1,500 वर्षों के बाद। यह इसलिए नहीं है कि उन्होंने भाग्य से अनुमान लगाया — यह इसलिए है कि उनके पास गणितीय मॉडल था।", sa: "→ अंतर: 0.009 सेकंड। 1,500 वर्षों के बाद। यह इसलिए नहीं है कि उन्होंने भाग्य से अनुमान लगाया — यह इसलिए है कि उनके पास गणितीय मॉडल था।" }, locale)}
+          {tl({ en: "→ Difference: 0.009 seconds. After 1,500 years. This is not because he guessed lucky  –  it\'s because he had a mathematical model.", hi: "→ अंतर: 0.009 सेकंड। 1,500 वर्षों के बाद। यह इसलिए नहीं है कि उन्होंने भाग्य से अनुमान लगाया  –  यह इसलिए है कि उनके पास गणितीय मॉडल था।", sa: "→ अंतर: 0.009 सेकंड। 1,500 वर्षों के बाद। यह इसलिए नहीं है कि उन्होंने भाग्य से अनुमान लगाया  –  यह इसलिए है कि उनके पास गणितीय मॉडल था।" }, locale)}
         </p>
       </div>
 

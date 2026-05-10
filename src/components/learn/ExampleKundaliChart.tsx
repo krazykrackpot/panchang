@@ -21,7 +21,7 @@ const HOUSE_PATHS: Record<number, { path: string; cx: number; cy: number; signX:
   12: { path: 'M 470 30 L 360 140 L 250 30 Z', cx: 362, cy: 62, signX: 408, signY: 42 },
 };
 
-// Example: 15 Aug 1995, 10:30 AM IST, New Delhi — Tula Lagna
+// Example: 15 Aug 1995, 10:30 AM IST, New Delhi  –  Tula Lagna
 const RASHI_NAMES: Record<string, Record<number, string>> = {
   en: { 1: 'Lib', 2: 'Sco', 3: 'Sag', 4: 'Cap', 5: 'Aqu', 6: 'Pis', 7: 'Ari', 8: 'Tau', 9: 'Gem', 10: 'Can', 11: 'Leo', 12: 'Vir' },
   hi: { 1: 'तुला', 2: 'वृश्चि', 3: 'धनु', 4: 'मकर', 5: 'कुम्भ', 6: 'मीन', 7: 'मेष', 8: 'वृष', 9: 'मिथु', 10: 'कर्क', 11: 'सिंह', 12: 'कन्या' },
@@ -81,7 +81,7 @@ export default function ExampleKundaliChart({ size = 420 }: { size?: number }) {
             <stop offset="0%" stopColor="rgba(212,168,83,0.12)" />
             <stop offset="100%" stopColor="rgba(212,168,83,0)" />
           </radialGradient>
-          {/* No blur filter — crisp text */}
+          {/* No blur filter  –  crisp text */}
         </defs>
 
         {/* Background */}

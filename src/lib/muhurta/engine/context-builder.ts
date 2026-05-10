@@ -1,5 +1,5 @@
 /**
- * Muhurta Engine — Context Builder
+ * Muhurta Engine  –  Context Builder
  *
  * Bridge between raw ephemeris and the rule evaluation layer.
  * Two levels of context:
@@ -54,7 +54,7 @@ export interface DayContext {
 }
 
 /**
- * Build day-level context — computed once per calendar day.
+ * Build day-level context  –  computed once per calendar day.
  *
  * @param year  Gregorian year
  * @param month Gregorian month (1-12)
@@ -81,7 +81,7 @@ export function buildDayContext(
   // Weekday: 0=Sun, 1=Mon, ..., 6=Sat
   const weekday = Math.floor(jdNoon + 1.5) % 7; // 0=Sunday
 
-  // Planetary positions at noon — sufficient for combustion + day-level checks
+  // Planetary positions at noon  –  sufficient for combustion + day-level checks
   const planets = getPlanetaryPositions(jdNoon);
 
   // Venus/Jupiter combustion check

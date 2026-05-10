@@ -6,14 +6,14 @@ export const TULSI_VIVAH_PUJA: PujaVidhi = {
   deity: { en: 'Tulsi-Vishnu', hi: 'तुलसी-विष्णु', sa: 'तुलसीविष्णू' },
 
   samagri: [
-    { name: { en: 'Tulsi plant (holy basil)', hi: 'तुलसी का पौधा', sa: 'तुलसीवृक्षः' }, essential: true, note: { en: 'The bride — must be a healthy, well-maintained Tulsi plant in a pot or tulsi vrindavan', hi: 'वधू — स्वस्थ, सुव्यवस्थित तुलसी का पौधा गमले या तुलसी वृन्दावन में', sa: 'वधू — स्वस्थं सुरक्षितं तुलसीवृक्षं कुम्भे तुलसीवृन्दावने वा' } },
-    { name: { en: 'Shaligrama stone (fossil ammonite)', hi: 'शालिग्राम शिला', sa: 'शालिग्रामशिला' }, essential: true, note: { en: 'The groom — a sacred stone representing Lord Vishnu', hi: 'वर — भगवान विष्णु का प्रतिनिधित्व करने वाला पवित्र पत्थर', sa: 'वरः — श्रीविष्णोः प्रतिनिधिभूतं पवित्रं शिलम्' } },
+    { name: { en: 'Tulsi plant (holy basil)', hi: 'तुलसी का पौधा', sa: 'तुलसीवृक्षः' }, essential: true, note: { en: 'The bride  –  must be a healthy, well-maintained Tulsi plant in a pot or tulsi vrindavan', hi: 'वधू  –  स्वस्थ, सुव्यवस्थित तुलसी का पौधा गमले या तुलसी वृन्दावन में', sa: 'वधू  –  स्वस्थं सुरक्षितं तुलसीवृक्षं कुम्भे तुलसीवृन्दावने वा' } },
+    { name: { en: 'Shaligrama stone (fossil ammonite)', hi: 'शालिग्राम शिला', sa: 'शालिग्रामशिला' }, essential: true, note: { en: 'The groom  –  a sacred stone representing Lord Vishnu', hi: 'वर  –  भगवान विष्णु का प्रतिनिधित्व करने वाला पवित्र पत्थर', sa: 'वरः  –  श्रीविष्णोः प्रतिनिधिभूतं पवित्रं शिलम्' } },
     { name: { en: 'Mandap decoration (small canopy with 4 pillars)', hi: 'मण्डप सजावट (4 खम्भों वाली छोटी छत)', sa: 'मण्डपालङ्करणम् (चतुःस्तम्भं लघुछत्रम्)' }, essential: true },
     { name: { en: 'Sugarcane sticks (for mandap pillars)', hi: 'गन्ने की छड़ें (मण्डप के खम्भों के लिए)', sa: 'इक्षुदण्डाः (मण्डपस्तम्भार्थम्)' } },
     { name: { en: 'Mango leaves and marigold garlands (for mandap)', hi: 'आम के पत्ते और गेंदे की मालाएँ (मण्डप के लिए)', sa: 'आम्रपत्राणि स्थालपद्ममालाश्च (मण्डपार्थम्)' }, category: 'flowers' },
     { name: { en: 'Wedding items (sindoor, mangalsutra, kumkum, haldi)', hi: 'विवाह सामग्री (सिन्दूर, मंगलसूत्र, कुमकुम, हल्दी)', sa: 'विवाहसामग्री (सिन्दूरं मङ्गलसूत्रं कुङ्कुमं हरिद्रा च)' }, essential: true },
     { name: { en: 'Red cloth (chunri/odhni for Tulsi)', hi: 'लाल कपड़ा (तुलसी के लिए चुनरी/ओढ़नी)', sa: 'रक्तवस्त्रम् (तुलस्यर्थं चुनरी)' }, category: 'clothing' },
-    { name: { en: 'Amla (Indian gooseberry)', hi: 'आँवला', sa: 'आमलकम्' }, category: 'food', note: { en: 'Traditional offering — also marks the start of amla harvesting season', hi: 'पारम्परिक अर्पण — आँवले के मौसम की शुरुआत का प्रतीक', sa: 'पारम्परिकम् अर्पणम् — आमलकऋतोः आरम्भचिह्नं च' } },
+    { name: { en: 'Amla (Indian gooseberry)', hi: 'आँवला', sa: 'आमलकम्' }, category: 'food', note: { en: 'Traditional offering  –  also marks the start of amla harvesting season', hi: 'पारम्परिक अर्पण  –  आँवले के मौसम की शुरुआत का प्रतीक', sa: 'पारम्परिकम् अर्पणम्  –  आमलकऋतोः आरम्भचिह्नं च' } },
     { name: { en: 'Ghee lamp (5-wick panchadeep)', hi: 'घी का दीपक (पाँच बत्ती वाला)', sa: 'घृतदीपः (पञ्चदीपः)' }, category: 'puja_items' },
     { name: { en: 'Tamarind and amla (for naivedya)', hi: 'इमली और आँवला (नैवेद्य के लिए)', sa: 'तिन्तिडीफलम् आमलकं च (नैवेद्यार्थम्)' }, category: 'food' },
     { name: { en: 'Puffed rice (laiya/murmura) and sweets', hi: 'मुरमुरे (लाई) और मिठाई', sa: 'लाजाः मिष्टान्नानि च' }, category: 'food' },
@@ -29,8 +29,8 @@ export const TULSI_VIVAH_PUJA: PujaVidhi = {
 
   sankalpa: {
     en: 'On this sacred Kartik Dwadashi, I perform the ceremonial marriage of Tulsi Devi (Vrinda) with Lord Vishnu (Shaligrama), marking the end of Chaturmas and the beginning of the auspicious wedding season.',
-    hi: 'इस पवित्र कार्तिक द्वादशी पर, मैं तुलसी देवी (वृन्दा) और भगवान विष्णु (शालिग्राम) का विवाह सम्पन्न करता/करती हूँ — चातुर्मास के अन्त और शुभ विवाह ऋतु के आरम्भ की घोषणा।',
-    sa: 'अस्यां पवित्रायां कार्तिकद्वादश्यां तुलसीदेव्याः (वृन्दायाः) श्रीविष्णोः (शालिग्रामस्य) च विवाहं सम्पादयामि — चातुर्मासान्तं शुभविवाहर्तोः आरम्भं च सूचयन्।',
+    hi: 'इस पवित्र कार्तिक द्वादशी पर, मैं तुलसी देवी (वृन्दा) और भगवान विष्णु (शालिग्राम) का विवाह सम्पन्न करता/करती हूँ  –  चातुर्मास के अन्त और शुभ विवाह ऋतु के आरम्भ की घोषणा।',
+    sa: 'अस्यां पवित्रायां कार्तिकद्वादश्यां तुलसीदेव्याः (वृन्दायाः) श्रीविष्णोः (शालिग्रामस्य) च विवाहं सम्पादयामि  –  चातुर्मासान्तं शुभविवाहर्तोः आरम्भं च सूचयन्।',
   },
 
   vidhiSteps: [
@@ -74,9 +74,9 @@ export const TULSI_VIVAH_PUJA: PujaVidhi = {
       step: 4,
       title: { en: 'Kanya Daan (Giving Away the Bride)', hi: 'कन्यादान', sa: 'कन्यादानम्' },
       description: {
-        en: 'The householder symbolically performs kanya daan — giving away Tulsi (Vrinda Devi) in marriage to Lord Vishnu (Shaligrama). Pour water from the right palm while reciting the daan mantra, just as in a real wedding.',
-        hi: 'गृहस्थ प्रतीकात्मक रूप से कन्यादान करता है — तुलसी (वृन्दा देवी) को भगवान विष्णु (शालिग्राम) को विवाह में समर्पित करता है। दान मन्त्र पढ़ते हुए दाहिने हाथ से जल छोड़ें, जैसे वास्तविक विवाह में होता है।',
-        sa: 'गृहस्थः प्रतीकात्मकं कन्यादानं करोति — तुलसीं (वृन्दादेवीम्) श्रीविष्णवे (शालिग्रामाय) विवाहे समर्पयति। दानमन्त्रम् उच्चारयन् दक्षिणहस्तात् जलं मुञ्चेत्, यथा वास्तविके विवाहे।',
+        en: 'The householder symbolically performs kanya daan  –  giving away Tulsi (Vrinda Devi) in marriage to Lord Vishnu (Shaligrama). Pour water from the right palm while reciting the daan mantra, just as in a real wedding.',
+        hi: 'गृहस्थ प्रतीकात्मक रूप से कन्यादान करता है  –  तुलसी (वृन्दा देवी) को भगवान विष्णु (शालिग्राम) को विवाह में समर्पित करता है। दान मन्त्र पढ़ते हुए दाहिने हाथ से जल छोड़ें, जैसे वास्तविक विवाह में होता है।',
+        sa: 'गृहस्थः प्रतीकात्मकं कन्यादानं करोति  –  तुलसीं (वृन्दादेवीम्) श्रीविष्णवे (शालिग्रामाय) विवाहे समर्पयति। दानमन्त्रम् उच्चारयन् दक्षिणहस्तात् जलं मुञ्चेत्, यथा वास्तविके विवाहे।',
       },
       essential: true,
       stepType: 'offering',
@@ -110,9 +110,9 @@ export const TULSI_VIVAH_PUJA: PujaVidhi = {
       step: 7,
       title: { en: 'Tulsi Mantra Japa', hi: 'तुलसी मन्त्र जप', sa: 'तुलसीमन्त्रजपः' },
       description: {
-        en: 'Chant the Tulsi mantra 108 times. Tulsi is Vrinda Devi — the most beloved consort of Vishnu in plant form. The mantra honours her sacred status.',
-        hi: 'तुलसी मन्त्र 108 बार जपें। तुलसी वृन्दा देवी हैं — पौधे के रूप में विष्णु की सबसे प्रिय पत्नी। मन्त्र उनकी पवित्र स्थिति का सम्मान करता है।',
-        sa: 'तुलसीमन्त्रं १०८ वारं जपेत्। तुलसी वृन्दादेवी — वनस्पतिरूपेण विष्णोः प्रियतमा पत्नी। मन्त्रः तस्याः पवित्रस्थितिं सम्मानयति।',
+        en: 'Chant the Tulsi mantra 108 times. Tulsi is Vrinda Devi  –  the most beloved consort of Vishnu in plant form. The mantra honours her sacred status.',
+        hi: 'तुलसी मन्त्र 108 बार जपें। तुलसी वृन्दा देवी हैं  –  पौधे के रूप में विष्णु की सबसे प्रिय पत्नी। मन्त्र उनकी पवित्र स्थिति का सम्मान करता है।',
+        sa: 'तुलसीमन्त्रं १०८ वारं जपेत्। तुलसी वृन्दादेवी  –  वनस्पतिरूपेण विष्णोः प्रियतमा पत्नी। मन्त्रः तस्याः पवित्रस्थितिं सम्मानयति।',
       },
       mantraRef: 'tulsi-mantra',
       essential: true,
@@ -165,9 +165,9 @@ export const TULSI_VIVAH_PUJA: PujaVidhi = {
       devanagari: 'ॐ तुलस्यमृतजन्मासि सदा त्वं केशवप्रिये। केशवार्थं चिनोमि त्वां वरदा भव शोभने॥',
       iast: 'oṃ tulasyamṛtajanmāsi sadā tvaṃ keśavapriye | keśavārthaṃ cinomi tvāṃ varadā bhava śobhane ||',
       meaning: {
-        en: 'O Tulsi, you are born from the nectar of immortality, you are always dear to Keshava (Vishnu). I pluck you for Keshava\'s worship — O beautiful one, be the granter of boons.',
-        hi: 'हे तुलसी, तुम अमृत से उत्पन्न हो, सदा केशव (विष्णु) की प्रिय हो। केशव की पूजा के लिए मैं तुम्हें चुनता/चुनती हूँ — हे सुन्दरी, वरदायिनी बनो।',
-        sa: 'हे तुलसि, त्वम् अमृतजन्मा, सदा केशवप्रिया। केशवार्थं त्वां चिनोमि — हे शोभने, वरदा भव।',
+        en: 'O Tulsi, you are born from the nectar of immortality, you are always dear to Keshava (Vishnu). I pluck you for Keshava\'s worship  –  O beautiful one, be the granter of boons.',
+        hi: 'हे तुलसी, तुम अमृत से उत्पन्न हो, सदा केशव (विष्णु) की प्रिय हो। केशव की पूजा के लिए मैं तुम्हें चुनता/चुनती हूँ  –  हे सुन्दरी, वरदायिनी बनो।',
+        sa: 'हे तुलसि, त्वम् अमृतजन्मा, सदा केशवप्रिया। केशवार्थं त्वां चिनोमि  –  हे शोभने, वरदा भव।',
       },
       japaCount: 108,
       usage: {
@@ -225,8 +225,8 @@ export const TULSI_VIVAH_PUJA: PujaVidhi = {
   ],
 
   phala: {
-    en: 'Tulsi Vivah is believed to bestow the same merit as performing a kanya daan (giving a daughter in marriage) — the highest form of daan. It grants domestic harmony, prosperity, and the blessing of Vishnu upon the household. The Padma Purana states that one who performs Tulsi Vivah is freed from the debt of ancestors.',
-    hi: 'तुलसी विवाह करने का पुण्य कन्यादान (पुत्री का विवाह में दान) — दान के सर्वोच्च रूप — के बराबर माना जाता है। यह घरेलू सौहार्द, समृद्धि और घर पर विष्णु का आशीर्वाद प्रदान करता है। पद्म पुराण के अनुसार जो तुलसी विवाह करता है वह पितृ-ऋण से मुक्त होता है।',
-    sa: 'तुलसीविवाहः कन्यादानसमपुण्यं (विवाहे कन्यायाः दानं — दानस्य सर्वोच्चरूपम्) ददातीति विश्वस्यते। गृहसौहार्दं समृद्धिं गृहे विष्ण्वाशीर्वादं च ददाति। पद्मपुराणे उक्तं तुलसीविवाहकर्ता पितृऋणात् मुच्यत इति।',
+    en: 'Tulsi Vivah is believed to bestow the same merit as performing a kanya daan (giving a daughter in marriage)  –  the highest form of daan. It grants domestic harmony, prosperity, and the blessing of Vishnu upon the household. The Padma Purana states that one who performs Tulsi Vivah is freed from the debt of ancestors.',
+    hi: 'तुलसी विवाह करने का पुण्य कन्यादान (पुत्री का विवाह में दान)  –  दान के सर्वोच्च रूप  –  के बराबर माना जाता है। यह घरेलू सौहार्द, समृद्धि और घर पर विष्णु का आशीर्वाद प्रदान करता है। पद्म पुराण के अनुसार जो तुलसी विवाह करता है वह पितृ-ऋण से मुक्त होता है।',
+    sa: 'तुलसीविवाहः कन्यादानसमपुण्यं (विवाहे कन्यायाः दानं  –  दानस्य सर्वोच्चरूपम्) ददातीति विश्वस्यते। गृहसौहार्दं समृद्धिं गृहे विष्ण्वाशीर्वादं च ददाति। पद्मपुराणे उक्तं तुलसीविवाहकर्ता पितृऋणात् मुच्यत इति।',
   },
 };

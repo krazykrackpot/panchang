@@ -25,7 +25,7 @@ interface LocationData {
 }
 
 // ──────────────────────────────────────────────────────────────
-// Shiva Vaas descriptions — hoisted to module level
+// Shiva Vaas descriptions  –  hoisted to module level
 // ──────────────────────────────────────────────────────────────
 const SHIVA_DESC: Record<string, { nColor: string; border: string; bg: string; desc: LocaleText; activities: LocaleText }> = {
   'Kailash (Mountain)': {
@@ -40,17 +40,17 @@ const SHIVA_DESC: Record<string, { nColor: string; border: string; bg: string; d
   },
   "Gori's Abode (Auspicious)": {
     nColor: 'text-pink-300', border: 'border-pink-500/25', bg: 'from-pink-500/5',
-    desc: { en: "Shiva visits Parvati's home — domestic bliss and harmony. Good for marriage, family, home, and matters of Venus.", hi: 'शिव पार्वती के घर में हैं — गृहस्थ आनंद। विवाह, परिवार, घर संबंधी कार्यों के लिए शुभ।', ta: "Shiva visits Parvati's home — domestic bliss and harmony. Good for marriage, family, home, and matters of Venus.", bn: "Shiva visits Parvati's home — domestic bliss and harmony. Good for marriage, family, home, and matters of Venus." } as LocaleText,
+    desc: { en: "Shiva visits Parvati's home  –  domestic bliss and harmony. Good for marriage, family, home, and matters of Venus.", hi: 'शिव पार्वती के घर में हैं  –  गृहस्थ आनंद। विवाह, परिवार, घर संबंधी कार्यों के लिए शुभ।', ta: "Shiva visits Parvati's home  –  domestic bliss and harmony. Good for marriage, family, home, and matters of Venus.", bn: "Shiva visits Parvati's home  –  domestic bliss and harmony. Good for marriage, family, home, and matters of Venus." } as LocaleText,
     activities: { en: 'Marriage, family rituals, home purchase, Gauri puja', hi: 'विवाह, पारिवारिक अनुष्ठान, गृह क्रय, गौरी पूजा', ta: 'திருமணம், குடும்ப சடங்குகள், வீடு வாங்குதல், கௌரி பூஜை', bn: 'বিবাহ, পারিবারিক অনুষ্ঠান, গৃহ ক্রয়, গৌরী পূজা' } as LocaleText,
   },
   'Sports & Play': {
     nColor: 'text-amber-300', border: 'border-amber-500/25', bg: 'from-amber-500/5',
-    desc: { en: "Shiva is at cosmic play (Leela) — dancing the Tandava. His attention is divided; mixed results. Arts, music, and dance are well-supported.", hi: 'शिव लीला में हैं — तांडव नृत्य कर रहे हैं। मिश्रित फल। कला, संगीत, नृत्य उत्तम।', ta: "Shiva is at cosmic play (Leela) — dancing the Tandava. His attention is divided; mixed results. Arts, music, and dance are well-supported.", bn: "Shiva is at cosmic play (Leela) — dancing the Tandava. His attention is divided; mixed results. Arts, music, and dance are well-supported." } as LocaleText,
+    desc: { en: "Shiva is at cosmic play (Leela)  –  dancing the Tandava. His attention is divided; mixed results. Arts, music, and dance are well-supported.", hi: 'शिव लीला में हैं  –  तांडव नृत्य कर रहे हैं। मिश्रित फल। कला, संगीत, नृत्य उत्तम।', ta: "Shiva is at cosmic play (Leela)  –  dancing the Tandava. His attention is divided; mixed results. Arts, music, and dance are well-supported.", bn: "Shiva is at cosmic play (Leela)  –  dancing the Tandava. His attention is divided; mixed results. Arts, music, and dance are well-supported." } as LocaleText,
     activities: { en: 'Arts, music, dance; avoid critical ventures', hi: 'कला, संगीत, नृत्य; महत्वपूर्ण कार्यों से बचें', ta: 'கலைகள், இசை, நடனம்; முக்கியமான முயற்சிகளைத் தவிர்க்கவும்', bn: 'কলা, সংগীত, নৃত্য; গুরুত্বপূর্ণ উদ্যোগ এড়িয়ে চলুন' } as LocaleText,
   },
   'Deep Meditation (Samadhi)': {
     nColor: 'text-violet-300', border: 'border-violet-500/25', bg: 'from-violet-500/5',
-    desc: { en: 'Shiva is in deep Samadhi — beyond the phenomenal world. Sacred for meditation and spiritual practice, but mundane activities may not receive divine support.', hi: 'शिव गहरी समाधि में हैं। ध्यान और आध्यात्मिक साधना के लिए पवित्र, लेकिन सांसारिक कार्यों में कम सहायता।', ta: 'சிவன் ஆழ்ந்த சமாதியில் உள்ளார் — புலன் உலகத்திற்கு அப்பாற்பட்டது. தியானம் மற்றும் ஆன்மிக பயிற்சிக்கு புனிதமானது, ஆனால் உலகியல் நடவடிக்கைகள் தெய்வீக ஆதரவைப் பெறாமல் போகலாம்.', bn: 'শিব গভীর সমাধিতে — জাগতিক জগতের ঊর্ধ্বে। ধ্যান ও আধ্যাত্মিক সাধনার জন্য পবিত্র, কিন্তু জাগতিক কাজ দৈব সমর্থন নাও পেতে পারে।' } as LocaleText,
+    desc: { en: 'Shiva is in deep Samadhi  –  beyond the phenomenal world. Sacred for meditation and spiritual practice, but mundane activities may not receive divine support.', hi: 'शिव गहरी समाधि में हैं। ध्यान और आध्यात्मिक साधना के लिए पवित्र, लेकिन सांसारिक कार्यों में कम सहायता।', ta: 'சிவன் ஆழ்ந்த சமாதியில் உள்ளார்  –  புலன் உலகத்திற்கு அப்பாற்பட்டது. தியானம் மற்றும் ஆன்மிக பயிற்சிக்கு புனிதமானது, ஆனால் உலகியல் நடவடிக்கைகள் தெய்வீக ஆதரவைப் பெறாமல் போகலாம்.', bn: 'শিব গভীর সমাধিতে  –  জাগতিক জগতের ঊর্ধ্বে। ধ্যান ও আধ্যাত্মিক সাধনার জন্য পবিত্র, কিন্তু জাগতিক কাজ দৈব সমর্থন নাও পেতে পারে।' } as LocaleText,
     activities: { en: 'Meditation, japa, fasting. Avoid worldly ventures.', hi: 'ध्यान, जप, उपवास। सांसारिक कार्यों से बचें।', ta: 'தியானம், ஜபம், விரதம். உலகியல் முயற்சிகளைத் தவிர்க்கவும்.', bn: 'ধ্যান, জপ, উপবাস। জাগতিক উদ্যোগ এড়িয়ে চলুন।' } as LocaleText,
   },
 };
@@ -62,7 +62,7 @@ const AGNI_DESC: Record<string, { nColor: string; border: string; bg: string; de
   'Sky (Akasha)': {
     nColor: 'text-sky-300', border: 'border-sky-500/25', bg: 'from-sky-500/5',
     desc: { en: 'Agni resides in the celestial sky. Fire rituals are carried directly to the devatas.', hi: 'अग्नि आकाश में हैं। अग्नि अनुष्ठान सीधे देवताओं तक पहुँचते हैं।', ta: 'அக்னி வான வெளியில் வசிக்கிறார். அக்னி சடங்குகள் நேரடியாக தேவர்களை அடைகின்றன.', bn: 'অগ্নি আকাশে অবস্থান করেন। অগ্নি অনুষ্ঠান সরাসরি দেবতাদের কাছে পৌঁছায়।' } as LocaleText,
-    ritualNote: { en: 'Homa & Yajna highly effective — offerings rise unimpeded', hi: 'होम और यज्ञ अत्यंत प्रभावी — आहुतियाँ बाधारहित ऊर्ध्वगामी', ta: 'ஹோமம் & யக்ஞம் மிகவும் பயனுள்ளது — படையல்கள் தடையின்றி மேலெழும்', bn: 'হোম ও যজ্ঞ অত্যন্ত ফলপ্রসূ — আহুতি বাধাহীনভাবে ঊর্ধ্বগামী' } as LocaleText,
+    ritualNote: { en: 'Homa & Yajna highly effective  –  offerings rise unimpeded', hi: 'होम और यज्ञ अत्यंत प्रभावी  –  आहुतियाँ बाधारहित ऊर्ध्वगामी', ta: 'ஹோமம் & யக்ஞம் மிகவும் பயனுள்ளது  –  படையல்கள் தடையின்றி மேலெழும்', bn: 'হোম ও যজ্ঞ অত্যন্ত ফলপ্রসূ  –  আহুতি বাধাহীনভাবে ঊর্ধ্বগামী' } as LocaleText,
   },
   'Earth (Bhumi)': {
     nColor: 'text-emerald-300', border: 'border-emerald-500/25', bg: 'from-emerald-500/5',
@@ -76,7 +76,7 @@ const AGNI_DESC: Record<string, { nColor: string; border: string; bg: string; de
   },
   'Water (Jal)': {
     nColor: 'text-blue-300', border: 'border-blue-500/25', bg: 'from-blue-500/5',
-    desc: { en: 'Agni is submerged in water — the Vadavagni (submarine fire of Hindu cosmology).', hi: 'अग्नि जल में हैं — वडवाग्नि (हिंदू ब्रह्माण्ड की समुद्री अग्नि)।', ta: 'அக்னி நீரில் மூழ்கியுள்ளார் — வடவாக்னி (இந்து அண்டவியலின் கடலடி நெருப்பு).', bn: 'অগ্নি জলে নিমজ্জিত — বড়বাগ্নি (হিন্দু সৃষ্টিতত্ত্বের সমুদ্র অগ্নি)।' } as LocaleText,
+    desc: { en: 'Agni is submerged in water  –  the Vadavagni (submarine fire of Hindu cosmology).', hi: 'अग्नि जल में हैं  –  वडवाग्नि (हिंदू ब्रह्माण्ड की समुद्री अग्नि)।', ta: 'அக்னி நீரில் மூழ்கியுள்ளார்  –  வடவாக்னி (இந்து அண்டவியலின் கடலடி நெருப்பு).', bn: 'অগ্নি জলে নিমজ্জিত  –  বড়বাগ্নি (হিন্দু সৃষ্টিতত্ত্বের সমুদ্র অগ্নি)।' } as LocaleText,
     ritualNote: { en: 'Rituals combining fire + water (abhishek after homa) uniquely powerful', hi: 'अग्नि + जल संयुक्त अनुष्ठान (होम बाद अभिषेक) विशेष शक्तिशाली', ta: 'நெருப்பு + நீர் இணைந்த சடங்குகள் (ஹோமத்திற்குப் பின் அபிஷேகம்) தனித்துவமாக சக்தி வாய்ந்தது', bn: 'অগ্নি + জল সংযুক্ত অনুষ্ঠান (হোমের পর অভিষেক) বিশেষ শক্তিশালী' } as LocaleText,
   },
 };
@@ -87,22 +87,22 @@ const AGNI_DESC: Record<string, { nColor: string; border: string; bg: string; de
 const CHANDRA_DESC: Record<string, { nColor: string; border: string; bg: string; desc: LocaleText; activities: LocaleText }> = {
   "Brahma's Abode": {
     nColor: 'text-gold-light', border: 'border-gold-primary/25', bg: 'from-gold-primary/5',
-    desc: { en: 'Moon faces East in Deva (celestial) abode. Divine energy flows freely — prayers answered with ease. Most auspicious pada for sacred activities.', hi: 'चंद्रमा पूर्व दिशा में देव निवास में हैं। दिव्य ऊर्जा स्वतंत्र प्रवाहित। प्रार्थनाएं सुनी जाती हैं — सर्वोत्तम शुभ पाद।', ta: 'சந்திரன் கிழக்கு நோக்கி தேவ (தெய்வீக) வசிப்பிடத்தில் உள்ளார். தெய்வீக ஆற்றல் சுதந்திரமாகப் பாய்கிறது — பிரார்த்தனைகள் எளிதில் ஏற்கப்படுகின்றன. புனித செயல்களுக்கு மிகவும் சுப பாதம்.', bn: 'চন্দ্র পূর্ব দিকে দেব (স্বর্গীয়) আবাসে রয়েছেন। দিব্যশক্তি স্বাধীনভাবে প্রবাহিত — প্রার্থনা সহজে শোনা হয়। পবিত্র কর্মের জন্য সর্বোত্তম শুভ পদ।' } as LocaleText,
+    desc: { en: 'Moon faces East in Deva (celestial) abode. Divine energy flows freely  –  prayers answered with ease. Most auspicious pada for sacred activities.', hi: 'चंद्रमा पूर्व दिशा में देव निवास में हैं। दिव्य ऊर्जा स्वतंत्र प्रवाहित। प्रार्थनाएं सुनी जाती हैं  –  सर्वोत्तम शुभ पाद।', ta: 'சந்திரன் கிழக்கு நோக்கி தேவ (தெய்வீக) வசிப்பிடத்தில் உள்ளார். தெய்வீக ஆற்றல் சுதந்திரமாகப் பாய்கிறது  –  பிரார்த்தனைகள் எளிதில் ஏற்கப்படுகின்றன. புனித செயல்களுக்கு மிகவும் சுப பாதம்.', bn: 'চন্দ্র পূর্ব দিকে দেব (স্বর্গীয়) আবাসে রয়েছেন। দিব্যশক্তি স্বাধীনভাবে প্রবাহিত  –  প্রার্থনা সহজে শোনা হয়। পবিত্র কর্মের জন্য সর্বোত্তম শুভ পদ।' } as LocaleText,
     activities: { en: 'All auspicious work, puja, sacred ceremonies', hi: 'सभी शुभ कार्य, पूजा, पवित्र समारोह', ta: 'அனைத்து சுப பணிகள், பூஜை, புனித விழாக்கள்', bn: 'সমস্ত শুভ কর্ম, পূজা, পবিত্র অনুষ্ঠান' } as LocaleText,
   },
   "Indra's Abode": {
     nColor: 'text-blue-300', border: 'border-blue-500/25', bg: 'from-blue-500/5',
-    desc: { en: 'Moon faces South in Nara (human) abode — ordinary activity plane. Results are as expected, neither elevated nor hindered.', hi: 'चंद्रमा दक्षिण दिशा में मानव निवास में हैं। परिणाम सामान्य — न उन्नत, न बाधित।', ta: 'சந்திரன் தெற்கு நோக்கி நர (மனித) வசிப்பிடத்தில் — சாதாரண செயல்பாட்டுத் தளம். பலன்கள் எதிர்பார்த்தபடி — உயர்வும் இல்லை, தடையும் இல்லை.', bn: 'চন্দ্র দক্ষিণ দিকে নর (মানব) আবাসে — সাধারণ কর্মক্ষেত্র। ফলাফল প্রত্যাশিত — উন্নতও নয়, বাধাগ্রস্তও নয়।' } as LocaleText,
+    desc: { en: 'Moon faces South in Nara (human) abode  –  ordinary activity plane. Results are as expected, neither elevated nor hindered.', hi: 'चंद्रमा दक्षिण दिशा में मानव निवास में हैं। परिणाम सामान्य  –  न उन्नत, न बाधित।', ta: 'சந்திரன் தெற்கு நோக்கி நர (மனித) வசிப்பிடத்தில்  –  சாதாரண செயல்பாட்டுத் தளம். பலன்கள் எதிர்பார்த்தபடி  –  உயர்வும் இல்லை, தடையும் இல்லை.', bn: 'চন্দ্র দক্ষিণ দিকে নর (মানব) আবাসে  –  সাধারণ কর্মক্ষেত্র। ফলাফল প্রত্যাশিত  –  উন্নতও নয়, বাধাগ্রস্তও নয়।' } as LocaleText,
     activities: { en: 'Daily work, business, social activities', hi: 'दैनिक कार्य, व्यापार, सामाजिक गतिविधियाँ', ta: 'தினசரி பணி, வணிகம், சமூக நடவடிக்கைகள்', bn: 'দৈনিক কাজ, ব্যবসা, সামাজিক কার্যকলাপ' } as LocaleText,
   },
   "Yama's Abode": {
     nColor: 'text-amber-400', border: 'border-amber-500/25', bg: 'from-amber-500/5',
-    desc: { en: 'Moon faces West in Pashava (animal) abode — instinctual, reactive energy. Actions driven by impulse. Avoid important decisions.', hi: 'चंद्रमा पश्चिम दिशा में पशव निवास में हैं — सहज, प्रतिक्रियाशील ऊर्जा। महत्वपूर्ण निर्णयों से बचें।', ta: 'சந்திரன் மேற்கு நோக்கி பசவ (விலங்கு) வசிப்பிடத்தில் — உள்ளுணர்வு, எதிர்வினை ஆற்றல். தூண்டுதலால் இயக்கப்படும் செயல்கள். முக்கிய முடிவுகளைத் தவிர்க்கவும்.', bn: 'চন্দ্র পশ্চিম দিকে পশব (পশু) আবাসে — সহজাত, প্রতিক্রিয়াশীল শক্তি। আবেগ দ্বারা চালিত কর্ম। গুরুত্বপূর্ণ সিদ্ধান্ত এড়িয়ে চলুন।' } as LocaleText,
+    desc: { en: 'Moon faces West in Pashava (animal) abode  –  instinctual, reactive energy. Actions driven by impulse. Avoid important decisions.', hi: 'चंद्रमा पश्चिम दिशा में पशव निवास में हैं  –  सहज, प्रतिक्रियाशील ऊर्जा। महत्वपूर्ण निर्णयों से बचें।', ta: 'சந்திரன் மேற்கு நோக்கி பசவ (விலங்கு) வசிப்பிடத்தில்  –  உள்ளுணர்வு, எதிர்வினை ஆற்றல். தூண்டுதலால் இயக்கப்படும் செயல்கள். முக்கிய முடிவுகளைத் தவிர்க்கவும்.', bn: 'চন্দ্র পশ্চিম দিকে পশব (পশু) আবাসে  –  সহজাত, প্রতিক্রিয়াশীল শক্তি। আবেগ দ্বারা চালিত কর্ম। গুরুত্বপূর্ণ সিদ্ধান্ত এড়িয়ে চলুন।' } as LocaleText,
     activities: { en: 'Physical labor, farming; avoid important decisions', hi: 'शारीरिक श्रम, खेती; महत्वपूर्ण निर्णयों से बचें', ta: 'உடல் உழைப்பு, விவசாயம்; முக்கிய முடிவுகளைத் தவிர்க்கவும்', bn: 'শারীরিক শ্রম, কৃষি; গুরুত্বপূর্ণ সিদ্ধান্ত এড়িয়ে চলুন' } as LocaleText,
   },
   "Soma's Abode": {
     nColor: 'text-red-400', border: 'border-red-500/25', bg: 'from-red-500/5',
-    desc: { en: 'Moon faces North in Rakshasa (demonic) abode — turbulent, obstructive energy. Activities face opposition or hidden obstacles.', hi: 'चंद्रमा उत्तर दिशा में राक्षस निवास में हैं — अशांत, अवरोधक ऊर्जा। विरोध या छिपी बाधाएं।', ta: 'சந்திரன் வடக்கு நோக்கி ராக்ஷச (அரக்க) வசிப்பிடத்தில் — கொந்தளிப்பான, தடையான ஆற்றல். செயல்களுக்கு எதிர்ப்பு அல்லது மறைந்த தடைகள்.', bn: 'চন্দ্র উত্তর দিকে রাক্ষস আবাসে — অশান্ত, প্রতিরোধী শক্তি। কর্মকাণ্ডে বিরোধিতা বা লুকানো বাধা।' } as LocaleText,
+    desc: { en: 'Moon faces North in Rakshasa (demonic) abode  –  turbulent, obstructive energy. Activities face opposition or hidden obstacles.', hi: 'चंद्रमा उत्तर दिशा में राक्षस निवास में हैं  –  अशांत, अवरोधक ऊर्जा। विरोध या छिपी बाधाएं।', ta: 'சந்திரன் வடக்கு நோக்கி ராக்ஷச (அரக்க) வசிப்பிடத்தில்  –  கொந்தளிப்பான, தடையான ஆற்றல். செயல்களுக்கு எதிர்ப்பு அல்லது மறைந்த தடைகள்.', bn: 'চন্দ্র উত্তর দিকে রাক্ষস আবাসে  –  অশান্ত, প্রতিরোধী শক্তি। কর্মকাণ্ডে বিরোধিতা বা লুকানো বাধা।' } as LocaleText,
     activities: { en: 'Avoid sacred activities; protective rites permitted', hi: 'पवित्र गतिविधियों से बचें; सुरक्षात्मक अनुष्ठान संभव', ta: 'புனித செயல்களைத் தவிர்க்கவும்; பாதுகாப்பு சடங்குகள் அனுமதிக்கப்படும்', bn: 'পবিত্র কর্ম এড়িয়ে চলুন; সুরক্ষামূলক অনুষ্ঠান অনুমোদিত' } as LocaleText,
   },
 };

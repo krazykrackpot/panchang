@@ -5,7 +5,7 @@ import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
 
-export const revalidate = 604800; // 7 days — static educational content
+export const revalidate = 604800; // 7 days  –  static educational content
 
 
 /* ════════════════════════════════════════════════════════════════
@@ -24,14 +24,14 @@ const TIMELINE: TimelineEntry[] = [
   {
     id: 'sulba',
     date: { en: '~1500 BCE', hi: '~1500 ईसा पूर्व', sa: '~1500 ईसा पूर्व', mai: '~1500 ईसा पूर्व', mr: '~1500 ईसा पूर्व', ta: '~1500 BCE', te: '~1500 BCE', bn: '~1500 BCE', kn: '~1500 BCE', gu: '~1500 BCE' },
-    person: { en: 'Sulba Sutras — Baudhayana', hi: 'शुल्बसूत्र — बौधायन', sa: 'शुल्बसूत्र — बौधायन', mai: 'शुल्बसूत्र — बौधायन', mr: 'शुल्बसूत्र — बौधायन', ta: 'சுல்ப சூத்திரங்கள் — பௌதாயனர்', te: 'శుల్బ సూత్రాలు — బౌధాయన', bn: 'শুল্বসূত্র — বৌধায়ন', kn: 'ಶುಲ್ಬ ಸೂತ್ರಗಳು — ಬೌಧಾಯನ', gu: 'શુલ્બસૂત્ર — બૌધાયન' },
+    person: { en: 'Sulba Sutras  –  Baudhayana', hi: 'शुल्बसूत्र  –  बौधायन', sa: 'शुल्बसूत्र  –  बौधायन', mai: 'शुल्बसूत्र  –  बौधायन', mr: 'शुल्बसूत्र  –  बौधायन', ta: 'சுல்ப சூத்திரங்கள்  –  பௌதாயனர்', te: 'శుల్బ సూత్రాలు  –  బౌధాయన', bn: 'শুল্বসূত্র  –  বৌধায়ন', kn: 'ಶುಲ್ಬ ಸೂತ್ರಗಳು  –  ಬೌಧಾಯನ', gu: 'શુલ્બસૂત્ર  –  બૌધાયન' },
     contribution: {
-      en: 'Pythagorean theorem stated and proved. √2 computed to 1.41421356 — accurate to 5 decimal places.',
-      hi: 'पाइथागोरस प्रमेय का कथन और प्रमाण। √2 = 1.41421356 — 5 दशमलव स्थानों तक सटीक।',
+      en: 'Pythagorean theorem stated and proved. √2 computed to 1.41421356  –  accurate to 5 decimal places.',
+      hi: 'पाइथागोरस प्रमेय का कथन और प्रमाण। √2 = 1.41421356  –  5 दशमलव स्थानों तक सटीक।',
     },
     europe: {
-      en: 'Pythagoras ~500 BCE — 1,000 years later',
-      hi: 'पाइथागोरस ~500 ईसा पूर्व — 1,000 वर्ष बाद',
+      en: 'Pythagoras ~500 BCE  –  1,000 years later',
+      hi: 'पाइथागोरस ~500 ईसा पूर्व  –  1,000 वर्ष बाद',
     },
     link: null,
   },
@@ -40,12 +40,12 @@ const TIMELINE: TimelineEntry[] = [
     date: { en: '~500 BCE', hi: '~500 ईसा पूर्व', sa: '~500 ईसा पूर्व', mai: '~500 ईसा पूर्व', mr: '~500 ईसा पूर्व', ta: '~500 BCE', te: '~500 BCE', bn: '~500 BCE', kn: '~500 BCE', gu: '~500 BCE' },
     person: { en: 'Panini', hi: 'पाणिनि', sa: 'पाणिनि', mai: 'पाणिनि', mr: 'पाणिनि', ta: 'பாணினி', te: 'పాణిని', bn: 'পাণিনি', kn: 'ಪಾಣಿನಿ', gu: 'પાણિની' },
     contribution: {
-      en: 'Ashtadhyayi — the world\'s first formal grammar system, equivalent to a programming language. 3,959 rules describing Sanskrit with zero ambiguity.',
-      hi: 'अष्टाध्यायी — विश्व की पहली औपचारिक व्याकरण प्रणाली, एक प्रोग्रामिंग भाषा के समतुल्य। संस्कृत का बिना किसी अस्पष्टता के 3,959 नियमों में वर्णन।',
+      en: 'Ashtadhyayi  –  the world\'s first formal grammar system, equivalent to a programming language. 3,959 rules describing Sanskrit with zero ambiguity.',
+      hi: 'अष्टाध्यायी  –  विश्व की पहली औपचारिक व्याकरण प्रणाली, एक प्रोग्रामिंग भाषा के समतुल्य। संस्कृत का बिना किसी अस्पष्टता के 3,959 नियमों में वर्णन।',
     },
     europe: {
-      en: 'Backus-Naur Form (formal grammars in CS) — 1959 CE, ~2,500 years later',
-      hi: 'बैकस-नौर फॉर्म (CS में औपचारिक व्याकरण) — 1959 ई., ~2,500 वर्ष बाद',
+      en: 'Backus-Naur Form (formal grammars in CS)  –  1959 CE, ~2,500 years later',
+      hi: 'बैकस-नौर फॉर्म (CS में औपचारिक व्याकरण)  –  1959 ई., ~2,500 वर्ष बाद',
     },
     link: null,
   },
@@ -54,12 +54,12 @@ const TIMELINE: TimelineEntry[] = [
     date: { en: '~200 BCE', hi: '~200 ईसा पूर्व', sa: '~200 ईसा पूर्व', mai: '~200 ईसा पूर्व', mr: '~200 ईसा पूर्व', ta: '~200 BCE', te: '~200 BCE', bn: '~200 BCE', kn: '~200 BCE', gu: '~200 BCE' },
     person: { en: 'Pingala', hi: 'पिंगल', sa: 'पिंगल', mai: 'पिंगल', mr: 'पिंगल', ta: 'பிங்கலர்', te: 'పింగళ', bn: 'পিঙ্গল', kn: 'ಪಿಂಗಳ', gu: 'પિંગલ' },
     contribution: {
-      en: 'Binary number system described in Chandahshastra. Meruprastara (Pascal\'s triangle) and Fibonacci-like sequences in prosody — 1,800 years before Pascal and Fibonacci.',
-      hi: 'छंदशास्त्र में द्विआधारी संख्या प्रणाली का वर्णन। मेरुप्रस्तार (पास्कल त्रिभुज) और फिबोनाची जैसी अनुक्रमणियाँ — पास्कल और फिबोनाची से 1,800 वर्ष पूर्व।',
+      en: 'Binary number system described in Chandahshastra. Meruprastara (Pascal\'s triangle) and Fibonacci-like sequences in prosody  –  1,800 years before Pascal and Fibonacci.',
+      hi: 'छंदशास्त्र में द्विआधारी संख्या प्रणाली का वर्णन। मेरुप्रस्तार (पास्कल त्रिभुज) और फिबोनाची जैसी अनुक्रमणियाँ  –  पास्कल और फिबोनाची से 1,800 वर्ष पूर्व।',
     },
     europe: {
-      en: 'Leibniz binary (1703), Pascal\'s triangle (1653) — 1,800–1,900 years later',
-      hi: 'लाइबनिज द्विआधारी (1703), पास्कल त्रिभुज (1653) — 1,800–1,900 वर्ष बाद',
+      en: 'Leibniz binary (1703), Pascal\'s triangle (1653)  –  1,800–1,900 years later',
+      hi: 'लाइबनिज द्विआधारी (1703), पास्कल त्रिभुज (1653)  –  1,800–1,900 वर्ष बाद',
     },
     link: '/learn/contributions/binary',
   },
@@ -68,8 +68,8 @@ const TIMELINE: TimelineEntry[] = [
     date: { en: '~200 BCE', hi: '~200 ईसा पूर्व', sa: '~200 ईसा पूर्व', mai: '~200 ईसा पूर्व', mr: '~200 ईसा पूर्व', ta: '~200 BCE', te: '~200 BCE', bn: '~200 BCE', kn: '~200 BCE', gu: '~200 BCE' },
     person: { en: 'Bharata Muni', hi: 'भरत मुनि', sa: 'भरत मुनि', mai: 'भरत मुनि', mr: 'भरत मुनि', ta: 'பரத முனி', te: 'భరత ముని', bn: 'ভরত মুনি', kn: 'ಭರತ ಮುನಿ', gu: 'ભરત મુનિ' },
     contribution: {
-      en: 'Natyashastra — 22 shrutis (microtonal intervals), Fibonacci-like sequences embedded in tala (rhythmic cycles). First systematic musicology.',
-      hi: 'नाट्यशास्त्र — 22 श्रुतियाँ (सूक्ष्म स्वर अंतराल), ताल चक्रों में फिबोनाची जैसी अनुक्रमणियाँ। पहला व्यवस्थित संगीतशास्त्र।',
+      en: 'Natyashastra  –  22 shrutis (microtonal intervals), Fibonacci-like sequences embedded in tala (rhythmic cycles). First systematic musicology.',
+      hi: 'नाट्यशास्त्र  –  22 श्रुतियाँ (सूक्ष्म स्वर अंतराल), ताल चक्रों में फिबोनाची जैसी अनुक्रमणियाँ। पहला व्यवस्थित संगीतशास्त्र।',
     },
     europe: null,
     link: '/learn/contributions/fibonacci',
@@ -93,8 +93,8 @@ const TIMELINE: TimelineEntry[] = [
     date: { en: '~400 CE', hi: '~400 ई.', sa: '~400 ई.', mai: '~400 ई.', mr: '~400 ई.', ta: '~400 CE', te: '~400 CE', bn: '~400 CE', kn: '~400 CE', gu: '~400 CE' },
     person: { en: 'Surya Siddhanta', hi: 'सूर्य सिद्धान्त', sa: 'सूर्य सिद्धान्त', mai: 'सूर्य सिद्धान्त', mr: 'सूर्य सिद्धान्त', ta: 'சூர்ய சித்தாந்தம்', te: 'సూర్య సిద్ధాంతం', bn: 'সূর্য সিদ্ধান্ত', kn: 'ಸೂರ್ಯ ಸಿದ್ಧಾಂತ', gu: 'સૂર્ય સિદ્ધાંત' },
     contribution: {
-      en: 'Precise planetary orbital periods accurate to seconds. Codified the 24-hora system (our "hour" derives from hora). Ahoratra — the concept of a sidereal day.',
-      hi: 'ग्रहों की कक्षीय अवधि सेकंड तक सटीक। 24-होरा प्रणाली का संहिताकरण (हमारा "hour" होरा से आया है)। अहोरात्र — नाक्षत्र दिवस की अवधारणा।',
+      en: 'Precise planetary orbital periods accurate to seconds. Codified the 24-hora system (our "hour" derives from hora). Ahoratra  –  the concept of a sidereal day.',
+      hi: 'ग्रहों की कक्षीय अवधि सेकंड तक सटीक। 24-होरा प्रणाली का संहिताकरण (हमारा "hour" होरा से आया है)। अहोरात्र  –  नाक्षत्र दिवस की अवधारणा।',
     },
     europe: null,
     link: '/learn/hora',
@@ -118,8 +118,8 @@ const TIMELINE: TimelineEntry[] = [
     date: { en: '~505 CE', hi: '~505 ई.', sa: '~505 ई.', mai: '~505 ई.', mr: '~505 ई.', ta: '~505 CE', te: '~505 CE', bn: '~505 CE', kn: '~505 CE', gu: '~505 CE' },
     person: { en: 'Varahamihira', hi: 'वराहमिहिर', sa: 'वराहमिहिर', mai: 'वराहमिहिर', mr: 'वराहमिहिर', ta: 'வராஹமிஹிரர்', te: 'వరాహమిహిరుడు', bn: 'বরাহমিহির', kn: 'ವರಾಹಮಿಹಿರ', gu: 'વરાહમિહિર' },
     contribution: {
-      en: 'Brihat Samhita — hora system proof establishing weekday names. Early description of gravitational force. Comprehensive treatise covering astronomy, astrology, and natural phenomena.',
-      hi: 'बृहत्संहिता — वार नामों की स्थापना करने वाली होरा प्रणाली का प्रमाण। गुरुत्वाकर्षण बल का प्रारंभिक वर्णन। खगोल, ज्योतिष और प्राकृतिक घटनाओं को समेटने वाला व्यापक ग्रंथ।',
+      en: 'Brihat Samhita  –  hora system proof establishing weekday names. Early description of gravitational force. Comprehensive treatise covering astronomy, astrology, and natural phenomena.',
+      hi: 'बृहत्संहिता  –  वार नामों की स्थापना करने वाली होरा प्रणाली का प्रमाण। गुरुत्वाकर्षण बल का प्रारंभिक वर्णन। खगोल, ज्योतिष और प्राकृतिक घटनाओं को समेटने वाला व्यापक ग्रंथ।',
     },
     europe: null,
     link: null,
@@ -143,12 +143,12 @@ const TIMELINE: TimelineEntry[] = [
     date: { en: '~850 CE', hi: '~850 ई.', sa: '~850 ई.', mai: '~850 ई.', mr: '~850 ई.', ta: '~850 CE', te: '~850 CE', bn: '~850 CE', kn: '~850 CE', gu: '~850 CE' },
     person: { en: 'Mahavira', hi: 'महावीर', sa: 'महावीर', mai: 'महावीर', mr: 'महावीर', ta: 'மஹாவீரர்', te: 'మహావీర', bn: 'মহাবীর', kn: 'ಮಹಾವೀರ', gu: 'મહાવીર' },
     contribution: {
-      en: 'Ganitasarasangraha — extended negative number arithmetic, combinatorics, permutations and combinations with full proofs, LCM and GCD algorithms.',
-      hi: 'गणितसारसंग्रह — ऋण संख्या अंकगणित का विस्तार, क्रमचय-संचय के पूर्ण प्रमाण, LCM और GCD एल्गोरिदम।',
+      en: 'Ganitasarasangraha  –  extended negative number arithmetic, combinatorics, permutations and combinations with full proofs, LCM and GCD algorithms.',
+      hi: 'गणितसारसंग्रह  –  ऋण संख्या अंकगणित का विस्तार, क्रमचय-संचय के पूर्ण प्रमाण, LCM और GCD एल्गोरिदम।',
     },
     europe: {
-      en: 'Combinatorics formalized by Pascal/Fermat ~1650s CE — 800 years later',
-      hi: 'क्रमचय-संचय पास्कल/फर्मा द्वारा ~1650 ई. में औपचारिक — 800 वर्ष बाद',
+      en: 'Combinatorics formalized by Pascal/Fermat ~1650s CE  –  800 years later',
+      hi: 'क्रमचय-संचय पास्कल/फर्मा द्वारा ~1650 ई. में औपचारिक  –  800 वर्ष बाद',
     },
     link: '/learn/contributions/negative-numbers',
   },
@@ -157,12 +157,12 @@ const TIMELINE: TimelineEntry[] = [
     date: { en: '1150 CE', hi: '1150 ई.', sa: '1150 ई.', mai: '1150 ई.', mr: '1150 ई.', ta: '1150 CE', te: '1150 CE', bn: '1150 CE', kn: '1150 CE', gu: '1150 CE' },
     person: { en: 'Bhaskaracharya II', hi: 'भास्कराचार्य II', sa: 'भास्कराचार्य II', mai: 'भास्कराचार्य II', mr: 'भास्कराचार्य II', ta: 'பாஸ்கராச்சார்யர் II', te: 'భాస్కరాచార్య II', bn: 'ভাস্করাচার্য II', kn: 'ಭಾಸ್ಕರಾಚಾರ್ಯ II', gu: 'ભાસ્કરાચાર્ય II' },
     contribution: {
-      en: 'Siddhanta Shiromani — explicit statement that "Earth attracts all objects by its own force." Differential calculus concepts (instantaneous velocity). Lilavati — first algebra textbook with solved examples.',
-      hi: 'सिद्धान्तशिरोमणि — स्पष्ट कथन कि "पृथ्वी अपनी शक्ति से सभी वस्तुओं को आकर्षित करती है।" अवकल कलनशास्त्र की अवधारणाएँ (तात्कालिक वेग)। लीलावती — हल उदाहरणों सहित पहली बीजगणित पाठ्यपुस्तक।',
+      en: 'Siddhanta Shiromani  –  explicit statement that "Earth attracts all objects by its own force." Differential calculus concepts (instantaneous velocity). Lilavati  –  first algebra textbook with solved examples.',
+      hi: 'सिद्धान्तशिरोमणि  –  स्पष्ट कथन कि "पृथ्वी अपनी शक्ति से सभी वस्तुओं को आकर्षित करती है।" अवकल कलनशास्त्र की अवधारणाएँ (तात्कालिक वेग)। लीलावती  –  हल उदाहरणों सहित पहली बीजगणित पाठ्यपुस्तक।',
     },
     europe: {
-      en: 'Newton\'s gravity 1687 CE — 537 years later; Newton/Leibniz calculus ~1670s',
-      hi: 'न्यूटन का गुरुत्वाकर्षण 1687 ई. — 537 वर्ष बाद; न्यूटन/लाइबनिज का कलनशास्त्र ~1670 ई.',
+      en: 'Newton\'s gravity 1687 CE  –  537 years later; Newton/Leibniz calculus ~1670s',
+      hi: 'न्यूटन का गुरुत्वाकर्षण 1687 ई.  –  537 वर्ष बाद; न्यूटन/लाइबनिज का कलनशास्त्र ~1670 ई.',
     },
     link: '/learn/contributions/gravity',
   },
@@ -171,12 +171,12 @@ const TIMELINE: TimelineEntry[] = [
     date: { en: '1150 CE', hi: '1150 ई.', sa: '1150 ई.', mai: '1150 ई.', mr: '1150 ई.', ta: '1150 CE', te: '1150 CE', bn: '1150 CE', kn: '1150 CE', gu: '1150 CE' },
     person: { en: 'Hemachandra', hi: 'हेमचंद्र', sa: 'हेमचंद्र', mai: 'हेमचंद्र', mr: 'हेमचंद्र', ta: 'ஹேமசந்திரர்', te: 'హేమచంద్రుడు', bn: 'হেমচন্দ্র', kn: 'ಹೇಮಚಂದ್ರ', gu: 'હેમચંદ્ર' },
     contribution: {
-      en: 'Fibonacci sequence derived from Sanskrit prosody — 52 years before Leonardo Fibonacci published it in Europe. The sequence 1, 1, 2, 3, 5, 8... used to count rhythmic patterns.',
-      hi: 'संस्कृत छंदशास्त्र से फिबोनाची अनुक्रम — यूरोप में लियोनार्डो फिबोनाची के प्रकाशन से 52 वर्ष पूर्व। 1, 1, 2, 3, 5, 8... अनुक्रम का प्रयोग लयबद्ध पैटर्न गिनने के लिए।',
+      en: 'Fibonacci sequence derived from Sanskrit prosody  –  52 years before Leonardo Fibonacci published it in Europe. The sequence 1, 1, 2, 3, 5, 8... used to count rhythmic patterns.',
+      hi: 'संस्कृत छंदशास्त्र से फिबोनाची अनुक्रम  –  यूरोप में लियोनार्डो फिबोनाची के प्रकाशन से 52 वर्ष पूर्व। 1, 1, 2, 3, 5, 8... अनुक्रम का प्रयोग लयबद्ध पैटर्न गिनने के लिए।',
     },
     europe: {
-      en: 'Leonardo Fibonacci 1202 CE — 52 years later',
-      hi: 'लियोनार्डो फिबोनाची 1202 ई. — 52 वर्ष बाद',
+      en: 'Leonardo Fibonacci 1202 CE  –  52 years later',
+      hi: 'लियोनार्डो फिबोनाची 1202 ई.  –  52 वर्ष बाद',
     },
     link: '/learn/contributions/fibonacci',
   },
@@ -185,12 +185,12 @@ const TIMELINE: TimelineEntry[] = [
     date: { en: '~1350 CE', hi: '~1350 ई.', sa: '~1350 ई.', mai: '~1350 ई.', mr: '~1350 ई.', ta: '~1350 CE', te: '~1350 CE', bn: '~1350 CE', kn: '~1350 CE', gu: '~1350 CE' },
     person: { en: 'Sayana', hi: 'सायण', sa: 'सायण', mai: 'सायण', mr: 'सायण', ta: 'சாயணர்', te: 'సాయణ', bn: 'সায়ণ', kn: 'ಸಾಯಣ', gu: 'સાયણ' },
     contribution: {
-      en: 'Commentary on Rigveda yields a speed-of-light calculation: 2,202 yojanas per half-nimesa. Modern conversion: ~299,000 km/s — within 0.14% of the actual value (299,792 km/s).',
-      hi: 'ऋग्वेद की टीका से प्रकाश गति की गणना: आधे निमेष में 2,202 योजन। आधुनिक परिवर्तन: ~299,000 किमी/से — वास्तविक मान (299,792 किमी/से) के 0.14% के भीतर।',
+      en: 'Commentary on Rigveda yields a speed-of-light calculation: 2,202 yojanas per half-nimesa. Modern conversion: ~299,000 km/s  –  within 0.14% of the actual value (299,792 km/s).',
+      hi: 'ऋग्वेद की टीका से प्रकाश गति की गणना: आधे निमेष में 2,202 योजन। आधुनिक परिवर्तन: ~299,000 किमी/से  –  वास्तविक मान (299,792 किमी/से) के 0.14% के भीतर।',
     },
     europe: {
-      en: 'Rømer measures speed of light 1676 CE — 326 years later',
-      hi: 'रोमर ने प्रकाश गति मापी 1676 ई. — 326 वर्ष बाद',
+      en: 'Rømer measures speed of light 1676 CE  –  326 years later',
+      hi: 'रोमर ने प्रकाश गति मापी 1676 ई.  –  326 वर्ष बाद',
     },
     link: '/learn/contributions/speed-of-light',
   },
@@ -199,12 +199,12 @@ const TIMELINE: TimelineEntry[] = [
     date: { en: '~1350 CE', hi: '~1350 ई.', sa: '~1350 ई.', mai: '~1350 ई.', mr: '~1350 ई.', ta: '~1350 CE', te: '~1350 CE', bn: '~1350 CE', kn: '~1350 CE', gu: '~1350 CE' },
     person: { en: 'Madhava of Sangamagrama', hi: 'संगमग्राम के माधव', sa: 'संगमग्राम के माधव', mai: 'संगमग्राम के माधव', mr: 'संगमग्राम के माधव', ta: 'சங்கமக்கிராமத்தின் மாதவர்', te: 'సంగమగ్రామ మాధవుడు', bn: 'সঙ্গমগ্রামের মাধব', kn: 'ಸಂಗಮಗ್ರಾಮದ ಮಾಧವ', gu: 'સંગમગ્રામના માધવ' },
     contribution: {
-      en: 'Infinite series for π (Leibniz-Gregory series), sine, cosine, and arctangent — with rigorous proofs. This is calculus, 250 years before Newton and Leibniz.',
-      hi: 'π के लिए अनंत श्रेणी (लाइबनिज-ग्रेगरी श्रेणी), ज्या, कोज्या और चापस्पर्शज्या — कठोर प्रमाणों के साथ। यह कलनशास्त्र है, न्यूटन और लाइबनिज से 250 वर्ष पूर्व।',
+      en: 'Infinite series for π (Leibniz-Gregory series), sine, cosine, and arctangent  –  with rigorous proofs. This is calculus, 250 years before Newton and Leibniz.',
+      hi: 'π के लिए अनंत श्रेणी (लाइबनिज-ग्रेगरी श्रेणी), ज्या, कोज्या और चापस्पर्शज्या  –  कठोर प्रमाणों के साथ। यह कलनशास्त्र है, न्यूटन और लाइबनिज से 250 वर्ष पूर्व।',
     },
     europe: {
-      en: 'Newton & Leibniz calculus ~1665–1684 CE — 250+ years later',
-      hi: 'न्यूटन और लाइबनिज का कलनशास्त्र ~1665–1684 ई. — 250+ वर्ष बाद',
+      en: 'Newton & Leibniz calculus ~1665–1684 CE  –  250+ years later',
+      hi: 'न्यूटन और लाइबनिज का कलनशास्त्र ~1665–1684 ई.  –  250+ वर्ष बाद',
     },
     link: '/learn/contributions/calculus',
   },
@@ -213,8 +213,8 @@ const TIMELINE: TimelineEntry[] = [
     date: { en: '~1500 CE', hi: '~1500 ई.', sa: '~1500 ई.', mai: '~1500 ई.', mr: '~1500 ई.', ta: '~1500 CE', te: '~1500 CE', bn: '~1500 CE', kn: '~1500 CE', gu: '~1500 CE' },
     person: { en: 'Nilakantha Somayaji', hi: 'नीलकण्ठ सोमयाजि', sa: 'नीलकण्ठ सोमयाजि', mai: 'नीलकण्ठ सोमयाजि', mr: 'नीलकण्ठ सोमयाजि', ta: 'நீலகண்ட சோமயாஜி', te: 'నీలకంఠ సోమయాజి', bn: 'নীলকণ্ঠ সোমযাজী', kn: 'ನೀಲಕಂಠ ಸೋಮಯಾಜಿ', gu: 'નીલકંઠ સોમયાજી' },
     contribution: {
-      en: 'Tantrasangraha — refined planetary models placing the Sun at the centre of inner planetary orbits. A near-heliocentric system, decades before Copernicus published in Europe.',
-      hi: 'तन्त्रसंग्रह — परिष्कृत ग्रह मॉडल जो आंतरिक ग्रहों की कक्षाओं के केंद्र में सूर्य को रखते हैं। एक निकट-सूर्यकेंद्रीय प्रणाली, कोपर्निकस के यूरोप में प्रकाशन से दशकों पूर्व।',
+      en: 'Tantrasangraha  –  refined planetary models placing the Sun at the centre of inner planetary orbits. A near-heliocentric system, decades before Copernicus published in Europe.',
+      hi: 'तन्त्रसंग्रह  –  परिष्कृत ग्रह मॉडल जो आंतरिक ग्रहों की कक्षाओं के केंद्र में सूर्य को रखते हैं। एक निकट-सूर्यकेंद्रीय प्रणाली, कोपर्निकस के यूरोप में प्रकाशन से दशकों पूर्व।',
     },
     europe: {
       en: 'Copernicus: De Revolutionibus 1543 CE',
@@ -227,12 +227,12 @@ const TIMELINE: TimelineEntry[] = [
     date: { en: '~1530 CE', hi: '~1530 ई.', sa: '~1530 ई.', mai: '~1530 ई.', mr: '~1530 ई.', ta: '~1530 CE', te: '~1530 CE', bn: '~1530 CE', kn: '~1530 CE', gu: '~1530 CE' },
     person: { en: 'Jyeshthadeva', hi: 'ज्येष्ठदेव', sa: 'ज्येष्ठदेव', mai: 'ज्येष्ठदेव', mr: 'ज्येष्ठदेव', ta: 'ஜ்யேஷ்ட தேவர்', te: 'జ్యేష్ఠదేవుడు', bn: 'জ্যেষ্ঠদেব', kn: 'ಜ್ಯೇಷ್ಠದೇವ', gu: 'જ્યેષ્ઠદેવ' },
     contribution: {
-      en: 'Yuktibhasha — the world\'s first calculus textbook, written in Malayalam. Full proofs for Madhava\'s series, tangent series, and product rule. Predates any European calculus text by 150 years.',
-      hi: 'युक्तिभाषा — विश्व की पहली कलनशास्त्र पाठ्यपुस्तक, मलयालम में लिखी। माधव की श्रेणी, स्पर्शज्या श्रेणी और गुणन नियम के पूर्ण प्रमाण। किसी भी यूरोपीय कलनशास्त्र पाठ्यपुस्तक से 150 वर्ष पूर्व।',
+      en: 'Yuktibhasha  –  the world\'s first calculus textbook, written in Malayalam. Full proofs for Madhava\'s series, tangent series, and product rule. Predates any European calculus text by 150 years.',
+      hi: 'युक्तिभाषा  –  विश्व की पहली कलनशास्त्र पाठ्यपुस्तक, मलयालम में लिखी। माधव की श्रेणी, स्पर्शज्या श्रेणी और गुणन नियम के पूर्ण प्रमाण। किसी भी यूरोपीय कलनशास्त्र पाठ्यपुस्तक से 150 वर्ष पूर्व।',
     },
     europe: {
-      en: 'Newton\'s Principia 1687 CE — 157 years later',
-      hi: 'न्यूटन की प्रिंसिपिया 1687 ई. — 157 वर्ष बाद',
+      en: 'Newton\'s Principia 1687 CE  –  157 years later',
+      hi: 'न्यूटन की प्रिंसिपिया 1687 ई.  –  157 वर्ष बाद',
     },
     link: '/learn/contributions/calculus',
   },
@@ -516,7 +516,7 @@ export default async function TimelinePage({ params }: { params: Promise<{ local
       </div>
 
       {/* ══════════════════════════════════════════
-          SUMMARY — ATTRIBUTION GAP
+          SUMMARY  –  ATTRIBUTION GAP
       ══════════════════════════════════════════ */}
       <div
         className="mb-16 max-w-3xl mx-auto"

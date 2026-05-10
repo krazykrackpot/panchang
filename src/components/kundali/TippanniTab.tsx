@@ -336,7 +336,7 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
     none: 'bg-green-500/20 text-green-400',
   };
 
-  // Convergence synthesis — only available from server-side API response
+  // Convergence synthesis  –  only available from server-side API response
   const convergence = (ragTip || tip)?.convergence || null;
 
   // ── Derived data for hero card ──
@@ -373,11 +373,11 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
   const actionItems: string[] = [];
   if (presentDoshas.length > 0) {
     const topDosha = presentDoshas.sort((a, b) => (b.severity === 'severe' ? 3 : b.severity === 'moderate' ? 2 : 1) - (a.severity === 'severe' ? 3 : a.severity === 'moderate' ? 2 : 1))[0];
-    actionItems.push(isEn ? `Address ${topDosha.name} (${topDosha.severity}) — ${topDosha.remedies.split('.')[0]}.` : `${topDosha.name} (${topDosha.severity}) का उपचार करें — ${topDosha.remedies.split('.')[0]}।`);
+    actionItems.push(isEn ? `Address ${topDosha.name} (${topDosha.severity})  –  ${topDosha.remedies.split('.')[0]}.` : `${topDosha.name} (${topDosha.severity}) का उपचार करें  –  ${topDosha.remedies.split('.')[0]}।`);
   }
   if (tip.remedies.gemstones.length > 0) {
     const gem = tip.remedies.gemstones[0];
-    actionItems.push(isEn ? `Consider ${gem.name} for ${gem.planet} — ${gem.description.split('.')[0]}.` : `${gem.planet} के लिए ${gem.name} विचार करें — ${gem.description.split('.')[0]}।`);
+    actionItems.push(isEn ? `Consider ${gem.name} for ${gem.planet}  –  ${gem.description.split('.')[0]}.` : `${gem.planet} के लिए ${gem.name} विचार करें  –  ${gem.description.split('.')[0]}।`);
   }
   if (tip.remedies.mantras.length > 0) {
     const mantra = tip.remedies.mantras[0];
@@ -388,7 +388,7 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
     actionItems.push(isEn ? `Watch for: ${nextEvent.title} (${nextEvent.period}).` : `ध्यान दें: ${nextEvent.title} (${nextEvent.period})।`);
   }
   if (weakPlanets.length > 0) {
-    actionItems.push(isEn ? `Strengthen ${weakPlanets[0].planetName} — currently your weakest planet.` : `${weakPlanets[0].planetName} को शक्तिशाली करें — वर्तमान में सबसे कमजोर ग्रह।`);
+    actionItems.push(isEn ? `Strengthen ${weakPlanets[0].planetName}  –  currently your weakest planet.` : `${weakPlanets[0].planetName} को शक्तिशाली करें  –  वर्तमान में सबसे कमजोर ग्रह।`);
   }
 
   let sectionNum = 0;
@@ -407,7 +407,7 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
         <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-gold-primary/5 blur-3xl" />
         <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-indigo-500/5 blur-3xl" />
 
-        {/* Top strip — element ring + metrics */}
+        {/* Top strip  –  element ring + metrics */}
         <div className="relative z-10 flex flex-col sm:flex-row border-b border-gold-primary/10">
           {/* Element distribution ring */}
           {(() => {
@@ -455,9 +455,9 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
           {/* 3 other metrics */}
           <div className="flex-1 grid grid-cols-3">
             <div className="text-center py-4 px-2 border-r border-gold-primary/10">
-              <div className="text-sm font-bold text-gold-light truncate">{strongestPlanet?.planetName || '—'}</div>
+              <div className="text-sm font-bold text-gold-light truncate">{strongestPlanet?.planetName || ' – '}</div>
               <div className="text-[8px] text-text-secondary/50 mt-0.5 leading-tight">
-                {isEn ? `strongest — ${Math.round(strongestPlanet?.strength || 0)}% Shadbala` : `शक्तिशाली — ${Math.round(strongestPlanet?.strength || 0)}% षड्बल`}
+                {isEn ? `strongest  –  ${Math.round(strongestPlanet?.strength || 0)}% Shadbala` : `शक्तिशाली  –  ${Math.round(strongestPlanet?.strength || 0)}% षड्बल`}
               </div>
             </div>
             <div className="text-center py-4 px-2 border-r border-gold-primary/10">
@@ -467,7 +467,7 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
               </div>
             </div>
             <div className="text-center py-4 px-2">
-              <div className="text-sm font-bold text-gold-light truncate">{tip.dashaInsight.currentMaha || '—'}</div>
+              <div className="text-sm font-bold text-gold-light truncate">{tip.dashaInsight.currentMaha || ' – '}</div>
               <div className="text-[8px] text-text-secondary/50 mt-0.5 leading-tight">
                 {isEn ? 'ruling your current life chapter' : 'वर्तमान जीवन-अध्याय का शासक'}
               </div>
@@ -475,9 +475,9 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
           </div>
         </div>
 
-        {/* Life areas bar chart — full width */}
+        {/* Life areas bar chart  –  full width */}
         <div className="relative z-10 px-5 py-5">
-          <div className="text-[9px] text-text-secondary/40 uppercase tracking-wider text-center mb-4">{isEn ? 'Life Areas at a Glance' : 'जीवन क्षेत्र — एक नज़र'}</div>
+          <div className="text-[9px] text-text-secondary/40 uppercase tracking-wider text-center mb-4">{isEn ? 'Life Areas at a Glance' : 'जीवन क्षेत्र  –  एक नज़र'}</div>
           <div className="space-y-2.5">
             {(['career', 'wealth', 'marriage', 'health', 'education'] as const).map((key) => {
               const area = tip.lifeAreas[key];
@@ -498,7 +498,7 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
           </div>
         </div>
 
-        {/* Bottom strip — present doshas + planet strength summary */}
+        {/* Bottom strip  –  present doshas + planet strength summary */}
         <div className="relative z-10 flex items-center justify-between px-5 py-3 border-t border-gold-primary/10 text-[10px]">
           <div className="flex items-center gap-3">
             <span className="text-text-secondary/50">{isEn ? 'Planets:' : 'ग्रह:'}</span>
@@ -556,7 +556,7 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
       )}
 
       {/* ===== LIFE STAGE HEADLINE BANNER ===== */}
-      {/* ═══ UNIFIED CHART NARRATIVE — the pandit's opening statement ═══ */}
+      {/* ═══ UNIFIED CHART NARRATIVE  –  the pandit's opening statement ═══ */}
       {tip.chartNarrative && (
         <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] border border-gold-primary/20 p-6 sm:p-8 space-y-5">
           {/* Headline */}
@@ -612,7 +612,7 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
       )}
 
       <SectionDivider />
-      {/* ===== YEAR PREDICTIONS (at top — most immediately relevant) ===== */}
+      {/* ===== YEAR PREDICTIONS (at top  –  most immediately relevant) ===== */}
       <YearPredictionsSection tip={tip} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} tTip={tTip} />
 
       <GoldDivider />
@@ -690,7 +690,7 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
                     <span className="text-text-secondary/70 text-xs">
                       {locale === 'en' || isTamil ? `House ${pi.house}` : `भाव ${pi.house}`} &middot; {pi.signName}
                     </span>
-                    {pi.dignity && <span className="text-xs px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400">{pi.dignity.split(' ')[2] === '—' ? '' : pi.dignity.includes('exalted') || pi.dignity.includes('उच्च') ? (locale === 'en' || isTamil ? 'Exalted' : 'उच्च') : pi.dignity.includes('debilitated') || pi.dignity.includes('नीच') ? (locale === 'en' || isTamil ? 'Debilitated' : 'नीच') : (locale === 'en' || isTamil ? 'Own Sign' : 'स्वगृह')}</span>}
+                    {pi.dignity && <span className="text-xs px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400">{pi.dignity.split(' ')[2] === ' – ' ? '' : pi.dignity.includes('exalted') || pi.dignity.includes('उच्च') ? (locale === 'en' || isTamil ? 'Exalted' : 'उच्च') : pi.dignity.includes('debilitated') || pi.dignity.includes('नीच') ? (locale === 'en' || isTamil ? 'Debilitated' : 'नीच') : (locale === 'en' || isTamil ? 'Own Sign' : 'स्वगृह')}</span>}
                     {pi.retrogradeEffect && <span className="text-xs px-1.5 py-0.5 rounded bg-red-500/10 text-red-400">R</span>}
                   </div>
                 </div>
@@ -756,7 +756,7 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
       <section className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
         <h3 className="text-xl text-gold-light font-semibold mb-2" style={headingFont}>{tTip('yogas')}</h3>
         <p className="text-text-secondary text-xs mb-5">
-          {isEn ? `${yogasActive} yoga${yogasActive !== 1 ? 's' : ''} active in your chart — special planetary combinations that shape your life trajectory.` : `${yogasActive} योग सक्रिय — विशेष ग्रहीय संयोजन जो आपके जीवन-पथ को आकार देते हैं।`}
+          {isEn ? `${yogasActive} yoga${yogasActive !== 1 ? 's' : ''} active in your chart  –  special planetary combinations that shape your life trajectory.` : `${yogasActive} योग सक्रिय  –  विशेष ग्रहीय संयोजन जो आपके जीवन-पथ को आकार देते हैं।`}
         </p>
         <div className="space-y-3">
           {(showAllYogas ? tip.yogas.filter(y => y.present) : tip.yogas.filter(y => y.present).slice(0, 3)).map((yoga, i) => {
@@ -817,7 +817,7 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
       </section>
 
       {/* ===== DOSHAS ===== */}
-      {/* Ganda Mula Banner — prominent alert if detected */}
+      {/* Ganda Mula Banner  –  prominent alert if detected */}
       {tip.doshas.some(d => d.name.includes('Ganda Mula') && d.present) && (
         <div className="rounded-xl border border-amber-500/25 bg-gradient-to-r from-amber-500/10 via-red-500/5 to-amber-500/10 p-5 mb-4">
           <div className="flex items-start gap-4">
@@ -830,8 +830,8 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
               </h4>
               <p className="text-text-secondary text-sm leading-relaxed">
                 {locale === 'en' || isTamil
-                  ? 'The Moon at birth is in a Ganda Mula nakshatra — one of 6 nakshatras at the water-fire sign junctions. This requires a Ganda Mula Shanti Puja. See the dosha details below for specific remedies.'
-                  : 'जन्म के समय चन्द्रमा गण्ड मूल नक्षत्र में है — जल-अग्नि राशि सन्धि के 6 नक्षत्रों में से एक। गण्ड मूल शान्ति पूजा आवश्यक है। विशिष्ट उपायों के लिए नीचे दोष विवरण देखें।'}
+                  ? 'The Moon at birth is in a Ganda Mula nakshatra  –  one of 6 nakshatras at the water-fire sign junctions. This requires a Ganda Mula Shanti Puja. See the dosha details below for specific remedies.'
+                  : 'जन्म के समय चन्द्रमा गण्ड मूल नक्षत्र में है  –  जल-अग्नि राशि सन्धि के 6 नक्षत्रों में से एक। गण्ड मूल शान्ति पूजा आवश्यक है। विशिष्ट उपायों के लिए नीचे दोष विवरण देखें।'}
               </p>
               <Link href="/learn/modules/24-1" className="inline-block mt-2 text-xs text-amber-400 hover:text-amber-300 transition-colors underline underline-offset-2" tabIndex={-1}>
                 {locale === 'en' || isTamil ? 'Learn about Ganda Mula Nakshatras →' : 'गण्ड मूल नक्षत्रों के बारे में जानें →'}
@@ -1027,7 +1027,7 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
                   <h3 className="text-xl text-gold-light font-bold" style={headingFont}>
                     {tl(cm.planetName, locale)} {locale === 'en' || isTamil ? 'Mahadasha' : 'महादशा'}
                   </h3>
-                  <p className="text-text-secondary text-sm">{fmtDate(cm.startDate)} — {fmtDate(cm.endDate)} ({cm.years} {locale === 'en' || isTamil ? 'years' : 'वर्ष'})</p>
+                  <p className="text-text-secondary text-sm">{fmtDate(cm.startDate)}  –  {fmtDate(cm.endDate)} ({cm.years} {locale === 'en' || isTamil ? 'years' : 'वर्ष'})</p>
                 </div>
               </div>
 
@@ -1122,7 +1122,7 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
                               </span>
                               {ad.isCurrent && <span className="ml-2 w-1.5 h-1.5 inline-block rounded-full bg-gold-primary animate-pulse" />}
                               <p className="text-text-secondary/75 text-xs break-words">
-                                {fmtDate(ad.startDate)} — {fmtDate(ad.endDate)} ({ad.durationMonths} {locale === 'en' || isTamil ? 'mo' : 'मा'})
+                                {fmtDate(ad.startDate)}  –  {fmtDate(ad.endDate)} ({ad.durationMonths} {locale === 'en' || isTamil ? 'mo' : 'मा'})
                               </p>
                             </div>
                           </div>
@@ -1306,7 +1306,7 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
                                                 <span className="text-gold-light text-sm font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                                                   {tl(pd.planetName, locale)}
                                                 </span>
-                                                <span className="text-text-secondary/70 text-xs whitespace-nowrap">{fmtDate(pd.startDate)} — {fmtDate(pd.endDate)} ({pd.durationDays}d)</span>
+                                                <span className="text-text-secondary/70 text-xs whitespace-nowrap">{fmtDate(pd.startDate)}  –  {fmtDate(pd.endDate)} ({pd.durationDays}d)</span>
                                               </div>
                                               <span className={`px-2 py-0.5 rounded-full text-xs font-medium shrink-0 ${pColors.text}`}>{pLabel[loc as 'en' | 'hi']}</span>
                                             </div>
@@ -1370,7 +1370,7 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
           </div>
 
           <div className="px-6 sm:px-8 pb-6 sm:pb-8 space-y-4">
-            {/* Current Mahadasha — mega card */}
+            {/* Current Mahadasha  –  mega card */}
             <div className="rounded-xl p-5 border-2 border-gold-primary/20 bg-gradient-to-r from-gold-primary/8 via-transparent to-transparent">
               <div className="flex items-center gap-3 mb-3">
                 <span className="w-2.5 h-2.5 rounded-full animate-pulse" style={{ backgroundColor: mahaGraha?.color || '#d4a853' }} />
@@ -1424,8 +1424,8 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
           </h3>
           <p className="text-text-secondary text-xs mb-4">
             {isEn
-              ? `${strongPlanets.length} strong, ${weakPlanets.length} weak. Strongest: ${strongestPlanet?.planetName || '—'}. ${showStrengthTable ? '' : 'Tap below to see full breakdown.'}`
-              : `${strongPlanets.length} शक्तिशाली, ${weakPlanets.length} कमजोर। सबसे शक्तिशाली: ${strongestPlanet?.planetName || '—'}।`}
+              ? `${strongPlanets.length} strong, ${weakPlanets.length} weak. Strongest: ${strongestPlanet?.planetName || ' – '}. ${showStrengthTable ? '' : 'Tap below to see full breakdown.'}`
+              : `${strongPlanets.length} शक्तिशाली, ${weakPlanets.length} कमजोर। सबसे शक्तिशाली: ${strongestPlanet?.planetName || ' – '}।`}
           </p>
           {!showStrengthTable && (
             <button onClick={() => setShowStrengthTable(true)} className="w-full py-2.5 text-xs font-semibold text-gold-primary hover:text-gold-light border border-gold-primary/15 hover:border-gold-primary/30 rounded-lg transition-colors mb-4">

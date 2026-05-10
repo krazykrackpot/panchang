@@ -104,7 +104,7 @@ export default async function Layout({ children, params }: { children: React.Rea
   const articleLD = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `${vedicName} (${name}) Monthly Horoscope — ${month.label}`,
+    headline: `${vedicName} (${name}) Monthly Horoscope  –  ${month.label}`,
     description: `Monthly Vedic horoscope for ${name} (${vedicName}) with calendar heatmap, career, love, health, finance predictions and best/worst weeks.`,
     url: `${BASE_URL}/${locale}/horoscope/${rashi}/monthly`,
     datePublished: month.start,

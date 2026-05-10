@@ -20,7 +20,7 @@ import { getKutaInsight, getOverallVerdict } from '@/lib/constants/kuta-insights
 const L = {
   en: {
     title: 'Detailed Compatibility Report',
-    subtitle: 'Deep cross-chart analysis beyond Ashta Kuta — Manglik, Nadi, aspects, 7th house, Venus, and narrative summary',
+    subtitle: 'Deep cross-chart analysis beyond Ashta Kuta  –  Manglik, Nadi, aspects, 7th house, Venus, and narrative summary',
     partner1: 'Partner 1',
     partner2: 'Partner 2',
     name: 'Name',
@@ -87,7 +87,7 @@ const L = {
   },
   hi: {
     title: 'विस्तृत अनुकूलता रिपोर्ट',
-    subtitle: 'अष्ट कूट से आगे गहन विश्लेषण — मांगलिक, नाड़ी, ग्रह दृष्टि, सप्तम भाव, शुक्र, और सारांश',
+    subtitle: 'अष्ट कूट से आगे गहन विश्लेषण  –  मांगलिक, नाड़ी, ग्रह दृष्टि, सप्तम भाव, शुक्र, और सारांश',
     partner1: 'साथी 1',
     partner2: 'साथी 2',
     name: 'नाम',
@@ -154,7 +154,7 @@ const L = {
   },
   ta: {
     title: 'விரிவான பொருத்த அறிக்கை',
-    subtitle: 'அஷ்ட கூடத்திற்கு அப்பால் ஆழமான பகுப்பாய்வு — மாங்கலிக, நாடி, கிரக பார்வை, 7ஆம் வீடு, சுக்கிரன், மற்றும் சுருக்கம்',
+    subtitle: 'அஷ்ட கூடத்திற்கு அப்பால் ஆழமான பகுப்பாய்வு  –  மாங்கலிக, நாடி, கிரக பார்வை, 7ஆம் வீடு, சுக்கிரன், மற்றும் சுருக்கம்',
     partner1: 'துணை 1',
     partner2: 'துணை 2',
     name: 'பெயர்',
@@ -221,7 +221,7 @@ const L = {
   },
   bn: {
     title: 'বিস্তারিত সামঞ্জস্য প্রতিবেদন',
-    subtitle: 'অষ্ট কূটের বাইরে গভীর বিশ্লেষণ — মাঙ্গলিক, নাড়ী, গ্রহ দৃষ্টি, সপ্তম ভাব, শুক্র, এবং সারাংশ',
+    subtitle: 'অষ্ট কূটের বাইরে গভীর বিশ্লেষণ  –  মাঙ্গলিক, নাড়ী, গ্রহ দৃষ্টি, সপ্তম ভাব, শুক্র, এবং সারাংশ',
     partner1: 'সঙ্গী ১',
     partner2: 'সঙ্গী ২',
     name: 'নাম',

@@ -3,7 +3,7 @@ import type { PujaVidhi } from './types';
 export const CHAITRA_NAVRATRI_PUJA: PujaVidhi = {
   festivalSlug: 'chaitra-navratri',
   category: 'festival',
-  deity: { en: 'Durga (Nine Forms — Navadurga)', hi: 'दुर्गा (नौ रूप — नवदुर्गा)', sa: 'दुर्गा (नवरूपाणि — नवदुर्गा)' },
+  deity: { en: 'Durga (Nine Forms  –  Navadurga)', hi: 'दुर्गा (नौ रूप  –  नवदुर्गा)', sa: 'दुर्गा (नवरूपाणि  –  नवदुर्गा)' },
 
   samagri: [
     { name: { en: 'Kalash (copper/brass pot)', hi: 'कलश (ताँबा/पीतल)', sa: 'कलशः (ताम्र/पीतलपात्रम्)' }, category: 'vessels', essential: true },
@@ -77,9 +77,9 @@ export const CHAITRA_NAVRATRI_PUJA: PujaVidhi = {
       step: 4,
       title: { en: 'Daily Navadurga Worship (9 Days)', hi: 'दैनिक नवदुर्गा पूजन (9 दिन)', sa: 'प्रतिदिनं नवदुर्गापूजनम् (नवदिनानि)' },
       description: {
-        en: 'Each day, worship the specific form of Durga: Day 1 — Shailaputri, Day 2 — Brahmacharini, Day 3 — Chandraghanta, Day 4 — Kushmanda, Day 5 — Skandamata, Day 6 — Katyayani, Day 7 — Kalaratri, Day 8 — Mahagauri, Day 9 — Siddhidatri. Offer the designated color flower and recite the specific mantra for each form.',
-        hi: 'प्रतिदिन दुर्गा के विशिष्ट रूप की पूजा करें: दिन 1 — शैलपुत्री, दिन 2 — ब्रह्मचारिणी, दिन 3 — चन्द्रघण्टा, दिन 4 — कूष्माण्डा, दिन 5 — स्कन्दमाता, दिन 6 — कात्यायनी, दिन 7 — कालरात्रि, दिन 8 — महागौरी, दिन 9 — सिद्धिदात्री। निर्धारित रंग का फूल चढ़ाएँ और प्रत्येक रूप का विशिष्ट मंत्र पढ़ें।',
-        sa: 'प्रतिदिनं दुर्गायाः विशिष्टरूपं पूजयेत्: प्रथमदिने — शैलपुत्री, द्वितीयदिने — ब्रह्मचारिणी, तृतीयदिने — चन्द्रघण्टा, चतुर्थदिने — कूष्माण्डा, पञ्चमदिने — स्कन्दमाता, षष्ठदिने — कात्यायनी, सप्तमदिने — कालरात्रि, अष्टमदिने — महागौरी, नवमदिने — सिद्धिदात्री। निर्धारितवर्णपुष्पं समर्पयेत् प्रत्येकरूपस्य विशिष्टमन्त्रं च पठेत्।',
+        en: 'Each day, worship the specific form of Durga: Day 1  –  Shailaputri, Day 2  –  Brahmacharini, Day 3  –  Chandraghanta, Day 4  –  Kushmanda, Day 5  –  Skandamata, Day 6  –  Katyayani, Day 7  –  Kalaratri, Day 8  –  Mahagauri, Day 9  –  Siddhidatri. Offer the designated color flower and recite the specific mantra for each form.',
+        hi: 'प्रतिदिन दुर्गा के विशिष्ट रूप की पूजा करें: दिन 1  –  शैलपुत्री, दिन 2  –  ब्रह्मचारिणी, दिन 3  –  चन्द्रघण्टा, दिन 4  –  कूष्माण्डा, दिन 5  –  स्कन्दमाता, दिन 6  –  कात्यायनी, दिन 7  –  कालरात्रि, दिन 8  –  महागौरी, दिन 9  –  सिद्धिदात्री। निर्धारित रंग का फूल चढ़ाएँ और प्रत्येक रूप का विशिष्ट मंत्र पढ़ें।',
+        sa: 'प्रतिदिनं दुर्गायाः विशिष्टरूपं पूजयेत्: प्रथमदिने  –  शैलपुत्री, द्वितीयदिने  –  ब्रह्मचारिणी, तृतीयदिने  –  चन्द्रघण्टा, चतुर्थदिने  –  कूष्माण्डा, पञ्चमदिने  –  स्कन्दमाता, षष्ठदिने  –  कात्यायनी, सप्तमदिने  –  कालरात्रि, अष्टमदिने  –  महागौरी, नवमदिने  –  सिद्धिदात्री। निर्धारितवर्णपुष्पं समर्पयेत् प्रत्येकरूपस्य विशिष्टमन्त्रं च पठेत्।',
       },
       duration: '30 min per day',
       essential: true,
@@ -114,8 +114,8 @@ export const CHAITRA_NAVRATRI_PUJA: PujaVidhi = {
       step: 7,
       title: { en: 'Havan & Visarjan (Day 9)', hi: 'हवन एवं विसर्जन (दिन 9)', sa: 'हवनं विसर्जनं च (नवमे दिने)' },
       description: {
-        en: 'On the final day, perform havan (fire ritual) with Navratri samagri. Offer ghee, samagri, and recite Durga mantras. After havan, do visarjan of the kalash — immerse or respectfully dispose of the items. The sprouted barley is distributed as prasad.',
-        hi: 'अन्तिम दिन नवरात्रि सामग्री से हवन (अग्नि अनुष्ठान) करें। घी, सामग्री अर्पित करें और दुर्गा मंत्र पढ़ें। हवन के बाद कलश का विसर्जन करें — सामग्री को विसर्जित करें या सम्मानपूर्वक अलग करें। अंकुरित जौ प्रसाद के रूप में बाँटें।',
+        en: 'On the final day, perform havan (fire ritual) with Navratri samagri. Offer ghee, samagri, and recite Durga mantras. After havan, do visarjan of the kalash  –  immerse or respectfully dispose of the items. The sprouted barley is distributed as prasad.',
+        hi: 'अन्तिम दिन नवरात्रि सामग्री से हवन (अग्नि अनुष्ठान) करें। घी, सामग्री अर्पित करें और दुर्गा मंत्र पढ़ें। हवन के बाद कलश का विसर्जन करें  –  सामग्री को विसर्जित करें या सम्मानपूर्वक अलग करें। अंकुरित जौ प्रसाद के रूप में बाँटें।',
         sa: 'अन्तिमदिने नवरात्रिसामग्र्या हवनं (अग्निकर्म) कुर्यात्। घृतं सामग्रीं च समर्पयेत् दुर्गामन्त्रान् पठेत्। हवनानन्तरं कलशस्य विसर्जनं कुर्यात्। अङ्कुरितयवान् प्रसादरूपेण वितरेत्।',
       },
       duration: '30 min',
@@ -178,9 +178,9 @@ export const CHAITRA_NAVRATRI_PUJA: PujaVidhi = {
   ],
 
   naivedya: {
-    en: 'Offer halwa-puri-chana on Ashtami/Navami. Daily offerings include fruits, coconut, kheer, and seasonal sweets. Sattvic (pure vegetarian) food only — avoid onion, garlic, and non-vegetarian items throughout the 9 days.',
-    hi: 'अष्टमी/नवमी पर हलवा-पूरी-चना का भोग लगाएँ। दैनिक नैवेद्य में फल, नारियल, खीर और मौसमी मिठाइयाँ शामिल हैं। 9 दिनों तक केवल सात्विक (शुद्ध शाकाहारी) भोजन — प्याज़, लहसुन और मांसाहार वर्जित।',
-    sa: 'अष्टम्यां/नवम्यां हल्वापूरीचनभोगं समर्पयेत्। प्रतिदिनं फलानि नारिकेलं पायसं ऋतुमिष्टान्नानि च नैवेद्यरूपेण दद्यात्। नवदिनपर्यन्तं केवलं सात्त्विकम् (शुद्धशाकाहारम्) — पलाण्डुं लशुनं मांसाहारं च वर्जयेत्।',
+    en: 'Offer halwa-puri-chana on Ashtami/Navami. Daily offerings include fruits, coconut, kheer, and seasonal sweets. Sattvic (pure vegetarian) food only  –  avoid onion, garlic, and non-vegetarian items throughout the 9 days.',
+    hi: 'अष्टमी/नवमी पर हलवा-पूरी-चना का भोग लगाएँ। दैनिक नैवेद्य में फल, नारियल, खीर और मौसमी मिठाइयाँ शामिल हैं। 9 दिनों तक केवल सात्विक (शुद्ध शाकाहारी) भोजन  –  प्याज़, लहसुन और मांसाहार वर्जित।',
+    sa: 'अष्टम्यां/नवम्यां हल्वापूरीचनभोगं समर्पयेत्। प्रतिदिनं फलानि नारिकेलं पायसं ऋतुमिष्टान्नानि च नैवेद्यरूपेण दद्यात्। नवदिनपर्यन्तं केवलं सात्त्विकम् (शुद्धशाकाहारम्)  –  पलाण्डुं लशुनं मांसाहारं च वर्जयेत्।',
   },
 
   precautions: [
@@ -190,9 +190,9 @@ export const CHAITRA_NAVRATRI_PUJA: PujaVidhi = {
       sa: 'नवदिनेषु अखण्डज्योतिः न निर्वापणीया। पर्याप्तं घृतं तैलं वा सुनिश्चितं कुर्यात् वायोश्च रक्षेत्।',
     },
     {
-      en: 'Ghatasthapana timing is critical — it must not be done during Chitra Nakshatra, Vaidhriti Yoga, or after the first one-third of the day ends.',
-      hi: 'घटस्थापना का समय अत्यन्त महत्वपूर्ण है — यह चित्रा नक्षत्र, वैधृति योग में या दिन का पहला एक-तिहाई बीतने के बाद नहीं की जानी चाहिए।',
-      sa: 'घटस्थापनायाः कालः अत्यन्तं महत्त्वपूर्णः — चित्रानक्षत्रे वैधृतियोगे दिनस्य प्रथमतृतीयांशसमाप्त्यनन्तरं वा न कर्तव्या।',
+      en: 'Ghatasthapana timing is critical  –  it must not be done during Chitra Nakshatra, Vaidhriti Yoga, or after the first one-third of the day ends.',
+      hi: 'घटस्थापना का समय अत्यन्त महत्वपूर्ण है  –  यह चित्रा नक्षत्र, वैधृति योग में या दिन का पहला एक-तिहाई बीतने के बाद नहीं की जानी चाहिए।',
+      sa: 'घटस्थापनायाः कालः अत्यन्तं महत्त्वपूर्णः  –  चित्रानक्षत्रे वैधृतियोगे दिनस्य प्रथमतृतीयांशसमाप्त्यनन्तरं वा न कर्तव्या।',
     },
     {
       en: 'Maintain strict fasting discipline during the 9 days. If full fasting is not possible, observe phalahari (fruit-based) diet.',
@@ -207,8 +207,8 @@ export const CHAITRA_NAVRATRI_PUJA: PujaVidhi = {
   ],
 
   phala: {
-    en: 'Chaitra Navratri bestows the combined blessings of all nine forms of Durga — strength, knowledge, courage, prosperity, health, protection from evil, spiritual progress, removal of obstacles, and fulfilment of desires. The sprouted barley signifies growth and abundance in the coming year.',
-    hi: 'चैत्र नवरात्रि दुर्गा के सभी नौ रूपों का संयुक्त आशीर्वाद प्रदान करती है — शक्ति, ज्ञान, साहस, समृद्धि, स्वास्थ्य, दुष्टों से रक्षा, आध्यात्मिक प्रगति, विघ्न निवारण और मनोकामना पूर्ति। अंकुरित जौ आने वाले वर्ष में वृद्धि और समृद्धि का प्रतीक है।',
-    sa: 'चैत्रनवरात्रिः दुर्गायाः सर्वेषां नवरूपाणां संयुक्तानुग्रहं प्रयच्छति — शक्तिं ज्ञानं साहसं समृद्धिम् आरोग्यं दुष्टरक्षां आध्यात्मिकप्रगतिं विघ्ननिवारणं मनोरथसिद्धिं च। अङ्कुरितयवाः आगामिवर्षे वृद्धिसमृद्ध्योः प्रतीकाः।',
+    en: 'Chaitra Navratri bestows the combined blessings of all nine forms of Durga  –  strength, knowledge, courage, prosperity, health, protection from evil, spiritual progress, removal of obstacles, and fulfilment of desires. The sprouted barley signifies growth and abundance in the coming year.',
+    hi: 'चैत्र नवरात्रि दुर्गा के सभी नौ रूपों का संयुक्त आशीर्वाद प्रदान करती है  –  शक्ति, ज्ञान, साहस, समृद्धि, स्वास्थ्य, दुष्टों से रक्षा, आध्यात्मिक प्रगति, विघ्न निवारण और मनोकामना पूर्ति। अंकुरित जौ आने वाले वर्ष में वृद्धि और समृद्धि का प्रतीक है।',
+    sa: 'चैत्रनवरात्रिः दुर्गायाः सर्वेषां नवरूपाणां संयुक्तानुग्रहं प्रयच्छति  –  शक्तिं ज्ञानं साहसं समृद्धिम् आरोग्यं दुष्टरक्षां आध्यात्मिकप्रगतिं विघ्ननिवारणं मनोरथसिद्धिं च। अङ्कुरितयवाः आगामिवर्षे वृद्धिसमृद्ध्योः प्रतीकाः।',
   },
 };

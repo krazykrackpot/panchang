@@ -34,7 +34,7 @@ interface AdUnitProps {
   className?: string;
 }
 
-/** Load AdSense script on-demand — only when an AdUnit actually renders.
+/** Load AdSense script on-demand  –  only when an AdUnit actually renders.
  * This avoids the 356KB+ script cost on pages without ads. */
 let adsenseScriptLoaded = false;
 function ensureAdsenseScript() {

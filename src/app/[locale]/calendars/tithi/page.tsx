@@ -101,8 +101,8 @@ export default function TithiCalendarPage() {
           </h1>
           <p className="text-text-secondary text-sm sm:text-base max-w-2xl mx-auto">
             {isEn
-              ? 'Daily Tithi, Nakshatra, Moon Sign, Sunrise & Sunset — with moon phase icons and festival markers for every day of the month.'
-              : 'प्रतिदिन की तिथि, नक्षत्र, चन्द्र राशि, सूर्योदय और सूर्यास्त — चन्द्र कला चिह्न और त्योहार संकेतकों के साथ।'}
+              ? 'Daily Tithi, Nakshatra, Moon Sign, Sunrise & Sunset  –  with moon phase icons and festival markers for every day of the month.'
+              : 'प्रतिदिन की तिथि, नक्षत्र, चन्द्र राशि, सूर्योदय और सूर्यास्त  –  चन्द्र कला चिह्न और त्योहार संकेतकों के साथ।'}
           </p>
         </div>
 

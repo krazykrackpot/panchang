@@ -1,6 +1,6 @@
 import type { LocaleText } from '@/types/panchang';
 /**
- * Pancha Pakshi Shastra — Five Bird System
+ * Pancha Pakshi Shastra  –  Five Bird System
  * Source: Prasna Marga (Kerala tradition), Kalaprakasika
  *
  * Five birds cycle through 5 activities throughout the day and night.
@@ -51,24 +51,24 @@ const AUSPICIOUSNESS: Record<Activity, 'excellent' | 'good' | 'neutral' | 'avoid
 
 const INTERPRETATIONS: Record<Activity, LocaleText> = {
   ruling: {
-    en: 'Your bird is Ruling — supreme period for any action. Decisions made now succeed. Start new ventures, sign agreements, make important requests.',
-    hi: 'आपका पक्षी राज्य कर रहा है — किसी भी कार्य के लिए श्रेष्ठ काल। अभी लिए निर्णय सफल होते हैं। नए कार्य, समझौते, महत्वपूर्ण अनुरोध करें।',
+    en: 'Your bird is Ruling  –  supreme period for any action. Decisions made now succeed. Start new ventures, sign agreements, make important requests.',
+    hi: 'आपका पक्षी राज्य कर रहा है  –  किसी भी कार्य के लिए श्रेष्ठ काल। अभी लिए निर्णय सफल होते हैं। नए कार्य, समझौते, महत्वपूर्ण अनुरोध करें।',
   },
   eating: {
-    en: 'Your bird is Eating — good for nurturing activities, food-related work, financial matters, and creative pursuits. Moderate success for most actions.',
-    hi: 'आपका पक्षी भोजन कर रहा है — पोषण कार्य, खाद्य संबंधी, वित्तीय और सृजनात्मक गतिविधियों के लिए अच्छा। अधिकांश कार्यों में मध्यम सफलता।',
+    en: 'Your bird is Eating  –  good for nurturing activities, food-related work, financial matters, and creative pursuits. Moderate success for most actions.',
+    hi: 'आपका पक्षी भोजन कर रहा है  –  पोषण कार्य, खाद्य संबंधी, वित्तीय और सृजनात्मक गतिविधियों के लिए अच्छा। अधिकांश कार्यों में मध्यम सफलता।',
   },
   walking: {
-    en: 'Your bird is Walking — favorable for travel, movement, meetings, and social activities. Good for carrying out existing plans. Moderate for new beginnings.',
-    hi: 'आपका पक्षी चल रहा है — यात्रा, गति, बैठकों और सामाजिक गतिविधियों के लिए अनुकूल। मौजूदा योजनाओं को आगे बढ़ाने के लिए अच्छा।',
+    en: 'Your bird is Walking  –  favorable for travel, movement, meetings, and social activities. Good for carrying out existing plans. Moderate for new beginnings.',
+    hi: 'आपका पक्षी चल रहा है  –  यात्रा, गति, बैठकों और सामाजिक गतिविधियों के लिए अनुकूल। मौजूदा योजनाओं को आगे बढ़ाने के लिए अच्छा।',
   },
   sleeping: {
-    en: 'Your bird is Sleeping — dormant period. Routine matters proceed normally. Avoid major new actions; use this time for planning, rest, and internal work.',
-    hi: 'आपका पक्षी सो रहा है — निद्रा काल। नियमित कार्य सामान्य चलते हैं। बड़े नए कार्य टालें; यह समय योजना, विश्राम और आंतरिक कार्य के लिए उपयुक्त।',
+    en: 'Your bird is Sleeping  –  dormant period. Routine matters proceed normally. Avoid major new actions; use this time for planning, rest, and internal work.',
+    hi: 'आपका पक्षी सो रहा है  –  निद्रा काल। नियमित कार्य सामान्य चलते हैं। बड़े नए कार्य टालें; यह समय योजना, विश्राम और आंतरिक कार्य के लिए उपयुक्त।',
   },
   dying: {
-    en: 'Your bird is Dying — avoid all important new actions. This is the most inauspicious period. Rest, reflect, and wait. Actions started now tend to fail or create obstacles.',
-    hi: 'आपका पक्षी मृत्युकाल में है — सभी महत्वपूर्ण नए कार्यों से बचें। यह सर्वाधिक अशुभ काल है। विश्राम करें, चिंतन करें और प्रतीक्षा करें।',
+    en: 'Your bird is Dying  –  avoid all important new actions. This is the most inauspicious period. Rest, reflect, and wait. Actions started now tend to fail or create obstacles.',
+    hi: 'आपका पक्षी मृत्युकाल में है  –  सभी महत्वपूर्ण नए कार्यों से बचें। यह सर्वाधिक अशुभ काल है। विश्राम करें, चिंतन करें और प्रतीक्षा करें।',
   },
 };
 
@@ -176,7 +176,7 @@ export function calculatePanchaPakshi(
     ? (sunsetMs - sunriseMs) / 5
     : (nextSunriseMs - sunsetMs) / 5;
 
-  // If before sunrise today, treat as previous day's night — use prev sunset (sunsetMs - 24h)
+  // If before sunrise today, treat as previous day's night  –  use prev sunset (sunsetMs - 24h)
   const effectiveSunsetMs = nowMs < sunriseMs ? sunsetMs - 24 * 60 * 60 * 1000 : sunsetMs;
   const elapsed = isDay ? (nowMs - sunriseMs) : (nowMs - effectiveSunsetMs);
   const rawIndex = Math.floor(elapsed / periodDuration);

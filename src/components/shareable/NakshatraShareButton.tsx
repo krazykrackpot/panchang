@@ -14,7 +14,7 @@ interface NakshatraShareButtonProps {
 }
 
 /**
- * "Share My Nakshatra" button — generates a personalized nakshatra personality
+ * "Share My Nakshatra" button  –  generates a personalized nakshatra personality
  * card image and triggers native share (mobile) or download (desktop).
  *
  * This is the viral engine: each share drives 3-5 friends to make their own card.
@@ -58,7 +58,7 @@ export default function NakshatraShareButton({ name, nakshatraId, rashiId, local
       // Try native share (works on mobile)
       if (navigator.share && navigator.canShare?.({ files: [file] })) {
         await navigator.share({
-          title: `I'm ${nak.name.en} Moon — ${nak.nature?.en || 'Vedic Astrology'}`,
+          title: `I'm ${nak.name.en} Moon  –  ${nak.nature?.en || 'Vedic Astrology'}`,
           text: `Discover your Nakshatra personality at dekhopanchang.com`,
           files: [file],
         });

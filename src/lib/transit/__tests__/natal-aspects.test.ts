@@ -61,8 +61,8 @@ describe('findTransitNatalAspects', () => {
   it('only checks slow planets (Jupiter=4, Saturn=6, Rahu=7)', () => {
     // Sun (id=0) should NOT be checked as a transit planet
     const transit = [
-      { id: 0, longitude: 100, speed: 1.0 }, // Sun — skipped
-      { id: 6, longitude: 100, speed: 0.05 }, // Saturn — checked
+      { id: 0, longitude: 100, speed: 1.0 }, // Sun  –  skipped
+      { id: 6, longitude: 100, speed: 0.05 }, // Saturn  –  checked
     ];
     const natal = [{ id: 1, longitude: 100 }];
     const aspects = findTransitNatalAspects(transit, natal);

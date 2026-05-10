@@ -4,7 +4,7 @@
  * Accepts birth data (same format as /api/kundali), generates the kundali
  * internally, then runs the BNN (Bhrigu Nandi Nadi) engine and karmic profile.
  *
- * Body: BirthData + optional `locale` field (en|hi|ta|bn — defaults to 'en')
+ * Body: BirthData + optional `locale` field (en|hi|ta|bn  –  defaults to 'en')
  *
  * DISCLAIMER: Results are traditional Vedic knowledge for self-awareness only.
  * Not a substitute for a qualified Jyotishi's personal reading.

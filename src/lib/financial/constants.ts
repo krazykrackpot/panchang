@@ -1,5 +1,5 @@
 /**
- * Financial Astrology constants — planet→commodity/sector mapping,
+ * Financial Astrology constants  –  planet→commodity/sector mapping,
  * wealth houses, favorability tables.
  *
  * Classical basis: BPHS Ch.24-25 (Dhana Bhava), Brihat Jataka,
@@ -128,13 +128,13 @@ export type HoraFavorability = 'excellent' | 'good' | 'neutral' | 'avoid';
 
 /** Planet → hora favorability for financial activities (classical Jyotish) */
 export const HORA_FINANCIAL_FAVORABILITY: Record<number, HoraFavorability> = {
-  0: 'good',      // Sun — government dealings, gold transactions
-  1: 'good',      // Moon — liquid assets, trading, new contacts
-  2: 'avoid',     // Mars — avoid new financial agreements
-  3: 'excellent', // Mercury — contracts, communication, trading
-  4: 'excellent', // Jupiter — banking, investments, legal finance
-  5: 'good',      // Venus — luxury purchases, entertainment contracts
-  6: 'neutral',   // Saturn — long-term fixed assets only
+  0: 'good',      // Sun  –  government dealings, gold transactions
+  1: 'good',      // Moon  –  liquid assets, trading, new contacts
+  2: 'avoid',     // Mars  –  avoid new financial agreements
+  3: 'excellent', // Mercury  –  contracts, communication, trading
+  4: 'excellent', // Jupiter  –  banking, investments, legal finance
+  5: 'good',      // Venus  –  luxury purchases, entertainment contracts
+  6: 'neutral',   // Saturn  –  long-term fixed assets only
 };
 
 // ─── Planet names (by ID, for display) ──────────────────────────────────────
@@ -143,7 +143,7 @@ export const PLANET_NAMES_EN: Record<number, string> = {
   4: 'Jupiter', 5: 'Venus', 6: 'Saturn', 7: 'Rahu', 8: 'Ketu',
 };
 
-// ─── Sign lord & exaltation — re-exported from canonical dignities ────────────
+// ─── Sign lord & exaltation  –  re-exported from canonical dignities ────────────
 // Canonical BPHS source. See @/lib/constants/dignities for the single definition.
 import { SIGN_LORDS, EXALTATION_SIGNS } from '@/lib/constants/dignities';
 export const SIGN_LORD_FINANCIAL = SIGN_LORDS;

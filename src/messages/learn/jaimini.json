@@ -60,28 +60,28 @@
     "mai": "मूलभूत अन्तर: पाराशरी में ग्रह का विश्लेषण; जैमिनी में राशि का।"
   },
   "karakaTitle": {
-    "en": "Chara Karakas — The 7 Variable Significators",
-    "hi": "चर कारक — 7 परिवर्तनशील कारक",
-    "sa": "चरकारकाः — सप्त परिवर्तनशीलकारकाः",
-    "ta": "Chara Karakas — The 7 Variable Significators",
-    "te": "Chara Karakas — The 7 Variable Significators",
-    "bn": "Chara Karakas — The 7 Variable Significators",
-    "kn": "Chara Karakas — The 7 Variable Significators",
-    "mr": "चर कारक — 7 परिवर्तनशील कारक",
-    "gu": "Chara Karakas — The 7 Variable Significators",
-    "mai": "चर कारक — 7 परिवर्तनशील कारक"
+    "en": "Chara Karakas  –  The 7 Variable Significators",
+    "hi": "चर कारक  –  7 परिवर्तनशील कारक",
+    "sa": "चरकारकाः  –  सप्त परिवर्तनशीलकारकाः",
+    "ta": "Chara Karakas  –  The 7 Variable Significators",
+    "te": "Chara Karakas  –  The 7 Variable Significators",
+    "bn": "Chara Karakas  –  The 7 Variable Significators",
+    "kn": "Chara Karakas  –  The 7 Variable Significators",
+    "mr": "चर कारक  –  7 परिवर्तनशील कारक",
+    "gu": "Chara Karakas  –  The 7 Variable Significators",
+    "mai": "चर कारक  –  7 परिवर्तनशील कारक"
   },
   "karakaContent": {
-    "en": "The most revolutionary concept in Jaimini — Karakas assigned dynamically by degree.",
-    "hi": "जैमिनी में सबसे क्रान्तिकारी अवधारणा — अंश के आधार पर गतिशील कारक।",
+    "en": "The most revolutionary concept in Jaimini  –  Karakas assigned dynamically by degree.",
+    "hi": "जैमिनी में सबसे क्रान्तिकारी अवधारणा  –  अंश के आधार पर गतिशील कारक।",
     "sa": "जैमिन्यां सर्वाधिकक्रान्तिकारी अवधारणा।",
-    "ta": "The most revolutionary concept in Jaimini — Karakas assigned dynamically by degree.",
-    "te": "The most revolutionary concept in Jaimini — Karakas assigned dynamically by degree.",
-    "bn": "The most revolutionary concept in Jaimini — Karakas assigned dynamically by degree.",
-    "kn": "The most revolutionary concept in Jaimini — Karakas assigned dynamically by degree.",
-    "mr": "जैमिनी में सबसे क्रान्तिकारी अवधारणा — अंश के आधार पर गतिशील कारक।",
-    "gu": "The most revolutionary concept in Jaimini — Karakas assigned dynamically by degree.",
-    "mai": "जैमिनी में सबसे क्रान्तिकारी अवधारणा — अंश के आधार पर गतिशील कारक।"
+    "ta": "The most revolutionary concept in Jaimini  –  Karakas assigned dynamically by degree.",
+    "te": "The most revolutionary concept in Jaimini  –  Karakas assigned dynamically by degree.",
+    "bn": "The most revolutionary concept in Jaimini  –  Karakas assigned dynamically by degree.",
+    "kn": "The most revolutionary concept in Jaimini  –  Karakas assigned dynamically by degree.",
+    "mr": "जैमिनी में सबसे क्रान्तिकारी अवधारणा  –  अंश के आधार पर गतिशील कारक।",
+    "gu": "The most revolutionary concept in Jaimini  –  Karakas assigned dynamically by degree.",
+    "mai": "जैमिनी में सबसे क्रान्तिकारी अवधारणा  –  अंश के आधार पर गतिशील कारक।"
   },
   "karakaNote": {
     "en": "Only the 7 visible planets participate in Chara Karaka assignment.",
@@ -96,16 +96,16 @@
     "mai": "केवल 7 दृश्य ग्रह चर कारक निर्धारण में भाग लेते हैं।"
   },
   "karakamshaTitle": {
-    "en": "Karakamsha — The Soul's Compass",
-    "hi": "कारकांश — आत्मा का दिशासूचक",
-    "sa": "कारकांशः — आत्मनः दिशासूचकः",
-    "ta": "Karakamsha — The Soul's Compass",
-    "te": "Karakamsha — The Soul's Compass",
-    "bn": "Karakamsha — The Soul's Compass",
-    "kn": "Karakamsha — The Soul's Compass",
-    "mr": "कारकांश — आत्मा का दिशासूचक",
-    "gu": "Karakamsha — The Soul's Compass",
-    "mai": "कारकांश — आत्मा का दिशासूचक"
+    "en": "Karakamsha  –  The Soul's Compass",
+    "hi": "कारकांश  –  आत्मा का दिशासूचक",
+    "sa": "कारकांशः  –  आत्मनः दिशासूचकः",
+    "ta": "Karakamsha  –  The Soul's Compass",
+    "te": "Karakamsha  –  The Soul's Compass",
+    "bn": "Karakamsha  –  The Soul's Compass",
+    "kn": "Karakamsha  –  The Soul's Compass",
+    "mr": "कारकांश  –  आत्मा का दिशासूचक",
+    "gu": "Karakamsha  –  The Soul's Compass",
+    "mai": "कारकांश  –  आत्मा का दिशासूचक"
   },
   "karakamshaContent": {
     "en": "The Karakamsha is the Navamsha sign occupied by the Atmakaraka.",
@@ -132,16 +132,16 @@
     "mai": "उदाहरण: यदि आत्मकारक गुरु धनु नवांश में है, तो आत्मा शिक्षा और धर्म की ओर आकर्षित है।"
   },
   "drishtiTitle": {
-    "en": "Rashi Drishti — Sign-Based Aspects",
-    "hi": "राशि दृष्टि — राशि-आधारित दृष्टि",
-    "sa": "राशिदृष्टिः — राश्याधारितदृष्टिः",
-    "ta": "Rashi Drishti — Sign-Based Aspects",
-    "te": "Rashi Drishti — Sign-Based Aspects",
-    "bn": "Rashi Drishti — Sign-Based Aspects",
-    "kn": "Rashi Drishti — Sign-Based Aspects",
-    "mr": "राशि दृष्टि — राशि-आधारित दृष्टि",
-    "gu": "Rashi Drishti — Sign-Based Aspects",
-    "mai": "राशि दृष्टि — राशि-आधारित दृष्टि"
+    "en": "Rashi Drishti  –  Sign-Based Aspects",
+    "hi": "राशि दृष्टि  –  राशि-आधारित दृष्टि",
+    "sa": "राशिदृष्टिः  –  राश्याधारितदृष्टिः",
+    "ta": "Rashi Drishti  –  Sign-Based Aspects",
+    "te": "Rashi Drishti  –  Sign-Based Aspects",
+    "bn": "Rashi Drishti  –  Sign-Based Aspects",
+    "kn": "Rashi Drishti  –  Sign-Based Aspects",
+    "mr": "राशि दृष्टि  –  राशि-आधारित दृष्टि",
+    "gu": "Rashi Drishti  –  Sign-Based Aspects",
+    "mai": "राशि दृष्टि  –  राशि-आधारित दृष्टि"
   },
   "drishtiContent": {
     "en": "Jaimini replaces planetary aspects with sign-based aspects (Rashi Drishti).",
@@ -156,16 +156,16 @@
     "mai": "जैमिनी ग्रहीय दृष्टि को राशि-आधारित दृष्टि से प्रतिस्थापित करती है।"
   },
   "arudhaTitle": {
-    "en": "Arudha Padas — The World's Perception",
-    "hi": "अरूढ़ पद — संसार की धारणा",
-    "sa": "अरूढपदानि — संसारस्य धारणा",
-    "ta": "Arudha Padas — The World's Perception",
-    "te": "Arudha Padas — The World's Perception",
-    "bn": "Arudha Padas — The World's Perception",
-    "kn": "Arudha Padas — The World's Perception",
-    "mr": "अरूढ़ पद — संसार की धारणा",
-    "gu": "Arudha Padas — The World's Perception",
-    "mai": "अरूढ़ पद — संसार की धारणा"
+    "en": "Arudha Padas  –  The World's Perception",
+    "hi": "अरूढ़ पद  –  संसार की धारणा",
+    "sa": "अरूढपदानि  –  संसारस्य धारणा",
+    "ta": "Arudha Padas  –  The World's Perception",
+    "te": "Arudha Padas  –  The World's Perception",
+    "bn": "Arudha Padas  –  The World's Perception",
+    "kn": "Arudha Padas  –  The World's Perception",
+    "mr": "अरूढ़ पद  –  संसार की धारणा",
+    "gu": "Arudha Padas  –  The World's Perception",
+    "mai": "अरूढ़ पद  –  संसार की धारणा"
   },
   "arudhaContent": {
     "en": "Arudha Padas reveal how the world perceives each life area.",
@@ -180,28 +180,28 @@
     "mai": "अरूढ़ पद बताते हैं कि संसार प्रत्येक जीवन क्षेत्र को कैसे देखता है।"
   },
   "arudhaContent2": {
-    "en": "The most important Arudha is Arudha Lagna (AL) — the Arudha of the 1st house.",
-    "hi": "सबसे महत्वपूर्ण अरूढ़ है अरूढ़ लग्न (AL) — प्रथम भाव का अरूढ़।",
+    "en": "The most important Arudha is Arudha Lagna (AL)  –  the Arudha of the 1st house.",
+    "hi": "सबसे महत्वपूर्ण अरूढ़ है अरूढ़ लग्न (AL)  –  प्रथम भाव का अरूढ़।",
     "sa": "सर्वाधिकमहत्त्वपूर्णम् अरूढं अरूढलग्नम्।",
-    "ta": "The most important Arudha is Arudha Lagna (AL) — the Arudha of the 1st house.",
-    "te": "The most important Arudha is Arudha Lagna (AL) — the Arudha of the 1st house.",
-    "bn": "The most important Arudha is Arudha Lagna (AL) — the Arudha of the 1st house.",
-    "kn": "The most important Arudha is Arudha Lagna (AL) — the Arudha of the 1st house.",
-    "mr": "सबसे महत्वपूर्ण अरूढ़ है अरूढ़ लग्न (AL) — प्रथम भाव का अरूढ़।",
-    "gu": "The most important Arudha is Arudha Lagna (AL) — the Arudha of the 1st house.",
-    "mai": "सबसे महत्वपूर्ण अरूढ़ है अरूढ़ लग्न (AL) — प्रथम भाव का अरूढ़।"
+    "ta": "The most important Arudha is Arudha Lagna (AL)  –  the Arudha of the 1st house.",
+    "te": "The most important Arudha is Arudha Lagna (AL)  –  the Arudha of the 1st house.",
+    "bn": "The most important Arudha is Arudha Lagna (AL)  –  the Arudha of the 1st house.",
+    "kn": "The most important Arudha is Arudha Lagna (AL)  –  the Arudha of the 1st house.",
+    "mr": "सबसे महत्वपूर्ण अरूढ़ है अरूढ़ लग्न (AL)  –  प्रथम भाव का अरूढ़।",
+    "gu": "The most important Arudha is Arudha Lagna (AL)  –  the Arudha of the 1st house.",
+    "mai": "सबसे महत्वपूर्ण अरूढ़ है अरूढ़ लग्न (AL)  –  प्रथम भाव का अरूढ़।"
   },
   "charaDashaTitle": {
-    "en": "Chara Dasha — Sign-Based Timing",
-    "hi": "चर दशा — राशि-आधारित समय",
-    "sa": "चरदशा — राश्याधारितसमयः",
-    "ta": "Chara Dasha — Sign-Based Timing",
-    "te": "Chara Dasha — Sign-Based Timing",
-    "bn": "Chara Dasha — Sign-Based Timing",
-    "kn": "Chara Dasha — Sign-Based Timing",
-    "mr": "चर दशा — राशि-आधारित समय",
-    "gu": "Chara Dasha — Sign-Based Timing",
-    "mai": "चर दशा — राशि-आधारित समय"
+    "en": "Chara Dasha  –  Sign-Based Timing",
+    "hi": "चर दशा  –  राशि-आधारित समय",
+    "sa": "चरदशा  –  राश्याधारितसमयः",
+    "ta": "Chara Dasha  –  Sign-Based Timing",
+    "te": "Chara Dasha  –  Sign-Based Timing",
+    "bn": "Chara Dasha  –  Sign-Based Timing",
+    "kn": "Chara Dasha  –  Sign-Based Timing",
+    "mr": "चर दशा  –  राशि-आधारित समय",
+    "gu": "Chara Dasha  –  Sign-Based Timing",
+    "mai": "चर दशा  –  राशि-आधारित समय"
   },
   "charaDashaContent": {
     "en": "Jaimini uses the Chara Dasha (sign-based timing) instead of Vimshottari.",
@@ -228,16 +228,16 @@
     "mai": "प्रत्येक राशि की चर दशा अवधि राशि से उसके स्वामी की दूरी से निर्धारित होती है।"
   },
   "keyDiffTitle": {
-    "en": "Parashari vs Jaimini — Key Differences",
-    "hi": "पाराशरी बनाम जैमिनी — मुख्य अन्तर",
-    "sa": "पाराशरी जैमिनी च — मुख्यभेदाः",
-    "ta": "Parashari vs Jaimini — Key Differences",
-    "te": "Parashari vs Jaimini — Key Differences",
-    "bn": "Parashari vs Jaimini — Key Differences",
-    "kn": "Parashari vs Jaimini — Key Differences",
-    "mr": "पाराशरी बनाम जैमिनी — मुख्य अन्तर",
-    "gu": "Parashari vs Jaimini — Key Differences",
-    "mai": "पाराशरी बनाम जैमिनी — मुख्य अन्तर"
+    "en": "Parashari vs Jaimini  –  Key Differences",
+    "hi": "पाराशरी बनाम जैमिनी  –  मुख्य अन्तर",
+    "sa": "पाराशरी जैमिनी च  –  मुख्यभेदाः",
+    "ta": "Parashari vs Jaimini  –  Key Differences",
+    "te": "Parashari vs Jaimini  –  Key Differences",
+    "bn": "Parashari vs Jaimini  –  Key Differences",
+    "kn": "Parashari vs Jaimini  –  Key Differences",
+    "mr": "पाराशरी बनाम जैमिनी  –  मुख्य अन्तर",
+    "gu": "Parashari vs Jaimini  –  Key Differences",
+    "mai": "पाराशरी बनाम जैमिनी  –  मुख्य अन्तर"
   },
   "advancedTitle": {
     "en": "Advanced Jaimini Concepts",

@@ -25,7 +25,7 @@ const RASHI_LORD = [2, 5, 3, 1, 0, 3, 5, 2, 4, 6, 6, 4];
 
 export function getFriendshipLabel(planetA: number, planetB: number): { level: number; label: LocaleText } {
   if (planetA === planetB) return { level: 2, label: { en: 'Same', hi: 'समान', sa: 'समानः' } };
-  // Rahu(7)/Ketu(8) — use Saturn for friendship
+  // Rahu(7)/Ketu(8)  –  use Saturn for friendship
   const a = planetA >= 7 ? 6 : planetA;
   const b = planetB >= 7 ? 6 : planetB;
   // Average BOTH directions per BPHS Panchadha Maitri (same logic as Ashta Kuta)
@@ -65,7 +65,7 @@ export interface SynastryAspect {
 }
 
 // Western-style degree-based aspects with wide orbs.
-// Vedic (Jyotish) uses sign-based aspects — full aspect on 7th sign,
+// Vedic (Jyotish) uses sign-based aspects  –  full aspect on 7th sign,
 // special aspects per planet (Mars: 4/8, Jupiter: 5/9, Saturn: 3/10).
 const ASPECT_TYPES = [
   { name: 'Conjunction' as const, symbol: '☌', angle: 0, orb: 10, harmonious: true },
@@ -147,13 +147,13 @@ export function computeSynastrySummary(aspects: SynastryAspect[]): SynastrySumma
 
   let dominantPattern: LocaleText;
   if (ratio >= 0.7) {
-    dominantPattern = { en: 'Strongly harmonious — natural ease and support', hi: 'अत्यधिक सामंजस्यपूर्ण — स्वाभाविक सहजता', sa: 'अत्यन्तं सामञ्जस्यम्' };
+    dominantPattern = { en: 'Strongly harmonious  –  natural ease and support', hi: 'अत्यधिक सामंजस्यपूर्ण  –  स्वाभाविक सहजता', sa: 'अत्यन्तं सामञ्जस्यम्' };
   } else if (ratio >= 0.5) {
-    dominantPattern = { en: 'Balanced — mix of ease and growth areas', hi: 'संतुलित — सहजता और विकास का मिश्रण', sa: 'सन्तुलितम्' };
+    dominantPattern = { en: 'Balanced  –  mix of ease and growth areas', hi: 'संतुलित  –  सहजता और विकास का मिश्रण', sa: 'सन्तुलितम्' };
   } else if (ratio >= 0.3) {
-    dominantPattern = { en: 'Growth-oriented — challenges that strengthen bonds', hi: 'विकास-केंद्रित — बंधन मजबूत करने वाली चुनौतियां', sa: 'विकासप्रधानम्' };
+    dominantPattern = { en: 'Growth-oriented  –  challenges that strengthen bonds', hi: 'विकास-केंद्रित  –  बंधन मजबूत करने वाली चुनौतियां', sa: 'विकासप्रधानम्' };
   } else {
-    dominantPattern = { en: 'Intense — requires significant conscious effort', hi: 'तीव्र — महत्वपूर्ण सचेत प्रयास आवश्यक', sa: 'तीव्रम्' };
+    dominantPattern = { en: 'Intense  –  requires significant conscious effort', hi: 'तीव्र  –  महत्वपूर्ण सचेत प्रयास आवश्यक', sa: 'तीव्रम्' };
   }
 
   return { total: aspects.length, harmonious, tense, dominantPattern };

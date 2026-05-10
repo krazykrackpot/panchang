@@ -1,5 +1,5 @@
 /**
- * Sarvatobhadra Chakra — Classical 9x9 Grid Layout
+ * Sarvatobhadra Chakra  –  Classical 9x9 Grid Layout
  *
  * Based on Narada Samhita / Varahamihira tradition.
  * The grid maps 28 nakshatras (1-27 + Abhijit=28), 7 weekdays,
@@ -41,7 +41,7 @@ type CellDef = [SBCCellType, string, number?];
  *                  K1-K15 = Krishna Pratipada to Amavasya (16-30).
  */
 const GRID_DEF: CellDef[][] = [
-  // Row 0 — top border
+  // Row 0  –  top border
   [
     ['direction', 'NW'],
     ['tithi', 'K15', 30],
@@ -89,7 +89,7 @@ const GRID_DEF: CellDef[][] = [
     ['nakshatra', 'Dhanishta', 23],
     ['nakshatra', 'Shravana', 22],
   ],
-  // Row 4 — center row
+  // Row 4  –  center row
   [
     ['vowel', '\u090F'],       // ए
     ['weekday', 'Wed', 3],
@@ -101,7 +101,7 @@ const GRID_DEF: CellDef[][] = [
     ['weekday', 'Tue', 2],
     ['vowel', '\u0905\u0903'], // अः
   ],
-  // Row 5 — mirror of row 3
+  // Row 5  –  mirror of row 3
   [
     ['nakshatra', 'Ashlesha', 9],
     ['nakshatra', 'Ashwini', 1],
@@ -113,7 +113,7 @@ const GRID_DEF: CellDef[][] = [
     ['nakshatra', 'Dhanishta', 23],    // shared
     ['nakshatra', 'Shravana', 22],     // shared
   ],
-  // Row 6 — mirror of row 2
+  // Row 6  –  mirror of row 2
   [
     ['vowel', '\u0907'],       // इ
     ['weekday', 'Thu', 4],     // shared
@@ -125,7 +125,7 @@ const GRID_DEF: CellDef[][] = [
     ['weekday', 'Mon', 1],            // shared
     ['vowel', '\u0908'],       // ई
   ],
-  // Row 7 — mirror of row 1
+  // Row 7  –  mirror of row 1
   [
     ['tithi', 'K13', 28],
     ['nakshatra', 'Punarvasu', 7],     // shared
@@ -137,7 +137,7 @@ const GRID_DEF: CellDef[][] = [
     ['nakshatra', 'Revati', 27],       // shared
     ['tithi', 'S3', 3],
   ],
-  // Row 8 — bottom border
+  // Row 8  –  bottom border
   [
     ['direction', 'SW'],
     ['tithi', 'K12', 27],

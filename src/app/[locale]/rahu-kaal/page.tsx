@@ -280,7 +280,7 @@ export default function RahuKaalPage() {
                   </span>
                 </div>
                 <p className="text-2xl font-bold text-text-primary tracking-wide">
-                  {card.start} — {card.end}
+                  {card.start}  –  {card.end}
                 </p>
               </motion.div>
             );
@@ -310,7 +310,7 @@ export default function RahuKaalPage() {
                   key={seg.label}
                   className={`absolute top-0 h-full ${seg.color} rounded-sm`}
                   style={{ left: `${Math.max(0, leftPct)}%`, width: `${Math.min(widthPct, 100 - leftPct)}%` }}
-                  title={`${seg.label}: ${seg.start} — ${seg.end}`}
+                  title={`${seg.label}: ${seg.start}  –  ${seg.end}`}
                 />
               );
             })}

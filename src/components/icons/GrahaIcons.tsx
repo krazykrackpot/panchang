@@ -22,7 +22,7 @@ function Defs({ id, primary, secondary }: { id: string; primary: string; seconda
   );
 }
 
-// 0. Surya (Sun) — Radiant golden orb
+// 0. Surya (Sun)  –  Radiant golden orb
 export function SuryaIcon({ size = 48, className }: IconProps) {
   const c = '#e67e22', l = '#f5b041';
   return (
@@ -40,7 +40,7 @@ export function SuryaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 1. Chandra (Moon) — Silver crescent
+// 1. Chandra (Moon)  –  Silver crescent
 export function ChandraIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -55,7 +55,7 @@ export function ChandraIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 2. Mangal (Mars) — Red warrior shield
+// 2. Mangal (Mars)  –  Red warrior shield
 export function MangalIcon({ size = 48, className }: IconProps) {
   const c = '#e74c3c', l = '#f1948a';
   return (
@@ -69,7 +69,7 @@ export function MangalIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 3. Budha (Mercury) — Green winged messenger
+// 3. Budha (Mercury)  –  Green winged messenger
 export function BudhaIcon({ size = 48, className }: IconProps) {
   const c = '#2ecc71', l = '#82e0aa';
   return (
@@ -87,7 +87,7 @@ export function BudhaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 4. Guru/Brihaspati (Jupiter) — Golden wisdom orb
+// 4. Guru/Brihaspati (Jupiter)  –  Golden wisdom orb
 export function GuruIcon({ size = 48, className }: IconProps) {
   const c = '#f39c12', l = '#f9e79f';
   return (
@@ -106,7 +106,7 @@ export function GuruIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 5. Shukra (Venus) — Pearlescent circle with cross
+// 5. Shukra (Venus)  –  Pearlescent circle with cross
 export function ShukraIcon({ size = 48, className }: IconProps) {
   const c = '#e8e6e3', l = '#fdfefe';
   return (
@@ -122,7 +122,7 @@ export function ShukraIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 6. Shani (Saturn) — Blue ringed sphere
+// 6. Shani (Saturn)  –  Blue ringed sphere
 export function ShaniIcon({ size = 48, className }: IconProps) {
   const c = '#3498db', l = '#85c1e9';
   return (
@@ -141,7 +141,7 @@ export function ShaniIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 7. Rahu — Purple shadowy ascending node
+// 7. Rahu  –  Purple shadowy ascending node
 export function RahuIcon({ size = 48, className }: IconProps) {
   const c = '#8e44ad', l = '#c39bd3';
   return (
@@ -166,7 +166,7 @@ export function RahuIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 8. Ketu — Gray comet tail descending node
+// 8. Ketu  –  Gray comet tail descending node
 export function KetuIcon({ size = 48, className }: IconProps) {
   const c = '#95a5a6', l = '#d5dbdb';
   return (
@@ -180,7 +180,7 @@ export function KetuIcon({ size = 48, className }: IconProps) {
       <path d="M36 28C38 36 42 44 46 56" stroke={l} strokeWidth="2" opacity="0.5" strokeLinecap="round" />
       {/* Descending node symbol */}
       <path d="M16 16C24 24 40 24 48 16" stroke={l} strokeWidth="2" fill="none" opacity="0.4" />
-      {/* Headless indication — gap at top */}
+      {/* Headless indication  –  gap at top */}
       <path d="M26 14L32 8L38 14" stroke={c} strokeWidth="1.5" fill="none" opacity="0.3" />
     </svg>
   );

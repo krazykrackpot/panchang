@@ -84,7 +84,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           {mode === 'login' ? 'Sign In' : mode === 'signup' ? 'Create Account' : 'Reset Password'}
         </h2>
 
-        {/* Google sign-in — hide in forgot mode */}
+        {/* Google sign-in  –  hide in forgot mode */}
         {mode !== 'forgot' && (
           <>
             <button

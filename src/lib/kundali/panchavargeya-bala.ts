@@ -1,5 +1,5 @@
 /**
- * Panchavargeya Bala — Varahamihira's 5-chart dignity score
+ * Panchavargeya Bala  –  Varahamihira's 5-chart dignity score
  *
  * A planet earns points based on its dignity in 5 divisional charts:
  *   Rashi (D1) = 3 pts, Hora (D2) = 1.5 pts, Drekkana (D3) = 1 pts,
@@ -34,7 +34,7 @@ function dignityMultiplier(planetId: number, signId: number): { mult: number; bo
   if (DEBILITATION_SIGNS[planetId] === signId) return { mult: 0, bonus: 0 };
   // Own sign / Moolatrikona
   if (OWN_SIGNS[planetId]?.includes(signId)) return { mult: 1, bonus: 0 };
-  // Friend/Neutral/Enemy — simplified: sign lord relationship
+  // Friend/Neutral/Enemy  –  simplified: sign lord relationship
   const signLord = SIGN_LORDS[signId];
   if (signLord === planetId) return { mult: 1, bonus: 0 }; // own sign
   // Use a simplified friendship table for the 5 classical dignity levels
@@ -44,7 +44,7 @@ function dignityMultiplier(planetId: number, signId: number): { mult: number; bo
   return { mult: 0.5, bonus: 0 }; // neutral
 }
 
-/** Simplified friendship map — BPHS Ch.3 natural friendships */
+/** Simplified friendship map  –  BPHS Ch.3 natural friendships */
 const FRIENDSHIP_MAP: Record<number, { friends: number[]; enemies: number[] }> = {
   0: { friends: [1, 2, 4], enemies: [5, 6] },       // Sun
   1: { friends: [0, 3], enemies: [] },                // Moon

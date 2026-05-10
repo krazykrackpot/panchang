@@ -6,7 +6,7 @@
 //     ad serving and exposes us to GDPR enforcement.
 //   - We default everything to 'denied' on first paint (compliant by default).
 //   - On user accept, we update to 'granted' for ad/analytics storage.
-//   - On user reject, defaults stand — no update needed.
+//   - On user reject, defaults stand  –  no update needed.
 
 declare global {
   interface Window {
@@ -58,7 +58,7 @@ export function storeConsent(status: ConsentStatus): void {
   }
 }
 
-// Send a Consent Mode v2 update. Only needed for 'accepted' — a 'rejected' user
+// Send a Consent Mode v2 update. Only needed for 'accepted'  –  a 'rejected' user
 // matches the defaults set by CONSENT_DEFAULT_SCRIPT, so no signal is needed.
 export function updateConsentMode(status: ConsentStatus): void {
   if (typeof window === 'undefined') return;
@@ -66,7 +66,7 @@ export function updateConsentMode(status: ConsentStatus): void {
     // Defensive: the inline default script should have defined gtag before any
     // React code runs. If it's missing, AdSense will still serve non-personalized
     // ads (defaults stand), so degrade silently with a warning rather than throw.
-    console.warn('[cookie-consent] gtag not available — consent default script missing or blocked');
+    console.warn('[cookie-consent] gtag not available  –  consent default script missing or blocked');
     return;
   }
   if (status === 'accepted') {
@@ -99,7 +99,7 @@ export const CONSENT_DEFAULT_SCRIPT = `(function(){
         accepted = true;
       }
     }
-  } catch (e) { /* localStorage unavailable — treat as not-accepted */ }
+  } catch (e) { /* localStorage unavailable  –  treat as not-accepted */ }
   gtag('consent', 'default', {
     ad_storage: accepted ? 'granted' : 'denied',
     ad_user_data: accepted ? 'granted' : 'denied',

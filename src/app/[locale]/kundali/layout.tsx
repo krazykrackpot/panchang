@@ -18,7 +18,7 @@ export default async function KundaliLayout({ children, params }: { children: Re
   const softwareJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'Dekho Panchang — Kundali Generator',
+    name: 'Dekho Panchang  –  Kundali Generator',
     description: 'Free Vedic birth chart (Kundali) generator with planetary positions, Vimshottari Dasha, Shadbala, Ashtakavarga, divisional charts, and interpretive Tippanni.',
     url: `${BASE_URL}/${locale}/kundali`,
     applicationCategory: 'LifestyleApplication',

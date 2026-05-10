@@ -11,7 +11,7 @@ export default async function Layout({ children, params }: { children: React.Rea
   const { locale } = await params;
   return (
     <>
-      <LearnArticleLD route="/learn/tithis" locale={locale} title="Tithis — Lunar Days in Vedic Calendar" description="Learn about the 30 tithis and their significance in the Vedic calendar." />
+      <LearnArticleLD route="/learn/tithis" locale={locale} title="Tithis  –  Lunar Days in Vedic Calendar" description="Learn about the 30 tithis and their significance in the Vedic calendar." />
       {children}
     </>
   );

@@ -34,10 +34,10 @@ const LABELS = {
     bn: 'গোচর প্লেগ্রাউন্ড',
   },
   subtitle: {
-    en: 'Interactive Vedic transit sandbox — drag planets, see real-time gochara analysis',
-    hi: 'इंटरैक्टिव वैदिक गोचर — ग्रह खींचें, तुरंत विश्लेषण देखें',
-    ta: 'இடர்வீசு வேத கோசர — கிரகங்களை இழுத்து நேரடி பகுப்பாய்வு பெறுங்கள்',
-    bn: 'ইন্টারেক্টিভ বৈদিক গোচর — গ্রহ টানুন, তাৎক্ষণিক বিশ্লেষণ দেখুন',
+    en: 'Interactive Vedic transit sandbox  –  drag planets, see real-time gochara analysis',
+    hi: 'इंटरैक्टिव वैदिक गोचर  –  ग्रह खींचें, तुरंत विश्लेषण देखें',
+    ta: 'இடர்வீசு வேத கோசர  –  கிரகங்களை இழுத்து நேரடி பகுப்பாய்வு பெறுங்கள்',
+    bn: 'ইন্টারেক্টিভ বৈদিক গোচর  –  গ্রহ টানুন, তাৎক্ষণিক বিশ্লেষণ দেখুন',
   },
   step1: {
     en: 'Enter your birth details to load your natal chart',
@@ -244,7 +244,7 @@ export default function TransitPlaygroundPage() {
           <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-text-secondary">
             <div className="rounded-lg bg-bg-secondary/60 border border-gold-primary/10 p-3">
               <div className="text-gold-light font-semibold mb-1">Gochara Quality</div>
-              Measured from natal Moon. Good houses for each planet differ — Jupiter favours 2, 5, 7, 9, 11; Saturn favours 3, 6, 11.
+              Measured from natal Moon. Good houses for each planet differ  –  Jupiter favours 2, 5, 7, 9, 11; Saturn favours 3, 6, 11.
             </div>
             <div className="rounded-lg bg-bg-secondary/60 border border-gold-primary/10 p-3">
               <div className="text-gold-light font-semibold mb-1">Vedha Obstruction</div>

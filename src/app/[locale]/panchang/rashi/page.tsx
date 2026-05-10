@@ -316,7 +316,7 @@ function EclipticDiagram({ locale }: { locale: Locale }) {
       </p>
 
       <svg viewBox={`0 0 ${BAR_WIDTH} ${BAR_HEIGHT + 60}`} className="w-full" preserveAspectRatio="xMidYMid meet">
-        {/* 12 colored segments — sidereal zodiac bar */}
+        {/* 12 colored segments  –  sidereal zodiac bar */}
         {RASHIS.map((rashi, i) => {
           const color = ELEMENT_HEX_DIM[rashi.element.en] || 'rgba(240,212,138,0.1)';
           const strokeColor = ELEMENT_HEX[rashi.element.en] || '#f0d48a';
@@ -371,7 +371,7 @@ function EclipticDiagram({ locale }: { locale: Locale }) {
           360°
         </text>
 
-        {/* Animated ayanamsha pointer — shows where tropical 0° Aries falls */}
+        {/* Animated ayanamsha pointer  –  shows where tropical 0° Aries falls */}
         {(() => {
           // Tropical 0° = Sidereal (360 - ayanamsha)°, i.e. it falls in Pisces region
           const tropicalZeroInSidereal = 360 - AYANAMSHA;

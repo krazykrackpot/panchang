@@ -11,7 +11,7 @@ export default async function Layout({ children, params }: { children: React.Rea
   const { locale } = await params;
   return (
     <>
-      <LearnArticleLD route="/learn/guru" locale={locale} title="Guru — Jupiter in Vedic Astrology" description="Comprehensive guide to Guru (Jupiter) in Jyotish — dignities, significations, effects in 12 signs and 12 houses, dasha, remedies, and mythology." />
+      <LearnArticleLD route="/learn/guru" locale={locale} title="Guru  –  Jupiter in Vedic Astrology" description="Comprehensive guide to Guru (Jupiter) in Jyotish  –  dignities, significations, effects in 12 signs and 12 houses, dasha, remedies, and mythology." />
       {children}
     </>
   );

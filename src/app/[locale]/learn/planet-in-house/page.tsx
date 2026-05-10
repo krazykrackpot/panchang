@@ -74,8 +74,8 @@ const DATA: Record<string, string> = {
   '2-3': 'Extremely courageous. Dominates siblings. Success in sports, military, writing. Bold communicator.',
   '2-4': 'Property disputes, domestic unrest. Strong real estate holdings but emotional turbulence. Powerful vehicles.',
   '2-5': 'Sharp intellect but argumentative children. Success in competitive exams and sports. Speculative risks.',
-  '2-6': 'Excellent placement — destroys enemies, wins competitions. Strong health, success in surgery, military, or law.',
-  '2-7': 'Manglik dosha — passionate but argumentative marriage. Spouse is energetic. Business partnerships are combative.',
+  '2-6': 'Excellent placement  –  destroys enemies, wins competitions. Strong health, success in surgery, military, or law.',
+  '2-7': 'Manglik dosha  –  passionate but argumentative marriage. Spouse is energetic. Business partnerships are combative.',
   '2-8': 'Accident-prone, surgery likely. Interest in tantra and occult. Sudden inheritance. Chronic health issues.',
   '2-9': 'Fights for dharma, aggressive in beliefs. Conflict with father or guru. Travel to war zones or adventurous places.',
   '2-10': 'Powerful career in engineering, military, police, surgery. Action-oriented professional. Quick rise through boldness.',
@@ -85,7 +85,7 @@ const DATA: Record<string, string> = {
   // Mercury (3) in Houses 1-12
   '3-1': 'Witty, youthful, communicative personality. Business acumen. Looks younger than age. Good writer or speaker.',
   '3-2': 'Wealth through intellect, trade, or writing. Sweet and clever speech. Family of educated people.',
-  '3-3': 'Excellent placement — brilliant communicator. Success in media, writing, marketing. Strong bond with siblings.',
+  '3-3': 'Excellent placement  –  brilliant communicator. Success in media, writing, marketing. Strong bond with siblings.',
   '3-4': 'Intellectual home environment. Real estate through clever deals. Multiple residences or frequent home changes.',
   '3-5': 'Sharp intellect, good at mathematics and analysis. Talented children. Success in education, writing, and speculation.',
   '3-6': 'Solves problems analytically. Health issues from stress. Good for accounting, law, or medical diagnosis.',
@@ -100,7 +100,7 @@ const DATA: Record<string, string> = {
   '4-1': 'Wise, optimistic, generous personality. Good health and reputation. Natural teacher and counselor. Stout body.',
   '4-2': 'Wealth accumulates steadily. Eloquent and truthful speech. Strong, dharmic family. Excellent for finance.',
   '4-3': 'Wise communication, philosophical siblings. Success in teaching, publishing, or advisory roles.',
-  '4-4': 'Very auspicious — happy home, devoted mother, property wealth. Inner peace and emotional stability.',
+  '4-4': 'Very auspicious  –  happy home, devoted mother, property wealth. Inner peace and emotional stability.',
   '4-5': 'Best placement (Putra Karaka in Putra Bhava). Brilliant children, spiritual wisdom, success in education and mantras.',
   '4-6': 'Defeats enemies through wisdom. Health generally good but watch weight. Service through teaching or law.',
   '4-7': 'Wise, dharmic spouse. Happy marriage, respected partner. Success in partnerships and counseling.',
@@ -130,7 +130,7 @@ const DATA: Record<string, string> = {
   '6-3': 'Disciplined communication. Younger siblings face hardships. Courageous after delays. Success in technical writing.',
   '6-4': 'Difficult childhood, burdens from property or mother. Domestic unhappiness early. Stability comes after 36.',
   '6-5': 'Delayed children, pessimistic thinking. Strict with education. Success in traditional or structured learning fields.',
-  '6-6': 'Excellent placement — crushes enemies and disease through endurance. Long-lived. Success in labor, law, or service.',
+  '6-6': 'Excellent placement  –  crushes enemies and disease through endurance. Long-lived. Success in labor, law, or service.',
   '6-7': 'Delayed marriage, older or serious spouse. Marriage improves with time. Business partnerships require patience.',
   '6-8': 'Long life but chronic ailments. Deep karmic debts. Interest in death and rebirth topics. Inheritance delayed.',
   '6-9': 'Strained luck, irreligious or unconventional dharma. Father faces hardships. Late-blooming fortune after 36.',
@@ -306,7 +306,7 @@ export default function PlanetInHousePage() {
                       {planet.name} {t('inHouse')} {house.num}
                     </h3>
                     <span className="text-sm text-text-secondary/60">
-                      {planet.sa} — {house.sign} ({house.sa})
+                      {planet.sa}  –  {house.sign} ({house.sa})
                     </span>
                   </div>
                   <span className="ml-auto rounded-md bg-white/10 px-3 py-1 text-xs font-medium text-text-secondary">

@@ -16,19 +16,19 @@ import { Sun, Moon, Star, Crown, Clock, Layers, ArrowRightLeft, Compass } from '
 const t_ = LJ as unknown as Record<string, LocaleText>;
 
 const TAJIKA_YOGAS = [
-  { name: 'Ikkabal', hi: 'इक्क़बाल', desc: 'Planet in own sign / exaltation — strength' },
-  { name: 'Induvara', hi: 'इन्दुवार', desc: 'Planet only in Panapharas — moderate success' },
-  { name: 'Ithasala', hi: 'इत्थशाल', desc: 'Applying aspect — event will manifest' },
-  { name: 'Ishrafa', hi: 'ईशराफ', desc: 'Separating aspect — opportunity has passed' },
+  { name: 'Ikkabal', hi: 'इक्क़बाल', desc: 'Planet in own sign / exaltation  –  strength' },
+  { name: 'Induvara', hi: 'इन्दुवार', desc: 'Planet only in Panapharas  –  moderate success' },
+  { name: 'Ithasala', hi: 'इत्थशाल', desc: 'Applying aspect  –  event will manifest' },
+  { name: 'Ishrafa', hi: 'ईशराफ', desc: 'Separating aspect  –  opportunity has passed' },
   { name: 'Nakta', hi: 'नक्त', desc: 'Transfer of light through a third planet' },
   { name: 'Yamaya', hi: 'यमया', desc: 'Mutual application between two slow planets' },
   { name: 'Manau', hi: 'मनौ', desc: 'Translation of light (benefic intermediary)' },
-  { name: 'Kamboola', hi: 'कम्बूल', desc: 'Ithasala with Moon involved — strong' },
-  { name: 'Gairi Kamboola', hi: 'गैरी कम्बूल', desc: 'Moon separating — weaker Kamboola' },
+  { name: 'Kamboola', hi: 'कम्बूल', desc: 'Ithasala with Moon involved  –  strong' },
+  { name: 'Gairi Kamboola', hi: 'गैरी कम्बूल', desc: 'Moon separating  –  weaker Kamboola' },
   { name: 'Khalasara', hi: 'खलासरा', desc: 'Frustration by a third planet\'s interference' },
-  { name: 'Radda', hi: 'रद्द', desc: 'Refranation — planet turns retrograde before aspect' },
+  { name: 'Radda', hi: 'रद्द', desc: 'Refranation  –  planet turns retrograde before aspect' },
   { name: 'Duhphali Kuttha', hi: 'दुःफलि कुत्थ', desc: 'Both planets in unfavourable houses' },
-  { name: 'Dutthotthi Davira', hi: 'दुत्थोत्थि दवीर', desc: 'One planet combust — weakened yoga' },
+  { name: 'Dutthotthi Davira', hi: 'दुत्थोत्थि दवीर', desc: 'One planet combust  –  weakened yoga' },
   { name: 'Tambira', hi: 'तम्बीर', desc: 'Mutual exchange of signs (parivartana)' },
   { name: 'Kuttha', hi: 'कुत्थ', desc: 'Planet in 6th/8th/12th from its lord' },
   { name: 'Durpha', hi: 'दुर्फ', desc: 'No applying aspect from any planet' },
@@ -62,16 +62,16 @@ export default function LearnVarshaphalPage() {
       </div>
 
       <KeyTakeaway locale={locale} points={[
-        'Varshaphal is the Vedic solar return chart — cast for the exact moment the Sun returns to its natal degree each birthday.',
-        'The Varshesha (Year Lord) and Muntha placement together set the tone for the entire year — check them first.',
-        'Always overlay Varshaphal findings on the natal chart — a weak natal planet cannot deliver results even if strong in the annual chart.',
+        'Varshaphal is the Vedic solar return chart  –  cast for the exact moment the Sun returns to its natal degree each birthday.',
+        'The Varshesha (Year Lord) and Muntha placement together set the tone for the entire year  –  check them first.',
+        'Always overlay Varshaphal findings on the natal chart  –  a weak natal planet cannot deliver results even if strong in the annual chart.',
       ]} />
 
       <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
-        <BeginnerNote term="Solar Return" explanation="A chart cast for the exact moment the Sun returns to its birth position each year — the basis of Varshaphal" />
+        <BeginnerNote term="Solar Return" explanation="A chart cast for the exact moment the Sun returns to its birth position each year  –  the basis of Varshaphal" />
         <BeginnerNote term="Tajika" explanation="The Indo-Persian astrological system specialised in annual predictions, using its own yoga and aspect framework" />
-        <BeginnerNote term="Muntha" explanation="A sensitive point that advances one sign per year from the natal Lagna — its house placement indicates the year's direction" />
-        <BeginnerNote term="Mudda Dasha" explanation="Vimshottari Dasha compressed into one year — each planet rules a period of days or weeks" />
+        <BeginnerNote term="Muntha" explanation="A sensitive point that advances one sign per year from the natal Lagna  –  its house placement indicates the year's direction" />
+        <BeginnerNote term="Mudda Dasha" explanation="Vimshottari Dasha compressed into one year  –  each planet rules a period of days or weeks" />
       </div>
 
       {/* Intro */}
@@ -170,7 +170,7 @@ export default function LearnVarshaphalPage() {
             </div>
           ))}
         </div>
-        <ClassicalReference shortName="Tajika Neelakanthi" author="Neelakantha Daivagna" chapter="16th century CE — foundational Tajika text" />
+        <ClassicalReference shortName="Tajika Neelakanthi" author="Neelakantha Daivagna" chapter="16th century CE  –  foundational Tajika text" />
       </LessonSection>
 
       {/* Varshesha */}
@@ -198,10 +198,10 @@ export default function LearnVarshaphalPage() {
         <p style={bf}>{t('howToReadContent')}</p>
         <div className="mt-4 space-y-2">
           {[
-            { num: '1', text: isHi ? 'वर्षेश देखें — भाव, गरिमा, दृष्टि' : 'Check Varshesha — house, dignity, aspects', icon: Crown },
-            { num: '2', text: isHi ? 'मुन्था — भाव और स्वामी की दशा' : 'Examine Muntha — house and lord condition', icon: Compass },
-            { num: '3', text: isHi ? 'ताजिक योग — इत्थशाल/ईशराफ़' : 'Analyse Tajika Yogas — Ithasala / Ishrafa', icon: Layers },
-            { num: '4', text: isHi ? 'मुद्दा दशा — मासिक समय निर्धारण' : 'Check Mudda Dasha — monthly timing', icon: Clock },
+            { num: '1', text: isHi ? 'वर्षेश देखें  –  भाव, गरिमा, दृष्टि' : 'Check Varshesha  –  house, dignity, aspects', icon: Crown },
+            { num: '2', text: isHi ? 'मुन्था  –  भाव और स्वामी की दशा' : 'Examine Muntha  –  house and lord condition', icon: Compass },
+            { num: '3', text: isHi ? 'ताजिक योग  –  इत्थशाल/ईशराफ़' : 'Analyse Tajika Yogas  –  Ithasala / Ishrafa', icon: Layers },
+            { num: '4', text: isHi ? 'मुद्दा दशा  –  मासिक समय निर्धारण' : 'Check Mudda Dasha  –  monthly timing', icon: Clock },
             { num: '5', text: isHi ? 'जन्मकुण्डली से मिलान करें' : 'Overlay on natal chart for validation', icon: ArrowRightLeft },
           ].map((item) => (
             <div key={item.num} className="flex items-start gap-3">

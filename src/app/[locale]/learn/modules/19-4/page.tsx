@@ -27,7 +27,7 @@ function Page1() {
       <KeyTakeaway
         points={[
           'Hora Lagna (wealth reference), Ghati Lagna (power reference), and Varnada Lagna (life purpose) provide alternative starting points for chart analysis.',
-          'These special lagnas give Jaimini astrology its multi-dimensional character — each lagna reveals a different facet of life.',
+          'These special lagnas give Jaimini astrology its multi-dimensional character  –  each lagna reveals a different facet of life.',
         ]}
         locale={locale}
       />
@@ -37,18 +37,18 @@ function Page1() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>पाराशरी ज्योतिष में उदय लग्न सर्वाधिक महत्त्वपूर्ण एकमात्र सन्दर्भ बिन्दु है। जैमिनी ने अनेक विशेष लग्नों की शुरुआत करके इसका विस्तार किया, प्रत्येक जीवन का एक भिन्न आयाम प्रकट करता है। जन्म लग्न भौतिक स्व और सामान्य जीवन दिशा दिखाता है। किन्तु धन, शक्ति और उद्देश्य प्रत्येक को अपना सन्दर्भ बिन्दु चाहिए — और जैमिनी ने होरा लग्न (HL), घटी लग्न (GL), भाव लग्न (BL) और वर्णद लग्न (VL) द्वारा ठीक यही प्रदान किया।</>
-            : <>In Parashari astrology, the Ascendant (Lagna) is the single most important reference point. Jaimini expanded this by introducing multiple special lagnas, each revealing a different dimension of life. The birth Lagna shows the physical self and general life direction. But wealth, power, and purpose each deserve their own reference point — and Jaimini provided exactly that through Hora Lagna (HL), Ghati Lagna (GL), Bhava Lagna (BL), and Varnada Lagna (VL).</>}
+            ? <>पाराशरी ज्योतिष में उदय लग्न सर्वाधिक महत्त्वपूर्ण एकमात्र सन्दर्भ बिन्दु है। जैमिनी ने अनेक विशेष लग्नों की शुरुआत करके इसका विस्तार किया, प्रत्येक जीवन का एक भिन्न आयाम प्रकट करता है। जन्म लग्न भौतिक स्व और सामान्य जीवन दिशा दिखाता है। किन्तु धन, शक्ति और उद्देश्य प्रत्येक को अपना सन्दर्भ बिन्दु चाहिए  –  और जैमिनी ने होरा लग्न (HL), घटी लग्न (GL), भाव लग्न (BL) और वर्णद लग्न (VL) द्वारा ठीक यही प्रदान किया।</>
+            : <>In Parashari astrology, the Ascendant (Lagna) is the single most important reference point. Jaimini expanded this by introducing multiple special lagnas, each revealing a different dimension of life. The birth Lagna shows the physical self and general life direction. But wealth, power, and purpose each deserve their own reference point  –  and Jaimini provided exactly that through Hora Lagna (HL), Ghati Lagna (GL), Bhava Lagna (BL), and Varnada Lagna (VL).</>}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <><strong>होरा लग्न (HL)</strong> — धन सूचक। सूर्य की राशि से आरम्भ करके सूर्योदय से प्रत्येक होरा (2.5 घण्टे) में एक राशि आगे बढ़ता है। HL की स्थिति, उसका स्वामी और दृष्ट ग्रह जातक की आर्थिक दिशा प्रकट करते हैं। <strong>घटी लग्न (GL)</strong> — अधिकार और शक्ति सूचक। लग्न से आरम्भ करके सूर्योदय से प्रत्येक घटी (24 मिनट) में एक राशि आगे बढ़ता है। GL यश, सामाजिक प्रतिष्ठा और अधिकार प्रयोग की क्षमता दिखाता है।</>
-            : <><strong>Hora Lagna (HL)</strong> — The wealth indicator. It advances one sign per hora (2.5 hours) from sunrise, starting from the Sun&apos;s sign. The position of HL, its lord, and planets aspecting it reveal the native&apos;s financial trajectory. <strong>Ghati Lagna (GL)</strong> — The authority and power indicator. It advances one sign per ghati (24 minutes) from sunrise, starting from the lagna. GL shows fame, social standing, and the capacity to exercise authority.</>}
+            ? <><strong>होरा लग्न (HL)</strong>  –  धन सूचक। सूर्य की राशि से आरम्भ करके सूर्योदय से प्रत्येक होरा (2.5 घण्टे) में एक राशि आगे बढ़ता है। HL की स्थिति, उसका स्वामी और दृष्ट ग्रह जातक की आर्थिक दिशा प्रकट करते हैं। <strong>घटी लग्न (GL)</strong>  –  अधिकार और शक्ति सूचक। लग्न से आरम्भ करके सूर्योदय से प्रत्येक घटी (24 मिनट) में एक राशि आगे बढ़ता है। GL यश, सामाजिक प्रतिष्ठा और अधिकार प्रयोग की क्षमता दिखाता है।</>
+            : <><strong>Hora Lagna (HL)</strong>  –  The wealth indicator. It advances one sign per hora (2.5 hours) from sunrise, starting from the Sun&apos;s sign. The position of HL, its lord, and planets aspecting it reveal the native&apos;s financial trajectory. <strong>Ghati Lagna (GL)</strong>  –  The authority and power indicator. It advances one sign per ghati (24 minutes) from sunrise, starting from the lagna. GL shows fame, social standing, and the capacity to exercise authority.</>}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Bhava Lagna — The Second Wealth Point', hi: 'भाव लग्न — द्वितीय धन बिन्दु', sa: 'भाव लग्न — द्वितीय धन बिन्दु' }, locale)}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'Bhava Lagna  –  The Second Wealth Point', hi: 'भाव लग्न  –  द्वितीय धन बिन्दु', sa: 'भाव लग्न  –  द्वितीय धन बिन्दु' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           Bhava Lagna (BL) is another wealth and sustenance indicator that complements Hora Lagna. While HL focuses on accumulated wealth, BL often relates to ongoing sustenance and the ability to maintain oneself. Some Jaimini scholars consider BL particularly relevant for assessing the native&apos;s capacity to earn a livelihood, as distinct from inherited or windfall wealth shown by HL. When both HL and BL fall in strong signs with benefic aspects, the native enjoys robust financial health throughout life.
         </p>
@@ -83,7 +83,7 @@ function Page2() {
         </p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
-            ? <><span className="text-gold-light font-medium">दिया गया:</span> जन्म दोपहर 2:00 बजे, सूर्योदय प्रातः 6:00 बजे, सूर्य वृषभ में, लग्न कन्या। होरा लग्न = सिंह 6°। घटी लग्न = वृषभ। इस जातक का धन बिन्दु (HL) सिंह में है — शक्तिशाली, शासकीय, और यदि सूर्य शक्तिशाली है तो धन नेतृत्व या सरकार से आता है। अधिकार बिन्दु (GL) वृषभ में है — स्थिर, धीरे-धीरे बनने वाला अधिकार।</>
+            ? <><span className="text-gold-light font-medium">दिया गया:</span> जन्म दोपहर 2:00 बजे, सूर्योदय प्रातः 6:00 बजे, सूर्य वृषभ में, लग्न कन्या। होरा लग्न = सिंह 6°। घटी लग्न = वृषभ। इस जातक का धन बिन्दु (HL) सिंह में है  –  शक्तिशाली, शासकीय, और यदि सूर्य शक्तिशाली है तो धन नेतृत्व या सरकार से आता है। अधिकार बिन्दु (GL) वृषभ में है  –  स्थिर, धीरे-धीरे बनने वाला अधिकार।</>
             : <><span className="text-gold-light font-medium">Ghati Lagna:</span> Elapsed time = 8 hours = 480 minutes. Ghatis = 480 / 24 = 20. Advance 20 signs from Virgo (Lagna): 20 mod 12 = 8 signs. Virgo + 8 = Taurus. GL = Taurus.</>}
         </p>
       </section>
@@ -107,12 +107,12 @@ function Page3() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {tl({ en: 'Varnada Lagna — The Most Complex', hi: 'वर्णद लग्न — सर्वाधिक जटिल', sa: 'वर्णद लग्न — सर्वाधिक जटिल' }, locale)}
+          {tl({ en: 'Varnada Lagna  –  The Most Complex', hi: 'वर्णद लग्न  –  सर्वाधिक जटिल', sa: 'वर्णद लग्न  –  सर्वाधिक जटिल' }, locale)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
             ? <>वर्णद लग्न की गणना जन्म लग्न और होरा लग्न के सम्बन्ध से होती है। क्रमविधि इस पर निर्भर करती है कि ये दो बिन्दु विषम या सम राशियों में हैं। <strong>नियम 1:</strong> यदि लग्न और HL दोनों विषम राशियों में हों, मेष से प्रत्येक तक आगे गिनें, गणनाओं का योग करें, और वह योग मेष से आगे गिनें। <strong>नियम 2:</strong> यदि दोनों सम में हों, मीन से प्रत्येक तक पीछे गिनें, योग करें, और वह योग मीन से पीछे गिनें। <strong>नियम 3:</strong> यदि एक विषम और दूसरा सम हो, मिश्र विधि प्रयुक्त होती है।</>
-            : <>Varnada Lagna is computed from the relationship between the birth Lagna and the Hora Lagna. The algorithm depends on whether these two points fall in odd or even signs. <strong>Rule 1:</strong> If both Lagna and HL are in odd signs, count forward from Aries to each, sum the counts, and count that sum forward from Aries. <strong>Rule 2:</strong> If both are in even signs, count backward from Pisces to each, sum the counts, and count that sum backward from Pisces. <strong>Rule 3:</strong> If one is odd and the other even, the calculation uses a mixed method — count forward for the odd sign and backward for the even, then apply the sum appropriately.</>}
+            : <>Varnada Lagna is computed from the relationship between the birth Lagna and the Hora Lagna. The algorithm depends on whether these two points fall in odd or even signs. <strong>Rule 1:</strong> If both Lagna and HL are in odd signs, count forward from Aries to each, sum the counts, and count that sum forward from Aries. <strong>Rule 2:</strong> If both are in even signs, count backward from Pisces to each, sum the counts, and count that sum backward from Pisces. <strong>Rule 3:</strong> If one is odd and the other even, the calculation uses a mixed method  –  count forward for the odd sign and backward for the even, then apply the sum appropriately.</>}
         </p>
       </section>
 
@@ -120,7 +120,7 @@ function Page3() {
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Worked Example', hi: 'कार्यान्वित उदाहरण', sa: 'सोदाहरणं कार्यम्' }, locale)}</h4>
         <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={tl({ en: 'Example Chart', hi: 'उदाहरण कुण्डली', sa: 'उदाहरणकुण्डली' }, locale)} />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
-          <span className="text-gold-light font-medium">Given:</span> Lagna in Aries (odd, sign 1), Hora Lagna in Leo (odd, sign 5). Both are odd — use Rule 1.
+          <span className="text-gold-light font-medium">Given:</span> Lagna in Aries (odd, sign 1), Hora Lagna in Leo (odd, sign 5). Both are odd  –  use Rule 1.
         </p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Step 1:</span> Count from Aries to Lagna (Aries) = 1. Count from Aries to HL (Leo) = 5.
@@ -130,8 +130,8 @@ function Page3() {
         </p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
-            ? <><span className="text-gold-light font-medium">परिणाम:</span> वर्णद लग्न = कन्या। कन्या का स्वामी (बुध) और कन्या को दृष्ट करने वाले ग्रह इस जातक की सच्ची पुकार प्रकट करते हैं — बुध बौद्धिक, संचार-सम्बन्धी या विश्लेषणात्मक वृत्ति का संकेत देता है।</>
-            : <><span className="text-gold-light font-medium">Result:</span> Varnada Lagna = Virgo. The lord of Virgo (Mercury) and planets aspecting Virgo reveal this native&apos;s true calling — Mercury suggests an intellectual, communicative, or analytical vocation.</>}
+            ? <><span className="text-gold-light font-medium">परिणाम:</span> वर्णद लग्न = कन्या। कन्या का स्वामी (बुध) और कन्या को दृष्ट करने वाले ग्रह इस जातक की सच्ची पुकार प्रकट करते हैं  –  बुध बौद्धिक, संचार-सम्बन्धी या विश्लेषणात्मक वृत्ति का संकेत देता है।</>
+            : <><span className="text-gold-light font-medium">Result:</span> Varnada Lagna = Virgo. The lord of Virgo (Mercury) and planets aspecting Virgo reveal this native&apos;s true calling  –  Mercury suggests an intellectual, communicative, or analytical vocation.</>}
         </p>
       </section>
 
@@ -139,8 +139,8 @@ function Page3() {
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{tl({ en: 'The Purpose of Varnada', hi: 'वर्णद का उद्देश्य', sa: 'वर्णद का उद्देश्य' }, locale)}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           {isHi
-            ? <>वर्णद लग्न जातक का &quot;वर्ण&quot; निर्धारित करता है — जाति के अर्थ में नहीं, बल्कि समाज में व्यक्ति की मूलभूत पुकार या योगदान के रूप में। इसका स्वामी और दृष्ट ग्रह प्रकट करते हैं कि व्यक्ति स्वाभाविक रूप से बौद्धिक कार्यों (ब्राह्मण गुण), नेतृत्व और शासन (क्षत्रिय गुण), वाणिज्य और उद्यम (वैश्य गुण), या सेवा और शिल्प (शूद्र गुण) की ओर उन्मुख है। आधुनिक व्याख्या में यह कठोर सामाजिक श्रेणियों के बजाय व्यापक जीविका आदर्शरूपों में अनुवादित होता है।</>
-            : <>Varnada Lagna determines the native&apos;s &quot;varna&quot; — not in the caste sense, but as one&apos;s fundamental calling or contribution to society. Its lord and the planets aspecting it reveal whether the person is naturally inclined toward intellectual pursuits (Brahmana quality), leadership and governance (Kshatriya quality), commerce and enterprise (Vaishya quality), or service and craftsmanship (Shudra quality). In modern interpretation, this translates to broad career archetypes rather than rigid social categories.</>}
+            ? <>वर्णद लग्न जातक का &quot;वर्ण&quot; निर्धारित करता है  –  जाति के अर्थ में नहीं, बल्कि समाज में व्यक्ति की मूलभूत पुकार या योगदान के रूप में। इसका स्वामी और दृष्ट ग्रह प्रकट करते हैं कि व्यक्ति स्वाभाविक रूप से बौद्धिक कार्यों (ब्राह्मण गुण), नेतृत्व और शासन (क्षत्रिय गुण), वाणिज्य और उद्यम (वैश्य गुण), या सेवा और शिल्प (शूद्र गुण) की ओर उन्मुख है। आधुनिक व्याख्या में यह कठोर सामाजिक श्रेणियों के बजाय व्यापक जीविका आदर्शरूपों में अनुवादित होता है।</>
+            : <>Varnada Lagna determines the native&apos;s &quot;varna&quot;  –  not in the caste sense, but as one&apos;s fundamental calling or contribution to society. Its lord and the planets aspecting it reveal whether the person is naturally inclined toward intellectual pursuits (Brahmana quality), leadership and governance (Kshatriya quality), commerce and enterprise (Vaishya quality), or service and craftsmanship (Shudra quality). In modern interpretation, this translates to broad career archetypes rather than rigid social categories.</>}
         </p>
       </section>
 
@@ -148,8 +148,8 @@ function Page3() {
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{tl({ en: 'Modern Relevance', hi: 'आधुनिक प्रासंगिकता', sa: 'आधुनिकी प्रासङ्गिकता' }, locale)}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
-            ? <>विशेष लग्न कुण्डली व्याख्या में उल्लेखनीय गहराई जोड़ते हैं। यद्यपि उन्हें सटीक जन्म समय चाहिए (विशेषकर घटी लग्न को), आधुनिक सॉफ्टवेयर चारों विशेष लग्नों की तत्काल गणना कर सकता है। परामर्श में ज्योतिषी पा सकता है कि जन्म लग्न एक जीविका दिशा सुझाता है जबकि होरा लग्न और वर्णद लग्न दूसरी ओर संकेत करते हैं — प्रकट करते हुए कि जातक जीविकार्थ क्या करता है और उसकी आत्मा वास्तव में क्या चाहती है, इसके बीच का तनाव। ये बहुविध दृष्टिकोण वैदिक ज्योतिष में जैमिनी के महानतम योगदानों में से एक हैं।</>
-            : <>Special Lagnas add remarkable depth to chart interpretation. While they require accurate birth time (especially Ghati Lagna), modern software can compute all four special lagnas instantly. In consultation, an astrologer might find that the birth Lagna suggests one career direction while the Hora Lagna and Varnada Lagna point to another — revealing the tension between what the native does for a living versus what their soul truly desires. These multiple perspectives are one of Jaimini&apos;s greatest contributions to Vedic astrology.</>}
+            ? <>विशेष लग्न कुण्डली व्याख्या में उल्लेखनीय गहराई जोड़ते हैं। यद्यपि उन्हें सटीक जन्म समय चाहिए (विशेषकर घटी लग्न को), आधुनिक सॉफ्टवेयर चारों विशेष लग्नों की तत्काल गणना कर सकता है। परामर्श में ज्योतिषी पा सकता है कि जन्म लग्न एक जीविका दिशा सुझाता है जबकि होरा लग्न और वर्णद लग्न दूसरी ओर संकेत करते हैं  –  प्रकट करते हुए कि जातक जीविकार्थ क्या करता है और उसकी आत्मा वास्तव में क्या चाहती है, इसके बीच का तनाव। ये बहुविध दृष्टिकोण वैदिक ज्योतिष में जैमिनी के महानतम योगदानों में से एक हैं।</>
+            : <>Special Lagnas add remarkable depth to chart interpretation. While they require accurate birth time (especially Ghati Lagna), modern software can compute all four special lagnas instantly. In consultation, an astrologer might find that the birth Lagna suggests one career direction while the Hora Lagna and Varnada Lagna point to another  –  revealing the tension between what the native does for a living versus what their soul truly desires. These multiple perspectives are one of Jaimini&apos;s greatest contributions to Vedic astrology.</>}
         </p>
       </section>
     </div>

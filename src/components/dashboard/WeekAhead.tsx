@@ -237,7 +237,7 @@ export default function WeekAhead({ ascendantSign, locale, hasBirthData }: WeekA
     return computeWeekForecast(ascendantSign, locale);
   }, [ascendantSign, locale, hasBirthData]);
 
-  // No birth data — show CTA
+  // No birth data  –  show CTA
   if (!hasBirthData) {
     return (
       <motion.div

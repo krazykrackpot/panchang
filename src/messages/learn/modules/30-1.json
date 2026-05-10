@@ -1,15 +1,15 @@
 {
   "title": {
-    "en": "Reading BPHS — Structure & Method",
-    "hi": "BPHS पढ़ना — संरचना और पद्धति",
+    "en": "Reading BPHS  –  Structure & Method",
+    "hi": "BPHS पढ़ना  –  संरचना और पद्धति",
     "sa": "बृहत्पाराशरहोराशास्त्रपठनम्",
-    "mai": "BPHS पढ़ना — संरचना और पद्धति",
-    "mr": "BPHS वाचन — रचना आणि पद्धती",
-    "ta": "BPHS படித்தல் — அமைப்பு & முறை",
-    "te": "BPHS చదవడం — నిర్మాణం & పద్ధతి",
-    "bn": "BPHS পড়া — গঠন ও পদ্ধতি",
-    "kn": "BPHS ಓದುವಿಕೆ — ರಚನೆ ಮತ್ತು ವಿಧಾನ",
-    "gu": "BPHS વાંચન — રચના અને પદ્ધતિ"
+    "mai": "BPHS पढ़ना  –  संरचना और पद्धति",
+    "mr": "BPHS वाचन  –  रचना आणि पद्धती",
+    "ta": "BPHS படித்தல்  –  அமைப்பு & முறை",
+    "te": "BPHS చదవడం  –  నిర్మాణం & పద్ధతి",
+    "bn": "BPHS পড়া  –  গঠন ও পদ্ধতি",
+    "kn": "BPHS ಓದುವಿಕೆ  –  ರಚನೆ ಮತ್ತು ವಿಧಾನ",
+    "gu": "BPHS વાંચન  –  રચના અને પદ્ધતિ"
   },
   "subtitle": {
     "en": "How Brihat Parashara Hora Shastra is organized across 100 chapters, the key reference chapters every student must know, and practical methods for looking up classical rules",
@@ -76,7 +76,7 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Chapters 3-4 of BPHS cover planetary characteristics and dignities. Chapter 3 (Graha Guna Swarupa) defines natural relationships, while Chapter 4 (Rashi Swarupa) gives exaltation, debilitation, and moolatrikona degrees. These are the most referenced chapters in all of Jyotish — every kundali analysis begins with dignity assessment.",
+        "en": "Chapters 3-4 of BPHS cover planetary characteristics and dignities. Chapter 3 (Graha Guna Swarupa) defines natural relationships, while Chapter 4 (Rashi Swarupa) gives exaltation, debilitation, and moolatrikona degrees. These are the most referenced chapters in all of Jyotish  –  every kundali analysis begins with dignity assessment.",
         "hi": "BPHS के अध्याय 3-4 ग्रहीय विशेषताओं और गरिमा को कवर करते हैं। अध्याय 3 प्राकृतिक सम्बन्ध परिभाषित करता है, जबकि अध्याय 4 उच्च, नीच और मूलत्रिकोण अंश देता है।"
       },
       "options": [
@@ -114,7 +114,7 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "False. While BPHS is primarily a hora (natal) text, it contains chapters on muhurta and remedial measures as well. However, it does not cover prashna in depth — for that, texts like Prashna Marga and Tajika Nilakanthi are the primary references. BPHS's scope is broader than just natal: it covers dashas, transits, yogas, vargas, strengths, and remedies.",
+        "en": "False. While BPHS is primarily a hora (natal) text, it contains chapters on muhurta and remedial measures as well. However, it does not cover prashna in depth  –  for that, texts like Prashna Marga and Tajika Nilakanthi are the primary references. BPHS's scope is broader than just natal: it covers dashas, transits, yogas, vargas, strengths, and remedies.",
         "hi": "असत्य। यद्यपि BPHS मुख्य रूप से होरा (जन्म) ग्रन्थ है, इसमें मुहूर्त और उपचारात्मक उपायों पर भी अध्याय हैं। हालाँकि, यह प्रश्न ज्योतिष को विस्तार से कवर नहीं करता।"
       }
     }

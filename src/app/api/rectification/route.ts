@@ -13,7 +13,7 @@ import { getServerSupabase } from '@/lib/supabase/server';
 import { rectifyBirthTime } from '@/lib/rectification/rectification-engine';
 import type { RectificationInput, LifeEvent } from '@/lib/rectification/types';
 
-// Valid event types — must match the LifeEvent['type'] union
+// Valid event types  –  must match the LifeEvent['type'] union
 const VALID_EVENT_TYPES = new Set<LifeEvent['type']>([
   'marriage', 'child_birth', 'career_change', 'illness', 'parent_death',
   'relocation', 'financial_gain', 'financial_loss', 'education',

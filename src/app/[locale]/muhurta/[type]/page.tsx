@@ -21,7 +21,7 @@ const L: Record<string, Record<string, string>> = {
     findDate: 'Find Your Date with Muhurta AI',
     findDateDesc: 'Our AI-powered engine scans time windows and scores them 0-100 based on Panchang, transits, hora, and choghadiya for your specific activity.',
     upcomingDates: 'Upcoming Auspicious Dates in 2026',
-    upcomingDesc: 'Based on traditional Vedic muhurat rules — favorable nakshatras, tithis, weekdays, and planetary conditions.',
+    upcomingDesc: 'Based on traditional Vedic muhurat rules  –  favorable nakshatras, tithis, weekdays, and planetary conditions.',
     guidance: 'Traditional Guidance',
     guidanceDesc: 'What to consider according to Vedic texts and Jyotish Shastras.',
     faq: 'Frequently Asked Questions',
@@ -35,7 +35,7 @@ const L: Record<string, Record<string, string>> = {
     findDate: 'मुहूर्त AI से अपनी तिथि खोजें',
     findDateDesc: 'हमारा AI-संचालित इंजन आपकी विशिष्ट गतिविधि के लिए पंचांग, गोचर, होरा और चौघड़िया के आधार पर समय खंडों को 0-100 अंक देता है।',
     upcomingDates: '2026 की आगामी शुभ तिथियां',
-    upcomingDesc: 'पारम्परिक वैदिक मुहूर्त नियमों पर आधारित — अनुकूल नक्षत्र, तिथि, वार और ग्रह स्थिति।',
+    upcomingDesc: 'पारम्परिक वैदिक मुहूर्त नियमों पर आधारित  –  अनुकूल नक्षत्र, तिथि, वार और ग्रह स्थिति।',
     guidance: 'पारम्परिक मार्गदर्शन',
     guidanceDesc: 'वैदिक ग्रन्थों और ज्योतिष शास्त्रों के अनुसार ध्यान देने योग्य बातें।',
     faq: 'अक्सर पूछे जाने वाले प्रश्न',
@@ -49,7 +49,7 @@ const L: Record<string, Record<string, string>> = {
     findDate: 'मुहूर्तकृत्रिमबुद्ध्या स्वतिथिं अन्विष्यतु',
     findDateDesc: 'अस्माकं AI-संचालितयन्त्रं भवतः विशिष्टकार्यस्य कृते पञ्चाङ्गगोचरहोराचौघड़ियाधारेण समयखण्डान् ० तः १०० अङ्कान् ददाति।',
     upcomingDates: '२०२६ वर्षस्य आगामिशुभतिथयः',
-    upcomingDesc: 'पारम्परिकवैदिकमुहूर्तनियमाधारिताः — अनुकूलनक्षत्रतिथिवारग्रहस्थितयः।',
+    upcomingDesc: 'पारम्परिकवैदिकमुहूर्तनियमाधारिताः  –  अनुकूलनक्षत्रतिथिवारग्रहस्थितयः।',
     guidance: 'पारम्परिकमार्गदर्शनम्',
     guidanceDesc: 'वैदिकग्रन्थानां ज्योतिषशास्त्राणां च अनुसारं विचारणीयाः विषयाः।',
     faq: 'प्रायः पृच्छ्यमानाः प्रश्नाः',
@@ -85,7 +85,7 @@ export default async function MuhurtaTypePage({ params }: { params: Promise<{ lo
 
   // JSON-LD structured data
   const toolLD = generateToolLD(
-    `${info.name.en} — Auspicious Dates 2026`,
+    `${info.name.en}  –  Auspicious Dates 2026`,
     info.description.en,
     `https://dekhopanchang.com/${locale}/muhurta/${type}`,
   );

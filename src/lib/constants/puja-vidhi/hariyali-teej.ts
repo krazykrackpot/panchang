@@ -39,9 +39,9 @@ export const HARIYALI_TEEJ_PUJA: PujaVidhi = {
       step: 1,
       title: { en: 'Shringar (Adornment)', hi: 'श्रृंगार', sa: 'शृङ्गारः' },
       description: {
-        en: 'Wear green clothes (saree or lehenga) and complete the Solah Shringar — the 16 traditional adornments including bindi, sindoor, kajal, bangles, anklets, mehndi, nose ring, earrings, necklace, etc. Green represents the monsoon season and fertility.',
-        hi: 'हरे वस्त्र (साड़ी या लहँगा) पहनें और सोलह श्रृंगार पूरा करें — बिन्दी, सिन्दूर, काजल, चूड़ियाँ, पायल, मेहँदी, नथ, बालियाँ, हार आदि 16 पारम्परिक श्रृंगार। हरा रंग वर्षा ऋतु और उर्वरता का प्रतीक है।',
-        sa: 'हरितवस्त्राणि (शाटिकां लहङ्गां वा) धारयेत् षोडशशृङ्गारं च पूरयेत् — बिन्दुः सिन्दूरं कज्जलं कङ्कणानि नूपुराणि मेन्धिका नासिकाभूषणं कर्णाभूषणानि हारः इत्यादीनि। हरितवर्णो वर्षाऋतोः उर्वरतायाश्च प्रतीकः।',
+        en: 'Wear green clothes (saree or lehenga) and complete the Solah Shringar  –  the 16 traditional adornments including bindi, sindoor, kajal, bangles, anklets, mehndi, nose ring, earrings, necklace, etc. Green represents the monsoon season and fertility.',
+        hi: 'हरे वस्त्र (साड़ी या लहँगा) पहनें और सोलह श्रृंगार पूरा करें  –  बिन्दी, सिन्दूर, काजल, चूड़ियाँ, पायल, मेहँदी, नथ, बालियाँ, हार आदि 16 पारम्परिक श्रृंगार। हरा रंग वर्षा ऋतु और उर्वरता का प्रतीक है।',
+        sa: 'हरितवस्त्राणि (शाटिकां लहङ्गां वा) धारयेत् षोडशशृङ्गारं च पूरयेत्  –  बिन्दुः सिन्दूरं कज्जलं कङ्कणानि नूपुराणि मेन्धिका नासिकाभूषणं कर्णाभूषणानि हारः इत्यादीनि। हरितवर्णो वर्षाऋतोः उर्वरतायाश्च प्रतीकः।',
       },
       duration: '30 min',
       essential: true,
@@ -87,9 +87,9 @@ export const HARIYALI_TEEJ_PUJA: PujaVidhi = {
       step: 5,
       title: { en: 'Mehndi Application', hi: 'मेहँदी लगाना', sa: 'मेन्धिकालेपनम्' },
       description: {
-        en: 'Apply mehndi (henna) on hands and feet with intricate designs. This is a central tradition of Teej — the darker the mehndi colour, the deeper the husband\'s love, as per folk belief.',
-        hi: 'हाथों और पैरों पर सुन्दर बारीक डिज़ाइन में मेहँदी लगाएँ। यह तीज की प्रमुख परम्परा है — लोक मान्यता के अनुसार, मेहँदी का रंग जितना गहरा हो, पति का प्रेम उतना गहरा होता है।',
-        sa: 'हस्तयोः पादयोश्च सूक्ष्मचित्रैः मेन्धिकां लेपयेत्। इदं तीजस्य प्रधानपरम्परा — लोकमान्यतानुसारं मेन्धिकायाः वर्णो यथा गभीरो भवति तथा पतिप्रेम गभीरं भवति।',
+        en: 'Apply mehndi (henna) on hands and feet with intricate designs. This is a central tradition of Teej  –  the darker the mehndi colour, the deeper the husband\'s love, as per folk belief.',
+        hi: 'हाथों और पैरों पर सुन्दर बारीक डिज़ाइन में मेहँदी लगाएँ। यह तीज की प्रमुख परम्परा है  –  लोक मान्यता के अनुसार, मेहँदी का रंग जितना गहरा हो, पति का प्रेम उतना गहरा होता है।',
+        sa: 'हस्तयोः पादयोश्च सूक्ष्मचित्रैः मेन्धिकां लेपयेत्। इदं तीजस्य प्रधानपरम्परा  –  लोकमान्यतानुसारं मेन्धिकायाः वर्णो यथा गभीरो भवति तथा पतिप्रेम गभीरं भवति।',
       },
       duration: '30 min',
       essential: true,
@@ -133,9 +133,9 @@ export const HARIYALI_TEEJ_PUJA: PujaVidhi = {
       devanagari: 'सर्वमङ्गलमाङ्गल्ये शिवे सर्वार्थसाधिके।\nशरण्ये त्र्यम्बके गौरि नारायणि नमोऽस्तु ते॥',
       iast: 'sarvamaṅgalamāṅgalye śive sarvārthasādhike |\nśaraṇye tryambake gauri nārāyaṇi namo\'stu te ||',
       meaning: {
-        en: 'O auspicious one, giver of all auspiciousness, O Shiva (consort of Shiva), fulfiller of all desires! O refuge, three-eyed Gauri, O Narayani — salutations to you.',
-        hi: 'हे सबसे मङ्गलमयी, सर्वार्थसाधिके, शिवे! हे शरणदात्री, त्र्यम्बके, गौरी, नारायणी — आपको नमस्कार।',
-        sa: 'हे सर्वमङ्गले, सर्वार्थसाधिके शिवे! हे शरण्ये त्र्यम्बके गौरि नारायणि — तुभ्यं नमः।',
+        en: 'O auspicious one, giver of all auspiciousness, O Shiva (consort of Shiva), fulfiller of all desires! O refuge, three-eyed Gauri, O Narayani  –  salutations to you.',
+        hi: 'हे सबसे मङ्गलमयी, सर्वार्थसाधिके, शिवे! हे शरणदात्री, त्र्यम्बके, गौरी, नारायणी  –  आपको नमस्कार।',
+        sa: 'हे सर्वमङ्गले, सर्वार्थसाधिके शिवे! हे शरण्ये त्र्यम्बके गौरि नारायणि  –  तुभ्यं नमः।',
       },
       usage: {
         en: 'Recite while offering sindoor and bangles to Goddess Parvati.',
@@ -158,9 +158,9 @@ export const HARIYALI_TEEJ_PUJA: PujaVidhi = {
       sa: 'इदं व्रतं मुख्यतः सौभाग्यवतीनां स्त्रीणां कृते। अविवाहिताः कन्याः सत्पतिप्राप्तये आचरेयुः किन्तु वृद्धानां मार्गदर्शने भिन्नविधिम् अनुसरेयुः।',
     },
     {
-      en: 'Green colour is mandatory in attire and decorations — it symbolises Shravan\'s greenery and marital prosperity.',
-      hi: 'वस्त्र और सजावट में हरा रंग अनिवार्य है — यह श्रावण की हरियाली और वैवाहिक समृद्धि का प्रतीक है।',
-      sa: 'वस्त्रेषु सज्जायां च हरितवर्णः अनिवार्यः — स श्रावणहरितिमायाः वैवाहिकसमृद्धेश्च प्रतीकः।',
+      en: 'Green colour is mandatory in attire and decorations  –  it symbolises Shravan\'s greenery and marital prosperity.',
+      hi: 'वस्त्र और सजावट में हरा रंग अनिवार्य है  –  यह श्रावण की हरियाली और वैवाहिक समृद्धि का प्रतीक है।',
+      sa: 'वस्त्रेषु सज्जायां च हरितवर्णः अनिवार्यः  –  स श्रावणहरितिमायाः वैवाहिकसमृद्धेश्च प्रतीकः।',
     },
     {
       en: 'The nirjala (waterless) form of the vrat is the strictest. If health does not permit, phalahar (fruit diet) is acceptable.',

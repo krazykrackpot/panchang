@@ -47,8 +47,8 @@ const PLANET_REMEDIES: PlanetRemedy[] = [
     deity: { en: 'Surya Dev', hi: 'सूर्य देव', sa: 'सूर्यदेवः' },
     day: { en: 'Sunday', hi: 'रविवार', sa: 'रविवासरः' },
     color_val: { en: 'Red, Orange, Saffron', hi: 'लाल, नारंगी, केसरी', sa: 'रक्तः, नारङ्गः, कुङ्कुमवर्णः' },
-    fast: { en: 'Sunday — single meal, no salt', hi: 'रविवार — एक भोजन, नमक रहित', sa: 'रविवासरे — एकभोजनम्, लवणरहितम्' },
-    charity: { en: 'Wheat, jaggery, red cloth, copper — to father figure, on Sunday before sunset', hi: 'गेहूँ, गुड़, लाल वस्त्र, ताम्बा — पितृ तुल्य व्यक्ति को, रविवार सूर्यास्त से पूर्व', sa: 'गोधूमः, गुडः, रक्तवस्त्रम्, ताम्रम् — पितृतुल्यव्यक्तये, रविवासरे सूर्यास्तात् पूर्वम्' },
+    fast: { en: 'Sunday  –  single meal, no salt', hi: 'रविवार  –  एक भोजन, नमक रहित', sa: 'रविवासरे  –  एकभोजनम्, लवणरहितम्' },
+    charity: { en: 'Wheat, jaggery, red cloth, copper  –  to father figure, on Sunday before sunset', hi: 'गेहूँ, गुड़, लाल वस्त्र, ताम्बा  –  पितृ तुल्य व्यक्ति को, रविवार सूर्यास्त से पूर्व', sa: 'गोधूमः, गुडः, रक्तवस्त्रम्, ताम्रम्  –  पितृतुल्यव्यक्तये, रविवासरे सूर्यास्तात् पूर्वम्' },
     direction: { en: 'East', hi: 'पूर्व', sa: 'प्राची' },
   },
   {
@@ -62,8 +62,8 @@ const PLANET_REMEDIES: PlanetRemedy[] = [
     deity: { en: 'Shiva (Soma aspect)', hi: 'शिव (सोम स्वरूप)', sa: 'शिवः (सोमस्वरूपः)' },
     day: { en: 'Monday', hi: 'सोमवार', sa: 'सोमवासरः' },
     color_val: { en: 'White, Silver', hi: 'सफ़ेद, चाँदी', sa: 'श्वेतः, रजतवर्णः' },
-    fast: { en: 'Monday — milk and fruit diet', hi: 'सोमवार — दूध और फलाहार', sa: 'सोमवासरे — दुग्धफलाहारः' },
-    charity: { en: 'Rice, milk, white cloth, silver — to mother figure, on Monday evening', hi: 'चावल, दूध, सफ़ेद वस्त्र, चाँदी — मातृ तुल्य व्यक्ति को, सोमवार सायं', sa: 'तण्डुलाः, दुग्धम्, श्वेतवस्त्रम्, रजतम् — मातृतुल्यव्यक्तये, सोमवासरे सायम्' },
+    fast: { en: 'Monday  –  milk and fruit diet', hi: 'सोमवार  –  दूध और फलाहार', sa: 'सोमवासरे  –  दुग्धफलाहारः' },
+    charity: { en: 'Rice, milk, white cloth, silver  –  to mother figure, on Monday evening', hi: 'चावल, दूध, सफ़ेद वस्त्र, चाँदी  –  मातृ तुल्य व्यक्ति को, सोमवार सायं', sa: 'तण्डुलाः, दुग्धम्, श्वेतवस्त्रम्, रजतम्  –  मातृतुल्यव्यक्तये, सोमवासरे सायम्' },
     direction: { en: 'Northwest', hi: 'वायव्य', sa: 'वायव्यदिशा' },
   },
   {
@@ -77,8 +77,8 @@ const PLANET_REMEDIES: PlanetRemedy[] = [
     deity: { en: 'Hanuman, Kartikeya', hi: 'हनुमान, कार्तिकेय', sa: 'हनुमान्, कार्तिकेयः' },
     day: { en: 'Tuesday', hi: 'मंगलवार', sa: 'मङ्गलवासरः' },
     color_val: { en: 'Red', hi: 'लाल', sa: 'रक्तवर्णः' },
-    fast: { en: 'Tuesday — avoid non-veg, sweet foods', hi: 'मंगलवार — माँसाहार वर्जित, मीठा भोजन', sa: 'मङ्गलवासरे — मांसाहारवर्जनम्' },
-    charity: { en: 'Red lentils (masoor dal), jaggery, red cloth — on Tuesday to young men', hi: 'लाल मसूर दाल, गुड़, लाल वस्त्र — मंगलवार को युवकों को', sa: 'रक्तमसूरदालम्, गुडः, रक्तवस्त्रम् — मङ्गलवासरे युवभ्यः' },
+    fast: { en: 'Tuesday  –  avoid non-veg, sweet foods', hi: 'मंगलवार  –  माँसाहार वर्जित, मीठा भोजन', sa: 'मङ्गलवासरे  –  मांसाहारवर्जनम्' },
+    charity: { en: 'Red lentils (masoor dal), jaggery, red cloth  –  on Tuesday to young men', hi: 'लाल मसूर दाल, गुड़, लाल वस्त्र  –  मंगलवार को युवकों को', sa: 'रक्तमसूरदालम्, गुडः, रक्तवस्त्रम्  –  मङ्गलवासरे युवभ्यः' },
     direction: { en: 'South', hi: 'दक्षिण', sa: 'दक्षिणा' },
   },
   {
@@ -92,8 +92,8 @@ const PLANET_REMEDIES: PlanetRemedy[] = [
     deity: { en: 'Vishnu', hi: 'विष्णु', sa: 'विष्णुः' },
     day: { en: 'Wednesday', hi: 'बुधवार', sa: 'बुधवासरः' },
     color_val: { en: 'Green', hi: 'हरा', sa: 'हरितवर्णः' },
-    fast: { en: 'Wednesday — green vegetable diet', hi: 'बुधवार — हरी सब्ज़ियों का आहार', sa: 'बुधवासरे — हरितशाकाहारः' },
-    charity: { en: 'Green moong dal, green cloth — on Wednesday to students', hi: 'हरी मूंग दाल, हरा वस्त्र — बुधवार को विद्यार्थियों को', sa: 'हरितमूङ्गदालम्, हरितवस्त्रम् — बुधवासरे विद्यार्थिभ्यः' },
+    fast: { en: 'Wednesday  –  green vegetable diet', hi: 'बुधवार  –  हरी सब्ज़ियों का आहार', sa: 'बुधवासरे  –  हरितशाकाहारः' },
+    charity: { en: 'Green moong dal, green cloth  –  on Wednesday to students', hi: 'हरी मूंग दाल, हरा वस्त्र  –  बुधवार को विद्यार्थियों को', sa: 'हरितमूङ्गदालम्, हरितवस्त्रम्  –  बुधवासरे विद्यार्थिभ्यः' },
     direction: { en: 'North', hi: 'उत्तर', sa: 'उत्तरा' },
   },
   {
@@ -107,8 +107,8 @@ const PLANET_REMEDIES: PlanetRemedy[] = [
     deity: { en: 'Brihaspati, Dakshinamurthy', hi: 'बृहस्पति, दक्षिणामूर्ति', sa: 'बृहस्पतिः, दक्षिणामूर्तिः' },
     day: { en: 'Thursday', hi: 'गुरुवार', sa: 'गुरुवासरः' },
     color_val: { en: 'Yellow', hi: 'पीला', sa: 'पीतवर्णः' },
-    fast: { en: 'Thursday — banana and chana dal diet', hi: 'गुरुवार — केला और चने की दाल', sa: 'गुरुवासरे — कदलीचणकदालाहारः' },
-    charity: { en: 'Yellow items, turmeric, gram dal, banana — on Thursday to Brahmins/teachers', hi: 'पीली वस्तुएं, हल्दी, चने की दाल, केला — गुरुवार को ब्राह्मणों/शिक्षकों को', sa: 'पीतवस्तूनि, हरिद्रा, चणकदालम्, कदली — गुरुवासरे ब्राह्मणेभ्यः/शिक्षकेभ्यः' },
+    fast: { en: 'Thursday  –  banana and chana dal diet', hi: 'गुरुवार  –  केला और चने की दाल', sa: 'गुरुवासरे  –  कदलीचणकदालाहारः' },
+    charity: { en: 'Yellow items, turmeric, gram dal, banana  –  on Thursday to Brahmins/teachers', hi: 'पीली वस्तुएं, हल्दी, चने की दाल, केला  –  गुरुवार को ब्राह्मणों/शिक्षकों को', sa: 'पीतवस्तूनि, हरिद्रा, चणकदालम्, कदली  –  गुरुवासरे ब्राह्मणेभ्यः/शिक्षकेभ्यः' },
     direction: { en: 'Northeast', hi: 'ईशान', sa: 'ईशानदिशा' },
   },
   {
@@ -122,8 +122,8 @@ const PLANET_REMEDIES: PlanetRemedy[] = [
     deity: { en: 'Lakshmi', hi: 'लक्ष्मी', sa: 'लक्ष्मीः' },
     day: { en: 'Friday', hi: 'शुक्रवार', sa: 'शुक्रवासरः' },
     color_val: { en: 'White, Pastel', hi: 'सफ़ेद, पेस्टल', sa: 'श्वेतः, मन्दवर्णः' },
-    fast: { en: 'Friday — sweet rice or kheer diet', hi: 'शुक्रवार — मीठे चावल या खीर', sa: 'शुक्रवासरे — मधुरान्नं पायसं वा' },
-    charity: { en: 'Rice, sugar, white clothes, silver — on Friday to women', hi: 'चावल, शक्कर, सफ़ेद वस्त्र, चाँदी — शुक्रवार को महिलाओं को', sa: 'तण्डुलाः, शर्करा, श्वेतवस्त्राणि, रजतम् — शुक्रवासरे स्त्रीभ्यः' },
+    fast: { en: 'Friday  –  sweet rice or kheer diet', hi: 'शुक्रवार  –  मीठे चावल या खीर', sa: 'शुक्रवासरे  –  मधुरान्नं पायसं वा' },
+    charity: { en: 'Rice, sugar, white clothes, silver  –  on Friday to women', hi: 'चावल, शक्कर, सफ़ेद वस्त्र, चाँदी  –  शुक्रवार को महिलाओं को', sa: 'तण्डुलाः, शर्करा, श्वेतवस्त्राणि, रजतम्  –  शुक्रवासरे स्त्रीभ्यः' },
     direction: { en: 'Southeast', hi: 'आग्नेय', sa: 'आग्नेयदिशा' },
   },
   {
@@ -137,12 +137,12 @@ const PLANET_REMEDIES: PlanetRemedy[] = [
     deity: { en: 'Shani Dev, Hanuman', hi: 'शनि देव, हनुमान', sa: 'शनिदेवः, हनुमान्' },
     day: { en: 'Saturday', hi: 'शनिवार', sa: 'शनिवासरः' },
     color_val: { en: 'Black, Dark Blue, Violet', hi: 'काला, गहरा नीला, बैंगनी', sa: 'कृष्णः, गाढनीलः, नीललोहितः' },
-    fast: { en: 'Saturday — sesame and mustard oil based diet', hi: 'शनिवार — तिल और सरसों तेल आधारित भोजन', sa: 'शनिवासरे — तिलसर्षपतैलाधारितभोजनम्' },
-    charity: { en: 'Mustard oil, black sesame, iron tools, black cloth — on Saturday to laborers/servants', hi: 'सरसों तेल, काले तिल, लोहे के उपकरण, काला वस्त्र — शनिवार को श्रमिकों/सेवकों को', sa: 'सर्षपतैलम्, कृष्णतिलाः, लोहोपकरणानि, कृष्णवस्त्रम् — शनिवासरे श्रमिकेभ्यः' },
+    fast: { en: 'Saturday  –  sesame and mustard oil based diet', hi: 'शनिवार  –  तिल और सरसों तेल आधारित भोजन', sa: 'शनिवासरे  –  तिलसर्षपतैलाधारितभोजनम्' },
+    charity: { en: 'Mustard oil, black sesame, iron tools, black cloth  –  on Saturday to laborers/servants', hi: 'सरसों तेल, काले तिल, लोहे के उपकरण, काला वस्त्र  –  शनिवार को श्रमिकों/सेवकों को', sa: 'सर्षपतैलम्, कृष्णतिलाः, लोहोपकरणानि, कृष्णवस्त्रम्  –  शनिवासरे श्रमिकेभ्यः' },
     direction: { en: 'West', hi: 'पश्चिम', sa: 'पश्चिमा' },
     warning: {
-      en: 'MUST do a 7-day trial before wearing permanently. An incompatible Blue Sapphire can cause severe harm — accidents, financial loss, health issues. Test by keeping the stone under your pillow for 7 nights. If you have nightmares or bad events, do NOT wear it.',
-      hi: 'स्थायी रूप से पहनने से पहले 7 दिन का परीक्षण अनिवार्य। असंगत नीलम गम्भीर हानि पहुँचा सकता है — दुर्घटना, आर्थिक हानि, स्वास्थ्य समस्या। 7 रात तकिये के नीचे रखकर परीक्षण करें। बुरे सपने या दुर्घटना हो तो न पहनें।',
+      en: 'MUST do a 7-day trial before wearing permanently. An incompatible Blue Sapphire can cause severe harm  –  accidents, financial loss, health issues. Test by keeping the stone under your pillow for 7 nights. If you have nightmares or bad events, do NOT wear it.',
+      hi: 'स्थायी रूप से पहनने से पहले 7 दिन का परीक्षण अनिवार्य। असंगत नीलम गम्भीर हानि पहुँचा सकता है  –  दुर्घटना, आर्थिक हानि, स्वास्थ्य समस्या। 7 रात तकिये के नीचे रखकर परीक्षण करें। बुरे सपने या दुर्घटना हो तो न पहनें।',
       sa: 'स्थायिधारणात् पूर्वं 7-दिवसपरीक्षणम् अनिवार्यम्। असंगतनीलं गम्भीरहानिं कर्तुं शक्नोति।'
     },
   },
@@ -157,8 +157,8 @@ const PLANET_REMEDIES: PlanetRemedy[] = [
     deity: { en: 'Durga, Saraswati', hi: 'दुर्गा, सरस्वती', sa: 'दुर्गा, सरस्वती' },
     day: { en: 'Saturday (Rahu Kaal)', hi: 'शनिवार (राहु काल)', sa: 'शनिवासरः (राहुकालः)' },
     color_val: { en: 'Grey, Smoke', hi: 'स्लेटी, धुँआ', sa: 'धूम्रवर्णः' },
-    fast: { en: 'Saturday — avoid non-veg, alcohol', hi: 'शनिवार — माँसाहार, मद्य वर्जित', sa: 'शनिवासरे — मांसमद्यवर्जनम्' },
-    charity: { en: 'Blue cloth, sesame, coconut — to outcasts / underprivileged, on Saturday', hi: 'नीला वस्त्र, तिल, नारियल — वंचितों/दलितों को, शनिवार', sa: 'नीलवस्त्रम्, तिलाः, नारिकेलम् — वञ्चितेभ्यः, शनिवासरे' },
+    fast: { en: 'Saturday  –  avoid non-veg, alcohol', hi: 'शनिवार  –  माँसाहार, मद्य वर्जित', sa: 'शनिवासरे  –  मांसमद्यवर्जनम्' },
+    charity: { en: 'Blue cloth, sesame, coconut  –  to outcasts / underprivileged, on Saturday', hi: 'नीला वस्त्र, तिल, नारियल  –  वंचितों/दलितों को, शनिवार', sa: 'नीलवस्त्रम्, तिलाः, नारिकेलम्  –  वञ्चितेभ्यः, शनिवासरे' },
   },
   {
     id: 'ketu', name: { en: 'Ketu', hi: 'केतु', sa: 'केतुः' },
@@ -171,8 +171,8 @@ const PLANET_REMEDIES: PlanetRemedy[] = [
     deity: { en: 'Ganesha', hi: 'गणेश', sa: 'गणेशः' },
     day: { en: 'Thursday / Tuesday', hi: 'गुरुवार / मंगलवार', sa: 'गुरुवासरः / मङ्गलवासरः' },
     color_val: { en: 'Grey, Multicolored', hi: 'स्लेटी, बहुरंगी', sa: 'धूम्रवर्णः, बहुवर्णः' },
-    fast: { en: 'Tuesday or Thursday — simple vegetarian', hi: 'मंगलवार या गुरुवार — सादा शाकाहार', sa: 'मङ्गलवासरे गुरुवासरे वा — सादशाकाहारः' },
-    charity: { en: 'Blanket, multi-colored cloth, seven grains — to monks / sadhus', hi: 'कम्बल, बहुरंगी वस्त्र, सप्तान्न — साधुओं/सन्यासियों को', sa: 'कम्बलम्, बहुवर्णवस्त्रम्, सप्तधान्यम् — साधुभ्यः/संन्यासिभ्यः' },
+    fast: { en: 'Tuesday or Thursday  –  simple vegetarian', hi: 'मंगलवार या गुरुवार  –  सादा शाकाहार', sa: 'मङ्गलवासरे गुरुवासरे वा  –  सादशाकाहारः' },
+    charity: { en: 'Blanket, multi-colored cloth, seven grains  –  to monks / sadhus', hi: 'कम्बल, बहुरंगी वस्त्र, सप्तान्न  –  साधुओं/सन्यासियों को', sa: 'कम्बलम्, बहुवर्णवस्त्रम्, सप्तधान्यम्  –  साधुभ्यः/संन्यासिभ्यः' },
   },
 ];
 
@@ -190,7 +190,7 @@ function RemedyCard({ planet, locale }: { planet: PlanetRemedy; locale: Locale }
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
   const rows: { icon: React.ReactNode; label: string; value: string; highlight?: boolean }[] = [
-    { icon: <Gem className="w-4 h-4" />, label: t('gemstone'), value: `${planet.gemstone[locale]} — ${planet.gemstoneSpec[locale]}` },
+    { icon: <Gem className="w-4 h-4" />, label: t('gemstone'), value: `${planet.gemstone[locale]}  –  ${planet.gemstoneSpec[locale]}` },
     ...(planet.substitute[locale] ? [{ icon: <Sparkles className="w-4 h-4" />, label: t('substitute'), value: planet.substitute[locale] }] : []),
     { icon: <Music className="w-4 h-4" />, label: t('beejMantra'), value: planet.beejMantra, highlight: true },
     { icon: <span className="text-xs font-bold w-4 text-center">#</span>, label: t('repetitions'), value: planet.repetitions },

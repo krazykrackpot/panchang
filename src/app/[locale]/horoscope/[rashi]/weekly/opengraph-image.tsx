@@ -56,10 +56,10 @@ function getCurrentWeekRange(): { start: Date; end: Date } {
 
 // ─── OG Image ───────────────────────────────────────────────────────────────
 
-export const alt = 'Weekly Horoscope — Dekho Panchang';
+export const alt = 'Weekly Horoscope  –  Dekho Panchang';
 
 export default async function Image({ params }: { params: Promise<{ locale: string; rashi: string }> }) {
-  // params is a Promise in Next.js 16 — must be awaited before accessing properties.
+  // params is a Promise in Next.js 16  –  must be awaited before accessing properties.
   const { rashi: rashiSlug } = await params;
 
   const rashiInfo = getRashiInfo(rashiSlug ?? '');

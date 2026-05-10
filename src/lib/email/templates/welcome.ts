@@ -1,4 +1,4 @@
-// Welcome email — sent after first sign-in + onboarding
+// Welcome email  –  sent after first sign-in + onboarding
 
 export function welcomeEmail({ name, moonSign, nakshatra, ascendant }: {
   name: string;
@@ -26,7 +26,7 @@ export function welcomeEmail({ name, moonSign, nakshatra, ascendant }: {
     <div style="background:#111638;border:1px solid rgba(212,168,83,0.2);border-radius:16px;padding:32px;margin-bottom:24px;">
       <h2 style="color:#f0d48a;font-size:22px;margin:0 0 16px;">Namaste, ${name}!</h2>
       <p style="color:#e8e6e3;font-size:15px;line-height:1.6;margin:0 0 16px;">
-        Welcome to Dekho Panchang — your personal Vedic astrology companion. We're delighted to have you.
+        Welcome to Dekho Panchang  –  your personal Vedic astrology companion. We're delighted to have you.
       </p>
 
       ${hasBirthData ? `
@@ -85,7 +85,7 @@ export function welcomeEmail({ name, moonSign, nakshatra, ascendant }: {
 
     <!-- Footer -->
     <div style="text-align:center;padding-top:24px;border-top:1px solid rgba(212,168,83,0.1);">
-      <p style="color:#9b97a0;font-size:12px;margin:0;">Dekho Panchang — Vedic Astrology Companion</p>
+      <p style="color:#9b97a0;font-size:12px;margin:0;">Dekho Panchang  –  Vedic Astrology Companion</p>
       <p style="color:#9b97a0;font-size:11px;margin:8px 0 0;">
         <a href="https://dekhopanchang.com/en/settings" style="color:#d4a853;text-decoration:none;">Manage email preferences</a>
         &nbsp;|&nbsp;

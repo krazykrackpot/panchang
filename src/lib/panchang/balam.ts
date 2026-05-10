@@ -30,14 +30,14 @@ export const FAVORABLE_HOUSES = new Set([3, 6, 7, 9, 10, 11]);
 const CHANDRABALAM_DESC: Record<string, { fav: LocaleText; unfav: LocaleText }> = {
   default: {
     fav: {
-      en: 'Moon transit is favorable — good for new activities',
-      hi: 'चन्द्र गोचर अनुकूल — नए कार्यों के लिए शुभ',
-      sa: 'चन्द्रगोचरः अनुकूलः — नूतनकार्येषु शुभः',
+      en: 'Moon transit is favorable  –  good for new activities',
+      hi: 'चन्द्र गोचर अनुकूल  –  नए कार्यों के लिए शुभ',
+      sa: 'चन्द्रगोचरः अनुकूलः  –  नूतनकार्येषु शुभः',
     },
     unfav: {
-      en: 'Moon transit is unfavorable — exercise caution',
-      hi: 'चन्द्र गोचर प्रतिकूल — सावधानी बरतें',
-      sa: 'चन्द्रगोचरः प्रतिकूलः — सावधानतां कुर्यात्',
+      en: 'Moon transit is unfavorable  –  exercise caution',
+      hi: 'चन्द्र गोचर प्रतिकूल  –  सावधानी बरतें',
+      sa: 'चन्द्रगोचरः प्रतिकूलः  –  सावधानतां कुर्यात्',
     },
   },
 };
@@ -67,8 +67,8 @@ export function computeBalam(
       taraName: TARA_NAMES[tara - 1],
       favorable: taraFavorable,
       description: taraFavorable
-        ? { en: `${TARA_NAMES[tara - 1].en} Tara — auspicious for activities`, hi: `${TARA_NAMES[tara - 1].hi} तारा — कार्यों के लिए शुभ`, sa: `${TARA_NAMES[tara - 1].sa} तारा — कार्येषु शुभः` }
-        : { en: `${TARA_NAMES[tara - 1].en} Tara — exercise caution`, hi: `${TARA_NAMES[tara - 1].hi} तारा — सावधानी बरतें`, sa: `${TARA_NAMES[tara - 1].sa} तारा — सावधानतां कुर्यात्` },
+        ? { en: `${TARA_NAMES[tara - 1].en} Tara  –  auspicious for activities`, hi: `${TARA_NAMES[tara - 1].hi} तारा  –  कार्यों के लिए शुभ`, sa: `${TARA_NAMES[tara - 1].sa} तारा  –  कार्येषु शुभः` }
+        : { en: `${TARA_NAMES[tara - 1].en} Tara  –  exercise caution`, hi: `${TARA_NAMES[tara - 1].hi} तारा  –  सावधानी बरतें`, sa: `${TARA_NAMES[tara - 1].sa} तारा  –  सावधानतां कुर्यात्` },
     },
   };
 }

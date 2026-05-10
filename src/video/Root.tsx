@@ -4,7 +4,7 @@ import { ShortVideo } from './compositions/ShortVideo';
 import type { ShortVideoProps, VideoScript } from './types';
 
 /**
- * Remotion entry point — registers all video compositions.
+ * Remotion entry point  –  registers all video compositions.
  *
  * The "Short" composition renders vertical 9:16 videos (1080x1920)
  * at 30fps. Duration is dynamically calculated from the script's

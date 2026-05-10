@@ -143,7 +143,7 @@ export function generateDailyPanchangEmail(data: DailyPanchangEmailData): { subj
   const textPrimary = '#e6e2d8';
   const textSecondary = '#8a8478';
 
-  const subject = tl({ en: `${data.vara} Panchang — ${data.tithi}, ${data.nakshatra} | ${data.date}`, hi: `${data.vara} पंचांग — ${data.tithi}, ${data.nakshatra} | ${data.date}`, sa: `${data.vara} पंचांग — ${data.tithi}, ${data.nakshatra} | ${data.date}` }, data.locale);
+  const subject = tl({ en: `${data.vara} Panchang  –  ${data.tithi}, ${data.nakshatra} | ${data.date}`, hi: `${data.vara} पंचांग  –  ${data.tithi}, ${data.nakshatra} | ${data.date}`, sa: `${data.vara} पंचांग  –  ${data.tithi}, ${data.nakshatra} | ${data.date}` }, data.locale);
 
   const row = (label: string, value: string, color = goldLight) =>
     `<tr><td style="padding:6px 12px;color:${textSecondary};width:35%;font-size:12px">${label}</td><td style="padding:6px 12px;color:${color};font-weight:600;font-size:13px">${value}</td></tr>`;
@@ -161,7 +161,7 @@ export function generateDailyPanchangEmail(data: DailyPanchangEmailData): { subj
       ${tl({ en: 'Daily Panchang', hi: 'दैनिक पंचांग', sa: 'दैनिक पंचांग' }, data.locale)}
     </div>
     <div style="color:${textSecondary};font-size:12px;margin-top:4px">
-      ${data.vara} — ${data.date} — ${data.locationName}
+      ${data.vara}  –  ${data.date}  –  ${data.locationName}
     </div>
   </div>
 
@@ -197,7 +197,7 @@ export function generateDailyPanchangEmail(data: DailyPanchangEmailData): { subj
   <div style="background:${bgCard};border-radius:12px;margin:16px 0;border:1px solid #e74c3c33;overflow:hidden">
     <div style="padding:10px 12px;background:#e74c3c15;border-bottom:1px solid #e74c3c15">
       <span style="color:#e74c3c;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;font-weight:700">
-        ${tl({ en: 'Caution — Inauspicious Periods', hi: 'सावधान — अशुभ काल', sa: 'सावधान — अशुभ काल' }, data.locale)}
+        ${tl({ en: 'Caution  –  Inauspicious Periods', hi: 'सावधान  –  अशुभ काल', sa: 'सावधान  –  अशुभ काल' }, data.locale)}
       </span>
     </div>
     <table style="width:100%;border-collapse:collapse">
@@ -212,7 +212,7 @@ export function generateDailyPanchangEmail(data: DailyPanchangEmailData): { subj
   <div style="background:${bgCard};border-radius:12px;margin:16px 0;border:1px solid #2ecc7133;overflow:hidden">
     <div style="padding:10px 12px;background:#2ecc7115;border-bottom:1px solid #2ecc7115">
       <span style="color:#2ecc71;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;font-weight:700">
-        ${tl({ en: 'Auspicious — Amrit Kalam', hi: 'शुभ — अमृत काल', sa: 'शुभ — अमृत काल' }, data.locale)}
+        ${tl({ en: 'Auspicious  –  Amrit Kalam', hi: 'शुभ  –  अमृत काल', sa: 'शुभ  –  अमृत काल' }, data.locale)}
       </span>
     </div>
     <div style="padding:10px 12px;color:#2ecc71;font-weight:700;font-size:14px;font-family:monospace">
@@ -232,7 +232,7 @@ export function generateDailyPanchangEmail(data: DailyPanchangEmailData): { subj
 
   <!-- Footer -->
   <div style="text-align:center;padding:16px 0;border-top:1px solid ${gold}15;color:${textSecondary};font-size:10px">
-    <div>Dekho Panchang — dekhopanchang.com</div>
+    <div>Dekho Panchang  –  dekhopanchang.com</div>
     <div style="margin-top:8px">
       <a href="${data.unsubscribeUrl}" style="color:${textSecondary};text-decoration:underline;font-size:10px">
         ${tl({ en: 'Unsubscribe', hi: 'सदस्यता समाप्त करें', sa: 'सदस्यता समाप्त करें' }, data.locale)}

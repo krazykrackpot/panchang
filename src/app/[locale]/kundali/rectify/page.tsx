@@ -15,7 +15,7 @@ import type { Locale } from '@/types/panchang';
 import type { RectificationResult, LifeEvent } from '@/lib/rectification/types';
 
 // ---------------------------------------------------------------------------
-// Static labels (inline i18n — Lesson I: no new namespace needed)
+// Static labels (inline i18n  –  Lesson I: no new namespace needed)
 // ---------------------------------------------------------------------------
 const LABELS = {
   en: {
@@ -616,7 +616,7 @@ export default function RectifyPage() {
                                 : 'bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border-gold-primary/12'
                             }`}
                           >
-                            {/* Card header — clickable to expand */}
+                            {/* Card header  –  clickable to expand */}
                             <button
                               onClick={() => setExpandedCandidate(isExpanded ? null : idx)}
                               className="w-full text-left p-5"
@@ -630,7 +630,7 @@ export default function RectifyPage() {
                                     </span>
                                   )}
 
-                                  {/* Time — large */}
+                                  {/* Time  –  large */}
                                   <div className="text-3xl font-mono font-black text-gold-light leading-none mb-2">
                                     {candidate.birthTime}
                                   </div>
@@ -674,7 +674,7 @@ export default function RectifyPage() {
                               </div>
                             </button>
 
-                            {/* Event matches — expandable */}
+                            {/* Event matches  –  expandable */}
                             <AnimatePresence>
                               {isExpanded && candidate.eventMatches.length > 0 && (
                                 <motion.div

@@ -5,7 +5,7 @@ import { GRAHAS } from '@/lib/constants/grahas';
 import type { CurrentPeriodReading, Rating } from '@/lib/kundali/domain-synthesis/types';
 
 // ---------------------------------------------------------------------------
-// Rating colour map — static, no dynamic Tailwind classes
+// Rating colour map  –  static, no dynamic Tailwind classes
 // ---------------------------------------------------------------------------
 
 const RATING_COLORS: Record<Rating, string> = {
@@ -68,7 +68,7 @@ export default function CurrentPeriodCard({ period, locale }: CurrentPeriodCardP
   // so we use the dashaSummary text)
   const dashaSummaryText = tl(period.dashaSummary, locale);
 
-  // Transit pills — show nature-based coloring
+  // Transit pills  –  show nature-based coloring
   const transitNatureBadge: Record<string, string> = {
     benefic: RATING_BADGE_CLASSES.uttama,
     malefic: RATING_BADGE_CLASSES.atyadhama,
@@ -112,7 +112,7 @@ export default function CurrentPeriodCard({ period, locale }: CurrentPeriodCardP
           </div>
         </div>
 
-        {/* Right section — period score visual */}
+        {/* Right section  –  period score visual */}
         <div className="flex-shrink-0 sm:w-48 flex flex-col items-end justify-center gap-2">
           {/* Score display */}
           <div className="text-right">
@@ -165,7 +165,7 @@ export default function CurrentPeriodCard({ period, locale }: CurrentPeriodCardP
                   style={{ backgroundColor: RATING_COLORS[transit.nature === 'benefic' ? 'uttama' : transit.nature === 'malefic' ? 'atyadhama' : 'madhyama'] }}
                 />
                 {planetName(transit.planetId, locale)}
-                {transit.summary ? ` — ${tl(transit.summary, locale)}` : ''}
+                {transit.summary ? `  –  ${tl(transit.summary, locale)}` : ''}
               </span>
             ))}
           </div>

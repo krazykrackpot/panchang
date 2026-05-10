@@ -1,5 +1,5 @@
 /**
- * LLM Prompt Builder — Domain Synthesis
+ * LLM Prompt Builder  –  Domain Synthesis
  *
  * Constructs the system prompt and user payload for the Personal Pandit
  * AI reading call. Each life domain gets a tailored tone injection on top
@@ -57,13 +57,13 @@ export function buildDomainPrompt(
   const tone = DOMAIN_TONE[reading.domain];
   const ageContext =
     nativeAge !== undefined
-      ? `The native is currently ${nativeAge} years old. Calibrate your observations accordingly — life stage matters.`
+      ? `The native is currently ${nativeAge} years old. Calibrate your observations accordingly  –  life stage matters.`
       : '';
 
   // -------------------------------------------------------------------------
   // System prompt
   // -------------------------------------------------------------------------
-  const systemPrompt = `You are a senior Jyotish consultant with 30 years of experience in Vedic astrology. You are giving a private reading to a client. Always address the native as "you" — second person throughout.
+  const systemPrompt = `You are a senior Jyotish consultant with 30 years of experience in Vedic astrology. You are giving a private reading to a client. Always address the native as "you"  –  second person throughout.
 
 Be specific: cite actual dates, degree positions, house numbers, and planetary placements when they are available in the data. Vague generalities are not acceptable.
 
@@ -72,12 +72,12 @@ Draw freely from classical texts: BPHS (Brihat Parashara Hora Shastra), Phaladee
 Tone for this domain (${reading.domain}): ${tone}
 ${ageContext}
 
-Structure your response as flowing prose paragraphs — NOT bullet lists or headers. Write 400–600 words.
+Structure your response as flowing prose paragraphs  –  NOT bullet lists or headers. Write 400–600 words.
 
 Most importantly: identify THE single most important insight for this domain. Begin your response with exactly this sentence structure: "If you remember nothing else from this reading, [complete the sentence]." This opening sets the frame for everything that follows.`.trim();
 
   // -------------------------------------------------------------------------
-  // User payload — strip to essential data only
+  // User payload  –  strip to essential data only
   // -------------------------------------------------------------------------
   const payload = {
     domain: reading.domain,

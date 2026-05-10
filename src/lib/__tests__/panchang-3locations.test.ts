@@ -3,9 +3,9 @@
  * Reference: Drik Panchang values for April 3, 2026.
  *
  * Locations:
- *   1. Delhi, India       — UTC+5:30 (fixed, no DST)
- *   2. Bern, Switzerland  — UTC+2 (CEST, DST active)
- *   3. Seattle, USA       — UTC-7 (PDT, DST active, negative offset)
+ *   1. Delhi, India        –  UTC+5:30 (fixed, no DST)
+ *   2. Bern, Switzerland   –  UTC+2 (CEST, DST active)
+ *   3. Seattle, USA        –  UTC-7 (PDT, DST active, negative offset)
  */
 import { describe, it, expect } from 'vitest';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
@@ -66,7 +66,7 @@ const DRIK = {
   seattle: {
     sunrise: 6 * 60 + 44,   // 06:44
     sunset: 19 * 60 + 42,   // 19:42
-    moonrise: 21 * 60 + 0,  // ~21:00 (Drik shows conflicting 22:11 vs our 20:58 — wide tolerance)
+    moonrise: 21 * 60 + 0,  // ~21:00 (Drik shows conflicting 22:11 vs our 20:58  –  wide tolerance)
     moonset: 6 * 60 + 54,   // 06:54
     tithi: 'Dwitiya',
     paksha: 'krishna',
@@ -80,7 +80,7 @@ const DRIK = {
 
 // ─── 1. Delhi (UTC+5:30) ──────────────────────────────────────
 
-describe('Panchang Accuracy — Delhi (UTC+5:30, no DST)', () => {
+describe('Panchang Accuracy  –  Delhi (UTC+5:30, no DST)', () => {
   const loc = LOCATIONS.delhi;
   const drik = DRIK.delhi;
   const p = computePanchang({
@@ -114,7 +114,7 @@ describe('Panchang Accuracy — Delhi (UTC+5:30, no DST)', () => {
 
 // ─── 2. Bern (UTC+2 CEST) ──────────────────────────────────────
 
-describe('Panchang Accuracy — Bern (UTC+2 CEST, DST active)', () => {
+describe('Panchang Accuracy  –  Bern (UTC+2 CEST, DST active)', () => {
   const loc = LOCATIONS.bern;
   const drik = DRIK.bern;
   const p = computePanchang({
@@ -150,7 +150,7 @@ describe('Panchang Accuracy — Bern (UTC+2 CEST, DST active)', () => {
 
 // ─── 3. Seattle (UTC-7 PDT) ────────────────────────────────────
 
-describe('Panchang Accuracy — Seattle (UTC-7 PDT, negative offset)', () => {
+describe('Panchang Accuracy  –  Seattle (UTC-7 PDT, negative offset)', () => {
   const loc = LOCATIONS.seattle;
   const drik = DRIK.seattle;
   const p = computePanchang({
@@ -177,7 +177,7 @@ describe('Panchang Accuracy — Seattle (UTC-7 PDT, negative offset)', () => {
   });
 
   it('nakshatra is Swati (Chitra ended before sunrise)', () => {
-    // Chitra ends at 06:55 AM before sunrise 06:44 — so at sunrise it should be Swati
+    // Chitra ends at 06:55 AM before sunrise 06:44  –  so at sunrise it should be Swati
     // But panchang traditionally uses the nakshatra at sunrise
     expect(['Chitra', 'Swati']).toContain(p.nakshatra.name.en);
   });
@@ -193,7 +193,7 @@ describe('Panchang Accuracy — Seattle (UTC-7 PDT, negative offset)', () => {
 
 // ─── 4. Sunrise/Sunset Consistency ──────────────────────────────
 
-describe('Sunrise/Sunset — all 3 locations', () => {
+describe('Sunrise/Sunset  –  all 3 locations', () => {
   for (const [name, loc] of Object.entries(LOCATIONS)) {
     it(`${name}: sunrise is before sunset`, () => {
       const times = getSunTimes(2026, 4, 3, loc.lat, loc.lng, loc.tz);
@@ -213,7 +213,7 @@ describe('Sunrise/Sunset — all 3 locations', () => {
 
 describe('DST Transition Pressure Tests', () => {
   // Europe/Zurich: CET→CEST on March 29, 2026
-  describe('Bern — March 29, 2026 (CET→CEST transition)', () => {
+  describe('Bern  –  March 29, 2026 (CET→CEST transition)', () => {
     const loc = LOCATIONS.bern;
 
     it('sunrise computes without error on DST transition day', () => {
@@ -246,7 +246,7 @@ describe('DST Transition Pressure Tests', () => {
   });
 
   // America/Los_Angeles: PST→PDT on March 8, 2026
-  describe('Seattle — March 8, 2026 (PST→PDT transition)', () => {
+  describe('Seattle  –  March 8, 2026 (PST→PDT transition)', () => {
     const loc = LOCATIONS.seattle;
 
     it('sunrise computes without error on DST transition day', () => {
@@ -267,8 +267,8 @@ describe('DST Transition Pressure Tests', () => {
     });
   });
 
-  // Bern — October 25, 2026: CEST→CET (fall back)
-  describe('Bern — October 25, 2026 (CEST→CET fall back)', () => {
+  // Bern  –  October 25, 2026: CEST→CET (fall back)
+  describe('Bern  –  October 25, 2026 (CEST→CET fall back)', () => {
     const loc = LOCATIONS.bern;
 
     it('panchang computes without error on fall-back day', () => {
@@ -282,8 +282,8 @@ describe('DST Transition Pressure Tests', () => {
     });
   });
 
-  // Seattle — November 1, 2026: PDT→PST (fall back)
-  describe('Seattle — November 1, 2026 (PDT→PST fall back)', () => {
+  // Seattle  –  November 1, 2026: PDT→PST (fall back)
+  describe('Seattle  –  November 1, 2026 (PDT→PST fall back)', () => {
     const loc = LOCATIONS.seattle;
 
     it('panchang computes without error on fall-back day', () => {
@@ -298,9 +298,9 @@ describe('DST Transition Pressure Tests', () => {
   });
 });
 
-// ─── 6. Vedic Time — Ishtakala for all 3 ───────────────────────
+// ─── 6. Vedic Time  –  Ishtakala for all 3 ───────────────────────
 
-describe('Vedic Time (Ishtakala) — all 3 locations', () => {
+describe('Vedic Time (Ishtakala)  –  all 3 locations', () => {
   for (const [name, loc] of Object.entries(LOCATIONS)) {
     it(`${name}: 60 ghati span = sunrise to next sunrise`, () => {
       const today = getSunTimes(2026, 4, 3, loc.lat, loc.lng, loc.tz);

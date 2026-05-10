@@ -164,7 +164,7 @@ describe('Tajika Yoga Engine', () => {
     it('detects slower planet applying to faster (reverse Ithasala)', () => {
       // Saturn (slow, id=6) at 119° and Moon (fast, id=1) at 60°
       // Normal: Moon should apply to Saturn. But Saturn is the one moving toward
-      // the aspect — check if the detection catches this reverse scenario.
+      // the aspect  –  check if the detection catches this reverse scenario.
       // For durupha: slower applies but faster does not.
       // Place them so that from Saturn's perspective it moves toward 60° aspect with Moon,
       // but Moon is moving away.
@@ -263,7 +263,7 @@ describe('Tajika Yoga Engine', () => {
       if (hasMain) {
         expect(hasInduvara).toBe(false);
       }
-      // Test passes regardless — what matters is the mutual exclusion
+      // Test passes regardless  –  what matters is the mutual exclusion
     });
   });
 

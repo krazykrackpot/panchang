@@ -15,16 +15,16 @@ export const CAREER_PATTERNS: ConvergencePattern[] = [
     ],
     text: {
       full: {
-        en: 'A rare triple convergence on your 10th house of career. Your 10th lord is natally strong, Jupiter — the great benefic — is transiting your career house, and your current dasha period activates this same area. This is a career peak window. Authority, recognition, and professional advancement are all aligned in your favor. Bold moves made now carry exceptional momentum.',
-        hi: 'आपके दशम भाव (करियर) पर एक दुर्लभ तिहरा संयोग। आपका दशमेश जन्म से बलवान है, बृहस्पति — महान शुभ ग्रह — आपके करियर भाव में गोचर कर रहा है, और वर्तमान दशा इसी क्षेत्र को सक्रिय करती है। यह करियर शिखर की खिड़की है।',
+        en: 'A rare triple convergence on your 10th house of career. Your 10th lord is natally strong, Jupiter  –  the great benefic  –  is transiting your career house, and your current dasha period activates this same area. This is a career peak window. Authority, recognition, and professional advancement are all aligned in your favor. Bold moves made now carry exceptional momentum.',
+        hi: 'आपके दशम भाव (करियर) पर एक दुर्लभ तिहरा संयोग। आपका दशमेश जन्म से बलवान है, बृहस्पति  –  महान शुभ ग्रह  –  आपके करियर भाव में गोचर कर रहा है, और वर्तमान दशा इसी क्षेत्र को सक्रिय करती है। यह करियर शिखर की खिड़की है।',
       },
       mild: {
-        en: 'Multiple signals point toward career activation. Your professional house is receiving attention from both dasha and transit — though not all factors align perfectly, this is still a meaningful period for career advancement. Stay alert for opportunities.',
+        en: 'Multiple signals point toward career activation. Your professional house is receiving attention from both dasha and transit  –  though not all factors align perfectly, this is still a meaningful period for career advancement. Stay alert for opportunities.',
         hi: 'कई संकेत करियर सक्रियता की ओर इशारा करते हैं। आपका पेशेवर भाव दशा और गोचर दोनों से ध्यान प्राप्त कर रहा है। अवसरों के प्रति सतर्क रहें।',
       },
     },
     advice: {
-      en: 'Apply for promotions, launch ventures, seek public visibility. This window is time-bound — act decisively while the alignment holds.',
+      en: 'Apply for promotions, launch ventures, seek public visibility. This window is time-bound  –  act decisively while the alignment holds.',
       hi: 'पदोन्नति के लिए आवेदन करें, उद्यम शुरू करें, सार्वजनिक दृश्यता चाहें। यह खिड़की समय-सीमित है।',
     },
     laypersonNote: {
@@ -49,17 +49,17 @@ export const CAREER_PATTERNS: ConvergencePattern[] = [
     ],
     text: {
       full: {
-        en: "A challenging convergence on your career house. A natal malefic already creates friction in your professional life, Saturn's transit is adding weight and pressure to this area, and your dasha period is activating the same theme. Power struggles with authority figures, bureaucratic delays, and tests of professional patience are likely. This isn't punishment — it's Saturn asking if your career is built on solid foundations.",
-        hi: 'करियर भाव पर एक चुनौतीपूर्ण संयोग। जन्म से एक पापी ग्रह पेशेवर जीवन में घर्षण पैदा करता है, शनि का गोचर इस क्षेत्र पर भार डाल रहा है, और दशा इसी विषय को सक्रिय कर रही है। यह दंड नहीं — शनि पूछ रहा है कि क्या आपका करियर ठोस नींव पर बना है।',
+        en: "A challenging convergence on your career house. A natal malefic already creates friction in your professional life, Saturn's transit is adding weight and pressure to this area, and your dasha period is activating the same theme. Power struggles with authority figures, bureaucratic delays, and tests of professional patience are likely. This isn't punishment  –  it's Saturn asking if your career is built on solid foundations.",
+        hi: 'करियर भाव पर एक चुनौतीपूर्ण संयोग। जन्म से एक पापी ग्रह पेशेवर जीवन में घर्षण पैदा करता है, शनि का गोचर इस क्षेत्र पर भार डाल रहा है, और दशा इसी विषय को सक्रिय कर रही है। यह दंड नहीं  –  शनि पूछ रहा है कि क्या आपका करियर ठोस नींव पर बना है।',
       },
       mild: {
-        en: 'Career pressure is building from multiple directions. Authority figures may be demanding or unsupportive. The current period tests your professional resilience — respond with discipline, not rebellion.',
+        en: 'Career pressure is building from multiple directions. Authority figures may be demanding or unsupportive. The current period tests your professional resilience  –  respond with discipline, not rebellion.',
         hi: 'कई दिशाओं से करियर का दबाव बढ़ रहा है। अधिकारी कठिन या असहायक हो सकते हैं। वर्तमान अवधि पेशेवर लचीलेपन की परीक्षा है।',
       },
     },
     advice: {
-      en: "Don't confront authority directly — work within the system. Document everything. Build alliances quietly. This transit passes, but the lessons stick.",
-      hi: 'अधिकार का सीधा सामना न करें — व्यवस्था के भीतर कार्य करें। सब कुछ दस्तावेज़ित करें।',
+      en: "Don't confront authority directly  –  work within the system. Document everything. Build alliances quietly. This transit passes, but the lessons stick.",
+      hi: 'अधिकार का सीधा सामना न करें  –  व्यवस्था के भीतर कार्य करें। सब कुछ दस्तावेज़ित करें।',
     },
     laypersonNote: {
       en: "Multiple planetary pressures on the same career area create a stress-test. It feels heavy, but it's building something stronger.",
@@ -83,12 +83,12 @@ export const CAREER_PATTERNS: ConvergencePattern[] = [
     ],
     text: {
       full: {
-        en: "A convergence suggesting career transformation. Your 10th house is under natal stress, Rahu's dasha brings unconventional ambitions and restless energy, and Saturn's transit through your career sector is dismantling outdated structures. This is not a setback — it's a forced evolution.",
+        en: "A convergence suggesting career transformation. Your 10th house is under natal stress, Rahu's dasha brings unconventional ambitions and restless energy, and Saturn's transit through your career sector is dismantling outdated structures. This is not a setback  –  it's a forced evolution.",
         hi: 'करियर परिवर्तन का संकेत देने वाला संयोग। दशम भाव जन्म से तनावग्रस्त है, राहु दशा अपरंपरागत महत्वाकांक्षा लाती है, और शनि का गोचर पुरानी संरचनाओं को तोड़ रहा है।',
       },
       mild: {
-        en: 'Career dissatisfaction is building. The urge to change direction is strong — but timing matters.',
-        hi: 'करियर असंतोष बढ़ रहा है। दिशा बदलने की इच्छा प्रबल है — लेकिन समय महत्वपूर्ण है।',
+        en: 'Career dissatisfaction is building. The urge to change direction is strong  –  but timing matters.',
+        hi: 'करियर असंतोष बढ़ रहा है। दिशा बदलने की इच्छा प्रबल है  –  लेकिन समय महत्वपूर्ण है।',
       },
     },
     advice: {
@@ -163,7 +163,7 @@ export const CAREER_PATTERNS: ConvergencePattern[] = [
       hi: 'नेटवर्क बनाएँ। साझेदारी और फ्रीलांस अवसर खोजें।',
     },
     laypersonNote: {
-      en: "Your chart's earnings potential is being amplified by transits — perfect timing for business launches.",
+      en: "Your chart's earnings potential is being amplified by transits  –  perfect timing for business launches.",
       hi: 'आपकी कुंडली की आय क्षमता गोचर से बढ़ रही है।',
     },
     relatedSections: [
@@ -197,8 +197,8 @@ export const CAREER_PATTERNS: ConvergencePattern[] = [
       hi: 'अंतर्राष्ट्रीय भूमिकाओं के लिए आवेदन करें। वैश्विक कंपनियों के लिए रिमोट वर्क।',
     },
     laypersonNote: {
-      en: "Rahu's nature is foreign, unconventional, and ambitious — when it activates your career area, overseas opportunities arise.",
-      hi: 'राहु का स्वभाव विदेशी, अपरंपरागत — करियर क्षेत्र में विदेशी अवसर।',
+      en: "Rahu's nature is foreign, unconventional, and ambitious  –  when it activates your career area, overseas opportunities arise.",
+      hi: 'राहु का स्वभाव विदेशी, अपरंपरागत  –  करियर क्षेत्र में विदेशी अवसर।',
     },
     relatedSections: [
       TippanniSection.PlanetInsights,
@@ -217,8 +217,8 @@ export const CAREER_PATTERNS: ConvergencePattern[] = [
     ],
     text: {
       full: {
-        en: "Saturn's double grip on your career — both through transit and dasha. Professional progress feels glacially slow. Promotions are delayed, recognition is withheld. This is Saturn's signature: delayed, not denied. Every seed planted now will bear fruit when this transit lifts.",
-        hi: 'शनि की दोहरी पकड़ — गोचर और दशा दोनों से। पेशेवर प्रगति बेहद धीमी। यह शनि का हस्ताक्षर है: विलंबित, इनकार नहीं।',
+        en: "Saturn's double grip on your career  –  both through transit and dasha. Professional progress feels glacially slow. Promotions are delayed, recognition is withheld. This is Saturn's signature: delayed, not denied. Every seed planted now will bear fruit when this transit lifts.",
+        hi: 'शनि की दोहरी पकड़  –  गोचर और दशा दोनों से। पेशेवर प्रगति बेहद धीमी। यह शनि का हस्ताक्षर है: विलंबित, इनकार नहीं।',
       },
       mild: {
         en: "Career momentum is slow under Saturn's influence. Focus on building foundations rather than seeking quick wins.",
@@ -226,8 +226,8 @@ export const CAREER_PATTERNS: ConvergencePattern[] = [
       },
     },
     advice: {
-      en: "Don't chase shortcuts — Saturn punishes them. Build skills, document achievements, maintain discipline.",
-      hi: 'शॉर्टकट का पीछा न करें — शनि उन्हें दंडित करता है। कौशल बनाएँ, अनुशासन बनाए रखें।',
+      en: "Don't chase shortcuts  –  Saturn punishes them. Build skills, document achievements, maintain discipline.",
+      hi: 'शॉर्टकट का पीछा न करें  –  शनि उन्हें दंडित करता है। कौशल बनाएँ, अनुशासन बनाए रखें।',
     },
     laypersonNote: {
       en: 'Saturn slows things down so you build them properly.',

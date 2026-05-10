@@ -17,11 +17,11 @@ import type { LocaleText} from '@/types/panchang';
 // Sagittarius=Jupiter(4), Capricorn=Saturn(6), Aquarius=Saturn(6), Pisces=Jupiter(4)
 const SIGN_LORD: Record<number, number> = { 1:2, 2:5, 3:3, 4:1, 5:0, 6:3, 7:5, 8:2, 9:4, 10:6, 11:6, 12:4 };
 
-// Cadent houses (3, 6, 9, 12) — weak placement in Tajika
+// Cadent houses (3, 6, 9, 12)  –  weak placement in Tajika
 const CADENT_HOUSES = new Set([3, 6, 9, 12]);
-// Kendra houses (1, 4, 7, 10) — strong angular placement
+// Kendra houses (1, 4, 7, 10)  –  strong angular placement
 const KENDRA_HOUSES = new Set([1, 4, 7, 10]);
-// Trikona houses (1, 5, 9) — auspicious trine placement
+// Trikona houses (1, 5, 9)  –  auspicious trine placement
 const TRIKONA_HOUSES = new Set([1, 5, 9]);
 
 // ─── P2-04: Planet-pair year-prediction matrix ──────────────────────────────
@@ -35,8 +35,8 @@ const PLANET_PAIR_YEAR_MEANING: Record<string, LocaleText> = {
   '4-0': { en: 'Sun–Jupiter: Career elevation, recognition from authorities, dharmic growth, honors and promotions likely.', hi: 'सूर्य–गुरु: करियर उन्नति, अधिकारियों से मान्यता, धर्मिक विकास, पदोन्नति संभव।', sa: 'सूर्य–गुरु: करियर उन्नति, अधिकारियों से मान्यता, धर्मिक विकास, पदोन्नति संभव।', mai: 'सूर्य–गुरु: करियर उन्नति, अधिकारियों से मान्यता, धर्मिक विकास, पदोन्नति संभव।', mr: 'सूर्य–गुरु: करियर उन्नति, अधिकारियों से मान्यता, धर्मिक विकास, पदोन्नति संभव।', ta: 'Sun–Jupiter: Career elevation, recognition from authorities, dharmic growth, honors and promotions likely.', te: 'Sun–Jupiter: Career elevation, recognition from authorities, dharmic growth, honors and promotions likely.', bn: 'Sun–Jupiter: Career elevation, recognition from authorities, dharmic growth, honors and promotions likely.', kn: 'Sun–Jupiter: Career elevation, recognition from authorities, dharmic growth, honors and promotions likely.', gu: 'Sun–Jupiter: Career elevation, recognition from authorities, dharmic growth, honors and promotions likely.' },
   '0-1': { en: 'Sun–Moon: Public recognition, emotional and professional harmony, relationship with father and public.', hi: 'सूर्य–चन्द्र: सार्वजनिक मान्यता, भावनात्मक और व्यावसायिक सामंजस्य।', sa: 'सूर्य–चन्द्र: सार्वजनिक मान्यता, भावनात्मक और व्यावसायिक सामंजस्य।', mai: 'सूर्य–चन्द्र: सार्वजनिक मान्यता, भावनात्मक और व्यावसायिक सामंजस्य।', mr: 'सूर्य–चन्द्र: सार्वजनिक मान्यता, भावनात्मक और व्यावसायिक सामंजस्य।', ta: 'Sun–Moon: Public recognition, emotional and professional harmony, relationship with father and public.', te: 'Sun–Moon: Public recognition, emotional and professional harmony, relationship with father and public.', bn: 'Sun–Moon: Public recognition, emotional and professional harmony, relationship with father and public.', kn: 'Sun–Moon: Public recognition, emotional and professional harmony, relationship with father and public.', gu: 'Sun–Moon: Public recognition, emotional and professional harmony, relationship with father and public.' },
   '1-0': { en: 'Sun–Moon: Public recognition, emotional and professional harmony, relationship with father and public.', hi: 'सूर्य–चन्द्र: सार्वजनिक मान्यता, भावनात्मक और व्यावसायिक सामंजस्य।', sa: 'सूर्य–चन्द्र: सार्वजनिक मान्यता, भावनात्मक और व्यावसायिक सामंजस्य।', mai: 'सूर्य–चन्द्र: सार्वजनिक मान्यता, भावनात्मक और व्यावसायिक सामंजस्य।', mr: 'सूर्य–चन्द्र: सार्वजनिक मान्यता, भावनात्मक और व्यावसायिक सामंजस्य।', ta: 'Sun–Moon: Public recognition, emotional and professional harmony, relationship with father and public.', te: 'Sun–Moon: Public recognition, emotional and professional harmony, relationship with father and public.', bn: 'Sun–Moon: Public recognition, emotional and professional harmony, relationship with father and public.', kn: 'Sun–Moon: Public recognition, emotional and professional harmony, relationship with father and public.', gu: 'Sun–Moon: Public recognition, emotional and professional harmony, relationship with father and public.' },
-  '0-2': { en: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality — but also injury, conflict, or aggression.', hi: 'सूर्य–मंगल: गतिशील महत्वाकांक्षा, प्रतिस्पर्धात्मक सफलता — किन्तु चोट, विवाद की भी संभावना।', sa: 'सूर्य–मंगल: गतिशील महत्वाकांक्षा, प्रतिस्पर्धात्मक सफलता — किन्तु चोट, विवाद की भी संभावना।', mai: 'सूर्य–मंगल: गतिशील महत्वाकांक्षा, प्रतिस्पर्धात्मक सफलता — किन्तु चोट, विवाद की भी संभावना।', mr: 'सूर्य–मंगल: गतिशील महत्वाकांक्षा, प्रतिस्पर्धात्मक सफलता — किन्तु चोट, विवाद की भी संभावना।', ta: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality — but also injury, conflict, or aggression.', te: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality — but also injury, conflict, or aggression.', bn: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality — but also injury, conflict, or aggression.', kn: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality — but also injury, conflict, or aggression.', gu: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality — but also injury, conflict, or aggression.' },
-  '2-0': { en: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality — but also injury, conflict, or aggression.', hi: 'सूर्य–मंगल: गतिशील महत्वाकांक्षा, प्रतिस्पर्धात्मक सफलता — किन्तु चोट, विवाद की भी संभावना।', sa: 'सूर्य–मंगल: गतिशील महत्वाकांक्षा, प्रतिस्पर्धात्मक सफलता — किन्तु चोट, विवाद की भी संभावना।', mai: 'सूर्य–मंगल: गतिशील महत्वाकांक्षा, प्रतिस्पर्धात्मक सफलता — किन्तु चोट, विवाद की भी संभावना।', mr: 'सूर्य–मंगल: गतिशील महत्वाकांक्षा, प्रतिस्पर्धात्मक सफलता — किन्तु चोट, विवाद की भी संभावना।', ta: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality — but also injury, conflict, or aggression.', te: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality — but also injury, conflict, or aggression.', bn: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality — but also injury, conflict, or aggression.', kn: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality — but also injury, conflict, or aggression.', gu: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality — but also injury, conflict, or aggression.' },
+  '0-2': { en: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality  –  but also injury, conflict, or aggression.', hi: 'सूर्य–मंगल: गतिशील महत्वाकांक्षा, प्रतिस्पर्धात्मक सफलता  –  किन्तु चोट, विवाद की भी संभावना।', sa: 'सूर्य–मंगल: गतिशील महत्वाकांक्षा, प्रतिस्पर्धात्मक सफलता  –  किन्तु चोट, विवाद की भी संभावना।', mai: 'सूर्य–मंगल: गतिशील महत्वाकांक्षा, प्रतिस्पर्धात्मक सफलता  –  किन्तु चोट, विवाद की भी संभावना।', mr: 'सूर्य–मंगल: गतिशील महत्वाकांक्षा, प्रतिस्पर्धात्मक सफलता  –  किन्तु चोट, विवाद की भी संभावना।', ta: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality  –  but also injury, conflict, or aggression.', te: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality  –  but also injury, conflict, or aggression.', bn: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality  –  but also injury, conflict, or aggression.', kn: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality  –  but also injury, conflict, or aggression.', gu: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality  –  but also injury, conflict, or aggression.' },
+  '2-0': { en: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality  –  but also injury, conflict, or aggression.', hi: 'सूर्य–मंगल: गतिशील महत्वाकांक्षा, प्रतिस्पर्धात्मक सफलता  –  किन्तु चोट, विवाद की भी संभावना।', sa: 'सूर्य–मंगल: गतिशील महत्वाकांक्षा, प्रतिस्पर्धात्मक सफलता  –  किन्तु चोट, विवाद की भी संभावना।', mai: 'सूर्य–मंगल: गतिशील महत्वाकांक्षा, प्रतिस्पर्धात्मक सफलता  –  किन्तु चोट, विवाद की भी संभावना।', mr: 'सूर्य–मंगल: गतिशील महत्वाकांक्षा, प्रतिस्पर्धात्मक सफलता  –  किन्तु चोट, विवाद की भी संभावना।', ta: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality  –  but also injury, conflict, or aggression.', te: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality  –  but also injury, conflict, or aggression.', bn: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality  –  but also injury, conflict, or aggression.', kn: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality  –  but also injury, conflict, or aggression.', gu: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality  –  but also injury, conflict, or aggression.' },
   '0-5': { en: 'Sun–Venus: Success in arts, creativity, government favor, romantic developments, social prestige.', hi: 'सूर्य–शुक्र: कला में सफलता, रचनात्मकता, सरकारी कृपा, प्रेम संबंध, सामाजिक प्रतिष्ठा।', sa: 'सूर्य–शुक्र: कला में सफलता, रचनात्मकता, सरकारी कृपा, प्रेम संबंध, सामाजिक प्रतिष्ठा।', mai: 'सूर्य–शुक्र: कला में सफलता, रचनात्मकता, सरकारी कृपा, प्रेम संबंध, सामाजिक प्रतिष्ठा।', mr: 'सूर्य–शुक्र: कला में सफलता, रचनात्मकता, सरकारी कृपा, प्रेम संबंध, सामाजिक प्रतिष्ठा।', ta: 'Sun–Venus: Success in arts, creativity, government favor, romantic developments, social prestige.', te: 'Sun–Venus: Success in arts, creativity, government favor, romantic developments, social prestige.', bn: 'Sun–Venus: Success in arts, creativity, government favor, romantic developments, social prestige.', kn: 'Sun–Venus: Success in arts, creativity, government favor, romantic developments, social prestige.', gu: 'Sun–Venus: Success in arts, creativity, government favor, romantic developments, social prestige.' },
   '5-0': { en: 'Sun–Venus: Success in arts, creativity, government favor, romantic developments, social prestige.', hi: 'सूर्य–शुक्र: कला में सफलता, रचनात्मकता, सरकारी कृपा, प्रेम संबंध, सामाजिक प्रतिष्ठा।', sa: 'सूर्य–शुक्र: कला में सफलता, रचनात्मकता, सरकारी कृपा, प्रेम संबंध, सामाजिक प्रतिष्ठा।', mai: 'सूर्य–शुक्र: कला में सफलता, रचनात्मकता, सरकारी कृपा, प्रेम संबंध, सामाजिक प्रतिष्ठा।', mr: 'सूर्य–शुक्र: कला में सफलता, रचनात्मकता, सरकारी कृपा, प्रेम संबंध, सामाजिक प्रतिष्ठा।', ta: 'Sun–Venus: Success in arts, creativity, government favor, romantic developments, social prestige.', te: 'Sun–Venus: Success in arts, creativity, government favor, romantic developments, social prestige.', bn: 'Sun–Venus: Success in arts, creativity, government favor, romantic developments, social prestige.', kn: 'Sun–Venus: Success in arts, creativity, government favor, romantic developments, social prestige.', gu: 'Sun–Venus: Success in arts, creativity, government favor, romantic developments, social prestige.' },
   '0-6': { en: 'Sun–Saturn: Challenges from authority, hard-won success after delays, disciplined effort rewarded late in year.', hi: 'सूर्य–शनि: सत्ता से चुनौती, विलंब के बाद कड़ी मेहनत से सफलता, अनुशासित प्रयास।', sa: 'सूर्य–शनि: सत्ता से चुनौती, विलंब के बाद कड़ी मेहनत से सफलता, अनुशासित प्रयास।', mai: 'सूर्य–शनि: सत्ता से चुनौती, विलंब के बाद कड़ी मेहनत से सफलता, अनुशासित प्रयास।', mr: 'सूर्य–शनि: सत्ता से चुनौती, विलंब के बाद कड़ी मेहनत से सफलता, अनुशासित प्रयास।', ta: 'Sun–Saturn: Challenges from authority, hard-won success after delays, disciplined effort rewarded late in year.', te: 'Sun–Saturn: Challenges from authority, hard-won success after delays, disciplined effort rewarded late in year.', bn: 'Sun–Saturn: Challenges from authority, hard-won success after delays, disciplined effort rewarded late in year.', kn: 'Sun–Saturn: Challenges from authority, hard-won success after delays, disciplined effort rewarded late in year.', gu: 'Sun–Saturn: Challenges from authority, hard-won success after delays, disciplined effort rewarded late in year.' },
@@ -57,8 +57,8 @@ const PLANET_PAIR_YEAR_MEANING: Record<string, LocaleText> = {
   '4-2': { en: 'Mars–Jupiter: Courageous expansion, legal matters resolved favorably, surgery/medical success, religious travel, property gains.', hi: 'मंगल–गुरु: साहसी विस्तार, कानूनी विजय, शल्य चिकित्सा सफलता, धार्मिक यात्रा।', sa: 'मंगल–गुरु: साहसी विस्तार, कानूनी विजय, शल्य चिकित्सा सफलता, धार्मिक यात्रा।', mai: 'मंगल–गुरु: साहसी विस्तार, कानूनी विजय, शल्य चिकित्सा सफलता, धार्मिक यात्रा।', mr: 'मंगल–गुरु: साहसी विस्तार, कानूनी विजय, शल्य चिकित्सा सफलता, धार्मिक यात्रा।', ta: 'Mars–Jupiter: Courageous expansion, legal matters resolved favorably, surgery/medical success, religious travel, property gains.', te: 'Mars–Jupiter: Courageous expansion, legal matters resolved favorably, surgery/medical success, religious travel, property gains.', bn: 'Mars–Jupiter: Courageous expansion, legal matters resolved favorably, surgery/medical success, religious travel, property gains.', kn: 'Mars–Jupiter: Courageous expansion, legal matters resolved favorably, surgery/medical success, religious travel, property gains.', gu: 'Mars–Jupiter: Courageous expansion, legal matters resolved favorably, surgery/medical success, religious travel, property gains.' },
   '2-5': { en: 'Mars–Venus: Passionate creativity, romantic intensity, artistic or athletic achievement, property beautification, sensual excess possible.', hi: 'मंगल–शुक्र: भावुक रचनात्मकता, रोमांटिक तीव्रता, संपत्ति सौंदर्यीकरण।', sa: 'मंगल–शुक्र: भावुक रचनात्मकता, रोमांटिक तीव्रता, संपत्ति सौंदर्यीकरण।', mai: 'मंगल–शुक्र: भावुक रचनात्मकता, रोमांटिक तीव्रता, संपत्ति सौंदर्यीकरण।', mr: 'मंगल–शुक्र: भावुक रचनात्मकता, रोमांटिक तीव्रता, संपत्ति सौंदर्यीकरण।', ta: 'Mars–Venus: Passionate creativity, romantic intensity, artistic or athletic achievement, property beautification, sensual excess possible.', te: 'Mars–Venus: Passionate creativity, romantic intensity, artistic or athletic achievement, property beautification, sensual excess possible.', bn: 'Mars–Venus: Passionate creativity, romantic intensity, artistic or athletic achievement, property beautification, sensual excess possible.', kn: 'Mars–Venus: Passionate creativity, romantic intensity, artistic or athletic achievement, property beautification, sensual excess possible.', gu: 'Mars–Venus: Passionate creativity, romantic intensity, artistic or athletic achievement, property beautification, sensual excess possible.' },
   '5-2': { en: 'Mars–Venus: Passionate creativity, romantic intensity, artistic or athletic achievement, property beautification, sensual excess possible.', hi: 'मंगल–शुक्र: भावुक रचनात्मकता, रोमांटिक तीव्रता, संपत्ति सौंदर्यीकरण।', sa: 'मंगल–शुक्र: भावुक रचनात्मकता, रोमांटिक तीव्रता, संपत्ति सौंदर्यीकरण।', mai: 'मंगल–शुक्र: भावुक रचनात्मकता, रोमांटिक तीव्रता, संपत्ति सौंदर्यीकरण।', mr: 'मंगल–शुक्र: भावुक रचनात्मकता, रोमांटिक तीव्रता, संपत्ति सौंदर्यीकरण।', ta: 'Mars–Venus: Passionate creativity, romantic intensity, artistic or athletic achievement, property beautification, sensual excess possible.', te: 'Mars–Venus: Passionate creativity, romantic intensity, artistic or athletic achievement, property beautification, sensual excess possible.', bn: 'Mars–Venus: Passionate creativity, romantic intensity, artistic or athletic achievement, property beautification, sensual excess possible.', kn: 'Mars–Venus: Passionate creativity, romantic intensity, artistic or athletic achievement, property beautification, sensual excess possible.', gu: 'Mars–Venus: Passionate creativity, romantic intensity, artistic or athletic achievement, property beautification, sensual excess possible.' },
-  '2-6': { en: 'Mars–Saturn: Iron discipline — either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.', hi: 'मंगल–शनि: लौह अनुशासन — महान इंजीनियरिंग उपलब्धि या चोट, दुर्घटना, अवरोध।', sa: 'मंगल–शनि: लौह अनुशासन — महान इंजीनियरिंग उपलब्धि या चोट, दुर्घटना, अवरोध।', mai: 'मंगल–शनि: लौह अनुशासन — महान इंजीनियरिंग उपलब्धि या चोट, दुर्घटना, अवरोध।', mr: 'मंगल–शनि: लौह अनुशासन — महान इंजीनियरिंग उपलब्धि या चोट, दुर्घटना, अवरोध।', ta: 'Mars–Saturn: Iron discipline — either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.', te: 'Mars–Saturn: Iron discipline — either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.', bn: 'Mars–Saturn: Iron discipline — either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.', kn: 'Mars–Saturn: Iron discipline — either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.', gu: 'Mars–Saturn: Iron discipline — either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.' },
-  '6-2': { en: 'Mars–Saturn: Iron discipline — either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.', hi: 'मंगल–शनि: लौह अनुशासन — महान इंजीनियरिंग उपलब्धि या चोट, दुर्घटना, अवरोध।', sa: 'मंगल–शनि: लौह अनुशासन — महान इंजीनियरिंग उपलब्धि या चोट, दुर्घटना, अवरोध।', mai: 'मंगल–शनि: लौह अनुशासन — महान इंजीनियरिंग उपलब्धि या चोट, दुर्घटना, अवरोध।', mr: 'मंगल–शनि: लौह अनुशासन — महान इंजीनियरिंग उपलब्धि या चोट, दुर्घटना, अवरोध।', ta: 'Mars–Saturn: Iron discipline — either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.', te: 'Mars–Saturn: Iron discipline — either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.', bn: 'Mars–Saturn: Iron discipline — either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.', kn: 'Mars–Saturn: Iron discipline — either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.', gu: 'Mars–Saturn: Iron discipline — either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.' },
+  '2-6': { en: 'Mars–Saturn: Iron discipline  –  either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.', hi: 'मंगल–शनि: लौह अनुशासन  –  महान इंजीनियरिंग उपलब्धि या चोट, दुर्घटना, अवरोध।', sa: 'मंगल–शनि: लौह अनुशासन  –  महान इंजीनियरिंग उपलब्धि या चोट, दुर्घटना, अवरोध।', mai: 'मंगल–शनि: लौह अनुशासन  –  महान इंजीनियरिंग उपलब्धि या चोट, दुर्घटना, अवरोध।', mr: 'मंगल–शनि: लौह अनुशासन  –  महान इंजीनियरिंग उपलब्धि या चोट, दुर्घटना, अवरोध।', ta: 'Mars–Saturn: Iron discipline  –  either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.', te: 'Mars–Saturn: Iron discipline  –  either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.', bn: 'Mars–Saturn: Iron discipline  –  either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.', kn: 'Mars–Saturn: Iron discipline  –  either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.', gu: 'Mars–Saturn: Iron discipline  –  either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.' },
+  '6-2': { en: 'Mars–Saturn: Iron discipline  –  either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.', hi: 'मंगल–शनि: लौह अनुशासन  –  महान इंजीनियरिंग उपलब्धि या चोट, दुर्घटना, अवरोध।', sa: 'मंगल–शनि: लौह अनुशासन  –  महान इंजीनियरिंग उपलब्धि या चोट, दुर्घटना, अवरोध।', mai: 'मंगल–शनि: लौह अनुशासन  –  महान इंजीनियरिंग उपलब्धि या चोट, दुर्घटना, अवरोध।', mr: 'मंगल–शनि: लौह अनुशासन  –  महान इंजीनियरिंग उपलब्धि या चोट, दुर्घटना, अवरोध।', ta: 'Mars–Saturn: Iron discipline  –  either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.', te: 'Mars–Saturn: Iron discipline  –  either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.', bn: 'Mars–Saturn: Iron discipline  –  either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.', kn: 'Mars–Saturn: Iron discipline  –  either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.', gu: 'Mars–Saturn: Iron discipline  –  either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.' },
   // Mercury combinations
   '3-4': { en: 'Mercury–Jupiter: Exceptional learning and teaching year, publishing success, legal matters, philosophical study, financial wisdom.', hi: 'बुध–गुरु: असाधारण सीखने और पढ़ाने का वर्ष, प्रकाशन सफलता, कानूनी मामले।', sa: 'बुध–गुरु: असाधारण सीखने और पढ़ाने का वर्ष, प्रकाशन सफलता, कानूनी मामले।', mai: 'बुध–गुरु: असाधारण सीखने और पढ़ाने का वर्ष, प्रकाशन सफलता, कानूनी मामले।', mr: 'बुध–गुरु: असाधारण सीखने और पढ़ाने का वर्ष, प्रकाशन सफलता, कानूनी मामले।', ta: 'Mercury–Jupiter: Exceptional learning and teaching year, publishing success, legal matters, philosophical study, financial wisdom.', te: 'Mercury–Jupiter: Exceptional learning and teaching year, publishing success, legal matters, philosophical study, financial wisdom.', bn: 'Mercury–Jupiter: Exceptional learning and teaching year, publishing success, legal matters, philosophical study, financial wisdom.', kn: 'Mercury–Jupiter: Exceptional learning and teaching year, publishing success, legal matters, philosophical study, financial wisdom.', gu: 'Mercury–Jupiter: Exceptional learning and teaching year, publishing success, legal matters, philosophical study, financial wisdom.' },
   '4-3': { en: 'Mercury–Jupiter: Exceptional learning and teaching year, publishing success, legal matters, philosophical study, financial wisdom.', hi: 'बुध–गुरु: असाधारण सीखने और पढ़ाने का वर्ष, प्रकाशन सफलता, कानूनी मामले।', sa: 'बुध–गुरु: असाधारण सीखने और पढ़ाने का वर्ष, प्रकाशन सफलता, कानूनी मामले।', mai: 'बुध–गुरु: असाधारण सीखने और पढ़ाने का वर्ष, प्रकाशन सफलता, कानूनी मामले।', mr: 'बुध–गुरु: असाधारण सीखने और पढ़ाने का वर्ष, प्रकाशन सफलता, कानूनी मामले।', ta: 'Mercury–Jupiter: Exceptional learning and teaching year, publishing success, legal matters, philosophical study, financial wisdom.', te: 'Mercury–Jupiter: Exceptional learning and teaching year, publishing success, legal matters, philosophical study, financial wisdom.', bn: 'Mercury–Jupiter: Exceptional learning and teaching year, publishing success, legal matters, philosophical study, financial wisdom.', kn: 'Mercury–Jupiter: Exceptional learning and teaching year, publishing success, legal matters, philosophical study, financial wisdom.', gu: 'Mercury–Jupiter: Exceptional learning and teaching year, publishing success, legal matters, philosophical study, financial wisdom.' },
@@ -69,8 +69,8 @@ const PLANET_PAIR_YEAR_MEANING: Record<string, LocaleText> = {
   // Jupiter combinations
   '4-5': { en: 'Jupiter–Venus: Prosperous year for marriage, arts, luxury, spiritual devotion, financial abundance and social grace.', hi: 'गुरु–शुक्र: विवाह, कला, विलासिता, आध्यात्मिक भक्ति के लिए समृद्ध वर्ष।', sa: 'गुरु–शुक्र: विवाह, कला, विलासिता, आध्यात्मिक भक्ति के लिए समृद्ध वर्ष।', mai: 'गुरु–शुक्र: विवाह, कला, विलासिता, आध्यात्मिक भक्ति के लिए समृद्ध वर्ष।', mr: 'गुरु–शुक्र: विवाह, कला, विलासिता, आध्यात्मिक भक्ति के लिए समृद्ध वर्ष।', ta: 'Jupiter–Venus: Prosperous year for marriage, arts, luxury, spiritual devotion, financial abundance and social grace.', te: 'Jupiter–Venus: Prosperous year for marriage, arts, luxury, spiritual devotion, financial abundance and social grace.', bn: 'Jupiter–Venus: Prosperous year for marriage, arts, luxury, spiritual devotion, financial abundance and social grace.', kn: 'Jupiter–Venus: Prosperous year for marriage, arts, luxury, spiritual devotion, financial abundance and social grace.', gu: 'Jupiter–Venus: Prosperous year for marriage, arts, luxury, spiritual devotion, financial abundance and social grace.' },
   '5-4': { en: 'Jupiter–Venus: Prosperous year for marriage, arts, luxury, spiritual devotion, financial abundance and social grace.', hi: 'गुरु–शुक्र: विवाह, कला, विलासिता, आध्यात्मिक भक्ति के लिए समृद्ध वर्ष।', sa: 'गुरु–शुक्र: विवाह, कला, विलासिता, आध्यात्मिक भक्ति के लिए समृद्ध वर्ष।', mai: 'गुरु–शुक्र: विवाह, कला, विलासिता, आध्यात्मिक भक्ति के लिए समृद्ध वर्ष।', mr: 'गुरु–शुक्र: विवाह, कला, विलासिता, आध्यात्मिक भक्ति के लिए समृद्ध वर्ष।', ta: 'Jupiter–Venus: Prosperous year for marriage, arts, luxury, spiritual devotion, financial abundance and social grace.', te: 'Jupiter–Venus: Prosperous year for marriage, arts, luxury, spiritual devotion, financial abundance and social grace.', bn: 'Jupiter–Venus: Prosperous year for marriage, arts, luxury, spiritual devotion, financial abundance and social grace.', kn: 'Jupiter–Venus: Prosperous year for marriage, arts, luxury, spiritual devotion, financial abundance and social grace.', gu: 'Jupiter–Venus: Prosperous year for marriage, arts, luxury, spiritual devotion, financial abundance and social grace.' },
-  '4-6': { en: 'Jupiter–Saturn: Karmic turning point — hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.', hi: 'गुरु–शनि: कार्मिक転换点 — कठिन परिश्रम स्थायी पुरस्कार देता है। संरचनात्मक जीवन परिवर्तन।', sa: 'गुरु–शनि: कार्मिक転换点 — कठिन परिश्रम स्थायी पुरस्कार देता है। संरचनात्मक जीवन परिवर्तन।', mai: 'गुरु–शनि: कार्मिक転换点 — कठिन परिश्रम स्थायी पुरस्कार देता है। संरचनात्मक जीवन परिवर्तन।', mr: 'गुरु–शनि: कार्मिक転换点 — कठिन परिश्रम स्थायी पुरस्कार देता है। संरचनात्मक जीवन परिवर्तन।', ta: 'Jupiter–Saturn: Karmic turning point — hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.', te: 'Jupiter–Saturn: Karmic turning point — hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.', bn: 'Jupiter–Saturn: Karmic turning point — hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.', kn: 'Jupiter–Saturn: Karmic turning point — hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.', gu: 'Jupiter–Saturn: Karmic turning point — hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.' },
-  '6-4': { en: 'Jupiter–Saturn: Karmic turning point — hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.', hi: 'गुरु–शनि: कार्मिक転换点 — कठिन परिश्रम स्थायी पुरस्कार देता है। संरचनात्मक जीवन परिवर्तन।', sa: 'गुरु–शनि: कार्मिक転换点 — कठिन परिश्रम स्थायी पुरस्कार देता है। संरचनात्मक जीवन परिवर्तन।', mai: 'गुरु–शनि: कार्मिक転换点 — कठिन परिश्रम स्थायी पुरस्कार देता है। संरचनात्मक जीवन परिवर्तन।', mr: 'गुरु–शनि: कार्मिक転换点 — कठिन परिश्रम स्थायी पुरस्कार देता है। संरचनात्मक जीवन परिवर्तन।', ta: 'Jupiter–Saturn: Karmic turning point — hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.', te: 'Jupiter–Saturn: Karmic turning point — hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.', bn: 'Jupiter–Saturn: Karmic turning point — hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.', kn: 'Jupiter–Saturn: Karmic turning point — hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.', gu: 'Jupiter–Saturn: Karmic turning point — hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.' },
+  '4-6': { en: 'Jupiter–Saturn: Karmic turning point  –  hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.', hi: 'गुरु–शनि: कार्मिक転换点  –  कठिन परिश्रम स्थायी पुरस्कार देता है। संरचनात्मक जीवन परिवर्तन।', sa: 'गुरु–शनि: कार्मिक転换点  –  कठिन परिश्रम स्थायी पुरस्कार देता है। संरचनात्मक जीवन परिवर्तन।', mai: 'गुरु–शनि: कार्मिक転换点  –  कठिन परिश्रम स्थायी पुरस्कार देता है। संरचनात्मक जीवन परिवर्तन।', mr: 'गुरु–शनि: कार्मिक転换点  –  कठिन परिश्रम स्थायी पुरस्कार देता है। संरचनात्मक जीवन परिवर्तन।', ta: 'Jupiter–Saturn: Karmic turning point  –  hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.', te: 'Jupiter–Saturn: Karmic turning point  –  hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.', bn: 'Jupiter–Saturn: Karmic turning point  –  hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.', kn: 'Jupiter–Saturn: Karmic turning point  –  hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.', gu: 'Jupiter–Saturn: Karmic turning point  –  hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.' },
+  '6-4': { en: 'Jupiter–Saturn: Karmic turning point  –  hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.', hi: 'गुरु–शनि: कार्मिक転换点  –  कठिन परिश्रम स्थायी पुरस्कार देता है। संरचनात्मक जीवन परिवर्तन।', sa: 'गुरु–शनि: कार्मिक転换点  –  कठिन परिश्रम स्थायी पुरस्कार देता है। संरचनात्मक जीवन परिवर्तन।', mai: 'गुरु–शनि: कार्मिक転换点  –  कठिन परिश्रम स्थायी पुरस्कार देता है। संरचनात्मक जीवन परिवर्तन।', mr: 'गुरु–शनि: कार्मिक転换点  –  कठिन परिश्रम स्थायी पुरस्कार देता है। संरचनात्मक जीवन परिवर्तन।', ta: 'Jupiter–Saturn: Karmic turning point  –  hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.', te: 'Jupiter–Saturn: Karmic turning point  –  hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.', bn: 'Jupiter–Saturn: Karmic turning point  –  hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.', kn: 'Jupiter–Saturn: Karmic turning point  –  hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.', gu: 'Jupiter–Saturn: Karmic turning point  –  hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.' },
   // Venus–Saturn
   '5-6': { en: 'Venus–Saturn: Dedication to art or partnership, delayed pleasures, disciplined beauty, long-term commitments solidify.', hi: 'शुक्र–शनि: कला या साझेदारी के प्रति समर्पण, विलंबित सुख, दीर्घकालिक प्रतिबद्धता।', sa: 'शुक्र–शनि: कला या साझेदारी के प्रति समर्पण, विलंबित सुख, दीर्घकालिक प्रतिबद्धता।', mai: 'शुक्र–शनि: कला या साझेदारी के प्रति समर्पण, विलंबित सुख, दीर्घकालिक प्रतिबद्धता।', mr: 'शुक्र–शनि: कला या साझेदारी के प्रति समर्पण, विलंबित सुख, दीर्घकालिक प्रतिबद्धता।', ta: 'Venus–Saturn: Dedication to art or partnership, delayed pleasures, disciplined beauty, long-term commitments solidify.', te: 'Venus–Saturn: Dedication to art or partnership, delayed pleasures, disciplined beauty, long-term commitments solidify.', bn: 'Venus–Saturn: Dedication to art or partnership, delayed pleasures, disciplined beauty, long-term commitments solidify.', kn: 'Venus–Saturn: Dedication to art or partnership, delayed pleasures, disciplined beauty, long-term commitments solidify.', gu: 'Venus–Saturn: Dedication to art or partnership, delayed pleasures, disciplined beauty, long-term commitments solidify.' },
   '6-5': { en: 'Venus–Saturn: Dedication to art or partnership, delayed pleasures, disciplined beauty, long-term commitments solidify.', hi: 'शुक्र–शनि: कला या साझेदारी के प्रति समर्पण, विलंबित सुख, दीर्घकालिक प्रतिबद्धता।', sa: 'शुक्र–शनि: कला या साझेदारी के प्रति समर्पण, विलंबित सुख, दीर्घकालिक प्रतिबद्धता।', mai: 'शुक्र–शनि: कला या साझेदारी के प्रति समर्पण, विलंबित सुख, दीर्घकालिक प्रतिबद्धता।', mr: 'शुक्र–शनि: कला या साझेदारी के प्रति समर्पण, विलंबित सुख, दीर्घकालिक प्रतिबद्धता।', ta: 'Venus–Saturn: Dedication to art or partnership, delayed pleasures, disciplined beauty, long-term commitments solidify.', te: 'Venus–Saturn: Dedication to art or partnership, delayed pleasures, disciplined beauty, long-term commitments solidify.', bn: 'Venus–Saturn: Dedication to art or partnership, delayed pleasures, disciplined beauty, long-term commitments solidify.', kn: 'Venus–Saturn: Dedication to art or partnership, delayed pleasures, disciplined beauty, long-term commitments solidify.', gu: 'Venus–Saturn: Dedication to art or partnership, delayed pleasures, disciplined beauty, long-term commitments solidify.' },
@@ -145,14 +145,14 @@ export function detectTajikaYogas(planets: PlanetPosition[], lagnaSign?: number)
             const yogaNameHi = isMuthashila ? `मुत्थशिल (${aspect.label.hi})` : `इत्थशाल (${aspect.label.hi})`;
             const yogaNameSa = isMuthashila ? `मुत्थशिलः (${aspect.label.sa})` : `इत्थशालः (${aspect.label.sa})`;
 
-            // ITHASALA / MUTHASHILA — faster planet applies to slower
+            // ITHASALA / MUTHASHILA  –  faster planet applies to slower
             const pairMeaning = getPairMeaning(faster.planet.id, slower.planet.id);
             const aspectQuality = aspect.angle === 120 || aspect.angle === 60 ? 'harmoniously' : aspect.angle === 90 || aspect.angle === 180 ? 'with tension' : 'powerfully';
-            const muthashilaSuffix = isMuthashila ? ' Both planets are in high dignity — extra-strong results.' : '';
+            const muthashilaSuffix = isMuthashila ? ' Both planets are in high dignity  –  extra-strong results.' : '';
             const ithasalaCore = {
-              en: `${faster.planet.name.en} applies to ${slower.planet.name.en} by ${aspect.label.en} ${aspectQuality} — this year's matter will materialise.${muthashilaSuffix} ${pairMeaning ? pairMeaning.en : ''}`,
-              hi: `${faster.planet.name.hi} ${slower.planet.name.hi} से ${aspect.label.hi} बना रहा है — कार्य सिद्ध होगा।${isMuthashila ? ' दोनों ग्रह उच्च गरिमा में — अत्यंत शक्तिशाली फल।' : ''} ${pairMeaning ? pairMeaning.hi : ''}`,
-              sa: `${faster.planet.name.sa} ${slower.planet.name.sa} ${aspect.label.sa} योगं करोति — कार्यसिद्धिः।${isMuthashila ? ' उभौ ग्रहौ उच्चगरिमायाम् — अतिशक्तिशालफलम्।' : ''}`,
+              en: `${faster.planet.name.en} applies to ${slower.planet.name.en} by ${aspect.label.en} ${aspectQuality}  –  this year's matter will materialise.${muthashilaSuffix} ${pairMeaning ? pairMeaning.en : ''}`,
+              hi: `${faster.planet.name.hi} ${slower.planet.name.hi} से ${aspect.label.hi} बना रहा है  –  कार्य सिद्ध होगा।${isMuthashila ? ' दोनों ग्रह उच्च गरिमा में  –  अत्यंत शक्तिशाली फल।' : ''} ${pairMeaning ? pairMeaning.hi : ''}`,
+              sa: `${faster.planet.name.sa} ${slower.planet.name.sa} ${aspect.label.sa} योगं करोति  –  कार्यसिद्धिः।${isMuthashila ? ' उभौ ग्रहौ उच्चगरिमायाम्  –  अतिशक्तिशालफलम्।' : ''}`,
             };
             yogas.push({
               name: { en: yogaNameEn, hi: yogaNameHi, sa: yogaNameSa },
@@ -166,7 +166,7 @@ export function detectTajikaYogas(planets: PlanetPosition[], lagnaSign?: number)
               description: ithasalaCore,
             });
           } else {
-            // ISHRAFA — separating aspect
+            // ISHRAFA  –  separating aspect
             const pairMeaning = getPairMeaning(faster.planet.id, slower.planet.id);
             yogas.push({
               name: { en: `Ishrafa (${aspect.label.en})`, hi: `ईशराफ (${aspect.label.hi})`, sa: `ईशराफः (${aspect.label.sa})` },
@@ -178,9 +178,9 @@ export function detectTajikaYogas(planets: PlanetPosition[], lagnaSign?: number)
               orb: aspectDiff,
               favorable: false,
               description: {
-                en: `${faster.planet.name.en} separates from ${slower.planet.name.en} — the window for this matter has partially closed; results from its earlier activation may still arrive. ${pairMeaning ? pairMeaning.en : ''}`,
-                hi: `${faster.planet.name.hi} ${slower.planet.name.hi} से विमुख हो रहा है — यह अवसर आंशिक रूप से बीत चुका है; पहले के प्रभाव से परिणाम अभी भी आ सकते हैं। ${pairMeaning ? pairMeaning.hi : ''}`,
-                sa: `${faster.planet.name.sa} ${slower.planet.name.sa} विमुखः — अवसरः आंशिकतः अतीतः।`,
+                en: `${faster.planet.name.en} separates from ${slower.planet.name.en}  –  the window for this matter has partially closed; results from its earlier activation may still arrive. ${pairMeaning ? pairMeaning.en : ''}`,
+                hi: `${faster.planet.name.hi} ${slower.planet.name.hi} से विमुख हो रहा है  –  यह अवसर आंशिक रूप से बीत चुका है; पहले के प्रभाव से परिणाम अभी भी आ सकते हैं। ${pairMeaning ? pairMeaning.hi : ''}`,
+                sa: `${faster.planet.name.sa} ${slower.planet.name.sa} विमुखः  –  अवसरः आंशिकतः अतीतः।`,
               },
             });
           }
@@ -196,38 +196,38 @@ export function detectTajikaYogas(planets: PlanetPosition[], lagnaSign?: number)
     if (naktaYoga) yogas.push(naktaYoga);
   }
 
-  // P2-04: Yamaya Yoga — two planets in exact opposition (Tajika) = contention, conflict
+  // P2-04: Yamaya Yoga  –  two planets in exact opposition (Tajika) = contention, conflict
   detectYamaya(mainPlanets, yogas);
-  // Classical Yamaya (Prohibition) — third planet blocks an applying aspect
+  // Classical Yamaya (Prohibition)  –  third planet blocks an applying aspect
   detectYamayaProhibition(mainPlanets, yogas);
-  // P2-04: Manau Yoga — faster planet aspects slower, but slower is combust/debilitated = denied
+  // P2-04: Manau Yoga  –  faster planet aspects slower, but slower is combust/debilitated = denied
   detectManau(mainPlanets, yogas);
-  // Easarapha — faster planet already passed the exact aspect point (post-separation)
+  // Easarapha  –  faster planet already passed the exact aspect point (post-separation)
   detectEasarapha(mainPlanets, yogas);
-  // Manahoo — retrograde planet cancels an Ithasala by reversing direction
+  // Manahoo  –  retrograde planet cancels an Ithasala by reversing direction
   detectManahoo(mainPlanets, yogas);
-  // P2-04: Khallasara — chain transfer through 3 planets
+  // P2-04: Khallasara  –  chain transfer through 3 planets
   detectKhallasara(mainPlanets, yogas);
-  // P2-04: Dutthottha — recently separated but within 1° residual orb
+  // P2-04: Dutthottha  –  recently separated but within 1° residual orb
   detectDutthottha(mainPlanets, yogas);
 
   // ─── New yogas (8-16) ────────────────────────────────────────────────────
 
-  // 8. Ikkabal — planet in exaltation/own sign in kendra or trikona
+  // 8. Ikkabal  –  planet in exaltation/own sign in kendra or trikona
   detectIkkabal(mainPlanets, yogas);
-  // 10. Tambira — planet in both Ishrafa and Ithasala with different partners
+  // 10. Tambira  –  planet in both Ishrafa and Ithasala with different partners
   detectTambira(yogas);
-  // 11. Kuttha — both planets applying but in cadent houses
+  // 11. Kuttha  –  both planets applying but in cadent houses
   detectKuttha(mainPlanets, yogas);
-  // 12. Durupha — slower planet applies to faster (reverse Ithasala)
+  // 12. Durupha  –  slower planet applies to faster (reverse Ithasala)
   detectDurupha(mainPlanets, yogas);
-  // 13. Radda — benefic rescues a negative yoga
+  // 13. Radda  –  benefic rescues a negative yoga
   detectRadda(mainPlanets, yogas);
-  // 14-15. Kamboola / Gairi-Kamboola — Moon applies to lagna lord or other
+  // 14-15. Kamboola / Gairi-Kamboola  –  Moon applies to lagna lord or other
   if (lagnaSign !== undefined) {
     detectKamboola(mainPlanets, yogas, lagnaSign);
   }
-  // 9. Induvara — safety net when no main yogas found
+  // 9. Induvara  –  safety net when no main yogas found
   detectInduvara(mainPlanets, yogas);
 
   // ─── Strength scoring for all yogas ──────────────────────────────────────
@@ -271,9 +271,9 @@ function detectNakta(planets: PlanetPosition[], existingYogas: TajikaYoga[]): Ta
           planet2: ith.planet2,
           favorable: true,
           description: {
-            en: `${mediator.en} transfers light between planets — event happens through an intermediary.`,
-            hi: `${mediator.hi} मध्यस्थता करता है — कार्य मध्यस्थ द्वारा होगा।`,
-            sa: `${mediator.sa} ज्योतिसंक्रमणं करोति — कार्यं मध्यस्थेन भवति।`,
+            en: `${mediator.en} transfers light between planets  –  event happens through an intermediary.`,
+            hi: `${mediator.hi} मध्यस्थता करता है  –  कार्य मध्यस्थ द्वारा होगा।`,
+            sa: `${mediator.sa} ज्योतिसंक्रमणं करोति  –  कार्यं मध्यस्थेन भवति।`,
           },
         };
       }
@@ -283,7 +283,7 @@ function detectNakta(planets: PlanetPosition[], existingYogas: TajikaYoga[]): Ta
   return null;
 }
 
-// P2-04: Yamaya Yoga — two planets in exact opposition with tight orb ≤ 3°
+// P2-04: Yamaya Yoga  –  two planets in exact opposition with tight orb ≤ 3°
 function detectYamaya(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
   const mainPlanets = planets.filter(p => p.planet.id <= 6);
   for (let i = 0; i < mainPlanets.length; i++) {
@@ -299,9 +299,9 @@ function detectYamaya(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
           planet2: p2.planet.name,
           favorable: false,
           description: {
-            en: `${p1.planet.name.en} and ${p2.planet.name.en} in tight opposition — contention, conflict, and delays are indicated.`,
-            hi: `${p1.planet.name.hi} और ${p2.planet.name.hi} सप्तम कोण में — विवाद, संघर्ष और विलंब की संभावना।`,
-            sa: `${p1.planet.name.sa} ${p2.planet.name.sa} च सप्तमे — विवादः संघर्षः विलम्बश्च।`,
+            en: `${p1.planet.name.en} and ${p2.planet.name.en} in tight opposition  –  contention, conflict, and delays are indicated.`,
+            hi: `${p1.planet.name.hi} और ${p2.planet.name.hi} सप्तम कोण में  –  विवाद, संघर्ष और विलंब की संभावना।`,
+            sa: `${p1.planet.name.sa} ${p2.planet.name.sa} च सप्तमे  –  विवादः संघर्षः विलम्बश्च।`,
           },
         });
       }
@@ -309,10 +309,10 @@ function detectYamaya(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
   }
 }
 
-// P2-04: Manaú Yoga — Ithasala exists but slower planet is combust or debilitated → denied
+// P2-04: Manaú Yoga  –  Ithasala exists but slower planet is combust or debilitated → denied
 function detectManau(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
   const COMBUST_ORB: Record<number, number> = { 1: 12, 2: 17, 3: 14, 4: 11, 5: 10, 6: 15 };
-  // Mercury(3) debilitated in Pisces(12), NOT Virgo(6) — Mercury is EXALTED in Virgo.
+  // Mercury(3) debilitated in Pisces(12), NOT Virgo(6)  –  Mercury is EXALTED in Virgo.
   // Venus(5) debilitated in Virgo(6) is correct.
   const DEBIL_SIGN: Record<number, number> = { 0: 7, 1: 8, 2: 4, 3: 12, 4: 10, 5: 6, 6: 1 };
 
@@ -345,16 +345,16 @@ function detectManau(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
         planet2: ith.planet2,
         favorable: false,
         description: {
-          en: `${ith.planet1.en} applies to ${ith.planet2.en} but ${ith.planet2.en} is ${reason} — promise is denied or greatly reduced.`,
-          hi: `${ith.planet1.hi} ${ith.planet2.hi} से इत्थशाल बना रहा है किन्तु ${ith.planet2.hi} ${reasonHi} है — कार्यसिद्धि नहीं होगी।`,
-          sa: `${ith.planet1.sa} ${ith.planet2.sa} इत्थशालं करोति परन्तु ${ith.planet2.sa} ${reasonSa} — कार्यसिद्धिर्नास्ति।`,
+          en: `${ith.planet1.en} applies to ${ith.planet2.en} but ${ith.planet2.en} is ${reason}  –  promise is denied or greatly reduced.`,
+          hi: `${ith.planet1.hi} ${ith.planet2.hi} से इत्थशाल बना रहा है किन्तु ${ith.planet2.hi} ${reasonHi} है  –  कार्यसिद्धि नहीं होगी।`,
+          sa: `${ith.planet1.sa} ${ith.planet2.sa} इत्थशालं करोति परन्तु ${ith.planet2.sa} ${reasonSa}  –  कार्यसिद्धिर्नास्ति।`,
         },
       });
     }
   }
 }
 
-// P2-04: Khallasara — chain: A applies to B (Ithasala), B applies to C (Ithasala)
+// P2-04: Khallasara  –  chain: A applies to B (Ithasala), B applies to C (Ithasala)
 function detectKhallasara(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
   const ithasalas = yogas.filter(y => y.type === 'ithasala');
   for (const ith1 of ithasalas) {
@@ -375,9 +375,9 @@ function detectKhallasara(planets: PlanetPosition[], yogas: TajikaYoga[]): void 
           planet2: C,
           favorable: true,
           description: {
-            en: `${A.en} → ${B.en} → ${C.en}: light transfers through a chain — results come through a sequence of events.`,
-            hi: `${A.hi} → ${B.hi} → ${C.hi}: श्रृंखला से प्रकाश स्थानांतरण — क्रमशः परिणाम मिलेगा।`,
-            sa: `${A.sa} → ${B.sa} → ${C.sa}: श्रृंखलया ज्योतिसंक्रमणम् — क्रमेण कार्यसिद्धिः।`,
+            en: `${A.en} → ${B.en} → ${C.en}: light transfers through a chain  –  results come through a sequence of events.`,
+            hi: `${A.hi} → ${B.hi} → ${C.hi}: श्रृंखला से प्रकाश स्थानांतरण  –  क्रमशः परिणाम मिलेगा।`,
+            sa: `${A.sa} → ${B.sa} → ${C.sa}: श्रृंखलया ज्योतिसंक्रमणम्  –  क्रमेण कार्यसिद्धिः।`,
           },
         });
       }
@@ -385,7 +385,7 @@ function detectKhallasara(planets: PlanetPosition[], yogas: TajikaYoga[]): void 
   }
 }
 
-// P2-04: Dutthottha — separated but within 1° residual orb (potential residual results)
+// P2-04: Dutthottha  –  separated but within 1° residual orb (potential residual results)
 function detectDutthottha(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
   const mainPlanets = planets.filter(p => p.planet.id <= 6);
   for (let i = 0; i < mainPlanets.length; i++) {
@@ -397,7 +397,7 @@ function detectDutthottha(planets: PlanetPosition[], yogas: TajikaYoga[]): void 
       for (const aspect of [0, 60, 90, 120, 180]) {
         const residual = Math.abs(diff - aspect);
         if (residual > 0 && residual <= 1) {
-          // Confirm it's separating (not applying — those are Ithasala/Ishrafa)
+          // Confirm it's separating (not applying  –  those are Ithasala/Ishrafa)
           const speed1 = Math.abs(p1.speed || PLANET_SPEEDS[p1.planet.id] || 0);
           const speed2 = Math.abs(p2.speed || PLANET_SPEEDS[p2.planet.id] || 0);
           const faster = speed1 > speed2 ? p1 : p2;
@@ -420,9 +420,9 @@ function detectDutthottha(planets: PlanetPosition[], yogas: TajikaYoga[]): void 
             orb: residual,
             favorable: true,
             description: {
-              en: `${p1.planet.name.en} and ${p2.planet.name.en} just separated (within 1°) — residual effects of the aspect still carry results.`,
-              hi: `${p1.planet.name.hi} और ${p2.planet.name.hi} अभी-अभी अलग हुए (1° के भीतर) — योग का अवशेष प्रभाव बना रहेगा।`,
-              sa: `${p1.planet.name.sa} ${p2.planet.name.sa} च अद्यतनं विभक्तौ (1° अन्तर्गतम्) — योगशेषफलं भवति।`,
+              en: `${p1.planet.name.en} and ${p2.planet.name.en} just separated (within 1°)  –  residual effects of the aspect still carry results.`,
+              hi: `${p1.planet.name.hi} और ${p2.planet.name.hi} अभी-अभी अलग हुए (1° के भीतर)  –  योग का अवशेष प्रभाव बना रहेगा।`,
+              sa: `${p1.planet.name.sa} ${p2.planet.name.sa} च अद्यतनं विभक्तौ (1° अन्तर्गतम्)  –  योगशेषफलं भवति।`,
             },
           });
           break;
@@ -434,7 +434,7 @@ function detectDutthottha(planets: PlanetPosition[], yogas: TajikaYoga[]): void 
 
 // ─── NEW YOGAS (8-16) ──────────────────────────────────────────────────────
 
-// 8. Ikkabal — A planet in exaltation, moolatrikona, or own sign in a kendra/trikona
+// 8. Ikkabal  –  A planet in exaltation, moolatrikona, or own sign in a kendra/trikona
 function detectIkkabal(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
   for (const p of planets) {
     if (!(p.isExalted || p.isOwnSign)) continue;
@@ -448,15 +448,15 @@ function detectIkkabal(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
       planet2Id: p.planet.id,
       favorable: true,
       description: {
-        en: `${p.planet.name.en} is ${p.isExalted ? 'exalted' : 'in own sign'} in house ${p.house} (kendra/trikona) — produces strong results independently without needing an aspect.`,
-        hi: `${p.planet.name.hi} ${p.isExalted ? 'उच्च' : 'स्वराशि'} में भाव ${p.house} (केन्द्र/त्रिकोण) — बिना दृष्टि के भी स्वतंत्र रूप से शुभ फल देता है।`,
-        sa: `${p.planet.name.sa} ${p.isExalted ? 'उच्चे' : 'स्वराशौ'} भावे ${p.house} (केन्द्र/त्रिकोण) — दृष्टिं विना स्वतन्त्रं शुभफलं ददाति।`,
+        en: `${p.planet.name.en} is ${p.isExalted ? 'exalted' : 'in own sign'} in house ${p.house} (kendra/trikona)  –  produces strong results independently without needing an aspect.`,
+        hi: `${p.planet.name.hi} ${p.isExalted ? 'उच्च' : 'स्वराशि'} में भाव ${p.house} (केन्द्र/त्रिकोण)  –  बिना दृष्टि के भी स्वतंत्र रूप से शुभ फल देता है।`,
+        sa: `${p.planet.name.sa} ${p.isExalted ? 'उच्चे' : 'स्वराशौ'} भावे ${p.house} (केन्द्र/त्रिकोण)  –  दृष्टिं विना स्वतन्त्रं शुभफलं ददाति।`,
       },
     });
   }
 }
 
-// 9. Induvara — safety net yoga when none of the main 7 yogas are found
+// 9. Induvara  –  safety net yoga when none of the main 7 yogas are found
 function detectInduvara(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
   const mainTypes = new Set(['ithasala', 'ishrafa', 'nakta', 'yamaya', 'manau', 'khallasara', 'dutthottha', 'muthashila']);
   const hasMainYoga = yogas.some(y => mainTypes.has(y.type));
@@ -480,9 +480,9 @@ function detectInduvara(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
           planet2Id: p2.planet.id,
           favorable: true,
           description: {
-            en: `No major Tajika aspect yogas found. ${p1.planet.name.en} and ${p2.planet.name.en} are in kendra/trikona from each other — mild beneficial influence still operates.`,
-            hi: `कोई प्रमुख ताजिक दृष्टि योग नहीं। ${p1.planet.name.hi} और ${p2.planet.name.hi} केन्द्र/त्रिकोण में — हल्का शुभ प्रभाव अभी भी कार्य करता है।`,
-            sa: `प्रमुखताजिकयोगो नास्ति। ${p1.planet.name.sa} ${p2.planet.name.sa} च केन्द्र/त्रिकोणे — मन्दं शुभफलम् अस्ति।`,
+            en: `No major Tajika aspect yogas found. ${p1.planet.name.en} and ${p2.planet.name.en} are in kendra/trikona from each other  –  mild beneficial influence still operates.`,
+            hi: `कोई प्रमुख ताजिक दृष्टि योग नहीं। ${p1.planet.name.hi} और ${p2.planet.name.hi} केन्द्र/त्रिकोण में  –  हल्का शुभ प्रभाव अभी भी कार्य करता है।`,
+            sa: `प्रमुखताजिकयोगो नास्ति। ${p1.planet.name.sa} ${p2.planet.name.sa} च केन्द्र/त्रिकोणे  –  मन्दं शुभफलम् अस्ति।`,
           },
         });
         return; // Only one Induvara needed
@@ -491,7 +491,7 @@ function detectInduvara(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
   }
 }
 
-// 10. Tambira — a planet that is in Ishrafa with one planet and Ithasala with another
+// 10. Tambira  –  a planet that is in Ishrafa with one planet and Ithasala with another
 function detectTambira(yogas: TajikaYoga[]): void {
   const ishrafas = yogas.filter(y => y.type === 'ishrafa');
   const ithasalas = yogas.filter(y => y.type === 'ithasala' || y.type === 'muthashila');
@@ -520,9 +520,9 @@ function detectTambira(yogas: TajikaYoga[]): void {
         planet2Id: ith.planet2Id,
         favorable: true,
         description: {
-          en: `A planet separated from one and now applies to another — the second connection fulfills what the first started. Transfer of intent.`,
-          hi: `एक ग्रह एक से अलग होकर दूसरे से जुड़ रहा है — दूसरा संयोग पहले को पूर्ण करता है। उद्देश्य का हस्तांतरण।`,
-          sa: `ग्रहः एकस्माद् विभक्तः अपरं प्रति गच्छति — द्वितीयं योगं प्रथमं पूरयति।`,
+          en: `A planet separated from one and now applies to another  –  the second connection fulfills what the first started. Transfer of intent.`,
+          hi: `एक ग्रह एक से अलग होकर दूसरे से जुड़ रहा है  –  दूसरा संयोग पहले को पूर्ण करता है। उद्देश्य का हस्तांतरण।`,
+          sa: `ग्रहः एकस्माद् विभक्तः अपरं प्रति गच्छति  –  द्वितीयं योगं प्रथमं पूरयति।`,
         },
       });
       return;
@@ -530,7 +530,7 @@ function detectTambira(yogas: TajikaYoga[]): void {
   }
 }
 
-// 11. Kuttha — two planets applying to aspect but BOTH in cadent houses (3,6,9,12)
+// 11. Kuttha  –  two planets applying to aspect but BOTH in cadent houses (3,6,9,12)
 function detectKuttha(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
   const ithasalas = yogas.filter(y => y.type === 'ithasala' || y.type === 'muthashila');
   for (const ith of ithasalas) {
@@ -548,16 +548,16 @@ function detectKuttha(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
         orb: ith.orb,
         favorable: false,
         description: {
-          en: `${p1.planet.name.en} and ${p2.planet.name.en} apply to each other but both are in cadent houses (${p1.house}, ${p2.house}) — promises but cannot deliver. Weak outcomes.`,
-          hi: `${p1.planet.name.hi} और ${p2.planet.name.hi} एक-दूसरे की ओर जा रहे हैं किन्तु दोनों अपोक्लिम भावों (${p1.house}, ${p2.house}) में — वादा करते हैं पर पूरा नहीं करते।`,
-          sa: `${p1.planet.name.sa} ${p2.planet.name.sa} च परस्परं गच्छतः किन्तु उभावपोक्लिमभावयोः (${p1.house}, ${p2.house}) — प्रतिज्ञा करोति न पूरयति।`,
+          en: `${p1.planet.name.en} and ${p2.planet.name.en} apply to each other but both are in cadent houses (${p1.house}, ${p2.house})  –  promises but cannot deliver. Weak outcomes.`,
+          hi: `${p1.planet.name.hi} और ${p2.planet.name.hi} एक-दूसरे की ओर जा रहे हैं किन्तु दोनों अपोक्लिम भावों (${p1.house}, ${p2.house}) में  –  वादा करते हैं पर पूरा नहीं करते।`,
+          sa: `${p1.planet.name.sa} ${p2.planet.name.sa} च परस्परं गच्छतः किन्तु उभावपोक्लिमभावयोः (${p1.house}, ${p2.house})  –  प्रतिज्ञा करोति न पूरयति।`,
         },
       });
     }
   }
 }
 
-// 12. Durupha — slower planet applies to faster (reverse of normal Ithasala)
+// 12. Durupha  –  slower planet applies to faster (reverse of normal Ithasala)
 function detectDurupha(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
   const mainPlanets = planets.filter(p => p.planet.id <= 6);
   for (let i = 0; i < mainPlanets.length; i++) {
@@ -601,9 +601,9 @@ function detectDurupha(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
             orb: aspectDiff,
             favorable: true,
             description: {
-              en: `${slower.planet.name.en} (slower) applies to ${faster.planet.name.en} (faster) — desire exists but action is delayed. Eventual success through persistence.`,
-              hi: `${slower.planet.name.hi} (धीमा) ${faster.planet.name.hi} (तीव्र) की ओर जा रहा है — इच्छा है किन्तु क्रिया विलंबित। धैर्य से सफलता।`,
-              sa: `${slower.planet.name.sa} (मन्दः) ${faster.planet.name.sa} (शीघ्रः) प्रति गच्छति — इच्छास्ति किन्तु क्रिया विलम्बिता। धैर्येण सिद्धिः।`,
+              en: `${slower.planet.name.en} (slower) applies to ${faster.planet.name.en} (faster)  –  desire exists but action is delayed. Eventual success through persistence.`,
+              hi: `${slower.planet.name.hi} (धीमा) ${faster.planet.name.hi} (तीव्र) की ओर जा रहा है  –  इच्छा है किन्तु क्रिया विलंबित। धैर्य से सफलता।`,
+              sa: `${slower.planet.name.sa} (मन्दः) ${faster.planet.name.sa} (शीघ्रः) प्रति गच्छति  –  इच्छास्ति किन्तु क्रिया विलम्बिता। धैर्येण सिद्धिः।`,
             },
           });
         }
@@ -613,7 +613,7 @@ function detectDurupha(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
   }
 }
 
-// 13. Radda — a strong benefic (Jupiter/Venus) rescues a negative yoga
+// 13. Radda  –  a strong benefic (Jupiter/Venus) rescues a negative yoga
 function detectRadda(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
   const BENEFIC_IDS = new Set([4, 5]); // Jupiter=4, Venus=5
   const TIGHT_ORB = 5; // degrees
@@ -649,9 +649,9 @@ function detectRadda(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
               favorable: true,
               cancels: neg.type,
               description: {
-                en: `${benefic.planet.name.en} aspects ${involved.planet.name.en} tightly — rescuing the negative ${neg.type} yoga. Recovery and course correction indicated.`,
-                hi: `${benefic.planet.name.hi} ${involved.planet.name.hi} पर कड़ी दृष्टि डालता है — नकारात्मक ${neg.type} योग को रद्द करता है। सुधार और पुनर्प्राप्ति संभव।`,
-                sa: `${benefic.planet.name.sa} ${involved.planet.name.sa} दृष्टिं करोति — नकारात्मक${neg.type}योगं निरस्यति। संशोधनं पुनर्प्राप्तिश्च।`,
+                en: `${benefic.planet.name.en} aspects ${involved.planet.name.en} tightly  –  rescuing the negative ${neg.type} yoga. Recovery and course correction indicated.`,
+                hi: `${benefic.planet.name.hi} ${involved.planet.name.hi} पर कड़ी दृष्टि डालता है  –  नकारात्मक ${neg.type} योग को रद्द करता है। सुधार और पुनर्प्राप्ति संभव।`,
+                sa: `${benefic.planet.name.sa} ${involved.planet.name.sa} दृष्टिं करोति  –  नकारात्मक${neg.type}योगं निरस्यति। संशोधनं पुनर्प्राप्तिश्च।`,
               },
             });
             return; // One Radda per negative yoga is enough
@@ -662,7 +662,7 @@ function detectRadda(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
   }
 }
 
-// 14-15. Kamboola & Gairi-Kamboola — Moon applies to Ithasala with lagna lord (or not)
+// 14-15. Kamboola & Gairi-Kamboola  –  Moon applies to Ithasala with lagna lord (or not)
 function detectKamboola(planets: PlanetPosition[], yogas: TajikaYoga[], lagnaSign: number): void {
   const moon = planets.find(p => p.planet.id === 1);
   if (!moon) return;
@@ -682,7 +682,7 @@ function detectKamboola(planets: PlanetPosition[], yogas: TajikaYoga[], lagnaSig
     if (!partnerPlanet) continue;
 
     if (partnerPlanet.planet.id === lagnaLordId) {
-      // Kamboola — Moon + lagna lord
+      // Kamboola  –  Moon + lagna lord
       yogas.push({
         name: { en: 'Kamboola Yoga', hi: 'कम्बूल योग', sa: 'कम्बूलयोगः' },
         type: 'kamboola',
@@ -693,13 +693,13 @@ function detectKamboola(planets: PlanetPosition[], yogas: TajikaYoga[], lagnaSig
         orb: ith.orb,
         favorable: true,
         description: {
-          en: `Moon applies to ${partnerPlanet.planet.name.en} (lagna lord) — results come through your own self-effort and initiative this year.`,
-          hi: `चन्द्रमा ${partnerPlanet.planet.name.hi} (लग्नेश) से इत्थशाल — इस वर्ष स्वप्रयास और पहल से परिणाम मिलेगा।`,
-          sa: `चन्द्रः ${partnerPlanet.planet.name.sa} (लग्नेशः) इत्थशालं करोति — स्वप्रयत्नेन फलसिद्धिः।`,
+          en: `Moon applies to ${partnerPlanet.planet.name.en} (lagna lord)  –  results come through your own self-effort and initiative this year.`,
+          hi: `चन्द्रमा ${partnerPlanet.planet.name.hi} (लग्नेश) से इत्थशाल  –  इस वर्ष स्वप्रयास और पहल से परिणाम मिलेगा।`,
+          sa: `चन्द्रः ${partnerPlanet.planet.name.sa} (लग्नेशः) इत्थशालं करोति  –  स्वप्रयत्नेन फलसिद्धिः।`,
         },
       });
     } else {
-      // Gairi-Kamboola — Moon + non-lagna lord
+      // Gairi-Kamboola  –  Moon + non-lagna lord
       yogas.push({
         name: { en: 'Gairi-Kamboola Yoga', hi: 'गैरी-कम्बूल योग', sa: 'गैरी-कम्बूलयोगः' },
         type: 'gairi-kamboola',
@@ -710,9 +710,9 @@ function detectKamboola(planets: PlanetPosition[], yogas: TajikaYoga[], lagnaSig
         orb: ith.orb,
         favorable: true,
         description: {
-          en: `Moon applies to ${partnerPlanet.planet.name.en} (not the lagna lord) — results come through others' help, not self-effort.`,
-          hi: `चन्द्रमा ${partnerPlanet.planet.name.hi} (लग्नेश नहीं) से इत्थशाल — दूसरों की सहायता से परिणाम मिलेगा, स्वप्रयास से नहीं।`,
-          sa: `चन्द्रः ${partnerPlanet.planet.name.sa} (लग्नेशो न) इत्थशालं करोति — परसाहाय्येन फलसिद्धिः।`,
+          en: `Moon applies to ${partnerPlanet.planet.name.en} (not the lagna lord)  –  results come through others' help, not self-effort.`,
+          hi: `चन्द्रमा ${partnerPlanet.planet.name.hi} (लग्नेश नहीं) से इत्थशाल  –  दूसरों की सहायता से परिणाम मिलेगा, स्वप्रयास से नहीं।`,
+          sa: `चन्द्रः ${partnerPlanet.planet.name.sa} (लग्नेशो न) इत्थशालं करोति  –  परसाहाय्येन फलसिद्धिः।`,
         },
       });
     }
@@ -722,7 +722,7 @@ function detectKamboola(planets: PlanetPosition[], yogas: TajikaYoga[], lagnaSig
 // ─── Easarapha (Separation) ─────────────────────────────────────────────────
 // Classical: the faster planet has ALREADY passed the exact aspect degree of
 // the slower planet. Unlike Ishrafa (which is any separating aspect within orb),
-// Easarapha specifically means the faster planet overshot — the matter was
+// Easarapha specifically means the faster planet overshot  –  the matter was
 // almost achieved but slipped away at the last moment.
 function detectEasarapha(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
   const mainPlanets = planets.filter(p => p.planet.id <= 6);
@@ -738,7 +738,7 @@ function detectEasarapha(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
 
       for (const aspect of TAJIKA_ASPECTS) {
         const aspectDiff = Math.abs(diff - aspect.angle);
-        // Tight separating orb (within 2°) — the faster planet just passed
+        // Tight separating orb (within 2°)  –  the faster planet just passed
         if (aspectDiff > 0 && aspectDiff <= 2) {
           const isApplying = isAspectApplying(faster, slower, aspect.angle);
           if (isApplying) continue; // applying = not Easarapha
@@ -761,9 +761,9 @@ function detectEasarapha(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
             orb: aspectDiff,
             favorable: false,
             description: {
-              en: `${faster.planet.name.en} has just passed the exact ${aspect.label.en} with ${slower.planet.name.en} — the matter was nearly achieved but slipped away. Only residual effects remain.`,
-              hi: `${faster.planet.name.hi} ${slower.planet.name.hi} के साथ ${aspect.label.hi} से आगे निकल गया — कार्य लगभग सिद्ध होने वाला था किन्तु हाथ से निकल गया। केवल अवशेष प्रभाव बचे हैं।`,
-              sa: `${faster.planet.name.sa} ${slower.planet.name.sa} ${aspect.label.sa} अतिक्रान्तः — कार्यं प्रायः सिद्धम् आसीत् किन्तु गतम्। अवशेषफलमात्रम्।`,
+              en: `${faster.planet.name.en} has just passed the exact ${aspect.label.en} with ${slower.planet.name.en}  –  the matter was nearly achieved but slipped away. Only residual effects remain.`,
+              hi: `${faster.planet.name.hi} ${slower.planet.name.hi} के साथ ${aspect.label.hi} से आगे निकल गया  –  कार्य लगभग सिद्ध होने वाला था किन्तु हाथ से निकल गया। केवल अवशेष प्रभाव बचे हैं।`,
+              sa: `${faster.planet.name.sa} ${slower.planet.name.sa} ${aspect.label.sa} अतिक्रान्तः  –  कार्यं प्रायः सिद्धम् आसीत् किन्तु गतम्। अवशेषफलमात्रम्।`,
             },
           });
           break;
@@ -773,7 +773,7 @@ function detectEasarapha(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
   }
 }
 
-// ─── Yamaya (Prohibition) — classical: a third planet blocks an applying aspect
+// ─── Yamaya (Prohibition)  –  classical: a third planet blocks an applying aspect
 // Planet C completes an aspect with A or B before A and B can complete theirs,
 // thereby "prohibiting" the original Ithasala from manifesting.
 function detectYamayaProhibition(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
@@ -825,8 +825,8 @@ function detectYamayaProhibition(planets: PlanetPosition[], yogas: TajikaYoga[])
               favorable: false,
               description: {
                 en: `${c.planet.name.en} prohibits the ${ith.planet1.en}–${ith.planet2.en} Ithasala by completing its own aspect with ${target.planet.name.en} first. The original promise is blocked by a third party or competing matter.`,
-                hi: `${c.planet.name.hi} ${ith.planet1.hi}–${ith.planet2.hi} इत्थशाल को रोकता है — ${target.planet.name.hi} से पहले अपना दृष्टि योग पूरा करता है। मूल वादा तीसरे पक्ष द्वारा अवरुद्ध।`,
-                sa: `${c.planet.name.sa} ${ith.planet1.sa}–${ith.planet2.sa} इत्थशालं निषेधयति — ${target.planet.name.sa} सह स्वदृष्टियोगं प्रथमं पूरयति। मूलप्रतिज्ञा तृतीयपक्षेण अवरुद्धा।`,
+                hi: `${c.planet.name.hi} ${ith.planet1.hi}–${ith.planet2.hi} इत्थशाल को रोकता है  –  ${target.planet.name.hi} से पहले अपना दृष्टि योग पूरा करता है। मूल वादा तीसरे पक्ष द्वारा अवरुद्ध।`,
+                sa: `${c.planet.name.sa} ${ith.planet1.sa}–${ith.planet2.sa} इत्थशालं निषेधयति  –  ${target.planet.name.sa} सह स्वदृष्टियोगं प्रथमं पूरयति। मूलप्रतिज्ञा तृतीयपक्षेण अवरुद्धा।`,
               },
             });
             return; // One prohibition per Ithasala is sufficient
@@ -837,7 +837,7 @@ function detectYamayaProhibition(planets: PlanetPosition[], yogas: TajikaYoga[])
   }
 }
 
-// ─── Manahoo (Cancellation) — retrograde planet reverses an Ithasala into separation
+// ─── Manahoo (Cancellation)  –  retrograde planet reverses an Ithasala into separation
 // When one of the Ithasala planets is retrograde and its retrograde motion will cause
 // it to separate from the aspect instead of completing it, the promise is cancelled.
 function detectManahoo(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
@@ -856,7 +856,7 @@ function detectManahoo(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
     // A retrograde planet in Ithasala means it was once applying but its retrograde
     // motion is now carrying it away. The retrograde speed (negative) is key:
     // if the retrograde planet's actual speed (signed) moves it AWAY from the aspect,
-    // the Ithasala is cancelled — this is Manahoo.
+    // the Ithasala is cancelled  –  this is Manahoo.
     //
     // Check: retrograde planet's signed speed should be taking it away from the other.
     // We detect this by seeing if the pair would be separating based on actual (signed) speeds.
@@ -881,9 +881,9 @@ function detectManahoo(planets: PlanetPosition[], yogas: TajikaYoga[]): void {
         orb: ith.orb,
         favorable: false,
         description: {
-          en: `${retroPlanet.planet.name.en} (retrograde) was in Ithasala with ${otherPlanet.planet.name.en} but retrograde motion now separates them — the promise is cancelled. What seemed certain will reverse or fall through.`,
-          hi: `${retroPlanet.planet.name.hi} (वक्री) ${otherPlanet.planet.name.hi} के साथ इत्थशाल में था किन्तु वक्री गति अब उन्हें अलग कर रही है — वादा रद्द। जो निश्चित लग रहा था वह उलट जाएगा।`,
-          sa: `${retroPlanet.planet.name.sa} (वक्री) ${otherPlanet.planet.name.sa} सह इत्थशाले आसीत् किन्तु वक्रगतिः अधुना तौ विभजति — प्रतिज्ञा निरस्ता। यत् निश्चितमासीत् तत् विपरीतं भविष्यति।`,
+          en: `${retroPlanet.planet.name.en} (retrograde) was in Ithasala with ${otherPlanet.planet.name.en} but retrograde motion now separates them  –  the promise is cancelled. What seemed certain will reverse or fall through.`,
+          hi: `${retroPlanet.planet.name.hi} (वक्री) ${otherPlanet.planet.name.hi} के साथ इत्थशाल में था किन्तु वक्री गति अब उन्हें अलग कर रही है  –  वादा रद्द। जो निश्चित लग रहा था वह उलट जाएगा।`,
+          sa: `${retroPlanet.planet.name.sa} (वक्री) ${otherPlanet.planet.name.sa} सह इत्थशाले आसीत् किन्तु वक्रगतिः अधुना तौ विभजति  –  प्रतिज्ञा निरस्ता। यत् निश्चितमासीत् तत् विपरीतं भविष्यति।`,
         },
       });
     }

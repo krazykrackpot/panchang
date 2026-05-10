@@ -91,7 +91,7 @@ const QUESTIONS: ModuleQuestion[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 1 — Pingala and the Chandahshastra                             */
+/*  PAGE 1  –  Pingala and the Chandahshastra                             */
 /* ------------------------------------------------------------------ */
 function Page1() {
   const locale = useModuleLocale();
@@ -104,8 +104,8 @@ function Page1() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>~200 BCE में, एक भारतीय छन्दशास्त्री ने कविता को व्यवस्थित करने की कोशिश में एक ऐसा गणितीय उपकरण खोजा जो 2000 वर्ष बाद डिजिटल क्रान्ति का आधार बनेगा। पिंगल को कम्प्यूटर की आवश्यकता नहीं थी — उन्हें केवल अच्छी कविता चाहिए थी।</>
-            : <>Around 200 BCE, an Indian prosodist trying to organise poetry discovered a mathematical tool that would, 2000 years later, become the foundation of the digital revolution. Pingala didn't need computers — he just needed good poetry.</>}
+            ? <>~200 BCE में, एक भारतीय छन्दशास्त्री ने कविता को व्यवस्थित करने की कोशिश में एक ऐसा गणितीय उपकरण खोजा जो 2000 वर्ष बाद डिजिटल क्रान्ति का आधार बनेगा। पिंगल को कम्प्यूटर की आवश्यकता नहीं थी  –  उन्हें केवल अच्छी कविता चाहिए थी।</>
+            : <>Around 200 BCE, an Indian prosodist trying to organise poetry discovered a mathematical tool that would, 2000 years later, become the foundation of the digital revolution. Pingala didn't need computers  –  he just needed good poetry.</>}
         </p>
       </section>
 
@@ -125,8 +125,8 @@ function Page1() {
         </p>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <>यह खोज आकस्मिक नहीं थी — यह एक व्यवस्थित गणितीय दृष्टिकोण था जिसे संगठित करने की आवश्यकता थी। पिंगल ने ऐसे एल्गोरिदम विकसित किए जो किसी भी n-अक्षर के छन्द के लिए सभी सम्भावित पैटर्न उत्पन्न कर सकते थे।</>
-            : <>This discovery wasn't accidental — it was a systematic mathematical approach needed for organisation. Pingala developed algorithms that could generate all possible patterns for any n-syllable meter.</>}
+            ? <>यह खोज आकस्मिक नहीं थी  –  यह एक व्यवस्थित गणितीय दृष्टिकोण था जिसे संगठित करने की आवश्यकता थी। पिंगल ने ऐसे एल्गोरिदम विकसित किए जो किसी भी n-अक्षर के छन्द के लिए सभी सम्भावित पैटर्न उत्पन्न कर सकते थे।</>
+            : <>This discovery wasn't accidental  –  it was a systematic mathematical approach needed for organisation. Pingala developed algorithms that could generate all possible patterns for any n-syllable meter.</>}
         </p>
       </section>
 
@@ -136,8 +136,8 @@ function Page1() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
-            ? <>पिंगल का "द्विः शून्ये" ("दो बार शून्य") नियम: किसी छन्द संख्या को द्विआधारी में बदलने के लिए —</>
-            : <>Pingala's "dvih shunye" ("two zeros") rule: to convert a meter number to binary —</>}
+            ? <>पिंगल का "द्विः शून्ये" ("दो बार शून्य") नियम: किसी छन्द संख्या को द्विआधारी में बदलने के लिए  – </>
+            : <>Pingala's "dvih shunye" ("two zeros") rule: to convert a meter number to binary  – </>}
         </p>
         <div className="space-y-1">
           <p className="text-text-secondary text-xs">1. {t('ifNumberIsOddSubtract1', locale)}</p>
@@ -154,7 +154,7 @@ function Page1() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 2 — Meruprastara: Pascal's Triangle 2000 Years Early           */
+/*  PAGE 2  –  Meruprastara: Pascal's Triangle 2000 Years Early           */
 /* ------------------------------------------------------------------ */
 function Page2() {
   const locale = useModuleLocale();
@@ -167,8 +167,8 @@ function Page2() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>पिंगल की सबसे बड़ी खोजों में से एक थी "मेरुप्रस्तार" — एक त्रिभुजाकार संख्या व्यवस्था जिसे 1800 वर्ष बाद ब्लेज़ पास्कल "पुनः खोजेंगे।"</>
-            : <>One of Pingala's greatest discoveries was "Meruprastara" — a triangular number arrangement that Blaise Pascal would "re-discover" 1800 years later.</>}
+            ? <>पिंगल की सबसे बड़ी खोजों में से एक थी "मेरुप्रस्तार"  –  एक त्रिभुजाकार संख्या व्यवस्था जिसे 1800 वर्ष बाद ब्लेज़ पास्कल "पुनः खोजेंगे।"</>
+            : <>One of Pingala's greatest discoveries was "Meruprastara"  –  a triangular number arrangement that Blaise Pascal would "re-discover" 1800 years later.</>}
         </p>
       </section>
 
@@ -207,7 +207,7 @@ function Page2() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 3 — Legacy: Combinatorics and Computing                        */
+/*  PAGE 3  –  Legacy: Combinatorics and Computing                        */
 /* ------------------------------------------------------------------ */
 function Page3() {
   const locale = useModuleLocale();
@@ -220,8 +220,8 @@ function Page3() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>पिंगल का छन्दःशास्त्र केवल कविता का नहीं — यह गणित का एक महान ग्रन्थ है। क्रमचय-संचय, द्विपद प्रमेय, और द्विआधारी संख्या प्रणाली — तीनों की जड़ें यहाँ हैं।</>
-            : <>Pingala's Chandahshastra is not just about poetry — it is a great mathematical text. Combinatorics, binomial theorem, and binary number system — all three have their roots here.</>}
+            ? <>पिंगल का छन्दःशास्त्र केवल कविता का नहीं  –  यह गणित का एक महान ग्रन्थ है। क्रमचय-संचय, द्विपद प्रमेय, और द्विआधारी संख्या प्रणाली  –  तीनों की जड़ें यहाँ हैं।</>
+            : <>Pingala's Chandahshastra is not just about poetry  –  it is a great mathematical text. Combinatorics, binomial theorem, and binary number system  –  all three have their roots here.</>}
         </p>
       </section>
 
@@ -256,8 +256,8 @@ function Page3() {
         </p>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <>क्लॉड शैनन ने 1948 में सिद्ध किया कि कोई भी जानकारी (ध्वनि, चित्र, पाठ) को 0 और 1 के अनुक्रमों के रूप में एन्कोड किया जा सकता है — बिट्स। यह ठीक वही सिद्धान्त है जो पिंगल ने कविता के लिए खोजा था।</>
-            : <>Claude Shannon proved in 1948 that any information (sound, image, text) can be encoded as sequences of 0s and 1s — bits. This is exactly the principle Pingala discovered for poetry.</>}
+            ? <>क्लॉड शैनन ने 1948 में सिद्ध किया कि कोई भी जानकारी (ध्वनि, चित्र, पाठ) को 0 और 1 के अनुक्रमों के रूप में एन्कोड किया जा सकता है  –  बिट्स। यह ठीक वही सिद्धान्त है जो पिंगल ने कविता के लिए खोजा था।</>
+            : <>Claude Shannon proved in 1948 that any information (sound, image, text) can be encoded as sequences of 0s and 1s  –  bits. This is exactly the principle Pingala discovered for poetry.</>}
         </p>
       </section>
     </div>

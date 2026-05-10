@@ -22,9 +22,9 @@ export const DURGA_ASHTAMI_PUJA: PujaVidhi = {
 
   muhurtaType: 'computed',
   muhurtaDescription: {
-    en: 'Durga Ashtami is observed on the 8th day of Navratri (Ashwin/Chaitra Shukla Ashtami). The Sandhi Puja — the most sacred moment — occurs during the junction (sandhi) of Ashtami and Navami tithi. Daily worship is done during Madhyahna (midday).',
-    hi: 'दुर्गा अष्टमी नवरात्रि के 8वें दिन (आश्विन/चैत्र शुक्ल अष्टमी) मनाई जाती है। सन्धि पूजा — सबसे पवित्र क्षण — अष्टमी और नवमी तिथि के सन्धिकाल में होती है। दैनिक पूजा मध्याह्न में की जाती है।',
-    sa: 'दुर्गाष्टमी नवरात्र्याः अष्टमे दिने (आश्विन/चैत्रशुक्लाष्टम्याम्) आचर्यते। सन्धिपूजा — पवित्रतमः क्षणः — अष्टमीनवम्योः सन्धिकाले भवति। प्रतिदिनपूजा मध्याह्ने क्रियते।',
+    en: 'Durga Ashtami is observed on the 8th day of Navratri (Ashwin/Chaitra Shukla Ashtami). The Sandhi Puja  –  the most sacred moment  –  occurs during the junction (sandhi) of Ashtami and Navami tithi. Daily worship is done during Madhyahna (midday).',
+    hi: 'दुर्गा अष्टमी नवरात्रि के 8वें दिन (आश्विन/चैत्र शुक्ल अष्टमी) मनाई जाती है। सन्धि पूजा  –  सबसे पवित्र क्षण  –  अष्टमी और नवमी तिथि के सन्धिकाल में होती है। दैनिक पूजा मध्याह्न में की जाती है।',
+    sa: 'दुर्गाष्टमी नवरात्र्याः अष्टमे दिने (आश्विन/चैत्रशुक्लाष्टम्याम्) आचर्यते। सन्धिपूजा  –  पवित्रतमः क्षणः  –  अष्टमीनवम्योः सन्धिकाले भवति। प्रतिदिनपूजा मध्याह्ने क्रियते।',
   },
   muhurtaWindow: { type: 'madhyahna' },
 
@@ -75,9 +75,9 @@ export const DURGA_ASHTAMI_PUJA: PujaVidhi = {
       step: 4,
       title: { en: 'Sandhi Puja', hi: 'सन्धि पूजा', sa: 'सन्धिपूजा' },
       description: {
-        en: 'The most important ritual of Maha Ashtami. Perform this puja during the exact junction (sandhi kaal) when Ashtami tithi ends and Navami begins — typically a 48-minute window (24 minutes before and after the sandhi moment). Offer 108 lotuses and 108 lamps. Recite the Chamunda mantra.',
-        hi: 'महा अष्टमी का सबसे महत्वपूर्ण अनुष्ठान। इसे ठीक उस सन्धि काल में करें जब अष्टमी तिथि समाप्त होकर नवमी शुरू होती है — सामान्यतः 48 मिनट का समय (सन्धि क्षण के 24 मिनट पहले और बाद)। 108 कमल और 108 दीपक अर्पित करें। चामुण्डा मंत्र का पाठ करें।',
-        sa: 'महाष्टम्याः महत्तमम् अनुष्ठानम्। एतत् सन्धिकाले यदा अष्टमीतिथिः समाप्यते नवमी च आरभ्यते तदा कुर्यात् — सामान्यतः अष्टचत्वारिंशन्निमेषकालः (सन्धिक्षणात् चतुर्विंशतिनिमेषं पूर्वम् अपरं च)। अष्टोत्तरशतकमलानि अष्टोत्तरशतदीपान् च समर्पयेत्। चामुण्डामन्त्रं पठेत्।',
+        en: 'The most important ritual of Maha Ashtami. Perform this puja during the exact junction (sandhi kaal) when Ashtami tithi ends and Navami begins  –  typically a 48-minute window (24 minutes before and after the sandhi moment). Offer 108 lotuses and 108 lamps. Recite the Chamunda mantra.',
+        hi: 'महा अष्टमी का सबसे महत्वपूर्ण अनुष्ठान। इसे ठीक उस सन्धि काल में करें जब अष्टमी तिथि समाप्त होकर नवमी शुरू होती है  –  सामान्यतः 48 मिनट का समय (सन्धि क्षण के 24 मिनट पहले और बाद)। 108 कमल और 108 दीपक अर्पित करें। चामुण्डा मंत्र का पाठ करें।',
+        sa: 'महाष्टम्याः महत्तमम् अनुष्ठानम्। एतत् सन्धिकाले यदा अष्टमीतिथिः समाप्यते नवमी च आरभ्यते तदा कुर्यात्  –  सामान्यतः अष्टचत्वारिंशन्निमेषकालः (सन्धिक्षणात् चतुर्विंशतिनिमेषं पूर्वम् अपरं च)। अष्टोत्तरशतकमलानि अष्टोत्तरशतदीपान् च समर्पयेत्। चामुण्डामन्त्रं पठेत्।',
       },
       duration: '48 min',
       essential: true,
@@ -88,9 +88,9 @@ export const DURGA_ASHTAMI_PUJA: PujaVidhi = {
       step: 5,
       title: { en: 'Astra Puja (Weapon Worship)', hi: 'अस्त्र पूजा (शस्त्र पूजन)', sa: 'अस्त्रपूजा (शस्त्रपूजनम्)' },
       description: {
-        en: 'Perform Astra Puja — worship of weapons and tools. In the Durga tradition, this symbolizes the divine weapons given to Durga by the Devas. Place household tools, professional instruments, or symbolic weapons before the Goddess and worship them with flowers and kumkum.',
-        hi: 'अस्त्र पूजा करें — शस्त्रों और औज़ारों की पूजा। दुर्गा परम्परा में यह देवताओं द्वारा दुर्गा को दिए गए दिव्य अस्त्रों का प्रतीक है। घरेलू औज़ार, व्यावसायिक उपकरण या प्रतीकात्मक शस्त्र देवी के सामने रखकर फूल और कुमकुम से पूजा करें।',
-        sa: 'अस्त्रपूजां कुर्यात् — शस्त्रोपकरणानां पूजनम्। दुर्गापरम्परायां एतत् देवैः दुर्गायै प्रदत्तानां दिव्यास्त्राणां प्रतीकम्। गृहोपकरणानि व्यावसायिकयन्त्राणि प्रतीकात्मकशस्त्राणि वा देव्याः पुरतः स्थापयित्वा पुष्पकुङ्कुमाभ्यां पूजयेत्।',
+        en: 'Perform Astra Puja  –  worship of weapons and tools. In the Durga tradition, this symbolizes the divine weapons given to Durga by the Devas. Place household tools, professional instruments, or symbolic weapons before the Goddess and worship them with flowers and kumkum.',
+        hi: 'अस्त्र पूजा करें  –  शस्त्रों और औज़ारों की पूजा। दुर्गा परम्परा में यह देवताओं द्वारा दुर्गा को दिए गए दिव्य अस्त्रों का प्रतीक है। घरेलू औज़ार, व्यावसायिक उपकरण या प्रतीकात्मक शस्त्र देवी के सामने रखकर फूल और कुमकुम से पूजा करें।',
+        sa: 'अस्त्रपूजां कुर्यात्  –  शस्त्रोपकरणानां पूजनम्। दुर्गापरम्परायां एतत् देवैः दुर्गायै प्रदत्तानां दिव्यास्त्राणां प्रतीकम्। गृहोपकरणानि व्यावसायिकयन्त्राणि प्रतीकात्मकशस्त्राणि वा देव्याः पुरतः स्थापयित्वा पुष्पकुङ्कुमाभ्यां पूजयेत्।',
       },
       duration: '15 min',
       essential: false,
@@ -130,9 +130,9 @@ export const DURGA_ASHTAMI_PUJA: PujaVidhi = {
       devanagari: 'ॐ ऐं ह्रीं क्लीं चामुण्डायै विच्चे।\nजयन्ती मङ्गला काली भद्रकाली कपालिनी।\nदुर्गा क्षमा शिवा धात्री स्वाहा स्वधा नमोऽस्तु ते॥',
       iast: 'oṃ aiṃ hrīṃ klīṃ cāmuṇḍāyai vicce |\njayantī maṅgalā kālī bhadrakālī kapālinī |\ndurgā kṣamā śivā dhātrī svāhā svadhā namo\'stu te ||',
       meaning: {
-        en: 'Om, with Aim, Hrim, Klim, I invoke Chamunda. Victory-giver, auspicious Kali, Bhadrakali, skull-bearer, Durga, the forgiving, Shiva, the sustainer — Svaha, Svadha, salutations to you.',
-        hi: 'ॐ, ऐं, ह्रीं, क्लीं से चामुण्डा का आह्वान। जयन्ती, मंगला, काली, भद्रकाली, कपालिनी, दुर्गा, क्षमाशील, शिवा, धात्री — स्वाहा, स्वधा, आपको नमस्कार।',
-        sa: 'ॐ, ऐं, ह्रीं, क्लीं, चामुण्डाम् आवाहयामि। जयन्ती मङ्गला काली भद्रकाली कपालिनी दुर्गा क्षमा शिवा धात्री — स्वाहा स्वधा तुभ्यं नमः।',
+        en: 'Om, with Aim, Hrim, Klim, I invoke Chamunda. Victory-giver, auspicious Kali, Bhadrakali, skull-bearer, Durga, the forgiving, Shiva, the sustainer  –  Svaha, Svadha, salutations to you.',
+        hi: 'ॐ, ऐं, ह्रीं, क्लीं से चामुण्डा का आह्वान। जयन्ती, मंगला, काली, भद्रकाली, कपालिनी, दुर्गा, क्षमाशील, शिवा, धात्री  –  स्वाहा, स्वधा, आपको नमस्कार।',
+        sa: 'ॐ, ऐं, ह्रीं, क्लीं, चामुण्डाम् आवाहयामि। जयन्ती मङ्गला काली भद्रकाली कपालिनी दुर्गा क्षमा शिवा धात्री  –  स्वाहा स्वधा तुभ्यं नमः।',
       },
       usage: {
         en: 'Chant 108 times during Sandhi Puja. This is the primary mantra for Maha Ashtami.',
@@ -147,9 +147,9 @@ export const DURGA_ASHTAMI_PUJA: PujaVidhi = {
       devanagari: 'ॐ देवी दुर्गायै नमः।\nया देवी सर्वभूतेषु शक्तिरूपेण संस्थिता।\nनमस्तस्यै नमस्तस्यै नमस्तस्यै नमो नमः॥',
       iast: 'oṃ devī durgāyai namaḥ |\nyā devī sarvabhūteṣu śaktirūpeṇa saṃsthitā |\nnamastasyai namastasyai namastasyai namo namaḥ ||',
       meaning: {
-        en: 'Om, salutations to Goddess Durga. The Goddess who resides in all beings in the form of power (Shakti) — I bow to her, I bow to her, I bow to her again and again.',
-        hi: 'ॐ, देवी दुर्गा को नमस्कार। जो देवी सभी प्राणियों में शक्ति रूप में विराजमान हैं — उन्हें नमस्कार, उन्हें नमस्कार, उन्हें बारम्बार नमस्कार।',
-        sa: 'ॐ, देवी दुर्गायै नमः। या देवी सर्वभूतेषु शक्तिरूपेण संस्थिता — तस्यै नमः, तस्यै नमः, तस्यै पुनः पुनः नमः।',
+        en: 'Om, salutations to Goddess Durga. The Goddess who resides in all beings in the form of power (Shakti)  –  I bow to her, I bow to her, I bow to her again and again.',
+        hi: 'ॐ, देवी दुर्गा को नमस्कार। जो देवी सभी प्राणियों में शक्ति रूप में विराजमान हैं  –  उन्हें नमस्कार, उन्हें नमस्कार, उन्हें बारम्बार नमस्कार।',
+        sa: 'ॐ, देवी दुर्गायै नमः। या देवी सर्वभूतेषु शक्तिरूपेण संस्थिता  –  तस्यै नमः, तस्यै नमः, तस्यै पुनः पुनः नमः।',
       },
       usage: {
         en: 'Recite during the havan, offering each ahuti with "Svaha" after the mantra.',
@@ -164,9 +164,9 @@ export const DURGA_ASHTAMI_PUJA: PujaVidhi = {
       devanagari: 'ॐ देवी महागौर्यै नमः।\nश्वेते वृषे समारूढा श्वेताम्बरधरा शुचिः।\nमहागौरी शुभं दद्यान्महादेवप्रमोददा॥',
       iast: 'oṃ devī mahāgauryai namaḥ |\nśvete vṛṣe samārūḍhā śvetāmbaradharā śuciḥ |\nmahāgaurī śubhaṃ dadyānmahādevapramodadā ||',
       meaning: {
-        en: 'Om, salutations to Goddess Mahagauri. She who rides a white bull, wears white garments, is pure — may Mahagauri, who delights Mahadeva, bestow auspiciousness.',
-        hi: 'ॐ, देवी महागौरी को नमस्कार। जो श्वेत वृषभ पर विराजमान हैं, श्वेत वस्त्र धारण करती हैं, पवित्र हैं — महागौरी, जो महादेव को प्रसन्न करती हैं, शुभ प्रदान करें।',
-        sa: 'ॐ, देवी महागौर्यै नमः। श्वेतवृषारूढा श्वेताम्बरधारिणी शुचिः — महागौरी महादेवप्रमोददा शुभं दद्यात्।',
+        en: 'Om, salutations to Goddess Mahagauri. She who rides a white bull, wears white garments, is pure  –  may Mahagauri, who delights Mahadeva, bestow auspiciousness.',
+        hi: 'ॐ, देवी महागौरी को नमस्कार। जो श्वेत वृषभ पर विराजमान हैं, श्वेत वस्त्र धारण करती हैं, पवित्र हैं  –  महागौरी, जो महादेव को प्रसन्न करती हैं, शुभ प्रदान करें।',
+        sa: 'ॐ, देवी महागौर्यै नमः। श्वेतवृषारूढा श्वेताम्बरधारिणी शुचिः  –  महागौरी महादेवप्रमोददा शुभं दद्यात्।',
       },
       usage: {
         en: 'Chant specifically on the 8th day of Navratri during the morning puja.',
@@ -184,9 +184,9 @@ export const DURGA_ASHTAMI_PUJA: PujaVidhi = {
 
   precautions: [
     {
-      en: 'Sandhi Puja timing must be precise — consult the Panchang for the exact Ashtami-Navami sandhi moment. Missing this window significantly reduces the puja\'s merit.',
-      hi: 'सन्धि पूजा का समय सटीक होना चाहिए — अष्टमी-नवमी सन्धि के सही क्षण के लिए पंचांग देखें। इस समय को चूकने से पूजा के पुण्य में अत्यधिक कमी होती है।',
-      sa: 'सन्धिपूजायाः कालः यथार्थः स्यात् — अष्टमीनवम्योः सन्धिक्षणाय पञ्चाङ्गं परामृशेत्। अस्य समयस्य लोपेन पूजायाः पुण्यं बहुशः न्यूनी भवति।',
+      en: 'Sandhi Puja timing must be precise  –  consult the Panchang for the exact Ashtami-Navami sandhi moment. Missing this window significantly reduces the puja\'s merit.',
+      hi: 'सन्धि पूजा का समय सटीक होना चाहिए  –  अष्टमी-नवमी सन्धि के सही क्षण के लिए पंचांग देखें। इस समय को चूकने से पूजा के पुण्य में अत्यधिक कमी होती है।',
+      sa: 'सन्धिपूजायाः कालः यथार्थः स्यात्  –  अष्टमीनवम्योः सन्धिक्षणाय पञ्चाङ्गं परामृशेत्। अस्य समयस्य लोपेन पूजायाः पुण्यं बहुशः न्यूनी भवति।',
     },
     {
       en: 'During Kanya Puja, treat the girls with utmost devotion as living embodiments of the Goddess. Never disrespect or rush the ceremony.',

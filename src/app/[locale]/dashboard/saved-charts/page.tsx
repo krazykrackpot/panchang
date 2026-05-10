@@ -134,7 +134,7 @@ export default function SavedChartsPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               <div className="sm:col-span-2">
                 <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-1">{tl({ en: 'Label', hi: 'नाम', sa: 'नामपत्रम्', ta: 'பெயர்', te: 'లేబుల్', bn: 'লেবেল', kn: 'ಲೇಬಲ್', gu: 'લેબલ', mai: 'लेबल', mr: 'लेबल' }, locale)}</label>
-                <input type="text" value={label} onChange={e => setLabel(e.target.value)} placeholder={tl({ en: 'e.g., My Mother', hi: 'उदा., मेरी माता', sa: 'यथा — मम माता', ta: 'எ.கா., என் தாய்', te: 'ఉదా., నా తల్లి', bn: 'যেমন, আমার মা', kn: 'ಉದಾ., ನನ್ನ ತಾಯಿ', gu: 'દા.ત., મારી માં', mai: 'जेना — हमर माय', mr: 'उदा., माझी आई' }, locale)}
+                <input type="text" value={label} onChange={e => setLabel(e.target.value)} placeholder={tl({ en: 'e.g., My Mother', hi: 'उदा., मेरी माता', sa: 'यथा  –  मम माता', ta: 'எ.கா., என் தாய்', te: 'ఉదా., నా తల్లి', bn: 'যেমন, আমার মা', kn: 'ಉದಾ., ನನ್ನ ತಾಯಿ', gu: 'દા.ત., મારી માં', mai: 'जेना  –  हमर माय', mr: 'उदा., माझी आई' }, locale)}
                   className="w-full bg-bg-tertiary/40 border border-gold-primary/10 rounded-lg px-3 py-2 text-text-primary text-sm focus:border-gold-primary/40 outline-none" />
               </div>
               <div>

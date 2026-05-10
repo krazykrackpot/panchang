@@ -34,8 +34,8 @@ const TWELVE_TYPES = [
 const CANCELLATIONS = [
   'Any planet conjunct Rahu or Ketu breaks the hemming',
   'Strong benefic (Jupiter/Venus exalted or in own sign) aspects Rahu-Ketu axis',
-  'Rahu in upachaya house (3, 6, 10, 11) — struggle becomes productive',
-  'Jupiter or Venus mahadasha active — effects substantially mitigated',
+  'Rahu in upachaya house (3, 6, 10, 11)  –  struggle becomes productive',
+  'Jupiter or Venus mahadasha active  –  effects substantially mitigated',
 ];
 
 export default function LearnKaalSarpPage() {
@@ -56,14 +56,14 @@ export default function LearnKaalSarpPage() {
 
       <KeyTakeaway locale={locale} points={[
         'Kaal Sarpa occurs when all 7 planets are hemmed between Rahu and Ketu on one side of the chart.',
-        'It is NOT found in BPHS or other major classical texts — it is a later traditional practice. We present it honestly.',
+        'It is NOT found in BPHS or other major classical texts  –  it is a later traditional practice. We present it honestly.',
         'Multiple cancellation conditions exist; many successful people have Kaal Sarpa in their charts.',
       ]} />
 
       <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
-        <BeginnerNote term="Rahu-Ketu Axis" explanation="The lunar nodes — Rahu (north node) and Ketu (south node) — always 180 degrees apart, forming an axis across the chart" />
+        <BeginnerNote term="Rahu-Ketu Axis" explanation="The lunar nodes  –  Rahu (north node) and Ketu (south node)  –  always 180 degrees apart, forming an axis across the chart" />
         <BeginnerNote term="Dosha" explanation="A blemish or affliction in the birth chart that indicates challenges in specific life areas" />
-        <BeginnerNote term="Upachaya Houses" explanation="Houses 3, 6, 10, and 11 — where malefic planets can produce positive results through struggle and effort" />
+        <BeginnerNote term="Upachaya Houses" explanation="Houses 3, 6, 10, and 11  –  where malefic planets can produce positive results through struggle and effort" />
       </div>
 
       {/* ── What is Kaal Sarpa ── */}
@@ -134,14 +134,14 @@ export default function LearnKaalSarpPage() {
           <Info size={20} className="text-gold-primary mt-0.5 flex-shrink-0" />
           <p className="text-gold-light text-sm font-medium italic" style={bf}>
             {isHi
-              ? '"काल सर्प दोष बृहत् पाराशर होरा शास्त्र में नहीं है। हम इसे ईमानदारी से प्रस्तुत करते हैं — एक जीवित परम्परा के रूप में, न कि शास्त्रीय सिद्धान्त के रूप में।"'
-              : '"Kaal Sarpa Dosha is not in BPHS. We present it honestly — as a living tradition, not settled classical doctrine."'}
+              ? '"काल सर्प दोष बृहत् पाराशर होरा शास्त्र में नहीं है। हम इसे ईमानदारी से प्रस्तुत करते हैं  –  एक जीवित परम्परा के रूप में, न कि शास्त्रीय सिद्धान्त के रूप में।"'
+              : '"Kaal Sarpa Dosha is not in BPHS. We present it honestly  –  as a living tradition, not settled classical doctrine."'}
           </p>
         </div>
         <p style={bf}>{t('misconceptionsContent')}</p>
         <ClassicalReference
           shortName="Traditional Practice"
-          chapter="Not found in BPHS, Jataka Parijata, or Phaladeepika — later tradition"
+          chapter="Not found in BPHS, Jataka Parijata, or Phaladeepika  –  later tradition"
         />
       </LessonSection>
 

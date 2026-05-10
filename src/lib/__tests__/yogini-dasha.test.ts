@@ -76,7 +76,7 @@ describe('Yogini Dasha', () => {
       expect(getYoginiLordIndex(8)).toBe(0);
     });
 
-    it('Magha (9) -> Mangala (index 0) — second cycle', () => {
+    it('Magha (9) -> Mangala (index 0)  –  second cycle', () => {
       expect(getYoginiLordIndex(9)).toBe(0);
     });
 
@@ -88,7 +88,7 @@ describe('Yogini Dasha', () => {
       expect(getYoginiLordIndex(17)).toBe(0);
     });
 
-    it('Moola (18) -> Mangala (index 0) — third cycle', () => {
+    it('Moola (18) -> Mangala (index 0)  –  third cycle', () => {
       expect(getYoginiLordIndex(18)).toBe(0);
     });
 

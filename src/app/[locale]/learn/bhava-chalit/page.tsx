@@ -214,7 +214,7 @@ export default function LearnBhavaChalitPage() {
         </div>
         <ClassicalReference
           shortName="BPHS"
-          chapter="Ch. 7 — Bhava Division"
+          chapter="Ch. 7  –  Bhava Division"
           topic={tx('bphsNote')}
         />
       </motion.section>
@@ -290,7 +290,7 @@ export default function LearnBhavaChalitPage() {
         </div>
       </motion.section>
 
-      {/* 8. CTA — Generate your kundali */}
+      {/* 8. CTA  –  Generate your kundali */}
       <motion.section {...sectionMotion}
         className="bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] border border-gold-primary/20 rounded-2xl p-6 sm:p-8 text-center"
       >

@@ -96,7 +96,7 @@ export function getLST(jd: number, longitudeDeg: number): number {
   return normalizeAngle(getGMST(jd) + longitudeDeg);
 }
 
-/** Equation of time (minutes) — difference between apparent and mean solar time */
+/** Equation of time (minutes)  –  difference between apparent and mean solar time */
 export function getEquationOfTime(jd: number): number {
   const T = julianCenturies(jd);
   const epsilon = degToRad(getObliquity(jd));

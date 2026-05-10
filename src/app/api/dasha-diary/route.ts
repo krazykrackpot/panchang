@@ -45,7 +45,7 @@ function dignityLabel(planet: string, sign: number): string {
   return '';
 }
 
-/** Planet sign lordship — each planet rules certain rashis */
+/** Planet sign lordship  –  each planet rules certain rashis */
 const LORDSHIPS: Record<string, number[]> = {
   Sun:    [5],
   Moon:   [4],
@@ -125,7 +125,7 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const locale = searchParams.get('locale') ?? 'en';
   // NOTE: searchParams is accessed via URL constructor here (not Next.js async
-  // searchParams prop), so no await is needed — new URL().searchParams is sync.
+  // searchParams prop), so no await is needed  –  new URL().searchParams is sync.
 
   try {
     // Fetch snapshot

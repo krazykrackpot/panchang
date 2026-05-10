@@ -1,5 +1,5 @@
 /**
- * Birth Time Rectification — Type Definitions
+ * Birth Time Rectification  –  Type Definitions
  *
  * Data model for the rectification engine that scores candidate birth times
  * against known life events using Vimshottari Dasha house activations.

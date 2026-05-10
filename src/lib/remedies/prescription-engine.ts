@@ -92,11 +92,11 @@ const VARA_PLANET: Record<number, number> = {
 const PLANET_BEST_DAY: Record<number, string> = {
   0: 'Sunday', 1: 'Monday', 2: 'Tuesday', 3: 'Wednesday',
   4: 'Thursday', 5: 'Friday', 6: 'Saturday',
-  7: 'Saturday', // Rahu — Saturday
-  8: 'Tuesday',  // Ketu — Tuesday
+  7: 'Saturday', // Rahu  –  Saturday
+  8: 'Tuesday',  // Ketu  –  Tuesday
 };
 
-/** Food avoidance per planet — classical recommendations */
+/** Food avoidance per planet  –  classical recommendations */
 const FOOD_AVOID: Record<number, { en: string; hi: string }> = {
   0: { en: 'Avoid non-veg on Sundays', hi: 'रविवार को माँसाहार त्यागें' },
   1: { en: 'Avoid stale food, excess salt', hi: 'बासी भोजन और अधिक नमक से बचें' },
@@ -109,7 +109,7 @@ const FOOD_AVOID: Record<number, { en: string; hi: string }> = {
   8: { en: 'Avoid non-veg on Tuesdays', hi: 'मंगलवार को माँसाहार त्यागें' },
 };
 
-/** Dosha-linked planet IDs — when these are weak AND dosha is present, urgency = critical */
+/** Dosha-linked planet IDs  –  when these are weak AND dosha is present, urgency = critical */
 const DOSHA_PLANET_MAP: Record<string, number> = {
   'mangal': 2,    // Mars → Mangal Dosha
   'sade_sati': 6, // Saturn → Sade Sati
@@ -162,7 +162,7 @@ function getActiveDoshaIds(kundali: KundaliData): Set<number> {
 
   // Check for Sade Sati
   if (kundali.sadeSati) {
-    // sadeSati is present — Saturn is dosha-linked
+    // sadeSati is present  –  Saturn is dosha-linked
     ids.add(6);
   }
 
@@ -218,8 +218,8 @@ function buildReason(
   }
 
   return {
-    en: parts.en.join(' — '),
-    hi: parts.hi.join(' — '),
+    en: parts.en.join('  –  '),
+    hi: parts.hi.join('  –  '),
   };
 }
 

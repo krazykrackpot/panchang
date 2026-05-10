@@ -3,7 +3,7 @@ import { buildVargaNarrative } from '../tippanni/varga-narrative';
 import type { DeepVargaResult } from '../tippanni/varga-tippanni-types-v2';
 
 // ---------------------------------------------------------------------------
-// Mock data — shape matches varga-tippanni-types-v2.ts exactly
+// Mock data  –  shape matches varga-tippanni-types-v2.ts exactly
 // ---------------------------------------------------------------------------
 
 const mockResult: DeepVargaResult = {
@@ -114,7 +114,7 @@ const mockResult: DeepVargaResult = {
     d1Promise: 72,
     dxxDelivery: 81,
     verdictKey: 'strong_excellent',
-    verdict: { en: 'Supreme manifestation — both promise and delivery are powerful.', hi: 'सर्वोच्च अभिव्यक्ति — वचन और फल दोनों प्रबल हैं।' },
+    verdict: { en: 'Supreme manifestation  –  both promise and delivery are powerful.', hi: 'सर्वोच्च अभिव्यक्ति  –  वचन और फल दोनों प्रबल हैं।' },
   },
   narrative: { en: '', hi: '' },
 };

@@ -34,13 +34,13 @@ interface TithiMonthGridProps {
 }
 
 // ---------------------------------------------------------------------------
-// Moon phase SVG — large, detailed, dramatic
+// Moon phase SVG  –  large, detailed, dramatic
 // ---------------------------------------------------------------------------
 
 function MoonIcon({ tithiNumber, paksha, size = 32 }: { tithiNumber: number; paksha: 'shukla' | 'krishna'; size?: number }) {
   const uid = `m${tithiNumber}${paksha[0]}`;
 
-  // Purnima — radiant golden full moon with glow
+  // Purnima  –  radiant golden full moon with glow
   if (tithiNumber === 15) {
     return (
       <svg width={size} height={size} viewBox="0 0 32 32">
@@ -61,7 +61,7 @@ function MoonIcon({ tithiNumber, paksha, size = 32 }: { tithiNumber: number; pak
     );
   }
 
-  // Amavasya — dark void with faint purple ring and tiny stars
+  // Amavasya  –  dark void with faint purple ring and tiny stars
   if (tithiNumber === 30 || tithiNumber === 0) {
     return (
       <svg width={size} height={size} viewBox="0 0 32 32">
@@ -143,7 +143,7 @@ function isAmavasya(n: number) { return n === 30; }
 function isChaturthi(n: number) { return n === 4 || n === 19; }
 
 // ---------------------------------------------------------------------------
-// Cell styling — dramatically different per tithi type
+// Cell styling  –  dramatically different per tithi type
 // ---------------------------------------------------------------------------
 
 function getCellClasses(cell: TithiDayData): { outer: string; dayCircle: string; tithiText: string; accent: string } {
@@ -274,7 +274,7 @@ export default function TithiMonthGrid({ year, month, days, locale, onDayClick }
                   )}
                 </div>
 
-                {/* ── Moon phase — centered, prominent ── */}
+                {/* ── Moon phase  –  centered, prominent ── */}
                 <div className="flex justify-center my-1">
                   <MoonIcon tithiNumber={n} paksha={cell.paksha} size={isSpecial ? 42 : 34} />
                 </div>

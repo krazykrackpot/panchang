@@ -12,7 +12,7 @@ import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import LT from '@/messages/learn/gochar.json';
 
-/* Labels migrated to src/messages/learn/gochar.json — accessed via LT + t() */
+/* Labels migrated to src/messages/learn/gochar.json  –  accessed via LT + t() */
 
 const TRANSIT_SPEEDS = [
   { planet: { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्रः' }, speed: '~2.25 days/sign', effect: { en: 'Daily mood, short-term events', hi: 'दैनिक मनोदशा, अल्पकालिक घटनाएँ', sa: 'दैनिकमनोदशा, अल्पकालिकघटनाः' }, color: '#e2e8f0' },
@@ -20,8 +20,8 @@ const TRANSIT_SPEEDS = [
   { planet: { en: 'Mercury', hi: 'बुध', sa: 'बुधः' }, speed: '~1 month/sign', effect: { en: 'Communication, trade, learning', hi: 'संवाद, व्यापार, अध्ययन', sa: 'संवादः, व्यापारः, अध्ययनम्' }, color: '#22c55e' },
   { planet: { en: 'Venus', hi: 'शुक्र', sa: 'शुक्रः' }, speed: '~1 month/sign', effect: { en: 'Relationships, luxury, art', hi: 'सम्बन्ध, विलासिता, कला', sa: 'सम्बन्धाः, विलासिता, कला' }, color: '#ec4899' },
   { planet: { en: 'Mars', hi: 'मंगल', sa: 'मङ्गलः' }, speed: '~1.5 months/sign', effect: { en: 'Energy, conflict, property', hi: 'ऊर्जा, संघर्ष, सम्पत्ति', sa: 'ऊर्जा, संघर्षः, सम्पत्तिः' }, color: '#ef4444' },
-  { planet: { en: 'Jupiter', hi: 'गुरु', sa: 'गुरुः' }, speed: '~1 year/sign', effect: { en: 'Growth, wisdom, fortune — major life themes', hi: 'विकास, ज्ञान, भाग्य — प्रमुख जीवन विषय', sa: 'विकासः, ज्ञानं, भाग्यम्' }, color: '#f0d48a' },
-  { planet: { en: 'Saturn', hi: 'शनि', sa: 'शनिः' }, speed: '~2.5 years/sign', effect: { en: 'Karma, structure, discipline — long-term transformation', hi: 'कर्म, संरचना, अनुशासन — दीर्घकालिक परिवर्तन', sa: 'कर्म, संरचना, अनुशासनम्' }, color: '#3b82f6' },
+  { planet: { en: 'Jupiter', hi: 'गुरु', sa: 'गुरुः' }, speed: '~1 year/sign', effect: { en: 'Growth, wisdom, fortune  –  major life themes', hi: 'विकास, ज्ञान, भाग्य  –  प्रमुख जीवन विषय', sa: 'विकासः, ज्ञानं, भाग्यम्' }, color: '#f0d48a' },
+  { planet: { en: 'Saturn', hi: 'शनि', sa: 'शनिः' }, speed: '~2.5 years/sign', effect: { en: 'Karma, structure, discipline  –  long-term transformation', hi: 'कर्म, संरचना, अनुशासन  –  दीर्घकालिक परिवर्तन', sa: 'कर्म, संरचना, अनुशासनम्' }, color: '#3b82f6' },
   { planet: { en: 'Rahu/Ketu', hi: 'राहु/केतु', sa: 'राहुः/केतुः' }, speed: '~1.5 years/sign', effect: { en: 'Obsessions, past-life patterns, karmic shifts', hi: 'आसक्ति, पूर्वजन्म स्वरूप, कार्मिक परिवर्तन', sa: 'आसक्तिः, पूर्वजन्मस्वरूपाणि' }, color: '#6366f1' },
 ];
 

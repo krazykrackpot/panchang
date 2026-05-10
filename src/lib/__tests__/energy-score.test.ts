@@ -11,7 +11,7 @@ import { computeDailyEnergy, computeEnergyFromComponents } from '@/lib/panchang/
 import type { PanchangData } from '@/types/panchang';
 
 // ─────────────────────────────────────────────
-// Helpers — build minimal PanchangData fixtures
+// Helpers  –  build minimal PanchangData fixtures
 // ─────────────────────────────────────────────
 
 function makePanchang(overrides: {
@@ -23,7 +23,7 @@ function makePanchang(overrides: {
   varaDayOfWeek: number; // 0=Sunday
 }): PanchangData {
   const { tithiNumber, paksha, nakshatraId, yogaNumber, karanaNumber, varaDayOfWeek } = overrides;
-  // Minimal required PanchangData fields — only the ones used by energy-score
+  // Minimal required PanchangData fields  –  only the ones used by energy-score
   return {
     date: '2026-01-01',
     location: { lat: 46.948, lng: 7.447, name: 'Bern' },
@@ -88,10 +88,10 @@ describe('computeDailyEnergy', () => {
     const p = makePanchang({
       tithiNumber: 15,
       paksha: 'shukla',
-      nakshatraId: 8,    // Pushya — very auspicious
-      yogaNumber: 16,    // Siddhi — best yoga
-      karanaNumber: 1,   // Bava — good movable
-      varaDayOfWeek: 4,  // Thursday — Jupiter day
+      nakshatraId: 8,    // Pushya  –  very auspicious
+      yogaNumber: 16,    // Siddhi  –  best yoga
+      karanaNumber: 1,   // Bava  –  good movable
+      varaDayOfWeek: 4,  // Thursday  –  Jupiter day
     });
     const result = computeDailyEnergy(p);
     expect(result.score).toBeGreaterThanOrEqual(0);
@@ -107,10 +107,10 @@ describe('computeDailyEnergy', () => {
     const p = makePanchang({
       tithiNumber: 15,
       paksha: 'shukla',
-      nakshatraId: 4,    // Rohini — sthira, fertile
-      yogaNumber: 11,    // Vriddhi — growth
-      karanaNumber: 6,   // Vanija — merchant, best movable
-      varaDayOfWeek: 5,  // Friday — Venus
+      nakshatraId: 4,    // Rohini  –  sthira, fertile
+      yogaNumber: 11,    // Vriddhi  –  growth
+      karanaNumber: 6,   // Vanija  –  merchant, best movable
+      varaDayOfWeek: 5,  // Friday  –  Venus
     });
     const result = computeDailyEnergy(p);
     expect(result.score).toBeGreaterThan(75);
@@ -125,8 +125,8 @@ describe('computeDailyEnergy', () => {
       tithiNumber: 15,
       paksha: 'krishna',
       nakshatraId: 4,    // Rohini
-      yogaNumber: 1,     // Vishkambha — inauspicious
-      karanaNumber: 7,   // Vishti — inauspicious
+      yogaNumber: 1,     // Vishkambha  –  inauspicious
+      karanaNumber: 7,   // Vishti  –  inauspicious
       varaDayOfWeek: 0,  // Sunday
     });
     const result = computeDailyEnergy(p);
@@ -148,7 +148,7 @@ describe('computeDailyEnergy', () => {
       varaDayOfWeek: 4,  // Thursday
     });
     const result = computeDailyEnergy(p);
-    // Not zero — Amavasya has value for spiritual practice
+    // Not zero  –  Amavasya has value for spiritual practice
     expect(result.score).toBeGreaterThan(20);
     expect(result.score).toBeLessThan(80); // Still moderated by the New Moon
   });

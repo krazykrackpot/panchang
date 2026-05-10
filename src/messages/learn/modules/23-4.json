@@ -1,15 +1,15 @@
 {
   "title": {
-    "en": "Sphutas — Yogi, Avayogi & Sensitive Points",
-    "hi": "स्फुट — योगी, अवयोगी और संवेदनशील बिन्दु",
-    "sa": "स्फुट — योगी, अवयोगी और संवेदनशील बिन्दु",
-    "mai": "स्फुट — योगी, अवयोगी और संवेदनशील बिन्दु",
-    "mr": "स्फुट — योगी, अवयोगी और संवेदनशील बिन्दु",
-    "ta": "Sphutas — Yogi, Avayogi & Sensitive Points",
-    "te": "Sphutas — Yogi, Avayogi & Sensitive Points",
-    "bn": "Sphutas — Yogi, Avayogi & Sensitive Points",
-    "kn": "Sphutas — Yogi, Avayogi & Sensitive Points",
-    "gu": "Sphutas — Yogi, Avayogi & Sensitive Points"
+    "en": "Sphutas  –  Yogi, Avayogi & Sensitive Points",
+    "hi": "स्फुट  –  योगी, अवयोगी और संवेदनशील बिन्दु",
+    "sa": "स्फुट  –  योगी, अवयोगी और संवेदनशील बिन्दु",
+    "mai": "स्फुट  –  योगी, अवयोगी और संवेदनशील बिन्दु",
+    "mr": "स्फुट  –  योगी, अवयोगी और संवेदनशील बिन्दु",
+    "ta": "Sphutas  –  Yogi, Avayogi & Sensitive Points",
+    "te": "Sphutas  –  Yogi, Avayogi & Sensitive Points",
+    "bn": "Sphutas  –  Yogi, Avayogi & Sensitive Points",
+    "kn": "Sphutas  –  Yogi, Avayogi & Sensitive Points",
+    "gu": "Sphutas  –  Yogi, Avayogi & Sensitive Points"
   },
   "subtitle": {
     "en": "Calculated invisible points that reveal auspicious and challenging periods",
@@ -237,8 +237,8 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "The Avayogi Point = Yogi Point + 186°40\" (the opposite half of the zodiac plus one nakshatra span of 13°20\"). The nakshatra lord at the Avayogi Point becomes the Avayogi Planet — the planet whose periods bring the greatest obstacles.",
-        "hi": "अवयोगी बिन्दु = योगी बिन्दु + 186°40\" (राशिचक्र का विपरीत अर्ध भाग जमा एक नक्षत्र विस्तार 13°20\")। अवयोगी बिन्दु पर नक्षत्र स्वामी अवयोगी ग्रह बनता है — वह ग्रह जिसकी अवधियाँ सबसे बड़ी बाधाएँ लाती हैं।"
+        "en": "The Avayogi Point = Yogi Point + 186°40\" (the opposite half of the zodiac plus one nakshatra span of 13°20\"). The nakshatra lord at the Avayogi Point becomes the Avayogi Planet  –  the planet whose periods bring the greatest obstacles.",
+        "hi": "अवयोगी बिन्दु = योगी बिन्दु + 186°40\" (राशिचक्र का विपरीत अर्ध भाग जमा एक नक्षत्र विस्तार 13°20\")। अवयोगी बिन्दु पर नक्षत्र स्वामी अवयोगी ग्रह बनता है  –  वह ग्रह जिसकी अवधियाँ सबसे बड़ी बाधाएँ लाती हैं।"
       },
       "options": [
         {
@@ -305,8 +305,8 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "The Bhrigu Bindu = (Rahu\"s longitude + Moon\"s longitude) / 2 — the midpoint between Rahu and Moon. This highly sensitive point, named after the sage Bhrigu, is a powerful timing indicator. When Jupiter transits this point, major positive events occur; when Saturn transits it, major challenges arise.",
-        "hi": "भृगु बिन्दु = (राहु का देशान्तर + चन्द्र का देशान्तर) / 2 — राहु और चन्द्र का मध्य बिन्दु। ऋषि भृगु के नाम पर यह अत्यन्त संवेदनशील बिन्दु एक शक्तिशाली समय संकेतक है। जब बृहस्पति इस बिन्दु से गोचर करता है, प्रमुख सकारात्मक घटनाएँ होती हैं; जब शनि गोचर करता है, प्रमुख चुनौतियाँ उत्पन्न होती हैं।"
+        "en": "The Bhrigu Bindu = (Rahu\"s longitude + Moon\"s longitude) / 2  –  the midpoint between Rahu and Moon. This highly sensitive point, named after the sage Bhrigu, is a powerful timing indicator. When Jupiter transits this point, major positive events occur; when Saturn transits it, major challenges arise.",
+        "hi": "भृगु बिन्दु = (राहु का देशान्तर + चन्द्र का देशान्तर) / 2  –  राहु और चन्द्र का मध्य बिन्दु। ऋषि भृगु के नाम पर यह अत्यन्त संवेदनशील बिन्दु एक शक्तिशाली समय संकेतक है। जब बृहस्पति इस बिन्दु से गोचर करता है, प्रमुख सकारात्मक घटनाएँ होती हैं; जब शनि गोचर करता है, प्रमुख चुनौतियाँ उत्पन्न होती हैं।"
       },
       "options": [
         {
@@ -376,16 +376,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "When the Yogi Planet also has another strong connection to the chart — such as being the Lagna lord, Moon sign lord, or lord of a Kendra/Trikona — it becomes a \"Duplicate Yogi,\" making it extremely powerful. Its dashas become the most productive and fortunate periods of the entire life.",
-        "hi": "जब योगी ग्रह कुण्डली से कोई अन्य मजबूत सम्बन्ध भी रखता है — जैसे लग्न स्वामी, चन्द्र राशि स्वामी, या केन्द्र/त्रिकोण का स्वामी — तो यह \"द्वैत योगी\" बनता है, जिससे यह अत्यन्त शक्तिशाली हो जाता है। इसकी दशाएँ सम्पूर्ण जीवन की सबसे उत्पादक और भाग्यशाली अवधियाँ बनती हैं।",
-        "sa": "जब योगी ग्रह कुण्डली से कोई अन्य मजबूत सम्बन्ध भी रखता है — जैसे लग्न स्वामी, चन्द्र राशि स्वामी, या केन्द्र/त्रिकोण का स्वामी — तो यह \"द्वैत योगी\" बनता है, जिससे यह अत्यन्त शक्तिशाली हो जाता है। इसकी दशाएँ सम्पूर्ण जीवन की सबसे उत्पादक और भाग्यशाली अवधियाँ बनती हैं।",
-        "mai": "जब योगी ग्रह कुण्डली से कोई अन्य मजबूत सम्बन्ध भी रखता है — जैसे लग्न स्वामी, चन्द्र राशि स्वामी, या केन्द्र/त्रिकोण का स्वामी — तो यह \"द्वैत योगी\" बनता है, जिससे यह अत्यन्त शक्तिशाली हो जाता है। इसकी दशाएँ सम्पूर्ण जीवन की सबसे उत्पादक और भाग्यशाली अवधियाँ बनती हैं।",
-        "mr": "जब योगी ग्रह कुण्डली से कोई अन्य मजबूत सम्बन्ध भी रखता है — जैसे लग्न स्वामी, चन्द्र राशि स्वामी, या केन्द्र/त्रिकोण का स्वामी — तो यह \"द्वैत योगी\" बनता है, जिससे यह अत्यन्त शक्तिशाली हो जाता है। इसकी दशाएँ सम्पूर्ण जीवन की सबसे उत्पादक और भाग्यशाली अवधियाँ बनती हैं।",
-        "ta": "When the Yogi Planet also has another strong connection to the chart — such as being the Lagna lord, Moon sign lord, or lord of a Kendra/Trikona — it becomes a \"Duplicate Yogi,\" making it extremely powerful. Its dashas become the most productive and fortunate periods of the entire life.",
-        "te": "When the Yogi Planet also has another strong connection to the chart — such as being the Lagna lord, Moon sign lord, or lord of a Kendra/Trikona — it becomes a \"Duplicate Yogi,\" making it extremely powerful. Its dashas become the most productive and fortunate periods of the entire life.",
-        "bn": "When the Yogi Planet also has another strong connection to the chart — such as being the Lagna lord, Moon sign lord, or lord of a Kendra/Trikona — it becomes a \"Duplicate Yogi,\" making it extremely powerful. Its dashas become the most productive and fortunate periods of the entire life.",
-        "kn": "When the Yogi Planet also has another strong connection to the chart — such as being the Lagna lord, Moon sign lord, or lord of a Kendra/Trikona — it becomes a \"Duplicate Yogi,\" making it extremely powerful. Its dashas become the most productive and fortunate periods of the entire life.",
-        "gu": "When the Yogi Planet also has another strong connection to the chart — such as being the Lagna lord, Moon sign lord, or lord of a Kendra/Trikona — it becomes a \"Duplicate Yogi,\" making it extremely powerful. Its dashas become the most productive and fortunate periods of the entire life."
+        "en": "When the Yogi Planet also has another strong connection to the chart  –  such as being the Lagna lord, Moon sign lord, or lord of a Kendra/Trikona  –  it becomes a \"Duplicate Yogi,\" making it extremely powerful. Its dashas become the most productive and fortunate periods of the entire life.",
+        "hi": "जब योगी ग्रह कुण्डली से कोई अन्य मजबूत सम्बन्ध भी रखता है  –  जैसे लग्न स्वामी, चन्द्र राशि स्वामी, या केन्द्र/त्रिकोण का स्वामी  –  तो यह \"द्वैत योगी\" बनता है, जिससे यह अत्यन्त शक्तिशाली हो जाता है। इसकी दशाएँ सम्पूर्ण जीवन की सबसे उत्पादक और भाग्यशाली अवधियाँ बनती हैं।",
+        "sa": "जब योगी ग्रह कुण्डली से कोई अन्य मजबूत सम्बन्ध भी रखता है  –  जैसे लग्न स्वामी, चन्द्र राशि स्वामी, या केन्द्र/त्रिकोण का स्वामी  –  तो यह \"द्वैत योगी\" बनता है, जिससे यह अत्यन्त शक्तिशाली हो जाता है। इसकी दशाएँ सम्पूर्ण जीवन की सबसे उत्पादक और भाग्यशाली अवधियाँ बनती हैं।",
+        "mai": "जब योगी ग्रह कुण्डली से कोई अन्य मजबूत सम्बन्ध भी रखता है  –  जैसे लग्न स्वामी, चन्द्र राशि स्वामी, या केन्द्र/त्रिकोण का स्वामी  –  तो यह \"द्वैत योगी\" बनता है, जिससे यह अत्यन्त शक्तिशाली हो जाता है। इसकी दशाएँ सम्पूर्ण जीवन की सबसे उत्पादक और भाग्यशाली अवधियाँ बनती हैं।",
+        "mr": "जब योगी ग्रह कुण्डली से कोई अन्य मजबूत सम्बन्ध भी रखता है  –  जैसे लग्न स्वामी, चन्द्र राशि स्वामी, या केन्द्र/त्रिकोण का स्वामी  –  तो यह \"द्वैत योगी\" बनता है, जिससे यह अत्यन्त शक्तिशाली हो जाता है। इसकी दशाएँ सम्पूर्ण जीवन की सबसे उत्पादक और भाग्यशाली अवधियाँ बनती हैं।",
+        "ta": "When the Yogi Planet also has another strong connection to the chart  –  such as being the Lagna lord, Moon sign lord, or lord of a Kendra/Trikona  –  it becomes a \"Duplicate Yogi,\" making it extremely powerful. Its dashas become the most productive and fortunate periods of the entire life.",
+        "te": "When the Yogi Planet also has another strong connection to the chart  –  such as being the Lagna lord, Moon sign lord, or lord of a Kendra/Trikona  –  it becomes a \"Duplicate Yogi,\" making it extremely powerful. Its dashas become the most productive and fortunate periods of the entire life.",
+        "bn": "When the Yogi Planet also has another strong connection to the chart  –  such as being the Lagna lord, Moon sign lord, or lord of a Kendra/Trikona  –  it becomes a \"Duplicate Yogi,\" making it extremely powerful. Its dashas become the most productive and fortunate periods of the entire life.",
+        "kn": "When the Yogi Planet also has another strong connection to the chart  –  such as being the Lagna lord, Moon sign lord, or lord of a Kendra/Trikona  –  it becomes a \"Duplicate Yogi,\" making it extremely powerful. Its dashas become the most productive and fortunate periods of the entire life.",
+        "gu": "When the Yogi Planet also has another strong connection to the chart  –  such as being the Lagna lord, Moon sign lord, or lord of a Kendra/Trikona  –  it becomes a \"Duplicate Yogi,\" making it extremely powerful. Its dashas become the most productive and fortunate periods of the entire life."
       }
     },
     {
@@ -405,16 +405,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Jupiter transiting the Bhrigu Bindu is one of the most powerful positive indicators in transit analysis. It typically coincides with significant achievements, favorable turns of fortune, marriages, births, promotions, or spiritual breakthroughs — depending on the house where the Bhrigu Bindu falls.",
-        "hi": "बृहस्पति का भृगु बिन्दु से गोचर गोचर विश्लेषण में सबसे शक्तिशाली सकारात्मक संकेतकों में से एक है। यह आमतौर पर महत्वपूर्ण उपलब्धियों, भाग्य के अनुकूल मोड़, विवाह, जन्म, पदोन्नति, या आध्यात्मिक सफलता से मेल खाता है — भृगु बिन्दु जिस भाव में पड़ता है उस पर निर्भर करता है।",
-        "sa": "बृहस्पति का भृगु बिन्दु से गोचर गोचर विश्लेषण में सबसे शक्तिशाली सकारात्मक संकेतकों में से एक है। यह आमतौर पर महत्वपूर्ण उपलब्धियों, भाग्य के अनुकूल मोड़, विवाह, जन्म, पदोन्नति, या आध्यात्मिक सफलता से मेल खाता है — भृगु बिन्दु जिस भाव में पड़ता है उस पर निर्भर करता है।",
-        "mai": "बृहस्पति का भृगु बिन्दु से गोचर गोचर विश्लेषण में सबसे शक्तिशाली सकारात्मक संकेतकों में से एक है। यह आमतौर पर महत्वपूर्ण उपलब्धियों, भाग्य के अनुकूल मोड़, विवाह, जन्म, पदोन्नति, या आध्यात्मिक सफलता से मेल खाता है — भृगु बिन्दु जिस भाव में पड़ता है उस पर निर्भर करता है।",
-        "mr": "बृहस्पति का भृगु बिन्दु से गोचर गोचर विश्लेषण में सबसे शक्तिशाली सकारात्मक संकेतकों में से एक है। यह आमतौर पर महत्वपूर्ण उपलब्धियों, भाग्य के अनुकूल मोड़, विवाह, जन्म, पदोन्नति, या आध्यात्मिक सफलता से मेल खाता है — भृगु बिन्दु जिस भाव में पड़ता है उस पर निर्भर करता है।",
-        "ta": "Jupiter transiting the Bhrigu Bindu is one of the most powerful positive indicators in transit analysis. It typically coincides with significant achievements, favorable turns of fortune, marriages, births, promotions, or spiritual breakthroughs — depending on the house where the Bhrigu Bindu falls.",
-        "te": "Jupiter transiting the Bhrigu Bindu is one of the most powerful positive indicators in transit analysis. It typically coincides with significant achievements, favorable turns of fortune, marriages, births, promotions, or spiritual breakthroughs — depending on the house where the Bhrigu Bindu falls.",
-        "bn": "Jupiter transiting the Bhrigu Bindu is one of the most powerful positive indicators in transit analysis. It typically coincides with significant achievements, favorable turns of fortune, marriages, births, promotions, or spiritual breakthroughs — depending on the house where the Bhrigu Bindu falls.",
-        "kn": "Jupiter transiting the Bhrigu Bindu is one of the most powerful positive indicators in transit analysis. It typically coincides with significant achievements, favorable turns of fortune, marriages, births, promotions, or spiritual breakthroughs — depending on the house where the Bhrigu Bindu falls.",
-        "gu": "Jupiter transiting the Bhrigu Bindu is one of the most powerful positive indicators in transit analysis. It typically coincides with significant achievements, favorable turns of fortune, marriages, births, promotions, or spiritual breakthroughs — depending on the house where the Bhrigu Bindu falls."
+        "en": "Jupiter transiting the Bhrigu Bindu is one of the most powerful positive indicators in transit analysis. It typically coincides with significant achievements, favorable turns of fortune, marriages, births, promotions, or spiritual breakthroughs  –  depending on the house where the Bhrigu Bindu falls.",
+        "hi": "बृहस्पति का भृगु बिन्दु से गोचर गोचर विश्लेषण में सबसे शक्तिशाली सकारात्मक संकेतकों में से एक है। यह आमतौर पर महत्वपूर्ण उपलब्धियों, भाग्य के अनुकूल मोड़, विवाह, जन्म, पदोन्नति, या आध्यात्मिक सफलता से मेल खाता है  –  भृगु बिन्दु जिस भाव में पड़ता है उस पर निर्भर करता है।",
+        "sa": "बृहस्पति का भृगु बिन्दु से गोचर गोचर विश्लेषण में सबसे शक्तिशाली सकारात्मक संकेतकों में से एक है। यह आमतौर पर महत्वपूर्ण उपलब्धियों, भाग्य के अनुकूल मोड़, विवाह, जन्म, पदोन्नति, या आध्यात्मिक सफलता से मेल खाता है  –  भृगु बिन्दु जिस भाव में पड़ता है उस पर निर्भर करता है।",
+        "mai": "बृहस्पति का भृगु बिन्दु से गोचर गोचर विश्लेषण में सबसे शक्तिशाली सकारात्मक संकेतकों में से एक है। यह आमतौर पर महत्वपूर्ण उपलब्धियों, भाग्य के अनुकूल मोड़, विवाह, जन्म, पदोन्नति, या आध्यात्मिक सफलता से मेल खाता है  –  भृगु बिन्दु जिस भाव में पड़ता है उस पर निर्भर करता है।",
+        "mr": "बृहस्पति का भृगु बिन्दु से गोचर गोचर विश्लेषण में सबसे शक्तिशाली सकारात्मक संकेतकों में से एक है। यह आमतौर पर महत्वपूर्ण उपलब्धियों, भाग्य के अनुकूल मोड़, विवाह, जन्म, पदोन्नति, या आध्यात्मिक सफलता से मेल खाता है  –  भृगु बिन्दु जिस भाव में पड़ता है उस पर निर्भर करता है।",
+        "ta": "Jupiter transiting the Bhrigu Bindu is one of the most powerful positive indicators in transit analysis. It typically coincides with significant achievements, favorable turns of fortune, marriages, births, promotions, or spiritual breakthroughs  –  depending on the house where the Bhrigu Bindu falls.",
+        "te": "Jupiter transiting the Bhrigu Bindu is one of the most powerful positive indicators in transit analysis. It typically coincides with significant achievements, favorable turns of fortune, marriages, births, promotions, or spiritual breakthroughs  –  depending on the house where the Bhrigu Bindu falls.",
+        "bn": "Jupiter transiting the Bhrigu Bindu is one of the most powerful positive indicators in transit analysis. It typically coincides with significant achievements, favorable turns of fortune, marriages, births, promotions, or spiritual breakthroughs  –  depending on the house where the Bhrigu Bindu falls.",
+        "kn": "Jupiter transiting the Bhrigu Bindu is one of the most powerful positive indicators in transit analysis. It typically coincides with significant achievements, favorable turns of fortune, marriages, births, promotions, or spiritual breakthroughs  –  depending on the house where the Bhrigu Bindu falls.",
+        "gu": "Jupiter transiting the Bhrigu Bindu is one of the most powerful positive indicators in transit analysis. It typically coincides with significant achievements, favorable turns of fortune, marriages, births, promotions, or spiritual breakthroughs  –  depending on the house where the Bhrigu Bindu falls."
       },
       "options": [
         {
@@ -484,16 +484,16 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "\"Sphuta\" means \"calculated,\" \"corrected,\" or \"made precise.\" Sphutas are mathematically derived sensitive points in a chart — they are not actual celestial bodies but computed positions that carry astrological significance. The Yogi Point, Avayogi Point, and Bhrigu Bindu are all examples of sphutas.",
-        "hi": "\"स्फुट\" का अर्थ है \"गणना किया गया,\" \"शोधित,\" या \"सटीक बनाया गया।\" स्फुट कुण्डली में गणितीय रूप से व्युत्पन्न संवेदनशील बिन्दु हैं — ये वास्तविक आकाशीय पिण्ड नहीं बल्कि गणना की गई स्थितियाँ हैं जो ज्योतिषीय महत्व रखती हैं। योगी बिन्दु, अवयोगी बिन्दु और भृगु बिन्दु सभी स्फुटों के उदाहरण हैं।",
-        "sa": "\"स्फुट\" का अर्थ है \"गणना किया गया,\" \"शोधित,\" या \"सटीक बनाया गया।\" स्फुट कुण्डली में गणितीय रूप से व्युत्पन्न संवेदनशील बिन्दु हैं — ये वास्तविक आकाशीय पिण्ड नहीं बल्कि गणना की गई स्थितियाँ हैं जो ज्योतिषीय महत्व रखती हैं। योगी बिन्दु, अवयोगी बिन्दु और भृगु बिन्दु सभी स्फुटों के उदाहरण हैं।",
-        "mai": "\"स्फुट\" का अर्थ है \"गणना किया गया,\" \"शोधित,\" या \"सटीक बनाया गया।\" स्फुट कुण्डली में गणितीय रूप से व्युत्पन्न संवेदनशील बिन्दु हैं — ये वास्तविक आकाशीय पिण्ड नहीं बल्कि गणना की गई स्थितियाँ हैं जो ज्योतिषीय महत्व रखती हैं। योगी बिन्दु, अवयोगी बिन्दु और भृगु बिन्दु सभी स्फुटों के उदाहरण हैं।",
-        "mr": "\"स्फुट\" का अर्थ है \"गणना किया गया,\" \"शोधित,\" या \"सटीक बनाया गया।\" स्फुट कुण्डली में गणितीय रूप से व्युत्पन्न संवेदनशील बिन्दु हैं — ये वास्तविक आकाशीय पिण्ड नहीं बल्कि गणना की गई स्थितियाँ हैं जो ज्योतिषीय महत्व रखती हैं। योगी बिन्दु, अवयोगी बिन्दु और भृगु बिन्दु सभी स्फुटों के उदाहरण हैं।",
-        "ta": "\"Sphuta\" means \"calculated,\" \"corrected,\" or \"made precise.\" Sphutas are mathematically derived sensitive points in a chart — they are not actual celestial bodies but computed positions that carry astrological significance. The Yogi Point, Avayogi Point, and Bhrigu Bindu are all examples of sphutas.",
-        "te": "\"Sphuta\" means \"calculated,\" \"corrected,\" or \"made precise.\" Sphutas are mathematically derived sensitive points in a chart — they are not actual celestial bodies but computed positions that carry astrological significance. The Yogi Point, Avayogi Point, and Bhrigu Bindu are all examples of sphutas.",
-        "bn": "\"Sphuta\" means \"calculated,\" \"corrected,\" or \"made precise.\" Sphutas are mathematically derived sensitive points in a chart — they are not actual celestial bodies but computed positions that carry astrological significance. The Yogi Point, Avayogi Point, and Bhrigu Bindu are all examples of sphutas.",
-        "kn": "\"Sphuta\" means \"calculated,\" \"corrected,\" or \"made precise.\" Sphutas are mathematically derived sensitive points in a chart — they are not actual celestial bodies but computed positions that carry astrological significance. The Yogi Point, Avayogi Point, and Bhrigu Bindu are all examples of sphutas.",
-        "gu": "\"Sphuta\" means \"calculated,\" \"corrected,\" or \"made precise.\" Sphutas are mathematically derived sensitive points in a chart — they are not actual celestial bodies but computed positions that carry astrological significance. The Yogi Point, Avayogi Point, and Bhrigu Bindu are all examples of sphutas."
+        "en": "\"Sphuta\" means \"calculated,\" \"corrected,\" or \"made precise.\" Sphutas are mathematically derived sensitive points in a chart  –  they are not actual celestial bodies but computed positions that carry astrological significance. The Yogi Point, Avayogi Point, and Bhrigu Bindu are all examples of sphutas.",
+        "hi": "\"स्फुट\" का अर्थ है \"गणना किया गया,\" \"शोधित,\" या \"सटीक बनाया गया।\" स्फुट कुण्डली में गणितीय रूप से व्युत्पन्न संवेदनशील बिन्दु हैं  –  ये वास्तविक आकाशीय पिण्ड नहीं बल्कि गणना की गई स्थितियाँ हैं जो ज्योतिषीय महत्व रखती हैं। योगी बिन्दु, अवयोगी बिन्दु और भृगु बिन्दु सभी स्फुटों के उदाहरण हैं।",
+        "sa": "\"स्फुट\" का अर्थ है \"गणना किया गया,\" \"शोधित,\" या \"सटीक बनाया गया।\" स्फुट कुण्डली में गणितीय रूप से व्युत्पन्न संवेदनशील बिन्दु हैं  –  ये वास्तविक आकाशीय पिण्ड नहीं बल्कि गणना की गई स्थितियाँ हैं जो ज्योतिषीय महत्व रखती हैं। योगी बिन्दु, अवयोगी बिन्दु और भृगु बिन्दु सभी स्फुटों के उदाहरण हैं।",
+        "mai": "\"स्फुट\" का अर्थ है \"गणना किया गया,\" \"शोधित,\" या \"सटीक बनाया गया।\" स्फुट कुण्डली में गणितीय रूप से व्युत्पन्न संवेदनशील बिन्दु हैं  –  ये वास्तविक आकाशीय पिण्ड नहीं बल्कि गणना की गई स्थितियाँ हैं जो ज्योतिषीय महत्व रखती हैं। योगी बिन्दु, अवयोगी बिन्दु और भृगु बिन्दु सभी स्फुटों के उदाहरण हैं।",
+        "mr": "\"स्फुट\" का अर्थ है \"गणना किया गया,\" \"शोधित,\" या \"सटीक बनाया गया।\" स्फुट कुण्डली में गणितीय रूप से व्युत्पन्न संवेदनशील बिन्दु हैं  –  ये वास्तविक आकाशीय पिण्ड नहीं बल्कि गणना की गई स्थितियाँ हैं जो ज्योतिषीय महत्व रखती हैं। योगी बिन्दु, अवयोगी बिन्दु और भृगु बिन्दु सभी स्फुटों के उदाहरण हैं।",
+        "ta": "\"Sphuta\" means \"calculated,\" \"corrected,\" or \"made precise.\" Sphutas are mathematically derived sensitive points in a chart  –  they are not actual celestial bodies but computed positions that carry astrological significance. The Yogi Point, Avayogi Point, and Bhrigu Bindu are all examples of sphutas.",
+        "te": "\"Sphuta\" means \"calculated,\" \"corrected,\" or \"made precise.\" Sphutas are mathematically derived sensitive points in a chart  –  they are not actual celestial bodies but computed positions that carry astrological significance. The Yogi Point, Avayogi Point, and Bhrigu Bindu are all examples of sphutas.",
+        "bn": "\"Sphuta\" means \"calculated,\" \"corrected,\" or \"made precise.\" Sphutas are mathematically derived sensitive points in a chart  –  they are not actual celestial bodies but computed positions that carry astrological significance. The Yogi Point, Avayogi Point, and Bhrigu Bindu are all examples of sphutas.",
+        "kn": "\"Sphuta\" means \"calculated,\" \"corrected,\" or \"made precise.\" Sphutas are mathematically derived sensitive points in a chart  –  they are not actual celestial bodies but computed positions that carry astrological significance. The Yogi Point, Avayogi Point, and Bhrigu Bindu are all examples of sphutas.",
+        "gu": "\"Sphuta\" means \"calculated,\" \"corrected,\" or \"made precise.\" Sphutas are mathematically derived sensitive points in a chart  –  they are not actual celestial bodies but computed positions that carry astrological significance. The Yogi Point, Avayogi Point, and Bhrigu Bindu are all examples of sphutas."
       },
       "options": [
         {
@@ -563,8 +563,8 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "Saturn transiting the Bhrigu Bindu is the opposite of Jupiter — it indicates a major challenge, restriction, or difficult period. Saturn\"s natural tendency toward delay, limitation, and discipline combines with the sensitivity of the Bhrigu Bindu to create a significant karmic test.",
-        "hi": "शनि का भृगु बिन्दु से गोचर बृहस्पति का विपरीत है — यह एक बड़ी चुनौती, प्रतिबन्ध, या कठिन अवधि दर्शाता है। शनि की विलम्ब, सीमा और अनुशासन की स्वाभाविक प्रवृत्ति भृगु बिन्दु की संवेदनशीलता के साथ मिलकर एक महत्वपूर्ण कार्मिक परीक्षा बनाती है।"
+        "en": "Saturn transiting the Bhrigu Bindu is the opposite of Jupiter  –  it indicates a major challenge, restriction, or difficult period. Saturn\"s natural tendency toward delay, limitation, and discipline combines with the sensitivity of the Bhrigu Bindu to create a significant karmic test.",
+        "hi": "शनि का भृगु बिन्दु से गोचर बृहस्पति का विपरीत है  –  यह एक बड़ी चुनौती, प्रतिबन्ध, या कठिन अवधि दर्शाता है। शनि की विलम्ब, सीमा और अनुशासन की स्वाभाविक प्रवृत्ति भृगु बिन्दु की संवेदनशीलता के साथ मिलकर एक महत्वपूर्ण कार्मिक परीक्षा बनाती है।"
       }
     },
     {
@@ -633,16 +633,16 @@
           "gu": "Yogi Point, Avayogi Point, and Bhrigu Bindu"
         },
         {
-          "en": "None — these require manual calculation",
-          "hi": "कोई नहीं — इनके लिए मैन्युअल गणना आवश्यक है",
-          "sa": "कोई नहीं — इनके लिए मैन्युअल गणना आवश्यक है",
-          "mai": "कोई नहीं — इनके लिए मैन्युअल गणना आवश्यक है",
-          "mr": "कोई नहीं — इनके लिए मैन्युअल गणना आवश्यक है",
-          "ta": "None — these require manual calculation",
-          "te": "None — these require manual calculation",
-          "bn": "None — these require manual calculation",
-          "kn": "None — these require manual calculation",
-          "gu": "None — these require manual calculation"
+          "en": "None  –  these require manual calculation",
+          "hi": "कोई नहीं  –  इनके लिए मैन्युअल गणना आवश्यक है",
+          "sa": "कोई नहीं  –  इनके लिए मैन्युअल गणना आवश्यक है",
+          "mai": "कोई नहीं  –  इनके लिए मैन्युअल गणना आवश्यक है",
+          "mr": "कोई नहीं  –  इनके लिए मैन्युअल गणना आवश्यक है",
+          "ta": "None  –  these require manual calculation",
+          "te": "None  –  these require manual calculation",
+          "bn": "None  –  these require manual calculation",
+          "kn": "None  –  these require manual calculation",
+          "gu": "None  –  these require manual calculation"
         }
       ]
     }

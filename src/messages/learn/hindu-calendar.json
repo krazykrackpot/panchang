@@ -6,16 +6,16 @@
     "bn": "হিন্দু ক্যালেন্ডার: বিক্রম সম্বৎ ও পঞ্চাঙ্গ"
   },
   "subtitle": {
-    "en": "Understanding the lunisolar calendar — months, seasons, eras, and intercalary months",
-    "hi": "चन्द्र-सौर कैलेंडर — मास, ऋतुएँ, सम्वत और अधिक मास का विस्तृत विवरण",
-    "ta": "சந்திர-சூரிய நாட்காட்டி — மாதங்கள், பருவங்கள், சகாப்தங்கள் மற்றும் அதிக மாதம்",
-    "bn": "চন্দ্র-সৌর ক্যালেন্ডার — মাস, ঋতু, সম্বৎ এবং অধিক মাস"
+    "en": "Understanding the lunisolar calendar  –  months, seasons, eras, and intercalary months",
+    "hi": "चन्द्र-सौर कैलेंडर  –  मास, ऋतुएँ, सम्वत और अधिक मास का विस्तृत विवरण",
+    "ta": "சந்திர-சூரிய நாட்காட்டி  –  மாதங்கள், பருவங்கள், சகாப்தங்கள் மற்றும் அதிக மாதம்",
+    "bn": "চন্দ্র-সৌর ক্যালেন্ডার  –  মাস, ঋতু, সম্বৎ এবং অধিক মাস"
   },
   "intro": {
-    "en": "The Hindu calendar is a lunisolar system — it tracks both the Moon's phases and the Sun's position through the zodiac. Unlike the purely solar Gregorian calendar (where months have no relationship to lunar cycles) or purely lunar calendars like the Islamic Hijri (which drift through seasons), the Hindu calendar reconciles both by periodically inserting an intercalary month (Adhika Masa).",
-    "hi": "हिन्दू कैलेंडर एक चन्द्र-सौर प्रणाली है — यह चन्द्रमा की कलाओं और सूर्य की राशि स्थिति दोनों पर आधारित है। विशुद्ध सौर ग्रेगोरियन या विशुद्ध चन्द्र हिजरी कैलेंडर के विपरीत, हिन्दू कैलेंडर समय-समय पर अधिक मास जोड़कर दोनों का समन्वय करता है।",
-    "ta": "இந்து நாட்காட்டி ஒரு சந்திர-சூரிய முறை — இது நிலவின் நிலைகள் மற்றும் சூரியனின் ராசி நிலை இரண்டையும் கண்காணிக்கிறது.",
-    "bn": "হিন্দু ক্যালেন্ডার একটি চন্দ্র-সৌর পদ্ধতি — এটি চন্দ্রের কলা এবং সূর্যের রাশি অবস্থান উভয়ই অনুসরণ করে।"
+    "en": "The Hindu calendar is a lunisolar system  –  it tracks both the Moon's phases and the Sun's position through the zodiac. Unlike the purely solar Gregorian calendar (where months have no relationship to lunar cycles) or purely lunar calendars like the Islamic Hijri (which drift through seasons), the Hindu calendar reconciles both by periodically inserting an intercalary month (Adhika Masa).",
+    "hi": "हिन्दू कैलेंडर एक चन्द्र-सौर प्रणाली है  –  यह चन्द्रमा की कलाओं और सूर्य की राशि स्थिति दोनों पर आधारित है। विशुद्ध सौर ग्रेगोरियन या विशुद्ध चन्द्र हिजरी कैलेंडर के विपरीत, हिन्दू कैलेंडर समय-समय पर अधिक मास जोड़कर दोनों का समन्वय करता है।",
+    "ta": "இந்து நாட்காட்டி ஒரு சந்திர-சூரிய முறை  –  இது நிலவின் நிலைகள் மற்றும் சூரியனின் ராசி நிலை இரண்டையும் கண்காணிக்கிறது.",
+    "bn": "হিন্দু ক্যালেন্ডার একটি চন্দ্র-সৌর পদ্ধতি  –  এটি চন্দ্রের কলা এবং সূর্যের রাশি অবস্থান উভয়ই অনুসরণ করে।"
   },
   "erasTitle": {
     "en": "Calendar Eras: Vikram, Shaka & Gregorian",
@@ -48,8 +48,8 @@
     "bn": "অমান্ত বনাম পূর্ণিমান্ত"
   },
   "amantaContent": {
-    "en": "The same months have two different starting points depending on region. Amanta (New Moon ending) starts the month after the New Moon — used in Gujarat, Maharashtra, South India, and by most panchang publishers. Purnimanta (Full Moon ending) starts the month after the Full Moon — used in North India (UP, MP, Bihar, Rajasthan). During Krishna Paksha (waning phase), the Purnimanta month name is one month ahead of Amanta.",
-    "hi": "एक ही मास के दो भिन्न प्रारम्भ बिन्दु होते हैं। अमान्त (अमावस्या अन्त) में मास अमावस्या के बाद प्रारम्भ होता है — गुजरात, महाराष्ट्र, दक्षिण भारत में प्रयुक्त। पूर्णिमान्त (पूर्णिमा अन्त) में मास पूर्णिमा के बाद प्रारम्भ होता है — उत्तर भारत में प्रयुक्त।",
+    "en": "The same months have two different starting points depending on region. Amanta (New Moon ending) starts the month after the New Moon  –  used in Gujarat, Maharashtra, South India, and by most panchang publishers. Purnimanta (Full Moon ending) starts the month after the Full Moon  –  used in North India (UP, MP, Bihar, Rajasthan). During Krishna Paksha (waning phase), the Purnimanta month name is one month ahead of Amanta.",
+    "hi": "एक ही मास के दो भिन्न प्रारम्भ बिन्दु होते हैं। अमान्त (अमावस्या अन्त) में मास अमावस्या के बाद प्रारम्भ होता है  –  गुजरात, महाराष्ट्र, दक्षिण भारत में प्रयुक्त। पूर्णिमान्त (पूर्णिमा अन्त) में मास पूर्णिमा के बाद प्रारम्भ होता है  –  उत्तर भारत में प्रयुक्त।",
     "ta": "ஒரே மாதங்களுக்கு இரண்டு வெவ்வேறு தொடக்கப் புள்ளிகள் உள்ளன.",
     "bn": "একই মাসের দুটি ভিন্ন শুরু আছে।"
   },
@@ -72,8 +72,8 @@
     "bn": "উত্তরায়ণ ও দক্ষিণায়ন"
   },
   "ayanaContent": {
-    "en": "The solar year is divided into two halves called Ayanas. Uttarayana (northward journey) begins when the Sun enters Makara (Capricorn) — celebrated as Makar Sankranti. This 6-month period (roughly Jan-Jul) is considered auspicious for ceremonies. Dakshinayana (southward journey) begins when the Sun enters Karka (Cancer) — roughly Jul-Jan. While less favoured for rituals, Dakshinayana is considered the 'night of the gods' and is associated with tapasya (austerity).",
-    "hi": "सौर वर्ष दो भागों में विभाजित है जिन्हें अयन कहते हैं। उत्तरायण सूर्य के मकर राशि में प्रवेश से प्रारम्भ होता है — मकर संक्रान्ति के रूप में मनाया जाता है। दक्षिणायन सूर्य के कर्क राशि में प्रवेश से प्रारम्भ होता है।",
+    "en": "The solar year is divided into two halves called Ayanas. Uttarayana (northward journey) begins when the Sun enters Makara (Capricorn)  –  celebrated as Makar Sankranti. This 6-month period (roughly Jan-Jul) is considered auspicious for ceremonies. Dakshinayana (southward journey) begins when the Sun enters Karka (Cancer)  –  roughly Jul-Jan. While less favoured for rituals, Dakshinayana is considered the 'night of the gods' and is associated with tapasya (austerity).",
+    "hi": "सौर वर्ष दो भागों में विभाजित है जिन्हें अयन कहते हैं। उत्तरायण सूर्य के मकर राशि में प्रवेश से प्रारम्भ होता है  –  मकर संक्रान्ति के रूप में मनाया जाता है। दक्षिणायन सूर्य के कर्क राशि में प्रवेश से प्रारम्भ होता है।",
     "ta": "சூரிய ஆண்டு அயனங்கள் என்ற இரண்டு பகுதிகளாக பிரிக்கப்பட்டுள்ளது.",
     "bn": "সৌর বছর দুটি অয়নে বিভক্ত।"
   },
@@ -84,10 +84,10 @@
     "bn": "অধিক মাস: অতিরিক্ত চন্দ্র মাস"
   },
   "adhikaContent": {
-    "en": "A lunar year of 12 months totals ~354 days — about 11 days short of the solar year. Without correction, Hindu festivals would drift through seasons like Islamic holidays. The solution: when a lunar month passes without the Sun changing zodiac signs (Sankranti), that month is declared Adhika (extra). This happens roughly every 32.5 months. The Adhika Masa takes the name of the following month with the prefix 'Adhika'. Ceremonies and auspicious activities are generally avoided during Adhika Masa, though charitable acts are considered especially meritorious.",
-    "hi": "12 चन्द्र मासों का वर्ष ~354 दिनों का होता है — सौर वर्ष से लगभग 11 दिन कम। बिना सुधार के त्योहार ऋतुओं में भटक जाएंगे। समाधान: जब किसी चन्द्र मास में सूर्य राशि परिवर्तन (संक्रान्ति) नहीं होती, वह मास अधिक (अतिरिक्त) घोषित होता है।",
-    "ta": "12 சந்திர மாதங்களின் ஆண்டு ~354 நாட்கள் — சூரிய ஆண்டை விட சுமார் 11 நாட்கள் குறைவு.",
-    "bn": "১২ চন্দ্র মাসের বছর ~৩৫৪ দিন — সৌর বছরের চেয়ে প্রায় ১১ দিন কম।"
+    "en": "A lunar year of 12 months totals ~354 days  –  about 11 days short of the solar year. Without correction, Hindu festivals would drift through seasons like Islamic holidays. The solution: when a lunar month passes without the Sun changing zodiac signs (Sankranti), that month is declared Adhika (extra). This happens roughly every 32.5 months. The Adhika Masa takes the name of the following month with the prefix 'Adhika'. Ceremonies and auspicious activities are generally avoided during Adhika Masa, though charitable acts are considered especially meritorious.",
+    "hi": "12 चन्द्र मासों का वर्ष ~354 दिनों का होता है  –  सौर वर्ष से लगभग 11 दिन कम। बिना सुधार के त्योहार ऋतुओं में भटक जाएंगे। समाधान: जब किसी चन्द्र मास में सूर्य राशि परिवर्तन (संक्रान्ति) नहीं होती, वह मास अधिक (अतिरिक्त) घोषित होता है।",
+    "ta": "12 சந்திர மாதங்களின் ஆண்டு ~354 நாட்கள்  –  சூரிய ஆண்டை விட சுமார் 11 நாட்கள் குறைவு.",
+    "bn": "১২ চন্দ্র মাসের বছর ~৩৫৪ দিন  –  সৌর বছরের চেয়ে প্রায় ১১ দিন কম।"
   },
   "readingTitle": {
     "en": "How to Read a Traditional Panchang",
@@ -96,7 +96,7 @@
     "bn": "ঐতিহ্যবাহী পঞ্চাঙ্গ কীভাবে পড়বেন"
   },
   "readingContent": {
-    "en": "A daily panchang page shows five core elements (Tithi, Nakshatra, Yoga, Karana, Vara), along with sunrise/sunset, Rahu Kaal, and lunar month information. The five elements change at different rates — Vara changes at sunrise, Tithi and Karana change roughly twice per day, while Nakshatra and Yoga change approximately once per day. Understanding these rhythms is key to reading the panchang effectively.",
+    "en": "A daily panchang page shows five core elements (Tithi, Nakshatra, Yoga, Karana, Vara), along with sunrise/sunset, Rahu Kaal, and lunar month information. The five elements change at different rates  –  Vara changes at sunrise, Tithi and Karana change roughly twice per day, while Nakshatra and Yoga change approximately once per day. Understanding these rhythms is key to reading the panchang effectively.",
     "hi": "दैनिक पंचांग पृष्ठ पाँच मुख्य तत्त्व (तिथि, नक्षत्र, योग, करण, वार) के साथ सूर्योदय/सूर्यास्त, राहु काल और मास की जानकारी दिखाता है।",
     "ta": "தினசரி பஞ்சாங்க பக்கம் ஐந்து முக்கிய கூறுகளை (திதி, நட்சத்திரம், யோகம், கரணம், வாரம்) காட்டுகிறது.",
     "bn": "দৈনিক পঞ্চাঙ্গ পৃষ্ঠা পাঁচটি মূল উপাদান (তিথি, নক্ষত্র, যোগ, করণ, বার) দেখায়।"

@@ -108,7 +108,7 @@ export default function PushPermission({ locale }: PushPermissionProps) {
       <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
         <BellRing className="w-4 h-4 text-emerald-400 shrink-0" />
         <span className="text-emerald-300 text-xs font-medium flex-1">
-          {tl({ en: 'Notifications active — daily panchang, eclipses, dasha alerts', hi: 'सूचनाएं सक्रिय — दैनिक पंचांग, ग्रहण, दशा अलर्ट', sa: 'सूचनाएं सक्रिय — दैनिक पंचांग, ग्रहण, दशा अलर्ट' }, locale)}
+          {tl({ en: 'Notifications active  –  daily panchang, eclipses, dasha alerts', hi: 'सूचनाएं सक्रिय  –  दैनिक पंचांग, ग्रहण, दशा अलर्ट', sa: 'सूचनाएं सक्रिय  –  दैनिक पंचांग, ग्रहण, दशा अलर्ट' }, locale)}
         </span>
         <button
           onClick={unsubscribe}

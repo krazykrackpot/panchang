@@ -5,7 +5,7 @@
  * Sources: BPHS Ch.3-7, Muhurta Chintamani, Prasna Marga Ch.9,
  * Kalaprakashika, Saravali, practitioner consensus.
  *
- * ALL constants defined here — NEVER duplicate in other files (Lesson Q).
+ * ALL constants defined here  –  NEVER duplicate in other files (Lesson Q).
  */
 
 import type { LocaleText } from '@/types/panchang';
@@ -35,12 +35,12 @@ export interface JanmaNakshatraDosha {
 }
 
 export const JANMA_NAKSHATRA_DOSHAS: JanmaNakshatraDosha[] = [
-  { nakshatraId: 9,  problematicPada: 4,    severity: 'severe',   harm: { en: 'Ashlesha 4th pada — harm to mother', hi: 'आश्लेषा चतुर्थ चरण — माता को हानि' } },
-  { nakshatraId: 10, problematicPada: 1,    severity: 'severe',   harm: { en: 'Magha 1st pada — harm to father', hi: 'मघा प्रथम चरण — पिता को हानि' } },
-  { nakshatraId: 18, problematicPada: 4,    severity: 'severe',   harm: { en: 'Jyeshtha 4th pada — harm to elder sibling', hi: 'ज्येष्ठा चतुर्थ चरण — बड़े भाई/बहन को हानि' } },
-  { nakshatraId: 19, problematicPada: 1,    severity: 'severe',   harm: { en: 'Moola 1st pada — harm to father/family', hi: 'मूल प्रथम चरण — पिता/परिवार को हानि' } },
-  { nakshatraId: 9,  problematicPada: null, severity: 'moderate', harm: { en: 'Ashlesha — general caution', hi: 'आश्लेषा — सामान्य सावधानी' } },
-  { nakshatraId: 19, problematicPada: null, severity: 'moderate', harm: { en: 'Moola — general caution', hi: 'मूल — सामान्य सावधानी' } },
+  { nakshatraId: 9,  problematicPada: 4,    severity: 'severe',   harm: { en: 'Ashlesha 4th pada  –  harm to mother', hi: 'आश्लेषा चतुर्थ चरण  –  माता को हानि' } },
+  { nakshatraId: 10, problematicPada: 1,    severity: 'severe',   harm: { en: 'Magha 1st pada  –  harm to father', hi: 'मघा प्रथम चरण  –  पिता को हानि' } },
+  { nakshatraId: 18, problematicPada: 4,    severity: 'severe',   harm: { en: 'Jyeshtha 4th pada  –  harm to elder sibling', hi: 'ज्येष्ठा चतुर्थ चरण  –  बड़े भाई/बहन को हानि' } },
+  { nakshatraId: 19, problematicPada: 1,    severity: 'severe',   harm: { en: 'Moola 1st pada  –  harm to father/family', hi: 'मूल प्रथम चरण  –  पिता/परिवार को हानि' } },
+  { nakshatraId: 9,  problematicPada: null, severity: 'moderate', harm: { en: 'Ashlesha  –  general caution', hi: 'आश्लेषा  –  सामान्य सावधानी' } },
+  { nakshatraId: 19, problematicPada: null, severity: 'moderate', harm: { en: 'Moola  –  general caution', hi: 'मूल  –  सामान्य सावधानी' } },
 ];
 
 // ─── Gandanta Zones ─────────────────────────────────────────────────────────
@@ -209,8 +209,8 @@ function getSignModality(sign: number): 'movable' | 'fixed' | 'dual' {
 export const COMBUSTION_ORBS: Record<number, number> = {
   1: 12, // Moon
   2: 17, // Mars
-  3: 14, // Mercury (12 if retrograde — handled in scorer)
+  3: 14, // Mercury (12 if retrograde  –  handled in scorer)
   4: 11, // Jupiter
-  5: 10, // Venus (8 if retrograde — handled in scorer)
+  5: 10, // Venus (8 if retrograde  –  handled in scorer)
   6: 15, // Saturn
 };

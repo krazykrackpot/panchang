@@ -208,7 +208,7 @@ describe('generateVedicProfile', () => {
 
   it('omits doshaSection when no doshas present', () => {
     // Mars in 10H (not a manglik house: 1,2,4,7,8,12)
-    // Rahu in 3H, Ketu in 9H — planets spread on both sides (no Kaal Sarpa)
+    // Rahu in 3H, Ketu in 9H  –  planets spread on both sides (no Kaal Sarpa)
     const planets = [
       makePlanet(0, 5, 5, 5, false, false, false, false, true),
       makePlanet(1, 2, 2, 11, false, false, false, false, false),

@@ -8,7 +8,7 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 type Category = 'all' | 'major' | 'ekadashi' | 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham' | 'vrat' | 'eclipse' | 'rahukaal';
 
 const CALENDAR_NAMES: Record<Category, (year: number) => string> = {
-  all: (y) => `Vedic Calendar ${y} — Dekho Panchang`,
+  all: (y) => `Vedic Calendar ${y}  –  Dekho Panchang`,
   major: (y) => `Hindu Major Festivals ${y}`,
   ekadashi: (y) => `Ekadashi Vrats ${y}`,
   purnima: (y) => `Purnima (Full Moon) ${y}`,
@@ -28,12 +28,12 @@ const VALID_CATEGORIES: Category[] = ['all', 'major', 'ekadashi', 'purnima', 'am
  * Generates a .ics (iCalendar) file for Vedic calendar events.
  *
  * Query params:
- *   year      — calendar year (required)
- *   lat       — latitude (required)
- *   lon       — longitude (required)
- *   timezone  — IANA timezone string (required, e.g. "Europe/Zurich")
- *   category  — filter: "all" | "major" | "ekadashi" | ... (default: "all")
- *   locale    — locale for event names: "en" | "hi" | "sa" etc. (default: "en")
+ *   year       –  calendar year (required)
+ *   lat        –  latitude (required)
+ *   lon        –  longitude (required)
+ *   timezone   –  IANA timezone string (required, e.g. "Europe/Zurich")
+ *   category   –  filter: "all" | "major" | "ekadashi" | ... (default: "all")
+ *   locale     –  locale for event names: "en" | "hi" | "sa" etc. (default: "en")
  */
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -113,7 +113,7 @@ export async function GET(request: Request) {
               icalEvents.push({
                 uid: `rahu-${dateStr}@dekhopanchang.com`,
                 dtstart: `${rahuStart}`,
-                summary: 'Rahu Kaal — Avoid Initiations',
+                summary: 'Rahu Kaal  –  Avoid Initiations',
                 description: `Rahu Kaal from ${panchang.rahuKaal.start} to ${panchang.rahuKaal.end}. Avoid starting important activities during this inauspicious window.`,
                 categories: ['Rahu Kaal', 'Inauspicious'],
                 dtend: `${rahuEnd}`,
@@ -122,7 +122,7 @@ export async function GET(request: Request) {
           }
         } catch (err) {
           console.error(`[calendar/export] Failed to compute Rahu Kaal for ${year}-${m}-${dd}:`, err);
-          // Continue to next day — don't fail the whole export
+          // Continue to next day  –  don't fail the whole export
         }
       }
     }

@@ -34,12 +34,12 @@ import { calculateSignificators, calculateCuspalAnalysis } from './significators
 import { getRulingPlanets } from './ruling-planets';
 
 // ---------------------------------------------------------------------------
-// KP-specific ayanamsha — uses the Krishnamurti variant which differs
+// KP-specific ayanamsha  –  uses the Krishnamurti variant which differs
 // from Lahiri by ~6 arcminutes. This matters for sub-lord boundaries.
 // ---------------------------------------------------------------------------
 
 function kpAyanamsha(jd: number): number {
-  return getAyanamsa(jd, 'kp'); // 'kp' = Krishnamurti Paddhati — same polynomial as the old 'krishnamurti' key
+  return getAyanamsa(jd, 'kp'); // 'kp' = Krishnamurti Paddhati  –  same polynomial as the old 'krishnamurti' key
 }
 
 // ---------------------------------------------------------------------------
@@ -168,7 +168,7 @@ export function generateKPChart(birthData: BirthData): KPChartData {
     const isDebilitated = DEBILITATION[rp.id] === signNum;
     const isOwnSign = (OWN_SIGNS[rp.id] ?? []).includes(signNum);
 
-    // Combustion — uses planet-specific orbs from coordinates.ts computeCombust().
+    // Combustion  –  uses planet-specific orbs from coordinates.ts computeCombust().
     //
     // Classical BPHS orbs: Moon=12°, Mars=17°, Mercury=14°(direct)/12°(retro),
     // Jupiter=11°, Venus=10°(direct)/8°(retro), Saturn=15°.

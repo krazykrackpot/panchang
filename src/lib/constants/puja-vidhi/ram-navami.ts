@@ -25,9 +25,9 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
 
   muhurtaType: 'computed',
   muhurtaDescription: {
-    en: 'Madhyahna Kaal (noon period) is the most auspicious time for Ram Navami puja — Lord Rama was born at midday on Chaitra Shukla Navami',
-    hi: 'मध्याह्न काल (दोपहर का समय) राम नवमी पूजा के लिए सर्वाधिक शुभ है — भगवान राम का जन्म चैत्र शुक्ल नवमी को मध्याह्न में हुआ था',
-    sa: 'मध्याह्नकालः रामनवमीपूजायाः सर्वोत्तमः शुभकालः — श्रीरामस्य जन्म चैत्रशुक्लनवम्यां मध्याह्ने अभवत्',
+    en: 'Madhyahna Kaal (noon period) is the most auspicious time for Ram Navami puja  –  Lord Rama was born at midday on Chaitra Shukla Navami',
+    hi: 'मध्याह्न काल (दोपहर का समय) राम नवमी पूजा के लिए सर्वाधिक शुभ है  –  भगवान राम का जन्म चैत्र शुक्ल नवमी को मध्याह्न में हुआ था',
+    sa: 'मध्याह्नकालः रामनवमीपूजायाः सर्वोत्तमः शुभकालः  –  श्रीरामस्य जन्म चैत्रशुक्लनवम्यां मध्याह्ने अभवत्',
   },
   muhurtaWindow: { type: 'madhyahna' },
 
@@ -78,9 +78,9 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
       step: 4,
       title: { en: 'Shodashopachar Puja', hi: 'षोडशोपचार पूजा', sa: 'षोडशोपचारपूजा' },
       description: {
-        en: 'Perform the 16-step worship: Avahana, Asana, Padya, Arghya, Achamana, Snana, Vastra, Yagnopavita, Gandha, Pushpa, Dhupa, Deepa, Naivedya, Tambula, Pradakshina, and Mantra Pushpanjali — offering each to Lord Rama with devotion.',
-        hi: '16 उपचारों की पूजा करें: आवाहन, आसन, पाद्य, अर्घ्य, आचमन, स्नान, वस्त्र, यज्ञोपवीत, गन्ध, पुष्प, धूप, दीप, नैवेद्य, ताम्बूल, प्रदक्षिणा और मन्त्र पुष्पाञ्जलि — प्रत्येक भक्तिपूर्वक भगवान राम को अर्पित करें।',
-        sa: 'षोडशोपचारपूजनं कुर्यात् — आवाहनम्, आसनम्, पाद्यम्, अर्घ्यम्, आचमनम्, स्नानम्, वस्त्रम्, यज्ञोपवीतम्, गन्धम्, पुष्पम्, धूपम्, दीपम्, नैवेद्यम्, ताम्बूलम्, प्रदक्षिणा, मन्त्रपुष्पाञ्जलिः — प्रत्येकं भक्त्या श्रीरामाय समर्पयेत्।',
+        en: 'Perform the 16-step worship: Avahana, Asana, Padya, Arghya, Achamana, Snana, Vastra, Yagnopavita, Gandha, Pushpa, Dhupa, Deepa, Naivedya, Tambula, Pradakshina, and Mantra Pushpanjali  –  offering each to Lord Rama with devotion.',
+        hi: '16 उपचारों की पूजा करें: आवाहन, आसन, पाद्य, अर्घ्य, आचमन, स्नान, वस्त्र, यज्ञोपवीत, गन्ध, पुष्प, धूप, दीप, नैवेद्य, ताम्बूल, प्रदक्षिणा और मन्त्र पुष्पाञ्जलि  –  प्रत्येक भक्तिपूर्वक भगवान राम को अर्पित करें।',
+        sa: 'षोडशोपचारपूजनं कुर्यात्  –  आवाहनम्, आसनम्, पाद्यम्, अर्घ्यम्, आचमनम्, स्नानम्, वस्त्रम्, यज्ञोपवीतम्, गन्धम्, पुष्पम्, धूपम्, दीपम्, नैवेद्यम्, ताम्बूलम्, प्रदक्षिणा, मन्त्रपुष्पाञ्जलिः  –  प्रत्येकं भक्त्या श्रीरामाय समर्पयेत्।',
       },
       mantraRef: 'rama-taraka',
       duration: '20 min',
@@ -115,9 +115,9 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
       step: 7,
       title: { en: 'Kalyanotsavam (Symbolic Marriage)', hi: 'कल्याणोत्सवम् (प्रतीकात्मक विवाह)', sa: 'कल्याणोत्सवम् (प्रतीकात्मकविवाहः)' },
       description: {
-        en: 'In many traditions, the marriage of Rama and Sita (Sita Kalyanam) is ceremonially enacted — garlands are exchanged between Rama and Sita idols, symbolizing their divine union described in Ramayana.',
-        hi: 'कई परम्पराओं में राम-सीता विवाह (सीता कल्याणम्) का आनुष्ठानिक मंचन किया जाता है — राम और सीता मूर्तियों में माला विनिमय, रामायण में वर्णित उनके दिव्य मिलन का प्रतीक।',
-        sa: 'बहुपरम्परासु रामसीतयोः विवाहः (सीताकल्याणम्) आनुष्ठानिकरूपेण प्रदर्श्यते — रामसीतामूर्तयोः मालाविनिमयः रामायणवर्णितदिव्यमिलनस्य प्रतीकः।',
+        en: 'In many traditions, the marriage of Rama and Sita (Sita Kalyanam) is ceremonially enacted  –  garlands are exchanged between Rama and Sita idols, symbolizing their divine union described in Ramayana.',
+        hi: 'कई परम्पराओं में राम-सीता विवाह (सीता कल्याणम्) का आनुष्ठानिक मंचन किया जाता है  –  राम और सीता मूर्तियों में माला विनिमय, रामायण में वर्णित उनके दिव्य मिलन का प्रतीक।',
+        sa: 'बहुपरम्परासु रामसीतयोः विवाहः (सीताकल्याणम्) आनुष्ठानिकरूपेण प्रदर्श्यते  –  रामसीतामूर्तयोः मालाविनिमयः रामायणवर्णितदिव्यमिलनस्य प्रतीकः।',
       },
       duration: '10 min',
       essential: true,
@@ -127,9 +127,9 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
       step: 8,
       title: { en: 'Cradle Ceremony (Bal Rama Janmotsav)', hi: 'पालना संस्कार (बालराम जन्मोत्सव)', sa: 'डोलासंस्कारः (बालरामजन्मोत्सवः)' },
       description: {
-        en: 'At Madhyahna (exact noon — the birth moment of Rama), place a small baby Rama idol in the decorated cradle. Swing the cradle gently while singing devotional songs. Blow the conch and ring bells to celebrate the birth.',
-        hi: 'मध्याह्न (ठीक दोपहर — राम के जन्म का क्षण) पर, सजे हुए पालने में छोटी बालराम मूर्ति रखें। भक्ति गीत गाते हुए पालने को धीरे-धीरे झुलाएँ। जन्मोत्सव मनाने के लिए शंख बजाएँ और घण्टी बजाएँ।',
-        sa: 'मध्याह्ने (ठीक मध्याह्नकाले — रामजन्मक्षणे) अलङ्कृतडोले लघुबालराममूर्तिं स्थापयेत्। भक्तिगीतानि गायन् डोलं मृदुलं आन्दोलयेत्। जन्मोत्सवं अभिनन्दितुं शङ्खं घण्टां च वादयेत्।',
+        en: 'At Madhyahna (exact noon  –  the birth moment of Rama), place a small baby Rama idol in the decorated cradle. Swing the cradle gently while singing devotional songs. Blow the conch and ring bells to celebrate the birth.',
+        hi: 'मध्याह्न (ठीक दोपहर  –  राम के जन्म का क्षण) पर, सजे हुए पालने में छोटी बालराम मूर्ति रखें। भक्ति गीत गाते हुए पालने को धीरे-धीरे झुलाएँ। जन्मोत्सव मनाने के लिए शंख बजाएँ और घण्टी बजाएँ।',
+        sa: 'मध्याह्ने (ठीक मध्याह्नकाले  –  रामजन्मक्षणे) अलङ्कृतडोले लघुबालराममूर्तिं स्थापयेत्। भक्तिगीतानि गायन् डोलं मृदुलं आन्दोलयेत्। जन्मोत्सवं अभिनन्दितुं शङ्खं घण्टां च वादयेत्।',
       },
       duration: '10 min',
       essential: false,
@@ -139,9 +139,9 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
       step: 9,
       title: { en: 'Ramayana Path (Recitation)', hi: 'रामायण पाठ', sa: 'रामायणपाठः' },
       description: {
-        en: 'Recite selected chapters from Ramayana — particularly Bal Kanda (birth chapter) from Tulsidas\'s Ramcharitmanas or Valmiki Ramayana. Many devotees recite Sundarkand for Hanuman\'s blessings.',
-        hi: 'रामायण के चुनिन्दा अध्यायों का पाठ करें — विशेषकर तुलसीदास के रामचरितमानस या वाल्मीकि रामायण से बालकाण्ड (जन्म अध्याय)। कई भक्त हनुमान जी के आशीर्वाद हेतु सुन्दरकाण्ड का पाठ करते हैं।',
-        sa: 'रामायणात् चितानि अध्यायानि पठेत् — विशेषतः तुलसीदासरामचरितमानसात् वाल्मीकिरामायणात् वा बालकाण्डम् (जन्माध्यायम्)। बहवो भक्ताः हनुमदनुग्रहार्थं सुन्दरकाण्डं पठन्ति।',
+        en: 'Recite selected chapters from Ramayana  –  particularly Bal Kanda (birth chapter) from Tulsidas\'s Ramcharitmanas or Valmiki Ramayana. Many devotees recite Sundarkand for Hanuman\'s blessings.',
+        hi: 'रामायण के चुनिन्दा अध्यायों का पाठ करें  –  विशेषकर तुलसीदास के रामचरितमानस या वाल्मीकि रामायण से बालकाण्ड (जन्म अध्याय)। कई भक्त हनुमान जी के आशीर्वाद हेतु सुन्दरकाण्ड का पाठ करते हैं।',
+        sa: 'रामायणात् चितानि अध्यायानि पठेत्  –  विशेषतः तुलसीदासरामचरितमानसात् वाल्मीकिरामायणात् वा बालकाण्डम् (जन्माध्यायम्)। बहवो भक्ताः हनुमदनुग्रहार्थं सुन्दरकाण्डं पठन्ति।',
       },
       duration: '30 min',
       essential: true,
@@ -151,9 +151,9 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
       step: 10,
       title: { en: 'Dhupa & Deepa', hi: 'धूप व दीप', sa: 'धूपदीपौ' },
       description: {
-        en: 'Light incense sticks and wave before the idol. Then light the ghee lamp and perform the ritual lamp waving — 3 times at the feet, 2 at the navel, 1 at the face, 7 times around the full form.',
-        hi: 'अगरबत्ती जलाकर मूर्ति के सामने घुमाएँ। फिर घी का दीपक जलाकर आरती करें — 3 बार चरणों पर, 2 बार नाभि पर, 1 बार मुख पर, 7 बार पूरी मूर्ति के चारों ओर।',
-        sa: 'धूपं प्रज्वाल्य मूर्तेः पुरतः भ्रामयेत्। ततो घृतदीपं प्रज्वाल्य आरात्रिकं कुर्यात् — त्रिवारं पादयोः, द्विवारं नाभौ, एकवारं मुखे, सप्तवारं सम्पूर्णमूर्तेः परितः।',
+        en: 'Light incense sticks and wave before the idol. Then light the ghee lamp and perform the ritual lamp waving  –  3 times at the feet, 2 at the navel, 1 at the face, 7 times around the full form.',
+        hi: 'अगरबत्ती जलाकर मूर्ति के सामने घुमाएँ। फिर घी का दीपक जलाकर आरती करें  –  3 बार चरणों पर, 2 बार नाभि पर, 1 बार मुख पर, 7 बार पूरी मूर्ति के चारों ओर।',
+        sa: 'धूपं प्रज्वाल्य मूर्तेः पुरतः भ्रामयेत्। ततो घृतदीपं प्रज्वाल्य आरात्रिकं कुर्यात्  –  त्रिवारं पादयोः, द्विवारं नाभौ, एकवारं मुखे, सप्तवारं सम्पूर्णमूर्तेः परितः।',
       },
       duration: '5 min',
       essential: true,
@@ -205,15 +205,15 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
       devanagari: 'ॐ श्री रामाय नमः',
       iast: 'oṃ śrī rāmāya namaḥ',
       meaning: {
-        en: 'Salutations to Lord Rama, the one who liberates (Taraka — the one who helps cross the ocean of worldly existence)',
-        hi: 'भगवान राम को नमन, जो मुक्तिदाता हैं (तारक — भवसागर से पार कराने वाले)',
-        sa: 'श्रीरामाय नमः, यो मोक्षदायकः (तारकः — भवसागरोत्तारकः)',
+        en: 'Salutations to Lord Rama, the one who liberates (Taraka  –  the one who helps cross the ocean of worldly existence)',
+        hi: 'भगवान राम को नमन, जो मुक्तिदाता हैं (तारक  –  भवसागर से पार कराने वाले)',
+        sa: 'श्रीरामाय नमः, यो मोक्षदायकः (तारकः  –  भवसागरोत्तारकः)',
       },
       japaCount: 108,
       usage: {
-        en: 'Chant 108 times during the puja — this is the most sacred Rama mantra, called Taraka because it liberates the soul',
-        hi: 'पूजा के दौरान 108 बार जपें — यह सबसे पवित्र राम मन्त्र है, तारक कहलाता है क्योंकि यह आत्मा को मुक्त करता है',
-        sa: 'पूजाकाले अष्टोत्तरशतवारं जपेत् — अयं सर्वपवित्रो राममन्त्रः तारक इति उच्यते यतः आत्मानं मोचयति',
+        en: 'Chant 108 times during the puja  –  this is the most sacred Rama mantra, called Taraka because it liberates the soul',
+        hi: 'पूजा के दौरान 108 बार जपें  –  यह सबसे पवित्र राम मन्त्र है, तारक कहलाता है क्योंकि यह आत्मा को मुक्त करता है',
+        sa: 'पूजाकाले अष्टोत्तरशतवारं जपेत्  –  अयं सर्वपवित्रो राममन्त्रः तारक इति उच्यते यतः आत्मानं मोचयति',
       },
     },
     {
@@ -243,22 +243,22 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
         sa: 'श्रीरामस्य जयः, रामस्य जयः, जयजयरामः!',
       },
       usage: {
-        en: 'Chant continuously during pradakshina and throughout the day — this is the simplest yet most powerful Rama chant, beloved of Tulsidas and Mahatma Gandhi',
-        hi: 'प्रदक्षिणा के दौरान और पूरे दिन लगातार जपें — यह सबसे सरल किन्तु सबसे प्रभावशाली राम धुन है, तुलसीदास और महात्मा गाँधी को प्रिय',
-        sa: 'प्रदक्षिणाकाले दिनभरं च अविरतं जपेत् — इयं सरलतमा किन्तु प्रभावशालिनी रामधुनिः, तुलसीदासमहात्मागान्धिप्रिया',
+        en: 'Chant continuously during pradakshina and throughout the day  –  this is the simplest yet most powerful Rama chant, beloved of Tulsidas and Mahatma Gandhi',
+        hi: 'प्रदक्षिणा के दौरान और पूरे दिन लगातार जपें  –  यह सबसे सरल किन्तु सबसे प्रभावशाली राम धुन है, तुलसीदास और महात्मा गाँधी को प्रिय',
+        sa: 'प्रदक्षिणाकाले दिनभरं च अविरतं जपेत्  –  इयं सरलतमा किन्तु प्रभावशालिनी रामधुनिः, तुलसीदासमहात्मागान्धिप्रिया',
       },
     },
   ],
 
   stotras: [
     {
-      name: { en: 'Ramcharitmanas — Bal Kanda (Birth section)', hi: 'रामचरितमानस — बालकाण्ड (जन्म प्रसंग)', sa: 'रामचरितमानसम् — बालकाण्डम् (जन्मप्रसङ्गः)' },
+      name: { en: 'Ramcharitmanas  –  Bal Kanda (Birth section)', hi: 'रामचरितमानस  –  बालकाण्ड (जन्म प्रसंग)', sa: 'रामचरितमानसम्  –  बालकाण्डम् (जन्मप्रसङ्गः)' },
       verseCount: 50,
       duration: '20 min',
       note: {
-        en: 'Recite the verses describing Rama\'s birth from Tulsidas\'s Ramcharitmanas, Bal Kanda — "Bhaye pragat kripala deen dayala..."',
-        hi: 'तुलसीदास के रामचरितमानस, बालकाण्ड से राम जन्म वर्णन के छन्द पढ़ें — "भये प्रगट कृपाला दीनदयाला..."',
-        sa: 'तुलसीदासरामचरितमानसात् बालकाण्डात् रामजन्मवर्णनपद्यानि पठेत् — "भये प्रगट कृपाला दीनदयाला..."',
+        en: 'Recite the verses describing Rama\'s birth from Tulsidas\'s Ramcharitmanas, Bal Kanda  –  "Bhaye pragat kripala deen dayala..."',
+        hi: 'तुलसीदास के रामचरितमानस, बालकाण्ड से राम जन्म वर्णन के छन्द पढ़ें  –  "भये प्रगट कृपाला दीनदयाला..."',
+        sa: 'तुलसीदासरामचरितमानसात् बालकाण्डात् रामजन्मवर्णनपद्यानि पठेत्  –  "भये प्रगट कृपाला दीनदयाला..."',
       },
     },
     {
@@ -282,37 +282,37 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
   },
 
   naivedya: {
-    en: 'Kheer (rice pudding), panjeeri, fresh fruits, coconut, sattvic sweets, and seasonal offerings — all prepared without onion, garlic, or tamasic ingredients',
-    hi: 'खीर (चावल की), पंजीरी, ताजे फल, नारियल, सात्विक मिठाइयाँ, और मौसमी प्रसाद — सभी बिना प्याज, लहसुन या तामसिक सामग्री के बने',
-    sa: 'क्षीरान्नम्, पञ्जीरी, नवफलानि, नारिकेलम्, सात्त्विकमिष्टान्नानि, ऋत्वनुसारप्रसादः च — सर्वाणि पलाण्डुलशुनतामसद्रव्यरहितानि',
+    en: 'Kheer (rice pudding), panjeeri, fresh fruits, coconut, sattvic sweets, and seasonal offerings  –  all prepared without onion, garlic, or tamasic ingredients',
+    hi: 'खीर (चावल की), पंजीरी, ताजे फल, नारियल, सात्विक मिठाइयाँ, और मौसमी प्रसाद  –  सभी बिना प्याज, लहसुन या तामसिक सामग्री के बने',
+    sa: 'क्षीरान्नम्, पञ्जीरी, नवफलानि, नारिकेलम्, सात्त्विकमिष्टान्नानि, ऋत्वनुसारप्रसादः च  –  सर्वाणि पलाण्डुलशुनतामसद्रव्यरहितानि',
   },
 
   precautions: [
     {
-      en: 'Fast until Madhyahna (noon) — break the fast only after completing the puja at the exact birth time of Rama',
-      hi: 'मध्याह्न (दोपहर) तक व्रत रखें — केवल राम के जन्म समय पर पूजा सम्पन्न करने के बाद ही व्रत तोड़ें',
-      sa: 'मध्याह्नपर्यन्तम् उपवासं कुर्यात् — रामजन्मकाले पूजां सम्पाद्य एव उपवासं भञ्जयेत्',
+      en: 'Fast until Madhyahna (noon)  –  break the fast only after completing the puja at the exact birth time of Rama',
+      hi: 'मध्याह्न (दोपहर) तक व्रत रखें  –  केवल राम के जन्म समय पर पूजा सम्पन्न करने के बाद ही व्रत तोड़ें',
+      sa: 'मध्याह्नपर्यन्तम् उपवासं कुर्यात्  –  रामजन्मकाले पूजां सम्पाद्य एव उपवासं भञ्जयेत्',
     },
     {
-      en: 'Use only Tulsi leaves for Rama puja — do NOT use Bel (wood apple / bilva) leaves, which are reserved for Shiva',
-      hi: 'राम पूजा में केवल तुलसी के पत्ते प्रयोग करें — बेल (बिल्व) के पत्ते न चढ़ाएँ, वे शिव के लिए आरक्षित हैं',
-      sa: 'रामपूजायां तुलसीपत्राणि एव उपयोजयेत् — बिल्वपत्राणि न समर्पयेत्, तानि शिवार्थं आरक्षितानि',
+      en: 'Use only Tulsi leaves for Rama puja  –  do NOT use Bel (wood apple / bilva) leaves, which are reserved for Shiva',
+      hi: 'राम पूजा में केवल तुलसी के पत्ते प्रयोग करें  –  बेल (बिल्व) के पत्ते न चढ़ाएँ, वे शिव के लिए आरक्षित हैं',
+      sa: 'रामपूजायां तुलसीपत्राणि एव उपयोजयेत्  –  बिल्वपत्राणि न समर्पयेत्, तानि शिवार्थं आरक्षितानि',
     },
     {
-      en: 'Face east during the entire puja — Lord Rama was born facing east, and the idol should also face east',
-      hi: 'सम्पूर्ण पूजा के दौरान पूर्व दिशा की ओर मुख करें — भगवान राम का जन्म पूर्वाभिमुख हुआ था, मूर्ति भी पूर्व की ओर होनी चाहिए',
-      sa: 'सम्पूर्णपूजाकाले पूर्वाभिमुखं तिष्ठेत् — श्रीरामस्य जन्म पूर्वाभिमुखम् अभवत्, मूर्तिः अपि पूर्वाभिमुखी भवेत्',
+      en: 'Face east during the entire puja  –  Lord Rama was born facing east, and the idol should also face east',
+      hi: 'सम्पूर्ण पूजा के दौरान पूर्व दिशा की ओर मुख करें  –  भगवान राम का जन्म पूर्वाभिमुख हुआ था, मूर्ति भी पूर्व की ओर होनी चाहिए',
+      sa: 'सम्पूर्णपूजाकाले पूर्वाभिमुखं तिष्ठेत्  –  श्रीरामस्य जन्म पूर्वाभिमुखम् अभवत्, मूर्तिः अपि पूर्वाभिमुखी भवेत्',
     },
     {
-      en: 'Maintain strict sattvic diet on this day — no onion, garlic, meat, or intoxicants',
-      hi: 'इस दिन कड़ा सात्विक आहार रखें — प्याज, लहसुन, मांस या नशीले पदार्थ वर्जित हैं',
-      sa: 'अस्मिन् दिवसे कठिनं सात्त्विकाहारं पालयेत् — पलाण्डुः लशुनं मांसं मद्यं च वर्जनीयम्',
+      en: 'Maintain strict sattvic diet on this day  –  no onion, garlic, meat, or intoxicants',
+      hi: 'इस दिन कड़ा सात्विक आहार रखें  –  प्याज, लहसुन, मांस या नशीले पदार्थ वर्जित हैं',
+      sa: 'अस्मिन् दिवसे कठिनं सात्त्विकाहारं पालयेत्  –  पलाण्डुः लशुनं मांसं मद्यं च वर्जनीयम्',
     },
   ],
 
   phala: {
-    en: 'Attainment of dharma and righteousness, courage and moral strength, protection from evil, family harmony, and the supreme blessing of Maryada Purushottam Shri Rama — the ideal king, husband, son, and human being',
-    hi: 'धर्म और सदाचार की प्राप्ति, साहस और नैतिक बल, अशुभ से रक्षा, पारिवारिक सामंजस्य, और मर्यादा पुरुषोत्तम श्री राम — आदर्श राजा, पति, पुत्र और मनुष्य — का सर्वोच्च आशीर्वाद',
-    sa: 'धर्मसदाचारप्राप्तिः, शौर्यनैतिकबलम्, अशुभनिवारणम्, कुटुम्बसामञ्जस्यम्, मर्यादापुरुषोत्तमश्रीरामस्य — आदर्शनृपतेः पत्युः पुत्रस्य मनुष्यस्य च — सर्वोच्चानुग्रहः',
+    en: 'Attainment of dharma and righteousness, courage and moral strength, protection from evil, family harmony, and the supreme blessing of Maryada Purushottam Shri Rama  –  the ideal king, husband, son, and human being',
+    hi: 'धर्म और सदाचार की प्राप्ति, साहस और नैतिक बल, अशुभ से रक्षा, पारिवारिक सामंजस्य, और मर्यादा पुरुषोत्तम श्री राम  –  आदर्श राजा, पति, पुत्र और मनुष्य  –  का सर्वोच्च आशीर्वाद',
+    sa: 'धर्मसदाचारप्राप्तिः, शौर्यनैतिकबलम्, अशुभनिवारणम्, कुटुम्बसामञ्जस्यम्, मर्यादापुरुषोत्तमश्रीरामस्य  –  आदर्शनृपतेः पत्युः पुत्रस्य मनुष्यस्य च  –  सर्वोच्चानुग्रहः',
   },
 };

@@ -175,7 +175,7 @@ export function MuhurtaIcon({ size = defaults.size, className }: IconProps) {
   );
 }
 
-// ─── GRAHAN: Eclipse — overlapping sun and moon ───────────────────
+// ─── GRAHAN: Eclipse  –  overlapping sun and moon ───────────────────
 export function GrahanIcon({ size = defaults.size, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -225,7 +225,7 @@ export function RashiIcon({ size = defaults.size, className }: IconProps) {
   );
 }
 
-// ─── MASA: Lunar month — waxing/waning cycle ──────────────────────
+// ─── MASA: Lunar month  –  waxing/waning cycle ──────────────────────
 export function MasaIcon({ size = defaults.size, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">

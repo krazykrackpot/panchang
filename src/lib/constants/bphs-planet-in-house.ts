@@ -70,7 +70,7 @@ const MARS_IN_HOUSE: Record<number, ClassicalCitation[]> = {
   3: [cite(24, '53-54', 'The native will be valorous, unconquerable, wealthy, happy, and good-natured. Relations with siblings will be supportive and the native will display great courage.', 3, 'Mars')],
   4: [cite(24, '55-56', 'The native will be devoid of relatives, friends, mother, lands, and happiness. Domestic unrest, disputes over property, and lack of mental peace are indicated.', 4, 'Mars')],
   5: [cite(24, '57-58', 'The native will be without children, without wealth, and will have a wavering mind. If well-aspected, intelligence in competitive pursuits and speculation is indicated.', 5, 'Mars')],
-  6: [cite(24, '59-60', 'The native will be wealthy, famous, will overpower enemies, and be a king or leader. This is one of the best placements for Mars — enemies are decisively defeated.', 6, 'Mars')],
+  6: [cite(24, '59-60', 'The native will be wealthy, famous, will overpower enemies, and be a king or leader. This is one of the best placements for Mars  –  enemies are decisively defeated.', 6, 'Mars')],
   7: [cite(24, '61-62', 'The native will lose the spouse or face domestic strife, will wander uselessly, and will be humiliated. Manglik dosha applies, affecting marital harmony.', 7, 'Mars')],
   8: [cite(24, '63-64', 'The native will be sickly, short-lived, and will have few possessions. Interest in surgery, martial arts, or occult research is indicated. Accidents or injuries are possible.', 8, 'Mars')],
   9: [cite(24, '65-66', 'The native will be sinful, will speak ill of elders and preceptors, be fatherless early, and go on pilgrimages. If well-placed, courage in defending beliefs is indicated.', 9, 'Mars')],
@@ -101,11 +101,11 @@ const JUPITER_IN_HOUSE: Record<number, ClassicalCitation[]> = {
   2: [cite(24, '99-100', 'The native will be wealthy, learned, eloquent, blessed with a large family, handsome, and will enjoy good food. Noble speech and financial prosperity are indicated.', 2, 'Jupiter')],
   3: [cite(24, '101-102', 'The native will be mean, stingy, despised by relatives, and will have bad brothers. However, wise communication and eventually good sibling relations are possible if well-aspected.', 3, 'Jupiter')],
   4: [cite(24, '103-104', 'The native will be happy, wealthy, will have good mother, friends, conveyances, and lands. Domestic happiness and comfort in living are strongly indicated.', 4, 'Jupiter')],
-  5: [cite(24, '105-106', 'The native will be an advisor or minister, wealthy, blessed with children, and endowed with fame. This is one of the best placements — intelligence and spiritual merit are strong.', 5, 'Jupiter')],
+  5: [cite(24, '105-106', 'The native will be an advisor or minister, wealthy, blessed with children, and endowed with fame. This is one of the best placements  –  intelligence and spiritual merit are strong.', 5, 'Jupiter')],
   6: [cite(24, '107-108', 'The native will destroy enemies but will be lazy and humiliated. If afflicted, health issues related to overindulgence are possible.', 6, 'Jupiter')],
   7: [cite(24, '109-110', 'The native will have a virtuous and beautiful spouse, will be superior to the father, and be eloquent. Fortunate and ethical partnerships are indicated.', 7, 'Jupiter')],
   8: [cite(24, '111-112', 'The native will be long-lived but will face humiliation, will have few possessions, and serve others. Interest in occult wisdom and protection from sudden harm are indicated.', 8, 'Jupiter')],
-  9: [cite(24, '113-114', 'The native will be devoted to God, fortunate, wise, wealthy, famous, and blessed with sons. This is an extremely fortunate placement — spiritual and material blessings abound.', 9, 'Jupiter')],
+  9: [cite(24, '113-114', 'The native will be devoted to God, fortunate, wise, wealthy, famous, and blessed with sons. This is an extremely fortunate placement  –  spiritual and material blessings abound.', 9, 'Jupiter')],
   10: [cite(24, '115-116', 'The native will be happy, wealthy, powerful, famous, virtuous, and devoted to God. Career success through ethical leadership and social respect is strongly indicated.', 10, 'Jupiter')],
   11: [cite(24, '117-118', 'The native will be long-lived, wealthy, truthful, happy, with few children but many servants. Ambitions are fulfilled through knowledge and wise connections.', 11, 'Jupiter')],
   12: [cite(24, '119-120', 'The native will be disliked by others, without wealth, without children, and will serve others. If well-aspected, spiritual growth, foreign travel, and moksha are indicated.', 12, 'Jupiter')],
@@ -155,7 +155,7 @@ const RAHU_IN_HOUSE: Record<number, ClassicalCitation[]> = {
   8: [cite(47, '16-17', 'The native will be short-lived, will do evil deeds, and be afflicted with diseases. Fascination with occult matters, sudden transformations, and unconventional research are indicated.', 8, 'Rahu')],
   9: [cite(47, '18-19', 'The native will be sinful, harsh in speech, involved in wicked deeds, and without fortune. Interest in foreign philosophies and unconventional spiritual paths is indicated.', 9, 'Rahu')],
   10: [cite(47, '20-21', 'The native will be famous, will undertake bold deeds, have few children, and enjoy royal favour. Career success through innovation and public recognition is strongly indicated.', 10, 'Rahu')],
-  11: [cite(47, '22-23', 'The native will be wealthy, happy, will enjoy all comforts, and be long-lived. This is an excellent placement — worldly desires are fulfilled through technology and networking.', 11, 'Rahu')],
+  11: [cite(47, '22-23', 'The native will be wealthy, happy, will enjoy all comforts, and be long-lived. This is an excellent placement  –  worldly desires are fulfilled through technology and networking.', 11, 'Rahu')],
   12: [cite(47, '24-25', 'The native will spend money on sinful activities, will have defective limbs, and be inimical toward others. Foreign residence and spiritual awakening through unconventional means are possible.', 12, 'Rahu')],
 };
 
@@ -172,7 +172,7 @@ const KETU_IN_HOUSE: Record<number, ClassicalCitation[]> = {
   9: [cite(47, '42-43', 'The native will be sinful, short-lived, and will indulge in wicked deeds. Natural spiritual wisdom and an internally experienced religion are indicated if well-aspected.', 9, 'Ketu')],
   10: [cite(47, '44-45', 'The native will be engaged in wicked deeds, devoid of religion, and face obstacles in career. Career in healing, spirituality, or meaningful research may develop over time.', 10, 'Ketu')],
   11: [cite(47, '46-47', 'The native will amass wealth, be happy, will enjoy all comforts, and be virtuous. Spiritual gains and true fulfillment through service and liberation are indicated.', 11, 'Ketu')],
-  12: [cite(47, '48-49', 'The native will enjoy bed pleasures, will spend on good causes, and attain final emancipation. This is excellent for moksha — strong meditation abilities and past-life merit manifest.', 12, 'Ketu')],
+  12: [cite(47, '48-49', 'The native will enjoy bed pleasures, will spend on good causes, and attain final emancipation. This is excellent for moksha  –  strong meditation abilities and past-life merit manifest.', 12, 'Ketu')],
 };
 
 /**

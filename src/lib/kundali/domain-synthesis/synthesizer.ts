@@ -1,5 +1,5 @@
 /**
- * Main Synthesiser Orchestrator — Personal Pandit Engine
+ * Main Synthesiser Orchestrator  –  Personal Pandit Engine
  *
  * Wires all domain synthesis modules into a single entry point that
  * produces a complete PersonalReading from a KundaliData object.
@@ -399,7 +399,7 @@ function buildScorerInput(
     return false;
   })();
 
-  // 9. Varga delivery score — computed from divisional charts
+  // 9. Varga delivery score  –  computed from divisional charts
   const vargaDeliveryScore = computeVargaDeliveryScore(config, kundali, data);
 
   return {
@@ -439,8 +439,8 @@ function retroAwareTransitDescription(
 
   if (!isRetro) {
     return {
-      en: `${nameEn} transiting ${transitHouse}th house — fresh energy and forward momentum.`,
-      hi: `${nameHi} ${transitHouse}वें भाव में गोचर — नई ऊर्जा और आगे की गति।`,
+      en: `${nameEn} transiting ${transitHouse}th house  –  fresh energy and forward momentum.`,
+      hi: `${nameHi} ${transitHouse}वें भाव में गोचर  –  नई ऊर्जा और आगे की गति।`,
     };
   }
 
@@ -448,38 +448,38 @@ function retroAwareTransitDescription(
   switch (domainId) {
     case 'career':
       return {
-        en: `${nameEn} (R) transiting ${transitHouse}th house — delays possible but deepens mastery; revisit past professional matters.`,
-        hi: `${nameEn} (वक्री) ${transitHouse}वें भाव में गोचर — विलम्ब संभव परन्तु दक्षता गहरी होती है; पुराने व्यावसायिक मामलों की पुनर्समीक्षा करें।`,
+        en: `${nameEn} (R) transiting ${transitHouse}th house  –  delays possible but deepens mastery; revisit past professional matters.`,
+        hi: `${nameEn} (वक्री) ${transitHouse}वें भाव में गोचर  –  विलम्ब संभव परन्तु दक्षता गहरी होती है; पुराने व्यावसायिक मामलों की पुनर्समीक्षा करें।`,
       };
     case 'marriage':
       return {
-        en: `${nameEn} (R) transiting ${transitHouse}th house — past connections may resurface; reflect before committing to new bonds.`,
-        hi: `${nameEn} (वक्री) ${transitHouse}वें भाव में गोचर — पुराने सम्बन्ध पुनः उभर सकते हैं; नये बन्धनों से पहले चिन्तन करें।`,
+        en: `${nameEn} (R) transiting ${transitHouse}th house  –  past connections may resurface; reflect before committing to new bonds.`,
+        hi: `${nameEn} (वक्री) ${transitHouse}वें भाव में गोचर  –  पुराने सम्बन्ध पुनः उभर सकते हैं; नये बन्धनों से पहले चिन्तन करें।`,
       };
     case 'wealth':
       return {
-        en: `${nameEn} (R) transiting ${transitHouse}th house — review financial commitments; avoid impulsive investments.`,
-        hi: `${nameEn} (वक्री) ${transitHouse}वें भाव में गोचर — वित्तीय प्रतिबद्धताओं की समीक्षा करें; आवेगी निवेश से बचें।`,
+        en: `${nameEn} (R) transiting ${transitHouse}th house  –  review financial commitments; avoid impulsive investments.`,
+        hi: `${nameEn} (वक्री) ${transitHouse}वें भाव में गोचर  –  वित्तीय प्रतिबद्धताओं की समीक्षा करें; आवेगी निवेश से बचें।`,
       };
     case 'health':
       return {
-        en: `${nameEn} (R) transiting ${transitHouse}th house — revisit old health concerns; focus on recovery over new regimens.`,
-        hi: `${nameEn} (वक्री) ${transitHouse}वें भाव में गोचर — पुरानी स्वास्थ्य चिन्ताओं पर पुनर्विचार करें; नई दिनचर्या से अधिक स्वस्थता पर ध्यान दें।`,
+        en: `${nameEn} (R) transiting ${transitHouse}th house  –  revisit old health concerns; focus on recovery over new regimens.`,
+        hi: `${nameEn} (वक्री) ${transitHouse}वें भाव में गोचर  –  पुरानी स्वास्थ्य चिन्ताओं पर पुनर्विचार करें; नई दिनचर्या से अधिक स्वस्थता पर ध्यान दें।`,
       };
     case 'education':
       return {
-        en: `${nameEn} (R) transiting ${transitHouse}th house — excellent for revising and consolidating knowledge; new courses may face delays.`,
-        hi: `${nameEn} (वक्री) ${transitHouse}वें भाव में गोचर — ज्ञान की पुनरावृत्ति और संगठन के लिए उत्तम; नये पाठ्यक्रमों में विलम्ब संभव।`,
+        en: `${nameEn} (R) transiting ${transitHouse}th house  –  excellent for revising and consolidating knowledge; new courses may face delays.`,
+        hi: `${nameEn} (वक्री) ${transitHouse}वें भाव में गोचर  –  ज्ञान की पुनरावृत्ति और संगठन के लिए उत्तम; नये पाठ्यक्रमों में विलम्ब संभव।`,
       };
     case 'spiritual':
       return {
-        en: `${nameEn} (R) transiting ${transitHouse}th house — introspection intensifies; revisit spiritual practices for deeper insight.`,
-        hi: `${nameEn} (वक्री) ${transitHouse}वें भाव में गोचर — आत्मनिरीक्षण तीव्र होता है; गहन अन्तर्दृष्टि हेतु साधना पुनः आरम्भ करें।`,
+        en: `${nameEn} (R) transiting ${transitHouse}th house  –  introspection intensifies; revisit spiritual practices for deeper insight.`,
+        hi: `${nameEn} (वक्री) ${transitHouse}वें भाव में गोचर  –  आत्मनिरीक्षण तीव्र होता है; गहन अन्तर्दृष्टि हेतु साधना पुनः आरम्भ करें।`,
       };
     default:
       return {
-        en: `${nameEn} (R) transiting ${transitHouse}th house — a period of review and reassessment rather than new initiatives.`,
-        hi: `${nameEn} (वक्री) ${transitHouse}वें भाव में गोचर — नई पहल के बजाय पुनर्मूल्यांकन का समय।`,
+        en: `${nameEn} (R) transiting ${transitHouse}th house  –  a period of review and reassessment rather than new initiatives.`,
+        hi: `${nameEn} (वक्री) ${transitHouse}वें भाव में गोचर  –  नई पहल के बजाय पुनर्मूल्यांकन का समय।`,
       };
   }
 }
@@ -523,7 +523,7 @@ function buildCurrentActivation(
   const isDashaActive = mahaActivates || antarActivates;
   const dashaActivationScore = (mahaActivates ? 5 : 0) + (antarActivates ? 3 : 0);
 
-  // Transit influences — slow planets in domain houses (using real current positions)
+  // Transit influences  –  slow planets in domain houses (using real current positions)
   const transitInfluences: CurrentActivationBlock['transitInfluences'] = [];
   if (transitData && transitData.length > 0) {
     // Use real current transit positions with retrograde-aware descriptions
@@ -578,8 +578,8 @@ function buildCurrentActivation(
         hi: `${mahaName.hi ?? mahaName.en}-${antarName.hi ?? antarName.en} दशा आपके ${config.name.hi ?? config.name.en} क्षेत्र को सक्रिय रूप से ऊर्जित कर रही है।`,
       }
     : {
-        en: `Current dasha is not directly activating your ${config.name.en} domain — effects remain background-level.`,
-        hi: `वर्तमान दशा आपके ${config.name.hi ?? config.name.en} क्षेत्र को सीधे सक्रिय नहीं कर रही — प्रभाव पृष्ठभूमि स्तर पर हैं।`,
+        en: `Current dasha is not directly activating your ${config.name.en} domain  –  effects remain background-level.`,
+        hi: `वर्तमान दशा आपके ${config.name.hi ?? config.name.en} क्षेत्र को सीधे सक्रिय नहीं कर रही  –  प्रभाव पृष्ठभूमि स्तर पर हैं।`,
       };
 
   return {
@@ -672,7 +672,7 @@ function buildNatalPromise(
     }
   }
 
-  // Varga confirmations — computed from divisional charts when available
+  // Varga confirmations  –  computed from divisional charts when available
   const primaryH_ = config.primaryHouses[0];
   const primarySign_ = kundali.houses.find(c => c.house === primaryH_)?.sign ?? 1;
   const primaryLordId_ = SIGN_LORD[primarySign_] ?? 0;
@@ -715,19 +715,19 @@ function buildNatalPromise(
       const dignity = getDignity(primaryLordId_, lordSign);
       const score = VARGA_DIGNITY_SCORES[dignity];
       const dignityLabels: Record<string, { en: string; hi: string }> = {
-        exalted:      { en: 'exalted — strong confirmation',       hi: 'उच्च — दृढ़ पुष्टि' },
-        own:          { en: 'in own sign — good confirmation',      hi: 'स्वराशि — अच्छी पुष्टि' },
-        friend:       { en: 'in friendly sign — supportive',        hi: 'मित्र राशि — सहायक' },
-        neutral:      { en: 'in neutral sign — mixed signals',      hi: 'सम राशि — मिश्रित संकेत' },
-        enemy:        { en: 'in enemy sign — weak confirmation',    hi: 'शत्रु राशि — कमज़ोर पुष्टि' },
-        debilitated:  { en: 'debilitated — contradicts promise',    hi: 'नीच — प्रतिज्ञा के विपरीत' },
+        exalted:      { en: 'exalted  –  strong confirmation',       hi: 'उच्च  –  दृढ़ पुष्टि' },
+        own:          { en: 'in own sign  –  good confirmation',      hi: 'स्वराशि  –  अच्छी पुष्टि' },
+        friend:       { en: 'in friendly sign  –  supportive',        hi: 'मित्र राशि  –  सहायक' },
+        neutral:      { en: 'in neutral sign  –  mixed signals',      hi: 'सम राशि  –  मिश्रित संकेत' },
+        enemy:        { en: 'in enemy sign  –  weak confirmation',    hi: 'शत्रु राशि  –  कमज़ोर पुष्टि' },
+        debilitated:  { en: 'debilitated  –  contradicts promise',    hi: 'नीच  –  प्रतिज्ञा के विपरीत' },
       };
       const label = dignityLabels[dignity] ?? dignityLabels.neutral;
       return {
         chartId,
         score,
         keyInsight: {
-          en: `Lord ${dignity} in ${chartId} — ${label.en}.`,
+          en: `Lord ${dignity} in ${chartId}  –  ${label.en}.`,
           hi: `${chartId} में स्वामी ${label.hi}।`,
         },
       };
@@ -947,7 +947,7 @@ function buildDomainReading(
   });
 
   // 7. Cross-domain links for this domain
-  // Include links relevant to this domain — exclude self-references (Wealth ↔ Wealth)
+  // Include links relevant to this domain  –  exclude self-references (Wealth ↔ Wealth)
   const domainCrossLinks = crossLinks.filter(
     l => l.linkedDomain !== config.id,
   );

@@ -34,7 +34,7 @@ export const AHOI_ASHTAMI_PUJA: PujaVidhi = {
   vidhiSteps: [
     {
       step: 1,
-      title: { en: 'Morning — Fast Begins', hi: 'प्रातः — व्रत आरम्भ', sa: 'प्रातः — व्रतारम्भः' },
+      title: { en: 'Morning  –  Fast Begins', hi: 'प्रातः  –  व्रत आरम्भ', sa: 'प्रातः  –  व्रतारम्भः' },
       description: {
         en: 'Wake before sunrise and take a purifying bath. The fast begins at sunrise. Resolve to observe the Ahoi Ashtami vrat for your children\'s welfare. Only water is permitted during the day.',
         hi: 'सूर्योदय से पहले उठें और शुद्धि स्नान करें। व्रत सूर्योदय से शुरू होता है। अपने बच्चों के कल्याण के लिए अहोई अष्टमी व्रत का संकल्प लें। दिन में केवल जल पीने की अनुमति है।',
@@ -58,7 +58,7 @@ export const AHOI_ASHTAMI_PUJA: PujaVidhi = {
     },
     {
       step: 3,
-      title: { en: 'Evening — Sankalpa & Puja', hi: 'सायं — संकल्प एवं पूजा', sa: 'सायम् — सङ्कल्पः पूजा च' },
+      title: { en: 'Evening  –  Sankalpa & Puja', hi: 'सायं  –  संकल्प एवं पूजा', sa: 'सायम्  –  सङ्कल्पः पूजा च' },
       description: {
         en: 'In the evening (Pradosh Kaal), take a fresh bath. Sit before the Ahoi image on the wall. Light a ghee diya and incense. Place the water pot before the image. Take the formal sankalpa for the vrat.',
         hi: 'सायंकाल (प्रदोष काल) में पुनः स्नान करें। दीवार पर बने अहोई चित्र के सामने बैठें। घी का दीपक और अगरबत्ती जलाएँ। चित्र के सामने जल कलश रखें। व्रत के लिए विधिवत् संकल्प लें।',
@@ -147,9 +147,9 @@ export const AHOI_ASHTAMI_PUJA: PujaVidhi = {
 
   precautions: [
     {
-      en: 'This vrat is observed only by mothers — for the welfare of their children. Childless women may observe it for the blessing of progeny.',
-      hi: 'यह व्रत केवल माताएँ रखती हैं — अपने बच्चों के कल्याण के लिए। नि:सन्तान स्त्रियाँ सन्तान प्राप्ति के लिए रख सकती हैं।',
-      sa: 'एतद्व्रतं केवलं मातृभिः पाल्यते — सन्तानकल्याणार्थम्। अपुत्राः सन्तानप्राप्त्यर्थं पालयितुम् अर्हन्ति।',
+      en: 'This vrat is observed only by mothers  –  for the welfare of their children. Childless women may observe it for the blessing of progeny.',
+      hi: 'यह व्रत केवल माताएँ रखती हैं  –  अपने बच्चों के कल्याण के लिए। नि:सन्तान स्त्रियाँ सन्तान प्राप्ति के लिए रख सकती हैं।',
+      sa: 'एतद्व्रतं केवलं मातृभिः पाल्यते  –  सन्तानकल्याणार्थम्। अपुत्राः सन्तानप्राप्त्यर्थं पालयितुम् अर्हन्ति।',
     },
     {
       en: 'Do not eat anything containing iron (from iron utensils) on this day, as iron is associated with weapons that harm.',
@@ -157,9 +157,9 @@ export const AHOI_ASHTAMI_PUJA: PujaVidhi = {
       sa: 'अस्मिन् दिने लोहपात्रजं किमपि न भक्षयेत्, यतो लौहम् हिंसकशस्त्रैः सम्बद्धम्।',
     },
     {
-      en: 'Do not do any digging or excavation work on this day — the katha warns against harming creatures living underground.',
-      hi: 'इस दिन खुदाई या उत्खनन का कोई कार्य न करें — कथा भूमिगत जीवों को हानि पहुँचाने से चेतावनी देती है।',
-      sa: 'अस्मिन् दिने खननं उत्खननं वा न कुर्यात् — कथा भूमिगतप्राणिहिंसातः सावधानयति।',
+      en: 'Do not do any digging or excavation work on this day  –  the katha warns against harming creatures living underground.',
+      hi: 'इस दिन खुदाई या उत्खनन का कोई कार्य न करें  –  कथा भूमिगत जीवों को हानि पहुँचाने से चेतावनी देती है।',
+      sa: 'अस्मिन् दिने खननं उत्खननं वा न कुर्यात्  –  कथा भूमिगतप्राणिहिंसातः सावधानयति।',
     },
   ],
 

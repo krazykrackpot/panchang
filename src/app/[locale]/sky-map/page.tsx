@@ -9,7 +9,7 @@ import { dateToJD } from '@/lib/astronomy/julian';
 import { getPlanetaryPositions, normalizeDeg } from '@/lib/ephem/astronomical';
 import { eclipticToEquatorial, computePlanetLatitude, equatorialToHorizontal } from '@/lib/ephem/coordinates';
 import { getAyanamsha as getAyanamsa, toSidereal as _toSidereal } from '@/lib/ephem/astronomical';
-/** Adapter: Module B's toSidereal takes (lon, jd, ayanamsha?) — we have pre-computed ayanamsha. */
+/** Adapter: Module B's toSidereal takes (lon, jd, ayanamsha?)  –  we have pre-computed ayanamsha. */
 const tropicalToSidereal = (lon: number, ayanamsa: number) => _toSidereal(lon, 0, ayanamsa);
 import { GRAHAS } from '@/lib/constants/grahas';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -69,7 +69,7 @@ function azimuthToCardinal(az: number): string {
  * Uses eclipticToEquatorial with proper ecliptic latitude per planet.
  */
 /**
- * Compute planet RA/Dec — pure astronomical math, locale-independent.
+ * Compute planet RA/Dec  –  pure astronomical math, locale-independent.
  * Names are resolved separately to avoid recomputing positions on locale change.
  */
 function computePlanetRADec(jd: number): { planets: PlanispherePlanet[]; ayanamsa: number } {
@@ -136,7 +136,7 @@ function PlanetInfoPanel({ planet, sidereal, locale }: PlanetInfoProps) {
 
         <span className="text-text-secondary">Zodiac Sign</span>
         <span className="text-text-primary font-medium">
-          {rashi ? `${rashi.symbol} ${tl(rashi.name, locale)}` : '—'}
+          {rashi ? `${rashi.symbol} ${tl(rashi.name, locale)}` : ' – '}
           <span className="text-text-secondary ml-1">
             {degInSign.toFixed(1)}°
           </span>
@@ -144,7 +144,7 @@ function PlanetInfoPanel({ planet, sidereal, locale }: PlanetInfoProps) {
 
         <span className="text-text-secondary">Nakshatra</span>
         <span className="text-text-primary font-medium">
-          {nakshatra ? tl(nakshatra.name, locale) : '—'}
+          {nakshatra ? tl(nakshatra.name, locale) : ' – '}
         </span>
 
         <span className="text-text-secondary">RA / Dec</span>
@@ -192,7 +192,7 @@ export default function SkyMapPage() {
     return currentJD() + timeOffset / 1440; // 1440 minutes per day
   }, [timeOffset]);
 
-  // Compute planet RA/Dec positions (expensive math — no locale dependency)
+  // Compute planet RA/Dec positions (expensive math  –  no locale dependency)
   const { planets: rawPlanets, ayanamsa } = useMemo(() => {
     return computePlanetRADec(jd);
   }, [jd]);

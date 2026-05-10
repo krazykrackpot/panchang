@@ -1,5 +1,5 @@
 /**
- * Yogini Dasha System — 36-year planetary period cycle
+ * Yogini Dasha System  –  36-year planetary period cycle
  *
  * Classical reference: Saravali, Mantra Mahodadhi, Dasha Paddhati
  *

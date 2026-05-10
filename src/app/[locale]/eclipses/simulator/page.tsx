@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * Eclipse Simulator page — educational interactive canvas animation of
+ * Eclipse Simulator page  –  educational interactive canvas animation of
  * solar and lunar eclipses, with Jyotish (Rahu/Ketu) context.
  *
  * EclipseSimulator is dynamically imported with ssr:false because it uses
@@ -17,7 +17,7 @@ import GoldDivider from '@/components/ui/GoldDivider';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import type { Locale } from '@/types/panchang';
 
-// Dynamically load the canvas component — cannot SSR
+// Dynamically load the canvas component  –  cannot SSR
 const EclipseSimulator = dynamic(
   () => import('@/components/eclipses/EclipseSimulator'),
   {
@@ -38,15 +38,15 @@ const LABELS: Record<string, Record<string, string>> = {
     pageTitle: 'Eclipse Simulator',
     pageSubtitle: 'Interactive visualisation of solar and lunar eclipses',
     howTitle: 'How eclipses work',
-    solarExplain: 'A solar eclipse occurs when the Moon passes between Earth and the Sun, blocking sunlight. Because the Moon\'s orbit is tilted ~5° to the ecliptic, this only happens at specific New Moon moments when the Moon crosses the ecliptic plane — near Rahu (north node) or Ketu (south node).',
-    lunarExplain: 'A lunar eclipse occurs when Earth passes between the Sun and Moon, casting its shadow on the Moon. This only happens at Full Moon when the Moon is near a node. The Moon turns copper-red during totality because Earth\'s atmosphere bends red sunlight into the umbra — the same reason sunsets are red.',
+    solarExplain: 'A solar eclipse occurs when the Moon passes between Earth and the Sun, blocking sunlight. Because the Moon\'s orbit is tilted ~5° to the ecliptic, this only happens at specific New Moon moments when the Moon crosses the ecliptic plane  –  near Rahu (north node) or Ketu (south node).',
+    lunarExplain: 'A lunar eclipse occurs when Earth passes between the Sun and Moon, casting its shadow on the Moon. This only happens at Full Moon when the Moon is near a node. The Moon turns copper-red during totality because Earth\'s atmosphere bends red sunlight into the umbra  –  the same reason sunsets are red.',
     jyotishTitle: 'Jyotish significance',
-    jyotishText1: 'In Vedic astrology, eclipses mark the mythological battle between the demon Svarbhānu (who became Rahu and Ketu after being sliced by Vishnu\'s discus) and the Sun/Moon. Eclipses occurring near natal planets — especially the Sun, Moon, or lagna lord — are considered powerful transit triggers.',
+    jyotishText1: 'In Vedic astrology, eclipses mark the mythological battle between the demon Svarbhānu (who became Rahu and Ketu after being sliced by Vishnu\'s discus) and the Sun/Moon. Eclipses occurring near natal planets  –  especially the Sun, Moon, or lagna lord  –  are considered powerful transit triggers.',
     jyotishText2: 'The Sutak period begins 12 hours before a solar eclipse and 9 hours before a lunar eclipse. During this time, traditional observances advise fasting, prayer, and avoiding auspicious activities. Eclipse effects in the birth chart are judged by the house and sign where the eclipse falls.',
     jyotishText3: 'Rahu causes solar eclipses at ascending nodes; Ketu causes them at descending nodes. Rahu eclipses are considered more externally visible (material upheaval), while Ketu eclipses point inward (spiritual transformation).',
     solarLabel: 'Solar Eclipse',
     lunarLabel: 'Lunar Eclipse',
-    simulatorNote: 'This simulation is educational — it illustrates geometric principles, not precise Besselian elements.',
+    simulatorNote: 'This simulation is educational  –  it illustrates geometric principles, not precise Besselian elements.',
   },
   hi: {
     backToCalendar: '← ग्रहण पञ्चाङ्ग',
@@ -61,7 +61,7 @@ const LABELS: Record<string, Record<string, string>> = {
     jyotishText3: 'राहु आरोही नोड पर सूर्य ग्रहण करता है; केतु अवरोही नोड पर। राहु ग्रहण बाह्य उथल-पुथल का संकेत देते हैं, जबकि केतु ग्रहण आन्तरिक आध्यात्मिक परिवर्तन की ओर इंगित करते हैं।',
     solarLabel: 'सूर्य ग्रहण',
     lunarLabel: 'चन्द्र ग्रहण',
-    simulatorNote: 'यह अनुकरण शैक्षणिक है — यह ज्यामितीय सिद्धान्त दर्शाता है, सटीक बेसेलियन तत्त्व नहीं।',
+    simulatorNote: 'यह अनुकरण शैक्षणिक है  –  यह ज्यामितीय सिद्धान्त दर्शाता है, सटीक बेसेलियन तत्त्व नहीं।',
   },
   ta: {
     backToCalendar: '← கிரகண நாள்காட்டி',
@@ -76,7 +76,7 @@ const LABELS: Record<string, Record<string, string>> = {
     jyotishText3: 'ராகு ஏறு நோடில் சூரிய கிரகணம் ஏற்படுத்துகிறது; கேது இறங்கு நோடில். ராகு கிரகணங்கள் வெளிப்புற மாற்றங்களை, கேது கிரகணங்கள் ஆன்மீக மாற்றங்களை குறிக்கின்றன.',
     solarLabel: 'சூரிய கிரகணம்',
     lunarLabel: 'சந்திர கிரகணம்',
-    simulatorNote: 'இந்த உருவகப்படுத்தல் கல்வி நோக்கத்திற்கானது — இது வடிவியல் கொள்கைகளை விளக்குகிறது.',
+    simulatorNote: 'இந்த உருவகப்படுத்தல் கல்வி நோக்கத்திற்கானது  –  இது வடிவியல் கொள்கைகளை விளக்குகிறது.',
   },
   bn: {
     backToCalendar: '← গ্রহণ পঞ্চাঙ্গ',
@@ -91,7 +91,7 @@ const LABELS: Record<string, Record<string, string>> = {
     jyotishText3: 'রাহু আরোহী নোডে সূর্যগ্রহণ ঘটায়; কেতু অবরোহী নোডে। রাহু গ্রহণ বাহ্যিক পরিবর্তন, কেতু গ্রহণ আধ্যাত্মিক রূপান্তরের ইঙ্গিত দেয়।',
     solarLabel: 'সূর্যগ্রহণ',
     lunarLabel: 'চন্দ্রগ্রহণ',
-    simulatorNote: 'এই সিমুলেশন শিক্ষামূলক — এটি জ্যামিতিক নীতি দেখায়, সঠিক বেসেলিয়ান উপাদান নয়।',
+    simulatorNote: 'এই সিমুলেশন শিক্ষামূলক  –  এটি জ্যামিতিক নীতি দেখায়, সঠিক বেসেলিয়ান উপাদান নয়।',
   },
 };
 

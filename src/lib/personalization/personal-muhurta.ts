@@ -36,7 +36,7 @@ const ACTIVITIES: ActivityDef[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// Tara Bala — same logic as personal-panchang, but kept self-contained
+// Tara Bala  –  same logic as personal-panchang, but kept self-contained
 // ---------------------------------------------------------------------------
 
 const TARA_NAMES = [
@@ -76,7 +76,7 @@ function deriveRecommendation(
 ): 'excellent' | 'good' | 'neutral' | 'avoid' {
   if (taraFav && chandraFav) return 'excellent';
   if (taraFav || chandraFav) return 'good';
-  // Both not favorable — check neutrality
+  // Both not favorable  –  check neutrality
   // Both neutral/unfavorable → avoid for important things
   return 'avoid';
 }
@@ -97,9 +97,9 @@ function buildReason(
 
   if (rec === 'excellent') {
     return {
-      en: `Both Tara Bala (${taraName} — ${taraStatus}) and Chandra Bala (House ${house} — ${chandraStatus}) are favorable. Excellent time for this activity.`,
-      hi: `तारा बल (${taraName} — शुभ) और चन्द्र बल (भाव ${house} — शुभ) दोनों अनुकूल हैं। इस कार्य के लिए उत्कृष्ट समय।`,
-      sa: `तारा बलम् (${taraName} — शुभम्) चन्द्र बलं च (भावः ${house} — शुभम्) उभयम् अनुकूलम्। अस्मै कार्याय उत्कृष्टः कालः।`,
+      en: `Both Tara Bala (${taraName}  –  ${taraStatus}) and Chandra Bala (House ${house}  –  ${chandraStatus}) are favorable. Excellent time for this activity.`,
+      hi: `तारा बल (${taraName}  –  शुभ) और चन्द्र बल (भाव ${house}  –  शुभ) दोनों अनुकूल हैं। इस कार्य के लिए उत्कृष्ट समय।`,
+      sa: `तारा बलम् (${taraName}  –  शुभम्) चन्द्र बलं च (भावः ${house}  –  शुभम्) उभयम् अनुकूलम्। अस्मै कार्याय उत्कृष्टः कालः।`,
     };
   }
 
@@ -115,9 +115,9 @@ function buildReason(
 
   // avoid
   return {
-    en: `Both Tara Bala (${taraName} — ${taraStatus}) and Chandra Bala (House ${house} — ${chandraStatus}) are unfavorable. Best to postpone this activity.`,
-    hi: `तारा बल (${taraName} — अशुभ) और चन्द्र बल (भाव ${house} — अशुभ) दोनों प्रतिकूल हैं। इस कार्य को स्थगित करना उचित।`,
-    sa: `तारा बलम् (${taraName} — अशुभम्) चन्द्र बलं च (भावः ${house} — अशुभम्) उभयम् प्रतिकूलम्। अस्य कार्यस्य स्थगनम् उचितम्।`,
+    en: `Both Tara Bala (${taraName}  –  ${taraStatus}) and Chandra Bala (House ${house}  –  ${chandraStatus}) are unfavorable. Best to postpone this activity.`,
+    hi: `तारा बल (${taraName}  –  अशुभ) और चन्द्र बल (भाव ${house}  –  अशुभ) दोनों प्रतिकूल हैं। इस कार्य को स्थगित करना उचित।`,
+    sa: `तारा बलम् (${taraName}  –  अशुभम्) चन्द्र बलं च (भावः ${house}  –  अशुभम्) उभयम् प्रतिकूलम्। अस्य कार्यस्य स्थगनम् उचितम्।`,
   };
 }
 
@@ -141,7 +141,7 @@ export function computePersonalMuhurta(
     if (act.key === 'spiritual' && tara.taraName === 'Janma' && chandra.favorable) {
       activityRec = 'good';
     }
-    // Court cases need extra caution — downgrade from good to neutral
+    // Court cases need extra caution  –  downgrade from good to neutral
     if (act.key === 'court_case' && rec === 'good') {
       activityRec = 'neutral';
     }

@@ -113,9 +113,9 @@ export const SOMVAR_VRAT_PUJA: PujaVidhi = {
       },
       japaCount: 108,
       usage: {
-        en: 'Chant 108 times during Somvar puja — the most essential practice',
-        hi: 'सोमवार पूजा में 108 बार जपें — सबसे मुख्य साधना',
-        sa: 'सोमवारपूजायाम् अष्टोत्तरशतवारं जपेत् — मुख्यतमा साधना',
+        en: 'Chant 108 times during Somvar puja  –  the most essential practice',
+        hi: 'सोमवार पूजा में 108 बार जपें  –  सबसे मुख्य साधना',
+        sa: 'सोमवारपूजायाम् अष्टोत्तरशतवारं जपेत्  –  मुख्यतमा साधना',
       },
     },
     {
@@ -124,15 +124,15 @@ export const SOMVAR_VRAT_PUJA: PujaVidhi = {
       devanagari: 'ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम् ।\nउर्वारुकमिव बन्धनान् मृत्योर्मुक्षीय माऽमृतात् ॥',
       iast: 'oṃ tryambakaṃ yajāmahe sugandhiṃ puṣṭivardhanam |\nurvārukamiva bandhanān mṛtyormukṣīya mā\'mṛtāt ||',
       meaning: {
-        en: 'Om, we worship the three-eyed Lord (Shiva), who is fragrant and nourishes all beings. May He liberate us from death as a cucumber is freed from its vine — may we not be cut off from immortality.',
-        hi: 'ॐ, हम त्रिनेत्र भगवान (शिव) की पूजा करते हैं जो सुगन्धित हैं और सभी प्राणियों का पोषण करते हैं। जैसे ककड़ी बेल से मुक्त होती है, वैसे ही वे हमें मृत्यु से मुक्त करें — हम अमृत से वंचित न हों।',
+        en: 'Om, we worship the three-eyed Lord (Shiva), who is fragrant and nourishes all beings. May He liberate us from death as a cucumber is freed from its vine  –  may we not be cut off from immortality.',
+        hi: 'ॐ, हम त्रिनेत्र भगवान (शिव) की पूजा करते हैं जो सुगन्धित हैं और सभी प्राणियों का पोषण करते हैं। जैसे ककड़ी बेल से मुक्त होती है, वैसे ही वे हमें मृत्यु से मुक्त करें  –  हम अमृत से वंचित न हों।',
         sa: 'ओम्, त्र्यम्बकं (शिवम्) यजामहे यः सुगन्धिः पुष्टिवर्धनश्च। उर्वारुकमिव बन्धनात् मृत्योः मुक्षीय मा अमृतात् विच्छेदः भवतु।',
       },
       japaCount: 108,
       usage: {
-        en: 'Chant for health, longevity, and protection — especially powerful on Monday',
-        hi: 'स्वास्थ्य, दीर्घायु और सुरक्षा के लिए जपें — सोमवार को विशेष प्रभावशाली',
-        sa: 'आरोग्यदीर्घायुरक्षणार्थं जपेत् — सोमवासरे विशेषप्रभावशालिमन्त्रः',
+        en: 'Chant for health, longevity, and protection  –  especially powerful on Monday',
+        hi: 'स्वास्थ्य, दीर्घायु और सुरक्षा के लिए जपें  –  सोमवार को विशेष प्रभावशाली',
+        sa: 'आरोग्यदीर्घायुरक्षणार्थं जपेत्  –  सोमवासरे विशेषप्रभावशालिमन्त्रः',
       },
     },
   ],

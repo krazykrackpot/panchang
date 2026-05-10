@@ -1,5 +1,5 @@
 /**
- * Key Dates Engine — Personal Pandit
+ * Key Dates Engine  –  Personal Pandit
  *
  * Computes the 5-10 most significant upcoming dates for a native based on:
  * 1. Dasha transitions (Maha, Antar, Pratyantar)
@@ -162,8 +162,8 @@ function findDashaTransitions(kundali: KundaliData, start: Date, end: Date): Key
           hi: `${pName.hi ?? pName.en} महादशा आरम्भ`,
         },
         description: {
-          en: `A major life chapter shift — ${pName.en}'s themes will dominate for the next ${Math.round((mahaEnd.getTime() - mahaStart.getTime()) / (365.25 * 86400000))} years.`,
-          hi: `जीवन के एक नए अध्याय की शुरुआत — ${pName.hi ?? pName.en} के विषय अगले कई वर्षों तक प्रभावी रहेंगे।`,
+          en: `A major life chapter shift  –  ${pName.en}'s themes will dominate for the next ${Math.round((mahaEnd.getTime() - mahaStart.getTime()) / (365.25 * 86400000))} years.`,
+          hi: `जीवन के एक नए अध्याय की शुरुआत  –  ${pName.hi ?? pName.en} के विषय अगले कई वर्षों तक प्रभावी रहेंगे।`,
         },
         impact: 'transformative',
         planetId: mahaId,
@@ -183,8 +183,8 @@ function findDashaTransitions(kundali: KundaliData, start: Date, end: Date): Key
             hi: `दशा संधि काल आरम्भ`,
           },
           description: {
-            en: `The 45-day junction before your Mahadasha change. Expect instability — avoid major decisions. Focus on closure and preparation.`,
-            hi: `महादशा परिवर्तन से पूर्व 45 दिन की संधि। अस्थिरता संभव — बड़े निर्णय टालें। समापन और तैयारी पर ध्यान दें।`,
+            en: `The 45-day junction before your Mahadasha change. Expect instability  –  avoid major decisions. Focus on closure and preparation.`,
+            hi: `महादशा परिवर्तन से पूर्व 45 दिन की संधि। अस्थिरता संभव  –  बड़े निर्णय टालें। समापन और तैयारी पर ध्यान दें।`,
           },
           impact: 'challenging',
           importance: 8,
@@ -212,8 +212,8 @@ function findDashaTransitions(kundali: KundaliData, start: Date, end: Date): Key
               hi: `${mahaName.hi ?? mahaName.en}-${antarName.hi ?? antarName.en} अन्तर्दशा आरम्भ`,
             },
             description: {
-              en: `Sub-period shift — ${antarName.en}'s themes activate within the ${mahaName.en} framework.`,
-              hi: `अन्तर्दशा परिवर्तन — ${mahaName.en} के अंतर्गत ${antarName.hi ?? antarName.en} के विषय सक्रिय।`,
+              en: `Sub-period shift  –  ${antarName.en}'s themes activate within the ${mahaName.en} framework.`,
+              hi: `अन्तर्दशा परिवर्तन  –  ${mahaName.en} के अंतर्गत ${antarName.hi ?? antarName.en} के विषय सक्रिय।`,
             },
             domain: affectedDomain,
             impact: 'neutral',
@@ -277,7 +277,7 @@ function findTransitIngresses(kundali: KundaliData, start: Date, end: Date): Key
             : `${pName.en} transiting your ${transitHouse}th house demands patience and restructuring.`,
           hi: isBenefic
             ? `${pName.hi ?? pName.en} आपके ${affectedDomain ?? ''} क्षेत्र में विकास और अवसर लाएगा।`
-            : `${pName.hi ?? pName.en} ${transitHouse}वें भाव में गोचर — धैर्य और पुनर्गठन की माँग।`,
+            : `${pName.hi ?? pName.en} ${transitHouse}वें भाव में गोचर  –  धैर्य और पुनर्गठन की माँग।`,
         },
         domain: affectedDomain,
         impact,
@@ -324,8 +324,8 @@ function findSadeSatiChanges(kundali: KundaliData, start: Date, end: Date): KeyD
             type: 'sadeSati',
             title: { en: 'Sade Sati begins (Rising phase)', hi: 'साढ़े साती आरम्भ (चढ़ाव चरण)' },
             description: {
-              en: 'Saturn enters the 12th from your Moon — the 7.5-year cycle of maturation begins. Focus on inner work and resilience.',
-              hi: 'शनि चन्द्र से 12वें भाव में प्रवेश — 7.5 वर्ष की परिपक्वता यात्रा शुरू। आत्मविकास और धैर्य पर ध्यान दें।',
+              en: 'Saturn enters the 12th from your Moon  –  the 7.5-year cycle of maturation begins. Focus on inner work and resilience.',
+              hi: 'शनि चन्द्र से 12वें भाव में प्रवेश  –  7.5 वर्ष की परिपक्वता यात्रा शुरू। आत्मविकास और धैर्य पर ध्यान दें।',
             },
             impact: 'challenging',
             importance: 9,
@@ -364,8 +364,8 @@ function findSolarReturn(kundali: KundaliData, start: Date, end: Date): KeyDate[
       type: 'varshaphal',
       title: { en: 'Solar Return (Varshaphal)', hi: 'वर्षफल (सौर प्रत्यावर्तन)' },
       description: {
-        en: 'Your annual solar return — a new personal year begins. The Varshaphal chart sets the tone for the year ahead.',
-        hi: 'आपका वार्षिक सौर प्रत्यावर्तन — नया व्यक्तिगत वर्ष आरम्भ। वर्षफल चार्ट आने वाले वर्ष की दिशा तय करता है।',
+        en: 'Your annual solar return  –  a new personal year begins. The Varshaphal chart sets the tone for the year ahead.',
+        hi: 'आपका वार्षिक सौर प्रत्यावर्तन  –  नया व्यक्तिगत वर्ष आरम्भ। वर्षफल चार्ट आने वाले वर्ष की दिशा तय करता है।',
       },
       impact: 'positive',
       importance: 6,
@@ -401,7 +401,7 @@ function findRahuKetuAxisTransit(kundali: KundaliData, start: Date, end: Date): 
         title: { en: 'Rahu transits your Ascendant', hi: 'राहु लग्न पर गोचर' },
         description: {
           en: 'Rahu over your Ascendant brings intensity, ambition, and unconventional opportunities. Major identity shifts possible.',
-          hi: 'राहु लग्न पर — तीव्रता, महत्वाकांक्षा और अपरंपरागत अवसर। पहचान में बड़ा बदलाव संभव।',
+          hi: 'राहु लग्न पर  –  तीव्रता, महत्वाकांक्षा और अपरंपरागत अवसर। पहचान में बड़ा बदलाव संभव।',
         },
         impact: 'transformative',
         importance: 8,

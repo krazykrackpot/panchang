@@ -1,12 +1,12 @@
 'use client';
 
 /**
- * Unified Tippanni / Life Summary — the pandit's complete consultation.
+ * Unified Tippanni / Life Summary  –  the pandit's complete consultation.
  *
  * Orchestrates 8 sections that weave Tippanni (classical analysis) and
  * Domain Synthesis (life reading) into one coherent scrollable reading.
  *
- * This component is PURE UI COMPOSITION — it reads from existing computed
+ * This component is PURE UI COMPOSITION  –  it reads from existing computed
  * data (tip + personalReading + keyDates) and renders them in a unified flow.
  * No new computations. No API calls. No engine changes.
  */
@@ -191,7 +191,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
 
   return (
     <div className="space-y-6">
-      {/* ═══ SECTION 1: Chart Narrative — the pandit's opening statement ═══ */}
+      {/* ═══ SECTION 1: Chart Narrative  –  the pandit's opening statement ═══ */}
       {tip.chartNarrative && (
         <section className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] border border-gold-primary/20 p-6 sm:p-8 space-y-5">
           <h2 className="text-xl sm:text-2xl text-gold-light font-bold leading-tight" style={headingFont}>
@@ -202,7 +202,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
           <div className="flex items-center gap-3">
             <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-sm font-bold ${vitalityColor}`}>
               <Sparkles size={14} />
-              {isHi ? 'कुण्डली जीवनशक्ति' : 'Chart Vitality'}: {vitalityScore} / 10 — {vitalityLabel}
+              {isHi ? 'कुण्डली जीवनशक्ति' : 'Chart Vitality'}: {vitalityScore} / 10  –  {vitalityLabel}
             </span>
           </div>
 
@@ -280,7 +280,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
         )}
       </div>
 
-      {/* ═══ ASK YOUR CHART — Question Answering ═══ */}
+      {/* ═══ ASK YOUR CHART  –  Question Answering ═══ */}
       {kundali && (
         <section className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/35 via-[#1a1040]/45 to-[#0a0e27] border border-gold-primary/12 p-5 sm:p-6">
           <QuestionAnswerPanel
@@ -300,19 +300,19 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
             <span className="text-gold-light font-semibold">
               {tip.lifeStage.stage.charAt(0).toUpperCase() + tip.lifeStage.stage.slice(1).replace('_', ' ')} {isHi ? 'अवस्था' : 'Phase'} &bull; {isHi ? `आयु ${tip.lifeStage.age}` : `Age ${tip.lifeStage.age}`}
             </span>
-            {' — '}{tip.lifeStage.headline}
+            {'  –  '}{tip.lifeStage.headline}
           </p>
         </div>
       )}
 
-      {/* ── Key Dates — right after identity, before personality deep-dive ── */}
+      {/* ── Key Dates  –  right after identity, before personality deep-dive ── */}
       {keyDates && keyDates.length > 0 && (
         <KeyDatesSection keyDates={keyDates} locale={locale} />
       )}
 
       <GoldDivider />
 
-      {/* ═══ SECTION 2: Who You Are — Personality ═══ */}
+      {/* ═══ SECTION 2: Who You Are  –  Personality ═══ */}
       <section>
         <h2 className="text-lg sm:text-xl text-gold-light font-bold mb-4" style={headingFont}>
           {isHi ? 'आप कौन हैं' : 'Who You Are'}
@@ -343,7 +343,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
 
       <GoldDivider />
 
-      {/* ═══ SECTION 3: Planetary Strengths (lighter/subtle — Improvement #10) ═══ */}
+      {/* ═══ SECTION 3: Planetary Strengths (lighter/subtle  –  Improvement #10) ═══ */}
       <section className="rounded-2xl bg-gradient-to-br from-[#1a1040]/20 via-[#0a0e27]/40 to-[#0a0e27] border border-white/5 p-5 sm:p-6">
         <h2 className="text-lg sm:text-xl text-gold-light font-bold mb-4" style={headingFont}>
           {isHi ? 'आपकी ग्रहीय शक्ति' : 'Your Planetary Strengths'}
@@ -371,8 +371,8 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
             <AlertTriangle size={14} className="flex-shrink-0 mt-0.5" />
             <p style={isHi ? bodyFont : undefined}>
               {isHi
-                ? `${weakestPlanet.name} आपका सबसे कमज़ोर ग्रह है (${weakestPlanet.strength}%) — यह ${weakestPlanet.area.hi} को प्रभावित करता है। उपाय नीचे देखें।`
-                : `${weakestPlanet.name} is your weakest planet (${weakestPlanet.strength}%) — this affects ${weakestPlanet.area.en}. See remedies below.`}
+                ? `${weakestPlanet.name} आपका सबसे कमज़ोर ग्रह है (${weakestPlanet.strength}%)  –  यह ${weakestPlanet.area.hi} को प्रभावित करता है। उपाय नीचे देखें।`
+                : `${weakestPlanet.name} is your weakest planet (${weakestPlanet.strength}%)  –  this affects ${weakestPlanet.area.en}. See remedies below.`}
             </p>
           </div>
         )}
@@ -403,7 +403,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
 
       <GoldDivider />
 
-      {/* ═══ SECTION 4: Yogas & Doshas (lighter/subtle — Improvement #10) ═══ */}
+      {/* ═══ SECTION 4: Yogas & Doshas (lighter/subtle  –  Improvement #10) ═══ */}
       <section className="rounded-2xl bg-gradient-to-br from-[#1a1040]/20 via-[#0a0e27]/40 to-[#0a0e27] border border-white/5 p-5 sm:p-6">
         <h2 className="text-lg sm:text-xl text-gold-light font-bold mb-4" style={headingFont}>
           {isHi ? 'आपकी कुण्डली क्या वहन करती है' : 'What Your Chart Carries'}
@@ -462,7 +462,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
 
       <GoldDivider />
 
-      {/* ═══ SECTION 5: Life Domains — the core reading (stronger bg — Improvement #10) ═══ */}
+      {/* ═══ SECTION 5: Life Domains  –  the core reading (stronger bg  –  Improvement #10) ═══ */}
       <section className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 sm:p-6">
         <h2 className="text-lg sm:text-xl text-gold-light font-bold mb-4" style={headingFont}>
           {isHi ? 'आपके जीवन क्षेत्र' : 'Your Life Domains'}
@@ -511,7 +511,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
         )}
       </section>
 
-      {/* ═══ YOUR PERSONAL MONTH — color-coded daily quality ═══ */}
+      {/* ═══ YOUR PERSONAL MONTH  –  color-coded daily quality ═══ */}
       {kundali && (
         <section className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/35 via-[#1a1040]/45 to-[#0a0e27] border border-gold-primary/12 p-5 sm:p-6">
           <h2 className="text-lg sm:text-xl text-gold-light font-bold mb-4" style={headingFont}>
@@ -556,7 +556,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
 
       <GoldDivider />
 
-      {/* ═══ SECTION 6: Where You Are Now (stronger bg — Improvement #10) ═══ */}
+      {/* ═══ SECTION 6: Where You Are Now (stronger bg  –  Improvement #10) ═══ */}
       {/* Key dates are rendered INSIDE SummaryCurrentPeriod via its keyDates prop (Improvement #4) */}
       <section className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 sm:p-6">
         <h2 className="text-lg sm:text-xl text-gold-light font-bold mb-4" style={headingFont}>
@@ -574,7 +574,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
 
       <GoldDivider />
 
-      {/* ═══ SECTION 7: What You Can Do — Remedies ═══ */}
+      {/* ═══ SECTION 7: What You Can Do  –  Remedies ═══ */}
       <section>
         <h2 className="text-lg sm:text-xl text-gold-light font-bold mb-4" style={headingFont}>
           {isHi ? 'आप क्या कर सकते हैं' : 'What You Can Do'}
@@ -615,7 +615,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all text-sm"
           >
             <Shield size={16} />
-            {isHi ? 'तकनीकी विश्लेषण देखें — चार्ट, ग्रह, भाव, अष्टकवर्ग' : 'View Technical Analysis — Charts, Planets, Houses, Ashtakavarga'}
+            {isHi ? 'तकनीकी विश्लेषण देखें  –  चार्ट, ग्रह, भाव, अष्टकवर्ग' : 'View Technical Analysis  –  Charts, Planets, Houses, Ashtakavarga'}
           </button>
         </div>
       )}

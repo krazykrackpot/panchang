@@ -10,7 +10,7 @@ import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /**
- * LearningPath — vertical milestone visualization of the 12-phase Jyotish curriculum.
+ * LearningPath  –  vertical milestone visualization of the 12-phase Jyotish curriculum.
  *
  * Each phase is a node on a connected gold line. Completion status is read from
  * the learning progress store (localStorage + Supabase sync).
@@ -61,12 +61,12 @@ export default function LearningPath() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [progress, hydrated]);
 
-  // All phases are always unlocked — users can explore any topic freely.
+  // All phases are always unlocked  –  users can explore any topic freely.
   // Progress tracking still works (completion badges, progress bars) but
   // nothing is gated behind sequential completion.
   const phasesWithLock = phases.map((p) => ({ ...p, locked: false }));
 
-  // Find the "current" phase — the first one that's in-progress, or the first not-started unlocked
+  // Find the "current" phase  –  the first one that's in-progress, or the first not-started unlocked
   const currentPhaseIdx = phasesWithLock.findIndex(
     (p) => p.status === 'in-progress'
   );
@@ -224,7 +224,7 @@ export default function LearningPath() {
                     </div>
                   </div>
 
-                  {/* Action button — always visible, every phase is accessible */}
+                  {/* Action button  –  always visible, every phase is accessible */}
                   <div className="flex-shrink-0">
                     <Link
                       href={`/learn/modules/${phase.continueModuleId}`}

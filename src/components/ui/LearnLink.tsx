@@ -5,7 +5,7 @@ import { BookOpen } from 'lucide-react';
 
 /**
  * Small inline "Learn more" link used next to panchang elements, tool sections, etc.
- * Unobtrusive helper — text-xs, gold color, with a subtle arrow.
+ * Unobtrusive helper  –  text-xs, gold color, with a subtle arrow.
  */
 interface LearnLinkProps {
   /** Route path, e.g. "/learn/tithis" */
@@ -14,7 +14,7 @@ interface LearnLinkProps {
   label: string;
   /** Optional extra Tailwind classes */
   className?: string;
-  /** Show the BookOpen icon (default: false — arrow only) */
+  /** Show the BookOpen icon (default: false  –  arrow only) */
   showIcon?: boolean;
 }
 

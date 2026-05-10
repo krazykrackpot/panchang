@@ -1,5 +1,5 @@
 /**
- * Health Timeline — identifies health vulnerability windows from dashas.
+ * Health Timeline  –  identifies health vulnerability windows from dashas.
  * Looks 10 years forward from today.
  *
  * Classical basis: BPHS Ch.46-47 (Dasha phala), 6th/8th lord dashas
@@ -80,7 +80,7 @@ export function computeHealthTimeline(
     const antardashas = maha.subPeriods ?? [];
 
     if (antardashas.length === 0) {
-      // No antardasha data — treat the whole maha dasha as a block
+      // No antardasha data  –  treat the whole maha dasha as a block
       const severity = getMahaSeverity(mahaName, sixthLordName, eighthLordName, saturnName);
       if (severity) {
         const start = mahaStart < today ? today : mahaStart;
@@ -112,7 +112,7 @@ export function computeHealthTimeline(
           mahaName === sixthLordName && antarName === sixthLordName ? 'high' : 'medium';
         windows.push(makeWindow(antarStart, antarEnd, today, tenYearsLater, severity, {
           type: 'General Health Risk',
-          description: `${sixthLordName} (6th lord) dasha period — digestive, immunity, and general vitality may be tested`,
+          description: `${sixthLordName} (6th lord) dasha period  –  digestive, immunity, and general vitality may be tested`,
         }));
         continue;
       }
@@ -123,7 +123,7 @@ export function computeHealthTimeline(
           mahaName === eighthLordName && antarName === eighthLordName ? 'high' : 'medium';
         windows.push(makeWindow(antarStart, antarEnd, today, tenYearsLater, severity, {
           type: 'Chronic Condition Risk',
-          description: `${eighthLordName} (8th lord) dasha period — watch for chronic issues, hidden ailments, or need for surgery`,
+          description: `${eighthLordName} (8th lord) dasha period  –  watch for chronic issues, hidden ailments, or need for surgery`,
         }));
         continue;
       }
@@ -132,7 +132,7 @@ export function computeHealthTimeline(
       if (antarName === saturnName) {
         windows.push(makeWindow(antarStart, antarEnd, today, tenYearsLater, 'low', {
           type: 'Structural Stress Period',
-          description: `Saturn antardasha — joint health, fatigue, and chronic Vata conditions may surface`,
+          description: `Saturn antardasha  –  joint health, fatigue, and chronic Vata conditions may surface`,
         }));
       }
 
@@ -140,7 +140,7 @@ export function computeHealthTimeline(
       if (antarName === 'Rahu') {
         windows.push(makeWindow(antarStart, antarEnd, today, tenYearsLater, 'low', {
           type: 'Mental / Immune Stress',
-          description: `Rahu antardasha — stress, unclear diagnoses, and immune system irregularities possible`,
+          description: `Rahu antardasha  –  stress, unclear diagnoses, and immune system irregularities possible`,
         }));
       }
     }
@@ -198,21 +198,21 @@ function getMahaSeverity(
     return {
       severity: 'medium',
       type: 'General Health Risk',
-      description: '{planet} (6th lord) Mahadasha — digestive, immunity, and general vitality may be tested',
+      description: '{planet} (6th lord) Mahadasha  –  digestive, immunity, and general vitality may be tested',
     };
   }
   if (name === eighth) {
     return {
       severity: 'medium',
       type: 'Chronic Condition Risk',
-      description: '{planet} (8th lord) Mahadasha — watch for chronic issues or hidden ailments',
+      description: '{planet} (8th lord) Mahadasha  –  watch for chronic issues or hidden ailments',
     };
   }
   if (name === saturn) {
     return {
       severity: 'low',
       type: 'Structural Stress Period',
-      description: 'Saturn Mahadasha — joints, chronic fatigue, Vata aggravation possible over long term',
+      description: 'Saturn Mahadasha  –  joints, chronic fatigue, Vata aggravation possible over long term',
     };
   }
   return null;

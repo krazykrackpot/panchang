@@ -6,7 +6,7 @@ export const KARVA_CHAUTH_PUJA: PujaVidhi = {
   deity: { en: 'Shiva-Parvati & Karva Mata', hi: 'शिव-पार्वती एवं करवा माता', sa: 'शिवपार्वती करवामाता च' },
 
   samagri: [
-    { name: { en: 'Karva (small earthen pot with lid)', hi: 'करवा (ढक्कनदार छोटा मिट्टी का बर्तन)', sa: 'करवा (सकपाटं लघुमृत्पात्रम्)' }, note: { en: 'The namesake item — fill with water and offer to the moon', hi: 'इसी से व्रत का नाम है — जल भरकर चन्द्रमा को अर्पित करें', sa: 'अस्मात् व्रतस्य नाम — जलपूर्णं चन्द्राय अर्पयेत्' }, category: 'vessels', essential: true },
+    { name: { en: 'Karva (small earthen pot with lid)', hi: 'करवा (ढक्कनदार छोटा मिट्टी का बर्तन)', sa: 'करवा (सकपाटं लघुमृत्पात्रम्)' }, note: { en: 'The namesake item  –  fill with water and offer to the moon', hi: 'इसी से व्रत का नाम है  –  जल भरकर चन्द्रमा को अर्पित करें', sa: 'अस्मात् व्रतस्य नाम  –  जलपूर्णं चन्द्राय अर्पयेत्' }, category: 'vessels', essential: true },
     { name: { en: 'Chalni (sieve/strainer)', hi: 'छलनी', sa: 'चालनी' }, note: { en: 'For sighting the moon and husband\'s face', hi: 'चन्द्रमा और पति का चेहरा देखने के लिए', sa: 'चन्द्रं पतिमुखं च दर्शनार्थम्' }, category: 'other', essential: true },
     { name: { en: 'Diya (earthen lamp with ghee/oil)', hi: 'दीया (घी/तेल का मिट्टी का दीपक)', sa: 'दीपः (घृत/तैलमृद्दीपः)' }, category: 'puja_items', essential: true },
     { name: { en: 'Henna/Mehendi', hi: 'मेहँदी', sa: 'मेन्धिका' }, category: 'other', essential: false },
@@ -22,9 +22,9 @@ export const KARVA_CHAUTH_PUJA: PujaVidhi = {
 
   muhurtaType: 'computed',
   muhurtaDescription: {
-    en: 'Karva Chauth falls on Krishna Paksha Chaturthi (4th day of waning moon) in Kartik month. The fast-breaking is tied to moonrise — the fast cannot be broken until the moon is sighted through the sieve. Moonrise time varies by location and must be computed.',
-    hi: 'करवा चौथ कार्तिक माह की कृष्ण पक्ष चतुर्थी (घटते चन्द्रमा का चौथा दिन) को पड़ता है। उपवास तोड़ना चन्द्रोदय से जुड़ा है — छलनी से चन्द्रमा के दर्शन होने तक उपवास नहीं तोड़ा जा सकता। चन्द्रोदय का समय स्थानानुसार भिन्न होता है।',
-    sa: 'करवाचौथं कार्तिकमासस्य कृष्णपक्षचतुर्थ्यां (अपक्षयचन्द्रस्य चतुर्थे दिने) भवति। व्रतभङ्गनं चन्द्रोदयेन सम्बद्धम् — चालन्या चन्द्रदर्शनं यावत् व्रतं न भङ्गनीयम्। चन्द्रोदयकालः स्थानानुसारं भिद्यते।',
+    en: 'Karva Chauth falls on Krishna Paksha Chaturthi (4th day of waning moon) in Kartik month. The fast-breaking is tied to moonrise  –  the fast cannot be broken until the moon is sighted through the sieve. Moonrise time varies by location and must be computed.',
+    hi: 'करवा चौथ कार्तिक माह की कृष्ण पक्ष चतुर्थी (घटते चन्द्रमा का चौथा दिन) को पड़ता है। उपवास तोड़ना चन्द्रोदय से जुड़ा है  –  छलनी से चन्द्रमा के दर्शन होने तक उपवास नहीं तोड़ा जा सकता। चन्द्रोदय का समय स्थानानुसार भिन्न होता है।',
+    sa: 'करवाचौथं कार्तिकमासस्य कृष्णपक्षचतुर्थ्यां (अपक्षयचन्द्रस्य चतुर्थे दिने) भवति। व्रतभङ्गनं चन्द्रोदयेन सम्बद्धम्  –  चालन्या चन्द्रदर्शनं यावत् व्रतं न भङ्गनीयम्। चन्द्रोदयकालः स्थानानुसारं भिद्यते।',
   },
 
   sankalpa: {
@@ -38,9 +38,9 @@ export const KARVA_CHAUTH_PUJA: PujaVidhi = {
       step: 1,
       title: { en: 'Pre-Dawn Sargi Meal', hi: 'प्रातःकाल सरगी भोजन', sa: 'प्रभातपूर्वसर्गीभोजनम्' },
       description: {
-        en: 'Before sunrise (typically 4-5 AM), the mother-in-law provides the sargi — a pre-fast meal containing sweets (mathri, feni), fruits, dry fruits, milk, and vermicelli (seviyan). The wife eats this meal before dawn as it will be the last food and water until moonrise. This is a gesture of love from the mother-in-law.',
-        hi: 'सूर्योदय से पहले (सामान्यतः सुबह 4-5 बजे) सास सरगी देती हैं — व्रत पूर्व भोजन जिसमें मिठाई (मठरी, फेनी), फल, मेवे, दूध और सेवइयाँ होती हैं। पत्नी यह भोजन भोर से पहले खाती हैं क्योंकि चन्द्रोदय तक यह अन्तिम भोजन और जल होगा। यह सास का स्नेह भरा भाव है।',
-        sa: 'सूर्योदयात् प्राक् (प्रायः प्रभातचतुर्थपञ्चमवादने) श्वश्रूः सर्गीं ददाति — व्रतपूर्वभोजनं यत्र मिष्टान्नानि, फलानि, शुष्कफलानि, क्षीरं, सेवइयाः च। पत्नी एतत् भोजनं प्रभातात् प्राक् भक्षयति यतः चन्द्रोदयपर्यन्तम् एतत् अन्तिमम् अन्नजलम्। एषा श्वश्र्वाः स्नेहभावना।',
+        en: 'Before sunrise (typically 4-5 AM), the mother-in-law provides the sargi  –  a pre-fast meal containing sweets (mathri, feni), fruits, dry fruits, milk, and vermicelli (seviyan). The wife eats this meal before dawn as it will be the last food and water until moonrise. This is a gesture of love from the mother-in-law.',
+        hi: 'सूर्योदय से पहले (सामान्यतः सुबह 4-5 बजे) सास सरगी देती हैं  –  व्रत पूर्व भोजन जिसमें मिठाई (मठरी, फेनी), फल, मेवे, दूध और सेवइयाँ होती हैं। पत्नी यह भोजन भोर से पहले खाती हैं क्योंकि चन्द्रोदय तक यह अन्तिम भोजन और जल होगा। यह सास का स्नेह भरा भाव है।',
+        sa: 'सूर्योदयात् प्राक् (प्रायः प्रभातचतुर्थपञ्चमवादने) श्वश्रूः सर्गीं ददाति  –  व्रतपूर्वभोजनं यत्र मिष्टान्नानि, फलानि, शुष्कफलानि, क्षीरं, सेवइयाः च। पत्नी एतत् भोजनं प्रभातात् प्राक् भक्षयति यतः चन्द्रोदयपर्यन्तम् एतत् अन्तिमम् अन्नजलम्। एषा श्वश्र्वाः स्नेहभावना।',
       },
       duration: '30 min',
       essential: true,
@@ -48,11 +48,11 @@ export const KARVA_CHAUTH_PUJA: PujaVidhi = {
     },
     {
       step: 2,
-      title: { en: 'Nirjala Fast — Full Day', hi: 'निर्जला उपवास — पूरा दिन', sa: 'निर्जलव्रतम् — सर्वं दिनम्' },
+      title: { en: 'Nirjala Fast  –  Full Day', hi: 'निर्जला उपवास  –  पूरा दिन', sa: 'निर्जलव्रतम्  –  सर्वं दिनम्' },
       description: {
-        en: 'After sargi, observe a strict nirjala (without water) fast for the entire day. No food, no water, not even a single drop — until the moon is sighted in the evening. Spend the day in prayer, getting dressed in bridal attire, and applying mehendi. Married women typically wear their wedding outfit or festive clothes, complete with bangles, sindoor, and jewelry.',
-        hi: 'सरगी के बाद पूरे दिन कठोर निर्जला (बिना जल) उपवास रखें। कोई भोजन नहीं, कोई जल नहीं, एक बूँद भी नहीं — शाम को चन्द्र दर्शन तक। दिन प्रार्थना, दुल्हन जैसा श्रृंगार और मेहँदी लगाने में बिताएँ। विवाहित महिलाएँ सामान्यतः अपनी शादी की पोशाक या उत्सव के वस्त्र, चूड़ियाँ, सिन्दूर और आभूषण पहनती हैं।',
-        sa: 'सर्ग्यनन्तरं सर्वं दिनं कठोरं निर्जलव्रतम् (जलं विना) आचरेत्। न अन्नम्, न जलम्, एकम् अपि बिन्दुं न — सायं चन्द्रदर्शनपर्यन्तम्। दिनं प्रार्थनायां वधूवत् श्रृङ्गारे मेन्धिकालेपने च यापयेत्। विवाहिताः स्त्रियः प्रायः विवाहवस्त्रं कङ्कणानि सिन्दूरम् आभूषणानि च धारयन्ति।',
+        en: 'After sargi, observe a strict nirjala (without water) fast for the entire day. No food, no water, not even a single drop  –  until the moon is sighted in the evening. Spend the day in prayer, getting dressed in bridal attire, and applying mehendi. Married women typically wear their wedding outfit or festive clothes, complete with bangles, sindoor, and jewelry.',
+        hi: 'सरगी के बाद पूरे दिन कठोर निर्जला (बिना जल) उपवास रखें। कोई भोजन नहीं, कोई जल नहीं, एक बूँद भी नहीं  –  शाम को चन्द्र दर्शन तक। दिन प्रार्थना, दुल्हन जैसा श्रृंगार और मेहँदी लगाने में बिताएँ। विवाहित महिलाएँ सामान्यतः अपनी शादी की पोशाक या उत्सव के वस्त्र, चूड़ियाँ, सिन्दूर और आभूषण पहनती हैं।',
+        sa: 'सर्ग्यनन्तरं सर्वं दिनं कठोरं निर्जलव्रतम् (जलं विना) आचरेत्। न अन्नम्, न जलम्, एकम् अपि बिन्दुं न  –  सायं चन्द्रदर्शनपर्यन्तम्। दिनं प्रार्थनायां वधूवत् श्रृङ्गारे मेन्धिकालेपने च यापयेत्। विवाहिताः स्त्रियः प्रायः विवाहवस्त्रं कङ्कणानि सिन्दूरम् आभूषणानि च धारयन्ति।',
       },
       duration: 'Full day',
       essential: true,
@@ -74,9 +74,9 @@ export const KARVA_CHAUTH_PUJA: PujaVidhi = {
       step: 4,
       title: { en: 'Karva Chauth Katha', hi: 'करवा चौथ कथा', sa: 'करवाचौथकथा' },
       description: {
-        en: 'Listen to the Karva Chauth Katha — the story of Queen Veervati who accidentally broke her Karva Chauth fast and her husband died, but through her devotion and penance, she pleased Yama and restored her husband\'s life. While the katha is being read, pass the aarti thali from one woman to the next in the circle. Each woman rotates it 7 times before passing it on.',
-        hi: 'करवा चौथ कथा सुनें — रानी वीरवती की कहानी जिसने गलती से करवा चौथ का व्रत तोड़ दिया और उसके पति की मृत्यु हो गई, किन्तु अपनी भक्ति और तपस्या से उसने यमराज को प्रसन्न किया और पति को जीवित किया। कथा पढ़ते समय आरती की थाली एक महिला से दूसरी को गोलाकार में दें। प्रत्येक महिला इसे 7 बार घुमाकर आगे दें।',
-        sa: 'करवाचौथकथां शृणुयात् — वीरवतीराज्ञ्याः कथा या भ्रमेण करवाचौथव्रतं भङ्क्त्वा पतिमरणम् अनुभवति, किन्तु स्वभक्त्या तपसा च यमं प्रसाद्य पतिं पुनर्जीवयति। कथापठनकाले आरात्रिकपात्रं एकस्याः स्त्रियाः अपरां प्रति वृत्ते प्रसारयेत्। प्रत्येका स्त्री सप्तवारं भ्रामयित्वा प्रसारयेत्।',
+        en: 'Listen to the Karva Chauth Katha  –  the story of Queen Veervati who accidentally broke her Karva Chauth fast and her husband died, but through her devotion and penance, she pleased Yama and restored her husband\'s life. While the katha is being read, pass the aarti thali from one woman to the next in the circle. Each woman rotates it 7 times before passing it on.',
+        hi: 'करवा चौथ कथा सुनें  –  रानी वीरवती की कहानी जिसने गलती से करवा चौथ का व्रत तोड़ दिया और उसके पति की मृत्यु हो गई, किन्तु अपनी भक्ति और तपस्या से उसने यमराज को प्रसन्न किया और पति को जीवित किया। कथा पढ़ते समय आरती की थाली एक महिला से दूसरी को गोलाकार में दें। प्रत्येक महिला इसे 7 बार घुमाकर आगे दें।',
+        sa: 'करवाचौथकथां शृणुयात्  –  वीरवतीराज्ञ्याः कथा या भ्रमेण करवाचौथव्रतं भङ्क्त्वा पतिमरणम् अनुभवति, किन्तु स्वभक्त्या तपसा च यमं प्रसाद्य पतिं पुनर्जीवयति। कथापठनकाले आरात्रिकपात्रं एकस्याः स्त्रियाः अपरां प्रति वृत्ते प्रसारयेत्। प्रत्येका स्त्री सप्तवारं भ्रामयित्वा प्रसारयेत्।',
       },
       duration: '20 min',
       essential: true,
@@ -110,9 +110,9 @@ export const KARVA_CHAUTH_PUJA: PujaVidhi = {
       step: 7,
       title: { en: 'See Husband\'s Face Through Sieve', hi: 'छलनी से पति का मुख दर्शन', sa: 'चालन्या पतिमुखदर्शनम्' },
       description: {
-        en: 'Immediately after sighting the moon through the sieve, turn the sieve toward your husband and look at his face through it. This is the most emotionally significant moment of Karva Chauth — the wife sees her husband\'s face framed by the sieve, blessing him with long life. The husband should stand facing the wife with a gentle smile.',
-        hi: 'छलनी से चन्द्रमा देखने के तुरन्त बाद, छलनी अपने पति की ओर मोड़ें और उसके आर-पार पति का मुख देखें। यह करवा चौथ का सबसे भावुक क्षण है — पत्नी छलनी से पति का मुख देखती है, दीर्घायु का आशीर्वाद देती है। पति मुस्कराते हुए पत्नी के सामने खड़े हों।',
-        sa: 'चालन्या चन्द्रदर्शनानन्तरं तत्क्षणं चालनीं पत्युः दिशि परिवर्तयेत् तस्याः आर-पारं पतिमुखं पश्येत्। एतत् करवाचौथस्य सर्वभावुकतमः क्षणः — पत्नी चालन्या पतिमुखं दृष्ट्वा दीर्घायुषम् आशिषति। पतिः सस्मितं पत्न्याः पुरतः तिष्ठेत्।',
+        en: 'Immediately after sighting the moon through the sieve, turn the sieve toward your husband and look at his face through it. This is the most emotionally significant moment of Karva Chauth  –  the wife sees her husband\'s face framed by the sieve, blessing him with long life. The husband should stand facing the wife with a gentle smile.',
+        hi: 'छलनी से चन्द्रमा देखने के तुरन्त बाद, छलनी अपने पति की ओर मोड़ें और उसके आर-पार पति का मुख देखें। यह करवा चौथ का सबसे भावुक क्षण है  –  पत्नी छलनी से पति का मुख देखती है, दीर्घायु का आशीर्वाद देती है। पति मुस्कराते हुए पत्नी के सामने खड़े हों।',
+        sa: 'चालन्या चन्द्रदर्शनानन्तरं तत्क्षणं चालनीं पत्युः दिशि परिवर्तयेत् तस्याः आर-पारं पतिमुखं पश्येत्। एतत् करवाचौथस्य सर्वभावुकतमः क्षणः  –  पत्नी चालन्या पतिमुखं दृष्ट्वा दीर्घायुषम् आशिषति। पतिः सस्मितं पत्न्याः पुरतः तिष्ठेत्।',
       },
       duration: '5 min',
       essential: true,
@@ -120,11 +120,11 @@ export const KARVA_CHAUTH_PUJA: PujaVidhi = {
     },
     {
       step: 8,
-      title: { en: 'Husband Offers Water — Fast Breaking', hi: 'पति जल अर्पित करें — उपवास समाप्ति', sa: 'पतिः जलम् अर्पयति — व्रतभङ्गनम्' },
+      title: { en: 'Husband Offers Water  –  Fast Breaking', hi: 'पति जल अर्पित करें  –  उपवास समाप्ति', sa: 'पतिः जलम् अर्पयति  –  व्रतभङ्गनम्' },
       description: {
-        en: 'The husband takes water from the karva and offers it to the wife to drink — this officially breaks the nirjala fast. He then offers her the first bite of food (sweet or fruit). This act symbolizes the husband\'s care and gratitude for her sacrifice. After this, the wife can eat a full meal. Offer arghya (water) from the karva to the moon as thanksgiving.',
-        hi: 'पति करवे से जल लेकर पत्नी को पिलाएँ — इससे विधिवत् निर्जला उपवास समाप्त होता है। फिर पत्नी को पहला निवाला (मिठाई या फल) खिलाएँ। यह क्रिया पति की देखभाल और पत्नी के त्याग के प्रति कृतज्ञता का प्रतीक है। इसके बाद पत्नी पूर्ण भोजन कर सकती हैं। धन्यवाद स्वरूप करवे से चन्द्रमा को अर्घ्य (जल) अर्पित करें।',
-        sa: 'पतिः करवातः जलं गृहीत्वा पत्न्यै पातुं ददाति — एतेन विधिवत् निर्जलव्रतं भज्यते। ततः पत्न्यै प्रथमं ग्रासं (मिष्टान्नं फलं वा) ददाति। एषा क्रिया पत्युः परिचर्यां पत्न्याः त्यागाय कृतज्ञतां च प्रतीकयति। अनन्तरं पत्नी पूर्णभोजनं कर्तुं शक्नोति। धन्यवादरूपेण करवातः चन्द्राय अर्घ्यं (जलम्) अर्पयेत्।',
+        en: 'The husband takes water from the karva and offers it to the wife to drink  –  this officially breaks the nirjala fast. He then offers her the first bite of food (sweet or fruit). This act symbolizes the husband\'s care and gratitude for her sacrifice. After this, the wife can eat a full meal. Offer arghya (water) from the karva to the moon as thanksgiving.',
+        hi: 'पति करवे से जल लेकर पत्नी को पिलाएँ  –  इससे विधिवत् निर्जला उपवास समाप्त होता है। फिर पत्नी को पहला निवाला (मिठाई या फल) खिलाएँ। यह क्रिया पति की देखभाल और पत्नी के त्याग के प्रति कृतज्ञता का प्रतीक है। इसके बाद पत्नी पूर्ण भोजन कर सकती हैं। धन्यवाद स्वरूप करवे से चन्द्रमा को अर्घ्य (जल) अर्पित करें।',
+        sa: 'पतिः करवातः जलं गृहीत्वा पत्न्यै पातुं ददाति  –  एतेन विधिवत् निर्जलव्रतं भज्यते। ततः पत्न्यै प्रथमं ग्रासं (मिष्टान्नं फलं वा) ददाति। एषा क्रिया पत्युः परिचर्यां पत्न्याः त्यागाय कृतज्ञतां च प्रतीकयति। अनन्तरं पत्नी पूर्णभोजनं कर्तुं शक्नोति। धन्यवादरूपेण करवातः चन्द्राय अर्घ्यं (जलम्) अर्पयेत्।',
       },
       duration: '10 min',
       essential: true,
@@ -210,16 +210,16 @@ karavā cautha kī āratī ||`,
   },
 
   naivedya: {
-    en: 'Offer sweets (laddoo, mathri, gujiya), fruits, and milk to Gaur Mata. After breaking the fast, the traditional Karva Chauth dinner includes rich foods — puri, halwa, dal, and special sweets prepared by the mother-in-law.',
-    hi: 'गौर माता को मिठाई (लड्डू, मठरी, गुझिया), फल और दूध अर्पित करें। उपवास तोड़ने के बाद पारम्परिक करवा चौथ का भोजन समृद्ध होता है — पूरी, हलवा, दाल, और सास द्वारा बनाई गई विशेष मिठाइयाँ।',
-    sa: 'गौरीमात्रे मिष्टान्नानि (लड्डुकम्, मठरी, गुझिया), फलानि, क्षीरं च अर्पयेत्। व्रतभङ्गनानन्तरं पारम्परिकं करवाचौथभोजनं समृद्धम् — पूरी, पाकः, दालम्, श्वश्र्वा निर्मितानि विशेषमिष्टान्नानि।',
+    en: 'Offer sweets (laddoo, mathri, gujiya), fruits, and milk to Gaur Mata. After breaking the fast, the traditional Karva Chauth dinner includes rich foods  –  puri, halwa, dal, and special sweets prepared by the mother-in-law.',
+    hi: 'गौर माता को मिठाई (लड्डू, मठरी, गुझिया), फल और दूध अर्पित करें। उपवास तोड़ने के बाद पारम्परिक करवा चौथ का भोजन समृद्ध होता है  –  पूरी, हलवा, दाल, और सास द्वारा बनाई गई विशेष मिठाइयाँ।',
+    sa: 'गौरीमात्रे मिष्टान्नानि (लड्डुकम्, मठरी, गुझिया), फलानि, क्षीरं च अर्पयेत्। व्रतभङ्गनानन्तरं पारम्परिकं करवाचौथभोजनं समृद्धम्  –  पूरी, पाकः, दालम्, श्वश्र्वा निर्मितानि विशेषमिष्टान्नानि।',
   },
 
   precautions: [
     {
-      en: 'STRICTLY nirjala — not even a single drop of water is permitted from sunrise to moonrise. This is a non-negotiable rule of Karva Chauth.',
-      hi: 'पूर्णतः निर्जला — सूर्योदय से चन्द्रोदय तक एक बूँद जल भी नहीं लेना। यह करवा चौथ का अटल नियम है।',
-      sa: 'सम्पूर्णं निर्जलम् — सूर्योदयात् चन्द्रोदयपर्यन्तं जलस्य एकम् अपि बिन्दुं न स्वीकरणीयम्। एषः करवाचौथस्य अटलः नियमः।',
+      en: 'STRICTLY nirjala  –  not even a single drop of water is permitted from sunrise to moonrise. This is a non-negotiable rule of Karva Chauth.',
+      hi: 'पूर्णतः निर्जला  –  सूर्योदय से चन्द्रोदय तक एक बूँद जल भी नहीं लेना। यह करवा चौथ का अटल नियम है।',
+      sa: 'सम्पूर्णं निर्जलम्  –  सूर्योदयात् चन्द्रोदयपर्यन्तं जलस्य एकम् अपि बिन्दुं न स्वीकरणीयम्। एषः करवाचौथस्य अटलः नियमः।',
     },
     {
       en: 'MUST sight the moon through the sieve (chalni) before breaking the fast. If the moon is hidden by clouds, wait until it becomes visible. Do not break fast based on moonrise time alone.',
@@ -248,8 +248,8 @@ karavā cautha kī āratī ||`,
   },
 
   phala: {
-    en: 'Karva Chauth vrat grants the husband a long and healthy life, strengthens the marital bond, and brings good fortune to the household. The Brahma Vaivarta Purana states that Parvati herself observed this vrat for Shiva, and women who observe it with devotion receive the blessings of Gauri and the longevity of their husbands like that of Shiva — eternal.',
-    hi: 'करवा चौथ व्रत पति को दीर्घ और स्वस्थ जीवन प्रदान करता है, वैवाहिक बन्धन को मज़बूत करता है, और घर में सौभाग्य लाता है। ब्रह्मवैवर्त पुराण के अनुसार स्वयं पार्वती ने शिव के लिए यह व्रत रखा था, और जो महिलाएँ भक्तिपूर्वक इसे करती हैं उन्हें गौरी का आशीर्वाद और शिव जैसी — शाश्वत — पति की दीर्घायु प्राप्त होती है।',
-    sa: 'करवाचौथव्रतं पतये दीर्घं स्वस्थं जीवनं ददाति, वैवाहिकबन्धनं दृढयति, गृहे सौभाग्यं च आनयति। ब्रह्मवैवर्तपुराणे उक्तं स्वयं पार्वती शिवार्थम् इदं व्रतम् आचरत्, भक्त्या आचरन्त्यः स्त्रियः गौर्याः आशीर्वादं शिववत् — शाश्वतां — पतिदीर्घायुषं च प्राप्नुवन्ति।',
+    en: 'Karva Chauth vrat grants the husband a long and healthy life, strengthens the marital bond, and brings good fortune to the household. The Brahma Vaivarta Purana states that Parvati herself observed this vrat for Shiva, and women who observe it with devotion receive the blessings of Gauri and the longevity of their husbands like that of Shiva  –  eternal.',
+    hi: 'करवा चौथ व्रत पति को दीर्घ और स्वस्थ जीवन प्रदान करता है, वैवाहिक बन्धन को मज़बूत करता है, और घर में सौभाग्य लाता है। ब्रह्मवैवर्त पुराण के अनुसार स्वयं पार्वती ने शिव के लिए यह व्रत रखा था, और जो महिलाएँ भक्तिपूर्वक इसे करती हैं उन्हें गौरी का आशीर्वाद और शिव जैसी  –  शाश्वत  –  पति की दीर्घायु प्राप्त होती है।',
+    sa: 'करवाचौथव्रतं पतये दीर्घं स्वस्थं जीवनं ददाति, वैवाहिकबन्धनं दृढयति, गृहे सौभाग्यं च आनयति। ब्रह्मवैवर्तपुराणे उक्तं स्वयं पार्वती शिवार्थम् इदं व्रतम् आचरत्, भक्त्या आचरन्त्यः स्त्रियः गौर्याः आशीर्वादं शिववत्  –  शाश्वतां  –  पतिदीर्घायुषं च प्राप्नुवन्ति।',
   },
 };

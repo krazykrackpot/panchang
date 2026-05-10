@@ -8,20 +8,20 @@ import type { KundaliData } from '@/types/kundali';
 
 const BIRTH_DATA = [
   {
-    label: 'Delhi native — Jan 15, 1990 06:30 IST',
+    label: 'Delhi native  –  Jan 15, 1990 06:30 IST',
     input: { name: 'Test Delhi', date: '1990-01-15', time: '06:30', place: 'Delhi', lat: 28.6139, lng: 77.209, timezone: 'Asia/Kolkata', ayanamsha: 'lahiri' as const },
   },
   {
-    label: 'Bern native — Jul 20, 1985 14:15 CEST',
+    label: 'Bern native  –  Jul 20, 1985 14:15 CEST',
     input: { name: 'Test Bern', date: '1985-07-20', time: '14:15', place: 'Bern', lat: 46.948, lng: 7.447, timezone: 'Europe/Zurich', ayanamsha: 'lahiri' as const },
   },
   {
-    label: 'Seattle native — Dec 3, 1995 22:00 PST',
+    label: 'Seattle native  –  Dec 3, 1995 22:00 PST',
     input: { name: 'Test Seattle', date: '1995-12-03', time: '22:00', place: 'Seattle', lat: 47.6062, lng: -122.3321, timezone: 'America/Los_Angeles', ayanamsha: 'lahiri' as const },
   },
 ];
 
-describe.each(BIRTH_DATA)('Kundali Generation — $label', ({ input }) => {
+describe.each(BIRTH_DATA)('Kundali Generation  –  $label', ({ input }) => {
   let k: KundaliData;
 
   // Generate once for all tests in this block
@@ -181,7 +181,7 @@ describe.each(BIRTH_DATA)('Kundali Generation — $label', ({ input }) => {
 
 // ── DST edge case: birth during DST transition ──────────────────
 
-describe('Kundali — Birth during DST transition', () => {
+describe('Kundali  –  Birth during DST transition', () => {
   it('generates for birth at 02:30 AM March 29, 2026 Bern (CET→CEST gap)', () => {
     // 02:30 doesn't exist in local time (clocks jump 02:00→03:00)
     // The system should handle this gracefully

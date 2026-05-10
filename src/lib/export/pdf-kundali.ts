@@ -74,7 +74,7 @@ function addContinuationHeader(doc: jsPDF): number {
   doc.setFont('times', 'italic');
   doc.setFontSize(9);
   setText(doc, GOLD_DARK);
-  doc.text('Dekho Panchang — Kundali Report', PAGE_W / 2, 18, { align: 'center' });
+  doc.text('Dekho Panchang  –  Kundali Report', PAGE_W / 2, 18, { align: 'center' });
   doc.setFont('helvetica', 'normal');
   setDraw(doc, GOLD_DARK);
   doc.setLineWidth(0.15);
@@ -314,7 +314,7 @@ function drawNorthChart(
   const my = cy;
 
   // Top-left to mid-left, mid-top
-  doc.line(x, y, mx, my);       // diagonal TL to center — already drawn
+  doc.line(x, y, mx, my);       // diagonal TL to center  –  already drawn
   doc.line(x + size, y, mx, my); // diagonal TR to center
   doc.line(x + size, y + size, mx, my); // diagonal BR to center
   doc.line(x, y + size, mx, my); // diagonal BL to center
@@ -326,18 +326,18 @@ function drawNorthChart(
   // House mapping: standard positions for text placement
   const q = size / 4;
   const housePositions: [number, number][] = [
-    [cx, y + q * 0.9],              // H1 — top center
-    [x + q * 0.7, y + q * 0.7],    // H12 — top-left triangle
-    [x + q * 0.7, cy],              // H11 — left-top
-    [x + q * 0.7, cy + q * 0.9],   // H10 — left-bottom
-    [x + q * 0.7, y + size - q * 0.6], // H9 — bottom-left triangle
-    [cx, y + size - q * 0.8],       // H8 — bottom center
-    [x + size - q * 0.7, y + size - q * 0.6], // H7 — bottom-right triangle
-    [x + size - q * 0.7, cy + q * 0.9],       // H6 — right-bottom
-    [x + size - q * 0.7, cy],       // H5 — right-top
-    [x + size - q * 0.7, y + q * 0.7], // H4 — top-right triangle
-    [cx + q * 1.1, y + q * 0.9],   // H3 — (top-right of center)
-    [cx - q * 1.1, y + q * 0.9],   // H2 — (top-left of center)
+    [cx, y + q * 0.9],              // H1  –  top center
+    [x + q * 0.7, y + q * 0.7],    // H12  –  top-left triangle
+    [x + q * 0.7, cy],              // H11  –  left-top
+    [x + q * 0.7, cy + q * 0.9],   // H10  –  left-bottom
+    [x + q * 0.7, y + size - q * 0.6], // H9  –  bottom-left triangle
+    [cx, y + size - q * 0.8],       // H8  –  bottom center
+    [x + size - q * 0.7, y + size - q * 0.6], // H7  –  bottom-right triangle
+    [x + size - q * 0.7, cy + q * 0.9],       // H6  –  right-bottom
+    [x + size - q * 0.7, cy],       // H5  –  right-top
+    [x + size - q * 0.7, y + q * 0.7], // H4  –  top-right triangle
+    [cx + q * 1.1, y + q * 0.9],   // H3  –  (top-right of center)
+    [cx - q * 1.1, y + q * 0.9],   // H2  –  (top-left of center)
   ];
 
   // Reorder: index 0=H1, so actual house numbers:
@@ -888,7 +888,7 @@ function renderDashaTimeline(doc: jsPDF, kundali: KundaliData, locale: Locale) {
       setText(doc, GOLD_LIGHT);
       doc.text(name, MARGIN + 2, y);
       setText(doc, MUTED);
-      doc.text(`${d.startDate}  —  ${d.endDate}`, MARGIN + 50, y);
+      doc.text(`${d.startDate}   –   ${d.endDate}`, MARGIN + 50, y);
       y += 6.5;
     });
   }
@@ -1101,11 +1101,11 @@ function renderSadeSati(doc: jsPDF, kundali: KundaliData, locale: Locale) {
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(9);
     setText(doc, GOLD);
-    doc.text(`ACTIVE — ${phaseLabel} Phase`, MARGIN + 4, y + 3);
+    doc.text(`ACTIVE  –  ${phaseLabel} Phase`, MARGIN + 4, y + 3);
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(7.5);
     setText(doc, WHITE);
-    doc.text(`Cycle: ${ss.cycleStart} — ${ss.cycleEnd}  |  Progress: ${Math.round(ss.phaseProgress * 100)}%`, MARGIN + 4, y + 10);
+    doc.text(`Cycle: ${ss.cycleStart}  –  ${ss.cycleEnd}  |  Progress: ${Math.round(ss.phaseProgress * 100)}%`, MARGIN + 4, y + 10);
     doc.text(`Intensity: ${ss.overallIntensity.toFixed(1)} / 10`, MARGIN + 4, y + 15);
     y += 26;
   } else {
@@ -1116,7 +1116,7 @@ function renderSadeSati(doc: jsPDF, kundali: KundaliData, locale: Locale) {
     const nextCycle = ss.allCycles.find(c => !c.isActive && c.startYear > new Date().getFullYear());
     if (nextCycle) {
       doc.setFontSize(7);
-      doc.text(`Next cycle: ${nextCycle.startYear} — ${nextCycle.endYear}`, MARGIN + 80, y + 4);
+      doc.text(`Next cycle: ${nextCycle.startYear}  –  ${nextCycle.endYear}`, MARGIN + 80, y + 4);
     }
     y += 16;
   }
@@ -1141,7 +1141,7 @@ function renderSadeSati(doc: jsPDF, kundali: KundaliData, locale: Locale) {
         ? ` [ACTIVE - ${ss.currentPhase.charAt(0).toUpperCase() + ss.currentPhase.slice(1)}]`
         : '';
       setText(doc, cycle.isActive ? GOLD : MUTED);
-      doc.text(`${cycle.startYear} — ${cycle.endYear}${activePhase}`, MARGIN + 2, y);
+      doc.text(`${cycle.startYear}  –  ${cycle.endYear}${activePhase}`, MARGIN + 2, y);
       y += 5.5;
     });
     y += 3;
@@ -1262,7 +1262,7 @@ function renderTransitRadar(doc: jsPDF, kundali: KundaliData, locale: Locale) {
 function renderConvergenceInsights(doc: jsPDF, convergence: ConvergenceResult, locale: Locale) {
   let y = newPage(doc);
 
-  y = sectionHeading(doc, 'Chart Synthesis — Convergence', y);
+  y = sectionHeading(doc, 'Chart Synthesis  –  Convergence', y);
 
   const lk = locale === 'hi' ? 'hi' as const : 'en' as const;
   const exec = convergence.executive;
@@ -1337,13 +1337,13 @@ function renderConvergenceInsights(doc: jsPDF, convergence: ConvergenceResult, l
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// TIPPANNI — INTERPRETIVE ANALYSIS
+// TIPPANNI  –  INTERPRETIVE ANALYSIS
 // ═══════════════════════════════════════════════════════════════════════════
 
 function renderTippanni(doc: jsPDF, tippanni: TippanniContent, locale: Locale) {
   let y = newPage(doc);
 
-  y = sectionHeading(doc, 'Tippanni — Interpretive Analysis', y);
+  y = sectionHeading(doc, 'Tippanni  –  Interpretive Analysis', y);
 
   // ─── Personality ──────────────────────────────────────────────────
   if (tippanni.personality) {

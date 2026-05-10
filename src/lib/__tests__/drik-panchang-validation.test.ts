@@ -2,7 +2,7 @@
  * Drik Panchang Validation / Regression Tests
  *
  * Cross-checks our panchang calculations against reference data from
- * drikpanchang.com — the gold-standard for Hindu calendar calculations.
+ * drikpanchang.com  –  the gold-standard for Hindu calendar calculations.
  *
  * Locations:
  *   - New Delhi (28.6139°N, 77.2090°E, IST UTC+5:30)
@@ -25,7 +25,7 @@ import { computePanchang } from '@/lib/ephem/panchang-calc';
 // "HH:MM" strings instead of Date objects. This adapter maps to the test API.
 function parseToClock(timeStr: string): Date {
   const [h, m] = (timeStr || '00:00').split(':').map(Number);
-  const d = new Date(2024, 0, 1); // fixed date — tests only check hours/minutes
+  const d = new Date(2024, 0, 1); // fixed date  –  tests only check hours/minutes
   d.setHours(h, m, 0, 0);
   return d;
 }
@@ -77,11 +77,11 @@ function seattlePanchang(year: number, month: number, day: number, summerTime = 
 }
 
 // ═══════════════════════════════════════════════════════════════════════
-// SECTION 1: TITHI VALIDATION (2024 Key Dates — Delhi)
+// SECTION 1: TITHI VALIDATION (2024 Key Dates  –  Delhi)
 // Reference: drikpanchang.com for New Delhi
 // ═══════════════════════════════════════════════════════════════════════
 
-describe('Drik Panchang — Tithi Validation (Delhi 2024)', () => {
+describe('Drik Panchang  –  Tithi Validation (Delhi 2024)', () => {
   // For each date, we verify the tithi name and paksha at sunrise in Delhi
 
   const tithiTestCases: Array<{
@@ -95,13 +95,13 @@ describe('Drik Panchang — Tithi Validation (Delhi 2024)', () => {
     { date: [2024, 1, 11], expectedTithiNumber: 30, expectedPaksha: 'Krishna', label: 'Amavasya (New Moon) Jan 11' },
     { date: [2024, 1, 25], expectedTithiNumber: 15, expectedPaksha: 'Shukla', label: 'Purnima (Full Moon) Jan 25' },
 
-    // === Maha Shivaratri 2024 — Phalguna Krishna Chaturdashi ===
+    // === Maha Shivaratri 2024  –  Phalguna Krishna Chaturdashi ===
     { date: [2024, 3, 8], expectedTithiNumber: 28, expectedPaksha: 'Krishna', label: 'Maha Shivaratri (Phalguna Kr. 14)' },
 
-    // === Holi 2024 — Phalguna Purnima ===
+    // === Holi 2024  –  Phalguna Purnima ===
     { date: [2024, 3, 25], expectedTithiNumber: 15, expectedPaksha: 'Shukla', label: 'Holi (Phalguna Purnima)' },
 
-    // === Ram Navami 2024 — Chaitra Shukla Navami ===
+    // === Ram Navami 2024  –  Chaitra Shukla Navami ===
     { date: [2024, 4, 17], expectedTithiNumber: 9, expectedPaksha: 'Shukla', label: 'Ram Navami (Chaitra Sh. 9)' },
 
     // === Akshaya Tritiya 2024 ===
@@ -110,7 +110,7 @@ describe('Drik Panchang — Tithi Validation (Delhi 2024)', () => {
     // === Guru Purnima 2024 ===
     { date: [2024, 7, 21], expectedTithiNumber: 15, expectedPaksha: 'Shukla', label: 'Guru Purnima' },
 
-    // === Janmashtami 2024 — Bhadrapada Krishna Ashtami ===
+    // === Janmashtami 2024  –  Bhadrapada Krishna Ashtami ===
     { date: [2024, 8, 26], expectedTithiNumber: 22, expectedPaksha: 'Krishna', label: 'Janmashtami (Bhadra Kr. 8)' },
 
     // === Ganesh Chaturthi 2024 ===
@@ -127,7 +127,7 @@ describe('Drik Panchang — Tithi Validation (Delhi 2024)', () => {
   ];
 
   for (const tc of tithiTestCases) {
-    it(`${tc.label} — ${tc.date.join('-')}`, () => {
+    it(`${tc.label}  –  ${tc.date.join('-')}`, () => {
       const panchang = delhiPanchang(...tc.date);
       const tolerance = tc.tolerance ?? 1;
 
@@ -160,7 +160,7 @@ describe('Drik Panchang — Tithi Validation (Delhi 2024)', () => {
 // SECTION 2: TITHI VALIDATION (2025 Key Dates)
 // ═══════════════════════════════════════════════════════════════════════
 
-describe('Drik Panchang — Tithi Validation (Delhi 2025)', () => {
+describe('Drik Panchang  –  Tithi Validation (Delhi 2025)', () => {
   const tithiTestCases2025: Array<{
     date: [number, number, number];
     expectedTithiNumber: number;
@@ -184,7 +184,7 @@ describe('Drik Panchang — Tithi Validation (Delhi 2025)', () => {
   ];
 
   for (const tc of tithiTestCases2025) {
-    it(`${tc.label} — ${tc.date.join('-')}`, () => {
+    it(`${tc.label}  –  ${tc.date.join('-')}`, () => {
       const panchang = delhiPanchang(...tc.date);
       const diff = Math.abs(panchang.tithi.number - tc.expectedTithiNumber);
       const wrappedDiff = Math.min(diff, 30 - diff);
@@ -204,7 +204,7 @@ describe('Drik Panchang — Tithi Validation (Delhi 2025)', () => {
 // SECTION 3: TITHI VALIDATION (2026 Key Dates)
 // ═══════════════════════════════════════════════════════════════════════
 
-describe('Drik Panchang — Tithi Validation (Delhi 2026)', () => {
+describe('Drik Panchang  –  Tithi Validation (Delhi 2026)', () => {
   const tithiTestCases2026: Array<{
     date: [number, number, number];
     expectedTithiNumber: number;
@@ -225,7 +225,7 @@ describe('Drik Panchang — Tithi Validation (Delhi 2026)', () => {
   ];
 
   for (const tc of tithiTestCases2026) {
-    it(`${tc.label} — ${tc.date.join('-')}`, () => {
+    it(`${tc.label}  –  ${tc.date.join('-')}`, () => {
       const panchang = delhiPanchang(...tc.date);
       const diff = Math.abs(panchang.tithi.number - tc.expectedTithiNumber);
       const wrappedDiff = Math.min(diff, 30 - diff);
@@ -245,26 +245,26 @@ describe('Drik Panchang — Tithi Validation (Delhi 2026)', () => {
 // SECTION 4: NAKSHATRA VALIDATION (Key Dates 2024)
 // ═══════════════════════════════════════════════════════════════════════
 
-describe('Drik Panchang — Nakshatra Validation (Delhi 2024)', () => {
+describe('Drik Panchang  –  Nakshatra Validation (Delhi 2024)', () => {
   const nakshatraTestCases: Array<{
     date: [number, number, number];
     expectedNakshatraNumber: number; // 1-27
     label: string;
     tolerance?: number;
   }> = [
-    // Full Moons — Moon is opposite the Sun's nakshatra
-    // Jan Purnima — Moon near Pushya/Ashlesha (Cancer region)
-    { date: [2024, 1, 25], expectedNakshatraNumber: 7, label: 'Purnima Jan 25 — near Punarvasu', tolerance: 2 },
+    // Full Moons  –  Moon is opposite the Sun's nakshatra
+    // Jan Purnima  –  Moon near Pushya/Ashlesha (Cancer region)
+    { date: [2024, 1, 25], expectedNakshatraNumber: 7, label: 'Purnima Jan 25  –  near Punarvasu', tolerance: 2 },
 
     // Guru Purnima → Moon near Purva Ashadha/Uttara Ashadha
-    { date: [2024, 7, 21], expectedNakshatraNumber: 20, label: 'Guru Purnima — near Purva Ashadha', tolerance: 2 },
+    { date: [2024, 7, 21], expectedNakshatraNumber: 20, label: 'Guru Purnima  –  near Purva Ashadha', tolerance: 2 },
 
     // Kartik Purnima → Moon near Krittika/Rohini
-    { date: [2024, 11, 15], expectedNakshatraNumber: 4, label: 'Kartik Purnima — near Rohini', tolerance: 2 },
+    { date: [2024, 11, 15], expectedNakshatraNumber: 4, label: 'Kartik Purnima  –  near Rohini', tolerance: 2 },
   ];
 
   for (const tc of nakshatraTestCases) {
-    it(`${tc.label} — ${tc.date.join('-')}`, () => {
+    it(`${tc.label}  –  ${tc.date.join('-')}`, () => {
       const panchang = delhiPanchang(...tc.date);
       const tolerance = tc.tolerance ?? 1;
 
@@ -287,7 +287,7 @@ describe('Drik Panchang — Nakshatra Validation (Delhi 2024)', () => {
 // SECTION 5: SUNRISE TIME VALIDATION
 // ═══════════════════════════════════════════════════════════════════════
 
-describe('Drik Panchang — Sunrise/Sunset Validation (Delhi 2024)', () => {
+describe('Drik Panchang  –  Sunrise/Sunset Validation (Delhi 2024)', () => {
   // Reference sunrise/sunset times from drikpanchang.com for Delhi
   // Tolerance: ±5 minutes (due to altitude, refraction model differences)
 
@@ -298,13 +298,13 @@ describe('Drik Panchang — Sunrise/Sunset Validation (Delhi 2024)', () => {
     label: string;
     toleranceMinutes?: number;
   }> = [
-    // Spring equinox — sunrise ~6:17 AM IST (Drik Panchang) / Our calc gives ~6:24 — logged as BUG
+    // Spring equinox  –  sunrise ~6:17 AM IST (Drik Panchang) / Our calc gives ~6:24  –  logged as BUG
     { date: [2024, 3, 20], expectedSunriseHour: 6, expectedSunriseMinute: 17, label: 'Spring Equinox', toleranceMinutes: 10 },
-    // Summer solstice — sunrise ~5:23 AM IST
+    // Summer solstice  –  sunrise ~5:23 AM IST
     { date: [2024, 6, 21], expectedSunriseHour: 5, expectedSunriseMinute: 23, label: 'Summer Solstice' },
-    // Autumn equinox — sunrise ~6:07 AM IST
+    // Autumn equinox  –  sunrise ~6:07 AM IST
     { date: [2024, 9, 22], expectedSunriseHour: 6, expectedSunriseMinute: 7, label: 'Autumn Equinox' },
-    // Winter solstice — sunrise ~7:08 AM IST
+    // Winter solstice  –  sunrise ~7:08 AM IST
     { date: [2024, 12, 21], expectedSunriseHour: 7, expectedSunriseMinute: 8, label: 'Winter Solstice' },
   ];
 
@@ -334,7 +334,7 @@ describe('Drik Panchang — Sunrise/Sunset Validation (Delhi 2024)', () => {
 // SECTION 6: RAHU KALAM VALIDATION
 // ═══════════════════════════════════════════════════════════════════════
 
-describe('Drik Panchang — Rahu Kalam Order', () => {
+describe('Drik Panchang  –  Rahu Kalam Order', () => {
   // Traditional Rahu Kalam order (day of week → 8th-of-day):
   // Sun=8th, Mon=2nd, Tue=7th, Wed=5th, Thu=6th, Fri=4th, Sat=3rd
   // This means for ~12hr day (6am-6pm):
@@ -403,7 +403,7 @@ describe('Drik Panchang — Rahu Kalam Order', () => {
 // SECTION 7: MONTHLY PANCHANG CONTINUITY
 // ═══════════════════════════════════════════════════════════════════════
 
-describe('Drik Panchang — Monthly Continuity Check', () => {
+describe('Drik Panchang  –  Monthly Continuity Check', () => {
   it('tithis progress sequentially over a month (Jan 2024)', () => {
     const tithis: number[] = [];
     for (let day = 1; day <= 31; day++) {
@@ -451,7 +451,7 @@ describe('Drik Panchang — Monthly Continuity Check', () => {
 // Cross-check our calendar dates against Drik Panchang
 // ═══════════════════════════════════════════════════════════════════════
 
-describe('Drik Panchang — Festival Date Cross-Check (2024, Delhi)', () => {
+describe('Drik Panchang  –  Festival Date Cross-Check (2024, Delhi)', () => {
   // These are the ACTUAL Gregorian dates from Drik Panchang for Delhi 2024
   // We verify our panchang gives the correct tithi on these dates
 
@@ -479,7 +479,7 @@ describe('Drik Panchang — Festival Date Cross-Check (2024, Delhi)', () => {
   ];
 
   for (const fc of festivalDates) {
-    it(`${fc.festival} (${fc.date.join('-')}) — tithi ${fc.expectedTithiNumber} ${fc.expectedPaksha}`, () => {
+    it(`${fc.festival} (${fc.date.join('-')})  –  tithi ${fc.expectedTithiNumber} ${fc.expectedPaksha}`, () => {
       const panchang = delhiPanchang(...fc.date);
       const diff = Math.abs(panchang.tithi.number - fc.expectedTithiNumber);
       const wrappedDiff = Math.min(diff, 30 - diff);
@@ -502,7 +502,7 @@ describe('Drik Panchang — Festival Date Cross-Check (2024, Delhi)', () => {
 // SECTION 9: AYANAMSA SANITY
 // ═══════════════════════════════════════════════════════════════════════
 
-describe('Drik Panchang — Ayanamsa Sanity', () => {
+describe('Drik Panchang  –  Ayanamsa Sanity', () => {
   it('Lahiri ayanamsa for 2024 is ~24.2°', () => {
     const panchang = delhiPanchang(2024, 1, 1);
     // Drik Panchang shows ~24.17° for Jan 2024
@@ -533,7 +533,7 @@ describe('Drik Panchang — Ayanamsa Sanity', () => {
 // SECTION 10: EKADASHI VRAT VALIDATION
 // ═══════════════════════════════════════════════════════════════════════
 
-describe('Drik Panchang — Ekadashi Dates (2024, Delhi)', () => {
+describe('Drik Panchang  –  Ekadashi Dates (2024, Delhi)', () => {
   // Ekadashis are the 11th tithi of each paksha
   // Reference dates from Drik Panchang for Delhi 2024
 
@@ -573,7 +573,7 @@ describe('Drik Panchang — Ekadashi Dates (2024, Delhi)', () => {
 // SECTION 11: BERN (SWITZERLAND) PANCHANG VALIDATION
 // ═══════════════════════════════════════════════════════════════════════
 
-describe('Drik Panchang — Bern, Switzerland (2024)', () => {
+describe('Drik Panchang  –  Bern, Switzerland (2024)', () => {
   const bernTithiTests: Array<{
     date: [number, number, number];
     expectedTithiNumber: number;
@@ -592,12 +592,12 @@ describe('Drik Panchang — Bern, Switzerland (2024)', () => {
   ];
 
   for (const tc of bernTithiTests) {
-    it(`${tc.label} — ${tc.date.join('-')}`, () => {
+    it(`${tc.label}  –  ${tc.date.join('-')}`, () => {
       const panchang = bernPanchang(...tc.date, tc.summer);
       const diff = Math.abs(panchang.tithi.number - tc.expectedTithiNumber);
       const wrappedDiff = Math.min(diff, 30 - diff);
       if (wrappedDiff > 1) {
-        console.error(`[BUG-LOG] BERN TITHI MISMATCH: ${tc.label} — expected ${tc.expectedTithiNumber}, got ${panchang.tithi.number}`);
+        console.error(`[BUG-LOG] BERN TITHI MISMATCH: ${tc.label}  –  expected ${tc.expectedTithiNumber}, got ${panchang.tithi.number}`);
       }
       expect(wrappedDiff).toBeLessThanOrEqual(1);
     });
@@ -639,7 +639,7 @@ describe('Drik Panchang — Bern, Switzerland (2024)', () => {
 // SECTION 12: SEATTLE (USA) PANCHANG VALIDATION
 // ═══════════════════════════════════════════════════════════════════════
 
-describe('Drik Panchang — Seattle, USA (2024)', () => {
+describe('Drik Panchang  –  Seattle, USA (2024)', () => {
   const seattleTithiTests: Array<{
     date: [number, number, number];
     expectedTithiNumber: number;
@@ -659,12 +659,12 @@ describe('Drik Panchang — Seattle, USA (2024)', () => {
   ];
 
   for (const tc of seattleTithiTests) {
-    it(`${tc.label} — ${tc.date.join('-')}`, () => {
+    it(`${tc.label}  –  ${tc.date.join('-')}`, () => {
       const panchang = seattlePanchang(...tc.date, tc.summer);
       const diff = Math.abs(panchang.tithi.number - tc.expectedTithiNumber);
       const wrappedDiff = Math.min(diff, 30 - diff);
       if (wrappedDiff > 1) {
-        console.error(`[BUG-LOG] SEATTLE TITHI MISMATCH: ${tc.label} — expected ${tc.expectedTithiNumber}, got ${panchang.tithi.number}`);
+        console.error(`[BUG-LOG] SEATTLE TITHI MISMATCH: ${tc.label}  –  expected ${tc.expectedTithiNumber}, got ${panchang.tithi.number}`);
       }
       expect(wrappedDiff).toBeLessThanOrEqual(1);
     });
@@ -712,7 +712,7 @@ describe('Drik Panchang — Seattle, USA (2024)', () => {
 // SECTION 13: CROSS-CITY CONSISTENCY
 // ═══════════════════════════════════════════════════════════════════════
 
-describe('Drik Panchang — Cross-City Consistency', () => {
+describe('Drik Panchang  –  Cross-City Consistency', () => {
   it('all 3 cities agree on Purnima tithi (±1)', () => {
     const delhi = delhiPanchang(2024, 1, 25);
     const bern = bernPanchang(2024, 1, 25, false);

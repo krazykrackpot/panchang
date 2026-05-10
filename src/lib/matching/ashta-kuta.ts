@@ -5,15 +5,15 @@
  * traditional 36-point Guna Milan system.
  *
  * The 8 Kutas and their max points:
- * 1. Varna (caste/nature)     — 1 point
- * 2. Vashya (dominance)       — 2 points
- * 3. Tara (birth star)        — 3 points
- * 4. Yoni (sexual compat.)    — 4 points
- * 5. Graha Maitri (friendship)— 5 points
- * 6. Gana (temperament)       — 6 points
- * 7. Bhakoot (sign compat.)   — 7 points
- * 8. Nadi (health/genes)      — 8 points
- * Total                       — 36 points
+ * 1. Varna (caste/nature)      –  1 point
+ * 2. Vashya (dominance)        –  2 points
+ * 3. Tara (birth star)         –  3 points
+ * 4. Yoni (sexual compat.)     –  4 points
+ * 5. Graha Maitri (friendship) –  5 points
+ * 6. Gana (temperament)        –  6 points
+ * 7. Bhakoot (sign compat.)    –  7 points
+ * 8. Nadi (health/genes)       –  8 points
+ * Total                        –  36 points
  */
 
 import type { LocaleText,} from '@/types/panchang';
@@ -73,7 +73,7 @@ function computeVarna(boy: MatchInput, girl: MatchInput): number {
 
 // Chatushpada(0)=Aries,Taurus,Sagittarius  Manava(1)=Gemini,Virgo,Libra,Aquarius
 // Jalachara(2)=Cancer,Pisces  Vanachara(3)=Leo,Capricorn  Keeta(4)=Scorpio
-// Source: Muhurta Chintamani — Leo is Vanachara (wild/forest), Aquarius is Manava (human)
+// Source: Muhurta Chintamani  –  Leo is Vanachara (wild/forest), Aquarius is Manava (human)
 // Note: Sagittarius classified as Chatushpada per Muhurta Chintamani.
 // Some authorities classify the upper half (Dhanu) as Manava (human archer).
 const RASHI_VASHYA = [0, 0, 1, 2, 3, 1, 1, 4, 0, 3, 1, 2]; // Aries..Pisces
@@ -107,17 +107,17 @@ function computeTara(boy: MatchInput, girl: MatchInput): number {
   //   Step 2: % 9   → maps 0-26 to 0-8, giving the Tara group (0-8)
   //   +1            → converts to 1-based (Tara 1=Janma … Tara 9=Parama Mitra)
   //
-  // HISTORICAL BUG (now fixed): the formula used `(diff + 27) % 9` — it
+  // HISTORICAL BUG (now fixed): the formula used `(diff + 27) % 9`  –  it
   // applied modulo 9 directly without the intermediate modulo 27 step.
   // When both partners share the same nakshatra (diff = 0):
-  //   Old: (0 + 27) % 9 = 0  →  0 || 9 = 9 (Parama Mitra — wrong, most auspicious)
-  //   New: ((0 + 27) % 27) % 9 + 1 = 0 % 9 + 1 = 1 (Janma — correct)
+  //   Old: (0 + 27) % 9 = 0  →  0 || 9 = 9 (Parama Mitra  –  wrong, most auspicious)
+  //   New: ((0 + 27) % 27) % 9 + 1 = 0 % 9 + 1 = 1 (Janma  –  correct)
   // For diff = 9 (9 apart):
   //   Old: (9 + 27) % 9 = 0  →  0 || 9 = 9 (Parama Mitra)
-  //   New: ((9 + 27) % 27) % 9 + 1 = 9 % 9 + 1 = 1 (Janma) — every 9th cycles back
+  //   New: ((9 + 27) % 27) % 9 + 1 = 9 % 9 + 1 = 1 (Janma)  –  every 9th cycles back
   // For diff = 8:
-  //   Old: (8 + 27) % 9 = 8  →  8 (Mitra — happens to be correct)
-  //   New: ((8 + 27) % 27) % 9 + 1 = 8 % 9 + 1 = 9 (Parama Mitra — correct)
+  //   Old: (8 + 27) % 9 = 8  →  8 (Mitra  –  happens to be correct)
+  //   New: ((8 + 27) % 27) % 9 + 1 = 8 % 9 + 1 = 9 (Parama Mitra  –  correct)
   // The old formula produced wrong results for ~11% of nakshatra pairs.
   const tara1 = ((girl.moonNakshatra - boy.moonNakshatra + 27) % 27) % 9 + 1;
   const tara2 = ((boy.moonNakshatra - girl.moonNakshatra + 27) % 27) % 9 + 1;
@@ -152,7 +152,7 @@ function computeTara(boy: MatchInput, girl: MatchInput): number {
 //   Monkey:   P.Ashadha(20) & Shravana(22)
 //   Mongoose: U.Ashadha(21) only (Abhijit not in 27-nakshatra cycle)
 //   Lion:     Dhanishtha(23) & P.Bhadrapada(25)
-// Single source of truth — shared with dasha-koota.ts (Lesson Q/S)
+// Single source of truth  –  shared with dasha-koota.ts (Lesson Q/S)
 import { NAKSHATRA_YONI, YONI_LABELS, YONI_ENEMIES } from '@/lib/constants/matching-tables';
 
 function computeYoni(boy: MatchInput, girl: MatchInput): number {
@@ -167,7 +167,7 @@ function computeYoni(boy: MatchInput, girl: MatchInput): number {
   }
 
   // Classical Yoni Kuta: all non-same, non-enemy pairs score 2 (neutral)
-  // Per Muhurta Chintamani — no intermediate "friendly" tier in the classical system
+  // Per Muhurta Chintamani  –  no intermediate "friendly" tier in the classical system
   return 2;
 }
 
@@ -184,7 +184,7 @@ const GRAHA_MAITRI: Record<number, Record<number, number>> = {
   // Natural Friendship table per BPHS Ch.3 (Naisargika Maitri)
   // 0=enemy, 1=neutral, 2=friend. Verified against shadbala.ts NAT_FRIENDS/NAT_ENEMIES.
   0: { 0: 2, 1: 2, 2: 2, 3: 1, 4: 2, 5: 0, 6: 0 }, // Sun: friends=Moon,Mars,Jup; neutral=Merc; enemies=Ven,Sat
-  1: { 0: 2, 1: 2, 2: 1, 3: 2, 4: 1, 5: 1, 6: 1 }, // Moon: friends=Sun,Merc; neutral=Mars,Jup,Ven,Sat; enemies=none (BPHS Ch.3 — consistent with shadbala/vimshopaka/avasthas)
+  1: { 0: 2, 1: 2, 2: 1, 3: 2, 4: 1, 5: 1, 6: 1 }, // Moon: friends=Sun,Merc; neutral=Mars,Jup,Ven,Sat; enemies=none (BPHS Ch.3  –  consistent with shadbala/vimshopaka/avasthas)
   2: { 0: 2, 1: 2, 2: 2, 3: 0, 4: 2, 5: 1, 6: 1 }, // Mars: friends=Sun,Moon,Jup; neutral=Ven,Sat; enemies=Merc
   3: { 0: 2, 1: 0, 2: 1, 3: 2, 4: 1, 5: 2, 6: 1 }, // Mercury: friends=Sun,Ven; neutral=Mars,Jup,Sat; enemies=Moon
   4: { 0: 2, 1: 2, 2: 2, 3: 0, 4: 2, 5: 0, 6: 1 }, // Jupiter: friends=Sun,Moon,Mars; neutral=Sat; enemies=Merc,Ven
@@ -283,7 +283,7 @@ export function computeNadi(boy: MatchInput, girl: MatchInput): number {
   const bn = NAKSHATRA_NADI[boy.moonNakshatra - 1];
   const gn = NAKSHATRA_NADI[girl.moonNakshatra - 1];
 
-  if (bn !== gn) return 8; // Different nadi — no dosha
+  if (bn !== gn) return 8; // Different nadi  –  no dosha
 
   // N4: same nakshatra + same pada = complete override (genetically favorable)
   if (
@@ -394,19 +394,19 @@ export function computeAshtaKuta(boy: MatchInput, girl: MatchInput): MatchResult
 
   if (totalScore >= 28) {
     verdict = 'excellent';
-    verdictText = { en: 'Excellent Match — Highly Recommended', hi: 'उत्तम मेल — अत्यन्त अनुशंसित', sa: 'उत्तमं मेलनम् — अत्यन्तम् अनुशंसितम्' };
+    verdictText = { en: 'Excellent Match  –  Highly Recommended', hi: 'उत्तम मेल  –  अत्यन्त अनुशंसित', sa: 'उत्तमं मेलनम्  –  अत्यन्तम् अनुशंसितम्' };
   } else if (totalScore >= 21) {
     verdict = 'good';
-    verdictText = { en: 'Good Match — Recommended', hi: 'अच्छा मेल — अनुशंसित', sa: 'शोभनं मेलनम् — अनुशंसितम्' };
+    verdictText = { en: 'Good Match  –  Recommended', hi: 'अच्छा मेल  –  अनुशंसित', sa: 'शोभनं मेलनम्  –  अनुशंसितम्' };
   } else if (totalScore >= 18) {
     verdict = 'average';
-    verdictText = { en: 'Average Match — Acceptable with Remedies', hi: 'सामान्य मेल — उपायों के साथ स्वीकार्य', sa: 'साधारणं मेलनम् — उपचारैः स्वीकार्यम्' };
+    verdictText = { en: 'Average Match  –  Acceptable with Remedies', hi: 'सामान्य मेल  –  उपायों के साथ स्वीकार्य', sa: 'साधारणं मेलनम्  –  उपचारैः स्वीकार्यम्' };
   } else if (totalScore >= 14) {
     verdict = 'below_average';
-    verdictText = { en: 'Below Average — Proceed with Caution', hi: 'औसत से कम — सावधानी से आगे बढ़ें', sa: 'न्यूनम् — सावधानतया अग्रे गच्छेत्' };
+    verdictText = { en: 'Below Average  –  Proceed with Caution', hi: 'औसत से कम  –  सावधानी से आगे बढ़ें', sa: 'न्यूनम्  –  सावधानतया अग्रे गच्छेत्' };
   } else {
     verdict = 'not_recommended';
-    verdictText = { en: 'Not Recommended — Significant Incompatibility', hi: 'अनुशंसित नहीं — महत्वपूर्ण असंगति', sa: 'न अनुशंसितम् — महत्त्वपूर्णा असंगतिः' };
+    verdictText = { en: 'Not Recommended  –  Significant Incompatibility', hi: 'अनुशंसित नहीं  –  महत्वपूर्ण असंगति', sa: 'न अनुशंसितम्  –  महत्त्वपूर्णा असंगतिः' };
   }
 
   return {

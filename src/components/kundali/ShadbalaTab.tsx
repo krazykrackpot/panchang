@@ -8,7 +8,7 @@ import type { Locale, LocaleText } from '@/types/panchang';
 import ShadbalaRadar from './ShadbalaRadar';
 
 /* ------------------------------------------------------------------ */
-/*  Static data — hoisted to module level                             */
+/*  Static data  –  hoisted to module level                             */
 /* ------------------------------------------------------------------ */
 
 const PLANET_LABELS: Record<string, LocaleText> = {
@@ -46,7 +46,7 @@ const PLANET_THEMES_EN: Record<string, { themes: string; strongMsg: string; weak
   Moon: {
     themes: 'emotions, mother, mental peace, public image, nurturing',
     strongMsg: 'Emotional intelligence is a core strength. Your intuition is reliable, and you connect well with people.',
-    weakMsg: 'Emotional stability may fluctuate. Mental peace requires active cultivation — mindfulness practices can help.',
+    weakMsg: 'Emotional stability may fluctuate. Mental peace requires active cultivation  –  mindfulness practices can help.',
   },
   Mars: {
     themes: 'courage, energy, siblings, property, technical skill',
@@ -71,7 +71,7 @@ const PLANET_THEMES_EN: Record<string, { themes: string; strongMsg: string; weak
   Saturn: {
     themes: 'discipline, patience, longevity, karma, structure, hard work',
     strongMsg: 'Discipline and perseverance are your pillars. You build lasting structures and gain respect through hard work.',
-    weakMsg: 'Patience and discipline may not come naturally. Structure feels restrictive — but embracing it brings rewards.',
+    weakMsg: 'Patience and discipline may not come naturally. Structure feels restrictive  –  but embracing it brings rewards.',
   },
 };
 
@@ -186,7 +186,7 @@ export default function ShadbalaTab({ shadbala, locale, isDevanagari, headingFon
   return (
     <div className="space-y-6">
       <h3 className="text-2xl font-bold text-gold-gradient text-center" style={headingFont}>
-        {isEn ? 'Shadbala — Six-Fold Strength' : 'षड्बल — छह प्रकार का बल'}
+        {isEn ? 'Shadbala  –  Six-Fold Strength' : 'षड्बल  –  छह प्रकार का बल'}
       </h3>
       <p className="text-text-secondary text-xs text-center max-w-2xl mx-auto" style={bodyFont}>
         {isEn
@@ -194,7 +194,7 @@ export default function ShadbalaTab({ shadbala, locale, isDevanagari, headingFon
           : 'शास्त्रीय षड्बल गणना। मान षष्ट्यंशों में। बल अनुपात 1.0 से अधिक पर्याप्त बल दर्शाता है।'}
       </p>
 
-      {/* Strength Overview — instant visual via progress bars */}
+      {/* Strength Overview  –  instant visual via progress bars */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
         <h4 className="text-gold-light font-bold text-sm mb-4" style={headingFont}>
           {isEn ? 'Strength at a Glance' : 'एक नज़र में बल'}
@@ -231,7 +231,7 @@ export default function ShadbalaTab({ shadbala, locale, isDevanagari, headingFon
         </div>
       </div>
 
-      {/* Strength Radar — interactive spider chart with drill-down */}
+      {/* Strength Radar  –  interactive spider chart with drill-down */}
       <div className="rounded-xl bg-gradient-to-b from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 sm:p-6">
         <ShadbalaRadar shadbala={shadbala} locale={locale} />
       </div>
@@ -289,7 +289,7 @@ export default function ShadbalaTab({ shadbala, locale, isDevanagari, headingFon
         </div>
       </div>
 
-      {/* C) Practical implication — lean into strongest, remedy weakest */}
+      {/* C) Practical implication  –  lean into strongest, remedy weakest */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
         <h4 className="text-gold-light font-bold text-sm mb-3" style={headingFont}>
           {isEn ? 'Practical Takeaway' : 'व्यावहारिक निष्कर्ष'}

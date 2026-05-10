@@ -223,7 +223,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
         </div>
       </div>
 
-      {/* Spaced Repetition Review — show before content if due items exist */}
+      {/* Spaced Repetition Review  –  show before content if due items exist */}
       {hydrated && getReviewDue().length > 0 && !showQuiz && (
         <div className="mb-2">
           <ReviewSession locale={locale} />
@@ -386,7 +386,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
                         />
                       </div>
                       <p className="text-text-secondary/60 text-xs">
-                        {tl({ en: `Phase ${meta.phase} — ${phaseProgress.mastered}/${phaseProgress.total} mastered`, hi: `चरण ${meta.phase} — ${phaseProgress.mastered}/${phaseProgress.total} पूर्ण`, sa: `चरण ${meta.phase} — ${phaseProgress.mastered}/${phaseProgress.total} पूर्ण` }, locale)}
+                        {tl({ en: `Phase ${meta.phase}  –  ${phaseProgress.mastered}/${phaseProgress.total} mastered`, hi: `चरण ${meta.phase}  –  ${phaseProgress.mastered}/${phaseProgress.total} पूर्ण`, sa: `चरण ${meta.phase}  –  ${phaseProgress.mastered}/${phaseProgress.total} पूर्ण` }, locale)}
                       </p>
                     </div>
                   )}

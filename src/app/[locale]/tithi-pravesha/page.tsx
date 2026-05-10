@@ -67,7 +67,7 @@ const LABELS = {
   title: { en: 'Tithi Pravesha', hi: 'तिथि प्रवेश', sa: 'तिथिप्रवेशः' },
   subtitle: { en: 'Your Vedic Birthday', hi: 'आपका वैदिक जन्मदिन', sa: 'भवतः वैदिकजन्मदिवसः' },
   description: {
-    en: 'Discover the exact date when your birth tithi (lunar day) recurs each year. Unlike the solar calendar birthday, this follows the Moon — shifting by 10-12 days annually.',
+    en: 'Discover the exact date when your birth tithi (lunar day) recurs each year. Unlike the solar calendar birthday, this follows the Moon  –  shifting by 10-12 days annually.',
     hi: 'प्रत्येक वर्ष अपनी जन्म तिथि (चान्द्र दिवस) की पुनरावृत्ति की सटीक तारीख खोजें। सौर कैलेंडर जन्मदिन के विपरीत, यह चन्द्रमा का अनुसरण करता है।',
     sa: 'प्रतिवर्षं भवतः जन्मतिथेः पुनरावृत्तेः सटीकं दिनाङ्कं ज्ञातुम् अर्हति। सौरपञ्चाङ्गजन्मदिवसात् भिन्नम् इदं चन्द्रमानुसारम्।',
   },
@@ -145,7 +145,7 @@ export default function TithiPraveshaPage() {
           setPlaceName(data.birth_place || '');
           setPlaceLat(data.birth_lat);
           setPlaceLng(data.birth_lng);
-          // ALWAYS resolve timezone from coordinates — never trust stored birth_timezone
+          // ALWAYS resolve timezone from coordinates  –  never trust stored birth_timezone
           if (data.birth_lat && data.birth_lng) {
             resolveTimezoneFromCoords(Number(data.birth_lat), Number(data.birth_lng))
               .then(tz => setPlaceTimezone(tz))
@@ -388,7 +388,7 @@ export default function TithiPraveshaPage() {
                   </div>
 
                   <div className="px-6 py-6 space-y-6">
-                    {/* Pravesha Date — prominently displayed */}
+                    {/* Pravesha Date  –  prominently displayed */}
                     <div className="text-center py-4 rounded-xl bg-gold-primary/5 border border-gold-primary/10">
                       <div className="flex items-center justify-center gap-2 mb-2">
                         <Calendar className="w-5 h-5 text-gold-primary" />

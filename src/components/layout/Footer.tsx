@@ -4,7 +4,7 @@ import { useLocale } from 'next-intl';
 import { Link } from '@/lib/i18n/navigation';
 
 // ---------------------------------------------------------------------------
-// Footer link sections — ~35 links for SEO link equity distribution
+// Footer link sections  –  ~35 links for SEO link equity distribution
 // ---------------------------------------------------------------------------
 
 const SECTIONS = [

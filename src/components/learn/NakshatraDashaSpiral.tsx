@@ -6,7 +6,7 @@ import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
-// The Vimshottari sequence — 9 planets, 3 rounds
+// The Vimshottari sequence  –  9 planets, 3 rounds
 const DASHA_SEQUENCE = [
   { id: 8, en: 'Ketu', hi: 'केतु', years: 7, color: '#95a5a6' },
   { id: 5, en: 'Venus', hi: 'शुक्र', years: 20, color: '#e8e6e3' },
@@ -35,7 +35,7 @@ export default function NakshatraDashaSpiral({ locale }: Props) {
 
   return (
     <div className="space-y-6">
-      {/* Planet legend — 9 colored dots */}
+      {/* Planet legend  –  9 colored dots */}
       <div className="flex flex-wrap justify-center gap-1.5">
         {DASHA_SEQUENCE.map((p, i) => (
           <button
@@ -57,7 +57,7 @@ export default function NakshatraDashaSpiral({ locale }: Props) {
         ))}
       </div>
 
-      {/* Three rounds — visual strips */}
+      {/* Three rounds  –  visual strips */}
       <div className="space-y-4">
         {[0, 1, 2].map(round => (
           <div key={round}>
@@ -126,7 +126,7 @@ export default function NakshatraDashaSpiral({ locale }: Props) {
         ))}
       </div>
 
-      {/* Vertical alignment lines — show the 3-round pattern */}
+      {/* Vertical alignment lines  –  show the 3-round pattern */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/8 p-4">
         <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3 text-center">
           {tl({ en: 'Same Lord Across Three Rounds', hi: 'तीन चक्रों में समान स्वामी', sa: 'तीन चक्रों में समान स्वामी' }, locale)}

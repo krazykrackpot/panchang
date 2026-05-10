@@ -56,7 +56,7 @@ export default function LearnRahuKaalPage() {
       </div>
 
       <KeyTakeaway locale={locale} points={[
-        'Rahu Kaal is 1/8th of daytime — roughly 1.5 hours — assigned to Rahu each day.',
+        'Rahu Kaal is 1/8th of daytime  –  roughly 1.5 hours  –  assigned to Rahu each day.',
         'Only the commencement of new activities is discouraged; ongoing tasks are unaffected.',
         'The slot rotates daily: Sun=8, Mon=2, Tue=7, Wed=5, Thu=6, Fri=4, Sat=3.',
       ]} />
@@ -157,8 +157,8 @@ export default function LearnRahuKaalPage() {
           <Info size={20} className="text-gold-primary mt-0.5 flex-shrink-0" />
           <p className="text-gold-light text-sm font-medium italic" style={bf}>
             {isHi
-              ? '"राहु काल में सब कुछ रुकना चाहिए — यह सबसे बड़ी भ्रान्ति है। शास्त्र केवल नये आरम्भ से बचने कहते हैं।"'
-              : '"Everything must stop during Rahu Kaal — this is the biggest misconception. Classical texts only caution against new beginnings."'}
+              ? '"राहु काल में सब कुछ रुकना चाहिए  –  यह सबसे बड़ी भ्रान्ति है। शास्त्र केवल नये आरम्भ से बचने कहते हैं।"'
+              : '"Everything must stop during Rahu Kaal  –  this is the biggest misconception. Classical texts only caution against new beginnings."'}
           </p>
         </div>
         <p style={bf}>{t('misconceptionsContent')}</p>

@@ -37,7 +37,7 @@ const LABELS = {
     sign: 'Sign',
     element: 'Element',
     learnTitle: 'About Mundane Astrology',
-    learnText: 'Mundane astrology is the branch of Vedic Jyotish concerned with nations, world events, and collective human experience. Rather than interpreting an individual birth chart, it reads the founding chart of a nation (its "birth" when it declared independence or was constituted), then applies current planetary transits to forecast trends across twelve domains of national life — from government and economy to public health and foreign relations.',
+    learnText: 'Mundane astrology is the branch of Vedic Jyotish concerned with nations, world events, and collective human experience. Rather than interpreting an individual birth chart, it reads the founding chart of a nation (its "birth" when it declared independence or was constituted), then applies current planetary transits to forecast trends across twelve domains of national life  –  from government and economy to public health and foreign relations.',
     learnText2: 'The most watched cycle is the Great Conjunction of Jupiter and Saturn, which recurs roughly every 20 years and marks long-term cultural, economic, and political eras. When they meet in a Fire sign (Aries, Leo, Sagittarius), idealism and expansion dominate. Earth signs bring materialism and consolidation; Air signs favour ideas and social change; Water signs bring emotional and spiritual currents.',
     source: 'Source',
     house: 'House',
@@ -77,7 +77,7 @@ const LABELS = {
     sign: 'राशि',
     element: 'तत्त्व',
     learnTitle: 'मुण्डेन ज्योतिष के बारे में',
-    learnText: 'मुण्डेन ज्योतिष वैदिक ज्योतिष की वह शाखा है जो राष्ट्रों, विश्व घटनाओं और सामूहिक मानव अनुभव से सम्बन्धित है। यह किसी राष्ट्र की स्थापना कुण्डली पर वर्तमान ग्रहों का गोचर देखकर उसके 12 जीवन क्षेत्रों — सरकार, अर्थव्यवस्था, जनस्वास्थ्य, विदेश सम्बन्ध आदि — में प्रवृत्तियों का पूर्वानुमान करती है।',
+    learnText: 'मुण्डेन ज्योतिष वैदिक ज्योतिष की वह शाखा है जो राष्ट्रों, विश्व घटनाओं और सामूहिक मानव अनुभव से सम्बन्धित है। यह किसी राष्ट्र की स्थापना कुण्डली पर वर्तमान ग्रहों का गोचर देखकर उसके 12 जीवन क्षेत्रों  –  सरकार, अर्थव्यवस्था, जनस्वास्थ्य, विदेश सम्बन्ध आदि  –  में प्रवृत्तियों का पूर्वानुमान करती है।',
     learnText2: 'सबसे महत्त्वपूर्ण चक्र बृहस्पति-शनि का महायोग है जो लगभग 20 वर्षों में एक बार होता है और दीर्घकालिक सांस्कृतिक, आर्थिक एवं राजनीतिक युगों का संकेत देता है।',
     source: 'स्रोत',
     house: 'भाव',
@@ -458,7 +458,7 @@ export default function MundanePage() {
                 </div>
                 <div className="bg-white/[0.06] rounded-xl p-3">
                   <div className="text-xs text-text-secondary mb-1">{L(locale, 'source')}</div>
-                  <div className="text-xs text-text-secondary leading-snug">{selectedNation.source.split('—')[0]}</div>
+                  <div className="text-xs text-text-secondary leading-snug">{selectedNation.source.split(' – ')[0]}</div>
                 </div>
               </div>
 
@@ -567,7 +567,7 @@ export default function MundanePage() {
                 {conjData.current ? (
                   <ConjunctionCard c={conjData.current} locale={locale} label="Current Era" />
                 ) : (
-                  <p className="text-text-secondary text-sm">—</p>
+                  <p className="text-text-secondary text-sm"> – </p>
                 )}
               </div>
 

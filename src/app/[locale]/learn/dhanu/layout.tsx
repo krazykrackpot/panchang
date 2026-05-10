@@ -14,7 +14,7 @@ export default async function Layout({ children, params }: { children: React.Rea
       <LearnArticleLD
         route="/learn/dhanu"
         locale={locale}
-        title="Dhanu (Sagittarius) in Vedic Astrology — Complete Rashi Guide"
+        title="Dhanu (Sagittarius) in Vedic Astrology  –  Complete Rashi Guide"
         description="Comprehensive guide to Dhanu Rashi (Sagittarius) covering planetary dignities, nakshatras, personality, career, compatibility, remedies, and mythology from classical Jyotish sources."
       />
       {children}

@@ -14,19 +14,19 @@ import type { Locale } from '@/types/panchang';
 
 // ─── Inline LABELS (en + hi, ta/bn fall back to en) ─────────────────────────
 const L: Record<string, Record<string, string>> = {
-  title: { en: 'Dasha Sandhi — Junction Periods Between Planetary Dashas', hi: 'दशा सन्धि — ग्रह दशाओं के संक्रमण काल' },
-  subtitle: { en: 'The critical transition windows where one planetary period gives way to the next — and why the ancients warned about them.', hi: 'वह संवेदनशील संक्रमण काल जहाँ एक ग्रह की दशा दूसरे को मार्ग देती है — और प्राचीन ऋषियों ने इनके बारे में क्यों चेतावनी दी।' },
+  title: { en: 'Dasha Sandhi  –  Junction Periods Between Planetary Dashas', hi: 'दशा सन्धि  –  ग्रह दशाओं के संक्रमण काल' },
+  subtitle: { en: 'The critical transition windows where one planetary period gives way to the next  –  and why the ancients warned about them.', hi: 'वह संवेदनशील संक्रमण काल जहाँ एक ग्रह की दशा दूसरे को मार्ग देती है  –  और प्राचीन ऋषियों ने इनके बारे में क्यों चेतावनी दी।' },
 
-  // Section 1 — Introduction
+  // Section 1  –  Introduction
   introTitle: { en: 'What is Dasha Sandhi?', hi: 'दशा सन्धि क्या है?' },
-  introP1: { en: 'In Vedic astrology, the term "Sandhi" (सन्धि) means junction, joint, or meeting point. Dasha Sandhi refers to the transitional period at the junction of two consecutive planetary Dashas — the twilight zone where the influence of one planetary lord wanes and the next begins to assert itself.', hi: 'वैदिक ज्योतिष में "सन्धि" शब्द का अर्थ है संधि, जोड़ या मिलन बिंदु। दशा सन्धि दो क्रमागत ग्रह दशाओं के संक्रमण काल को संदर्भित करती है — वह संध्या-काल जहाँ एक ग्रह स्वामी का प्रभाव क्षीण होता है और अगला अपना प्रभाव स्थापित करना आरम्भ करता है।' },
-  introP2: { en: 'Just as dawn and dusk are neither day nor night — possessing a liminal, unsettled quality — Dasha Sandhi is a period of vulnerability and uncertainty. The native experiences a blurring of themes: the old life structure hasn\'t fully dissolved, yet the new one hasn\'t crystallized. This is why classical texts universally advise caution during these windows.', hi: 'जैसे उषा और संध्या न दिन हैं न रात — एक अनिश्चित, अस्थिर गुणवत्ता रखती हैं — दशा सन्धि भी असुरक्षा और अनिश्चितता का काल है। जातक विषयों का धुँधलापन अनुभव करता है: पुरानी जीवन संरचना पूरी तरह विलीन नहीं हुई, फिर भी नई स्फटिकित नहीं हुई। इसीलिए शास्त्रीय ग्रंथ सर्वसम्मति से इन अवधियों में सावधानी की सलाह देते हैं।' },
+  introP1: { en: 'In Vedic astrology, the term "Sandhi" (सन्धि) means junction, joint, or meeting point. Dasha Sandhi refers to the transitional period at the junction of two consecutive planetary Dashas  –  the twilight zone where the influence of one planetary lord wanes and the next begins to assert itself.', hi: 'वैदिक ज्योतिष में "सन्धि" शब्द का अर्थ है संधि, जोड़ या मिलन बिंदु। दशा सन्धि दो क्रमागत ग्रह दशाओं के संक्रमण काल को संदर्भित करती है  –  वह संध्या-काल जहाँ एक ग्रह स्वामी का प्रभाव क्षीण होता है और अगला अपना प्रभाव स्थापित करना आरम्भ करता है।' },
+  introP2: { en: 'Just as dawn and dusk are neither day nor night  –  possessing a liminal, unsettled quality  –  Dasha Sandhi is a period of vulnerability and uncertainty. The native experiences a blurring of themes: the old life structure hasn\'t fully dissolved, yet the new one hasn\'t crystallized. This is why classical texts universally advise caution during these windows.', hi: 'जैसे उषा और संध्या न दिन हैं न रात  –  एक अनिश्चित, अस्थिर गुणवत्ता रखती हैं  –  दशा सन्धि भी असुरक्षा और अनिश्चितता का काल है। जातक विषयों का धुँधलापन अनुभव करता है: पुरानी जीवन संरचना पूरी तरह विलीन नहीं हुई, फिर भी नई स्फटिकित नहीं हुई। इसीलिए शास्त्रीय ग्रंथ सर्वसम्मति से इन अवधियों में सावधानी की सलाह देते हैं।' },
   introP3: { en: 'Classical references: Brihat Parashara Hora Shastra (BPHS) Chapter 46 explicitly discusses the effects of Dasha junctions. Phaladeepika by Mantreshwara (Ch.20) notes that the last portion of a Dasha and the beginning of the next carry mixed, unreliable results. The Uttara Kalamrita further elaborates on remedial measures during these sensitive windows.', hi: 'शास्त्रीय संदर्भ: बृहत् पाराशर होरा शास्त्र (BPHS) अध्याय 46 में दशा संधि के प्रभावों पर स्पष्ट चर्चा है। मन्त्रेश्वर द्वारा लिखित फलदीपिका (अध्याय 20) में बताया गया है कि दशा का अंतिम भाग और अगली का आरम्भ मिश्रित, अविश्वसनीय फल देता है। उत्तर कालामृत इन संवेदनशील अवधियों में उपचारात्मक उपायों पर विस्तार से प्रकाश डालता है।' },
 
-  // Section 2 — Types
+  // Section 2  –  Types
   typesTitle: { en: 'Types of Dasha Sandhi', hi: 'दशा सन्धि के प्रकार' },
   mahaSandhiTitle: { en: 'Maha Dasha Sandhi', hi: 'महादशा सन्धि' },
-  mahaSandhiDesc: { en: 'The junction between two major planetary periods. This is the most powerful and consequential Sandhi. It marks a fundamental shift in life direction — the thematic landscape of your entire existence changes. The Sandhi window spans the last 10% of the outgoing Maha Dasha and the first 10% of the incoming one.', hi: 'दो प्रमुख ग्रह अवधियों के बीच का संधि काल। यह सबसे शक्तिशाली और परिणामी सन्धि है। यह जीवन दिशा में मौलिक परिवर्तन को चिह्नित करती है। सन्धि अवधि निवर्तमान महादशा के अंतिम 10% और आगामी के प्रथम 10% तक फैली होती है।' },
+  mahaSandhiDesc: { en: 'The junction between two major planetary periods. This is the most powerful and consequential Sandhi. It marks a fundamental shift in life direction  –  the thematic landscape of your entire existence changes. The Sandhi window spans the last 10% of the outgoing Maha Dasha and the first 10% of the incoming one.', hi: 'दो प्रमुख ग्रह अवधियों के बीच का संधि काल। यह सबसे शक्तिशाली और परिणामी सन्धि है। यह जीवन दिशा में मौलिक परिवर्तन को चिह्नित करती है। सन्धि अवधि निवर्तमान महादशा के अंतिम 10% और आगामी के प्रथम 10% तक फैली होती है।' },
   mahaSandhiDuration: { en: 'Duration: Typically 1.5 to 4 years depending on the Dasha lengths involved. For example, Saturn (19y) to Mercury (17y) Sandhi spans approximately 3.6 years (1.9y + 1.7y).', hi: 'अवधि: सामान्यतः 1.5 से 4 वर्ष, सम्बद्ध दशा अवधियों पर निर्भर। उदाहरण: शनि (19 वर्ष) से बुध (17 वर्ष) सन्धि लगभग 3.6 वर्ष (1.9 + 1.7) तक फैली होती है।' },
 
   antarSandhiTitle: { en: 'Antar Dasha Sandhi', hi: 'अन्तर्दशा सन्धि' },
@@ -34,39 +34,39 @@ const L: Record<string, Record<string, string>> = {
   antarSandhiDuration: { en: 'Duration: Typically 1 to 6 months. Shifts are noticeable but manageable.', hi: 'अवधि: सामान्यतः 1 से 6 मास। परिवर्तन ध्यान देने योग्य किन्तु प्रबन्धनीय।' },
 
   pratyantarSandhiTitle: { en: 'Pratyantar Dasha Sandhi', hi: 'प्रत्यन्तर दशा सन्धि' },
-  pratyantarSandhiDesc: { en: 'The junction between two sub-sub-periods. These are brief fluctuations — a few days to a few weeks. While individually minor, they create the fine texture of daily life experience. Most people don\'t notice these consciously, but they correlate with mood shifts, minor events, and changes in focus.', hi: 'दो प्रत्यन्तर अवधियों के बीच का संधि काल। ये संक्षिप्त उतार-चढ़ाव हैं — कुछ दिनों से कुछ सप्ताह तक। व्यक्तिगत रूप से मामूली होते हुए भी, ये दैनिक जीवन अनुभव की सूक्ष्म बनावट बनाते हैं।' },
+  pratyantarSandhiDesc: { en: 'The junction between two sub-sub-periods. These are brief fluctuations  –  a few days to a few weeks. While individually minor, they create the fine texture of daily life experience. Most people don\'t notice these consciously, but they correlate with mood shifts, minor events, and changes in focus.', hi: 'दो प्रत्यन्तर अवधियों के बीच का संधि काल। ये संक्षिप्त उतार-चढ़ाव हैं  –  कुछ दिनों से कुछ सप्ताह तक। व्यक्तिगत रूप से मामूली होते हुए भी, ये दैनिक जीवन अनुभव की सूक्ष्म बनावट बनाते हैं।' },
   pratyantarSandhiDuration: { en: 'Duration: Days to weeks. Felt as subtle shifts in energy, focus, or mood.', hi: 'अवधि: कुछ दिनों से सप्ताह तक। ऊर्जा, ध्यान या मनोदशा में सूक्ष्म परिवर्तन अनुभव होता है।' },
 
-  // Section 3 — Calculation
+  // Section 3  –  Calculation
   calcTitle: { en: 'How Sandhi Duration is Calculated', hi: 'सन्धि अवधि की गणना कैसे होती है' },
   calcIntro: { en: 'The calculation follows a straightforward principle: the Sandhi window is the last 10% of the outgoing Dasha plus the first 10% of the incoming Dasha. Here is a step-by-step worked example:', hi: 'गणना एक सरल सिद्धांत पर आधारित है: सन्धि अवधि निवर्तमान दशा के अंतिम 10% और आगामी दशा के प्रथम 10% का योग है। यहाँ चरण-दर-चरण उदाहरण है:' },
   calcStep1: { en: 'Step 1: Identify the two consecutive Maha Dashas. Example: Saturn Maha Dasha (19 years) followed by Mercury Maha Dasha (17 years).', hi: 'चरण 1: दो क्रमागत महादशाओं को पहचानें। उदाहरण: शनि महादशा (19 वर्ष) के बाद बुध महादशा (17 वर्ष)।' },
   calcStep2: { en: 'Step 2: Calculate 10% of the outgoing Dasha duration. Saturn: 19 years x 10% = 1.9 years (approximately 1 year, 10 months, 24 days).', hi: 'चरण 2: निवर्तमान दशा की अवधि का 10% गणना करें। शनि: 19 वर्ष x 10% = 1.9 वर्ष (लगभग 1 वर्ष, 10 मास, 24 दिन)।' },
   calcStep3: { en: 'Step 3: Calculate 10% of the incoming Dasha duration. Mercury: 17 years x 10% = 1.7 years (approximately 1 year, 8 months, 12 days).', hi: 'चरण 3: आगामी दशा की अवधि का 10% गणना करें। बुध: 17 वर्ष x 10% = 1.7 वर्ष (लगभग 1 वर्ष, 8 मास, 12 दिन)।' },
   calcStep4: { en: 'Step 4: The total Sandhi window = 1.9 + 1.7 = 3.6 years. This window is centered on the exact Dasha transition date.', hi: 'चरण 4: कुल सन्धि अवधि = 1.9 + 1.7 = 3.6 वर्ष। यह अवधि दशा संक्रमण की सटीक तिथि के चारों ओर केन्द्रित है।' },
-  calcStep5: { en: 'Step 5: Determine intensity. Saturn and Mercury are neutral to each other (neither friends nor enemies), so this Sandhi is rated "moderate" — confusion and mixed signals are likely, but without the turbulence of an enemy transition.', hi: 'चरण 5: तीव्रता निर्धारित करें। शनि और बुध एक-दूसरे के प्रति तटस्थ हैं (न मित्र न शत्रु), इसलिए यह सन्धि "मध्यम" श्रेणी की है — भ्रम और मिश्रित संकेत संभव, किन्तु शत्रुता वाले संक्रमण जैसी अशांति नहीं।' },
+  calcStep5: { en: 'Step 5: Determine intensity. Saturn and Mercury are neutral to each other (neither friends nor enemies), so this Sandhi is rated "moderate"  –  confusion and mixed signals are likely, but without the turbulence of an enemy transition.', hi: 'चरण 5: तीव्रता निर्धारित करें। शनि और बुध एक-दूसरे के प्रति तटस्थ हैं (न मित्र न शत्रु), इसलिए यह सन्धि "मध्यम" श्रेणी की है  –  भ्रम और मिश्रित संकेत संभव, किन्तु शत्रुता वाले संक्रमण जैसी अशांति नहीं।' },
 
-  // Section 4 — Effects
+  // Section 4  –  Effects
   effectsTitle: { en: 'Effects and Significance', hi: 'प्रभाव और महत्त्व' },
   effectsIntro: { en: 'The effects during Dasha Sandhi depend primarily on two factors: the natural relationship between the outgoing and incoming lords, and whether these planets are functional benefics or malefics for the specific Lagna.', hi: 'दशा सन्धि के दौरान प्रभाव मुख्यतः दो कारकों पर निर्भर करते हैं: निवर्तमान और आगामी स्वामी के बीच नैसर्गिक सम्बन्ध, और क्या ये ग्रह विशिष्ट लग्न के लिए कार्यात्मक शुभ या अशुभ हैं।' },
   effectsGeneral: { en: 'General vulnerability patterns during Sandhi:', hi: 'सन्धि के दौरान सामान्य असुरक्षा प्रवृत्तियाँ:' },
 
-  // Section 5 — Classical Texts
+  // Section 5  –  Classical Texts
   classicalTitle: { en: 'Classical Text References', hi: 'शास्त्रीय ग्रन्थ संदर्भ' },
 
-  // Section 6 — Modern Context
+  // Section 6  –  Modern Context
   modernTitle: { en: 'Modern Context: Psychology of Transition', hi: 'आधुनिक संदर्भ: संक्रमण का मनोविज्ञान' },
-  modernP1: { en: 'From a psychological perspective, Dasha Sandhi maps remarkably well onto what developmental psychology calls "liminal periods" — threshold states where identity is in flux. Just as adolescence (the sandhi between childhood and adulthood) is marked by confusion, identity experimentation, and heightened vulnerability, planetary Sandhi periods bring analogous inner turbulence.', hi: 'मनोवैज्ञानिक दृष्टिकोण से, दशा सन्धि विकासात्मक मनोविज्ञान में "सीमान्त अवधि" कहलाने वाली अवस्थाओं से उल्लेखनीय रूप से मेल खाती है — वे दहलीज अवस्थाएँ जहाँ पहचान परिवर्तनशील होती है।' },
+  modernP1: { en: 'From a psychological perspective, Dasha Sandhi maps remarkably well onto what developmental psychology calls "liminal periods"  –  threshold states where identity is in flux. Just as adolescence (the sandhi between childhood and adulthood) is marked by confusion, identity experimentation, and heightened vulnerability, planetary Sandhi periods bring analogous inner turbulence.', hi: 'मनोवैज्ञानिक दृष्टिकोण से, दशा सन्धि विकासात्मक मनोविज्ञान में "सीमान्त अवधि" कहलाने वाली अवस्थाओं से उल्लेखनीय रूप से मेल खाती है  –  वे दहलीज अवस्थाएँ जहाँ पहचान परिवर्तनशील होती है।' },
   modernP2: { en: 'William Bridges\' "Transitions" model describes three phases: Ending (letting go of the old), the Neutral Zone (confusion, between identities), and New Beginning. This maps directly to the Sandhi experience: the tail of the outgoing Dasha is the Ending, the junction itself is the Neutral Zone, and the early incoming Dasha is the New Beginning.', hi: 'विलियम ब्रिज का "ट्रांजिशन" मॉडल तीन चरणों का वर्णन करता है: समाप्ति (पुराने को छोड़ना), तटस्थ क्षेत्र (भ्रम, पहचानों के बीच), और नई शुरुआत। यह सन्धि अनुभव से सीधे मेल खाता है।' },
-  modernP3: { en: 'The practical insight: knowing that confusion and instability during Sandhi is structurally normal (not a personal failing) can itself be therapeutic. It is the cosmic equivalent of jet lag — disorienting but temporary, and best navigated with patience rather than panic.', hi: 'व्यावहारिक अंतर्दृष्टि: यह जानना कि सन्धि के दौरान भ्रम और अस्थिरता संरचनात्मक रूप से सामान्य है (व्यक्तिगत असफलता नहीं), स्वयं चिकित्सात्मक हो सकता है। यह जेट लैग का ब्रह्माण्डीय समतुल्य है।' },
+  modernP3: { en: 'The practical insight: knowing that confusion and instability during Sandhi is structurally normal (not a personal failing) can itself be therapeutic. It is the cosmic equivalent of jet lag  –  disorienting but temporary, and best navigated with patience rather than panic.', hi: 'व्यावहारिक अंतर्दृष्टि: यह जानना कि सन्धि के दौरान भ्रम और अस्थिरता संरचनात्मक रूप से सामान्य है (व्यक्तिगत असफलता नहीं), स्वयं चिकित्सात्मक हो सकता है। यह जेट लैग का ब्रह्माण्डीय समतुल्य है।' },
 
-  // Section 7 — Remedies
+  // Section 7  –  Remedies
   remediesTitle: { en: 'Remedial Measures During Sandhi', hi: 'सन्धि काल में उपचारात्मक उपाय' },
   remediesIntro: { en: 'Classical texts prescribe specific remedies to navigate Sandhi periods smoothly. These should ideally begin before the Sandhi window opens:', hi: 'शास्त्रीय ग्रन्थ सन्धि काल को सुचारू रूप से पार करने के लिए विशिष्ट उपाय बताते हैं। ये आदर्श रूप से सन्धि अवधि आरम्भ होने से पहले शुरू करने चाहिए:' },
 
   // Navigation
   relatedTitle: { en: 'Related Topics', hi: 'सम्बन्धित विषय' },
-  shareText: { en: 'Dasha Sandhi — Junction Periods Between Planetary Dashas. Learn about the most critical transition windows in Vedic Astrology.', hi: 'दशा सन्धि — ग्रह दशाओं के संक्रमण काल। वैदिक ज्योतिष में सबसे संवेदनशील संक्रमण अवधियों के बारे में जानें।' },
+  shareText: { en: 'Dasha Sandhi  –  Junction Periods Between Planetary Dashas. Learn about the most critical transition windows in Vedic Astrology.', hi: 'दशा सन्धि  –  ग्रह दशाओं के संक्रमण काल। वैदिक ज्योतिष में सबसे संवेदनशील संक्रमण अवधियों के बारे में जानें।' },
 };
 
 // ─── Maha Dasha durations (Vimshottari) ─────────────────────────────────────
@@ -130,7 +130,7 @@ const VULNERABILITY_PATTERNS = [
 
 // ─── Classical text quotes ──────────────────────────────────────────────────
 const CLASSICAL_QUOTES = [
-  { source: 'BPHS Ch.46', en: '"At the junction of two Dashas, the native experiences confusion of purpose and instability of fortune. The last portion of any Dasha carries the seed of the next — observe the transits of both lords carefully during this period."', hi: '"दो दशाओं के संधि काल में जातक उद्देश्य का भ्रम और भाग्य की अस्थिरता अनुभव करता है। किसी भी दशा का अंतिम भाग अगली का बीज धारण करता है — इस काल में दोनों स्वामियों के गोचर को सावधानीपूर्वक देखें।"' },
+  { source: 'BPHS Ch.46', en: '"At the junction of two Dashas, the native experiences confusion of purpose and instability of fortune. The last portion of any Dasha carries the seed of the next  –  observe the transits of both lords carefully during this period."', hi: '"दो दशाओं के संधि काल में जातक उद्देश्य का भ्रम और भाग्य की अस्थिरता अनुभव करता है। किसी भी दशा का अंतिम भाग अगली का बीज धारण करता है  –  इस काल में दोनों स्वामियों के गोचर को सावधानीपूर्वक देखें।"' },
   { source: 'Phaladeepika Ch.20', en: '"The results of a Dasha are strongest in its middle portion and weakest at its beginning and end. At the junction, the native should perform remedial measures for both the outgoing and incoming lords."', hi: '"दशा के फल उसके मध्य भाग में सबसे प्रबल और आरम्भ व अंत में सबसे कमज़ोर होते हैं। संधि पर, जातक को निवर्तमान और आगामी दोनों स्वामियों के लिए उपचारात्मक उपाय करने चाहिए।"' },
   { source: 'Uttara Kalamrita', en: '"During the Sandhi of Maha Dashas, charitable acts, mantra japa, and fasting on the days ruled by both planets bring protection. The native should avoid initiating new ventures and instead consolidate existing ones."', hi: '"महादशा की सन्धि के दौरान, दान, मंत्र जप, और दोनों ग्रहों के दिनों में उपवास सुरक्षा प्रदान करते हैं। जातक को नए उपक्रम शुरू करने से बचना चाहिए और मौजूदा को समेकित करना चाहिए।"' },
 ];
@@ -148,7 +148,7 @@ const REMEDIES = [
     { en: 'Donate to educational institutions during Mercury or Jupiter Sandhi. Donate to hospitals during Saturn Sandhi.', hi: 'बुध या गुरु सन्धि में शैक्षिक संस्थानों को दान। शनि सन्धि में अस्पतालों को दान।' },
   ]},
   { category: { en: 'Gemstones', hi: 'रत्न' }, color: 'text-cyan-400', items: [
-    { en: 'Wear the gemstone of the incoming planet\'s lord — but only if it is a functional benefic for your Lagna. Consult your chart.', hi: 'आगामी ग्रह स्वामी का रत्न धारण करें — किन्तु केवल तभी जब वह आपके लग्न के लिए कार्यात्मक शुभ हो। अपनी कुण्डली देखें।' },
+    { en: 'Wear the gemstone of the incoming planet\'s lord  –  but only if it is a functional benefic for your Lagna. Consult your chart.', hi: 'आगामी ग्रह स्वामी का रत्न धारण करें  –  किन्तु केवल तभी जब वह आपके लग्न के लिए कार्यात्मक शुभ हो। अपनी कुण्डली देखें।' },
     { en: 'If the incoming lord is a malefic, strengthen the Lagna lord instead for overall stability.', hi: 'यदि आगामी स्वामी अशुभ है, तो समग्र स्थिरता के लिए लग्न स्वामी को बलवान करें।' },
   ]},
   { category: { en: 'Practical Wisdom', hi: 'व्यावहारिक ज्ञान' }, color: 'text-violet-400', items: [
@@ -161,7 +161,7 @@ const REMEDIES = [
 // ─── Related links ──────────────────────────────────────────────────────────
 const RELATED = [
   { href: '/learn/dashas', label: { en: 'Vimshottari Dasha System', hi: 'विंशोत्तरी दशा पद्धति' } },
-  { href: '/learn/avasthas', label: { en: 'Avasthas — Planetary States', hi: 'अवस्थाएँ — ग्रह दशाएँ' } },
+  { href: '/learn/avasthas', label: { en: 'Avasthas  –  Planetary States', hi: 'अवस्थाएँ  –  ग्रह दशाएँ' } },
   { href: '/learn/transit-guide', label: { en: 'Transit Guide', hi: 'गोचर मार्गदर्शिका' } },
   { href: '/learn/remedies', label: { en: 'Vedic Remedies', hi: 'वैदिक उपाय' } },
   { href: '/learn/sade-sati', label: { en: 'Sade Sati', hi: 'साढ़े साती' } },
@@ -222,7 +222,7 @@ export default function DashaSandhiPage() {
         <p className="text-text-secondary leading-relaxed" style={bf}>{t('introP1')}</p>
         <p className="text-text-secondary leading-relaxed" style={bf}>{t('introP2')}</p>
 
-        {/* Sandhi visual — dawn/dusk analogy */}
+        {/* Sandhi visual  –  dawn/dusk analogy */}
         <div className="relative rounded-xl overflow-hidden h-20 my-6">
           <div className="absolute inset-0 flex">
             <div className="w-1/3 bg-gradient-to-r from-indigo-900/60 to-amber-900/40 flex items-center justify-center">
@@ -307,7 +307,7 @@ export default function DashaSandhiPage() {
           ))}
         </div>
 
-        {/* Visual timeline — Saturn → Mercury Sandhi */}
+        {/* Visual timeline  –  Saturn → Mercury Sandhi */}
         <div className="mt-6">
           <h3 className="text-sm font-bold text-gold-dark uppercase tracking-wider mb-3">
             {tl({ en: 'Visual Timeline: Saturn → Mercury Sandhi', hi: 'दृश्य समयरेखा: शनि → बुध सन्धि', sa: 'दृश्यसमयरेखा: शनिबुधसन्धिः' }, locale)}
@@ -453,7 +453,7 @@ export default function DashaSandhiPage() {
 
         {/* Intensity Matrix */}
         <h3 className="text-sm font-bold text-gold-dark uppercase tracking-wider mt-6">
-          {tl({ en: 'Sandhi Intensity Matrix — All Planet Pairs', hi: 'सन्धि तीव्रता मैट्रिक्स — सभी ग्रह जोड़े', sa: 'सन्धितीव्रतामैट्रिक्स — सर्वग्रहयुग्मानि' }, locale)}
+          {tl({ en: 'Sandhi Intensity Matrix  –  All Planet Pairs', hi: 'सन्धि तीव्रता मैट्रिक्स  –  सभी ग्रह जोड़े', sa: 'सन्धितीव्रतामैट्रिक्स  –  सर्वग्रहयुग्मानि' }, locale)}
         </h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs border-collapse">

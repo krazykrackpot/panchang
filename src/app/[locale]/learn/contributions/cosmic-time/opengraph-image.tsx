@@ -1,7 +1,7 @@
 import { createContributionOG, OG_SIZE } from '../og-helper';
 
 export const runtime = 'edge';
-export const alt = '4.32 Billion Years — Hindu Cosmology vs Modern Science';
+export const alt = '4.32 Billion Years  –  Hindu Cosmology vs Modern Science';
 export const size = OG_SIZE;
 export const contentType = 'image/png';
 

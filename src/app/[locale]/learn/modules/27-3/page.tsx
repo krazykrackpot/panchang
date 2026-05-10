@@ -55,7 +55,7 @@ const COMPARISON_TABLE = [
 ] as const;
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 1 — Core Difference + Smarta vs Vaishnava overview             */
+/*  PAGE 1  –  Core Difference + Smarta vs Vaishnava overview             */
 /* ------------------------------------------------------------------ */
 function Page1() {
   const locale = useModuleLocale();
@@ -125,7 +125,7 @@ function Page1() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 2 — Viddha Rule + Ekadashi + Visual Timeline Comparison        */
+/*  PAGE 2  –  Viddha Rule + Ekadashi + Visual Timeline Comparison        */
 /* ------------------------------------------------------------------ */
 function Page2() {
   const locale = useModuleLocale();
@@ -142,21 +142,21 @@ function Page2() {
         </p>
       </section>
 
-      {/* Visual: Ekadashi scenario — side by side timelines */}
+      {/* Visual: Ekadashi scenario  –  side by side timelines */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-4">
-          {isHi ? 'उदाहरण: जन्माष्टमी — दो दृष्टिकोण' : 'Example: Janmashtami — Two Perspectives'}
+          {isHi ? 'उदाहरण: जन्माष्टमी  –  दो दृष्टिकोण' : 'Example: Janmashtami  –  Two Perspectives'}
         </h4>
 
         {/* Shared timeline */}
         <div className="mb-4 text-xs text-text-secondary">
           <div className="flex items-center gap-1 mb-1">
             <span className="w-2 h-2 rounded-full bg-orange-400" />
-            <span>{isHi ? 'सप्तमी' : 'Saptami'}: 3:00 AM — 6:00 AM ({isHi ? 'सूर्योदय' : 'sunrise'})</span>
+            <span>{isHi ? 'सप्तमी' : 'Saptami'}: 3:00 AM  –  6:00 AM ({isHi ? 'सूर्योदय' : 'sunrise'})</span>
           </div>
           <div className="flex items-center gap-1">
             <span className="w-2 h-2 rounded-full bg-violet-400" />
-            <span>{isHi ? 'अष्टमी' : 'Ashtami'}: 4:00 AM — {isHi ? 'अगले दिन' : 'next day'}</span>
+            <span>{isHi ? 'अष्टमी' : 'Ashtami'}: 4:00 AM  –  {isHi ? 'अगले दिन' : 'next day'}</span>
           </div>
         </div>
 
@@ -192,7 +192,7 @@ function Page2() {
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <div className="w-full h-3 rounded bg-gradient-to-r from-orange-400/40 via-violet-400/40 to-violet-400/40 border border-white/10 relative">
-                  <div className="absolute top-1/2 left-[35%] -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-red-400 ring-2 ring-red-400/50" title="sunrise — viddha!" />
+                  <div className="absolute top-1/2 left-[35%] -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-red-400 ring-2 ring-red-400/50" title="sunrise  –  viddha!" />
                 </div>
               </div>
               <div className="flex justify-between text-[9px] text-text-secondary/60">
@@ -232,7 +232,7 @@ function Page2() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 3 — Geographic Variation, Implementation, Quick Ref Table      */
+/*  PAGE 3  –  Geographic Variation, Implementation, Quick Ref Table      */
 /* ------------------------------------------------------------------ */
 function Page3() {
   const locale = useModuleLocale();

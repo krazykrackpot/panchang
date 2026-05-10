@@ -147,7 +147,7 @@ function getCurrentTransitSigns(): { saturnSign: number; jupiterSign: number } {
   const now = new Date();
   const jd = dateToJD(now.getUTCFullYear(), now.getUTCMonth() + 1, now.getUTCDate(), 12);
   const planets = getPlanetaryPositions(jd);
-  // planets[6] = Saturn, planets[4] = Jupiter — these are tropical longitudes
+  // planets[6] = Saturn, planets[4] = Jupiter  –  these are tropical longitudes
   const saturnSid = toSidereal(planets[6].longitude, jd);
   const jupiterSid = toSidereal(planets[4].longitude, jd);
   return {
@@ -296,7 +296,7 @@ export default function FamilyCommandCenter() {
     setMuhurtaScanning(true);
     setMuhurtaScanned(false);
 
-    // Kundali generation now runs server-side via API — no main-thread blocking.
+    // Kundali generation now runs server-side via API  –  no main-thread blocking.
     (async () => {
       try {
         const [startDate, endDate] = getMonthDateRange(selectedMonth);
@@ -791,7 +791,7 @@ function MemberStatusCard({
         </div>
       )}
 
-      {/* Upcoming transit article links — personalized to this member's Moon sign */}
+      {/* Upcoming transit article links  –  personalized to this member's Moon sign */}
       {(() => {
         const moonSign = status.sadeSati.moonSign;
         if (!moonSign || moonSign < 1 || moonSign > 12) return null;
@@ -820,7 +820,7 @@ function MemberStatusCard({
                 <ArrowRight className="w-3 h-3 mt-0.5 shrink-0 group-hover:translate-x-0.5 transition-transform" />
                 <span style={bodyStyle}>
                   <span className="text-gold-primary/80 font-medium">{link.title.en.split(':')[0]}</span>
-                  {' — '}
+                  {'  –  '}
                   {link.house}{locale === 'en' ? (link.house === 1 ? 'st' : link.house === 2 ? 'nd' : link.house === 3 ? 'rd' : 'th') : ''} {locale === 'hi' ? 'भाव' : 'house'}
                   {': '}{link.headline}
                 </span>

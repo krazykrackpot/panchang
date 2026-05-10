@@ -114,7 +114,7 @@ export default function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFon
             </div>
           </div>
 
-          {/* Timeline progress — shows elapsed vs remaining years */}
+          {/* Timeline progress  –  shows elapsed vs remaining years */}
           {(() => {
             const startYr = parseInt(String(sadeSati.cycleStart));
             const endYr = parseInt(String(sadeSati.cycleEnd));
@@ -154,7 +154,7 @@ export default function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFon
             if (!nextCycle) return null;
             return (
               <div className="text-text-secondary text-sm mt-2" style={bodyFont}>
-                {locale === 'en' || isTamil ? `Next cycle: ${nextCycle.startYear} — ${nextCycle.endYear}` : `अगला चक्र: ${nextCycle.startYear} — ${nextCycle.endYear}`}
+                {locale === 'en' || isTamil ? `Next cycle: ${nextCycle.startYear}  –  ${nextCycle.endYear}` : `अगला चक्र: ${nextCycle.startYear}  –  ${nextCycle.endYear}`}
               </div>
             );
           })()}

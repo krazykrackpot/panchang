@@ -14,10 +14,10 @@ export const SL: Record<string, Record<string, string>> = {
     bn: 'শুভ মুহূর্ত খোঁজক',
   },
   scannerSubtitle: {
-    en: 'Find the most auspicious time for your activity — personalized to your birth chart',
-    hi: 'अपनी गतिविधि के लिए सबसे शुभ समय खोजें — आपकी जन्म कुंडली के अनुसार',
-    ta: 'உங்கள் செயலுக்கான மிகவும் சுபமான நேரத்தைக் கண்டறியுங்கள் — உங்கள் ஜாதகத்திற்கு ஏற்ப',
-    bn: 'আপনার কার্যকলাপের জন্য সবচেয়ে শুভ সময় খুঁজুন — আপনার জন্মচার্ট অনুযায়ী',
+    en: 'Find the most auspicious time for your activity  –  personalized to your birth chart',
+    hi: 'अपनी गतिविधि के लिए सबसे शुभ समय खोजें  –  आपकी जन्म कुंडली के अनुसार',
+    ta: 'உங்கள் செயலுக்கான மிகவும் சுபமான நேரத்தைக் கண்டறியுங்கள்  –  உங்கள் ஜாதகத்திற்கு ஏற்ப',
+    bn: 'আপনার কার্যকলাপের জন্য সবচেয়ে শুভ সময় খুঁজুন  –  আপনার জন্মচার্ট অনুযায়ী',
   },
   scanMonth: {
     en: 'Scan Month',
@@ -116,10 +116,10 @@ export const SL: Record<string, Record<string, string>> = {
     bn: 'এই কার্যকলাপের জন্য অনুকূল ✔',
   },
   caution: {
-    en: 'Caution — may suppress this activity',
-    hi: 'सावधान — इस गतिविधि को दबा सकता है',
-    ta: 'எச்சரிக்கை — இந்த செயலை மழுங்கடிக்கலாம்',
-    bn: 'সতর্কতা — এই কার্যকলাপ দমন করতে পারে',
+    en: 'Caution  –  may suppress this activity',
+    hi: 'सावधान  –  इस गतिविधि को दबा सकता है',
+    ta: 'எச்சரிக்கை  –  இந்த செயலை மழுங்கடிக்கலாம்',
+    bn: 'সতর্কতা  –  এই কার্যকলাপ দমন করতে পারে',
   },
   // Factor labels for ScoreBreakdown / PeakCards
   tithi: {

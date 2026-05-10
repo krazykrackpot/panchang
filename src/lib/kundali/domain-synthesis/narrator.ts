@@ -1,9 +1,9 @@
 /**
- * Domain Narrator — Deep Personalized Jyotish Interpretation
+ * Domain Narrator  –  Deep Personalized Jyotish Interpretation
  *
  * 9 composable narrative functions that produce bilingual (en + hi)
  * sentences from structured domain-synthesis data.  Each function
- * interprets the RELATIONAL MEANING of placements — not just stating
+ * interprets the RELATIONAL MEANING of placements  –  not just stating
  * astrological facts but explaining what they mean for the native's life.
  *
  * A `composeDomainNarrative` helper joins multiple blocks into a
@@ -73,7 +73,7 @@ function houseHi(n: number): string {
 }
 
 // ---------------------------------------------------------------------------
-// House meanings — the relational core
+// House meanings  –  the relational core
 // ---------------------------------------------------------------------------
 
 const HOUSE_MEANINGS_EN: Record<number, string> = {
@@ -122,7 +122,7 @@ const HOUSE_LABEL_HI: Record<number, string> = {
 };
 
 // ---------------------------------------------------------------------------
-// Dignity labels — impact language
+// Dignity labels  –  impact language
 // ---------------------------------------------------------------------------
 
 const DIGNITY_EN: Record<string, string> = {
@@ -147,27 +147,27 @@ const DIGNITY_HI: Record<string, string> = {
 
 /** Rich dignity impact phrases for narrative depth */
 const DIGNITY_IMPACT_EN: Record<string, string> = {
-  exalted:      'at peak strength — results flow effortlessly and abundantly',
-  own:          'comfortable and authentic — delivering steady, reliable results',
-  moolatrikona: 'in its zone of power — strong and purposeful in its expression',
-  friendly:     'reasonably well-placed — outcomes are positive with some effort',
-  neutral:      'neither helped nor hindered — results depend on other chart factors',
-  enemy:        'uncomfortable and strained — the planet struggles to deliver its promise, requiring patience and remedial support',
-  debilitated:  'at its weakest expression — this area faces significant challenges, but Neecha Bhanga (cancellation) and conscious effort can transform weakness into unexpected strength',
+  exalted:      'at peak strength  –  results flow effortlessly and abundantly',
+  own:          'comfortable and authentic  –  delivering steady, reliable results',
+  moolatrikona: 'in its zone of power  –  strong and purposeful in its expression',
+  friendly:     'reasonably well-placed  –  outcomes are positive with some effort',
+  neutral:      'neither helped nor hindered  –  results depend on other chart factors',
+  enemy:        'uncomfortable and strained  –  the planet struggles to deliver its promise, requiring patience and remedial support',
+  debilitated:  'at its weakest expression  –  this area faces significant challenges, but Neecha Bhanga (cancellation) and conscious effort can transform weakness into unexpected strength',
 };
 
 const DIGNITY_IMPACT_HI: Record<string, string> = {
-  exalted:      'चरम शक्ति पर — फल सहज और प्रचुर मात्रा में आते हैं',
-  own:          'स्वस्थ और प्रामाणिक — स्थिर, विश्वसनीय परिणाम देता है',
-  moolatrikona: 'अपनी शक्ति के क्षेत्र में — मजबूत और उद्देश्यपूर्ण अभिव्यक्ति',
-  friendly:     'उचित स्थिति में — कुछ प्रयास से सकारात्मक परिणाम',
-  neutral:      'न लाभ न हानि — परिणाम अन्य कुंडली कारकों पर निर्भर',
-  enemy:        'असहज और तनावग्रस्त — ग्रह अपना वादा पूरा करने में संघर्ष करता है, धैर्य और उपाय आवश्यक',
-  debilitated:  'सबसे कमजोर अभिव्यक्ति — यह क्षेत्र महत्वपूर्ण चुनौतियों का सामना करता है, लेकिन नीच भंग और सचेत प्रयास कमजोरी को अप्रत्याशित शक्ति में बदल सकते हैं',
+  exalted:      'चरम शक्ति पर  –  फल सहज और प्रचुर मात्रा में आते हैं',
+  own:          'स्वस्थ और प्रामाणिक  –  स्थिर, विश्वसनीय परिणाम देता है',
+  moolatrikona: 'अपनी शक्ति के क्षेत्र में  –  मजबूत और उद्देश्यपूर्ण अभिव्यक्ति',
+  friendly:     'उचित स्थिति में  –  कुछ प्रयास से सकारात्मक परिणाम',
+  neutral:      'न लाभ न हानि  –  परिणाम अन्य कुंडली कारकों पर निर्भर',
+  enemy:        'असहज और तनावग्रस्त  –  ग्रह अपना वादा पूरा करने में संघर्ष करता है, धैर्य और उपाय आवश्यक',
+  debilitated:  'सबसे कमजोर अभिव्यक्ति  –  यह क्षेत्र महत्वपूर्ण चुनौतियों का सामना करता है, लेकिन नीच भंग और सचेत प्रयास कमजोरी को अप्रत्याशित शक्ति में बदल सकते हैं',
 };
 
 // ---------------------------------------------------------------------------
-// Planet personality map — what each planet BRINGS to a domain
+// Planet personality map  –  what each planet BRINGS to a domain
 // ---------------------------------------------------------------------------
 
 const PLANET_NATURE_EN: Record<number, string> = {
@@ -220,7 +220,7 @@ const PLANET_ROLE_HI: Record<number, string> = {
 };
 
 // ---------------------------------------------------------------------------
-// Aspect verbs — what each planet's gaze DOES
+// Aspect verbs  –  what each planet's gaze DOES
 // ---------------------------------------------------------------------------
 
 const ASPECT_VERB_EN: Record<number, string> = {
@@ -248,7 +248,7 @@ const ASPECT_VERB_HI: Record<number, string> = {
 };
 
 // ---------------------------------------------------------------------------
-// Relational interpretation — lord-of-X-in-Y meaning
+// Relational interpretation  –  lord-of-X-in-Y meaning
 // ---------------------------------------------------------------------------
 
 /**
@@ -272,43 +272,43 @@ function getRelationalMeaning(
   const planetNatureHi = PLANET_NATURE_HI[planetId] ?? 'मिश्रित प्रभाव';
   const domain = domainName ?? srcEn;
 
-  // Same house — lord in own house
+  // Same house  –  lord in own house
   if (sourceHouse === targetHouse) {
     return {
-      en: `Your ${domain} lord sits in its own house — a strong, self-sufficient placement. The themes of ${tgtMeaningEn} are directly under control, and this planet channels ${planetNatureEn} into the very area it governs.`,
-      hi: `आपका ${domain} स्वामी अपने ही भाव में बैठा है — एक मजबूत, आत्मनिर्भर स्थिति। ${tgtMeaningHi} के विषय सीधे नियंत्रण में हैं, और यह ग्रह ${planetNatureHi} को उसी क्षेत्र में प्रवाहित करता है।`,
+      en: `Your ${domain} lord sits in its own house  –  a strong, self-sufficient placement. The themes of ${tgtMeaningEn} are directly under control, and this planet channels ${planetNatureEn} into the very area it governs.`,
+      hi: `आपका ${domain} स्वामी अपने ही भाव में बैठा है  –  एक मजबूत, आत्मनिर्भर स्थिति। ${tgtMeaningHi} के विषय सीधे नियंत्रण में हैं, और यह ग्रह ${planetNatureHi} को उसी क्षेत्र में प्रवाहित करता है।`,
     };
   }
 
-  // Kendra placement (1, 4, 7, 10) — strong, visible results
+  // Kendra placement (1, 4, 7, 10)  –  strong, visible results
   const kendras = [1, 4, 7, 10];
-  // Trikona placement (1, 5, 9) — fortunate, dharmic
+  // Trikona placement (1, 5, 9)  –  fortunate, dharmic
   const trikonas = [1, 5, 9];
-  // Dusthana placement (6, 8, 12) — challenges, transformation
+  // Dusthana placement (6, 8, 12)  –  challenges, transformation
   const dusthanas = [6, 8, 12];
 
   let contextEn = '';
   let contextHi = '';
 
   if (kendras.includes(targetHouse)) {
-    contextEn = `This is a strong angular placement — your ${domain} matters gain visibility, public impact, and tangible results through the arena of ${tgtMeaningEn}.`;
-    contextHi = `यह एक मजबूत केंद्र स्थिति है — आपके ${domain} विषय ${tgtMeaningHi} के माध्यम से दृश्यता और ठोस परिणाम प्राप्त करते हैं।`;
+    contextEn = `This is a strong angular placement  –  your ${domain} matters gain visibility, public impact, and tangible results through the arena of ${tgtMeaningEn}.`;
+    contextHi = `यह एक मजबूत केंद्र स्थिति है  –  आपके ${domain} विषय ${tgtMeaningHi} के माध्यम से दृश्यता और ठोस परिणाम प्राप्त करते हैं।`;
   } else if (trikonas.includes(targetHouse)) {
-    contextEn = `This fortunate trinal placement connects your ${domain} to the house of ${tgtMeaningEn} — a dharmic flow that brings grace, merit, and organic growth.`;
-    contextHi = `यह शुभ त्रिकोण स्थिति आपके ${domain} को ${tgtMeaningHi} के भाव से जोड़ती है — एक धार्मिक प्रवाह जो कृपा और स्वाभाविक वृद्धि लाता है।`;
+    contextEn = `This fortunate trinal placement connects your ${domain} to the house of ${tgtMeaningEn}  –  a dharmic flow that brings grace, merit, and organic growth.`;
+    contextHi = `यह शुभ त्रिकोण स्थिति आपके ${domain} को ${tgtMeaningHi} के भाव से जोड़ती है  –  एक धार्मिक प्रवाह जो कृपा और स्वाभाविक वृद्धि लाता है।`;
   } else if (dusthanas.includes(targetHouse)) {
-    contextEn = `Placed in the challenging ${ordinalEn(targetHouse)} house of ${tgtMeaningEn}, your ${domain} lord faces obstacles — but dusthana placements also create resilience, and the struggle itself becomes a source of growth.`;
-    contextHi = `चुनौतीपूर्ण ${houseHi(targetHouse)} भाव (${tgtMeaningHi}) में स्थित, आपके ${domain} स्वामी को बाधाओं का सामना करना पड़ता है — लेकिन दुस्थान स्थिति लचीलापन भी देती है।`;
+    contextEn = `Placed in the challenging ${ordinalEn(targetHouse)} house of ${tgtMeaningEn}, your ${domain} lord faces obstacles  –  but dusthana placements also create resilience, and the struggle itself becomes a source of growth.`;
+    contextHi = `चुनौतीपूर्ण ${houseHi(targetHouse)} भाव (${tgtMeaningHi}) में स्थित, आपके ${domain} स्वामी को बाधाओं का सामना करना पड़ता है  –  लेकिन दुस्थान स्थिति लचीलापन भी देती है।`;
   } else {
-    contextEn = `Your ${domain} energy flows into the ${ordinalEn(targetHouse)} house of ${tgtMeaningEn} — the planet channels ${planetNatureEn} into this life area, creating a bridge between ${srcEn} and ${tgtEn} themes.`;
-    contextHi = `आपकी ${domain} ऊर्जा ${houseHi(targetHouse)} भाव (${tgtMeaningHi}) में प्रवाहित होती है — ग्रह ${planetNatureHi} को इस जीवन क्षेत्र में प्रवाहित करता है।`;
+    contextEn = `Your ${domain} energy flows into the ${ordinalEn(targetHouse)} house of ${tgtMeaningEn}  –  the planet channels ${planetNatureEn} into this life area, creating a bridge between ${srcEn} and ${tgtEn} themes.`;
+    contextHi = `आपकी ${domain} ऊर्जा ${houseHi(targetHouse)} भाव (${tgtMeaningHi}) में प्रवाहित होती है  –  ग्रह ${planetNatureHi} को इस जीवन क्षेत्र में प्रवाहित करता है।`;
   }
 
   return { en: contextEn, hi: contextHi };
 }
 
 // ---------------------------------------------------------------------------
-// 1. narrateHouseLord — the biggest change
+// 1. narrateHouseLord  –  the biggest change
 // ---------------------------------------------------------------------------
 
 export interface HouseLordParams {
@@ -339,16 +339,16 @@ export function narrateHouseLord(p: HouseLordParams): LocaleText {
   const domain = p.domainName ?? HOUSE_LABEL_EN[p.primaryHouse] ?? `${ordinalEn(p.primaryHouse)} house`;
   const domainHi = HOUSE_LABEL_HI[p.primaryHouse] ?? `${houseHi(p.primaryHouse)} भाव`;
 
-  // Opening — planet placement with relational context
-  let en = `Your ${ordinalEn(p.primaryHouse)} lord ${p.lordPlanetName.en}${roleEn ? ` — ${roleEn} —` : ''} sits in the ${ordinalEn(p.lordHouse)} house of ${tgtMeaningEn} in ${p.lordSignName.en} (${digEn}).`;
-  let hi = `आपका ${houseHi(p.primaryHouse)} भाव का स्वामी ${p.lordPlanetName.hi}${roleHi ? ` — ${roleHi} —` : ''} ${houseHi(p.lordHouse)} भाव (${tgtMeaningHi}) में ${p.lordSignName.hi} (${digHi}) में विराजमान है।`;
+  // Opening  –  planet placement with relational context
+  let en = `Your ${ordinalEn(p.primaryHouse)} lord ${p.lordPlanetName.en}${roleEn ? `  –  ${roleEn}  – ` : ''} sits in the ${ordinalEn(p.lordHouse)} house of ${tgtMeaningEn} in ${p.lordSignName.en} (${digEn}).`;
+  let hi = `आपका ${houseHi(p.primaryHouse)} भाव का स्वामी ${p.lordPlanetName.hi}${roleHi ? `  –  ${roleHi}  – ` : ''} ${houseHi(p.lordHouse)} भाव (${tgtMeaningHi}) में ${p.lordSignName.hi} (${digHi}) में विराजमान है।`;
 
-  // Relational meaning — WHY this placement matters for the domain
+  // Relational meaning  –  WHY this placement matters for the domain
   const relational = getRelationalMeaning(p.primaryHouse, p.lordHouse, p.lordPlanetId, domain);
   en += ` ${relational.en}`;
   hi += ` ${relational.hi}`;
 
-  // Dignity impact — what the sign placement does to the planet's ability
+  // Dignity impact  –  what the sign placement does to the planet's ability
   if (digImpactEn) {
     en += ` ${p.lordPlanetName.en} here is ${digImpactEn}.`;
     hi += ` ${p.lordPlanetName.hi} यहां ${digImpactHi}।`;
@@ -358,17 +358,17 @@ export function narrateHouseLord(p: HouseLordParams): LocaleText {
   en += ` You are currently ${v.en} the themes of your ${ordinalEn(p.primaryHouse)} house.`;
   hi += ` आप वर्तमान में ${houseHi(p.primaryHouse)} भाव के विषयों में ${v.hi} के चरण में हैं।`;
 
-  // Retrograde — introspective intensity with meaning
+  // Retrograde  –  introspective intensity with meaning
   if (p.isRetrograde) {
-    en += ` Retrograde ${p.lordPlanetName.en} turns this energy inward — expect delayed but deeply internalized results. What the world sees later, you feel and process first. Past-life karmic patterns related to ${domain} are being reworked.`;
-    hi += ` वक्री ${p.lordPlanetName.hi} इस ऊर्जा को अंतर्मुखी करता है — विलंबित किंतु गहराई से आत्मसात किए गए परिणामों की अपेक्षा करें। ${domainHi} से संबंधित पूर्वजन्म के कार्मिक पैटर्न पुनर्निर्मित हो रहे हैं।`;
+    en += ` Retrograde ${p.lordPlanetName.en} turns this energy inward  –  expect delayed but deeply internalized results. What the world sees later, you feel and process first. Past-life karmic patterns related to ${domain} are being reworked.`;
+    hi += ` वक्री ${p.lordPlanetName.hi} इस ऊर्जा को अंतर्मुखी करता है  –  विलंबित किंतु गहराई से आत्मसात किए गए परिणामों की अपेक्षा करें। ${domainHi} से संबंधित पूर्वजन्म के कार्मिक पैटर्न पुनर्निर्मित हो रहे हैं।`;
   }
 
   return { en, hi };
 }
 
 // ---------------------------------------------------------------------------
-// 2. narrateOccupants — benefic/malefic impact with planet-specific meaning
+// 2. narrateOccupants  –  benefic/malefic impact with planet-specific meaning
 // ---------------------------------------------------------------------------
 
 export interface OccupantInfo {
@@ -391,8 +391,8 @@ export function narrateOccupants(p: OccupantsParams): LocaleText {
 
   if (p.occupants.length === 0) {
     return {
-      en: `No planets occupy your ${ordinalEn(p.house)} house — results depend primarily on the house lord's placement and any aspects received. An empty house is not a weak house; its lord tells the full story.`,
-      hi: `आपके ${houseHi(p.house)} भाव में कोई ग्रह नहीं है — परिणाम मुख्य रूप से भावेश की स्थिति और प्राप्त दृष्टियों पर निर्भर करते हैं। खाली भाव कमजोर भाव नहीं है; इसका स्वामी पूरी कहानी बताता है।`,
+      en: `No planets occupy your ${ordinalEn(p.house)} house  –  results depend primarily on the house lord's placement and any aspects received. An empty house is not a weak house; its lord tells the full story.`,
+      hi: `आपके ${houseHi(p.house)} भाव में कोई ग्रह नहीं है  –  परिणाम मुख्य रूप से भावेश की स्थिति और प्राप्त दृष्टियों पर निर्भर करते हैं। खाली भाव कमजोर भाव नहीं है; इसका स्वामी पूरी कहानी बताता है।`,
     };
   }
 
@@ -408,8 +408,8 @@ export function narrateOccupants(p: OccupantsParams): LocaleText {
       const natureHi = PLANET_NATURE_HI[b.planetId] ?? 'सकारात्मक ऊर्जा';
       const roleEn = PLANET_ROLE_EN[b.planetId] ?? 'a benefic';
       const roleHi = PLANET_ROLE_HI[b.planetId] ?? 'शुभ ग्रह';
-      parts_en.push(`Benefic ${b.name.en} — ${roleEn} — graces your ${ordinalEn(p.house)} house of ${houseMeaningEn}, bringing ${natureEn} to your ${domain}. This is a protective and enriching presence.`);
-      parts_hi.push(`शुभ ${b.name.hi ?? b.name.en} — ${roleHi} — आपके ${houseHi(p.house)} भाव (${houseMeaningHi}) को सुशोभित करता है, ${domain} में ${natureHi} लाता है। यह एक सुरक्षात्मक और समृद्ध करने वाली उपस्थिति है।`);
+      parts_en.push(`Benefic ${b.name.en}  –  ${roleEn}  –  graces your ${ordinalEn(p.house)} house of ${houseMeaningEn}, bringing ${natureEn} to your ${domain}. This is a protective and enriching presence.`);
+      parts_hi.push(`शुभ ${b.name.hi ?? b.name.en}  –  ${roleHi}  –  आपके ${houseHi(p.house)} भाव (${houseMeaningHi}) को सुशोभित करता है, ${domain} में ${natureHi} लाता है। यह एक सुरक्षात्मक और समृद्ध करने वाली उपस्थिति है।`);
     }
   }
 
@@ -417,8 +417,8 @@ export function narrateOccupants(p: OccupantsParams): LocaleText {
     for (const m of malefics) {
       const natureEn = PLANET_NATURE_EN[m.planetId] ?? 'challenging energy';
       const natureHi = PLANET_NATURE_HI[m.planetId] ?? 'चुनौतीपूर्ण ऊर्जा';
-      parts_en.push(`${m.name.en} brings challenging energy to your ${ordinalEn(p.house)} house — ${natureEn} creates friction in ${domain} matters, but also builds resilience. The struggle this placement creates ultimately forges strength.`);
-      parts_hi.push(`${m.name.hi ?? m.name.en} आपके ${houseHi(p.house)} भाव में चुनौतीपूर्ण ऊर्जा लाता है — ${natureHi} ${domain} विषयों में घर्षण पैदा करता है, लेकिन लचीलापन भी देता है।`);
+      parts_en.push(`${m.name.en} brings challenging energy to your ${ordinalEn(p.house)} house  –  ${natureEn} creates friction in ${domain} matters, but also builds resilience. The struggle this placement creates ultimately forges strength.`);
+      parts_hi.push(`${m.name.hi ?? m.name.en} आपके ${houseHi(p.house)} भाव में चुनौतीपूर्ण ऊर्जा लाता है  –  ${natureHi} ${domain} विषयों में घर्षण पैदा करता है, लेकिन लचीलापन भी देता है।`);
     }
   }
 
@@ -426,7 +426,7 @@ export function narrateOccupants(p: OccupantsParams): LocaleText {
 }
 
 // ---------------------------------------------------------------------------
-// 3. narrateAspects — what the aspect DOES
+// 3. narrateAspects  –  what the aspect DOES
 // ---------------------------------------------------------------------------
 
 export interface AspectInfo {
@@ -450,8 +450,8 @@ export function narrateAspects(p: AspectsParams): LocaleText {
 
   if (p.aspects.length === 0) {
     return {
-      en: `No significant planetary aspects influence your ${ordinalEn(p.house)} house directly — the house operates on the strength of its lord and occupants alone.`,
-      hi: `कोई महत्वपूर्ण ग्रह दृष्टि आपके ${houseHi(p.house)} भाव को सीधे प्रभावित नहीं करती — भाव केवल अपने स्वामी और निवासी ग्रहों की शक्ति पर कार्य करता है।`,
+      en: `No significant planetary aspects influence your ${ordinalEn(p.house)} house directly  –  the house operates on the strength of its lord and occupants alone.`,
+      hi: `कोई महत्वपूर्ण ग्रह दृष्टि आपके ${houseHi(p.house)} भाव को सीधे प्रभावित नहीं करती  –  भाव केवल अपने स्वामी और निवासी ग्रहों की शक्ति पर कार्य करता है।`,
     };
   }
 
@@ -464,17 +464,17 @@ export function narrateAspects(p: AspectsParams): LocaleText {
 
     if (a.isBenefic) {
       sentences_en.push(
-        `${a.name.en} casts its ${a.aspectType} aspect onto your ${ordinalEn(p.house)} house of ${houseMeaningEn} — ${verbEn} your ${domain}. This protective gaze brings grace and support to these life matters.`
+        `${a.name.en} casts its ${a.aspectType} aspect onto your ${ordinalEn(p.house)} house of ${houseMeaningEn}  –  ${verbEn} your ${domain}. This protective gaze brings grace and support to these life matters.`
       );
       sentences_hi.push(
-        `${a.name.hi ?? a.name.en} की ${a.aspectType} दृष्टि आपके ${houseHi(p.house)} भाव (${houseMeaningHi}) पर पड़ती है — आपके ${domain} को ${verbHi}। यह सुरक्षात्मक दृष्टि इन जीवन विषयों में कृपा लाती है।`
+        `${a.name.hi ?? a.name.en} की ${a.aspectType} दृष्टि आपके ${houseHi(p.house)} भाव (${houseMeaningHi}) पर पड़ती है  –  आपके ${domain} को ${verbHi}। यह सुरक्षात्मक दृष्टि इन जीवन विषयों में कृपा लाती है।`
       );
     } else {
       sentences_en.push(
-        `${a.name.en} casts its ${a.aspectType} aspect onto your ${ordinalEn(p.house)} house — ${verbEn} your ${domain}. This karmic gaze demands maturity, patience, and conscious effort in these matters. What survives this scrutiny becomes unshakeable.`
+        `${a.name.en} casts its ${a.aspectType} aspect onto your ${ordinalEn(p.house)} house  –  ${verbEn} your ${domain}. This karmic gaze demands maturity, patience, and conscious effort in these matters. What survives this scrutiny becomes unshakeable.`
       );
       sentences_hi.push(
-        `${a.name.hi ?? a.name.en} की ${a.aspectType} दृष्टि ${houseHi(p.house)} भाव पर पड़ती है — आपके ${domain} को ${verbHi}। यह कार्मिक दृष्टि इन विषयों में परिपक्वता और सचेत प्रयास की मांग करती है।`
+        `${a.name.hi ?? a.name.en} की ${a.aspectType} दृष्टि ${houseHi(p.house)} भाव पर पड़ती है  –  आपके ${domain} को ${verbHi}। यह कार्मिक दृष्टि इन विषयों में परिपक्वता और सचेत प्रयास की मांग करती है।`
       );
     }
   }
@@ -483,7 +483,7 @@ export function narrateAspects(p: AspectsParams): LocaleText {
 }
 
 // ---------------------------------------------------------------------------
-// 4. narrateYogas — connected to the domain
+// 4. narrateYogas  –  connected to the domain
 // ---------------------------------------------------------------------------
 
 export interface YogaInfo {
@@ -502,8 +502,8 @@ export interface YogasParams {
 export function narrateYogas(p: YogasParams): LocaleText {
   if (p.yogas.length === 0) {
     return {
-      en: 'No significant yogas directly influence this domain — the reading relies on house lords, occupants, and aspects.',
-      hi: 'कोई महत्वपूर्ण योग इस क्षेत्र को सीधे प्रभावित नहीं करता — मूल्यांकन भावेश, निवासी ग्रह और दृष्टियों पर आधारित है।',
+      en: 'No significant yogas directly influence this domain  –  the reading relies on house lords, occupants, and aspects.',
+      hi: 'कोई महत्वपूर्ण योग इस क्षेत्र को सीधे प्रभावित नहीं करता  –  मूल्यांकन भावेश, निवासी ग्रह और दृष्टियों पर आधारित है।',
     };
   }
 
@@ -519,8 +519,8 @@ export function narrateYogas(p: YogasParams): LocaleText {
     parts_en.push(`${auspicious.length} auspicious yoga${auspicious.length > 1 ? 's' : ''} directly boost your ${domain}:`);
     parts_hi.push(`${auspicious.length} शुभ योग आपके ${domain} को सीधे बल देते हैं:`);
   } else if (auspicious.length === 0 && challenging.length > 0) {
-    parts_en.push(`${challenging.length} challenging yoga${challenging.length > 1 ? 's' : ''} affect your ${domain} — awareness and remedies are key:`);
-    parts_hi.push(`${challenging.length} चुनौतीपूर्ण योग आपके ${domain} को प्रभावित करते हैं — जागरूकता और उपाय महत्वपूर्ण:`);
+    parts_en.push(`${challenging.length} challenging yoga${challenging.length > 1 ? 's' : ''} affect your ${domain}  –  awareness and remedies are key:`);
+    parts_hi.push(`${challenging.length} चुनौतीपूर्ण योग आपके ${domain} को प्रभावित करते हैं  –  जागरूकता और उपाय महत्वपूर्ण:`);
   } else {
     parts_en.push(`A mix of ${auspicious.length} supportive and ${challenging.length} challenging yogas shape your ${domain}:`);
     parts_hi.push(`${auspicious.length} सहायक और ${challenging.length} चुनौतीपूर्ण योगों का मिश्रण आपके ${domain} को आकार देता है:`);
@@ -544,7 +544,7 @@ export function narrateYogas(p: YogasParams): LocaleText {
 }
 
 // ---------------------------------------------------------------------------
-// 5. narrateDoshas — severity in human terms
+// 5. narrateDoshas  –  severity in human terms
 // ---------------------------------------------------------------------------
 
 export interface DoshaInfo {
@@ -563,8 +563,8 @@ export interface DoshasParams {
 export function narrateDoshas(p: DoshasParams): LocaleText {
   if (p.doshas.length === 0) {
     return {
-      en: 'No significant doshas affect this domain — the chart is relatively clear here, allowing the positive placements to express themselves without obstruction.',
-      hi: 'कोई महत्वपूर्ण दोष इस क्षेत्र को प्रभावित नहीं करता — कुंडली यहां अपेक्षाकृत स्पष्ट है, सकारात्मक स्थितियां बिना बाधा के अपना प्रभाव दिखा सकती हैं।',
+      en: 'No significant doshas affect this domain  –  the chart is relatively clear here, allowing the positive placements to express themselves without obstruction.',
+      hi: 'कोई महत्वपूर्ण दोष इस क्षेत्र को प्रभावित नहीं करता  –  कुंडली यहां अपेक्षाकृत स्पष्ट है, सकारात्मक स्थितियां बिना बाधा के अपना प्रभाव दिखा सकती हैं।',
     };
   }
 
@@ -575,28 +575,28 @@ export function narrateDoshas(p: DoshasParams): LocaleText {
   for (const d of p.doshas) {
     if (d.cancelled) {
       parts_en.push(
-        `${d.name} is present in your chart but effectively cancelled — the cancellation conditions are met, reducing its impact to a faint background influence. You may notice occasional echoes of its theme, but it lacks the power to cause real difficulty in ${domain}.`
+        `${d.name} is present in your chart but effectively cancelled  –  the cancellation conditions are met, reducing its impact to a faint background influence. You may notice occasional echoes of its theme, but it lacks the power to cause real difficulty in ${domain}.`
       );
       parts_hi.push(
-        `${d.name} आपकी कुंडली में उपस्थित है लेकिन प्रभावी रूप से निरस्त — रद्दीकरण की शर्तें पूरी हैं, इसका प्रभाव केवल हल्की पृष्ठभूमि तक सीमित है। ${domain} में वास्तविक कठिनाई की शक्ति इसमें नहीं रही।`
+        `${d.name} आपकी कुंडली में उपस्थित है लेकिन प्रभावी रूप से निरस्त  –  रद्दीकरण की शर्तें पूरी हैं, इसका प्रभाव केवल हल्की पृष्ठभूमि तक सीमित है। ${domain} में वास्तविक कठिनाई की शक्ति इसमें नहीं रही।`
       );
     } else {
       const severityEn = d.severity === 'severe'
         ? 'This is a strong affliction that requires active attention'
         : d.severity === 'moderate'
-          ? 'This is a moderate affliction — manageable with awareness and remedies'
-          : 'This is a mild affliction — its impact is noticeable but not overwhelming';
+          ? 'This is a moderate affliction  –  manageable with awareness and remedies'
+          : 'This is a mild affliction  –  its impact is noticeable but not overwhelming';
       const severityHi = d.severity === 'severe'
         ? 'यह एक गंभीर पीड़ा है जिसे सक्रिय ध्यान देने की आवश्यकता है'
         : d.severity === 'moderate'
-          ? 'यह एक मध्यम पीड़ा है — जागरूकता और उपायों से प्रबंधनीय'
-          : 'यह एक हल्की पीड़ा है — इसका प्रभाव ध्यान देने योग्य लेकिन भारी नहीं';
+          ? 'यह एक मध्यम पीड़ा है  –  जागरूकता और उपायों से प्रबंधनीय'
+          : 'यह एक हल्की पीड़ा है  –  इसका प्रभाव ध्यान देने योग्य लेकिन भारी नहीं';
 
       parts_en.push(
-        `${d.name} (${d.severity}) is active in ${domain} — ${d.impact.en}. ${severityEn}. Every dosha also carries a hidden teaching; understanding its pattern is often the remedy itself.`
+        `${d.name} (${d.severity}) is active in ${domain}  –  ${d.impact.en}. ${severityEn}. Every dosha also carries a hidden teaching; understanding its pattern is often the remedy itself.`
       );
       parts_hi.push(
-        `${d.name} (${d.severity}) ${domain} में सक्रिय है — ${d.impact.hi ?? d.impact.en}। ${severityHi}। हर दोष एक छिपी शिक्षा भी रखता है; इसके पैटर्न को समझना अक्सर उपाय ही होता है।`
+        `${d.name} (${d.severity}) ${domain} में सक्रिय है  –  ${d.impact.hi ?? d.impact.en}। ${severityHi}। हर दोष एक छिपी शिक्षा भी रखता है; इसके पैटर्न को समझना अक्सर उपाय ही होता है।`
       );
     }
   }
@@ -654,15 +654,15 @@ export function narrateVargaConfirmation(p: VargaConfirmationParams): LocaleText
   const strong = p.deliveryScore >= 60;
   const domain = p.domainName ?? 'this domain';
 
-  let en = `In your ${chartEn}${purposeEn ? ` — the divisional chart for ${purposeEn}` : ''}, the delivery score of ${p.deliveryScore}/100 ${strong ? 'confirms a strong manifestation' : 'suggests a weaker manifestation'} for ${domain}.`;
+  let en = `In your ${chartEn}${purposeEn ? `  –  the divisional chart for ${purposeEn}` : ''}, the delivery score of ${p.deliveryScore}/100 ${strong ? 'confirms a strong manifestation' : 'suggests a weaker manifestation'} for ${domain}.`;
   let hi = `आपके ${chartHi} में, वितरण स्कोर ${p.deliveryScore}/100 ${strong ? `${domain} के लिए मजबूत अभिव्यक्ति की पुष्टि करता है` : `${domain} के लिए कमजोर अभिव्यक्ति का सुझाव देता है`}।`;
 
   if (strong) {
-    en += ` The birth chart promise is backed by divisional confirmation — what the D1 promises, the ${p.chartId} delivers.`;
-    hi += ` जन्म कुंडली का वादा वर्ग कुंडली द्वारा समर्थित है — D1 जो वादा करता है, ${p.chartId} पूरा करता है।`;
+    en += ` The birth chart promise is backed by divisional confirmation  –  what the D1 promises, the ${p.chartId} delivers.`;
+    hi += ` जन्म कुंडली का वादा वर्ग कुंडली द्वारा समर्थित है  –  D1 जो वादा करता है, ${p.chartId} पूरा करता है।`;
   } else {
-    en += ` The birth chart promise faces resistance at the divisional level — expect partial results or delayed manifestation. Remedies targeting the ${p.chartId} lord can improve outcomes.`;
-    hi += ` जन्म कुंडली का वादा वर्ग स्तर पर प्रतिरोध का सामना करता है — आंशिक या विलंबित परिणामों की अपेक्षा करें।`;
+    en += ` The birth chart promise faces resistance at the divisional level  –  expect partial results or delayed manifestation. Remedies targeting the ${p.chartId} lord can improve outcomes.`;
+    hi += ` जन्म कुंडली का वादा वर्ग स्तर पर प्रतिरोध का सामना करता है  –  आंशिक या विलंबित परिणामों की अपेक्षा करें।`;
   }
 
   if (p.verdict.en) {
@@ -705,13 +705,13 @@ export function narrateDashaActivation(p: DashaActivationParams): LocaleText {
   let hi = `आप ${p.mahaLordName.hi ?? p.mahaLordName.en} महादशा / ${p.antarLordName.hi ?? p.antarLordName.en} अंतर्दशा में हैं।`;
 
   if (p.activatesDomain) {
-    en += ` This period directly activates ${domain}${mahaRoleEn ? ` — ${p.mahaLordName.en} (${mahaRoleEn}) brings ${mahaNatureEn}` : ''}, and ${p.antarLordName.en} adds ${antarNatureEn || 'its own signature'} to the mix.`;
-    en += ` Themes are ${v.en} now — this is a live period for ${domain}. ${p.relationship}`;
-    hi += ` यह अवधि ${domain} को सीधे सक्रिय करती है${mahaRoleHi ? ` — ${p.mahaLordName.hi ?? p.mahaLordName.en} (${mahaRoleHi})` : ''}।`;
-    hi += ` विषय अभी ${v.hi} के चरण में हैं — यह ${domain} के लिए सक्रिय अवधि है। ${p.relationship}`;
+    en += ` This period directly activates ${domain}${mahaRoleEn ? `  –  ${p.mahaLordName.en} (${mahaRoleEn}) brings ${mahaNatureEn}` : ''}, and ${p.antarLordName.en} adds ${antarNatureEn || 'its own signature'} to the mix.`;
+    en += ` Themes are ${v.en} now  –  this is a live period for ${domain}. ${p.relationship}`;
+    hi += ` यह अवधि ${domain} को सीधे सक्रिय करती है${mahaRoleHi ? `  –  ${p.mahaLordName.hi ?? p.mahaLordName.en} (${mahaRoleHi})` : ''}।`;
+    hi += ` विषय अभी ${v.hi} के चरण में हैं  –  यह ${domain} के लिए सक्रिय अवधि है। ${p.relationship}`;
   } else {
-    en += ` This dasha does not directly activate ${domain}, so its effects remain background-level. The current planetary period is focused elsewhere — ${domain} operates on autopilot from natal promise until a future dasha brings it to the foreground.`;
-    hi += ` यह दशा ${domain} को सीधे सक्रिय नहीं करती, इसलिए प्रभाव पृष्ठभूमि स्तर पर रहते हैं। वर्तमान ग्रह अवधि का ध्यान अन्यत्र है — ${domain} जन्म कुंडली के वादे पर स्वचालित रूप से चलता रहता है।`;
+    en += ` This dasha does not directly activate ${domain}, so its effects remain background-level. The current planetary period is focused elsewhere  –  ${domain} operates on autopilot from natal promise until a future dasha brings it to the foreground.`;
+    hi += ` यह दशा ${domain} को सीधे सक्रिय नहीं करती, इसलिए प्रभाव पृष्ठभूमि स्तर पर रहते हैं। वर्तमान ग्रह अवधि का ध्यान अन्यत्र है  –  ${domain} जन्म कुंडली के वादे पर स्वचालित रूप से चलता रहता है।`;
   }
 
   return { en: en.trim(), hi: hi.trim() };
@@ -739,8 +739,8 @@ export function narrateTransitOverlay(p: TransitOverlayParams): LocaleText {
 
   if (p.transits.length === 0) {
     return {
-      en: `No major transits currently influence ${domain} significantly — the natal promise operates without external activation or pressure from slow-moving planets.`,
-      hi: `वर्तमान में कोई प्रमुख गोचर ${domain} को महत्वपूर्ण रूप से प्रभावित नहीं कर रहा — जन्म कुंडली का वादा धीमे ग्रहों के बाहरी सक्रियण के बिना काम करता है।`,
+      en: `No major transits currently influence ${domain} significantly  –  the natal promise operates without external activation or pressure from slow-moving planets.`,
+      hi: `वर्तमान में कोई प्रमुख गोचर ${domain} को महत्वपूर्ण रूप से प्रभावित नहीं कर रहा  –  जन्म कुंडली का वादा धीमे ग्रहों के बाहरी सक्रियण के बिना काम करता है।`,
     };
   }
 
@@ -757,20 +757,20 @@ export function narrateTransitOverlay(p: TransitOverlayParams): LocaleText {
 
     if (t.bindus >= 5) {
       sentences_en.push(
-        `${t.planetName.en}${roleEn ? ` (${roleEn})` : ''} transiting your ${ordinalEn(t.house)} house of ${houseMeaningEn} with ${t.bindus} ashtakavarga bindus — excellent for ${domain}. This transit opens doors and amplifies opportunities. ${planetNatureEn ? `Expect ${planetNatureEn} to flow freely during this period.` : ''}`
+        `${t.planetName.en}${roleEn ? ` (${roleEn})` : ''} transiting your ${ordinalEn(t.house)} house of ${houseMeaningEn} with ${t.bindus} ashtakavarga bindus  –  excellent for ${domain}. This transit opens doors and amplifies opportunities. ${planetNatureEn ? `Expect ${planetNatureEn} to flow freely during this period.` : ''}`
       );
     } else if (t.bindus >= 4) {
       sentences_en.push(
-        `${t.planetName.en} transiting your ${ordinalEn(t.house)} house with ${t.bindus} ashtakavarga bindus — supportive for ${domain}. A steady, constructive influence that works best when you actively engage with its energy.`
+        `${t.planetName.en} transiting your ${ordinalEn(t.house)} house with ${t.bindus} ashtakavarga bindus  –  supportive for ${domain}. A steady, constructive influence that works best when you actively engage with its energy.`
       );
     } else {
       sentences_en.push(
-        `${t.planetName.en} transiting your ${ordinalEn(t.house)} house of ${houseMeaningEn} with only ${t.bindus} ashtakavarga bindus — challenging for ${domain}. This transit creates friction but also forces growth. Stay patient and avoid major decisions until it passes.`
+        `${t.planetName.en} transiting your ${ordinalEn(t.house)} house of ${houseMeaningEn} with only ${t.bindus} ashtakavarga bindus  –  challenging for ${domain}. This transit creates friction but also forces growth. Stay patient and avoid major decisions until it passes.`
       );
     }
 
     sentences_hi.push(
-      `${t.planetName.hi ?? t.planetName.en} आपके ${houseHi(t.house)} भाव (${houseMeaningHi}) में ${t.bindus} अष्टकवर्ग बिंदुओं के साथ गोचर कर रहा है — ${domain} के लिए ${quality_hi}।`
+      `${t.planetName.hi ?? t.planetName.en} आपके ${houseHi(t.house)} भाव (${houseMeaningHi}) में ${t.bindus} अष्टकवर्ग बिंदुओं के साथ गोचर कर रहा है  –  ${domain} के लिए ${quality_hi}।`
     );
   }
 
@@ -795,15 +795,15 @@ export interface ForwardTriggersParams {
 }
 
 const IMPACT_LABEL_EN: Record<string, string> = {
-  positive: 'a positive window — act with confidence',
-  negative: 'a period demanding caution — avoid major commitments',
-  neutral:  'a transitional period — observe and prepare',
+  positive: 'a positive window  –  act with confidence',
+  negative: 'a period demanding caution  –  avoid major commitments',
+  neutral:  'a transitional period  –  observe and prepare',
 };
 
 const IMPACT_LABEL_HI: Record<string, string> = {
-  positive: 'एक सकारात्मक अवधि — विश्वास के साथ कार्य करें',
-  negative: 'सावधानी की अवधि — बड़ी प्रतिबद्धताओं से बचें',
-  neutral:  'एक संक्रमणकालीन अवधि — निरीक्षण करें और तैयारी करें',
+  positive: 'एक सकारात्मक अवधि  –  विश्वास के साथ कार्य करें',
+  negative: 'सावधानी की अवधि  –  बड़ी प्रतिबद्धताओं से बचें',
+  neutral:  'एक संक्रमणकालीन अवधि  –  निरीक्षण करें और तैयारी करें',
 };
 
 export function narrateForwardTriggers(p: ForwardTriggersParams): LocaleText {
@@ -813,8 +813,8 @@ export function narrateForwardTriggers(p: ForwardTriggersParams): LocaleText {
 
   if (triggers.length === 0) {
     return {
-      en: `No significant upcoming triggers are detected for ${domain} in the near future — the current pattern continues without major disruption or opportunity.`,
-      hi: `निकट भविष्य में ${domain} के लिए कोई महत्वपूर्ण आगामी संकेत नहीं मिले — वर्तमान पैटर्न बिना बड़ी बाधा या अवसर के जारी रहता है।`,
+      en: `No significant upcoming triggers are detected for ${domain} in the near future  –  the current pattern continues without major disruption or opportunity.`,
+      hi: `निकट भविष्य में ${domain} के लिए कोई महत्वपूर्ण आगामी संकेत नहीं मिले  –  वर्तमान पैटर्न बिना बड़ी बाधा या अवसर के जारी रहता है।`,
     };
   }
 
@@ -822,8 +822,8 @@ export function narrateForwardTriggers(p: ForwardTriggersParams): LocaleText {
   const items_hi: string[] = [];
 
   for (const t of triggers) {
-    items_en.push(`${t.event} around ${t.date} — ${IMPACT_LABEL_EN[t.impact] ?? 'a notable period'}`);
-    items_hi.push(`${t.event} ${t.date} के आसपास — ${IMPACT_LABEL_HI[t.impact] ?? 'एक उल्लेखनीय अवधि'}`);
+    items_en.push(`${t.event} around ${t.date}  –  ${IMPACT_LABEL_EN[t.impact] ?? 'a notable period'}`);
+    items_hi.push(`${t.event} ${t.date} के आसपास  –  ${IMPACT_LABEL_HI[t.impact] ?? 'एक उल्लेखनीय अवधि'}`);
   }
 
   return {
@@ -833,14 +833,14 @@ export function narrateForwardTriggers(p: ForwardTriggersParams): LocaleText {
 }
 
 // ---------------------------------------------------------------------------
-// Composition helper — joins narrative blocks with contextual connectors
+// Composition helper  –  joins narrative blocks with contextual connectors
 // ---------------------------------------------------------------------------
 
 /**
  * Joins an array of LocaleText narrative blocks into a single coherent
  * paragraph, inserting contextual connectors between blocks.
  *
- * Connectors are chosen to provide variety; no semantic NLP is attempted —
+ * Connectors are chosen to provide variety; no semantic NLP is attempted  – 
  * the caller is responsible for ordering blocks logically (strengths first,
  * then challenges, then outlook).
  */
@@ -850,7 +850,7 @@ export function composeDomainNarrative(blocks: LocaleText[]): LocaleText {
   if (nonEmpty.length === 1) return nonEmpty[0];
 
   const CONNECTORS_EN = [
-    '',            // first block — no connector
+    '',            // first block  –  no connector
     'Additionally, ',
     'Furthermore, ',
     'On a related note, ',

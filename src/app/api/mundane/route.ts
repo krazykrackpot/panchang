@@ -2,7 +2,7 @@
  * GET /api/mundane?nation=india
  *
  * Returns a nation's mundane astrology chart and current forecast.
- * No authentication required — public data.
+ * No authentication required  –  public data.
  */
 
 import { NextResponse } from 'next/server';
@@ -45,7 +45,7 @@ export async function GET(request: Request) {
 
     return NextResponse.json(forecast, {
       headers: {
-        // Cache for 1 hour — transits don't change faster than that
+        // Cache for 1 hour  –  transits don't change faster than that
         'Cache-Control': 'public, max-age=3600, stale-while-revalidate=300',
       },
     });

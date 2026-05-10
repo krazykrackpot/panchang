@@ -1,19 +1,19 @@
 {
   "title": {
-    "en": "Phaladeepika — The Lamp of Results",
-    "hi": "फलदीपिका — फलों का दीप",
-    "sa": "फलदीपिका — फलप्रदीपः",
-    "mai": "फलदीपिका — फलों का दीप",
-    "mr": "फलदीपिका — फलांचा दीप",
-    "ta": "பலதீபிகா — பலன்களின் தீபம்",
-    "te": "ఫలదీపిక — ఫలాల దీపం",
-    "bn": "ফলদীপিকা — ফলের দীপ",
-    "kn": "ಫಲದೀಪಿಕಾ — ಫಲಗಳ ದೀಪ",
-    "gu": "ફળદીપિકા — ફળનો દીપ"
+    "en": "Phaladeepika  –  The Lamp of Results",
+    "hi": "फलदीपिका  –  फलों का दीप",
+    "sa": "फलदीपिका  –  फलप्रदीपः",
+    "mai": "फलदीपिका  –  फलों का दीप",
+    "mr": "फलदीपिका  –  फलांचा दीप",
+    "ta": "பலதீபிகா  –  பலன்களின் தீபம்",
+    "te": "ఫలదీపిక  –  ఫలాల దీపం",
+    "bn": "ফলদীপিকা  –  ফলের দীপ",
+    "kn": "ಫಲದೀಪಿಕಾ  –  ಫಲಗಳ ದೀಪ",
+    "gu": "ફળદીપિકા  –  ફળનો દીપ"
   },
   "subtitle": {
-    "en": "Mantreshwara's 13th-century masterpiece — planet-in-house results, yoga descriptions, and why this text remains the most practical reference for chart interpretation",
-    "hi": "मन्त्रेश्वर की 13वीं शताब्दी की उत्कृष्ट कृति — ग्रह-भाव फल, योग वर्णन, और यह ग्रन्थ कुण्डली व्याख्या के लिए सबसे व्यावहारिक सन्दर्भ क्यों बना हुआ है"
+    "en": "Mantreshwara's 13th-century masterpiece  –  planet-in-house results, yoga descriptions, and why this text remains the most practical reference for chart interpretation",
+    "hi": "मन्त्रेश्वर की 13वीं शताब्दी की उत्कृष्ट कृति  –  ग्रह-भाव फल, योग वर्णन, और यह ग्रन्थ कुण्डली व्याख्या के लिए सबसे व्यावहारिक सन्दर्भ क्यों बना हुआ है"
   },
   "crossRefs": [
     {
@@ -76,8 +76,8 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "Phaladeepika focuses on practical prediction — giving clear, concise results for planet-in-sign and planet-in-house combinations. While BPHS is encyclopedic and covers computation, vargas, and dashas in detail, Phaladeepika distills the prediction art into actionable interpretations. Many practicing astrologers consider it their go-to daily reference.",
-        "hi": "फलदीपिका व्यावहारिक भविष्यवाणी पर केन्द्रित है — ग्रह-राशि और ग्रह-भाव संयोजनों के लिए स्पष्ट, संक्षिप्त फल देती है।"
+        "en": "Phaladeepika focuses on practical prediction  –  giving clear, concise results for planet-in-sign and planet-in-house combinations. While BPHS is encyclopedic and covers computation, vargas, and dashas in detail, Phaladeepika distills the prediction art into actionable interpretations. Many practicing astrologers consider it their go-to daily reference.",
+        "hi": "फलदीपिका व्यावहारिक भविष्यवाणी पर केन्द्रित है  –  ग्रह-राशि और ग्रह-भाव संयोजनों के लिए स्पष्ट, संक्षिप्त फल देती है।"
       },
       "options": [
         { "en": "Mathematical computation", "hi": "गणितीय गणना" },
@@ -95,8 +95,8 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Phaladeepika has 28 chapters (Adhyayas). Key chapters include: Ch.2 — Signs and their nature, Ch.3-4 — Planets in houses, Ch.6 — Rajayogas, Ch.7 — Arishta (bad yogas), Ch.15 — Dashas, Ch.24 — Ashtakavarga, Ch.25 — Female horoscopy, Ch.27 — Nisheka (conception). Its compact structure makes it ideal for focused study.",
-        "hi": "फलदीपिका में 28 अध्याय हैं। प्रमुख अध्यायों में शामिल हैं: अ.2 — राशियाँ, अ.3-4 — भाव में ग्रह, अ.6 — राजयोग, अ.7 — अरिष्ट, अ.15 — दशाएँ।"
+        "en": "Phaladeepika has 28 chapters (Adhyayas). Key chapters include: Ch.2  –  Signs and their nature, Ch.3-4  –  Planets in houses, Ch.6  –  Rajayogas, Ch.7  –  Arishta (bad yogas), Ch.15  –  Dashas, Ch.24  –  Ashtakavarga, Ch.25  –  Female horoscopy, Ch.27  –  Nisheka (conception). Its compact structure makes it ideal for focused study.",
+        "hi": "फलदीपिका में 28 अध्याय हैं। प्रमुख अध्यायों में शामिल हैं: अ.2  –  राशियाँ, अ.3-4  –  भाव में ग्रह, अ.6  –  राजयोग, अ.7  –  अरिष्ट, अ.15  –  दशाएँ।"
       },
       "options": [
         { "en": "14 chapters", "hi": "14 अध्याय" },

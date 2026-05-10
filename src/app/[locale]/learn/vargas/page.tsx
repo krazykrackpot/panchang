@@ -20,33 +20,33 @@ import LT from '@/messages/learn/vargas.json';
 const L = {
   title: { en: 'Divisional Charts (Vargas)', hi: 'विभागीय कुण्डलियाँ (वर्ग)', sa: 'विभागकुण्डल्यः (वर्गाः)' , ta: 'வர்க்க ஜாதகங்கள் (வர்கங்கள்)' },
   subtitle: {
-    en: 'The 16 Shodasvarga charts of Parashara — how one birth chart unfolds into 16 layers of karmic detail',
-    hi: 'पराशर की 16 षोडशवर्ग कुण्डलियाँ — एक जन्म कुण्डली कैसे 16 कार्मिक परतों में खुलती है',
-    sa: 'पराशरस्य 16 षोडशवर्गकुण्डल्यः — एका जन्मकुण्डली कथं 16 कार्मिकस्तरेषु प्रकटते',
+    en: 'The 16 Shodasvarga charts of Parashara  –  how one birth chart unfolds into 16 layers of karmic detail',
+    hi: 'पराशर की 16 षोडशवर्ग कुण्डलियाँ  –  एक जन्म कुण्डली कैसे 16 कार्मिक परतों में खुलती है',
+    sa: 'पराशरस्य 16 षोडशवर्गकुण्डल्यः  –  एका जन्मकुण्डली कथं 16 कार्मिकस्तरेषु प्रकटते',
   },
 
   // Overview
   overviewTitle: { en: 'What Are Divisional Charts?', hi: 'विभागीय कुण्डली क्या है?', sa: 'विभागकुण्डली का?' },
   overviewText: {
-    en: 'Your Rashi chart (D1) is a map of the sky at birth — but it is only the first layer. Parashara, the father of Vedic astrology, taught that each 30° sign can be further subdivided into smaller arcs. When a planet\'s sidereal longitude is projected onto these sub-divisions, it lands in a different sign than it occupies in D1. That new sign becomes its position in the divisional chart. These charts are called Vargas (divisions), and together the 16 primary vargas form the Shodasvarga system — the backbone of predictive Jyotish.',
-    hi: 'आपकी राशि कुण्डली (D1) जन्म के समय आकाश का नक्शा है — लेकिन यह केवल पहली परत है। वैदिक ज्योतिष के जनक पराशर ने सिखाया कि प्रत्येक 30° राशि को और छोटे चापों में विभाजित किया जा सकता है। जब किसी ग्रह का नाक्षत्रिक देशान्तर इन उपविभागों पर प्रक्षेपित होता है, तो वह D1 से भिन्न राशि में आता है। यही नई राशि विभागीय कुण्डली में उसकी स्थिति बनती है। इन कुण्डलियों को वर्ग कहते हैं, और 16 प्राथमिक वर्ग मिलकर षोडशवर्ग प्रणाली बनाते हैं — भविष्यवाणी ज्योतिष की रीढ़।',
-    sa: 'भवतः राशिकुण्डली (D1) जन्मसमये आकाशस्य मानचित्रम् — किन्तु एषा प्रथमा परतिः एव। पराशरः शिक्षितवान् यत् प्रत्येका 30° राशिः सूक्ष्मतरचापेषु विभक्तुं शक्या। एते वर्गाः इति उच्यन्ते, 16 प्राथमिकवर्गाः षोडशवर्गपद्धतिं रचयन्ति।',
+    en: 'Your Rashi chart (D1) is a map of the sky at birth  –  but it is only the first layer. Parashara, the father of Vedic astrology, taught that each 30° sign can be further subdivided into smaller arcs. When a planet\'s sidereal longitude is projected onto these sub-divisions, it lands in a different sign than it occupies in D1. That new sign becomes its position in the divisional chart. These charts are called Vargas (divisions), and together the 16 primary vargas form the Shodasvarga system  –  the backbone of predictive Jyotish.',
+    hi: 'आपकी राशि कुण्डली (D1) जन्म के समय आकाश का नक्शा है  –  लेकिन यह केवल पहली परत है। वैदिक ज्योतिष के जनक पराशर ने सिखाया कि प्रत्येक 30° राशि को और छोटे चापों में विभाजित किया जा सकता है। जब किसी ग्रह का नाक्षत्रिक देशान्तर इन उपविभागों पर प्रक्षेपित होता है, तो वह D1 से भिन्न राशि में आता है। यही नई राशि विभागीय कुण्डली में उसकी स्थिति बनती है। इन कुण्डलियों को वर्ग कहते हैं, और 16 प्राथमिक वर्ग मिलकर षोडशवर्ग प्रणाली बनाते हैं  –  भविष्यवाणी ज्योतिष की रीढ़।',
+    sa: 'भवतः राशिकुण्डली (D1) जन्मसमये आकाशस्य मानचित्रम्  –  किन्तु एषा प्रथमा परतिः एव। पराशरः शिक्षितवान् यत् प्रत्येका 30° राशिः सूक्ष्मतरचापेषु विभक्तुं शक्या। एते वर्गाः इति उच्यन्ते, 16 प्राथमिकवर्गाः षोडशवर्गपद्धतिं रचयन्ति।',
   },
 
   // How divisions work
-  howTitle: { en: 'How Divisions Work — The Math', hi: 'विभाजन कैसे काम करता है — गणित', sa: 'विभाजनं कथं कार्यं करोति — गणितम्' },
+  howTitle: { en: 'How Divisions Work  –  The Math', hi: 'विभाजन कैसे काम करता है  –  गणित', sa: 'विभाजनं कथं कार्यं करोति  –  गणितम्' },
   howText: {
-    en: 'Every divisional chart follows a simple principle: divide each 30° sign into N equal parts, then map each part to a sign using classical rules. The formula varies by chart — some use cyclic mapping, others use specific Parashara sequences. But the core idea is always: take a planet\'s degree within its sign, determine which sub-division it falls in, and look up the corresponding sign.',
-    hi: 'प्रत्येक विभागीय कुण्डली एक सरल सिद्धान्त पर चलती है: प्रत्येक 30° राशि को N बराबर भागों में विभाजित करें, फिर शास्त्रीय नियमों से प्रत्येक भाग को एक राशि में मैप करें। सूत्र चार्ट के अनुसार भिन्न होता है — कुछ चक्रीय मैपिंग करते हैं, अन्य पराशर क्रम का उपयोग करते हैं। मूल विचार सदा यही है: ग्रह का अंश लें, कौन सा उपविभाग है ज्ञात करें, और संगत राशि देखें।',
+    en: 'Every divisional chart follows a simple principle: divide each 30° sign into N equal parts, then map each part to a sign using classical rules. The formula varies by chart  –  some use cyclic mapping, others use specific Parashara sequences. But the core idea is always: take a planet\'s degree within its sign, determine which sub-division it falls in, and look up the corresponding sign.',
+    hi: 'प्रत्येक विभागीय कुण्डली एक सरल सिद्धान्त पर चलती है: प्रत्येक 30° राशि को N बराबर भागों में विभाजित करें, फिर शास्त्रीय नियमों से प्रत्येक भाग को एक राशि में मैप करें। सूत्र चार्ट के अनुसार भिन्न होता है  –  कुछ चक्रीय मैपिंग करते हैं, अन्य पराशर क्रम का उपयोग करते हैं। मूल विचार सदा यही है: ग्रह का अंश लें, कौन सा उपविभाग है ज्ञात करें, और संगत राशि देखें।',
     sa: 'प्रत्येका विभागकुण्डली एकं सरलं सिद्धान्तम् अनुसरति: प्रत्येकां 30° राशिं N समभागेषु विभजेत्।',
   },
 
   // Navamsha deep dive
-  navamshaTitle: { en: 'The Navamsha (D9) — The Chart Within the Chart', hi: 'नवांश (D9) — कुण्डली के भीतर कुण्डली', sa: 'नवांशः (D9) — कुण्डल्यां कुण्डली' },
+  navamshaTitle: { en: 'The Navamsha (D9)  –  The Chart Within the Chart', hi: 'नवांश (D9)  –  कुण्डली के भीतर कुण्डली', sa: 'नवांशः (D9)  –  कुण्डल्यां कुण्डली' },
   navamshaText: {
-    en: 'Of all divisional charts, the Navamsha is supreme. It divides each 30° sign into 9 equal parts of 3°20\' each — corresponding to the 9 Padas of a Nakshatra. The Navamsha is so important that no prediction should be made from D1 alone without checking D9. It reveals: (1) the true strength of planets — a planet exalted in D1 but debilitated in D9 will not deliver its full promise; (2) marriage and partnerships — the 7th house of D9 is the primary indicator; (3) the Dharma and spiritual path — D9 is called the "Dharma chart"; (4) the second half of life — while D1 shows the overall pattern, D9 shows how karma unfolds after maturity.',
-    hi: 'सभी विभागीय कुण्डलियों में नवांश सर्वोच्च है। यह प्रत्येक 30° राशि को 3°20\' के 9 बराबर भागों में विभाजित करता है — जो एक नक्षत्र के 9 पादों से मेल खाते हैं। नवांश इतना महत्वपूर्ण है कि D9 की जाँच किए बिना केवल D1 से कोई भविष्यवाणी नहीं करनी चाहिए। यह प्रकट करता है: (1) ग्रहों का सच्चा बल — D1 में उच्च लेकिन D9 में नीच ग्रह पूर्ण वादा पूरा नहीं करेगा; (2) विवाह और साझेदारी — D9 का 7वाँ भाव प्राथमिक संकेतक है; (3) धर्म और आध्यात्मिक पथ — D9 को "धर्म कुण्डली" कहते हैं; (4) जीवन का उत्तरार्ध।',
-    sa: 'सर्वासु विभागकुण्डलीषु नवांशः श्रेष्ठः। एषः प्रत्येकां 30° राशिं 3°20\' इत्येतेषु 9 समभागेषु विभजति — ये नक्षत्रस्य 9 पादाः।',
+    en: 'Of all divisional charts, the Navamsha is supreme. It divides each 30° sign into 9 equal parts of 3°20\' each  –  corresponding to the 9 Padas of a Nakshatra. The Navamsha is so important that no prediction should be made from D1 alone without checking D9. It reveals: (1) the true strength of planets  –  a planet exalted in D1 but debilitated in D9 will not deliver its full promise; (2) marriage and partnerships  –  the 7th house of D9 is the primary indicator; (3) the Dharma and spiritual path  –  D9 is called the "Dharma chart"; (4) the second half of life  –  while D1 shows the overall pattern, D9 shows how karma unfolds after maturity.',
+    hi: 'सभी विभागीय कुण्डलियों में नवांश सर्वोच्च है। यह प्रत्येक 30° राशि को 3°20\' के 9 बराबर भागों में विभाजित करता है  –  जो एक नक्षत्र के 9 पादों से मेल खाते हैं। नवांश इतना महत्वपूर्ण है कि D9 की जाँच किए बिना केवल D1 से कोई भविष्यवाणी नहीं करनी चाहिए। यह प्रकट करता है: (1) ग्रहों का सच्चा बल  –  D1 में उच्च लेकिन D9 में नीच ग्रह पूर्ण वादा पूरा नहीं करेगा; (2) विवाह और साझेदारी  –  D9 का 7वाँ भाव प्राथमिक संकेतक है; (3) धर्म और आध्यात्मिक पथ  –  D9 को "धर्म कुण्डली" कहते हैं; (4) जीवन का उत्तरार्ध।',
+    sa: 'सर्वासु विभागकुण्डलीषु नवांशः श्रेष्ठः। एषः प्रत्येकां 30° राशिं 3°20\' इत्येतेषु 9 समभागेषु विभजति  –  ये नक्षत्रस्य 9 पादाः।',
   },
 
   // Navamsha calculation
@@ -58,7 +58,7 @@ const L = {
   },
 
   // Vimshopak
-  vimshopakTitle: { en: 'Vimshopak Bala — The 20-Point Strength System', hi: 'विंशोपक बल — 20-अंक शक्ति प्रणाली', sa: 'विंशोपकबलम् — 20-अङ्कशक्तिपद्धतिः' },
+  vimshopakTitle: { en: 'Vimshopak Bala  –  The 20-Point Strength System', hi: 'विंशोपक बल  –  20-अंक शक्ति प्रणाली', sa: 'विंशोपकबलम्  –  20-अङ्कशक्तिपद्धतिः' },
   vimshopakText: {
     en: 'Parashara designed a scoring system called Vimshopak Bala that weights each varga according to its importance. In the Shodasvarga scheme, the maximum score is 20 points distributed across 16 charts. A planet scores points in each varga where it occupies its own sign, exaltation sign, or a friendly sign. The total gives a composite strength that integrates all 16 layers. A planet with Vimshopak Bala above 15 is very strong; below 5 is seriously weakened.',
     hi: 'पराशर ने विंशोपक बल नामक एक अंक प्रणाली बनाई जो प्रत्येक वर्ग को उसके महत्व के अनुसार भार देती है। षोडशवर्ग योजना में, अधिकतम अंक 20 हैं जो 16 चार्टों में वितरित हैं। एक ग्रह प्रत्येक वर्ग में अंक प्राप्त करता है जहाँ वह स्वराशि, उच्च राशि, या मित्र राशि में है। कुल अंक एक समग्र शक्ति देते हैं। 15 से ऊपर विंशोपक बल बहुत शक्तिशाली है; 5 से नीचे गम्भीर रूप से दुर्बल।',
@@ -82,7 +82,7 @@ const L = {
   },
 
   // Practical examples
-  practicalTitle: { en: 'Practical Interpretation — Worked Examples', hi: 'व्यावहारिक व्याख्या — उदाहरण', sa: 'व्यावहारिकव्याख्या — उदाहरणानि' },
+  practicalTitle: { en: 'Practical Interpretation  –  Worked Examples', hi: 'व्यावहारिक व्याख्या  –  उदाहरण', sa: 'व्यावहारिकव्याख्या  –  उदाहरणानि' },
   practicalText: {
     en: 'Let us walk through how to read three of the most commonly used divisional charts with our example chart (15 Aug 1995, 10:30 AM IST, New Delhi):',
     hi: 'आइए हमारे उदाहरण कुण्डली (15 अगस्त 1995, 10:30 AM IST, नई दिल्ली) के साथ तीन सबसे अधिक प्रयुक्त विभागीय कुण्डलियों को कैसे पढ़ें यह समझें:',
@@ -92,8 +92,8 @@ const L = {
   // Hierarchy
   hierarchyTitle: { en: 'The Hierarchy of Charts', hi: 'कुण्डलियों का पदानुक्रम', sa: 'कुण्डलीनां पदानुक्रमः' },
   hierarchyText: {
-    en: 'Not all vargas are equal in importance. Parashara ranked them in a clear hierarchy. The D1 (Rashi) is the foundation — all other charts depend on it. The D9 (Navamsha) is the second most important and must always be checked. The D10 (Dasamsha) is crucial for career questions. Beyond these three, the relevance of other vargas depends on the specific question being asked.',
-    hi: 'सभी वर्ग महत्व में समान नहीं हैं। पराशर ने उन्हें एक स्पष्ट पदानुक्रम में रखा। D1 (राशि) आधार है — अन्य सभी चार्ट इस पर निर्भर हैं। D9 (नवांश) दूसरा सबसे महत्वपूर्ण है और सदा जाँचा जाना चाहिए। D10 (दशांश) करियर प्रश्नों के लिए महत्वपूर्ण है। इन तीनों से परे, अन्य वर्गों की प्रासंगिकता पूछे गए प्रश्न पर निर्भर करती है।',
+    en: 'Not all vargas are equal in importance. Parashara ranked them in a clear hierarchy. The D1 (Rashi) is the foundation  –  all other charts depend on it. The D9 (Navamsha) is the second most important and must always be checked. The D10 (Dasamsha) is crucial for career questions. Beyond these three, the relevance of other vargas depends on the specific question being asked.',
+    hi: 'सभी वर्ग महत्व में समान नहीं हैं। पराशर ने उन्हें एक स्पष्ट पदानुक्रम में रखा। D1 (राशि) आधार है  –  अन्य सभी चार्ट इस पर निर्भर हैं। D9 (नवांश) दूसरा सबसे महत्वपूर्ण है और सदा जाँचा जाना चाहिए। D10 (दशांश) करियर प्रश्नों के लिए महत्वपूर्ण है। इन तीनों से परे, अन्य वर्गों की प्रासंगिकता पूछे गए प्रश्न पर निर्भर करती है।',
     sa: 'सर्वे वर्गाः महत्त्वे समानाः न सन्ति। पराशरः तान् स्पष्टपदानुक्रमे स्थापितवान्।',
   },
 
@@ -156,7 +156,7 @@ const VARGAS = [
     name: { en: 'Saptamsha', hi: 'सप्तमांश', sa: 'सप्तमांशः' },
     fullName: { en: 'Saptamsha Chart', hi: 'सप्तमांश कुण्डली', sa: 'सप्तमांशकुण्डली' },
     domain: { en: 'Children, progeny, creative output', hi: 'संतान, वंशवृद्धि, सृजनात्मक उपज', sa: 'सन्तानं, वंशवृद्धिः' },
-    desc: { en: 'Divides each sign into 7 parts of 4°17\' each. The primary chart for children — their number, nature, relationship with the native, and success. The 5th house shows the first child, 7th the second, 9th the third. Jupiter\'s placement is crucial.', hi: 'प्रत्येक राशि को 4°17\' के 7 भागों में विभाजित करता है। संतान का प्राथमिक चार्ट — उनकी संख्या, स्वभाव, संबंध और सफलता। 5वाँ भाव प्रथम संतान, 7वाँ द्वितीय, 9वाँ तृतीय दर्शाता है।', sa: 'प्रत्येकां राशिं 4°17\' इत्येतेषु 7 भागेषु विभजति। सन्तानस्य प्राथमिकं चार्टम्।' },
+    desc: { en: 'Divides each sign into 7 parts of 4°17\' each. The primary chart for children  –  their number, nature, relationship with the native, and success. The 5th house shows the first child, 7th the second, 9th the third. Jupiter\'s placement is crucial.', hi: 'प्रत्येक राशि को 4°17\' के 7 भागों में विभाजित करता है। संतान का प्राथमिक चार्ट  –  उनकी संख्या, स्वभाव, संबंध और सफलता। 5वाँ भाव प्रथम संतान, 7वाँ द्वितीय, 9वाँ तृतीय दर्शाता है।', sa: 'प्रत्येकां राशिं 4°17\' इत्येतेषु 7 भागेषु विभजति। सन्तानस्य प्राथमिकं चार्टम्।' },
     rule: { en: '30° ÷ 7 = 4°17\'. Odd signs: start from same sign. Even signs: start from 7th sign.', hi: '30° ÷ 7 = 4°17\'। विषम: स्वराशि से। सम: 7वीं राशि से।', sa: '30° ÷ 7 = 4°17\'।' },
     weight: 1.0, tier: 'important' as const,
     keyHouses: { en: '5th (first child), 7th (second child), Jupiter & 5th lord', hi: '5वाँ (प्रथम), 7वाँ (द्वितीय), गुरु और 5वें भाव का स्वामी', sa: '5 (प्रथमसन्तानम्), 7 (द्वितीयम्)' },
@@ -166,7 +166,7 @@ const VARGAS = [
     name: { en: 'Navamsha', hi: 'नवांश', sa: 'नवांशः' },
     fullName: { en: 'Navamsha Chart', hi: 'नवांश कुण्डली', sa: 'नवांशकुण्डली' },
     domain: { en: 'Marriage, dharma, true planet strength, second half of life', hi: 'विवाह, धर्म, ग्रहों का सच्चा बल, जीवन का उत्तरार्ध', sa: 'विवाहः, धर्मः, ग्रहाणां सत्यबलं, जीवनोत्तरार्धः' },
-    desc: { en: 'The most important divisional chart. Divides each sign into 9 parts of 3°20\'. Reveals the true strength of every planet, the nature of marriage and spouse, the dharmic path, and how karma unfolds in the second half of life. A planet in its own Navamsha (Vargottama) gains tremendous strength. No prediction is complete without D9 analysis.', hi: 'सबसे महत्वपूर्ण विभागीय कुण्डली। प्रत्येक राशि को 3°20\' के 9 भागों में विभाजित करती है। हर ग्रह के सच्चे बल, विवाह, धार्मिक पथ, और जीवन के उत्तरार्ध में कर्म कैसे फलित होता है — यह सब दर्शाती है। स्वनवांश ग्रह (वर्गोत्तम) को अत्यधिक बल मिलता है।', sa: 'सर्वाधिकमहत्त्वपूर्णा विभागकुण्डली। प्रत्येकां राशिं 3°20\' इत्येतेषु 9 भागेषु विभजति।' },
+    desc: { en: 'The most important divisional chart. Divides each sign into 9 parts of 3°20\'. Reveals the true strength of every planet, the nature of marriage and spouse, the dharmic path, and how karma unfolds in the second half of life. A planet in its own Navamsha (Vargottama) gains tremendous strength. No prediction is complete without D9 analysis.', hi: 'सबसे महत्वपूर्ण विभागीय कुण्डली। प्रत्येक राशि को 3°20\' के 9 भागों में विभाजित करती है। हर ग्रह के सच्चे बल, विवाह, धार्मिक पथ, और जीवन के उत्तरार्ध में कर्म कैसे फलित होता है  –  यह सब दर्शाती है। स्वनवांश ग्रह (वर्गोत्तम) को अत्यधिक बल मिलता है।', sa: 'सर्वाधिकमहत्त्वपूर्णा विभागकुण्डली। प्रत्येकां राशिं 3°20\' इत्येतेषु 9 भागेषु विभजति।' },
     rule: { en: '30° ÷ 9 = 3°20\'. Fire signs → start from Aries. Earth → Capricorn. Air → Libra. Water → Cancer.', hi: '30° ÷ 9 = 3°20\'। अग्नि → मेष से। पृथ्वी → मकर। वायु → तुला। जल → कर्क।', sa: '30° ÷ 9 = 3°20\'। अग्निः → मेषात्। पृथिवी → मकरात्।' },
     weight: 3.0, tier: 'essential' as const,
     keyHouses: { en: '1st (dharma), 7th (spouse), Lagna lord, Venus (marriage karaka)', hi: '1वाँ (धर्म), 7वाँ (पत्नी/पति), लग्नेश, शुक्र (विवाह कारक)', sa: '1 (धर्मः), 7 (दाम्पत्यम्)' },
@@ -186,7 +186,7 @@ const VARGAS = [
     name: { en: 'Dwadasamsha', hi: 'द्वादशांश', sa: 'द्वादशांशः' },
     fullName: { en: 'Dwadasamsha Chart', hi: 'द्वादशांश कुण्डली', sa: 'द्वादशांशकुण्डली' },
     domain: { en: 'Parents, ancestry, lineage, inherited traits', hi: 'माता-पिता, वंशावली, विरासत में मिले गुण', sa: 'पितरौ, वंशावलिः, वंशगुणाः' },
-    desc: { en: 'Divides each sign into 12 parts of 2°30\' each — essentially creating a "zodiac within a zodiac." Shows the relationship with parents, family lineage, and inherited traits. The 4th house represents the mother, 9th/10th the father. Strong D12 indicates distinguished family background.', hi: 'प्रत्येक राशि को 2°30\' के 12 भागों में विभाजित करता है — "राशिचक्र के भीतर राशिचक्र"। माता-पिता से संबंध, पारिवारिक वंशावली और विरासत में मिले गुण दर्शाता है।', sa: 'प्रत्येकां राशिं 2°30\' इत्येतेषु 12 भागेषु विभजति।' },
+    desc: { en: 'Divides each sign into 12 parts of 2°30\' each  –  essentially creating a "zodiac within a zodiac." Shows the relationship with parents, family lineage, and inherited traits. The 4th house represents the mother, 9th/10th the father. Strong D12 indicates distinguished family background.', hi: 'प्रत्येक राशि को 2°30\' के 12 भागों में विभाजित करता है  –  "राशिचक्र के भीतर राशिचक्र"। माता-पिता से संबंध, पारिवारिक वंशावली और विरासत में मिले गुण दर्शाता है।', sa: 'प्रत्येकां राशिं 2°30\' इत्येतेषु 12 भागेषु विभजति।' },
     rule: { en: '30° ÷ 12 = 2°30\'. Always starts from the same sign and cycles through all 12.', hi: '30° ÷ 12 = 2°30\'। सदा उसी राशि से शुरू होकर सभी 12 में चक्र।', sa: '30° ÷ 12 = 2°30\'। स्वराशेः आरभ्य 12 राशिषु चक्रम्।' },
     weight: 0.5, tier: 'supporting' as const,
     keyHouses: { en: '4th (mother), 9th (father), 10th (father\'s status)', hi: '4वाँ (माता), 9वाँ (पिता), 10वाँ (पिता की स्थिति)', sa: '4 (माता), 9 (पिता)' },
@@ -226,7 +226,7 @@ const VARGAS = [
     name: { en: 'Nakshatramsha', hi: 'नक्षत्रांश', sa: 'नक्षत्रांशः' },
     fullName: { en: 'Bhamsha Chart', hi: 'भांश कुण्डली', sa: 'भांशकुण्डली' },
     domain: { en: 'Strengths, vitality, stamina, physical endurance', hi: 'बल, ओज, सहनशक्ति, शारीरिक सहनशीलता', sa: 'बलं, ओजः, सहनशक्तिः' },
-    desc: { en: 'Divides each sign into 27 parts of 1°6\'40\" each — mirroring the 27 Nakshatras. Indicates physical and mental strength, vitality, and endurance. Mars and Sun\'s placement reveals stamina and fighting spirit. A strong D27 indicates robust health and sustained effort.', hi: 'प्रत्येक राशि को 1°6\'40\" के 27 भागों में विभाजित करता है — 27 नक्षत्रों का दर्पण। शारीरिक और मानसिक बल, ओज और सहनशीलता दर्शाता है।', sa: 'प्रत्येकां राशिं 27 भागेषु विभजति — 27 नक्षत्राणां दर्पणम्।' },
+    desc: { en: 'Divides each sign into 27 parts of 1°6\'40\" each  –  mirroring the 27 Nakshatras. Indicates physical and mental strength, vitality, and endurance. Mars and Sun\'s placement reveals stamina and fighting spirit. A strong D27 indicates robust health and sustained effort.', hi: 'प्रत्येक राशि को 1°6\'40\" के 27 भागों में विभाजित करता है  –  27 नक्षत्रों का दर्पण। शारीरिक और मानसिक बल, ओज और सहनशीलता दर्शाता है।', sa: 'प्रत्येकां राशिं 27 भागेषु विभजति  –  27 नक्षत्राणां दर्पणम्।' },
     rule: { en: '30° ÷ 27 ≈ 1°6\'40\". Fire signs: from Aries. Earth: from Cancer. Air: from Libra. Water: from Capricorn.', hi: '30° ÷ 27। अग्नि: मेष से। पृथ्वी: कर्क। वायु: तुला। जल: मकर।', sa: '30° ÷ 27।' },
     weight: 0.5, tier: 'supporting' as const,
     keyHouses: { en: 'Lagna (vitality), Mars, Sun, 6th (disease resistance)', hi: 'लग्न (ओज), मंगल, सूर्य, 6वाँ (रोग प्रतिरोध)', sa: 'लग्नम् (ओजः), मङ्गलः, सूर्यः' },
@@ -236,7 +236,7 @@ const VARGAS = [
     name: { en: 'Trimshamsha', hi: 'त्रिंशांश', sa: 'त्रिंशांशः' },
     fullName: { en: 'Trimshamsha Chart', hi: 'त्रिंशांश कुण्डली', sa: 'त्रिंशांशकुण्डली' },
     domain: { en: 'Misfortunes, evils, hidden enemies, suffering', hi: 'दुर्भाग्य, पाप, छिपे शत्रु, कष्ट', sa: 'दुर्भाग्यं, पापं, गुप्तशत्रवः' },
-    desc: { en: 'Divides each sign into 5 unequal parts assigned to Mars, Saturn, Jupiter, Mercury, and Venus. This is unique — it does not use equal division. Reveals vulnerability to misfortune, evil influences, hidden enemies, and negative karmic patterns. Benefics in D30 kendras protect against such influences.', hi: 'प्रत्येक राशि को मंगल, शनि, गुरु, बुध और शुक्र को सौंपे गए 5 असमान भागों में विभाजित करता है। दुर्भाग्य, बुरे प्रभावों, छिपे शत्रुओं और नकारात्मक कार्मिक प्रारूपों के प्रति संवेदनशीलता दर्शाता है।', sa: 'प्रत्येकां राशिं 5 असमभागेषु विभजति।' },
+    desc: { en: 'Divides each sign into 5 unequal parts assigned to Mars, Saturn, Jupiter, Mercury, and Venus. This is unique  –  it does not use equal division. Reveals vulnerability to misfortune, evil influences, hidden enemies, and negative karmic patterns. Benefics in D30 kendras protect against such influences.', hi: 'प्रत्येक राशि को मंगल, शनि, गुरु, बुध और शुक्र को सौंपे गए 5 असमान भागों में विभाजित करता है। दुर्भाग्य, बुरे प्रभावों, छिपे शत्रुओं और नकारात्मक कार्मिक प्रारूपों के प्रति संवेदनशीलता दर्शाता है।', sa: 'प्रत्येकां राशिं 5 असमभागेषु विभजति।' },
     rule: { en: 'Unequal: 5° Mars, 5° Saturn, 8° Jupiter, 7° Mercury, 5° Venus (odd signs). Reversed for even.', hi: 'असमान: 5° मंगल, 5° शनि, 8° गुरु, 7° बुध, 5° शुक्र (विषम)। सम में विपरीत।', sa: 'असमानम्: 5° मङ्गलः, 5° शनिः, 8° गुरुः।' },
     weight: 1.0, tier: 'important' as const,
     keyHouses: { en: '6th (enemies), 8th (hidden), 12th (losses), Saturn', hi: '6वाँ (शत्रु), 8वाँ (गुप्त), 12वाँ (हानि), शनि', sa: '6 (शत्रवः), 8 (गुप्तम्), 12 (हानिः)' },
@@ -256,7 +256,7 @@ const VARGAS = [
     name: { en: 'Akshavedamsha', hi: 'अक्षवेदांश', sa: 'अक्षवेदांशः' },
     fullName: { en: 'Akshavedamsha Chart', hi: 'अक्षवेदांश कुण्डली', sa: 'अक्षवेदांशकुण्डली' },
     domain: { en: 'Paternal karma, character, destiny patterns', hi: 'पितृ कर्म, चरित्र, भाग्य प्रारूप', sa: 'पितृकर्म, चरित्रं, भाग्यप्रारूपम्' },
-    desc: { en: 'Divides each sign into 45 parts of 0°40\' each. Reveals effects inherited from the paternal lineage — the father\'s karmic legacy and how it shapes the native\'s destiny, character, and life opportunities.', hi: 'प्रत्येक राशि को 0°40\' के 45 भागों में विभाजित करता है। पितृपक्ष से विरासत में मिले प्रभावों को दर्शाता है — पिता की कार्मिक विरासत।', sa: 'प्रत्येकां राशिं 0°40\' इत्येतेषु 45 भागेषु विभजति।' },
+    desc: { en: 'Divides each sign into 45 parts of 0°40\' each. Reveals effects inherited from the paternal lineage  –  the father\'s karmic legacy and how it shapes the native\'s destiny, character, and life opportunities.', hi: 'प्रत्येक राशि को 0°40\' के 45 भागों में विभाजित करता है। पितृपक्ष से विरासत में मिले प्रभावों को दर्शाता है  –  पिता की कार्मिक विरासत।', sa: 'प्रत्येकां राशिं 0°40\' इत्येतेषु 45 भागेषु विभजति।' },
     rule: { en: '30° ÷ 45 = 0°40\'. Movable: from Aries. Fixed: from Leo. Dual: from Sagittarius.', hi: '30° ÷ 45 = 0°40\'। चर: मेष से। स्थिर: सिंह। द्विस्वभाव: धनु से।', sa: '30° ÷ 45 = 0°40\'।' },
     weight: 0.5, tier: 'supporting' as const,
     keyHouses: { en: '9th (father), Sun, 9th/10th lord placement', hi: '9वाँ (पिता), सूर्य, 9वें/10वें भाव का स्वामी', sa: '9 (पिता), सूर्यः' },
@@ -266,10 +266,10 @@ const VARGAS = [
     name: { en: 'Shashtiamsha', hi: 'षष्ट्यंश', sa: 'षष्ट्यंशः' },
     fullName: { en: 'Shashtiamsha Chart', hi: 'षष्ट्यंश कुण्डली', sa: 'षष्ट्यंशकुण्डली' },
     domain: { en: 'Past life karma, overall assessment, final confirmation', hi: 'पूर्वजन्म कर्म, समग्र मूल्यांकन, अन्तिम पुष्टि', sa: 'पूर्वजन्मकर्म, समग्रमूल्याङ्कनम्' },
-    desc: { en: 'The most subtle and microscopically fine divisional chart. Each of the 60 divisions (0°30\' each) is ruled by a specific deity and carries a distinct quality — auspicious, neutral, or inauspicious. Parashara considered D60 the ultimate confirmation chart: if a promise exists in D1 and D9 but D60 contradicts it, the promise weakens. Requires very accurate birth time.', hi: 'सबसे सूक्ष्म विभागीय कुण्डली। 60 विभागों (प्रत्येक 0°30\') में से प्रत्येक एक विशिष्ट देवता द्वारा शासित है। पराशर ने D60 को अन्तिम पुष्टि कुण्डली माना: यदि D1 और D9 में वादा है लेकिन D60 विरोध करता है, तो वादा कमज़ोर होता है। बहुत सटीक जन्म समय आवश्यक।', sa: 'सर्वसूक्ष्मा विभागकुण्डली। 60 विभागाः (प्रत्येकं 0°30\') विशिष्टदेवतया शासिताः।' },
+    desc: { en: 'The most subtle and microscopically fine divisional chart. Each of the 60 divisions (0°30\' each) is ruled by a specific deity and carries a distinct quality  –  auspicious, neutral, or inauspicious. Parashara considered D60 the ultimate confirmation chart: if a promise exists in D1 and D9 but D60 contradicts it, the promise weakens. Requires very accurate birth time.', hi: 'सबसे सूक्ष्म विभागीय कुण्डली। 60 विभागों (प्रत्येक 0°30\') में से प्रत्येक एक विशिष्ट देवता द्वारा शासित है। पराशर ने D60 को अन्तिम पुष्टि कुण्डली माना: यदि D1 और D9 में वादा है लेकिन D60 विरोध करता है, तो वादा कमज़ोर होता है। बहुत सटीक जन्म समय आवश्यक।', sa: 'सर्वसूक्ष्मा विभागकुण्डली। 60 विभागाः (प्रत्येकं 0°30\') विशिष्टदेवतया शासिताः।' },
     rule: { en: '30° ÷ 60 = 0°30\'. Each division has a deity name. Starts from same sign, cycles through all 12 five times.', hi: '30° ÷ 60 = 0°30\'। प्रत्येक विभाग का एक देवता नाम। स्वराशि से, सभी 12 में 5 बार चक्र।', sa: '30° ÷ 60 = 0°30\'। स्वराशेः 12 राशिषु पञ्चवारं चक्रम्।' },
     weight: 2.5, tier: 'essential' as const,
-    keyHouses: { en: 'All — used as final confirmation of D1 and D9 promises', hi: 'सभी — D1 और D9 के वादों की अन्तिम पुष्टि', sa: 'सर्वे — D1 D9 च वचनानां अन्तिमपुष्टिः' },
+    keyHouses: { en: 'All  –  used as final confirmation of D1 and D9 promises', hi: 'सभी  –  D1 और D9 के वादों की अन्तिम पुष्टि', sa: 'सर्वे  –  D1 D9 च वचनानां अन्तिमपुष्टिः' },
   },
 ];
 
@@ -299,7 +299,7 @@ const INTERPRETATION_STEPS = [
     title: { en: 'Check the Varga Lagna', hi: 'वर्ग लग्न की जाँच करें', sa: 'वर्गलग्नं परीक्षयतु' },
     desc: {
       en: 'The ascendant of the divisional chart sets the entire framework. Note which sign rises, its lord, and where that lord sits. A strong Varga Lagna lord (in kendra or trikona, in own/exalted sign) indicates strength in that life area.',
-      hi: 'विभागीय कुण्डली का लग्न पूरा ढाँचा निर्धारित करता है। कौन सी राशि उदित है, उसका स्वामी, और वह स्वामी कहाँ बैठा है — यह नोट करें। केन्द्र या त्रिकोण में, स्वराशि/उच्च में मजबूत वर्ग लग्नेश उस जीवन क्षेत्र में शक्ति दर्शाता है।',
+      hi: 'विभागीय कुण्डली का लग्न पूरा ढाँचा निर्धारित करता है। कौन सी राशि उदित है, उसका स्वामी, और वह स्वामी कहाँ बैठा है  –  यह नोट करें। केन्द्र या त्रिकोण में, स्वराशि/उच्च में मजबूत वर्ग लग्नेश उस जीवन क्षेत्र में शक्ति दर्शाता है।',
       sa: 'विभागकुण्डल्याः लग्नं सम्पूर्णं ढाञ्चां निर्धारयति।',
     },
   },
@@ -307,8 +307,8 @@ const INTERPRETATION_STEPS = [
     step: 3,
     title: { en: 'Locate the Karaka', hi: 'कारक को खोजें', sa: 'कारकं अन्विष्यतु' },
     desc: {
-      en: 'Every varga has a natural significator (karaka). For D7 it is Jupiter (children), for D10 it is Sun/Saturn (career), for D9 it is Venus (marriage). Find where the karaka sits in the varga — its house, sign dignity, and aspects received.',
-      hi: 'प्रत्येक वर्ग का एक प्राकृतिक कारक होता है। D7 में गुरु (संतान), D10 में सूर्य/शनि (करियर), D9 में शुक्र (विवाह)। वर्ग में कारक कहाँ बैठा है — उसका भाव, राशि गरिमा, और प्राप्त दृष्टियाँ देखें।',
+      en: 'Every varga has a natural significator (karaka). For D7 it is Jupiter (children), for D10 it is Sun/Saturn (career), for D9 it is Venus (marriage). Find where the karaka sits in the varga  –  its house, sign dignity, and aspects received.',
+      hi: 'प्रत्येक वर्ग का एक प्राकृतिक कारक होता है। D7 में गुरु (संतान), D10 में सूर्य/शनि (करियर), D9 में शुक्र (विवाह)। वर्ग में कारक कहाँ बैठा है  –  उसका भाव, राशि गरिमा, और प्राप्त दृष्टियाँ देखें।',
       sa: 'प्रत्येकस्य वर्गस्य प्राकृतिकः कारकः अस्ति। D7 मध्ये गुरुः, D10 मध्ये सूर्यः/शनिः, D9 मध्ये शुक्रः।',
     },
   },
@@ -325,9 +325,9 @@ const INTERPRETATION_STEPS = [
     step: 5,
     title: { en: 'Check for Vargottama Planets', hi: 'वर्गोत्तम ग्रहों की जाँच करें', sa: 'वर्गोत्तमग्रहान् परीक्षयतु' },
     desc: {
-      en: 'A planet in the same sign in both D1 and D9 is called Vargottama — it gains tremendous extra strength, almost like exaltation. This concept extends to other vargas too: if a planet is in the same sign across multiple vargas, its effects become very powerful and reliable.',
-      hi: 'D1 और D9 दोनों में एक ही राशि में ग्रह को वर्गोत्तम कहते हैं — इसे उच्च जैसा अतिरिक्त बल मिलता है। यह अवधारणा अन्य वर्गों तक भी विस्तृत है: यदि कोई ग्रह कई वर्गों में एक ही राशि में है, तो उसके प्रभाव बहुत शक्तिशाली होते हैं।',
-      sa: 'D1 D9 च उभयोः एकस्यां राश्यां स्थितः ग्रहः वर्गोत्तमः इति उच्यते — एषः उच्चसदृशं बलं प्राप्नोति।',
+      en: 'A planet in the same sign in both D1 and D9 is called Vargottama  –  it gains tremendous extra strength, almost like exaltation. This concept extends to other vargas too: if a planet is in the same sign across multiple vargas, its effects become very powerful and reliable.',
+      hi: 'D1 और D9 दोनों में एक ही राशि में ग्रह को वर्गोत्तम कहते हैं  –  इसे उच्च जैसा अतिरिक्त बल मिलता है। यह अवधारणा अन्य वर्गों तक भी विस्तृत है: यदि कोई ग्रह कई वर्गों में एक ही राशि में है, तो उसके प्रभाव बहुत शक्तिशाली होते हैं।',
+      sa: 'D1 D9 च उभयोः एकस्यां राश्यां स्थितः ग्रहः वर्गोत्तमः इति उच्यते  –  एषः उच्चसदृशं बलं प्राप्नोति।',
     },
   },
   {
@@ -355,8 +355,8 @@ const GOLDEN_RULES = [
   {
     rule: { en: 'D1 is the King', hi: 'D1 राजा है', sa: 'D1 राजा' },
     desc: {
-      en: 'No divisional chart can override the Rashi chart. If D1 doesn\'t promise something, no varga can create it from nothing. Vargas refine and confirm — they don\'t create.',
-      hi: 'कोई विभागीय कुण्डली राशि कुण्डली को ओवरराइड नहीं कर सकती। यदि D1 कुछ वादा नहीं करता, तो कोई वर्ग शून्य से नहीं बना सकता। वर्ग शोधन और पुष्टि करते हैं — निर्माण नहीं।',
+      en: 'No divisional chart can override the Rashi chart. If D1 doesn\'t promise something, no varga can create it from nothing. Vargas refine and confirm  –  they don\'t create.',
+      hi: 'कोई विभागीय कुण्डली राशि कुण्डली को ओवरराइड नहीं कर सकती। यदि D1 कुछ वादा नहीं करता, तो कोई वर्ग शून्य से नहीं बना सकता। वर्ग शोधन और पुष्टि करते हैं  –  निर्माण नहीं।',
       sa: 'कापि विभागकुण्डली राशिकुण्डलीम् अतिक्रान्तुं न शक्नोति।',
     },
     color: '#d4a853',
@@ -403,7 +403,7 @@ const GOLDEN_RULES = [
 const MISTAKES = [
   {
     mistake: { en: 'Reading vargas as standalone charts', hi: 'वर्गों को स्वतन्त्र कुण्डली के रूप में पढ़ना', sa: 'वर्गान् स्वतन्त्रकुण्डलीरूपेण पठनम्' },
-    fix: { en: 'Always cross-reference with D1. Vargas supplement the Rashi chart — they don\'t replace it. A yoga found only in a divisional chart without D1 support is unreliable.', hi: 'सदा D1 के साथ क्रॉस-रेफरेंस करें। वर्ग राशि कुण्डली का पूरक हैं — विकल्प नहीं। केवल विभागीय कुण्डली में मिला योग D1 समर्थन के बिना अविश्वसनीय है।', sa: 'सदा D1 सह तुलनां कुर्यात्।' },
+    fix: { en: 'Always cross-reference with D1. Vargas supplement the Rashi chart  –  they don\'t replace it. A yoga found only in a divisional chart without D1 support is unreliable.', hi: 'सदा D1 के साथ क्रॉस-रेफरेंस करें। वर्ग राशि कुण्डली का पूरक हैं  –  विकल्प नहीं। केवल विभागीय कुण्डली में मिला योग D1 समर्थन के बिना अविश्वसनीय है।', sa: 'सदा D1 सह तुलनां कुर्यात्।' },
   },
   {
     mistake: { en: 'Using inaccurate birth time for higher vargas', hi: 'उच्च वर्गों के लिए गलत जन्म समय का उपयोग', sa: 'उच्चवर्गार्थं अशुद्धजन्मसमयस्य उपयोगः' },
@@ -419,7 +419,7 @@ const MISTAKES = [
   },
   {
     mistake: { en: 'Checking all 16 charts for every query', hi: 'हर प्रश्न के लिए सभी 16 चार्ट जाँचना', sa: 'प्रत्येकप्रश्नार्थं सर्वान् 16 चार्टान् परीक्षणम्' },
-    fix: { en: 'This is analysis paralysis. For a career question, you need D1, D9, and D10 — that\'s it. For children, D1, D7, and D9. Being targeted gives clearer and more actionable results than being comprehensive.', hi: 'यह विश्लेषण पक्षाघात है। करियर प्रश्न के लिए D1, D9, D10 — बस। संतान के लिए D1, D7, D9। लक्षित होना व्यापक होने से स्पष्ट परिणाम देता है।', sa: 'एषः विश्लेषणपक्षाघातः। व्यवसायप्रश्नार्थं D1, D9, D10 — एतावदेव।' },
+    fix: { en: 'This is analysis paralysis. For a career question, you need D1, D9, and D10  –  that\'s it. For children, D1, D7, and D9. Being targeted gives clearer and more actionable results than being comprehensive.', hi: 'यह विश्लेषण पक्षाघात है। करियर प्रश्न के लिए D1, D9, D10  –  बस। संतान के लिए D1, D7, D9। लक्षित होना व्यापक होने से स्पष्ट परिणाम देता है।', sa: 'एषः विश्लेषणपक्षाघातः। व्यवसायप्रश्नार्थं D1, D9, D10  –  एतावदेव।' },
   },
 ];
 
@@ -427,9 +427,9 @@ const MISTAKES = [
 const DEEPER_LINKS = [
   { href: '/learn/kundali', label: { en: 'How a Kundali is Made', hi: 'कुण्डली कैसे बनती है', sa: 'कुण्डली कथम्' }, desc: { en: 'Step-by-step chart construction from birth data', hi: 'जन्म विवरण से चरणबद्ध कुण्डली निर्माण', sa: 'जन्मविवरणात् सोपानकुण्डलीनिर्माणम्' } },
   { href: '/learn/bhavas', label: { en: 'The 12 Houses', hi: '12 भाव', sa: 'द्वादशभावाः' }, desc: { en: 'Significations and classification of all houses', hi: 'सभी भावों के संकेत और वर्गीकरण', sa: 'सर्वभावानां सङ्केताः वर्गीकरणं च' } },
-  { href: '/learn/dashas', label: { en: 'Dashas', hi: 'दशाएँ', sa: 'दशाः' }, desc: { en: 'Timing system — when planets deliver their results', hi: 'समय प्रणाली — ग्रह कब परिणाम देते हैं', sa: 'कालपद्धतिः — ग्रहाः कदा फलं ददति' } },
+  { href: '/learn/dashas', label: { en: 'Dashas', hi: 'दशाएँ', sa: 'दशाः' }, desc: { en: 'Timing system  –  when planets deliver their results', hi: 'समय प्रणाली  –  ग्रह कब परिणाम देते हैं', sa: 'कालपद्धतिः  –  ग्रहाः कदा फलं ददति' } },
   { href: '/learn/grahas', label: { en: 'The 9 Grahas', hi: '9 ग्रह', sa: 'नवग्रहाः' }, desc: { en: 'Planet dignities, strengths, and rulerships', hi: 'ग्रह गरिमा, बल और स्वामित्व', sa: 'ग्रहगरिमाः, बलं, स्वामित्वं च' } },
-  { href: '/learn/nakshatras', label: { en: 'Nakshatras', hi: 'नक्षत्र', sa: 'नक्षत्राणि' }, desc: { en: '27 lunar mansions — basis of Navamsha padas', hi: '27 चान्द्रगृह — नवांश पादों का आधार', sa: '27 चान्द्रगृहाणि — नवांशपादानाम् आधारः' } },
+  { href: '/learn/nakshatras', label: { en: 'Nakshatras', hi: 'नक्षत्र', sa: 'नक्षत्राणि' }, desc: { en: '27 lunar mansions  –  basis of Navamsha padas', hi: '27 चान्द्रगृह  –  नवांश पादों का आधार', sa: '27 चान्द्रगृहाणि  –  नवांशपादानाम् आधारः' } },
   { href: '/kundali', label: { en: 'Generate Your Kundali', hi: 'कुण्डली बनाएँ', sa: 'कुण्डलीं रचयतु' }, desc: { en: 'See your own divisional charts with AI commentary', hi: 'AI व्याख्या के साथ अपने विभागीय चार्ट देखें', sa: 'AI व्याख्यासह स्ववर्गचार्टान् पश्यतु' } },
 ];
 
@@ -488,8 +488,8 @@ export default function LearnVargasPage() {
           </p>
           <p className="text-text-secondary/70 text-xs mt-2 italic">
             {locale === 'en'
-              ? 'Same planet, same degree — but D9 says Leo while D1 says Aries. This new position reveals the hidden layer.'
-              : 'एक ही ग्रह, एक ही अंश — लेकिन D9 कहता है सिंह जबकि D1 कहता है मेष। यह नई स्थिति छिपी परत दर्शाती है।'}
+              ? 'Same planet, same degree  –  but D9 says Leo while D1 says Aries. This new position reveals the hidden layer.'
+              : 'एक ही ग्रह, एक ही अंश  –  लेकिन D9 कहता है सिंह जबकि D1 कहता है मेष। यह नई स्थिति छिपी परत दर्शाती है।'}
           </p>
         </div>
       </LessonSection>
@@ -674,8 +674,8 @@ export default function LearnVargasPage() {
             </div>
             <p className="text-text-secondary text-xs">
               {locale === 'en'
-                ? 'Certain Navamsha positions are considered especially auspicious — they "nourish" the planet. These occur when planets fall in specific padas ruled by benefics. A planet in Pushkara Navamsha gains gentle, benefic strength.'
-                : 'कुछ नवांश स्थितियाँ विशेष रूप से शुभ मानी जाती हैं — ये ग्रह को "पोषित" करती हैं। पुष्कर नवांश में ग्रह को सौम्य, शुभ बल प्राप्त होता है।'}
+                ? 'Certain Navamsha positions are considered especially auspicious  –  they "nourish" the planet. These occur when planets fall in specific padas ruled by benefics. A planet in Pushkara Navamsha gains gentle, benefic strength.'
+                : 'कुछ नवांश स्थितियाँ विशेष रूप से शुभ मानी जाती हैं  –  ये ग्रह को "पोषित" करती हैं। पुष्कर नवांश में ग्रह को सौम्य, शुभ बल प्राप्त होता है।'}
             </p>
           </div>
           <div className="p-4 rounded-lg bg-purple-500/5 border border-purple-500/20">
@@ -894,8 +894,8 @@ export default function LearnVargasPage() {
           </h4>
           <div className="space-y-2 text-sm text-text-secondary">
             <p>{locale === 'en'
-              ? '1. Check D1 first: 7th house (Aries) has Ketu. 7th lord Mars is in 12th house (Virgo) — challenging placement for marriage.'
-              : '1. पहले D1 जाँचें: 7वाँ भाव (मेष) में केतु। 7वाँ स्वामी मंगल 12वें भाव (कन्या) में — विवाह के लिए चुनौतीपूर्ण।'}</p>
+              ? '1. Check D1 first: 7th house (Aries) has Ketu. 7th lord Mars is in 12th house (Virgo)  –  challenging placement for marriage.'
+              : '1. पहले D1 जाँचें: 7वाँ भाव (मेष) में केतु। 7वाँ स्वामी मंगल 12वें भाव (कन्या) में  –  विवाह के लिए चुनौतीपूर्ण।'}</p>
             <p>{locale === 'en'
               ? '2. Now check D9: Where is Venus (marriage karaka)? What sign rises in D9? Where is the D9 7th lord?'
               : '2. अब D9 जाँचें: शुक्र (विवाह कारक) कहाँ है? D9 में कौन सी राशि उदित है? D9 का 7वाँ स्वामी कहाँ है?'}</p>
@@ -917,8 +917,8 @@ export default function LearnVargasPage() {
           </h4>
           <div className="space-y-2 text-sm text-text-secondary">
             <p>{locale === 'en'
-              ? '1. D1 check: 10th house (Cancer) has Sun — indicates government, authority, or leadership roles. 10th lord Moon is in 3rd house (Sagittarius) — communication, media, or short travels in career.'
-              : '1. D1 जाँच: 10वाँ भाव (कर्क) में सूर्य — सरकार, अधिकार या नेतृत्व। 10वाँ स्वामी चन्द्र 3वें भाव (धनु) में — करियर में संचार, मीडिया।'}</p>
+              ? '1. D1 check: 10th house (Cancer) has Sun  –  indicates government, authority, or leadership roles. 10th lord Moon is in 3rd house (Sagittarius)  –  communication, media, or short travels in career.'
+              : '1. D1 जाँच: 10वाँ भाव (कर्क) में सूर्य  –  सरकार, अधिकार या नेतृत्व। 10वाँ स्वामी चन्द्र 3वें भाव (धनु) में  –  करियर में संचार, मीडिया।'}</p>
             <p>{locale === 'en'
               ? '2. D10 analysis: Note the D10 Lagna sign and lord. Which planets occupy the 10th house of D10? Is Sun (career karaka) strong here?'
               : '2. D10 विश्लेषण: D10 लग्न राशि और स्वामी नोट करें। D10 के 10वें भाव में कौन से ग्रह हैं? क्या सूर्य (करियर कारक) यहाँ शक्तिशाली है?'}</p>
@@ -935,8 +935,8 @@ export default function LearnVargasPage() {
           </h4>
           <div className="space-y-2 text-sm text-text-secondary">
             <p>{locale === 'en'
-              ? '1. D1 check: 5th house (Aquarius) has Saturn (own sign) — indicates delayed but eventual children. Jupiter (putra karaka) in 2nd house (Scorpio) — supports progeny.'
-              : '1. D1 जाँच: 5वाँ भाव (कुम्भ) में शनि (स्वराशि) — विलम्बित लेकिन अन्ततः संतान। गुरु (पुत्र कारक) 2वें भाव (वृश्चिक) में — संतान का समर्थन।'}</p>
+              ? '1. D1 check: 5th house (Aquarius) has Saturn (own sign)  –  indicates delayed but eventual children. Jupiter (putra karaka) in 2nd house (Scorpio)  –  supports progeny.'
+              : '1. D1 जाँच: 5वाँ भाव (कुम्भ) में शनि (स्वराशि)  –  विलम्बित लेकिन अन्ततः संतान। गुरु (पुत्र कारक) 2वें भाव (वृश्चिक) में  –  संतान का समर्थन।'}</p>
             <p>{locale === 'en'
               ? '2. D7 analysis: Check Jupiter\'s position and strength in D7. Is the 5th house of D7 occupied by benefics? Where is the D7 5th lord?'
               : '2. D7 विश्लेषण: D7 में गुरु की स्थिति और बल जाँचें। क्या D7 का 5वाँ भाव शुभ ग्रहों से युक्त है? D7 का 5वाँ स्वामी कहाँ है?'}</p>

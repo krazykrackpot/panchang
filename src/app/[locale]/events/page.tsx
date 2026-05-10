@@ -130,7 +130,7 @@ export default function EventsPage() {
     const pName = planetNames[event.planet];
     if (!pName) return undefined;
 
-    // Generic personal impact — we could enhance this later with actual transit sign lookup
+    // Generic personal impact  –  we could enhance this later with actual transit sign lookup
     if (locale === 'hi') {
       return `${pName.hi} गोचर आपकी कुंडली को प्रभावित करेगा। विस्तृत विश्लेषण के लिए गोचर पृष्ठ देखें।`;
     }

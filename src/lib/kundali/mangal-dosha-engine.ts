@@ -92,7 +92,7 @@ export function analyzeMangalDosha(
   const jupiter = planets.find((p) => p.planet.id === 4);
 
   if (!mars) {
-    // Cannot compute without Mars — return no-dosha
+    // Cannot compute without Mars  –  return no-dosha
     return {
       present: false,
       fromLagna: false,
@@ -152,7 +152,7 @@ export function analyzeMangalDosha(
   // --- Cancellations (only evaluated when dosha is present) ---
   const cancellations: { rule: string; description: string }[] = [];
 
-  // C1: Mars in own sign — Aries (1) or Scorpio (8)
+  // C1: Mars in own sign  –  Aries (1) or Scorpio (8)
   if (marsSign === 1 || marsSign === 8) {
     cancellations.push({
       rule: 'C1',
@@ -160,7 +160,7 @@ export function analyzeMangalDosha(
     });
   }
 
-  // C2: Mars exalted — Capricorn (10)
+  // C2: Mars exalted  –  Capricorn (10)
   if (marsSign === 10) {
     cancellations.push({
       rule: 'C2',
@@ -168,7 +168,7 @@ export function analyzeMangalDosha(
     });
   }
 
-  // C3: Jupiter aspects Mars — Jupiter in same house OR 5th/7th/9th from Mars
+  // C3: Jupiter aspects Mars  –  Jupiter in same house OR 5th/7th/9th from Mars
   if (jupiter) {
     const jupHouse = jupiter.house;
     // Jupiter's special aspects: 5th, 7th, 9th from its own position
@@ -218,11 +218,11 @@ export function analyzeMangalDosha(
     cancellations.push({
       rule: 'C6',
       description:
-        'Mars in Mercury-ruled sign (Gemini/Virgo) in 2nd house — Mercury neutralizes Mangal in the 2nd',
+        'Mars in Mercury-ruled sign (Gemini/Virgo) in 2nd house  –  Mercury neutralizes Mangal in the 2nd',
     });
   }
 
-  // C8: Age-based reduction — Mars matures after age 28
+  // C8: Age-based reduction  –  Mars matures after age 28
   if (birthDate) {
     const birthYear = parseInt(birthDate.split('-')[0], 10);
     const currentYear = new Date().getFullYear();
@@ -230,7 +230,7 @@ export function analyzeMangalDosha(
     if (age >= 28) {
       cancellations.push({
         rule: 'C8',
-        description: 'Age 28+ — Mars has matured, Mangal Dosha effect is significantly reduced',
+        description: 'Age 28+  –  Mars has matured, Mangal Dosha effect is significantly reduced',
       });
     }
   }
@@ -269,7 +269,7 @@ export function analyzeMangalDoshaForMatching(
 
   // Apply C7 (Mutual Manglik) cancellation to both charts if applicable
   if (mutualCancellation) {
-    const c7 = { rule: 'C7', description: 'Both partners have Mangal Dosha — mutual cancellation applies' };
+    const c7 = { rule: 'C7', description: 'Both partners have Mangal Dosha  –  mutual cancellation applies' };
 
     if (!chart1.cancellations.some((c) => c.rule === 'C7')) {
       chart1.cancellations.push(c7);

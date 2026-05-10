@@ -95,8 +95,8 @@ function buildUrgentFlags(
       severity: 3,
       icon: 'transition',
       message: {
-        en: 'A major dasha transition is approaching within 6 months. The planetary period governing your life is changing — expect a significant shift in themes, energy, and focus areas.',
-        hi: 'एक प्रमुख दशा संक्रमण 6 महीनों में आ रहा है। आपके जीवन को संचालित करने वाला ग्रह काल बदल रहा है — विषयों, ऊर्जा और फ़ोकस क्षेत्रों में महत्वपूर्ण बदलाव की उम्मीद करें।',
+        en: 'A major dasha transition is approaching within 6 months. The planetary period governing your life is changing  –  expect a significant shift in themes, energy, and focus areas.',
+        hi: 'एक प्रमुख दशा संक्रमण 6 महीनों में आ रहा है। आपके जीवन को संचालित करने वाला ग्रह काल बदल रहा है  –  विषयों, ऊर्जा और फ़ोकस क्षेत्रों में महत्वपूर्ण बदलाव की उम्मीद करें।',
       },
       expiresAt: '',
       relatedPatterns: patterns.map((mp) => mp.patternId),
@@ -137,7 +137,7 @@ export function runConvergenceEngine(input: ConvergenceInput): ConvergenceResult
     }
   }
 
-  // Step 2: Mutual exclusion — suppress lower-scoring patterns
+  // Step 2: Mutual exclusion  –  suppress lower-scoring patterns
   const suppressed = new Set<string>();
 
   for (const mp of allMatched) {
@@ -149,7 +149,7 @@ export function runConvergenceEngine(input: ConvergenceInput): ConvergenceResult
       const excludedMatch = allMatched.find((m) => m.patternId === excludedId);
       if (!excludedMatch) continue;
 
-      // Both matched — suppress the lower scorer
+      // Both matched  –  suppress the lower scorer
       if (mp.finalScore >= excludedMatch.finalScore) {
         suppressed.add(excludedId);
       } else {

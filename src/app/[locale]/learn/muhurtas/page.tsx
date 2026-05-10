@@ -108,8 +108,8 @@ export default function LearnMuhurtasPage() {
           </p>
           <p className="text-indigo-200/80 font-mono text-xs">
             {locale === 'en'
-              ? 'End = Sunrise — the period ends exactly at dawn'
-              : 'समाप्ति = सूर्योदय — यह अवधि ठीक भोर में समाप्त होती है'}
+              ? 'End = Sunrise  –  the period ends exactly at dawn'
+              : 'समाप्ति = सूर्योदय  –  यह अवधि ठीक भोर में समाप्त होती है'}
           </p>
           <p className="text-indigo-200/60 font-mono text-xs mt-2">
             {locale === 'en'
@@ -380,7 +380,7 @@ export default function LearnMuhurtasPage() {
         </h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {[
-            { label: !isIndicLocale(locale) ? 'Muhurta AI — Find Auspicious Times' : 'मुहूर्त AI — शुभ समय खोजें', href: '/muhurta-ai', color: 'border-emerald-500/20 hover:border-emerald-500/40' },
+            { label: !isIndicLocale(locale) ? 'Muhurta AI  –  Find Auspicious Times' : 'मुहूर्त AI  –  शुभ समय खोजें', href: '/muhurta-ai', color: 'border-emerald-500/20 hover:border-emerald-500/40' },
             { label: !isIndicLocale(locale) ? 'Daily Panchang' : 'दैनिक पंचांग', href: '/panchang', color: 'border-gold-primary/20 hover:border-gold-primary/40' },
             { label: !isIndicLocale(locale) ? 'Muhurta Wheel & Conflict Analysis' : 'मुहूर्त चक्र और विरोध विश्लेषण', href: '/panchang/muhurta', color: 'border-gold-primary/20 hover:border-gold-primary/40' },
             { label: !isIndicLocale(locale) ? 'Module 17-1: Muhurta Foundations' : 'मॉड्यूल 17-1: मुहूर्त आधार', href: '/learn/modules/17-1', color: 'border-blue-500/20 hover:border-blue-500/40' },

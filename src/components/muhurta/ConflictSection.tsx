@@ -66,7 +66,7 @@ export default function ConflictSection({ locale }: ConflictSectionProps) {
       >
         <p>
           {en
-            ? 'The Abhijit Muhurta (8th daytime muhurta, around midday) is considered the most auspicious time of the day — "victory is assured" for any activity started during this period. However, Rahu Kalam (an inauspicious period of ~90 minutes ruled by Rahu) varies by weekday and can sometimes overlap with Abhijit.'
+            ? 'The Abhijit Muhurta (8th daytime muhurta, around midday) is considered the most auspicious time of the day  –  "victory is assured" for any activity started during this period. However, Rahu Kalam (an inauspicious period of ~90 minutes ruled by Rahu) varies by weekday and can sometimes overlap with Abhijit.'
             : 'अभिजित् मुहूर्त (8वाँ दिवा मुहूर्त, मध्याह्न के आसपास) दिन का सर्वाधिक शुभ समय माना जाता है। किन्तु राहु काल (राहु द्वारा शासित ~90 मिनट का अशुभ काल) सप्ताह के दिन के अनुसार बदलता है और कभी-कभी अभिजित् से ओवरलैप कर सकता है।'}
         </p>
         <div className="p-3 bg-bg-primary/50 rounded-lg border border-amber-500/10">
@@ -140,8 +140,8 @@ export default function ConflictSection({ locale }: ConflictSectionProps) {
       >
         <p>
           {en
-            ? 'Brahma Muhurta (Muhurtas 26-27, roughly 96 minutes before sunrise) is the supreme time for spiritual practice, meditation, and Vedic study. However, Yama Ghantaka — an inauspicious sub-period associated with Yama (lord of death) — can overlap on certain weekdays.'
-            : 'ब्राह्म मुहूर्त (मुहूर्त 26-27, सूर्योदय से लगभग 96 मिनट पूर्व) आध्यात्मिक अभ्यास, ध्यान और वैदिक अध्ययन के लिए सर्वोत्तम काल है। किन्तु यम घण्टक — यम (मृत्यु के देवता) से सम्बद्ध अशुभ उपकाल — कुछ दिनों में ओवरलैप कर सकता है।'}
+            ? 'Brahma Muhurta (Muhurtas 26-27, roughly 96 minutes before sunrise) is the supreme time for spiritual practice, meditation, and Vedic study. However, Yama Ghantaka  –  an inauspicious sub-period associated with Yama (lord of death)  –  can overlap on certain weekdays.'
+            : 'ब्राह्म मुहूर्त (मुहूर्त 26-27, सूर्योदय से लगभग 96 मिनट पूर्व) आध्यात्मिक अभ्यास, ध्यान और वैदिक अध्ययन के लिए सर्वोत्तम काल है। किन्तु यम घण्टक  –  यम (मृत्यु के देवता) से सम्बद्ध अशुभ उपकाल  –  कुछ दिनों में ओवरलैप कर सकता है।'}
         </p>
         <div className="p-3 bg-bg-primary/50 rounded-lg border border-indigo-500/10">
           <p className="text-indigo-300 text-xs font-semibold mb-1">
@@ -149,8 +149,8 @@ export default function ConflictSection({ locale }: ConflictSectionProps) {
           </p>
           <p className="text-xs">
             {en
-              ? 'For purely spiritual activities (meditation, japa, pranayama), Brahma Muhurta\'s sanctity is considered paramount — Yama Ghantaka does not diminish its spiritual potency. However, for worldly activities begun during this time (journeys, business), caution is advised on affected weekdays.'
-              : 'विशुद्ध आध्यात्मिक कार्यों (ध्यान, जप, प्राणायाम) के लिए ब्राह्म मुहूर्त की पवित्रता सर्वोपरि मानी जाती है — यम घण्टक इसकी आध्यात्मिक शक्ति को क्षीण नहीं करता। किन्तु इस काल में आरम्भ किए लौकिक कार्यों के लिए प्रभावित दिनों पर सावधानी उचित है।'}
+              ? 'For purely spiritual activities (meditation, japa, pranayama), Brahma Muhurta\'s sanctity is considered paramount  –  Yama Ghantaka does not diminish its spiritual potency. However, for worldly activities begun during this time (journeys, business), caution is advised on affected weekdays.'
+              : 'विशुद्ध आध्यात्मिक कार्यों (ध्यान, जप, प्राणायाम) के लिए ब्राह्म मुहूर्त की पवित्रता सर्वोपरि मानी जाती है  –  यम घण्टक इसकी आध्यात्मिक शक्ति को क्षीण नहीं करता। किन्तु इस काल में आरम्भ किए लौकिक कार्यों के लिए प्रभावित दिनों पर सावधानी उचित है।'}
           </p>
         </div>
       </ConflictCard>
@@ -209,7 +209,7 @@ export default function ConflictSection({ locale }: ConflictSectionProps) {
                 <span className="text-text-secondary font-mono">{item.time}</span>
               </div>
               <div className="text-text-secondary/70 mt-0.5">
-                {en ? 'Muhurtas affected' : 'प्रभावित मुहूर्त'}: {item.muhurtas} — {item.conflict}
+                {en ? 'Muhurtas affected' : 'प्रभावित मुहूर्त'}: {item.muhurtas}  –  {item.conflict}
               </div>
             </div>
           ))}

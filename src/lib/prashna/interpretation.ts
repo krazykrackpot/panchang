@@ -1,5 +1,5 @@
 /**
- * Ashtamangala Prashna — Interpretation Engine
+ * Ashtamangala Prashna  –  Interpretation Engine
  * Synthesizes object analysis, yoga results, and chart conditions
  * into a final PrashnaInterpretation verdict.
  */

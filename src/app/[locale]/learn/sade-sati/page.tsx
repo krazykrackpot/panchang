@@ -21,13 +21,13 @@ const PHASES = [
     transit: { en: '12th from Moon (2.5 years)', hi: 'चन्द्र से 12वीं राशि (2.5 वर्ष)', sa: 'चन्द्रात् 12 तमा राशिः (2.5 वर्षाः)' },
     color: '#7dd3fc',
     themes: {
-      en: 'Anxiety, preparation, spiritual awakening, financial stress, sleep disturbances, increased expenses, detachment from comforts. Saturn in the 12th from Moon triggers subconscious processing — old fears surface, isolation increases, and meditation becomes especially powerful.',
-      hi: 'चिन्ता, तैयारी, आध्यात्मिक जागृति, वित्तीय तनाव, नींद में बाधा, बढ़ते खर्चे, सुख-सुविधाओं से वैराग्य। चन्द्र से 12वें में शनि अवचेतन प्रसंस्करण को प्रेरित करता है — पुराने भय सामने आते हैं, एकान्तवास बढ़ता है।',
+      en: 'Anxiety, preparation, spiritual awakening, financial stress, sleep disturbances, increased expenses, detachment from comforts. Saturn in the 12th from Moon triggers subconscious processing  –  old fears surface, isolation increases, and meditation becomes especially powerful.',
+      hi: 'चिन्ता, तैयारी, आध्यात्मिक जागृति, वित्तीय तनाव, नींद में बाधा, बढ़ते खर्चे, सुख-सुविधाओं से वैराग्य। चन्द्र से 12वें में शनि अवचेतन प्रसंस्करण को प्रेरित करता है  –  पुराने भय सामने आते हैं, एकान्तवास बढ़ता है।',
       sa: 'चिन्ता, सज्जता, आध्यात्मिकजागृतिः, वित्तीयतनावः, निद्राबाधा, व्ययवृद्धिः, सुखेभ्यः वैराग्यम्।'
     },
     advice: {
-      en: 'Focus on spiritual practices. Reduce unnecessary expenses. This is a preparation phase — clear old karmic debts.',
-      hi: 'आध्यात्मिक साधनाओं पर ध्यान दें। अनावश्यक खर्चे कम करें। यह तैयारी का चरण है — पुराने कार्मिक ऋणों को मुक्त करें।',
+      en: 'Focus on spiritual practices. Reduce unnecessary expenses. This is a preparation phase  –  clear old karmic debts.',
+      hi: 'आध्यात्मिक साधनाओं पर ध्यान दें। अनावश्यक खर्चे कम करें। यह तैयारी का चरण है  –  पुराने कार्मिक ऋणों को मुक्त करें।',
       sa: 'आध्यात्मिकसाधनासु ध्यानं ददत। अनावश्यकव्ययान् न्यूनीकुरुत।'
     },
   },
@@ -37,14 +37,14 @@ const PHASES = [
     transit: { en: 'Over Moon sign (2.5 years)', hi: 'चन्द्र राशि पर (2.5 वर्ष)', sa: 'चन्द्रराश्याम् (2.5 वर्षाः)' },
     color: '#f97316',
     themes: {
-      en: 'Maximum pressure, deep transformation, character building, health issues (especially mental health), career upheaval or restructuring, relationship tests, loss of comfort zone. Saturn sits directly on the Moon — the mind is compressed, tested, and ultimately strengthened. This phase can bring depression, anxiety, but also extraordinary resilience.',
-      hi: 'अधिकतम दबाव, गहरा परिवर्तन, चरित्र निर्माण, स्वास्थ्य समस्याएँ (विशेषकर मानसिक स्वास्थ्य), करियर उथल-पुथल, सम्बन्ध परीक्षण, सुख क्षेत्र की हानि। शनि सीधे चन्द्र पर बैठता है — मन संकुचित, परीक्षित और अन्ततः सुदृढ़ होता है।',
+      en: 'Maximum pressure, deep transformation, character building, health issues (especially mental health), career upheaval or restructuring, relationship tests, loss of comfort zone. Saturn sits directly on the Moon  –  the mind is compressed, tested, and ultimately strengthened. This phase can bring depression, anxiety, but also extraordinary resilience.',
+      hi: 'अधिकतम दबाव, गहरा परिवर्तन, चरित्र निर्माण, स्वास्थ्य समस्याएँ (विशेषकर मानसिक स्वास्थ्य), करियर उथल-पुथल, सम्बन्ध परीक्षण, सुख क्षेत्र की हानि। शनि सीधे चन्द्र पर बैठता है  –  मन संकुचित, परीक्षित और अन्ततः सुदृढ़ होता है।',
       sa: 'अधिकतमदबावः, गभीरपरिवर्तनम्, चरित्रनिर्माणम्, आरोग्यसमस्याः, वृत्त्युथलपुथलम्, सम्बन्धपरीक्षणम्।'
     },
     advice: {
-      en: 'Prioritize health. Stay disciplined. Avoid major risks. This is transformation — do not fight it, work with it.',
-      hi: 'स्वास्थ्य को प्राथमिकता दें। अनुशासित रहें। बड़े जोखिमों से बचें। यह परिवर्तन है — इससे न लड़ें, इसके साथ कार्य करें।',
-      sa: 'आरोग्यं प्राथम्ये ददत। अनुशासिताः तिष्ठत। इदं परिवर्तनम् — तेन सह कार्यं कुरुत।'
+      en: 'Prioritize health. Stay disciplined. Avoid major risks. This is transformation  –  do not fight it, work with it.',
+      hi: 'स्वास्थ्य को प्राथमिकता दें। अनुशासित रहें। बड़े जोखिमों से बचें। यह परिवर्तन है  –  इससे न लड़ें, इसके साथ कार्य करें।',
+      sa: 'आरोग्यं प्राथम्ये ददत। अनुशासिताः तिष्ठत। इदं परिवर्तनम्  –  तेन सह कार्यं कुरुत।'
     },
   },
   {
@@ -53,8 +53,8 @@ const PHASES = [
     transit: { en: '2nd from Moon (2.5 years)', hi: 'चन्द्र से 2री राशि (2.5 वर्ष)', sa: 'चन्द्रात् 2 तमा राशिः (2.5 वर्षाः)' },
     color: '#86efac',
     themes: {
-      en: 'Financial recovery, reputation rebuilding, family dynamics shifting, speech becoming more measured, wisdom gained through suffering, gradual return of stability. Saturn in the 2nd from Moon affects wealth and family — this is the cleanup phase where you rebuild from the ground up with hard-won wisdom.',
-      hi: 'वित्तीय सुधार, प्रतिष्ठा पुनर्निर्माण, पारिवारिक गतिशीलता बदलना, वाणी अधिक संयमित, कष्ट से प्राप्त ज्ञान, स्थिरता की क्रमिक वापसी। चन्द्र से 2रे में शनि धन और परिवार को प्रभावित करता है — यह सफाई चरण है जहाँ आप कठिन-परिश्रम से अर्जित ज्ञान के साथ पुनर्निर्माण करते हैं।',
+      en: 'Financial recovery, reputation rebuilding, family dynamics shifting, speech becoming more measured, wisdom gained through suffering, gradual return of stability. Saturn in the 2nd from Moon affects wealth and family  –  this is the cleanup phase where you rebuild from the ground up with hard-won wisdom.',
+      hi: 'वित्तीय सुधार, प्रतिष्ठा पुनर्निर्माण, पारिवारिक गतिशीलता बदलना, वाणी अधिक संयमित, कष्ट से प्राप्त ज्ञान, स्थिरता की क्रमिक वापसी। चन्द्र से 2रे में शनि धन और परिवार को प्रभावित करता है  –  यह सफाई चरण है जहाँ आप कठिन-परिश्रम से अर्जित ज्ञान के साथ पुनर्निर्माण करते हैं।',
       sa: 'वित्तीयसुधारः, प्रतिष्ठापुनर्निर्माणम्, कुटुम्बगतिशीलताया परिवर्तनम्, वाक् अधिकसंयमिता, कष्टात् प्राप्तज्ञानम्।'
     },
     advice: {
@@ -77,16 +77,16 @@ const SEVERITY_FACTORS = [
 /* ── Life cycle patterns ──────────────────────────────────────────── */
 const LIFE_CYCLES = [
   { cycle: { en: 'First Sade Sati (~age 22-30)', hi: 'प्रथम साढ़े साती (~22-30 वर्ष)', sa: 'प्रथमा साढेसाती (~22-30 वर्षाः)' }, theme: { en: 'Career establishment, leaving comfort zone, first major responsibilities. Often coincides with first job, marriage, or moving away from parents. Saturn teaches self-reliance.', hi: 'करियर स्थापना, सुख क्षेत्र छोड़ना, प्रथम बड़ी ज़िम्मेदारियाँ। अक्सर पहली नौकरी, विवाह या माता-पिता से दूर जाने के साथ मेल खाता है। शनि आत्मनिर्भरता सिखाता है।', sa: 'वृत्तिस्थापनम्, सुखक्षेत्रात् निर्गमनम्, प्रथमा महती उत्तरदायित्वानि।' } },
-  { cycle: { en: 'Second Sade Sati (~age 52-60)', hi: 'द्वितीय साढ़े साती (~52-60 वर्ष)', sa: 'द्वितीया साढेसाती (~52-60 वर्षाः)' }, theme: { en: 'Health issues emerge, parents may need care or pass away, career reaches peak or demands major pivot. Wisdom from the first Sade Sati makes this one more manageable — you know Saturn\'s language now.', hi: 'स्वास्थ्य समस्याएँ उभरती हैं, माता-पिता को देखभाल की आवश्यकता या निधन, करियर शिखर या बड़ा मोड़। प्रथम साढ़े साती का ज्ञान इसे अधिक प्रबन्धनीय बनाता है।', sa: 'आरोग्यसमस्याः उदयन्ति, पितरौ देखभालार्थं वा निधनं, वृत्तिशिखरम्। प्रथमसाढेसात्याः ज्ञानम् इमां अधिकप्रबन्धनीयां करोति।' } },
-  { cycle: { en: 'Third Sade Sati (~age 82-90)', hi: 'तृतीय साढ़े साती (~82-90 वर्ष)', sa: 'तृतीया साढेसाती (~82-90 वर्षाः)' }, theme: { en: 'End-of-life contemplation, spiritual culmination, legacy questions, physical limitations accepted. This Sade Sati is about closure — completing the soul\'s karmic curriculum for this lifetime.', hi: 'जीवन के अन्तिम चिन्तन, आध्यात्मिक परिणति, विरासत प्रश्न, शारीरिक सीमाओं की स्वीकृति। यह साढ़े साती समापन के बारे में है — इस जीवनकाल के कार्मिक पाठ्यक्रम को पूरा करना।', sa: 'जीवनान्तचिन्तनम्, आध्यात्मिकपरिणतिः, वंशप्रश्नाः, शारीरिकसीमानां स्वीकृतिः।' } },
+  { cycle: { en: 'Second Sade Sati (~age 52-60)', hi: 'द्वितीय साढ़े साती (~52-60 वर्ष)', sa: 'द्वितीया साढेसाती (~52-60 वर्षाः)' }, theme: { en: 'Health issues emerge, parents may need care or pass away, career reaches peak or demands major pivot. Wisdom from the first Sade Sati makes this one more manageable  –  you know Saturn\'s language now.', hi: 'स्वास्थ्य समस्याएँ उभरती हैं, माता-पिता को देखभाल की आवश्यकता या निधन, करियर शिखर या बड़ा मोड़। प्रथम साढ़े साती का ज्ञान इसे अधिक प्रबन्धनीय बनाता है।', sa: 'आरोग्यसमस्याः उदयन्ति, पितरौ देखभालार्थं वा निधनं, वृत्तिशिखरम्। प्रथमसाढेसात्याः ज्ञानम् इमां अधिकप्रबन्धनीयां करोति।' } },
+  { cycle: { en: 'Third Sade Sati (~age 82-90)', hi: 'तृतीय साढ़े साती (~82-90 वर्ष)', sa: 'तृतीया साढेसाती (~82-90 वर्षाः)' }, theme: { en: 'End-of-life contemplation, spiritual culmination, legacy questions, physical limitations accepted. This Sade Sati is about closure  –  completing the soul\'s karmic curriculum for this lifetime.', hi: 'जीवन के अन्तिम चिन्तन, आध्यात्मिक परिणति, विरासत प्रश्न, शारीरिक सीमाओं की स्वीकृति। यह साढ़े साती समापन के बारे में है  –  इस जीवनकाल के कार्मिक पाठ्यक्रम को पूरा करना।', sa: 'जीवनान्तचिन्तनम्, आध्यात्मिकपरिणतिः, वंशप्रश्नाः, शारीरिकसीमानां स्वीकृतिः।' } },
 ];
 
 /* ── Remedies ──────────────────────────────────────────────────────── */
 const REMEDIES = [
   { name: { en: 'Shani Dev Worship', hi: 'शनि देव पूजा', sa: 'शनिदेवपूजा' }, desc: { en: 'Visit Shani temple on Saturdays. Light sesame oil lamp. Offer black flowers and mustard oil. The Shani Chalisa and Dashrath Shani Stotra are particularly potent.', hi: 'शनिवार को शनि मन्दिर जाएँ। तिल के तेल का दीपक जलाएँ। काले फूल और सरसों का तेल अर्पित करें। शनि चालीसा और दशरथ शनि स्तोत्र विशेष प्रभावी हैं।', sa: 'शनिवासरे शनिमन्दिरं गच्छत। तिलतैलदीपं प्रज्वालयत। कृष्णपुष्पाणि सर्षपतैलं च अर्पयत।' }, icon: Star },
-  { name: { en: 'Maha Mrityunjaya Mantra', hi: 'महा मृत्युंजय मन्त्र', sa: 'महामृत्युञ्जयमन्त्रः' }, desc: { en: 'For health protection during Peak Phase. "Om Tryambakam Yajamahe..." — recite 108 times daily. This mantra specifically addresses Saturn\'s impact on health and longevity.', hi: 'चरम चरण में स्वास्थ्य रक्षा के लिए। "ॐ त्र्यम्बकं यजामहे..." — प्रतिदिन 108 बार जपें। यह मन्त्र विशेष रूप से स्वास्थ्य और दीर्घायु पर शनि के प्रभाव को सम्बोधित करता है।', sa: 'चरमचरणे आरोग्यरक्षार्थम्। "ॐ त्र्यम्बकं यजामहे..." — प्रतिदिनम् 108 वारं जपत।' }, icon: Heart },
+  { name: { en: 'Maha Mrityunjaya Mantra', hi: 'महा मृत्युंजय मन्त्र', sa: 'महामृत्युञ्जयमन्त्रः' }, desc: { en: 'For health protection during Peak Phase. "Om Tryambakam Yajamahe..."  –  recite 108 times daily. This mantra specifically addresses Saturn\'s impact on health and longevity.', hi: 'चरम चरण में स्वास्थ्य रक्षा के लिए। "ॐ त्र्यम्बकं यजामहे..."  –  प्रतिदिन 108 बार जपें। यह मन्त्र विशेष रूप से स्वास्थ्य और दीर्घायु पर शनि के प्रभाव को सम्बोधित करता है।', sa: 'चरमचरणे आरोग्यरक्षार्थम्। "ॐ त्र्यम्बकं यजामहे..."  –  प्रतिदिनम् 108 वारं जपत।' }, icon: Heart },
   { name: { en: 'Community Service (Karma Yoga)', hi: 'सामुदायिक सेवा (कर्म योग)', sa: 'सामुदायिकसेवा (कर्मयोगः)' }, desc: { en: 'Saturn rules the working class and the underprivileged. Serving those less fortunate directly aligns with Saturn\'s energy. Feed the poor on Saturdays, donate to charities, volunteer consistently.', hi: 'शनि श्रमिक वर्ग और वंचितों पर शासन करता है। कम भाग्यशाली लोगों की सेवा सीधे शनि की ऊर्जा से संरेखित होती है। शनिवार को गरीबों को भोजन कराएँ, दान करें, नियमित स्वयंसेवा करें।', sa: 'शनिः श्रमिकवर्गं वञ्चितान् च शासति। अल्पभाग्यशालिनां सेवा सीधा शनेः ऊर्जया सह संरेखिता।' }, icon: Sparkles },
-  { name: { en: 'Blue Sapphire (WITH CAUTION)', hi: 'नीलम (सावधानी सहित)', sa: 'नीलमणिः (सावधान्या सह)' }, desc: { en: 'ONLY if Saturn is a Yogakaraka for your Lagna (Taurus/Libra ascendant) AND you have consulted a qualified astrologer. Blue Sapphire is the most powerful gemstone — it can dramatically help OR harm. Never wear based on generic advice. Trial period of 5-7 days mandatory.', hi: 'केवल तभी यदि शनि आपके लग्न के लिए योगकारक है (वृषभ/तुला लग्न) और आपने योग्य ज्योतिषी से परामर्श किया है। नीलम सबसे शक्तिशाली रत्न है — यह नाटकीय रूप से मदद या हानि कर सकता है। 5-7 दिन की परीक्षण अवधि अनिवार्य।', sa: 'केवलं यदि शनिः लग्नस्य योगकारकः (वृषभ/तुलालग्ने)। नीलमणिः सर्वाधिकशक्तिशालिरत्नम् — नाटकीयरूपेण सहायतां हानिं वा कर्तुं शक्नोति।' }, icon: AlertTriangle },
+  { name: { en: 'Blue Sapphire (WITH CAUTION)', hi: 'नीलम (सावधानी सहित)', sa: 'नीलमणिः (सावधान्या सह)' }, desc: { en: 'ONLY if Saturn is a Yogakaraka for your Lagna (Taurus/Libra ascendant) AND you have consulted a qualified astrologer. Blue Sapphire is the most powerful gemstone  –  it can dramatically help OR harm. Never wear based on generic advice. Trial period of 5-7 days mandatory.', hi: 'केवल तभी यदि शनि आपके लग्न के लिए योगकारक है (वृषभ/तुला लग्न) और आपने योग्य ज्योतिषी से परामर्श किया है। नीलम सबसे शक्तिशाली रत्न है  –  यह नाटकीय रूप से मदद या हानि कर सकता है। 5-7 दिन की परीक्षण अवधि अनिवार्य।', sa: 'केवलं यदि शनिः लग्नस्य योगकारकः (वृषभ/तुलालग्ने)। नीलमणिः सर्वाधिकशक्तिशालिरत्नम्  –  नाटकीयरूपेण सहायतां हानिं वा कर्तुं शक्नोति।' }, icon: AlertTriangle },
 ];
 
 /* ── Myths ─────────────────────────────────────────────────────────── */
@@ -98,17 +98,17 @@ const MYTHS = [
   },
   {
     myth: { en: '"Avoid marriage during Sade Sati"', hi: '"साढ़े साती में विवाह से बचें"', sa: '"साढेसात्यां विवाहात् निवर्तत"' },
-    truth: { en: 'FALSE. Many successful marriages happen during Sade Sati. Saturn brings commitment, stability, and seriousness to relationships — qualities that build lasting partnerships. The key is choosing a mature, compatible partner.', hi: 'गलत। कई सफल विवाह साढ़े साती में होते हैं। शनि सम्बन्धों में प्रतिबद्धता, स्थिरता और गम्भीरता लाता है — गुण जो स्थायी साझेदारी बनाते हैं।', sa: 'असत्यम्। अनेकानि सफलविवाहानि साढेसात्यां भवन्ति।' },
+    truth: { en: 'FALSE. Many successful marriages happen during Sade Sati. Saturn brings commitment, stability, and seriousness to relationships  –  qualities that build lasting partnerships. The key is choosing a mature, compatible partner.', hi: 'गलत। कई सफल विवाह साढ़े साती में होते हैं। शनि सम्बन्धों में प्रतिबद्धता, स्थिरता और गम्भीरता लाता है  –  गुण जो स्थायी साझेदारी बनाते हैं।', sa: 'असत्यम्। अनेकानि सफलविवाहानि साढेसात्यां भवन्ति।' },
     verdict: 'false',
   },
   {
     myth: { en: '"Blue Sapphire always helps in Sade Sati"', hi: '"नीलम साढ़े साती में सदा मदद करता है"', sa: '"नीलमणिः साढेसात्यां सदा सहायते"' },
-    truth: { en: 'DANGEROUS myth. Blue Sapphire amplifies Saturn\'s energy — if Saturn is malefic for your chart, it amplifies the NEGATIVE effects. For Cancer, Leo, Scorpio, and Sagittarius Lagnas, Blue Sapphire can be harmful. Always consult a qualified Jyotishi and do a trial period.', hi: 'खतरनाक मिथक। नीलम शनि की ऊर्जा बढ़ाता है — यदि शनि आपकी कुण्डली के लिए पाप है, तो यह नकारात्मक प्रभावों को बढ़ाता है। कर्क, सिंह, वृश्चिक और धनु लग्न के लिए नीलम हानिकारक हो सकता है।', sa: 'भयङ्करमिथकम्। नीलमणिः शनेः ऊर्जां वर्धयति — यदि शनिः कुण्डल्याः पापः, नकारात्मकप्रभावान् वर्धयति।' },
+    truth: { en: 'DANGEROUS myth. Blue Sapphire amplifies Saturn\'s energy  –  if Saturn is malefic for your chart, it amplifies the NEGATIVE effects. For Cancer, Leo, Scorpio, and Sagittarius Lagnas, Blue Sapphire can be harmful. Always consult a qualified Jyotishi and do a trial period.', hi: 'खतरनाक मिथक। नीलम शनि की ऊर्जा बढ़ाता है  –  यदि शनि आपकी कुण्डली के लिए पाप है, तो यह नकारात्मक प्रभावों को बढ़ाता है। कर्क, सिंह, वृश्चिक और धनु लग्न के लिए नीलम हानिकारक हो सकता है।', sa: 'भयङ्करमिथकम्। नीलमणिः शनेः ऊर्जां वर्धयति  –  यदि शनिः कुण्डल्याः पापः, नकारात्मकप्रभावान् वर्धयति।' },
     verdict: 'dangerous',
   },
   {
     myth: { en: '"Nothing good can happen in Sade Sati"', hi: '"साढ़े साती में कुछ अच्छा नहीं हो सकता"', sa: '"साढेसात्यां किमपि शुभं न भवितुं शक्नोति"' },
-    truth: { en: 'FALSE. Sade Sati is a period of karmic acceleration — it accelerates BOTH good and bad karma. If your karma is positive and your natal Saturn is well-placed, Sade Sati can be your most productive period. Saturn is the planet of hard-won achievement.', hi: 'गलत। साढ़े साती कार्मिक त्वरण की अवधि है — यह अच्छे और बुरे दोनों कर्मों को तेज़ करती है। यदि आपका कर्म सकारात्मक है और शनि सुस्थित है, तो साढ़े साती आपकी सबसे उत्पादक अवधि हो सकती है।', sa: 'असत्यम्। साढेसाती कार्मिकत्वरणकालः — शुभाशुभकर्माणि उभौ त्वरयति।' },
+    truth: { en: 'FALSE. Sade Sati is a period of karmic acceleration  –  it accelerates BOTH good and bad karma. If your karma is positive and your natal Saturn is well-placed, Sade Sati can be your most productive period. Saturn is the planet of hard-won achievement.', hi: 'गलत। साढ़े साती कार्मिक त्वरण की अवधि है  –  यह अच्छे और बुरे दोनों कर्मों को तेज़ करती है। यदि आपका कर्म सकारात्मक है और शनि सुस्थित है, तो साढ़े साती आपकी सबसे उत्पादक अवधि हो सकती है।', sa: 'असत्यम्। साढेसाती कार्मिकत्वरणकालः  –  शुभाशुभकर्माणि उभौ त्वरयति।' },
     verdict: 'false',
   },
 ];
@@ -347,8 +347,8 @@ export default function SadeSatiLearnPage() {
       <LessonSection number={7} title={loc === 'hi' ? 'शनि की भासमान गति: वक्री का विज्ञान' : "Saturn's Apparent Speed: The Science Behind Retrograde"} variant="highlight">
         <p className="text-text-secondary text-sm leading-relaxed mb-4">
           {loc === 'hi'
-            ? 'शनि की कक्षीय गति लगभग स्थिर है — उसकी कक्षा लगभग वृत्ताकार है (विकेन्द्रता मात्र 0.056)। जो बदलता है वह है पृथ्वी से देखी गई भासमान (geocentric) गति। यह समझना साढ़ेसाती के प्रभावों को समझने की कुंजी है।'
-            : "Saturn's actual orbital speed barely changes — its orbit is nearly circular (eccentricity just 0.056). What varies dramatically is its apparent (geocentric) speed — how fast it appears to move as seen from Earth. Understanding this is key to understanding Sade Sati's varying intensity."}
+            ? 'शनि की कक्षीय गति लगभग स्थिर है  –  उसकी कक्षा लगभग वृत्ताकार है (विकेन्द्रता मात्र 0.056)। जो बदलता है वह है पृथ्वी से देखी गई भासमान (geocentric) गति। यह समझना साढ़ेसाती के प्रभावों को समझने की कुंजी है।'
+            : "Saturn's actual orbital speed barely changes  –  its orbit is nearly circular (eccentricity just 0.056). What varies dramatically is its apparent (geocentric) speed  –  how fast it appears to move as seen from Earth. Understanding this is key to understanding Sade Sati's varying intensity."}
         </p>
 
         <div className="space-y-3 mb-4">
@@ -356,21 +356,21 @@ export default function SadeSatiLearnPage() {
             <span className="text-emerald-400 font-bold text-sm mt-0.5">→</span>
             <div>
               <span className="text-emerald-400 text-sm font-medium">{loc === 'hi' ? 'मार्गी (Direct) गति' : 'Direct Motion'}</span>
-              <p className="text-text-secondary text-xs mt-0.5">~0.08°/day — {loc === 'hi' ? 'शनि सामान्य गति से चलता है' : 'Saturn moves at its normal apparent pace'}</p>
+              <p className="text-text-secondary text-xs mt-0.5">~0.08°/day  –  {loc === 'hi' ? 'शनि सामान्य गति से चलता है' : 'Saturn moves at its normal apparent pace'}</p>
             </div>
           </div>
           <div className="flex items-start gap-3 px-3 py-2.5 rounded-xl bg-gold-primary/8 border border-gold-primary/15">
             <span className="text-gold-primary font-bold text-sm mt-0.5">◼</span>
             <div>
               <span className="text-gold-primary text-sm font-medium">{loc === 'hi' ? 'स्टेशन (Station)' : 'Station'}</span>
-              <p className="text-text-secondary text-xs mt-0.5">~0°/day — {loc === 'hi' ? 'शनि रुकता हुआ प्रतीत होता है। यही सबसे तीव्र प्रभाव का काल है।' : "Saturn appears to stop. This is when effects are felt most intensely."}</p>
+              <p className="text-text-secondary text-xs mt-0.5">~0°/day  –  {loc === 'hi' ? 'शनि रुकता हुआ प्रतीत होता है। यही सबसे तीव्र प्रभाव का काल है।' : "Saturn appears to stop. This is when effects are felt most intensely."}</p>
             </div>
           </div>
           <div className="flex items-start gap-3 px-3 py-2.5 rounded-xl bg-red-500/8 border border-red-500/15">
             <span className="text-red-400 font-bold text-sm mt-0.5">←</span>
             <div>
               <span className="text-red-400 text-sm font-medium">{loc === 'hi' ? 'वक्री (Retrograde) गति' : 'Retrograde Motion'}</span>
-              <p className="text-text-secondary text-xs mt-0.5">~-0.05°/day — {loc === 'hi' ? 'शनि पीछे जाता प्रतीत होता है। यह वास्तविक नहीं — पृथ्वी शनि से आगे निकलती है।' : "Saturn appears to move backwards. This isn't real — Earth is overtaking Saturn, like a slower car seeming to reverse when you pass it."}</p>
+              <p className="text-text-secondary text-xs mt-0.5">~-0.05°/day  –  {loc === 'hi' ? 'शनि पीछे जाता प्रतीत होता है। यह वास्तविक नहीं  –  पृथ्वी शनि से आगे निकलती है।' : "Saturn appears to move backwards. This isn't real  –  Earth is overtaking Saturn, like a slower car seeming to reverse when you pass it."}</p>
             </div>
           </div>
         </div>
@@ -378,8 +378,8 @@ export default function SadeSatiLearnPage() {
         <div className="px-4 py-3 rounded-xl bg-white/[0.03] border border-white/5">
           <p className="text-gold-light/80 text-sm leading-relaxed">
             {loc === 'hi'
-              ? 'इसका अर्थ: डिग्री-आधारित प्रगति (जो हम दिखाते हैं) समय में असमान है। शनि राशि के मध्य में (जहाँ वक्री स्टेशन अक्सर होते हैं) अधिक दिन बिताता है। यह एक विशेषता है, दोष नहीं — यह वास्तविक ज्योतिषीय अनुभव को दर्शाता है।'
-              : "This means: degree-based progress (which we show) is non-linear in time. Saturn spends more calendar days near the middle of a sign (where retrograde stations often occur) than near the beginning or end. This is a feature, not a bug — it reflects the actual astrological experience."}
+              ? 'इसका अर्थ: डिग्री-आधारित प्रगति (जो हम दिखाते हैं) समय में असमान है। शनि राशि के मध्य में (जहाँ वक्री स्टेशन अक्सर होते हैं) अधिक दिन बिताता है। यह एक विशेषता है, दोष नहीं  –  यह वास्तविक ज्योतिषीय अनुभव को दर्शाता है।'
+              : "This means: degree-based progress (which we show) is non-linear in time. Saturn spends more calendar days near the middle of a sign (where retrograde stations often occur) than near the beginning or end. This is a feature, not a bug  –  it reflects the actual astrological experience."}
           </p>
         </div>
       </LessonSection>

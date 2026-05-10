@@ -14,7 +14,7 @@ export default async function Layout({ children, params }: { children: React.Rea
       <LearnArticleLD
         route="/learn/makara"
         locale={locale}
-        title="Makara (Capricorn) in Vedic Astrology — Complete Rashi Guide"
+        title="Makara (Capricorn) in Vedic Astrology  –  Complete Rashi Guide"
         description="Comprehensive guide to Makara Rashi (Capricorn) covering planetary dignities, nakshatras, personality, career, compatibility, remedies, and mythology from classical Jyotish sources."
       />
       {children}

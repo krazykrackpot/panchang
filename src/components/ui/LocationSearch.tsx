@@ -30,7 +30,7 @@ async function searchLocations(query: string): Promise<LocationResult[]> {
   if (!response.ok) return [];
   const data = await response.json();
 
-  // Resolve timezone for each result from its coordinates — NOT the browser
+  // Resolve timezone for each result from its coordinates  –  NOT the browser
   const results = await Promise.all(
     data.map(async (item: { display_name: string; lat: string; lon: string }) => {
       const lat = parseFloat(item.lat);

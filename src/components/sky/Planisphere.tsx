@@ -5,7 +5,7 @@ import { BRIGHT_STARS, CONSTELLATION_LINES } from '@/lib/astronomy/star-catalog'
 import { equatorialToHorizontal } from '@/lib/ephem/coordinates';
 
 // ---------------------------------------------------------------------------
-// Constants — hoisted from render path
+// Constants  –  hoisted from render path
 // ---------------------------------------------------------------------------
 
 const DEG = Math.PI / 180;
@@ -49,7 +49,7 @@ const CARDINALS = [
 function project(alt: number, az: number): { x: number; y: number; r: number } | null {
   // Skip objects well below horizon (allow slight dip for rendering near-horizon objects)
   if (alt < -5) return null;
-  // Clamp altitude for projection math — objects slightly below horizon get projected to edge
+  // Clamp altitude for projection math  –  objects slightly below horizon get projected to edge
   const clampedAlt = Math.max(0, alt);
   const altRad = clampedAlt * DEG;
   const stereographicR = Math.cos(altRad) / (1 + Math.sin(altRad));
@@ -504,7 +504,7 @@ export default function Planisphere({
       viewBox={`0 0 ${SVG_SIZE} ${SVG_SIZE}`}
       className="w-full max-w-[700px] mx-auto"
       style={{ aspectRatio: '1 / 1' }}
-      aria-label="Planisphere — stereographic sky projection showing stars and planets above the horizon"
+      aria-label="Planisphere  –  stereographic sky projection showing stars and planets above the horizon"
       role="img"
     >
       <SkyBackground />
@@ -525,7 +525,7 @@ export default function Planisphere({
       {/* Constellation labels */}
       {showConstellations && <ConstellationLabels stars={visibleStars} />}
 
-      {/* Planets — rendered last so they appear on top */}
+      {/* Planets  –  rendered last so they appear on top */}
       <PlanetMarkers
         planets={visiblePlanets}
         selectedPlanetId={selectedPlanetId}

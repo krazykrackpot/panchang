@@ -72,15 +72,15 @@ export default function LearnNakshatraBabyNamesPage() {
       </div>
 
       <KeyTakeaway locale={locale} points={[
-        'Each Nakshatra Pada has a prescribed starting syllable for the baby\'s name — 108 syllables total (27 Nakshatras x 4 Padas).',
-        'The Moon\'s Nakshatra at the exact moment of birth determines the syllable — not the Sun sign or Lagna.',
+        'Each Nakshatra Pada has a prescribed starting syllable for the baby\'s name  –  108 syllables total (27 Nakshatras x 4 Padas).',
+        'The Moon\'s Nakshatra at the exact moment of birth determines the syllable  –  not the Sun sign or Lagna.',
         'The Namakarana ceremony is traditionally performed on the 11th or 12th day after birth.',
       ]} />
 
       <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
-        <BeginnerNote term="Nakshatra" explanation="One of 27 lunar mansions — the Moon spends roughly one day in each Nakshatra" />
+        <BeginnerNote term="Nakshatra" explanation="One of 27 lunar mansions  –  the Moon spends roughly one day in each Nakshatra" />
         <BeginnerNote term="Pada" explanation="Each Nakshatra is divided into 4 quarters (padas) of 3°20' each" />
-        <BeginnerNote term="Namakarana" explanation="The Hindu naming ceremony — one of the 16 Samskaras (life sacraments)" />
+        <BeginnerNote term="Namakarana" explanation="The Hindu naming ceremony  –  one of the 16 Samskaras (life sacraments)" />
       </div>
 
       {/* ── Introduction ── */}
@@ -208,8 +208,8 @@ export default function LearnNakshatraBabyNamesPage() {
           </div>
           <p className="text-text-secondary text-sm">
             {isHi
-              ? 'रोहिणी पद 2 (अक्षर: वा) → वान्या, वरुण, वसुन्धरा, वनिता — आधुनिक नाम जो परम्परागत अक्षर से प्रारम्भ होते हैं।'
-              : 'Rohini Pada 2 (syllable: Va) → Vanya, Varun, Vasundhara, Vanita — modern names that honour the traditional syllable.'}
+              ? 'रोहिणी पद 2 (अक्षर: वा) → वान्या, वरुण, वसुन्धरा, वनिता  –  आधुनिक नाम जो परम्परागत अक्षर से प्रारम्भ होते हैं।'
+              : 'Rohini Pada 2 (syllable: Va) → Vanya, Varun, Vasundhara, Vanita  –  modern names that honour the traditional syllable.'}
           </p>
         </div>
       </LessonSection>

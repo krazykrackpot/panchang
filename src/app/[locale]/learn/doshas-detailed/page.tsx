@@ -63,24 +63,24 @@ const DOSHAS: DoshaSection[] = [
       'Step 6: Determine house severity: 7th/8th = severe, 1st/4th = moderate, 2nd/12th = mild.',
       'Step 7: Check all cancellation conditions before concluding.',
     ],
-    workedExample: 'Birth chart: Lagna in Aries (1), Mars in Scorpio (8). House from Lagna = ((8 - 1 + 12) % 12) + 1 = 8. House 8 is in the Mangal set, so Dosha is present from Lagna. House 8 = severe house severity. But Mars is in its own sign (Scorpio) — cancellation C1 applies. Effective severity drops from severe to moderate. If Moon is in Leo (5), house from Moon = ((8 - 5 + 12) % 12) + 1 = 4, also in the set. Dosha from Moon too — scope severity = moderate (2 references). After C1 cancellation, effective severity = mild.',
+    workedExample: 'Birth chart: Lagna in Aries (1), Mars in Scorpio (8). House from Lagna = ((8 - 1 + 12) % 12) + 1 = 8. House 8 is in the Mangal set, so Dosha is present from Lagna. House 8 = severe house severity. But Mars is in its own sign (Scorpio)  –  cancellation C1 applies. Effective severity drops from severe to moderate. If Moon is in Leo (5), house from Moon = ((8 - 5 + 12) % 12) + 1 = 4, also in the set. Dosha from Moon too  –  scope severity = moderate (2 references). After C1 cancellation, effective severity = mild.',
     severityLevels: [
-      { level: 'Full (Purna)', color: 'text-red-400', description: 'Mars in 7th or 8th house from all three references (Lagna, Moon, Venus). No cancellation conditions apply. Most severe — marriage delay is significant.' },
+      { level: 'Full (Purna)', color: 'text-red-400', description: 'Mars in 7th or 8th house from all three references (Lagna, Moon, Venus). No cancellation conditions apply. Most severe  –  marriage delay is significant.' },
       { level: 'Partial (Anshik)', color: 'text-amber-400', description: 'Mars triggers from 1-2 references only, or is in milder houses (2nd, 12th). Some cancellation conditions partially reduce severity.' },
       { level: 'Cancelled (Bhanga)', color: 'text-emerald-400', description: 'One or more cancellation conditions fully neutralize the dosha. Marriage can proceed normally.' },
     ],
     cancellations: [
-      { code: 'C1', rule: 'Mars in own sign', description: 'Mars in Aries (1) or Scorpio (8) — the aggressive energy is channelled constructively through dignity. Mars is "at home" and behaves well.' },
-      { code: 'C2', rule: 'Mars exalted', description: 'Mars in Capricorn (10) — exaltation gives Mars disciplined, constructive expression. Its malefic nature is significantly reduced.' },
+      { code: 'C1', rule: 'Mars in own sign', description: 'Mars in Aries (1) or Scorpio (8)  –  the aggressive energy is channelled constructively through dignity. Mars is "at home" and behaves well.' },
+      { code: 'C2', rule: 'Mars exalted', description: 'Mars in Capricorn (10)  –  exaltation gives Mars disciplined, constructive expression. Its malefic nature is significantly reduced.' },
       { code: 'C3', rule: 'Jupiter aspects Mars', description: 'Jupiter\'s 5th, 7th, or 9th aspect falls on Mars. Jupiter\'s wisdom tempers Mars\'s aggression. Also applies if Jupiter is conjunct Mars.' },
       { code: 'C4', rule: 'Venus in 7th house', description: 'Venus (karaka for marriage) in the 7th house provides natural marital harmony that counteracts Mars\'s disruption.' },
-      { code: 'C5', rule: 'Benefic conjunction', description: 'Mars conjunct Jupiter or Venus in the same house — the benefic planet softens Mars\'s energy.' },
+      { code: 'C5', rule: 'Benefic conjunction', description: 'Mars conjunct Jupiter or Venus in the same house  –  the benefic planet softens Mars\'s energy.' },
       { code: 'C6', rule: 'Mars in Mercury sign in 2nd', description: 'Mars in Gemini (3) or Virgo (6) AND in 2nd house. Mercury\'s intellectual influence neutralizes Mars\'s aggression in the house of family/speech.' },
-      { code: 'C7', rule: 'Both partners Manglik', description: 'If both bride and groom have Mangal Dosha, the energies balance out — mutual cancellation. This is the most commonly applied cancellation in match-making.' },
+      { code: 'C7', rule: 'Both partners Manglik', description: 'If both bride and groom have Mangal Dosha, the energies balance out  –  mutual cancellation. This is the most commonly applied cancellation in match-making.' },
       { code: 'C8', rule: 'Age 28+', description: 'Mars matures at age 28 (its maturation age in Vedic astrology). Post-28, Mangal Dosha effects reduce significantly. Many astrologers consider it largely neutralized after 28.' },
     ],
     effects: [
-      'Delays or obstacles in marriage — difficulty finding a compatible partner.',
+      'Delays or obstacles in marriage  –  difficulty finding a compatible partner.',
       'Aggressive temperament leading to marital conflicts.',
       'Mars in 7th: direct conflict with spouse, domineering partner dynamics.',
       'Mars in 8th: sudden health events or accidents affecting spouse, inheritance disputes.',
@@ -90,18 +90,18 @@ const DOSHAS: DoshaSection[] = [
       'Mars in 12th: bedroom disharmony, expenditure on disputes.',
     ],
     remedies: [
-      'Kumbh Vivah — symbolic marriage to a banana tree, Vishnu idol, or clay pot before the actual marriage (the most traditional remedy).',
-      'Mangal Shanti Puja — fire ritual to appease Mars, typically performed on Tuesdays.',
-      'Red Coral (Moonga) — worn on the ring finger in gold/copper, ONLY after confirming Mars is a functional benefic in the chart. Gemstones amplify — they do not pacify.',
-      'Hanuman Chalisa recitation on Tuesdays — Hanuman is the deity of Mars.',
+      'Kumbh Vivah  –  symbolic marriage to a banana tree, Vishnu idol, or clay pot before the actual marriage (the most traditional remedy).',
+      'Mangal Shanti Puja  –  fire ritual to appease Mars, typically performed on Tuesdays.',
+      'Red Coral (Moonga)  –  worn on the ring finger in gold/copper, ONLY after confirming Mars is a functional benefic in the chart. Gemstones amplify  –  they do not pacify.',
+      'Hanuman Chalisa recitation on Tuesdays  –  Hanuman is the deity of Mars.',
       'Donate red lentils (masoor dal), red cloth, copper vessels on Tuesdays.',
       'Fasting on Tuesdays (Mangalvar Vrat).',
-      'For couples: Mangal matching — if both are Manglik, the dosha is mutually cancelled.',
+      'For couples: Mangal matching  –  if both are Manglik, the dosha is mutually cancelled.',
     ],
     classicalRefs: [
-      'Brihat Parashara Hora Shastra (BPHS), Chapter 35 — primary source for Mangal Dosha rules.',
-      'Phaladeepika by Mantreshwara, Chapter 7 — marriage doshas.',
-      'Saravali by Kalyana Varma — supplementary rules on Mars placement.',
+      'Brihat Parashara Hora Shastra (BPHS), Chapter 35  –  primary source for Mangal Dosha rules.',
+      'Phaladeepika by Mantreshwara, Chapter 7  –  marriage doshas.',
+      'Saravali by Kalyana Varma  –  supplementary rules on Mars placement.',
     ],
   },
   {
@@ -123,7 +123,7 @@ const DOSHAS: DoshaSection[] = [
       'Step 5: If one planet is outside the arc, it is Partial Kaal Sarpa (less severe).',
       'Step 6: Identify the type based on Rahu\'s house position (see 12 types below).',
     ],
-    workedExample: 'Rahu in Aries (house 1), Ketu in Libra (house 7). Sun in Taurus (2), Moon in Gemini (3), Mars in Cancer (4), Mercury in Taurus (2), Jupiter in Gemini (3), Venus in Aries (1, conjunct Rahu), Saturn in Taurus (2). All planets from houses 1-6 — all between Rahu (1) and Ketu (7). This is Ananta Kaal Sarpa (Rahu in 1st house). Venus conjunct Rahu means some authorities would call this "broken" — but most still classify it as present.',
+    workedExample: 'Rahu in Aries (house 1), Ketu in Libra (house 7). Sun in Taurus (2), Moon in Gemini (3), Mars in Cancer (4), Mercury in Taurus (2), Jupiter in Gemini (3), Venus in Aries (1, conjunct Rahu), Saturn in Taurus (2). All planets from houses 1-6  –  all between Rahu (1) and Ketu (7). This is Ananta Kaal Sarpa (Rahu in 1st house). Venus conjunct Rahu means some authorities would call this "broken"  –  but most still classify it as present.',
     severityLevels: [
       { level: 'Full (Purna)', color: 'text-red-400', description: 'All 7 planets strictly between Rahu and Ketu, none conjunct either node. The serpent fully contains all planetary energies.' },
       { level: 'Partial (Anshik)', color: 'text-amber-400', description: 'One planet on the boundary (conjunct Rahu or Ketu) or barely outside the arc. Effects are present but less intense.' },
@@ -136,7 +136,7 @@ const DOSHAS: DoshaSection[] = [
       { code: 'K4', rule: 'Exalted Rahu/Ketu', description: 'Rahu exalted in Taurus or Ketu exalted in Scorpio (per some authorities) reduces malefic intensity of the axis.' },
     ],
     effects: [
-      'Cyclical pattern of build-up and collapse — success followed by sudden reversal.',
+      'Cyclical pattern of build-up and collapse  –  success followed by sudden reversal.',
       'Mental anxiety and restlessness, feeling of being "trapped" by circumstances.',
       'Career sees repeated near-successes followed by setbacks.',
       'Relationship difficulties, especially trust issues.',
@@ -144,16 +144,16 @@ const DOSHAS: DoshaSection[] = [
       'Specific effects depend on the type (Rahu\'s house position determines the primary life area affected).',
     ],
     remedies: [
-      'Kaal Sarpa Dosha puja — traditionally performed at Trimbakeshwar (Maharashtra) or Kukke Subrahmanya (Karnataka).',
-      'Rahu-Ketu Shanti Homam — fire ritual specifically for the nodes.',
-      'Naga Puja — worship of serpent deities (Naga Devata).',
-      'Maha Mrityunjaya Japa — 125,000 repetitions of the Mrityunjaya mantra.',
-      'Silver Naga idol worship — especially on Nag Panchami.',
+      'Kaal Sarpa Dosha puja  –  traditionally performed at Trimbakeshwar (Maharashtra) or Kukke Subrahmanya (Karnataka).',
+      'Rahu-Ketu Shanti Homam  –  fire ritual specifically for the nodes.',
+      'Naga Puja  –  worship of serpent deities (Naga Devata).',
+      'Maha Mrityunjaya Japa  –  125,000 repetitions of the Mrityunjaya mantra.',
+      'Silver Naga idol worship  –  especially on Nag Panchami.',
       'Donate black sesame, mustard oil, and blue/black cloth on Saturdays.',
       'Visit Kalahasti (Andhra Pradesh) for Rahu-Ketu dosha puja.',
     ],
     classicalRefs: [
-      'Manasagari — one of the earliest references to this yoga (as Kala Sarpa Yoga, not Dosha).',
+      'Manasagari  –  one of the earliest references to this yoga (as Kala Sarpa Yoga, not Dosha).',
       'Hora Sara by Prithuyashas.',
       'Note: Kaal Sarpa is NOT mentioned in BPHS or Phaladeepika. Its classical authority is debated. Many modern astrologers consider it an important yoga nonetheless.',
     ],
@@ -172,10 +172,10 @@ const DOSHAS: DoshaSection[] = [
       { name: '12. Sheshanaga (Rahu in 12th)', description: 'Spiritual confusion, foreign land issues, sleep disturbance, expenditure.' },
     ],
     misconceptions: [
-      '"Kaal Sarpa Dosha ruins your life" — False. Many highly successful people have this yoga. Nehru, Sachin Tendulkar, and Dhirubhai Ambani all had variants of it. It creates intensity, not guaranteed suffering.',
-      '"It is mentioned in BPHS" — Incorrect. The concept doesn\'t appear in Parashara\'s works. It gained prominence in the 20th century, though some argue it existed under different names.',
-      '"It can never be remedied" — False. Like all doshas, it has specific remedial measures and cancellation conditions. Its effects also diminish during favorable dasha periods.',
-      '"Partial Kaal Sarpa is just as bad" — Incorrect. A single planet outside the arc significantly changes the dynamic. Partial KSD is considerably milder.',
+      '"Kaal Sarpa Dosha ruins your life"  –  False. Many highly successful people have this yoga. Nehru, Sachin Tendulkar, and Dhirubhai Ambani all had variants of it. It creates intensity, not guaranteed suffering.',
+      '"It is mentioned in BPHS"  –  Incorrect. The concept doesn\'t appear in Parashara\'s works. It gained prominence in the 20th century, though some argue it existed under different names.',
+      '"It can never be remedied"  –  False. Like all doshas, it has specific remedial measures and cancellation conditions. Its effects also diminish during favorable dasha periods.',
+      '"Partial Kaal Sarpa is just as bad"  –  Incorrect. A single planet outside the arc significantly changes the dynamic. Partial KSD is considerably milder.',
     ],
   },
   {
@@ -191,7 +191,7 @@ const DOSHAS: DoshaSection[] = [
     formation: 'The primary formation is Sun conjunct Rahu or Ketu, especially in the 1st, 5th, or 9th house. Secondary formations include: 9th lord placed in 6th, 8th, or 12th house (dusthana); malefics (Saturn, Mars, Rahu, Ketu) in the 9th house without benefic aspects; Saturn aspecting the 9th house with no Jupiter protection. The 9th house is the seat of Dharma, father, and ancestral merit (Punya). Its affliction signals unresolved ancestral karma.',
     detectionMethod: [
       'Step 1: Check if Sun is conjunct Rahu or Ketu in the chart (same sign, ideally within 15 degrees).',
-      'Step 2: Note the house of this conjunction — 1st, 5th, or 9th makes it strongest.',
+      'Step 2: Note the house of this conjunction  –  1st, 5th, or 9th makes it strongest.',
       'Step 3: Check the 9th house: is its lord in a dusthana (6/8/12)?',
       'Step 4: Are malefics (Saturn, Mars, Rahu, Ketu) placed in the 9th house?',
       'Step 5: Is there any benefic influence (Jupiter aspect, Venus conjunction) on the 9th?',
@@ -205,31 +205,31 @@ const DOSHAS: DoshaSection[] = [
     ],
     cancellations: [
       { code: 'P1', rule: 'Jupiter aspects 9th house', description: 'Jupiter\'s protective gaze on the house of Dharma neutralizes much of the ancestral affliction.' },
-      { code: 'P2', rule: 'Sun in exaltation or own sign', description: 'Sun in Aries (exalted) or Leo (own sign) — a strong Sun can withstand Rahu\'s influence.' },
+      { code: 'P2', rule: 'Sun in exaltation or own sign', description: 'Sun in Aries (exalted) or Leo (own sign)  –  a strong Sun can withstand Rahu\'s influence.' },
       { code: 'P3', rule: 'Strong benefics in 9th', description: 'Jupiter or Venus placed in the 9th house counteract malefic energies with their own benefic nature.' },
       { code: 'P4', rule: '9th lord in Kendra/Trikona', description: 'If the 9th lord is strong in a kendra (1,4,7,10) or trikona (1,5,9), the damage is significantly reduced.' },
       { code: 'P5', rule: 'Regular Shraddha/Tarpana', description: 'Consistent ancestral rites (not a chart condition but a remedy that functions as preventive cancellation).' },
     ],
     effects: [
-      'Obstacles from father figures and authority — father may be absent, distant, or a source of difficulty.',
-      'Difficulty with government and bureaucratic matters — applications rejected, red tape multiplied.',
+      'Obstacles from father figures and authority  –  father may be absent, distant, or a source of difficulty.',
+      'Difficulty with government and bureaucratic matters  –  applications rejected, red tape multiplied.',
       'Childlessness or children facing unusual challenges.',
       'Unexplained family health patterns repeating across generations.',
-      'Career blocks despite qualifications — a persistent sense of being "held back."',
+      'Career blocks despite qualifications  –  a persistent sense of being "held back."',
       'Financial setbacks that seem to come from ancestral patterns rather than personal decisions.',
     ],
     remedies: [
-      'Pitra Tarpan on every Amavasya — especially Sarva Pitri Amavasya (Ashwin month).',
-      'Narayan Nagbali at Trimbakeshwar — elaborate 3-day ritual for ancestral debt.',
-      'Pind Daan at Gaya — offering rice balls for departed ancestors.',
+      'Pitra Tarpan on every Amavasya  –  especially Sarva Pitri Amavasya (Ashwin month).',
+      'Narayan Nagbali at Trimbakeshwar  –  elaborate 3-day ritual for ancestral debt.',
+      'Pind Daan at Gaya  –  offering rice balls for departed ancestors.',
       'Feed Brahmins on father\'s death anniversary (Shraddha tithi).',
-      'Vishnu Sahasranama daily recitation — Lord Vishnu governs ancestral blessings.',
+      'Vishnu Sahasranama daily recitation  –  Lord Vishnu governs ancestral blessings.',
       'Donate food, clothes, and medicines to the elderly on Sundays.',
     ],
     classicalRefs: [
-      'BPHS Chapter 35 — afflictions to the 9th house and ancestral karma.',
-      'Lal Kitab — extensive coverage of Pitra Dosha with practical remedies.',
-      'Garuda Purana — Shraddha and Tarpana procedures for ancestral debt.',
+      'BPHS Chapter 35  –  afflictions to the 9th house and ancestral karma.',
+      'Lal Kitab  –  extensive coverage of Pitra Dosha with practical remedies.',
+      'Garuda Purana  –  Shraddha and Tarpana procedures for ancestral debt.',
     ],
   },
   {
@@ -242,19 +242,19 @@ const DOSHAS: DoshaSection[] = [
     color: 'text-blue-400',
     borderColor: 'border-blue-500/20',
     planets: 'Moon (isolated)',
-    formation: 'No planet (excluding Sun, Rahu, Ketu) occupies the 2nd or 12th house from the Moon. The Moon is left without "companions" — no planet flanking it on either side. Some authorities apply a stricter definition: no planet in any kendra (1, 4, 7, 10) from Moon either. The core idea is that Moon needs planetary support for emotional and material stability; without it, the native struggles.',
+    formation: 'No planet (excluding Sun, Rahu, Ketu) occupies the 2nd or 12th house from the Moon. The Moon is left without "companions"  –  no planet flanking it on either side. Some authorities apply a stricter definition: no planet in any kendra (1, 4, 7, 10) from Moon either. The core idea is that Moon needs planetary support for emotional and material stability; without it, the native struggles.',
     detectionMethod: [
       'Step 1: Identify Moon\'s sign/house in the chart.',
-      'Step 2: Check the sign immediately before Moon (12th from Moon) — is any planet there? (Exclude Sun, Rahu, Ketu.)',
-      'Step 3: Check the sign immediately after Moon (2nd from Moon) — same exclusion.',
+      'Step 2: Check the sign immediately before Moon (12th from Moon)  –  is any planet there? (Exclude Sun, Rahu, Ketu.)',
+      'Step 3: Check the sign immediately after Moon (2nd from Moon)  –  same exclusion.',
       'Step 4: If both are empty (of Mars, Mercury, Jupiter, Venus, Saturn), Kemadruma is present.',
-      'Step 5: Apply the cancellation conditions — this dosha is very commonly cancelled.',
+      'Step 5: Apply the cancellation conditions  –  this dosha is very commonly cancelled.',
     ],
-    workedExample: 'Moon in Virgo (6). 12th from Moon = Leo (5) — Sun is there, but Sun is excluded. 2nd from Moon = Libra (7) — empty. Neither house has Mars/Mercury/Jupiter/Venus/Saturn. Basic Kemadruma is present. But check: is any planet in a kendra from Moon? Jupiter in Sagittarius (4th from Moon\'s Virgo) — cancellation applies! This is NOT a true Kemadruma despite the initial detection. Always check cancellations.',
+    workedExample: 'Moon in Virgo (6). 12th from Moon = Leo (5)  –  Sun is there, but Sun is excluded. 2nd from Moon = Libra (7)  –  empty. Neither house has Mars/Mercury/Jupiter/Venus/Saturn. Basic Kemadruma is present. But check: is any planet in a kendra from Moon? Jupiter in Sagittarius (4th from Moon\'s Virgo)  –  cancellation applies! This is NOT a true Kemadruma despite the initial detection. Always check cancellations.',
     severityLevels: [
-      { level: 'Full', color: 'text-red-400', description: 'Moon completely isolated — no planets in 2nd/12th AND no planets in kendras from Moon AND Moon is waning. Extremely rare in practice.' },
+      { level: 'Full', color: 'text-red-400', description: 'Moon completely isolated  –  no planets in 2nd/12th AND no planets in kendras from Moon AND Moon is waning. Extremely rare in practice.' },
       { level: 'Partial', color: 'text-amber-400', description: 'Basic condition met (empty 2nd/12th) but some kendra support exists. Effects are mild and manageable.' },
-      { level: 'Cancelled', color: 'text-emerald-400', description: 'Any of the multiple cancellation conditions apply. This is the most commonly cancelled dosha — ~25% of charts trigger basic detection, but very few survive cancellation checks.' },
+      { level: 'Cancelled', color: 'text-emerald-400', description: 'Any of the multiple cancellation conditions apply. This is the most commonly cancelled dosha  –  ~25% of charts trigger basic detection, but very few survive cancellation checks.' },
     ],
     cancellations: [
       { code: 'KD1', rule: 'Planet in kendra from Moon', description: 'Any planet (Mars, Mercury, Jupiter, Venus, Saturn) in houses 1, 4, 7, or 10 from Moon. This is the most common cancellation.' },
@@ -265,29 +265,29 @@ const DOSHAS: DoshaSection[] = [
       { code: 'KD6', rule: 'Moon conjunct a benefic', description: 'If Moon is conjunct Jupiter, Venus, or well-placed Mercury, isolation is broken by direct contact.' },
     ],
     effects: [
-      'Emotional isolation — feeling unsupported even among people.',
-      'Financial hardship despite honest effort — poverty tendency.',
-      'Lack of genuine support systems — fair-weather friends.',
+      'Emotional isolation  –  feeling unsupported even among people.',
+      'Financial hardship despite honest effort  –  poverty tendency.',
+      'Lack of genuine support systems  –  fair-weather friends.',
       'Mental distress, anxiety, and difficulty maintaining inner peace.',
-      'Social invisibility — achievements go unrecognized.',
+      'Social invisibility  –  achievements go unrecognized.',
       'Important caveat: pure Kemadruma (surviving all cancellation checks) is quite rare. Most detected cases are cancelled.',
     ],
     remedies: [
-      'Worship Lord Shiva on Mondays — Shiva is the lord of the Moon.',
-      'Pearl (Moti) wearing — on the little finger in silver, on a Monday during Shukla Paksha. Only if Moon is a functional benefic.',
-      'Chandra Graha Shanti puja — specific lunar pacification ritual.',
+      'Worship Lord Shiva on Mondays  –  Shiva is the lord of the Moon.',
+      'Pearl (Moti) wearing  –  on the little finger in silver, on a Monday during Shukla Paksha. Only if Moon is a functional benefic.',
+      'Chandra Graha Shanti puja  –  specific lunar pacification ritual.',
       'Donate white items on Mondays: rice, milk, white cloth, silver.',
-      'Som Pradosh Vrat — fasting on Monday Trayodashi.',
-      'Chandra Beej Mantra japa: "Om Shraam Shreem Shraum Sah Chandramase Namah" — 10,000 repetitions.',
+      'Som Pradosh Vrat  –  fasting on Monday Trayodashi.',
+      'Chandra Beej Mantra japa: "Om Shraam Shreem Shraum Sah Chandramase Namah"  –  10,000 repetitions.',
     ],
     classicalRefs: [
-      'Phaladeepika by Mantreshwara, Chapter 6, Verse 8 — primary source.',
-      'Brihat Jataka by Varahamihira — Moon\'s strength and weakness.',
-      'Saravali — supplementary rules on Moon isolation.',
+      'Phaladeepika by Mantreshwara, Chapter 6, Verse 8  –  primary source.',
+      'Brihat Jataka by Varahamihira  –  Moon\'s strength and weakness.',
+      'Saravali  –  supplementary rules on Moon isolation.',
     ],
     misconceptions: [
-      '"Kemadruma makes you poor for life" — False. It indicates a tendency toward scarcity, but strong dashas, transits, and personal effort can completely override it. Many successful people have this yoga in its cancelled form.',
-      '"It\'s very rare" — Actually, the basic condition (empty 2nd/12th from Moon) occurs in roughly 25% of charts. However, true uncancelled Kemadruma is indeed rare because the cancellation conditions are numerous and easy to satisfy.',
+      '"Kemadruma makes you poor for life"  –  False. It indicates a tendency toward scarcity, but strong dashas, transits, and personal effort can completely override it. Many successful people have this yoga in its cancelled form.',
+      '"It\'s very rare"  –  Actually, the basic condition (empty 2nd/12th from Moon) occurs in roughly 25% of charts. However, true uncancelled Kemadruma is indeed rare because the cancellation conditions are numerous and easy to satisfy.',
     ],
   },
   {
@@ -300,14 +300,14 @@ const DOSHAS: DoshaSection[] = [
     color: 'text-amber-400',
     borderColor: 'border-amber-500/20',
     planets: 'Jupiter + Rahu (or Ketu)',
-    formation: 'Jupiter conjunct Rahu in any house. The name "Chandal" means "outcaste" — the idea is that Rahu (the shadow, the unconventional) pollutes Jupiter (the Guru, wisdom, dharma). Jupiter-Ketu conjunction is sometimes included but has different effects (more spiritual confusion than moral corruption). The dosha is strongest when the conjunction occurs in the Dharma Trikona (1st, 5th, or 9th house) because these are Jupiter\'s natural domains.',
+    formation: 'Jupiter conjunct Rahu in any house. The name "Chandal" means "outcaste"  –  the idea is that Rahu (the shadow, the unconventional) pollutes Jupiter (the Guru, wisdom, dharma). Jupiter-Ketu conjunction is sometimes included but has different effects (more spiritual confusion than moral corruption). The dosha is strongest when the conjunction occurs in the Dharma Trikona (1st, 5th, or 9th house) because these are Jupiter\'s natural domains.',
     detectionMethod: [
       'Step 1: Check if Jupiter and Rahu are in the same sign (conjunction).',
-      'Step 2: Check the orb — within 15 degrees is strongest, 15-30 degrees is moderate.',
-      'Step 3: Note the house — 1st, 5th, or 9th house is most potent.',
-      'Step 4: Check in Navamsa (D-9) too — Guru Chandal in Navamsa affects marriage wisdom.',
-      'Step 5: Evaluate Jupiter\'s strength — is it in own sign, exalted, or debilitated?',
-      'Step 6: Check if Jupiter is stronger than Rahu in Shadbala — if so, Jupiter prevails.',
+      'Step 2: Check the orb  –  within 15 degrees is strongest, 15-30 degrees is moderate.',
+      'Step 3: Note the house  –  1st, 5th, or 9th house is most potent.',
+      'Step 4: Check in Navamsa (D-9) too  –  Guru Chandal in Navamsa affects marriage wisdom.',
+      'Step 5: Evaluate Jupiter\'s strength  –  is it in own sign, exalted, or debilitated?',
+      'Step 6: Check if Jupiter is stronger than Rahu in Shadbala  –  if so, Jupiter prevails.',
     ],
     workedExample: 'Jupiter in Gemini (3rd house), Rahu in Gemini (3rd house). They are conjunct. Gemini is not a Jupiter-friendly sign (neutral territory). The 3rd house is not a Dharma Trikona, so severity is moderate rather than maximum. Check Jupiter\'s Shadbala: if Jupiter scores 380 (above the 390 minimum for sufficiency) and Rahu has less, Jupiter is holding its own. If Jupiter were in Sagittarius (own sign) conjunct Rahu, cancellation GC2 would apply and the dosha would be largely neutralized.',
     severityLevels: [
@@ -316,32 +316,32 @@ const DOSHAS: DoshaSection[] = [
       { level: 'Mild / Cancelled', color: 'text-emerald-400', description: 'Jupiter in own sign or exaltation, stronger than Rahu, or receiving benefic aspects from Moon/Venus.' },
     ],
     cancellations: [
-      { code: 'GC1', rule: 'Jupiter exalted', description: 'Jupiter in Cancer (exaltation) — even with Rahu present, Jupiter\'s exalted wisdom is too strong to be corrupted.' },
-      { code: 'GC2', rule: 'Jupiter in own sign', description: 'Jupiter in Sagittarius or Pisces — dignity provides natural immunity against Rahu\'s distortion.' },
+      { code: 'GC1', rule: 'Jupiter exalted', description: 'Jupiter in Cancer (exaltation)  –  even with Rahu present, Jupiter\'s exalted wisdom is too strong to be corrupted.' },
+      { code: 'GC2', rule: 'Jupiter in own sign', description: 'Jupiter in Sagittarius or Pisces  –  dignity provides natural immunity against Rahu\'s distortion.' },
       { code: 'GC3', rule: 'Jupiter stronger in Shadbala', description: 'If Jupiter\'s six-fold strength score exceeds Rahu\'s, Jupiter dominates the conjunction rather than being polluted by it.' },
       { code: 'GC4', rule: 'Benefic aspects', description: 'Moon or Venus aspecting the conjunction adds emotional/aesthetic intelligence that counterbalances Rahu\'s confusion.' },
-      { code: 'GC5', rule: 'Rahu in Jupiter\'s nakshatra', description: 'Rahu in Punarvasu, Vishakha, or Purva Bhadrapada (Jupiter-ruled nakshatras) — Rahu is operating under Jupiter\'s rules, reducing its disruptive capacity.' },
+      { code: 'GC5', rule: 'Rahu in Jupiter\'s nakshatra', description: 'Rahu in Punarvasu, Vishakha, or Purva Bhadrapada (Jupiter-ruled nakshatras)  –  Rahu is operating under Jupiter\'s rules, reducing its disruptive capacity.' },
     ],
     effects: [
       'Disrespect for traditions, elders, and established wisdom.',
       'Association with dubious spiritual teachers or misleading gurus.',
-      'Making wrong moral choices despite knowing better — judgment in Dharma matters becomes unreliable.',
-      'Educational disruptions — may drop out, change fields repeatedly, or undervalue formal learning.',
+      'Making wrong moral choices despite knowing better  –  judgment in Dharma matters becomes unreliable.',
+      'Educational disruptions  –  may drop out, change fields repeatedly, or undervalue formal learning.',
       'Children may face unusual challenges or the native struggles with conception.',
       'Silver lining: can give extraordinary unconventional wisdom, success in foreign/cutting-edge fields, and the ability to challenge established norms productively.',
     ],
     remedies: [
-      'Jupiter (Guru) puja on Thursdays — Brihaspati Stotram or Guru Beej Mantra.',
-      'Dakshinamurthy Stotram — invoking the true Guru principle.',
-      'Vishnu puja — Lord Vishnu is Jupiter\'s presiding deity.',
-      'Yellow Sapphire (Pukhraj) — only if Jupiter is a functional benefic after full chart analysis.',
+      'Jupiter (Guru) puja on Thursdays  –  Brihaspati Stotram or Guru Beej Mantra.',
+      'Dakshinamurthy Stotram  –  invoking the true Guru principle.',
+      'Vishnu puja  –  Lord Vishnu is Jupiter\'s presiding deity.',
+      'Yellow Sapphire (Pukhraj)  –  only if Jupiter is a functional benefic after full chart analysis.',
       'Donate turmeric, yellow cloth, chana dal, and bananas on Thursdays.',
-      'Guru Graha Shanti Homam — fire ritual for Jupiter pacification.',
+      'Guru Graha Shanti Homam  –  fire ritual for Jupiter pacification.',
     ],
     classicalRefs: [
-      'BPHS Chapter 35 — Jupiter afflictions and their effects.',
-      'Phaladeepika — Jupiter-Rahu combinations.',
-      'Uttara Kalamrita — supplementary rules on Guru-Rahu yoga.',
+      'BPHS Chapter 35  –  Jupiter afflictions and their effects.',
+      'Phaladeepika  –  Jupiter-Rahu combinations.',
+      'Uttara Kalamrita  –  supplementary rules on Guru-Rahu yoga.',
     ],
   },
   {
@@ -354,34 +354,34 @@ const DOSHAS: DoshaSection[] = [
     color: 'text-cyan-400',
     borderColor: 'border-cyan-500/20',
     planets: 'Sun/Moon + Rahu/Ketu',
-    formation: 'Sun or Moon conjunct Rahu or Ketu in the birth chart. This mirrors the astronomical phenomenon of eclipses — Rahu/Ketu literally "swallow" the luminaries. Surya Grahan Dosha (Sun-Rahu/Ketu) affects father, authority, career, self-image. Chandra Grahan Dosha (Moon-Rahu/Ketu) affects mother, mind, emotions, public image. The dosha is strongest when the conjunction is tight (within 5 degrees) and in angular houses (1, 4, 7, 10).',
+    formation: 'Sun or Moon conjunct Rahu or Ketu in the birth chart. This mirrors the astronomical phenomenon of eclipses  –  Rahu/Ketu literally "swallow" the luminaries. Surya Grahan Dosha (Sun-Rahu/Ketu) affects father, authority, career, self-image. Chandra Grahan Dosha (Moon-Rahu/Ketu) affects mother, mind, emotions, public image. The dosha is strongest when the conjunction is tight (within 5 degrees) and in angular houses (1, 4, 7, 10).',
     detectionMethod: [
-      'Step 1: Check if Sun is in the same sign as Rahu or Ketu — Surya Grahan Dosha.',
-      'Step 2: Check if Moon is in the same sign as Rahu or Ketu — Chandra Grahan Dosha.',
-      'Step 3: Calculate the degree difference — within 5 degrees is a tight conjunction (most severe).',
+      'Step 1: Check if Sun is in the same sign as Rahu or Ketu  –  Surya Grahan Dosha.',
+      'Step 2: Check if Moon is in the same sign as Rahu or Ketu  –  Chandra Grahan Dosha.',
+      'Step 3: Calculate the degree difference  –  within 5 degrees is a tight conjunction (most severe).',
       'Step 4: Check if the conjunction was near an actual eclipse date (birth near eclipse = intensified).',
-      'Step 5: Note the house — angular houses amplify the effects.',
+      'Step 5: Note the house  –  angular houses amplify the effects.',
       'Step 6: Both luminaries afflicted = double Grahan (very intense chart).',
     ],
-    workedExample: 'Moon at 15 degrees Taurus, Rahu at 18 degrees Taurus — 3 degree orb, tight conjunction. This is Chandra Grahan Dosha. Moon in the 2nd house (for Aries Lagna). Effects: emotional turmoil affecting speech and family life, mother\'s health may be affected, financial ups and downs driven by emotional decisions. If Jupiter aspects from Scorpio (8th house — Jupiter\'s 7th aspect hits 2nd house), the dosha is significantly mitigated.',
+    workedExample: 'Moon at 15 degrees Taurus, Rahu at 18 degrees Taurus  –  3 degree orb, tight conjunction. This is Chandra Grahan Dosha. Moon in the 2nd house (for Aries Lagna). Effects: emotional turmoil affecting speech and family life, mother\'s health may be affected, financial ups and downs driven by emotional decisions. If Jupiter aspects from Scorpio (8th house  –  Jupiter\'s 7th aspect hits 2nd house), the dosha is significantly mitigated.',
     severityLevels: [
       { level: 'Severe', color: 'text-red-400', description: 'Tight conjunction (within 5 degrees), in angular houses, born near actual eclipse, no benefic aspects.' },
       { level: 'Moderate', color: 'text-amber-400', description: 'Same sign but wider orb (5-15 degrees), in non-angular houses, some benefic support.' },
       { level: 'Mild / Cancelled', color: 'text-emerald-400', description: 'Wide orb, strong luminary (own/exalted sign), Jupiter\'s aspect, or luminary in a favorable nakshatra.' },
     ],
     cancellations: [
-      { code: 'G1', rule: 'Strong luminary', description: 'Sun in Leo/Aries or Moon in Cancer/Taurus — dignified luminaries can withstand Rahu/Ketu\'s shadow.' },
-      { code: 'G2', rule: 'Jupiter\'s aspect', description: 'Jupiter aspecting the conjunction provides divine protection — the "Guru" light overcomes the eclipse.' },
+      { code: 'G1', rule: 'Strong luminary', description: 'Sun in Leo/Aries or Moon in Cancer/Taurus  –  dignified luminaries can withstand Rahu/Ketu\'s shadow.' },
+      { code: 'G2', rule: 'Jupiter\'s aspect', description: 'Jupiter aspecting the conjunction provides divine protection  –  the "Guru" light overcomes the eclipse.' },
       { code: 'G3', rule: 'Wide orb', description: 'If the luminary and node are in the same sign but more than 15 degrees apart, the "eclipse" is incomplete and effects are minimal.' },
-      { code: 'G4', rule: 'Benefic conjunction', description: 'Jupiter or Venus conjunct with the luminary and node — the benefic acts as a buffer.' },
+      { code: 'G4', rule: 'Benefic conjunction', description: 'Jupiter or Venus conjunct with the luminary and node  –  the benefic acts as a buffer.' },
       { code: 'G5', rule: 'Node in friendly nakshatra', description: 'Rahu/Ketu in a nakshatra ruled by a benefic planet (Jupiter, Venus, Mercury) softens their nature.' },
     ],
     effects: [
       'Surya Grahan: Father absent or troubled, career authority challenged, self-confidence eclipsed by doubt, government/authority issues.',
       'Chandra Grahan: Mother\'s health affected, emotional instability, mental anxiety, public image suffers, sleep disturbance.',
-      'Both: identity crisis — the native struggles to know who they truly are.',
+      'Both: identity crisis  –  the native struggles to know who they truly are.',
       'Health: Surya Grahan can indicate eye/heart issues; Chandra Grahan can indicate mental health/digestive issues.',
-      'Spiritual potential: paradoxically, Grahan Dosha can indicate deep spiritual capacity — the "eclipse" forces inner exploration.',
+      'Spiritual potential: paradoxically, Grahan Dosha can indicate deep spiritual capacity  –  the "eclipse" forces inner exploration.',
     ],
     remedies: [
       'Surya Grahan: Surya Namaskar at sunrise, Aditya Hridaya Stotram, Ruby (Manik) only if Sun is functional benefic, donate wheat and jaggery on Sundays.',
@@ -390,10 +390,10 @@ const DOSHAS: DoshaSection[] = [
       'Eclipse day rituals: chant mantras during eclipses, bathe in holy rivers after eclipse ends, donate food and clothing.',
     ],
     classicalRefs: [
-      'BPHS — Sun-Rahu and Moon-Rahu conjunctions in natal charts.',
-      'Phaladeepika — effects of luminaries with nodes.',
-      'Brihat Samhita by Varahamihira — eclipse effects and remedies.',
-      'Surya Siddhanta — astronomical basis for eclipse calculations.',
+      'BPHS  –  Sun-Rahu and Moon-Rahu conjunctions in natal charts.',
+      'Phaladeepika  –  effects of luminaries with nodes.',
+      'Brihat Samhita by Varahamihira  –  eclipse effects and remedies.',
+      'Surya Siddhanta  –  astronomical basis for eclipse calculations.',
     ],
   },
 ];
@@ -454,12 +454,12 @@ export default function DoshasDetailedPage() {
       {/* Header */}
       <div>
         <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={headingFont}>
-          {isHi ? 'दोष विस्तृत मार्गदर्शिका' : 'Doshas in Vedic Astrology — Comprehensive Guide'}
+          {isHi ? 'दोष विस्तृत मार्गदर्शिका' : 'Doshas in Vedic Astrology  –  Comprehensive Guide'}
         </h2>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl" style={bodyFont}>
           {isHi
-            ? 'ज्योतिष के सभी प्रमुख दोषों का गहन अध्ययन — निर्माण, पहचान, गंभीरता स्तर, रद्दीकरण शर्तें, प्रभाव और उपचार। प्रत्येक दोष के लिए चरणबद्ध पहचान विधि और कार्यशील उदाहरण सहित।'
-            : 'An in-depth study of every major Jyotish dosha — formation conditions, step-by-step detection, severity levels, cancellation rules, effects, remedies, and classical references. Each dosha includes worked examples and detection flowcharts.'}
+            ? 'ज्योतिष के सभी प्रमुख दोषों का गहन अध्ययन  –  निर्माण, पहचान, गंभीरता स्तर, रद्दीकरण शर्तें, प्रभाव और उपचार। प्रत्येक दोष के लिए चरणबद्ध पहचान विधि और कार्यशील उदाहरण सहित।'
+            : 'An in-depth study of every major Jyotish dosha  –  formation conditions, step-by-step detection, severity levels, cancellation rules, effects, remedies, and classical references. Each dosha includes worked examples and detection flowcharts.'}
         </p>
       </div>
 
@@ -473,13 +473,13 @@ export default function DoshasDetailedPage() {
         </div>
         <p className="text-text-secondary text-sm leading-relaxed mb-3" style={bodyFont}>
           {isHi
-            ? 'दोष का अर्थ है "दोष" या "अपूर्णता" — यह शाप नहीं है। यह चार्ट में एक ग्रहीय तनाव बिंदु है जो विशिष्ट जीवन क्षेत्रों में चुनौतियां पैदा कर सकता है। अधिकांश लोगों के चार्ट में कम से कम एक दोष होता है — यह सामान्य है, असामान्य नहीं।'
-            : '"Dosha" literally means "fault" or "imperfection" — it is not a curse. It is a point of planetary tension in a chart that can create challenges in specific life areas. Most people have at least one dosha in their chart — this is normal, not exceptional.'}
+            ? 'दोष का अर्थ है "दोष" या "अपूर्णता"  –  यह शाप नहीं है। यह चार्ट में एक ग्रहीय तनाव बिंदु है जो विशिष्ट जीवन क्षेत्रों में चुनौतियां पैदा कर सकता है। अधिकांश लोगों के चार्ट में कम से कम एक दोष होता है  –  यह सामान्य है, असामान्य नहीं।'
+            : '"Dosha" literally means "fault" or "imperfection"  –  it is not a curse. It is a point of planetary tension in a chart that can create challenges in specific life areas. Most people have at least one dosha in their chart  –  this is normal, not exceptional.'}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
           {isHi
-            ? 'गंभीर रूप से: ऑनलाइन दोष कैलकुलेटर अक्सर रद्दीकरण शर्तों की जांच किए बिना दोष रिपोर्ट करते हैं, जिससे अनावश्यक भय पैदा होता है। एक उचित मूल्यांकन के लिए पूर्ण चार्ट — राशि, पहलू, युति, षड्बल और वर्ग कुंडलियों (विशेषकर नवमांश) की जांच आवश्यक है।'
-            : 'Critically: online dosha calculators often report doshas without checking cancellation conditions, causing unnecessary alarm. A proper assessment requires examining the full chart — signs, aspects, conjunctions, Shadbala, and divisional charts (especially Navamsa). Never panic based on a single dosha result.'}
+            ? 'गंभीर रूप से: ऑनलाइन दोष कैलकुलेटर अक्सर रद्दीकरण शर्तों की जांच किए बिना दोष रिपोर्ट करते हैं, जिससे अनावश्यक भय पैदा होता है। एक उचित मूल्यांकन के लिए पूर्ण चार्ट  –  राशि, पहलू, युति, षड्बल और वर्ग कुंडलियों (विशेषकर नवमांश) की जांच आवश्यक है।'
+            : 'Critically: online dosha calculators often report doshas without checking cancellation conditions, causing unnecessary alarm. A proper assessment requires examining the full chart  –  signs, aspects, conjunctions, Shadbala, and divisional charts (especially Navamsa). Never panic based on a single dosha result.'}
         </p>
       </div>
 
@@ -532,7 +532,7 @@ export default function DoshasDetailedPage() {
       {/* ─── House Position Diagram (Mangal Dosha) ──────────────── */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <h3 className="text-gold-gradient text-lg font-bold mb-4" style={headingFont}>
-          {isHi ? 'मंगल दोष — भाव प्रभाव मानचित्र' : 'Mangal Dosha — House Effects Map'}
+          {isHi ? 'मंगल दोष  –  भाव प्रभाव मानचित्र' : 'Mangal Dosha  –  House Effects Map'}
         </h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {HOUSE_EFFECTS.map((h) => (
@@ -787,8 +787,8 @@ export default function DoshasDetailedPage() {
             </p>
             <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
               {isHi
-                ? 'दशा (ग्रह काल) भी महत्वपूर्ण हैं — एक दोष केवल तभी सक्रिय होता है जब संबंधित ग्रह की दशा चल रही हो। शेष समय यह सुप्त रहता है। किसी भी गंभीर निर्णय से पहले एक योग्य ज्योतिषी से पूर्ण कुंडली विश्लेषण कराएं।'
-                : 'Dasha periods (planetary cycles) are equally important — a dosha is typically activated only during the dasha of the involved planet. The rest of the time, it lies dormant. Always consult a qualified astrologer for full chart analysis before making major life decisions based on dosha findings.'}
+                ? 'दशा (ग्रह काल) भी महत्वपूर्ण हैं  –  एक दोष केवल तभी सक्रिय होता है जब संबंधित ग्रह की दशा चल रही हो। शेष समय यह सुप्त रहता है। किसी भी गंभीर निर्णय से पहले एक योग्य ज्योतिषी से पूर्ण कुंडली विश्लेषण कराएं।'
+                : 'Dasha periods (planetary cycles) are equally important  –  a dosha is typically activated only during the dasha of the involved planet. The rest of the time, it lies dormant. Always consult a qualified astrologer for full chart analysis before making major life decisions based on dosha findings.'}
             </p>
           </div>
         </div>
@@ -801,12 +801,12 @@ export default function DoshasDetailedPage() {
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
-            { href: '/learn/doshas' as const, label: isHi ? 'दोष — सामान्य अवलोकन' : 'Doshas — Overview' },
-            { href: '/learn/yogas' as const, label: isHi ? 'योग — शुभ संयोग' : 'Yogas — Auspicious Combinations' },
-            { href: '/learn/remedies' as const, label: isHi ? 'उपाय — ग्रह शांति' : 'Remedies — Planetary Pacification' },
+            { href: '/learn/doshas' as const, label: isHi ? 'दोष  –  सामान्य अवलोकन' : 'Doshas  –  Overview' },
+            { href: '/learn/yogas' as const, label: isHi ? 'योग  –  शुभ संयोग' : 'Yogas  –  Auspicious Combinations' },
+            { href: '/learn/remedies' as const, label: isHi ? 'उपाय  –  ग्रह शांति' : 'Remedies  –  Planetary Pacification' },
             { href: '/mangal-dosha' as const, label: isHi ? 'मंगल दोष विश्लेषक' : 'Mangal Dosha Analyzer' },
             { href: '/learn/modules/13-3' as const, label: isHi ? 'पाठ 13-3: जन्म कुंडली में दोष' : 'Lesson 13-3: Doshas in Birth Chart' },
-            { href: '/learn/avasthas' as const, label: isHi ? 'अवस्थाएं — ग्रह दशाएं' : 'Avasthas — Planetary States' },
+            { href: '/learn/avasthas' as const, label: isHi ? 'अवस्थाएं  –  ग्रह दशाएं' : 'Avasthas  –  Planetary States' },
           ].map((mod) => (
             <Link
               key={mod.href}

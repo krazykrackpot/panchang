@@ -24,8 +24,8 @@
     "bn": "৮টি কূটের বিবরণ"
   },
   "kutasContent": {
-    "en": "Each kuta evaluates a different dimension of compatibility. The total of 36 points is not arbitrary — each kuta's maximum reflects its classical weight in predicting marital harmony.",
-    "hi": "प्रत्येक कूट अनुकूलता के एक भिन्न आयाम का मूल्यांकन करता है। 36 अंकों का कुल योग यादृच्छिक नहीं है — प्रत्येक कूट का अधिकतम अंक वैवाहिक सामंजस्य पूर्वानुमान में उसके शास्त्रीय भार को दर्शाता है।",
+    "en": "Each kuta evaluates a different dimension of compatibility. The total of 36 points is not arbitrary  –  each kuta's maximum reflects its classical weight in predicting marital harmony.",
+    "hi": "प्रत्येक कूट अनुकूलता के एक भिन्न आयाम का मूल्यांकन करता है। 36 अंकों का कुल योग यादृच्छिक नहीं है  –  प्रत्येक कूट का अधिकतम अंक वैवाहिक सामंजस्य पूर्वानुमान में उसके शास्त्रीय भार को दर्शाता है।",
     "ta": "ஒவ்வொரு கூடமும் பொருத்தத்தின் வெவ்வேறு பரிமாணத்தை மதிப்பிடுகிறது.",
     "bn": "প্রতিটি কূট সামঞ্জস্যের একটি ভিন্ন মাত্রা মূল্যায়ন করে।"
   },
@@ -48,7 +48,7 @@
     "bn": "মিলানে মাঙ্গলিক দোষ"
   },
   "mangalContent": {
-    "en": "Mangal Dosha (Mars Dosha) is a separate check performed alongside Gun Milan. When Mars occupies the 1st, 2nd, 4th, 7th, 8th, or 12th house from Lagna, Moon, or Venus, the native is considered Manglik. The classical rule is that a Manglik should marry another Manglik to neutralise the dosha. However, BPHS lists 10+ cancellation conditions — many people labelled 'Manglik' actually have their dosha cancelled.",
+    "en": "Mangal Dosha (Mars Dosha) is a separate check performed alongside Gun Milan. When Mars occupies the 1st, 2nd, 4th, 7th, 8th, or 12th house from Lagna, Moon, or Venus, the native is considered Manglik. The classical rule is that a Manglik should marry another Manglik to neutralise the dosha. However, BPHS lists 10+ cancellation conditions  –  many people labelled 'Manglik' actually have their dosha cancelled.",
     "hi": "मांगलिक दोष (मंगल दोष) गुण मिलान के साथ की जाने वाली एक अलग जाँच है। जब मंगल लग्न, चन्द्र या शुक्र से 1, 2, 4, 7, 8 या 12वें भाव में हो, तो जातक मांगलिक माना जाता है। शास्त्रीय नियम है कि मांगलिक को मांगलिक से विवाह करना चाहिए, परन्तु बीपीएचएस में 10+ निवारण नियम हैं।",
     "ta": "மங்கள் தோஷம் குண மிலானுடன் தனியாக செய்யப்படும் ஒரு சோதனை.",
     "bn": "মাঙ্গলিক দোষ গুণ মিলানের সাথে পৃথকভাবে করা একটি পরীক্ষা।"
@@ -60,7 +60,7 @@
     "bn": "শুধু গুণ মিলান যথেষ্ট না হলে"
   },
   "beyondContent": {
-    "en": "Gun Milan is a screening tool, not the final verdict. A couple scoring 30/36 can still face challenges if their charts have severe doshas (Kaal Sarpa, Pitru Dosha) or if key houses (7th, 8th) are heavily afflicted. Conversely, a score of 20 with strong chart-level synastry can work well. Experienced astrologers always examine both charts holistically — checking the 7th house lord, Venus placement, Jupiter's aspect on the 7th, and dasha compatibility.",
+    "en": "Gun Milan is a screening tool, not the final verdict. A couple scoring 30/36 can still face challenges if their charts have severe doshas (Kaal Sarpa, Pitru Dosha) or if key houses (7th, 8th) are heavily afflicted. Conversely, a score of 20 with strong chart-level synastry can work well. Experienced astrologers always examine both charts holistically  –  checking the 7th house lord, Venus placement, Jupiter's aspect on the 7th, and dasha compatibility.",
     "hi": "गुण मिलान एक प्रारम्भिक जाँच है, अन्तिम निर्णय नहीं। 30/36 अंक पाने वाले दम्पति को भी कठिनाइयाँ हो सकती हैं यदि उनकी कुण्डलियों में गम्भीर दोष हों। अनुभवी ज्योतिषी हमेशा दोनों कुण्डलियों का सम्पूर्ण विश्लेषण करते हैं।",
     "ta": "குண மிலான் ஒரு தொடக்க சோதனை, இறுதி தீர்ப்பு அல்ல.",
     "bn": "গুণ মিলান একটি প্রাথমিক পরীক্ষা, চূড়ান্ত রায় নয়।"
@@ -72,8 +72,8 @@
     "bn": "উত্তর বনাম দক্ষিণ ভারতীয় ঐতিহ্য"
   },
   "regionalContent": {
-    "en": "The 36-point Ashta Kuta system is predominantly a North Indian tradition. South Indian astrology uses a different matching system called Dasha Kuta (10 factors) or Poruttham, which includes additional checks like Rajju (longevity), Vedha (affliction), and Stree Deergha (bride's longevity from groom's star). Some factors overlap — Rashi, Nakshatra, and Gana are common to both systems — but the scoring weights differ.",
-    "hi": "36 अंकों की अष्ट कूट प्रणाली मुख्यतः उत्तर भारतीय परम्परा है। दक्षिण भारतीय ज्योतिष एक भिन्न प्रणाली — दश कूट या पोरुत्तम — का उपयोग करता है, जिसमें रज्जु, वेध और स्त्री दीर्घ जैसी अतिरिक्त जाँचें होती हैं।",
+    "en": "The 36-point Ashta Kuta system is predominantly a North Indian tradition. South Indian astrology uses a different matching system called Dasha Kuta (10 factors) or Poruttham, which includes additional checks like Rajju (longevity), Vedha (affliction), and Stree Deergha (bride's longevity from groom's star). Some factors overlap  –  Rashi, Nakshatra, and Gana are common to both systems  –  but the scoring weights differ.",
+    "hi": "36 अंकों की अष्ट कूट प्रणाली मुख्यतः उत्तर भारतीय परम्परा है। दक्षिण भारतीय ज्योतिष एक भिन्न प्रणाली  –  दश कूट या पोरुत्तम  –  का उपयोग करता है, जिसमें रज्जु, वेध और स्त्री दीर्घ जैसी अतिरिक्त जाँचें होती हैं।",
     "ta": "36 புள்ளி அஷ்ட கூட முறை முக்கியமாக வட இந்திய மரபு. தென் இந்திய ஜோதிடம் தச கூட அல்லது பொருத்தம் என்ற வேறுபட்ட முறையைப் பயன்படுத்துகிறது.",
     "bn": "৩৬ পয়েন্ট অষ্ট কূট পদ্ধতি মূলত উত্তর ভারতীয় ঐতিহ্য। দক্ষিণ ভারতীয় জ্যোতিষ দশ কূট বা পোরুত্তম নামক ভিন্ন পদ্ধতি ব্যবহার করে।"
   },
@@ -84,7 +84,7 @@
     "bn": "সারাংশ"
   },
   "summaryContent": {
-    "en": "Gun Milan provides a structured, quantifiable framework for evaluating marriage compatibility. While the 36-point system is powerful, it should be used as one input among several — including chart-level analysis, Mangal Dosha assessment, and dasha compatibility. No single score can capture the full complexity of two lives coming together.",
+    "en": "Gun Milan provides a structured, quantifiable framework for evaluating marriage compatibility. While the 36-point system is powerful, it should be used as one input among several  –  including chart-level analysis, Mangal Dosha assessment, and dasha compatibility. No single score can capture the full complexity of two lives coming together.",
     "hi": "गुण मिलान विवाह अनुकूलता मूल्यांकन के लिए एक संरचित, मात्रात्मक ढाँचा प्रदान करता है। 36 अंकों की प्रणाली शक्तिशाली है, परन्तु इसे कई इनपुटों में से एक के रूप में प्रयोग करना चाहिए।",
     "ta": "குண மிலான் திருமண பொருத்தத்தை மதிப்பிட ஒரு கட்டமைக்கப்பட்ட கட்டமைப்பை வழங்குகிறது.",
     "bn": "গুণ মিলান বিবাহ সামঞ্জস্য মূল্যায়নের জন্য একটি কাঠামোবদ্ধ পদ্ধতি প্রদান করে।"

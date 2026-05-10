@@ -1,15 +1,15 @@
 {
   "title": {
-    "en": "Vara — The Weekday",
-    "hi": "वार — सप्ताह का दिन",
-    "sa": "वारः — सप्ताहस्य दिनम्",
-    "ta": "வாரம் — வாரநாள்",
-    "te": "వారం — వారపు రోజు",
-    "bn": "বার — সপ্তাহের দিন",
-    "kn": "ವಾರ — ವಾರದ ದಿನ",
-    "mr": "वार — आठवड्याचा दिवस",
-    "gu": "વાર — અઠવાડિયાનો દિવસ",
-    "mai": "वार — सप्ताहक दिन"
+    "en": "Vara  –  The Weekday",
+    "hi": "वार  –  सप्ताह का दिन",
+    "sa": "वारः  –  सप्ताहस्य दिनम्",
+    "ta": "வாரம்  –  வாரநாள்",
+    "te": "వారం  –  వారపు రోజు",
+    "bn": "বার  –  সপ্তাহের দিন",
+    "kn": "ವಾರ  –  ವಾರದ ದಿನ",
+    "mr": "वार  –  आठवड्याचा दिवस",
+    "gu": "વાર  –  અઠવાડિયાનો દિવસ",
+    "mai": "वार  –  सप्ताहक दिन"
   },
   "subtitle": {
     "en": "Each of the seven weekdays is ruled by a planet, defining the day's nature from sunrise to next sunrise",
@@ -290,16 +290,16 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "Thursday (Guruvara), ruled by Jupiter (Guru/Brihaspati), is considered the most universally auspicious day. Jupiter is the greatest benefic in Jyotish — the planet of wisdom, dharma, expansion, and good fortune. Thursday is preferred for initiating education, rituals, marriages, and business ventures.",
-        "hi": "गुरुवार, बृहस्पति (गुरु) द्वारा शासित, सर्वाधिक शुभ दिन माना जाता है। बृहस्पति ज्योतिष में सबसे बड़ा शुभग्रह है — ज्ञान, धर्म, विस्तार और सौभाग्य का ग्रह। गुरुवार शिक्षा, अनुष्ठान, विवाह और व्यापार आरम्भ के लिए उत्तम है।",
-        "sa": "गुरुवार, बृहस्पति (गुरु) द्वारा शासित, सर्वाधिक शुभ दिन माना जाता है। बृहस्पति ज्योतिष में सबसे बड़ा शुभग्रह है — ज्ञान, धर्म, विस्तार और सौभाग्य का ग्रह। गुरुवार शिक्षा, अनुष्ठान, विवाह और व्यापार आरम्भ के लिए उत्तम है।",
-        "ta": "Thursday (Guruvara), ruled by Jupiter (Guru/Brihaspati), is considered the most universally auspicious day. Jupiter is the greatest benefic in Jyotish — the planet of wisdom, dharma, expansion, and good fortune. Thursday is preferred for initiating education, rituals, marriages, and business ventures.",
-        "te": "Thursday (Guruvara), ruled by Jupiter (Guru/Brihaspati), is considered the most universally auspicious day. Jupiter is the greatest benefic in Jyotish — the planet of wisdom, dharma, expansion, and good fortune. Thursday is preferred for initiating education, rituals, marriages, and business ventures.",
-        "bn": "Thursday (Guruvara), ruled by Jupiter (Guru/Brihaspati), is considered the most universally auspicious day. Jupiter is the greatest benefic in Jyotish — the planet of wisdom, dharma, expansion, and good fortune. Thursday is preferred for initiating education, rituals, marriages, and business ventures.",
-        "kn": "Thursday (Guruvara), ruled by Jupiter (Guru/Brihaspati), is considered the most universally auspicious day. Jupiter is the greatest benefic in Jyotish — the planet of wisdom, dharma, expansion, and good fortune. Thursday is preferred for initiating education, rituals, marriages, and business ventures.",
-        "mr": "गुरुवार, बृहस्पति (गुरु) द्वारा शासित, सर्वाधिक शुभ दिन माना जाता है। बृहस्पति ज्योतिष में सबसे बड़ा शुभग्रह है — ज्ञान, धर्म, विस्तार और सौभाग्य का ग्रह। गुरुवार शिक्षा, अनुष्ठान, विवाह और व्यापार आरम्भ के लिए उत्तम है।",
-        "gu": "Thursday (Guruvara), ruled by Jupiter (Guru/Brihaspati), is considered the most universally auspicious day. Jupiter is the greatest benefic in Jyotish — the planet of wisdom, dharma, expansion, and good fortune. Thursday is preferred for initiating education, rituals, marriages, and business ventures.",
-        "mai": "गुरुवार, बृहस्पति (गुरु) द्वारा शासित, सर्वाधिक शुभ दिन माना जाता है। बृहस्पति ज्योतिष में सबसे बड़ा शुभग्रह है — ज्ञान, धर्म, विस्तार और सौभाग्य का ग्रह। गुरुवार शिक्षा, अनुष्ठान, विवाह और व्यापार आरम्भ के लिए उत्तम है।"
+        "en": "Thursday (Guruvara), ruled by Jupiter (Guru/Brihaspati), is considered the most universally auspicious day. Jupiter is the greatest benefic in Jyotish  –  the planet of wisdom, dharma, expansion, and good fortune. Thursday is preferred for initiating education, rituals, marriages, and business ventures.",
+        "hi": "गुरुवार, बृहस्पति (गुरु) द्वारा शासित, सर्वाधिक शुभ दिन माना जाता है। बृहस्पति ज्योतिष में सबसे बड़ा शुभग्रह है  –  ज्ञान, धर्म, विस्तार और सौभाग्य का ग्रह। गुरुवार शिक्षा, अनुष्ठान, विवाह और व्यापार आरम्भ के लिए उत्तम है।",
+        "sa": "गुरुवार, बृहस्पति (गुरु) द्वारा शासित, सर्वाधिक शुभ दिन माना जाता है। बृहस्पति ज्योतिष में सबसे बड़ा शुभग्रह है  –  ज्ञान, धर्म, विस्तार और सौभाग्य का ग्रह। गुरुवार शिक्षा, अनुष्ठान, विवाह और व्यापार आरम्भ के लिए उत्तम है।",
+        "ta": "Thursday (Guruvara), ruled by Jupiter (Guru/Brihaspati), is considered the most universally auspicious day. Jupiter is the greatest benefic in Jyotish  –  the planet of wisdom, dharma, expansion, and good fortune. Thursday is preferred for initiating education, rituals, marriages, and business ventures.",
+        "te": "Thursday (Guruvara), ruled by Jupiter (Guru/Brihaspati), is considered the most universally auspicious day. Jupiter is the greatest benefic in Jyotish  –  the planet of wisdom, dharma, expansion, and good fortune. Thursday is preferred for initiating education, rituals, marriages, and business ventures.",
+        "bn": "Thursday (Guruvara), ruled by Jupiter (Guru/Brihaspati), is considered the most universally auspicious day. Jupiter is the greatest benefic in Jyotish  –  the planet of wisdom, dharma, expansion, and good fortune. Thursday is preferred for initiating education, rituals, marriages, and business ventures.",
+        "kn": "Thursday (Guruvara), ruled by Jupiter (Guru/Brihaspati), is considered the most universally auspicious day. Jupiter is the greatest benefic in Jyotish  –  the planet of wisdom, dharma, expansion, and good fortune. Thursday is preferred for initiating education, rituals, marriages, and business ventures.",
+        "mr": "गुरुवार, बृहस्पति (गुरु) द्वारा शासित, सर्वाधिक शुभ दिन माना जाता है। बृहस्पति ज्योतिष में सबसे बड़ा शुभग्रह है  –  ज्ञान, धर्म, विस्तार और सौभाग्य का ग्रह। गुरुवार शिक्षा, अनुष्ठान, विवाह और व्यापार आरम्भ के लिए उत्तम है।",
+        "gu": "Thursday (Guruvara), ruled by Jupiter (Guru/Brihaspati), is considered the most universally auspicious day. Jupiter is the greatest benefic in Jyotish  –  the planet of wisdom, dharma, expansion, and good fortune. Thursday is preferred for initiating education, rituals, marriages, and business ventures.",
+        "mai": "गुरुवार, बृहस्पति (गुरु) द्वारा शासित, सर्वाधिक शुभ दिन माना जाता है। बृहस्पति ज्योतिष में सबसे बड़ा शुभग्रह है  –  ज्ञान, धर्म, विस्तार और सौभाग्य का ग्रह। गुरुवार शिक्षा, अनुष्ठान, विवाह और व्यापार आरम्भ के लिए उत्तम है।"
       },
       "options": [
         {
@@ -369,16 +369,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "The formula floor(JD + 1.5) mod 7 gives the day of the week, where 0 = Monday. This is the simplest of all Panchang computations — a single modular arithmetic operation on the Julian Day Number.",
-        "hi": "सूत्र floor(JD + 1.5) mod 7 सप्ताह का दिन देता है, जहाँ 0 = सोमवार। यह सभी पंचांग गणनाओं में सबसे सरल है — जूलियन दिवस संख्या पर एक मॉड्यूलर अंकगणित संक्रिया।",
-        "sa": "सूत्र floor(JD + 1.5) mod 7 सप्ताह का दिन देता है, जहाँ 0 = सोमवार। यह सभी पंचांग गणनाओं में सबसे सरल है — जूलियन दिवस संख्या पर एक मॉड्यूलर अंकगणित संक्रिया।",
-        "ta": "The formula floor(JD + 1.5) mod 7 gives the day of the week, where 0 = Monday. This is the simplest of all Panchang computations — a single modular arithmetic operation on the Julian Day Number.",
-        "te": "The formula floor(JD + 1.5) mod 7 gives the day of the week, where 0 = Monday. This is the simplest of all Panchang computations — a single modular arithmetic operation on the Julian Day Number.",
-        "bn": "The formula floor(JD + 1.5) mod 7 gives the day of the week, where 0 = Monday. This is the simplest of all Panchang computations — a single modular arithmetic operation on the Julian Day Number.",
-        "kn": "The formula floor(JD + 1.5) mod 7 gives the day of the week, where 0 = Monday. This is the simplest of all Panchang computations — a single modular arithmetic operation on the Julian Day Number.",
-        "mr": "सूत्र floor(JD + 1.5) mod 7 सप्ताह का दिन देता है, जहाँ 0 = सोमवार। यह सभी पंचांग गणनाओं में सबसे सरल है — जूलियन दिवस संख्या पर एक मॉड्यूलर अंकगणित संक्रिया।",
-        "gu": "The formula floor(JD + 1.5) mod 7 gives the day of the week, where 0 = Monday. This is the simplest of all Panchang computations — a single modular arithmetic operation on the Julian Day Number.",
-        "mai": "सूत्र floor(JD + 1.5) mod 7 सप्ताह का दिन देता है, जहाँ 0 = सोमवार। यह सभी पंचांग गणनाओं में सबसे सरल है — जूलियन दिवस संख्या पर एक मॉड्यूलर अंकगणित संक्रिया।"
+        "en": "The formula floor(JD + 1.5) mod 7 gives the day of the week, where 0 = Monday. This is the simplest of all Panchang computations  –  a single modular arithmetic operation on the Julian Day Number.",
+        "hi": "सूत्र floor(JD + 1.5) mod 7 सप्ताह का दिन देता है, जहाँ 0 = सोमवार। यह सभी पंचांग गणनाओं में सबसे सरल है  –  जूलियन दिवस संख्या पर एक मॉड्यूलर अंकगणित संक्रिया।",
+        "sa": "सूत्र floor(JD + 1.5) mod 7 सप्ताह का दिन देता है, जहाँ 0 = सोमवार। यह सभी पंचांग गणनाओं में सबसे सरल है  –  जूलियन दिवस संख्या पर एक मॉड्यूलर अंकगणित संक्रिया।",
+        "ta": "The formula floor(JD + 1.5) mod 7 gives the day of the week, where 0 = Monday. This is the simplest of all Panchang computations  –  a single modular arithmetic operation on the Julian Day Number.",
+        "te": "The formula floor(JD + 1.5) mod 7 gives the day of the week, where 0 = Monday. This is the simplest of all Panchang computations  –  a single modular arithmetic operation on the Julian Day Number.",
+        "bn": "The formula floor(JD + 1.5) mod 7 gives the day of the week, where 0 = Monday. This is the simplest of all Panchang computations  –  a single modular arithmetic operation on the Julian Day Number.",
+        "kn": "The formula floor(JD + 1.5) mod 7 gives the day of the week, where 0 = Monday. This is the simplest of all Panchang computations  –  a single modular arithmetic operation on the Julian Day Number.",
+        "mr": "सूत्र floor(JD + 1.5) mod 7 सप्ताह का दिन देता है, जहाँ 0 = सोमवार। यह सभी पंचांग गणनाओं में सबसे सरल है  –  जूलियन दिवस संख्या पर एक मॉड्यूलर अंकगणित संक्रिया।",
+        "gu": "The formula floor(JD + 1.5) mod 7 gives the day of the week, where 0 = Monday. This is the simplest of all Panchang computations  –  a single modular arithmetic operation on the Julian Day Number.",
+        "mai": "सूत्र floor(JD + 1.5) mod 7 सप्ताह का दिन देता है, जहाँ 0 = सोमवार। यह सभी पंचांग गणनाओं में सबसे सरल है  –  जूलियन दिवस संख्या पर एक मॉड्यूलर अंकगणित संक्रिया।"
       },
       "options": [
         {

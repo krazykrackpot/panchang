@@ -1,5 +1,5 @@
 /**
- * Muhurta Engine — Entry Point
+ * Muhurta Engine  –  Entry Point
  *
  * Registers all rules and exports the evaluation + reasoning API.
  * Import this file to get a fully initialised engine.
@@ -16,7 +16,7 @@ import { GRAHA_RULES } from './rules/graha';
 import { PERSONAL_RULES } from './rules/personal';
 import { GANDANTHARA_RULES } from './rules/gandanthara';
 
-// Register all rules on first import (idempotent — check if already registered)
+// Register all rules on first import (idempotent  –  check if already registered)
 if (getRuleCount() === 0) {
   registerRules([
     ...PANCHANGA_RULES,

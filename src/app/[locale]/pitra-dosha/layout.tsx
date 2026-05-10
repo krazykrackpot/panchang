@@ -19,11 +19,11 @@ export default async function Layout({ children, params }: { children: React.Rea
   const breadcrumbLD = generateBreadcrumbLD(`/${locale}/pitra-dosha`, locale);
   const faqLD = generateFAQLD('/pitra-dosha', locale);
   const expertiseLD = generateExpertiseArticleLD({
-    title: 'Pitra Dosha — Ancestral Karma Analysis',
+    title: 'Pitra Dosha  –  Ancestral Karma Analysis',
     description: 'Pitra Dosha analysis based on Sun-Rahu conjunction, 9th house affliction, and ancestral karma indicators in the Vedic birth chart.',
     url: `https://dekhopanchang.com/${locale}/pitra-dosha`,
     locale,
-    citations: ['Brihat Parashara Hora Shastra — Pitru Dosha', 'Garuda Purana — Ancestral Rites'],
+    citations: ['Brihat Parashara Hora Shastra  –  Pitru Dosha', 'Garuda Purana  –  Ancestral Rites'],
     expertise: ['Pitra Dosha', 'Ancestral Karma (Pitru Rina)', 'Shraddha Remedies', 'Vedic Remedial Measures'],
   });
   return (

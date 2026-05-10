@@ -1,4 +1,4 @@
-// Alert email — for dasha transitions, sade sati, festival reminders
+// Alert email  –  for dasha transitions, sade sati, festival reminders
 
 type AlertType = 'dasha_transition' | 'sade_sati' | 'festival_reminder';
 
@@ -19,7 +19,7 @@ export function alertEmail({ name, type, title, body, ctaUrl, ctaText }: {
   const style = ALERT_STYLES[type];
 
   return {
-    subject: `${title} — Dekho Panchang`,
+    subject: `${title}  –  Dekho Panchang`,
     html: `
 <!DOCTYPE html>
 <html>

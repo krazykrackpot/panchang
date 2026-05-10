@@ -19,7 +19,7 @@ interface ChartNorthProps {
   transitData?: ChartData;       // optional transit planet overlay
 }
 
-// North Indian diamond chart — 12 house regions (scaled to 500x500)
+// North Indian diamond chart  –  12 house regions (scaled to 500x500)
 const HOUSE_PATHS: Record<number, { path: string; cx: number; cy: number; signX: number; signY: number }> = {
   1:  { path: 'M 250 30 L 140 140 L 250 250 L 360 140 Z', cx: 250, cy: 132, signX: 250, signY: 62 },
   2:  { path: 'M 30 30 L 140 140 L 250 30 Z', cx: 138, cy: 62, signX: 92, signY: 42 },
@@ -72,7 +72,7 @@ export default function ChartNorth({ data, title, size = 500, selectedHouse, onS
         className="drop-shadow-2xl w-full max-w-[320px] sm:max-w-[400px] md:max-w-[500px]"
       >
         <defs>
-          {/* Background gradient — deeper, richer */}
+          {/* Background gradient  –  deeper, richer */}
           <radialGradient id="nBg" cx="50%" cy="50%" r="72%">
             <stop offset="0%" stopColor="#111638" />
             <stop offset="100%" stopColor="#080b1f" />
@@ -95,7 +95,7 @@ export default function ChartNorth({ data, title, size = 500, selectedHouse, onS
             <stop offset="0%" stopColor="rgba(212,168,83,0.12)" />
             <stop offset="100%" stopColor="rgba(212,168,83,0)" />
           </radialGradient>
-          {/* Planet text — no blur for crispness */}
+          {/* Planet text  –  no blur for crispness */}
           {/* Selected house glow */}
           <filter id="nSelGlow">
             <feGaussianBlur stdDeviation="3" result="b" />
@@ -114,7 +114,7 @@ export default function ChartNorth({ data, title, size = 500, selectedHouse, onS
         <rect x="18" y="18" width="464" height="464" fill="none" stroke="url(#nGold)" strokeWidth="2" rx="6" />
         <rect x="24" y="24" width="452" height="452" fill="none" stroke="url(#nGold)" strokeWidth="0.5" opacity="0.4" rx="4" />
 
-        {/* ─── Inner diamond — crisp classical lines ─── */}
+        {/* ─── Inner diamond  –  crisp classical lines ─── */}
         <polygon points="250,30 470,250 250,470 30,250" fill="none" stroke="url(#nGold)" strokeWidth="1.5" />
 
         {/* ─── Diagonal lines (corner to center) ─── */}
@@ -188,7 +188,7 @@ export default function ChartNorth({ data, title, size = 500, selectedHouse, onS
                 {houseNum}
               </text>
 
-              {/* ─── Natal Planets — abbreviation style with colored dots ─── */}
+              {/* ─── Natal Planets  –  abbreviation style with colored dots ─── */}
               {planetsInHouse.map((planetId, pIdx) => {
                 const color = PLANET_COLORS[planetId] || '#e8e6e3';
                 const totalNatal = planetsInHouse.length;
@@ -220,7 +220,7 @@ export default function ChartNorth({ data, title, size = 500, selectedHouse, onS
                 );
               })}
 
-              {/* ─── Transit Planets — outlined style, offset below natal ─── */}
+              {/* ─── Transit Planets  –  outlined style, offset below natal ─── */}
               {transitData && (() => {
                 const transitPlanets = transitData.houses[hIdx] || [];
                 if (transitPlanets.length === 0) return null;
@@ -260,7 +260,7 @@ export default function ChartNorth({ data, title, size = 500, selectedHouse, onS
           {isDevanagari ? 'लग्न' : 'ASC'}
         </text>
 
-        {/* ─── Corner ornaments — classical feel ─── */}
+        {/* ─── Corner ornaments  –  classical feel ─── */}
         {/* Outer corners */}
         <g opacity="0.5">
           {/* Top-left */}

@@ -15,8 +15,8 @@
 /** Primary Varjyam ghati offset from nakshatra start (0-indexed by nakshatra) */
 export const VARJYAM_GHATI: readonly number[] = [
   50, 24, 30, 40, 15,  // Ashwini(1)-Mrigashira(5)
-  21, 30, 20, 32, 30,  // Ardra(6)-Magha(10) — Ardra=21, Punarvasu=30, Pushya=20
-  20, 18, 22, 20, 14,  // P.Phalguni(11)-Swati(15) — U.Phalguni=18
+  21, 30, 20, 32, 30,  // Ardra(6)-Magha(10)  –  Ardra=21, Punarvasu=30, Pushya=20
+  20, 18, 22, 20, 14,  // P.Phalguni(11)-Swati(15)  –  U.Phalguni=18
   14, 10, 14, 20, 24,  // Vishakha(16)-P.Ashadha(20)
   20, 10, 10, 18, 16,  // U.Ashadha(21)-P.Bhadra(25)
   26, 30,              // U.Bhadra(26)-Revati(27)
@@ -30,7 +30,7 @@ export const VARJYAM_GHATI_2: readonly number[] = [
   -1, -1, -1, -1, -1,  // Ashwini(1)-Mrigashira(5)
   -1, -1, -1, -1, -1,  // Ardra(6)-Magha(10)
   -1, -1, -1, -1, -1,  // P.Phalguni(11)-Swati(15)
-  -1, -1, -1, 56, -1,  // Vishakha(16)-P.Ashadha(20) — Mula(19) dual
+  -1, -1, -1, 56, -1,  // Vishakha(16)-P.Ashadha(20)  –  Mula(19) dual
   -1, -1, -1, -1, -1,  // U.Ashadha(21)-P.Bhadra(25)
   -1, -1,              // U.Bhadra(26)-Revati(27)
 ] as const;

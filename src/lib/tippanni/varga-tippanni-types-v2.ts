@@ -171,7 +171,7 @@ export interface Parivartana {
 }
 
 // ---------------------------------------------------------------------------
-// Cross-Correlation — the comprehensive varga overlay object
+// Cross-Correlation  –  the comprehensive varga overlay object
 // ---------------------------------------------------------------------------
 
 export interface CrossCorrelation {
@@ -215,7 +215,7 @@ export interface CrossCorrelation {
   }[];
 
   /**
-   * Argala (intervention) analysis on key houses — which planets support
+   * Argala (intervention) analysis on key houses  –  which planets support
    * or obstruct the flow of energy to those houses.
    */
   argalaOnKeyHouses: {

@@ -1,5 +1,5 @@
 /**
- * Period Rules — 6 day-level hard veto rules
+ * Period Rules  –  6 day-level hard veto rules
  *
  * All rules are scope: 'day', tier: 0 (absolute), effect: 'veto'.
  * Evaluated once per day before window scanning. Cannot be cancelled.
@@ -78,8 +78,8 @@ const venusJupiterCombustion: MuhurtaRule = {
 
     const planets = combustion.planets.join(' & ');
     return vetoAssessment(this, {
-      en: `${planets} combust — samskaras forbidden`,
-      hi: `${planets} अस्त — संस्कार वर्जित`,
+      en: `${planets} combust  –  samskaras forbidden`,
+      hi: `${planets} अस्त  –  संस्कार वर्जित`,
     });
   },
 };
@@ -112,8 +112,8 @@ const adhikaMasa: MuhurtaRule = {
     }
 
     return vetoAssessment(this, {
-      en: 'Adhika Masa (intercalary month) — samskaras forbidden',
-      hi: 'अधिक मास (मलमास) — संस्कार वर्जित',
+      en: 'Adhika Masa (intercalary month)  –  samskaras forbidden',
+      hi: 'अधिक मास (मलमास)  –  संस्कार वर्जित',
     });
   },
 };
@@ -147,8 +147,8 @@ const chaturmas: MuhurtaRule = {
     if (result !== 'full') return null;
 
     return vetoAssessment(this, {
-      en: 'Chaturmas (Harishayana period) — samskaras forbidden',
-      hi: 'चातुर्मास (हरिशयन काल) — संस्कार वर्जित',
+      en: 'Chaturmas (Harishayana period)  –  samskaras forbidden',
+      hi: 'चातुर्मास (हरिशयन काल)  –  संस्कार वर्जित',
     });
   },
 };
@@ -179,8 +179,8 @@ const kharmas: MuhurtaRule = {
     if (!isProhibitedSolarMonth(ctx.jdNoon)) return null;
 
     return vetoAssessment(this, {
-      en: 'Kharmas — Sun in prohibited sign, auspicious activities forbidden',
-      hi: 'खरमास — सूर्य निषिद्ध राशि में, शुभ कार्य वर्जित',
+      en: 'Kharmas  –  Sun in prohibited sign, auspicious activities forbidden',
+      hi: 'खरमास  –  सूर्य निषिद्ध राशि में, शुभ कार्य वर्जित',
     });
   },
 };
@@ -209,8 +209,8 @@ const dakshinayana: MuhurtaRule = {
     if (!isDakshinayana(ctx.jdNoon)) return null;
 
     return vetoAssessment(this, {
-      en: 'Dakshinayana — Mundan requires Uttarayana (Sun\'s northern course)',
-      hi: 'दक्षिणायन — मुंडन के लिए उत्तरायण आवश्यक',
+      en: 'Dakshinayana  –  Mundan requires Uttarayana (Sun\'s northern course)',
+      hi: 'दक्षिणायन  –  मुंडन के लिए उत्तरायण आवश्यक',
     });
   },
 };
@@ -241,14 +241,14 @@ const shishutva: MuhurtaRule = {
     if (!checkShishutva(ctx.jdNoon)) return null;
 
     return vetoAssessment(this, {
-      en: 'Shishutva — Venus/Jupiter recently emerged from combustion, benefic influence too weak',
-      hi: 'शिशुत्व — शुक्र/गुरु हाल ही में अस्त से उदित, शुभ प्रभाव अपर्याप्त',
+      en: 'Shishutva  –  Venus/Jupiter recently emerged from combustion, benefic influence too weak',
+      hi: 'शिशुत्व  –  शुक्र/गुरु हाल ही में अस्त से उदित, शुभ प्रभाव अपर्याप्त',
     });
   },
 };
 
 // ---------------------------------------------------------------------------
-// NOTE: Pitra Paksha (Mahalaya Shraddha) — Krishna Paksha of Bhadrapada
+// NOTE: Pitra Paksha (Mahalaya Shraddha)  –  Krishna Paksha of Bhadrapada
 // This falls within Chaturmas (Devshayani to Prabodhini Ekadashi,
 // ~July-November), so it is already covered by the chaturmas veto above.
 // No separate check is needed. If Chaturmas boundaries ever change,

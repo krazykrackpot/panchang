@@ -56,9 +56,9 @@ const LABELS: Record<string, Record<string, string>> = {
     inauspicious: 'Inauspicious',
     neutral: 'Neutral',
     whatIs: 'What is Choghadiya?',
-    whatIsText: 'Choghadiya (also written Chaughadia) is a traditional Vedic time-division system used to find auspicious and inauspicious time slots throughout the day and night. The word literally means "four ghatis" — each Choghadiya period spans approximately 4 ghatis (about 96 minutes). There are 8 day slots (sunrise to sunset) and 8 night slots (sunset to next sunrise), giving 16 periods in total.',
+    whatIsText: 'Choghadiya (also written Chaughadia) is a traditional Vedic time-division system used to find auspicious and inauspicious time slots throughout the day and night. The word literally means "four ghatis"  –  each Choghadiya period spans approximately 4 ghatis (about 96 minutes). There are 8 day slots (sunrise to sunset) and 8 night slots (sunset to next sunrise), giving 16 periods in total.',
     typesTitle: '7 Types of Choghadiya Explained',
-    types: 'Amrit|Most auspicious — ideal for all good works, especially starting new ventures|Shubh|Auspicious — good for marriage, religious ceremonies, and important decisions|Labh|Auspicious — excellent for business, trade, and financial transactions|Char|Neutral — suitable for travel and movement, but not for starting permanent works|Rog|Inauspicious — associated with illness; avoid medical procedures and new health regimens|Kaal|Inauspicious — ruled by Saturn; avoid important beginnings, especially financial|Udveg|Inauspicious — associated with anxiety; avoid travel, meetings with officials',
+    types: 'Amrit|Most auspicious  –  ideal for all good works, especially starting new ventures|Shubh|Auspicious  –  good for marriage, religious ceremonies, and important decisions|Labh|Auspicious  –  excellent for business, trade, and financial transactions|Char|Neutral  –  suitable for travel and movement, but not for starting permanent works|Rog|Inauspicious  –  associated with illness; avoid medical procedures and new health regimens|Kaal|Inauspicious  –  ruled by Saturn; avoid important beginnings, especially financial|Udveg|Inauspicious  –  associated with anxiety; avoid travel, meetings with officials',
     bestTitle: 'Best Choghadiya for Travel & Business',
     bestText: 'For travel, the Char Choghadiya is traditionally recommended as its mobile nature supports journeys. For business and financial activities, Labh (gain) and Shubh (auspicious) are preferred. The Amrit Choghadiya is considered universally auspicious for all activities. Avoid starting any important work during Rog, Kaal, or Udveg periods.',
     seeAlso: 'See Also',
@@ -72,9 +72,9 @@ const LABELS: Record<string, Record<string, string>> = {
     inauspicious: 'अशुभ',
     neutral: 'सामान्य',
     whatIs: 'चौघड़िया क्या है?',
-    whatIsText: 'चौघड़िया (चौघाड़िया) एक पारम्परिक वैदिक समय-विभाजन प्रणाली है जिसका उपयोग दिन और रात के शुभ-अशुभ समय खण्डों को जानने के लिए किया जाता है। इस शब्द का शाब्दिक अर्थ है "चार घटी" — प्रत्येक चौघड़िया अवधि लगभग 4 घटी (लगभग 96 मिनट) की होती है। सूर्योदय से सूर्यास्त तक 8 दिन के और सूर्यास्त से अगले सूर्योदय तक 8 रात के, कुल 16 खण्ड होते हैं।',
+    whatIsText: 'चौघड़िया (चौघाड़िया) एक पारम्परिक वैदिक समय-विभाजन प्रणाली है जिसका उपयोग दिन और रात के शुभ-अशुभ समय खण्डों को जानने के लिए किया जाता है। इस शब्द का शाब्दिक अर्थ है "चार घटी"  –  प्रत्येक चौघड़िया अवधि लगभग 4 घटी (लगभग 96 मिनट) की होती है। सूर्योदय से सूर्यास्त तक 8 दिन के और सूर्यास्त से अगले सूर्योदय तक 8 रात के, कुल 16 खण्ड होते हैं।',
     typesTitle: 'चौघड़िया के 7 प्रकार',
-    types: 'अमृत|सर्वाधिक शुभ — सभी अच्छे कार्यों, विशेषकर नए कार्य आरम्भ के लिए उत्तम|शुभ|शुभ — विवाह, धार्मिक अनुष्ठान और महत्वपूर्ण निर्णयों के लिए अच्छा|लाभ|शुभ — व्यापार, व्यापार और वित्तीय लेनदेन के लिए उत्कृष्ट|चर|सामान्य — यात्रा और गमन के लिए उपयुक्त, लेकिन स्थायी कार्य शुरू करने के लिए नहीं|रोग|अशुभ — रोग से सम्बन्धित; चिकित्सा प्रक्रिया और नए स्वास्थ्य कार्यक्रम से बचें|काल|अशुभ — शनि द्वारा शासित; महत्वपूर्ण आरम्भ, विशेषकर वित्तीय, से बचें|उद्वेग|अशुभ — चिंता से सम्बन्धित; यात्रा, अधिकारियों से मिलने से बचें',
+    types: 'अमृत|सर्वाधिक शुभ  –  सभी अच्छे कार्यों, विशेषकर नए कार्य आरम्भ के लिए उत्तम|शुभ|शुभ  –  विवाह, धार्मिक अनुष्ठान और महत्वपूर्ण निर्णयों के लिए अच्छा|लाभ|शुभ  –  व्यापार, व्यापार और वित्तीय लेनदेन के लिए उत्कृष्ट|चर|सामान्य  –  यात्रा और गमन के लिए उपयुक्त, लेकिन स्थायी कार्य शुरू करने के लिए नहीं|रोग|अशुभ  –  रोग से सम्बन्धित; चिकित्सा प्रक्रिया और नए स्वास्थ्य कार्यक्रम से बचें|काल|अशुभ  –  शनि द्वारा शासित; महत्वपूर्ण आरम्भ, विशेषकर वित्तीय, से बचें|उद्वेग|अशुभ  –  चिंता से सम्बन्धित; यात्रा, अधिकारियों से मिलने से बचें',
     bestTitle: 'यात्रा और व्यापार के लिए सर्वश्रेष्ठ चौघड़िया',
     bestText: 'यात्रा के लिए चर चौघड़िया पारम्परिक रूप से अनुशंसित है। व्यापार और वित्तीय गतिविधियों के लिए लाभ और शुभ चौघड़िया उत्तम हैं। अमृत चौघड़िया सभी कार्यों के लिए सर्वव्यापी शुभ माना जाता है। रोग, काल या उद्वेग काल में कोई भी महत्वपूर्ण कार्य शुरू न करें।',
     seeAlso: 'यह भी देखें',
@@ -88,9 +88,9 @@ const LABELS: Record<string, Record<string, string>> = {
     inauspicious: 'अशुभम्',
     neutral: 'सामान्यम्',
     whatIs: 'चौघड़िया किम्?',
-    whatIsText: 'चौघड़िया एका पारम्परिकवैदिककालविभाजनपद्धतिः अस्ति या दिवसरात्र्योः शुभाशुभकालखण्डान् ज्ञातुं प्रयुज्यते। अस्य शब्दस्य शाब्दिकार्थः "चतस्रः घट्यः" इति — प्रत्येकं चौघड़ियाकालखण्डं प्रायः ४ घटीनाम् (प्रायः ९६ निमेषाणाम्) भवति।',
+    whatIsText: 'चौघड़िया एका पारम्परिकवैदिककालविभाजनपद्धतिः अस्ति या दिवसरात्र्योः शुभाशुभकालखण्डान् ज्ञातुं प्रयुज्यते। अस्य शब्दस्य शाब्दिकार्थः "चतस्रः घट्यः" इति  –  प्रत्येकं चौघड़ियाकालखण्डं प्रायः ४ घटीनाम् (प्रायः ९६ निमेषाणाम्) भवति।',
     typesTitle: 'चौघड़ियायाः ७ प्रकाराः',
-    types: 'अमृतम्|सर्वाधिकशुभम् — सर्वेषां शुभकार्याणां कृते उत्तमम्|शुभम्|शुभम् — विवाहधार्मिकानुष्ठानमहत्त्वपूर्णनिर्णयानां कृते|लाभः|शुभम् — व्यापारवित्तीयलेनदेनयोः कृते उत्कृष्टम्|चरम्|सामान्यम् — यात्रागमनयोः कृते उपयुक्तम्|रोगः|अशुभम् — रोगसम्बद्धम्|कालः|अशुभम् — शनिशासितम्|उद्वेगः|अशुभम् — चिन्तासम्बद्धम्',
+    types: 'अमृतम्|सर्वाधिकशुभम्  –  सर्वेषां शुभकार्याणां कृते उत्तमम्|शुभम्|शुभम्  –  विवाहधार्मिकानुष्ठानमहत्त्वपूर्णनिर्णयानां कृते|लाभः|शुभम्  –  व्यापारवित्तीयलेनदेनयोः कृते उत्कृष्टम्|चरम्|सामान्यम्  –  यात्रागमनयोः कृते उपयुक्तम्|रोगः|अशुभम्  –  रोगसम्बद्धम्|कालः|अशुभम्  –  शनिशासितम्|उद्वेगः|अशुभम्  –  चिन्तासम्बद्धम्',
     bestTitle: 'यात्राव्यापारयोः कृते श्रेष्ठचौघड़िया',
     bestText: 'यात्रायै चरचौघड़िया पारम्परिकरूपेण अनुशंसितम्। व्यापारवित्तीयकार्याणां कृते लाभशुभचौघड़ियौ उत्तमौ। अमृतचौघड़िया सर्वकार्याणां कृते सर्वव्यापीशुभम्। रोगकालोद्वेगकाले महत्त्वपूर्णं कार्यम् आरभेत् मा।',
     seeAlso: 'एतदपि पश्यतु',
@@ -197,7 +197,7 @@ export default function ChoghadiyaPage() {
           </span>
         </div>
         <p className="text-lg font-bold text-text-primary tracking-wide">
-          {slot.startTime} — {slot.endTime}
+          {slot.startTime}  –  {slot.endTime}
         </p>
       </motion.div>
     );

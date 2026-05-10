@@ -1,15 +1,15 @@
 {
   "title": {
-    "en": "Karana — The Half-Tithi",
-    "hi": "करण — अर्ध-तिथि",
-    "sa": "करणम् — अर्धतिथिः",
-    "ta": "கரணம் — அரை-திதி",
-    "te": "కరణం — అర్ధ-తిథి",
-    "bn": "করণ — অর্ধ-তিথি",
-    "kn": "ಕರಣ — ಅರ್ಧ-ತಿಥಿ",
-    "mr": "करण — अर्ध-तिथी",
-    "gu": "કરણ — અર્ધ-તિથિ",
-    "mai": "करण — अर्ध-तिथि"
+    "en": "Karana  –  The Half-Tithi",
+    "hi": "करण  –  अर्ध-तिथि",
+    "sa": "करणम्  –  अर्धतिथिः",
+    "ta": "கரணம்  –  அரை-திதி",
+    "te": "కరణం  –  అర్ధ-తిథి",
+    "bn": "করণ  –  অর্ধ-তিথি",
+    "kn": "ಕರಣ  –  ಅರ್ಧ-ತಿಥಿ",
+    "mr": "करण  –  अर्ध-तिथी",
+    "gu": "કરણ  –  અર્ધ-તિથિ",
+    "mai": "करण  –  अर्ध-तिथि"
   },
   "subtitle": {
     "en": "Each tithi splits into two karanas (6° of elongation each), yielding 60 karanas per lunar month from 7 movable and 4 fixed types",
@@ -248,16 +248,16 @@
       "id": "q7_2_03",
       "type": "true_false",
       "question": {
-        "en": "The 4 Sthira (fixed) karanas — Shakuni, Chatushpada, Naga, Kimstughna — appear only once each in a lunar month.",
-        "hi": "4 स्थिर करण — शकुनि, चतुष्पद, नागव, किंस्तुघ्न — चान्द्र मास में प्रत्येक केवल एक बार आता है।",
-        "sa": "4 स्थिर करण — शकुनि, चतुष्पद, नागव, किंस्तुघ्न — चान्द्र मास में प्रत्येक केवल एक बार आता है।",
-        "ta": "The 4 Sthira (fixed) karanas — Shakuni, Chatushpada, Naga, Kimstughna — appear only once each in a lunar month.",
-        "te": "The 4 Sthira (fixed) karanas — Shakuni, Chatushpada, Naga, Kimstughna — appear only once each in a lunar month.",
-        "bn": "The 4 Sthira (fixed) karanas — Shakuni, Chatushpada, Naga, Kimstughna — appear only once each in a lunar month.",
-        "kn": "The 4 Sthira (fixed) karanas — Shakuni, Chatushpada, Naga, Kimstughna — appear only once each in a lunar month.",
-        "mr": "4 स्थिर करण — शकुनि, चतुष्पद, नागव, किंस्तुघ्न — चान्द्र मास में प्रत्येक केवल एक बार आता है।",
-        "gu": "The 4 Sthira (fixed) karanas — Shakuni, Chatushpada, Naga, Kimstughna — appear only once each in a lunar month.",
-        "mai": "4 स्थिर करण — शकुनि, चतुष्पद, नागव, किंस्तुघ्न — चान्द्र मास में प्रत्येक केवल एक बार आता है।"
+        "en": "The 4 Sthira (fixed) karanas  –  Shakuni, Chatushpada, Naga, Kimstughna  –  appear only once each in a lunar month.",
+        "hi": "4 स्थिर करण  –  शकुनि, चतुष्पद, नागव, किंस्तुघ्न  –  चान्द्र मास में प्रत्येक केवल एक बार आता है।",
+        "sa": "4 स्थिर करण  –  शकुनि, चतुष्पद, नागव, किंस्तुघ्न  –  चान्द्र मास में प्रत्येक केवल एक बार आता है।",
+        "ta": "The 4 Sthira (fixed) karanas  –  Shakuni, Chatushpada, Naga, Kimstughna  –  appear only once each in a lunar month.",
+        "te": "The 4 Sthira (fixed) karanas  –  Shakuni, Chatushpada, Naga, Kimstughna  –  appear only once each in a lunar month.",
+        "bn": "The 4 Sthira (fixed) karanas  –  Shakuni, Chatushpada, Naga, Kimstughna  –  appear only once each in a lunar month.",
+        "kn": "The 4 Sthira (fixed) karanas  –  Shakuni, Chatushpada, Naga, Kimstughna  –  appear only once each in a lunar month.",
+        "mr": "4 स्थिर करण  –  शकुनि, चतुष्पद, नागव, किंस्तुघ्न  –  चान्द्र मास में प्रत्येक केवल एक बार आता है।",
+        "gu": "The 4 Sthira (fixed) karanas  –  Shakuni, Chatushpada, Naga, Kimstughna  –  appear only once each in a lunar month.",
+        "mai": "4 स्थिर करण  –  शकुनि, चतुष्पद, नागव, किंस्तुघ्न  –  चान्द्र मास में प्रत्येक केवल एक बार आता है।"
       },
       "correctAnswer": true,
       "explanation": {

@@ -87,7 +87,7 @@ export default function PeakCards({ peaks, onCardClick, personalFactorsUsed }: P
                     {w.taraBala.name}
                   </span>
                 ) : (
-                  <span className="text-[#8a8478]">—</span>
+                  <span className="text-[#8a8478]"> – </span>
                 )}
               </div>
 
@@ -99,7 +99,7 @@ export default function PeakCards({ peaks, onCardClick, personalFactorsUsed }: P
                     {w.chandraBala ? 'Good' : 'Weak'}
                   </span>
                 ) : (
-                  <span className="text-[#8a8478]">—</span>
+                  <span className="text-[#8a8478]"> – </span>
                 )}
               </div>
 
@@ -111,7 +111,7 @@ export default function PeakCards({ peaks, onCardClick, personalFactorsUsed }: P
                     {w.breakdown.dashaHarmony}/10
                   </span>
                 ) : (
-                  <span className="text-[#8a8478]" title="Set birth details to unlock">—</span>
+                  <span className="text-[#8a8478]" title="Set birth details to unlock"> – </span>
                 )}
               </div>
 

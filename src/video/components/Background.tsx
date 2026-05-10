@@ -13,7 +13,7 @@ interface Star {
   phaseOffset: number;
 }
 
-// Deterministic star field — seeded by index so it's consistent across frames
+// Deterministic star field  –  seeded by index so it's consistent across frames
 const STARS: Star[] = Array.from({ length: 80 }, (_, i) => ({
   x: ((i * 137.508) % 100), // golden angle spread
   y: ((i * 73.137) % 100),

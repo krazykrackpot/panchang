@@ -1,22 +1,22 @@
 {
   "title": {
-    "en": "Finding the Moon — 60 Sine Terms",
-    "hi": "चन्द्रमा की खोज — 60 ज्या पद",
-    "sa": "चन्द्रान्वेषणम् — 60 ज्यापदानि",
-    "ta": "சந்திரனைக் கண்டறிதல் — 60 சைன் பதங்கள்",
-    "te": "చంద్రుని కనుగొనడం — 60 సైన్ పదాలు",
-    "bn": "চন্দ্রের সন্ধান — 60 সাইন পদ",
-    "kn": "ಚಂದ್ರನ ಶೋಧ — 60 ಸೈನ್ ಪದಗಳು",
-    "mr": "चंद्र शोध — 60 ज्या पद",
-    "gu": "ચંદ્રની શોધ — 60 સાઇન પદ",
-    "mai": "चन्द्रमाक खोज — 60 ज्या पद"
+    "en": "Finding the Moon  –  60 Sine Terms",
+    "hi": "चन्द्रमा की खोज  –  60 ज्या पद",
+    "sa": "चन्द्रान्वेषणम्  –  60 ज्यापदानि",
+    "ta": "சந்திரனைக் கண்டறிதல்  –  60 சைன் பதங்கள்",
+    "te": "చంద్రుని కనుగొనడం  –  60 సైన్ పదాలు",
+    "bn": "চন্দ্রের সন্ধান  –  60 সাইন পদ",
+    "kn": "ಚಂದ್ರನ ಶೋಧ  –  60 ಸೈನ್ ಪದಗಳು",
+    "mr": "चंद्र शोध  –  60 ज्या पद",
+    "gu": "ચંદ્રની શોધ  –  60 સાઇન પદ",
+    "mai": "चन्द्रमाक खोज  –  60 ज्या पद"
   },
   "subtitle": {
     "en": "Why the Moon needs 60+ sine corrections while the Sun needs only 3, and how Meeus achieves 0.5-degree accuracy",
     "hi": "क्यों चन्द्रमा को 60+ ज्या सुधार चाहिए जबकि सूर्य को केवल 3, और मीयस 0.5 अंश सटीकता कैसे प्राप्त करता है",
     "sa": "कस्मात् चन्द्रमसे 60+ ज्यासंशोधनानि आवश्यकानि यदा सूर्याय केवलं 3, कथं च मीयस् 0.5 अंशसटीकतां प्राप्नोति",
-    "ta": "சூரியனுக்கு 3 மட்டுமே தேவையென்றால் சந்திரனுக்கு ஏன் 60+ சைன் திருத்தங்கள் தேவை — மீயஸ் 0.5 பாகை துல்லியத்தை எவ்வாறு அடைகிறது",
-    "te": "సూర్యునికి 3 మాత్రమే అవసరమైతే చంద్రునికి 60+ సైన్ సవరణలు ఎందుకు కావాలి — మీయస్ 0.5 డిగ్రీ ఖచ్చితత్వాన్ని ఎలా సాధిస్తుంది",
+    "ta": "சூரியனுக்கு 3 மட்டுமே தேவையென்றால் சந்திரனுக்கு ஏன் 60+ சைன் திருத்தங்கள் தேவை  –  மீயஸ் 0.5 பாகை துல்லியத்தை எவ்வாறு அடைகிறது",
+    "te": "సూర్యునికి 3 మాత్రమే అవసరమైతే చంద్రునికి 60+ సైన్ సవరణలు ఎందుకు కావాలి  –  మీయస్ 0.5 డిగ్రీ ఖచ్చితత్వాన్ని ఎలా సాధిస్తుంది",
     "bn": "সূর্যের জন্য মাত্র 3 প্রয়োজন হলে চন্দ্রের কেন 60+ সাইন সংশোধন দরকার, এবং মীউস কীভাবে 0.5 ডিগ্রি নির্ভুলতা অর্জন করে",
     "kn": "ಸೂರ್ಯನಿಗೆ ಕೇವಲ 3 ಸಾಕಾದರೆ ಚಂದ್ರನಿಗೆ ಏಕೆ 60+ ಸೈನ್ ಸರಿಪಡಿಸುವಿಕೆಗಳು ಬೇಕು, ಮತ್ತು ಮೀಯಸ್ 0.5 ಡಿಗ್ರಿ ನಿಖರತೆಯನ್ನು ಹೇಗೆ ಸಾಧಿಸುತ್ತದೆ",
     "mr": "सूर्याला फक्त 3 लागतात तर चंद्राला 60+ ज्या सुधारणा का लागतात, आणि मीयस 0.5 अंश अचूकता कशी प्राप्त करतो",
@@ -177,8 +177,8 @@
       ],
       "correctAnswer": 1,
       "explanation": {
-        "en": "The five arguments are: L' (Moon's mean longitude), D (mean elongation from Sun), M (Sun's mean anomaly), M' (Moon's mean anomaly), and F (Moon's argument of latitude — distance from ascending node along orbit).",
-        "hi": "पाँच तर्क हैं: L' (चन्द्र माध्य भोगांश), D (सूर्य से माध्य दीर्घीकरण), M (सूर्य की माध्य विलम्बिका), M' (चन्द्र माध्य विलम्बिका), और F (चन्द्र अक्षांश तर्क — कक्षा में आरोही पात से दूरी)।"
+        "en": "The five arguments are: L' (Moon's mean longitude), D (mean elongation from Sun), M (Sun's mean anomaly), M' (Moon's mean anomaly), and F (Moon's argument of latitude  –  distance from ascending node along orbit).",
+        "hi": "पाँच तर्क हैं: L' (चन्द्र माध्य भोगांश), D (सूर्य से माध्य दीर्घीकरण), M (सूर्य की माध्य विलम्बिका), M' (चन्द्र माध्य विलम्बिका), और F (चन्द्र अक्षांश तर्क  –  कक्षा में आरोही पात से दूरी)।"
       }
     },
     {
@@ -240,8 +240,8 @@
       ],
       "correctAnswer": 1,
       "explanation": {
-        "en": "The +6.289° term is the \"main inequality\" or equation of center — the correction for the Moon's elliptical orbit, analogous to the Sun's 1.915° term. It is 3.3x larger because the Moon's orbital eccentricity (~0.055) is 3.2x greater than Earth's (~0.017).",
-        "hi": "+6.289° पद \"मुख्य असमता\" या केन्द्र समीकरण है — चन्द्र दीर्घवृत्तीय कक्षा का सुधार, सूर्य के 1.915° पद के सदृश। यह 3.3 गुना बड़ा है क्योंकि चन्द्र कक्षा की उत्केन्द्रता (~0.055) पृथ्वी की (~0.017) से 3.2 गुना अधिक है।"
+        "en": "The +6.289° term is the \"main inequality\" or equation of center  –  the correction for the Moon's elliptical orbit, analogous to the Sun's 1.915° term. It is 3.3x larger because the Moon's orbital eccentricity (~0.055) is 3.2x greater than Earth's (~0.017).",
+        "hi": "+6.289° पद \"मुख्य असमता\" या केन्द्र समीकरण है  –  चन्द्र दीर्घवृत्तीय कक्षा का सुधार, सूर्य के 1.915° पद के सदृश। यह 3.3 गुना बड़ा है क्योंकि चन्द्र कक्षा की उत्केन्द्रता (~0.055) पृथ्वी की (~0.017) से 3.2 गुना अधिक है।"
       }
     },
     {
@@ -494,8 +494,8 @@
       ],
       "correctAnswer": 1,
       "explanation": {
-        "en": "The 60-term Meeus algorithm gives ~0.3° accuracy for the Moon. This is 30x worse than the Sun's 0.01° because of the Moon's extremely complex orbit. For Panchang, ~0.3° ≈ ~30 minutes of Moon transit time — acceptable for daily use but not for precise eclipse timing.",
-        "hi": "60-पद मीयस एल्गोरिदम चन्द्रमा के लिए ~0.3° सटीकता देता है। यह सूर्य के 0.01° से 30 गुना कम है क्योंकि चन्द्र कक्षा अत्यन्त जटिल है। पंचांग के लिए ~0.3° ≈ ~30 मिनट चन्द्र गोचर समय — दैनिक उपयोग हेतु स्वीकार्य किन्तु सटीक ग्रहण समय के लिए नहीं।"
+        "en": "The 60-term Meeus algorithm gives ~0.3° accuracy for the Moon. This is 30x worse than the Sun's 0.01° because of the Moon's extremely complex orbit. For Panchang, ~0.3° ≈ ~30 minutes of Moon transit time  –  acceptable for daily use but not for precise eclipse timing.",
+        "hi": "60-पद मीयस एल्गोरिदम चन्द्रमा के लिए ~0.3° सटीकता देता है। यह सूर्य के 0.01° से 30 गुना कम है क्योंकि चन्द्र कक्षा अत्यन्त जटिल है। पंचांग के लिए ~0.3° ≈ ~30 मिनट चन्द्र गोचर समय  –  दैनिक उपयोग हेतु स्वीकार्य किन्तु सटीक ग्रहण समय के लिए नहीं।"
       }
     },
     {
@@ -557,8 +557,8 @@
       ],
       "correctAnswer": 1,
       "explanation": {
-        "en": "The Moon's horizontal parallax ranges from about 54' to 61' (averaging ~57', nearly 1°). This is huge compared to the Sun's 8.8\" — it means the Moon's observed position from the surface of Earth differs by nearly a full degree from its geocentric position at the horizon.",
-        "hi": "चन्द्रमा का क्षैतिज लम्बन लगभग 54' से 61' (औसत ~57', लगभग 1°) तक होता है। सूर्य के 8.8\" की तुलना में यह विशाल है — इसका अर्थ है कि पृथ्वी की सतह से चन्द्रमा की प्रेक्षित स्थिति क्षितिज पर भूकेन्द्रीय स्थिति से लगभग एक पूर्ण अंश भिन्न होती है।"
+        "en": "The Moon's horizontal parallax ranges from about 54' to 61' (averaging ~57', nearly 1°). This is huge compared to the Sun's 8.8\"  –  it means the Moon's observed position from the surface of Earth differs by nearly a full degree from its geocentric position at the horizon.",
+        "hi": "चन्द्रमा का क्षैतिज लम्बन लगभग 54' से 61' (औसत ~57', लगभग 1°) तक होता है। सूर्य के 8.8\" की तुलना में यह विशाल है  –  इसका अर्थ है कि पृथ्वी की सतह से चन्द्रमा की प्रेक्षित स्थिति क्षितिज पर भूकेन्द्रीय स्थिति से लगभग एक पूर्ण अंश भिन्न होती है।"
       }
     }
   ]

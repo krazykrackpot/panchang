@@ -1,5 +1,5 @@
 /**
- * Yearly Tithi Table — pre-computed tithi transitions for an entire year.
+ * Yearly Tithi Table  –  pre-computed tithi transitions for an entire year.
  *
  * Single source of truth for:
  * - Festival/Ekadashi date determination (lookup by masa + paksha + tithi)
@@ -42,7 +42,7 @@ export interface TithiEntry {
   isKshaya: boolean;
   // isVriddhi: tithi spans 2+ sunrises (spans more than one full day).
   // HISTORICAL BUG (now fixed): was absent from both RawEntry and TithiEntry.
-  // When sunriseDates.length > 1, the tithi is Vriddhi — festival engines need
+  // When sunriseDates.length > 1, the tithi is Vriddhi  –  festival engines need
   // this flag to identify Vriddhi Ekadashi, Vriddhi Amavasya, etc.
   isVriddhi: boolean;
   sunriseDate: string;     // date where tithi prevails at sunrise
@@ -93,13 +93,13 @@ function findCitySlugByCoords(lat: number, lon: number): string | null {
 /**
  * Load a pre-computed tithi table from public/data/tithi-tables/{year}/{slug}.json.
  * Returns null if no pre-computed file exists for these coordinates/year.
- * Node.js fs — only works server-side (tithi-table.ts is only imported server-side).
+ * Node.js fs  –  only works server-side (tithi-table.ts is only imported server-side).
  */
 /** Try to load a precomputed tithi table from public/data/tithi-tables/{year}/{slug}.json.
  * Returns null if no file exists for these coords. Does NOT trigger computation. */
 export function loadPrecomputedTable(year: number, lat: number, lon: number): YearlyTithiTable | null {
   try {
-    // Dynamic require — fs/path are Node.js only. This file is also imported
+    // Dynamic require  –  fs/path are Node.js only. This file is also imported
     // in client component bundles (via festival-generator.ts), where 'fs' does
     // not exist. The typeof check ensures the require is never reached in
     // browser contexts.
@@ -125,7 +125,7 @@ export function loadPrecomputedTable(year: number, lat: number, lon: number): Ye
     }
     return data;
   } catch {
-    // Fallback to live computation on any error — never block panchang
+    // Fallback to live computation on any error  –  never block panchang
     return null;
   }
 }
@@ -276,7 +276,7 @@ function buildLunarMonths(year: number, lat: number, lon: number, timezone: stri
     const sign2 = Math.floor(sunSid2 / 30) + 1;
 
     const isAdhika = sign === sign2;
-    // Use sign at ending NM (sign2) — same fix as Phase 2 above
+    // Use sign at ending NM (sign2)  –  same fix as Phase 2 above
     const monthName = getHinduMonth(sign2);
 
     months.push({
@@ -298,7 +298,7 @@ export function buildYearlyTithiTable(
   lon: number,
   timezone: string,
 ): YearlyTithiTable {
-  // 1. Check pre-computed JSON (filesystem) — near-zero CPU
+  // 1. Check pre-computed JSON (filesystem)  –  near-zero CPU
   const precomputed = loadPrecomputedTable(year, lat, lon);
   if (precomputed) return precomputed;
 
@@ -320,7 +320,7 @@ export function buildYearlyTithiTable(
     sunriseDate: string; isKshaya: boolean;
     // isVriddhi: tithi spans 2+ sunrises (opposite of Kshaya).
     // Festival engines use this to distinguish which sunrise day to use for
-    // dual-tithi observances.  Previously missing — callers had no way to flag
+    // dual-tithi observances.  Previously missing  –  callers had no way to flag
     // Vriddhi tithis.
     isVriddhi: boolean;
     paksha: 'shukla' | 'krishna';
@@ -390,7 +390,7 @@ export function buildYearlyTithiTable(
   // ARCHITECTURE: Fully decoupled from the Phase 1 tithi scan.
   //
   // WHY: The Phase 1 tithi scan produces rawEntries for UI display. Using
-  // those entries to derive month boundaries caused "jitter" — the tithi-30
+  // those entries to derive month boundaries caused "jitter"  –  the tithi-30
   // startJd (~348° elongation) is ~24h before the true New Moon (0°), and
   // ±24h refinement from that anchor sometimes converged on the wrong
   // conjunction. This produced false Adhika months (e.g., 2027 showed
@@ -453,7 +453,7 @@ export function buildYearlyTithiTable(
     const nm1 = trueNewMoons[i];
     const nm2 = trueNewMoons[i + 1];
 
-    // Sign comparison at exact astronomical conjunction JDs — no jitter.
+    // Sign comparison at exact astronomical conjunction JDs  –  no jitter.
     const sunSid1 = normalizeDeg(toSidereal(sunLongitude(nm1.jd), nm1.jd));
     const sunSid2 = normalizeDeg(toSidereal(sunLongitude(nm2.jd), nm2.jd));
     const sign1 = Math.floor(sunSid1 / 30) + 1;

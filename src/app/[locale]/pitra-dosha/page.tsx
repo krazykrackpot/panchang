@@ -84,9 +84,9 @@ function analyzePitraDosha(kundali: KundaliData, locale: Locale): PitraDoshaResu
   if (sun.house === rahu.house) {
     indicators.push({
       label: t(L(
-        `Sun conjunct Rahu in House ${sun.house} — primary Pitra Dosha indicator. Father's lineage carries unresolved karma.`,
-        `सूर्य और राहु भाव ${sun.house} में युत — प्रमुख पितृ दोष संकेत। पिता की वंशावली में अनसुलझा कर्म।`,
-        `सूर्यराहू भावे ${sun.house} युतौ — प्रमुखः पितृदोषसङ्केतः।`,
+        `Sun conjunct Rahu in House ${sun.house}  –  primary Pitra Dosha indicator. Father's lineage carries unresolved karma.`,
+        `सूर्य और राहु भाव ${sun.house} में युत  –  प्रमुख पितृ दोष संकेत। पिता की वंशावली में अनसुलझा कर्म।`,
+        `सूर्यराहू भावे ${sun.house} युतौ  –  प्रमुखः पितृदोषसङ्केतः।`,
       ), locale),
       severity: 'severe',
     });
@@ -103,9 +103,9 @@ function analyzePitraDosha(kundali: KundaliData, locale: Locale): PitraDoshaResu
     if (diff === 4 || diff === 6 || diff === 8) { // 5th, 7th, 9th aspect
       indicators.push({
         label: t(L(
-          `Sun aspected by Rahu — Rahu's shadow falls on the soul indicator. Ancestral karma influencing this life.`,
-          `सूर्य पर राहु की दृष्टि — आत्मा पर राहु की छाया। पैतृक कर्म इस जीवन को प्रभावित कर रहा है।`,
-          `सूर्ये राहोः दृष्टिः — आत्मसूचके राहोः छाया। पैतृककर्म एतत्जीवनं प्रभावयति।`,
+          `Sun aspected by Rahu  –  Rahu's shadow falls on the soul indicator. Ancestral karma influencing this life.`,
+          `सूर्य पर राहु की दृष्टि  –  आत्मा पर राहु की छाया। पैतृक कर्म इस जीवन को प्रभावित कर रहा है।`,
+          `सूर्ये राहोः दृष्टिः  –  आत्मसूचके राहोः छाया। पैतृककर्म एतत्जीवनं प्रभावयति।`,
         ), locale),
         severity: 'moderate',
       });
@@ -120,9 +120,9 @@ function analyzePitraDosha(kundali: KundaliData, locale: Locale): PitraDoshaResu
     const names = maleficsIn9th.map(p => tl(p.planet.name, locale)).join(', ');
     indicators.push({
       label: t(L(
-        `Multiple malefics (${names}) in 9th house (house of father/dharma) — strong affliction to ancestral karma house.`,
-        `9वें भाव (पिता/धर्म का भाव) में एकाधिक पापग्रह (${names}) — पैतृक कर्म भाव पर तीव्र पीड़ा।`,
-        `नवमभावे (पितृधर्मभावे) बहवः पापग्रहाः (${names}) — पैतृककर्मभावे तीव्रपीडा।`,
+        `Multiple malefics (${names}) in 9th house (house of father/dharma)  –  strong affliction to ancestral karma house.`,
+        `9वें भाव (पिता/धर्म का भाव) में एकाधिक पापग्रह (${names})  –  पैतृक कर्म भाव पर तीव्र पीड़ा।`,
+        `नवमभावे (पितृधर्मभावे) बहवः पापग्रहाः (${names})  –  पैतृककर्मभावे तीव्रपीडा।`,
       ), locale),
       severity: 'severe',
     });
@@ -135,9 +135,9 @@ function analyzePitraDosha(kundali: KundaliData, locale: Locale): PitraDoshaResu
     const name = tl(maleficsIn9th[0].planet.name, locale);
     indicators.push({
       label: t(L(
-        `${name} in 9th house — mild affliction to the house of father and dharma.`,
-        `${name} 9वें भाव में — पिता और धर्म के भाव पर हल्की पीड़ा।`,
-        `${name} नवमभावे — पितृधर्मभावे सौम्यपीडा।`,
+        `${name} in 9th house  –  mild affliction to the house of father and dharma.`,
+        `${name} 9वें भाव में  –  पिता और धर्म के भाव पर हल्की पीड़ा।`,
+        `${name} नवमभावे  –  पितृधर्मभावे सौम्यपीडा।`,
       ), locale),
       severity: 'mild',
     });
@@ -147,9 +147,9 @@ function analyzePitraDosha(kundali: KundaliData, locale: Locale): PitraDoshaResu
   if (sun.house === saturn.house) {
     indicators.push({
       label: t(L(
-        `Sun conjunct Saturn in House ${sun.house} — father-son karmic tension. Saturn (karma) restricts Sun (father/soul).`,
-        `सूर्य और शनि भाव ${sun.house} में युत — पिता-पुत्र कर्म तनाव। शनि (कर्म) सूर्य (पिता/आत्मा) को प्रतिबन्धित करता है।`,
-        `सूर्यशनी भावे ${sun.house} युतौ — पितृपुत्रकर्मतनावः।`,
+        `Sun conjunct Saturn in House ${sun.house}  –  father-son karmic tension. Saturn (karma) restricts Sun (father/soul).`,
+        `सूर्य और शनि भाव ${sun.house} में युत  –  पिता-पुत्र कर्म तनाव। शनि (कर्म) सूर्य (पिता/आत्मा) को प्रतिबन्धित करता है।`,
+        `सूर्यशनी भावे ${sun.house} युतौ  –  पितृपुत्रकर्मतनावः।`,
       ), locale),
       severity: 'moderate',
     });
@@ -166,9 +166,9 @@ function analyzePitraDosha(kundali: KundaliData, locale: Locale): PitraDoshaResu
     if (jupiter.isDebilitated) {
       indicators.push({
         label: t(L(
-          'Jupiter (karaka for father/dharma) debilitated — weakened protection from ancestral blessings.',
-          'गुरु (पिता/धर्म का कारक) नीच — पैतृक आशीर्वाद का कमजोर संरक्षण।',
-          'गुरुः (पितृधर्मकारकः) नीचस्थः — पैतृकाशीर्वादस्य दुर्बलसंरक्षणम्।',
+          'Jupiter (karaka for father/dharma) debilitated  –  weakened protection from ancestral blessings.',
+          'गुरु (पिता/धर्म का कारक) नीच  –  पैतृक आशीर्वाद का कमजोर संरक्षण।',
+          'गुरुः (पितृधर्मकारकः) नीचस्थः  –  पैतृकाशीर्वादस्य दुर्बलसंरक्षणम्।',
         ), locale),
         severity: 'moderate',
       });
@@ -176,9 +176,9 @@ function analyzePitraDosha(kundali: KundaliData, locale: Locale): PitraDoshaResu
     if (jupiter.isCombust) {
       indicators.push({
         label: t(L(
-          'Jupiter combust (too close to Sun) — the guru/father principle is overshadowed.',
-          'गुरु अस्त (सूर्य के अत्यन्त निकट) — गुरु/पिता तत्व छाया में।',
-          'गुरुः अस्तः (सूर्यस्य अत्यन्तसमीपे) — गुरुपितृतत्त्वं छायायाम्।',
+          'Jupiter combust (too close to Sun)  –  the guru/father principle is overshadowed.',
+          'गुरु अस्त (सूर्य के अत्यन्त निकट)  –  गुरु/पिता तत्व छाया में।',
+          'गुरुः अस्तः (सूर्यस्य अत्यन्तसमीपे)  –  गुरुपितृतत्त्वं छायायाम्।',
         ), locale),
         severity: 'mild',
       });
@@ -189,9 +189,9 @@ function analyzePitraDosha(kundali: KundaliData, locale: Locale): PitraDoshaResu
   if (rahu.house === 9) {
     indicators.push({
       label: t(L(
-        'Rahu directly in the 9th house — strongest single indicator of Pitra Dosha. Ancestral karma is the dominant theme of this life.',
-        'राहु सीधे 9वें भाव में — पितृ दोष का सबसे प्रबल एकल संकेत। पैतृक कर्म इस जीवन का प्रमुख विषय है।',
-        'राहुः साक्षात् नवमभावे — पितृदोषस्य सर्वप्रबलः एकसङ्केतः।',
+        'Rahu directly in the 9th house  –  strongest single indicator of Pitra Dosha. Ancestral karma is the dominant theme of this life.',
+        'राहु सीधे 9वें भाव में  –  पितृ दोष का सबसे प्रबल एकल संकेत। पैतृक कर्म इस जीवन का प्रमुख विषय है।',
+        'राहुः साक्षात् नवमभावे  –  पितृदोषस्य सर्वप्रबलः एकसङ्केतः।',
       ), locale),
       severity: 'severe',
     });
@@ -223,8 +223,8 @@ function analyzePitraDosha(kundali: KundaliData, locale: Locale): PitraDoshaResu
 
 const REMEDIES: { title: LocaleText; description: LocaleText }[] = [
   { title: L('Pitru Paksha Shraddha', 'पितृ पक्ष श्राद्ध', 'पितृपक्षश्राद्धम्'), description: L('Perform Shraddha rituals during the 16-day Pitru Paksha period (Bhadrapada/Ashwin Krishna Paksha). This is the most important annual ancestral offering.', 'पितृ पक्ष (भाद्रपद/आश्विन कृष्ण पक्ष) की 16 दिन की अवधि में श्राद्ध करें। यह सबसे महत्वपूर्ण वार्षिक पैतृक अर्पण है।', 'पितृपक्षस्य षोडशदिनावधौ श्राद्धं कुर्यात्।') },
-  { title: L('Pind Daan at Gaya', 'गया में पिण्ड दान', 'गयायां पिण्डदानम्'), description: L('Offer Pind Daan at Gaya (Bihar) or Varanasi — the most sacred sites for ancestral liberation. Tripindi Shraddha for forgotten ancestors is especially powerful.', 'गया (बिहार) या वाराणसी में पिण्ड दान करें — पैतृक मोक्ष के लिए सबसे पवित्र स्थल। भूले हुए पूर्वजों के लिए त्रिपिण्डी श्राद्ध विशेष शक्तिशाली है।', 'गयायां (बिहारप्रदेशे) काश्यां वा पिण्डदानं कुर्यात्।') },
-  { title: L('Narayan Nagbali Puja', 'नारायण नागबलि पूजा', 'नारायणनागबलिपूजा'), description: L('Perform at Trimbakeshwar, Nashik — a three-day ritual specifically for resolving Pitra Dosha and unnatural death karma in the family.', 'त्र्यम्बकेश्वर, नासिक में करें — पितृ दोष और परिवार में अकाल मृत्यु कर्म के लिए तीन दिवसीय विशेष अनुष्ठान।', 'त्र्यम्बकेश्वरे करणीयम् — पितृदोषनिवारणाय त्रिदिवसीयम् अनुष्ठानम्।') },
+  { title: L('Pind Daan at Gaya', 'गया में पिण्ड दान', 'गयायां पिण्डदानम्'), description: L('Offer Pind Daan at Gaya (Bihar) or Varanasi  –  the most sacred sites for ancestral liberation. Tripindi Shraddha for forgotten ancestors is especially powerful.', 'गया (बिहार) या वाराणसी में पिण्ड दान करें  –  पैतृक मोक्ष के लिए सबसे पवित्र स्थल। भूले हुए पूर्वजों के लिए त्रिपिण्डी श्राद्ध विशेष शक्तिशाली है।', 'गयायां (बिहारप्रदेशे) काश्यां वा पिण्डदानं कुर्यात्।') },
+  { title: L('Narayan Nagbali Puja', 'नारायण नागबलि पूजा', 'नारायणनागबलिपूजा'), description: L('Perform at Trimbakeshwar, Nashik  –  a three-day ritual specifically for resolving Pitra Dosha and unnatural death karma in the family.', 'त्र्यम्बकेश्वर, नासिक में करें  –  पितृ दोष और परिवार में अकाल मृत्यु कर्म के लिए तीन दिवसीय विशेष अनुष्ठान।', 'त्र्यम्बकेश्वरे करणीयम्  –  पितृदोषनिवारणाय त्रिदिवसीयम् अनुष्ठानम्।') },
   { title: L('Amavasya Tarpan', 'अमावस्या तर्पण', 'अमावास्यातर्पणम्'), description: L('Offer water (Tarpan) with black sesame seeds to ancestors on every Amavasya (new moon day), facing south. This regular practice maintains ancestral peace.', 'प्रत्येक अमावस्या को दक्षिण दिशा की ओर मुख कर काले तिल के साथ पूर्वजों को जल (तर्पण) अर्पित करें।', 'प्रत्येकाम् अमावास्यायां दक्षिणाभिमुखं कृष्णतिलसहितं पूर्वजेभ्यः जलं (तर्पणम्) अर्पयेत्।') },
   { title: L('Feed Brahmins and Crows', 'ब्राह्मण और कौओं को भोजन', 'ब्राह्मणकाकभोजनम्'), description: L('Feed Brahmins during Shraddha ceremonies. Also feed crows (considered messengers of ancestors) with cooked rice before your own meal, especially during Pitru Paksha.', 'श्राद्ध के समय ब्राह्मणों को भोजन कराएं। कौओं (पूर्वजों के दूत माने जाते हैं) को पकी चावल विशेषकर पितृ पक्ष में खिलाएं।', 'श्राद्धकाले ब्राह्मणान् भोजयेत्। काकान् (पितृदूतान्) पक्वतण्डुलैः पोषयेत्।') },
   { title: L('Surya and Rahu Mantras', 'सूर्य और राहु मन्त्र', 'सूर्यराहुमन्त्राः'), description: L('Chant "Om Suryaya Namah" (7,000 times) and "Om Rahave Namah" (18,000 times). Offer water to the Sun at sunrise daily (Surya Arghya).', '"ॐ सूर्याय नमः" (7,000 बार) और "ॐ राहवे नमः" (18,000 बार) जप करें। प्रतिदिन सूर्योदय पर सूर्य को अर्घ्य दें।', '"ॐ सूर्याय नमः" (७,००० वारम्) "ॐ राहवे नमः" (१८,००० वारम्) च जपेत्। प्रतिदिनं सूर्योदये सूर्याय अर्घ्यं ददातु।') },
@@ -306,14 +306,14 @@ export default function PitraDoshaPage() {
       <InfoBlock id="pitra-dosha-intro" title={locale === 'en' ? 'What is Pitra Dosha?' : 'पितृ दोष क्या है?'} defaultOpen>
         {locale === 'en' ? (
           <div className="space-y-3">
-            <p><strong>Pitra Dosha</strong> is a karmic condition in Vedic astrology indicating unresolved obligations from one&apos;s ancestors. It is <strong>not a curse</strong> — it is a reflection of ancestral karma that needs to be addressed through proper rituals and awareness.</p>
+            <p><strong>Pitra Dosha</strong> is a karmic condition in Vedic astrology indicating unresolved obligations from one&apos;s ancestors. It is <strong>not a curse</strong>  –  it is a reflection of ancestral karma that needs to be addressed through proper rituals and awareness.</p>
             <p><strong>Primary indicator:</strong> Sun conjunct or aspected by Rahu, especially involving the 9th house (house of father, dharma, and past-life merit). The Sun represents the father and soul; Rahu represents karmic debt and shadow. Their combination in key houses indicates ancestral obligations.</p>
             <p><strong>Other indicators:</strong> Malefics in the 9th house, Sun-Saturn conjunction, debilitated Jupiter, and Rahu in the 9th house are also examined.</p>
             <p>Effects can include: career obstacles, progeny difficulties, recurring family problems, and a feeling of being held back despite effort. Shraddha rituals are the primary remedy.</p>
           </div>
         ) : (
           <div className="space-y-3">
-            <p><strong>पितृ दोष</strong> वैदिक ज्योतिष में पूर्वजों से जुड़े अनसुलझे दायित्वों का कर्म संकेत है। यह <strong>श्राप नहीं</strong> है — यह पैतृक कर्म का प्रतिबिम्ब है जिसे उचित अनुष्ठानों से सम्बोधित करने की आवश्यकता है।</p>
+            <p><strong>पितृ दोष</strong> वैदिक ज्योतिष में पूर्वजों से जुड़े अनसुलझे दायित्वों का कर्म संकेत है। यह <strong>श्राप नहीं</strong> है  –  यह पैतृक कर्म का प्रतिबिम्ब है जिसे उचित अनुष्ठानों से सम्बोधित करने की आवश्यकता है।</p>
             <p><strong>प्रमुख संकेतक:</strong> सूर्य पर राहु की युति या दृष्टि, विशेषकर 9वें भाव (पिता, धर्म और पूर्वजन्म पुण्य का भाव) से सम्बन्धित।</p>
             <p><strong>अन्य संकेतक:</strong> 9वें भाव में पापग्रह, सूर्य-शनि युति, नीच गुरु और 9वें भाव में राहु।</p>
             <p>प्रभाव: कैरियर बाधाएं, सन्तान कठिनाई, आवर्ती पारिवारिक समस्याएं। श्राद्ध अनुष्ठान प्रमुख उपाय है।</p>

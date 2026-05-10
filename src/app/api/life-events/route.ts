@@ -9,7 +9,7 @@ const VALID_EVENT_TYPES = [
 ] as const;
 
 // ---------------------------------------------------------------------------
-// POST /api/life-events — create a life event with auto-captured planetary state
+// POST /api/life-events  –  create a life event with auto-captured planetary state
 // ---------------------------------------------------------------------------
 export async function POST(req: NextRequest) {
   const supabase = getServerSupabase();
@@ -190,7 +190,7 @@ export async function POST(req: NextRequest) {
 }
 
 // ---------------------------------------------------------------------------
-// GET /api/life-events — list events with optional filters
+// GET /api/life-events  –  list events with optional filters
 // ---------------------------------------------------------------------------
 export async function GET(req: NextRequest) {
   const supabase = getServerSupabase();

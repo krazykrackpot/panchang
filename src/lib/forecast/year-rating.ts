@@ -39,8 +39,8 @@ export function computeYearRating(
     name: { en: 'Muntha Placement', hi: 'मुंथा स्थिति', sa: 'मुन्था स्थितिः' },
     score: munthaScore,
     description: {
-      en: `Muntha in house ${munthaHouse} — ${MUNTHA_GOOD_HOUSES.has(munthaHouse) ? 'favorable placement' : 'requires caution'}`,
-      hi: `मुंथा ${munthaHouse}वें भाव में — ${MUNTHA_GOOD_HOUSES.has(munthaHouse) ? 'अनुकूल स्थिति' : 'सावधानी आवश्यक'}`,
+      en: `Muntha in house ${munthaHouse}  –  ${MUNTHA_GOOD_HOUSES.has(munthaHouse) ? 'favorable placement' : 'requires caution'}`,
+      hi: `मुंथा ${munthaHouse}वें भाव में  –  ${MUNTHA_GOOD_HOUSES.has(munthaHouse) ? 'अनुकूल स्थिति' : 'सावधानी आवश्यक'}`,
       sa: `मुन्था ${munthaHouse}-भावे`,
     },
   });
@@ -60,8 +60,8 @@ export function computeYearRating(
     name: { en: 'Year Lord Strength', hi: 'वर्षेश्वर बल', sa: 'वर्षेश्वरबलम्' },
     score: yearLordScore,
     description: {
-      en: `Year lord ${yearLordScore >= 4 ? 'is strong — auspicious year ahead' : yearLordScore <= 2 ? 'is weak — challenges expected' : 'is moderate — mixed results'}`,
-      hi: `वर्षेश्वर ${yearLordScore >= 4 ? 'बलवान — शुभ वर्ष' : yearLordScore <= 2 ? 'दुर्बल — चुनौतियां' : 'मध्यम — मिश्रित फल'}`,
+      en: `Year lord ${yearLordScore >= 4 ? 'is strong  –  auspicious year ahead' : yearLordScore <= 2 ? 'is weak  –  challenges expected' : 'is moderate  –  mixed results'}`,
+      hi: `वर्षेश्वर ${yearLordScore >= 4 ? 'बलवान  –  शुभ वर्ष' : yearLordScore <= 2 ? 'दुर्बल  –  चुनौतियां' : 'मध्यम  –  मिश्रित फल'}`,
       sa: `वर्षेश्वरः ${yearLordScore >= 4 ? 'बलवान्' : 'दुर्बलः'}`,
     },
   });
@@ -75,8 +75,8 @@ export function computeYearRating(
     name: { en: 'Transit Strength (SAV)', hi: 'गोचर बल (SAV)', sa: 'गोचरबलम्' },
     score: transitScore,
     description: {
-      en: `Average SAV across slow transits: ${yearAvgSav} bindus — ${transitScore >= 4 ? 'strong support' : transitScore <= 2 ? 'limited support' : 'moderate support'}`,
-      hi: `गोचर औसत SAV: ${yearAvgSav} बिन्दु — ${transitScore >= 4 ? 'बलवान सहयोग' : transitScore <= 2 ? 'सीमित सहयोग' : 'मध्यम सहयोग'}`,
+      en: `Average SAV across slow transits: ${yearAvgSav} bindus  –  ${transitScore >= 4 ? 'strong support' : transitScore <= 2 ? 'limited support' : 'moderate support'}`,
+      hi: `गोचर औसत SAV: ${yearAvgSav} बिन्दु  –  ${transitScore >= 4 ? 'बलवान सहयोग' : transitScore <= 2 ? 'सीमित सहयोग' : 'मध्यम सहयोग'}`,
       sa: `गोचर SAV: ${yearAvgSav}`,
     },
   });
@@ -108,8 +108,8 @@ export function computeYearRating(
     name: { en: 'Dasha Lord Dignity', hi: 'दशा स्वामी गरिमा', sa: 'दशास्वामी गौरवम्' },
     score: dashaScore,
     description: {
-      en: `Current dasha lord ${currentDasha?.planet || '?'} — ${dashaScore >= 4 ? 'well-placed in natal chart' : dashaScore <= 2 ? 'weak in natal chart' : 'adequately placed'}`,
-      hi: `वर्तमान दशा स्वामी ${currentDasha?.planetName?.hi || '?'} — ${dashaScore >= 4 ? 'जन्म कुण्डली में बलवान' : dashaScore <= 2 ? 'दुर्बल' : 'पर्याप्त'}`,
+      en: `Current dasha lord ${currentDasha?.planet || '?'}  –  ${dashaScore >= 4 ? 'well-placed in natal chart' : dashaScore <= 2 ? 'weak in natal chart' : 'adequately placed'}`,
+      hi: `वर्तमान दशा स्वामी ${currentDasha?.planetName?.hi || '?'}  –  ${dashaScore >= 4 ? 'जन्म कुण्डली में बलवान' : dashaScore <= 2 ? 'दुर्बल' : 'पर्याप्त'}`,
       sa: `दशास्वामी: ${currentDasha?.planet || '?'}`,
     },
   });

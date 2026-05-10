@@ -52,7 +52,7 @@ const LONDON: BirthData = { name: 'London', date: '2000-06-21', time: '18:30', p
 
 // ── D1 Rashi Chart Tests ─────────────────────────────────────────────
 
-describe('D1 Rashi Chart — Ascendant & Houses', () => {
+describe('D1 Rashi Chart  –  Ascendant & Houses', () => {
   it('Delhi: Pisces lagna, equal houses', () => {
     const k = generateKundali(DELHI);
     expect(k.ascendant.sign).toBe(12); // Pisces
@@ -107,7 +107,7 @@ describe('D1 Rashi Chart — Ascendant & Houses', () => {
 
 // ── D9 Navamsha Tests ────────────────────────────────────────────────
 
-describe('D9 Navamsha — all 5 charts', () => {
+describe('D9 Navamsha  –  all 5 charts', () => {
   it('Delhi: D9 ascendant is Cancer', () => {
     const k = generateKundali(DELHI);
     expect(k.navamshaChart.ascendantSign).toBe(4); // Cancer
@@ -168,7 +168,7 @@ describe('D9 Navamsha — all 5 charts', () => {
 
 // ── D10 Dasamsha Tests ───────────────────────────────────────────────
 
-describe('D10 Dasamsha — career chart', () => {
+describe('D10 Dasamsha  –  career chart', () => {
   it('Delhi: D10 ascendant is Scorpio', () => {
     const k = generateKundali(DELHI);
     expect(k.divisionalCharts.D10.ascendantSign).toBe(8);
@@ -201,7 +201,7 @@ describe('D10 Dasamsha — career chart', () => {
 
 // ── D12 Dwadashamsha Tests ───────────────────────────────────────────
 
-describe('D12 Dwadashamsha — parents chart', () => {
+describe('D12 Dwadashamsha  –  parents chart', () => {
   it('Delhi: D12 ascendant is Pisces', () => {
     const k = generateKundali(DELHI);
     expect(k.divisionalCharts.D12.ascendantSign).toBe(12);
@@ -280,7 +280,7 @@ describe('D9 Navamsha formula correctness (manual calculation)', () => {
   it('Parashara element-start rule produces correct D9 signs', () => {
     // Verify the mathematical equivalence:
     // Classical: Fire→Aries(0), Earth→Capricorn(9), Air→Libra(6), Water→Cancer(3)
-    // Engine:    element * 9 mod 12 = 0, 9, 6, 3 — same values
+    // Engine:    element * 9 mod 12 = 0, 9, 6, 3  –  same values
     for (let element = 0; element < 4; element++) {
       const classical = [0, 9, 6, 3][element];
       const engine = (element * 9) % 12;

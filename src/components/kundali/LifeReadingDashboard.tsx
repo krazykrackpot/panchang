@@ -199,7 +199,7 @@ export default function LifeReadingDashboard({
       </div>
 
       {/* ----------------------------------------------------------------- */}
-      {/* Today section — shown if daily insights are available */}
+      {/* Today section  –  shown if daily insights are available */}
       {/* ----------------------------------------------------------------- */}
       {hasDailyInsights && (
         <div className="mt-6">
@@ -249,7 +249,7 @@ export default function LifeReadingDashboard({
       </div>
 
       {/* ----------------------------------------------------------------- */}
-      {/* Spotlight Cards — top 2 by activation pressure */}
+      {/* Spotlight Cards  –  top 2 by activation pressure */}
       {/* ----------------------------------------------------------------- */}
       <div className="mt-6">
         <p className="text-gold-dark text-xs uppercase tracking-widest mb-3">
@@ -276,7 +276,7 @@ export default function LifeReadingDashboard({
                       onDomainClick(domainReading.domain);
                     }
                   }}
-                  aria-label={`${domainDisplayName(domainReading.domain, locale)} — spotlight domain, click to view details`}
+                  aria-label={`${domainDisplayName(domainReading.domain, locale)}  –  spotlight domain, click to view details`}
                   className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] border border-gold-primary/20 p-6 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-gold-primary/5 hover:border-gold-primary/35 overflow-hidden group focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
                 >
                   {/* Glow accent top */}
@@ -334,7 +334,7 @@ export default function LifeReadingDashboard({
       </div>
 
       {/* ----------------------------------------------------------------- */}
-      {/* Compact Grid — remaining domains */}
+      {/* Compact Grid  –  remaining domains */}
       {/* ----------------------------------------------------------------- */}
       {compactDomains.length > 0 && (
         <div className="mt-6">

@@ -25,9 +25,9 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
 
   muhurtaType: 'computed',
   muhurtaDescription: {
-    en: 'Nishita Kaal (midnight) is the most auspicious time for Maha Shivaratri puja. The traditional observance includes 4 prahar pujas throughout the night — each prahar lasting approximately 3 hours from sunset to sunrise.',
-    hi: 'निशीथ काल (मध्यरात्रि) महाशिवरात्रि पूजा के लिए सर्वाधिक शुभ समय है। पारम्परिक उपासना में रात भर 4 प्रहर पूजाएँ होती हैं — प्रत्येक प्रहर सूर्यास्त से सूर्योदय तक लगभग 3 घण्टे का।',
-    sa: 'निशीथकालः (अर्धरात्रिः) महाशिवरात्रिपूजायाः सर्वोत्तमः शुभकालः। पारम्परिकोपासने रात्रौ चत्वारि प्रहरपूजनानि भवन्ति — प्रत्येकं प्रहरं सूर्यास्तात् सूर्योदयपर्यन्तं प्रायः त्रिहोरात्मकम्।',
+    en: 'Nishita Kaal (midnight) is the most auspicious time for Maha Shivaratri puja. The traditional observance includes 4 prahar pujas throughout the night  –  each prahar lasting approximately 3 hours from sunset to sunrise.',
+    hi: 'निशीथ काल (मध्यरात्रि) महाशिवरात्रि पूजा के लिए सर्वाधिक शुभ समय है। पारम्परिक उपासना में रात भर 4 प्रहर पूजाएँ होती हैं  –  प्रत्येक प्रहर सूर्यास्त से सूर्योदय तक लगभग 3 घण्टे का।',
+    sa: 'निशीथकालः (अर्धरात्रिः) महाशिवरात्रिपूजायाः सर्वोत्तमः शुभकालः। पारम्परिकोपासने रात्रौ चत्वारि प्रहरपूजनानि भवन्ति  –  प्रत्येकं प्रहरं सूर्यास्तात् सूर्योदयपर्यन्तं प्रायः त्रिहोरात्मकम्।',
   },
   muhurtaWindow: { type: 'nishita' },
 
@@ -66,8 +66,8 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
       step: 3,
       title: { en: 'Dhyana (Meditation on Shiva)', hi: 'ध्यान (शिव पर)', sa: 'ध्यानम् (शिवस्य)' },
       description: {
-        en: 'Meditate on Lord Shiva — three-eyed, moon-crested, blue-throated, holding the trident, damaru, and blessing mudra, seated on Mount Kailash with Nandi.',
-        hi: 'भगवान शिव का ध्यान करें — त्रिनेत्र, चन्द्रमौलि, नीलकण्ठ, त्रिशूल, डमरू और वरदमुद्रा धारी, कैलाश पर्वत पर नन्दी सहित विराजमान।',
+        en: 'Meditate on Lord Shiva  –  three-eyed, moon-crested, blue-throated, holding the trident, damaru, and blessing mudra, seated on Mount Kailash with Nandi.',
+        hi: 'भगवान शिव का ध्यान करें  –  त्रिनेत्र, चन्द्रमौलि, नीलकण्ठ, त्रिशूल, डमरू और वरदमुद्रा धारी, कैलाश पर्वत पर नन्दी सहित विराजमान।',
         sa: 'त्रिनेत्रं चन्द्रमौलिं नीलकण्ठं त्रिशूलडमरुवरदमुद्राधारिणं कैलासपर्वते नन्दिसहितं श्रीशिवं ध्यायेत्।',
       },
       duration: '5 min',
@@ -76,7 +76,7 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
     },
     {
       step: 4,
-      title: { en: 'First Prahar Puja — Milk Abhishek', hi: 'प्रथम प्रहर पूजा — दुग्ध अभिषेक', sa: 'प्रथमप्रहरपूजा — क्षीराभिषेकः' },
+      title: { en: 'First Prahar Puja  –  Milk Abhishek', hi: 'प्रथम प्रहर पूजा  –  दुग्ध अभिषेक', sa: 'प्रथमप्रहरपूजा  –  क्षीराभिषेकः' },
       description: {
         en: 'Perform the first prahar puja (approximately 6 PM to 9 PM). Bathe the Shivlinga with milk while chanting Om Namah Shivaya. Offer bilva leaves and white flowers. Light a ghee lamp and incense.',
         hi: 'प्रथम प्रहर पूजा करें (लगभग शाम 6 से 9 बजे)। "ॐ नमः शिवाय" का जाप करते हुए शिवलिंग पर दूध से अभिषेक करें। बिल्व पत्र और सफेद फूल चढ़ाएँ। घी का दीपक और धूप जलाएँ।',
@@ -89,7 +89,7 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
     },
     {
       step: 5,
-      title: { en: 'Second Prahar Puja — Curd Abhishek', hi: 'द्वितीय प्रहर पूजा — दधि अभिषेक', sa: 'द्वितीयप्रहरपूजा — दध्यभिषेकः' },
+      title: { en: 'Second Prahar Puja  –  Curd Abhishek', hi: 'द्वितीय प्रहर पूजा  –  दधि अभिषेक', sa: 'द्वितीयप्रहरपूजा  –  दध्यभिषेकः' },
       description: {
         en: 'Perform the second prahar puja (approximately 9 PM to 12 AM). Bathe the Shivlinga with curd. Offer bilva leaves, dhatura flowers, and bhasma. Recite the Rudra Gayatri Mantra.',
         hi: 'द्वितीय प्रहर पूजा करें (लगभग रात 9 से 12 बजे)। शिवलिंग पर दही से अभिषेक करें। बिल्व पत्र, धतूरे के फूल और भस्म चढ़ाएँ। रुद्र गायत्री मन्त्र का पाठ करें।',
@@ -102,7 +102,7 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
     },
     {
       step: 6,
-      title: { en: 'Third Prahar Puja — Ghee Abhishek', hi: 'तृतीय प्रहर पूजा — घृत अभिषेक', sa: 'तृतीयप्रहरपूजा — घृताभिषेकः' },
+      title: { en: 'Third Prahar Puja  –  Ghee Abhishek', hi: 'तृतीय प्रहर पूजा  –  घृत अभिषेक', sa: 'तृतीयप्रहरपूजा  –  घृताभिषेकः' },
       description: {
         en: 'Perform the third prahar puja (approximately 12 AM to 3 AM). Bathe the Shivlinga with ghee. Offer bilva leaves and incense. Chant the Maha Mrityunjaya Mantra 108 times.',
         hi: 'तृतीय प्रहर पूजा करें (लगभग रात 12 से 3 बजे)। शिवलिंग पर घी से अभिषेक करें। बिल्व पत्र और धूप चढ़ाएँ। महामृत्युञ्जय मन्त्र 108 बार जपें।',
@@ -115,7 +115,7 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
     },
     {
       step: 7,
-      title: { en: 'Fourth Prahar Puja — Honey Abhishek', hi: 'चतुर्थ प्रहर पूजा — मधु अभिषेक', sa: 'चतुर्थप्रहरपूजा — मध्वभिषेकः' },
+      title: { en: 'Fourth Prahar Puja  –  Honey Abhishek', hi: 'चतुर्थ प्रहर पूजा  –  मधु अभिषेक', sa: 'चतुर्थप्रहरपूजा  –  मध्वभिषेकः' },
       description: {
         en: 'Perform the fourth prahar puja (approximately 3 AM to 6 AM). Bathe the Shivlinga with honey. Offer bilva leaves, bhasma, and rudraksha. Recite the Shiva Dhyana Mantra.',
         hi: 'चतुर्थ प्रहर पूजा करें (लगभग रात 3 से 6 बजे)। शिवलिंग पर शहद से अभिषेक करें। बिल्व पत्र, भस्म और रुद्राक्ष चढ़ाएँ। शिव ध्यान मन्त्र का पाठ करें।',
@@ -203,9 +203,9 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
       step: 14,
       title: { en: 'Pradakshina', hi: 'प्रदक्षिणा', sa: 'प्रदक्षिणा' },
       description: {
-        en: 'Circumambulate the Shivlinga — but traditionally for Shiva, do NOT cross the water channel (Jalhari/Argha). Go halfway and return from the other side.',
-        hi: 'शिवलिंग की परिक्रमा करें — पर परम्परा अनुसार शिव के लिए जलहरी (अर्घा) को पार न करें। आधे जाकर दूसरी तरफ से लौटें।',
-        sa: 'शिवलिङ्गस्य प्रदक्षिणां कुर्यात् — परन्तु परम्परया शिवस्य जलधारां (अर्घाम्) न लङ्घयेत्। अर्धं गत्वा अन्यस्मात् पार्श्वात् प्रत्यागच्छेत्।',
+        en: 'Circumambulate the Shivlinga  –  but traditionally for Shiva, do NOT cross the water channel (Jalhari/Argha). Go halfway and return from the other side.',
+        hi: 'शिवलिंग की परिक्रमा करें  –  पर परम्परा अनुसार शिव के लिए जलहरी (अर्घा) को पार न करें। आधे जाकर दूसरी तरफ से लौटें।',
+        sa: 'शिवलिङ्गस्य प्रदक्षिणां कुर्यात्  –  परन्तु परम्परया शिवस्य जलधारां (अर्घाम्) न लङ्घयेत्। अर्धं गत्वा अन्यस्मात् पार्श्वात् प्रत्यागच्छेत्।',
       },
       duration: '3 min',
       essential: false,
@@ -215,9 +215,9 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
       step: 15,
       title: { en: 'Parana (Breaking the Fast)', hi: 'पारण (व्रत खोलना)', sa: 'पारणम् (व्रतभङ्गः)' },
       description: {
-        en: 'After the 4th prahar puja, at sunrise, complete the final puja. Break the fast after sunrise with sattvic food — fruits, milk, or simple vegetarian food.',
-        hi: 'चतुर्थ प्रहर पूजा के बाद, सूर्योदय पर अन्तिम पूजा सम्पन्न करें। सूर्योदय के बाद सात्विक भोजन — फल, दूध, या सादा शाकाहारी भोजन से व्रत खोलें।',
-        sa: 'चतुर्थप्रहरपूजानन्तरं सूर्योदये अन्तिमां पूजां सम्पादयेत्। सूर्योदयानन्तरं सात्त्विकाहारेण — फलैः, क्षीरेण, सादशाकाहारेण वा व्रतं भिन्द्यात्।',
+        en: 'After the 4th prahar puja, at sunrise, complete the final puja. Break the fast after sunrise with sattvic food  –  fruits, milk, or simple vegetarian food.',
+        hi: 'चतुर्थ प्रहर पूजा के बाद, सूर्योदय पर अन्तिम पूजा सम्पन्न करें। सूर्योदय के बाद सात्विक भोजन  –  फल, दूध, या सादा शाकाहारी भोजन से व्रत खोलें।',
+        sa: 'चतुर्थप्रहरपूजानन्तरं सूर्योदये अन्तिमां पूजां सम्पादयेत्। सूर्योदयानन्तरं सात्त्विकाहारेण  –  फलैः, क्षीरेण, सादशाकाहारेण वा व्रतं भिन्द्यात्।',
       },
       duration: '15 min',
       essential: true,
@@ -232,14 +232,14 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
       devanagari: 'ॐ नमः शिवाय',
       iast: 'oṃ namaḥ śivāya',
       meaning: {
-        en: 'Salutations to Lord Shiva — the five-syllable mantra is the essence of all Vedas',
-        hi: 'भगवान शिव को नमन — यह पञ्चाक्षरी मन्त्र सभी वेदों का सार है',
-        sa: 'शिवाय नमः — अयं पञ्चाक्षरीमन्त्रः सर्ववेदसारः',
+        en: 'Salutations to Lord Shiva  –  the five-syllable mantra is the essence of all Vedas',
+        hi: 'भगवान शिव को नमन  –  यह पञ्चाक्षरी मन्त्र सभी वेदों का सार है',
+        sa: 'शिवाय नमः  –  अयं पञ्चाक्षरीमन्त्रः सर्ववेदसारः',
       },
       usage: {
-        en: 'Chant continuously throughout the night — the primary mantra for Shivaratri jagran',
-        hi: 'रात भर निरन्तर जपें — शिवरात्रि जागरण का प्रमुख मन्त्र',
-        sa: 'सर्वां रात्रिं निरन्तरं जपेत् — शिवरात्रिजागरणस्य प्रधानमन्त्रः',
+        en: 'Chant continuously throughout the night  –  the primary mantra for Shivaratri jagran',
+        hi: 'रात भर निरन्तर जपें  –  शिवरात्रि जागरण का प्रमुख मन्त्र',
+        sa: 'सर्वां रात्रिं निरन्तरं जपेत्  –  शिवरात्रिजागरणस्य प्रधानमन्त्रः',
       },
     },
     {
@@ -297,8 +297,8 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
       devanagari: 'ध्यायेन्नित्यं महेशं रजतगिरिनिभं चारुचन्द्रावतंसं रत्नाकल्पोज्ज्वलाङ्गं परशुमृगवराभीतिहस्तं प्रसन्नम्। पद्मासीनं समन्तात् स्तुतममरगणैर्व्याघ्रकृत्तिं वसानं विश्वाद्यं विश्ववन्द्यं निखिलभयहरं पञ्चवक्त्रं त्रिनेत्रम्॥',
       iast: 'dhyāyennityaṃ maheśaṃ rajatagirinibhaṃ cārucandāvataṃsaṃ ratnākalpojjvalāṅgaṃ paraśumṛgavarābhītihastṃ prasannam | padmāsīnaṃ samantāt stutamamaragaṇairvyāghrakṛttiṃ vasānaṃ viśvādyaṃ viśvavandyaṃ nikhilabhayaharaṃ pañcavaktraṃ trinetram ||',
       meaning: {
-        en: 'One should always meditate on Maheshwara — who shines like a silver mountain, adorned with the beautiful moon, whose limbs gleam with jewel-ornaments, who holds an axe, deer, boon-giving and fear-removing hands, who is serene, seated on lotus, praised by the gods, wearing a tiger skin, the origin and lord of the universe, remover of all fear, five-faced and three-eyed.',
-        hi: 'सदा महेश्वर का ध्यान करें — जो रजत पर्वत सम चमकते हैं, सुन्दर चन्द्र से अलंकृत, रत्नाभूषणों से दीप्त, परशु-मृग-वर-अभय मुद्रा धारी, प्रसन्न, पद्मासीन, देवताओं द्वारा स्तुत, व्याघ्रचर्म वस्त्र, विश्व के आदि, विश्ववन्दनीय, सभी भयों के हर्ता, पञ्चमुख और त्रिनेत्र।',
+        en: 'One should always meditate on Maheshwara  –  who shines like a silver mountain, adorned with the beautiful moon, whose limbs gleam with jewel-ornaments, who holds an axe, deer, boon-giving and fear-removing hands, who is serene, seated on lotus, praised by the gods, wearing a tiger skin, the origin and lord of the universe, remover of all fear, five-faced and three-eyed.',
+        hi: 'सदा महेश्वर का ध्यान करें  –  जो रजत पर्वत सम चमकते हैं, सुन्दर चन्द्र से अलंकृत, रत्नाभूषणों से दीप्त, परशु-मृग-वर-अभय मुद्रा धारी, प्रसन्न, पद्मासीन, देवताओं द्वारा स्तुत, व्याघ्रचर्म वस्त्र, विश्व के आदि, विश्ववन्दनीय, सभी भयों के हर्ता, पञ्चमुख और त्रिनेत्र।',
         sa: 'महेशं रजतगिरिनिभं चन्द्रावतंसं रत्नोज्ज्वलाङ्गं परशुमृगवराभीतिहस्तं प्रसन्नं पद्मासीनम् अमरस्तुतं व्याघ्रचर्मवसानं विश्वाद्यं विश्ववन्द्यं भयहरं पञ्चवक्त्रं त्रिनेत्रं नित्यं ध्यायेत्।',
       },
       usage: {
@@ -416,14 +416,14 @@ oṃ jaya śiva oṃkārā ||`,
 
   precautions: [
     {
-      en: 'Maintain a complete fast — nirjala (without water) is the strictest form, or observe phalahar (fruits and milk only)',
-      hi: 'पूर्ण उपवास रखें — निर्जला (बिना जल) सबसे कठोर रूप है, या फलाहार (केवल फल और दूध) करें',
-      sa: 'पूर्णम् उपवासं पालयेत् — निर्जलव्रतं कठिनतमम्, अथवा फलाहारं (फलानि क्षीरं च मात्रम्) कुर्यात्',
+      en: 'Maintain a complete fast  –  nirjala (without water) is the strictest form, or observe phalahar (fruits and milk only)',
+      hi: 'पूर्ण उपवास रखें  –  निर्जला (बिना जल) सबसे कठोर रूप है, या फलाहार (केवल फल और दूध) करें',
+      sa: 'पूर्णम् उपवासं पालयेत्  –  निर्जलव्रतं कठिनतमम्, अथवा फलाहारं (फलानि क्षीरं च मात्रम्) कुर्यात्',
     },
     {
-      en: 'Stay awake throughout the night (jagran) — sleeping is prohibited during the vrat until the morning puja is complete',
-      hi: 'रात भर जागते रहें (जागरण) — प्रातःकालीन पूजा सम्पन्न होने तक व्रत में सोना निषिद्ध है',
-      sa: 'सर्वां रात्रिं जागृयात् (जागरणम्) — प्रातःपूजासम्पन्नतापर्यन्तं व्रते निद्रा निषिद्धा',
+      en: 'Stay awake throughout the night (jagran)  –  sleeping is prohibited during the vrat until the morning puja is complete',
+      hi: 'रात भर जागते रहें (जागरण)  –  प्रातःकालीन पूजा सम्पन्न होने तक व्रत में सोना निषिद्ध है',
+      sa: 'सर्वां रात्रिं जागृयात् (जागरणम्)  –  प्रातःपूजासम्पन्नतापर्यन्तं व्रते निद्रा निषिद्धा',
     },
     {
       en: 'Do not sleep until the morning puja after the 4th prahar is complete and the fast is broken',
@@ -431,14 +431,14 @@ oṃ jaya śiva oṃkārā ||`,
       sa: 'चतुर्थप्रहरानन्तरं प्रातःपूजासम्पादनं व्रतभञ्जनं च यावत् न निद्रायात्',
     },
     {
-      en: 'Bilva (Bel) leaves must be unbroken with three intact leaflets — do not offer torn or damaged leaves',
-      hi: 'बिल्व (बेल) पत्र तीन अखण्ड पत्तियों सहित बिना टूटे होने चाहिए — फटे या क्षतिग्रस्त पत्ते न चढ़ाएँ',
-      sa: 'बिल्वपत्राणि अभग्नानि सत्रिदलानि भवेयुः — छिन्नानि भग्नानि वा पत्राणि न समर्पयेत्',
+      en: 'Bilva (Bel) leaves must be unbroken with three intact leaflets  –  do not offer torn or damaged leaves',
+      hi: 'बिल्व (बेल) पत्र तीन अखण्ड पत्तियों सहित बिना टूटे होने चाहिए  –  फटे या क्षतिग्रस्त पत्ते न चढ़ाएँ',
+      sa: 'बिल्वपत्राणि अभग्नानि सत्रिदलानि भवेयुः  –  छिन्नानि भग्नानि वा पत्राणि न समर्पयेत्',
     },
     {
-      en: 'Water used for abhishek should not be collected or reused — let it flow away or into a designated drain',
-      hi: 'अभिषेक में प्रयुक्त जल एकत्र न करें या पुनः उपयोग न करें — इसे बहने दें या निर्धारित नाली में जाने दें',
-      sa: 'अभिषेकजलं न सङ्गृह्णीयात् न पुनरुपयोजयेत् — प्रवाहयेत् अथवा निर्दिष्टनालिकायां गच्छतु',
+      en: 'Water used for abhishek should not be collected or reused  –  let it flow away or into a designated drain',
+      hi: 'अभिषेक में प्रयुक्त जल एकत्र न करें या पुनः उपयोग न करें  –  इसे बहने दें या निर्धारित नाली में जाने दें',
+      sa: 'अभिषेकजलं न सङ्गृह्णीयात् न पुनरुपयोजयेत्  –  प्रवाहयेत् अथवा निर्दिष्टनालिकायां गच्छतु',
     },
   ],
 

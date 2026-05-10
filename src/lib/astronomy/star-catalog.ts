@@ -317,7 +317,7 @@ export const CONSTELLATION_LINES: ConstellationLine[] = (() => {
       constellation: 'Lyr',
       name: 'Lyra',
       lines: [
-        // Vega is the main star; Lyra is small — just mark Vega
+        // Vega is the main star; Lyra is small  –  just mark Vega
         // (Other Lyra stars are mag >3.2 and not in our catalog)
       ],
     },

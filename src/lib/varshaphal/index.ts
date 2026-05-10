@@ -1,5 +1,5 @@
 /**
- * Varshaphal (Solar Return) — Orchestrator
+ * Varshaphal (Solar Return)  –  Orchestrator
  * Generates the complete Tajika annual horoscopy chart
  */
 
@@ -51,7 +51,7 @@ export function generateVarshaphal(birthData: BirthData, year: number): Varshaph
   const srWeekday = srDate.getDay();
   const varsheshvara = determineVarsheshvara(srWeekday, varshaphalChart.planets);
 
-  // 7. Sahams — use actual sunrise/sunset for day/night determination
+  // 7. Sahams  –  use actual sunrise/sunset for day/night determination
   // Compute UT hour directly from JD to avoid JS Date timezone dependency
   const srJd = solarReturn.jd;
   const srDayFrac = srJd + 0.5 - Math.floor(srJd + 0.5); // fractional day in UT
@@ -66,7 +66,7 @@ export function generateVarshaphal(birthData: BirthData, year: number): Varshaph
     isDayBirth,
   );
 
-  // 8. Tajika Yogas — pass ascendant sign for Kamboola/Gairi-Kamboola detection
+  // 8. Tajika Yogas  –  pass ascendant sign for Kamboola/Gairi-Kamboola detection
   const tajikaYogas = detectTajikaYogas(varshaphalChart.planets, varshaphalChart.ascendant.sign);
 
   // 9. Mudda Dasha

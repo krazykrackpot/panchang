@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const toolLD = generateToolLD(
-    'Kundali Matching — Ashta Kuta Compatibility',
+    'Kundali Matching  –  Ashta Kuta Compatibility',
     'Free Vedic birth chart compatibility analysis using the 36-point Ashta Kuta system.',
     `https://dekhopanchang.com/${locale}/matching`,
   );

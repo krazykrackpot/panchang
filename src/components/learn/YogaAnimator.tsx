@@ -33,7 +33,7 @@ const SPEED_LABELS: Record<SpeedKey, Record<Locale, string>> = {
 
 const UI: Record<string, Record<Locale, string>> = {
   title:       { en: 'Yoga Formation Animator',     hi: 'योग निर्माण एनीमेटर',     ta: 'யோக அமைப்பு அனிமேட்டர்',  bn: 'যোগ গঠন অ্যানিমেটর' },
-  subtitle:    { en: 'Watch how planetary combinations form classical Jyotish yogas — step by step', hi: 'देखें कैसे ग्रह योग बनाते हैं — चरण दर चरण', ta: 'கிரக கலவைகள் எவ்வாறு யோகங்களை உருவாக்குகின்றன என்பதை கண்டறியுங்கள்', bn: 'দেখুন কীভাবে গ্রহ মিলিত হয়ে যোগ তৈরি করে — ধাপে ধাপে' },
+  subtitle:    { en: 'Watch how planetary combinations form classical Jyotish yogas  –  step by step', hi: 'देखें कैसे ग्रह योग बनाते हैं  –  चरण दर चरण', ta: 'கிரக கலவைகள் எவ்வாறு யோகங்களை உருவாக்குகின்றன என்பதை கண்டறியுங்கள்', bn: 'দেখুন কীভাবে গ্রহ মিলিত হয়ে যোগ তৈরি করে  –  ধাপে ধাপে' },
   selectYoga:  { en: 'Select a Yoga',               hi: 'योग चुनें',                ta: 'ஒரு யோகம் தேர்வு செய்யுங்கள்', bn: 'একটি যোগ নির্বাচন করুন' },
   conditions:  { en: 'Conditions',                  hi: 'शर्तें',                  ta: 'நிபந்தனைகள்',              bn: 'শর্তাবলী' },
   frequency:   { en: 'Frequency',                   hi: 'आवृत्ति',                 ta: 'அதிர்வெண்',               bn: 'ফ্রিকোয়েন্সি' },
@@ -584,7 +584,7 @@ export default function YogaAnimator({ locale: localeProp }: YogaAnimatorProps) 
   const catMeta = CATEGORY_META[selectedCategory];
   const categories = Object.keys(CATEGORY_META) as YogaCategory[];
 
-  // Responsive cell size — clamp between 64 and 88
+  // Responsive cell size  –  clamp between 64 and 88
   const cellSize = 80;
 
   function getYogaName(y: YogaAnimation): string {

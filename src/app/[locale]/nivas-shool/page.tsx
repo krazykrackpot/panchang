@@ -17,22 +17,22 @@ const tm = (key: string, locale: string) => lt((MSG as unknown as Record<string,
 const L = {
   title: { en: 'Nivas & Shool', hi: 'निवास और शूल', sa: 'निवासः शूलश्च', ta: 'நிவாஸ் & சூல்', te: 'నివాస్ & శూల్', bn: 'নিবাস ও শূল', kn: 'ನಿವಾಸ ಮತ್ತು ಶೂಲ', mr: 'निवास आणि शूल', gu: 'નિવાસ અને શૂળ', mai: 'निवास आ शूल' },
   subtitle: {
-    en: 'The Cosmic Abodes & Directional Thorns — Traditional indicators of auspice, movement, and elemental alignment',
-    hi: 'ब्रह्मांडीय निवास और दिशा शूल — शुभता, गति और तात्विक संरेखण के पारंपरिक संकेतक',
-    sa: 'ब्रह्माण्डीय निवासाः दिशाशूलश्च — शुभतायाः गत्याः तात्विकसंरेखणस्य च पारंपरिकसंकेताः',
-    ta: 'அண்ட இருப்பிடங்கள் & திசை முள் — நற்பலன், பயணம் மற்றும் தாத்வீக சீரமைப்பின் பாரம்பரிய குறிகாட்டிகள்',
-    te: 'విశ్వ నివాసాలు & దిశా శూలం — శుభత్వం, గమనం మరియు తత్వ సమన్వయం యొక్క సాంప్రదాయిక సూచికలు',
-    bn: 'মহাজাগতিক নিবাস ও দিক শূল — শুভতা, গতি ও তাত্ত্বিক সমন্বয়ের প্রথাগত সূচক',
-    kn: 'ವಿಶ್ವ ನಿವಾಸಗಳು & ದಿಕ್ಕು ಶೂಲ — ಶುಭತ್ವ, ಚಲನೆ ಮತ್ತು ತಾತ್ವಿಕ ಹೊಂದಾಣಿಕೆಯ ಸಾಂಪ್ರದಾಯಿಕ ಸೂಚಕಗಳು',
-    mr: 'ब्रह्मांडीय निवास आणि दिशा शूल — शुभता, गती आणि तात्विक संरेखणाचे पारंपरिक संकेतक',
-    gu: 'બ્રહ્માંડીય નિવાસ અને દિશા શૂળ — શુભતા, ગતિ અને તાત્ત્વિક ગોઠવણીના પરંપરાગત સંકેતક',
-    mai: 'ब्रह्मांडीय निवास आ दिशा शूल — शुभता, गति आ तात्विक संरेखणक पारंपरिक संकेतक',
+    en: 'The Cosmic Abodes & Directional Thorns  –  Traditional indicators of auspice, movement, and elemental alignment',
+    hi: 'ब्रह्मांडीय निवास और दिशा शूल  –  शुभता, गति और तात्विक संरेखण के पारंपरिक संकेतक',
+    sa: 'ब्रह्माण्डीय निवासाः दिशाशूलश्च  –  शुभतायाः गत्याः तात्विकसंरेखणस्य च पारंपरिकसंकेताः',
+    ta: 'அண்ட இருப்பிடங்கள் & திசை முள்  –  நற்பலன், பயணம் மற்றும் தாத்வீக சீரமைப்பின் பாரம்பரிய குறிகாட்டிகள்',
+    te: 'విశ్వ నివాసాలు & దిశా శూలం  –  శుభత్వం, గమనం మరియు తత్వ సమన్వయం యొక్క సాంప్రదాయిక సూచికలు',
+    bn: 'মহাজাগতিক নিবাস ও দিক শূল  –  শুভতা, গতি ও তাত্ত্বিক সমন্বয়ের প্রথাগত সূচক',
+    kn: 'ವಿಶ್ವ ನಿವಾಸಗಳು & ದಿಕ್ಕು ಶೂಲ  –  ಶುಭತ್ವ, ಚಲನೆ ಮತ್ತು ತಾತ್ವಿಕ ಹೊಂದಾಣಿಕೆಯ ಸಾಂಪ್ರದಾಯಿಕ ಸೂಚಕಗಳು',
+    mr: 'ब्रह्मांडीय निवास आणि दिशा शूल  –  शुभता, गती आणि तात्विक संरेखणाचे पारंपरिक संकेतक',
+    gu: 'બ્રહ્માંડીય નિવાસ અને દિશા શૂળ  –  શુભતા, ગતિ અને તાત્ત્વિક ગોઠવણીના પરંપરાગત સંકેતક',
+    mai: 'ब्रह्मांडीय निवास आ दिशा शूल  –  शुभता, गति आ तात्विक संरेखणक पारंपरिक संकेतक',
   },
 
   dishashool: { en: 'Disha Shool', hi: 'दिशा शूल', sa: 'दिशाशूलम्', ta: 'திசை சூலம்', te: 'దిశా శూలం', bn: 'দিশা শূল', kn: 'ದಿಶಾ ಶೂಲ', mr: 'दिशा शूल', gu: 'દિશા શૂળ', mai: 'दिशा शूल' },
   dishashoolDesc: {
-    en: 'Disha Shool (दिशा + शूल = Direction + Thorn) is a traditional guideline that designates one cardinal direction as inauspicious for travel or initiating new journeys on each weekday. Originating in ancient Muhurta texts, it is believed that the planetary lord of the weekday casts a sharp "thorn" in a specific direction — travel toward that direction without remedy risks delays, accidents, or failure. Disha Shool does NOT apply to unavoidable daily commutes or essential travel, only to new ventures, pilgrimages, or auspicious journeys.',
-    hi: 'दिशा शूल (दिशा + शूल = दिशा + काँटा) एक पारंपरिक दिशा-निर्देश है जो प्रत्येक वार को यात्रा या नई यात्राएं शुरू करने के लिए एक दिशा को अशुभ बताता है। प्राचीन मुहूर्त ग्रंथों में उद्भव, ऐसा माना जाता है कि वार के ग्रह स्वामी एक विशिष्ट दिशा में तीव्र "शूल" फेंकते हैं — बिना उपाय के उस दिशा में यात्रा में देरी, दुर्घटनाएं या विफलता का जोखिम होता है।',
+    en: 'Disha Shool (दिशा + शूल = Direction + Thorn) is a traditional guideline that designates one cardinal direction as inauspicious for travel or initiating new journeys on each weekday. Originating in ancient Muhurta texts, it is believed that the planetary lord of the weekday casts a sharp "thorn" in a specific direction  –  travel toward that direction without remedy risks delays, accidents, or failure. Disha Shool does NOT apply to unavoidable daily commutes or essential travel, only to new ventures, pilgrimages, or auspicious journeys.',
+    hi: 'दिशा शूल (दिशा + शूल = दिशा + काँटा) एक पारंपरिक दिशा-निर्देश है जो प्रत्येक वार को यात्रा या नई यात्राएं शुरू करने के लिए एक दिशा को अशुभ बताता है। प्राचीन मुहूर्त ग्रंथों में उद्भव, ऐसा माना जाता है कि वार के ग्रह स्वामी एक विशिष्ट दिशा में तीव्र "शूल" फेंकते हैं  –  बिना उपाय के उस दिशा में यात्रा में देरी, दुर्घटनाएं या विफलता का जोखिम होता है।',
     sa: 'दिशाशूलम् (दिशा + शूल = दिशा + कण्टकः) एकः पारंपरिको निर्देशः यः प्रत्येकं वारे यात्रायाः नवयात्राणाम् आरम्भाय एकां दिशां अशुभां निर्दिशति।',
     ta: 'திசை சூலம் (திசை + சூலம் = திசை + முள்) ஒவ்வொரு வாரத்தின் ஒரு திசையை பயணத்திற்கு அசுபமாக குறிக்கும் பாரம்பரிய வழிகாட்டுதல் ஆகும்.',
     te: 'దిశా శూలం (దిశ + శూలం = దిక్కు + ముల్లు) ప్రతి వారంలో ఒక దిక్కును ప్రయాణానికి అశుభంగా గుర్తించే సాంప్రదాయిక మార్గదర్శకం.',
@@ -58,8 +58,8 @@ const L = {
 
   shivaVaas: { en: 'Shiva Vaas', hi: 'शिव वास', sa: 'शिवावासः', ta: 'சிவ வாசம்', te: 'శివ వాసం', bn: 'শিব বাস', kn: 'ಶಿವ ವಾಸ', mr: 'शिव वास', gu: 'શિવ વાસ', mai: 'शिव वास' },
   shivaVaasDesc: {
-    en: 'Shiva Vaas (Abode of Shiva) describes which of the five cosmic abodes Lord Shiva resides in on a given day, determined by the Tithi (lunar day). Shiva constantly moves between these five states — his location indicates the cosmic energy available for worship, rituals, and daily activities. On auspicious abodes, Shiva is easily pleased; on Shamshan, he is in his Rudra (fierce) form and may be hard to propitiate.',
-    hi: 'शिव वास (शिव का निवास) बताता है कि भगवान शिव किसी दिन तिथि के अनुसार पाँच ब्रह्मांडीय निवासों में से किसमें रहते हैं। शिव इन पाँच अवस्थाओं के बीच निरंतर गतिमान रहते हैं — उनका स्थान पूजा, अनुष्ठान और दैनिक गतिविधियों के लिए उपलब्ध ब्रह्मांडीय ऊर्जा को दर्शाता है।',
+    en: 'Shiva Vaas (Abode of Shiva) describes which of the five cosmic abodes Lord Shiva resides in on a given day, determined by the Tithi (lunar day). Shiva constantly moves between these five states  –  his location indicates the cosmic energy available for worship, rituals, and daily activities. On auspicious abodes, Shiva is easily pleased; on Shamshan, he is in his Rudra (fierce) form and may be hard to propitiate.',
+    hi: 'शिव वास (शिव का निवास) बताता है कि भगवान शिव किसी दिन तिथि के अनुसार पाँच ब्रह्मांडीय निवासों में से किसमें रहते हैं। शिव इन पाँच अवस्थाओं के बीच निरंतर गतिमान रहते हैं  –  उनका स्थान पूजा, अनुष्ठान और दैनिक गतिविधियों के लिए उपलब्ध ब्रह्मांडीय ऊर्जा को दर्शाता है।',
     sa: 'शिवावासः (शिवस्य निवासः) वर्णयति यत् भगवान् शिवः कस्यां तिथौ पञ्चसु ब्रह्माण्डीय निवासेषु कुत्र वसति।',
     ta: 'சிவ வாசம் (சிவனின் இருப்பிடம்) ஒரு நாளில் திதியின் அடிப்படையில் சிவன் ஐந்து அண்ட இருப்பிடங்களில் எதில் வசிக்கிறார் என்பதை விவரிக்கிறது.',
     te: 'శివ వాసం (శివుని నివాసం) ఒక రోజున తిథి ఆధారంగా శివుడు ఐదు విశ్వ నివాసాలలో ఎక్కడ ఉంటాడో వివరిస్తుంది.',
@@ -73,7 +73,7 @@ const L = {
   agniVaas: { en: 'Agni Vaas', hi: 'अग्नि वास', sa: 'अग्निवासः', ta: 'அக்னி வாசம்', te: 'అగ్ని వాసం', bn: 'অগ্নি বাস', kn: 'ಅಗ್ನಿ ವಾಸ', mr: 'अग्नि वास', gu: 'અગ્નિ વાસ', mai: 'अग्नि वास' },
   agniVaasDesc: {
     en: 'Agni Vaas (Abode of the Cosmic Fire) describes the elemental plane where the cosmic fire deity (Agni) resides on each weekday. This directly impacts the efficacy of fire-based rituals: Homa, Yajna, Agnihotra, and Deepa worship. When Agni is in Akash (Sky) or Prithvi (Earth), fire rituals are highly productive. In Patala (netherworld), they should be avoided or performed with special precautions.',
-    hi: 'अग्नि वास (ब्रह्मांडीय अग्नि का निवास) प्रत्येक वार को अग्नि देवता के तात्विक आयाम का वर्णन करता है। यह अग्नि-आधारित अनुष्ठानों — होम, यज्ञ, अग्निहोत्र और दीप पूजा — की प्रभावशीलता पर सीधा प्रभाव डालता है।',
+    hi: 'अग्नि वास (ब्रह्मांडीय अग्नि का निवास) प्रत्येक वार को अग्नि देवता के तात्विक आयाम का वर्णन करता है। यह अग्नि-आधारित अनुष्ठानों  –  होम, यज्ञ, अग्निहोत्र और दीप पूजा  –  की प्रभावशीलता पर सीधा प्रभाव डालता है।',
     sa: 'अग्निवासः (ब्रह्माण्डीय अग्नेः निवासः) प्रत्येकं वारे अग्नेः तात्विकस्तरं वर्णयति। होम-यज्ञ-अग्निहोत्रादि अनुष्ठानानां प्रभावे इदं प्रत्यक्षं प्रभवति।',
     ta: 'அக்னி வாசம் (அண்ட அக்னியின் இருப்பிடம்) ஒவ்வொரு வாரத்தில் அக்னி தேவதையின் தாத்வீக தளத்தை விவரிக்கிறது.',
     te: 'అగ్ని వాసం (విశ్వ అగ్ని నివాసం) ప్రతి వారంలో అగ్ని దేవత యొక్క తాత్వికస్థాయిని వివరిస్తుంది.',
@@ -100,7 +100,7 @@ const L = {
 
   rahuVaas: { en: 'Rahu Vaas', hi: 'राहु वास', sa: 'राहोः वासः', ta: 'ராகு வாசம்', te: 'రాహు వాసం', bn: 'রাহু বাস', kn: 'ರಾಹು ವಾಸ', mr: 'राहु वास', gu: 'રાહુ વાસ', mai: 'राहु वास' },
   rahuVaasDesc: {
-    en: 'Rahu Vaas indicates the direction in which Rahu (the north lunar node) faces on each weekday. Rahu\'s gaze is inauspicious for travel and construction. This is closely related to Disha Shool — on some days they coincide, amplifying the inauspice of that direction. Rahu Vaas is particularly important in Tamil and Kerala astrological traditions.',
+    en: 'Rahu Vaas indicates the direction in which Rahu (the north lunar node) faces on each weekday. Rahu\'s gaze is inauspicious for travel and construction. This is closely related to Disha Shool  –  on some days they coincide, amplifying the inauspice of that direction. Rahu Vaas is particularly important in Tamil and Kerala astrological traditions.',
     hi: 'राहु वास प्रत्येक वार को राहु (उत्तरी चंद्र नोड) किस दिशा में मुख किए हुए है, यह बताता है। राहु की दृष्टि यात्रा और निर्माण के लिए अशुभ है। यह दिशा शूल से निकटता से संबंधित है।',
     sa: 'राहोः वासः प्रत्येकं वारे राहुः (उत्तरचन्द्रनोडः) कां दिशं मुखं करोति इति वर्णयति।',
     ta: 'ராகு வாசம் ஒவ்வொரு வாரத்திலும் ராகு எந்த திசையை நோக்கி இருக்கிறார் என்பதை குறிக்கிறது.',
@@ -154,7 +154,7 @@ const L = {
 };
 
 // ─── Data tables ────────────────────────────────────────────────────────────
-// Data objects use en/hi/sa — the t() helper falls back to hi for Devanagari locales (mr/mai),
+// Data objects use en/hi/sa  –  the t() helper falls back to hi for Devanagari locales (mr/mai),
 // and to en for non-Devanagari locales (ta/te/bn/kn/gu) when a key is missing.
 
 const DISHA_SHOOL = [
@@ -180,7 +180,7 @@ const DISHA_SHOOL = [
     bg: 'bg-blue-500/5',
     remedy: { en: 'Eat curd/yogurt before traveling East', hi: 'पूर्व दिशा में यात्रा से पहले दही खाएं', sa: 'पूर्वं यात्रात् पूर्वं दध्नः भक्षयेत्', ta: 'கிழக்கு நோக்கி பயணிக்கும் முன் தயிர் சாப்பிடுங்கள்', te: 'తూర్పుగా ప్రయాణం ముందు పెరుగు తినండి', bn: 'পূর্বে যাত্রার আগে দই খান', kn: 'ಪೂರ್ವಕ್ಕೆ ಪ್ರಯಾಣಿಸುವ ಮೊದಲು ಮೊಸರು ತಿನ್ನಿ', mr: 'पूर्व दिशेला प्रवासापूर्वी दही खा', gu: 'પૂર્વ દિશામાં મુસાફરી પહેલાં દહીં ખાઓ', mai: 'पूर्व दिशा मे यात्रासँ पहिने दही खाउ' },
     nature: 'inauspicious',
-    note: { en: 'Moon faces East — its gaze blocks auspicious entry into the rising Sun\'s domain', hi: 'चंद्रमा पूर्व की ओर मुख करता है — उसकी दृष्टि उदीयमान सूर्य के क्षेत्र में शुभ प्रवेश को अवरुद्ध करती है', sa: '' },
+    note: { en: 'Moon faces East  –  its gaze blocks auspicious entry into the rising Sun\'s domain', hi: 'चंद्रमा पूर्व की ओर मुख करता है  –  उसकी दृष्टि उदीयमान सूर्य के क्षेत्र में शुभ प्रवेश को अवरुद्ध करती है', sa: '' },
   },
   {
     day: { en: 'Tuesday', hi: 'मंगलवार', sa: 'मङ्गलवासरः', ta: 'செவ்வாய்', te: 'మంగళవారం', bn: 'মঙ্গলবার', kn: 'ಮಂಗಳವಾರ', mr: 'मंगळवार', gu: 'મંગળવાર', mai: 'मंगलवार' },
@@ -192,7 +192,7 @@ const DISHA_SHOOL = [
     bg: 'bg-red-500/5',
     remedy: { en: 'Eat sugar/mishri before traveling North', hi: 'उत्तर दिशा में यात्रा से पहले मिश्री खाएं', sa: 'उत्तरं यात्रात् पूर्वं मिश्रिकां भक्षयेत्', ta: 'வடக்கு நோக்கி பயணிக்கும் முன் சர்க்கரை சாப்பிடுங்கள்', te: 'ఉత్తరంగా ప్రయాణం ముందు పంచదార తినండి', bn: 'উত্তরে যাত্রার আগে মিছরি খান', kn: 'ಉತ್ತರಕ್ಕೆ ಪ್ರಯಾಣಿಸುವ ಮೊದಲು ಸಕ್ಕರೆ ತಿನ್ನಿ', mr: 'उत्तर दिशेला प्रवासापूर्वी खडीसाखर खा', gu: 'ઉત્તર દિશામાં મુસાફરી પહેલાં મિશ્રી ખાઓ', mai: 'उत्तर दिशा मे यात्रासँ पहिने मिश्री खाउ' },
     nature: 'inauspicious',
-    note: { en: 'Mars is aggressive — its northern shool brings conflict and obstacles', hi: 'मंगल आक्रामक है — इसका उत्तरी शूल संघर्ष और बाधाएं लाता है', sa: '' },
+    note: { en: 'Mars is aggressive  –  its northern shool brings conflict and obstacles', hi: 'मंगल आक्रामक है  –  इसका उत्तरी शूल संघर्ष और बाधाएं लाता है', sa: '' },
   },
   {
     day: { en: 'Wednesday', hi: 'बुधवार', sa: 'बुधवासरः', ta: 'புதன்', te: 'బుధవారం', bn: 'বুধবার', kn: 'ಬುಧವಾರ', mr: 'बुधवार', gu: 'બુધવાર', mai: 'बुधवार' },
@@ -204,7 +204,7 @@ const DISHA_SHOOL = [
     bg: 'bg-emerald-500/5',
     remedy: { en: 'Eat green vegetables/herbs before traveling North', hi: 'उत्तर दिशा में यात्रा से पहले हरी सब्जियाँ खाएं', sa: 'उत्तरं यात्रात् पूर्वं शाकं भक्षयेत्', ta: 'வடக்கு நோக்கி பயணிக்கும் முன் பச்சை காய்கறிகள் சாப்பிடுங்கள்', te: 'ఉత్తరంగా ప్రయాణం ముందు పచ్చి కూరగాయలు తినండి', bn: 'উত্তরে যাত্রার আগে সবুজ শাকসবজি খান', kn: 'ಉತ್ತಕ್ಕೆ ಪ್ರಯಾಣಿಸುವ ಮೊದಲು ಹಸಿರು ತರಕಾರಿ ತಿನ್ನಿ', mr: 'उत्तर दिशेला प्रवासापूर्वी हिरव्या भाज्या खा', gu: 'ઉત્તર દિશામાં મુસાફરી પહેલાં લીલાં શાકભાજી ખાઓ', mai: 'उत्तर दिशा मे यात्रासँ पहिने हरियर सब्जी खाउ' },
     nature: 'inauspicious',
-    note: { en: 'North (Kubera\'s domain) is blocked by Mercury on Wednesday — financial ventures are especially affected', hi: 'बुधवार को बुध द्वारा उत्तर (कुबेर का क्षेत्र) अवरुद्ध है', sa: '' },
+    note: { en: 'North (Kubera\'s domain) is blocked by Mercury on Wednesday  –  financial ventures are especially affected', hi: 'बुधवार को बुध द्वारा उत्तर (कुबेर का क्षेत्र) अवरुद्ध है', sa: '' },
   },
   {
     day: { en: 'Thursday', hi: 'गुरुवार', sa: 'गुरुवासरः', ta: 'வியாழன்', te: 'గురువారం', bn: 'বৃহস্পতিবার', kn: 'ಗುರುವಾರ', mr: 'गुरुवार', gu: 'ગુરુવાર', mai: 'गुरुवार' },
@@ -216,7 +216,7 @@ const DISHA_SHOOL = [
     bg: 'bg-yellow-500/5',
     remedy: { en: 'Eat Bengal gram (chana dal) before traveling South', hi: 'दक्षिण दिशा में यात्रा से पहले चना दाल खाएं', sa: 'दक्षिणं यात्रात् पूर्वं चणकं भक्षयेत्', ta: 'தெற்கு நோக்கி பயணிக்கும் முன் கடலைப்பருப்பு சாப்பிடுங்கள்', te: 'దక్షిణంగా ప్రయాణం ముందు శనగపప్పు తినండి', bn: 'দক্ষিণে যাত্রার আগে ছোলার ডাল খান', kn: 'ದಕ್ಷಿಣಕ್ಕೆ ಪ್ರಯಾಣಿಸುವ ಮೊದಲು ಕಡಲೆ ಬೇಳೆ ತಿನ್ನಿ', mr: 'दक्षिण दिशेला प्रवासापूर्वी चणा डाळ खा', gu: 'દક્ષિણ દિશામાં મુસાફરી પહેલાં ચણા દાળ ખાઓ', mai: 'दक्षिण दिशा मे यात्रासँ पहिने चना दाल खाउ' },
     nature: 'inauspicious',
-    note: { en: 'South is Yama\'s realm — Jupiter\'s shool there compounds the inauspice of travel toward death\'s domain', hi: 'दक्षिण यम का क्षेत्र है — वहाँ गुरु का शूल मृत्यु के क्षेत्र की ओर यात्रा की अशुभता को बढ़ाता है', sa: '' },
+    note: { en: 'South is Yama\'s realm  –  Jupiter\'s shool there compounds the inauspice of travel toward death\'s domain', hi: 'दक्षिण यम का क्षेत्र है  –  वहाँ गुरु का शूल मृत्यु के क्षेत्र की ओर यात्रा की अशुभता को बढ़ाता है', sa: '' },
   },
   {
     day: { en: 'Friday', hi: 'शुक्रवार', sa: 'शुक्रवासरः', ta: 'வெள்ளி', te: 'శుక్రవారం', bn: 'শুক্রবার', kn: 'ಶುಕ್ರವಾರ', mr: 'शुक्रवार', gu: 'શુક્રવાર', mai: 'शुक्रवार' },
@@ -228,7 +228,7 @@ const DISHA_SHOOL = [
     bg: 'bg-pink-500/5',
     remedy: { en: 'Eat white sesame seeds (til) before traveling West', hi: 'पश्चिम दिशा में यात्रा से पहले सफेद तिल खाएं', sa: 'पश्चिमं यात्रात् पूर्वं तिलान् भक्षयेत्', ta: 'மேற்கு நோக்கி பயணிக்கும் முன் வெள்ளை எள் சாப்பிடுங்கள்', te: 'పశ్చిమంగా ప్రయాణం ముందు తెల్ల నువ్వులు తినండి', bn: 'পশ্চিমে যাত্রার আগে সাদা তিল খান', kn: 'ಪಶ್ಚಿಮಕ್ಕೆ ಪ್ರಯಾಣಿಸುವ ಮೊದಲು ಬಿಳಿ ಎಳ್ಳು ತಿನ್ನಿ', mr: 'पश्चिम दिशेला प्रवासापूर्वी पांढरे तीळ खा', gu: 'પશ્ચિમ દિશામાં મુસાફરી પહેલાં સફેદ તલ ખાઓ', mai: 'पश्चिम दिशा मे यात्रासँ पहिने उजड़ तिल खाउ' },
     nature: 'inauspicious',
-    note: { en: 'Venus\'s western shool is milder than others — often waived for short journeys', hi: 'शुक्र का पश्चिमी शूल अन्य की तुलना में हल्का है', sa: '' },
+    note: { en: 'Venus\'s western shool is milder than others  –  often waived for short journeys', hi: 'शुक्र का पश्चिमी शूल अन्य की तुलना में हल्का है', sa: '' },
   },
   {
     day: { en: 'Saturday', hi: 'शनिवार', sa: 'शनिवासरः', ta: 'சனி', te: 'శనివారం', bn: 'শনিবার', kn: 'ಶನಿವಾರ', mr: 'शनिवार', gu: 'શનિવાર', mai: 'शनिवार' },
@@ -240,7 +240,7 @@ const DISHA_SHOOL = [
     bg: 'bg-slate-500/5',
     remedy: { en: 'Eat sesame oil-cooked food or urad dal before traveling East', hi: 'पूर्व दिशा में यात्रा से पहले तिल के तेल में पका खाना या उड़द दाल खाएं', sa: 'पूर्वं यात्रात् पूर्वं तैलपक्वान्नं उड्डदलं वा भक्षयेत्', ta: 'கிழக்கு நோக்கி பயணிக்கும் முன் நல்லெண்ணெய் உணவு சாப்பிடுங்கள்', te: 'తూర్పుగా ప్రయాణం ముందు నువ్వుల నూనె ఆహారం తినండి', bn: 'পূর্বে যাত্রার আগে তিলের তেলের রান্না বা উড়দ ডাল খান', kn: 'ಪೂರ್ವಕ್ಕೆ ಪ್ರಯಾಣಿಸುವ ಮೊದಲು ಎಳ್ಳೆಣ್ಣೆ ಆಹಾರ ತಿನ್ನಿ', mr: 'पूर्व दिशेला प्रवासापूर्वी तिळाच्या तेलातील जेवण किंवा उडीद डाळ खा', gu: 'પૂર્વ દિશામાં મુસાફરી પહેલાં તલના તેલનું ભોજન અથવા અડદ દાળ ખાઓ', mai: 'पूर्व दिशा मे यात्रासँ पहिने तिलक तेल मे पकाओल खाना वा उड़द दाल खाउ' },
     nature: 'inauspicious',
-    note: { en: 'Saturn\'s eastward shool is considered the most severe — new ventures eastward on Saturday face heavy delays', hi: 'शनि का पूर्वी शूल सबसे गंभीर माना जाता है', sa: '' },
+    note: { en: 'Saturn\'s eastward shool is considered the most severe  –  new ventures eastward on Saturday face heavy delays', hi: 'शनि का पूर्वी शूल सबसे गंभीर माना जाता है', sa: '' },
   },
 ];
 
@@ -292,9 +292,9 @@ const SHIVA_VAAS = [
     bg: 'bg-pink-500/5',
     icon: '🌸',
     desc: {
-      en: "Shiva visits Parvati/Gauri's home — a state of domestic bliss and harmonious union. Good for activities related to marriage, family, home, and matters of Venus.",
-      hi: 'शिव पार्वती/गौरी के घर में मिलने जाते हैं — गृहस्थ आनंद और सामंजस्यपूर्ण मिलन की अवस्था। विवाह, परिवार, घर और शुक्र संबंधी विषयों के लिए अच्छा।',
-      sa: 'शिवः गौर्याः गृहे मिलति — गार्हस्थ्यानन्दस्य सामंजस्यस्य च स्थितिः।',
+      en: "Shiva visits Parvati/Gauri's home  –  a state of domestic bliss and harmonious union. Good for activities related to marriage, family, home, and matters of Venus.",
+      hi: 'शिव पार्वती/गौरी के घर में मिलने जाते हैं  –  गृहस्थ आनंद और सामंजस्यपूर्ण मिलन की अवस्था। विवाह, परिवार, घर और शुक्र संबंधी विषयों के लिए अच्छा।',
+      sa: 'शिवः गौर्याः गृहे मिलति  –  गार्हस्थ्यानन्दस्य सामंजस्यस्य च स्थितिः।',
     },
     activities: {
       en: 'Marriage, family rituals, home purchase/construction, Gauri puja',
@@ -311,9 +311,9 @@ const SHIVA_VAAS = [
     bg: 'bg-amber-500/5',
     icon: '🎭',
     desc: {
-      en: "Shiva is at play (Leela) — dancing the Tandava, absorbed in cosmic sport. His attention is divided; he may or may not respond to prayers readily. Mixed results for activities.",
-      hi: 'शिव खेल (लीला) में हैं — तांडव नृत्य करते, ब्रह्मांडीय खेल में लीन। उनका ध्यान बँटा हुआ है; वे प्रार्थनाओं का उत्तर दे भी सकते हैं और नहीं भी। गतिविधियों के लिए मिश्रित परिणाम।',
-      sa: 'शिवः क्रीडायां तान्डवे च लीनः — ब्रह्माण्डीयक्रीडायाम् अभिरतः।',
+      en: "Shiva is at play (Leela)  –  dancing the Tandava, absorbed in cosmic sport. His attention is divided; he may or may not respond to prayers readily. Mixed results for activities.",
+      hi: 'शिव खेल (लीला) में हैं  –  तांडव नृत्य करते, ब्रह्मांडीय खेल में लीन। उनका ध्यान बँटा हुआ है; वे प्रार्थनाओं का उत्तर दे भी सकते हैं और नहीं भी। गतिविधियों के लिए मिश्रित परिणाम।',
+      sa: 'शिवः क्रीडायां तान्डवे च लीनः  –  ब्रह्माण्डीयक्रीडायाम् अभिरतः।',
     },
     activities: {
       en: 'Moderate activities; avoid critical ventures. Arts, music, dance are well-supported.',
@@ -330,9 +330,9 @@ const SHIVA_VAAS = [
     bg: 'bg-violet-500/5',
     icon: '🧘',
     desc: {
-      en: 'Shiva is in deep Samadhi — Unmoved, beyond the phenomenal world. He is neither easily approached nor displeased. This state is considered sacred for meditation and spiritual practice, but mundane activities may not receive divine support.',
-      hi: 'शिव गहरी समाधि में हैं — अचल, भौतिक संसार से परे। उनसे न सहज निकट जाया जा सकता है, न वे आसानी से नाराज होते हैं। यह अवस्था ध्यान और आध्यात्मिक साधना के लिए पवित्र मानी जाती है।',
-      sa: 'शिवः गहनसमाधौ अस्ति — अचलः, सांसारिकजगतः परे। ध्यानाय आध्यात्मिकसाधनायै च पवित्रः।',
+      en: 'Shiva is in deep Samadhi  –  Unmoved, beyond the phenomenal world. He is neither easily approached nor displeased. This state is considered sacred for meditation and spiritual practice, but mundane activities may not receive divine support.',
+      hi: 'शिव गहरी समाधि में हैं  –  अचल, भौतिक संसार से परे। उनसे न सहज निकट जाया जा सकता है, न वे आसानी से नाराज होते हैं। यह अवस्था ध्यान और आध्यात्मिक साधना के लिए पवित्र मानी जाती है।',
+      sa: 'शिवः गहनसमाधौ अस्ति  –  अचलः, सांसारिकजगतः परे। ध्यानाय आध्यात्मिकसाधनायै च पवित्रः।',
     },
     activities: {
       en: 'Meditation, japa, spiritual practice, fasting. Avoid worldly ventures.',
@@ -383,7 +383,7 @@ const AGNI_VAAS = [
     bg: 'bg-red-500/5',
     nature: 'inauspicious',
     desc: {
-      en: 'Agni descends to the netherworld. Fire rituals performed now may have reversed or weakened effects — the offerings do not easily reach the devatas. Major Yajnas should be postponed. Simple Deepa (lamp) worship is permitted.',
+      en: 'Agni descends to the netherworld. Fire rituals performed now may have reversed or weakened effects  –  the offerings do not easily reach the devatas. Major Yajnas should be postponed. Simple Deepa (lamp) worship is permitted.',
       hi: 'अग्नि पाताल में उतर जाती है। अभी किए गए अग्नि अनुष्ठानों के उलटे या कमजोर प्रभाव हो सकते हैं। बड़े यज्ञ स्थगित करने चाहिए।',
       sa: 'अग्निः पातालं गच्छति। अग्निकार्यं विपरीतफलदम्। यज्ञं स्थगयेत्।',
     },
@@ -398,9 +398,9 @@ const AGNI_VAAS = [
     bg: 'bg-blue-500/5',
     nature: 'mixed',
     desc: {
-      en: 'Agni is submerged in water — a paradoxical state where fire and water coexist (Vadavagni — the submarine fire in Hindu cosmology). Rituals involving both fire and water (abhishek following homa) are uniquely powerful on Wednesdays.',
-      hi: 'अग्नि जल में समाई है — एक विरोधाभासी अवस्था जहाँ अग्नि और जल सह-अस्तित्व में हैं (वडवाग्नि — हिंदू ब्रह्माण्ड विज्ञान में समुद्री अग्नि)।',
-      sa: 'अग्निः जले निमग्ना — वडवाग्निरूपेण। होमाभिषेकसंयुक्तानि कार्याणि विशेषशक्तिमन्ति।',
+      en: 'Agni is submerged in water  –  a paradoxical state where fire and water coexist (Vadavagni  –  the submarine fire in Hindu cosmology). Rituals involving both fire and water (abhishek following homa) are uniquely powerful on Wednesdays.',
+      hi: 'अग्नि जल में समाई है  –  एक विरोधाभासी अवस्था जहाँ अग्नि और जल सह-अस्तित्व में हैं (वडवाग्नि  –  हिंदू ब्रह्माण्ड विज्ञान में समुद्री अग्नि)।',
+      sa: 'अग्निः जले निमग्ना  –  वडवाग्निरूपेण। होमाभिषेकसंयुक्तानि कार्याणि विशेषशक्तिमन्ति।',
     },
   },
 ];
@@ -430,9 +430,9 @@ const CHANDRA_VAAS = [
     nature: 'neutral',
     symbol: '◈',
     desc: {
-      en: 'Moon is in the human abode — the plane of ordinary human activity. Results are as you would expect — neither divinely elevated nor particularly hindered. Good for worldly tasks.',
-      hi: 'चंद्रमा मानव निवास में है — साधारण मानवीय गतिविधि का तल। परिणाम सामान्य हैं — न दिव्य रूप से उन्नत, न विशेष रूप से बाधित।',
-      sa: 'चन्द्रः नरावासे — सामान्यमानवीयकार्यस्य तले। फलानि सामान्यानि।',
+      en: 'Moon is in the human abode  –  the plane of ordinary human activity. Results are as you would expect  –  neither divinely elevated nor particularly hindered. Good for worldly tasks.',
+      hi: 'चंद्रमा मानव निवास में है  –  साधारण मानवीय गतिविधि का तल। परिणाम सामान्य हैं  –  न दिव्य रूप से उन्नत, न विशेष रूप से बाधित।',
+      sa: 'चन्द्रः नरावासे  –  सामान्यमानवीयकार्यस्य तले। फलानि सामान्यानि।',
     },
     activities: { en: 'Daily work, business, social activities, learning', hi: 'दैनिक कार्य, व्यापार, सामाजिक गतिविधियाँ, शिक्षा', sa: 'दैनिककार्यम्, वाणिज्यः' },
   },
@@ -445,9 +445,9 @@ const CHANDRA_VAAS = [
     nature: 'mixed',
     symbol: '◉',
     desc: {
-      en: 'Moon is in the animal abode — instinctual, reactive, less refined energy. Actions taken now may be driven by impulse. Avoid important decisions; good for physical work and agriculture.',
-      hi: 'चंद्रमा पशु निवास में है — सहज, प्रतिक्रियाशील, कम परिष्कृत ऊर्जा। महत्वपूर्ण निर्णयों से बचें; शारीरिक कार्य और कृषि के लिए अच्छा।',
-      sa: 'चन्द्रः पशावासे — आवेगात्मकं कार्यं वर्जयेत्।',
+      en: 'Moon is in the animal abode  –  instinctual, reactive, less refined energy. Actions taken now may be driven by impulse. Avoid important decisions; good for physical work and agriculture.',
+      hi: 'चंद्रमा पशु निवास में है  –  सहज, प्रतिक्रियाशील, कम परिष्कृत ऊर्जा। महत्वपूर्ण निर्णयों से बचें; शारीरिक कार्य और कृषि के लिए अच्छा।',
+      sa: 'चन्द्रः पशावासे  –  आवेगात्मकं कार्यं वर्जयेत्।',
     },
     activities: { en: 'Physical labor, farming, avoid important decisions or sacred rites', hi: 'शारीरिक श्रम, खेती, महत्वपूर्ण निर्णयों या पवित्र अनुष्ठानों से बचें', sa: 'शारीरिककार्यम्, कृषिः' },
   },
@@ -460,9 +460,9 @@ const CHANDRA_VAAS = [
     nature: 'inauspicious',
     symbol: '▼',
     desc: {
-      en: 'Moon is in the demonic abode — turbulent, obstructive energy. Activities initiated now face opposition, deception, or hidden enemies. Most auspicious works should be avoided. Protective mantras and Hanuman worship mitigate the effects.',
-      hi: 'चंद्रमा राक्षस निवास में है — उथल-पुथल, अवरोधक ऊर्जा। अब शुरू की गई गतिविधियों को विरोध, धोखे या छिपे दुश्मनों का सामना करना पड़ता है।',
-      sa: 'चन्द्रः राक्षसावासे — अशान्तः अवरोधकश्च। शुभकार्यं वर्जयेत्।',
+      en: 'Moon is in the demonic abode  –  turbulent, obstructive energy. Activities initiated now face opposition, deception, or hidden enemies. Most auspicious works should be avoided. Protective mantras and Hanuman worship mitigate the effects.',
+      hi: 'चंद्रमा राक्षस निवास में है  –  उथल-पुथल, अवरोधक ऊर्जा। अब शुरू की गई गतिविधियों को विरोध, धोखे या छिपे दुश्मनों का सामना करना पड़ता है।',
+      sa: 'चन्द्रः राक्षसावासे  –  अशान्तः अवरोधकश्च। शुभकार्यं वर्जयेत्।',
     },
     activities: { en: 'Avoid all sacred and auspicious activities; protective rites may be performed', hi: 'सभी पवित्र और शुभ गतिविधियों से बचें; सुरक्षात्मक अनुष्ठान किए जा सकते हैं', sa: 'सर्वशुभकार्यं वर्जयेत्' },
   },

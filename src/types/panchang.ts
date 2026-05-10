@@ -11,7 +11,7 @@ export interface Trilingual extends LocaleText {
   sa: string;
 }
 
-/** Locale — re-exported from i18n config. All 10 supported locales. */
+/** Locale  –  re-exported from i18n config. All 10 supported locales. */
 export type { Locale } from '@/lib/i18n/config';
 
 export interface Tithi {
@@ -146,7 +146,7 @@ export interface PanchangData {
   dinamana?: string;  // day duration HH:MM
   ratrimana?: string; // night duration HH:MM
   madhyahna?: string; // midday time HH:MM
-  // New fields — Drik Panchang additions
+  // New fields  –  Drik Panchang additions
   vijayaMuhurta?: { start: string; end: string };
   durMuhurtam?: { start: string; end: string }[];
   durMuhurtamAlt?: { start: string; end: string }[]; // Nirṇaya Sindhu tradition (alternate)

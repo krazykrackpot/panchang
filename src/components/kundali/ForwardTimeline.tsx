@@ -46,7 +46,7 @@ const TYPE_LABELS: Record<TimelineTrigger['triggerType'], { en: string; hi: stri
 };
 
 // ---------------------------------------------------------------------------
-// Component — vertical full-width timeline
+// Component  –  vertical full-width timeline
 // ---------------------------------------------------------------------------
 
 export default function ForwardTimeline({ triggers, locale, className }: ForwardTimelineProps) {
@@ -106,7 +106,7 @@ export default function ForwardTimeline({ triggers, locale, className }: Forward
                 }}
               />
 
-              {/* Content card — full width */}
+              {/* Content card  –  full width */}
               <div className={`rounded-xl border p-4 ${bgClass} ${isPast ? 'opacity-60' : ''}`}>
                 <div className="flex flex-wrap items-center gap-2 mb-1.5">
                   {/* Date */}

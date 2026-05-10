@@ -1,5 +1,5 @@
 /**
- * Drekkana (D3) Chart — 36 Decanate Faces
+ * Drekkana (D3) Chart  –  36 Decanate Faces
  * Reference: Varahamihira's Brihat Jataka Ch.27
  *
  * Each sign is divided into 3 decanates of 10° each.
@@ -46,8 +46,8 @@ export const DREKKANA_FACES: DrekkanaFace[] = [
   {
     signId: 1, decanate: 1, rulingSign: 1,
     image: {
-      en: 'A dark-complexioned man with red garments, fiery eyes, and an axe — fierce and ready for action.',
-      hi: 'लाल वस्त्र पहने, अग्निमय नेत्रों वाला, कुल्हाड़ी धारण किए एक श्यामवर्णी पुरुष — उग्र और कर्मशील।',
+      en: 'A dark-complexioned man with red garments, fiery eyes, and an axe  –  fierce and ready for action.',
+      hi: 'लाल वस्त्र पहने, अग्निमय नेत्रों वाला, कुल्हाड़ी धारण किए एक श्यामवर्णी पुरुष  –  उग्र और कर्मशील।',
     },
     interpretation: {
       en: 'Planets here bestow courage, initiative, and a pioneering spirit. The native takes bold action but may act impulsively. Leadership comes naturally but patience must be cultivated.',
@@ -226,8 +226,8 @@ export const DREKKANA_FACES: DrekkanaFace[] = [
       hi: 'भालू के मुख वाला पुरुष, फल धारण किए, सिर पर वानर, क्रूर स्वभाव।',
     },
     interpretation: {
-      en: 'Planets here combine Leonine pride with Arian aggression. The native is a warrior-king — courageous, commanding, and impatient. Creative energy is channeled through physical action. Temper must be mastered.',
-      hi: 'यहाँ ग्रह सिंह के गर्व और मेष की आक्रामकता का संयोग करते हैं। जातक योद्धा-राजा है — साहसी, प्रभावशाली और अधीर। रचनात्मक ऊर्जा शारीरिक क्रिया से प्रवाहित होती है। क्रोध पर नियंत्रण आवश्यक है।',
+      en: 'Planets here combine Leonine pride with Arian aggression. The native is a warrior-king  –  courageous, commanding, and impatient. Creative energy is channeled through physical action. Temper must be mastered.',
+      hi: 'यहाँ ग्रह सिंह के गर्व और मेष की आक्रामकता का संयोग करते हैं। जातक योद्धा-राजा है  –  साहसी, प्रभावशाली और अधीर। रचनात्मक ऊर्जा शारीरिक क्रिया से प्रवाहित होती है। क्रोध पर नियंत्रण आवश्यक है।',
     },
     keywords: ['warrior', 'command', 'impatience', 'action'],
   },
@@ -264,8 +264,8 @@ export const DREKKANA_FACES: DrekkanaFace[] = [
       hi: 'लम्बी, गोरी स्त्री, खुले बालों वाली, घड़ा लिए मन्दिर जाती हुई।',
     },
     interpretation: {
-      en: 'Planets here blend Virgoan intellect with Taurean sensuality. The native finds pleasure in practical beauty — cooking, gardening, artisanal work. Financial prudence and aesthetic taste combine productively.',
-      hi: 'यहाँ ग्रह कन्या की बुद्धि और वृषभ की इन्द्रियता का मिश्रण करते हैं। जातक व्यावहारिक सौंदर्य में आनंद पाता है — पाककला, बागवानी, दस्तकारी। वित्तीय विवेक और सौंदर्य बोध उत्पादक रूप से मिलते हैं।',
+      en: 'Planets here blend Virgoan intellect with Taurean sensuality. The native finds pleasure in practical beauty  –  cooking, gardening, artisanal work. Financial prudence and aesthetic taste combine productively.',
+      hi: 'यहाँ ग्रह कन्या की बुद्धि और वृषभ की इन्द्रियता का मिश्रण करते हैं। जातक व्यावहारिक सौंदर्य में आनंद पाता है  –  पाककला, बागवानी, दस्तकारी। वित्तीय विवेक और सौंदर्य बोध उत्पादक रूप से मिलते हैं।',
     },
     keywords: ['beauty', 'artisan', 'prudence', 'practical aesthetics'],
   },
@@ -442,8 +442,8 @@ export const DREKKANA_FACES: DrekkanaFace[] = [
       hi: 'मलिन शरीर वाली स्त्री, पत्तों से आच्छादित, धातुकर्म और कलाओं में निपुण।',
     },
     interpretation: {
-      en: 'Planets here combine Aquarian originality with Geminian communication. The native is an intellectual innovator — writing, broadcasting, and digital media are natural arenas. Ideas spread rapidly through networks.',
-      hi: 'यहाँ ग्रह कुम्भ की मौलिकता और मिथुन के संवाद को जोड़ते हैं। जातक बौद्धिक नवप्रवर्तक है — लेखन, प्रसारण और डिजिटल मीडिया स्वाभाविक क्षेत्र हैं। विचार नेटवर्क के माध्यम से तेज़ी से फैलते हैं।',
+      en: 'Planets here combine Aquarian originality with Geminian communication. The native is an intellectual innovator  –  writing, broadcasting, and digital media are natural arenas. Ideas spread rapidly through networks.',
+      hi: 'यहाँ ग्रह कुम्भ की मौलिकता और मिथुन के संवाद को जोड़ते हैं। जातक बौद्धिक नवप्रवर्तक है  –  लेखन, प्रसारण और डिजिटल मीडिया स्वाभाविक क्षेत्र हैं। विचार नेटवर्क के माध्यम से तेज़ी से फैलते हैं।',
     },
     keywords: ['innovation', 'media', 'communication', 'networks'],
   },

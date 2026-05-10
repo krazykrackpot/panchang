@@ -1,4 +1,4 @@
-// API route middleware — checks tier + usage before processing
+// API route middleware  –  checks tier + usage before processing
 import { NextResponse } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { getUserTier, checkAndIncrementUsage } from './check-access';
@@ -13,7 +13,7 @@ interface GateResult {
 
 async function extractUserId(req: Request): Promise<string | null> {
   const supabase = getServerSupabase();
-  if (!supabase) return null; // Supabase not configured — skip auth
+  if (!supabase) return null; // Supabase not configured  –  skip auth
 
   const authHeader = req.headers.get('authorization');
   if (authHeader?.startsWith('Bearer ')) {

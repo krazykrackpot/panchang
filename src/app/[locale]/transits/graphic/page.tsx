@@ -86,7 +86,7 @@ export default function GraphicTransitPage() {
           <h1 className="text-3xl font-bold text-gold-gradient mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
             {tl({ en: 'Graphic Transit Ephemeris', hi: 'ग्राफिक गोचर पंचांग', sa: 'ग्राफिक गोचर पंचांग' }, locale)}
           </h1>
-          <p className="text-text-secondary text-sm">{tl({ en: 'Monthly planet positions — sign changes and retrogrades', hi: 'मासिक ग्रह गति — राशि परिवर्तन और वक्री गति', sa: 'मासिक ग्रह गति — राशि परिवर्तन और वक्री गति' }, locale)}</p>
+          <p className="text-text-secondary text-sm">{tl({ en: 'Monthly planet positions  –  sign changes and retrogrades', hi: 'मासिक ग्रह गति  –  राशि परिवर्तन और वक्री गति', sa: 'मासिक ग्रह गति  –  राशि परिवर्तन और वक्री गति' }, locale)}</p>
           <Link href="/transits" className="text-xs text-gold-primary/60 hover:text-gold-primary mt-2 inline-block">
             {tl({ en: '← Transit List', hi: '← गोचर सूची', sa: '← गोचर सूची' }, locale)}
           </Link>
@@ -115,7 +115,7 @@ export default function GraphicTransitPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {[0,2,3,4,5,6,7,8].map(pid => ( // skip Moon (1) — changes sign daily
+                  {[0,2,3,4,5,6,7,8].map(pid => ( // skip Moon (1)  –  changes sign daily
                     <tr key={pid}>
                       <td className="px-2 py-1 font-bold" style={{ color: PLANET_COLORS[pid] }}>{PLANET_NAMES[pid]}</td>
                       {data.map(d => {

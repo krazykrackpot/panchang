@@ -34,7 +34,7 @@ function Page1() {
     <div className="space-y-6">
       <KeyTakeaway
         points={[
-          'A planet in exaltation is at peak strength; in debilitation it struggles — but Neecha Bhanga (cancellation of debilitation) can reverse weakness into hidden strength.',
+          'A planet in exaltation is at peak strength; in debilitation it struggles  –  but Neecha Bhanga (cancellation of debilitation) can reverse weakness into hidden strength.',
           'The 7-level dignity hierarchy determines how effectively a planet can deliver its results.',
         ]}
         locale={locale}
@@ -46,21 +46,21 @@ function Page1() {
         </p>
         <div className="flex flex-wrap gap-3 my-2">
           <BeginnerNote term="Exaltation (Uchcha)" explanation="The sign where a planet is at peak strength. Each planet has one exaltation sign and one specific degree of maximum power within it." />
-          <BeginnerNote term="Debilitation (Neecha)" explanation="The sign where a planet is at its weakest — always exactly 180 degrees opposite its exaltation sign." />
-          <BeginnerNote term="Moolatrikona" explanation="A specific degree range within one of a planet's own signs where it functions at near-peak efficiency — stronger than own sign but just below exaltation." />
+          <BeginnerNote term="Debilitation (Neecha)" explanation="The sign where a planet is at its weakest  –  always exactly 180 degrees opposite its exaltation sign." />
+          <BeginnerNote term="Moolatrikona" explanation="A specific degree range within one of a planet's own signs where it functions at near-peak efficiency  –  stronger than own sign but just below exaltation." />
         </div>
 
         {/* Dignity Tower */}
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 mb-4">
           <div className="space-y-2">
             {[
-              { level: 1, name: { en: 'Exalted (Uchcha)', hi: 'उच्च', sa: 'उच्च', mai: 'उच्च', mr: 'उच्च', ta: 'உச்சம்', te: 'ఉచ్ఛం', bn: 'উচ্চ', kn: 'ಉಚ್ಛ', gu: 'ઉચ્ચ' }, desc: 'Peak power — planet at its absolute strongest', color: 'bg-emerald-500/15 border-emerald-500/25 text-emerald-400', strength: '100%' },
+              { level: 1, name: { en: 'Exalted (Uchcha)', hi: 'उच्च', sa: 'उच्च', mai: 'उच्च', mr: 'उच्च', ta: 'உச்சம்', te: 'ఉచ్ఛం', bn: 'উচ্চ', kn: 'ಉಚ್ಛ', gu: 'ઉચ્ચ' }, desc: 'Peak power  –  planet at its absolute strongest', color: 'bg-emerald-500/15 border-emerald-500/25 text-emerald-400', strength: '100%' },
               { level: 2, name: { en: 'Moolatrikona', hi: 'मूलत्रिकोण', sa: 'मूलत्रिकोण', mai: 'मूलत्रिकोण', mr: 'मूलत्रिकोण', ta: 'மூலத்திரிகோணம்', te: 'మూలత్రికోణం', bn: 'মূলত্রিকোণ', kn: 'ಮೂಲತ್ರಿಕೋಣ', gu: 'મૂળત્રિકોણ' }, desc: 'Special strong zone within own sign (0°-20° typically)', color: 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300', strength: '90%' },
-              { level: 3, name: { en: 'Own Sign (Swakshetra)', hi: 'स्वक्षेत्र', sa: 'स्वक्षेत्र', mai: 'स्वक्षेत्र', mr: 'स्वक्षेत्र', ta: 'சுவக்ஷேத்திரம்', te: 'స్వక్షేత్రం', bn: 'স্বক্ষেত্র', kn: 'ಸ್ವಕ್ಷೇತ್ರ', gu: 'સ્વક્ષેત્ર' }, desc: 'Planet in its own ruled sign — comfortable and effective', color: 'bg-blue-500/10 border-blue-500/20 text-blue-300', strength: '80%' },
-              { level: 4, name: { en: "Friend's Sign (Mitrakshetra)", hi: 'मित्रक्षेत्र', sa: 'मित्रक्षेत्र', mai: 'मित्रक्षेत्र', mr: 'मित्रक्षेत्र', ta: "Friend's Sign (Mitrakshetra)", te: "Friend's Sign (Mitrakshetra)", bn: "Friend's Sign (Mitrakshetra)", kn: "Friend's Sign (Mitrakshetra)", gu: "Friend's Sign (Mitrakshetra)" }, desc: "Planet in a friendly planet's sign — supported", color: 'bg-blue-500/5 border-blue-500/15 text-blue-200', strength: '60%' },
-              { level: 5, name: { en: 'Neutral Sign (Samakshetra)', hi: 'समक्षेत्र', sa: 'समक्षेत्र', mai: 'समक्षेत्र', mr: 'समक्षेत्र', ta: 'சமக்ஷேத்திரம்', te: 'సమక్షేత్రం', bn: 'সমক্ষেত্র', kn: 'ಸಮಕ್ಷೇತ್ರ', gu: 'સમક્ષેત્ર' }, desc: 'Planet in a neutral sign — average performance', color: 'bg-amber-500/5 border-amber-500/15 text-amber-300', strength: '50%' },
-              { level: 6, name: { en: "Enemy's Sign (Shatrukshetra)", hi: 'शत्रुक्षेत्र', sa: 'शत्रुक्षेत्र', mai: 'शत्रुक्षेत्र', mr: 'शत्रुक्षेत्र', ta: "Enemy's Sign (Shatrukshetra)", te: "Enemy's Sign (Shatrukshetra)", bn: "Enemy's Sign (Shatrukshetra)", kn: "Enemy's Sign (Shatrukshetra)", gu: "Enemy's Sign (Shatrukshetra)" }, desc: "Planet in an enemy's sign — weakened, struggling", color: 'bg-red-500/5 border-red-500/15 text-red-300', strength: '25%' },
-              { level: 7, name: { en: 'Debilitated (Neecha)', hi: 'नीच', sa: 'नीच', mai: 'नीच', mr: 'नीच', ta: 'நீசம்', te: 'నీచం', bn: 'নীচ', kn: 'ನೀಚ', gu: 'નીચ' }, desc: 'Weakest point — planet at its lowest expression', color: 'bg-red-500/10 border-red-500/25 text-red-400', strength: '5%' },
+              { level: 3, name: { en: 'Own Sign (Swakshetra)', hi: 'स्वक्षेत्र', sa: 'स्वक्षेत्र', mai: 'स्वक्षेत्र', mr: 'स्वक्षेत्र', ta: 'சுவக்ஷேத்திரம்', te: 'స్వక్షేత్రం', bn: 'স্বক্ষেত্র', kn: 'ಸ್ವಕ್ಷೇತ್ರ', gu: 'સ્વક્ષેત્ર' }, desc: 'Planet in its own ruled sign  –  comfortable and effective', color: 'bg-blue-500/10 border-blue-500/20 text-blue-300', strength: '80%' },
+              { level: 4, name: { en: "Friend's Sign (Mitrakshetra)", hi: 'मित्रक्षेत्र', sa: 'मित्रक्षेत्र', mai: 'मित्रक्षेत्र', mr: 'मित्रक्षेत्र', ta: "Friend's Sign (Mitrakshetra)", te: "Friend's Sign (Mitrakshetra)", bn: "Friend's Sign (Mitrakshetra)", kn: "Friend's Sign (Mitrakshetra)", gu: "Friend's Sign (Mitrakshetra)" }, desc: "Planet in a friendly planet's sign  –  supported", color: 'bg-blue-500/5 border-blue-500/15 text-blue-200', strength: '60%' },
+              { level: 5, name: { en: 'Neutral Sign (Samakshetra)', hi: 'समक्षेत्र', sa: 'समक्षेत्र', mai: 'समक्षेत्र', mr: 'समक्षेत्र', ta: 'சமக்ஷேத்திரம்', te: 'సమక్షేత్రం', bn: 'সমক্ষেত্র', kn: 'ಸಮಕ್ಷೇತ್ರ', gu: 'સમક્ષેત્ર' }, desc: 'Planet in a neutral sign  –  average performance', color: 'bg-amber-500/5 border-amber-500/15 text-amber-300', strength: '50%' },
+              { level: 6, name: { en: "Enemy's Sign (Shatrukshetra)", hi: 'शत्रुक्षेत्र', sa: 'शत्रुक्षेत्र', mai: 'शत्रुक्षेत्र', mr: 'शत्रुक्षेत्र', ta: "Enemy's Sign (Shatrukshetra)", te: "Enemy's Sign (Shatrukshetra)", bn: "Enemy's Sign (Shatrukshetra)", kn: "Enemy's Sign (Shatrukshetra)", gu: "Enemy's Sign (Shatrukshetra)" }, desc: "Planet in an enemy's sign  –  weakened, struggling", color: 'bg-red-500/5 border-red-500/15 text-red-300', strength: '25%' },
+              { level: 7, name: { en: 'Debilitated (Neecha)', hi: 'नीच', sa: 'नीच', mai: 'नीच', mr: 'नीच', ta: 'நீசம்', te: 'నీచం', bn: 'নীচ', kn: 'ನೀಚ', gu: 'નીચ' }, desc: 'Weakest point  –  planet at its lowest expression', color: 'bg-red-500/10 border-red-500/25 text-red-400', strength: '5%' },
             ].map((d) => (
               <div key={d.level} className={`flex items-center gap-3 p-2.5 rounded-lg border ${d.color}`}>
                 <span className={`text-lg font-black w-6 text-center ${d.color.split(' ')[2]}`}>{d.level}</span>
@@ -78,7 +78,7 @@ function Page1() {
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
-          BPHS Ch.3 v.18-20 defines exaltation, debilitation, and moolatrikona for each planet. The term <span className="text-gold-light font-bold">Uchcha</span> (उच्च) means "high/elevated," <span className="text-gold-light font-bold">Neecha</span> (नीच) means "low/fallen," and <span className="text-gold-light font-bold">Moolatrikona</span> means "root triangle" — the foundational zone of power. Parashara explicitly states that a planet's exaltation and debilitation points are always 180° apart — this is not coincidence but cosmic symmetry.
+          BPHS Ch.3 v.18-20 defines exaltation, debilitation, and moolatrikona for each planet. The term <span className="text-gold-light font-bold">Uchcha</span> (उच्च) means "high/elevated," <span className="text-gold-light font-bold">Neecha</span> (नीच) means "low/fallen," and <span className="text-gold-light font-bold">Moolatrikona</span> means "root triangle"  –  the foundational zone of power. Parashara explicitly states that a planet's exaltation and debilitation points are always 180° apart  –  this is not coincidence but cosmic symmetry.
         </p>
       </section>
 
@@ -114,11 +114,11 @@ function Page1() {
               ))}
             </tbody>
           </table>
-          <p className="text-text-tertiary text-xs mt-2">Note: Mercury is unique — exalted in its OWN sign (Virgo). Moolatrikona range is the narrow 16°-20° zone within Virgo.</p>
+          <p className="text-text-tertiary text-xs mt-2">Note: Mercury is unique  –  exalted in its OWN sign (Virgo). Moolatrikona range is the narrow 16°-20° zone within Virgo.</p>
         </div>
       </section>
 
-      <WhyItMatters locale={locale}>The dignity hierarchy is the single most important factor in determining how well a planet delivers its promises. An exalted planet gives abundant results; a debilitated one struggles — unless cancellation (Neecha Bhanga) transforms weakness into strength.</WhyItMatters>
+      <WhyItMatters locale={locale}>The dignity hierarchy is the single most important factor in determining how well a planet delivers its promises. An exalted planet gives abundant results; a debilitated one struggles  –  unless cancellation (Neecha Bhanga) transforms weakness into strength.</WhyItMatters>
     </div>
   );
 }
@@ -129,12 +129,12 @@ function Page2() {
   return (
     <div className="space-y-6">
       <section>
-        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Neecha Bhanga Raja Yoga — The Phoenix Principle</h3>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Neecha Bhanga Raja Yoga  –  The Phoenix Principle</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          One of the most powerful principles in Jyotish: a <span className="text-gold-light font-bold">debilitated planet whose debilitation is cancelled</span> doesn't just become normal — it becomes <span className="text-gold-light font-bold">extraordinarily strong</span>. This is called <span className="text-gold-light">Neecha Bhanga Raja Yoga</span> (नीच भंग राज योग) — literally "debilitation-breaking royal yoga."
+          One of the most powerful principles in Jyotish: a <span className="text-gold-light font-bold">debilitated planet whose debilitation is cancelled</span> doesn't just become normal  –  it becomes <span className="text-gold-light font-bold">extraordinarily strong</span>. This is called <span className="text-gold-light">Neecha Bhanga Raja Yoga</span> (नीच भंग राज योग)  –  literally "debilitation-breaking royal yoga."
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          The metaphor is a <span className="text-gold-light">phoenix</span> — rising from the ashes of adversity to achieve greatness. Or a leader who comes from poverty and, having overcome every obstacle, leads with greater strength than someone born into privilege. Many highly successful people have Neecha Bhanga yogas in their charts.
+          The metaphor is a <span className="text-gold-light">phoenix</span>  –  rising from the ashes of adversity to achieve greatness. Or a leader who comes from poverty and, having overcome every obstacle, leads with greater strength than someone born into privilege. Many highly successful people have Neecha Bhanga yogas in their charts.
         </p>
 
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-emerald-500/15 mb-4">
@@ -150,9 +150,9 @@ function Page2() {
       </section>
 
       <section>
-        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Vargottama — Double Confirmation</h3>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Vargottama  –  Double Confirmation</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          <span className="text-gold-light font-bold">Vargottama</span> (वर्गोत्तम = वर्ग + उत्तम = "best division") is when a planet occupies the <span className="text-gold-light">same sign in both the D1 (Rashi) and D9 (Navamsha)</span> charts. This "double confirmation" significantly strengthens the planet — it's genuinely in that sign at both the gross and subtle levels.
+          <span className="text-gold-light font-bold">Vargottama</span> (वर्गोत्तम = वर्ग + उत्तम = "best division") is when a planet occupies the <span className="text-gold-light">same sign in both the D1 (Rashi) and D9 (Navamsha)</span> charts. This "double confirmation" significantly strengthens the planet  –  it's genuinely in that sign at both the gross and subtle levels.
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           When does Vargottama happen? Each sign has 9 navamshas (3°20' each). The FIRST navamsha of movable signs, the MIDDLE (5th) of fixed signs, and the LAST (9th) of dual signs map back to the same sign. So Vargottama occurs in: Aries 0°-3°20', Taurus 13°20'-16°40', Gemini 26°40'-30°, Cancer 0°-3°20', etc.
@@ -162,7 +162,7 @@ function Page2() {
       <ExampleChart
         ascendant={1}
         planets={{ 10: [4], 7: [2] }}
-        title="Jupiter Debilitated in Capricorn (10th) — Neecha Bhanga Check"
+        title="Jupiter Debilitated in Capricorn (10th)  –  Neecha Bhanga Check"
         highlight={[10, 7]}
       />
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
@@ -195,7 +195,7 @@ function Page2() {
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
-          <span className="text-blue-300 font-bold">Fully used in all Jyotish software.</span> Our app computes dignity for every planet in every chart — it's the foundation of Shadbala (Sthana Bala component), Vimshopaka Bala, and chart strength assessment. The Neecha Bhanga detection is part of our 55+ yoga engine. The exaltation/debilitation degrees are from BPHS — unchanged in 1,000+ years.
+          <span className="text-blue-300 font-bold">Fully used in all Jyotish software.</span> Our app computes dignity for every planet in every chart  –  it's the foundation of Shadbala (Sthana Bala component), Vimshopaka Bala, and chart strength assessment. The Neecha Bhanga detection is part of our 55+ yoga engine. The exaltation/debilitation degrees are from BPHS  –  unchanged in 1,000+ years.
         </p>
       </section>
 

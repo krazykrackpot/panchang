@@ -56,7 +56,7 @@ export default async function NakshatraPadaPage({ params }: { params: Promise<{ 
   const articleLD = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `${nakName} Pada ${parsed.pada} — Vedic Nakshatra Analysis`,
+    headline: `${nakName} Pada ${parsed.pada}  –  Vedic Nakshatra Analysis`,
     description: profile.personality.en,
     author: { '@type': 'Organization', name: 'Dekho Panchang' },
     publisher: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
@@ -94,7 +94,7 @@ export default async function NakshatraPadaPage({ params }: { params: Promise<{ 
         <p className="text-text-secondary text-lg">{isHi ? 'देवता' : 'Deity'}: {profile.deity}</p>
       </div>
 
-      {/* Syllable card — prominent for baby name searches */}
+      {/* Syllable card  –  prominent for baby name searches */}
       <div className="rounded-2xl border border-gold-primary/20 bg-gradient-to-r from-gold-primary/8 via-gold-primary/4 to-transparent p-6 mb-8 text-center">
         <div className="text-text-secondary text-xs uppercase tracking-widest font-bold mb-2">
           {isHi ? 'शिशु नाम अक्षर' : 'Baby Name Starting Letter'}
@@ -143,7 +143,7 @@ export default async function NakshatraPadaPage({ params }: { params: Promise<{ 
               <Link key={p} href={`/learn/nakshatra-pada/${NAK_SLUGS[parsed.nakshatraId - 1]}-pada-${p}`}
                 className={`rounded-xl border p-3 text-center transition-all ${isCurrent ? 'border-gold-primary/40 bg-gold-primary/10 pointer-events-none' : 'border-white/10 hover:border-gold-primary/30 hover:bg-gold-primary/5'}`}>
                 <div className="text-gold-light font-bold text-lg">{isHi ? 'पद' : 'Pada'} {p}</div>
-                <div className="text-text-secondary text-xs">{other?.syllable || '—'}</div>
+                <div className="text-text-secondary text-xs">{other?.syllable || ' – '}</div>
               </Link>
             );
           })}

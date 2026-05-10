@@ -1,5 +1,5 @@
 /**
- * Ashtamangala Prashna — Question Categories
+ * Ashtamangala Prashna  –  Question Categories
  * Maps the 12 bhava-based question categories with Trilingual content,
  * relevant houses, and conditions for favorable/unfavorable outcomes.
  */

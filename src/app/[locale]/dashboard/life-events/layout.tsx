@@ -12,11 +12,11 @@ export async function generateMetadata({
 
   const title = tl(
     {
-      en: 'Life Events — Dekho Panchang',
-      hi: 'जीवन घटनाएं — देखो पंचांग',
-      sa: 'जीवन-घटनाः — देखो पंचांग',
-      ta: 'வாழ்க்கை நிகழ்வுகள் — தேக்கோ பஞ்சாங்கம்',
-      bn: 'জীবন ঘটনা — দেখো পঞ্চাঙ্গ',
+      en: 'Life Events  –  Dekho Panchang',
+      hi: 'जीवन घटनाएं  –  देखो पंचांग',
+      sa: 'जीवन-घटनाः  –  देखो पंचांग',
+      ta: 'வாழ்க்கை நிகழ்வுகள்  –  தேக்கோ பஞ்சாங்கம்',
+      bn: 'জীবন ঘটনা  –  দেখো পঞ্চাঙ্গ',
     },
     locale,
   );

@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * JournalFilters — compact horizontal filter bar.
+ * JournalFilters  –  compact horizontal filter bar.
  *
  * Controls: date range, dasha planet, nakshatra number, minimum mood.
  * Reset button clears all filters.

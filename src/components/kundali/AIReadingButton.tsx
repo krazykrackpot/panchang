@@ -30,7 +30,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
   const isDevanagari = isDevanagariLocale(locale);
   const bodyFont = getBodyFont(locale);
 
-  // Check subscription — only Pro/Jyotishi can use AI readings
+  // Check subscription  –  only Pro/Jyotishi can use AI readings
   const { tier } = useSubscription();
   const isPaid = tier === 'pro' || tier === 'jyotishi';
 
@@ -98,7 +98,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
     setLoading(false);
   }, [kundali, locale]);
 
-  // Not paid — show upgrade prompt
+  // Not paid  –  show upgrade prompt
   if (!isPaid) {
     return (
       <div className="rounded-2xl p-5 border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] text-center">
@@ -108,7 +108,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
         </h3>
         <p className="text-text-secondary text-sm mb-4" style={bodyFont}>
           {locale === 'en'
-            ? 'Get a deeply personalized reading powered by Claude AI that weaves together your natal chart, dashas, transits, and convergence patterns into a unified narrative — like a consultation with a senior astrologer.'
+            ? 'Get a deeply personalized reading powered by Claude AI that weaves together your natal chart, dashas, transits, and convergence patterns into a unified narrative  –  like a consultation with a senior astrologer.'
             : 'क्लॉड AI द्वारा संचालित एक गहन व्यक्तिगत विश्लेषण प्राप्त करें जो आपकी जन्म कुंडली, दशा, गोचर और संयोग पैटर्न को एक एकीकृत कथा में बुनता है।'}
         </p>
         <a href="/pricing" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gold-dark to-gold-primary text-bg-primary font-bold text-sm rounded-xl hover:from-gold-primary hover:to-gold-light transition-all">
@@ -138,8 +138,8 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
           </div>
           <p className="text-text-secondary/75 text-xs mt-2">
             {locale === 'en'
-              ? 'Powered by Claude AI — a personalized narrative weaving all your chart factors together'
-              : 'क्लॉड AI द्वारा संचालित — आपकी कुंडली के सभी कारकों को एकीकृत करने वाली व्यक्तिगत कथा'}
+              ? 'Powered by Claude AI  –  a personalized narrative weaving all your chart factors together'
+              : 'क्लॉड AI द्वारा संचालित  –  आपकी कुंडली के सभी कारकों को एकीकृत करने वाली व्यक्तिगत कथा'}
           </p>
         </motion.button>
       )}

@@ -24,13 +24,13 @@ function formatYear(date: Date): string {
 
 function formatDateRange(start: Date, end: Date): string {
   const fmt = (d: Date) => `${d.toLocaleString('en', { month: 'short' })} ${d.getFullYear()}`;
-  return `${fmt(start)} — ${fmt(end)}`;
+  return `${fmt(start)}  –  ${fmt(end)}`;
 }
 
 export default function BlueprintTab({ blueprint, locale, onNavigateToDasha }: BlueprintTabProps) {
   const { primary, shadow, currentChapter, nextChapter, activeYogas, headline } = blueprint;
 
-  // Previous dasha (the one before current) isn't in blueprint — we show current + next
+  // Previous dasha (the one before current) isn't in blueprint  –  we show current + next
   const timelineSegments = useMemo(() => {
     const now = new Date();
     const currentStart = currentChapter.startDate.getTime();
@@ -54,7 +54,7 @@ export default function BlueprintTab({ blueprint, locale, onNavigateToDasha }: B
           {headline}
         </h2>
         <p className="text-text-secondary text-sm mt-2">
-          Your Cosmic Blueprint — a psychological map drawn from your birth chart
+          Your Cosmic Blueprint  –  a psychological map drawn from your birth chart
         </p>
       </div>
 
@@ -248,7 +248,7 @@ export default function BlueprintTab({ blueprint, locale, onNavigateToDasha }: B
             // Placeholder for share functionality
             if (typeof navigator !== 'undefined' && navigator.share) {
               navigator.share({ title: 'My Cosmic Blueprint', text: headline }).catch(() => {
-                // Share cancelled or unsupported — no action needed (progressive enhancement)
+                // Share cancelled or unsupported  –  no action needed (progressive enhancement)
               });
             }
           }}

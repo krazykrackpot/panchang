@@ -27,7 +27,7 @@ function Defs({ id }: { id: string }) {
   );
 }
 
-// 1. Ashwini — Horse head (swift healers)
+// 1. Ashwini  –  Horse head (swift healers)
 export function AshwiniIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -46,7 +46,7 @@ export function AshwiniIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 2. Bharani — Yoni/Triangle (creation)
+// 2. Bharani  –  Yoni/Triangle (creation)
 export function BharaniIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -55,14 +55,14 @@ export function BharaniIcon({ size = 48, className }: IconProps) {
       <path d="M32 52L12 16h40z" stroke="url(#ng-bha)" strokeWidth="2.5" fill="url(#ng-bha)" fillOpacity="0.15" strokeLinejoin="round" filter="url(#gl-bha)" />
       {/* Inner triangle */}
       <path d="M32 44L20 22h24z" stroke="#f0d48a" strokeWidth="1" fill="none" opacity="0.4" />
-      {/* Center circle — seed of life */}
+      {/* Center circle  –  seed of life */}
       <circle cx="32" cy="28" r="4" fill="url(#ng-bha)" opacity="0.6" />
       <circle cx="32" cy="28" r="2" fill="#f0d48a" />
     </svg>
   );
 }
 
-// 3. Krittika — Flame / Razor
+// 3. Krittika  –  Flame / Razor
 export function KrittikaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -79,7 +79,7 @@ export function KrittikaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 4. Rohini — Chariot / Cart (creation, growth)
+// 4. Rohini  –  Chariot / Cart (creation, growth)
 export function RohiniIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -105,7 +105,7 @@ export function RohiniIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 5. Mrigashira — Deer head (searching, quest)
+// 5. Mrigashira  –  Deer head (searching, quest)
 export function MrigashiraIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -126,7 +126,7 @@ export function MrigashiraIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 6. Ardra — Teardrop / Diamond (storm, transformation)
+// 6. Ardra  –  Teardrop / Diamond (storm, transformation)
 export function ArdraIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -146,7 +146,7 @@ export function ArdraIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 7. Punarvasu — Bow and quiver (return, renewal)
+// 7. Punarvasu  –  Bow and quiver (return, renewal)
 export function PunarvasuIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -168,7 +168,7 @@ export function PunarvasuIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 8. Pushya — Lotus flower (nourishment)
+// 8. Pushya  –  Lotus flower (nourishment)
 export function PushyaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -188,7 +188,7 @@ export function PushyaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 9. Ashlesha — Coiled serpent (mystical energy)
+// 9. Ashlesha  –  Coiled serpent (mystical energy)
 export function AshleshaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -211,7 +211,7 @@ export function AshleshaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 10. Magha — Royal throne / Crown (ancestry, authority)
+// 10. Magha  –  Royal throne / Crown (ancestry, authority)
 export function MaghaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -233,7 +233,7 @@ export function MaghaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 11. Purva Phalguni — Hammock / Swinging bed (enjoyment)
+// 11. Purva Phalguni  –  Hammock / Swinging bed (enjoyment)
 export function PurvaPhalgIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -254,7 +254,7 @@ export function PurvaPhalgIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 12. Uttara Phalguni — Sun / Patronage (friendship)
+// 12. Uttara Phalguni  –  Sun / Patronage (friendship)
 export function UttaraPhalgIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -276,7 +276,7 @@ export function UttaraPhalgIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 13. Hasta — Open hand (skill, dexterity)
+// 13. Hasta  –  Open hand (skill, dexterity)
 export function HastaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -293,7 +293,7 @@ export function HastaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 14. Chitra — Pearl / Gem (brilliance)
+// 14. Chitra  –  Pearl / Gem (brilliance)
 export function ChitraIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -314,7 +314,7 @@ export function ChitraIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 15. Swati — Coral / Young plant shoot (independence)
+// 15. Swati  –  Coral / Young plant shoot (independence)
 export function SwatiIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -334,7 +334,7 @@ export function SwatiIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 16. Vishakha — Triumphal archway / forked branch (determination)
+// 16. Vishakha  –  Triumphal archway / forked branch (determination)
 export function VishakhaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -355,7 +355,7 @@ export function VishakhaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 17. Anuradha — Lotus (devotion, friendship)
+// 17. Anuradha  –  Lotus (devotion, friendship)
 export function AnuradhaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -377,7 +377,7 @@ export function AnuradhaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 18. Jyeshtha — Circular earring / Talisman (protection, seniority)
+// 18. Jyeshtha  –  Circular earring / Talisman (protection, seniority)
 export function JyeshthaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -400,7 +400,7 @@ export function JyeshthaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 19. Mula — Roots / tied bunch (foundation, origin)
+// 19. Mula  –  Roots / tied bunch (foundation, origin)
 export function MulaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -420,7 +420,7 @@ export function MulaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 20. Purva Ashadha — Fan / Winnowing basket (invincibility)
+// 20. Purva Ashadha  –  Fan / Winnowing basket (invincibility)
 export function PurvaAshadhaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -439,7 +439,7 @@ export function PurvaAshadhaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 21. Uttara Ashadha — Elephant tusk (final victory)
+// 21. Uttara Ashadha  –  Elephant tusk (final victory)
 export function UttaraAshadhaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -458,7 +458,7 @@ export function UttaraAshadhaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 22. Shravana — Three footprints / Ear (listening, learning)
+// 22. Shravana  –  Three footprints / Ear (listening, learning)
 export function ShravanaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -479,7 +479,7 @@ export function ShravanaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 23. Dhanishtha — Drum / Mridanga (wealth, music)
+// 23. Dhanishtha  –  Drum / Mridanga (wealth, music)
 export function DhanishthaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -500,7 +500,7 @@ export function DhanishthaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 24. Shatabhisha — Empty circle / 100 stars (healing, mysticism)
+// 24. Shatabhisha  –  Empty circle / 100 stars (healing, mysticism)
 export function ShatabhishaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -520,14 +520,14 @@ export function ShatabhishaIcon({ size = 48, className }: IconProps) {
         return <circle key={i} cx={32 + 12 * Math.cos(angle)} cy={32 + 12 * Math.sin(angle)}
           r={1} fill="#f0d48a" opacity={0.2 + (i % 2) * 0.15} />;
       })}
-      {/* Center — healing symbol */}
+      {/* Center  –  healing symbol */}
       <circle cx="32" cy="32" r="4" fill="url(#ng-sat)" opacity="0.4" />
       <circle cx="32" cy="32" r="2" fill="#f0d48a" />
     </svg>
   );
 }
 
-// 25. Purva Bhadrapada — Sword / Two-faced man (spiritual fire)
+// 25. Purva Bhadrapada  –  Sword / Two-faced man (spiritual fire)
 export function PurvaBhadraIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -548,7 +548,7 @@ export function PurvaBhadraIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 26. Uttara Bhadrapada — Twin serpent / back legs of bed (deep wisdom)
+// 26. Uttara Bhadrapada  –  Twin serpent / back legs of bed (deep wisdom)
 export function UttaraBhadraIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -570,7 +570,7 @@ export function UttaraBhadraIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 27. Revati — Fish / Pair of fish (journey, nourishment)
+// 27. Revati  –  Fish / Pair of fish (journey, nourishment)
 export function RevatiIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">

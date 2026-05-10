@@ -14,8 +14,8 @@ export async function generateMetadata({
 
   const title =
     locale === 'hi'
-      ? 'शहर के अनुसार पंचांग — 55+ स्थानों के लिए सटीक समय'
-      : 'Panchang by City — Accurate Timings for 55+ Locations';
+      ? 'शहर के अनुसार पंचांग  –  55+ स्थानों के लिए सटीक समय'
+      : 'Panchang by City  –  Accurate Timings for 55+ Locations';
 
   const description =
     locale === 'hi'

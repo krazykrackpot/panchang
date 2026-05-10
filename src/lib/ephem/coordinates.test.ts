@@ -29,7 +29,7 @@ describe('computePlanetLatitude', () => {
     expect(Math.abs(lat)).toBeLessThanOrEqual(5.3);
   });
 
-  it('Rahu latitude is 0 — nodes lie on the ecliptic by definition', () => {
+  it('Rahu latitude is 0  –  nodes lie on the ecliptic by definition', () => {
     // The lunar nodes are the points where the Moon's orbit crosses the ecliptic.
     // A point ON the ecliptic has zero ecliptic latitude by definition.
     // Previously this returned -(Moon latitude), which is astronomically incorrect.
@@ -37,7 +37,7 @@ describe('computePlanetLatitude', () => {
     expect(rahuLat).toBe(0);
   });
 
-  it('Ketu latitude is 0 — nodes lie on the ecliptic by definition', () => {
+  it('Ketu latitude is 0  –  nodes lie on the ecliptic by definition', () => {
     // Same reasoning as Rahu: the descending node is also on the ecliptic.
     // Previously this returned +(Moon latitude), which is astronomically incorrect.
     const ketuLat = computePlanetLatitude(8, JD_2024);

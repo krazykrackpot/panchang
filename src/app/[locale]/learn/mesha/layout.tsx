@@ -14,7 +14,7 @@ export default async function Layout({ children, params }: { children: React.Rea
       <LearnArticleLD
         route="/learn/mesha"
         locale={locale}
-        title="Mesha (Aries) in Vedic Astrology — Complete Rashi Guide"
+        title="Mesha (Aries) in Vedic Astrology  –  Complete Rashi Guide"
         description="Comprehensive guide to Mesha Rashi (Aries) covering planetary dignities, nakshatras, personality, career, compatibility, remedies, and mythology from classical Jyotish sources."
       />
       {children}

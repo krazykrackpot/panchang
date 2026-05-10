@@ -7,7 +7,7 @@ import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
-export const revalidate = 604800; // 7 days — static educational content
+export const revalidate = 604800; // 7 days  –  static educational content
 
 
 const JYA_TABLE = [
@@ -32,9 +32,9 @@ const TRANSLATION_CHAIN = [
 ];
 
 const FUNCTIONS = [
-  { sanskrit: 'Jya (ज्या)', english: 'Sine', formula: 'sin(θ)', desc: { en: 'Half the chord — the original definition', hi: 'आधी जीवा — मूल परिभाषा', sa: 'आधी जीवा — मूल परिभाषा', mai: 'आधी जीवा — मूल परिभाषा', mr: 'आधी जीवा — मूल परिभाषा', ta: 'நாணின் பாதி — மூல வரையறை', te: 'జ్యా సగం — మూల నిర్వచనం', bn: 'জ্যার অর্ধেক — মূল সংজ্ঞা', kn: 'ಜ್ಯಾದ ಅರ್ಧ — ಮೂಲ ವ್ಯಾಖ್ಯಾನ', gu: 'જીવાનો અર્ધ — મૂળ વ્યાખ્યા' } },
-  { sanskrit: 'Kojya (कोज्या)', english: 'Cosine', formula: 'cos(θ)', desc: { en: 'Complement-jya — defined by Aryabhata', hi: 'पूरक-ज्या — आर्यभट द्वारा परिभाषित', sa: 'पूरक-ज्या — आर्यभट द्वारा परिभाषित', mai: 'पूरक-ज्या — आर्यभट द्वारा परिभाषित', mr: 'पूरक-ज्या — आर्यभट द्वारा परिभाषित', ta: 'கோஜ்யா — ஆர்யபடரால் வரையறுக்கப்பட்டது', te: 'కోజ్యా — ఆర్యభట నిర్వచించారు', bn: 'কোজ্যা — আর্যভট কর্তৃক সংজ্ঞায়িত', kn: 'ಕೋಜ್ಯಾ — ಆರ್ಯಭಟರಿಂದ ವ್ಯಾಖ್ಯಾನಿತ', gu: 'કોજ્યા — આર્યભટ દ્વારા વ્યાખ્યાયિત' } },
-  { sanskrit: 'Utkrama-jya (उत्क्रमज्या)', english: 'Versine', formula: '1 − cos(θ)', desc: { en: 'Reverse jya — used in eclipse geometry', hi: 'उलटी ज्या — ग्रहण ज्यामिति में उपयोग', sa: 'उलटी ज्या — ग्रहण ज्यामिति में उपयोग', mai: 'उलटी ज्या — ग्रहण ज्यामिति में उपयोग', mr: 'उलटी ज्या — ग्रहण ज्यामिति में उपयोग', ta: 'உத்க்ரமஜ்யா — கிரகண வடிவியலில் பயன்படுத்தப்படுகிறது', te: 'ఉత్క్రమజ్యా — గ్రహణ జ్యామితిలో ఉపయోగించబడింది', bn: 'উৎক্রমজ্যা — গ্রহণ জ্যামিতিতে ব্যবহৃত', kn: 'ಉತ್ಕ್ರಮಜ್ಯಾ — ಗ್ರಹಣ ರೇಖಾಗಣಿತದಲ್ಲಿ ಬಳಸಲಾಗುತ್ತದೆ', gu: 'ઉત્ક્રમજ્યા — ગ્રહણ ભૂમિતિમાં વપરાય છે' } },
+  { sanskrit: 'Jya (ज्या)', english: 'Sine', formula: 'sin(θ)', desc: { en: 'Half the chord  –  the original definition', hi: 'आधी जीवा  –  मूल परिभाषा', sa: 'आधी जीवा  –  मूल परिभाषा', mai: 'आधी जीवा  –  मूल परिभाषा', mr: 'आधी जीवा  –  मूल परिभाषा', ta: 'நாணின் பாதி  –  மூல வரையறை', te: 'జ్యా సగం  –  మూల నిర్వచనం', bn: 'জ্যার অর্ধেক  –  মূল সংজ্ঞা', kn: 'ಜ್ಯಾದ ಅರ್ಧ  –  ಮೂಲ ವ್ಯಾಖ್ಯಾನ', gu: 'જીવાનો અર્ધ  –  મૂળ વ્યાખ્યા' } },
+  { sanskrit: 'Kojya (कोज्या)', english: 'Cosine', formula: 'cos(θ)', desc: { en: 'Complement-jya  –  defined by Aryabhata', hi: 'पूरक-ज्या  –  आर्यभट द्वारा परिभाषित', sa: 'पूरक-ज्या  –  आर्यभट द्वारा परिभाषित', mai: 'पूरक-ज्या  –  आर्यभट द्वारा परिभाषित', mr: 'पूरक-ज्या  –  आर्यभट द्वारा परिभाषित', ta: 'கோஜ்யா  –  ஆர்யபடரால் வரையறுக்கப்பட்டது', te: 'కోజ్యా  –  ఆర్యభట నిర్వచించారు', bn: 'কোজ্যা  –  আর্যভট কর্তৃক সংজ্ঞায়িত', kn: 'ಕೋಜ್ಯಾ  –  ಆರ್ಯಭಟರಿಂದ ವ್ಯಾಖ್ಯಾನಿತ', gu: 'કોજ્યા  –  આર્યભટ દ્વારા વ્યાખ્યાયિત' } },
+  { sanskrit: 'Utkrama-jya (उत्क्रमज्या)', english: 'Versine', formula: '1 − cos(θ)', desc: { en: 'Reverse jya  –  used in eclipse geometry', hi: 'उलटी ज्या  –  ग्रहण ज्यामिति में उपयोग', sa: 'उलटी ज्या  –  ग्रहण ज्यामिति में उपयोग', mai: 'उलटी ज्या  –  ग्रहण ज्यामिति में उपयोग', mr: 'उलटी ज्या  –  ग्रहण ज्यामिति में उपयोग', ta: 'உத்க்ரமஜ்யா  –  கிரகண வடிவியலில் பயன்படுத்தப்படுகிறது', te: 'ఉత్క్రమజ్యా  –  గ్రహణ జ్యామితిలో ఉపయోగించబడింది', bn: 'উৎক্রমজ্যা  –  গ্রহণ জ্যামিতিতে ব্যবহৃত', kn: 'ಉತ್ಕ್ರಮಜ್ಯಾ  –  ಗ್ರಹಣ ರೇಖಾಗಣಿತದಲ್ಲಿ ಬಳಸಲಾಗುತ್ತದೆ', gu: 'ઉત્ક્રમજ્યા  –  ગ્રહણ ભૂમિતિમાં વપરાય છે' } },
   { sanskrit: 'Trijya (त्रिज्या)', english: 'Radius / R = 3438', formula: 'R = 3438\'', desc: { en: 'The base radius in arc-minutes', hi: 'चाप-मिनट में आधार त्रिज्या', sa: 'चाप-मिनट में आधार त्रिज्या', mai: 'चाप-मिनट में आधार त्रिज्या', mr: 'चाप-मिनट में आधार त्रिज्या', ta: 'வில்-நிமிடங்களில் அடிப்படை ஆரம்', te: 'ఆర్క్-నిమిషాలలో ఆధార వ్యాసార్ధం', bn: 'আর্ক-মিনিটে ভিত্তি ব্যাসার্ধ', kn: 'ಆರ್ಕ್-ನಿಮಿಷಗಳಲ್ಲಿ ಆಧಾರ ತ್ರಿಜ್ಯ', gu: 'આર્ક-મિનિટમાં આધાર ત્રિજ્યા' } },
 ];
 
@@ -74,7 +74,7 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Greek approach: full chord */}
             <div className="text-center">
-              <div className="text-red-400 text-xs font-bold mb-2 uppercase tracking-wider">{tl({ en: 'Greek Method — Full Chord', hi: 'यूनानी विधि — पूर्ण जीवा', sa: 'ग्रीकपद्धतिः — पूर्णजीवा' }, locale)}</div>
+              <div className="text-red-400 text-xs font-bold mb-2 uppercase tracking-wider">{tl({ en: 'Greek Method  –  Full Chord', hi: 'यूनानी विधि  –  पूर्ण जीवा', sa: 'ग्रीकपद्धतिः  –  पूर्णजीवा' }, locale)}</div>
               <svg viewBox="0 0 200 200" className="w-full max-w-[180px] mx-auto">
                 <circle cx="100" cy="100" r="80" fill="none" stroke="#f87171" strokeWidth="1.5" opacity="0.3" />
                 <circle cx="100" cy="100" r="2.5" fill="#f87171" opacity="0.5" />
@@ -87,13 +87,13 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
                 <path d="M 36 60 A 80 80 0 0 1 180 60" fill="none" stroke="#f87171" strokeWidth="2" opacity="0.6" />
                 <text x="100" y="50" textAnchor="middle" fill="#f87171" fontSize="9" fontWeight="bold">crd(2θ)</text>
                 <text x="100" y="180" textAnchor="middle" fill="#8a8478" fontSize="7">{tl({ en: "Ptolemy's chord → full chord", hi: "टॉलेमी का जीवा → पूरी जीवा", sa: "टॉलेमी का जीवा → पूरी जीवा" }, locale)}</text>
-                <text x="100" y="192" textAnchor="middle" fill="#8a8478" fontSize="7">{tl({ en: 'Awkward — needs double angle', hi: 'अजीब, दो कोणों की आवश्यकता', sa: 'कठिनम् — द्विकोणापेक्षा' }, locale)}</text>
+                <text x="100" y="192" textAnchor="middle" fill="#8a8478" fontSize="7">{tl({ en: 'Awkward  –  needs double angle', hi: 'अजीब, दो कोणों की आवश्यकता', sa: 'कठिनम्  –  द्विकोणापेक्षा' }, locale)}</text>
               </svg>
             </div>
 
             {/* Indian approach: half-chord = Jya = sine */}
             <div className="text-center">
-              <div className="text-emerald-400 text-xs font-bold mb-2 uppercase tracking-wider">{tl({ en: 'Indian Method — Ardha-jya (= Sine!)', hi: 'भारतीय विधि — अर्धज्या (= Sine!)', sa: 'भारतीयपद्धतिः — अर्धज्या (= Sine!)' }, locale)}</div>
+              <div className="text-emerald-400 text-xs font-bold mb-2 uppercase tracking-wider">{tl({ en: 'Indian Method  –  Ardha-jya (= Sine!)', hi: 'भारतीय विधि  –  अर्धज्या (= Sine!)', sa: 'भारतीयपद्धतिः  –  अर्धज्या (= Sine!)' }, locale)}</div>
               <svg viewBox="0 0 200 200" className="w-full max-w-[180px] mx-auto">
                 <circle cx="100" cy="100" r="80" fill="none" stroke="#34d399" strokeWidth="1.5" opacity="0.3" />
                 <circle cx="100" cy="100" r="2.5" fill="#34d399" opacity="0.5" />
@@ -111,13 +111,13 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
                 <text x="140" y="35" textAnchor="middle" fill="#34d399" fontSize="9" fontWeight="bold">sin(θ)</text>
                 <text x="88" y="72" textAnchor="end" fill="#f0d48a" fontSize="7" opacity="0.7">cos(θ)</text>
                 <text x="100" y="180" textAnchor="middle" fill="#8a8478" fontSize="7">{tl({ en: "Aryabhata's Jya → SINE is born", hi: "आर्यभट की ज्या → SINE का जन्म", sa: "आर्यभट की ज्या → SINE का जन्म" }, locale)}</text>
-                <text x="100" y="192" textAnchor="middle" fill="#34d399" fontSize="7">{tl({ en: 'Elegant — one angle, directly useful', hi: 'सुंदर, प्रत्यक्ष, एक कोण पर्याप्त', sa: 'सुन्दरम् — एकः कोणः, प्रत्यक्षोपयोगी' }, locale)}</text>
+                <text x="100" y="192" textAnchor="middle" fill="#34d399" fontSize="7">{tl({ en: 'Elegant  –  one angle, directly useful', hi: 'सुंदर, प्रत्यक्ष, एक कोण पर्याप्त', sa: 'सुन्दरम्  –  एकः कोणः, प्रत्यक्षोपयोगी' }, locale)}</text>
               </svg>
             </div>
           </div>
 
           <div className="mt-4 p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/15 text-xs text-text-secondary leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-            {tl({ en: '💡 Greeks worked with full chords — needing two points on the circle. Indians simplified the idea: take HALF the chord (Ardha-jya) — it directly relates to a single angle. This small innovation IS the sine function, and it made all of trigonometry possible.', hi: '💡 यूनानियों ने पूर्ण जीवा (chord) के साथ काम किया — जिसमें दो बिन्दुओं की आवश्यकता थी। भारतीयों ने विचार को सरल किया: आधी जीवा लें (अर्धज्या) — यह सीधे एक कोण से सम्बन्धित है। यह छोटा सा नवाचार ही sine फ़ंक्शन है, और इसने सम्पूर्ण त्रिकोणमिति को सम्भव बनाया।', sa: '💡 यूनानियों ने पूर्ण जीवा (chord) के साथ काम किया — जिसमें दो बिन्दुओं की आवश्यकता थी। भारतीयों ने विचार को सरल किया: आधी जीवा लें (अर्धज्या) — यह सीधे एक कोण से सम्बन्धित है। यह छोटा सा नवाचार ही sine फ़ंक्शन है, और इसने सम्पूर्ण त्रिकोणमिति को सम्भव बनाया।' }, locale)}
+            {tl({ en: '💡 Greeks worked with full chords  –  needing two points on the circle. Indians simplified the idea: take HALF the chord (Ardha-jya)  –  it directly relates to a single angle. This small innovation IS the sine function, and it made all of trigonometry possible.', hi: '💡 यूनानियों ने पूर्ण जीवा (chord) के साथ काम किया  –  जिसमें दो बिन्दुओं की आवश्यकता थी। भारतीयों ने विचार को सरल किया: आधी जीवा लें (अर्धज्या)  –  यह सीधे एक कोण से सम्बन्धित है। यह छोटा सा नवाचार ही sine फ़ंक्शन है, और इसने सम्पूर्ण त्रिकोणमिति को सम्भव बनाया।', sa: '💡 यूनानियों ने पूर्ण जीवा (chord) के साथ काम किया  –  जिसमें दो बिन्दुओं की आवश्यकता थी। भारतीयों ने विचार को सरल किया: आधी जीवा लें (अर्धज्या)  –  यह सीधे एक कोण से सम्बन्धित है। यह छोटा सा नवाचार ही sine फ़ंक्शन है, और इसने सम्पूर्ण त्रिकोणमिति को सम्भव बनाया।' }, locale)}
           </div>
 
           {/* Original detailed bowstring diagram */}
@@ -228,7 +228,7 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
 
         <div className="mt-4 p-3 rounded-xl bg-amber-500/10 border border-amber-500/20">
           <p className="text-amber-200 text-xs">
-            {tl({ en: '⚡ The moment "Jiba" was misread as "Jaib" (pocket) — a vowel mis-insertion error, a limitation of written Arabic. This single misreading changed the name of "sine" forever. The mathematics was unchanged.', hi: '⚡ वह क्षण जब "जिबा" को गलती से "जैब" (जेब) पढ़ा गया — यह एक अनुचित स्वर जोड़ने की त्रुटि थी, जो अरबी लिपि की एक सीमा है। इस एक पढ़ने की गलती ने "sine" का नाम बदल दिया, लेकिन गणित वही रहा।', sa: '⚡ वह क्षण जब "जिबा" को गलती से "जैब" (जेब) पढ़ा गया — यह एक अनुचित स्वर जोड़ने की त्रुटि थी, जो अरबी लिपि की एक सीमा है। इस एक पढ़ने की गलती ने "sine" का नाम बदल दिया, लेकिन गणित वही रहा।' }, locale)}
+            {tl({ en: '⚡ The moment "Jiba" was misread as "Jaib" (pocket)  –  a vowel mis-insertion error, a limitation of written Arabic. This single misreading changed the name of "sine" forever. The mathematics was unchanged.', hi: '⚡ वह क्षण जब "जिबा" को गलती से "जैब" (जेब) पढ़ा गया  –  यह एक अनुचित स्वर जोड़ने की त्रुटि थी, जो अरबी लिपि की एक सीमा है। इस एक पढ़ने की गलती ने "sine" का नाम बदल दिया, लेकिन गणित वही रहा।', sa: '⚡ वह क्षण जब "जिबा" को गलती से "जैब" (जेब) पढ़ा गया  –  यह एक अनुचित स्वर जोड़ने की त्रुटि थी, जो अरबी लिपि की एक सीमा है। इस एक पढ़ने की गलती ने "sine" का नाम बदल दिया, लेकिन गणित वही रहा।' }, locale)}
           </p>
         </div>
       </div>
@@ -270,7 +270,7 @@ export default async function SinePage({ params }: { params: Promise<{ locale: s
                 <span className="text-gold-light font-semibold text-sm">{fn.sanskrit}</span>
                 <span className="text-emerald-400 font-mono text-sm">{fn.formula}</span>
               </div>
-              <div className="text-text-secondary text-xs">{isHi ? fn.english + ' — ' : ''}{lt(fn.desc as LocaleText, locale)}</div>
+              <div className="text-text-secondary text-xs">{isHi ? fn.english + '  –  ' : ''}{lt(fn.desc as LocaleText, locale)}</div>
             </div>
           ))}
         </div>

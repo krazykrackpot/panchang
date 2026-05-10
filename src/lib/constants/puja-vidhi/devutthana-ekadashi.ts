@@ -22,9 +22,9 @@ export const DEVUTTHANA_EKADASHI_PUJA: PujaVidhi = {
 
   muhurtaType: 'computed',
   muhurtaDescription: {
-    en: 'Devutthana Ekadashi falls on Kartik Shukla Ekadashi. The puja is performed during Madhyahna (midday) muhurta. Tulsi Vivah is traditionally performed on the next day (Dwadashi). Chaturmas ends on this day — auspicious ceremonies may resume.',
-    hi: 'देवउत्थान एकादशी कार्तिक शुक्ल एकादशी को पड़ती है। पूजा मध्याह्न मुहूर्त में की जाती है। तुलसी विवाह पारम्परिक रूप से अगले दिन (द्वादशी) को किया जाता है। इसी दिन चातुर्मास समाप्त होता है — शुभ कार्य पुनः आरम्भ हो सकते हैं।',
-    sa: 'देवोत्थान एकादशी कार्तिकशुक्लैकादश्यां भवति। पूजा मध्याह्नमुहूर्ते क्रियते। तुलसीविवाहः पारम्परिकरूपेण अग्रिमदिने (द्वादश्यां) क्रियते। अस्मिन् दिने चातुर्मासः समाप्यते — शुभकार्याणि पुनः आरभन्ते।',
+    en: 'Devutthana Ekadashi falls on Kartik Shukla Ekadashi. The puja is performed during Madhyahna (midday) muhurta. Tulsi Vivah is traditionally performed on the next day (Dwadashi). Chaturmas ends on this day  –  auspicious ceremonies may resume.',
+    hi: 'देवउत्थान एकादशी कार्तिक शुक्ल एकादशी को पड़ती है। पूजा मध्याह्न मुहूर्त में की जाती है। तुलसी विवाह पारम्परिक रूप से अगले दिन (द्वादशी) को किया जाता है। इसी दिन चातुर्मास समाप्त होता है  –  शुभ कार्य पुनः आरम्भ हो सकते हैं।',
+    sa: 'देवोत्थान एकादशी कार्तिकशुक्लैकादश्यां भवति। पूजा मध्याह्नमुहूर्ते क्रियते। तुलसीविवाहः पारम्परिकरूपेण अग्रिमदिने (द्वादश्यां) क्रियते। अस्मिन् दिने चातुर्मासः समाप्यते  –  शुभकार्याणि पुनः आरभन्ते।',
   },
   muhurtaWindow: { type: 'madhyahna' },
 
@@ -88,9 +88,9 @@ export const DEVUTTHANA_EKADASHI_PUJA: PujaVidhi = {
       step: 5,
       title: { en: 'Aarti and Prasad', hi: 'आरती और प्रसाद', sa: 'आरात्रिकं प्रसादश्च' },
       description: {
-        en: 'Perform joyous aarti of Lord Vishnu with ghee lamp, camphor, and bell. This is a celebration — Vishnu has awakened and auspicious activities resume. Offer fruits and sweets as naivedya.',
-        hi: 'घी के दीपक, कपूर और घंटी के साथ भगवान विष्णु की उत्साहपूर्ण आरती करें। यह उत्सव है — विष्णु जागृत हो गए हैं और शुभ कार्य पुनः आरम्भ हो रहे हैं। फल और मिठाइयाँ नैवेद्य के रूप में अर्पित करें।',
-        sa: 'घृतदीपेन कर्पूरेण घण्टया च भगवतो विष्णोः उत्सवपूर्णम् आरात्रिकं कुर्यात्। इदम् उत्सवः — विष्णुः जागृतः शुभकार्याणि पुनः आरभन्ते। फलानि मिष्टान्नानि च नैवेद्यरूपेण समर्पयेत्।',
+        en: 'Perform joyous aarti of Lord Vishnu with ghee lamp, camphor, and bell. This is a celebration  –  Vishnu has awakened and auspicious activities resume. Offer fruits and sweets as naivedya.',
+        hi: 'घी के दीपक, कपूर और घंटी के साथ भगवान विष्णु की उत्साहपूर्ण आरती करें। यह उत्सव है  –  विष्णु जागृत हो गए हैं और शुभ कार्य पुनः आरम्भ हो रहे हैं। फल और मिठाइयाँ नैवेद्य के रूप में अर्पित करें।',
+        sa: 'घृतदीपेन कर्पूरेण घण्टया च भगवतो विष्णोः उत्सवपूर्णम् आरात्रिकं कुर्यात्। इदम् उत्सवः  –  विष्णुः जागृतः शुभकार्याणि पुनः आरभन्ते। फलानि मिष्टान्नानि च नैवेद्यरूपेण समर्पयेत्।',
       },
       duration: '10 min',
       essential: true,
@@ -156,14 +156,14 @@ export const DEVUTTHANA_EKADASHI_PUJA: PujaVidhi = {
       sa: 'एकादश्यां अन्नाहारः कठोरतया वर्जनीयः। निर्दिष्टपारणासमये द्वादश्याम् एव व्रतं भञ्जयेत्।',
     },
     {
-      en: 'Marriage season begins after this day — verify muhurta before scheduling auspicious events.',
-      hi: 'इस दिन के बाद विवाह ऋतु आरम्भ होती है — शुभ कार्यक्रम निर्धारित करने से पहले मुहूर्त की जाँच करें।',
-      sa: 'अस्मात् दिनात् अनन्तरं विवाहऋतुः आरभते — शुभकार्यक्रमनिर्धारणात् पूर्वं मुहूर्तं परीक्षयेत्।',
+      en: 'Marriage season begins after this day  –  verify muhurta before scheduling auspicious events.',
+      hi: 'इस दिन के बाद विवाह ऋतु आरम्भ होती है  –  शुभ कार्यक्रम निर्धारित करने से पहले मुहूर्त की जाँच करें।',
+      sa: 'अस्मात् दिनात् अनन्तरं विवाहऋतुः आरभते  –  शुभकार्यक्रमनिर्धारणात् पूर्वं मुहूर्तं परीक्षयेत्।',
     },
     {
-      en: 'Tulsi Vivah preparation should begin alongside this puja — both are closely connected celebrations.',
-      hi: 'तुलसी विवाह की तैयारी इस पूजा के साथ शुरू करनी चाहिए — दोनों निकट सम्बन्धित उत्सव हैं।',
-      sa: 'तुलसीविवाहसज्जा अस्याः पूजायाः सह एव आरभ्यताम् — उभौ निकटसम्बद्धौ उत्सवौ स्तः।',
+      en: 'Tulsi Vivah preparation should begin alongside this puja  –  both are closely connected celebrations.',
+      hi: 'तुलसी विवाह की तैयारी इस पूजा के साथ शुरू करनी चाहिए  –  दोनों निकट सम्बन्धित उत्सव हैं।',
+      sa: 'तुलसीविवाहसज्जा अस्याः पूजायाः सह एव आरभ्यताम्  –  उभौ निकटसम्बद्धौ उत्सवौ स्तः।',
     },
   ],
 

@@ -1,5 +1,5 @@
 /**
- * Comprehensive AI Reading — Unit Tests
+ * Comprehensive AI Reading  –  Unit Tests
  *
  * Tests for:
  * 1. Birth fingerprint generation (cache key stability)
@@ -202,7 +202,7 @@ describe('generateBirthFingerprint', () => {
     expect(fp).toMatch(/^[0-9a-f]{32}$/);
   });
 
-  it('is deterministic — same input produces same output', () => {
+  it('is deterministic  –  same input produces same output', () => {
     const k = makeKundali();
     const fp1 = generateBirthFingerprint(k);
     const fp2 = generateBirthFingerprint(k);
@@ -230,7 +230,7 @@ describe('generateBirthFingerprint', () => {
     const k2 = makeKundali({
       birthData: { ...k1.birthData, lat: 28.614 },
     });
-    // 28.6139 rounds to 28.6139, 28.614 rounds to 28.6140 — different at 4dp
+    // 28.6139 rounds to 28.6139, 28.614 rounds to 28.6140  –  different at 4dp
     expect(generateBirthFingerprint(k1)).not.toBe(generateBirthFingerprint(k2));
   });
 

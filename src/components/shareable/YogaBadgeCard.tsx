@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * YogaBadgeCard — Renders a single yoga achievement badge as a shareable card.
+ * YogaBadgeCard  –  Renders a single yoga achievement badge as a shareable card.
  *
  * Uses Satori-compatible flexbox layout (no CSS grid).
  * Dark navy background with gold accents matching the card design system.
@@ -79,7 +79,7 @@ function RarityGlyph({ rarity }: { rarity: YogaBadge['rarity'] }) {
     );
   }
 
-  // Uncommon — circle
+  // Uncommon  –  circle
   return (
     <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
       <defs>

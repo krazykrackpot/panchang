@@ -9,12 +9,12 @@ import type { Metadata } from 'next';
 export const revalidate = 3600; // 1 hour
 
 export const metadata: Metadata = {
-  title: 'Panchang Widget — Dekho Panchang',
+  title: 'Panchang Widget  –  Dekho Panchang',
   robots: { index: false },
 };
 
 /**
- * Embeddable panchang widget — designed for temple websites.
+ * Embeddable panchang widget  –  designed for temple websites.
  * URL: /embed/panchang?city=varanasi or ?lat=25.31&lng=82.97&name=Varanasi
  *
  * Light theme, compact (300x400px), no navbar/footer, iframeable.
@@ -50,7 +50,7 @@ export default async function EmbedPanchangPage({
       return <WidgetError message="Invalid lat/lng. Latitude: -90 to 90, Longitude: -180 to 180." />;
     }
     locationName = params.name || `${lat.toFixed(2)}N, ${lng.toFixed(2)}E`;
-    // Approximate timezone from longitude — not perfect, but reasonable for display
+    // Approximate timezone from longitude  –  not perfect, but reasonable for display
     // For best results, pass ?city= which has IANA timezone built in
     timezone = 'Asia/Kolkata'; // Default; users should prefer city slugs
   } else {
@@ -204,7 +204,7 @@ function WidgetError({ message }: { message: string }) {
 }
 
 /**
- * Inline CSS for the widget — no external dependencies.
+ * Inline CSS for the widget  –  no external dependencies.
  * Light theme, system fonts, compact layout.
  * Designed for 250-500px width.
  */

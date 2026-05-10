@@ -85,7 +85,7 @@ const DETECTION_STEPS = [
 ] as const;
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 1 — The Problem + The Solution + Detection Algorithm          */
+/*  PAGE 1  –  The Problem + The Solution + Detection Algorithm          */
 /* ------------------------------------------------------------------ */
 function Page1() {
   const locale = useModuleLocale();
@@ -175,7 +175,7 @@ function Page1() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 2 — Naming, Amanta vs Purnimanta, Festival Rules              */
+/*  PAGE 2  –  Naming, Amanta vs Purnimanta, Festival Rules              */
 /* ------------------------------------------------------------------ */
 function Page2() {
   const locale = useModuleLocale();
@@ -254,7 +254,7 @@ function Page2() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 3 — Kshaya Masa, Real Examples, Year Comparison Visual         */
+/*  PAGE 3  –  Kshaya Masa, Real Examples, Year Comparison Visual         */
 /* ------------------------------------------------------------------ */
 function Page3() {
   const locale = useModuleLocale();

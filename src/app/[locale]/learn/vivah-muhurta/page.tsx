@@ -51,19 +51,19 @@ export default function LearnVivahMuhurtaPage() {
         <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-6">
           <BeginnerNote
             term="Muhurta"
-            explanation="Electional astrology — choosing an auspicious time for an important activity based on planetary positions"
+            explanation="Electional astrology  –  choosing an auspicious time for an important activity based on planetary positions"
           />
           <BeginnerNote
             term="Nakshatra"
-            explanation="One of 27 lunar mansions — segments of the zodiac the Moon passes through, each with a distinct deity and energy"
+            explanation="One of 27 lunar mansions  –  segments of the zodiac the Moon passes through, each with a distinct deity and energy"
           />
           <BeginnerNote
             term="Tithi"
-            explanation="A lunar day — determined by the angular distance between the Sun and Moon. There are 30 tithis in a lunar month"
+            explanation="A lunar day  –  determined by the angular distance between the Sun and Moon. There are 30 tithis in a lunar month"
           />
           <BeginnerNote
             term="Lagna"
-            explanation="The ascendant or rising sign — the zodiac sign on the eastern horizon at the moment of the ceremony"
+            explanation="The ascendant or rising sign  –  the zodiac sign on the eastern horizon at the moment of the ceremony"
           />
           <BeginnerNote
             term="Asta (Combustion)"
@@ -71,7 +71,7 @@ export default function LearnVivahMuhurtaPage() {
           />
           <BeginnerNote
             term="Karana"
-            explanation="A half-tithi — each tithi has two karanas. Some karanas carry severe classical warnings for marriage"
+            explanation="A half-tithi  –  each tithi has two karanas. Some karanas carry severe classical warnings for marriage"
           />
         </div>
 
@@ -82,8 +82,8 @@ export default function LearnVivahMuhurtaPage() {
 
           <WhyItMatters locale={locale}>
             {isIndic
-              ? 'विवाह मुहूर्त चयन मनमानी अंधविश्वास नहीं है — यह एक कठोर बहु-कारक विश्लेषण है जो शास्त्रीय ग्रंथों, खगोलीय गणना और पीढ़ियों के अनुभव पर आधारित है। प्रत्येक नियम के पीछे एक स्पष्ट ऊर्जात्मक तर्क है।'
-              : 'Marriage muhurta selection is not arbitrary superstition — it is a rigorous multi-factor analysis grounded in classical texts, astronomical computation, and generations of observational experience. Every rule has a clear energetic rationale behind it.'}
+              ? 'विवाह मुहूर्त चयन मनमानी अंधविश्वास नहीं है  –  यह एक कठोर बहु-कारक विश्लेषण है जो शास्त्रीय ग्रंथों, खगोलीय गणना और पीढ़ियों के अनुभव पर आधारित है। प्रत्येक नियम के पीछे एक स्पष्ट ऊर्जात्मक तर्क है।'
+              : 'Marriage muhurta selection is not arbitrary superstition  –  it is a rigorous multi-factor analysis grounded in classical texts, astronomical computation, and generations of observational experience. Every rule has a clear energetic rationale behind it.'}
           </WhyItMatters>
 
           <div className="mt-4 p-4 rounded-lg bg-amber-500/5 border border-amber-500/20">
@@ -98,7 +98,7 @@ export default function LearnVivahMuhurtaPage() {
 
         {/* Section 2: Solar Month Foundation */}
         <LessonSection number={2} title={t('solarTitle')}>
-          <ClassicalReference shortName="MC" chapter="Ch. 4-5" topic="Solar month suitability for Vivah Muhurta — Kharmas, Malamas, and seasonal prohibitions" />
+          <ClassicalReference shortName="MC" chapter="Ch. 4-5" topic="Solar month suitability for Vivah Muhurta  –  Kharmas, Malamas, and seasonal prohibitions" />
           <p style={bodyFont || undefined}>{t('solarContent1')}</p>
           <p className="mt-3" style={bodyFont || undefined}>{t('solarContent2')}</p>
 
@@ -185,7 +185,7 @@ export default function LearnVivahMuhurtaPage() {
 
         {/* Section 4: 11 Auspicious Nakshatras */}
         <LessonSection number={4} title={t('nakshatraGoodTitle')}>
-          <ClassicalReference shortName="MC" chapter="Ch. 7" topic="Nakshatra suitability for Vivah — the 11 classically approved lunar mansions" />
+          <ClassicalReference shortName="MC" chapter="Ch. 7" topic="Nakshatra suitability for Vivah  –  the 11 classically approved lunar mansions" />
           <ClassicalReference shortName="B.V. Raman" chapter="Muhurtha" topic="Nakshatra classification for marriage elections" />
           <p style={bodyFont || undefined}>{t('nakshatraGoodContent')}</p>
 
@@ -214,13 +214,13 @@ export default function LearnVivahMuhurtaPage() {
 
         {/* Section 5: Moderate and Prohibited Nakshatras */}
         <LessonSection number={5} title={t('nakshatraBadTitle')}>
-          <ClassicalReference shortName="MC" chapter="Ch. 7" topic="Nakshatra prohibitions for marriage — classical warnings and severity levels" />
+          <ClassicalReference shortName="MC" chapter="Ch. 7" topic="Nakshatra prohibitions for marriage  –  classical warnings and severity levels" />
           <p style={bodyFont || undefined}>{t('nakshatraBadContent')}</p>
 
           {/* Moderate */}
           <div className="mt-5 p-4 rounded-lg bg-amber-500/5 border border-amber-500/20">
             <p className="text-amber-300 text-sm font-semibold mb-2">
-              {isIndic ? 'मध्यम — सशर्त स्वीकार्य' : 'Moderate — Conditionally Acceptable'}
+              {isIndic ? 'मध्यम  –  सशर्त स्वीकार्य' : 'Moderate  –  Conditionally Acceptable'}
             </p>
             <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont || undefined}>
               {t('nakModerate')}
@@ -292,7 +292,7 @@ export default function LearnVivahMuhurtaPage() {
 
         {/* Section 8: Venus and Jupiter Combustion */}
         <LessonSection number={8} title={t('combustionTitle')}>
-          <ClassicalReference shortName="BPHS" chapter="Ch. 3" topic="Planetary combustion (Asta) orbs — proximity thresholds for Shukra and Guru" />
+          <ClassicalReference shortName="BPHS" chapter="Ch. 3" topic="Planetary combustion (Asta) orbs  –  proximity thresholds for Shukra and Guru" />
           <p style={bodyFont || undefined}>{t('combustionContent1')}</p>
 
           <div className="mt-5 space-y-4">
@@ -333,7 +333,7 @@ export default function LearnVivahMuhurtaPage() {
 
         {/* Section 9: Prohibited Karanas */}
         <LessonSection number={9} title={t('karanaTitle')}>
-          <ClassicalReference shortName="MC" chapter="Ch. 6" topic="Karana suitability for marriage — Vishti Bhadra severity by Moon's sign modality" />
+          <ClassicalReference shortName="MC" chapter="Ch. 6" topic="Karana suitability for marriage  –  Vishti Bhadra severity by Moon's sign modality" />
           <p style={bodyFont || undefined}>{t('karanaContent')}</p>
 
           <div className="mt-5 space-y-4">
@@ -348,15 +348,15 @@ export default function LearnVivahMuhurtaPage() {
               <div className="mt-3 grid grid-cols-3 gap-2 text-xs">
                 <div className="p-2 rounded border border-red-500/20 bg-red-500/5">
                   <span className="text-red-400 font-bold">{isIndic ? 'मुख' : 'Mukha'}</span>
-                  <p className="text-text-secondary mt-1">{isIndic ? 'चर राशि — सर्वाधिक खतरनाक' : 'Movable sign — most dangerous'}</p>
+                  <p className="text-text-secondary mt-1">{isIndic ? 'चर राशि  –  सर्वाधिक खतरनाक' : 'Movable sign  –  most dangerous'}</p>
                 </div>
                 <div className="p-2 rounded border border-amber-500/20 bg-amber-500/5">
                   <span className="text-amber-400 font-bold">{isIndic ? 'मध्य' : 'Madhya'}</span>
-                  <p className="text-text-secondary mt-1">{isIndic ? 'स्थिर राशि — मध्यम' : 'Fixed sign — moderate'}</p>
+                  <p className="text-text-secondary mt-1">{isIndic ? 'स्थिर राशि  –  मध्यम' : 'Fixed sign  –  moderate'}</p>
                 </div>
                 <div className="p-2 rounded border border-gold-primary/20 bg-gold-primary/5">
                   <span className="text-gold-light font-bold">{isIndic ? 'पुच्छ' : 'Puchha'}</span>
-                  <p className="text-text-secondary mt-1">{isIndic ? 'द्विस्वभाव — न्यूनतम' : 'Dual sign — least dangerous'}</p>
+                  <p className="text-text-secondary mt-1">{isIndic ? 'द्विस्वभाव  –  न्यूनतम' : 'Dual sign  –  least dangerous'}</p>
                 </div>
               </div>
             </div>
@@ -380,14 +380,14 @@ export default function LearnVivahMuhurtaPage() {
 
         {/* Section 10: Lagna Selection */}
         <LessonSection number={10} title={t('lagnaTitle')}>
-          <ClassicalReference shortName="BPHS" chapter="Ch. 6-7" topic="Lagna Shuddhi — ascendant selection rules for Vivah Muhurta" />
+          <ClassicalReference shortName="BPHS" chapter="Ch. 6-7" topic="Lagna Shuddhi  –  ascendant selection rules for Vivah Muhurta" />
           <ClassicalReference shortName="B.V. Raman" chapter="Muhurtha Ch. 11" topic="Marriage lagna selection and 7th house vacancy rule" />
           <p style={bodyFont || undefined}>{t('lagnaContent')}</p>
 
           <div className="mt-5 grid gap-3">
             <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
               <p className="text-emerald-300 text-sm font-semibold mb-2">
-                {isIndic ? 'सर्वश्रेष्ठ — \"तीन सर्वोत्तम\"' : 'Best — The "Big Three"'}
+                {isIndic ? 'सर्वश्रेष्ठ  –  \"तीन सर्वोत्तम\"' : 'Best  –  The "Big Three"'}
               </p>
               <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont || undefined}>
                 {t('lagnaBest')}
@@ -503,7 +503,7 @@ export default function LearnVivahMuhurtaPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {[
               {
-                label: isIndic ? 'मुहूर्त AI — शुभ समय खोजें' : 'Muhurta AI — Find Auspicious Dates',
+                label: isIndic ? 'मुहूर्त AI  –  शुभ समय खोजें' : 'Muhurta AI  –  Find Auspicious Dates',
                 href: '/muhurta-ai' as const,
                 color: 'border-emerald-500/20 hover:border-emerald-500/40',
               },

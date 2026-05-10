@@ -81,7 +81,7 @@ export default function PanchangWidget() {
           {tl({ en: "Today's Panchang", hi: "आज का पंचांग", sa: "आज का पंचांग" }, locale)}
         </div>
         <div style={{ color: textSec, fontSize: '10px' }}>
-          {L(data.vara.name)} — {data.date}
+          {L(data.vara.name)}  –  {data.date}
         </div>
       </div>
 

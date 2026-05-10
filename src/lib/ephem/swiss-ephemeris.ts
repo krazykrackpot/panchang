@@ -1,5 +1,5 @@
 /**
- * Swiss Ephemeris Integration — Sub-arcsecond planetary positions
+ * Swiss Ephemeris Integration  –  Sub-arcsecond planetary positions
  * Replaces Meeus algorithms for Sun, Moon, and all planets.
  * Uses the 'sweph' npm package (Swiss Ephemeris Node.js binding).
  *
@@ -68,16 +68,16 @@ export function swissJulDay(year: number, month: number, day: number, utHour: nu
 // Swiss Eph ayanamsha mode constants for supported systems
 const SIDM_MAP: Record<string, number> = {
   lahiri: 1,        // SE_SIDM_LAHIRI
-  true_chitra: 27,  // SE_SIDM_TRUE_CITRA — tracks Spica's actual current position
-  true_revati: 28,  // SE_SIDM_TRUE_REVATI — Revati (zeta Piscium) at 0° Aries
+  true_chitra: 27,  // SE_SIDM_TRUE_CITRA  –  tracks Spica's actual current position
+  true_revati: 28,  // SE_SIDM_TRUE_REVATI  –  Revati (zeta Piscium) at 0° Aries
   kp: 1,            // KP uses Lahiri base with ~6 arcmin offset (handled in getAyanamsha)
   raman: 3,         // SE_SIDM_RAMAN
   bv_raman: 3,      // Same as Raman
   yukteshwar: 7,    // SE_SIDM_YUKTESHWAR
   jn_bhasin: 13,    // SE_SIDM_JN_BHASIN
   fagan_bradley: 0, // SE_SIDM_FAGAN_BRADLEY
-  true_pushya: 29,  // SE_SIDM_TRUE_PUSHYA — Pushya (delta Cancri) at fixed position
-  galactic_center: 17, // SE_SIDM_GALCENT_0SAG — Galactic center at 0° Sagittarius
+  true_pushya: 29,  // SE_SIDM_TRUE_PUSHYA  –  Pushya (delta Cancri) at fixed position
+  galactic_center: 17, // SE_SIDM_GALCENT_0SAG  –  Galactic center at 0° Sagittarius
 };
 
 /**
@@ -94,7 +94,7 @@ export function swissAyanamsha(jd: number, sidMode?: string): number {
 
   const se = getSweph();
   if (!se) return 0;
-  // KP (Krishnamurti) is Lahiri with a ~6 arcmin offset — no dedicated Swiss Eph constant
+  // KP (Krishnamurti) is Lahiri with a ~6 arcmin offset  –  no dedicated Swiss Eph constant
   const isKP = mode === 'kp';
   const sidmNum = isKP ? (se.constants.SE_SIDM_LAHIRI ?? 1) : (SIDM_MAP[mode] ?? se.constants.SE_SIDM_LAHIRI);
   se.set_sid_mode(sidmNum, 0, 0);
@@ -119,7 +119,7 @@ export function swissPlanetLongitude(jd: number, planetId: number, useTrueNode?:
   distance: number;
   speed: number;
 } {
-  // Check memoization cache — include useTrueNode flag to prevent mean-node
+  // Check memoization cache  –  include useTrueNode flag to prevent mean-node
   // results being served for true-node requests (or vice versa)
   const key = `${jd.toFixed(6)}_${planetId}${useTrueNode ? '_T' : ''}`;
   const cached = planetCache.get(key);
@@ -139,7 +139,7 @@ export function swissPlanetLongitude(jd: number, planetId: number, useTrueNode?:
     4: se.constants.SE_JUPITER,
     5: se.constants.SE_VENUS,
     6: se.constants.SE_SATURN,
-    7: nodeConstant,  // Rahu (node — mean or true per user preference)
+    7: nodeConstant,  // Rahu (node  –  mean or true per user preference)
     8: nodeConstant,  // Ketu (calculated as Rahu + 180)
   };
 
@@ -154,7 +154,7 @@ export function swissPlanetLongitude(jd: number, planetId: number, useTrueNode?:
   const distance = result.data[2];
   let speed = result.data[3];
 
-  // Ketu = Rahu + 180 (same orbital speed — both nodes move retrograde)
+  // Ketu = Rahu + 180 (same orbital speed  –  both nodes move retrograde)
   // NOTE: Do NOT negate the speed. Swiss Eph returns mean node speed as negative
   // (~-0.053°/day, retrograde). Ketu shares the same retrograde motion as Rahu,
   // so the speed sign should be preserved, not inverted.
@@ -164,7 +164,7 @@ export function swissPlanetLongitude(jd: number, planetId: number, useTrueNode?:
   // using speed sign (rather than isRetrograde flag) to get the wrong answer.
   if (planetId === 8) {
     longitude = (longitude + 180) % 360;
-    // speed remains unchanged — Ketu moves at the same rate and direction as Rahu
+    // speed remains unchanged  –  Ketu moves at the same rate and direction as Rahu
   }
 
   const value = { longitude, latitude, distance, speed };
@@ -189,7 +189,7 @@ export function swissAllPlanets(jd: number, useTrueNode?: boolean): {
   planets: { id: number; tropical: number; sidereal: number; latitude: number; distance: number; speed: number; isRetrograde: boolean }[];
   ayanamsha: number;
 } | null {
-  // Check memoization cache — include useTrueNode flag to avoid cross-contamination
+  // Check memoization cache  –  include useTrueNode flag to avoid cross-contamination
   const key = `${jd.toFixed(6)}${useTrueNode ? '_T' : ''}`;
   const cached = allPlanetsCache.get(key);
   if (cached) return cached;
@@ -235,7 +235,7 @@ export function swissAllPlanets(jd: number, useTrueNode?: boolean): {
  * Compute sunrise using Swiss Ephemeris rise_trans.
  * Returns the Julian Day of sunrise, or null if polar non-rise.
  *
- * @param jd - Julian Day (any time on the target date — used to find the right day)
+ * @param jd - Julian Day (any time on the target date  –  used to find the right day)
  * @param lat - Geographic latitude
  * @param lng - Geographic longitude
  * @param tzOffset - Timezone offset in hours. Required to search from LOCAL midnight

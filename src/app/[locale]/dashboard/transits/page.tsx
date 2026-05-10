@@ -293,10 +293,10 @@ const GOCHARA_I18N: Record<string, Record<string, string>> = {
     bn: 'শাস্ত্রীয় গোচর (বেধ বিশ্লেষণ)',
   },
   classicalDesc: {
-    en: 'Transit quality per BPHS — houses from Moon with classical Vedha obstruction rules.',
-    hi: 'BPHS अनुसार गोचर गुणवत्ता — चन्द्र से भावों पर शास्त्रीय वेध नियम।',
-    ta: 'BPHS-ன் படி பெயர்ச்சி தரம் — சந்திரனிலிருந்து பாவங்கள் மற்றும் வேத தடை விதிகள்.',
-    bn: 'BPHS অনুসারে গোচর মান — চন্দ্র থেকে ভাব এবং শাস্ত্রীয় বেধ নিয়ম।',
+    en: 'Transit quality per BPHS  –  houses from Moon with classical Vedha obstruction rules.',
+    hi: 'BPHS अनुसार गोचर गुणवत्ता  –  चन्द्र से भावों पर शास्त्रीय वेध नियम।',
+    ta: 'BPHS-ன் படி பெயர்ச்சி தரம்  –  சந்திரனிலிருந்து பாவங்கள் மற்றும் வேத தடை விதிகள்.',
+    bn: 'BPHS অনুসারে গোচর মান  –  চন্দ্র থেকে ভাব এবং শাস্ত্রীয় বেধ নিয়ম।',
   },
   favorable: {
     en: 'Favorable', hi: 'शुभ', ta: 'சாதகமான', bn: 'শুভ',
@@ -317,10 +317,10 @@ const GOCHARA_I18N: Record<string, Record<string, string>> = {
     bn: 'দ্বি-গোচর (গুরু + শনি)',
   },
   doubleTransitDesc: {
-    en: 'Houses activated by BOTH Jupiter and Saturn — events in these life areas may manifest.',
-    hi: 'गुरु और शनि दोनों द्वारा सक्रिय भाव — इन जीवन क्षेत्रों में घटनाएं प्रकट हो सकती हैं।',
-    ta: 'குரு மற்றும் சனி இரண்டாலும் செயல்படுத்தப்பட்ட பாவங்கள் — இந்த வாழ்க்கை பகுதிகளில் நிகழ்வுகள் நடக்கலாம்.',
-    bn: 'গুরু ও শনি উভয়ের দ্বারা সক্রিয় ভাব — এই জীবন ক্ষেত্রগুলিতে ঘটনা প্রকাশিত হতে পারে।',
+    en: 'Houses activated by BOTH Jupiter and Saturn  –  events in these life areas may manifest.',
+    hi: 'गुरु और शनि दोनों द्वारा सक्रिय भाव  –  इन जीवन क्षेत्रों में घटनाएं प्रकट हो सकती हैं।',
+    ta: 'குரு மற்றும் சனி இரண்டாலும் செயல்படுத்தப்பட்ட பாவங்கள்  –  இந்த வாழ்க்கை பகுதிகளில் நிகழ்வுகள் நடக்கலாம்.',
+    bn: 'গুরু ও শনি উভয়ের দ্বারা সক্রিয় ভাব  –  এই জীবন ক্ষেত্রগুলিতে ঘটনা প্রকাশিত হতে পারে।',
   },
   house: {
     en: 'House', hi: 'भाव', ta: 'பாவம்', bn: 'ভাব',
@@ -376,7 +376,7 @@ export default function TransitsPage() {
       const results = computeGochar(snapshot.ascendant_sign, snapshot.moon_sign);
       setGocharResults(results);
 
-      // Classical Gochara engine — Vedha + BAV + Double Transit
+      // Classical Gochara engine  –  Vedha + BAV + Double Transit
       // Build TransitInput[] from the old gochar results (planets 0-6 only)
       const transitInputs: TransitInput[] = results
         .filter((r) => r.planetId >= 0 && r.planetId <= 6)
@@ -707,7 +707,7 @@ export default function TransitsPage() {
                 Double Transit (Jupiter + Saturn)
               </h3>
               <p className="text-text-secondary text-xs mb-3">
-                Houses activated by BOTH Jupiter and Saturn — events in these life areas may manifest.
+                Houses activated by BOTH Jupiter and Saturn  –  events in these life areas may manifest.
               </p>
               <div className="flex flex-wrap gap-2">
                 {doubleTransit

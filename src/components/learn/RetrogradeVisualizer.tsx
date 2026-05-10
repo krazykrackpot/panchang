@@ -29,10 +29,10 @@ const UI = {
 
 const ANNOTATIONS = {
   overtaking: {
-    en: (p: string) => `Earth overtaking ${p} — apparent slowdown begins`,
-    hi: (p: string) => `पृथ्वी ${p} को पार कर रही है — स्पष्ट मंदी शुरू होती है`,
-    ta: (p: string) => `பூமி ${p}-ஐ முந்துகிறது — மந்தமாகத் தெரிகிறது`,
-    bn: (p: string) => `পৃথিবী ${p}-কে অতিক্রম করছে — আপাত মন্দন শুরু`,
+    en: (p: string) => `Earth overtaking ${p}  –  apparent slowdown begins`,
+    hi: (p: string) => `पृथ्वी ${p} को पार कर रही है  –  स्पष्ट मंदी शुरू होती है`,
+    ta: (p: string) => `பூமி ${p}-ஐ முந்துகிறது  –  மந்தமாகத் தெரிகிறது`,
+    bn: (p: string) => `পৃথিবী ${p}-কে অতিক্রম করছে  –  আপাত মন্দন শুরু`,
   },
   station1: {
     en: (p: string) => `Station: ${p} appears to stop`,

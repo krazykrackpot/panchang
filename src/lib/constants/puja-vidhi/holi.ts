@@ -115,9 +115,9 @@ export const HOLI_PUJA: PujaVidhi = {
       step: 7,
       title: { en: 'Offer Grains & Coconut', hi: 'अन्न व नारियल अर्पण', sa: 'धान्यनारिकेलसमर्पणम्' },
       description: {
-        en: 'Offer new harvest grains — wheat, barley, roasted gram — and the whole coconut into the sacred fire. These represent the season\'s first harvest offered to the divine.',
-        hi: 'पवित्र अग्नि में नई फसल के अन्न — गेहूँ, जौ, भुने चने — और साबुत नारियल अर्पित करें। ये ऋतु की पहली उपज का देवार्पण हैं।',
-        sa: 'पवित्राग्नौ नवधान्यानि — गोधूमान् यवान् भर्जितचणकान् — सम्पूर्णनारिकेलं च समर्पयेत्। एतानि ऋतोः प्रथमोपजस्य देवार्पणानि।',
+        en: 'Offer new harvest grains  –  wheat, barley, roasted gram  –  and the whole coconut into the sacred fire. These represent the season\'s first harvest offered to the divine.',
+        hi: 'पवित्र अग्नि में नई फसल के अन्न  –  गेहूँ, जौ, भुने चने  –  और साबुत नारियल अर्पित करें। ये ऋतु की पहली उपज का देवार्पण हैं।',
+        sa: 'पवित्राग्नौ नवधान्यानि  –  गोधूमान् यवान् भर्जितचणकान्  –  सम्पूर्णनारिकेलं च समर्पयेत्। एतानि ऋतोः प्रथमोपजस्य देवार्पणानि।',
       },
       duration: '3 min',
       essential: true,
@@ -152,9 +152,9 @@ export const HOLI_PUJA: PujaVidhi = {
       step: 10,
       title: { en: 'Aarti', hi: 'आरती', sa: 'आरात्रिकम्' },
       description: {
-        en: 'Perform aarti of the Holika fire with a ghee lamp. Sing "Aarti Kunj Bihari Ki" — the aarti of Lord Krishna, celebrating the divine play of Holi.',
-        hi: 'घी के दीपक से होलिका अग्नि की आरती करें। "आरती कुंज बिहारी की" गाएँ — भगवान कृष्ण की आरती, होली की दिव्य लीला का उत्सव।',
-        sa: 'घृतदीपेन होलिकाग्नेः आरात्रिकं कुर्यात्। "आरती कुञ्जबिहारिणः" गायेत् — श्रीकृष्णस्य आरात्रिकम्, होलिकायाः दिव्यलीलोत्सवः।',
+        en: 'Perform aarti of the Holika fire with a ghee lamp. Sing "Aarti Kunj Bihari Ki"  –  the aarti of Lord Krishna, celebrating the divine play of Holi.',
+        hi: 'घी के दीपक से होलिका अग्नि की आरती करें। "आरती कुंज बिहारी की" गाएँ  –  भगवान कृष्ण की आरती, होली की दिव्य लीला का उत्सव।',
+        sa: 'घृतदीपेन होलिकाग्नेः आरात्रिकं कुर्यात्। "आरती कुञ्जबिहारिणः" गायेत्  –  श्रीकृष्णस्य आरात्रिकम्, होलिकायाः दिव्यलीलोत्सवः।',
       },
       duration: '5 min',
       essential: false,
@@ -174,7 +174,7 @@ export const HOLI_PUJA: PujaVidhi = {
     },
     {
       step: 12,
-      title: { en: 'Rang Panchami — Playing Colors', hi: 'रंग पंचमी — रंगों का खेल', sa: 'रङ्गपञ्चमी — वर्णक्रीडा' },
+      title: { en: 'Rang Panchami  –  Playing Colors', hi: 'रंग पंचमी  –  रंगों का खेल', sa: 'रङ्गपञ्चमी  –  वर्णक्रीडा' },
       description: {
         en: 'Next morning (Dhulandi / Rang Panchami): Apply gulal and natural colors to each other, dance, sing Holi songs celebrating Krishna\'s leela with the Gopis in Vrindavan. Use water guns (pichkari) and colored water.',
         hi: 'अगली सुबह (धुलण्डी / रंग पंचमी): एक-दूसरे को गुलाल और प्राकृतिक रंग लगाएँ, नाचें, वृन्दावन में कृष्ण की गोपियों के साथ लीला का स्मरण करते हुए होली गीत गाएँ। पिचकारी और रंगीन पानी का प्रयोग करें।',
@@ -193,8 +193,8 @@ export const HOLI_PUJA: PujaVidhi = {
       devanagari: 'ॐ उग्रं वीरं महाविष्णुं ज्वलन्तं सर्वतोमुखम्।\nनृसिंहं भीषणं भद्रं मृत्योर्मृत्युं नमाम्यहम्॥',
       iast: 'oṃ ugraṃ vīraṃ mahāviṣṇuṃ jvalantaṃ sarvatomukham |\nnṛsiṃhaṃ bhīṣaṇaṃ bhadraṃ mṛtyormṛtyuṃ namāmyaham ||',
       meaning: {
-        en: 'I bow to Lord Narasimha, who is fierce, heroic, the great Vishnu, blazing in all directions, terrifying yet auspicious — the death of death itself.',
-        hi: 'मैं भगवान नरसिंह को प्रणाम करता हूँ, जो उग्र, वीर, महाविष्णु, सर्वत्र ज्वलन्त, भयंकर फिर भी मंगलकारी — मृत्यु की भी मृत्यु हैं।',
+        en: 'I bow to Lord Narasimha, who is fierce, heroic, the great Vishnu, blazing in all directions, terrifying yet auspicious  –  the death of death itself.',
+        hi: 'मैं भगवान नरसिंह को प्रणाम करता हूँ, जो उग्र, वीर, महाविष्णु, सर्वत्र ज्वलन्त, भयंकर फिर भी मंगलकारी  –  मृत्यु की भी मृत्यु हैं।',
         sa: 'उग्रं वीरं महाविष्णुं ज्वलन्तं सर्वतोमुखं नृसिंहं भीषणं भद्रं मृत्योर्मृत्युं नमामि।',
       },
       japaCount: 11,
@@ -210,9 +210,9 @@ export const HOLI_PUJA: PujaVidhi = {
       devanagari: 'असृक्पाभयसन्त्रस्तैः कृता त्वं होलि बालिशैः।\nअतस्त्वां पूजयिष्यामि भूते भूतिप्रदा भव॥',
       iast: 'asṛkpābhayasantrastaiḥ kṛtā tvaṃ holi bāliśaiḥ |\natastvaṃ pūjayiṣyāmi bhūte bhūtipradā bhava ||',
       meaning: {
-        en: 'O Holika, you were created by the frightened children (devotees) seeking protection from the blood-drinking demons. Therefore I worship you — O spirit, grant us prosperity.',
-        hi: 'हे होलिका, रक्तपान करने वाले राक्षसों से भयभीत बच्चों (भक्तों) ने तुम्हें रचा। इसलिए मैं तुम्हारी पूजा करता हूँ — हे भूत, हमें समृद्धि प्रदान करो।',
-        sa: 'हे होलि, असृक्पाभयसन्त्रस्तैः बालिशैः त्वं कृता। अतः त्वां पूजयिष्यामि — हे भूते, भूतिप्रदा भव।',
+        en: 'O Holika, you were created by the frightened children (devotees) seeking protection from the blood-drinking demons. Therefore I worship you  –  O spirit, grant us prosperity.',
+        hi: 'हे होलिका, रक्तपान करने वाले राक्षसों से भयभीत बच्चों (भक्तों) ने तुम्हें रचा। इसलिए मैं तुम्हारी पूजा करता हूँ  –  हे भूत, हमें समृद्धि प्रदान करो।',
+        sa: 'हे होलि, असृक्पाभयसन्त्रस्तैः बालिशैः त्वं कृता। अतः त्वां पूजयिष्यामि  –  हे भूते, भूतिप्रदा भव।',
       },
       usage: {
         en: 'Recite while lighting the Holika pyre during the Dahan ceremony',
@@ -226,9 +226,9 @@ export const HOLI_PUJA: PujaVidhi = {
       devanagari: 'ॐ नमो भगवते महासुदर्शनाय वैष्णवज्वराय।\nमहाज्वालाय सर्वरक्षोघ्नाय सर्वभूतरक्षोघ्नाय।\nसर्वज्वरघ्नाय दह दह पच पच नाशय नाशय हुं फट् स्वाहा॥',
       iast: 'oṃ namo bhagavate mahāsudarśanāya vaiṣṇavajvarāya |\nmahājvālāya sarvarakṣoghnāya sarvabhūtarakṣoghnāya |\nsarvajvaraghnāya daha daha paca paca nāśaya nāśaya huṃ phaṭ svāhā ||',
       meaning: {
-        en: 'Salutations to the great Sudarshana (Lord Vishnu\'s disc), the Vaishnava fire, the great flame, destroyer of all demons, destroyer of all evil spirits, destroyer of all fevers — burn, burn, cook, cook, destroy, destroy — hum phat svaha!',
-        hi: 'महासुदर्शन (भगवान विष्णु के चक्र) को नमन, वैष्णव ज्वर, महाज्वाला, सभी राक्षसों के संहारक, सभी भूत-प्रेतों के नाशक, सभी ज्वरों के नाशक — दहन करो, पचा दो, नष्ट करो — हुं फट् स्वाहा!',
-        sa: 'महासुदर्शनाय वैष्णवज्वराय महाज्वालाय सर्वरक्षोघ्नाय सर्वभूतरक्षोघ्नाय सर्वज्वरघ्नाय नमः — दह दह पच पच नाशय नाशय हुं फट् स्वाहा।',
+        en: 'Salutations to the great Sudarshana (Lord Vishnu\'s disc), the Vaishnava fire, the great flame, destroyer of all demons, destroyer of all evil spirits, destroyer of all fevers  –  burn, burn, cook, cook, destroy, destroy  –  hum phat svaha!',
+        hi: 'महासुदर्शन (भगवान विष्णु के चक्र) को नमन, वैष्णव ज्वर, महाज्वाला, सभी राक्षसों के संहारक, सभी भूत-प्रेतों के नाशक, सभी ज्वरों के नाशक  –  दहन करो, पचा दो, नष्ट करो  –  हुं फट् स्वाहा!',
+        sa: 'महासुदर्शनाय वैष्णवज्वराय महाज्वालाय सर्वरक्षोघ्नाय सर्वभूतरक्षोघ्नाय सर्वज्वरघ्नाय नमः  –  दह दह पच पच नाशय नाशय हुं फट् स्वाहा।',
       },
       usage: {
         en: 'Recite during the prayer for protection after Holika Dahan, invoking divine shielding from all negativity',
@@ -267,29 +267,29 @@ export const HOLI_PUJA: PujaVidhi = {
 
   precautions: [
     {
-      en: 'Use only natural and organic colors (gulal) — avoid synthetic chemical colors that harm skin and eyes',
-      hi: 'केवल प्राकृतिक और जैविक रंग (गुलाल) का प्रयोग करें — त्वचा और आँखों को हानि पहुँचाने वाले रासायनिक रंगों से बचें',
-      sa: 'प्राकृतिकजैविकवर्णान् (गुलालम्) एव उपयोजयेत् — त्वचानेत्रहानिकारकान् रासायनिकवर्णान् वर्जयेत्',
+      en: 'Use only natural and organic colors (gulal)  –  avoid synthetic chemical colors that harm skin and eyes',
+      hi: 'केवल प्राकृतिक और जैविक रंग (गुलाल) का प्रयोग करें  –  त्वचा और आँखों को हानि पहुँचाने वाले रासायनिक रंगों से बचें',
+      sa: 'प्राकृतिकजैविकवर्णान् (गुलालम्) एव उपयोजयेत्  –  त्वचानेत्रहानिकारकान् रासायनिकवर्णान् वर्जयेत्',
     },
     {
-      en: 'Protect eyes and skin — apply coconut oil or mustard oil on exposed skin before playing colors, and wear old clothes',
-      hi: 'आँखों और त्वचा की रक्षा करें — रंग खेलने से पहले खुली त्वचा पर नारियल या सरसों का तेल लगाएँ, और पुराने कपड़े पहनें',
-      sa: 'नेत्रत्वचयोः रक्षां कुर्यात् — वर्णक्रीडायाः पूर्वम् अनावृतत्वचायां नारिकेलतैलं सर्षपतैलं वा लेपयेत्, पुरातनवस्त्राणि च धारयेत्',
+      en: 'Protect eyes and skin  –  apply coconut oil or mustard oil on exposed skin before playing colors, and wear old clothes',
+      hi: 'आँखों और त्वचा की रक्षा करें  –  रंग खेलने से पहले खुली त्वचा पर नारियल या सरसों का तेल लगाएँ, और पुराने कपड़े पहनें',
+      sa: 'नेत्रत्वचयोः रक्षां कुर्यात्  –  वर्णक्रीडायाः पूर्वम् अनावृतत्वचायां नारिकेलतैलं सर्षपतैलं वा लेपयेत्, पुरातनवस्त्राणि च धारयेत्',
     },
     {
-      en: 'Do NOT burn plastic, toxic materials, or tyres in the Holika fire — use only natural combustible materials (wood, cow dung cakes, dry leaves)',
-      hi: 'होलिका अग्नि में प्लास्टिक, विषैले पदार्थ या टायर न जलाएँ — केवल प्राकृतिक ज्वलनशील सामग्री (लकड़ी, गोबर के उपले, सूखे पत्ते) का प्रयोग करें',
-      sa: 'होलिकाग्नौ प्लास्टिकं विषद्रव्याणि चक्रवस्त्राणि वा न दहेत् — प्राकृतिकदाह्यसामग्रीम् (काष्ठं गोमयोपलान् शुष्कपत्राणि) एव उपयोजयेत्',
+      en: 'Do NOT burn plastic, toxic materials, or tyres in the Holika fire  –  use only natural combustible materials (wood, cow dung cakes, dry leaves)',
+      hi: 'होलिका अग्नि में प्लास्टिक, विषैले पदार्थ या टायर न जलाएँ  –  केवल प्राकृतिक ज्वलनशील सामग्री (लकड़ी, गोबर के उपले, सूखे पत्ते) का प्रयोग करें',
+      sa: 'होलिकाग्नौ प्लास्टिकं विषद्रव्याणि चक्रवस्त्राणि वा न दहेत्  –  प्राकृतिकदाह्यसामग्रीम् (काष्ठं गोमयोपलान् शुष्कपत्राणि) एव उपयोजयेत्',
     },
     {
-      en: 'Be mindful of fire safety — keep water and sand nearby, maintain safe distance from the pyre, keep children supervised',
-      hi: 'अग्नि सुरक्षा का ध्यान रखें — पास में पानी और रेत रखें, चिता से सुरक्षित दूरी बनाएँ, बच्चों पर निगरानी रखें',
-      sa: 'अग्निसुरक्षां प्रति सावधानाः भवन्तु — समीपे जलं सिकतां च स्थापयेत्, चितायाः सुरक्षितदूरं रक्षेत्, बालकान् अधीक्षयेत्',
+      en: 'Be mindful of fire safety  –  keep water and sand nearby, maintain safe distance from the pyre, keep children supervised',
+      hi: 'अग्नि सुरक्षा का ध्यान रखें  –  पास में पानी और रेत रखें, चिता से सुरक्षित दूरी बनाएँ, बच्चों पर निगरानी रखें',
+      sa: 'अग्निसुरक्षां प्रति सावधानाः भवन्तु  –  समीपे जलं सिकतां च स्थापयेत्, चितायाः सुरक्षितदूरं रक्षेत्, बालकान् अधीक्षयेत्',
     },
     {
-      en: 'Do not force colors on unwilling persons or animals — Holi should be played with mutual consent and joy',
-      hi: 'अनिच्छुक व्यक्तियों या पशुओं पर जबरदस्ती रंग न डालें — होली परस्पर सहमति और आनन्द से खेलनी चाहिए',
-      sa: 'अनिच्छुकेषु जनेषु पशुषु वा बलेन वर्णान् न क्षिपेत् — होलिका परस्परसम्मत्या आनन्देन च क्रीडनीया',
+      en: 'Do not force colors on unwilling persons or animals  –  Holi should be played with mutual consent and joy',
+      hi: 'अनिच्छुक व्यक्तियों या पशुओं पर जबरदस्ती रंग न डालें  –  होली परस्पर सहमति और आनन्द से खेलनी चाहिए',
+      sa: 'अनिच्छुकेषु जनेषु पशुषु वा बलेन वर्णान् न क्षिपेत्  –  होलिका परस्परसम्मत्या आनन्देन च क्रीडनीया',
     },
   ],
 

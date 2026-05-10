@@ -7,7 +7,7 @@
 import { normalizeDeg } from '@/lib/ephem/astronomical';
 
 /**
- * Sripati House System — midpoint between Equal and Placidus
+ * Sripati House System  –  midpoint between Equal and Placidus
  * Each cusp is the midpoint of the adjacent Bhava Madhya points.
  * Widely used in India, especially in Maharashtra tradition.
  *

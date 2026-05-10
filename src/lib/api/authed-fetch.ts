@@ -1,5 +1,5 @@
 /**
- * Authenticated fetch wrapper — automatically attaches the Supabase session
+ * Authenticated fetch wrapper  –  automatically attaches the Supabase session
  * Bearer token when available. Use this for ALL client-side API calls to
  * endpoints that check auth (gated or hard-auth).
  *

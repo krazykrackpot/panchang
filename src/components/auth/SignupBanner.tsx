@@ -15,35 +15,35 @@ const DISMISS_DAYS = 7;
 const PAGE_CTA: Record<string, { headline: string; subtext: string }> = {
   panchang: {
     headline: 'Save your location for daily panchang',
-    subtext: 'Free account — get personalised tithi, nakshatra & muhurta every day',
+    subtext: 'Free account  –  get personalised tithi, nakshatra & muhurta every day',
   },
   kundali: {
     headline: 'Create account to save your birth charts',
-    subtext: 'Free account — save unlimited kundalis for family & friends',
+    subtext: 'Free account  –  save unlimited kundalis for family & friends',
   },
   'muhurta-ai': {
     headline: 'Sign in to personalise muhurta with your birth data',
-    subtext: 'Free account — personalised auspicious timing based on your chart',
+    subtext: 'Free account  –  personalised auspicious timing based on your chart',
   },
   ekadashi: {
     headline: 'Get ekadashi reminders via email',
-    subtext: 'Free account — never miss a vrat day again',
+    subtext: 'Free account  –  never miss a vrat day again',
   },
   matching: {
     headline: 'Save compatibility reports for later',
-    subtext: 'Free account — no credit card needed',
+    subtext: 'Free account  –  no credit card needed',
   },
 };
 
 const DEFAULT_CTA = {
   headline: 'Save your charts & get daily panchang',
-  subtext: 'Free account — no credit card needed',
+  subtext: 'Free account  –  no credit card needed',
 };
 
 /**
  * Subtle bottom banner CTA for non-logged-in users.
  * Appears after 10 seconds on key pages. Dismisses for 7 days via localStorage.
- * NOT a modal — a small floating card in the bottom-right corner.
+ * NOT a modal  –  a small floating card in the bottom-right corner.
  */
 export default function SignupBanner() {
   const { user, initialized, initialize } = useAuthStore();
@@ -67,7 +67,7 @@ export default function SignupBanner() {
         }
       }
     } catch {
-      // localStorage unavailable — don't block
+      // localStorage unavailable  –  don't block
       console.error('[SignupBanner] localStorage read failed');
     }
 

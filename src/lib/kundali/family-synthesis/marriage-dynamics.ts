@@ -85,8 +85,8 @@ function mapSynastryHighlights(chartA: KundaliData, chartB: KundaliData): Synast
         orb: Math.round(Math.abs(asp.orb) * 10) / 10,
         nature,
         interpretation: asp.interpretation ?? {
-          en: `${pA.en} ${aspectName} ${pB.en} — ${nature} dynamic.`,
-          hi: `${pA.hi} ${aspectName} ${pB.hi} — ${nature === 'harmonious' ? 'सामंजस्यपूर्ण' : 'चुनौतीपूर्ण'} गतिशीलता।`,
+          en: `${pA.en} ${aspectName} ${pB.en}  –  ${nature} dynamic.`,
+          hi: `${pA.hi} ${aspectName} ${pB.hi}  –  ${nature === 'harmonious' ? 'सामंजस्यपूर्ण' : 'चुनौतीपूर्ण'} गतिशीलता।`,
         },
       };
     });
@@ -159,8 +159,8 @@ function detectKarmicIndicators(chartA: KundaliData, chartB: KundaliData): Karmi
       indicators.push({
         type: 'nodal_contact',
         description: {
-          en: `Your ${name?.en ?? 'planet'} conjuncts their Rahu — a magnetic attraction with a karmic quality.`,
-          hi: `आपका ${name?.hi ?? 'ग्रह'} उनके राहु से युति — कर्मिक गुणवत्ता के साथ चुंबकीय आकर्षण।`,
+          en: `Your ${name?.en ?? 'planet'} conjuncts their Rahu  –  a magnetic attraction with a karmic quality.`,
+          hi: `आपका ${name?.hi ?? 'ग्रह'} उनके राहु से युति  –  कर्मिक गुणवत्ता के साथ चुंबकीय आकर्षण।`,
         },
         strength: 7,
       });
@@ -178,7 +178,7 @@ function detectKarmicIndicators(chartA: KundaliData, chartB: KundaliData): Karmi
       type: 'saturn_aspect',
       description: {
         en: 'Your Saturn on their Moon creates a stabilising but sometimes restrictive emotional dynamic.',
-        hi: 'आपका शनि उनके चंद्रमा पर — भावनात्मक गतिशीलता को स्थिर लेकिन कभी-कभी प्रतिबंधात्मक बनाता है।',
+        hi: 'आपका शनि उनके चंद्रमा पर  –  भावनात्मक गतिशीलता को स्थिर लेकिन कभी-कभी प्रतिबंधात्मक बनाता है।',
       },
       strength: 6,
     });
@@ -189,7 +189,7 @@ function detectKarmicIndicators(chartA: KundaliData, chartB: KundaliData): Karmi
       type: 'saturn_aspect',
       description: {
         en: 'Their Saturn on your Venus tests romantic expression but builds enduring commitment.',
-        hi: 'उनका शनि आपके शुक्र पर — रोमांटिक अभिव्यक्ति की परीक्षा लेकिन स्थायी प्रतिबद्धता बनाता है।',
+        hi: 'उनका शनि आपके शुक्र पर  –  रोमांटिक अभिव्यक्ति की परीक्षा लेकिन स्थायी प्रतिबद्धता बनाता है।',
       },
       strength: 6,
     });
@@ -289,7 +289,7 @@ function buildCurrentDynamic(
   en += `with a ${vargaCompat >= 7 ? 'strong' : vargaCompat >= 5 ? 'moderate' : 'developing'} Navamsha connection. `;
   en += transit.narrative.en + ' ';
   if (dashaSync.inSync) {
-    en += `Your ${dashaSync.yourDasha} and their ${dashaSync.theirDasha} dashas are synchronised — both charts resonate in the partnership domain.`;
+    en += `Your ${dashaSync.yourDasha} and their ${dashaSync.theirDasha} dashas are synchronised  –  both charts resonate in the partnership domain.`;
   }
 
   let hi = `आपका विवाह ${gunaLabelHi} मूलभूत अनुकूलता (${gunaScore}/36 गुण मिलान) पर आधारित है `;

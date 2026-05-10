@@ -23,7 +23,7 @@ interface SearchItem {
   keywords?: string[];
 }
 
-// Static search index — all navigable pages, tools, festivals, pujas
+// Static search index  –  all navigable pages, tools, festivals, pujas
 const SEARCH_INDEX: SearchItem[] = [
   // Core pages
   { title: 'Today\'s Panchang', titleHi: 'आज का पंचांग', href: '/panchang', category: 'Pages', keywords: ['tithi', 'nakshatra', 'yoga', 'karana', 'sunrise', 'sunset', 'rahu kalam'] },

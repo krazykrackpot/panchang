@@ -14,17 +14,17 @@ const L: Record<string, LocaleText> = {
   title: { en: 'Grahan Yoga', hi: 'ग्रहण योग' },
   subtitle: { en: 'Eclipse Yoga in the Birth Chart', hi: 'जन्म कुण्डली में ग्रहण योग' },
   heroDesc: {
-    en: 'When the Sun or Moon is conjoined with Rahu or Ketu in the birth chart, an "eclipse" is permanently encoded in the nativity. This is Grahan Yoga — one of the most discussed and feared combinations in Vedic astrology, yet often misunderstood.',
-    hi: 'जब जन्म कुण्डली में सूर्य या चन्द्रमा राहु या केतु के साथ युति में हों, तो जातक में एक "ग्रहण" स्थायी रूप से अंकित होता है। यह ग्रहण योग है — वैदिक ज्योतिष में सबसे चर्चित और भयभीत करने वाले योगों में से एक, फिर भी अक्सर गलत समझा जाता है।'
+    en: 'When the Sun or Moon is conjoined with Rahu or Ketu in the birth chart, an "eclipse" is permanently encoded in the nativity. This is Grahan Yoga  –  one of the most discussed and feared combinations in Vedic astrology, yet often misunderstood.',
+    hi: 'जब जन्म कुण्डली में सूर्य या चन्द्रमा राहु या केतु के साथ युति में हों, तो जातक में एक "ग्रहण" स्थायी रूप से अंकित होता है। यह ग्रहण योग है  –  वैदिक ज्योतिष में सबसे चर्चित और भयभीत करने वाले योगों में से एक, फिर भी अक्सर गलत समझा जाता है।'
   },
   introTitle: { en: 'What is Grahan Yoga?', hi: 'ग्रहण योग क्या है?' },
   introP1: {
-    en: 'In astronomy, a solar eclipse occurs when the Moon passes between the Earth and the Sun, and a lunar eclipse occurs when the Earth\'s shadow falls on the Moon. Both events require the luminaries to be near the lunar nodes — Rahu (North Node) and Ketu (South Node).',
-    hi: 'खगोल विज्ञान में, सूर्य ग्रहण तब होता है जब चन्द्रमा पृथ्वी और सूर्य के बीच से गुजरता है, और चन्द्र ग्रहण तब होता है जब पृथ्वी की छाया चन्द्रमा पर पड़ती है। दोनों घटनाओं के लिए ज्योतियों का चन्द्र पातों — राहु (उत्तर पात) और केतु (दक्षिण पात) — के निकट होना आवश्यक है।'
+    en: 'In astronomy, a solar eclipse occurs when the Moon passes between the Earth and the Sun, and a lunar eclipse occurs when the Earth\'s shadow falls on the Moon. Both events require the luminaries to be near the lunar nodes  –  Rahu (North Node) and Ketu (South Node).',
+    hi: 'खगोल विज्ञान में, सूर्य ग्रहण तब होता है जब चन्द्रमा पृथ्वी और सूर्य के बीच से गुजरता है, और चन्द्र ग्रहण तब होता है जब पृथ्वी की छाया चन्द्रमा पर पड़ती है। दोनों घटनाओं के लिए ज्योतियों का चन्द्र पातों  –  राहु (उत्तर पात) और केतु (दक्षिण पात)  –  के निकट होना आवश्यक है।'
   },
   introP2: {
-    en: 'In the birth chart, when a luminary (Sun or Moon) is in the same sign as a node (Rahu or Ketu), the person is born with an "eclipse signature." The luminary\'s significations — identity, vitality, mind, emotions — are perpetually shadowed by the node\'s karmic energy.',
-    hi: 'जन्म कुण्डली में, जब कोई ज्योति (सूर्य या चन्द्रमा) किसी पात (राहु या केतु) के समान राशि में होती है, तो व्यक्ति एक "ग्रहण चिह्न" के साथ जन्म लेता है। ज्योति के कारकत्व — पहचान, जीवन शक्ति, मन, भावनाएँ — पात की कार्मिक ऊर्जा से सदा आच्छादित रहते हैं।'
+    en: 'In the birth chart, when a luminary (Sun or Moon) is in the same sign as a node (Rahu or Ketu), the person is born with an "eclipse signature." The luminary\'s significations  –  identity, vitality, mind, emotions  –  are perpetually shadowed by the node\'s karmic energy.',
+    hi: 'जन्म कुण्डली में, जब कोई ज्योति (सूर्य या चन्द्रमा) किसी पात (राहु या केतु) के समान राशि में होती है, तो व्यक्ति एक "ग्रहण चिह्न" के साथ जन्म लेता है। ज्योति के कारकत्व  –  पहचान, जीवन शक्ति, मन, भावनाएँ  –  पात की कार्मिक ऊर्जा से सदा आच्छादित रहते हैं।'
   },
   introP3: {
     en: 'Grahan Yoga is NOT an automatic curse. Its effects depend heavily on the orb of conjunction, the house placement, the sign involved, aspects from benefics (especially Jupiter), and the overall chart strength. Many successful and spiritually evolved individuals have this yoga.',
@@ -33,8 +33,8 @@ const L: Record<string, LocaleText> = {
   fourTypes: { en: 'The Four Types', hi: 'चार प्रकार' },
   formationTitle: { en: 'Formation Rules', hi: 'गठन के नियम' },
   formationOrb: {
-    en: 'The conjunction must typically be within 8-12 degrees to be effective. The tighter the orb, the stronger the yoga. An exact conjunction (within 1-2 degrees) creates the most powerful effects — both challenging and transformative.',
-    hi: 'प्रभावी होने के लिए युति सामान्यतः 8-12 अंशों के भीतर होनी चाहिए। जितनी संकीर्ण परिधि, उतना प्रबल योग। सटीक युति (1-2 अंशों के भीतर) सबसे शक्तिशाली प्रभाव उत्पन्न करती है — चुनौतीपूर्ण और परिवर्तनकारी दोनों।'
+    en: 'The conjunction must typically be within 8-12 degrees to be effective. The tighter the orb, the stronger the yoga. An exact conjunction (within 1-2 degrees) creates the most powerful effects  –  both challenging and transformative.',
+    hi: 'प्रभावी होने के लिए युति सामान्यतः 8-12 अंशों के भीतर होनी चाहिए। जितनी संकीर्ण परिधि, उतना प्रबल योग। सटीक युति (1-2 अंशों के भीतर) सबसे शक्तिशाली प्रभाव उत्पन्न करती है  –  चुनौतीपूर्ण और परिवर्तनकारी दोनों।'
   },
   formationSameSign: {
     en: 'Same sign conjunction is the classical definition. Different sign conjunction (where Rahu/Ketu is in the adjacent sign but within orb) is weaker but still relevant. The sign lord\'s strength determines whether the eclipse energy is constructive or destructive.',
@@ -42,7 +42,7 @@ const L: Record<string, LocaleText> = {
   },
   formationHouses: {
     en: 'The most impactful houses for Grahan Yoga are the 1st (self/health), 5th (children/intelligence), 7th (marriage/partnerships), 9th (fortune/father/dharma), and 10th (career/public life). In the 12th house, it often gives spiritual depth and past-life awareness.',
-    hi: 'ग्रहण योग के लिए सबसे प्रभावी भाव हैं — प्रथम (स्वयं/स्वास्थ्य), पंचम (सन्तान/बुद्धि), सप्तम (विवाह/साझेदारी), नवम (भाग्य/पिता/धर्म) और दशम (कैरियर/सार्वजनिक जीवन)। द्वादश भाव में यह प्रायः आध्यात्मिक गहराई और पूर्वजन्म चेतना देता है।'
+    hi: 'ग्रहण योग के लिए सबसे प्रभावी भाव हैं  –  प्रथम (स्वयं/स्वास्थ्य), पंचम (सन्तान/बुद्धि), सप्तम (विवाह/साझेदारी), नवम (भाग्य/पिता/धर्म) और दशम (कैरियर/सार्वजनिक जीवन)। द्वादश भाव में यह प्रायः आध्यात्मिक गहराई और पूर्वजन्म चेतना देता है।'
   },
   effectsTitle: { en: 'Effects by Type', hi: 'प्रकार अनुसार प्रभाव' },
   houseTitle: { en: 'House-wise Effects', hi: 'भाव अनुसार प्रभाव' },
@@ -58,15 +58,15 @@ const L: Record<string, LocaleText> = {
   classicalTitle: { en: 'Classical References', hi: 'शास्त्रीय सन्दर्भ' },
   modernTitle: { en: 'Modern Perspective', hi: 'आधुनिक परिप्रेक्ष्य' },
   modernP1: {
-    en: 'In psychological terms, Grahan Yoga represents the "shadow self" — unconscious patterns, repressed fears, and inherited ancestral trauma that surface through the luminary\'s significations. Sun-node contacts challenge the ego structure, while Moon-node contacts disrupt emotional security.',
-    hi: 'मनोवैज्ञानिक दृष्टि से, ग्रहण योग "छाया स्व" का प्रतिनिधित्व करता है — अचेतन प्रतिरूप, दमित भय, और वंशानुगत आघात जो ज्योति के कारकत्वों के माध्यम से प्रकट होते हैं।'
+    en: 'In psychological terms, Grahan Yoga represents the "shadow self"  –  unconscious patterns, repressed fears, and inherited ancestral trauma that surface through the luminary\'s significations. Sun-node contacts challenge the ego structure, while Moon-node contacts disrupt emotional security.',
+    hi: 'मनोवैज्ञानिक दृष्टि से, ग्रहण योग "छाया स्व" का प्रतिनिधित्व करता है  –  अचेतन प्रतिरूप, दमित भय, और वंशानुगत आघात जो ज्योति के कारकत्वों के माध्यम से प्रकट होते हैं।'
   },
   modernP2: {
-    en: 'Eclipse cycles in mundane astrology show remarkable correspondence with collective events. Individuals born during actual eclipses carry this energy most intensely, but the natal conjunction creates a lifelong resonance with eclipse seasons — periods when the transiting nodes return to the natal luminary position.',
+    en: 'Eclipse cycles in mundane astrology show remarkable correspondence with collective events. Individuals born during actual eclipses carry this energy most intensely, but the natal conjunction creates a lifelong resonance with eclipse seasons  –  periods when the transiting nodes return to the natal luminary position.',
     hi: 'साम्प्रदायिक ज्योतिष में ग्रहण चक्र सामूहिक घटनाओं के साथ उल्लेखनीय पत्राचार दिखाते हैं। वास्तविक ग्रहणों के दौरान जन्मे व्यक्ति इस ऊर्जा को सबसे तीव्रता से वहन करते हैं।'
   },
   modernP3: {
-    en: 'The shadow work metaphor is apt: Grahan Yoga individuals often become healers, counselors, or transformative leaders precisely because they have faced and integrated their shadow. The yoga demands confrontation with uncomfortable truths — and rewards it with depth, authenticity, and the ability to help others through their own darkness.',
+    en: 'The shadow work metaphor is apt: Grahan Yoga individuals often become healers, counselors, or transformative leaders precisely because they have faced and integrated their shadow. The yoga demands confrontation with uncomfortable truths  –  and rewards it with depth, authenticity, and the ability to help others through their own darkness.',
     hi: 'छाया कार्य रूपक उपयुक्त है: ग्रहण योग वाले व्यक्ति प्रायः चिकित्सक, परामर्शदाता, या परिवर्तनकारी नेता बनते हैं क्योंकि उन्होंने अपनी छाया का सामना किया और उसे एकीकृत किया है।'
   },
   severityTitle: { en: 'Severity Assessment', hi: 'गम्भीरता आकलन' },
@@ -85,13 +85,13 @@ const GRAHAN_TYPES = [
     borderColor: 'border-amber-500/20',
     bgColor: 'bg-amber-500/8',
     summary: {
-      en: 'Rahu amplifies and distorts the Sun\'s energy. The native struggles with authority, father figures, and self-identity. There is a deep hunger for recognition that is never fully satisfied — Rahu\'s insatiable appetite applied to the ego.',
+      en: 'Rahu amplifies and distorts the Sun\'s energy. The native struggles with authority, father figures, and self-identity. There is a deep hunger for recognition that is never fully satisfied  –  Rahu\'s insatiable appetite applied to the ego.',
       hi: 'राहु सूर्य की ऊर्जा को बढ़ाता और विकृत करता है। जातक अधिकार, पिता सम्बन्ध और आत्म-पहचान से संघर्ष करता है। मान्यता की गहरी भूख जो पूर्णतः तृप्त नहीं होती।'
     },
     effects: [
-      { en: 'Father absent, distant, or a complicated relationship — authority trauma', hi: 'पिता अनुपस्थित, दूर, या जटिल सम्बन्ध — अधिकार आघात' },
-      { en: 'Ego inflation followed by deflation cycles — identity confusion', hi: 'अहंकार प्रसार फिर संकुचन चक्र — पहचान भ्रम' },
-      { en: 'Unconventional career path — attracted to power, politics, foreign lands', hi: 'अपरम्परागत कैरियर मार्ग — सत्ता, राजनीति, विदेश की ओर आकर्षण' },
+      { en: 'Father absent, distant, or a complicated relationship  –  authority trauma', hi: 'पिता अनुपस्थित, दूर, या जटिल सम्बन्ध  –  अधिकार आघात' },
+      { en: 'Ego inflation followed by deflation cycles  –  identity confusion', hi: 'अहंकार प्रसार फिर संकुचन चक्र  –  पहचान भ्रम' },
+      { en: 'Unconventional career path  –  attracted to power, politics, foreign lands', hi: 'अपरम्परागत कैरियर मार्ग  –  सत्ता, राजनीति, विदेश की ओर आकर्षण' },
       { en: 'Chronic vitality issues, especially heart, spine, eyes', hi: 'दीर्घकालिक जीवन शक्ति समस्याएँ, विशेषतः हृदय, रीढ़, आँखें' },
       { en: 'Deep karmic lessons around leadership and humility', hi: 'नेतृत्व और विनम्रता सम्बन्धी गहरे कार्मिक पाठ' },
     ],
@@ -110,11 +110,11 @@ const GRAHAN_TYPES = [
       hi: 'केतु सूर्य की सांसारिक महत्वाकांक्षाओं को विघटित करता है। जातक अहंकार के प्रयासों से विरक्त, सांसारिक सफलता के प्रति उदासीन, या आध्यात्मिकता की ओर आकर्षित दिख सकता है।'
     },
     effects: [
-      { en: 'Spiritual inclination from early age — monastic or ascetic tendencies', hi: 'बाल्यकाल से आध्यात्मिक रुझान — सन्यासी या तपस्वी प्रवृत्तियाँ' },
+      { en: 'Spiritual inclination from early age  –  monastic or ascetic tendencies', hi: 'बाल्यकाल से आध्यात्मिक रुझान  –  सन्यासी या तपस्वी प्रवृत्तियाँ' },
       { en: 'Father may be spiritual, absent, or have health issues', hi: 'पिता आध्यात्मिक, अनुपस्थित, या स्वास्थ्य समस्याओं वाले हो सकते हैं' },
-      { en: 'Difficulty sustaining worldly ambitions — starts strong, loses interest', hi: 'सांसारिक महत्वाकांक्षाओं को बनाए रखने में कठिनाई' },
+      { en: 'Difficulty sustaining worldly ambitions  –  starts strong, loses interest', hi: 'सांसारिक महत्वाकांक्षाओं को बनाए रखने में कठिनाई' },
       { en: 'Health: fevers, bile disorders, weakened constitution', hi: 'स्वास्थ्य: ज्वर, पित्त विकार, दुर्बल शारीरिक संरचना' },
-      { en: 'Past-life gifts surface naturally — sudden intuitive knowledge', hi: 'पूर्वजन्म की प्रतिभाएँ स्वाभाविक रूप से प्रकट होती हैं — अचानक अन्तर्ज्ञान' },
+      { en: 'Past-life gifts surface naturally  –  sudden intuitive knowledge', hi: 'पूर्वजन्म की प्रतिभाएँ स्वाभाविक रूप से प्रकट होती हैं  –  अचानक अन्तर्ज्ञान' },
     ],
   },
   {
@@ -127,13 +127,13 @@ const GRAHAN_TYPES = [
     borderColor: 'border-blue-500/20',
     bgColor: 'bg-blue-500/8',
     summary: {
-      en: 'Rahu obsesses and magnifies the Moon\'s emotional nature. The native experiences intense emotions, anxiety, fear, and an overactive imagination. The mind is constantly restless — Rahu\'s amplification applied to feelings and perceptions.',
+      en: 'Rahu obsesses and magnifies the Moon\'s emotional nature. The native experiences intense emotions, anxiety, fear, and an overactive imagination. The mind is constantly restless  –  Rahu\'s amplification applied to feelings and perceptions.',
       hi: 'राहु चन्द्रमा की भावनात्मक प्रकृति को ग्रसित और प्रवर्धित करता है। जातक तीव्र भावनाएँ, चिन्ता, भय और अतिसक्रिय कल्पना अनुभव करता है। मन सदा अशान्त रहता है।'
     },
     effects: [
-      { en: 'Emotional turbulence — anxiety, phobias, obsessive thinking', hi: 'भावनात्मक उथल-पुथल — चिन्ता, भय, जुनूनी विचार' },
-      { en: 'Mother relationship complicated — enmeshment or manipulation themes', hi: 'माता सम्बन्ध जटिल — उलझन या छलपूर्ण प्रवृत्तियाँ' },
-      { en: 'Powerful imagination — can manifest as artistic genius or paranoia', hi: 'शक्तिशाली कल्पना — कलात्मक प्रतिभा या भ्रम के रूप में प्रकट हो सकती है' },
+      { en: 'Emotional turbulence  –  anxiety, phobias, obsessive thinking', hi: 'भावनात्मक उथल-पुथल  –  चिन्ता, भय, जुनूनी विचार' },
+      { en: 'Mother relationship complicated  –  enmeshment or manipulation themes', hi: 'माता सम्बन्ध जटिल  –  उलझन या छलपूर्ण प्रवृत्तियाँ' },
+      { en: 'Powerful imagination  –  can manifest as artistic genius or paranoia', hi: 'शक्तिशाली कल्पना  –  कलात्मक प्रतिभा या भ्रम के रूप में प्रकट हो सकती है' },
       { en: 'Sleep disturbances, vivid dreams, possible psychic sensitivity', hi: 'निद्रा विकार, स्पष्ट स्वप्न, सम्भावित मानसिक संवेदनशीलता' },
       { en: 'Attraction to intoxicants or escapist behaviors', hi: 'मादक पदार्थों या पलायनवादी व्यवहारों की ओर आकर्षण' },
     ],
@@ -152,10 +152,10 @@ const GRAHAN_TYPES = [
       hi: 'केतु चन्द्रमा को भावनात्मक सम्पर्क से विरक्त करता है। जातक भावनात्मक रूप से जड़, वियुक्त, या आध्यात्मिक रूप से अलौकिक दिख सकता है।'
     },
     effects: [
-      { en: 'Emotional numbness or dissociation — feeling "not fully here"', hi: 'भावनात्मक जड़ता या विघटन — "पूर्णतः यहाँ नहीं" का भाव' },
-      { en: 'Psychic ability — clairvoyance, past-life memories, intuition', hi: 'मानसिक क्षमता — दिव्यदृष्टि, पूर्वजन्म स्मृतियाँ, अन्तर्ज्ञान' },
+      { en: 'Emotional numbness or dissociation  –  feeling "not fully here"', hi: 'भावनात्मक जड़ता या विघटन  –  "पूर्णतः यहाँ नहीं" का भाव' },
+      { en: 'Psychic ability  –  clairvoyance, past-life memories, intuition', hi: 'मानसिक क्षमता  –  दिव्यदृष्टि, पूर्वजन्म स्मृतियाँ, अन्तर्ज्ञान' },
       { en: 'Mother may be spiritual or emotionally unavailable', hi: 'माता आध्यात्मिक या भावनात्मक रूप से अनुपलब्ध हो सकती हैं' },
-      { en: 'Difficulty bonding — relationships feel karmically heavy', hi: 'बन्धन में कठिनाई — सम्बन्ध कार्मिक रूप से भारी लगते हैं' },
+      { en: 'Difficulty bonding  –  relationships feel karmically heavy', hi: 'बन्धन में कठिनाई  –  सम्बन्ध कार्मिक रूप से भारी लगते हैं' },
       { en: 'Past-life emotional patterns surface for resolution', hi: 'पूर्वजन्म के भावनात्मक प्रतिरूप समाधान हेतु प्रकट होते हैं' },
     ],
   },
@@ -163,18 +163,18 @@ const GRAHAN_TYPES = [
 
 // ─── House Effects ───────────────────────────────────────────────────────────
 const HOUSE_EFFECTS: { house: number; en: string; hi: string }[] = [
-  { house: 1, en: 'Identity crisis, health challenges, unusual personality. The self is eclipsed — the native reinvents themselves repeatedly. Strong drive toward self-discovery.', hi: 'पहचान संकट, स्वास्थ्य चुनौतियाँ, असामान्य व्यक्तित्व। स्वयं ग्रसित — जातक बार-बार स्वयं को पुनः परिभाषित करता है।' },
+  { house: 1, en: 'Identity crisis, health challenges, unusual personality. The self is eclipsed  –  the native reinvents themselves repeatedly. Strong drive toward self-discovery.', hi: 'पहचान संकट, स्वास्थ्य चुनौतियाँ, असामान्य व्यक्तित्व। स्वयं ग्रसित  –  जातक बार-बार स्वयं को पुनः परिभाषित करता है।' },
   { house: 2, en: 'Family discord, speech issues (stammer or harsh speech), financial instability. Inherited family karma. Unconventional eating habits or dietary restrictions.', hi: 'पारिवारिक कलह, वाणी दोष, आर्थिक अस्थिरता। वंशानुगत पारिवारिक कर्म। असामान्य आहार आदतें।' },
   { house: 3, en: 'Courage fluctuates, strained sibling relationships, communication challenges. But potential for powerful writing, media work, or unconventional artistic expression.', hi: 'साहस में उतार-चढ़ाव, भाई-बहन से तनावपूर्ण सम्बन्ध, संवाद चुनौतियाँ। परन्तु शक्तिशाली लेखन, मीडिया कार्य की सम्भावना।' },
   { house: 4, en: 'Domestic instability, mother\'s health or emotional absence, property disputes. Inner peace is hard to find. May live far from birthplace.', hi: 'घरेलू अस्थिरता, माता का स्वास्थ्य या भावनात्मक अनुपस्थिति, सम्पत्ति विवाद। आन्तरिक शान्ति कठिन।' },
   { house: 5, en: 'Children delayed or complicated, education disrupted, intelligence is sharp but erratic. Romance follows unusual patterns. Creative genius possible but unpredictable.', hi: 'सन्तान में विलम्ब या जटिलता, शिक्षा बाधित, बुद्धि तीव्र पर अनियमित। रचनात्मक प्रतिभा सम्भव पर अनिश्चित।' },
-  { house: 6, en: 'Can actually be beneficial — the eclipse empowers the native to overcome enemies, diseases, and debts. Healing ability. Good for medical or service professions.', hi: 'वस्तुतः लाभकारी हो सकता है — ग्रहण जातक को शत्रु, रोग और ऋण पर विजय देता है। चिकित्सा क्षमता।' },
-  { house: 7, en: 'Marriage faces unusual challenges — partner may be from different culture, or relationship has karmic intensity. Business partnerships need caution.', hi: 'विवाह असामान्य चुनौतियों का सामना करता है — साथी भिन्न संस्कृति का, या सम्बन्ध कार्मिक तीव्रता वाला। व्यापारिक साझेदारी में सावधानी आवश्यक।' },
+  { house: 6, en: 'Can actually be beneficial  –  the eclipse empowers the native to overcome enemies, diseases, and debts. Healing ability. Good for medical or service professions.', hi: 'वस्तुतः लाभकारी हो सकता है  –  ग्रहण जातक को शत्रु, रोग और ऋण पर विजय देता है। चिकित्सा क्षमता।' },
+  { house: 7, en: 'Marriage faces unusual challenges  –  partner may be from different culture, or relationship has karmic intensity. Business partnerships need caution.', hi: 'विवाह असामान्य चुनौतियों का सामना करता है  –  साथी भिन्न संस्कृति का, या सम्बन्ध कार्मिक तीव्रता वाला। व्यापारिक साझेदारी में सावधानी आवश्यक।' },
   { house: 8, en: 'Deep transformations, occult interests, inheritance disputes. Powerful research ability. Near-death experiences or profound life crises that lead to rebirth.', hi: 'गहरे परिवर्तन, गूढ़ रुचियाँ, विरासत विवाद। शक्तिशाली शोध क्षमता। मृत्यु-निकट अनुभव या गहरे जीवन संकट।' },
   { house: 9, en: 'Father\'s health or relationship affected, religious beliefs challenged, guru relationships complicated. May develop unconventional spiritual path.', hi: 'पिता का स्वास्थ्य या सम्बन्ध प्रभावित, धार्मिक विश्वास चुनौतीपूर्ण। अपरम्परागत आध्यात्मिक मार्ग विकसित कर सकता है।' },
-  { house: 10, en: 'Career follows non-linear path — sudden rises and falls. Public reputation eclipsed periodically. Success in unconventional fields, foreign lands, or healing professions.', hi: 'कैरियर अरेखीय मार्ग पर — अचानक उतार-चढ़ाव। सार्वजनिक प्रतिष्ठा समय-समय पर ग्रसित। अपरम्परागत क्षेत्रों में सफलता।' },
+  { house: 10, en: 'Career follows non-linear path  –  sudden rises and falls. Public reputation eclipsed periodically. Success in unconventional fields, foreign lands, or healing professions.', hi: 'कैरियर अरेखीय मार्ग पर  –  अचानक उतार-चढ़ाव। सार्वजनिक प्रतिष्ठा समय-समय पर ग्रसित। अपरम्परागत क्षेत्रों में सफलता।' },
   { house: 11, en: 'Income fluctuates, elder siblings face challenges, social circle is unusual. Large network but few deep friendships. Gains through foreign or unconventional sources.', hi: 'आय में उतार-चढ़ाव, बड़े भाई-बहन चुनौतियों का सामना, सामाजिक वृत्त असामान्य। विदेशी या अपरम्परागत स्रोतों से लाभ।' },
-  { house: 12, en: 'Paradoxically one of the better placements — spiritual depth, vivid dream life, foreign settlement. Expenses on spiritual pursuits. Strong meditation ability. Past-life awareness.', hi: 'विरोधाभासी रूप से बेहतर स्थिति — आध्यात्मिक गहराई, स्पष्ट स्वप्न, विदेश बसावट। आध्यात्मिक साधनाओं पर व्यय। ध्यान क्षमता।' },
+  { house: 12, en: 'Paradoxically one of the better placements  –  spiritual depth, vivid dream life, foreign settlement. Expenses on spiritual pursuits. Strong meditation ability. Past-life awareness.', hi: 'विरोधाभासी रूप से बेहतर स्थिति  –  आध्यात्मिक गहराई, स्पष्ट स्वप्न, विदेश बसावट। आध्यात्मिक साधनाओं पर व्यय। ध्यान क्षमता।' },
 ];
 
 // ─── Cancellation Factors ────────────────────────────────────────────────────
@@ -191,7 +191,7 @@ const CANCELLATION_FACTORS = [
   {
     title: { en: 'Jupiter\'s Aspect', hi: 'बृहस्पति की दृष्टि' },
     desc: {
-      en: 'Jupiter\'s 5th, 7th, or 9th aspect on the Grahan Yoga conjunction is the single most powerful cancellation factor. Jupiter brings wisdom, protection, and grace — transforming the eclipse from a curse into a catalyst for growth.',
+      en: 'Jupiter\'s 5th, 7th, or 9th aspect on the Grahan Yoga conjunction is the single most powerful cancellation factor. Jupiter brings wisdom, protection, and grace  –  transforming the eclipse from a curse into a catalyst for growth.',
       hi: 'ग्रहण योग युति पर बृहस्पति की 5वीं, 7वीं, या 9वीं दृष्टि सबसे शक्तिशाली भंग कारक है। बृहस्पति ज्ञान, सुरक्षा और कृपा लाता है।'
     },
     color: 'text-amber-400',
@@ -200,8 +200,8 @@ const CANCELLATION_FACTORS = [
   {
     title: { en: 'Luminary in Own/Exalted Sign', hi: 'ज्योति स्वराशि/उच्च राशि में' },
     desc: {
-      en: 'Sun in Leo or Aries, Moon in Cancer or Taurus — when the eclipsed luminary is inherently strong, it can withstand the nodal shadow. The eclipse manifests as intensity rather than affliction.',
-      hi: 'सूर्य सिंह या मेष में, चन्द्रमा कर्क या वृषभ में — जब ग्रसित ज्योति स्वभावतः बलवान हो, तो वह पात की छाया सहन कर सकती है।'
+      en: 'Sun in Leo or Aries, Moon in Cancer or Taurus  –  when the eclipsed luminary is inherently strong, it can withstand the nodal shadow. The eclipse manifests as intensity rather than affliction.',
+      hi: 'सूर्य सिंह या मेष में, चन्द्रमा कर्क या वृषभ में  –  जब ग्रसित ज्योति स्वभावतः बलवान हो, तो वह पात की छाया सहन कर सकती है।'
     },
     color: 'text-cyan-400',
     borderColor: 'border-cyan-500/20',
@@ -238,8 +238,8 @@ const CLASSICAL_REFS = [
   {
     text: { en: 'Jataka Parijata', hi: 'जातक पारिजात' },
     source: {
-      en: 'Notes that a luminary conjoined with nodes gives results "as if born during an eclipse" — the native carries eclipse karma regardless of the actual tithi of birth. Discusses specific house-level results for each node-luminary combination.',
-      hi: 'उल्लेख करता है कि पातों के साथ ज्योति युत होने पर "ग्रहण के समय जन्मे" सदृश फल मिलते हैं — जातक जन्म तिथि से निरपेक्ष ग्रहण कर्म वहन करता है।'
+      en: 'Notes that a luminary conjoined with nodes gives results "as if born during an eclipse"  –  the native carries eclipse karma regardless of the actual tithi of birth. Discusses specific house-level results for each node-luminary combination.',
+      hi: 'उल्लेख करता है कि पातों के साथ ज्योति युत होने पर "ग्रहण के समय जन्मे" सदृश फल मिलते हैं  –  जातक जन्म तिथि से निरपेक्ष ग्रहण कर्म वहन करता है।'
     },
   },
   {
@@ -284,7 +284,7 @@ const SEVERITY_LEVELS = [
   {
     level: { en: 'Cancelled / Transformed', hi: 'भंग / रूपान्तरित' },
     pct: '0-10%',
-    condition: { en: 'Luminary in own/exalted sign, Jupiter conjunct or aspecting, strong dispositor in kendra, multiple benefics involved — yoga becomes a source of depth and spiritual power', hi: 'ज्योति स्वराशि/उच्च में, बृहस्पति युत या दृष्टि, बलवान राशि स्वामी केन्द्र में — योग गहराई और आध्यात्मिक शक्ति का स्रोत बनता है' },
+    condition: { en: 'Luminary in own/exalted sign, Jupiter conjunct or aspecting, strong dispositor in kendra, multiple benefics involved  –  yoga becomes a source of depth and spiritual power', hi: 'ज्योति स्वराशि/उच्च में, बृहस्पति युत या दृष्टि, बलवान राशि स्वामी केन्द्र में  –  योग गहराई और आध्यात्मिक शक्ति का स्रोत बनता है' },
     color: 'border-cyan-500/20',
     textColor: 'text-cyan-400',
   },

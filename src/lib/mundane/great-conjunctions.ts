@@ -1,5 +1,5 @@
 /**
- * Great Conjunction Tracker — Jupiter-Saturn conjunctions 1800-2100
+ * Great Conjunction Tracker  –  Jupiter-Saturn conjunctions 1800-2100
  *
  * Method: Scan year-by-year, detect months where Jupiter and Saturn come
  * within 10° of each other (sidereal), then binary-search for the exact
@@ -62,21 +62,21 @@ function getRashi(lng: number): number {
 
 /** Historical/thematic annotations keyed by approximate year */
 const HISTORICAL_NOTES: Record<number, string> = {
-  1821: 'Conjunction in Capricorn — era of industrial revolution and European conservatism',
-  1842: 'Conjunction in Capricorn — peak of industrial expansion, British Empire consolidation',
-  1861: 'Conjunction in Virgo — US Civil War era, dissolution of old orders',
-  1881: 'Conjunction in Taurus — Gilded Age prosperity, colonial peak',
-  1901: 'Conjunction in Sagittarius — dawn of the 20th century, colonial empires at zenith',
-  1921: 'Conjunction in Virgo — post-WWI reconstruction, rise of fascism',
-  1940: 'Conjunction in Taurus — WWII era, material world at war',
-  1961: 'Conjunction in Capricorn — Cold War tension, space race, Capricorn industrialism',
-  1980: 'Conjunction in Virgo — Thatcher-Reagan era, shift to market economies',
-  2000: 'Conjunction in Taurus — dot-com era, material world going digital',
-  2020: 'Conjunction in Capricorn/Aquarius — COVID-19 pandemic, digital transformation, start of Air era (first Air sign in 800 years)',
-  2040: 'Conjunction in Libra — projected era of diplomacy, balance, and multilateral cooperation',
-  2060: 'Conjunction in Gemini — information society peak, AI and communication era',
-  2080: 'Conjunction in Aquarius — humanitarian values, technology governance era',
-  2100: 'Conjunction in Libra — global balance, ecological restoration era',
+  1821: 'Conjunction in Capricorn  –  era of industrial revolution and European conservatism',
+  1842: 'Conjunction in Capricorn  –  peak of industrial expansion, British Empire consolidation',
+  1861: 'Conjunction in Virgo  –  US Civil War era, dissolution of old orders',
+  1881: 'Conjunction in Taurus  –  Gilded Age prosperity, colonial peak',
+  1901: 'Conjunction in Sagittarius  –  dawn of the 20th century, colonial empires at zenith',
+  1921: 'Conjunction in Virgo  –  post-WWI reconstruction, rise of fascism',
+  1940: 'Conjunction in Taurus  –  WWII era, material world at war',
+  1961: 'Conjunction in Capricorn  –  Cold War tension, space race, Capricorn industrialism',
+  1980: 'Conjunction in Virgo  –  Thatcher-Reagan era, shift to market economies',
+  2000: 'Conjunction in Taurus  –  dot-com era, material world going digital',
+  2020: 'Conjunction in Capricorn/Aquarius  –  COVID-19 pandemic, digital transformation, start of Air era (first Air sign in 800 years)',
+  2040: 'Conjunction in Libra  –  projected era of diplomacy, balance, and multilateral cooperation',
+  2060: 'Conjunction in Gemini  –  information society peak, AI and communication era',
+  2080: 'Conjunction in Aquarius  –  humanitarian values, technology governance era',
+  2100: 'Conjunction in Libra  –  global balance, ecological restoration era',
 };
 
 function getAnnotation(year: number): string {
@@ -117,7 +117,7 @@ export function findGreatConjunctions(
       const sep2 = angularSep(jup2, sat2);
 
       // Check if separation crosses a minimum (conjunction) during this month
-      // — i.e., both endpoints are < 10° AND we detect they were even closer midway
+      //  –  i.e., both endpoints are < 10° AND we detect they were even closer midway
       if (sep1 < 10 && sep2 < 10) {
         // Binary-search for the minimum separation day in this month
         let lo = jd1;
@@ -144,7 +144,7 @@ export function findGreatConjunctions(
         const { jupLng, satLng } = getJupiterSaturn(exactJd);
         const finalSep = angularSep(jupLng, satLng);
 
-        // Only record actual conjunction (< 3°) — avoids near-miss multi-passes
+        // Only record actual conjunction (< 3°)  –  avoids near-miss multi-passes
         if (finalSep < 3) {
           // Convert JD to date
           const d = new Date(Date.UTC(2000, 0, 1) + (exactJd - 2451545.0) * 86400000);
@@ -153,7 +153,7 @@ export function findGreatConjunctions(
           const conjDay = String(d.getUTCDate()).padStart(2, '0');
           const dateStr = `${conjYear}-${conjMonth}-${conjDay}`;
 
-          // Deduplicate — don't add if we already have a conjunction within 30 days of this
+          // Deduplicate  –  don't add if we already have a conjunction within 30 days of this
           const lastConj = conjunctions[conjunctions.length - 1];
           if (lastConj) {
             const lastJd = dateToJD(
@@ -169,10 +169,10 @@ export function findGreatConjunctions(
           const annotation = getAnnotation(conjYear);
 
           const elementDesc: Record<ConjunctionElement, string> = {
-            fire: 'Fire sign — era of idealism, expansion, and religious/political movements',
-            earth: 'Earth sign — era of materialism, practical consolidation, economic focus',
-            air: 'Air sign — era of ideas, communication, social restructuring',
-            water: 'Water sign — era of emotional transformation, hidden forces, spiritual currents',
+            fire: 'Fire sign  –  era of idealism, expansion, and religious/political movements',
+            earth: 'Earth sign  –  era of materialism, practical consolidation, economic focus',
+            air: 'Air sign  –  era of ideas, communication, social restructuring',
+            water: 'Water sign  –  era of emotional transformation, hidden forces, spiritual currents',
           };
 
           const interpretation = annotation || elementDesc[element];
@@ -195,7 +195,7 @@ export function findGreatConjunctions(
   return conjunctions;
 }
 
-/** Cached result — computed once on first call */
+/** Cached result  –  computed once on first call */
 let _cachedConjunctions: GreatConjunction[] | null = null;
 
 /**
@@ -228,7 +228,7 @@ export function getNearConjunctions(beforeCount = 5, afterCount = 5): {
     if (daysAgo > 365) {
       past.push({ ...conj, isHistorical: true });
     } else if (daysAgo >= 0) {
-      // Within the last year — "current" era
+      // Within the last year  –  "current" era
       current = { ...conj, isHistorical: true };
     } else {
       future.push({ ...conj, isHistorical: false });

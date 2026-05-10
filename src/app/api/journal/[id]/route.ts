@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
 
 // ---------------------------------------------------------------------------
-// DELETE /api/journal/[id] — delete a single journal entry by id
+// DELETE /api/journal/[id]  –  delete a single journal entry by id
 // ---------------------------------------------------------------------------
 export async function DELETE(
   req: NextRequest,

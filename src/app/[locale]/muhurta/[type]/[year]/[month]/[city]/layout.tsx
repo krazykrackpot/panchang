@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const activityName = tl(activity.label, locale);
   const monthName = MONTH_NAMES[monthNum - 1];
 
-  const title = `Best Muhurta for ${activityName} in ${monthName} ${year} — ${cityName} | Dekho Panchang`;
+  const title = `Best Muhurta for ${activityName} in ${monthName} ${year}  –  ${cityName} | Dekho Panchang`;
   const description = `Find the most auspicious dates and times for ${activityName.toLowerCase()} in ${cityName} during ${monthName} ${year}. Scored by tithi, nakshatra, yoga, and planetary transits.`;
 
   return {

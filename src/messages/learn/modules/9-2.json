@@ -1,27 +1,27 @@
 {
   "title": {
-    "en": "Houses (Bhavas) — The 12 Life Areas",
-    "hi": "भाव — जीवन के 12 क्षेत्र",
-    "sa": "भावाः — जीवनस्य द्वादशक्षेत्राणि",
-    "mai": "भाव — जीवनक 12 क्षेत्र",
-    "mr": "भाव — जीवनाची 12 क्षेत्रे",
-    "ta": "பாவங்கள் — வாழ்க்கையின் 12 பகுதிகள்",
-    "te": "భావాలు — జీవితంలోని 12 రంగాలు",
-    "bn": "ভাব — জীবনের ১২টি ক্ষেত্র",
-    "kn": "ಭಾವಗಳು — ಜೀವನದ 12 ಕ್ಷೇತ್ರಗಳು",
-    "gu": "ભાવ — જીવનના 12 ક્ષેત્રો"
+    "en": "Houses (Bhavas)  –  The 12 Life Areas",
+    "hi": "भाव  –  जीवन के 12 क्षेत्र",
+    "sa": "भावाः  –  जीवनस्य द्वादशक्षेत्राणि",
+    "mai": "भाव  –  जीवनक 12 क्षेत्र",
+    "mr": "भाव  –  जीवनाची 12 क्षेत्रे",
+    "ta": "பாவங்கள்  –  வாழ்க்கையின் 12 பகுதிகள்",
+    "te": "భావాలు  –  జీవితంలోని 12 రంగాలు",
+    "bn": "ভাব  –  জীবনের ১২টি ক্ষেত্র",
+    "kn": "ಭಾವಗಳು  –  ಜೀವನದ 12 ಕ್ಷೇತ್ರಗಳು",
+    "gu": "ભાવ  –  જીવનના 12 ક્ષેત્રો"
   },
   "subtitle": {
     "en": "Each house maps a specific domain of human experience",
     "hi": "प्रत्येक भाव मानव अनुभव के एक विशिष्ट क्षेत्र का प्रतिनिधित्व करता है",
-    "sa": "कुण्डलीचक्रं द्वादशभावेषु विभक्तम् — प्रत्येकं भावः जीवनस्य विशिष्टक्षेत्रं प्रतिनिधयति",
-    "mai": "जन्मकुंडली 12 भावमे विभाजित — प्रत्येक भाव जीवनक विशिष्ट क्षेत्रक प्रतिनिधित्व करैत अछि",
-    "mr": "जन्मकुंडली 12 भावांत विभागली — प्रत्येक भाव जीवनाच्या विशिष्ट क्षेत्राचे प्रतिनिधित्व करतो",
-    "ta": "ஜாதக வட்டம் 12 பாவங்களாக பிரிக்கப்பட்டுள்ளது — ஒவ்வொரு பாவமும் வாழ்க்கையின் ஒரு குறிப்பிட்ட பகுதியைக் குறிக்கிறது",
-    "te": "జాతక చక్రం 12 భావాలుగా విభజించబడింది — ప్రతి భావం జీవితంలోని ఒక నిర్దిష్ట రంగాన్ని సూచిస్తుంది",
-    "bn": "জাতকচক্র ১২টি ভাবে বিভক্ত — প্রতিটি ভাব জীবনের একটি নির্দিষ্ট ক্ষেত্র প্রতিনিধিত্ব করে",
-    "kn": "ಜಾತಕ ಚಕ್ರ 12 ಭಾವಗಳಾಗಿ ವಿಭಜಿತ — ಪ್ರತಿ ಭಾವ ಜೀವನದ ಒಂದು ನಿರ್ದಿಷ್ಟ ಕ್ಷೇತ್ರವನ್ನು ಪ್ರತಿನಿಧಿಸುತ್ತದೆ",
-    "gu": "જન્મ કુંડળી 12 ભાવોમાં વિભાજિત — દરેક ભાવ જીવનના ચોક્કસ ક્ષેત્રનું પ્રતિનિધિત્વ કરે છે"
+    "sa": "कुण्डलीचक्रं द्वादशभावेषु विभक्तम्  –  प्रत्येकं भावः जीवनस्य विशिष्टक्षेत्रं प्रतिनिधयति",
+    "mai": "जन्मकुंडली 12 भावमे विभाजित  –  प्रत्येक भाव जीवनक विशिष्ट क्षेत्रक प्रतिनिधित्व करैत अछि",
+    "mr": "जन्मकुंडली 12 भावांत विभागली  –  प्रत्येक भाव जीवनाच्या विशिष्ट क्षेत्राचे प्रतिनिधित्व करतो",
+    "ta": "ஜாதக வட்டம் 12 பாவங்களாக பிரிக்கப்பட்டுள்ளது  –  ஒவ்வொரு பாவமும் வாழ்க்கையின் ஒரு குறிப்பிட்ட பகுதியைக் குறிக்கிறது",
+    "te": "జాతక చక్రం 12 భావాలుగా విభజించబడింది  –  ప్రతి భావం జీవితంలోని ఒక నిర్దిష్ట రంగాన్ని సూచిస్తుంది",
+    "bn": "জাতকচক্র ১২টি ভাবে বিভক্ত  –  প্রতিটি ভাব জীবনের একটি নির্দিষ্ট ক্ষেত্র প্রতিনিধিত্ব করে",
+    "kn": "ಜಾತಕ ಚಕ್ರ 12 ಭಾವಗಳಾಗಿ ವಿಭಜಿತ  –  ಪ್ರತಿ ಭಾವ ಜೀವನದ ಒಂದು ನಿರ್ದಿಷ್ಟ ಕ್ಷೇತ್ರವನ್ನು ಪ್ರತಿನಿಧಿಸುತ್ತದೆ",
+    "gu": "જન્મ કુંડળી 12 ભાવોમાં વિભાજિત  –  દરેક ભાવ જીવનના ચોક્કસ ક્ષેત્રનું પ્રતિનિધિત્વ કરે છે"
   },
   "crossRefs": [
     {
@@ -167,16 +167,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Kendras (1, 4, 7, 10) are the four pillars of the chart. They represent self, home, relationships, and career — the structural foundation of life. Planets in Kendras gain strength.",
-        "hi": "केन्द्र (1, 4, 7, 10) कुण्डली के चार स्तम्भ हैं। ये आत्म, गृह, संबंध और कर्म दर्शाते हैं — जीवन की संरचनात्मक नींव। केन्द्र में ग्रह शक्ति प्राप्त करते हैं।",
-        "sa": "केन्द्र (1, 4, 7, 10) कुण्डली के चार स्तम्भ हैं। ये आत्म, गृह, संबंध और कर्म दर्शाते हैं — जीवन की संरचनात्मक नींव। केन्द्र में ग्रह शक्ति प्राप्त करते हैं।",
-        "mai": "केन्द्र (1, 4, 7, 10) कुण्डली के चार स्तम्भ हैं। ये आत्म, गृह, संबंध और कर्म दर्शाते हैं — जीवन की संरचनात्मक नींव। केन्द्र में ग्रह शक्ति प्राप्त करते हैं।",
-        "mr": "केन्द्र (1, 4, 7, 10) कुण्डली के चार स्तम्भ हैं। ये आत्म, गृह, संबंध और कर्म दर्शाते हैं — जीवन की संरचनात्मक नींव। केन्द्र में ग्रह शक्ति प्राप्त करते हैं।",
-        "ta": "Kendras (1, 4, 7, 10) are the four pillars of the chart. They represent self, home, relationships, and career — the structural foundation of life. Planets in Kendras gain strength.",
-        "te": "Kendras (1, 4, 7, 10) are the four pillars of the chart. They represent self, home, relationships, and career — the structural foundation of life. Planets in Kendras gain strength.",
-        "bn": "Kendras (1, 4, 7, 10) are the four pillars of the chart. They represent self, home, relationships, and career — the structural foundation of life. Planets in Kendras gain strength.",
-        "kn": "Kendras (1, 4, 7, 10) are the four pillars of the chart. They represent self, home, relationships, and career — the structural foundation of life. Planets in Kendras gain strength.",
-        "gu": "Kendras (1, 4, 7, 10) are the four pillars of the chart. They represent self, home, relationships, and career — the structural foundation of life. Planets in Kendras gain strength."
+        "en": "Kendras (1, 4, 7, 10) are the four pillars of the chart. They represent self, home, relationships, and career  –  the structural foundation of life. Planets in Kendras gain strength.",
+        "hi": "केन्द्र (1, 4, 7, 10) कुण्डली के चार स्तम्भ हैं। ये आत्म, गृह, संबंध और कर्म दर्शाते हैं  –  जीवन की संरचनात्मक नींव। केन्द्र में ग्रह शक्ति प्राप्त करते हैं।",
+        "sa": "केन्द्र (1, 4, 7, 10) कुण्डली के चार स्तम्भ हैं। ये आत्म, गृह, संबंध और कर्म दर्शाते हैं  –  जीवन की संरचनात्मक नींव। केन्द्र में ग्रह शक्ति प्राप्त करते हैं।",
+        "mai": "केन्द्र (1, 4, 7, 10) कुण्डली के चार स्तम्भ हैं। ये आत्म, गृह, संबंध और कर्म दर्शाते हैं  –  जीवन की संरचनात्मक नींव। केन्द्र में ग्रह शक्ति प्राप्त करते हैं।",
+        "mr": "केन्द्र (1, 4, 7, 10) कुण्डली के चार स्तम्भ हैं। ये आत्म, गृह, संबंध और कर्म दर्शाते हैं  –  जीवन की संरचनात्मक नींव। केन्द्र में ग्रह शक्ति प्राप्त करते हैं।",
+        "ta": "Kendras (1, 4, 7, 10) are the four pillars of the chart. They represent self, home, relationships, and career  –  the structural foundation of life. Planets in Kendras gain strength.",
+        "te": "Kendras (1, 4, 7, 10) are the four pillars of the chart. They represent self, home, relationships, and career  –  the structural foundation of life. Planets in Kendras gain strength.",
+        "bn": "Kendras (1, 4, 7, 10) are the four pillars of the chart. They represent self, home, relationships, and career  –  the structural foundation of life. Planets in Kendras gain strength.",
+        "kn": "Kendras (1, 4, 7, 10) are the four pillars of the chart. They represent self, home, relationships, and career  –  the structural foundation of life. Planets in Kendras gain strength.",
+        "gu": "Kendras (1, 4, 7, 10) are the four pillars of the chart. They represent self, home, relationships, and career  –  the structural foundation of life. Planets in Kendras gain strength."
       },
       "options": [
         {
@@ -246,16 +246,16 @@
       },
       "correctAnswer": true,
       "explanation": {
-        "en": "Trikonas (1, 5, 9) represent Dharma — purpose, fortune, and divine grace. Their lords are natural benefics for the chart. A strong Trikona configuration is the hallmark of a blessed life.",
-        "hi": "त्रिकोण (1, 5, 9) धर्म — उद्देश्य, भाग्य और दैवी कृपा का प्रतिनिधित्व करते हैं। इनके स्वामी कुण्डली के स्वाभाविक शुभ ग्रह होते हैं। सशक्त त्रिकोण संरचना सौभाग्यशाली जीवन की पहचान है।",
-        "sa": "त्रिकोण (1, 5, 9) धर्म — उद्देश्य, भाग्य और दैवी कृपा का प्रतिनिधित्व करते हैं। इनके स्वामी कुण्डली के स्वाभाविक शुभ ग्रह होते हैं। सशक्त त्रिकोण संरचना सौभाग्यशाली जीवन की पहचान है।",
-        "mai": "त्रिकोण (1, 5, 9) धर्म — उद्देश्य, भाग्य और दैवी कृपा का प्रतिनिधित्व करते हैं। इनके स्वामी कुण्डली के स्वाभाविक शुभ ग्रह होते हैं। सशक्त त्रिकोण संरचना सौभाग्यशाली जीवन की पहचान है।",
-        "mr": "त्रिकोण (1, 5, 9) धर्म — उद्देश्य, भाग्य और दैवी कृपा का प्रतिनिधित्व करते हैं। इनके स्वामी कुण्डली के स्वाभाविक शुभ ग्रह होते हैं। सशक्त त्रिकोण संरचना सौभाग्यशाली जीवन की पहचान है।",
-        "ta": "Trikonas (1, 5, 9) represent Dharma — purpose, fortune, and divine grace. Their lords are natural benefics for the chart. A strong Trikona configuration is the hallmark of a blessed life.",
-        "te": "Trikonas (1, 5, 9) represent Dharma — purpose, fortune, and divine grace. Their lords are natural benefics for the chart. A strong Trikona configuration is the hallmark of a blessed life.",
-        "bn": "Trikonas (1, 5, 9) represent Dharma — purpose, fortune, and divine grace. Their lords are natural benefics for the chart. A strong Trikona configuration is the hallmark of a blessed life.",
-        "kn": "Trikonas (1, 5, 9) represent Dharma — purpose, fortune, and divine grace. Their lords are natural benefics for the chart. A strong Trikona configuration is the hallmark of a blessed life.",
-        "gu": "Trikonas (1, 5, 9) represent Dharma — purpose, fortune, and divine grace. Their lords are natural benefics for the chart. A strong Trikona configuration is the hallmark of a blessed life."
+        "en": "Trikonas (1, 5, 9) represent Dharma  –  purpose, fortune, and divine grace. Their lords are natural benefics for the chart. A strong Trikona configuration is the hallmark of a blessed life.",
+        "hi": "त्रिकोण (1, 5, 9) धर्म  –  उद्देश्य, भाग्य और दैवी कृपा का प्रतिनिधित्व करते हैं। इनके स्वामी कुण्डली के स्वाभाविक शुभ ग्रह होते हैं। सशक्त त्रिकोण संरचना सौभाग्यशाली जीवन की पहचान है।",
+        "sa": "त्रिकोण (1, 5, 9) धर्म  –  उद्देश्य, भाग्य और दैवी कृपा का प्रतिनिधित्व करते हैं। इनके स्वामी कुण्डली के स्वाभाविक शुभ ग्रह होते हैं। सशक्त त्रिकोण संरचना सौभाग्यशाली जीवन की पहचान है।",
+        "mai": "त्रिकोण (1, 5, 9) धर्म  –  उद्देश्य, भाग्य और दैवी कृपा का प्रतिनिधित्व करते हैं। इनके स्वामी कुण्डली के स्वाभाविक शुभ ग्रह होते हैं। सशक्त त्रिकोण संरचना सौभाग्यशाली जीवन की पहचान है।",
+        "mr": "त्रिकोण (1, 5, 9) धर्म  –  उद्देश्य, भाग्य और दैवी कृपा का प्रतिनिधित्व करते हैं। इनके स्वामी कुण्डली के स्वाभाविक शुभ ग्रह होते हैं। सशक्त त्रिकोण संरचना सौभाग्यशाली जीवन की पहचान है।",
+        "ta": "Trikonas (1, 5, 9) represent Dharma  –  purpose, fortune, and divine grace. Their lords are natural benefics for the chart. A strong Trikona configuration is the hallmark of a blessed life.",
+        "te": "Trikonas (1, 5, 9) represent Dharma  –  purpose, fortune, and divine grace. Their lords are natural benefics for the chart. A strong Trikona configuration is the hallmark of a blessed life.",
+        "bn": "Trikonas (1, 5, 9) represent Dharma  –  purpose, fortune, and divine grace. Their lords are natural benefics for the chart. A strong Trikona configuration is the hallmark of a blessed life.",
+        "kn": "Trikonas (1, 5, 9) represent Dharma  –  purpose, fortune, and divine grace. Their lords are natural benefics for the chart. A strong Trikona configuration is the hallmark of a blessed life.",
+        "gu": "Trikonas (1, 5, 9) represent Dharma  –  purpose, fortune, and divine grace. Their lords are natural benefics for the chart. A strong Trikona configuration is the hallmark of a blessed life."
       }
     },
     {
@@ -275,16 +275,16 @@
       },
       "correctAnswer": 2,
       "explanation": {
-        "en": "Dusthanas (6, 8, 12) represent challenges: enemies/disease (6th), longevity/secrets (8th), and losses/liberation (12th). However, they also bring transformation — the 8th can give occult wisdom, the 12th can give spiritual liberation.",
-        "hi": "दुःस्थान (6, 8, 12) चुनौतियाँ दर्शाते हैं: शत्रु/रोग (छठा), आयु/रहस्य (आठवाँ), और हानि/मोक्ष (बारहवाँ)। लेकिन ये परिवर्तन भी लाते हैं — आठवाँ तान्त्रिक ज्ञान दे सकता है, बारहवाँ आध्यात्मिक मुक्ति।",
-        "sa": "दुःस्थान (6, 8, 12) चुनौतियाँ दर्शाते हैं: शत्रु/रोग (छठा), आयु/रहस्य (आठवाँ), और हानि/मोक्ष (बारहवाँ)। लेकिन ये परिवर्तन भी लाते हैं — आठवाँ तान्त्रिक ज्ञान दे सकता है, बारहवाँ आध्यात्मिक मुक्ति।",
-        "mai": "दुःस्थान (6, 8, 12) चुनौतियाँ दर्शाते हैं: शत्रु/रोग (छठा), आयु/रहस्य (आठवाँ), और हानि/मोक्ष (बारहवाँ)। लेकिन ये परिवर्तन भी लाते हैं — आठवाँ तान्त्रिक ज्ञान दे सकता है, बारहवाँ आध्यात्मिक मुक्ति।",
-        "mr": "दुःस्थान (6, 8, 12) चुनौतियाँ दर्शाते हैं: शत्रु/रोग (छठा), आयु/रहस्य (आठवाँ), और हानि/मोक्ष (बारहवाँ)। लेकिन ये परिवर्तन भी लाते हैं — आठवाँ तान्त्रिक ज्ञान दे सकता है, बारहवाँ आध्यात्मिक मुक्ति।",
-        "ta": "Dusthanas (6, 8, 12) represent challenges: enemies/disease (6th), longevity/secrets (8th), and losses/liberation (12th). However, they also bring transformation — the 8th can give occult wisdom, the 12th can give spiritual liberation.",
-        "te": "Dusthanas (6, 8, 12) represent challenges: enemies/disease (6th), longevity/secrets (8th), and losses/liberation (12th). However, they also bring transformation — the 8th can give occult wisdom, the 12th can give spiritual liberation.",
-        "bn": "Dusthanas (6, 8, 12) represent challenges: enemies/disease (6th), longevity/secrets (8th), and losses/liberation (12th). However, they also bring transformation — the 8th can give occult wisdom, the 12th can give spiritual liberation.",
-        "kn": "Dusthanas (6, 8, 12) represent challenges: enemies/disease (6th), longevity/secrets (8th), and losses/liberation (12th). However, they also bring transformation — the 8th can give occult wisdom, the 12th can give spiritual liberation.",
-        "gu": "Dusthanas (6, 8, 12) represent challenges: enemies/disease (6th), longevity/secrets (8th), and losses/liberation (12th). However, they also bring transformation — the 8th can give occult wisdom, the 12th can give spiritual liberation."
+        "en": "Dusthanas (6, 8, 12) represent challenges: enemies/disease (6th), longevity/secrets (8th), and losses/liberation (12th). However, they also bring transformation  –  the 8th can give occult wisdom, the 12th can give spiritual liberation.",
+        "hi": "दुःस्थान (6, 8, 12) चुनौतियाँ दर्शाते हैं: शत्रु/रोग (छठा), आयु/रहस्य (आठवाँ), और हानि/मोक्ष (बारहवाँ)। लेकिन ये परिवर्तन भी लाते हैं  –  आठवाँ तान्त्रिक ज्ञान दे सकता है, बारहवाँ आध्यात्मिक मुक्ति।",
+        "sa": "दुःस्थान (6, 8, 12) चुनौतियाँ दर्शाते हैं: शत्रु/रोग (छठा), आयु/रहस्य (आठवाँ), और हानि/मोक्ष (बारहवाँ)। लेकिन ये परिवर्तन भी लाते हैं  –  आठवाँ तान्त्रिक ज्ञान दे सकता है, बारहवाँ आध्यात्मिक मुक्ति।",
+        "mai": "दुःस्थान (6, 8, 12) चुनौतियाँ दर्शाते हैं: शत्रु/रोग (छठा), आयु/रहस्य (आठवाँ), और हानि/मोक्ष (बारहवाँ)। लेकिन ये परिवर्तन भी लाते हैं  –  आठवाँ तान्त्रिक ज्ञान दे सकता है, बारहवाँ आध्यात्मिक मुक्ति।",
+        "mr": "दुःस्थान (6, 8, 12) चुनौतियाँ दर्शाते हैं: शत्रु/रोग (छठा), आयु/रहस्य (आठवाँ), और हानि/मोक्ष (बारहवाँ)। लेकिन ये परिवर्तन भी लाते हैं  –  आठवाँ तान्त्रिक ज्ञान दे सकता है, बारहवाँ आध्यात्मिक मुक्ति।",
+        "ta": "Dusthanas (6, 8, 12) represent challenges: enemies/disease (6th), longevity/secrets (8th), and losses/liberation (12th). However, they also bring transformation  –  the 8th can give occult wisdom, the 12th can give spiritual liberation.",
+        "te": "Dusthanas (6, 8, 12) represent challenges: enemies/disease (6th), longevity/secrets (8th), and losses/liberation (12th). However, they also bring transformation  –  the 8th can give occult wisdom, the 12th can give spiritual liberation.",
+        "bn": "Dusthanas (6, 8, 12) represent challenges: enemies/disease (6th), longevity/secrets (8th), and losses/liberation (12th). However, they also bring transformation  –  the 8th can give occult wisdom, the 12th can give spiritual liberation.",
+        "kn": "Dusthanas (6, 8, 12) represent challenges: enemies/disease (6th), longevity/secrets (8th), and losses/liberation (12th). However, they also bring transformation  –  the 8th can give occult wisdom, the 12th can give spiritual liberation.",
+        "gu": "Dusthanas (6, 8, 12) represent challenges: enemies/disease (6th), longevity/secrets (8th), and losses/liberation (12th). However, they also bring transformation  –  the 8th can give occult wisdom, the 12th can give spiritual liberation."
       },
       "options": [
         {
@@ -354,16 +354,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "When lords of Kendras (1,4,7,10) and Trikonas (1,5,9) associate by conjunction, mutual aspect, or exchange, they form Raja Yoga — a combination of power (Kendra) and fortune (Trikona) that elevates the native.",
-        "hi": "जब केन्द्र (1,4,7,10) और त्रिकोण (1,5,9) के स्वामी युति, परस्पर दृष्टि, या परिवर्तन से संबद्ध होते हैं, तो राजयोग बनता है — शक्ति (केन्द्र) और भाग्य (त्रिकोण) का संयोजन जो जातक को उन्नत करता है।",
-        "sa": "जब केन्द्र (1,4,7,10) और त्रिकोण (1,5,9) के स्वामी युति, परस्पर दृष्टि, या परिवर्तन से संबद्ध होते हैं, तो राजयोग बनता है — शक्ति (केन्द्र) और भाग्य (त्रिकोण) का संयोजन जो जातक को उन्नत करता है।",
-        "mai": "जब केन्द्र (1,4,7,10) और त्रिकोण (1,5,9) के स्वामी युति, परस्पर दृष्टि, या परिवर्तन से संबद्ध होते हैं, तो राजयोग बनता है — शक्ति (केन्द्र) और भाग्य (त्रिकोण) का संयोजन जो जातक को उन्नत करता है।",
-        "mr": "जब केन्द्र (1,4,7,10) और त्रिकोण (1,5,9) के स्वामी युति, परस्पर दृष्टि, या परिवर्तन से संबद्ध होते हैं, तो राजयोग बनता है — शक्ति (केन्द्र) और भाग्य (त्रिकोण) का संयोजन जो जातक को उन्नत करता है।",
-        "ta": "When lords of Kendras (1,4,7,10) and Trikonas (1,5,9) associate by conjunction, mutual aspect, or exchange, they form Raja Yoga — a combination of power (Kendra) and fortune (Trikona) that elevates the native.",
-        "te": "When lords of Kendras (1,4,7,10) and Trikonas (1,5,9) associate by conjunction, mutual aspect, or exchange, they form Raja Yoga — a combination of power (Kendra) and fortune (Trikona) that elevates the native.",
-        "bn": "When lords of Kendras (1,4,7,10) and Trikonas (1,5,9) associate by conjunction, mutual aspect, or exchange, they form Raja Yoga — a combination of power (Kendra) and fortune (Trikona) that elevates the native.",
-        "kn": "When lords of Kendras (1,4,7,10) and Trikonas (1,5,9) associate by conjunction, mutual aspect, or exchange, they form Raja Yoga — a combination of power (Kendra) and fortune (Trikona) that elevates the native.",
-        "gu": "When lords of Kendras (1,4,7,10) and Trikonas (1,5,9) associate by conjunction, mutual aspect, or exchange, they form Raja Yoga — a combination of power (Kendra) and fortune (Trikona) that elevates the native."
+        "en": "When lords of Kendras (1,4,7,10) and Trikonas (1,5,9) associate by conjunction, mutual aspect, or exchange, they form Raja Yoga  –  a combination of power (Kendra) and fortune (Trikona) that elevates the native.",
+        "hi": "जब केन्द्र (1,4,7,10) और त्रिकोण (1,5,9) के स्वामी युति, परस्पर दृष्टि, या परिवर्तन से संबद्ध होते हैं, तो राजयोग बनता है  –  शक्ति (केन्द्र) और भाग्य (त्रिकोण) का संयोजन जो जातक को उन्नत करता है।",
+        "sa": "जब केन्द्र (1,4,7,10) और त्रिकोण (1,5,9) के स्वामी युति, परस्पर दृष्टि, या परिवर्तन से संबद्ध होते हैं, तो राजयोग बनता है  –  शक्ति (केन्द्र) और भाग्य (त्रिकोण) का संयोजन जो जातक को उन्नत करता है।",
+        "mai": "जब केन्द्र (1,4,7,10) और त्रिकोण (1,5,9) के स्वामी युति, परस्पर दृष्टि, या परिवर्तन से संबद्ध होते हैं, तो राजयोग बनता है  –  शक्ति (केन्द्र) और भाग्य (त्रिकोण) का संयोजन जो जातक को उन्नत करता है।",
+        "mr": "जब केन्द्र (1,4,7,10) और त्रिकोण (1,5,9) के स्वामी युति, परस्पर दृष्टि, या परिवर्तन से संबद्ध होते हैं, तो राजयोग बनता है  –  शक्ति (केन्द्र) और भाग्य (त्रिकोण) का संयोजन जो जातक को उन्नत करता है।",
+        "ta": "When lords of Kendras (1,4,7,10) and Trikonas (1,5,9) associate by conjunction, mutual aspect, or exchange, they form Raja Yoga  –  a combination of power (Kendra) and fortune (Trikona) that elevates the native.",
+        "te": "When lords of Kendras (1,4,7,10) and Trikonas (1,5,9) associate by conjunction, mutual aspect, or exchange, they form Raja Yoga  –  a combination of power (Kendra) and fortune (Trikona) that elevates the native.",
+        "bn": "When lords of Kendras (1,4,7,10) and Trikonas (1,5,9) associate by conjunction, mutual aspect, or exchange, they form Raja Yoga  –  a combination of power (Kendra) and fortune (Trikona) that elevates the native.",
+        "kn": "When lords of Kendras (1,4,7,10) and Trikonas (1,5,9) associate by conjunction, mutual aspect, or exchange, they form Raja Yoga  –  a combination of power (Kendra) and fortune (Trikona) that elevates the native.",
+        "gu": "When lords of Kendras (1,4,7,10) and Trikonas (1,5,9) associate by conjunction, mutual aspect, or exchange, they form Raja Yoga  –  a combination of power (Kendra) and fortune (Trikona) that elevates the native."
       },
       "options": [
         {
@@ -649,16 +649,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "The 10th house (Karma Bhava) is the most visible point of the chart — the Midheaven. It governs career, profession, public reputation, authority, and the actions for which you are known in the world.",
-        "hi": "दशम भाव (कर्म भाव) कुण्डली का सबसे दृश्य बिन्दु है — मध्यावकाश। यह कैरियर, व्यवसाय, सार्वजनिक प्रतिष्ठा, अधिकार और उन कर्मों पर शासन करता है जिनके लिए आप संसार में जाने जाते हैं।",
-        "sa": "दशम भाव (कर्म भाव) कुण्डली का सबसे दृश्य बिन्दु है — मध्यावकाश। यह कैरियर, व्यवसाय, सार्वजनिक प्रतिष्ठा, अधिकार और उन कर्मों पर शासन करता है जिनके लिए आप संसार में जाने जाते हैं।",
-        "mai": "दशम भाव (कर्म भाव) कुण्डली का सबसे दृश्य बिन्दु है — मध्यावकाश। यह कैरियर, व्यवसाय, सार्वजनिक प्रतिष्ठा, अधिकार और उन कर्मों पर शासन करता है जिनके लिए आप संसार में जाने जाते हैं।",
-        "mr": "दशम भाव (कर्म भाव) कुण्डली का सबसे दृश्य बिन्दु है — मध्यावकाश। यह कैरियर, व्यवसाय, सार्वजनिक प्रतिष्ठा, अधिकार और उन कर्मों पर शासन करता है जिनके लिए आप संसार में जाने जाते हैं।",
-        "ta": "The 10th house (Karma Bhava) is the most visible point of the chart — the Midheaven. It governs career, profession, public reputation, authority, and the actions for which you are known in the world.",
-        "te": "The 10th house (Karma Bhava) is the most visible point of the chart — the Midheaven. It governs career, profession, public reputation, authority, and the actions for which you are known in the world.",
-        "bn": "The 10th house (Karma Bhava) is the most visible point of the chart — the Midheaven. It governs career, profession, public reputation, authority, and the actions for which you are known in the world.",
-        "kn": "The 10th house (Karma Bhava) is the most visible point of the chart — the Midheaven. It governs career, profession, public reputation, authority, and the actions for which you are known in the world.",
-        "gu": "The 10th house (Karma Bhava) is the most visible point of the chart — the Midheaven. It governs career, profession, public reputation, authority, and the actions for which you are known in the world."
+        "en": "The 10th house (Karma Bhava) is the most visible point of the chart  –  the Midheaven. It governs career, profession, public reputation, authority, and the actions for which you are known in the world.",
+        "hi": "दशम भाव (कर्म भाव) कुण्डली का सबसे दृश्य बिन्दु है  –  मध्यावकाश। यह कैरियर, व्यवसाय, सार्वजनिक प्रतिष्ठा, अधिकार और उन कर्मों पर शासन करता है जिनके लिए आप संसार में जाने जाते हैं।",
+        "sa": "दशम भाव (कर्म भाव) कुण्डली का सबसे दृश्य बिन्दु है  –  मध्यावकाश। यह कैरियर, व्यवसाय, सार्वजनिक प्रतिष्ठा, अधिकार और उन कर्मों पर शासन करता है जिनके लिए आप संसार में जाने जाते हैं।",
+        "mai": "दशम भाव (कर्म भाव) कुण्डली का सबसे दृश्य बिन्दु है  –  मध्यावकाश। यह कैरियर, व्यवसाय, सार्वजनिक प्रतिष्ठा, अधिकार और उन कर्मों पर शासन करता है जिनके लिए आप संसार में जाने जाते हैं।",
+        "mr": "दशम भाव (कर्म भाव) कुण्डली का सबसे दृश्य बिन्दु है  –  मध्यावकाश। यह कैरियर, व्यवसाय, सार्वजनिक प्रतिष्ठा, अधिकार और उन कर्मों पर शासन करता है जिनके लिए आप संसार में जाने जाते हैं।",
+        "ta": "The 10th house (Karma Bhava) is the most visible point of the chart  –  the Midheaven. It governs career, profession, public reputation, authority, and the actions for which you are known in the world.",
+        "te": "The 10th house (Karma Bhava) is the most visible point of the chart  –  the Midheaven. It governs career, profession, public reputation, authority, and the actions for which you are known in the world.",
+        "bn": "The 10th house (Karma Bhava) is the most visible point of the chart  –  the Midheaven. It governs career, profession, public reputation, authority, and the actions for which you are known in the world.",
+        "kn": "The 10th house (Karma Bhava) is the most visible point of the chart  –  the Midheaven. It governs career, profession, public reputation, authority, and the actions for which you are known in the world.",
+        "gu": "The 10th house (Karma Bhava) is the most visible point of the chart  –  the Midheaven. It governs career, profession, public reputation, authority, and the actions for which you are known in the world."
       },
       "options": [
         {

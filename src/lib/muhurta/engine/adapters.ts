@@ -1,5 +1,5 @@
 /**
- * Muhurta Engine — Adapters
+ * Muhurta Engine  –  Adapters
  *
  * Convert unified ScoredWindow[] to the three legacy output formats:
  *   - V1: ScoredTimeWindow[] (used by /api/muhurta-ai)

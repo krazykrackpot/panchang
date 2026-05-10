@@ -564,7 +564,7 @@ export default function ProfilePage() {
                 </motion.div>
               )}
 
-              {/* Rashi Grid — 3 columns */}
+              {/* Rashi Grid  –  3 columns */}
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
                 className="grid grid-cols-3 gap-3"
               >
@@ -585,7 +585,7 @@ export default function ProfilePage() {
                 </div>
               </motion.div>
 
-              {/* Birth Panchang — Tithi, Nakshatra, Yoga, Masa */}
+              {/* Birth Panchang  –  Tithi, Nakshatra, Yoga, Masa */}
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
                 className="grid grid-cols-2 gap-3"
               >

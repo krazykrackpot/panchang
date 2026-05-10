@@ -13,11 +13,11 @@ import type { ReactNode } from 'react';
 const r2 = (n: number) => Math.round(n * 100) / 100;
 
 /* ════════════════════════════════════════════════════════════════════
-   6 INLINE SVG ICONS — bold, multi-layered, dramatic (128x128)
+   6 INLINE SVG ICONS  –  bold, multi-layered, dramatic (128x128)
    Gradient IDs use unique 2-letter prefixes to avoid collisions.
    ════════════════════════════════════════════════════════════════════ */
 
-/* 1. Puja Vidhi — Ornate brass diya with flame and floating petals */
+/* 1. Puja Vidhi  –  Ornate brass diya with flame and floating petals */
 function PujaVidhiSVG() {
   return (
     <svg viewBox="0 0 64 64" width={160} height={160} aria-hidden="true">
@@ -27,7 +27,7 @@ function PujaVidhiSVG() {
         <radialGradient id="pv1f" cx="50%" cy="80%" r="60%"><stop offset="0%" stopColor="#f0d48a" stopOpacity="0.6" /><stop offset="100%" stopColor="#d4a853" stopOpacity="0" /></radialGradient>
       </defs>
       <circle cx="32" cy="32" r="28" fill="url(#pv1g)" />
-      {/* Diya base — ornate bowl */}
+      {/* Diya base  –  ornate bowl */}
       <ellipse cx="32" cy="44" rx="18" ry="5" fill="url(#pv1)" opacity="0.12" stroke="url(#pv1)" strokeWidth="2" />
       <path d="M 14 44 Q 16 36 22 34 L 42 34 Q 48 36 50 44" fill="url(#pv1)" opacity="0.1" stroke="url(#pv1)" strokeWidth="2" strokeLinejoin="round" />
       {/* Bowl interior detail */}
@@ -37,7 +37,7 @@ function PujaVidhiSVG() {
       <line x1="22" y1="50" x2="42" y2="50" stroke="url(#pv1)" strokeWidth="2.5" strokeLinecap="round" opacity="0.6" />
       {/* Wick */}
       <line x1="32" y1="34" x2="32" y2="28" stroke="url(#pv1)" strokeWidth="1.5" opacity="0.5" />
-      {/* Flame — multi-layered teardrop */}
+      {/* Flame  –  multi-layered teardrop */}
       <path d="M 32 10 Q 38 18 36 24 Q 34 28 32 28 Q 30 28 28 24 Q 26 18 32 10 Z" fill="url(#pv1)" opacity="0.2" stroke="url(#pv1)" strokeWidth="2" />
       <path d="M 32 14 Q 36 19 34 23 Q 33 26 32 26 Q 31 26 30 23 Q 28 19 32 14 Z" fill="url(#pv1)" opacity="0.35" />
       <path d="M 32 17 Q 34 20 33 23 Q 32.5 25 32 25 Q 31.5 25 31 23 Q 30 20 32 17 Z" fill="#f0d48a" opacity="0.6" />
@@ -66,7 +66,7 @@ function PujaVidhiSVG() {
   );
 }
 
-/* 2. Vrat Calendar — Calendar page with Om and crescent moon */
+/* 2. Vrat Calendar  –  Calendar page with Om and crescent moon */
 function VratCalendarSVG() {
   return (
     <svg viewBox="0 0 64 64" width={160} height={160} aria-hidden="true">
@@ -75,7 +75,7 @@ function VratCalendarSVG() {
         <linearGradient id="vc1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
       </defs>
       <circle cx="32" cy="32" r="28" fill="url(#vc1g)" />
-      {/* Calendar page — rounded rect */}
+      {/* Calendar page  –  rounded rect */}
       <rect x="12" y="10" width="40" height="46" rx="3" fill="url(#vc1)" opacity="0.08" stroke="url(#vc1)" strokeWidth="2.5" />
       {/* Calendar header bar */}
       <rect x="12" y="10" width="40" height="10" rx="3" fill="url(#vc1)" opacity="0.15" />
@@ -93,9 +93,9 @@ function VratCalendarSVG() {
           return <circle key={`${row}-${col}`} cx={cx} cy={cy} r={highlight ? 2 : 1} fill={highlight ? '#f0d48a' : 'url(#vc1)'} opacity={highlight ? 0.6 : 0.25} />;
         })
       )}
-      {/* Om symbol — central */}
+      {/* Om symbol  –  central */}
       <text x="38" y="40" textAnchor="middle" fill="#f0d48a" fontSize="14" fontWeight="bold" opacity="0.35" fontFamily="serif">{'\u0950'}</text>
-      {/* Crescent moon — top right */}
+      {/* Crescent moon  –  top right */}
       <path d="M 46 6 A 5 5 0 1 0 46 16 A 3.5 3.5 0 1 1 46 6" fill="url(#vc1)" opacity="0.35" stroke="url(#vc1)" strokeWidth="1.5" />
       {/* Stars near moon */}
       <circle cx="54" cy="8" r="0.8" fill="#f0d48a" opacity="0.4" />
@@ -109,7 +109,7 @@ function VratCalendarSVG() {
   );
 }
 
-/* 3. Sankalpa — Namaskar hands with water drops */
+/* 3. Sankalpa  –  Namaskar hands with water drops */
 function SankalpaSVG() {
   return (
     <svg viewBox="0 0 64 64" width={160} height={160} aria-hidden="true">
@@ -127,11 +127,11 @@ function SankalpaSVG() {
       <path d="M 33 14 L 36 14 Q 44 16 46 24 L 46 38 Q 46 42 42 44 L 34 44 L 33 14 Z" fill="url(#sk1)" opacity="0.1" stroke="url(#sk1)" strokeWidth="2" strokeLinejoin="round" />
       {/* Center line where palms meet */}
       <line x1="32" y1="14" x2="32" y2="44" stroke="url(#sk1)" strokeWidth="1.5" opacity="0.3" />
-      {/* Finger tips — left */}
+      {/* Finger tips  –  left */}
       <circle cx="28" cy="14" r="1.5" fill="url(#sk1)" opacity="0.3" />
       <circle cx="25" cy="16" r="1.2" fill="url(#sk1)" opacity="0.25" />
       <circle cx="22" cy="19" r="1" fill="url(#sk1)" opacity="0.2" />
-      {/* Finger tips — right */}
+      {/* Finger tips  –  right */}
       <circle cx="36" cy="14" r="1.5" fill="url(#sk1)" opacity="0.3" />
       <circle cx="39" cy="16" r="1.2" fill="url(#sk1)" opacity="0.25" />
       <circle cx="42" cy="19" r="1" fill="url(#sk1)" opacity="0.2" />
@@ -160,7 +160,7 @@ function SankalpaSVG() {
   );
 }
 
-/* 4. Devotional — Om with radiating sound waves */
+/* 4. Devotional  –  Om with radiating sound waves */
 function DevotionalSVG() {
   return (
     <svg viewBox="0 0 64 64" width={160} height={160} aria-hidden="true">
@@ -178,9 +178,9 @@ function DevotionalSVG() {
       {/* Inner glow disc */}
       <circle cx="32" cy="32" r="12" fill="url(#dv1)" opacity="0.08" />
       <circle cx="32" cy="32" r="8" fill="url(#dv1)" opacity="0.12" />
-      {/* Om symbol — bold */}
+      {/* Om symbol  –  bold */}
       <text x="32" y="38" textAnchor="middle" fill="#f0d48a" fontSize="22" fontWeight="bold" opacity="0.65" fontFamily="serif">{'\u0950'}</text>
-      {/* Wave arc segments — left and right */}
+      {/* Wave arc segments  –  left and right */}
       <path d="M 6 22 Q 4 32 6 42" fill="none" stroke="url(#dv1)" strokeWidth="2" opacity="0.3" strokeLinecap="round" />
       <path d="M 10 18 Q 7 32 10 46" fill="none" stroke="url(#dv1)" strokeWidth="1.5" opacity="0.25" strokeLinecap="round" />
       <path d="M 58 22 Q 60 32 58 42" fill="none" stroke="url(#dv1)" strokeWidth="2" opacity="0.3" strokeLinecap="round" />
@@ -204,7 +204,7 @@ function DevotionalSVG() {
   );
 }
 
-/* 5. Shraddha — Ritual fire with rising smoke and offering bowl */
+/* 5. Shraddha  –  Ritual fire with rising smoke and offering bowl */
 function ShraddhaSVG() {
   return (
     <svg viewBox="0 0 64 64" width={160} height={160} aria-hidden="true">
@@ -251,7 +251,7 @@ function ShraddhaSVG() {
   );
 }
 
-/* 6. Muhurta AI — Circuit pattern with clock center and cosmic sparkles */
+/* 6. Muhurta AI  –  Circuit pattern with clock center and cosmic sparkles */
 function MuhurtaAiSVG() {
   return (
     <svg viewBox="0 0 64 64" width={160} height={160} aria-hidden="true">
@@ -260,12 +260,12 @@ function MuhurtaAiSVG() {
         <linearGradient id="ma1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f0d48a" /><stop offset="50%" stopColor="#d4a853" /><stop offset="100%" stopColor="#8a6d2b" /></linearGradient>
       </defs>
       <circle cx="32" cy="32" r="28" fill="url(#ma1g)" />
-      {/* Circuit board traces — horizontal */}
+      {/* Circuit board traces  –  horizontal */}
       <line x1="4" y1="20" x2="18" y2="20" stroke="url(#ma1)" strokeWidth="1.2" opacity="0.3" />
       <line x1="46" y1="20" x2="60" y2="20" stroke="url(#ma1)" strokeWidth="1.2" opacity="0.3" />
       <line x1="4" y1="44" x2="18" y2="44" stroke="url(#ma1)" strokeWidth="1.2" opacity="0.3" />
       <line x1="46" y1="44" x2="60" y2="44" stroke="url(#ma1)" strokeWidth="1.2" opacity="0.3" />
-      {/* Circuit traces — vertical */}
+      {/* Circuit traces  –  vertical */}
       <line x1="20" y1="4" x2="20" y2="18" stroke="url(#ma1)" strokeWidth="1.2" opacity="0.3" />
       <line x1="44" y1="4" x2="44" y2="18" stroke="url(#ma1)" strokeWidth="1.2" opacity="0.3" />
       <line x1="20" y1="46" x2="20" y2="60" stroke="url(#ma1)" strokeWidth="1.2" opacity="0.3" />
@@ -296,7 +296,7 @@ function MuhurtaAiSVG() {
       <line x1="32" y1="32" x2="40" y2="28" stroke="url(#ma1)" strokeWidth="1.5" strokeLinecap="round" opacity="0.55" />
       <circle cx="32" cy="32" r="2.5" fill="url(#ma1)" opacity="0.3" stroke="url(#ma1)" strokeWidth="1.5" />
       <circle cx="32" cy="32" r="1" fill="#f0d48a" opacity="0.7" />
-      {/* AI sparkle — 4-pointed stars */}
+      {/* AI sparkle  –  4-pointed stars */}
       {[[10, 10], [54, 10], [10, 54], [54, 54]].map(([cx, cy], i) => (
         <g key={`sp${i}`} opacity={0.3 + i * 0.05}>
           <line x1={cx - 3} y1={cy} x2={cx + 3} y2={cy} stroke="#f0d48a" strokeWidth="1" strokeLinecap="round" />
@@ -313,7 +313,7 @@ function MuhurtaAiSVG() {
   );
 }
 
-/* 7. Vrat Katha — Sacred scroll with Om */
+/* 7. Vrat Katha  –  Sacred scroll with Om */
 function VratKathaSVG() {
   return (
     <svg viewBox="0 0 64 64" width={160} height={160} aria-hidden="true">
@@ -369,7 +369,7 @@ function buildRows(isDevanagari: boolean): RowDef[] {
       cards: [
         { href: '/puja', title: 'Puja Vidhi', subtitle: 'Sacred Worship Guide', description: 'Step-by-step puja procedures', glowColor: '#d4a853', svg: <PujaVidhiSVG /> },
         { href: '/vrat-calendar', title: 'Vrat Calendar', subtitle: 'Fasting Schedule', description: 'Monthly vrat dates & rules', glowColor: '#8b5cf6', svg: <VratCalendarSVG /> },
-        { href: '/vrat-katha', title: isDevanagari ? 'व्रत कथा' : 'Vrat Katha', subtitle: isDevanagari ? 'विधि एवं संदर्भ' : 'Vidhi & Reference', description: isDevanagari ? '10 व्रत — विधि, फल, समय एवं महत्व' : '10 vrats — vidhi, benefits, timing & significance', glowColor: '#f472b6', svg: <VratKathaSVG /> },
+        { href: '/vrat-katha', title: isDevanagari ? 'व्रत कथा' : 'Vrat Katha', subtitle: isDevanagari ? 'विधि एवं संदर्भ' : 'Vidhi & Reference', description: isDevanagari ? '10 व्रत  –  विधि, फल, समय एवं महत्व' : '10 vrats  –  vidhi, benefits, timing & significance', glowColor: '#f472b6', svg: <VratKathaSVG /> },
         { href: '/sankalpa', title: 'Sankalpa', subtitle: 'Sacred Resolve', description: 'Generate your puja sankalpa', glowColor: '#22d3ee', svg: <SankalpaSVG /> },
       ],
     },
@@ -409,8 +409,8 @@ export default function RitualsPage() {
         </h1>
         <p className="text-text-secondary text-sm">
           {isDevanagari
-            ? '6 पवित्र साधना मार्गदर्शक — पूजा, व्रत, मंत्र एवं शुभ मुहूर्त'
-            : '6 sacred practice guides — puja, vrat, mantras & auspicious timing'}
+            ? '6 पवित्र साधना मार्गदर्शक  –  पूजा, व्रत, मंत्र एवं शुभ मुहूर्त'
+            : '6 sacred practice guides  –  puja, vrat, mantras & auspicious timing'}
         </p>
       </motion.div>
 

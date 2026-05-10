@@ -9,7 +9,7 @@ const VALID_DOMAINS = [
 ] as const;
 
 // ---------------------------------------------------------------------------
-// POST /api/predictions — track a new prediction
+// POST /api/predictions  –  track a new prediction
 // ---------------------------------------------------------------------------
 export async function POST(req: NextRequest) {
   const supabase = getServerSupabase();
@@ -179,7 +179,7 @@ export async function POST(req: NextRequest) {
 }
 
 // ---------------------------------------------------------------------------
-// GET /api/predictions — list predictions with optional filter
+// GET /api/predictions  –  list predictions with optional filter
 // ---------------------------------------------------------------------------
 export async function GET(req: NextRequest) {
   const supabase = getServerSupabase();

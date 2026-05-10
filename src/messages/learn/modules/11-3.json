@@ -14,14 +14,14 @@
   "subtitle": {
     "en": "The double transit theory, dasha sandhi turbulence, and practical chart reading with combined dasha-transit analysis",
     "hi": "द्वि-गोचर सिद्धान्त, दशा सन्धि अस्थिरता, और संयुक्त दशा-गोचर विश्लेषण के साथ व्यावहारिक कुण्डली पठन",
-    "sa": "दशाकालप्रभावस्य व्याख्या गोचरग्रहैः सह — जीवनघटनानां कालनिर्धारणम्",
-    "ta": "தசைக் கால விளைவின் விளக்கம் கோசார கிரகங்களுடன் — வாழ்க்கை நிகழ்வுகளின் கால நிர்ணயம்",
-    "te": "దశ కాల ప్రభావ వ్యాఖ్యానం గోచార గ్రహాలతో — జీవిత సంఘటనల కాల నిర్ణయం",
-    "bn": "দশাকালীন প্রভাবের ব্যাখ্যা গোচর গ্রহের সাথে — জীবন ঘটনার কাল নির্ধারণ",
-    "kn": "ದಶಾಕಾಲ ಪ್ರಭಾವದ ವ್ಯಾಖ್ಯಾನ ಗೋಚಾರ ಗ್ರಹಗಳೊಂದಿಗೆ — ಜೀವನ ಘಟನೆಗಳ ಕಾಲ ನಿರ್ಣಯ",
-    "mr": "दशाकालीन प्रभावाचे विश्लेषण गोचर ग्रहांसोबत — जीवन घटनांचे काल निर्धारण",
-    "gu": "દશાકાળ પ્રભાવનું વિશ્લેષણ ગોચર ગ્રહો સાથે — જીવન ઘટનાઓનું કાળ નિર્ધારણ",
-    "mai": "दशाकालीन प्रभावक विश्लेषण गोचर ग्रहक संग — जीवन घटनाक काल निर्धारण"
+    "sa": "दशाकालप्रभावस्य व्याख्या गोचरग्रहैः सह  –  जीवनघटनानां कालनिर्धारणम्",
+    "ta": "தசைக் கால விளைவின் விளக்கம் கோசார கிரகங்களுடன்  –  வாழ்க்கை நிகழ்வுகளின் கால நிர்ணயம்",
+    "te": "దశ కాల ప్రభావ వ్యాఖ్యానం గోచార గ్రహాలతో  –  జీవిత సంఘటనల కాల నిర్ణయం",
+    "bn": "দশাকালীন প্রভাবের ব্যাখ্যা গোচর গ্রহের সাথে  –  জীবন ঘটনার কাল নির্ধারণ",
+    "kn": "ದಶಾಕಾಲ ಪ್ರಭಾವದ ವ್ಯಾಖ್ಯಾನ ಗೋಚಾರ ಗ್ರಹಗಳೊಂದಿಗೆ  –  ಜೀವನ ಘಟನೆಗಳ ಕಾಲ ನಿರ್ಣಯ",
+    "mr": "दशाकालीन प्रभावाचे विश्लेषण गोचर ग्रहांसोबत  –  जीवन घटनांचे काल निर्धारण",
+    "gu": "દશાકાળ પ્રભાવનું વિશ્લેષણ ગોચર ગ્રહો સાથે  –  જીવન ઘટનાઓનું કાળ નિર્ધારણ",
+    "mai": "दशाकालीन प्रभावक विश्लेषण गोचर ग्रहक संग  –  जीवन घटनाक काल निर्धारण"
   },
   "crossRefs": [
     {
@@ -369,16 +369,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "The three essentials are: (1) Which house does the planet sit in? (2) What sign is it in — is it exalted, debilitated, in own sign, or in a friend/enemy sign? (3) Which houses does it rule (lordship)? These three factors determine what the dasha will deliver.",
-        "hi": "तीन आवश्यक तत्त्व हैं: (1) ग्रह किस भाव में बैठा है? (2) वह किस राशि में है — उच्च, नीच, स्वराशि, या मित्र/शत्रु राशि? (3) वह किन भावों का स्वामी है (भावेशत्व)? ये तीन कारक निर्धारित करते हैं कि दशा क्या फल देगी।",
-        "sa": "तीन आवश्यक तत्त्व हैं: (1) ग्रह किस भाव में बैठा है? (2) वह किस राशि में है — उच्च, नीच, स्वराशि, या मित्र/शत्रु राशि? (3) वह किन भावों का स्वामी है (भावेशत्व)? ये तीन कारक निर्धारित करते हैं कि दशा क्या फल देगी।",
-        "ta": "The three essentials are: (1) Which house does the planet sit in? (2) What sign is it in — is it exalted, debilitated, in own sign, or in a friend/enemy sign? (3) Which houses does it rule (lordship)? These three factors determine what the dasha will deliver.",
-        "te": "The three essentials are: (1) Which house does the planet sit in? (2) What sign is it in — is it exalted, debilitated, in own sign, or in a friend/enemy sign? (3) Which houses does it rule (lordship)? These three factors determine what the dasha will deliver.",
-        "bn": "The three essentials are: (1) Which house does the planet sit in? (2) What sign is it in — is it exalted, debilitated, in own sign, or in a friend/enemy sign? (3) Which houses does it rule (lordship)? These three factors determine what the dasha will deliver.",
-        "kn": "The three essentials are: (1) Which house does the planet sit in? (2) What sign is it in — is it exalted, debilitated, in own sign, or in a friend/enemy sign? (3) Which houses does it rule (lordship)? These three factors determine what the dasha will deliver.",
-        "mr": "तीन आवश्यक तत्त्व हैं: (1) ग्रह किस भाव में बैठा है? (2) वह किस राशि में है — उच्च, नीच, स्वराशि, या मित्र/शत्रु राशि? (3) वह किन भावों का स्वामी है (भावेशत्व)? ये तीन कारक निर्धारित करते हैं कि दशा क्या फल देगी।",
-        "gu": "The three essentials are: (1) Which house does the planet sit in? (2) What sign is it in — is it exalted, debilitated, in own sign, or in a friend/enemy sign? (3) Which houses does it rule (lordship)? These three factors determine what the dasha will deliver.",
-        "mai": "तीन आवश्यक तत्त्व हैं: (1) ग्रह किस भाव में बैठा है? (2) वह किस राशि में है — उच्च, नीच, स्वराशि, या मित्र/शत्रु राशि? (3) वह किन भावों का स्वामी है (भावेशत्व)? ये तीन कारक निर्धारित करते हैं कि दशा क्या फल देगी।"
+        "en": "The three essentials are: (1) Which house does the planet sit in? (2) What sign is it in  –  is it exalted, debilitated, in own sign, or in a friend/enemy sign? (3) Which houses does it rule (lordship)? These three factors determine what the dasha will deliver.",
+        "hi": "तीन आवश्यक तत्त्व हैं: (1) ग्रह किस भाव में बैठा है? (2) वह किस राशि में है  –  उच्च, नीच, स्वराशि, या मित्र/शत्रु राशि? (3) वह किन भावों का स्वामी है (भावेशत्व)? ये तीन कारक निर्धारित करते हैं कि दशा क्या फल देगी।",
+        "sa": "तीन आवश्यक तत्त्व हैं: (1) ग्रह किस भाव में बैठा है? (2) वह किस राशि में है  –  उच्च, नीच, स्वराशि, या मित्र/शत्रु राशि? (3) वह किन भावों का स्वामी है (भावेशत्व)? ये तीन कारक निर्धारित करते हैं कि दशा क्या फल देगी।",
+        "ta": "The three essentials are: (1) Which house does the planet sit in? (2) What sign is it in  –  is it exalted, debilitated, in own sign, or in a friend/enemy sign? (3) Which houses does it rule (lordship)? These three factors determine what the dasha will deliver.",
+        "te": "The three essentials are: (1) Which house does the planet sit in? (2) What sign is it in  –  is it exalted, debilitated, in own sign, or in a friend/enemy sign? (3) Which houses does it rule (lordship)? These three factors determine what the dasha will deliver.",
+        "bn": "The three essentials are: (1) Which house does the planet sit in? (2) What sign is it in  –  is it exalted, debilitated, in own sign, or in a friend/enemy sign? (3) Which houses does it rule (lordship)? These three factors determine what the dasha will deliver.",
+        "kn": "The three essentials are: (1) Which house does the planet sit in? (2) What sign is it in  –  is it exalted, debilitated, in own sign, or in a friend/enemy sign? (3) Which houses does it rule (lordship)? These three factors determine what the dasha will deliver.",
+        "mr": "तीन आवश्यक तत्त्व हैं: (1) ग्रह किस भाव में बैठा है? (2) वह किस राशि में है  –  उच्च, नीच, स्वराशि, या मित्र/शत्रु राशि? (3) वह किन भावों का स्वामी है (भावेशत्व)? ये तीन कारक निर्धारित करते हैं कि दशा क्या फल देगी।",
+        "gu": "The three essentials are: (1) Which house does the planet sit in? (2) What sign is it in  –  is it exalted, debilitated, in own sign, or in a friend/enemy sign? (3) Which houses does it rule (lordship)? These three factors determine what the dasha will deliver.",
+        "mai": "तीन आवश्यक तत्त्व हैं: (1) ग्रह किस भाव में बैठा है? (2) वह किस राशि में है  –  उच्च, नीच, स्वराशि, या मित्र/शत्रु राशि? (3) वह किन भावों का स्वामी है (भावेशत्व)? ये तीन कारक निर्धारित करते हैं कि दशा क्या फल देगी।"
       },
       "options": [
         {
@@ -448,16 +448,16 @@
       },
       "correctAnswer": false,
       "explanation": {
-        "en": "False. According to the double transit theory, both conditions must be met. The dasha creates the potential (the \"promise\"), but Jupiter and Saturn transiting the relevant house provide the \"trigger.\" Without the transit trigger, the dasha promise remains latent — like a seed without water.",
-        "hi": "असत्य। द्वि-गोचर सिद्धान्त के अनुसार दोनों शर्तें पूरी होनी चाहिए। दशा सम्भावना (\"वचन\") बनाती है, किन्तु सम्बन्धित भाव पर गुरु और शनि का गोचर \"ट्रिगर\" प्रदान करता है। गोचर ट्रिगर के बिना दशा का वचन अव्यक्त रहता है — जैसे बिना जल के बीज।",
-        "sa": "असत्य। द्वि-गोचर सिद्धान्त के अनुसार दोनों शर्तें पूरी होनी चाहिए। दशा सम्भावना (\"वचन\") बनाती है, किन्तु सम्बन्धित भाव पर गुरु और शनि का गोचर \"ट्रिगर\" प्रदान करता है। गोचर ट्रिगर के बिना दशा का वचन अव्यक्त रहता है — जैसे बिना जल के बीज।",
-        "ta": "False. According to the double transit theory, both conditions must be met. The dasha creates the potential (the \"promise\"), but Jupiter and Saturn transiting the relevant house provide the \"trigger.\" Without the transit trigger, the dasha promise remains latent — like a seed without water.",
-        "te": "False. According to the double transit theory, both conditions must be met. The dasha creates the potential (the \"promise\"), but Jupiter and Saturn transiting the relevant house provide the \"trigger.\" Without the transit trigger, the dasha promise remains latent — like a seed without water.",
-        "bn": "False. According to the double transit theory, both conditions must be met. The dasha creates the potential (the \"promise\"), but Jupiter and Saturn transiting the relevant house provide the \"trigger.\" Without the transit trigger, the dasha promise remains latent — like a seed without water.",
-        "kn": "False. According to the double transit theory, both conditions must be met. The dasha creates the potential (the \"promise\"), but Jupiter and Saturn transiting the relevant house provide the \"trigger.\" Without the transit trigger, the dasha promise remains latent — like a seed without water.",
-        "mr": "असत्य। द्वि-गोचर सिद्धान्त के अनुसार दोनों शर्तें पूरी होनी चाहिए। दशा सम्भावना (\"वचन\") बनाती है, किन्तु सम्बन्धित भाव पर गुरु और शनि का गोचर \"ट्रिगर\" प्रदान करता है। गोचर ट्रिगर के बिना दशा का वचन अव्यक्त रहता है — जैसे बिना जल के बीज।",
-        "gu": "False. According to the double transit theory, both conditions must be met. The dasha creates the potential (the \"promise\"), but Jupiter and Saturn transiting the relevant house provide the \"trigger.\" Without the transit trigger, the dasha promise remains latent — like a seed without water.",
-        "mai": "असत्य। द्वि-गोचर सिद्धान्त के अनुसार दोनों शर्तें पूरी होनी चाहिए। दशा सम्भावना (\"वचन\") बनाती है, किन्तु सम्बन्धित भाव पर गुरु और शनि का गोचर \"ट्रिगर\" प्रदान करता है। गोचर ट्रिगर के बिना दशा का वचन अव्यक्त रहता है — जैसे बिना जल के बीज।"
+        "en": "False. According to the double transit theory, both conditions must be met. The dasha creates the potential (the \"promise\"), but Jupiter and Saturn transiting the relevant house provide the \"trigger.\" Without the transit trigger, the dasha promise remains latent  –  like a seed without water.",
+        "hi": "असत्य। द्वि-गोचर सिद्धान्त के अनुसार दोनों शर्तें पूरी होनी चाहिए। दशा सम्भावना (\"वचन\") बनाती है, किन्तु सम्बन्धित भाव पर गुरु और शनि का गोचर \"ट्रिगर\" प्रदान करता है। गोचर ट्रिगर के बिना दशा का वचन अव्यक्त रहता है  –  जैसे बिना जल के बीज।",
+        "sa": "असत्य। द्वि-गोचर सिद्धान्त के अनुसार दोनों शर्तें पूरी होनी चाहिए। दशा सम्भावना (\"वचन\") बनाती है, किन्तु सम्बन्धित भाव पर गुरु और शनि का गोचर \"ट्रिगर\" प्रदान करता है। गोचर ट्रिगर के बिना दशा का वचन अव्यक्त रहता है  –  जैसे बिना जल के बीज।",
+        "ta": "False. According to the double transit theory, both conditions must be met. The dasha creates the potential (the \"promise\"), but Jupiter and Saturn transiting the relevant house provide the \"trigger.\" Without the transit trigger, the dasha promise remains latent  –  like a seed without water.",
+        "te": "False. According to the double transit theory, both conditions must be met. The dasha creates the potential (the \"promise\"), but Jupiter and Saturn transiting the relevant house provide the \"trigger.\" Without the transit trigger, the dasha promise remains latent  –  like a seed without water.",
+        "bn": "False. According to the double transit theory, both conditions must be met. The dasha creates the potential (the \"promise\"), but Jupiter and Saturn transiting the relevant house provide the \"trigger.\" Without the transit trigger, the dasha promise remains latent  –  like a seed without water.",
+        "kn": "False. According to the double transit theory, both conditions must be met. The dasha creates the potential (the \"promise\"), but Jupiter and Saturn transiting the relevant house provide the \"trigger.\" Without the transit trigger, the dasha promise remains latent  –  like a seed without water.",
+        "mr": "असत्य। द्वि-गोचर सिद्धान्त के अनुसार दोनों शर्तें पूरी होनी चाहिए। दशा सम्भावना (\"वचन\") बनाती है, किन्तु सम्बन्धित भाव पर गुरु और शनि का गोचर \"ट्रिगर\" प्रदान करता है। गोचर ट्रिगर के बिना दशा का वचन अव्यक्त रहता है  –  जैसे बिना जल के बीज।",
+        "gu": "False. According to the double transit theory, both conditions must be met. The dasha creates the potential (the \"promise\"), but Jupiter and Saturn transiting the relevant house provide the \"trigger.\" Without the transit trigger, the dasha promise remains latent  –  like a seed without water.",
+        "mai": "असत्य। द्वि-गोचर सिद्धान्त के अनुसार दोनों शर्तें पूरी होनी चाहिए। दशा सम्भावना (\"वचन\") बनाती है, किन्तु सम्बन्धित भाव पर गुरु और शनि का गोचर \"ट्रिगर\" प्रदान करता है। गोचर ट्रिगर के बिना दशा का वचन अव्यक्त रहता है  –  जैसे बिना जल के बीज।"
       }
     },
     {
@@ -664,29 +664,29 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Saturn exalted in the 10th (career house) is one of the best placements possible — it creates Shasha Mahapurusha Yoga. Ruling the 4th (property, comfort) and 5th (intelligence, children), Saturn dasha would bring career authority, property acquisition, and academic or creative success. Never judge a planet by name alone.",
-        "hi": "शनि 10वें (कर्म भाव) में उच्च सर्वोत्तम स्थितियों में से एक है — यह शश महापुरुष योग बनाता है। 4वें (सम्पत्ति, सुख) और 5वें (बुद्धि, सन्तान) का स्वामी होकर, शनि दशा कैरियर अधिकार, सम्पत्ति अर्जन और शैक्षिक/सृजनात्मक सफलता लाएगी। कभी ग्रह का आकलन केवल नाम से न करें।",
-        "sa": "शनि 10वें (कर्म भाव) में उच्च सर्वोत्तम स्थितियों में से एक है — यह शश महापुरुष योग बनाता है। 4वें (सम्पत्ति, सुख) और 5वें (बुद्धि, सन्तान) का स्वामी होकर, शनि दशा कैरियर अधिकार, सम्पत्ति अर्जन और शैक्षिक/सृजनात्मक सफलता लाएगी। कभी ग्रह का आकलन केवल नाम से न करें।",
-        "ta": "Saturn exalted in the 10th (career house) is one of the best placements possible — it creates Shasha Mahapurusha Yoga. Ruling the 4th (property, comfort) and 5th (intelligence, children), Saturn dasha would bring career authority, property acquisition, and academic or creative success. Never judge a planet by name alone.",
-        "te": "Saturn exalted in the 10th (career house) is one of the best placements possible — it creates Shasha Mahapurusha Yoga. Ruling the 4th (property, comfort) and 5th (intelligence, children), Saturn dasha would bring career authority, property acquisition, and academic or creative success. Never judge a planet by name alone.",
-        "bn": "Saturn exalted in the 10th (career house) is one of the best placements possible — it creates Shasha Mahapurusha Yoga. Ruling the 4th (property, comfort) and 5th (intelligence, children), Saturn dasha would bring career authority, property acquisition, and academic or creative success. Never judge a planet by name alone.",
-        "kn": "Saturn exalted in the 10th (career house) is one of the best placements possible — it creates Shasha Mahapurusha Yoga. Ruling the 4th (property, comfort) and 5th (intelligence, children), Saturn dasha would bring career authority, property acquisition, and academic or creative success. Never judge a planet by name alone.",
-        "mr": "शनि 10वें (कर्म भाव) में उच्च सर्वोत्तम स्थितियों में से एक है — यह शश महापुरुष योग बनाता है। 4वें (सम्पत्ति, सुख) और 5वें (बुद्धि, सन्तान) का स्वामी होकर, शनि दशा कैरियर अधिकार, सम्पत्ति अर्जन और शैक्षिक/सृजनात्मक सफलता लाएगी। कभी ग्रह का आकलन केवल नाम से न करें।",
-        "gu": "Saturn exalted in the 10th (career house) is one of the best placements possible — it creates Shasha Mahapurusha Yoga. Ruling the 4th (property, comfort) and 5th (intelligence, children), Saturn dasha would bring career authority, property acquisition, and academic or creative success. Never judge a planet by name alone.",
-        "mai": "शनि 10वें (कर्म भाव) में उच्च सर्वोत्तम स्थितियों में से एक है — यह शश महापुरुष योग बनाता है। 4वें (सम्पत्ति, सुख) और 5वें (बुद्धि, सन्तान) का स्वामी होकर, शनि दशा कैरियर अधिकार, सम्पत्ति अर्जन और शैक्षिक/सृजनात्मक सफलता लाएगी। कभी ग्रह का आकलन केवल नाम से न करें।"
+        "en": "Saturn exalted in the 10th (career house) is one of the best placements possible  –  it creates Shasha Mahapurusha Yoga. Ruling the 4th (property, comfort) and 5th (intelligence, children), Saturn dasha would bring career authority, property acquisition, and academic or creative success. Never judge a planet by name alone.",
+        "hi": "शनि 10वें (कर्म भाव) में उच्च सर्वोत्तम स्थितियों में से एक है  –  यह शश महापुरुष योग बनाता है। 4वें (सम्पत्ति, सुख) और 5वें (बुद्धि, सन्तान) का स्वामी होकर, शनि दशा कैरियर अधिकार, सम्पत्ति अर्जन और शैक्षिक/सृजनात्मक सफलता लाएगी। कभी ग्रह का आकलन केवल नाम से न करें।",
+        "sa": "शनि 10वें (कर्म भाव) में उच्च सर्वोत्तम स्थितियों में से एक है  –  यह शश महापुरुष योग बनाता है। 4वें (सम्पत्ति, सुख) और 5वें (बुद्धि, सन्तान) का स्वामी होकर, शनि दशा कैरियर अधिकार, सम्पत्ति अर्जन और शैक्षिक/सृजनात्मक सफलता लाएगी। कभी ग्रह का आकलन केवल नाम से न करें।",
+        "ta": "Saturn exalted in the 10th (career house) is one of the best placements possible  –  it creates Shasha Mahapurusha Yoga. Ruling the 4th (property, comfort) and 5th (intelligence, children), Saturn dasha would bring career authority, property acquisition, and academic or creative success. Never judge a planet by name alone.",
+        "te": "Saturn exalted in the 10th (career house) is one of the best placements possible  –  it creates Shasha Mahapurusha Yoga. Ruling the 4th (property, comfort) and 5th (intelligence, children), Saturn dasha would bring career authority, property acquisition, and academic or creative success. Never judge a planet by name alone.",
+        "bn": "Saturn exalted in the 10th (career house) is one of the best placements possible  –  it creates Shasha Mahapurusha Yoga. Ruling the 4th (property, comfort) and 5th (intelligence, children), Saturn dasha would bring career authority, property acquisition, and academic or creative success. Never judge a planet by name alone.",
+        "kn": "Saturn exalted in the 10th (career house) is one of the best placements possible  –  it creates Shasha Mahapurusha Yoga. Ruling the 4th (property, comfort) and 5th (intelligence, children), Saturn dasha would bring career authority, property acquisition, and academic or creative success. Never judge a planet by name alone.",
+        "mr": "शनि 10वें (कर्म भाव) में उच्च सर्वोत्तम स्थितियों में से एक है  –  यह शश महापुरुष योग बनाता है। 4वें (सम्पत्ति, सुख) और 5वें (बुद्धि, सन्तान) का स्वामी होकर, शनि दशा कैरियर अधिकार, सम्पत्ति अर्जन और शैक्षिक/सृजनात्मक सफलता लाएगी। कभी ग्रह का आकलन केवल नाम से न करें।",
+        "gu": "Saturn exalted in the 10th (career house) is one of the best placements possible  –  it creates Shasha Mahapurusha Yoga. Ruling the 4th (property, comfort) and 5th (intelligence, children), Saturn dasha would bring career authority, property acquisition, and academic or creative success. Never judge a planet by name alone.",
+        "mai": "शनि 10वें (कर्म भाव) में उच्च सर्वोत्तम स्थितियों में से एक है  –  यह शश महापुरुष योग बनाता है। 4वें (सम्पत्ति, सुख) और 5वें (बुद्धि, सन्तान) का स्वामी होकर, शनि दशा कैरियर अधिकार, सम्पत्ति अर्जन और शैक्षिक/सृजनात्मक सफलता लाएगी। कभी ग्रह का आकलन केवल नाम से न करें।"
       },
       "options": [
         {
-          "en": "Severe difficulties — Saturn is always malefic",
-          "hi": "गम्भीर कठिनाइयाँ — शनि सदा पापी है",
-          "sa": "गम्भीर कठिनाइयाँ — शनि सदा पापी है",
-          "mai": "गम्भीर कठिनाइयाँ — शनि सदा पापी है",
-          "mr": "गम्भीर कठिनाइयाँ — शनि सदा पापी है",
-          "ta": "Severe difficulties — Saturn is always malefic",
-          "te": "Severe difficulties — Saturn is always malefic",
-          "bn": "Severe difficulties — Saturn is always malefic",
-          "kn": "Severe difficulties — Saturn is always malefic",
-          "gu": "Severe difficulties — Saturn is always malefic"
+          "en": "Severe difficulties  –  Saturn is always malefic",
+          "hi": "गम्भीर कठिनाइयाँ  –  शनि सदा पापी है",
+          "sa": "गम्भीर कठिनाइयाँ  –  शनि सदा पापी है",
+          "mai": "गम्भीर कठिनाइयाँ  –  शनि सदा पापी है",
+          "mr": "गम्भीर कठिनाइयाँ  –  शनि सदा पापी है",
+          "ta": "Severe difficulties  –  Saturn is always malefic",
+          "te": "Severe difficulties  –  Saturn is always malefic",
+          "bn": "Severe difficulties  –  Saturn is always malefic",
+          "kn": "Severe difficulties  –  Saturn is always malefic",
+          "gu": "Severe difficulties  –  Saturn is always malefic"
         },
         {
           "en": "Career success, authority, property gains, academic achievement",
@@ -713,16 +713,16 @@
           "gu": "Only spiritual growth"
         },
         {
-          "en": "Nothing — exalted planets give no results",
-          "hi": "कुछ नहीं — उच्च ग्रह कोई फल नहीं देते",
-          "sa": "कुछ नहीं — उच्च ग्रह कोई फल नहीं देते",
-          "mai": "कुछ नहीं — उच्च ग्रह कोई फल नहीं देते",
-          "mr": "कुछ नहीं — उच्च ग्रह कोई फल नहीं देते",
-          "ta": "Nothing — exalted planets give no results",
-          "te": "Nothing — exalted planets give no results",
-          "bn": "Nothing — exalted planets give no results",
-          "kn": "Nothing — exalted planets give no results",
-          "gu": "Nothing — exalted planets give no results"
+          "en": "Nothing  –  exalted planets give no results",
+          "hi": "कुछ नहीं  –  उच्च ग्रह कोई फल नहीं देते",
+          "sa": "कुछ नहीं  –  उच्च ग्रह कोई फल नहीं देते",
+          "mai": "कुछ नहीं  –  उच्च ग्रह कोई फल नहीं देते",
+          "mr": "कुछ नहीं  –  उच्च ग्रह कोई फल नहीं देते",
+          "ta": "Nothing  –  exalted planets give no results",
+          "te": "Nothing  –  exalted planets give no results",
+          "bn": "Nothing  –  exalted planets give no results",
+          "kn": "Nothing  –  exalted planets give no results",
+          "gu": "Nothing  –  exalted planets give no results"
         }
       ]
     }

@@ -465,7 +465,7 @@ export default function LearnNadiAmshaPage() {
           }, locale)}
         </p>
 
-        {/* Complete 150 Nadi Reference — grouped by cycle */}
+        {/* Complete 150 Nadi Reference  –  grouped by cycle */}
         <div className="mt-6 space-y-2">
           <div className="text-gold-light text-sm font-bold">
             {tl({ en: 'Complete 150 Nadi Reference (by cycle)', hi: 'सम्पूर्ण 150 नाडी सन्दर्भ (चक्रानुसार)' }, locale)}

@@ -1,5 +1,5 @@
 import type { LocaleText } from '@/types/panchang';
-// Pure data — no imports, no async, no side effects
+// Pure data  –  no imports, no async, no side effects
 
 export type Tier = 'free' | 'pro' | 'jyotishi';
 

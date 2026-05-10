@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * EclipseSimulator — Canvas 2D educational animation of solar and lunar eclipses.
+ * EclipseSimulator  –  Canvas 2D educational animation of solar and lunar eclipses.
  *
  * Rendering is simplified/geometric (not based on Besselian elements).
  * Purpose: illustrate the geometric concept for educational & Jyotish context.
@@ -271,7 +271,7 @@ function drawSolarEclipse(
 
   // Draw shadow cone from Moon to Earth (penumbra + umbra)
   if (overlapDist > -sunR) {
-    // Penumbra cone — wide
+    // Penumbra cone  –  wide
     ctx.beginPath();
     ctx.moveTo(moonX - moonR, moonY - moonR * 0.8);
     ctx.lineTo(earthX - earthR * 1.5, earthY - earthR * 2.2);
@@ -281,7 +281,7 @@ function drawSolarEclipse(
     ctx.fillStyle = 'rgba(100, 80, 0, 0.12)';
     ctx.fill();
 
-    // Umbra cone — narrow
+    // Umbra cone  –  narrow
     const umbraWidth = moonR * (0.3 + coverageRatio * 0.4);
     ctx.beginPath();
     ctx.moveTo(moonX, moonY - umbraWidth);
@@ -371,7 +371,7 @@ function drawLunarEclipse(
   const earthR = h * 0.16;
   const moonR = h * 0.1;
 
-  // Sun is off-screen left — show rays only
+  // Sun is off-screen left  –  show rays only
   const earthX = w * 0.42;
   const earthY = h * 0.44;
 

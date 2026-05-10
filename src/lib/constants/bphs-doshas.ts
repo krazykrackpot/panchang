@@ -24,7 +24,7 @@ export const DOSHA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'If Mars occupies the 1st, 2nd, 4th, 7th, 8th, or 12th house from the Lagna, Moon, or Venus, the native has Kuja Dosha (Manglik Dosha). This causes disharmony in marriage, potential separation, or loss of spouse.',
       relevanceNote:
-        'Primary classical source for the six-house Manglik condition. The three reference points (Lagna, Moon, Venus) determine severity — presence from all three is traditionally called "double Manglik" (a popular term, not a BPHS classification).',
+        'Primary classical source for the six-house Manglik condition. The three reference points (Lagna, Moon, Venus) determine severity  –  presence from all three is traditionally called "double Manglik" (a popular term, not a BPHS classification).',
     },
     {
       textName: 'Phaladeepika',
@@ -70,7 +70,7 @@ export const DOSHA_CITATIONS: Record<string, ClassicalCitation[]> = {
       verseRange: '1-12',
       sanskritExcerpt: null,
       translationExcerpt:
-        'Rahu and Ketu are shadow planets (chaya grahas) that eclipse the luminaries. Their placement defines the axis of karmic evolution — Rahu indicating worldly desires and future karma, Ketu indicating past-life detachment and spiritual liberation.',
+        'Rahu and Ketu are shadow planets (chaya grahas) that eclipse the luminaries. Their placement defines the axis of karmic evolution  –  Rahu indicating worldly desires and future karma, Ketu indicating past-life detachment and spiritual liberation.',
       relevanceNote:
         'Closest classical reference to the Rahu-Ketu axis concept. While BPHS describes individual effects of Rahu and Ketu by house and sign, it does not describe the "all planets hemmed" condition as a named dosha.',
     },
@@ -159,9 +159,9 @@ export const DOSHA_CITATIONS: Record<string, ClassicalCitation[]> = {
       verseRange: '1-6',
       sanskritExcerpt: null,
       translationExcerpt:
-        'Birth in Ganda Mula nakshatras (Ashwini, Ashlesha, Magha, Jyeshtha, Moola, Revati) — the junctional nakshatras between water and fire signs — brings specific karmic effects on the family. The critical padas intensify the effect: Ashwini pada 1, Ashlesha pada 4, Magha pada 1, Jyeshtha pada 4, Moola pada 1, and Revati pada 4.',
+        'Birth in Ganda Mula nakshatras (Ashwini, Ashlesha, Magha, Jyeshtha, Moola, Revati)  –  the junctional nakshatras between water and fire signs  –  brings specific karmic effects on the family. The critical padas intensify the effect: Ashwini pada 1, Ashlesha pada 4, Magha pada 1, Jyeshtha pada 4, Moola pada 1, and Revati pada 4.',
       relevanceNote:
-        'Saravali provides the most detailed classical treatment of Ganda Mula. The term "Gandanta" refers to the last 3°20\' of a water sign and first 3°20\' of a fire sign — the "knot" (ganda) between endings and beginnings.',
+        'Saravali provides the most detailed classical treatment of Ganda Mula. The term "Gandanta" refers to the last 3°20\' of a water sign and first 3°20\' of a fire sign  –  the "knot" (ganda) between endings and beginnings.',
     },
     {
       textName: 'BPHS',
@@ -185,9 +185,9 @@ export const DOSHA_CITATIONS: Record<string, ClassicalCitation[]> = {
       verseRange: '1-15',
       sanskritExcerpt: null,
       translationExcerpt:
-        'Arishta (danger) yogas are formed when the Lagna lord, Moon, and the 8th lord are all weak — debilitated, combust, or in enemy signs. Malefics in kendras without benefic aspect, or the Moon hemmed between malefics (Papa Kartari), indicate early health challenges.',
+        'Arishta (danger) yogas are formed when the Lagna lord, Moon, and the 8th lord are all weak  –  debilitated, combust, or in enemy signs. Malefics in kendras without benefic aspect, or the Moon hemmed between malefics (Papa Kartari), indicate early health challenges.',
       relevanceNote:
-        'BPHS Chapters 8-9 (Arishta Adhyaya) detail combinations indicating health challenges and longevity concerns. These are diagnostic — the presence of Arishta cancellation (Arishta Bhanga) yogas must always be checked before concluding severity.',
+        'BPHS Chapters 8-9 (Arishta Adhyaya) detail combinations indicating health challenges and longevity concerns. These are diagnostic  –  the presence of Arishta cancellation (Arishta Bhanga) yogas must always be checked before concluding severity.',
     },
     {
       textName: 'BPHS',
@@ -222,7 +222,7 @@ export const DOSHA_CITATIONS: Record<string, ClassicalCitation[]> = {
       verseRange: '1-4',
       sanskritExcerpt: null,
       translationExcerpt:
-        'Jupiter conjunct Rahu in houses 1, 5, or 9 is most impactful on dharma and progeny. If Jupiter is in own sign or exalted, the dosha is significantly mitigated — the native may gain mastery of unconventional or foreign knowledge systems.',
+        'Jupiter conjunct Rahu in houses 1, 5, or 9 is most impactful on dharma and progeny. If Jupiter is in own sign or exalted, the dosha is significantly mitigated  –  the native may gain mastery of unconventional or foreign knowledge systems.',
       relevanceNote:
         'Phaladeepika provides house-specific effects and the dignity-based cancellation condition.',
     },
@@ -237,7 +237,7 @@ export const DOSHA_CITATIONS: Record<string, ClassicalCitation[]> = {
       verseRange: '27-29',
       sanskritExcerpt: null,
       translationExcerpt:
-        'When Jupiter is in the 6th, 8th, or 12th from the Moon, Shakata Yoga (cart-wheel yoga) is formed. Fortune fluctuates like a cart wheel — alternating between prosperity and adversity. The native may rise and fall repeatedly in status and wealth.',
+        'When Jupiter is in the 6th, 8th, or 12th from the Moon, Shakata Yoga (cart-wheel yoga) is formed. Fortune fluctuates like a cart wheel  –  alternating between prosperity and adversity. The native may rise and fall repeatedly in status and wealth.',
       relevanceNote:
         'The classical source for Shakata Dosha. Cancellation occurs when Jupiter is simultaneously in a kendra from the Lagna, stabilising the wheel of fortune.',
     },
@@ -284,7 +284,7 @@ export const DOSHA_CITATIONS: Record<string, ClassicalCitation[]> = {
       translationExcerpt:
         'When the lord of the 11th house (house of gains, income, and fulfillment of desires) is placed in a dusthana (6th, 8th, or 12th), income is obstructed or comes through unconventional means such as service, healing, or foreign connections.',
       relevanceNote:
-        'BPHS describes the 11th lord in dusthana as one of several Daridra (poverty) combinations. The 8th house placement is considered most severe — gains come through inheritance, insurance, or other people\'s resources rather than direct effort.',
+        'BPHS describes the 11th lord in dusthana as one of several Daridra (poverty) combinations. The 8th house placement is considered most severe  –  gains come through inheritance, insurance, or other people\'s resources rather than direct effort.',
     },
   ],
 
@@ -297,7 +297,7 @@ export const DOSHA_CITATIONS: Record<string, ClassicalCitation[]> = {
       verseRange: '1-8',
       sanskritExcerpt: null,
       translationExcerpt:
-        'Saturn transiting the 12th, 1st, and 2nd houses from the natal Moon constitutes the Sade Sati (seven-and-a-half year) period. When Saturn occupies these positions natally, the native carries these karmic themes from birth — emotional discipline, delayed gratification, and transformation through endurance.',
+        'Saturn transiting the 12th, 1st, and 2nd houses from the natal Moon constitutes the Sade Sati (seven-and-a-half year) period. When Saturn occupies these positions natally, the native carries these karmic themes from birth  –  emotional discipline, delayed gratification, and transformation through endurance.',
       relevanceNote:
         'While Sade Sati is primarily a transit phenomenon, natal Saturn near the Moon mirrors the same themes. The natal position indicates a lifelong undertone rather than a time-bound transit effect.',
     },
@@ -312,7 +312,7 @@ export const DOSHA_CITATIONS: Record<string, ClassicalCitation[]> = {
       verseRange: '28-32',
       sanskritExcerpt: null,
       translationExcerpt:
-        'For movable (chara) signs, the 11th lord is the Badhakesh. For fixed (sthira) signs, the 9th lord. For dual (dvisvabhava) signs, the 7th lord. When the Badhakesh occupies the Lagna, mysterious obstacles arise — the native faces inexplicable setbacks that seem to lack a rational cause.',
+        'For movable (chara) signs, the 11th lord is the Badhakesh. For fixed (sthira) signs, the 9th lord. For dual (dvisvabhava) signs, the 7th lord. When the Badhakesh occupies the Lagna, mysterious obstacles arise  –  the native faces inexplicable setbacks that seem to lack a rational cause.',
       relevanceNote:
         'Badhaka (obstruction) is a distinctively Parashari concept. The remedy traditionally involves worshipping the deity associated with the Badhaka sign.',
     },
@@ -327,7 +327,7 @@ export const DOSHA_CITATIONS: Record<string, ClassicalCitation[]> = {
       verseRange: '29-34',
       sanskritExcerpt: null,
       translationExcerpt:
-        'Saturn conjunct Rahu in any house creates Shrapit Dosha — a curse carried from a past life. The native faces chronic delays, karmic suffering, and obstacles that repeat across life areas. The dosha is especially severe in houses 1, 5, 7, or 9.',
+        'Saturn conjunct Rahu in any house creates Shrapit Dosha  –  a curse carried from a past life. The native faces chronic delays, karmic suffering, and obstacles that repeat across life areas. The dosha is especially severe in houses 1, 5, 7, or 9.',
       relevanceNote:
         'The Saturn-Rahu conjunction combines the karma of restriction (Saturn) with the karma of obsessive desire (Rahu). Remedies include Maha Mrityunjaya Japa and Rahu-Shani Shanti Puja.',
     },
@@ -375,7 +375,7 @@ export function findDoshaCitations(doshaName: string): ClassicalCitation[] | und
   // Direct match
   if (DOSHA_CITATIONS[key]) return DOSHA_CITATIONS[key];
 
-  // Prefix match for dynamic names — e.g. "ganda mula dosha (ashwini)" → "ganda mula dosha"
+  // Prefix match for dynamic names  –  e.g. "ganda mula dosha (ashwini)" → "ganda mula dosha"
   for (const citationKey of Object.keys(DOSHA_CITATIONS)) {
     if (key.startsWith(citationKey)) return DOSHA_CITATIONS[citationKey];
   }

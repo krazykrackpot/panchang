@@ -39,7 +39,7 @@ export interface DetailedMatchReport {
     healthImplications: string;
   };
 
-  /** Rajju Dosha — South Indian (Tamil) nakshatra cord matching */
+  /** Rajju Dosha  –  South Indian (Tamil) nakshatra cord matching */
   rajjuDosha?: RajjuDoshaResult;
 
   crossChartAspects: CrossChartAspect[];
@@ -197,10 +197,10 @@ function analyzeManglikFromEngine(
   });
 
   const summary = result.mutualCancellation
-    ? 'Both partners have Mangal Dosha — mutual cancellation significantly reduces its impact.'
+    ? 'Both partners have Mangal Dosha  –  mutual cancellation significantly reduces its impact.'
     : result.chart1.present || result.chart2.present
       ? `Mangal Dosha detected. ${uniqueCancellations.length > 0 ? 'Mitigating factors are present.' : 'Consult a Jyotish expert for remedial measures.'}`
-      : 'No Mangal Dosha — marriage compatibility is favorable from this perspective.';
+      : 'No Mangal Dosha  –  marriage compatibility is favorable from this perspective.';
 
   return {
     chart1HasManglik: result.chart1.present,
@@ -237,7 +237,7 @@ function analyzeNadi(chart1: KundaliData, chart2: KundaliData): DetailedMatchRep
     const lord1 = RASHI_LORD[rashi1 - 1];
     const lord2 = RASHI_LORD[rashi2 - 1];
     if (lord1 !== lord2) {
-      cancellations.push('Moon signs have different lords — Nadi Dosha is partially cancelled.');
+      cancellations.push('Moon signs have different lords  –  Nadi Dosha is partially cancelled.');
     }
 
     // Cancellation 2: Same nakshatra but different padas
@@ -245,21 +245,21 @@ function analyzeNadi(chart1: KundaliData, chart2: KundaliData): DetailedMatchRep
       const pada1 = moon1?.pada ?? 1;
       const pada2 = moon2?.pada ?? 1;
       if (pada1 !== pada2) {
-        cancellations.push('Same nakshatra but different padas — Nadi Dosha mitigated.');
+        cancellations.push('Same nakshatra but different padas  –  Nadi Dosha mitigated.');
       } else {
         // N4: Same nakshatra, same pada → complete override (genetically favorable)
         return {
           chart1Nadi: nadi1, chart2Nadi: nadi2,
           doshaPresent: false,
-          cancellations: ['Same nakshatra and pada — genetically favorable, Nadi Dosha fully cancelled.'],
-          healthImplications: 'Same nakshatra and pada indicates genetic compatibility — no Nadi Dosha concern.',
+          cancellations: ['Same nakshatra and pada  –  genetically favorable, Nadi Dosha fully cancelled.'],
+          healthImplications: 'Same nakshatra and pada indicates genetic compatibility  –  no Nadi Dosha concern.',
         };
       }
     }
 
     // N3: Different Moon signs
     if (rashi1 !== rashi2) {
-      cancellations.push('Different Moon signs — Nadi Dosha severity reduced.');
+      cancellations.push('Different Moon signs  –  Nadi Dosha severity reduced.');
     }
 
     // N5: Navamsha Moon sign differs
@@ -268,17 +268,17 @@ function analyzeNadi(chart1: KundaliData, chart2: KundaliData): DetailedMatchRep
     const navSign1 = getNavamshaSign(moonLon1);
     const navSign2 = getNavamshaSign(moonLon2);
     if (navSign1 !== navSign2) {
-      cancellations.push('Navamsha Moon signs differ — Nadi Dosha mitigated.');
+      cancellations.push('Navamsha Moon signs differ  –  Nadi Dosha mitigated.');
     }
   }
 
   const healthImplications = doshaPresent && cancellations.length === 0
-    ? 'Nadi Dosha present without cancellations — traditional texts caution about health compatibility and progeny. Consult an experienced jyotishi for remedial measures.'
+    ? 'Nadi Dosha present without cancellations  –  traditional texts caution about health compatibility and progeny. Consult an experienced jyotishi for remedial measures.'
     : doshaPresent && cancellations.length >= 2
       ? 'Nadi Dosha present but significantly mitigated by multiple factors. Consult for confirmation but concern is reduced.'
       : doshaPresent
         ? 'Nadi Dosha present but with a mitigating factor. The severity is reduced by the cancellation noted.'
-        : 'No Nadi Dosha — health and progeny compatibility is favorable.';
+        : 'No Nadi Dosha  –  health and progeny compatibility is favorable.';
 
   return { chart1Nadi: nadi1, chart2Nadi: nadi2, doshaPresent, cancellations, healthImplications };
 }
@@ -311,7 +311,7 @@ const ASPECT_CHECKS: AspectCheck[] = [
     planet2Id: 1, planet2Chart: 'chart2',
     interpretation: {
       conjunction: 'Sun-Moon conjunction across charts creates a powerful bond. Identity and emotions align naturally.',
-      opposition: 'Sun-Moon opposition generates complementary energy — attraction of opposites. Balance ego and sensitivity.',
+      opposition: 'Sun-Moon opposition generates complementary energy  –  attraction of opposites. Balance ego and sensitivity.',
       trine: 'Sun-Moon trine fosters mutual respect and emotional warmth. Leadership and nurturing complement each other.',
       square: 'Sun-Moon square can create ego clashes with emotional needs. Mindful communication is essential.',
     },
@@ -335,7 +335,7 @@ const ASPECT_CHECKS: AspectCheck[] = [
       conjunction: 'Saturn-Moon conjunction can bring stability but also emotional heaviness. The Saturn partner may seem cold or restrictive.',
       opposition: 'Saturn-Moon opposition creates a duty-vs-feeling dynamic. Commitment is strong but emotional warmth may be lacking.',
       trine: 'Saturn-Moon trine brings emotional maturity and enduring support. A stabilizing and grounding influence.',
-      square: 'Saturn-Moon square is challenging — emotional suppression and feelings of being criticized. Needs conscious awareness.',
+      square: 'Saturn-Moon square is challenging  –  emotional suppression and feelings of being criticized. Needs conscious awareness.',
     },
   },
   // Chart2 Saturn ↔ Chart1 Moon
@@ -426,7 +426,7 @@ function analyze7thHouse(chart: KundaliData, label: string): SeventhHouseInfo {
   else if (lordHouse === 6 || lordHouse === 8 || lordHouse === 12) parts.push(`The 7th lord in house ${lordHouse} (dusthana) may indicate challenges in partnership.`);
 
   if (planetsIn7th.length === 0) {
-    parts.push('No planets in the 7th house — the lord\'s placement becomes more significant.');
+    parts.push('No planets in the 7th house  –  the lord\'s placement becomes more significant.');
   } else {
     const names = planetsIn7th.map(id => PLANET_NAMES[id] ?? '').filter(Boolean);
     parts.push(`Planets in 7th: ${names.join(', ')}.`);
@@ -464,24 +464,24 @@ function get7thHouseCompatibility(h1: SeventhHouseInfo, h2: SeventhHouseInfo): s
   const l1 = h1.lord;
   const l2 = h2.lord;
   if (l1 === l2) {
-    parts.push('Both 7th houses share the same lord — a unifying factor for marriage compatibility.');
+    parts.push('Both 7th houses share the same lord  –  a unifying factor for marriage compatibility.');
   } else if (GRAHA_MAITRI[l1]?.has(l2) && GRAHA_MAITRI[l2]?.has(l1)) {
-    parts.push('The 7th house lords are mutual friends — supportive for partnership harmony.');
+    parts.push('The 7th house lords are mutual friends  –  supportive for partnership harmony.');
   } else if (GRAHA_MAITRI[l1]?.has(l2) || GRAHA_MAITRI[l2]?.has(l1)) {
-    parts.push('The 7th house lords share a partial friendship — generally supportive with some differences.');
+    parts.push('The 7th house lords share a partial friendship  –  generally supportive with some differences.');
   } else {
-    parts.push('The 7th house lords are neutral or unfriendly — extra effort needed to align partnership expectations.');
+    parts.push('The 7th house lords are neutral or unfriendly  –  extra effort needed to align partnership expectations.');
   }
 
   // Mutual planets
   if (h1.planetsIn7th.includes(5) && h2.planetsIn7th.includes(5)) {
-    parts.push('Both charts have Venus in the 7th house — strong romantic and aesthetic compatibility.');
+    parts.push('Both charts have Venus in the 7th house  –  strong romantic and aesthetic compatibility.');
   }
   if (h1.planetsIn7th.includes(4) || h2.planetsIn7th.includes(4)) {
     parts.push('Jupiter\'s presence in a 7th house brings blessings and wisdom to the partnership.');
   }
 
-  return parts.join(' ') || 'Standard 7th house compatibility — consult the overall kuta score for the broader picture.';
+  return parts.join(' ') || 'Standard 7th house compatibility  –  consult the overall kuta score for the broader picture.';
 }
 
 // ── Venus Analysis ───────────────────────────────────────────
@@ -496,7 +496,7 @@ function analyzeVenus(chart1: KundaliData, chart2: KundaliData): DetailedMatchRe
 
   // Same sign
   if (v1Sign === v2Sign) {
-    parts.push(`Both Venus placements in ${getSignName(v1Sign)} — shared romantic values and aesthetic sensibilities.`);
+    parts.push(`Both Venus placements in ${getSignName(v1Sign)}  –  shared romantic values and aesthetic sensibilities.`);
   }
 
   // Compatible elements
@@ -507,12 +507,12 @@ function analyzeVenus(chart1: KundaliData, chart2: KundaliData): DetailedMatchRe
   const e1 = elementOf(v1Sign);
   const e2 = elementOf(v2Sign);
   if (e1 === e2 && v1Sign !== v2Sign) {
-    parts.push(`Venus signs share the ${e1} element — natural compatibility in love expression.`);
+    parts.push(`Venus signs share the ${e1} element  –  natural compatibility in love expression.`);
   } else if ((e1 === 'fire' && e2 === 'air') || (e1 === 'air' && e2 === 'fire') ||
              (e1 === 'earth' && e2 === 'water') || (e1 === 'water' && e2 === 'earth')) {
-    parts.push('Venus signs are in complementary elements — supportive romantic energy.');
+    parts.push('Venus signs are in complementary elements  –  supportive romantic energy.');
   } else if (v1Sign !== v2Sign) {
-    parts.push('Venus signs are in neutral or challenging elements — different love languages may need bridging.');
+    parts.push('Venus signs are in neutral or challenging elements  –  different love languages may need bridging.');
   }
 
   // House placements
@@ -524,8 +524,8 @@ function analyzeVenus(chart1: KundaliData, chart2: KundaliData): DetailedMatchRe
   // Venus combust or retrograde
   const v1p = getPlanet(chart1, 5);
   const v2p = getPlanet(chart2, 5);
-  if (v1p?.isCombust) parts.push('Partner 1\'s Venus is combust — romantic expression may be subdued.');
-  if (v2p?.isCombust) parts.push('Partner 2\'s Venus is combust — romantic expression may be subdued.');
+  if (v1p?.isCombust) parts.push('Partner 1\'s Venus is combust  –  romantic expression may be subdued.');
+  if (v2p?.isCombust) parts.push('Partner 2\'s Venus is combust  –  romantic expression may be subdued.');
   if (v1p?.isRetrograde) parts.push('Partner 1\'s retrograde Venus suggests past-life romantic patterns resurfacing.');
   if (v2p?.isRetrograde) parts.push('Partner 2\'s retrograde Venus suggests introspective love approach.');
 
@@ -534,7 +534,7 @@ function analyzeVenus(chart1: KundaliData, chart2: KundaliData): DetailedMatchRe
     chart2VenusSign: v2Sign,
     chart1VenusHouse: v1House,
     chart2VenusHouse: v2House,
-    compatibility: parts.join(' ') || 'Venus analysis shows standard compatibility — refer to the Ashta Kuta Yoni and Graha Maitri scores for more detail.',
+    compatibility: parts.join(' ') || 'Venus analysis shows standard compatibility  –  refer to the Ashta Kuta Yoni and Graha Maitri scores for more detail.',
   };
 }
 
@@ -555,56 +555,56 @@ function generateNarrative(
   // From Ashta Kuta
   const pct = ashtaKuta.percentage;
   if (pct >= 75) {
-    strengths.push(`Excellent Ashta Kuta score of ${ashtaKuta.totalScore}/36 (${pct}%) — strong foundational compatibility.`);
+    strengths.push(`Excellent Ashta Kuta score of ${ashtaKuta.totalScore}/36 (${pct}%)  –  strong foundational compatibility.`);
   } else if (pct >= 50) {
-    strengths.push(`Solid Ashta Kuta score of ${ashtaKuta.totalScore}/36 (${pct}%) — good basic compatibility.`);
+    strengths.push(`Solid Ashta Kuta score of ${ashtaKuta.totalScore}/36 (${pct}%)  –  good basic compatibility.`);
   } else {
-    challenges.push(`Low Ashta Kuta score of ${ashtaKuta.totalScore}/36 (${pct}%) — foundational compatibility needs attention.`);
+    challenges.push(`Low Ashta Kuta score of ${ashtaKuta.totalScore}/36 (${pct}%)  –  foundational compatibility needs attention.`);
   }
 
   // High individual kutas
   for (const k of ashtaKuta.kutas) {
     const kutaPct = k.maxPoints > 0 ? k.scored / k.maxPoints : 0;
     if (kutaPct >= 0.75 && k.maxPoints >= 4) {
-      strengths.push(`Strong ${k.name.en} kuta (${k.scored}/${k.maxPoints}) — ${k.description.en.toLowerCase()}.`);
+      strengths.push(`Strong ${k.name.en} kuta (${k.scored}/${k.maxPoints})  –  ${k.description.en.toLowerCase()}.`);
     }
     if (kutaPct === 0 && k.maxPoints >= 4) {
-      challenges.push(`Zero ${k.name.en} kuta — ${k.description.en.toLowerCase()} needs conscious effort.`);
+      challenges.push(`Zero ${k.name.en} kuta  –  ${k.description.en.toLowerCase()} needs conscious effort.`);
     }
   }
 
   // Manglik
   if (!manglik.chart1HasManglik && !manglik.chart2HasManglik) {
-    strengths.push('Neither partner has Manglik dosha — no Mars-related marriage obstacle.');
+    strengths.push('Neither partner has Manglik dosha  –  no Mars-related marriage obstacle.');
   } else if (manglik.cancellations.length > 0) {
     strengths.push('Manglik dosha present but has cancellation factors that reduce its impact.');
   } else if (manglik.chart1HasManglik || manglik.chart2HasManglik) {
     const severity = manglik.chart1HasManglik ? manglik.chart1Severity : manglik.chart2Severity;
-    challenges.push(`Manglik dosha (${severity} severity) detected without cancellation — traditional remedies recommended.`);
+    challenges.push(`Manglik dosha (${severity} severity) detected without cancellation  –  traditional remedies recommended.`);
   }
 
   // Nadi
   if (!nadi.doshaPresent) {
-    strengths.push('No Nadi Dosha — health and progeny compatibility is favorable.');
+    strengths.push('No Nadi Dosha  –  health and progeny compatibility is favorable.');
   } else if (nadi.cancellations.length > 0) {
     strengths.push('Nadi Dosha present but mitigated by cancellation factors.');
   } else {
-    challenges.push('Nadi Dosha (same Nadi type) without cancellations — warrants careful consideration and remedies.');
+    challenges.push('Nadi Dosha (same Nadi type) without cancellations  –  warrants careful consideration and remedies.');
   }
 
   // Cross-chart aspects
   const favorable = aspects.filter(a => a.aspectType === 'trine' || a.aspectType === 'conjunction');
   const challenging = aspects.filter(a => a.aspectType === 'square' || a.aspectType === 'opposition');
   if (favorable.length >= 2) {
-    strengths.push(`${favorable.length} favorable cross-chart aspects detected — natural energetic resonance between the charts.`);
+    strengths.push(`${favorable.length} favorable cross-chart aspects detected  –  natural energetic resonance between the charts.`);
   }
   if (challenging.length >= 2) {
-    challenges.push(`${challenging.length} challenging cross-chart aspects — may create friction that requires conscious effort.`);
+    challenges.push(`${challenging.length} challenging cross-chart aspects  –  may create friction that requires conscious effort.`);
   }
 
   // Venus
   if (venus.chart1VenusSign === venus.chart2VenusSign) {
-    strengths.push('Venus in the same sign for both partners — shared love language and romantic harmony.');
+    strengths.push('Venus in the same sign for both partners  –  shared love language and romantic harmony.');
   }
 
   // Advice
@@ -618,7 +618,7 @@ function generateNarrative(
     }
     advice.push('Regular dialogue about expectations and emotional needs will bridge any gaps.');
   } else {
-    advice.push('Several challenges exist — this match benefits from careful consideration and professional astrological counsel.');
+    advice.push('Several challenges exist  –  this match benefits from careful consideration and professional astrological counsel.');
     advice.push('If proceeding, invest in pre-marital counseling and establish strong communication patterns early.');
     advice.push('Remedial measures (Nadi dosha shanti, Mangal dosha puja) are recommended.');
   }
@@ -632,7 +632,7 @@ function generateNarrative(
     ? `Cross-chart aspect analysis reveals ${aspects.length} significant planetary connections between the two horoscopes. ${favorable.length > 0 ? `The ${favorable.map(a => `${a.planet1.name}-${a.planet2.name} ${a.aspectType}`).join(', ')} ${favorable.length === 1 ? 'aspect is' : 'aspects are'} particularly favorable for emotional and romantic bonding.` : ''} ${challenging.length > 0 ? `The ${challenging.map(a => `${a.planet1.name}-${a.planet2.name} ${a.aspectType}`).join(', ')} ${challenging.length === 1 ? 'aspect' : 'aspects'} may create tension that requires patience.` : ''} The 7th house analysis adds further nuance to the partnership dynamics.`
     : 'The cross-chart aspect analysis shows no major tight aspects between the two horoscopes, suggesting an independent dynamic where each partner operates in their own rhythm. The 7th house analysis provides insight into each person\'s approach to marriage.';
 
-  const para3 = `In summary, ${strengths.length > challenges.length ? 'the strengths of this match outweigh the challenges' : challenges.length > strengths.length ? 'there are more areas of concern than strength in this pairing' : 'this match has an even balance of strengths and challenges'}. ${advice[0] ?? ''} Remember that Vedic astrology provides guidance, not destiny — conscious effort, mutual respect, and devotion can overcome any astrological indication.`;
+  const para3 = `In summary, ${strengths.length > challenges.length ? 'the strengths of this match outweigh the challenges' : challenges.length > strengths.length ? 'there are more areas of concern than strength in this pairing' : 'this match has an even balance of strengths and challenges'}. ${advice[0] ?? ''} Remember that Vedic astrology provides guidance, not destiny  –  conscious effort, mutual respect, and devotion can overcome any astrological indication.`;
 
   return {
     strengths: strengths.slice(0, 5),
@@ -649,13 +649,13 @@ export function generateDetailedReport(
   chart2: KundaliData,
   matchResult: MatchResult,
 ): DetailedMatchReport {
-  // Manglik — delegates to shared mangal-dosha-engine
+  // Manglik  –  delegates to shared mangal-dosha-engine
   const manglikAnalysis = analyzeManglikFromEngine(chart1, chart2);
 
   // Nadi
   const nadiAnalysis = analyzeNadi(chart1, chart2);
 
-  // Rajju Dosha (South Indian — Moon nakshatra cord matching)
+  // Rajju Dosha (South Indian  –  Moon nakshatra cord matching)
   const moon1 = getPlanet(chart1, 1);
   const moon2 = getPlanet(chart2, 1);
   const nak1 = moon1?.nakshatra?.id ?? 1;

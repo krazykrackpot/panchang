@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = 'Vedic Birth Chart — Dekho Panchang';
+export const alt = 'Vedic Birth Chart  –  Dekho Panchang';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -13,7 +13,7 @@ export const contentType = 'image/png';
  * when available, otherwise show a generic branded card.
  *
  * The full personalized chart card (with diamond chart + planets) is served by
- * /api/card/birth-poster — the share button on the kundali page links there.
+ * /api/card/birth-poster  –  the share button on the kundali page links there.
  */
 export default function Image({ params: _params }: { params: Promise<{ locale: string; id: string }> }) {
   // OG crawlers visit the URL with query params intact, but the OG image route

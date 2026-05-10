@@ -91,7 +91,7 @@ const QUESTIONS: ModuleQuestion[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 1 — Aryabhata's Declaration                                    */
+/*  PAGE 1  –  Aryabhata's Declaration                                    */
 /* ------------------------------------------------------------------ */
 function Page1() {
   const locale = useModuleLocale();
@@ -104,8 +104,8 @@ function Page1() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>499 ईस्वी में, 23 वर्षीय आर्यभट ने आर्यभटीय लिखी — एक ग्रन्थ जो खगोल विज्ञान और गणित में अपने युग से बहुत आगे था। इसमें एक साहसी दावा था जो यूरोपीय वैज्ञानिकों को एक हज़ार वर्षों बाद झकझोरेगा: आकाश नहीं घूमता — पृथ्वी घूमती है।</>
-            : <>In 499 CE, a 23-year-old named Aryabhata wrote the Aryabhatiya — a treatise that was far ahead of its time in astronomy and mathematics. It contained a bold claim that would not shake European scientists until a thousand years later: the sky does not rotate — the Earth rotates.</>}
+            ? <>499 ईस्वी में, 23 वर्षीय आर्यभट ने आर्यभटीय लिखी  –  एक ग्रन्थ जो खगोल विज्ञान और गणित में अपने युग से बहुत आगे था। इसमें एक साहसी दावा था जो यूरोपीय वैज्ञानिकों को एक हज़ार वर्षों बाद झकझोरेगा: आकाश नहीं घूमता  –  पृथ्वी घूमती है।</>
+            : <>In 499 CE, a 23-year-old named Aryabhata wrote the Aryabhatiya  –  a treatise that was far ahead of its time in astronomy and mathematics. It contained a bold claim that would not shake European scientists until a thousand years later: the sky does not rotate  –  the Earth rotates.</>}
         </p>
       </section>
 
@@ -117,12 +117,12 @@ function Page1() {
           <p className="text-gold-light text-xs italic leading-relaxed">
             {t('justAsAManInA', locale)}
           </p>
-          <p className="text-text-secondary text-xs mt-1">— {t('aryabhataAryabhatiyaGolapada9499Ce', locale)}</p>
+          <p className="text-text-secondary text-xs mt-1"> –  {t('aryabhataAryabhatiyaGolapada9499Ce', locale)}</p>
         </blockquote>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <>यह उपमा उल्लेखनीय रूप से आधुनिक है। आर्यभट ने सापेक्षतावादी सोच का उपयोग किया — प्रत्यक्ष गति इस बात पर निर्भर करती है कि आप किस संदर्भ के फ्रेम से देख रहे हैं। यह गैलीलियो के सापेक्षता के सिद्धान्त से 1,100 वर्ष पहले था।</>
-            : <>This analogy is remarkably modern. Aryabhata used relativistic thinking — apparent motion depends on your frame of reference. This was 1,100 years before Galileo's principle of relativity.</>}
+            ? <>यह उपमा उल्लेखनीय रूप से आधुनिक है। आर्यभट ने सापेक्षतावादी सोच का उपयोग किया  –  प्रत्यक्ष गति इस बात पर निर्भर करती है कि आप किस संदर्भ के फ्रेम से देख रहे हैं। यह गैलीलियो के सापेक्षता के सिद्धान्त से 1,100 वर्ष पहले था।</>
+            : <>This analogy is remarkably modern. Aryabhata used relativistic thinking  –  apparent motion depends on your frame of reference. This was 1,100 years before Galileo's principle of relativity.</>}
         </p>
       </section>
 
@@ -154,7 +154,7 @@ function Page1() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 2 — The Debate and European Context                            */
+/*  PAGE 2  –  The Debate and European Context                            */
 /* ------------------------------------------------------------------ */
 function Page2() {
   const locale = useModuleLocale();
@@ -167,8 +167,8 @@ function Page2() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>आर्यभट का सिद्धान्त सर्वसम्मति से स्वीकृत नहीं था — इसे चुनौती दी गई, बहस की गई, और परिष्कृत किया गया। यह वास्तविक विज्ञान की विशेषता है। जबकि भारतीय विद्वान पृथ्वी के घूर्णन पर बहस कर रहे थे, यूरोप में टॉलेमी के भूकेन्द्रीय मॉडल को एक धार्मिक सत्य के रूप में माना जाता था।</>
-            : <>Aryabhata's theory was not unanimously accepted — it was challenged, debated, and refined. This is the hallmark of real science. While Indian scholars debated Earth's rotation, in Europe Ptolemy's geocentric model was treated as religious truth.</>}
+            ? <>आर्यभट का सिद्धान्त सर्वसम्मति से स्वीकृत नहीं था  –  इसे चुनौती दी गई, बहस की गई, और परिष्कृत किया गया। यह वास्तविक विज्ञान की विशेषता है। जबकि भारतीय विद्वान पृथ्वी के घूर्णन पर बहस कर रहे थे, यूरोप में टॉलेमी के भूकेन्द्रीय मॉडल को एक धार्मिक सत्य के रूप में माना जाता था।</>
+            : <>Aryabhata's theory was not unanimously accepted  –  it was challenged, debated, and refined. This is the hallmark of real science. While Indian scholars debated Earth's rotation, in Europe Ptolemy's geocentric model was treated as religious truth.</>}
         </p>
       </section>
 
@@ -193,8 +193,8 @@ function Page2() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <>ब्रह्मगुप्त की आपत्ति — कि घूमती पृथ्वी पक्षियों और बादलों को पीछे छोड़ देगी — वास्तव में एक वैध वैज्ञानिक चुनौती थी। इसका उत्तर देने के लिए जड़ता की अवधारणा की आवश्यकता थी: पृथ्वी की सतह पर सब कुछ — हवा, बादल, पक्षी — पृथ्वी के साथ घूमती है क्योंकि वे उसी घूर्णी संदर्भ फ्रेम में हैं। यह गैलीलियो (1638) और न्यूटन (1687) तक पूरी तरह स्पष्ट नहीं था। असहमति ने बुद्धिजीवी विमर्श को जीवित रखा।</>
-            : <>Brahmagupta's objection — that a rotating Earth would leave birds and clouds behind — was actually a valid scientific challenge. Answering it required the concept of inertia: everything on Earth's surface — air, clouds, birds — rotates with the Earth because they share the same rotating reference frame. This wasn't fully clear until Galileo (1638) and Newton (1687). The disagreement kept intellectual discourse alive.</>}
+            ? <>ब्रह्मगुप्त की आपत्ति  –  कि घूमती पृथ्वी पक्षियों और बादलों को पीछे छोड़ देगी  –  वास्तव में एक वैध वैज्ञानिक चुनौती थी। इसका उत्तर देने के लिए जड़ता की अवधारणा की आवश्यकता थी: पृथ्वी की सतह पर सब कुछ  –  हवा, बादल, पक्षी  –  पृथ्वी के साथ घूमती है क्योंकि वे उसी घूर्णी संदर्भ फ्रेम में हैं। यह गैलीलियो (1638) और न्यूटन (1687) तक पूरी तरह स्पष्ट नहीं था। असहमति ने बुद्धिजीवी विमर्श को जीवित रखा।</>
+            : <>Brahmagupta's objection  –  that a rotating Earth would leave birds and clouds behind  –  was actually a valid scientific challenge. Answering it required the concept of inertia: everything on Earth's surface  –  air, clouds, birds  –  rotates with the Earth because they share the same rotating reference frame. This wasn't fully clear until Galileo (1638) and Newton (1687). The disagreement kept intellectual discourse alive.</>}
         </p>
       </section>
     </div>
@@ -202,7 +202,7 @@ function Page2() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 3 — Legacy and Impact                                          */
+/*  PAGE 3  –  Legacy and Impact                                          */
 /* ------------------------------------------------------------------ */
 function Page3() {
   const locale = useModuleLocale();
@@ -215,8 +215,8 @@ function Page3() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>आर्यभट का प्रभाव उनकी सीमाओं से बहुत आगे फैला। उनके ग्रन्थ का अरबी में अनुवाद 8वीं शताब्दी में हुआ, जिससे उनके विचार इस्लामी स्वर्ण युग के खगोल विज्ञान में प्रवेश कर गए — और वहाँ से मध्ययुगीन यूरोप में।</>
-            : <>Aryabhata's influence spread far beyond his borders. His text was translated into Arabic in the 8th century, carrying his ideas into Islamic Golden Age astronomy — and from there into medieval Europe.</>}
+            ? <>आर्यभट का प्रभाव उनकी सीमाओं से बहुत आगे फैला। उनके ग्रन्थ का अरबी में अनुवाद 8वीं शताब्दी में हुआ, जिससे उनके विचार इस्लामी स्वर्ण युग के खगोल विज्ञान में प्रवेश कर गए  –  और वहाँ से मध्ययुगीन यूरोप में।</>
+            : <>Aryabhata's influence spread far beyond his borders. His text was translated into Arabic in the 8th century, carrying his ideas into Islamic Golden Age astronomy  –  and from there into medieval Europe.</>}
         </p>
       </section>
 
@@ -241,8 +241,8 @@ function Page3() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <>भारत के पहले उपग्रह का नाम आर्यभट रखा गया (1975)। एक चन्द्रमा पर क्रेटर का नाम आर्यभट है। ISRO का पहला प्रायोगिक उपग्रह श्रृंखला "आर्यभट श्रृंखला" थी। आर्यभटीय आज भी गणित और खगोल विज्ञान के पाठ्यक्रम में पढ़ी जाती है। उनका यह कथन — कि पृथ्वी घूमती है और आकाश नहीं — आज की शिक्षा प्रणाली में एक बुनियादी तथ्य के रूप में पढ़ाया जाता है।</>
-            : <>India's first satellite was named Aryabhata (1975). A crater on the Moon is named Aryabhata. ISRO's first experimental satellite series was the "Aryabhata Series." The Aryabhatiya is still studied in mathematics and astronomy curricula today. His statement — that Earth rotates and the sky does not — is taught as a foundational fact in modern education.</>}
+            ? <>भारत के पहले उपग्रह का नाम आर्यभट रखा गया (1975)। एक चन्द्रमा पर क्रेटर का नाम आर्यभट है। ISRO का पहला प्रायोगिक उपग्रह श्रृंखला "आर्यभट श्रृंखला" थी। आर्यभटीय आज भी गणित और खगोल विज्ञान के पाठ्यक्रम में पढ़ी जाती है। उनका यह कथन  –  कि पृथ्वी घूमती है और आकाश नहीं  –  आज की शिक्षा प्रणाली में एक बुनियादी तथ्य के रूप में पढ़ाया जाता है।</>
+            : <>India's first satellite was named Aryabhata (1975). A crater on the Moon is named Aryabhata. ISRO's first experimental satellite series was the "Aryabhata Series." The Aryabhatiya is still studied in mathematics and astronomy curricula today. His statement  –  that Earth rotates and the sky does not  –  is taught as a foundational fact in modern education.</>}
         </p>
       </section>
     </div>

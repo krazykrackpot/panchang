@@ -100,15 +100,15 @@ describe('Ashtottari Dasha System', () => {
       expect(NAKSHATRA_TO_LORD_INDEX[1]).toBe(7);
     });
 
-    it('should map Krittika (index 2) to Sun (index 0) — cycle wrap', () => {
+    it('should map Krittika (index 2) to Sun (index 0)  –  cycle wrap', () => {
       expect(NAKSHATRA_TO_LORD_INDEX[2]).toBe(0);
     });
 
-    it('should map Rohini (index 3) to Sun (index 0) — cycle wrap', () => {
+    it('should map Rohini (index 3) to Sun (index 0)  –  cycle wrap', () => {
       expect(NAKSHATRA_TO_LORD_INDEX[3]).toBe(0);
     });
 
-    it('should map Mrigashira (index 4) to Sun (index 0) — cycle wrap', () => {
+    it('should map Mrigashira (index 4) to Sun (index 0)  –  cycle wrap', () => {
       expect(NAKSHATRA_TO_LORD_INDEX[4]).toBe(0);
     });
   });

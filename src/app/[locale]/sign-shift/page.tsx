@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * Sign Shift Page — "Why Your Western Horoscope Might Be Wrong"
+ * Sign Shift Page  –  "Why Your Western Horoscope Might Be Wrong"
  *
  * Works two ways:
  * 1. Without data: Shows explainer + CTA to generate chart
@@ -59,7 +59,7 @@ const LABELS = {
     bn: 'বিষুব অয়ন গতি',
   } as LocaleText,
   explainerP1: {
-    en: 'About 1,700 years ago, the Western (tropical) and Vedic (sidereal) zodiacs were aligned. Since then, Earth\'s axis has wobbled — a phenomenon called "precession of the equinoxes." This has caused the two systems to drift apart by approximately 24 degrees.',
+    en: 'About 1,700 years ago, the Western (tropical) and Vedic (sidereal) zodiacs were aligned. Since then, Earth\'s axis has wobbled  –  a phenomenon called "precession of the equinoxes." This has caused the two systems to drift apart by approximately 24 degrees.',
     hi: 'लगभग 1,700 साल पहले, पश्चिमी (सायन) और वैदिक (निरयन) राशिचक्र एक साथ थे। तब से, पृथ्वी की धुरी में हुई "विषुव अयन गति" के कारण दोनों प्रणालियों में लगभग 24 अंशों का अंतर आ गया है।',
     ta: 'சுமார் 1,700 ஆண்டுகளுக்கு முன்பு, மேற்கத்திய (சாயன) மற்றும் வேத (நிரயன) ராசி மண்டலங்கள் ஒன்றாக இருந்தன. அப்போதிருந்து, பூமியின் அச்சு ஆடுவதால் இரண்டு அமைப்புகளும் சுமார் 24 டிகிரி விலகியுள்ளன.',
     bn: 'প্রায় ১,৭০০ বছর আগে, পশ্চিমা (সায়ন) এবং বৈদিক (নিরয়ন) রাশিচক্র একসাথে ছিল। তারপর থেকে, পৃথিবীর অক্ষের কম্পনের কারণে দুটি পদ্ধতি প্রায় ২৪ ডিগ্রি আলাদা হয়ে গেছে।',
@@ -71,10 +71,10 @@ const LABELS = {
     bn: 'এর মানে হল আপনি যদি কোনো রাশির ৫° এ সূর্যের সাথে জন্মগ্রহণ করেন, তাহলে ২৪° পার্থক্য বৈদিক পদ্ধতিতে এটিকে আগের রাশিতে নিয়ে যায়। প্রায় ৮০% মানুষের বৈদিক জ্যোতিষে পশ্চিমা জ্যোতিষ থেকে আলাদা সূর্য রাশি আছে।',
   } as LocaleText,
   explainerP3: {
-    en: 'Vedic astrology (Jyotish) uses the actual position of stars as the reference frame, making it astronomically precise. Western astrology uses the seasons as its reference. Both are valid traditions — but if you\'ve only read Western horoscopes, you may not know your true Vedic sign.',
-    hi: 'वैदिक ज्योतिष (ज्योतिष) तारों की वास्तविक स्थिति को संदर्भ के रूप में उपयोग करता है, जो इसे खगोलीय रूप से सटीक बनाता है। पश्चिमी ज्योतिष ऋतुओं को अपना संदर्भ मानता है। दोनों मान्य परंपराएँ हैं — लेकिन यदि आपने केवल पश्चिमी राशिफल पढ़ा है, तो शायद आप अपनी असली वैदिक राशि नहीं जानते।',
-    ta: 'வேத ஜோதிடம் (ஜ்யோதிஷ்) நட்சத்திரங்களின் உண்மையான நிலையை குறிப்புச் சட்டகமாகப் பயன்படுத்துகிறது. மேற்கத்திய ஜோதிடம் பருவ காலங்களை குறிப்பாகக் கொள்கிறது. இரண்டும் செல்லுபடியான மரபுகள் — ஆனால் நீங்கள் மேற்கத்திய ஜாதகங்களை மட்டுமே படித்திருந்தால், உங்கள் உண்மையான வேத ராசி உங்களுக்குத் தெரியாமல் இருக்கலாம்.',
-    bn: 'বৈদিক জ্যোতিষ (জ্যোতিষ) তারাদের প্রকৃত অবস্থানকে রেফারেন্স হিসেবে ব্যবহার করে, যা এটিকে জ্যোতির্বিদ্যাগতভাবে সঠিক করে। পশ্চিমা জ্যোতিষ ঋতুকে রেফারেন্স হিসেবে ব্যবহার করে। দুটোই বৈধ ঐতিহ্য — কিন্তু আপনি যদি শুধু পশ্চিমা রাশিফল পড়ে থাকেন, তাহলে আপনার সত্যিকারের বৈদিক রাশি হয়তো জানেন না।',
+    en: 'Vedic astrology (Jyotish) uses the actual position of stars as the reference frame, making it astronomically precise. Western astrology uses the seasons as its reference. Both are valid traditions  –  but if you\'ve only read Western horoscopes, you may not know your true Vedic sign.',
+    hi: 'वैदिक ज्योतिष (ज्योतिष) तारों की वास्तविक स्थिति को संदर्भ के रूप में उपयोग करता है, जो इसे खगोलीय रूप से सटीक बनाता है। पश्चिमी ज्योतिष ऋतुओं को अपना संदर्भ मानता है। दोनों मान्य परंपराएँ हैं  –  लेकिन यदि आपने केवल पश्चिमी राशिफल पढ़ा है, तो शायद आप अपनी असली वैदिक राशि नहीं जानते।',
+    ta: 'வேத ஜோதிடம் (ஜ்யோதிஷ்) நட்சத்திரங்களின் உண்மையான நிலையை குறிப்புச் சட்டகமாகப் பயன்படுத்துகிறது. மேற்கத்திய ஜோதிடம் பருவ காலங்களை குறிப்பாகக் கொள்கிறது. இரண்டும் செல்லுபடியான மரபுகள்  –  ஆனால் நீங்கள் மேற்கத்திய ஜாதகங்களை மட்டுமே படித்திருந்தால், உங்கள் உண்மையான வேத ராசி உங்களுக்குத் தெரியாமல் இருக்கலாம்.',
+    bn: 'বৈদিক জ্যোতিষ (জ্যোতিষ) তারাদের প্রকৃত অবস্থানকে রেফারেন্স হিসেবে ব্যবহার করে, যা এটিকে জ্যোতির্বিদ্যাগতভাবে সঠিক করে। পশ্চিমা জ্যোতিষ ঋতুকে রেফারেন্স হিসেবে ব্যবহার করে। দুটোই বৈধ ঐতিহ্য  –  কিন্তু আপনি যদি শুধু পশ্চিমা রাশিফল পড়ে থাকেন, তাহলে আপনার সত্যিকারের বৈদিক রাশি হয়তো জানেন না।',
   } as LocaleText,
   ctaTitle: {
     en: 'Discover Your Real Vedic Signs',
@@ -159,7 +159,7 @@ function SignShiftPageInner() {
         }
       }
     } catch {
-      // sessionStorage not available or corrupt — not an error
+      // sessionStorage not available or corrupt  –  not an error
     }
   }, [searchParams]);
 
@@ -203,7 +203,7 @@ function SignShiftPageInner() {
       try {
         sessionStorage.setItem('sign_shift_data', JSON.stringify(data));
       } catch {
-        // Storage full or unavailable — non-critical
+        // Storage full or unavailable  –  non-critical
       }
     } catch (err) {
       console.error('[sign-shift] computation failed:', err);
@@ -299,7 +299,7 @@ function SignShiftPageInner() {
                 </p>
               </div>
 
-              {/* Element Contrast — the "you're not who you think you are" moment */}
+              {/* Element Contrast  –  the "you're not who you think you are" moment */}
               {shiftData.elementContrast && shiftData.elementContrast.shifted && (
                 <div className="mb-8 rounded-2xl border border-violet-500/30 bg-violet-500/10 p-6 text-center">
                   <p className="text-lg font-bold text-violet-300 sm:text-xl" style={headingFont}>

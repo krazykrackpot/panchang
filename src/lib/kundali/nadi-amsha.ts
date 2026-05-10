@@ -2,7 +2,7 @@
  * Nadi Amsha (D-150) Division Calculator
  *
  * Each sign (30°) is divided into 150 parts → each Nadi Amsha spans 0.2° (12 arc-minutes).
- * D-150 requires very accurate birth time — a ±2 minute error changes positions.
+ * D-150 requires very accurate birth time  –  a ±2 minute error changes positions.
  *
  * Sign assignment follows Parashara's varga rule:
  *   ODD signs (0-indexed: 0,2,4,6,8,10): cycle Aries→Pisces (forward)
@@ -93,13 +93,13 @@ export function calculateNadiAmsha(chart: KundaliData): NadiAmshaChart {
 const KARMIC_THEMES: Record<number, Record<number, string>> = {
   // Sun (0)
   0: {
-    1: 'Leadership karma — past-life authority reborn. Career in governance, military, or medicine.',
+    1: 'Leadership karma  –  past-life authority reborn. Career in governance, military, or medicine.',
     2: 'Accumulated wealth through effort. Past-life mastery of resources. Voice carries authority.',
     3: 'Courageous communicator. Past-life warrior or scribe. Siblings play a karmic role.',
     4: 'Deep roots in homeland. Past-life connection to mother and ancestral property.',
     5: 'Creative brilliance from past merit. Children bring karmic lessons. Born to inspire.',
     6: 'Healer of past debts. Service-oriented soul. Health challenges become strengths.',
-    7: 'Partnership karma — relationships mirror past-life bonds. Diplomatic authority.',
+    7: 'Partnership karma  –  relationships mirror past-life bonds. Diplomatic authority.',
     8: 'Transformative soul. Past-life encounters with death or occult. Deep research ability.',
     9: 'Dharmic leader. Past-life connection to teachers and pilgrimages. Natural philosopher.',
     10: 'Born for public life. Past-life reputation carries forward. Ambition is destiny.',
@@ -226,7 +226,7 @@ const KARMIC_THEMES: Record<number, Record<number, string>> = {
     11: 'Detached from gains. Past-life fulfillment. Gives more than receives.',
     12: 'Moksha-bound. Past-life liberation practice nearly complete. Final journey.',
   },
-  // Ascendant (-1) — themes based on nadi sign of the rising degree
+  // Ascendant (-1)  –  themes based on nadi sign of the rising degree
   [-1]: {
     1: 'Karmic self-initiative. The soul chose to begin anew with fire and courage.',
     2: 'Karmic stability. The soul chose to build lasting value through patience.',
@@ -245,5 +245,5 @@ const KARMIC_THEMES: Record<number, Record<number, string>> = {
 
 /** Get karmic theme for a planet in a nadi sign. */
 export function getKarmicTheme(planetId: number, nadiSign: number): string {
-  return KARMIC_THEMES[planetId]?.[nadiSign] ?? 'Subtle karmic imprint — the soul carries a nuanced past-life pattern in this area.';
+  return KARMIC_THEMES[planetId]?.[nadiSign] ?? 'Subtle karmic imprint  –  the soul carries a nuanced past-life pattern in this area.';
 }

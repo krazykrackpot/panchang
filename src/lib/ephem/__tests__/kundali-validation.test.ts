@@ -1,5 +1,5 @@
 /**
- * Kundali Validation Tests — verified against Swiss Ephemeris / Drik Panchang
+ * Kundali Validation Tests  –  verified against Swiss Ephemeris / Drik Panchang
  *
  * Tests 5 birth charts across 3 continents (India, USA, Europe) with
  * DST-affected and non-DST timezones. Validates:
@@ -275,7 +275,7 @@ describe('Panchang Accuracy (Delhi, 2 Apr 2026 vs Drik Panchang)', () => {
   });
 
   it('moonrise within 3 min of Drik (19:07)', () => {
-    // Our: 19:05, Drik: 19:07 — allow ±3 min
+    // Our: 19:05, Drik: 19:07  –  allow ±3 min
     const [h, m] = panchang.moonrise.split(':').map(Number);
     const ourMin = h * 60 + m;
     const drikMin = 19 * 60 + 7;

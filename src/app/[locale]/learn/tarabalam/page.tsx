@@ -25,7 +25,7 @@ const NINE_TARAS = [
   { num: 6, name: 'Sadhaka', hi: 'साधक', sa: 'Achievement', good: true, desc: 'Accomplishment and success' },
   { num: 7, name: 'Vadha', hi: 'वध', sa: 'Harm', good: false, desc: 'Risk of loss or harm' },
   { num: 8, name: 'Mitra', hi: 'मित्र', sa: 'Friend', good: true, desc: 'Support and alliances' },
-  { num: 9, name: 'Atimitra', hi: 'अतिमित्र', sa: 'Great Friend', good: true, desc: 'The best — highly auspicious' },
+  { num: 9, name: 'Atimitra', hi: 'अतिमित्र', sa: 'Great Friend', good: true, desc: 'The best  –  highly auspicious' },
 ];
 
 export default function LearnTarabalamPage() {
@@ -45,15 +45,15 @@ export default function LearnTarabalamPage() {
       </div>
 
       <KeyTakeaway locale={locale} points={[
-        'Count from birth nakshatra to today\'s nakshatra, divide by 9 — the remainder gives your Tara for the day.',
+        'Count from birth nakshatra to today\'s nakshatra, divide by 9  –  the remainder gives your Tara for the day.',
         'Auspicious Taras (2, 4, 6, 8, 9) favour new ventures; inauspicious Taras (3, 5, 7) call for caution.',
         'Tara Bala is one of three personalised daily checks alongside Chandra Bala and Panchaka.',
       ]} />
 
       <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
-        <BeginnerNote term="Birth Nakshatra" explanation="The nakshatra (lunar mansion) occupied by the Moon at the time of your birth — also called Janma Nakshatra" />
-        <BeginnerNote term="Transit Nakshatra" explanation="The nakshatra the Moon is currently occupying today — changes roughly every day" />
-        <BeginnerNote term="Chandra Bala" explanation="Moon strength — checks which house the transit Moon occupies from your natal Moon sign" />
+        <BeginnerNote term="Birth Nakshatra" explanation="The nakshatra (lunar mansion) occupied by the Moon at the time of your birth  –  also called Janma Nakshatra" />
+        <BeginnerNote term="Transit Nakshatra" explanation="The nakshatra the Moon is currently occupying today  –  changes roughly every day" />
+        <BeginnerNote term="Chandra Bala" explanation="Moon strength  –  checks which house the transit Moon occupies from your natal Moon sign" />
       </div>
 
       {/* ── What is Tara Bala ── */}
@@ -155,7 +155,7 @@ export default function LearnTarabalamPage() {
               {isHi ? 'शेषफल: 10 mod 9 = 1' : 'Remainder: 10 mod 9 = 1'}
             </p>
             <p className="text-red-300 font-medium">
-              {isHi ? '→ जन्म तारा — सावधानी बरतें' : '→ Janma Tara — exercise caution'}
+              {isHi ? '→ जन्म तारा  –  सावधानी बरतें' : '→ Janma Tara  –  exercise caution'}
             </p>
           </div>
         </div>

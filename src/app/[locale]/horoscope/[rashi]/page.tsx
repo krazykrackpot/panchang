@@ -1,5 +1,5 @@
 // src/app/[locale]/horoscope/[rashi]/page.tsx
-// NO 'use client' — this is a Server Component for SEO indexability
+// NO 'use client'  –  this is a Server Component for SEO indexability
 
 import { notFound } from 'next/navigation';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -19,7 +19,7 @@ export default async function RashiPage({ params }: { params: Promise<{ locale: 
   const rashi = getRashiBySlug(rashiSlug);
   if (!rashi) return notFound();
 
-  // Generate today's horoscope server-side — this is the SSR content Google indexes
+  // Generate today's horoscope server-side  –  this is the SSR content Google indexes
   const now = new Date();
   const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
   const horoscope = generateDailyHoroscope({ moonSign: rashi.id, date: today });
@@ -32,12 +32,12 @@ export default async function RashiPage({ params }: { params: Promise<{ locale: 
 
   return (
     <main className="min-h-screen bg-[#0a0e27] pb-20">
-      {/* SSR: H1 with rashi name and date — Google indexes this */}
+      {/* SSR: H1 with rashi name and date  –  Google indexes this */}
       <div className="max-w-4xl mx-auto px-4 pt-8">
         <h1 className="text-2xl sm:text-3xl font-bold text-gold-light text-center">
           {isHi
-            ? `${vedicName} राशिफल — आज ${today}`
-            : `${vedicName} (${westernName}) Horoscope — ${today}`}
+            ? `${vedicName} राशिफल  –  आज ${today}`
+            : `${vedicName} (${westernName}) Horoscope  –  ${today}`}
         </h1>
 
         {/* SSR: Key horoscope data rendered as visible text for indexing */}
@@ -63,7 +63,7 @@ export default async function RashiPage({ params }: { params: Promise<{ locale: 
       {/* Client island: interactive widget with full functionality */}
       <HoroscopeClient rashi={rashi} locale={locale} initialHoroscope={horoscope} />
 
-      {/* SSR: Static editorial content — always indexed */}
+      {/* SSR: Static editorial content  –  always indexed */}
       <RashiArticle rashiId={rashi.id} vedicName={vedicName} westernName={westernName} locale={locale} />
     </main>
   );

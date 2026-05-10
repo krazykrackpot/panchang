@@ -243,7 +243,7 @@ describe('generateDailyPrescription', () => {
   });
 
   it('planets with no weakness are excluded (all strong chart)', () => {
-    // All planets exalted or own sign — should score below threshold
+    // All planets exalted or own sign  –  should score below threshold
     const planets: PlanetPosition[] = [
       makePlanet(0, 5, 5, { ownSign: true }),      // Sun own sign
       makePlanet(1, 2, 2, { exalted: true }),       // Moon exalted
@@ -251,7 +251,7 @@ describe('generateDailyPrescription', () => {
       makePlanet(3, 6, 6, { ownSign: true }),       // Mercury own sign
       makePlanet(4, 4, 4, { exalted: true }),       // Jupiter exalted
       makePlanet(5, 12, 12, { exalted: true }),     // Venus exalted
-      makePlanet(6, 7, 7, { ownSign: true }),       // Saturn own sign (Libra exalt, but own is Aquarius/Capricorn — let's use exalted)
+      makePlanet(6, 7, 7, { ownSign: true }),       // Saturn own sign (Libra exalt, but own is Aquarius/Capricorn  –  let's use exalted)
       makePlanet(7, 1, 10),
       makePlanet(8, 7, 4),
     ];
@@ -279,7 +279,7 @@ describe('generateDailyPrescription', () => {
       makePlanet(8, 7, 4),
     ];
     const kundali = makeKundali({ planets });
-    const hora = makeHoraTable(6); // Saturday — Saturn hora first
+    const hora = makeHoraTable(6); // Saturday  –  Saturn hora first
     const result = generateDailyPrescription(kundali, hora);
 
     const saturnRx = result.find(r => r.planetId === 6);

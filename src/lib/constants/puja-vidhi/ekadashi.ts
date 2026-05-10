@@ -7,7 +7,7 @@ export const EKADASHI_PUJA: PujaVidhi = {
 
   samagri: [
     { name: { en: 'Vishnu idol or image', hi: 'विष्णु मूर्ति या चित्र', sa: 'विष्णुमूर्तिः अथवा चित्रम्' } , category: 'puja_items', essential: true },
-    { name: { en: 'Tulsi leaves (holy basil)', hi: 'तुलसी के पत्ते', sa: 'तुलसीपत्राणि' }, note: { en: 'Essential — Vishnu is not worshipped without Tulsi', hi: 'अनिवार्य — तुलसी के बिना विष्णु पूजा अधूरी है', sa: 'अनिवार्यम् — तुलसीं विना विष्णुपूजा न सम्पूर्णा' } , category: 'flowers', essential: true },
+    { name: { en: 'Tulsi leaves (holy basil)', hi: 'तुलसी के पत्ते', sa: 'तुलसीपत्राणि' }, note: { en: 'Essential  –  Vishnu is not worshipped without Tulsi', hi: 'अनिवार्य  –  तुलसी के बिना विष्णु पूजा अधूरी है', sa: 'अनिवार्यम्  –  तुलसीं विना विष्णुपूजा न सम्पूर्णा' } , category: 'flowers', essential: true },
     { name: { en: 'Yellow flowers (marigold preferred)', hi: 'पीले फूल (गेंदे के फूल)', sa: 'पीतपुष्पाणि (स्थालपद्मानि)' } , category: 'flowers', essential: true },
     { name: { en: 'Fruits (banana, pomegranate)', hi: 'फल (केला, अनार)', sa: 'फलानि (कदलीफलम्, दाडिमम्)' } , category: 'food', essential: true },
     { name: { en: 'Panchamrit (milk, curd, ghee, honey, sugar)', hi: 'पंचामृत (दूध, दही, घी, शहद, शक्कर)', sa: 'पञ्चामृतम् (क्षीरं, दधि, घृतं, मधु, शर्करा)' } , category: 'food', essential: true },
@@ -15,7 +15,7 @@ export const EKADASHI_PUJA: PujaVidhi = {
     { name: { en: 'Incense sticks', hi: 'अगरबत्ती', sa: 'धूपम्' } , category: 'puja_items', essential: true },
     { name: { en: 'Camphor', hi: 'कपूर', sa: 'कर्पूरम्' } , category: 'puja_items', essential: true },
     { name: { en: 'Water (for abhishek and achamana)', hi: 'जल (अभिषेक और आचमन के लिए)', sa: 'जलम् (अभिषेकाचमनार्थम्)' } , category: 'puja_items', essential: true },
-    { name: { en: 'Akshat (unbroken rice — for sankalpa only, NOT for offering)', hi: 'अक्षत (साबुत चावल — केवल संकल्प हेतु, भोग नहीं)', sa: 'अक्षताः (सङ्कल्पार्थमेव, न नैवेद्यम्)' }, category: 'puja_items', essential: false },
+    { name: { en: 'Akshat (unbroken rice  –  for sankalpa only, NOT for offering)', hi: 'अक्षत (साबुत चावल  –  केवल संकल्प हेतु, भोग नहीं)', sa: 'अक्षताः (सङ्कल्पार्थमेव, न नैवेद्यम्)' }, category: 'puja_items', essential: false },
     { name: { en: 'Sandalwood paste (chandan)', hi: 'चन्दन का लेप', sa: 'चन्दनम्' } , category: 'puja_items', essential: false },
     { name: { en: 'Yellow cloth', hi: 'पीला कपड़ा', sa: 'पीतवस्त्रम्' } , category: 'clothing', essential: false },
   ],
@@ -37,7 +37,7 @@ export const EKADASHI_PUJA: PujaVidhi = {
   vidhiSteps: [
     {
       step: 1,
-      title: { en: 'Dashami Evening — Preparation', hi: 'दशमी सायं — तैयारी', sa: 'दशम्याः सायम् — सज्जता' },
+      title: { en: 'Dashami Evening  –  Preparation', hi: 'दशमी सायं  –  तैयारी', sa: 'दशम्याः सायम्  –  सज्जता' },
       description: {
         en: 'On the evening of Dashami (the day before Ekadashi), eat a light sattvic dinner before sunset. Avoid heavy, tamasic food. Resolve mentally to observe the fast. Clean the puja area and arrange all samagri.',
         hi: 'दशमी (एकादशी से एक दिन पहले) की शाम को सूर्यास्त से पहले हल्का सात्विक भोजन करें। भारी, तामसिक भोजन से बचें। मानसिक रूप से व्रत का संकल्प लें। पूजा स्थल साफ करें और सभी सामग्री व्यवस्थित करें।',
@@ -49,7 +49,7 @@ export const EKADASHI_PUJA: PujaVidhi = {
     },
     {
       step: 2,
-      title: { en: 'Ekadashi Morning — Bath & Sankalpa', hi: 'एकादशी प्रातः — स्नान एवं संकल्प', sa: 'एकादश्याः प्रातः — स्नानसङ्कल्पौ' },
+      title: { en: 'Ekadashi Morning  –  Bath & Sankalpa', hi: 'एकादशी प्रातः  –  स्नान एवं संकल्प', sa: 'एकादश्याः प्रातः  –  स्नानसङ्कल्पौ' },
       description: {
         en: 'Wake before sunrise. Take a purifying bath, ideally with a few drops of Ganga water. Wear clean yellow or white clothes. Sit before the altar and take the formal sankalpa by holding water and akshat in the right palm, stating the tithi, purpose, and deity.',
         hi: 'सूर्योदय से पहले उठें। शुद्धि स्नान करें, यदि सम्भव हो तो गंगाजल की कुछ बूँदें मिलाएँ। स्वच्छ पीले या सफ़ेद वस्त्र पहनें। वेदी के सामने बैठकर दाहिने हाथ में जल और अक्षत लेकर तिथि, उद्देश्य और देवता का नाम बोलकर विधिवत् संकल्प लें।',
@@ -61,11 +61,11 @@ export const EKADASHI_PUJA: PujaVidhi = {
     },
     {
       step: 3,
-      title: { en: 'Vishnu Puja — Shodashopachar', hi: 'विष्णु पूजा — षोडशोपचार', sa: 'विष्णुपूजनम् — षोडशोपचारः' },
+      title: { en: 'Vishnu Puja  –  Shodashopachar', hi: 'विष्णु पूजा  –  षोडशोपचार', sa: 'विष्णुपूजनम्  –  षोडशोपचारः' },
       description: {
-        en: 'Perform the sixteen-step worship of Lord Vishnu: Avahana (invocation), Asana (seat), Padya (foot-wash), Arghya (water offering), Achamaniya (sipping water), Snana (bath with panchamrit and water), Vastra (yellow cloth), Yajnopavita (sacred thread), Gandha (sandalwood), Pushpa (flowers with Tulsi), Dhupa (incense), Dipa (ghee lamp), Naivedya (fruits only — no grains), Tambula (betel), Pradakshina (circumambulation), and Namaskara (prostration).',
-        hi: 'भगवान विष्णु की षोडशोपचार पूजा करें: आवाहन, आसन, पाद्य, अर्घ्य, आचमनीय, स्नान (पंचामृत और जल से), वस्त्र (पीला), यज्ञोपवीत, गन्ध (चन्दन), पुष्प (तुलसी सहित), धूप, दीप (घी का), नैवेद्य (केवल फल — अन्न नहीं), ताम्बूल, प्रदक्षिणा और नमस्कार।',
-        sa: 'श्रीविष्णोः षोडशोपचारपूजनं कुर्यात्: आवाहनम्, आसनम्, पाद्यम्, अर्घ्यम्, आचमनीयम्, स्नानम् (पञ्चामृतजलाभ्याम्), वस्त्रम् (पीतम्), यज्ञोपवीतम्, गन्धम् (चन्दनम्), पुष्पम् (तुलसीसहितम्), धूपम्, दीपम् (घृतदीपम्), नैवेद्यम् (फलानि एव — न अन्नम्), ताम्बूलम्, प्रदक्षिणा, नमस्कारः।',
+        en: 'Perform the sixteen-step worship of Lord Vishnu: Avahana (invocation), Asana (seat), Padya (foot-wash), Arghya (water offering), Achamaniya (sipping water), Snana (bath with panchamrit and water), Vastra (yellow cloth), Yajnopavita (sacred thread), Gandha (sandalwood), Pushpa (flowers with Tulsi), Dhupa (incense), Dipa (ghee lamp), Naivedya (fruits only  –  no grains), Tambula (betel), Pradakshina (circumambulation), and Namaskara (prostration).',
+        hi: 'भगवान विष्णु की षोडशोपचार पूजा करें: आवाहन, आसन, पाद्य, अर्घ्य, आचमनीय, स्नान (पंचामृत और जल से), वस्त्र (पीला), यज्ञोपवीत, गन्ध (चन्दन), पुष्प (तुलसी सहित), धूप, दीप (घी का), नैवेद्य (केवल फल  –  अन्न नहीं), ताम्बूल, प्रदक्षिणा और नमस्कार।',
+        sa: 'श्रीविष्णोः षोडशोपचारपूजनं कुर्यात्: आवाहनम्, आसनम्, पाद्यम्, अर्घ्यम्, आचमनीयम्, स्नानम् (पञ्चामृतजलाभ्याम्), वस्त्रम् (पीतम्), यज्ञोपवीतम्, गन्धम् (चन्दनम्), पुष्पम् (तुलसीसहितम्), धूपम्, दीपम् (घृतदीपम्), नैवेद्यम् (फलानि एव  –  न अन्नम्), ताम्बूलम्, प्रदक्षिणा, नमस्कारः।',
       },
       mantraRef: 'vishnu-dvadashakshari',
       duration: '30 min',
@@ -78,7 +78,7 @@ export const EKADASHI_PUJA: PujaVidhi = {
       description: {
         en: 'Offer special worship to the Tulsi plant, which is Vishnu\'s most beloved consort (Vrinda Devi). Water the Tulsi plant, apply kumkum and turmeric at its base, offer flowers, and light a diya near the Tulsi. Circumambulate the Tulsi plant three times.',
         hi: 'तुलसी के पौधे की विशेष पूजा करें जो विष्णु की प्रियतमा (वृन्दा देवी) हैं। तुलसी को जल अर्पित करें, जड़ में कुमकुम और हल्दी लगाएँ, फूल चढ़ाएँ, और तुलसी के पास दीपक जलाएँ। तुलसी की तीन बार परिक्रमा करें।',
-        sa: 'तुलसीं विशेषतः पूजयेत् — सा विष्णोः प्रियतमा वृन्दादेवी। तुलसीं जलेन सिञ्चेत्, मूले कुङ्कुमहरिद्रां लिम्पेत्, पुष्पाणि अर्पयेत्, तुलसीसमीपे दीपं प्रज्वालयेत्। तुलसीं त्रिवारं प्रदक्षिणां कुर्यात्।',
+        sa: 'तुलसीं विशेषतः पूजयेत्  –  सा विष्णोः प्रियतमा वृन्दादेवी। तुलसीं जलेन सिञ्चेत्, मूले कुङ्कुमहरिद्रां लिम्पेत्, पुष्पाणि अर्पयेत्, तुलसीसमीपे दीपं प्रज्वालयेत्। तुलसीं त्रिवारं प्रदक्षिणां कुर्यात्।',
       },
       duration: '10 min',
       essential: false,
@@ -113,8 +113,8 @@ export const EKADASHI_PUJA: PujaVidhi = {
       step: 7,
       title: { en: 'Aarti', hi: 'आरती', sa: 'आरात्रिकम्' },
       description: {
-        en: 'Perform the evening aarti of Lord Vishnu with the ghee lamp and camphor. Sing "Om Jai Jagdish Hare" — the universal Vishnu aarti. Ring the bell and offer the flame to all family members.',
-        hi: 'घी के दीपक और कपूर से भगवान विष्णु की सायं आरती करें। "ॐ जय जगदीश हरे" — विष्णु की सार्वभौमिक आरती गाएँ। घण्टी बजाएँ और सभी परिवारजनों को ज्योति प्रदान करें।',
+        en: 'Perform the evening aarti of Lord Vishnu with the ghee lamp and camphor. Sing "Om Jai Jagdish Hare"  –  the universal Vishnu aarti. Ring the bell and offer the flame to all family members.',
+        hi: 'घी के दीपक और कपूर से भगवान विष्णु की सायं आरती करें। "ॐ जय जगदीश हरे"  –  विष्णु की सार्वभौमिक आरती गाएँ। घण्टी बजाएँ और सभी परिवारजनों को ज्योति प्रदान करें।',
         sa: 'घृतदीपकर्पूराभ्यां श्रीविष्णोः सायमारात्रिकं कुर्यात्। "ॐ जय जगदीश हरे" इति विष्णोः सार्वभौमिकम् आरात्रिकं गायेत्। घण्टां वादयेत् सर्वपरिजनेभ्यः ज्योतिं प्रदर्शयेत्।',
       },
       duration: '10 min',
@@ -123,7 +123,7 @@ export const EKADASHI_PUJA: PujaVidhi = {
     },
     {
       step: 8,
-      title: { en: 'Jagran — Night Vigil (Optional)', hi: 'जागरण — रात्रि जागरण (वैकल्पिक)', sa: 'जागरणम् — रात्रिजागरणम् (ऐच्छिकम्)' },
+      title: { en: 'Jagran  –  Night Vigil (Optional)', hi: 'जागरण  –  रात्रि जागरण (वैकल्पिक)', sa: 'जागरणम्  –  रात्रिजागरणम् (ऐच्छिकम्)' },
       description: {
         en: 'Stay awake through the night (jagran) listening to Vishnu katha, singing bhajans, reading the Bhagavad Gita, or meditating. This is optional but greatly enhances the merit of the vrat. Even staying awake till midnight is meritorious.',
         hi: 'विष्णु कथा सुनते, भजन गाते, भगवद्गीता पढ़ते या ध्यान करते हुए पूरी रात जागें (जागरण)। यह वैकल्पिक है किन्तु व्रत के पुण्य को बहुत बढ़ाता है। मध्यरात्रि तक जागना भी पुण्यदायी है।',
@@ -135,7 +135,7 @@ export const EKADASHI_PUJA: PujaVidhi = {
     },
     {
       step: 9,
-      title: { en: 'Dwadashi Morning — Parana (Breaking the Fast)', hi: 'द्वादशी प्रातः — पारण (उपवास समाप्ति)', sa: 'द्वादशी प्रातः — पारणम् (उपवाससमाप्तिः)' },
+      title: { en: 'Dwadashi Morning  –  Parana (Breaking the Fast)', hi: 'द्वादशी प्रातः  –  पारण (उपवास समाप्ति)', sa: 'द्वादशी प्रातः  –  पारणम् (उपवाससमाप्तिः)' },
       description: {
         en: 'On Dwadashi morning, perform morning ablutions and a brief Vishnu puja. Break the fast (parana) ONLY after sunrise and within the parana window (typically before 1/4th of the day has passed). Begin with Tulsi water, then fruits, then a light meal. Offering food to a Brahmin before eating yourself is highly meritorious.',
         hi: 'द्वादशी की सुबह प्रातःकालीन क्रिया और संक्षिप्त विष्णु पूजा करें। उपवास (पारण) केवल सूर्योदय के बाद और पारण काल (सामान्यतः दिन का पहला चौथाई भाग बीतने से पहले) में ही तोड़ें। पहले तुलसी जल, फिर फल, फिर हल्का भोजन लें। स्वयं खाने से पहले ब्राह्मण को भोजन कराना अत्यधिक पुण्यकारी है।',
@@ -184,13 +184,13 @@ export const EKADASHI_PUJA: PujaVidhi = {
     },
     {
       id: 'vishnu-sahasranama-opening',
-      name: { en: 'Vishnu Sahasranama — Opening Verse (Dhyana Shloka)', hi: 'विष्णु सहस्रनाम — आरम्भिक श्लोक (ध्यान श्लोक)', sa: 'विष्णुसहस्रनाम — प्रारम्भश्लोकः (ध्यानश्लोकः)' },
+      name: { en: 'Vishnu Sahasranama  –  Opening Verse (Dhyana Shloka)', hi: 'विष्णु सहस्रनाम  –  आरम्भिक श्लोक (ध्यान श्लोक)', sa: 'विष्णुसहस्रनाम  –  प्रारम्भश्लोकः (ध्यानश्लोकः)' },
       devanagari: 'शुक्लाम्बरधरं विष्णुं शशिवर्णं चतुर्भुजम्। प्रसन्नवदनं ध्यायेत् सर्वविघ्नोपशान्तये॥',
       iast: 'śuklāmbaradharaṃ viṣṇuṃ śaśivarṇaṃ caturbhujam | prasannavadanaṃ dhyāyet sarvavighnopaśāntaye ||',
       meaning: {
-        en: 'I meditate upon Lord Vishnu, who wears white garments, who has the complexion of the moon, who has four arms, and whose face is serene — for the removal of all obstacles.',
-        hi: 'श्वेत वस्त्रधारी, चन्द्रमा जैसी कान्ति वाले, चतुर्भुज, प्रसन्नमुख भगवान विष्णु का मैं ध्यान करता/करती हूँ — सभी विघ्नों की शान्ति के लिए।',
-        sa: 'शुक्लवस्त्रधारिणं शशिवर्णं चतुर्भुजं प्रसन्नवदनं विष्णुं ध्यायेत् — सर्वेषां विघ्नानां शान्तये।',
+        en: 'I meditate upon Lord Vishnu, who wears white garments, who has the complexion of the moon, who has four arms, and whose face is serene  –  for the removal of all obstacles.',
+        hi: 'श्वेत वस्त्रधारी, चन्द्रमा जैसी कान्ति वाले, चतुर्भुज, प्रसन्नमुख भगवान विष्णु का मैं ध्यान करता/करती हूँ  –  सभी विघ्नों की शान्ति के लिए।',
+        sa: 'शुक्लवस्त्रधारिणं शशिवर्णं चतुर्भुजं प्रसन्नवदनं विष्णुं ध्यायेत्  –  सर्वेषां विघ्नानां शान्तये।',
       },
       usage: {
         en: 'Recite before beginning the Vishnu Sahasranama Stotram. This is the dhyana shloka that invokes the form of Vishnu in the mind.',
@@ -214,7 +214,7 @@ export const EKADASHI_PUJA: PujaVidhi = {
   ],
 
   aarti: {
-    name: { en: 'Om Jai Jagdish Hare — Vishnu Aarti', hi: 'ॐ जय जगदीश हरे — विष्णु आरती', sa: 'ॐ जय जगदीश हरे — विष्ण्वारात्रिकम्' },
+    name: { en: 'Om Jai Jagdish Hare  –  Vishnu Aarti', hi: 'ॐ जय जगदीश हरे  –  विष्णु आरती', sa: 'ॐ जय जगदीश हरे  –  विष्ण्वारात्रिकम्' },
     devanagari: `ॐ जय जगदीश हरे, स्वामी जय जगदीश हरे।
 भक्त जनों के संकट, दास जनों के संकट,
 क्षण में दूर करे॥ ॐ जय जगदीश हरे॥
@@ -301,14 +301,14 @@ santana kī sevā || oṃ jaya jagadīśa hare ||`,
 
   precautions: [
     {
-      en: 'NO rice on Ekadashi — this is the single most important rule. Even a grain of rice consumed negates the entire vrat\'s merit.',
-      hi: 'एकादशी पर चावल नहीं खाना — यह सबसे महत्वपूर्ण नियम है। एक चावल का दाना भी खाने से पूरे व्रत का पुण्य नष्ट हो जाता है।',
-      sa: 'एकादश्यां तण्डुलाः न भक्षणीयाः — एतन्नियमः सर्वप्रधानः। एकम् अपि तण्डुलकणं भक्षितं चेत् सकलव्रतपुण्यं विनश्यति।',
+      en: 'NO rice on Ekadashi  –  this is the single most important rule. Even a grain of rice consumed negates the entire vrat\'s merit.',
+      hi: 'एकादशी पर चावल नहीं खाना  –  यह सबसे महत्वपूर्ण नियम है। एक चावल का दाना भी खाने से पूरे व्रत का पुण्य नष्ट हो जाता है।',
+      sa: 'एकादश्यां तण्डुलाः न भक्षणीयाः  –  एतन्नियमः सर्वप्रधानः। एकम् अपि तण्डुलकणं भक्षितं चेत् सकलव्रतपुण्यं विनश्यति।',
     },
     {
-      en: 'No grains or cereals of any kind — wheat, rice, lentils, corn, etc. are all prohibited. Only phalahar (fruit diet) or nirjala (waterless) fast.',
-      hi: 'किसी भी प्रकार का अन्न या अनाज — गेहूँ, चावल, दाल, मक्का आदि सब वर्जित। केवल फलाहार या निर्जला उपवास।',
-      sa: 'सर्वप्रकारं धान्यम् — गोधूमाः, तण्डुलाः, मसूराः, यवनालाः इत्यादयः सर्वे निषिद्धाः। केवलं फलाहारो निर्जलव्रतं वा।',
+      en: 'No grains or cereals of any kind  –  wheat, rice, lentils, corn, etc. are all prohibited. Only phalahar (fruit diet) or nirjala (waterless) fast.',
+      hi: 'किसी भी प्रकार का अन्न या अनाज  –  गेहूँ, चावल, दाल, मक्का आदि सब वर्जित। केवल फलाहार या निर्जला उपवास।',
+      sa: 'सर्वप्रकारं धान्यम्  –  गोधूमाः, तण्डुलाः, मसूराः, यवनालाः इत्यादयः सर्वे निषिद्धाः। केवलं फलाहारो निर्जलव्रतं वा।',
     },
     {
       en: 'No onion, garlic, or non-vegetarian food. These are tamasic and prohibited during all vrats.',
@@ -321,17 +321,17 @@ santana kī sevā || oṃ jaya jagadīśa hare ||`,
       sa: 'एकादश्यां दिवा न स्वपेत्। दिवास्वापेन व्रतपुण्यं नश्यति (हरिभक्तिविलासः)।',
     },
     {
-      en: 'Break the fast (parana) ONLY within the Dwadashi parana window — after sunrise but before the window ends. Breaking too early or too late nullifies the vrat.',
-      hi: 'पारण केवल द्वादशी पारण काल में ही करें — सूर्योदय के बाद लेकिन समय सीमा समाप्त होने से पहले। बहुत जल्दी या देर से पारण करने पर व्रत का फल नहीं मिलता।',
-      sa: 'पारणं द्वादशीपारणकाले एव कुर्यात् — सूर्योदयानन्तरं किन्तु कालसीमायाः प्राक्। अतिशीघ्रं अतिविलम्बं वा पारणे व्रतफलं विनश्यति।',
+      en: 'Break the fast (parana) ONLY within the Dwadashi parana window  –  after sunrise but before the window ends. Breaking too early or too late nullifies the vrat.',
+      hi: 'पारण केवल द्वादशी पारण काल में ही करें  –  सूर्योदय के बाद लेकिन समय सीमा समाप्त होने से पहले। बहुत जल्दी या देर से पारण करने पर व्रत का फल नहीं मिलता।',
+      sa: 'पारणं द्वादशीपारणकाले एव कुर्यात्  –  सूर्योदयानन्तरं किन्तु कालसीमायाः प्राक्। अतिशीघ्रं अतिविलम्बं वा पारणे व्रतफलं विनश्यति।',
     },
   ],
 
   parana: {
     type: 'sunrise_plus_quarter' as const,
     description: {
-      en: 'Break fast (Parana) after sunrise on Dwadashi, before 1/4th of daytime passes or before Dwadashi tithi ends — whichever is earlier',
-      hi: 'द्वादशी पर सूर्योदय के बाद, दिन का पहला चौथाई भाग बीतने से पहले या द्वादशी तिथि समाप्त होने से पहले — जो भी पहले हो — पारण करें',
+      en: 'Break fast (Parana) after sunrise on Dwadashi, before 1/4th of daytime passes or before Dwadashi tithi ends  –  whichever is earlier',
+      hi: 'द्वादशी पर सूर्योदय के बाद, दिन का पहला चौथाई भाग बीतने से पहले या द्वादशी तिथि समाप्त होने से पहले  –  जो भी पहले हो  –  पारण करें',
       sa: 'द्वादश्यां सूर्योदयानन्तरं दिनस्य प्रथमचतुर्थांशात् प्राक् अथवा द्वादशीतिथिसमाप्तेः प्राक् पारणं कुर्यात्',
     },
   },

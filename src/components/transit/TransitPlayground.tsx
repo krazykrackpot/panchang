@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * TransitPlayground — interactive Vedic transit sandbox.
+ * TransitPlayground  –  interactive Vedic transit sandbox.
  *
  * Left panel (60%): North Indian diamond chart with natal planets (fixed dots)
  * and transit planets (draggable outlined circles).
@@ -97,7 +97,7 @@ type HouseBox = {
  *   (0,2)=10  center    center  (3,2)=5
  *   (0,3)=9   (1,3)=8  (2,3)=7  (3,3)=6
  *
- * Center cells are split diagonally — house 1 is top diamond, house 7 is bottom diamond.
+ * Center cells are split diagonally  –  house 1 is top diamond, house 7 is bottom diamond.
  * For simplicity we use simple rectangular cells for houses around the border,
  * and split the center 2×2 into 4 triangles for houses...
  * Actually the canonical NI chart has the center diamond showing lagna info.
@@ -392,7 +392,7 @@ export default function TransitPlayground({ natal, initialSkyPositions, locale }
   // Render: SVG chart
   // ---------------------------------------------------------------------------
 
-  // Place natal planets in a house — stack them horizontally
+  // Place natal planets in a house  –  stack them horizontally
   function natalPlanetPositions(box: HouseBox): { cx: number; cy: number; pid: number }[] {
     const pids = natalHouses[box.house] ?? [];
     const count = pids.length;
@@ -403,7 +403,7 @@ export default function TransitPlayground({ natal, initialSkyPositions, locale }
     }));
   }
 
-  // Place transit planets — slightly below natal
+  // Place transit planets  –  slightly below natal
   function transitPlanetPositions(box: HouseBox, excluded?: number): { cx: number; cy: number; pid: number }[] {
     const pids = (transitHouses[box.house] ?? []).filter(id => id !== excluded);
     const count = pids.length;
@@ -478,7 +478,7 @@ export default function TransitPlayground({ natal, initialSkyPositions, locale }
               </g>
             ))}
 
-            {/* Center diamond area — just an inert label */}
+            {/* Center diamond area  –  just an inert label */}
             <rect
               x={100} y={100} width={200} height={200}
               fill="rgba(10,14,39,0.85)"
@@ -670,14 +670,14 @@ function DoubleTransitSummary({ analysis }: { analysis: GocharaResult[] }) {
         </div>
         {isDouble && (
           <div className="text-emerald-400 font-semibold mt-1">
-            Both in house {jupHouse} — powerful double transit activation
+            Both in house {jupHouse}  –  powerful double transit activation
           </div>
         )}
         {!isDouble && jupGood && satGood && (
-          <div className="text-sky-400 mt-1">Both in good houses — favourable period overall</div>
+          <div className="text-sky-400 mt-1">Both in good houses  –  favourable period overall</div>
         )}
         {!isDouble && !jupGood && !satGood && (
-          <div className="text-amber-400 mt-1">Both in adverse houses — challenging period</div>
+          <div className="text-amber-400 mt-1">Both in adverse houses  –  challenging period</div>
         )}
       </div>
     </div>
@@ -719,7 +719,7 @@ function gocharaDescription(planetId: number, house: number): string {
         7: 'Moon favours domestic harmony and relationships.',
       },
     };
-    return phrases[planetId]?.[house] ?? `${p} in good house — ${h} matters are supported.`;
+    return phrases[planetId]?.[house] ?? `${p} in good house  –  ${h} matters are supported.`;
   }
   return `${p} transiting house ${house} may create pressure around ${h}. Monitor and adjust timing.`;
 }

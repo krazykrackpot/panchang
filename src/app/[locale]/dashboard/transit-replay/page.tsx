@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * /dashboard/transit-replay — "Time Machine"
+ * /dashboard/transit-replay  –  "Time Machine"
  *
  * Pick any date → see full planetary positions for that date overlaid on the
  * user's natal chart houses, plus transit-to-natal aspects and notable conditions.

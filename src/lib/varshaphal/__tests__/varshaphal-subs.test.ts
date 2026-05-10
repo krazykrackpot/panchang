@@ -38,7 +38,7 @@ describe('calculateMuddaDasha', () => {
     }
   });
 
-  it('periods are sequential — each starts where the previous ended', () => {
+  it('periods are sequential  –  each starts where the previous ended', () => {
     const result = calculateMuddaDasha(5, 3.0, solarReturnDate);
     for (let i = 1; i < result.length; i++) {
       expect(result[i].startDate).toBe(result[i - 1].endDate);

@@ -69,8 +69,8 @@ export const SHADBALA_MINIMUMS: Record<number, number> = {
   4: 390,  // Jupiter
   5: 330,  // Venus
   6: 300,  // Saturn
-  7: 300,  // Rahu (no classical standard — use Saturn's)
-  8: 300,  // Ketu (no classical standard — use Mars's)
+  7: 300,  // Rahu (no classical standard  –  use Saturn's)
+  8: 300,  // Ketu (no classical standard  –  use Mars's)
 };
 
 // ---------------------------------------------------------------------------
@@ -83,7 +83,7 @@ const GEMSTONE_DATA: Record<number, {
   wearingRules: WearingRules;
   donation: { items: string[]; bestDay: string };
 }> = {
-  // Sun (0) — Ruby
+  // Sun (0)  –  Ruby
   0: {
     primary: {
       name: { en: 'Ruby', hi: 'माणिक्य', sa: 'माणिक्यम्' },
@@ -116,7 +116,7 @@ const GEMSTONE_DATA: Record<number, {
     },
   },
 
-  // Moon (1) — Pearl
+  // Moon (1)  –  Pearl
   1: {
     primary: {
       name: { en: 'Pearl', hi: 'मोती', sa: 'मुक्ता' },
@@ -149,7 +149,7 @@ const GEMSTONE_DATA: Record<number, {
     },
   },
 
-  // Mars (2) — Red Coral
+  // Mars (2)  –  Red Coral
   2: {
     primary: {
       name: { en: 'Red Coral', hi: 'मूंगा', sa: 'प्रवालम्' },
@@ -182,7 +182,7 @@ const GEMSTONE_DATA: Record<number, {
     },
   },
 
-  // Mercury (3) — Emerald
+  // Mercury (3)  –  Emerald
   3: {
     primary: {
       name: { en: 'Emerald', hi: 'पन्ना', sa: 'मरकतम्' },
@@ -215,7 +215,7 @@ const GEMSTONE_DATA: Record<number, {
     },
   },
 
-  // Jupiter (4) — Yellow Sapphire
+  // Jupiter (4)  –  Yellow Sapphire
   4: {
     primary: {
       name: { en: 'Yellow Sapphire', hi: 'पुखराज', sa: 'पुष्पराजम्' },
@@ -248,7 +248,7 @@ const GEMSTONE_DATA: Record<number, {
     },
   },
 
-  // Venus (5) — Diamond
+  // Venus (5)  –  Diamond
   5: {
     primary: {
       name: { en: 'Diamond', hi: 'हीरा', sa: 'वज्रम्' },
@@ -281,7 +281,7 @@ const GEMSTONE_DATA: Record<number, {
     },
   },
 
-  // Saturn (6) — Blue Sapphire
+  // Saturn (6)  –  Blue Sapphire
   6: {
     primary: {
       name: { en: 'Blue Sapphire', hi: 'नीलम', sa: 'नीलम्' },
@@ -314,7 +314,7 @@ const GEMSTONE_DATA: Record<number, {
     },
   },
 
-  // Rahu (7) — Hessonite
+  // Rahu (7)  –  Hessonite
   7: {
     primary: {
       name: { en: 'Hessonite', hi: 'गोमेद', sa: 'गोमेदकम्' },
@@ -346,7 +346,7 @@ const GEMSTONE_DATA: Record<number, {
     },
   },
 
-  // Ketu (8) — Cat's Eye
+  // Ketu (8)  –  Cat's Eye
   8: {
     primary: {
       name: { en: "Cat's Eye", hi: 'लहसुनिया', sa: 'वैडूर्यम्' },

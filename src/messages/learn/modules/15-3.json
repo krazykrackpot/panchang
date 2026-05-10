@@ -12,16 +12,16 @@
     "mai": "प्रश्न (होरेरी) ज्योतिष"
   },
   "subtitle": {
-    "en": "Chart cast for the moment a question arises — no birth data needed, the cosmic moment answers",
-    "hi": "प्रश्न उत्पन्न होने के क्षण की कुण्डली — जन्म डेटा की आवश्यकता नहीं, ब्रह्माण्डीय क्षण उत्तर देता है",
-    "sa": "प्रश्नोत्पत्तिक्षणस्य कुण्डली — जन्मदत्तांशानाम् आवश्यकता नास्ति, ब्रह्माण्डीयक्षणसम्मितिः उत्तरं ददाति",
-    "ta": "கேள்வி எழும் தருணத்தின் ஜாதகம் — பிறப்பு தரவு தேவையில்லை, பிரபஞ்ச தருணம் பதிலை அளிக்கிறது",
-    "te": "ప్రశ్న ఉత్పన్నమైన క్షణం యొక్క కుండలి — జన్మ డేటా అవసరం లేదు, విశ్వ క్షణం సమాధానం ఇస్తుంది",
-    "bn": "প্রশ্ন উত্থানের মুহূর্তের কুণ্ডলী — জন্ম তথ্যের প্রয়োজন নেই, মহাজাগতিক মুহূর্ত উত্তর দেয়",
-    "kn": "ಪ್ರಶ್ನೆ ಎದ್ದ ಕ್ಷಣದ ಕುಂಡಲಿ — ಜನ್ಮ ಡೇಟಾ ಬೇಕಿಲ್ಲ, ವಿಶ್ವ ಕ್ಷಣವು ಉತ್ತರ ನೀಡುತ್ತದೆ",
-    "mr": "प्रश्न उद्भवल्याच्या क्षणाची कुंडली — जन्म माहिती आवश्यक नाही, वैश्विक क्षण उत्तर देतो",
-    "gu": "પ્રશ્ન ઉદ્ભવ્યાના ક્ષણની કુંડળી — જન્મ ડેટાની જરૂર નથી, બ્રહ્માંડીય ક્ષણ જવાબ આપે છે",
-    "mai": "प्रश्न उत्पन्न भेलाक क्षणक कुण्डली — जन्म डेटाक आवश्यकता नहि, ब्रह्माण्डीय क्षण उत्तर दैत अछि"
+    "en": "Chart cast for the moment a question arises  –  no birth data needed, the cosmic moment answers",
+    "hi": "प्रश्न उत्पन्न होने के क्षण की कुण्डली  –  जन्म डेटा की आवश्यकता नहीं, ब्रह्माण्डीय क्षण उत्तर देता है",
+    "sa": "प्रश्नोत्पत्तिक्षणस्य कुण्डली  –  जन्मदत्तांशानाम् आवश्यकता नास्ति, ब्रह्माण्डीयक्षणसम्मितिः उत्तरं ददाति",
+    "ta": "கேள்வி எழும் தருணத்தின் ஜாதகம்  –  பிறப்பு தரவு தேவையில்லை, பிரபஞ்ச தருணம் பதிலை அளிக்கிறது",
+    "te": "ప్రశ్న ఉత్పన్నమైన క్షణం యొక్క కుండలి  –  జన్మ డేటా అవసరం లేదు, విశ్వ క్షణం సమాధానం ఇస్తుంది",
+    "bn": "প্রশ্ন উত্থানের মুহূর্তের কুণ্ডলী  –  জন্ম তথ্যের প্রয়োজন নেই, মহাজাগতিক মুহূর্ত উত্তর দেয়",
+    "kn": "ಪ್ರಶ್ನೆ ಎದ್ದ ಕ್ಷಣದ ಕುಂಡಲಿ  –  ಜನ್ಮ ಡೇಟಾ ಬೇಕಿಲ್ಲ, ವಿಶ್ವ ಕ್ಷಣವು ಉತ್ತರ ನೀಡುತ್ತದೆ",
+    "mr": "प्रश्न उद्भवल्याच्या क्षणाची कुंडली  –  जन्म माहिती आवश्यक नाही, वैश्विक क्षण उत्तर देतो",
+    "gu": "પ્રશ્ન ઉદ્ભવ્યાના ક્ષણની કુંડળી  –  જન્મ ડેટાની જરૂર નથી, બ્રહ્માંડીય ક્ષણ જવાબ આપે છે",
+    "mai": "प्रश्न उत्पन्न भेलाक क्षणक कुण्डली  –  जन्म डेटाक आवश्यकता नहि, ब्रह्माण्डीय क्षण उत्तर दैत अछि"
   },
   "crossRefs": [
     {
@@ -103,16 +103,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "Prashna astrology casts the chart for the precise moment the question is sincerely formed — when it crystallizes in the querent's mind or is verbally asked to the astrologer. This moment is believed to carry the seed of the answer within its planetary configuration.",
-        "hi": "प्रश्न ज्योतिष उस सटीक क्षण की कुण्डली बनाता है जब प्रश्न ईमानदारी से निर्मित होता है — जब यह प्रश्नकर्ता के मन में स्फटिकीकृत होता है या ज्योतिषी से मौखिक रूप से पूछा जाता है। इस क्षण में ग्रहीय विन्यास के भीतर उत्तर का बीज होने की मान्यता है।",
-        "sa": "प्रश्न ज्योतिष उस सटीक क्षण की कुण्डली बनाता है जब प्रश्न ईमानदारी से निर्मित होता है — जब यह प्रश्नकर्ता के मन में स्फटिकीकृत होता है या ज्योतिषी से मौखिक रूप से पूछा जाता है। इस क्षण में ग्रहीय विन्यास के भीतर उत्तर का बीज होने की मान्यता है।",
-        "ta": "Prashna astrology casts the chart for the precise moment the question is sincerely formed — when it crystallizes in the querent's mind or is verbally asked to the astrologer. This moment is believed to carry the seed of the answer within its planetary configuration.",
-        "te": "Prashna astrology casts the chart for the precise moment the question is sincerely formed — when it crystallizes in the querent's mind or is verbally asked to the astrologer. This moment is believed to carry the seed of the answer within its planetary configuration.",
-        "bn": "Prashna astrology casts the chart for the precise moment the question is sincerely formed — when it crystallizes in the querent's mind or is verbally asked to the astrologer. This moment is believed to carry the seed of the answer within its planetary configuration.",
-        "kn": "Prashna astrology casts the chart for the precise moment the question is sincerely formed — when it crystallizes in the querent's mind or is verbally asked to the astrologer. This moment is believed to carry the seed of the answer within its planetary configuration.",
-        "mr": "प्रश्न ज्योतिष उस सटीक क्षण की कुण्डली बनाता है जब प्रश्न ईमानदारी से निर्मित होता है — जब यह प्रश्नकर्ता के मन में स्फटिकीकृत होता है या ज्योतिषी से मौखिक रूप से पूछा जाता है। इस क्षण में ग्रहीय विन्यास के भीतर उत्तर का बीज होने की मान्यता है।",
-        "gu": "Prashna astrology casts the chart for the precise moment the question is sincerely formed — when it crystallizes in the querent's mind or is verbally asked to the astrologer. This moment is believed to carry the seed of the answer within its planetary configuration.",
-        "mai": "प्रश्न ज्योतिष उस सटीक क्षण की कुण्डली बनाता है जब प्रश्न ईमानदारी से निर्मित होता है — जब यह प्रश्नकर्ता के मन में स्फटिकीकृत होता है या ज्योतिषी से मौखिक रूप से पूछा जाता है। इस क्षण में ग्रहीय विन्यास के भीतर उत्तर का बीज होने की मान्यता है।"
+        "en": "Prashna astrology casts the chart for the precise moment the question is sincerely formed  –  when it crystallizes in the querent's mind or is verbally asked to the astrologer. This moment is believed to carry the seed of the answer within its planetary configuration.",
+        "hi": "प्रश्न ज्योतिष उस सटीक क्षण की कुण्डली बनाता है जब प्रश्न ईमानदारी से निर्मित होता है  –  जब यह प्रश्नकर्ता के मन में स्फटिकीकृत होता है या ज्योतिषी से मौखिक रूप से पूछा जाता है। इस क्षण में ग्रहीय विन्यास के भीतर उत्तर का बीज होने की मान्यता है।",
+        "sa": "प्रश्न ज्योतिष उस सटीक क्षण की कुण्डली बनाता है जब प्रश्न ईमानदारी से निर्मित होता है  –  जब यह प्रश्नकर्ता के मन में स्फटिकीकृत होता है या ज्योतिषी से मौखिक रूप से पूछा जाता है। इस क्षण में ग्रहीय विन्यास के भीतर उत्तर का बीज होने की मान्यता है।",
+        "ta": "Prashna astrology casts the chart for the precise moment the question is sincerely formed  –  when it crystallizes in the querent's mind or is verbally asked to the astrologer. This moment is believed to carry the seed of the answer within its planetary configuration.",
+        "te": "Prashna astrology casts the chart for the precise moment the question is sincerely formed  –  when it crystallizes in the querent's mind or is verbally asked to the astrologer. This moment is believed to carry the seed of the answer within its planetary configuration.",
+        "bn": "Prashna astrology casts the chart for the precise moment the question is sincerely formed  –  when it crystallizes in the querent's mind or is verbally asked to the astrologer. This moment is believed to carry the seed of the answer within its planetary configuration.",
+        "kn": "Prashna astrology casts the chart for the precise moment the question is sincerely formed  –  when it crystallizes in the querent's mind or is verbally asked to the astrologer. This moment is believed to carry the seed of the answer within its planetary configuration.",
+        "mr": "प्रश्न ज्योतिष उस सटीक क्षण की कुण्डली बनाता है जब प्रश्न ईमानदारी से निर्मित होता है  –  जब यह प्रश्नकर्ता के मन में स्फटिकीकृत होता है या ज्योतिषी से मौखिक रूप से पूछा जाता है। इस क्षण में ग्रहीय विन्यास के भीतर उत्तर का बीज होने की मान्यता है।",
+        "gu": "Prashna astrology casts the chart for the precise moment the question is sincerely formed  –  when it crystallizes in the querent's mind or is verbally asked to the astrologer. This moment is believed to carry the seed of the answer within its planetary configuration.",
+        "mai": "प्रश्न ज्योतिष उस सटीक क्षण की कुण्डली बनाता है जब प्रश्न ईमानदारी से निर्मित होता है  –  जब यह प्रश्नकर्ता के मन में स्फटिकीकृत होता है या ज्योतिषी से मौखिक रूप से पूछा जाता है। इस क्षण में ग्रहीय विन्यास के भीतर उत्तर का बीज होने की मान्यता है।"
       },
       "options": [
         {
@@ -182,16 +182,16 @@
       },
       "correctAnswer": false,
       "explanation": {
-        "en": "False. This is the key advantage of Prashna — no birth data is needed. The chart is cast for the moment and place of the question itself. This makes it invaluable when birth data is unknown, disputed, or unreliable.",
-        "hi": "असत्य। यही प्रश्न का मुख्य लाभ है — जन्म डेटा की आवश्यकता नहीं। कुण्डली प्रश्न के क्षण और स्थान के लिए बनाई जाती है। यह तब अमूल्य है जब जन्म डेटा अज्ञात, विवादित या अविश्वसनीय हो।",
-        "sa": "असत्य। यही प्रश्न का मुख्य लाभ है — जन्म डेटा की आवश्यकता नहीं। कुण्डली प्रश्न के क्षण और स्थान के लिए बनाई जाती है। यह तब अमूल्य है जब जन्म डेटा अज्ञात, विवादित या अविश्वसनीय हो।",
-        "ta": "False. This is the key advantage of Prashna — no birth data is needed. The chart is cast for the moment and place of the question itself. This makes it invaluable when birth data is unknown, disputed, or unreliable.",
-        "te": "False. This is the key advantage of Prashna — no birth data is needed. The chart is cast for the moment and place of the question itself. This makes it invaluable when birth data is unknown, disputed, or unreliable.",
-        "bn": "False. This is the key advantage of Prashna — no birth data is needed. The chart is cast for the moment and place of the question itself. This makes it invaluable when birth data is unknown, disputed, or unreliable.",
-        "kn": "False. This is the key advantage of Prashna — no birth data is needed. The chart is cast for the moment and place of the question itself. This makes it invaluable when birth data is unknown, disputed, or unreliable.",
-        "mr": "असत्य। यही प्रश्न का मुख्य लाभ है — जन्म डेटा की आवश्यकता नहीं। कुण्डली प्रश्न के क्षण और स्थान के लिए बनाई जाती है। यह तब अमूल्य है जब जन्म डेटा अज्ञात, विवादित या अविश्वसनीय हो।",
-        "gu": "False. This is the key advantage of Prashna — no birth data is needed. The chart is cast for the moment and place of the question itself. This makes it invaluable when birth data is unknown, disputed, or unreliable.",
-        "mai": "असत्य। यही प्रश्न का मुख्य लाभ है — जन्म डेटा की आवश्यकता नहीं। कुण्डली प्रश्न के क्षण और स्थान के लिए बनाई जाती है। यह तब अमूल्य है जब जन्म डेटा अज्ञात, विवादित या अविश्वसनीय हो।"
+        "en": "False. This is the key advantage of Prashna  –  no birth data is needed. The chart is cast for the moment and place of the question itself. This makes it invaluable when birth data is unknown, disputed, or unreliable.",
+        "hi": "असत्य। यही प्रश्न का मुख्य लाभ है  –  जन्म डेटा की आवश्यकता नहीं। कुण्डली प्रश्न के क्षण और स्थान के लिए बनाई जाती है। यह तब अमूल्य है जब जन्म डेटा अज्ञात, विवादित या अविश्वसनीय हो।",
+        "sa": "असत्य। यही प्रश्न का मुख्य लाभ है  –  जन्म डेटा की आवश्यकता नहीं। कुण्डली प्रश्न के क्षण और स्थान के लिए बनाई जाती है। यह तब अमूल्य है जब जन्म डेटा अज्ञात, विवादित या अविश्वसनीय हो।",
+        "ta": "False. This is the key advantage of Prashna  –  no birth data is needed. The chart is cast for the moment and place of the question itself. This makes it invaluable when birth data is unknown, disputed, or unreliable.",
+        "te": "False. This is the key advantage of Prashna  –  no birth data is needed. The chart is cast for the moment and place of the question itself. This makes it invaluable when birth data is unknown, disputed, or unreliable.",
+        "bn": "False. This is the key advantage of Prashna  –  no birth data is needed. The chart is cast for the moment and place of the question itself. This makes it invaluable when birth data is unknown, disputed, or unreliable.",
+        "kn": "False. This is the key advantage of Prashna  –  no birth data is needed. The chart is cast for the moment and place of the question itself. This makes it invaluable when birth data is unknown, disputed, or unreliable.",
+        "mr": "असत्य। यही प्रश्न का मुख्य लाभ है  –  जन्म डेटा की आवश्यकता नहीं। कुण्डली प्रश्न के क्षण और स्थान के लिए बनाई जाती है। यह तब अमूल्य है जब जन्म डेटा अज्ञात, विवादित या अविश्वसनीय हो।",
+        "gu": "False. This is the key advantage of Prashna  –  no birth data is needed. The chart is cast for the moment and place of the question itself. This makes it invaluable when birth data is unknown, disputed, or unreliable.",
+        "mai": "असत्य। यही प्रश्न का मुख्य लाभ है  –  जन्म डेटा की आवश्यकता नहीं। कुण्डली प्रश्न के क्षण और स्थान के लिए बनाई जाती है। यह तब अमूल्य है जब जन्म डेटा अज्ञात, विवादित या अविश्वसनीय हो।"
       }
     },
     {
@@ -211,16 +211,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "In Prashna, the Lagna represents the querent and the 7th house represents the subject of inquiry (the \"other\" — opponent, spouse, business partner, or the matter being asked about). This 1st-7th axis is the foundation of all Prashna interpretation.",
-        "hi": "प्रश्न में लग्न प्रश्नकर्ता का प्रतिनिधित्व करता है और 7वाँ भाव पूछताछ के विषय (\"अन्य\" — प्रतिद्वन्द्वी, पति/पत्नी, व्यापारिक साझेदार, या जिस विषय पर पूछा जा रहा है) का प्रतिनिधित्व करता है। यह 1-7 अक्ष सम्पूर्ण प्रश्न व्याख्या का आधार है।",
-        "sa": "प्रश्न में लग्न प्रश्नकर्ता का प्रतिनिधित्व करता है और 7वाँ भाव पूछताछ के विषय (\"अन्य\" — प्रतिद्वन्द्वी, पति/पत्नी, व्यापारिक साझेदार, या जिस विषय पर पूछा जा रहा है) का प्रतिनिधित्व करता है। यह 1-7 अक्ष सम्पूर्ण प्रश्न व्याख्या का आधार है।",
-        "ta": "In Prashna, the Lagna represents the querent and the 7th house represents the subject of inquiry (the \"other\" — opponent, spouse, business partner, or the matter being asked about). This 1st-7th axis is the foundation of all Prashna interpretation.",
-        "te": "In Prashna, the Lagna represents the querent and the 7th house represents the subject of inquiry (the \"other\" — opponent, spouse, business partner, or the matter being asked about). This 1st-7th axis is the foundation of all Prashna interpretation.",
-        "bn": "In Prashna, the Lagna represents the querent and the 7th house represents the subject of inquiry (the \"other\" — opponent, spouse, business partner, or the matter being asked about). This 1st-7th axis is the foundation of all Prashna interpretation.",
-        "kn": "In Prashna, the Lagna represents the querent and the 7th house represents the subject of inquiry (the \"other\" — opponent, spouse, business partner, or the matter being asked about). This 1st-7th axis is the foundation of all Prashna interpretation.",
-        "mr": "प्रश्न में लग्न प्रश्नकर्ता का प्रतिनिधित्व करता है और 7वाँ भाव पूछताछ के विषय (\"अन्य\" — प्रतिद्वन्द्वी, पति/पत्नी, व्यापारिक साझेदार, या जिस विषय पर पूछा जा रहा है) का प्रतिनिधित्व करता है। यह 1-7 अक्ष सम्पूर्ण प्रश्न व्याख्या का आधार है।",
-        "gu": "In Prashna, the Lagna represents the querent and the 7th house represents the subject of inquiry (the \"other\" — opponent, spouse, business partner, or the matter being asked about). This 1st-7th axis is the foundation of all Prashna interpretation.",
-        "mai": "प्रश्न में लग्न प्रश्नकर्ता का प्रतिनिधित्व करता है और 7वाँ भाव पूछताछ के विषय (\"अन्य\" — प्रतिद्वन्द्वी, पति/पत्नी, व्यापारिक साझेदार, या जिस विषय पर पूछा जा रहा है) का प्रतिनिधित्व करता है। यह 1-7 अक्ष सम्पूर्ण प्रश्न व्याख्या का आधार है।"
+        "en": "In Prashna, the Lagna represents the querent and the 7th house represents the subject of inquiry (the \"other\"  –  opponent, spouse, business partner, or the matter being asked about). This 1st-7th axis is the foundation of all Prashna interpretation.",
+        "hi": "प्रश्न में लग्न प्रश्नकर्ता का प्रतिनिधित्व करता है और 7वाँ भाव पूछताछ के विषय (\"अन्य\"  –  प्रतिद्वन्द्वी, पति/पत्नी, व्यापारिक साझेदार, या जिस विषय पर पूछा जा रहा है) का प्रतिनिधित्व करता है। यह 1-7 अक्ष सम्पूर्ण प्रश्न व्याख्या का आधार है।",
+        "sa": "प्रश्न में लग्न प्रश्नकर्ता का प्रतिनिधित्व करता है और 7वाँ भाव पूछताछ के विषय (\"अन्य\"  –  प्रतिद्वन्द्वी, पति/पत्नी, व्यापारिक साझेदार, या जिस विषय पर पूछा जा रहा है) का प्रतिनिधित्व करता है। यह 1-7 अक्ष सम्पूर्ण प्रश्न व्याख्या का आधार है।",
+        "ta": "In Prashna, the Lagna represents the querent and the 7th house represents the subject of inquiry (the \"other\"  –  opponent, spouse, business partner, or the matter being asked about). This 1st-7th axis is the foundation of all Prashna interpretation.",
+        "te": "In Prashna, the Lagna represents the querent and the 7th house represents the subject of inquiry (the \"other\"  –  opponent, spouse, business partner, or the matter being asked about). This 1st-7th axis is the foundation of all Prashna interpretation.",
+        "bn": "In Prashna, the Lagna represents the querent and the 7th house represents the subject of inquiry (the \"other\"  –  opponent, spouse, business partner, or the matter being asked about). This 1st-7th axis is the foundation of all Prashna interpretation.",
+        "kn": "In Prashna, the Lagna represents the querent and the 7th house represents the subject of inquiry (the \"other\"  –  opponent, spouse, business partner, or the matter being asked about). This 1st-7th axis is the foundation of all Prashna interpretation.",
+        "mr": "प्रश्न में लग्न प्रश्नकर्ता का प्रतिनिधित्व करता है और 7वाँ भाव पूछताछ के विषय (\"अन्य\"  –  प्रतिद्वन्द्वी, पति/पत्नी, व्यापारिक साझेदार, या जिस विषय पर पूछा जा रहा है) का प्रतिनिधित्व करता है। यह 1-7 अक्ष सम्पूर्ण प्रश्न व्याख्या का आधार है।",
+        "gu": "In Prashna, the Lagna represents the querent and the 7th house represents the subject of inquiry (the \"other\"  –  opponent, spouse, business partner, or the matter being asked about). This 1st-7th axis is the foundation of all Prashna interpretation.",
+        "mai": "प्रश्न में लग्न प्रश्नकर्ता का प्रतिनिधित्व करता है और 7वाँ भाव पूछताछ के विषय (\"अन्य\"  –  प्रतिद्वन्द्वी, पति/पत्नी, व्यापारिक साझेदार, या जिस विषय पर पूछा जा रहा है) का प्रतिनिधित्व करता है। यह 1-7 अक्ष सम्पूर्ण प्रश्न व्याख्या का आधार है।"
       },
       "options": [
         {
@@ -290,16 +290,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "When the Moon makes no further applying aspects before leaving its current sign, it is \"void of course.\" In Prashna, this is a strong indicator that the matter asked about will not produce a result — it fizzles out or remains unresolved. The querent is advised that the situation is stagnant.",
-        "hi": "जब चन्द्रमा अपनी वर्तमान राशि छोड़ने से पहले कोई और अनुप्रयुक्त दृष्टि (applying aspect) नहीं बनाता, तो वह \"शून्य गति\" (void of course) है। प्रश्न में यह एक प्रबल सूचक है कि पूछा गया मामला परिणाम नहीं देगा — यह निष्प्रभ होगा या अनसुलझा रहेगा।",
-        "sa": "जब चन्द्रमा अपनी वर्तमान राशि छोड़ने से पहले कोई और अनुप्रयुक्त दृष्टि (applying aspect) नहीं बनाता, तो वह \"शून्य गति\" (void of course) है। प्रश्न में यह एक प्रबल सूचक है कि पूछा गया मामला परिणाम नहीं देगा — यह निष्प्रभ होगा या अनसुलझा रहेगा।",
-        "ta": "When the Moon makes no further applying aspects before leaving its current sign, it is \"void of course.\" In Prashna, this is a strong indicator that the matter asked about will not produce a result — it fizzles out or remains unresolved. The querent is advised that the situation is stagnant.",
-        "te": "When the Moon makes no further applying aspects before leaving its current sign, it is \"void of course.\" In Prashna, this is a strong indicator that the matter asked about will not produce a result — it fizzles out or remains unresolved. The querent is advised that the situation is stagnant.",
-        "bn": "When the Moon makes no further applying aspects before leaving its current sign, it is \"void of course.\" In Prashna, this is a strong indicator that the matter asked about will not produce a result — it fizzles out or remains unresolved. The querent is advised that the situation is stagnant.",
-        "kn": "When the Moon makes no further applying aspects before leaving its current sign, it is \"void of course.\" In Prashna, this is a strong indicator that the matter asked about will not produce a result — it fizzles out or remains unresolved. The querent is advised that the situation is stagnant.",
-        "mr": "जब चन्द्रमा अपनी वर्तमान राशि छोड़ने से पहले कोई और अनुप्रयुक्त दृष्टि (applying aspect) नहीं बनाता, तो वह \"शून्य गति\" (void of course) है। प्रश्न में यह एक प्रबल सूचक है कि पूछा गया मामला परिणाम नहीं देगा — यह निष्प्रभ होगा या अनसुलझा रहेगा।",
-        "gu": "When the Moon makes no further applying aspects before leaving its current sign, it is \"void of course.\" In Prashna, this is a strong indicator that the matter asked about will not produce a result — it fizzles out or remains unresolved. The querent is advised that the situation is stagnant.",
-        "mai": "जब चन्द्रमा अपनी वर्तमान राशि छोड़ने से पहले कोई और अनुप्रयुक्त दृष्टि (applying aspect) नहीं बनाता, तो वह \"शून्य गति\" (void of course) है। प्रश्न में यह एक प्रबल सूचक है कि पूछा गया मामला परिणाम नहीं देगा — यह निष्प्रभ होगा या अनसुलझा रहेगा।"
+        "en": "When the Moon makes no further applying aspects before leaving its current sign, it is \"void of course.\" In Prashna, this is a strong indicator that the matter asked about will not produce a result  –  it fizzles out or remains unresolved. The querent is advised that the situation is stagnant.",
+        "hi": "जब चन्द्रमा अपनी वर्तमान राशि छोड़ने से पहले कोई और अनुप्रयुक्त दृष्टि (applying aspect) नहीं बनाता, तो वह \"शून्य गति\" (void of course) है। प्रश्न में यह एक प्रबल सूचक है कि पूछा गया मामला परिणाम नहीं देगा  –  यह निष्प्रभ होगा या अनसुलझा रहेगा।",
+        "sa": "जब चन्द्रमा अपनी वर्तमान राशि छोड़ने से पहले कोई और अनुप्रयुक्त दृष्टि (applying aspect) नहीं बनाता, तो वह \"शून्य गति\" (void of course) है। प्रश्न में यह एक प्रबल सूचक है कि पूछा गया मामला परिणाम नहीं देगा  –  यह निष्प्रभ होगा या अनसुलझा रहेगा।",
+        "ta": "When the Moon makes no further applying aspects before leaving its current sign, it is \"void of course.\" In Prashna, this is a strong indicator that the matter asked about will not produce a result  –  it fizzles out or remains unresolved. The querent is advised that the situation is stagnant.",
+        "te": "When the Moon makes no further applying aspects before leaving its current sign, it is \"void of course.\" In Prashna, this is a strong indicator that the matter asked about will not produce a result  –  it fizzles out or remains unresolved. The querent is advised that the situation is stagnant.",
+        "bn": "When the Moon makes no further applying aspects before leaving its current sign, it is \"void of course.\" In Prashna, this is a strong indicator that the matter asked about will not produce a result  –  it fizzles out or remains unresolved. The querent is advised that the situation is stagnant.",
+        "kn": "When the Moon makes no further applying aspects before leaving its current sign, it is \"void of course.\" In Prashna, this is a strong indicator that the matter asked about will not produce a result  –  it fizzles out or remains unresolved. The querent is advised that the situation is stagnant.",
+        "mr": "जब चन्द्रमा अपनी वर्तमान राशि छोड़ने से पहले कोई और अनुप्रयुक्त दृष्टि (applying aspect) नहीं बनाता, तो वह \"शून्य गति\" (void of course) है। प्रश्न में यह एक प्रबल सूचक है कि पूछा गया मामला परिणाम नहीं देगा  –  यह निष्प्रभ होगा या अनसुलझा रहेगा।",
+        "gu": "When the Moon makes no further applying aspects before leaving its current sign, it is \"void of course.\" In Prashna, this is a strong indicator that the matter asked about will not produce a result  –  it fizzles out or remains unresolved. The querent is advised that the situation is stagnant.",
+        "mai": "जब चन्द्रमा अपनी वर्तमान राशि छोड़ने से पहले कोई और अनुप्रयुक्त दृष्टि (applying aspect) नहीं बनाता, तो वह \"शून्य गति\" (void of course) है। प्रश्न में यह एक प्रबल सूचक है कि पूछा गया मामला परिणाम नहीं देगा  –  यह निष्प्रभ होगा या अनसुलझा रहेगा।"
       },
       "options": [
         {
@@ -315,16 +315,16 @@
           "mai": "प्रश्न का उत्तर अनुकूल होगा"
         },
         {
-          "en": "The matter will not come to fruition — no definitive result",
-          "hi": "मामला फलीभूत नहीं होगा — कोई निश्चित परिणाम नहीं",
-          "sa": "मामला फलीभूत नहीं होगा — कोई निश्चित परिणाम नहीं",
-          "ta": "The matter will not come to fruition — no definitive result",
-          "te": "The matter will not come to fruition — no definitive result",
-          "bn": "The matter will not come to fruition — no definitive result",
-          "kn": "The matter will not come to fruition — no definitive result",
-          "mr": "मामला फलीभूत नहीं होगा — कोई निश्चित परिणाम नहीं",
-          "gu": "The matter will not come to fruition — no definitive result",
-          "mai": "मामला फलीभूत नहीं होगा — कोई निश्चित परिणाम नहीं"
+          "en": "The matter will not come to fruition  –  no definitive result",
+          "hi": "मामला फलीभूत नहीं होगा  –  कोई निश्चित परिणाम नहीं",
+          "sa": "मामला फलीभूत नहीं होगा  –  कोई निश्चित परिणाम नहीं",
+          "ta": "The matter will not come to fruition  –  no definitive result",
+          "te": "The matter will not come to fruition  –  no definitive result",
+          "bn": "The matter will not come to fruition  –  no definitive result",
+          "kn": "The matter will not come to fruition  –  no definitive result",
+          "mr": "मामला फलीभूत नहीं होगा  –  कोई निश्चित परिणाम नहीं",
+          "gu": "The matter will not come to fruition  –  no definitive result",
+          "mai": "मामला फलीभूत नहीं होगा  –  कोई निश्चित परिणाम नहीं"
         },
         {
           "en": "The Moon is very strong in the chart",
@@ -369,16 +369,16 @@
       },
       "correctAnswer": 1,
       "explanation": {
-        "en": "An applying aspect (faster planet moving toward exact aspect with slower planet) indicates the event is coming together — it WILL happen. A separating aspect (planets moving apart from exactitude) means the opportunity existed but has passed — the event will NOT happen or has already occurred.",
-        "hi": "अनुप्रयुक्त दृष्टि (तीव्र ग्रह धीमे ग्रह के साथ सटीक दृष्टि की ओर बढ़ रहा) इंगित करता है कि घटना निर्मित हो रही है — यह होगी। पृथक्करण दृष्टि (ग्रह सटीकता से दूर जा रहे) का अर्थ है अवसर विद्यमान था परन्तु बीत गया — घटना नहीं होगी या पहले ही घटित हो चुकी है।",
-        "sa": "अनुप्रयुक्त दृष्टि (तीव्र ग्रह धीमे ग्रह के साथ सटीक दृष्टि की ओर बढ़ रहा) इंगित करता है कि घटना निर्मित हो रही है — यह होगी। पृथक्करण दृष्टि (ग्रह सटीकता से दूर जा रहे) का अर्थ है अवसर विद्यमान था परन्तु बीत गया — घटना नहीं होगी या पहले ही घटित हो चुकी है।",
-        "ta": "An applying aspect (faster planet moving toward exact aspect with slower planet) indicates the event is coming together — it WILL happen. A separating aspect (planets moving apart from exactitude) means the opportunity existed but has passed — the event will NOT happen or has already occurred.",
-        "te": "An applying aspect (faster planet moving toward exact aspect with slower planet) indicates the event is coming together — it WILL happen. A separating aspect (planets moving apart from exactitude) means the opportunity existed but has passed — the event will NOT happen or has already occurred.",
-        "bn": "An applying aspect (faster planet moving toward exact aspect with slower planet) indicates the event is coming together — it WILL happen. A separating aspect (planets moving apart from exactitude) means the opportunity existed but has passed — the event will NOT happen or has already occurred.",
-        "kn": "An applying aspect (faster planet moving toward exact aspect with slower planet) indicates the event is coming together — it WILL happen. A separating aspect (planets moving apart from exactitude) means the opportunity existed but has passed — the event will NOT happen or has already occurred.",
-        "mr": "अनुप्रयुक्त दृष्टि (तीव्र ग्रह धीमे ग्रह के साथ सटीक दृष्टि की ओर बढ़ रहा) इंगित करता है कि घटना निर्मित हो रही है — यह होगी। पृथक्करण दृष्टि (ग्रह सटीकता से दूर जा रहे) का अर्थ है अवसर विद्यमान था परन्तु बीत गया — घटना नहीं होगी या पहले ही घटित हो चुकी है।",
-        "gu": "An applying aspect (faster planet moving toward exact aspect with slower planet) indicates the event is coming together — it WILL happen. A separating aspect (planets moving apart from exactitude) means the opportunity existed but has passed — the event will NOT happen or has already occurred.",
-        "mai": "अनुप्रयुक्त दृष्टि (तीव्र ग्रह धीमे ग्रह के साथ सटीक दृष्टि की ओर बढ़ रहा) इंगित करता है कि घटना निर्मित हो रही है — यह होगी। पृथक्करण दृष्टि (ग्रह सटीकता से दूर जा रहे) का अर्थ है अवसर विद्यमान था परन्तु बीत गया — घटना नहीं होगी या पहले ही घटित हो चुकी है।"
+        "en": "An applying aspect (faster planet moving toward exact aspect with slower planet) indicates the event is coming together  –  it WILL happen. A separating aspect (planets moving apart from exactitude) means the opportunity existed but has passed  –  the event will NOT happen or has already occurred.",
+        "hi": "अनुप्रयुक्त दृष्टि (तीव्र ग्रह धीमे ग्रह के साथ सटीक दृष्टि की ओर बढ़ रहा) इंगित करता है कि घटना निर्मित हो रही है  –  यह होगी। पृथक्करण दृष्टि (ग्रह सटीकता से दूर जा रहे) का अर्थ है अवसर विद्यमान था परन्तु बीत गया  –  घटना नहीं होगी या पहले ही घटित हो चुकी है।",
+        "sa": "अनुप्रयुक्त दृष्टि (तीव्र ग्रह धीमे ग्रह के साथ सटीक दृष्टि की ओर बढ़ रहा) इंगित करता है कि घटना निर्मित हो रही है  –  यह होगी। पृथक्करण दृष्टि (ग्रह सटीकता से दूर जा रहे) का अर्थ है अवसर विद्यमान था परन्तु बीत गया  –  घटना नहीं होगी या पहले ही घटित हो चुकी है।",
+        "ta": "An applying aspect (faster planet moving toward exact aspect with slower planet) indicates the event is coming together  –  it WILL happen. A separating aspect (planets moving apart from exactitude) means the opportunity existed but has passed  –  the event will NOT happen or has already occurred.",
+        "te": "An applying aspect (faster planet moving toward exact aspect with slower planet) indicates the event is coming together  –  it WILL happen. A separating aspect (planets moving apart from exactitude) means the opportunity existed but has passed  –  the event will NOT happen or has already occurred.",
+        "bn": "An applying aspect (faster planet moving toward exact aspect with slower planet) indicates the event is coming together  –  it WILL happen. A separating aspect (planets moving apart from exactitude) means the opportunity existed but has passed  –  the event will NOT happen or has already occurred.",
+        "kn": "An applying aspect (faster planet moving toward exact aspect with slower planet) indicates the event is coming together  –  it WILL happen. A separating aspect (planets moving apart from exactitude) means the opportunity existed but has passed  –  the event will NOT happen or has already occurred.",
+        "mr": "अनुप्रयुक्त दृष्टि (तीव्र ग्रह धीमे ग्रह के साथ सटीक दृष्टि की ओर बढ़ रहा) इंगित करता है कि घटना निर्मित हो रही है  –  यह होगी। पृथक्करण दृष्टि (ग्रह सटीकता से दूर जा रहे) का अर्थ है अवसर विद्यमान था परन्तु बीत गया  –  घटना नहीं होगी या पहले ही घटित हो चुकी है।",
+        "gu": "An applying aspect (faster planet moving toward exact aspect with slower planet) indicates the event is coming together  –  it WILL happen. A separating aspect (planets moving apart from exactitude) means the opportunity existed but has passed  –  the event will NOT happen or has already occurred.",
+        "mai": "अनुप्रयुक्त दृष्टि (तीव्र ग्रह धीमे ग्रह के साथ सटीक दृष्टि की ओर बढ़ रहा) इंगित करता है कि घटना निर्मित हो रही है  –  यह होगी। पृथक्करण दृष्टि (ग्रह सटीकता से दूर जा रहे) का अर्थ है अवसर विद्यमान था परन्तु बीत गया  –  घटना नहीं होगी या पहले ही घटित हो चुकी है।"
       },
       "options": [
         {
@@ -689,16 +689,16 @@
           "mai": "विवाह कभी नहीं होगा"
         },
         {
-          "en": "Strong positive indication — the querent's mind (Moon) is focused on the subject of inquiry (7th house)",
-          "hi": "प्रबल सकारात्मक संकेत — प्रश्नकर्ता का मन (चन्द्र) पूछताछ के विषय (7वें भाव) पर केन्द्रित है",
-          "sa": "प्रबल सकारात्मक संकेत — प्रश्नकर्ता का मन (चन्द्र) पूछताछ के विषय (7वें भाव) पर केन्द्रित है",
-          "ta": "Strong positive indication — the querent's mind (Moon) is focused on the subject of inquiry (7th house)",
-          "te": "Strong positive indication — the querent's mind (Moon) is focused on the subject of inquiry (7th house)",
-          "bn": "Strong positive indication — the querent's mind (Moon) is focused on the subject of inquiry (7th house)",
-          "kn": "Strong positive indication — the querent's mind (Moon) is focused on the subject of inquiry (7th house)",
-          "mr": "प्रबल सकारात्मक संकेत — प्रश्नकर्ता का मन (चन्द्र) पूछताछ के विषय (7वें भाव) पर केन्द्रित है",
-          "gu": "Strong positive indication — the querent's mind (Moon) is focused on the subject of inquiry (7th house)",
-          "mai": "प्रबल सकारात्मक संकेत — प्रश्नकर्ता का मन (चन्द्र) पूछताछ के विषय (7वें भाव) पर केन्द्रित है"
+          "en": "Strong positive indication  –  the querent's mind (Moon) is focused on the subject of inquiry (7th house)",
+          "hi": "प्रबल सकारात्मक संकेत  –  प्रश्नकर्ता का मन (चन्द्र) पूछताछ के विषय (7वें भाव) पर केन्द्रित है",
+          "sa": "प्रबल सकारात्मक संकेत  –  प्रश्नकर्ता का मन (चन्द्र) पूछताछ के विषय (7वें भाव) पर केन्द्रित है",
+          "ta": "Strong positive indication  –  the querent's mind (Moon) is focused on the subject of inquiry (7th house)",
+          "te": "Strong positive indication  –  the querent's mind (Moon) is focused on the subject of inquiry (7th house)",
+          "bn": "Strong positive indication  –  the querent's mind (Moon) is focused on the subject of inquiry (7th house)",
+          "kn": "Strong positive indication  –  the querent's mind (Moon) is focused on the subject of inquiry (7th house)",
+          "mr": "प्रबल सकारात्मक संकेत  –  प्रश्नकर्ता का मन (चन्द्र) पूछताछ के विषय (7वें भाव) पर केन्द्रित है",
+          "gu": "Strong positive indication  –  the querent's mind (Moon) is focused on the subject of inquiry (7th house)",
+          "mai": "प्रबल सकारात्मक संकेत  –  प्रश्नकर्ता का मन (चन्द्र) पूछताछ के विषय (7वें भाव) पर केन्द्रित है"
         },
         {
           "en": "The Moon is debilitated",

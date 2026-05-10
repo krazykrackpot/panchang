@@ -34,7 +34,7 @@ describe('scanCaesareanSlots', () => {
     // Meta populated
     expect(result.meta.totalSlotsEvaluated).toBeGreaterThan(0);
     expect(result.meta.computeTimeMs).toBeGreaterThanOrEqual(0);
-  }, 30000); // Allow up to 30s — chart computation is CPU-heavy
+  }, 30000); // Allow up to 30s  –  chart computation is CPU-heavy
 
   it('scans a 3-day range and returns ranked results', () => {
     const result = scanCaesareanSlots({

@@ -99,13 +99,13 @@ export default function ShareableKundaliCard({ kundali, locale }: Props) {
     if (typeof navigator !== 'undefined' && navigator.share) {
       try {
         await navigator.share({
-          title: `${name} — ${l(LABELS.vedic)}`,
+          title: `${name}  –  ${l(LABELS.vedic)}`,
           text: shareText,
           url: shareUrl,
         });
         return;
       } catch {
-        // User cancelled or API failed — fall through to modal
+        // User cancelled or API failed  –  fall through to modal
       }
     }
     // Fallback: open the modal with share options
@@ -271,7 +271,7 @@ export default function ShareableKundaliCard({ kundali, locale }: Props) {
               {/* Share buttons below card */}
               <div className="mt-4 flex justify-center">
                 <ShareButton
-                  title={`${name} — ${l(LABELS.vedic)}`}
+                  title={`${name}  –  ${l(LABELS.vedic)}`}
                   text={shareText}
                   url={shareUrl}
                   locale={locale}
@@ -287,7 +287,7 @@ export default function ShareableKundaliCard({ kundali, locale }: Props) {
 }
 
 /* ════════════════════════════════════════════════════════════════
-   CardRow — a single row in the summary grid
+   CardRow  –  a single row in the summary grid
    ════════════════════════════════════════════════════════════════ */
 function CardRow({
   icon,

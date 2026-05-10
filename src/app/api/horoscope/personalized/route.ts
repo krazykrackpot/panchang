@@ -86,7 +86,7 @@ export async function POST(request: Request) {
           max_tokens: 400,
           system: locale === 'hi'
             ? 'आप एक अनुभवी वैदिक ज्योतिषी हैं। व्यक्तिगत दैनिक राशिफल हिंदी में लिखें। दशा, गोचर SAV बल, और ग्रह स्थिति का सटीक उल्लेख करें।'
-            : 'You are an experienced Vedic astrologer giving a personalized daily reading. Reference specific dasha periods, SAV transit strengths, and planetary positions. Be specific and practical — this is a personal consultation, not a generic horoscope.',
+            : 'You are an experienced Vedic astrologer giving a personalized daily reading. Reference specific dasha periods, SAV transit strengths, and planetary positions. Be specific and practical  –  this is a personal consultation, not a generic horoscope.',
           messages: [{ role: 'user', content: prompt }],
         });
         forecast = response.content

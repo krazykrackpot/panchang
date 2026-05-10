@@ -29,7 +29,7 @@ const t = (key: string, locale: string) => lt((MSG as unknown as Record<string, 
 
 type ClockMode = '60' | '30';
 
-// 30 Muhurta names — traditional sequence from sunrise
+// 30 Muhurta names  –  traditional sequence from sunrise
 const MUHURTA_NAMES: { en: string; hi: string; nature: 'good' | 'bad' | 'mixed' }[] = [
   { en: 'Rudra', hi: 'रुद्र', nature: 'bad' },
   { en: 'Ahi', hi: 'अहि', nature: 'bad' },
@@ -63,7 +63,7 @@ const MUHURTA_NAMES: { en: string; hi: string; nature: 'good' | 'bad' | 'mixed' 
   { en: 'Samudram', hi: 'समुद्रम्', nature: 'mixed' },
 ];
 
-// 5 Dinamana Kalas — day divided into 5 × 6 ghati (30-ghati clock only)
+// 5 Dinamana Kalas  –  day divided into 5 × 6 ghati (30-ghati clock only)
 const DINAMANA_KALAS: LocaleText[] = [
   { en: 'Pratah Kala', hi: 'प्रातःकाल', sa: 'प्रातःकालः' },
   { en: 'Sangava Kala', hi: 'सङ्गवकाल', sa: 'सङ्गवकालः' },
@@ -72,7 +72,7 @@ const DINAMANA_KALAS: LocaleText[] = [
   { en: 'Sayana Kala', hi: 'सायंकाल', sa: 'सायंकालः' },
 ];
 
-// 5 Ratrimana Kalas — night divided into 5 × 6 ghati
+// 5 Ratrimana Kalas  –  night divided into 5 × 6 ghati
 const RATRIMANA_KALAS: LocaleText[] = [
   { en: 'Pradosha Kala', hi: 'प्रदोषकाल', sa: 'प्रदोषकालः' },
   { en: 'Nisha Kala', hi: 'निशाकाल', sa: 'निशाकालः' },
@@ -290,7 +290,7 @@ export default function VedicTimePage() {
     ? computeVedicTime(time, sunTimes.sunrise, sunTimes.sunset, sunTimes.nextSunrise, clockMode)
     : null;
 
-  // Panchang context — tithi, vara, masa, samvatsara at sunrise
+  // Panchang context  –  tithi, vara, masa, samvatsara at sunrise
   const panchangCtx = useMemo(() => {
     if (!sunTimes) return null;
     const sr = sunTimes.sunrise;
@@ -345,10 +345,10 @@ export default function VedicTimePage() {
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto">
           {isTamil
-            ? 'பழங்கால இந்திய நேர முறை — கடி, பலம், விபலம்'
+            ? 'பழங்கால இந்திய நேர முறை  –  கடி, பலம், விபலம்'
             : locale === 'en'
-            ? 'The ancient Indian time system — Ghati, Pala, Vipala'
-            : 'प्राचीन भारतीय समय पद्धति — घटी, पल, विपल'}
+            ? 'The ancient Indian time system  –  Ghati, Pala, Vipala'
+            : 'प्राचीन भारतीय समय पद्धति  –  घटी, पल, विपल'}
         </p>
         {locationName && <p className="text-text-secondary/70 text-sm mt-2">{locationName}</p>}
       </motion.div>
@@ -359,7 +359,7 @@ export default function VedicTimePage() {
           {locale === 'en' || isTamil ? (
             <>
               <p className="text-text-secondary/80 text-base leading-relaxed mb-4">
-                The Vedic system divides the day into 30 Muhurtas (each ~48 minutes), 8 Praharas (each ~3 hours), and further into Ghatikas (24 minutes), Palas (24 seconds), and Vipalas (0.4 seconds). Unlike the modern 24-hour clock that starts at midnight, the Vedic day begins at sunrise — Suryodaya — making every timing calculation location-specific.
+                The Vedic system divides the day into 30 Muhurtas (each ~48 minutes), 8 Praharas (each ~3 hours), and further into Ghatikas (24 minutes), Palas (24 seconds), and Vipalas (0.4 seconds). Unlike the modern 24-hour clock that starts at midnight, the Vedic day begins at sunrise  –  Suryodaya  –  making every timing calculation location-specific.
               </p>
               <p className="text-text-secondary/80 text-base leading-relaxed">
                 Each Muhurta has a distinct quality: Brahma Muhurta (the &ldquo;hour of Brahma&rdquo;, ~96 minutes before sunrise) is considered the most auspicious for meditation and study. Abhijit Muhurta (midday) is universally favorable. Rahu Kaal, Yamaganda, and Gulika Kaal mark inauspicious windows based on the weekday planetary ruler. Enter your location to see today&apos;s complete Vedic time breakdown.
@@ -386,24 +386,24 @@ export default function VedicTimePage() {
       >
         {!isDevanagariLocale(locale) ? (
           <div className="space-y-3">
-            <p>Unlike the fixed 24-hour clock, <strong>Vedic time is sunrise-based</strong> — the day begins at sunrise, not midnight. This means each time unit (Ghati, Pala) is tied to the Sun&apos;s actual position, making it astronomically meaningful rather than arbitrary.</p>
+            <p>Unlike the fixed 24-hour clock, <strong>Vedic time is sunrise-based</strong>  –  the day begins at sunrise, not midnight. This means each time unit (Ghati, Pala) is tied to the Sun&apos;s actual position, making it astronomically meaningful rather than arbitrary.</p>
             <p><strong>Why this matters:</strong></p>
             <ul className="list-disc ml-4 space-y-1 text-xs">
-              <li><strong className="text-gold-light">Brahma Muhurta</strong> (1.5 hours before sunrise) — the most spiritually potent time for meditation, study, and prayer. Yogis and rishis practice during this window.</li>
-              <li><strong className="text-gold-light">Abhijit Muhurta</strong> (midday, ~24 minutes) — the most auspicious moment of the day. Ideal for starting new ventures, signing contracts, or any important action.</li>
-              <li><strong className="text-gold-light">Rahu Kaal</strong> (varies by weekday) — an inauspicious 1.5-hour window each day. Avoid starting new work during this period.</li>
-              <li><strong className="text-gold-light">Hora</strong> — each hour of the day is ruled by a different planet. Use the planet&apos;s hora for activities aligned with that planet (e.g., Jupiter&apos;s hora for education, Venus&apos;s hora for romance).</li>
+              <li><strong className="text-gold-light">Brahma Muhurta</strong> (1.5 hours before sunrise)  –  the most spiritually potent time for meditation, study, and prayer. Yogis and rishis practice during this window.</li>
+              <li><strong className="text-gold-light">Abhijit Muhurta</strong> (midday, ~24 minutes)  –  the most auspicious moment of the day. Ideal for starting new ventures, signing contracts, or any important action.</li>
+              <li><strong className="text-gold-light">Rahu Kaal</strong> (varies by weekday)  –  an inauspicious 1.5-hour window each day. Avoid starting new work during this period.</li>
+              <li><strong className="text-gold-light">Hora</strong>  –  each hour of the day is ruled by a different planet. Use the planet&apos;s hora for activities aligned with that planet (e.g., Jupiter&apos;s hora for education, Venus&apos;s hora for romance).</li>
             </ul>
             <p><strong>Practical use:</strong> If you want to meditate, wake up during Brahma Muhurta. Starting a business? Choose Abhijit Muhurta. Scheduling a meeting? Avoid Rahu Kaal. This clock shows you the current Vedic time division so you can align your actions with cosmic rhythms.</p>
           </div>
         ) : (
           <div className="space-y-3">
-            <p>24 घंटे की निश्चित घड़ी से भिन्न, <strong>वैदिक समय सूर्योदय पर आधारित</strong> है — दिन सूर्योदय से शुरू होता है, मध्यरात्रि से नहीं।</p>
+            <p>24 घंटे की निश्चित घड़ी से भिन्न, <strong>वैदिक समय सूर्योदय पर आधारित</strong> है  –  दिन सूर्योदय से शुरू होता है, मध्यरात्रि से नहीं।</p>
             <ul className="list-disc ml-4 space-y-1 text-xs">
-              <li><strong className="text-gold-light">ब्रह्म मुहूर्त</strong> (सूर्योदय से 1.5 घंटे पहले) — ध्यान, अध्ययन और प्रार्थना के लिए सर्वोत्तम समय।</li>
-              <li><strong className="text-gold-light">अभिजित मुहूर्त</strong> (दोपहर, ~24 मिनट) — दिन का सबसे शुभ क्षण। नए कार्य आरम्भ के लिए आदर्श।</li>
-              <li><strong className="text-gold-light">राहु काल</strong> (प्रतिदिन भिन्न) — अशुभ 1.5 घंटे की अवधि। इसमें नया कार्य न करें।</li>
-              <li><strong className="text-gold-light">होरा</strong> — दिन का प्रत्येक घंटा एक ग्रह द्वारा शासित। ग्रह की होरा में उससे सम्बन्धित कार्य करें।</li>
+              <li><strong className="text-gold-light">ब्रह्म मुहूर्त</strong> (सूर्योदय से 1.5 घंटे पहले)  –  ध्यान, अध्ययन और प्रार्थना के लिए सर्वोत्तम समय।</li>
+              <li><strong className="text-gold-light">अभिजित मुहूर्त</strong> (दोपहर, ~24 मिनट)  –  दिन का सबसे शुभ क्षण। नए कार्य आरम्भ के लिए आदर्श।</li>
+              <li><strong className="text-gold-light">राहु काल</strong> (प्रतिदिन भिन्न)  –  अशुभ 1.5 घंटे की अवधि। इसमें नया कार्य न करें।</li>
+              <li><strong className="text-gold-light">होरा</strong>  –  दिन का प्रत्येक घंटा एक ग्रह द्वारा शासित। ग्रह की होरा में उससे सम्बन्धित कार्य करें।</li>
             </ul>
             <p><strong>व्यावहारिक उपयोग:</strong> यह घड़ी वर्तमान वैदिक समय विभाजन दर्शाती है ताकि आप अपने कार्यों को ब्रह्माण्डीय लय से जोड़ सकें।</p>
           </div>
@@ -439,7 +439,7 @@ export default function VedicTimePage() {
             : 'दिनमान = 30 घटी, रात्रिमान = 30 घटी। सूर्यास्त = 30:00:00। मुहूर्त/कर्मकाण्ड हेतु उपयुक्त।')}
       </div>
 
-      {/* Dual time display — Vedic + Gregorian side by side */}
+      {/* Dual time display  –  Vedic + Gregorian side by side */}
       {vedic ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           {/* Vedic Clock */}
@@ -498,7 +498,7 @@ export default function VedicTimePage() {
         </div>
       )}
 
-      {/* Panchang context — Tithi, Vara, Masa, Samvatsara */}
+      {/* Panchang context  –  Tithi, Vara, Masa, Samvatsara */}
       {panchangCtx && (
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl px-5 py-3 mb-4 text-center" style={bodyFont}>
           <div className="text-gold-light text-sm font-semibold">
@@ -511,7 +511,7 @@ export default function VedicTimePage() {
           </div>
           <div className="text-text-secondary/75 text-xs mt-1">
             {tl(panchangCtx.vara?.name, locale)}
-            {' — '}
+            {'  –  '}
             {tl(panchangCtx.samvatsara, locale)}{' '}
             {t('samvatsara', locale)}
           </div>
@@ -546,7 +546,7 @@ export default function VedicTimePage() {
                 {t('ghatiPalaVipala', locale)}
               </div>
 
-              {/* Kala name — 30-ghati clock only */}
+              {/* Kala name  –  30-ghati clock only */}
               {clockMode === '30' && vedic.kalaName && (
                 <div className="mt-3 inline-block px-4 py-1.5 rounded-lg bg-gold-primary/10 border border-gold-primary/15">
                   <span className="text-gold-light text-sm font-semibold" style={bodyFont}>

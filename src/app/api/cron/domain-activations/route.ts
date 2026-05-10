@@ -29,21 +29,21 @@ const DOMAIN_NAMES: Record<DomainType, string> = {
 
 /** Positive-change advice per domain. */
 const IMPROVEMENT_ADVICE: Record<string, string> = {
-  health: 'Vitality is rising — a great time to build healthy habits.',
-  wealth: 'Financial prospects are improving — consider your next investment.',
+  health: 'Vitality is rising  –  a great time to build healthy habits.',
+  wealth: 'Financial prospects are improving  –  consider your next investment.',
   career: "Jupiter's transit is opening new doors for professional growth.",
-  marriage: 'Relationship energy is strengthening — nurture your connections.',
+  marriage: 'Relationship energy is strengthening  –  nurture your connections.',
   children: 'Positive shifts for matters related to children and creativity.',
-  family: 'Family harmony is improving — a good period for bonding.',
-  spiritual: 'Spiritual clarity is deepening — pursue inner growth.',
-  education: 'Intellectual energy is peaking — take on new learning.',
+  family: 'Family harmony is improving  –  a good period for bonding.',
+  spiritual: 'Spiritual clarity is deepening  –  pursue inner growth.',
+  education: 'Intellectual energy is peaking  –  take on new learning.',
 };
 
 /** Negative-change advice per domain. */
 const DECLINE_ADVICE: Record<string, string> = {
   health: 'Focus on the remedies in your Personal Pandit reading.',
   wealth: 'Be conservative with finances and review the recommended remedies.',
-  career: 'Patience is key — check your reading for targeted guidance.',
+  career: 'Patience is key  –  check your reading for targeted guidance.',
   marriage: 'Communication and patience will help. Review your Pandit reading.',
   children: 'Give extra attention to children and creative pursuits.',
   family: 'Family dynamics may need care. Your reading has specific remedies.',
@@ -147,7 +147,7 @@ export async function GET(req: NextRequest) {
       continue;
     }
 
-    // 4. Compare with stored scores — find significant deltas
+    // 4. Compare with stored scores  –  find significant deltas
     const changes: { domain: DomainType; delta: number; current: number; previous: number }[] = [];
     for (const domain of SCORED_DOMAINS) {
       const prev = lastScores[domain];

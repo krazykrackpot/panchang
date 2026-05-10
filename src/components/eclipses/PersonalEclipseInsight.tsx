@@ -93,12 +93,12 @@ function computePersonalInsight(eclipse: EclipseInfo, kundali: KundaliData, loca
 
     if (relevantPlanets.includes(mahaPlanet)) {
       const pName = isHi ? currentMaha.planetName.hi : currentMaha.planetName.en;
-      dashAlert = tl({ en: `⚠ You are in ${pName} Mahadasha — this eclipse will be especially powerful for you!`, hi: `⚠ आप ${pName} महादशा में हैं — यह ग्रहण आपके लिए अत्यन्त प्रभावशाली होगा!`, sa: `⚠ आप ${pName} महादशा में हैं — यह ग्रहण आपके लिए अत्यन्त प्रभावशाली होगा!` }, locale);
+      dashAlert = tl({ en: `⚠ You are in ${pName} Mahadasha  –  this eclipse will be especially powerful for you!`, hi: `⚠ आप ${pName} महादशा में हैं  –  यह ग्रहण आपके लिए अत्यन्त प्रभावशाली होगा!`, sa: `⚠ आप ${pName} महादशा में हैं  –  यह ग्रहण आपके लिए अत्यन्त प्रभावशाली होगा!` }, locale);
     } else if (currentAntar) {
       const antarPlanet = currentAntar.planet.toLowerCase();
       if (relevantPlanets.includes(antarPlanet)) {
         const pName = isHi ? currentAntar.planetName.hi : currentAntar.planetName.en;
-        dashAlert = tl({ en: `${pName} Antardasha is active — moderate impact expected from this eclipse`, hi: `${pName} अन्तर्दशा चल रही है — इस ग्रहण का मध्यम प्रभाव अपेक्षित`, sa: `${pName} अन्तर्दशा चल रही है — इस ग्रहण का मध्यम प्रभाव अपेक्षित` }, locale);
+        dashAlert = tl({ en: `${pName} Antardasha is active  –  moderate impact expected from this eclipse`, hi: `${pName} अन्तर्दशा चल रही है  –  इस ग्रहण का मध्यम प्रभाव अपेक्षित`, sa: `${pName} अन्तर्दशा चल रही है  –  इस ग्रहण का मध्यम प्रभाव अपेक्षित` }, locale);
       }
     }
   }
@@ -111,7 +111,7 @@ function computePersonalInsight(eclipse: EclipseInfo, kundali: KundaliData, loca
     if (minDiff < 3) {
       const pName = isHi ? PLANET_NAMES[p.planet.id]?.hi : PLANET_NAMES[p.planet.id]?.en;
       const effect = isHi ? CONTACT_EFFECTS[p.planet.id]?.hi : CONTACT_EFFECTS[p.planet.id]?.en;
-      natalContacts.push(tl({ en: `🎯 Eclipse within ${minDiff.toFixed(1)}° of your natal ${pName} — ${effect}`, hi: `🎯 ग्रहण आपके जन्म ${pName} के ${minDiff.toFixed(1)}° भीतर — ${effect}`, sa: `🎯 ग्रहण आपके जन्म ${pName} के ${minDiff.toFixed(1)}° भीतर — ${effect}` }, locale)
+      natalContacts.push(tl({ en: `🎯 Eclipse within ${minDiff.toFixed(1)}° of your natal ${pName}  –  ${effect}`, hi: `🎯 ग्रहण आपके जन्म ${pName} के ${minDiff.toFixed(1)}° भीतर  –  ${effect}`, sa: `🎯 ग्रहण आपके जन्म ${pName} के ${minDiff.toFixed(1)}° भीतर  –  ${effect}` }, locale)
       );
     }
   }
@@ -125,17 +125,17 @@ function computePersonalInsight(eclipse: EclipseInfo, kundali: KundaliData, loca
     const NAK_LORDS = ['Ketu', 'Venus', 'Sun', 'Moon', 'Mars', 'Rahu', 'Jupiter', 'Saturn', 'Mercury'];
     const nakLord = NAK_LORDS[(nakNum - 1) % 9];
     if (currentMaha.planet.toLowerCase() === nakLord.toLowerCase()) {
-      nakshatraLink = tl({ en: `⚡ Eclipse nakshatra lord (${nakLord}) = your Mahadasha lord — enormously amplified effect!`, hi: `⚡ ग्रहण नक्षत्र स्वामी (${nakLord}) = आपका महादशा स्वामी — अत्यन्त प्रबल प्रभाव!`, sa: `⚡ ग्रहण नक्षत्र स्वामी (${nakLord}) = आपका महादशा स्वामी — अत्यन्त प्रबल प्रभाव!` }, locale);
+      nakshatraLink = tl({ en: `⚡ Eclipse nakshatra lord (${nakLord}) = your Mahadasha lord  –  enormously amplified effect!`, hi: `⚡ ग्रहण नक्षत्र स्वामी (${nakLord}) = आपका महादशा स्वामी  –  अत्यन्त प्रबल प्रभाव!`, sa: `⚡ ग्रहण नक्षत्र स्वामी (${nakLord}) = आपका महादशा स्वामी  –  अत्यन्त प्रबल प्रभाव!` }, locale);
     }
   }
 
-  // 5. Transit interactions — Saturn, Jupiter, Mars aspecting the eclipse degree
+  // 5. Transit interactions  –  Saturn, Jupiter, Mars aspecting the eclipse degree
   // Vedic aspects: all planets aspect 7th (180°). Special: Mars 4th+8th, Jupiter 5th+9th, Saturn 3rd+10th
   const transitAspects: string[] = [];
 
   // Check if natal slow-moving planets (Saturn, Jupiter, Mars, Rahu, Ketu)
   // aspect the eclipse degree via Vedic drishti. These natal positions represent
-  // the person's karmic blueprint — when an eclipse activates an aspected degree,
+  // the person's karmic blueprint  –  when an eclipse activates an aspected degree,
   // that planet's significations are triggered.
   const eclSignForAspect = Math.floor(eclipse.eclipseLongitude / 30) + 1;
 
@@ -189,10 +189,10 @@ function computePersonalInsight(eclipse: EclipseInfo, kundali: KundaliData, loca
       if (p.planet.id === 6) { // Saturn
         if (eclipse.node === 'ketu') {
           headline = tl({ en: 'Saturn + Ketu eclipse = maximum karmic pressure', hi: 'शनि + केतु ग्रहण = अधिकतम कार्मिक दबाव', sa: 'शनि + केतु ग्रहण = अधिकतम कार्मिक दबाव' }, locale);
-          detail = tl({ en: "Your birth Saturn is casting its aspect on this eclipse point. Saturn is the planet of discipline, hard work, and karmic consequences. When Saturn aspects a Ketu eclipse, life\'s old structures — career arrangements, relationships, habits — may break down so something better can be built. This feels hard, but it\'s purification. Avoid major life decisions during this period — clarity comes 6 months later.", hi: "आपके जन्म शनि की दृष्टि इस ग्रहण पर है। शनि अनुशासन, कठोर परिश्रम और कर्म-फल का ग्रह है। जब केतु (वैराग्य) के ग्रहण पर शनि दृष्टि डाले, तो जीवन के पुराने ढाँचे — कैरियर, सम्बन्ध, आदतें — टूट सकते हैं ताकि कुछ बेहतर बन सके। यह कठिन लगता है, पर यह शुद्धिकरण है। इस अवधि में बड़े निर्णय लेने से बचें — 6 माह बाद स्पष्टता आएगी।", sa: "आपके जन्म शनि की दृष्टि इस ग्रहण पर है। शनि अनुशासन, कठोर परिश्रम और कर्म-फल का ग्रह है। जब केतु (वैराग्य) के ग्रहण पर शनि दृष्टि डाले, तो जीवन के पुराने ढाँचे — कैरियर, सम्बन्ध, आदतें — टूट सकते हैं ताकि कुछ बेहतर बन सके। यह कठिन लगता है, पर यह शुद्धिकरण है। इस अवधि में बड़े निर्णय लेने से बचें — 6 माह बाद स्पष्टता आएगी।" }, locale);
+          detail = tl({ en: "Your birth Saturn is casting its aspect on this eclipse point. Saturn is the planet of discipline, hard work, and karmic consequences. When Saturn aspects a Ketu eclipse, life\'s old structures  –  career arrangements, relationships, habits  –  may break down so something better can be built. This feels hard, but it\'s purification. Avoid major life decisions during this period  –  clarity comes 6 months later.", hi: "आपके जन्म शनि की दृष्टि इस ग्रहण पर है। शनि अनुशासन, कठोर परिश्रम और कर्म-फल का ग्रह है। जब केतु (वैराग्य) के ग्रहण पर शनि दृष्टि डाले, तो जीवन के पुराने ढाँचे  –  कैरियर, सम्बन्ध, आदतें  –  टूट सकते हैं ताकि कुछ बेहतर बन सके। यह कठिन लगता है, पर यह शुद्धिकरण है। इस अवधि में बड़े निर्णय लेने से बचें  –  6 माह बाद स्पष्टता आएगी।", sa: "आपके जन्म शनि की दृष्टि इस ग्रहण पर है। शनि अनुशासन, कठोर परिश्रम और कर्म-फल का ग्रह है। जब केतु (वैराग्य) के ग्रहण पर शनि दृष्टि डाले, तो जीवन के पुराने ढाँचे  –  कैरियर, सम्बन्ध, आदतें  –  टूट सकते हैं ताकि कुछ बेहतर बन सके। यह कठिन लगता है, पर यह शुद्धिकरण है। इस अवधि में बड़े निर्णय लेने से बचें  –  6 माह बाद स्पष्टता आएगी।" }, locale);
         } else {
           headline = tl({ en: 'Saturn + Rahu eclipse = long-term structural change', hi: 'शनि + राहु ग्रहण = दीर्घकालिक ढाँचागत परिवर्तन', sa: 'शनि + राहु ग्रहण = दीर्घकालिक ढाँचागत परिवर्तन' }, locale);
-          detail = tl({ en: "Saturn\'s aspect on this Rahu eclipse is a test of patience. Some arrangement in your life that\'s no longer working — career, finances, living situation — will shift gradually. Unlike a Ketu eclipse (which breaks things suddenly), this is a slow 1-2 year restructuring. Discipline and practicality are your biggest allies.", hi: "शनि की दृष्टि इस राहु ग्रहण पर धैर्य की परीक्षा है। आपके जीवन में कोई व्यवस्था जो अब काम नहीं करती — कैरियर, वित्त, रहने की जगह — धीरे-धीरे बदलेगी। यह अचानक नहीं टूटता (जैसे केतु ग्रहण), बल्कि 1-2 वर्षों में धीमा परिवर्तन आता है। अनुशासन और व्यावहारिकता आपके सबसे बड़े सहयोगी हैं।", sa: "शनि की दृष्टि इस राहु ग्रहण पर धैर्य की परीक्षा है। आपके जीवन में कोई व्यवस्था जो अब काम नहीं करती — कैरियर, वित्त, रहने की जगह — धीरे-धीरे बदलेगी। यह अचानक नहीं टूटता (जैसे केतु ग्रहण), बल्कि 1-2 वर्षों में धीमा परिवर्तन आता है। अनुशासन और व्यावहारिकता आपके सबसे बड़े सहयोगी हैं।" }, locale);
+          detail = tl({ en: "Saturn\'s aspect on this Rahu eclipse is a test of patience. Some arrangement in your life that\'s no longer working  –  career, finances, living situation  –  will shift gradually. Unlike a Ketu eclipse (which breaks things suddenly), this is a slow 1-2 year restructuring. Discipline and practicality are your biggest allies.", hi: "शनि की दृष्टि इस राहु ग्रहण पर धैर्य की परीक्षा है। आपके जीवन में कोई व्यवस्था जो अब काम नहीं करती  –  कैरियर, वित्त, रहने की जगह  –  धीरे-धीरे बदलेगी। यह अचानक नहीं टूटता (जैसे केतु ग्रहण), बल्कि 1-2 वर्षों में धीमा परिवर्तन आता है। अनुशासन और व्यावहारिकता आपके सबसे बड़े सहयोगी हैं।", sa: "शनि की दृष्टि इस राहु ग्रहण पर धैर्य की परीक्षा है। आपके जीवन में कोई व्यवस्था जो अब काम नहीं करती  –  कैरियर, वित्त, रहने की जगह  –  धीरे-धीरे बदलेगी। यह अचानक नहीं टूटता (जैसे केतु ग्रहण), बल्कि 1-2 वर्षों में धीमा परिवर्तन आता है। अनुशासन और व्यावहारिकता आपके सबसे बड़े सहयोगी हैं।" }, locale);
         }
       } else if (p.planet.id === 4) { // Jupiter
         if (eclipse.node === 'ketu') {
@@ -200,17 +200,17 @@ function computePersonalInsight(eclipse: EclipseInfo, kundali: KundaliData, loca
           detail = tl({ en: "Jupiter is the planet of wisdom, gurus, and expansion. When Jupiter aspects a Ketu (moksha) eclipse, it\'s one of the most auspicious spiritual combinations. You may receive profound wisdom from a teacher, book, or experience. Meditation, pilgrimage, or scripture study during this period will be extraordinarily fruitful.", hi: "बृहस्पति ज्ञान, गुरु और विस्तार का ग्रह है। जब बृहस्पति की दृष्टि केतु (मोक्ष) के ग्रहण पर पड़े, तो यह सबसे शुभ आध्यात्मिक संयोग है। किसी शिक्षक, पुस्तक, या अनुभव से गहन ज्ञान प्राप्त हो सकता है। ध्यान, तीर्थ यात्रा, या शास्त्र अध्ययन इस समय अत्यन्त फलदायी होंगे।", sa: "बृहस्पति ज्ञान, गुरु और विस्तार का ग्रह है। जब बृहस्पति की दृष्टि केतु (मोक्ष) के ग्रहण पर पड़े, तो यह सबसे शुभ आध्यात्मिक संयोग है। किसी शिक्षक, पुस्तक, या अनुभव से गहन ज्ञान प्राप्त हो सकता है। ध्यान, तीर्थ यात्रा, या शास्त्र अध्ययन इस समय अत्यन्त फलदायी होंगे।" }, locale);
         } else {
           headline = tl({ en: 'Jupiter + Rahu eclipse = wisdom vs illusion', hi: 'बृहस्पति + राहु ग्रहण = ज्ञान बनाम भ्रम', sa: 'बृहस्पति + राहु ग्रहण = ज्ञान बनाम भ्रम' }, locale);
-          detail = tl({ en: "Jupiter wants wisdom, Rahu creates illusion. This combination may bring grand-sounding opportunities and promises that aren\'t as good as they appear. Use discernment — not everything that glitters is gold. Be cautious in educational and religious matters.", hi: "बृहस्पति ज्ञान चाहता है, राहु भ्रम फैलाता है। इस संयोग में बड़े-बड़े वादे और अवसर आ सकते हैं जो वास्तव में जितने दिखते हैं उतने अच्छे नहीं। विवेक से काम लें — हर चमकती चीज़ सोना नहीं। शिक्षा और धार्मिक मामलों में सावधानी बरतें।", sa: "बृहस्पति ज्ञान चाहता है, राहु भ्रम फैलाता है। इस संयोग में बड़े-बड़े वादे और अवसर आ सकते हैं जो वास्तव में जितने दिखते हैं उतने अच्छे नहीं। विवेक से काम लें — हर चमकती चीज़ सोना नहीं। शिक्षा और धार्मिक मामलों में सावधानी बरतें।" }, locale);
+          detail = tl({ en: "Jupiter wants wisdom, Rahu creates illusion. This combination may bring grand-sounding opportunities and promises that aren\'t as good as they appear. Use discernment  –  not everything that glitters is gold. Be cautious in educational and religious matters.", hi: "बृहस्पति ज्ञान चाहता है, राहु भ्रम फैलाता है। इस संयोग में बड़े-बड़े वादे और अवसर आ सकते हैं जो वास्तव में जितने दिखते हैं उतने अच्छे नहीं। विवेक से काम लें  –  हर चमकती चीज़ सोना नहीं। शिक्षा और धार्मिक मामलों में सावधानी बरतें।", sa: "बृहस्पति ज्ञान चाहता है, राहु भ्रम फैलाता है। इस संयोग में बड़े-बड़े वादे और अवसर आ सकते हैं जो वास्तव में जितने दिखते हैं उतने अच्छे नहीं। विवेक से काम लें  –  हर चमकती चीज़ सोना नहीं। शिक्षा और धार्मिक मामलों में सावधानी बरतें।" }, locale);
         }
       } else if (p.planet.id === 2) { // Mars
         headline = tl({ en: 'Mars aspect = sudden energy burst', hi: 'मंगल दृष्टि = अचानक ऊर्जा विस्फोट', sa: 'मंगल दृष्टि = अचानक ऊर्जा विस्फोट' }, locale);
-        detail = tl({ en: 'Mars is the planet of courage, energy, and sometimes aggression. When Mars aspects an eclipse, expect sudden pressure to act, confrontations, or forced decisions. Channel this energy positively — exercise, launch new projects, take bold steps. Be careful of anger and impulsive decisions.', hi: 'मंगल साहस, ऊर्जा और कभी-कभी आक्रामकता का ग्रह है। जब मंगल की दृष्टि ग्रहण पर हो, तो अचानक कार्रवाई, टकराव, या निर्णय लेने का दबाव आ सकता है। ऊर्जा को सकारात्मक दिशा में लगाएं — व्यायाम, नए प्रोजेक्ट शुरू करना, या साहसिक कदम। क्रोध और आवेगपूर्ण निर्णयों से सावधान रहें।', sa: 'मंगल साहस, ऊर्जा और कभी-कभी आक्रामकता का ग्रह है। जब मंगल की दृष्टि ग्रहण पर हो, तो अचानक कार्रवाई, टकराव, या निर्णय लेने का दबाव आ सकता है। ऊर्जा को सकारात्मक दिशा में लगाएं — व्यायाम, नए प्रोजेक्ट शुरू करना, या साहसिक कदम। क्रोध और आवेगपूर्ण निर्णयों से सावधान रहें।' }, locale);
+        detail = tl({ en: 'Mars is the planet of courage, energy, and sometimes aggression. When Mars aspects an eclipse, expect sudden pressure to act, confrontations, or forced decisions. Channel this energy positively  –  exercise, launch new projects, take bold steps. Be careful of anger and impulsive decisions.', hi: 'मंगल साहस, ऊर्जा और कभी-कभी आक्रामकता का ग्रह है। जब मंगल की दृष्टि ग्रहण पर हो, तो अचानक कार्रवाई, टकराव, या निर्णय लेने का दबाव आ सकता है। ऊर्जा को सकारात्मक दिशा में लगाएं  –  व्यायाम, नए प्रोजेक्ट शुरू करना, या साहसिक कदम। क्रोध और आवेगपूर्ण निर्णयों से सावधान रहें।', sa: 'मंगल साहस, ऊर्जा और कभी-कभी आक्रामकता का ग्रह है। जब मंगल की दृष्टि ग्रहण पर हो, तो अचानक कार्रवाई, टकराव, या निर्णय लेने का दबाव आ सकता है। ऊर्जा को सकारात्मक दिशा में लगाएं  –  व्यायाम, नए प्रोजेक्ट शुरू करना, या साहसिक कदम। क्रोध और आवेगपूर्ण निर्णयों से सावधान रहें।' }, locale);
       } else if (p.planet.id === 7) { // Rahu
         headline = tl({ en: 'Rahu aspect = desires and obsessions intensify', hi: 'राहु दृष्टि = इच्छाएं और जुनून तीव्र', sa: 'राहु दृष्टि = इच्छाएं और जुनून तीव्र' }, locale);
-        detail = tl({ en: 'Your birth Rahu is casting its aspect on this eclipse. Rahu is the planet of insatiable desire — whatever you want most will feel more intense. This is NOT a good time for major financial decisions, new partnerships, or life-changing moves — the risk of illusion is high. Wait 3-6 months for clarity.', hi: 'आपके जन्म राहु की दृष्टि इस ग्रहण पर है। राहु अतृप्त इच्छा का ग्रह है — जो चीज़ आप सबसे ज़्यादा चाहते हैं, उसकी तीव्रता बढ़ेगी। यह समय बड़े वित्तीय निर्णय, नई साझेदारी, या जीवन-बदलने वाले कदमों के लिए अच्छा नहीं — भ्रम की सम्भावना अधिक है। 3-6 माह प्रतीक्षा करें।', sa: 'आपके जन्म राहु की दृष्टि इस ग्रहण पर है। राहु अतृप्त इच्छा का ग्रह है — जो चीज़ आप सबसे ज़्यादा चाहते हैं, उसकी तीव्रता बढ़ेगी। यह समय बड़े वित्तीय निर्णय, नई साझेदारी, या जीवन-बदलने वाले कदमों के लिए अच्छा नहीं — भ्रम की सम्भावना अधिक है। 3-6 माह प्रतीक्षा करें।' }, locale);
+        detail = tl({ en: 'Your birth Rahu is casting its aspect on this eclipse. Rahu is the planet of insatiable desire  –  whatever you want most will feel more intense. This is NOT a good time for major financial decisions, new partnerships, or life-changing moves  –  the risk of illusion is high. Wait 3-6 months for clarity.', hi: 'आपके जन्म राहु की दृष्टि इस ग्रहण पर है। राहु अतृप्त इच्छा का ग्रह है  –  जो चीज़ आप सबसे ज़्यादा चाहते हैं, उसकी तीव्रता बढ़ेगी। यह समय बड़े वित्तीय निर्णय, नई साझेदारी, या जीवन-बदलने वाले कदमों के लिए अच्छा नहीं  –  भ्रम की सम्भावना अधिक है। 3-6 माह प्रतीक्षा करें।', sa: 'आपके जन्म राहु की दृष्टि इस ग्रहण पर है। राहु अतृप्त इच्छा का ग्रह है  –  जो चीज़ आप सबसे ज़्यादा चाहते हैं, उसकी तीव्रता बढ़ेगी। यह समय बड़े वित्तीय निर्णय, नई साझेदारी, या जीवन-बदलने वाले कदमों के लिए अच्छा नहीं  –  भ्रम की सम्भावना अधिक है। 3-6 माह प्रतीक्षा करें।' }, locale);
       } else if (p.planet.id === 8) { // Ketu
         headline = tl({ en: 'Ketu aspect = detachment and inner purification', hi: 'केतु दृष्टि = वैराग्य और आन्तरिक शुद्धि', sa: 'केतु दृष्टि = वैराग्य और आन्तरिक शुद्धि' }, locale);
-        detail = tl({ en: "Your birth Ketu is casting its aspect on this eclipse. Ketu is the planet of spiritual detachment and past-life karma. During this period, you may suddenly become indifferent to things that previously felt very important — career ambitions, possessions, relationships. This can feel alarming, but it\'s the soul\'s purification process. Excellent time for meditation and self-reflection.", hi: "आपके जन्म केतु की दृष्टि इस ग्रहण पर है। केतु आध्यात्मिक वैराग्य और पूर्वजन्म कर्म का ग्रह है। इस अवधि में आप ऐसी चीज़ों से अचानक उदासीन हो सकते हैं जो पहले बहुत महत्वपूर्ण लगती थीं — कैरियर, सम्पत्ति, सम्बन्ध। यह भयावह लग सकता है, पर यह आत्मा का शुद्धिकरण है। ध्यान और आत्मचिन्तन के लिए उत्तम समय।", sa: "आपके जन्म केतु की दृष्टि इस ग्रहण पर है। केतु आध्यात्मिक वैराग्य और पूर्वजन्म कर्म का ग्रह है। इस अवधि में आप ऐसी चीज़ों से अचानक उदासीन हो सकते हैं जो पहले बहुत महत्वपूर्ण लगती थीं — कैरियर, सम्पत्ति, सम्बन्ध। यह भयावह लग सकता है, पर यह आत्मा का शुद्धिकरण है। ध्यान और आत्मचिन्तन के लिए उत्तम समय।" }, locale);
+        detail = tl({ en: "Your birth Ketu is casting its aspect on this eclipse. Ketu is the planet of spiritual detachment and past-life karma. During this period, you may suddenly become indifferent to things that previously felt very important  –  career ambitions, possessions, relationships. This can feel alarming, but it\'s the soul\'s purification process. Excellent time for meditation and self-reflection.", hi: "आपके जन्म केतु की दृष्टि इस ग्रहण पर है। केतु आध्यात्मिक वैराग्य और पूर्वजन्म कर्म का ग्रह है। इस अवधि में आप ऐसी चीज़ों से अचानक उदासीन हो सकते हैं जो पहले बहुत महत्वपूर्ण लगती थीं  –  कैरियर, सम्पत्ति, सम्बन्ध। यह भयावह लग सकता है, पर यह आत्मा का शुद्धिकरण है। ध्यान और आत्मचिन्तन के लिए उत्तम समय।", sa: "आपके जन्म केतु की दृष्टि इस ग्रहण पर है। केतु आध्यात्मिक वैराग्य और पूर्वजन्म कर्म का ग्रह है। इस अवधि में आप ऐसी चीज़ों से अचानक उदासीन हो सकते हैं जो पहले बहुत महत्वपूर्ण लगती थीं  –  कैरियर, सम्पत्ति, सम्बन्ध। यह भयावह लग सकता है, पर यह आत्मा का शुद्धिकरण है। ध्यान और आत्मचिन्तन के लिए उत्तम समय।" }, locale);
       }
 
       transitAspects.push(tl({ en: `🔥 ${headline}\n${detail}`, hi: `🔥 ${headline}\n${detail}`, sa: `🔥 ${headline}\n${detail}` }, locale)
@@ -218,7 +218,7 @@ function computePersonalInsight(eclipse: EclipseInfo, kundali: KundaliData, loca
     }
   }
 
-  // 6. Overall intensity — now includes transit aspects
+  // 6. Overall intensity  –  now includes transit aspects
   const factors = (dashAlert ? 1 : 0) + natalContacts.length + (nakshatraLink ? 1 : 0) + transitAspects.length;
   const overallIntensity: PersonalInsight['overallIntensity'] =
     factors >= 3 ? 'high' : factors >= 1 ? 'moderate' : 'low';
@@ -350,7 +350,7 @@ export default function PersonalEclipseInsight({
             <span className="text-gold-light font-semibold">
               {tl({ en: `Falls in your ${insight.houseAffected.house}${ordinal(insight.houseAffected.house)} House`, hi: `${insight.houseAffected.house}वाँ भाव प्रभावित`, sa: `${insight.houseAffected.house}वाँ भाव प्रभावित` }, locale)}
             </span>
-            <span className="text-text-secondary/60"> — {insight.houseAffected.meaning}</span>
+            <span className="text-text-secondary/60">  –  {insight.houseAffected.meaning}</span>
           </div>
         </div>
 
@@ -376,7 +376,7 @@ export default function PersonalEclipseInsight({
           </div>
         )}
 
-        {/* Transit aspects — natal Saturn/Jupiter/Mars/Rahu/Ketu aspecting eclipse */}
+        {/* Transit aspects  –  natal Saturn/Jupiter/Mars/Rahu/Ketu aspecting eclipse */}
         {insight.transitAspects.map((t, i) => {
           const [headline, ...detailParts] = t.split('\n');
           const detail = detailParts.join(' ');
@@ -391,7 +391,7 @@ export default function PersonalEclipseInsight({
         {/* Low impact note */}
         {insight.overallIntensity === 'low' && !insight.dashAlert && insight.natalContacts.length === 0 && insight.transitAspects.length === 0 && (
           <p className="text-emerald-400/60 text-xs">
-            {tl({ en: '✓ Minimal direct impact on your chart — no planets within 3°, no aspects to eclipse, no relevant dasha active.', hi: '✓ इस ग्रहण का आपकी कुण्डली पर न्यूनतम प्रत्यक्ष प्रभाव — कोई ग्रह 3° के भीतर नहीं, कोई दृष्टि नहीं, सम्बन्धित दशा नहीं।', sa: '✓ इस ग्रहण का आपकी कुण्डली पर न्यूनतम प्रत्यक्ष प्रभाव — कोई ग्रह 3° के भीतर नहीं, कोई दृष्टि नहीं, सम्बन्धित दशा नहीं।' }, locale)}
+            {tl({ en: '✓ Minimal direct impact on your chart  –  no planets within 3°, no aspects to eclipse, no relevant dasha active.', hi: '✓ इस ग्रहण का आपकी कुण्डली पर न्यूनतम प्रत्यक्ष प्रभाव  –  कोई ग्रह 3° के भीतर नहीं, कोई दृष्टि नहीं, सम्बन्धित दशा नहीं।', sa: '✓ इस ग्रहण का आपकी कुण्डली पर न्यूनतम प्रत्यक्ष प्रभाव  –  कोई ग्रह 3° के भीतर नहीं, कोई दृष्टि नहीं, सम्बन्धित दशा नहीं।' }, locale)}
           </p>
         )}
       </div>

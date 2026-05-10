@@ -27,14 +27,14 @@ const PADDING_TOP = 8;
 const CHART_LABEL_WIDTH = 80;
 const GAP_BETWEEN_ROWS = 4;
 
-/* Alignment colors — static Tailwind-safe */
+/* Alignment colors  –  static Tailwind-safe */
 const ALIGNMENT_COLORS: Record<string, { bg: string; border: string; text: string }> = {
   aligned: { bg: 'bg-emerald-500/20', border: 'border-emerald-500/30', text: 'text-emerald-400' },
   tension: { bg: 'bg-red-500/20', border: 'border-red-500/30', text: 'text-red-400' },
   mixed: { bg: 'bg-amber-500/20', border: 'border-amber-500/30', text: 'text-amber-400' },
 };
 
-/* Quality badge colors — static */
+/* Quality badge colors  –  static */
 const QUALITY_COLORS: Record<string, string> = {
   favorable: 'text-emerald-400',
   neutral: 'text-amber-400',
@@ -329,7 +329,7 @@ export default function DashaComparisonTimeline({ result, locale }: DashaCompari
         </div>
       </div>
 
-      {/* Hover tooltip — rendered below the timeline */}
+      {/* Hover tooltip  –  rendered below the timeline */}
       {hoveredEntry && (
         <div className="bg-bg-secondary/90 border border-gold-primary/15 rounded-xl p-4 text-sm transition-all">
           <div className="flex items-center gap-4 mb-2">
@@ -363,7 +363,7 @@ export default function DashaComparisonTimeline({ result, locale }: DashaCompari
               {hoveredEntry.alignment.charAt(0).toUpperCase() + hoveredEntry.alignment.slice(1)}
             </span>
             <span className="text-text-tertiary text-xs">
-              {new Date(hoveredEntry.startDate).toLocaleDateString()} — {new Date(hoveredEntry.endDate).toLocaleDateString()}
+              {new Date(hoveredEntry.startDate).toLocaleDateString()}  –  {new Date(hoveredEntry.endDate).toLocaleDateString()}
             </span>
           </div>
         </div>

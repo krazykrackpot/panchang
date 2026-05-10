@@ -11,7 +11,7 @@ export default async function Layout({ children, params }: { children: React.Rea
   const { locale } = await params;
   return (
     <>
-      <LearnArticleLD route="/learn/simha" locale={locale} title="Simha (Leo) — The Fifth Rashi in Vedic Astrology" description="Comprehensive guide to Simha Rashi (Leo) in Jyotish — personality, nakshatras, planetary dignities, each planet's effect, career, compatibility, remedies, and mythology." />
+      <LearnArticleLD route="/learn/simha" locale={locale} title="Simha (Leo)  –  The Fifth Rashi in Vedic Astrology" description="Comprehensive guide to Simha Rashi (Leo) in Jyotish  –  personality, nakshatras, planetary dignities, each planet's effect, career, compatibility, remedies, and mythology." />
       {children}
     </>
   );

@@ -14,7 +14,7 @@ export default async function Layout({ children, params }: { children: React.Rea
   const { locale } = await params;
   const toolLD = generateToolLD(
     'Rudraksha Recommendation Calculator',
-    'Find the right Rudraksha bead based on your Vedic birth chart — recommendations by Rashi lord and Nakshatra lord.',
+    'Find the right Rudraksha bead based on your Vedic birth chart  –  recommendations by Rashi lord and Nakshatra lord.',
     `${BASE_URL}/${locale}/rudraksha`,
   );
   const breadcrumbLD = generateBreadcrumbLD(`/${locale}/rudraksha`, locale);

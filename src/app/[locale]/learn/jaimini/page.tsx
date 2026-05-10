@@ -12,7 +12,7 @@ import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import LT from '@/messages/learn/jaimini.json';
 
-/* Labels migrated to src/messages/learn/jaimini.json — accessed via LT + t() */
+/* Labels migrated to src/messages/learn/jaimini.json  –  accessed via LT + t() */
 
 /* ── Chara Karaka data ────────────────────────────────────────────── */
 const CHARA_KARAKAS = [
@@ -21,14 +21,14 @@ const CHARA_KARAKAS = [
   { abbr: 'BK', name: { en: 'Bhratrikaraka', hi: 'भ्रातृकारक', sa: 'भ्रातृकारकः' }, rule: { en: '3rd highest degree', hi: 'तृतीय सर्वोच्च अंश', sa: 'तृतीयसर्वोच्चांशः' }, signifies: { en: 'Siblings, courage, initiative. The planet that drives your willpower and relationship with brothers/sisters.', hi: 'भाई-बहन, साहस, पहल। वह ग्रह जो आपकी इच्छाशक्ति और भाई-बहनों के साथ सम्बन्ध को संचालित करता है।', sa: 'भ्रातरः, शौर्यं, पहलम्।' }, color: '#fca5a5', importance: 'medium' },
   { abbr: 'MK', name: { en: 'Matrikaraka', hi: 'मातृकारक', sa: 'मातृकारकः' }, rule: { en: '4th highest degree', hi: 'चतुर्थ सर्वोच्च अंश', sa: 'चतुर्थसर्वोच्चांशः' }, signifies: { en: 'Mother, emotional security, property, education. Reveals the nature of your relationship with your mother and your emotional foundation.', hi: 'माता, भावनात्मक सुरक्षा, सम्पत्ति, शिक्षा। आपकी माँ के साथ सम्बन्ध और भावनात्मक आधार को प्रकट करता है।', sa: 'माता, भावनात्मकसुरक्षा, सम्पत्तिः, शिक्षा।' }, color: '#86efac', importance: 'medium' },
   { abbr: 'PK', name: { en: 'Putrakaraka', hi: 'पुत्रकारक', sa: 'पुत्रकारकः' }, rule: { en: '5th highest degree', hi: 'पञ्चम सर्वोच्च अंश', sa: 'पञ्चमसर्वोच्चांशः' }, signifies: { en: 'Children, creative intelligence, past-life merit (Poorva Punya). The planet shaping your relationship with children and creative expression.', hi: 'सन्तान, सृजनात्मक बुद्धि, पूर्वजन्म पुण्य। वह ग्रह जो सन्तान और सृजनात्मक अभिव्यक्ति को आकार देता है।', sa: 'सन्तानाः, सृजनात्मकबुद्धिः, पूर्वपुण्यम्।' }, color: '#c4b5fd', importance: 'medium' },
-  { abbr: 'GK', name: { en: 'Gnatikaraka', hi: 'ज्ञातिकारक', sa: 'ज्ञातिकारकः' }, rule: { en: '6th highest degree', hi: 'षष्ठ सर्वोच्च अंश', sa: 'षष्ठसर्वोच्चांशः' }, signifies: { en: 'Enemies, disease, obstacles, litigation. The planet that brings challenges and tests — but also the strength to overcome them.', hi: 'शत्रु, रोग, बाधाएँ, मुकदमे। वह ग्रह जो चुनौतियाँ और परीक्षाएँ लाता है — लेकिन उन पर विजय पाने की शक्ति भी।', sa: 'शत्रवः, रोगाः, बाधाः। ग्रहः यः आव्हानानि परीक्षाश्च आनयति।' }, color: '#fbbf24', importance: 'medium' },
-  { abbr: 'DK', name: { en: 'Darakaraka', hi: 'दारकारक', sa: 'दारकारकः' }, rule: { en: 'Lowest degree', hi: 'न्यूनतम अंश', sa: 'न्यूनतमांशः' }, signifies: { en: 'Spouse, partnerships, business partner. THE planet that describes your future spouse — their nature, appearance, temperament. The Navamsha sign of DK = the kind of partner you attract.', hi: 'जीवनसाथी, साझेदारी। वह ग्रह जो आपके भावी जीवनसाथी का वर्णन करता है — उनका स्वभाव, रूप, मिज़ाज। DK की नवांश राशि = आप किस प्रकार का साथी आकर्षित करते हैं।', sa: 'पत्नी/पतिः, साझेदारी। ग्रहः यः भाविजीवनसहचरं वर्णयति।' }, color: '#f9a8d4', importance: 'high' },
+  { abbr: 'GK', name: { en: 'Gnatikaraka', hi: 'ज्ञातिकारक', sa: 'ज्ञातिकारकः' }, rule: { en: '6th highest degree', hi: 'षष्ठ सर्वोच्च अंश', sa: 'षष्ठसर्वोच्चांशः' }, signifies: { en: 'Enemies, disease, obstacles, litigation. The planet that brings challenges and tests  –  but also the strength to overcome them.', hi: 'शत्रु, रोग, बाधाएँ, मुकदमे। वह ग्रह जो चुनौतियाँ और परीक्षाएँ लाता है  –  लेकिन उन पर विजय पाने की शक्ति भी।', sa: 'शत्रवः, रोगाः, बाधाः। ग्रहः यः आव्हानानि परीक्षाश्च आनयति।' }, color: '#fbbf24', importance: 'medium' },
+  { abbr: 'DK', name: { en: 'Darakaraka', hi: 'दारकारक', sa: 'दारकारकः' }, rule: { en: 'Lowest degree', hi: 'न्यूनतम अंश', sa: 'न्यूनतमांशः' }, signifies: { en: 'Spouse, partnerships, business partner. THE planet that describes your future spouse  –  their nature, appearance, temperament. The Navamsha sign of DK = the kind of partner you attract.', hi: 'जीवनसाथी, साझेदारी। वह ग्रह जो आपके भावी जीवनसाथी का वर्णन करता है  –  उनका स्वभाव, रूप, मिज़ाज। DK की नवांश राशि = आप किस प्रकार का साथी आकर्षित करते हैं।', sa: 'पत्नी/पतिः, साझेदारी। ग्रहः यः भाविजीवनसहचरं वर्णयति।' }, color: '#f9a8d4', importance: 'high' },
 ];
 
 /* ── Rashi Drishti rules ──────────────────────────────────────────── */
 const RASHI_DRISHTI = [
-  { type: { en: 'Movable (Chara)', hi: 'चर राशि', sa: 'चरराशिः' }, signs: { en: 'Aries, Cancer, Libra, Capricorn', hi: 'मेष, कर्क, तुला, मकर', sa: 'मेषः, कर्कटः, तुला, मकरः' }, aspects: { en: 'Aspect all FIXED signs except the adjacent one', hi: 'समीपस्थ को छोड़कर सभी स्थिर राशियों पर दृष्टि', sa: 'समीपस्थां विहाय सर्वस्थिरराशिषु दृष्टिः' }, example: { en: 'Aries aspects Leo, Scorpio, Aquarius (but NOT Taurus — it is adjacent)', hi: 'मेष → सिंह, वृश्चिक, कुम्भ पर दृष्टि (वृषभ नहीं — वह समीपस्थ है)', sa: 'मेषः → सिंहं, वृश्चिकं, कुम्भं च पश्यति (वृषभं न — सः समीपस्थः)' } },
-  { type: { en: 'Fixed (Sthira)', hi: 'स्थिर राशि', sa: 'स्थिरराशिः' }, signs: { en: 'Taurus, Leo, Scorpio, Aquarius', hi: 'वृषभ, सिंह, वृश्चिक, कुम्भ', sa: 'वृषभः, सिंहः, वृश्चिकः, कुम्भः' }, aspects: { en: 'Aspect all MOVABLE signs except the adjacent one', hi: 'समीपस्थ को छोड़कर सभी चर राशियों पर दृष्टि', sa: 'समीपस्थां विहाय सर्वचरराशिषु दृष्टिः' }, example: { en: 'Taurus aspects Cancer, Libra, Capricorn (but NOT Aries — it is adjacent)', hi: 'वृषभ → कर्क, तुला, मकर पर दृष्टि (मेष नहीं — वह समीपस्थ है)', sa: 'वृषभः → कर्कटं, तुलां, मकरं च पश्यति (मेषं न)' } },
+  { type: { en: 'Movable (Chara)', hi: 'चर राशि', sa: 'चरराशिः' }, signs: { en: 'Aries, Cancer, Libra, Capricorn', hi: 'मेष, कर्क, तुला, मकर', sa: 'मेषः, कर्कटः, तुला, मकरः' }, aspects: { en: 'Aspect all FIXED signs except the adjacent one', hi: 'समीपस्थ को छोड़कर सभी स्थिर राशियों पर दृष्टि', sa: 'समीपस्थां विहाय सर्वस्थिरराशिषु दृष्टिः' }, example: { en: 'Aries aspects Leo, Scorpio, Aquarius (but NOT Taurus  –  it is adjacent)', hi: 'मेष → सिंह, वृश्चिक, कुम्भ पर दृष्टि (वृषभ नहीं  –  वह समीपस्थ है)', sa: 'मेषः → सिंहं, वृश्चिकं, कुम्भं च पश्यति (वृषभं न  –  सः समीपस्थः)' } },
+  { type: { en: 'Fixed (Sthira)', hi: 'स्थिर राशि', sa: 'स्थिरराशिः' }, signs: { en: 'Taurus, Leo, Scorpio, Aquarius', hi: 'वृषभ, सिंह, वृश्चिक, कुम्भ', sa: 'वृषभः, सिंहः, वृश्चिकः, कुम्भः' }, aspects: { en: 'Aspect all MOVABLE signs except the adjacent one', hi: 'समीपस्थ को छोड़कर सभी चर राशियों पर दृष्टि', sa: 'समीपस्थां विहाय सर्वचरराशिषु दृष्टिः' }, example: { en: 'Taurus aspects Cancer, Libra, Capricorn (but NOT Aries  –  it is adjacent)', hi: 'वृषभ → कर्क, तुला, मकर पर दृष्टि (मेष नहीं  –  वह समीपस्थ है)', sa: 'वृषभः → कर्कटं, तुलां, मकरं च पश्यति (मेषं न)' } },
   { type: { en: 'Dual (Dwiswabhava)', hi: 'द्विस्वभाव राशि', sa: 'द्विस्वभावराशिः' }, signs: { en: 'Gemini, Virgo, Sagittarius, Pisces', hi: 'मिथुन, कन्या, धनु, मीन', sa: 'मिथुनं, कन्या, धनुः, मीनः' }, aspects: { en: 'Aspect the OTHER dual signs only', hi: 'केवल अन्य द्विस्वभाव राशियों पर दृष्टि', sa: 'केवलम् अन्यद्विस्वभावराशिषु दृष्टिः' }, example: { en: 'Gemini aspects Virgo, Sagittarius, Pisces (all other duals)', hi: 'मिथुन → कन्या, धनु, मीन पर दृष्टि (सभी अन्य द्विस्वभाव)', sa: 'मिथुनं → कन्यां, धनुं, मीनं च पश्यति' } },
 ];
 
@@ -46,8 +46,8 @@ const COMPARISON = [
 const ADVANCED = [
   { name: { en: 'Swamsha Analysis', hi: 'स्वांश विश्लेषण', sa: 'स्वांशविश्लेषणम्' }, desc: { en: 'The Navamsha of the Atmakaraka (Swamsha) is analyzed for spiritual inclination. Jupiter in Swamsha → Vedantic path. Venus → devotional/artistic path. Saturn → renunciation. Ketu → Moksha-oriented soul.', hi: 'आत्मकारक का नवांश (स्वांश) आध्यात्मिक झुकाव के लिए विश्लेषित किया जाता है। स्वांश में गुरु → वेदान्तिक मार्ग। शुक्र → भक्ति/कलात्मक मार्ग।', sa: 'आत्मकारकस्य नवांशः (स्वांशः) आध्यात्मिकप्रवृत्त्यर्थं विश्लेष्यते।' } },
   { name: { en: 'Pada System (12 Padas)', hi: 'पद पद्धति (12 पद)', sa: 'पदपद्धतिः (12 पदानि)' }, desc: { en: 'Each of the 12 houses has an Arudha Pada. Key padas: A1/AL (self-image), A7 (public partnerships), A10 (career image), A11 (gains image), A12 (losses/foreign). The interaction between padas reveals social and material life patterns.', hi: 'प्रत्येक 12 भावों का एक अरूढ़ पद है। मुख्य पद: A1/AL (आत्म-छवि), A7 (सार्वजनिक साझेदारी), A10 (करियर छवि)।', sa: 'प्रत्येकस्य 12 भावस्य अरूढपदम् अस्ति।' } },
-  { name: { en: 'Jaimini Rajayogas', hi: 'जैमिनी राजयोग', sa: 'जैमिनीराजयोगाः' }, desc: { en: 'Jaimini has its own Rajayoga system: when AK and AmK are in Kendra/Trikona from each other, a powerful Rajayoga forms. When AK, AmK, and PK combine in auspicious houses, the yoga is extraordinarily powerful — indicating fame, authority, and spiritual elevation.', hi: 'जैमिनी की अपनी राजयोग पद्धति है: जब AK और AmK एक-दूसरे से केन्द्र/त्रिकोण में हों, शक्तिशाली राजयोग बनता है।', sa: 'जैमिन्याः स्वकीया राजयोगपद्धतिः: यदा AK AmK च केन्द्रत्रिकोणयोः, शक्तिशालिराजयोगः भवति।' } },
-  { name: { en: 'Argala in Jaimini', hi: 'जैमिनी में अर्गला', sa: 'जैमिन्याम् अर्गला' }, desc: { en: 'Argala (planetary intervention) takes on special significance in Jaimini — it is sign-based rather than house-based. Planets in the 2nd, 4th, 11th, and 5th signs from any reference sign create Argala. This integrates naturally with Rashi Drishti for comprehensive sign-level analysis.', hi: 'अर्गला जैमिनी में विशेष महत्व रखती है — यह भाव-आधारित नहीं बल्कि राशि-आधारित है।', sa: 'अर्गला जैमिन्यां विशेषमहत्त्वं धारयति — इयं राश्याधारिता न भावाधारिता।' } },
+  { name: { en: 'Jaimini Rajayogas', hi: 'जैमिनी राजयोग', sa: 'जैमिनीराजयोगाः' }, desc: { en: 'Jaimini has its own Rajayoga system: when AK and AmK are in Kendra/Trikona from each other, a powerful Rajayoga forms. When AK, AmK, and PK combine in auspicious houses, the yoga is extraordinarily powerful  –  indicating fame, authority, and spiritual elevation.', hi: 'जैमिनी की अपनी राजयोग पद्धति है: जब AK और AmK एक-दूसरे से केन्द्र/त्रिकोण में हों, शक्तिशाली राजयोग बनता है।', sa: 'जैमिन्याः स्वकीया राजयोगपद्धतिः: यदा AK AmK च केन्द्रत्रिकोणयोः, शक्तिशालिराजयोगः भवति।' } },
+  { name: { en: 'Argala in Jaimini', hi: 'जैमिनी में अर्गला', sa: 'जैमिन्याम् अर्गला' }, desc: { en: 'Argala (planetary intervention) takes on special significance in Jaimini  –  it is sign-based rather than house-based. Planets in the 2nd, 4th, 11th, and 5th signs from any reference sign create Argala. This integrates naturally with Rashi Drishti for comprehensive sign-level analysis.', hi: 'अर्गला जैमिनी में विशेष महत्व रखती है  –  यह भाव-आधारित नहीं बल्कि राशि-आधारित है।', sa: 'अर्गला जैमिन्यां विशेषमहत्त्वं धारयति  –  इयं राश्याधारिता न भावाधारिता।' } },
 ];
 
 /* ── Practical tips ───────────────────────────────────────────────── */
@@ -62,7 +62,7 @@ const PRACTICAL_TIPS = [
 const CROSS_REFS = [
   { href: '/kundali', label: { en: 'Generate Your Kundali', hi: 'अपनी कुण्डली बनाएं', sa: 'स्वकुण्डलीं रचयत' }, desc: { en: 'Identify your Chara Karakas', hi: 'अपने चर कारक पहचानें', sa: 'स्वचरकारकान् अभिजानीत' } },
   { href: '/learn/argala', label: { en: 'Argala (Intervention)', hi: 'अर्गला (हस्तक्षेप)', sa: 'अर्गला (हस्तक्षेपः)' }, desc: { en: 'Deep dive into Jaimini Argala system', hi: 'जैमिनी अर्गला पद्धति में गहन अध्ययन', sa: 'जैमिनीअर्गलापद्धत्यां गभीरम् अध्ययनम्' } },
-  { href: '/learn/vargas', label: { en: 'Divisional Charts (Vargas)', hi: 'वर्ग कुण्डलियाँ', sa: 'वर्गकुण्डल्यः' }, desc: { en: 'Navamsha — key to Karakamsha', hi: 'नवांश — कारकांश की कुंजी', sa: 'नवांशः — कारकांशस्य कुञ्चिका' } },
+  { href: '/learn/vargas', label: { en: 'Divisional Charts (Vargas)', hi: 'वर्ग कुण्डलियाँ', sa: 'वर्गकुण्डल्यः' }, desc: { en: 'Navamsha  –  key to Karakamsha', hi: 'नवांश  –  कारकांश की कुंजी', sa: 'नवांशः  –  कारकांशस्य कुञ्चिका' } },
   { href: '/learn/dashas', label: { en: 'Dasha Systems', hi: 'दशा पद्धतियाँ', sa: 'दशापद्धतयः' }, desc: { en: 'Chara Dasha vs Vimshottari', hi: 'चर दशा बनाम विंशोत्तरी', sa: 'चरदशा विंशोत्तरी च' } },
 ];
 
@@ -215,8 +215,8 @@ export default function JaiminiPage() {
             </div>
             <p className="text-cyan-200/60 text-sm">
               {locale === 'en'
-                ? 'Who you ACTUALLY are — your true nature, health, personality, and self-perception. The internal reality.'
-                : 'आप वास्तव में कौन हैं — आपका सच्चा स्वभाव, स्वास्थ्य, व्यक्तित्व। आन्तरिक वास्तविकता।'}
+                ? 'Who you ACTUALLY are  –  your true nature, health, personality, and self-perception. The internal reality.'
+                : 'आप वास्तव में कौन हैं  –  आपका सच्चा स्वभाव, स्वास्थ्य, व्यक्तित्व। आन्तरिक वास्तविकता।'}
             </p>
           </div>
           <div className="p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15">
@@ -226,8 +226,8 @@ export default function JaiminiPage() {
             </div>
             <p className="text-amber-200/60 text-sm">
               {locale === 'en'
-                ? 'How the WORLD sees you — your reputation, social image, and public persona. The external projection.'
-                : 'संसार आपको कैसे देखता है — आपकी प्रतिष्ठा, सामाजिक छवि। बाहरी प्रक्षेपण।'}
+                ? 'How the WORLD sees you  –  your reputation, social image, and public persona. The external projection.'
+                : 'संसार आपको कैसे देखता है  –  आपकी प्रतिष्ठा, सामाजिक छवि। बाहरी प्रक्षेपण।'}
             </p>
           </div>
         </div>

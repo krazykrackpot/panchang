@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
 
 // ---------------------------------------------------------------------------
-// DELETE /api/life-events/[id] — delete a life event
+// DELETE /api/life-events/[id]  –  delete a life event
 // ---------------------------------------------------------------------------
 export async function DELETE(
   req: NextRequest,

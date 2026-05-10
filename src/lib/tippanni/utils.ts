@@ -18,7 +18,7 @@ export function triLocale(t: LocaleText, locale: Locale): string {
   return tl(t, locale);
 }
 
-// Sign lords — canonical source: @/lib/constants/dignities
+// Sign lords  –  canonical source: @/lib/constants/dignities
 import { SIGN_LORDS } from '@/lib/constants/dignities';
 
 /** Get the ruling planet ID for a sign (1-based sign index) */

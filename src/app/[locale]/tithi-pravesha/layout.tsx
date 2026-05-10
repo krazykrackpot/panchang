@@ -12,8 +12,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const toolLD = generateToolLD(
-    'Tithi Pravesha — Vedic Birthday Calculator',
-    'Find your Vedic birthday — the exact date when your birth tithi recurs each year.',
+    'Tithi Pravesha  –  Vedic Birthday Calculator',
+    'Find your Vedic birthday  –  the exact date when your birth tithi recurs each year.',
     `https://dekhopanchang.com/${locale}/tithi-pravesha`,
   );
   const breadcrumbLD = generateBreadcrumbLD(`/${locale}/tithi-pravesha`, locale);

@@ -113,7 +113,7 @@ function WhyBox({ children, heading = 'Why do we need this?' }: { children: Reac
   );
 }
 
-function FormulaBox({ children, heading = 'The Formula — Explained' }: { children: React.ReactNode; heading?: string }) {
+function FormulaBox({ children, heading = 'The Formula  –  Explained' }: { children: React.ReactNode; heading?: string }) {
   return (
     <div className="mb-5 p-4 rounded-xl bg-black/30 border border-white/8">
       <div className="text-xs text-amber-500/60 uppercase tracking-wider font-semibold mb-3">{heading}</div>
@@ -237,15 +237,15 @@ function TropicalSiderealDiagram({ tropical, sidereal, ayan }: { tropical: numbe
         <div className="text-xs text-text-secondary space-y-2 leading-relaxed">
           <div className="flex items-start gap-2">
             <span className="w-3 h-3 rounded-full bg-amber-400 flex-shrink-0 mt-0.5" />
-            <span><strong className="text-amber-300">Sidereal Sun</strong> — where the Sun actually appears against the background stars. Used by Vedic astrology.</span>
+            <span><strong className="text-amber-300">Sidereal Sun</strong>  –  where the Sun actually appears against the background stars. Used by Vedic astrology.</span>
           </div>
           <div className="flex items-start gap-2">
             <span className="w-3 h-3 rounded-full bg-amber-400/25 flex-shrink-0 mt-0.5" />
-            <span><strong className="text-text-secondary">Tropical Sun</strong> — measured from the Spring Equinox marker. Used by Western astrology.</span>
+            <span><strong className="text-text-secondary">Tropical Sun</strong>  –  measured from the Spring Equinox marker. Used by Western astrology.</span>
           </div>
           <div className="flex items-start gap-2">
             <span className="w-3 h-1.5 rounded bg-amber-500/60 flex-shrink-0 mt-1" />
-            <span><strong className="text-amber-500">Ayanamsha = {ayan.toFixed(2)}°</strong> — the gap, caused by Earth's 26,000-year axial wobble (precession). It grows by ~50" per year.</span>
+            <span><strong className="text-amber-500">Ayanamsha = {ayan.toFixed(2)}°</strong>  –  the gap, caused by Earth's 26,000-year axial wobble (precession). It grows by ~50" per year.</span>
           </div>
         </div>
       </div>
@@ -279,7 +279,7 @@ function TithiDiagram({ elongation, tithiNum }: { elongation: number; tithiNum: 
           {/* Orbit ring */}
           <circle cx={cx} cy={cy} r={orbitR} fill="none" stroke="#1e293b" strokeWidth="1.5" strokeDasharray="4,3" />
 
-          {/* Tithi arcs — 12° each, alternating shading */}
+          {/* Tithi arcs  –  12° each, alternating shading */}
           {Array.from({ length: 30 }, (_, i) => {
             const start = (i * 12 - 90) * Math.PI / 180;
             const end = ((i + 1) * 12 - 90) * Math.PI / 180;
@@ -358,7 +358,7 @@ function NakshatraDiagram({ moonSid, nakNum }: { moonSid: number; nakNum: number
 
   return (
     <div className="mb-6 p-4 rounded-xl bg-black/20 border border-white/8">
-      <div className="text-xs text-text-secondary/60 uppercase tracking-wider mb-3 font-semibold">Diagram: 27 Nakshatras — Moon's position today</div>
+      <div className="text-xs text-text-secondary/60 uppercase tracking-wider mb-3 font-semibold">Diagram: 27 Nakshatras  –  Moon's position today</div>
       <svg viewBox="0 0 220 220" className="w-full max-w-[220px] mx-auto">
         {nakNames.map((name, i) => {
           const isActive = i === nakNum - 1;
@@ -528,7 +528,7 @@ export default function PanchangLabPage() {
                 <div className="text-4xl mb-3">🌅</div>
                 <h2 className="text-2xl font-bold text-white mb-2">{t('buildTitle')}</h2>
                 <p className="text-text-secondary text-sm leading-relaxed max-w-md mx-auto">
-                  A Panchang is a Vedic almanac — it tells you the exact state of the Sun and Moon for any day and place on Earth.
+                  A Panchang is a Vedic almanac  –  it tells you the exact state of the Sun and Moon for any day and place on Earth.
                   We're going to calculate it step by step, and explain every single number along the way.
                 </p>
               </div>
@@ -582,20 +582,20 @@ export default function PanchangLabPage() {
               subtitle="Before we can find the Sun or Moon's position, we need a single, unambiguous way to refer to this exact moment in time."
             >
               <WhyBox heading={t('whyDoWeNeedThis')}>
-                Imagine trying to calculate "how many days since January 1st, 2000?" — you'd have to count leap years, months of different lengths, calendar reforms... it's a mess. So astronomers invented the <strong className="text-white">Julian Day Number (JD)</strong>: a single, continuously-counting number that starts from noon on January 1st, 4713 BC and never resets. Every moment in history has exactly one JD. This makes time arithmetic trivial: to find how many days between two events, just subtract their JD numbers.
+                Imagine trying to calculate "how many days since January 1st, 2000?"  –  you'd have to count leap years, months of different lengths, calendar reforms... it's a mess. So astronomers invented the <strong className="text-white">Julian Day Number (JD)</strong>: a single, continuously-counting number that starts from noon on January 1st, 4713 BC and never resets. Every moment in history has exactly one JD. This makes time arithmetic trivial: to find how many days between two events, just subtract their JD numbers.
               </WhyBox>
 
               <JulianDayDiagram jd={calc.jd} />
 
-              <FormulaBox heading="The Method — How It Works">
+              <FormulaBox heading="The Method  –  How It Works">
                 <div className="space-y-3 text-text-primary mb-6">
                   <p>The goal is simple: convert any calendar date into a single continuous day count. The approach has 5 steps:</p>
                   <ol className="list-decimal list-inside space-y-2 text-text-primary/90">
-                    <li><strong className="text-amber-300">Pick an ancient zero-point</strong> — astronomers chose noon on January 1st, 4713 BC as "Day 0." This date (the start of the Julian Period) was chosen because it predates all recorded history, so every historical date has a positive JD.</li>
-                    <li><strong className="text-amber-300">Count full years</strong> — multiply the number of years since the zero-point by 365.25 (the average year length, accounting for leap years). This gives an approximate day count.</li>
-                    <li><strong className="text-amber-300">Count the months within the current year</strong> — months have uneven lengths (28–31 days), so the formula uses 30.6001 days/month as an average, then adds the exact day of the month. A trick: January and February are treated as months 13–14 of the <em>previous</em> year, so the short month (February) falls at the end of the "year" and doesn't complicate leap-year logic.</li>
-                    <li><strong className="text-amber-300">Fix the calendar reform</strong> — in 1582, Pope Gregory XIII dropped 10 days to correct accumulated drift. The "B correction" accounts for this: it removes the extra leap days that the Julian calendar counted but the Gregorian calendar doesn't (century years like 1700, 1800, 1900 are NOT leap years, but 2000 is).</li>
-                    <li><strong className="text-amber-300">Apply a final offset</strong> — the intermediate sum overshoots the actual epoch by a fixed amount. Subtracting 1524.5 aligns everything so that JD 0.0 = noon, January 1st, 4713 BC. The .5 matters because JD counts from noon, not midnight.</li>
+                    <li><strong className="text-amber-300">Pick an ancient zero-point</strong>  –  astronomers chose noon on January 1st, 4713 BC as "Day 0." This date (the start of the Julian Period) was chosen because it predates all recorded history, so every historical date has a positive JD.</li>
+                    <li><strong className="text-amber-300">Count full years</strong>  –  multiply the number of years since the zero-point by 365.25 (the average year length, accounting for leap years). This gives an approximate day count.</li>
+                    <li><strong className="text-amber-300">Count the months within the current year</strong>  –  months have uneven lengths (28–31 days), so the formula uses 30.6001 days/month as an average, then adds the exact day of the month. A trick: January and February are treated as months 13–14 of the <em>previous</em> year, so the short month (February) falls at the end of the "year" and doesn't complicate leap-year logic.</li>
+                    <li><strong className="text-amber-300">Fix the calendar reform</strong>  –  in 1582, Pope Gregory XIII dropped 10 days to correct accumulated drift. The "B correction" accounts for this: it removes the extra leap days that the Julian calendar counted but the Gregorian calendar doesn't (century years like 1700, 1800, 1900 are NOT leap years, but 2000 is).</li>
+                    <li><strong className="text-amber-300">Apply a final offset</strong>  –  the intermediate sum overshoots the actual epoch by a fixed amount. Subtracting 1524.5 aligns everything so that JD 0.0 = noon, January 1st, 4713 BC. The .5 matters because JD counts from noon, not midnight.</li>
                   </ol>
                 </div>
 
@@ -604,11 +604,11 @@ export default function PanchangLabPage() {
                   JD = floor(365.25 × (Y + 4716)) + floor(30.6001 × (M + 1)) + D + h/24 + B − 1524.5
                 </div>
                 <div className="space-y-3 text-text-primary text-sm">
-                  <p><strong className="text-amber-300">365.25 × (Y + 4716)</strong> — Total days from years. Y + 4716 shifts the year to count from the Julian epoch. 365.25 accounts for leap years (one extra day every 4 years). The floor() rounds down to whole days.</p>
-                  <p><strong className="text-amber-300">30.6001 × (M + 1)</strong> — Total days from months. The "M + 1" offset and floor() together approximate the irregular month lengths. <span className="text-text-secondary/60">Why 30.6001 and not 30.6? Floating-point safety — 30.6 × 13 = 397.8 which floor() gives 397, but the correct value should be 397. The .0001 ensures we never round one short.</span></p>
-                  <p><strong className="text-amber-300">D + h/24</strong> — The day of the month plus the fractional day. JD starts at noon, so noon = 0.0, 6pm = 0.25, midnight = 0.5, 6am = 0.75.</p>
-                  <p><strong className="text-amber-300">B</strong> — Gregorian correction: B = 2 − floor(Y/100) + floor(Y/400). This removes the 10 days dropped in 1582 and adjusts for century years. For dates before October 15, 1582 (Julian calendar), B = 0.</p>
-                  <p><strong className="text-amber-300">−1524.5</strong> — Why this number? It's the accumulated offset from the formula's internal arithmetic. The year/month terms overcount by exactly 1524.5 days relative to the true epoch. This constant was empirically derived so that the formula produces JD = 0.0 when you input noon on January 1st, 4713 BC. The .5 accounts for JD's noon-based counting.</p>
+                  <p><strong className="text-amber-300">365.25 × (Y + 4716)</strong>  –  Total days from years. Y + 4716 shifts the year to count from the Julian epoch. 365.25 accounts for leap years (one extra day every 4 years). The floor() rounds down to whole days.</p>
+                  <p><strong className="text-amber-300">30.6001 × (M + 1)</strong>  –  Total days from months. The "M + 1" offset and floor() together approximate the irregular month lengths. <span className="text-text-secondary/60">Why 30.6001 and not 30.6? Floating-point safety  –  30.6 × 13 = 397.8 which floor() gives 397, but the correct value should be 397. The .0001 ensures we never round one short.</span></p>
+                  <p><strong className="text-amber-300">D + h/24</strong>  –  The day of the month plus the fractional day. JD starts at noon, so noon = 0.0, 6pm = 0.25, midnight = 0.5, 6am = 0.75.</p>
+                  <p><strong className="text-amber-300">B</strong>  –  Gregorian correction: B = 2 − floor(Y/100) + floor(Y/400). This removes the 10 days dropped in 1582 and adjusts for century years. For dates before October 15, 1582 (Julian calendar), B = 0.</p>
+                  <p><strong className="text-amber-300">−1524.5</strong>  –  Why this number? It's the accumulated offset from the formula's internal arithmetic. The year/month terms overcount by exactly 1524.5 days relative to the true epoch. This constant was empirically derived so that the formula produces JD = 0.0 when you input noon on January 1st, 4713 BC. The .5 accounts for JD's noon-based counting.</p>
                 </div>
               </FormulaBox>
 
@@ -640,15 +640,15 @@ export default function PanchangLabPage() {
               subtitle="We calculate the Sun's exact position in the sky as a degree from 0° to 360°."
             >
               <WhyBox heading={t('whyDoWeNeedThis')}>
-                The Sun moves roughly 1° per day through the zodiac, completing one full circle in a year. Knowing its exact degree tells us which zodiac sign it's in — and that's needed to calculate Tithi, Yoga, and other Panchang elements. We compute this using Meeus's planetary equations — a set of sine and cosine terms derived from centuries of precise astronomical observation.
+                The Sun moves roughly 1° per day through the zodiac, completing one full circle in a year. Knowing its exact degree tells us which zodiac sign it's in  –  and that's needed to calculate Tithi, Yoga, and other Panchang elements. We compute this using Meeus's planetary equations  –  a set of sine and cosine terms derived from centuries of precise astronomical observation.
               </WhyBox>
 
               <TropicalSiderealDiagram tropical={calc.sunTrop} sidereal={calc.sunSid} ayan={calc.ayan} />
 
               <div className="mb-5 p-4 rounded-xl bg-orange-500/8 border border-orange-500/20">
-                <div className="text-xs text-orange-400 uppercase tracking-wider font-semibold mb-2">Tropical vs Sidereal — The Key Difference</div>
+                <div className="text-xs text-orange-400 uppercase tracking-wider font-semibold mb-2">Tropical vs Sidereal  –  The Key Difference</div>
                 <p className="text-text-primary text-sm leading-relaxed">
-                  Western astrology measures the Sun against the <strong className="text-white">Spring Equinox point</strong> (called Tropical). But the Earth wobbles very slightly on its axis — a cycle called <strong className="text-white">precession</strong> that takes ~26,000 years to complete. Over 2,000 years this wobble has shifted the actual star positions by about 24°. Vedic astrology accounts for this shift using the <strong className="text-amber-300">Ayanamsha</strong> — a correction value that increases by ~50 arc-seconds every year. The Lahiri Ayanamsha (used officially in India) is currently about <strong className="text-amber-300">{calc.ayan.toFixed(2)}°</strong>.
+                  Western astrology measures the Sun against the <strong className="text-white">Spring Equinox point</strong> (called Tropical). But the Earth wobbles very slightly on its axis  –  a cycle called <strong className="text-white">precession</strong> that takes ~26,000 years to complete. Over 2,000 years this wobble has shifted the actual star positions by about 24°. Vedic astrology accounts for this shift using the <strong className="text-amber-300">Ayanamsha</strong>  –  a correction value that increases by ~50 arc-seconds every year. The Lahiri Ayanamsha (used officially in India) is currently about <strong className="text-amber-300">{calc.ayan.toFixed(2)}°</strong>.
                 </p>
               </div>
 
@@ -682,10 +682,10 @@ export default function PanchangLabPage() {
           {step === 3 && calc && (
             <StepShell key="moon" stepNum={3} totalSteps={TOTAL_CALC_STEPS}
               title="Where is the Moon right now?"
-              subtitle="The Moon moves about 13° per day — much faster than the Sun. Its position drives most of the Panchang."
+              subtitle="The Moon moves about 13° per day  –  much faster than the Sun. Its position drives most of the Panchang."
             >
               <WhyBox heading={t('whyDoWeNeedThis')}>
-                While the Sun takes one year to circle the zodiac, the Moon does it in just 27.3 days. This rapid movement is what makes daily Panchang calculations meaningful — the Moon changes Nakshatra roughly every day, creates a new Tithi every ~24 hours, and its angle relative to the Sun defines the lunar calendar. Almost every element of the Panchang depends on the Moon's position.
+                While the Sun takes one year to circle the zodiac, the Moon does it in just 27.3 days. This rapid movement is what makes daily Panchang calculations meaningful  –  the Moon changes Nakshatra roughly every day, creates a new Tithi every ~24 hours, and its angle relative to the Sun defines the lunar calendar. Almost every element of the Panchang depends on the Moon's position.
               </WhyBox>
 
               <FormulaBox heading={t('theFormulaExplained')}>
@@ -693,7 +693,7 @@ export default function PanchangLabPage() {
                   Sidereal Moon = Tropical Moon − Ayanamsha
                 </div>
                 <p className="text-text-primary text-sm">
-                  Same concept as the Sun — we compute the tropical position using Meeus's lunar theory (which uses many more correction terms than the Sun, because the Moon is pulled by both the Sun and Earth's equatorial bulge), then subtract the same Lahiri Ayanamsha to get the sidereal position.
+                  Same concept as the Sun  –  we compute the tropical position using Meeus's lunar theory (which uses many more correction terms than the Sun, because the Moon is pulled by both the Sun and Earth's equatorial bulge), then subtract the same Lahiri Ayanamsha to get the sidereal position.
                 </p>
               </FormulaBox>
 
@@ -709,7 +709,7 @@ export default function PanchangLabPage() {
               <ResultBanner resultLabel={t('result')}
                 label={`Moon in ${lt(calc.moonRashi.name as LocaleText, locale)} ${calc.moonRashi.symbol}`}
                 value={`${calc.moonSid.toFixed(4)}° sidereal`}
-                sub="The Moon's position drives Tithi, Nakshatra, and Yoga — the next three steps"
+                sub="The Moon's position drives Tithi, Nakshatra, and Yoga  –  the next three steps"
               />
 
               <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('nextStep')} />
@@ -719,11 +719,11 @@ export default function PanchangLabPage() {
           {/* ── STEP 4: Tithi ────────────────────────────────────── */}
           {step === 4 && calc && (
             <StepShell key="tithi" stepNum={4} totalSteps={TOTAL_CALC_STEPS}
-              title="Tithi — The Lunar Day"
+              title="Tithi  –  The Lunar Day"
               subtitle="A Tithi is NOT the same as a calendar day. It's the time it takes the Moon to gain exactly 12° on the Sun."
             >
               <WhyBox heading={t('whyDoWeNeedThis')}>
-                Think of the Sun and Moon like two runners on a circular track. At New Moon (Amavasya), they're at the same position — 0° apart. Each day the Moon pulls ahead by about 12°. When the Moon is exactly 12° ahead, that's the 1st Tithi. At 24°, it's the 2nd. At 180° (opposite side), it's Full Moon (Purnima). There are 30 Tithis in a lunar month (15 in bright fortnight + 15 in dark fortnight). Since the Moon doesn't move at perfectly constant speed, a Tithi can be shorter or longer than 24 hours — sometimes two Tithis happen in one calendar day (Kshaya), sometimes a Tithi spans two calendar days (Vriddhi).
+                Think of the Sun and Moon like two runners on a circular track. At New Moon (Amavasya), they're at the same position  –  0° apart. Each day the Moon pulls ahead by about 12°. When the Moon is exactly 12° ahead, that's the 1st Tithi. At 24°, it's the 2nd. At 180° (opposite side), it's Full Moon (Purnima). There are 30 Tithis in a lunar month (15 in bright fortnight + 15 in dark fortnight). Since the Moon doesn't move at perfectly constant speed, a Tithi can be shorter or longer than 24 hours  –  sometimes two Tithis happen in one calendar day (Kshaya), sometimes a Tithi spans two calendar days (Vriddhi).
               </WhyBox>
 
               <TithiDiagram elongation={calc.elongation} tithiNum={calc.tithiResult.number} />
@@ -751,7 +751,7 @@ export default function PanchangLabPage() {
               <ResultBanner resultLabel={t('result')}
                 label={lt(calc.tithiData.name as LocaleText, locale)}
                 value={`Tithi ${calc.tithiResult.number} of 30`}
-                sub={calc.tithiData.paksha === 'shukla' ? `Shukla (bright) fortnight — Moon is waxing toward Full Moon` : `Krishna (dark) fortnight — Moon is waning toward New Moon`}
+                sub={calc.tithiData.paksha === 'shukla' ? `Shukla (bright) fortnight  –  Moon is waxing toward Full Moon` : `Krishna (dark) fortnight  –  Moon is waning toward New Moon`}
               />
 
               <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('nextStep')} />
@@ -761,11 +761,11 @@ export default function PanchangLabPage() {
           {/* ── STEP 5: Nakshatra ────────────────────────────────── */}
           {step === 5 && calc && (
             <StepShell key="nakshatra" stepNum={5} totalSteps={TOTAL_CALC_STEPS}
-              title="Nakshatra — The Moon's Star Mansion"
-              subtitle="While the zodiac has 12 signs, the sky is also divided into 27 Nakshatras — smaller star clusters the Moon passes through."
+              title="Nakshatra  –  The Moon's Star Mansion"
+              subtitle="While the zodiac has 12 signs, the sky is also divided into 27 Nakshatras  –  smaller star clusters the Moon passes through."
             >
               <WhyBox heading={t('whyDoWeNeedThis')}>
-                Ancient Indian astronomers noticed that the Moon passes through a distinct group of stars every night over its 27-day cycle. They named these 27 star-clusters "Nakshatras" (lunar mansions). Each Nakshatra has a ruling planet, a presiding deity, and a distinct character. Your birth Nakshatra (where the Moon was when you were born) is considered even more personal than your Sun sign in Vedic astrology — it's the foundation of the Dasha system (life period predictions).
+                Ancient Indian astronomers noticed that the Moon passes through a distinct group of stars every night over its 27-day cycle. They named these 27 star-clusters "Nakshatras" (lunar mansions). Each Nakshatra has a ruling planet, a presiding deity, and a distinct character. Your birth Nakshatra (where the Moon was when you were born) is considered even more personal than your Sun sign in Vedic astrology  –  it's the foundation of the Dasha system (life period predictions).
               </WhyBox>
 
               <NakshatraDiagram moonSid={calc.moonSid} nakNum={calc.nakNum} />
@@ -779,7 +779,7 @@ export default function PanchangLabPage() {
                 <p className="text-text-primary text-sm">
                   <strong className="text-amber-300">Why 13.333°?</strong> Because 360° ÷ 27 Nakshatras = 13.333° per Nakshatra. So we divide the Moon's position by 13.333 to find which "slot" it's in.
                   <br /><br />
-                  <strong className="text-amber-300">What's a Pada?</strong> Each Nakshatra is further divided into 4 equal quarters called Padas (3.333° each). So there are 27 × 4 = 108 Padas total — a sacred number in Vedic culture. Your Pada determines your birth syllable (the first syllable of your Vedic name).
+                  <strong className="text-amber-300">What's a Pada?</strong> Each Nakshatra is further divided into 4 equal quarters called Padas (3.333° each). So there are 27 × 4 = 108 Padas total  –  a sacred number in Vedic culture. Your Pada determines your birth syllable (the first syllable of your Vedic name).
                 </p>
               </FormulaBox>
 
@@ -806,11 +806,11 @@ export default function PanchangLabPage() {
           {/* ── STEP 6: Yoga ─────────────────────────────────────── */}
           {step === 6 && calc && (
             <StepShell key="yoga" stepNum={6} totalSteps={TOTAL_CALC_STEPS}
-              title="Yoga — The Sun–Moon Combination"
+              title="Yoga  –  The Sun–Moon Combination"
               subtitle="A Yoga is a quality of the day determined by adding the Sun and Moon positions together."
             >
               <WhyBox heading={t('whyDoWeNeedThis')}>
-                While Tithi measures the Moon's angle <em>ahead of</em> the Sun, Yoga measures their combined angular <em>sum</em>. Think of it as the total energy of the day — how the Sun's solar energy and the Moon's lunar energy combine together. There are 27 Yogas (same count as Nakshatras), each with a distinct character ranging from auspicious (like Siddha — "perfect achievement") to inauspicious (like Vyatipata — "calamity"). Traditional texts prescribe avoiding certain activities on unfavorable Yoga days.
+                While Tithi measures the Moon's angle <em>ahead of</em> the Sun, Yoga measures their combined angular <em>sum</em>. Think of it as the total energy of the day  –  how the Sun's solar energy and the Moon's lunar energy combine together. There are 27 Yogas (same count as Nakshatras), each with a distinct character ranging from auspicious (like Siddha  –  "perfect achievement") to inauspicious (like Vyatipata  –  "calamity"). Traditional texts prescribe avoiding certain activities on unfavorable Yoga days.
               </WhyBox>
 
               <FormulaBox heading={t('theFormulaExplained')}>
@@ -820,7 +820,7 @@ export default function PanchangLabPage() {
                   Yoga = floor(Sum ÷ 13.333°) + 1
                 </div>
                 <p className="text-text-primary text-sm">
-                  <strong className="text-amber-300">Why the same 13.333°?</strong> Because Yoga uses the same 27-fold division as Nakshatra — dividing the circle into 27 equal parts of 13.333° each. The only difference is the input: instead of just the Moon, we add Sun + Moon together and divide that sum. The "mod 360" wraps the sum back into a 0–360° range if it exceeds 360°.
+                  <strong className="text-amber-300">Why the same 13.333°?</strong> Because Yoga uses the same 27-fold division as Nakshatra  –  dividing the circle into 27 equal parts of 13.333° each. The only difference is the input: instead of just the Moon, we add Sun + Moon together and divide that sum. The "mod 360" wraps the sum back into a 0–360° range if it exceeds 360°.
                 </p>
               </FormulaBox>
 
@@ -831,7 +831,7 @@ export default function PanchangLabPage() {
                 <CalcRow label="Sum mod 360° = yoga input" value={`${calc.yogaSum.toFixed(4)}°`} highlight />
                 <CalcRow label="Sum ÷ 13.333°" value={(calc.yogaSum / (360 / 27)).toFixed(4)} />
                 <CalcRow label="floor(...) + 1 = Yoga number" value={String(calc.yogaNum)} />
-                <CalcRow label="Nature" value={calc.yogaData.nature === 'auspicious' ? 'Auspicious ✓' : calc.yogaData.nature === 'inauspicious' ? 'Inauspicious — avoid major activities' : 'Mixed'} />
+                <CalcRow label="Nature" value={calc.yogaData.nature === 'auspicious' ? 'Auspicious ✓' : calc.yogaData.nature === 'inauspicious' ? 'Inauspicious  –  avoid major activities' : 'Mixed'} />
               </div>
 
               <ResultBanner resultLabel={t('result')}
@@ -847,8 +847,8 @@ export default function PanchangLabPage() {
           {/* ── STEP 7: Karana ───────────────────────────────────── */}
           {step === 7 && calc && (
             <StepShell key="karana" stepNum={7} totalSteps={TOTAL_CALC_STEPS}
-              title="Karana — The Half-Tithi"
-              subtitle="A Karana is simply half a Tithi — the Moon advancing 6° instead of 12°. There are two Karanas per Tithi."
+              title="Karana  –  The Half-Tithi"
+              subtitle="A Karana is simply half a Tithi  –  the Moon advancing 6° instead of 12°. There are two Karanas per Tithi."
             >
               <WhyBox heading={t('whyDoWeNeedThis')}>
                 Ancient Vedic astrologers needed a finer-grained time unit than a Tithi for scheduling rituals and activities. They split each Tithi in half, calling each half a Karana. So a Karana lasts roughly 6 hours (half of ~12 hours). There are 11 types of Karanas: 7 "Chara" (movable, repeating) Karanas that cycle through the lunar month, and 4 "Sthira" (fixed, non-repeating) Karanas that appear only once each month at specific positions.
@@ -870,13 +870,13 @@ export default function PanchangLabPage() {
                 <CalcRow label="Elongation ÷ 6° = raw index" value={(calc.elongation / 6).toFixed(4)} />
                 <CalcRow label="floor(...) = Karana slot" value={String(calc.karanaIndex)} />
                 <CalcRow label="Mapped Karana number" value={String(calc.karanaNum)} />
-                <CalcRow label="Type" value={calc.karanaData.type === 'chara' ? 'Chara (Movable) — repeats 8 times per month' : 'Sthira (Fixed) — appears only once per month'} />
+                <CalcRow label="Type" value={calc.karanaData.type === 'chara' ? 'Chara (Movable)  –  repeats 8 times per month' : 'Sthira (Fixed)  –  appears only once per month'} />
               </div>
 
               <ResultBanner resultLabel={t('result')}
                 label={lt(calc.karanaData.name as LocaleText, locale)}
                 value={`Karana ${calc.karanaNum} of 11`}
-                sub={calc.karanaData.type === 'chara' ? 'Movable Karana — auspicious for most activities' : 'Fixed Karana — check classical texts for specific guidance'}
+                sub={calc.karanaData.type === 'chara' ? 'Movable Karana  –  auspicious for most activities' : 'Fixed Karana  –  check classical texts for specific guidance'}
               />
 
               <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('nextStep')} />
@@ -886,11 +886,11 @@ export default function PanchangLabPage() {
           {/* ── STEP 8: Vara ─────────────────────────────────────── */}
           {step === 8 && calc && (
             <StepShell key="vara" stepNum={8} totalSteps={TOTAL_CALC_STEPS}
-              title="Vara — The Weekday"
-              subtitle="The simplest element — but even here, the formula has a clever trick worth understanding."
+              title="Vara  –  The Weekday"
+              subtitle="The simplest element  –  but even here, the formula has a clever trick worth understanding."
             >
               <WhyBox heading={t('whyDoWeNeedThis')}>
-                The Vedic week (Vara) uses the same 7-day cycle as the modern week, with the same planetary assignments: Sun→Sunday, Moon→Monday, Mars→Tuesday, Mercury→Wednesday, Jupiter→Thursday, Venus→Friday, Saturn→Saturday. The weekday influences the overall tone of the day and which deity is worshipped. The trick is extracting the weekday directly from the Julian Day Number — no calendar arithmetic needed.
+                The Vedic week (Vara) uses the same 7-day cycle as the modern week, with the same planetary assignments: Sun→Sunday, Moon→Monday, Mars→Tuesday, Mercury→Wednesday, Jupiter→Thursday, Venus→Friday, Saturn→Saturday. The weekday influences the overall tone of the day and which deity is worshipped. The trick is extracting the weekday directly from the Julian Day Number  –  no calendar arithmetic needed.
               </WhyBox>
 
               <FormulaBox heading={t('theFormulaExplained')}>
@@ -900,9 +900,9 @@ export default function PanchangLabPage() {
                   0 = Sunday, 1 = Monday, … 6 = Saturday
                 </div>
                 <p className="text-text-primary text-sm">
-                  <strong className="text-amber-300">Why +1.5?</strong> Julian Days start at noon (JD 0 was noon, January 1st, 4713 BC — which happened to be a Monday). Adding 1.5 shifts the reference so that when we take floor(), we're counting from midnight rather than noon. The +1 part shifts the alignment so that JD 0 mod 7 = 0 = Sunday correctly.
+                  <strong className="text-amber-300">Why +1.5?</strong> Julian Days start at noon (JD 0 was noon, January 1st, 4713 BC  –  which happened to be a Monday). Adding 1.5 shifts the reference so that when we take floor(), we're counting from midnight rather than noon. The +1 part shifts the alignment so that JD 0 mod 7 = 0 = Sunday correctly.
                   <br /><br />
-                  <strong className="text-amber-300">Why mod 7?</strong> The week repeats every 7 days. Modulo 7 finds the remainder — any number mod 7 gives 0–6, which maps directly to the 7 weekdays.
+                  <strong className="text-amber-300">Why mod 7?</strong> The week repeats every 7 days. Modulo 7 finds the remainder  –  any number mod 7 gives 0–6, which maps directly to the 7 weekdays.
                 </p>
               </FormulaBox>
 
@@ -917,7 +917,7 @@ export default function PanchangLabPage() {
               <ResultBanner resultLabel={t('result')}
                 label={lt(calc.varaData.name as LocaleText, locale)}
                 value={`Day index ${calc.weekday} (0 = Sunday)`}
-                sub={`Ruled by ${lt(calc.varaData.ruler as LocaleText, locale)} — ${lt(calc.varaData.ruler as LocaleText, locale)}'s day for worship and activities`}
+                sub={`Ruled by ${lt(calc.varaData.ruler as LocaleText, locale)}  –  ${lt(calc.varaData.ruler as LocaleText, locale)}'s day for worship and activities`}
               />
 
               <NavButtons onBack={back} onNext={next} backLabel={t('back')} nextLabel={t('result')} />
@@ -959,7 +959,7 @@ export default function PanchangLabPage() {
 
               <div className="mt-6 p-4 rounded-xl bg-indigo-500/8 border border-indigo-500/20 text-center">
                 <p className="text-text-primary text-sm leading-relaxed">
-                  You just computed a full Panchang from scratch — the same way it's been calculated for over 1,500 years, now running in milliseconds on modern hardware. Every number you saw was derived from just two inputs: a date and a location.
+                  You just computed a full Panchang from scratch  –  the same way it's been calculated for over 1,500 years, now running in milliseconds on modern hardware. Every number you saw was derived from just two inputs: a date and a location.
                 </p>
               </div>
 

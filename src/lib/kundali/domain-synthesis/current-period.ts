@@ -74,13 +74,13 @@ const FRIENDS: Record<number, Set<number>> = {
   4: new Set([0, 1, 2]),       // Jupiter friends: Sun, Moon, Mars
   5: new Set([3, 6]),           // Venus friends: Mercury, Saturn
   6: new Set([3, 5]),           // Saturn friends: Mercury, Venus
-  7: new Set([]),               // Rahu — treated case-by-case
-  8: new Set([]),               // Ketu — treated case-by-case
+  7: new Set([]),               // Rahu  –  treated case-by-case
+  8: new Set([]),               // Ketu  –  treated case-by-case
 };
 
 const ENEMIES: Record<number, Set<number>> = {
   0: new Set([5, 6]),           // Sun enemies: Venus, Saturn
-  1: new Set([]),               // Moon — no natural enemies
+  1: new Set([]),               // Moon  –  no natural enemies
   2: new Set([3]),              // Mars enemies: Mercury
   3: new Set([1]),              // Mercury enemies: Moon
   4: new Set([3, 5]),           // Jupiter enemies: Mercury, Venus
@@ -145,7 +145,7 @@ function findActiveDasha(dashas: DashaEntry[], date: Date): ActiveDasha | null {
     const mahaEnd = new Date(maha.endDate).getTime();
     if (ts < mahaStart || ts >= mahaEnd) continue;
 
-    // Found active mahadasha — now find antardasha
+    // Found active mahadasha  –  now find antardasha
     const subs = maha.subPeriods ?? [];
     for (let i = 0; i < subs.length; i++) {
       const antar = subs[i];
@@ -230,7 +230,7 @@ function computeOverallRating(
     return { rating: 'madhyama', score: 6.0 };
   }
 
-  // Both malefic — check dignity
+  // Both malefic  –  check dignity
   const mahaStrong = isInStrongDignity(mahaId, planets);
   const antarStrong = isInStrongDignity(antarId, planets);
 
@@ -250,18 +250,18 @@ function interactionTheme(mahaId: number, antarId: number): LocaleText {
   switch (rel) {
     case 'friend':
       return {
-        en: 'Supportive period — both lords cooperate harmoniously.',
-        hi: 'सहयोगी काल — दोनों ग्रह मिलकर कार्य करते हैं।',
+        en: 'Supportive period  –  both lords cooperate harmoniously.',
+        hi: 'सहयोगी काल  –  दोनों ग्रह मिलकर कार्य करते हैं।',
       };
     case 'enemy':
       return {
-        en: 'Tense period — conflicting energies require careful navigation.',
-        hi: 'तनावपूर्ण काल — विरोधी ऊर्जाओं में सावधानी आवश्यक।',
+        en: 'Tense period  –  conflicting energies require careful navigation.',
+        hi: 'तनावपूर्ण काल  –  विरोधी ऊर्जाओं में सावधानी आवश्यक।',
       };
     default:
       return {
-        en: 'Balanced period — results depend on house activations.',
-        hi: 'संतुलित काल — परिणाम भाव सक्रियता पर निर्भर।',
+        en: 'Balanced period  –  results depend on house activations.',
+        hi: 'संतुलित काल  –  परिणाम भाव सक्रियता पर निर्भर।',
       };
   }
 }
@@ -279,13 +279,13 @@ function guidance(rating: Rating): LocaleText {
       };
     case 'madhyama':
       return {
-        en: 'A balanced period — focus on steady progress.',
-        hi: 'एक संतुलित काल — स्थिर प्रगति पर ध्यान दें।',
+        en: 'A balanced period  –  focus on steady progress.',
+        hi: 'एक संतुलित काल  –  स्थिर प्रगति पर ध्यान दें।',
       };
     case 'adhama':
       return {
-        en: 'A challenging period — patience and remedies are advised.',
-        hi: 'एक चुनौतीपूर्ण काल — धैर्य और उपाय की सलाह दी जाती है।',
+        en: 'A challenging period  –  patience and remedies are advised.',
+        hi: 'एक चुनौतीपूर्ण काल  –  धैर्य और उपाय की सलाह दी जाती है।',
       };
     case 'atyadhama':
       return {
@@ -397,7 +397,7 @@ function retrogradesAffecting(
 ): RetrogradeFlag[] {
   const flags: RetrogradeFlag[] = [];
   // Check outer planets: Mars (2), Jupiter (4), Saturn (6)
-  // Also Rahu (7) and Ketu (8) — always retrograde, so skip them
+  // Also Rahu (7) and Ketu (8)  –  always retrograde, so skip them
   const outerIds = [2, 4, 6];
 
   for (const id of outerIds) {
@@ -472,7 +472,7 @@ export function synthesizeCurrentPeriod(params: CurrentPeriodInput): CurrentPeri
   const active = findActiveDasha(dashas, currentDate);
 
   if (!active) {
-    // Fallback: no matching dasha found — return a minimal reading
+    // Fallback: no matching dasha found  –  return a minimal reading
     return {
       dashaSummary: {
         en: 'Dasha period could not be determined for the current date.',

@@ -218,8 +218,8 @@ const HORA_PRACTICE = [
   {
     planet: { en: 'Saturn Hora', hi: 'शनि होरा', sa: 'शनि होरा', mai: 'शनि होरा', mr: 'शनि होरा', ta: 'சனி ஹோரா', te: 'శని హోరా', bn: 'শনি হোরা', kn: 'ಶನಿ ಹೋರಾ', gu: 'શનિ હોરા' }, color: '#60a5fa', bg: 'bg-blue-500/8', border: 'border-blue-500/25',
     activities: {
-      en: 'Completing unfinished work, agriculture, iron/steel, deep meditation, dealing with laborers, mining, oil — AVOID starting new ventures',
-      hi: 'अधूरा कार्य पूरा करें, कृषि, लोहा/इस्पात, गहन ध्यान, श्रमिकों से व्यवहार — नई शुरुआत से बचें',
+      en: 'Completing unfinished work, agriculture, iron/steel, deep meditation, dealing with laborers, mining, oil  –  AVOID starting new ventures',
+      hi: 'अधूरा कार्य पूरा करें, कृषि, लोहा/इस्पात, गहन ध्यान, श्रमिकों से व्यवहार  –  नई शुरुआत से बचें',
     },
   },
 ];
@@ -314,7 +314,7 @@ export default function HoraChaldeanPage() {
                 {tl({ en: 'Navagraha = Sapta + Rahu + Ketu', hi: 'नवग्रह = सप्त + राहु + केतु', sa: 'नवग्रहाः = सप्त + राहुः + केतुः' }, locale)}
               </p>
               <p className="text-text-secondary text-sm leading-relaxed">
-                {tl({ en: 'The Indian Navagraha system extends the seven Chaldean planets with Rahu and Ketu — totaling 9. This extension is not found in any other ancient astronomical tradition.', hi: 'भारतीय नवग्रह पद्धति सात कैल्डियन ग्रहों को राहु और केतु के साथ जोड़ती है — कुल 9 ग्रह। यह विस्तार अन्य किसी प्राचीन संस्कृति में नहीं मिलता।', sa: 'भारतीया नवग्रह-पद्धतिः सप्त-कैल्डियन-ग्रहान् राहु-केतुभ्यां विस्तारयति — मिलित्वा 9। एतद् विस्तरणम् अन्यस्यां काश्यां प्राचीन-ज्योतिष-परम्परायां न दृश्यते।' }, locale)}
+                {tl({ en: 'The Indian Navagraha system extends the seven Chaldean planets with Rahu and Ketu  –  totaling 9. This extension is not found in any other ancient astronomical tradition.', hi: 'भारतीय नवग्रह पद्धति सात कैल्डियन ग्रहों को राहु और केतु के साथ जोड़ती है  –  कुल 9 ग्रह। यह विस्तार अन्य किसी प्राचीन संस्कृति में नहीं मिलता।', sa: 'भारतीया नवग्रह-पद्धतिः सप्त-कैल्डियन-ग्रहान् राहु-केतुभ्यां विस्तारयति  –  मिलित्वा 9। एतद् विस्तरणम् अन्यस्यां काश्यां प्राचीन-ज्योतिष-परम्परायां न दृश्यते।' }, locale)}
               </p>
             </div>
           </div>
@@ -570,7 +570,7 @@ export default function HoraChaldeanPage() {
 
           <div className="p-4 rounded-xl bg-gold-primary/6 border border-gold-primary/20">
             <p className="text-gold-light/90 text-sm leading-relaxed">
-              {tl({ en: 'Sanskrit names directly use the planet name + "vara" (वार = day). English names use Norse/Germanic gods mapped to the same planets. The underlying planetary assignment is identical across all cultures — because they all derive from the same hora system.', hi: 'संस्कृत नाम सीधे ग्रह नाम + "वार" का उपयोग करते हैं। अंग्रेज़ी नाम नॉर्स/जर्मनिक देवताओं का उपयोग करते हैं जिन्हें उन्हीं ग्रहों से मैप किया गया था। सभी संस्कृतियों में अन्तर्निहित ग्रह नियुक्ति समान है — क्योंकि वे सभी एक ही होरा पद्धति से उत्पन्न हैं।', sa: 'संस्कृत नाम सीधे ग्रह नाम + "वार" का उपयोग करते हैं। अंग्रेज़ी नाम नॉर्स/जर्मनिक देवताओं का उपयोग करते हैं जिन्हें उन्हीं ग्रहों से मैप किया गया था। सभी संस्कृतियों में अन्तर्निहित ग्रह नियुक्ति समान है — क्योंकि वे सभी एक ही होरा पद्धति से उत्पन्न हैं।' }, locale)}
+              {tl({ en: 'Sanskrit names directly use the planet name + "vara" (वार = day). English names use Norse/Germanic gods mapped to the same planets. The underlying planetary assignment is identical across all cultures  –  because they all derive from the same hora system.', hi: 'संस्कृत नाम सीधे ग्रह नाम + "वार" का उपयोग करते हैं। अंग्रेज़ी नाम नॉर्स/जर्मनिक देवताओं का उपयोग करते हैं जिन्हें उन्हीं ग्रहों से मैप किया गया था। सभी संस्कृतियों में अन्तर्निहित ग्रह नियुक्ति समान है  –  क्योंकि वे सभी एक ही होरा पद्धति से उत्पन्न हैं।', sa: 'संस्कृत नाम सीधे ग्रह नाम + "वार" का उपयोग करते हैं। अंग्रेज़ी नाम नॉर्स/जर्मनिक देवताओं का उपयोग करते हैं जिन्हें उन्हीं ग्रहों से मैप किया गया था। सभी संस्कृतियों में अन्तर्निहित ग्रह नियुक्ति समान है  –  क्योंकि वे सभी एक ही होरा पद्धति से उत्पन्न हैं।' }, locale)}
             </p>
           </div>
         </div>
@@ -653,18 +653,18 @@ export default function HoraChaldeanPage() {
           <div className="grid sm:grid-cols-2 gap-4 my-4">
             <div className="p-4 rounded-xl bg-purple-500/8 border border-purple-500/20">
               <h4 className="text-purple-300 font-bold text-sm mb-2">
-                {tl({ en: 'Rahu — Ascending Node', hi: 'राहु (Rahu)', sa: 'राहुः — आरोहीपातः' }, locale)}
+                {tl({ en: 'Rahu  –  Ascending Node', hi: 'राहु (Rahu)', sa: 'राहुः  –  आरोहीपातः' }, locale)}
               </h4>
               <p className="text-text-secondary text-xs leading-relaxed">
-                {tl({ en: 'The ascending lunar node — where the Moon crosses the ecliptic moving northward. The North Node. ~18.6-year cycle. Rahu Kaal each day is derived from the hora sequence.', hi: 'आरोही चंद्र पात — वह बिन्दु जहाँ चंद्रमा दक्षिण से उत्तर की ओर क्रान्तिवृत्त को पार करता है। उत्तर नोड। ~18.6 वर्षीय चक्र। राहु काल प्रत्येक दिन होरा अनुक्रम से व्युत्पन्न होता है।', sa: 'आरोही चंद्र पात — वह बिन्दु जहाँ चंद्रमा दक्षिण से उत्तर की ओर क्रान्तिवृत्त को पार करता है। उत्तर नोड। ~18.6 वर्षीय चक्र। राहु काल प्रत्येक दिन होरा अनुक्रम से व्युत्पन्न होता है।' }, locale)}
+                {tl({ en: 'The ascending lunar node  –  where the Moon crosses the ecliptic moving northward. The North Node. ~18.6-year cycle. Rahu Kaal each day is derived from the hora sequence.', hi: 'आरोही चंद्र पात  –  वह बिन्दु जहाँ चंद्रमा दक्षिण से उत्तर की ओर क्रान्तिवृत्त को पार करता है। उत्तर नोड। ~18.6 वर्षीय चक्र। राहु काल प्रत्येक दिन होरा अनुक्रम से व्युत्पन्न होता है।', sa: 'आरोही चंद्र पात  –  वह बिन्दु जहाँ चंद्रमा दक्षिण से उत्तर की ओर क्रान्तिवृत्त को पार करता है। उत्तर नोड। ~18.6 वर्षीय चक्र। राहु काल प्रत्येक दिन होरा अनुक्रम से व्युत्पन्न होता है।' }, locale)}
               </p>
             </div>
             <div className="p-4 rounded-xl bg-slate-500/8 border border-slate-500/20">
               <h4 className="text-slate-300 font-bold text-sm mb-2">
-                {tl({ en: 'Ketu — Descending Node', hi: 'केतु (Ketu)', sa: 'केतुः — अवरोहीपातः' }, locale)}
+                {tl({ en: 'Ketu  –  Descending Node', hi: 'केतु (Ketu)', sa: 'केतुः  –  अवरोहीपातः' }, locale)}
               </h4>
               <p className="text-text-secondary text-xs leading-relaxed">
-                {tl({ en: 'The descending lunar node — where the Moon crosses the ecliptic moving southward. South Node. Always exactly opposite Rahu (180° apart). Eclipses require the Moon near a node at new/full Moon.', hi: 'अवरोही चंद्र पात — वह बिन्दु जहाँ चंद्रमा उत्तर से दक्षिण की ओर क्रान्तिवृत्त को पार करता है। दक्षिण नोड। राहु के ठीक सामने (180° विपरीत)। दोनों सदा विपरीत दिशाओं में होते हैं।', sa: 'अवरोही चंद्र पात — वह बिन्दु जहाँ चंद्रमा उत्तर से दक्षिण की ओर क्रान्तिवृत्त को पार करता है। दक्षिण नोड। राहु के ठीक सामने (180° विपरीत)। दोनों सदा विपरीत दिशाओं में होते हैं।' }, locale)}
+                {tl({ en: 'The descending lunar node  –  where the Moon crosses the ecliptic moving southward. South Node. Always exactly opposite Rahu (180° apart). Eclipses require the Moon near a node at new/full Moon.', hi: 'अवरोही चंद्र पात  –  वह बिन्दु जहाँ चंद्रमा उत्तर से दक्षिण की ओर क्रान्तिवृत्त को पार करता है। दक्षिण नोड। राहु के ठीक सामने (180° विपरीत)। दोनों सदा विपरीत दिशाओं में होते हैं।', sa: 'अवरोही चंद्र पात  –  वह बिन्दु जहाँ चंद्रमा उत्तर से दक्षिण की ओर क्रान्तिवृत्त को पार करता है। दक्षिण नोड। राहु के ठीक सामने (180° विपरीत)। दोनों सदा विपरीत दिशाओं में होते हैं।' }, locale)}
               </p>
             </div>
           </div>

@@ -81,7 +81,7 @@ describe('Mangal Dosha Detection', () => {
 
   it('Test 3: Mars in Mangal house from Moon but not Lagna → fromMoon=true, fromLagna=false', () => {
     // Lagna=Aries(1). Mars sign=4.
-    // houseFrom(1,4)=4 — that IS a Mangal house! Let me use sign=3 for Lagna test.
+    // houseFrom(1,4)=4  –  that IS a Mangal house! Let me use sign=3 for Lagna test.
     // houseFrom(1,3)=3 → NOT Mangal. Moon.sign=9, houseFrom(9,3)=7 → IS Mangal.
     // Venus.sign=3, houseFrom(3,3)=1 → IS Mangal. We need Venus to NOT trigger.
     // Let's use Moon.sign=9, Venus.sign=4 (houseFrom(4,3)=12 → IS Mangal too)
@@ -129,7 +129,7 @@ describe('Mangal Dosha Detection', () => {
 // ---------------------------------------------------------------------------
 
 describe('Mangal Dosha Cancellations', () => {
-  /** Set up a base chart with Mars in house 7 from Lagna — clear dosha present */
+  /** Set up a base chart with Mars in house 7 from Lagna  –  clear dosha present */
   function doshaBase(marsSign: number, marsHouse: number, extra: PlanetOverride[] = []) {
     // ascSign=1, Mars in house 7 → use marsSign=7 for clean lagna-dosha.
     // But we allow custom marsSign for cancellation tests.
@@ -142,7 +142,7 @@ describe('Mangal Dosha Cancellations', () => {
     return planets;
   }
 
-  it('Test 5: C1 — Mars in Aries (sign 1), in a Mangal house → C1 cancellation', () => {
+  it('Test 5: C1  –  Mars in Aries (sign 1), in a Mangal house → C1 cancellation', () => {
     // Mars in Aries(1), house 1 from Lagna(1) → Mangal house (1)
     const planets = doshaBase(1, 1);
     const result = analyzeMangalDosha(planets, 1);
@@ -151,7 +151,7 @@ describe('Mangal Dosha Cancellations', () => {
     expect(result.cancellations.some((c) => c.rule === 'C1')).toBe(true);
   });
 
-  it('Test 6: C2 — Mars in Capricorn (sign 10) → C2 cancellation', () => {
+  it('Test 6: C2  –  Mars in Capricorn (sign 10) → C2 cancellation', () => {
     // ascSign=1, Mars in Capricorn(10) → houseFrom(1,10)=10 → NOT Mangal house.
     // ascSign=3: houseFrom(3,10)=8 → Mangal! Use ascSign=3.
     const planets = doshaBase(10, 8);
@@ -161,7 +161,7 @@ describe('Mangal Dosha Cancellations', () => {
     expect(result.cancellations.some((c) => c.rule === 'C2')).toBe(true);
   });
 
-  it('Test 7: C3 — Jupiter 7th from Mars → C3 cancellation', () => {
+  it('Test 7: C3  –  Jupiter 7th from Mars → C3 cancellation', () => {
     // Mars house=4. Jupiter's 7th aspect lands on house (4-1+6)%12+1 = 9+1=10.
     // That's not Mars house=4. We need Jupiter in position X such that
     // one of {X, (X-1+4)%12+1, (X-1+6)%12+1, (X-1+8)%12+1} = marsHouse.
@@ -175,7 +175,7 @@ describe('Mangal Dosha Cancellations', () => {
     expect(result.cancellations.some((c) => c.rule === 'C3')).toBe(true);
   });
 
-  it('Test 8: C4 — Venus in house 7 → C4 cancellation', () => {
+  it('Test 8: C4  –  Venus in house 7 → C4 cancellation', () => {
     // Mars in house 1 from ascSign=1 (sign=1, house=1 → Mangal). Venus in house 7.
     const planets = makePlanets([
       { id: 1, sign: 11, house: 11 }, // Moon
@@ -188,12 +188,12 @@ describe('Mangal Dosha Cancellations', () => {
     expect(result.cancellations.some((c) => c.rule === 'C4')).toBe(true);
   });
 
-  it('Test 9: C5 — Mars conjunct Jupiter (same house) → C5 cancellation', () => {
+  it('Test 9: C5  –  Mars conjunct Jupiter (same house) → C5 cancellation', () => {
     // Mars and Jupiter both in house 7 (not covered by C3 conjunction path that creates C3).
-    // C3 checks if Jupiter aspects Mars — conjunction (same house) IS covered by C3.
+    // C3 checks if Jupiter aspects Mars  –  conjunction (same house) IS covered by C3.
     // The spec says C5 should NOT duplicate if C3 already found conjunction.
     // So for C5 to fire independently, Jupiter must NOT aspect Mars but Venus conjuncts Mars.
-    // Mars house=7. Jupiter house=3 (aspects 3,7,9,11) — house 7 IS in Jupiter aspects → C3 fires.
+    // Mars house=7. Jupiter house=3 (aspects 3,7,9,11)  –  house 7 IS in Jupiter aspects → C3 fires.
     // Let's use Venus conjunct Mars instead.
     // Mars house=8, Jupiter far away (house=2, aspects 2,6,8,10) → house 8 IS in Jupiter aspects.
     // Jupiter house=5, aspects 5,9,11,1 → Mars house=8 NOT in {5,9,11,1} ✓
@@ -201,7 +201,7 @@ describe('Mangal Dosha Cancellations', () => {
     const planets = makePlanets([
       { id: 1, sign: 11, house: 11 }, // Moon
       { id: 2, sign: 8, house: 8 },   // Mars house=8 (Mangal from lagna=1)
-      { id: 4, sign: 5, house: 5 },   // Jupiter house=5, aspects 5,9,11,1 — doesn't hit 8
+      { id: 4, sign: 5, house: 5 },   // Jupiter house=5, aspects 5,9,11,1  –  doesn't hit 8
       { id: 5, sign: 8, house: 8 },   // Venus house=8 (conjunct Mars)
     ]);
     const result = analyzeMangalDosha(planets, 1);
@@ -210,7 +210,7 @@ describe('Mangal Dosha Cancellations', () => {
     expect(result.cancellations.some((c) => c.rule === 'C5')).toBe(true);
   });
 
-  it('Test 10: C6 — Mars in Gemini (sign 3) in 2nd house → C6 cancellation', () => {
+  it('Test 10: C6  –  Mars in Gemini (sign 3) in 2nd house → C6 cancellation', () => {
     // ascSign=2: houseFrom(2,3)=2 → Mangal (house 2). Mars sign=3, house=2.
     const planets = doshaBase(3, 2);
     const result = analyzeMangalDosha(planets, 2);
@@ -225,15 +225,15 @@ describe('Mangal Dosha Cancellations', () => {
     const planets = makePlanets([
       { id: 1, sign: 3, house: 3 },   // Moon
       { id: 2, sign: 11, house: 8 },  // Mars in Aquarius, house 8
-      { id: 4, sign: 2, house: 2 },   // Jupiter house=2, aspects 2,6,8,10 — hits house 8! Let's move it.
+      { id: 4, sign: 2, house: 2 },   // Jupiter house=2, aspects 2,6,8,10  –  hits house 8! Let's move it.
       { id: 5, sign: 3, house: 3 },   // Venus not house 7
     ]);
-    // Recalculate: Jupiter house=2, aspects {2, 6, 8, 10} — includes marsHouse=8!
-    // That would trigger C3. Move Jupiter to house=3, aspects {3,7,9,11} — doesn't include 8.
+    // Recalculate: Jupiter house=2, aspects {2, 6, 8, 10}  –  includes marsHouse=8!
+    // That would trigger C3. Move Jupiter to house=3, aspects {3,7,9,11}  –  doesn't include 8.
     const planets2 = makePlanets([
       { id: 1, sign: 3, house: 3 },
       { id: 2, sign: 11, house: 8 },  // Mars in Aquarius, house 8
-      { id: 4, sign: 3, house: 3 },   // Jupiter house=3, aspects {3,7,9,11} — not 8
+      { id: 4, sign: 3, house: 3 },   // Jupiter house=3, aspects {3,7,9,11}  –  not 8
       { id: 5, sign: 3, house: 3 },   // Venus house=3, not 7; not conjunct Mars
     ]);
     const result = analyzeMangalDosha(planets2, 4); // ascSign=4: houseFrom(4,11)=8 → Mangal
@@ -256,7 +256,7 @@ describe('Severity Cascade', () => {
     const planets = makePlanets([
       { id: 1, sign: 3, house: 3 },  // Moon (houseFrom(3,8)=6, not Mangal)
       { id: 2, sign: 8, house: 8 },  // Mars in Scorpio, house 8
-      { id: 4, sign: 3, house: 3 },  // Jupiter house 3, aspects {3,7,9,11} — not 8
+      { id: 4, sign: 3, house: 3 },  // Jupiter house 3, aspects {3,7,9,11}  –  not 8
       { id: 5, sign: 3, house: 3 },  // Venus not house 7
     ]);
     const result = analyzeMangalDosha(planets, 1);
@@ -274,7 +274,7 @@ describe('Severity Cascade', () => {
       { id: 1, sign: 9, house: 9 },  // Moon: houseFrom(9,3)=7 → IS Mangal! Adjust.
       // Moon sign=6: houseFrom(6,3)=10 → not Mangal
       { id: 2, sign: 3, house: 2 },  // Mars in Gemini, house 2
-      { id: 4, sign: 9, house: 9 },  // Jupiter house=9, aspects {9,1,3,5} — not 2
+      { id: 4, sign: 9, house: 9 },  // Jupiter house=9, aspects {9,1,3,5}  –  not 2
       { id: 5, sign: 9, house: 9 },  // Venus not house 7
     ]);
     // Redo Moon
@@ -316,7 +316,7 @@ describe('Bug Fix Verification', () => {
     // Mercury in house 7 (irrelevant to Mangal Dosha)
     const planets = makePlanets([
       { id: 1, sign: 1, house: 1 },  // Moon
-      { id: 2, sign: 3, house: 3 },  // Mars in house 3 — NOT a Mangal house
+      { id: 2, sign: 3, house: 3 },  // Mars in house 3  –  NOT a Mangal house
       { id: 3, sign: 7, house: 7 },  // Mercury in house 7 (should be ignored)
       { id: 5, sign: 1, house: 1 },  // Venus
     ]);
@@ -330,7 +330,7 @@ describe('Bug Fix Verification', () => {
 // Matching context
 // ---------------------------------------------------------------------------
 
-describe('Matching Context — Mutual Manglik', () => {
+describe('Matching Context  –  Mutual Manglik', () => {
   it('Test 15: Both charts have Mangal → mutualCancellation=true, C7 in cancellations', () => {
     // Chart 1: Mars house 7 from Lagna
     const chart1 = makePlanets([
@@ -339,7 +339,7 @@ describe('Matching Context — Mutual Manglik', () => {
       { id: 5, sign: 3, house: 3 },
       { id: 4, sign: 3, house: 3 }, // Jupiter: aspects {3,7,9,11} → includes house 7! → C3 fires
     ]);
-    // Move Jupiter so C3 doesn't fire: Jupiter house=5, aspects {5,9,11,1} — not 7.
+    // Move Jupiter so C3 doesn't fire: Jupiter house=5, aspects {5,9,11,1}  –  not 7.
     const chart1Clean = makePlanets([
       { id: 2, sign: 7, house: 7 },
       { id: 1, sign: 3, house: 3 },
@@ -352,7 +352,7 @@ describe('Matching Context — Mutual Manglik', () => {
       { id: 2, sign: 8, house: 8 },
       { id: 1, sign: 3, house: 3 },
       { id: 5, sign: 3, house: 3 },
-      { id: 4, sign: 5, house: 5 }, // Jupiter house=5, aspects {5,9,11,1} — not 8
+      { id: 4, sign: 5, house: 5 }, // Jupiter house=5, aspects {5,9,11,1}  –  not 8
     ]);
     // ascSign=1 for both
 
@@ -379,7 +379,7 @@ describe('Matching Context — Mutual Manglik', () => {
 
     // Chart 2: Mars NOT in Mangal house
     const chart2 = makePlanets([
-      { id: 2, sign: 3, house: 3 }, // Mars house 3 — not Mangal from lagna=1
+      { id: 2, sign: 3, house: 3 }, // Mars house 3  –  not Mangal from lagna=1
       { id: 1, sign: 1, house: 1 }, // Moon sign=1: houseFrom(1,3)=3 → not Mangal
       { id: 5, sign: 1, house: 1 }, // Venus sign=1: houseFrom(1,3)=3 → not Mangal
     ]);

@@ -14,7 +14,7 @@ const L = (en: string, hi: string, ta?: string, bn?: string) => ({ en, hi, ta: t
 
 const LABELS = {
   title: L('Muhurta Annual Calendar', 'मुहूर्त वार्षिक पंचांग', 'முகூர்த்த ஆண்டு நாள்காட்டி', 'মুহূর্ত বার্ষিক পঞ্জিকা'),
-  subtitle: L('Color-coded auspicious days by activity — full year at a glance', 'गतिविधि अनुसार शुभ दिन — पूरे वर्ष की एक नज़र', 'செயல்பாட்டின்படி சுப நாட்கள் — முழு ஆண்டு ஒரு பார்வையில்', 'কার্যকলাপ অনুযায়ী শুভ দিন — পুরো বছর এক নজরে'),
+  subtitle: L('Color-coded auspicious days by activity  –  full year at a glance', 'गतिविधि अनुसार शुभ दिन  –  पूरे वर्ष की एक नज़र', 'செயல்பாட்டின்படி சுப நாட்கள்  –  முழு ஆண்டு ஒரு பார்வையில்', 'কার্যকলাপ অনুযায়ী শুভ দিন  –  পুরো বছর এক নজরে'),
   activity: L('Activity', 'गतिविधि', 'செயல்பாடு', 'কার্যকলাপ'),
   back: L('Muhurta AI', 'मुहूर्त AI', 'முகூர்த்த AI', 'মুহূর্ত AI'),
   legend: L('Legend', 'संकेत', 'குறியீடு', 'চিহ্ন'),
@@ -158,7 +158,7 @@ export default function MuhurtaAnnualPage() {
         <span className="flex items-center gap-1"><span className={`w-3 h-3 rounded-sm ${qualityDot('acceptable')}`} />{t(LABELS.acceptable)}</span>
       </div>
 
-      {/* 12-month grid — 3 columns on desktop, 2 on tablet, 1 on mobile */}
+      {/* 12-month grid  –  3 columns on desktop, 2 on tablet, 1 on mobile */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {months.map(m => (
           <div key={m.month} className="rounded-xl border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-3">

@@ -45,9 +45,9 @@ export const VASANT_PANCHAMI_PUJA: PujaVidhi = {
       step: 1,
       title: { en: 'Wear Yellow & Preparation', hi: 'पीला पहनें एवं तैयारी', sa: 'पीतवस्त्रधारणं सज्जता च' },
       description: {
-        en: 'Wake early, bathe, and wear yellow clothes — yellow represents the mustard fields blooming in spring and is Saraswati\'s auspicious colour for Vasant Panchami. Clean the puja area and spread a white cloth on the platform.',
-        hi: 'जल्दी उठकर स्नान करें और पीले कपड़े पहनें — पीला रंग वसन्त में खिलते सरसों के खेतों का प्रतीक है और वसन्त पंचमी पर सरस्वती का शुभ रंग है। पूजा स्थल को साफ कर चौकी पर श्वेत कपड़ा बिछाएँ।',
-        sa: 'प्रातः उत्थाय स्नात्वा पीतवस्त्राणि धारयेत् — पीतवर्णः वसन्ते प्रफुल्लसर्षपक्षेत्राणां प्रतीकः वसन्तपञ्चम्यां सरस्वत्याः शुभवर्णः च। पूजास्थलं शोधयित्वा वेदिकायां श्वेतवस्त्रं विस्तारयेत्।',
+        en: 'Wake early, bathe, and wear yellow clothes  –  yellow represents the mustard fields blooming in spring and is Saraswati\'s auspicious colour for Vasant Panchami. Clean the puja area and spread a white cloth on the platform.',
+        hi: 'जल्दी उठकर स्नान करें और पीले कपड़े पहनें  –  पीला रंग वसन्त में खिलते सरसों के खेतों का प्रतीक है और वसन्त पंचमी पर सरस्वती का शुभ रंग है। पूजा स्थल को साफ कर चौकी पर श्वेत कपड़ा बिछाएँ।',
+        sa: 'प्रातः उत्थाय स्नात्वा पीतवस्त्राणि धारयेत्  –  पीतवर्णः वसन्ते प्रफुल्लसर्षपक्षेत्राणां प्रतीकः वसन्तपञ्चम्यां सरस्वत्याः शुभवर्णः च। पूजास्थलं शोधयित्वा वेदिकायां श्वेतवस्त्रं विस्तारयेत्।',
       },
       duration: '10 min',
       essential: true,
@@ -57,9 +57,9 @@ export const VASANT_PANCHAMI_PUJA: PujaVidhi = {
       step: 2,
       title: { en: 'Saraswati Altar Setup', hi: 'सरस्वती वेदी स्थापना', sa: 'सरस्वतीवेदिकास्थापनम्' },
       description: {
-        en: 'Place the Saraswati idol/image on the white cloth facing East. Place books, writing instruments, and musical instruments before the idol — these will be blessed by the goddess. Arrange yellow and white flowers around the altar.',
-        hi: 'श्वेत कपड़े पर सरस्वती मूर्ति/चित्र पूर्वमुखी रखें। मूर्ति के सामने पुस्तकें, लेखन सामग्री और वाद्ययन्त्र रखें — ये देवी द्वारा आशीर्वादित होंगे। वेदी के चारों ओर पीले और सफेद फूल सजाएँ।',
-        sa: 'श्वेतवस्त्रोपरि सरस्वतीमूर्तिं पूर्वाभिमुखीं स्थापयेत्। मूर्तेः पुरतः पुस्तकानि लेखनसामग्रीं वाद्ययन्त्राणि च स्थापयेत् — एतानि देव्या आशीर्वादितानि भविष्यन्ति। वेदिकायाः परितः पीतश्वेतपुष्पाणि सज्जयेत्।',
+        en: 'Place the Saraswati idol/image on the white cloth facing East. Place books, writing instruments, and musical instruments before the idol  –  these will be blessed by the goddess. Arrange yellow and white flowers around the altar.',
+        hi: 'श्वेत कपड़े पर सरस्वती मूर्ति/चित्र पूर्वमुखी रखें। मूर्ति के सामने पुस्तकें, लेखन सामग्री और वाद्ययन्त्र रखें  –  ये देवी द्वारा आशीर्वादित होंगे। वेदी के चारों ओर पीले और सफेद फूल सजाएँ।',
+        sa: 'श्वेतवस्त्रोपरि सरस्वतीमूर्तिं पूर्वाभिमुखीं स्थापयेत्। मूर्तेः पुरतः पुस्तकानि लेखनसामग्रीं वाद्ययन्त्राणि च स्थापयेत्  –  एतानि देव्या आशीर्वादितानि भविष्यन्ति। वेदिकायाः परितः पीतश्वेतपुष्पाणि सज्जयेत्।',
       },
       duration: '10 min',
       essential: true,
@@ -83,7 +83,7 @@ export const VASANT_PANCHAMI_PUJA: PujaVidhi = {
       description: {
         en: 'Invoke Goddess Saraswati into the idol with folded hands while chanting the Saraswati Beej Mantra. Perform the sixteen-step worship (Shodashopachar): Avahana, Asana, Padya, Arghya, Achamaniya, Snana (with Panchamrit), Vastra, Yajnopavita, Gandha (sandalwood), Pushpa (white and yellow flowers), Dhupa, Deepa, Naivedya, Tambula, Dakshina, Pradakshina.',
         hi: 'सरस्वती बीज मन्त्र पढ़ते हुए हाथ जोड़कर मूर्ति में सरस्वती का आवाहन करें। षोडशोपचार पूजा करें: आवाहन, आसन, पाद्य, अर्घ्य, आचमनीय, स्नान (पंचामृत से), वस्त्र, यज्ञोपवीत, गन्ध (चन्दन), पुष्प (श्वेत और पीले फूल), धूप, दीप, नैवेद्य, ताम्बूल, दक्षिणा, प्रदक्षिणा।',
-        sa: 'सरस्वतीबीजमन्त्रं जपन् कृताञ्जलिपुटा मूर्तौ सरस्वत्या आवाहनं कुर्यात्। षोडशोपचारपूजनं कुर्यात् — आवाहनम्, आसनम्, पाद्यम्, अर्घ्यम्, आचमनीयम्, स्नानम् (पञ्चामृतेन), वस्त्रम्, यज्ञोपवीतम्, गन्धम् (चन्दनम्), पुष्पम् (श्वेतपीतपुष्पाणि), धूपम्, दीपम्, नैवेद्यम्, ताम्बूलम्, दक्षिणा, प्रदक्षिणा।',
+        sa: 'सरस्वतीबीजमन्त्रं जपन् कृताञ्जलिपुटा मूर्तौ सरस्वत्या आवाहनं कुर्यात्। षोडशोपचारपूजनं कुर्यात्  –  आवाहनम्, आसनम्, पाद्यम्, अर्घ्यम्, आचमनीयम्, स्नानम् (पञ्चामृतेन), वस्त्रम्, यज्ञोपवीतम्, गन्धम् (चन्दनम्), पुष्पम् (श्वेतपीतपुष्पाणि), धूपम्, दीपम्, नैवेद्यम्, ताम्बूलम्, दक्षिणा, प्रदक्षिणा।',
       },
       mantraRef: 'saraswati-beej',
       duration: '20 min',
@@ -180,9 +180,9 @@ export const VASANT_PANCHAMI_PUJA: PujaVidhi = {
       step: 12,
       title: { en: 'Prasad Distribution', hi: 'प्रसाद वितरण', sa: 'प्रसादवितरणम्' },
       description: {
-        en: 'Distribute the blessed prasad (yellow sweets, fruits) to all family members and visitors. Share the yellow rice as akshata prasad. Books and instruments placed before the deity are now blessed — they may be used from the next day.',
-        hi: 'सभी परिवारजनों और आगन्तुकों को आशीर्वादित प्रसाद (पीली मिठाई, फल) वितरित करें। पीले चावल अक्षत प्रसाद के रूप में बाँटें। देवी के सामने रखी पुस्तकें और वाद्ययन्त्र अब आशीर्वादित हैं — अगले दिन से उपयोग किए जा सकते हैं।',
-        sa: 'सर्वेभ्यः कुटुम्बिभ्यः आगन्तुकेभ्यश्च आशीर्वादितं प्रसादं (पीतमिष्टान्नानि फलानि) वितरेत्। पीताक्षतान् अक्षतप्रसादरूपेण वितरेत्। देव्याः पुरतः स्थापितानि पुस्तकानि वाद्ययन्त्राणि च आशीर्वादितानि — परेद्युः उपयोक्तव्यानि।',
+        en: 'Distribute the blessed prasad (yellow sweets, fruits) to all family members and visitors. Share the yellow rice as akshata prasad. Books and instruments placed before the deity are now blessed  –  they may be used from the next day.',
+        hi: 'सभी परिवारजनों और आगन्तुकों को आशीर्वादित प्रसाद (पीली मिठाई, फल) वितरित करें। पीले चावल अक्षत प्रसाद के रूप में बाँटें। देवी के सामने रखी पुस्तकें और वाद्ययन्त्र अब आशीर्वादित हैं  –  अगले दिन से उपयोग किए जा सकते हैं।',
+        sa: 'सर्वेभ्यः कुटुम्बिभ्यः आगन्तुकेभ्यश्च आशीर्वादितं प्रसादं (पीतमिष्टान्नानि फलानि) वितरेत्। पीताक्षतान् अक्षतप्रसादरूपेण वितरेत्। देव्याः पुरतः स्थापितानि पुस्तकानि वाद्ययन्त्राणि च आशीर्वादितानि  –  परेद्युः उपयोक्तव्यानि।',
       },
       duration: '5 min',
       essential: false,
@@ -197,15 +197,15 @@ export const VASANT_PANCHAMI_PUJA: PujaVidhi = {
       devanagari: 'ॐ ऐं सरस्वत्यै नमः',
       iast: 'oṃ aiṃ sarasvatyai namaḥ',
       meaning: {
-        en: 'Salutations to Goddess Saraswati through her seed syllable Aim — the primordial sound of knowledge and speech',
-        hi: 'ज्ञान और वाणी की आदि ध्वनि — बीजाक्षर ऐं — के माध्यम से देवी सरस्वती को नमन',
-        sa: 'ज्ञानवाक्प्रणवध्वनेः — बीजाक्षरस्य ऐं — माध्यमेन श्रीसरस्वत्यै नमः',
+        en: 'Salutations to Goddess Saraswati through her seed syllable Aim  –  the primordial sound of knowledge and speech',
+        hi: 'ज्ञान और वाणी की आदि ध्वनि  –  बीजाक्षर ऐं  –  के माध्यम से देवी सरस्वती को नमन',
+        sa: 'ज्ञानवाक्प्रणवध्वनेः  –  बीजाक्षरस्य ऐं  –  माध्यमेन श्रीसरस्वत्यै नमः',
       },
       japaCount: 108,
       usage: {
-        en: 'Primary beej mantra for Saraswati puja — chant 108 times during invocation and throughout the puja',
-        hi: 'सरस्वती पूजा का मुख्य बीज मन्त्र — आवाहन और पूजा भर में 108 बार जपें',
-        sa: 'सरस्वतीपूजायाः प्रधानबीजमन्त्रः — आवाहने पूजने च अष्टोत्तरशतवारं जपेत्',
+        en: 'Primary beej mantra for Saraswati puja  –  chant 108 times during invocation and throughout the puja',
+        hi: 'सरस्वती पूजा का मुख्य बीज मन्त्र  –  आवाहन और पूजा भर में 108 बार जपें',
+        sa: 'सरस्वतीपूजायाः प्रधानबीजमन्त्रः  –  आवाहने पूजने च अष्टोत्तरशतवारं जपेत्',
       },
     },
     {
@@ -231,14 +231,14 @@ export const VASANT_PANCHAMI_PUJA: PujaVidhi = {
       devanagari: 'या कुन्देन्दुतुषारहारधवला या शुभ्रवस्त्रावृता।\nया वीणावरदण्डमण्डितकरा या श्वेतपद्मासना॥\nया ब्रह्माच्युतशंकरप्रभृतिभिर्देवैः सदा पूजिता।\nसा मां पातु सरस्वती भगवती निःशेषजाड्यापहा॥',
       iast: 'yā kundendutuṣārahāradhavalā yā śubhravastrāvṛtā |\nyā vīṇāvaradaṇḍamaṇḍitakarā yā śvetapadmāsanā ||\nyā brahmācyutaśaṅkaraprabhṛtibhirdevaiḥ sadā pūjitā |\nsā māṃ pātu sarasvatī bhagavatī niḥśeṣajāḍyāpahā ||',
       meaning: {
-        en: 'She who is white as a jasmine flower, the moon, and a garland of snow; She who is draped in pure white garments; She whose hands are adorned with the veena and the boon-giving staff; She who is seated on a white lotus; She who is ever worshipped by Brahma, Vishnu, Shankara, and all the gods — may that Goddess Saraswati, the remover of all ignorance, protect me.',
-        hi: 'जो कुन्द के फूल, चन्द्रमा और हिमहार के समान श्वेत हैं; जो शुभ्र वस्त्र धारण किए हैं; जिनके हाथ वीणा और वरदण्ड से सुशोभित हैं; जो श्वेत कमल पर आसीन हैं; जिनकी ब्रह्मा, विष्णु, शंकर आदि देवता सदा पूजा करते हैं — वे सम्पूर्ण जड़ता (अज्ञान) को दूर करने वाली भगवती सरस्वती मेरी रक्षा करें।',
+        en: 'She who is white as a jasmine flower, the moon, and a garland of snow; She who is draped in pure white garments; She whose hands are adorned with the veena and the boon-giving staff; She who is seated on a white lotus; She who is ever worshipped by Brahma, Vishnu, Shankara, and all the gods  –  may that Goddess Saraswati, the remover of all ignorance, protect me.',
+        hi: 'जो कुन्द के फूल, चन्द्रमा और हिमहार के समान श्वेत हैं; जो शुभ्र वस्त्र धारण किए हैं; जिनके हाथ वीणा और वरदण्ड से सुशोभित हैं; जो श्वेत कमल पर आसीन हैं; जिनकी ब्रह्मा, विष्णु, शंकर आदि देवता सदा पूजा करते हैं  –  वे सम्पूर्ण जड़ता (अज्ञान) को दूर करने वाली भगवती सरस्वती मेरी रक्षा करें।',
         sa: 'कुन्देन्दुतुषारहारवद् धवला शुभ्रवस्त्रावृता वीणावरदण्डमण्डितकरा श्वेतपद्मासना ब्रह्माच्युतशंकरप्रभृतिदेवैः सदा पूजिता सा भगवती सरस्वती निःशेषजाड्यापहा मां पातु।',
       },
       usage: {
-        en: 'The most famous Saraswati invocation — recite at the beginning and end of the puja',
-        hi: 'सबसे प्रसिद्ध सरस्वती आवाहन — पूजा के आरम्भ और अन्त में पढ़ें',
-        sa: 'प्रसिद्धतमं सरस्वत्यावाहनम् — पूजायाः आदौ अन्ते च पठेत्',
+        en: 'The most famous Saraswati invocation  –  recite at the beginning and end of the puja',
+        hi: 'सबसे प्रसिद्ध सरस्वती आवाहन  –  पूजा के आरम्भ और अन्त में पढ़ें',
+        sa: 'प्रसिद्धतमं सरस्वत्यावाहनम्  –  पूजायाः आदौ अन्ते च पठेत्',
       },
     },
     {
@@ -247,8 +247,8 @@ export const VASANT_PANCHAMI_PUJA: PujaVidhi = {
       devanagari: 'सरस्वती नमस्तुभ्यं वरदे कामरूपिणि।\nविद्यारम्भं करिष्यामि सिद्धिर्भवतु मे सदा॥',
       iast: 'sarasvatī namastubhyaṃ varade kāmarūpiṇi |\nvidyārambhaṃ kariṣyāmi siddhirbhavatu me sadā ||',
       meaning: {
-        en: 'O Saraswati, salutations to you, O bestower of boons, O one who takes any form desired. I am beginning my studies — may I always attain success.',
-        hi: 'हे सरस्वती, आपको नमन, हे वरदायिनी, हे कामरूपिणी। मैं विद्या आरम्भ कर रहा/रही हूँ — मुझे सदा सिद्धि प्राप्त हो।',
+        en: 'O Saraswati, salutations to you, O bestower of boons, O one who takes any form desired. I am beginning my studies  –  may I always attain success.',
+        hi: 'हे सरस्वती, आपको नमन, हे वरदायिनी, हे कामरूपिणी। मैं विद्या आरम्भ कर रहा/रही हूँ  –  मुझे सदा सिद्धि प्राप्त हो।',
         sa: 'हे सरस्वति, नमस्तुभ्यम् वरदे कामरूपिणि। विद्यारम्भं करिष्यामि मे सदा सिद्धिर्भवतु।',
       },
       usage: {
@@ -265,9 +265,9 @@ export const VASANT_PANCHAMI_PUJA: PujaVidhi = {
       verseCount: 12,
       duration: '8 min',
       note: {
-        en: 'A devotional hymn praising Saraswati\'s attributes — knowledge, music, arts, and eloquence.',
-        hi: 'सरस्वती के गुणों — ज्ञान, संगीत, कला और वाक्चातुर्य — की स्तुति का भक्ति स्तोत्र।',
-        sa: 'सरस्वत्याः गुणानां — ज्ञानसंगीतकलावाक्चातुर्यस्य — स्तुतिभक्तिस्तोत्रम्।',
+        en: 'A devotional hymn praising Saraswati\'s attributes  –  knowledge, music, arts, and eloquence.',
+        hi: 'सरस्वती के गुणों  –  ज्ञान, संगीत, कला और वाक्चातुर्य  –  की स्तुति का भक्ति स्तोत्र।',
+        sa: 'सरस्वत्याः गुणानां  –  ज्ञानसंगीतकलावाक्चातुर्यस्य  –  स्तुतिभक्तिस्तोत्रम्।',
       },
     },
     {
@@ -298,24 +298,24 @@ export const VASANT_PANCHAMI_PUJA: PujaVidhi = {
 
   precautions: [
     {
-      en: 'Wear only yellow or white clothes on Vasant Panchami — avoid dark or black colours',
-      hi: 'वसन्त पंचमी पर केवल पीले या सफेद कपड़े पहनें — गहरे या काले रंग से बचें',
-      sa: 'वसन्तपञ्चम्यां पीतानि श्वेतानि वा वस्त्राणि एव धारयेत् — कृष्णगहनवर्णान् वर्जयेत्',
+      en: 'Wear only yellow or white clothes on Vasant Panchami  –  avoid dark or black colours',
+      hi: 'वसन्त पंचमी पर केवल पीले या सफेद कपड़े पहनें  –  गहरे या काले रंग से बचें',
+      sa: 'वसन्तपञ्चम्यां पीतानि श्वेतानि वा वस्त्राणि एव धारयेत्  –  कृष्णगहनवर्णान् वर्जयेत्',
     },
     {
-      en: 'Do not study new subjects or start new learning until the puja is complete — begin studies only after receiving Saraswati\'s blessings',
-      hi: 'पूजा पूर्ण होने तक नए विषय न पढ़ें या नई शिक्षा शुरू न करें — सरस्वती का आशीर्वाद मिलने के बाद ही अध्ययन आरम्भ करें',
-      sa: 'पूजासमाप्तेः पूर्वं नवविषयान् न पठेत् नवशिक्षां न आरभेत् — सरस्वत्याः आशीर्वादप्राप्त्यनन्तरमेव अध्ययनम् आरभेत्',
+      en: 'Do not study new subjects or start new learning until the puja is complete  –  begin studies only after receiving Saraswati\'s blessings',
+      hi: 'पूजा पूर्ण होने तक नए विषय न पढ़ें या नई शिक्षा शुरू न करें  –  सरस्वती का आशीर्वाद मिलने के बाद ही अध्ययन आरम्भ करें',
+      sa: 'पूजासमाप्तेः पूर्वं नवविषयान् न पठेत् नवशिक्षां न आरभेत्  –  सरस्वत्याः आशीर्वादप्राप्त्यनन्तरमेव अध्ययनम् आरभेत्',
     },
     {
-      en: 'Books and instruments placed before Saraswati should not be read or used on puja day — they are being sanctified. Resume use from the next day.',
-      hi: 'सरस्वती के सामने रखी पुस्तकें और वाद्ययन्त्र पूजा के दिन न पढ़ें या उपयोग करें — वे पवित्र किए जा रहे हैं। अगले दिन से उपयोग करें।',
-      sa: 'सरस्वत्याः पुरतः स्थापितानि पुस्तकानि वाद्ययन्त्राणि च पूजादिने न पठेत् न उपयोजयेत् — तानि संस्क्रियन्ते। परेद्युः उपयोगम् आरभेत्।',
+      en: 'Books and instruments placed before Saraswati should not be read or used on puja day  –  they are being sanctified. Resume use from the next day.',
+      hi: 'सरस्वती के सामने रखी पुस्तकें और वाद्ययन्त्र पूजा के दिन न पढ़ें या उपयोग करें  –  वे पवित्र किए जा रहे हैं। अगले दिन से उपयोग करें।',
+      sa: 'सरस्वत्याः पुरतः स्थापितानि पुस्तकानि वाद्ययन्त्राणि च पूजादिने न पठेत् न उपयोजयेत्  –  तानि संस्क्रियन्ते। परेद्युः उपयोगम् आरभेत्।',
     },
     {
-      en: 'Do not eat non-vegetarian food or consume alcohol on this day — maintain purity of body and mind',
-      hi: 'इस दिन माँसाहार न करें और मद्यपान न करें — शरीर और मन की शुद्धता बनाए रखें',
-      sa: 'अस्मिन् दिने मांसं न भक्षयेत् मद्यं न पिबेत् — शरीरमनसोः शुद्धिं पालयेत्',
+      en: 'Do not eat non-vegetarian food or consume alcohol on this day  –  maintain purity of body and mind',
+      hi: 'इस दिन माँसाहार न करें और मद्यपान न करें  –  शरीर और मन की शुद्धता बनाए रखें',
+      sa: 'अस्मिन् दिने मांसं न भक्षयेत् मद्यं न पिबेत्  –  शरीरमनसोः शुद्धिं पालयेत्',
     },
   ],
 

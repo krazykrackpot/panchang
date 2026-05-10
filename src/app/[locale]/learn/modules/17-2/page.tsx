@@ -23,13 +23,13 @@ function Page1() {
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          Marriage Muhurta — The Most Complex Selection
+          Marriage Muhurta  –  The Most Complex Selection
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          Marriage (Vivah) Muhurta is considered the most complex Muhurta to select because it must satisfy the maximum number of conditions simultaneously. Unlike a business Muhurta (where a few good factors suffice), a marriage Muhurta must check nakshatra suitability, tithi quality, karana, yoga, lagna strength, planetary positions (especially Venus and Jupiter), and seasonal restrictions — all at once.
+          Marriage (Vivah) Muhurta is considered the most complex Muhurta to select because it must satisfy the maximum number of conditions simultaneously. Unlike a business Muhurta (where a few good factors suffice), a marriage Muhurta must check nakshatra suitability, tithi quality, karana, yoga, lagna strength, planetary positions (especially Venus and Jupiter), and seasonal restrictions  –  all at once.
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          The preferred nakshatras for marriage are those classified as Dhruva (fixed, stable) or Mridu (soft, gentle): Rohini, Mrigashira, Uttara Phalguni, Hasta, Swati, Anuradha, Uttara Ashadha, Uttarabhadrapada, and Revati. These nakshatras confer stability, gentleness, and growth — qualities essential for a lasting marriage.
+          The preferred nakshatras for marriage are those classified as Dhruva (fixed, stable) or Mridu (soft, gentle): Rohini, Mrigashira, Uttara Phalguni, Hasta, Swati, Anuradha, Uttara Ashadha, Uttarabhadrapada, and Revati. These nakshatras confer stability, gentleness, and growth  –  qualities essential for a lasting marriage.
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
           Absolutely avoided: Vishti (Bhadra) karana, Rikta tithis (4th, 9th, 14th), Vyatipata/Vaidhriti yoga, Rahu Kaal during the ceremony. The wedding ceremony (particularly the Saptapadi/seven steps) should ideally occur during the auspicious window, not just the reception or formal registration.
@@ -46,14 +46,14 @@ function Page1() {
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
           <div className="space-y-2 text-text-secondary text-xs">
             <p><span className="text-gold-light font-medium">Dwitiya (2nd):</span> Ruled by Brahma. Fresh beginning energy, ideal for launching a new chapter of life.</p>
-            <p><span className="text-gold-light font-medium">Tritiya (3rd):</span> Ruled by Vishnu. Balance and growth. Associated with Akshaya Tritiya — the &quot;imperishable&quot; tithi.</p>
+            <p><span className="text-gold-light font-medium">Tritiya (3rd):</span> Ruled by Vishnu. Balance and growth. Associated with Akshaya Tritiya  –  the &quot;imperishable&quot; tithi.</p>
             <p><span className="text-gold-light font-medium">Panchami (5th):</span> Ruled by the Moon. Intelligence and creativity. Blesses the couple with wise children.</p>
             <p><span className="text-gold-light font-medium">Saptami (7th):</span> Ruled by the Sun. Vitality and energy. The Sun&apos;s strength supports a vibrant partnership.</p>
             <p><span className="text-gold-light font-medium">Dashami (10th):</span> Ruled by Dharma. Prosperity and right action. Strong foundation for a dharmic union.</p>
-            <p><span className="text-gold-light font-medium">Ekadashi (11th):</span> Ruled by Rudra. Spiritual depth. Considered highly sacred — but the Dwi-tithi rule applies.</p>
+            <p><span className="text-gold-light font-medium">Ekadashi (11th):</span> Ruled by Rudra. Spiritual depth. Considered highly sacred  –  but the Dwi-tithi rule applies.</p>
             <p><span className="text-gold-light font-medium">Trayodashi (13th):</span> Ruled by Kamadeva (god of desire). Blesses romantic harmony and attraction.</p>
           </div>
-          <p className="text-red-400 text-xs mt-3"><span className="font-medium">Avoided:</span> Chaturthi (4th), Navami (9th), Chaturdashi (14th) — these are Rikta (empty) tithis associated with Yama and destructive energy. Amavasya and Purnima are also typically avoided for marriage.</p>
+          <p className="text-red-400 text-xs mt-3"><span className="font-medium">Avoided:</span> Chaturthi (4th), Navami (9th), Chaturdashi (14th)  –  these are Rikta (empty) tithis associated with Yama and destructive energy. Amavasya and Purnima are also typically avoided for marriage.</p>
         </div>
       </section>
 
@@ -76,9 +76,9 @@ function Page1() {
           Beyond individual tithi/nakshatra checks, several conditions are absolute prohibitions:
         </p>
         <div className="space-y-2 text-text-secondary text-xs">
-          <p><span className="text-red-400 font-medium">Bhadra/Vishti Karana:</span> Occurs 7 times per lunar month. Any ceremony during Vishti is inauspicious — check the exact Vishti start and end time.</p>
+          <p><span className="text-red-400 font-medium">Bhadra/Vishti Karana:</span> Occurs 7 times per lunar month. Any ceremony during Vishti is inauspicious  –  check the exact Vishti start and end time.</p>
           <p><span className="text-red-400 font-medium">Rahu Kaal:</span> Approximately 1.5 hours daily ruled by Rahu. The Saptapadi must NOT fall within Rahu Kaal.</p>
-          <p><span className="text-red-400 font-medium">Venus Combustion:</span> When Venus is within ~10 degrees of the Sun (8 degrees if retrograde), it is combust. Venus is the karaka of marriage — combustion severely weakens marital harmony.</p>
+          <p><span className="text-red-400 font-medium">Venus Combustion:</span> When Venus is within ~10 degrees of the Sun (8 degrees if retrograde), it is combust. Venus is the karaka of marriage  –  combustion severely weakens marital harmony.</p>
           <p><span className="text-red-400 font-medium">Jupiter Combustion:</span> Jupiter blesses the marriage with wisdom and dharma. Its combustion removes this protection.</p>
           <p><span className="text-red-400 font-medium">Vyatipata/Vaidhriti Yoga:</span> These two inauspicious yogas from the Panchang are avoided for all auspicious activities.</p>
         </div>
@@ -97,13 +97,13 @@ function Page2() {
           Lagna and Planetary Requirements
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          The lagna (ascendant) of the marriage Muhurta chart is its backbone. The 2nd, 7th, or 11th house lagnas are ideal: 2nd for family and wealth, 7th for the partnership itself, 11th for the fulfilment of desires. The 7th lord in the Muhurta chart should be strong — not debilitated, combust, or in a dusthana (6th, 8th, 12th).
+          The lagna (ascendant) of the marriage Muhurta chart is its backbone. The 2nd, 7th, or 11th house lagnas are ideal: 2nd for family and wealth, 7th for the partnership itself, 11th for the fulfilment of desires. The 7th lord in the Muhurta chart should be strong  –  not debilitated, combust, or in a dusthana (6th, 8th, 12th).
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          Venus is the karaka (significator) of marriage and must NOT be combust — meaning it should not be within approximately 10 degrees of the Sun. Combust Venus signifies weakened love, harmony, and attraction. Jupiter aspecting the lagna or 7th house is highly beneficial, bringing blessings, wisdom, and dharmic conduct to the marriage. Benefic planets in kendras (1st, 4th, 7th, 10th) strengthen the overall chart.
+          Venus is the karaka (significator) of marriage and must NOT be combust  –  meaning it should not be within approximately 10 degrees of the Sun. Combust Venus signifies weakened love, harmony, and attraction. Jupiter aspecting the lagna or 7th house is highly beneficial, bringing blessings, wisdom, and dharmic conduct to the marriage. Benefic planets in kendras (1st, 4th, 7th, 10th) strengthen the overall chart.
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
-          The Moon should be waxing (Shukla Paksha preferred) for emotional growth and happiness. No malefic in the 8th house — Saturn, Mars, Rahu, or Ketu there indicates hidden challenges, secrets, or threats to the marriage&rsquo;s longevity. Eclipses should not have occurred within the preceding 7 days.
+          The Moon should be waxing (Shukla Paksha preferred) for emotional growth and happiness. No malefic in the 8th house  –  Saturn, Mars, Rahu, or Ketu there indicates hidden challenges, secrets, or threats to the marriage&rsquo;s longevity. Eclipses should not have occurred within the preceding 7 days.
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
@@ -128,18 +128,18 @@ function Page3() {
           Seasonal Restrictions and Regional Variations
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          Several periods are universally prohibited for marriage: Pitru Paksha (the fortnight of ancestor worship in Bhadrapada/Ashwin), during or within 7 days of a solar or lunar eclipse, and generally during Amavasya (new moon). Chaturmas — the four months of Vishnu&rsquo;s cosmic sleep from Devshayani Ekadashi to Prabodhini Ekadashi (roughly July-November) — restricts marriages in many traditions, though this varies regionally.
+          Several periods are universally prohibited for marriage: Pitru Paksha (the fortnight of ancestor worship in Bhadrapada/Ashwin), during or within 7 days of a solar or lunar eclipse, and generally during Amavasya (new moon). Chaturmas  –  the four months of Vishnu&rsquo;s cosmic sleep from Devshayani Ekadashi to Prabodhini Ekadashi (roughly July-November)  –  restricts marriages in many traditions, though this varies regionally.
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           The most significant regional difference concerns Adhika Masa (the intercalary month occurring about every 32-33 months). North Indian traditions generally prohibit marriages during Adhika Masa, while some South Indian traditions, particularly in Tamil Nadu and Karnataka, may permit them. The Kshaya Masa (rare dropped month) is universally prohibited for all auspicious activities.
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
-          The pandit&rsquo;s role in finalizing the exact lagna is crucial. Even after the family identifies a suitable date based on Panchang elements and seasonal restrictions, the pandit selects the precise 2-hour lagna window within that day. This fine-tuning — considering the lagna chart, hora, and the couple&rsquo;s individual charts — is the final and most personalized step of Muhurta selection.
+          The pandit&rsquo;s role in finalizing the exact lagna is crucial. Even after the family identifies a suitable date based on Panchang elements and seasonal restrictions, the pandit selects the precise 2-hour lagna window within that day. This fine-tuning  –  considering the lagna chart, hora, and the couple&rsquo;s individual charts  –  is the final and most personalized step of Muhurta selection.
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Restricted Periods</h4>
-        <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Pitru Paksha:</span> Krishna Paksha of Bhadrapada — devoted to ancestors. No auspicious work.</p>
+        <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Pitru Paksha:</span> Krishna Paksha of Bhadrapada  –  devoted to ancestors. No auspicious work.</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Eclipses:</span> Avoid marriage within 7 days before or after any eclipse.</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Chaturmas:</span> July-November (varies by tradition). Some regions strictly prohibit, others are flexible.</p>
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Adhika Masa:</span> North India generally prohibits; South India varies. Consult family pandit.</p>
@@ -150,26 +150,26 @@ function Page3() {
           Chaturmas, Kharmas, and Seasonal Restrictions
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          <strong className="text-gold-light">Chaturmas</strong> (four months from Devshayani to Prabodhini Ekadashi, roughly July-November) restricts marriages in many North Indian traditions. Lord Vishnu is considered asleep during this period. However, enforcement varies — Shaiva traditions and some South Indian communities are more flexible.
+          <strong className="text-gold-light">Chaturmas</strong> (four months from Devshayani to Prabodhini Ekadashi, roughly July-November) restricts marriages in many North Indian traditions. Lord Vishnu is considered asleep during this period. However, enforcement varies  –  Shaiva traditions and some South Indian communities are more flexible.
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           <strong className="text-gold-light">Kharmas (Mal Masa)</strong> occurs when the Sun transits Sagittarius or Pisces (roughly mid-December to mid-January, and mid-March to mid-April). Many traditions avoid marriages during Kharmas because the Sun is considered weak in these periods.
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          <strong className="text-gold-light">The role of Lagna in marriage Muhurta:</strong> Fixed signs (Taurus, Leo, Scorpio, Aquarius) are strongly preferred for the marriage Lagna because they represent stability and permanence — qualities essential for a lasting union. Movable signs (Aries, Cancer, Libra, Capricorn) are acceptable but less ideal. Dual signs (Gemini, Virgo, Sagittarius, Pisces) are generally avoided as they suggest instability or a second marriage.
+          <strong className="text-gold-light">The role of Lagna in marriage Muhurta:</strong> Fixed signs (Taurus, Leo, Scorpio, Aquarius) are strongly preferred for the marriage Lagna because they represent stability and permanence  –  qualities essential for a lasting union. Movable signs (Aries, Cancer, Libra, Capricorn) are acceptable but less ideal. Dual signs (Gemini, Virgo, Sagittarius, Pisces) are generally avoided as they suggest instability or a second marriage.
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">The Pandit&rsquo;s Final Step</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
-          Our Muhurta AI tool identifies candidate dates and time windows that satisfy the Panchang, planetary, and seasonal requirements. But the final selection — especially for marriage — traditionally involves a pandit who considers the specific couple&rsquo;s charts, family traditions, and regional customs. The tool narrows hundreds of potential times to a shortlist; the pandit makes the final human judgment.
+          Our Muhurta AI tool identifies candidate dates and time windows that satisfy the Panchang, planetary, and seasonal requirements. But the final selection  –  especially for marriage  –  traditionally involves a pandit who considers the specific couple&rsquo;s charts, family traditions, and regional customs. The tool narrows hundreds of potential times to a shortlist; the pandit makes the final human judgment.
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
-        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Example — Evaluating a Date</h4>
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Example  –  Evaluating a Date</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
-          <span className="text-gold-light font-medium">Scenario:</span> A family proposes February 15, 2027 for a wedding. Step 1: Check the nakshatra — Uttara Phalguni (excellent for marriage, Dhruva type). Step 2: Check the tithi — Shukla Dashami (good, not Rikta). Step 3: Check the karana — not Vishti. Step 4: Check Chaturmas — February is outside Chaturmas. Step 5: Check Venus combustion — Venus is 30 degrees from Sun (safe). Step 6: Check the Muhurta chart lagna — if the ceremony is at 10 AM, the lagna is in the 7th sign from the bride&rsquo;s Moon (ideal). Score: 78/100.
+          <span className="text-gold-light font-medium">Scenario:</span> A family proposes February 15, 2027 for a wedding. Step 1: Check the nakshatra  –  Uttara Phalguni (excellent for marriage, Dhruva type). Step 2: Check the tithi  –  Shukla Dashami (good, not Rikta). Step 3: Check the karana  –  not Vishti. Step 4: Check Chaturmas  –  February is outside Chaturmas. Step 5: Check Venus combustion  –  Venus is 30 degrees from Sun (safe). Step 6: Check the Muhurta chart lagna  –  if the ceremony is at 10 AM, the lagna is in the 7th sign from the bride&rsquo;s Moon (ideal). Score: 78/100.
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">

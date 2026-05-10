@@ -280,7 +280,7 @@ export default function TransitArticlePage() {
           className="bg-amber-500/6 border border-amber-500/20 rounded-2xl p-5 mb-10"
         >
           <h3 className="text-sm font-bold text-amber-400 mb-2" style={headingFont}>
-            {locale === 'hi' ? 'वक्री गुरु — ध्यान दें' : 'Retrograde Period — What to Know'}
+            {locale === 'hi' ? 'वक्री गुरु  –  ध्यान दें' : 'Retrograde Period  –  What to Know'}
           </h3>
           <p className="text-xs text-text-primary/70 leading-relaxed" style={bodyFont}>
             {article.retrogradeNote}

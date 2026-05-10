@@ -27,7 +27,7 @@ function Page1() {
     <div className="space-y-6">
       <KeyTakeaway
         points={[
-          'Each nakshatra has a dasha lord from the Vimshottari cycle: Ketu, Venus, Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury — repeating 3 times across 27 nakshatras.',
+          'Each nakshatra has a dasha lord from the Vimshottari cycle: Ketu, Venus, Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury  –  repeating 3 times across 27 nakshatras.',
           'Your birth nakshatra determines which Mahadasha is active at birth and the entire 120-year dasha sequence.',
           'The Moon\'s exact position within the nakshatra determines how much of the initial dasha remains at birth.',
         ]}
@@ -36,7 +36,7 @@ function Page1() {
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>{isHi ? 'विंशोत्तरी नक्षत्र-स्वामी सारणी' : 'Vimshottari Nakshatra-Lord Mapping Table'}</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          The 9 planets cycle in a fixed order across all 27 nakshatras. This table is the foundation of the Vimshottari dasha system — the most widely used predictive timing tool in Vedic astrology.
+          The 9 planets cycle in a fixed order across all 27 nakshatras. This table is the foundation of the Vimshottari dasha system  –  the most widely used predictive timing tool in Vedic astrology.
         </p>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 overflow-x-auto">
           <table className="w-full text-xs">
@@ -90,21 +90,21 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Example — Complete Dasha Calculation</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Example  –  Complete Dasha Calculation</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Given:</span> Birth Moon at 167.3° sidereal longitude.
         </p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
-          <span className="text-gold-light font-medium">Step 1 — Find nakshatra:</span> 167.3° / 13.333° = 12.55. Floor(12.55) = 12 (0-indexed). The 13th nakshatra (1-indexed) is Hasta. Lord = Moon (4th in the cycle: Ke=1, Ve=2, Su=3, Mo=4).
+          <span className="text-gold-light font-medium">Step 1  –  Find nakshatra:</span> 167.3° / 13.333° = 12.55. Floor(12.55) = 12 (0-indexed). The 13th nakshatra (1-indexed) is Hasta. Lord = Moon (4th in the cycle: Ke=1, Ve=2, Su=3, Mo=4).
         </p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
-          <span className="text-gold-light font-medium">Step 2 — Position within nakshatra:</span> Hasta starts at 160° (12 x 13.333°). Position = 167.3° - 160° = 7.3°. Fraction elapsed = 7.3 / 13.333 = 0.5475 = 54.75%.
+          <span className="text-gold-light font-medium">Step 2  –  Position within nakshatra:</span> Hasta starts at 160° (12 x 13.333°). Position = 167.3° - 160° = 7.3°. Fraction elapsed = 7.3 / 13.333 = 0.5475 = 54.75%.
         </p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
-          <span className="text-gold-light font-medium">Step 3 — Remaining dasha:</span> Moon dasha total = 10 years. Remaining = 10 x (1 - 0.5475) = 10 x 0.4525 = 4.525 years = 4 years, 6 months, 9 days.
+          <span className="text-gold-light font-medium">Step 3  –  Remaining dasha:</span> Moon dasha total = 10 years. Remaining = 10 x (1 - 0.5475) = 10 x 0.4525 = 4.525 years = 4 years, 6 months, 9 days.
         </p>
         <p className="text-text-secondary text-xs leading-relaxed">
-          <span className="text-gold-light font-medium">Step 4 — Full life sequence:</span> Moon (4y 6m 9d remaining) then Mars (7y), Rahu (18y), Jupiter (16y), Saturn (19y), Mercury (17y), Ketu (7y), Venus (20y), Sun (6y). The sequence always follows the fixed Vimshottari order, picking up from the birth nakshatra&apos;s lord.
+          <span className="text-gold-light font-medium">Step 4  –  Full life sequence:</span> Moon (4y 6m 9d remaining) then Mars (7y), Rahu (18y), Jupiter (16y), Saturn (19y), Mercury (17y), Ketu (7y), Venus (20y), Sun (6y). The sequence always follows the fixed Vimshottari order, picking up from the birth nakshatra&apos;s lord.
         </p>
       </section>
       <QuickCheck
@@ -144,7 +144,7 @@ function Page3() {
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
-          <span className="text-gold-light font-medium">Misconception:</span> &quot;The dasha lord of your birth nakshatra is the most important planet in your chart.&quot; The birth dasha lord simply indicates which planetary period you&apos;re born into — it does not necessarily mean that planet is the chart&apos;s strongest. A person born in the last minutes of a nakshatra might have only days of that dasha remaining.
+          <span className="text-gold-light font-medium">Misconception:</span> &quot;The dasha lord of your birth nakshatra is the most important planet in your chart.&quot; The birth dasha lord simply indicates which planetary period you&apos;re born into  –  it does not necessarily mean that planet is the chart&apos;s strongest. A person born in the last minutes of a nakshatra might have only days of that dasha remaining.
         </p>
         <p className="text-text-secondary text-xs leading-relaxed">
           <span className="text-gold-light font-medium">Misconception:</span> &quot;Saturn Mahadasha (19 years) is always terrible.&quot; The quality of any dasha depends entirely on the planet&apos;s placement, dignity, aspects, and lordship in the individual birth chart. A well-placed Saturn can give tremendous career success during its 19-year period.
@@ -161,7 +161,7 @@ function Page3() {
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'विंशोत्तरी अनुक्रम याद रखने की विधि' : 'Memorising the Vimshottari Sequence'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
-          <span className="text-gold-light font-medium">Mnemonic:</span> &quot;Ke-Ve-Su-Mo-Ma-Ra-Ju-Sa-Me&quot; — Ketu, Venus, Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury. This 9-planet sequence repeats 3 times across the 27 nakshatras.
+          <span className="text-gold-light font-medium">Mnemonic:</span> &quot;Ke-Ve-Su-Mo-Ma-Ra-Ju-Sa-Me&quot;  –  Ketu, Venus, Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury. This 9-planet sequence repeats 3 times across the 27 nakshatras.
         </p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Year durations:</span> 7, 20, 6, 10, 7, 18, 16, 19, 17 = 120 years total. Notice Venus (20) and Saturn (19) get the longest periods; Sun (6) and Ketu/Mars (7 each) get the shortest.

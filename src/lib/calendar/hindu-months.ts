@@ -1,7 +1,7 @@
 import type { LocaleText } from '@/types/panchang';
 /**
  * Compute exact Hindu month start/end dates for a given Gregorian year.
- * Hindu months (Amant/Purnimant) are lunar — each begins on Amavasya (new moon)
+ * Hindu months (Amant/Purnimant) are lunar  –  each begins on Amavasya (new moon)
  * or Purnima (full moon). We scan for New Moons and map them to Masa names
  * based on the Sun's sidereal longitude at the time of the New Moon.
  *
@@ -44,7 +44,7 @@ const MASA_DATA: { en: string; hi: string; sa: string; ritu: LocaleText; ayana: 
  * Raw elongation (Moon - Sun, mod 360) runs 0→360 over a synodic month:
  *   0° = New Moon (conjunction)
  *   180° = Full Moon (opposition)
- * At New Moon the elongation wraps from ~350° back to ~10° — we detect that crossing.
+ * At New Moon the elongation wraps from ~350° back to ~10°  –  we detect that crossing.
  */
 function findNewMoons(year: number): { date: Date; jd: number }[] {
   const newMoons: { date: Date; jd: number }[] = [];
@@ -128,7 +128,7 @@ function findFullMoons(year: number): { date: Date; jd: number }[] {
 }
 
 /**
- * Compute Purnimant Hindu months — each runs from Purnima to Purnima.
+ * Compute Purnimant Hindu months  –  each runs from Purnima to Purnima.
  *
  * Naming: derived from the Sun's sidereal sign at the ENDING Full Moon.
  * The Full Moon is always opposite the Sun, so the Moon's nakshatra at
@@ -212,13 +212,13 @@ export function computePurnimantMonths(year: number): HinduMonth[] {
     let isAdhika = false;
 
     if (nijaNeeded >= 0) {
-      // This month is the nija (regular) after the Adhika — same name
+      // This month is the nija (regular) after the Adhika  –  same name
       masaIdx = nijaNeeded;
       // After nija, resume sequential naming from (nijaIdx + 1)
       sequentialIdx = (nijaNeeded + 1) % 12;
       nijaNeeded = -1;
     } else if (r.isAdhika) {
-      // This month is Adhika — name from the NM Sun sign
+      // This month is Adhika  –  name from the NM Sun sign
       masaIdx = r.adhikaMasaIdx >= 0 ? r.adhikaMasaIdx : getMasaFromSunSign(r.sankrantiSign);
       isAdhika = true;
       nijaNeeded = masaIdx; // next month must be nija with same name
@@ -256,7 +256,7 @@ export function computePurnimantMonths(year: number): HinduMonth[] {
 
 /**
  * Enforcement: verify Amant and Purnimant agree on the number of Adhika months.
- * Both systems view the same astronomical reality — if they disagree, there's a bug.
+ * Both systems view the same astronomical reality  –  if they disagree, there's a bug.
  */
 export function verifyMasaConsistency(year: number): { ok: boolean; message: string } {
   const amant = computeHinduMonths(year);
@@ -297,7 +297,7 @@ export function computeHinduMonths(year: number): HinduMonth[] {
     const { date: nextNmDate, jd: nextNmJD } = newMoons[i + 1];
 
     // Sun's sidereal sign at the EXACT New Moon moment (not noon on the date).
-    // Using the refined JD from binary search is critical — at boundary cases
+    // Using the refined JD from binary search is critical  –  at boundary cases
     // (e.g., Jun 15 2026), noon gives Gemini but the actual New Moon at 03:00 UT
     // has Sun still in Taurus. This difference determines Adhika month detection.
     const tropSun = sunLongitude(nmJD);

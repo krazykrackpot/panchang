@@ -1,5 +1,5 @@
 /**
- * POST /api/muhurta-scan — Unified muhurta scanner endpoint
+ * POST /api/muhurta-scan  –  Unified muhurta scanner endpoint
  *
  * Supports two resolution modes:
  * - "overview": 2-hour windows across a date range (for month heatmap)
@@ -64,7 +64,7 @@ function buildFactorVerdicts(
     factor: 'Tithi',
     value: `${ctx.tithiName} (${paksha})`,
     verdict: tithiInAvoid ? 'bad' : tithiInGood ? 'good' : 'neutral',
-    reason: tithiInAvoid ? 'Rikta tithi — avoided per MC Ch. 6'
+    reason: tithiInAvoid ? 'Rikta tithi  –  avoided per MC Ch. 6'
       : tithiInGood && ctx.paksha === 'shukla' ? 'Auspicious tithi in Shukla Paksha'
       : tithiInGood ? 'Auspicious tithi, but Krishna Paksha reduces strength'
       : 'Neutral tithi',
@@ -78,7 +78,7 @@ function buildFactorVerdicts(
     verdict: nakInGood ? 'good' : 'neutral',
     reason: nakInGood
       ? `Favourable for ${rules.id} per MC Ch. 6`
-      : 'Neutral nakshatra — not among the most auspicious',
+      : 'Neutral nakshatra  –  not among the most auspicious',
   });
 
   // 3. Yoga
@@ -97,7 +97,7 @@ function buildFactorVerdicts(
     factor: 'Karana',
     value: ctx.karanaName,
     verdict: w.breakdown.karana > 6 ? 'good' : w.breakdown.karana < 3 ? 'bad' : 'neutral',
-    reason: ctx.karanaName === 'Vishti' ? 'Vishti (Bhadra) — most inauspicious karana'
+    reason: ctx.karanaName === 'Vishti' ? 'Vishti (Bhadra)  –  most inauspicious karana'
       : w.breakdown.karana > 6 ? 'Favourable chara karana' : 'Neutral',
   });
 
@@ -108,7 +108,7 @@ function buildFactorVerdicts(
       value: `Score ${w.breakdown.lagna}/8`,
       verdict: w.breakdown.lagna >= 6 ? 'good' : w.breakdown.lagna <= 1 ? 'bad' : 'neutral',
       reason: w.breakdown.lagna >= 6
-        ? 'Excellent lagna per MC — "removes all other defects"'
+        ? 'Excellent lagna per MC  –  "removes all other defects"'
         : w.breakdown.lagna <= 1 ? 'Unfavourable lagna (Mars/Saturn-ruled)'
         : 'Acceptable lagna',
     });
@@ -137,7 +137,7 @@ function computeRestrictions(
   if (anySamskara) {
     const jdMid = dateToJD(year, month, 15, 12 - tz);
 
-    // Venus/Jupiter combustion — all samskaras except namakarana
+    // Venus/Jupiter combustion  –  all samskaras except namakarana
     const combust = checkVivahCombustion(jdMid);
     if (combust.vetoed) {
       for (const d of combust.details) {
@@ -150,69 +150,69 @@ function computeRestrictions(
         restrictions.push({
           type: 'combustion',
           label: {
-            en: `${d.planet} combust — ${severityEn}. Samskaras restricted (MC + Dharmasindhu).`,
-            hi: `${d.planet === 'Venus' ? 'शुक्र' : 'गुरु'} अस्त — ${severityHi}। संस्कार वर्जित (मुहूर्त चिन्तामणि + धर्मसिन्धु)।`,
+            en: `${d.planet} combust  –  ${severityEn}. Samskaras restricted (MC + Dharmasindhu).`,
+            hi: `${d.planet === 'Venus' ? 'शुक्र' : 'गुरु'} अस्त  –  ${severityHi}। संस्कार वर्जित (मुहूर्त चिन्तामणि + धर्मसिन्धु)।`,
           },
         });
       }
     }
 
-    // Adhika Masa — all samskaras except namakarana
+    // Adhika Masa  –  all samskaras except namakarana
     if (isAdhikaMasa(year, month, 15)) {
       restrictions.push({
         type: 'adhika_masa',
         label: {
-          en: 'Adhika Masa (intercalary month) — samskaras restricted (Dharmasindhu)',
-          hi: 'अधिक मास — संस्कार वर्जित (धर्मसिन्धु)',
+          en: 'Adhika Masa (intercalary month)  –  samskaras restricted (Dharmasindhu)',
+          hi: 'अधिक मास  –  संस्कार वर्जित (धर्मसिन्धु)',
         },
       });
     }
 
-    // Chaturmas — marriage/engagement/griha_pravesh/upanayana (NOT mundan)
+    // Chaturmas  –  marriage/engagement/griha_pravesh/upanayana (NOT mundan)
     if (FULL_CHECK_ACTIVITIES.has(activity) || PARTIAL_CHECK_ACTIVITIES.has(activity)) {
       const chaturmas = checkChaturmas(year, month, 15);
       if (chaturmas === 'full') {
         restrictions.push({
           type: 'chaturmas',
           label: {
-            en: 'Chaturmas (Harishayana period) — samskaras prohibited (Dharmasindhu)',
-            hi: 'चातुर्मास (हरिशयन काल) — संस्कार वर्जित (धर्मसिन्धु)',
+            en: 'Chaturmas (Harishayana period)  –  samskaras prohibited (Dharmasindhu)',
+            hi: 'चातुर्मास (हरिशयन काल)  –  संस्कार वर्जित (धर्मसिन्धु)',
           },
         });
       } else if (chaturmas === 'partial') {
         restrictions.push({
           type: 'chaturmas_partial',
           label: {
-            en: 'Chaturmas edge month — fewer auspicious days available',
-            hi: 'चातुर्मास सीमा मास — शुभ दिन सीमित',
+            en: 'Chaturmas edge month  –  fewer auspicious days available',
+            hi: 'चातुर्मास सीमा मास  –  शुभ दिन सीमित',
           },
         });
       }
     }
 
-    // Kharmas — full-check activities only (marriage/engagement/griha_pravesh)
+    // Kharmas  –  full-check activities only (marriage/engagement/griha_pravesh)
     if (FULL_CHECK_ACTIVITIES.has(activity) && isProhibitedSolarMonth(jdMid)) {
       restrictions.push({
         type: 'kharmas',
         label: {
-          en: 'Kharmas (Sun in Dhanu/Mina) — marriage restricted (Dharmasindhu)',
-          hi: 'खरमास (सूर्य धनु/मीन में) — विवाह वर्जित (धर्मसिन्धु)',
+          en: 'Kharmas (Sun in Dhanu/Mina)  –  marriage restricted (Dharmasindhu)',
+          hi: 'खरमास (सूर्य धनु/मीन में)  –  विवाह वर्जित (धर्मसिन्धु)',
         },
       });
     }
 
-    // Shishutva — full-check activities only
+    // Shishutva  –  full-check activities only
     if (FULL_CHECK_ACTIVITIES.has(activity) && checkShishutva(jdMid)) {
       restrictions.push({
         type: 'shishutva',
         label: {
-          en: 'Venus/Jupiter recently emerged from combustion (Shishutva) — influence still weak',
-          hi: 'शुक्र/गुरु अस्त से हाल ही में उदित (शिशुत्व) — प्रभाव अभी दुर्बल',
+          en: 'Venus/Jupiter recently emerged from combustion (Shishutva)  –  influence still weak',
+          hi: 'शुक्र/गुरु अस्त से हाल ही में उदित (शिशुत्व)  –  प्रभाव अभी दुर्बल',
         },
       });
     }
 
-    // Holashtak — full + partial check activities (not mundan, not namakarana)
+    // Holashtak  –  full + partial check activities (not mundan, not namakarana)
     if (FULL_CHECK_ACTIVITIES.has(activity) || PARTIAL_CHECK_ACTIVITIES.has(activity)) {
       const midMasa = getLunarMasaForDate(year, month, 15);
       if (midMasa) {
@@ -223,8 +223,8 @@ function computeRestrictions(
           restrictions.push({
             type: 'holashtak',
             label: {
-              en: 'Holashtak active (8 days before Holi) — samskaras traditionally avoided in North India',
-              hi: 'होलाष्टक सक्रिय (होली से पूर्व 8 दिन) — उत्तर भारत में संस्कार वर्जित',
+              en: 'Holashtak active (8 days before Holi)  –  samskaras traditionally avoided in North India',
+              hi: 'होलाष्टक सक्रिय (होली से पूर्व 8 दिन)  –  उत्तर भारत में संस्कार वर्जित',
             },
           });
         }
@@ -232,15 +232,15 @@ function computeRestrictions(
     }
   }
 
-  // Dakshinayana — mundan only
+  // Dakshinayana  –  mundan only
   if (activity === 'mundan') {
     const jdMidD = dateToJD(year, month, 15, 12 - tz);
     if (isDakshinayana(jdMidD)) {
       restrictions.push({
         type: 'dakshinayana',
         label: {
-          en: 'Dakshinayana (Sun\'s southern course) — Mundan requires Uttarayana (MC Chudakarana Prakarana)',
-          hi: 'दक्षिणायन — मुण्डन हेतु उत्तरायण आवश्यक (मुहूर्त चिन्तामणि)',
+          en: 'Dakshinayana (Sun\'s southern course)  –  Mundan requires Uttarayana (MC Chudakarana Prakarana)',
+          hi: 'दक्षिणायन  –  मुण्डन हेतु उत्तरायण आवश्यक (मुहूर्त चिन्तामणि)',
         },
       });
     }
@@ -330,7 +330,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // Resolve timezone offset — IANA name takes priority over numeric fallback.
+    // Resolve timezone offset  –  IANA name takes priority over numeric fallback.
     // getUTCOffsetForDate handles DST transitions correctly per-date.
     let tz = tzFallback;
     if (timezone) {
@@ -343,7 +343,7 @@ export async function POST(request: Request) {
     const scanStart = isDetail && detailDate ? detailDate : startDate;
     const scanEnd = isDetail && detailDate ? detailDate : endDate;
 
-    // ScanV2Window is a superset of HeatmapCell and DetailWindow — all fields
+    // ScanV2Window is a superset of HeatmapCell and DetailWindow  –  all fields
     // are present for both resolutions. The cast below is safe for serialization.
     const windows = scanDateRangeV2({
       startDate: scanStart,

@@ -50,7 +50,7 @@ const QUESTIONS: ModuleQuestion[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 1 — What Is Prashna Jyotish?                                  */
+/*  PAGE 1  –  What Is Prashna Jyotish?                                  */
 /* ------------------------------------------------------------------ */
 function Page1() {
   const locale = useModuleLocale();
@@ -63,13 +63,13 @@ function Page1() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>प्रश्न ज्योतिष (होरारी ज्योतिष) वैदिक ज्योतिष की वह शाखा है जिसमें जन्म कुण्डली के बजाय प्रश्न पूछने के सटीक क्षण की कुण्डली बनाई जाती है। जब जन्म समय अज्ञात हो, जब एक विशिष्ट प्रश्न का तत्काल उत्तर चाहिए, या जब कोई स्थिति इतनी तीव्र हो कि जन्म कुण्डली का विस्तृत विश्लेषण व्यावहारिक न हो — तब प्रश्न ज्योतिष का उपयोग होता है।</>
+            ? <>प्रश्न ज्योतिष (होरारी ज्योतिष) वैदिक ज्योतिष की वह शाखा है जिसमें जन्म कुण्डली के बजाय प्रश्न पूछने के सटीक क्षण की कुण्डली बनाई जाती है। जब जन्म समय अज्ञात हो, जब एक विशिष्ट प्रश्न का तत्काल उत्तर चाहिए, या जब कोई स्थिति इतनी तीव्र हो कि जन्म कुण्डली का विस्तृत विश्लेषण व्यावहारिक न हो  –  तब प्रश्न ज्योतिष का उपयोग होता है।</>
             : <>Prashna Jyotish (horary astrology) is the branch of Vedic astrology where a chart is cast for the exact moment a question is sincerely asked, rather than for the time of birth. It is used when birth time is unknown, when a specific question demands an immediate answer, or when a situation is so acute that a detailed natal analysis is impractical. The core principle: the cosmos at the moment of a genuine question contains the answer within it.</>}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
-            ? <>प्रश्न ज्योतिष का मूल सिद्धान्त यह है कि ब्रह्माण्ड एक एकीकृत क्षेत्र है — जब कोई व्यक्ति गहन चिन्ता या आवश्यकता से प्रेरित होकर प्रश्न पूछता है, तो उस क्षण की ग्रहीय स्थिति प्रश्न के उत्तर को प्रतिबिम्बित करती है। यह "यथा पिण्डे तथा ब्रह्माण्डे" — जो सूक्ष्म जगत में है वही स्थूल जगत में है — इस वैदिक सिद्धान्त पर आधारित है।</>
-            : <>The foundational principle is that the universe is a unified field — when a person asks a question driven by genuine concern or need, the planetary positions at that moment mirror the answer. This rests on the Vedic principle "yatha pinde tatha brahmande" — as in the microcosm, so in the macrocosm. The question&apos;s &quot;birth&quot; is as significant as a person&apos;s birth.</>}
+            ? <>प्रश्न ज्योतिष का मूल सिद्धान्त यह है कि ब्रह्माण्ड एक एकीकृत क्षेत्र है  –  जब कोई व्यक्ति गहन चिन्ता या आवश्यकता से प्रेरित होकर प्रश्न पूछता है, तो उस क्षण की ग्रहीय स्थिति प्रश्न के उत्तर को प्रतिबिम्बित करती है। यह "यथा पिण्डे तथा ब्रह्माण्डे"  –  जो सूक्ष्म जगत में है वही स्थूल जगत में है  –  इस वैदिक सिद्धान्त पर आधारित है।</>
+            : <>The foundational principle is that the universe is a unified field  –  when a person asks a question driven by genuine concern or need, the planetary positions at that moment mirror the answer. This rests on the Vedic principle "yatha pinde tatha brahmande"  –  as in the microcosm, so in the macrocosm. The question&apos;s &quot;birth&quot; is as significant as a person&apos;s birth.</>}
         </p>
       </section>
 
@@ -84,7 +84,7 @@ function Page1() {
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
             <span className="text-gold-light font-semibold">{tl({ en: 'Specific questions:', hi: 'विशिष्ट प्रश्न:', sa: 'विशिष्ट प्रश्न:' }, locale)}</span>{' '}
-            {tl({ en: '"Will I get this job?", "Is the lost object recoverable?", "Will this journey be safe?" — these need pointed answers, not life overviews.', hi: '"क्या मुझे यह नौकरी मिलेगी?", "क्या खोई वस्तु मिलेगी?", "क्या यह यात्रा सुरक्षित होगी?" — इन्हें सटीक उत्तर चाहिए, जीवन का विहंगावलोकन नहीं।', sa: '"क्या मुझे यह नौकरी मिलेगी?", "क्या खोई वस्तु मिलेगी?", "क्या यह यात्रा सुरक्षित होगी?" — इन्हें सटीक उत्तर चाहिए, जीवन का विहंगावलोकन नहीं।' }, locale)}
+            {tl({ en: '"Will I get this job?", "Is the lost object recoverable?", "Will this journey be safe?"  –  these need pointed answers, not life overviews.', hi: '"क्या मुझे यह नौकरी मिलेगी?", "क्या खोई वस्तु मिलेगी?", "क्या यह यात्रा सुरक्षित होगी?"  –  इन्हें सटीक उत्तर चाहिए, जीवन का विहंगावलोकन नहीं।', sa: '"क्या मुझे यह नौकरी मिलेगी?", "क्या खोई वस्तु मिलेगी?", "क्या यह यात्रा सुरक्षित होगी?"  –  इन्हें सटीक उत्तर चाहिए, जीवन का विहंगावलोकन नहीं।' }, locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
             <span className="text-gold-light font-semibold">{tl({ en: 'Temple divination:', hi: 'मन्दिर भविष्यवाणी:', sa: 'मन्दिर भविष्यवाणी:' }, locale)}</span>{' '}
@@ -97,7 +97,7 @@ function Page1() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 2 — Reading the Prashna Chart                                  */
+/*  PAGE 2  –  Reading the Prashna Chart                                  */
 /* ------------------------------------------------------------------ */
 function Page2() {
   const locale = useModuleLocale();
@@ -110,8 +110,8 @@ function Page2() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>प्रश्न कुण्डली में लग्न प्रश्नकर्ता का प्रतिनिधित्व करता है, और प्रश्न से सम्बन्धित भाव को "प्रश्न भाव" कहते हैं। उदाहरणार्थ — विवाह का प्रश्न = 7वाँ भाव, नौकरी = 10वाँ भाव, सन्तान = 5वाँ भाव, ज्ञान = 4वाँ भाव। लग्नेश और प्रश्न भावेश के बीच का सम्बन्ध (दृष्टि, युति, केन्द्र-त्रिकोण सम्बन्ध) अनुकूल उत्तर का संकेत देता है।</>
-            : <>In a Prashna chart, the Lagna represents the querent, and the house relevant to the question is called the &quot;Prashna Bhava.&quot; For example — marriage question = 7th house, job = 10th house, children = 5th house, knowledge/education = 4th house. The relationship between the Lagna lord and the Prashna Bhava lord (aspect, conjunction, kendra-trikona relationship) indicates a favorable answer.</>}
+            ? <>प्रश्न कुण्डली में लग्न प्रश्नकर्ता का प्रतिनिधित्व करता है, और प्रश्न से सम्बन्धित भाव को "प्रश्न भाव" कहते हैं। उदाहरणार्थ  –  विवाह का प्रश्न = 7वाँ भाव, नौकरी = 10वाँ भाव, सन्तान = 5वाँ भाव, ज्ञान = 4वाँ भाव। लग्नेश और प्रश्न भावेश के बीच का सम्बन्ध (दृष्टि, युति, केन्द्र-त्रिकोण सम्बन्ध) अनुकूल उत्तर का संकेत देता है।</>
+            : <>In a Prashna chart, the Lagna represents the querent, and the house relevant to the question is called the &quot;Prashna Bhava.&quot; For example  –  marriage question = 7th house, job = 10th house, children = 5th house, knowledge/education = 4th house. The relationship between the Lagna lord and the Prashna Bhava lord (aspect, conjunction, kendra-trikona relationship) indicates a favorable answer.</>}
         </p>
       </section>
 
@@ -130,7 +130,7 @@ function Page2() {
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
             <span className="text-gold-light font-semibold">{tl({ en: 'Aaroodha:', hi: 'आरूढ:', sa: 'आरूढ:' }, locale)}</span>{' '}
-            {tl({ en: 'The number secretly thought of by the querent, divided by 12, gives the Aaroodha sign — providing an additional layer of validation.', hi: 'प्रश्नकर्ता द्वारा मन में सोची गई संख्या को 12 से भाग देने पर आरूढ राशि मिलती है — जो अतिरिक्त सत्यापन प्रदान करती है।', sa: 'प्रश्नकर्ता द्वारा मन में सोची गई संख्या को 12 से भाग देने पर आरूढ राशि मिलती है — जो अतिरिक्त सत्यापन प्रदान करती है।' }, locale)}
+            {tl({ en: 'The number secretly thought of by the querent, divided by 12, gives the Aaroodha sign  –  providing an additional layer of validation.', hi: 'प्रश्नकर्ता द्वारा मन में सोची गई संख्या को 12 से भाग देने पर आरूढ राशि मिलती है  –  जो अतिरिक्त सत्यापन प्रदान करती है।', sa: 'प्रश्नकर्ता द्वारा मन में सोची गई संख्या को 12 से भाग देने पर आरूढ राशि मिलती है  –  जो अतिरिक्त सत्यापन प्रदान करती है।' }, locale)}
           </p>
         </div>
       </section>
@@ -150,7 +150,7 @@ function Page2() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 3 — Classical Texts & Practice                                 */
+/*  PAGE 3  –  Classical Texts & Practice                                 */
 /* ------------------------------------------------------------------ */
 function Page3() {
   const locale = useModuleLocale();
@@ -163,8 +163,8 @@ function Page3() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>प्रश्न ज्योतिष के प्रमुख शास्त्रीय ग्रन्थ हैं: प्रश्न मार्ग (केरल परम्परा, 16वीं शताब्दी), ताजिक नीलकंठी (ताजिक/फारसी प्रभाव), और BPHS के कुछ अध्याय। प्रश्न मार्ग सबसे व्यापक है — इसमें दैनिक जीवन से लेकर मन्दिर प्रश्नों तक सब कुछ कवर है। ताजिक पद्धति वार्षिक फल और प्रश्न दोनों के लिए प्रयुक्त होती है।</>
-            : <>The primary classical texts for Prashna are: Prashna Marga (Kerala tradition, 16th century), Tajika Nilakanthi (Tajika/Persian influence), and certain chapters of BPHS. Prashna Marga is the most comprehensive — it covers everything from daily life questions to temple divination (Deva Prashna). The Tajika system is used for both annual predictions and horary questions.</>}
+            ? <>प्रश्न ज्योतिष के प्रमुख शास्त्रीय ग्रन्थ हैं: प्रश्न मार्ग (केरल परम्परा, 16वीं शताब्दी), ताजिक नीलकंठी (ताजिक/फारसी प्रभाव), और BPHS के कुछ अध्याय। प्रश्न मार्ग सबसे व्यापक है  –  इसमें दैनिक जीवन से लेकर मन्दिर प्रश्नों तक सब कुछ कवर है। ताजिक पद्धति वार्षिक फल और प्रश्न दोनों के लिए प्रयुक्त होती है।</>
+            : <>The primary classical texts for Prashna are: Prashna Marga (Kerala tradition, 16th century), Tajika Nilakanthi (Tajika/Persian influence), and certain chapters of BPHS. Prashna Marga is the most comprehensive  –  it covers everything from daily life questions to temple divination (Deva Prashna). The Tajika system is used for both annual predictions and horary questions.</>}
         </p>
       </section>
 
@@ -174,8 +174,8 @@ function Page3() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
-            ? <>जन्म ज्योतिष जीवन का सम्पूर्ण मानचित्र देता है — कर्म, प्रवृत्तियाँ, दशा कालखण्ड, और जीवन के बड़े अध्याय। प्रश्न ज्योतिष एक विशिष्ट क्षण का स्नैपशॉट है — "अभी इस प्रश्न का उत्तर क्या है?" यह अल्पकालिक, सटीक, और कार्यमूलक है। दोनों एक-दूसरे के पूरक हैं, विकल्प नहीं। एक अच्छा ज्योतिषी दोनों का उपयोग करता है।</>
-            : <>Natal astrology gives a complete life map — karma, tendencies, dasha periods, and major life chapters. Prashna is a snapshot of a specific moment — &quot;what is the answer to this question right now?&quot; It is short-term, precise, and action-oriented. The two complement each other, they are not alternatives. A good astrologer uses both: the natal chart for context and the Prashna chart for the specific question at hand.</>}
+            ? <>जन्म ज्योतिष जीवन का सम्पूर्ण मानचित्र देता है  –  कर्म, प्रवृत्तियाँ, दशा कालखण्ड, और जीवन के बड़े अध्याय। प्रश्न ज्योतिष एक विशिष्ट क्षण का स्नैपशॉट है  –  "अभी इस प्रश्न का उत्तर क्या है?" यह अल्पकालिक, सटीक, और कार्यमूलक है। दोनों एक-दूसरे के पूरक हैं, विकल्प नहीं। एक अच्छा ज्योतिषी दोनों का उपयोग करता है।</>
+            : <>Natal astrology gives a complete life map  –  karma, tendencies, dasha periods, and major life chapters. Prashna is a snapshot of a specific moment  –  &quot;what is the answer to this question right now?&quot; It is short-term, precise, and action-oriented. The two complement each other, they are not alternatives. A good astrologer uses both: the natal chart for context and the Prashna chart for the specific question at hand.</>}
         </p>
       </section>
 
@@ -184,7 +184,7 @@ function Page3() {
           {tl({ en: 'Try It: Prashna Tool', hi: 'इसे आज़माएँ: प्रश्न उपकरण', sa: 'इसे आज़माएँ: प्रश्न उपकरण' }, locale)}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
-          {tl({ en: 'Our Prashna tool lets you cast a horary chart for the current moment. Enter your question, and the tool generates a chart with Lagna, Moon position, and key planetary aspects — giving you the framework for Prashna analysis. For Ashtamangala Prashna (the Kerala tradition using 8 auspicious objects), see Module 28-2.', hi: 'हमारा प्रश्न उपकरण आपको वर्तमान क्षण के लिए होरारी कुण्डली बनाने देता है। अपना प्रश्न दर्ज करें, और उपकरण लग्न, चन्द्र स्थिति और प्रमुख ग्रहीय दृष्टियों के साथ कुण्डली उत्पन्न करता है। अष्टमंगल प्रश्न (8 शुभ वस्तुओं का उपयोग करने वाली केरल परम्परा) के लिए, मॉड्यूल 28-2 देखें।', sa: 'हमारा प्रश्न उपकरण आपको वर्तमान क्षण के लिए होरारी कुण्डली बनाने देता है।' }, locale)}
+          {tl({ en: 'Our Prashna tool lets you cast a horary chart for the current moment. Enter your question, and the tool generates a chart with Lagna, Moon position, and key planetary aspects  –  giving you the framework for Prashna analysis. For Ashtamangala Prashna (the Kerala tradition using 8 auspicious objects), see Module 28-2.', hi: 'हमारा प्रश्न उपकरण आपको वर्तमान क्षण के लिए होरारी कुण्डली बनाने देता है। अपना प्रश्न दर्ज करें, और उपकरण लग्न, चन्द्र स्थिति और प्रमुख ग्रहीय दृष्टियों के साथ कुण्डली उत्पन्न करता है। अष्टमंगल प्रश्न (8 शुभ वस्तुओं का उपयोग करने वाली केरल परम्परा) के लिए, मॉड्यूल 28-2 देखें।', sa: 'हमारा प्रश्न उपकरण आपको वर्तमान क्षण के लिए होरारी कुण्डली बनाने देता है।' }, locale)}
         </p>
       </section>
     </div>

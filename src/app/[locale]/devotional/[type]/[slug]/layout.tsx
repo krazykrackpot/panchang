@@ -16,16 +16,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const item = getDevotionalItem(type as DevotionalType, slug);
 
   if (!item) {
-    return { title: 'Not Found — Dekho Panchang' };
+    return { title: 'Not Found  –  Dekho Panchang' };
   }
 
   const typeLabel = TYPE_LABELS[type as DevotionalType];
-  const titleEn = `${item.title.en} — Full Text in Hindi with Meaning | Dekho Panchang`;
-  const titleHi = `${item.title.hi} — हिंदी पाठ अर्थ सहित | देखो पंचांग`;
+  const titleEn = `${item.title.en}  –  Full Text in Hindi with Meaning | Dekho Panchang`;
+  const titleHi = `${item.title.hi}  –  हिंदी पाठ अर्थ सहित | देखो पंचांग`;
   const title = locale === 'hi' ? titleHi : titleEn;
 
-  const descEn = `Read ${item.title.en} (${typeLabel?.en ?? type}) — complete Devanagari text, English transliteration, meaning, and significance. Dedicated to ${item.deity}.`;
-  const descHi = `${item.title.hi} (${typeLabel?.hi ?? type}) — पूर्ण देवनागरी पाठ, अंग्रेजी लिप्यन्तरण, अर्थ और महत्व। ${item.deity} को समर्पित।`;
+  const descEn = `Read ${item.title.en} (${typeLabel?.en ?? type})  –  complete Devanagari text, English transliteration, meaning, and significance. Dedicated to ${item.deity}.`;
+  const descHi = `${item.title.hi} (${typeLabel?.hi ?? type})  –  पूर्ण देवनागरी पाठ, अंग्रेजी लिप्यन्तरण, अर्थ और महत्व। ${item.deity} को समर्पित।`;
   const description = locale === 'hi' ? descHi : descEn;
 
   // Build hreflang alternates for ALL locales
@@ -77,8 +77,8 @@ export default async function Layout({ children, params }: { children: React.Rea
   const typeLabel = TYPE_LABELS[type as DevotionalType];
   const title = locale === 'hi' ? item.title.hi : item.title.en;
   const description = locale === 'hi'
-    ? `${item.title.hi} (${typeLabel?.hi ?? type}) — पूर्ण देवनागरी पाठ, अर्थ सहित।`
-    : `Read ${item.title.en} (${typeLabel?.en ?? type}) — complete text, transliteration, and meaning.`;
+    ? `${item.title.hi} (${typeLabel?.hi ?? type})  –  पूर्ण देवनागरी पाठ, अर्थ सहित।`
+    : `Read ${item.title.en} (${typeLabel?.en ?? type})  –  complete text, transliteration, and meaning.`;
 
   const articleLD = {
     '@context': 'https://schema.org',

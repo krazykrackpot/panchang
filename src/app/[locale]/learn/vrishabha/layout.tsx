@@ -14,7 +14,7 @@ export default async function Layout({ children, params }: { children: React.Rea
       <LearnArticleLD
         route="/learn/vrishabha"
         locale={locale}
-        title="Vrishabha (Taurus) in Vedic Astrology — Complete Rashi Guide"
+        title="Vrishabha (Taurus) in Vedic Astrology  –  Complete Rashi Guide"
         description="Comprehensive guide to Vrishabha Rashi (Taurus) covering planetary dignities, nakshatras, personality, career, compatibility, remedies, and mythology from classical Jyotish sources."
       />
       {children}

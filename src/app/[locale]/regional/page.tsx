@@ -60,7 +60,7 @@ const REGIONAL_CALENDARS: RegionalCalendar[] = [
       { name: 'Pongal (பொங்கல்)', month: 10, description: { en: 'Harvest festival celebrating the Sun\'s journey north (Uttarayan). Four-day celebration with Bhogi, Thai Pongal, Mattu Pongal, and Kaanum Pongal.', hi: 'सूर्य की उत्तर यात्रा (उत्तरायण) का उत्सव। चार दिवसीय उत्सव।', sa: 'उत्तरायणस्य उत्सवः।' } },
       { name: 'Chithirai Thiruvizha', month: 1, description: { en: 'Tamil New Year and Meenakshi Thirukalyanam at Madurai temple.', hi: 'तमिल नववर्ष और मदुरै मन्दिर में मीनाक्षी तिरुकल्याणम्।', sa: 'तमिलनववर्षम्।' } },
       { name: 'Aadi Perukku', month: 4, description: { en: 'Water festival celebrating the rise of river waters and agricultural fertility.', hi: 'नदी जल वृद्धि और कृषि उर्वरता का उत्सव।', sa: 'जलोत्सवः।' } },
-      { name: 'Karthigai Deepam', month: 8, description: { en: 'Festival of lights at Tiruvannamalai — the Mahadeepam on the hill.', hi: 'तिरुवन्नामलाई में दीपोत्सव — पहाड़ पर महादीपम्।', sa: 'कार्तिकदीपोत्सवः।' } },
+      { name: 'Karthigai Deepam', month: 8, description: { en: 'Festival of lights at Tiruvannamalai  –  the Mahadeepam on the hill.', hi: 'तिरुवन्नामलाई में दीपोत्सव  –  पहाड़ पर महादीपम्।', sa: 'कार्तिकदीपोत्सवः।' } },
     ],
   },
   {
@@ -84,8 +84,8 @@ const REGIONAL_CALENDARS: RegionalCalendar[] = [
     ],
     newYear: { name: 'Ugadi (ఉగాది)', approxDate: 'Chaitra Shukla Pratipada (Mar/Apr)' },
     description: {
-      en: 'The Telugu calendar follows the Shalivahana Shaka era (starts 78 CE). It is lunisolar — months are based on the lunar cycle (Amanta system, ending on Amavasya) while years track the solar cycle.',
-      hi: 'तेलुगु पंचांग शालिवाहन शक युग (78 ई.) का अनुसरण करता है। यह चान्द्र-सौर पद्धति है — अमान्त प्रणाली।',
+      en: 'The Telugu calendar follows the Shalivahana Shaka era (starts 78 CE). It is lunisolar  –  months are based on the lunar cycle (Amanta system, ending on Amavasya) while years track the solar cycle.',
+      hi: 'तेलुगु पंचांग शालिवाहन शक युग (78 ई.) का अनुसरण करता है। यह चान्द्र-सौर पद्धति है  –  अमान्त प्रणाली।',
       sa: 'तेलुगुपञ्चाङ्गं शालिवाहनशकयुगम् अनुसरति। अमान्तपद्धतिः।',
     },
     festivals: [
@@ -123,7 +123,7 @@ const REGIONAL_CALENDARS: RegionalCalendar[] = [
     festivals: [
       { name: 'Yugadi (ಯುಗಾದಿ)', month: 1, description: { en: 'Kannada New Year. Bevu-Bella (neem-jaggery) symbolizes life\'s bitter and sweet.', hi: 'कन्नड़ नववर्ष। बेवु-बेल्ला (नीम-गुड़) जीवन के कड़वे-मीठे का प्रतीक।', sa: 'कर्णाटकनववर्षम्।' } },
       { name: 'Varamahalakshmi', month: 5, description: { en: 'Worship of Goddess Lakshmi on the Friday before Purnima in Shravana.', hi: 'श्रावण में पूर्णिमा से पहले शुक्रवार को लक्ष्मी पूजन।', sa: 'वरमहालक्ष्मीपूजा।' } },
-      { name: 'Dasara (ದಸರಾ)', month: 7, description: { en: 'Grand Mysore Dasara — 10-day festival culminating in a majestic procession with the golden howdah.', hi: 'भव्य मैसूर दशहरा — स्वर्ण अम्बारी के साथ 10 दिवसीय उत्सव।', sa: 'मैसूरदशहरा।' } },
+      { name: 'Dasara (ದಸರಾ)', month: 7, description: { en: 'Grand Mysore Dasara  –  10-day festival culminating in a majestic procession with the golden howdah.', hi: 'भव्य मैसूर दशहरा  –  स्वर्ण अम्बारी के साथ 10 दिवसीय उत्सव।', sa: 'मैसूरदशहरा।' } },
       { name: 'Makar Sankranti (ಸಂಕ್ರಾಂತಿ)', month: 10, description: { en: 'Ellu-Bella exchange (sesame-jaggery) with the greeting "Ellu Bella thindu, olle maathu aadu."', hi: 'एल्लु-बेल्ला विनिमय (तिल-गुड़)।', sa: 'मकरसंक्रान्तिः।' } },
     ],
   },
@@ -154,7 +154,7 @@ const REGIONAL_CALENDARS: RegionalCalendar[] = [
     },
     festivals: [
       { name: 'Pohela Boishakh', month: 1, description: { en: 'Bengali New Year. Mangal Shobhajatra procession, Halkhata (opening new ledgers), and cultural programs.', hi: 'बंगाली नववर्ष। मंगल शोभायात्रा, हालखाता और सांस्कृतिक कार्यक्रम।', sa: 'बङ्गीयनववर्षम्।' } },
-      { name: 'Durga Puja (দুর্গা পূজা)', month: 6, description: { en: 'The grandest Bengali festival — five days of Durga worship from Shashthi to Dashami with elaborate pandals.', hi: 'भव्य बंगाली उत्सव — षष्ठी से दशमी तक पाँच दिवसीय दुर्गा पूजा।', sa: 'दुर्गापूजा — षष्ठ्याः दशम्यां यावत्।' } },
+      { name: 'Durga Puja (দুর্গা পূজা)', month: 6, description: { en: 'The grandest Bengali festival  –  five days of Durga worship from Shashthi to Dashami with elaborate pandals.', hi: 'भव्य बंगाली उत्सव  –  षष्ठी से दशमी तक पाँच दिवसीय दुर्गा पूजा।', sa: 'दुर्गापूजा  –  षष्ठ्याः दशम्यां यावत्।' } },
       { name: 'Kali Puja (কালী পূজা)', month: 7, description: { en: 'Worship of Goddess Kali on the night of Diwali. Special to Bengal.', hi: 'दीवाली की रात काली माँ की पूजा। बंगाल की विशेष परम्परा।', sa: 'कालीपूजा।' } },
       { name: 'Poush Parbon', month: 9, description: { en: 'Winter harvest festival. Pithe-puli (rice cakes) festival celebrating the harvest of new rice.', hi: 'शीतकालीन फसल उत्सव। नए चावल की फसल का उत्सव।', sa: 'पौषपर्वन्।' } },
     ],
@@ -185,10 +185,10 @@ const REGIONAL_CALENDARS: RegionalCalendar[] = [
       sa: 'गुर्जरपञ्चाङ्गं दीपावल्यनन्तरं नववर्षम् आरभते। विक्रमसंवत् अमान्तपद्धतिः।',
     },
     festivals: [
-      { name: 'Navratri (નવરાત્રી)', month: 12, description: { en: 'Gujarat\'s iconic nine-night Garba and Dandiya Raas celebration — the world\'s longest dance festival.', hi: 'गुजरात का प्रतिष्ठित नौ रात्रि गरबा और डांडिया रास उत्सव।', sa: 'नवरात्रोत्सवः — गरबा-दण्डियारासोत्सवः।' } },
+      { name: 'Navratri (નવરાત્રી)', month: 12, description: { en: 'Gujarat\'s iconic nine-night Garba and Dandiya Raas celebration  –  the world\'s longest dance festival.', hi: 'गुजरात का प्रतिष्ठित नौ रात्रि गरबा और डांडिया रास उत्सव।', sa: 'नवरात्रोत्सवः  –  गरबा-दण्डियारासोत्सवः।' } },
       { name: 'Uttarayan (ઉત્તરાયણ)', month: 4, description: { en: 'International Kite Festival on Makar Sankranti. Skies filled with colorful kites across Gujarat.', hi: 'मकर संक्रान्ति पर अन्तर्राष्ट्रीय पतंग उत्सव।', sa: 'उत्तरायणपतङ्गोत्सवः।' } },
       { name: 'Janmashtami (જન્માષ્ટમી)', month: 11, description: { en: 'Krishna Janmashtami with Dahi Handi and temple celebrations across Gujarat.', hi: 'दही हांडी और मन्दिर उत्सव के साथ कृष्ण जन्माष्टमी।', sa: 'कृष्णजन्माष्टमी।' } },
-      { name: 'Bestu Varas', month: 1, description: { en: 'Gujarati New Year — day after Diwali. Account books opened, temples decorated.', hi: 'गुजराती नववर्ष — दीवाली के अगले दिन।', sa: 'गुर्जरनववर्षम्।' } },
+      { name: 'Bestu Varas', month: 1, description: { en: 'Gujarati New Year  –  day after Diwali. Account books opened, temples decorated.', hi: 'गुजराती नववर्ष  –  दीवाली के अगले दिन।', sa: 'गुर्जरनववर्षम्।' } },
     ],
   },
   {
@@ -212,15 +212,15 @@ const REGIONAL_CALENDARS: RegionalCalendar[] = [
     ],
     newYear: { name: 'Gudi Padwa (गुढी पाडवा)', approxDate: 'March/April (Chaitra Shukla Pratipada)' },
     description: {
-      en: 'The Marathi calendar follows the Shalivahana Shaka era and the Amanta (Amant) system where the month ends with Amavasya (new moon). Gudi Padwa marks the new year — a decorated gudi (flag) is hoisted to celebrate.',
+      en: 'The Marathi calendar follows the Shalivahana Shaka era and the Amanta (Amant) system where the month ends with Amavasya (new moon). Gudi Padwa marks the new year  –  a decorated gudi (flag) is hoisted to celebrate.',
       hi: 'मराठी पंचांग शालिवाहन शक और अमान्त प्रणाली (मास अमावस्या पर समाप्त) का अनुसरण करता है। गुढी पाडवा नववर्ष है।',
       sa: 'महाराष्ट्रपञ्चाङ्गं शालिवाहनशकेन अमान्तपद्धत्या च चलति।',
     },
     festivals: [
       { name: 'Gudi Padwa (गुढी पाडवा)', month: 1, description: { en: 'Marathi New Year. A gudi (decorated pole with silk cloth, neem, mango, and garland topped with an inverted kalash) is hoisted outside homes.', hi: 'मराठी नववर्ष। घर के बाहर गुढी (सजा हुआ ध्वज) फहराया जाता है।', sa: 'महाराष्ट्रनववर्षम्।' } },
-      { name: 'Ganesh Chaturthi (गणेश चतुर्थी)', month: 6, description: { en: 'Maharashtra\'s grandest festival — 10-day celebration of Lord Ganesha with elaborate pandals, immersion processions, and community worship.', hi: 'महाराष्ट्र का सबसे भव्य उत्सव — 10 दिवसीय गणेश पूजा, विसर्जन शोभायात्रा।', sa: 'गणेशचतुर्थी — दशदिनोत्सवः।' } },
-      { name: 'Makar Sankranti (मकर संक्रान्ति)', month: 10, description: { en: 'Kite flying and til-gul distribution with the greeting "Tilgul ghya god god bola" (eat sesame-jaggery and speak sweetly).', hi: 'पतंगबाजी और तिल-गुड़ वितरण।', sa: 'मकरसंक्रान्तिः — तिलगुडवितरणम्।' } },
-      { name: 'Ashadhi Ekadashi', month: 4, description: { en: 'Massive Wari pilgrimage to Pandharpur. Lakhs of Warkaris walk carrying palkhis of Sant Dnyaneshwar and Sant Tukaram.', hi: 'पंढरपुर वारी — लाखों वारकरी संत ज्ञानेश्वर और तुकाराम की पालखी लेकर चलते हैं।', sa: 'आषाढ्येकादशी — पण्ढरपुरतीर्थयात्रा।' } },
+      { name: 'Ganesh Chaturthi (गणेश चतुर्थी)', month: 6, description: { en: 'Maharashtra\'s grandest festival  –  10-day celebration of Lord Ganesha with elaborate pandals, immersion processions, and community worship.', hi: 'महाराष्ट्र का सबसे भव्य उत्सव  –  10 दिवसीय गणेश पूजा, विसर्जन शोभायात्रा।', sa: 'गणेशचतुर्थी  –  दशदिनोत्सवः।' } },
+      { name: 'Makar Sankranti (मकर संक्रान्ति)', month: 10, description: { en: 'Kite flying and til-gul distribution with the greeting "Tilgul ghya god god bola" (eat sesame-jaggery and speak sweetly).', hi: 'पतंगबाजी और तिल-गुड़ वितरण।', sa: 'मकरसंक्रान्तिः  –  तिलगुडवितरणम्।' } },
+      { name: 'Ashadhi Ekadashi', month: 4, description: { en: 'Massive Wari pilgrimage to Pandharpur. Lakhs of Warkaris walk carrying palkhis of Sant Dnyaneshwar and Sant Tukaram.', hi: 'पंढरपुर वारी  –  लाखों वारकरी संत ज्ञानेश्वर और तुकाराम की पालखी लेकर चलते हैं।', sa: 'आषाढ्येकादशी  –  पण्ढरपुरतीर्थयात्रा।' } },
     ],
   },
   {
@@ -249,10 +249,10 @@ const REGIONAL_CALENDARS: RegionalCalendar[] = [
       sa: 'केरलपञ्चाङ्गं चिङ्गमतः आरम्भमाणं सौरपञ्चाङ्गम्।',
     },
     festivals: [
-      { name: 'Vishu (വിഷു)', month: 9, description: { en: 'Malayalam astronomical new year. Vishukkani (auspicious arrangement of fruits, gold, and rice) is viewed first thing in the morning.', hi: 'मलयालम खगोलीय नववर्ष। विषुक्कणि — फल, सोना और चावल की शुभ व्यवस्था प्रातः देखी जाती है।', sa: 'विषुपर्वन् — मलयालनववर्षम्।' } },
-      { name: 'Onam (ഓണം)', month: 1, description: { en: 'Kerala\'s grandest festival — 10-day celebration honoring King Mahabali. Pookalam (flower carpets), Onasadya (feast with 26+ dishes), Vallam Kali (boat races).', hi: 'केरल का सबसे भव्य उत्सव — राजा महाबली की स्मृति में 10 दिन। पूक्कलम्, ओणसद्या, वल्लम् काली।', sa: 'ओणोत्सवः — महाबलिसम्माननम्।' } },
+      { name: 'Vishu (വിഷു)', month: 9, description: { en: 'Malayalam astronomical new year. Vishukkani (auspicious arrangement of fruits, gold, and rice) is viewed first thing in the morning.', hi: 'मलयालम खगोलीय नववर्ष। विषुक्कणि  –  फल, सोना और चावल की शुभ व्यवस्था प्रातः देखी जाती है।', sa: 'विषुपर्वन्  –  मलयालनववर्षम्।' } },
+      { name: 'Onam (ഓണം)', month: 1, description: { en: 'Kerala\'s grandest festival  –  10-day celebration honoring King Mahabali. Pookalam (flower carpets), Onasadya (feast with 26+ dishes), Vallam Kali (boat races).', hi: 'केरल का सबसे भव्य उत्सव  –  राजा महाबली की स्मृति में 10 दिन। पूक्कलम्, ओणसद्या, वल्लम् काली।', sa: 'ओणोत्सवः  –  महाबलिसम्माननम्।' } },
       { name: 'Thiruvathira (തിരുവാതിര)', month: 5, description: { en: 'Festival of Lord Shiva. Women perform the Thiruvathira Kali dance and fast for marital bliss.', hi: 'शिव पर्व। महिलाएँ तिरुवातिरा काली नृत्य करती हैं।', sa: 'तिरुवातिरापर्वन्।' } },
-      { name: 'Thrissur Pooram', month: 9, description: { en: 'Greatest temple festival of Kerala at Vadakkunnathan Temple. Spectacular elephant processions, Kudamattam (umbrella ceremony), and fireworks.', hi: 'केरल का सबसे बड़ा मन्दिर उत्सव। भव्य हाथी शोभायात्रा, कुडमट्टम् और आतिशबाजी।', sa: 'त्रिशूरपूरम् — केरलस्य महोत्सवः।' } },
+      { name: 'Thrissur Pooram', month: 9, description: { en: 'Greatest temple festival of Kerala at Vadakkunnathan Temple. Spectacular elephant processions, Kudamattam (umbrella ceremony), and fireworks.', hi: 'केरल का सबसे बड़ा मन्दिर उत्सव। भव्य हाथी शोभायात्रा, कुडमट्टम् और आतिशबाजी।', sa: 'त्रिशूरपूरम्  –  केरलस्य महोत्सवः।' } },
     ],
   },
   {
@@ -281,8 +281,8 @@ const REGIONAL_CALENDARS: RegionalCalendar[] = [
       sa: 'उत्कलपञ्चाङ्गं बैशाखात् आरभ्यते। जगन्नाथमन्दिरपरम्परया सम्बद्धम्।',
     },
     festivals: [
-      { name: 'Rath Yatra (ରଥ ଯାତ୍ରା)', month: 3, description: { en: 'The world-famous chariot festival of Lord Jagannath at Puri. Three massive chariots carry Jagannath, Balabhadra, and Subhadra through the streets.', hi: 'पुरी में जगन्नाथ की विश्व प्रसिद्ध रथ यात्रा।', sa: 'रथयात्रा — जगन्नाथपुर्याम्।' } },
-      { name: 'Raja Parba (ରଜ ପର୍ବ)', month: 3, description: { en: 'Unique three-day festival celebrating femininity and the Earth\'s menstruation cycle. Women swing on ropes and rest from fieldwork.', hi: 'नारीत्व और पृथ्वी की उर्वरता का तीन दिवसीय उत्सव।', sa: 'रजपर्वन् — नारीत्वोत्सवः।' } },
+      { name: 'Rath Yatra (ରଥ ଯାତ୍ରା)', month: 3, description: { en: 'The world-famous chariot festival of Lord Jagannath at Puri. Three massive chariots carry Jagannath, Balabhadra, and Subhadra through the streets.', hi: 'पुरी में जगन्नाथ की विश्व प्रसिद्ध रथ यात्रा।', sa: 'रथयात्रा  –  जगन्नाथपुर्याम्।' } },
+      { name: 'Raja Parba (ରଜ ପର୍ବ)', month: 3, description: { en: 'Unique three-day festival celebrating femininity and the Earth\'s menstruation cycle. Women swing on ropes and rest from fieldwork.', hi: 'नारीत्व और पृथ्वी की उर्वरता का तीन दिवसीय उत्सव।', sa: 'रजपर्वन्  –  नारीत्वोत्सवः।' } },
       { name: 'Kumar Purnima (କୁମାର ପୂର୍ଣିମା)', month: 6, description: { en: 'Festival of youth and beauty on Ashwin Purnima. Young women worship the moon and play traditional games.', hi: 'आश्विन पूर्णिमा पर यौवन और सौन्दर्य का उत्सव।', sa: 'कुमारपूर्णिमा।' } },
     ],
   },
@@ -367,8 +367,8 @@ export default function RegionalCalendarsPage() {
         </h1>
         <p className="text-text-secondary text-lg max-w-3xl mx-auto">
           {locale === 'en'
-            ? 'India\'s diverse calendar traditions — Tamil, Telugu, Kannada, Bengali, and Gujarati — each with unique month names, new year dates, and regional festivals'
-            : 'भारत की विविध पंचांग परम्पराएँ — तमिल, तेलुगु, कन्नड़, बंगाली और गुजराती — प्रत्येक की अपनी मास नाम, नववर्ष तिथि और क्षेत्रीय उत्सव'}
+            ? 'India\'s diverse calendar traditions  –  Tamil, Telugu, Kannada, Bengali, and Gujarati  –  each with unique month names, new year dates, and regional festivals'
+            : 'भारत की विविध पंचांग परम्पराएँ  –  तमिल, तेलुगु, कन्नड़, बंगाली और गुजराती  –  प्रत्येक की अपनी मास नाम, नववर्ष तिथि और क्षेत्रीय उत्सव'}
         </p>
       </motion.div>
 
@@ -427,7 +427,7 @@ export default function RegionalCalendarsPage() {
                 <div className="flex items-center gap-2 text-sm">
                   <span className="text-gold-primary font-bold">{msg('newYear', locale)}</span>
                   <span className="text-gold-light font-bold">{cal.newYear.name}</span>
-                  <span className="text-text-secondary/70">—</span>
+                  <span className="text-text-secondary/70"> – </span>
                   <span className="text-text-secondary text-xs">{cal.newYear.approxDate}</span>
                 </div>
               </div>

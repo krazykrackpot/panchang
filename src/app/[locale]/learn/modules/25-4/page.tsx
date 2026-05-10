@@ -91,7 +91,7 @@ const QUESTIONS: ModuleQuestion[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 1 — Brahmagupta's Negative Number Rules                        */
+/*  PAGE 1  –  Brahmagupta's Negative Number Rules                        */
 /* ------------------------------------------------------------------ */
 function Page1() {
   const locale = useModuleLocale();
@@ -104,8 +104,8 @@ function Page1() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>628 ई. में ब्रह्मगुप्त ने जो किया वह क्रान्तिकारी था: उन्होंने एक ऐसी संख्या की कल्पना की जो "कुछ नहीं" से कम है। धन (सम्पत्ति) से ऋण (कर्ज) — यह गणितीय छलाँग थी जो यूरोप को 1000 वर्ष बाद भी डरा रही थी।</>
-            : <>What Brahmagupta did in 628 CE was revolutionary: he imagined a number less than "nothing." From dhana (assets) to rina (debt) — this was a mathematical leap that would frighten Europe for another 1000 years.</>}
+            ? <>628 ई. में ब्रह्मगुप्त ने जो किया वह क्रान्तिकारी था: उन्होंने एक ऐसी संख्या की कल्पना की जो "कुछ नहीं" से कम है। धन (सम्पत्ति) से ऋण (कर्ज)  –  यह गणितीय छलाँग थी जो यूरोप को 1000 वर्ष बाद भी डरा रही थी।</>
+            : <>What Brahmagupta did in 628 CE was revolutionary: he imagined a number less than "nothing." From dhana (assets) to rina (debt)  –  this was a mathematical leap that would frighten Europe for another 1000 years.</>}
         </p>
       </section>
 
@@ -139,8 +139,8 @@ function Page1() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
-            ? <>भारतीय व्यापारी हजारों वर्षों से खाता-बहियों में धन (सम्पत्ति) और ऋण (कर्ज) अलग-अलग दर्ज करते थे। दो रंगों की स्याही — काली धन के लिए, लाल ऋण के लिए — का उपयोग होता था। "लाल में होना" (in the red) आज भी अंग्रेजी में घाटे का प्रतीक है।</>
-            : <>Indian merchants had recorded dhana (assets) and rina (debts) in account books for millennia. Two colours of ink — black for assets, red for debts — were used. "Being in the red" remains an English idiom for being in deficit, a direct inheritance of this accounting tradition.</>}
+            ? <>भारतीय व्यापारी हजारों वर्षों से खाता-बहियों में धन (सम्पत्ति) और ऋण (कर्ज) अलग-अलग दर्ज करते थे। दो रंगों की स्याही  –  काली धन के लिए, लाल ऋण के लिए  –  का उपयोग होता था। "लाल में होना" (in the red) आज भी अंग्रेजी में घाटे का प्रतीक है।</>
+            : <>Indian merchants had recorded dhana (assets) and rina (debts) in account books for millennia. Two colours of ink  –  black for assets, red for debts  –  were used. "Being in the red" remains an English idiom for being in deficit, a direct inheritance of this accounting tradition.</>}
         </p>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -153,7 +153,7 @@ function Page1() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 2 — Europe's 1000-Year Delay                                   */
+/*  PAGE 2  –  Europe's 1000-Year Delay                                   */
 /* ------------------------------------------------------------------ */
 function Page2() {
   const locale = useModuleLocale();
@@ -177,23 +177,23 @@ function Page2() {
         </h4>
         <div className="space-y-2">
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-medium">~250 BCE — Diophantus:</span>{' '}
+            <span className="text-gold-light font-medium">~250 BCE  –  Diophantus:</span>{' '}
             {t('rejectedNegativeSolutionsToEquationsAs', locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-medium">1202 CE — Fibonacci:</span>{' '}
+            <span className="text-gold-light font-medium">1202 CE  –  Fibonacci:</span>{' '}
             {t('limitedUseOfNegativeNumbersIn', locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-medium">1637 — Descartes:</span>{' '}
+            <span className="text-gold-light font-medium">1637  –  Descartes:</span>{' '}
             {t('falseRootsFaussesRacinesRejectedNegative', locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-medium">1759 — Maseres:</span>{' '}
+            <span className="text-gold-light font-medium">1759  –  Maseres:</span>{' '}
             {t('fictitiousNegativeNumbersNotReal', locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            <span className="text-gold-light font-medium">1796 — Frend:</span>{' '}
+            <span className="text-gold-light font-medium">1796  –  Frend:</span>{' '}
             {t('wroteATreatiseRejectingNegativeNumbers', locale)}
           </p>
           <p className="text-text-secondary text-xs leading-relaxed">
@@ -223,7 +223,7 @@ function Page2() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 3 — Legacy in Algebra and Modern Mathematics                   */
+/*  PAGE 3  –  Legacy in Algebra and Modern Mathematics                   */
 /* ------------------------------------------------------------------ */
 function Page3() {
   const locale = useModuleLocale();
@@ -271,13 +271,13 @@ function Page3() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
-            ? <>9वीं शताब्दी में महावीर ने ब्रह्मगुप्त के नियमों का विस्तार किया — श्रेढ़ी, क्रमचय और संचय में ऋण राशियाँ। उन्होंने ऋण संख्याओं के वर्गमूल के साथ भी संघर्ष किया — जटिल संख्याओं की ओर पहला कदम।</>
-            : <>In the 9th century, Mahavira extended Brahmagupta's rules — applying negative quantities to series, permutations, and combinations. He also wrestled with square roots of negative numbers — a first step toward complex numbers.</>}
+            ? <>9वीं शताब्दी में महावीर ने ब्रह्मगुप्त के नियमों का विस्तार किया  –  श्रेढ़ी, क्रमचय और संचय में ऋण राशियाँ। उन्होंने ऋण संख्याओं के वर्गमूल के साथ भी संघर्ष किया  –  जटिल संख्याओं की ओर पहला कदम।</>
+            : <>In the 9th century, Mahavira extended Brahmagupta's rules  –  applying negative quantities to series, permutations, and combinations. He also wrestled with square roots of negative numbers  –  a first step toward complex numbers.</>}
         </p>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <>12वीं शताब्दी में भास्कर द्वितीय ने और आगे बढ़ाया — बीजगणित में ऋण मूलों को पूरी तरह स्वीकार करते हुए। उनकी "बीजगणित" (Bijaganita) आधुनिक बीजगणित की प्रत्यक्ष पूर्वज है।</>
-            : <>In the 12th century, Bhaskara II advanced further — fully accepting negative roots in algebra. His "Bijaganita" is a direct ancestor of modern algebra.</>}
+            ? <>12वीं शताब्दी में भास्कर द्वितीय ने और आगे बढ़ाया  –  बीजगणित में ऋण मूलों को पूरी तरह स्वीकार करते हुए। उनकी "बीजगणित" (Bijaganita) आधुनिक बीजगणित की प्रत्यक्ष पूर्वज है।</>
+            : <>In the 12th century, Bhaskara II advanced further  –  fully accepting negative roots in algebra. His "Bijaganita" is a direct ancestor of modern algebra.</>}
         </p>
       </section>
     </div>

@@ -19,7 +19,7 @@ const CHOGHADIYA_TYPES = [
   { name: 'Amrit', hi: 'अमृत', planet: 'Moon', hi_planet: 'चन्द्र', quality: 'Most Auspicious', cls: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' },
   { name: 'Shubh', hi: 'शुभ', planet: 'Jupiter', hi_planet: 'गुरु', quality: 'Highly Auspicious', cls: 'text-emerald-400/80 bg-emerald-500/8 border-emerald-500/15' },
   { name: 'Labh', hi: 'लाभ', planet: 'Mercury', hi_planet: 'बुध', quality: 'Good for Finance', cls: 'text-gold-light bg-gold-primary/10 border-gold-primary/20' },
-  { name: 'Char', hi: 'चर', planet: 'Venus', hi_planet: 'शुक्र', quality: 'Neutral — Travel', cls: 'text-gold-primary/70 bg-gold-primary/5 border-gold-primary/10' },
+  { name: 'Char', hi: 'चर', planet: 'Venus', hi_planet: 'शुक्र', quality: 'Neutral  –  Travel', cls: 'text-gold-primary/70 bg-gold-primary/5 border-gold-primary/10' },
   { name: 'Rog', hi: 'रोग', planet: 'Mars', hi_planet: 'मंगल', quality: 'Inauspicious', cls: 'text-red-400/70 bg-red-500/8 border-red-500/15' },
   { name: 'Kaal', hi: 'काल', planet: 'Saturn', hi_planet: 'शनि', quality: 'Inauspicious', cls: 'text-red-400 bg-red-500/10 border-red-500/20' },
   { name: 'Udveg', hi: 'उद्वेग', planet: 'Sun', hi_planet: 'सूर्य', quality: 'Inauspicious', cls: 'text-red-400/70 bg-red-500/8 border-red-500/15' },
@@ -52,15 +52,15 @@ export default function LearnChoghadiyaPage() {
       </div>
 
       <KeyTakeaway locale={locale} points={[
-        'Choghadiya splits each day and night into 8 periods (~90 min each) — Amrit and Shubh are best, Rog/Kaal/Udveg are worst.',
-        'The first Choghadiya of each day is fixed by the weekday lord — Monday starts with Amrit (Moon), Saturday with Kaal (Saturn).',
-        'Even an Amrit Choghadiya during Rahu Kaal should be treated with caution — inauspicious overlays take precedence.',
+        'Choghadiya splits each day and night into 8 periods (~90 min each)  –  Amrit and Shubh are best, Rog/Kaal/Udveg are worst.',
+        'The first Choghadiya of each day is fixed by the weekday lord  –  Monday starts with Amrit (Moon), Saturday with Kaal (Saturn).',
+        'Even an Amrit Choghadiya during Rahu Kaal should be treated with caution  –  inauspicious overlays take precedence.',
       ]} />
 
       <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
-        <BeginnerNote term="Choghadiya" explanation="'Four ghadis' — a time division system splitting day and night into 8 planetary periods each" />
-        <BeginnerNote term="Ghadi" explanation="A traditional Indian time unit of 24 minutes — one Choghadiya is theoretically 4 ghadis (96 minutes)" />
-        <BeginnerNote term="Hora" explanation="A related system using fixed 60-minute periods — more granular than Choghadiya but follows the same planetary sequence" />
+        <BeginnerNote term="Choghadiya" explanation="'Four ghadis'  –  a time division system splitting day and night into 8 planetary periods each" />
+        <BeginnerNote term="Ghadi" explanation="A traditional Indian time unit of 24 minutes  –  one Choghadiya is theoretically 4 ghadis (96 minutes)" />
+        <BeginnerNote term="Hora" explanation="A related system using fixed 60-minute periods  –  more granular than Choghadiya but follows the same planetary sequence" />
       </div>
 
       {/* Intro */}
@@ -129,8 +129,8 @@ export default function LearnChoghadiyaPage() {
           <ShieldAlert size={16} className="text-red-400 mt-0.5 flex-shrink-0" />
           <p className="text-red-300 text-xs">
             {isHi
-              ? 'अमृत चौघड़िया भी राहु काल, यमगण्ड या वर्ज्यम में हो तो सावधानी बरतें — अशुभ आवरण प्राथमिकता पर है।'
-              : 'Even an Amrit Choghadiya during Rahu Kaal, Yamaganda, or Varjyam should be treated with caution — the inauspicious overlay takes precedence.'}
+              ? 'अमृत चौघड़िया भी राहु काल, यमगण्ड या वर्ज्यम में हो तो सावधानी बरतें  –  अशुभ आवरण प्राथमिकता पर है।'
+              : 'Even an Amrit Choghadiya during Rahu Kaal, Yamaganda, or Varjyam should be treated with caution  –  the inauspicious overlay takes precedence.'}
           </p>
         </div>
       </LessonSection>

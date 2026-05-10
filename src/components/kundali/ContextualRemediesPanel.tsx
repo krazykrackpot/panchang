@@ -113,7 +113,7 @@ export default function ContextualRemediesPanel({
     [planets, ascendantSign, yogas, dashas, sadeSatiPhase],
   );
 
-  // No afflictions — show positive message
+  // No afflictions  –  show positive message
   if (report.afflictions.length === 0) {
     return (
       <div className="bg-emerald-500/8 border border-emerald-500/20 rounded-2xl p-6 text-center">

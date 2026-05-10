@@ -158,7 +158,7 @@ export default function EventCountdownCard({
     <div
       className={`rounded-2xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border ${borderColor} overflow-hidden transition-all hover:border-gold-primary/30`}
     >
-      {/* Header — always visible */}
+      {/* Header  –  always visible */}
       <button
         type="button"
         onClick={onToggleExpand}
@@ -189,7 +189,7 @@ export default function EventCountdownCard({
             {/* Date range */}
             <p className="text-sm text-text-secondary mb-1" style={bodyFont}>
               {formatEventDate(event.date)}
-              {event.endDate && ` — ${formatEventDate(event.endDate)}`}
+              {event.endDate && `  –  ${formatEventDate(event.endDate)}`}
             </p>
 
             {/* Description */}
@@ -213,7 +213,7 @@ export default function EventCountdownCard({
         </div>
       </button>
 
-      {/* Expanded content — survival guide */}
+      {/* Expanded content  –  survival guide */}
       {expanded && (
         <div className="px-5 sm:px-6 pb-5 sm:pb-6 space-y-4 border-t border-white/5 pt-4">
           {/* Personal impact (if logged in with chart) */}

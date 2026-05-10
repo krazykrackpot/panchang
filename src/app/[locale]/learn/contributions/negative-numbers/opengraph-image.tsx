@@ -1,7 +1,7 @@
 import { createContributionOG, OG_SIZE } from '../og-helper';
 
 export const runtime = 'edge';
-export const alt = 'Negative Numbers — India, 628 CE';
+export const alt = 'Negative Numbers  –  India, 628 CE';
 export const size = OG_SIZE;
 export const contentType = 'image/png';
 

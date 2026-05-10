@@ -12,8 +12,8 @@ import { VRAT_KATHAS } from '@/lib/content/vrat-kathas';
 const LABELS = {
   title: { en: 'Vrat Katha Reference', hi: 'व्रत कथा संदर्भ' },
   subtitle: {
-    en: '10 sacred vrats — deity, timing, vidhi & significance at a glance',
-    hi: '10 पवित्र व्रत — देवता, समय, विधि एवं महत्व एक नज़र में',
+    en: '10 sacred vrats  –  deity, timing, vidhi & significance at a glance',
+    hi: '10 पवित्र व्रत  –  देवता, समय, विधि एवं महत्व एक नज़र में',
   },
   vratName: { en: 'Vrat', hi: 'व्रत' },
   deity: { en: 'Deity', hi: 'देवता' },
@@ -21,8 +21,8 @@ const LABELS = {
   significance: { en: 'Significance', hi: 'महत्व' },
   viewDetails: { en: 'View Details', hi: 'विवरण देखें' },
   note: {
-    en: 'Each katha is a sacred text that deserves to be read in its traditional form. We provide the practical reference — timing, vidhi, and significance — and recommend consulting your family pandit or a trusted publication for the complete narrative.',
-    hi: 'प्रत्येक कथा एक पवित्र ग्रन्थ है जिसे उसके पारम्परिक रूप में पढ़ना चाहिए। हम व्यावहारिक संदर्भ — समय, विधि और महत्व — प्रदान करते हैं और पूर्ण कथा के लिए पारिवारिक पण्डित या विश्वसनीय प्रकाशन की सलाह देते हैं।',
+    en: 'Each katha is a sacred text that deserves to be read in its traditional form. We provide the practical reference  –  timing, vidhi, and significance  –  and recommend consulting your family pandit or a trusted publication for the complete narrative.',
+    hi: 'प्रत्येक कथा एक पवित्र ग्रन्थ है जिसे उसके पारम्परिक रूप में पढ़ना चाहिए। हम व्यावहारिक संदर्भ  –  समय, विधि और महत्व  –  प्रदान करते हैं और पूर्ण कथा के लिए पारिवारिक पण्डित या विश्वसनीय प्रकाशन की सलाह देते हैं।',
   },
 };
 
@@ -64,7 +64,7 @@ export default function VratKathaHubPage() {
           </div>
         </motion.div>
 
-        {/* Vrat Table — card-based for mobile friendliness */}
+        {/* Vrat Table  –  card-based for mobile friendliness */}
         <div className="space-y-4">
           {VRAT_KATHAS.map((katha, idx) => {
             const title = (katha.title as Record<string, string>)[locale] || katha.title.en;

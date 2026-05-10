@@ -35,7 +35,7 @@ export interface MoolatrikonaInfo {
 
 // Planet IDs: 0=Sun, 1=Moon, 2=Mars, 3=Mercury, 4=Jupiter, 5=Venus, 6=Saturn
 
-// Canonical dignity constants — single source of truth (Lesson Q)
+// Canonical dignity constants  –  single source of truth (Lesson Q)
 import {
   EXALTATION_SIGNS as CANONICAL_EXALTATION,
   EXALTATION_DEGREES,
@@ -45,14 +45,14 @@ import {
   SIGN_LORDS,
 } from '@/lib/constants/dignities';
 
-/** Exaltation signs with exact degrees — derived from canonical dignities.ts */
+/** Exaltation signs with exact degrees  –  derived from canonical dignities.ts */
 export const EXALTATION_SIGNS: Record<number, DignityInfo> = Object.fromEntries(
   Object.entries(CANONICAL_EXALTATION)
     .filter(([id]) => Number(id) <= 6)
     .map(([id, sign]) => [Number(id), { sign, degree: EXALTATION_DEGREES[Number(id)] ?? 0 }])
 );
 
-/** Debilitation signs with exact degrees (opposite of exaltation) — derived from canonical dignities.ts */
+/** Debilitation signs with exact degrees (opposite of exaltation)  –  derived from canonical dignities.ts */
 export const DEBILITATION_SIGNS: Record<number, DignityInfo> = Object.fromEntries(
   Object.entries(CANONICAL_DEBILITATION)
     .filter(([id]) => Number(id) <= 6)
@@ -110,7 +110,7 @@ export function getPlanetDignity(
   if (own && own.includes(signIndex)) return 'own';
 
   // Determine through natural friendship with sign lord
-  // SIGN_LORDS imported from @/lib/constants/dignities (Lesson Q — single source of truth)
+  // SIGN_LORDS imported from @/lib/constants/dignities (Lesson Q  –  single source of truth)
   const signLord = SIGN_LORDS[signIndex];
   if (signLord === undefined) return 'neutral';
 

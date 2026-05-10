@@ -1,5 +1,5 @@
 /**
- * Birth Time Rectification — Scorer (Phase 3)
+ * Birth Time Rectification  –  Scorer (Phase 3)
  *
  * Ranks candidate birth times by their total event-match scores,
  * clusters by lagna sign, and returns the top 3 with confidence
@@ -42,7 +42,7 @@ export function rankCandidates(
   const numEvents = scored[0]?.eventMatches.length ?? 0;
   const maxPossible = numEvents * 10;
 
-  // Group by lagna sign — pick the candidate with highest totalScore per sign
+  // Group by lagna sign  –  pick the candidate with highest totalScore per sign
   const bySign = new Map<number, ScoredCandidate[]>();
   for (const s of scored) {
     const sign = s.candidate.lagnaSign;

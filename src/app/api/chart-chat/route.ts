@@ -189,7 +189,7 @@ export async function POST(request: Request) {
           const localStr = now.toLocaleString('en-US', { timeZone: birthData.timezone });
           tzOffset = (new Date(localStr).getTime() - new Date(utcStr).getTime()) / 3600000;
         } catch {
-          // timezone string invalid — keep longitude-based approximation
+          // timezone string invalid  –  keep longitude-based approximation
           console.error('[API/chart-chat] Could not resolve timezone:', birthData.timezone);
         }
       }
@@ -233,11 +233,11 @@ export async function POST(request: Request) {
       // Build context string for Claude
       if (muhurtaWindows.length > 0) {
         muhurtaContext = `\n\n[MUHURTA RESULTS for ${activityId}]\nTop windows found:\n${muhurtaWindows.slice(0, 3).map((w, i) =>
-          `${i + 1}. ${w.date} ${w.startTime}-${w.endTime} (score: ${w.score}/100) — ${w.proof.tithi.name}, ${w.proof.nakshatra.name}, ${w.proof.hora.planet} hora`
+          `${i + 1}. ${w.date} ${w.startTime}-${w.endTime} (score: ${w.score}/100)  –  ${w.proof.tithi.name}, ${w.proof.nakshatra.name}, ${w.proof.hora.planet} hora`
         ).join('\n')}\n\nRefer to these specific dates and times in your response. Explain WHY these times are good based on the panchang factors shown.`;
       }
     } catch (err) {
-      // Muhurta search failed — continue without windows
+      // Muhurta search failed  –  continue without windows
       console.error('[API/chart-chat] Muhurta search failed:', err);
     }
   }

@@ -2,13 +2,13 @@
  * Dasha Diary prompt generator.
  *
  * Generates a personalised reflection prompt based on the current dasha lord's
- * natal placement.  The text is kept intentionally conversational — the goal is
+ * natal placement.  The text is kept intentionally conversational  –  the goal is
  * to help the user connect classical Jyotish significations with their lived
  * experience, not to deliver a prediction.
  */
 
 // ---------------------------------------------------------------------------
-// House significations (English only — translated inline in callers via tl())
+// House significations (English only  –  translated inline in callers via tl())
 // ---------------------------------------------------------------------------
 const HOUSE_KEYWORDS: Record<number, string> = {
   1:  'self, identity, body',
@@ -118,7 +118,7 @@ function ordinal(n: number): string {
  * @param signPlacement Human-readable sign placement e.g. "Capricorn (exalted)"
  * @param housePlacement Natal house the planet occupies (1-12)
  * @param locale        Active locale ("en" | "hi" | "ta" | "bn")
- * @param periodLabel   e.g. "Mahadasha" | "Antardasha" — defaults to "Dasha"
+ * @param periodLabel   e.g. "Mahadasha" | "Antardasha"  –  defaults to "Dasha"
  * @returns A paragraph-length reflection prompt string
  */
 export function generateDashaPrompt(

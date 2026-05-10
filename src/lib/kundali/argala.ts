@@ -1,6 +1,6 @@
 import type { LocaleText } from '@/types/panchang';
 /**
- * Argala — Planetary Intervention System (Jaimini)
+ * Argala  –  Planetary Intervention System (Jaimini)
  * Determines which planets actively support or obstruct each house.
  * Reference: BPHS Ch.31, Jaimini Sutras
  */
@@ -130,7 +130,7 @@ export function calculateArgala(planets: PlanetPosition[], ascSign: number): Arg
     }
 
     // Special: 3+ malefics in 3rd from target create UNOBSTRUCTABLE Argala
-    // (Jaimini Sutra: Nirabhasargala — requires more than 2 malefics)
+    // (Jaimini Sutra: Nirabhasargala  –  requires more than 2 malefics)
     const thirdHouse = ((targetHouse - 1 + 2) % 12) + 1;
     const thirdMalefics = housePlanets[thirdHouse].filter(p => !BENEFICS.has(p.planet.id));
     if (thirdMalefics.length >= 3) {
@@ -141,7 +141,7 @@ export function calculateArgala(planets: PlanetPosition[], ascSign: number): Arg
           fromHouse: 3,
           type: 'special',
           nature: 'malefic',
-          strength: 'strong', // Unobstructable — always strong
+          strength: 'strong', // Unobstructable  –  always strong
         });
       }
     }

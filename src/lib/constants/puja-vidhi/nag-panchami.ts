@@ -7,11 +7,11 @@ export const NAG_PANCHAMI_PUJA: PujaVidhi = {
 
   samagri: [
     { name: { en: 'Nag image (drawn on wall with turmeric or clay idol)', hi: 'नाग चित्र (दीवार पर हल्दी से बनाया या मिट्टी की मूर्ति)', sa: 'नागचित्रम् (भित्तौ हरिद्रया रचितं मृन्मूर्तिः वा)' }, note: { en: 'Draw a five-hooded or seven-hooded serpent on a wooden board or wall', hi: 'लकड़ी के तख्ते या दीवार पर पाँच या सात फन वाला नाग बनाएँ', sa: 'काष्ठफलके भित्तौ वा पञ्चफणं सप्तफणं वा नागं रचयेत्' }, category: 'puja_items', essential: true },
-    { name: { en: 'Milk (raw, unboiled)', hi: 'दूध (कच्चा, बिना उबला)', sa: 'क्षीरम् (अपक्वम्)' }, note: { en: 'For offering to the Nag — do NOT feed milk to live snakes', hi: 'नाग को अर्पित करने के लिए — जीवित साँपों को दूध न पिलाएँ', sa: 'नागाय अर्पणार्थम् — जीवद्भ्यः सर्पेभ्यः क्षीरं न दद्यात्' }, category: 'food', essential: true },
+    { name: { en: 'Milk (raw, unboiled)', hi: 'दूध (कच्चा, बिना उबला)', sa: 'क्षीरम् (अपक्वम्)' }, note: { en: 'For offering to the Nag  –  do NOT feed milk to live snakes', hi: 'नाग को अर्पित करने के लिए  –  जीवित साँपों को दूध न पिलाएँ', sa: 'नागाय अर्पणार्थम्  –  जीवद्भ्यः सर्पेभ्यः क्षीरं न दद्यात्' }, category: 'food', essential: true },
     { name: { en: 'Flowers (white and yellow)', hi: 'फूल (सफ़ेद और पीले)', sa: 'पुष्पाणि (श्वेतपीतानि)' }, category: 'flowers', essential: true },
     { name: { en: 'Durva grass (doob grass)', hi: 'दूर्वा घास (दूब)', sa: 'दूर्वा' }, category: 'flowers', essential: true },
     { name: { en: 'Turmeric (haldi)', hi: 'हल्दी', sa: 'हरिद्रा' }, note: { en: 'For drawing the nag image and for tilak', hi: 'नाग चित्र बनाने और तिलक के लिए', sa: 'नागचित्ररचनाय तिलकार्थं च' }, category: 'puja_items', essential: true },
-    { name: { en: 'Laddoo (sweet balls — especially besan laddoo)', hi: 'लड्डू (विशेषतः बेसन के लड्डू)', sa: 'लड्डुकानि (विशेषतः चणकसत्तुलड्डुकानि)' }, category: 'food', essential: true },
+    { name: { en: 'Laddoo (sweet balls  –  especially besan laddoo)', hi: 'लड्डू (विशेषतः बेसन के लड्डू)', sa: 'लड्डुकानि (विशेषतः चणकसत्तुलड्डुकानि)' }, category: 'food', essential: true },
     { name: { en: 'Akshat (unbroken rice)', hi: 'अक्षत (साबुत चावल)', sa: 'अक्षताः' }, category: 'puja_items', essential: true },
     { name: { en: 'Incense sticks', hi: 'अगरबत्ती', sa: 'धूपम्' }, category: 'puja_items', essential: true },
     { name: { en: 'Sandalwood paste (chandan)', hi: 'चन्दन का लेप', sa: 'चन्दनम्' }, category: 'puja_items', essential: false },
@@ -29,9 +29,9 @@ export const NAG_PANCHAMI_PUJA: PujaVidhi = {
   muhurtaWindow: { type: 'madhyahna' },
 
   sankalpa: {
-    en: 'On this sacred Nag Panchami, I worship the great serpent deities — Shesha, Vasuki, Takshaka, and all Nagas — for protection from serpent-related fears, removal of Kaal Sarpa Dosha, and the well-being of my family.',
-    hi: 'इस पवित्र नाग पंचमी पर, सर्प सम्बन्धी भय से रक्षा, काल सर्प दोष निवारण और परिवार की कुशलता के लिए, मैं महान नाग देवताओं — शेष, वासुकि, तक्षक और सभी नागों — की पूजा करता/करती हूँ।',
-    sa: 'अस्मिन् पवित्रे नागपञ्चम्यां सर्पभयनिवारणाय कालसर्पदोषनिवृत्त्यर्थं कुटुम्बकुशलतायै च महानागदेवतानां — शेषस्य, वासुकेः, तक्षकस्य, सर्वनागानां च — पूजनमहं करिष्ये।',
+    en: 'On this sacred Nag Panchami, I worship the great serpent deities  –  Shesha, Vasuki, Takshaka, and all Nagas  –  for protection from serpent-related fears, removal of Kaal Sarpa Dosha, and the well-being of my family.',
+    hi: 'इस पवित्र नाग पंचमी पर, सर्प सम्बन्धी भय से रक्षा, काल सर्प दोष निवारण और परिवार की कुशलता के लिए, मैं महान नाग देवताओं  –  शेष, वासुकि, तक्षक और सभी नागों  –  की पूजा करता/करती हूँ।',
+    sa: 'अस्मिन् पवित्रे नागपञ्चम्यां सर्पभयनिवारणाय कालसर्पदोषनिवृत्त्यर्थं कुटुम्बकुशलतायै च महानागदेवतानां  –  शेषस्य, वासुकेः, तक्षकस्य, सर्वनागानां च  –  पूजनमहं करिष्ये।',
   },
 
   vidhiSteps: [
@@ -76,9 +76,9 @@ export const NAG_PANCHAMI_PUJA: PujaVidhi = {
       step: 4,
       title: { en: 'Offer Milk to Nag Image', hi: 'नाग चित्र को दूध अर्पित करें', sa: 'नागचित्राय क्षीरम् अर्पयेत्' },
       description: {
-        en: 'Pour raw milk gently over the Nag image or at its base. This is the primary offering of Nag Panchami. IMPORTANT: Offer milk to the image/idol only — do NOT feed milk to live snakes as it harms them (snakes are lactose intolerant). If worshipping at a snake anthill, pour milk at the entrance.',
-        hi: 'नाग चित्र पर या उसकी जड़ में धीरे-धीरे कच्चा दूध डालें। यह नाग पंचमी का प्रमुख अर्पण है। महत्वपूर्ण: दूध केवल चित्र/मूर्ति को अर्पित करें — जीवित साँपों को दूध न पिलाएँ क्योंकि इससे उन्हें हानि होती है (साँप लैक्टोज़ सहन नहीं कर सकते)। यदि साँप की बाँबी पर पूजा करें तो प्रवेश द्वार पर दूध डालें।',
-        sa: 'नागचित्रोपरि तन्मूले वा शनैः अपक्वं क्षीरं सिञ्चेत्। एतत् नागपञ्चम्याः प्रधानम् अर्पणम्। अवधेयम्: क्षीरं चित्राय/मूर्तये एव अर्पयेत् — जीवद्भ्यः सर्पेभ्यः क्षीरं न दद्यात् यतः तेभ्यः हानिकरम् (सर्पाः दुग्धशर्करां न सहन्ते)। वल्मीके पूजायां प्रवेशद्वारे क्षीरं सिञ्चेत्।',
+        en: 'Pour raw milk gently over the Nag image or at its base. This is the primary offering of Nag Panchami. IMPORTANT: Offer milk to the image/idol only  –  do NOT feed milk to live snakes as it harms them (snakes are lactose intolerant). If worshipping at a snake anthill, pour milk at the entrance.',
+        hi: 'नाग चित्र पर या उसकी जड़ में धीरे-धीरे कच्चा दूध डालें। यह नाग पंचमी का प्रमुख अर्पण है। महत्वपूर्ण: दूध केवल चित्र/मूर्ति को अर्पित करें  –  जीवित साँपों को दूध न पिलाएँ क्योंकि इससे उन्हें हानि होती है (साँप लैक्टोज़ सहन नहीं कर सकते)। यदि साँप की बाँबी पर पूजा करें तो प्रवेश द्वार पर दूध डालें।',
+        sa: 'नागचित्रोपरि तन्मूले वा शनैः अपक्वं क्षीरं सिञ्चेत्। एतत् नागपञ्चम्याः प्रधानम् अर्पणम्। अवधेयम्: क्षीरं चित्राय/मूर्तये एव अर्पयेत्  –  जीवद्भ्यः सर्पेभ्यः क्षीरं न दद्यात् यतः तेभ्यः हानिकरम् (सर्पाः दुग्धशर्करां न सहन्ते)। वल्मीके पूजायां प्रवेशद्वारे क्षीरं सिञ्चेत्।',
       },
       duration: '5 min',
       essential: true,
@@ -172,18 +172,18 @@ export const NAG_PANCHAMI_PUJA: PujaVidhi = {
     },
     {
       id: 'sarpa-sukta-verse',
-      name: { en: 'Sarpa Sukta — Invocation Verse', hi: 'सर्प सूक्त — आवाहन श्लोक', sa: 'सर्पसूक्तम् — आवाहनश्लोकः' },
+      name: { en: 'Sarpa Sukta  –  Invocation Verse', hi: 'सर्प सूक्त  –  आवाहन श्लोक', sa: 'सर्पसूक्तम्  –  आवाहनश्लोकः' },
       devanagari: 'नमो अस्तु सर्पेभ्यो ये के च पृथिवीमनु। ये अन्तरिक्षे ये दिवि तेभ्यः सर्पेभ्यो नमः॥',
       iast: 'namo astu sarpebhyo ye ke ca pṛthivīmanu | ye antarikṣe ye divi tebhyaḥ sarpebhyo namaḥ ||',
       meaning: {
-        en: 'Salutations to all the serpents — those that dwell on earth, those in the atmosphere, and those in the heavens — to all those serpents, I bow.',
-        hi: 'सभी सर्पों को नमन — जो पृथ्वी पर निवास करते हैं, जो अन्तरिक्ष में हैं, और जो स्वर्ग में हैं — उन सभी सर्पों को मेरा प्रणाम।',
-        sa: 'सर्वेभ्यः सर्पेभ्यः नमः — ये पृथिव्यां वसन्ति, ये अन्तरिक्षे, ये दिवि — तेभ्यः सर्वेभ्यः सर्पेभ्यः नमः।',
+        en: 'Salutations to all the serpents  –  those that dwell on earth, those in the atmosphere, and those in the heavens  –  to all those serpents, I bow.',
+        hi: 'सभी सर्पों को नमन  –  जो पृथ्वी पर निवास करते हैं, जो अन्तरिक्ष में हैं, और जो स्वर्ग में हैं  –  उन सभी सर्पों को मेरा प्रणाम।',
+        sa: 'सर्वेभ्यः सर्पेभ्यः नमः  –  ये पृथिव्यां वसन्ति, ये अन्तरिक्षे, ये दिवि  –  तेभ्यः सर्वेभ्यः सर्पेभ्यः नमः।',
       },
       usage: {
-        en: 'This verse from the Atharva Veda is recited during Nag Panchami puja to honor serpents in all three realms — earth, sky, and heaven.',
-        hi: 'अथर्ववेद का यह मन्त्र नाग पंचमी पूजा में तीनों लोकों — पृथ्वी, आकाश और स्वर्ग — के सर्पों को सम्मान देने के लिए पढ़ा जाता है।',
-        sa: 'अथर्ववेदात् एषः मन्त्रः नागपञ्चमीपूजायां त्रिषु लोकेषु — पृथिव्यां, अन्तरिक्षे, दिवि — स्थितान् सर्पान् सम्मानयितुं पठ्यते।',
+        en: 'This verse from the Atharva Veda is recited during Nag Panchami puja to honor serpents in all three realms  –  earth, sky, and heaven.',
+        hi: 'अथर्ववेद का यह मन्त्र नाग पंचमी पूजा में तीनों लोकों  –  पृथ्वी, आकाश और स्वर्ग  –  के सर्पों को सम्मान देने के लिए पढ़ा जाता है।',
+        sa: 'अथर्ववेदात् एषः मन्त्रः नागपञ्चमीपूजायां त्रिषु लोकेषु  –  पृथिव्यां, अन्तरिक्षे, दिवि  –  स्थितान् सर्पान् सम्मानयितुं पठ्यते।',
       },
     },
   ],
@@ -201,9 +201,9 @@ export const NAG_PANCHAMI_PUJA: PujaVidhi = {
       sa: 'नागपञ्चम्यां भूमिं न खनेत्, क्षेत्रं न कर्षेत्, भूमिं न विक्षोभयेत्। सर्पाः भूम्यधः वसन्ति अयं दिनः तेषां रक्षायै समर्पितः। उद्यानकर्मापि वर्जनीयम्।',
     },
     {
-      en: 'Do NOT kill or harm any snake on this day — this is a grave sin on Nag Panchami. If you encounter a snake, let it pass peacefully. The day celebrates reverence for serpent life.',
-      hi: 'इस दिन किसी भी साँप को न मारें और न ही हानि पहुँचाएँ — नाग पंचमी पर यह गम्भीर पाप है। यदि साँप दिखे तो उसे शान्ति से जाने दें। यह दिन सर्प जीवन के प्रति श्रद्धा का उत्सव है।',
-      sa: 'अस्मिन् दिने कमपि सर्पं न हन्यात् न च हिंस्यात् — नागपञ्चम्यां एतत् गुरुपापम्। यदि सर्पः दृश्यते तर्हि शान्त्या गन्तुं ददयात्। अयं दिनः सर्पजीवनस्य श्रद्धोत्सवः।',
+      en: 'Do NOT kill or harm any snake on this day  –  this is a grave sin on Nag Panchami. If you encounter a snake, let it pass peacefully. The day celebrates reverence for serpent life.',
+      hi: 'इस दिन किसी भी साँप को न मारें और न ही हानि पहुँचाएँ  –  नाग पंचमी पर यह गम्भीर पाप है। यदि साँप दिखे तो उसे शान्ति से जाने दें। यह दिन सर्प जीवन के प्रति श्रद्धा का उत्सव है।',
+      sa: 'अस्मिन् दिने कमपि सर्पं न हन्यात् न च हिंस्यात्  –  नागपञ्चम्यां एतत् गुरुपापम्। यदि सर्पः दृश्यते तर्हि शान्त्या गन्तुं ददयात्। अयं दिनः सर्पजीवनस्य श्रद्धोत्सवः।',
     },
     {
       en: 'Do NOT fry food in oil on Nag Panchami. Many traditions prohibit using tava (griddle) and frying pan. Food should be boiled or steamed, not fried.',
@@ -211,9 +211,9 @@ export const NAG_PANCHAMI_PUJA: PujaVidhi = {
       sa: 'नागपञ्चम्यां तैले अन्नं न पचेत्। बहुपरम्परासु तवा कटाहस्य च उपयोगः निषिद्धः। अन्नम् उत्क्वाथितं वाष्पपक्वं वा स्यात्, न तैलपक्वम्।',
     },
     {
-      en: 'Do NOT feed milk to live snakes — this is a common misconception. Snakes are lactose intolerant and feeding them milk causes them suffering and can kill them. Offer milk only to the Nag image or idol.',
-      hi: 'जीवित साँपों को दूध न पिलाएँ — यह एक आम ग़लतफ़हमी है। साँप लैक्टोज़ सहन नहीं कर सकते और दूध पिलाने से उन्हें कष्ट होता है और वे मर सकते हैं। दूध केवल नाग चित्र या मूर्ति को अर्पित करें।',
-      sa: 'जीवद्भ्यः सर्पेभ्यः क्षीरं न दद्यात् — एषा सामान्या भ्रान्तिः। सर्पाः दुग्धशर्करां न सहन्ते, क्षीरपानेन तेषां कष्टं भवति मृत्युश्च सम्भवति। क्षीरं केवलं नागचित्राय मूर्तये वा अर्पयेत्।',
+      en: 'Do NOT feed milk to live snakes  –  this is a common misconception. Snakes are lactose intolerant and feeding them milk causes them suffering and can kill them. Offer milk only to the Nag image or idol.',
+      hi: 'जीवित साँपों को दूध न पिलाएँ  –  यह एक आम ग़लतफ़हमी है। साँप लैक्टोज़ सहन नहीं कर सकते और दूध पिलाने से उन्हें कष्ट होता है और वे मर सकते हैं। दूध केवल नाग चित्र या मूर्ति को अर्पित करें।',
+      sa: 'जीवद्भ्यः सर्पेभ्यः क्षीरं न दद्यात्  –  एषा सामान्या भ्रान्तिः। सर्पाः दुग्धशर्करां न सहन्ते, क्षीरपानेन तेषां कष्टं भवति मृत्युश्च सम्भवति। क्षीरं केवलं नागचित्राय मूर्तये वा अर्पयेत्।',
     },
     {
       en: 'Observe a fast (partial or full) on Nag Panchami. Many devotees eat only once after the puja is completed. The fast enhances the merit of the worship.',

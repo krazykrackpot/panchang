@@ -111,8 +111,8 @@ function makeParams(overrides: Partial<MemberStatusParams> = {}): MemberStatusPa
     relationship: 'self',
     chartId: 'chart-001',
     kundali: makeKundali({}),
-    currentSaturnSign: 8,    // Scorpio — not near Cancer(4) moon
-    currentJupiterSign: 2,   // Taurus — not on natal Sun(1) or Moon(4)
+    currentSaturnSign: 8,    // Scorpio  –  not near Cancer(4) moon
+    currentJupiterSign: 2,   // Taurus  –  not on natal Sun(1) or Moon(4)
     today: new Date(Date.UTC(2026, 3, 26)), // 2026-04-26
     ...overrides,
   };
@@ -243,7 +243,7 @@ describe('computeMemberStatus', () => {
     const status = computeMemberStatus(makeParams({
       kundali: makeKundali({ moonSign: 4 }),
       currentJupiterSign: 4,
-      currentSaturnSign: 8, // far from Moon — no Sade Sati
+      currentSaturnSign: 8, // far from Moon  –  no Sade Sati
     }));
 
     expect(status.transitAlerts.length).toBeGreaterThanOrEqual(1);
@@ -270,7 +270,7 @@ describe('computeMemberStatus', () => {
   });
 
   it('returns stable when nothing notable is happening', () => {
-    // Moon sign 4, Saturn sign 8, Jupiter sign 7 — nothing overlaps
+    // Moon sign 4, Saturn sign 8, Jupiter sign 7  –  nothing overlaps
     const status = computeMemberStatus(makeParams({
       kundali: makeKundali({ sunSign: 1, moonSign: 4, ascSign: 10 }),
       currentSaturnSign: 8,

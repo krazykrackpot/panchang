@@ -1,5 +1,5 @@
 // src/app/[locale]/horoscope/[rashi]/monthly/page.tsx
-// NO 'use client' — this is a Server Component for SEO indexability
+// NO 'use client'  –  this is a Server Component for SEO indexability
 
 import { notFound } from 'next/navigation';
 import { getRashiBySlug } from '@/lib/constants/rashi-slugs';
@@ -37,12 +37,12 @@ export default async function MonthlyRashiPage({ params }: { params: Promise<{ l
 
   return (
     <main className="min-h-screen bg-[#0a0e27] pb-20">
-      {/* SSR: H1 with rashi name and month — Google indexes this */}
+      {/* SSR: H1 with rashi name and month  –  Google indexes this */}
       <div className="max-w-4xl mx-auto px-4 pt-8">
         <h1 className="text-2xl sm:text-3xl font-bold text-gold-light text-center">
           {isHi
-            ? `${vedicName} मासिक राशिफल — ${monthLabel}`
-            : `${vedicName} (${westernName}) Monthly Horoscope — ${monthLabel}`}
+            ? `${vedicName} मासिक राशिफल  –  ${monthLabel}`
+            : `${vedicName} (${westernName}) Monthly Horoscope  –  ${monthLabel}`}
         </h1>
 
         {/* SSR: Brief description paragraph for indexing */}
@@ -56,7 +56,7 @@ export default async function MonthlyRashiPage({ params }: { params: Promise<{ l
       {/* Client island: interactive monthly widget with full functionality */}
       <MonthlyClient rashi={rashi} locale={locale} />
 
-      {/* SSR: Static editorial content — always indexed */}
+      {/* SSR: Static editorial content  –  always indexed */}
       <RashiArticle rashiId={rashi.id} vedicName={vedicName} westernName={westernName} locale={locale} />
     </main>
   );

@@ -119,7 +119,7 @@ describe('smartMuhurtaSearch', () => {
       activity: 'travel',
     });
 
-    // Both should return valid results — actual scores may differ
+    // Both should return valid results  –  actual scores may differ
     expect(Array.isArray(marriageWindows)).toBe(true);
     expect(Array.isArray(travelWindows)).toBe(true);
   });

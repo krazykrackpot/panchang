@@ -8,14 +8,14 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
 
 // ----------------------------------------------------------------------------
-// Constants — hoisted from render path (performance rule)
+// Constants  –  hoisted from render path (performance rule)
 // ----------------------------------------------------------------------------
 
 const SVG_SIZE = 800;
 const CX = SVG_SIZE / 2; // 400
 const CY = SVG_SIZE / 2; // 400
 
-/** Radii for concentric rings — scaled up for 800px viewBox */
+/** Radii for concentric rings  –  scaled up for 800px viewBox */
 const R_CENTER = 36;
 const R_RASHI_INNER = 220;
 const R_RASHI_OUTER = 296;
@@ -30,15 +30,15 @@ const ZOOM_MAX = 4;
 
 /** Planet colors by id (0=Sun … 8=Ketu) */
 const PLANET_COLORS: Record<number, string> = {
-  0: '#FF9500', // Sun — amber-orange
-  1: '#C0C0C0', // Moon — silver
-  2: '#DC143C', // Mars — crimson
-  3: '#50C878', // Mercury — emerald
-  4: '#FFD700', // Jupiter — gold
-  5: '#FF69B4', // Venus — pink
-  6: '#6B8DD6', // Saturn — slate-blue
-  7: '#B8860B', // Rahu — dark-gold
-  8: '#808080', // Ketu — grey
+  0: '#FF9500', // Sun  –  amber-orange
+  1: '#C0C0C0', // Moon  –  silver
+  2: '#DC143C', // Mars  –  crimson
+  3: '#50C878', // Mercury  –  emerald
+  4: '#FFD700', // Jupiter  –  gold
+  5: '#FF69B4', // Venus  –  pink
+  6: '#6B8DD6', // Saturn  –  slate-blue
+  7: '#B8860B', // Rahu  –  dark-gold
+  8: '#808080', // Ketu  –  grey
 };
 
 /** Planet short labels for chart */
@@ -457,7 +457,7 @@ function PlanetMarkers({ positions, onHover, onSelect, selectedId, mounted }: Pl
               transform={`translate(${translateX}, ${translateY})`}
               style={{ transition: 'transform 1s cubic-bezier(0.34, 1.56, 0.64, 1)' }}
             >
-              {/* Retrograde pulsing ring — gentle CSS pulse, replaces aggressive animate-ping */}
+              {/* Retrograde pulsing ring  –  gentle CSS pulse, replaces aggressive animate-ping */}
               {planet.isRetrograde && (
                 <circle
                   r={13}
@@ -504,7 +504,7 @@ function PlanetMarkers({ positions, onHover, onSelect, selectedId, mounted }: Pl
                 {PLANET_SHORT[planet.id]}
               </text>
 
-              {/* Planet name label — offset outward from planet center */}
+              {/* Planet name label  –  offset outward from planet center */}
               <PlanetLabelOffset planet={planet} color={color} pt={pt} />
             </g>
           </g>
@@ -729,9 +729,9 @@ const RETROGRADE_CSS = `
 // ----------------------------------------------------------------------------
 
 interface LiveSkyMapProps {
-  /** Initial positions — can be passed from server or computed client-side */
+  /** Initial positions  –  can be passed from server or computed client-side */
   initialPositions?: SkyPlanetPosition[];
-  /** Locale for nakshatra/rashi labels — defaults to 'en' */
+  /** Locale for nakshatra/rashi labels  –  defaults to 'en' */
   locale?: string;
 }
 
@@ -752,9 +752,9 @@ export function LiveSkyMap({ initialPositions, locale = 'en' }: LiveSkyMapProps)
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [loading, setLoading] = useState(initialPositions === undefined);
   const [error, setError] = useState<string | null>(null);
-  /** Whether the component has fully mounted — drives planet entry animation */
+  /** Whether the component has fully mounted  –  drives planet entry animation */
   const [mounted, setMounted] = useState(false);
-  /** Simple React-driven zoom — scale and pan in viewBox coordinates */
+  /** Simple React-driven zoom  –  scale and pan in viewBox coordinates */
   const [zoomLevel, setZoomLevel] = useState(1);
   const [panOffset, setPanOffset] = useState({ x: 0, y: 0 });
   /** Time animation state */
@@ -960,19 +960,19 @@ export function LiveSkyMap({ initialPositions, locale = 'en' }: LiveSkyMapProps)
       {/* Inject retrograde animation keyframes */}
       <style>{RETROGRADE_CSS}</style>
 
-      {/* SVG Chart — full width, aspect-ratio square */}
+      {/* SVG Chart  –  full width, aspect-ratio square */}
       <div className="relative w-full" style={{ aspectRatio: '1 / 1', maxHeight: '85vh' }}>
         <svg
           ref={svgRef}
           viewBox={dynamicViewBox}
           className="w-full h-full"
           style={{ background: 'transparent', cursor: 'grab' }}
-          aria-label="Live Sky Map — sidereal ecliptic polar projection (scroll to zoom, drag to pan)"
+          aria-label="Live Sky Map  –  sidereal ecliptic polar projection (scroll to zoom, drag to pan)"
           role="img"
         >
           <SvgDefs />
 
-          {/* Background glow (fixed — not zoomed) */}
+          {/* Background glow (fixed  –  not zoomed) */}
           <circle cx={CX} cy={CY} r={SVG_SIZE / 2} fill="url(#bgGlow)" />
 
           {/* All chart content inside a zoomable group */}
@@ -989,7 +989,7 @@ export function LiveSkyMap({ initialPositions, locale = 'en' }: LiveSkyMapProps)
             {/* Degree markers */}
             <DegreeMarkers />
 
-            {/* Planet track ring — gradient ring instead of dashed */}
+            {/* Planet track ring  –  gradient ring instead of dashed */}
             <circle
               cx={CX}
               cy={CY}
@@ -1028,10 +1028,10 @@ export function LiveSkyMap({ initialPositions, locale = 'en' }: LiveSkyMapProps)
         {/* Tooltip overlay */}
         {tooltip && <Tooltip data={tooltip} locale={locale} />}
 
-        {/* Time animation controls — BELOW the chart, not overlaid */}
+        {/* Time animation controls  –  BELOW the chart, not overlaid */}
       </div>{/* end chart container */}
       <div className="flex flex-col items-center gap-2 bg-[#111633]/90 border border-[#8a6d2b]/30 rounded-xl px-4 py-3 mx-auto max-w-[560px] mt-3">
-          {/* Timeline slider — scrub ±1 year from current real time */}
+          {/* Timeline slider  –  scrub ±1 year from current real time */}
           <div className="w-full flex items-center gap-2">
             <span className="text-[#6a5a28] text-[9px] whitespace-nowrap">-1yr</span>
             <input

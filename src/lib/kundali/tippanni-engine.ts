@@ -2,7 +2,7 @@
  * Tippanni Interpretation Engine
  *
  * The central interpretive commentary generator for a Kundali chart. "Tippanni"
- * (Sanskrit: टिप्पणी) means annotation or commentary — this engine transforms
+ * (Sanskrit: टिप्पणी) means annotation or commentary  –  this engine transforms
  * raw astronomical data into structured, human-readable insights.
  *
  * ─── Architecture ────────────────────────────────────────────────────
@@ -61,7 +61,7 @@
  *
  * ─── Error Handling ──────────────────────────────────────────────────
  *
- *   The chart narrative (final step) is wrapped in try/catch — it reads
+ *   The chart narrative (final step) is wrapped in try/catch  –  it reads
  *   from all other sections and a failure there must never block the
  *   entire tippanni. All other sections are expected to succeed given
  *   valid KundaliData input.
@@ -105,7 +105,7 @@ import { generateYearPredictions } from '@/lib/tippanni/year-predictions';
 
 export type { TippanniContent } from './tippanni-types';
 
-// Planet-in-house base descriptions (English only — Hindi/Sanskrit handled
+// Planet-in-house base descriptions (English only  –  Hindi/Sanskrit handled
 // by the enhanced module getPlanetInHouseEnhanced() when available).
 //
 // These are concise summaries of each planet's signification when placed
@@ -136,7 +136,7 @@ const PLANET_HOUSE_BASE: Record<number, Record<number, string>> = {
     1: 'Moon in the 1st house gives an emotional, intuitive, and receptive personality with strong nurturing instincts.',
     2: 'Moon in the 2nd house indicates fluctuating finances but rich family life and emotionally persuasive speech.',
     3: 'Moon in the 3rd house gives emotional courage and strong bonds with siblings.',
-    4: 'Moon in the 4th house is very strong — emotional contentment, comfortable home, and loving relationship with mother.',
+    4: 'Moon in the 4th house is very strong  –  emotional contentment, comfortable home, and loving relationship with mother.',
     5: 'Moon in the 5th house gives emotional intelligence, creative talent, and strong bonding with children.',
     6: 'Moon in the 6th house indicates emotional challenges from health issues. Service to others provides healing.',
     7: 'Moon in the 7th house brings an emotionally nurturing partner and empathetic public dealings.',
@@ -149,7 +149,7 @@ const PLANET_HOUSE_BASE: Record<number, Record<number, string>> = {
   2: {
     1: 'Mars in the 1st house gives courage, energy, and a competitive spirit with exceptional physical vitality.',
     2: 'Mars in the 2nd house indicates aggressive earning and fierce family protectiveness.',
-    3: 'Mars in the 3rd house is excellent — valor, adventurous spirit, and strong supportive siblings.',
+    3: 'Mars in the 3rd house is excellent  –  valor, adventurous spirit, and strong supportive siblings.',
     4: 'Mars in the 4th house brings energy to domestic life but possible property disputes.',
     5: 'Mars in the 5th house gives competitive intelligence and risk-taking ability in education and speculation.',
     6: 'Mars in the 6th house is powerful for defeating enemies and overcoming obstacles.',
@@ -163,7 +163,7 @@ const PLANET_HOUSE_BASE: Record<number, Record<number, string>> = {
   3: {
     1: 'Mercury in the 1st house gives a youthful, communicative personality. Witty, adaptable, and multi-talented.',
     2: 'Mercury in the 2nd house is excellent for wealth through intellect. Clever, persuasive speech.',
-    3: 'Mercury in the 3rd house is very strong — excellent communication, writing talent, and harmonious siblings.',
+    3: 'Mercury in the 3rd house is very strong  –  excellent communication, writing talent, and harmonious siblings.',
     4: 'Mercury in the 4th house gives an educated home environment and favorable property transactions.',
     5: 'Mercury in the 5th house gives sharp intelligence, skill in speculation, and intellectually gifted children.',
     6: 'Mercury in the 6th house helps solve problems analytically. Good for medical, legal professions.',
@@ -179,11 +179,11 @@ const PLANET_HOUSE_BASE: Record<number, Record<number, string>> = {
     2: 'Jupiter in the 2nd house is excellent for wealth, family happiness, and noble speech.',
     3: 'Jupiter in the 3rd house gives wise communication and good sibling relationships.',
     4: 'Jupiter in the 4th house brings domestic happiness, property, and comfortable living.',
-    5: 'Jupiter in the 5th house is one of the best placements — intelligence, good children, and spiritual merit.',
+    5: 'Jupiter in the 5th house is one of the best placements  –  intelligence, good children, and spiritual merit.',
     6: 'Jupiter in the 6th house helps overcome obstacles through wisdom and righteousness.',
     7: 'Jupiter in the 7th house brings a wise, noble spouse. Partnerships are fortunate and ethical.',
     8: 'Jupiter in the 8th house protects from sudden harm. Interest in occult wisdom. Longevity favored.',
-    9: 'Jupiter in the 9th house is extremely fortunate — great wisdom, prosperity, and spiritual blessings.',
+    9: 'Jupiter in the 9th house is extremely fortunate  –  great wisdom, prosperity, and spiritual blessings.',
     10: 'Jupiter in the 10th house brings career success through ethical leadership and social respect.',
     11: 'Jupiter in the 11th house fulfills ambitions through knowledge and wise connections.',
     12: 'Jupiter in the 12th house favors spiritual growth, foreign travel, and moksha.',
@@ -195,7 +195,7 @@ const PLANET_HOUSE_BASE: Record<number, Record<number, string>> = {
     4: 'Venus in the 4th house brings luxury at home, beautiful vehicles, and domestic happiness.',
     5: 'Venus in the 5th house gives romantic fulfillment, creative talent, and artistic expression.',
     6: 'Venus in the 6th house indicates relationship challenges but success in service-related creative fields.',
-    7: 'Venus in the 7th house is strong for marriage — attractive spouse and prosperous partnerships.',
+    7: 'Venus in the 7th house is strong for marriage  –  attractive spouse and prosperous partnerships.',
     8: 'Venus in the 8th house gives sensual depth, possible inheritance, and transformative love.',
     9: 'Venus in the 9th house brings fortune through arts, beauty, and pleasant foreign connections.',
     10: 'Venus in the 10th house brings career success in arts, beauty, fashion, or entertainment.',
@@ -212,13 +212,13 @@ const PLANET_HOUSE_BASE: Record<number, Record<number, string>> = {
     7: 'Saturn in the 7th house delays marriage or brings a mature, responsible spouse.',
     8: 'Saturn in the 8th house gives longevity and deep research interests. Chronic conditions need management.',
     9: 'Saturn in the 9th house gives disciplined spiritual practice and thorough higher education.',
-    10: 'Saturn in the 10th house is powerful — career success through steady effort in structured institutions.',
+    10: 'Saturn in the 10th house is powerful  –  career success through steady effort in structured institutions.',
     11: 'Saturn in the 11th house brings gains through persistent effort, achieving goals long-term.',
     12: 'Saturn in the 12th house indicates foreign residence, spiritual discipline, and long-term service.',
   },
   7: {
     1: 'Rahu in the 1st house gives an unconventional personality with worldly ambitions and unique identity.',
-    2: 'Rahu in the 2nd house creates unusual wealth patterns — sudden gains and losses.',
+    2: 'Rahu in the 2nd house creates unusual wealth patterns  –  sudden gains and losses.',
     3: 'Rahu in the 3rd house gives courage through unconventional means and modern communication.',
     4: 'Rahu in the 4th house creates unique domestic situations. Foreign property possible.',
     5: 'Rahu in the 5th house gives unusual intelligence and unconventional creative approach.',
@@ -258,25 +258,25 @@ function t(locale: Locale, en: string, hi: string, _sa?: string): string {
  *
  * Analyses three pillars of Vedic personality (the "triad of self"):
  *
- *   1. **Lagna (Ascendant)** — BPHS Ch.11-12 (Tanu Bhava): the sign rising
+ *   1. **Lagna (Ascendant)**  –  BPHS Ch.11-12 (Tanu Bhava): the sign rising
  *      at birth determines physical constitution, outward temperament,
  *      and approach to life. Content drawn from LAGNA_DEEP which has
  *      detailed personality/career/health/relationships/finances/spiritual
  *      text per sign.
  *
- *   2. **Moon Sign** — BPHS Ch.24 (Chandra effects): the mind's rashi.
+ *   2. **Moon Sign**  –  BPHS Ch.24 (Chandra effects): the mind's rashi.
  *      Analysed through element (Tattva) and quality (Guna) frameworks.
  *      Determines emotional response patterns and relationship needs.
  *
- *   3. **Sun Sign** — the soul's expression (Atma Karaka principle).
+ *   3. **Sun Sign**  –  the soul's expression (Atma Karaka principle).
  *      Defines core identity, ego, and life purpose. Father's influence.
  *
  * The summary blends all three into a personality synthesis, enriched with:
- *   - Lagna lord's Shadbala strength (BPHS Ch.27) — strong vs suppressed expression
+ *   - Lagna lord's Shadbala strength (BPHS Ch.27)  –  strong vs suppressed expression
  *   - Lagna lord's Baladi Avastha (age-state: Bala/Kumara/Yuva/Vriddha/Mrita)
  *   - Life-stage-specific personality framing from LAGNA_STAGE_CONTEXT
  *
- * @param stageCtx — optional life stage (child/student/career/elder) for
+ * @param stageCtx  –  optional life stage (child/student/career/elder) for
  *                    age-appropriate personality framing
  */
 function generatePersonality(kundali: KundaliData, locale: Locale, stageCtx?: LifeStageContext): PersonalitySection {
@@ -299,7 +299,7 @@ function generatePersonality(kundali: KundaliData, locale: Locale, stageCtx?: Li
 
   const moonContent = moonSign
     ? t(locale,
-        `Moon in ${moonSign.name.en} shapes your emotional nature, instincts, and inner world. As a ${moonSign.element.en} sign ruled by ${moonSign.rulerName.en}, your emotional responses are colored by ${moonSign.quality.en.toLowerCase()} energy. Your mind processes feelings through the lens of ${moonSign.name.en} — ${moonSign.element.en === 'Fire' ? 'with passion and immediacy' : moonSign.element.en === 'Earth' ? 'with groundedness and practicality' : moonSign.element.en === 'Air' ? 'with intellectual detachment and analysis' : 'with deep sensitivity and intuition'}. This placement reveals how you nurture others and what you need to feel emotionally secure.`,
+        `Moon in ${moonSign.name.en} shapes your emotional nature, instincts, and inner world. As a ${moonSign.element.en} sign ruled by ${moonSign.rulerName.en}, your emotional responses are colored by ${moonSign.quality.en.toLowerCase()} energy. Your mind processes feelings through the lens of ${moonSign.name.en}  –  ${moonSign.element.en === 'Fire' ? 'with passion and immediacy' : moonSign.element.en === 'Earth' ? 'with groundedness and practicality' : moonSign.element.en === 'Air' ? 'with intellectual detachment and analysis' : 'with deep sensitivity and intuition'}. This placement reveals how you nurture others and what you need to feel emotionally secure.`,
         `${moonSign.name.hi} राशि में चन्द्रमा आपकी भावनात्मक प्रकृति, सहज वृत्तियों और आन्तरिक संसार को आकार देता है। ${moonSign.rulerName.hi} द्वारा शासित ${moonSign.element.hi} तत्व राशि के रूप में, आपकी भावनात्मक प्रतिक्रियाएँ ${moonSign.quality.hi} ऊर्जा से रंगी हैं। यह स्थिति बताती है कि आप दूसरों का पोषण कैसे करते हैं और भावनात्मक सुरक्षा के लिए आपको क्या चाहिए।`,
         `${moonSign.name.sa} राशौ चन्द्रः भवतः भावनात्मिकप्रकृतिम् आकारयति।`)
     : '';
@@ -312,7 +312,7 @@ function generatePersonality(kundali: KundaliData, locale: Locale, stageCtx?: Li
 
   const sunContent = sunSign
     ? t(locale,
-        `Sun in ${sunSign.name.en} defines your core identity, ego expression, and life purpose. Ruled by ${sunSign.rulerName.en}, your soul seeks to express through ${sunSign.element.en.toLowerCase()} qualities — ${sunSign.element.en === 'Fire' ? 'action, leadership, and self-assertion' : sunSign.element.en === 'Earth' ? 'building, stabilizing, and materializing' : sunSign.element.en === 'Air' ? 'communicating, connecting, and ideating' : 'feeling, intuiting, and healing'}. Your father\'s influence reflects this sign\'s qualities.`,
+        `Sun in ${sunSign.name.en} defines your core identity, ego expression, and life purpose. Ruled by ${sunSign.rulerName.en}, your soul seeks to express through ${sunSign.element.en.toLowerCase()} qualities  –  ${sunSign.element.en === 'Fire' ? 'action, leadership, and self-assertion' : sunSign.element.en === 'Earth' ? 'building, stabilizing, and materializing' : sunSign.element.en === 'Air' ? 'communicating, connecting, and ideating' : 'feeling, intuiting, and healing'}. Your father\'s influence reflects this sign\'s qualities.`,
         `${sunSign.name.hi} राशि में सूर्य आपकी मूल पहचान, अहं अभिव्यक्ति और जीवन उद्देश्य को परिभाषित करता है। ${sunSign.rulerName.hi} द्वारा शासित, आपकी आत्मा ${sunSign.element.hi} गुणों के माध्यम से अभिव्यक्त होना चाहती है। पिता का प्रभाव इस राशि के गुणों को दर्शाता है।`,
         `${sunSign.name.sa} राशौ सूर्यः भवतः मूलपहचानम् अहम्अभिव्यक्तिं जीवनोद्देश्यं च परिभाषयति।`)
     : '';
@@ -337,8 +337,8 @@ function generatePersonality(kundali: KundaliData, locale: Locale, stageCtx?: Li
       if (sb) {
         const strong = sb.strengthRatio >= 1.0;
         enrichParts.push(t(locale,
-          `Your lagna lord ${lagnaLordGraha.name.en} has ${sb.rupas.toFixed(1)} rupas (${strong ? 'strong — personality traits manifest fully' : 'weak — personality may feel suppressed or delayed in expression'}).`,
-          `आपका लग्नेश ${lagnaLordGraha.name.hi} ${sb.rupas.toFixed(1)} रूप (${strong ? 'बलवान — व्यक्तित्व पूर्ण रूप से प्रकट' : 'दुर्बल — व्यक्तित्व अभिव्यक्ति में विलम्ब'})।`));
+          `Your lagna lord ${lagnaLordGraha.name.en} has ${sb.rupas.toFixed(1)} rupas (${strong ? 'strong  –  personality traits manifest fully' : 'weak  –  personality may feel suppressed or delayed in expression'}).`,
+          `आपका लग्नेश ${lagnaLordGraha.name.hi} ${sb.rupas.toFixed(1)} रूप (${strong ? 'बलवान  –  व्यक्तित्व पूर्ण रूप से प्रकट' : 'दुर्बल  –  व्यक्तित्व अभिव्यक्ति में विलम्ब'})।`));
       }
     }
 
@@ -347,7 +347,7 @@ function generatePersonality(kundali: KundaliData, locale: Locale, stageCtx?: Li
       const av = kundali.avasthas.find((a: { planetId: number }) => a.planetId === lagnaLordId);
       if (av?.baladi) {
         enrichParts.push(t(locale,
-          `Lagna lord in ${av.baladi.name.en} avastha — ${av.baladi.state === 'bala' ? 'youthful energy, still developing' : av.baladi.state === 'kumara' ? 'adolescent energy, growing confidence' : av.baladi.state === 'yuva' ? 'peak expression, full vitality' : av.baladi.state === 'vriddha' ? 'mature wisdom, measured expression' : 'diminished vitality, inner focus'}.`,
+          `Lagna lord in ${av.baladi.name.en} avastha  –  ${av.baladi.state === 'bala' ? 'youthful energy, still developing' : av.baladi.state === 'kumara' ? 'adolescent energy, growing confidence' : av.baladi.state === 'yuva' ? 'peak expression, full vitality' : av.baladi.state === 'vriddha' ? 'mature wisdom, measured expression' : 'diminished vitality, inner focus'}.`,
           `लग्नेश ${av.baladi.name.hi} अवस्था में।`));
       }
     }
@@ -392,31 +392,31 @@ function generatePersonality(kundali: KundaliData, locale: Locale, stageCtx?: Li
  *
  * For each planet, the insight is built from multiple layers (in order):
  *
- *   1. **House placement** — from getPlanetInHouseEnhanced() (trilingual)
+ *   1. **House placement**  –  from getPlanetInHouseEnhanced() (trilingual)
  *      or PLANET_HOUSE_BASE (English fallback). Ref: BPHS Ch.24.
  *
- *   2. **Sign placement** — from getPlanetInSignText(). How the planet
+ *   2. **Sign placement**  –  from getPlanetInSignText(). How the planet
  *      expresses through the characteristics of its host rashi.
  *
- *   3. **Dignity status** — exalted/debilitated/own sign from DIGNITY_EFFECTS.
+ *   3. **Dignity status**  –  exalted/debilitated/own sign from DIGNITY_EFFECTS.
  *      Per BPHS Ch.3-4 (Graha Svarupa).
  *
- *   4. **Retrograde effect** — for true planets (id 0-6) only. Rahu/Ketu
+ *   4. **Retrograde effect**  –  for true planets (id 0-6) only. Rahu/Ketu
  *      are always retrograde and excluded. Ref: BPHS Ch.26.
  *
- *   5. **Avastha enrichment** — Baladi (age state) and Deeptadi (luminosity)
+ *   5. **Avastha enrichment**  –  Baladi (age state) and Deeptadi (luminosity)
  *      from computed avasthas. Ref: BPHS Ch.45.
  *
- *   6. **Functional nature** — YogaKaraka, Maraka, Badhaka, or functional
+ *   6. **Functional nature**  –  YogaKaraka, Maraka, Badhaka, or functional
  *      benefic/malefic for the specific lagna. Ref: BPHS Ch.34.
  *
- *   7. **Vimshopaka Bala** — dignity across 16 divisional charts (0-20 scale).
+ *   7. **Vimshopaka Bala**  –  dignity across 16 divisional charts (0-20 scale).
  *      Ref: BPHS Ch.16. Separate from Shadbala (6-fold strength).
  *
- *   8. **Shadbala** — 6-fold strength in rupas with ratio to minimum required.
+ *   8. **Shadbala**  –  6-fold strength in rupas with ratio to minimum required.
  *      Ref: BPHS Ch.27. Thresholds: >=1.5 Strong, >=1.0 Adequate, <1.0 Weak.
  *
- *   9. **Classical citations** — BPHS chapter references from BPHS_PLANET_IN_HOUSE.
+ *   9. **Classical citations**  –  BPHS chapter references from BPHS_PLANET_IN_HOUSE.
  */
 function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetInsight[] {
   return kundali.planets.map((p) => {
@@ -476,9 +476,9 @@ function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetIns
       const fn = kundali.functionalNature.planets?.find((f: { planetId: number }) => f.planetId === p.planet.id);
       if (fn) {
         const roleText = fn.nature === 'yogaKaraka'
-          ? t(locale, `${graha.name.en} is your YogaKaraka — the single most beneficial planet for your lagna.`, `${graha.name.hi} आपका योगकारक है — आपके लग्न के लिए सबसे शुभ ग्रह।`)
+          ? t(locale, `${graha.name.en} is your YogaKaraka  –  the single most beneficial planet for your lagna.`, `${graha.name.hi} आपका योगकारक है  –  आपके लग्न के लिए सबसे शुभ ग्रह।`)
           : fn.nature === 'maraka'
-          ? t(locale, `${graha.name.en} is a Maraka (death-inflicting) planet for your lagna — handle its periods with care.`, `${graha.name.hi} आपके लग्न के लिए मारक ग्रह है।`)
+          ? t(locale, `${graha.name.en} is a Maraka (death-inflicting) planet for your lagna  –  handle its periods with care.`, `${graha.name.hi} आपके लग्न के लिए मारक ग्रह है।`)
           : fn.nature === 'badhak'
           ? t(locale, `${graha.name.en} is the Badhaka (obstructing) planet for your lagna.`, `${graha.name.hi} आपके लग्न के लिए बाधक ग्रह है।`)
           : fn.nature === 'funcBenefic'
@@ -501,8 +501,8 @@ function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetIns
             : vbScore >= 5 ? t(locale, 'moderate', 'मध्यम')
             : t(locale, 'weak', 'दुर्बल');
           description += '\n\n' + t(locale,
-            `Vimshopaka dignity: ${vbScore.toFixed(1)}/20 (${vbLabel}) — dignity across 16 divisional charts (separate from Shadbala strength).`,
-            `विंशोपक बल: ${vbScore.toFixed(1)}/20 (${vbLabel}) — 16 वर्ग कुण्डलियों में गरिमा (षड्बल से पृथक)।`);
+            `Vimshopaka dignity: ${vbScore.toFixed(1)}/20 (${vbLabel})  –  dignity across 16 divisional charts (separate from Shadbala strength).`,
+            `विंशोपक बल: ${vbScore.toFixed(1)}/20 (${vbLabel})  –  16 वर्ग कुण्डलियों में गरिमा (षड्बल से पृथक)।`);
         }
       }
     }
@@ -546,7 +546,7 @@ function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetIns
 }
 
 /**
- * Generates the Yogas section — planetary combinations that modify
+ * Generates the Yogas section  –  planetary combinations that modify
  * the chart's overall quality.
  *
  * Two detection paths:
@@ -570,7 +570,7 @@ function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetIns
  * Expected frequency guideline (Lesson T): if a "rare" yoga triggers in >20%
  * of charts, the detection condition is likely too loose.
  *
- * @param stageCtx — life stage for age-relevance weighting
+ * @param stageCtx  –  life stage for age-relevance weighting
  */
 function generateYogas(kundali: KundaliData, locale: Locale, stageCtx?: LifeStageContext): YogaInsight[] {
   let yogaInsights: YogaInsight[];
@@ -614,7 +614,7 @@ function generateYogas(kundali: KundaliData, locale: Locale, stageCtx?: LifeStag
     }
   }
 
-  // For non-English locales, the name won't match — try matching via yogasComplete English names
+  // For non-English locales, the name won't match  –  try matching via yogasComplete English names
   if (locale !== 'en' && kundali.yogasComplete) {
     const enNameMap = new Map<string, string>();
     for (const y of kundali.yogasComplete) {
@@ -658,7 +658,7 @@ function generateYogas(kundali: KundaliData, locale: Locale, stageCtx?: LifeStag
 }
 
 /**
- * Generates the Doshas section — afflictions and their cancellation analysis.
+ * Generates the Doshas section  –  afflictions and their cancellation analysis.
  *
  * Two detection paths (same pattern as generateYogas):
  *   1. **yogasComplete doshas** (preferred): pre-computed dosha category entries
@@ -666,7 +666,7 @@ function generateYogas(kundali: KundaliData, locale: Locale, stageCtx?: LifeStag
  *
  * The three manually detected doshas are:
  *
- *   **Manglik Dosha (Kuja Dosha)** — BPHS Ch.77
+ *   **Manglik Dosha (Kuja Dosha)**  –  BPHS Ch.77
  *     Mars in houses 1/2/4/7/8/12. Severity: severe (1,7,8), moderate (4,12), mild (2).
  *     Cancellation conditions checked against BPHS Ch.77 and Phaladeepika:
  *       - Mars in own/exalted sign
@@ -676,12 +676,12 @@ function generateYogas(kundali: KundaliData, locale: Locale, stageCtx?: LifeStag
  *       - Saturn aspects Mars
  *     effectiveSeverity: 'cancelled' (2+ met), 'partial' (1 met), 'full' (0 met)
  *
- *   **Kaal Sarpa Dosha** — all 7 planets hemmed between Rahu and Ketu.
+ *   **Kaal Sarpa Dosha**  –  all 7 planets hemmed between Rahu and Ketu.
  *     12 sub-types identified by Rahu's house position (Anant through Sheshnag).
  *     Cancellation conditions: planet conjunct Rahu/Ketu (breaks axis),
  *     Jupiter aspects nodes, Rahu/Ketu in upachaya houses (3/6/11).
  *
- *   **Pitra Dosha** — BPHS Ch.76
+ *   **Pitra Dosha**  –  BPHS Ch.76
  *     Sun conjunct Rahu, or Sun conjunct Saturn while debilitated.
  *     Indicates ancestral karmic debts affecting career and father relationship.
  *     Cancellation: Jupiter aspects Sun, Sun in own/exalted sign, 9th lord strong.
@@ -744,8 +744,8 @@ function generateDoshas(kundali: KundaliData, locale: Locale): DoshaInsight[] {
     activeDasha: manglikPresent ? t(locale, 'Activates strongly during Mars Mahadasha/Antardasha', 'मंगल महादशा/अंतर्दशा में तीव्र') : undefined,
     description: manglikPresent
       ? t(locale,
-          `Mars in house ${mars!.house} creates Manglik Dosha. ${manglikEffective === 'cancelled' ? 'However, multiple cancellation conditions are met — dosha is effectively neutralized.' : manglikEffective === 'partial' ? 'One cancellation condition is met — dosha is partially mitigated.' : ''} Severity: ${manglikSeverity}. ${mars!.house === 1 ? 'Mars in 1st house creates high ego and aggression in relationships.' : mars!.house === 7 ? 'Mars in 7th house directly affects marriage — spouse may be dominating or conflicts arise.' : mars!.house === 8 ? 'Mars in 8th house creates obstacles in marital happiness and possible separation.' : mars!.house === 4 ? 'Mars in 4th house affects domestic peace and may cause property disputes.' : mars!.house === 12 ? 'Mars in 12th house increases expenses and may affect conjugal happiness.' : 'Mars in 2nd house can create harsh speech affecting family harmony.'}`,
-          `मंगल ${mars!.house}वें भाव में मांगलिक दोष बनाता है। ${manglikEffective === 'cancelled' ? 'परन्तु, अनेक निरसन शर्तें पूर्ण — दोष प्रभावी रूप से निष्प्रभावित।' : manglikEffective === 'partial' ? 'एक निरसन शर्त पूर्ण — दोष आंशिक रूप से कम।' : ''} तीव्रता: ${manglikSeverity === 'severe' ? 'गम्भीर' : manglikSeverity === 'moderate' ? 'मध्यम' : 'हल्का'}।`)
+          `Mars in house ${mars!.house} creates Manglik Dosha. ${manglikEffective === 'cancelled' ? 'However, multiple cancellation conditions are met  –  dosha is effectively neutralized.' : manglikEffective === 'partial' ? 'One cancellation condition is met  –  dosha is partially mitigated.' : ''} Severity: ${manglikSeverity}. ${mars!.house === 1 ? 'Mars in 1st house creates high ego and aggression in relationships.' : mars!.house === 7 ? 'Mars in 7th house directly affects marriage  –  spouse may be dominating or conflicts arise.' : mars!.house === 8 ? 'Mars in 8th house creates obstacles in marital happiness and possible separation.' : mars!.house === 4 ? 'Mars in 4th house affects domestic peace and may cause property disputes.' : mars!.house === 12 ? 'Mars in 12th house increases expenses and may affect conjugal happiness.' : 'Mars in 2nd house can create harsh speech affecting family harmony.'}`,
+          `मंगल ${mars!.house}वें भाव में मांगलिक दोष बनाता है। ${manglikEffective === 'cancelled' ? 'परन्तु, अनेक निरसन शर्तें पूर्ण  –  दोष प्रभावी रूप से निष्प्रभावित।' : manglikEffective === 'partial' ? 'एक निरसन शर्त पूर्ण  –  दोष आंशिक रूप से कम।' : ''} तीव्रता: ${manglikSeverity === 'severe' ? 'गम्भीर' : manglikSeverity === 'moderate' ? 'मध्यम' : 'हल्का'}।`)
       : t(locale, 'No Manglik Dosha present. Mars is well-placed for harmonious marriage prospects.', 'मांगलिक दोष नहीं है। विवाह के लिए मंगल अनुकूल स्थिति में है।'),
     remedies: manglikPresent
       ? t(locale,
@@ -803,7 +803,7 @@ function generateDoshas(kundali: KundaliData, locale: Locale): DoshaInsight[] {
 
   doshas.push({
     name: kaalSarpPresent && ksSubType
-      ? t(locale, `Kaal Sarp Dosha — ${ksSubType.en}`, `काल सर्प दोष — ${ksSubType.hi}`)
+      ? t(locale, `Kaal Sarp Dosha  –  ${ksSubType.en}`, `काल सर्प दोष  –  ${ksSubType.hi}`)
       : t(locale, 'Kaal Sarp Dosha', 'काल सर्प दोष', 'कालसर्पदोषः'),
     present: kaalSarpPresent,
     severity: kaalSarpPresent ? 'moderate' : 'none',
@@ -812,8 +812,8 @@ function generateDoshas(kundali: KundaliData, locale: Locale): DoshaInsight[] {
     activeDasha: kaalSarpPresent ? t(locale, 'Intensifies during Rahu or Ketu Mahadasha/Antardasha', 'राहु या केतु महादशा/अंतर्दशा में तीव्र') : undefined,
     description: kaalSarpPresent
       ? t(locale,
-          `${ksSubType ? ksSubType.en + ' type: ' + ksSubType.theme + '. ' : ''}All planets hemmed between Rahu (house ${rahu!.house}) and Ketu (house ${ketu!.house}). ${ksEffective === 'cancelled' ? 'Multiple cancellation conditions met — dosha is effectively neutralized.' : ksEffective === 'partial' ? 'One cancellation condition met — dosha is partially mitigated.' : ''} This karmic pattern causes periodic obstacles and delays but also grants resilience and depth of character.`,
-          `${ksSubType ? ksSubType.hi + ' प्रकार: ' + ksSubType.themeHi + '। ' : ''}सभी ग्रह राहु (भाव ${rahu!.house}) और केतु (भाव ${ketu!.house}) के बीच। ${ksEffective === 'cancelled' ? 'अनेक निरसन शर्तें पूर्ण — दोष निष्प्रभावित।' : ksEffective === 'partial' ? 'एक निरसन शर्त पूर्ण — दोष आंशिक कम।' : ''} यह कार्मिक पैटर्न बाधाएँ लाता है पर लचीलापन भी देता है।`)
+          `${ksSubType ? ksSubType.en + ' type: ' + ksSubType.theme + '. ' : ''}All planets hemmed between Rahu (house ${rahu!.house}) and Ketu (house ${ketu!.house}). ${ksEffective === 'cancelled' ? 'Multiple cancellation conditions met  –  dosha is effectively neutralized.' : ksEffective === 'partial' ? 'One cancellation condition met  –  dosha is partially mitigated.' : ''} This karmic pattern causes periodic obstacles and delays but also grants resilience and depth of character.`,
+          `${ksSubType ? ksSubType.hi + ' प्रकार: ' + ksSubType.themeHi + '। ' : ''}सभी ग्रह राहु (भाव ${rahu!.house}) और केतु (भाव ${ketu!.house}) के बीच। ${ksEffective === 'cancelled' ? 'अनेक निरसन शर्तें पूर्ण  –  दोष निष्प्रभावित।' : ksEffective === 'partial' ? 'एक निरसन शर्त पूर्ण  –  दोष आंशिक कम।' : ''} यह कार्मिक पैटर्न बाधाएँ लाता है पर लचीलापन भी देता है।`)
       : t(locale, 'No Kaal Sarp Dosha. Planets are not hemmed between Rahu-Ketu axis.', 'काल सर्प दोष नहीं। ग्रह राहु-केतु अक्ष के बीच नहीं।'),
     remedies: kaalSarpPresent
       ? t(locale, 'Remedies: 1) Kaal Sarp Nivaran Puja at Trimbakeshwar. 2) Nag Panchami worship. 3) Donate to snake conservation. 4) Maha Mrityunjaya Mantra daily. 5) Visit Rahu-Ketu temples.', 'उपाय: 1) त्र्यम्बकेश्वर में काल सर्प निवारण पूजा। 2) नाग पंचमी पूजा। 3) सर्प संरक्षण दान। 4) महामृत्युंजय मन्त्र। 5) राहु-केतु मन्दिर।')
@@ -841,8 +841,8 @@ function generateDoshas(kundali: KundaliData, locale: Locale): DoshaInsight[] {
     cancellationConditions: pitraCancellations.length > 0 ? pitraCancellations : undefined,
     activeDasha: pitraPresent ? t(locale, 'Activates during Sun Mahadasha or Rahu Antardasha', 'सूर्य महादशा या राहु अंतर्दशा में सक्रिय') : undefined,
     description: pitraPresent
-      ? t(locale, `Sun afflicted by Rahu or Saturn — Pitra Dosha. ${pitraEffective === 'cancelled' ? 'Multiple cancellation conditions met — dosha neutralized.' : pitraEffective === 'partial' ? 'One cancellation condition met — partially mitigated.' : ''} Ancestral karmic debts may manifest as career obstacles or strained father relationship.`, `सूर्य पर राहु/शनि दुष्प्रभाव — पितृ दोष। ${pitraEffective === 'cancelled' ? 'अनेक निरसन शर्तें पूर्ण — दोष निष्प्रभावित।' : pitraEffective === 'partial' ? 'एक निरसन शर्त पूर्ण — आंशिक कम।' : ''} पैतृक कार्मिक ऋण।`)
-      : t(locale, 'No significant Pitra Dosha. Sun well-placed — good paternal lineage relationship.', 'पितृ दोष नहीं। पैतृक वंश से अच्छा सम्बन्ध।'),
+      ? t(locale, `Sun afflicted by Rahu or Saturn  –  Pitra Dosha. ${pitraEffective === 'cancelled' ? 'Multiple cancellation conditions met  –  dosha neutralized.' : pitraEffective === 'partial' ? 'One cancellation condition met  –  partially mitigated.' : ''} Ancestral karmic debts may manifest as career obstacles or strained father relationship.`, `सूर्य पर राहु/शनि दुष्प्रभाव  –  पितृ दोष। ${pitraEffective === 'cancelled' ? 'अनेक निरसन शर्तें पूर्ण  –  दोष निष्प्रभावित।' : pitraEffective === 'partial' ? 'एक निरसन शर्त पूर्ण  –  आंशिक कम।' : ''} पैतृक कार्मिक ऋण।`)
+      : t(locale, 'No significant Pitra Dosha. Sun well-placed  –  good paternal lineage relationship.', 'पितृ दोष नहीं। पैतृक वंश से अच्छा सम्बन्ध।'),
     remedies: pitraPresent
       ? t(locale, 'Remedies: 1) Pitra Tarpan on Amavasya. 2) Shraddha ceremonies. 3) Donate food to Brahmins. 4) Plant a Peepal tree. 5) Surya mantra daily. 6) Wear Ruby (Manikya) if Sun is weak.', 'उपाय: 1) अमावस्या पर पितृ तर्पण। 2) श्राद्ध संस्कार। 3) ब्राह्मणों को भोजन दान। 4) पीपल लगाएँ। 5) सूर्य मन्त्र। 6) माणिक्य धारण।')
       : '',
@@ -899,22 +899,22 @@ function generateDoshas(kundali: KundaliData, locale: Locale): DoshaInsight[] {
  *
  * Each area uses a two-pass approach:
  *
- *   **Pass 1 — Crude rating** (`rateHouse()`): a heuristic 1-10 score based on:
+ *   **Pass 1  –  Crude rating** (`rateHouse()`): a heuristic 1-10 score based on:
  *     - Benefic planets in the relevant house(s) → +1.5 each
  *     - Malefic planets → -0.5 each
  *     - Exalted tenant → +1
  *     - Debilitated tenant → -1
  *     - Own sign tenant → +0.5
  *
- *   **Pass 2 — Enhanced analysis**: calls the enhanced life-areas module
+ *   **Pass 2  –  Enhanced analysis**: calls the enhanced life-areas module
  *     (analyzeCareerEnhanced, etc.) which provides deeper, multi-factor text.
  *
- *   **Pass 3 — Bhavabala override** (when available): replaces crude ratings
+ *   **Pass 3  –  Bhavabala override** (when available): replaces crude ratings
  *     with proper 4-component Bhavabala scores from calculateBhavabala().
  *     This is the most accurate rating since it accounts for lordship strength,
  *     directional strength, aspects, and occupancy.
  *
- *   **Pass 4 — Ashtakavarga enrichment** (when available): appends SAV
+ *   **Pass 4  –  Ashtakavarga enrichment** (when available): appends SAV
  *     (Sarva Ashtakavarga) bindu counts for the relevant houses. SAV scores
  *     ≥28 indicate strong support, <22 need attention. Ref: BPHS Ch.66-72.
  *
@@ -955,10 +955,10 @@ function generateLifeAreas(kundali: KundaliData, locale: Locale): LifeAreaSectio
     icon: 'briefcase',
     rating: careerRating,
     summary: t(locale,
-      `10th house in ${tenthHouse?.signName.en || ''}. ${careerRating >= 7 ? 'Strong career potential with good planetary support.' : careerRating >= 5 ? 'Moderate career prospects — effort brings results.' : 'Career requires extra effort and patience to develop fully.'}`,
-      `10वाँ भाव ${tenthHouse?.signName.hi || ''} में। ${careerRating >= 7 ? 'अच्छे ग्रहीय समर्थन से मजबूत कैरियर क्षमता।' : careerRating >= 5 ? 'मध्यम कैरियर सम्भावनाएँ — प्रयास से परिणाम।' : 'कैरियर के लिए अतिरिक्त प्रयास और धैर्य आवश्यक।'}`),
+      `10th house in ${tenthHouse?.signName.en || ''}. ${careerRating >= 7 ? 'Strong career potential with good planetary support.' : careerRating >= 5 ? 'Moderate career prospects  –  effort brings results.' : 'Career requires extra effort and patience to develop fully.'}`,
+      `10वाँ भाव ${tenthHouse?.signName.hi || ''} में। ${careerRating >= 7 ? 'अच्छे ग्रहीय समर्थन से मजबूत कैरियर क्षमता।' : careerRating >= 5 ? 'मध्यम कैरियर सम्भावनाएँ  –  प्रयास से परिणाम।' : 'कैरियर के लिए अतिरिक्त प्रयास और धैर्य आवश्यक।'}`),
     details: t(locale,
-      `Your 10th lord ${tenthHouse?.lordName.en || ''} guides your professional direction. ${sun && sun.house === 10 ? 'Sun in 10th is one of the best placements for career — expect authority and recognition.' : ''} ${sat && sat.house === 10 ? 'Saturn in 10th brings success through sustained, disciplined effort over time.' : ''} ${jup && jup.house === 10 ? 'Jupiter in 10th brings ethical leadership and respected professional standing.' : ''} Career development is strongest when aligned with your ascendant element.`,
+      `Your 10th lord ${tenthHouse?.lordName.en || ''} guides your professional direction. ${sun && sun.house === 10 ? 'Sun in 10th is one of the best placements for career  –  expect authority and recognition.' : ''} ${sat && sat.house === 10 ? 'Saturn in 10th brings success through sustained, disciplined effort over time.' : ''} ${jup && jup.house === 10 ? 'Jupiter in 10th brings ethical leadership and respected professional standing.' : ''} Career development is strongest when aligned with your ascendant element.`,
       `10वें भाव का स्वामी ${tenthHouse?.lordName.hi || ''} आपकी पेशेवर दिशा निर्धारित करता है। ${sun && sun.house === 10 ? 'सूर्य 10वें भाव में कैरियर के लिए सर्वोत्तम स्थिति।' : ''}`),
   };
 
@@ -984,10 +984,10 @@ function generateLifeAreas(kundali: KundaliData, locale: Locale): LifeAreaSectio
     icon: 'heart',
     rating: marriageRating,
     summary: t(locale,
-      `7th house in ${seventhHouse?.signName.en || ''}. ${marriageRating >= 7 ? 'Favorable marriage prospects with supportive planetary influences.' : marriageRating >= 5 ? 'Marriage brings both growth and challenges — mutual effort required.' : 'Relationship area requires patience and conscious effort.'}`,
+      `7th house in ${seventhHouse?.signName.en || ''}. ${marriageRating >= 7 ? 'Favorable marriage prospects with supportive planetary influences.' : marriageRating >= 5 ? 'Marriage brings both growth and challenges  –  mutual effort required.' : 'Relationship area requires patience and conscious effort.'}`,
       `7वाँ भाव ${seventhHouse?.signName.hi || ''} में। ${marriageRating >= 7 ? 'अनुकूल विवाह सम्भावनाएँ।' : marriageRating >= 5 ? 'विवाह विकास और चुनौतियाँ दोनों लाता है।' : 'सम्बन्ध क्षेत्र में धैर्य और सचेत प्रयास आवश्यक।'}`),
     details: t(locale,
-      `7th lord ${seventhHouse?.lordName.en || ''} determines the nature of partnerships. ${ven && ven.isExalted ? 'Exalted Venus strongly favors a beautiful, harmonious marriage.' : ''} ${mars && mars.house === 7 ? 'Mars in 7th (Manglik) indicates a strong-willed spouse — passion and patience both needed.' : ''} ${sat && sat.house === 7 ? 'Saturn in 7th delays marriage but brings a mature, lasting partnership.' : ''}`,
+      `7th lord ${seventhHouse?.lordName.en || ''} determines the nature of partnerships. ${ven && ven.isExalted ? 'Exalted Venus strongly favors a beautiful, harmonious marriage.' : ''} ${mars && mars.house === 7 ? 'Mars in 7th (Manglik) indicates a strong-willed spouse  –  passion and patience both needed.' : ''} ${sat && sat.house === 7 ? 'Saturn in 7th delays marriage but brings a mature, lasting partnership.' : ''}`,
       `7वें भाव का स्वामी ${seventhHouse?.lordName.hi || ''} साझेदारी का स्वरूप निर्धारित करता है।`),
   };
 
@@ -1012,8 +1012,8 @@ function generateLifeAreas(kundali: KundaliData, locale: Locale): LifeAreaSectio
     icon: 'graduation-cap',
     rating: eduRating,
     summary: t(locale,
-      `${eduRating >= 7 ? 'Excellent academic potential with strong intellectual planets.' : eduRating >= 5 ? 'Good learning ability — focused effort yields academic success.' : 'Education may require extra dedication but perseverance pays off.'}`,
-      `${eduRating >= 7 ? 'मजबूत बौद्धिक ग्रहों के साथ उत्कृष्ट शैक्षिक क्षमता।' : eduRating >= 5 ? 'अच्छी सीखने की क्षमता — केन्द्रित प्रयास से शैक्षिक सफलता।' : 'शिक्षा में अतिरिक्त समर्पण आवश्यक।'}`),
+      `${eduRating >= 7 ? 'Excellent academic potential with strong intellectual planets.' : eduRating >= 5 ? 'Good learning ability  –  focused effort yields academic success.' : 'Education may require extra dedication but perseverance pays off.'}`,
+      `${eduRating >= 7 ? 'मजबूत बौद्धिक ग्रहों के साथ उत्कृष्ट शैक्षिक क्षमता।' : eduRating >= 5 ? 'अच्छी सीखने की क्षमता  –  केन्द्रित प्रयास से शैक्षिक सफलता।' : 'शिक्षा में अतिरिक्त समर्पण आवश्यक।'}`),
     details: t(locale,
       `${merc && [1, 4, 5, 10].includes(merc.house) ? 'Mercury well-placed for strong analytical and communication abilities.' : ''} ${jup && [4, 5, 9].includes(jup.house) ? 'Jupiter supports higher education, wisdom, and scholarly pursuits.' : ''} Your learning style aligns with ${RASHIS[kundali.ascendant.sign - 1]?.element.en === 'Fire' ? 'hands-on, experiential learning' : RASHIS[kundali.ascendant.sign - 1]?.element.en === 'Earth' ? 'structured, practical learning' : RASHIS[kundali.ascendant.sign - 1]?.element.en === 'Air' ? 'conceptual, theoretical learning' : 'intuitive, experiential learning'}.`,
       `आपकी सीखने की शैली ${RASHIS[kundali.ascendant.sign - 1]?.element.hi} तत्व से मेल खाती है।`),
@@ -1066,7 +1066,7 @@ function generateLifeAreas(kundali: KundaliData, locale: Locale): LifeAreaSectio
       const parts = scores.map(s => `H${s.house}: ${s.bindu} bindu`).join(', ');
       const avg = scores.reduce((a, s) => a + s.bindu, 0) / scores.length;
       const quality = avg >= 28 ? t(locale, 'strong support', 'मजबूत समर्थन') : avg < 22 ? t(locale, 'needs attention', 'ध्यान आवश्यक') : t(locale, 'moderate', 'मध्यम');
-      return `\n\n${t(locale, 'Ashtakavarga', 'अष्टकवर्ग')} (${label}): ${parts} — ${quality}.`;
+      return `\n\n${t(locale, 'Ashtakavarga', 'अष्टकवर्ग')} (${label}): ${parts}  –  ${quality}.`;
     };
     enhancedCareer.details += savNote([10], t(locale, 'career house', 'कैरियर भाव'));
     enhancedWealth.details += savNote([2, 11], t(locale, 'wealth houses', 'धन भाव'));
@@ -1085,7 +1085,7 @@ function generateLifeAreas(kundali: KundaliData, locale: Locale): LifeAreaSectio
 }
 
 /**
- * Generates the Dasha Insight section — analysis of the current Vimshottari
+ * Generates the Dasha Insight section  –  analysis of the current Vimshottari
  * Mahadasha and Antardasha.
  *
  * The Vimshottari Dasha system (BPHS Ch.46-51) assigns 120 years to 9 planets
@@ -1104,7 +1104,7 @@ function generateLifeAreas(kundali: KundaliData, locale: Locale): LifeAreaSectio
  *   6. Appends life-stage-conditioned advice from getDashaStageAdvice()
  *   7. Identifies the next upcoming Antardasha for forward-looking context
  *
- * @param stageCtx — life stage for age-conditioned dasha advice
+ * @param stageCtx  –  life stage for age-conditioned dasha advice
  */
 function generateDashaInsight(kundali: KundaliData, locale: Locale, stageCtx?: LifeStageContext): DashaInsightSection {
   const now = new Date();
@@ -1173,8 +1173,8 @@ function generateDashaInsight(kundali: KundaliData, locale: Locale, stageCtx?: L
         if (sb) {
           const label = sb.strengthRatio >= 1.5 ? t(locale, 'strong', 'बलवान') : sb.strengthRatio >= 1.0 ? t(locale, 'adequate', 'पर्याप्त') : t(locale, 'weak', 'दुर्बल');
           enrichParts.push(t(locale,
-            `Shadbala of dasha lord: ${sb.rupas.toFixed(1)} rupas (${label}). ${sb.strengthRatio >= 1.0 ? 'Capable of delivering good results.' : 'May underperform — remedies recommended.'}`,
-            `दशा स्वामी का षड्बल: ${sb.rupas.toFixed(1)} रूप (${label})। ${sb.strengthRatio >= 1.0 ? 'अच्छे परिणाम देने में सक्षम।' : 'कम प्रदर्शन सम्भव — उपाय अनुशंसित।'}`));
+            `Shadbala of dasha lord: ${sb.rupas.toFixed(1)} rupas (${label}). ${sb.strengthRatio >= 1.0 ? 'Capable of delivering good results.' : 'May underperform  –  remedies recommended.'}`,
+            `दशा स्वामी का षड्बल: ${sb.rupas.toFixed(1)} रूप (${label})। ${sb.strengthRatio >= 1.0 ? 'अच्छे परिणाम देने में सक्षम।' : 'कम प्रदर्शन सम्भव  –  उपाय अनुशंसित।'}`));
         }
       }
 
@@ -1192,10 +1192,10 @@ function generateDashaInsight(kundali: KundaliData, locale: Locale, stageCtx?: L
       if (kundali.functionalNature) {
         const fn = kundali.functionalNature.planets?.find((f: { planetId: number }) => f.planetId === dlId);
         if (fn) {
-          const natureLabel = fn.nature === 'yogaKaraka' ? t(locale, 'YogaKaraka — most beneficial', 'योगकारक — सर्वाधिक शुभ')
+          const natureLabel = fn.nature === 'yogaKaraka' ? t(locale, 'YogaKaraka  –  most beneficial', 'योगकारक  –  सर्वाधिक शुभ')
             : fn.nature === 'funcBenefic' ? t(locale, 'functional benefic', 'कार्यात्मक शुभ')
             : fn.nature === 'funcMalefic' ? t(locale, 'functional malefic', 'कार्यात्मक पापी')
-            : fn.nature === 'maraka' ? t(locale, 'Maraka — handle with care', 'मारक — सावधानी से')
+            : fn.nature === 'maraka' ? t(locale, 'Maraka  –  handle with care', 'मारक  –  सावधानी से')
             : t(locale, 'neutral', 'तटस्थ');
           enrichParts.push(t(locale,
             `For your lagna, this dasha lord is: ${natureLabel}.`,
@@ -1266,7 +1266,7 @@ function generateDashaInsight(kundali: KundaliData, locale: Locale, stageCtx?: L
  * Life-stage adaptation: remedy preferences differ by age (e.g. children
  * receive mantra/puja suggestions rather than gemstone recommendations).
  *
- * @param stageCtx — life stage for age-appropriate remedy selection
+ * @param stageCtx  –  life stage for age-appropriate remedy selection
  */
 function generateRemedies(kundali: KundaliData, locale: Locale, stageCtx?: LifeStageContext): RemedySection {
   // Build a synthetic ShadBala[] from fullShadbala so the remedies function gets real data.
@@ -1284,7 +1284,7 @@ function generateRemedies(kundali: KundaliData, locale: Locale, stageCtx?: LifeS
 }
 
 /**
- * Generates the planetary strength overview — visualised as strength bars in the UI.
+ * Generates the planetary strength overview  –  visualised as strength bars in the UI.
  *
  * Two data paths:
  *   1. **fullShadbala** (preferred): the proper 6-fold strength calculation
@@ -1292,7 +1292,7 @@ function generateRemedies(kundali: KundaliData, locale: Locale, stageCtx?: LifeS
  *      strengthRatio = rupas / minimum required. Thresholds:
  *        - ≥1.5: Strong (planet delivers results well above baseline)
  *        - ≥1.0: Adequate (meets minimum required strength)
- *        - <1.0: Weak (underperforms — remedies recommended)
+ *        - <1.0: Weak (underperforms  –  remedies recommended)
  *      The percentage for the UI bar = 30 + ratio × 35, capped at 100.
  *
  *   2. **Simplified shadbala** (fallback): a 0-100 totalStrength score from
@@ -1347,14 +1347,14 @@ function generateStrengthOverview(kundali: KundaliData, locale: Locale): Strengt
  *   2. Life stage context (age-based: child/student/career/elder)
  *   3. Year predictions, personality, planet insights, yogas, doshas (independent)
  *   4. Dasha insight, remedies, strength overview, dasha synthesis (may read #3)
- *   5. Chart narrative (runs LAST — reads from all other sections to weave threads)
+ *   5. Chart narrative (runs LAST  –  reads from all other sections to weave threads)
  *
  * The chart narrative step is wrapped in try/catch because it's non-critical:
  * a failure in narrative generation must never prevent the rest of the tippanni
- * from being returned. See Lesson A: never silently swallow errors — it logs.
+ * from being returned. See Lesson A: never silently swallow errors  –  it logs.
  *
- * @param kundali — complete kundali data (planets, houses, dashas, yogas, etc.)
- * @param locale — determines language of all generated text
+ * @param kundali  –  complete kundali data (planets, houses, dashas, yogas, etc.)
+ * @param locale  –  determines language of all generated text
  * @returns TippanniContent with all sections populated
  */
 export function generateTippanni(kundali: KundaliData, locale: Locale): TippanniContent {
@@ -1407,7 +1407,7 @@ export function generateTippanni(kundali: KundaliData, locale: Locale): Tippanni
   try {
     result.chartNarrative = buildChartNarrative(kundali, result, locale, stageCtx);
   } catch {
-    // Narrative is non-critical — never block the tippanni on a narrative failure
+    // Narrative is non-critical  –  never block the tippanni on a narrative failure
     console.error('[tippanni] Chart narrative generation failed');
   }
 

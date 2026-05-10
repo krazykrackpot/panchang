@@ -38,10 +38,10 @@ export interface DailyEnergy {
 function moonPhaseScore(tithiNumber: number, paksha: 'shukla' | 'krishna'): number {
   const n = Math.max(1, Math.min(15, tithiNumber));
   if (paksha === 'shukla') {
-    // 40 at Pratipada (n=1), 100 at Purnima (n=15) — linear interpolation
+    // 40 at Pratipada (n=1), 100 at Purnima (n=15)  –  linear interpolation
     return 40 + ((n - 1) / 14) * 60;
   } else {
-    // 90 at Krishna Pratipada (n=1), 20 at Amavasya (n=15) — linear descent
+    // 90 at Krishna Pratipada (n=1), 20 at Amavasya (n=15)  –  linear descent
     return 90 - ((n - 1) / 14) * 70;
   }
 }
@@ -50,44 +50,44 @@ function moonPhaseScore(tithiNumber: number, paksha: 'shukla' | 'krishna'): numb
 // Drawn from classical Muhurta nature groupings.
 // nakshatraId: 1=Ashwini … 27=Revati
 const NAKSHATRA_SCORE: Record<number, number> = {
-  // Kshipra / Swift (Laghu) — high energy: Ashwini(1), Pushya(8), Hasta(13)
-  1: 85,   // Ashwini  — Kshipra/Swift, healing momentum
-  8: 82,   // Pushya   — Laghu/Swift, most auspicious
-  13: 80,  // Hasta    — Laghu/Swift, skilled execution
+  // Kshipra / Swift (Laghu)  –  high energy: Ashwini(1), Pushya(8), Hasta(13)
+  1: 85,   // Ashwini   –  Kshipra/Swift, healing momentum
+  8: 82,   // Pushya    –  Laghu/Swift, most auspicious
+  13: 80,  // Hasta     –  Laghu/Swift, skilled execution
 
-  // Chara / Movable — high-ish energy: Punarvasu(7), Swati(15), Shravana(22), Dhanishtha(23), Shatabhisha(24)
-  7: 80,   // Punarvasu  — Chara, restoration
-  15: 78,  // Swati      — Chara, independent movement
-  22: 78,  // Shravana   — Chara, receptive learning
-  23: 75,  // Dhanishtha — Chara, wealth-building
-  24: 72,  // Shatabhisha — Chara, healing
+  // Chara / Movable  –  high-ish energy: Punarvasu(7), Swati(15), Shravana(22), Dhanishtha(23), Shatabhisha(24)
+  7: 80,   // Punarvasu   –  Chara, restoration
+  15: 78,  // Swati       –  Chara, independent movement
+  22: 78,  // Shravana    –  Chara, receptive learning
+  23: 75,  // Dhanishtha  –  Chara, wealth-building
+  24: 72,  // Shatabhisha  –  Chara, healing
 
-  // Mrdu / Soft-Tender — high energy: Mrigashira(5), Chitra(14), Anuradha(17), Revati(27)
-  5: 82,   // Mrigashira — Mrdu, gentle search
-  14: 80,  // Chitra     — Mrdu, creative brilliance
-  17: 80,  // Anuradha   — Mrdu, devotion and loyalty
-  27: 78,  // Revati     — Mrdu, compassionate completion
+  // Mrdu / Soft-Tender  –  high energy: Mrigashira(5), Chitra(14), Anuradha(17), Revati(27)
+  5: 82,   // Mrigashira  –  Mrdu, gentle search
+  14: 80,  // Chitra      –  Mrdu, creative brilliance
+  17: 80,  // Anuradha    –  Mrdu, devotion and loyalty
+  27: 78,  // Revati      –  Mrdu, compassionate completion
 
-  // Sthira / Fixed — moderate energy: Rohini(4), Uttara Phalguni(12), Uttara Ashadha(21), Uttara Bhadrapada(26)
-  4: 65,   // Rohini            — Sthira, fertile stability
-  12: 62,  // Uttara Phalguni   — Sthira, lasting commitment
-  21: 63,  // Uttara Ashadha    — Sthira, final victory
-  26: 60,  // Uttara Bhadrapada — Sthira, deep wisdom
+  // Sthira / Fixed  –  moderate energy: Rohini(4), Uttara Phalguni(12), Uttara Ashadha(21), Uttara Bhadrapada(26)
+  4: 65,   // Rohini             –  Sthira, fertile stability
+  12: 62,  // Uttara Phalguni    –  Sthira, lasting commitment
+  21: 63,  // Uttara Ashadha     –  Sthira, final victory
+  26: 60,  // Uttara Bhadrapada  –  Sthira, deep wisdom
 
-  // Mishra / Mixed — moderate: Krittika(3), Vishakha(16)
-  3: 60,   // Krittika — Sharp-Soft mix, purifying fire
-  16: 58,  // Vishakha — Sharp-Soft mix, purposeful striving
+  // Mishra / Mixed  –  moderate: Krittika(3), Vishakha(16)
+  3: 60,   // Krittika  –  Sharp-Soft mix, purifying fire
+  16: 58,  // Vishakha  –  Sharp-Soft mix, purposeful striving
 
-  // Ugra / Tikshna (Sharp, Fierce) — lower energy for general use
-  2: 40,   // Bharani         — Ugra, transformation/consequence
-  6: 35,   // Ardra           — Tikshna, stormy disruption
-  9: 32,   // Ashlesha        — Tikshna, serpentine caution
-  10: 38,  // Magha           — Ugra, ancestral authority
-  11: 40,  // Purva Phalguni  — Ugra, intense pleasure
-  18: 35,  // Jyeshtha        — Tikshna, protective edge
-  19: 30,  // Mula            — Tikshna, radical root
-  20: 42,  // Purva Ashadha   — Ugra, purifying momentum
-  25: 38,  // Purva Bhadrapada — Ugra, fierce transformation
+  // Ugra / Tikshna (Sharp, Fierce)  –  lower energy for general use
+  2: 40,   // Bharani          –  Ugra, transformation/consequence
+  6: 35,   // Ardra            –  Tikshna, stormy disruption
+  9: 32,   // Ashlesha         –  Tikshna, serpentine caution
+  10: 38,  // Magha            –  Ugra, ancestral authority
+  11: 40,  // Purva Phalguni   –  Ugra, intense pleasure
+  18: 35,  // Jyeshtha         –  Tikshna, protective edge
+  19: 30,  // Mula             –  Tikshna, radical root
+  20: 42,  // Purva Ashadha    –  Ugra, purifying momentum
+  25: 38,  // Purva Bhadrapada  –  Ugra, fierce transformation
 };
 
 function nakshatraScore(nakshatraId: number): number {
@@ -98,33 +98,33 @@ function nakshatraScore(nakshatraId: number): number {
 // Auspicious = 80+, Neutral = 50, Inauspicious = 20–35
 // yogaNumber: 1=Vishkambha … 27=Vaidhriti
 const YOGA_SCORE: Record<number, number> = {
-  1: 20,  // Vishkambha — inauspicious, obstacle
-  2: 85,  // Priti — auspicious, love
-  3: 85,  // Ayushman — auspicious, long life
-  4: 88,  // Saubhagya — auspicious, fortune
-  5: 82,  // Shobhana — auspicious, splendor
-  6: 25,  // Atiganda — inauspicious, great danger
-  7: 83,  // Sukarma — auspicious, good deeds
-  8: 82,  // Dhriti — auspicious, firmness
-  9: 30,  // Shula — inauspicious, pain
-  10: 28, // Ganda — inauspicious, danger
-  11: 85, // Vriddhi — auspicious, growth
-  12: 85, // Dhruva — auspicious, constant
-  13: 22, // Vyaghata — inauspicious, calamity
-  14: 83, // Harshana — auspicious, joy
-  15: 28, // Vajra — inauspicious, thunderbolt
-  16: 92, // Siddhi — auspicious, accomplishment
-  17: 20, // Vyatipata — inauspicious, misfortune
-  18: 80, // Variyan — auspicious, excellent
-  19: 25, // Parigha — inauspicious, obstruction
-  20: 87, // Shiva — auspicious, auspicious
-  21: 90, // Siddha — auspicious, accomplished
-  22: 83, // Sadhya — auspicious, achievable
-  23: 85, // Shubha — auspicious, auspicious
-  24: 85, // Shukla — auspicious, bright
-  25: 85, // Brahma — auspicious, divine
-  26: 87, // Indra — auspicious, powerful
-  27: 18, // Vaidhriti — inauspicious, inauspicious
+  1: 20,  // Vishkambha  –  inauspicious, obstacle
+  2: 85,  // Priti  –  auspicious, love
+  3: 85,  // Ayushman  –  auspicious, long life
+  4: 88,  // Saubhagya  –  auspicious, fortune
+  5: 82,  // Shobhana  –  auspicious, splendor
+  6: 25,  // Atiganda  –  inauspicious, great danger
+  7: 83,  // Sukarma  –  auspicious, good deeds
+  8: 82,  // Dhriti  –  auspicious, firmness
+  9: 30,  // Shula  –  inauspicious, pain
+  10: 28, // Ganda  –  inauspicious, danger
+  11: 85, // Vriddhi  –  auspicious, growth
+  12: 85, // Dhruva  –  auspicious, constant
+  13: 22, // Vyaghata  –  inauspicious, calamity
+  14: 83, // Harshana  –  auspicious, joy
+  15: 28, // Vajra  –  inauspicious, thunderbolt
+  16: 92, // Siddhi  –  auspicious, accomplishment
+  17: 20, // Vyatipata  –  inauspicious, misfortune
+  18: 80, // Variyan  –  auspicious, excellent
+  19: 25, // Parigha  –  inauspicious, obstruction
+  20: 87, // Shiva  –  auspicious, auspicious
+  21: 90, // Siddha  –  auspicious, accomplished
+  22: 83, // Sadhya  –  auspicious, achievable
+  23: 85, // Shubha  –  auspicious, auspicious
+  24: 85, // Shukla  –  auspicious, bright
+  25: 85, // Brahma  –  auspicious, divine
+  26: 87, // Indra  –  auspicious, powerful
+  27: 18, // Vaidhriti  –  inauspicious, inauspicious
 };
 
 function yogaScore(yogaNumber: number): number {
@@ -136,17 +136,17 @@ function yogaScore(yogaNumber: number): number {
 // karanaNumber: 1–11 (matches KARANAS constant)
 // Type: 1–7 = chara (movable), 8–10 = sthira (fixed), 11 = special
 const KARANA_SCORE: Record<number, number> = {
-  1: 65,  // Bava     — chara, good for most activities
-  2: 62,  // Balava   — chara, supportive
-  3: 60,  // Kaulava  — chara, family focus
-  4: 58,  // Taitila  — chara, practical
-  5: 60,  // Garaja   — chara, movement and commerce
-  6: 70,  // Vanija   — chara, merchant energy (best movable)
-  7: 20,  // Vishti   — chara, inauspicious (Bhadra)
-  8: 25,  // Shakuni  — sthira, fixed cunning
-  9: 30,  // Chatushpada — sthira, earthy/mixed
-  10: 28, // Naga     — sthira, serpentine depth
-  11: 55, // Kimstughna — special, transitional
+  1: 65,  // Bava      –  chara, good for most activities
+  2: 62,  // Balava    –  chara, supportive
+  3: 60,  // Kaulava   –  chara, family focus
+  4: 58,  // Taitila   –  chara, practical
+  5: 60,  // Garaja    –  chara, movement and commerce
+  6: 70,  // Vanija    –  chara, merchant energy (best movable)
+  7: 20,  // Vishti    –  chara, inauspicious (Bhadra)
+  8: 25,  // Shakuni   –  sthira, fixed cunning
+  9: 30,  // Chatushpada  –  sthira, earthy/mixed
+  10: 28, // Naga      –  sthira, serpentine depth
+  11: 55, // Kimstughna  –  special, transitional
 };
 
 function karanaScore(karanaNumber: number): number {
@@ -157,13 +157,13 @@ function karanaScore(karanaNumber: number): number {
 // vara.day in PanchangData: 0=Sunday, 1=Monday, ..., 6=Saturday
 // Matches JS/JD convention: Math.floor(jd + 1.5) % 7 → 0=Sunday
 const VARA_SCORE: Record<number, number> = {
-  0: 50, // Sunday    — Solar, neutral to positive
-  1: 65, // Monday    — Lunar, slight boost (emotional/creative)
-  2: 35, // Tuesday   — Martial, slight penalty
-  3: 65, // Wednesday — Mercurial, slight boost
-  4: 50, // Thursday  — Jovial, neutral (wisdom days are calm)
-  5: 68, // Friday    — Venusian, boost (beauty/pleasure)
-  6: 30, // Saturday  — Saturnine, slight penalty
+  0: 50, // Sunday     –  Solar, neutral to positive
+  1: 65, // Monday     –  Lunar, slight boost (emotional/creative)
+  2: 35, // Tuesday    –  Martial, slight penalty
+  3: 65, // Wednesday  –  Mercurial, slight boost
+  4: 50, // Thursday   –  Jovial, neutral (wisdom days are calm)
+  5: 68, // Friday     –  Venusian, boost (beauty/pleasure)
+  6: 30, // Saturday   –  Saturnine, slight penalty
 };
 
 function varaScore(dayOfWeek: number): number {
@@ -256,7 +256,7 @@ export function computeDailyEnergy(panchang: PanchangData): DailyEnergy {
   );
 
   // Auspicious/inauspicious modifiers (additive, post-weighting)
-  // Fields may be undefined (e.g., in test fixtures) — treat as 0
+  // Fields may be undefined (e.g., in test fixtures)  –  treat as 0
   let modifier = 0;
   if (panchang.sarvarthaSiddhi) modifier += 8;
   if (panchang.amritSiddhiYoga) modifier += 6;
@@ -272,7 +272,7 @@ export function computeDailyEnergy(panchang: PanchangData): DailyEnergy {
   // Label
   const label = clamped >= 80 ? 'High' : clamped >= 50 ? 'Moderate' : 'Low';
 
-  // Dominant factor — component with highest weighted contribution
+  // Dominant factor  –  component with highest weighted contribution
   const components = [
     { name: 'Moon Phase',  weighted: moonRaw   * 0.40 },
     { name: 'Nakshatra',   weighted: nakRaw    * 0.30 },

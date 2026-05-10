@@ -77,14 +77,14 @@ const LUNAR_PHASES = [
   {
     title: 'New Moon (Amavasya)',
     icon: '\u25CF',
-    description: 'The Moon is invisible — the quietest point of the cycle. A day for rest, setting intentions for the next cycle, ancestor remembrance (Pitru work), and deep meditation. Not suitable for launching new external ventures.',
+    description: 'The Moon is invisible  –  the quietest point of the cycle. A day for rest, setting intentions for the next cycle, ancestor remembrance (Pitru work), and deep meditation. Not suitable for launching new external ventures.',
   },
 ];
 
 const KEY_WINDOWS = [
   {
     title: 'Ekadashi',
-    description: 'The 11th tithi of each paksha (twice monthly). A premier day for fasting, meditation, and spiritual discipline. Ekadashi falls in both Shukla and Krishna pakshas — each carries a distinct name and specific benefits.',
+    description: 'The 11th tithi of each paksha (twice monthly). A premier day for fasting, meditation, and spiritual discipline. Ekadashi falls in both Shukla and Krishna pakshas  –  each carries a distinct name and specific benefits.',
   },
   {
     title: 'Eclipse Windows',
@@ -478,7 +478,7 @@ export default function LunarCalendarPage() {
                               : 'bg-bg-primary/20 hover:bg-bg-secondary/60'}
                             ${isTodayCell ? 'ring-1 ring-inset ring-gold-primary/40' : ''}
                           `}
-                          aria-label={`${cell.day} ${monthName} — Energy: ${score}`}
+                          aria-label={`${cell.day} ${monthName}  –  Energy: ${score}`}
                         >
                           {/* Day number */}
                           <div className="flex items-center justify-between mb-0.5">
@@ -508,7 +508,7 @@ export default function LunarCalendarPage() {
                     })}
                   </div>
 
-                  {/* Inline detail panel — rendered below the row containing the selected day */}
+                  {/* Inline detail panel  –  rendered below the row containing the selected day */}
                   {selectedRowIndex === rowIdx && selectedDayData?.panchang && selectedDayData.energy && (
                     <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border-t border-b border-gold-primary/12 p-4 sm:p-6 animate-fade-in">
                       <div className="max-w-2xl mx-auto">

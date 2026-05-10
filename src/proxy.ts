@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const LOCALES = ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn', 'mai'] as const;
-// Retired locales — 301 redirect to /en/ equivalent so Google stops crawling them
+// Retired locales  –  301 redirect to /en/ equivalent so Google stops crawling them
 const RETIRED_LOCALES = ['sa', 'mr'] as const;
 const DEFAULT_LOCALE = 'en';
 
 /**
- * Lightweight locale middleware — replaces next-intl/middleware to stay under
+ * Lightweight locale middleware  –  replaces next-intl/middleware to stay under
  * the 1 MB Edge Function size limit. Detects locale from URL path prefix,
  * Accept-Language header, or cookie. Redirects bare paths to /{locale}/path.
  */

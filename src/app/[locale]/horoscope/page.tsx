@@ -16,19 +16,19 @@ export default async function HoroscopePage({ params }: { params: Promise<{ loca
   return (
     <main className="min-h-screen bg-[#0a0e27] text-text-primary">
       <div className="max-w-5xl mx-auto px-4 pt-10 pb-6">
-        {/* SSR: H1 with today's date — Google indexes this */}
+        {/* SSR: H1 with today's date  –  Google indexes this */}
         <h1 className="text-3xl sm:text-4xl font-bold text-gold-light text-center">
-          {isHi ? `दैनिक राशिफल — ${today}` : `Daily Horoscope — ${today}`}
+          {isHi ? `दैनिक राशिफल  –  ${today}` : `Daily Horoscope  –  ${today}`}
         </h1>
 
-        {/* SSR: Intro paragraph — indexable content explaining methodology */}
+        {/* SSR: Intro paragraph  –  indexable content explaining methodology */}
         <p className="text-text-secondary text-sm text-center mt-4 max-w-2xl mx-auto leading-relaxed">
           {isHi
-            ? 'वास्तविक वैदिक ग्रह गोचर पर आधारित सभी 12 राशियों का आज का राशिफल। अपनी चन्द्र राशि चुनें और आज का फल देखें। प्रत्येक राशिफल वास्तविक ग्रहों की स्थिति से गणना किया जाता है — सामान्य भविष्यवाणी नहीं।'
-            : 'Today\'s horoscope for all 12 zodiac signs based on real Vedic planetary transits. Select your Moon sign to see your daily forecast. Each prediction is computed from actual planetary positions — not generic content.'}
+            ? 'वास्तविक वैदिक ग्रह गोचर पर आधारित सभी 12 राशियों का आज का राशिफल। अपनी चन्द्र राशि चुनें और आज का फल देखें। प्रत्येक राशिफल वास्तविक ग्रहों की स्थिति से गणना किया जाता है  –  सामान्य भविष्यवाणी नहीं।'
+            : 'Today\'s horoscope for all 12 zodiac signs based on real Vedic planetary transits. Select your Moon sign to see your daily forecast. Each prediction is computed from actual planetary positions  –  not generic content.'}
         </p>
 
-        {/* SSR: All 12 rashi links — Google follows these to every rashi page */}
+        {/* SSR: All 12 rashi links  –  Google follows these to every rashi page */}
         <nav
           className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mt-8"
           aria-label="Zodiac signs"

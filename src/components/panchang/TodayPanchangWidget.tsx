@@ -108,7 +108,7 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
     return () => clearTimeout(timer);
   }, [searchQuery, showSearch]);
 
-  // Select a search result — update global store
+  // Select a search result  –  update global store
   const selectLocation = (result: { name: string; lat: number; lng: number }) => {
     locationStore.setLocation(result.lat, result.lng, result.name);
     setShowSearch(false);
@@ -264,7 +264,7 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
             <div className="text-text-secondary text-xs mt-0.5">{panchang.tithi.paksha === 'shukla' ? t('shukla') : t('krishna')}</div>
             {tithiTr && (
               <div className="mt-2 pt-2 border-t border-gold-primary/10">
-                <div className="font-mono text-sm text-amber-300 font-bold">{fmt(tithiTr.startTime, tithiTr.startDate)} — {fmt(tithiTr.endTime, tithiTr.endDate)}</div>
+                <div className="font-mono text-sm text-amber-300 font-bold">{fmt(tithiTr.startTime, tithiTr.startDate)}  –  {fmt(tithiTr.endTime, tithiTr.endDate)}</div>
               </div>
             )}
           </div>
@@ -275,7 +275,7 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
               <div className="font-mono text-sm text-amber-300 font-bold mt-1.5">{fmt(tithiTr.endTime, tithiTr.endDate)} {onwards}</div>
             </div>
           )}
-          {/* Masa / Paksha — both systems */}
+          {/* Masa / Paksha  –  both systems */}
           <div className="mt-3 pt-3 border-t border-gold-primary/10 grid grid-cols-2 gap-2 text-xs">
             <div>
               <div className="text-text-secondary/60 uppercase tracking-wider text-[10px]">{locale === 'hi' ? 'अमान्त' : 'Amant'}</div>
@@ -297,7 +297,7 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
             <div className="text-text-secondary text-xs mt-0.5">{_tl(panchang.nakshatra.deity, locale)}</div>
             {nakTr && (
               <div className="mt-2 pt-2 border-t border-gold-primary/10">
-                <div className="font-mono text-sm text-amber-300 font-bold">{fmt(nakTr.startTime, nakTr.startDate)} — {fmt(nakTr.endTime, nakTr.endDate)}</div>
+                <div className="font-mono text-sm text-amber-300 font-bold">{fmt(nakTr.startTime, nakTr.startDate)}  –  {fmt(nakTr.endTime, nakTr.endDate)}</div>
               </div>
             )}
           </div>
@@ -319,7 +319,7 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
             <div className="text-text-secondary text-xs mt-0.5">{_tl(panchang.yoga.meaning, locale)}</div>
             {panchang.yogaTransition && (
               <div className="mt-2 pt-2 border-t border-gold-primary/10">
-                <div className="font-mono text-sm text-amber-300 font-bold">{fmt(panchang.yogaTransition.startTime, panchang.yogaTransition.startDate)} — {fmt(panchang.yogaTransition.endTime, panchang.yogaTransition.endDate)}</div>
+                <div className="font-mono text-sm text-amber-300 font-bold">{fmt(panchang.yogaTransition.startTime, panchang.yogaTransition.startDate)}  –  {fmt(panchang.yogaTransition.endTime, panchang.yogaTransition.endDate)}</div>
               </div>
             )}
           </div>
@@ -343,7 +343,7 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
             </div>
             {panchang.karanaTransition && (
               <div className="mt-2 pt-2 border-t border-gold-primary/10">
-                <div className="font-mono text-sm text-amber-300 font-bold">{fmt(panchang.karanaTransition.startTime, panchang.karanaTransition.startDate)} — {fmt(panchang.karanaTransition.endTime, panchang.karanaTransition.endDate)}</div>
+                <div className="font-mono text-sm text-amber-300 font-bold">{fmt(panchang.karanaTransition.startTime, panchang.karanaTransition.startDate)}  –  {fmt(panchang.karanaTransition.endTime, panchang.karanaTransition.endDate)}</div>
               </div>
             )}
           </div>

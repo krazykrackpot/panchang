@@ -694,7 +694,7 @@ const QUALITY_LABEL: Record<PersonalizedDay['dayQuality'], LocaleText> = {
 };
 
 // ---------------------------------------------------------------------------
-// Daily Panchang Insight Card (lightweight — no PersonalReading needed)
+// Daily Panchang Insight Card (lightweight  –  no PersonalReading needed)
 // ---------------------------------------------------------------------------
 
 /** Classify yoga quality from yoga number (1-27) */
@@ -721,13 +721,13 @@ function classifyTithiQuality(tithiNum: number, paksha: string): 'good' | 'neutr
 
 /** Nakshatra quality label from id */
 function getNakshatraQualityTip(nakshatraId: number, loc: string): string {
-  // Swift nakshatras (1, 8, 13) — quick actions favored
+  // Swift nakshatras (1, 8, 13)  –  quick actions favored
   const swift = [1, 8, 13];
-  // Fierce (2, 10, 11, 20, 25) — bold actions
+  // Fierce (2, 10, 11, 20, 25)  –  bold actions
   const fierce = [2, 10, 11, 20, 25];
-  // Fixed (4, 12, 21, 26) — long-term plans
+  // Fixed (4, 12, 21, 26)  –  long-term plans
   const fixed = [4, 12, 21, 26];
-  // Soft (5, 14, 17, 27) — relationships and creativity
+  // Soft (5, 14, 17, 27)  –  relationships and creativity
   const soft = [5, 14, 17, 27];
 
   const isHi = loc === 'hi' || loc === 'sa' || loc === 'mr' || loc === 'mai';
@@ -735,7 +735,7 @@ function getNakshatraQualityTip(nakshatraId: number, loc: string): string {
   if (fierce.includes(nakshatraId)) return isHi ? 'साहसिक कार्यों और प्रतिस्पर्धा के लिए अनुकूल' : 'Favourable for bold actions and competition';
   if (fixed.includes(nakshatraId)) return isHi ? 'दीर्घकालिक योजनाओं और स्थिरता के लिए अनुकूल' : 'Favourable for long-term plans and stability';
   if (soft.includes(nakshatraId)) return isHi ? 'संबंधों और रचनात्मकता के लिए अनुकूल' : 'Favourable for relationships and creativity';
-  return isHi ? 'संतुलित ऊर्जा — सामान्य गतिविधियों के लिए उपयुक्त' : 'Balanced energy — suitable for general activities';
+  return isHi ? 'संतुलित ऊर्जा  –  सामान्य गतिविधियों के लिए उपयुक्त' : 'Balanced energy  –  suitable for general activities';
 }
 
 function DailyPanchangInsightCard({ panchang, locale }: { panchang: PanchangData; locale: string }) {
@@ -879,9 +879,9 @@ export default function DashboardPage() {
         .eq('user_id', user.id)
         .single();
 
-      // Fetch today's panchang — uses CURRENT location (where the user is now),
+      // Fetch today's panchang  –  uses CURRENT location (where the user is now),
       // NOT birth location. Panchang elements (sunrise, Rahu Kaal, etc.) are location-dependent.
-      // If location store is empty, skip panchang fetch — don't hardcode any fallback.
+      // If location store is empty, skip panchang fetch  –  don't hardcode any fallback.
       const locStore = useLocationStore.getState();
       const panchangLat = locStore.lat;
       const panchangLng = locStore.lng;
@@ -1012,7 +1012,7 @@ export default function DashboardPage() {
         setEnhancedAlerts(alerts);
       } catch (err) { console.error('[dashboard] transit alerts computation failed:', err); }
 
-      // Fetch saved charts — rendered inline below so the user doesn't have to
+      // Fetch saved charts  –  rendered inline below so the user doesn't have to
       // navigate to a separate page just to see their list.
       try {
         const { data: scData, error: scErr } = await supabase
@@ -1188,7 +1188,7 @@ export default function DashboardPage() {
     }
   }
 
-  // Resolve ACTIVE nakshatra/tithi — switches to next after transition passes
+  // Resolve ACTIVE nakshatra/tithi  –  switches to next after transition passes
   // The panchang API returns sunrise values; we check if the transition time has passed
   const activeNakshatra = (() => {
     if (!panchangData) return null;
@@ -1199,7 +1199,7 @@ export default function DashboardPage() {
     const transitionDate = tr.endDate ? new Date(tr.endDate) : new Date();
     transitionDate.setHours(h, m, 0, 0);
     if (now > transitionDate && tr.nextName) {
-      // Transition passed — return next nakshatra info
+      // Transition passed  –  return next nakshatra info
       return { ...panchangData.nakshatra, name: tr.nextName, id: tr.nextNumber };
     }
     return panchangData.nakshatra;
@@ -1223,7 +1223,7 @@ export default function DashboardPage() {
   const dayEnergy = panchangData ? computeDailyEnergy(panchangData) : null;
 
   // Override day quality badge with unified energy score (accounts for yoga,
-  // nakshatra nature, inauspicious periods — not just Tara+Chandra)
+  // nakshatra nature, inauspicious periods  –  not just Tara+Chandra)
   if (dayEnergy) {
     const effectiveQuality: 'excellent' | 'good' | 'neutral' | 'caution' | 'challenging' =
       dayEnergy.label === 'High' ? 'good' : dayEnergy.label === 'Low' ? 'challenging' : 'neutral';
@@ -1251,7 +1251,7 @@ export default function DashboardPage() {
   // -------------------------------------------------------------------------
   // AtAGlance data extraction
   // -------------------------------------------------------------------------
-  // Current hora — find the hora slot whose time range includes now
+  // Current hora  –  find the hora slot whose time range includes now
   const currentHoraData = (() => {
     if (!panchangData?.hora) return null;
     const horaList = panchangData.hora;
@@ -1337,7 +1337,7 @@ export default function DashboardPage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_#d4a853_0%,_transparent_55%)] opacity-[0.06] pointer-events-none" />
 
         <div className="relative p-6 sm:p-8">
-          {/* Day quality badge — absolute top-right */}
+          {/* Day quality badge  –  absolute top-right */}
           <div className={`absolute top-5 right-5 px-4 py-2 rounded-xl border font-black text-xl sm:text-2xl leading-none ${qc.bg} ${qc.border} ${qc.text}`}
             style={{ fontFamily: 'var(--font-heading)' }}>
             {ql[locale] || ql.en}
@@ -1348,7 +1348,7 @@ export default function DashboardPage() {
             {isHeroHi ? 'आज का ब्रह्माण्डीय मौसम' : "Today's Cosmic Weather"}
           </p>
 
-          {/* Main headline — nakshatra + tithi */}
+          {/* Main headline  –  nakshatra + tithi */}
           {panchangData ? (
             <h2
               className="text-xl sm:text-2xl md:text-3xl font-bold text-gold-light leading-tight pr-36"
@@ -1356,7 +1356,7 @@ export default function DashboardPage() {
             >
               {activeNakshatra?.name
                 ? (activeNakshatra.name[locale as keyof typeof activeNakshatra.name] || activeNakshatra.name.en)
-                : '—'}
+                : ' – '}
               {' '}
               <span className="text-text-secondary font-normal text-lg sm:text-xl">
                 {isHeroHi ? 'नक्षत्र' : 'Nakshatra'}
@@ -1380,14 +1380,14 @@ export default function DashboardPage() {
             </h2>
           )}
 
-          {/* Day quality — from unified energy score + nakshatra activities */}
+          {/* Day quality  –  from unified energy score + nakshatra activities */}
           {dayEnergy && (
             <p className="mt-3 text-text-secondary text-sm sm:text-base leading-relaxed max-w-2xl">
               {dayEnergy.label === 'High'
-                ? (isHeroHi ? 'शुभ दिन — अनुकूल ऊर्जा' : 'Favorable day — positive energy alignment')
+                ? (isHeroHi ? 'शुभ दिन  –  अनुकूल ऊर्जा' : 'Favorable day  –  positive energy alignment')
                 : dayEnergy.label === 'Low'
-                  ? (isHeroHi ? 'सतर्क रहें — चुनौतीपूर्ण ऊर्जा' : 'Exercise caution — challenging energy')
-                  : (isHeroHi ? 'सामान्य दिन — नियमित कार्यों के लिए उपयुक्त' : 'Moderate day — suitable for routine activities')}
+                  ? (isHeroHi ? 'सतर्क रहें  –  चुनौतीपूर्ण ऊर्जा' : 'Exercise caution  –  challenging energy')
+                  : (isHeroHi ? 'सामान्य दिन  –  नियमित कार्यों के लिए उपयुक्त' : 'Moderate day  –  suitable for routine activities')}
               {dayEnergy.bestFor.length > 0 && (
                 <span className="text-gold-light/80">
                   {' · '}{isHeroHi ? 'अनुकूल' : 'Best for'}: {dayEnergy.bestFor.slice(0, 2).join(', ')}
@@ -1401,27 +1401,27 @@ export default function DashboardPage() {
             </p>
           )}
 
-          {/* Yoga dosha warning — if active inauspicious yoga */}
+          {/* Yoga dosha warning  –  if active inauspicious yoga */}
           {panchangData?.yoga?.nature === 'inauspicious' && (
             <div className="mt-3 flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-sm font-semibold w-fit">
               <AlertTriangle className="w-4 h-4 shrink-0 text-amber-400" />
               {isHeroHi
-                ? `${panchangData.yoga.name?.hi || panchangData.yoga.name?.en} योग — नए कार्य आरम्भ न करें`
-                : `${panchangData.yoga.name?.en} Yoga active — avoid starting new ventures`}
+                ? `${panchangData.yoga.name?.hi || panchangData.yoga.name?.en} योग  –  नए कार्य आरम्भ न करें`
+                : `${panchangData.yoga.name?.en} Yoga active  –  avoid starting new ventures`}
             </div>
           )}
 
-          {/* Rahu Kaal warning — only when active right now */}
+          {/* Rahu Kaal warning  –  only when active right now */}
           {heroRahuActive && panchangData?.rahuKaal && (
             <div className="mt-3 flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-sm font-semibold w-fit">
               <AlertTriangle className="w-4 h-4 shrink-0 text-red-400" />
               {isHeroHi
-                ? `राहु काल सक्रिय: ${panchangData.rahuKaal.start}–${panchangData.rahuKaal.end} — नए कार्य शुरू न करें`
-                : `Rahu Kaal active: ${panchangData.rahuKaal.start}–${panchangData.rahuKaal.end} — avoid starting new ventures`}
+                ? `राहु काल सक्रिय: ${panchangData.rahuKaal.start}–${panchangData.rahuKaal.end}  –  नए कार्य शुरू न करें`
+                : `Rahu Kaal active: ${panchangData.rahuKaal.start}–${panchangData.rahuKaal.end}  –  avoid starting new ventures`}
             </div>
           )}
 
-          {/* Today's best muhurta windows — personalized */}
+          {/* Today's best muhurta windows  –  personalized */}
           {todayMuhurtaWindows.length > 0 && (
             <div className="mt-5">
               <p className="text-gold-dark text-xs font-bold uppercase tracking-[0.15em] mb-2">
@@ -1466,7 +1466,7 @@ export default function DashboardPage() {
             </span>
           </div>
 
-          {/* Share My Nakshatra — viral card generator */}
+          {/* Share My Nakshatra  –  viral card generator */}
           {userMoonNakshatra > 0 && (
             <div className="mt-5">
               <NakshatraShareButton
@@ -1480,7 +1480,7 @@ export default function DashboardPage() {
         </div>
       </motion.div>
 
-      {/* DailyPanchangInsightCard REMOVED — it had its own "Excellent" rating
+      {/* DailyPanchangInsightCard REMOVED  –  it had its own "Excellent" rating
           that contradicted the Cosmic Weather hero. Panchang details (tithi,
           nakshatra, yoga, vara) are accessible via the Panchang page link. */}
 
@@ -1492,7 +1492,7 @@ export default function DashboardPage() {
         />
       )}
 
-      {/* Tara Bala + Chandra Bala — side by side (already shown as chips in
+      {/* Tara Bala + Chandra Bala  –  side by side (already shown as chips in
           Cosmic Weather hero, but these cards give more detail) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         {/* Tara Bala */}
@@ -1535,7 +1535,7 @@ export default function DashboardPage() {
           </div>
           <div className="flex items-center gap-4 mb-3">
             <div className="w-14 h-14 rounded-xl bg-bg-secondary/60 border border-gold-primary/10 flex items-center justify-center">
-              <span className="text-2xl font-bold text-gold-light">{pd.chandraBala.houseFromMoon || '—'}</span>
+              <span className="text-2xl font-bold text-gold-light">{pd.chandraBala.houseFromMoon || ' – '}</span>
             </div>
             <div>
               <p className="text-text-secondary/75 text-xs">{L.houseFromMoon}</p>
@@ -1557,7 +1557,7 @@ export default function DashboardPage() {
         lng={birthLng ?? undefined}
       />
 
-      {/* Daily Horoscope Widget — transit-based, no LLM */}
+      {/* Daily Horoscope Widget  –  transit-based, no LLM */}
       {userMoonSign > 0 && (
         <motion.div {...fadeUp} transition={{ delay: 0.15 }} className="mb-6">
           <DailyHoroscopeWidget
@@ -2098,10 +2098,10 @@ export default function DashboardPage() {
           )}
         </motion.div>
 
-        {/* Daily email opt-in — shown if user hasn't enabled daily_panchang_email */}
+        {/* Daily email opt-in  –  shown if user hasn't enabled daily_panchang_email */}
         <DailyEmailOptIn locale={locale} />
 
-        {/* Location prompt — shown when location store is empty (no panchang data) */}
+        {/* Location prompt  –  shown when location store is empty (no panchang data) */}
         {!panchangData && !loading && (
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -2115,7 +2115,7 @@ export default function DashboardPage() {
                   {tl({ en: 'Set Your Location', hi: 'अपना स्थान चुनें', ta: 'உங்கள் இருப்பிடத்தை அமைக்கவும்', bn: 'আপনার অবস্থান সেট করুন' }, locale)}
                 </h3>
                 <p className="text-text-secondary text-xs leading-relaxed">
-                  {tl({ en: 'Your location is needed for accurate panchang — sunrise, Rahu Kaal, choghadiya, and daily guidance depend on where you are.', hi: 'सटीक पंचांग के लिए आपका स्थान आवश्यक है — सूर्योदय, राहु काल, चौघड़िया और दैनिक मार्गदर्शन आपके स्थान पर निर्भर करते हैं।' }, locale)}
+                  {tl({ en: 'Your location is needed for accurate panchang  –  sunrise, Rahu Kaal, choghadiya, and daily guidance depend on where you are.', hi: 'सटीक पंचांग के लिए आपका स्थान आवश्यक है  –  सूर्योदय, राहु काल, चौघड़िया और दैनिक मार्गदर्शन आपके स्थान पर निर्भर करते हैं।' }, locale)}
                 </p>
               </div>
             </div>
@@ -2131,7 +2131,7 @@ export default function DashboardPage() {
           </motion.div>
         )}
 
-        {/* TODAY'S READING — Hero tarot cards */}
+        {/* TODAY'S READING  –  Hero tarot cards */}
         {panchangData && dayEnergy && (
           <div className="mb-6">
             <TodaysReading
@@ -2176,16 +2176,16 @@ export default function DashboardPage() {
           />
         )}
 
-        {/* Push Notification Permission — compact, above tabs */}
+        {/* Push Notification Permission  –  compact, above tabs */}
         <PushPermission locale={locale} />
 
         {/* ================================================================= */}
-        {/* TABBED SECTIONS — the main content area                           */}
+        {/* TABBED SECTIONS  –  the main content area                           */}
         {/* ================================================================= */}
         <DashboardTabs tabs={tabs} defaultTab="today" />
 
         {/* ================================================================= */}
-        {/* Quick Links — subtle footer section below tabs                    */}
+        {/* Quick Links  –  subtle footer section below tabs                    */}
         {/* ================================================================= */}
         <motion.div
           {...fadeUp}

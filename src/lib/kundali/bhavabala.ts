@@ -7,20 +7,20 @@
  *
  * The four strength components computed here are:
  *
- *   1. Bhavadhipati Bala — Strength of the house lord, derived from its
+ *   1. Bhavadhipati Bala  –  Strength of the house lord, derived from its
  *      Shadbala score (BPHS Ch.27). A strong lord empowers the house.
  *
- *   2. Bhava Dig Bala — Positional/directional strength based on the
+ *   2. Bhava Dig Bala  –  Positional/directional strength based on the
  *      house's angular classification. Kendras (1,4,7,10) receive full
  *      strength (60), panaparas (2,5,8,11) moderate (30), and apoklimas
  *      (3,6,9,12) receive minimal (15). Ref: BPHS Ch.34, Shloka 3-4.
  *
- *   3. Bhava Drishti Bala — Net strength from planetary aspects (graha
+ *   3. Bhava Drishti Bala  –  Net strength from planetary aspects (graha
  *      drishti) cast onto the house. Benefic aspects add +10 per aspect,
  *      malefic aspects subtract -10. Occupation is NOT counted here
  *      (separated into component 4). Ref: BPHS Ch.34, Shloka 5-8.
  *
- *   4. Bhava Graha Sambandha — Occupation strength: benefic planets
+ *   4. Bhava Graha Sambandha  –  Occupation strength: benefic planets
  *      residing in the house add +15 each, malefic planets subtract -15.
  *      This is distinct from Drishti Bala (aspect). Ref: BPHS Ch.34.
  *
@@ -73,12 +73,12 @@ function round2(v: number): number {
 }
 
 /**
- * Bhava Dig Bala — directional strength assigned by house classification.
+ * Bhava Dig Bala  –  directional strength assigned by house classification.
  *
  * Per BPHS Ch.34 Shloka 3-4:
- *   - Kendras (angular houses 1,4,7,10): 60 units — strongest positions
- *   - Panaparas (succedent houses 2,5,8,11): 30 units — moderate
- *   - Apoklimas (cadent houses 3,6,9,12): 15 units — weakest
+ *   - Kendras (angular houses 1,4,7,10): 60 units  –  strongest positions
+ *   - Panaparas (succedent houses 2,5,8,11): 30 units  –  moderate
+ *   - Apoklimas (cadent houses 3,6,9,12): 15 units  –  weakest
  *
  * This mirrors the classical principle that angular houses have the
  * greatest capacity to manifest their significations.
@@ -100,7 +100,7 @@ function getBhavaDigBala(house: number): number {
  *
  * Note: Rahu and Ketu aspect rules vary by tradition; here they receive
  * only the universal 7th aspect. Rashi Drishti (sign-based aspect) per
- * Jaimini is NOT used here — this is strictly Parashara's graha drishti.
+ * Jaimini is NOT used here  –  this is strictly Parashara's graha drishti.
  *
  * The formula `((planetHouse - 1 + offset) % 12) + 1` converts a
  * 1-indexed house + offset to a 1-indexed aspected house (wrapping at 12).
@@ -108,7 +108,7 @@ function getBhavaDigBala(house: number): number {
 function getAspectedHouses(planetId: number, planetHouse: number): number[] {
   const houses: number[] = [];
 
-  // All planets have full 7th aspect (opposition aspect — BPHS Ch.26 Shloka 2)
+  // All planets have full 7th aspect (opposition aspect  –  BPHS Ch.26 Shloka 2)
   houses.push(((planetHouse - 1 + 6) % 12) + 1);
 
   // Special aspects (BPHS Ch.26 Shloka 3-5)
@@ -131,10 +131,10 @@ function getAspectedHouses(planetId: number, planetHouse: number): number[] {
 
 /**
  * Main Bhavabala computation. Iterates all 12 houses and computes:
- *   1. Bhavadhipati Bala — from the lord's Shadbala rupas (scaled to virupas by ×60)
- *   2. Bhava Dig Bala — from the house's angular classification
- *   3. Bhava Drishti Bala — net aspect influence (benefic +10, malefic -10 per aspect)
- *   4. Bhava Graha Sambandha — net occupation influence (benefic +15, malefic -15 per tenant)
+ *   1. Bhavadhipati Bala  –  from the lord's Shadbala rupas (scaled to virupas by ×60)
+ *   2. Bhava Dig Bala  –  from the house's angular classification
+ *   3. Bhava Drishti Bala  –  net aspect influence (benefic +10, malefic -10 per aspect)
+ *   4. Bhava Graha Sambandha  –  net occupation influence (benefic +15, malefic -15 per tenant)
  *
  * After computing all 12 houses, strengthPercent is set as the percentage
  * of each house's total relative to the 12-house average (100% = average).
@@ -157,7 +157,7 @@ export function calculateBhavabala(input: BhavaBalaInput): BhavaBalaResult[] {
   for (const planet of planets) {
     const isBenefic = BENEFIC_IDS.has(planet.id);
 
-    // Occupation (Bhava Graha Sambandha) — separate from Drishti
+    // Occupation (Bhava Graha Sambandha)  –  separate from Drishti
     grahaSambandhaMap[planet.house] += isBenefic ? 15 : -15;
 
     // Planetary aspects (Drishti Bala only)

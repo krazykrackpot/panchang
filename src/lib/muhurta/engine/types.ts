@@ -1,10 +1,10 @@
 /**
- * Muhurta Engine — Core Type Definitions
+ * Muhurta Engine  –  Core Type Definitions
  *
  * Three-layer architecture:
- *   Layer 1: Rule Registry — self-contained rule objects
- *   Layer 2: Evaluator — cancellation resolution, scoring
- *   Layer 3: Reasoning — human-readable verdicts with citations
+ *   Layer 1: Rule Registry  –  self-contained rule objects
+ *   Layer 2: Evaluator  –  cancellation resolution, scoring
+ *   Layer 3: Reasoning  –  human-readable verdicts with citations
  */
 
 import type { LocaleText } from '@/types/panchang';
@@ -26,11 +26,11 @@ export type RuleCategory =
   | 'personal';
 
 export type AuthorityTier = 0 | 1 | 2 | 3 | 4;
-// Tier 0 (Absolute): Hard vetoes — combustion, Adhika, Chaturmas, forbidden nakshatras. CANNOT be cancelled.
-// Tier 1 (Override): Godhuli Lagna — cancels everything except Tier 0.
-// Tier 2 (Major): Strong lagna, special yogas, Pushkar Navamsha — can cancel Tier 4 defects.
+// Tier 0 (Absolute): Hard vetoes  –  combustion, Adhika, Chaturmas, forbidden nakshatras. CANNOT be cancelled.
+// Tier 1 (Override): Godhuli Lagna  –  cancels everything except Tier 0.
+// Tier 2 (Major): Strong lagna, special yogas, Pushkar Navamsha  –  can cancel Tier 4 defects.
 // Tier 3 (Standard): All panchanga factors, timing factors.
-// Tier 4 (Cancellable): Weak karana, inauspicious yoga, Dur Muhurtam, Gulika — can be cancelled by Tier 2.
+// Tier 4 (Cancellable): Weak karana, inauspicious yoga, Dur Muhurtam, Gulika  –  can be cancelled by Tier 2.
 
 export interface MuhurtaRule {
   id: string;

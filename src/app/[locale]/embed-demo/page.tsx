@@ -91,14 +91,14 @@ export default function EmbedDemoPage() {
               <optgroup label="Popular Temple Cities">
                 {POPULAR_CITIES.map(c => (
                   <option key={c.slug} value={c.slug}>
-                    {c.name.en}{c.state ? ` — ${c.state}` : ''}
+                    {c.name.en}{c.state ? `  –  ${c.state}` : ''}
                   </option>
                 ))}
               </optgroup>
               <optgroup label="All Cities">
                 {CITIES.filter(c => !POPULAR_CITIES.includes(c)).map(c => (
                   <option key={c.slug} value={c.slug}>
-                    {c.name.en}{c.state ? ` — ${c.state}` : ''}
+                    {c.name.en}{c.state ? `  –  ${c.state}` : ''}
                   </option>
                 ))}
               </optgroup>

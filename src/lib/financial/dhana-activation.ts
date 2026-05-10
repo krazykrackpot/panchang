@@ -2,7 +2,7 @@
  * Dhana Yoga Activation Timeline
  *
  * Scans the kundali for Dhana (wealth) yogas and identifies when they
- * "activate" — i.e. when the dasha/antardasha of a yoga-forming planet
+ * "activate"  –  i.e. when the dasha/antardasha of a yoga-forming planet
  * is running. Windows are projected up to 10 years from today.
  *
  * Classical basis: BPHS Ch.41-43 (Yoga Dasha Phala).
@@ -203,7 +203,7 @@ function addActivation(
   planets: string[],
   win: ActivationWindow,
 ) {
-  if (win.startDate >= win.endDate) return; // zero-length — skip
+  if (win.startDate >= win.endDate) return; // zero-length  –  skip
 
   if (!map.has(yogaName)) {
     map.set(yogaName, {

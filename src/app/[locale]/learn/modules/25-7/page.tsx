@@ -91,7 +91,7 @@ const QUESTIONS: ModuleQuestion[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 1 — Madhava and the Kerala School                              */
+/*  PAGE 1  –  Madhava and the Kerala School                              */
 /* ------------------------------------------------------------------ */
 function Page1() {
   const locale = useModuleLocale();
@@ -143,8 +143,8 @@ function Page1() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
-            ? <>माधव के मूल ग्रन्थ अधिकतर खो गए हैं। उनका काम बाद के केरल स्कूल के ग्रन्थों में उद्धरणों के माध्यम से जाना जाता है — विशेष रूप से युक्तिभाषा (ज्येष्ठदेव, ~1530) और तन्त्रसंग्रह (नीलकण्ठ सोमयाजी, ~1501)।</>
-            : <>Madhava's original works are mostly lost. His work is known through quotations in later Kerala School texts — particularly the Yuktibhasha (Jyeshthadeva, ~1530) and Tantrasangraha (Nilakantha Somayaji, ~1501).</>}
+            ? <>माधव के मूल ग्रन्थ अधिकतर खो गए हैं। उनका काम बाद के केरल स्कूल के ग्रन्थों में उद्धरणों के माध्यम से जाना जाता है  –  विशेष रूप से युक्तिभाषा (ज्येष्ठदेव, ~1530) और तन्त्रसंग्रह (नीलकण्ठ सोमयाजी, ~1501)।</>
+            : <>Madhava's original works are mostly lost. His work is known through quotations in later Kerala School texts  –  particularly the Yuktibhasha (Jyeshthadeva, ~1530) and Tantrasangraha (Nilakantha Somayaji, ~1501).</>}
         </p>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -157,7 +157,7 @@ function Page1() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 2 — The Yuktibhasha: Proofs and Proto-Calculus                 */
+/*  PAGE 2  –  The Yuktibhasha: Proofs and Proto-Calculus                 */
 /* ------------------------------------------------------------------ */
 function Page2() {
   const locale = useModuleLocale();
@@ -170,8 +170,8 @@ function Page2() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? <>~1530 ई. में ज्येष्ठदेव की युक्तिभाषा केरल स्कूल की सबसे महत्त्वपूर्ण विरासत है। यह मलयालम में लिखा गया एकमात्र प्राचीन भारतीय गणित ग्रन्थ है — और इसमें ऐसी गणितीय अवधारणाएँ हैं जो आधुनिक कलन की अग्रदूत हैं।</>
-            : <>Jyeshthadeva's Yuktibhasha (~1530 CE) is the most important legacy of the Kerala School. It is the only ancient Indian mathematics text written in Malayalam — and contains mathematical concepts that are precursors to modern calculus.</>}
+            ? <>~1530 ई. में ज्येष्ठदेव की युक्तिभाषा केरल स्कूल की सबसे महत्त्वपूर्ण विरासत है। यह मलयालम में लिखा गया एकमात्र प्राचीन भारतीय गणित ग्रन्थ है  –  और इसमें ऐसी गणितीय अवधारणाएँ हैं जो आधुनिक कलन की अग्रदूत हैं।</>
+            : <>Jyeshthadeva's Yuktibhasha (~1530 CE) is the most important legacy of the Kerala School. It is the only ancient Indian mathematics text written in Malayalam  –  and contains mathematical concepts that are precursors to modern calculus.</>}
         </p>
       </section>
 
@@ -223,7 +223,7 @@ function Page2() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  PAGE 3 — The Transmission Question and Legacy                       */
+/*  PAGE 3  –  The Transmission Question and Legacy                       */
 /* ------------------------------------------------------------------ */
 function Page3() {
   const locale = useModuleLocale();
@@ -257,8 +257,8 @@ function Page3() {
         </p>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <><span className="text-gold-light font-medium">वर्तमान सहमति:</span> अधिकांश इतिहासकार इसे "प्रशंसनीय लेकिन अपुष्ट" मानते हैं। सबसे महत्त्वपूर्ण तथ्य यह है कि भारत में कलन 250+ वर्ष पहले विकसित हुआ — चाहे यूरोप ने इसे जाना या नहीं।</>
-            : <><span className="text-gold-light font-medium">Current consensus:</span> Most historians consider it "plausible but unconfirmed." The key fact remains: calculus developed in India 250+ years before Europe — whether Europe knew it or not.</>}
+            ? <><span className="text-gold-light font-medium">वर्तमान सहमति:</span> अधिकांश इतिहासकार इसे "प्रशंसनीय लेकिन अपुष्ट" मानते हैं। सबसे महत्त्वपूर्ण तथ्य यह है कि भारत में कलन 250+ वर्ष पहले विकसित हुआ  –  चाहे यूरोप ने इसे जाना या नहीं।</>
+            : <><span className="text-gold-light font-medium">Current consensus:</span> Most historians consider it "plausible but unconfirmed." The key fact remains: calculus developed in India 250+ years before Europe  –  whether Europe knew it or not.</>}
         </p>
       </section>
 
@@ -268,12 +268,12 @@ function Page3() {
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
-            ? <>केरल स्कूल ने साबित किया कि कलन के विकास के लिए न्यूटनीय भौतिकी की आवश्यकता नहीं थी — खगोल विज्ञान और त्रिकोणमिति की ज़रूरतें पर्याप्त थीं। अधिक सटीक ग्रहण की भविष्यवाणी, बेहतर नौवहन, और सूर्योदय/अस्त का सटीक समय — ये व्यावहारिक ज़रूरतें गणित को आगे धकेल रही थीं।</>
-            : <>The Kerala School proved that calculus didn't require Newtonian physics — the needs of astronomy and trigonometry were sufficient. More precise eclipse prediction, better navigation, and accurate sunrise/sunset times — these practical needs were driving mathematics forward.</>}
+            ? <>केरल स्कूल ने साबित किया कि कलन के विकास के लिए न्यूटनीय भौतिकी की आवश्यकता नहीं थी  –  खगोल विज्ञान और त्रिकोणमिति की ज़रूरतें पर्याप्त थीं। अधिक सटीक ग्रहण की भविष्यवाणी, बेहतर नौवहन, और सूर्योदय/अस्त का सटीक समय  –  ये व्यावहारिक ज़रूरतें गणित को आगे धकेल रही थीं।</>
+            : <>The Kerala School proved that calculus didn't require Newtonian physics  –  the needs of astronomy and trigonometry were sufficient. More precise eclipse prediction, better navigation, and accurate sunrise/sunset times  –  these practical needs were driving mathematics forward.</>}
         </p>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
-            ? <>यह पञ्चाङ्ग प्रतिदिन ग्रहों की स्थिति, सूर्योदय, और ग्रहण की गणना करता है। इन गणनाओं में आर्यभट की ज्या सारणी, माधव की श्रृंखला-त्वरण तकनीक, और ब्रह्मगुप्त के शून्य — तीनों एक साथ काम करते हैं। भारतीय गणित का जीवित उपयोग।</>
+            ? <>यह पञ्चाङ्ग प्रतिदिन ग्रहों की स्थिति, सूर्योदय, और ग्रहण की गणना करता है। इन गणनाओं में आर्यभट की ज्या सारणी, माधव की श्रृंखला-त्वरण तकनीक, और ब्रह्मगुप्त के शून्य  –  तीनों एक साथ काम करते हैं। भारतीय गणित का जीवित उपयोग।</>
             : <>This Panchang computes planetary positions, sunrise, and eclipses every day. In these calculations, Aryabhata's jya table, Madhava's series-acceleration technique, and Brahmagupta's zero all work together. Living use of Indian mathematics.</>}
         </p>
       </section>

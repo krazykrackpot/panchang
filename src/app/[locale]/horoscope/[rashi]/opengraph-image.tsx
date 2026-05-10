@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 import { generateDailyHoroscope } from '@/lib/horoscope/daily-engine';
 
-// Node.js runtime required — daily-engine chains to swiss-ephemeris (native module, not edge-safe)
+// Node.js runtime required  –  daily-engine chains to swiss-ephemeris (native module, not edge-safe)
 export const runtime = 'nodejs';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
@@ -38,7 +38,7 @@ function getRashiInfo(slug: string) {
 
 // ─── OG Image ───────────────────────────────────────────────────────────────
 
-export const alt = 'Daily Horoscope — Dekho Panchang';
+export const alt = 'Daily Horoscope  –  Dekho Panchang';
 
 /** Score colour: green for 7+, amber for 5-6, red-ish for ≤4. */
 function scoreColor(score: number): string {
@@ -48,7 +48,7 @@ function scoreColor(score: number): string {
 }
 
 export default async function Image({ params }: { params: Promise<{ locale: string; rashi: string }> }) {
-  // params is a Promise in Next.js 16 — must be awaited before accessing properties.
+  // params is a Promise in Next.js 16  –  must be awaited before accessing properties.
   const { rashi: rashiSlug } = await params;
 
   const rashiInfo = getRashiInfo(rashiSlug ?? '');

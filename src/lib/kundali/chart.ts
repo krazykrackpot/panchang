@@ -8,7 +8,7 @@ import { getSolarPosition, getLST, getObliquity } from '../astronomy/solar';
 import { getLunarPosition } from '../astronomy/lunar';
 import { getAllPlanetPositions, type PlanetId } from '../astronomy/planets';
 import { getAyanamsha as getAyanamsa, toSidereal as _toSidereal, type AyanamshaType as AyanamsaType } from '../ephem/astronomical';
-/** Adapter: Module B's toSidereal takes (lon, jd, ayanamsha?) — we have pre-computed ayanamsha. */
+/** Adapter: Module B's toSidereal takes (lon, jd, ayanamsha?)  –  we have pre-computed ayanamsha. */
 const tropicalToSidereal = (lon: number, ayanamsa: number) => _toSidereal(lon, 0, ayanamsa);
 import { degToRad, radToDeg, normalizeAngle } from '../astronomy/julian';
 import { RASHI_NAMES, RASHI_NAMES_SANSKRIT, NAKSHATRA_DATA } from '../panchang/types';
@@ -180,7 +180,7 @@ export function calculateKundali(input: KundaliInput): KundaliData {
   // Calculate Dashas
   const moonNakIndex = grahas.find(g => g.id === 'moon')!.nakshatraIndex;
   const moonDegInNak = grahas.find(g => g.id === 'moon')!.longitude % (360 / 27);
-  // Lesson L: use Date.UTC — birth time components are UT-based from the computation.
+  // Lesson L: use Date.UTC  –  birth time components are UT-based from the computation.
   const birthDate = new Date(Date.UTC(year, month - 1, day, hour, minute));
   const dashas = calculateDashas(moonNakIndex, moonDegInNak, birthDate);
 

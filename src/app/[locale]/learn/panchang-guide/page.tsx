@@ -40,16 +40,16 @@ export default function LearnPanchangGuidePage() {
       </div>
 
       <KeyTakeaway locale={locale} points={[
-        'Panchang means "five limbs" — Tithi, Nakshatra, Yoga, Karana, and Vara — computed from the Sun and Moon positions.',
-        'The Vedic day begins at sunrise, not midnight — this is why Panchang requires your exact geographic location.',
-        'Amanta and Purnimanta are two equally valid ways of counting lunar months — they differ only during Krishna Paksha.',
+        'Panchang means "five limbs"  –  Tithi, Nakshatra, Yoga, Karana, and Vara  –  computed from the Sun and Moon positions.',
+        'The Vedic day begins at sunrise, not midnight  –  this is why Panchang requires your exact geographic location.',
+        'Amanta and Purnimanta are two equally valid ways of counting lunar months  –  they differ only during Krishna Paksha.',
       ]} />
 
       <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
-        <BeginnerNote term="Panchang" explanation="Sanskrit for 'five limbs' — the Vedic almanac providing five daily astronomical parameters" />
-        <BeginnerNote term="Tithi" explanation="The lunar day — defined by the 12-degree angular distance between the Sun and Moon" />
-        <BeginnerNote term="Paksha" explanation="A fortnight — Shukla (waxing, New to Full Moon) and Krishna (waning, Full to New Moon)" />
-        <BeginnerNote term="Kshaya Tithi" explanation="A 'lost' tithi that starts and ends between two sunrises — not present on any Vedic day" />
+        <BeginnerNote term="Panchang" explanation="Sanskrit for 'five limbs'  –  the Vedic almanac providing five daily astronomical parameters" />
+        <BeginnerNote term="Tithi" explanation="The lunar day  –  defined by the 12-degree angular distance between the Sun and Moon" />
+        <BeginnerNote term="Paksha" explanation="A fortnight  –  Shukla (waxing, New to Full Moon) and Krishna (waning, Full to New Moon)" />
+        <BeginnerNote term="Kshaya Tithi" explanation="A 'lost' tithi that starts and ends between two sunrises  –  not present on any Vedic day" />
       </div>
 
       {/* Intro */}

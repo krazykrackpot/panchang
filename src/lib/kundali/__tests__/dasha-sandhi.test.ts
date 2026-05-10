@@ -56,8 +56,8 @@ describe('findDashaSandhiPeriods', () => {
   });
 
   it('duration is approximately 10% + 10% of adjacent dashas', () => {
-    // Sun dasha: 6 years ≈ 2191.5 days — 10% ≈ 219.15 days
-    // Moon dasha: 10 years ≈ 3652.5 days — 10% ≈ 365.25 days
+    // Sun dasha: 6 years ≈ 2191.5 days  –  10% ≈ 219.15 days
+    // Moon dasha: 10 years ≈ 3652.5 days  –  10% ≈ 365.25 days
     // Total sandhi ≈ 584.4 days ≈ 19.2 months
     const dashas = [
       makeDasha('Sun', '2000-01-01', '2006-01-01'),
@@ -97,7 +97,7 @@ describe('findDashaSandhiPeriods', () => {
   });
 
   it('neutral transition (Mars → Saturn) → moderate', () => {
-    // Mars friends: Sun, Moon, Jupiter — Saturn is not friend or enemy of Mars
+    // Mars friends: Sun, Moon, Jupiter  –  Saturn is not friend or enemy of Mars
     const dashas = [
       makeDasha('Mars', '2000-01-01', '2007-01-01'),
       makeDasha('Saturn', '2007-01-01', '2026-01-01'),

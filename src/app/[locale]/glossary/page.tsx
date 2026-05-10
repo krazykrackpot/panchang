@@ -90,7 +90,7 @@ export default function GlossaryPage() {
               Vedic Astrology Glossary
             </h1>
             <p className="text-[#8a8478] text-base">
-              {GLOSSARY.length} terms defined — from Panchang to Dasha systems
+              {GLOSSARY.length} terms defined  –  from Panchang to Dasha systems
             </p>
           </div>
 

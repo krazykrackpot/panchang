@@ -61,7 +61,7 @@ const LABELS = {
     title: 'நிதி ஜோதிடம்',
     subtitle: 'தன யோகம் · மாத கணிப்பு · ஹோரா வழிகாட்டி',
     desc: 'உங்கள் ஜாதகத்திலிருந்து நிதி வாய்ப்புகள், தன யோக செயல்பாடுகள் மற்றும் ஹோரா வழிகாட்டியை அறியுங்கள்.',
-    disclaimer: 'இது பாரம்பரிய வேத அறிவு — சுய விழிப்புணர்வுக்காக மட்டுமே. நிதி ஆலோசனை அல்ல.',
+    disclaimer: 'இது பாரம்பரிய வேத அறிவு  –  சுய விழிப்புணர்வுக்காக மட்டுமே. நிதி ஆலோசனை அல்ல.',
     generate: 'நிதி ஜாதக பகுப்பாய்வு',
     generating: 'பகுப்பாய்வு...',
     yearRating: 'ஆண்டு நிதி மதிப்பீடு',
@@ -82,7 +82,7 @@ const LABELS = {
     title: 'আর্থিক জ্যোতিষ',
     subtitle: 'ধন যোগ · মাসিক দৃষ্টিভঙ্গি · হোরা গাইড',
     desc: 'আপনার জাতক থেকে আর্থিক সুযোগ, ধন যোগ সক্রিয়করণ এবং হোরা-ভিত্তিক ব্যবসায়িক নির্দেশিকা জানুন।',
-    disclaimer: 'এটি ঐতিহ্যবাহী বৈদিক জ্ঞান — শুধুমাত্র আত্ম-সচেতনতার জন্য। আর্থিক পরামর্শ নয়।',
+    disclaimer: 'এটি ঐতিহ্যবাহী বৈদিক জ্ঞান  –  শুধুমাত্র আত্ম-সচেতনতার জন্য। আর্থিক পরামর্শ নয়।',
     generate: 'আর্থিক জাতক বিশ্লেষণ',
     generating: 'বিশ্লেষণ...',
     yearRating: 'বার্ষিক আর্থিক রেটিং',
@@ -269,7 +269,7 @@ export default function FinancialAstrologyPage() {
                           <span className={`px-2 py-0.5 rounded-full text-[10px] ${
                             w.strength === 'strong' ? 'bg-emerald-500/15 text-emerald-400' : 'bg-amber-500/15 text-amber-400'
                           }`}>{w.strength}</span>
-                          <span className="text-text-secondary">{w.startDate} — {w.endDate}</span>
+                          <span className="text-text-secondary">{w.startDate}  –  {w.endDate}</span>
                           <span className="text-text-secondary/60">{w.dashaDescription}</span>
                         </div>
                       ))}
@@ -287,7 +287,7 @@ export default function FinancialAstrologyPage() {
               <div className="space-y-2">
                 {report.retrogradeCautions.map((rc, i) => (
                   <div key={i} className="flex gap-3 p-3 bg-red-500/5 border border-red-500/15 rounded-xl text-xs">
-                    <span className="text-red-400 font-semibold whitespace-nowrap">{rc.planet} — {rc.period}</span>
+                    <span className="text-red-400 font-semibold whitespace-nowrap">{rc.planet}  –  {rc.period}</span>
                     <span className="text-text-secondary">{rc.caution}</span>
                   </div>
                 ))}

@@ -160,9 +160,9 @@ export const HOLIKA_DAHAN_PUJA: PujaVidhi = {
 
   precautions: [
     {
-      en: 'Never perform Holika Dahan during Bhadra Kaal — this is considered extremely inauspicious. Wait for Bhadra to end before lighting the fire.',
-      hi: 'भद्रा काल में कभी भी होलिका दहन न करें — यह अत्यन्त अशुभ माना जाता है। अग्नि प्रज्वलित करने से पहले भद्रा समाप्ति की प्रतीक्षा करें।',
-      sa: 'भद्राकाले होलिकादहनं कदापि न कुर्यात् — एतत् अत्यन्तम् अशुभं मन्यते। अग्निप्रज्वालनात् पूर्वं भद्राकालसमाप्तिं प्रतीक्षेत।',
+      en: 'Never perform Holika Dahan during Bhadra Kaal  –  this is considered extremely inauspicious. Wait for Bhadra to end before lighting the fire.',
+      hi: 'भद्रा काल में कभी भी होलिका दहन न करें  –  यह अत्यन्त अशुभ माना जाता है। अग्नि प्रज्वलित करने से पहले भद्रा समाप्ति की प्रतीक्षा करें।',
+      sa: 'भद्राकाले होलिकादहनं कदापि न कुर्यात्  –  एतत् अत्यन्तम् अशुभं मन्यते। अग्निप्रज्वालनात् पूर्वं भद्राकालसमाप्तिं प्रतीक्षेत।',
     },
     {
       en: 'Maintain a safe distance from the bonfire. Keep children under adult supervision. Do not use synthetic or chemical accelerants to light the fire.',

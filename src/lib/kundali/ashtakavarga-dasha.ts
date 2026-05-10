@@ -67,7 +67,7 @@ function classifyBavTotal(bavTotal: number): AshtakavargaDashaPrediction['predic
 /**
  * Predict Maha Dasha quality using Ashtakavarga scores.
  *
- * @param dashas      - Array of DashaEntry (all levels — filtered to maha internally)
+ * @param dashas      - Array of DashaEntry (all levels  –  filtered to maha internally)
  * @param reducedBpi  - 7×12 reduced Bhinnashtakavarga table (after Shodhana)
  * @param pinda       - 7-element Pinda Ashtakavarga array (one per planet 0-6)
  */
@@ -82,7 +82,7 @@ export function predictDashaFromAshtakavarga(
   return mahaDashas.map(dasha => {
     const planetId = PLANET_NAME_TO_ID[dasha.planet];
     if (planetId === undefined) {
-      // Unknown planet name — return a neutral prediction
+      // Unknown planet name  –  return a neutral prediction
       // Guard: log so we notice if this happens (per CLAUDE.md rule: never silently swallow)
       console.error(`[ashtakavarga-dasha] Unknown planet name in dasha: "${dasha.planet}"`);
       return {
@@ -102,7 +102,7 @@ export function predictDashaFromAshtakavarga(
     const bavRow = reducedBpi[bavRowIndex] ?? new Array(12).fill(0);
     const bavTotal = bavRow.reduce((sum, v) => sum + v, 0);
 
-    // Pinda score — Rahu/Ketu use their proxy planet's pinda too
+    // Pinda score  –  Rahu/Ketu use their proxy planet's pinda too
     const pindaScore = pinda[bavRowIndex] ?? 0;
 
     // Strong signs: BAV >= 4 (1-based sign numbers)

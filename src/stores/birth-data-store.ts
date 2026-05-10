@@ -7,7 +7,7 @@ import { create } from 'zustand';
  * so the panchang page can auto-populate Chandrabalam/Tarabalam
  * and the horoscope page can default to the user's sign.
  *
- * Only stores data for the "self" chart — generating charts for
+ * Only stores data for the "self" chart  –  generating charts for
  * family members does NOT overwrite this.
  */
 

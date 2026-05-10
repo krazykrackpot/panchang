@@ -77,7 +77,7 @@ function Page1() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   PAGE 2 — The Ayanamsha: Where Tropical and Sidereal Diverge
+   PAGE 2  –  The Ayanamsha: Where Tropical and Sidereal Diverge
    ═══════════════════════════════════════════════════════════════ */
 function Page2() {
   const locale = useModuleLocale();
@@ -165,7 +165,7 @@ function Page2() {
       <ExampleChart
         ascendant={1}
         planets={{ 1: [2], 4: [1], 10: [0] }}
-        title="Ayanamsha Boundary — Same Sky, Different Coordinates"
+        title="Ayanamsha Boundary  –  Same Sky, Different Coordinates"
       />
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
@@ -241,7 +241,7 @@ function Page2() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   PAGE 3 — India's Contribution and the Great Debate
+   PAGE 3  –  India's Contribution and the Great Debate
    ═══════════════════════════════════════════════════════════════ */
 function Page3() {
   const locale = useModuleLocale();

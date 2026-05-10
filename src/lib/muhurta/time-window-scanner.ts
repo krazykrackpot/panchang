@@ -1,5 +1,5 @@
 /**
- * Time Window Scanner — Scans date ranges and scores each window
+ * Time Window Scanner  –  Scans date ranges and scores each window
  *
  * Delegates to the unified muhurta engine and adapts output to legacy formats.
  */
@@ -73,7 +73,7 @@ export interface ScanV2Window {
 
 /**
  * Scan a date range with configurable window size and return ALL windows.
- * V2 — supports inauspicious periods, dasha harmony, and DetailBreakdown.
+ * V2  –  supports inauspicious periods, dasha harmony, and DetailBreakdown.
  * Delegates to the unified engine and adapts output via adaptToV2().
  */
 export function scanDateRangeV2(options: ScanOptionsV2): ScanV2Window[] {

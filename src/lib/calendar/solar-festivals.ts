@@ -1,5 +1,5 @@
 /**
- * Solar Festival Engine — computes Sankranti dates (Sun's sidereal sign ingress).
+ * Solar Festival Engine  –  computes Sankranti dates (Sun's sidereal sign ingress).
  *
  * A Sankranti occurs when the Sun's sidereal longitude crosses a sign boundary
  * (0deg, 30deg, 60deg, ... 330deg). The Sun moves ~1deg/day, so each Sankranti
@@ -10,9 +10,9 @@
  * 40 iterations of bisection on a ~45-day window gives sub-second precision.
  *
  * Key examples:
- *   - Makar Sankranti = Sun enters Capricorn (sidereal 270deg) — ~Jan 14-15
- *   - Mesh Sankranti  = Sun enters Aries (sidereal 0deg) — ~Apr 13-14
- *   - Karka Sankranti  = Sun enters Cancer (sidereal 90deg) — ~Jul 16-17
+ *   - Makar Sankranti = Sun enters Capricorn (sidereal 270deg)  –  ~Jan 14-15
+ *   - Mesh Sankranti  = Sun enters Aries (sidereal 0deg)  –  ~Apr 13-14
+ *   - Karka Sankranti  = Sun enters Cancer (sidereal 90deg)  –  ~Jul 16-17
  */
 
 import { dateToJD, jdToDate, sunLongitude, toSidereal, normalizeDeg } from '@/lib/ephem/astronomical';
@@ -34,9 +34,9 @@ export interface SankrantiEntry {
   time: string;
   /** Julian Day of exact ingress (UT) */
   jd: number;
-  /** true for Makar Sankranti (signId=10) — Sun begins northward journey */
+  /** true for Makar Sankranti (signId=10)  –  Sun begins northward journey */
   isUttarayana?: boolean;
-  /** true for Karka Sankranti (signId=4) — Sun begins southward journey */
+  /** true for Karka Sankranti (signId=4)  –  Sun begins southward journey */
   isDakshinayana?: boolean;
 }
 
@@ -107,7 +107,7 @@ function jdToLocal(jd: number, timezone: string): { date: string; time: string }
 function approximateJD(signId: number, year: number): number {
   // Mesh Sankranti (sign 1, 0deg sidereal) is approximately April 14.
   // Signs 1-9 (Aries through Sagittarius) fall Apr-Jan in the same year.
-  // Signs 10-12 (Capricorn, Aquarius, Pisces) fall Jan-Apr — they occur
+  // Signs 10-12 (Capricorn, Aquarius, Pisces) fall Jan-Apr  –  they occur
   // BEFORE Mesh Sankranti in the calendar year, so we anchor them to the
   // PREVIOUS year's Mesh Sankranti.
   const signsAhead = (signId - 1 + 12) % 12; // 0 for Aries, 9 for Capricorn, etc.
@@ -155,10 +155,10 @@ function findIngress(targetDeg: number, approxJd: number): number {
     const diff = normalizeDeg(sidLong - targetDeg);
 
     if (diff < 180) {
-      // Sun is past the boundary — search earlier
+      // Sun is past the boundary  –  search earlier
       hi = mid;
     } else {
-      // Sun hasn't reached the boundary yet — search later
+      // Sun hasn't reached the boundary yet  –  search later
       lo = mid;
     }
   }
@@ -171,7 +171,7 @@ function findIngress(targetDeg: number, approxJd: number): number {
  *
  * Returns entries sorted by date (chronological order within the year).
  * The first Sankranti of a calendar year is typically Makar (signId=10, ~Jan 14),
- * and the last is Dhanu (signId=9, ~Jan of the next year — but we only include
+ * and the last is Dhanu (signId=9, ~Jan of the next year  –  but we only include
  * entries whose local date falls within the given year).
  *
  * @param year - Gregorian year (e.g. 2026)
@@ -254,7 +254,7 @@ export function resolveSolarFestivals(year: number, timezone: string): ResolvedS
 
     const sankranti = sankrantiMap.get(def.solarMonth);
     if (!sankranti) {
-      // Sankranti for this sign didn't fall within the year — skip
+      // Sankranti for this sign didn't fall within the year  –  skip
       console.error(`[solar-festivals] No Sankranti found for signId=${def.solarMonth} in ${year}`);
       continue;
     }

@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Layout({ children, params }: Props) {
   const { locale } = await params;
   const toolLD = generateToolLD(
-    'Financial Astrology — Dhana Yogas & Wealth Timing',
+    'Financial Astrology  –  Dhana Yogas & Wealth Timing',
     'Discover your Dhana (wealth) yoga activations, monthly financial windows, hora-based timing guide, and top sectors based on your Vedic birth chart.',
     `https://dekhopanchang.com/${locale}/financial-astrology`,
   );

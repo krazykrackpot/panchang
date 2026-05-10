@@ -39,16 +39,16 @@ export default function LearnKPSystemPage() {
       </div>
 
       <KeyTakeaway locale={locale} points={[
-        'KP\'s sub-lord theory divides each nakshatra into 9 unequal parts — the sub-lord is the decisive factor, not just the sign or star lord.',
-        'KP uses Placidus houses (unequal sizes) instead of Equal Houses — the cusp sub-lord determines what a house actually delivers.',
+        'KP\'s sub-lord theory divides each nakshatra into 9 unequal parts  –  the sub-lord is the decisive factor, not just the sign or star lord.',
+        'KP uses Placidus houses (unequal sizes) instead of Equal Houses  –  the cusp sub-lord determines what a house actually delivers.',
         'KP excels at binary yes/no predictions; Parashari excels at understanding the quality and karmic depth of life events. Use both.',
       ]} />
 
       <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary mb-4">
-        <BeginnerNote term="Sub-Lord" explanation="The planet ruling the sub-division of a nakshatra where a planet or cusp falls — the decisive factor in KP" />
+        <BeginnerNote term="Sub-Lord" explanation="The planet ruling the sub-division of a nakshatra where a planet or cusp falls  –  the decisive factor in KP" />
         <BeginnerNote term="Placidus" explanation="A house system where houses are unequal in size, based on the time it takes degrees to move between angles" />
-        <BeginnerNote term="Significator" explanation="In KP, a planet that represents a house through a 4-level hierarchy — not just by ruling the cusp sign" />
-        <BeginnerNote term="Ruling Planets" explanation="The sign, star, and sub lords of Moon and Ascendant at the moment of judgement — used to verify predictions" />
+        <BeginnerNote term="Significator" explanation="In KP, a planet that represents a house through a 4-level hierarchy  –  not just by ruling the cusp sign" />
+        <BeginnerNote term="Ruling Planets" explanation="The sign, star, and sub lords of Moon and Ascendant at the moment of judgement  –  used to verify predictions" />
       </div>
 
       {/* Intro */}
@@ -136,7 +136,7 @@ export default function LearnKPSystemPage() {
             </div>
           ))}
         </div>
-        <ClassicalReference shortName="KP Reader I-VI" author="Prof. K.S. Krishnamurti" chapter="Volumes I through VI — the complete KP reference" />
+        <ClassicalReference shortName="KP Reader I-VI" author="Prof. K.S. Krishnamurti" chapter="Volumes I through VI  –  the complete KP reference" />
       </LessonSection>
 
       {/* KP vs Parashari */}

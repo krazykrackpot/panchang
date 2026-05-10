@@ -1,5 +1,5 @@
 /**
- * Ashtamangala Prashna — Yoga Detection
+ * Ashtamangala Prashna  –  Yoga Detection
  * Detects classical prashna yogas from the prashna chart's planetary positions.
  */
 

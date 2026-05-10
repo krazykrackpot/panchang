@@ -50,7 +50,7 @@ export default function InstallPrompt() {
       if (d && Date.now() - parseInt(d) < DISMISS_DURATION) return;
     } catch { /* localStorage unavailable */ }
 
-    // Track page visits — only show prompt after user has visited 2+ pages
+    // Track page visits  –  only show prompt after user has visited 2+ pages
     let visits = 0;
     try {
       visits = parseInt(localStorage.getItem(VISIT_COUNT_KEY) || '0', 10) + 1;
@@ -113,7 +113,7 @@ export default function InstallPrompt() {
           <p className="text-xs text-text-secondary truncate">
             {isIOS
               ? tl({ en: 'Tap Share → "Add to Home Screen"', hi: 'Share → "होम स्क्रीन पर जोड़ें" दबाएं', sa: 'Share → "होम स्क्रीन पर जोड़ें" दबाएं' }, locale)
-              : tl({ en: 'Quick access from home screen — works offline', hi: 'होम स्क्रीन से तुरंत खोलें — ऑफ़लाइन भी', sa: 'होम स्क्रीन से तुरंत खोलें — ऑफ़लाइन भी' }, locale)}
+              : tl({ en: 'Quick access from home screen  –  works offline', hi: 'होम स्क्रीन से तुरंत खोलें  –  ऑफ़लाइन भी', sa: 'होम स्क्रीन से तुरंत खोलें  –  ऑफ़लाइन भी' }, locale)}
           </p>
         </div>
 

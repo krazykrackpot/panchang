@@ -263,7 +263,7 @@ export default function VratCalendarPage() {
           <span className="text-sm text-text-secondary">{l('hoursBefore')}</span>
         </div>
 
-        {/* Available Vrats — Grouped */}
+        {/* Available Vrats  –  Grouped */}
         <section className="mb-12">
           <h2 className="text-xl font-semibold text-gold-light mb-6">{l('followable')}</h2>
 
@@ -386,9 +386,9 @@ export default function VratCalendarPage() {
                       </p>
                       <p className="text-xs text-text-secondary">
                         {formatDate(item.date, locale)}
-                        {isToday && (locale === 'hi' ? ' — आज' : ' — Today')}
-                        {isTomorrow && (locale === 'hi' ? ' — कल' : ' — Tomorrow')}
-                        {!isToday && !isTomorrow && days <= 7 && (locale === 'hi' ? ` — ${days} दिन बाद` : ` — in ${days} days`)}
+                        {isToday && (locale === 'hi' ? '  –  आज' : '  –  Today')}
+                        {isTomorrow && (locale === 'hi' ? '  –  कल' : '  –  Tomorrow')}
+                        {!isToday && !isTomorrow && days <= 7 && (locale === 'hi' ? `  –  ${days} दिन बाद` : `  –  in ${days} days`)}
                       </p>
                     </div>
 

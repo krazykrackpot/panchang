@@ -28,7 +28,7 @@
  *   - Vargottama: same sign in D1 and D9
  *   - Mrityu Bhaga: dangerous degree per sign per planet (Narada Purana)
  *   - Pushkar Bhaga and Pushkar Navamsha: auspicious positions (Saravali)
- *   - Combustion: proximity to Sun with BPHS orbs (Lesson X — different orbs for retrograde)
+ *   - Combustion: proximity to Sun with BPHS orbs (Lesson X  –  different orbs for retrograde)
  *
  * COORDINATE SYSTEM:
  *   All positions are SIDEREAL (tropical - ayanamsha). The ayanamsha system
@@ -73,11 +73,11 @@ import { calculateFunctionalNature } from '@/lib/kundali/functional-nature';
 import { applyFullShodhana } from '@/lib/kundali/ashtakavarga-shodhana';
 
 /**
- * Calculate the Ascendant (Lagna) degree — returns TROPICAL longitude.
+ * Calculate the Ascendant (Lagna) degree  –  returns TROPICAL longitude.
  *
  * The ascendant is the ecliptic degree rising on the eastern horizon at the
  * moment of birth (or any given JD). It is the most time-sensitive element
- * in the birth chart — changing sign approximately every 2 hours, though
+ * in the birth chart  –  changing sign approximately every 2 hours, though
  * the exact rate varies by latitude and season (slower at high latitudes,
  * faster at low latitudes, and uneven across signs).
  *
@@ -86,9 +86,9 @@ import { applyFullShodhana } from '@/lib/kundali/ashtakavarga-shodhana';
  *   2. Returns tropical longitude; caller subtracts ayanamsha for sidereal.
  *
  * This function is exported for use by:
- *   - generateKundali() — birth chart computation
- *   - muhurta scanner — lagna scoring per Muhurta Chintamani
- *   - Gulika/Mandi calculation — ascendant at Saturn's segment boundaries
+ *   - generateKundali()  –  birth chart computation
+ *   - muhurta scanner  –  lagna scoring per Muhurta Chintamani
+ *   - Gulika/Mandi calculation  –  ascendant at Saturn's segment boundaries
  *
  * @param jd  - Julian Day in UT
  * @param lat - Geographic latitude in degrees
@@ -125,7 +125,7 @@ export function calculateAscendant(jd: number, lat: number, lng: number): number
  * and is commonly used in Vedic astrology alongside the Whole-Sign system.
  *
  * Note: In standard Vedic practice, the Whole-Sign system (Rashi = Bhava)
- * is primary — each sign IS a house. These equal cusps are used for the
+ * is primary  –  each sign IS a house. These equal cusps are used for the
  * Bhav Chalit chart where the ascendant degree is the midpoint of the 1st
  * house, not the cusp.
  *
@@ -170,11 +170,11 @@ function getHouse(planetDeg: number, cusps: number[]): number {
 }
 
 /**
- * Check planet dignity states — imported from canonical @/lib/constants/dignities
+ * Check planet dignity states  –  imported from canonical @/lib/constants/dignities
  */
 
 /**
- * Vimshottari Dasha — the 120-year planetary period system (BPHS Ch.46-47).
+ * Vimshottari Dasha  –  the 120-year planetary period system (BPHS Ch.46-47).
  *
  * This is the most widely used dasha system in Vedic astrology. The 120-year
  * cycle is divided among 9 planets in fixed order and fixed durations:
@@ -203,7 +203,7 @@ const DASHA_YEARS: Record<string, number> = {
   'Rahu': 18, 'Jupiter': 16, 'Saturn': 19, 'Mercury': 17,
 };
 
-// Fixed sequence of dasha lords — repeats after 9 (the full 120-year cycle)
+// Fixed sequence of dasha lords  –  repeats after 9 (the full 120-year cycle)
 const DASHA_ORDER = ['Ketu', 'Venus', 'Sun', 'Moon', 'Mars', 'Rahu', 'Jupiter', 'Saturn', 'Mercury'];
 
 // Nakshatra → dasha lord mapping: nakshatras 1-27, each assigned a lord in the DASHA_ORDER cycle.
@@ -288,7 +288,7 @@ function calculateVimshottariDasha(moonSidLong: number, birthDate: Date): DashaE
 }
 
 /**
- * Yogini Dasha calculation — 36-year cycle based on nakshatra
+ * Yogini Dasha calculation  –  36-year cycle based on nakshatra
  * Delegates to the full engine in @/lib/kundali/yogini-dasha.ts
  * which has correct classical nakshatra-to-lord mapping and sub-periods.
  */
@@ -300,7 +300,7 @@ function calculateYoginiDasha(moonSidLong: number, birthDate: Date): DashaEntry[
 }
 
 /**
- * Ashtottari Dasha calculation — 108-year cycle
+ * Ashtottari Dasha calculation  –  108-year cycle
  * Delegates to the full engine in @/lib/kundali/ashtottari-dasha.ts
  * which has correct classical nakshatra-to-lord mapping and sub-periods.
  */
@@ -312,7 +312,7 @@ function calculateAshtottariDasha(moonSidLong: number, birthDate: Date): DashaEn
 }
 
 /**
- * Legacy simplified Shadbala — overridden by fullShadbala at line ~924.
+ * Legacy simplified Shadbala  –  overridden by fullShadbala at line ~924.
  * Do not call directly; kept for backward compatibility only.
  *
  * @deprecated Use the full Shadbala implementation (calculateFullShadbala) instead.
@@ -363,7 +363,7 @@ function calculateNavamsha(planets: PlanetPosition[], ascDeg: number): ChartData
 }
 
 /**
- * Bhav Chalit Chart — mid-cusp house system
+ * Bhav Chalit Chart  –  mid-cusp house system
  * Each house midpoint = cusp degree, so house spans from midpoint-15° to midpoint+15°
  */
 function calculateBhavChalit(planets: PlanetPosition[], ascDeg: number): ChartData {
@@ -384,7 +384,7 @@ function calculateBhavChalit(planets: PlanetPosition[], ascDeg: number): ChartDa
 }
 
 /**
- * Generic Divisional Chart (Varga) calculator — Parashara Varga system (BPHS Ch.6-7).
+ * Generic Divisional Chart (Varga) calculator  –  Parashara Varga system (BPHS Ch.6-7).
  *
  * Each divisional chart maps a planet's degree within its sign to a new sign
  * using division-specific rules. The sign is divided into `division` equal
@@ -397,12 +397,12 @@ function calculateBhavChalit(planets: PlanetPosition[], ascDeg: number): ChartDa
  *   D30(Trimshamsha), D40(Khavedamsha), D45(Akshavedamsha), D60(Shashtiamsha)
  *
  * KEY RULES BY DIVISION:
- *   D9 (Navamsha): Starting sign depends on element — fire→Aries, earth→Capricorn,
+ *   D9 (Navamsha): Starting sign depends on element  –  fire→Aries, earth→Capricorn,
  *     air→Libra, water→Cancer. Each navamsha spans 3°20'. This is the most important
- *     divisional chart — used for marriage, spiritual development, and Vargottama.
+ *     divisional chart  –  used for marriage, spiritual development, and Vargottama.
  *   D30 (Trimshamsha): UNEQUAL parts (5°,5°,8°,7°,5°) mapped to specific planetary
  *     signs. This is the only varga with non-uniform division.
- *   D60 (Shashtiamsha): Finest division — each part = 0.5°. Considered the most
+ *   D60 (Shashtiamsha): Finest division  –  each part = 0.5°. Considered the most
  *     sensitive indicator in BPHS (past life karma).
  *
  * @param sidLong  - Sidereal longitude of the planet [0, 360)
@@ -429,7 +429,7 @@ export function getDivisionalSign(sidLong: number, division: number): number {
       const startOffset = [0, 3, 6][signType];
       return ((signIndex + startOffset + part) % 12) + 1;
     }
-    case 5: // Panchamsha (Rishi division) — simplified cyclic
+    case 5: // Panchamsha (Rishi division)  –  simplified cyclic
       return ((signIndex + part) % 12) + 1;
     case 6: // Shashthamsha: odd from Aries(0), even from Libra(6)
       return ((signIndex % 2 === 0 ? 0 : 6) + part) % 12 + 1;
@@ -505,7 +505,7 @@ function calculateDivisionalChart(
 }
 
 /**
- * Ashtakavarga — Bhinnashtakavarga (BAV) + Sarvashtakavarga (SAV)
+ * Ashtakavarga  –  Bhinnashtakavarga (BAV) + Sarvashtakavarga (SAV)
  *
  * Ashtakavarga is a quantitative strength system from BPHS Ch.66-72 and
  * Shambu Hora Prakasha. It evaluates planetary transit effects by counting
@@ -651,7 +651,7 @@ function calculateAshtakavarga(planets: PlanetPosition[], ascSign: number): Asht
 }
 
 /**
- * Main Kundali generation function — computes a complete Vedic birth chart.
+ * Main Kundali generation function  –  computes a complete Vedic birth chart.
  *
  * This is the primary entry point for the kundali page and API. It:
  *   1. Converts birth time to UT using the IANA timezone (Lesson L: NEVER local time)
@@ -685,18 +685,18 @@ export function generateKundali(birthData: BirthData): KundaliData {
   if (year < 1900 || year > 2100) {
     warnings.push(`Ayanamsha accuracy degrades for dates outside 1900-2100 (birth year: ${year}). Rashi/nakshatra boundaries may shift by ±1°.`);
   }
-  // Warn if Swiss Ephemeris is unavailable — Meeus fallback has known accuracy
+  // Warn if Swiss Ephemeris is unavailable  –  Meeus fallback has known accuracy
   // limits: Mars ±22°, Mercury ±5°, Jupiter/Saturn retrograde stations 13-40 days late.
   if (!isSwissEphAvailable()) {
-    warnings.push('Swiss Ephemeris is unavailable — using Meeus fallback algorithms. Outer planet positions (Mars, Jupiter, Saturn) may differ by 1-3° from precise values. Retrograde station dates may be off by up to 40 days for Jupiter and 13 days for Saturn. For the most accurate results, use the online version at dekhopanchang.com.');
-    warnings.push('Graha Yuddha (planetary war) results are approximate — Swiss Ephemeris is unavailable. Ecliptic latitudes use Meeus simplified perturbation.');
+    warnings.push('Swiss Ephemeris is unavailable  –  using Meeus fallback algorithms. Outer planet positions (Mars, Jupiter, Saturn) may differ by 1-3° from precise values. Retrograde station dates may be off by up to 40 days for Jupiter and 13 days for Saturn. For the most accurate results, use the online version at dekhopanchang.com.');
+    warnings.push('Graha Yuddha (planetary war) results are approximate  –  Swiss Ephemeris is unavailable. Ecliptic latitudes use Meeus simplified perturbation.');
   }
   // Use selected ayanamsha system (default: lahiri)
   const ayanamshaType = (birthData.ayanamsha === 'raman' || birthData.ayanamsha === 'kp')
     ? birthData.ayanamsha : 'lahiri';
   const ayanamshaValue = getAyanamsha(jd, ayanamshaType);
 
-  // Ascendant — apply selected ayanamsha
+  // Ascendant  –  apply selected ayanamsha
   const tropicalAsc = calculateAscendant(jd, birthData.lat, birthData.lng);
   const siderealAsc = normalizeDeg(tropicalAsc - ayanamshaValue);
   const ascSign = getRashiNumber(siderealAsc);
@@ -716,7 +716,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
     };
   });
 
-  // Planetary positions — pass through user's node type preference (mean vs true)
+  // Planetary positions  –  pass through user's node type preference (mean vs true)
   const useTrueNode = birthData.node_type === 'true';
   const rawPlanets = getPlanetaryPositions(jd, useTrueNode);
   // Use selected ayanamsha for all sidereal conversions
@@ -769,7 +769,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
   // Navamsha
   const navamshaChart = calculateNavamsha(planets, siderealAsc);
 
-  // Vargottama — planet occupies the same sidereal sign in both D1 and D9.
+  // Vargottama  –  planet occupies the same sidereal sign in both D1 and D9.
   //
   // HOW calculateNavamsha() STORES PLANETS:
   //   navamshaChart.houses is a 12-element array indexed by HOUSE NUMBER (0-based),
@@ -805,7 +805,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
     }
   });
 
-  // Mrityu Bhaga — one dangerous degree per sign per planet (Narada Purana/BPHS tradition)
+  // Mrityu Bhaga  –  one dangerous degree per sign per planet (Narada Purana/BPHS tradition)
   // [planetId][signIndex 0-11] = mrityu bhaga degree within sign
   const MRITYU_BHAGA: number[][] = [
     // Sun:  Ar  Ta  Ge  Ca  Le  Vi  Li  Sc  Sa  Cp  Aq  Pi
@@ -834,14 +834,14 @@ export function generateKundali(birthData: BirthData): KundaliData {
     p.isMrityuBhaga = mrityu !== undefined && Math.abs(degreeInSign - mrityu) <= 1;
   });
 
-  // Pushkar Navamsha — 24 auspicious navamsha positions (shared constant from constants/pushkar-bhaga.ts)
+  // Pushkar Navamsha  –  24 auspicious navamsha positions (shared constant from constants/pushkar-bhaga.ts)
   planets.forEach((p) => {
     const signIdx = p.sign - 1; // 0-based
     const navamshaIdx = Math.floor((p.longitude % 30) / (30 / 9)); // 0-8
     p.isPushkarNavamsha = PUSHKAR_NAVAMSHA_SET.has(signIdx * 9 + navamshaIdx);
   });
 
-  // Pushkar Bhaga — shared constant from constants/pushkar-bhaga.ts (Saravali / Kalaprakashika)
+  // Pushkar Bhaga  –  shared constant from constants/pushkar-bhaga.ts (Saravali / Kalaprakashika)
   // Orb: ±0.8 degrees
   planets.forEach((p) => {
     const degInSign = p.longitude % 30;
@@ -852,7 +852,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
   // Bhav Chalit
   const bhavChalitChart = calculateBhavChalit(planets, siderealAsc);
 
-  // Divisional Charts — all 16 Parashara Shodashavarga + extras
+  // Divisional Charts  –  all 16 Parashara Shodashavarga + extras
   const VARGA_DEFS: { key: string; div: number; label: LocaleText; meaning: LocaleText }[] = [
     { key: 'D2', div: 2, label: { en: 'D2 Hora', hi: 'D2 होरा', sa: 'D2 होरा' }, meaning: { en: 'Wealth & financial prosperity', hi: 'धन एवं वित्तीय समृद्धि', sa: 'धन एवं वित्तीय समृद्धि', mai: 'धन एवं वित्तीय समृद्धि', mr: 'धन एवं वित्तीय समृद्धि', ta: 'செல்வம் & நிதி வளம்', te: 'సంపద & ఆర్థిక సమృద్ధి', bn: 'ধন ও আর্থিক সমৃদ্ধি', kn: 'ಸಂಪತ್ತು & ಆರ್ಥಿಕ ಸಮೃದ್ಧಿ', gu: 'ધન અને આર્થિક સમૃદ્ધિ' } },
     { key: 'D3', div: 3, label: { en: 'D3 Drekkana', hi: 'D3 द्रेष्काण', sa: 'D3 द्रेष्काणः' }, meaning: { en: 'Siblings, courage & co-borns', hi: 'भाई-बहन, साहस एवं सहोदर', sa: 'भाई-बहन, साहस एवं सहोदर', mai: 'भाई-बहन, साहस एवं सहोदर', mr: 'भाई-बहन, साहस एवं सहोदर', ta: 'உடன்பிறப்புகள், தைரியம் & சகோதரர்கள்', te: 'సోదరులు, ధైర్యం & సహజాతులు', bn: 'ভাই-বোন, সাহস ও সহোদর', kn: 'ಒಡಹುಟ್ಟಿದವರು, ಧೈರ್ಯ & ಸಹೋದರರು', gu: 'ભાઈ-બહેન, સાહસ અને સહોદર' } },
@@ -904,7 +904,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
   const yoginiDashas = calculateYoginiDasha(moonSidLong, birthDate);
   const ashtottariDashas = calculateAshtottariDasha(moonSidLong, birthDate);
 
-  // Shadbala placeholder — populated from fullShadbala below
+  // Shadbala placeholder  –  populated from fullShadbala below
   let shadbala: ShadBala[] = [];
 
   // --- Extended calculations for new tabs ---
@@ -960,7 +960,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
     };
   });
 
-  // Gulika and Mandi — computed from Saturn's segment (BPHS Ch.25)
+  // Gulika and Mandi  –  computed from Saturn's segment (BPHS Ch.25)
   //
   // ALGORITHM:
   //   1. Find the weekday of birth (0=Sun, 1=Mon, ..., 6=Sat using JS Date.getDay()).
@@ -1037,7 +1037,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
     addUpagraha('Mandi',  'मान्दि', 'मान्दिः', mandiLong);
   }
 
-  // Full Shadbala — pass ALL 9 planets so Rahu/Ketu contribute DrikBala aspects;
+  // Full Shadbala  –  pass ALL 9 planets so Rahu/Ketu contribute DrikBala aspects;
   // calculateFullShadbala internally filters to 0-6 for the main bala calculation
   const fullShadbala = calculateFullShadbala({
     planets: planets.map(p => {
@@ -1059,7 +1059,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
         isOwnSign: p.isOwnSign,
         navamshaSign: navSign,
         // Ecliptic latitude is required for correct Graha Yuddha winner detection
-        // (lower absolute latitude wins — BPHS Ch.28). computeFullCoordinates()
+        // (lower absolute latitude wins  –  BPHS Ch.28). computeFullCoordinates()
         // already stores this on each planet via coords.latitude.
         eclipticLatitude: p.latitude,
       };

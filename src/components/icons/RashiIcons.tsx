@@ -23,7 +23,7 @@ function Defs({ id }: { id: string }) {
   );
 }
 
-// 1. Mesha (Aries) — Ram horns
+// 1. Mesha (Aries)  –  Ram horns
 export function MeshaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -37,7 +37,7 @@ export function MeshaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 2. Vrishabha (Taurus) — Bull head
+// 2. Vrishabha (Taurus)  –  Bull head
 export function VrishabhaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -56,7 +56,7 @@ export function VrishabhaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 3. Mithuna (Gemini) — Twin figures
+// 3. Mithuna (Gemini)  –  Twin figures
 export function MithunaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -78,7 +78,7 @@ export function MithunaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 4. Karka (Cancer) — Crab claws
+// 4. Karka (Cancer)  –  Crab claws
 export function KarkaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -94,7 +94,7 @@ export function KarkaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 5. Simha (Leo) — Lion mane
+// 5. Simha (Leo)  –  Lion mane
 export function SimhaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -114,7 +114,7 @@ export function SimhaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 6. Kanya (Virgo) — Maiden with wheat
+// 6. Kanya (Virgo)  –  Maiden with wheat
 export function KanyaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -130,7 +130,7 @@ export function KanyaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 7. Tula (Libra) — Balance scales
+// 7. Tula (Libra)  –  Balance scales
 export function TulaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -151,7 +151,7 @@ export function TulaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 8. Vrishchika (Scorpio) — Scorpion tail
+// 8. Vrishchika (Scorpio)  –  Scorpion tail
 export function VrishchikaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -167,7 +167,7 @@ export function VrishchikaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 9. Dhanu (Sagittarius) — Bow and arrow
+// 9. Dhanu (Sagittarius)  –  Bow and arrow
 export function DhanuIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -184,7 +184,7 @@ export function DhanuIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 10. Makara (Capricorn) — Sea-goat
+// 10. Makara (Capricorn)  –  Sea-goat
 export function MakaraIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
@@ -202,12 +202,12 @@ export function MakaraIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 11. Kumbha (Aquarius) — Water bearer waves
+// 11. Kumbha (Aquarius)  –  Water bearer waves
 export function KumbhaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="kum" />
-      {/* Water waves — two parallel zigzags */}
+      {/* Water waves  –  two parallel zigzags */}
       <path d="M8 26C14 20 20 32 26 26C32 20 38 32 44 26C50 20 56 32 56 26"
         stroke="url(#rg-kum)" strokeWidth="3" fill="none" strokeLinecap="round" filter="url(#gl-kum)" />
       <path d="M8 40C14 34 20 46 26 40C32 34 38 46 44 40C50 34 56 46 56 40"
@@ -220,17 +220,17 @@ export function KumbhaIcon({ size = 48, className }: IconProps) {
   );
 }
 
-// 12. Meena (Pisces) — Two fish
+// 12. Meena (Pisces)  –  Two fish
 export function MeenaIcon({ size = 48, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="mee" />
-      {/* Fish 1 — swimming right */}
+      {/* Fish 1  –  swimming right */}
       <path d="M8 22C8 22 18 14 30 14C36 14 40 18 40 22C40 26 36 30 30 30C18 30 8 22 8 22z"
         stroke="url(#rg-mee)" strokeWidth="2" fill="url(#rg-mee)" fillOpacity="0.15" filter="url(#gl-mee)" />
       <path d="M40 22L50 16V28z" fill="url(#rg-mee)" opacity="0.3" />
       <circle cx="18" cy="22" r="2" fill="#f0d48a" />
-      {/* Fish 2 — swimming left */}
+      {/* Fish 2  –  swimming left */}
       <path d="M56 42C56 42 46 34 34 34C28 34 24 38 24 42C24 46 28 50 34 50C46 50 56 42 56 42z"
         stroke="url(#rg-mee)" strokeWidth="2" fill="url(#rg-mee)" fillOpacity="0.15" />
       <path d="M24 42L14 36V48z" fill="url(#rg-mee)" opacity="0.3" />

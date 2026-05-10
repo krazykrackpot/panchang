@@ -32,7 +32,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const L = {
   title:      { en: 'Chart Comparison', hi: 'कुण्डली तुलना', sa: 'कुण्डली तुलनम्' },
-  subtitle:   { en: 'Compare two birth charts — synastry aspects, dasha alignment, and compatibility', hi: 'दो जन्म कुण्डलियों की तुलना — सिनेस्ट्री, दशा सामंजस्य एवं अनुकूलता', sa: '' },
+  subtitle:   { en: 'Compare two birth charts  –  synastry aspects, dasha alignment, and compatibility', hi: 'दो जन्म कुण्डलियों की तुलना  –  सिनेस्ट्री, दशा सामंजस्य एवं अनुकूलता', sa: '' },
   chartA:     { en: 'Chart A', hi: 'कुण्डली अ', sa: 'कुण्डली अ' },
   chartB:     { en: 'Chart B', hi: 'कुण्डली ब', sa: 'कुण्डली ब' },
   back:       { en: '← Back to Kundali', hi: '← कुण्डली पर वापस', sa: '' },
@@ -83,7 +83,7 @@ const DIGNITY_LABELS: Record<string, LocaleText> = {
   exalted:      { en: 'Exalted', hi: 'उच्च' },
   debilitated:  { en: 'Debilitated', hi: 'नीच' },
   own:          { en: 'Own Sign', hi: 'स्वगृह' },
-  neutral:      { en: '—', hi: '—' },
+  neutral:      { en: ' – ', hi: ' – ' },
 };
 
 function relationColor(rel: string): string {
@@ -156,7 +156,7 @@ function AspectList({ aspects, locale }: { aspects: SynastryAspect[]; locale: st
           <div className="flex items-center gap-2">
             <span className={`text-lg ${asp.isHarmonious ? 'text-emerald-400' : 'text-red-400'}`}>{asp.symbol}</span>
             <span className="text-text-primary text-sm">
-              {GRAHAS[asp.planetA]?.name[locale as Locale]} — {GRAHAS[asp.planetB]?.name[locale as Locale]}
+              {GRAHAS[asp.planetA]?.name[locale as Locale]}  –  {GRAHAS[asp.planetB]?.name[locale as Locale]}
             </span>
           </div>
           <div className="flex items-center gap-2">
@@ -250,7 +250,7 @@ export default function ComparePage() {
   const houseLords = useMemo(() => bothReady ? compareHouseLords(chartA, chartB) : [], [chartA, chartB, bothReady]);
   const karakas = useMemo(() => bothReady ? analyzeRelationshipKarakas(chartA, chartB) : null, [chartA, chartB, bothReady]);
 
-  // Dasha comparison timeline — 15-year window from current year
+  // Dasha comparison timeline  –  15-year window from current year
   const dashaComparison = useMemo(() => {
     if (!bothReady) return null;
     const now = new Date();
@@ -316,7 +316,7 @@ export default function ComparePage() {
                     >
                       <option value="" disabled>{locale === 'hi' ? 'सहेजी कुण्डली चुनें...' : 'Pick a saved chart...'}</option>
                       {savedCharts.map(c => (
-                        <option key={c.id} value={c.id}>{c.birth_data.name || c.label} — {c.birth_data.date}</option>
+                        <option key={c.id} value={c.id}>{c.birth_data.name || c.label}  –  {c.birth_data.date}</option>
                       ))}
                     </select>
                     <p className="text-text-secondary/50 text-xs text-center mt-1.5">{locale === 'hi' ? 'या नीचे नए विवरण भरें' : 'or enter new details below'}</p>
@@ -340,7 +340,7 @@ export default function ComparePage() {
                     >
                       <option value="" disabled>{locale === 'hi' ? 'सहेजी कुण्डली चुनें...' : 'Pick a saved chart...'}</option>
                       {savedCharts.map(c => (
-                        <option key={c.id} value={c.id}>{c.birth_data.name || c.label} — {c.birth_data.date}</option>
+                        <option key={c.id} value={c.id}>{c.birth_data.name || c.label}  –  {c.birth_data.date}</option>
                       ))}
                     </select>
                     <p className="text-text-secondary/50 text-xs text-center mt-1.5">{locale === 'hi' ? 'या नीचे नए विवरण भरें' : 'or enter new details below'}</p>
@@ -352,7 +352,7 @@ export default function ComparePage() {
             </div>
           </motion.div>
         ) : (
-          /* Collapsed form header — click to re-expand */
+          /* Collapsed form header  –  click to re-expand */
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
             className="flex items-center justify-between mb-8 bg-gradient-to-r from-[#2d1b69]/30 to-[#1a1040]/30 border border-gold-primary/12 rounded-xl px-5 py-3">
             <div className="flex items-center gap-4">
@@ -446,13 +446,13 @@ export default function ComparePage() {
                                     {RASHIS[pA.sign - 1]?.name[locale as Locale]} {pA.degree}
                                   </td>
                                   <td className="py-2.5 px-2 text-text-secondary text-xs">
-                                    {pA.nakshatra?.name?.[locale as Locale] ?? '—'} / H{pA.house}
+                                    {pA.nakshatra?.name?.[locale as Locale] ?? ' – '} / H{pA.house}
                                   </td>
                                   <td className="py-2.5 px-2 text-text-secondary text-xs">
                                     {RASHIS[pB.sign - 1]?.name[locale as Locale]} {pB.degree}
                                   </td>
                                   <td className="py-2.5 px-2 text-text-secondary text-xs">
-                                    {pB.nakshatra?.name?.[locale as Locale] ?? '—'} / H{pB.house}
+                                    {pB.nakshatra?.name?.[locale as Locale] ?? ' – '} / H{pB.house}
                                   </td>
                                   <td className="py-2.5 px-2 text-center">
                                     <span className={`text-xs font-medium px-1.5 py-0.5 rounded ${rel.color === 'emerald' ? 'text-emerald-400' : rel.color === 'red' ? 'text-red-400' : rel.color === 'blue' ? 'text-blue-400' : 'text-amber-400'}`}>
@@ -480,7 +480,7 @@ export default function ComparePage() {
                             <span className="text-emerald-400 font-semibold">{summary.harmonious} {t(L.harmonious, locale)}</span>
                             <span className="text-text-tertiary">|</span>
                             <span className="text-red-400 font-semibold">{summary.tense} {t(L.tense, locale)}</span>
-                            <span className="text-text-tertiary">—</span>
+                            <span className="text-text-tertiary"> – </span>
                             <span className="text-text-secondary italic">{summary.dominantPattern[locale as Locale]}</span>
                           </div>
 
@@ -629,7 +629,7 @@ export default function ComparePage() {
                                         <GrahaIconById id={hl.chartALord.planetId} size={16} className="opacity-70" />
                                         <span>{GRAHAS[hl.chartALord.planetId]?.name[locale as Locale]}</span>
                                         <span className="text-text-tertiary">in {RASHIS[hl.chartALord.sign - 1]?.name[locale as Locale]}</span>
-                                        <span className="text-text-tertiary italic">({DIGNITY_LABELS[hl.chartALord.dignity]?.[locale === 'en' ? 'en' : 'hi'] ?? '—'})</span>
+                                        <span className="text-text-tertiary italic">({DIGNITY_LABELS[hl.chartALord.dignity]?.[locale === 'en' ? 'en' : 'hi'] ?? ' – '})</span>
                                       </div>
                                     </td>
                                     <td className="py-2.5 px-4 text-text-secondary text-xs">
@@ -637,7 +637,7 @@ export default function ComparePage() {
                                         <GrahaIconById id={hl.chartBLord.planetId} size={16} className="opacity-70" />
                                         <span>{GRAHAS[hl.chartBLord.planetId]?.name[locale as Locale]}</span>
                                         <span className="text-text-tertiary">in {RASHIS[hl.chartBLord.sign - 1]?.name[locale as Locale]}</span>
-                                        <span className="text-text-tertiary italic">({DIGNITY_LABELS[hl.chartBLord.dignity]?.[locale === 'en' ? 'en' : 'hi'] ?? '—'})</span>
+                                        <span className="text-text-tertiary italic">({DIGNITY_LABELS[hl.chartBLord.dignity]?.[locale === 'en' ? 'en' : 'hi'] ?? ' – '})</span>
                                       </div>
                                     </td>
                                     <td className="py-2.5 px-4 text-center">
@@ -740,14 +740,14 @@ export default function ComparePage() {
                           <div>
                             <p className="text-sm text-text-primary">
                               {karakas.navamshaLagnaMatch
-                                ? (locale === 'en' ? 'Navamsha Lagnas match — strong soul-level compatibility indicator' : 'नवांश लग्न मिलते हैं — आत्म-स्तर पर अनुकूलता का सूचक')
-                                : (locale === 'en' ? 'Navamsha Lagnas differ — other factors carry more weight' : 'नवांश लग्न भिन्न हैं — अन्य कारक अधिक महत्वपूर्ण')
+                                ? (locale === 'en' ? 'Navamsha Lagnas match  –  strong soul-level compatibility indicator' : 'नवांश लग्न मिलते हैं  –  आत्म-स्तर पर अनुकूलता का सूचक')
+                                : (locale === 'en' ? 'Navamsha Lagnas differ  –  other factors carry more weight' : 'नवांश लग्न भिन्न हैं  –  अन्य कारक अधिक महत्वपूर्ण')
                               }
                             </p>
                             <p className="text-xs text-text-tertiary mt-1">
-                              {nameA}: {RASHIS[(chartA.navamshaChart?.ascendantSign || 1) - 1]?.name[locale as Locale] ?? '—'}
+                              {nameA}: {RASHIS[(chartA.navamshaChart?.ascendantSign || 1) - 1]?.name[locale as Locale] ?? ' – '}
                               {' | '}
-                              {nameB}: {RASHIS[(chartB.navamshaChart?.ascendantSign || 1) - 1]?.name[locale as Locale] ?? '—'}
+                              {nameB}: {RASHIS[(chartB.navamshaChart?.ascendantSign || 1) - 1]?.name[locale as Locale] ?? ' – '}
                             </p>
                           </div>
                         </div>
@@ -773,8 +773,8 @@ export default function ComparePage() {
                                 <p className="text-sm text-text-primary font-medium">{nameA}</p>
                                 <p className="text-xs text-text-secondary">
                                   {hasA
-                                    ? (locale === 'en' ? `Mars in House ${marsA?.house} — Mangal Dosha present` : `मंगल ${marsA?.house}वें भाव में — मंगल दोष है`)
-                                    : (locale === 'en' ? `Mars in House ${marsA?.house} — No Mangal Dosha` : `मंगल ${marsA?.house}वें भाव में — मंगल दोष नहीं`)
+                                    ? (locale === 'en' ? `Mars in House ${marsA?.house}  –  Mangal Dosha present` : `मंगल ${marsA?.house}वें भाव में  –  मंगल दोष है`)
+                                    : (locale === 'en' ? `Mars in House ${marsA?.house}  –  No Mangal Dosha` : `मंगल ${marsA?.house}वें भाव में  –  मंगल दोष नहीं`)
                                   }
                                 </p>
                               </div>
@@ -785,8 +785,8 @@ export default function ComparePage() {
                                 <p className="text-sm text-text-primary font-medium">{nameB}</p>
                                 <p className="text-xs text-text-secondary">
                                   {hasB
-                                    ? (locale === 'en' ? `Mars in House ${marsB?.house} — Mangal Dosha present` : `मंगल ${marsB?.house}वें भाव में — मंगल दोष है`)
-                                    : (locale === 'en' ? `Mars in House ${marsB?.house} — No Mangal Dosha` : `मंगल ${marsB?.house}वें भाव में — मंगल दोष नहीं`)
+                                    ? (locale === 'en' ? `Mars in House ${marsB?.house}  –  Mangal Dosha present` : `मंगल ${marsB?.house}वें भाव में  –  मंगल दोष है`)
+                                    : (locale === 'en' ? `Mars in House ${marsB?.house}  –  No Mangal Dosha` : `मंगल ${marsB?.house}वें भाव में  –  मंगल दोष नहीं`)
                                   }
                                 </p>
                               </div>

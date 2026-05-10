@@ -14,7 +14,7 @@ export default async function Layout({ children, params }: { children: React.Rea
       <LearnArticleLD
         route="/learn/kumbha"
         locale={locale}
-        title="Kumbha (Aquarius) in Vedic Astrology — Complete Rashi Guide"
+        title="Kumbha (Aquarius) in Vedic Astrology  –  Complete Rashi Guide"
         description="Comprehensive guide to Kumbha Rashi (Aquarius) covering planetary dignities, nakshatras, personality, career, compatibility, remedies, and mythology from classical Jyotish sources."
       />
       {children}

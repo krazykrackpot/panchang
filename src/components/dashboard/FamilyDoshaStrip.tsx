@@ -33,7 +33,7 @@ function getCurrentTransitSigns(): { saturnSign: number; jupiterSign: number } {
   const now = new Date();
   const jd = dateToJD(now.getUTCFullYear(), now.getUTCMonth() + 1, now.getUTCDate(), 12);
   const planets = getPlanetaryPositions(jd);
-  // planets[6] = Saturn, planets[4] = Jupiter — tropical longitudes converted to sidereal
+  // planets[6] = Saturn, planets[4] = Jupiter  –  tropical longitudes converted to sidereal
   const saturnSid = toSidereal(planets[6].longitude, jd);
   const jupiterSid = toSidereal(planets[4].longitude, jd);
   return { saturnSign: getRashiNumber(saturnSid), jupiterSign: getRashiNumber(jupiterSid) };

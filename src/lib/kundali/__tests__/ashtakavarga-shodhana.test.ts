@@ -8,7 +8,7 @@ import {
 } from '@/lib/kundali/ashtakavarga-shodhana';
 
 // ---------------------------------------------------------------------------
-// Task 2 — Trikona Shodhana
+// Task 2  –  Trikona Shodhana
 // ---------------------------------------------------------------------------
 describe('trikonaShodhana', () => {
   it('reduces each trikona group by its minimum', () => {
@@ -54,7 +54,7 @@ describe('trikonaShodhana', () => {
 });
 
 // ---------------------------------------------------------------------------
-// Task 3 — Ekadhipatya Shodhana
+// Task 3  –  Ekadhipatya Shodhana
 // ---------------------------------------------------------------------------
 // Dual-lord pairs (0-based sign indices):
 //   Mars:    Aries(0)  & Scorpio(7)
@@ -77,11 +77,11 @@ describe('ekadhipatyaShodhana', () => {
   it('lord in own pair sign → both retained', () => {
     // Mars (id=2) in Aries (sign 1, index 0) → both Aries & Scorpio kept
     const planetSigns: number[] = [1, 1, 1, 1, 1, 1, 1, 1, 1]; // Sun..Ketu all in sign 1
-    // planet 2 = Mars in sign 1 (Aries, index 0) — which is one of Mars's pair signs
+    // planet 2 = Mars in sign 1 (Aries, index 0)  –  which is one of Mars's pair signs
     planetSigns[2] = 1; // Mars in Aries (1-based sign 1 → index 0)
     const bpiTable = makeBpiTable({ 2: [4, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0] });
     const result = ekadhipatyaShodhana(bpiTable, planetSigns);
-    // Mars row: Aries(0)=4, Scorpio(7)=5 — both retained because Mars is in Aries
+    // Mars row: Aries(0)=4, Scorpio(7)=5  –  both retained because Mars is in Aries
     expect(result[2][0]).toBe(4);
     expect(result[2][7]).toBe(5);
   });
@@ -119,7 +119,7 @@ describe('ekadhipatyaShodhana', () => {
     const planetSigns: number[] = [1, 1, 1, 1, 1, 1, 1, 1, 1];
     const row3 = new Array(12).fill(0);
     row3[2] = 5; // Gemini
-    row3[5] = 5; // Virgo — same value, later sign → zeroed
+    row3[5] = 5; // Virgo  –  same value, later sign → zeroed
     const bpi = makeBpiTable({ 3: row3 });
     const result = ekadhipatyaShodhana(bpi, planetSigns);
     expect(result[3][2]).toBe(5); // Gemini retained (earlier sign)
@@ -145,7 +145,7 @@ describe('ekadhipatyaShodhana', () => {
 });
 
 // ---------------------------------------------------------------------------
-// Task 4 — Pinda Ashtakavarga and full Shodhana pipeline
+// Task 4  –  Pinda Ashtakavarga and full Shodhana pipeline
 // ---------------------------------------------------------------------------
 // rashiGuna by element index (signIndex % 4): Fire=7, Earth=5, Air=6, Water=8
 // RASHI_GUNA = [7, 5, 6, 8]  (index 0=Fire, 1=Earth, 2=Air, 3=Water)

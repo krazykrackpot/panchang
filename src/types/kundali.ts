@@ -12,9 +12,9 @@ export interface BirthData {
   lng: number;
   timezone: string;
   ayanamsha: string; // AyanamshaType from astronomical.ts
-  /** Who this chart is for — defaults to 'self'. */
+  /** Who this chart is for  –  defaults to 'self'. */
   relationship?: ChartRelationship;
-  /** Rahu/Ketu node type — 'mean' (default, traditional) or 'true' (includes nutation ±1.5°). */
+  /** Rahu/Ketu node type  –  'mean' (default, traditional) or 'true' (includes nutation ±1.5°). */
   node_type?: 'mean' | 'true';
 }
 
@@ -47,7 +47,7 @@ export interface PlanetPosition {
   isMrityuBhaga?: boolean;
   isPushkarNavamsha?: boolean;
   isPushkarBhaga?: boolean;
-  /** Navamsha (D9) sign — 1-12. Computed from longitude: floor((longitude % 30) / 3.333...) mapped to navamsha cycle */
+  /** Navamsha (D9) sign  –  1-12. Computed from longitude: floor((longitude % 30) / 3.333...) mapped to navamsha cycle */
   navamshaSign?: number;
 }
 
@@ -153,11 +153,11 @@ export interface DivisionalChart extends ChartData {
 }
 
 export interface AshtakavargaData {
-  bpiTable: number[][];           // raw 7×12 — Bhinnashtakavarga (0-8 per cell)
-  savTable: number[];             // raw 12-element — Sarvashtakavarga
+  bpiTable: number[][];           // raw 7×12  –  Bhinnashtakavarga (0-8 per cell)
+  savTable: number[];             // raw 12-element  –  Sarvashtakavarga
   reducedBpiTable: number[][];    // 7×12 after Trikona + Ekadhipatya Shodhana
-  reducedSavTable: number[];      // 12-element — sum of reducedBpiTable columns
-  pindaAshtakavarga: number[];    // 7-element — one Pinda value per planet
+  reducedSavTable: number[];      // 12-element  –  sum of reducedBpiTable columns
+  pindaAshtakavarga: number[];    // 7-element  –  one Pinda value per planet
   planetNames: string[];
   shodhitaSav?: number[];         // Trikona-reduced SAV (optional additional step for transit timing)
 }

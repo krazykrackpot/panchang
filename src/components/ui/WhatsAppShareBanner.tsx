@@ -28,7 +28,7 @@ function WhatsAppIcon({ className }: { className?: string }) {
 }
 
 /* ════════════════════════════════════════════════════════════════
-   WhatsAppShareBanner — prominent share CTA for viral distribution.
+   WhatsAppShareBanner  –  prominent share CTA for viral distribution.
    Designed for daily panchang & horoscope pages where users share
    to family WhatsApp groups.
    ════════════════════════════════════════════════════════════════ */

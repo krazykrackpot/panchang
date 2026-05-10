@@ -290,7 +290,7 @@ describe('computeDomainTimeline', () => {
   });
 
   it('generates transit triggers for slow planets in domain houses', () => {
-    // Saturn is in sign 10 (Capricorn), 10th house — career primary house
+    // Saturn is in sign 10 (Capricorn), 10th house  –  career primary house
     const kundali = makeMockKundali();
 
     const result = computeDomainTimeline({
@@ -354,7 +354,7 @@ describe('computeDomainTimeline', () => {
       domainConfig: MOCK_DOMAIN_CONFIG,
       kundali,
       currentDate: baseDate,
-      // yearsAhead not provided — should default to 5
+      // yearsAhead not provided  –  should default to 5
     });
 
     // Dasha in 2030 is within 5 years of 2026

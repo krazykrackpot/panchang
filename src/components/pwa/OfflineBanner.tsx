@@ -5,10 +5,10 @@ import { useLocale } from 'next-intl';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const MESSAGES: Record<string, string> = {
-  en: "You're offline — some features may be unavailable",
-  hi: 'आप ऑफ़लाइन हैं — कुछ सुविधाएँ उपलब्ध नहीं हो सकतीं',
-  ta: 'நீங்கள் ஆஃப்லைனில் உள்ளீர்கள் — சில அம்சங்கள் கிடைக்காமல் போகலாம்',
-  bn: 'আপনি অফলাইনে আছেন — কিছু বৈশিষ্ট্য অনুপলব্ধ থাকতে পারে',
+  en: "You're offline  –  some features may be unavailable",
+  hi: 'आप ऑफ़लाइन हैं  –  कुछ सुविधाएँ उपलब्ध नहीं हो सकतीं',
+  ta: 'நீங்கள் ஆஃப்லைனில் உள்ளீர்கள்  –  சில அம்சங்கள் கிடைக்காமல் போகலாம்',
+  bn: 'আপনি অফলাইনে আছেন  –  কিছু বৈশিষ্ট্য অনুপলব্ধ থাকতে পারে',
 };
 
 export default function OfflineBanner() {

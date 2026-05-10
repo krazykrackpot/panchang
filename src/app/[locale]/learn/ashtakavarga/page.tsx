@@ -232,7 +232,7 @@ export default function LearnAshtakavargaPage() {
             <div className="mt-3 border-t border-gold-primary/10 pt-3">
               <p>{tl({ en: "Compare: Your friend\'s Saturn BAV score in Capricorn: 2 bindus", hi: "तुलना: मित्र की कुण्डली में शनि का मकर स्कोर: 2 बिन्दु", sa: "तुलना: मित्र की कुण्डली में शनि का मकर स्कोर: 2 बिन्दु" }, locale)}</p>
               <p className="text-red-400">{tl({ en: 'During the same Saturn-in-Capricorn transit, your friend will experience obstacles, delays, and pressure.', hi: 'उसी शनि-मकर गोचर में, आपके मित्र को कठिनाइयाँ, देरी और बाधाएँ अनुभव होंगी।', sa: 'तस्मिन्नेव शनि-मकर-गोचरे भवतः मित्रं विघ्नान्, विलम्बान्, दबावं च अनुभविष्यति।' }, locale)}</p>
-              <p className="text-amber-400 mt-1">{tl({ en: 'Same transit, two very different experiences — this is the power of Ashtakavarga.', hi: 'एक ही गोचर, दो बहुत अलग अनुभव — यह अष्टकवर्ग की शक्ति है।', sa: 'एकः गोचरः, अत्यन्त-भिन्नौ द्वौ अनुभवौ — एतत् अष्टकवर्गस्य सामर्थ्यम्।' }, locale)}</p>
+              <p className="text-amber-400 mt-1">{tl({ en: 'Same transit, two very different experiences  –  this is the power of Ashtakavarga.', hi: 'एक ही गोचर, दो बहुत अलग अनुभव  –  यह अष्टकवर्ग की शक्ति है।', sa: 'एकः गोचरः, अत्यन्त-भिन्नौ द्वौ अनुभवौ  –  एतत् अष्टकवर्गस्य सामर्थ्यम्।' }, locale)}</p>
             </div>
           </div>
         </div>

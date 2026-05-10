@@ -133,9 +133,9 @@ export const BHAI_DOOJ_PUJA: PujaVidhi = {
       devanagari: 'भ्रातृद्वितीया महापुण्या यमुनायमसंगमे।\nयमुना यमकं पूजा सर्वदुःखविनाशिनी॥',
       iast: 'bhrātṛdvitīyā mahāpuṇyā yamunāyamasaṃgame |\nyamunā yamakaṃ pūjā sarvaduḥkhavināśinī ||',
       meaning: {
-        en: 'This great meritorious Bhratri Dwitiya, born of the meeting of Yamuna and Yama — the worship of Yama by Yamuna destroys all sorrows.',
-        hi: 'यह महापुण्य भ्रातृद्वितीया यमुना और यम के मिलन से प्रकट हुई — यमुना द्वारा यम की पूजा सभी दुखों का नाश करती है।',
-        sa: 'इयं महापुण्या भ्रातृद्वितीया यमुनायमसंगमे जाता — यमुनया यमस्य पूजा सर्वदुःखानि नाशयति।',
+        en: 'This great meritorious Bhratri Dwitiya, born of the meeting of Yamuna and Yama  –  the worship of Yama by Yamuna destroys all sorrows.',
+        hi: 'यह महापुण्य भ्रातृद्वितीया यमुना और यम के मिलन से प्रकट हुई  –  यमुना द्वारा यम की पूजा सभी दुखों का नाश करती है।',
+        sa: 'इयं महापुण्या भ्रातृद्वितीया यमुनायमसंगमे जाता  –  यमुनया यमस्य पूजा सर्वदुःखानि नाशयति।',
       },
       usage: {
         en: 'Recite at the beginning of the tilak ceremony.',
@@ -162,9 +162,9 @@ export const BHAI_DOOJ_PUJA: PujaVidhi = {
   ],
 
   naivedya: {
-    en: 'Offer sweets specially prepared by the sister — traditional choices include ladoo, barfi, peda, and the brother\'s favorite sweets. Coconut and mishri (rock sugar) are essential accompaniments.',
-    hi: 'बहन द्वारा विशेष रूप से बनाई गई मिठाइयाँ अर्पित करें — परम्परागत विकल्पों में लड्डू, बर्फी, पेड़ा और भाई की पसन्दीदा मिठाइयाँ शामिल हैं। नारियल और मिश्री आवश्यक हैं।',
-    sa: 'भगिन्या विशेषनिर्मितानि मिष्टान्नानि समर्पयेत् — पारम्परिकविकल्पेषु लड्डुकः बर्फी पेडा भ्रातुः प्रियमिष्टान्नानि च सन्ति। नारिकेलं खण्डशर्करा च अनिवार्ये।',
+    en: 'Offer sweets specially prepared by the sister  –  traditional choices include ladoo, barfi, peda, and the brother\'s favorite sweets. Coconut and mishri (rock sugar) are essential accompaniments.',
+    hi: 'बहन द्वारा विशेष रूप से बनाई गई मिठाइयाँ अर्पित करें  –  परम्परागत विकल्पों में लड्डू, बर्फी, पेड़ा और भाई की पसन्दीदा मिठाइयाँ शामिल हैं। नारियल और मिश्री आवश्यक हैं।',
+    sa: 'भगिन्या विशेषनिर्मितानि मिष्टान्नानि समर्पयेत्  –  पारम्परिकविकल्पेषु लड्डुकः बर्फी पेडा भ्रातुः प्रियमिष्टान्नानि च सन्ति। नारिकेलं खण्डशर्करा च अनिवार्ये।',
   },
 
   precautions: [
@@ -179,9 +179,9 @@ export const BHAI_DOOJ_PUJA: PujaVidhi = {
       sa: 'कर्मकाले भ्राता भगिनी च पूर्वाभिमुखौ स्याताम्। भगिनी तिलकार्थम् अनामिकाङ्गुलिं प्रयुञ्जीत।',
     },
     {
-      en: 'This festival can be observed by sisters for any brotherly figure — cousin brothers or those bonded by love are equally valid.',
-      hi: 'यह पर्व बहनें किसी भी भाई-समान व्यक्ति के लिए मना सकती हैं — चचेरे भाई या प्रेम से जुड़े भाई भी समान रूप से मान्य हैं।',
-      sa: 'इदं पर्व भगिन्यः कस्मिन्नपि भ्रातृतुल्ये जने आचरितुं शक्नुवन्ति — पितृव्यपुत्राः स्नेहबद्धभ्रातरश्च समानरूपेण मान्याः।',
+      en: 'This festival can be observed by sisters for any brotherly figure  –  cousin brothers or those bonded by love are equally valid.',
+      hi: 'यह पर्व बहनें किसी भी भाई-समान व्यक्ति के लिए मना सकती हैं  –  चचेरे भाई या प्रेम से जुड़े भाई भी समान रूप से मान्य हैं।',
+      sa: 'इदं पर्व भगिन्यः कस्मिन्नपि भ्रातृतुल्ये जने आचरितुं शक्नुवन्ति  –  पितृव्यपुत्राः स्नेहबद्धभ्रातरश्च समानरूपेण मान्याः।',
     },
   ],
 

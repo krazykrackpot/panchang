@@ -36,7 +36,7 @@ function Page1() {
     <div className="space-y-6">
       <KeyTakeaway
         points={[
-          'Your Vedic "sign" is based on the Moon, not the Sun — so your Vedic sign is almost certainly different from your Western one.',
+          'Your Vedic "sign" is based on the Moon, not the Sun  –  so your Vedic sign is almost certainly different from your Western one.',
           'Your nakshatra (birth star) is even more specific than your sign, and drives compatibility matching and dasha timing.',
         ]}
         locale={locale}
@@ -55,8 +55,8 @@ function Page1() {
           {t('twoBigDifferencesAreAt', locale)}
         </p>
         <div className="flex flex-wrap gap-3 my-2">
-          <BeginnerNote term="Rashi" explanation="A zodiac sign — one of 12 equal 30-degree divisions of the ecliptic, each ruled by a specific planet." />
-          <BeginnerNote term="Lagna" explanation="The Ascendant — the zodiac sign rising on the eastern horizon at the moment of birth. It defines the 1st house." />
+          <BeginnerNote term="Rashi" explanation="A zodiac sign  –  one of 12 equal 30-degree divisions of the ecliptic, each ruled by a specific planet." />
+          <BeginnerNote term="Lagna" explanation="The Ascendant  –  the zodiac sign rising on the eastern horizon at the moment of birth. It defines the 1st house." />
           <BeginnerNote term="Ayanamsha" explanation="The angular difference (~24 degrees) between the sidereal and tropical zodiacs, caused by the precession of the equinoxes." />
         </div>
 
@@ -81,7 +81,7 @@ function Page1() {
         <WhyItMatters locale={locale}>Your Moon sign in Vedic astrology is often different from your Western Sun sign. This one shift changes most of your Jyotish reading.</WhyItMatters>
       </section>
 
-      {/* Classical Origin — Gold card */}
+      {/* Classical Origin  –  Gold card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
           {t('classicalOrigin', locale)}
@@ -154,7 +154,7 @@ function Page2() {
         <ExampleChart
           ascendant={6}
           planets={{ 6: [1], 1: [0], 4: [4] }}
-          title="Moon in Hasta (Virgo) — Birth Nakshatra Example"
+          title="Moon in Hasta (Virgo)  –  Birth Nakshatra Example"
           highlight={[6]}
         />
         <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
@@ -227,7 +227,7 @@ function Page3() {
         </div>
       </section>
 
-      {/* Red — Misconceptions */}
+      {/* Red  –  Misconceptions */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
           {t('commonMisconceptions', locale)}
@@ -250,7 +250,7 @@ function Page3() {
         </div>
       </section>
 
-      {/* Blue — Modern Relevance */}
+      {/* Blue  –  Modern Relevance */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">
           {t('modernRelevance', locale)}

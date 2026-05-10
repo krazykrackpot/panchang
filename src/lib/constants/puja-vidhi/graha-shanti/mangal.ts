@@ -89,7 +89,7 @@ export const MANGAL_SHANTI: PujaVidhi = {
     },
     {
       step: 6,
-      title: { en: 'Homa (Fire Offering) — Optional', hi: 'होम (हवन) — वैकल्पिक', sa: 'होमः — वैकल्पिकः' },
+      title: { en: 'Homa (Fire Offering)  –  Optional', hi: 'होम (हवन)  –  वैकल्पिक', sa: 'होमः  –  वैकल्पिकः' },
       description: {
         en: 'If possible, perform a small homa with red sandalwood sticks and ghee. Offer red lentils into the sacred fire while chanting the Mangal Gayatri. This intensifies the remedy.',
         hi: 'यदि सम्भव हो तो लाल चन्दन की लकड़ी और घी से लघु होम करें। मंगल गायत्री का जाप करते हुए पवित्र अग्नि में मसूर दाल की आहुति दें।',
@@ -167,14 +167,14 @@ export const MANGAL_SHANTI: PujaVidhi = {
 
   precautions: [
     {
-      en: 'Face south during the puja. Red is the essential colour for all items — clothes, flowers, cloth, and samagri.',
-      hi: 'पूजा में दक्षिण दिशा की ओर मुख करें। सभी सामग्री — वस्त्र, फूल, कपड़ा और सामग्री — का रंग लाल होना चाहिए।',
-      sa: 'पूजायां दक्षिणदिशम् अभिमुखं कुर्यात्। सर्वेषां सामग्रीणां — वस्त्रपुष्पवस्त्रसामग्रीणां — वर्णः रक्तः भवेत्।',
+      en: 'Face south during the puja. Red is the essential colour for all items  –  clothes, flowers, cloth, and samagri.',
+      hi: 'पूजा में दक्षिण दिशा की ओर मुख करें। सभी सामग्री  –  वस्त्र, फूल, कपड़ा और सामग्री  –  का रंग लाल होना चाहिए।',
+      sa: 'पूजायां दक्षिणदिशम् अभिमुखं कुर्यात्। सर्वेषां सामग्रीणां  –  वस्त्रपुष्पवस्त्रसामग्रीणां  –  वर्णः रक्तः भवेत्।',
     },
     {
-      en: 'Avoid anger and aggression on the puja day — these are Mars\'s negative manifestations that the puja aims to pacify.',
-      hi: 'पूजा के दिन क्रोध और आक्रामकता से बचें — ये मंगल के नकारात्मक प्रभाव हैं जिन्हें पूजा शान्त करने का उद्देश्य रखती है।',
-      sa: 'पूजादिने क्रोधम् आक्रामकतां च वर्जयेत् — एते मङ्गलस्य नकारात्मकप्रभावाः यान् पूजा शमयितुम् उद्दिश्यते।',
+      en: 'Avoid anger and aggression on the puja day  –  these are Mars\'s negative manifestations that the puja aims to pacify.',
+      hi: 'पूजा के दिन क्रोध और आक्रामकता से बचें  –  ये मंगल के नकारात्मक प्रभाव हैं जिन्हें पूजा शान्त करने का उद्देश्य रखती है।',
+      sa: 'पूजादिने क्रोधम् आक्रामकतां च वर्जयेत्  –  एते मङ्गलस्य नकारात्मकप्रभावाः यान् पूजा शमयितुम् उद्दिश्यते।',
     },
     {
       en: 'Celibacy (brahmacharya) should be observed on the day of Mangal Shanti puja for best results.',

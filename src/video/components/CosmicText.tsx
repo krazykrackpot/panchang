@@ -23,7 +23,7 @@ const BURST_PARTICLES = Array.from({ length: 30 }, (_, i) => ({
   life: 20 + (i % 6) * 5,
 }));
 
-/** Light burst — expanding golden ring with particles */
+/** Light burst  –  expanding golden ring with particles */
 const LightBurst: React.FC<{ frame: number; fps: number }> = ({ frame, fps }) => {
   const burstProgress = interpolate(frame, [5, 25], [0, 1], {
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
@@ -96,7 +96,7 @@ const LightBurst: React.FC<{ frame: number; fps: number }> = ({ frame, fps }) =>
   );
 };
 
-/** Burst style — text explodes into view */
+/** Burst style  –  text explodes into view */
 function BurstReveal({ text, frame, fps }: { text: string; frame: number; fps: number }) {
   const words = text.split(/\s+/);
 
@@ -158,7 +158,7 @@ function BurstReveal({ text, frame, fps }: { text: string; frame: number; fps: n
   );
 }
 
-/** Ascend style — text rises from below with ethereal glow */
+/** Ascend style  –  text rises from below with ethereal glow */
 function AscendReveal({ text, frame, fps }: { text: string; frame: number; fps: number }) {
   const lines = text.split('\n');
 
@@ -230,7 +230,7 @@ function AscendReveal({ text, frame, fps }: { text: string; frame: number; fps: 
   );
 }
 
-/** Glow style — text pulses with sacred golden aura */
+/** Glow style  –  text pulses with sacred golden aura */
 function GlowReveal({ text, frame, fps }: { text: string; frame: number; fps: number }) {
   const words = text.split(/\s+/);
 

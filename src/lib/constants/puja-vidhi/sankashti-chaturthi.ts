@@ -7,8 +7,8 @@ export const SANKASHTI_CHATURTHI_PUJA: PujaVidhi = {
 
   samagri: [
     { name: { en: 'Ganesha idol or image', hi: 'गणेश मूर्ति या चित्र', sa: 'गणेशमूर्तिः अथवा चित्रम्' }, essential: true },
-    { name: { en: 'Modak (sweet dumplings)', hi: 'मोदक', sa: 'मोदकानि' }, category: 'food', note: { en: 'Ganesha\'s favourite — offer 21 modaks if possible', hi: 'गणेश का प्रिय भोग — सम्भव हो तो 21 मोदक अर्पित करें', sa: 'गणेशस्य प्रियभोगः — सम्भवे एकविंशतिः मोदकान् अर्पयेत्' } },
-    { name: { en: 'Durva grass (21 blades)', hi: 'दूर्वा (21 तिनके)', sa: 'दूर्वा (एकविंशतिः)' }, category: 'flowers', essential: true, note: { en: 'Three-bladed durva with roots — most essential offering for Ganesha', hi: 'तीन पत्ती वाली दूर्वा जड़ सहित — गणेश का सबसे महत्वपूर्ण अर्पण', sa: 'त्रिपत्रिका समूलदूर्वा — गणेशस्य सर्वप्रधानार्पणम्' } },
+    { name: { en: 'Modak (sweet dumplings)', hi: 'मोदक', sa: 'मोदकानि' }, category: 'food', note: { en: 'Ganesha\'s favourite  –  offer 21 modaks if possible', hi: 'गणेश का प्रिय भोग  –  सम्भव हो तो 21 मोदक अर्पित करें', sa: 'गणेशस्य प्रियभोगः  –  सम्भवे एकविंशतिः मोदकान् अर्पयेत्' } },
+    { name: { en: 'Durva grass (21 blades)', hi: 'दूर्वा (21 तिनके)', sa: 'दूर्वा (एकविंशतिः)' }, category: 'flowers', essential: true, note: { en: 'Three-bladed durva with roots  –  most essential offering for Ganesha', hi: 'तीन पत्ती वाली दूर्वा जड़ सहित  –  गणेश का सबसे महत्वपूर्ण अर्पण', sa: 'त्रिपत्रिका समूलदूर्वा  –  गणेशस्य सर्वप्रधानार्पणम्' } },
     { name: { en: 'Red flowers (hibiscus preferred)', hi: 'लाल फूल (गुड़हल श्रेष्ठ)', sa: 'रक्तपुष्पाणि (जपाकुसुमं श्रेष्ठम्)' }, category: 'flowers' },
     { name: { en: 'Red sandalwood paste (raktachandan)', hi: 'लाल चन्दन', sa: 'रक्तचन्दनम्' }, category: 'puja_items' },
     { name: { en: 'Ghee lamp (diya)', hi: 'घी का दीपक', sa: 'घृतदीपः' }, category: 'puja_items' },
@@ -30,18 +30,18 @@ export const SANKASHTI_CHATURTHI_PUJA: PujaVidhi = {
 
   sankalpa: {
     en: 'On this sacred Sankashti Chaturthi, I undertake this vrat and worship of Lord Ganesha, the remover of all obstacles, for the destruction of difficulties, spiritual merit, and divine grace.',
-    hi: 'इस पवित्र संकष्टी चतुर्थी पर, सभी विघ्नों के हर्ता श्री गणेश की पूजा और व्रत का संकल्प करता/करती हूँ — संकटों के नाश, पुण्यप्राप्ति और दिव्य कृपा के लिए।',
-    sa: 'अस्यां पवित्रायां सङ्कष्टीचतुर्थ्यां सर्वविघ्नहरस्य श्रीगणेशस्य पूजनं व्रतं च अहं करिष्ये — सङ्कटनाशाय पुण्यसम्पादनाय दिव्यकृपाप्राप्त्यर्थं च।',
+    hi: 'इस पवित्र संकष्टी चतुर्थी पर, सभी विघ्नों के हर्ता श्री गणेश की पूजा और व्रत का संकल्प करता/करती हूँ  –  संकटों के नाश, पुण्यप्राप्ति और दिव्य कृपा के लिए।',
+    sa: 'अस्यां पवित्रायां सङ्कष्टीचतुर्थ्यां सर्वविघ्नहरस्य श्रीगणेशस्य पूजनं व्रतं च अहं करिष्ये  –  सङ्कटनाशाय पुण्यसम्पादनाय दिव्यकृपाप्राप्त्यर्थं च।',
   },
 
   vidhiSteps: [
     {
       step: 1,
-      title: { en: 'Morning — Bath & Fast Begins', hi: 'प्रातः — स्नान एवं व्रत आरम्भ', sa: 'प्रातः — स्नानं व्रतारम्भश्च' },
+      title: { en: 'Morning  –  Bath & Fast Begins', hi: 'प्रातः  –  स्नान एवं व्रत आरम्भ', sa: 'प्रातः  –  स्नानं व्रतारम्भश्च' },
       description: {
-        en: 'Wake before sunrise, take a purifying bath. Resolve to observe the Sankashti Chaturthi vrat. The fast begins at sunrise — consume only water and fruits if needed.',
-        hi: 'सूर्योदय से पहले उठें, शुद्धि स्नान करें। संकष्टी चतुर्थी व्रत का संकल्प लें। उपवास सूर्योदय से शुरू होता है — आवश्यकता हो तो केवल जल और फल लें।',
-        sa: 'सूर्योदयात् प्राक् उत्तिष्ठेत्, शुद्धिस्नानं कुर्यात्। सङ्कष्टीचतुर्थीव्रतसङ्कल्पं कुर्यात्। व्रतं सूर्योदयात् आरभते — आवश्यकतायां जलं फलानि वा ग्रहणीयम्।',
+        en: 'Wake before sunrise, take a purifying bath. Resolve to observe the Sankashti Chaturthi vrat. The fast begins at sunrise  –  consume only water and fruits if needed.',
+        hi: 'सूर्योदय से पहले उठें, शुद्धि स्नान करें। संकष्टी चतुर्थी व्रत का संकल्प लें। उपवास सूर्योदय से शुरू होता है  –  आवश्यकता हो तो केवल जल और फल लें।',
+        sa: 'सूर्योदयात् प्राक् उत्तिष्ठेत्, शुद्धिस्नानं कुर्यात्। सङ्कष्टीचतुर्थीव्रतसङ्कल्पं कुर्यात्। व्रतं सूर्योदयात् आरभते  –  आवश्यकतायां जलं फलानि वा ग्रहणीयम्।',
       },
       essential: true,
       stepType: 'preparation',
@@ -61,7 +61,7 @@ export const SANKASHTI_CHATURTHI_PUJA: PujaVidhi = {
     },
     {
       step: 3,
-      title: { en: 'Daytime — Ganesha Contemplation', hi: 'दिन में — गणेश चिन्तन', sa: 'दिवा — गणेशचिन्तनम्' },
+      title: { en: 'Daytime  –  Ganesha Contemplation', hi: 'दिन में  –  गणेश चिन्तन', sa: 'दिवा  –  गणेशचिन्तनम्' },
       description: {
         en: 'Spend the day in devotion. Read Ganesha Purana or Ganesha Atharva Shirsha. Chant the Ganesh Beej mantra on a mala (rosary). Maintain a sattvic and pious mindset throughout the day.',
         hi: 'दिन भक्ति में बिताएँ। गणेश पुराण या गणेश अथर्वशीर्ष पढ़ें। माला पर गणेश बीज मन्त्र का जप करें। पूरे दिन सात्विक और धार्मिक मनोवृत्ति बनाए रखें।',
@@ -73,7 +73,7 @@ export const SANKASHTI_CHATURTHI_PUJA: PujaVidhi = {
     },
     {
       step: 4,
-      title: { en: 'Evening — Sankalpa', hi: 'सायं — संकल्प', sa: 'सायम् — सङ्कल्पः' },
+      title: { en: 'Evening  –  Sankalpa', hi: 'सायं  –  संकल्प', sa: 'सायम्  –  सङ्कल्पः' },
       description: {
         en: 'Take a fresh bath in the evening. Sit before the altar and take the formal sankalpa by holding water and akshat in the right palm, stating the tithi, purpose, and deity.',
         hi: 'सायंकाल में पुनः स्नान करें। वेदी के सामने बैठकर दाहिने हाथ में जल और अक्षत लेकर तिथि, उद्देश्य और देवता का नाम बोलकर विधिवत् संकल्प लें।',
@@ -147,7 +147,7 @@ export const SANKASHTI_CHATURTHI_PUJA: PujaVidhi = {
     },
     {
       step: 10,
-      title: { en: 'Parana — Breaking the Fast', hi: 'पारण — उपवास समाप्ति', sa: 'पारणम् — उपवाससमाप्तिः' },
+      title: { en: 'Parana  –  Breaking the Fast', hi: 'पारण  –  उपवास समाप्ति', sa: 'पारणम्  –  उपवाससमाप्तिः' },
       description: {
         en: 'After sighting the moon and offering arghya, break the fast by consuming modak prasad first, followed by other sattvic food. Share the prasad with family members.',
         hi: 'चन्द्र दर्शन और अर्घ्य के बाद पहले मोदक प्रसाद खाकर उपवास तोड़ें, फिर अन्य सात्विक भोजन लें। परिवारजनों में प्रसाद बाँटें।',
@@ -200,9 +200,9 @@ export const SANKASHTI_CHATURTHI_PUJA: PujaVidhi = {
       devanagari: 'वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ। निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥',
       iast: 'vakratuṇḍa mahākāya sūryakoṭi samaprabha | nirvighnaṃ kuru me deva sarvakāryeṣu sarvadā ||',
       meaning: {
-        en: 'O Lord with curved trunk and mighty body, whose radiance equals a crore suns — make all my endeavours free of obstacles, always.',
-        hi: 'हे वक्रतुण्ड, महाकाय, करोड़ सूर्यों के समान प्रभावाले — हे देव, मेरे सभी कार्यों को सदा निर्विघ्न कीजिए।',
-        sa: 'हे वक्रतुण्ड, महाकाय, सूर्यकोटिसमप्रभ — हे देव, मे सर्वकार्येषु सर्वदा निर्विघ्नं कुरु।',
+        en: 'O Lord with curved trunk and mighty body, whose radiance equals a crore suns  –  make all my endeavours free of obstacles, always.',
+        hi: 'हे वक्रतुण्ड, महाकाय, करोड़ सूर्यों के समान प्रभावाले  –  हे देव, मेरे सभी कार्यों को सदा निर्विघ्न कीजिए।',
+        sa: 'हे वक्रतुण्ड, महाकाय, सूर्यकोटिसमप्रभ  –  हे देव, मे सर्वकार्येषु सर्वदा निर्विघ्नं कुरु।',
       },
       japaCount: 11,
       usage: {
@@ -214,16 +214,16 @@ export const SANKASHTI_CHATURTHI_PUJA: PujaVidhi = {
   ],
 
   naivedya: {
-    en: 'Offer modak (steamed or fried sweet dumplings), laddoo, jaggery, coconut pieces, and seasonal fruits. Modak is the foremost naivedya for Ganesha — no Ganesha puja is complete without it.',
-    hi: 'मोदक (भाप में पके या तले मीठे पकौड़े), लड्डू, गुड़, नारियल के टुकड़े और मौसमी फल अर्पित करें। मोदक गणेश का सर्वप्रमुख नैवेद्य है — बिना मोदक के गणेश पूजा अधूरी है।',
-    sa: 'मोदकानि (उष्णवाष्पेन पक्वानि तैले वा), लड्डुकानि, गुडं, नारिकेलखण्डानि, ऋतुफलानि च अर्पयेत्। मोदकानि गणेशस्य सर्वप्रधाननैवेद्यम् — मोदकं विना गणेशपूजा न सम्पूर्णा।',
+    en: 'Offer modak (steamed or fried sweet dumplings), laddoo, jaggery, coconut pieces, and seasonal fruits. Modak is the foremost naivedya for Ganesha  –  no Ganesha puja is complete without it.',
+    hi: 'मोदक (भाप में पके या तले मीठे पकौड़े), लड्डू, गुड़, नारियल के टुकड़े और मौसमी फल अर्पित करें। मोदक गणेश का सर्वप्रमुख नैवेद्य है  –  बिना मोदक के गणेश पूजा अधूरी है।',
+    sa: 'मोदकानि (उष्णवाष्पेन पक्वानि तैले वा), लड्डुकानि, गुडं, नारिकेलखण्डानि, ऋतुफलानि च अर्पयेत्। मोदकानि गणेशस्य सर्वप्रधाननैवेद्यम्  –  मोदकं विना गणेशपूजा न सम्पूर्णा।',
   },
 
   precautions: [
     {
-      en: 'Do not sight the moon on Chaturthi if it is Bhadrapada Shukla Chaturthi (Ganesh Chaturthi) — that specific moon sighting rule applies only to that day, not Sankashti.',
-      hi: 'यदि भाद्रपद शुक्ल चतुर्थी (गणेश चतुर्थी) है तो चन्द्रमा न देखें — यह विशेष नियम केवल उसी दिन के लिए है, संकष्टी के लिए नहीं।',
-      sa: 'भाद्रपदशुक्लचतुर्थ्यां (गणेशचतुर्थ्याम्) चन्द्रं न पश्येत् — एषः विशेषनियमः तद्दिने एव, न सङ्कष्ट्याम्।',
+      en: 'Do not sight the moon on Chaturthi if it is Bhadrapada Shukla Chaturthi (Ganesh Chaturthi)  –  that specific moon sighting rule applies only to that day, not Sankashti.',
+      hi: 'यदि भाद्रपद शुक्ल चतुर्थी (गणेश चतुर्थी) है तो चन्द्रमा न देखें  –  यह विशेष नियम केवल उसी दिन के लिए है, संकष्टी के लिए नहीं।',
+      sa: 'भाद्रपदशुक्लचतुर्थ्यां (गणेशचतुर्थ्याम्) चन्द्रं न पश्येत्  –  एषः विशेषनियमः तद्दिने एव, न सङ्कष्ट्याम्।',
     },
     {
       en: 'Do not break the fast before sighting the moon. If the moon is not visible due to clouds, wait or break fast after the computed moonrise time.',

@@ -1,5 +1,5 @@
 /**
- * Prakriti Calculator — derives Ayurvedic constitution (Vata/Pitta/Kapha)
+ * Prakriti Calculator  –  derives Ayurvedic constitution (Vata/Pitta/Kapha)
  * from the birth chart using 5 weighted factors.
  *
  * Sources: Charaka Samhita, Ashtanga Hridayam, BPHS Ch.3
@@ -124,7 +124,7 @@ export function computePrakriti(kundali: KundaliData): PrakritiResult {
     if (rawDosha !== 'tridosha') {
       scores[rawDosha] += 20;
     } else {
-      // Mercury is strongest — resolve its dosha
+      // Mercury is strongest  –  resolve its dosha
       const mercDosha = resolveMercuryDosha(
         strongestPlanet,
         kundali.planets,

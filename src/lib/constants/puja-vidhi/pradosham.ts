@@ -9,9 +9,9 @@ export const PRADOSHAM_PUJA: PujaVidhi = {
     { name: { en: 'Shivlinga or Shiva image', hi: 'शिवलिंग या शिव चित्र', sa: 'शिवलिङ्गम् अथवा शिवचित्रम्' }, category: 'puja_items', essential: true },
     { name: { en: 'Milk (raw, unboiled)', hi: 'दूध (कच्चा, बिना उबला)', sa: 'क्षीरम् (अपक्वम्)' }, category: 'food', essential: true },
     { name: { en: 'Water (Ganga water preferred)', hi: 'जल (गंगाजल श्रेष्ठ)', sa: 'जलम् (गङ्गाजलं श्रेष्ठम्)' }, category: 'other', essential: true },
-    { name: { en: 'Bel/Bilva leaves (trifoliate)', hi: 'बेल के पत्ते (तीन पत्ती वाले)', sa: 'बिल्वपत्राणि (त्रिदलानि)' }, note: { en: 'Most sacred offering to Shiva — each leaf represents the three eyes', hi: 'शिव को सबसे पवित्र अर्पण — प्रत्येक पत्ती तीन नेत्रों का प्रतीक', sa: 'शिवस्य पवित्रतमम् अर्पणम् — प्रतिपत्रं त्रिनेत्रप्रतीकम्' }, category: 'flowers', essential: true },
+    { name: { en: 'Bel/Bilva leaves (trifoliate)', hi: 'बेल के पत्ते (तीन पत्ती वाले)', sa: 'बिल्वपत्राणि (त्रिदलानि)' }, note: { en: 'Most sacred offering to Shiva  –  each leaf represents the three eyes', hi: 'शिव को सबसे पवित्र अर्पण  –  प्रत्येक पत्ती तीन नेत्रों का प्रतीक', sa: 'शिवस्य पवित्रतमम् अर्पणम्  –  प्रतिपत्रं त्रिनेत्रप्रतीकम्' }, category: 'flowers', essential: true },
     { name: { en: 'White flowers (jasmine, white lotus)', hi: 'सफ़ेद फूल (चमेली, सफ़ेद कमल)', sa: 'श्वेतपुष्पाणि (मल्लिका, श्वेतकमलम्)' }, category: 'flowers', essential: true },
-    { name: { en: 'Dhatura (thorn apple fruit and flowers)', hi: 'धतूरा (फल और फूल)', sa: 'धत्तूरम् (फलानि पुष्पाणि च)' }, note: { en: 'Sacred to Shiva — handle carefully, poisonous to ingest', hi: 'शिव को प्रिय — सावधानी से लें, खाने पर विषैला', sa: 'शिवप्रियम् — सावधानं गृह्णीयात्, भक्षणे विषम्' }, category: 'flowers', essential: false },
+    { name: { en: 'Dhatura (thorn apple fruit and flowers)', hi: 'धतूरा (फल और फूल)', sa: 'धत्तूरम् (फलानि पुष्पाणि च)' }, note: { en: 'Sacred to Shiva  –  handle carefully, poisonous to ingest', hi: 'शिव को प्रिय  –  सावधानी से लें, खाने पर विषैला', sa: 'शिवप्रियम्  –  सावधानं गृह्णीयात्, भक्षणे विषम्' }, category: 'flowers', essential: false },
     { name: { en: 'Vibhuti/Bhasma (sacred ash)', hi: 'विभूति/भस्म', sa: 'विभूतिः/भस्म' }, category: 'puja_items', essential: true },
     { name: { en: 'Incense sticks', hi: 'अगरबत्ती', sa: 'धूपम्' }, category: 'puja_items', essential: true },
     { name: { en: 'Ghee lamp (diya)', hi: 'घी का दीपक', sa: 'घृतदीपः' }, category: 'puja_items', essential: true },
@@ -52,9 +52,9 @@ export const PRADOSHAM_PUJA: PujaVidhi = {
       step: 2,
       title: { en: 'Pre-Sunset Preparation', hi: 'सूर्यास्त पूर्व तैयारी', sa: 'सूर्यास्तपूर्वसज्जता' },
       description: {
-        en: 'Take a purifying bath before sunset. Wear clean white or rudraksha mala. Set up the puja area with the Shivlinga or Shiva image. Arrange all samagri — milk, water, bel leaves, white flowers, dhatura, vibhuti, lamp, and incense.',
-        hi: 'सूर्यास्त से पहले शुद्धि स्नान करें। स्वच्छ सफ़ेद वस्त्र या रुद्राक्ष माला पहनें। पूजा स्थल पर शिवलिंग या शिव चित्र स्थापित करें। सभी सामग्री — दूध, जल, बेलपत्र, सफ़ेद फूल, धतूरा, विभूति, दीपक और धूप — व्यवस्थित करें।',
-        sa: 'सूर्यास्तात् प्राक् शुद्धिस्नानं कुर्यात्। शुचिश्वेतवस्त्रं रुद्राक्षमालां वा धारयेत्। पूजास्थले शिवलिङ्गं शिवचित्रं वा स्थापयेत्। सर्वसामग्रीं — क्षीरं, जलं, बिल्वपत्राणि, श्वेतपुष्पाणि, धत्तूरं, विभूतिं, दीपं, धूपं च — सज्जयेत्।',
+        en: 'Take a purifying bath before sunset. Wear clean white or rudraksha mala. Set up the puja area with the Shivlinga or Shiva image. Arrange all samagri  –  milk, water, bel leaves, white flowers, dhatura, vibhuti, lamp, and incense.',
+        hi: 'सूर्यास्त से पहले शुद्धि स्नान करें। स्वच्छ सफ़ेद वस्त्र या रुद्राक्ष माला पहनें। पूजा स्थल पर शिवलिंग या शिव चित्र स्थापित करें। सभी सामग्री  –  दूध, जल, बेलपत्र, सफ़ेद फूल, धतूरा, विभूति, दीपक और धूप  –  व्यवस्थित करें।',
+        sa: 'सूर्यास्तात् प्राक् शुद्धिस्नानं कुर्यात्। शुचिश्वेतवस्त्रं रुद्राक्षमालां वा धारयेत्। पूजास्थले शिवलिङ्गं शिवचित्रं वा स्थापयेत्। सर्वसामग्रीं  –  क्षीरं, जलं, बिल्वपत्राणि, श्वेतपुष्पाणि, धत्तूरं, विभूतिं, दीपं, धूपं च  –  सज्जयेत्।',
       },
       duration: '20 min',
       essential: true,
@@ -89,9 +89,9 @@ export const PRADOSHAM_PUJA: PujaVidhi = {
       step: 5,
       title: { en: 'Offer Bel Leaves, Dhatura & Flowers', hi: 'बेलपत्र, धतूरा एवं पुष्प अर्पण', sa: 'बिल्वपत्रधत्तूरपुष्पार्पणम्' },
       description: {
-        en: 'Offer fresh trifoliate bel (bilva) leaves on the Shivlinga — place them with the smooth side facing up and the stalk pointing toward you. Offer dhatura fruits and flowers. Place white flowers (jasmine or white lotus) around the linga. Apply sandalwood paste and vibhuti.',
-        hi: 'शिवलिंग पर ताज़े तीन पत्ती वाले बेलपत्र चढ़ाएँ — चिकनी सतह ऊपर और डंठल अपनी ओर रखें। धतूरे के फल और फूल चढ़ाएँ। लिंग के चारों ओर सफ़ेद फूल (चमेली या सफ़ेद कमल) रखें। चन्दन का लेप और विभूति लगाएँ।',
-        sa: 'शिवलिङ्गोपरि नवीनानि त्रिदलबिल्वपत्राणि अर्पयेत् — श्लक्ष्णपृष्ठम् ऊर्ध्वं वृन्तम् आत्मनः दिशि स्थापयेत्। धत्तूरफलपुष्पाणि अर्पयेत्। लिङ्गं परितः श्वेतपुष्पाणि (मल्लिकां श्वेतकमलं वा) स्थापयेत्। चन्दनं विभूतिं च लिम्पेत्।',
+        en: 'Offer fresh trifoliate bel (bilva) leaves on the Shivlinga  –  place them with the smooth side facing up and the stalk pointing toward you. Offer dhatura fruits and flowers. Place white flowers (jasmine or white lotus) around the linga. Apply sandalwood paste and vibhuti.',
+        hi: 'शिवलिंग पर ताज़े तीन पत्ती वाले बेलपत्र चढ़ाएँ  –  चिकनी सतह ऊपर और डंठल अपनी ओर रखें। धतूरे के फल और फूल चढ़ाएँ। लिंग के चारों ओर सफ़ेद फूल (चमेली या सफ़ेद कमल) रखें। चन्दन का लेप और विभूति लगाएँ।',
+        sa: 'शिवलिङ्गोपरि नवीनानि त्रिदलबिल्वपत्राणि अर्पयेत्  –  श्लक्ष्णपृष्ठम् ऊर्ध्वं वृन्तम् आत्मनः दिशि स्थापयेत्। धत्तूरफलपुष्पाणि अर्पयेत्। लिङ्गं परितः श्वेतपुष्पाणि (मल्लिकां श्वेतकमलं वा) स्थापयेत्। चन्दनं विभूतिं च लिम्पेत्।',
       },
       duration: '10 min',
       essential: true,
@@ -101,9 +101,9 @@ export const PRADOSHAM_PUJA: PujaVidhi = {
       step: 6,
       title: { en: 'Light Ghee Lamp & Chant Mantras', hi: 'घी का दीपक जलाएँ एवं मन्त्र जप', sa: 'घृतदीपप्रज्वालनं मन्त्रजपश्च' },
       description: {
-        en: 'Light a ghee lamp (preferably with two wicks) before the Shivlinga. Chant the Panchakshari Mantra (Om Namah Shivaya) 108 times using a Rudraksha mala. Then recite the Maha Mrityunjaya Mantra 108 times. Maintain focus and devotion throughout — this is the core of Pradosh worship.',
-        hi: 'शिवलिंग के सामने घी का दीपक (अधिमानतः दो बत्तियों वाला) जलाएँ। रुद्राक्ष माला से पंचाक्षरी मन्त्र (ॐ नमः शिवाय) 108 बार जपें। फिर महामृत्युञ्जय मन्त्र 108 बार जपें। पूरे समय एकाग्रता और भक्ति बनाए रखें — यही प्रदोष पूजा का मूल है।',
-        sa: 'शिवलिङ्गस्य पुरतः घृतदीपम् (द्विवर्तिकं श्रेष्ठम्) प्रज्वालयेत्। रुद्राक्षमालया पञ्चाक्षरीमन्त्रम् (ॐ नमः शिवाय) १०८ वारं जपेत्। ततः महामृत्युञ्जयमन्त्रम् १०८ वारं जपेत्। सर्वत्र एकाग्रतां भक्तिं च रक्षेत् — एतत् प्रदोषपूजायाः मूलम्।',
+        en: 'Light a ghee lamp (preferably with two wicks) before the Shivlinga. Chant the Panchakshari Mantra (Om Namah Shivaya) 108 times using a Rudraksha mala. Then recite the Maha Mrityunjaya Mantra 108 times. Maintain focus and devotion throughout  –  this is the core of Pradosh worship.',
+        hi: 'शिवलिंग के सामने घी का दीपक (अधिमानतः दो बत्तियों वाला) जलाएँ। रुद्राक्ष माला से पंचाक्षरी मन्त्र (ॐ नमः शिवाय) 108 बार जपें। फिर महामृत्युञ्जय मन्त्र 108 बार जपें। पूरे समय एकाग्रता और भक्ति बनाए रखें  –  यही प्रदोष पूजा का मूल है।',
+        sa: 'शिवलिङ्गस्य पुरतः घृतदीपम् (द्विवर्तिकं श्रेष्ठम्) प्रज्वालयेत्। रुद्राक्षमालया पञ्चाक्षरीमन्त्रम् (ॐ नमः शिवाय) १०८ वारं जपेत्। ततः महामृत्युञ्जयमन्त्रम् १०८ वारं जपेत्। सर्वत्र एकाग्रतां भक्तिं च रक्षेत्  –  एतत् प्रदोषपूजायाः मूलम्।',
       },
       mantraRef: 'maha-mrityunjaya',
       duration: '30 min',
@@ -114,9 +114,9 @@ export const PRADOSHAM_PUJA: PujaVidhi = {
       step: 7,
       title: { en: 'Shiva Tandava Stotram & Rudram', hi: 'शिव ताण्डव स्तोत्रम् एवं रुद्रम्', sa: 'शिवताण्डवस्तोत्रं रुद्रं च' },
       description: {
-        en: 'Recite the Shiva Tandava Stotram composed by Ravana — this is especially appropriate for Pradosh as Shiva performs the Tandava during this time. If capable, also recite Sri Rudram (Namakam and Chamakam from Yajurveda). Otherwise, recite the Shiva Chalisa or any Shiva stotram.',
-        hi: 'रावण रचित शिव ताण्डव स्तोत्रम् का पाठ करें — यह प्रदोष के लिए विशेष रूप से उपयुक्त है क्योंकि इस समय शिव ताण्डव नृत्य करते हैं। यदि सम्भव हो तो श्री रुद्रम् (यजुर्वेद से नमकम् और चमकम्) का भी पाठ करें। अन्यथा शिव चालीसा या कोई शिव स्तोत्र पढ़ें।',
-        sa: 'रावणरचितं शिवताण्डवस्तोत्रं पठेत् — प्रदोषे एतद् विशेषोचितं यतः अस्मिन् काले शिवः ताण्डवनृत्यं करोति। यदि शक्यते तर्हि श्रीरुद्रम् (यजुर्वेदात् नमकं चमकं च) अपि पठेत्। अन्यथा शिवचालीसां शिवस्तोत्रं वा पठेत्।',
+        en: 'Recite the Shiva Tandava Stotram composed by Ravana  –  this is especially appropriate for Pradosh as Shiva performs the Tandava during this time. If capable, also recite Sri Rudram (Namakam and Chamakam from Yajurveda). Otherwise, recite the Shiva Chalisa or any Shiva stotram.',
+        hi: 'रावण रचित शिव ताण्डव स्तोत्रम् का पाठ करें  –  यह प्रदोष के लिए विशेष रूप से उपयुक्त है क्योंकि इस समय शिव ताण्डव नृत्य करते हैं। यदि सम्भव हो तो श्री रुद्रम् (यजुर्वेद से नमकम् और चमकम्) का भी पाठ करें। अन्यथा शिव चालीसा या कोई शिव स्तोत्र पढ़ें।',
+        sa: 'रावणरचितं शिवताण्डवस्तोत्रं पठेत्  –  प्रदोषे एतद् विशेषोचितं यतः अस्मिन् काले शिवः ताण्डवनृत्यं करोति। यदि शक्यते तर्हि श्रीरुद्रम् (यजुर्वेदात् नमकं चमकं च) अपि पठेत्। अन्यथा शिवचालीसां शिवस्तोत्रं वा पठेत्।',
       },
       mantraRef: 'shiva-tandava-opening',
       duration: '20 min',
@@ -127,9 +127,9 @@ export const PRADOSHAM_PUJA: PujaVidhi = {
       step: 8,
       title: { en: 'Aarti & Pradakshina', hi: 'आरती एवं प्रदक्षिणा', sa: 'आरात्रिकं प्रदक्षिणा च' },
       description: {
-        en: 'Perform aarti with the ghee lamp and camphor, singing "Om Jai Shiv Omkara". Circle the lamp before the Shivlinga in a clockwise direction. After aarti, do pradakshina (circumambulation) of the Shivlinga — note: for Shivlinga, do a half-circle (go from left to right and return the same way, without crossing the abhishek channel).',
-        hi: 'घी के दीपक और कपूर से "ॐ जय शिव ओंकारा" गाते हुए आरती करें। दीपक को शिवलिंग के सामने दक्षिणावर्त (clockwise) घुमाएँ। आरती के बाद शिवलिंग की प्रदक्षिणा करें — ध्यान रखें: शिवलिंग की अर्ध-प्रदक्षिणा करें (बाएँ से दाएँ जाएँ और उसी मार्ग से लौटें, जलाभिषेक नाली को पार न करें)।',
-        sa: 'घृतदीपकर्पूराभ्याम् "ॐ जय शिव ओंकारा" इति गायन् आरात्रिकं कुर्यात्। दीपं शिवलिङ्गस्य पुरतः दक्षिणावर्तं भ्रामयेत्। आरात्रिकानन्तरं शिवलिङ्गस्य प्रदक्षिणां कुर्यात् — अवधेयम्: शिवलिङ्गस्य अर्धप्रदक्षिणां कुर्यात् (वामतो दक्षिणं गत्वा तेनैव मार्गेण प्रत्यागच्छेत्, अभिषेकनालिकां न लङ्घयेत्)।',
+        en: 'Perform aarti with the ghee lamp and camphor, singing "Om Jai Shiv Omkara". Circle the lamp before the Shivlinga in a clockwise direction. After aarti, do pradakshina (circumambulation) of the Shivlinga  –  note: for Shivlinga, do a half-circle (go from left to right and return the same way, without crossing the abhishek channel).',
+        hi: 'घी के दीपक और कपूर से "ॐ जय शिव ओंकारा" गाते हुए आरती करें। दीपक को शिवलिंग के सामने दक्षिणावर्त (clockwise) घुमाएँ। आरती के बाद शिवलिंग की प्रदक्षिणा करें  –  ध्यान रखें: शिवलिंग की अर्ध-प्रदक्षिणा करें (बाएँ से दाएँ जाएँ और उसी मार्ग से लौटें, जलाभिषेक नाली को पार न करें)।',
+        sa: 'घृतदीपकर्पूराभ्याम् "ॐ जय शिव ओंकारा" इति गायन् आरात्रिकं कुर्यात्। दीपं शिवलिङ्गस्य पुरतः दक्षिणावर्तं भ्रामयेत्। आरात्रिकानन्तरं शिवलिङ्गस्य प्रदक्षिणां कुर्यात्  –  अवधेयम्: शिवलिङ्गस्य अर्धप्रदक्षिणां कुर्यात् (वामतो दक्षिणं गत्वा तेनैव मार्गेण प्रत्यागच्छेत्, अभिषेकनालिकां न लङ्घयेत्)।',
       },
       duration: '10 min',
       essential: true,
@@ -156,9 +156,9 @@ export const PRADOSHAM_PUJA: PujaVidhi = {
       devanagari: 'ॐ नमः शिवाय',
       iast: 'oṃ namaḥ śivāya',
       meaning: {
-        en: 'Om, I bow to Lord Shiva — the auspicious one, the transformer, the supreme consciousness.',
-        hi: 'ॐ, भगवान शिव को नमन — शुभंकर, संहारकर्ता, परम चेतना।',
-        sa: 'ॐ, शिवाय नमः — शुभङ्कराय संहारकर्त्रे परमचैतन्याय।',
+        en: 'Om, I bow to Lord Shiva  –  the auspicious one, the transformer, the supreme consciousness.',
+        hi: 'ॐ, भगवान शिव को नमन  –  शुभंकर, संहारकर्ता, परम चेतना।',
+        sa: 'ॐ, शिवाय नमः  –  शुभङ्कराय संहारकर्त्रे परमचैतन्याय।',
       },
       japaCount: 108,
       usage: {
@@ -186,13 +186,13 @@ export const PRADOSHAM_PUJA: PujaVidhi = {
     },
     {
       id: 'shiva-tandava-opening',
-      name: { en: 'Shiva Tandava Stotram — Opening Verse', hi: 'शिव ताण्डव स्तोत्रम् — प्रथम श्लोक', sa: 'शिवताण्डवस्तोत्रम् — प्रथमश्लोकः' },
+      name: { en: 'Shiva Tandava Stotram  –  Opening Verse', hi: 'शिव ताण्डव स्तोत्रम्  –  प्रथम श्लोक', sa: 'शिवताण्डवस्तोत्रम्  –  प्रथमश्लोकः' },
       devanagari: 'जटाटवीगलज्जलप्रवाहपावितस्थले गलेऽवलम्ब्य लम्बितां भुजङ्गतुङ्गमालिकाम्। डमड्डमड्डमड्डमन्निनादवड्डमर्वयं चकार चण्डताण्डवं तनोतु नः शिवः शिवम्॥',
       iast: 'jaṭāṭavīgalajjalapravāhapāvitasthale gale\'valambye lambitāṃ bhujaṅgatuṅgamālikām | ḍamaḍḍamaḍḍamaḍḍamannināḍavaḍḍamarvayaṃ cakāra caṇḍatāṇḍavaṃ tanotu naḥ śivaḥ śivam ||',
       meaning: {
-        en: 'From whose matted hair the holy Ganga flows purifying the ground, who wears a garland of great serpents around his neck, who performs the fierce Tandava dance to the beat of his damaru drum (da-da-da-dam) — may that Shiva bestow auspiciousness upon us.',
-        hi: 'जिनकी जटाओं के वन से गंगा का पवित्र प्रवाह भूमि को पवित्र करता है, जिनके गले में महान सर्पों की माला लटकती है, जो डमरू की ताल (ड-ड-ड-डम) पर प्रचण्ड ताण्डव नृत्य करते हैं — वे शिव हमारा कल्याण करें।',
-        sa: 'यस्य जटाटवीतः गलत् जलप्रवाहः स्थलं पावयति, गले भुजङ्गतुङ्गमालिका लम्बिता, डमरुनादेन (डमड्डमड्डमड्डम्) चण्डताण्डवं चकार — सः शिवः नः शिवं तनोतु।',
+        en: 'From whose matted hair the holy Ganga flows purifying the ground, who wears a garland of great serpents around his neck, who performs the fierce Tandava dance to the beat of his damaru drum (da-da-da-dam)  –  may that Shiva bestow auspiciousness upon us.',
+        hi: 'जिनकी जटाओं के वन से गंगा का पवित्र प्रवाह भूमि को पवित्र करता है, जिनके गले में महान सर्पों की माला लटकती है, जो डमरू की ताल (ड-ड-ड-डम) पर प्रचण्ड ताण्डव नृत्य करते हैं  –  वे शिव हमारा कल्याण करें।',
+        sa: 'यस्य जटाटवीतः गलत् जलप्रवाहः स्थलं पावयति, गले भुजङ्गतुङ्गमालिका लम्बिता, डमरुनादेन (डमड्डमड्डमड्डम्) चण्डताण्डवं चकार  –  सः शिवः नः शिवं तनोतु।',
       },
       usage: {
         en: 'Recite the full Shiva Tandava Stotram (17 verses) during Pradosh Kaal. Composed by Ravana, it is the most celebrated hymn to Shiva\'s cosmic dance.',
@@ -216,7 +216,7 @@ export const PRADOSHAM_PUJA: PujaVidhi = {
   ],
 
   aarti: {
-    name: { en: 'Om Jai Shiv Omkara — Shiva Aarti', hi: 'ॐ जय शिव ओंकारा — शिव आरती', sa: 'ॐ जय शिव ओंकारा — शिवारात्रिकम्' },
+    name: { en: 'Om Jai Shiv Omkara  –  Shiva Aarti', hi: 'ॐ जय शिव ओंकारा  –  शिव आरती', sa: 'ॐ जय शिव ओंकारा  –  शिवारात्रिकम्' },
     devanagari: `ॐ जय शिव ओंकारा, स्वामी जय शिव ओंकारा।
 ब्रह्मा विष्णु सदाशिव, अर्द्धाङ्गी धारा॥
 ॐ जय शिव ओंकारा॥
@@ -289,9 +289,9 @@ oṃ jaya śiva oṃkārā ||`,
 
   precautions: [
     {
-      en: 'Puja MUST be performed during Pradosh Kaal only — the 1.5-hour window after sunset. Performing the puja before sunset or after this window closes yields no Pradosh-specific merit.',
-      hi: 'पूजा केवल प्रदोष काल में ही करनी चाहिए — सूर्यास्त के बाद डेढ़ घंटे की अवधि में। सूर्यास्त से पहले या इस अवधि के बाद पूजा करने से प्रदोष-विशिष्ट पुण्य नहीं मिलता।',
-      sa: 'पूजा प्रदोषकाले एव कर्तव्या — सूर्यास्तानन्तरं सार्धहोरापर्यन्तम्। सूर्यास्तात् प्राक् अस्य कालस्य अनन्तरं वा पूजया प्रदोषविशिष्टं पुण्यं न लभ्यते।',
+      en: 'Puja MUST be performed during Pradosh Kaal only  –  the 1.5-hour window after sunset. Performing the puja before sunset or after this window closes yields no Pradosh-specific merit.',
+      hi: 'पूजा केवल प्रदोष काल में ही करनी चाहिए  –  सूर्यास्त के बाद डेढ़ घंटे की अवधि में। सूर्यास्त से पहले या इस अवधि के बाद पूजा करने से प्रदोष-विशिष्ट पुण्य नहीं मिलता।',
+      sa: 'पूजा प्रदोषकाले एव कर्तव्या  –  सूर्यास्तानन्तरं सार्धहोरापर्यन्तम्। सूर्यास्तात् प्राक् अस्य कालस्य अनन्तरं वा पूजया प्रदोषविशिष्टं पुण्यं न लभ्यते।',
     },
     {
       en: 'Have only a single meal before sunset if doing a partial fast. Strict observers fast the entire day without food or water.',

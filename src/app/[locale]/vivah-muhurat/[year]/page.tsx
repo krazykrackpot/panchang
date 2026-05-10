@@ -130,8 +130,13 @@ export default async function VivahMuhuratPage({
 
       {/* SEO introductory paragraph (visible to Google) */}
       <section className="mx-auto max-w-5xl px-4">
-        <p className="mb-8 text-text-secondary leading-relaxed">
+        <p className="mb-4 text-text-secondary leading-relaxed">
           {t('seoIntro', locale)}
+        </p>
+        <p className="mb-8 text-text-secondary text-sm leading-relaxed">
+          {locale === 'hi'
+            ? 'विवाह मुहूर्त चयन फलित ज्योतिष का सबसे कठोर अनुप्रयोग है। यह सिद्धान्तिक खगोल विज्ञान (सटीक ग्रह स्थितियाँ, सौर मास सीमाएँ, अस्त गणना) को मुहूर्त चिन्तामणि और धर्मसिन्धु के शास्त्रीय व्याख्यात्मक नियमों के साथ संयोजित करता है। यह अन्धविश्वास नहीं है — यह एक व्यवस्थित ढाँचा है जहाँ प्रत्येक नियम का खगोलीय आधार है: शुक्र अस्त का अर्थ है प्रेम का ग्रह अदृश्य है, चातुर्मास मानसून से मेल खाता है जब यात्रा असम्भव थी, और 11 शुभ नक्षत्र उनके प्रमाणित स्थिरता गुणों के लिए चुने गए हैं।'
+            : 'Marriage muhurta selection is the most rigorous application of Phalit Jyotish. It combines Siddhantic astronomy (exact planetary positions, solar month boundaries, combustion calculations) with classical interpretive rules from the Muhurta Chintamani and Dharmasindhu. The result is not superstition — it is a systematic framework where every rule has an astronomical basis: Venus combustion means the planet of love is invisible, Chaturmas coincides with the monsoon when travel was impossible, and the 11 auspicious nakshatras are selected for their demonstrated stability characteristics.'}
         </p>
       </section>
 

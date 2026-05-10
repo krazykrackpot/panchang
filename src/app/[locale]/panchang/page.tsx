@@ -262,6 +262,25 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
         />
       </div>
 
+      {/* ═══ WHY FIVE ELEMENTS  –  philosophical context, server-rendered ═══ */}
+      <section className="max-w-4xl mx-auto px-4 pt-12 pb-8">
+        <h2 className="text-2xl sm:text-3xl font-bold text-gold-light mb-4">
+          {locale === 'hi' ? 'पाँच तत्व क्यों?' : 'Why Five Elements?'}
+        </h2>
+        <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
+          <p>
+            {locale === 'hi'
+              ? 'पंचांग (पञ्च + अङ्ग = पाँच अंग) सूर्य, चन्द्रमा और ब्रह्माण्ड के बीच पाँच — और केवल पाँच — प्रेक्षणीय सम्बन्धों को पकड़ता है। तिथि सूर्य-चन्द्र कोणीय अन्तर मापती है। नक्षत्र स्थिर तारों के सापेक्ष चन्द्रमा को ट्रैक करता है। योग सूर्य और चन्द्र के देशान्तरों को संयोजित करता है। करण तिथि को सूक्ष्मतर स्पन्दनों में विभाजित करता है। वार (सप्ताह दिवस) ग्रह होरा क्रम का पालन करता है।'
+              : 'The Panchang (pancha + anga = five limbs) captures the five — and only five — observable relationships between the Sun, Moon, and the cosmos. Tithi measures the Sun-Moon angular separation. Nakshatra tracks the Moon against the fixed stars. Yoga combines the solar and lunar longitudes. Karana divides the tithi into finer pulses. Vara (weekday) follows the planetary hour sequence.'}
+          </p>
+          <p>
+            {locale === 'hi'
+              ? 'ये मनमाने विभाजन नहीं हैं — ये इस त्रिकाय प्रणाली में स्वतन्त्र खगोलीय प्रेक्षणों का सम्पूर्ण समुच्चय हैं। प्राचीन खगोलविदों ने पाँच नहीं चुने — पाँच ही सम्भव हैं। प्रत्येक गणना सूर्य सिद्धान्त के एल्गोरिदम पर आधारित है, जिनकी सटीकता आधुनिक उपकरणों ने पुष्ट की है।'
+              : 'These are not arbitrary divisions — they are the complete set of independent astronomical observables in this three-body system. The ancient astronomers did not choose five — five is all there is. Each calculation is computed from real planetary positions using Surya Siddhanta algorithms, whose precision modern instruments have confirmed.'}
+          </p>
+        </div>
+      </section>
+
       {/* Popular Cities section  –  server-rendered for SEO crawl paths to /panchang/[city] */}
       <PopularCitiesSection locale={locale} />
     </>

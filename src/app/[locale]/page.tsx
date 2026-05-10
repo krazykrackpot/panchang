@@ -589,6 +589,39 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </section>
 
+      {/* ═══ WHY JYOTISH?  –  philosophical foundation, server-rendered for SEO ═══ */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 className="text-2xl sm:text-3xl font-bold text-gold-light mb-6" style={hf}>
+          {L({ en: 'The Science Behind the Sacred', hi: 'पवित्र के पीछे का विज्ञान', ta: 'புனிதத்தின் பின்னால் உள்ள அறிவியல்', bn: 'পবিত্রের পেছনের বিজ্ঞান' }, locale)}
+        </h2>
+        <div className="space-y-4 text-text-secondary text-sm leading-relaxed" style={bf}>
+          <p>
+            {L({
+              en: 'Jyotish is not astrology as the West understands it. It is a mathematical framework — the Surya Siddhanta calculated Saturn\'s orbital period as 29.4 years, a value NASA confirmed at 29.46 years. Aryabhata proposed Earth\'s rotation a millennium before Copernicus. This is Siddhantic Jyotish — pure astronomy, empirically verified.',
+              hi: 'ज्योतिष वह नहीं है जिसे पश्चिम "astrology" कहता है। यह एक गणितीय ढाँचा है — सूर्य सिद्धान्त ने शनि की कक्षा अवधि 29.4 वर्ष गणित की, जिसे NASA ने 29.46 वर्ष पर पुष्ट किया। आर्यभट ने कोपर्निकस से एक सहस्राब्दी पहले पृथ्वी के घूर्णन का प्रस्ताव दिया। यह सिद्धान्तिक ज्योतिष है — शुद्ध खगोल विज्ञान, प्रायोगिक रूप से सत्यापित।',
+              ta: 'ஜோதிடம் என்பது மேற்கத்தியர் புரிந்துகொள்ளும் astrology அல்ல. இது ஒரு கணித கட்டமைப்பு — சூர்ய சித்தாந்தம் சனியின் சுற்றுப்பாதை காலத்தை 29.4 ஆண்டுகள் என கணக்கிட்டது, NASA இதை 29.46 ஆண்டுகள் என உறுதிப்படுத்தியது.',
+              bn: 'জ্যোতিষ পশ্চিমের বোঝা astrology নয়। এটি একটি গাণিতিক কাঠামো — সূর্য সিদ্ধান্ত শনির কক্ষপথ 29.4 বছর গণনা করেছিল, যা NASA 29.46 বছরে নিশ্চিত করেছে।',
+            }, locale)}
+          </p>
+          <p>
+            {L({
+              en: 'Upon this mathematical foundation stands Phalit Jyotish — the interpretive system of houses, dashas, and yogas that maps celestial patterns to human experience. Together, they form a Vedanga — a limb of the Veda, the \'eye\' that helps us see the patterns of time.',
+              hi: 'इस गणितीय नींव पर खड़ा है फलित ज्योतिष — भावों, दशाओं और योगों की व्याख्यात्मक प्रणाली जो आकाशीय प्रतिरूपों को मानवीय अनुभव से जोड़ती है। ये दोनों मिलकर एक वेदाङ्ग बनाते हैं — वेद का अंग, वह "नेत्र" जो हमें काल के प्रतिरूपों को देखने में सहायता करता है।',
+              ta: 'இந்த கணித அடித்தளத்தின் மீது பலித ஜோதிடம் நிற்கிறது — வீடுகள், தசைகள் மற்றும் யோகங்களின் விளக்க அமைப்பு. இவை இணைந்து ஒரு வேதாங்கம் — வேதத்தின் "கண்".',
+              bn: 'এই গাণিতিক ভিত্তির উপর দাঁড়িয়ে আছে ফলিত জ্যোতিষ — ভাব, দশা এবং যোগের ব্যাখ্যামূলক ব্যবস্থা। একসাথে এরা একটি বেদাঙ্গ গঠন করে — বেদের "চোখ"।',
+            }, locale)}
+          </p>
+          <p>
+            {L({
+              en: 'Every calculation on Dekho Panchang uses these same algorithms, now running on modern infrastructure — Swiss Ephemeris precision, NASA JPL DE441 planetary data, verified by 3,000+ automated tests.',
+              hi: 'देखो पंचांग पर प्रत्येक गणना इन्हीं एल्गोरिदम का उपयोग करती है, जो अब आधुनिक अवसंरचना पर चलती हैं — Swiss Ephemeris की सटीकता, NASA JPL DE441 ग्रह डेटा, 3,000+ स्वचालित परीक्षणों द्वारा सत्यापित।',
+              ta: 'தெகோ பஞ்சாங்கத்தின் ஒவ்வொரு கணக்கீடும் இதே வழிமுறைகளைப் பயன்படுத்துகிறது — Swiss Ephemeris துல்லியம், NASA JPL DE441 கிரக தரவு, 3,000+ தானியங்கி சோதனைகளால் சரிபார்க்கப்பட்டது.',
+              bn: 'দেখো পঞ্চাঙ্গের প্রতিটি গণনা এই একই অ্যালগরিদম ব্যবহার করে — Swiss Ephemeris নির্ভুলতা, NASA JPL DE441 গ্রহ তথ্য, 3,000+ স্বয়ংক্রিয় পরীক্ষা দ্বারা যাচাইকৃত।',
+            }, locale)}
+          </p>
+        </div>
+      </section>
+
       <GoldDivider />
 
       {/* ═══ PROFILE BANNER  –  for logged-in users, above the cards ═══ */}

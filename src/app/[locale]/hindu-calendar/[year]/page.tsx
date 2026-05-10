@@ -235,6 +235,15 @@ export default async function HinduCalendarPage({
           </div>
         </header>
 
+        {/* ─── Philosophical Context  –  server-rendered for SEO ─── */}
+        <div className="mb-8 text-text-secondary text-sm leading-relaxed">
+          <p>
+            {locale === 'hi'
+              ? 'हिन्दू कैलेंडर एक साथ खगोलीय और आध्यात्मिक है। प्रत्येक त्योहार की तिथि वास्तविक खगोलीय घटनाओं से गणित होती है — दीपावली कार्तिक की अमावस्या (नवचन्द्र) पर आती है, होली फाल्गुन की पूर्णिमा पर, गणेश चतुर्थी भाद्रपद की चतुर्थी पर। ये मनमानी तिथियाँ नहीं हैं — ये सटीक चन्द्र-सौर संरेखण हैं। यह कैलेंडर वैदिक समझ की एक जीवन्त अभिव्यक्ति है कि मानव जीवन ब्रह्माण्डीय लय से अन्तर्गुन्थित है।'
+              : 'The Hindu calendar is simultaneously astronomical and spiritual. Every festival date is computed from real celestial events — Diwali falls on the Amavasya (new moon) of Kartik, Holi on the Purnima (full moon) of Phalguna, Ganesh Chaturthi on the Chaturthi of Bhadrapada. These are not arbitrary dates — they are precise lunar-solar alignments. The calendar is a living expression of the Vedic understanding that human life is interwoven with cosmic rhythm.'}
+          </p>
+        </div>
+
         {/* ─── Month Quick Jump ────────────────────────────────── */}
         <nav className="mb-10 p-4 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12">
           <p className="text-text-secondary text-sm mb-3 font-medium">{l('jumpTo', locale)}</p>

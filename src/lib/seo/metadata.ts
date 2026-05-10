@@ -32,7 +32,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       bn: 'আজকের পঞ্চাঙ্গ  –  তিথি, নক্ষত্র, যোগ | Dekho Panchang',
     },
     description: {
-      en: 'Check today\'s Panchang for your city  –  Tithi, Nakshatra, Yoga, Karana, Rahu Kaal, Shubh Muhurat, sunrise & sunset. Free, accurate, updated daily for any location worldwide.',
+      en: 'Check today\'s Panchang for your city  –  Tithi, Nakshatra, Yoga, Karana, Rahu Kaal, Shubh Muhurat, sunrise & sunset. Computed from real planetary positions using Surya Siddhanta algorithms. Free, accurate, updated daily for any location worldwide.',
       hi: 'आज का पंचांग अपने शहर के लिए देखें  –  तिथि, नक्षत्र, योग, करण, राहु काल, शुभ मुहूर्त। निःशुल्क, सटीक, प्रतिदिन अपडेट।',
       sa: 'अद्य स्वनगरस्य पञ्चाङ्गं पश्यतु  –  तिथिः नक्षत्रं योगः करणं राहुकालः शुभमुहूर्तः सूर्योदयः सूर्यास्तश्च।',
       gu: 'આજનું પંચાંગ તમારા શહેર માટે તપાસો  –  તિથિ, નક્ષત્ર, રાહુ કાળ, શુભ મુહૂર્ત. મફત અને સચોટ.',
@@ -418,7 +418,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       sa: 'दैनिकराशिफलम्  –  द्वादशराशयः',
     },
     description: {
-      en: 'Free daily horoscope for all 12 zodiac signs based on real Vedic planetary transits. Check your Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, Pisces horoscope today.',
+      en: 'Free daily horoscope for all 12 zodiac signs based on actual sidereal planetary transits, not seasonal approximations. Check your Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, Pisces horoscope today.',
       hi: 'सभी 12 राशियों का मुफ्त दैनिक राशिफल वास्तविक वैदिक ग्रह गोचर पर आधारित। मेष, वृषभ, मिथुन, कर्क, सिंह, कन्या, तुला, वृश्चिक, धनु, मकर, कुम्भ, मीन राशिफल आज।',
       sa: 'द्वादशराशीनां दैनिकफलम्',
     },

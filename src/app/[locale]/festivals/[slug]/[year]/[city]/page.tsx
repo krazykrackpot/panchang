@@ -10,6 +10,7 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { getPujaVidhiBySlug } from '@/lib/constants/puja-vidhi';
+import { getCityFestivalContext } from '@/lib/constants/city-festival-context';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Calendar, Clock, MapPin, Sun, Moon, ChevronDown, ChevronRight, Info, BookOpen, Sparkles, Leaf, CheckCircle } from 'lucide-react';
@@ -703,6 +704,29 @@ export default async function FestivalCityPage({
             </div>
           )}
         </div>
+
+        {/* ── City-Specific Celebration Context ── */}
+        {(() => {
+          const cityContext = getCityFestivalContext(slug, citySlug);
+          if (!cityContext) return null;
+          const contextText = isHi ? cityContext.hi : cityContext.en;
+          return (
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] rounded-2xl border border-gold-primary/12 p-5 sm:p-6 space-y-3">
+              <div className="flex items-center gap-2">
+                <MapPin className="w-5 h-5 text-gold-primary" />
+                <h2 className="text-gold-light font-bold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
+                  {tl({
+                    en: `Celebrating ${festivalNameEn} in ${cityNameEn}`,
+                    hi: `${cityNameLocale} में ${festivalNameLocale} का उत्सव`,
+                  }, locale)}
+                </h2>
+              </div>
+              <p className="text-text-secondary text-sm leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                {contextText}
+              </p>
+            </div>
+          );
+        })()}
 
         <div className="border-t border-gold-primary/15" />
 

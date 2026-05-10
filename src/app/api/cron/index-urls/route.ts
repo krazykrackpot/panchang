@@ -1,24 +1,23 @@
 /**
- * Cron endpoint: submits today's panchang URLs to IndexNow so Bing, Yandex,
- * and Google crawl new daily pages quickly.
+ * Cron endpoint: submits genuinely changing URLs to IndexNow so Bing, Yandex,
+ * and Google crawl updated pages quickly.
  *
- * Schedule: 00:05 UTC daily (5 minutes after midnight  –  pages are live by then).
- * Protected by CRON_SECRET header (same pattern as all other cron routes).
+ * IMPORTANT: Bing warns against batch mode — only submit URLs whose content
+ * actually changed TODAY (daily panchang, horoscope). Do NOT bulk-submit
+ * hundreds of city pages daily — that triggers rate limiting and indexing delays.
  *
- * Active locales: en, hi, ta, bn (4 total).
- * City pages: 55 cities × 4 locales = 220 city URLs.
- * Plus main panchang + home pages per locale = 228 URLs per day.
+ * Schedule: 00:05 UTC daily (5 minutes after midnight).
+ * Protected by CRON_SECRET header.
  */
 
 import { NextResponse } from 'next/server';
-import { CITIES } from '@/lib/constants/cities';
 import { submitUrlsToIndexNow } from '@/lib/seo/indexnow';
 
-// The 7 active locales served by this app (expanded Apr 30 2026).
-const ACTIVE_LOCALES = ['en', 'hi', 'ta', 'te', 'bn', 'gu', 'kn'] as const;
+// Only en + hi for IndexNow — these are the primary traffic locales.
+// Other locales get discovered via sitemap, not daily pings.
+const INDEXNOW_LOCALES = ['en', 'hi'] as const;
 
 export async function GET(request: Request) {
-  // Verify cron secret  –  same auth pattern used by all other cron routes
   const authHeader = request.headers.get('authorization');
   const cronSecret = process.env.CRON_SECRET?.trim();
   if (cronSecret && authHeader !== `Bearer ${cronSecret}`) {
@@ -27,20 +26,21 @@ export async function GET(request: Request) {
 
   try {
     const paths: string[] = [];
+    const today = new Date().toISOString().slice(0, 10);
 
-    for (const locale of ACTIVE_LOCALES) {
-      // Home page
-      paths.push(`/${locale}`);
-
-      // Main panchang page (location-agnostic)
-      paths.push(`/${locale}/panchang`);
-
-      // City-specific panchang pages  –  one per city per locale
-      for (const city of CITIES) {
-        paths.push(`/${locale}/panchang/${city.slug}`);
+    for (const locale of INDEXNOW_LOCALES) {
+      // Pages whose content genuinely changes daily:
+      paths.push(`/${locale}/panchang`);                    // Daily panchang
+      paths.push(`/${locale}/horoscope`);                   // Daily horoscope hub
+      // Date-specific horoscope pages (new URL each day)
+      const rashis = ['mesh','vrishabh','mithun','kark','simha','kanya','tula','vrishchik','dhanu','makar','kumbh','meen'];
+      for (const r of rashis) {
+        paths.push(`/${locale}/horoscope/${r}`);             // Daily rashi page (ISR refreshes)
+        paths.push(`/${locale}/horoscope/${r}/${today}`);    // Today's date-specific URL
       }
     }
 
+    // Total: ~52 URLs (2 locales × 26 paths) — lean, no batch bloat
     const result = await submitUrlsToIndexNow(paths);
 
     console.log(

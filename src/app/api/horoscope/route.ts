@@ -10,6 +10,15 @@ import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 const cache = new Map<string, { data: Record<number, string>; createdAt: number }>();
 const CACHE_TTL = 24 * 60 * 60 * 1000; // 24 hours
 
+// Prevent unbounded growth: evict expired entries every 5 minutes, cap at 1000
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, entry] of cache.entries()) {
+    if (now - entry.createdAt > CACHE_TTL) cache.delete(key);
+  }
+  if (cache.size > 1000) cache.clear();
+}, 5 * 60 * 1000);
+
 const querySchema = z.object({
   sign: z.coerce.number().int().min(1).max(12).optional(),
   locale: z.enum(['en', 'hi', 'sa']).default('en'),

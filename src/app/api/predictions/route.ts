@@ -108,9 +108,9 @@ export async function POST(req: NextRequest) {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const panchangLoc = profile?.panchang_location as any;
+  const panchangLoc = profile?.panchang_location as any; // TODO: extend user_profiles type to include panchang_location shape ({ lat, lng, timezone })
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const defaultLoc = profile?.default_location as any;
+  const defaultLoc = profile?.default_location as any; // TODO: extend user_profiles type to include default_location shape ({ lat, lng, timezone })
 
   let lat: number;
   let lng: number;
@@ -140,7 +140,7 @@ export async function POST(req: NextRequest) {
 
   const dashaTimeline = (snapshot?.dasha_timeline ?? null) as DashaEntry[] | null;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const sadeSatiData = snapshot?.sade_sati as any;
+  const sadeSatiData = snapshot?.sade_sati as any; // TODO: extend kundali_snapshots type to include sade_sati shape ({ phase: string })
   const sadeSatiPhase: string | null =
     typeof sadeSatiData?.phase === 'string' ? sadeSatiData.phase : null;
 

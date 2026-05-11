@@ -187,7 +187,9 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
               }),
             });
           }
-        } catch { /* snapshot is best-effort; profile already saved */ }
+        } catch (snapshotErr) {
+          console.error('[OnboardingModal] kundali snapshot failed (non-critical):', snapshotErr);
+        }
       }
 
       // Also persist to localStorage for offline access
@@ -198,10 +200,13 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
           birth_time: birthTime,
           location: birthLocation,
         }));
-      } catch { /* ignore */ }
+      } catch (storageErr) {
+        console.error('[OnboardingModal] localStorage persist failed:', storageErr);
+      }
 
       onComplete();
-    } catch {
+    } catch (err) {
+      console.error('[OnboardingModal] submit failed:', err);
       setError('Something went wrong. Please try again.');
       setSaving(false);
     }
@@ -318,7 +323,8 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
                   }, { onConflict: 'id' });
                 }
                 onComplete();
-              } catch {
+              } catch (skipErr) {
+                console.error('[OnboardingModal] skip save failed:', skipErr);
                 onComplete();
               }
             }}

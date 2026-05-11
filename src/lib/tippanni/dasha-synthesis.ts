@@ -360,7 +360,8 @@ function getTransitContext(
     );
 
     return { text, jupiterFavorable, saturnFavorable };
-  } catch {
+  } catch (err) {
+    console.error('[dasha-synthesis] transit overlay synthesis failed:', err);
     return { text: '', jupiterFavorable: false, saturnFavorable: false };
   }
 }

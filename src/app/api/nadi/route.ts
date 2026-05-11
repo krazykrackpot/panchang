@@ -14,9 +14,19 @@ import { NextResponse } from 'next/server';
 import { generateKundali } from '@/lib/ephem/kundali-calc';
 import { generateBNNReading } from '@/lib/nadi/bnn-engine';
 import { computeKarmicProfile } from '@/lib/nadi/karmic-profile';
+import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 import type { BirthData } from '@/types/kundali';
 
 export async function POST(request: Request) {
+  const ip = getClientIP(request);
+  const { allowed } = checkRateLimit(ip, { maxRequests: 30, windowMs: 60000 });
+  if (!allowed) {
+    return NextResponse.json(
+      { error: 'Rate limit exceeded. Please wait before making more requests.' },
+      { status: 429, headers: { 'X-RateLimit-Remaining': '0', 'Retry-After': '60' } },
+    );
+  }
+
   try {
     const body: BirthData & { locale?: string } = await request.json();
 

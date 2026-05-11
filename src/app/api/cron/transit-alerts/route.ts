@@ -100,97 +100,101 @@ export async function GET(req: NextRequest) {
   let notified = 0;
 
   for (const snap of snapshots) {
-    let chartData;
     try {
-      chartData = typeof snap.chart_data === 'string'
-        ? JSON.parse(snap.chart_data)
-        : snap.chart_data;
-    } catch {
-      console.error('[transit-alerts] corrupt chart_data for user', snap.user_id);
-      continue;
-    }
+      let chartData;
+      try {
+        chartData = typeof snap.chart_data === 'string'
+          ? JSON.parse(snap.chart_data)
+          : snap.chart_data;
+      } catch {
+        console.error('[transit-alerts] corrupt chart_data for user', snap.user_id);
+        continue;
+      }
 
-    const savTable = chartData?.ashtakavarga?.savTable;
-    const ascSign = chartData?.ascendant?.sign || snap.ascendant_sign;
-    if (!savTable || !ascSign) continue;
+      const savTable = chartData?.ashtakavarga?.savTable;
+      const ascSign = chartData?.ascendant?.sign || snap.ascendant_sign;
+      if (!savTable || !ascSign) continue;
 
-    processed++;
+      processed++;
 
-    // Compute current transits for this user
-    const transits = computePersonalTransits(ascSign, savTable);
-    const significant = transits.filter(t => t.quality === 'strong' || t.quality === 'weak');
+      // Compute current transits for this user
+      const transits = computePersonalTransits(ascSign, savTable);
+      const significant = transits.filter(t => t.quality === 'strong' || t.quality === 'weak');
 
-    if (significant.length === 0) continue;
+      if (significant.length === 0) continue;
 
-    // Deduplicate: check for transit_alert notifications in the last 7 days
-    const sevenDaysAgo = new Date(Date.now() - 7 * 86_400_000).toISOString();
-    const { data: existing } = await supabase
-      .from('user_notifications')
-      .select('metadata')
-      .eq('user_id', snap.user_id)
-      .eq('type', 'transit_alert')
-      .gte('created_at', sevenDaysAgo);
+      // Deduplicate: check for transit_alert notifications in the last 7 days
+      const sevenDaysAgo = new Date(Date.now() - 7 * 86_400_000).toISOString();
+      const { data: existing } = await supabase
+        .from('user_notifications')
+        .select('metadata')
+        .eq('user_id', snap.user_id)
+        .eq('type', 'transit_alert')
+        .gte('created_at', sevenDaysAgo);
 
-    const existingPlanets = new Set(
-      (existing || []).map(e => e.metadata?.planetId),
-    );
+      const existingPlanets = new Set(
+        (existing || []).map(e => e.metadata?.planetId),
+      );
 
-    const topTransit = significant.find(t => !existingPlanets.has(t.planetId));
-    if (!topTransit) continue;
+      const topTransit = significant.find(t => !existingPlanets.has(t.planetId));
+      if (!topTransit) continue;
 
-    // Determine which Personal Pandit domain this transit activates
-    const domainMapping = getTransitDomain(topTransit);
-    const domainLabel = domainMapping ? DOMAIN_LABELS[domainMapping.domain] : null;
+      // Determine which Personal Pandit domain this transit activates
+      const domainMapping = getTransitDomain(topTransit);
+      const domainLabel = domainMapping ? DOMAIN_LABELS[domainMapping.domain] : null;
 
-    // Build domain-aware notification body
-    let body: string;
-    if (domainLabel) {
-      const zoneLabel = topTransit.quality === 'strong' ? 'strong zone' : 'weak zone';
-      const advice = topTransit.quality === 'strong'
-        ? DOMAIN_STRONG_ADVICE[domainMapping!.domain]
-        : DOMAIN_WEAK_ADVICE[domainMapping!.domain];
-      body = `${topTransit.planetName.en} is transiting your ${ordinal(topTransit.house)} house (${zoneLabel}, ${topTransit.savBindu} bindus). Your **${domainLabel}** domain is ${topTransit.quality === 'strong' ? 'activated' : 'facing pressure'}  –  ${advice}`;
-    } else {
-      body = `${topTransit.planetName.en} is transiting your ${ordinal(topTransit.house)} house (${topTransit.signName.en}, ${topTransit.savBindu} bindus). ${topTransit.quality === 'strong' ? 'Favorable period  –  take action!' : 'Navigate carefully.'}`;
-    }
+      // Build domain-aware notification body
+      let body: string;
+      if (domainLabel) {
+        const zoneLabel = topTransit.quality === 'strong' ? 'strong zone' : 'weak zone';
+        const advice = topTransit.quality === 'strong'
+          ? DOMAIN_STRONG_ADVICE[domainMapping!.domain]
+          : DOMAIN_WEAK_ADVICE[domainMapping!.domain];
+        body = `${topTransit.planetName.en} is transiting your ${ordinal(topTransit.house)} house (${zoneLabel}, ${topTransit.savBindu} bindus). Your **${domainLabel}** domain is ${topTransit.quality === 'strong' ? 'activated' : 'facing pressure'}  –  ${advice}`;
+      } else {
+        body = `${topTransit.planetName.en} is transiting your ${ordinal(topTransit.house)} house (${topTransit.signName.en}, ${topTransit.savBindu} bindus). ${topTransit.quality === 'strong' ? 'Favorable period  –  take action!' : 'Navigate carefully.'}`;
+      }
 
-    const alertTitle = `Transit Alert: ${topTransit.planetName.en} in ${topTransit.signName.en}`;
+      const alertTitle = `Transit Alert: ${topTransit.planetName.en} in ${topTransit.signName.en}`;
 
-    // Build push URL  –  link to domain deep dive if domain is known
-    const pushUrl = domainMapping
-      ? `/en/kundali?domain=${domainMapping.domain}`
-      : '/en/kundali';
+      // Build push URL  –  link to domain deep dive if domain is known
+      const pushUrl = domainMapping
+        ? `/en/kundali?domain=${domainMapping.domain}`
+        : '/en/kundali';
 
-    await supabase.from('user_notifications').insert({
-      user_id: snap.user_id,
-      type: 'transit_alert',
-      title: alertTitle,
-      body,
-      metadata: {
-        planetId: topTransit.planetId,
-        sign: topTransit.currentSign,
-        house: topTransit.house,
-        quality: topTransit.quality,
-        savBindu: topTransit.savBindu,
-        domain: domainMapping?.domain ?? null,
-        domainPrimary: domainMapping?.primary ?? false,
-      },
-      read: false,
-    });
-
-    // Send web push notification (non-blocking  –  don't fail the cron if push fails)
-    try {
-      await sendPushToUser(snap.user_id, {
+      await supabase.from('user_notifications').insert({
+        user_id: snap.user_id,
+        type: 'transit_alert',
         title: alertTitle,
-        body: body.replace(/\*\*/g, ''), // Strip markdown bold for push
-        url: pushUrl,
-        tag: 'transit-alert',
+        body,
+        metadata: {
+          planetId: topTransit.planetId,
+          sign: topTransit.currentSign,
+          house: topTransit.house,
+          quality: topTransit.quality,
+          savBindu: topTransit.savBindu,
+          domain: domainMapping?.domain ?? null,
+          domainPrimary: domainMapping?.primary ?? false,
+        },
+        read: false,
       });
-    } catch (pushErr) {
-      console.error(`[TransitAlerts] Push failed for user ${snap.user_id}:`, pushErr);
-    }
 
-    notified++;
+      // Send web push notification (non-blocking  –  don't fail the cron if push fails)
+      try {
+        await sendPushToUser(snap.user_id, {
+          title: alertTitle,
+          body: body.replace(/\*\*/g, ''), // Strip markdown bold for push
+          url: pushUrl,
+          tag: 'transit-alert',
+        });
+      } catch (pushErr) {
+        console.error(`[TransitAlerts] Push failed for user ${snap.user_id}:`, pushErr);
+      }
+
+      notified++;
+    } catch (err) {
+      console.error('[transit-alerts] user processing failed:', snap.user_id, err);
+    }
   }
 
   return NextResponse.json({

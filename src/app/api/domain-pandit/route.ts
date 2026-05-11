@@ -12,6 +12,15 @@ interface DailyUsage {
 
 const dailyUsageMap = new Map<string, DailyUsage>();
 
+// Prevent unbounded growth: evict stale entries every 5 minutes
+setInterval(() => {
+  const today = new Date().toISOString().slice(0, 10);
+  for (const [key, entry] of dailyUsageMap.entries()) {
+    if (entry.date !== today) dailyUsageMap.delete(key);
+  }
+  if (dailyUsageMap.size > 10000) dailyUsageMap.clear();
+}, 5 * 60 * 1000);
+
 const DAILY_LIMITS: Record<string, number> = {
   free: 2,
   pro: 10,

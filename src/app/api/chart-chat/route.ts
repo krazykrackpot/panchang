@@ -202,7 +202,7 @@ export async function POST(request: Request) {
       // Build user snapshot for personal scoring
       let userSnapshot: { birthData: { name: string; date: string; time: string; place: string; lat: number; lng: number; timezone: string; ayanamsha: string }; dashaLords?: { maha: number; antar: number; pratyantar: number } } | undefined;
       if (birthData?.date && birthData?.time && birthData?.lat !== undefined && birthData?.lng !== undefined) {
-        const dashaLords = findCurrentDashaLords(kundali.dashas as any[]);
+        const dashaLords = findCurrentDashaLords(kundali.dashas as any[]); // TODO: extend KundaliData.dashas type to match findCurrentDashaLords expected input
         userSnapshot = {
           birthData: {
             name: birthData.name ?? '',
@@ -247,14 +247,14 @@ export async function POST(request: Request) {
   const client = getClaudeClient();
   if (!client) {
     return NextResponse.json({
-      response: buildFallbackResponse(kundali as any, locale),
+      response: buildFallbackResponse(kundali as any, locale), // TODO: extend KundaliData type to match buildFallbackResponse expected input
       fallback: true,
       muhurtaWindows: muhurtaWindows?.length ? muhurtaWindows : undefined,
     });
   }
 
   try {
-    const systemPrompt = buildChartChatSystemPrompt(kundali as any, locale);
+    const systemPrompt = buildChartChatSystemPrompt(kundali as any, locale); // TODO: extend KundaliData type to match buildChartChatSystemPrompt expected input
 
     // Build messages array from history + current message (with optional muhurta context)
     const messages: { role: 'user' | 'assistant'; content: string }[] = [

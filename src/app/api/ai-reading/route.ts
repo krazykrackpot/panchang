@@ -34,12 +34,26 @@ interface DailyUsage {
 
 const dailyUsageMap = new Map<string, DailyUsage>();
 
+// Prevent unbounded growth: evict stale entries every 5 minutes
+setInterval(() => {
+  const today = new Date().toISOString().slice(0, 10);
+  for (const [key, entry] of dailyUsageMap.entries()) {
+    if (entry.date !== today) dailyUsageMap.delete(key);
+  }
+  // Hard cap: if map still exceeds 10,000 entries, clear entirely
+  if (dailyUsageMap.size > 10000) dailyUsageMap.clear();
+}, 5 * 60 * 1000);
+
 const DAILY_LIMITS: Record<string, number> = {
   free: 2,
   pro: 10,
   jyotishi: -1, // unlimited
 };
 
+// Accepted: UTC-based daily quota. Changing to user-local time would require
+// passing the user's timezone in every API request, adding complexity for
+// negligible benefit. Worst case: quota resets a few hours early/late for
+// users far from UTC.
 function getToday(): string {
   return new Date().toISOString().slice(0, 10);
 }

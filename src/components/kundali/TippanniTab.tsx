@@ -341,6 +341,9 @@ export default function TippanniTab({ kundali, locale, isDevanagari, headingFont
 
   // ── Derived data for hero card ──
   const yogasActive = tip.yogas.filter(y => y.present).length;
+  // TODO: .ratio does not exist on the StrengthOverview type — this is dead code that
+  // always falls through to the s.strength branch. Remove the ratio check once confirmed
+  // that no API response ever includes it, or extend the type if it does.
   const strongPlanets = tip.strengthOverview.filter(s => {
     const ratio = (s as any).ratio as number | undefined;
     return ratio !== undefined ? ratio >= 1.5 : s.strength >= 80;

@@ -116,127 +116,131 @@ export async function GET(req: NextRequest) {
   let notified = 0;
 
   for (const snap of snapshots) {
-    const lastScores = lastScoresByUser.get(snap.user_id);
-    if (!lastScores) continue;
-
-    // Parse chart data
-    let kundali: KundaliData;
     try {
-      kundali = typeof snap.chart_data === 'string'
-        ? JSON.parse(snap.chart_data)
-        : snap.chart_data;
-    } catch {
-      console.error(`[DomainActivations] Failed to parse chart_data for user ${snap.user_id}`);
-      continue;
-    }
+      const lastScores = lastScoresByUser.get(snap.user_id);
+      if (!lastScores) continue;
 
-    if (!kundali?.ascendant || !kundali?.planets || !kundali?.dashas) continue;
-
-    processed++;
-
-    // 3. Compute current domain scores via synthesizeReading
-    let currentScores: Record<string, number>;
-    try {
-      const reading = synthesizeReading(kundali);
-      currentScores = {};
-      for (const domainReading of reading.domains) {
-        currentScores[domainReading.domain] = domainReading.overallRating.score;
+      // Parse chart data
+      let kundali: KundaliData;
+      try {
+        kundali = typeof snap.chart_data === 'string'
+          ? JSON.parse(snap.chart_data)
+          : snap.chart_data;
+      } catch {
+        console.error(`[DomainActivations] Failed to parse chart_data for user ${snap.user_id}`);
+        continue;
       }
-    } catch (synthErr) {
-      console.error(`[DomainActivations] synthesizeReading failed for user ${snap.user_id}:`, synthErr);
-      continue;
-    }
 
-    // 4. Compare with stored scores  –  find significant deltas
-    const changes: { domain: DomainType; delta: number; current: number; previous: number }[] = [];
-    for (const domain of SCORED_DOMAINS) {
-      const prev = lastScores[domain];
-      const curr = currentScores[domain];
-      if (prev == null || curr == null) continue;
-      const delta = curr - prev;
-      if (Math.abs(delta) >= SIGNIFICANT_DELTA) {
-        changes.push({ domain, delta, current: curr, previous: prev });
+      if (!kundali?.ascendant || !kundali?.planets || !kundali?.dashas) continue;
+
+      processed++;
+
+      // 3. Compute current domain scores via synthesizeReading
+      let currentScores: Record<string, number>;
+      try {
+        const reading = synthesizeReading(kundali);
+        currentScores = {};
+        for (const domainReading of reading.domains) {
+          currentScores[domainReading.domain] = domainReading.overallRating.score;
+        }
+      } catch (synthErr) {
+        console.error(`[DomainActivations] synthesizeReading failed for user ${snap.user_id}:`, synthErr);
+        continue;
       }
+
+      // 4. Compare with stored scores  –  find significant deltas
+      const changes: { domain: DomainType; delta: number; current: number; previous: number }[] = [];
+      for (const domain of SCORED_DOMAINS) {
+        const prev = lastScores[domain];
+        const curr = currentScores[domain];
+        if (prev == null || curr == null) continue;
+        const delta = curr - prev;
+        if (Math.abs(delta) >= SIGNIFICANT_DELTA) {
+          changes.push({ domain, delta, current: curr, previous: prev });
+        }
+      }
+
+      if (changes.length === 0) continue;
+
+      // Sort by absolute delta (most significant first)
+      changes.sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
+      const topChange = changes[0];
+
+      const improved = topChange.delta > 0;
+      const domainName = DOMAIN_NAMES[topChange.domain];
+      const deltaAbs = Math.abs(Math.round(topChange.delta * 10) / 10);
+
+      const title = improved
+        ? `${domainName} Domain Improved!`
+        : `${domainName} Domain Needs Attention`;
+
+      const advice = improved
+        ? (IMPROVEMENT_ADVICE[topChange.domain] || 'Check your Personal Pandit reading for details.')
+        : (DECLINE_ADVICE[topChange.domain] || 'Check your Personal Pandit reading for guidance.');
+
+      const body = improved
+        ? `Your ${domainName.toLowerCase()} domain just improved significantly (+${deltaAbs} points)! ${advice}`
+        : `Your ${domainName.toLowerCase()} domain needs attention this month (-${deltaAbs} points). ${advice}`;
+
+      // Create in-app notification
+      try {
+        await supabase.from('user_notifications').insert({
+          user_id: snap.user_id,
+          type: 'domain_activation',
+          title,
+          body,
+          metadata: {
+            domain: topChange.domain,
+            delta: topChange.delta,
+            currentScore: topChange.current,
+            previousScore: topChange.previous,
+            allChanges: changes.map(c => ({ domain: c.domain, delta: c.delta })),
+          },
+          read: false,
+        });
+      } catch (notifErr) {
+        console.error(`[DomainActivations] Notification insert failed for user ${snap.user_id}:`, notifErr);
+      }
+
+      // Send push notification (non-blocking)
+      try {
+        await sendPushToUser(snap.user_id, {
+          title,
+          body,
+          url: `/en/kundali?domain=${topChange.domain}`,
+          tag: 'domain-activation',
+        });
+      } catch (pushErr) {
+        console.error(`[DomainActivations] Push failed for user ${snap.user_id}:`, pushErr);
+      }
+
+      // 5. Store the new reading for this month
+      try {
+        const newRow = {
+          user_id: snap.user_id,
+          computed_at: now.toISOString(),
+          health: currentScores.health ?? 0,
+          wealth: currentScores.wealth ?? 0,
+          career: currentScores.career ?? 0,
+          marriage: currentScores.marriage ?? 0,
+          children: currentScores.children ?? 0,
+          family: currentScores.family ?? 0,
+          spiritual: currentScores.spiritual ?? 0,
+          education: currentScores.education ?? 0,
+          trigger_event: `domain_activation_cron_${topChange.domain}`,
+        };
+
+        await supabase
+          .from('domain_readings')
+          .insert(newRow);
+      } catch (storeErr) {
+        console.error(`[DomainActivations] Failed to store reading for user ${snap.user_id}:`, storeErr);
+      }
+
+      notified++;
+    } catch (err) {
+      console.error('[domain-activations] user processing failed:', snap.user_id, err);
     }
-
-    if (changes.length === 0) continue;
-
-    // Sort by absolute delta (most significant first)
-    changes.sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
-    const topChange = changes[0];
-
-    const improved = topChange.delta > 0;
-    const domainName = DOMAIN_NAMES[topChange.domain];
-    const deltaAbs = Math.abs(Math.round(topChange.delta * 10) / 10);
-
-    const title = improved
-      ? `${domainName} Domain Improved!`
-      : `${domainName} Domain Needs Attention`;
-
-    const advice = improved
-      ? (IMPROVEMENT_ADVICE[topChange.domain] || 'Check your Personal Pandit reading for details.')
-      : (DECLINE_ADVICE[topChange.domain] || 'Check your Personal Pandit reading for guidance.');
-
-    const body = improved
-      ? `Your ${domainName.toLowerCase()} domain just improved significantly (+${deltaAbs} points)! ${advice}`
-      : `Your ${domainName.toLowerCase()} domain needs attention this month (-${deltaAbs} points). ${advice}`;
-
-    // Create in-app notification
-    try {
-      await supabase.from('user_notifications').insert({
-        user_id: snap.user_id,
-        type: 'domain_activation',
-        title,
-        body,
-        metadata: {
-          domain: topChange.domain,
-          delta: topChange.delta,
-          currentScore: topChange.current,
-          previousScore: topChange.previous,
-          allChanges: changes.map(c => ({ domain: c.domain, delta: c.delta })),
-        },
-        read: false,
-      });
-    } catch (notifErr) {
-      console.error(`[DomainActivations] Notification insert failed for user ${snap.user_id}:`, notifErr);
-    }
-
-    // Send push notification (non-blocking)
-    try {
-      await sendPushToUser(snap.user_id, {
-        title,
-        body,
-        url: `/en/kundali?domain=${topChange.domain}`,
-        tag: 'domain-activation',
-      });
-    } catch (pushErr) {
-      console.error(`[DomainActivations] Push failed for user ${snap.user_id}:`, pushErr);
-    }
-
-    // 5. Store the new reading for this month
-    try {
-      const newRow = {
-        user_id: snap.user_id,
-        computed_at: now.toISOString(),
-        health: currentScores.health ?? 0,
-        wealth: currentScores.wealth ?? 0,
-        career: currentScores.career ?? 0,
-        marriage: currentScores.marriage ?? 0,
-        children: currentScores.children ?? 0,
-        family: currentScores.family ?? 0,
-        spiritual: currentScores.spiritual ?? 0,
-        education: currentScores.education ?? 0,
-        trigger_event: `domain_activation_cron_${topChange.domain}`,
-      };
-
-      await supabase
-        .from('domain_readings')
-        .insert(newRow);
-    } catch (storeErr) {
-      console.error(`[DomainActivations] Failed to store reading for user ${snap.user_id}:`, storeErr);
-    }
-
-    notified++;
   }
 
   return NextResponse.json({

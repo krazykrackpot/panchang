@@ -1406,9 +1406,9 @@ export function generateTippanni(kundali: KundaliData, locale: Locale): Tippanni
   // (it reads from the completed tippanni to weave threads together)
   try {
     result.chartNarrative = buildChartNarrative(kundali, result, locale, stageCtx);
-  } catch {
+  } catch (err) {
     // Narrative is non-critical  –  never block the tippanni on a narrative failure
-    console.error('[tippanni] Chart narrative generation failed');
+    console.error('[tippanni-engine] Chart narrative generation failed:', err);
   }
 
   return result;

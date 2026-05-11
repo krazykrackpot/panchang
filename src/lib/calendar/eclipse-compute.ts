@@ -113,7 +113,8 @@ function getTzOffset(timezone: string, date: string): number {
     const utcDate = new Date(utcStr);
     const localDate = new Date(localStr);
     return (localDate.getTime() - utcDate.getTime()) / 3600000;
-  } catch {
+  } catch (err) {
+    console.error('[eclipse-compute] timezone offset calculation failed:', err);
     return 0;
   }
 }
@@ -126,7 +127,8 @@ function getSunriseSunset(date: string, lat: number, lng: number, tzOffset: numb
     const srH = times.sunrise.getHours() + times.sunrise.getMinutes() / 60;
     const ssH = times.sunset.getHours() + times.sunset.getMinutes() / 60;
     return { sunrise: srH, sunset: ssH };
-  } catch {
+  } catch (err) {
+    console.error('[eclipse-compute] sunrise/sunset calculation failed:', err);
     return null;
   }
 }

@@ -6,6 +6,7 @@
 
 import { GRAHAS } from '@/lib/constants/grahas';
 import { generateKundali } from '@/lib/ephem/kundali-calc';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { BirthData, KundaliData } from '@/types/kundali';
 import type {
   AshtamangalaObject,
@@ -116,8 +117,19 @@ export function calculateArudaHouse(num: number): number {
 function getCurrentDateTime(tz: number | string): { date: string; time: string } {
   const now = new Date();
 
-  // Parse timezone offset
-  const tzOffset = (typeof tz === 'number' ? tz : parseFloat(tz)) || 0;
+  // If tz is an IANA timezone string (e.g. "Asia/Kolkata"), resolve the correct
+  // UTC offset for the current date (handles DST). Only use parseFloat for
+  // already-numeric values.
+  let tzOffset: number;
+  if (typeof tz === 'string' && isNaN(Number(tz))) {
+    // IANA timezone string  –  resolve DST-aware offset
+    const y = now.getUTCFullYear();
+    const m = now.getUTCMonth() + 1;
+    const d = now.getUTCDate();
+    tzOffset = getUTCOffsetForDate(y, m, d, tz);
+  } else {
+    tzOffset = (typeof tz === 'number' ? tz : parseFloat(tz)) || 0;
+  }
   const utcMs = now.getTime() + now.getTimezoneOffset() * 60000;
   const localMs = utcMs + tzOffset * 3600000;
   const local = new Date(localMs);

@@ -7,6 +7,7 @@
  */
 
 import { NextResponse } from 'next/server';
+import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 import { scanDateRangeV2 } from '@/lib/muhurta/time-window-scanner';
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -250,6 +251,15 @@ function computeRestrictions(
 }
 
 export async function POST(request: Request) {
+  const ip = getClientIP(request);
+  const { allowed } = checkRateLimit(ip, { maxRequests: 30, windowMs: 60000 });
+  if (!allowed) {
+    return NextResponse.json(
+      { error: 'Rate limit exceeded. Please wait before making more requests.' },
+      { status: 429, headers: { 'X-RateLimit-Remaining': '0', 'Retry-After': '60' } },
+    );
+  }
+
   const startTime = Date.now();
 
   try {

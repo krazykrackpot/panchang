@@ -19,6 +19,16 @@ interface CachedReading {
 
 const readingCache = new Map<string, CachedReading>();
 
+// Prevent unbounded growth: evict expired cache entries every 5 minutes, cap at 1000
+const READING_CACHE_TTL = 24 * 60 * 60 * 1000; // 24 hours
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, entry] of readingCache.entries()) {
+    if (now - entry.generatedAt > READING_CACHE_TTL) readingCache.delete(key);
+  }
+  if (readingCache.size > 1000) readingCache.clear();
+}, 5 * 60 * 1000);
+
 // ─── Monthly usage tracking per user ─────────────────────────────────────────
 
 interface MonthlyUsage {
@@ -27,6 +37,15 @@ interface MonthlyUsage {
 }
 
 const monthlyUsageMap = new Map<string, MonthlyUsage>();
+
+// Prevent unbounded growth: evict stale monthly entries every 5 minutes
+setInterval(() => {
+  const currentMonth = (() => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`; })();
+  for (const [key, entry] of monthlyUsageMap.entries()) {
+    if (entry.month !== currentMonth) monthlyUsageMap.delete(key);
+  }
+  if (monthlyUsageMap.size > 10000) monthlyUsageMap.clear();
+}, 5 * 60 * 1000);
 
 const MONTHLY_LIMITS: Record<string, number> = {
   pro: 5,

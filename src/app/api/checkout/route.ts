@@ -1,7 +1,17 @@
 import { NextResponse } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
+import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 
 export async function POST(req: Request) {
+  const ip = getClientIP(req);
+  const { allowed } = checkRateLimit(ip, { maxRequests: 10, windowMs: 60000 });
+  if (!allowed) {
+    return NextResponse.json(
+      { error: 'Rate limit exceeded. Please wait before making more requests.' },
+      { status: 429, headers: { 'X-RateLimit-Remaining': '0', 'Retry-After': '60' } },
+    );
+  }
+
   try {
     const { tier, billing, currency } = await req.json() as {
       tier: 'pro' | 'jyotishi';

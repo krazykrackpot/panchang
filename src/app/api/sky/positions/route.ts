@@ -7,11 +7,21 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getCurrentSkyPositions } from '@/lib/sky/positions';
+import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export async function GET(request: NextRequest) {
+  const ip = getClientIP(request);
+  const { allowed } = checkRateLimit(ip, { maxRequests: 30, windowMs: 60000 });
+  if (!allowed) {
+    return NextResponse.json(
+      { error: 'Rate limit exceeded. Please wait before making more requests.' },
+      { status: 429, headers: { 'X-RateLimit-Remaining': '0', 'Retry-After': '60' } },
+    );
+  }
+
   try {
     const dateParam = request.nextUrl.searchParams.get('date');
     const now = dateParam ? new Date(dateParam) : new Date();

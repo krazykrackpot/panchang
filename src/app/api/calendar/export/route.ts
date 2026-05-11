@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
 import { getEclipsesForYear, type EclipseData } from '@/lib/calendar/eclipse-data';
 import { generateICal, type ICalEvent } from '@/lib/calendar/ical-generator';
@@ -36,6 +37,15 @@ const VALID_CATEGORIES: Category[] = ['all', 'major', 'ekadashi', 'purnima', 'am
  *   locale     –  locale for event names: "en" | "hi" | "sa" etc. (default: "en")
  */
 export async function GET(request: Request) {
+  const ip = getClientIP(request);
+  const { allowed } = checkRateLimit(ip, { maxRequests: 30, windowMs: 60000 });
+  if (!allowed) {
+    return NextResponse.json(
+      { error: 'Rate limit exceeded. Please wait before making more requests.' },
+      { status: 429, headers: { 'X-RateLimit-Remaining': '0', 'Retry-After': '60' } },
+    );
+  }
+
   const { searchParams } = new URL(request.url);
 
   const yearParam = searchParams.get('year')?.trim();

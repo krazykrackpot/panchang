@@ -88,7 +88,7 @@ export async function POST(req: NextRequest) {
 
     // 4. Compute kundalis for family members
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const userKundali = snapshot.full_kundali as any;
+    const userKundali = snapshot.full_kundali as any; // TODO: extend kundali_snapshots type to include full_kundali as KundaliData
 
     // For spouse, pick the most recent one if multiple exist (ordered ASC, so last = newest)
     const spouseCharts = familyCharts.filter(c => c.relationship === 'spouse');

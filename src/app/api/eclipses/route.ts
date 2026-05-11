@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { generateEclipseCalendar, type EclipseEvent } from '@/lib/calendar/eclipses';
 import { getEclipsesForYear, ECLIPSE_TABLE } from '@/lib/calendar/eclipse-data';
 import { computeLocalEclipse, type LocalEclipseResult } from '@/lib/calendar/eclipse-compute';
+import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 import type { LocaleText,} from '@/types/panchang';
 
 interface EnrichedEclipse extends EclipseEvent {
@@ -22,6 +23,15 @@ const MAG_NAMES: Record<string, LocaleText> = {
 };
 
 export async function GET(req: NextRequest) {
+  const ip = getClientIP(req);
+  const { allowed } = checkRateLimit(ip, { maxRequests: 30, windowMs: 60000 });
+  if (!allowed) {
+    return NextResponse.json(
+      { error: 'Rate limit exceeded. Please wait before making more requests.' },
+      { status: 429, headers: { 'X-RateLimit-Remaining': '0', 'Retry-After': '60' } },
+    );
+  }
+
   try {
     const { searchParams } = new URL(req.url);
     const year = parseInt(searchParams.get('year') || String(new Date().getFullYear()));

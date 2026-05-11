@@ -3,9 +3,19 @@ import { generateVarshaphal } from '@/lib/varshaphal';
 import { computeMaasaphal } from '@/lib/varshaphal/maasaphal';
 import { computeVarsheshaDasha } from '@/lib/varshaphal/varshesha-dasha';
 import { computePatyayiniDasha } from '@/lib/varshaphal/patyayini-dasha';
+import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 import type { BirthData } from '@/types/kundali';
 
 export async function POST(request: Request) {
+  const ip = getClientIP(request);
+  const { allowed } = checkRateLimit(ip, { maxRequests: 30, windowMs: 60000 });
+  if (!allowed) {
+    return NextResponse.json(
+      { error: 'Rate limit exceeded. Please wait before making more requests.' },
+      { status: 429, headers: { 'X-RateLimit-Remaining': '0', 'Retry-After': '60' } },
+    );
+  }
+
   try {
     const body = await request.json();
     const { birthData, year, detail } = body as {

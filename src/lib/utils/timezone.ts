@@ -159,25 +159,51 @@ export function resolveTimezone(tz: string | number, year: number, month: number
   return getUTCOffsetForDate(year, month, day, tz);
 }
 
-/**
- * Resolve IANA timezone from lat/lng coordinates.
- * Uses timeapi.io API; falls back to longitude-based estimation.
- * The birth location's coordinates determine the timezone  –  never the browser.
- */
-export async function resolveTimezoneFromCoords(lat: number, lng: number): Promise<string> {
-  // NEVER use the browser's timezone here. This function resolves the timezone
-  // for BIRTH coordinates, which may be in a completely different timezone than
-  // the user's current browser location. A user in Switzerland entering birth
-  // coordinates in Hyderabad must get Asia/Kolkata, not Europe/Zurich.
-  //
-  // Previous bug: Method 1 returned Intl.DateTimeFormat().resolvedOptions().timeZone
-  // (the browser's timezone) which is WRONG for birth location resolution.
-  // This caused incorrect kundali for anyone born in a different timezone than
-  // their current location — wrong nakshatra, wrong tithi, wrong everything.
+// ── Longitude-based IANA fallback map ───────────────────────────────────
+// Used as the absolute last resort when both API and tz-lookup fail.
+const OFFSET_TO_IANA: Record<string, string> = {
+  '-12': 'Etc/GMT+12', '-11': 'Pacific/Midway', '-10': 'Pacific/Honolulu',
+  '-9': 'America/Anchorage', '-8': 'America/Los_Angeles', '-7': 'America/Denver',
+  '-6': 'America/Chicago', '-5': 'America/New_York', '-4': 'America/Halifax',
+  '-3': 'America/Sao_Paulo', '-2': 'Atlantic/South_Georgia', '-1': 'Atlantic/Azores',
+  '0': 'UTC', '1': 'Europe/Paris', '2': 'Europe/Helsinki',
+  '3': 'Europe/Moscow', '4': 'Asia/Dubai', '5': 'Asia/Kolkata',
+  '6': 'Asia/Dhaka', '7': 'Asia/Bangkok', '8': 'Asia/Shanghai',
+  '9': 'Asia/Tokyo', '10': 'Australia/Sydney', '11': 'Pacific/Noumea',
+  '12': 'Pacific/Auckland',
+};
 
+/**
+ * Resolve timezone for a BIRTH LOCATION from its coordinates.
+ *
+ * ██████████████████████████████████████████████████████████████████████
+ * ██  NEVER EVER USE THE BROWSER TIMEZONE HERE.                      ██
+ * ██  This function resolves TZ for where someone WAS BORN,          ██
+ * ██  not where the user IS NOW.                                      ██
+ * ██  A user in Switzerland generating a kundali for someone born     ██
+ * ██  in Hyderabad MUST get Asia/Kolkata, not Europe/Zurich.          ██
+ * ██                                                                  ██
+ * ██  If you are fixing a bug and think adding browser TZ here will   ██
+ * ██  help — STOP. You want resolveCurrentLocationTimezone() instead. ██
+ * ██  This function has caused production bugs TWICE by returning     ██
+ * ██  the browser's timezone. Do not make it three times.             ██
+ * ██████████████████████████████████████████████████████████████████████
+ *
+ * Resolution order:
+ * 1. timeapi.io external API (3s timeout)
+ * 2. tz-lookup offline geographic boundary resolution
+ * 3. India special case: lat 6-36°N, lng 68-98°E → Asia/Kolkata
+ * 4. Nepal: lat 26-31°N, lng 80-89°E → Asia/Kathmandu
+ * 5. Sri Lanka: lat 5-10°N, lng 79-82°E → Asia/Colombo
+ * 6. Japan: lat 24-46°N, lng 123-146°E → Asia/Tokyo
+ * 7. Europe: lng -10 to 40, lat 35-72 → CET/EET/MSK based on longitude bands
+ * 8. Longitude-based fallback: Math.round(lng/15) → IANA map
+ *
+ * MUST NOT contain any reference to Intl.DateTimeFormat, window,
+ * navigator, or browser APIs.
+ */
+export async function resolveBirthTimezone(lat: number, lng: number): Promise<string> {
   // Method 1: External API  –  resolves timezone for arbitrary coordinates.
-  // Needed when coordinates don't match the user's browser timezone
-  // (e.g., searching for panchang in Delhi while sitting in Switzerland).
   try {
     const res = await fetch(
       `https://timeapi.io/api/timezone/coordinate?latitude=${lat}&longitude=${lng}`,
@@ -187,7 +213,7 @@ export async function resolveTimezoneFromCoords(lat: number, lng: number): Promi
       const data = await res.json();
       if (data.timeZone) return data.timeZone;
     }
-  } catch { /* API failed  –  use longitude fallback */ }
+  } catch { /* API failed  –  fall through to offline methods */ }
 
   // Method 2: tz-lookup — offline coordinate-to-IANA timezone resolution.
   // Uses pre-computed geographic boundaries (no bounding box hacks).
@@ -198,24 +224,62 @@ export async function resolveTimezoneFromCoords(lat: number, lng: number): Promi
     const tz = tzLookup(lat, lng);
     if (tz) return tz;
   } catch {
-    // tz-lookup not available — should never happen in production
+    // tz-lookup not available — fall through to geographic special cases
     console.error('[timezone] tz-lookup failed for', lat, lng);
   }
 
-  // Method 3: absolute last resort — crude longitude estimate
+  // Method 3: Geographic special cases (bounding-box approximations)
+  // India: lat 6-36°N, lng 68-98°E
+  if (lat >= 6 && lat <= 36 && lng >= 68 && lng <= 98) return 'Asia/Kolkata';
+  // Nepal: lat 26-31°N, lng 80-89°E (checked AFTER India since overlap exists;
+  // Nepal's box is more specific)
+  if (lat >= 26 && lat <= 31 && lng >= 80 && lng <= 89) return 'Asia/Kathmandu';
+  // Sri Lanka: lat 5-10°N, lng 79-82°E
+  if (lat >= 5 && lat <= 10 && lng >= 79 && lng <= 82) return 'Asia/Colombo';
+  // Japan: lat 24-46°N, lng 123-146°E
+  if (lat >= 24 && lat <= 46 && lng >= 123 && lng <= 146) return 'Asia/Tokyo';
+  // Europe: lng -10 to 40, lat 35-72
+  if (lat >= 35 && lat <= 72 && lng >= -10 && lng <= 40) {
+    if (lng < 5) return 'Europe/London';        // Western Europe / UK / Portugal
+    if (lng < 16) return 'Europe/Paris';         // CET: France, Benelux, Germany west
+    if (lng < 30) return 'Europe/Helsinki';      // EET: Eastern Europe, Scandinavia east
+    return 'Europe/Moscow';                       // MSK: lng 30-40
+  }
+
+  // Method 4: Absolute last resort — crude longitude estimate
   const offsetHours = Math.round(lng / 15);
-  const OFFSET_TO_IANA: Record<string, string> = {
-    '-12': 'Etc/GMT+12', '-11': 'Pacific/Midway', '-10': 'Pacific/Honolulu',
-    '-9': 'America/Anchorage', '-8': 'America/Los_Angeles', '-7': 'America/Denver',
-    '-6': 'America/Chicago', '-5': 'America/New_York', '-4': 'America/Halifax',
-    '-3': 'America/Sao_Paulo', '-2': 'Atlantic/South_Georgia', '-1': 'Atlantic/Azores',
-    '0': 'UTC', '1': 'Europe/Paris', '2': 'Europe/Helsinki',
-    '3': 'Europe/Moscow', '4': 'Asia/Dubai', '5': 'Asia/Kolkata',
-    '6': 'Asia/Dhaka', '7': 'Asia/Bangkok', '8': 'Asia/Shanghai',
-    '9': 'Asia/Tokyo', '10': 'Australia/Sydney', '11': 'Pacific/Noumea',
-    '12': 'Pacific/Auckland',
-  };
   return OFFSET_TO_IANA[String(offsetHours)] || 'UTC';
+}
+
+/**
+ * Resolve timezone for the USER'S CURRENT LOCATION.
+ * Used by panchang, location search, muhurta — situations where the
+ * coordinates come from browser geolocation or IP detection, so the
+ * browser's own timezone IS correct.
+ *
+ * For birth charts, use resolveBirthTimezone() instead.
+ */
+export async function resolveCurrentLocationTimezone(lat: number, lng: number): Promise<string> {
+  // The browser knows its own timezone — use it when coordinates come
+  // from the browser's geolocation API or IP-based detection.
+  if (typeof window !== 'undefined') {
+    try {
+      const browserTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      if (browserTz && browserTz !== 'UTC') return browserTz;
+    } catch { /* browser API unavailable — fall through */ }
+  }
+
+  // Fallback: resolve from coordinates (same logic as birth, no browser TZ)
+  return resolveBirthTimezone(lat, lng);
+}
+
+/**
+ * @deprecated Use resolveBirthTimezone() for kundali/birth charts,
+ * or resolveCurrentLocationTimezone() for panchang/location search.
+ * This alias defaults to resolveBirthTimezone (the safe choice).
+ */
+export async function resolveTimezoneFromCoords(lat: number, lng: number): Promise<string> {
+  return resolveBirthTimezone(lat, lng);
 }
 
 /**

@@ -88,6 +88,7 @@ export function generatePanchangAlerts(panchang: {
   // Rahu Kaal alert (5 min before start)
   if (panchang.rahuKaal?.start) {
     const [h, m] = panchang.rahuKaal.start.split(':').map(Number);
+    // Intentionally uses local (browser) timezone — push notifications fire on the user's device
     const rahuStart = new Date(`${dateStr}T${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:00`);
     const alertTime = new Date(rahuStart.getTime() - 5 * 60000);
     alerts.push({

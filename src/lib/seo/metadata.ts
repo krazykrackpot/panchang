@@ -414,8 +414,8 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/horoscope': {
     title: {
-      en: 'Daily Horoscope 2026  –  All 12 Zodiac Signs | Vedic Rashifal Today',
-      hi: 'दैनिक राशिफल 2026  –  सभी 12 राशियाँ | आज का राशिफल',
+      en: `Daily Horoscope ${new Date().getFullYear()}  –  All 12 Zodiac Signs | Vedic Rashifal Today`,
+      hi: `दैनिक राशिफल ${new Date().getFullYear()}  –  सभी 12 राशियाँ | आज का राशिफल`,
       sa: 'दैनिकराशिफलम्  –  द्वादशराशयः',
     },
     description: {

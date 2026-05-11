@@ -59,7 +59,8 @@ export function generateVratAlerts(
       const calSlug = slugToCalendar.get(followedSlug);
       if (!calSlug || calSlug !== entrySlug) continue;
 
-      // Parse the date  –  assume midnight local time as the start of the vrat day
+      // Parse the date  –  assume approximate sunrise as the start of the vrat day
+      // Intentionally uses local (browser) timezone — push notifications fire on the user's device
       const vratDate = new Date(entry.date + 'T05:00:00'); // approximate sunrise
       const alertTime = new Date(vratDate.getTime() - windowMs);
 
@@ -93,6 +94,7 @@ export function generateVratAlerts(
     if (!vratDef) continue;
 
     for (const dateStr of nextDates) {
+      // Intentionally uses local (browser) timezone — push notifications fire on the user's device
       const vratDate = new Date(dateStr + 'T05:00:00');
       const alertTime = new Date(vratDate.getTime() - windowMs);
       const diff = alertTime.getTime() - now.getTime();

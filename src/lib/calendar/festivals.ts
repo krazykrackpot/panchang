@@ -352,9 +352,10 @@ function computeEkadashiParana(ekadashiDate: string, lat = DEFAULT_LAT, lon = DE
     const dateStr = offsetToDate(utHours - sunriseUT);
     if (dateStr !== paranaDate) {
       // Show short date (e.g., "07:12, Mar 31")
+      // dateStr is a YYYY-MM-DD string parsed as UTC — use UTC accessors (Lesson L)
       const dd = new Date(dateStr);
       const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      return `${timeStr}, ${months[dd.getMonth()]} ${dd.getDate()}`;
+      return `${timeStr}, ${months[dd.getUTCMonth()]} ${dd.getUTCDate()}`;
     }
     return timeStr;
   }

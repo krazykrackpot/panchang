@@ -243,8 +243,9 @@ function computeEkadashiParanaFromTable(
   let dwEndStr = dwadashiEntry.endLocal;
   if (dwEndLocalDate !== paranaDayStr) {
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    // dwEndLocalDate is a YYYY-MM-DD string parsed as UTC — use UTC accessors (Lesson L)
     const dd = new Date(dwEndLocalDate);
-    dwEndStr = `${dwEndStr}, ${months[dd.getMonth()]} ${dd.getDate()}`;
+    dwEndStr = `${dwEndStr}, ${months[dd.getUTCMonth()]} ${dd.getUTCDate()}`;
   }
 
   // Ekadashi tithi times (from the ekadashi entry itself)
@@ -484,8 +485,9 @@ export function generateFestivalCalendarV2(
 
       if (match.startJd && match.endJd && rule !== 'sunrise') {
         const [y2, m2, d2] = match.sunriseDate.split('-').map(Number);
-        const date1 = new Date(y2, m2 - 1, d2 - 1);
-        const [y1, m1, d1] = [date1.getFullYear(), date1.getMonth() + 1, date1.getDate()];
+        // Use Date.UTC to avoid local-timezone shifts (Lesson L)
+        const date1 = new Date(Date.UTC(y2, m2 - 1, d2 - 1));
+        const [y1, m1, d1] = [date1.getUTCFullYear(), date1.getUTCMonth() + 1, date1.getUTCDate()];
 
         const win1 = getKalaWindow(y1, m1, d1, lat, lon, timezone, rule);
         const win2 = getKalaWindow(y2, m2, d2, lat, lon, timezone, rule);

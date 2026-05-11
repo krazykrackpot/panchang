@@ -153,7 +153,7 @@ export default function GraphicTransitPage() {
                         <span className="text-text-tertiary text-xs">{MONTHS[month]} {evt.day}</span>
                       </div>
                       <div className="text-text-secondary text-xs">
-                        {evt.type === 'ingress' && `${RASHIS[(evt.fromSign! - 1) % 12]?.name[locale]} → ${RASHIS[(evt.toSign! - 1) % 12]?.name[locale]}`}
+                        {evt.type === 'ingress' && `${RASHIS[(evt.fromSign! - 1) % 12]?.name[locale] || RASHIS[(evt.fromSign! - 1) % 12]?.name.en} → ${RASHIS[(evt.toSign! - 1) % 12]?.name[locale] || RASHIS[(evt.toSign! - 1) % 12]?.name.en}`}
                         {evt.type === 'retro_start' && tl({ en: 'Retrograde begins ℞', hi: 'वक्री गति आरम्भ ℞', sa: 'वक्री गति आरम्भ ℞' }, locale)}
                         {evt.type === 'retro_end' && tl({ en: 'Direct motion resumes ↑', hi: 'मार्गी गति ↑', sa: 'मार्गी गति ↑' }, locale)}
                       </div>

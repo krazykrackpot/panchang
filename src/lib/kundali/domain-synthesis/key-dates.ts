@@ -351,11 +351,12 @@ function findSolarReturn(kundali: KundaliData, start: Date, end: Date): KeyDate[
   // For the upcoming year, estimate based on Sun's natal longitude
   const now = start;
   const natalMonth = Math.floor(sunLong / 30); // rough month (0-11)
-  const returnDate = new Date(now.getFullYear(), natalMonth, 14); // mid-month approximation
+  // Use Date.UTC to avoid local-timezone shifts (Lesson L)
+  const returnDate = new Date(Date.UTC(now.getUTCFullYear(), natalMonth, 14)); // mid-month approximation
 
   // If already passed this year, use next year
   if (returnDate < now) {
-    returnDate.setFullYear(returnDate.getFullYear() + 1);
+    returnDate.setUTCFullYear(returnDate.getUTCFullYear() + 1);
   }
 
   if (returnDate < end) {

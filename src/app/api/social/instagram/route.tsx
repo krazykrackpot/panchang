@@ -65,20 +65,11 @@ const MOON_SIGN_TRAITS: Record<string, Record<number, { title: string; text: str
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
-function getTimezoneOffset(timezone: string, date: Date): number {
-  try {
-    const utc = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
-    const local = new Date(date.toLocaleString('en-US', { timeZone: timezone }));
-    return (local.getTime() - utc.getTime()) / (3600 * 1000);
-  } catch (err) {
-    console.error('[instagram] TZ resolution failed for:', timezone, err, '- defaulting to IST');
-    return 5.5;
-  }
-}
+// Removed duplicate getTimezoneOffset — using shared getUTCOffsetForDate (M9)
 
 function getTodayPanchang(): { panchang: PanchangData; festivals: FestivalEntry[] } {
   const now = new Date();
-  const tzOffset = getTimezoneOffset(UJJAIN_TZ, now);
+  const tzOffset = getUTCOffsetForDate(now.getUTCFullYear(), now.getUTCMonth() + 1, now.getUTCDate(), UJJAIN_TZ);
 
   // Compute today's date in IST
   const istMs = now.getTime() + tzOffset * 3600 * 1000;

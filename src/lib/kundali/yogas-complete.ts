@@ -1,5 +1,5 @@
 import type { LocaleText } from '@/types/panchang';
-import { EXALTATION_SIGNS, DEBILITATION_SIGNS, OWN_SIGNS } from '@/lib/constants/dignities';
+import { EXALTATION_SIGNS, DEBILITATION_SIGNS, OWN_SIGNS, SIGN_LORDS } from '@/lib/constants/dignities';
 // yogas-complete.ts  –  Comprehensive Vedic Yoga Detection Library (150+ yogas)
 
 export interface YogaComplete {
@@ -41,10 +41,7 @@ const UPACHAYA = [3, 6, 10, 11];
 const BENEFICS = [1, 3, 4, 5]; // Moon, Mercury, Jupiter, Venus
 const MALEFICS = [0, 2, 6];    // Sun, Mars, Saturn
 
-const SIGN_LORDS: Record<number, number> = {
-  1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3,
-  7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4,
-};
+// SIGN_LORDS imported from @/lib/constants/dignities (L11 — single source of truth)
 
 // ---------------------------------------------------------------------------
 // Helpers

@@ -7,6 +7,7 @@ import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { NAKSHATRA_DETAILS } from '@/lib/constants/nakshatra-details';
 import { YOGAS } from '@/lib/constants/yogas';
 import { TRANSIT_ARTICLES } from '@/lib/content/transit-articles';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 
 /**
  * Cron endpoint: posts daily panchang to Twitter/X.
@@ -39,7 +40,8 @@ export async function GET(request: Request) {
 
   try {
     const now = new Date();
-    const tzOffset = getTimezoneOffset(UJJAIN_TZ, now);
+    // Use shared timezone utility instead of local duplicate (M9)
+    const tzOffset = getUTCOffsetForDate(now.getUTCFullYear(), now.getUTCMonth() + 1, now.getUTCDate(), UJJAIN_TZ);
 
     // Compute today's date in IST
     const istMs = now.getTime() + tzOffset * 3600 * 1000;
@@ -747,17 +749,4 @@ async function postToTwitter(text: string, mediaIds?: string[] | null): Promise<
   return { id: tweetId };
 }
 
-// ──────────────────────────────────────────────────────────────
-// Timezone utility (same pattern as daily-panchang cron)
-// ──────────────────────────────────────────────────────────────
-
-function getTimezoneOffset(timezone: string, date: Date): number {
-  try {
-    const utc = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
-    const local = new Date(date.toLocaleString('en-US', { timeZone: timezone }));
-    return (local.getTime() - utc.getTime()) / (3600 * 1000);
-  } catch (err) {
-    console.error('[social-post] TZ resolution failed for:', timezone, err, '- defaulting to IST');
-    return 5.5; // Default to IST since this cron targets Indian audience
-  }
-}
+// Removed duplicate getTimezoneOffset — using shared getUTCOffsetForDate from @/lib/utils/timezone

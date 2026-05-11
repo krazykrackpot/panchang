@@ -670,7 +670,7 @@ export default function PujaVidhiPage() {
                         className="text-gold-light font-semibold text-sm"
                         style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}
                       >
-                        {step.title[locale]}
+                        {step.title[locale] || step.title.en}
                       </span>
                       {step.duration && (
                         <span className="text-text-secondary/65 text-xs ml-2">({step.duration})</span>
@@ -694,7 +694,7 @@ export default function PujaVidhiPage() {
                             className="text-text-secondary text-sm leading-relaxed"
                             style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
                           >
-                            {step.description[locale]}
+                            {step.description[locale] || step.description.en}
                           </p>
                           {linkedMantra && (
                             <div className="mt-3">
@@ -768,7 +768,7 @@ export default function PujaVidhiPage() {
                     className="text-gold-light font-semibold text-sm mb-1"
                     style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}
                   >
-                    {stotra.name[locale]}
+                    {stotra.name[locale] || stotra.name.en}
                     {locale !== 'en' && (
                       <span className="text-text-secondary/65 text-xs ml-2 font-normal">
                         ({stotra.name.en})
@@ -784,7 +784,7 @@ export default function PujaVidhiPage() {
                     {stotra.duration && <span>{stotra.duration}</span>}
                   </div>
                   {stotra.note && (
-                    <p className="text-text-secondary/75 text-xs">{stotra.note[locale]}</p>
+                    <p className="text-text-secondary/75 text-xs">{stotra.note[locale] || stotra.note.en}</p>
                   )}
                   {stotra.text && (
                     <div className="mt-3 p-3 rounded-md bg-gold-primary/[0.03] border border-gold-primary/8">
@@ -813,7 +813,7 @@ export default function PujaVidhiPage() {
                 className="text-gold-light font-semibold text-base mb-3"
                 style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}
               >
-                {puja.aarti.name[locale]}
+                {puja.aarti.name[locale] || puja.aarti.name.en}
               </h3>
               {/* Display mode toggle */}
               <div className="flex items-center gap-1 mb-4 bg-gold-primary/5 rounded-lg p-1 w-fit border border-gold-primary/10">
@@ -862,7 +862,7 @@ export default function PujaVidhiPage() {
             className="text-text-secondary text-sm leading-relaxed"
             style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
           >
-            {puja.naivedya[locale]}
+            {puja.naivedya[locale] || puja.naivedya.en}
           </p>
         </SectionAccordion>
 
@@ -885,7 +885,7 @@ export default function PujaVidhiPage() {
                   className="text-text-secondary text-sm leading-relaxed"
                   style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
                 >
-                  {p[locale]}
+                  {p[locale] || p.en}
                 </p>
               </li>
             ))}
@@ -902,7 +902,7 @@ export default function PujaVidhiPage() {
               className="text-emerald-300/90 text-sm leading-relaxed"
               style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
             >
-              {puja.phala[locale]}
+              {puja.phala[locale] || puja.phala.en}
             </p>
           </div>
         </SectionAccordion>
@@ -917,7 +917,7 @@ export default function PujaVidhiPage() {
               className="text-text-secondary text-sm leading-relaxed"
               style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
             >
-              {puja.visarjan[locale]}
+              {puja.visarjan[locale] || puja.visarjan.en}
             </p>
           </SectionAccordion>
         )}

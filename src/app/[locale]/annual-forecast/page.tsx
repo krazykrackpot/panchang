@@ -671,8 +671,8 @@ function YearOverviewSection({ forecast, locale, t, headingFont, bodyFont }: {
           <div key={i} className="flex items-center gap-4 py-2 border-b border-gold-primary/5 last:border-0">
             <ScoreDots score={factor.score} />
             <div className="flex-1 min-w-0">
-              <p className="text-gold-light text-sm font-medium" style={bodyFont}>{factor.name[locale]}</p>
-              <p className="text-text-secondary text-xs truncate" style={bodyFont}>{factor.description[locale]}</p>
+              <p className="text-gold-light text-sm font-medium" style={bodyFont}>{factor.name[locale] || factor.name.en}</p>
+              <p className="text-text-secondary text-xs truncate" style={bodyFont}>{factor.description[locale] || factor.description.en}</p>
             </div>
           </div>
         ))}
@@ -683,8 +683,8 @@ function YearOverviewSection({ forecast, locale, t, headingFont, bodyFont }: {
         <div>
           <p className="text-text-secondary text-xs uppercase tracking-wider mb-1">{t.currentDasha}</p>
           <p className="text-gold-light text-sm font-medium" style={bodyFont}>
-            {dashaNarrative.currentMaha.planetName[locale]}
-            {dashaNarrative.currentAntar && ` / ${dashaNarrative.currentAntar.planetName[locale]}`}
+            {dashaNarrative.currentMaha.planetName[locale] || dashaNarrative.currentMaha.planetName.en}
+            {dashaNarrative.currentAntar && ` / ${dashaNarrative.currentAntar.planetName[locale] || dashaNarrative.currentAntar.planetName.en}`}
           </p>
           <p className="text-text-secondary text-xs mt-0.5">
             {new Date(dashaNarrative.currentMaha.startDate).toLocaleDateString()}  –  {new Date(dashaNarrative.currentMaha.endDate).toLocaleDateString()}
@@ -746,16 +746,16 @@ function SolarReturnSection({ forecast, locale, t, headingFont, bodyFont, overla
                 style={{ borderColor: yoga.favorable ? 'rgba(52,211,153,0.25)' : 'rgba(248,113,113,0.25)' }}
               >
                 <div className="flex items-center justify-between mb-1">
-                  <p className="text-gold-light text-sm font-bold" style={bodyFont}>{yoga.name[locale]}</p>
+                  <p className="text-gold-light text-sm font-bold" style={bodyFont}>{yoga.name[locale] || yoga.name.en}</p>
                   <span className={`text-xs px-2 py-0.5 rounded-full border ${yoga.favorable ? 'text-emerald-400 bg-emerald-500/15 border-emerald-500/30' : 'text-red-400 bg-red-500/15 border-red-500/30'}`}>
                     {yoga.favorable ? t.favorable : t.unfavorable}
                   </span>
                 </div>
                 <p className="text-text-secondary text-xs" style={bodyFont}>
-                  {yoga.planet1[locale]}  –  {yoga.planet2[locale]}
+                  {yoga.planet1[locale] || yoga.planet1.en}  –  {yoga.planet2[locale] || yoga.planet2.en}
                 </p>
                 <p className="text-text-secondary text-xs mt-1 leading-relaxed" style={bodyFont}>
-                  {yoga.description[locale]}
+                  {yoga.description[locale] || yoga.description.en}
                 </p>
               </div>
             ))}
@@ -780,9 +780,9 @@ function SolarReturnSection({ forecast, locale, t, headingFont, bodyFont, overla
               <tbody>
                 {sahamsToShow.map((s, i) => (
                   <tr key={i} className="border-b border-gold-primary/5 hover:bg-gold-primary/5">
-                    <td className="py-2 px-2 text-gold-light font-medium" style={bodyFont}>{s.name[locale]}</td>
+                    <td className="py-2 px-2 text-gold-light font-medium" style={bodyFont}>{s.name[locale] || s.name.en}</td>
                     <td className="py-2 px-2 text-text-secondary font-mono text-xs">{s.degree.toFixed(2)}&deg;</td>
-                    <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{s.signName[locale]}</td>
+                    <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{s.signName[locale] || s.signName.en}</td>
                     <td className="py-2 px-2 text-text-secondary">{s.house}</td>
                   </tr>
                 ))}
@@ -860,9 +860,9 @@ function MonthlyTimelineGrid({ months, currentMonth, expandedMonth, setExpandedM
                       <div key={p.planetId} className="flex items-center gap-3">
                         <GrahaIconById id={p.planetId} size={20} />
                         <span className="text-gold-light text-xs font-medium w-16" style={bodyFont}>
-                          {p.planetName[locale]}
+                          {p.planetName[locale] || p.planetName.en}
                         </span>
-                        <span className="text-text-secondary text-xs" style={bodyFont}>{p.signName[locale]}</span>
+                        <span className="text-text-secondary text-xs" style={bodyFont}>{p.signName[locale] || p.signName.en}</span>
                         <span className="text-text-secondary text-xs">H{p.house}</span>
                         <span className="text-text-secondary text-[10px]">SAV {p.savBindu}</span>
                         {p.isRetrograde && (
@@ -927,9 +927,9 @@ function TransitSummarySection({ forecast, locale, t, headingFont, bodyFont }: {
             <div key={p.planetId} className="flex items-center gap-4 py-3 border-b border-gold-primary/5 last:border-0">
               <GrahaIconById id={p.planetId} size={28} />
               <div className="flex-1 min-w-0">
-                <p className="text-gold-light text-sm font-bold" style={bodyFont}>{p.planetName[locale]}</p>
+                <p className="text-gold-light text-sm font-bold" style={bodyFont}>{p.planetName[locale] || p.planetName.en}</p>
                 <p className="text-text-secondary text-xs" style={bodyFont}>
-                  {p.signName[locale]}  –  {t.house} {p.house}  –  {t.bindus}: {p.savBindu}
+                  {p.signName[locale] || p.signName.en}  –  {t.house} {p.house}  –  {t.bindus}: {p.savBindu}
                 </p>
               </div>
               {p.isRetrograde && (
@@ -939,7 +939,7 @@ function TransitSummarySection({ forecast, locale, t, headingFont, bodyFont }: {
               )}
               {signChanged && endP && (
                 <span className="text-blue-400 text-xs shrink-0" style={bodyFont}>
-                  {t.changesOn}: {endP.signName[locale]}
+                  {t.changesOn}: {endP.signName[locale] || endP.signName.en}
                 </span>
               )}
             </div>
@@ -999,7 +999,7 @@ function DashaNarrativeSection({ forecast, locale, t, headingFont, bodyFont }: {
                 <GrahaIconById id={tr.planetId} size={20} />
                 <div className="flex-1 min-w-0">
                   <p className="text-gold-light text-sm font-medium" style={bodyFont}>
-                    {tr.planetName[locale]} {tr.level === 'maha' ? t.mahaDasha : t.antarDasha}
+                    {tr.planetName[locale] || tr.planetName.en} {tr.level === 'maha' ? t.mahaDasha : t.antarDasha}
                   </p>
                   <p className="text-text-secondary text-xs">
                     {new Date(tr.startDate).toLocaleDateString()}
@@ -1026,7 +1026,7 @@ function DashaPeriodCard({ entry, label, locale, t, bodyFont, headingFont }: {
         <GrahaIconById id={entry.planetId} size={28} />
         <div>
           <p className="text-text-secondary text-xs uppercase tracking-wider">{label}</p>
-          <p className="text-gold-light font-bold" style={headingFont}>{entry.planetName[locale]}</p>
+          <p className="text-gold-light font-bold" style={headingFont}>{entry.planetName[locale] || entry.planetName.en}</p>
         </div>
         <div className="ml-auto text-right">
           <span className="text-text-secondary text-[10px] uppercase tracking-wider">{t.dignity}</span>
@@ -1041,7 +1041,7 @@ function DashaPeriodCard({ entry, label, locale, t, bodyFont, headingFont }: {
       </div>
       <div>
         <p className="text-text-secondary text-xs uppercase tracking-wider mb-1">{t.themes}</p>
-        <p className="text-text-primary text-sm leading-relaxed" style={bodyFont}>{entry.themes[locale]}</p>
+        <p className="text-text-primary text-sm leading-relaxed" style={bodyFont}>{entry.themes[locale] || entry.themes.en}</p>
       </div>
     </div>
   );
@@ -1084,7 +1084,7 @@ function KeyDatesSection({ forecast, locale, t, headingFont, bodyFont }: {
                         <IconComp className="w-4 h-4 text-gold-primary shrink-0 mt-0.5" />
                         <div>
                           <p className="text-text-secondary text-[10px] font-mono">{d.date}</p>
-                          <p className="text-text-primary text-xs" style={bodyFont}>{d.description[locale]}</p>
+                          <p className="text-text-primary text-xs" style={bodyFont}>{d.description[locale] || d.description.en}</p>
                         </div>
                       </div>
                     );
@@ -1136,12 +1136,12 @@ function RemediesSection({ forecast, locale, t, headingFont, bodyFont }: {
                 <div className="flex items-center gap-3 mb-3">
                   <GrahaIconById id={remedy.planetId} size={28} />
                   <div>
-                    <p className="text-gold-light text-sm font-bold" style={bodyFont}>{remedy.planetName[locale]}</p>
+                    <p className="text-gold-light text-sm font-bold" style={bodyFont}>{remedy.planetName[locale] || remedy.planetName.en}</p>
                     <span className="text-text-secondary text-[10px] uppercase tracking-wider">{typeLabel}</span>
                   </div>
                 </div>
                 <p className="text-text-primary text-sm leading-relaxed" style={bodyFont}>
-                  {remedy.recommendation[locale]}
+                  {remedy.recommendation[locale] || remedy.recommendation.en}
                 </p>
               </div>
             );

@@ -6,6 +6,7 @@ import { generateDailyHoroscope } from '@/lib/horoscope/daily-engine';
 import { sendEmail } from '@/lib/email/resend-client';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { RASHIS } from '@/lib/constants/rashis';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 
 /**
  * Cron endpoint: sends daily panchang email to all opted-in users.
@@ -92,12 +93,15 @@ export async function GET(request: Request) {
         }
 
         const now = new Date();
-        const tzOffset = getTimezoneOffset(tz, now);
+        const year = now.getUTCFullYear();
+        const month = now.getUTCMonth() + 1;
+        const day = now.getUTCDate();
+        const tzOffset = getUTCOffsetForDate(year, month, day, tz);
 
         const panchang = computePanchang({
-          year: now.getFullYear(),
-          month: now.getMonth() + 1,
-          day: now.getDate(),
+          year,
+          month,
+          day,
           lat: Number(lat),
           lng: Number(lng),
           tzOffset,
@@ -113,7 +117,7 @@ export async function GET(request: Request) {
         let horoscopeData: Parameters<typeof generateDailyPanchangEmail>[0]['horoscope'];
         if (snapshot) {
           try {
-            const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+            const todayStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
             const horoscope = generateDailyHoroscope({
               moonSign: snapshot.moonSign,
               date: todayStr,
@@ -178,13 +182,4 @@ export async function GET(request: Request) {
   }
 }
 
-function getTimezoneOffset(timezone: string, date: Date): number {
-  try {
-    const utc = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
-    const local = new Date(date.toLocaleString('en-US', { timeZone: timezone }));
-    return (local.getTime() - utc.getTime()) / (3600 * 1000);
-  } catch (err) {
-    console.error('[daily-panchang] TZ resolution failed for:', timezone, '- defaulting to UTC');
-    return 0; // Default to UTC, not IST  –  serves global users correctly
-  }
-}
+// Removed duplicate getTimezoneOffset — using shared getUTCOffsetForDate from @/lib/utils/timezone

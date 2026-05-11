@@ -187,48 +187,32 @@ export default function CalendarPage() {
   const [modalDetail, setModalDetail] = useState<FestivalDetail | null>(null);
   const [modalEkadashi, setModalEkadashi] = useState<EkadashiDetail | null>(null);
 
-  // Auto-detect location on mount  –  NO hardcoded defaults. User MUST have a location.
+  // Auto-detect location on mount via the shared location store.
+  // The store handles ipapi.co calls + caching in localStorage — no duplicate API calls.
   useEffect(() => {
-    const browserTz = -new Date().getTimezoneOffset() / 60;
-    // Location store timezone takes priority over browser timezone
-    const browserTimezone = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-
-    const tryIPLookup = () => {
-      fetch('https://ipapi.co/json/')
-        .then(r => r.json())
-        .then(data => {
-          if (data.latitude && data.longitude) {
-            const ianaTz = data.timezone || browserTimezone;
-            setLocation({ lat: data.latitude, lng: data.longitude, name: [data.city, data.country_name].filter(Boolean).join(', ') || 'Unknown', tz: browserTz, timezone: ianaTz });
-          }
-          // If IP lookup also fails → location stays null → user is prompted to enter manually
-        })
-        .catch(() => {}) // location stays null
-        .finally(() => setDetectingLocation(false));
-    };
-
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        async (pos) => {
-          const { latitude, longitude } = pos.coords;
-          try {
-            const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=10`);
-            const data = await res.json();
-            const city = data.address?.city || data.address?.town || data.address?.village || data.address?.county || '';
-            const country = data.address?.country || '';
-            const name = [city, country].filter(Boolean).join(', ') || `${latitude.toFixed(2)}°, ${longitude.toFixed(2)}°`;
-            setLocation({ lat: latitude, lng: longitude, name, tz: browserTz, timezone: browserTimezone });
-          } catch {
-            setLocation({ lat: latitude, lng: longitude, name: `${latitude.toFixed(2)}°, ${longitude.toFixed(2)}°`, tz: browserTz, timezone: browserTimezone });
-          }
-          setDetectingLocation(false);
-        },
-        () => tryIPLookup(), // Geolocation denied  –  try IP
-        { timeout: 5000 }
-      );
-    } else {
-      tryIPLookup();
+    const store = useLocationStore.getState();
+    if (store.confirmed && store.lat !== null && store.lng !== null && store.timezone) {
+      // Location store already has a cached location — use it directly
+      const browserTz = -new Date().getTimezoneOffset() / 60;
+      setLocation({ lat: store.lat, lng: store.lng, name: store.name, tz: browserTz, timezone: store.timezone });
+      setDetectingLocation(false);
+      return;
     }
+
+    // Store hasn't detected yet — trigger detection and subscribe to changes
+    const unsubscribe = useLocationStore.subscribe((state) => {
+      if (state.confirmed && state.lat !== null && state.lng !== null && state.timezone) {
+        const browserTz = -new Date().getTimezoneOffset() / 60;
+        setLocation({ lat: state.lat, lng: state.lng, name: state.name, tz: browserTz, timezone: state.timezone });
+        setDetectingLocation(false);
+      } else if (!state.detecting && !state.confirmed) {
+        // Detection finished but no location found — user must enter manually
+        setDetectingLocation(false);
+      }
+    });
+
+    store.detect();
+    return () => unsubscribe();
   }, []);
 
 

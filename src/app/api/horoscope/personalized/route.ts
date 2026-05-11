@@ -11,16 +11,18 @@ import { getServerSupabase } from '@/lib/supabase/server';
 const dailyUsage = new Map<string, { date: string; count: number }>();
 const MAX_DAILY_REQUESTS = 5;
 
-// Prevent unbounded growth: evict stale entries every 5 minutes
-setInterval(() => {
+// Lazy eviction on every access instead of setInterval
+// (setInterval is unreliable in serverless — function instances are ephemeral)
+function evictStaleDailyUsage() {
   const today = new Date().toISOString().slice(0, 10);
   for (const [key, entry] of dailyUsage.entries()) {
     if (entry.date !== today) dailyUsage.delete(key);
   }
   if (dailyUsage.size > 10000) dailyUsage.clear();
-}, 5 * 60 * 1000);
+}
 
 function checkDailyLimit(userId: string): boolean {
+  evictStaleDailyUsage();
   const today = new Date().toISOString().slice(0, 10);
   const entry = dailyUsage.get(userId);
   if (!entry || entry.date !== today) {

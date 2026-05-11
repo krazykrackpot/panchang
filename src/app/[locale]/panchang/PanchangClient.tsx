@@ -28,6 +28,7 @@ import { computeBalam } from '@/lib/panchang/balam';
 import { calculatePanchaPakshi } from '@/lib/prashna/pancha-pakshi';
 import { computeHinduMonths, computePurnimantMonths, formatMonthDate } from '@/lib/calendar/hindu-months';
 import { useBirthDataStore } from '@/stores/birth-data-store';
+import { useLocationStore } from '@/stores/location-store';
 import { getUTCOffsetForDate, resolveCurrentLocationTimezone } from '@/lib/utils/timezone';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { useAuthStore } from '@/stores/auth-store';
@@ -349,25 +350,31 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
           setDetectingLocation(false);
         },
         async () => {
-          try {
-            const res = await fetch('https://ipapi.co/json/');
-            const data = await res.json();
-            if (data.latitude && data.longitude) {
-              const { ianaTimezone, tz } = await resolveLocationTimezone(data.latitude, data.longitude);
-              let name = `${data.latitude.toFixed(2)}°, ${data.longitude.toFixed(2)}°`;
-              try {
-                const geo = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${data.latitude}&lon=${data.longitude}&zoom=10`);
-                const geoData = await geo.json();
-                const city = geoData.address?.city || geoData.address?.town || geoData.address?.village || '';
-                const country = geoData.address?.country || '';
-                name = [city, country].filter(Boolean).join(', ') || name;
-              } catch { /* use coordinate fallback */ }
-              setLocation({ lat: data.latitude, lng: data.longitude, name, tz, ianaTimezone });
-            }
-          } catch (err) {
-            console.error('[panchang] IP geolocation fallback failed:', err);
+          // Geolocation denied — use the shared location store (handles ipapi.co + caching)
+          const locStore = useLocationStore.getState();
+          if (locStore.confirmed && locStore.lat !== null && locStore.lng !== null && locStore.timezone) {
+            const { ianaTimezone, tz } = await resolveLocationTimezone(locStore.lat, locStore.lng);
+            setLocation({ lat: locStore.lat, lng: locStore.lng, name: locStore.name, tz, ianaTimezone });
+            setDetectingLocation(false);
+          } else {
+            // Store hasn't detected yet — trigger and subscribe
+            const unsubscribe = useLocationStore.subscribe(async (state) => {
+              if (state.confirmed && state.lat !== null && state.lng !== null) {
+                unsubscribe();
+                try {
+                  const { ianaTimezone, tz } = await resolveLocationTimezone(state.lat, state.lng);
+                  setLocation({ lat: state.lat, lng: state.lng, name: state.name, tz, ianaTimezone });
+                } catch (err) {
+                  console.error('[panchang] timezone resolution failed:', err);
+                }
+                setDetectingLocation(false);
+              } else if (!state.detecting && !state.confirmed) {
+                unsubscribe();
+                setDetectingLocation(false);
+              }
+            });
+            locStore.detect();
           }
-          setDetectingLocation(false);
         },
         { timeout: 5000 }
       );

@@ -52,6 +52,14 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
+    // Validate day against actual days in the given month (e.g., Feb 30 is invalid)
+    const daysInMonth = new Date(Date.UTC(year, month, 0)).getUTCDate();
+    if (day > daysInMonth) {
+      return NextResponse.json(
+        { error: `Invalid date: ${year}-${String(month).padStart(2, '0')} has only ${daysInMonth} days` },
+        { status: 400 }
+      );
+    }
     const [hour, minute] = body.time.split(':').map(Number);
     if (hour < 0 || hour > 23 || minute < 0 || minute > 59) {
       return NextResponse.json(

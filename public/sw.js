@@ -5,7 +5,7 @@
  */
 var CV = 'dp-v5';
 var CS = CV + '-static', CP = CV + '-pages', CA = CV + '-api';
-var CPANCH = 'dp-panchang-v1';
+var CPANCH = 'dp-panchang-v5';
 
 // Max entries per cache to prevent unbounded growth
 var MAX_PAGES = 80, MAX_API = 40;

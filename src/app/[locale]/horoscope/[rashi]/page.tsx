@@ -34,14 +34,14 @@ export default async function RashiPage({ params }: { params: Promise<{ locale: 
     <main className="min-h-screen bg-[#0a0e27] pb-20">
       {/* SSR: H1 with rashi name and date  –  Google indexes this */}
       <div className="max-w-4xl mx-auto px-4 pt-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gold-light text-center">
+        <h1 suppressHydrationWarning className="text-2xl sm:text-3xl font-bold text-gold-light text-center">
           {isHi
             ? `${vedicName} राशिफल  –  आज ${today}`
             : `${vedicName} (${westernName}) Horoscope  –  ${today}`}
         </h1>
 
         {/* SSR: Key horoscope data rendered as visible text for indexing */}
-        <div className="mt-4 text-center text-text-secondary text-sm">
+        <div suppressHydrationWarning className="mt-4 text-center text-text-secondary text-sm">
           <p>
             {isHi
               ? `आज का समग्र स्कोर: ${horoscope.overallScore}/10`

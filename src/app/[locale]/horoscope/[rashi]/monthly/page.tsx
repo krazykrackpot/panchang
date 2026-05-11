@@ -39,14 +39,14 @@ export default async function MonthlyRashiPage({ params }: { params: Promise<{ l
     <main className="min-h-screen bg-[#0a0e27] pb-20">
       {/* SSR: H1 with rashi name and month  –  Google indexes this */}
       <div className="max-w-4xl mx-auto px-4 pt-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gold-light text-center">
+        <h1 suppressHydrationWarning className="text-2xl sm:text-3xl font-bold text-gold-light text-center">
           {isHi
             ? `${vedicName} मासिक राशिफल  –  ${monthLabel}`
             : `${vedicName} (${westernName}) Monthly Horoscope  –  ${monthLabel}`}
         </h1>
 
         {/* SSR: Brief description paragraph for indexing */}
-        <p className="mt-4 text-center text-text-secondary text-sm max-w-2xl mx-auto">
+        <p suppressHydrationWarning className="mt-4 text-center text-text-secondary text-sm max-w-2xl mx-auto">
           {isHi
             ? `${vedicName} राशि का मासिक राशिफल ${monthLabel} के लिए। कैलेंडर हीटमैप, करियर, प्रेम, स्वास्थ्य एवं वित्त भविष्यवाणी। वैदिक ग्रह गोचर पर आधारित।`
             : `${westernName} (${vedicName}) monthly horoscope for ${monthLabel}. Calendar heatmap, career, love, health and finance predictions based on actual Vedic planetary transits.`}

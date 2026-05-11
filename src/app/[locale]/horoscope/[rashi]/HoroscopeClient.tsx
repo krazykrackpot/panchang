@@ -337,8 +337,7 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
       .catch(err => console.error('[horoscope/personalized] Failed to fetch personalized forecast:', err))
       .finally(() => setPersonalLoading(false));
   // Run after isOwnSign is stable (depends on birthRashi store being loaded)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOwnSign]);
+  }, [isOwnSign, locale]);
 
   const otherRashis = RASHIS.filter(r => r.id !== rashi.id);
 

@@ -31,10 +31,10 @@ export async function GET(req: Request) {
   let skipped = 0;
 
   for (const snap of users) {
-    // Get user profile + email
+    // Get user profile + email + panchang location for festival computation
     const { data: profile } = await supabase
       .from('user_profiles')
-      .select('display_name, notification_prefs')
+      .select('display_name, notification_prefs, panchang_lat, panchang_lng, panchang_timezone')
       .eq('id', snap.user_id)
       .maybeSingle();
 
@@ -57,15 +57,19 @@ export async function GET(req: Request) {
       sadeSati: snap.sade_sati || {},
     };
 
-    // Compute 7-day forecast
+    // Compute 3-day forecast (limited to 3 days because the nakshatra/sign
+    // approximation below drifts ±1 nakshatra beyond day 3 — the Moon's actual
+    // speed varies 11.8–15.2°/day so a fixed +1 nak/day is unreliable past 72h)
     const days: { date: string; quality: string; taraName: string }[] = [];
     const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 3; i++) {
       const d = new Date();
       d.setDate(d.getDate() + i);
-      // Approximate today's nakshatra/moon sign (shifts ~1 per day for nakshatra, ~2.5 days for sign)
+      // Approximate nakshatra/moon sign (shifts ~1 nak per day, ~2.5 days per sign).
+      // NOTE: This is a crude linear approximation. Moon speed varies significantly
+      // (11.8–15.2°/day), so results beyond day 2 may be off by ±1 nakshatra.
       const approxNak = ((snap.moon_nakshatra + i) % 27) || 27;
       const approxMoonSign = ((snap.moon_sign - 1 + Math.floor(i / 2.5)) % 12) + 1;
 
@@ -96,9 +100,14 @@ export async function GET(req: Request) {
     // Sade sati
     const sadeSatiActive = !!(snap.sade_sati as { isActive?: boolean })?.isActive;
 
-    // Upcoming 7-day festivals (use Delhi as representative location)
+    // Upcoming 7-day festivals — use user's stored panchang location if available,
+    // otherwise fall back to Delhi as a representative location for festival dates
+    // (festival dates vary by ~1 day across India due to timezone/sunrise differences)
     const thisYear = now.getFullYear();
-    const festEntries = generateFestivalCalendarV2(thisYear, 28.6, 77.2, 'Asia/Kolkata');
+    const festLat = profile?.panchang_lat ?? 28.6;
+    const festLng = profile?.panchang_lng ?? 77.2;
+    const festTz = profile?.panchang_timezone ?? 'Asia/Kolkata';
+    const festEntries = generateFestivalCalendarV2(thisYear, festLat, festLng, festTz);
     const weekCutoff = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
     const todayStr = now.toISOString().slice(0, 10);
     const upcomingFestivals = festEntries

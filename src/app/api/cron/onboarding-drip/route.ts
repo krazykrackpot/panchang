@@ -22,9 +22,8 @@ export async function GET(req: NextRequest) {
   const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
   const { data: recentUsers, error: fetchError } = await supabase
     .from('user_profiles')
-    .select('id, email, display_name, created_at, onboarding_drip_day')
-    .gte('created_at', sevenDaysAgo)
-    .not('email', 'is', null);
+    .select('id, display_name, created_at, onboarding_drip_day')
+    .gte('created_at', sevenDaysAgo);
 
   if (fetchError) {
     console.error('[OnboardingDrip] Fetch error:', fetchError.message);
@@ -51,6 +50,10 @@ export async function GET(req: NextRequest) {
     const lastDripDay = user.onboarding_drip_day || 0;
     if (dripDay <= lastDripDay) continue;
 
+    // Get authoritative email from auth.users (user_profiles.email may be stale/missing)
+    const { data: { user: authUser } } = await supabase.auth.admin.getUserById(user.id);
+    if (!authUser?.email) { continue; }
+
     // Determine locale from email domain or default to 'en'
     const locale: 'en' | 'hi' = 'en';
 
@@ -62,7 +65,7 @@ export async function GET(req: NextRequest) {
       );
 
       const result = await sendEmail({
-        to: user.email,
+        to: authUser.email,
         subject: template.subject,
         html: template.html,
       });

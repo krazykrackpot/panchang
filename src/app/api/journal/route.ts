@@ -191,16 +191,16 @@ export async function GET(req: NextRequest) {
     mahaDasha:       searchParams.get('mahaDasha')       ?? undefined,
     antarDasha:      searchParams.get('antarDasha')      ?? undefined,
     nakshatraNumber: searchParams.has('nakshatraNumber')
-      ? parseInt(searchParams.get('nakshatraNumber')!, 10)
+      ? (isNaN(parseInt(searchParams.get('nakshatraNumber')!, 10)) ? undefined : parseInt(searchParams.get('nakshatraNumber')!, 10))
       : undefined,
     tithiNumber:     searchParams.has('tithiNumber')
-      ? parseInt(searchParams.get('tithiNumber')!, 10)
+      ? (isNaN(parseInt(searchParams.get('tithiNumber')!, 10)) ? undefined : parseInt(searchParams.get('tithiNumber')!, 10))
       : undefined,
     moodMin:         searchParams.has('moodMin')
-      ? parseInt(searchParams.get('moodMin')!, 10)
+      ? (isNaN(parseInt(searchParams.get('moodMin')!, 10)) ? undefined : parseInt(searchParams.get('moodMin')!, 10))
       : undefined,
-    limit:  Math.min(parseInt(searchParams.get('limit')  ?? '30', 10), 100),
-    offset: Math.max(parseInt(searchParams.get('offset') ?? '0',  10), 0),
+    limit:  Math.min(isNaN(parseInt(searchParams.get('limit')  ?? '30', 10)) ? 30 : parseInt(searchParams.get('limit')  ?? '30', 10), 100),
+    offset: Math.max(isNaN(parseInt(searchParams.get('offset') ?? '0',  10)) ? 0  : parseInt(searchParams.get('offset') ?? '0',  10), 0),
   };
 
   // --- Build query ---

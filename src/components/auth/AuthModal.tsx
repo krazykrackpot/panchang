@@ -27,6 +27,16 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     setMounted(true);
   }, []);
 
+  // Close on Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') onClose();
+    }
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
   if (!isOpen || !mounted) return null;
 
   async function handleSubmit(e: React.FormEvent) {
@@ -66,9 +76,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   }
 
   const modal = (
-    <div className="fixed inset-0 z-[9999] flex items-start justify-center p-4 pt-20 sm:pt-24 overflow-y-auto">
+    <div role="dialog" aria-modal="true" className="fixed inset-0 z-[9999] flex items-start justify-center p-4 pt-20 sm:pt-24 overflow-y-auto">
       {/* Backdrop */}
-      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
+      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} aria-hidden="true" />
 
       {/* Modal */}
       <div className="relative z-10 w-full max-w-md bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8">

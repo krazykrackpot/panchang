@@ -12,12 +12,16 @@ export async function POST(req: Request) {
     );
   }
 
+  let body: { tier: 'pro' | 'jyotishi'; billing: 'monthly' | 'annual'; currency: 'INR' | 'USD' };
   try {
-    const { tier, billing, currency } = await req.json() as {
-      tier: 'pro' | 'jyotishi';
-      billing: 'monthly' | 'annual';
-      currency: 'INR' | 'USD';
-    };
+    body = await req.json() as typeof body;
+  } catch {
+    // req.json() fails when body is missing or not valid JSON
+    return NextResponse.json({ error: 'Invalid or missing JSON body' }, { status: 400 });
+  }
+
+  try {
+    const { tier, billing, currency } = body;
 
     if (!tier || !billing || !currency) {
       return NextResponse.json({ error: 'Missing required fields: tier, billing, currency' }, { status: 400 });

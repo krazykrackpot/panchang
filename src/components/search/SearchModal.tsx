@@ -171,7 +171,7 @@ export default function SearchModal() {
   const modal = (
     <div className="fixed inset-0 z-[9999]" onClick={() => setOpen(false)}>
       {/* Backdrop */}
-      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" />
+      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" aria-hidden="true" />
 
       {/* Modal */}
       <div className="fixed top-[15%] left-1/2 -translate-x-1/2 w-full max-w-lg" onClick={e => e.stopPropagation()}>

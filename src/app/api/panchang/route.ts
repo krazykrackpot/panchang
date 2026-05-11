@@ -54,6 +54,14 @@ export async function GET(request: Request) {
 
   const { year, month, day, lat, lng, tz, timezone, location } = parsed.data;
 
+  // Reject requests with no real location — 0,0 is Null Island, not a valid user location
+  if (lat === 0 && lng === 0) {
+    return NextResponse.json(
+      { error: 'Location required. Provide lat and lng parameters.' },
+      { status: 400 }
+    );
+  }
+
   // Resolve timezone: prefer IANA string, fall back to numeric offset, then default
   const tzOffset = timezone
     ? getUTCOffsetForDate(year, month, day, timezone)

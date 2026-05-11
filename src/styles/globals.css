@@ -6,7 +6,7 @@
   --color-bg-tertiary: #1a1f4e;
   --color-gold-primary: #d4a853;
   --color-gold-light: #f0d48a;
-  --color-gold-dark: #8a6d2b;
+  --color-gold-dark: #a08030; /* Brightened from #8a6d2b for WCAG AA contrast (~4.6:1 on #0a0e27) */
   --color-text-primary: #e8e6e3;
   --color-text-secondary: #b8b3ab;
   --color-text-tertiary: #5c5870;
@@ -178,11 +178,11 @@ html.light {
   --color-text-primary: #1a1a2e;
   --color-text-secondary: #5a5570;
   --color-text-tertiary: #8c8598;
-  --color-text-devanagari: #8a6d2b;
+  --color-text-devanagari: #a08030;
   color-scheme: light;
 }
 html.light .text-gold-gradient {
-  background: linear-gradient(135deg, #8a6d2b, #b8942e, #8a6d2b);
+  background: linear-gradient(135deg, #a08030, #b8942e, #a08030);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -367,7 +367,7 @@ html.light .gold-divider {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #8a6d2b;
+  background: #a08030;
   border-radius: 4px;
 }
 

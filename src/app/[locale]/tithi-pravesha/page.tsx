@@ -94,9 +94,9 @@ const LABELS = {
   calculating: { en: 'Calculating...', hi: 'गणना हो रही है...', sa: 'गणना प्रचलति...' },
 };
 
-const currentYear = new Date().getFullYear();
-
 export default function TithiPraveshaPage() {
+  // Evaluated on every render, not once at module load (avoids stale year after midnight)
+  const currentYear = new Date().getFullYear();
   const locale = useLocale() as Locale;
   const learnLinks = getLearnLinksForTool('/tithi-pravesha');
   const isDevanagari = isDevanagariLocale(locale);

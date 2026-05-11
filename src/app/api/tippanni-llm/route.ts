@@ -19,15 +19,17 @@ interface CachedReading {
 
 const readingCache = new Map<string, CachedReading>();
 
-// Prevent unbounded growth: evict expired cache entries every 5 minutes, cap at 1000
+// Lazy eviction on every cache read instead of setInterval
+// (setInterval is unreliable in serverless — function instances are ephemeral)
 const READING_CACHE_TTL = 24 * 60 * 60 * 1000; // 24 hours
-setInterval(() => {
+
+function evictStaleReadingCache() {
   const now = Date.now();
   for (const [key, entry] of readingCache.entries()) {
     if (now - entry.generatedAt > READING_CACHE_TTL) readingCache.delete(key);
   }
   if (readingCache.size > 1000) readingCache.clear();
-}, 5 * 60 * 1000);
+}
 
 // ─── Monthly usage tracking per user ─────────────────────────────────────────
 
@@ -38,14 +40,14 @@ interface MonthlyUsage {
 
 const monthlyUsageMap = new Map<string, MonthlyUsage>();
 
-// Prevent unbounded growth: evict stale monthly entries every 5 minutes
-setInterval(() => {
+// Lazy eviction on every access instead of setInterval
+function evictStaleMonthlyUsage() {
   const currentMonth = (() => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`; })();
   for (const [key, entry] of monthlyUsageMap.entries()) {
     if (entry.month !== currentMonth) monthlyUsageMap.delete(key);
   }
   if (monthlyUsageMap.size > 10000) monthlyUsageMap.clear();
-}, 5 * 60 * 1000);
+}
 
 const MONTHLY_LIMITS: Record<string, number> = {
   pro: 5,
@@ -59,6 +61,7 @@ function getCurrentMonth(): string {
 }
 
 function getMonthlyUsage(userKey: string): number {
+  evictStaleMonthlyUsage();
   const usage = monthlyUsageMap.get(userKey);
   if (!usage || usage.month !== getCurrentMonth()) return 0;
   return usage.count;
@@ -195,6 +198,7 @@ export async function POST(request: NextRequest) {
 
     // Check for cached reading (if convergence patterns haven't changed)
     if (!compare) {
+      evictStaleReadingCache();
       const cached = readingCache.get(chartKey);
       const currentHash = getConvergenceHash(convergence);
 

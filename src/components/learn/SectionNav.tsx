@@ -53,6 +53,16 @@ export default function SectionNav({ sections }: SectionNavProps) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Close on Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') setIsOpen(false);
+    }
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
+
   const jumpTo = useCallback((id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -72,7 +82,7 @@ export default function SectionNav({ sections }: SectionNavProps) {
     <>
       {/* Expanded menu */}
       {isOpen && (
-        <div className="fixed inset-0 z-40 bg-black/40" onClick={() => setIsOpen(false)} />
+        <div className="fixed inset-0 z-40 bg-black/40" onClick={() => setIsOpen(false)} aria-hidden="true" />
       )}
 
       <div className={`fixed bottom-6 right-4 z-50 transition-all duration-200 ${isOpen ? 'bottom-0 right-0 left-0' : ''}`}>

@@ -17,7 +17,7 @@ export default async function HoroscopePage({ params }: { params: Promise<{ loca
     <main className="min-h-screen bg-[#0a0e27] text-text-primary">
       <div className="max-w-5xl mx-auto px-4 pt-10 pb-6">
         {/* SSR: H1 with today's date  –  Google indexes this */}
-        <h1 className="text-3xl sm:text-4xl font-bold text-gold-light text-center">
+        <h1 suppressHydrationWarning className="text-3xl sm:text-4xl font-bold text-gold-light text-center">
           {isHi ? `दैनिक राशिफल  –  ${today}` : `Daily Horoscope  –  ${today}`}
         </h1>
 

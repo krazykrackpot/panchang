@@ -9,15 +9,24 @@ import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 // In-memory cache: date → horoscopes
 const cache = new Map<string, { data: Record<number, string>; createdAt: number }>();
 const CACHE_TTL = 24 * 60 * 60 * 1000; // 24 hours
+const CACHE_MAX_SIZE = 1000;
 
-// Prevent unbounded growth: evict expired entries every 5 minutes, cap at 1000
-setInterval(() => {
+// Lazy eviction: check TTL on every cache read instead of setInterval
+// (setInterval is unreliable in serverless — function instances are ephemeral)
+function getCached(key: string): { data: Record<number, string>; createdAt: number } | null {
+  const entry = cache.get(key);
+  if (!entry) return null;
+  if (Date.now() - entry.createdAt > CACHE_TTL) { cache.delete(key); return null; }
+  return entry;
+}
+
+function evictStaleEntries() {
   const now = Date.now();
   for (const [key, entry] of cache.entries()) {
     if (now - entry.createdAt > CACHE_TTL) cache.delete(key);
   }
-  if (cache.size > 1000) cache.clear();
-}, 5 * 60 * 1000);
+  if (cache.size > CACHE_MAX_SIZE) cache.clear();
+}
 
 const querySchema = z.object({
   sign: z.coerce.number().int().min(1).max(12).optional(),
@@ -60,10 +69,10 @@ export async function GET(request: Request) {
     : tzFallback;
   const today = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
 
-  // Check cache
+  // Check cache (lazy eviction — no setInterval needed in serverless)
   const cacheKey = `${today}-${locale}`;
-  const cached = cache.get(cacheKey);
-  if (cached && Date.now() - cached.createdAt < CACHE_TTL) {
+  const cached = getCached(cacheKey);
+  if (cached) {
     if (sign) {
       return NextResponse.json({ sign, signName: getSignName(sign), forecast: cached.data[sign] || '', date: today, cached: true }, {
         headers: { 'Cache-Control': 'public, s-maxage=86400' },
@@ -120,13 +129,9 @@ export async function GET(request: Request) {
     }
   }
 
-  // Cache the results
+  // Cache the results and lazily evict stale entries
   cache.set(cacheKey, { data: horoscopes, createdAt: Date.now() });
-
-  // Clean old cache entries
-  for (const [key, entry] of cache.entries()) {
-    if (Date.now() - entry.createdAt > CACHE_TTL) cache.delete(key);
-  }
+  evictStaleEntries();
 
   if (sign) {
     return NextResponse.json({ sign, signName: getSignName(sign), forecast: horoscopes[sign] || '', date: today, cached: false }, {

@@ -153,9 +153,14 @@ function KundaliYogasSection({ locale }: { locale: string }) {
                                 <div className="px-4 pb-4 space-y-3">
                                   <div><div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-1">{t('formationRule')}</div><div className="text-text-secondary text-xs leading-relaxed">{t(yoga.conditionKey)}</div></div>
                                   <div><div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-1">{t('effects')}</div><div className="text-text-secondary text-xs leading-relaxed">{t(yoga.effectKey)}</div></div>
-                                  <div className="flex items-center gap-2">
-                                    <span className="text-text-tertiary text-xs">{yoga.classical}</span>
-                                    <span className={`text-xs px-1.5 py-0.5 rounded ${yoga.auspicious ? 'bg-emerald-500/10 text-emerald-300' : 'bg-red-500/10 text-red-400'}`}>{yoga.auspicious ? t('auspicious') : t('inauspicious')}</span>
+                                  <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-2">
+                                      <span className="text-text-tertiary text-xs">{yoga.classical}</span>
+                                      <span className={`text-xs px-1.5 py-0.5 rounded ${yoga.auspicious ? 'bg-emerald-500/10 text-emerald-300' : 'bg-red-500/10 text-red-400'}`}>{yoga.auspicious ? t('auspicious') : t('inauspicious')}</span>
+                                    </div>
+                                    <Link href={`/learn/yoga/${yoga.id}` as any} className="text-xs text-gold-primary hover:text-gold-light transition-colors flex items-center gap-1">
+                                      {isHi ? 'विस्तार से' : 'Full article'} <ChevronRight size={12} />
+                                    </Link>
                                   </div>
                                 </div>
                               </motion.div>

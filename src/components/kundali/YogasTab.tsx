@@ -1,10 +1,16 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { ChevronRight } from 'lucide-react';
+import { Link } from '@/lib/i18n/navigation';
 import { tl } from '@/lib/utils/trilingual';
 import InfoBlock from '@/components/ui/InfoBlock';
+import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
 import type { YogaComplete } from '@/lib/kundali/yogas-complete';
 import type { Locale, LocaleText } from '@/types/panchang';
+
+// Set of yoga slugs that have detail pages
+const YOGA_DETAIL_SLUGS = new Set(Object.keys(YOGA_DETAIL_DATA));
 
 // ---------------------------------------------------------------------------
 // Planet name extraction from formation rule (English) to generate activation
@@ -260,6 +266,11 @@ export default function YogasTab({ yogas, locale, isDevanagari, headingFont }: {
                               {activationNote}
                             </p>
                           </div>
+                        )}
+                        {YOGA_DETAIL_SLUGS.has(y.id) && (
+                          <Link href={`/learn/yoga/${y.id}` as any} className="mt-2 inline-flex items-center gap-1 text-xs text-gold-primary hover:text-gold-light transition-colors">
+                            {locale === 'en' || isTamil ? 'Learn more about this yoga' : 'इस योग के बारे में और जानें'} <ChevronRight size={12} />
+                          </Link>
                         )}
                       </div>
                     );

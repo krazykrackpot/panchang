@@ -165,17 +165,17 @@ export function resolveTimezone(tz: string | number, year: number, month: number
  * The birth location's coordinates determine the timezone  –  never the browser.
  */
 export async function resolveTimezoneFromCoords(lat: number, lng: number): Promise<string> {
-  // Method 1: Browser's Intl API  –  instant, no network call.
-  // When coordinates come from browser geolocation, the browser's timezone
-  // is the correct timezone for those coordinates.
-  if (typeof window !== 'undefined' && typeof Intl !== 'undefined') {
-    try {
-      const browserTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      if (browserTz && browserTz !== 'UTC') return browserTz;
-    } catch { /* Intl not available */ }
-  }
+  // NEVER use the browser's timezone here. This function resolves the timezone
+  // for BIRTH coordinates, which may be in a completely different timezone than
+  // the user's current browser location. A user in Switzerland entering birth
+  // coordinates in Hyderabad must get Asia/Kolkata, not Europe/Zurich.
+  //
+  // Previous bug: Method 1 returned Intl.DateTimeFormat().resolvedOptions().timeZone
+  // (the browser's timezone) which is WRONG for birth location resolution.
+  // This caused incorrect kundali for anyone born in a different timezone than
+  // their current location — wrong nakshatra, wrong tithi, wrong everything.
 
-  // Method 2: External API  –  resolves timezone for arbitrary coordinates.
+  // Method 1: External API  –  resolves timezone for arbitrary coordinates.
   // Needed when coordinates don't match the user's browser timezone
   // (e.g., searching for panchang in Delhi while sitting in Switzerland).
   try {

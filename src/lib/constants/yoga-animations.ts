@@ -614,6 +614,117 @@ export const YOGA_ANIMATIONS: YogaAnimation[] = [
     frequencyHi: '~50% कुण्डलियों में',
     accentColor: '#e85050',
   },
+
+  // ── Dosha: Guru Chandal ─────────────────────────────────────────────────
+  {
+    id: 'guru_chandal',
+    name: 'Guru Chandal Dosha',
+    nameHi: 'गुरु चाण्डाल दोष',
+    nameTa: 'குரு சண்டால தோஷம்',
+    nameBn: 'গুরু চাণ্ডাল দোষ',
+    category: 'dosha',
+    classical: 'Phaladeepika / Manasagari',
+    description: 'Jupiter is conjunct Rahu in the same house. Rahu\'s shadow corrupts Jupiter\'s wisdom, creating confusion in dharma, unorthodox beliefs, and trouble from misguided teachers or false gurus. Remedied when Jupiter is strong in dignity.',
+    descriptionHi: 'बृहस्पति और राहु एक ही भाव में युत हों। राहु की छाया बृहस्पति के ज्ञान को दूषित करती है  –  धर्म में भ्रम, अपरम्परागत विश्वास और गलत गुरुओं से कष्ट। बृहस्पति बली हो तो दोष कम होता है।',
+    descriptionTa: 'வியாழன் மற்றும் ராகு ஒரே வீட்டில் இணைந்திருக்கும்போது. ராகுவின் நிழல் வியாழனின் ஞானத்தை கெடுக்கும்  –  தர்மத்தில் குழப்பம், தவறான வழிகாட்டிகள்.',
+    descriptionBn: 'বৃহস্পতি ও রাহু একই ঘরে যুক্ত থাকলে। রাহুর ছায়া বৃহস্পতির জ্ঞান দূষিত করে  –  ধর্মে বিভ্রান্তি, মিথ্যা গুরুদের থেকে সমস্যা।',
+    conditions: [
+      {
+        text: 'Jupiter is placed in a house',
+        textHi: 'बृहस्पति किसी भाव में स्थित हो',
+        textTa: 'வியாழன் ஒரு வீட்டில் இருக்க வேண்டும்',
+        textBn: 'বৃহস্পতি একটি ঘরে থাকতে হবে',
+        triggeredByStep: [0],
+      },
+      {
+        text: 'Rahu is conjunct Jupiter in the same house',
+        textHi: 'राहु बृहस्पति के साथ उसी भाव में युत हो',
+        textTa: 'ராகு வியாழனுடன் அதே வீட்டில் இணைந்திருக்க வேண்டும்',
+        textBn: 'রাহু বৃহস্পতির সাথে একই ঘরে যুক্ত থাকতে হবে',
+        triggeredByStep: [1],
+      },
+    ],
+    planets: [
+      { planetId: 4, house: 5, fromLagna: true },
+      { planetId: 7, house: 5, fromLagna: true },
+    ],
+    frequency: '~8% of charts',
+    frequencyHi: '~8% कुण्डलियों में',
+    accentColor: '#e85050',
+  },
+
+  // ── Dosha: Pitra Dosha ──────────────────────────────────────────────────
+  {
+    id: 'pitra_dosha',
+    name: 'Pitra Dosha',
+    nameHi: 'पितृ दोष',
+    nameTa: 'பித்ரு தோஷம்',
+    nameBn: 'পিতৃ দোষ',
+    category: 'dosha',
+    classical: 'BPHS Ch.26 / Lal Kitab',
+    description: 'Sun (significator of father and ancestors) is conjunct or aspected by Saturn or Rahu in the 9th house (house of father/fortune). Indicates ancestral karmic debts manifesting as obstacles in fortune, delayed success, and difficulties with father figures.',
+    descriptionHi: 'सूर्य (पिता और पितरों का कारक) 9वें भाव में शनि या राहु से युत या दृष्ट हो। पैतृक कर्म ऋण  –  भाग्य में बाधा, विलम्बित सफलता और पिता से कठिनाई।',
+    descriptionTa: 'சூரியன் (தந்தை மற்றும் மூதாதையரின் காரகம்) 9ஆம் வீட்டில் சனி அல்லது ராகுவுடன் இணைந்தால் அல்லது பார்வையில் இருந்தால். மூதாதையர் கர்ம கடன்கள்.',
+    descriptionBn: 'সূর্য (পিতা ও পূর্বপুরুষদের কারক) ৯ম ঘরে শনি বা রাহুর সাথে যুক্ত বা দৃষ্ট হলে। পৈতৃক কর্ম ঋণ  –  ভাগ্যে বাধা, বিলম্বিত সাফল্য।',
+    conditions: [
+      {
+        text: 'Sun is placed in the 9th house (house of father/fortune)',
+        textHi: 'सूर्य 9वें भाव (पिता/भाग्य) में स्थित हो',
+        textTa: 'சூரியன் 9ஆம் வீட்டில் (தந்தை/அதிர்ஷ்டம்) இருக்க வேண்டும்',
+        textBn: 'সূর্য ৯ম ঘরে (পিতা/ভাগ্য) থাকতে হবে',
+        triggeredByStep: [0],
+      },
+      {
+        text: 'Saturn or Rahu is conjunct Sun in the 9th house',
+        textHi: 'शनि या राहु 9वें भाव में सूर्य से युत हो',
+        textTa: 'சனி அல்லது ராகு 9ஆம் வீட்டில் சூரியனுடன் இணைந்திருக்க வேண்டும்',
+        textBn: 'শনি বা রাহু ৯ম ঘরে সূর্যের সাথে যুক্ত থাকতে হবে',
+        triggeredByStep: [1],
+      },
+    ],
+    planets: [
+      { planetId: 0, house: 9, fromLagna: true },
+      { planetId: 6, house: 9, fromLagna: true },
+    ],
+    frequency: '~12% of charts',
+    frequencyHi: '~12% कुण्डलियों में',
+    accentColor: '#e85050',
+  },
+
+  // ── Dosha: Kalatra Dosha ────────────────────────────────────────────────
+  {
+    id: 'kalatra_dosha',
+    name: 'Kalatra Dosha',
+    nameHi: 'कलत्र दोष',
+    nameTa: 'களத்திர தோஷம்',
+    nameBn: 'কলত্র দোষ',
+    category: 'dosha',
+    classical: 'BPHS Ch.20 / Saravali',
+    description: 'A natural malefic (Mars, Saturn, Rahu, or Ketu) occupies the 7th house (house of spouse/marriage). Creates challenges in partnerships, delayed or troubled marriage, and friction with spouse. Severity depends on which malefic and its dignity.',
+    descriptionHi: 'प्राकृतिक पापग्रह (मंगल, शनि, राहु या केतु) 7वें भाव (विवाह/साझेदारी) में हो। विवाह में विलम्ब या कठिनाई, जीवनसाथी से तनाव। गम्भीरता पापग्रह की बल पर निर्भर।',
+    descriptionTa: 'இயற்கை தீய கிரகம் (செவ்வாய், சனி, ராகு அல்லது கேது) 7ஆம் வீட்டில் (திருமணம்/கூட்டாண்மை) இருக்கும்போது. திருமணத்தில் தடை, துணையுடன் சிக்கல்கள்.',
+    descriptionBn: 'প্রাকৃতিক পাপগ্রহ (মঙ্গল, শনি, রাহু বা কেতু) ৭ম ঘরে (বিবাহ/সঙ্গী) থাকলে। বিবাহে বিলম্ব বা সমস্যা, সঙ্গীর সাথে উত্তেজনা।',
+    conditions: [
+      {
+        text: 'A natural malefic (Mars, Saturn, Rahu, or Ketu) occupies the 7th house',
+        textHi: 'प्राकृतिक पापग्रह (मंगल, शनि, राहु या केतु) 7वें भाव में हो',
+        textTa: 'இயற்கை தீய கிரகம் (செவ்வாய், சனி, ராகு அல்லது கேது) 7ஆம் வீட்டில் இருக்க வேண்டும்',
+        textBn: 'প্রাকৃতিক পাপগ্রহ (মঙ্গল, শনি, রাহু বা কেতু) ৭ম ঘরে থাকতে হবে',
+        triggeredByStep: [0],
+      },
+      {
+        text: 'No benefic aspect or conjunction cancels the malefic influence on the 7th',
+        textHi: 'कोई शुभ दृष्टि या युति 7वें पर पापग्रह का प्रभाव न मिटाए',
+        textTa: 'எந்த சுப பார்வையும் 7ஆம் வீட்டின் மீதான தீய செல்வாக்கை நீக்காமல் இருக்க வேண்டும்',
+        textBn: 'কোনো শুভ দৃষ্টি বা যুতি ৭ম ঘরের পাপ প্রভাব নিরসন না করলে',
+        triggeredByStep: [0],
+      },
+    ],
+    planets: [{ planetId: 6, house: 7, fromLagna: true }],
+    frequency: '~30% of charts',
+    frequencyHi: '~30% कुण्डलियों में',
+    accentColor: '#e85050',
+  },
 ];
 
 // ─── Helpers ────────────────────────────────────────────────────────────────

@@ -236,12 +236,18 @@ export default function CalendarPage() {
     if (!location) return; // Don't fetch until location is resolved
     setLoading(true);
     fetch(`/api/calendar?year=${year}&lat=${location.lat}&lon=${location.lng}&timezone=${encodeURIComponent(location.timezone)}`)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error(`Calendar fetch failed: ${res.status}`);
+        return res.json();
+      })
       .then(data => {
         setFestivals(data.festivals || []);
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch((err) => {
+        console.error('[CalendarPage] festival fetch failed:', err);
+        setLoading(false);
+      });
   }, [year, location]);
 
   // Fetch tithi data for grid view

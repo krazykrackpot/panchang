@@ -382,9 +382,15 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
     const [year, month, day] = selectedDate.split('-').map(Number);
     // CRITICAL: use the LOCATION's timezone, not the browser's (Lesson L, feedback_timezone_rule)
     fetch(`/api/panchang?year=${year}&month=${month}&day=${day}&lat=${location.lat}&lng=${location.lng}&timezone=${encodeURIComponent(location.ianaTimezone)}&location=${encodeURIComponent(location.name)}`)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error(`Panchang fetch failed: ${res.status}`);
+        return res.json();
+      })
       .then(data => { setPanchang(data); setLoading(false); })
-      .catch(() => setLoading(false));
+      .catch((err) => {
+        console.error('[PanchangClient] fetch failed:', err);
+        setLoading(false);
+      });
   }, [selectedDate, location]);
 
   useEffect(() => { fetchPanchang(); }, [fetchPanchang]);

@@ -176,9 +176,10 @@ function computeEkadashiParanaFromTable(
 
   const paranaDate = ekadashiEntry.sunriseDate;
   // Parana is on the day AFTER the Ekadashi fasting day
+  // H2 fix: new Date("YYYY-MM-DD") parses as UTC midnight — use UTC accessors to avoid off-by-one on UTC- servers
   const pd = new Date(paranaDate);
-  pd.setDate(pd.getDate() + 1);
-  const paranaDayStr = `${pd.getFullYear()}-${(pd.getMonth()+1).toString().padStart(2,'0')}-${pd.getDate().toString().padStart(2,'0')}`;
+  pd.setUTCDate(pd.getUTCDate() + 1);
+  const paranaDayStr = `${pd.getUTCFullYear()}-${(pd.getUTCMonth()+1).toString().padStart(2,'0')}-${pd.getUTCDate().toString().padStart(2,'0')}`;
 
   const [py, pm, pday] = paranaDayStr.split('-').map(Number);
   const tz = getUTCOffsetForDate(py, pm, pday, timezone);
@@ -284,10 +285,11 @@ function computeEkadashiParanaFromTable(
 // ─── Simple Parana Calculators ───
 
 function computeSimpleParana(date: string, lat: number, lon: number, timezone: string, type: 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham') {
+  // H3 fix: new Date("YYYY-MM-DD") parses as UTC midnight — use UTC accessors to avoid off-by-one on UTC- servers
   const pd = new Date(date);
-  if (type === 'amavasya') pd.setDate(pd.getDate() + 1); // next day
+  if (type === 'amavasya') pd.setUTCDate(pd.getUTCDate() + 1); // next day
 
-  const y = pd.getFullYear(), m = pd.getMonth() + 1, d = pd.getDate();
+  const y = pd.getUTCFullYear(), m = pd.getUTCMonth() + 1, d = pd.getUTCDate();
   const tz = getUTCOffsetForDate(y, m, d, timezone);
   const jd = dateToJD(y, m, d, 0);
   const srUT = approximateSunriseSafe(jd, lat, lon);

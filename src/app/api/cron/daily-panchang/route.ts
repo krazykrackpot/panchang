@@ -40,14 +40,23 @@ export async function GET(request: Request) {
       });
     }
 
-    // Fetch emails from auth.users
+    // Fetch emails from auth.users (paginated — listUsers returns max 1000 per page)
     const userIds = subscribers.map(s => s.id);
-    const { data: authUsers } = await supabase.auth.admin.listUsers();
     const emailMap = new Map<string, string>();
-    if (authUsers?.users) {
-      for (const u of authUsers.users) {
+    let page = 1;
+    const perPage = 1000;
+    while (true) {
+      const { data: authPage, error: authErr } = await supabase.auth.admin.listUsers({ page, perPage });
+      if (authErr) {
+        console.error('[daily-panchang] listUsers page', page, 'failed:', authErr);
+        break;
+      }
+      if (!authPage?.users || authPage.users.length === 0) break;
+      for (const u of authPage.users) {
         if (u.email) emailMap.set(u.id, u.email);
       }
+      if (authPage.users.length < perPage) break;
+      page++;
     }
 
     // Fetch kundali snapshots for moon sign data (used for daily rashifal)

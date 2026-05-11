@@ -4,6 +4,7 @@ import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getClaudeClient, DEFAULT_MODEL } from '@/lib/llm/llm-client';
 import { buildAllHoroscopePrompts, buildHoroscopePrompt, buildFallbackHoroscope } from '@/lib/llm/horoscope-prompt';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 
 // In-memory cache: date → horoscopes
 const cache = new Map<string, { data: Record<number, string>; createdAt: number }>();
@@ -19,6 +20,16 @@ const querySchema = z.object({
 });
 
 export async function GET(request: Request) {
+  // M19 fix: rate limit to prevent unbounded Claude API cost exposure (5 uncached requests/day per IP)
+  const ip = getClientIP(request);
+  const { allowed, remaining } = checkRateLimit(ip, { maxRequests: 5, windowMs: 24 * 60 * 60 * 1000 });
+  if (!allowed) {
+    return NextResponse.json(
+      { error: 'Rate limit exceeded. Try again tomorrow.' },
+      { status: 429, headers: { 'Retry-After': '86400', 'X-RateLimit-Remaining': '0' } },
+    );
+  }
+
   const { searchParams } = new URL(request.url);
   const parsed = querySchema.safeParse({
     sign: searchParams.get('sign'),

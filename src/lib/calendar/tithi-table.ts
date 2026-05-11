@@ -344,8 +344,9 @@ export function buildYearlyTithiTable(
     const sunriseDates: string[] = [];
     const startD = new Date(startDateStr);
     const endD = new Date(endDateStr);
-    for (let d = new Date(startD); d <= endD; d.setDate(d.getDate() + 1)) {
-      const ds = `${d.getFullYear()}-${(d.getMonth()+1).toString().padStart(2,'0')}-${d.getDate().toString().padStart(2,'0')}`;
+    // H1 fix: new Date("YYYY-MM-DD") parses as UTC midnight — use UTC accessors to avoid off-by-one on UTC- servers
+    for (let d = new Date(startD); d <= endD; d.setUTCDate(d.getUTCDate() + 1)) {
+      const ds = `${d.getUTCFullYear()}-${(d.getUTCMonth()+1).toString().padStart(2,'0')}-${d.getUTCDate().toString().padStart(2,'0')}`;
       const srJd = sunriseJdForDate(ds, lat, lon);
       if (srJd >= currentJd && srJd < tithiEndJd) {
         sunriseDates.push(ds);

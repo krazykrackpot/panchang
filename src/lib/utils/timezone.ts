@@ -274,15 +274,6 @@ export async function resolveCurrentLocationTimezone(lat: number, lng: number): 
 }
 
 /**
- * @deprecated Use resolveBirthTimezone() for kundali/birth charts,
- * or resolveCurrentLocationTimezone() for panchang/location search.
- * This alias defaults to resolveBirthTimezone (the safe choice).
- */
-export async function resolveTimezoneFromCoords(lat: number, lng: number): Promise<string> {
-  return resolveBirthTimezone(lat, lng);
-}
-
-/**
  * Validate an IANA timezone string.
  */
 export function isValidTimezone(tz: string): boolean {

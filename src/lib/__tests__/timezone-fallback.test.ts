@@ -25,10 +25,10 @@ afterAll(() => {
 async function getResolver() {
   // Clear module cache to pick up the mocked fetch
   const mod = await import('@/lib/utils/timezone');
-  return mod.resolveTimezoneFromCoords;
+  return mod.resolveBirthTimezone;
 }
 
-describe('resolveTimezoneFromCoords fallback (API down)', () => {
+describe('resolveBirthTimezone fallback (API down)', () => {
   // ─── India (ALL must return Asia/Kolkata) ─────────────────────────────
   const indianCities = [
     { name: 'Delhi', lat: 28.6139, lng: 77.209 },

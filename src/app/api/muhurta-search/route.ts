@@ -12,7 +12,7 @@ import { NextResponse } from 'next/server';
 import { getClaudeClient, DEFAULT_MODEL } from '@/lib/llm/llm-client';
 import { smartMuhurtaSearch, type SearchParams, type UserSnapshot } from '@/lib/muhurta/smart-search';
 import { EXTENDED_ACTIVITIES } from '@/lib/muhurta/activity-rules-extended';
-import { resolveTimezone, resolveTimezoneFromCoords, getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { resolveTimezone, resolveCurrentLocationTimezone, getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { ExtendedActivityId } from '@/types/muhurta-ai';
 
 // ─── In-memory rate limiter (10 requests per IP per hour) ─────────
@@ -233,7 +233,7 @@ export async function POST(request: Request) {
     // NOT account for DST or political timezone boundaries  –  known limitation.
     let tzOffset: number;
     try {
-      const ianaTimezone = await resolveTimezoneFromCoords(lat, lng);
+      const ianaTimezone = await resolveCurrentLocationTimezone(lat, lng);
       tzOffset = getUTCOffsetForDate(startYear, startMonth, startDay, ianaTimezone);
     } catch {
       // Fallback: longitude-based estimate  –  does not handle DST or political boundaries

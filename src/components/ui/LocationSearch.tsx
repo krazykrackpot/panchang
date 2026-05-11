@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { MapPin, Loader2 } from 'lucide-react';
-import { resolveTimezoneFromCoords } from '@/lib/utils/timezone';
+import { resolveCurrentLocationTimezone } from '@/lib/utils/timezone';
 
 interface LocationResult {
   name: string;
@@ -35,7 +35,7 @@ async function searchLocations(query: string): Promise<LocationResult[]> {
     data.map(async (item: { display_name: string; lat: string; lon: string }) => {
       const lat = parseFloat(item.lat);
       const lng = parseFloat(item.lon);
-      const timezone = await resolveTimezoneFromCoords(lat, lng);
+      const timezone = await resolveCurrentLocationTimezone(lat, lng);
       return {
         name: item.display_name.split(',').slice(0, 3).join(','),
         lat,

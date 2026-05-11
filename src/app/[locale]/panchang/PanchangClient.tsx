@@ -28,7 +28,7 @@ import { computeBalam } from '@/lib/panchang/balam';
 import { calculatePanchaPakshi } from '@/lib/prashna/pancha-pakshi';
 import { computeHinduMonths, computePurnimantMonths, formatMonthDate } from '@/lib/calendar/hindu-months';
 import { useBirthDataStore } from '@/stores/birth-data-store';
-import { getUTCOffsetForDate, resolveTimezoneFromCoords } from '@/lib/utils/timezone';
+import { getUTCOffsetForDate, resolveCurrentLocationTimezone } from '@/lib/utils/timezone';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
@@ -300,7 +300,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
   // Helper: resolve IANA timezone + numeric offset from coordinates
   // CRITICAL: panchang calculations MUST use the location's timezone, NEVER the browser's
   async function resolveLocationTimezone(lat: number, lng: number): Promise<{ ianaTimezone: string; tz: number }> {
-    const ianaTimezone = await resolveTimezoneFromCoords(lat, lng);
+    const ianaTimezone = await resolveCurrentLocationTimezone(lat, lng);
     const now = new Date();
     const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTimezone);
     return { ianaTimezone, tz };

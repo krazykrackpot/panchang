@@ -189,37 +189,20 @@ export async function resolveTimezoneFromCoords(lat: number, lng: number): Promi
     }
   } catch { /* API failed  –  use longitude fallback */ }
 
-  // Method 2: Coordinate-based region detection (last resort).
-  // Instead of crude Math.round(lng/15), use lat/lng bounds for major regions.
-  // India (UTC+5:30) is the most critical — Math.round(78/15)=5 gives Asia/Karachi (UTC+5), NOT Asia/Kolkata.
-  // Nepal (UTC+5:45) is similar. Sri Lanka uses UTC+5:30 too.
-
-  // India: lat 6-37, lng 68-98
-  if (lat >= 6 && lat <= 37 && lng >= 68 && lng <= 98) return 'Asia/Kolkata';
-  // Nepal: lat 26-31, lng 80-89
-  if (lat >= 26 && lat <= 31 && lng >= 80 && lng <= 89) return 'Asia/Kathmandu';
-  // Sri Lanka: lat 5.5-10, lng 79.5-82
-  if (lat >= 5.5 && lat <= 10 && lng >= 79.5 && lng <= 82) return 'Asia/Colombo';
-  // Pakistan: lat 23-37, lng 60-77
-  if (lat >= 23 && lat <= 37 && lng >= 60 && lng <= 77) return 'Asia/Karachi';
-  // Bangladesh: lat 20-27, lng 88-93
-  if (lat >= 20 && lat <= 27 && lng >= 88 && lng <= 93) return 'Asia/Dhaka';
-  // Myanmar: lat 9-29, lng 92-102
-  if (lat >= 9 && lat <= 29 && lng >= 92 && lng <= 102) return 'Asia/Yangon';
-  // Europe: lat 35-72, lng -10-40
-  if (lat >= 35 && lat <= 72 && lng >= -10 && lng <= 40) {
-    if (lng <= 15) return 'Europe/Paris';       // CET
-    if (lng <= 30) return 'Europe/Helsinki';    // EET
-    return 'Europe/Moscow';                      // MSK
+  // Method 2: tz-lookup — offline coordinate-to-IANA timezone resolution.
+  // Uses pre-computed geographic boundaries (no bounding box hacks).
+  // Correctly handles India/Nepal/Bangladesh/Pakistan borders, US timezone
+  // boundaries, and every other edge case worldwide.
+  try {
+    const tzLookup = require('tz-lookup');
+    const tz = tzLookup(lat, lng);
+    if (tz) return tz;
+  } catch {
+    // tz-lookup not available — should never happen in production
+    console.error('[timezone] tz-lookup failed for', lat, lng);
   }
-  // US East: lat 24-50, lng -90--65
-  if (lat >= 24 && lat <= 50 && lng >= -90 && lng <= -65) return 'America/New_York';
-  // US Central: lat 24-50, lng -105--90
-  if (lat >= 24 && lat <= 50 && lng >= -105 && lng <= -90) return 'America/Chicago';
-  // US West: lat 24-50, lng -125--105
-  if (lat >= 24 && lat <= 50 && lng >= -125 && lng <= -105) return 'America/Los_Angeles';
 
-  // Generic longitude fallback for everything else
+  // Method 3: absolute last resort — crude longitude estimate
   const offsetHours = Math.round(lng / 15);
   const OFFSET_TO_IANA: Record<string, string> = {
     '-12': 'Etc/GMT+12', '-11': 'Pacific/Midway', '-10': 'Pacific/Honolulu',

@@ -8,6 +8,7 @@ import GoldDivider from '@/components/ui/GoldDivider';
 import { ShareRow } from '@/components/ui/ShareButton';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
+import { TOTAL_MODULES, PHASE_INFO } from '@/lib/learn/module-sequence';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import type { Locale } from '@/lib/i18n/config';
 
@@ -185,7 +186,7 @@ const ROWS: CompRow[] = [
   {
     feature: 'Learning Curriculum',
     featureHi: 'शिक्षण पाठ्यक्रम',
-    dekho: '106 structured modules across 12 phases  –  from beginner to advanced Jyotish',
+    dekho: `${TOTAL_MODULES} structured modules across ${PHASE_INFO.length} phases  –  from beginner to advanced Jyotish`,
     drik: 'Reference articles (unstructured)',
     dekhoYes: true, drikYes: false, highlight: true,
   },
@@ -491,8 +492,8 @@ const WHY_CARDS: WhyCard[] = [
   },
   {
     icon: BookOpen,
-    title: '106-Module Learning Path',
-    titleHi: '106-मॉड्यूल शिक्षण पथ',
+    title: `${TOTAL_MODULES}-Module Learning Path`,
+    titleHi: `${TOTAL_MODULES}-मॉड्यूल शिक्षण पथ`,
     body: 'From "What is a Tithi?" to advanced Jaimini Chara Dasha  –  structured learning with progress tracking, spaced repetition, and interactive labs.',
     bodyHi: '"तिथि क्या है?" से लेकर उन्नत जैमिनी चर दशा तक  –  प्रगति ट्रैकिंग, स्पेस्ड रिपिटिशन और इंटरैक्टिव लैब्स के साथ संरचित शिक्षण।',
   },

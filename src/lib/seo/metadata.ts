@@ -5,6 +5,7 @@
 
 import type { Metadata } from 'next';
 import { locales } from '@/lib/i18n/config';
+import { TOTAL_MODULES } from '@/lib/learn/module-sequence';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
@@ -778,7 +779,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/vs/drik-panchang': {
     title: { en: 'Dekho Panchang vs Drik Panchang  –  Feature Comparison 2026', hi: 'देखो पंचांग vs दृक् पंचांग  –  सुविधा तुलना 2026', sa: 'देखोपञ्चाङ्गं विरुद्ध दृक्पञ्चाङ्गम्  –  सुविधातुलना' },
-    description: { en: 'Objective feature comparison between Dekho Panchang and Drik Panchang. AI interpretation, Muhurta AI, 10 languages, 106-module learning path, modern UI vs legacy platform.', hi: 'देखो पंचांग और दृक् पंचांग के बीच निष्पक्ष सुविधा तुलना। AI व्याख्या, मुहूर्त AI, 10 भाषाएँ, 106-मॉड्यूल शिक्षण पथ, आधुनिक UI।', sa: 'देखोपञ्चाङ्गस्य दृक्पञ्चाङ्गस्य च सुविधातुलना।' },
+    description: { en: `Objective feature comparison between Dekho Panchang and Drik Panchang. AI interpretation, Muhurta AI, 10 languages, ${TOTAL_MODULES}-module learning path, modern UI vs legacy platform.`, hi: `देखो पंचांग और दृक् पंचांग के बीच निष्पक्ष सुविधा तुलना। AI व्याख्या, मुहूर्त AI, 10 भाषाएँ, ${TOTAL_MODULES}-मॉड्यूल शिक्षण पथ, आधुनिक UI।`, sa: 'देखोपञ्चाङ्गस्य दृक्पञ्चाङ्गस्य च सुविधातुलना।' },
     keywords: ['dekho panchang vs drik panchang', 'panchang comparison', 'best panchang app', 'vedic astrology platform comparison', 'drik panchang alternative'],
   },
   '/pricing': {
@@ -1277,7 +1278,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       sa: 'वैदिकज्योतिषं शिक्षतु  –  निःशुल्कपाठ्यक्रमः',
     },
     description: {
-      en: 'Learn Vedic astrology free  –  238 interactive modules from basics to advanced. Grahas, Rashis, Nakshatras, Kundali reading, Muhurta & more. Start now.',
+      en: `Learn Vedic astrology free  –  ${TOTAL_MODULES} interactive modules from basics to advanced. Grahas, Rashis, Nakshatras, Kundali reading, Muhurta & more. Start now.`,
       hi: 'वैदिक ज्योतिष का निःशुल्क पूर्ण पाठ्यक्रम। ग्रह, राशि, नक्षत्र, तिथि, योग, कुण्डली पढ़ना सीखें।',
       sa: 'वैदिकज्योतिषस्य निःशुल्कः सम्पूर्णपाठ्यक्रमः। ग्रहान् राशीन् नक्षत्राणि तिथीन् योगान् कुण्डलीपठनं च शिक्षतु।',
     },

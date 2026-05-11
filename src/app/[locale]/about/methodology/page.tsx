@@ -2,6 +2,7 @@ import { getLocale } from 'next-intl/server';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import { TOTAL_MODULES } from '@/lib/learn/module-sequence';
 
 export const revalidate = 604800; // 7 days  –  static text page
 import {
@@ -468,8 +469,8 @@ export default async function MethodologyPage() {
           </div>
           <p className="text-text-secondary text-sm leading-relaxed">
             {locale === 'hi'
-              ? '100+ मॉड्यूल  –  पंचांग मूल बातों से लेकर उन्नत Shadbala तक।'
-              : '100+ modules covering Panchang basics to advanced Shadbala and Jaimini.'}
+              ? `${TOTAL_MODULES} मॉड्यूल  –  पंचांग मूल बातों से लेकर उन्नत Shadbala तक।`
+              : `${TOTAL_MODULES} modules covering Panchang basics to advanced Shadbala and Jaimini.`}
           </p>
         </a>
       </div>

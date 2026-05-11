@@ -5,6 +5,7 @@
  */
 
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { TOTAL_MODULES } from '@/lib/learn/module-sequence';
 
 const BASE_URL = 'https://dekhopanchang.com';
 
@@ -88,11 +89,11 @@ function day1(locale: Locale, data?: UserData): EmailOutput {
       html: wrapEmail(card(
         heading(`नमस्ते, ${name}!`) +
         p('देखो पंचांग में आपका स्वागत है  –  आपका वैदिक ज्योतिष साथी।') +
-        p(`यहाँ आप क्या कर सकते हैं: ${goldText('दैनिक पंचांग')} देखें, ${goldText('कुंडली')} बनाएं, ${goldText('104 मॉड्यूल')} से ज्योतिष सीखें, ${goldText('शादी मिलान')} जाँचें, और भी बहुत कुछ।`) +
+        p(`यहाँ आप क्या कर सकते हैं: ${goldText('दैनिक पंचांग')} देखें, ${goldText('कुंडली')} बनाएं, ${goldText(`${TOTAL_MODULES} मॉड्यूल`)} से ज्योतिष सीखें, ${goldText('शादी मिलान')} जाँचें, और भी बहुत कुछ।`) +
         p('सबसे पहला कदम? अपनी जन्म कुंडली बनाएं  –  यह आपकी सभी भविष्यवाणियों का आधार है।') +
         ctaButton('अपनी कुंडली बनाएं', `${BASE_URL}/hi/kundali`)
       )),
-      text: `नमस्ते ${name}!\n\nदेखो पंचांग में आपका स्वागत है। दैनिक पंचांग देखें, कुंडली बनाएं, 104 मॉड्यूल से सीखें।\n\nपहला कदम: अपनी जन्म कुंडली बनाएं।\n\n${BASE_URL}/hi/kundali`,
+      text: `नमस्ते ${name}!\n\nदेखो पंचांग में आपका स्वागत है। दैनिक पंचांग देखें, कुंडली बनाएं, ${TOTAL_MODULES} मॉड्यूल से सीखें।\n\nपहला कदम: अपनी जन्म कुंडली बनाएं।\n\n${BASE_URL}/hi/kundali`,
     };
   }
   return {
@@ -100,11 +101,11 @@ function day1(locale: Locale, data?: UserData): EmailOutput {
     html: wrapEmail(card(
       heading(`Namaste, ${name}!`) +
       p('Welcome to Dekho Panchang  –  your personal Vedic astrology companion.') +
-      p(`Here is what you can do: check your ${goldText('daily Panchang')}, generate a detailed ${goldText('Kundali (birth chart)')}, learn Vedic astrology through ${goldText('238 free modules')}, check ${goldText('marriage compatibility')}, and much more.`) +
+      p(`Here is what you can do: check your ${goldText('daily Panchang')}, generate a detailed ${goldText('Kundali (birth chart)')}, learn Vedic astrology through ${goldText(`${TOTAL_MODULES} free modules`)}, check ${goldText('marriage compatibility')}, and much more.`) +
       p('Your first step? Generate your birth chart  –  it powers all your personalized predictions.') +
       ctaButton('Generate Your Birth Chart', `${BASE_URL}/en/kundali`)
     )),
-    text: `Namaste ${name}!\n\nWelcome to Dekho Panchang  –  your Vedic astrology companion. Check daily Panchang, generate Kundali, learn through 104 modules.\n\nFirst step: generate your birth chart.\n\n${BASE_URL}/en/kundali`,
+    text: `Namaste ${name}!\n\nWelcome to Dekho Panchang  –  your Vedic astrology companion. Check daily Panchang, generate Kundali, learn through ${TOTAL_MODULES} modules.\n\nFirst step: generate your birth chart.\n\n${BASE_URL}/en/kundali`,
   };
 }
 
@@ -210,27 +211,27 @@ function day4(locale: Locale, data?: UserData): EmailOutput {
 function day5(locale: Locale, _data?: UserData): EmailOutput {
   if (isDevanagariLocale(locale)) {
     return {
-      subject: '104 मुफ़्त मॉड्यूल। "ज्योतिष क्या है?" से शुरू करें',
+      subject: `${TOTAL_MODULES} मुफ़्त मॉड्यूल। "ज्योतिष क्या है?" से शुरू करें`,
       html: wrapEmail(card(
         heading('वैदिक ज्योतिष सीखना शुरू करें  –  मॉड्यूल 1') +
-        p(`हमारा लर्निंग सिस्टम ${goldText('104 मॉड्यूल')} में बँटा है  –  नींव से लेकर उन्नत विषयों तक। प्रत्येक मॉड्यूल छोटा, सरल, और संस्कृत शब्दों के साथ है।`) +
+        p(`हमारा लर्निंग सिस्टम ${goldText(`${TOTAL_MODULES} मॉड्यूल`)} में बँटा है  –  नींव से लेकर उन्नत विषयों तक। प्रत्येक मॉड्यूल छोटा, सरल, और संस्कृत शब्दों के साथ है।`) +
         p(`विषय: ${goldText('ग्रह')}, ${goldText('राशियाँ')}, ${goldText('नक्षत्र')}, ${goldText('तिथियाँ')}, ${goldText('योग')}, ${goldText('करण')}, ${goldText('मुहूर्त')}, ${goldText('कुंडली')}  –  सभी त्रिभाषी (EN/HI/SA) में।`) +
         p('पहले मॉड्यूल से शुरू करें: "ज्योतिष क्या है?"') +
         ctaButton('सीखना शुरू करें', `${BASE_URL}/hi/learn/modules/0-1`)
       )),
-      text: `104 मुफ़्त मॉड्यूल। ज्योतिष सीखें।\n\nशुरू करें: ${BASE_URL}/hi/learn/modules/0-1`,
+      text: `${TOTAL_MODULES} मुफ़्त मॉड्यूल। ज्योतिष सीखें।\n\nशुरू करें: ${BASE_URL}/hi/learn/modules/0-1`,
     };
   }
   return {
-    subject: "238 free modules. Start with 'What is Jyotish?'",
+    subject: `${TOTAL_MODULES} free modules. Start with 'What is Jyotish?'`,
     html: wrapEmail(card(
       heading('Start Learning Vedic Astrology  –  Module 1') +
-      p(`Our learning system covers ${goldText('104 modules')}  –  from foundations to advanced topics. Each module is concise, accessible, and includes key Sanskrit terms.`) +
+      p(`Our learning system covers ${goldText(`${TOTAL_MODULES} modules`)}  –  from foundations to advanced topics. Each module is concise, accessible, and includes key Sanskrit terms.`) +
       p(`Topics: ${goldText('Grahas')}, ${goldText('Rashis')}, ${goldText('Nakshatras')}, ${goldText('Tithis')}, ${goldText('Yogas')}, ${goldText('Karanas')}, ${goldText('Muhurtas')}, ${goldText('Kundali')}  –  all available in English, Hindi, and Sanskrit.`) +
       p('Start with Module 1: "What is Jyotish?"') +
       ctaButton('Start Learning', `${BASE_URL}/en/learn/modules/0-1`)
     )),
-    text: `238 free modules. Learn Vedic astrology.\n\nStart: ${BASE_URL}/en/learn/modules/0-1`,
+    text: `${TOTAL_MODULES} free modules. Learn Vedic astrology.\n\nStart: ${BASE_URL}/en/learn/modules/0-1`,
   };
 }
 
@@ -274,8 +275,8 @@ function day6(locale: Locale, data?: UserData): EmailOutput {
 function day7(locale: Locale, _data?: UserData): EmailOutput {
   const shareText = encodeURIComponent(
     isDevanagariLocale(locale)
-      ? 'देखो पंचांग  –  मुफ़्त वैदिक ज्योतिष ऐप। दैनिक पंचांग, कुंडली, और 104 सीखने के मॉड्यूल।'
-      : 'Dekho Panchang  –  free Vedic astrology app. Daily Panchang, Kundali, and 104 learning modules.'
+      ? `देखो पंचांग  –  मुफ़्त वैदिक ज्योतिष ऐप। दैनिक पंचांग, कुंडली, और ${TOTAL_MODULES} सीखने के मॉड्यूल।`
+      : `Dekho Panchang  –  free Vedic astrology app. Daily Panchang, Kundali, and ${TOTAL_MODULES} learning modules.`
   );
   const whatsappUrl = `https://wa.me/?text=${shareText}%20${encodeURIComponent(BASE_URL)}`;
 

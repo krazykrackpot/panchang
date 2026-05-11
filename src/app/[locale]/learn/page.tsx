@@ -284,10 +284,10 @@ export default function LearnPage() {
          'Your Learning Journey'}
       </h2>
       <p className="text-text-secondary text-sm mb-8 max-w-2xl" style={bf}>
-        {locale === 'hi' ? '12 चरण, मूल बातों से लेकर उन्नत भविष्यवाणी तक  –  क्रमानुसार ऊपर बढ़ें।' :
-         locale === 'ta' ? '12 நிலைகள், அடிப்படையிலிருந்து மேம்பட்ட கணிப்பு வரை  –  வரிசையாக மேலே செல்லுங்கள்.' :
-         locale === 'bn' ? '12টি পর্যায়, মূল বিষয় থেকে উন্নত ভবিষ্যদ্বাণী পর্যন্ত  –  ক্রমানুসারে উপরে উঠুন।' :
-         '17 phases, from foundations to advanced prediction  –  work your way up.'}
+        {locale === 'hi' ? `${PHASE_INFO.length} चरण, मूल बातों से लेकर उन्नत भविष्यवाणी तक  –  क्रमानुसार ऊपर बढ़ें।` :
+         locale === 'ta' ? `${PHASE_INFO.length} நிலைகள், அடிப்படையிலிருந்து மேம்பட்ட கணிப்பு வரை  –  வரிசையாக மேலே செல்லுங்கள்.` :
+         locale === 'bn' ? `${PHASE_INFO.length}টি পর্যায়, মূল বিষয় থেকে উন্নত ভবিষ্যদ্বাণী পর্যন্ত  –  ক্রমানুসারে উপরে উঠুন।` :
+         `${PHASE_INFO.length} phases, from foundations to advanced prediction  –  work your way up.`}
       </p>
       <div className="mb-16">
         <LearningPath />

@@ -3,6 +3,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { generatePersonLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { Mail, Globe, Code, BookOpen, Calculator, Shield } from 'lucide-react';
+import { TOTAL_MODULES } from '@/lib/learn/module-sequence';
 
 export const revalidate = 604800; // 7 days  –  static text page
 
@@ -28,7 +29,7 @@ const CONTENT = {
       { icon: 'code', label: 'NASA JPL Ephemeris Precision', desc: 'Primary engine: Swiss Ephemeris powered by NASA JPL DE441 planetary ephemeris  –  arcsecond accuracy for all 9 planets, the same data used by NASA for spacecraft navigation. Meeus algorithms as fallback. No black-box APIs  –  open, verifiable astronomical computation.' },
       { icon: 'shield', label: 'Privacy First', desc: 'Your birth data stays yours. We use Supabase with Row Level Security  –  users can only access their own data. No selling personal information to third parties.' },
       { icon: 'globe', label: 'Multilingual', desc: 'Available in 10 languages including Hindi, Tamil, Bengali, Telugu, Kannada, Marathi, Gujarati, Maithili, and Sanskrit. Real translations, not machine-generated.' },
-      { icon: 'learn', label: '238 Learning Modules', desc: 'A structured curriculum covering everything from Panchang basics to advanced Jaimini Jyotish, Shadbala, KP System, and Ashtakavarga  –  free for everyone.' },
+      { icon: 'learn', label: `${TOTAL_MODULES} Learning Modules`, desc: 'A structured curriculum covering everything from Panchang basics to advanced Jaimini Jyotish, Shadbala, KP System, and Ashtakavarga  –  free for everyone.' },
     ],
     accuracyHeading: 'Accuracy & Methodology',
     accuracy: [
@@ -69,7 +70,7 @@ const CONTENT = {
       { icon: 'code', label: 'खुली गणना', desc: 'सभी गणनाएं मीउस एल्गोरिदम पर आधारित हैं। कोई बाहरी API नहीं  –  शुद्ध गणित।' },
       { icon: 'shield', label: 'गोपनीयता प्रथम', desc: 'आपका जन्म डेटा आपका है। Row Level Security के साथ Supabase।' },
       { icon: 'globe', label: 'बहुभाषी', desc: '10 भाषाओं में उपलब्ध  –  हिन्दी, तमिल, बंगाली, तेलुगु, कन्नड़, मराठी, गुजराती, मैथिली और संस्कृत।' },
-      { icon: 'learn', label: '100+ शिक्षण मॉड्यूल', desc: 'पंचांग मूल बातों से लेकर उन्नत ज्योतिष तक संरचित पाठ्यक्रम  –  सभी के लिए मुफ्त।' },
+      { icon: 'learn', label: `${TOTAL_MODULES} शिक्षण मॉड्यूल`, desc: 'पंचांग मूल बातों से लेकर उन्नत ज्योतिष तक संरचित पाठ्यक्रम  –  सभी के लिए मुफ्त।' },
     ],
     accuracyHeading: 'सटीकता और कार्यप्रणाली',
     accuracy: [

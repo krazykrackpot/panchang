@@ -50,8 +50,7 @@ export default function InauspiciousTimingsPage() {
   const t = useTranslations('panchang');
   const locale = useLocale() as Locale;
   const isDevanagari = isDevanagariLocale(locale);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const tl = (obj: any): string => _tl(obj, locale);
+  const tl = (obj: unknown): string => _tl(obj as Record<string, string>, locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const [panchang, setPanchang] = useState<PanchangData | null>(null);
@@ -337,15 +336,12 @@ export default function InauspiciousTimingsPage() {
                 </div>
                 {panchang.gandaMoola.nakshatra && (
                   <div className="text-red-300 font-bold text-base" style={headingFont}>
-                    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                    {((panchang.gandaMoola as any).nakshatra?.[locale] || (panchang.gandaMoola as any).nakshatra?.en || '')}
+                    {tl(panchang.gandaMoola.nakshatra)}
                   </div>
                 )}
-                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                {(panchang.gandaMoola as any).start && (
+                {panchang.gandaMoola.start && (
                   <div className="font-mono text-lg font-bold text-red-300 mt-1">
-                    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                    {(panchang.gandaMoola as any).start}  –  {(panchang.gandaMoola as any).end}{(panchang.gandaMoola as any).endDate ? `, ${(panchang.gandaMoola as any).endDate.split('-').slice(1).join('/')}` : ''}
+                    {panchang.gandaMoola.start}  –  {panchang.gandaMoola.end}{panchang.gandaMoola.endDate ? `, ${panchang.gandaMoola.endDate.split('-').slice(1).join('/')}` : ''}
                   </div>
                 )}
                 <div className="text-text-secondary text-xs mt-2">

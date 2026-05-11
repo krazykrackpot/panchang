@@ -1,8 +1,19 @@
 import { NextResponse } from 'next/server';
 import { computeAshtaKuta, type MatchInput } from '@/lib/matching/ashta-kuta';
 import { calculateDashaKoota } from '@/lib/matching/dasha-koota';
+import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 
 export async function POST(request: Request) {
+  // L7 fix: rate limit CPU-heavy matching computation (20 requests/day per IP)
+  const ip = getClientIP(request);
+  const { allowed } = checkRateLimit(`matching:${ip}`, { maxRequests: 20, windowMs: 24 * 60 * 60 * 1000 });
+  if (!allowed) {
+    return NextResponse.json(
+      { error: 'Rate limit exceeded. Try again tomorrow.' },
+      { status: 429, headers: { 'Retry-After': '86400', 'X-RateLimit-Remaining': '0' } },
+    );
+  }
+
   try {
     const body = await request.json();
     const { boy, girl, system } = body as { boy: MatchInput; girl: MatchInput; system?: 'ashta-kuta' | 'dasha-koota' };

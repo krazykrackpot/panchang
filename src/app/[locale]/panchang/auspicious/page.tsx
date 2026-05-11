@@ -338,11 +338,11 @@ export default function AuspiciousTimingsPage() {
             )}
 
             {/* Amrit Kalam  –  show all windows */}
-            {((panchang as any).amritKalamAll as Array<{ start: string; end: string }> | undefined)?.length || panchang.amritKalam ? (
+            {(panchang.amritKalamAll?.length || panchang.amritKalam) ? (
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.14 }}
                 className="rounded-xl p-5 text-center border border-emerald-500/30 bg-gradient-to-br from-emerald-500/5 to-transparent">
                 <div className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-2">{t('amritKalam')}</div>
-                {((panchang as any).amritKalamAll as Array<{ start: string; end: string }> || [panchang.amritKalam]).map((a: { start: string; end: string }, i: number) => (
+                {(panchang.amritKalamAll || [panchang.amritKalam!]).map((a, i) => (
                   <div key={i} className="font-mono text-xl font-bold text-amber-300">{a.start}  –  {a.end}</div>
                 ))}
                 <div className="text-emerald-400/60 text-[10px] mt-1.5 font-medium uppercase tracking-wider">{isDevanagari ? 'अत्यन्त शुभ' : 'Highly Auspicious'}</div>
@@ -490,9 +490,8 @@ export default function AuspiciousTimingsPage() {
                   const beneficIds = new Set([1, 3, 4, 5]);
                   const badW: { start: string; end: string; label: string; labelHi: string }[] = [];
                   if (panchang.varjyam) badW.push({ ...panchang.varjyam, label: 'Varjyam', labelHi: 'वर्ज्यम्' });
-                  if ((panchang as any).varjyamAll) {
-                    const varjAll = (panchang as any).varjyamAll as Array<{ start: string; end: string }>;
-                    for (let vi = 1; vi < varjAll.length; vi++) badW.push({ ...varjAll[vi], label: 'Varjyam', labelHi: 'वर्ज्यम्' });
+                  if (panchang.varjyamAll) {
+                    for (let vi = 1; vi < panchang.varjyamAll.length; vi++) badW.push({ ...panchang.varjyamAll[vi], label: 'Varjyam', labelHi: 'वर्ज्यम्' });
                   }
                   badW.push({ start: panchang.rahuKaal.start, end: panchang.rahuKaal.end, label: 'Rahu Kaal', labelHi: 'राहु काल' });
                   badW.push({ start: panchang.yamaganda.start, end: panchang.yamaganda.end, label: 'Yamaganda', labelHi: 'यमगण्ड' });
@@ -631,13 +630,11 @@ export default function AuspiciousTimingsPage() {
               )}
 
               {/* Varjyam */}
-              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-              {((panchang as any).varjyamAll?.length || panchang.varjyam) && (
+              {(panchang.varjyamAll?.length || panchang.varjyam) && (
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.17 }}
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-400/25 p-3 sm:p-4 md:p-6 text-center">
                   <div className="text-red-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('varjyam')}</div>
-                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                  {((panchang as any).varjyamAll || [panchang.varjyam]).map((v: { start: string; end: string }, i: number) => (
+                  {(panchang.varjyamAll || [panchang.varjyam!]).map((v, i) => (
                     <div key={i} className="font-mono text-xl font-bold text-red-300">{v.start}  –  {v.end}</div>
                   ))}
                   <div className="text-red-300/60 text-[10px] mt-1.5 font-medium uppercase tracking-wider">{isDevanagari ? 'अशुभ' : 'Inauspicious'}</div>
@@ -650,8 +647,7 @@ export default function AuspiciousTimingsPage() {
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.18 }}
                   className="rounded-xl border border-orange-500/30 bg-gradient-to-br from-orange-500/8 to-transparent p-3 sm:p-4 md:p-6 text-center">
                   <div className="text-orange-400 text-xs uppercase tracking-widest mb-2 font-bold">{msg('bhadraVishti', locale)}</div>
-                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                  {((panchang as any).bhadraAll || [panchang.bhadra]).map((b: { start: string; end: string; endDate?: string }, i: number) => (
+                  {(panchang.bhadraAll || [panchang.bhadra!]).map((b, i) => (
                     <div key={i} className="font-mono text-xl font-bold text-orange-300">
                       {b.start}  –  {b.end}{b.endDate ? `, ${b.endDate.split('-').reverse().join('/')}` : ''}
                     </div>
@@ -669,11 +665,9 @@ export default function AuspiciousTimingsPage() {
                     <div className="text-red-400 text-xs uppercase tracking-widest font-bold">{msg('gandaMoola', locale)}</div>
                     <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
                   </div>
-                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                  {(panchang.gandaMoola as any).start && (
+                  {panchang.gandaMoola.start && (
                     <div className="font-mono text-lg font-bold text-red-300 mt-1">
-                      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                      {(panchang.gandaMoola as any).start}  –  {(panchang.gandaMoola as any).end}
+                      {panchang.gandaMoola.start}  –  {panchang.gandaMoola.end}
                     </div>
                   )}
                   <div className="text-text-secondary text-xs mt-2">{msg('inauspiciousNakshatraJunction', locale)}</div>

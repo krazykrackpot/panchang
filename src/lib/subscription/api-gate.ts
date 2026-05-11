@@ -33,7 +33,9 @@ async function extractUserId(req: Request): Promise<string | null> {
           const { data } = await supabase.auth.getUser(accessToken);
           return data.user?.id ?? null;
         }
-      } catch { /* invalid cookie */ }
+      } catch (err) {
+        console.error('[api-gate] cookie parse failed:', err);
+      }
     }
   }
   return null;

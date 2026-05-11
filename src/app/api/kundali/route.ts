@@ -1,8 +1,19 @@
 import { NextResponse } from 'next/server';
 import { generateKundali } from '@/lib/ephem/kundali-calc';
 import type { BirthData } from '@/types/kundali';
+import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 
 export async function POST(request: Request) {
+  // L6 fix: rate limit CPU-heavy kundali computation (20 requests/day per IP)
+  const ip = getClientIP(request);
+  const { allowed } = checkRateLimit(`kundali:${ip}`, { maxRequests: 20, windowMs: 24 * 60 * 60 * 1000 });
+  if (!allowed) {
+    return NextResponse.json(
+      { error: 'Rate limit exceeded. Try again tomorrow.' },
+      { status: 429, headers: { 'Retry-After': '86400', 'X-RateLimit-Remaining': '0' } },
+    );
+  }
+
   try {
     const body: BirthData = await request.json();
 

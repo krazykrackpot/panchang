@@ -150,7 +150,7 @@ export interface PanchangData {
   vijayaMuhurta?: { start: string; end: string };
   durMuhurtam?: { start: string; end: string }[];
   durMuhurtamAlt?: { start: string; end: string }[]; // Nirṇaya Sindhu tradition (alternate)
-  gandaMoola?: { active: boolean; nakshatra?: LocaleText };
+  gandaMoola?: { active: boolean; nakshatra?: LocaleText; start?: string; end?: string; endDate?: string };
   anandadiYoga?: { number: number; name: LocaleText; nature: 'auspicious' | 'inauspicious' };
   raviYoga?: boolean;
   kaliAhargana?: number;

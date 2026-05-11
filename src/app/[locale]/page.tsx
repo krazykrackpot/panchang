@@ -700,7 +700,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       })()}
 
       {/* ═══ WHY JYOTISH?  –  philosophical foundation, server-rendered for SEO ═══ */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h2 className="text-2xl sm:text-3xl font-bold text-gold-light mb-6" style={hf}>
           {L({ en: 'The Science Behind the Sacred', hi: 'पवित्र के पीछे का विज्ञान', ta: 'புனிதத்தின் பின்னால் உள்ள அறிவியல்', bn: 'পবিত্রের পেছনের বিজ্ঞান' }, locale)}
         </h2>
@@ -738,7 +738,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <ProfileBanner locale={locale} bf={bf} />
 
       {/* ═══ EXPLORE TOOLS  –  3×3 tarot card grid ═══ */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-10">
           <h2 className="text-2xl sm:text-3xl font-bold mb-3" style={hf}>
             <span className="text-gold-gradient">{t('exploreTools')}</span>
@@ -791,7 +791,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </section>
 
       {/* ═══ EDITORIAL  –  crawlable content for SEO ═══ */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 border-t border-gold-primary/8">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 border-t border-gold-primary/8">
         <h2 className="text-lg font-semibold text-gold-dark/80 mb-4" style={hf}>
           {L({ en: 'What is Panchang?', hi: 'पंचांग क्या है?', ta: 'பஞ்சாங்கம் என்றால் என்ன?', bn: 'পঞ্চাঙ্গ কী?' }, locale)}
         </h2>

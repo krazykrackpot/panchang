@@ -23,12 +23,17 @@ export default function InstallPrompt() {
     // Track visit count  –  only show after 2nd visit
     const key = 'dp-install-visits';
     const dismissKey = 'dp-install-dismissed';
-    const visits = parseInt(localStorage.getItem(key) || '0', 10) + 1;
-    localStorage.setItem(key, String(visits));
+    let visits = 0;
+    try {
+      visits = parseInt(localStorage.getItem(key) || '0', 10) + 1;
+      localStorage.setItem(key, String(visits));
+    } catch { /* localStorage unavailable (private browsing) — treat as first visit */ }
 
     // Don't show if user dismissed recently (within 7 days)
-    const dismissedAt = localStorage.getItem(dismissKey);
-    if (dismissedAt && Date.now() - parseInt(dismissedAt, 10) < 7 * 24 * 60 * 60 * 1000) return;
+    try {
+      const dismissedAt = localStorage.getItem(dismissKey);
+      if (dismissedAt && Date.now() - parseInt(dismissedAt, 10) < 7 * 24 * 60 * 60 * 1000) return;
+    } catch { /* localStorage unavailable */ }
 
     if (visits < 2) return;
 
@@ -50,7 +55,7 @@ export default function InstallPrompt() {
     const { outcome } = await (deferredPrompt as any).userChoice;
     if (outcome === 'accepted') {
       setShowBanner(false);
-      localStorage.removeItem('dp-install-visits');
+      try { localStorage.removeItem('dp-install-visits'); } catch { /* private browsing */ }
     }
     setDeferredPrompt(null);
   }, [deferredPrompt]);
@@ -58,7 +63,7 @@ export default function InstallPrompt() {
   const handleDismiss = useCallback(() => {
     setShowBanner(false);
     setDismissed(true);
-    localStorage.setItem('dp-install-dismissed', String(Date.now()));
+    try { localStorage.setItem('dp-install-dismissed', String(Date.now())); } catch { /* private browsing */ }
   }, []);
 
   if (!showBanner || dismissed) return null;

@@ -69,7 +69,7 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: 'Payment not configured' }, { status: 503 });
       }
 
-      const origin = req.headers.get('origin') || 'http://localhost:3000';
+      const origin = req.headers.get('origin') || (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
       const session = await stripe.checkout.sessions.create({
         mode: 'subscription',
         line_items: [{ price: priceId, quantity: 1 }],

@@ -5,6 +5,7 @@ import { getAllPairSlugs } from '@/lib/constants/rashi-slugs';
 import { getMuhurtaTypeSlugs } from '@/lib/constants/muhurta-types';
 import { getTransitArticleSlugs } from '@/lib/content/transit-articles';
 import { ALL_DEVOTIONAL_ITEMS } from '@/lib/content/devotional-content';
+import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
 
 // .trim() is critical  –  Vercel env vars can have trailing \n that corrupts sitemap XML
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
@@ -623,6 +624,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         }
       }
     }
+  }
+
+  // Yoga detail pages (/learn/yoga/{slug})
+  for (const slug of Object.keys(YOGA_DETAIL_DATA)) {
+    addEntries(entries, `/learn/yoga/${slug}`, {
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    });
   }
 
   // Devotional content pages (/devotional/{type}/{slug})

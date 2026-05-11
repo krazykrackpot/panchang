@@ -30,7 +30,7 @@ import { RashiIconById } from '@/components/icons/RashiIcons';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS, GRAHA_ABBREVIATIONS } from '@/lib/constants/grahas';
 import { getPlanetaryPositions, toSidereal, dateToJD, normalizeDeg } from '@/lib/ephem/astronomical';
-import { resolveTimezoneFromCoords } from '@/lib/utils/timezone';
+import { resolveBirthTimezone } from '@/lib/utils/timezone';
 import { generateTippanni } from '@/lib/kundali/tippanni-engine';
 import { trackKundaliGenerated, trackTabViewed } from '@/lib/analytics';
 import type { TippanniContent, PlanetInsight } from '@/lib/kundali/tippanni-types';
@@ -499,7 +499,7 @@ export default function KundaliPage() {
       try { sessionStorage.removeItem('kundali_last_result'); } catch { /* ignore */ }
       setLoading(true);
       setChartStyle('north');
-      resolveTimezoneFromCoords(latNum, lngNum)
+      resolveBirthTimezone(latNum, lngNum)
         .then(resolvedTz => {
           const birthData: BirthData = {
             name: n,
@@ -841,7 +841,7 @@ export default function KundaliPage() {
                   key={c.id}
                   type="button"
                   onClick={() => {
-                    resolveTimezoneFromCoords(c.birth_data.lat, c.birth_data.lng).then(tz => {
+                    resolveBirthTimezone(c.birth_data.lat, c.birth_data.lng).then(tz => {
                       handleGenerate({
                         name: cName,
                         date: c.birth_data.date,

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { resolveTimezoneFromCoords } from '@/lib/utils/timezone';
+import { resolveBirthTimezone } from '@/lib/utils/timezone';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import GoldDivider from '@/components/ui/GoldDivider';
@@ -74,7 +74,7 @@ export default function SignCalculatorPage() {
           setPlaceLng(data.birth_lng);
           // ALWAYS resolve timezone from coordinates  –  never trust stored birth_timezone
           if (data.birth_lat && data.birth_lng) {
-            resolveTimezoneFromCoords(Number(data.birth_lat), Number(data.birth_lng)).then(tz => setPlaceTimezone(tz));
+            resolveBirthTimezone(Number(data.birth_lat), Number(data.birth_lng)).then(tz => setPlaceTimezone(tz));
           }
           setAutoFilled(true);
         }

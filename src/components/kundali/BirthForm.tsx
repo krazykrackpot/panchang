@@ -12,7 +12,7 @@ import { Loader2 } from 'lucide-react';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
-import { resolveTimezoneFromCoords } from '@/lib/utils/timezone';
+import { resolveBirthTimezone } from '@/lib/utils/timezone';
 import type { BirthData, ChartStyle, ChartRelationship } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale, getHeadingFont } from '@/lib/utils/locale-fonts';
@@ -95,7 +95,7 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
           const lat = newData.lat || initialData?.lat;
           const lng = newData.lng || initialData?.lng;
           if (lat && lng) {
-            resolveTimezoneFromCoords(lat, lng).then(tz => {
+            resolveBirthTimezone(lat, lng).then(tz => {
               setFormData(prev => ({ ...prev, timezone: tz }));
             });
           }
@@ -113,7 +113,7 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
       return;
     }
     setLocationError(false);
-    const tz = await resolveTimezoneFromCoords(formData.lat, formData.lng);
+    const tz = await resolveBirthTimezone(formData.lat, formData.lng);
     setFormData(prev => ({ ...prev, timezone: tz }));
     if (!tz) return;
     onSubmit(

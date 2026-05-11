@@ -7,7 +7,7 @@ import { authedFetch } from '@/lib/api/authed-fetch';
 import { parseGateError, type GateError } from '@/lib/api/parse-gate-error';
 import UsageLimitBanner from '@/components/ui/UsageLimitBanner';
 import { getSupabase } from '@/lib/supabase/client';
-import { resolveTimezoneFromCoords } from '@/lib/utils/timezone';
+import { resolveBirthTimezone } from '@/lib/utils/timezone';
 import { motion, AnimatePresence } from 'framer-motion';
 import ChartNorth from '@/components/kundali/ChartNorth';
 import ChartSouth from '@/components/kundali/ChartSouth';
@@ -265,7 +265,7 @@ export default function VarshaphalPage() {
           if (loc.lng != null && placeLng === null) setPlaceLng(loc.lng);
           // ALWAYS resolve timezone from coordinates  –  never trust stored timezone
           if (loc.lat != null && loc.lng != null && !placeTimezone) {
-            resolveTimezoneFromCoords(loc.lat, loc.lng).then(tz => setPlaceTimezone(tz));
+            resolveBirthTimezone(loc.lat, loc.lng).then(tz => setPlaceTimezone(tz));
           }
         }
       });

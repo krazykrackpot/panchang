@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 import { dateToJD } from '@/lib/ephem/astronomical';
 import { computeComparison, type PlanetComparison, type ComparisonResult } from '@/lib/ephem/comparison-engine';
-import { resolveTimezoneFromCoords } from '@/lib/utils/timezone';
+import { resolveBirthTimezone } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import JyotishTerm from '@/components/ui/JyotishTerm';
@@ -137,7 +137,7 @@ export default function TropicalComparePage() {
 
     try {
       // Resolve timezone from coordinates  –  never trust browser timezone (CLAUDE.md rule)
-      const tz = await resolveTimezoneFromCoords(lat, lng);
+      const tz = await resolveBirthTimezone(lat, lng);
 
       const [year, month, day] = dateStr.split('-').map(Number);
       const [hour, minute] = timeStr.split(':').map(Number);

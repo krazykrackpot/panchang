@@ -11,7 +11,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
-import { resolveTimezoneFromCoords } from '@/lib/utils/timezone';
+import { resolveBirthTimezone } from '@/lib/utils/timezone';
 import {
   computeEnhancedSynastry,
   computeSynastrySummary,
@@ -207,7 +207,7 @@ export default function ComparePage() {
   }, [user]);
 
   const loadSavedChart = async (chart: (typeof savedCharts)[number], target: 'A' | 'B') => {
-    const tz = await resolveTimezoneFromCoords(chart.birth_data.lat, chart.birth_data.lng);
+    const tz = await resolveBirthTimezone(chart.birth_data.lat, chart.birth_data.lng);
     generateChart({
       name: chart.birth_data.name || chart.label,
       date: chart.birth_data.date,

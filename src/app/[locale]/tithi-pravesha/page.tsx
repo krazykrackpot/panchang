@@ -15,7 +15,7 @@ import { TITHIS } from '@/lib/constants/tithis';
 import { RASHIS } from '@/lib/constants/rashis';
 import { tl } from '@/lib/utils/trilingual';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
-import { resolveTimezoneFromCoords } from '@/lib/utils/timezone';
+import { resolveBirthTimezone } from '@/lib/utils/timezone';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
@@ -147,7 +147,7 @@ export default function TithiPraveshaPage() {
           setPlaceLng(data.birth_lng);
           // ALWAYS resolve timezone from coordinates  –  never trust stored birth_timezone
           if (data.birth_lat && data.birth_lng) {
-            resolveTimezoneFromCoords(Number(data.birth_lat), Number(data.birth_lng))
+            resolveBirthTimezone(Number(data.birth_lat), Number(data.birth_lng))
               .then(tz => setPlaceTimezone(tz))
               .catch(err => console.error('[tithi-pravesha] Timezone resolve failed:', err));
           }

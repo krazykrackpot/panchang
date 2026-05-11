@@ -7,7 +7,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { TITHIS } from '@/lib/constants/tithis';
 import { YOGAS } from '@/lib/constants/yogas';
-import { resolveTimezoneFromCoords } from '@/lib/utils/timezone';
+import { resolveBirthTimezone } from '@/lib/utils/timezone';
 
 // ---------------------------------------------------------------------------
 // GET /api/user/profile  –  fetch profile + snapshot summary
@@ -54,7 +54,7 @@ export async function GET(req: NextRequest) {
       const hour = timeParts[0] || 0, minute = timeParts[1] || 0;
 
       // ALWAYS resolve timezone from birth coordinates  –  never use stored birth_timezone
-      const birthTzIana = await resolveTimezoneFromCoords(Number(profile.birth_lat), Number(profile.birth_lng));
+      const birthTzIana = await resolveBirthTimezone(Number(profile.birth_lat), Number(profile.birth_lng));
       let tzOffsetHours = 0;
       try {
         const refDate = new Date(year, month - 1, day, hour, minute);
@@ -199,7 +199,7 @@ export async function POST(req: NextRequest) {
   let kundali;
   try {
     // ALWAYS resolve timezone from birth coordinates  –  never trust client-sent timezone
-    const resolvedTz = await resolveTimezoneFromCoords(birthLat, birthLng);
+    const resolvedTz = await resolveBirthTimezone(birthLat, birthLng);
     kundali = generateKundali({
       name: name || 'User',
       date: dateOfBirth,

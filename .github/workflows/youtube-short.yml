@@ -12,20 +12,43 @@ jobs:
     timeout-minutes: 15
 
     steps:
+      - name: Skip day check (skip ~2 days per week to look organic)
+        run: |
+          DAY_OF_YEAR=$(date +%j)
+          SKIP=$((DAY_OF_YEAR % 7))
+          if [ "$SKIP" -eq 3 ] || [ "$SKIP" -eq 6 ]; then
+            echo "Rest day (DOY=$DAY_OF_YEAR, mod7=$SKIP) — skipping upload"
+            echo "SKIP_DAY=true" >> $GITHUB_ENV
+          else
+            echo "SKIP_DAY=false" >> $GITHUB_ENV
+          fi
+
       - uses: actions/checkout@v4
+        if: env.SKIP_DAY != 'true'
 
       - uses: actions/setup-node@v4
+        if: env.SKIP_DAY != 'true'
         with:
           node-version: '24'
           cache: 'npm'
 
       - name: Install dependencies
+        if: env.SKIP_DAY != 'true'
         run: npm ci
 
       - name: Install ffmpeg
+        if: env.SKIP_DAY != 'true'
         uses: FedericoCarboni/setup-ffmpeg@v3
 
+      - name: Random delay (0-90 minutes)
+        if: env.SKIP_DAY != 'true'
+        run: |
+          DELAY=$((RANDOM % 5400))
+          echo "Sleeping ${DELAY}s (~$((DELAY / 60))m) before generating..."
+          sleep $DELAY
+
       - name: Generate and upload YouTube Short
+        if: env.SKIP_DAY != 'true'
         env:
           NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
           YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}

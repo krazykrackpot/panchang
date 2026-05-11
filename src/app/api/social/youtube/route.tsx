@@ -18,22 +18,56 @@ import type { LocaleText, PanchangData } from '@/types/panchang';
 const UJJAIN = { lat: 23.1765, lng: 75.7885, tz: 'Asia/Kolkata' };
 const SIZE = { width: 1080, height: 1920 };
 
-// ── Design tokens matching TarotCard.tsx ──
-const C = {
-  bg: '#0a0520',        // deepest indigo (from tarot card)
-  bgMid: '#0f0825',
-  bgTop: '#1a0a3e',
-  gold: '#d4a853',
-  goldLight: '#f0d48a',
-  goldDark: '#8a6d2b',
-  text: '#e6e2d8',
-  textDim: '#8a8478',
-  red: '#dc2626',
-  redLight: '#ff6b6b',
-  emerald: '#34d399',
-  purple: '#c084fc',
-  blue: '#60a5fa',
+// ── Theme palettes — rotate daily to avoid programmatic-content suppression ──
+interface ThemePalette {
+  bg: string; bgMid: string; bgTop: string;
+  gold: string; goldLight: string; goldDark: string;
+  text: string; textDim: string;
+  red: string; redLight: string;
+  emerald: string; purple: string; blue: string;
+}
+
+const THEMES: Record<string, ThemePalette> = {
+  cosmic: {
+    bg: '#0a0520', bgMid: '#0f0825', bgTop: '#1a0a3e',
+    gold: '#d4a853', goldLight: '#f0d48a', goldDark: '#8a6d2b',
+    text: '#e6e2d8', textDim: '#8a8478',
+    red: '#dc2626', redLight: '#ff6b6b',
+    emerald: '#34d399', purple: '#c084fc', blue: '#60a5fa',
+  },
+  sunrise: {
+    bg: '#1a0a00', bgMid: '#221000', bgTop: '#4a2000',
+    gold: '#e87b35', goldLight: '#ffa866', goldDark: '#8a5020',
+    text: '#f0e0d0', textDim: '#9a7a60',
+    red: '#dc2626', redLight: '#ff6b6b',
+    emerald: '#34d399', purple: '#e87b35', blue: '#ffa866',
+  },
+  moonlit: {
+    bg: '#050520', bgMid: '#080830', bgTop: '#1a2060',
+    gold: '#7aa2d4', goldLight: '#a8c8f0', goldDark: '#4a6a8a',
+    text: '#d8e2f0', textDim: '#6a7a8a',
+    red: '#dc2626', redLight: '#ff6b6b',
+    emerald: '#34d399', purple: '#a8c8f0', blue: '#7aa2d4',
+  },
+  emerald: {
+    bg: '#001a00', bgMid: '#062010', bgTop: '#0a3020',
+    gold: '#4ac870', goldLight: '#7af0a0', goldDark: '#2a7a3a',
+    text: '#d8f0e0', textDim: '#6a8a70',
+    red: '#dc2626', redLight: '#ff6b6b',
+    emerald: '#4ac870', purple: '#7af0a0', blue: '#4ac870',
+  },
 };
+
+const THEME_NAMES = ['cosmic', 'sunrise', 'moonlit', 'emerald'];
+
+function getThemeForToday(override?: string): ThemePalette {
+  if (override && override in THEMES) return THEMES[override];
+  const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000);
+  return THEMES[THEME_NAMES[dayOfYear % THEME_NAMES.length]];
+}
+
+// Default for backward compat — overridden per-request in GET handler
+let C: ThemePalette = THEMES.cosmic;
 
 const L = (obj: LocaleText): string => obj.en;
 
@@ -337,20 +371,68 @@ function Slide5() {
 // ROUTE HANDLER
 // ═══════════════════════════════════════════════════════════════
 
+// ═══════════════════════════════════════════════════════════════
+// SLIDE 6: QUICK-GLANCE  –  all pancha anga on one mega-slide
+// ═══════════════════════════════════════════════════════════════
+
+function SlideQuickGlance({ panchang, festivals }: { panchang: PanchangData; festivals: FestivalEntry[] }) {
+  const dateObj = new Date(panchang.date + 'T12:00:00Z');
+  const monthDay = dateObj.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' });
+
+  return (
+    <TarotFrame glowColor={C.gold}>
+      <BrandMark />
+      <div style={{ display: 'flex', justifyContent: 'center', margin: '16px 0 8px' }}>
+        <div style={{ display: 'flex', fontSize: '28px', letterSpacing: '4px', color: C.goldLight, fontWeight: 800 }}>{monthDay.toUpperCase()}</div>
+      </div>
+      <StarSeparator />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', flex: 1, justifyContent: 'center', marginTop: '12px' }}>
+        <DataCard icon="☽" label="TITHI" value={L(panchang.tithi.name)} sub={panchang.tithi.paksha === 'shukla' ? 'Shukla' : 'Krishna'} accentColor={C.purple} />
+        <DataCard icon="✦" label="NAKSHATRA" value={L(panchang.nakshatra.name)} sub={`Pada ${panchang.nakshatra.pada || '–'}`} accentColor={C.blue} />
+        <DataCard icon="☉" label="YOGA" value={L(panchang.yoga.name)} accentColor={C.emerald} />
+        <DataCard icon="◈" label="KARANA" value={L(panchang.karana.name)} accentColor="#fb923c" />
+        <DataCard icon="🌅" label="SUNRISE" value={panchang.sunrise} accentColor="#fb923c" />
+        <DataCard icon="⚠" label="RAHU KAAL" value={`${panchang.rahuKaal.start} – ${panchang.rahuKaal.end}`} accentColor={C.red} />
+        {festivals.length > 0 && (
+          <DataCard icon="🪔" label="FESTIVAL" value={festivals[0].name.en} accentColor={C.gold} />
+        )}
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '8px' }}>
+        <div style={{ display: 'flex', fontSize: '16px', color: C.textDim, letterSpacing: '3px' }}>dekhopanchang.com</div>
+      </div>
+    </TarotFrame>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ROUTE HANDLER
+// ═══════════════════════════════════════════════════════════════
+
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
   const slide = parseInt(searchParams.get('slide') || '1', 10);
+  const themeParam = searchParams.get('theme') || undefined;
+  const format = searchParams.get('format') || 'standard';
+
+  // Set theme for this request (module-level C used by all components)
+  C = getThemeForToday(themeParam);
 
   try {
     const { panchang, festivals } = getTodayPanchang();
     let element: React.ReactElement;
-    switch (slide) {
-      case 1: element = <Slide1 panchang={panchang} festivals={festivals} />; break;
-      case 2: element = <Slide2 panchang={panchang} />; break;
-      case 3: element = <Slide3 panchang={panchang} />; break;
-      case 4: element = <Slide4 panchang={panchang} />; break;
-      case 5: element = <Slide5 />; break;
-      default: element = <Slide1 panchang={panchang} festivals={festivals} />;
+
+    if (format === 'quick-glance') {
+      // Single mega-slide with all pancha anga compactly
+      element = <SlideQuickGlance panchang={panchang} festivals={festivals} />;
+    } else {
+      switch (slide) {
+        case 1: element = <Slide1 panchang={panchang} festivals={festivals} />; break;
+        case 2: element = <Slide2 panchang={panchang} />; break;
+        case 3: element = <Slide3 panchang={panchang} />; break;
+        case 4: element = <Slide4 panchang={panchang} />; break;
+        case 5: element = <Slide5 />; break;
+        default: element = <Slide1 panchang={panchang} festivals={festivals} />;
+      }
     }
     return new ImageResponse(element, { ...SIZE });
   } catch (err) {

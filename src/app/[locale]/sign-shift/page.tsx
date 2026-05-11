@@ -22,7 +22,7 @@ import { dateToJD } from '@/lib/ephem/astronomical';
 import { computeComparison } from '@/lib/ephem/comparison-engine';
 import { comparisonToSignShift, decodeSignShiftParams, encodeSignShiftParams } from '@/lib/shareable/sign-shift';
 import type { SignShiftData } from '@/lib/shareable/sign-shift';
-import { resolveCurrentLocationTimezone } from '@/lib/utils/timezone';
+import { resolveBirthTimezone } from '@/lib/utils/timezone';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import LocationSearch from '@/components/ui/LocationSearch';
@@ -178,7 +178,7 @@ function SignShiftPageInner() {
     setComputing(true);
 
     try {
-      const tz = await resolveCurrentLocationTimezone(lat, lng);
+      const tz = await resolveBirthTimezone(lat, lng);
       const [year, month, day] = dateStr.split('-').map(Number);
       const [hour, minute] = timeStr.split(':').map(Number);
 

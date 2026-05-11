@@ -598,7 +598,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         const scoreBg = briefing.energyScore >= 7 ? 'from-emerald-500/20 to-emerald-500/5' : briefing.energyScore >= 4 ? 'from-gold-primary/20 to-gold-primary/5' : 'from-red-500/20 to-red-500/5';
         const scoreRing = briefing.energyScore >= 7 ? 'border-emerald-400/40' : briefing.energyScore >= 4 ? 'border-gold-primary/40' : 'border-red-400/40';
         return (
-          <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8" suppressHydrationWarning>
+          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" suppressHydrationWarning>
             <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
               {/* Header row */}
               <div className="flex items-center gap-3 mb-5">

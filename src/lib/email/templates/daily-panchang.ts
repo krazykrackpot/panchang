@@ -38,6 +38,7 @@ interface DailyPanchangEmailData {
   locationName: string;
   unsubscribeUrl: string;
   horoscope?: HoroscopeEmailData;
+  vratReminders?: { name: string; sunrise: string }[];
 }
 
 /**
@@ -129,6 +130,51 @@ function generateRashifalSection(
       <a href="https://dekhopanchang.com/${locale}/horoscope/${h.rashiSlug}"
          style="display:inline-block;padding:10px 24px;background:${gold}30;border:1px solid ${gold}60;border-radius:8px;color:${goldLight};font-weight:700;font-size:13px;text-decoration:none">
         ${tl({ en: 'Full Horoscope \u2192', hi: '\u092A\u0942\u0930\u094D\u0923 \u0930\u093E\u0936\u093F\u092B\u0932 \u2192', sa: '\u092A\u0942\u0930\u094D\u0923 \u0930\u093E\u0936\u093F\u092B\u0932 \u2192' }, locale)}
+      </a>
+    </div>
+  </div>`;
+}
+
+/**
+ * Renders the vrat reminder section for the daily email.
+ * Shown when the user has enabled vrats and tomorrow matches one.
+ */
+function generateVratReminderSection(
+  reminders: { name: string; sunrise: string }[],
+  locale: 'en' | 'hi',
+  gold: string,
+  goldLight: string,
+  bgCard: string,
+  textSecondary: string,
+): string {
+  const reminderRows = reminders.map(vr => `
+    <div style="padding:10px 14px;border-bottom:1px solid ${gold}10">
+      <div style="color:${goldLight};font-weight:700;font-size:14px">${vr.name}</div>
+      <div style="color:${textSecondary};font-size:11px;margin-top:2px">
+        ${tl({ en: 'Fast begins at sunrise (' + vr.sunrise + ')', hi: '\u0938\u0942\u0930\u094D\u092F\u094B\u0926\u092F (' + vr.sunrise + ') \u092A\u0930 \u0935\u094D\u0930\u0924 \u0906\u0930\u092E\u094D\u092D', sa: '\u0938\u0942\u0930\u094D\u092F\u094B\u0926\u092F\u0947 (' + vr.sunrise + ') \u0935\u094D\u0930\u0924\u093E\u0930\u092E\u094D\u092D\u0903' }, locale)}
+      </div>
+    </div>`).join('');
+
+  return `
+  <!-- Vrat Reminder -->
+  <div style="margin:24px 0;border-top:1px solid ${gold}20;padding-top:20px">
+    <div style="text-align:center;margin-bottom:12px">
+      <div style="color:${gold};font-size:10px;text-transform:uppercase;letter-spacing:2px;font-weight:700">
+        ${tl({ en: 'Vrat Reminder \u2014 Tomorrow', hi: '\u0935\u094D\u0930\u0924 \u0905\u0928\u0941\u0938\u094D\u092E\u093E\u0930\u0915 \u2014 \u0915\u0932', sa: '\u0935\u094D\u0930\u0924\u0938\u094D\u092E\u093E\u0930\u0915\u092E\u094D \u2014 \u0936\u094D\u0935\u0903' }, locale)}
+      </div>
+    </div>
+    <div style="background:${bgCard};border-radius:12px;border:1px solid #e67e2233;overflow:hidden">
+      <div style="padding:10px 12px;background:#e67e2215;border-bottom:1px solid #e67e2215">
+        <span style="color:#e67e22;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;font-weight:700">
+          ${tl({ en: 'Your Fasts', hi: '\u0906\u092A\u0915\u0947 \u0935\u094D\u0930\u0924', sa: '\u092D\u0935\u0924\u0903 \u0935\u094D\u0930\u0924\u093E\u0928\u093F' }, locale)}
+        </span>
+      </div>
+      ${reminderRows}
+    </div>
+    <div style="text-align:center;margin-top:12px">
+      <a href="https://dekhopanchang.com/${locale}/dashboard"
+         style="display:inline-block;padding:8px 20px;background:#e67e2225;border:1px solid #e67e2250;border-radius:8px;color:#e67e22;font-weight:700;font-size:12px;text-decoration:none">
+        ${tl({ en: 'View Vrat Tracker', hi: '\u0935\u094D\u0930\u0924 \u091F\u094D\u0930\u0948\u0915\u0930 \u0926\u0947\u0916\u0947\u0902', sa: '\u0935\u094D\u0930\u0924\u092A\u0930\u093F\u0936\u0940\u0932\u0928\u0902 \u092A\u0936\u094D\u092F\u0924\u0941' }, locale)}
       </a>
     </div>
   </div>`;
@@ -229,6 +275,8 @@ export function generateDailyPanchangEmail(data: DailyPanchangEmailData): { subj
   </div>
 
   ${data.horoscope ? generateRashifalSection(data.horoscope, data.locale, gold, goldLight, bg, bgCard, textPrimary, textSecondary) : ''}
+
+  ${(data.vratReminders && data.vratReminders.length > 0) ? generateVratReminderSection(data.vratReminders, data.locale, gold, goldLight, bgCard, textSecondary) : ''}
 
   <!-- Footer -->
   <div style="text-align:center;padding:16px 0;border-top:1px solid ${gold}15;color:${textSecondary};font-size:10px">

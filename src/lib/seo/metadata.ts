@@ -1808,6 +1808,19 @@ export const PAGE_META: Record<string, PageMeta> = {
     },
     keywords: ['shubh vivah muhurat 2027', 'vivah muhurat 2027', 'marriage dates 2027', 'hindu wedding dates 2027', 'shadi muhurat 2027', 'auspicious marriage dates 2027'],
   },
+  '/accuracy': {
+    title: {
+      en: 'Calculation Transparency  \u2013  Why Panchang Values Differ Between Sources',
+      hi: 'गणना पारदर्शिता  \u2013  पंचांग मान भिन्न क्यों होते हैं',
+      sa: 'गणनापारदर्शिता  \u2013  पञ्चाङ्गमानानां भेदः कुतः',
+    },
+    description: {
+      en: 'Understand why different panchang sources show slightly different tithi and nakshatra times. See our exact method, live computed values, and accuracy guarantees  \u2013  with real numbers, not just claims.',
+      hi: 'जानें कि विभिन्न पंचांग स्रोत तिथि और नक्षत्र समय में अन्तर क्यों दिखाते हैं। हमारी सटीक पद्धति, वास्तविक गणना और सटीकता गारण्टी देखें।',
+      sa: 'विभिन्नपञ्चाङ्गस्रोतेषु तिथिनक्षत्रसमयभेदस्य कारणं जानातु। अस्माकं गणनापद्धतिः सटीकतागारण्टी च पश्यतु।',
+    },
+    keywords: ['panchang accuracy', 'tithi calculation method', 'vedic calendar accuracy', 'ekadashi date calculation', 'panchang differences explained', 'nakshatra timing accuracy', 'ayanamsha comparison'],
+  },
 };
 
 /**

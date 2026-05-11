@@ -57,6 +57,9 @@ import { usePrakritiStore } from '@/stores/prakriti-store';
 import AtAGlance from '@/components/dashboard/AtAGlance';
 import DashboardTabs from '@/components/dashboard/DashboardTabs';
 import DailyEmailOptIn from '@/components/dashboard/DailyEmailOptIn';
+import dynamic from 'next/dynamic';
+
+const VratTracker = dynamic(() => import('@/components/dashboard/VratTracker'), { ssr: false });
 
 interface SavedChart {
   id: string;
@@ -1753,6 +1756,9 @@ export default function DashboardPage() {
   // TAB 3: Calendar
   const calendarTabContent = (
     <>
+      {/* Vrat Tracker */}
+      <VratTracker locale={locale} />
+
       {/* Key Dates Timeline */}
       {keyDates.length > 0 && (
         <div className="mb-8 p-4 rounded-2xl bg-gradient-to-br from-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/10">

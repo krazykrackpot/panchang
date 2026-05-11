@@ -100,7 +100,7 @@ function day1(locale: Locale, data?: UserData): EmailOutput {
     html: wrapEmail(card(
       heading(`Namaste, ${name}!`) +
       p('Welcome to Dekho Panchang  –  your personal Vedic astrology companion.') +
-      p(`Here is what you can do: check your ${goldText('daily Panchang')}, generate a detailed ${goldText('Kundali (birth chart)')}, learn Vedic astrology through ${goldText('104 free modules')}, check ${goldText('marriage compatibility')}, and much more.`) +
+      p(`Here is what you can do: check your ${goldText('daily Panchang')}, generate a detailed ${goldText('Kundali (birth chart)')}, learn Vedic astrology through ${goldText('238 free modules')}, check ${goldText('marriage compatibility')}, and much more.`) +
       p('Your first step? Generate your birth chart  –  it powers all your personalized predictions.') +
       ctaButton('Generate Your Birth Chart', `${BASE_URL}/en/kundali`)
     )),
@@ -222,7 +222,7 @@ function day5(locale: Locale, _data?: UserData): EmailOutput {
     };
   }
   return {
-    subject: "104 free modules. Start with 'What is Jyotish?'",
+    subject: "238 free modules. Start with 'What is Jyotish?'",
     html: wrapEmail(card(
       heading('Start Learning Vedic Astrology  –  Module 1') +
       p(`Our learning system covers ${goldText('104 modules')}  –  from foundations to advanced topics. Each module is concise, accessible, and includes key Sanskrit terms.`) +
@@ -230,7 +230,7 @@ function day5(locale: Locale, _data?: UserData): EmailOutput {
       p('Start with Module 1: "What is Jyotish?"') +
       ctaButton('Start Learning', `${BASE_URL}/en/learn/modules/0-1`)
     )),
-    text: `104 free modules. Learn Vedic astrology.\n\nStart: ${BASE_URL}/en/learn/modules/0-1`,
+    text: `238 free modules. Learn Vedic astrology.\n\nStart: ${BASE_URL}/en/learn/modules/0-1`,
   };
 }
 

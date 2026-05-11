@@ -238,10 +238,10 @@ export default function LearnPage() {
             <ShareRow
               pageTitle={t('heroTitle')}
               shareText={locale === 'en'
-                ? 'Learn Vedic Astrology  –  104 free modules from basics to advanced  –  Dekho Panchang'
+                ? `Learn Vedic Astrology  –  ${TOTAL_MODULES} free modules from basics to advanced  –  Dekho Panchang`
                 : isDevanagari
-                  ? 'वैदिक ज्योतिष सीखें  –  104 निःशुल्क मॉड्यूल  –  Dekho Panchang'
-                  : 'वैदिकज्योतिषं पठतु  –  104 निःशुल्कमॉड्यूलाः  –  Dekho Panchang'}
+                  ? `वैदिक ज्योतिष सीखें  –  ${TOTAL_MODULES} निःशुल्क मॉड्यूल  –  Dekho Panchang`
+                  : `வேத ஜோதிடம்  –  ${TOTAL_MODULES} இலவச தொகுதிகள்  –  Dekho Panchang`}
               locale={locale as Locale}
             />
           </div>
@@ -287,7 +287,7 @@ export default function LearnPage() {
         {locale === 'hi' ? '12 चरण, मूल बातों से लेकर उन्नत भविष्यवाणी तक  –  क्रमानुसार ऊपर बढ़ें।' :
          locale === 'ta' ? '12 நிலைகள், அடிப்படையிலிருந்து மேம்பட்ட கணிப்பு வரை  –  வரிசையாக மேலே செல்லுங்கள்.' :
          locale === 'bn' ? '12টি পর্যায়, মূল বিষয় থেকে উন্নত ভবিষ্যদ্বাণী পর্যন্ত  –  ক্রমানুসারে উপরে উঠুন।' :
-         '12 phases, from foundations to advanced prediction  –  work your way up.'}
+         '17 phases, from foundations to advanced prediction  –  work your way up.'}
       </p>
       <div className="mb-16">
         <LearningPath />

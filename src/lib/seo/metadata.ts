@@ -1277,7 +1277,7 @@ export const PAGE_META: Record<string, PageMeta> = {
       sa: 'वैदिकज्योतिषं शिक्षतु  –  निःशुल्कपाठ्यक्रमः',
     },
     description: {
-      en: 'Learn Vedic astrology free  –  127+ interactive modules from basics to advanced. Grahas, Rashis, Nakshatras, Kundali reading, Muhurta & more. Start now.',
+      en: 'Learn Vedic astrology free  –  238 interactive modules from basics to advanced. Grahas, Rashis, Nakshatras, Kundali reading, Muhurta & more. Start now.',
       hi: 'वैदिक ज्योतिष का निःशुल्क पूर्ण पाठ्यक्रम। ग्रह, राशि, नक्षत्र, तिथि, योग, कुण्डली पढ़ना सीखें।',
       sa: 'वैदिकज्योतिषस्य निःशुल्कः सम्पूर्णपाठ्यक्रमः। ग्रहान् राशीन् नक्षत्राणि तिथीन् योगान् कुण्डलीपठनं च शिक्षतु।',
     },

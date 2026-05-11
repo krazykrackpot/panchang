@@ -23,7 +23,7 @@ const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com
 // ISR  –  Tier 2/3 cities generated on first visit, cached 1 hour
 // ──────────────────────────────────────────────────────────────
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 export const dynamicParams = true;
 
 export function generateStaticParams() {

@@ -6,7 +6,7 @@ import { clearTithiTableCache } from '@/lib/calendar/tithi-table';
 import type { LocaleText } from '@/types/panchang';
 import type { Metadata } from 'next';
 
-export const revalidate = 3600; // 1 hour
+export const revalidate = 86400; // Daily — panchang changes once per day
 
 export const metadata: Metadata = {
   title: 'Panchang Widget  –  Dekho Panchang',

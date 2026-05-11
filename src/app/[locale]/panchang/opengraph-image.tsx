@@ -4,7 +4,7 @@ export const runtime = 'edge';
 export const alt = "Today's Panchang  –  Dekho Panchang";
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
-export const revalidate = 3600; // Refresh every hour
+export const revalidate = 86400; // Daily revalidation — content changes once per day, not hourly
 
 // ─── Inlined Meeus calculations (Edge-compatible, no native deps) ───────────
 

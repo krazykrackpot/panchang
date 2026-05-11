@@ -9,7 +9,7 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
-export const revalidate = 3600; // Revalidate once per hour  –  ISR for generateDailyHoroscope()
+export const revalidate = 86400; // Daily revalidation — horoscope is deterministic per date (saves ~46K invocations/day)
 
 export function generateStaticParams() {
   return RASHIS.map(r => ({ rashi: r.slug }));

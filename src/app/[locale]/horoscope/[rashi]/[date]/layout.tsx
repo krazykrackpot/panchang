@@ -8,7 +8,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
-export const revalidate = 3600; // ISR: revalidate every hour
+export const revalidate = 86400; // ISR: daily — content is deterministic per date
 
 export function generateStaticParams() {
   const rashiSlugs = RASHIS.map(r => r.slug);

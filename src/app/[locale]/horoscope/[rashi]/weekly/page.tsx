@@ -7,7 +7,7 @@ import { WeeklyClient } from './WeeklyClient';
 import { RashiArticle } from '../RashiArticle';
 import type { LocaleText } from '@/types/panchang';
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 function tl(obj: LocaleText | undefined, locale: string): string {
   if (!obj) return '';

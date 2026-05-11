@@ -3,7 +3,7 @@ import { ImageResponse } from 'next/og';
 export const runtime = 'edge';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
-export const revalidate = 3600; // Refresh every hour
+export const revalidate = 86400; // Daily revalidation — content changes once per day, not hourly
 
 // ─── Inlined rashi data (edge-safe, no native deps) ─────────────────────────
 

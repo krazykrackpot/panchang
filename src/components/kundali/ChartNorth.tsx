@@ -171,7 +171,7 @@ export default function ChartNorth({ data, title, size = 500, selectedHouse, onS
                 letterSpacing="0.5"
                 style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
               >
-                {rashi?.name[locale]}
+                {rashi?.name[locale] || rashi?.name.en}
               </text>
 
               {/* House number */}

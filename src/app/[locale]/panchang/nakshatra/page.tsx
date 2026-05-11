@@ -143,15 +143,15 @@ export default function NakshatraPage() {
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-gold-dark text-xs font-mono">#{nak.id}</span>
                     <span className="text-gold-light font-bold text-lg" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                      {nak.name[locale]}
+                      {nak.name[locale] || nak.name.en}
                     </span>
                   </div>
                   <div className="text-text-secondary text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                    {nak.deity[locale]} · {nak.rulerName[locale]}
+                    {nak.deity[locale] || nak.deity.en} · {nak.rulerName[locale] || nak.rulerName.en}
                   </div>
                   <div className="flex items-center gap-3 mt-1.5">
                     <span className="text-gold-dark/60 text-xs font-mono">{nak.startDeg.toFixed(1)}°  –  {nak.endDeg.toFixed(1)}°</span>
-                    <span className="text-xs text-text-secondary/75" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{nak.nature[locale]}</span>
+                    <span className="text-xs text-text-secondary/75" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{nak.nature[locale] || nak.nature.en}</span>
                   </div>
                 </div>
                 <div className="text-gold-primary/40 group-hover:text-gold-light transition-colors text-lg">→</div>
@@ -239,7 +239,7 @@ function EclipticBelt({ locale, isDevanagari }: { locale: Locale; isDevanagari: 
             <text x={textX} y={textY} fill="#f0d48a" fontSize="5.5" textAnchor="middle" dominantBaseline="middle"
               transform={`rotate(${rotationDeg}, ${textX}, ${textY})`}
               style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-              {nak.name[locale]}
+              {nak.name[locale] || nak.name.en}
             </text>
             <circle cx={dotX} cy={dotY} r="3" fill="#d4a853" opacity="0.5" />
           </motion.g>

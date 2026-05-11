@@ -164,7 +164,7 @@ export default function ChartSouth({ data, title, size = 500, selectedHouse, onS
                 fontWeight={isAscendant ? '700' : '600'}
                 style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
               >
-                {rashi?.name[locale]}
+                {rashi?.name[locale] || rashi?.name.en}
               </text>
 
               {/* House number */}

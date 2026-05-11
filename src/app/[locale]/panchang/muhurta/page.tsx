@@ -294,7 +294,7 @@ function AnimatedMuhurtaWheel({
                   transition={{ duration: 0.2 }}
                   style={{ pointerEvents: 'none' }}
                 >
-                  {m.name[locale]}
+                  {m.name[locale] || m.name.en}
                 </motion.text>
               )}
             </AnimatePresence>
@@ -663,7 +663,7 @@ export default function MuhurtaPage() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 }}
                   >
-                    {selected.number}. {selected.name[locale]}
+                    {selected.number}. {selected.name[locale] || selected.name.en}
                   </motion.h3>
                   {locale !== 'en' && (
                     <motion.p

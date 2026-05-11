@@ -48,12 +48,12 @@ export default function MuhurtaCard({ muhurta, locale }: MuhurtaCardProps) {
         </span>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-gold-light font-semibold">{m.name[locale]}</span>
+            <span className="text-gold-light font-semibold">{m.name[locale] || m.name.en}</span>
             {(isDevanagariLocale(locale)) && <span className="text-text-secondary/70 text-xs">({m.name.en})</span>}
             {isAbhijit && <span className="text-xs px-1.5 py-0.5 rounded bg-gold-primary/20 text-gold-primary font-bold">ABHIJIT</span>}
             {isBrahma && <span className="text-xs px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-bold">{msg('brahma', locale)}</span>}
           </div>
-          <div className="text-text-secondary/75 text-xs">{m.deity[locale]}</div>
+          <div className="text-text-secondary/75 text-xs">{m.deity[locale] || m.deity.en}</div>
         </div>
         <span className={`text-xs px-2 py-0.5 rounded-full border ${natureBadge.color}`}>
           {natureBadge.text}
@@ -75,14 +75,14 @@ export default function MuhurtaCard({ muhurta, locale }: MuhurtaCardProps) {
                 <h4 className="text-xs font-semibold text-gold-primary/70 uppercase tracking-wider mb-1">
                   {msg('significance', locale)}
                 </h4>
-                <p className="text-text-secondary text-sm leading-relaxed">{m.significance[locale]}</p>
+                <p className="text-text-secondary text-sm leading-relaxed">{m.significance[locale] || m.significance.en}</p>
               </div>
 
               <div>
                 <h4 className="text-xs font-semibold text-gold-primary/70 uppercase tracking-wider mb-1">
                   {msg('bestActivities', locale)}
                 </h4>
-                <p className="text-text-secondary text-sm">{m.bestFor[locale]}</p>
+                <p className="text-text-secondary text-sm">{m.bestFor[locale] || m.bestFor.en}</p>
               </div>
 
               <div className="flex gap-3 text-xs">

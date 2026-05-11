@@ -366,7 +366,7 @@ export default function TithiPage() {
               >
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-gold-light text-lg font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                    {TITHIS[selectedTithi].name[locale]}
+                    {TITHIS[selectedTithi].name[locale] || TITHIS[selectedTithi].name.en}
                   </h3>
                   <span className={`text-xs px-2 py-1 rounded-full ${TITHIS[selectedTithi].paksha === 'shukla' ? 'bg-gold-primary/20 text-gold-light' : 'bg-gold-dark/20 text-gold-dark'}`}>
                     {TITHIS[selectedTithi].paksha === 'shukla'
@@ -375,7 +375,7 @@ export default function TithiPage() {
                   </span>
                 </div>
                 <div className="text-text-secondary text-sm">
-                  <p><span className="text-gold-dark">{msg('deityLabel', locale)}</span> {TITHIS[selectedTithi].deity[locale]}</p>
+                  <p><span className="text-gold-dark">{msg('deityLabel', locale)}</span> {TITHIS[selectedTithi].deity[locale] || TITHIS[selectedTithi].deity.en}</p>
                   <p className="mt-1"><span className="text-gold-dark">{msg('tithiNumberLabel', locale)}</span> {selectedTithi + 1} / 30</p>
                   <p className="mt-1"><span className="text-gold-dark">{msg('angularSpanLabel', locale)}</span> {selectedTithi * 12}°  –  {(selectedTithi + 1) * 12}°</p>
                 </div>
@@ -447,10 +447,10 @@ export default function TithiPage() {
             >
               <div className="text-gold-primary text-2xl mb-1">{i + 1}</div>
               <div className="text-gold-light font-semibold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                {tithi.name[locale]}
+                {tithi.name[locale] || tithi.name.en}
               </div>
               <div className="text-text-secondary text-xs mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                {tithi.deity[locale]}
+                {tithi.deity[locale] || tithi.deity.en}
               </div>
             </motion.div>
           ))}
@@ -474,10 +474,10 @@ export default function TithiPage() {
             >
               <div className="text-gold-dark text-2xl mb-1">{i + 1}</div>
               <div className="text-gold-light font-semibold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                {tithi.name[locale]}
+                {tithi.name[locale] || tithi.name.en}
               </div>
               <div className="text-text-secondary text-xs mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                {tithi.deity[locale]}
+                {tithi.deity[locale] || tithi.deity.en}
               </div>
             </motion.div>
           ))}

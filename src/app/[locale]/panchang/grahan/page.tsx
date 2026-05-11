@@ -732,13 +732,13 @@ export default function GrahanPage() {
                 className="text-gold-light font-semibold text-sm"
                 style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}
               >
-                {eclipse.name[locale]}
+                {eclipse.name[locale] || eclipse.name.en}
               </div>
               <div className="text-gold-primary text-xs mt-1 font-mono">{eclipse.date}</div>
               <div
                 className={`text-xs mt-2 ${eclipse.type === 'solar' ? 'text-amber-400' : 'text-indigo-300'}`}
               >
-                {eclipse.kind[locale]}
+                {eclipse.kind[locale] || eclipse.kind.en}
               </div>
               <div
                 className="text-text-secondary text-xs mt-1"

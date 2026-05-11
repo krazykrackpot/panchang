@@ -110,10 +110,10 @@ export default function ChartPage() {
           <tbody>
             {kundali.planets.map(p => (
               <tr key={p.planet.id} className="border-b border-gold-primary/5 hover:bg-gold-primary/5">
-                <td className="py-2 px-2 flex items-center gap-2"><GrahaIconById id={p.planet.id} size={18} /><span className="text-gold-light" style={bf}>{p.planet.name[locale]}</span></td>
-                <td className="py-2 px-2 text-text-secondary" style={bf}>{p.signName[locale]}</td>
+                <td className="py-2 px-2 flex items-center gap-2"><GrahaIconById id={p.planet.id} size={18} /><span className="text-gold-light" style={bf}>{p.planet.name[locale] || p.planet.name.en}</span></td>
+                <td className="py-2 px-2 text-text-secondary" style={bf}>{p.signName[locale] || p.signName.en}</td>
                 <td className="py-2 px-2 text-text-secondary font-mono text-xs">{p.degree}</td>
-                <td className="py-2 px-2 text-text-secondary" style={bf}>{p.nakshatra.name[locale]} P{p.pada}</td>
+                <td className="py-2 px-2 text-text-secondary" style={bf}>{(p.nakshatra.name[locale] || p.nakshatra.name.en)} P{p.pada}</td>
                 <td className="py-2 px-2 text-center text-gold-light font-bold">{p.house}</td>
                 <td className="py-2 px-2 text-center">
                   {p.isRetrograde && <span className="text-red-400 text-xs font-bold mr-1">R</span>}

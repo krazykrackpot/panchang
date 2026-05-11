@@ -138,7 +138,7 @@ function AnimatedYogaWheel({ locale, onSelect }: { locale: Locale; onSelect: (id
               dominantBaseline="middle"
               transform={`rotate(${i * sectorAngle}, ${textX}, ${textY})`}
             >
-              {yoga.name[locale]?.substring(0, 7) || ''}
+              {(yoga.name[locale] || yoga.name.en)?.substring(0, 7) || ''}
             </text>
           </motion.g>
         );
@@ -272,7 +272,7 @@ function SunMoonSumDiagram({ locale }: { locale: Locale }) {
           {msg('yogaNum15', locale)}
         </text>
         <text x="500" y="125" fill="#4ade80" fontSize="9" textAnchor="middle" opacity="0.7">
-          {YOGAS[14]?.name[locale] || 'Vajra'}
+          {YOGAS[14]?.name[locale] || YOGAS[14]?.name.en || 'Vajra'}
         </text>
       </motion.g>
     </motion.svg>
@@ -365,7 +365,7 @@ export default function YogaPage() {
               >
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-gold-light text-lg font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                    {YOGAS[selectedYoga].name[locale]}
+                    {YOGAS[selectedYoga].name[locale] || YOGAS[selectedYoga].name.en}
                   </h3>
                   <span className={`text-xs px-2 py-1 rounded-full ${
                     YOGAS[selectedYoga].nature === 'auspicious' ? 'bg-emerald-500/20 text-emerald-400'
@@ -414,10 +414,10 @@ export default function YogaPage() {
             >
               <div className="text-gold-primary text-2xl mb-1">{yoga.number}</div>
               <div className="text-gold-light font-semibold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                {yoga.name[locale]}
+                {yoga.name[locale] || yoga.name.en}
               </div>
               <div className="text-text-secondary text-xs mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                {yoga.meaning[locale]}
+                {yoga.meaning[locale] || yoga.meaning.en}
               </div>
               <div className={`text-xs mt-1 ${natureColor(yoga.nature)}`}>
                 {yoga.nature === 'auspicious'

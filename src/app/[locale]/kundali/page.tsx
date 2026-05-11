@@ -29,7 +29,9 @@ import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS, GRAHA_ABBREVIATIONS } from '@/lib/constants/grahas';
-import { getPlanetaryPositions, toSidereal, dateToJD, normalizeDeg } from '@/lib/ephem/astronomical';
+import { getPlanetaryPositions, toSidereal, dateToJD, normalizeDeg, calculateTithi, calculateYoga } from '@/lib/ephem/astronomical';
+import { TITHIS } from '@/lib/constants/tithis';
+import { YOGAS } from '@/lib/constants/yogas';
 import { resolveBirthTimezone } from '@/lib/utils/timezone';
 import { generateTippanni } from '@/lib/kundali/tippanni-engine';
 import { trackKundaliGenerated, trackTabViewed } from '@/lib/analytics';
@@ -923,17 +925,16 @@ export default function KundaliPage() {
             {/* Key birth details  –  nakshatra, tithi, yoga, masa */}
             {(() => {
               const moonP = kundali.planets.find(p => p.planet.id === 1);
-              const { calculateTithi, calculateYoga, sunLongitude: sunLon, toSidereal: toSid, getMasa, MASA_NAMES } = require('@/lib/ephem/astronomical');
-              const { TITHIS } = require('@/lib/constants/tithis');
-              const { YOGAS } = require('@/lib/constants/yogas');
+              // M10: top-level ES imports used instead of require()
+              // C1: getMasa() removed — it's a solar approximation (Sun's sidereal sign),
+              // NOT the actual lunar month. Near Sankranti dates it shows the wrong month,
+              // and Adhika Masa is completely invisible. The tithi table engine is the
+              // correct source but is designed for yearly ranges, not single birth dates.
               const jd = kundali.julianDay;
               const tR = calculateTithi(jd);
               const tD = TITHIS[tR.number - 1];
               const yN = calculateYoga(jd);
               const yD = YOGAS[yN - 1];
-              const sS = toSid(sunLon(jd), jd);
-              const mI = getMasa(sS);
-              const mD = MASA_NAMES[mI];
               return (
                 <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 mt-3 text-xs">
                   <span><span className="text-text-secondary/70">{locale === 'en' || isTamil ? 'Rashi' : 'राशि'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(moonP?.signName, locale) || ' – '}</span></span>
@@ -943,8 +944,9 @@ export default function KundaliPage() {
                   <span><span className="text-text-secondary/70">{locale === 'en' || isTamil ? 'Tithi' : 'तिथि'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(tD?.name, locale) || ' – '} ({tD?.paksha === 'shukla' ? (locale === 'en' || isTamil ? 'Shukla' : 'शुक्ल') : (locale === 'en' || isTamil ? 'Krishna' : 'कृष्ण')})</span></span>
                   <span className="text-gold-primary/15">|</span>
                   <span><span className="text-text-secondary/70">{locale === 'en' || isTamil ? 'Yoga' : 'योग'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(yD?.name, locale) || ' – '}</span></span>
-                  <span className="text-gold-primary/15">|</span>
-                  <span><span className="text-text-secondary/70">{locale === 'en' || isTamil ? 'Masa' : 'मास'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(mD, locale) || ' – '}</span></span>
+                  {/* C1: Masa display removed — getMasa() is a solar approximation that shows
+                      wrong month near Sankranti and is blind to Adhika Masa. The tithi table
+                      engine is the correct source but is designed for yearly ranges. */}
                 </div>
               );
             })()}

@@ -13,6 +13,9 @@ import ChartSouth from '@/components/kundali/ChartSouth';
 import PrintButton from '@/components/ui/PrintButton';
 import { generateKundaliPrintHtml } from '@/lib/pdf/kundali-pdf';
 import { RASHIS } from '@/lib/constants/rashis';
+import { TITHIS } from '@/lib/constants/tithis';
+import { YOGAS } from '@/lib/constants/yogas';
+import { calculateTithi, calculateYoga } from '@/lib/ephem/astronomical';
 import type { KundaliData, ChartStyle } from '@/types/kundali';
 import type { TippanniContent } from '@/lib/kundali/tippanni-types';
 import type { Locale , LocaleText} from '@/types/panchang';
@@ -212,35 +215,29 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
             const moonR = moonP ? RASHIS[moonP.sign - 1] : null;
             const sunR = sunP ? RASHIS[sunP.sign - 1] : null;
 
-            // Compute tithi, yoga, masa from julianDay
-            const { calculateTithi, calculateYoga, sunLongitude: sunLon, toSidereal: toSid, getMasa, MASA_NAMES } = require('@/lib/ephem/astronomical');
-            const { TITHIS } = require('@/lib/constants/tithis');
-            const { YOGAS } = require('@/lib/constants/yogas');
+            // M10: top-level ES imports used instead of require()
+            // C2: getMasa() removed — solar approximation, wrong near Sankranti, blind to Adhika Masa
             const jd = kundali.julianDay;
             const tR = calculateTithi(jd);
             const tD = TITHIS[tR.number - 1];
             const yN = calculateYoga(jd);
             const yD = YOGAS[yN - 1];
-            const sS = toSid(sunLon(jd), jd);
-            const mI = getMasa(sS);
-            const mD = MASA_NAMES[mI];
 
             return (
               <div className="max-w-2xl mx-auto">
                 <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-xs">
                    <span><span className="text-text-secondary/70">{msg('lagna', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(lagnaR?.name, locale)} ({kundali.ascendant.degree.toFixed(1)}°)</span></span>
                   <span className="text-gold-primary/15">|</span>
-                   <span><span className="text-text-secondary/70">{msg('chandra', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{moonR?.name[locale] || ' – '}</span></span>
+                   <span><span className="text-text-secondary/70">{msg('chandra', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(moonR?.name, locale) || ' – '}</span></span>
                   <span className="text-gold-primary/15">|</span>
-                   <span><span className="text-text-secondary/70">{msg('surya', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{sunR?.name[locale] || ' – '}</span></span>
+                   <span><span className="text-text-secondary/70">{msg('surya', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(sunR?.name, locale) || ' – '}</span></span>
                   <span className="text-gold-primary/15">|</span>
-                   <span><span className="text-text-secondary/70">{msg('nakshatra', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{moonP?.nakshatra?.name?.[locale] || ' – '} ({msg('pada', locale)} {moonP?.pada || ' – '})</span></span>
+                   <span><span className="text-text-secondary/70">{msg('nakshatra', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(moonP?.nakshatra?.name, locale) || ' – '} ({msg('pada', locale)} {moonP?.pada || ' – '})</span></span>
                   <span className="text-gold-primary/15">|</span>
-                   <span><span className="text-text-secondary/70">{msg('tithi', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tD?.name?.[locale] || ' – '} ({tD?.paksha === 'shukla' ? msg('shukla', locale) : msg('krishna', locale)})</span></span>
+                   <span><span className="text-text-secondary/70">{msg('tithi', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(tD?.name, locale) || ' – '} ({tD?.paksha === 'shukla' ? msg('shukla', locale) : msg('krishna', locale)})</span></span>
                   <span className="text-gold-primary/15">|</span>
-                   <span><span className="text-text-secondary/70">{msg('yoga', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{yD?.name?.[locale] || ' – '}</span></span>
-                  <span className="text-gold-primary/15">|</span>
-                   <span><span className="text-text-secondary/70">{msg('masa', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{mD?.[locale] || ' – '}</span></span>
+                   <span><span className="text-text-secondary/70">{msg('yoga', locale)}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(yD?.name, locale) || ' – '}</span></span>
+                  {/* C2: Masa display removed — getMasa() is a solar approximation, wrong near Sankranti */}
                 </div>
               </div>
             );

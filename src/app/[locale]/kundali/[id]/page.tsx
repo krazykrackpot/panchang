@@ -199,11 +199,11 @@ export default function SharedKundaliPage() {
               <tbody>
                 {kundali.planets.map((p, i) => (
                   <tr key={i} className="border-b border-gold-primary/5 text-text-secondary">
-                    <td className="py-2 px-3 text-gold-light font-semibold">{p.planet.name[locale]}</td>
-                    <td className="py-2 px-3">{p.signName[locale]}</td>
+                    <td className="py-2 px-3 text-gold-light font-semibold">{p.planet.name[locale] || p.planet.name.en}</td>
+                    <td className="py-2 px-3">{p.signName[locale] || p.signName.en}</td>
                     <td className="py-2 px-3 text-right font-mono">{(p.longitude % 30).toFixed(2)}°</td>
                     <td className="py-2 px-3 text-center">{p.house}</td>
-                    <td className="py-2 px-3 text-center">{p.nakshatra?.name?.[locale] || '-'}</td>
+                    <td className="py-2 px-3 text-center">{p.nakshatra?.name?.[locale] || p.nakshatra?.name?.en || '-'}</td>
                   </tr>
                 ))}
               </tbody>

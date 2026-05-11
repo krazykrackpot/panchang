@@ -226,7 +226,7 @@ function AnimatedKaranaWheel({
             transition={{ delay: 0.8 + i * 0.06 }}
             style={(isDevanagariLocale(locale)) ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
           >
-            {k.name[locale]}
+            {k.name[locale] || k.name.en}
           </motion.text>
         );
       })}
@@ -526,7 +526,7 @@ export default function KaranaPage() {
                       className="text-gold-light text-lg font-bold"
                       style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}
                     >
-                      {karana.name[locale]}
+                      {karana.name[locale] || karana.name.en}
                     </h3>
                     <span className={`text-xs px-2 py-1 rounded-full ${badgeClasses}`}>
                       {isSthira
@@ -566,7 +566,7 @@ export default function KaranaPage() {
                       <p className="text-red-400/80 text-xs mt-2 border-t border-red-500/20 pt-2">
                         {locale === 'en'
                           ? `${karana.name.en} is a Sthira (fixed) Karana that appears only once per lunar month.`
-                          : `${karana.name[locale]} एक स्थिर करण है जो प्रति चान्द्र मास में केवल एक बार आता है।`}
+                          : `${karana.name[locale] || karana.name.en} एक स्थिर करण है जो प्रति चान्द्र मास में केवल एक बार आता है।`}
                       </p>
                     )}
                   </div>
@@ -612,7 +612,7 @@ export default function KaranaPage() {
                 {karana.number}
               </div>
               <div className="text-gold-light font-semibold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                {karana.name[locale]}
+                {karana.name[locale] || karana.name.en}
               </div>
               <div className={`text-xs mt-1 ${karana.name.en === 'Vishti' ? 'text-red-400' : 'text-emerald-400'}`}>
                 {karana.name.en === 'Vishti'
@@ -644,7 +644,7 @@ export default function KaranaPage() {
               >
                 <div className="text-red-400/80 text-2xl mb-1">{karana.number}</div>
                 <div className="text-gold-light font-semibold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                  {karana.name[locale]}
+                  {karana.name[locale] || karana.name.en}
                 </div>
                 <div className="text-red-400 text-xs mt-1">
                   {msg('sthiraFixed', locale)}

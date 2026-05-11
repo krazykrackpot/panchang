@@ -9,6 +9,8 @@ import ProfileBanner from '@/components/home/ProfileBanner';
 import { getHeadingFont, getBodyFont, isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { generateDailyNarrative } from '@/lib/panchang/daily-narrative';
+import { CheckCircle, XCircle, Clock, Zap } from 'lucide-react';
 import type { PanchangData } from '@/types/panchang';
 
 // NO revalidate here  –  page uses headers() for geo-location.
@@ -588,6 +590,114 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <HomeClientWidgets locale={locale} serverPanchang={serverPanchang} serverLocation={serverLocation} />
         </div>
       </section>
+
+      {/* ═══ DAILY COSMIC BRIEFING  –  server-rendered narrative from today's panchang ═══ */}
+      {serverPanchang && (() => {
+        const briefing = generateDailyNarrative(serverPanchang, locale);
+        const scoreColor = briefing.energyScore >= 7 ? 'text-emerald-400' : briefing.energyScore >= 4 ? 'text-gold-light' : 'text-red-400';
+        const scoreBg = briefing.energyScore >= 7 ? 'from-emerald-500/20 to-emerald-500/5' : briefing.energyScore >= 4 ? 'from-gold-primary/20 to-gold-primary/5' : 'from-red-500/20 to-red-500/5';
+        const scoreRing = briefing.energyScore >= 7 ? 'border-emerald-400/40' : briefing.energyScore >= 4 ? 'border-gold-primary/40' : 'border-red-400/40';
+        return (
+          <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8" suppressHydrationWarning>
+            <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
+              {/* Header row */}
+              <div className="flex items-center gap-3 mb-5">
+                <Zap className="w-5 h-5 text-gold-primary" />
+                <h2 className="text-xl sm:text-2xl font-bold" style={hf}>
+                  <span className="text-gold-gradient">
+                    {L({ en: 'Daily Cosmic Briefing', hi: 'दैनिक ब्रह्माण्डीय सारांश', ta: 'தினசரி அண்ட சுருக்கம்', bn: 'দৈনিক মহাজাগতিক সারাংশ' }, locale)}
+                  </span>
+                </h2>
+              </div>
+
+              {/* Main content: narrative + energy score */}
+              <div className="flex flex-col sm:flex-row gap-6">
+                {/* Energy score circle */}
+                <div className="flex-shrink-0 flex sm:flex-col items-center gap-3 sm:gap-2">
+                  <div className={`w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br ${scoreBg} border-2 ${scoreRing} flex flex-col items-center justify-center`}>
+                    <span className={`text-2xl sm:text-3xl font-bold ${scoreColor}`}>{briefing.energyScore}</span>
+                    <span className="text-[10px] text-text-secondary uppercase tracking-wider">/10</span>
+                  </div>
+                  <span className="text-xs text-text-secondary" style={bf}>
+                    {L({ en: 'Energy', hi: 'ऊर्जा', ta: 'ஆற்றல்', bn: 'শক্তি' }, locale)}
+                  </span>
+                </div>
+
+                {/* Narrative text */}
+                <div className="flex-1 min-w-0">
+                  <p className="text-text-primary text-sm sm:text-base leading-relaxed mb-5" style={bf}>
+                    {briefing.narrative}
+                  </p>
+
+                  {/* Do / Don't columns */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Do list */}
+                    <div>
+                      <h3 className="text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                        <CheckCircle className="w-3.5 h-3.5" />
+                        {L({ en: 'Favourable', hi: 'अनुकूल', ta: 'சாதகமான', bn: 'অনুকূল' }, locale)}
+                      </h3>
+                      <ul className="space-y-1.5">
+                        {briefing.doList.map((item, i) => (
+                          <li key={i} className="text-text-primary text-xs sm:text-sm flex items-start gap-2" style={bf}>
+                            <CheckCircle className="w-3.5 h-3.5 text-emerald-400/60 flex-shrink-0 mt-0.5" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Don't list */}
+                    <div>
+                      <h3 className="text-xs font-semibold text-red-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                        <XCircle className="w-3.5 h-3.5" />
+                        {L({ en: 'Avoid', hi: 'परहेज़', ta: 'தவிர்க்க', bn: 'এড়িয়ে চলুন' }, locale)}
+                      </h3>
+                      <ul className="space-y-1.5">
+                        {briefing.dontList.map((item, i) => (
+                          <li key={i} className="text-text-primary text-xs sm:text-sm flex items-start gap-2" style={bf}>
+                            <XCircle className="w-3.5 h-3.5 text-red-400/60 flex-shrink-0 mt-0.5" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Timing bar */}
+                  {(serverPanchang.rahuKaal?.start || serverPanchang.abhijitMuhurta?.start) && (
+                    <div className="mt-5 flex flex-wrap gap-3 text-xs" style={bf}>
+                      {serverPanchang.abhijitMuhurta?.start && (
+                        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+                          <Clock className="w-3.5 h-3.5 text-emerald-400" />
+                          <span className="text-emerald-300">
+                            {L({ en: 'Abhijit', hi: 'अभिजित', ta: 'அபிஜித்', bn: 'অভিজিৎ' }, locale)} {serverPanchang.abhijitMuhurta.start}–{serverPanchang.abhijitMuhurta.end}
+                          </span>
+                        </div>
+                      )}
+                      {serverPanchang.rahuKaal?.start && (
+                        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-500/10 border border-red-500/20">
+                          <Clock className="w-3.5 h-3.5 text-red-400" />
+                          <span className="text-red-300">
+                            {L({ en: 'Rahu Kaal', hi: 'राहु काल', ta: 'ராகு காலம்', bn: 'রাহু কাল' }, locale)} {serverPanchang.rahuKaal.start}–{serverPanchang.rahuKaal.end}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Full Panchang link */}
+                  <div className="mt-5">
+                    <Link href="/panchang" className="text-gold-primary hover:text-gold-light text-sm font-medium transition-colors inline-flex items-center gap-1.5">
+                      {L({ en: 'Full Panchang', hi: 'पूर्ण पञ्चाङ्ग', ta: 'முழு பஞ்சாங்கம்', bn: 'পূর্ণ পঞ্চাঙ্গ' }, locale)} &rarr;
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      })()}
 
       {/* ═══ WHY JYOTISH?  –  philosophical foundation, server-rendered for SEO ═══ */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

@@ -85,7 +85,9 @@ export async function GET(request: Request) {
           };
         }
       }
-    } catch { /* tithi table enrichment is optional  –  don't fail the API */ }
+    } catch (err) {
+      console.error('[API/panchang] Tithi table enrichment failed (non-fatal):', err);
+    }
 
     // Enrich with festivals/vrats for this date
     let festivals: { name: LocaleText; type: string; category: string; description: LocaleText; slug?: string; pujaMuhurat?: { start: string; end: string; name: string }; paranaStart?: string; paranaEnd?: string; paranaDate?: string }[] | undefined;
@@ -106,7 +108,9 @@ export async function GET(request: Request) {
           }));
         }
       }
-    } catch { /* festival enrichment is optional */ }
+    } catch (err) {
+      console.error('[API/panchang] Festival enrichment failed (non-fatal):', err);
+    }
 
     return NextResponse.json({
       ...panchang,

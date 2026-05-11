@@ -8,9 +8,15 @@ export default function ServiceWorkerRegistrar() {
   useEffect(() => {
     if (!('serviceWorker' in navigator) || process.env.NODE_ENV !== 'production') return;
 
+    let intervalId: ReturnType<typeof setInterval> | undefined;
+
+    const onControllerChange = () => {
+      window.location.reload();
+    };
+
     navigator.serviceWorker.register('/sw.js').then((reg) => {
       // Check for updates periodically (every 60 min)
-      setInterval(() => reg.update(), 60 * 60 * 1000);
+      intervalId = setInterval(() => reg.update(), 60 * 60 * 1000);
 
       reg.addEventListener('updatefound', () => {
         const newWorker = reg.installing;
@@ -22,12 +28,17 @@ export default function ServiceWorkerRegistrar() {
           }
         });
       });
-    }).catch(() => {});
+    }).catch((err) => {
+      console.error('[ServiceWorker] Registration failed:', err);
+    });
 
     // Reload when new SW takes control
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      window.location.reload();
-    });
+    navigator.serviceWorker.addEventListener('controllerchange', onControllerChange);
+
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+      navigator.serviceWorker.removeEventListener('controllerchange', onControllerChange);
+    };
   }, []);
 
   if (!updateAvailable) return null;

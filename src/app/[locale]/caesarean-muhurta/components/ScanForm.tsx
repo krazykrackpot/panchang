@@ -4,6 +4,7 @@ import { useState, useCallback } from 'react';
 import { useLocale } from 'next-intl';
 import { MapPin, Search, Loader2, Calendar } from 'lucide-react';
 import { useLocationStore } from '@/stores/location-store';
+import { resolveCurrentLocationTimezone } from '@/lib/utils/timezone';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/types/panchang';
 import MSG from '@/messages/pages/caesarean-muhurta.json';
@@ -55,15 +56,19 @@ export default function ScanForm({ loading, onScan }: ScanFormProps) {
   const [opEnd, setOpEnd] = useState(17);
 
   const handleSubmit = useCallback(
-    (e: React.FormEvent) => {
+    async (e: React.FormEvent) => {
       e.preventDefault();
       if (!lat || !lng) return;
+      // Resolve TZ from coordinates, not the browser — the caesarean location
+      // may differ from where the user is browsing. Falls back to browser TZ
+      // only inside resolveCurrentLocationTimezone when on the client.
+      const resolvedTz = timezone || await resolveCurrentLocationTimezone(lat, lng);
       onScan({
         startDate,
         endDate,
         lat,
         lng,
-        timezone: timezone || Intl.DateTimeFormat().resolvedOptions().timeZone,
+        timezone: resolvedTz,
         opStart,
         opEnd,
       });

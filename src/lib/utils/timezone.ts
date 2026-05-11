@@ -229,13 +229,15 @@ export async function resolveBirthTimezone(lat: number, lng: number): Promise<st
   }
 
   // Method 3: Geographic special cases (bounding-box approximations)
+  // Nepal MUST be checked BEFORE India — Nepal's box (lat 26-31, lng 80-89)
+  // is entirely inside India's box (lat 6-36, lng 68-98). Without this order,
+  // Kathmandu would incorrectly return Asia/Kolkata.
+  if (lat >= 26 && lat <= 31 && lng >= 80 && lng <= 89) return 'Asia/Kathmandu';
+  // Sri Lanka: lat 5-10°N, lng 79-82°E (outside India's lat range at the low end,
+  // but checked before India for clarity and to avoid any future box changes)
+  if (lat >= 5 && lat <= 10 && lng >= 79 && lng <= 82) return 'Asia/Colombo';
   // India: lat 6-36°N, lng 68-98°E
   if (lat >= 6 && lat <= 36 && lng >= 68 && lng <= 98) return 'Asia/Kolkata';
-  // Nepal: lat 26-31°N, lng 80-89°E (checked AFTER India since overlap exists;
-  // Nepal's box is more specific)
-  if (lat >= 26 && lat <= 31 && lng >= 80 && lng <= 89) return 'Asia/Kathmandu';
-  // Sri Lanka: lat 5-10°N, lng 79-82°E
-  if (lat >= 5 && lat <= 10 && lng >= 79 && lng <= 82) return 'Asia/Colombo';
   // Japan: lat 24-46°N, lng 123-146°E
   if (lat >= 24 && lat <= 46 && lng >= 123 && lng <= 146) return 'Asia/Tokyo';
   // Europe: lng -10 to 40, lat 35-72

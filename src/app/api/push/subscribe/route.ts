@@ -1,13 +1,14 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
-
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!.trim(),
-  process.env.SUPABASE_SERVICE_ROLE_KEY!.trim()
-);
+import { getServerSupabase } from '@/lib/supabase/server';
 
 export async function POST(request: Request) {
   try {
+    const supabaseAdmin = getServerSupabase();
+    if (!supabaseAdmin) {
+      console.error('[PushSubscribe] Supabase not configured');
+      return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
+    }
+
     const authHeader = request.headers.get('Authorization');
     if (!authHeader?.startsWith('Bearer ')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -50,6 +51,12 @@ export async function POST(request: Request) {
 
 export async function DELETE(request: Request) {
   try {
+    const supabaseAdmin = getServerSupabase();
+    if (!supabaseAdmin) {
+      console.error('[PushUnsubscribe] Supabase not configured');
+      return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
+    }
+
     const authHeader = request.headers.get('Authorization');
     if (!authHeader?.startsWith('Bearer ')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

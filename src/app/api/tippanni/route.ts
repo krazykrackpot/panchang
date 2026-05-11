@@ -113,7 +113,7 @@ export async function POST(request: Request) {
       isSupabaseConfigured() &&
       (!!process.env.COHERE_API_KEY ||
         !!process.env.OPENAI_API_KEY ||
-        process.env.EMBEDDING_PROVIDER === 'local');
+        process.env.EMBEDDING_PROVIDER?.trim() === 'local');
 
     if (!canRAG) {
       // Use demo classical references so the UI works without external services

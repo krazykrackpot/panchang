@@ -75,10 +75,17 @@ export default function LocationSearch({ value, onSelect, placeholder = 'Search 
     if (val.length >= 3) {
       setLoading(true);
       debounceRef.current = setTimeout(async () => {
-        const locs = await searchLocations(val);
-        setResults(locs);
-        setIsOpen(locs.length > 0);
-        setLoading(false);
+        try {
+          const locs = await searchLocations(val);
+          setResults(locs);
+          setIsOpen(locs.length > 0);
+        } catch (err) {
+          console.error('[LocationSearch] Search failed:', err);
+          setResults([]);
+          setIsOpen(false);
+        } finally {
+          setLoading(false);
+        }
       }, 400);
     } else {
       setResults([]);

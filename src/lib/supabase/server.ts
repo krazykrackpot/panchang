@@ -6,7 +6,7 @@ export function getServerSupabase() {
 
   if (!url || !key) return null;
 
-  return createClient(url, key, {
+  return createClient(url.trim(), key.trim(), {
     auth: { persistSession: false },
   });
 }

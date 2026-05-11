@@ -1674,6 +1674,118 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       },
     },
   ],
+
+  // ─── /vs/prokerala ─────────────────────────────────────────────
+  '/vs/prokerala': [
+    {
+      question: {
+        en: 'Is Dekho Panchang more accurate than Prokerala?',
+        hi: 'क्या देखो पंचांग प्रोकेरला से अधिक सटीक है?',
+      },
+      answer: {
+        en: 'Dekho Panchang uses Swiss Ephemeris (NASA JPL DE441) which provides arc-second precision for planetary positions. Both platforms are accurate for basic panchang, but Dekho Panchang offers 11 ayanamsha systems and has been verified against multiple reference sources across 3+ timezones.',
+        hi: 'देखो पंचांग Swiss Ephemeris (NASA JPL DE441) का उपयोग करता है जो ग्रह स्थितियों के लिए आर्क-सेकंड सटीकता प्रदान करता है। दोनों मंच मूल पंचांग के लिए सटीक हैं, लेकिन देखो पंचांग 11 अयनांश पद्धतियाँ प्रदान करता है।',
+      },
+    },
+    {
+      question: {
+        en: 'What does Dekho Panchang have that Prokerala does not?',
+        hi: 'देखो पंचांग में क्या है जो प्रोकेरला में नहीं?',
+      },
+      answer: {
+        en: 'Dekho Panchang offers AI-powered birth chart interpretation (Tippanni), a 36-rule muhurta engine with classical cancellation logic, 150+ yoga detection (vs ~20), Shadbala/Ashtakavarga analysis, 15+ dasha systems, KP System, Jaimini System, and a structured learning curriculum. All features are free without registration.',
+        hi: 'देखो पंचांग AI-संचालित जन्म कुण्डली व्याख्या (टिप्पणी), 36-नियम मुहूर्त इंजन, 150+ योग पहचान (vs ~20), षड्बल/अष्टकवर्ग विश्लेषण, 15+ दशा प्रणालियाँ, केपी पद्धति, जैमिनी पद्धति और संरचित शिक्षण पाठ्यक्रम प्रदान करता है।',
+      },
+    },
+    {
+      question: {
+        en: 'Is Dekho Panchang free like Prokerala?',
+        hi: 'क्या देखो पंचांग प्रोकेरला की तरह मुफ़्त है?',
+      },
+      answer: {
+        en: 'Yes. All core features on Dekho Panchang are completely free with no registration required. AI-powered features (chart chat, muhurta AI) have small daily usage limits. Unlike Prokerala, Dekho Panchang has zero ads in core features.',
+        hi: 'हाँ। देखो पंचांग की सभी मुख्य सुविधाएँ बिना पंजीकरण के पूरी तरह मुफ़्त हैं। AI-संचालित सुविधाओं की छोटी दैनिक उपयोग सीमाएँ हैं। प्रोकेरला के विपरीत, देखो पंचांग में मुख्य सुविधाओं में शून्य विज्ञापन हैं।',
+      },
+    },
+  ],
+
+  // ─── /vs/astrosage ─────────────────────────────────────────────
+  '/vs/astrosage': [
+    {
+      question: {
+        en: 'How is Dekho Panchang different from AstroSage?',
+        hi: 'देखो पंचांग एस्ट्रोसेज से कैसे भिन्न है?',
+      },
+      answer: {
+        en: 'AstroSage is a content-first platform with thousands of articles and predictions. Dekho Panchang is computation-first: every value is computed live from Swiss Ephemeris planetary positions with documented, open methodology. Dekho Panchang also offers AI-powered interpretation, a 36-rule muhurta engine, and 150+ yoga detection  –  features AstroSage does not have.',
+        hi: 'एस्ट्रोसेज हज़ारों लेखों और भविष्यवाणियों वाला सामग्री-प्रथम मंच है। देखो पंचांग गणना-प्रथम है: हर मान Swiss Ephemeris ग्रह स्थितियों से सीधे गणना किया जाता है। देखो पंचांग AI व्याख्या, 36-नियम मुहूर्त इंजन और 150+ योग पहचान भी प्रदान करता है।',
+      },
+    },
+    {
+      question: {
+        en: 'Do I need to create an account on Dekho Panchang like AstroSage?',
+        hi: 'क्या मुझे एस्ट्रोसेज की तरह देखो पंचांग पर खाता बनाना होगा?',
+      },
+      answer: {
+        en: 'No. All core features  –  kundali generation, panchang, matching, muhurta  –  work without any registration. Only AI-powered features (chart chat, muhurta AI) require a free account for usage tracking.',
+        hi: 'नहीं। सभी मुख्य सुविधाएँ  –  कुण्डली, पंचांग, मिलान, मुहूर्त  –  बिना किसी पंजीकरण के काम करती हैं। केवल AI-संचालित सुविधाओं के लिए मुफ़्त खाता आवश्यक है।',
+      },
+    },
+    {
+      question: {
+        en: 'Is Dekho Panchang ad-free?',
+        hi: 'क्या देखो पंचांग विज्ञापन-मुक्त है?',
+      },
+      answer: {
+        en: 'Yes. Dekho Panchang has zero advertisements in all core features. AstroSage relies heavily on ad revenue, which affects page speed and user experience. Dekho Panchang is built on Next.js 16 with edge caching for fast load times.',
+        hi: 'हाँ। देखो पंचांग की सभी मुख्य सुविधाओं में शून्य विज्ञापन हैं। एस्ट्रोसेज विज्ञापन राजस्व पर निर्भर है, जो पृष्ठ गति और उपयोगकर्ता अनुभव को प्रभावित करता है।',
+      },
+    },
+    {
+      question: {
+        en: 'Does AstroSage have better predictions than Dekho Panchang?',
+        hi: 'क्या एस्ट्रोसेज की भविष्यवाणियाँ देखो पंचांग से बेहतर हैं?',
+      },
+      answer: {
+        en: 'AstroSage uses template-based predictions (generic text per planet/sign). Dekho Panchang uses AI-powered interpretation that analyses YOUR specific chart  –  considering planet positions, dasha periods, yogas, and aspects together. The result is personalised narrative commentary rather than generic one-size-fits-all text.',
+        hi: 'एस्ट्रोसेज टेम्पलेट-आधारित भविष्यवाणियाँ (प्रति ग्रह/राशि सामान्य पाठ) उपयोग करता है। देखो पंचांग AI-संचालित व्याख्या करता है जो आपकी विशिष्ट कुण्डली का विश्लेषण करता है।',
+      },
+    },
+  ],
+
+  // ─── /vs/mpanchang ─────────────────────────────────────────────
+  '/vs/mpanchang': [
+    {
+      question: {
+        en: 'Can I use Dekho Panchang without downloading an app?',
+        hi: 'क्या मैं ऐप डाउनलोड किए बिना देखो पंचांग का उपयोग कर सकता हूँ?',
+      },
+      answer: {
+        en: 'Yes. Dekho Panchang is fully web-based and works in any browser. You can also install it as a PWA (Progressive Web App) for home screen access and offline support  –  no app store download required. mPanchang primarily requires a native app download.',
+        hi: 'हाँ। देखो पंचांग पूरी तरह वेब-आधारित है और किसी भी ब्राउज़र में काम करता है। आप इसे PWA के रूप में भी इंस्टॉल कर सकते हैं  –  ऐप स्टोर डाउनलोड की आवश्यकता नहीं।',
+      },
+    },
+    {
+      question: {
+        en: 'Does Dekho Panchang have daily notifications like mPanchang?',
+        hi: 'क्या देखो पंचांग में एमपंचांग जैसी दैनिक सूचनाएं हैं?',
+      },
+      answer: {
+        en: 'Yes. Dekho Panchang sends daily panchang emails and supports PWA push notifications. In addition to notifications, Dekho Panchang offers a full kundali generator, muhurta AI, matching, and learning curriculum  –  features that go far beyond what mPanchang provides.',
+        hi: 'हाँ। देखो पंचांग दैनिक पंचांग ईमेल भेजता है और PWA पुश नोटिफिकेशन का समर्थन करता है। सूचनाओं के अलावा, देखो पंचांग पूर्ण कुण्डली जनरेटर, मुहूर्त AI, मिलान और शिक्षण पाठ्यक्रम प्रदान करता है।',
+      },
+    },
+    {
+      question: {
+        en: 'What makes Dekho Panchang better than mPanchang for kundali?',
+        hi: 'कुण्डली के लिए देखो पंचांग एमपंचांग से बेहतर क्यों है?',
+      },
+      answer: {
+        en: 'mPanchang offers basic kundali features. Dekho Panchang provides a complete kundali experience: 16 Varga charts, Shadbala and Bhavabala analysis, Ashtakavarga heatmaps, 150+ yoga detection, 15+ dasha systems, KP System, Jaimini System, AI-powered interpretation, and a premium PDF report  –  all free.',
+        hi: 'एमपंचांग मूल कुण्डली सुविधाएँ प्रदान करता है। देखो पंचांग पूर्ण कुण्डली अनुभव देता है: 16 वर्ग चार्ट, षड्बल और भावबल विश्लेषण, अष्टकवर्ग हीटमैप, 150+ योग पहचान, 15+ दशा प्रणालियाँ, केपी पद्धति, जैमिनी पद्धति, AI व्याख्या और प्रीमियम PDF रिपोर्ट  –  सब मुफ़्त।',
+      },
+    },
+  ],
 };
 
 /**

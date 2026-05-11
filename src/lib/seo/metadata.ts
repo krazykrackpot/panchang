@@ -782,6 +782,21 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: `Objective feature comparison between Dekho Panchang and Drik Panchang. AI interpretation, Muhurta AI, 10 languages, ${TOTAL_MODULES}-module learning path, modern UI vs legacy platform.`, hi: `देखो पंचांग और दृक् पंचांग के बीच निष्पक्ष सुविधा तुलना। AI व्याख्या, मुहूर्त AI, 10 भाषाएँ, ${TOTAL_MODULES}-मॉड्यूल शिक्षण पथ, आधुनिक UI।`, sa: 'देखोपञ्चाङ्गस्य दृक्पञ्चाङ्गस्य च सुविधातुलना।' },
     keywords: ['dekho panchang vs drik panchang', 'panchang comparison', 'best panchang app', 'vedic astrology platform comparison', 'drik panchang alternative'],
   },
+  '/vs/prokerala': {
+    title: { en: 'Dekho Panchang vs Prokerala  –  Which Panchang is More Accurate?', hi: 'देखो पंचांग vs प्रोकेरला  –  कौन सा पंचांग अधिक सटीक है?', sa: 'देखोपञ्चाङ्गं विरुद्ध प्रोकेरला  –  सुविधातुलना' },
+    description: { en: `Prokerala alternative: compare Dekho Panchang vs Prokerala. Swiss Ephemeris accuracy, 150+ yoga detection, AI interpretation, ${TOTAL_MODULES}-module learning path, 10 languages. Free, no signup required.`, hi: `प्रोकेरला विकल्प: देखो पंचांग vs प्रोकेरला तुलना। Swiss Ephemeris सटीकता, 150+ योग पहचान, AI व्याख्या, ${TOTAL_MODULES}-मॉड्यूल शिक्षण पथ, 10 भाषाएँ।`, sa: 'देखोपञ्चाङ्गस्य प्रोकेरलायाश्च सुविधातुलना।' },
+    keywords: ['prokerala alternative', 'prokerala vs dekho panchang', 'best panchang app', 'prokerala panchang alternative', 'vedic astrology platform comparison'],
+  },
+  '/vs/astrosage': {
+    title: { en: 'Dekho Panchang vs AstroSage  –  Which Panchang is More Accurate?', hi: 'देखो पंचांग vs एस्ट्रोसेज  –  कौन सा पंचांग अधिक सटीक है?', sa: 'देखोपञ्चाङ्गं विरुद्ध एस्ट्रोसेज  –  सुविधातुलना' },
+    description: { en: `AstroSage alternative: compare Dekho Panchang vs AstroSage. Computation-first approach, open methodology, 150+ yogas, AI interpretation, ${TOTAL_MODULES}-module learning path. No registration required.`, hi: `एस्ट्रोसेज विकल्प: देखो पंचांग vs एस्ट्रोसेज तुलना। गणना-प्रथम दृष्टिकोण, खुली कार्यप्रणाली, 150+ योग, AI व्याख्या, ${TOTAL_MODULES}-मॉड्यूल शिक्षण पथ।`, sa: 'देखोपञ्चाङ्गस्य एस्ट्रोसेजस्य च सुविधातुलना।' },
+    keywords: ['astrosage alternative', 'astrosage vs dekho panchang', 'best kundali app', 'astrosage kundali alternative', 'vedic astrology platform comparison'],
+  },
+  '/vs/mpanchang': {
+    title: { en: 'Dekho Panchang vs mPanchang  –  Which Panchang is More Accurate?', hi: 'देखो पंचांग vs एमपंचांग  –  कौन सा पंचांग अधिक सटीक है?', sa: 'देखोपञ्चाङ्गं विरुद्ध एमपञ्चाङ्गम्  –  सुविधातुलना' },
+    description: { en: `mPanchang alternative: compare Dekho Panchang vs mPanchang. Full astrology platform vs mobile panchang app. Swiss Ephemeris, kundali generator, muhurta AI, ${TOTAL_MODULES} learn modules. Web-based with PWA offline support.`, hi: `एमपंचांग विकल्प: देखो पंचांग vs एमपंचांग तुलना। पूर्ण ज्योतिष मंच vs मोबाइल पंचांग ऐप। Swiss Ephemeris, कुण्डली जनरेटर, मुहूर्त AI, ${TOTAL_MODULES} शिक्षण मॉड्यूल।`, sa: 'देखोपञ्चाङ्गस्य एमपञ्चाङ्गस्य च सुविधातुलना।' },
+    keywords: ['mpanchang alternative', 'mpanchang vs dekho panchang', 'best panchang app', 'mpanchang panchang alternative', 'panchang app comparison'],
+  },
   '/pricing': {
     title: { en: 'Pricing  –  Dekho Panchang Plans', hi: 'मूल्य  –  देखो पंचांग योजनाएं', sa: 'मूल्यम्  –  देखोपञ्चाङ्गयोजनाः' },
     description: { en: 'Choose your plan. Free tier with full Panchang and basic Kundali. Pro and Jyotishi tiers for advanced features.', hi: 'अपनी योजना चुनें। पूर्ण पंचांग और मूल कुण्डली के साथ निःशुल्क स्तर।', sa: 'स्वयोजनां चिनुत। पूर्णपञ्चाङ्गमूलकुण्डल्या सह निःशुल्कस्तरः।' },

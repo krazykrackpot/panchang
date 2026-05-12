@@ -262,16 +262,11 @@ export async function resolveBirthTimezone(lat: number, lng: number): Promise<st
  * For birth charts, use resolveBirthTimezone() instead.
  */
 export async function resolveCurrentLocationTimezone(lat: number, lng: number): Promise<string> {
-  // The browser knows its own timezone — use it when coordinates come
-  // from the browser's geolocation API or IP-based detection.
-  if (typeof window !== 'undefined') {
-    try {
-      const browserTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      if (browserTz && browserTz !== 'UTC') return browserTz;
-    } catch { /* browser API unavailable — fall through */ }
-  }
-
-  // Fallback: resolve from coordinates (same logic as birth, no browser TZ)
+  // ALWAYS resolve from coordinates — NEVER use browser timezone.
+  // The browser TZ is where the USER is (VPN, travel). The panchang
+  // location TZ is where the PANCHANG should be computed.
+  // Bug found 2026-05-12: Mumbai panchang showed Europe/Zurich times
+  // because this function returned the browser TZ on a Swiss VPN.
   return resolveBirthTimezone(lat, lng);
 }
 

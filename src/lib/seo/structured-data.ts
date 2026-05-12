@@ -58,6 +58,7 @@ const DISPLAY_NAMES: Record<string, string> = {
   'drik-panchang': 'Drik Panchang',
   dates: 'Dates',
   ekadashi: 'Ekadashi',
+  yoga: 'Yoga Encyclopedia',
   purnima: 'Purnima',
   amavasya: 'Amavasya',
   pradosham: 'Pradosham',
@@ -341,5 +342,58 @@ export function generateWebSiteLD(): object {
       },
       'query-input': 'required name=search_term_string',
     },
+  };
+}
+
+/**
+ * Generate Article JSON-LD for individual yoga detail pages.
+ * Schema.org/Article — eligible for rich results and knowledge panels.
+ */
+export function generateYogaArticleLD(opts: {
+  name: string;
+  slug: string;
+  locale: string;
+  description: string;
+  category: string;
+  formationRule: string;
+}): object {
+  const url = `${BASE_URL}/${opts.locale}/learn/yoga/${opts.slug}`;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: `${opts.name} — Formation, Effects & Remedies`,
+    description: opts.description.slice(0, 160),
+    url,
+    mainEntityOfPage: url,
+    author: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
+    publisher: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL, logo: { '@type': 'ImageObject', url: `${BASE_URL}/apple-touch-icon.png` } },
+    about: {
+      '@type': 'DefinedTerm',
+      name: opts.name,
+      description: opts.formationRule,
+      inDefinedTermSet: { '@type': 'DefinedTermSet', name: 'Vedic Astrology Yogas' },
+    },
+    articleSection: opts.category.replace(/_/g, ' '),
+    inLanguage: opts.locale === 'hi' ? 'hi-IN' : 'en-US',
+  };
+}
+
+/**
+ * Generate CollectionPage JSON-LD for the yoga index page.
+ */
+export function generateYogaCollectionLD(locale: string, count: number): object {
+  const url = `${BASE_URL}/${locale}/learn/yoga`;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: locale === 'hi' ? 'योग विश्वकोश — वैदिक ज्योतिष योग' : 'Yoga Encyclopedia — Vedic Astrology Yogas',
+    description: locale === 'hi'
+      ? `${count} वैदिक ज्योतिष योगों का विस्तृत विवरण — निर्माण नियम, प्रभाव, उपाय और शास्त्रीय सन्दर्भ।`
+      : `Comprehensive guide to ${count} Vedic astrology yogas — formation rules, effects, remedies, and classical references.`,
+    url,
+    mainEntityOfPage: url,
+    numberOfItems: count,
+    provider: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
+    inLanguage: locale === 'hi' ? 'hi-IN' : 'en-US',
   };
 }

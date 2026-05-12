@@ -1,31 +1,62 @@
 import type { Metadata } from 'next';
+import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
+import { generateYogaCollectionLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+
+const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+const ACTIVE_LOCALES = ['en', 'hi', 'ta', 'bn'] as const;
+const YOGA_COUNT = Object.keys(YOGA_DETAIL_DATA).length;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+  const url = `${BASE_URL}/${locale}/learn/yoga`;
 
   const title = locale === 'hi'
-    ? 'योग विश्वकोश — 104 वैदिक ज्योतिष योग | Dekho Panchang'
-    : 'Yoga Encyclopedia — 104 Vedic Astrology Yogas | Dekho Panchang';
+    ? `योग विश्वकोश — ${YOGA_COUNT} वैदिक ज्योतिष योग | Dekho Panchang`
+    : `Yoga Encyclopedia — ${YOGA_COUNT} Vedic Astrology Yogas | Dekho Panchang`;
   const description = locale === 'hi'
-    ? 'गजकेसरी, बुधादित्य, मंगल दोष, काल सर्प, पंच महापुरुष और 99 अन्य योगों का विस्तृत विवरण — निर्माण नियम, प्रभाव, उपाय और शास्त्रीय सन्दर्भ।'
-    : 'Comprehensive guide to 104 Vedic astrology yogas — Gajakesari, Budhaditya, Mangal Dosha, Kaal Sarpa, Pancha Mahapurusha and more. Formation rules, effects, remedies, and classical references.';
+    ? `गजकेसरी, बुधादित्य, मंगल दोष, काल सर्प, पंच महापुरुष और ${YOGA_COUNT - 5} अन्य योगों का विस्तृत विवरण — निर्माण नियम, प्रभाव, उपाय और शास्त्रीय सन्दर्भ।`
+    : `Comprehensive guide to ${YOGA_COUNT} Vedic astrology yogas — Gajakesari, Budhaditya, Mangal Dosha, Kaal Sarpa, Pancha Mahapurusha and more. Formation rules, effects, remedies, and classical references.`;
+
+  const languages: Record<string, string> = {};
+  for (const loc of ACTIVE_LOCALES) {
+    languages[loc] = `${BASE_URL}/${loc}/learn/yoga`;
+  }
 
   return {
     title,
     description,
+    keywords: ['vedic astrology yogas', 'jyotish yoga', 'kundali yoga', 'birth chart combinations', 'gajakesari yoga', 'raja yoga', 'mangal dosha', 'kaal sarpa yoga'],
     openGraph: {
       title,
       description,
-      url: `${BASE_URL}/${locale}/learn/yoga`,
+      url,
+      type: 'website',
+      siteName: 'Dekho Panchang',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
     },
     alternates: {
-      canonical: `${BASE_URL}/${locale}/learn/yoga`,
-      languages: { en: `${BASE_URL}/en/learn/yoga`, hi: `${BASE_URL}/hi/learn/yoga` },
+      canonical: url,
+      languages,
     },
   };
 }
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+
+  const collectionLD = generateYogaCollectionLD(locale, YOGA_COUNT);
+  const breadcrumbLD = generateBreadcrumbLD(`/${locale}/learn/yoga`, locale);
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(collectionLD) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }} />
+      {children}
+    </>
+  );
 }

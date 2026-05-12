@@ -9,7 +9,7 @@ on:
 jobs:
   post-short:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     steps:
       # Post every day — content variation (themes, audio, titles, transitions)
@@ -29,9 +29,9 @@ jobs:
       - name: Install ffmpeg
         uses: FedericoCarboni/setup-ffmpeg@v3
 
-      - name: Random delay (0-90 minutes)
+      - name: Random delay (0-10 minutes)
         run: |
-          DELAY=$((RANDOM % 5400))
+          DELAY=$((RANDOM % 600))
           echo "Sleeping ${DELAY}s (~$((DELAY / 60))m) before generating..."
           sleep $DELAY
 

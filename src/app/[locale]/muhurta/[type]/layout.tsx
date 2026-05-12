@@ -1,42 +1,30 @@
 import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { getMuhurtaType } from '@/lib/constants/muhurta-types';
-
-/** Get current month name, e.g. "April" */
-function currentMonthName(): string {
-  return new Date().toLocaleDateString('en-US', { month: 'long' });
-}
+import { findNextFutureDate, muhurtaTitle, muhurtaTitleHi, muhurtaDesc } from '@/lib/seo/ctr-config';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; type: string }> }): Promise<Metadata> {
   const { locale, type } = await params;
 
-  // Try to get the muhurta type info for a richer title
   const info = getMuhurtaType(type);
   if (info) {
     const locKey = locale as 'en' | 'hi' | 'sa';
     const name = info.name[locKey] || info.name.en;
     const nameEn = info.name.en;
     const year = new Date().getFullYear();
-    const month = currentMonthName();
 
-    // Show the next auspicious date if available
-    const nextDate = info.dates2026?.[0];
-    let dateHint = '';
-    if (nextDate) {
-      const [, m, d] = nextDate.date.split('-').map(Number);
-      const dt = new Date(Date.UTC(year, m - 1, d));
-      dateHint = dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
-    }
+    // Find the next FUTURE date, not just the first in the list
+    const nextEntry = findNextFutureDate(info.dates2026 ?? []);
+    const nextDateStr = nextEntry?.date ?? null;
 
-    // Title under 60 chars: "Wedding Muhurat 2026  –  Next: May 14"
-    const title = dateHint
-      ? `${name} ${year}  –  Next: ${dateHint} | Dekho Panchang`
-      : `${name} ${year}  –  ${month} Dates | Dekho Panchang`;
+    // Title uses ctr-config formulas — no explicit brand suffix (root layout template handles it)
+    const title = locKey === 'hi'
+      ? muhurtaTitleHi(name, year, nextDateStr)
+      : muhurtaTitle(name, year, nextDateStr);
 
-    // Description under 155 chars
-    const description = dateHint
-      ? `${nameEn} ${year}: next auspicious date ${dateHint}. Vedic Panchang-based dates with nakshatra, tithi & planetary analysis.`.slice(0, 155)
-      : `${nameEn} ${year}: auspicious dates for ${month}. Vedic Panchang-based recommendations with nakshatra & tithi analysis.`.slice(0, 155);
+    // Extract nakshatra from the label if available (e.g., "May 18 (Mon) – Jyeshtha Shukla Panchami, Uttara Phalguni")
+    const nakshatraLabel = nextEntry?.label?.en?.match(/,\s*(.+?)(?:\s+Nakshatra)?$/)?.[1] ?? null;
+    const description = muhurtaDesc(nameEn, year, nextDateStr, nakshatraLabel, info.dates2026?.length ?? 0);
 
     return {
       title,

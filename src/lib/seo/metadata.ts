@@ -684,7 +684,11 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/muhurat': {
     title: { en: 'Muhurat Calendar  –  36-Rule Classical Constraint Engine', hi: 'मुहूर्त कैलेंडर  –  36 शास्त्रीय नियमों का बाधा-आधारित इंजन', sa: 'मुहूर्तपञ्चाङ्गम्  –  षट्त्रिंशत्नियमबाधायन्त्रम्' },
-    description: { en: 'Monthly muhurat calendar with 36 classical rules. Fatal doshas (Ganda Yoga, Dagdha Tithi, Gandanta) vetoed outright  –  not scored through. Each date gets 0-100 with pandit-style reasoning citing Muhurta Chintamani, Dharma Sindhu, and BPHS.', hi: '36 शास्त्रीय नियमों वाला मासिक मुहूर्त कैलेंडर। घातक दोष (गण्ड योग, दग्ध तिथि, गण्डान्त) सीधे वर्ज्य। प्रत्येक तिथि को मुहूर्त चिन्तामणि, धर्मसिन्धु और BPHS के उद्धरणों सहित 0-100 अंक।', sa: 'षट्त्रिंशत्शास्त्रीयनियमैः मासिकमुहूर्तपञ्चाङ्गम्। घातकदोषाः साक्षात् वर्ज्याः।' },
+    description: {
+      en: 'Auspicious muhurat dates for 20+ activities — wedding, travel, griha pravesh, mundan, annaprashan. Computed from Vedic Panchang with nakshatra, tithi & planetary alignment. Free, no signup.',
+      hi: '20+ कार्यों के शुभ मुहूर्त — विवाह, यात्रा, गृह प्रवेश, मुंडन, अन्नप्राशन। नक्षत्र, तिथि व ग्रह स्थिति के अनुसार। निःशुल्क।',
+      sa: 'विंशत्यधिककार्याणां शुभमुहूर्ताः — विवाहः यात्रा गृहप्रवेशः मुण्डनं अन्नप्राशनम्। निःशुल्कम्।',
+    },
     keywords: ['muhurat calendar', 'shubh muhurat', 'auspicious dates', 'marriage dates', 'muhurta chintamani', 'classical muhurta scoring'],
   },
 

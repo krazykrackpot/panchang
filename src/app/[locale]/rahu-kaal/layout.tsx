@@ -1,12 +1,45 @@
 import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
+import { computePanchang } from '@/lib/ephem/panchang-calc';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { generateFAQLD } from '@/lib/seo/faq-data';
 import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
+// Ujjain — reference city for India-wide Rahu Kaal
+const REF_LAT = 23.1765;
+const REF_LNG = 75.7885;
+const REF_TZ = 'Asia/Kolkata';
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  return getPageMetadata('/rahu-kaal', locale);
+  const base = getPageMetadata('/rahu-kaal', locale);
+
+  try {
+    const now = new Date();
+    const tzOffset = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), REF_TZ);
+    const istMs = now.getTime() + tzOffset * 3600 * 1000;
+    const istDate = new Date(istMs);
+    const year = istDate.getUTCFullYear();
+    const month = istDate.getUTCMonth() + 1;
+    const day = istDate.getUTCDate();
+
+    const p = computePanchang({ year, month, day, lat: REF_LAT, lng: REF_LNG, tzOffset, timezone: REF_TZ, locationName: 'Ujjain' });
+    const dateStr = istDate.toLocaleDateString(locale === 'hi' ? 'hi-IN' : 'en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+
+    const isHi = locale === 'hi' || locale === 'sa';
+    const title = isHi
+      ? `आज का राहु काल ${dateStr}: ${p.rahuKaal.start}–${p.rahuKaal.end}`
+      : `Rahu Kaal Today ${dateStr}: ${p.rahuKaal.start}–${p.rahuKaal.end}`;
+
+    const desc = isHi
+      ? `आज ${dateStr} राहु काल ${p.rahuKaal.start}–${p.rahuKaal.end}। यमगण्ड, गुलिक काल सहित। शहर चुनें, सटीक समय पाएँ।`
+      : `Rahu Kaal today ${dateStr}: ${p.rahuKaal.start}–${p.rahuKaal.end}. Plus Yamaganda & Gulika Kaal. Select your city for exact times.`;
+
+    return { ...base, title, description: desc };
+  } catch {
+    return base;
+  }
 }
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {

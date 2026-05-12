@@ -100,6 +100,7 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
   // Absorbed standalone pages
   { id: 'tithis',   phase: 3, topic: 'Tithi',     href: '/learn/tithis',   title: { en: 'Tithis  –  Complete Reference', hi: 'तिथियाँ  –  विस्तृत', ta: 'திதிகள் கையேடு', bn: 'তিথি নির্দেশিকা' } },
   { id: 'yogas',    phase: 3, topic: 'Yoga',      href: '/learn/yogas',    title: { en: 'Yogas  –  Complete Reference', hi: 'योग  –  विस्तृत', ta: 'யோகங்கள் கையேடு', bn: 'যোগ নির্দেশিকা' } },
+  { id: 'yoga-encyclopedia', phase: 3, topic: 'Yoga', href: '/learn/yoga', title: { en: 'Yoga Encyclopedia  –  104 Yogas', hi: 'योग विश्वकोश  –  104 योग', ta: 'யோக கலைக்களஞ்சியம்  –  104 யோகங்கள்', bn: 'যোগ বিশ্বকোষ  –  104 যোগ' } },
   { id: 'karanas',  phase: 3, topic: 'Karana',    href: '/learn/karanas',  title: { en: 'Karanas  –  Complete Reference', hi: 'करण  –  विस्तृत', ta: 'கரணங்கள் கையேடு', bn: 'করণ নির্দেশিকা' } },
   { id: 'vara',     phase: 3, topic: 'Vara',      href: '/learn/vara',     title: { en: 'Vara  –  Weekdays & Lords', hi: 'वार  –  विस्तृत', ta: 'வாரம் வழிகாட்டி', bn: 'বার নির্দেশিকা' } },
   { id: 'hora',     phase: 3, topic: 'Hora',      href: '/learn/hora',     title: { en: 'Hora  –  Why 7 Days & Ahoratra', hi: 'होरा  –  7 दिन और अहोरात्र', ta: 'ஹோரை  –  7 நாட்கள் ஏன்', bn: 'হোরা  –  7 দিন কেন' } },

@@ -160,7 +160,7 @@ export default function YogaDetailPage() {
       <div className="max-w-3xl mx-auto px-4 py-20 text-center">
         <h1 className="text-2xl text-gold-light font-[Cinzel]">Yoga not found</h1>
         <p className="text-text-secondary mt-2">The yoga &quot;{slug}&quot; does not exist in our database.</p>
-        <Link href="/learn/yogas" className="text-gold-primary hover:text-gold-light mt-4 inline-block">
+        <Link href="/learn/yoga" className="text-gold-primary hover:text-gold-light mt-4 inline-block">
           ← Browse all yogas
         </Link>
       </div>
@@ -197,8 +197,11 @@ export default function YogaDetailPage() {
           })()}
         </div>
 
-        <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full ${cat.bg} mb-4`}>
-          <span className={`text-xs font-semibold uppercase tracking-wider ${cat.text}`}>
+        <div className="flex items-center justify-center gap-2 mb-4 flex-wrap">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-primary/15 text-gold-light text-xs font-bold uppercase tracking-wider">
+            {isHi ? 'कुण्डली योग' : 'Kundali Yoga'}
+          </span>
+          <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full ${cat.bg} text-xs font-semibold uppercase tracking-wider ${cat.text}`}>
             {isHi ? cat.labelHi : cat.label}
           </span>
         </div>

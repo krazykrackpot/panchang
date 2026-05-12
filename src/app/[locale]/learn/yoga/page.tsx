@@ -91,14 +91,57 @@ export default function YogaIndexPage() {
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" style={hf}>
             <span className="text-gold-gradient">
-              {locale === 'hi' ? '104 वैदिक ज्योतिष योग' : '104 Vedic Astrology Yogas'}
+              {locale === 'hi' ? 'वैदिक ज्योतिष में योग' : 'Yogas in Vedic Astrology'}
             </span>
           </h1>
-          <p className="text-text-secondary text-lg max-w-2xl" style={bf}>
+          <p className="text-text-secondary text-lg max-w-2xl mb-6" style={bf}>
             {locale === 'hi'
-              ? 'दोष, महापुरुष, राज, धन, चन्द्र और सूर्य योग — प्रत्येक का विस्तृत निर्माण नियम, प्रभाव, उपाय और शास्त्रीय सन्दर्भ।'
-              : 'Doshas, Mahapurusha, Raja, Wealth, Moon-based and Sun-based yogas — each with detailed formation rules, effects, remedies, and classical references.'}
+              ? '"योग" का अर्थ है संयोग या मिलन — जब विशिष्ट खगोलीय पिण्ड एक निश्चित स्थिति में आते हैं, तो एक "योग" बनता है। ज्योतिष में योग दो पूर्णतया भिन्न श्रेणियों में आते हैं:'
+              : '"Yoga" means combination or union — when specific celestial bodies align in a particular configuration, a "yoga" is formed. In Jyotish, yogas fall into two completely distinct categories:'}
           </p>
+
+          {/* Two-category explainer */}
+          <div className="grid sm:grid-cols-2 gap-4 max-w-3xl">
+            <Link href="/learn/yogas" className="group block rounded-xl bg-white/[0.03] border border-blue-500/20 hover:border-blue-500/40 p-5 transition-all">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xs font-bold uppercase tracking-wider text-blue-400 bg-blue-500/15 px-2 py-0.5 rounded-full">
+                  {locale === 'hi' ? 'पंचांग' : 'Panchang'}
+                </span>
+                <span className="text-xs text-text-secondary">27 {locale === 'hi' ? 'योग' : 'yogas'}</span>
+              </div>
+              <p className="text-text-primary text-sm font-medium mb-1" style={bf}>
+                {locale === 'hi' ? 'दैनिक पंचांग योग' : 'Daily Panchang Yogas'}
+              </p>
+              <p className="text-text-secondary text-xs leading-relaxed" style={bf}>
+                {locale === 'hi'
+                  ? 'सूर्य और चन्द्रमा की देशान्तरों के योग से गणित — प्रत्येक दिन एक योग होता है (विष्कम्भ से वैधृति तक)। मुहूर्त और दैनिक गतिविधियों के लिए प्रासंगिक।'
+                  : 'Computed from the sum of Sun and Moon longitudes — one yoga per day (Vishkambha to Vaidhriti). Relevant for muhurta timing and daily activities.'}
+              </p>
+              <span className="text-blue-400 text-xs mt-2 inline-flex items-center gap-1 group-hover:text-blue-300 transition-colors">
+                {locale === 'hi' ? '27 पंचांग योग देखें' : 'View 27 Panchang Yogas'} <ChevronRight className="w-3 h-3" />
+              </span>
+            </Link>
+
+            <div className="rounded-xl bg-white/[0.03] border border-gold-primary/20 p-5">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xs font-bold uppercase tracking-wider text-gold-light bg-gold-primary/15 px-2 py-0.5 rounded-full">
+                  {locale === 'hi' ? 'कुण्डली' : 'Kundali'}
+                </span>
+                <span className="text-xs text-text-secondary">{allYogas.length} {locale === 'hi' ? 'योग' : 'yogas'}</span>
+              </div>
+              <p className="text-text-primary text-sm font-medium mb-1" style={bf}>
+                {locale === 'hi' ? 'जन्म कुण्डली योग' : 'Birth Chart Yogas'}
+              </p>
+              <p className="text-text-secondary text-xs leading-relaxed" style={bf}>
+                {locale === 'hi'
+                  ? 'जन्म कुण्डली में ग्रहों की विशिष्ट स्थितियों से बनने वाले योग — राज योग, धन योग, महापुरुष योग, दोष आदि। जीवन भर के फलों का संकेत देते हैं।'
+                  : 'Formed by specific planetary placements in a birth chart — Raja Yogas, Dhana Yogas, Mahapurusha Yogas, Doshas, and more. Indicate lifelong themes and potential.'}
+              </p>
+              <span className="text-gold-primary/60 text-xs mt-2 inline-block">
+                &#x25BC; {locale === 'hi' ? 'नीचे ब्राउज़ करें' : 'Browse below'}
+              </span>
+            </div>
+          </div>
         </div>
       </motion.div>
 
@@ -134,11 +177,14 @@ export default function YogaIndexPage() {
         ))}
       </div>
 
-      {/* Results count */}
+      {/* Section heading + results count */}
+      <h2 className="text-xl font-bold text-gold-light mb-1" style={hf}>
+        {locale === 'hi' ? 'जन्म कुण्डली योग' : 'Birth Chart (Kundali) Yogas'}
+      </h2>
       <p className="text-text-secondary text-sm mb-6" style={bf}>
         {locale === 'hi'
-          ? `${filtered.length} योग दिखा रहे हैं`
-          : `Showing ${filtered.length} yoga${filtered.length !== 1 ? 's' : ''}`}
+          ? `${filtered.length} कुण्डली योग दिखा रहे हैं — ग्रहों की विशिष्ट स्थितियों से निर्मित`
+          : `Showing ${filtered.length} kundali yoga${filtered.length !== 1 ? 's' : ''} — formed by specific planetary placements in your birth chart`}
       </p>
 
       {/* Grid */}

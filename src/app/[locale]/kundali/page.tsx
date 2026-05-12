@@ -2801,7 +2801,7 @@ export default function KundaliPage() {
           {/* ===== YOGAS TAB ===== */}
           {activeTab === 'yogas' && kundali.yogasComplete && (
             <div className="space-y-6">
-              <a href={`/${locale}/learn/yogas`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1">
+              <a href={`/${locale}/learn/yoga`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1">
                 {locale === 'en' || isTamil ? 'Learn about Yogas \u2192' : 'योगों के बारे में जानें \u2192'}
               </a>
               <InfoBlock

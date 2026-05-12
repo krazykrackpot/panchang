@@ -149,7 +149,7 @@ export default function YogaAnimatorPage() {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
-            { href: '/learn/yogas',  label: LABELS.linkYogas,   color: '#d4a853' },
+            { href: '/learn/yoga',   label: LABELS.linkYogas,   color: '#d4a853' },
             { href: '/kundali',      label: LABELS.linkKundali, color: '#50d890' },
             { href: '/learn/dashas', label: LABELS.linkDashas,  color: '#80b8f0' },
           ].map(({ href, label, color }) => (

@@ -98,7 +98,8 @@ export default function LearnPage() {
     { label: { en: 'Panchang & Calendar', hi: 'पंचांग', sa: 'पञ्चाङ्गम्' }, refs: [
       { name: { en: 'Panchang Guide', hi: 'पंचांग गाइड', sa: 'पञ्चाङ्गमार्गदर्शिका' }, href: '/learn/panchang-guide' },
       { name: { en: 'Tithis', hi: 'तिथियाँ', sa: 'तिथयः' }, href: '/learn/tithis' },
-      { name: { en: 'Yogas', hi: 'योग', sa: 'योगाः' }, href: '/learn/yogas' },
+      { name: { en: 'Panchang Yogas (27)', hi: 'पंचांग योग (27)', sa: 'योगाः (२७)' }, href: '/learn/yogas' },
+      { name: { en: 'Kundali Yogas (104)', hi: 'कुण्डली योग (104)', sa: 'कुण्डलीयोगाः (१०४)' }, href: '/learn/yoga' },
       { name: { en: 'Karanas', hi: 'करण', sa: 'करणानि' }, href: '/learn/karanas' },
       { name: { en: 'Vara', hi: 'वार', sa: 'वारः' }, href: '/learn/vara' },
       { name: { en: 'Muhurtas', hi: 'मुहूर्त', sa: 'मुहूर्ताः' }, href: '/learn/muhurtas' },

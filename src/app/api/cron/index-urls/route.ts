@@ -30,8 +30,10 @@ export async function GET(request: Request) {
 
     for (const locale of INDEXNOW_LOCALES) {
       // Pages whose content genuinely changes daily:
-      paths.push(`/${locale}/panchang`);                    // Daily panchang
+      paths.push(`/${locale}/panchang`);                    // Daily panchang (dynamic title with tithi)
+      paths.push(`/${locale}/rahu-kaal`);                   // Daily rahu kaal (dynamic title with times)
       paths.push(`/${locale}/horoscope`);                   // Daily horoscope hub
+      paths.push(`/${locale}`);                             // Homepage (daily briefing)
       // Date-specific horoscope pages (new URL each day)
       const rashis = ['mesh','vrishabh','mithun','kark','simha','kanya','tula','vrishchik','dhanu','makar','kumbh','meen'];
       for (const r of rashis) {
@@ -40,7 +42,7 @@ export async function GET(request: Request) {
       }
     }
 
-    // Total: ~52 URLs (2 locales × 26 paths) — lean, no batch bloat
+    // Total: ~58 URLs (2 locales × 29 paths) — lean, no batch bloat
     const result = await submitUrlsToIndexNow(paths);
 
     console.log(

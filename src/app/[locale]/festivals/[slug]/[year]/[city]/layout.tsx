@@ -116,16 +116,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const url = `${BASE_URL}/${locale}/festivals/${slug}/${year}/${city}`;
 
-  // Build alternates for all locales
+  // Build alternates for all locales — point to canonical (no city) URLs
   const languages: Record<string, string> = {};
   for (const alt of locales) {
-    languages[alt] = `${BASE_URL}/${alt}/festivals/${slug}/${year}/${city}`;
+    languages[alt] = `${BASE_URL}/${alt}/festivals/${slug}/${year}`;
   }
-  languages['x-default'] = `${BASE_URL}/en/festivals/${slug}/${year}/${city}`;
+  languages['x-default'] = `${BASE_URL}/en/festivals/${slug}/${year}`;
 
   return {
     title,
     description,
+    // City-variant pages are noindexed — canonical is the no-city URL.
+    // Google consolidates signals from city variants to the canonical page.
+    robots: { index: false, follow: true },
     openGraph: {
       title,
       description,
@@ -149,7 +152,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [`${BASE_URL}/${locale}/festivals/opengraph-image`],
     },
     alternates: {
-      canonical: `${BASE_URL}/en/festivals/${slug}/${year}/${city}`,
+      canonical: `${BASE_URL}/en/festivals/${slug}/${year}`,
       languages,
     },
   };

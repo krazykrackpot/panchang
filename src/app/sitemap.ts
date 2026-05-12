@@ -524,7 +524,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  // Festival × City × Year programmatic SEO pages (/festivals/[slug]/[year]/[city])
+  // Festival × Year canonical pages (/festivals/[slug]/[year])
+  // City-variant pages deliberately excluded from sitemap — canonical consolidation.
+  // City variants are noindexed (robots: noindex) and point canonical to no-city URLs.
   const festivalSeoSlugs = [
     'diwali', 'janmashtami', 'maha-shivaratri', 'ram-navami', 'ganesh-chaturthi',
     'dussehra', 'holi', 'raksha-bandhan', 'dhanteras', 'narak-chaturdashi',
@@ -532,11 +534,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'guru-purnima', 'vasant-panchami', 'holika-dahan', 'hartalika-teej',
     'chhath-puja', 'makar-sankranti',
   ];
-  // Top 50 cities by population (Tier 1) for festival × city SEO
-  const festivalSeoCities = getCitiesByTier(1).slice(0, 50).map(c => c.slug);
-  // GSC data shows strong impressions for future years (diwali 2028=67,
-  // ganesh chaturthi 2028 at position 2). Add 2028/2029 only for TOP festivals
-  // to avoid OOM in sitemap generation (200K+ URLs at 4 years × 50 cities).
+  // Base years (2026-2027) for all festivals
   const festivalSeoYears = [2026, 2027];
   // High-demand festivals get extended years (GSC-proven queries)
   const extendedYearFestivals = new Set([
@@ -545,26 +543,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]);
   const extendedYears = [2028, 2029];
   for (const fSlug of festivalSeoSlugs) {
-    // Base years (2026-2027) for all festivals
+    // Base years (2026-2027) for all festivals — canonical no-city URL
     for (const fYear of festivalSeoYears) {
-      for (const fCity of festivalSeoCities) {
-        addEntries(entries, `/festivals/${fSlug}/${fYear}/${fCity}`, {
+      addEntries(entries, `/festivals/${fSlug}/${fYear}`, {
+        changeFrequency: 'monthly',
+        priority: 0.8,
+      });
+    }
+    // Extended years (2028-2029) only for GSC-proven high-demand festivals
+    if (extendedYearFestivals.has(fSlug)) {
+      for (const fYear of extendedYears) {
+        addEntries(entries, `/festivals/${fSlug}/${fYear}`, {
           changeFrequency: 'monthly',
           priority: 0.7,
         });
-      }
-    }
-    // Extended years (2028-2029) only for GSC-proven high-demand festivals
-    // Uses top 15 cities only (not 50) to keep sitemap manageable
-    if (extendedYearFestivals.has(fSlug)) {
-      const top15Cities = festivalSeoCities.slice(0, 15);
-      for (const fYear of extendedYears) {
-        for (const fCity of top15Cities) {
-          addEntries(entries, `/festivals/${fSlug}/${fYear}/${fCity}`, {
-            changeFrequency: 'monthly',
-            priority: 0.6,
-          });
-        }
       }
     }
   }

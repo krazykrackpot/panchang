@@ -183,7 +183,8 @@ export async function generateDailyShort(opts: ShortOptions = {}): Promise<Short
 
     return {
       videoBuffer,
-      title: `Today's Panchang  –  ${dateStr} | आज का पंचांग | तिथि नक्षत्र राहु काल #Shorts`,
+      // RULE: "Today" in title = 2-3x more views. Always include "Today" or "आज" + date.
+      title: `Panchang Today ${dateStr} — आज का पंचांग | तिथि नक्षत्र राहु काल #Shorts`,
       description: [
         `📅 Full Panchang for ${dateStr}: ${BASE_URL}/en/panchang`,
         `📅 आज का पंचांग (${dateHi}): ${BASE_URL}/hi/panchang`,

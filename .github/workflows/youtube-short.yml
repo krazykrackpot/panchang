@@ -1,5 +1,18 @@
 name: Daily YouTube Short
 
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║  TITLE RULE: Every daily Short title MUST contain "Today" or   ║
+# ║  "आज" AND the date. Shorts with "Today" get 2-3x more views.  ║
+# ║                                                                ║
+# ║  Pattern: "{Topic} Today {Date} — {Hook}" #Shorts              ║
+# ║  Good:  "Rahu Kaal Today 12 May — 1:30–3:00 PM"               ║
+# ║  Bad:   "Understanding Rahu Kaal and Its Effects"              ║
+# ║                                                                ║
+# ║  Title templates live in: scripts/post-youtube-short.ts        ║
+# ║  Fallback title lives in: src/lib/youtube/generate-short.ts    ║
+# ║  Rashifal title lives in: scripts/daily-rashifal-video.ts      ║
+# ╚══════════════════════════════════════════════════════════════════╝
+
 on:
   schedule:
     # 01:00 UTC = 06:30 IST — after the Twitter panchang post (00:30 UTC)

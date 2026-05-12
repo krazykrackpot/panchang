@@ -50,13 +50,19 @@ function shuffleArray<T>(arr: T[], rand: () => number): T[] {
 }
 
 // ── Title templates — rotate daily ──
+// RULE: Every title MUST contain "Today" or "आज" + the date.
+// Data shows "Today" in the title drives 2-3x more views on Shorts.
+// YouTube search matches "rahu kaal today", "panchang today", "rashifal today".
+// Titles WITHOUT "Today" consistently get 8-10 views vs 20-30 with it.
 interface TitleData { monthDay: string; tithi: string; nakshatra: string; weekday: string; rahuKaal: string; yoga: string; karana: string }
 const TITLE_TEMPLATES: Array<(d: TitleData) => string> = [
-  (d) => `Panchang ${d.monthDay}  –  ${d.tithi} ${d.nakshatra} | आज का पंचांग #Shorts`,
-  (d) => `${d.nakshatra} Nakshatra Today  –  ${d.weekday} ${d.monthDay} | दैनिक पंचांग #Shorts`,
-  (d) => `Rahu Kaal ${d.rahuKaal}  –  ${d.monthDay} Panchang #Shorts`,
-  (d) => `${d.weekday} Panchang  –  ${d.monthDay} | ${d.yoga} Yoga, ${d.karana} Karana #Shorts`,
-  (d) => `Today's Panchang  –  ${d.monthDay} | ${d.tithi} ${d.nakshatra} राहु काल #Shorts`,
+  (d) => `Panchang Today ${d.monthDay} — ${d.tithi} ${d.nakshatra} | आज का पंचांग #Shorts`,
+  (d) => `Nakshatra Today ${d.monthDay} — ${d.nakshatra} | आज का नक्षत्र ${d.weekday} #Shorts`,
+  (d) => `Rahu Kaal Today ${d.monthDay} — ${d.rahuKaal} | आज का राहु काल #Shorts`,
+  (d) => `Today's Panchang ${d.monthDay} — ${d.yoga} Yoga, ${d.karana} Karana #Shorts`,
+  (d) => `आज का पंचांग Today ${d.monthDay} — ${d.tithi} ${d.nakshatra} राहु काल #Shorts`,
+  (d) => `Tithi Today ${d.monthDay} — ${d.tithi} | आज की तिथि ${d.weekday} #Shorts`,
+  (d) => `आज का राहु काल Today ${d.monthDay} — ${d.rahuKaal} | Rahu Kaal #Shorts`,
 ];
 
 // ── Description section blocks (shuffled order per day) ──

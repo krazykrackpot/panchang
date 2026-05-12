@@ -1786,6 +1786,206 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       },
     },
   ],
+
+  // ─── /muhurta/travel ────────────────────────────────────────
+  '/muhurta/travel': [
+    {
+      question: {
+        en: 'What is the next auspicious date for travel in 2026?',
+        hi: '2026 में यात्रा के लिए अगला शुभ मुहूर्त कब है?',
+        sa: '2026 तमे वर्षे यात्रायाः कृते अग्रिमः शुभमुहूर्तः कः अस्ति?',
+      },
+      answer: {
+        en: 'Auspicious travel dates in 2026 depend on your location and travel date. Dekho Panchang\'s muhurta engine evaluates Tithi, Nakshatra, weekday, and planetary positions to find the best travel windows. Generally, Pushya, Rohini, Hasta, Ashwini, and Mrigashira nakshatras combined with Monday, Wednesday, Thursday, or Friday yield the strongest travel muhurtas.',
+        hi: '2026 में यात्रा के शुभ मुहूर्त आपके स्थान और तिथि पर निर्भर करते हैं। देखो पंचांग का मुहूर्त इंजन तिथि, नक्षत्र, वार और ग्रह स्थिति का आकलन करके सर्वोत्तम यात्रा काल निकालता है। सामान्यतः पुष्य, रोहिणी, हस्त, अश्विनी और मृगशिरा नक्षत्र तथा सोम, बुध, गुरु या शुक्रवार सर्वोत्तम यात्रा मुहूर्त देते हैं।',
+        sa: '2026 तमे वर्षे यात्राशुभमुहूर्ताः भवतः स्थानतिथिविशेषयोः आश्रिताः। देखो-पञ्चाङ्गस्य मुहूर्तयन्त्रं तिथिं नक्षत्रं वारं ग्रहस्थितिं च विचार्य सर्वोत्तमयात्राकालखण्डानि निर्धारयति। सामान्यतः पुष्यरोहिणीहस्ताश्विनीमृगशीर्षनक्षत्राणि सोमबुधगुरुशुक्रवासरैश्च मिलित्वा श्रेष्ठयात्रामुहूर्तान् ददति।',
+      },
+    },
+    {
+      question: {
+        en: 'How is travel muhurat calculated?',
+        hi: 'यात्रा मुहूर्त की गणना कैसे होती है?',
+        sa: 'यात्रामुहूर्तस्य गणना कथं क्रियते?',
+      },
+      answer: {
+        en: 'Travel muhurta is calculated by checking the Tithi (avoiding Rikta Tithis 4, 9, 14), Nakshatra (whitelisted nakshatras for travel), weekday (Tuesday and Saturday are avoided), Chandra Bala (Moon\'s relationship to birth Moon sign), and inauspicious periods like Rahu Kaal and Yamaganda. A strong Lagna at the time of departure further reinforces the muhurta.',
+        hi: 'यात्रा मुहूर्त की गणना में तिथि (रिक्ता तिथियाँ 4, 9, 14 वर्जित), नक्षत्र (यात्रा के लिए श्वेतसूचीबद्ध नक्षत्र), वार (मंगल और शनिवार वर्जित), चन्द्रबल और राहु काल, यमगण्ड जैसी अशुभ अवधियाँ देखी जाती हैं। प्रस्थान के समय बलवान लग्न मुहूर्त को और दृढ़ करता है।',
+        sa: 'यात्रामुहूर्तगणने तिथिः (रिक्तातिथयः ४,९,१४ वर्ज्याः), नक्षत्रम् (यात्रायाः श्वेतसूचीनक्षत्राणि), वारः (मङ्गल-शनिवासरौ वर्ज्यौ), चन्द्रबलं, राहुकाल-यमगण्डादयः अशुभकालाश्च परीक्ष्यन्ते। प्रस्थानसमये बलवल्लग्नं मुहूर्तं पुनर्बलयति।',
+      },
+    },
+    {
+      question: {
+        en: 'Which nakshatra is best for travel?',
+        hi: 'यात्रा के लिए कौन सा नक्षत्र सबसे अच्छा है?',
+        sa: 'यात्रायाः कृते कतमत् नक्षत्रं सर्वोत्तमम्?',
+      },
+      answer: {
+        en: 'The best nakshatras for travel are Pushya (9), Rohini (4), Hasta (13), Ashwini (1), and Mrigashira (5). Punarvasu (7) and Revati (27) are also auspicious for long journeys. Avoid travel on Bharani (2), Krittika (3), Ardra (6), Ashlesha (9), Jyeshtha (18), and Moola (19) nakshatras, which are generally inauspicious for new beginnings.',
+        hi: 'यात्रा के लिए सर्वोत्तम नक्षत्र हैं: पुष्य (9), रोहिणी (4), हस्त (13), अश्विनी (1) और मृगशिरा (5)। पुनर्वसु (7) और रेवती (27) भी लम्बी यात्राओं के लिए शुभ हैं। भरणी, कृत्तिका, आर्द्रा, आश्लेषा, ज्येष्ठा और मूल नक्षत्रों में यात्रा से बचें।',
+        sa: 'यात्रायाः कृते सर्वोत्तमानि नक्षत्राणि: पुष्यः (9), रोहिणी (4), हस्तः (13), अश्विनी (1), मृगशीर्षं (5) च। पुनर्वसुः (7) रेवती (27) च दीर्घयात्राभ्यः शुभे। भरणी-कृत्तिका-आर्द्रा-आश्लेषा-ज्येष्ठा-मूलनक्षत्रेषु यात्रा वर्जनीया।',
+      },
+    },
+  ],
+
+  // ─── /muhurta/annaprashan ───────────────────────────────────
+  '/muhurta/annaprashan': [
+    {
+      question: {
+        en: 'What is the best month for Annaprashan in 2026?',
+        hi: '2026 में अन्नप्राशन के लिए सबसे अच्छा महीना कौन सा है?',
+        sa: '2026 तमे वर्षे अन्नप्राशनस्य कृते उत्तमः मासः कः?',
+      },
+      answer: {
+        en: 'Auspicious months for Annaprashan in 2026 are Vaishakha (April–May), Jyeshtha (May–June), Ashwina (September–October), and Kartika (October–November). These months are generally free from Adhika Masa (intercalary months) and solar ingress restrictions. The actual date selection must also consider the child\'s Chandra Rashi, Tithi, and Nakshatra for a fully auspicious muhurta.',
+        hi: '2026 में अन्नप्राशन के लिए शुभ माह हैं: वैशाख (अप्रैल-मई), ज्येष्ठ (मई-जून), आश्विन (सितम्बर-अक्टूबर) और कार्तिक (अक्टूबर-नवम्बर)। इन महीनों में सामान्यतः अधिक मास और सूर्य राशि परिवर्तन की बाधा नहीं होती। वास्तविक तिथि चयन के लिए बच्चे की चन्द्र राशि, तिथि और नक्षत्र भी देखने चाहिए।',
+        sa: '2026 तमे वर्षे अन्नप्राशनस्य कृते शुभमासाः: वैशाखः (अप्रैल-मई), ज्येष्ठः (मई-जून), आश्विनः (सितम्बर-अक्टूबर), कार्तिकः (अक्टूबर-नवम्बर) च। एतेषु मासेषु सामान्यतः अधिकमास-सूर्यसंक्रान्तिरोधाः न भवन्ति। वास्तविकतिथिचयने बालकस्य चन्द्रराशिः तिथिः नक्षत्रं च विचार्यम्।',
+      },
+    },
+    {
+      question: {
+        en: 'What is Annaprashan ceremony?',
+        hi: 'अन्नप्राशन संस्कार क्या है?',
+        sa: 'अन्नप्राशनसंस्कारः कः?',
+      },
+      answer: {
+        en: 'Annaprashan (also called Choroonu or Mukhe Bhaat) is the Vedic ceremony of introducing solid food to a baby, typically performed when the child is 6 months old (boys) or 5–7 months (girls). It is the sixth of the sixteen Shodasha Samskaras. The ceremony involves offering the first cooked rice or kheer (sweet rice pudding) to the child in the presence of family and priests, accompanied by Vedic mantras.',
+        hi: 'अन्नप्राशन (चोरोनु या मुखे भात भी कहते हैं) शिशु को पहली बार ठोस आहार देने का वैदिक संस्कार है, जो सामान्यतः लड़कों के लिए 6 माह और लड़कियों के लिए 5-7 माह में किया जाता है। यह षोडश संस्कारों में छठा संस्कार है। परिवार और पुरोहितों की उपस्थिति में वैदिक मन्त्रों के साथ बच्चे को पहली बार पके चावल या खीर दी जाती है।',
+        sa: 'अन्नप्राशनसंस्कारः (चोरोनु मुखेभाताख्यः) शिशोः प्रथमाशनग्रहणस्य वैदिकः संस्कारः अस्ति, सामान्यतः पुंशिशोः षष्ठे मासे कन्याशिशोः पञ्चमे-सप्तमे वा मासे आचर्यते। षोडशसंस्काराणां मध्ये षष्ठः संस्कारः। परिवारपुरोहितानां समक्षं वैदिकमन्त्रैः शिशवे प्रथमशृतान्नं खीरं वा दीयते।',
+      },
+    },
+    {
+      question: {
+        en: 'Which nakshatra is auspicious for Annaprashan?',
+        hi: 'अन्नप्राशन के लिए कौन सा नक्षत्र शुभ है?',
+        sa: 'अन्नप्राशनस्य कृते कतमत् नक्षत्रं शुभम्?',
+      },
+      answer: {
+        en: 'The most auspicious nakshatras for Annaprashan are Rohini (4), Mrigashira (5), Pushya (8), Uttara Phalguni (12), Hasta (13), Chitra (14), Swati (15), Anuradha (17), Uttara Ashadha (21), Shravana (22), Dhanishtha (23), and Uttara Bhadrapada (26). These are classified as Sthira (fixed) or Mridu (soft) nakshatras ideal for samskaras involving the child\'s nourishment.',
+        hi: 'अन्नप्राशन के लिए सर्वोत्तम नक्षत्र हैं: रोहिणी, मृगशिरा, पुष्य, उत्तरा फाल्गुनी, हस्त, चित्रा, स्वाती, अनुराधा, उत्तराषाढ़ा, श्रवण, धनिष्ठा और उत्तरा भाद्रपद। ये स्थिर या मृदु नक्षत्र हैं जो शिशु के पोषण से जुड़े संस्कारों के लिए आदर्श हैं।',
+        sa: 'अन्नप्राशनस्य कृते सर्वोत्तमानि नक्षत्राणि: रोहिणी, मृगशीर्षं, पुष्यः, उत्तरफाल्गुनी, हस्तः, चित्रा, स्वाती, अनुराधा, उत्तराषाढ़ा, श्रवणः, धनिष्ठा, उत्तरभाद्रपदा च। एतानि स्थिरमृदुनक्षत्राणि शिशुपोषणसंस्काराय आदर्शानि।',
+      },
+    },
+  ],
+
+  // ─── /muhurta/upanayana ─────────────────────────────────────
+  '/muhurta/upanayana': [
+    {
+      question: {
+        en: 'When is the next Upanayana muhurat in 2026?',
+        hi: '2026 में अगला उपनयन मुहूर्त कब है?',
+        sa: '2026 तमे वर्षे अग्रिमः उपनयनमुहूर्तः कदा?',
+      },
+      answer: {
+        en: 'Upanayana is traditionally performed in the bright fortnight (Shukla Paksha) of Magha, Phalguna, Vaishakha, or Jyeshtha months. For 2026, auspicious windows fall in February (Magha Shukla), March–April (Phalguna/Chaitra Shukla), and May (Vaishakha Shukha). Use Dekho Panchang\'s muhurta tool with the Upanayana activity to find exact dates for your location.',
+        hi: '2026 में उपनयन के लिए शुभ समय माघ, फाल्गुन, वैशाख और ज्येष्ठ के शुक्ल पक्ष में है। 2026 के लिए फरवरी (माघ शुक्ल), मार्च-अप्रैल (फाल्गुन/चैत्र शुक्ल) और मई (वैशाख शुक्ल) में शुभ काल हैं। अपने स्थान के लिए सटीक तिथियाँ जानने के लिए देखो पंचांग के मुहूर्त उपकरण में उपनयन गतिविधि चुनें।',
+        sa: '2026 तमे वर्षे उपनयनस्य कृते शुभकालः माघ-फाल्गुन-वैशाख-ज्येष्ठमासानां शुक्लपक्षे। 2026 तमे वर्षे फेब्रुवरी (माघशुक्ल), मार्च-अप्रैल (फाल्गुन-चैत्रशुक्ल), मई (वैशाखशुक्ल) च शुभखण्डाः। स्वस्थानस्य कृते सूक्ष्मतिथिः ज्ञातुं देखो-पञ्चाङ्गे उपनयनं चित्वा मुहूर्तसाधनम् उपयुज्यताम्।',
+      },
+    },
+    {
+      question: {
+        en: 'What is Upanayana (Janeu) ceremony?',
+        hi: 'उपनयन (जनेऊ) संस्कार क्या है?',
+        sa: 'उपनयन (यज्ञोपवीत) संस्कारः कः?',
+      },
+      answer: {
+        en: 'Upanayana (also called Yagnopavita or Janeu ceremony) is the Vedic initiation ceremony where a young boy is invested with the sacred thread (Yagnopavita) and formally initiated into Vedic learning. It is the tenth of the sixteen Shodasha Samskaras. The ceremony marks the beginning of Brahmacharya and the study of the Vedas under a guru, symbolising a second birth (Dvija — twice-born).',
+        hi: 'उपनयन (यज्ञोपवीत या जनेऊ संस्कार) वैदिक दीक्षा संस्कार है जिसमें बालक को पवित्र धागा (यज्ञोपवीत) पहनाया जाता है और वेद अध्ययन की शुरुआत होती है। यह षोडश संस्कारों में दसवाँ संस्कार है। यह ब्रह्मचर्य आरम्भ और गुरु के सानिध्य में वेद अध्ययन का प्रतीक है — द्विज (दो बार जन्मे) की उपाधि इसी से मिलती है।',
+        sa: 'उपनयनसंस्कारः (यज्ञोपवीतसंस्कारः) बालकस्य यज्ञोपवीतधारणेन वैदिकविद्यायां दीक्षायाः संस्कारः अस्ति। षोडशसंस्काराणां मध्ये दशमः। ब्रह्मचर्यारम्भस्य गुरोः सन्निधौ वेदाध्ययनस्य च सूचकः, द्विजत्वं (द्विर्जनिः) दर्शयति।',
+      },
+    },
+    {
+      question: {
+        en: 'At what age should Upanayana be performed?',
+        hi: 'उपनयन संस्कार किस उम्र में करना चाहिए?',
+        sa: 'कस्यां वयसि उपनयनसंस्कारः करणीयः?',
+      },
+      answer: {
+        en: 'According to classical Vedic texts, the ideal age for Upanayana differs by varna: Brahmins between 8 and 16 years (ideally in the 8th year from birth), Kshatriyas between 11 and 22, and Vaishyas between 12 and 24. In contemporary practice, 7–12 years is the most common range. The ceremony should be performed before marriage.',
+        hi: 'शास्त्रानुसार उपनयन की आदर्श आयु वर्ण के अनुसार भिन्न है: ब्राह्मण 8 से 16 वर्ष (आदर्शतः 8वें वर्ष में), क्षत्रिय 11 से 22 और वैश्य 12 से 24 वर्ष। समकालीन प्रथा में 7-12 वर्ष सर्वाधिक प्रचलित है। विवाह से पूर्व संस्कार होना आवश्यक है।',
+        sa: 'शास्त्रानुसारम् उपनयनस्य आदर्शवयः वर्णभेदेन: ब्राह्मणाय अष्टषोडशवर्षयोः (आदर्शतः अष्टमे वर्षे), क्षत्रियाय एकादश-द्वाविंशतिवर्षयोः, वैश्याय द्वादश-चतुर्विंशतिवर्षयोः। समकालीनप्रथायाम् सप्ततः द्वादशवर्षपर्यन्तं सर्वाधिकं प्रचलितम्। विवाहात् पूर्वं संस्कारः आवश्यकः।',
+      },
+    },
+  ],
+
+  // ─── /muhurta/mundan ────────────────────────────────────────
+  '/muhurta/mundan': [
+    {
+      question: {
+        en: 'What is the best age for Mundan ceremony?',
+        hi: 'मुंडन संस्कार के लिए सबसे अच्छी उम्र क्या है?',
+        sa: 'मुण्डनसंस्कारस्य कृते उत्तमा वयः का?',
+      },
+      answer: {
+        en: 'According to Vedic tradition, Mundan (Chudakarana) should be performed in the child\'s first or third year of life. The first year Mundan should occur before the child turns one; the third year Mundan is performed in the odd months (1st, 3rd, 5th or 7th month) of the third year. Some communities also observe it in the fifth or seventh year. Avoid even years and even months for the ceremony.',
+        hi: 'वैदिक परम्परा के अनुसार मुंडन (चूड़ाकरण) शिशु के पहले या तीसरे वर्ष में करना चाहिए। पहले वर्ष का मुंडन एक वर्ष पूर्ण होने से पहले, तीसरे वर्ष का मुंडन तीसरे वर्ष के विषम महीनों (1, 3, 5 या 7वें माह) में किया जाता है। कुछ समुदाय पाँचवें या सातवें वर्ष में भी करते हैं। सम वर्ष और सम महीनों से बचें।',
+        sa: 'वैदिकपरम्परानुसारं मुण्डनसंस्कारः (चूड़ाकरणसंस्कारः) शिशोः प्रथमे वा तृतीये वर्षे करणीयः। प्रथमवर्षे एकवर्षपूर्तेः प्राक्; तृतीयवर्षे तृतीयवर्षस्य विषमेषु मासेषु (१, ३, ५, ७तमे मासे)। केचन समुदायाः पञ्चमे सप्तमे वा वर्षेऽपि कुर्वन्ति। समसंख्यावर्षमासावुभौ वर्जनीयौ।',
+      },
+    },
+    {
+      question: {
+        en: 'Which month is auspicious for Mundan in 2026?',
+        hi: '2026 में मुंडन के लिए कौन सा महीना शुभ है?',
+        sa: '2026 तमे वर्षे मुण्डनस्य कृते कः मासः शुभः?',
+      },
+      answer: {
+        en: 'Auspicious months for Mundan in 2026 are Vaishakha (April–May), Jyeshtha (May–June), Magha (January–February), and Phalguna (February–March). These months fall during the Uttarayana (northward solar journey) period or just before it, which is preferred for samskara ceremonies. Avoid performing Mundan during Adhika Masa (intercalary month), Pitru Paksha, and the four months of Chaturmas.',
+        hi: '2026 में मुंडन के लिए शुभ माह हैं: वैशाख (अप्रैल-मई), ज्येष्ठ (मई-जून), माघ (जनवरी-फरवरी) और फाल्गुन (फरवरी-मार्च)। ये माह उत्तरायण काल में या उसके निकट होते हैं जो संस्कार कार्यों के लिए पसन्दीदा हैं। अधिक मास, पितृ पक्ष और चातुर्मास में मुंडन न करें।',
+        sa: '2026 तमे वर्षे मुण्डनस्य कृते शुभमासाः: वैशाखः (अप्रैल-मई), ज्येष्ठः (मई-जून), माघः (जनवरी-फेब्रुवरी), फाल्गुनः (फेब्रुवरी-मार्च) च। एते मासाः उत्तरायणकाले तद्समीपे वा पतन्ति यत् संस्कारकार्येभ्यः प्रशस्तम्। अधिकमासे पितृपक्षे चातुर्मासे च मुण्डनं न कर्तव्यम्।',
+      },
+    },
+    {
+      question: {
+        en: 'What is the significance of Mundan ceremony?',
+        hi: 'मुंडन संस्कार का क्या महत्व है?',
+        sa: 'मुण्डनसंस्कारस्य किं महत्त्वम्?',
+      },
+      answer: {
+        en: 'Mundan (Chudakarana) is the third of the sixteen Vedic Shodasha Samskaras. It involves the ritual shaving of a child\'s hair for the first time. Spiritually, it symbolises the removal of impurities from a previous life and the renewal of the child\'s life force. The hair grown in the womb is considered to carry karmic residues; its removal through this ceremony is believed to purify the child\'s energy and ensure a healthy, auspicious life.',
+        hi: 'मुंडन (चूड़ाकरण) षोडश वैदिक संस्कारों में तीसरा संस्कार है। इसमें पहली बार शिशु के बाल मुंडवाए जाते हैं। आध्यात्मिक दृष्टि से यह पिछले जन्म की अशुद्धियों के निष्कासन और शिशु की जीवनशक्ति के नवीनीकरण का प्रतीक है। गर्भ में उगे बालों में कार्मिक अवशेष माने जाते हैं; इस संस्कार से उनके निष्कासन से शिशु की ऊर्जा शुद्ध होती है।',
+        sa: 'मुण्डनसंस्कारः (चूड़ाकरणसंस्कारः) षोडशवैदिकसंस्काराणां तृतीयः। अस्मिन् प्रथमवारं शिशोः केशानां क्षौरं क्रियते। आध्यात्मिकदृष्ट्या पूर्वजन्मावशिष्टमलानां निष्कासनं शिशोर्जीवनशक्तेः नवीकरणं च संकेतयति। गर्भजनितकेशेषु कार्मिकावशेषाः सन्ति इति मन्यते; तेषां निष्कासनेन शिशोः ऊर्जाशुद्धिः जायते।',
+      },
+    },
+  ],
+
+  // ─── /muhurta/griha-pravesh ─────────────────────────────────
+  '/muhurta/griha-pravesh': [
+    {
+      question: {
+        en: 'What is the next auspicious date for Griha Pravesh in 2026?',
+        hi: '2026 में गृह प्रवेश के लिए अगला शुभ मुहूर्त कब है?',
+        sa: '2026 तमे वर्षे गृहप्रवेशस्य कृते अग्रिमः शुभमुहूर्तः कः?',
+      },
+      answer: {
+        en: 'Griha Pravesh muhurtas in 2026 are available in January–February (Magha Shukla), April–May (Vaishakha Shukla), June (Jyeshtha Shukla), and October–November (Kartik Shukla). Chaturmas (July–October) and Adhika Masa periods are generally avoided. Use Dekho Panchang\'s Griha Pravesh muhurta tool with your location to find the nearest auspicious window.',
+        hi: '2026 में गृह प्रवेश के शुभ मुहूर्त जनवरी-फरवरी (माघ शुक्ल), अप्रैल-मई (वैशाख शुक्ल), जून (ज्येष्ठ शुक्ल) और अक्टूबर-नवम्बर (कार्तिक शुक्ल) में हैं। चातुर्मास (जुलाई-अक्टूबर) और अधिक मास में सामान्यतः गृह प्रवेश नहीं किया जाता। अपने स्थान के लिए निकटतम शुभ खिड़की जानने के लिए देखो पंचांग का गृह प्रवेश मुहूर्त उपकरण उपयोग करें।',
+        sa: '2026 तमे वर्षे गृहप्रवेशमुहूर्ताः जनवरी-फेब्रुवरी (माघशुक्ल), अप्रैल-मई (वैशाखशुक्ल), जून (ज्येष्ठशुक्ल), अक्टूबर-नवम्बर (कार्तिकशुक्ल) च उपलब्धाः। चातुर्मास (जुलाई-अक्टूबर) अधिकमासे च सामान्यतः गृहप्रवेशः न क्रियते। स्वस्थानस्य कृते समीपतमशुभखण्डः ज्ञातुं देखो-पञ्चाङ्गस्य गृहप्रवेशमुहूर्तसाधनम् उपयुज्यताम्।',
+      },
+    },
+    {
+      question: {
+        en: 'What should be done during Griha Pravesh?',
+        hi: 'गृह प्रवेश में क्या करना चाहिए?',
+        sa: 'गृहप्रवेशे किं करणीयम्?',
+      },
+      answer: {
+        en: 'During Griha Pravesh, the family enters the new home at the auspicious muhurta time. Key rituals include: Vastu Puja (prayer to the deity of the dwelling), Havan (fire ceremony) for purification, Kalash Sthapana (pot of water with mango leaves symbolising prosperity), cow and calf entry as a blessing, lighting of the sacred fire in the kitchen, and the wife entering carrying rice, symbolising abundance. The head of the family should enter first.',
+        hi: 'गृह प्रवेश में शुभ मुहूर्त पर परिवार नए घर में प्रवेश करता है। प्रमुख अनुष्ठान: वास्तु पूजा (गृहदेव की पूजा), हवन (शुद्धिकरण के लिए), कलश स्थापना (आम के पत्तों वाला जल कलश), गाय-बछड़े का प्रवेश (आशीर्वाद हेतु), रसोई में पवित्र अग्नि प्रज्वलन और गृहिणी का चावल लेकर प्रवेश (समृद्धि का प्रतीक)। परिवार के मुखिया को प्रथम प्रवेश करना चाहिए।',
+        sa: 'गृहप्रवेशे शुभमुहूर्ते परिवारः नवगृहं प्रविशति। प्रमुखाः अनुष्ठानाः: वास्तुपूजा (गृहदेवतार्चनम्), हवनम् (शुद्धिकरणाय), कलशस्थापना (आम्रपर्णजलकलशः), गोवत्सप्रवेशः (आशीर्वादाय), रन्धनागारे पवित्राग्निप्रज्वलनम्, गृहिणीप्रवेशः धान्यं वहन्त्या (समृद्धिसूचकः)। कुलस्य मुख्यः प्रथमं प्रविशेत्।',
+      },
+    },
+    {
+      question: {
+        en: 'Which day of the week is best for Griha Pravesh?',
+        hi: 'गृह प्रवेश के लिए सप्ताह का कौन सा दिन सबसे अच्छा है?',
+        sa: 'गृहप्रवेशस्य कृते सप्ताहस्य कः वासरः सर्वोत्तमः?',
+      },
+      answer: {
+        en: 'Monday (ruled by Moon), Wednesday (Mercury), Thursday (Jupiter), and Friday (Venus) are the most auspicious weekdays for Griha Pravesh. Sunday and Tuesday are generally avoided, as they are ruled by the Sun (associated with sharp, aggressive energy) and Mars (conflict). Saturday is considered neutral but avoided by many due to Saturn\'s association with delay and restriction. The combination of a favourable weekday with a strong Nakshatra greatly enhances the muhurta.',
+        hi: 'गृह प्रवेश के लिए सोमवार (चन्द्र), बुधवार (बुध), गुरुवार (गुरु) और शुक्रवार (शुक्र) सर्वाधिक शुभ वार हैं। रविवार और मंगलवार सामान्यतः वर्जित हैं। शनिवार तटस्थ माना जाता है किन्तु अनेक लोग शनि की विलम्बकारी प्रकृति से बचते हुए इसे छोड़ते हैं। अनुकूल वार और बलवान नक्षत्र का संयोग मुहूर्त को अत्यन्त शुभ बनाता है।',
+        sa: 'गृहप्रवेशस्य कृते सोमवारः (चन्द्रः), बुधवारः (बुधः), गुरुवारः (गुरुः), शुक्रवारः (शुक्रः) च सर्वाधिकशुभाः वासराः। रविवारः मङ्गलवारश्च सामान्यतः वर्ज्यौ। शनिवारः तटस्थः किन्तु शनेः विलम्बकारित्वात् अनेके वर्जयन्ति। अनुकूलवासरस्य बलिनो नक्षत्रस्य च संयोगः मुहूर्तम् अत्यन्तशुभं करोति।',
+      },
+    },
+  ],
 };
 
 /**

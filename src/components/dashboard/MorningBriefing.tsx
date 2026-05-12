@@ -385,14 +385,24 @@ interface MorningBriefingProps {
   locale: Locale;
 }
 
-export default function MorningBriefing({ panchangData, personalizedDay, locale }: MorningBriefingProps) {
+export default function MorningBriefing({ panchangData, personalizedDay, locale, timezone }: MorningBriefingProps & { timezone?: string }) {
   const L = (LABELS as Record<string, typeof LABELS.en>)[locale] || LABELS.en;
 
-  // Current time as HH:MM
+  // Current time as HH:MM — in the PANCHANG's timezone, not the browser's
   const nowHHMM = useMemo(() => {
+    if (timezone) {
+      try {
+        const parts = new Intl.DateTimeFormat('en-US', {
+          timeZone: timezone, hour: 'numeric', minute: 'numeric', hour12: false,
+        }).formatToParts(new Date());
+        const h = parts.find(p => p.type === 'hour')?.value ?? '00';
+        const m = parts.find(p => p.type === 'minute')?.value ?? '00';
+        return `${h.padStart(2, '0')}:${m.padStart(2, '0')}`;
+      } catch { /* fallthrough */ }
+    }
     const d = new Date();
     return `${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}`;
-  }, []);
+  }, [timezone]);
 
   // Rahu Kaal status
   const rahuKaal = panchangData.rahuKaal;

@@ -1499,6 +1499,7 @@ export default function DashboardPage() {
           panchangData={panchangData}
           personalizedDay={pd}
           locale={locale}
+          timezone={useLocationStore.getState().timezone ?? undefined}
         />
       )}
 

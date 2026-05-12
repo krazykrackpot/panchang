@@ -418,7 +418,9 @@ function buildScorerInput(
     const sb = kundali.fullShadbala.find(s => s.planetId === lordId);
     if (sb) lordShadBalaRatio = sb.strengthRatio;
   } else if (kundali.shadbala) {
-    // ShadBala minimum required (shashtiamsas): Sun=390, Moon=360, Mars=300, Mercury=420, Jupiter=390, Venus=330, Saturn=300
+    // Fallback: basic ShadBala has totalStrength in shashtiamsas but no strengthRatio.
+    // MIN_REQUIRED in shashtiamsas (= rupas × 60): Sun=390, Moon=360, Mars=300, Mercury=420, Jupiter=390, Venus=330, Saturn=300
+    // Canonical source: shadbala.ts MIN_REQUIRED (in rupas). Values here are × 60 for shashtiamsa units.
     const MIN_REQUIRED: Record<number, number> = { 0: 390, 1: 360, 2: 300, 3: 420, 4: 390, 5: 330, 6: 300 };
     const nameMap: Record<number, string> = { 0: 'Sun', 1: 'Moon', 2: 'Mars', 3: 'Mercury', 4: 'Jupiter', 5: 'Venus', 6: 'Saturn' };
     const sb = kundali.shadbala.find(s => s.planet === nameMap[lordId]);

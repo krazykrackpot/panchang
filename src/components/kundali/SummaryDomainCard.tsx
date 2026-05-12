@@ -252,7 +252,7 @@ export default function SummaryDomainCard({
             className={`flex flex-col items-center rounded-xl border px-3 py-2 ${RATING_BG[rating]}`}
           >
             <span className={`text-sm font-bold leading-tight ${RATING_COLORS[rating]}`}>
-              {RATING_LABELS[rating]?.en ?? rating}
+              {RATING_LABELS[rating]?.sa ?? rating}
             </span>
             <StarRating score={score} />
           </div>

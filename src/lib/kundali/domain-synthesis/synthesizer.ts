@@ -294,8 +294,10 @@ function buildScorerInput(
       .map(b => b.total);
     if (vals.length > 0) {
       const avg = vals.reduce((s, v) => s + v, 0) / vals.length;
-      // Bhavabala total is typically 300-500 rupas. Normalise to 0-10.
-      houseBhavabala = Math.min(10, Math.max(0, (avg - 200) / 40));
+      // Bhavabala total is typically 250-500 rupas. Midpoint ~350.
+      // Old formula: (avg - 200) / 40 → 350 = 3.75/10 (too harsh)
+      // New formula: (avg - 150) / 35 → 350 = 5.7/10, 450 = 8.6/10, 250 = 2.9/10
+      houseBhavabala = Math.min(10, Math.max(0, (avg - 150) / 35));
     }
   }
 
@@ -364,6 +366,14 @@ function buildScorerInput(
     relevantYogaCount = yogas.filter(
       y => y.present && config.relevantYogaCategories.includes(y.category),
     ).length;
+  }
+  // Implicit yoga: lord in own/exalted sign is itself a classical strength pattern
+  // (Swakshetra / Uchcha yoga). Count as 1 relevant yoga if not already detected.
+  const lordDignityScore = ({
+    exalted: 10, own: 8, friend: 6, neutral: 5, enemy: 3, debilitated: 1,
+  } as Record<string, number>)[lordDignity] ?? 5;
+  if (lordDignityScore >= 8 && relevantYogaCount === 0) {
+    relevantYogaCount = 1;
   }
 
   // 7. Relevant dosha count

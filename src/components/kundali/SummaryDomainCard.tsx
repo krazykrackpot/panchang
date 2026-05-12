@@ -249,12 +249,11 @@ export default function SummaryDomainCard({
 
           {/* Rating badge */}
           <div
-            className={`flex flex-col items-center rounded-xl border px-3 py-1.5 ${RATING_BG[rating]}`}
+            className={`flex flex-col items-center rounded-xl border px-3 py-2 ${RATING_BG[rating]}`}
           >
-            <span className={`text-lg font-bold leading-tight ${RATING_COLORS[rating]}`}>
-              {score.toFixed(1)}
+            <span className={`text-sm font-bold leading-tight ${RATING_COLORS[rating]}`}>
+              {RATING_LABELS[rating]?.en ?? rating}
             </span>
-            <span className="text-[10px] text-text-secondary">/10</span>
             <StarRating score={score} />
           </div>
         </div>

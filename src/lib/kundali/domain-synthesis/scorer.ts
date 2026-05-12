@@ -1,63 +1,43 @@
 /**
- * Domain Scorer
+ * Domain Scorer — Rule-Based Tier Determination
  *
- * Computes a weighted composite score for a life domain based on
- * seven astrological factors, then maps it to a four-tier Sanskrit rating.
+ * Assigns one of four Sanskrit tiers (Uttama / Madhyama / Adhama / Atyadhama)
+ * based on classical Jyotish rules rather than weighted composite arithmetic.
  *
- * Planet IDs: 0=Sun, 1=Moon, 2=Mars, 3=Mercury, 4=Jupiter,
- *             5=Venus, 6=Saturn, 7=Rahu, 8=Ketu
+ * Classical logic (BPHS-aligned):
+ * 1. The lord's dignity and placement is THE primary determinant
+ * 2. Benefic/malefic influence on the house modifies up or down by one tier
+ * 3. Active doshas pull down; relevant yogas push up
+ * 4. Varga confirmation and dasha are tiebreakers, not primary factors
+ *
+ * No numerical score is shown to the user — only the qualitative tier and
+ * its label. An internal score is kept for sorting domains by strength.
  */
 
 import type { DignityLevel } from '@/lib/tippanni/varga-tippanni-types-v2';
 import type { DomainConfig, Rating, RatingInfo } from './types';
 
 // ---------------------------------------------------------------------------
-// Scorer input
+// Scorer input (unchanged interface for compatibility)
 // ---------------------------------------------------------------------------
 
-/** All the signals the scorer needs to evaluate one domain. */
 export interface ScorerInput {
-  /** Bhavabala strength of the primary house, normalised 0–10. */
   houseBhavabala: number;
-  /** Dignity of the primary lord in the rasi chart. */
   lordDignity: DignityLevel;
-  /** Whether the primary lord is placed in a kendra (1, 4, 7, 10). */
   lordInKendra: boolean;
-  /** Number of natural benefics occupying the primary house(s). */
   beneficOccupants: number;
-  /** Number of natural malefics occupying the primary house(s). */
   maleficOccupants: number;
-  /** Number of benefic aspects on the primary house(s). */
   beneficAspects: number;
-  /** Number of malefic aspects on the primary house(s). */
   maleficAspects: number;
-  /** Count of relevant yogas active for this domain. */
   relevantYogaCount: number;
-  /** Count of relevant doshas present for this domain. */
   relevantDoshaCount: number;
-  /** How many of those doshas are cancelled by counteracting factors. */
   cancelledDoshas: number;
-  /** Whether the current dasha sequence activates this domain's houses. */
   dashaActivatesHouse: boolean;
-  /** Cross-confirmation score from the relevant divisional chart(s), 0–100. */
   vargaDeliveryScore: number;
 }
 
 // ---------------------------------------------------------------------------
-// Dignity → numeric score mapping
-// ---------------------------------------------------------------------------
-
-const DIGNITY_SCORES: Record<DignityLevel, number> = {
-  exalted: 10,
-  own: 8,
-  friend: 6,
-  neutral: 5,
-  enemy: 3,
-  debilitated: 1,
-};
-
-// ---------------------------------------------------------------------------
-// Rating thresholds and labels
+// Rating templates
 // ---------------------------------------------------------------------------
 
 interface RatingTemplate {
@@ -66,91 +46,123 @@ interface RatingTemplate {
   color: string;
 }
 
-const RATING_TEMPLATES: RatingTemplate[] = [
-  { rating: 'uttama',     label: { en: 'Strong (Uttama)',        hi: 'प्रबल (उत्तम)' },       color: 'text-emerald-400' },
-  { rating: 'madhyama',   label: { en: 'Moderate (Madhyama)',    hi: 'मध्यम (मध्यम)' },       color: 'text-gold-primary' },
-  { rating: 'adhama',     label: { en: 'Challenging (Adhama)',   hi: 'चुनौतीपूर्ण (अधम)' },    color: 'text-amber-400' },
-  { rating: 'atyadhama',  label: { en: 'Critical (Atyadhama)',   hi: 'गंभीर (अत्यधम)' },      color: 'text-red-400' },
-];
+const RATING_TEMPLATES: Record<Rating, RatingTemplate> = {
+  uttama:    { rating: 'uttama',    label: { en: 'Strong (Uttama)',      hi: 'प्रबल (उत्तम)' },       color: 'text-emerald-400' },
+  madhyama:  { rating: 'madhyama',  label: { en: 'Moderate (Madhyama)',  hi: 'मध्यम (मध्यम)' },       color: 'text-gold-primary' },
+  adhama:    { rating: 'adhama',    label: { en: 'Challenging (Adhama)', hi: 'चुनौतीपूर्ण (अधम)' },    color: 'text-amber-400' },
+  atyadhama: { rating: 'atyadhama', label: { en: 'Critical (Atyadhama)', hi: 'गंभीर (अत्यधम)' },      color: 'text-red-400' },
+};
 
-function getRatingTemplate(score: number): RatingTemplate {
-  if (score >= 7.5) return RATING_TEMPLATES[0]; // uttama
-  if (score >= 5.0) return RATING_TEMPLATES[1]; // madhyama
-  if (score >= 3.0) return RATING_TEMPLATES[2]; // adhama
-  return RATING_TEMPLATES[3]; // atyadhama
+// Internal scores for sorting (not shown to user)
+const TIER_SCORES: Record<Rating, number> = {
+  uttama: 8.5,
+  madhyama: 6.0,
+  adhama: 3.5,
+  atyadhama: 1.5,
+};
+
+// ---------------------------------------------------------------------------
+// Dignity classification
+// ---------------------------------------------------------------------------
+
+type DignityTier = 'strong' | 'moderate' | 'weak' | 'afflicted';
+
+function classifyDignity(dignity: DignityLevel, inKendra: boolean): DignityTier {
+  // Exalted or own sign = strong foundation
+  if (dignity === 'exalted') return 'strong';
+  if (dignity === 'own') return inKendra ? 'strong' : 'moderate';
+  // Friend sign = moderate; neutral = moderate but weaker
+  if (dignity === 'friend') return inKendra ? 'moderate' : 'moderate';
+  if (dignity === 'neutral') return 'moderate';
+  // Enemy sign = weak
+  if (dignity === 'enemy') return 'weak';
+  // Debilitated = afflicted
+  return 'afflicted';
 }
 
 // ---------------------------------------------------------------------------
-// Individual factor scorers (each returns 0–10)
+// House influence classification
 // ---------------------------------------------------------------------------
 
-function scoreHouseStrength(input: ScorerInput): number {
-  return input.houseBhavabala;
-}
+type HouseInfluence = 'benefic' | 'neutral' | 'malefic';
 
-function scoreLordPlacement(input: ScorerInput): number {
-  const base = DIGNITY_SCORES[input.lordDignity];
-  const kendraBonus = input.lordInKendra ? 2 : 0;
-  return Math.min(10, base + kendraBonus);
-}
+function classifyHouseInfluence(input: ScorerInput): HouseInfluence {
+  const beneficScore = input.beneficOccupants + input.beneficAspects * 0.7;
+  const maleficScore = input.maleficOccupants + input.maleficAspects * 0.7;
 
-function scoreOccupantsAspects(input: ScorerInput): number {
-  const raw =
-    5 +
-    input.beneficOccupants * 2.5 -
-    input.maleficOccupants * 2 +
-    input.beneficAspects * 1.5 -
-    input.maleficAspects * 1.5;
-  return Math.max(0, Math.min(10, raw));
-}
-
-function scoreYogas(input: ScorerInput): number {
-  return Math.min(10, input.relevantYogaCount * 3);
-}
-
-function scoreDoshas(input: ScorerInput): number {
-  const activeDoshas = input.relevantDoshaCount - input.cancelledDoshas;
-  // No doshas = neutral (5), not perfect (10). Each active dosha penalizes from neutral.
-  if (activeDoshas <= 0) return 5;
-  return Math.max(0, 5 - activeDoshas * 2.5);
-}
-
-function scoreDashaActivation(input: ScorerInput): number {
-  // Activated = strong boost; not activated = neutral baseline
-  return input.dashaActivatesHouse ? 8 : 5;
-}
-
-function scoreVargaConfirmation(input: ScorerInput): number {
-  return input.vargaDeliveryScore / 10;
+  if (beneficScore > maleficScore + 0.5) return 'benefic';
+  if (maleficScore > beneficScore + 0.5) return 'malefic';
+  return 'neutral';
 }
 
 // ---------------------------------------------------------------------------
-// Main scorer
+// Main scorer — rule-based tier determination
 // ---------------------------------------------------------------------------
 
 /**
- * Computes a weighted composite score for a life domain and returns a
- * fully resolved `RatingInfo` with rating tier, numeric score, label and colour.
+ * Determines the domain tier using classical Jyotish logic:
+ *
+ * Step 1: Lord dignity sets the BASE tier
+ *   - strong dignity (exalted, own+kendra) → Uttama
+ *   - moderate dignity (own, friend, neutral) → Madhyama
+ *   - weak dignity (enemy) → Adhama
+ *   - afflicted dignity (debilitated) → Atyadhama
+ *
+ * Step 2: House influence MODIFIES by ±1 tier
+ *   - benefic occupants/aspects → upgrade one tier (max Uttama)
+ *   - malefic occupants/aspects → downgrade one tier (min Atyadhama)
+ *   - neutral → no change
+ *
+ * Step 3: Yogas and Doshas MODIFY by ±1 tier
+ *   - 2+ relevant yogas present → upgrade one tier
+ *   - 2+ active doshas → downgrade one tier
+ *   - Both cancel out
+ *
+ * Step 4: Tiebreakers (only apply at tier boundaries)
+ *   - Dasha activation of the house lord → slight upgrade within tier
+ *   - Varga confirmation strong (>60) → slight upgrade within tier
  */
 export function scoreDomain(
-  config: DomainConfig,
+  _config: DomainConfig,
   input: ScorerInput,
 ): RatingInfo {
-  const w = config.weights;
+  const tiers: Rating[] = ['atyadhama', 'adhama', 'madhyama', 'uttama'];
 
-  const composite =
-    w.houseStrength     * scoreHouseStrength(input) +
-    w.lordPlacement     * scoreLordPlacement(input) +
-    w.occupantsAspects  * scoreOccupantsAspects(input) +
-    w.yogas             * scoreYogas(input) +
-    w.doshas            * scoreDoshas(input) +
-    w.dashaActivation   * scoreDashaActivation(input) +
-    w.vargaConfirmation * scoreVargaConfirmation(input);
+  // Step 1: Base tier from lord dignity
+  const dignityTier = classifyDignity(input.lordDignity, input.lordInKendra);
+  let tierIndex = dignityTier === 'strong' ? 3
+    : dignityTier === 'moderate' ? 2
+    : dignityTier === 'weak' ? 1
+    : 0;
 
-  const clamped = Math.max(0, Math.min(10, composite));
-  const rounded = Math.round(clamped * 10) / 10;
+  // Step 2: House influence modifies ±1
+  const houseInfluence = classifyHouseInfluence(input);
+  if (houseInfluence === 'benefic') tierIndex = Math.min(3, tierIndex + 1);
+  if (houseInfluence === 'malefic') tierIndex = Math.max(0, tierIndex - 1);
 
-  const template = getRatingTemplate(rounded);
+  // Step 3: Yogas upgrade, doshas downgrade (±1 each, net effect)
+  const activeDoshas = input.relevantDoshaCount - input.cancelledDoshas;
+  const yogaBoost = input.relevantYogaCount >= 2 ? 1 : 0;
+  const doshaPenalty = activeDoshas >= 2 ? 1 : 0;
+  tierIndex = Math.min(3, Math.max(0, tierIndex + yogaBoost - doshaPenalty));
+
+  const rating = tiers[tierIndex];
+
+  // Step 4: Internal score for sorting — tiebreakers refine within the tier
+  let score = TIER_SCORES[rating];
+  // Kendra placement: +0.4 (lord in angular house is always better)
+  if (input.lordInKendra) score += 0.4;
+  // Dasha activation: +0.5 within tier
+  if (input.dashaActivatesHouse) score += 0.5;
+  // Strong varga confirmation: +0.3
+  if (input.vargaDeliveryScore > 60) score += 0.3;
+  // Weak varga: -0.3
+  if (input.vargaDeliveryScore < 30 && input.vargaDeliveryScore > 0) score -= 0.3;
+  // Strong bhavabala: +0.2
+  if (input.houseBhavabala > 6) score += 0.2;
+
+  const rounded = Math.round(Math.max(0, Math.min(10, score)) * 10) / 10;
+  const template = RATING_TEMPLATES[rating];
 
   return {
     rating: template.rating,

@@ -15,14 +15,18 @@ import type { DomainConfig, DomainType } from './types';
 // Shared default weights (all factors equal at base)
 // ---------------------------------------------------------------------------
 
+// Jyotish-aligned weights: the lord's placement is THE primary determinant.
+// Classical texts (BPHS, Phaladeepika) judge a domain by its lord first,
+// then aspects/occupants, then yogas. Bhavabala, doshas, dasha activation,
+// and varga are supporting signals — not co-equal factors.
 const DEFAULT_WEIGHTS = {
-  houseStrength:     0.20,
-  lordPlacement:     0.20,
-  occupantsAspects:  0.15,
-  yogas:             0.15,
-  doshas:            0.10,
-  dashaActivation:   0.10,
-  vargaConfirmation: 0.10,
+  lordPlacement:     0.30,  // Primary: lord dignity + house placement
+  occupantsAspects:  0.20,  // Benefic/malefic influence on the house
+  houseStrength:     0.15,  // Bhavabala (mathematical house strength)
+  yogas:             0.15,  // Classical yoga formations
+  doshas:            0.08,  // Afflictions (absence = positive, not neutral)
+  vargaConfirmation: 0.07,  // Divisional chart cross-check
+  dashaActivation:   0.05,  // Temporal snapshot, not natal strength
 } as const;
 
 // ---------------------------------------------------------------------------

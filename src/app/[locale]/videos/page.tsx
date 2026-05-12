@@ -1,5 +1,5 @@
 import { getAllVideos } from '@/lib/youtube/latest-video';
-import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+
 
 export default async function VideosPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -43,28 +43,8 @@ export default async function VideosPage({ params }: { params: Promise<{ locale:
               </time>
             </div>
 
-            {/* VideoObject JSON-LD  –  one per video, on a page where video is primary content */}
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{
-                __html: safeJsonLd({
-                  '@context': 'https://schema.org',
-                  '@type': 'VideoObject',
-                  name: v.title,
-                  description: v.title,
-                  thumbnailUrl: v.thumbnail,
-                  uploadDate: v.published,
-                  contentUrl: `https://www.youtube.com/watch?v=${v.videoId}`,
-                  embedUrl: `https://www.youtube.com/embed/${v.videoId}`,
-                  duration: v.title.includes('Shorts') || v.title.includes('#Shorts') ? 'PT60S' : 'PT180S',
-                  publisher: {
-                    '@type': 'Organization',
-                    name: 'Dekho Panchang',
-                    logo: { '@type': 'ImageObject', url: 'https://dekhopanchang.com/icon-512.png' },
-                  },
-                }),
-              }}
-            />
+            {/* VideoObject JSON-LD removed — gallery page with multiple videos is not a "watch page".
+                Google requires one video per page as primary content. Videos are indexed on YouTube. */}
           </article>
         ))}
       </div>

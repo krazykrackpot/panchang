@@ -178,23 +178,9 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
   const dateStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
   const latestVideo = await getLatestVideo();
 
-  // VideoObject schema  –  real video URL makes search result 2x larger on mobile
-  const videoLd = latestVideo ? {
-    '@context': 'https://schema.org',
-    '@type': 'VideoObject',
-    name: latestVideo.title,
-    description: `Vedic Panchang for ${dateStr}: ${panchang?.tithi?.name?.en || ''}, ${panchang?.nakshatra?.name?.en || ''}, ${panchang?.yoga?.name?.en || ''}. Rahu Kaal ${panchang?.rahuKaal?.start || ''}–${panchang?.rahuKaal?.end || ''}.`,
-    thumbnailUrl: latestVideo.thumbnail,
-    uploadDate: latestVideo.published.includes('T') ? latestVideo.published : `${latestVideo.published}T00:00:00+00:00`,
-    contentUrl: `https://www.youtube.com/watch?v=${latestVideo.videoId}`,
-    embedUrl: `https://www.youtube.com/embed/${latestVideo.videoId}`,
-    duration: 'PT60S',
-    publisher: {
-      '@type': 'Organization',
-      name: 'Dekho Panchang',
-      logo: { '@type': 'ImageObject', url: 'https://dekhopanchang.com/icon-512.png' },
-    },
-  } : null;
+  // VideoObject schema REMOVED — panchang is not a "watch page" (video is secondary content).
+  // Google rejects VideoObject on non-watch pages: "Video isn't on a watch page".
+  // The YouTube embed stays for users; we just don't claim it as structured data.
 
   // Dynamic FAQ schema with today's actual panchang values
   const tithiEn = panchang?.tithi?.name?.en || ' – ';
@@ -232,10 +218,7 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
 
   return (
     <>
-      {/* VideoObject JSON-LD  –  real video URL makes search result 2x larger on mobile */}
-      {videoLd && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoLd) }} />
-      )}
+      {/* VideoObject JSON-LD removed — panchang is not a "watch page" */}
 
       {/* Dynamic FAQ JSON-LD for featured snippet capture */}
       {faqLd && (

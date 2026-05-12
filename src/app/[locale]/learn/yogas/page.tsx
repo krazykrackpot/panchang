@@ -48,6 +48,11 @@ const KY_DATA: KYogaDef[] = [
   { id: 'parivartana', category: 'special', nameKey: 'yoga_parivartana_name', planets: '2 planets exchanging', conditionKey: 'yoga_parivartana_condition', effectKey: 'yoga_parivartana_effect', classical: 'BPHS Ch.35', strength: 'moderate', auspicious: true },
   { id: 'kala_sarpa', category: 'inauspicious', nameKey: 'yoga_kala_sarpa_name', planets: 'All between Rahu-Ketu', conditionKey: 'yoga_kala_sarpa_condition', effectKey: 'yoga_kala_sarpa_effect', classical: 'Manasagari', strength: 'moderate', auspicious: false },
   { id: 'guru_chandal', category: 'inauspicious', nameKey: 'yoga_guru_chandal_name', planets: 'Jupiter+Rahu', conditionKey: 'yoga_guru_chandal_condition', effectKey: 'yoga_guru_chandal_effect', classical: 'BPHS Ch.35', strength: 'common', auspicious: false },
+  { id: 'mangala_dosha', category: 'inauspicious', nameKey: 'yoga_mangal_dosha_name', planets: 'Mars in 1/2/4/7/8/12', conditionKey: 'yoga_mangal_dosha_condition', effectKey: 'yoga_mangal_dosha_effect', classical: 'BPHS Ch.34', strength: 'common', auspicious: false },
+  { id: 'pitra_dosha', category: 'inauspicious', nameKey: 'yoga_pitra_dosha_name', planets: 'Sun+Rahu in 9th', conditionKey: 'yoga_pitra_dosha_condition', effectKey: 'yoga_pitra_dosha_effect', classical: 'Lal Kitab', strength: 'moderate', auspicious: false },
+  { id: 'shrapit_dosha', category: 'inauspicious', nameKey: 'yoga_shrapit_dosha_name', planets: 'Saturn+Rahu', conditionKey: 'yoga_shrapit_dosha_condition', effectKey: 'yoga_shrapit_dosha_effect', classical: 'Lal Kitab', strength: 'moderate', auspicious: false },
+  { id: 'grahan', category: 'inauspicious', nameKey: 'yoga_grahan_name', planets: 'Sun/Moon+Rahu/Ketu', conditionKey: 'yoga_grahan_condition', effectKey: 'yoga_grahan_effect', classical: 'BPHS Ch.35', strength: 'common', auspicious: false },
+  { id: 'shakata', category: 'inauspicious', nameKey: 'yoga_shakata_name', planets: 'Moon 6/8/12 from Jupiter', conditionKey: 'yoga_shakata_condition', effectKey: 'yoga_shakata_effect', classical: 'Phaladeepika Ch.6 v.7', strength: 'common', auspicious: false },
 ];
 
 function KundaliYogasSection({ locale }: { locale: string }) {

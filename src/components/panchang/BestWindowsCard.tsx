@@ -289,9 +289,9 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
           {/* Sunrise */}
           <div className="absolute top-0 bottom-0 flex items-end justify-center pointer-events-none z-10"
             style={{ left: `${pctOf(sunriseMin)}%`, transform: 'translateX(-50%)' }}>
-            <div className="absolute top-0 bottom-0 w-px bg-amber-400/70" style={{ left: '50%' }} />
+            <div className="absolute top-0 bottom-0 w-px bg-amber-400" style={{ left: '50%' }} />
             <div className="flex flex-col items-center mb-0.5">
-              <Sunrise className="w-3.5 h-3.5 text-amber-400 drop-shadow-[0_0_4px_rgba(251,191,36,0.6)]" />
+              <Sunrise className="w-5 h-5 text-amber-400 drop-shadow-[0_0_6px_rgba(251,191,36,0.8)]" />
               <span className="text-[7px] text-amber-300 font-mono font-bold mt-px">{fmtShort(panchang.sunrise)}</span>
             </div>
           </div>
@@ -299,9 +299,9 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
           {/* Sunset */}
           <div className="absolute top-0 bottom-0 flex items-end justify-center pointer-events-none z-10"
             style={{ left: `${pctOf(sunsetMin)}%`, transform: 'translateX(-50%)' }}>
-            <div className="absolute top-0 bottom-0 w-px bg-orange-400/70" style={{ left: '50%' }} />
+            <div className="absolute top-0 bottom-0 w-px bg-orange-400" style={{ left: '50%' }} />
             <div className="flex flex-col items-center mb-0.5">
-              <Sunset className="w-3.5 h-3.5 text-orange-400 drop-shadow-[0_0_4px_rgba(251,146,60,0.6)]" />
+              <Sunset className="w-5 h-5 text-orange-400 drop-shadow-[0_0_6px_rgba(251,146,60,0.8)]" />
               <span className="text-[7px] text-orange-300 font-mono font-bold mt-px">{fmtShort(panchang.sunset)}</span>
             </div>
           </div>
@@ -310,10 +310,10 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
           {moonriseMin !== null && (
             <div className="absolute top-0 bottom-0 flex items-start justify-center pointer-events-none z-10"
               style={{ left: `${pctOf(moonriseMin)}%`, transform: 'translateX(-50%)' }}>
-              <div className="absolute top-0 bottom-0 w-px bg-blue-400/40" style={{ left: '50%' }} />
+              <div className="absolute top-0 bottom-0 w-px bg-blue-300/60" style={{ left: '50%' }} />
               <div className="flex flex-col items-center mt-0.5">
-                <Moon className="w-3 h-3 text-blue-300 drop-shadow-[0_0_4px_rgba(147,197,253,0.5)]" />
-                <span className="text-[7px] text-blue-300/70 font-mono mt-px">{fmtShort(panchang.moonrise)}</span>
+                <Moon className="w-5 h-5 text-blue-300 drop-shadow-[0_0_6px_rgba(147,197,253,0.7)]" />
+                <span className="text-[7px] text-blue-200 font-mono mt-px">{fmtShort(panchang.moonrise)}</span>
               </div>
             </div>
           )}
@@ -322,20 +322,21 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
           {moonsetMin !== null && (
             <div className="absolute top-0 bottom-0 flex items-start justify-center pointer-events-none z-10"
               style={{ left: `${pctOf(moonsetMin)}%`, transform: 'translateX(-50%)' }}>
-              <div className="absolute top-0 bottom-0 w-px bg-blue-400/20" style={{ left: '50%' }} />
+              <div className="absolute top-0 bottom-0 w-px bg-blue-400/30" style={{ left: '50%' }} />
               <div className="flex flex-col items-center mt-0.5">
-                <Moon className="w-3 h-3 text-blue-400/40" />
-                <span className="text-[7px] text-blue-300/40 font-mono mt-px">{fmtShort(panchang.moonset)}</span>
+                <Moon className="w-4 h-4 text-blue-400/50" />
+                <span className="text-[7px] text-blue-300/50 font-mono mt-px">{fmtShort(panchang.moonset)}</span>
               </div>
             </div>
           )}
 
-          {/* NOW marker */}
+          {/* NOW marker — bright gold pill with glow */}
           {nowInTimeline && (
             <div className="absolute top-0 bottom-0 z-20 pointer-events-none"
               style={{ left: `${nowPct}%`, transform: 'translateX(-50%)' }}>
-              <div className="w-0.5 h-full bg-gold-primary shadow-[0_0_10px_rgba(212,168,83,0.8)]" />
-              <span className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[7px] font-black text-[#0a0e27] bg-gold-primary px-1.5 py-0.5 rounded-full shadow-[0_0_8px_rgba(212,168,83,0.5)]">
+              <div className="w-0.5 h-full shadow-[0_0_12px_rgba(212,168,83,1)]" style={{ backgroundColor: '#d4a853' }} />
+              <span className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[7px] font-black px-1.5 py-0.5 rounded-full shadow-[0_0_10px_rgba(212,168,83,0.7)]"
+                style={{ backgroundColor: '#d4a853', color: '#0a0e27' }}>
                 NOW
               </span>
             </div>

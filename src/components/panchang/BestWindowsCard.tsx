@@ -8,6 +8,7 @@ import type { TimeSlot, DayVerdict, VerdictRating } from '@/lib/muhurta/verdict-
 import { computeDayVerdict } from '@/lib/muhurta/verdict-engine';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { nowMinutesInTimezone } from '@/lib/utils/now-in-timezone';
+import { useLocationStore } from '@/stores/location-store';
 
 // ── Labels ──
 
@@ -123,6 +124,12 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
   const isHi = isDevanagariLocale(locale);
   const labels = isHi ? { ...L.en, ...L.hi } : L.en;
 
+  // Timezone resolution: prop → location store → null (browser fallback)
+  // The prop may be empty on first render (server has no Vercel geo headers on localhost).
+  // The location store persists the user's chosen location with IANA timezone.
+  const storeTz = useLocationStore(s => s.timezone);
+  const effectiveTz = timezone || storeTz || null;
+
   const verdict: DayVerdict = useMemo(() => computeDayVerdict(panchang), [panchang]);
   const { slots, bestWindow, dayLevelYogas } = verdict;
 
@@ -142,7 +149,7 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
 
   // Key slots: best, worst, current — deduplicated
   const keySlots = useMemo(() => {
-    const now = nowMinutesInTimezone(timezone);
+    const now = nowMinutesInTimezone(effectiveTz);
     const currentSlot = slots.find(s => now >= toMin(s.start) && now < toMin(s.end));
     const worstSlot = slots.find(s => s.verdict === 'avoid');
     const seen = new Set<string>();
@@ -159,7 +166,7 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
       }
     }
     return result;
-  }, [slots, bestWindow, timezone]);
+  }, [slots, bestWindow, effectiveTz]);
 
   const displayedSlots = showAll ? slots : keySlots;
 
@@ -171,7 +178,7 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
     );
   }
 
-  const nowMin = nowMinutesInTimezone(timezone);
+  const nowMin = nowMinutesInTimezone(effectiveTz);
   const nowPct = timelineSpan > 0 ? Math.max(0, Math.min(100, ((nowMin - timelineStart) / timelineSpan) * 100)) : 0;
   const nowInTimeline = nowMin >= timelineStart && nowMin <= timelineEnd;
 
@@ -263,8 +270,8 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
           ))}
         </div>
 
-        {/* The bar — tall, full-width, with icons inside */}
-        <div className="relative h-14 sm:h-12 rounded-xl bg-[#0d1230] border border-white/[0.08]">
+        {/* The bar — extra tall, full-width, with icons inside */}
+        <div className="relative h-20 sm:h-16 rounded-xl bg-[#0d1230] border border-white/[0.08]">
           {/* Slot segments */}
           {slots.map((slot, i) => {
             const startMin = toMin(slot.start);
@@ -286,57 +293,59 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
 
           {/* ── Event markers WITH icons inside the bar ── */}
 
-          {/* Sunrise */}
+          {/* ── Event markers — large icons, positioned inside the bar ── */}
+
+          {/* Sunrise — bottom-aligned, amber */}
           <div className="absolute top-0 bottom-0 flex items-end justify-center pointer-events-none z-10"
             style={{ left: `${pctOf(sunriseMin)}%`, transform: 'translateX(-50%)' }}>
-            <div className="absolute top-0 bottom-0 w-px bg-amber-400" style={{ left: '50%' }} />
-            <div className="flex flex-col items-center mb-0.5">
-              <Sunrise className="w-5 h-5 text-amber-400 drop-shadow-[0_0_6px_rgba(251,191,36,0.8)]" />
-              <span className="text-[7px] text-amber-300 font-mono font-bold mt-px">{fmtShort(panchang.sunrise)}</span>
+            <div className="absolute top-0 bottom-0 w-px" style={{ left: '50%', backgroundColor: '#fbbf24' }} />
+            <div className="flex flex-col items-center mb-1">
+              <Sunrise className="w-6 h-6 sm:w-7 sm:h-7 drop-shadow-[0_0_8px_rgba(251,191,36,0.9)]" style={{ color: '#fbbf24' }} />
+              <span className="text-[9px] font-mono font-bold mt-0.5" style={{ color: '#fcd34d' }}>{fmtShort(panchang.sunrise)}</span>
             </div>
           </div>
 
-          {/* Sunset */}
+          {/* Sunset — bottom-aligned, orange */}
           <div className="absolute top-0 bottom-0 flex items-end justify-center pointer-events-none z-10"
             style={{ left: `${pctOf(sunsetMin)}%`, transform: 'translateX(-50%)' }}>
-            <div className="absolute top-0 bottom-0 w-px bg-orange-400" style={{ left: '50%' }} />
-            <div className="flex flex-col items-center mb-0.5">
-              <Sunset className="w-5 h-5 text-orange-400 drop-shadow-[0_0_6px_rgba(251,146,60,0.8)]" />
-              <span className="text-[7px] text-orange-300 font-mono font-bold mt-px">{fmtShort(panchang.sunset)}</span>
+            <div className="absolute top-0 bottom-0 w-px" style={{ left: '50%', backgroundColor: '#fb923c' }} />
+            <div className="flex flex-col items-center mb-1">
+              <Sunset className="w-6 h-6 sm:w-7 sm:h-7 drop-shadow-[0_0_8px_rgba(251,146,60,0.9)]" style={{ color: '#fb923c' }} />
+              <span className="text-[9px] font-mono font-bold mt-0.5" style={{ color: '#fdba74' }}>{fmtShort(panchang.sunset)}</span>
             </div>
           </div>
 
-          {/* Moonrise */}
+          {/* Moonrise — top-aligned, blue */}
           {moonriseMin !== null && (
             <div className="absolute top-0 bottom-0 flex items-start justify-center pointer-events-none z-10"
               style={{ left: `${pctOf(moonriseMin)}%`, transform: 'translateX(-50%)' }}>
-              <div className="absolute top-0 bottom-0 w-px bg-blue-300/60" style={{ left: '50%' }} />
-              <div className="flex flex-col items-center mt-0.5">
-                <Moon className="w-5 h-5 text-blue-300 drop-shadow-[0_0_6px_rgba(147,197,253,0.7)]" />
-                <span className="text-[7px] text-blue-200 font-mono mt-px">{fmtShort(panchang.moonrise)}</span>
+              <div className="absolute top-0 bottom-0 w-px" style={{ left: '50%', backgroundColor: 'rgba(147,197,253,0.5)' }} />
+              <div className="flex flex-col items-center mt-1">
+                <Moon className="w-5 h-5 sm:w-6 sm:h-6 drop-shadow-[0_0_8px_rgba(147,197,253,0.8)]" style={{ color: '#93c5fd' }} />
+                <span className="text-[8px] font-mono font-bold mt-0.5" style={{ color: '#bfdbfe' }}>{fmtShort(panchang.moonrise)}</span>
               </div>
             </div>
           )}
 
-          {/* Moonset */}
+          {/* Moonset — top-aligned, faded blue */}
           {moonsetMin !== null && (
             <div className="absolute top-0 bottom-0 flex items-start justify-center pointer-events-none z-10"
               style={{ left: `${pctOf(moonsetMin)}%`, transform: 'translateX(-50%)' }}>
-              <div className="absolute top-0 bottom-0 w-px bg-blue-400/30" style={{ left: '50%' }} />
-              <div className="flex flex-col items-center mt-0.5">
-                <Moon className="w-4 h-4 text-blue-400/50" />
-                <span className="text-[7px] text-blue-300/50 font-mono mt-px">{fmtShort(panchang.moonset)}</span>
+              <div className="absolute top-0 bottom-0 w-px" style={{ left: '50%', backgroundColor: 'rgba(96,165,250,0.25)' }} />
+              <div className="flex flex-col items-center mt-1">
+                <Moon className="w-5 h-5 drop-shadow-[0_0_4px_rgba(96,165,250,0.4)]" style={{ color: 'rgba(96,165,250,0.45)' }} />
+                <span className="text-[8px] font-mono mt-0.5" style={{ color: 'rgba(147,197,253,0.4)' }}>{fmtShort(panchang.moonset)}</span>
               </div>
             </div>
           )}
 
-          {/* NOW marker — bright gold pill with glow */}
+          {/* NOW marker — bright solid gold pill with strong glow */}
           {nowInTimeline && (
             <div className="absolute top-0 bottom-0 z-20 pointer-events-none"
               style={{ left: `${nowPct}%`, transform: 'translateX(-50%)' }}>
-              <div className="w-0.5 h-full shadow-[0_0_12px_rgba(212,168,83,1)]" style={{ backgroundColor: '#d4a853' }} />
-              <span className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[7px] font-black px-1.5 py-0.5 rounded-full shadow-[0_0_10px_rgba(212,168,83,0.7)]"
-                style={{ backgroundColor: '#d4a853', color: '#0a0e27' }}>
+              <div className="w-1 h-full shadow-[0_0_14px_rgba(212,168,83,1)]" style={{ backgroundColor: '#d4a853' }} />
+              <span className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[8px] font-black px-2 py-1 rounded-full shadow-[0_0_12px_rgba(212,168,83,0.8)]"
+                style={{ backgroundColor: '#f0d48a', color: '#0a0e27' }}>
                 NOW
               </span>
             </div>

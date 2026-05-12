@@ -2,12 +2,14 @@
 
 import { useMemo } from 'react';
 import type { DetailWindow } from '@/types/muhurta-ai';
+import { nowMinutesInTimezone } from '@/lib/utils/now-in-timezone';
 
 interface DayDrilldownProps {
   windows: DetailWindow[];
   date: string;              // YYYY-MM-DD
   loading: boolean;
   isToday: boolean;
+  timezone?: string;
   onWindowSelect: (window: DetailWindow) => void;
 }
 
@@ -37,9 +39,8 @@ function timeToMinutes(t: string): number {
   return h * 60 + min;
 }
 
-function nowBarIndex(windows: DetailWindow[]): number {
-  const now = new Date();
-  const nowMin = now.getHours() * 60 + now.getMinutes();
+function nowBarIndex(windows: DetailWindow[], timezone?: string): number {
+  const nowMin = nowMinutesInTimezone(timezone);
   return windows.findIndex(w => {
     const start = timeToMinutes(w.startTime);
     const end = timeToMinutes(w.endTime);
@@ -91,6 +92,7 @@ export default function DayDrilldown({
   date,
   loading,
   isToday,
+  timezone,
   onWindowSelect,
 }: DayDrilldownProps) {
   const dateLabel = useMemo(() => formatDateLabel(date), [date]);
@@ -102,8 +104,8 @@ export default function DayDrilldown({
   );
 
   const nowIdx = useMemo(
-    () => (isToday && windows.length ? nowBarIndex(windows) : -1),
-    [isToday, windows],
+    () => (isToday && windows.length ? nowBarIndex(windows, timezone) : -1),
+    [isToday, windows, timezone],
   );
 
   const periods = useMemo(() => extractPeriods(windows), [windows]);

@@ -17,6 +17,7 @@ import { useLocationStore } from '@/stores/location-store';
 import { tl as _tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import PMSG from '@/messages/pages/panchang-inline.json';
+import { nowMinutesInTimezone } from '@/lib/utils/now-in-timezone';
 
 const msg = (key: string, locale: string): string =>
   lt((PMSG as unknown as Record<string, LocaleText>)[key], locale);
@@ -483,9 +484,8 @@ export default function AuspiciousTimingsPage() {
                 </div>
                 {/* Hora timetable with conflict detection */}
                 {panchang.mantriMandala.horas && (() => {
-                  const now = new Date();
                   const toM = (t: string) => { const [hh, mm] = t.split(':').map(Number); return hh * 60 + mm; };
-                  const nm = now.getHours() * 60 + now.getMinutes();
+                  const nm = nowMinutesInTimezone(useLocationStore.getState().timezone);
                   const ov = (aS: string, aE: string, bS: string, bE: string) => toM(aS) < toM(bE) && toM(bS) < toM(aE);
                   const beneficIds = new Set([1, 3, 4, 5]);
                   const badW: { start: string; end: string; label: string; labelHi: string }[] = [];

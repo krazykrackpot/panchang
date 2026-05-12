@@ -80,10 +80,10 @@ const msg = (key: string, locale: string): string =>
 function hasTransitionPassed(
   endTime: string,
   endDate: string | undefined,
-  now: Date,
   selectedDate: string,
   timezone: string
 ): boolean {
+  const now = new Date();
   const todayStr = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
   if (selectedDate !== todayStr) return false;
 
@@ -883,7 +883,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
           </AnimatePresence>
 
           {(() => {
-            const tp = (tr?: TransitionInfo) => tr ? hasTransitionPassed(tr.endTime, tr.endDate, now, selectedDate, location.ianaTimezone) : false;
+            const tp = (tr?: TransitionInfo) => tr ? hasTransitionPassed(tr.endTime, tr.endDate, selectedDate, location.ianaTimezone) : false;
             const fmt = (time: string, date?: string) => formatTransitionTime(time, date, panchang.date, locale);
 
             // Tithi: always show both (sunrise tithi + next tithi)

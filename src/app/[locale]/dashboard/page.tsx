@@ -34,6 +34,7 @@ import RemedySpotlightCard from '@/components/dashboard/RemedySpotlightCard';
 import CalendarSyncCard from '@/components/dashboard/CalendarSyncCard';
 import TransitCountdown from '@/components/dashboard/TransitCountdown';
 import BestWindowsCard from '@/components/panchang/BestWindowsCard';
+import { nowMinutesInTimezone } from '@/lib/utils/now-in-timezone';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import { checkBadges } from '@/lib/learn/badges';
 import LevelBadge from '@/components/learn/LevelBadge';
@@ -1259,7 +1260,7 @@ export default function DashboardPage() {
   const currentHoraData = (() => {
     if (!panchangData?.hora) return null;
     const horaList = panchangData.hora;
-    const nowMin = new Date().getHours() * 60 + new Date().getMinutes();
+    const nowMin = nowMinutesInTimezone(useLocationStore.getState().timezone);
     for (const h of horaList) {
       const [sh, sm] = (h.startTime || '').split(':').map(Number);
       const [eh, em] = (h.endTime || '').split(':').map(Number);
@@ -1282,7 +1283,7 @@ export default function DashboardPage() {
 
   // Next dead zone (Rahu Kaal or Yamaganda that hasn't started yet)
   const nextDeadZoneData = (() => {
-    const nowMin = new Date().getHours() * 60 + new Date().getMinutes();
+    const nowMin = nowMinutesInTimezone(useLocationStore.getState().timezone);
     const zones: Array<{ name: string; startTime: string }> = [];
     if (panchangData?.rahuKaal) {
       const [rh, rm] = (panchangData.rahuKaal.start || '').split(':').map(Number);
@@ -1318,8 +1319,7 @@ export default function DashboardPage() {
     const rk = panchangData?.rahuKaal;
     if (!rk) return false;
     const toMin = (t: string) => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
-    const now = new Date();
-    const n = now.getHours() * 60 + now.getMinutes();
+    const n = nowMinutesInTimezone(useLocationStore.getState().timezone);
     const s = toMin(rk.start);
     const e = toMin(rk.end);
     // Handle midnight wrap
@@ -1490,7 +1490,7 @@ export default function DashboardPage() {
 
       {panchangData && (
         <div className="mt-6">
-          <BestWindowsCard panchang={panchangData} locale={locale} />
+          <BestWindowsCard panchang={panchangData} locale={locale} timezone={useLocationStore.getState().timezone || undefined} />
         </div>
       )}
 

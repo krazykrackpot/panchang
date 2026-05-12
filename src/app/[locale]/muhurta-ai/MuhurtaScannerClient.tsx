@@ -503,6 +503,7 @@ export default function MuhurtaScannerClient() {
             date={selectedDate}
             loading={detailLoading}
             isToday={selectedDate === todayStr}
+            timezone={timezone || undefined}
             onWindowSelect={handleWindowSelect}
           />
         </>

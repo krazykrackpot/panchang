@@ -21,6 +21,7 @@ import {
   approximateSunsetSafe,
   formatTime,
 } from '@/lib/ephem/astronomical';
+import { nowMinutesInTimezone } from '@/lib/utils/now-in-timezone';
 import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 import type { BirthData } from '@/types/kundali';
 
@@ -120,7 +121,7 @@ export async function POST(request: Request) {
       const nextSunriseLocal = formatTime(nextSunriseUT, tzOffsetHours);
 
       const weekday = today.getDay(); // 0=Sunday
-      const nowMinutes = today.getHours() * 60 + today.getMinutes();
+      const nowMinutes = nowMinutesInTimezone(body.timezone?.trim() || null);
 
       const horaData = calculateHoras(
         today,

@@ -10,6 +10,7 @@ import type { VoiceMode, DailyProtocol, HoraSlot, EnergyPhase, DeadZone } from '
 import { PRAKRITI_QUESTIONS, scorePrakriti } from '@/lib/dinacharya/prakriti-quiz';
 import type { Dosha } from '@/lib/dinacharya/prakriti-quiz';
 import { tl } from '@/lib/utils/trilingual';
+import { nowMinutesInTimezone, isTimeRangeActive } from '@/lib/utils/now-in-timezone';
 import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
@@ -66,27 +67,13 @@ function getDoshaColor(label: string) {
 }
 
 // ── Current time helpers ──
-function currentMinutes(): number {
-  const now = new Date();
-  return now.getHours() * 60 + now.getMinutes();
-}
-
 function parseTimeToMinutes(hhmm: string): number {
   const [h, m] = hhmm.split(':').map(Number);
   return h * 60 + m;
 }
 
-function isInTimeRange(startTime: string, endTime: string): boolean {
-  const now = currentMinutes();
-  const start = parseTimeToMinutes(startTime);
-  const end = parseTimeToMinutes(endTime);
-  // Handle midnight wrapping (lesson R)
-  if (end < start) return now >= start || now < end;
-  return now >= start && now < end;
-}
-
-function isPastTimeRange(endTime: string): boolean {
-  const now = currentMinutes();
+function isPastTimeRange(endTime: string, timezone: string | null): boolean {
+  const now = nowMinutesInTimezone(timezone);
   const end = parseTimeToMinutes(endTime);
   // Midnight-crossing: if end is early morning (before 6 AM) and now is evening (after 6 PM),
   // the slot crosses midnight and is NOT past yet (lesson R)
@@ -171,12 +158,14 @@ export default function DinacharyaPage() {
         setRawPanchang(panchang);
 
         // Transform panchang hora slots to protocol engine format
-        const nowMinutes = currentMinutes();
+        // Use location timezone for all time comparisons (not browser TZ)
+        const tz = locationStore.timezone || null;
+        const nowMinutes = nowMinutesInTimezone(tz);
         const horaSlots = (panchang.hora ?? []).map((h: PanchangHoraSlot) => ({
           planetId: h.planetId,
           startTime: h.startTime,
           endTime: h.endTime,
-          isCurrent: isInTimeRange(h.startTime, h.endTime),
+          isCurrent: isTimeRangeActive(h.startTime, h.endTime, tz),
         }));
 
         // Collect varjyam windows (API may return single or array)
@@ -356,7 +345,7 @@ export default function DinacharyaPage() {
           title={voice === 'traditional' ? 'Dosha Kala' : 'Energy Timeline'}
           accent="teal"
         >
-          <EnergyTimeline phases={protocol.energyPhases} voice={voice} />
+          <EnergyTimeline phases={protocol.energyPhases} voice={voice} timezone={locationStore.timezone} />
         </SectionCard>
 
         {/* ── Day Timeline  –  auspicious/inauspicious windows ── */}
@@ -379,7 +368,7 @@ export default function DinacharyaPage() {
           title={voice === 'traditional' ? 'Hora Chakra' : 'Hora Schedule'}
           accent="amber"
         >
-          <HoraGrid slots={protocol.horaSchedule} voice={voice} />
+          <HoraGrid slots={protocol.horaSchedule} voice={voice} timezone={locationStore.timezone} />
         </SectionCard>
 
         {/* ── Nutrition Window ── */}
@@ -412,7 +401,7 @@ export default function DinacharyaPage() {
             }
             accent="red"
           >
-            <DeadZoneList zones={protocol.deadZones} voice={voice} />
+            <DeadZoneList zones={protocol.deadZones} voice={voice} timezone={locationStore.timezone} />
           </SectionCard>
         )}
 
@@ -555,12 +544,14 @@ function MoonPhaseBanner({
 function EnergyTimeline({
   phases,
   voice,
+  timezone,
 }: {
   phases: EnergyPhase[];
   voice: VoiceMode;
+  timezone: string | null;
 }) {
-  // Current time in minutes since midnight  –  recalculated client-side
-  const nowMins = currentMinutes();
+  // Current time in the location's timezone (not browser TZ) — for the NOW needle and phase highlight
+  const nowMins = nowMinutesInTimezone(timezone);
   const nowHour = Math.floor(nowMins / 60);
   const nowMin = nowMins % 60;
   // "HH:MM" for display
@@ -621,7 +612,7 @@ function EnergyTimeline({
 
       {/* ── Phase blocks ── */}
       {phases.map((phase, i) => {
-        const isCurrent = isInTimeRange(phase.startTime, phase.endTime);
+        const isCurrent = isTimeRangeActive(phase.startTime, phase.endTime, timezone);
         const label = phase.label[voice];
         const altLabel = phase.label[voice === 'traditional' ? 'modern' : 'traditional'];
         const colors = getDoshaColor(label);
@@ -714,13 +705,15 @@ function EnergyTimeline({
 function HoraGrid({
   slots,
   voice,
+  timezone,
 }: {
   slots: HoraSlot[];
   voice: VoiceMode;
+  timezone: string | null;
 }) {
   // Show only remaining + current slots (skip fully past ones)
   const visibleSlots = slots.filter(
-    (s) => s.isCurrent || !isPastTimeRange(s.endTime)
+    (s) => s.isCurrent || !isPastTimeRange(s.endTime, timezone)
   );
 
   if (visibleSlots.length === 0) {
@@ -861,14 +854,16 @@ function PracticeFocus({
 function DeadZoneList({
   zones,
   voice,
+  timezone,
 }: {
   zones: DeadZone[];
   voice: VoiceMode;
+  timezone: string | null;
 }) {
   return (
     <div className="space-y-2">
       {zones.map((zone, i) => {
-        const isActive = isInTimeRange(zone.startTime, zone.endTime);
+        const isActive = isTimeRangeActive(zone.startTime, zone.endTime, timezone);
         return (
           <div
             key={i}

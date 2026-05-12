@@ -47,6 +47,7 @@ import LearnLink from '@/components/ui/LearnLink';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl as _tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
+import { nowMinutesInTimezone } from '@/lib/utils/now-in-timezone';
 import PMSG from '@/messages/pages/panchang-inline.json';
 import { usePreferenceStore, type TraditionPreference } from '@/stores/preference-store';
 import { HORA_PLANET_ACTIVITIES, computeHoraTable } from '@/lib/panchang/hora-engine';
@@ -81,7 +82,7 @@ function hasTransitionPassed(
   endDate: string | undefined,
   now: Date,
   selectedDate: string,
-  tz: number
+  timezone: string
 ): boolean {
   const todayStr = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
   if (selectedDate !== todayStr) return false;
@@ -91,7 +92,8 @@ function hasTransitionPassed(
 
   const [hh, mm] = endTime.split(':').map(Number);
   const endMinutes = hh * 60 + mm;
-  const nowMinutes = now.getHours() * 60 + now.getMinutes();
+  // Use location timezone so "now" matches the panchang's wall-clock time (Lesson L / timezone-split plan)
+  const nowMinutes = nowMinutesInTimezone(timezone);
   return nowMinutes >= endMinutes;
 }
 
@@ -881,7 +883,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
           </AnimatePresence>
 
           {(() => {
-            const tp = (tr?: TransitionInfo) => tr ? hasTransitionPassed(tr.endTime, tr.endDate, now, selectedDate, location.tz) : false;
+            const tp = (tr?: TransitionInfo) => tr ? hasTransitionPassed(tr.endTime, tr.endDate, now, selectedDate, location.ianaTimezone) : false;
             const fmt = (time: string, date?: string) => formatTransitionTime(time, date, panchang.date, locale);
 
             // Tithi: always show both (sunrise tithi + next tithi)
@@ -1747,11 +1749,12 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
               sunset={panchang.sunset}
               compact={true}
               locale={locale}
+              timezone={location.ianaTimezone}
             />
           </div>
 
           <div className="my-8">
-            <BestWindowsCard panchang={panchang} locale={locale} />
+            <BestWindowsCard panchang={panchang} locale={locale} timezone={location.ianaTimezone} />
           </div>
 
           {/* ═══ SPECIAL AUSPICIOUS YOGAS  –  highlight when active ═══ */}

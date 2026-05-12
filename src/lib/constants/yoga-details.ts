@@ -26,6 +26,18 @@ interface ClassicalRef {
   source: string;
 }
 
+/**
+ * A planet placement used for chart visualisation on yoga detail pages.
+ * Planet IDs: 0=Sun, 1=Moon, 2=Mars, 3=Mercury, 4=Jupiter, 5=Venus, 6=Saturn, 7=Rahu, 8=Ketu
+ * Houses are 1-based (1=Lagna/Ascendant through 12).
+ * fromLagna: true = house counted from Lagna; false = house counted from Moon.
+ */
+export interface YogaChartPosition {
+  planetId: number;
+  house: number;       // 1-12
+  fromLagna: boolean;
+}
+
 export interface YogaDetailEntry {
   name: LocaleText & { sa: string };
   category: string;
@@ -38,6 +50,8 @@ export interface YogaDetailEntry {
   remedies?: YogaRemedies;
   classicalReference?: ClassicalRef;
   relatedYogas?: string[];
+  /** Planet positions for birth chart visualisation — one example formation */
+  chartPositions?: YogaChartPosition[];
 }
 
 export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
@@ -91,6 +105,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       source: 'Brihat Parashara Hora Shastra, Chapter 81',
     },
     relatedYogas: ['kala_sarpa', 'pitra_dosha', 'guru_chandal', 'angarak'],
+    chartPositions: [
+      { planetId: 2, house: 7, fromLagna: true },
+    ],
   },
 
   kala_sarpa: {
@@ -136,6 +153,17 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       source: 'Manasagari (medieval Jyotish text)',
     },
     relatedYogas: ['mangala_dosha', 'pitra_dosha', 'grahan', 'guru_chandal'],
+    chartPositions: [
+      { planetId: 7, house: 1, fromLagna: true },
+      { planetId: 8, house: 7, fromLagna: true },
+      { planetId: 0, house: 2, fromLagna: true },
+      { planetId: 1, house: 3, fromLagna: true },
+      { planetId: 2, house: 4, fromLagna: true },
+      { planetId: 3, house: 5, fromLagna: true },
+      { planetId: 4, house: 5, fromLagna: true },
+      { planetId: 5, house: 6, fromLagna: true },
+      { planetId: 6, house: 6, fromLagna: true },
+    ],
   },
 
   pitra_dosha: {
@@ -171,6 +199,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       source: 'Garuda Purana, Preta Khanda',
     },
     relatedYogas: ['kala_sarpa', 'mangala_dosha', 'surya_grahan', 'grahan'],
+    chartPositions: [
+      { planetId: 0, house: 9, fromLagna: true },
+      { planetId: 7, house: 9, fromLagna: true },
+      { planetId: 8, house: 3, fromLagna: true },
+    ],
   },
 
   shrapit_dosha: {
@@ -202,6 +235,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       charity: { en: 'Feed crows on Saturdays. Donate black sesame seeds and iron.', hi: 'शनिवार को कौवों को भोजन दें। काले तिल और लोहा दान करें।' },
     },
     relatedYogas: ['shani_rahu', 'kala_sarpa', 'pitra_dosha', 'bandhana'],
+    chartPositions: [
+      { planetId: 6, house: 5, fromLagna: true },
+      { planetId: 7, house: 5, fromLagna: true },
+      { planetId: 8, house: 11, fromLagna: true },
+    ],
   },
 
   kalathra_dosha: {
@@ -232,6 +270,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       charity: { en: 'Donate white items (rice, sugar, milk) on Fridays', hi: 'शुक्रवार को सफेद वस्तुएँ (चावल, चीनी, दूध) दान करें' },
     },
     relatedYogas: ['mangala_dosha', 'venus_7th', 'shukra_shani'],
+    chartPositions: [
+      { planetId: 2, house: 7, fromLagna: true },
+      { planetId: 6, house: 7, fromLagna: true },
+    ],
   },
 
   guru_chandal: {
@@ -271,6 +313,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       source: 'Phaladeepika, Chapter 6',
     },
     relatedYogas: ['kala_sarpa', 'grahan', 'angarak', 'shani_rahu'],
+    chartPositions: [
+      { planetId: 4, house: 5, fromLagna: true },
+      { planetId: 7, house: 5, fromLagna: true },
+      { planetId: 8, house: 11, fromLagna: true },
+    ],
   },
 
   grahan: {
@@ -301,6 +348,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       charity: { en: 'Donate on eclipse days. Perform Navagraha Shanti puja.', hi: 'ग्रहण के दिन दान करें। नवग्रह शांति पूजा करें।' },
     },
     relatedYogas: ['surya_grahan', 'chandra_grahan', 'kala_sarpa', 'guru_chandal'],
+    chartPositions: [
+      { planetId: 0, house: 1, fromLagna: true },
+      { planetId: 7, house: 1, fromLagna: true },
+      { planetId: 8, house: 7, fromLagna: true },
+    ],
   },
 
   badhaka: {
@@ -330,6 +382,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       charity: { en: 'Worship the deity associated with the badhaka planet. Perform specific archana.', hi: 'बाधक ग्रह से सम्बन्धित देवता की पूजा करें।' },
     },
     relatedYogas: ['kendradhipati_dosha', 'daridra', 'papa_kartari'],
+    chartPositions: [
+      { planetId: 6, house: 1, fromLagna: true },
+    ],
   },
 
   kendradhipati_dosha: {
@@ -355,6 +410,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Reduced Beneficence', hi: 'कम शुभता' }, description: { en: 'Benefic planets give neutral rather than positive results. Their dashas may not bring expected gains.', hi: 'शुभ ग्रह सकारात्मक के बजाय तटस्थ परिणाम देते हैं।' } },
     ],
     relatedYogas: ['badhaka', 'daridra', 'raja_yoga'],
+    chartPositions: [
+      { planetId: 4, house: 7, fromLagna: true },
+    ],
   },
 
   angarak: {
@@ -386,6 +444,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       charity: { en: 'Donate red items on Tuesdays. Hanuman Chalisa recitation.', hi: 'मंगलवार को लाल वस्तुएँ दान। हनुमान चालीसा पाठ।' },
     },
     relatedYogas: ['mangala_dosha', 'guru_chandal', 'shani_rahu', 'mars_saturn'],
+    chartPositions: [
+      { planetId: 2, house: 3, fromLagna: true },
+      { planetId: 7, house: 3, fromLagna: true },
+      { planetId: 8, house: 9, fromLagna: true },
+    ],
   },
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -428,6 +491,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       source: 'BPHS, Chapter 75 (Pancha Mahapurusha)',
     },
     relatedYogas: ['malavya', 'shasha', 'ruchaka', 'bhadra', 'gajakesari'],
+    chartPositions: [
+      { planetId: 4, house: 1, fromLagna: true },
+    ],
   },
 
   malavya: {
@@ -464,6 +530,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       source: 'BPHS, Chapter 75',
     },
     relatedYogas: ['hansa', 'shasha', 'ruchaka', 'bhadra', 'lakshmi'],
+    chartPositions: [
+      { planetId: 5, house: 7, fromLagna: true },
+    ],
   },
 
   shasha: {
@@ -499,6 +568,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       source: 'BPHS, Chapter 75',
     },
     relatedYogas: ['hansa', 'malavya', 'ruchaka', 'bhadra', 'shani_dasham'],
+    chartPositions: [
+      { planetId: 6, house: 10, fromLagna: true },
+    ],
   },
 
   ruchaka: {
@@ -534,6 +606,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       source: 'BPHS, Chapter 75',
     },
     relatedYogas: ['hansa', 'malavya', 'shasha', 'bhadra', 'mangal_dasham'],
+    chartPositions: [
+      { planetId: 2, house: 1, fromLagna: true },
+    ],
   },
 
   bhadra: {
@@ -569,6 +644,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       source: 'BPHS, Chapter 75',
     },
     relatedYogas: ['hansa', 'malavya', 'shasha', 'ruchaka', 'budhaditya'],
+    chartPositions: [
+      { planetId: 3, house: 1, fromLagna: true },
+    ],
   },
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -620,6 +698,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       source: 'Phaladeepika, Chapter 6, Verse 1',
     },
     relatedYogas: ['chandra_mangala', 'sunapha', 'anapha', 'durdhara', 'kemadruma'],
+    chartPositions: [
+      { planetId: 1, house: 1, fromLagna: false },
+      { planetId: 4, house: 4, fromLagna: false },
+    ],
   },
 
   sunapha: {
@@ -650,6 +732,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       source: 'Phaladeepika, Chapter 6',
     },
     relatedYogas: ['anapha', 'durdhara', 'kemadruma', 'gajakesari'],
+    chartPositions: [
+      { planetId: 1, house: 4, fromLagna: true },
+      { planetId: 4, house: 5, fromLagna: true },
+    ],
   },
 
   anapha: {
@@ -675,6 +761,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Intuition & Health', hi: 'अंतर्ज्ञान और स्वास्थ्य' }, description: { en: 'Strong intuitive sense, good physical health, support from unseen sources. Past-life merit manifesting.', hi: 'तीव्र अंतर्ज्ञान, अच्छा शारीरिक स्वास्थ्य, अदृश्य स्रोतों से सहायता।' } },
     ],
     relatedYogas: ['sunapha', 'durdhara', 'kemadruma', 'gajakesari'],
+    chartPositions: [
+      { planetId: 1, house: 4, fromLagna: true },
+      { planetId: 2, house: 3, fromLagna: true },
+    ],
   },
 
   durdhara: {
@@ -700,6 +790,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Comprehensive Prosperity', hi: 'समग्र समृद्धि' }, description: { en: 'Wealth from both self-effort and fortune. Generous, charitable, and well-regarded in society.', hi: 'स्व-प्रयास और भाग्य दोनों से धन। उदार, दानशील और समाज में सम्मानित।' } },
     ],
     relatedYogas: ['sunapha', 'anapha', 'kemadruma', 'gajakesari'],
+    chartPositions: [
+      { planetId: 1, house: 4, fromLagna: true },
+      { planetId: 2, house: 5, fromLagna: true },
+      { planetId: 5, house: 3, fromLagna: true },
+    ],
   },
 
   kemadruma: {
@@ -742,6 +837,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       source: 'Phaladeepika, Chapter 6',
     },
     relatedYogas: ['sunapha', 'anapha', 'durdhara', 'gajakesari'],
+    chartPositions: [
+      { planetId: 1, house: 6, fromLagna: true },
+    ],
   },
 
   chandra_mangala: {
@@ -768,6 +866,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Emotional Courage', hi: 'भावनात्मक साहस' }, description: { en: 'Ability to take risks, act on instinct, emotionally resilient. Can be volatile if unmanaged.', hi: 'जोखिम लेने की क्षमता, अंतर्ज्ञान पर कार्य। अप्रबंधित हो तो अस्थिर भी।' } },
     ],
     relatedYogas: ['gajakesari', 'sunapha', 'anapha', 'chandra_mangal_dhana'],
+    chartPositions: [
+      { planetId: 1, house: 4, fromLagna: true },
+      { planetId: 2, house: 4, fromLagna: true },
+    ],
   },
 
   shakata: {
@@ -793,6 +895,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Fluctuating Fortune', hi: 'उतार-चढ़ाव भाग्य' }, description: { en: 'Cycles of prosperity and adversity. Fortune not stable — gains are followed by losses.', hi: 'समृद्धि और विपत्ति के चक्र। भाग्य स्थिर नहीं — लाभ के बाद हानि।' } },
     ],
     relatedYogas: ['gajakesari', 'kemadruma', 'shakata_extended'],
+    chartPositions: [
+      { planetId: 1, house: 4, fromLagna: true },
+      { planetId: 4, house: 9, fromLagna: true },
+    ],
   },
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -838,6 +944,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       source: 'Saravali, Chapter 16',
     },
     relatedYogas: ['veshi', 'vasi', 'obhayachari', 'budha_aditya_strong'],
+    chartPositions: [
+      { planetId: 0, house: 1, fromLagna: true },
+      { planetId: 3, house: 1, fromLagna: true },
+    ],
   },
 
   veshi: {
@@ -863,6 +973,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Authority & Wealth', hi: 'अधिकार और धन' }, description: { en: 'Enhanced authority, wealth accumulation abilities, and positive public image.', hi: 'बढ़ा हुआ अधिकार, धन संचय क्षमता और सकारात्मक सार्वजनिक छवि।' } },
     ],
     relatedYogas: ['vasi', 'obhayachari', 'budhaditya'],
+    chartPositions: [
+      { planetId: 0, house: 5, fromLagna: true },
+      { planetId: 4, house: 6, fromLagna: true },
+    ],
   },
 
   vasi: {
@@ -886,6 +1000,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Hidden Support', hi: 'छिपा समर्थन' }, description: { en: 'Past-life merit supporting present success, charitable nature, spiritual depth.', hi: 'पूर्वजन्म पुण्य वर्तमान सफलता का समर्थन, दानशील स्वभाव, आध्यात्मिक गहराई।' } },
     ],
     relatedYogas: ['veshi', 'obhayachari', 'budhaditya'],
+    chartPositions: [
+      { planetId: 0, house: 5, fromLagna: true },
+      { planetId: 2, house: 4, fromLagna: true },
+    ],
   },
 
   obhayachari: {
@@ -911,6 +1029,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Royal Personality', hi: 'राजसी व्यक्तित्व' }, description: { en: 'King-like bearing, eloquence, physical strength, wealth, and magnetic personality.', hi: 'राजा जैसा आचरण, वाक्पटुता, शारीरिक शक्ति, धन और चुम्बकीय व्यक्तित्व।' } },
     ],
     relatedYogas: ['veshi', 'vasi', 'budhaditya'],
+    chartPositions: [
+      { planetId: 0, house: 5, fromLagna: true },
+      { planetId: 4, house: 6, fromLagna: true },
+      { planetId: 2, house: 4, fromLagna: true },
+    ],
   },
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -947,6 +1070,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       source: 'BPHS, Chapter 41',
     },
     relatedYogas: ['dharma_karmadhipati', 'viparita_raja', 'neechabhanga_raja', 'akhanda_samrajya'],
+    chartPositions: [
+      { planetId: 4, house: 10, fromLagna: true },
+      { planetId: 6, house: 10, fromLagna: true },
+    ],
   },
 
   dhana_yoga: {
@@ -972,6 +1099,12 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Wealth Accumulation', hi: 'धन संचय' }, description: { en: 'Strong ability to earn, save, and grow wealth. Multiple income sources. Financial security.', hi: 'अर्जन, बचत और धन वृद्धि की प्रबल क्षमता। अनेक आय स्रोत।' } },
     ],
     relatedYogas: ['lakshmi', 'kubera', 'kalanidhi', 'mahalakshmi'],
+    chartPositions: [
+      { planetId: 5, house: 11, fromLagna: true },
+      { planetId: 4, house: 11, fromLagna: true },
+      { planetId: 0, house: 9, fromLagna: true },
+      { planetId: 6, house: 2, fromLagna: true },
+    ],
   },
 
   viparita_raja: {
@@ -997,6 +1130,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Triumph Through Adversity', hi: 'विपत्ति से विजय' }, description: { en: 'Success through unconventional paths. Enemies self-destruct. Obstacles become stepping stones.', hi: 'अपरंपरागत मार्गों से सफलता। शत्रु स्वयं नष्ट होते हैं। बाधाएँ सोपान बनती हैं।' } },
     ],
     relatedYogas: ['raja_yoga', 'neechabhanga_raja', 'harsha_yoga'],
+    chartPositions: [
+      { planetId: 3, house: 8, fromLagna: true },
+      { planetId: 2, house: 12, fromLagna: true },
+    ],
   },
 
   neechabhanga_raja: {
@@ -1022,6 +1159,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Extraordinary Rise', hi: 'असाधारण उत्थान' }, description: { en: 'Rise from humble beginnings to great heights. Initial weakness becomes ultimate strength. Rags-to-riches stories.', hi: 'विनम्र शुरुआत से महान ऊँचाइयों तक उत्थान। प्रारम्भिक दुर्बलता अंतिम शक्ति बनती है।' } },
     ],
     relatedYogas: ['raja_yoga', 'viparita_raja', 'dharma_karmadhipati'],
+    chartPositions: [
+      { planetId: 6, house: 1, fromLagna: true },
+      { planetId: 2, house: 4, fromLagna: true },
+    ],
   },
 
   dharma_karmadhipati: {
@@ -1051,6 +1192,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       source: 'BPHS, Chapter 41',
     },
     relatedYogas: ['raja_yoga', 'viparita_raja', 'neechabhanga_raja', 'akhanda_samrajya'],
+    chartPositions: [
+      { planetId: 4, house: 9, fromLagna: true },
+      { planetId: 6, house: 9, fromLagna: true },
+    ],
   },
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -1090,6 +1235,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       source: 'Phaladeepika, Chapter 6',
     },
     relatedYogas: ['budhaditya', 'hansa', 'bharati', 'kalanidhi'],
+    chartPositions: [
+      { planetId: 3, house: 1, fromLagna: true },
+      { planetId: 4, house: 5, fromLagna: true },
+      { planetId: 5, house: 2, fromLagna: true },
+    ],
   },
 
   mahabhagya: {
@@ -1119,6 +1269,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       source: 'Phaladeepika, Chapter 6',
     },
     relatedYogas: ['raja_yoga', 'gajakesari', 'lakshmi'],
+    chartPositions: [
+      { planetId: 0, house: 5, fromLagna: true },
+      { planetId: 1, house: 3, fromLagna: true },
+    ],
   },
 
   // ═══════════════════════════════════════════════════════════════════════════
@@ -1139,6 +1293,12 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Leadership & Power', hi: 'नेतृत्व और शक्ति' }, description: { en: 'Ministerial or leadership positions, trust of rulers, prosperity.', hi: 'मंत्री या नेतृत्व पद, शासकों का विश्वास, समृद्धि।' } },
     ],
     relatedYogas: ['gajakesari', 'chandradhi', 'adhi_moon_ext'],
+    chartPositions: [
+      { planetId: 1, house: 4, fromLagna: true },
+      { planetId: 4, house: 9, fromLagna: true },
+      { planetId: 5, house: 10, fromLagna: true },
+      { planetId: 3, house: 11, fromLagna: true },
+    ],
   },
 
   chatussagara: {
@@ -1155,6 +1315,12 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Widespread Fame', hi: 'व्यापक यश' }, description: { en: 'Fame in all directions, international recognition, respected across communities.', hi: 'सभी दिशाओं में यश, अन्तर्राष्ट्रीय मान्यता।' } },
     ],
     relatedYogas: ['raja_yoga', 'chatussagara_full', 'chaturmukha'],
+    chartPositions: [
+      { planetId: 2, house: 1, fromLagna: true },
+      { planetId: 1, house: 4, fromLagna: true },
+      { planetId: 5, house: 7, fromLagna: true },
+      { planetId: 6, house: 10, fromLagna: true },
+    ],
   },
 
   vasumati: {
@@ -1171,6 +1337,12 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Ever-Growing Wealth', hi: 'सतत बढ़ता धन' }, description: { en: 'Wealth increases with age. Financial position improves steadily throughout life.', hi: 'उम्र के साथ धन बढ़ता है। जीवन भर वित्तीय स्थिति लगातार सुधरती है।' } },
     ],
     relatedYogas: ['dhana_yoga', 'lakshmi', 'kubera'],
+    chartPositions: [
+      { planetId: 1, house: 1, fromLagna: true },
+      { planetId: 4, house: 3, fromLagna: false },
+      { planetId: 5, house: 6, fromLagna: false },
+      { planetId: 3, house: 10, fromLagna: false },
+    ],
   },
 
   amala: {
@@ -1187,6 +1359,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Reputation', hi: 'प्रतिष्ठा' }, description: { en: 'Unblemished reputation, ethical career, lasting fame through good deeds.', hi: 'निष्कलंक प्रतिष्ठा, नैतिक करियर, सत्कर्मों से स्थायी यश।' } },
     ],
     relatedYogas: ['raja_yoga', 'chatussagara', 'saraswati'],
+    chartPositions: [
+      { planetId: 4, house: 10, fromLagna: true },
+    ],
   },
 
   lakshmi: {
@@ -1203,6 +1378,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Permanent Wealth', hi: 'स्थायी धन' }, description: { en: 'Lasting prosperity, beautiful surroundings, divine blessings.', hi: 'स्थायी समृद्धि, सुन्दर परिवेश, दिव्य आशीर्वाद।' } },
     ],
     relatedYogas: ['dhana_yoga', 'mahalakshmi', 'vasumati'],
+    chartPositions: [
+      { planetId: 4, house: 9, fromLagna: true },
+    ],
   },
 
   parvata: {
@@ -1219,6 +1397,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Stability & Fame', hi: 'स्थिरता और यश' }, description: { en: 'Unshakeable success, leadership positions, lasting fame.', hi: 'अटल सफलता, नेतृत्व पद, स्थायी यश।' } },
     ],
     relatedYogas: ['raja_yoga', 'chatussagara', 'amala'],
+    chartPositions: [
+      { planetId: 4, house: 1, fromLagna: true },
+      { planetId: 5, house: 7, fromLagna: true },
+    ],
   },
 
   kahala: {
@@ -1233,6 +1415,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Courage & Initiative', hi: 'साहस और पहल' }, description: { en: 'Bold action, property success, authority through courage.', hi: 'साहसिक कार्य, सम्पत्ति सफलता, साहस से अधिकार।' } },
     ],
     relatedYogas: ['raja_yoga', 'parvata', 'ruchaka'],
+    chartPositions: [
+      { planetId: 1, house: 1, fromLagna: true },
+      { planetId: 4, house: 4, fromLagna: true },
+      { planetId: 2, house: 1, fromLagna: true },
+    ],
   },
 
   gauri: {
@@ -1247,6 +1434,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Beauty & Virtue', hi: 'सौन्दर्य और सद्गुण' }, description: { en: 'Beautiful appearance, virtuous character, happy marriage.', hi: 'सुन्दर रूप, सद्गुणी चरित्र, सुखी विवाह।' } },
     ],
     relatedYogas: ['lakshmi', 'malavya', 'gajakesari'],
+    chartPositions: [
+      { planetId: 1, house: 4, fromLagna: true },
+      { planetId: 4, house: 10, fromLagna: true },
+    ],
   },
 
   bharati: {
@@ -1261,6 +1452,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Speech & Scholarship', hi: 'वाणी और विद्वत्ता' }, description: { en: 'Mastery of languages, eloquent speech, scholarly achievement.', hi: 'भाषाओं में निपुणता, वाक्पटु वाणी, विद्वत् उपलब्धि।' } },
     ],
     relatedYogas: ['saraswati', 'budhaditya', 'bhadra'],
+    chartPositions: [
+      { planetId: 5, house: 2, fromLagna: true },
+      { planetId: 0, house: 2, fromLagna: true },
+      { planetId: 4, house: 1, fromLagna: true },
+    ],
   },
 
   shrinatha: {
@@ -1275,6 +1471,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Partnership Wealth', hi: 'साझेदारी धन' }, description: { en: 'Wealth through partnerships and collaborative ventures.', hi: 'साझेदारी और सहयोगी उद्यमों से धन।' } },
     ],
     relatedYogas: ['lakshmi', 'dhana_yoga', 'shri_kanthi'],
+    chartPositions: [
+      { planetId: 5, house: 10, fromLagna: true },
+      { planetId: 6, house: 9, fromLagna: true },
+      { planetId: 4, house: 9, fromLagna: true },
+    ],
   },
 
   shankha: {
@@ -1289,6 +1490,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Victory & Longevity', hi: 'विजय और दीर्घायु' }, description: { en: 'Triumph over rivals, comfortable old age, moral reputation.', hi: 'प्रतिद्वंद्वियों पर विजय, सुखी वृद्धावस्था, नैतिक प्रतिष्ठा।' } },
     ],
     relatedYogas: ['raja_yoga', 'bheri', 'parvata'],
+    chartPositions: [
+      { planetId: 0, house: 1, fromLagna: true },
+      { planetId: 3, house: 4, fromLagna: true },
+    ],
   },
 
   bheri: {
@@ -1303,6 +1508,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Fame & Honour', hi: 'यश और सम्मान' }, description: { en: 'Lasting fame, royal treatment, respected for dharmic conduct.', hi: 'स्थायी यश, राजसी व्यवहार, धार्मिक आचरण के लिए सम्मान।' } },
     ],
     relatedYogas: ['shankha', 'raja_yoga', 'parvata'],
+    chartPositions: [
+      { planetId: 2, house: 1, fromLagna: true },
+      { planetId: 4, house: 4, fromLagna: true },
+      { planetId: 5, house: 7, fromLagna: true },
+    ],
   },
 
   pushkala: {
@@ -1317,6 +1527,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Overall Abundance', hi: 'समग्र प्रचुरता' }, description: { en: 'Abundance in wealth, family, health, and social standing. Public popularity.', hi: 'धन, परिवार, स्वास्थ्य और सामाजिक स्थिति में प्रचुरता।' } },
     ],
     relatedYogas: ['gajakesari', 'lakshmi', 'pushkala_moon'],
+    chartPositions: [
+      { planetId: 2, house: 9, fromLagna: true },
+      { planetId: 1, house: 1, fromLagna: true },
+    ],
   },
 
   chapa: {
@@ -1331,6 +1545,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Focused Achievement', hi: 'केन्द्रित उपलब्धि' }, description: { en: 'Goal-oriented success, precision in action, work-life harmony.', hi: 'लक्ष्य-उन्मुख सफलता, कार्य में सटीकता।' } },
     ],
     relatedYogas: ['raja_yoga', 'parvata'],
+    chartPositions: [
+      { planetId: 2, house: 10, fromLagna: true },
+      { planetId: 1, house: 10, fromLagna: true },
+      { planetId: 6, house: 4, fromLagna: true },
+    ],
   },
 
   rajalakshana: {
@@ -1345,6 +1564,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Royal Bearing', hi: 'राजसी आचरण' }, description: { en: 'Commanding presence, natural leadership, noble character.', hi: 'प्रभावशाली उपस्थिति, स्वाभाविक नेतृत्व, उत्तम चरित्र।' } },
     ],
     relatedYogas: ['raja_yoga', 'dharma_karmadhipati', 'mahabhagya'],
+    chartPositions: [
+      { planetId: 4, house: 1, fromLagna: true },
+      { planetId: 6, house: 4, fromLagna: true },
+      { planetId: 2, house: 10, fromLagna: true },
+    ],
   },
 
   pravrajya: {
@@ -1359,6 +1583,12 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Spiritual Calling', hi: 'आध्यात्मिक आह्वान' }, description: { en: 'Pull towards renunciation, spiritual seeking, monastic life.', hi: 'संन्यास, आध्यात्मिक खोज, मठवासी जीवन की ओर खिंचाव।' } },
     ],
     relatedYogas: ['tapasvi', 'parivraja', 'sada_sannyasa', 'moksha_yoga'],
+    chartPositions: [
+      { planetId: 0, house: 5, fromLagna: true },
+      { planetId: 3, house: 5, fromLagna: true },
+      { planetId: 4, house: 5, fromLagna: true },
+      { planetId: 5, house: 5, fromLagna: true },
+    ],
   },
 
   vanchana_chora_bheeti: {
@@ -1373,6 +1603,12 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Trust & Deception', hi: 'विश्वास और छल' }, description: { en: 'Risk of betrayal, deception in partnerships, need for caution.', hi: 'विश्वासघात का जोखिम, साझेदारी में छल, सावधानी आवश्यक।' } },
     ],
     relatedYogas: ['kalathra_dosha', 'grahan', 'kala_sarpa'],
+    chartPositions: [
+      { planetId: 5, house: 7, fromLagna: true },
+      { planetId: 7, house: 7, fromLagna: true },
+      { planetId: 8, house: 1, fromLagna: true },
+      { planetId: 6, house: 10, fromLagna: true },
+    ],
   },
 
   lagna_mallika: {
@@ -1387,6 +1623,15 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Garland of Success', hi: 'सफलता की माला' }, description: { en: 'Life adorned with achievements, generosity, widespread fame.', hi: 'उपलब्धियों से सुशोभित जीवन, उदारता, व्यापक यश।' } },
     ],
     relatedYogas: ['graha_malika', 'ardha_chandra_nabhasa', 'chhatra_nabhasa'],
+    chartPositions: [
+      { planetId: 0, house: 1, fromLagna: true },
+      { planetId: 1, house: 2, fromLagna: true },
+      { planetId: 2, house: 3, fromLagna: true },
+      { planetId: 3, house: 4, fromLagna: true },
+      { planetId: 4, house: 5, fromLagna: true },
+      { planetId: 5, house: 6, fromLagna: true },
+      { planetId: 6, house: 7, fromLagna: true },
+    ],
   },
 
   daridra: {
@@ -1401,6 +1646,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Financial Struggle', hi: 'वित्तीय संघर्ष' }, description: { en: 'Income blocked, financial difficulties despite talent and effort.', hi: 'आय अवरुद्ध, प्रतिभा और प्रयास के बावजूद वित्तीय कठिनाइयाँ।' } },
     ],
     relatedYogas: ['daridra_lagna_12', 'daridra_2nd_in_12', 'daridra_11_in_6_12'],
+    chartPositions: [
+      { planetId: 6, house: 6, fromLagna: true },
+    ],
   },
 
   shubha_kartari: {
@@ -1415,6 +1663,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Protection & Enhancement', hi: 'रक्षा और वृद्धि' }, description: { en: 'Protective shield around the hemmed house, enhanced positive results.', hi: 'घेरे गये भाव के चारों ओर रक्षात्मक कवच, बढ़े हुए सकारात्मक परिणाम।' } },
     ],
     relatedYogas: ['papa_kartari', 'shubha_kartari_moon'],
+    chartPositions: [
+      { planetId: 4, house: 12, fromLagna: true },
+      { planetId: 5, house: 2, fromLagna: true },
+    ],
   },
 
   papa_kartari: {
@@ -1429,6 +1681,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Stress & Obstacles', hi: 'तनाव और बाधाएँ' }, description: { en: 'Squeezed positive energy, stress, obstacles in the affected house\'s significations.', hi: 'दबी सकारात्मक ऊर्जा, तनाव, प्रभावित भाव में बाधाएँ।' } },
     ],
     relatedYogas: ['shubha_kartari', 'papa_kartari_moon'],
+    chartPositions: [
+      { planetId: 6, house: 12, fromLagna: true },
+      { planetId: 2, house: 2, fromLagna: true },
+    ],
   },
 
   // Nabhasa Sankhya Yogas (sign-count based)
@@ -1444,6 +1700,15 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Extreme Concentration', hi: 'अत्यधिक संकेंद्रण' }, description: { en: 'One life area dominates completely; others neglected.', hi: 'एक जीवन क्षेत्र पूर्णतः प्रभावी; अन्य उपेक्षित।' } },
     ],
     relatedYogas: ['yuga', 'shoola_nabhasa', 'kedara'],
+    chartPositions: [
+      { planetId: 0, house: 1, fromLagna: true },
+      { planetId: 1, house: 1, fromLagna: true },
+      { planetId: 2, house: 1, fromLagna: true },
+      { planetId: 3, house: 1, fromLagna: true },
+      { planetId: 4, house: 1, fromLagna: true },
+      { planetId: 5, house: 1, fromLagna: true },
+      { planetId: 6, house: 1, fromLagna: true },
+    ],
   },
 
   yuga: {
@@ -1458,6 +1723,15 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Life Polarity', hi: 'जीवन ध्रुवीयता' }, description: { en: 'Oscillation between extremes, polarised existence.', hi: 'छोरों के बीच दोलन, ध्रुवीकृत अस्तित्व।' } },
     ],
     relatedYogas: ['gola', 'shoola_nabhasa', 'kedara'],
+    chartPositions: [
+      { planetId: 0, house: 1, fromLagna: true },
+      { planetId: 1, house: 1, fromLagna: true },
+      { planetId: 2, house: 1, fromLagna: true },
+      { planetId: 3, house: 2, fromLagna: true },
+      { planetId: 4, house: 2, fromLagna: true },
+      { planetId: 5, house: 2, fromLagna: true },
+      { planetId: 6, house: 2, fromLagna: true },
+    ],
   },
 
   kedara: {
@@ -1472,6 +1746,15 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Property & Land', hi: 'सम्पत्ति और भूमि' }, description: { en: 'Agricultural wealth, property acquisition, steady earned prosperity.', hi: 'कृषि धन, सम्पत्ति अर्जन, स्थिर अर्जित समृद्धि।' } },
     ],
     relatedYogas: ['gola', 'yuga', 'pasha', 'damini'],
+    chartPositions: [
+      { planetId: 0, house: 1, fromLagna: true },
+      { planetId: 1, house: 1, fromLagna: true },
+      { planetId: 2, house: 3, fromLagna: true },
+      { planetId: 3, house: 3, fromLagna: true },
+      { planetId: 4, house: 5, fromLagna: true },
+      { planetId: 5, house: 5, fromLagna: true },
+      { planetId: 6, house: 7, fromLagna: true },
+    ],
   },
 
   pasha: {
@@ -1486,6 +1769,15 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Bonds & Obligations', hi: 'बन्धन और दायित्व' }, description: { en: 'Restriction through bonds, but stability through deep connections.', hi: 'बन्धनों से प्रतिबंध, पर गहरे सम्बन्धों से स्थिरता।' } },
     ],
     relatedYogas: ['kedara', 'damini', 'veena'],
+    chartPositions: [
+      { planetId: 0, house: 1, fromLagna: true },
+      { planetId: 1, house: 1, fromLagna: true },
+      { planetId: 2, house: 3, fromLagna: true },
+      { planetId: 3, house: 5, fromLagna: true },
+      { planetId: 4, house: 5, fromLagna: true },
+      { planetId: 5, house: 7, fromLagna: true },
+      { planetId: 6, house: 9, fromLagna: true },
+    ],
   },
 
   damini: {
@@ -1500,6 +1792,15 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Versatility & Generosity', hi: 'बहुमुखी प्रतिभा और उदारता' }, description: { en: 'Multiple talents, charitable nature, brilliant flashes of insight.', hi: 'अनेक प्रतिभाएँ, दानशील स्वभाव, अंतर्दृष्टि की चमक।' } },
     ],
     relatedYogas: ['kedara', 'pasha', 'veena'],
+    chartPositions: [
+      { planetId: 0, house: 1, fromLagna: true },
+      { planetId: 1, house: 2, fromLagna: true },
+      { planetId: 2, house: 3, fromLagna: true },
+      { planetId: 3, house: 4, fromLagna: true },
+      { planetId: 4, house: 5, fromLagna: true },
+      { planetId: 5, house: 4, fromLagna: true },
+      { planetId: 6, house: 6, fromLagna: true },
+    ],
   },
 
   veena: {
@@ -1514,6 +1815,15 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Harmony & Arts', hi: 'सामंजस्य और कला' }, description: { en: 'Musical talent, artistic nature, harmonious life across many areas.', hi: 'संगीत प्रतिभा, कलात्मक स्वभाव, अनेक क्षेत्रों में सामंजस्यपूर्ण जीवन।' } },
     ],
     relatedYogas: ['damini', 'saraswati', 'malavya'],
+    chartPositions: [
+      { planetId: 0, house: 1, fromLagna: true },
+      { planetId: 1, house: 2, fromLagna: true },
+      { planetId: 2, house: 3, fromLagna: true },
+      { planetId: 3, house: 4, fromLagna: true },
+      { planetId: 4, house: 5, fromLagna: true },
+      { planetId: 5, house: 6, fromLagna: true },
+      { planetId: 6, house: 7, fromLagna: true },
+    ],
   },
 
   graha_malika: {
@@ -1528,6 +1838,15 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Flowing Success', hi: 'प्रवाहित सफलता' }, description: { en: 'Continuous chain of positive results, each success leading to the next.', hi: 'सकारात्मक परिणामों की निरन्तर श्रृंखला, प्रत्येक सफलता अगली की ओर।' } },
     ],
     relatedYogas: ['lagna_mallika', 'ardha_chandra_nabhasa'],
+    chartPositions: [
+      { planetId: 0, house: 2, fromLagna: true },
+      { planetId: 1, house: 3, fromLagna: true },
+      { planetId: 2, house: 4, fromLagna: true },
+      { planetId: 3, house: 5, fromLagna: true },
+      { planetId: 4, house: 6, fromLagna: true },
+      { planetId: 5, house: 7, fromLagna: true },
+      { planetId: 6, house: 8, fromLagna: true },
+    ],
   },
 
   // Conjunction-based yogas
@@ -1543,6 +1862,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Authority & Father', hi: 'अधिकार और पिता' }, description: { en: 'Father issues, ego challenges, government obstacles. But also deep research ability.', hi: 'पिता समस्याएँ, अहंकार चुनौतियाँ, पर गहन अनुसंधान क्षमता भी।' } },
     ],
     relatedYogas: ['chandra_grahan', 'grahan', 'kala_sarpa'],
+    chartPositions: [
+      { planetId: 0, house: 1, fromLagna: true },
+      { planetId: 7, house: 1, fromLagna: true },
+      { planetId: 8, house: 7, fromLagna: true },
+    ],
   },
 
   chandra_grahan: {
@@ -1557,6 +1881,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Emotions & Mother', hi: 'भावनाएँ और माता' }, description: { en: 'Emotional turbulence, mother concerns, but strong intuition.', hi: 'भावनात्मक अशांति, माता चिन्ता, पर तीव्र अंतर्ज्ञान।' } },
     ],
     relatedYogas: ['surya_grahan', 'grahan', 'kala_sarpa'],
+    chartPositions: [
+      { planetId: 1, house: 4, fromLagna: true },
+      { planetId: 7, house: 4, fromLagna: true },
+      { planetId: 8, house: 10, fromLagna: true },
+    ],
   },
 
   shani_rahu: {
@@ -1571,6 +1900,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Delays & Breakthrough', hi: 'विलंब और सफलता' }, description: { en: 'Chronic delays but eventual breakthrough after age 36.', hi: 'दीर्घकालिक विलंब पर 36 के बाद अंतिम सफलता।' } },
     ],
     relatedYogas: ['shrapit_dosha', 'angarak', 'bandhana'],
+    chartPositions: [
+      { planetId: 6, house: 5, fromLagna: true },
+      { planetId: 7, house: 5, fromLagna: true },
+      { planetId: 8, house: 11, fromLagna: true },
+    ],
   },
 
   // Additional shorter entries for remaining yogas
@@ -1586,6 +1920,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Immense Wealth', hi: 'अपार धन' }, description: { en: 'Strong wealth accumulation, multiple income streams.', hi: 'प्रबल धन संचय, अनेक आय धाराएँ।' } },
     ],
     relatedYogas: ['dhana_yoga', 'lakshmi', 'vasumati'],
+    chartPositions: [
+      { planetId: 2, house: 2, fromLagna: true },
+      { planetId: 5, house: 11, fromLagna: true },
+    ],
   },
 
   akhanda_samrajya: {
@@ -1600,6 +1938,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Undivided Authority', hi: 'अविभाजित अधिकार' }, description: { en: 'Vast authority, power remains unchallenged, great fame.', hi: 'विशाल अधिकार, शक्ति अविवादित, महान यश।' } },
     ],
     relatedYogas: ['raja_yoga', 'dharma_karmadhipati', 'gajakesari'],
+    chartPositions: [
+      { planetId: 4, house: 4, fromLagna: true },
+      { planetId: 1, house: 1, fromLagna: true },
+    ],
   },
 
   chamara: {
@@ -1614,6 +1956,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Oratory & Fame', hi: 'वक्तृत्व और यश' }, description: { en: 'Eloquent speech, commanding presence, lasting fame.', hi: 'वाक्पटु वाणी, प्रभावशाली उपस्थिति, स्थायी यश।' } },
     ],
     relatedYogas: ['raja_yoga', 'hansa', 'mahabhagya'],
+    chartPositions: [
+      { planetId: 2, house: 10, fromLagna: true },
+    ],
   },
 
   nipuna: {
@@ -1628,6 +1973,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Multi-Skilled', hi: 'बहु-कौशल' }, description: { en: 'Exceptional craftsmanship, multiple skills, quick learner.', hi: 'असाधारण शिल्पकारिता, अनेक कौशल, तेज शिक्षार्थी।' } },
     ],
     relatedYogas: ['budhaditya', 'saraswati', 'bhadra'],
+    chartPositions: [
+      { planetId: 0, house: 5, fromLagna: true },
+      { planetId: 1, house: 5, fromLagna: true },
+      { planetId: 3, house: 5, fromLagna: true },
+    ],
   },
 
   balarishta: {
@@ -1642,6 +1992,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Childhood Health', hi: 'बाल्यकाल स्वास्थ्य' }, description: { en: 'Health vulnerabilities in early life, extra care needed in infancy.', hi: 'प्रारम्भिक जीवन में स्वास्थ्य कमजोरियाँ, शैशव में अतिरिक्त देखभाल।' } },
     ],
     relatedYogas: ['balarishta_ext', 'alpayu', 'arishta_bhanga'],
+    chartPositions: [
+      { planetId: 1, house: 8, fromLagna: true },
+      { planetId: 6, house: 8, fromLagna: true },
+    ],
   },
 
   alpayu: {
@@ -1656,6 +2010,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Health Vigilance', hi: 'स्वास्थ्य सतर्कता' }, description: { en: 'Need for health consciousness, regular medical check-ups.', hi: 'स्वास्थ्य जागरूकता की आवश्यकता, नियमित स्वास्थ्य जाँच।' } },
     ],
     relatedYogas: ['balarishta', 'arishta_bhanga', 'madhyayu'],
+    chartPositions: [
+      { planetId: 2, house: 1, fromLagna: true },
+      { planetId: 6, house: 7, fromLagna: true },
+    ],
   },
 
   arishta_bhanga: {
@@ -1670,6 +2028,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Protection', hi: 'रक्षा' }, description: { en: 'Cancels danger yogas, recovery from illness, overcoming adversity.', hi: 'अरिष्ट योगों को निरस्त, रोग से स्वस्थता, विपत्ति पर विजय।' } },
     ],
     relatedYogas: ['balarishta', 'alpayu', 'mahabhagya'],
+    chartPositions: [
+      { planetId: 2, house: 1, fromLagna: true },
+    ],
   },
 
   // Planet-placement yogas
@@ -1685,6 +2046,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Wisdom + Action', hi: 'ज्ञान + कर्म' }, description: { en: 'Courageous yet righteous action, military/police success, land ownership.', hi: 'साहसी पर धार्मिक कर्म, सैन्य सफलता, भूमि स्वामित्व।' } },
     ],
     relatedYogas: ['ruchaka', 'hansa', 'gajakesari'],
+    chartPositions: [
+      { planetId: 4, house: 9, fromLagna: true },
+      { planetId: 2, house: 9, fromLagna: true },
+    ],
   },
 
   guru_shukra: {
@@ -1699,6 +2064,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Wealth + Wisdom', hi: 'धन + ज्ञान' }, description: { en: 'Art patronage, generous life, but possible spiritual-material tension.', hi: 'कला संरक्षण, उदार जीवन, पर आध्यात्मिक-भौतिक तनाव सम्भव।' } },
     ],
     relatedYogas: ['hansa', 'malavya', 'saraswati'],
+    chartPositions: [
+      { planetId: 4, house: 2, fromLagna: true },
+      { planetId: 5, house: 2, fromLagna: true },
+    ],
   },
 
   mars_saturn: {
@@ -1713,6 +2082,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Discipline or Destruction', hi: 'अनुशासन या विनाश' }, description: { en: 'Intense discipline channelled into surgery, engineering, military.', hi: 'तीव्र अनुशासन शल्यक्रिया, इंजीनियरिंग, सेना में।' } },
     ],
     relatedYogas: ['angarak', 'ruchaka', 'shasha'],
+    chartPositions: [
+      { planetId: 2, house: 6, fromLagna: true },
+      { planetId: 6, house: 6, fromLagna: true },
+    ],
   },
 
   shukra_shani: {
@@ -1727,6 +2100,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Delayed but Lasting Love', hi: 'विलंबित पर स्थायी प्रेम' }, description: { en: 'Late marriage, deep loyalty, artistic mastery through discipline.', hi: 'देर से विवाह, गहरी वफादारी, अनुशासन से कलात्मक निपुणता।' } },
     ],
     relatedYogas: ['malavya', 'shasha', 'kalathra_dosha'],
+    chartPositions: [
+      { planetId: 5, house: 7, fromLagna: true },
+      { planetId: 6, house: 7, fromLagna: true },
+    ],
   },
 
   sun_saturn: {
@@ -1741,6 +2118,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Authority Struggles', hi: 'अधिकार संघर्ष' }, description: { en: 'Struggles with authority, delayed recognition, eventual success through hard work.', hi: 'अधिकारियों से संघर्ष, विलंबित मान्यता, परिश्रम से अंतिम सफलता।' } },
     ],
     relatedYogas: ['pitra_dosha', 'shasha', 'surya_dasham'],
+    chartPositions: [
+      { planetId: 0, house: 10, fromLagna: true },
+      { planetId: 6, house: 10, fromLagna: true },
+    ],
   },
 
   // Quick entries for remaining identifiable yogas
@@ -1756,6 +2137,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Increasing Happiness', hi: 'बढ़ता सुख' }, description: { en: 'Happiness increasing with age, compound blessings.', hi: 'उम्र के साथ बढ़ता सुख, संयुक्त आशीर्वाद।' } },
     ],
     relatedYogas: ['raja_yoga', 'parvata', 'lakshmi'],
+    chartPositions: [
+      { planetId: 2, house: 9, fromLagna: true },
+      { planetId: 4, house: 9, fromLagna: true },
+    ],
   },
 
   varchasvi: {
@@ -1770,6 +2155,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Charisma', hi: 'करिश्मा' }, description: { en: 'Magnetic personality, emotional intelligence, natural leadership.', hi: 'चुम्बकीय व्यक्तित्व, भावनात्मक बुद्धिमत्ता, स्वाभाविक नेतृत्व।' } },
     ],
     relatedYogas: ['gajakesari', 'amrita_yoga', 'pushkala_moon'],
+    chartPositions: [
+      { planetId: 1, house: 4, fromLagna: true },
+      { planetId: 4, house: 10, fromLagna: true },
+    ],
   },
 
   amrita_yoga: {
@@ -1784,6 +2173,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Healing & Longevity', hi: 'उपचार और दीर्घायु' }, description: { en: 'Emotional harmony, public love, healing ability, longevity.', hi: 'भावनात्मक सामंजस्य, जनप्रेम, उपचार क्षमता, दीर्घायु।' } },
     ],
     relatedYogas: ['gajakesari', 'varchasvi', 'pushkala_moon'],
+    chartPositions: [
+      { planetId: 1, house: 4, fromLagna: true },
+      { planetId: 4, house: 4, fromLagna: true },
+    ],
   },
 
   chandradhi: {
@@ -1798,6 +2191,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Leadership & Health', hi: 'नेतृत्व और स्वास्थ्य' }, description: { en: 'Ministerial position, defeats enemies, excellent health.', hi: 'मंत्री पद, शत्रु पराजय, उत्तम स्वास्थ्य।' } },
     ],
     relatedYogas: ['adhi', 'gajakesari', 'adhi_moon_ext'],
+    chartPositions: [
+      { planetId: 3, house: 6, fromLagna: false },
+      { planetId: 5, house: 7, fromLagna: false },
+      { planetId: 4, house: 8, fromLagna: false },
+    ],
   },
 
   tapasvi: {
@@ -1812,6 +2210,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Spiritual Discipline', hi: 'आध्यात्मिक अनुशासन' }, description: { en: 'Natural austerity, meditative temperament, spiritual depth.', hi: 'प्राकृतिक तपस्या, ध्यानशील स्वभाव, आध्यात्मिक गहराई।' } },
     ],
     relatedYogas: ['pravrajya', 'parivraja', 'moksha_yoga', 'vairagyakarak'],
+    chartPositions: [
+      { planetId: 1, house: 10, fromLagna: true },
+      { planetId: 6, house: 8, fromLagna: true },
+    ],
   },
 
   moksha_yoga: {
@@ -1826,6 +2228,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Spiritual Liberation', hi: 'आध्यात्मिक मुक्ति' }, description: { en: 'Liberation potential, dharmic life leading to moksha.', hi: 'मुक्ति की सम्भावना, मोक्ष की ओर धार्मिक जीवन।' } },
     ],
     relatedYogas: ['tapasvi', 'pravrajya', 'ketu_twelfth', 'vairagyakarak'],
+    chartPositions: [
+      { planetId: 4, house: 9, fromLagna: true },
+    ],
   },
 
   bandhana: {
@@ -1840,6 +2245,12 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Restriction', hi: 'प्रतिबंध' }, description: { en: 'Legal entanglements, feeling trapped, restriction of freedom.', hi: 'कानूनी उलझन, फँसा महसूस करना, स्वतंत्रता का प्रतिबंध।' } },
     ],
     relatedYogas: ['shrapit_dosha', 'shani_rahu', 'angarak'],
+    chartPositions: [
+      { planetId: 7, house: 5, fromLagna: true },
+      { planetId: 6, house: 5, fromLagna: true },
+      { planetId: 2, house: 5, fromLagna: true },
+      { planetId: 8, house: 11, fromLagna: true },
+    ],
   },
 
   // Nabhasa Akriti (geometric shape) Yogas
@@ -1855,6 +2266,13 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Garland of Blessings', hi: 'आशीर्वाद की माला' }, description: { en: 'Fame, happiness, comfort — like being adorned with flowers.', hi: 'यश, सुख, आराम — पुष्पमाला से सुशोभित।' } },
     ],
     relatedYogas: ['sarpa_nabhasa', 'ardha_chandra_nabhasa', 'chhatra_nabhasa'],
+    chartPositions: [
+      { planetId: 4, house: 1, fromLagna: true },
+      { planetId: 5, house: 4, fromLagna: true },
+      { planetId: 3, house: 7, fromLagna: true },
+      { planetId: 2, house: 3, fromLagna: true },
+      { planetId: 6, house: 6, fromLagna: true },
+    ],
   },
 
   sarpa_nabhasa: {
@@ -1869,6 +2287,13 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Struggles', hi: 'संघर्ष' }, description: { en: 'Deception, suffering, malefic domination of key houses.', hi: 'छल, कष्ट, प्रमुख भावों पर पाप प्रभुत्व।' } },
     ],
     relatedYogas: ['mala_nabhasa', 'kala_sarpa', 'papa_kartari'],
+    chartPositions: [
+      { planetId: 2, house: 1, fromLagna: true },
+      { planetId: 6, house: 4, fromLagna: true },
+      { planetId: 0, house: 7, fromLagna: true },
+      { planetId: 4, house: 3, fromLagna: true },
+      { planetId: 5, house: 6, fromLagna: true },
+    ],
   },
 
   ardha_chandra_nabhasa: {
@@ -1883,6 +2308,15 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Leadership & Beauty', hi: 'नेतृत्व और सौन्दर्य' }, description: { en: 'Beautiful appearance, military/political eminence.', hi: 'सुन्दर रूप, सैन्य/राजनीतिक प्रतिष्ठा।' } },
     ],
     relatedYogas: ['chhatra_nabhasa', 'nauka_nabhasa', 'graha_malika'],
+    chartPositions: [
+      { planetId: 0, house: 1, fromLagna: true },
+      { planetId: 1, house: 2, fromLagna: true },
+      { planetId: 2, house: 3, fromLagna: true },
+      { planetId: 3, house: 4, fromLagna: true },
+      { planetId: 4, house: 5, fromLagna: true },
+      { planetId: 5, house: 6, fromLagna: true },
+      { planetId: 6, house: 7, fromLagna: true },
+    ],
   },
 
   // Navamsha yogas
@@ -1898,6 +2332,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Self-Identity', hi: 'आत्म-पहचान' }, description: { en: 'Strong self-identity, resilience, clear life direction.', hi: 'मजबूत आत्म-पहचान, सहनशक्ति, स्पष्ट जीवन दिशा।' } },
     ],
     relatedYogas: ['pushkara_navamsha_yoga', 'navamsha_parivartana'],
+    chartPositions: [
+      { planetId: 2, house: 1, fromLagna: true },
+    ],
   },
 
   venus_7th: {
@@ -1912,6 +2349,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Happy Marriage', hi: 'सुखी विवाह' }, description: { en: 'Beautiful spouse, harmonious marriage, artistic partner.', hi: 'सुन्दर जीवनसाथी, सामंजस्यपूर्ण विवाह।' } },
     ],
     relatedYogas: ['malavya', 'gauri', 'kalathra_dosha'],
+    chartPositions: [
+      { planetId: 5, house: 7, fromLagna: true },
+    ],
   },
 
   surya_dasham: {
@@ -1926,6 +2366,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Government Authority', hi: 'सरकारी अधिकार' }, description: { en: 'Government service, leadership, fame in profession.', hi: 'सरकारी सेवा, नेतृत्व, व्यावसायिक यश।' } },
     ],
     relatedYogas: ['raja_yoga', 'mangal_dasham', 'shani_dasham'],
+    chartPositions: [
+      { planetId: 0, house: 10, fromLagna: true },
+    ],
   },
 
   shani_dasham: {
@@ -1940,6 +2383,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Steady Career Rise', hi: 'स्थिर करियर उत्थान' }, description: { en: 'Slow but steady authority through discipline and hard work.', hi: 'अनुशासन और परिश्रम से धीमा पर स्थिर अधिकार।' } },
     ],
     relatedYogas: ['shasha', 'surya_dasham', 'raja_yoga'],
+    chartPositions: [
+      { planetId: 6, house: 10, fromLagna: true },
+    ],
   },
 
   mangal_dasham: {
@@ -1954,6 +2400,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Technical Career', hi: 'तकनीकी करियर' }, description: { en: 'Engineering, surgery, military, sports success.', hi: 'इंजीनियरिंग, शल्यक्रिया, सेना, खेल सफलता।' } },
     ],
     relatedYogas: ['ruchaka', 'surya_dasham', 'raja_yoga'],
+    chartPositions: [
+      { planetId: 2, house: 10, fromLagna: true },
+    ],
   },
 
   ketu_twelfth: {
@@ -1968,6 +2417,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Spiritual Liberation', hi: 'आध्यात्मिक मुक्ति' }, description: { en: 'Natural meditation ability, spiritual inclination, possible foreign residence.', hi: 'प्राकृतिक ध्यान क्षमता, आध्यात्मिक प्रवृत्ति, सम्भव विदेश निवास।' } },
     ],
     relatedYogas: ['moksha_yoga', 'tapasvi', 'vairagyakarak'],
+    chartPositions: [
+      { planetId: 8, house: 12, fromLagna: true },
+      { planetId: 7, house: 6, fromLagna: true },
+    ],
   },
 
   saubhagya: {
@@ -1982,6 +2435,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Divine Protection', hi: 'दिव्य रक्षा' }, description: { en: 'Great fortune, divine protection, smooth life.', hi: 'महान भाग्य, दिव्य रक्षा, सुचारू जीवन।' } },
     ],
     relatedYogas: ['chatussagara', 'chaturmukha', 'mahabhagya'],
+    chartPositions: [
+      { planetId: 4, house: 1, fromLagna: true },
+      { planetId: 5, house: 4, fromLagna: true },
+      { planetId: 3, house: 10, fromLagna: true },
+    ],
   },
 
   chaturmukha: {
@@ -1996,6 +2454,12 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Supreme Fortune', hi: 'सर्वोच्च भाग्य' }, description: { en: 'Fame in all directions, long life, supreme fortune.', hi: 'चारों दिशाओं में यश, दीर्घायु, सर्वोच्च भाग्य।' } },
     ],
     relatedYogas: ['chatussagara', 'saubhagya', 'mahabhagya'],
+    chartPositions: [
+      { planetId: 4, house: 1, fromLagna: true },
+      { planetId: 5, house: 4, fromLagna: true },
+      { planetId: 3, house: 7, fromLagna: true },
+      { planetId: 1, house: 10, fromLagna: true },
+    ],
   },
 
   shiva_yoga: {
@@ -2010,6 +2474,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Supreme Spiritual Authority', hi: 'सर्वोच्च आध्यात्मिक अधिकार' }, description: { en: 'Divine grace, teacher of teachers, spiritual and worldly authority.', hi: 'दिव्य कृपा, गुरुओं के गुरु, आध्यात्मिक और सांसारिक अधिकार।' } },
     ],
     relatedYogas: ['hansa', 'gajakesari', 'mahabhagya'],
+    chartPositions: [
+      { planetId: 0, house: 9, fromLagna: true },
+      { planetId: 1, house: 9, fromLagna: true },
+      { planetId: 4, house: 9, fromLagna: true },
+    ],
   },
 
   kala_amrita: {
@@ -2024,6 +2493,15 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Focused Purpose', hi: 'केन्द्रित उद्देश्य' }, description: { en: 'Concentrated energy, spiritual potential, meaningful achievements.', hi: 'केन्द्रित ऊर्जा, आध्यात्मिक क्षमता, सार्थक उपलब्धियाँ।' } },
     ],
     relatedYogas: ['kala_sarpa', 'shiva_yoga'],
+    chartPositions: [
+      { planetId: 0, house: 1, fromLagna: true },
+      { planetId: 1, house: 7, fromLagna: true },
+      { planetId: 2, house: 3, fromLagna: true },
+      { planetId: 3, house: 2, fromLagna: true },
+      { planetId: 4, house: 5, fromLagna: true },
+      { planetId: 5, house: 4, fromLagna: true },
+      { planetId: 6, house: 6, fromLagna: true },
+    ],
   },
 
   tri_vakri: {
@@ -2038,6 +2516,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Delayed Success', hi: 'विलंबित सफलता' }, description: { en: 'Internalized energy, unconventional path, success later in life.', hi: 'आंतरिक ऊर्जा, अपरंपरागत मार्ग, जीवन में बाद में सफलता।' } },
     ],
     relatedYogas: ['kala_sarpa', 'shakata'],
+    chartPositions: [
+      { planetId: 3, house: 2, fromLagna: true },
+      { planetId: 4, house: 7, fromLagna: true },
+      { planetId: 6, house: 9, fromLagna: true },
+    ],
   },
 
   // Additional wealth yogas
@@ -2053,6 +2536,11 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Artistic Wealth', hi: 'कलात्मक धन' }, description: { en: 'Wealth through arts, scholarly reputation, refined culture.', hi: 'कलाओं से धन, विद्वत् प्रतिष्ठा, परिष्कृत संस्कृति।' } },
     ],
     relatedYogas: ['saraswati', 'lakshmi', 'mahalakshmi'],
+    chartPositions: [
+      { planetId: 4, house: 5, fromLagna: true },
+      { planetId: 3, house: 5, fromLagna: true },
+      { planetId: 5, house: 5, fromLagna: true },
+    ],
   },
 
   mahalakshmi: {
@@ -2067,6 +2555,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Permanent Luxury', hi: 'स्थायी विलासिता' }, description: { en: 'Permanent wealth, luxury, beautiful surroundings.', hi: 'स्थायी धन, विलासिता, सुन्दर परिवेश।' } },
     ],
     relatedYogas: ['lakshmi', 'dhana_yoga', 'malavya'],
+    chartPositions: [
+      { planetId: 5, house: 2, fromLagna: true },
+      { planetId: 4, house: 10, fromLagna: true },
+    ],
   },
 
   bhagya_yoga: {
@@ -2081,6 +2573,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Supreme Fortune', hi: 'सर्वोच्च भाग्य' }, description: { en: 'Amplified luck, prosperous father, divine blessings.', hi: 'प्रबल भाग्य, समृद्ध पिता, दिव्य आशीर्वाद।' } },
     ],
     relatedYogas: ['lakshmi', 'dharma_karmadhipati', 'mahabhagya'],
+    chartPositions: [
+      { planetId: 4, house: 9, fromLagna: true },
+    ],
   },
 
   // Remaining essential yogas
@@ -2096,6 +2591,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Bold Ventures', hi: 'साहसिक उद्यम' }, description: { en: 'Extraordinary daring, media/tech success, bold ventures.', hi: 'असाधारण साहस, मीडिया/तकनीक सफलता।' } },
     ],
     relatedYogas: ['kala_sarpa', 'angarak'],
+    chartPositions: [
+      { planetId: 7, house: 3, fromLagna: true },
+      { planetId: 8, house: 9, fromLagna: true },
+    ],
   },
 
   guru_lagna: {
@@ -2110,6 +2609,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Wisdom & Grace', hi: 'ज्ञान और कृपा' }, description: { en: 'Divine grace, generous nature, philosophical outlook.', hi: 'दैवी कृपा, उदार स्वभाव, दार्शनिक दृष्टिकोण।' } },
     ],
     relatedYogas: ['hansa', 'gajakesari', 'shiva_yoga'],
+    chartPositions: [
+      { planetId: 4, house: 1, fromLagna: true },
+    ],
   },
 
   chandra_surya: {
@@ -2124,6 +2626,10 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Inner Power', hi: 'आन्तरिक शक्ति' }, description: { en: 'Concentrated willpower, spiritual depth, introspective nature.', hi: 'एकाग्र इच्छाशक्ति, आध्यात्मिक गहराई, अन्तर्मुखी स्वभाव।' } },
     ],
     relatedYogas: ['kemadruma', 'grahan'],
+    chartPositions: [
+      { planetId: 0, house: 5, fromLagna: true },
+      { planetId: 1, house: 5, fromLagna: true },
+    ],
   },
 
   shoola_nabhasa: {
@@ -2138,6 +2644,15 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { area: { en: 'Concentrated Power', hi: 'केन्द्रित शक्ति' }, description: { en: 'Sharp focus, extremes in fortune, concentrated energy.', hi: 'तीव्र एकाग्रता, भाग्य में उतार-चढ़ाव, केन्द्रित ऊर्जा।' } },
     ],
     relatedYogas: ['gola', 'yuga', 'kedara'],
+    chartPositions: [
+      { planetId: 0, house: 1, fromLagna: true },
+      { planetId: 1, house: 1, fromLagna: true },
+      { planetId: 2, house: 5, fromLagna: true },
+      { planetId: 3, house: 5, fromLagna: true },
+      { planetId: 4, house: 9, fromLagna: true },
+      { planetId: 5, house: 9, fromLagna: true },
+      { planetId: 6, house: 1, fromLagna: true },
+    ],
   },
 
 };

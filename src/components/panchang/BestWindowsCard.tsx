@@ -49,13 +49,14 @@ const VERDICT_BG: Record<VerdictRating, string> = {
   exceptional: 'bg-gold-primary/60',
 };
 
-const VERDICT_BAR_BG: Record<VerdictRating, string> = {
-  avoid: 'bg-red-500/50',
-  caution: 'bg-amber-500/45',
-  good: 'bg-emerald-500/35',
-  very_good: 'bg-emerald-400/50',
-  excellent: 'bg-gold-primary/50',
-  exceptional: 'bg-gold-primary/70',
+// Bar segment colours — SOLID hex, not Tailwind opacity (which gets absorbed by dark bg)
+const BAR_HEX: Record<VerdictRating, string> = {
+  avoid: '#7f1d1d',      // deep red — visible on #0a0e27
+  caution: '#78350f',    // deep amber
+  good: '#064e3b',       // deep emerald
+  very_good: '#065f46',  // brighter emerald
+  excellent: '#d4a853',  // ACTUAL gold-primary — matches Dekho Panchang logo
+  exceptional: '#f0d48a', // gold-light — brightest
 };
 
 const VERDICT_TEXT: Record<VerdictRating, string> = {
@@ -129,11 +130,10 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
   const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
   const slotListRef = useRef<HTMLDivElement>(null);
 
-  // Timeline spans from Brahma Muhurta (or 1h before sunrise) to 1h after sunset
-  const brahmStart = panchang.brahmaMuhurta ? toMin(panchang.brahmaMuhurta.start) : toMin(panchang.sunrise) - 96;
-  const timelineStart = Math.max(0, brahmStart);
-  const timelineEnd = Math.min(1440, toMin(panchang.sunset) + 60);
-  const timelineSpan = timelineEnd - timelineStart;
+  // Full 24-hour timeline: midnight to midnight
+  const timelineStart = 0;
+  const timelineEnd = 1440;
+  const timelineSpan = 1440;
 
   const sunriseMin = toMin(panchang.sunrise);
   const sunsetMin = toMin(panchang.sunset);
@@ -252,16 +252,19 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
         </div>
       )}
 
-      {/* ── Timeline Bar (Brahma Muhurta → Sunset+1h) ── */}
+      {/* ── 24-Hour Timeline Bar ── */}
       <div>
-        {/* Time labels */}
-        <div className="flex items-center justify-between mb-1">
-          <span className="text-text-secondary text-[10px] font-mono">{fmt12(String(Math.floor(timelineStart / 60)).padStart(2, '0') + ':' + String(timelineStart % 60).padStart(2, '0'))}</span>
-          <span className="text-text-secondary text-[10px] font-mono">{fmt12(String(Math.floor(timelineEnd / 60)).padStart(2, '0') + ':' + String(timelineEnd % 60).padStart(2, '0'))}</span>
+        {/* Hour markers */}
+        <div className="flex items-center justify-between mb-1 px-0.5">
+          {[0, 3, 6, 9, 12, 15, 18, 21].map(h => (
+            <span key={h} className="text-text-secondary/50 text-[8px] font-mono" style={{ width: '12.5%', textAlign: h === 0 ? 'left' : h === 21 ? 'right' : 'center' }}>
+              {h === 0 ? '12a' : h === 12 ? '12p' : h > 12 ? `${h - 12}p` : `${h}a`}
+            </span>
+          ))}
         </div>
 
-        {/* The bar — taller, with markers inside */}
-        <div className="relative h-10 sm:h-8 rounded-lg overflow-hidden bg-white/[0.03] border border-white/[0.06]">
+        {/* The bar — tall, full-width, with icons inside */}
+        <div className="relative h-14 sm:h-12 rounded-xl bg-[#0d1230] border border-white/[0.08]">
           {/* Slot segments */}
           {slots.map((slot, i) => {
             const startMin = toMin(slot.start);
@@ -272,8 +275,8 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
             return (
               <button
                 key={i}
-                className={`absolute top-0 bottom-0 ${VERDICT_BAR_BG[slot.verdict]} hover:brightness-125 transition-all cursor-pointer border-r border-white/[0.06] last:border-r-0`}
-                style={{ left: `${leftPct}%`, width: `${widthPct}%` }}
+                className="absolute top-0 bottom-0 hover:brightness-130 transition-all cursor-pointer"
+                style={{ left: `${leftPct}%`, width: `${widthPct}%`, backgroundColor: BAR_HEX[slot.verdict] }}
                 onClick={() => scrollToSlot(slot)}
                 title={`${fmt12(slot.start)} – ${fmt12(slot.end)}: ${VERDICT_LABEL[slot.verdict].en}`}
                 aria-label={`${VERDICT_LABEL[slot.verdict].en} from ${fmt12(slot.start)} to ${fmt12(slot.end)}`}
@@ -281,63 +284,69 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
             );
           })}
 
-          {/* Sunrise marker */}
-          <div className="absolute top-0 bottom-0 flex flex-col items-center pointer-events-none z-10"
-            style={{ left: `${pctOf(sunriseMin)}%` }}>
-            <div className="w-px h-full bg-amber-400/50" />
-            <span className="absolute -bottom-4 text-[7px] text-amber-400/80 font-mono whitespace-nowrap">
-              <Sunrise className="w-2.5 h-2.5 inline -mt-0.5" /> {fmtShort(panchang.sunrise)}
-            </span>
+          {/* ── Event markers WITH icons inside the bar ── */}
+
+          {/* Sunrise */}
+          <div className="absolute top-0 bottom-0 flex items-end justify-center pointer-events-none z-10"
+            style={{ left: `${pctOf(sunriseMin)}%`, transform: 'translateX(-50%)' }}>
+            <div className="absolute top-0 bottom-0 w-px bg-amber-400/70" style={{ left: '50%' }} />
+            <div className="flex flex-col items-center mb-0.5">
+              <Sunrise className="w-3.5 h-3.5 text-amber-400 drop-shadow-[0_0_4px_rgba(251,191,36,0.6)]" />
+              <span className="text-[7px] text-amber-300 font-mono font-bold mt-px">{fmtShort(panchang.sunrise)}</span>
+            </div>
           </div>
 
-          {/* Sunset marker */}
-          <div className="absolute top-0 bottom-0 flex flex-col items-center pointer-events-none z-10"
-            style={{ left: `${pctOf(sunsetMin)}%` }}>
-            <div className="w-px h-full bg-orange-400/50" />
-            <span className="absolute -bottom-4 text-[7px] text-orange-400/80 font-mono whitespace-nowrap">
-              <Sunset className="w-2.5 h-2.5 inline -mt-0.5" /> {fmtShort(panchang.sunset)}
-            </span>
+          {/* Sunset */}
+          <div className="absolute top-0 bottom-0 flex items-end justify-center pointer-events-none z-10"
+            style={{ left: `${pctOf(sunsetMin)}%`, transform: 'translateX(-50%)' }}>
+            <div className="absolute top-0 bottom-0 w-px bg-orange-400/70" style={{ left: '50%' }} />
+            <div className="flex flex-col items-center mb-0.5">
+              <Sunset className="w-3.5 h-3.5 text-orange-400 drop-shadow-[0_0_4px_rgba(251,146,60,0.6)]" />
+              <span className="text-[7px] text-orange-300 font-mono font-bold mt-px">{fmtShort(panchang.sunset)}</span>
+            </div>
           </div>
 
-          {/* Moonrise marker */}
-          {moonriseMin !== null && moonriseMin >= timelineStart && moonriseMin <= timelineEnd && (
-            <div className="absolute top-0 bottom-0 flex flex-col items-center pointer-events-none z-10"
-              style={{ left: `${pctOf(moonriseMin)}%` }}>
-              <div className="w-px h-full bg-blue-400/30" />
-              <span className="absolute -top-4 text-[7px] text-blue-400/60 font-mono whitespace-nowrap">
-                <Moon className="w-2.5 h-2.5 inline -mt-0.5" /> {fmtShort(panchang.moonrise)}
-              </span>
+          {/* Moonrise */}
+          {moonriseMin !== null && (
+            <div className="absolute top-0 bottom-0 flex items-start justify-center pointer-events-none z-10"
+              style={{ left: `${pctOf(moonriseMin)}%`, transform: 'translateX(-50%)' }}>
+              <div className="absolute top-0 bottom-0 w-px bg-blue-400/40" style={{ left: '50%' }} />
+              <div className="flex flex-col items-center mt-0.5">
+                <Moon className="w-3 h-3 text-blue-300 drop-shadow-[0_0_4px_rgba(147,197,253,0.5)]" />
+                <span className="text-[7px] text-blue-300/70 font-mono mt-px">{fmtShort(panchang.moonrise)}</span>
+              </div>
             </div>
           )}
 
-          {/* Moonset marker */}
-          {moonsetMin !== null && moonsetMin >= timelineStart && moonsetMin <= timelineEnd && (
-            <div className="absolute top-0 bottom-0 flex flex-col items-center pointer-events-none z-10"
-              style={{ left: `${pctOf(moonsetMin)}%` }}>
-              <div className="w-px h-full bg-blue-400/20" />
-              <span className="absolute -top-4 text-[7px] text-blue-300/40 font-mono whitespace-nowrap">
-                <Moon className="w-2.5 h-2.5 inline -mt-0.5 opacity-40" /> {fmtShort(panchang.moonset)}
-              </span>
+          {/* Moonset */}
+          {moonsetMin !== null && (
+            <div className="absolute top-0 bottom-0 flex items-start justify-center pointer-events-none z-10"
+              style={{ left: `${pctOf(moonsetMin)}%`, transform: 'translateX(-50%)' }}>
+              <div className="absolute top-0 bottom-0 w-px bg-blue-400/20" style={{ left: '50%' }} />
+              <div className="flex flex-col items-center mt-0.5">
+                <Moon className="w-3 h-3 text-blue-400/40" />
+                <span className="text-[7px] text-blue-300/40 font-mono mt-px">{fmtShort(panchang.moonset)}</span>
+              </div>
             </div>
           )}
 
           {/* NOW marker */}
           {nowInTimeline && (
             <div className="absolute top-0 bottom-0 z-20 pointer-events-none"
-              style={{ left: `${nowPct}%` }}>
-              <div className="w-0.5 h-full bg-gold-primary shadow-[0_0_8px_rgba(212,168,83,0.7)]" />
-              <span className="absolute -top-4 left-1/2 -translate-x-1/2 text-[8px] font-bold text-gold-light bg-gold-primary/30 px-1.5 py-0.5 rounded-full">
+              style={{ left: `${nowPct}%`, transform: 'translateX(-50%)' }}>
+              <div className="w-0.5 h-full bg-gold-primary shadow-[0_0_10px_rgba(212,168,83,0.8)]" />
+              <span className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[7px] font-black text-[#0a0e27] bg-gold-primary px-1.5 py-0.5 rounded-full shadow-[0_0_8px_rgba(212,168,83,0.5)]">
                 NOW
               </span>
             </div>
           )}
         </div>
 
-        {/* Legend — below the bar, with space for marker labels */}
-        <div className="flex items-center gap-3 mt-5 flex-wrap">
+        {/* Legend */}
+        <div className="flex items-center gap-3 mt-2.5 flex-wrap">
           {(['avoid', 'caution', 'good', 'excellent'] as VerdictRating[]).map(r => (
             <span key={r} className="flex items-center gap-1 text-[10px] text-text-secondary">
-              <span className={`inline-block w-2.5 h-2.5 rounded-sm ${VERDICT_BAR_BG[r]}`} />
+              <span className="inline-block w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: BAR_HEX[r] }} />
               {VERDICT_LABEL[r][isHi ? 'hi' : 'en']}
             </span>
           ))}

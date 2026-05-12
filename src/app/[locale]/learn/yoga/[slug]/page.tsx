@@ -362,17 +362,30 @@ export default function YogaDetailPage() {
         </section>
       )}
 
-      {/* ── CTA ──────────────────────────────────────────── */}
-      <div className="bg-gradient-to-r from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] border border-gold-primary/20 rounded-2xl p-8 text-center">
-        <h3 className="text-xl font-[Cinzel] text-gold-light mb-2" style={headStyle}>
-          {isHi ? 'क्या आपकी कुण्डली में यह योग है?' : 'Do you have this yoga in your chart?'}
-        </h3>
-        <p className="text-text-secondary text-sm mb-4" style={bodyStyle}>
-          {isHi ? 'मुफ़्त कुण्डली बनाएँ और 173 योगों की जाँच करें' : 'Generate your free Kundali and check 173 yogas'}
-        </p>
-        <Link href="/kundali" className="inline-flex items-center gap-2 px-6 py-3 bg-gold-primary text-bg-primary font-bold rounded-xl hover:bg-gold-light transition-colors">
-          {isHi ? 'कुण्डली बनाएँ' : 'Generate Kundali'} <ArrowRight size={16} />
-        </Link>
+      {/* ── CTAs ─────────────────────────────────────────── */}
+      <div className="grid sm:grid-cols-2 gap-4">
+        <div className="bg-gradient-to-r from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] border border-gold-primary/20 rounded-2xl p-6 text-center">
+          <h3 className="text-lg font-[Cinzel] text-gold-light mb-2" style={headStyle}>
+            {isHi ? 'क्या आपकी कुण्डली में यह योग है?' : 'Do you have this yoga?'}
+          </h3>
+          <p className="text-text-secondary text-xs mb-3" style={bodyStyle}>
+            {isHi ? 'मुफ़्त कुण्डली बनाएँ और 173 योगों की जाँच करें' : 'Generate your free Kundali and check 173 yogas'}
+          </p>
+          <Link href="/kundali" className="inline-flex items-center gap-2 px-5 py-2.5 bg-gold-primary text-bg-primary font-bold rounded-xl hover:bg-gold-light transition-colors text-sm">
+            {isHi ? 'कुण्डली बनाएँ' : 'Generate Kundali'} <ArrowRight size={16} />
+          </Link>
+        </div>
+        <div className="bg-gradient-to-r from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 text-center">
+          <h3 className="text-lg font-[Cinzel] text-gold-light mb-2" style={headStyle}>
+            {isHi ? 'योग निर्माण एनीमेटर' : 'Yoga Formation Animator'}
+          </h3>
+          <p className="text-text-secondary text-xs mb-3" style={bodyStyle}>
+            {isHi ? 'ग्रहों को चरण दर चरण कुण्डली में योग बनाते देखें' : 'Watch planets animate step-by-step into yoga formations'}
+          </p>
+          <Link href="/learn/yoga-animator" className="inline-flex items-center gap-2 px-5 py-2.5 bg-gold-primary/10 border border-gold-primary/30 text-gold-light font-semibold rounded-xl hover:bg-gold-primary/20 transition-colors text-sm">
+            {isHi ? 'एनीमेशन देखें' : 'Open Animator'} <ArrowRight size={16} />
+          </Link>
+        </div>
       </div>
     </div>
   );

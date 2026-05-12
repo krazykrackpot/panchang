@@ -293,6 +293,30 @@ export default function YogaIndexPage() {
         </div>
       )}
 
+      {/* ── Yoga Formation Animator CTA ── */}
+      <div className="mt-10 rounded-2xl border border-gold-primary/20 bg-gradient-to-r from-[#2d1b69]/20 to-[#0a0e27] p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <div className="flex-1 min-w-0">
+          <div className="text-xs font-bold uppercase tracking-widest text-gold-primary/70 mb-1">
+            {locale === 'hi' ? 'इन्टरैक्टिव टूल' : 'Interactive Tool'}
+          </div>
+          <div className="text-gold-light font-bold text-base mb-1" style={hf}>
+            {locale === 'hi' ? 'योग निर्माण एनीमेटर' : 'Yoga Formation Animator'}
+          </div>
+          <div className="text-text-secondary text-sm" style={bf}>
+            {locale === 'hi'
+              ? 'देखें कैसे ग्रह चरण दर चरण कुण्डली में योग बनाते हैं — शर्तें एक-एक करके हरी होती हैं।'
+              : 'Watch planets animate step-by-step into position on the birth chart — conditions tick green as each is satisfied.'}
+          </div>
+        </div>
+        <Link
+          href="/learn/yoga-animator"
+          className="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-semibold"
+        >
+          {locale === 'hi' ? 'एनीमेशन देखें' : 'Open Animator'}
+          <ChevronRight className="w-4 h-4" />
+        </Link>
+      </div>
+
       <AuthorByline />
     </div>
   );

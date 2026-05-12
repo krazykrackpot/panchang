@@ -12,6 +12,7 @@ import type { Locale } from '@/types/panchang';
 import type { KundaliData } from '@/types/kundali';
 import { detectAfflictedPlanets, type AfflictedPlanet } from '@/lib/puja/affliction-detector';
 import ChartNorth from '@/components/kundali/ChartNorth';
+import CrossSellCTA from '@/components/cta/CrossSellCTA';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 type LocaleText = Record<string, string>;
@@ -266,6 +267,17 @@ export default function SharedKundaliPage() {
           </div>
         );
       })()}
+
+      {/* Inline signup CTA for logged-out visitors */}
+      <div className="mt-8">
+        <CrossSellCTA
+          headline="Save this chart to your account"
+          subtext="Free account — save unlimited kundalis for family & friends, get personalised dashas and predictions"
+          buttonLabel="Sign Up Free"
+          triggerAuth={true}
+          guestOnly={true}
+        />
+      </div>
 
       {/* CTA */}
       <div className="text-center mt-8">

@@ -10,6 +10,7 @@ import { BookOpen, ChevronRight, ChevronDown, Clock, Star, CheckCircle, Sparkles
 import { ShareRow } from '@/components/ui/ShareButton';
 import AdUnit from '@/components/ads/AdUnit';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import type { Locale } from '@/types/panchang';
@@ -416,6 +417,80 @@ export default function LearnPage() {
           </div>
         </Link>
       </motion.div>
+
+      {/* ── Yoga Encyclopedia ── */}
+      <div className="mb-16">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-10 rounded-full bg-violet-500/15 border border-violet-500/30 flex items-center justify-center text-violet-400 text-lg">
+            &#9733;
+          </div>
+          <div>
+            <h2 className="text-2xl font-bold text-gold-gradient" style={hf}>
+              {locale === 'hi' ? 'योग विश्वकोश' : locale === 'ta' ? 'யோக கலைக்களஞ்சியம்' : locale === 'bn' ? 'যোগ বিশ্বকোষ' : 'Yoga Encyclopedia'}
+            </h2>
+            <p className="text-text-secondary text-sm" style={bf}>
+              {locale === 'hi' ? '104 वैदिक ज्योतिष योगों का विस्तृत विवरण' : locale === 'ta' ? '104 வேத ஜோதிட யோகங்கள்' : locale === 'bn' ? '104টি বৈদিক জ্যোতিষ যোগ' : '104 detailed yoga articles — formation, effects & remedies'}
+            </p>
+          </div>
+        </div>
+
+        {(() => {
+          const FEATURED_SLUGS = [
+            'gajakesari', 'budhaditya', 'mangala_dosha', 'kala_sarpa', 'guru_chandal',
+            'ruchaka', 'bhadra', 'hansa', 'malavya', 'shasha',
+            'kemadruma', 'chandra_mangala', 'neechabhanga_raja', 'viparita_raja',
+            'saraswati', 'pitra_dosha', 'shrapit_dosha',
+            'sunapha', 'anapha', 'durdhara',
+          ];
+          const CATEGORY_COLOURS: Record<string, string> = {
+            dosha: 'bg-red-500/15 text-red-400 border-red-500/25',
+            mahapurusha: 'bg-violet-500/15 text-violet-400 border-violet-500/25',
+            moon_based: 'bg-blue-500/15 text-blue-400 border-blue-500/25',
+            sun_based: 'bg-amber-500/15 text-amber-400 border-amber-500/25',
+            raja: 'bg-gold-primary/15 text-gold-light border-gold-primary/25',
+            wealth: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/25',
+            inauspicious: 'bg-orange-500/15 text-orange-400 border-orange-500/25',
+            other: 'bg-cyan-500/15 text-cyan-400 border-cyan-500/25',
+          };
+          const featured = FEATURED_SLUGS
+            .filter(s => YOGA_DETAIL_DATA[s])
+            .map(s => ({ slug: s, ...YOGA_DETAIL_DATA[s] }));
+
+          return (
+            <>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                {featured.map(yoga => (
+                  <Link key={yoga.slug} href={`/learn/yoga/${yoga.slug}`}
+                    className="group rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 hover:border-gold-primary/40 p-4 transition-all hover:shadow-lg hover:shadow-gold-primary/5">
+                    <h3 className="text-gold-light font-bold text-sm mb-2 group-hover:text-gold-primary transition-colors leading-tight" style={bf}>
+                      {locale === 'hi' ? yoga.name.hi : yoga.name.en}
+                    </h3>
+                    <div className="flex items-center gap-2">
+                      <span className={`text-[10px] px-1.5 py-0.5 rounded-full border font-medium ${CATEGORY_COLOURS[yoga.category] || CATEGORY_COLOURS.other}`}>
+                        {yoga.category.replace(/_/g, ' ')}
+                      </span>
+                      {yoga.isAuspicious
+                        ? <span className="text-[10px] text-emerald-400">&#9733;</span>
+                        : <span className="text-[10px] text-red-400">&#9888;</span>
+                      }
+                    </div>
+                  </Link>
+                ))}
+              </div>
+              <div className="mt-4">
+                <Link href="/learn/yoga"
+                  className="inline-flex items-center gap-2 text-gold-primary hover:text-gold-light text-sm font-medium transition-colors group">
+                  {locale === 'hi' ? `सभी ${Object.keys(YOGA_DETAIL_DATA).length} योग देखें` :
+                   locale === 'ta' ? `அனைத்து ${Object.keys(YOGA_DETAIL_DATA).length} யோகங்களையும் காண்க` :
+                   locale === 'bn' ? `সমস্ত ${Object.keys(YOGA_DETAIL_DATA).length} যোগ দেখুন` :
+                   `View all ${Object.keys(YOGA_DETAIL_DATA).length} yogas`}
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </>
+          );
+        })()}
+      </div>
 
       {/* ── Reference Library (grouped by track, collapsible) ── */}
       <div>

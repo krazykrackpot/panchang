@@ -38,6 +38,7 @@ import { computePersonalizedDay } from '@/lib/personalization/personal-panchang'
 import { getRashiNumber } from '@/lib/ephem/astronomical';
 import type { PersonalizedDay, UserSnapshot } from '@/lib/personalization/types';
 import AdUnit from '@/components/ads/AdUnit';
+import CrossSellCTA from '@/components/cta/CrossSellCTA';
 import NakshatraActivityGuide from '@/components/panchang/NakshatraActivityGuide';
 import DayTimeline from '@/components/panchang/DayTimeline';
 import TarotCard from '@/components/ui/TarotCard';
@@ -1582,6 +1583,17 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
               </div>
             );
           })()}
+
+          {/* Inline signup CTA for logged-out visitors */}
+          <div className="my-8">
+            <CrossSellCTA
+              headline={isDevanagari ? 'प्रतिदिन अपना पंचांग ईमेल से पाएँ' : 'Get your daily panchang by email'}
+              subtext={isDevanagari ? 'निःशुल्क खाता — व्यक्तिगत तिथि, नक्षत्र, मुहूर्त प्रतिदिन अपने इनबॉक्स में' : 'Free account — personalised tithi, nakshatra & muhurta delivered to your inbox every morning'}
+              buttonLabel={isDevanagari ? 'निःशुल्क पंजीकरण' : 'Sign Up Free'}
+              triggerAuth={true}
+              guestOnly={true}
+            />
+          </div>
 
           {/* ═══ MEGA CARD GRID  –  tarot-style cards linking to subpages ═══ */}
           {/* Row 1: 5 cards  –  reordered by locale */}

@@ -2,42 +2,62 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useAuthStore } from '@/stores/auth-store';
+import { usePathname } from 'next/navigation';
 import AuthModal from './AuthModal';
 
-const SESSION_KEY = 'dp-signup-prompt-dismissed';
-const DELAY_MS = 60_000; // 60 seconds before showing
-const SCROLL_THRESHOLD = 0.5; // 50% of page height
+const STORAGE_KEY = 'dp-signup-prompt';
+const VIEWS_KEY = 'dp-page-views';
+const COOLDOWN_DAYS = 3;
+const PAGE_VIEW_THRESHOLD = 3; // Show after 3 page views
+const TIME_THRESHOLD_MS = 90_000; // OR after 90 seconds on one page
 
 /**
- * Auto-opens AuthModal for non-logged-in visitors after engagement.
+ * Gentler signup modal for non-logged-in visitors.
  *
  * Triggers after EITHER:
- *   - 60 seconds on site, OR
- *   - Scrolling past 50% of the page height
+ *   - 3 cumulative page views (tracked in localStorage), OR
+ *   - 90 seconds on a single page (for deep readers)
  *
- * - Dismissed via X button or backdrop click → sets sessionStorage flag
- * - Flag clears when browser tab/window closes → prompts again next visit
- * - Never renders if user is already logged in
+ * - Never shows on the very first page view
+ * - Dismiss sets a 3-day cooldown (localStorage timestamp)
+ * - Never renders if user is logged in
  */
 export default function SignupPrompt() {
   const { user, initialized, initialize } = useAuthStore();
   const [show, setShow] = useState(false);
   const triggered = useRef(false);
+  const pathname = usePathname();
 
-  // Ensure auth is initialized (UserMenu also calls this, but we may mount first)
   useEffect(() => { initialize(); }, [initialize]);
 
   useEffect(() => {
     if (!initialized) return;
-    if (user) {
-      setShow(false);
+    if (user) { setShow(false); return; }
+
+    // Check 3-day cooldown
+    try {
+      const dismissed = localStorage.getItem(STORAGE_KEY);
+      if (dismissed) {
+        const ts = parseInt(dismissed, 10);
+        if (!isNaN(ts) && Date.now() - ts < COOLDOWN_DAYS * 24 * 60 * 60 * 1000) {
+          return;
+        }
+      }
+    } catch {
+      // localStorage unavailable — don't block
+      console.error('[SignupPrompt] localStorage read failed');
       return;
     }
+
+    // Increment page view count
+    let views = 0;
     try {
-      if (sessionStorage.getItem(SESSION_KEY)) return;
+      const stored = localStorage.getItem(VIEWS_KEY);
+      views = stored ? parseInt(stored, 10) || 0 : 0;
+      views += 1;
+      localStorage.setItem(VIEWS_KEY, views.toString());
     } catch {
-      // sessionStorage unavailable (private browsing)  –  continue
-      console.error('[SignupPrompt] sessionStorage read failed');
+      console.error('[SignupPrompt] localStorage views tracking failed');
     }
 
     const trigger = () => {
@@ -46,31 +66,24 @@ export default function SignupPrompt() {
       setShow(true);
     };
 
-    // Timer trigger  –  60 seconds on site
-    const timer = setTimeout(trigger, DELAY_MS);
+    // Page view trigger — show if they've visited 3+ pages (never on first visit)
+    if (views >= PAGE_VIEW_THRESHOLD) {
+      // Small delay so the page renders first, not instant popup
+      const viewTimer = setTimeout(trigger, 2_000);
+      return () => clearTimeout(viewTimer);
+    }
 
-    // Scroll trigger  –  50% of page
-    const onScroll = () => {
-      const scrolled = window.scrollY + window.innerHeight;
-      const docHeight = document.documentElement.scrollHeight;
-      if (docHeight > 0 && scrolled / docHeight >= SCROLL_THRESHOLD) {
-        trigger();
-      }
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener('scroll', onScroll);
-    };
-  }, [initialized, user]);
+    // Time trigger — 90 seconds on a single page (for deep readers)
+    const timer = setTimeout(trigger, TIME_THRESHOLD_MS);
+    return () => clearTimeout(timer);
+  }, [initialized, user, pathname]);
 
   const dismiss = () => {
     setShow(false);
     try {
-      sessionStorage.setItem(SESSION_KEY, '1');
+      localStorage.setItem(STORAGE_KEY, Date.now().toString());
     } catch {
-      console.error('[SignupPrompt] sessionStorage write failed');
+      console.error('[SignupPrompt] localStorage write failed');
     }
   };
 

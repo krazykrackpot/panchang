@@ -626,6 +626,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
+  // Yoga index page (/learn/yoga)
+  addEntries(entries, '/learn/yoga', {
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  });
+
   // Yoga detail pages (/learn/yoga/{slug})
   for (const slug of Object.keys(YOGA_DETAIL_DATA)) {
     addEntries(entries, `/learn/yoga/${slug}`, {

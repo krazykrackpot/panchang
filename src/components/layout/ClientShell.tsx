@@ -9,6 +9,7 @@ const CookieConsent = dynamic(() => import('@/components/cookie-consent/CookieCo
 const VratScheduler = dynamic(() => import('@/components/vrat/VratScheduler'), { ssr: false });
 const ClientErrorHandler = dynamic(() => import('@/components/layout/ClientErrorHandler'), { ssr: false });
 const SignupBanner = dynamic(() => import('@/components/auth/SignupBanner'), { ssr: false });
+const SignupPrompt = dynamic(() => import('@/components/auth/SignupPrompt'), { ssr: false });
 
 /**
  * Client-only shell components (SW, PWA, cookies).
@@ -25,6 +26,7 @@ export default function ClientShell({ locale }: { locale?: string }) {
       <VratScheduler />
       <ClientErrorHandler />
       <SignupBanner />
+      <SignupPrompt />
     </>
   );
 }

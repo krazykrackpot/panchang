@@ -10,6 +10,7 @@ const VratScheduler = dynamic(() => import('@/components/vrat/VratScheduler'), {
 const ClientErrorHandler = dynamic(() => import('@/components/layout/ClientErrorHandler'), { ssr: false });
 const SignupBanner = dynamic(() => import('@/components/auth/SignupBanner'), { ssr: false });
 const SignupPrompt = dynamic(() => import('@/components/auth/SignupPrompt'), { ssr: false });
+const TimezoneMismatchBanner = dynamic(() => import('@/components/location/TimezoneMismatchBanner'), { ssr: false });
 
 /**
  * Client-only shell components (SW, PWA, cookies).
@@ -27,6 +28,7 @@ export default function ClientShell({ locale }: { locale?: string }) {
       <ClientErrorHandler />
       <SignupBanner />
       <SignupPrompt />
+      <TimezoneMismatchBanner />
     </>
   );
 }

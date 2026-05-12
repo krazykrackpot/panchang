@@ -27,10 +27,10 @@ export const PAGE_META: Record<string, PageMeta> = {
       en: "Today's Panchang  –  Tithi, Nakshatra, Rahu Kaal & Muhurta Times",
       hi: 'आज का पंचांग  –  तिथि, नक्षत्र, योग, करण',
       sa: 'दैनिकपञ्चाङ्गम्  –  तिथिः नक्षत्रं योगः करणम्',
-      gu: 'આજનું પંચાંગ  –  તિથિ, નક્ષત્ર, યોગ | Dekho Panchang',
-      kn: 'ಇಂದಿನ ಪಂಚಾಂಗ  –  ತಿಥಿ, ನಕ್ಷತ್ರ, ಯೋಗ | Dekho Panchang',
-      te: 'నేటి పంచాంగం  –  తిథి, నక్షత్రం, యోగం | Dekho Panchang',
-      bn: 'আজকের পঞ্চাঙ্গ  –  তিথি, নক্ষত্র, যোগ | Dekho Panchang',
+      gu: 'આજનું પંચાંગ  –  તિથિ, નક્ષત્ર, યોગ',
+      kn: 'ಇಂದಿನ ಪಂಚಾಂಗ  –  ತಿಥಿ, ನಕ್ಷತ್ರ, ಯೋಗ',
+      te: 'నేటి పంచాంగం  –  తిథి, నక్షత్రం, యోగం',
+      bn: 'আজকের পঞ্চাঙ্গ  –  তিথি, নক্ষত্র, যোগ',
     },
     description: {
       en: 'Check today\'s Panchang for your city  –  Tithi, Nakshatra, Yoga, Karana, Rahu Kaal, Shubh Muhurat, sunrise & sunset. Computed from real planetary positions using Surya Siddhanta algorithms. Free, accurate, updated daily for any location worldwide.',
@@ -139,7 +139,7 @@ export const PAGE_META: Record<string, PageMeta> = {
 
   '/ekadashi': {
     title: {
-      en: 'Ekadashi 2026  –  All 24 Dates, Names, Stories & Benefits | Dekho Panchang',
+      en: 'Ekadashi 2026  –  All 24 Dates, Names, Stories & Benefits',
       hi: 'एकादशी 2026  –  सभी 24 तिथियाँ, नाम, कथाएँ और लाभ | देखो पञ्चाङ्ग',
       sa: 'एकादशी २०२६  –  सर्वाः २४ तिथयः नामानि कथाः लाभाः च',
     },
@@ -746,23 +746,23 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/calendar/regional/tamil': {
     // Tamil script in title helps this result stand out for Tamil-speaking searches
-    title: { en: 'Tamil Calendar (தமிழ் நாள்காட்டி) 2026  –  Panchangam & Festivals | Dekho Panchang', hi: 'तमिल कैलेंडर (தமிழ் நாள்காட்டி) 2026  –  पंचांगम् और त्योहार | Dekho Panchang', sa: 'तमिलपञ्चाङ्गम् (தமிழ் நாள்காட்டி) 2026  –  पर्वाणि च।' },
+    title: { en: 'Tamil Calendar (தமிழ் நாள்காட்டி) 2026  –  Panchangam & Festivals', hi: 'तमिल कैलेंडर (தமிழ் நாள்காட்டி) 2026  –  पंचांगम् और त्योहार', sa: 'तमिलपञ्चाङ्गम् (தமிழ் நாள்காட்டி) 2026  –  पर्वाणि च।' },
     description: { en: 'Complete Tamil Panchangam guide  –  12 solar months from Chithirai to Panguni, festivals like Pongal, Chithirai Thiruvizha, Karthigai Deepam, and how Tamil calendar differs from North Indian systems.', hi: 'सम्पूर्ण तमिल पंचांगम्  –  चित्तिरै से पंगुनि तक 12 सौर मास, पोंगल, चित्तिरै तिरुविळा, कार्तिगै दीपम् जैसे त्योहार।', sa: 'सम्पूर्णतमिलपञ्चाङ्गम्  –  चित्तिरैतः पङ्गुनिपर्यन्तं १२ सौरमासाः पर्वाणि च।' },
     keywords: ['tamil calendar', 'tamil panchangam', 'tamil months', 'pongal', 'puthandu', 'chithirai', 'karthigai deepam', 'தமிழ் நாள்காட்டி', 'தமிழ் பஞ்சாங்கம்'],
   },
   '/calendar/regional/bengali': {
     // Bengali script (বাংলা) in title makes this result stand out for Bangladeshi users searching in their script
-    title: { en: 'Bengali Calendar (বাংলা পঞ্জিকা) 2026  –  Tithi, Festivals & Ekadashi | Dekho Panchang', hi: 'बंगाली पंचांग (বাংলা পঞ্জিকা) 2026  –  तिथि, त्योहार और एकादशी | Dekho Panchang', sa: 'বাংলা পঞ্জিকা 2026  –  बङ्गालपञ्जिका पर्वाणि च।' },
+    title: { en: 'Bengali Calendar (বাংলা পঞ্জিকা) 2026  –  Tithi, Festivals & Ekadashi', hi: 'बंगाली पंचांग (বাংলা পঞ্জিকা) 2026  –  तिथि, त्योहार और एकादशी', sa: 'বাংলা পঞ্জিকা 2026  –  बङ्गालपञ्जिका पर्वाणि च।' },
     description: { en: 'Complete Bengali Panjika guide  –  12 months from Boishakh to Choitro, Durga Puja schedule, Poila Boishakh, Kali Puja, Saraswati Puja, and how Bengali calendar differs from other systems.', hi: 'सम्पूर्ण बंगाली पंजिका  –  बैशाख से चैत्र तक 12 मास, दुर्गा पूजा, पहला बैशाख, काली पूजा, सरस्वती पूजा।', sa: 'সম্পূর্ণ বাংলা পঞ্জিকা  –  বৈশাখ থেকে চৈত্র।' },
     keywords: ['bengali calendar', 'bangla panjika', 'bengali months', 'durga puja', 'poila boishakh', 'kali puja', 'saraswati puja', 'বাংলা পঞ্জিকা', 'বাংলা ক্যালেন্ডার'],
   },
   '/calendar/regional/gujarati': {
     // Gujarati script (ગુજરાતી) in title makes this result stand out for Gujarati-script searchers
     title: {
-      en: 'ગુજરાતી પંચાંગ (Gujarati Calendar) 2026  –  તિથિ, તહેવાર, એકાદશી | Dekho Panchang',
-      hi: 'ગુજરાતી પંચાંગ (गुजराती कैलेंडर) 2026  –  तिथि, त्योहार, एकादशी | Dekho Panchang',
+      en: 'ગુજરાતી પંચાંગ (Gujarati Calendar) 2026  –  તિથિ, તહેવાર, એકાદશી',
+      hi: 'ગુજરાતી પંચાંગ (गुजराती कैलेंडर) 2026  –  तिथि, त्योहार, एकादशी',
       sa: 'ગુજરાતી પંચાંગ 2026  –  गुजरातपञ्चाङ्गम् पर्वाणि च।',
-      gu: 'ગુજરાતી પંચાંગ 2026  –  તિથિ, નક્ષત્ર, વ્રત અને ગુજરાતી તહેવારો | Dekho Panchang',
+      gu: 'ગુજરાતી પંચાંગ 2026  –  તિથિ, નક્ષત્ર, વ્રત અને ગુજરાતી તહેવારો',
     },
     description: {
       en: 'Complete Gujarati Panchang  –  Vikram Samvat calendar, Uttarayan (Makar Sankranti), Navratri, Diwali & Bestu Varas (Gujarati New Year), Janmashtami. Tithi, Ekadashi, and key festival dates for the Gujarati community worldwide.',
@@ -1436,29 +1436,29 @@ export const PAGE_META: Record<string, PageMeta> = {
 
   // ─── Chandra Darshan ──────────────────────────────────────
   '/learn/chandra-darshan': {
-    title: { en: 'Chandra Darshan  –  Science of New Moon Sighting | Dekho Panchang', hi: 'चन्द्र दर्शन  –  नव चन्द्र दर्शन का विज्ञान | Dekho Panchang', sa: 'चन्द्रदर्शनम्  –  नवचन्द्रदर्शनविज्ञानम् | Dekho Panchang' },
+    title: { en: 'Chandra Darshan  –  Science of New Moon Sighting', hi: 'चन्द्र दर्शन  –  नव चन्द्र दर्शन का विज्ञान', sa: 'चन्द्रदर्शनम्  –  नवचन्द्रदर्शनविज्ञानम्' },
     description: { en: 'Learn the art and science of Chandra Darshan  –  how Moon age, elongation, and altitude determine crescent visibility. Covers Hindu, Islamic (Hilal), and historical traditions.', hi: 'चन्द्र दर्शन की कला और विज्ञान सीखें  –  चन्द्र आयु, दूरी और ऊँचाई कैसे दृश्यता निर्धारित करती है। हिन्दू, इस्लामी (हिलाल) और ऐतिहासिक परम्पराएँ।', sa: 'चन्द्रदर्शनस्य कलां विज्ञानं च अधिगच्छतु  –  चन्द्रवयः दूरी उन्नतिश्च कथं दृश्यतां निर्धारयन्ति।' },
     keywords: ['chandra darshan', 'moon sighting science', 'hilal visibility', 'crescent moon', 'shukla dwitiya', 'moon age elongation'],
   },
 
   // ─── Panchak & Holashtak ───────────────────────────────────
   '/learn/panchak': {
-    title: { en: 'Panchak  –  The 5 Inauspicious Nakshatras | Dekho Panchang', hi: 'पंचक  –  5 अशुभ नक्षत्र | Dekho Panchang', sa: 'पञ्चकम्  –  ५ अशुभनक्षत्राणि | Dekho Panchang' },
+    title: { en: 'Panchak  –  The 5 Inauspicious Nakshatras', hi: 'पंचक  –  5 अशुभ नक्षत्र', sa: 'पञ्चकम्  –  ५ अशुभनक्षत्राणि' },
     description: { en: 'Complete guide to Panchak  –  the inauspicious period when Moon transits Dhanishtha through Revati. Activities to avoid, cremation rules, and regional practices.', hi: 'पंचक की पूरी जानकारी  –  धनिष्ठा से रेवती तक चन्द्र का गोचर। वर्जित कार्य, अंत्येष्टि नियम और क्षेत्रीय प्रथाएँ।', sa: 'पञ्चकस्य सम्पूर्णमार्गदर्शनम्  –  धनिष्ठातः रेवतीपर्यन्तं चन्द्रगोचरः।' },
     keywords: ['panchak', 'panchak nakshatra', 'inauspicious nakshatra', 'dhanishtha panchak', 'cremation panchak'],
   },
   '/learn/holashtak': {
-    title: { en: 'Holashtak  –  8 Inauspicious Days Before Holi | Dekho Panchang', hi: 'होलाष्टक  –  होली से पूर्व 8 अशुभ दिन | Dekho Panchang', sa: 'होलाष्टकम्  –  होलिकापूर्वम् ८ अशुभदिनानि | Dekho Panchang' },
+    title: { en: 'Holashtak  –  8 Inauspicious Days Before Holi', hi: 'होलाष्टक  –  होली से पूर्व 8 अशुभ दिन', sa: 'होलाष्टकम्  –  होलिकापूर्वम् ८ अशुभदिनानि' },
     description: { en: 'Complete guide to Holashtak  –  the 8 inauspicious days before Holi from Phalguna Shukla Ashtami to Purnima. Activities to avoid and spiritual significance.', hi: 'होलाष्टक  –  होली से पहले फाल्गुन शुक्ल अष्टमी से पूर्णिमा तक 8 अशुभ दिनों की पूरी जानकारी।', sa: 'होलाष्टकम्  –  फाल्गुनशुक्लाष्टमीतः पूर्णिमापर्यन्तम् ८ अशुभदिनानां सम्पूर्णमार्गदर्शनम्।' },
     keywords: ['holashtak', 'holashtak 2026', '8 days before holi', 'inauspicious days holi', 'holashtak dates'],
   },
   '/panchak': {
-    title: { en: 'Panchak Today  –  Check Inauspicious Nakshatra Period | Dekho Panchang', hi: 'आज का पंचक  –  अशुभ नक्षत्र काल जांचें | Dekho Panchang', sa: 'अद्य पञ्चकम्  –  अशुभनक्षत्रकालं परीक्षयतु | Dekho Panchang' },
+    title: { en: 'Panchak Today  –  Check Inauspicious Nakshatra Period', hi: 'आज का पंचक  –  अशुभ नक्षत्र काल जांचें', sa: 'अद्य पञ्चकम्  –  अशुभनक्षत्रकालं परीक्षयतु' },
     description: { en: 'Is Panchak active today? Check current Moon nakshatra, Panchak type, activities to avoid, and upcoming Panchak dates for your location.', hi: 'क्या आज पंचक है? वर्तमान चन्द्र नक्षत्र, पंचक प्रकार, वर्जित कार्य और आगामी पंचक तिथियाँ जांचें।', sa: 'अद्य पञ्चकं किम्? वर्तमानचन्द्रनक्षत्रं पञ्चकप्रकारं वर्जितकार्याणि च परीक्षयतु।' },
     keywords: ['panchak today', 'panchak check', 'is panchak today', 'panchak dates', 'moon nakshatra panchak'],
   },
   '/holashtak': {
-    title: { en: 'Holashtak 2026  –  8 Inauspicious Days Before Holi | Dekho Panchang', hi: 'होलाष्टक 2026  –  होली से पूर्व 8 अशुभ दिन | Dekho Panchang', sa: 'होलाष्टकम् 2026  –  होलिकापूर्वम् ८ अशुभदिनानि | Dekho Panchang' },
+    title: { en: 'Holashtak 2026  –  8 Inauspicious Days Before Holi', hi: 'होलाष्टक 2026  –  होली से पूर्व 8 अशुभ दिन', sa: 'होलाष्टकम् 2026  –  होलिकापूर्वम् ८ अशुभदिनानि' },
     description: { en: 'Is Holashtak active today? Check which day of the 8-day inauspicious period before Holi, activities to avoid, and Holashtak dates for 2026-2027.', hi: 'क्या आज होलाष्टक है? होली से पहले 8 दिन की अशुभ अवधि, वर्जित कार्य और 2026-2027 की तिथियाँ।', sa: 'अद्य होलाष्टकं किम्? होलिकापूर्वम् ८ दिनानाम् अशुभकालः वर्जितकार्याणि 2026-2027 तिथ्यश्च।' },
     keywords: ['holashtak 2026', 'holashtak today', 'holashtak dates', 'inauspicious days before holi', 'holashtak period'],
   },

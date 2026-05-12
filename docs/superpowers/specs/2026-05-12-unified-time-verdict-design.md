@@ -1,7 +1,7 @@
 # Unified Time Verdict — Conflict Resolution for Overlapping Auspicious/Inauspicious Periods
 
 **Date:** 2026-05-12  
-**Status:** Draft  
+**Status:** Draft → **Rev 2** (same day — added complete precedence table, separated Choghadiya, added Sarvarthasiddhi/Amrit Siddhi/Siddha/Guru Pushya yogas)  
 **Problem:** Users see contradictory signals across muhurta, choghadiya, hora, rahu kaal, and panchang — no guidance on which takes precedence when they overlap.
 
 ---
@@ -420,7 +420,359 @@ Web references:
 - [VedicTime: Vyatipata](https://vedictime.com/en/library/panchanga/nityayoga/vyatipat)
 - [VedicTime: Vaidhriti](https://vedictime.com/en/library/panchanga/nityayoga/vaidhriti)
 - [Ernst Wilhelm: Classical Muhurta](https://storage.yandexcloud.net/j108/library/o28vzqko/Ernst_Wilhelm_-_Classical_Muhurta.pdf)
+- [VedAstro: Muhurtha Chapter 6 — Siddha Yoga & Amrita Siddha Yoga](https://vedastro.org/blog/Muhurtha-Chapter-6-On-Certain-Special-Yogas.html)
 - [Hindutva: What Is Abhijit Muhurat](https://hindutva.online/what-is-abhijit-muhurat-most-auspicious-time/)
 - [Choghadiya Wikipedia](https://en.wikipedia.org/wiki/Choghadiya)
 - [Drik Panchang: Rahu Kalam](https://www.drikpanchang.com/tutorials/panchang-utilities/rahu-kalam.html)
 - [Bejan Daruwalla: Abhijit Muhurta](https://bejandaruwalla.com/blogs/astrology/abhijit-muhurta)
+- [Astrodevam: Sarvartha Siddhi Yoga](https://www.astrodevam.com/sarvarth-siddhi-yoga.html)
+- [Ernst Wilhelm: Muhurta Yogas PDF](https://www.vedic-astrology.net/articles/muhurta-yogas.pdf)
+
+---
+
+## APPENDIX A: Final Precedence Table (Rev 2)
+
+This is the definitive, implementation-ready precedence table. It separates two independent systems — the **Classical Muhurta System** (textually attested) and the **Choghadiya System** (folk/regional). They are displayed side-by-side to the user but never mixed in the verdict engine.
+
+### A.1 Design Principle
+
+B.V. Raman (commentary on Muhurtha, Ch.6): *"Eliminate adverse yogas first before seeking Siddha combinations."*
+
+This confirms the classical approach: **filter out negatives first, then rank remaining windows by positive strength.** A positive yoga does not cancel a negative dosha — it makes the non-blocked portions of the day stronger.
+
+The one textual exception: Abhijit Muhurta ("sarva doshagnam") — handled as CAUTION, not override.
+
+### A.2 System 1: Classical Muhurta (Panchang-Based)
+
+Two axes: **NEGATIVES** (subtract from usable time) and **POSITIVES** (rank surviving windows).
+
+#### A.2.1 Negatives — Ranked by Disqualifying Power
+
+```
+RANK  FACTOR                    SCOPE             DURATION        SOURCE                      OVERRIDE BY POSITIVE?
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+N1    Vishti (Bhadra) Karana    All auspicious     ~6h/cycle       Muhurta Chintamani,         NO. Rajmartanda: "destroys
+                                activities         (4× per month)  Rajmartanda, Brihat         even Amrita Yoga." Strongest
+                                                                   Samhita                     textual claim of any negative.
+
+N2    Vyatipata Yoga (#17)      All auspicious     Variable        Muhurta Chintamani,         NO. Same Rajmartanda citation
+                                activities         (yoga duration)  Rajmartanda                 as Vishti — peer-ranked.
+
+N3    Vaidhriti Yoga (#27)      All auspicious     Variable        Same as above               NO. Same authority as N2.
+                                activities         (yoga duration)
+
+N4    Rahu Kaal                 All new            ~90 min/day     Medieval South Indian;       Debated. Abhijit claims
+                                beginnings                          later Muhurta Chintamani    "sarva doshagnam" but
+                                                                    editions                    practitioner consensus: NO.
+                                                                                                Verdict: CAUTION if Abhijit
+                                                                                                overlaps, else AVOID.
+
+N5    Yamaganda                 All new            ~90 min/day     Same tradition as            NO.
+                                beginnings                          Rahu Kaal
+
+N6    Gulika Kaal               All new            ~90 min/day     BPHS (upagraha);            NO.
+                                beginnings                          regional time formulas
+
+N7    Varjyam                   New starts,        Ghati-specific  Muhurta Chintamani          NO for new starts.
+                                purchases,          (~96 min)       (nakshatra tables)          Continuation OK.
+                                contracts
+
+N8    Durmuhurta                Most new           ~48 min         Muhurta Chintamani          NO for new starts.
+                                starts              (2× per day)                                Charity/meditation OK.
+
+N9    Panchaka                  Southward travel,  Entire          Classical; scope varies      Activity-dependent only.
+      (Moon in nak 23-27)       construction,       nakshatra       regionally                  Other activities unaffected.
+                                funerals            duration
+
+N10   Rikta Tithi (4,9,14)     Auspicious         Full tithi      Classical                   Activity-dependent.
+                                ceremonies                                                      Good for destruction/
+                                                                                                endings.
+```
+
+#### A.2.2 Positives — Ranked by Amplifying Power
+
+```
+RANK  FACTOR                     TYPE              FREQUENCY       SOURCE                      SPECIAL RULES
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+P1    Guru Pushya Yoga           Day-level         ~1×/month       Classical (multiple texts)   Thursday + Pushya nakshatra.
+      (Thursday + Pushya)        (vara+nakshatra)                                               "King among yogas." Best
+                                                                                                for purchases, gold,
+                                                                                                investment. DOES NOT
+                                                                                                override N1-N6 but makes
+                                                                                                surviving windows supreme.
+
+P2    Ravi Pushya Yoga           Day-level         ~1×/month       Classical                   Sunday + Pushya. Peer of
+      (Sunday + Pushya)          (vara+nakshatra)                                               Guru Pushya for different
+                                                                                                activities (authority,
+                                                                                                government, health).
+
+P3    Amrit Siddhi Yoga          Day-level         ~1×/week        Muhurtha Ch.6 (B.V. Raman)  7 specific vara+nakshatra
+                                 (vara+nakshatra)                                               pairs (Sun+Hasta, Mon+
+                                                                                                Sravana, Tue+Aswini,
+                                                                                                Wed+Anuradha, Thu+Pushya,
+                                                                                                Fri+Revati, Sat+Rohini).
+                                                                                                "Highest grade" per Raman.
+
+P4    Sarvarthasiddhi Yoga       Day-level         ~2-3×/week      Muhurta Chintamani          Vara+nakshatra combinations
+                                 (vara+nakshatra)                                               (see table A.3). "All
+                                                                                                purposes accomplished."
+                                                                                                Can negate Mrityu Yoga
+                                                                                                (per Astrodevam) but NOT
+                                                                                                Vishti/Vyatipata.
+                                                                                                CAUTION: becomes "Visha
+                                                                                                Yoga" (toxic) with certain
+                                                                                                tithis — must check.
+
+P5    Siddha Yoga                Day-level         Frequent        Muhurtha Ch.6               Vara+tithi+nakshatra
+                                 (vara+tithi+                                                   triple alignment. Less
+                                 nakshatra)                                                     powerful than P3-P4 but
+                                                                                                more frequent.
+
+P6    Abhijit Muhurta            Time-window       Daily           Muhurta Chintamani          ~48 min around solar noon.
+                                 (~48 min)                                                      "Sarva doshagnam." Claims
+                                                                                                to override all doshas.
+                                                                                                NOT valid on Wednesdays
+                                                                                                (Muhurta Martand).
+                                                                                                Our verdict: CAUTION
+                                                                                                during N1-N3, usable
+                                                                                                during N4-N10.
+
+P7    Amrit Kalam                Time-window       Daily           Muhurta Chintamani          Nakshatra-specific ghati
+                                 (~96 min)                          (ghati tables)              windows. Strong but does
+                                                                                                NOT claim dosha-override
+                                                                                                power like Abhijit.
+
+P8    Brahma Muhurta             Time-window       Daily           BPHS, Dharmasindhu          ~1h36m before sunrise.
+                                 (~96 min)                                                      Spiritual activities ONLY.
+                                                                                                Showing as "excellent" for
+                                                                                                material activity = wrong.
+
+P9    Benefic Hora               Time-window       Rotating        Hellenistic + Jyotish       Jupiter/Venus/Mercury/Moon
+                                 (~60 min)          hourly                                      hours. Activity-specific.
+
+P10   Good Nakshatra             Day-level         Activity-       Classical (all texts)        Pushya for purchase, Rohini
+      (for specific activity)                       dependent                                   for marriage, Ashwini for
+                                                                                                travel, etc.
+
+P11   Good Tithi                 Day-level         Activity-       Classical                   Nanda/Bhadra/Jaya/Purna
+      (for specific activity)                       dependent                                   tithi groups.
+```
+
+#### A.2.3 How Positives Interact with Negatives
+
+```
+SCENARIO                                              VERDICT         RATIONALE
+───────────────────────────────────────────────────────────────────────────────────────────────────
+Any P1-P11 during N1 (Vishti)                         🔴 AVOID        Rajmartanda: "destroys even Amrita."
+                                                                       Exception: Abhijit (P6) → 🟡 CAUTION
+                                                                       with explanation of the debate.
+
+Any P1-P11 during N2-N3 (Vyatipata/Vaidhriti)        🔴 AVOID        Same Rajmartanda authority. Same
+                                                                       Abhijit exception → CAUTION.
+
+P6 (Abhijit) during N4-N6 (Rahu/Yama/Gulika)         🟡 CAUTION      "Sarva doshagnam" vs practitioner
+                                                                       consensus. Show both sides.
+
+Any other positive during N4-N6                        🔴 AVOID        Only Abhijit has the override claim.
+
+P1-P5 (day-level yoga) + N4-N6 active                🔴 for that      Day-level yoga makes the rest of
+                                                       90-min slot;    the day excellent — but doesn't
+                                                       🟢🟢 for rest   save the blocked slot.
+
+P1-P5 (day-level yoga) + N7-N8 (Varjyam/Durmuhurta) 🟡 CAUTION      Varjyam blocks new starts specifically.
+                                                                       Continuation during a Sarvarthasiddhi
+                                                                       day is fine.
+
+P6 (Abhijit) + Wednesday                              🟡 CAUTION      Muhurta Martand: weakened. Not a
+                                                                       hard block on other factors.
+
+P1 (Guru Pushya) + N4 (Rahu Kaal) same day            🔴 during RK;   Guru Pushya elevates the day but
+                                                       🟢🟢🟢 outside   the 90-min RK window is still blocked.
+
+P6 (Abhijit) + P7 (Amrit Kalam) no negatives          🟢🟢🟢          Exceptional — two strong time-windows
+                                                       EXCEPTIONAL     overlapping with no blocks.
+
+P3 (Amrit Siddhi) + P6 (Abhijit) no negatives         🟢🟢🟢          Day-level + time-window stacking.
+                                                       EXCEPTIONAL     Among the best possible moments.
+
+Multiple day-level yogas (P3+P4+P5) stacking           🟢🟢           Rare but possible. Stacking amplifies
+                                                       EXCELLENT       but doesn't change the rating ceiling.
+
+No positives, no negatives                              🟢 GOOD        Neutral — usable for most activities.
+
+No positives, N9-N10 (conditional) but activity         🟢 GOOD        Conditional blocks only apply to
+doesn't match                                                          matched activities.
+```
+
+### A.3 Sarvartha Siddhi Yoga — Vara+Nakshatra Combinations
+
+| Weekday | Nakshatras |
+|---------|-----------|
+| **Sunday** | Hasta, Moola, Uttarashadha, Uttara Phalguni, Uttarabhadra, Ashwini, Pushya |
+| **Monday** | Sravana, Rohini, Mrigasira, Pushya, Anuradha |
+| **Tuesday** | Ashwini, Uttarabhadra, Krittika, Ashlesha |
+| **Wednesday** | Rohini, Anuradha, Hasta, Krittika, Mrigasira |
+| **Thursday** | Revati, Anuradha, Ashwini, Punarvasu, Pushya |
+| **Friday** | Revati, Anuradha, Ashwini, Punarvasu, Sravana |
+| **Saturday** | Sravana, Rohini, Swati |
+
+Source: Muhurta Chintamani via Astrodevam.
+
+**CAUTION:** Sarvarthasiddhi becomes "Visha Yoga" (toxic) when combined with certain tithis. The engine must check for this.
+
+### A.4 Amrit Siddhi Yoga — Vara+Nakshatra Combinations
+
+| Weekday | Nakshatra |
+|---------|-----------|
+| **Sunday** | Hasta |
+| **Monday** | Sravana |
+| **Tuesday** | Ashwini |
+| **Wednesday** | Anuradha |
+| **Thursday** | Pushya |
+| **Friday** | Revati |
+| **Saturday** | Rohini |
+
+Source: Muhurtha Ch.6 (B.V. Raman commentary). Note: Thursday+Pushya is simultaneously Amrit Siddhi AND Guru Pushya — the two most auspicious yogas stacking.
+
+### A.5 System 2: Choghadiya (Separate — Folk/Regional)
+
+Choghadiya is a Gujarati/Rajasthani folk system derived from planetary hora but simplified into 8 named slots (~96 min each). It is NOT in any major classical text (BPHS, Muhurta Chintamani, Brihat Samhita).
+
+**We display Choghadiya as a PARALLEL indicator, never mixed into the classical verdict.**
+
+```
+DISPLAY MODEL:
+
+  Classical Verdict          Choghadiya
+  ──────────────────         ──────────────
+  🔴 AVOID (Rahu Kaal)      Labh (Gain)
+  
+  Shows: "🔴 AVOID — Rahu Kaal active.  Choghadiya says Labh but Rahu Kaal
+          takes precedence in the classical system."
+```
+
+Choghadiya ratings:
+| Choghadiya | Quality | Planet |
+|------------|---------|--------|
+| Amrit | Excellent | Moon |
+| Shubh | Good | Jupiter |
+| Labh | Good (gains) | Mercury |
+| Char | Neutral (movement OK) | Venus |
+| Rog | Inauspicious (illness) | Mars |
+| Kaal | Inauspicious (death) | Saturn |
+| Udveg | Inauspicious (anxiety) | Sun |
+
+**When Choghadiya disagrees with Classical Verdict:**
+- Classical verdict takes precedence in the main traffic light
+- Choghadiya is shown as a secondary indicator with a note
+- Users who specifically follow Choghadiya tradition can see it, but the system doesn't let it override classical doshas
+
+### A.6 The Final One-Page Precedence Summary
+
+```
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                    MUHURTA PRECEDENCE TABLE                             ║
+║                    (Implementation-Ready)                               ║
+╠═══════════════════════════════════════════════════════════════════════════╣
+║                                                                         ║
+║  STEP 1: CHECK HARD BLOCKS (if any active → slot is 🔴 AVOID)          ║
+║  ┌──────────────────────────────────────────────────────────────┐       ║
+║  │  N1  Vishti (Bhadra) Karana        ~6h    [Rajmartanda]     │       ║
+║  │  N2  Vyatipata Yoga                var    [Rajmartanda]     │       ║
+║  │  N3  Vaidhriti Yoga                var    [Rajmartanda]     │       ║
+║  │  N4  Rahu Kaal                     ~90m   [S.Indian/MC]    │       ║
+║  │  N5  Yamaganda                     ~90m   [S.Indian/MC]    │       ║
+║  │  N6  Gulika Kaal                   ~90m   [BPHS/regional]  │       ║
+║  └──────────────────────────────────────────────────────────────┘       ║
+║  Exception: Abhijit (P6) during N4-N6 → 🟡 CAUTION (not avoid)        ║
+║  Exception: Abhijit (P6) during N1-N3 → 🟡 CAUTION (debated)          ║
+║                                                                         ║
+║  STEP 2: CHECK CONDITIONAL BLOCKS (activity-dependent → 🟡 CAUTION)    ║
+║  ┌──────────────────────────────────────────────────────────────┐       ║
+║  │  N7   Varjyam           blocks new starts (not continuation) │       ║
+║  │  N8   Durmuhurta        blocks most new starts               │       ║
+║  │  N9   Panchaka          blocks travel south, construction    │       ║
+║  │  N10  Rikta Tithi       blocks auspicious ceremonies         │       ║
+║  │  N11  Abhijit+Wednesday  Abhijit weakened (not other factors)│       ║
+║  └──────────────────────────────────────────────────────────────┘       ║
+║                                                                         ║
+║  STEP 3: RANK SURVIVING WINDOWS BY POSITIVE STRENGTH                    ║
+║  ┌──────────────────────────────────────────────────────────────┐       ║
+║  │  DAY-LEVEL YOGAS (apply to entire day, not specific times):  │       ║
+║  │                                                               │       ║
+║  │  P1  Guru Pushya Yoga     Thu+Pushya    ~1×/month  SUPREME  │       ║
+║  │  P2  Ravi Pushya Yoga     Sun+Pushya    ~1×/month  SUPREME  │       ║
+║  │  P3  Amrit Siddhi Yoga    7 vara+nak    ~1×/week   HIGHEST  │       ║
+║  │  P4  Sarvarthasiddhi      vara+nak      ~2-3×/wk   HIGH     │       ║
+║  │  P5  Siddha Yoga          vara+tithi+   frequent   GOOD     │       ║
+║  │                            nakshatra                          │       ║
+║  │                                                               │       ║
+║  │  TIME-WINDOW BOOSTERS (apply to specific time ranges):        │       ║
+║  │                                                               │       ║
+║  │  P6  Abhijit Muhurta      ~48 min noon  daily     VERY HIGH │       ║
+║  │  P7  Amrit Kalam          ~96 min       daily     HIGH      │       ║
+║  │  P8  Brahma Muhurta       ~96 min dawn  daily     HIGH*     │       ║
+║  │      (* spiritual only)                                       │       ║
+║  │  P9  Benefic Hora         ~60 min       rotating  MODERATE  │       ║
+║  │                                                               │       ║
+║  │  BACKGROUND (tie-breakers):                                   │       ║
+║  │                                                               │       ║
+║  │  P10 Good Nakshatra (for activity)                MODERATE  │       ║
+║  │  P11 Good Tithi (for activity)                    MODERATE  │       ║
+║  │  P12 Favourable Panchang Yoga (non-dosha)         MINOR    │       ║
+║  │  P13 Favourable Karana (non-Vishti)               MINOR    │       ║
+║  └──────────────────────────────────────────────────────────────┘       ║
+║                                                                         ║
+║  STACKING:                                                              ║
+║  • 0 positives, no negatives         → 🟢   GOOD (neutral usable)     ║
+║  • 1 positive (any rank)              → 🟢   GOOD                      ║
+║  • 2 positives (at least 1 ≥ P5)     → 🟢🟢  VERY GOOD                ║
+║  • 3+ positives OR any P1-P3         → 🟢🟢🟢 EXCELLENT               ║
+║  • P1/P2 + P6 + no negatives         → ★★★  EXCEPTIONAL (rare)       ║
+║                                                                         ║
+║  CHOGHADIYA: shown as separate indicator, never overrides above.        ║
+║                                                                         ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+```
+
+### A.7 Worked Example: Tuesday 13 May 2026
+
+Suppose:
+- Nakshatra: Ashwini (starts 06:15, ends 08:30), then Bharani
+- Tithi: Shukla Dwitiya (2nd)
+- Yoga: Shobhana (auspicious, not dosha)
+- Karana: Balava (auspicious)
+- Rahu Kaal: 3:00 PM – 4:30 PM
+- Yamaganda: 9:00 AM – 10:30 AM
+- Abhijit: 11:52 AM – 12:40 PM
+- Amrit Kalam: 7:00 AM – 8:36 AM
+- Varjyam: 5:15 PM – 6:51 PM
+- Tuesday + Ashwini = **Sarvarthasiddhi Yoga** (P4) AND **Amrit Siddhi Yoga** (P3) active while Ashwini is present
+
+```
+TIME          NEGATIVES           POSITIVES                        VERDICT
+──────────────────────────────────────────────────────────────────────────────
+06:15-07:00   None                P3 Amrit Siddhi + P4 Sarvartha  🟢🟢🟢 EXCELLENT
+07:00-08:30   None                P3 + P4 + P7 Amrit Kalam        ★★★ EXCEPTIONAL
+08:30-09:00   None                (Ashwini ends, yogas end)         🟢 GOOD
+09:00-10:30   N5 Yamaganda        —                                 🔴 AVOID
+10:30-11:52   None                (neutral)                         🟢 GOOD
+11:52-12:40   None                P6 Abhijit                        🟢🟢 VERY GOOD
+12:40-15:00   None                (neutral)                         🟢 GOOD
+15:00-16:30   N4 Rahu Kaal        —                                 🔴 AVOID
+16:30-17:15   None                (neutral)                         🟢 GOOD
+17:15-18:51   N7 Varjyam          —                                 🟡 CAUTION (new starts)
+                                                                     🟢 GOOD (continuation)
+```
+
+**Best Window:** 07:00–08:30 AM — three positives stacking (Amrit Siddhi + Sarvarthasiddhi + Amrit Kalam) with zero negatives. This is exceptional and would be highlighted as the day's prime window.
+
+### A.8 Open Questions for Implementation
+
+1. **Sarvarthasiddhi + Visha Yoga check:** When does Sarvarthasiddhi become toxic? Need the specific tithi combinations to implement the guard. Without this, we risk recommending a "Visha Yoga" window as excellent.
+
+2. **Gulika Kaal calculation variance:** Different texts give different formulas. Which do we use? Suggest: same formula as Drik Panchang for consistency with user expectations.
+
+3. **Regional Choghadiya display:** Should we show Choghadiya only to users whose location is in Gujarat/Rajasthan/Maharashtra? Or always show with a "folk tradition" label? Suggest: always show, label as "Choghadiya (Gujarati tradition)."
+
+4. **Tarabala (personal):** Deferred to Level 4. When implemented, it adds a personal negative/positive overlay. A slot that's green generally might be red personally. The UI must clearly separate "general" from "personal" verdicts.

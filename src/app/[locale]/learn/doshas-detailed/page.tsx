@@ -802,7 +802,7 @@ export default function DoshasDetailedPage() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             { href: '/learn/doshas' as const, label: isHi ? 'दोष  –  सामान्य अवलोकन' : 'Doshas  –  Overview' },
-            { href: '/learn/yogas' as const, label: isHi ? 'योग  –  शुभ संयोग' : 'Yogas  –  Auspicious Combinations' },
+            { href: '/learn/yoga' as const, label: isHi ? 'योग  –  शुभ संयोग' : 'Yogas  –  Auspicious Combinations' },
             { href: '/learn/remedies' as const, label: isHi ? 'उपाय  –  ग्रह शांति' : 'Remedies  –  Planetary Pacification' },
             { href: '/mangal-dosha' as const, label: isHi ? 'मंगल दोष विश्लेषक' : 'Mangal Dosha Analyzer' },
             { href: '/learn/modules/13-3' as const, label: isHi ? 'पाठ 13-3: जन्म कुंडली में दोष' : 'Lesson 13-3: Doshas in Birth Chart' },

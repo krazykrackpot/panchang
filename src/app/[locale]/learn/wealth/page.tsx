@@ -53,11 +53,11 @@ const SAV_RANGES: { range: string; qualityKey: string; descKey: string; color: s
 ];
 
 /* ── Related Links ───────────────────────────────────────────────── */
-const RELATED_LINKS: { href: '/kundali' | '/learn/ashtakavarga' | '/learn/planet-in-house' | '/learn/yogas'; labelKey: string }[] = [
+const RELATED_LINKS: { href: '/kundali' | '/learn/ashtakavarga' | '/learn/planet-in-house' | '/learn/yoga'; labelKey: string }[] = [
   { href: '/kundali', labelKey: 'linkKundali' },
   { href: '/learn/ashtakavarga', labelKey: 'linkAshtakavarga' },
   { href: '/learn/planet-in-house', labelKey: 'linkPlanetInHouse' },
-  { href: '/learn/yogas', labelKey: 'linkYogas' },
+  { href: '/learn/yoga', labelKey: 'linkYogas' },
 ];
 
 /* ── SVG: Wealth Triangle  –  houses 2, 5, 9, 11 connected ────────── */

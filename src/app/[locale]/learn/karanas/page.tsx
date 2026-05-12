@@ -481,7 +481,7 @@ export default function LearnKaranasPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
             { href: '/learn/tithis' as const, label: t('crossRefTithi') },
-            { href: '/learn/yogas' as const, label: t('crossRefYoga') },
+            { href: '/learn/yoga' as const, label: t('crossRefYoga') },
             { href: '/learn/muhurtas' as const, label: t('crossRefMuhurta') },
             { href: '/learn/nakshatras' as const, label: t('crossRefNakshatra') },
           ].map((ref, i) => (

@@ -1123,7 +1123,7 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: 'Learn the 30 Tithis of the Hindu lunar month  –  from Pratipada to Amavasya. Their meanings, ruling deities, auspicious and inauspicious nature.', hi: 'प्रतिपदा से अमावस्या तक 30 तिथियाँ  –  अर्थ, अधिदेवता, शुभ और अशुभ स्वभाव।', sa: 'प्रतिपदादि अमावस्यान्तं त्रिंशत् तिथयः।' },
     keywords: ['tithi', 'lunar day', 'panchang tithi', 'pratipada purnima amavasya'],
   },
-  '/learn/yogas': {
+  '/learn/yoga': {
     title: { en: 'Yogas in Vedic Astrology  –  Raj, Dhana, Dosha Yogas', hi: 'वैदिक ज्योतिष में योग  –  राज, धन, दोष योग', sa: 'वैदिकज्योतिषे योगाः  –  राजयोगः धनयोगः' },
     description: { en: 'Master the major yogas of Jyotish  –  Pancha Mahapurusha, Raj Yoga, Dhana Yoga, Neecha Bhanga, and dosha yogas. How they form and what they mean in your chart.', hi: 'पञ्च महापुरुष, राज योग, धन योग, नीच भंग और दोष योगों की सम्पूर्ण जानकारी।', sa: 'पञ्चमहापुरुषाः राजयोगाः धनयोगाः नीचभङ्गाश्च।' },
     keywords: ['yogas in astrology', 'raj yoga', 'dhana yoga', 'pancha mahapurusha'],

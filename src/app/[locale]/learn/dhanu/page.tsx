@@ -219,7 +219,7 @@ const CROSS_LINKS = [
   { href: '/learn/makara', label: { en: 'Makara (Capricorn)  –  Next Sign', hi: 'मकर  –  अगली राशि' } },
   { href: '/learn/vrischika', label: { en: 'Vrischika (Scorpio)  –  Previous Sign', hi: 'वृश्चिक  –  पिछली राशि' } },
   { href: '/learn/meena', label: { en: 'Meena (Pisces)  –  Other Jupiter Sign', hi: 'मीन  –  गुरु की अन्य राशि' } },
-  { href: '/learn/yogas', label: { en: 'Yogas in Jyotish', hi: 'ज्योतिष में योग' } },
+  { href: '/learn/yoga', label: { en: 'Yogas in Jyotish', hi: 'ज्योतिष में योग' } },
   { href: '/learn/dashas', label: { en: 'Vimshottari Dasha System', hi: 'विंशोत्तरी दशा पद्धति' } },
   { href: '/learn/remedies', label: { en: 'Remedial Measures', hi: 'उपाय' } },
   { href: '/kundali', label: { en: 'Generate Your Kundali', hi: 'अपनी कुण्डली बनाएँ' } },

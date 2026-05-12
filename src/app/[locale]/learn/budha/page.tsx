@@ -242,7 +242,7 @@ const CROSS_LINKS = [
   { href: '/learn/nakshatras', label: { en: 'The 27 Nakshatras', hi: '27 नक्षत्र' } },
   { href: '/learn/dashas', label: { en: 'Vimshottari Dasha System', hi: 'विंशोत्तरी दशा पद्धति' } },
   { href: '/learn/combustion', label: { en: 'Planetary Combustion', hi: 'ग्रह अस्त' } },
-  { href: '/learn/yogas', label: { en: 'Yogas in Jyotish', hi: 'ज्योतिष में योग' } },
+  { href: '/learn/yoga', label: { en: 'Yogas in Jyotish', hi: 'ज्योतिष में योग' } },
   { href: '/learn/remedies', label: { en: 'Remedial Measures', hi: 'उपाय' } },
 ];
 

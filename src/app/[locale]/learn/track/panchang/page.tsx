@@ -51,7 +51,7 @@ const SECTIONS: Section[] = [
       { id: '7-1', title: { en: 'Yoga \u2014 Sun + Moon Sum', hi: 'योग \u2014 सूर्य + चन्द्र योग', sa: 'योगः \u2014 सूर्यचन्द्रयोगः' } },
       { id: '7-2', title: { en: 'Karana \u2014 The Half-Tithi', hi: 'करण \u2014 अर्ध तिथि', sa: 'करणम् \u2014 अर्धतिथिः' } },
       { id: '7-3', title: { en: 'Vara & the Hora System', hi: 'वार एवं होरा पद्धति', sa: 'वारः होरापद्धतिश्च' } },
-      { id: 'ref:yogas', title: { en: 'Yogas  –  Complete Reference', hi: 'योग  –  सम्पूर्ण सन्दर्भ', sa: 'योगाः  –  सम्पूर्णसन्दर्भः' }, href: '/learn/yogas' },
+      { id: 'ref:yogas', title: { en: 'Yogas  –  Complete Reference', hi: 'योग  –  सम्पूर्ण सन्दर्भ', sa: 'योगाः  –  सम्पूर्णसन्दर्भः' }, href: '/learn/yoga' },
       { id: 'ref:karanas', title: { en: 'Karanas  –  Complete Reference', hi: 'करण  –  सम्पूर्ण सन्दर्भ', sa: 'करणानि  –  सम्पूर्णसन्दर्भः' }, href: '/learn/karanas' },
       { id: 'ref:vara', title: { en: 'Vara  –  Complete Reference', hi: 'वार  –  सम्पूर्ण सन्दर्भ', sa: 'वारः  –  सम्पूर्णसन्दर्भः' }, href: '/learn/vara' },
     ],

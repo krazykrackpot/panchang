@@ -13,7 +13,7 @@ const ARTICLE_META: Record<string, { datePublished: string; dateModified: string
   '/learn/rashis': { datePublished: '2026-03-01', dateModified: '2026-04-15' },
   '/learn/nakshatras': { datePublished: '2026-03-01', dateModified: '2026-04-15' },
   '/learn/tithis': { datePublished: '2026-03-01', dateModified: '2026-04-15' },
-  '/learn/yogas': { datePublished: '2026-03-01', dateModified: '2026-04-15' },
+  '/learn/yoga': { datePublished: '2026-03-01', dateModified: '2026-04-15' },
   '/learn/karanas': { datePublished: '2026-03-01', dateModified: '2026-04-15' },
   '/learn/muhurtas': { datePublished: '2026-03-05', dateModified: '2026-04-15' },
   '/learn/kundali': { datePublished: '2026-03-10', dateModified: '2026-04-20' },

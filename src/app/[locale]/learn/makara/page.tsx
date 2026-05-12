@@ -220,7 +220,7 @@ const CROSS_LINKS = [
   { href: '/learn/mangal', label: { en: 'Mangal (Mars)  –  Exalted in Makara', hi: 'मंगल  –  मकर में उच्च' } },
   { href: '/learn/guru', label: { en: 'Guru (Jupiter)  –  Debilitated in Makara', hi: 'गुरु  –  मकर में नीच' } },
   { href: '/learn/sade-sati', label: { en: 'Sade Sati  –  Saturn\'s Transit', hi: 'साढ़ेसाती  –  शनि का गोचर' } },
-  { href: '/learn/yogas', label: { en: 'Yogas in Jyotish', hi: 'ज्योतिष में योग' } },
+  { href: '/learn/yoga', label: { en: 'Yogas in Jyotish', hi: 'ज्योतिष में योग' } },
   { href: '/kundali', label: { en: 'Generate Your Kundali', hi: 'अपनी कुण्डली बनाएँ' } },
 ];
 

@@ -49,7 +49,7 @@ const SECTIONS = [
       { href: '/learn/rashis', label: { en: 'Rashis', hi: 'राशियाँ', ta: 'ராசிகள்', bn: 'রাশি' } },
       { href: '/learn/nakshatras', label: { en: 'Nakshatras', hi: 'नक्षत्र', ta: 'நட்சத்திரங்கள்', bn: 'নক্ষত্র' } },
       { href: '/learn/tithis', label: { en: 'Tithis', hi: 'तिथियाँ', ta: 'திதிகள்', bn: 'তিথি' } },
-      { href: '/learn/yogas', label: { en: 'Yogas', hi: 'योग', ta: 'யோகங்கள்', bn: 'যোগ' } },
+      { href: '/learn/yoga', label: { en: 'Yogas', hi: 'योग', ta: 'யோகங்கள்', bn: 'যোগ' } },
       { href: '/learn/karanas', label: { en: 'Karanas', hi: 'करण', ta: 'கரணங்கள்', bn: 'করণ' } },
       { href: '/learn/kundali', label: { en: 'Kundali Reading', hi: 'कुण्डली पठन', ta: 'குண்டலி படிப்பு', bn: 'কুণ্ডলি পাঠ' } },
       { href: '/glossary', label: { en: 'Glossary', hi: 'शब्दकोश', ta: 'சொற்பொருள்', bn: 'শব্দকোষ' } },

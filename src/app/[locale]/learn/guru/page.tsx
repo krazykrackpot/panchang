@@ -240,7 +240,7 @@ const CROSS_LINKS = [
   { href: '/learn/shani', label: { en: 'Shani  –  Saturn', hi: 'शनि' } },
   { href: '/learn/rashis', label: { en: 'The Twelve Rashis', hi: 'बारह राशियाँ' } },
   { href: '/learn/dashas', label: { en: 'Vimshottari Dasha System', hi: 'विंशोत्तरी दशा पद्धति' } },
-  { href: '/learn/yogas', label: { en: 'Yogas in Kundali', hi: 'कुण्डली में योग' } },
+  { href: '/learn/yoga', label: { en: 'Yogas in Kundali', hi: 'कुण्डली में योग' } },
   { href: '/learn/shadbala', label: { en: 'Shadbala Strength', hi: 'षड्बल' } },
   { href: '/learn/remedies', label: { en: 'Remedial Measures', hi: 'उपाय' } },
   { href: '/learn/combustion', label: { en: 'Planetary Combustion', hi: 'ग्रह अस्त' } },

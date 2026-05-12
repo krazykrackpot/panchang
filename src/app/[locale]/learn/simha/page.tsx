@@ -238,7 +238,7 @@ const CROSS_LINKS = [
   { href: '/learn/karka', label: { en: 'Karka (Cancer)  –  Previous Rashi', hi: 'कर्क  –  पिछली राशि' } },
   { href: '/learn/grahas', label: { en: 'All Nine Grahas', hi: 'सभी नवग्रह' } },
   { href: '/learn/dashas', label: { en: 'Vimshottari Dasha System', hi: 'विंशोत्तरी दशा पद्धति' } },
-  { href: '/learn/yogas', label: { en: 'Yogas in Vedic Astrology', hi: 'वैदिक ज्योतिष में योग' } },
+  { href: '/learn/yoga', label: { en: 'Yogas in Vedic Astrology', hi: 'वैदिक ज्योतिष में योग' } },
   { href: '/kundali', label: { en: 'Generate Your Kundali', hi: 'अपनी कुण्डली बनाएँ' } },
   { href: '/learn/remedies', label: { en: 'Remedial Measures', hi: 'उपाय' } },
 ];

@@ -239,7 +239,7 @@ const CROSS_LINKS = [
   { href: '/learn/rashis', label: { en: 'The Twelve Rashis', hi: 'बारह राशियाँ' } },
   { href: '/learn/dashas', label: { en: 'Vimshottari Dasha System', hi: 'विंशोत्तरी दशा पद्धति' } },
   { href: '/learn/doshas', label: { en: 'Doshas in Kundali', hi: 'कुण्डली में दोष' } },
-  { href: '/learn/yogas', label: { en: 'Yogas in Jyotish', hi: 'ज्योतिष में योग' } },
+  { href: '/learn/yoga', label: { en: 'Yogas in Jyotish', hi: 'ज्योतिष में योग' } },
   { href: '/learn/remedies', label: { en: 'Remedial Measures', hi: 'उपाय' } },
   { href: '/learn/shani', label: { en: 'Shani  –  Saturn', hi: 'शनि' } },
 ];

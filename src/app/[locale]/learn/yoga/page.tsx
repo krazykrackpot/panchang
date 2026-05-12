@@ -6,6 +6,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { motion } from 'framer-motion';
 import { Search, BookOpen, ChevronRight, Star, AlertTriangle } from 'lucide-react';
 import { YOGA_DETAIL_DATA, type YogaDetailEntry } from '@/lib/constants/yoga-details';
+import { YOGAS } from '@/lib/constants/yogas';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import AuthorByline from '@/components/ui/AuthorByline';
 
@@ -102,7 +103,7 @@ export default function YogaIndexPage() {
 
           {/* Two-category explainer */}
           <div className="grid sm:grid-cols-2 gap-4 max-w-3xl">
-            <Link href="/learn/yogas" className="group block rounded-xl bg-white/[0.03] border border-blue-500/20 hover:border-blue-500/40 p-5 transition-all">
+            <a href="#panchang-yogas" className="group block rounded-xl bg-white/[0.03] border border-blue-500/20 hover:border-blue-500/40 p-5 transition-all">
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-xs font-bold uppercase tracking-wider text-blue-400 bg-blue-500/15 px-2 py-0.5 rounded-full">
                   {locale === 'hi' ? 'पंचांग' : 'Panchang'}
@@ -118,9 +119,9 @@ export default function YogaIndexPage() {
                   : 'Computed from the sum of Sun and Moon longitudes — one yoga per day (Vishkambha to Vaidhriti). Relevant for muhurta timing and daily activities.'}
               </p>
               <span className="text-blue-400 text-xs mt-2 inline-flex items-center gap-1 group-hover:text-blue-300 transition-colors">
-                {locale === 'hi' ? '27 पंचांग योग देखें' : 'View 27 Panchang Yogas'} <ChevronRight className="w-3 h-3" />
+                &#x25BC; {locale === 'hi' ? 'नीचे देखें' : 'See below'}
               </span>
-            </Link>
+            </a>
 
             <div className="rounded-xl bg-white/[0.03] border border-gold-primary/20 p-5">
               <div className="flex items-center gap-2 mb-2">
@@ -144,6 +145,52 @@ export default function YogaIndexPage() {
           </div>
         </div>
       </motion.div>
+
+      {/* ═══ PART 1: 27 PANCHANG YOGAS ═══ */}
+      <section id="panchang-yogas" className="mb-12 scroll-mt-8">
+        <h2 className="text-2xl font-bold text-gold-light mb-2" style={hf}>
+          {locale === 'hi' ? '27 दैनिक पंचांग योग' : '27 Daily Panchang Yogas'}
+        </h2>
+        <p className="text-text-secondary text-sm mb-1" style={bf}>
+          {locale === 'hi'
+            ? 'सूर्य और चन्द्रमा की देशान्तरों के योग (Sum) को 13°20\' से विभाजित करने पर 27 योग प्राप्त होते हैं। प्रतिदिन एक योग चलता है।'
+            : 'Computed from the sum of Sun and Moon longitudes divided into 27 equal arcs of 13°20\' each. One yoga is active each day.'}
+        </p>
+        <p className="text-text-secondary/60 text-xs mb-4 font-mono" style={bf}>
+          Yoga = floor((Sun° + Moon°) / 13.333°) + 1 &nbsp; → &nbsp; 27 × 13°20&apos; = 360°
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+          {YOGAS.map((y) => {
+            const natureColor = y.nature === 'auspicious' ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/15'
+              : y.nature === 'inauspicious' ? 'text-red-400 bg-red-500/10 border-red-500/15'
+              : 'text-amber-400 bg-amber-500/10 border-amber-500/15';
+            return (
+              <div key={y.number} className="flex items-center gap-3 rounded-lg bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/35 to-[#0a0e27] border border-gold-primary/8 px-3 py-2.5">
+                <span className="text-gold-primary/50 text-sm font-bold w-6 text-center shrink-0">{y.number}</span>
+                <div className="flex-1 min-w-0">
+                  <span className="text-gold-light font-semibold text-sm" style={hf}>{y.name[locale as keyof typeof y.name] || y.name.en}</span>
+                  {locale !== 'en' && <span className="text-text-secondary/60 text-xs ml-2">{y.name.en}</span>}
+                </div>
+                <div className="flex items-center gap-2 shrink-0">
+                  <span className="text-text-secondary/70 text-xs hidden sm:inline">{y.meaning[locale as keyof typeof y.meaning] || y.meaning.en}</span>
+                  <span className={`text-[10px] px-1.5 py-0.5 rounded-full border font-medium ${natureColor}`}>
+                    {y.nature === 'auspicious' ? (locale === 'hi' ? 'शुभ' : 'Good')
+                      : y.nature === 'inauspicious' ? (locale === 'hi' ? 'अशुभ' : 'Bad')
+                      : (locale === 'hi' ? 'मिश्र' : 'Mixed')}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <div className="mt-4 text-center">
+          <Link href="/panchang/yoga" className="text-gold-primary text-sm hover:text-gold-light transition-colors inline-flex items-center gap-1">
+            {locale === 'hi' ? 'आज का पंचांग योग देखें' : "See today's Panchang Yoga"} <ChevronRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+      </section>
+
+      {/* ═══ PART 2: KUNDALI YOGAS ═══ */}
 
       {/* Search */}
       <div className="relative mb-6">

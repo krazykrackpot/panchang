@@ -348,7 +348,7 @@ export default function LearnMuhurtaSelectionPage() {
             { href: '/learn/muhurtas', label: isHi ? 'दिन के 30 मुहूर्त' : '30 Muhurtas of the Day' },
             { href: '/learn/tithis', label: isHi ? 'तिथियाँ' : 'Tithis' },
             { href: '/learn/nakshatras', label: isHi ? 'नक्षत्र' : 'Nakshatras' },
-            { href: '/learn/yogas', label: isHi ? 'योग' : 'Yogas' },
+            { href: '/learn/yoga', label: isHi ? 'योग' : 'Yogas' },
             { href: '/learn/karanas', label: isHi ? 'करण' : 'Karanas' },
             { href: '/learn/combustion', label: isHi ? 'अस्त ग्रह' : 'Combustion' },
             { href: '/learn/hora', label: isHi ? 'होरा' : 'Hora' },

@@ -6,6 +6,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { Star, Shield, AlertTriangle, BookOpen, Gem, Users, ArrowRight, CheckCircle2, XCircle, Info } from 'lucide-react';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { YOGA_DETAIL_DATA, type YogaDetailEntry } from '@/lib/constants/yoga-details';
+import MiniChartNorth from '@/components/kundali/MiniChartNorth';
 
 // ─── Yoga-to-image mapping ─────────────────────────────────────────────────
 // Specific yogas get their own dramatic hero image. Others fall back by category.
@@ -233,6 +234,19 @@ export default function YogaDetailPage() {
             {isHi ? yoga.formationRule.hi : yoga.formationRule.en}
           </p>
         </div>
+
+        {/* Example chart position */}
+        {yoga.chartPositions && yoga.chartPositions.length > 0 && (
+          <div className="mt-6 flex flex-col items-center">
+            <p className="text-xs text-text-secondary mb-2 uppercase tracking-wider font-bold">
+              {isHi ? 'उदाहरण कुण्डली' : 'Example Chart Position'}
+            </p>
+            <MiniChartNorth positions={yoga.chartPositions} size={220} />
+            <p className="text-[10px] text-text-secondary/50 mt-1.5">
+              {isHi ? 'मेष लग्न उदाहरण — वास्तविक स्थिति भिन्न हो सकती है' : 'Aries Lagna example — actual positions will vary'}
+            </p>
+          </div>
+        )}
       </div>
 
       {/* ── What is this Yoga? ───────────────────────────── */}

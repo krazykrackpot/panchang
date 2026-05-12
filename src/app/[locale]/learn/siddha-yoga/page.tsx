@@ -215,7 +215,7 @@ export default function LearnSiddhaYogaPage() {
             {[
               { href: '/learn/amrit-siddhi-yoga' as const, label: locale === 'hi' ? 'अमृत सिद्धि योग' : 'Amrit Siddhi Yoga' },
               { href: '/learn/sarvartha-siddhi-yoga' as const, label: locale === 'hi' ? 'सर्वार्थ सिद्धि योग' : 'Sarvartha Siddhi Yoga' },
-              { href: '/learn/yogas' as const, label: locale === 'hi' ? '27 नित्य योग' : '27 Nitya Yogas' },
+              { href: '/learn/yoga' as const, label: locale === 'hi' ? '27 नित्य योग' : '27 Nitya Yogas' },
               { href: '/panchang' as const, label: locale === 'hi' ? 'पंचांग' : 'Panchang' },
             ].map((link) => (
               <Link

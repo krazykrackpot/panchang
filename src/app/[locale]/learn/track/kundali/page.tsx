@@ -94,7 +94,7 @@ const SECTIONS: Section[] = [
       { id: '13-1', title: { en: 'Planetary Yogas \u2014 Raja, Dhana, Arishta', hi: 'ग्रह योग \u2014 राज, धन, अरिष्ट', sa: 'ग्रहयोगाः \u2014 राज, धन, अरिष्ट' } },
       { id: '13-2', title: { en: 'Wealth & Health Yogas', hi: 'धन एवं स्वास्थ्य योग', sa: 'धनस्वास्थ्ययोगाः' } },
       { id: '13-3', title: { en: 'Dosha Detection & Cancellation', hi: 'दोष पहचान एवं शमन', sa: 'दोषपहचानम् शमनं च' } },
-      { id: 'ref:yogas', title: { en: 'Yogas  –  Complete Reference', hi: 'योग  –  सम्पूर्ण सन्दर्भ', sa: 'योगाः  –  सम्पूर्णसन्दर्भः' }, href: '/learn/yogas' },
+      { id: 'ref:yogas', title: { en: 'Yogas  –  Complete Reference', hi: 'योग  –  सम्पूर्ण सन्दर्भ', sa: 'योगाः  –  सम्पूर्णसन्दर्भः' }, href: '/learn/yoga' },
       { id: 'ref:doshas', title: { en: 'Doshas  –  Complete Reference', hi: 'दोष  –  सम्पूर्ण सन्दर्भ', sa: 'दोषाः  –  सम्पूर्णसन्दर्भः' }, href: '/learn/doshas' },
     ],
     refs: [],

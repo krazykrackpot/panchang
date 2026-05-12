@@ -232,7 +232,7 @@ const L = {
   furtherLinks: [
     { href: '/learn/birth-chart', label: { en: 'Understanding Your Birth Chart', hi: 'अपनी जन्म कुण्डली समझें', sa: 'अपनी जन्म कुण्डली समझें', mai: 'अपनी जन्म कुण्डली समझें', mr: 'अपनी जन्म कुण्डली समझें', ta: 'உங்கள் ஜாதகத்தைப் புரிந்துகொள்ளுதல்', te: 'మీ జాతకాన్ని అర్థం చేసుకోవడం', bn: 'আপনার জন্ম কুণ্ডলী বোঝা', kn: 'ನಿಮ್ಮ ಜಾತಕವನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುವುದು', gu: 'તમારી જન્મ કુંડળી સમજવી' } },
     { href: '/learn/grahas', label: { en: 'The 9 Planets (Grahas)', hi: '9 ग्रह', sa: '9 ग्रह', mai: '9 ग्रह', mr: '9 ग्रह', ta: '9 கிரகங்கள்', te: '9 గ్రహాలు', bn: '৯ গ্রহ', kn: '9 ಗ್ರಹಗಳು', gu: '9 ગ્રહો' } },
-    { href: '/learn/yogas', label: { en: 'Yogas: Planetary Combinations', hi: 'योग: ग्रह संयोग', sa: 'योग: ग्रह संयोग', mai: 'योग: ग्रह संयोग', mr: 'योग: ग्रह संयोग', ta: 'யோகங்கள்: கிரக சேர்க்கைகள்', te: 'యోగాలు: గ్రహ కలయికలు', bn: 'যোগ: গ্রহ সংযোগ', kn: 'ಯೋಗಗಳು: ಗ್ರಹ ಸಂಯೋಗಗಳು', gu: 'યોગો: ગ્રહ સંયોગો' } },
+    { href: '/learn/yoga', label: { en: 'Yogas: Planetary Combinations', hi: 'योग: ग्रह संयोग', sa: 'योग: ग्रह संयोग', mai: 'योग: ग्रह संयोग', mr: 'योग: ग्रह संयोग', ta: 'யோகங்கள்: கிரக சேர்க்கைகள்', te: 'యోగాలు: గ్రహ కలయికలు', bn: 'যোগ: গ্রহ সংযোগ', kn: 'ಯೋಗಗಳು: ಗ್ರಹ ಸಂಯೋಗಗಳು', gu: 'યોગો: ગ્રહ સંયોગો' } },
     { href: '/learn/doshas', label: { en: 'Understanding Doshas', hi: 'दोष समझें', sa: 'दोष समझें', mai: 'दोष समझें', mr: 'दोष समझें', ta: 'தோஷங்களைப் புரிந்துகொள்ளுதல்', te: 'దోషాలను అర్థం చేసుకోవడం', bn: 'দোষ বোঝা', kn: 'ದೋಷಗಳನ್ನು ಅರ್ಥಮಾಡಿಕೊಳ್ಳುವುದು', gu: 'દોષોને સમજવું' } },
     { href: '/learn/dashas', label: { en: 'Dashas: Life Timing System', hi: 'दशा: जीवन समय प्रणाली', sa: 'दशा: जीवन समय प्रणाली', mai: 'दशा: जीवन समय प्रणाली', mr: 'दशा: जीवन समय प्रणाली', ta: 'தசைகள்: வாழ்க்கை நேர அமைப்பு', te: 'దశలు: జీవిత సమయ వ్యవస్థ', bn: 'দশা: জীবন সময় ব্যবস্থা', kn: 'ದಶೆಗಳು: ಜೀವನ ಸಮಯ ವ್ಯವಸ್ಥೆ', gu: 'દશાઓ: જીવન સમય પ્રણાલી' } },
     { href: '/learn/shadbala', label: { en: 'Shadbala: Planetary Strength', hi: 'षड्बल: ग्रह शक्ति', sa: 'षड्बल: ग्रह शक्ति', mai: 'षड्बल: ग्रह शक्ति', mr: 'षड्बल: ग्रह शक्ति', ta: 'ஷட்பலம்: கிரக வலிமை', te: 'షడ్బల: గ్రహ బలం', bn: 'ষড়বল: গ্রহ বল', kn: 'ಷಡ್ಬಲ: ಗ್ರಹ ಶಕ್ತಿ', gu: 'ષડ્બલ: ગ્રહ બળ' } },
@@ -313,7 +313,7 @@ export default function TippanniPage() {
           <p>{t('yogasP1')}</p>
           <p>{t('yogasP2')}</p>
           <p className="text-xs">
-            <Link href="/learn/yogas" className="text-gold-primary/70 hover:text-gold-light transition-colors">
+            <Link href="/learn/yoga" className="text-gold-primary/70 hover:text-gold-light transition-colors">
               {tl({ en: 'Deep dive into Yogas →', hi: 'योगों का गहन अध्ययन →', sa: 'योगानां गभीरविश्लेषणम् →' }, locale)}
             </Link>
           </p>

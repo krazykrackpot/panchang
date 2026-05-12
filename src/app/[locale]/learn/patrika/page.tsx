@@ -17,7 +17,7 @@ const LINKS: { href: string; key: number }[] = [
   { href: '/learn/birth-chart', key: 0 },
   { href: '/learn/dashas', key: 1 },
   { href: '/learn/matching', key: 2 },
-  { href: '/learn/yogas', key: 3 },
+  { href: '/learn/yoga', key: 3 },
   { href: '/learn/tippanni', key: 4 },
 ];
 

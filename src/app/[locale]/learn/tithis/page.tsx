@@ -88,7 +88,7 @@ const MUHURTA_GUIDE = [
 const CROSS_REFS = [
   { href: '/learn/nakshatras', labelKey: 'refNakshatras', descKey: 'refNakshatrasDesc' },
   { href: '/learn/karanas', labelKey: 'refKaranas', descKey: 'refKaranasDesc' },
-  { href: '/learn/yogas', labelKey: 'refYogas', descKey: 'refYogasDesc' },
+  { href: '/learn/yoga', labelKey: 'refYogas', descKey: 'refYogasDesc' },
   { href: '/learn/muhurtas', labelKey: 'refMuhurtas', descKey: 'refMuhurtasDesc' },
   { href: '/learn/masa', labelKey: 'refMasa', descKey: 'refMasaDesc' },
 ];

@@ -214,7 +214,7 @@ export default function LearnPanchangGuidePage() {
             { href: '/panchang', label: isHi ? 'आज का पंचांग' : 'Today\'s Panchang' },
             { href: '/learn/tithis', label: isHi ? 'तिथियाँ' : 'Tithis' },
             { href: '/learn/nakshatras', label: isHi ? 'नक्षत्र' : 'Nakshatras' },
-            { href: '/learn/yogas', label: isHi ? 'योग' : 'Yogas' },
+            { href: '/learn/yoga', label: isHi ? 'योग' : 'Yogas' },
             { href: '/learn/karanas', label: isHi ? 'करण' : 'Karanas' },
             { href: '/learn/vara', label: isHi ? 'वार' : 'Vara (Weekdays)' },
             { href: '/learn/masa', label: isHi ? 'मास' : 'Masa (Months)' },

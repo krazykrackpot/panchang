@@ -69,7 +69,7 @@ const routes = [
   '/learn/dhanu', '/learn/makara', '/learn/kumbha', '/learn/meena',
   '/learn/nakshatras',
   '/learn/tithis',
-  '/learn/yogas',
+  '/learn/yoga',
   '/learn/karanas',
   '/learn/muhurtas',
   '/learn/muhurta-selection',

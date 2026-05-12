@@ -221,7 +221,7 @@ const CROSS_LINKS = [
   { href: '/learn/nakshatras', label: { en: 'The 27 Nakshatras', hi: '27 नक्षत्र' } },
   { href: '/learn/mesha', label: { en: 'Mesha (Aries)  –  Next Sign / New Cycle', hi: 'मेष  –  अगली राशि / नया चक्र' } },
   { href: '/learn/kumbha', label: { en: 'Kumbha (Aquarius)  –  Previous Sign', hi: 'कुम्भ  –  पिछली राशि' } },
-  { href: '/learn/yogas', label: { en: 'Yogas in Jyotish', hi: 'ज्योतिष में योग' } },
+  { href: '/learn/yoga', label: { en: 'Yogas in Jyotish', hi: 'ज्योतिष में योग' } },
   { href: '/kundali', label: { en: 'Generate Your Kundali', hi: 'अपनी कुण्डली बनाएँ' } },
 ];
 

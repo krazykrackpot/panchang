@@ -25,6 +25,8 @@ function neutralInput(): ScorerInput {
     cancelledDoshas: 0,
     dashaActivatesHouse: false,
     vargaDeliveryScore: 50,
+    lordShadBalaRatio: 1.1,
+    lordBaladiStrength: 50,
   };
 }
 
@@ -43,6 +45,8 @@ function strongInput(): ScorerInput {
     cancelledDoshas: 0,
     dashaActivatesHouse: true,
     vargaDeliveryScore: 90,
+    lordShadBalaRatio: 1.8,
+    lordBaladiStrength: 100,
   };
 }
 
@@ -61,6 +65,8 @@ function weakInput(): ScorerInput {
     cancelledDoshas: 0,
     dashaActivatesHouse: false,
     vargaDeliveryScore: 10,
+    lordShadBalaRatio: 0.6,
+    lordBaladiStrength: 5,
   };
 }
 

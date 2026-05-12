@@ -412,6 +412,26 @@ function buildScorerInput(
   // 9. Varga delivery score  –  computed from divisional charts
   const vargaDeliveryScore = computeVargaDeliveryScore(config, kundali, data);
 
+  // 10. Shadbala strength ratio of the primary lord
+  let lordShadBalaRatio = 0;
+  if (kundali.fullShadbala) {
+    const sb = kundali.fullShadbala.find(s => s.planetId === lordId);
+    if (sb) lordShadBalaRatio = sb.strengthRatio;
+  } else if (kundali.shadbala) {
+    // ShadBala minimum required (shashtiamsas): Sun=390, Moon=360, Mars=300, Mercury=420, Jupiter=390, Venus=330, Saturn=300
+    const MIN_REQUIRED: Record<number, number> = { 0: 390, 1: 360, 2: 300, 3: 420, 4: 390, 5: 330, 6: 300 };
+    const nameMap: Record<number, string> = { 0: 'Sun', 1: 'Moon', 2: 'Mars', 3: 'Mercury', 4: 'Jupiter', 5: 'Venus', 6: 'Saturn' };
+    const sb = kundali.shadbala.find(s => s.planet === nameMap[lordId]);
+    if (sb) lordShadBalaRatio = sb.totalStrength / (MIN_REQUIRED[lordId] ?? 360);
+  }
+
+  // 11. Baladi avastha strength of the primary lord (0–100)
+  let lordBaladiStrength = 0;
+  if (kundali.avasthas) {
+    const av = kundali.avasthas.find(a => a.planetId === lordId);
+    if (av) lordBaladiStrength = av.baladi.strength;
+  }
+
   return {
     houseBhavabala,
     lordDignity,
@@ -425,6 +445,8 @@ function buildScorerInput(
     cancelledDoshas,
     dashaActivatesHouse,
     vargaDeliveryScore,
+    lordShadBalaRatio,
+    lordBaladiStrength,
   };
 }
 

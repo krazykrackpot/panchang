@@ -40,15 +40,25 @@ export type Rating =
 // Rating info
 // ---------------------------------------------------------------------------
 
+/** One factor in the scoring breakdown — shown to the user as "how we got there". */
+export interface ScoringFactor {
+  label: LocaleText;
+  verdict: 'positive' | 'neutral' | 'negative';
+  /** Short qualitative value, e.g. "Own Sign + Kendra", "Weak", "Yuva (Adult)" */
+  value: string;
+}
+
 /** A fully resolved rating with score, human label and display colour. */
 export interface RatingInfo {
   rating: Rating;
-  /** Numeric score 0–10. */
+  /** Internal numeric score 0–10 (used for sorting, not shown to user). */
   score: number;
   /** Translated label, e.g. "Excellent / उत्तम". */
   label: LocaleText;
   /** Tailwind-compatible CSS colour string, e.g. "#22c55e" or "var(--gold-primary)". */
   color: string;
+  /** Breakdown of factors that determined this rating. */
+  factors?: ScoringFactor[];
 }
 
 // ---------------------------------------------------------------------------

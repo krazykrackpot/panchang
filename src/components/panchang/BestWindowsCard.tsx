@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState, useRef } from 'react';
+import { useMemo, useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Clock, AlertTriangle, Star, ChevronDown, Sparkles, Zap, Sun, Moon, Sunrise, Sunset } from 'lucide-react';
 import type { PanchangData } from '@/types/panchang';
@@ -133,6 +133,14 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
   const verdict: DayVerdict = useMemo(() => computeDayVerdict(panchang), [panchang]);
   const { slots, bestWindow, dayLevelYogas } = verdict;
 
+  // NOW minutes — updates every 60s so the marker stays current
+  const [nowMin, setNowMin] = useState(() => nowMinutesInTimezone(effectiveTz));
+  useEffect(() => {
+    setNowMin(nowMinutesInTimezone(effectiveTz));
+    const interval = setInterval(() => setNowMin(nowMinutesInTimezone(effectiveTz)), 60_000);
+    return () => clearInterval(interval);
+  }, [effectiveTz]);
+
   const [showAll, setShowAll] = useState(false);
   const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
   const slotListRef = useRef<HTMLDivElement>(null);
@@ -149,8 +157,7 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
 
   // Key slots: best, worst, current — deduplicated
   const keySlots = useMemo(() => {
-    const now = nowMinutesInTimezone(effectiveTz);
-    const currentSlot = slots.find(s => now >= toMin(s.start) && now < toMin(s.end));
+    const currentSlot = slots.find(s => nowMin >= toMin(s.start) && nowMin < toMin(s.end));
     const worstSlot = slots.find(s => s.verdict === 'avoid');
     const seen = new Set<string>();
     const result: TimeSlot[] = [];
@@ -166,7 +173,7 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
       }
     }
     return result;
-  }, [slots, bestWindow, effectiveTz]);
+  }, [slots, bestWindow, nowMin]);
 
   const displayedSlots = showAll ? slots : keySlots;
 
@@ -178,7 +185,6 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
     );
   }
 
-  const nowMin = nowMinutesInTimezone(effectiveTz);
   const nowPct = timelineSpan > 0 ? Math.max(0, Math.min(100, ((nowMin - timelineStart) / timelineSpan) * 100)) : 0;
   const nowInTimeline = nowMin >= timelineStart && nowMin <= timelineEnd;
 

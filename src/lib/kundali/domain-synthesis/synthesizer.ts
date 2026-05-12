@@ -20,6 +20,7 @@ import type {
   DomainType,
   NatalPromiseBlock,
   CurrentActivationBlock,
+  Rating,
   RatingInfo,
   CrossDomainLink,
 } from './types';
@@ -940,30 +941,45 @@ function buildDomainReading(
   // 3. Current activation (using real transit data when available)
   const currentActivation = buildCurrentActivation(config, kundali, data, transitData);
 
-  // 4. Overall rating: blend natal + activation, with Sade Sati penalty
-  let blendedScore = natalRating.score * 0.7 + currentActivation.overallActivationScore * 0.3;
+  // 4. Overall rating: natal tier is the primary verdict.
+  // Current activation and Sade Sati can downgrade by at most 1 tier,
+  // but never contradict a classically strong natal placement.
+  const TIERS: Rating[] = ['atyadhama', 'adhama', 'madhyama', 'uttama'];
+  let overallTierIdx = TIERS.indexOf(natalRating.rating);
 
-  // Apply Sade Sati penalty to Moon-linked / emotional domains
+  // Weak current activation (< 4/10) can pull down 1 tier
+  if (currentActivation.overallActivationScore < 4) {
+    overallTierIdx = Math.max(0, overallTierIdx - 1);
+  }
+
+  // Sade Sati: downgrade Moon-linked / emotional domains by 1 tier
   if (kundali.sadeSati?.isActive) {
-    const sadeSatiPenalties: Partial<Record<DomainType, number>> = {
-      family: 1.5,   // 4th house = Moon's natural house
-      marriage: 1.0,  // emotional aspect
-      health: 0.5,    // mental health under pressure
+    const sadeSatiDomains: Partial<Record<DomainType, boolean>> = {
+      family: true,   // 4th house = Moon's natural house
+      marriage: true,  // emotional aspect
+      health: true,    // mental health under pressure
     };
-    const penalty = sadeSatiPenalties[config.id] ?? 0;
-    if (penalty > 0) {
-      blendedScore -= penalty;
+    if (sadeSatiDomains[config.id]) {
+      overallTierIdx = Math.max(0, overallTierIdx - 1);
     }
   }
 
-  const clampedBlend = Math.round(Math.min(10, Math.max(0, blendedScore)) * 10) / 10;
+  const overallTier = TIERS[overallTierIdx];
+  const TIER_LABELS: Record<Rating, { en: string; hi: string }> = {
+    uttama:    { en: 'Strong (Uttama)',      hi: 'प्रबल (उत्तम)' },
+    madhyama:  { en: 'Moderate (Madhyama)',  hi: 'मध्यम (मध्यम)' },
+    adhama:    { en: 'Challenging (Adhama)', hi: 'चुनौतीपूर्ण (अधम)' },
+    atyadhama: { en: 'Critical (Atyadhama)', hi: 'गंभीर (अत्यधम)' },
+  };
+  const TIER_SCORES: Record<Rating, number> = { uttama: 8.5, madhyama: 6.0, adhama: 3.5, atyadhama: 1.5 };
+  const TIER_COLORS: Record<Rating, string> = { uttama: 'text-emerald-400', madhyama: 'text-gold-primary', adhama: 'text-amber-400', atyadhama: 'text-red-400' };
+
   const overallRating: RatingInfo = {
-    ...natalRating,
-    score: clampedBlend,
-    rating: clampedBlend >= 7.5 ? 'uttama'
-      : clampedBlend >= 5.0 ? 'madhyama'
-      : clampedBlend >= 3.0 ? 'adhama'
-      : 'atyadhama',
+    rating: overallTier,
+    score: TIER_SCORES[overallTier],
+    label: TIER_LABELS[overallTier],
+    color: TIER_COLORS[overallTier],
+    factors: natalRating.factors,
   };
 
   // 5. Timeline triggers

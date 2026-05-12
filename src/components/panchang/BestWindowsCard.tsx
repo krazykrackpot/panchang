@@ -7,6 +7,7 @@ import type { PanchangData } from '@/types/panchang';
 import type { TimeSlot, DayVerdict, VerdictRating } from '@/lib/muhurta/verdict-types';
 import { computeDayVerdict } from '@/lib/muhurta/verdict-engine';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { nowMinutesInTimezone } from '@/lib/utils/now-in-timezone';
 
 // ── Labels ──
 
@@ -77,11 +78,6 @@ const STAR_COUNT: Record<VerdictRating, number> = {
 
 // ── Time helpers ──
 
-function currentMinutes(): number {
-  const now = new Date();
-  return now.getHours() * 60 + now.getMinutes();
-}
-
 function parseTimeToMinutes(hhmm: string): number {
   const [h, m] = hhmm.split(':').map(Number);
   return h * 60 + m;
@@ -99,11 +95,12 @@ function formatTime12h(hhmm: string): string {
 interface BestWindowsCardProps {
   panchang: PanchangData;
   locale: string;
+  timezone?: string;
 }
 
 // ── Component ──
 
-export default function BestWindowsCard({ panchang, locale }: BestWindowsCardProps) {
+export default function BestWindowsCard({ panchang, locale, timezone }: BestWindowsCardProps) {
   const isHi = isDevanagariLocale(locale);
   const l = isHi ? LABELS.hi : LABELS.en;
 
@@ -120,7 +117,7 @@ export default function BestWindowsCard({ panchang, locale }: BestWindowsCardPro
 
   // Key slots: best, worst, current — deduplicated
   const keySlots = useMemo(() => {
-    const now = currentMinutes();
+    const now = nowMinutesInTimezone(timezone);
     const currentSlot = slots.find(
       s => now >= parseTimeToMinutes(s.start) && now < parseTimeToMinutes(s.end)
     );
@@ -147,7 +144,7 @@ export default function BestWindowsCard({ panchang, locale }: BestWindowsCardPro
       }
     }
     return result;
-  }, [slots, bestWindow]);
+  }, [slots, bestWindow, timezone]);
 
   const displayedSlots = showAll ? slots : keySlots;
 
@@ -159,7 +156,7 @@ export default function BestWindowsCard({ panchang, locale }: BestWindowsCardPro
     );
   }
 
-  const nowMin = currentMinutes();
+  const nowMin = nowMinutesInTimezone(timezone);
   const nowPct = daySpan > 0 ? Math.max(0, Math.min(100, ((nowMin - sunriseMin) / daySpan) * 100)) : 0;
   const nowInDay = nowMin >= sunriseMin && nowMin <= sunsetMin;
 

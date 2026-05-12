@@ -11,6 +11,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { useLocationStore } from '@/stores/location-store';
 import { dateToJD, approximateSunriseSafe, approximateSunsetSafe, formatTime } from '@/lib/ephem/astronomical';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { nowMinutesInTimezone } from '@/lib/utils/now-in-timezone';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { tl } from '@/lib/utils/trilingual';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
@@ -134,19 +135,15 @@ export default function HoraClient() {
     return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
   });
 
-  // Current time state  –  updates every 30s
-  const [nowMinutes, setNowMinutes] = useState(() => {
-    const now = new Date();
-    return now.getHours() * 60 + now.getMinutes();
-  });
+  // Current time state  –  updates every 30s (in panchang location timezone)
+  const [nowMinutes, setNowMinutes] = useState(() => nowMinutesInTimezone(timezone));
 
   useEffect(() => {
     const timer = setInterval(() => {
-      const now = new Date();
-      setNowMinutes(now.getHours() * 60 + now.getMinutes());
+      setNowMinutes(nowMinutesInTimezone(timezone));
     }, 30_000);
     return () => clearInterval(timer);
-  }, []);
+  }, [timezone]);
 
   // Is selected date today?
   const isToday = useMemo(() => {

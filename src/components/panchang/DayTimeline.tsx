@@ -2,26 +2,13 @@
 
 import { useMemo, useState } from 'react';
 import type { PanchangData } from '@/types/panchang';
+import { isTimeRangeActive } from '@/lib/utils/now-in-timezone';
 
 // ── Time helpers ──
-
-function currentMinutes(): number {
-  const now = new Date();
-  return now.getHours() * 60 + now.getMinutes();
-}
 
 function parseTimeToMinutes(hhmm: string): number {
   const [h, m] = hhmm.split(':').map(Number);
   return h * 60 + m;
-}
-
-/** Midnight-wrap-aware time range check (Lesson R) */
-function isInTimeRange(startTime: string, endTime: string): boolean {
-  const now = currentMinutes();
-  const start = parseTimeToMinutes(startTime);
-  const end = parseTimeToMinutes(endTime);
-  if (end < start) return now >= start || now < end;
-  return now >= start && now < end;
 }
 
 // ── Types ──
@@ -42,6 +29,7 @@ interface DayTimelineProps {
   mode?: 'full' | 'auspicious' | 'inauspicious';
   compact?: boolean;
   locale?: string;
+  timezone?: string;
 }
 
 // ── Window collection ──
@@ -243,6 +231,7 @@ export default function DayTimeline({
   sunset,
   mode = 'full',
   compact = false,
+  timezone,
 }: DayTimelineProps) {
   const allWindows = useMemo(() => collectWindows(panchang), [panchang]);
 
@@ -289,7 +278,7 @@ export default function DayTimeline({
       {/* Timeline entries */}
       <div className={compact ? 'space-y-2' : 'space-y-3'}>
         {displayed.map((w, i) => {
-          const isCurrent = isInTimeRange(w.startTime, w.endTime);
+          const isCurrent = isTimeRangeActive(w.startTime, w.endTime, timezone);
           const overlapWith = overlaps.get(filtered.indexOf(w));
           const isAusp = w.type === 'auspicious';
 

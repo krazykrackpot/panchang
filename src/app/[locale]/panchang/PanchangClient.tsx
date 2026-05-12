@@ -41,6 +41,7 @@ import AdUnit from '@/components/ads/AdUnit';
 import CrossSellCTA from '@/components/cta/CrossSellCTA';
 import NakshatraActivityGuide from '@/components/panchang/NakshatraActivityGuide';
 import DayTimeline from '@/components/panchang/DayTimeline';
+import BestWindowsCard from '@/components/panchang/BestWindowsCard';
 import TarotCard from '@/components/ui/TarotCard';
 import LearnLink from '@/components/ui/LearnLink';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -1747,6 +1748,10 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
               compact={true}
               locale={locale}
             />
+          </div>
+
+          <div className="my-8">
+            <BestWindowsCard panchang={panchang} locale={locale} />
           </div>
 
           {/* ═══ SPECIAL AUSPICIOUS YOGAS  –  highlight when active ═══ */}

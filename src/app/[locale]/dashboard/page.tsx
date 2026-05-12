@@ -33,6 +33,7 @@ import EclipseWatchCard from '@/components/dashboard/EclipseWatchCard';
 import RemedySpotlightCard from '@/components/dashboard/RemedySpotlightCard';
 import CalendarSyncCard from '@/components/dashboard/CalendarSyncCard';
 import TransitCountdown from '@/components/dashboard/TransitCountdown';
+import BestWindowsCard from '@/components/panchang/BestWindowsCard';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import { checkBadges } from '@/lib/learn/badges';
 import LevelBadge from '@/components/learn/LevelBadge';
@@ -1486,6 +1487,12 @@ export default function DashboardPage() {
       {/* DailyPanchangInsightCard REMOVED  –  it had its own "Excellent" rating
           that contradicted the Cosmic Weather hero. Panchang details (tithi,
           nakshatra, yoga, vara) are accessible via the Panchang page link. */}
+
+      {panchangData && (
+        <div className="mt-6">
+          <BestWindowsCard panchang={panchangData} locale={locale} />
+        </div>
+      )}
 
       {panchangData && (
         <MorningBriefing

@@ -1733,6 +1733,11 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
             ))}
           </div>
 
+          {/* ═══ BEST WINDOWS TODAY  –  verdict bar + conflict resolution ═══ */}
+          <div className="mb-10">
+            <BestWindowsCard panchang={panchang} locale={locale} timezone={location.ianaTimezone} />
+          </div>
+
           {/* ═══ COMPACT DAY TIMELINE  –  Sacred Timings preview ═══ */}
           <div className="mb-10 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 hover:border-gold-primary/40 transition-all">
             <div className="flex items-center justify-between mb-4">
@@ -1751,10 +1756,6 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
               locale={locale}
               timezone={location.ianaTimezone}
             />
-          </div>
-
-          <div className="my-8">
-            <BestWindowsCard panchang={panchang} locale={locale} timezone={location.ianaTimezone} />
           </div>
 
           {/* ═══ SPECIAL AUSPICIOUS YOGAS  –  highlight when active ═══ */}

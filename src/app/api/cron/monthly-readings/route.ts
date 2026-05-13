@@ -101,7 +101,7 @@ export async function GET(req: NextRequest) {
       // 5. Extract 8 domain scores
       const scores: Record<string, number> = {};
       for (const domainReading of reading.domains) {
-        scores[domainReading.domain] = domainReading.natalPromise.rating.score;
+        scores[domainReading.domain] = domainReading.overallRating.score;
       }
 
       // 6. Extract current dasha info from the kundali data

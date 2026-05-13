@@ -362,8 +362,8 @@ describe('buildDomainScoresSummary', () => {
   it('includes scores and ratings', () => {
     const reading = makePersonalReading();
     const summary = buildDomainScoresSummary(reading);
-    expect(summary).toContain('5.5/10');
-    expect(summary).toContain('madhyama');
+    expect(summary).toContain('MADHYAMA');
+    expect(summary).toContain('tier-based');
   });
 
   it('includes yoga and dosha names', () => {

@@ -304,7 +304,8 @@ function buildScorerInput(
 
   // 2. lordDignity: primary house lord's dignity
   const primaryHouse = config.primaryHouses[0];
-  const lordId = SIGN_LORD[kundali.houses.find(h => h.house === primaryHouse)?.sign ?? 1] ?? 0;
+  const primaryHouseSign = kundali.houses.find(h => h.house === primaryHouse)?.sign ?? 1;
+  const lordId = SIGN_LORD[primaryHouseSign] ?? 0;
   const lordPos = data.planetMap.get(lordId);
   const lordSign = lordPos?.sign ?? 1;
   const lordDignity = getDignity(lordId, lordSign);
@@ -312,6 +313,7 @@ function buildScorerInput(
   // 3. lordInKendra
   const lordHouse = lordPos?.house ?? 0;
   const lordInKendra = [1, 4, 7, 10].includes(lordHouse);
+
 
   // 4. Count benefic/malefic occupants in primary houses
   let beneficOccupants = 0;
@@ -657,12 +659,16 @@ function buildNatalPromise(
     const lordId = SIGN_LORD[houseSign] ?? 0;
     const lordPos = data.planetMap.get(lordId);
     if (lordPos) {
+      // Per-lord score based on individual dignity (not the domain's overall score)
+      const lordDignity = getDignity(lordId, lordPos.sign);
+      const DIGNITY_SCORES: Record<string, number> = { exalted: 10, own: 8, friend: 6, neutral: 5, enemy: 3, debilitated: 1 };
+      const lordScore = DIGNITY_SCORES[lordDignity] ?? 5;
       lordQualities.push({
         lordId,
         houseInD1: lordPos.house,
         signInD1: lordPos.sign,
-        dignity: getDignity(lordId, lordPos.sign),
-        score: natalRating.score,
+        dignity: lordDignity,
+        score: lordScore,
       });
     }
   }
@@ -941,46 +947,16 @@ function buildDomainReading(
   // 3. Current activation (using real transit data when available)
   const currentActivation = buildCurrentActivation(config, kundali, data, transitData);
 
-  // 4. Overall rating: natal tier is the primary verdict.
-  // Current activation and Sade Sati can downgrade by at most 1 tier,
-  // but never contradict a classically strong natal placement.
-  const TIERS: Rating[] = ['atyadhama', 'adhama', 'madhyama', 'uttama'];
-  let overallTierIdx = TIERS.indexOf(natalRating.rating);
-
-  // Weak current activation (< 4/10) can pull down 1 tier
-  if (currentActivation.overallActivationScore < 4) {
-    overallTierIdx = Math.max(0, overallTierIdx - 1);
-  }
-
-  // Sade Sati: downgrade Moon-linked / emotional domains by 1 tier
-  if (kundali.sadeSati?.isActive) {
-    const sadeSatiDomains: Partial<Record<DomainType, boolean>> = {
-      family: true,   // 4th house = Moon's natural house
-      marriage: true,  // emotional aspect
-      health: true,    // mental health under pressure
-    };
-    if (sadeSatiDomains[config.id]) {
-      overallTierIdx = Math.max(0, overallTierIdx - 1);
-    }
-  }
-
-  const overallTier = TIERS[overallTierIdx];
-  const TIER_LABELS: Record<Rating, { en: string; hi: string }> = {
-    uttama:    { en: 'Strong (Uttama)',      hi: 'प्रबल (उत्तम)' },
-    madhyama:  { en: 'Moderate (Madhyama)',  hi: 'मध्यम (मध्यम)' },
-    adhama:    { en: 'Challenging (Adhama)', hi: 'चुनौतीपूर्ण (अधम)' },
-    atyadhama: { en: 'Critical (Atyadhama)', hi: 'गंभीर (अत्यधम)' },
-  };
-  const TIER_SCORES: Record<Rating, number> = { uttama: 8.5, madhyama: 6.0, adhama: 3.5, atyadhama: 1.5 };
-  const TIER_COLORS: Record<Rating, string> = { uttama: 'text-emerald-400', madhyama: 'text-gold-primary', adhama: 'text-amber-400', atyadhama: 'text-red-400' };
-
-  const overallRating: RatingInfo = {
-    rating: overallTier,
-    score: TIER_SCORES[overallTier],
-    label: TIER_LABELS[overallTier],
-    color: TIER_COLORS[overallTier],
-    factors: natalRating.factors,
-  };
+  // 4. Overall rating = natal promise (permanent, chart-based).
+  // Current activation (dasha, transits, Sade Sati) is shown SEPARATELY
+  // in the UI as "Current Period" — it never modifies the natal rating.
+  //
+  // Rationale: classical Jyotish reads the chart in layers — natal promise
+  // first ("your chart shows strong education"), then temporal overlay
+  // ("but during Saturn Mahadasha..."). Blending them into one rating
+  // creates contradictions where the narrative describes a strong placement
+  // but the badge says "Challenging" due to a transient transit.
+  const overallRating: RatingInfo = { ...natalRating };
 
   // 5. Timeline triggers
   const timelineTriggers = computeDomainTimeline({

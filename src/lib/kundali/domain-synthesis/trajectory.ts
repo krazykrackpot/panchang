@@ -221,14 +221,17 @@ export function computeTrajectory(
     // Delta from previous month
     const delta = round1(current - previous);
 
-    // Trend: compare current against average of last 3 months
+    // Trend: compare current against average of last 3 months.
+    // Use a 1.5 threshold (half the gap between adjacent tiers) to avoid
+    // false trends when transitioning from old continuous scores to new
+    // quantised tier scores (uttama=8.5, madhyama=6.0, adhama=3.5, atyadhama=1.5).
     const recentHistory = history.slice(-3).map(h => h.scores[domain] ?? 5);
     const recentAvg = recentHistory.length > 0 ? avg(recentHistory) : current;
 
     let trend: 'rising' | 'falling' | 'stable';
-    if (current > recentAvg + 0.5) {
+    if (current > recentAvg + 1.5) {
       trend = 'rising';
-    } else if (current < recentAvg - 0.5) {
+    } else if (current < recentAvg - 1.5) {
       trend = 'falling';
     } else {
       trend = 'stable';

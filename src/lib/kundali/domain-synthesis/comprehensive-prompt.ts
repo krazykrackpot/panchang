@@ -203,9 +203,9 @@ export function buildDomainScoresSummary(reading: PersonalReading): string {
         .join(', ');
 
       return [
-        `## ${d.domain.toUpperCase()}  –  Score: ${d.overallRating.score.toFixed(1)}/10 (${d.overallRating.rating})`,
-        `Natal promise: ${d.natalPromise.rating.score.toFixed(1)}/10 (${d.natalPromise.rating.rating})`,
-        `Current activation: ${d.currentActivation.overallActivationScore.toFixed(1)}/10`,
+        `## ${d.domain.toUpperCase()}  –  Rating: ${d.overallRating.rating.toUpperCase()} (tier-based, not numeric)`,
+        `Natal promise: ${d.natalPromise.rating.rating}`,
+        `Current activation: ${d.currentActivation.overallActivationScore >= 6 ? 'strong' : d.currentActivation.overallActivationScore >= 4 ? 'moderate' : 'weak'}`,
         `Dasha active for this domain: ${d.currentActivation.isDashaActive ? 'YES' : 'no'}`,
         yogaNames ? `Yogas: ${yogaNames}` : 'Yogas: none',
         doshaNames ? `Doshas: ${doshaNames}` : 'Doshas: none',

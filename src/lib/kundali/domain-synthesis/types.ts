@@ -29,12 +29,12 @@ export type DomainType =
   | 'spiritual'
   | 'education';
 
-/** Four-tier Sanskrit rating scale used across all domain scores. */
+/** Four-tier Sanskrit rating scale. Determined by rule-based classical Jyotish logic, not numeric thresholds. */
 export type Rating =
-  | 'uttama'    // excellent  (≥ 7.5/10)
-  | 'madhyama'  // moderate   (≥ 5.0/10)
-  | 'adhama'    // weak       (≥ 3.0/10)
-  | 'atyadhama'; // very weak (<  3.0/10)
+  | 'uttama'    // strong — lord in own/exalted sign, strong shadbala, benefic influence
+  | 'madhyama'  // moderate — lord in friend/neutral sign, no major affliction
+  | 'adhama'    // challenging — lord in enemy sign, malefic influence, or active doshas
+  | 'atyadhama'; // critical — lord debilitated, mrita avastha, multiple afflictions
 
 // ---------------------------------------------------------------------------
 // Rating info

@@ -222,8 +222,9 @@ function computeOverallRating(
   const mahaBenefic = isBenefic(mahaId);
   const antarBenefic = isBenefic(antarId);
 
+  // Canonical tier scores must match scorer.ts TIER_SCORES
   if (mahaBenefic && antarBenefic) {
-    return { rating: 'uttama', score: 8.0 };
+    return { rating: 'uttama', score: 8.5 };
   }
 
   if (mahaBenefic || antarBenefic) {
@@ -235,10 +236,10 @@ function computeOverallRating(
   const antarStrong = isInStrongDignity(antarId, planets);
 
   if (mahaStrong || antarStrong) {
-    return { rating: 'madhyama', score: 5.0 };
+    return { rating: 'madhyama', score: 6.0 };
   }
 
-  return { rating: 'adhama', score: 3.0 };
+  return { rating: 'adhama', score: 3.5 };
 }
 
 // ---------------------------------------------------------------------------

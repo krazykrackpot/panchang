@@ -27,7 +27,7 @@ export const GOOD_EN_CAREER_MIXED: LLMOutput = {
 
 The presence of Gajakesari Yoga in your chart — formed by the auspicious relationship between Jupiter and Moon — supports wisdom and recognition in your field. However, the active Sade Sati in its peak phase introduces a period of testing and restructuring. This is Saturn's way of refining your path, not blocking it.
 
-Budhaditya Yoga in the 3rd house enhances communication skills, which serves well in any professional context. Mars in its own sign in the lagna gives you the drive and initiative to push through obstacles.
+Budhaditya Yoga in the 3rd house enhances communication skills, which serves well in any professional context. Mars in its moolatrikona sign in the lagna gives you the drive and initiative to push through obstacles.
 
 Classical texts (BPHS Ch.26) note that an exalted Saturn, even when retrograde, eventually delivers its promises — often through patience and perseverance rather than sudden breakthroughs. The current period favours consolidation over expansion.
 
@@ -58,7 +58,7 @@ Remedy: Regular recitation of Shani Beej Mantra on Saturdays can help ease the i
 export const GOOD_HI_RELATIONSHIP_CAUTION: LLMOutput = {
   narrative: `आपकी कुण्डली में वैवाहिक जीवन के विषय में कुछ सावधानी की आवश्यकता है। शनि की आपके सप्तम भाव में उच्च राशि में स्थिति यह दर्शाती है कि विवाह में विलम्ब हो सकता है, किन्तु अन्ततः स्थिरता प्राप्त होगी।
 
-मंगल दोष की उपस्थिति — मंगल प्रथम भाव में स्वराशि में — वैवाहिक सामंजस्य में कुछ चुनौतियाँ उत्पन्न कर सकती है। बृहत् पाराशर होरा शास्त्र (अध्याय 26) के अनुसार, प्रथम भाव का मंगल विवाह में तीव्रता लाता है।
+मंगल दोष की उपस्थिति — मंगल प्रथम भाव में मूलत्रिकोण में — वैवाहिक सामंजस्य में कुछ चुनौतियाँ उत्पन्न कर सकती है। बृहत् पाराशर होरा शास्त्र (अध्याय 26) के अनुसार, प्रथम भाव का मंगल विवाह में तीव्रता लाता है।
 
 शनि की वक्री गति सप्तम भाव में कार्मिक संबंधों का संकेत देती है। वर्तमान शनि-बुध दशा काल में संबंधों के विषय में धैर्य रखना श्रेयस्कर है।
 

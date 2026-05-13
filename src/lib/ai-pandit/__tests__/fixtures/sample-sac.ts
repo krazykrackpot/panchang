@@ -27,7 +27,7 @@ export const EXPECTED_SAC: StructuredAstrologicalContext = {
   planets: [
     { id: 0, name: 'Sun',     sign: 3,  signName: 'Gemini',    house: 3,  degree: '00°15\'00"', nakshatra: 'Punarvasu',  pada: 1, dignity: 'neutral',     isRetrograde: false, isCombust: false, speed: 0.96 },
     { id: 1, name: 'Moon',    sign: 2,  signName: 'Taurus',    house: 2,  degree: '03°42\'00"', nakshatra: 'Rohini',     pada: 1, dignity: 'exalted',     isRetrograde: false, isCombust: false, speed: 13.2 },
-    { id: 2, name: 'Mars',    sign: 1,  signName: 'Aries',     house: 1,  degree: '10°30\'00"', nakshatra: 'Ashwini',    pada: 3, dignity: 'own',         isRetrograde: false, isCombust: false, speed: 0.6 },
+    { id: 2, name: 'Mars',    sign: 1,  signName: 'Aries',     house: 1,  degree: '10°30\'00"', nakshatra: 'Ashwini',    pada: 3, dignity: 'moolatrikona', isRetrograde: false, isCombust: false, speed: 0.6 },
     { id: 3, name: 'Mercury', sign: 3,  signName: 'Gemini',    house: 3,  degree: '15°48\'00"', nakshatra: 'Punarvasu',  pada: 4, dignity: 'own',         isRetrograde: false, isCombust: false, speed: 1.8 },
     { id: 4, name: 'Jupiter', sign: 4,  signName: 'Cancer',    house: 4,  degree: '05°00\'00"', nakshatra: 'Pushya',     pada: 1, dignity: 'exalted',     isRetrograde: false, isCombust: false, speed: 0.12 },
     { id: 5, name: 'Venus',   sign: 2,  signName: 'Taurus',    house: 2,  degree: '15°18\'00"', nakshatra: 'Mrigashira', pada: 1, dignity: 'own',         isRetrograde: false, isCombust: false, speed: 1.2 },

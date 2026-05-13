@@ -23,6 +23,8 @@ import {
   type PositiveFactor,
 } from './verdict-config';
 import { resolveConflict } from './conflict-matrix';
+import { EXTENDED_ACTIVITIES } from './activity-rules-extended';
+import type { ExtendedActivityId } from '@/types/muhurta-ai';
 
 // ─── Time helpers ───────────────────────────────────────────────────────────
 
@@ -174,10 +176,67 @@ function rateByPositives(positives: PositiveFactor[], isWednesday: boolean): Ver
 
 // ─── Main engine ────────────────────────────────────────────────────────────
 
-export function computeDayVerdict(panchang: PanchangData): DayVerdict {
+export function computeDayVerdict(panchang: PanchangData, activityId?: string): DayVerdict {
   const sunriseMin = toMinutes(panchang.sunrise);
   const sunsetMin = toMinutes(panchang.sunset);
   const isWednesday = panchang.vara.day === 3; // 0=Sun, 1=Mon, ..., 3=Wed, 6=Sat
+
+  // ─── 0. Activity-specific day-level checks ─────────────────────────────
+  // When an activity is selected, check nakshatra/tithi/weekday against
+  // that activity's classical rules. These produce day-level blocks that
+  // apply to ALL slots (nakshatra and tithi span most of the day).
+
+  const activityDayBlocks: ActiveFactor[] = [];
+  const activityDayConditionals: ActiveFactor[] = [];
+  let activityWeekdayPenalty = false;
+
+  if (activityId && activityId in EXTENDED_ACTIVITIES) {
+    const activity = EXTENDED_ACTIVITIES[activityId as ExtendedActivityId];
+    const nakshatraId = panchang.nakshatra.id;
+    const tithiNum = panchang.tithi.number;
+    const weekday = panchang.vara.day; // 0=Sun, 1=Mon, ..., 6=Sat
+
+    // Hard-avoid nakshatra → day-level hard block on all slots
+    if (activity.hardAvoidNakshatras?.includes(nakshatraId)) {
+      const baseBlock = CONDITIONAL_BLOCKS.find(b => b.id === 'activity_nakshatra_hard')
+        ?? HARD_BLOCKS.find(b => b.id === 'activity_nakshatra_hard');
+      if (baseBlock) {
+        activityDayBlocks.push({
+          ...baseBlock,
+          name: `Nakshatra vetoed for ${activity.label.en}`,
+          nameHi: `${activity.label.hi} हेतु नक्षत्र वर्जित`,
+        });
+      }
+    }
+    // Soft-avoid nakshatra → day-level conditional block
+    else if (activity.avoidNakshatras?.includes(nakshatraId)) {
+      const baseBlock = CONDITIONAL_BLOCKS.find(b => b.id === 'activity_nakshatra');
+      if (baseBlock) {
+        activityDayConditionals.push({
+          ...baseBlock,
+          name: `Nakshatra unsuitable for ${activity.label.en}`,
+          nameHi: `${activity.label.hi} हेतु नक्षत्र अनुपयुक्त`,
+        });
+      }
+    }
+
+    // Avoid tithi → day-level conditional block
+    if (activity.avoidTithis?.includes(tithiNum)) {
+      const baseBlock = CONDITIONAL_BLOCKS.find(b => b.id === 'activity_tithi');
+      if (baseBlock) {
+        activityDayConditionals.push({
+          ...baseBlock,
+          name: `Tithi unsuitable for ${activity.label.en}`,
+          nameHi: `${activity.label.hi} हेतु तिथि अनुपयुक्त`,
+        });
+      }
+    }
+
+    // Weekday not in goodWeekdays → flag (reduces rating, not a block)
+    if (!activity.goodWeekdays.includes(weekday)) {
+      activityWeekdayPenalty = true;
+    }
+  }
 
   // ─── 1. Collect day-level factors ───────────────────────────────────────
 
@@ -354,6 +413,12 @@ export function computeDayVerdict(panchang: PanchangData): DayVerdict {
       }
     }
 
+    // Activity-specific day-level blocks (apply to ALL slots)
+    // Hard-avoid nakshatras → treated as hard blocks
+    activeHardBlocks.push(...activityDayBlocks);
+    // Soft-avoid nakshatras + avoid tithis → conditional blocks
+    activeConditionalBlocks.push(...activityDayConditionals);
+
     // Collect active positives
     const activePositives: PositiveFactor[] = [];
 
@@ -437,6 +502,18 @@ export function computeDayVerdict(panchang: PanchangData): DayVerdict {
         explanation = 'No significant positive or negative factors.';
         explanationHi = 'कोई महत्वपूर्ण शुभ या अशुभ कारक नहीं।';
       }
+    }
+
+    // Activity weekday penalty: if weekday is not in goodWeekdays, downgrade
+    // one level (but never below 'good' for this factor alone)
+    if (activityWeekdayPenalty && verdict !== 'avoid' && verdict !== 'caution') {
+      const downgrade: Record<string, VerdictRating> = {
+        exceptional: 'excellent',
+        excellent: 'very_good',
+        very_good: 'good',
+        good: 'good', // floor — weekday alone doesn't make it caution
+      };
+      verdict = downgrade[verdict] ?? verdict;
     }
 
     const labels = RATING_LABELS[verdict];

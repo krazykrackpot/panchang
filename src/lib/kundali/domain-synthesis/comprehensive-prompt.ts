@@ -11,6 +11,7 @@
 
 import type { KundaliData, PlanetPosition, DashaEntry } from '@/types/kundali';
 import type { PersonalReading, DomainType } from './types';
+import type { EvaluatedYoga, DomainType as YogaDomainType } from '@/lib/kundali/yoga-engine/types';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
@@ -216,6 +217,92 @@ export function buildDomainScoresSummary(reading: PersonalReading): string {
 }
 
 // ---------------------------------------------------------------------------
+// Evaluated yogas builder (rich yoga data for LLM context)
+// ---------------------------------------------------------------------------
+
+/**
+ * Builds a per-domain yoga summary from EvaluatedYoga[] data.
+ * Groups present yogas by the 8 life domains, including strength, cancellation
+ * status, classical references, and involved planets.
+ *
+ * This gives the LLM much richer context than the old domain scores summary
+ * which only listed yoga names.
+ */
+export function buildEvaluatedYogasSummary(evaluatedYogas: EvaluatedYoga[]): string {
+  const presentYogas = evaluatedYogas.filter(y => y.present);
+  if (presentYogas.length === 0) return 'No active yogas detected.';
+
+  const DOMAINS: YogaDomainType[] = [
+    'health', 'wealth', 'career', 'marriage',
+    'children', 'family', 'spiritual', 'education',
+  ];
+
+  const sections: string[] = [];
+
+  // Per-domain breakdown
+  for (const domain of DOMAINS) {
+    const domainYogas = presentYogas.filter(y =>
+      y.affectedDomains === 'all' ||
+      (Array.isArray(y.affectedDomains) && y.affectedDomains.includes(domain)),
+    );
+
+    if (domainYogas.length === 0) continue;
+
+    const yogaLines = domainYogas.map(y => {
+      const parts: string[] = [
+        `  - ${y.name.en} [${y.group}]`,
+        `strength: ${y.strength}`,
+        y.isAuspicious ? 'auspicious' : 'inauspicious',
+      ];
+
+      // Cancellation/weakening status
+      if (y.cancellationStatus) {
+        const activeDetails = y.cancellationStatus.details.filter(d => d.cancelled);
+        if (activeDetails.length > 0) {
+          const effects = activeDetails.map(d => `${d.effect}: ${d.reason}`).join('; ');
+          parts.push(`[${effects}]`);
+        }
+      }
+
+      // Classical reference
+      parts.push(`(${y.classicalRef})`);
+
+      // Involved planets
+      if (y.involvedPlanets.length > 0) {
+        const planetNames = y.involvedPlanets.map(id => getGrahaName(id)).join(', ');
+        parts.push(`planets: ${planetNames}`);
+      }
+
+      return parts.join(' | ');
+    });
+
+    sections.push(`### ${domain.toUpperCase()}\n${yogaLines.join('\n')}`);
+  }
+
+  // Cross-domain yogas (affectedDomains === 'all')
+  const allDomainYogas = presentYogas.filter(y => y.affectedDomains === 'all');
+  if (allDomainYogas.length > 0) {
+    const lines = allDomainYogas.map(y => {
+      const status = y.cancellationStatus?.details.filter(d => d.cancelled)
+        .map(d => `${d.effect}: ${d.reason}`).join('; ');
+      return `  - ${y.name.en} [${y.group}] | strength: ${y.strength} | ${y.isAuspicious ? 'auspicious' : 'inauspicious'} | ${status ? `[${status}]` : ''} (${y.classicalRef})`;
+    });
+    sections.push(`### ALL DOMAINS\n${lines.join('\n')}`);
+  }
+
+  // Overall counts
+  const auspCount = presentYogas.filter(y => y.isAuspicious).length;
+  const inauspCount = presentYogas.filter(y => !y.isAuspicious).length;
+  const strongCount = presentYogas.filter(y => y.strength === 'Strong').length;
+
+  return [
+    `Total present: ${presentYogas.length} (${auspCount} auspicious, ${inauspCount} inauspicious, ${strongCount} strong)`,
+    '',
+    ...sections,
+  ].join('\n');
+}
+
+// ---------------------------------------------------------------------------
 // Main prompt builder
 // ---------------------------------------------------------------------------
 
@@ -309,6 +396,13 @@ Response format:
     '=== DOMAIN ANALYSIS (from rule engine  –  use as foundation, not ceiling) ===',
     buildDomainScoresSummary(reading),
   ];
+
+  // Add evaluated yogas if available (rich per-domain yoga data)
+  if (kundali.evaluatedYogas && kundali.evaluatedYogas.length > 0) {
+    sections.push('');
+    sections.push('=== EVALUATED YOGAS (per-domain, with strength, cancellations, classical refs) ===');
+    sections.push(buildEvaluatedYogasSummary(kundali.evaluatedYogas));
+  }
 
   // Add shadbala if available
   if (kundali.shadbala && kundali.shadbala.length > 0) {

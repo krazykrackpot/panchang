@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "topic": "sade-sati-saturn",
+    "type": "short",
+    "language": "en",
+    "estimatedDuration": 165,
+    "style": "dramatic",
+    "musicMood": "dramatic",
+    "voiceProfile": "narrator-en",
+    "musicTrack": "ambient-short"
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "duration": 15,
+      "narration": "Sade Sati. Millions of Indians dread it. Astrologers warn about it. Entire industries sell remedies for it. But is it real? Or is it just superstitious nonsense? Let's find out.",
+      "visualType": "cosmic_text",
+      "textOverlay": "*SADE SATI*\nReal or superstition?",
+      "textStyle": "burst",
+      "cosmicPreset": "eclipse",
+      "transition": "cut",
+      "videoPrompt": "Dramatic opening: montage of worried faces dissolving into cosmic space, Saturn looming in the distance, question mark forming from cosmic dust, tension between faith and doubt, oil lamps flickering in darkness giving way to cold starlight, ominous and compelling, cinematic 4K"
+    },
+    {
+      "id": 2,
+      "duration": 16,
+      "narration": "First  –  what is it? Sade Sati literally means seven and a half. It is the seven-and-a-half-year period when Saturn transits through your Moon sign and the signs on either side. Three signs in total.",
+      "visualType": "cosmic_text",
+      "textOverlay": "*साढ़े साती*\nSeven and a half",
+      "textStyle": "glow",
+      "cosmicPreset": "deep_space",
+      "transition": "fade",
+      "videoPrompt": "Sacred golden Om symbol glowing in deep space, dissolving into a cosmic zodiac ring with three adjacent segments illuminated around a bright central Moon, Saturn slowly drifting into the first glowing segment, ancient sacred geometry patterns pulsing in the background, cinematic 4K, mystical atmosphere"
+    },
+    {
+      "id": 3,
+      "duration": 22,
+      "narration": "Three signs. Seven and a half years. That means Saturn spends two and a half years in each sign. Now  –  there are twelve signs in the zodiac. Twelve times two and a half is thirty. So if the ancient sages were right  –  Saturn should take around 30 years to complete one full orbit around the zodiac.",
+      "visualType": "zodiac_wheel",
+      "textOverlay": "3 signs = 7.5 years\n12 signs = *30 years?*",
+      "cosmicPreset": "constellation",
+      "transition": "slide",
+      "videoPrompt": "Massive golden zodiac wheel slowly rotating in deep space, twelve glowing segments lighting up one by one in sequence as Saturn moves through each, camera orbiting the wheel, each segment pulsing with golden energy as Saturn passes, cosmic dust trail behind Saturn, vast star field behind, cinematic 4K, majestic and awe-inspiring"
+    },
+    {
+      "id": 4,
+      "duration": 26,
+      "narration": "Is this accurate? NASA's measured orbital period for Saturn  –  using spacecraft, telescopes, and centuries of modern observation  –  is 29.46 years. The Surya Siddhanta, written over 1,500 years ago without a single telescope, says 29.4. They were right. To 99.8 percent accuracy. With their naked eyes.",
+      "visualType": "cosmic_text",
+      "textOverlay": "Surya Siddhanta: *29.4* years\nNASA: *29.46* years\n*99.8%* accurate",
+      "textStyle": "burst",
+      "cosmicPreset": "sun_corona",
+      "transition": "zoom",
+      "videoPrompt": "Stunning close-up of Saturn's rings from space  –  Cassini-quality imagery, ice particles glittering in sunlight, camera slowly pulling back to reveal the full planet in all its glory, dramatic sidelight casting long shadows through the rings, awe-inspiring scale, the beauty of the real planet confirming what the ancients predicted, cinematic 4K, breathtaking"
+    },
+    {
+      "id": 5,
+      "duration": 18,
+      "narration": "No telescopes. No spacecraft. No computers. Just thousands of years of watching the sky. How did they know? That is the question that changes everything. And once you ask it  –  you can never dismiss Vedic astrology again.",
+      "visualType": "cosmic_text",
+      "textOverlay": "*How did they know?*",
+      "textStyle": "glow",
+      "cosmicPreset": "nebula",
+      "transition": "fade",
+      "videoPrompt": "Ancient Indian astronomer silhouetted against a spectacular star-filled sky, camera pulling back to reveal an ancient stone observatory, stars wheeling overhead in time-lapse, the figure pointing at Saturn among the constellations, profound wonder, golden light on ancient instruments, cinematic 4K, deeply moving"
+    },
+    {
+      "id": 6,
+      "duration": 25,
+      "narration": "So what happens during those seven and a half years? The peak  –  phase two  –  is when Saturn sits directly on your Moon. The heaviest planet in the visible sky, pressing down on the seat of your mind. Careers shift. Relationships crack under pressure. Health demands attention. Your identity is stripped to its foundations.",
+      "visualType": "planet_render",
+      "planet": "saturn",
+      "textOverlay": "The Peak\nSaturn conjunct *Moon*",
+      "subtitle": "Identity stripped to its foundations",
+      "cosmicPreset": "deep_space",
+      "transition": "zoom",
+      "videoPrompt": "Saturn and Moon in dramatic conjunction, Saturn's massive rings dwarfing the Moon, gravitational pressure visualized as spacetime warping, intense shadows, cosmic weight pressing down, camera closing in on where both bodies meet, cinematic 4K, peak intensity"
+    },
+    {
+      "id": 7,
+      "duration": 25,
+      "narration": "Phase one  –  Saturn enters the sign before your Moon. The pressure builds slowly. Finances tighten. Sleep is disturbed. Hidden anxieties surface. Phase three  –  Saturn moves past your Moon sign. The weight lifts. But you are not the same person. You have been forged. Refined. Made unbreakable.",
+      "visualType": "cosmic_text",
+      "textOverlay": "Phase 1: Pressure *builds*\nPhase 3: You emerge *unbreakable*",
+      "textStyle": "ascend",
+      "cosmicPreset": "aurora",
+      "transition": "slide",
+      "videoPrompt": "Three-act cosmic journey  –  dark clouds gathering around the Moon, then intense pressure and golden lightning at the peak, then dawn breaking through with aurora dancing, transformation from darkness to brilliant light, cosmic rebirth, camera pulling back to reveal beauty after the storm, cinematic 4K, emotional arc from dread to triumph"
+    },
+    {
+      "id": 8,
+      "duration": 18,
+      "narration": "Sade Sati is not punishment. It is Saturn's forge. And everyone  –  every saint, every leader, every person of substance  –  passed through it. Are you in Sade Sati right now? Find out  –  free  –  at Dekho Panchang.",
+      "visualType": "cta",
+      "textOverlay": "dekhopanchang.com",
+      "cosmicPreset": "galaxy",
+      "transition": "fade",
+      "videoPrompt": "Saturn receding into a grand cosmic design, golden birth chart mandala forming, serene galaxy rotating, warmth and empowerment, light conquering shadow, ancient wisdom meeting personal destiny, peaceful resolution, cinematic 4K"
+    }
+  ]
+}

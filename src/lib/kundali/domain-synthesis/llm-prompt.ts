@@ -7,6 +7,7 @@
  */
 
 import type { DomainReading, DomainType } from './types';
+import type { EvaluatedYoga, DomainType as YogaDomainType } from '@/lib/kundali/yoga-engine/types';
 
 // ---------------------------------------------------------------------------
 // Per-domain tone instructions
@@ -34,6 +35,39 @@ export const DOMAIN_TONE: Record<DomainType, string> = {
 };
 
 // ---------------------------------------------------------------------------
+// Evaluated yoga payload builder (richer than old supportingYogas)
+// ---------------------------------------------------------------------------
+
+/**
+ * Builds a richer yoga payload for a specific domain from EvaluatedYoga[].
+ * Includes group, strength, cancellation status, classical reference, and
+ * involved planets — giving the LLM much more context for personalised readings.
+ */
+function buildDomainYogasPayload(
+  domain: DomainType,
+  evaluatedYogas: EvaluatedYoga[],
+): { name: { en: string; hi: string }; group: string; strength: string; cancelled: boolean; weakened: boolean; classicalRef: string; affectedDomains: string[] | 'all' }[] {
+  // domain-synthesis DomainType includes 'currentPeriod', yoga engine DomainType does not.
+  // Only filter by domain if it's a valid yoga domain.
+  const yogaDomain = domain as string;
+  const domainYogas = evaluatedYogas.filter(y =>
+    y.present &&
+    (y.affectedDomains === 'all' ||
+      (Array.isArray(y.affectedDomains) && (y.affectedDomains as string[]).includes(yogaDomain))),
+  );
+
+  return domainYogas.map(y => ({
+    name: { en: y.name.en, hi: y.name.hi },
+    group: y.group,
+    strength: y.strength,
+    cancelled: y.cancellationStatus?.anyCancelled ?? false,
+    weakened: y.cancellationStatus?.details.some(d => d.cancelled && d.effect === 'weaken') ?? false,
+    classicalRef: y.classicalRef,
+    affectedDomains: y.affectedDomains,
+  }));
+}
+
+// ---------------------------------------------------------------------------
 // Prompt builder
 // ---------------------------------------------------------------------------
 
@@ -46,13 +80,16 @@ export interface DomainPrompt {
  * Builds the system prompt and serialised user payload for an LLM call
  * that will generate a personalised domain reading.
  *
- * @param reading   - The fully synthesised DomainReading produced by the engine.
- * @param nativeAge - Optional age of the native (years). Adds age-aware context.
+ * @param reading        - The fully synthesised DomainReading produced by the engine.
+ * @param nativeAge      - Optional age of the native (years). Adds age-aware context.
+ * @param evaluatedYogas - Optional EvaluatedYoga[] from the new yoga engine. When provided,
+ *                         includes richer per-domain yoga details (group, cancellation, classical refs).
  * @returns An object with `systemPrompt` and `userPayload` ready for the LLM call.
  */
 export function buildDomainPrompt(
   reading: DomainReading,
   nativeAge?: number,
+  evaluatedYogas?: EvaluatedYoga[],
 ): DomainPrompt {
   const tone = DOMAIN_TONE[reading.domain];
   const ageContext =
@@ -99,11 +136,13 @@ Most importantly: identify THE single most important insight for this domain. Be
       houseScores: reading.natalPromise.houseScores,
       lordQualities: reading.natalPromise.lordQualities,
     },
-    yogas: reading.natalPromise.supportingYogas.map((y) => ({
-      name: y.name,
-      category: y.category,
-      strength: y.strength,
-    })),
+    yogas: evaluatedYogas && evaluatedYogas.length > 0
+      ? buildDomainYogasPayload(reading.domain, evaluatedYogas)
+      : reading.natalPromise.supportingYogas.map((y) => ({
+          name: y.name,
+          category: y.category,
+          strength: y.strength,
+        })),
     doshas: reading.natalPromise.activeAfflictions.map((a) => ({
       name: a.name,
       severity: a.severity,

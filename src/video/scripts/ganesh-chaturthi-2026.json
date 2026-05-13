@@ -1,0 +1,107 @@
+{
+  "meta": {
+    "topic": "ganesh-chaturthi-2026",
+    "type": "short",
+    "language": "en",
+    "estimatedDuration": 60,
+    "style": "dramatic",
+    "musicMood": "devotional",
+    "voiceProfile": "narrator-en",
+    "musicTrack": "devotional-short"
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "duration": 8,
+      "narration": "Ganesh Chaturthi 2026. The biggest Hindu festival of the year. Here's everything you need to know  –  the exact date, muhurta, and puja timing.",
+      "visualType": "stock",
+      "stockQuery": "ganesh idol festival celebration lights",
+      "textOverlay": "GANESH CHATURTHI 2026",
+      "textTiming": [
+        { "text": "GANESH CHATURTHI", "start": 0.3, "end": 3, "position": "center" },
+        { "text": "2026", "start": 3.2, "end": 5, "position": "center" }
+      ],
+      "transition": "fade"
+    },
+    {
+      "id": 2,
+      "duration": 10,
+      "narration": "Ganesh Chaturthi falls on Thursday, August 20th, 2026. The festival begins with Chaturthi tithi starting on August 19th evening, and the puja is performed on the 20th during Madhyahna  –  the midday period considered most auspicious for Ganesha worship.",
+      "visualType": "stock",
+      "stockQuery": "hindu puja ceremony incense flowers offering",
+      "textOverlay": "August 20, 2026 (Thursday)",
+      "textTiming": [
+        { "text": "Thursday", "start": 0.5, "end": 2.5, "position": "bottom" },
+        { "text": "August 20, 2026", "start": 3, "end": 6, "position": "bottom" },
+        { "text": "Madhyahna Muhurta", "start": 7, "end": 9.5, "position": "bottom" }
+      ],
+      "transition": "fade"
+    },
+    {
+      "id": 3,
+      "duration": 10,
+      "narration": "The Sthapana muhurta  –  the exact time to install the Ganesh idol  –  falls during the midday window. Avoid Rahu Kaal and the early morning Bhadra period. The Chaturthi tithi runs until the next morning, giving you a generous window for puja.",
+      "visualType": "stock",
+      "stockQuery": "ganesh statue gold ornate close up",
+      "textOverlay": "Sthapana Muhurta",
+      "textTiming": [
+        { "text": "Sthapana Muhurta", "start": 0.5, "end": 3, "position": "bottom" },
+        { "text": "Avoid: Rahu Kaal + Bhadra", "start": 4, "end": 7, "position": "bottom" }
+      ],
+      "transition": "cut"
+    },
+    {
+      "id": 4,
+      "duration": 10,
+      "narration": "Anant Chaturdashi  –  the visarjan day  –  falls on Monday, August 31st. This is when Lord Ganesha is immersed after 10 days of celebration. The ideal visarjan time is during the afternoon, after the Uttara Puja.",
+      "visualType": "stock",
+      "stockQuery": "ganesh visarjan immersion water festival procession",
+      "textOverlay": "Visarjan: Aug 31",
+      "textTiming": [
+        { "text": "Anant Chaturdashi", "start": 0.5, "end": 3, "position": "bottom" },
+        { "text": "August 31, 2026", "start": 4, "end": 6.5, "position": "bottom" },
+        { "text": "10-Day Festival", "start": 7, "end": 9.5, "position": "bottom" }
+      ],
+      "transition": "fade"
+    },
+    {
+      "id": 5,
+      "duration": 8,
+      "narration": "One important rule  –  do not look at the Moon on Chaturthi night. This is the Chandra Dosha tradition. If you accidentally see the Moon, chant the Syamantaka Mani story to remove the dosha.",
+      "visualType": "stock",
+      "stockQuery": "full moon night sky clouds dark",
+      "textOverlay": "Do NOT look at the Moon",
+      "textTiming": [
+        { "text": "Chandra Dosha", "start": 0.5, "end": 3, "position": "center" },
+        { "text": "Do NOT look at the Moon", "start": 4, "end": 7, "position": "center" }
+      ],
+      "transition": "cut"
+    },
+    {
+      "id": 6,
+      "duration": 8,
+      "narration": "Modak, durva grass, red flowers, and 21 blades of grass. These are the five essentials for Ganesh puja. The mantra: Om Gan Ganapataye Namaha. Chant 108 times for maximum blessing.",
+      "visualType": "stock",
+      "stockQuery": "modak indian sweet traditional offering plate",
+      "textOverlay": "Om Gan Ganapataye Namaha",
+      "textTiming": [
+        { "text": "5 Essentials", "start": 0.5, "end": 2.5, "position": "bottom" },
+        { "text": "ॐ गं गणपतये नमः", "start": 3.5, "end": 7, "position": "center" }
+      ],
+      "transition": "fade"
+    },
+    {
+      "id": 7,
+      "duration": 6,
+      "narration": "Save this for August. Follow Dekho Panchang for the exact muhurta timing based on your city. Ganpati Bappa Morya!",
+      "visualType": "stock",
+      "stockQuery": "ganesh festival crowd celebration lights evening",
+      "textOverlay": "Ganpati Bappa Morya!",
+      "textTiming": [
+        { "text": "Save for August", "start": 0.3, "end": 2, "position": "bottom" },
+        { "text": "गणपति बाप्पा मोरया!", "start": 3, "end": 5.5, "position": "center" }
+      ],
+      "transition": "fade"
+    }
+  ]
+}

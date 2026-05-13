@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "topic": "ganesh-chaturthi-2027",
+    "type": "short",
+    "language": "en",
+    "estimatedDuration": 55,
+    "style": "dramatic",
+    "musicMood": "devotional",
+    "voiceProfile": "narrator-en",
+    "musicTrack": "devotional-short"
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "duration": 7,
+      "narration": "Ganesh Chaturthi 2027. Mark your calendars NOW. Here's the date, muhurta, and everything you need to plan ahead.",
+      "visualType": "stock",
+      "stockQuery": "ganesh idol decorated marigold flowers",
+      "textOverlay": "GANESH CHATURTHI 2027",
+      "textTiming": [
+        { "text": "GANESH CHATURTHI", "start": 0.3, "end": 2.5, "position": "center" },
+        { "text": "2027", "start": 3, "end": 5, "position": "center" }
+      ],
+      "transition": "fade"
+    },
+    {
+      "id": 2,
+      "duration": 10,
+      "narration": "Ganesh Chaturthi 2027 falls on Tuesday, September 7th. Chaturthi tithi begins on September 6th evening and runs until September 7th afternoon. The Madhyahna muhurta  –  the best window for Sthapana  –  is during midday on September 7th.",
+      "visualType": "stock",
+      "stockQuery": "ganesh puja ceremony temple lamp diya",
+      "textOverlay": "September 7, 2027",
+      "textTiming": [
+        { "text": "Tuesday", "start": 0.5, "end": 2.5, "position": "bottom" },
+        { "text": "September 7, 2027", "start": 3, "end": 6, "position": "bottom" },
+        { "text": "Madhyahna Muhurta", "start": 7, "end": 9.5, "position": "bottom" }
+      ],
+      "transition": "fade"
+    },
+    {
+      "id": 3,
+      "duration": 10,
+      "narration": "The 10-day festival concludes with Anant Chaturdashi on Thursday, September 16th  –  the grand visarjan day. Plan your celebrations, pandal visits, and immersion procession around this date.",
+      "visualType": "stock",
+      "stockQuery": "ganesh procession street celebration drummers",
+      "textOverlay": "Visarjan: Sep 16",
+      "textTiming": [
+        { "text": "10-Day Festival", "start": 0.5, "end": 3, "position": "bottom" },
+        { "text": "Anant Chaturdashi", "start": 4, "end": 6.5, "position": "bottom" },
+        { "text": "September 16, 2027", "start": 7, "end": 9.5, "position": "bottom" }
+      ],
+      "transition": "fade"
+    },
+    {
+      "id": 4,
+      "duration": 10,
+      "narration": "In 2027, Jupiter is in Cancer  –  its sign of exaltation. This makes the Ganesh Chaturthi especially powerful. Jupiter exalted means blessings amplified. Prayers offered this year carry extraordinary potency.",
+      "visualType": "stock",
+      "stockQuery": "golden light temple divine rays spiritual",
+      "textOverlay": "Jupiter Exalted in 2027",
+      "textTiming": [
+        { "text": "Jupiter in Cancer", "start": 0.5, "end": 3, "position": "bottom" },
+        { "text": "EXALTED = Maximum Blessing", "start": 4, "end": 7, "position": "center" },
+        { "text": "Prayers amplified", "start": 7.5, "end": 9.5, "position": "bottom" }
+      ],
+      "transition": "cut"
+    },
+    {
+      "id": 5,
+      "duration": 8,
+      "narration": "Remember  –  no Moon-gazing on Chaturthi night. Save this video for September 2027. Follow Dekho Panchang for city-specific muhurta timing. Ganpati Bappa Morya!",
+      "visualType": "stock",
+      "stockQuery": "ganesh idol sunset silhouette beautiful",
+      "textOverlay": "Ganpati Bappa Morya!",
+      "textTiming": [
+        { "text": "Save for Sep 2027", "start": 0.3, "end": 2.5, "position": "bottom" },
+        { "text": "गणपति बाप्पा मोरया!", "start": 3.5, "end": 6.5, "position": "center" }
+      ],
+      "transition": "fade"
+    }
+  ]
+}

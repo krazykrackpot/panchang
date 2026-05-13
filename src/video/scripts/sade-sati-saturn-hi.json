@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "topic": "sade-sati-saturn-hi",
+    "type": "short",
+    "language": "hi",
+    "estimatedDuration": 177,
+    "style": "dramatic",
+    "musicMood": "dramatic",
+    "voiceProfile": "narrator-hi",
+    "musicTrack": "ambient-short"
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "duration": 21,
+      "narration": "साढ़े सा ती। करोड़ों लोग इससे डरते हैं। ज्योतिषी चेतावनी देते हैं। पूरे के पूरे उद्योग इसके उपाय बेचते हैं। लेकिन क्या ये सच में असर करती है? या ये सिर्फ अंधविश्वास है? चलिए पता करते हैं।",
+      "visualType": "cosmic_text",
+      "textOverlay": "*साढ़े सा ती*\nसच या अंधविश्वास?",
+      "textStyle": "burst",
+      "cosmicPreset": "eclipse",
+      "transition": "cut",
+      "videoPrompt": "Dramatic opening: montage of worried faces dissolving into cosmic space, Saturn looming in the distance, question mark forming from cosmic dust, tension between faith and doubt, oil lamps flickering in darkness giving way to cold starlight, ominous and compelling, cinematic 4K"
+    },
+    {
+      "id": 2,
+      "duration": 16,
+      "narration": "पहले समझते हैं  –  साढ़े सा ती है क्या? साढ़े सा ती यानी साढ़े सात साल। जब शनि आपकी चंद्र राशि और उसके आगे-पीछे की राशि से गुज़रता है। कुल तीन राशियाँ।",
+      "visualType": "cosmic_text",
+      "textOverlay": "*साढ़े सा ती*\nसाढ़े सात साल\nतीन राशियाँ",
+      "textStyle": "glow",
+      "cosmicPreset": "deep_space",
+      "transition": "fade",
+      "videoPrompt": "Sacred golden Om symbol glowing in deep space, dissolving into a cosmic zodiac ring with three adjacent segments illuminated around a bright central Moon, Saturn slowly drifting into the first glowing segment, ancient sacred geometry patterns pulsing in the background, cinematic 4K, mystical atmosphere"
+    },
+    {
+      "id": 3,
+      "duration": 22,
+      "narration": "तीन राशियाँ  –  साढ़े सात साल। मतलब एक राशि में शनि ढाई साल रहता है। अब  –  राशिचक्र में कुल बारह राशियाँ हैं। बारह गुणा ढाई  –  तीस। यानी अगर हमारे पूर्वज सही थे  –  तो शनि को पूरा चक्कर लगाने में लगभग 30 साल लगने चाहिए।",
+      "visualType": "zodiac_wheel",
+      "textOverlay": "3 राशि = 7.5 साल\n12 राशि = *30 साल?*",
+      "cosmicPreset": "constellation",
+      "transition": "slide",
+      "videoPrompt": "Massive golden zodiac wheel slowly rotating in deep space, twelve glowing segments lighting up one by one in sequence as Saturn moves through each, camera orbiting the wheel, each segment pulsing with golden energy as Saturn passes, cosmic dust trail behind Saturn, vast star field behind, cinematic 4K, majestic and awe-inspiring"
+    },
+    {
+      "id": 4,
+      "duration": 25,
+      "narration": "तो क्या ये सही है? NASA ने शनि की कक्षा नापी है  –  अंतरिक्ष यान से, दूरबीनों से, सदियों के आधुनिक अवलोकन से। NASA का आँकड़ा है  –  उनतीस दशमलव चार छह साल। और सूर्य सिद्धांत  –  जो डेढ़ हज़ार साल पहले बिना किसी दूरबीन के लिखा गया  –  उसमें लिखा है उनतीस दशमलव चार। 99.8 प्रतिशत सटीक। नंगी आँखों से।",
+      "visualType": "cosmic_text",
+      "textOverlay": "सूर्य सिद्धांत: *29.4* वर्ष\nNASA: *29.46* वर्ष\n*99.8%* सटीक",
+      "textStyle": "burst",
+      "cosmicPreset": "sun_corona",
+      "transition": "zoom",
+      "videoPrompt": "Stunning close-up of Saturn's rings from space  –  Cassini-quality imagery, ice particles glittering in sunlight, camera slowly pulling back to reveal the full planet in all its glory, dramatic sidelight casting long shadows through the rings, awe-inspiring scale, the beauty of the real planet confirming what the ancients predicted, cinematic 4K, breathtaking"
+    },
+    {
+      "id": 5,
+      "duration": 23,
+      "narration": "न दूरबीन थी। न अंतरिक्ष यान। न कंप्यूटर। बस हज़ारों साल तक आकाश को देखा। उन्हें कैसे पता चला? ये वो सवाल है जो सब बदल देता है। और एक बार ये सवाल पूछ लिया  –  तो वैदिक ज्योतिष को कभी नकार नहीं पाओगे।",
+      "visualType": "cosmic_text",
+      "textOverlay": "*उन्हें कैसे पता चला?*",
+      "textStyle": "glow",
+      "cosmicPreset": "nebula",
+      "transition": "fade",
+      "videoPrompt": "Ancient Indian astronomer silhouetted against a spectacular star-filled sky, camera pulling back to reveal an ancient stone observatory, stars wheeling overhead in time-lapse, the figure pointing at Saturn among the constellations, profound wonder, golden light on ancient instruments, cinematic 4K, deeply moving"
+    },
+    {
+      "id": 6,
+      "duration": 25,
+      "narration": "तो इन साढ़े सात सालों में होता क्या है? चरम बिंदु  –  दूसरा चरण  –  जब शनि सीधा आपके चंद्रमा पर बैठता है। दृश्यमान आकाश का सबसे भारी ग्रह, आपके मन की सीट पर दबाव डालता है। करियर बदलता है। रिश्ते दबाव में टूटते हैं। स्वास्थ्य ध्यान माँगता है। आपकी पहचान नींव तक उतर जाती है।",
+      "visualType": "planet_render",
+      "planet": "saturn",
+      "textOverlay": "चरम बिंदु\nशनि *चंद्रमा* पर",
+      "subtitle": "पहचान नींव तक उतर जाती है",
+      "cosmicPreset": "deep_space",
+      "transition": "zoom",
+      "videoPrompt": "Saturn and Moon in dramatic conjunction, Saturn's massive rings dwarfing the Moon, gravitational pressure visualized as spacetime warping, intense shadows, cosmic weight pressing down, camera closing in on where both bodies meet, cinematic 4K, peak intensity"
+    },
+    {
+      "id": 7,
+      "duration": 25,
+      "narration": "पहला चरण  –  शनि चंद्र राशि से पहले वाली राशि में आता है। दबाव धीरे-धीरे बढ़ता है। पैसों की तंगी। नींद में खलल। छिपी चिंताएँ उभरती हैं। तीसरा चरण  –  शनि आगे निकल जाता है। बोझ उतरता है। लेकिन अब आप वही इंसान नहीं हो। आप तपकर निकले हो। निखरकर निकले हो। अटूट बनकर निकले हो।",
+      "visualType": "cosmic_text",
+      "textOverlay": "चरण 1: दबाव *बढ़ता* है\nचरण 3: आप *अटूट* बनकर निकलते हैं",
+      "textStyle": "ascend",
+      "cosmicPreset": "aurora",
+      "transition": "slide",
+      "videoPrompt": "Three-act cosmic journey  –  dark clouds gathering around the Moon, then intense pressure and golden lightning at the peak, then dawn breaking through with aurora dancing, transformation from darkness to brilliant light, cosmic rebirth, camera pulling back to reveal beauty after the storm, cinematic 4K, emotional arc from dread to triumph"
+    },
+    {
+      "id": 8,
+      "duration": 20,
+      "narration": "साढ़े सा ती सज़ा नहीं है। ये शनि की भट्टी है। और हर संत, हर नेता, हर महान इंसान  –  इसी आग से गुज़रा है। क्या आप अभी साढ़े सा ती में हैं? पता करें  –  मुफ़्त  –  देखो पंचांग डॉट कॉम पर।",
+      "visualType": "cta",
+      "textOverlay": "dekhopanchang.com",
+      "cosmicPreset": "galaxy",
+      "transition": "fade",
+      "videoPrompt": "Saturn receding into a grand cosmic design, golden birth chart mandala forming, serene galaxy rotating, warmth and empowerment, light conquering shadow, ancient wisdom meeting personal destiny, peaceful resolution, cinematic 4K"
+    }
+  ]
+}

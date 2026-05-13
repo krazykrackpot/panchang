@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "topic": "moon-sign-personality",
+    "type": "short",
+    "language": "en",
+    "estimatedDuration": 75,
+    "style": "dramatic",
+    "musicMood": "mystical",
+    "voiceProfile": "narrator-en",
+    "musicTrack": "ambient-short"
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "duration": 7,
+      "narration": "The horoscope you've been reading your entire life is based on your Sun sign. In Vedic astrology, the Sun sign is almost irrelevant. Your real personality  –  your real destiny  –  is written in the Moon.",
+      "visualType": "cosmic_text",
+      "textOverlay": "Your *Moon Sign*\nReveals Your *Soul*",
+      "textStyle": "burst",
+      "cosmicPreset": "eclipse",
+      "transition": "cut",
+      "videoPrompt": "Dramatic split-screen in space: blazing Sun on one side fading to darkness, ethereal Moon rising on the other side radiating silver-golden light, the Moon's light growing stronger as the Sun dims, cosmic mirror effect, mystical transformation, 4K cinematic, dramatic lighting shift, emotional and revelatory"
+    },
+    {
+      "id": 2,
+      "duration": 10,
+      "narration": "In Jyotish, the Moon represents your mind  –  your Manas. Your emotions, your instincts, your deepest reactions. While the Sun is your outer self, the Moon is who you are when no one is watching.",
+      "visualType": "planet_render",
+      "planet": "moon",
+      "textOverlay": "CHANDRA  –  The Mind",
+      "subtitle": "Emotions • Instincts • Inner Truth",
+      "cosmicPreset": "deep_space",
+      "transition": "zoom",
+      "videoPrompt": "Ultra close-up of the Moon's surface from space, craters and maria in extraordinary detail, silver and golden light playing across the landscape, camera slowly pulling back to reveal the full Moon against infinite blackness, ethereal glow surrounding the entire sphere, reflection of a human face subtly visible in the lunar surface, cinematic 4K, intimate and mystical"
+    },
+    {
+      "id": 3,
+      "duration": 10,
+      "narration": "Your Vimshottari Dasha  –  the planetary periods that map your entire life from birth to death  –  is calculated from the Moon's exact nakshatra position at the moment you were born. Not the Sun. The Moon.",
+      "visualType": "cosmic_text",
+      "textOverlay": "Your *entire life*\nmapped from the *Moon*",
+      "textStyle": "ascend",
+      "cosmicPreset": "constellation",
+      "transition": "slide",
+      "videoPrompt": "A human life timeline visualized as a glowing path through space, different colored planetary energy bands (red Mars, yellow Jupiter, blue Saturn) flowing along the timeline, each period clearly distinct, the Moon at the beginning of the path as the starting point, camera following the path from birth to old age through cosmic space, 4K cinematic, profound and meaningful"
+    },
+    {
+      "id": 4,
+      "duration": 10,
+      "narration": "Your compatibility in marriage? Ashta Kuta matching  –  all 36 points  –  is based on Moon signs. The most important check  –  Nadi Kuta  –  compares your Moon nakshatras. Get this wrong, and ancient texts say the marriage is doomed.",
+      "visualType": "cosmic_text",
+      "textOverlay": "Marriage compatibility\n*36 points* from the *Moon*",
+      "textStyle": "glow",
+      "cosmicPreset": "nebula",
+      "transition": "fade",
+      "videoPrompt": "Two Moons approaching each other in space, their silver light intermingling, creating a beautiful interference pattern of light, 36 golden points lighting up one by one in a circle around the two Moons, cosmic love story visualized, harmonious orbital dance, pink and golden nebula surrounding them, 4K cinematic, beautiful and romantic but serious"
+    },
+    {
+      "id": 5,
+      "duration": 8,
+      "narration": "Even your daily horoscope  –  if you're reading it by Sun sign, you're reading someone else's fortune. In Vedic astrology, daily predictions are based on the Moon's transit through the nakshatras. Everything starts with the Moon.",
+      "visualType": "cosmic_text",
+      "textOverlay": "Wrong sign = wrong fortune\n*Everything* starts with the Moon",
+      "textStyle": "burst",
+      "cosmicPreset": "aurora",
+      "transition": "zoom",
+      "videoPrompt": "The Moon moving rapidly through 27 star clusters (nakshatras) in a celestial circle, each cluster briefly illuminating as the Moon passes through, daily cycle visualized, golden light trails following the Moon's path, sense of constant motion and cosmic rhythm, 4K cinematic, dynamic and revelatory"
+    },
+    {
+      "id": 6,
+      "duration": 8,
+      "narration": "What is your real Moon sign? What nakshatra were you born under? What does it reveal about your true self? Find out  –  free  –  at Dekho Panchang.",
+      "visualType": "cta",
+      "textOverlay": "dekhopanchang.com",
+      "cosmicPreset": "galaxy",
+      "transition": "fade",
+      "videoPrompt": "Full Moon in serene cosmic space, surrounded by a gentle golden halo, vast galaxy visible behind it, silver moonlight illuminating cosmic dust into beautiful flowing patterns, sense of self-discovery and peace, camera slowly pulling back to reveal the Moon as part of a larger cosmic pattern, 4K cinematic, serene and empowering resolution"
+    }
+  ]
+}

@@ -18,7 +18,8 @@ function getClient(): any {
     const { getClaudeClient } = require('@/lib/llm/llm-client');
     _client = getClaudeClient();
     return _client;
-  } catch {
+  } catch (err) {
+    console.error('[ai-pandit] Failed to load Anthropic client:', err);
     return null;
   }
 }

@@ -9,6 +9,9 @@
  */
 
 import type { ValidationResult, ValidationFailure } from '../types';
+import { EXALTATION_SIGNS } from '@/lib/constants/dignities';
+import { GRAHAS } from '@/lib/constants/grahas';
+import { RASHIS } from '@/lib/constants/rashis';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Rule type
@@ -27,20 +30,20 @@ interface TraditionRule {
 
 const BENEFIC_MALEFIC_RULES: TraditionRule[] = [
   // English: benefic called malefic
-  { pattern: /Jupiter[^.]{0,30}(malefic|cruel|papa)/i, message: 'Jupiter is a natural benefic, not malefic', fixable: true },
-  { pattern: /Venus[^.]{0,30}(malefic|cruel|papa)/i, message: 'Venus is a natural benefic, not malefic', fixable: true },
-  { pattern: /(malefic|cruel|papa)[^.]{0,30}Jupiter/i, message: 'Jupiter is a natural benefic, not malefic', fixable: true },
-  { pattern: /(malefic|cruel|papa)[^.]{0,30}Venus/i, message: 'Venus is a natural benefic, not malefic', fixable: true },
+  { pattern: /Jupiter[^.]{0,30}(malefic|cruel|papa)/i, message: 'Jupiter is a natural benefic, not malefic', fixable: false }, // v2: auto-fix with find/replace pairs
+  { pattern: /Venus[^.]{0,30}(malefic|cruel|papa)/i, message: 'Venus is a natural benefic, not malefic', fixable: false }, // v2: auto-fix with find/replace pairs
+  { pattern: /(malefic|cruel|papa)[^.]{0,30}Jupiter/i, message: 'Jupiter is a natural benefic, not malefic', fixable: false }, // v2: auto-fix with find/replace pairs
+  { pattern: /(malefic|cruel|papa)[^.]{0,30}Venus/i, message: 'Venus is a natural benefic, not malefic', fixable: false }, // v2: auto-fix with find/replace pairs
   // English: malefic called benefic
-  { pattern: /Saturn[^.]{0,30}(natural benefic|gentle|saumya)/i, message: 'Saturn is a natural malefic, not benefic', fixable: true },
-  { pattern: /Mars[^.]{0,30}(natural benefic|gentle|saumya)/i, message: 'Mars is a natural malefic, not benefic', fixable: true },
+  { pattern: /Saturn[^.]{0,30}(natural benefic|gentle|saumya)/i, message: 'Saturn is a natural malefic, not benefic', fixable: false }, // v2: auto-fix with find/replace pairs
+  { pattern: /Mars[^.]{0,30}(natural benefic|gentle|saumya)/i, message: 'Mars is a natural malefic, not benefic', fixable: false }, // v2: auto-fix with find/replace pairs
   // Hindi: benefic called malefic
-  { pattern: /बृहस्पति[^।]{0,30}(पाप|क्रूर|अशुभ ग्रह)/g, message: 'बृहस्पति शुभ ग्रह हैं, पाप ग्रह नहीं', fixable: true },
-  { pattern: /गुरु[^।]{0,30}(पाप|क्रूर|अशुभ ग्रह)/g, message: 'गुरु शुभ ग्रह हैं, पाप ग्रह नहीं', fixable: true },
-  { pattern: /शुक्र[^।]{0,30}(पाप|क्रूर|अशुभ ग्रह)/g, message: 'शुक्र शुभ ग्रह हैं, पाप ग्रह नहीं', fixable: true },
+  { pattern: /बृहस्पति[^।]{0,30}(पाप|क्रूर|अशुभ ग्रह)/g, message: 'बृहस्पति शुभ ग्रह हैं, पाप ग्रह नहीं', fixable: false }, // v2: auto-fix with find/replace pairs
+  { pattern: /गुरु[^।]{0,30}(पाप|क्रूर|अशुभ ग्रह)/g, message: 'गुरु शुभ ग्रह हैं, पाप ग्रह नहीं', fixable: false }, // v2: auto-fix with find/replace pairs
+  { pattern: /शुक्र[^।]{0,30}(पाप|क्रूर|अशुभ ग्रह)/g, message: 'शुक्र शुभ ग्रह हैं, पाप ग्रह नहीं', fixable: false }, // v2: auto-fix with find/replace pairs
   // Hindi: malefic called benefic
-  { pattern: /शनि[^।]{0,30}(शुभ ग्रह|सौम्य ग्रह)/g, message: 'शनि पाप ग्रह हैं, शुभ ग्रह नहीं', fixable: true },
-  { pattern: /मंगल[^।]{0,30}(शुभ ग्रह|सौम्य ग्रह)/g, message: 'मंगल पाप ग्रह हैं, शुभ ग्रह नहीं', fixable: true },
+  { pattern: /शनि[^।]{0,30}(शुभ ग्रह|सौम्य ग्रह)/g, message: 'शनि पाप ग्रह हैं, शुभ ग्रह नहीं', fixable: false }, // v2: auto-fix with find/replace pairs
+  { pattern: /मंगल[^।]{0,30}(शुभ ग्रह|सौम्य ग्रह)/g, message: 'मंगल पाप ग्रह हैं, शुभ ग्रह नहीं', fixable: false }, // v2: auto-fix with find/replace pairs
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -67,24 +70,22 @@ const WRONG_ASPECT_RULES: TraditionRule[] = [
 // Exaltation rules — built ONCE at module level (Issue 11)
 // ─────────────────────────────────────────────────────────────────────────────
 
-const EXALTATION_MAP: Record<string, string> = {
-  Sun: 'Aries', Moon: 'Taurus', Mars: 'Capricorn', Mercury: 'Virgo',
-  Jupiter: 'Cancer', Venus: 'Pisces', Saturn: 'Libra',
-};
-
-const SIGN_NAMES = [
-  'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo',
-  'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces',
-];
-
+// Build exaltation rules from canonical constants (CLAUDE.md Lesson Q)
 function buildExaltationRules(): TraditionRule[] {
   const rules: TraditionRule[] = [];
-  for (const [planet, correctSign] of Object.entries(EXALTATION_MAP)) {
-    for (const sign of SIGN_NAMES) {
-      if (sign === correctSign) continue;
+  // Only check Sun (0) through Saturn (6) — Rahu/Ketu rarely mentioned as exalted
+  for (let pid = 0; pid <= 6; pid++) {
+    const correctSignNum = EXALTATION_SIGNS[pid];
+    if (!correctSignNum) continue;
+    const planetName = GRAHAS[pid]?.name.en;
+    const correctSignName = RASHIS[correctSignNum - 1]?.name.en;
+    if (!planetName || !correctSignName) continue;
+
+    for (const rashi of RASHIS) {
+      if (rashi.id === correctSignNum) continue;
       rules.push({
-        pattern: new RegExp(`${planet}[^.]{0,30}exalted[^.]{0,20}${sign}`, 'i'),
-        message: `${planet} is exalted in ${correctSign}, not ${sign}`,
+        pattern: new RegExp(`${planetName}[^.]{0,30}exalted[^.]{0,20}${rashi.name.en}`, 'i'),
+        message: `${planetName} is exalted in ${correctSignName}, not ${rashi.name.en}`,
         fixable: false,
       });
     }

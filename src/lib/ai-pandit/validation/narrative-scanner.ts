@@ -14,17 +14,8 @@ import type {
   ExtractedClaim,
 } from '../types';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Planet name mappings
-// ─────────────────────────────────────────────────────────────────────────────
-
-const PLANET_NAME_TO_ID: Record<string, number> = {
-  sun: 0, moon: 1, mars: 2, mercury: 3, jupiter: 4,
-  venus: 5, saturn: 6, rahu: 7, ketu: 8,
-  'सूर्य': 0, 'चन्द्र': 1, 'चंद्र': 1, 'मंगल': 2, 'बुध': 3,
-  'बृहस्पति': 4, 'गुरु': 4, 'शुक्र': 5, 'शनि': 6,
-  'राहु': 7, 'केतु': 8,
-};
+// Module-local shared constants (CLAUDE.md Lesson Q: single source)
+import { PLANET_NAME_TO_ID } from '../constants';
 
 // Hindi ordinals for houses (भाव)
 const HI_ORDINAL_TO_NUM: Record<string, number> = {

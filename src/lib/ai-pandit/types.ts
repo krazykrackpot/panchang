@@ -193,6 +193,8 @@ export interface ValidationResult {
   warnings: ValidationFailure[];
   /** Time spent in validation (ms). */
   durationMs: number;
+  /** Narrative with L3 fixable corrections applied. Only set if corrections were made. */
+  correctedNarrative?: string;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

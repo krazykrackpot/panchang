@@ -46,9 +46,10 @@ export function parseLLMOutput(raw: string): LLMOutput | null {
       remedies: Array.isArray(parsed.remedies) ? parsed.remedies : [],
       classicalCitations: Array.isArray(parsed.classicalCitations) ? parsed.classicalCitations : [],
     };
-  } catch {
+  } catch (err) {
     // JSON parse failed — extract narrative as plain text
     // Layer 2 is skipped (no structured claims), Layer 2b scans the prose
+    console.error('[ai-pandit] JSON parse failed, falling back to plain text:', (err as Error).message);
     if (cleaned.length > 100) {
       return {
         narrative: cleaned,

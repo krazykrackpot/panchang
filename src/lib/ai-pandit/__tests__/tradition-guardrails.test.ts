@@ -37,9 +37,9 @@ describe('checkTraditionGuardrails', () => {
       expect(r.passed).toBe(true);
     });
 
-    it('benefic/malefic violations are marked fixable', () => {
+    it('benefic/malefic violations are NOT auto-fixable in v1', () => {
       const r = checkTraditionGuardrails('Jupiter, being a natural malefic, blocks progress.', 'en');
-      expect(r.failures[0].fixable).toBe(true);
+      expect(r.failures[0].fixable).toBe(false);
     });
   });
 

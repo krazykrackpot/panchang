@@ -78,15 +78,7 @@ export function validate(
   totalDuration += l3.durationMs;
   allWarnings.push(...l3.warnings);
 
-  // Apply fixable corrections to the narrative
-  let correctedNarrative = llmOutput.narrative;
-  for (const f of l3.failures) {
-    if (f.fixable && f.fix) {
-      correctedNarrative = correctedNarrative.replace(f.fix.find, f.fix.replace);
-    }
-  }
-
-  // Non-fixable L3 failures block delivery
+  // Non-fixable L3 failures block delivery (fixable ones are informational)
   const nonFixable = l3.failures.filter(f => !f.fixable);
   allFailures.push(...l3.failures);
 
@@ -99,15 +91,14 @@ export function validate(
     };
   }
 
-  // Update narrative if corrections were applied
-  if (correctedNarrative !== llmOutput.narrative) {
-    llmOutput.narrative = correctedNarrative;
-  }
+  // Note: L3 fixable corrections (benefic↔malefic swaps) are not auto-applied
+  // in v1 because building reliable find/replace pairs requires per-rule logic.
+  // These are flagged as fixable for future implementation — see design doc §5.5.
 
   return {
     passed: true,
-    failures: allFailures, // May contain fixable L3 failures (applied)
-    warnings: allWarnings, // Hinglish warnings
+    failures: allFailures,
+    warnings: allWarnings,
     durationMs: totalDuration,
   };
 }

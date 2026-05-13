@@ -145,9 +145,10 @@ ${formatFactors(sac.primaryFactors)}`);
 - You may discuss ONLY the doshas listed above. No others.
 - Planet positions are as shown. Do NOT claim any planet in a different house/sign.`);
 
-  // User question
+  // User question — sanitised to prevent prompt injection attempts
+  const sanitisedQuery = query.text.replace(/[\x00-\x1f]/g, '').slice(0, 500);
   sections.push(`=== USER QUESTION ===
-${query.text}`);
+${sanitisedQuery}`);
 
   return sections.join('\n\n');
 }

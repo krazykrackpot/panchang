@@ -41,51 +41,8 @@ import type {
   QueryCategory,
 } from '../types';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Constants (Issue 5: SHADBALA_REQUIRED, Issue 6: planet name→ID)
-// ─────────────────────────────────────────────────────────────────────────────
-
-/** BPHS minimum required Shadbala in Shashtiamsas per planet. */
-const SHADBALA_MIN_REQUIRED: Record<number, number> = {
-  0: 390,  // Sun
-  1: 360,  // Moon
-  2: 300,  // Mars
-  3: 420,  // Mercury
-  4: 390,  // Jupiter
-  5: 330,  // Venus
-  6: 300,  // Saturn
-};
-
-/** Maps English planet name (as found in DashaEntry.planet) to planet ID. */
-const PLANET_NAME_TO_ID: Record<string, number> = {
-  Sun: 0, Moon: 1, Mars: 2, Mercury: 3, Jupiter: 4,
-  Venus: 5, Saturn: 6, Rahu: 7, Ketu: 8,
-};
-
-/** Natural friendships for dignity computation (simplified, BPHS Ch.3). */
-const FRIENDS: Record<number, Set<number>> = {
-  0: new Set([1, 2, 4]),        // Sun: Moon, Mars, Jupiter
-  1: new Set([0, 3]),            // Moon: Sun, Mercury
-  2: new Set([0, 1, 4]),        // Mars: Sun, Moon, Jupiter
-  3: new Set([0, 5]),            // Mercury: Sun, Venus
-  4: new Set([0, 1, 2]),        // Jupiter: Sun, Moon, Mars
-  5: new Set([3, 6]),            // Venus: Mercury, Saturn
-  6: new Set([3, 5]),            // Saturn: Mercury, Venus
-  7: new Set([]),
-  8: new Set([]),
-};
-
-const ENEMIES: Record<number, Set<number>> = {
-  0: new Set([5, 6]),            // Sun: Venus, Saturn
-  1: new Set([]),                // Moon: none
-  2: new Set([3]),               // Mars: Mercury
-  3: new Set([1]),               // Mercury: Moon
-  4: new Set([3, 5]),            // Jupiter: Mercury, Venus
-  5: new Set([0, 1]),            // Venus: Sun, Moon
-  6: new Set([0, 1, 2]),        // Saturn: Sun, Moon, Mars
-  7: new Set([0, 1]),
-  8: new Set([1]),
-};
+// Module-local shared constants (CLAUDE.md Lesson Q: single source)
+import { PLANET_NAME_TO_ID, SHADBALA_MIN_REQUIRED, FRIENDS, ENEMIES } from '../constants';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Dignity computation
@@ -152,6 +109,7 @@ export function buildContext(
   category: QueryCategory = 'general',
   today?: string,
 ): StructuredAstrologicalContext {
+  // .toISOString() returns UTC — correct for dasha date string comparison (Lesson L)
   const todayStr = today ?? new Date().toISOString().slice(0, 10);
 
   // ── Birth ──
@@ -456,8 +414,9 @@ function buildDomainVerdicts(
   // (full domain-specific scoring is a v2 enhancement using scoreDomain)
   const result: Partial<Record<QueryCategory, { verdict: Verdict; score: number; factors: VerdictFactor[] }>> = {};
   const categories: QueryCategory[] = ['career', 'relationship', 'health', 'wealth', 'children', 'education', 'spiritual', 'general'];
+  // Spread factors to avoid shared reference mutation (code review warning 4)
   for (const cat of categories) {
-    result[cat] = { verdict, score, factors };
+    result[cat] = { verdict, score, factors: [...factors] };
   }
 
   return result;

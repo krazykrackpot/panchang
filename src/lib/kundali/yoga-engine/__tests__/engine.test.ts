@@ -423,3 +423,117 @@ describe('Yoga Engine — Group classification', () => {
     expect(groups.size).toBeGreaterThanOrEqual(14);
   });
 });
+
+// ==========================================================================
+// TAJIKA GROUP
+// ==========================================================================
+
+describe('Yoga Engine — Tajika group', () => {
+  it('at least one Tajika yoga is present in one of the test charts', () => {
+    const arjunTajika = arjunChart.evaluatedYogas!.filter(y => y.group === 'tajika' && y.present);
+    const vaibhaviTajika = vaibhaviChart.evaluatedYogas!.filter(y => y.group === 'tajika' && y.present);
+    // Tajika yogas are based on planetary angular relationships — at least one should fire
+    expect(arjunTajika.length + vaibhaviTajika.length).toBeGreaterThan(0);
+  });
+
+  it('Tajika yogas have group "tajika"', () => {
+    const tajikaYogas = arjunChart.evaluatedYogas!.filter(y => y.group === 'tajika');
+    expect(tajikaYogas.length).toBeGreaterThan(0);
+    for (const y of tajikaYogas) {
+      expect(y.group).toBe('tajika');
+    }
+  });
+});
+
+// ==========================================================================
+// DARIDRA GROUP (uses 'dhana' group)
+// ==========================================================================
+
+describe('Yoga Engine — Daridra rules', () => {
+  it('Daridra yoga IDs use group "dhana"', () => {
+    const daridraYogas = arjunChart.evaluatedYogas!.filter(y => y.id.startsWith('daridra'));
+    expect(daridraYogas.length).toBeGreaterThan(0);
+    for (const y of daridraYogas) {
+      expect(y.group).toBe('dhana');
+    }
+  });
+
+  it('Daridra yogas are marked as inauspicious', () => {
+    const daridraYogas = arjunChart.evaluatedYogas!.filter(y => y.id.startsWith('daridra'));
+    for (const y of daridraYogas) {
+      expect(y.isAuspicious).toBe(false);
+    }
+  });
+});
+
+// ==========================================================================
+// PER-LAGNA RAJA YOGA
+// ==========================================================================
+
+describe('Yoga Engine — Per-lagna Raja', () => {
+  it('per-lagna-raja for wrong lagna is NOT present (Arjun = Aquarius)', () => {
+    // Arjun has Aquarius (sign 11) lagna — all non-Aquarius per-lagna rules must be absent
+    const arjunPresent = presentYogaIds(arjunChart.evaluatedYogas!);
+    const wrongLagnaRajas = arjunChart.evaluatedYogas!.filter(y =>
+      y.id.startsWith('per-lagna-raja-') && y.id !== 'per-lagna-raja-aquarius',
+    );
+    for (const y of wrongLagnaRajas) {
+      expect(y.present).toBe(false);
+    }
+    // Virgo-specific should definitely not be present for Aquarius lagna
+    expect(arjunPresent).not.toContain('per-lagna-raja-virgo');
+  });
+
+  it('per-lagna-raja for wrong lagna is NOT present (Vaibhavi = Virgo)', () => {
+    // Vaibhavi has Virgo (sign 6) lagna — all non-Virgo per-lagna rules must be absent
+    const vaibhaviPresent = presentYogaIds(vaibhaviChart.evaluatedYogas!);
+    const wrongLagnaRajas = vaibhaviChart.evaluatedYogas!.filter(y =>
+      y.id.startsWith('per-lagna-raja-') && y.id !== 'per-lagna-raja-virgo',
+    );
+    for (const y of wrongLagnaRajas) {
+      expect(y.present).toBe(false);
+    }
+    expect(vaibhaviPresent).not.toContain('per-lagna-raja-aquarius');
+  });
+
+  it('per-lagna-raja rules exist for all 12 lagnas', () => {
+    const perLagnaRules = arjunChart.evaluatedYogas!.filter(y => y.id.startsWith('per-lagna-raja-'));
+    expect(perLagnaRules.length).toBe(12);
+  });
+});
+
+// ==========================================================================
+// CONJUNCTION GROUP — Angarak (Mars-Saturn)
+// ==========================================================================
+
+describe('Yoga Engine — Conjunction group', () => {
+  it('Angarak Yoga (Mars-Saturn conjunction) present for Arjun', () => {
+    const present = presentYogaIds(arjunChart.evaluatedYogas!);
+    expect(present).toContain('angarak-yoga');
+    const angarak = findYoga(arjunChart.evaluatedYogas!, 'angarak-yoga')!;
+    expect(angarak.group).toBe('conjunction');
+    // Mars (2) and Saturn (6) should be involved
+    expect(angarak.involvedPlanets).toContain(2);
+    expect(angarak.involvedPlanets).toContain(6);
+  });
+});
+
+// ==========================================================================
+// NAVAMSHA GROUP
+// ==========================================================================
+
+describe('Yoga Engine — Navamsha group', () => {
+  it('at least one navamsha yoga is present in one of the test charts', () => {
+    const arjunNav = arjunChart.evaluatedYogas!.filter(y => y.group === 'navamsha' && y.present);
+    const vaibhaviNav = vaibhaviChart.evaluatedYogas!.filter(y => y.group === 'navamsha' && y.present);
+    expect(arjunNav.length + vaibhaviNav.length).toBeGreaterThan(0);
+  });
+
+  it('navamsha yogas have classical references', () => {
+    const navYogas = arjunChart.evaluatedYogas!.filter(y => y.group === 'navamsha');
+    expect(navYogas.length).toBeGreaterThan(0);
+    for (const y of navYogas) {
+      expect(y.classicalRef).toBeTruthy();
+    }
+  });
+});

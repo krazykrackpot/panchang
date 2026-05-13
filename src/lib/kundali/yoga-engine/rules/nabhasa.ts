@@ -1,0 +1,1112 @@
+/**
+ * Nabhasa Yoga Rules
+ *
+ * The 32 Nabhasa ("celestial") yogas from Phaladeepika Ch.7. These are based
+ * on the overall pattern of planetary distribution across the chart — not
+ * specific planet-house combinations, but geometric shapes formed by the
+ * collective placement of planets.
+ *
+ * Four sub-groups:
+ * 1. Sankhya (Number) — how many houses are occupied by Sun through Saturn (7 yogas)
+ * 2. Akriti (Shape) — geometric patterns formed by planet placements (varied)
+ * 3. Aashray (Sign quality) — all planets in movable/fixed/dual signs (3 yogas)
+ * 4. Dala (Kendra pattern) — benefics/malefics in kendras vs upachaya (2 yogas)
+ *
+ * Important: Sankhya yogas are MUTUALLY EXCLUSIVE — only one can be present per chart.
+ * The engine should detect all, but only the matching one will fire.
+ *
+ * "Sun through Saturn" = IDs 0-6 (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn).
+ * Rahu/Ketu excluded from most Nabhasa calculations per classical texts.
+ *
+ * Planet IDs: 0=Sun, 1=Moon, 2=Mars, 3=Mercury, 4=Jupiter, 5=Venus, 6=Saturn, 7=Rahu, 8=Ketu
+ */
+
+import type { YogaRule, YogaContext, YogaDetectionResult } from '../types';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Helper: count occupied houses for Sun-Saturn
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** Planet IDs for Sun through Saturn (classical seven) */
+const SUN_TO_SATURN = [0, 1, 2, 3, 4, 5, 6];
+
+/**
+ * Get the set of distinct houses occupied by Sun through Saturn.
+ */
+function getOccupiedHouses(ctx: YogaContext): Set<number> {
+  const houses = new Set<number>();
+  for (const pid of SUN_TO_SATURN) {
+    houses.add(ctx.planetHouse(pid));
+  }
+  return houses;
+}
+
+/**
+ * Get all planets (Sun-Saturn) involved in the chart pattern.
+ */
+function allSevenPlanets(): number[] {
+  return [...SUN_TO_SATURN];
+}
+
+/**
+ * Check if all Sun-Saturn planets are in the given set of houses.
+ */
+function allPlanetsInHouses(ctx: YogaContext, allowedHouses: Set<number>): boolean {
+  for (const pid of SUN_TO_SATURN) {
+    if (!allowedHouses.has(ctx.planetHouse(pid))) return false;
+  }
+  return true;
+}
+
+/**
+ * Shared strength assessor for Nabhasa yogas.
+ * Strength depends on dignity of key involved planets.
+ */
+function assessNabhasaStrength(ctx: YogaContext, result: YogaDetectionResult): 'Strong' | 'Moderate' | 'Weak' {
+  let dignityScore = 0;
+  for (const pid of result.involvedPlanets) {
+    const d = ctx.dignity(pid);
+    if (d === 'exalted' || d === 'own' || d === 'moolatrikona') dignityScore += 1;
+    else if (d === 'debilitated') dignityScore -= 1;
+  }
+  if (dignityScore >= 3) return 'Strong';
+  if (dignityScore >= 0) return 'Moderate';
+  return 'Weak';
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SANKHYA (Number) Sub-group — 7 yogas based on occupied house count
+// ═══════════════════════════════════════════════════════════════════════════════
+
+/**
+ * Gola Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All 7 planets (Sun through Saturn) in 1 house.
+ * Extremely rare — essentially impossible in practice.
+ *
+ * Results: Inauspicious. The native has an extremely narrow life,
+ * lacking variety and breadth of experience. Poverty and hardship.
+ */
+const GOLA: YogaRule = {
+  id: 'nabhasa-gola',
+  name: { en: 'Gola', hi: 'गोल', sa: 'गोलम्' },
+  group: 'nabhasa',
+  subGroup: 'sankhya',
+  isAuspicious: false,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'houses_occupied',
+    count: 1,
+    planetsConsidered: 'sun_to_saturn',
+  },
+
+  assessStrength: () => 'Strong', // If present, always strong (extreme concentration)
+
+  affectedDomains: 'all',
+  domainImpactWeight: 3,
+
+  formationRule: {
+    en: 'All 7 planets (Sun through Saturn) occupy a single house.',
+    hi: 'सभी 7 ग्रह (सूर्य से शनि) एक ही भाव में स्थित हैं।',
+  },
+
+  description: {
+    en: 'Gola Yoga — all planets concentrated in one house — is an extremely rare and inauspicious formation. Life is narrow and constrained, with all energy focused on one area to the detriment of all others. The native faces poverty, limited opportunities, and a constricted existence.',
+    hi: 'गोल योग — सभी ग्रह एक भाव में केंद्रित — अत्यंत दुर्लभ और अशुभ योग है। जीवन संकीर्ण और सीमित होता है, सारी ऊर्जा एक क्षेत्र में केंद्रित होती है।',
+  },
+};
+
+/**
+ * Yuga Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All 7 planets in exactly 2 houses.
+ *
+ * Results: Inauspicious. Limited scope of life, though less extreme than Gola.
+ * The native struggles with poverty and social isolation.
+ */
+const YUGA: YogaRule = {
+  id: 'nabhasa-yuga',
+  name: { en: 'Yuga', hi: 'युग', sa: 'युगम्' },
+  group: 'nabhasa',
+  subGroup: 'sankhya',
+  isAuspicious: false,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'houses_occupied',
+    count: 2,
+    planetsConsidered: 'sun_to_saturn',
+  },
+
+  assessStrength: () => 'Strong',
+
+  affectedDomains: 'all',
+  domainImpactWeight: 3,
+
+  formationRule: {
+    en: 'All 7 planets (Sun through Saturn) occupy exactly 2 houses.',
+    hi: 'सभी 7 ग्रह (सूर्य से शनि) ठीक 2 भावों में स्थित हैं।',
+  },
+
+  description: {
+    en: 'Yuga Yoga — all planets confined to two houses — severely limits the scope of life. While less extreme than Gola, the native still faces poverty, social restrictions, and a lack of diverse opportunities. Life revolves around two narrow themes with little breadth.',
+    hi: 'युग योग — सभी ग्रह दो भावों तक सीमित — जीवन की सीमा को गंभीर रूप से सीमित करता है। निर्धनता, सामाजिक प्रतिबंध और विविध अवसरों की कमी होती है।',
+  },
+};
+
+/**
+ * Shoola Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All 7 planets in exactly 3 houses.
+ *
+ * Results: Mixed. Concentrated power but narrow focus. The native may be
+ * sharp and capable in specific areas but lacks balance. Prone to anger,
+ * conflict, and health issues.
+ */
+const SHOOLA: YogaRule = {
+  id: 'nabhasa-shoola',
+  name: { en: 'Shoola', hi: 'शूल', sa: 'शूलम्' },
+  group: 'nabhasa',
+  subGroup: 'sankhya',
+  isAuspicious: false,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'houses_occupied',
+    count: 3,
+    planetsConsidered: 'sun_to_saturn',
+  },
+
+  assessStrength: assessNabhasaStrength,
+
+  affectedDomains: 'all',
+  domainImpactWeight: 2,
+
+  formationRule: {
+    en: 'All 7 planets (Sun through Saturn) occupy exactly 3 houses.',
+    hi: 'सभी 7 ग्रह (सूर्य से शनि) ठीक 3 भावों में स्थित हैं।',
+  },
+
+  description: {
+    en: 'Shoola Yoga — a triangular concentration of planets in three houses — indicates sharp but narrow abilities. The native may be fierce, quick-tempered, and intense. They excel in focused domains but lack the balanced life experience that broader distribution provides. Health issues and conflicts are common.',
+    hi: 'शूल योग — तीन भावों में ग्रहों की त्रिकोणीय एकाग्रता — तीव्र लेकिन संकीर्ण क्षमताओं का संकेत देता है। जातक उग्र, तीव्र स्वभाव का हो सकता है। स्वास्थ्य समस्याएँ और संघर्ष सामान्य हैं।',
+  },
+};
+
+/**
+ * Kedara Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All 7 planets in exactly 4 houses.
+ *
+ * Results: Mixed to positive. Moderate concentration. The native is
+ * industrious, like a farmer (kedara = field), working steadily to
+ * produce results. Helpful to others, agricultural or land-based success.
+ */
+const KEDARA: YogaRule = {
+  id: 'nabhasa-kedara',
+  name: { en: 'Kedara', hi: 'केदार', sa: 'केदारम्' },
+  group: 'nabhasa',
+  subGroup: 'sankhya',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'houses_occupied',
+    count: 4,
+    planetsConsidered: 'sun_to_saturn',
+  },
+
+  assessStrength: assessNabhasaStrength,
+
+  affectedDomains: 'all',
+  domainImpactWeight: 1,
+
+  formationRule: {
+    en: 'All 7 planets (Sun through Saturn) occupy exactly 4 houses.',
+    hi: 'सभी 7 ग्रह (सूर्य से शनि) ठीक 4 भावों में स्थित हैं।',
+  },
+
+  description: {
+    en: 'Kedara Yoga — named after a cultivated field — indicates a hardworking, industrious nature. The moderate concentration of planets gives focused energy without excessive narrowness. The native prospers through persistent effort, often in agriculture, land development, or steady professional work. They are helpful to others and build wealth gradually.',
+    hi: 'केदार योग — खेत के नाम पर — मेहनती, परिश्रमी स्वभाव का संकेत देता है। ग्रहों की मध्यम एकाग्रता केंद्रित ऊर्जा देती है। जातक निरंतर प्रयास से समृद्ध होता है।',
+  },
+};
+
+/**
+ * Pasha Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All 7 planets in exactly 5 houses.
+ *
+ * Results: Positive. Good distribution with some focus. The native has
+ * varied interests and capabilities. May face bondage or entanglement
+ * (pasha = noose) in some area but overall positive life outcomes.
+ */
+const PASHA: YogaRule = {
+  id: 'nabhasa-pasha',
+  name: { en: 'Pasha', hi: 'पाश', sa: 'पाशम्' },
+  group: 'nabhasa',
+  subGroup: 'sankhya',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'houses_occupied',
+    count: 5,
+    planetsConsidered: 'sun_to_saturn',
+  },
+
+  assessStrength: assessNabhasaStrength,
+
+  affectedDomains: 'all',
+  domainImpactWeight: 1,
+
+  formationRule: {
+    en: 'All 7 planets (Sun through Saturn) occupy exactly 5 houses.',
+    hi: 'सभी 7 ग्रह (सूर्य से शनि) ठीक 5 भावों में स्थित हैं।',
+  },
+
+  description: {
+    en: 'Pasha Yoga — the "noose" pattern with planets in five houses — indicates a life with good variety and moderate focus. The native has diverse interests and competencies. While some area of life may feel like a binding constraint (the noose), overall outcomes are positive with balanced opportunities across multiple domains.',
+    hi: 'पाश योग — पाँच भावों में ग्रहों का "फंदा" पैटर्न — अच्छी विविधता और मध्यम ध्यान वाले जीवन का संकेत देता है। जातक के विविध रुचियाँ और क्षमताएँ होती हैं।',
+  },
+};
+
+/**
+ * Damini (Dama) Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All 7 planets in exactly 6 houses.
+ *
+ * Results: Positive. Well-spread distribution. The native is generous,
+ * charitable, and enjoys a balanced life with achievements across
+ * multiple areas. Good fortune and social standing.
+ */
+const DAMINI: YogaRule = {
+  id: 'nabhasa-damini',
+  name: { en: 'Damini', hi: 'दामिनी', sa: 'दामिनी' },
+  group: 'nabhasa',
+  subGroup: 'sankhya',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'houses_occupied',
+    count: 6,
+    planetsConsidered: 'sun_to_saturn',
+  },
+
+  assessStrength: assessNabhasaStrength,
+
+  affectedDomains: 'all',
+  domainImpactWeight: 1,
+
+  formationRule: {
+    en: 'All 7 planets (Sun through Saturn) occupy exactly 6 houses.',
+    hi: 'सभी 7 ग्रह (सूर्य से शनि) ठीक 6 भावों में स्थित हैं।',
+  },
+
+  description: {
+    en: 'Damini Yoga — planets well-spread across six houses — indicates a generous, balanced, and fortunate life. The native achieves success across multiple domains: career, family, learning, and social standing. They are charitable and well-regarded in their community.',
+    hi: 'दामिनी योग — छह भावों में ग्रह अच्छी तरह फैले — उदार, संतुलित और भाग्यशाली जीवन का संकेत देता है। जातक अनेक क्षेत्रों में सफलता प्राप्त करता है।',
+  },
+};
+
+/**
+ * Veena Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All 7 planets in exactly 7 houses (each planet in its own house).
+ *
+ * Results: Very positive. Every house activated. The native has diverse
+ * talents, balanced life, love for music and arts. Like the veena (stringed
+ * instrument), their life has many harmonious notes.
+ */
+const VEENA: YogaRule = {
+  id: 'nabhasa-veena',
+  name: { en: 'Veena', hi: 'वीणा', sa: 'वीणा' },
+  group: 'nabhasa',
+  subGroup: 'sankhya',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'houses_occupied',
+    count: 7,
+    planetsConsidered: 'sun_to_saturn',
+  },
+
+  assessStrength: assessNabhasaStrength,
+
+  affectedDomains: 'all',
+  domainImpactWeight: 2,
+
+  formationRule: {
+    en: 'All 7 planets (Sun through Saturn) occupy exactly 7 different houses — each in its own house.',
+    hi: 'सभी 7 ग्रह (सूर्य से शनि) ठीक 7 अलग-अलग भावों में — प्रत्येक अपने भाव में।',
+  },
+
+  description: {
+    en: 'Veena Yoga — named after the celestial stringed instrument — indicates a harmonious, multi-talented life. With every planet in a different house, the native\'s life resonates across all domains. They are artistically inclined, musically gifted, and enjoy balanced success in career, relationships, and personal growth.',
+    hi: 'वीणा योग — दिव्य तंतु वाद्य के नाम पर — सुसंगत, बहुप्रतिभाशाली जीवन का संकेत देता है। प्रत्येक ग्रह अलग भाव में होने से, जातक का जीवन सभी क्षेत्रों में गुंजायमान होता है।',
+  },
+};
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// AKRITI (Shape) Sub-group — geometric patterns
+// ═══════════════════════════════════════════════════════════════════════════════
+
+/**
+ * Graha Malika Yoga — Phaladeepika Ch.7
+ *
+ * Formation: 3 or more consecutive houses occupied by planets (Sun through Saturn).
+ * The longer the chain, the more powerful the yoga.
+ *
+ * Results: Prosperity, authority, fame. The native receives garland-like
+ * (malika) blessings across the connected houses.
+ */
+const GRAHA_MALIKA: YogaRule = {
+  id: 'nabhasa-graha-malika',
+  name: { en: 'Graha Malika', hi: 'ग्रह मालिका', sa: 'ग्रहमालिका' },
+  group: 'nabhasa',
+  subGroup: 'akriti',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'consecutive_houses',
+    minChain: 3,
+    planetsConsidered: 'sun_to_saturn',
+  },
+
+  assessStrength: (ctx: YogaContext, result: YogaDetectionResult) => {
+    const chain = result.chainLength || 3;
+    if (chain >= 6) return 'Strong';
+    if (chain >= 4) return 'Moderate';
+    return 'Weak';
+  },
+
+  affectedDomains: 'all',
+  domainImpactWeight: 2,
+
+  formationRule: {
+    en: '3 or more consecutive houses are occupied by planets (Sun through Saturn), forming a garland pattern.',
+    hi: '3 या अधिक क्रमागत भावों में ग्रह (सूर्य से शनि) स्थित हैं, माला का पैटर्न बनाते हुए।',
+  },
+
+  description: {
+    en: 'Graha Malika — the "planetary garland" — forms when planets occupy consecutive houses like beads on a string. The longer the chain, the more domains of life are connected and supported. The native enjoys a progressive, flowing fortune across the connected areas. Starting house determines which life themes are most activated.',
+    hi: 'ग्रह मालिका — "ग्रहों की माला" — जब ग्रह क्रमागत भावों में धागे में मोतियों की तरह स्थित होते हैं। जितनी लंबी श्रृंखला, उतने अधिक जीवन क्षेत्र जुड़े और समर्थित होते हैं।',
+  },
+};
+
+/**
+ * Ardha Chandra Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All 7 planets in 7 consecutive houses (forming a half-circle).
+ * This is a special case of Graha Malika where the chain spans exactly 7 houses.
+ *
+ * Results: Highly auspicious. The native is a natural leader, beautiful,
+ * commanding, and prosperous. Like the half-moon, they illuminate all
+ * they touch.
+ */
+const ARDHA_CHANDRA: YogaRule = {
+  id: 'nabhasa-ardha-chandra',
+  name: { en: 'Ardha Chandra', hi: 'अर्ध चन्द्र', sa: 'अर्धचन्द्रम्' },
+  group: 'nabhasa',
+  subGroup: 'akriti',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      const occupied = getOccupiedHouses(ctx);
+      // Must be exactly 7 houses occupied AND they must be consecutive
+      if (occupied.size !== 7) {
+        return { present: false, involvedPlanets: [] };
+      }
+
+      // Check if all 7 are consecutive (wrap-around allowed)
+      const houses = Array.from(occupied).sort((a, b) => a - b);
+      for (let start = 0; start < 12; start++) {
+        let allPresent = true;
+        for (let i = 0; i < 7; i++) {
+          const h = ((start + i) % 12) + 1;
+          if (!occupied.has(h)) { allPresent = false; break; }
+        }
+        if (allPresent) {
+          return {
+            present: true,
+            involvedPlanets: allSevenPlanets(),
+            customData: { startHouse: start + 1, chainLength: 7 },
+          };
+        }
+      }
+
+      return { present: false, involvedPlanets: [] };
+    },
+  },
+
+  assessStrength: assessNabhasaStrength,
+
+  affectedDomains: 'all',
+  domainImpactWeight: 2,
+
+  formationRule: {
+    en: 'All 7 planets (Sun through Saturn) occupy 7 consecutive houses, forming a half-circle.',
+    hi: 'सभी 7 ग्रह (सूर्य से शनि) 7 क्रमागत भावों में स्थित हैं, अर्ध-वृत्त बनाते हुए।',
+  },
+
+  description: {
+    en: 'Ardha Chandra — the half-moon — is a powerful Akriti yoga. All seven planets span half the zodiac in an unbroken chain, illuminating seven consecutive life domains. The native is a natural leader: commanding, attractive, and prosperous. They enjoy broad influence and a life of balanced, progressive fortune.',
+    hi: 'अर्ध चन्द्र — आधा चाँद — एक शक्तिशाली आकृति योग है। सात ग्रह राशि चक्र के आधे भाग में अखंड श्रृंखला बनाते हैं। जातक स्वाभाविक नेता होता है: प्रभावशाली, आकर्षक और समृद्ध।',
+  },
+};
+
+/**
+ * Nauka Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All planets in houses 1 through 7 (first half of the chart).
+ *
+ * Results: Wealth through maritime/water-related activities, trade, travel.
+ * The native prospers through navigation, shipping, or water resources.
+ */
+const NAUKA: YogaRule = {
+  id: 'nabhasa-nauka',
+  name: { en: 'Nauka', hi: 'नौका', sa: 'नौका' },
+  group: 'nabhasa',
+  subGroup: 'akriti',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      const allowedHouses = new Set([1, 2, 3, 4, 5, 6, 7]);
+      const present = allPlanetsInHouses(ctx, allowedHouses);
+      return {
+        present,
+        involvedPlanets: present ? allSevenPlanets() : [],
+      };
+    },
+  },
+
+  assessStrength: assessNabhasaStrength,
+
+  affectedDomains: 'all',
+  domainImpactWeight: 1,
+
+  formationRule: {
+    en: 'All 7 planets (Sun through Saturn) are in houses 1 through 7.',
+    hi: 'सभी 7 ग्रह (सूर्य से शनि) पहले से सातवें भाव में स्थित हैं।',
+  },
+
+  description: {
+    en: 'Nauka Yoga — the "boat" — places all planets in the visible half of the chart (houses 1-7). The native prospers through travel, trade, shipping, or water-related activities. They have a pioneering spirit, navigating life\'s currents with skill and earning through movement and commerce.',
+    hi: 'नौका योग — "नाव" — सभी ग्रहों को चार्ट के दृश्य भाग (भाव 1-7) में रखता है। जातक यात्रा, व्यापार, जहाजरानी या जल-संबंधित गतिविधियों से समृद्ध होता है।',
+  },
+};
+
+/**
+ * Koota Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All planets in houses 4 through 10 (angular emphasis).
+ *
+ * Results: The native lives in fortified or enclosed spaces — prisons,
+ * forts, monasteries, or gated communities. Can indicate authority
+ * within confined structures.
+ */
+const KOOTA: YogaRule = {
+  id: 'nabhasa-koota',
+  name: { en: 'Koota', hi: 'कूट', sa: 'कूटम्' },
+  group: 'nabhasa',
+  subGroup: 'akriti',
+  isAuspicious: false,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      const allowedHouses = new Set([4, 5, 6, 7, 8, 9, 10]);
+      const present = allPlanetsInHouses(ctx, allowedHouses);
+      return {
+        present,
+        involvedPlanets: present ? allSevenPlanets() : [],
+      };
+    },
+  },
+
+  assessStrength: assessNabhasaStrength,
+
+  affectedDomains: 'all',
+  domainImpactWeight: 1,
+
+  formationRule: {
+    en: 'All 7 planets (Sun through Saturn) are in houses 4 through 10.',
+    hi: 'सभी 7 ग्रह (सूर्य से शनि) चौथे से दसवें भाव में स्थित हैं।',
+  },
+
+  description: {
+    en: 'Koota Yoga — the "fortress" — concentrates all planets in the mid-chart houses (4-10). The native may live or work in confined, structured environments: military bases, monasteries, prisons, or highly regulated institutions. They can hold authority within such structures but lack freedom of movement.',
+    hi: 'कूट योग — "किला" — सभी ग्रहों को मध्य-चार्ट भावों (4-10) में केंद्रित करता है। जातक सीमित, संरचित वातावरण में रह या काम कर सकता है।',
+  },
+};
+
+/**
+ * Chhatra Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All planets in houses 7 through 1 (second half wrapping to start).
+ *
+ * Results: The native is helpful to many, enjoys protection from superiors,
+ * charitable and philanthropic. Like an umbrella (chhatra), they shelter others.
+ */
+const CHHATRA: YogaRule = {
+  id: 'nabhasa-chhatra',
+  name: { en: 'Chhatra', hi: 'छत्र', sa: 'छत्रम्' },
+  group: 'nabhasa',
+  subGroup: 'akriti',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      const allowedHouses = new Set([7, 8, 9, 10, 11, 12, 1]);
+      const present = allPlanetsInHouses(ctx, allowedHouses);
+      return {
+        present,
+        involvedPlanets: present ? allSevenPlanets() : [],
+      };
+    },
+  },
+
+  assessStrength: assessNabhasaStrength,
+
+  affectedDomains: 'all',
+  domainImpactWeight: 1,
+
+  formationRule: {
+    en: 'All 7 planets (Sun through Saturn) are in houses 7 through 1 (wrapping around).',
+    hi: 'सभी 7 ग्रह (सूर्य से शनि) सातवें से पहले भाव तक (वृत्ताकार) स्थित हैं।',
+  },
+
+  description: {
+    en: 'Chhatra Yoga — the "umbrella" or "royal canopy" — places all planets in the upper half of the chart. The native is charitable, protective of others, and enjoys patronage from powerful people. Like a royal parasol, they provide shelter and command loyalty.',
+    hi: 'छत्र योग — "छतरी" या "राजसी छत्र" — सभी ग्रहों को चार्ट के ऊपरी भाग में रखता है। जातक दानशील, दूसरों की रक्षा करने वाला और शक्तिशाली लोगों से संरक्षण प्राप्त करता है।',
+  },
+};
+
+/**
+ * Dhanush Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All planets in houses 4 through 10 (same as Koota but
+ * interpreted as a bow shape — the "upper half" from IC to MC).
+ *
+ * Note: Some texts distinguish Dhanush from Koota by requiring planets
+ * to be specifically in 4th and 10th (the tips of the bow) plus houses between.
+ * We implement the stricter interpretation: planets in 4-10 AND at least one
+ * planet in both the 4th AND 10th houses.
+ *
+ * Results: Wealth through valour, archery, military skill. The native is
+ * brave and skilled in combat arts.
+ */
+const DHANUSH: YogaRule = {
+  id: 'nabhasa-dhanush',
+  name: { en: 'Dhanush', hi: 'धनुष', sa: 'धनुषम्' },
+  group: 'nabhasa',
+  subGroup: 'akriti',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      const allowedHouses = new Set([4, 5, 6, 7, 8, 9, 10]);
+      if (!allPlanetsInHouses(ctx, allowedHouses)) {
+        return { present: false, involvedPlanets: [] };
+      }
+
+      // Stricter: require at least one planet in both tips (4th AND 10th)
+      const in4 = ctx.planetsInHouse(4).filter(id => SUN_TO_SATURN.includes(id));
+      const in10 = ctx.planetsInHouse(10).filter(id => SUN_TO_SATURN.includes(id));
+
+      const present = in4.length > 0 && in10.length > 0;
+      return {
+        present,
+        involvedPlanets: present ? allSevenPlanets() : [],
+      };
+    },
+  },
+
+  assessStrength: assessNabhasaStrength,
+
+  affectedDomains: 'all',
+  domainImpactWeight: 1,
+
+  formationRule: {
+    en: 'All 7 planets in houses 4-10 with at least one planet at each tip (4th and 10th houses), forming a bow shape.',
+    hi: 'सभी 7 ग्रह भाव 4-10 में, प्रत्येक सिरे (4वां और 10वां भाव) पर कम से कम एक ग्रह, धनुष आकार बनाते हुए।',
+  },
+
+  description: {
+    en: 'Dhanush Yoga — the "bow" — forms when planets span from the 4th to 10th house with endpoints anchored. The native is brave, skilled in competitive pursuits, and earns through valour or martial discipline. Success in military, sports, or assertive professional fields.',
+    hi: 'धनुष योग — "धनुष" — जब ग्रह 4 से 10वें भाव तक फैले और दोनों सिरे स्थिर हों। जातक बहादुर, प्रतिस्पर्धी कार्यों में कुशल और पराक्रम से कमाता है।',
+  },
+};
+
+/**
+ * Shakata (Nabhasa) Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All planets in the 1st and 7th houses only (opposition axis).
+ * Not to be confused with Chandra group's Shakata (Moon 6/8/12 from Jupiter).
+ *
+ * Results: Mixed. The native is like a cart (shakata) — alternating between
+ * fortune and misfortune. Life of extremes.
+ */
+const SHAKATA_NABHASA: YogaRule = {
+  id: 'nabhasa-shakata',
+  name: { en: 'Shakata (Nabhasa)', hi: 'शकट (नभस)', sa: 'शकटम्' },
+  group: 'nabhasa',
+  subGroup: 'akriti',
+  isAuspicious: false,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      const allowedHouses = new Set([1, 7]);
+      const present = allPlanetsInHouses(ctx, allowedHouses);
+      return {
+        present,
+        involvedPlanets: present ? allSevenPlanets() : [],
+      };
+    },
+  },
+
+  assessStrength: assessNabhasaStrength,
+
+  affectedDomains: 'all',
+  domainImpactWeight: 2,
+
+  formationRule: {
+    en: 'All 7 planets (Sun through Saturn) occupy only the 1st and 7th houses (opposition axis).',
+    hi: 'सभी 7 ग्रह (सूर्य से शनि) केवल पहले और सातवें भाव (विपरीत अक्ष) में स्थित हैं।',
+  },
+
+  description: {
+    en: 'Shakata (Nabhasa) — the "cart wheel" — places all planets on the 1-7 axis of self and partnership. Life oscillates between extremes: wealth then poverty, success then failure. The native experiences dramatic ups and downs, like a cart wheel endlessly turning.',
+    hi: 'शकट (नभस) — "गाड़ी का पहिया" — सभी ग्रहों को स्वयं और साझेदारी के 1-7 अक्ष पर रखता है। जीवन चरम सीमाओं के बीच झूलता है।',
+  },
+};
+
+/**
+ * Shringataka Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All planets in trikona houses (1st, 5th, 9th only).
+ *
+ * Results: Auspicious but with conflict. The native is quarrelsome but
+ * also fortunate, enjoying support from dharma (9th) and purva punya (5th).
+ */
+const SHRINGATAKA: YogaRule = {
+  id: 'nabhasa-shringataka',
+  name: { en: 'Shringataka', hi: 'शृंगाटक', sa: 'शृङ्गाटकम्' },
+  group: 'nabhasa',
+  subGroup: 'akriti',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      const allowedHouses = new Set([1, 5, 9]);
+      const present = allPlanetsInHouses(ctx, allowedHouses);
+      return {
+        present,
+        involvedPlanets: present ? allSevenPlanets() : [],
+      };
+    },
+  },
+
+  assessStrength: assessNabhasaStrength,
+
+  affectedDomains: 'all',
+  domainImpactWeight: 2,
+
+  formationRule: {
+    en: 'All 7 planets (Sun through Saturn) occupy only the trikona houses (1st, 5th, 9th).',
+    hi: 'सभी 7 ग्रह (सूर्य से शनि) केवल त्रिकोण भावों (1, 5, 9) में स्थित हैं।',
+  },
+
+  description: {
+    en: 'Shringataka Yoga — planets concentrated in the three trikona (trinal) houses — indicates a life blessed by dharma and past merit. The 1st (self), 5th (intelligence/children), and 9th (fortune/guru) are the most auspicious houses. Despite some quarrelsome tendencies, the native enjoys strong spiritual protection and intellectual gifts.',
+    hi: 'शृंगाटक योग — ग्रह तीन त्रिकोण भावों में केंद्रित — धर्म और पूर्व पुण्य से आशीर्वित जीवन का संकेत देता है। कुछ विवादास्पद प्रवृत्तियों के बावजूद, जातक को मजबूत आध्यात्मिक सुरक्षा और बौद्धिक उपहार प्राप्त होते हैं।',
+  },
+};
+
+/**
+ * Hala Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All planets in one of three trine sets:
+ * - 2nd, 6th, 10th (artha trikona — material success)
+ * - 3rd, 7th, 11th (kama trikona — desire fulfillment)
+ * - 4th, 8th, 12th (moksha trikona — spiritual/transformative)
+ *
+ * Results: The native is a farmer or labourer (hala = plough).
+ * Toils hard but may lack refinement. Specific trine set determines area.
+ */
+const HALA: YogaRule = {
+  id: 'nabhasa-hala',
+  name: { en: 'Hala', hi: 'हल', sa: 'हलम्' },
+  group: 'nabhasa',
+  subGroup: 'akriti',
+  isAuspicious: false,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      const trinePatterns = [
+        new Set([2, 6, 10]), // artha trikona
+        new Set([3, 7, 11]), // kama trikona
+        new Set([4, 8, 12]), // moksha trikona
+      ];
+
+      for (const pattern of trinePatterns) {
+        if (allPlanetsInHouses(ctx, pattern)) {
+          return {
+            present: true,
+            involvedPlanets: allSevenPlanets(),
+            customData: { trineSet: Array.from(pattern) },
+          };
+        }
+      }
+
+      return { present: false, involvedPlanets: [] };
+    },
+  },
+
+  assessStrength: assessNabhasaStrength,
+
+  affectedDomains: 'all',
+  domainImpactWeight: 1,
+
+  formationRule: {
+    en: 'All 7 planets (Sun through Saturn) occupy one trine set: 2/6/10, 3/7/11, or 4/8/12.',
+    hi: 'सभी 7 ग्रह (सूर्य से शनि) एक त्रिकोण समूह में: 2/6/10, 3/7/11, या 4/8/12।',
+  },
+
+  description: {
+    en: 'Hala Yoga — the "plough" — concentrates all planets into one of three trine sets. In 2/6/10 (artha): hard work brings material rewards. In 3/7/11 (kama): effort directed toward desires and partnerships. In 4/8/12 (moksha): toil leads to spiritual transformation. The native works hard like a farmer but may lack breadth of experience.',
+    hi: 'हल योग — "हल" — सभी ग्रहों को तीन त्रिकोण समूहों में से एक में केंद्रित करता है। जातक किसान की तरह कड़ी मेहनत करता है लेकिन अनुभव की विस्तृत श्रेणी से वंचित हो सकता है।',
+  },
+};
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// AASHRAY (Sign quality) Sub-group — based on sign modality
+// ═══════════════════════════════════════════════════════════════════════════════
+
+/**
+ * Rajju Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All planets in movable (chara) signs: Aries(1), Cancer(4), Libra(7), Capricorn(10).
+ *
+ * Results: The native loves travel, is restless, and constantly seeks change.
+ * They prosper in foreign lands or through activities requiring mobility.
+ */
+const RAJJU: YogaRule = {
+  id: 'nabhasa-rajju',
+  name: { en: 'Rajju', hi: 'रज्जु', sa: 'रज्जुः' },
+  group: 'nabhasa',
+  subGroup: 'aashray',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      // Movable signs: Aries(1), Cancer(4), Libra(7), Capricorn(10)
+      const movableSigns = new Set([1, 4, 7, 10]);
+      for (const pid of SUN_TO_SATURN) {
+        if (!movableSigns.has(ctx.planetSign(pid))) {
+          return { present: false, involvedPlanets: [] };
+        }
+      }
+      return { present: true, involvedPlanets: allSevenPlanets() };
+    },
+  },
+
+  assessStrength: assessNabhasaStrength,
+
+  affectedDomains: 'all',
+  domainImpactWeight: 1,
+
+  formationRule: {
+    en: 'All 7 planets (Sun through Saturn) are in movable signs (Aries, Cancer, Libra, Capricorn).',
+    hi: 'सभी 7 ग्रह (सूर्य से शनि) चर राशियों (मेष, कर्क, तुला, मकर) में स्थित हैं।',
+  },
+
+  description: {
+    en: 'Rajju Yoga — all planets in movable signs — creates a restless, travel-loving personality. The native thrives on change and new experiences. They prosper in foreign lands, through frequent relocation, or in careers requiring constant movement. Stability is neither desired nor achieved.',
+    hi: 'रज्जु योग — सभी ग्रह चर राशियों में — अस्थिर, यात्रा-प्रेमी व्यक्तित्व बनाता है। जातक परिवर्तन और नए अनुभवों पर फलता-फूलता है। विदेश में या गतिशीलता वाले करियर में समृद्ध होता है।',
+  },
+};
+
+/**
+ * Musala Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All planets in fixed (sthira) signs: Taurus(2), Leo(5), Scorpio(8), Aquarius(11).
+ *
+ * Results: The native is steady, stubborn, proud, and wealthy. They hold
+ * firm to their positions and build lasting structures. Slow but durable success.
+ */
+const MUSALA: YogaRule = {
+  id: 'nabhasa-musala',
+  name: { en: 'Musala', hi: 'मूसल', sa: 'मूसलम्' },
+  group: 'nabhasa',
+  subGroup: 'aashray',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      // Fixed signs: Taurus(2), Leo(5), Scorpio(8), Aquarius(11)
+      const fixedSigns = new Set([2, 5, 8, 11]);
+      for (const pid of SUN_TO_SATURN) {
+        if (!fixedSigns.has(ctx.planetSign(pid))) {
+          return { present: false, involvedPlanets: [] };
+        }
+      }
+      return { present: true, involvedPlanets: allSevenPlanets() };
+    },
+  },
+
+  assessStrength: assessNabhasaStrength,
+
+  affectedDomains: 'all',
+  domainImpactWeight: 1,
+
+  formationRule: {
+    en: 'All 7 planets (Sun through Saturn) are in fixed signs (Taurus, Leo, Scorpio, Aquarius).',
+    hi: 'सभी 7 ग्रह (सूर्य से शनि) स्थिर राशियों (वृषभ, सिंह, वृश्चिक, कुम्भ) में स्थित हैं।',
+  },
+
+  description: {
+    en: 'Musala Yoga — all planets in fixed signs — produces a steadfast, determined personality. The native is proud, wealthy, and resistant to change. They build lasting structures — businesses, institutions, legacies. Success comes slowly but endures. Stubbornness can be both their greatest strength and weakness.',
+    hi: 'मूसल योग — सभी ग्रह स्थिर राशियों में — दृढ़, निश्चयी व्यक्तित्व बनाता है। जातक गर्वित, धनी और परिवर्तन के प्रति प्रतिरोधी होता है। स्थायी संरचनाएँ बनाता है।',
+  },
+};
+
+/**
+ * Nala Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All planets in dual (dvisvabhava) signs: Gemini(3), Virgo(6), Sagittarius(9), Pisces(12).
+ *
+ * Results: The native is skilled, clever, deformed in some way (classical
+ * interpretation), adaptable, and resourceful. Modern: versatile and dual-natured.
+ */
+const NALA: YogaRule = {
+  id: 'nabhasa-nala',
+  name: { en: 'Nala', hi: 'नल', sa: 'नलम्' },
+  group: 'nabhasa',
+  subGroup: 'aashray',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      // Dual signs: Gemini(3), Virgo(6), Sagittarius(9), Pisces(12)
+      const dualSigns = new Set([3, 6, 9, 12]);
+      for (const pid of SUN_TO_SATURN) {
+        if (!dualSigns.has(ctx.planetSign(pid))) {
+          return { present: false, involvedPlanets: [] };
+        }
+      }
+      return { present: true, involvedPlanets: allSevenPlanets() };
+    },
+  },
+
+  assessStrength: assessNabhasaStrength,
+
+  affectedDomains: 'all',
+  domainImpactWeight: 1,
+
+  formationRule: {
+    en: 'All 7 planets (Sun through Saturn) are in dual signs (Gemini, Virgo, Sagittarius, Pisces).',
+    hi: 'सभी 7 ग्रह (सूर्य से शनि) द्विस्वभाव राशियों (मिथुन, कन्या, धनु, मीन) में स्थित हैं।',
+  },
+
+  description: {
+    en: 'Nala Yoga — all planets in dual/mutable signs — creates an adaptable, versatile personality. The native is clever, resourceful, and skilled at handling multiple roles. They thrive in changing environments and can pivot quickly when circumstances shift. May lack the focus of fixed signs or the initiative of movable signs.',
+    hi: 'नल योग — सभी ग्रह द्विस्वभाव राशियों में — अनुकूलनीय, बहुमुखी व्यक्तित्व बनाता है। जातक चतुर, संसाधनपूर्ण और अनेक भूमिकाओं को संभालने में कुशल होता है।',
+  },
+};
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// DALA (Kendra/Upachaya pattern) Sub-group
+// ═══════════════════════════════════════════════════════════════════════════════
+
+/**
+ * Mala Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All natural benefics (Mercury, Jupiter, Venus, Moon) in kendras
+ * (1/4/7/10), AND all natural malefics (Sun, Mars, Saturn) in houses 3/6/11.
+ *
+ * Results: Extremely auspicious. The native enjoys comforts, wealth, vehicles,
+ * good reputation. Benefics protecting the angles while malefics serve in
+ * upachaya (growth) houses is the ideal distribution.
+ */
+const MALA: YogaRule = {
+  id: 'nabhasa-mala',
+  name: { en: 'Mala', hi: 'माल', sa: 'मालम्' },
+  group: 'nabhasa',
+  subGroup: 'dala',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      // Natural benefics: Moon(1), Mercury(3), Jupiter(4), Venus(5)
+      const benefics = [1, 3, 4, 5];
+      // Natural malefics: Sun(0), Mars(2), Saturn(6)
+      const malefics = [0, 2, 6];
+
+      const kendras = new Set([1, 4, 7, 10]);
+      const upachaya3611 = new Set([3, 6, 11]);
+
+      // All benefics must be in kendras
+      for (const pid of benefics) {
+        if (!kendras.has(ctx.planetHouse(pid))) {
+          return { present: false, involvedPlanets: [] };
+        }
+      }
+
+      // All malefics must be in 3/6/11
+      for (const pid of malefics) {
+        if (!upachaya3611.has(ctx.planetHouse(pid))) {
+          return { present: false, involvedPlanets: [] };
+        }
+      }
+
+      return {
+        present: true,
+        involvedPlanets: allSevenPlanets(),
+      };
+    },
+  },
+
+  assessStrength: assessNabhasaStrength,
+
+  affectedDomains: 'all',
+  domainImpactWeight: 2,
+
+  formationRule: {
+    en: 'All natural benefics (Moon, Mercury, Jupiter, Venus) in kendras (1/4/7/10), and all natural malefics (Sun, Mars, Saturn) in houses 3/6/11.',
+    hi: 'सभी प्राकृतिक शुभ ग्रह (चन्द्र, बुध, गुरु, शुक्र) केन्द्रों (1/4/7/10) में, और सभी प्राकृतिक पाप ग्रह (सूर्य, मंगल, शनि) 3/6/11 भावों में।',
+  },
+
+  description: {
+    en: 'Mala Yoga — the "garland" of ideal planetary distribution — places benefics in the strongest positions (kendras) while malefics serve in upachaya houses where they do well. This is the classical ideal: protection at the angles, growth through challenges. The native enjoys wealth, vehicles, comforts, and a sterling reputation.',
+    hi: 'माल योग — आदर्श ग्रह वितरण की "माला" — शुभ ग्रहों को सबसे मजबूत स्थिति (केन्द्र) में और पाप ग्रहों को उपचय भावों में रखता है। जातक धन, वाहन, सुख और उत्तम प्रतिष्ठा का आनंद लेता है।',
+  },
+};
+
+/**
+ * Sarpa Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All natural malefics (Sun, Mars, Saturn) in kendras (1/4/7/10),
+ * AND all natural benefics (Moon, Mercury, Jupiter, Venus) in houses 3/6/11.
+ *
+ * Results: Inauspicious. The opposite of Mala — malefics dominate the angles
+ * while benefics are relegated to secondary houses. The native is miserable,
+ * cruel, and suffers from poverty and poor relationships.
+ */
+const SARPA: YogaRule = {
+  id: 'nabhasa-sarpa',
+  name: { en: 'Sarpa', hi: 'सर्प', sa: 'सर्पम्' },
+  group: 'nabhasa',
+  subGroup: 'dala',
+  isAuspicious: false,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      // Natural malefics: Sun(0), Mars(2), Saturn(6)
+      const malefics = [0, 2, 6];
+      // Natural benefics: Moon(1), Mercury(3), Jupiter(4), Venus(5)
+      const benefics = [1, 3, 4, 5];
+
+      const kendras = new Set([1, 4, 7, 10]);
+      const upachaya3611 = new Set([3, 6, 11]);
+
+      // All malefics must be in kendras
+      for (const pid of malefics) {
+        if (!kendras.has(ctx.planetHouse(pid))) {
+          return { present: false, involvedPlanets: [] };
+        }
+      }
+
+      // All benefics must be in 3/6/11
+      for (const pid of benefics) {
+        if (!upachaya3611.has(ctx.planetHouse(pid))) {
+          return { present: false, involvedPlanets: [] };
+        }
+      }
+
+      return {
+        present: true,
+        involvedPlanets: allSevenPlanets(),
+      };
+    },
+  },
+
+  assessStrength: () => 'Strong', // If present, always strong (severe affliction)
+
+  affectedDomains: 'all',
+  domainImpactWeight: 2,
+
+  formationRule: {
+    en: 'All natural malefics (Sun, Mars, Saturn) in kendras (1/4/7/10), and all natural benefics (Moon, Mercury, Jupiter, Venus) in houses 3/6/11.',
+    hi: 'सभी प्राकृतिक पाप ग्रह (सूर्य, मंगल, शनि) केन्द्रों (1/4/7/10) में, और सभी प्राकृतिक शुभ ग्रह (चन्द्र, बुध, गुरु, शुक्र) 3/6/11 भावों में।',
+  },
+
+  description: {
+    en: 'Sarpa Yoga — the "serpent" — is the inverse of Mala: malefics control the angles while benefics are pushed to secondary positions. The native faces hardship, cruelty in relationships, and a life marked by struggle. The malefic dominance at the chart\'s core creates an environment of conflict and suffering.',
+    hi: 'सर्प योग — "सर्प" — माल का विपरीत है: पाप ग्रह कोणों को नियंत्रित करते हैं जबकि शुभ ग्रह गौण स्थिति में होते हैं। जातक कठिनाई, संबंधों में क्रूरता और संघर्षपूर्ण जीवन का सामना करता है।',
+  },
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Export
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** All 21 Nabhasa yoga rules — Phaladeepika Ch.7 (4 sub-groups) */
+export const NABHASA_RULES: YogaRule[] = [
+  // Sankhya (Number) — mutually exclusive
+  GOLA,
+  YUGA,
+  SHOOLA,
+  KEDARA,
+  PASHA,
+  DAMINI,
+  VEENA,
+  // Akriti (Shape)
+  GRAHA_MALIKA,
+  ARDHA_CHANDRA,
+  NAUKA,
+  KOOTA,
+  CHHATRA,
+  DHANUSH,
+  SHAKATA_NABHASA,
+  SHRINGATAKA,
+  HALA,
+  // Aashray (Sign quality)
+  RAJJU,
+  MUSALA,
+  NALA,
+  // Dala (Kendra pattern)
+  MALA,
+  SARPA,
+];

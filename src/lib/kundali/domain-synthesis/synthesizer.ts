@@ -1024,6 +1024,47 @@ function evaluateSignificatorsHolistic(
     });
   }
 
+  // ── Evaluate relevant yogas and doshas ──
+  // Yogas (classical planetary combinations) and doshas (afflictions) are
+  // domain-filtered by config.relevantYogaCategories / config.relevantDoshas.
+  // Per BPHS: yogas amplify a domain's promise; doshas create specific obstacles.
+  if (kundali.yogasComplete) {
+    const activeYogas = kundali.yogasComplete.filter(
+      y => y.present && config.relevantYogaCategories.includes(y.category),
+    );
+    if (activeYogas.length > 0) {
+      // Yogas boost: each yoga adds a tier-2 (madhyama) weight-1 contribution
+      for (const y of activeYogas.slice(0, 3)) { // cap at 3 to avoid swamping
+        tierValues.push({ tier: 3, weight: 1 });
+      }
+      const yogaNames = activeYogas.slice(0, 3).map(y => y.name.en ?? 'Yoga');
+      const moreCount = activeYogas.length > 3 ? ` (+${activeYogas.length - 3} more)` : '';
+      factors.push({
+        label: { en: 'Active Yogas', hi: 'सक्रिय योग' },
+        verdict: 'positive',
+        value: `${yogaNames.join(', ')}${moreCount}`,
+      });
+    }
+
+    const activeDoshas = kundali.yogasComplete.filter(y => {
+      const nameStr = (y.name.en ?? '').toLowerCase().replace(/\s+/g, '_');
+      return y.present && config.relevantDoshas.some(d => nameStr.includes(d));
+    });
+    if (activeDoshas.length > 0) {
+      // Doshas drag: each dosha adds a tier-0 (atyadhama) weight-1 contribution
+      for (const d of activeDoshas.slice(0, 2)) { // cap at 2
+        tierValues.push({ tier: 0, weight: 1 });
+      }
+      const doshaNames = activeDoshas.slice(0, 2).map(d => d.name.en ?? 'Dosha');
+      const moreCount = activeDoshas.length > 2 ? ` (+${activeDoshas.length - 2} more)` : '';
+      factors.push({
+        label: { en: 'Active Doshas', hi: 'सक्रिय दोष' },
+        verdict: 'negative',
+        value: `${doshaNames.join(', ')}${moreCount}`,
+      });
+    }
+  }
+
   // ── Holistic tier: weighted average, rounded to nearest ──
   const totalWeight = tierValues.reduce((s, v) => s + v.weight, 0);
   const weightedSum = tierValues.reduce((s, v) => s + v.tier * v.weight, 0);

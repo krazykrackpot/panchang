@@ -469,6 +469,17 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
           {isHi ? 'आपके जीवन क्षेत्र' : 'Your Life Domains'}
         </h2>
 
+        {/* Technical analysis link — top */}
+        {onTechnical && (
+          <button
+            onClick={onTechnical}
+            className="w-full mb-4 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all text-xs"
+          >
+            <Shield size={14} />
+            {isHi ? 'तकनीकी चार्ट विश्लेषण' : 'Advanced Technical Chart Analysis'}
+          </button>
+        )}
+
         {/* Overview: all 8 domains at a glance */}
         {sortedDomains.length > 0 && (
           <div className="mb-5">

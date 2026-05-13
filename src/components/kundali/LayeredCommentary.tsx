@@ -45,9 +45,11 @@ function generateNatalProse(
     const label = isHi ? f.label.hi : f.label.en;
     const value = f.value;
 
-    // Split value on " — " to separate placement from context
-    const [placement, context] = value.includes(' — ')
-      ? [value.slice(0, value.indexOf(' — ')), value.slice(value.indexOf(' — ') + 3)]
+    // Split value on " — " to separate placement from context.
+    // Use LAST " — " as the split point since the domain context is always last.
+    const lastDash = value.lastIndexOf(' — ');
+    const [placement, context] = lastDash >= 0
+      ? [value.slice(0, lastDash), value.slice(lastDash + 3)]
       : [value, ''];
 
     if (f.verdict === 'positive') {
@@ -185,23 +187,19 @@ export default function LayeredCommentary({ domain, locale }: LayeredCommentaryP
 
   return (
     <div className="space-y-3 mt-3" style={bodyFont}>
-      {/* Layer 1: Natal — flowing prose reading */}
+      {/* Layer 1: Natal — factors first, then prose interpretation */}
       <div className="border-l-2 border-[#34d399]/50 pl-3">
         <p className="text-xs font-semibold text-text-primary mb-1.5">{natalHeadline}</p>
-        <p className="text-sm leading-relaxed text-text-secondary mb-2">
+        {/* Factor breakdown — the evidence */}
+        <div className="space-y-1 mb-2">
+          {factors.map((f, i) => (
+            <SignificatorLine key={i} factor={f} isHi={isHi} />
+          ))}
+        </div>
+        {/* Flowing prose — interpretation of the factors above */}
+        <p className="text-sm leading-relaxed text-text-secondary pt-2 border-t border-white/5">
           {prose}
         </p>
-        {/* Factor breakdown (collapsible detail) */}
-        <details className="group">
-          <summary className="text-[10px] text-gold-primary/70 cursor-pointer hover:text-gold-primary transition-colors">
-            {isHi ? 'कारक विश्लेषण देखें' : 'View factor analysis'}
-          </summary>
-          <div className="space-y-1 mt-1.5">
-            {factors.map((f, i) => (
-              <SignificatorLine key={i} factor={f} isHi={isHi} />
-            ))}
-          </div>
-        </details>
       </div>
 
       {/* Layer 2: Mahadasha */}

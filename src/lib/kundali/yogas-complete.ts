@@ -1060,32 +1060,78 @@ function detectInauspiciousYogas(planets: PlanetData[], ascSign: number): YogaCo
     },
   });
 
-  // 37. Lagna Mallika (all 7 planets in 4 consecutive houses from 1)
+  // 37. Graha Sanghata (Planetary Cluster) — all 7 planets in ≤4 consecutive houses
+  // NOTE: This is NOT a Malika yoga. Malika = chain of occupied consecutive houses.
+  // This is a Sanghata-type Nabhasa yoga — tight clustering of all planets.
   const sevenPlanets = planets.filter(p => p.id >= 0 && p.id <= 6);
-  let mallikaPresent = false;
+  let sanghataPresent = false;
+  let sanghataStart = 0;
+  let sanghataSpan = 0;
   for (let start = 1; start <= 12; start++) {
     const houses = [start, (start % 12) + 1, ((start + 1) % 12) + 1, ((start + 2) % 12) + 1];
     if (sevenPlanets.every(p => houses.includes(p.house))) {
-      mallikaPresent = true;
+      sanghataPresent = true;
+      sanghataStart = start;
+      // Compute actual number of occupied houses within the 4-house window
+      const usedHouses = new Set(sevenPlanets.map(p => p.house));
+      sanghataSpan = usedHouses.size;
       break;
     }
   }
+  // Determine auspiciousness: kendra/trikona houses in the cluster = better
+  const KENDRA_TRIKONA = [1, 4, 5, 7, 9, 10];
+  const sanghataHouses = sanghataPresent
+    ? [sanghataStart, (sanghataStart % 12) + 1, ((sanghataStart + 1) % 12) + 1, ((sanghataStart + 2) % 12) + 1]
+    : [];
+  const sanghataInKendraTrikona = sanghataHouses.filter(h => KENDRA_TRIKONA.includes(h)).length;
+  const sanghataAuspicious = sanghataInKendraTrikona >= 2;
+  // Find first and last planet by house order within the cluster
+  const sortedCluster = [...sevenPlanets].sort((a, b) => {
+    const aOff = ((a.house - sanghataStart + 12) % 12);
+    const bOff = ((b.house - sanghataStart + 12) % 12);
+    return aOff - bOff || a.longitude - b.longitude;
+  });
+  const firstP = sortedCluster[0];
+  const lastP = sortedCluster[sortedCluster.length - 1];
+  const PLANET_ROLES_EN: Record<number, string> = {
+    0: 'vitality, authority', 1: 'emotions, nurturing', 2: 'energy, courage',
+    3: 'intellect, communication', 4: 'wisdom, expansion', 5: 'relationships, creativity',
+    6: 'discipline, endurance',
+  };
+  // The window is always 4 consecutive houses; sanghataSpan = how many of those 4 are actually occupied
+  const windowEnd = ((sanghataStart - 1 + 3) % 12) + 1; // 4th house in the window
+  const clusterDescEn = sanghataPresent
+    ? `All 7 planets concentrated within a 4-house window (H${sanghataStart}–H${windowEnd}), occupying ${sanghataSpan} of those houses. ` +
+      `${GRAHA_EN[firstP.id]} (${PLANET_ROLES_EN[firstP.id]}) in H${firstP.house} leads the cluster; ` +
+      `${GRAHA_EN[lastP.id]} (${PLANET_ROLES_EN[lastP.id]}) in H${lastP.house} anchors it. ` +
+      (sanghataAuspicious
+        ? 'Cluster overlaps kendra/trikona houses — concentrated power channelled into auspicious life areas.'
+        : 'Cluster falls largely in dusthana/upachaya houses — intense focus but life balance may suffer.')
+    : 'All 7 planets clustered within 4 consecutive houses — concentrated planetary energy.';
+  const clusterDescHi = sanghataPresent
+    ? `सभी 7 ग्रह 4-भाव विंडो (भाव ${sanghataStart}–${windowEnd}) में संकेन्द्रित, ${sanghataSpan} भावों में। ` +
+      `${GRAHA_HI[firstP.id]} भाव ${firstP.house} में अग्रणी; ${GRAHA_HI[lastP.id]} भाव ${lastP.house} में स्थिर।`
+    : 'सभी 7 ग्रह 4 क्रमागत भावों में — संकेन्द्रित ग्रह ऊर्जा।';
   results.push({
-    id: 'lagna_mallika',
-    name: { en: 'Lagna Mallika Yoga', hi: 'लग्न मल्लिका योग', sa: 'लग्नमल्लिकायोगः' },
-    category: 'inauspicious',
-    isAuspicious: false,
-    present: mallikaPresent,
-    strength: mallikaPresent ? 'Strong' : 'Weak',
+    id: 'graha_sanghata',
+    name: { en: 'Graha Sanghata (Planetary Cluster)', hi: 'ग्रह संघात (ग्रह समूह)', sa: 'ग्रहसंघातयोगः' },
+    category: 'other',
+    isAuspicious: sanghataAuspicious,
+    present: sanghataPresent,
+    strength: sanghataPresent ? (sanghataSpan <= 2 ? 'Strong' : sanghataSpan <= 3 ? 'Moderate' : 'Weak') : 'Weak',
     formationRule: {
-      en: 'All 7 planets (Sun-Saturn) in 4 consecutive houses',
-      hi: 'सभी 7 ग्रह (सूर्य-शनि) लगातार 4 भावों में',
+      en: sanghataPresent
+        ? `All 7 planets (Sun–Saturn) within 4 consecutive houses (H${sanghataStart}–H${windowEnd})`
+        : 'All 7 planets (Sun–Saturn) in 4 or fewer consecutive houses',
+      hi: sanghataPresent
+        ? `सभी 7 ग्रह (सूर्य-शनि) 4 क्रमागत भावों (${sanghataStart}–${windowEnd}) में`
+        : 'सभी 7 ग्रह (सूर्य-शनि) 4 या कम क्रमागत भावों में',
       sa: 'सर्वे सप्तग्रहाः चतुर्षु क्रमभावेषु',
     },
     description: {
-      en: 'All planets clustered in a narrow band limit life scope and create imbalance.',
-      hi: 'सभी ग्रह संकीर्ण क्षेत्र में। जीवन में सीमितता और असंतुलन।',
-      sa: 'सर्वे ग्रहाः संकीर्णक्षेत्रे। जीवने सीमितता असन्तुलनं च।',
+      en: clusterDescEn,
+      hi: clusterDescHi,
+      sa: 'सर्वे ग्रहाः संकीर्णक्षेत्रे संकेन्द्रिताः। तीव्रशक्तिः किन्तु जीवने असन्तुलनं सम्भवम्।',
     },
   });
 
@@ -1619,31 +1665,117 @@ function detectSankhyaYogas(planets: PlanetData[]): YogaComplete[] {
 // Graha Malika Yoga  –  Planets in consecutive houses
 // ---------------------------------------------------------------------------
 
-function detectGrahaMalikaYogas(planets: PlanetData[], ascSign: number): YogaComplete[] {
+function detectGrahaMalikaYogas(planets: PlanetData[], _ascSign: number): YogaComplete[] {
   const results: YogaComplete[] = [];
   const seven = planets.filter(p => p.id < 7);
-  const houses = new Set(seven.map(p => p.house));
+  const occupiedHouses = new Set(seven.map(p => p.house));
 
-  // Check for consecutive house chain (3+ in a row)
+  // Find the longest chain of consecutive OCCUPIED houses (each must have ≥1 planet)
   let maxChain = 0;
   let chainStart = 0;
   for (let start = 1; start <= 12; start++) {
+    if (!occupiedHouses.has(start)) continue; // chain must start at an occupied house
     let chain = 0;
     for (let h = 0; h < 12; h++) {
       const house = ((start - 1 + h) % 12) + 1;
-      if (houses.has(house)) chain++;
+      if (occupiedHouses.has(house)) chain++;
       else break;
     }
     if (chain > maxChain) { maxChain = chain; chainStart = start; }
   }
 
+  // Malika names by starting house (BPHS / Phaladeepika)
+  const MALIKA_NAMES: Record<number, { en: string; hi: string; sa: string }> = {
+    1:  { en: 'Lagna Malika',   hi: 'लग्न मालिका',   sa: 'लग्नमालिका' },
+    2:  { en: 'Dhana Malika',   hi: 'धन मालिका',     sa: 'धनमालिका' },
+    3:  { en: 'Vikrama Malika', hi: 'विक्रम मालिका', sa: 'विक्रममालिका' },
+    4:  { en: 'Sukha Malika',   hi: 'सुख मालिका',     sa: 'सुखमालिका' },
+    5:  { en: 'Putra Malika',   hi: 'पुत्र मालिका',   sa: 'पुत्रमालिका' },
+    6:  { en: 'Shatru Malika',  hi: 'शत्रु मालिका',   sa: 'शत्रुमालिका' },
+    7:  { en: 'Kalatra Malika', hi: 'कलत्र मालिका',   sa: 'कलत्रमालिका' },
+    8:  { en: 'Randhra Malika', hi: 'रन्ध्र मालिका',  sa: 'रन्ध्रमालिका' },
+    9:  { en: 'Dharma Malika',  hi: 'धर्म मालिका',     sa: 'धर्ममालिका' },
+    10: { en: 'Karma Malika',   hi: 'कर्म मालिका',     sa: 'कर्ममालिका' },
+    11: { en: 'Labha Malika',   hi: 'लाभ मालिका',     sa: 'लाभमालिका' },
+    12: { en: 'Vyaya Malika',   hi: 'व्यय मालिका',     sa: 'व्ययमालिका' },
+  };
+
+  // Auspiciousness by starting house
+  const AUSPICIOUS_STARTS = [1, 4, 5, 7, 9, 10, 11]; // kendra/trikona/labha
+  const CHALLENGING_STARTS = [6, 8, 12];              // dusthana
+  // Houses 2, 3 = moderate
+
   const present = maxChain >= 3;
+  const malikaName = MALIKA_NAMES[chainStart] || MALIKA_NAMES[1];
+  const isAuspicious = present ? AUSPICIOUS_STARTS.includes(chainStart) : false;
+  const category: YogaComplete['category'] = present
+    ? (AUSPICIOUS_STARTS.includes(chainStart) ? 'raja' : CHALLENGING_STARTS.includes(chainStart) ? 'inauspicious' : 'other')
+    : 'other';
+
+  // Planet role descriptions for first/last planet context
+  const PLANET_ROLES: Record<number, string> = {
+    0: 'vitality, authority', 1: 'emotions, nurturing', 2: 'energy, courage',
+    3: 'intellect, communication', 4: 'wisdom, expansion', 5: 'relationships, creativity',
+    6: 'discipline, endurance',
+  };
+
+  // Find first and last planet in the chain (ordered by house offset from chainStart)
+  const chainHouses: number[] = [];
+  for (let h = 0; h < maxChain; h++) {
+    chainHouses.push(((chainStart - 1 + h) % 12) + 1);
+  }
+  const planetsInChain = seven
+    .filter(p => chainHouses.includes(p.house))
+    .sort((a, b) => {
+      const aOff = ((a.house - chainStart + 12) % 12);
+      const bOff = ((b.house - chainStart + 12) % 12);
+      return aOff - bOff || a.longitude - b.longitude;
+    });
+  const firstP = planetsInChain[0];
+  const lastP = planetsInChain[planetsInChain.length - 1];
+
+  const chainEndHouse = ((chainStart - 1 + maxChain - 1) % 12) + 1;
+
+  // Build description with first/last planet context
+  let descEn: string;
+  let descHi: string;
+  if (present && firstP && lastP) {
+    const involvedNames = planetsInChain.map(p => GRAHA_EN[p.id]).join(', ');
+    descEn = `${malikaName.en} Yoga — garland of planets spanning ${maxChain} consecutive houses (H${chainStart}–H${chainEndHouse}). ` +
+      `Chain starts with ${GRAHA_EN[firstP.id]} (${PLANET_ROLES[firstP.id]}) in H${firstP.house} and ends with ${GRAHA_EN[lastP.id]} (${PLANET_ROLES[lastP.id]}) in H${lastP.house}. ` +
+      `The first planet colours your approach; the last planet defines how this yoga manifests. ` +
+      `Involved planets: ${involvedNames}. ` +
+      (maxChain >= 7 ? 'All 7 planets in an unbroken chain — extremely rare and powerful.' : maxChain >= 5 ? 'Strong chain of 5+ houses — significant life pattern.' : 'Chain of 3–4 houses — present but moderate influence.');
+    const involvedHi = planetsInChain.map(p => GRAHA_HI[p.id]).join(', ');
+    descHi = `${malikaName.hi} योग — ${maxChain} क्रमागत भावों (भाव ${chainStart}–${chainEndHouse}) में ग्रहों की माला। ` +
+      `श्रृंखला ${GRAHA_HI[firstP.id]} (भाव ${firstP.house}) से प्रारम्भ होकर ${GRAHA_HI[lastP.id]} (भाव ${lastP.house}) पर समाप्त। ` +
+      `सम्बद्ध ग्रह: ${involvedHi}।`;
+  } else {
+    descEn = 'Graha Malika Yoga — garland of planets in consecutive houses. Not present in this chart.';
+    descHi = 'ग्रह मालिका योग — क्रमागत भावों में ग्रहों की माला। इस कुण्डली में अनुपस्थित।';
+  }
+
   results.push({
-    id: 'graha_malika', category: 'other', isAuspicious: true, present,
+    id: 'graha_malika',
+    category,
+    isAuspicious,
+    present,
     strength: maxChain >= 7 ? 'Strong' : maxChain >= 5 ? 'Moderate' : present ? 'Weak' : 'Weak',
-    name: { en: 'Graha Malika Yoga', hi: 'ग्रह मालिका योग', sa: 'ग्रहमालिकायोगः' },
-    formationRule: { en: `Planets in ${maxChain} consecutive houses starting from house ${chainStart}`, hi: `${maxChain} क्रमागत भावों में ग्रह, भाव ${chainStart} से`, sa: '' },
-    description: { en: `Garland of planets  –  ${maxChain} planets in consecutive houses creates a continuous flow of energy. The starting house determines the life theme. Longer chains = more powerful.`, hi: `ग्रहों की माला  –  ${maxChain} क्रमागत भावों में ग्रह। प्रारम्भ भाव जीवन विषय निर्धारित करता है।`, sa: '' },
+    name: {
+      en: present ? `${malikaName.en} Yoga (Graha Malika)` : 'Graha Malika Yoga',
+      hi: present ? `${malikaName.hi} योग (ग्रह मालिका)` : 'ग्रह मालिका योग',
+      sa: present ? `${malikaName.sa}योगः (ग्रहमालिका)` : 'ग्रहमालिकायोगः',
+    },
+    formationRule: {
+      en: present
+        ? `Planets occupy ${maxChain} consecutive houses (H${chainStart}–H${chainEndHouse}) without gaps`
+        : 'Planets in 3+ consecutive houses without gaps',
+      hi: present
+        ? `ग्रह ${maxChain} क्रमागत भावों (${chainStart}–${chainEndHouse}) में बिना अन्तराल`
+        : 'ग्रह 3+ क्रमागत भावों में बिना अन्तराल',
+      sa: '',
+    },
+    description: { en: descEn, hi: descHi, sa: '' },
   });
 
   return results;

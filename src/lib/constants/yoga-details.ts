@@ -1611,16 +1611,16 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
     ],
   },
 
-  lagna_mallika: {
-    name: { en: 'Lagna Mallika Yoga', hi: 'लग्न मल्लिका योग', sa: 'लग्नमल्लिकायोगः' },
+  graha_sanghata: {
+    name: { en: 'Graha Sanghata (Planetary Cluster)', hi: 'ग्रह संघात (ग्रह समूह)', sa: 'ग्रहसंघातयोगः' },
     category: 'other', isAuspicious: true, frequency: 3,
-    formationRule: { en: 'All 7 planets in consecutive houses starting from Lagna', hi: 'सभी 7 ग्रह लग्न से क्रमागत भावों में' },
+    formationRule: { en: 'All 7 planets (Sun–Saturn) within 4 consecutive houses', hi: 'सभी 7 ग्रह (सूर्य-शनि) 4 क्रमागत भावों में' },
     detailedDescription: {
-      en: ['Lagna Mallika (garland from lagna) Yoga forms when all planets are spread consecutively from the ascendant, creating a garland pattern. This grants fame, generosity, and a life adorned with achievements.'],
-      hi: ['लग्न मल्लिका योग तब बनता है जब सभी ग्रह लग्न से क्रमागत रूप से फैले हों। यह यश, उदारता और उपलब्धियों से सुशोभित जीवन देता है।'],
+      en: ['Graha Sanghata (planetary cluster) forms when all seven visible planets (Sun through Saturn) are concentrated within a narrow 4-house window. This creates intense, focused energy — like a laser rather than a floodlight. The houses occupied determine whether this concentration manifests positively (kendra/trikona) or as life imbalance (dusthana).'],
+      hi: ['ग्रह संघात तब बनता है जब सभी सात दृश्य ग्रह (सूर्य से शनि) 4 क्रमागत भावों की संकीर्ण खिड़की में संकेन्द्रित हों। यह तीव्र, केन्द्रित ऊर्जा उत्पन्न करता है। कौन से भाव अधिगृहीत हैं, इससे निर्धारित होता है कि यह संकेन्द्रण सकारात्मक (केन्द्र/त्रिकोण) या जीवन असन्तुलन (दुस्थान) के रूप में प्रकट होगा।'],
     },
     effects: [
-      { area: { en: 'Garland of Success', hi: 'सफलता की माला' }, description: { en: 'Life adorned with achievements, generosity, widespread fame.', hi: 'उपलब्धियों से सुशोभित जीवन, उदारता, व्यापक यश।' } },
+      { area: { en: 'Concentrated Energy', hi: 'संकेन्द्रित ऊर्जा' }, description: { en: 'All planetary energy focused in a narrow band — intense life themes with deep expertise but potential imbalance in unoccupied houses.', hi: 'सभी ग्रह ऊर्जा संकीर्ण क्षेत्र में — गहन जीवन विषय और विशेषज्ञता किन्तु खाली भावों में सम्भावित असन्तुलन।' } },
     ],
     relatedYogas: ['graha_malika', 'ardha_chandra_nabhasa', 'chhatra_nabhasa'],
     chartPositions: [
@@ -1628,9 +1628,9 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
       { planetId: 1, house: 2, fromLagna: true },
       { planetId: 2, house: 3, fromLagna: true },
       { planetId: 3, house: 4, fromLagna: true },
-      { planetId: 4, house: 5, fromLagna: true },
-      { planetId: 5, house: 6, fromLagna: true },
-      { planetId: 6, house: 7, fromLagna: true },
+      { planetId: 4, house: 1, fromLagna: true },
+      { planetId: 5, house: 2, fromLagna: true },
+      { planetId: 6, house: 3, fromLagna: true },
     ],
   },
 
@@ -1837,7 +1837,7 @@ export const YOGA_DETAIL_DATA: Record<string, YogaDetailEntry> = {
     effects: [
       { area: { en: 'Flowing Success', hi: 'प्रवाहित सफलता' }, description: { en: 'Continuous chain of positive results, each success leading to the next.', hi: 'सकारात्मक परिणामों की निरन्तर श्रृंखला, प्रत्येक सफलता अगली की ओर।' } },
     ],
-    relatedYogas: ['lagna_mallika', 'ardha_chandra_nabhasa'],
+    relatedYogas: ['graha_sanghata', 'ardha_chandra_nabhasa'],
     chartPositions: [
       { planetId: 0, house: 2, fromLagna: true },
       { planetId: 1, house: 3, fromLagna: true },

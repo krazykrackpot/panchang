@@ -112,12 +112,23 @@ describe('route', () => {
     expect(result.output.narrative).toBeTruthy();
   });
 
-  it('falls back to template when provider is unavailable', async () => {
+  it('falls back to template when both providers are unavailable', async () => {
     const unavailable = new MockProvider({ response: '', unavailable: true });
 
     const result = await route(1, PROMPTS, EXPECTED_SAC, QUERY, CONFIG, { selfHosted: unavailable, anthropic: unavailable }, fillTemplate);
 
     expect(result.model).toBe('template-fallback');
+  });
+
+  it('escalates to Tier 2 when self-hosted is unavailable but API is available (S2)', async () => {
+    const unavailable = new MockProvider({ response: '', unavailable: true });
+    const goodApi = new MockProvider({ response: JSON.stringify(GOOD_EN_CAREER_MIXED) });
+
+    const result = await route(1, PROMPTS, EXPECTED_SAC, QUERY, CONFIG, { selfHosted: unavailable, anthropic: goodApi }, fillTemplate);
+
+    expect(result.model).toContain('anthropic');
+    expect(unavailable.calls).toHaveLength(0); // Never called — was unavailable
+    expect(goodApi.calls).toHaveLength(1);
   });
 
   it('handles network failure gracefully', async () => {

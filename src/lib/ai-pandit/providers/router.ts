@@ -72,6 +72,9 @@ export interface RouteResult {
   tier: 0 | 1 | 2;
   validationResult: ValidationResult | null;
   regenerationCount: number;
+  /** Actual token counts from the provider (0 for templates). */
+  inputTokens: number;
+  outputTokens: number;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -94,7 +97,7 @@ export async function route(
   // ── Tier 0: Template ──
   if (tier === 0) {
     const output = fillTemplate(sac, query);
-    return { output, model: 'template', tier: 0, validationResult: null, regenerationCount: 0 };
+    return { output, model: 'template', tier: 0, validationResult: null, regenerationCount: 0, inputTokens: 0, outputTokens: 0 };
   }
 
   // ── Tier 1 or 2: LLM call ──
@@ -146,6 +149,8 @@ export async function route(
             tier,
             validationResult: validation,
             regenerationCount,
+            inputTokens: raw.inputTokens,
+            outputTokens: raw.outputTokens,
           };
         }
 
@@ -178,5 +183,7 @@ export async function route(
     tier: 0,
     validationResult: null,
     regenerationCount,
+    inputTokens: 0,
+    outputTokens: 0,
   };
 }

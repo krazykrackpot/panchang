@@ -215,6 +215,13 @@ function pad(s: string, len: number): string {
   return s.padEnd(len).slice(0, len);
 }
 
+/**
+ * English ordinal suffix (1st, 2nd, 3rd, 4th...).
+ * Uses JS negative-modulo trick: for n=11, (11-20)%10 = -9 in JS,
+ * s[-9] is undefined, falls through to s[11] (also undefined), then s[0] = 'th'.
+ * Correctly handles 11th, 12th, 13th (not "11st", "12nd", "13rd").
+ * Only used for house numbers 1-12, so edge cases beyond that don't apply.
+ */
 function ordinal(n: number): string {
   const s = ['th', 'st', 'nd', 'rd'];
   const v = n % 100;

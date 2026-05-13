@@ -256,6 +256,58 @@ describe('buildContext', () => {
     });
   });
 
+  // ── EvaluatedYogas enrichment (S1 coverage gap) ──
+  describe('evaluatedYogas enrichment', () => {
+    it('enriches yogas with planet IDs and classicalRef from evaluatedYogas', () => {
+      const kundaliWithEval = {
+        ...SAMPLE_KUNDALI,
+        evaluatedYogas: [
+          {
+            id: 'gajakesari',
+            name: { en: 'Gajakesari Yoga', hi: 'गजकेसरी योग', sa: 'गजकेसरी योगः' },
+            group: 'moon_based',
+            isAuspicious: true,
+            present: true,
+            strength: 'Strong' as const,
+            classicalRef: 'BPHS Ch.36 v.4',
+            formationRule: { en: 'Jupiter in kendra from Moon' },
+            description: { en: 'Grants wisdom' },
+            involvedPlanets: [4, 1], // Jupiter, Moon
+            affectedDomains: ['career', 'spiritual'] as any,
+            domainImpactWeight: 2 as const,
+          },
+          {
+            id: 'hamsa',
+            name: { en: 'Hamsa Yoga', hi: 'हंस योग', sa: 'हंस योगः' },
+            group: 'mahapurusha',
+            isAuspicious: true,
+            present: true,
+            strength: 'Strong' as const,
+            classicalRef: 'BPHS Ch.75',
+            formationRule: { en: 'Jupiter in kendra in own/exaltation sign' },
+            description: { en: 'Noble character' },
+            involvedPlanets: [4],
+            affectedDomains: ['spiritual'] as any,
+            domainImpactWeight: 3 as const,
+          },
+        ],
+      };
+      const sacEnriched = buildContext(kundaliWithEval, 'career', TODAY);
+
+      // Gajakesari should be enriched with planet IDs and classicalRef
+      const gk = sacEnriched.yogas.find(y => y.name === 'Gajakesari Yoga');
+      expect(gk).toBeDefined();
+      expect(gk!.planets).toEqual([4, 1]);
+      expect(gk!.classicalRef).toBe('BPHS Ch.36 v.4');
+
+      // Hamsa should be added (not in yogasComplete, only in evaluatedYogas)
+      const hamsa = sacEnriched.yogas.find(y => y.name === 'Hamsa Yoga');
+      expect(hamsa).toBeDefined();
+      expect(hamsa!.involvedPlanets ?? hamsa!.planets).toEqual([4]);
+      expect(hamsa!.classicalRef).toBe('BPHS Ch.75');
+    });
+  });
+
   // ── Overall shape ──
   describe('SAC shape', () => {
     it('has all required top-level fields', () => {

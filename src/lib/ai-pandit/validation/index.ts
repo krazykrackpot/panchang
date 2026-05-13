@@ -37,11 +37,12 @@ export function validate(
   layersChecked.push('verdict_alignment');
   const l1 = checkVerdictAlignment(llmOutput.narrative, sac.primaryVerdict);
   totalDuration += l1.durationMs;
+  allWarnings.push(...l1.warnings);
   if (!l1.passed) {
     return {
       passed: false,
       failures: l1.failures,
-      warnings: [],
+      warnings: allWarnings,
       durationMs: totalDuration,
     };
   }
@@ -50,11 +51,12 @@ export function validate(
   layersChecked.push('claim_verification');
   const l2 = verifyClaims(llmOutput.claims, sac);
   totalDuration += l2.durationMs;
+  allWarnings.push(...l2.warnings);
   if (!l2.passed) {
     return {
       passed: false,
       failures: l2.failures,
-      warnings: [],
+      warnings: allWarnings,
       durationMs: totalDuration,
     };
   }
@@ -63,11 +65,12 @@ export function validate(
   layersChecked.push('narrative_scan');
   const l2b = verifyScannedClaims(llmOutput.narrative, sac, llmOutput.claims);
   totalDuration += l2b.durationMs;
+  allWarnings.push(...l2b.warnings);
   if (!l2b.passed) {
     return {
       passed: false,
       failures: l2b.failures,
-      warnings: [],
+      warnings: allWarnings,
       durationMs: totalDuration,
     };
   }

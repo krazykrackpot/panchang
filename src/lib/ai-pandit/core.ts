@@ -118,7 +118,7 @@ export async function consultPandit(
     },
     citations: result.output.classicalCitations ?? [],
     remedies: result.output.remedies ?? [],
-    estimatedCostUsd: result.tier === 0 ? 0 : estimateCost(result.model),
+    estimatedCostUsd: estimateCost(result.model, result.inputTokens, result.outputTokens),
   };
 
   // 9. Cache the response
@@ -149,10 +149,13 @@ export async function consultPandit(
 // Cost estimation
 // ─────────────────────────────────────────────────────────────────────────────
 
-function estimateCost(model: string): number {
-  if (model.includes('self-hosted')) return 0;
-  if (model.includes('template')) return 0;
-  if (model.includes('haiku')) return 0.005;
-  if (model.includes('anthropic')) return 0.005;
-  return 0.005;
+/** Estimate USD cost from model name and actual token counts.
+ *  Haiku pricing (May 2026): $1/$5 per MTok in/out. */
+function estimateCost(model: string, inputTokens: number, outputTokens: number): number {
+  if (model.includes('self-hosted') || model.includes('template')) return 0;
+  if (inputTokens === 0 && outputTokens === 0) return 0;
+  // Haiku: $1/MTok input, $5/MTok output
+  const inputCost = (inputTokens / 1_000_000) * 1;
+  const outputCost = (outputTokens / 1_000_000) * 5;
+  return parseFloat((inputCost + outputCost).toFixed(6));
 }

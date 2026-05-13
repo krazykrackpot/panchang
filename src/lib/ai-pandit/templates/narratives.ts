@@ -4,7 +4,9 @@
  * 4 verdicts × 8 categories × 2 locales = 64 template functions.
  * Filled from SAC data — no LLM involved.
  *
- * Slots: {dashaLord}, {domain}, {verdict}, {positiveFactors}, {negativeFactors}
+ * Locale support: EN and HI only in v1. Tamil (ta), Bengali (bn), and
+ * other locales fall through to English. Hindi templates use proper
+ * Jyotish register (दशा, गोचर, भाव — not Hinglish).
  */
 
 import type { StructuredAstrologicalContext, Verdict, QueryCategory } from '../types';

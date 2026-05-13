@@ -68,6 +68,11 @@ interface NamedWindow {
 
 function collectInauspicious(p: PanchangData): NamedWindow[] {
   const windows: NamedWindow[] = [];
+  // Day-level yoga doshas: Vyatipata (#17) and Vaidhriti (#27) block sunrise→sunset
+  const sunriseM = toMin(p.sunrise);
+  const sunsetM = toMin(p.sunset);
+  if (p.yoga?.number === 17) windows.push({ id: 'vyati', name: 'Vyatipata', nameHi: 'व्यतीपात', start: sunriseM, end: sunsetM, colour: '#581c87' });
+  if (p.yoga?.number === 27) windows.push({ id: 'vaidh', name: 'Vaidhriti', nameHi: 'वैधृति', start: sunriseM, end: sunsetM, colour: '#581c87' });
   if (p.rahuKaal) windows.push({ id: 'rk', name: 'Rahu Kaal', nameHi: 'राहु काल', start: toMin(p.rahuKaal.start), end: toMin(p.rahuKaal.end), colour: '#dc2626' });
   if (p.yamaganda) windows.push({ id: 'ym', name: 'Yamaganda', nameHi: 'यमगण्ड', start: toMin(p.yamaganda.start), end: toMin(p.yamaganda.end), colour: '#b91c1c' });
   if (p.gulikaKaal) windows.push({ id: 'gk', name: 'Gulika', nameHi: 'गुलिक', start: toMin(p.gulikaKaal.start), end: toMin(p.gulikaKaal.end), colour: '#991b1b' });
@@ -83,7 +88,7 @@ function collectInauspicious(p: PanchangData): NamedWindow[] {
 function collectAuspicious(p: PanchangData): NamedWindow[] {
   const windows: NamedWindow[] = [];
   if (p.brahmaMuhurta) windows.push({ id: 'bm', name: 'Brahma Muhurta', nameHi: 'ब्रह्म मुहूर्त', start: toMin(p.brahmaMuhurta.start), end: toMin(p.brahmaMuhurta.end), colour: '#6d28d9' });
-  if (p.abhijitMuhurta?.available !== false) windows.push({ id: 'ab', name: 'Abhijit', nameHi: 'अभिजित', start: toMin(p.abhijitMuhurta.start), end: toMin(p.abhijitMuhurta.end), colour: '#d4a853' });
+  if (p.abhijitMuhurta && p.abhijitMuhurta.available !== false) windows.push({ id: 'ab', name: 'Abhijit', nameHi: 'अभिजित', start: toMin(p.abhijitMuhurta.start), end: toMin(p.abhijitMuhurta.end), colour: '#d4a853' });
   const amrit = p.amritKalamAll ?? (p.amritKalam ? [p.amritKalam] : []);
   amrit.forEach((a, i) => windows.push({ id: `ak${i}`, name: 'Amrit Kalam', nameHi: 'अमृत काल', start: toMin(a.start), end: toMin(a.end), colour: '#059669' }));
   if (p.vijayaMuhurta) windows.push({ id: 'vj', name: 'Vijaya', nameHi: 'विजय', start: toMin(p.vijayaMuhurta.start), end: toMin(p.vijayaMuhurta.end), colour: '#10b981' });
@@ -231,7 +236,7 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
       )}
 
       {/* ── Three-Lane Timeline ── */}
-      <div className="space-y-1.5 relative">
+      <div className="space-y-1.5">
         {/* Hour ticks + labels (shared axis) */}
         <div className="relative h-4">
           {hourTicks.map(m => (
@@ -241,6 +246,9 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
             </span>
           ))}
         </div>
+
+        {/* Lane container — relative so vertical markers span all 3 lanes */}
+        <div className="relative space-y-1.5">
 
         {/* Lane 1: Inauspicious (red) */}
         <LaneBar
@@ -292,20 +300,20 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
         {/* These are positioned relative to the lane container */}
 
         {/* Sunrise */}
-        <div className="absolute pointer-events-none z-10" style={{ left: `${pct(sunriseMin)}%`, top: '16px', bottom: '0' }}>
+        <div className="absolute pointer-events-none z-10" style={{ left: `${pct(sunriseMin)}%`, top: 0, bottom: 0 }}>
           <div className="w-px h-full" style={{ backgroundColor: '#fbbf24' }} />
           <Sunrise className="absolute -top-1 -translate-x-1/2 w-4 h-4 drop-shadow-[0_0_6px_rgba(251,191,36,0.9)]" style={{ color: '#fbbf24', left: '0.5px' }} />
         </div>
 
         {/* Sunset */}
-        <div className="absolute pointer-events-none z-10" style={{ left: `${pct(sunsetMin)}%`, top: '16px', bottom: '0' }}>
+        <div className="absolute pointer-events-none z-10" style={{ left: `${pct(sunsetMin)}%`, top: 0, bottom: 0 }}>
           <div className="w-px h-full" style={{ backgroundColor: '#fb923c' }} />
           <Sunset className="absolute -top-1 -translate-x-1/2 w-4 h-4 drop-shadow-[0_0_6px_rgba(251,146,60,0.9)]" style={{ color: '#fb923c', left: '0.5px' }} />
         </div>
 
         {/* Moonrise */}
         {moonriseMin !== null && moonriseMin >= tlStart && moonriseMin <= tlEnd && (
-          <div className="absolute pointer-events-none z-10" style={{ left: `${pct(moonriseMin)}%`, top: '16px', bottom: '0' }}>
+          <div className="absolute pointer-events-none z-10" style={{ left: `${pct(moonriseMin)}%`, top: 0, bottom: 0 }}>
             <div className="w-px h-full" style={{ backgroundColor: 'rgba(147,197,253,0.4)' }} />
             <Moon className="absolute -top-1 -translate-x-1/2 w-3.5 h-3.5" style={{ color: '#93c5fd', left: '0.5px' }} />
           </div>
@@ -313,7 +321,7 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
 
         {/* Moonset */}
         {moonsetMin !== null && moonsetMin >= tlStart && moonsetMin <= tlEnd && (
-          <div className="absolute pointer-events-none z-10" style={{ left: `${pct(moonsetMin)}%`, top: '16px', bottom: '0' }}>
+          <div className="absolute pointer-events-none z-10" style={{ left: `${pct(moonsetMin)}%`, top: 0, bottom: 0 }}>
             <div className="w-px h-full" style={{ backgroundColor: 'rgba(96,165,250,0.2)' }} />
             <Moon className="absolute -top-1 -translate-x-1/2 w-3 h-3 opacity-40" style={{ color: '#60a5fa', left: '0.5px' }} />
           </div>
@@ -321,7 +329,7 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
 
         {/* NOW — spans all lanes */}
         {nowInRange && (
-          <div className="absolute pointer-events-none z-20" style={{ left: `${nowPct}%`, top: '16px', bottom: '0' }}>
+          <div className="absolute pointer-events-none z-20" style={{ left: `${nowPct}%`, top: 0, bottom: 0 }}>
             <div className="w-0.5 h-full shadow-[0_0_12px_rgba(212,168,83,1)]" style={{ backgroundColor: '#d4a853' }} />
             <span className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 text-[7px] font-black px-1.5 py-0.5 rounded-full shadow-[0_0_10px_rgba(212,168,83,0.7)]"
               style={{ backgroundColor: '#f0d48a', color: '#0a0e27', left: '0.5px' }}>
@@ -329,6 +337,8 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
             </span>
           </div>
         )}
+
+        </div>{/* end lane container */}
       </div>
 
       {/* ── Legend ── */}

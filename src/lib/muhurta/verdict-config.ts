@@ -112,6 +112,37 @@ export const CONDITIONAL_BLOCKS: ActiveFactor[] = [
     effectHi:
       'तिथि की विष घटिका — औषध, भोजन और महत्वपूर्ण संस्कारों से बचें।',
   },
+  // ─── N10–N12: Activity-specific conditional blocks (added dynamically) ─────
+  {
+    id: 'activity_nakshatra_hard',
+    name: 'Nakshatra vetoed for activity',
+    nameHi: 'गतिविधि हेतु नक्षत्र वर्जित',
+    type: 'hard_block',
+    rank: 'N10',
+    source: 'Muhurta Chintamani Ch.6-7',
+    effect: 'This nakshatra is absolutely forbidden for the selected activity.',
+    effectHi: 'चयनित गतिविधि के लिए यह नक्षत्र पूर्णतः वर्जित है।',
+  },
+  {
+    id: 'activity_nakshatra',
+    name: 'Nakshatra unsuitable for activity',
+    nameHi: 'गतिविधि हेतु नक्षत्र अनुपयुक्त',
+    type: 'conditional_block',
+    rank: 'N11',
+    source: 'Muhurta Chintamani Ch.6-7',
+    effect: 'This nakshatra is inauspicious for the selected activity — proceed with caution.',
+    effectHi: 'चयनित गतिविधि के लिए यह नक्षत्र अशुभ है — सावधानी बरतें।',
+  },
+  {
+    id: 'activity_tithi',
+    name: 'Tithi unsuitable for activity',
+    nameHi: 'गतिविधि हेतु तिथि अनुपयुक्त',
+    type: 'conditional_block',
+    rank: 'N12',
+    source: 'Muhurta Chintamani Ch.6-7',
+    effect: 'This tithi is inauspicious for the selected activity — proceed with caution.',
+    effectHi: 'चयनित गतिविधि के लिए यह तिथि अशुभ है — सावधानी बरतें।',
+  },
 ];
 
 // ─── P1–P10: Positives (ranked by classical strength) ─────────────────────────

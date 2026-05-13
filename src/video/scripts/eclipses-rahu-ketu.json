@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "topic": "eclipses-rahu-ketu",
+    "type": "long",
+    "language": "en",
+    "estimatedDuration": 369,
+    "style": "dramatic",
+    "musicMood": "mystical",
+    "voiceProfile": "narrator-en",
+    "musicTrack": "ambient-short"
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "duration": 15,
+      "narration": "Every month, the Moon passes between the Earth and the Sun  –  a new Moon. Every month, the Earth passes between the Sun and the Moon  –  a full Moon. So why don't we see an eclipse every single month?",
+      "visualType": "cosmic_text",
+      "textOverlay": "Why not an eclipse EVERY month?",
+      "transition": "cut",
+      "videoPrompt": "STOCK: solar eclipse dramatic"
+    },
+    {
+      "id": 2,
+      "duration": 29,
+      "narration": "The answer lies in a single number. Five point one five degrees. The Moon's orbital plane around the Earth is tilted at five point one five degrees relative to the Earth's orbital plane around the Sun. These two planes are not the same. The Moon doesn't orbit Earth in the same flat disc as Earth orbits the Sun. It's tilted  –  just slightly  –  but enough to change everything.",
+      "visualType": "cosmic_text",
+      "textOverlay": "5.15°  –  the angle that changes everything",
+      "transition": "zoom",
+      "videoPrompt": "DIAGRAM: tilted orbital planes showing 5.15 degree inclination"
+    },
+    {
+      "id": 3,
+      "duration": 26,
+      "narration": "Because of this tilt, on most new Moons, the Moon passes slightly above or slightly below the Sun from our perspective. It misses. On most full Moons, the Moon passes slightly above or below Earth's shadow. It misses again. No alignment  –  no eclipse. The Moon is in the wrong part of its tilted orbit.",
+      "visualType": "cosmic_text",
+      "textOverlay": "Most months  –  the Moon misses",
+      "transition": "fade",
+      "videoPrompt": "STOCK: moon phases space"
+    },
+    {
+      "id": 4,
+      "duration": 42,
+      "narration": "But these two tilted planes do intersect. Any two planes that are not parallel must cross each other along a line. This line of intersection pierces the Moon's orbit at exactly two points  –  diametrically opposite, one hundred and eighty degrees apart. In mathematics, these are called the nodes  –  the ascending node and the descending node. Where the Moon crosses from below the ecliptic plane to above  –  that is the ascending node. Where it crosses from above to below  –  the descending node.",
+      "visualType": "cosmic_text",
+      "textOverlay": "Two nodes  –  180° apart",
+      "transition": "slide",
+      "videoPrompt": "DIAGRAM: two orbital planes intersecting, nodes marked"
+    },
+    {
+      "id": 5,
+      "duration": 23,
+      "narration": "An eclipse can only occur when a new Moon or full Moon happens while the Moon is near one of these two nodes. Only then are the Sun, Moon, and Earth truly aligned in three-dimensional space. Only then does the Moon's shadow reach Earth, or Earth's shadow engulf the Moon.",
+      "visualType": "cosmic_text",
+      "textOverlay": "Eclipse = New/Full Moon + Node",
+      "transition": "zoom",
+      "videoPrompt": "STOCK: total solar eclipse"
+    },
+    {
+      "id": 6,
+      "duration": 33,
+      "narration": "Now here is where it gets extraordinary. The ancient Vedic astronomers knew all of this  –  thousands of years ago. They called the ascending node Rahu  –  the head of the cosmic serpent. And the descending node Ketu  –  the tail. These are not physical bodies. They are mathematical points  –  the intersection of two orbital planes. Our ancestors encoded orbital mechanics into mythology.",
+      "visualType": "cosmic_text",
+      "textOverlay": "Rahu = Ascending Node\nKetu = Descending Node",
+      "transition": "fade",
+      "videoPrompt": "STOCK: cosmic serpent dragon mythology"
+    },
+    {
+      "id": 7,
+      "duration": 42,
+      "narration": "The story says that the demon Svarbhanu disguised himself among the gods during the Samudra Manthan  –  the churning of the cosmic ocean  –  to drink the nectar of immortality. The Sun and Moon exposed him. Vishnu severed his head with the Sudarshana Chakra. But the nectar had already touched his throat. So his head  –  Rahu  –  and his body  –  Ketu  –  became immortal. And they forever chase the Sun and Moon across the sky. When Rahu catches the Sun  –  solar eclipse. When Ketu catches the Moon  –  lunar eclipse.",
+      "visualType": "cosmic_text",
+      "textOverlay": "Rahu swallows the Sun\nKetu swallows the Moon",
+      "transition": "slide",
+      "videoPrompt": "STOCK: hindu mythology churning ocean cosmic"
+    },
+    {
+      "id": 8,
+      "duration": 37,
+      "narration": "But strip away the allegory and look at what they actually knew. They knew that eclipses are caused by the intersection of two orbital planes. They knew these points are one hundred and eighty degrees apart. They knew that the Moon must be near a node during a syzygy  –  a Sun-Moon-Earth alignment  –  for an eclipse to occur. They knew the nodes themselves are not stationary  –  they regress, rotating backwards through the zodiac in approximately eighteen point six years.",
+      "visualType": "cosmic_text",
+      "textOverlay": "They knew the orbital mechanics",
+      "transition": "zoom",
+      "videoPrompt": "STOCK: ancient indian astronomy observatory stargazing"
+    },
+    {
+      "id": 9,
+      "duration": 36,
+      "narration": "And they knew the five point one five degree inclination. The Surya Siddhanta records the Moon's maximum celestial latitude as four degrees and thirty minutes. The Aryabhatiya by Aryabhata gives it as four degrees and thirty minutes. Modern value  –  five point one five degrees. These texts were composed over fifteen hundred years ago. The precision is remarkable  –  and it was achieved through generations of naked-eye observation, not instruments.",
+      "visualType": "cosmic_text",
+      "textOverlay": "Surya Siddhanta: 4°30'\nAryabhatiya: 4°30'\nModern: 5.15°",
+      "transition": "fade",
+      "videoPrompt": "STOCK: ancient rishi sage Sanskrit texts fire"
+    },
+    {
+      "id": 10,
+      "duration": 48,
+      "narration": "There is one more piece of genius. They discovered the Saros cycle. Every eighteen years, eleven days, and eight hours, the Sun, Moon, and nodes return to almost exactly the same relative positions. This means eclipses repeat in a predictable cycle. But because of that extra eight hours  –  one third of a day  –  each repeat shifts about one hundred and twenty degrees westward on Earth's surface. So the same eclipse returns to the same location after three Saros cycles  –  roughly fifty four years and thirty four days. The ancients could predict eclipses decades in advance using this pattern.",
+      "visualType": "cosmic_text",
+      "textOverlay": "Saros: 18 years, 11 days, 8 hours\n120° westward shift\nSame place: ~54 years",
+      "transition": "slide",
+      "videoPrompt": "STOCK: earth globe rotation space"
+    },
+    {
+      "id": 11,
+      "duration": 28,
+      "narration": "Five point one five degrees. Two invisible mathematical points. An eighteen-year cycle. No telescopes. No computers. No satellites. Just the human mind  –  watching the sky  –  for thousands of years. The next time someone tells you Rahu and Ketu are superstition, ask them  –  how did our ancestors predict eclipses with this precision?",
+      "visualType": "cosmic_text",
+      "textOverlay": "How did they know?",
+      "transition": "fade",
+      "videoPrompt": "STOCK: starry night sky ancient observatory"
+    },
+    {
+      "id": 12,
+      "duration": 10,
+      "narration": "Explore eclipses, Rahu Ketu transits, and the full Vedic calendar  –  free  –  at Dekho Panchang dot com.",
+      "visualType": "cta",
+      "textOverlay": "dekhopanchang.com",
+      "transition": "fade",
+      "videoPrompt": "STOCK: galaxy cosmic serene"
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "topic": "sade-sati-saturn-v2-hi",
+    "type": "short",
+    "language": "hi",
+    "estimatedDuration": 177,
+    "style": "dramatic",
+    "musicMood": "dramatic",
+    "voiceProfile": "narrator-hi",
+    "musicTrack": "ambient-short"
+  },
+  "scenes": [
+    {
+      "id": 1,
+      "duration": 21,
+      "narration": "साढ़े सा ती। करोड़ों लोग इससे डरते हैं। ज्योतिषी चेतावनी देते हैं। पूरे के पूरे उद्योग इसके उपाय बेचते हैं। लेकिन क्या ये सच में असर करती है? या ये सिर्फ अंधविश्वास है? चलिए पता करते हैं।",
+      "visualType": "cosmic_text",
+      "textOverlay": "*SADE SATI*\nReal or superstition?",
+      "textStyle": "burst",
+      "cosmicPreset": "eclipse",
+      "transition": "cut",
+      "videoPrompt": "Planet Saturn with its large prominent clearly visible rings, dramatically lit from one side, slowly rotating in the darkness of deep space, the wide flat rings casting long shadows across Saturn's surface, ominous and powerful, the ringed planet filling most of the frame, rings must be the dominant visual feature, photorealistic NASA-quality imagery, dark moody atmosphere, cinematic 4K, vertical 9:16"
+    },
+    {
+      "id": 2,
+      "duration": 16,
+      "narration": "पहले समझते हैं  –  साढ़े सा ती है क्या? साढ़े सा ती यानी साढ़े सात साल। जब शनि आपकी चंद्र राशि और उसके आगे-पीछे की राशि से गुज़रता है। कुल तीन राशियाँ।",
+      "visualType": "cosmic_text",
+      "textOverlay": "3 signs = *7.5 years*",
+      "textStyle": "glow",
+      "cosmicPreset": "deep_space",
+      "transition": "fade",
+      "videoPrompt": "The ringed planet Saturn with its large prominent clearly visible flat rings brightly lit against deep black space, slowly drifting past a glowing crescent Moon, Saturn's rings are wide and unmistakable, three faint zodiac constellation outlines visible in the background, Saturn moving from one constellation region to the next, dramatic cinematic lighting, photorealistic space imagery, cinematic 4K, vertical 9:16"
+    },
+    {
+      "id": 3,
+      "duration": 22,
+      "narration": "तीन राशियाँ  –  साढ़े सात साल। मतलब एक राशि में शनि ढाई साल रहता है। अब  –  राशिचक्र में कुल बारह राशियाँ हैं। बारह गुणा ढाई  –  तीस। यानी अगर हमारे पूर्वज सही थे  –  तो शनि को पूरा चक्कर लगाने में लगभग 30 साल लगने चाहिए।",
+      "visualType": "zodiac_wheel",
+      "textOverlay": "12 × 2.5 = *30 years?*",
+      "cosmicPreset": "constellation",
+      "transition": "slide",
+      "videoPrompt": "Photorealistic planet Saturn with its large clearly visible prominent rings orbiting slowly through star constellations in deep space, Saturn's flat wide rings unmistakable even from a distance, camera tracking the ringed planet showing its circular orbital path, golden orbital trail visible behind Saturn as it moves, vast star field with constellation patterns, slow majestic planetary movement, cinematic 4K, vertical 9:16"
+    },
+    {
+      "id": 4,
+      "duration": 25,
+      "narration": "तो क्या ये सही है? NASA ने शनि की कक्षा नापी है  –  अंतरिक्ष यान से, दूरबीनों से, सदियों के आधुनिक अवलोकन से। NASA का आँकड़ा है  –  उनतीस दशमलव चार छह साल। और सूर्य सिद्धांत  –  जो डेढ़ हज़ार साल पहले बिना किसी दूरबीन के लिखा गया  –  उसमें लिखा है उनतीस दशमलव चार। 99.8 प्रतिशत सटीक। नंगी आँखों से।",
+      "visualType": "cosmic_text",
+      "textOverlay": "Surya Siddhanta: *29.4* years\nNASA: *29.46* years\n*99.8%* accurate",
+      "textStyle": "burst",
+      "cosmicPreset": "sun_corona",
+      "transition": "zoom",
+      "videoPrompt": "Extreme close-up of Saturn's prominent wide flat rings, thousands of individual ice particles and rocks visible in the ring structure, sunlight catching the ring edges making them glow golden, camera slowly pulling back to reveal the full ringed planet Saturn with visible atmospheric bands, the iconic rings stretching wide across the frame, photorealistic Cassini spacecraft quality, awe-inspiring detail, cinematic 4K, vertical 9:16"
+    },
+    {
+      "id": 5,
+      "duration": 23,
+      "narration": "न दूरबीन थी। न अंतरिक्ष यान। न कंप्यूटर। बस हज़ारों साल तक आकाश को देखा। उन्हें कैसे पता चला? ये वो सवाल है जो सब बदल देता है। और एक बार ये सवाल पूछ लिया  –  तो वैदिक ज्योतिष को कभी नकार नहीं पाओगे।",
+      "visualType": "cosmic_text",
+      "textOverlay": "*How did they know?*",
+      "textStyle": "glow",
+      "cosmicPreset": "nebula",
+      "transition": "fade",
+      "videoPrompt": "An ancient Hindu Rishi sage with long white beard and saffron robes, sitting cross-legged beside a sacred fire under a vast star-filled night sky, ancient palm leaf manuscripts with Sanskrit Devanagari script spread before him, warm golden firelight illuminating his weathered face and the Sanskrit texts, the planet Saturn clearly visible as a bright point in the sky above him, sense of profound ancient Vedic wisdom, cinematic 4K, vertical 9:16"
+    },
+    {
+      "id": 6,
+      "duration": 25,
+      "narration": "तो इन साढ़े सात सालों में होता क्या है? चरम बिंदु  –  दूसरा चरण  –  जब शनि सीधा आपके चंद्रमा पर बैठता है। दृश्यमान आकाश का सबसे भारी ग्रह, आपके मन की सीट पर दबाव डालता है। करियर बदलता है। रिश्ते दबाव में टूटते हैं। स्वास्थ्य ध्यान माँगता है। आपकी पहचान नींव तक उतर जाती है।",
+      "visualType": "planet_render",
+      "planet": "saturn",
+      "textOverlay": "The Peak\nSaturn conjunct *Moon*",
+      "subtitle": "Identity stripped to its foundations",
+      "cosmicPreset": "deep_space",
+      "transition": "zoom",
+      "videoPrompt": "KEEP_EXISTING"
+    },
+    {
+      "id": 7,
+      "duration": 25,
+      "narration": "पहला चरण  –  शनि चंद्र राशि से पहले वाली राशि में आता है। दबाव धीरे-धीरे बढ़ता है। पैसों की तंगी। नींद में खलल। छिपी चिंताएँ उभरती हैं। तीसरा चरण  –  शनि आगे निकल जाता है। बोझ उतरता है। लेकिन अब आप वही इंसान नहीं हो। आप तपकर निकले हो। निखरकर निकले हो। अटूट बनकर निकले हो।",
+      "visualType": "cosmic_text",
+      "textOverlay": "Phase 1: Pressure *builds*\nPhase 3: You emerge *unbreakable*",
+      "textStyle": "ascend",
+      "cosmicPreset": "aurora",
+      "transition": "slide",
+      "videoPrompt": "Cinematic transformation sequence: begins with a dark stormy sky with lightning flashing behind heavy clouds, rain and turbulence, then gradually the storm breaks and golden sunlight pierces through dramatic cloud formations, ending with a glorious golden sunrise over mountains, the sky clearing to reveal stars fading at dawn, emotional journey from darkness to light, cinematic 4K, vertical 9:16"
+    },
+    {
+      "id": 8,
+      "duration": 20,
+      "narration": "साढ़े सा ती सज़ा नहीं है। ये शनि की भट्टी है। और हर संत, हर नेता, हर महान इंसान  –  इसी आग से गुज़रा है। क्या आप अभी साढ़े सा ती में हैं? पता करें  –  मुफ़्त  –  देखो पंचांग डॉट कॉम पर।",
+      "visualType": "cta",
+      "textOverlay": "dekhopanchang.com",
+      "cosmicPreset": "galaxy",
+      "transition": "fade",
+      "videoPrompt": "KEEP_EXISTING"
+    }
+  ]
+}

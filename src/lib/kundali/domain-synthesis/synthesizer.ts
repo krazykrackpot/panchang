@@ -802,13 +802,26 @@ const KARAKA_ROLE: Record<string, Record<number, string>> = {
  *
  * Avastha modifiers are applied separately after this base tier.
  */
+/**
+ * Maps dignity + kendra to a base tier (0-3). Avastha modifier applied separately.
+ *
+ * Classical reasoning:
+ * - Debilitated = tier 1 (Adhama), NOT tier 0. A debilitated planet is WEAK, not DEAD.
+ *   Atyadhama (tier 0) should only result from compounding: debilitated + Mrita avastha
+ *   (the -2 modifier brings 1 down to 0). A debilitated planet in Yuva avastha (+1)
+ *   reaches tier 2 (Madhyama) — classically correct, the strong avastha partially
+ *   compensates for the weak dignity.
+ * - Enemy sign = tier 1 (uncomfortable but functional)
+ * - Neutral = tier 2 (neither helped nor harmed)
+ * - Friend / own / exalted = tier 2-3 (strong placements)
+ */
 function dignityToTier(dignity: DignityLevel, inKendra: boolean): number {
   if (dignity === 'exalted') return 3;
   if (dignity === 'own') return 3;
   if (dignity === 'friend') return inKendra ? 3 : 2;
   if (dignity === 'neutral') return 2;
   if (dignity === 'enemy') return 1;
-  return 0; // debilitated
+  return 1; // debilitated — Adhama base. Mrita avastha (-2) → Atyadhama. Yuva (+1) → Madhyama.
 }
 
 /** Returns a tier modifier based on Baladi avastha strength (0–100). */
@@ -1145,8 +1158,18 @@ function evaluateSignificatorsHolistic(
   const yogaBoost = yogaTiers.length >= 3 ? 1 : 0;   // 3+ yogas → +1 tier
   const doshaPenalty = doshaTiers.length >= 2 ? 1 : 0; // 2+ doshas → -1 tier
 
-  // Step 3: Combine
-  const finalTierIndex = Math.max(0, Math.min(3, primaryLordTier + yogaBoost - doshaPenalty));
+  // Step 3: Combine.
+  // Dosha penalty cannot push below Adhama (tier 1). Atyadhama is reserved
+  // for cases where the lord's OWN dignity + avastha compounds to tier 0
+  // (e.g. debilitated + Mrita = 1 + (-2) = -1 → clamped to 0).
+  // External doshas (Kaal Sarpa, Grahan, etc.) add challenges but don't
+  // make a domain "critical" — that comes from the lord's inherent weakness.
+  const boosted = primaryLordTier + yogaBoost;
+  const penalised = boosted - doshaPenalty;
+  const finalTierIndex = Math.max(
+    primaryLordTier === 0 ? 0 : 1, // floor: Adhama unless lord itself is tier 0
+    Math.min(3, penalised),
+  );
   const finalTier = TIER_NAMES[finalTierIndex];
 
   return {

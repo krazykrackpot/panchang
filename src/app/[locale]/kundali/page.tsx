@@ -1341,9 +1341,7 @@ export default function KundaliPage() {
                   { key: 'planets' as const, label: t('planetPositions') },
                   { key: 'dasha' as const, label: t('dashaTimeline') },
                   { key: 'ashtakavarga' as const, label: t('ashtakavarga') },
-                  // Tippanni tab removed  –  content is in the Summary view
                   { key: 'varga' as const, label: locale === 'en' || isTamil ? 'Varga Analysis' : 'वर्ग विश्लेषण' },
-                  { key: 'chat' as const, label: locale === 'en' || isTamil ? 'Chat' : 'चैट' },
                   { key: 'graha' as const, label: locale === 'en' || isTamil ? 'Graha' : 'ग्रह' },
                   { key: 'yogas' as const, label: locale === 'en' || isTamil ? 'Yogas' : 'योग' },
                   { key: 'avasthas' as const, label: locale === 'en' || isTamil ? 'Avasthas' : 'अवस्था' },
@@ -1361,6 +1359,8 @@ export default function KundaliPage() {
                   { key: 'sudarshana' as const, label: locale === 'en' || isTamil ? 'Sudarshana' : 'सुदर्शन' },
                   { key: 'nadi' as const, label: locale === 'en' || isTamil ? 'Nadi Amsha' : 'नाडी अंश' },
                   { key: 'patrika' as const, label: locale === 'en' || isTamil ? 'Patrika' : 'पत्रिका' },
+                  // Chat tab last — it's AI-powered, not core chart analysis
+                  { key: 'chat' as const, label: locale === 'en' || isTamil ? 'Ask Your Chart' : 'अपनी कुण्डली से पूछें' },
                 ]).map((tab) => (
                   <button
                     key={tab.key}

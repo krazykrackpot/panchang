@@ -363,7 +363,7 @@ export default function KundaliPage() {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [showPoster, setShowPoster] = useState(false);
-  const [savedCharts, setSavedCharts] = useState<Array<{ id: string; label: string; birth_data: { name?: string; date: string; time: string; place: string; lat: number; lng: number; relationship?: string } }>>([]);
+  const [savedCharts, setSavedCharts] = useState<Array<{ id: string; label: string; birth_data: { name?: string; date: string; time: string; place: string; lat: number; lng: number; timezone?: string; relationship?: string } }>>([]);
   const user = useAuthStore(s => s.user);
 
   const handleSaveChart = async () => {
@@ -381,7 +381,7 @@ export default function KundaliPage() {
         .select('id, label, birth_data')
         .eq('user_id', user.id);
 
-      type Row = { id: string; label: string; birth_data: { name?: string; date: string; time: string; lat: number; lng: number } };
+      type Row = { id: string; label: string; birth_data: { name?: string; date: string; time: string; lat: number; lng: number; place?: string; timezone?: string; relationship?: string } };
       const dup = (existing as Row[] | null)?.find((row) => {
         const bd = row.birth_data;
         if (!bd) return false;
@@ -490,18 +490,22 @@ export default function KundaliPage() {
     const la = params.get('la');
     const lo = params.get('lo');
     const p = params.get('p');
+    const tz = params.get('tz');
     const editMode = params.get('edit') === '1';
 
     if (n && d && t && la && lo) {
-      // Resolve timezone from birth coordinates  –  never use browser timezone.
-      // See: feedback_timezone_rule.md
       const latNum = parseFloat(la);
       const lngNum = parseFloat(lo);
       // Purge the stale cache so the signature matcher later doesn't short-circuit.
       try { sessionStorage.removeItem('kundali_last_result'); } catch { /* ignore */ }
       setLoading(true);
       setChartStyle('north');
-      resolveBirthTimezone(latNum, lngNum)
+      // Use timezone from URL param if available (passed by share links).
+      // Only resolve from coordinates as fallback for old links without tz param.
+      const tzPromise = tz
+        ? Promise.resolve(decodeURIComponent(tz))
+        : resolveBirthTimezone(latNum, lngNum);
+      tzPromise
         .then(resolvedTz => {
           const birthData: BirthData = {
             name: n,
@@ -843,19 +847,19 @@ export default function KundaliPage() {
                   key={c.id}
                   type="button"
                   onClick={() => {
-                    resolveBirthTimezone(c.birth_data.lat, c.birth_data.lng).then(tz => {
-                      handleGenerate({
-                        name: cName,
-                        date: c.birth_data.date,
-                        time: c.birth_data.time,
-                        place: c.birth_data.place,
-                        lat: c.birth_data.lat,
-                        lng: c.birth_data.lng,
-                        timezone: tz || 'UTC',
-                        relationship: (c.birth_data.relationship || undefined) as 'self' | 'spouse' | 'child' | 'parent' | 'sibling' | 'friend' | 'other' | undefined,
-                        ayanamsha: 'lahiri',
-                      }, 'north');
-                    });
+                    // Use the stored timezone — it was resolved from birth coordinates
+                    // when the chart was first saved. Never re-resolve it.
+                    handleGenerate({
+                      name: cName,
+                      date: c.birth_data.date,
+                      time: c.birth_data.time,
+                      place: c.birth_data.place,
+                      lat: c.birth_data.lat,
+                      lng: c.birth_data.lng,
+                      timezone: c.birth_data.timezone || 'Asia/Kolkata',
+                      relationship: (c.birth_data.relationship || undefined) as 'self' | 'spouse' | 'child' | 'parent' | 'sibling' | 'friend' | 'other' | undefined,
+                      ayanamsha: 'lahiri',
+                    }, 'north');
                   }}
                   className="rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-4 hover:border-gold-primary/40 transition-all text-left cursor-pointer"
                 >

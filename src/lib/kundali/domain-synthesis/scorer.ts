@@ -1,6 +1,12 @@
 /**
  * Domain Scorer — Rule-Based Tier Determination with Factor Breakdown
  *
+ * NOTE: The live scoring pipeline now uses `evaluateSignificatorsHolistic()` in
+ * synthesizer.ts, which evaluates multiple significators holistically. This file
+ * is retained because `scoreDomain()` and `ScorerInput` are imported and tested
+ * by `domain-synthesis.test.ts`. The shared tier constants (TIER_NAMES, etc.)
+ * are exported from here as the single source of truth.
+ *
  * Assigns one of four Sanskrit tiers (Uttama / Madhyama / Adhama / Atyadhama)
  * based on classical Jyotish rules. Each factor is recorded so the UI can
  * show the user exactly how the verdict was reached.
@@ -29,7 +35,9 @@ export interface ScorerInput {
   beneficAspects: number;
   maleficAspects: number;
   relevantYogaCount: number;
+  relevantYogaNames: string[];
   relevantDoshaCount: number;
+  relevantDoshaNames: string[];
   cancelledDoshas: number;
   dashaActivatesHouse: boolean;
   vargaDeliveryScore: number;
@@ -62,6 +70,29 @@ const TIER_SCORES: Record<Rating, number> = {
   adhama: 3.5,
   atyadhama: 1.5,
 };
+
+// ---------------------------------------------------------------------------
+// Shared tier constants — exported for use by synthesizer.ts and tests
+// (scorer.ts is retained for backward-compatible test coverage; the live
+// scoring pipeline uses evaluateSignificatorsHolistic in synthesizer.ts)
+// ---------------------------------------------------------------------------
+
+/** Ordered tier names: index 0 = worst, index 3 = best. */
+export const TIER_NAMES: Rating[] = ['atyadhama', 'adhama', 'madhyama', 'uttama'];
+
+/** Human-readable bilingual labels for each tier. */
+export const TIER_LABELS_MAP: Record<Rating, { en: string; hi: string }> = {
+  uttama:    { en: 'Strong (Uttama)',      hi: 'प्रबल (उत्तम)' },
+  madhyama:  { en: 'Moderate (Madhyama)',  hi: 'मध्यम (मध्यम)' },
+  adhama:    { en: 'Challenging (Adhama)', hi: 'चुनौतीपूर्ण (अधम)' },
+  atyadhama: { en: 'Critical (Atyadhama)', hi: 'गंभीर (अत्यधम)' },
+};
+
+/** Numeric score for each tier (used for sorting, not shown to user). */
+export const TIER_SCORES_MAP: Record<Rating, number> = { uttama: 8.5, madhyama: 6.0, adhama: 3.5, atyadhama: 1.5 };
+
+/** Tailwind colour class for each tier. */
+export const TIER_COLORS_MAP: Record<Rating, string> = { uttama: 'text-emerald-400', madhyama: 'text-gold-primary', adhama: 'text-amber-400', atyadhama: 'text-red-400' };
 
 // ---------------------------------------------------------------------------
 // Dignity labels
@@ -178,15 +209,15 @@ export function scoreDomain(
   const activeDoshas = input.relevantDoshaCount - input.cancelledDoshas;
   if (input.relevantYogaCount >= 2) {
     tierIndex = Math.min(3, tierIndex + 1);
-    factors.push({ label: { en: 'Yogas', hi: 'योग' }, verdict: 'positive', value: 'Multiple yogas active' });
+    factors.push({ label: { en: 'Yogas', hi: 'योग' }, verdict: 'positive', value: input.relevantYogaNames.join(', ') || 'Multiple yogas' });
   } else if (input.relevantYogaCount === 1) {
-    factors.push({ label: { en: 'Yogas', hi: 'योग' }, verdict: 'positive', value: 'Yoga active' });
+    factors.push({ label: { en: 'Yogas', hi: 'योग' }, verdict: 'positive', value: input.relevantYogaNames[0] || 'Yoga active' });
   }
   if (activeDoshas >= 2) {
     tierIndex = Math.max(0, tierIndex - 1);
-    factors.push({ label: { en: 'Doshas', hi: 'दोष' }, verdict: 'negative', value: 'Multiple doshas active' });
+    factors.push({ label: { en: 'Doshas', hi: 'दोष' }, verdict: 'negative', value: input.relevantDoshaNames.join(', ') || 'Multiple doshas' });
   } else if (activeDoshas === 1) {
-    factors.push({ label: { en: 'Doshas', hi: 'दोष' }, verdict: 'negative', value: 'Dosha active' });
+    factors.push({ label: { en: 'Doshas', hi: 'दोष' }, verdict: 'negative', value: input.relevantDoshaNames[0] || 'Dosha active' });
   }
 
   // ── Resolve ──

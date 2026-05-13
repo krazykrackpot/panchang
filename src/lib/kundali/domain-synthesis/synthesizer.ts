@@ -11,8 +11,6 @@
 
 import type { KundaliData, PlanetPosition, DashaEntry } from '@/types/kundali';
 import type { LocaleText } from '@/types/panchang';
-import type { BhavaBalaResult } from '@/lib/kundali/bhavabala';
-import type { YogaComplete } from '@/lib/kundali/yogas-complete';
 import type {
   PersonalReading,
   DomainReading,
@@ -755,7 +753,14 @@ function identifyWeakPlanets(
 // Multi-significator holistic evaluation
 // ---------------------------------------------------------------------------
 
-// House-meaning context per domain (what does each primary house MEAN for this domain)
+/**
+ * Maps each domain's primary houses to their classical meaning in context.
+ * Used in factor breakdown to explain WHY a house matters for a domain.
+ * Example: for health, 1st house = body & constitution, 6th = disease & immunity.
+ *
+ * NOTE: Values are English-only strings that go into `ScoringFactor.value` (plain string).
+ * Future i18n gap: to localise these, `ScoringFactor.value` would need to become `LocaleText`.
+ */
 const HOUSE_CONTEXT: Record<string, Record<number, string>> = {
   health:    { 1: 'body & constitution', 6: 'disease & immunity', 8: 'longevity' },
   wealth:    { 2: 'accumulated wealth', 11: 'gains & income' },
@@ -767,7 +772,13 @@ const HOUSE_CONTEXT: Record<string, Record<number, string>> = {
   education: { 4: 'foundational education', 5: 'intelligence & higher learning' },
 };
 
-// Natural karaka roles per domain
+/**
+ * Maps each domain's natural karakas (significator planets) to their role description.
+ * A karaka is a planet that naturally signifies a life area regardless of house lordship.
+ * Example: Jupiter (4) is the natural putra karaka for the children domain.
+ *
+ * NOTE: Values are English-only strings — same i18n gap as HOUSE_CONTEXT above.
+ */
 const KARAKA_ROLE: Record<string, Record<number, string>> = {
   health:    { 0: 'vitality karaka', 1: 'mental health', 2: 'energy & immunity', 6: 'chronic conditions' },
   wealth:    { 4: 'expansion karaka', 5: 'luxury karaka', 3: 'commerce karaka' },
@@ -779,7 +790,18 @@ const KARAKA_ROLE: Record<string, Record<number, string>> = {
   education: { 3: 'intellect karaka', 4: 'wisdom karaka' },
 };
 
-// Dignity tier for a single planet
+/**
+ * Maps planet dignity + kendra placement to a 0–3 tier index.
+ *
+ * BPHS-aligned mapping:
+ * - Exalted / Own sign → tier 3 (uttama) — planet at full strength
+ * - Friend's sign in kendra → tier 3, otherwise tier 2 — kendra amplifies moderate dignity
+ * - Neutral sign → tier 2 (madhyama) — neither helped nor harmed
+ * - Enemy sign → tier 1 (adhama) — friction but not destroyed
+ * - Debilitated → tier 0 (atyadhama) — severely weakened
+ *
+ * Avastha modifiers are applied separately after this base tier.
+ */
 function dignityToTier(dignity: DignityLevel, inKendra: boolean): number {
   if (dignity === 'exalted') return 3;
   if (dignity === 'own') return 3;
@@ -789,7 +811,7 @@ function dignityToTier(dignity: DignityLevel, inKendra: boolean): number {
   return 0; // debilitated
 }
 
-// Avastha modifier
+/** Returns a tier modifier based on Baladi avastha strength (0–100). */
 function avasthaModifier(baladiStrength: number): number {
   if (baladiStrength >= 90) return 1;   // Yuva: +1
   if (baladiStrength <= 10) return -2;  // Mrita: -2
@@ -805,15 +827,24 @@ function baladiName(strength: number): string {
   return 'Mrita (Dead)';
 }
 
-const TIER_NAMES: Rating[] = ['atyadhama', 'adhama', 'madhyama', 'uttama'];
-const TIER_LABELS_MAP: Record<Rating, { en: string; hi: string }> = {
-  uttama:    { en: 'Strong (Uttama)',      hi: 'प्रबल (उत्तम)' },
-  madhyama:  { en: 'Moderate (Madhyama)',  hi: 'मध्यम (मध्यम)' },
-  adhama:    { en: 'Challenging (Adhama)', hi: 'चुनौतीपूर्ण (अधम)' },
-  atyadhama: { en: 'Critical (Atyadhama)', hi: 'गंभीर (अत्यधम)' },
-};
-const TIER_SCORES_MAP: Record<Rating, number> = { uttama: 8.5, madhyama: 6.0, adhama: 3.5, atyadhama: 1.5 };
-const TIER_COLORS_MAP: Record<Rating, string> = { uttama: 'text-emerald-400', madhyama: 'text-gold-primary', adhama: 'text-amber-400', atyadhama: 'text-red-400' };
+/**
+ * Hindi ordinal helper — handles irregular forms for 1st through 4th.
+ * "1ला" (pahlā), "2रा" (dūsrā), "3रा" (tīsrā), "4था" (chauthā),
+ * all others use "वें" (vẽ) suffix.
+ */
+function ordinalHi(n: number): string {
+  if (n === 1) return '1ले';
+  if (n === 2) return '2रे';
+  if (n === 3) return '3रे';
+  if (n === 4) return '4थे';
+  return `${n}वें`;
+}
+
+// Tier constants: single source of truth in scorer.ts (see Lesson Q — no duplicate constants)
+const TIER_NAMES = SCORER_TIER_NAMES;
+const TIER_LABELS_MAP = SCORER_TIER_LABELS_MAP;
+const TIER_SCORES_MAP = SCORER_TIER_SCORES_MAP;
+const TIER_COLORS_MAP = SCORER_TIER_COLORS_MAP;
 
 const DIGNITY_LABEL: Record<DignityLevel, string> = {
   exalted: 'exalted', own: 'own sign', friend: 'friendly sign',
@@ -822,8 +853,23 @@ const DIGNITY_LABEL: Record<DignityLevel, string> = {
 
 /**
  * Evaluate all significators for a domain holistically.
- * Returns a RatingInfo with the holistic tier and factor breakdown showing
- * each significator's individual assessment.
+ *
+ * Classical Jyotish reads a domain through multiple lenses — not just the
+ * primary house lord, but also natural karakas and house occupants. This
+ * function scores each significator individually, then computes a weighted
+ * average to produce the final tier.
+ *
+ * Weighting rationale:
+ * - House lords (weight 2): The lord IS the house — its dignity and placement
+ *   are the primary determinant per BPHS.
+ * - Natural karakas (weight 1): Karakas indicate inherent potential (e.g.
+ *   Jupiter for children) but don't "own" the house.
+ * - Occupants (weight 1): Planets sitting in a house colour its expression but
+ *   are secondary to the lord's condition.
+ *
+ * Each significator gets a 0–3 tier (atyadhama → uttama) based on dignity,
+ * kendra placement, and Baladi avastha. The weighted average is rounded to the
+ * nearest tier for the final rating.
  */
 function evaluateSignificatorsHolistic(
   config: DomainConfig,
@@ -837,6 +883,9 @@ function evaluateSignificatorsHolistic(
   const karakaRoles = KARAKA_ROLE[config.id] ?? {};
 
   // ── Evaluate each primary house lord (weight: 2) ──
+  // House lords are weighted double because BPHS treats the lord as the primary
+  // determinant of a house's potential. A strong lord can compensate for malefic
+  // occupants; a weak lord undermines even benefic aspects.
   for (const h of config.primaryHouses) {
     const hSign = kundali.houses.find(c => c.house === h)?.sign ?? 1;
     const lordId = SIGN_LORD[hSign] ?? 0;
@@ -878,13 +927,16 @@ function evaluateSignificatorsHolistic(
     const inHouseNote = ` in ${ordinalEn(lordPos.house)} house (${signName})`;
 
     factors.push({
-      label: { en: `${ordinalEn(h)} Lord ${lordName}`, hi: `${h}वें भाव स्वामी ${graha?.name?.hi ?? lordName}` },
+      label: { en: `${ordinalEn(h)} Lord ${lordName}`, hi: `${ordinalHi(h)} भाव स्वामी ${graha?.name?.hi ?? lordName}` },
       verdict: verdictForTier,
       value: `${DIGNITY_LABEL[dignity]}${inHouseNote}${kendraNote}${avasthaNote} — ${context}`,
     });
   }
 
   // ── Evaluate each natural karaka (weight: 1) ──
+  // Natural karakas indicate inherent capacity for a life area — e.g. Jupiter
+  // is the natural putra karaka regardless of which house it lords. Their
+  // condition modifies the domain promise but with less weight than house lords.
   for (const pid of config.primaryPlanets) {
     // Skip if this planet is already evaluated as a house lord (avoid double-counting)
     const alreadyEvaluated = config.primaryHouses.some(h => {
@@ -903,6 +955,24 @@ function evaluateSignificatorsHolistic(
     const role = karakaRoles[pid] ?? 'significator';
 
     let tier = dignityToTier(dignity, inKendra);
+
+    // Issue 7: Avastha evaluation for karakas — same logic as house lords.
+    // A karaka in Mrita avastha has reduced capacity to deliver its significations
+    // even if dignified (e.g. Jupiter exalted but Mrita still hampers putra results).
+    let avasthaNote = '';
+    if (kundali.avasthas) {
+      const av = kundali.avasthas.find(a => a.planetId === pid);
+      if (av) {
+        const mod = avasthaModifier(av.baladi.strength);
+        tier = Math.max(0, Math.min(3, tier + mod));
+        if (mod !== 0) {
+          avasthaNote = mod < 0
+            ? `, ${baladiName(av.baladi.strength)} — reduces delivery`
+            : `, ${baladiName(av.baladi.strength)} — strengthens delivery`;
+        }
+      }
+    }
+
     tier = Math.max(0, Math.min(3, tier));
     tierValues.push({ tier, weight: 1 });
 
@@ -911,13 +981,15 @@ function evaluateSignificatorsHolistic(
     factors.push({
       label: { en: `${pName} (${role})`, hi: `${graha?.name?.hi ?? pName} (${role})` },
       verdict: verdictForTier,
-      value: `${DIGNITY_LABEL[dignity]}${inKendra ? ' + angular house' : ''}`,
+      value: `${DIGNITY_LABEL[dignity]}${inKendra ? ' + angular house' : ''}${avasthaNote}`,
     });
   }
 
   // ── Evaluate occupants of primary houses (weight: 1 each) ──
   // Planets SITTING IN the primary houses influence the domain directly.
-  // Benefics protect and enrich; malefics create friction and challenges.
+  // Classical Jyotish: malefic occupants create friction but don't destroy a house;
+  // benefics help but don't make it perfect. Hence madhyama (tier 2) for benefics
+  // and adhama (tier 1) for malefics — NOT the extremes of uttama/atyadhama.
   const primaryHouseSet = new Set(config.primaryHouses);
   const evaluatedIds = new Set<number>(); // avoid double-listing lords/karakas
   // Collect IDs already shown as lords or karakas
@@ -936,12 +1008,15 @@ function evaluateSignificatorsHolistic(
     const benefic = isBenefic(p.planet.id);
     const hContext = houseContexts[p.house] ?? `${p.house}th house`;
 
-    // Occupant tier: benefic in primary house = +1, malefic = -1
-    const occupantTier = benefic ? 3 : 0;
+    // Occupant tier: benefic = madhyama-level boost (tier 2), malefic = adhama-level drag (tier 1).
+    // Classical reasoning: a single malefic in a house creates obstacles but doesn't annihilate
+    // the house's promise (that would require debilitated lord + malefic + dosha). Similarly, a
+    // single benefic improves things but doesn't guarantee uttama results on its own.
+    const occupantTier = benefic ? 2 : 1;
     tierValues.push({ tier: occupantTier, weight: 1 });
 
     factors.push({
-      label: { en: `${pNameStr} in ${ordinalEn(p.house)} house`, hi: `${graha?.name?.hi ?? pNameStr} ${p.house}वें भाव में` },
+      label: { en: `${pNameStr} in ${ordinalEn(p.house)} house`, hi: `${graha?.name?.hi ?? pNameStr} ${ordinalHi(p.house)} भाव में` },
       verdict: benefic ? 'positive' : 'negative',
       value: benefic
         ? `benefic occupant — enriches ${hContext}`

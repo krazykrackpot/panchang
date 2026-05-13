@@ -48,7 +48,7 @@ const HEALTH_CONFIG: DomainConfig = {
   icon: 'sun',
   primaryHouses: [1, 6, 8],
   secondaryHouses: [3, 11, 12],
-  primaryPlanets: [0, 2, 6], // Sun, Mars, Saturn
+  primaryPlanets: [0, 1, 2, 6], // Sun (vitality), Moon (mind/mental health), Mars (energy), Saturn (chronic)
   relevantYogaCategories: ['health', 'longevity', 'vitality'],
   relevantDoshas: ['mangal_dosha', 'shani_dosha', 'pitru_dosha'],
   divisionalCharts: ['D30'],
@@ -94,7 +94,7 @@ const CAREER_CONFIG: DomainConfig = {
   icon: 'saturn',
   primaryHouses: [10, 6],
   secondaryHouses: [1, 2, 7, 11],
-  primaryPlanets: [0, 6, 3], // Sun, Saturn, Mercury
+  primaryPlanets: [0, 6, 3, 2], // Sun (authority), Saturn (profession), Mercury (business), Mars (action/drive)
   relevantYogaCategories: ['raja', 'career', 'authority'],
   relevantDoshas: ['shani_dosha', 'kaal_sarpa'],
   divisionalCharts: ['D10'],
@@ -141,7 +141,7 @@ const CHILDREN_CONFIG: DomainConfig = {
   icon: 'moon',
   primaryHouses: [5],
   secondaryHouses: [1, 2, 7, 9, 11],
-  primaryPlanets: [4, 5], // Jupiter, Venus
+  primaryPlanets: [4, 5, 1], // Jupiter (putra karaka), Venus, Moon (fertility/nurturing)
   relevantYogaCategories: ['santana', 'children', 'progeny'],
   relevantDoshas: ['santana_dosha', 'mangal_dosha'],
   divisionalCharts: ['D7'],

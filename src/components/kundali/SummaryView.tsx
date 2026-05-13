@@ -16,6 +16,7 @@ import dynamic from 'next/dynamic';
 import { BookOpen, ChevronDown, ChevronUp, Sparkles, Shield, TrendingUp, AlertTriangle, Printer, Link2, Check } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import SummaryDomainCard from './SummaryDomainCard';
+import LifeDomainsOverview from './LifeDomainsOverview';
 import SummaryCurrentPeriod, { KeyDatesSection } from './SummaryCurrentPeriod';
 import SummaryRemedies from './SummaryRemedies';
 import type { TippanniContent, YogaInsight, DoshaInsight } from '@/lib/kundali/tippanni-types';
@@ -467,6 +468,14 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
         <h2 className="text-lg sm:text-xl text-gold-light font-bold mb-4" style={headingFont}>
           {isHi ? 'आपके जीवन क्षेत्र' : 'Your Life Domains'}
         </h2>
+
+        {/* Overview: all 8 domains at a glance */}
+        {sortedDomains.length > 0 && (
+          <div className="mb-5">
+            <LifeDomainsOverview domains={sortedDomains} locale={locale} />
+          </div>
+        )}
+
         <div className="space-y-4">
           {sortedDomains.map((domain, i) => {
             const tippanniKey = DOMAIN_TO_TIPPANNI[domain.domain];

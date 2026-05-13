@@ -177,22 +177,19 @@ export default function Navbar() {
           <div className="flex-1 min-w-4 lg:min-w-8" />
 
           {/* Right  –  Controls */}
-          <div className="hidden lg:flex items-center gap-3 shrink-0">
+          <div className="hidden lg:flex items-center gap-2 shrink-0">
             <div className={`flex items-center gap-1.5 text-text-secondary text-xs transition-opacity duration-150 ${hydrated && locationStore.confirmed && locationStore.name ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
               <MapPin className="w-3.5 h-3.5 text-gold-primary" />
-              <span className="max-w-[150px] truncate" suppressHydrationWarning>{hydrated ? (locationStore.name || '\u00A0') : '\u00A0'}</span>
+              <span className="max-w-[120px] truncate" suppressHydrationWarning>{hydrated ? (locationStore.name || '\u00A0') : '\u00A0'}</span>
             </div>
-            <div className={`transition-opacity duration-150 ${hydrated && user ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-              <NotificationBell />
-            </div>
+            {hydrated && user && <NotificationBell />}
             <SearchModal />
-            <div className="w-px h-5 bg-gold-primary/15" />
             <LocaleSwitcher />
-            <div className={`transition-opacity duration-150 ${hydrated && isTrialing && trialDaysLeft > 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+            {hydrated && isTrialing && trialDaysLeft > 0 && (
               <span className="text-gold-dark text-xs whitespace-nowrap">
                 {tl({ en: `Trial: ${trialDaysLeft}d`, hi: `परीक्षण: ${trialDaysLeft}दि`, sa: `परीक्षण: ${trialDaysLeft}दि` }, locale)}
               </span>
-            </div>
+            )}
             <UserMenu />
           </div>
 

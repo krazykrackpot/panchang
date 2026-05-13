@@ -238,6 +238,10 @@ export default async function FestivalCanonicalPage({
         addressCountry: 'IN',
       },
     },
+    performer: {
+      '@type': 'PerformingGroup',
+      name: festivalNameEn,
+    },
     organizer: {
       '@type': 'Organization',
       name: 'Dekho Panchang',

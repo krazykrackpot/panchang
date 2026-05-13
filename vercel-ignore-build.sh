@@ -13,10 +13,12 @@
 
 echo "Checking if build is needed..."
 
-# Always build on main branch for production
+# ONLY build on main branch — skip ALL other branches
+# Feature branches, PRs, and previews are developed and tested locally.
+# Every non-main push that triggers a build wastes ~9 min of compute quota.
 if [ "$VERCEL_GIT_COMMIT_REF" != "main" ]; then
-  echo "Not main branch — building for preview"
-  exit 1
+  echo "Not main branch ($VERCEL_GIT_COMMIT_REF) — skipping build"
+  exit 0
 fi
 
 # Get the list of changed files since last successful deployment

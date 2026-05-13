@@ -33,6 +33,11 @@ export class ResponseCache {
       }
     }
 
+    // Move to end of Map iteration order → marks as most recently used.
+    // Without this, eviction is FIFO (oldest inserted), not LRU.
+    this.cache.delete(key);
+    this.cache.set(key, entry);
+
     return entry.response;
   }
 

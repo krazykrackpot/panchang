@@ -270,34 +270,10 @@ export default function SummaryDomainCard({
         {/* ---- Layered commentary (Jyotishi-style reading) ---- */}
         <LayeredCommentary domain={domain} locale={locale} />
 
-        {/* ---- Headline ---- */}
-        {headlineText && (
-          <p
-            className="mb-4 text-sm font-medium leading-relaxed text-text-primary"
-            style={bodyStyle}
-          >
-            {headlineText}
-          </p>
-        )}
-
-        {/* ---- Natal promise narrative ---- */}
-        {narrativeRaw && (
-          <div className="mb-4">
-            <p className="text-sm leading-relaxed text-text-secondary" style={bodyStyle}>
-              {narrativeExpanded ? narrativeRaw : narrativeShort}
-            </p>
-            {canExpandNarrative && (
-              <button
-                type="button"
-                onClick={() => setNarrativeExpanded(!narrativeExpanded)}
-                className="mt-1 inline-flex items-center gap-1 text-xs font-medium text-gold-primary hover:text-gold-light"
-              >
-                {narrativeExpanded ? 'Show less' : 'Read more'}
-                {narrativeExpanded ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
-              </button>
-            )}
-          </div>
-        )}
+        {/* Old narrateHouseLord narrative removed — the LayeredCommentary
+            factor breakdown above IS the reading. The old narrator used generic
+            house meanings ("mother, home" for education) and was disconnected
+            from the scoring factors. */}
 
         {/* ---- Timeline triggers ---- */}
         {allTriggers.length > 0 && (

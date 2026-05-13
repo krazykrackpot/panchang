@@ -875,6 +875,7 @@ function evaluateSignificatorsHolistic(
   config: DomainConfig,
   kundali: KundaliData,
   data: ExtractedData,
+  evaluatedYogas?: import('@/lib/kundali/yoga-engine/types').EvaluatedYoga[],
 ): RatingInfo {
   const factors: ScoringFactor[] = [];
   const tierValues: { tier: number; weight: number }[] = [];
@@ -1025,16 +1026,51 @@ function evaluateSignificatorsHolistic(
   }
 
   // ── Evaluate relevant yogas and doshas ──
-  // Yogas (classical planetary combinations) and doshas (afflictions) are
-  // domain-filtered by config.relevantYogaCategories / config.relevantDoshas.
-  // Per BPHS: yogas amplify a domain's promise; doshas create specific obstacles.
-  if (kundali.yogasComplete) {
+  // If new engine results are available, use domain-mapped yogas (precise).
+  // Otherwise fall back to old category-matching (approximate).
+  if (evaluatedYogas && evaluatedYogas.length > 0) {
+    // New engine: each yoga specifies exactly which domains it affects
+    const domainId = config.id as string;
+    const domainYogas = evaluatedYogas.filter(y =>
+      y.present && !y.cancellationStatus?.anyCancelled &&
+      (y.affectedDomains === 'all' || (y.affectedDomains as string[]).includes(domainId)),
+    );
+    const auspiciousYogas = domainYogas.filter(y => y.isAuspicious);
+    const inauspiciousYogas = domainYogas.filter(y => !y.isAuspicious);
+
+    if (auspiciousYogas.length > 0) {
+      // Each auspicious yoga boosts using its own domainImpactWeight
+      for (const y of auspiciousYogas.slice(0, 3)) {
+        tierValues.push({ tier: 3, weight: y.domainImpactWeight });
+      }
+      const names = auspiciousYogas.slice(0, 3).map(y => y.name.en);
+      const more = auspiciousYogas.length > 3 ? ` (+${auspiciousYogas.length - 3} more)` : '';
+      factors.push({
+        label: { en: 'Active Yogas', hi: 'सक्रिय योग' },
+        verdict: 'positive',
+        value: `${names.join(', ')}${more}`,
+      });
+    }
+
+    if (inauspiciousYogas.length > 0) {
+      for (const y of inauspiciousYogas.slice(0, 2)) {
+        tierValues.push({ tier: 0, weight: y.domainImpactWeight });
+      }
+      const names = inauspiciousYogas.slice(0, 2).map(y => y.name.en);
+      const more = inauspiciousYogas.length > 2 ? ` (+${inauspiciousYogas.length - 2} more)` : '';
+      factors.push({
+        label: { en: 'Active Doshas', hi: 'सक्रिय दोष' },
+        verdict: 'negative',
+        value: `${names.join(', ')}${more}`,
+      });
+    }
+  } else if (kundali.yogasComplete) {
+    // Fallback: old category-matching approach
     const activeYogas = kundali.yogasComplete.filter(
       y => y.present && config.relevantYogaCategories.includes(y.category),
     );
     if (activeYogas.length > 0) {
-      // Yogas boost: each yoga adds a tier-2 (madhyama) weight-1 contribution
-      for (const y of activeYogas.slice(0, 3)) { // cap at 3 to avoid swamping
+      for (const y of activeYogas.slice(0, 3)) {
         tierValues.push({ tier: 3, weight: 1 });
       }
       const yogaNames = activeYogas.slice(0, 3).map(y => y.name.en ?? 'Yoga');
@@ -1051,8 +1087,7 @@ function evaluateSignificatorsHolistic(
       return y.present && config.relevantDoshas.some(d => nameStr.includes(d));
     });
     if (activeDoshas.length > 0) {
-      // Doshas drag: each dosha adds a tier-0 (atyadhama) weight-1 contribution
-      for (const d of activeDoshas.slice(0, 2)) { // cap at 2
+      for (const d of activeDoshas.slice(0, 2)) {
         tierValues.push({ tier: 0, weight: 1 });
       }
       const doshaNames = activeDoshas.slice(0, 2).map(d => d.name.en ?? 'Dosha');
@@ -1098,11 +1133,12 @@ function buildDomainReading(
   crossLinks: CrossDomainLink[],
   nativeAge?: number,
   transitData?: TransitEntry[],
+  evaluatedYogas?: import('@/lib/kundali/yoga-engine/types').EvaluatedYoga[],
 ): DomainReading {
   // 1. Multi-significator holistic scoring.
   // Each domain is assessed through ALL its primary house lords AND natural
   // karakas. A Jyotishi evaluates every significator, not just one.
-  const natalRating = evaluateSignificatorsHolistic(config, kundali, data);
+  const natalRating = evaluateSignificatorsHolistic(config, kundali, data, evaluatedYogas);
 
   // 2. Natal promise block
   const natalPromise = buildNatalPromise(config, kundali, data, natalRating, nativeAge);
@@ -1259,6 +1295,8 @@ export function synthesizeReading(
   kundali: KundaliData,
   _locale?: string,
   nativeAge?: number,
+  /** New yoga engine results — if provided, used for domain-mapped yoga/dosha scoring */
+  evaluatedYogas?: import('@/lib/kundali/yoga-engine/types').EvaluatedYoga[],
 ): PersonalReading {
   const data = extractData(kundali);
 
@@ -1280,7 +1318,7 @@ export function synthesizeReading(
 
   // 2. Build all 8 domain readings
   const domains: DomainReading[] = DOMAIN_CONFIGS.map(config =>
-    buildDomainReading(config, kundali, data, crossDomainLinks, nativeAge, transitData),
+    buildDomainReading(config, kundali, data, crossDomainLinks, nativeAge, transitData, evaluatedYogas),
   );
 
   // 3. Current period
@@ -1340,6 +1378,7 @@ export function synthesizeDomainDeepDive(
   domainId: DomainType,
   _locale?: string,
   nativeAge?: number,
+  evaluatedYogas?: import('@/lib/kundali/yoga-engine/types').EvaluatedYoga[],
 ): DomainReading | null {
   const config = DOMAIN_CONFIGS.find(c => c.id === domainId);
   if (!config) return null;
@@ -1361,5 +1400,5 @@ export function synthesizeDomainDeepDive(
     transitData = undefined;
   }
 
-  return buildDomainReading(config, kundali, data, crossDomainLinks, nativeAge, transitData);
+  return buildDomainReading(config, kundali, data, crossDomainLinks, nativeAge, transitData, evaluatedYogas);
 }

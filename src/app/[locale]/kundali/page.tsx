@@ -43,6 +43,10 @@ import type { KundaliData, BirthData, ChartStyle, PlanetPosition, AshtakavargaDa
 import type { ShadBalaComplete } from '@/lib/kundali/shadbala';
 import type { BhavaBalaResult } from '@/lib/kundali/bhavabala';
 import type { YogaComplete } from '@/lib/kundali/yogas-complete';
+import { buildYogaContext } from '@/lib/kundali/yoga-engine/context';
+import { registerYogaRules, evaluateAllYogas, _clearRegistry } from '@/lib/kundali/yoga-engine/engine';
+import { ALL_YOGA_RULES } from '@/lib/kundali/yoga-engine/rules';
+import type { EvaluatedYoga } from '@/lib/kundali/yoga-engine/types';
 import type { Locale , LocaleText} from '@/types/panchang';
 import type { SadeSatiAnalysis, NakshatraTransitEntry } from '@/lib/kundali/sade-sati-analysis';
 import type { PersonalReading, DomainType } from '@/lib/kundali/domain-synthesis/types';
@@ -524,7 +528,15 @@ export default function KundaliPage() {
           if (data?.planets) {
             setKundali(data);
             try {
-              const reading = synthesizeReading(data, locale);
+              // Compute yoga engine results from fresh kundali data
+              let engineYogas: typeof newYogas = [];
+              try {
+                _clearRegistry();
+                registerYogaRules(ALL_YOGA_RULES);
+                const yCtx = buildYogaContext(data);
+                engineYogas = evaluateAllYogas(yCtx);
+              } catch { /* yoga engine optional */ }
+              const reading = synthesizeReading(data, locale, undefined, engineYogas.length > 0 ? engineYogas : undefined);
               setPersonalReading(reading);
               setKeyDates(computeKeyDates({ kundali: data }));
               setVedicProfile(generateVedicProfile(data, locale));
@@ -593,6 +605,20 @@ export default function KundaliPage() {
 
   // Tippanni insights for planet commentary in Planets & Graha tabs
   const tip = useMemo(() => kundali ? generateTippanni(kundali, locale) : null, [kundali, locale]);
+
+  // New declarative yoga engine (95 rules across 13 groups)
+  const newYogas = useMemo<EvaluatedYoga[]>(() => {
+    if (!kundali) return [];
+    try {
+      _clearRegistry(); // Reset to avoid duplicates on re-render
+      registerYogaRules(ALL_YOGA_RULES);
+      const ctx = buildYogaContext(kundali);
+      return evaluateAllYogas(ctx);
+    } catch (err) {
+      console.error('[kundali-page] Yoga engine evaluation failed:', err);
+      return [];
+    }
+  }, [kundali]);
 
   // Cosmic Blueprint  –  synthesized from Shadbala, Dasha, Yogas, Ascendant
   const cosmicBlueprint = useMemo<CosmicBlueprint | null>(() => {
@@ -780,7 +806,14 @@ export default function KundaliPage() {
       setKundali(data);
       // Compute Personal Pandit reading + Key Dates (synchronous, <500ms)
       try {
-        const reading = synthesizeReading(data, locale);
+        let engineYogas2: typeof newYogas = [];
+        try {
+          _clearRegistry();
+          registerYogaRules(ALL_YOGA_RULES);
+          const yCtx2 = buildYogaContext(data);
+          engineYogas2 = evaluateAllYogas(yCtx2);
+        } catch { /* yoga engine optional */ }
+        const reading = synthesizeReading(data, locale, undefined, engineYogas2.length > 0 ? engineYogas2 : undefined);
         setPersonalReading(reading);
         setKeyDates(computeKeyDates({ kundali: data }));
         setVedicProfile(generateVedicProfile(data, locale));
@@ -2839,7 +2872,7 @@ export default function KundaliPage() {
                   </div>
                 )}
               </InfoBlock>
-              <YogasTab yogas={kundali.yogasComplete} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
+              <YogasTab yogas={kundali.yogasComplete} newYogas={newYogas} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
               <YogasInterpretation yogas={kundali.yogasComplete} locale={locale} />
             </div>
           )}

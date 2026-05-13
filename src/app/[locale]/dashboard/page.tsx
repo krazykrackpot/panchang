@@ -1896,8 +1896,10 @@ export default function DashboardPage() {
             {savedCharts.map((c) => {
               const name = c.birth_data.name || c.label;
               const rel = c.birth_data.relationship || 'self';
-              const viewHref = `/kundali?n=${encodeURIComponent(name)}&d=${c.birth_data.date}&t=${c.birth_data.time}&la=${c.birth_data.lat}&lo=${c.birth_data.lng}&p=${encodeURIComponent(c.birth_data.place)}`;
-              const editHref = `/kundali?n=${encodeURIComponent(name)}&d=${c.birth_data.date}&t=${c.birth_data.time}&la=${c.birth_data.lat}&lo=${c.birth_data.lng}&p=${encodeURIComponent(c.birth_data.place)}&edit=1`;
+              const bd = c.birth_data as Record<string, unknown>;
+              const tzParam = bd.timezone ? `&tz=${encodeURIComponent(String(bd.timezone))}` : '';
+              const viewHref = `/kundali?n=${encodeURIComponent(name)}&d=${c.birth_data.date}&t=${c.birth_data.time}&la=${c.birth_data.lat}&lo=${c.birth_data.lng}&p=${encodeURIComponent(c.birth_data.place)}${tzParam}`;
+              const editHref = `/kundali?n=${encodeURIComponent(name)}&d=${c.birth_data.date}&t=${c.birth_data.time}&la=${c.birth_data.lat}&lo=${c.birth_data.lng}&p=${encodeURIComponent(c.birth_data.place)}${tzParam}&edit=1`;
               return (
                 <div
                   key={c.id}

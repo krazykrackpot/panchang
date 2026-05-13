@@ -230,6 +230,10 @@ export default async function FestivalCanonicalPage({
     description: eventDescription,
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     eventStatus: 'https://schema.org/EventScheduled',
+    location: {
+      '@type': 'VirtualLocation',
+      url: `${BASE_URL}/${locale}/festivals/${slug}/${year}`,
+    },
     organizer: {
       '@type': 'Organization',
       name: 'Dekho Panchang',
@@ -238,7 +242,7 @@ export default async function FestivalCanonicalPage({
     offers: {
       '@type': 'Offer',
       price: '0',
-      priceCurrency: 'USD',
+      priceCurrency: 'INR',
       availability: 'https://schema.org/InStock',
       url: `${BASE_URL}/en/festivals/${slug}/${year}`,
       validFrom: festivalDate,

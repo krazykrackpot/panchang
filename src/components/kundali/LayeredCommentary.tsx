@@ -31,6 +31,15 @@ function ordinal(n: number, locale: string): string {
 
 // ─── Prose generator: weaves factors into flowing Jyotishi-style narrative ──
 
+/**
+ * Generates flowing Jyotishi-style prose from the factor breakdown.
+ * Each factor type gets its own narrative treatment:
+ * - Lords: "Your 4th lord Jupiter sits in own sign — strong foundation for education"
+ * - Karakas: "Mercury, the natural intellect karaka, offers support from a friendly sign"
+ * - Occupants: "Moon's presence in the 5th house enriches learning"
+ * - Yogas: "Amala Yoga brings spotless reputation to your career"
+ * - Doshas: "Mangal Dosha creates friction in partnerships — remedies can help"
+ */
 function generateNatalProse(
   factors: ScoringFactor[],
   domainName: string,
@@ -44,41 +53,106 @@ function generateNatalProse(
   for (const f of factors) {
     const label = isHi ? f.label.hi : f.label.en;
     const value = f.value;
+    const enLabel = f.label.en; // always check English label for type detection
 
     // Split value on " — " to separate placement from context.
-    // Use LAST " — " as the split point since the domain context is always last.
     const lastDash = value.lastIndexOf(' — ');
     const [placement, context] = lastDash >= 0
       ? [value.slice(0, lastDash), value.slice(lastDash + 3)]
       : [value, ''];
 
+    // ── Yoga factors — weave names into prose ──
+    if (enLabel === 'Active Yogas') {
+      const names = value.split(', ').map(n => n.replace(/\s*\(\+\d+ more\)/, ''));
+      const moreMatch = value.match(/\(\+(\d+) more\)/);
+      const more = moreMatch ? parseInt(moreMatch[1]) : 0;
+
+      if (names.length === 1) {
+        sentences.push(`${names[0]} is active in your chart, strengthening ${domainName}.`);
+      } else {
+        const listed = names.slice(0, 2).join(' and ');
+        const extra = more > 0 ? `, along with ${more} other yoga${more > 1 ? 's' : ''}` : '';
+        sentences.push(`Classical yogas including ${listed}${extra} support ${domainName}.`);
+      }
+      continue;
+    }
+
+    if (enLabel === 'Active Doshas') {
+      const names = value.split(', ').map(n => n.replace(/\s*\(\+\d+ more\)/, ''));
+      const moreMatch = value.match(/\(\+(\d+) more\)/);
+      const more = moreMatch ? parseInt(moreMatch[1]) : 0;
+
+      if (names.length === 1) {
+        sentences.push(`${names[0]} is present, creating challenges for ${domainName} — targeted remedies can mitigate its effects.`);
+      } else {
+        const listed = names.slice(0, 2).join(' and ');
+        const extra = more > 0 ? ` and ${more} other dosha${more > 1 ? 's' : ''}` : '';
+        sentences.push(`${listed}${extra} create pressure on ${domainName} — focused remedial measures are recommended.`);
+      }
+      continue;
+    }
+
+    // ── Lord factors ──
+    if (enLabel.includes('Lord')) {
+      if (f.verdict === 'positive') {
+        if (context) {
+          sentences.push(`${label} is placed in ${placement} — a position of strength for ${context}.`);
+        } else {
+          sentences.push(`${label} is well-placed in ${placement}, supporting ${domainName}.`);
+        }
+      } else if (f.verdict === 'negative') {
+        if (value.includes('Mrita') || value.includes('Bala')) {
+          const avMatch = placement.match(/(Mrita \(Dead\)|Bala \(Infant\))/);
+          const avName = avMatch?.[1] ?? 'weak avastha';
+          sentences.push(`${label} is in ${placement.split(',')[0]}, but ${avName} significantly reduces delivery${context ? ` for ${context}` : ''}.`);
+        } else if (value.includes('enemy sign') || value.includes('debilitated')) {
+          sentences.push(`${label} is in ${placement} — an uncomfortable position${context ? ` that creates friction for ${context}` : ''}.`);
+        } else {
+          sentences.push(`${label} in ${placement} faces challenges${context ? ` for ${context}` : ''}.`);
+        }
+      } else {
+        sentences.push(`${label} is in ${placement}${context ? ` — a steady influence on ${context}` : ''}.`);
+      }
+      continue;
+    }
+
+    // ── Karaka factors ──
+    if (enLabel.includes('karaka') || enLabel.includes('Karaka')) {
+      if (f.verdict === 'positive') {
+        sentences.push(`${label}, placed in ${placement}, lends natural strength to ${domainName}.`);
+      } else if (f.verdict === 'negative') {
+        if (value.includes('Mrita') || value.includes('Bala')) {
+          sentences.push(`${label} is weakened by ${value.includes('Mrita') ? 'Mrita (dead) avastha' : 'Bala (infant) avastha'} — its natural support for ${domainName} is diminished.`);
+        } else {
+          sentences.push(`${label} in ${placement} struggles to fully support ${domainName}.`);
+        }
+      } else {
+        sentences.push(`${label} in ${placement} provides moderate natural support.`);
+      }
+      continue;
+    }
+
+    // ── Occupant factors ──
+    if (value.includes('benefic occupant')) {
+      sentences.push(`${label} — a benefic presence that enriches ${context || domainName}.`);
+      continue;
+    }
+    if (value.includes('malefic occupant')) {
+      sentences.push(`${label} — a malefic presence that creates friction in ${context || domainName}, but also builds resilience.`);
+      continue;
+    }
+
+    // ── Fallback for any unrecognised factor type ──
     if (f.verdict === 'positive') {
-      if (value.includes('benefic occupant')) {
-        sentences.push(`${label} — ${value}.`);
-      } else if (context) {
-        sentences.push(`${label} is in ${placement} — a position of strength for ${context}.`);
-      } else {
-        sentences.push(`${label} in ${placement} supports ${domainName}.`);
-      }
+      sentences.push(`${label} in ${placement} supports ${domainName}.`);
     } else if (f.verdict === 'negative') {
-      if (value.includes('malefic occupant')) {
-        sentences.push(`${label} — ${value}.`);
-      } else if (value.includes('Mrita') || value.includes('Bala')) {
-        // Extract the avastha part and the context separately
-        const avMatch = placement.match(/(Mrita \(Dead\)|Bala \(Infant\))/);
-        const avName = avMatch?.[1] ?? 'weak avastha';
-        sentences.push(`${label} is in ${placement.split(',')[0]}, but ${avName} significantly reduces delivery${context ? ` for ${context}` : ''}.`);
-      } else if (value.includes('enemy sign') || value.includes('debilitated')) {
-        sentences.push(`${label} is in ${placement} — an uncomfortable position${context ? ` that creates friction for ${context}` : ''}.`);
-      } else {
-        sentences.push(`${label} in ${placement} poses challenges${context ? ` for ${context}` : ''}.`);
-      }
+      sentences.push(`${label} in ${placement} creates challenges for ${domainName}.`);
     } else {
-      sentences.push(`${label} is in ${placement}${context ? ` — a steady influence on ${context}` : ' — a moderate influence'}.`);
+      sentences.push(`${label} is in ${placement} — a moderate influence.`);
     }
   }
 
-  // Add a closing summary based on the overall tier
+  // Closing summary
   const CLOSING: Record<Rating, string> = {
     uttama: `Overall, the chart provides strong support for ${domainName}.`,
     madhyama: `On balance, ${domainName} has moderate support — some strengths offset the challenges.`,

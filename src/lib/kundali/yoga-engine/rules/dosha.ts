@@ -178,10 +178,11 @@ export const DOSHA_RULES: YogaRule[] = [
       },
       {
         condition: {
-          type: 'planet_aspects_house',
-          planetId: 4, // Jupiter
-          house: 0, // Placeholder — actual check is in custom detect via assessStrength
-          fromLagna: true,
+          type: 'custom',
+          detect: (ctx: YogaContext) => ({
+            present: ctx.doesAspect(4, ctx.planetHouse(2)), // Jupiter aspects Mars's house
+            involvedPlanets: [4, 2],
+          }),
         },
         reason: {
           en: 'Jupiter aspects Mars — Mangal Dosha weakened',
@@ -231,11 +232,20 @@ export const DOSHA_RULES: YogaRule[] = [
         const rahuLong = ctx.planetLongitude(7); // Rahu
         const ketuLong = ctx.planetLongitude(8); // Ketu
 
-        // Arc from Rahu to Ketu going forward (clockwise in longitude)
-        // A planet is "between" Rahu and Ketu if its longitude falls in the
-        // shorter arc from Rahu→Ketu (going in the direction of increasing longitude, modulo 360).
-        // We check: all planets Sun(0) through Saturn(6) must be in this arc.
-        let allBetween = true;
+        // Helper: check if a point falls in the forward arc from start to end (mod 360)
+        function isInArc(point: number, start: number, end: number): boolean {
+          if (start < end) {
+            return point >= start && point <= end;
+          } else {
+            // Arc crosses 0°
+            return point >= start || point <= end;
+          }
+        }
+
+        // Check BOTH arcs — Kaal Sarpa is present if all 7 planets are in
+        // EITHER the Rahu→Ketu arc OR the Ketu→Rahu arc.
+        let allInRahuToKetu = true;
+        let allInKetuToRahu = true;
         let anyConjunctNode = false;
         const involvedPlanets: number[] = [7, 8]; // Rahu and Ketu always involved
 
@@ -243,19 +253,11 @@ export const DOSHA_RULES: YogaRule[] = [
           const pLong = ctx.planetLongitude(pid);
           involvedPlanets.push(pid);
 
-          // Check if planet is in the arc from Rahu to Ketu (forward)
-          let inArc: boolean;
-          if (rahuLong < ketuLong) {
-            // Normal case: Rahu longitude < Ketu longitude
-            inArc = pLong >= rahuLong && pLong <= ketuLong;
-          } else {
-            // Wrapped case: Rahu longitude > Ketu longitude (crosses 0°)
-            inArc = pLong >= rahuLong || pLong <= ketuLong;
+          if (!isInArc(pLong, rahuLong, ketuLong)) {
+            allInRahuToKetu = false;
           }
-
-          if (!inArc) {
-            allBetween = false;
-            break;
+          if (!isInArc(pLong, ketuLong, rahuLong)) {
+            allInKetuToRahu = false;
           }
 
           // Check if conjunct a node (same house = weakens)
@@ -264,13 +266,14 @@ export const DOSHA_RULES: YogaRule[] = [
           }
         }
 
+        const present = allInRahuToKetu || allInKetuToRahu;
         const rahuHouse = ctx.planetHouse(7);
         const variant = KAAL_SARPA_VARIANTS[rahuHouse] ?? 'Unknown';
 
         return {
-          present: allBetween,
-          involvedPlanets: allBetween ? involvedPlanets : [],
-          customData: allBetween
+          present,
+          involvedPlanets: present ? involvedPlanets : [],
+          customData: present
             ? { variant, rahuHouse, anyConjunctNode }
             : undefined,
         };
@@ -447,7 +450,7 @@ export const DOSHA_RULES: YogaRule[] = [
       planet2: 7, // Rahu
     },
 
-    assessStrength: (ctx: YogaContext) => {
+    assessStrength: (ctx: YogaContext, _result: YogaDetectionResult) => {
       const saturnHouse = ctx.planetHouse(6);
       const saturnDignity = ctx.dignity(6);
 
@@ -500,7 +503,7 @@ export const DOSHA_RULES: YogaRule[] = [
       planet2: 7, // Rahu
     },
 
-    assessStrength: (ctx: YogaContext) => {
+    assessStrength: (ctx: YogaContext, _result: YogaDetectionResult) => {
       const jupiterDignity = ctx.dignity(4);
       const jupiterHouse = ctx.planetHouse(4);
 

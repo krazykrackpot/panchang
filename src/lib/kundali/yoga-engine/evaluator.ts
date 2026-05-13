@@ -308,25 +308,43 @@ function evaluateConsecutiveHouses(
   }
 
   // Find the longest chain of consecutive occupied houses (wrapping around 12→1)
-  let maxConsecutive = 0;
+  let bestChain = 0;
+  let bestStart = 1;
   for (let start = 1; start <= 12; start++) {
     let chain = 0;
     for (let offset = 0; offset < 12; offset++) {
       const h = ((start - 1 + offset) % 12) + 1;
       if (occupiedHouses.has(h)) {
         chain++;
-        if (chain > maxConsecutive) maxConsecutive = chain;
+        if (chain > bestChain) {
+          bestChain = chain;
+          bestStart = start;
+        }
       } else {
         break;
       }
     }
   }
 
-  const met = maxConsecutive >= minChain;
+  const met = bestChain >= minChain;
+
+  // Only include planets whose houses are IN the found chain
+  let filteredPlanets: number[] = [];
+  if (met) {
+    const chainHouses = new Set<number>();
+    for (let i = 0; i < bestChain; i++) {
+      chainHouses.add(((bestStart - 1 + i) % 12) + 1);
+    }
+    filteredPlanets = involvedPlanets.filter(pid => {
+      const pHouse = ctx.planets.find(p => p.id === pid)?.house;
+      return pHouse !== undefined && chainHouses.has(pHouse);
+    });
+  }
+
   return {
     met,
-    involvedPlanets: met ? involvedPlanets : [],
-    customData: met ? { chainLength: maxConsecutive } : undefined,
+    involvedPlanets: met ? filteredPlanets : [],
+    customData: met ? { chainLength: bestChain, startHouse: bestStart } : undefined,
   };
 }
 

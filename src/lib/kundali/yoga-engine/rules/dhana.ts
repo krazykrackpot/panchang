@@ -24,18 +24,7 @@
  */
 
 import type { YogaRule, YogaContext, YogaDetectionResult } from '../types';
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Helper: house offset calculation
-// ─────────────────────────────────────────────────────────────────────────────
-
-/**
- * Get the house that is N houses from a reference house.
- * Uses 1-based forward counting: offset 1 = same house, offset 2 = next house, etc.
- */
-function houseFrom(refHouse: number, offset: number): number {
-  return ((refHouse - 1 + offset - 1) % 12) + 1;
-}
+import { houseFrom } from '../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Shared strength assessor for wealth yogas
@@ -527,13 +516,15 @@ const BHERI: YogaRule = {
       const jupHouse = ctx.planetHouse(4);
       const venHouse = ctx.planetHouse(5);
 
-      // Venus and Jupiter must be in mutual kendras/trikonas
+      // Venus and Jupiter must be in mutual kendras from each other.
+      // Classical Bheri definition: mutual kendra placement (1,4,7,10 offsets only).
+      // Trikona offsets (5,9) are NOT included — that would make the yoga too loose.
       const offsetJupToVen = ctx.houseOffset(jupHouse, venHouse);
       const offsetVenToJup = ctx.houseOffset(venHouse, jupHouse);
 
-      const kendraTrikonaOffsets = [1, 4, 5, 7, 9, 10]; // kendra (1,4,7,10) + trikona (1,5,9)
-      const jupToVenOk = kendraTrikonaOffsets.includes(offsetJupToVen);
-      const venToJupOk = kendraTrikonaOffsets.includes(offsetVenToJup);
+      const kendraOffsets = [1, 4, 7, 10]; // kendra offsets only
+      const jupToVenOk = kendraOffsets.includes(offsetJupToVen);
+      const venToJupOk = kendraOffsets.includes(offsetVenToJup);
 
       if (!jupToVenOk || !venToJupOk) {
         return { present: false, involvedPlanets: [] };
@@ -658,6 +649,11 @@ const CHAPA: YogaRule = {
 
 /**
  * Sunapha Dhana — Phaladeepika Ch.6 (wealth variant)
+ *
+ * NOTE: This overlaps with the Chandra group's Sunapha yoga (chandra.ts).
+ * Both can be present simultaneously — they serve different analytical purposes:
+ * this one is a wealth lens (Dhana group), the Chandra version is a Moon strength lens.
+ * Neither should be removed.
  *
  * Formation: A natural benefic (Jupiter, Venus, or Mercury) in the 2nd
  * house from Moon. This is the wealth-specific variant of Sunapha.

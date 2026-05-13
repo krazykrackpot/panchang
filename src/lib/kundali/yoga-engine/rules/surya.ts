@@ -15,6 +15,7 @@
  */
 
 import type { YogaRule, YogaContext, YogaDetectionResult } from '../types';
+import { houseFrom } from '../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Helper: planets eligible for Veshi/Vasi/Obhayachari
@@ -26,14 +27,6 @@ import type { YogaRule, YogaContext, YogaDetectionResult } from '../types';
  * Only Mars (2), Mercury (3), Jupiter (4), Venus (5), Saturn (6) count.
  */
 const ELIGIBLE_PLANET_IDS = [2, 3, 4, 5, 6];
-
-/**
- * Get the house that is N houses from a reference house.
- * Uses 1-based forward counting: offset 1 = same house, offset 2 = next house, etc.
- */
-function houseFrom(refHouse: number, offset: number): number {
-  return ((refHouse - 1 + offset - 1) % 12) + 1;
-}
 
 /**
  * Get eligible planet IDs in a specific house.

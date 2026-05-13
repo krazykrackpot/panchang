@@ -44,7 +44,7 @@ import type { ShadBalaComplete } from '@/lib/kundali/shadbala';
 import type { BhavaBalaResult } from '@/lib/kundali/bhavabala';
 import type { YogaComplete } from '@/lib/kundali/yogas-complete';
 import { buildYogaContext } from '@/lib/kundali/yoga-engine/context';
-import { registerYogaRules, evaluateAllYogas, _clearRegistry } from '@/lib/kundali/yoga-engine/engine';
+import { evaluateWithRules } from '@/lib/kundali/yoga-engine/engine';
 import { ALL_YOGA_RULES } from '@/lib/kundali/yoga-engine/rules';
 import type { EvaluatedYoga } from '@/lib/kundali/yoga-engine/types';
 import type { Locale , LocaleText} from '@/types/panchang';
@@ -531,11 +531,9 @@ export default function KundaliPage() {
               // Compute yoga engine results from fresh kundali data
               let engineYogas: typeof newYogas = [];
               try {
-                _clearRegistry();
-                registerYogaRules(ALL_YOGA_RULES);
                 const yCtx = buildYogaContext(data);
-                engineYogas = evaluateAllYogas(yCtx);
-              } catch { /* yoga engine optional */ }
+                engineYogas = evaluateWithRules(ALL_YOGA_RULES, yCtx);
+              } catch (err) { console.error('[yoga-engine] evaluation failed:', err); }
               const reading = synthesizeReading(data, locale, undefined, engineYogas.length > 0 ? engineYogas : undefined);
               setPersonalReading(reading);
               setKeyDates(computeKeyDates({ kundali: data }));
@@ -610,10 +608,8 @@ export default function KundaliPage() {
   const newYogas = useMemo<EvaluatedYoga[]>(() => {
     if (!kundali) return [];
     try {
-      _clearRegistry(); // Reset to avoid duplicates on re-render
-      registerYogaRules(ALL_YOGA_RULES);
       const ctx = buildYogaContext(kundali);
-      return evaluateAllYogas(ctx);
+      return evaluateWithRules(ALL_YOGA_RULES, ctx);
     } catch (err) {
       console.error('[kundali-page] Yoga engine evaluation failed:', err);
       return [];
@@ -808,11 +804,9 @@ export default function KundaliPage() {
       try {
         let engineYogas2: typeof newYogas = [];
         try {
-          _clearRegistry();
-          registerYogaRules(ALL_YOGA_RULES);
           const yCtx2 = buildYogaContext(data);
-          engineYogas2 = evaluateAllYogas(yCtx2);
-        } catch { /* yoga engine optional */ }
+          engineYogas2 = evaluateWithRules(ALL_YOGA_RULES, yCtx2);
+        } catch (err) { console.error('[yoga-engine] evaluation failed:', err); }
         const reading = synthesizeReading(data, locale, undefined, engineYogas2.length > 0 ? engineYogas2 : undefined);
         setPersonalReading(reading);
         setKeyDates(computeKeyDates({ kundali: data }));

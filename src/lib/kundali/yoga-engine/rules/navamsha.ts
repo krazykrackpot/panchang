@@ -76,18 +76,20 @@ function computeNavamshaSign(longitude: number): number {
  * and in specific degree ranges per sign.
  */
 const PUSHKARA_NAVAMSHA: Record<number, number[]> = {
-  1:  [7],        // Aries: 7th navamsha (23°20'–26°40') → Sagittarius navamsha
-  2:  [3],        // Taurus: 4th navamsha (10°–13°20') → Pisces navamsha
-  3:  [6],        // Gemini: 7th navamsha (20°–23°20') → Sagittarius navamsha
-  4:  [1],        // Cancer: 2nd navamsha (3°20'–6°40') → Taurus navamsha
-  5:  [5],        // Leo: 6th navamsha (16°40'–20°) → Pisces navamsha
-  6:  [8],        // Virgo: 9th navamsha (26°40'–30°) → Sagittarius navamsha
-  7:  [2],        // Libra: 3rd navamsha (6°40'–10°) → Sagittarius navamsha
-  8:  [4],        // Scorpio: 5th navamsha (13°20'–16°40') → Pisces navamsha
-  9:  [7],        // Sagittarius: 8th navamsha (23°20'–26°40') → Cancer navamsha
-  10: [0],        // Capricorn: 1st navamsha (0°–3°20') → Taurus navamsha
-  11: [6],        // Aquarius: 7th navamsha (20°–23°20') → Cancer navamsha
-  12: [3],        // Pisces: 4th navamsha (10°–13°20') → Taurus navamsha
+  // Complete table per Jataka Parijata — two Pushkara Navamsha indices (0-based) per sign
+  // Values from spec are 1-based navamsha numbers; stored here as 0-based indices (subtract 1)
+  1:  [6, 8],     // Aries: 7th & 9th navamshas
+  2:  [2, 4],     // Taurus: 3rd & 5th navamshas
+  3:  [0, 6],     // Gemini: 1st & 7th navamshas
+  4:  [2, 4],     // Cancer: 3rd & 5th navamshas
+  5:  [6, 8],     // Leo: 7th & 9th navamshas
+  6:  [2, 4],     // Virgo: 3rd & 5th navamshas
+  7:  [0, 6],     // Libra: 1st & 7th navamshas
+  8:  [2, 4],     // Scorpio: 3rd & 5th navamshas
+  9:  [6, 8],     // Sagittarius: 7th & 9th navamshas
+  10: [2, 4],     // Capricorn: 3rd & 5th navamshas
+  11: [0, 6],     // Aquarius: 1st & 7th navamshas
+  12: [2, 4],     // Pisces: 3rd & 5th navamshas
 };
 
 /**

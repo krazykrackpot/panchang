@@ -45,6 +45,9 @@ const yogaRuleRegistry: YogaRule[] = [];
 /**
  * Register one or more yoga rules with the global registry.
  *
+ * @deprecated Use `evaluateWithRules(rules, ctx)` instead to avoid global mutable state.
+ * Kept for backward compatibility with existing callers.
+ *
  * Call this from each rule definition file to add rules. For example:
  * ```ts
  * // In rules/mahapurusha.ts
@@ -76,6 +79,7 @@ export function getRegisteredRules(): readonly YogaRule[] {
 
 /**
  * Clear the rule registry. Used only in tests to reset state between test runs.
+ * @deprecated Use `evaluateWithRules(rules, ctx)` instead to avoid global mutable state.
  * @internal
  */
 export function _clearRegistry(): void {
@@ -183,6 +187,11 @@ export function evaluateYogaRule(rule: YogaRule, ctx: YogaContext): EvaluatedYog
     cancellationStatus,
   };
 
+  // Override affectedDomains from customData if present (for Malika/Parivartana dynamic domains)
+  if (detection.customData?.domains) {
+    evaluated.affectedDomains = detection.customData.domains as DomainType[];
+  }
+
   // Add pattern data if present
   if (detection.startHouse !== undefined || detection.chainLength !== undefined) {
     evaluated.patternData = {
@@ -237,10 +246,23 @@ export function evaluateYogaRules(rules: YogaRule[], ctx: YogaContext): Evaluate
 }
 
 /**
+ * Evaluate a list of yoga rules against a chart context WITHOUT using the global registry.
+ *
+ * This is the PREFERRED entry point — it avoids the mutable global registry entirely,
+ * eliminating race conditions in concurrent/re-render scenarios.
+ *
+ * @param rules - Array of yoga rules to evaluate (e.g. ALL_YOGA_RULES)
+ * @param ctx   - The precomputed chart context (from buildYogaContext)
+ * @returns Array of all evaluated yogas
+ */
+export function evaluateWithRules(rules: YogaRule[], ctx: YogaContext): EvaluatedYoga[] {
+  return rules.map(rule => evaluateYogaRule(rule, ctx));
+}
+
+/**
  * Evaluate ALL registered yoga rules against a chart context.
  *
- * This is the primary entry point for the yoga engine. Call this with a
- * YogaContext built from `buildYogaContext(kundali)` to detect all yogas.
+ * @deprecated Use `evaluateWithRules(rules, ctx)` instead to avoid global mutable state.
  *
  * @param ctx - The precomputed chart context (from buildYogaContext)
  * @returns Array of all evaluated yogas
@@ -308,11 +330,11 @@ export function toYogaComplete(evaluated: EvaluatedYoga): YogaComplete {
     strength: evaluated.strength,
     formationRule: {
       en: evaluated.formationRule.en,
-      hi: typeof evaluated.formationRule.hi === 'string' ? evaluated.formationRule.hi : evaluated.formationRule.en,
+      hi: evaluated.formationRule.hi,
     },
     description: {
       en: evaluated.description.en,
-      hi: typeof evaluated.description.hi === 'string' ? evaluated.description.hi : evaluated.description.en,
+      hi: evaluated.description.hi,
     },
   };
 }

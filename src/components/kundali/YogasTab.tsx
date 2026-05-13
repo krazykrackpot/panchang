@@ -59,6 +59,7 @@ const GROUP_ORDER: GroupMeta[] = [
   { key: 'arishta', label: { en: 'Arishta Yogas', hi: 'अरिष्ट योग', sa: 'अरिष्टयोगाः' }, subtitle: { en: 'Health & Longevity Indicators', hi: 'स्वास्थ्य और आयु संकेतक' }, icon: '⚕' },
   { key: 'sannyasa', label: { en: 'Sannyasa Yogas', hi: 'संन्यास योग', sa: 'संन्यासयोगाः' }, subtitle: { en: 'Spiritual & Renunciation Yogas', hi: 'आध्यात्मिक और त्याग योग' }, icon: '◎' },
   { key: 'navamsha', label: { en: 'Navamsha Yogas', hi: 'नवांश योग', sa: 'नवांशयोगाः' }, subtitle: { en: 'D9 Divisional Chart Yogas', hi: 'नवांश विभाजन चार्ट योग' }, icon: '⬡' },
+  { key: 'tajika', label: { en: 'Tajika Yogas', hi: 'ताजिक योग', sa: 'ताजिकयोगाः' }, subtitle: { en: 'Annual / Varshaphal Yogas', hi: 'वार्षिक / वर्षफल योग' }, icon: '⊛' },
 ];
 
 const GROUP_META_MAP = new Map(GROUP_ORDER.map(g => [g.key, g]));

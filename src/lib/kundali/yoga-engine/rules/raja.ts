@@ -646,12 +646,13 @@ export const RAJA_RULES: YogaRule[] = [
         const moonSign = ctx.planetSign(1);
         const lagnaSign = ctx.ascendantSign;
 
-        // Determine day/night birth from Sun's house
-        // Sun in houses 7-12 = above horizon (day birth)
-        // Sun in houses 1-6 = below horizon (night birth)
-        // Lesson T: check lagna SIGN, not lagna LORD's sign
-        const sunHouse = ctx.planetHouse(0);
-        const isDayBirth = sunHouse >= 7 && sunHouse <= 12;
+        // Determine day/night birth from Sun's longitude relative to ascendant.
+        // Day birth = Sun above horizon = Sun's longitude is in the 180° arc
+        // behind (clockwise from) the ascendant. We compute the angular distance
+        // from ascendant to Sun going forward; if > 180°, Sun is above horizon.
+        const sunLong = ctx.planetLongitude(0);
+        const ascLong = ctx.ascendantLongitude;
+        const isDayBirth = ((sunLong - ascLong + 360) % 360) > 180;
 
         const isOdd = (sign: number) => sign % 2 === 1;
         const isEven = (sign: number) => sign % 2 === 0;
@@ -660,16 +661,16 @@ export const RAJA_RULES: YogaRule[] = [
         let variant = '';
 
         if (isDayBirth) {
-          // Male rule: all three in odd signs
+          // Day-birth rule: all three in odd signs
           if (isOdd(sunSign) && isOdd(moonSign) && isOdd(lagnaSign)) {
             present = true;
-            variant = 'male';
+            variant = 'day-birth';
           }
         } else {
-          // Female rule: all three in even signs
+          // Night-birth rule: all three in even signs
           if (isEven(sunSign) && isEven(moonSign) && isEven(lagnaSign)) {
             present = true;
-            variant = 'female';
+            variant = 'night-birth';
           }
         }
 
@@ -703,8 +704,8 @@ export const RAJA_RULES: YogaRule[] = [
     domainImpactWeight: 2,
 
     formationRule: {
-      en: 'Male: day birth + Sun, Moon, Lagna in odd signs. Female: night birth + Sun, Moon, Lagna in even signs',
-      hi: 'पुरुष: दिन का जन्म + सूर्य, चंद्र, लग्न विषम राशियों में। स्त्री: रात का जन्म + सूर्य, चंद्र, लग्न सम राशियों में',
+      en: 'Day birth: Sun, Moon, Lagna all in odd signs. Night birth: Sun, Moon, Lagna all in even signs',
+      hi: 'दिन का जन्म: सूर्य, चंद्र, लग्न विषम राशियों में। रात का जन्म: सूर्य, चंद्र, लग्न सम राशियों में',
     },
     description: {
       en: 'Mahabhagya Yoga is a yoga of great fortune and blessed destiny. The alignment of both luminaries and the ascendant in signs matching the birth timing (day/night) creates a harmonious resonance that attracts good fortune throughout life. The native enjoys respect, comfortable circumstances, and a general sense that life supports their endeavours.',

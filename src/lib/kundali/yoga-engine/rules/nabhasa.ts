@@ -354,49 +354,9 @@ const VEENA: YogaRule = {
 // AKRITI (Shape) Sub-group — geometric patterns
 // ═══════════════════════════════════════════════════════════════════════════════
 
-/**
- * Graha Malika Yoga — Phaladeepika Ch.7
- *
- * Formation: 3 or more consecutive houses occupied by planets (Sun through Saturn).
- * The longer the chain, the more powerful the yoga.
- *
- * Results: Prosperity, authority, fame. The native receives garland-like
- * (malika) blessings across the connected houses.
- */
-const GRAHA_MALIKA: YogaRule = {
-  id: 'nabhasa-graha-malika',
-  name: { en: 'Graha Malika', hi: 'ग्रह मालिका', sa: 'ग्रहमालिका' },
-  group: 'nabhasa',
-  subGroup: 'akriti',
-  isAuspicious: true,
-  classicalRef: 'Phaladeepika Ch.7',
-
-  conditions: {
-    type: 'consecutive_houses',
-    minChain: 3,
-    planetsConsidered: 'sun_to_saturn',
-  },
-
-  assessStrength: (ctx: YogaContext, result: YogaDetectionResult) => {
-    const chain = result.chainLength || 3;
-    if (chain >= 6) return 'Strong';
-    if (chain >= 4) return 'Moderate';
-    return 'Weak';
-  },
-
-  affectedDomains: 'all',
-  domainImpactWeight: 2,
-
-  formationRule: {
-    en: '3 or more consecutive houses are occupied by planets (Sun through Saturn), forming a garland pattern.',
-    hi: '3 या अधिक क्रमागत भावों में ग्रह (सूर्य से शनि) स्थित हैं, माला का पैटर्न बनाते हुए।',
-  },
-
-  description: {
-    en: 'Graha Malika — the "planetary garland" — forms when planets occupy consecutive houses like beads on a string. The longer the chain, the more domains of life are connected and supported. The native enjoys a progressive, flowing fortune across the connected areas. Starting house determines which life themes are most activated.',
-    hi: 'ग्रह मालिका — "ग्रहों की माला" — जब ग्रह क्रमागत भावों में धागे में मोतियों की तरह स्थित होते हैं। जितनी लंबी श्रृंखला, उतने अधिक जीवन क्षेत्र जुड़े और समर्थित होते हैं।',
-  },
-};
+// NOTE: Graha Malika was previously defined here as 'nabhasa-graha-malika' but has been
+// removed to avoid duplication with the more detailed version in malika.ts (id: 'graha-malika').
+// The malika.ts version includes variant names, first/last planet roles, and dynamic domains.
 
 /**
  * Ardha Chandra Yoga — Phaladeepika Ch.7
@@ -463,7 +423,12 @@ const ARDHA_CHANDRA: YogaRule = {
 };
 
 /**
- * Nauka Yoga — Phaladeepika Ch.7
+ * Nauka Yoga — Phaladeepika Ch.7 v.14
+ *
+ * "If all the planets occupy the seven houses from the Lagna, the yoga
+ * called Nauka is formed. The person born in it will earn his livelihood
+ * by water, will be famous, wicked, miserly, and miserable."
+ * — Phaladeepika, Chapter 7, Verse 14 (translated by S.S. Sareen)
  *
  * Formation: All planets in houses 1 through 7 (first half of the chart).
  *
@@ -1093,7 +1058,7 @@ export const NABHASA_RULES: YogaRule[] = [
   DAMINI,
   VEENA,
   // Akriti (Shape)
-  GRAHA_MALIKA,
+  // GRAHA_MALIKA removed — use the more detailed version in malika.ts instead
   ARDHA_CHANDRA,
   NAUKA,
   KOOTA,

@@ -25,6 +25,7 @@
  */
 
 import type { YogaRule, YogaContext, YogaDetectionResult } from '../types';
+import { houseFrom } from '../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Helper: planets eligible for Sunapha/Anapha/Durdhara/Kemadruma
@@ -36,14 +37,6 @@ import type { YogaRule, YogaContext, YogaDetectionResult } from '../types';
  * Only Mars (2), Mercury (3), Jupiter (4), Venus (5), Saturn (6) count.
  */
 const ELIGIBLE_PLANET_IDS = [2, 3, 4, 5, 6];
-
-/**
- * Get the house that is N houses from a reference house.
- * Uses 1-based forward counting: offset 1 = same house, offset 2 = next house, etc.
- */
-function houseFrom(refHouse: number, offset: number): number {
-  return ((refHouse - 1 + offset - 1) % 12) + 1;
-}
 
 /**
  * Get eligible planet IDs in a specific house.
@@ -321,22 +314,9 @@ const KEMADRUMA: YogaRule = {
       },
       effect: 'cancel',
     },
-    {
-      condition: {
-        type: 'custom',
-        detect: (ctx: YogaContext) => {
-          // Moon conjunct any planet (not truly isolated)
-          const moonHouse = ctx.planetHouse(1);
-          const companions = ctx.planetsInHouse(moonHouse).filter(id => id !== 1);
-          return { present: companions.length > 0, involvedPlanets: companions };
-        },
-      },
-      reason: {
-        en: 'Moon is conjunct another planet, so it is not truly isolated — Kemadruma is cancelled.',
-        hi: 'चन्द्रमा किसी अन्य ग्रह के साथ है, अतः वह वास्तव में एकाकी नहीं है — केमद्रुम निरस्त।',
-      },
-      effect: 'cancel',
-    },
+    // NOTE: "Moon conjunct any planet" cancellation removed — the detection logic
+    // already handles this case: conjunction = offset 1 from Moon = in Moon's own
+    // house = kendra check catches it. Adding it as a separate cancellation was dead code.
     {
       condition: {
         type: 'planet_dignity',

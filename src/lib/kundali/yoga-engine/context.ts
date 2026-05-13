@@ -58,6 +58,7 @@ const UPACHAYA_HOUSES = new Set([3, 6, 10, 11]);
  * dual lordship (e.g. Mars for Aries lords both 1st and 8th — still benefic
  * because 1st house lordship dominates).
  */
+// TODO: Move FUNCTIONAL_BENEFICS and FUNCTIONAL_MALEFICS to src/lib/constants/ eventually (Lesson Q)
 const FUNCTIONAL_BENEFICS: Record<number, number[]> = {
   1:  [0, 2, 4],     // Aries: Sun (5th lord), Mars (1st/8th lord), Jupiter (9th/12th lord)
   2:  [0, 3, 6],     // Taurus: Sun (4th lord), Mercury (2nd/5th lord), Saturn (9th/10th lord)
@@ -103,8 +104,7 @@ const FUNCTIONAL_MALEFICS: Record<number, number[]> = {
  * Source: BPHS Ch.34
  */
 const YOGAKARAKA: Record<number, number | null> = {
-  1:  6,    // Aries: Saturn lords 10th (kendra) + 11th — not classical yogakaraka. Actually no strict yogakaraka.
-            // Correction: Aries has no classical yogakaraka. Saturn lords 10th+11th, not a trikona.
+  1:  null, // Aries: no classical yogakaraka. Saturn lords 10th+11th (no trikona).
   2:  6,    // Taurus: Saturn lords 9th (trikona) + 10th (kendra) — YOGAKARAKA
   3:  null, // Gemini: no single planet lords both kendra and trikona
   4:  2,    // Cancer: Mars lords 5th (trikona) + 10th (kendra) — YOGAKARAKA

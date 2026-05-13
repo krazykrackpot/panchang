@@ -12,6 +12,7 @@ import {
 import { Link } from '@/lib/i18n/navigation';
 import { useAuthStore } from '@/stores/auth-store';
 import { useLocationStore } from '@/stores/location-store';
+import AuthModal from '@/components/auth/AuthModal';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { getSupabase } from '@/lib/supabase/client';
 import { computePersonalizedDay } from '@/lib/personalization/personal-panchang';
@@ -1105,7 +1106,8 @@ export default function DashboardPage() {
     ));
   };
 
-  // Not signed in
+  // Not signed in — show AuthModal directly, not a redirect to settings
+  const [showDashAuth, setShowDashAuth] = useState(false);
   if (initialized && !user) {
     return (
       <main className="min-h-screen pt-24 pb-16 px-4">
@@ -1120,13 +1122,14 @@ export default function DashboardPage() {
               {L.notSignedIn}
             </h1>
             <button
-              onClick={() => router.push(`/${locale}/settings`)}
+              onClick={() => setShowDashAuth(true)}
               className="mt-4 px-6 py-2.5 bg-gradient-to-r from-gold-primary to-gold-dark text-bg-primary font-semibold rounded-xl hover:brightness-110 transition-all"
             >
               {L.signIn}
             </button>
           </motion.div>
         </div>
+        {showDashAuth && <AuthModal isOpen={true} onClose={() => setShowDashAuth(false)} />}
       </main>
     );
   }

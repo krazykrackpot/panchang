@@ -58,8 +58,8 @@ export default function UserMenu() {
       });
   }, [user, profileChecked]);
 
-  if (!initialized) return null;
-
+  // Show Sign In button when not logged in OR while auth is still initialising.
+  // NEVER return null — the user must always see either Sign In or their avatar.
   if (!user) {
     return (
       <>

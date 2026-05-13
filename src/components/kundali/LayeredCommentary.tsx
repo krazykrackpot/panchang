@@ -29,6 +29,72 @@ function ordinal(n: number, locale: string): string {
   return `${n}${s[(v - 20) % 10] || s[v] || s[0]}`;
 }
 
+// ─── Prose generator: weaves factors into flowing Jyotishi-style narrative ──
+
+function generateNatalProse(
+  factors: ScoringFactor[],
+  domainName: string,
+  rating: Rating,
+  isHi: boolean,
+): string {
+  if (factors.length === 0) return '';
+
+  const sentences: string[] = [];
+
+  for (const f of factors) {
+    const label = isHi ? f.label.hi : f.label.en;
+    const value = f.value;
+
+    // Split value on " — " to separate placement from context
+    const [placement, context] = value.includes(' — ')
+      ? [value.slice(0, value.indexOf(' — ')), value.slice(value.indexOf(' — ') + 3)]
+      : [value, ''];
+
+    if (f.verdict === 'positive') {
+      if (value.includes('benefic occupant')) {
+        sentences.push(`${label} — ${value}.`);
+      } else if (context) {
+        sentences.push(`${label} is in ${placement} — a position of strength for ${context}.`);
+      } else {
+        sentences.push(`${label} in ${placement} supports ${domainName}.`);
+      }
+    } else if (f.verdict === 'negative') {
+      if (value.includes('malefic occupant')) {
+        sentences.push(`${label} — ${value}.`);
+      } else if (value.includes('Mrita') || value.includes('Bala')) {
+        // Extract the avastha part and the context separately
+        const avMatch = placement.match(/(Mrita \(Dead\)|Bala \(Infant\))/);
+        const avName = avMatch?.[1] ?? 'weak avastha';
+        sentences.push(`${label} is in ${placement.split(',')[0]}, but ${avName} significantly reduces delivery${context ? ` for ${context}` : ''}.`);
+      } else if (value.includes('enemy sign') || value.includes('debilitated')) {
+        sentences.push(`${label} is in ${placement} — an uncomfortable position${context ? ` that creates friction for ${context}` : ''}.`);
+      } else {
+        sentences.push(`${label} in ${placement} poses challenges${context ? ` for ${context}` : ''}.`);
+      }
+    } else {
+      sentences.push(`${label} is in ${placement}${context ? ` — a steady influence on ${context}` : ' — a moderate influence'}.`);
+    }
+  }
+
+  // Add a closing summary based on the overall tier
+  const CLOSING: Record<Rating, string> = {
+    uttama: `Overall, the chart provides strong support for ${domainName}.`,
+    madhyama: `On balance, ${domainName} has moderate support — some strengths offset the challenges.`,
+    adhama: `Overall, ${domainName} faces headwinds — patience and remedial measures will help.`,
+    atyadhama: `${domainName} is under significant pressure — focused remedies are recommended.`,
+  };
+  const CLOSING_HI: Record<Rating, string> = {
+    uttama: `कुल मिलाकर, कुण्डली ${domainName} के लिए प्रबल सहयोग देती है।`,
+    madhyama: `संतुलन में, ${domainName} को मध्यम सहयोग है — कुछ बल चुनौतियों की भरपाई करते हैं।`,
+    adhama: `कुल मिलाकर, ${domainName} को चुनौतियाँ हैं — धैर्य और उपाय सहायक होंगे।`,
+    atyadhama: `${domainName} पर महत्वपूर्ण दबाव है — केन्द्रित उपायों की सिफारिश है।`,
+  };
+
+  sentences.push(isHi ? CLOSING_HI[rating] : CLOSING[rating]);
+
+  return sentences.join(' ');
+}
+
 // ─── Significator factor line ───────────────────────────────────────────────
 
 function SignificatorLine({ factor, isHi }: { factor: ScoringFactor; isHi: boolean }) {
@@ -113,16 +179,29 @@ export default function LayeredCommentary({ domain, locale }: LayeredCommentaryP
 
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
 
+  // ── Generate flowing prose from factors ──
+  // Weave the significator assessments into a Jyotishi-style narrative paragraph
+  const prose = generateNatalProse(factors, domainName, rating, isHi);
+
   return (
     <div className="space-y-3 mt-3" style={bodyFont}>
-      {/* Layer 1: Natal — significator breakdown */}
+      {/* Layer 1: Natal — flowing prose reading */}
       <div className="border-l-2 border-[#34d399]/50 pl-3">
         <p className="text-xs font-semibold text-text-primary mb-1.5">{natalHeadline}</p>
-        <div className="space-y-1">
-          {factors.map((f, i) => (
-            <SignificatorLine key={i} factor={f} isHi={isHi} />
-          ))}
-        </div>
+        <p className="text-sm leading-relaxed text-text-secondary mb-2">
+          {prose}
+        </p>
+        {/* Factor breakdown (collapsible detail) */}
+        <details className="group">
+          <summary className="text-[10px] text-gold-primary/70 cursor-pointer hover:text-gold-primary transition-colors">
+            {isHi ? 'कारक विश्लेषण देखें' : 'View factor analysis'}
+          </summary>
+          <div className="space-y-1 mt-1.5">
+            {factors.map((f, i) => (
+              <SignificatorLine key={i} factor={f} isHi={isHi} />
+            ))}
+          </div>
+        </details>
       </div>
 
       {/* Layer 2: Mahadasha */}

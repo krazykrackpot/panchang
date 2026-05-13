@@ -43,9 +43,10 @@ export async function POST(request: Request) {
     const [y, m, d] = date.split('-').map(Number);
     const dateObj = new Date(y, m - 1, d);
 
-    const tz = timezone
-      ? getUTCOffsetForDate(y, m, d, timezone)
-      : -(dateObj.getTimezoneOffset() / 60);
+    // Resolve timezone from IANA string (sent by client from birth/location data).
+    // NEVER fall back to server's getTimezoneOffset() — on Vercel it's always UTC (0).
+    // If timezone is missing, use Asia/Kolkata as a reasonable default for this audience.
+    const tz = getUTCOffsetForDate(y, m, d, timezone || 'Asia/Kolkata');
 
     const pujaDeity = purposeText;
 

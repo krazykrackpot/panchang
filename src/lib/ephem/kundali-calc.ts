@@ -60,9 +60,9 @@ import { calculateAshtottariDashas as calculateAshtottariDashaFull } from '@/lib
 import { calculateYoginiDashas as calculateYoginiDashaFull } from '@/lib/kundali/yogini-dasha';
 import { calculateFullShadbala } from '@/lib/kundali/shadbala';
 import { calculateBhavabala } from '@/lib/kundali/bhavabala';
-import { detectAllYogas } from '@/lib/kundali/yogas-complete';
+// Old detectAllYogas removed — new engine is the single source of truth
 import { buildYogaContext } from '@/lib/kundali/yoga-engine/context';
-import { evaluateWithRules } from '@/lib/kundali/yoga-engine/engine';
+import { evaluateWithRules, toYogaComplete } from '@/lib/kundali/yoga-engine/engine';
 import { ALL_YOGA_RULES } from '@/lib/kundali/yoga-engine/rules';
 import { analyzeSadeSati } from '@/lib/kundali/sade-sati-analysis';
 import { calculateSpecialLagnas } from '@/lib/kundali/special-lagnas';
@@ -1102,24 +1102,9 @@ export function generateKundali(birthData: BirthData): KundaliData {
     ascendantDeg: siderealAsc,
   });
 
-  // Complete Yogas (50+)
-  const yogasComplete = detectAllYogas(
-    planets.map(p => ({
-      id: p.planet.id,
-      longitude: p.longitude,
-      house: p.house,
-      sign: p.sign,
-      speed: p.speed,
-      isRetrograde: p.isRetrograde,
-      isExalted: p.isExalted,
-      isDebilitated: p.isDebilitated,
-      isOwnSign: p.isOwnSign,
-      navamshaSign: p.navamshaSign,
-      isPushkarNavamsha: p.isPushkarNavamsha,
-    })),
-    ascSign,
-    siderealAsc
-  );
+  // Yogas — computed by the new declarative engine AFTER the KundaliData object is assembled.
+  // The old detectAllYogas (3,700-line procedural monolith) is no longer called.
+  // See engine block below the return object construction.
 
   // Sade Sati analysis
   const moonP = planets.find(p => p.planet.id === 1);
@@ -1170,7 +1155,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
     upagrahas,
     fullShadbala,
     bhavabala,
-    yogasComplete,
+    yogasComplete: [],  // populated by yoga engine after construction (see below)
     sadeSati,
     jaimini: calculateJaimini(planets, ascSign, birthDate),
     vimshopakaBala: calculateVimshopakaBala(planets, chart, divisionalCharts),
@@ -1237,15 +1222,17 @@ export function generateKundali(birthData: BirthData): KundaliData {
     warnings: warnings.length > 0 ? warnings : undefined,
   } as KundaliData;
 
-  // Run the new declarative yoga engine on the assembled KundaliData.
-  // This produces EvaluatedYoga[] with domain mapping, cancellations,
-  // and classical references — richer than the old yogasComplete.
+  // Run the declarative yoga engine — single source of truth for all yoga detection.
+  // Produces EvaluatedYoga[] (rich) and converts to YogaComplete[] (backward compat).
   try {
     const yogaCtx = buildYogaContext(result);
-    result.evaluatedYogas = evaluateWithRules(ALL_YOGA_RULES, yogaCtx);
+    const evaluated = evaluateWithRules(ALL_YOGA_RULES, yogaCtx);
+    result.evaluatedYogas = evaluated;
+    result.yogasComplete = evaluated.map(toYogaComplete);
   } catch (err) {
     console.error('[kundali-calc] Yoga engine failed:', err);
-    // Non-fatal — yogasComplete still available as fallback
+    result.yogasComplete = [];
+    result.evaluatedYogas = [];
   }
 
   return result;

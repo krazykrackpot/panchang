@@ -106,6 +106,8 @@ export interface KundaliData {
   fullShadbala?: import('@/lib/kundali/shadbala').ShadBalaComplete[];
   bhavabala?: import('@/lib/kundali/bhavabala').BhavaBalaResult[];
   yogasComplete?: import('@/lib/kundali/yogas-complete').YogaComplete[];
+  /** New declarative yoga engine results — richer than yogasComplete (domain mapping, cancellations, classical refs) */
+  evaluatedYogas?: import('@/lib/kundali/yoga-engine/types').EvaluatedYoga[];
   vimshopakaBala?: import('@/lib/kundali/vimshopaka').VimshopakaBala[];
   specialLagnas?: import('@/lib/kundali/special-lagnas').SpecialLagnas;
   narayanaDasha?: import('@/lib/kundali/additional-dashas').RasiDashaEntry[];

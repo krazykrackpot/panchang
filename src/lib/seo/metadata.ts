@@ -1218,6 +1218,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: 'Complete guide to the 12 Bhavas (houses) in Jyotish  –  their significations, natural rulers, Kendra/Trikona/Dusthana classification, and interpretation.', hi: 'ज्योतिष के 12 भाव  –  अर्थ, प्राकृतिक स्वामी, केन्द्र/त्रिकोण/दुःस्थान वर्गीकरण।', sa: 'ज्योतिषस्य द्वादशभावाः।' },
     keywords: ['12 houses vedic astrology', 'bhavas jyotish', 'kendra trikona', 'house astrology'],
   },
+  '/learn/lordship': {
+    title: { en: 'Planet Lordship & Karakas  –  Vedic Astrology Reference', hi: 'ग्रह स्वामित्व एवं कारक  –  वैदिक ज्योतिष संदर्भ', sa: 'ग्रहस्वामित्वं कारकाश्च' },
+    description: { en: 'Complete reference for sign lordship, exaltation, debilitation, natural house karakas, and functional benefics/malefics per lagna from BPHS.', hi: 'राशि स्वामित्व, उच्च, नीच, प्राकृतिक भाव कारक और लग्नानुसार कार्यात्मक शुभ/पापी ग्रहों का सम्पूर्ण संदर्भ।', sa: 'राशिस्वामित्वम् उच्चनीचं कारकाश्च।' },
+    keywords: ['sign lordship vedic astrology', 'yogakaraka', 'functional benefic malefic', 'house karaka', 'exaltation debilitation'],
+  },
   '/learn/calculations': {
     title: { en: 'How Vedic Astrology Calculations Work', hi: 'वैदिक ज्योतिष गणनाएँ कैसे काम करती हैं', sa: 'वैदिकज्योतिषगणनाः' },
     description: { en: 'The mathematics behind Vedic astrology  –  Julian Day Number, sidereal time, tropical to sidereal conversion, and Lahiri Ayanamsha calculation.', hi: 'वैदिक ज्योतिष का गणित  –  जूलियन दिन संख्या, नाक्षत्र समय, ग्रह स्थिति और लाहिड़ी अयनांश।', sa: 'वैदिकज्योतिषस्य गणितम्।' },

@@ -43,9 +43,7 @@ import type { KundaliData, BirthData, ChartStyle, PlanetPosition, AshtakavargaDa
 import type { ShadBalaComplete } from '@/lib/kundali/shadbala';
 import type { BhavaBalaResult } from '@/lib/kundali/bhavabala';
 import type { YogaComplete } from '@/lib/kundali/yogas-complete';
-import { buildYogaContext } from '@/lib/kundali/yoga-engine/context';
-import { evaluateWithRules } from '@/lib/kundali/yoga-engine/engine';
-import { ALL_YOGA_RULES } from '@/lib/kundali/yoga-engine/rules';
+// Yoga engine runs inside generateKundali() — results in kundali.evaluatedYogas
 import type { EvaluatedYoga } from '@/lib/kundali/yoga-engine/types';
 import type { Locale , LocaleText} from '@/types/panchang';
 import type { SadeSatiAnalysis, NakshatraTransitEntry } from '@/lib/kundali/sade-sati-analysis';
@@ -529,12 +527,8 @@ export default function KundaliPage() {
           if (data?.planets) {
             setKundali(data);
             try {
-              // Compute yoga engine results from fresh kundali data
-              let engineYogas: EvaluatedYoga[] = [];
-              try {
-                const yCtx = buildYogaContext(data);
-                engineYogas = evaluateWithRules(ALL_YOGA_RULES, yCtx);
-              } catch (err) { console.error('[yoga-engine] evaluation failed:', err); }
+              // Yoga engine already ran inside generateKundali() — results in data.evaluatedYogas
+              const engineYogas = data.evaluatedYogas ?? [];
               setNewYogas(engineYogas);
               const reading = synthesizeReading(data, locale, undefined, engineYogas.length > 0 ? engineYogas : undefined);
               setPersonalReading(reading);
@@ -797,11 +791,8 @@ export default function KundaliPage() {
       setKundali(data);
       // Compute Personal Pandit reading + Key Dates (synchronous, <500ms)
       try {
-        let engineYogas2: EvaluatedYoga[] = [];
-        try {
-          const yCtx2 = buildYogaContext(data);
-          engineYogas2 = evaluateWithRules(ALL_YOGA_RULES, yCtx2);
-        } catch (err) { console.error('[yoga-engine] evaluation failed:', err); }
+        // Yoga engine already ran inside generateKundali() — results in data.evaluatedYogas
+        const engineYogas2 = data.evaluatedYogas ?? [];
         setNewYogas(engineYogas2);
         const reading = synthesizeReading(data, locale, undefined, engineYogas2.length > 0 ? engineYogas2 : undefined);
         setPersonalReading(reading);

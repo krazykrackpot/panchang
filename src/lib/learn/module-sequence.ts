@@ -145,6 +145,7 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
   // Absorbed standalone pages
   { id: 'lagna',    phase: 4, topic: 'Kundali',   href: '/learn/lagna',    title: { en: 'Lagna  –  The Ascendant', hi: 'लग्न  –  उदय राशि', ta: 'லக்னம்', bn: 'লগ্ন' } },
   { id: 'bhavas',   phase: 4, topic: 'Bhavas',    href: '/learn/bhavas',   title: { en: 'Bhavas  –  The 12 Houses', hi: 'भाव  –  12 भाव', ta: 'பாவங்கள்', bn: 'ভাব' } },
+  { id: 'lordship', phase: 4, topic: 'Bhavas',    href: '/learn/lordship', title: { en: 'Lordship & Karakas  –  Reference', hi: 'स्वामित्व एवं कारक', ta: 'அதிபத்தியம் & காரகங்கள்', bn: 'স্বামিত্ব ও কারক' } },
   { id: 'birth-chart', phase: 4, topic: 'Kundali', href: '/learn/birth-chart', title: { en: 'Birth Chart  –  How to Read', hi: 'जन्म कुण्डली  –  कैसे पढ़ें', ta: 'ஜாதகம் படிப்பது எப்படி', bn: 'জন্ম জাতক কীভাবে পড়বেন' } },
   { id: 'patrika',  phase: 4, topic: 'Kundali',   href: '/learn/patrika',  title: { en: 'Patrika  –  Chart Layout', hi: 'पत्रिका  –  कुण्डली प्रारूप', ta: 'பத்ரிகா  –  ஜாதக வடிவமைப்பு', bn: 'পত্রিকা  –  জাতক বিন্যাস' } },
   { id: 'kundali',  phase: 4, topic: 'Kundali',   href: '/learn/kundali',  title: { en: 'Kundali  –  Complete Guide', hi: 'कुण्डली  –  सम्पूर्ण मार्गदर्शक', ta: 'ஜாதகம் வழிகாட்டி', bn: 'জাতক নির্দেশিকা' } },

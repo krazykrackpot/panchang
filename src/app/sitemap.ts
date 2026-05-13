@@ -77,6 +77,7 @@ const routes = [
   '/learn/advanced',
   '/learn/ayanamsha',
   '/learn/bhavas',
+  '/learn/lordship',
   '/learn/calculations',
   '/learn/classical-texts',
   '/learn/dashas',

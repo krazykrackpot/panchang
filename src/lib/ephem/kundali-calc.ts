@@ -61,6 +61,9 @@ import { calculateYoginiDashas as calculateYoginiDashaFull } from '@/lib/kundali
 import { calculateFullShadbala } from '@/lib/kundali/shadbala';
 import { calculateBhavabala } from '@/lib/kundali/bhavabala';
 import { detectAllYogas } from '@/lib/kundali/yogas-complete';
+import { buildYogaContext } from '@/lib/kundali/yoga-engine/context';
+import { evaluateWithRules } from '@/lib/kundali/yoga-engine/engine';
+import { ALL_YOGA_RULES } from '@/lib/kundali/yoga-engine/rules';
 import { analyzeSadeSati } from '@/lib/kundali/sade-sati-analysis';
 import { calculateSpecialLagnas } from '@/lib/kundali/special-lagnas';
 import { calculateVimshopakaBala } from '@/lib/kundali/vimshopaka';
@@ -1143,7 +1146,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
     ayanamshaValue,
   });
 
-  return {
+  const result: KundaliData = {
     birthData,
     ascendant: {
       degree: siderealAsc,
@@ -1232,5 +1235,18 @@ export function generateKundali(birthData: BirthData): KundaliData {
       );
     })(),
     warnings: warnings.length > 0 ? warnings : undefined,
-  };
+  } as KundaliData;
+
+  // Run the new declarative yoga engine on the assembled KundaliData.
+  // This produces EvaluatedYoga[] with domain mapping, cancellations,
+  // and classical references — richer than the old yogasComplete.
+  try {
+    const yogaCtx = buildYogaContext(result);
+    result.evaluatedYogas = evaluateWithRules(ALL_YOGA_RULES, yogaCtx);
+  } catch (err) {
+    console.error('[kundali-calc] Yoga engine failed:', err);
+    // Non-fatal — yogasComplete still available as fallback
+  }
+
+  return result;
 }

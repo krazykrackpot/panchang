@@ -71,13 +71,13 @@ describe('Yoga Engine — Basics', () => {
     expect(Array.isArray(arjunChart.evaluatedYogas)).toBe(true);
   });
 
-  it('total rules count is 94', () => {
-    expect(ALL_YOGA_RULES.length).toBe(94);
+  it(`total rules count is ${163}`, () => {
+    expect(ALL_YOGA_RULES.length).toBe(163);
   });
 
-  it('evaluatedYogas has exactly 94 entries (one per rule)', () => {
-    expect(arjunChart.evaluatedYogas!.length).toBe(94);
-    expect(vaibhaviChart.evaluatedYogas!.length).toBe(94);
+  it(`evaluatedYogas has exactly ${163} entries (one per rule)`, () => {
+    expect(arjunChart.evaluatedYogas!.length).toBe(163);
+    expect(vaibhaviChart.evaluatedYogas!.length).toBe(163);
   });
 
   it('present yogas count is > 0 for both charts', () => {

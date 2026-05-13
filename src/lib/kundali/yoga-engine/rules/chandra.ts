@@ -628,7 +628,345 @@ const ADHI: YogaRule = {
 // Export
 // ─────────────────────────────────────────────────────────────────────────────
 
-/** All 8 Moon-based (Chandra) yoga rules — Phaladeepika Ch.6 */
+// ─────────────────────────────────────────────────────────────────────────────
+// 9. Varchasvi Yoga — Moon in own sign aspected by Jupiter
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Varchasvi Yoga — Phaladeepika; Saravali
+ *
+ * Formation: Moon in own sign (Cancer) aspected by Jupiter.
+ *
+ * Results: Charisma, influence, magnetic personality. The native commands
+ * attention and inspires others naturally. Strong career prospects due
+ * to personal magnetism.
+ */
+const VARCHASVI: YogaRule = {
+  id: 'varchasvi',
+  name: { en: 'Varchasvi', hi: 'वर्चस्वी', sa: 'वर्चस्वी' },
+  group: 'chandra',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika; Saravali',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      // Moon must be in own sign (Cancer = sign 4)
+      const moonSign = ctx.planetSign(1);
+      if (moonSign !== 4) {
+        return { present: false, involvedPlanets: [] };
+      }
+
+      // Jupiter must aspect Moon's house
+      const moonHouse = ctx.planetHouse(1);
+      const jupiterAspects = ctx.doesAspect(4, moonHouse);
+      if (!jupiterAspects) {
+        return { present: false, involvedPlanets: [] };
+      }
+
+      return {
+        present: true,
+        involvedPlanets: [1, 4], // Moon and Jupiter
+      };
+    },
+  },
+
+  assessStrength: (ctx: YogaContext, _result: YogaDetectionResult) => {
+    const moonHouse = ctx.planetHouse(1);
+    // Stronger in kendras
+    if (ctx.isKendra(moonHouse)) return 'Strong';
+    if (ctx.isTrikona(moonHouse)) return 'Moderate';
+    return 'Weak';
+  },
+
+  affectedDomains: ['career'],
+  domainImpactWeight: 1,
+
+  formationRule: {
+    en: 'Moon in its own sign (Cancer) aspected by Jupiter.',
+    hi: 'चन्द्रमा अपनी राशि (कर्क) में गुरु की दृष्टि से युक्त।',
+  },
+
+  description: {
+    en: 'Varchasvi Yoga blesses the native with natural charisma and influence. Moon in its own sign is emotionally secure, and Jupiter\'s aspect adds wisdom and grace. The native commands attention without effort, inspires trust, and rises in career through personal magnetism rather than aggression.',
+    hi: 'वर्चस्वी योग जातक को स्वाभाविक करिश्मा और प्रभाव का आशीर्वाद देता है। अपनी राशि में चन्द्रमा भावनात्मक रूप से सुरक्षित है, और गुरु की दृष्टि ज्ञान और शोभा जोड़ती है।',
+  },
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 10. Pushkala Moon — Moon in friend's sign in kendra aspected by lagna lord
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Pushkala Moon Yoga — Saravali; Jataka Parijata
+ *
+ * Formation: Moon in a friend's sign, placed in a kendra, aspected by the lagna lord.
+ *
+ * Results: Abundance, material comfort, well-known in society. "Pushkala"
+ * means "abundant" or "plentiful."
+ */
+const PUSHKALA: YogaRule = {
+  id: 'pushkala-moon',
+  name: { en: 'Pushkala Moon', hi: 'पुष्कल चन्द्र', sa: 'पुष्कलचन्द्रः' },
+  group: 'chandra',
+  isAuspicious: true,
+  classicalRef: 'Saravali; Jataka Parijata',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      // Moon must be in a friend's sign
+      const moonDignity = ctx.dignity(1);
+      if (moonDignity !== 'friend') {
+        return { present: false, involvedPlanets: [] };
+      }
+
+      // Moon must be in a kendra
+      const moonHouse = ctx.planetHouse(1);
+      if (!ctx.isKendra(moonHouse)) {
+        return { present: false, involvedPlanets: [] };
+      }
+
+      // Lagna lord must aspect Moon's house
+      const lagnaLord = ctx.houseLord(1);
+      const lagnaLordAspects = ctx.doesAspect(lagnaLord, moonHouse);
+      if (!lagnaLordAspects) {
+        return { present: false, involvedPlanets: [] };
+      }
+
+      return {
+        present: true,
+        involvedPlanets: [1, lagnaLord],
+      };
+    },
+  },
+
+  assessStrength: (ctx: YogaContext, _result: YogaDetectionResult) => {
+    const lagnaLord = ctx.houseLord(1);
+    const lagnaLordDignity = ctx.dignity(lagnaLord);
+    if (lagnaLordDignity === 'exalted' || lagnaLordDignity === 'own') return 'Strong';
+    return 'Moderate';
+  },
+
+  affectedDomains: ['wealth'],
+  domainImpactWeight: 1,
+
+  formationRule: {
+    en: 'Moon in a friend\'s sign in a kendra, aspected by the lagna lord.',
+    hi: 'चन्द्रमा मित्र राशि में केन्द्र में, लग्न स्वामी की दृष्टि से युक्त।',
+  },
+
+  description: {
+    en: 'Pushkala Moon Yoga indicates material abundance and social recognition. The Moon is comfortable in a friend\'s sign, powerful in a kendra, and connected to the self through the lagna lord\'s aspect. The native enjoys plentiful resources, is well-known, and attracts opportunities naturally.',
+    hi: 'पुष्कल चन्द्र योग भौतिक प्रचुरता और सामाजिक मान्यता का संकेत देता है। चन्द्रमा मित्र राशि में सहज है, केन्द्र में शक्तिशाली है, और लग्न स्वामी की दृष्टि से आत्म से जुड़ा है।',
+  },
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 11. Adhi Moon (Extended) — Benefics in ALL of 6th, 7th, 8th from Moon
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Adhi Moon (Extended) — Phaladeepika Ch.6 v.10 (strict reading)
+ *
+ * Formation: Natural benefics in ALL three positions — 6th, 7th, AND 8th from Moon.
+ * This is stricter than basic Adhi: every position must be occupied by a benefic.
+ * Uses the same detection as the base Adhi above but is exported as a separate
+ * rule with higher weight since all three are required.
+ *
+ * NOTE: This duplicates the existing Adhi detection. We keep it as a distinct
+ * ID for UI differentiation when the user wants to see extended vs basic.
+ */
+const ADHI_EXTENDED: YogaRule = {
+  id: 'adhi-extended',
+  name: { en: 'Adhi Yoga (Extended)', hi: 'अधि योग (विस्तृत)', sa: 'अधियोगः (विस्तृतः)' },
+  group: 'chandra',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika Ch.6 v.10 (strict)',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      const moonHouse = ctx.planetHouse(1);
+      const house6 = houseFrom(moonHouse, 6);
+      const house7 = houseFrom(moonHouse, 7);
+      const house8 = houseFrom(moonHouse, 8);
+
+      // Natural benefics: Mercury (3), Jupiter (4), Venus (5)
+      const beneficIds = [3, 4, 5];
+
+      const beneficsIn6 = ctx.planetsInHouse(house6).filter(id => beneficIds.includes(id));
+      const beneficsIn7 = ctx.planetsInHouse(house7).filter(id => beneficIds.includes(id));
+      const beneficsIn8 = ctx.planetsInHouse(house8).filter(id => beneficIds.includes(id));
+
+      // All three houses must have at least one benefic
+      const present = beneficsIn6.length > 0 && beneficsIn7.length > 0 && beneficsIn8.length > 0;
+
+      // Extended requirement: total benefic count must be >= 3
+      // (to differentiate from the base Adhi where one planet may span multiple)
+      const totalBenefics = [...new Set([...beneficsIn6, ...beneficsIn7, ...beneficsIn8])];
+      const isExtended = present && totalBenefics.length >= 3;
+
+      return {
+        present: isExtended,
+        involvedPlanets: isExtended ? [1, ...totalBenefics] : [],
+      };
+    },
+  },
+
+  assessStrength: (ctx: YogaContext, result: YogaDetectionResult) => {
+    const formingBenefics = result.involvedPlanets.filter(id => id !== 1);
+    const dignifiedCount = formingBenefics.filter(id => {
+      const d = ctx.dignity(id);
+      return d === 'exalted' || d === 'own' || d === 'moolatrikona';
+    }).length;
+    if (dignifiedCount >= 2) return 'Strong';
+    if (dignifiedCount >= 1) return 'Moderate';
+    return 'Weak';
+  },
+
+  affectedDomains: ['career', 'wealth'],
+  domainImpactWeight: 2,
+
+  formationRule: {
+    en: 'All three natural benefics (Mercury, Jupiter, Venus) occupy the 6th, 7th, and 8th houses from Moon — each position filled.',
+    hi: 'तीनों प्राकृतिक शुभ ग्रह (बुध, गुरु, शुक्र) चन्द्रमा से 6, 7, और 8वें भावों में — प्रत्येक स्थान भरा।',
+  },
+
+  description: {
+    en: 'The extended Adhi Yoga is the strict form: all three benefics (Mercury, Jupiter, Venus) individually occupy the 6th, 7th, and 8th from Moon. This is exceedingly rare and grants extraordinary authority, ministerial or executive power, and lasting influence. The native is a natural leader who commands loyalty and shapes institutions.',
+    hi: 'विस्तृत अधि योग कठोर रूप है: तीनों शुभ ग्रह (बुध, गुरु, शुक्र) व्यक्तिगत रूप से चन्द्रमा से 6, 7, और 8वें भावों में हैं। यह अत्यंत दुर्लभ है और असाधारण अधिकार, मंत्री-पद शक्ति और स्थायी प्रभाव प्रदान करता है।',
+  },
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 12. Amrita Yoga — Moon conjunct benefic in kendra from Lagna
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Amrita Yoga — Saravali; Phaladeepika
+ *
+ * Formation: Moon conjunct a natural benefic, placed in a kendra from Lagna.
+ *
+ * Results: Good health, vitality, and a nourishing disposition. "Amrita"
+ * means "nectar of immortality" — the native has strong recuperative powers.
+ */
+const AMRITA: YogaRule = {
+  id: 'amrita-yoga',
+  name: { en: 'Amrita Yoga', hi: 'अमृत योग', sa: 'अमृतयोगः' },
+  group: 'chandra',
+  isAuspicious: true,
+  classicalRef: 'Saravali; Phaladeepika',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      const moonHouse = ctx.planetHouse(1);
+
+      // Moon must be in a kendra from Lagna
+      if (!ctx.isKendra(moonHouse)) {
+        return { present: false, involvedPlanets: [] };
+      }
+
+      // Moon must be conjunct a natural benefic (Mercury=3, Jupiter=4, Venus=5)
+      const BENEFIC_IDS = [3, 4, 5];
+      const conjunctBenefics: number[] = [];
+      for (const bid of BENEFIC_IDS) {
+        if (ctx.areConjunct(1, bid)) {
+          conjunctBenefics.push(bid);
+        }
+      }
+
+      if (conjunctBenefics.length === 0) {
+        return { present: false, involvedPlanets: [] };
+      }
+
+      return {
+        present: true,
+        involvedPlanets: [1, ...conjunctBenefics],
+      };
+    },
+  },
+
+  assessStrength: (ctx: YogaContext, result: YogaDetectionResult) => {
+    const benefics = result.involvedPlanets.filter(id => id !== 1);
+    const dignifiedCount = benefics.filter(id => {
+      const d = ctx.dignity(id);
+      return d === 'exalted' || d === 'own' || d === 'moolatrikona';
+    }).length;
+    if (dignifiedCount >= 1 && benefics.length >= 2) return 'Strong';
+    if (dignifiedCount >= 1) return 'Moderate';
+    return 'Weak';
+  },
+
+  affectedDomains: ['health'],
+  domainImpactWeight: 1,
+
+  formationRule: {
+    en: 'Moon conjunct a natural benefic (Mercury, Jupiter, or Venus) in a kendra from Lagna.',
+    hi: 'चन्द्रमा प्राकृतिक शुभ ग्रह (बुध, गुरु, या शुक्र) के साथ लग्न से केन्द्र में।',
+  },
+
+  description: {
+    en: 'Amrita Yoga — the "nectar" yoga — bestows strong health and recuperative vitality. The Moon in a kendra is positionally strong, and conjunction with a benefic nourishes both mind and body. The native recovers quickly from illness, has a calm temperament, and radiates well-being. Good for longevity and emotional stability.',
+    hi: 'अमृत योग — "अमृत" योग — मज़बूत स्वास्थ्य और पुनर्प्राप्ति जीवनशक्ति प्रदान करता है। केन्द्र में चन्द्रमा स्थिति से बलवान है, और शुभ ग्रह की युति मन और शरीर दोनों का पोषण करती है।',
+  },
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 13. Chandra-Surya (Amavasya) — Sun and Moon in same sign
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Chandra-Surya (Amavasya) Yoga — Jataka Parijata; Saravali
+ *
+ * Formation: Sun and Moon in the same sign (new Moon / Amavasya birth).
+ *
+ * Results: Spiritual inclination, introspective nature, psychic sensitivity.
+ * The native has a deep inner life but may struggle with self-confidence
+ * or identity in the material world.
+ */
+const CHANDRA_SURYA_AMAVASYA: YogaRule = {
+  id: 'chandra-surya-amavasya',
+  name: { en: 'Chandra-Surya (Amavasya)', hi: 'चन्द्र-सूर्य (अमावस्या)', sa: 'चन्द्रसूर्ययोगः (अमावस्या)' },
+  group: 'chandra',
+  isAuspicious: true,
+  classicalRef: 'Jataka Parijata; Saravali',
+
+  conditions: {
+    type: 'conjunction',
+    planet1: 0, // Sun
+    planet2: 1, // Moon
+  },
+
+  assessStrength: (ctx: YogaContext, _result: YogaDetectionResult) => {
+    const moonHouse = ctx.planetHouse(1);
+    // Stronger in spiritual houses (9, 12)
+    if (moonHouse === 9 || moonHouse === 12) return 'Strong';
+    // Moderate in kendras
+    if (ctx.isKendra(moonHouse)) return 'Moderate';
+    return 'Weak';
+  },
+
+  affectedDomains: ['spiritual'],
+  domainImpactWeight: 1,
+
+  formationRule: {
+    en: 'Sun and Moon conjunct in the same sign (new Moon / Amavasya birth).',
+    hi: 'सूर्य और चन्द्रमा एक ही राशि में युति (अमावस्या जन्म)।',
+  },
+
+  description: {
+    en: 'Chandra-Surya (Amavasya) Yoga indicates a birth near the new Moon — the darkest lunar phase. The native has a strong spiritual inclination, psychic sensitivity, and a rich inner world. However, the Moon is weak (combust by the Sun), which may create challenges with self-confidence, public visibility, and emotional expression. This yoga is spiritually auspicious but materially challenging. The native benefits greatly from meditation and contemplative practices.',
+    hi: 'चन्द्र-सूर्य (अमावस्या) योग अमावस्या के निकट जन्म का संकेत देता है — सबसे अंधेरा चंद्र चरण। जातक में प्रबल आध्यात्मिक झुकाव, मानसिक संवेदनशीलता और समृद्ध आंतरिक संसार होता है। हालांकि, चंद्रमा कमज़ोर है (सूर्य से अस्त), जो आत्मविश्वास और भावनात्मक अभिव्यक्ति में चुनौतियाँ पैदा कर सकता है।',
+  },
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Export
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** All 13 Moon-based (Chandra) yoga rules — Phaladeepika Ch.6 + extensions */
 export const CHANDRA_RULES: YogaRule[] = [
   SUNAPHA,
   ANAPHA,
@@ -638,4 +976,9 @@ export const CHANDRA_RULES: YogaRule[] = [
   CHANDRA_MANGALA,
   SHAKATA,
   ADHI,
+  VARCHASVI,
+  PUSHKALA,
+  ADHI_EXTENDED,
+  AMRITA,
+  CHANDRA_SURYA_AMAVASYA,
 ];

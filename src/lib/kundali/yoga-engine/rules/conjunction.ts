@@ -530,4 +530,87 @@ export const CONJUNCTION_RULES: YogaRule[] = [
       hi: 'गुरु-चंद्र योग गुरु-चंद्र संबंध का सबसे शक्तिशाली रूप है (गजकेसरी का एक रूप भी)। ज्ञान और भावनात्मक बुद्धिमत्ता का पूर्ण संगम — जातक आशावादी, दयालु और सहानुभूतिपूर्ण विवेक से भरा होता है। शिक्षण, परामर्श और आध्यात्मिक मार्गदर्शन के लिए उत्कृष्ट।',
     },
   },
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // 10. Budha-Aditya Strong Yoga
+  // ───────────────────────────────────────────────────────────────────────────
+  /**
+   * Budha-Aditya Strong Yoga — Sun-Mercury conjunction where Mercury is NOT
+   * combust (more than 10° apart) AND both are in a kendra house.
+   *
+   * The standard Budha-Aditya Yoga (Sun-Mercury conjunction) is extremely
+   * common because Mercury never strays far from the Sun. This STRONGER
+   * variant requires Mercury to be far enough from the Sun to avoid
+   * combustion AND placed in a kendra for maximum expression.
+   *
+   * Source: BPHS Ch.35; Phaladeepika Ch.6
+   */
+  {
+    id: 'budha-aditya-strong',
+    name: { en: 'Budha-Aditya Strong', hi: 'बुध-आदित्य प्रबल योग', sa: 'बुधादित्यप्रबलयोगः' },
+    group: 'conjunction',
+    isAuspicious: true,
+    classicalRef: 'BPHS Ch.35; Phaladeepika Ch.6',
+
+    conditions: {
+      type: 'custom',
+      detect: (ctx: YogaContext) => {
+        // Sun (0) and Mercury (3) must be in the same house
+        if (!ctx.areConjunct(0, 3)) {
+          return { present: false, involvedPlanets: [] };
+        }
+
+        // Mercury must NOT be combust (> 10° from Sun)
+        // Combustion orb for Mercury: 14° (direct), 12° (retrograde)
+        // For the "strong" variant we use the stricter 10° threshold
+        const sunLong = ctx.planetLongitude(0);
+        const mercLong = ctx.planetLongitude(3);
+        let angularDist = Math.abs(sunLong - mercLong);
+        if (angularDist > 180) angularDist = 360 - angularDist;
+
+        if (angularDist <= 10) {
+          return { present: false, involvedPlanets: [] };
+        }
+
+        // Both must be in a kendra house
+        const sunHouse = ctx.planetHouse(0);
+        const mercHouse = ctx.planetHouse(3);
+        if (!ctx.isKendra(sunHouse) || !ctx.isKendra(mercHouse)) {
+          return { present: false, involvedPlanets: [] };
+        }
+
+        return {
+          present: true,
+          involvedPlanets: [0, 3],
+          customData: { angularDistance: angularDist, house: sunHouse },
+        };
+      },
+    },
+
+    assessStrength: (ctx: YogaContext, result: YogaDetectionResult) => {
+      const data = result.customData as { angularDistance?: number } | undefined;
+      const dist = data?.angularDistance ?? 0;
+
+      // Mercury's dignity strengthens the yoga
+      const mercDignity = ctx.dignity(3);
+      const mercStrong = mercDignity === 'exalted' || mercDignity === 'own' || mercDignity === 'moolatrikona';
+
+      // Wider separation = stronger Mercury (further from Sun's glare)
+      if (dist > 20 && mercStrong) return 'Strong';
+      if (dist > 14 || mercStrong) return 'Strong';
+      return 'Moderate';
+    },
+
+    affectedDomains: ['education', 'career'],
+    domainImpactWeight: 2,
+
+    formationRule: {
+      en: 'Sun and Mercury conjunct in a kendra house with Mercury more than 10° from the Sun (not combust) — the stronger form of Budha-Aditya',
+      hi: 'सूर्य और बुध केन्द्र भाव में युति, बुध सूर्य से 10° से अधिक दूर (अदग्ध) — बुध-आदित्य का प्रबल रूप',
+    },
+    description: {
+      en: 'Budha-Aditya Strong is the elevated form of the common Sun-Mercury conjunction. While basic Budha-Aditya is ubiquitous (Mercury never strays far from the Sun), this variant demands that Mercury escapes combustion and both planets occupy a kendra. The native possesses exceptional intellect, oratory skill, and administrative ability. They thrive in education, government, publishing, and advisory roles. The non-combust Mercury retains its full analytical and communicative power alongside the Sun\'s authority.',
+      hi: 'बुध-आदित्य प्रबल सामान्य सूर्य-बुध युति का उन्नत रूप है। सामान्य बुध-आदित्य बहुत आम है, यह प्रकार मांग करता है कि बुध अदग्ध हो और दोनों ग्रह केन्द्र में हों। जातक असाधारण बुद्धि, वक्तृत्व कौशल और प्रशासनिक क्षमता रखता है। शिक्षा, सरकार, प्रकाशन और परामर्श भूमिकाओं में उत्कृष्ट।',
+    },
+  },
 ];

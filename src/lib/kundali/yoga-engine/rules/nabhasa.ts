@@ -1043,11 +1043,199 @@ const SARPA: YogaRule = {
   },
 };
 
+// ═══════════════════════════════════════════════════════════════════════════════
+// Additional AKRITI (Shape) rules
+// ═══════════════════════════════════════════════════════════════════════════════
+
+/**
+ * Gada Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All planets in two separate pairs of consecutive houses
+ * (e.g. houses 2-3 and 8-9). The two pairs are non-adjacent.
+ *
+ * Results: Mixed. The native alternates between two distinct phases or
+ * pursuits in life, like a mace (gada) with weight at both ends.
+ *
+ * Implementation: Check if the occupied house set forms exactly two disjoint
+ * consecutive pairs across the chart.
+ */
+const GADA: YogaRule = {
+  id: 'nabhasa-gada',
+  name: { en: 'Gada', hi: 'गदा', sa: 'गदा' },
+  group: 'nabhasa',
+  subGroup: 'akriti',
+  isAuspicious: false,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      const occupied = getOccupiedHouses(ctx);
+      // Must be exactly 4 houses occupied
+      if (occupied.size !== 4) {
+        return { present: false, involvedPlanets: [] };
+      }
+
+      const houses = Array.from(occupied).sort((a, b) => a - b);
+
+      // Check all ways to partition 4 houses into 2 consecutive pairs
+      // A "consecutive pair" is two houses where second = first + 1 (mod 12)
+      for (let i = 0; i < houses.length; i++) {
+        for (let j = i + 1; j < houses.length; j++) {
+          const pair1 = [houses[i], houses[j]];
+          const pair2 = houses.filter(h => !pair1.includes(h));
+
+          const isPair1Consecutive =
+            ((pair1[1] - pair1[0] + 12) % 12) === 1 ||
+            ((pair1[0] - pair1[1] + 12) % 12) === 1;
+          const isPair2Consecutive =
+            pair2.length === 2 && (
+              ((pair2[1] - pair2[0] + 12) % 12) === 1 ||
+              ((pair2[0] - pair2[1] + 12) % 12) === 1
+            );
+
+          // Ensure the two pairs are NOT adjacent to each other
+          if (isPair1Consecutive && isPair2Consecutive) {
+            const allInPairs = new Set([...pair1, ...pair2]);
+            // Check that pairs are disjoint (non-overlapping consecutive runs)
+            // i.e. not all 4 houses consecutive
+            let allFourConsecutive = false;
+            for (let start = 0; start < 12; start++) {
+              let runOk = true;
+              for (let k = 0; k < 4; k++) {
+                if (!allInPairs.has(((start + k) % 12) + 1)) { runOk = false; break; }
+              }
+              if (runOk) { allFourConsecutive = true; break; }
+            }
+
+            if (!allFourConsecutive) {
+              return {
+                present: true,
+                involvedPlanets: allSevenPlanets(),
+                customData: { pair1, pair2 },
+              };
+            }
+          }
+        }
+      }
+
+      return { present: false, involvedPlanets: [] };
+    },
+  },
+
+  assessStrength: assessNabhasaStrength,
+
+  affectedDomains: 'all',
+  domainImpactWeight: 1,
+
+  formationRule: {
+    en: 'All 7 planets (Sun through Saturn) in two separate pairs of consecutive houses, with a gap between the pairs.',
+    hi: 'सभी 7 ग्रह (सूर्य से शनि) दो अलग-अलग क्रमागत भावों के जोड़ों में, जोड़ों के बीच अंतर के साथ।',
+  },
+
+  description: {
+    en: 'Gada Yoga — the "mace" — distributes all planets into two separate consecutive-house pairs with a gap between them. Like a mace with weight at both ends, the native\'s life energy concentrates in two distinct areas, leaving the rest unsupported. Life alternates between two dominant themes with little middle ground.',
+    hi: 'गदा योग — "गदा" — सभी ग्रहों को दो अलग-अलग क्रमागत-भाव जोड़ों में वितरित करता है। गदा की तरह दोनों सिरों पर भार, जातक की जीवन ऊर्जा दो अलग-अलग क्षेत्रों में केंद्रित होती है।',
+  },
+};
+
+/**
+ * Shayana Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All planets (Sun through Saturn) in the 4th and 10th houses only.
+ *
+ * Results: The native is lazy, idle, and enjoys comforts without effort.
+ * The kendra axis of home (4th) and career (10th) dominates, but in
+ * a passive, reclining manner — hence "shayana" (reclining/sleeping).
+ */
+const SHAYANA: YogaRule = {
+  id: 'nabhasa-shayana',
+  name: { en: 'Shayana', hi: 'शयन', sa: 'शयनम्' },
+  group: 'nabhasa',
+  subGroup: 'akriti',
+  isAuspicious: false,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      const allowedHouses = new Set([4, 10]);
+      const present = allPlanetsInHouses(ctx, allowedHouses);
+      return {
+        present,
+        involvedPlanets: present ? allSevenPlanets() : [],
+      };
+    },
+  },
+
+  assessStrength: assessNabhasaStrength,
+
+  affectedDomains: ['career'],
+  domainImpactWeight: 1,
+
+  formationRule: {
+    en: 'All 7 planets (Sun through Saturn) occupy only the 4th and 10th houses.',
+    hi: 'सभी 7 ग्रह (सूर्य से शनि) केवल चौथे और दसवें भाव में स्थित हैं।',
+  },
+
+  description: {
+    en: 'Shayana Yoga — the "reclining" pattern — places all planets on the 4-10 kendra axis. The native tends towards laziness and passive comfort. While home life and career are strongly emphasised, the energy is expressed in a languid, effortless manner. Success may come through inherited wealth or positions of comfort rather than active effort.',
+    hi: 'शयन योग — "लेटने" का पैटर्न — सभी ग्रहों को 4-10 केन्द्र अक्ष पर रखता है। जातक आलस्य और निष्क्रिय आराम की ओर प्रवृत्त होता है। विरासत या आरामदायक पदों से सफलता मिल सकती है।',
+  },
+};
+
+/**
+ * Chaamara (Nabhasa) Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All planets (Sun through Saturn) in the 1st and 7th houses only.
+ * Note: Different from the Raja Yoga "Chamara" (which involves specific
+ * lord connections). This is the Nabhasa Akriti pattern.
+ *
+ * Results: The native is learned, eloquent, and long-lived. The self-other
+ * axis (1st/7th) dominates, producing someone deeply engaged in
+ * partnerships and public life.
+ */
+const CHAAMARA_NABHASA: YogaRule = {
+  id: 'nabhasa-chaamara',
+  name: { en: 'Chaamara (Nabhasa)', hi: 'चामर (नभस)', sa: 'चामरम्' },
+  group: 'nabhasa',
+  subGroup: 'akriti',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika Ch.7',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      const allowedHouses = new Set([1, 7]);
+      const present = allPlanetsInHouses(ctx, allowedHouses);
+      return {
+        present,
+        involvedPlanets: present ? allSevenPlanets() : [],
+      };
+    },
+  },
+
+  assessStrength: assessNabhasaStrength,
+
+  affectedDomains: ['career'],
+  domainImpactWeight: 1,
+
+  formationRule: {
+    en: 'All 7 planets (Sun through Saturn) occupy only the 1st and 7th houses.',
+    hi: 'सभी 7 ग्रह (सूर्य से शनि) केवल पहले और सातवें भाव में स्थित हैं।',
+  },
+
+  description: {
+    en: 'Chaamara (Nabhasa) Yoga — the "flywhisk" — places all planets on the 1-7 axis of self and partnership. Unlike the Nabhasa Shakata (which shares the same axis but is inauspicious), Chaamara emphasises royalty and learning. The native is eloquent, scholarly, and commands respect in public life. Partnerships and alliances are central to their identity.',
+    hi: 'चामर (नभस) योग — "चंवर" — सभी ग्रहों को स्वयं और साझेदारी के 1-7 अक्ष पर रखता है। जातक वाक्पटु, विद्वान और सार्वजनिक जीवन में सम्मानित होता है। साझेदारी और गठबंधन उनकी पहचान के केंद्र में होते हैं।',
+  },
+};
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Export
 // ─────────────────────────────────────────────────────────────────────────────
 
-/** All 21 Nabhasa yoga rules — Phaladeepika Ch.7 (4 sub-groups) */
+/** All 23 Nabhasa yoga rules — Phaladeepika Ch.7 (4 sub-groups) */
 export const NABHASA_RULES: YogaRule[] = [
   // Sankhya (Number) — mutually exclusive
   GOLA,
@@ -1067,6 +1255,9 @@ export const NABHASA_RULES: YogaRule[] = [
   SHAKATA_NABHASA,
   SHRINGATAKA,
   HALA,
+  GADA,
+  SHAYANA,
+  CHAAMARA_NABHASA,
   // Aashray (Sign quality)
   RAJJU,
   MUSALA,

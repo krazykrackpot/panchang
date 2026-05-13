@@ -402,4 +402,144 @@ export const SANNYASA_RULES: YogaRule[] = [
       hi: 'सदा संन्यास योग उस व्यक्ति को दर्शाता है जिसका करियर और आध्यात्मिक मार्ग एक ही हैं। 10वें भाव में 10वें का स्वामी एक शक्तिशाली पेशेवर पहचान बनाता है, जबकि शनि की अनुशासनात्मक दृष्टि उस ऊर्जा को व्यक्तिगत महिमा के बजाय सेवा और त्याग की ओर मोड़ती है। ये जातक अक्सर शिक्षक, चिकित्सक, सन्यासी या आध्यात्मिक नेता बनते हैं।',
     },
   },
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // 6. Parivraja Yoga
+  // ───────────────────────────────────────────────────────────────────────────
+  /**
+   * Parivraja Yoga — Austere Renunciation
+   *
+   * 4 or more planets concentrated in one house AND Saturn among them
+   * in a strong position (own/exalted/moolatrikona). The Saturn-led
+   * stellium creates a severe, austere form of renunciation — wandering
+   * asceticism rather than comfortable monasticism.
+   *
+   * Source: Jataka Parijata; BPHS Ch.36
+   */
+  {
+    id: 'parivraja',
+    name: { en: 'Parivraja Yoga', hi: 'परिव्राज योग', sa: 'परिव्राजयोगः' },
+    group: 'sannyasa',
+    isAuspicious: true,
+    classicalRef: 'Jataka Parijata; BPHS Ch.36',
+
+    conditions: {
+      type: 'custom',
+      detect: (ctx: YogaContext) => {
+        // Find houses with 4+ planets (Sun through Saturn only)
+        for (let h = 1; h <= 12; h++) {
+          const planetsInH = ctx.planetsInHouse(h).filter((pid) => SUN_TO_SATURN.includes(pid));
+          if (planetsInH.length < 4) continue;
+
+          // Saturn (6) must be among them
+          if (!planetsInH.includes(6)) continue;
+
+          // Saturn must be strong (own/exalted/moolatrikona)
+          const saturnDignity = ctx.dignity(6);
+          const saturnStrong =
+            saturnDignity === 'own' ||
+            saturnDignity === 'exalted' ||
+            saturnDignity === 'moolatrikona';
+          if (!saturnStrong) continue;
+
+          return {
+            present: true,
+            involvedPlanets: planetsInH,
+            customData: { stelliumHouse: h, planetCount: planetsInH.length, saturnDignity },
+          };
+        }
+
+        return { present: false, involvedPlanets: [] };
+      },
+    },
+
+    assessStrength: (ctx: YogaContext, result: YogaDetectionResult) => {
+      const data = result.customData as { planetCount?: number; stelliumHouse?: number } | undefined;
+      const count = data?.planetCount ?? 0;
+
+      // 5+ planets with strong Saturn = very strong
+      if (count >= 5) return 'Strong';
+      // Stellium in 9th/12th = amplified spiritual focus
+      const house = data?.stelliumHouse ?? 0;
+      if (house === 9 || house === 12) return 'Strong';
+
+      return 'Moderate';
+    },
+
+    affectedDomains: ['spiritual'],
+    domainImpactWeight: 1,
+
+    formationRule: {
+      en: '4 or more planets in one house including a strong Saturn (own/exalted/moolatrikona) — austere wandering renunciation',
+      hi: '4 या अधिक ग्रह एक भाव में, बलवान शनि (स्वराशि/उच्च/मूलत्रिकोण) सहित — कठोर परिव्राजक संन्यास',
+    },
+    description: {
+      en: 'Parivraja Yoga forms when 4 or more planets concentrate in a single house with a strong Saturn leading the congregation. This produces austere, wandering renunciation — the native may become a mendicant, ascetic traveller, or practitioner of severe spiritual disciplines. Unlike the broader Pravrajya (stellium without Saturn requirement), Parivraja specifically indicates Saturn\'s brand of detachment: cold, disciplined, and uncompromising in its pursuit of liberation through austerity.',
+      hi: 'परिव्राज योग तब बनता है जब 4 या अधिक ग्रह एक भाव में बलवान शनि के साथ केंद्रित होते हैं। यह कठोर, भ्रमणशील संन्यास उत्पन्न करता है — जातक भिक्षु, तपस्वी यात्री या गंभीर आध्यात्मिक अनुशासन का अभ्यासी हो सकता है। शनि का वैराग्य शीतल, अनुशासित और तपस्या के माध्यम से मुक्ति की अटल खोज है।',
+    },
+  },
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // 7. Pravrajya Extended Yoga
+  // ───────────────────────────────────────────────────────────────────────────
+  /**
+   * Pravrajya Extended — Deep Spiritual Path
+   *
+   * Lord of 10th house in 9th house aspected by Saturn AND lord of 9th
+   * house in 12th house. The career lord dissolves into dharma, and the
+   * dharma lord dissolves into moksha — a chain of renunciation from
+   * worldly action through faith into liberation.
+   *
+   * Source: Jataka Parijata; Saravali
+   */
+  {
+    id: 'pravrajya-extended',
+    name: { en: 'Pravrajya Extended', hi: 'प्रव्रज्या विस्तारित योग', sa: 'प्रव्रज्याविस्तारितयोगः' },
+    group: 'sannyasa',
+    isAuspicious: true,
+    classicalRef: 'Jataka Parijata; Saravali',
+
+    conditions: {
+      type: 'custom',
+      detect: (ctx: YogaContext) => {
+        // Lord of 10th must be in 9th
+        const lord10 = ctx.houseLord(10);
+        if (ctx.planetHouse(lord10) !== 9) {
+          return { present: false, involvedPlanets: [] };
+        }
+
+        // Lord of 10th in 9th must be aspected by Saturn (6)
+        if (!ctx.doesAspect(6, 9) && lord10 !== 6) {
+          return { present: false, involvedPlanets: [] };
+        }
+
+        // Lord of 9th must be in 12th
+        const lord9 = ctx.houseLord(9);
+        if (ctx.planetHouse(lord9) !== 12) {
+          return { present: false, involvedPlanets: [] };
+        }
+
+        const involved = [...new Set([lord10, lord9, 6])];
+        return {
+          present: true,
+          involvedPlanets: involved,
+          customData: { lord10, lord9 },
+        };
+      },
+    },
+
+    assessStrength: spiritualStrength,
+
+    affectedDomains: ['spiritual'],
+    domainImpactWeight: 1,
+
+    formationRule: {
+      en: 'Lord of 10th in 9th aspected by Saturn, AND lord of 9th in 12th — a chain of renunciation from career through dharma to liberation',
+      hi: '10वें का स्वामी 9वें में शनि की दृष्टि सहित, और 9वें का स्वामी 12वें में — करियर से धर्म से मुक्ति तक संन्यास की श्रृंखला',
+    },
+    description: {
+      en: 'Pravrajya Extended forms a spiritual chain: the career lord (10th) dissolves into the house of dharma (9th) under Saturn\'s disciplining gaze, and the dharma lord (9th) dissolves into the house of final liberation (12th). This cascading renunciation indicates a native whose worldly achievements naturally transform into spiritual practice, and whose spiritual practice leads to genuine transcendence. They may transition from a successful professional career to full-time spiritual seeking later in life.',
+      hi: 'प्रव्रज्या विस्तारित एक आध्यात्मिक श्रृंखला बनाता है: करियर स्वामी (10वां) शनि की अनुशासनात्मक दृष्टि में धर्म भाव (9वें) में विलीन होता है, और धर्म स्वामी (9वां) अंतिम मुक्ति भाव (12वें) में विलीन होता है। जातक की सांसारिक उपलब्धियां स्वाभाविक रूप से आध्यात्मिक साधना में परिवर्तित होती हैं।',
+    },
+  },
 ];

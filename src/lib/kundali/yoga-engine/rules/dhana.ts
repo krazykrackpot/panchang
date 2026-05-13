@@ -25,6 +25,7 @@
 
 import type { YogaRule, YogaContext, YogaDetectionResult } from '../types';
 import { houseFrom } from '../utils';
+import { SIGN_LORDS } from '@/lib/constants/dignities';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Shared strength assessor for wealth yogas
@@ -781,10 +782,498 @@ const DHANA_FROM_5TH: YogaRule = {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
+// 11. Parijata Yoga — Lagna lord's dispositor in own/exalted in kendra/trikona
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Parijata Yoga — BPHS Ch.36
+ *
+ * Formation: The dispositor (sign lord) of the lagna lord is in its own
+ * or exalted sign, placed in a kendra or trikona.
+ *
+ * Results: Wealth, royal comforts, and high status. The lagna lord is
+ * "supported" by a strong dispositor, creating a chain of strength.
+ */
+const PARIJATA: YogaRule = {
+  id: 'parijata',
+  name: { en: 'Parijata', hi: 'पारिजात', sa: 'पारिजातम्' },
+  group: 'dhana',
+  isAuspicious: true,
+  classicalRef: 'BPHS Ch.36',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      const lord1 = ctx.houseLord(1);
+      const lord1Sign = ctx.planetSign(lord1);
+
+      // Dispositor of lagna lord = lord of the sign that lagna lord occupies
+      const dispositor = SIGN_LORDS[lord1Sign] as number;
+
+      if (dispositor === undefined || dispositor === lord1) {
+        // If lagna lord is in its own sign, dispositor = self (already well-placed)
+        // Still check if lagna lord itself is in kendra/trikona with own/exalted
+        if (dispositor === lord1) {
+          const d = ctx.dignity(lord1);
+          const h = ctx.planetHouse(lord1);
+          if ((d === 'own' || d === 'exalted' || d === 'moolatrikona') && (ctx.isKendra(h) || ctx.isTrikona(h))) {
+            return { present: true, involvedPlanets: [lord1] };
+          }
+        }
+        return { present: false, involvedPlanets: [] };
+      }
+
+      // Dispositor must be in own/exalted sign
+      const dispDignity = ctx.dignity(dispositor);
+      if (dispDignity !== 'own' && dispDignity !== 'exalted' && dispDignity !== 'moolatrikona') {
+        return { present: false, involvedPlanets: [] };
+      }
+
+      // Dispositor must be in kendra or trikona
+      const dispHouse = ctx.planetHouse(dispositor);
+      if (!ctx.isKendra(dispHouse) && !ctx.isTrikona(dispHouse)) {
+        return { present: false, involvedPlanets: [] };
+      }
+
+      return {
+        present: true,
+        involvedPlanets: [lord1, dispositor],
+      };
+    },
+  },
+
+  assessStrength: assessDhanaStrength,
+
+  affectedDomains: ['wealth'],
+  domainImpactWeight: 2,
+
+  formationRule: {
+    en: 'The dispositor of the lagna lord is in own/exalted sign in a kendra or trikona.',
+    hi: 'लग्न स्वामी का स्वामी (अधिपति) स्वगृही/उच्च राशि में केन्द्र या त्रिकोण में।',
+  },
+
+  description: {
+    en: 'Parijata Yoga creates a chain of support for the self — the lagna lord is backed by a strong, well-placed dispositor. This "lord supporting the lord" pattern grants wealth, royal comforts, and elevated status. The native prospers through a stable foundation of personal strength and fortunate circumstances.',
+    hi: 'पारिजात योग स्वयं के लिए समर्थन की श्रृंखला बनाता है — लग्न स्वामी एक बलवान, सुस्थित अधिपति द्वारा समर्थित है। यह "स्वामी स्वामी का समर्थन" पैटर्न धन, राजसी सुख और उन्नत प्रतिष्ठा प्रदान करता है।',
+  },
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 12. Chandra-Mangal Dhana — Moon-Mars conjunction in kendra/trikona
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Chandra-Mangal Dhana Yoga — Phaladeepika Ch.6
+ *
+ * Formation: Moon and Mars conjunct in a kendra or trikona.
+ * Wealth through property, mother, and courage.
+ *
+ * Expected frequency: ~8% (Moon-Mars conjunction ~1/12, in kendra/trikona ~7/12).
+ */
+const CHANDRA_MANGAL_DHANA: YogaRule = {
+  id: 'chandra-mangal-dhana',
+  name: { en: 'Chandra-Mangal Dhana', hi: 'चन्द्र-मंगल धन', sa: 'चन्द्रमङ्गलधनम्' },
+  group: 'dhana',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika Ch.6',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      // Moon (1) and Mars (2) must be conjunct
+      if (!ctx.areConjunct(1, 2)) return { present: false, involvedPlanets: [] };
+
+      // Must be in a kendra or trikona
+      const house = ctx.planetHouse(1); // same house since conjunct
+      if (!ctx.isKendra(house) && !ctx.isTrikona(house)) {
+        return { present: false, involvedPlanets: [] };
+      }
+
+      return {
+        present: true,
+        involvedPlanets: [1, 2], // Moon, Mars
+      };
+    },
+  },
+
+  assessStrength: assessDhanaStrength,
+
+  affectedDomains: ['wealth'],
+  domainImpactWeight: 1,
+
+  formationRule: {
+    en: 'Moon and Mars conjunct in a kendra (1/4/7/10) or trikona (1/5/9).',
+    hi: 'चंद्र और मंगल केन्द्र (1/4/7/10) या त्रिकोण (1/5/9) में युक्त।',
+  },
+
+  description: {
+    en: 'Chandra-Mangal Dhana Yoga combines the Moon\'s receptivity with Mars\'s initiative in a position of strength. The native earns wealth through property, real estate, agriculture, or maternal inheritance. They possess both the emotional intelligence to identify opportunities and the courage to act on them decisively.',
+    hi: 'चन्द्र-मंगल धन योग चंद्र की ग्रहणशीलता को मंगल की पहल के साथ बल की स्थिति में जोड़ता है। जातक संपत्ति, भूमि या मातृ विरासत से धन अर्जित करता है।',
+  },
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 13. Dhana Axis — Lords of 2nd and 11th in mutual kendras or conjunct
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Dhana Axis Yoga — BPHS Ch.36
+ *
+ * Formation: Lords of the 2nd and 11th houses are in mutual kendras
+ * (both in kendras from each other) or conjunct.
+ *
+ * Stronger variant of the basic Dhana Yoga — mutual kendra placement
+ * is more powerful than simple connection.
+ */
+const DHANA_AXIS: YogaRule = {
+  id: 'dhana-axis',
+  name: { en: 'Dhana Axis', hi: 'धन अक्ष', sa: 'धनाक्षः' },
+  group: 'dhana',
+  isAuspicious: true,
+  classicalRef: 'BPHS Ch.36',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      const lord2 = ctx.houseLord(2);
+      const lord11 = ctx.houseLord(11);
+      const lord2House = ctx.planetHouse(lord2);
+      const lord11House = ctx.planetHouse(lord11);
+
+      // Conjunct
+      if (ctx.areConjunct(lord2, lord11)) {
+        return { present: true, involvedPlanets: [lord2, lord11], customData: { type: 'conjunct' } };
+      }
+
+      // Both in kendras (mutual kendra placement)
+      if (ctx.isKendra(lord2House) && ctx.isKendra(lord11House)) {
+        return { present: true, involvedPlanets: [lord2, lord11], customData: { type: 'mutual_kendra' } };
+      }
+
+      return { present: false, involvedPlanets: [] };
+    },
+  },
+
+  assessStrength: assessDhanaStrength,
+
+  affectedDomains: ['wealth'],
+  domainImpactWeight: 2,
+
+  formationRule: {
+    en: 'Lords of the 2nd and 11th houses in mutual kendras or conjunct.',
+    hi: 'दूसरे और ग्यारहवें भावों के स्वामी परस्पर केन्द्र में या युक्त।',
+  },
+
+  description: {
+    en: 'Dhana Axis Yoga strengthens the wealth axis of the chart by connecting its two poles — accumulated wealth (2nd) and income/gains (11th) — through angular or conjunct placement. The native has a powerful financial axis that channels earning into savings effectively. Multiple income streams converge into sustainable wealth.',
+    hi: 'धन अक्ष योग कुंडली की धन अक्ष को मजबूत करता है — संचित धन (द्वितीय) और आय/लाभ (एकादश) — को केन्द्रीय या युति स्थिति के माध्यम से जोड़कर।',
+  },
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 14. Shankha Dhana — 5th and 6th lords in mutual kendras
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Shankha Dhana Yoga — BPHS Ch.36
+ *
+ * Formation: 5th and 6th lords are both in kendras.
+ * Wealth through overcoming competition using intelligence.
+ *
+ * NOTE: This is the dhana-specific variant. The existing Shankha in this file
+ * additionally requires a strong lagna lord; this simpler variant does not.
+ * Unique ID differentiates it from the other Shankha rule.
+ */
+const SHANKHA_DHANA: YogaRule = {
+  id: 'shankha-dhana',
+  name: { en: 'Shankha Dhana', hi: 'शंख धन', sa: 'शङ्खधनम्' },
+  group: 'dhana',
+  isAuspicious: true,
+  classicalRef: 'BPHS Ch.36',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      const lord5 = ctx.houseLord(5);
+      const lord6 = ctx.houseLord(6);
+      const lord5House = ctx.planetHouse(lord5);
+      const lord6House = ctx.planetHouse(lord6);
+
+      // Both in kendras
+      const present = ctx.isKendra(lord5House) && ctx.isKendra(lord6House);
+
+      return {
+        present,
+        involvedPlanets: present ? [...new Set([lord5, lord6])] : [],
+      };
+    },
+  },
+
+  assessStrength: assessDhanaStrength,
+
+  affectedDomains: ['wealth'],
+  domainImpactWeight: 1,
+
+  formationRule: {
+    en: '5th and 6th lords both in kendras (simpler Shankha wealth variant).',
+    hi: 'पाँचवें और छठे भावों के स्वामी दोनों केन्द्र में (सरल शंख धन प्रकार)।',
+  },
+
+  description: {
+    en: 'Shankha Dhana — the wealth variant of Shankha Yoga — forms when the lords of intelligence (5th) and competition (6th) occupy angular houses. The native earns wealth by outcompeting rivals through superior strategy and mental acuity. Professional success comes through solving problems others cannot.',
+    hi: 'शंख धन — शंख योग का धन प्रकार — तब बनता है जब बुद्धि (पंचम) और प्रतिस्पर्धा (षष्ठ) के स्वामी केन्द्र भावों में होते हैं। जातक बेहतर रणनीति से प्रतिस्पर्धियों को हराकर धन अर्जित करता है।',
+  },
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 15. Chandika Yoga — Strong lagna lord + strong 2nd lord + Jupiter aspect
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Chandika Yoga — Saravali
+ *
+ * Formation: Lagna lord is strong (in kendra/trikona, not debilitated),
+ * 2nd lord is strong (same criteria), and Jupiter aspects the 2nd house or 2nd lord.
+ *
+ * Results: Wealth through personal authority combined with Jupiter's blessings.
+ */
+const CHANDIKA: YogaRule = {
+  id: 'chandika',
+  name: { en: 'Chandika', hi: 'चण्डिका', sa: 'चण्डिका' },
+  group: 'dhana',
+  isAuspicious: true,
+  classicalRef: 'Saravali',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      const lord1 = ctx.houseLord(1);
+      const lord2 = ctx.houseLord(2);
+      const lord1House = ctx.planetHouse(lord1);
+      const lord2House = ctx.planetHouse(lord2);
+
+      // Both lords must be strong: in kendra/trikona, not debilitated
+      const lord1Strong = (ctx.isKendra(lord1House) || ctx.isTrikona(lord1House))
+        && ctx.dignity(lord1) !== 'debilitated';
+      const lord2Strong = (ctx.isKendra(lord2House) || ctx.isTrikona(lord2House))
+        && ctx.dignity(lord2) !== 'debilitated';
+
+      if (!lord1Strong || !lord2Strong) return { present: false, involvedPlanets: [] };
+
+      // Jupiter must aspect the 2nd house or be conjunct with 2nd lord
+      const jupAspects2 = ctx.doesAspect(4, 2);
+      const jupConjunct2ndLord = ctx.areConjunct(4, lord2);
+
+      if (!jupAspects2 && !jupConjunct2ndLord) return { present: false, involvedPlanets: [] };
+
+      return {
+        present: true,
+        involvedPlanets: [...new Set([lord1, lord2, 4])],
+      };
+    },
+  },
+
+  assessStrength: assessDhanaStrength,
+
+  affectedDomains: ['wealth'],
+  domainImpactWeight: 1,
+
+  formationRule: {
+    en: 'Strong lagna lord + strong 2nd lord + Jupiter aspecting 2nd house or 2nd lord.',
+    hi: 'बलवान लग्न स्वामी + बलवान द्वितीय स्वामी + गुरु की दृष्टि द्वितीय भाव या द्वितीय स्वामी पर।',
+  },
+
+  description: {
+    en: 'Chandika Yoga combines personal strength (strong lagna lord), wealth potential (strong 2nd lord), and Jupiter\'s expansive blessing. The native builds substantial wealth through their own authority and reputation, amplified by Jupiter\'s wisdom and ethical guidance. Financial growth is steady and well-directed.',
+    hi: 'चण्डिका योग व्यक्तिगत शक्ति (बलवान लग्न स्वामी), धन क्षमता (बलवान द्वितीय स्वामी) और गुरु के विस्तारशील आशीर्वाद को जोड़ता है।',
+  },
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 16. Shri Kanthi Yoga — Lagna lord, 9th lord, 10th lord all in kendras
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Shri Kanthi Yoga — BPHS Ch.36; Jataka Parijata
+ *
+ * Formation: Lagna lord, 9th lord, and 10th lord all in kendras.
+ *
+ * Results: Wealth combined with career success. The three pillars
+ * (self, fortune, action) are all in positions of power.
+ */
+const SHRI_KANTHI: YogaRule = {
+  id: 'shri-kanthi',
+  name: { en: 'Shri Kanthi', hi: 'श्री कान्ती', sa: 'श्रीकान्तिः' },
+  group: 'dhana',
+  isAuspicious: true,
+  classicalRef: 'BPHS Ch.36; Jataka Parijata',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      const lord1 = ctx.houseLord(1);
+      const lord9 = ctx.houseLord(9);
+      const lord10 = ctx.houseLord(10);
+
+      const lord1House = ctx.planetHouse(lord1);
+      const lord9House = ctx.planetHouse(lord9);
+      const lord10House = ctx.planetHouse(lord10);
+
+      const present = ctx.isKendra(lord1House) && ctx.isKendra(lord9House) && ctx.isKendra(lord10House);
+
+      return {
+        present,
+        involvedPlanets: present ? [...new Set([lord1, lord9, lord10])] : [],
+      };
+    },
+  },
+
+  assessStrength: assessDhanaStrength,
+
+  affectedDomains: ['wealth', 'career'],
+  domainImpactWeight: 2,
+
+  formationRule: {
+    en: 'Lagna lord, 9th lord (fortune), and 10th lord (career) all in kendras.',
+    hi: 'लग्न स्वामी, नवम स्वामी (भाग्य) और दशम स्वामी (करियर) सभी केन्द्र में।',
+  },
+
+  description: {
+    en: 'Shri Kanthi Yoga — the "Radiance of Prosperity" — places all three key lords (self, fortune, career) in angular houses. The native shines in their profession, attracts fortunate circumstances, and builds wealth through a combination of personal effort and divine grace. Career advancement and financial growth are intertwined.',
+    hi: 'श्री कान्ती योग — "समृद्धि की कान्ति" — तीनों प्रमुख स्वामियों (स्वयं, भाग्य, करियर) को केन्द्र भावों में रखता है। जातक अपने पेशे में चमकता है और व्यक्तिगत प्रयास और दैवी कृपा के संयोग से धन बनाता है।',
+  },
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 17. Dhana from 5th (variant) — already exists as rule 10; this is the
+//     explicit "5th lord in 2nd or 11th with benefic aspect" — SKIP
+//     (duplicate detection avoided — see rule 10 DHANA_FROM_5TH above)
+// ─────────────────────────────────────────────────────────────────────────────
+// NOTE: Dhana from 5th already exists above. The spec item #7 duplicates it.
+// Skipping to avoid duplicate ID. See DHANA_FROM_5TH (rule 10).
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 18. Bhagya Yoga — 9th lord in 9th house in own sign
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Bhagya Yoga — Fortune's Own House
+ *
+ * Formation: 9th lord in the 9th house in its own sign.
+ * The lord of fortune sits in its own house in its own sign —
+ * maximum fortune at maximum strength.
+ *
+ * Source: BPHS Ch.36; Phaladeepika Ch.6
+ */
+const BHAGYA: YogaRule = {
+  id: 'bhagya',
+  name: { en: 'Bhagya', hi: 'भाग्य', sa: 'भाग्यम्' },
+  group: 'dhana',
+  isAuspicious: true,
+  classicalRef: 'BPHS Ch.36; Phaladeepika Ch.6',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      const lord9 = ctx.houseLord(9);
+      const lord9House = ctx.planetHouse(lord9);
+      const lord9Dignity = ctx.dignity(lord9);
+
+      // 9th lord must be in 9th house AND in own sign
+      const present = lord9House === 9 && lord9Dignity === 'own';
+
+      return {
+        present,
+        involvedPlanets: present ? [lord9] : [],
+      };
+    },
+  },
+
+  assessStrength: (_ctx: YogaContext, _result: YogaDetectionResult) => {
+    // 9th lord in own sign in own house is inherently strong
+    return 'Strong';
+  },
+
+  affectedDomains: ['wealth', 'spiritual'],
+  domainImpactWeight: 2,
+
+  formationRule: {
+    en: '9th lord in the 9th house in its own sign — fortune at maximum strength.',
+    hi: 'नवम स्वामी नवम भाव में स्वराशि में — भाग्य अधिकतम बल पर।',
+  },
+
+  description: {
+    en: 'Bhagya Yoga — "Fortune" — is the purest expression of luck and divine grace. The 9th lord returning to its own house in its own sign means fortune is operating at full power without compromise. The native is blessed with extraordinary luck in all undertakings. Past-life merit manifests as effortless good fortune in this lifetime.',
+    hi: 'भाग्य योग — "सौभाग्य" — भाग्य और दैवी कृपा की शुद्धतम अभिव्यक्ति है। नवम स्वामी अपने ही घर में अपनी ही राशि में लौटता है, अर्थात् भाग्य बिना किसी समझौते के पूर्ण शक्ति पर संचालित हो रहा है।',
+  },
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 19. Anapha from Lagna — Planet in 12th from Lagna (not from Moon)
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Anapha from Lagna
+ *
+ * Formation: Any planet (Sun through Saturn, excluding Rahu/Ketu) in the
+ * 12th house from lagna. Provides wealth through expenditure discipline
+ * and behind-the-scenes influence.
+ *
+ * Source: Saravali; Jataka Parijata
+ */
+const ANAPHA_FROM_LAGNA: YogaRule = {
+  id: 'anapha-from-lagna',
+  name: { en: 'Anapha from Lagna', hi: 'लग्न अनफा योग', sa: 'लग्नानफायोगः' },
+  group: 'dhana',
+  isAuspicious: true,
+  classicalRef: 'Saravali; Jataka Parijata',
+
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext) => {
+      // Planets in 12th house from lagna, excluding Rahu(7)/Ketu(8)
+      const planetsIn12 = ctx.planetsInHouse(12).filter((pid) => pid <= 6);
+
+      return {
+        present: planetsIn12.length > 0,
+        involvedPlanets: planetsIn12,
+      };
+    },
+  },
+
+  assessStrength: (ctx: YogaContext, result: YogaDetectionResult) => {
+    let score = 0;
+    for (const pid of result.involvedPlanets) {
+      if (ctx.isNaturalBenefic(pid)) score += 2;
+      const d = ctx.dignity(pid);
+      if (d === 'exalted' || d === 'own') score += 1;
+      if (d === 'debilitated') score -= 1;
+    }
+
+    if (score >= 3) return 'Strong';
+    if (score >= 1) return 'Moderate';
+    return 'Weak';
+  },
+
+  affectedDomains: ['wealth'],
+  domainImpactWeight: 1,
+
+  formationRule: {
+    en: 'A planet (Sun through Saturn) occupies the 12th house from the ascendant.',
+    hi: 'सूर्य से शनि तक कोई ग्रह लग्न से द्वादश भाव में।',
+  },
+
+  description: {
+    en: 'Anapha from Lagna activates the 12th house — the house of expenditure, foreign lands, and spiritual liberation. A well-placed planet here indicates wealth through foreign connections, behind-the-scenes work, or institutional roles. The native manages resources wisely and often benefits from international dealings or charitable activities.',
+    hi: 'लग्न अनफा द्वादश भाव को सक्रिय करता है — व्यय, विदेश और मोक्ष का भाव। यहाँ सुस्थित ग्रह विदेशी संबंधों, पर्दे के पीछे के कार्य या संस्थागत भूमिकाओं से धन का संकेत देता है।',
+  },
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Export
 // ─────────────────────────────────────────────────────────────────────────────
 
-/** All 10 Dhana (wealth) yoga rules — BPHS Ch.36 */
+/** All 19 Dhana (wealth) yoga rules — BPHS Ch.36 and classical sources */
 export const DHANA_RULES: YogaRule[] = [
   DHANA_GENERAL,
   LAKSHMI,
@@ -796,4 +1285,12 @@ export const DHANA_RULES: YogaRule[] = [
   CHAPA,
   SUNAPHA_DHANA,
   DHANA_FROM_5TH,
+  PARIJATA,
+  CHANDRA_MANGAL_DHANA,
+  DHANA_AXIS,
+  SHANKHA_DHANA,
+  CHANDIKA,
+  SHRI_KANTHI,
+  BHAGYA,
+  ANAPHA_FROM_LAGNA,
 ];

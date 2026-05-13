@@ -708,4 +708,439 @@ export const DOSHA_RULES: YogaRule[] = [
       hi: 'केन्द्राधिपति दोष एक सूक्ष्म पीड़ा है जहां प्राकृतिक शुभ ग्रह केन्द्र भाव के स्वामी होने से अपनी शुभ शक्ति खो देते हैं। BPHS के अनुसार, केन्द्र के स्वामी शुभ ग्रह कार्यात्मक रूप से तटस्थ हो जाते हैं।',
     },
   },
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // 8. Kalathra Dosha
+  // ───────────────────────────────────────────────────────────────────────────
+  /**
+   * Kalathra Dosha
+   *
+   * 7th lord afflicted — placed in a dusthana (6/8/12), combust, or debilitated.
+   * Indicates difficulties in marriage, delayed or troubled partnerships.
+   *
+   * Source: BPHS Ch.34; Phaladeepika; Jataka Parijata
+   */
+  {
+    id: 'kalathra-dosha',
+    name: { en: 'Kalathra Dosha', hi: 'कलत्र दोष', sa: 'कलत्रदोषः' },
+    group: 'dosha',
+    isAuspicious: false,
+    classicalRef: 'BPHS Ch.34; Phaladeepika',
+
+    conditions: {
+      type: 'custom',
+      detect: (ctx: YogaContext) => {
+        const lord7 = ctx.houseLord(7);
+        const lord7House = ctx.planetHouse(lord7);
+        const lord7Dignity = ctx.dignity(lord7);
+        const lord7Combust = ctx.isCombust(lord7);
+
+        const inDusthana = ctx.isDusthana(lord7House);
+        const isDebilitated = lord7Dignity === 'debilitated';
+
+        const present = inDusthana || lord7Combust || isDebilitated;
+
+        return {
+          present,
+          involvedPlanets: present ? [lord7] : [],
+          customData: present
+            ? { inDusthana, combust: lord7Combust, debilitated: isDebilitated, lord7House }
+            : undefined,
+        };
+      },
+    },
+
+    assessStrength: (ctx: YogaContext, result: YogaDetectionResult) => {
+      const data = result.customData as {
+        inDusthana?: boolean;
+        combust?: boolean;
+        debilitated?: boolean;
+      } | undefined;
+
+      let factors = 0;
+      if (data?.inDusthana) factors++;
+      if (data?.combust) factors++;
+      if (data?.debilitated) factors++;
+
+      if (factors >= 2) return 'Strong';
+      if (factors === 1) return 'Moderate';
+      return 'Weak';
+    },
+
+    affectedDomains: ['marriage'],
+    domainImpactWeight: 2,
+
+    formationRule: {
+      en: '7th lord in a dusthana (6th/8th/12th), combust, or debilitated — marriage house lord afflicted',
+      hi: '7वें भाव का स्वामी दुष्ट भाव (6/8/12) में, अस्त, या नीच — विवाह भाव का स्वामी पीड़ित',
+    },
+    description: {
+      en: 'Kalathra Dosha indicates difficulties in married life and partnerships. The 7th lord — signifier of the spouse — is weakened by placement in a dusthana, combustion, or debilitation. The native may experience delayed marriage, misunderstandings with the partner, or repeated relationship challenges. The specific nature depends on which affliction applies.',
+      hi: 'कलत्र दोष वैवाहिक जीवन और साझेदारी में कठिनाइयों का संकेत देता है। 7वें भाव का स्वामी — जीवनसाथी का कारक — दुष्ट भाव, अस्तत्व या नीच राशि से कमज़ोर है। जातक को विवाह में देरी, साथी के साथ गलतफ़हमी या बार-बार संबंध चुनौतियों का अनुभव हो सकता है।',
+    },
+  },
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // 9. Marana Karaka Sthana (MKS)
+  // ───────────────────────────────────────────────────────────────────────────
+  /**
+   * Marana Karaka Sthana — Planet in its "death-like" house
+   *
+   * Each planet has a house where its significations are severely weakened:
+   * Sun in 12th, Moon in 8th, Mars in 7th, Mercury in 4th,
+   * Jupiter in 3rd, Venus in 6th, Saturn in 1st.
+   *
+   * Source: Phaladeepika Ch.7; Saravali; Prashna Marga
+   */
+  {
+    id: 'marana-karaka-sthana',
+    name: { en: 'Marana Karaka Sthana', hi: 'मारक कारक स्थान', sa: 'मारककारकस्थानम्' },
+    group: 'dosha',
+    isAuspicious: false,
+    classicalRef: 'Phaladeepika Ch.7; Saravali; Prashna Marga',
+
+    conditions: {
+      type: 'custom',
+      detect: (ctx: YogaContext) => {
+        // MKS house assignments: planetId → house where it suffers
+        const MKS_MAP: Record<number, number> = {
+          0: 12, // Sun in 12th
+          1: 8,  // Moon in 8th
+          2: 7,  // Mars in 7th
+          3: 4,  // Mercury in 4th
+          4: 3,  // Jupiter in 3rd
+          5: 6,  // Venus in 6th
+          6: 1,  // Saturn in 1st
+        };
+
+        const involvedPlanets: number[] = [];
+        const mksDetails: { planetId: number; house: number }[] = [];
+
+        for (const [pidStr, mksHouse] of Object.entries(MKS_MAP)) {
+          const pid = Number(pidStr);
+          if (ctx.planetHouse(pid) === mksHouse) {
+            involvedPlanets.push(pid);
+            mksDetails.push({ planetId: pid, house: mksHouse });
+          }
+        }
+
+        const present = involvedPlanets.length > 0;
+        return {
+          present,
+          involvedPlanets,
+          customData: present ? { mksDetails } : undefined,
+        };
+      },
+    },
+
+    assessStrength: (_ctx: YogaContext, result: YogaDetectionResult) => {
+      const data = result.customData as { mksDetails?: { planetId: number; house: number }[] } | undefined;
+      const count = data?.mksDetails?.length ?? 0;
+      if (count >= 2) return 'Strong';
+      return 'Moderate';
+    },
+
+    affectedDomains: ['health'],
+    domainImpactWeight: 1,
+
+    formationRule: {
+      en: 'A planet in its Marana Karaka Sthana: Sun in 12th, Moon in 8th, Mars in 7th, Mercury in 4th, Jupiter in 3rd, Venus in 6th, Saturn in 1st',
+      hi: 'ग्रह अपने मारक कारक स्थान में: सूर्य 12वें, चंद्र 8वें, मंगल 7वें, बुध 4थे, गुरु 3रे, शुक्र 6ठे, शनि 1ले भाव में',
+    },
+    description: {
+      en: 'Marana Karaka Sthana (MKS) places a planet in a house where its natural significations are severely weakened — as though the planet were "dead." The planet can neither deliver its promises nor protect the affairs of the house it lords. The native experiences chronic frustration in the areas ruled by the afflicted planet. Multiple MKS placements compound the difficulty.',
+      hi: 'मारक कारक स्थान (MKS) ग्रह को ऐसे भाव में रखता है जहाँ उसके प्राकृतिक कारकत्व अत्यंत कमज़ोर हो जाते हैं — मानो ग्रह "मृत" हो। जातक पीड़ित ग्रह द्वारा शासित क्षेत्रों में दीर्घकालिक निराशा का अनुभव करता है।',
+    },
+  },
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // 10. Badhaka Dosha
+  // ───────────────────────────────────────────────────────────────────────────
+  /**
+   * Badhaka Dosha — Obstruction Dosha
+   *
+   * The Badhaka lord (obstructor) depends on lagna quality:
+   * - Movable (Aries, Cancer, Libra, Capricorn): 11th lord is Badhaka
+   * - Fixed (Taurus, Leo, Scorpio, Aquarius): 9th lord is Badhaka
+   * - Dual (Gemini, Virgo, Sagittarius, Pisces): 7th lord is Badhaka
+   *
+   * Dosha forms when Badhaka lord is in a kendra or conjunct lagna lord.
+   *
+   * Source: Prashna Marga; Uttara Kalamrita
+   */
+  {
+    id: 'badhaka-dosha',
+    name: { en: 'Badhaka Dosha', hi: 'बाधक दोष', sa: 'बाधकदोषः' },
+    group: 'dosha',
+    isAuspicious: false,
+    classicalRef: 'Prashna Marga; Uttara Kalamrita',
+
+    conditions: {
+      type: 'custom',
+      detect: (ctx: YogaContext) => {
+        const lagnaSign = ctx.ascendantSign;
+        // Determine sign modality: 1=movable, 2=fixed, 3=dual
+        const MOVABLE_SIGNS = [1, 4, 7, 10]; // Aries, Cancer, Libra, Capricorn
+        const FIXED_SIGNS = [2, 5, 8, 11];   // Taurus, Leo, Scorpio, Aquarius
+        // Dual: 3, 6, 9, 12
+
+        let badhakaHouse: number;
+        if (MOVABLE_SIGNS.includes(lagnaSign)) {
+          badhakaHouse = 11;
+        } else if (FIXED_SIGNS.includes(lagnaSign)) {
+          badhakaHouse = 9;
+        } else {
+          badhakaHouse = 7;
+        }
+
+        const badhakaLord = ctx.houseLord(badhakaHouse);
+        const badhakaLordHouse = ctx.planetHouse(badhakaLord);
+        const lagnaLord = ctx.houseLord(1);
+
+        const inKendra = ctx.isKendra(badhakaLordHouse);
+        const conjunctLagnaLord = ctx.areConjunct(badhakaLord, lagnaLord);
+
+        const present = inKendra || conjunctLagnaLord;
+
+        return {
+          present,
+          involvedPlanets: present ? [...new Set([badhakaLord, ...(conjunctLagnaLord ? [lagnaLord] : [])])] : [],
+          customData: present
+            ? { badhakaHouse, badhakaLord, inKendra, conjunctLagnaLord }
+            : undefined,
+        };
+      },
+    },
+
+    assessStrength: (_ctx: YogaContext, result: YogaDetectionResult) => {
+      const data = result.customData as { inKendra?: boolean; conjunctLagnaLord?: boolean } | undefined;
+      if (data?.inKendra && data?.conjunctLagnaLord) return 'Strong';
+      return 'Moderate';
+    },
+
+    affectedDomains: 'all',
+    domainImpactWeight: 1,
+
+    formationRule: {
+      en: 'Badhaka lord (11th for movable, 9th for fixed, 7th for dual lagna) in a kendra or conjunct lagna lord',
+      hi: 'बाधक स्वामी (चर लग्न: 11वें, स्थिर: 9वें, द्विस्वभाव: 7वें का स्वामी) केन्द्र में या लग्न स्वामी के साथ',
+    },
+    description: {
+      en: 'Badhaka Dosha creates unexplained, persistent obstructions in life. The Badhaka lord — determined by the lagna sign\'s modality — acts as a hidden blocker. When placed in a kendra or conjunct the lagna lord, it intensifies obstacles that seem disproportionate to the situation. The native may face repeated setbacks without clear external cause.',
+      hi: 'बाधक दोष जीवन में अस्पष्ट, निरंतर बाधाएँ उत्पन्न करता है। बाधक स्वामी — लग्न राशि के स्वभाव द्वारा निर्धारित — एक छिपे अवरोधक का काम करता है। जातक को बार-बार ऐसी विफलताओं का सामना करना पड़ सकता है जिनका कोई स्पष्ट बाहरी कारण नहीं दिखता।',
+    },
+  },
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // 11. Vanchana Chora Bheeti
+  // ───────────────────────────────────────────────────────────────────────────
+  /**
+   * Vanchana Chora Bheeti — Fear of Deception/Theft
+   *
+   * 7th lord conjunct Rahu or in navamsha of Rahu, aspected by a malefic.
+   * Indicates fear of betrayal, deception, or theft in partnerships.
+   *
+   * Simplified: 7th lord conjunct Rahu AND aspected by any malefic (Mars/Saturn/Rahu/Ketu).
+   *
+   * Source: Saravali; Prashna Marga
+   */
+  {
+    id: 'vanchana-chora-bheeti',
+    name: { en: 'Vanchana Chora Bheeti', hi: 'वंचना चोर भीति', sa: 'वञ्चनाचौरभीतिः' },
+    group: 'dosha',
+    isAuspicious: false,
+    classicalRef: 'Saravali; Prashna Marga',
+
+    conditions: {
+      type: 'custom',
+      detect: (ctx: YogaContext) => {
+        const lord7 = ctx.houseLord(7);
+        const lord7Conjunct7Rahu = ctx.areConjunct(lord7, 7); // 7 = Rahu
+
+        if (!lord7Conjunct7Rahu) {
+          return { present: false, involvedPlanets: [] };
+        }
+
+        // Check if aspected by any malefic (Mars=2, Saturn=6, Ketu=8)
+        const lord7House = ctx.planetHouse(lord7);
+        const MALEFICS = [2, 6, 8]; // Mars, Saturn, Ketu (Rahu already conjunct)
+        const aspectingMalefics: number[] = [];
+        for (const mid of MALEFICS) {
+          if (mid === lord7) continue; // skip if lord7 IS the malefic
+          if (ctx.doesAspect(mid, lord7House)) {
+            aspectingMalefics.push(mid);
+          }
+        }
+
+        const present = aspectingMalefics.length > 0;
+        return {
+          present,
+          involvedPlanets: present ? [...new Set([lord7, 7, ...aspectingMalefics])] : [],
+          customData: present ? { aspectingMalefics } : undefined,
+        };
+      },
+    },
+
+    assessStrength: standardDoshaStrength,
+
+    affectedDomains: ['marriage'],
+    domainImpactWeight: 1,
+
+    formationRule: {
+      en: '7th lord conjunct Rahu and aspected by a natural malefic (Mars, Saturn, or Ketu)',
+      hi: '7वें भाव का स्वामी राहु के साथ और प्राकृतिक पापग्रह (मंगल, शनि, या केतु) की दृष्टि',
+    },
+    description: {
+      en: 'Vanchana Chora Bheeti indicates a deep-seated fear of deception, betrayal, or theft in partnerships. The 7th lord\'s conjunction with Rahu — the planet of illusion — under malefic aspect creates vulnerability to dishonest partners, fraud in business, or trust issues in marriage. The native should exercise extra due diligence in partnerships and financial agreements.',
+      hi: 'वंचना चोर भीति साझेदारी में धोखा, विश्वासघात या चोरी के गहरे भय का संकेत देता है। राहु — भ्रम के ग्रह — के साथ 7वें स्वामी की युति पापग्रह दृष्टि में बेईमान साथियों, व्यापार में धोखाधड़ी या विवाह में विश्वास की समस्याओं के प्रति भेद्यता पैदा करती है।',
+    },
+  },
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // 12. Shubha Kartari Yoga
+  // ───────────────────────────────────────────────────────────────────────────
+  /**
+   * Shubha Kartari Yoga — Benefic Hemming
+   *
+   * Natural benefics in the 12th and 2nd houses from Lagna (houses flanking
+   * the ascendant). The lagna is "hemmed" by benefic influences — protective.
+   *
+   * Source: BPHS Ch.34; Phaladeepika
+   */
+  {
+    id: 'shubha-kartari',
+    name: { en: 'Shubha Kartari Yoga', hi: 'शुभ कर्तरी योग', sa: 'शुभकर्तरीयोगः' },
+    group: 'dosha',
+    isAuspicious: true,
+    classicalRef: 'BPHS Ch.34; Phaladeepika',
+
+    conditions: {
+      type: 'custom',
+      detect: (ctx: YogaContext) => {
+        // Check for benefics in H12 and H2 (houses flanking lagna)
+        const planetsIn12 = ctx.planetsInHouse(12);
+        const planetsIn2 = ctx.planetsInHouse(2);
+
+        const beneficsIn12 = planetsIn12.filter(pid => ctx.isNaturalBenefic(pid));
+        const beneficsIn2 = planetsIn2.filter(pid => ctx.isNaturalBenefic(pid));
+
+        // Both sides must have at least one benefic
+        const present = beneficsIn12.length > 0 && beneficsIn2.length > 0;
+
+        return {
+          present,
+          involvedPlanets: present ? [...beneficsIn12, ...beneficsIn2] : [],
+          customData: present ? { beneficsIn12, beneficsIn2 } : undefined,
+        };
+      },
+    },
+
+    assessStrength: (ctx: YogaContext, result: YogaDetectionResult) => {
+      const dignifiedCount = result.involvedPlanets.filter(pid => {
+        const d = ctx.dignity(pid);
+        return d === 'exalted' || d === 'own' || d === 'moolatrikona';
+      }).length;
+      if (dignifiedCount >= 2) return 'Strong';
+      if (result.involvedPlanets.length >= 3) return 'Strong';
+      return 'Moderate';
+    },
+
+    affectedDomains: ['health', 'career'],
+    domainImpactWeight: 1,
+
+    formationRule: {
+      en: 'Natural benefics in both the 12th and 2nd houses from Lagna — benefics hem the ascendant',
+      hi: 'लग्न से 12वें और 2रे दोनों भावों में प्राकृतिक शुभ ग्रह — शुभ ग्रह लग्न को घेरते हैं',
+    },
+    description: {
+      en: 'Shubha Kartari Yoga creates a protective shield around the ascendant. Benefics flanking the lagna from both sides bring good health, a positive disposition, and general well-being. The native is surrounded by supportive people and encounters fewer obstacles in personal endeavours. This is one of the simpler yet practically significant auspicious combinations.',
+      hi: 'शुभ कर्तरी योग लग्न के चारों ओर एक सुरक्षात्मक कवच बनाता है। दोनों ओर से लग्न को घेरने वाले शुभ ग्रह अच्छा स्वास्थ्य, सकारात्मक स्वभाव और सामान्य कल्याण लाते हैं। जातक सहायक लोगों से घिरा रहता है और व्यक्तिगत प्रयासों में कम बाधाओं का सामना करता है।',
+    },
+  },
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // 13. Papa Kartari Yoga
+  // ───────────────────────────────────────────────────────────────────────────
+  /**
+   * Papa Kartari Yoga — Malefic Hemming
+   *
+   * Natural malefics in the 12th and 2nd houses from Lagna. The lagna is
+   * "hemmed" by malefic influences — constricting and challenging.
+   *
+   * Natural malefics: Sun (0), Mars (2), Saturn (6), Rahu (7), Ketu (8).
+   *
+   * Source: BPHS Ch.34; Phaladeepika
+   */
+  {
+    id: 'papa-kartari',
+    name: { en: 'Papa Kartari Yoga', hi: 'पाप कर्तरी योग', sa: 'पापकर्तरीयोगः' },
+    group: 'dosha',
+    isAuspicious: false,
+    classicalRef: 'BPHS Ch.34; Phaladeepika',
+
+    conditions: {
+      type: 'custom',
+      detect: (ctx: YogaContext) => {
+        // Natural malefics: Sun(0), Mars(2), Saturn(6), Rahu(7), Ketu(8)
+        const MALEFIC_IDS = [0, 2, 6, 7, 8];
+
+        const planetsIn12 = ctx.planetsInHouse(12);
+        const planetsIn2 = ctx.planetsInHouse(2);
+
+        const maleficsIn12 = planetsIn12.filter(pid => MALEFIC_IDS.includes(pid));
+        const maleficsIn2 = planetsIn2.filter(pid => MALEFIC_IDS.includes(pid));
+
+        // Both sides must have at least one malefic
+        const present = maleficsIn12.length > 0 && maleficsIn2.length > 0;
+
+        return {
+          present,
+          involvedPlanets: present ? [...maleficsIn12, ...maleficsIn2] : [],
+          customData: present ? { maleficsIn12, maleficsIn2 } : undefined,
+        };
+      },
+    },
+
+    assessStrength: (ctx: YogaContext, result: YogaDetectionResult) => {
+      // Stronger when malefics are themselves strong (exalted/own)
+      const strongMalefics = result.involvedPlanets.filter(pid => {
+        const d = ctx.dignity(pid);
+        return d === 'exalted' || d === 'own' || d === 'moolatrikona';
+      }).length;
+      // Strong malefics = stronger affliction
+      if (strongMalefics >= 2) return 'Strong';
+      if (result.involvedPlanets.length >= 3) return 'Strong';
+      return 'Moderate';
+    },
+
+    cancellations: [
+      {
+        condition: {
+          type: 'custom',
+          detect: (ctx: YogaContext) => {
+            // Jupiter aspects lagna — mitigates hemming
+            const present = ctx.doesAspect(4, 1);
+            return { present, involvedPlanets: present ? [4] : [] };
+          },
+        },
+        reason: {
+          en: 'Jupiter aspects the lagna — divine protection mitigates the malefic hemming',
+          hi: 'गुरु की लग्न पर दृष्टि — दैवी सुरक्षा पापग्रह कर्तरी को कम करती है',
+        },
+        effect: 'weaken',
+      },
+    ],
+
+    affectedDomains: ['health'],
+    domainImpactWeight: 2,
+
+    formationRule: {
+      en: 'Natural malefics in both the 12th and 2nd houses from Lagna — malefics hem the ascendant',
+      hi: 'लग्न से 12वें और 2रे दोनों भावों में प्राकृतिक पापग्रह — पापग्रह लग्न को घेरते हैं',
+    },
+    description: {
+      en: 'Papa Kartari Yoga constricts the ascendant between malefic influences. The native feels hemmed in — health challenges, limited freedom, and a sense of being trapped by circumstances. Growth requires extra effort as malefic energies press in from both sides. Jupiter\'s aspect on the lagna can significantly mitigate this affliction.',
+      hi: 'पाप कर्तरी योग लग्न को पापग्रह प्रभावों के बीच संकुचित करता है। जातक को स्वास्थ्य चुनौतियाँ, सीमित स्वतंत्रता और परिस्थितियों में फँसे होने की भावना होती है। दोनों ओर से पापग्रह ऊर्जाओं के दबाव में विकास के लिए अतिरिक्त प्रयास आवश्यक है।',
+    },
+  },
 ];

@@ -1,13 +1,15 @@
 /**
  * Yoga Engine — All Rules Combined
  *
- * Single export aggregating all 13 rule groups (95 rules total).
+ * Single export aggregating all 15 rule groups.
  * Import ALL_YOGA_RULES and pass to registerYogaRules() once.
  *
  * Rule groups correspond to classical text chapters:
  * - Mahapurusha: BPHS Ch.34 — 5 great person yogas
  * - Raja: BPHS Ch.34-35 — kendra-trikona lord connections
+ * - Per-Lagna Raja: BPHS Ch.34-35 — lagna-specific yogakaraka pairs (12 rules)
  * - Dhana: BPHS Ch.36 — wealth yogas
+ * - Daridra: BPHS Ch.36 — poverty/obstruction yogas
  * - Chandra: Phaladeepika Ch.6 — Moon-based yogas
  * - Surya: Phaladeepika Ch.6 — Sun-based yogas
  * - Dosha: Various — classical afflictions
@@ -25,6 +27,7 @@ import { MAHAPURUSHA_RULES } from './mahapurusha';
 import { CHANDRA_RULES } from './chandra';
 import { DOSHA_RULES } from './dosha';
 import { RAJA_RULES } from './raja';
+import { PER_LAGNA_RAJA_RULES } from './per-lagna-raja';
 import { SURYA_RULES } from './surya';
 import { DHANA_RULES } from './dhana';
 import { NABHASA_RULES } from './nabhasa';
@@ -34,15 +37,18 @@ import { ARISHTA_RULES } from './arishta';
 import { SANNYASA_RULES } from './sannyasa';
 import { CONJUNCTION_RULES } from './conjunction';
 import { NAVAMSHA_RULES } from './navamsha';
+import { DARIDRA_RULES } from './daridra';
 
 /**
- * All yoga rules from 13 groups. Pass to registerYogaRules() once per session.
+ * All yoga rules from 15 groups. Pass to registerYogaRules() once per session.
  * Order matches the recommended UI group display order.
  */
 export const ALL_YOGA_RULES: YogaRule[] = [
   ...MAHAPURUSHA_RULES,
   ...RAJA_RULES,
+  ...PER_LAGNA_RAJA_RULES,
   ...DHANA_RULES,
+  ...DARIDRA_RULES,
   ...CHANDRA_RULES,
   ...SURYA_RULES,
   ...DOSHA_RULES,

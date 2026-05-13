@@ -565,4 +565,433 @@ export const ARISHTA_RULES: YogaRule[] = [
       hi: 'रोग योग रोग भाव (6ठा) और शरीर भाव (1ला) को जोड़ता है, स्वास्थ्य समस्याओं की ओर संवैधानिक प्रवृत्ति बनाता है। जातक को तीव्र आपातकाल के बजाय दीर्घकालिक या बार-बार होने वाली बीमारियों का खतरा हो सकता है। जब दोनों स्थितियाँ एक साथ उपस्थित हों (6ठे का स्वामी 1ले में और 1ले का स्वामी 6ठे में), तो पीड़ा काफी प्रबल होती है।',
     },
   },
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // 7. Balarishta (Moon Afflicted)
+  // ───────────────────────────────────────────────────────────────────────────
+  /**
+   * Balarishta (Moon) — Moon in 6th/8th/12th afflicted by malefic, without benefic aspect
+   *
+   * A more specific variant of Balarishta: Moon in dusthana AND aspected by
+   * a natural malefic, with NO benefic aspect to counterbalance.
+   *
+   * Source: BPHS Ch.35 v.1-3; Jataka Parijata Ch.5
+   */
+  {
+    id: 'balarishta-moon',
+    name: { en: 'Balarishta (Moon)', hi: 'बालारिष्ट (चंद्र)', sa: 'बालारिष्टयोगः (चन्द्रः)' },
+    group: 'arishta',
+    isAuspicious: false,
+    classicalRef: 'BPHS Ch.35 v.1-3; Jataka Parijata Ch.5',
+
+    conditions: {
+      type: 'custom',
+      detect: (ctx: YogaContext) => {
+        const moonHouse = ctx.planetHouse(1);
+        if (!ctx.isDusthana(moonHouse)) {
+          return { present: false, involvedPlanets: [] };
+        }
+
+        // Check malefic aspect on Moon's house (Sun=0, Mars=2, Saturn=6, Rahu=7, Ketu=8)
+        const MALEFIC_IDS = [0, 2, 6, 7, 8];
+        let hasMaleficAspect = false;
+        const aspectingMalefics: number[] = [];
+        for (const mid of MALEFIC_IDS) {
+          if (ctx.doesAspect(mid, moonHouse)) {
+            hasMaleficAspect = true;
+            aspectingMalefics.push(mid);
+          }
+        }
+
+        if (!hasMaleficAspect) {
+          return { present: false, involvedPlanets: [] };
+        }
+
+        // Check if any benefic aspects Moon's house — cancels if so
+        const BENEFIC_IDS = [3, 4, 5]; // Mercury, Jupiter, Venus (Moon itself excluded)
+        let hasBeneficAspect = false;
+        for (const bid of BENEFIC_IDS) {
+          if (ctx.doesAspect(bid, moonHouse)) {
+            hasBeneficAspect = true;
+            break;
+          }
+        }
+
+        if (hasBeneficAspect) {
+          return { present: false, involvedPlanets: [] };
+        }
+
+        return {
+          present: true,
+          involvedPlanets: [1, ...aspectingMalefics],
+          customData: { moonHouse, aspectingMalefics },
+        };
+      },
+    },
+
+    assessStrength: arishtaStrength,
+
+    affectedDomains: ['health', 'children'],
+    domainImpactWeight: 2,
+
+    formationRule: {
+      en: 'Moon in 6th/8th/12th afflicted by a malefic aspect, without any benefic aspect',
+      hi: 'चंद्रमा 6/8/12वें भाव में पापग्रह की दृष्टि से पीड़ित, बिना किसी शुभ दृष्टि के',
+    },
+    description: {
+      en: 'This variant of Balarishta is more specific than the basic form: Moon is not merely in a dusthana, but actively afflicted by malefic aspects with no benefic counterbalance. Childhood health issues are more pronounced — potentially frequent illnesses, emotional disturbances, or difficulty in the early learning environment. The native needs extra care during formative years.',
+      hi: 'बालारिष्ट का यह रूप मूल रूप से अधिक विशिष्ट है: चंद्रमा न केवल दुष्ट भाव में है, बल्कि बिना शुभ संतुलन के पापग्रह दृष्टि से सक्रिय रूप से पीड़ित भी है। बचपन की स्वास्थ्य समस्याएँ अधिक स्पष्ट होती हैं।',
+    },
+  },
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // 8. Balarishta (Extended)
+  // ───────────────────────────────────────────────────────────────────────────
+  /**
+   * Balarishta (Extended) — Lagna lord weak + malefic in lagna + no benefic aspect
+   *
+   * A broader Balarishta: the body itself is afflicted (weak lagna lord),
+   * malefics occupy the ascendant, and no benefic aspects the lagna.
+   *
+   * Source: BPHS Ch.35; Saravali
+   */
+  {
+    id: 'balarishta-extended',
+    name: { en: 'Balarishta (Extended)', hi: 'बालारिष्ट (विस्तृत)', sa: 'बालारिष्टयोगः (विस्तृतः)' },
+    group: 'arishta',
+    isAuspicious: false,
+    classicalRef: 'BPHS Ch.35; Saravali',
+
+    conditions: {
+      type: 'custom',
+      detect: (ctx: YogaContext) => {
+        const lagnaLord = ctx.houseLord(1);
+        const lagnaLordDignity = ctx.dignity(lagnaLord);
+
+        // Lagna lord must be weak (debilitated, enemy, or combust)
+        const isWeak =
+          lagnaLordDignity === 'debilitated' ||
+          lagnaLordDignity === 'enemy' ||
+          ctx.isCombust(lagnaLord);
+
+        if (!isWeak) return { present: false, involvedPlanets: [] };
+
+        // Malefic in lagna
+        const MALEFIC_IDS = [0, 2, 6, 7, 8];
+        const planetsInLagna = ctx.planetsInHouse(1);
+        const maleficsInLagna = planetsInLagna.filter(pid => MALEFIC_IDS.includes(pid));
+
+        if (maleficsInLagna.length === 0) return { present: false, involvedPlanets: [] };
+
+        // No benefic aspect on lagna
+        const BENEFIC_IDS = [3, 4, 5]; // Mercury, Jupiter, Venus
+        let hasBeneficAspect = false;
+        for (const bid of BENEFIC_IDS) {
+          if (ctx.doesAspect(bid, 1)) {
+            hasBeneficAspect = true;
+            break;
+          }
+        }
+
+        if (hasBeneficAspect) return { present: false, involvedPlanets: [] };
+
+        return {
+          present: true,
+          involvedPlanets: [lagnaLord, ...maleficsInLagna],
+          customData: { lagnaLordDignity, maleficsInLagna },
+        };
+      },
+    },
+
+    assessStrength: arishtaStrength,
+
+    affectedDomains: ['health'],
+    domainImpactWeight: 2,
+
+    formationRule: {
+      en: 'Lagna lord weak (debilitated/enemy/combust) + malefic in lagna + no benefic aspect on lagna',
+      hi: 'लग्न स्वामी कमज़ोर (नीच/शत्रु/अस्त) + लग्न में पापग्रह + लग्न पर कोई शुभ दृष्टि नहीं',
+    },
+    description: {
+      en: 'This extended Balarishta identifies a triple vulnerability: the lagna lord is weak, a malefic sits in the ascendant, and no benefic rescues through aspect. The body house is thoroughly compromised. Childhood and general constitutional health are both at risk. Remedies should focus on strengthening the lagna lord.',
+      hi: 'यह विस्तृत बालारिष्ट तीन स्तरीय भेद्यता की पहचान करता है: लग्न स्वामी कमज़ोर है, पापग्रह लग्न में बैठा है, और कोई शुभ ग्रह दृष्टि से रक्षा नहीं करता। शरीर भाव पूरी तरह समझौता किया हुआ है।',
+    },
+  },
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // 9. Pitru Arishta
+  // ───────────────────────────────────────────────────────────────────────────
+  /**
+   * Pitru Arishta — Father's health/relationship issues
+   *
+   * 9th lord in a dusthana OR Sun afflicted by Saturn.
+   * The 9th house represents the father — afflictions here indicate
+   * challenges in the father's health or the native's relationship with him.
+   *
+   * Source: BPHS Ch.35; Jataka Parijata
+   */
+  {
+    id: 'pitru-arishta',
+    name: { en: 'Pitru Arishta', hi: 'पितृ अरिष्ट', sa: 'पित्रारिष्टम्' },
+    group: 'arishta',
+    isAuspicious: false,
+    classicalRef: 'BPHS Ch.35; Jataka Parijata',
+
+    conditions: {
+      type: 'custom',
+      detect: (ctx: YogaContext) => {
+        const lord9 = ctx.houseLord(9);
+        const lord9House = ctx.planetHouse(lord9);
+        const lord9InDusthana = ctx.isDusthana(lord9House);
+
+        // Sun afflicted by Saturn (conjunction or aspect)
+        const sunSaturnConjunct = ctx.areConjunct(0, 6); // Sun=0, Saturn=6
+        const saturnAspectsSun = ctx.doesAspect(6, ctx.planetHouse(0));
+        const sunAfflictedBySaturn = sunSaturnConjunct || saturnAspectsSun;
+
+        const present = lord9InDusthana || sunAfflictedBySaturn;
+        if (!present) return { present: false, involvedPlanets: [] };
+
+        const involved: number[] = [];
+        if (lord9InDusthana) involved.push(lord9);
+        if (sunAfflictedBySaturn) involved.push(0, 6);
+
+        return {
+          present: true,
+          involvedPlanets: [...new Set(involved)],
+          customData: { lord9InDusthana, sunAfflictedBySaturn },
+        };
+      },
+    },
+
+    assessStrength: (ctx: YogaContext, result: YogaDetectionResult) => {
+      const data = result.customData as { lord9InDusthana?: boolean; sunAfflictedBySaturn?: boolean } | undefined;
+      if (data?.lord9InDusthana && data?.sunAfflictedBySaturn) return 'Strong';
+      return arishtaStrength(ctx, result);
+    },
+
+    affectedDomains: ['family'],
+    domainImpactWeight: 2,
+
+    formationRule: {
+      en: '9th lord in a dusthana (6/8/12) OR Sun afflicted by Saturn (conjunction or aspect)',
+      hi: '9वें भाव का स्वामी दुष्ट भाव (6/8/12) में या सूर्य शनि से पीड़ित (युति या दृष्टि)',
+    },
+    description: {
+      en: 'Pitru Arishta indicates challenges related to the father — his health, longevity, or the native\'s relationship with him. The 9th house (father, dharma, fortune) is compromised through its lord\'s dusthana placement or through Sun (natural karaka for father) being afflicted by Saturn. The native may experience early separation from the father, estrangement, or witness the father\'s health struggles.',
+      hi: 'पितृ अरिष्ट पिता से संबंधित चुनौतियों का संकेत देता है — उनका स्वास्थ्य, दीर्घायु, या जातक का उनके साथ संबंध। 9वें भाव (पिता, धर्म, भाग्य) का स्वामी दुष्ट भाव में या सूर्य (पिता का प्राकृतिक कारक) शनि से पीड़ित होने पर जातक को पिता से शीघ्र वियोग या उनके स्वास्थ्य संघर्ष का अनुभव हो सकता है।',
+    },
+  },
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // 10. Matru Arishta
+  // ───────────────────────────────────────────────────────────────────────────
+  /**
+   * Matru Arishta — Mother's health/relationship issues
+   *
+   * 4th lord in a dusthana OR Moon afflicted by Saturn/Rahu.
+   * The 4th house represents the mother — afflictions here indicate
+   * challenges in the mother's health or emotional well-being.
+   *
+   * Source: BPHS Ch.35; Saravali
+   */
+  {
+    id: 'matru-arishta',
+    name: { en: 'Matru Arishta', hi: 'मातृ अरिष्ट', sa: 'मात्रारिष्टम्' },
+    group: 'arishta',
+    isAuspicious: false,
+    classicalRef: 'BPHS Ch.35; Saravali',
+
+    conditions: {
+      type: 'custom',
+      detect: (ctx: YogaContext) => {
+        const lord4 = ctx.houseLord(4);
+        const lord4House = ctx.planetHouse(lord4);
+        const lord4InDusthana = ctx.isDusthana(lord4House);
+
+        // Moon afflicted by Saturn or Rahu (conjunction or aspect)
+        const moonHouse = ctx.planetHouse(1);
+        const moonSaturnConjunct = ctx.areConjunct(1, 6);
+        const saturnAspectsMoon = ctx.doesAspect(6, moonHouse);
+        const moonRahuConjunct = ctx.areConjunct(1, 7);
+        const moonAfflicted = moonSaturnConjunct || saturnAspectsMoon || moonRahuConjunct;
+
+        const present = lord4InDusthana || moonAfflicted;
+        if (!present) return { present: false, involvedPlanets: [] };
+
+        const involved: number[] = [];
+        if (lord4InDusthana) involved.push(lord4);
+        if (moonAfflicted) {
+          involved.push(1);
+          if (moonSaturnConjunct || saturnAspectsMoon) involved.push(6);
+          if (moonRahuConjunct) involved.push(7);
+        }
+
+        return {
+          present: true,
+          involvedPlanets: [...new Set(involved)],
+          customData: { lord4InDusthana, moonAfflicted },
+        };
+      },
+    },
+
+    assessStrength: (ctx: YogaContext, result: YogaDetectionResult) => {
+      const data = result.customData as { lord4InDusthana?: boolean; moonAfflicted?: boolean } | undefined;
+      if (data?.lord4InDusthana && data?.moonAfflicted) return 'Strong';
+      return arishtaStrength(ctx, result);
+    },
+
+    affectedDomains: ['family'],
+    domainImpactWeight: 2,
+
+    formationRule: {
+      en: '4th lord in a dusthana (6/8/12) OR Moon afflicted by Saturn/Rahu (conjunction or aspect)',
+      hi: '4थे भाव का स्वामी दुष्ट भाव (6/8/12) में या चंद्रमा शनि/राहु से पीड़ित (युति या दृष्टि)',
+    },
+    description: {
+      en: 'Matru Arishta indicates challenges related to the mother — her health, emotional state, or the native\'s relationship with her. The 4th house (mother, home, emotional foundation) is compromised through its lord\'s dusthana placement or through Moon (natural karaka for mother) being afflicted by Saturn or Rahu. The native may experience difficulties in the home environment or maternal health concerns.',
+      hi: 'मातृ अरिष्ट माता से संबंधित चुनौतियों का संकेत देता है — उनका स्वास्थ्य, भावनात्मक स्थिति, या जातक का उनके साथ संबंध। 4थे भाव (माता, गृह, भावनात्मक आधार) का स्वामी दुष्ट भाव में या चंद्रमा (माता का प्राकृतिक कारक) शनि या राहु से पीड़ित होने पर जातक को गृह वातावरण या मातृ स्वास्थ्य की चिंताओं का अनुभव हो सकता है।',
+    },
+  },
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // 11. Roga Yoga (6-in-1)
+  // ───────────────────────────────────────────────────────────────────────────
+  /**
+   * Roga Yoga (6th lord in 1st) — Disease Proneness (targeted variant)
+   *
+   * Specifically: 6th lord in the 1st house. The disease house lord
+   * directly occupies the body house — more focused than the exchange variant.
+   *
+   * Source: BPHS Ch.35; Phaladeepika
+   */
+  {
+    id: 'roga-yoga-6-in-1',
+    name: { en: 'Roga Yoga (6-in-1)', hi: 'रोग योग (6 में 1)', sa: 'रोगयोगः (षष्ठे प्रथमे)' },
+    group: 'arishta',
+    isAuspicious: false,
+    classicalRef: 'BPHS Ch.35; Phaladeepika',
+
+    conditions: {
+      type: 'lord_in_house',
+      lordOfHouse: 6,
+      inHouses: [1],
+    },
+
+    assessStrength: (ctx: YogaContext, _result: YogaDetectionResult) => {
+      const lord6 = ctx.houseLord(6);
+      const dignity = ctx.dignity(lord6);
+      // Stronger when 6th lord is also strong (can inflict more disease)
+      if (dignity === 'exalted' || dignity === 'own') return 'Strong';
+      if (dignity === 'debilitated') return 'Weak';
+      return 'Moderate';
+    },
+
+    cancellations: [
+      {
+        condition: {
+          type: 'custom',
+          detect: (ctx: YogaContext) => {
+            const present = ctx.doesAspect(4, 1); // Jupiter aspects lagna
+            return { present, involvedPlanets: present ? [4] : [] };
+          },
+        },
+        reason: {
+          en: 'Jupiter aspects lagna — divine protection mitigates disease proneness',
+          hi: 'गुरु की लग्न पर दृष्टि — दैवी सुरक्षा रोग प्रवृत्ति को कम करती है',
+        },
+        effect: 'weaken',
+      },
+    ],
+
+    affectedDomains: ['health'],
+    domainImpactWeight: 2,
+
+    formationRule: {
+      en: '6th lord placed directly in the 1st house (lagna) — disease lord occupies the body house',
+      hi: '6ठे भाव का स्वामी सीधे 1ले भाव (लग्न) में — रोग का स्वामी शरीर भाव में',
+    },
+    description: {
+      en: 'This focused variant of Roga Yoga places the 6th lord (disease, enemies, debts) directly in the lagna (body, self). The native\'s constitution is inherently vulnerable to illness. The type of illness is indicated by the 6th lord\'s nature: Mars → inflammatory, Saturn → chronic, Mercury → nervous, Venus → reproductive. A strong 6th lord paradoxically makes the yoga more potent — a powerful disease lord creates stronger health challenges.',
+      hi: 'रोग योग का यह केंद्रित रूप 6ठे स्वामी (रोग, शत्रु, ऋण) को सीधे लग्न (शरीर, आत्म) में रखता है। जातक का शरीर स्वाभाविक रूप से बीमारी के प्रति संवेदनशील है। रोग का प्रकार 6ठे स्वामी की प्रकृति से संकेतित होता है।',
+    },
+  },
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // 12. Arishta Bhanga (Extended)
+  // ───────────────────────────────────────────────────────────────────────────
+  /**
+   * Arishta Bhanga (Extended) — Strong cancellation of health afflictions
+   *
+   * Strong lagna lord + benefic aspects on lagna + Jupiter strong.
+   * A more robust version: requires Jupiter itself to be dignified
+   * in addition to aspecting the lagna.
+   *
+   * Source: BPHS Ch.35 v.5-6; Phaladeepika
+   */
+  {
+    id: 'arishta-bhanga-extended',
+    name: { en: 'Arishta Bhanga (Extended)', hi: 'अरिष्ट भंग (विस्तृत)', sa: 'अरिष्टभङ्गयोगः (विस्तृतः)' },
+    group: 'arishta',
+    isAuspicious: true,
+    classicalRef: 'BPHS Ch.35 v.5-6; Phaladeepika',
+
+    conditions: {
+      type: 'custom',
+      detect: (ctx: YogaContext) => {
+        const involvedPlanets: number[] = [];
+
+        // Condition 1: Strong lagna lord (own/exalted/moolatrikona)
+        const lagnaLord = ctx.houseLord(1);
+        const lagnaLordDignity = ctx.dignity(lagnaLord);
+        const lagnaLordStrong =
+          lagnaLordDignity === 'exalted' ||
+          lagnaLordDignity === 'own' ||
+          lagnaLordDignity === 'moolatrikona';
+        if (!lagnaLordStrong) return { present: false, involvedPlanets: [] };
+        involvedPlanets.push(lagnaLord);
+
+        // Condition 2: Benefic aspects on lagna
+        let beneficAspectCount = 0;
+        for (const bid of NATURAL_BENEFICS) {
+          if (ctx.doesAspect(bid, 1)) {
+            beneficAspectCount++;
+            if (!involvedPlanets.includes(bid)) involvedPlanets.push(bid);
+          }
+        }
+        if (beneficAspectCount === 0) return { present: false, involvedPlanets: [] };
+
+        // Condition 3: Jupiter strong (own/exalted/moolatrikona or in kendra)
+        const jupDignity = ctx.dignity(4);
+        const jupHouse = ctx.planetHouse(4);
+        const jupiterStrong =
+          jupDignity === 'exalted' ||
+          jupDignity === 'own' ||
+          jupDignity === 'moolatrikona' ||
+          ctx.isKendra(jupHouse);
+        if (!jupiterStrong) return { present: false, involvedPlanets: [] };
+        if (!involvedPlanets.includes(4)) involvedPlanets.push(4);
+
+        return {
+          present: true,
+          involvedPlanets,
+          customData: { lagnaLordDignity, beneficAspectCount, jupDignity, jupHouse },
+        };
+      },
+    },
+
+    assessStrength: beneficStrength,
+
+    affectedDomains: ['health'],
+    domainImpactWeight: 2,
+
+    formationRule: {
+      en: 'Strong lagna lord (own/exalted) + benefic aspect on lagna + Jupiter strong (dignified or in kendra)',
+      hi: 'बलवान लग्न स्वामी (स्वराशि/उच्च) + लग्न पर शुभ दृष्टि + गुरु बलवान (गरिमामय या केन्द्र में)',
+    },
+    description: {
+      en: 'This extended Arishta Bhanga is a robust health-protection combination. It requires three simultaneous conditions: (1) a dignified lagna lord anchoring the body, (2) benefic aspects protecting the ascendant, and (3) Jupiter — the great benefic — itself being strong. When all three are present, even severe arishtas in the chart are substantially neutralised. The native possesses remarkable resilience and recovers from health crises that would debilitate others.',
+      hi: 'यह विस्तृत अरिष्ट भंग एक मज़बूत स्वास्थ्य-सुरक्षा संयोजन है। इसके लिए तीन एक साथ शर्तें आवश्यक हैं: (1) गरिमामय लग्न स्वामी शरीर को स्थिर करे, (2) शुभ दृष्टि लग्न की रक्षा करे, (3) गुरु — महान शुभ ग्रह — स्वयं बलवान हो। तीनों उपस्थित होने पर गम्भीर अरिष्ट भी काफी हद तक निष्प्रभावी हो जाते हैं।',
+    },
+  },
 ];

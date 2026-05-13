@@ -632,4 +632,250 @@ export const NAVAMSHA_RULES: YogaRule[] = [
       hi: 'D9 नीचभंग एक शक्तिशाली उपचारात्मक योग है। नवमांश में नीच दिखने वाले ग्रह की कमज़ोरी नीच राशि के स्वामी की मजबूत स्थिति से रद्द हो जाती है। जातक आध्यात्मिक चुनौतियों को शक्तियों में बदलता है — ग्रह के क्षेत्र में शुरुआती कठिनाइयां अंततः निपुणता की ओर ले जाती हैं।',
     },
   },
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // 8. Navamsha Rajayoga
+  // ───────────────────────────────────────────────────────────────────────────
+  /**
+   * Navamsha Rajayoga — Lagna lord exalted in D9 AND in kendra in D1
+   *
+   * The lagna lord exalted in the navamsha indicates powerful dharmic
+   * reinforcement, and its placement in a kendra in D1 ensures that
+   * the native can express this elevated potential in the material world.
+   * A strong form of Raja Yoga operating through divisional chart strength.
+   *
+   * Source: BPHS Ch.7; Jataka Parijata
+   */
+  {
+    id: 'navamsha-rajayoga',
+    name: { en: 'Navamsha Rajayoga', hi: 'नवमांश राजयोग', sa: 'नवांशराजयोगः' },
+    group: 'navamsha',
+    isAuspicious: true,
+    classicalRef: 'BPHS Ch.7; Jataka Parijata',
+
+    conditions: {
+      type: 'custom',
+      detect: (ctx: YogaContext) => {
+        const lagnaLord = ctx.houseLord(1);
+        const longitude = ctx.planetLongitude(lagnaLord);
+        const d9Sign = computeNavamshaSign(longitude);
+        const exaltSign = EXALTATION_SIGNS[lagnaLord];
+
+        // Lagna lord must be exalted in D9
+        if (exaltSign === undefined || d9Sign !== exaltSign) {
+          return { present: false, involvedPlanets: [] };
+        }
+
+        // Lagna lord must be in a kendra in D1
+        const lagnaLordHouse = ctx.planetHouse(lagnaLord);
+        if (!ctx.isKendra(lagnaLordHouse)) {
+          return { present: false, involvedPlanets: [] };
+        }
+
+        return {
+          present: true,
+          involvedPlanets: [lagnaLord],
+          customData: { lagnaLord, d9Sign, d1House: lagnaLordHouse },
+        };
+      },
+    },
+
+    assessStrength: (ctx: YogaContext, result: YogaDetectionResult) => {
+      const lagnaLord = result.involvedPlanets[0];
+      if (lagnaLord === undefined) return 'Moderate';
+      const d1Dignity = ctx.dignity(lagnaLord);
+
+      // Exalted in D9 AND strong in D1 = exceptionally strong
+      if (d1Dignity === 'exalted' || d1Dignity === 'own' || d1Dignity === 'moolatrikona') return 'Strong';
+      // In kendra but weak dignity = moderate
+      if (d1Dignity === 'debilitated') return 'Weak';
+      return 'Moderate';
+    },
+
+    affectedDomains: ['career', 'wealth'],
+    domainImpactWeight: 2,
+
+    formationRule: {
+      en: 'Lagna lord exalted in Navamsha (D9) AND placed in a kendra (1/4/7/10) in the Rashi (D1) chart',
+      hi: 'लग्नेश नवमांश (D9) में उच्च और राशि (D1) चार्ट में केन्द्र (1/4/7/10) में स्थित',
+    },
+    description: {
+      en: 'Navamsha Rajayoga is a potent combination linking D1 angular strength with D9 exaltation. The lagna lord — the chart\'s most personal planet — is doubly empowered: exalted at the dharmic/soul level (D9) and positioned for maximum worldly impact (D1 kendra). The native rises to positions of authority and influence with dharmic purpose. This is a strongly career- and wealth-enhancing yoga.',
+      hi: 'नवमांश राजयोग D1 केन्द्र बल और D9 उच्च को जोड़ने वाला शक्तिशाली संयोजन है। लग्नेश — कुंडली का सबसे व्यक्तिगत ग्रह — दोगुना सशक्त है: आत्मिक स्तर (D9) पर उच्च और अधिकतम सांसारिक प्रभाव (D1 केन्द्र) के लिए स्थित। जातक धार्मिक उद्देश्य के साथ अधिकार और प्रभाव के पदों पर पहुँचता है।',
+    },
+  },
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // 9. D9 Neechabhanga Saturn
+  // ───────────────────────────────────────────────────────────────────────────
+  /**
+   * D9 Neechabhanga Saturn — Saturn debilitated in D9 with cancellation
+   *
+   * Saturn debilitated in Aries in D9, but the sign lord (Mars) is strong
+   * in D1 (own/exalted/moolatrikona or in a kendra). Saturn's D9 debilitation
+   * is cancelled, turning restrictions into eventual success through persistence.
+   * Specific to Saturn because of its karmic significance.
+   *
+   * Source: BPHS Ch.28; Phaladeepika
+   */
+  {
+    id: 'd9-neechabhanga-saturn',
+    name: { en: 'D9 Neechabhanga Saturn', hi: 'D9 नीचभंग शनि', sa: 'नवांशनीचभङ्गशनिः' },
+    group: 'navamsha',
+    isAuspicious: true,
+    classicalRef: 'BPHS Ch.28; Phaladeepika',
+
+    conditions: {
+      type: 'custom',
+      detect: (ctx: YogaContext) => {
+        // Saturn (6) must be debilitated in D9 (Aries = sign 1)
+        const saturnLongitude = ctx.planetLongitude(6);
+        const d9Sign = computeNavamshaSign(saturnLongitude);
+        const saturnDebilSign = DEBILITATION_SIGNS[6]; // Aries = 1
+
+        if (saturnDebilSign === undefined || d9Sign !== saturnDebilSign) {
+          return { present: false, involvedPlanets: [] };
+        }
+
+        // Sign lord of Aries is Mars (2) — Mars must be strong in D1
+        const marsId = 2; // Mars = SIGN_LORDS[1]
+        const marsDignity = ctx.dignity(marsId);
+        const marsInKendra = ctx.isKendra(ctx.planetHouse(marsId));
+
+        const marsStrong =
+          marsDignity === 'exalted' ||
+          marsDignity === 'own' ||
+          marsDignity === 'moolatrikona' ||
+          marsInKendra;
+
+        if (!marsStrong) {
+          return { present: false, involvedPlanets: [] };
+        }
+
+        return {
+          present: true,
+          involvedPlanets: [6, marsId],
+          customData: { d9Sign, marsDignity, marsHouse: ctx.planetHouse(marsId) },
+        };
+      },
+    },
+
+    assessStrength: (ctx: YogaContext) => {
+      // Mars exalted in D1 (Capricorn) = strongest cancellation
+      const marsDignity = ctx.dignity(2);
+      if (marsDignity === 'exalted') return 'Strong';
+      if (marsDignity === 'own' || marsDignity === 'moolatrikona') return 'Strong';
+      // Mars in kendra but neutral dignity
+      return 'Moderate';
+    },
+
+    affectedDomains: ['career'],
+    domainImpactWeight: 1,
+
+    formationRule: {
+      en: 'Saturn debilitated in D9 (Aries) with cancellation — Mars (sign lord) strong in D1 (own/exalted or in kendra)',
+      hi: 'शनि D9 में नीच (मेष) परंतु नीचभंग — मंगल (राशि स्वामी) D1 में बलवान (स्वराशि/उच्च या केन्द्र में)',
+    },
+    description: {
+      en: 'D9 Neechabhanga Saturn specifically addresses Saturn\'s karmic debilitation in the navamsha being cancelled by a strong Mars in D1. Saturn debilitated in D9 Aries suggests spiritual lessons around patience, authority, and structure feel burdensome at the soul level. Mars\'s D1 strength provides the courage and decisive action needed to overcome these karmic blocks. The native earns career success through perseverance, transforming Saturn\'s delays into durable achievements.',
+      hi: 'D9 नीचभंग शनि विशेष रूप से नवमांश में शनि के कार्मिक नीच को D1 में बलवान मंगल द्वारा रद्द करने का संकेत देता है। D9 मेष में शनि नीच होने पर धैर्य और अधिकार के आध्यात्मिक पाठ बोझिल लगते हैं। मंगल की D1 शक्ति इन कार्मिक बाधाओं को पार करने का साहस प्रदान करती है। जातक दृढ़ता से करियर में सफलता अर्जित करता है।',
+    },
+  },
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // 10. D9 Atmakaraka Strength
+  // ───────────────────────────────────────────────────────────────────────────
+  /**
+   * D9 Atmakaraka Strength — Atmakaraka in own/exalted sign in D9
+   *
+   * The Atmakaraka (planet with highest degree in any sign) represents
+   * the soul's deepest desire. When this planet occupies its own or
+   * exalted sign in the Navamsha, the soul's purpose is strongly
+   * supported at the dharmic level — the Karakamsha is powerful.
+   *
+   * Source: Jaimini Sutras; BPHS Ch.32-33
+   */
+  {
+    id: 'd9-atmakaraka-strength',
+    name: { en: 'D9 Atmakaraka Strength', hi: 'D9 आत्मकारक बल', sa: 'नवांशात्मकारकबलम्' },
+    group: 'navamsha',
+    isAuspicious: true,
+    classicalRef: 'Jaimini Sutras; BPHS Ch.32-33',
+
+    conditions: {
+      type: 'custom',
+      detect: (ctx: YogaContext) => {
+        // Find Atmakaraka: planet with highest degree in its sign (Sun through Saturn only)
+        // Per Jaimini: use Sun(0) through Saturn(6), optionally Rahu(7)
+        let akId = 0;
+        let maxDeg = -1;
+        for (let pid = 0; pid <= 6; pid++) {
+          const deg = ctx.planetDegreeInSign(pid);
+          if (deg > maxDeg) {
+            maxDeg = deg;
+            akId = pid;
+          }
+        }
+
+        // Check Atmakaraka's D9 sign
+        const akLongitude = ctx.planetLongitude(akId);
+        const d9Sign = computeNavamshaSign(akLongitude);
+
+        // Check if AK is in own or exalted sign in D9
+        const exaltSign = EXALTATION_SIGNS[akId];
+        const ownSigns: number[] = [];
+
+        // Determine own signs from SIGN_LORDS (reverse lookup)
+        for (let s = 1; s <= 12; s++) {
+          if (SIGN_LORDS[s] === akId) ownSigns.push(s);
+        }
+
+        const isExaltedInD9 = exaltSign !== undefined && d9Sign === exaltSign;
+        const isOwnInD9 = ownSigns.includes(d9Sign);
+
+        if (!isExaltedInD9 && !isOwnInD9) {
+          return { present: false, involvedPlanets: [] };
+        }
+
+        return {
+          present: true,
+          involvedPlanets: [akId],
+          customData: {
+            atmakaraka: akId,
+            atmakarakaDegree: maxDeg,
+            d9Sign,
+            d9Dignity: isExaltedInD9 ? 'exalted' : 'own',
+          },
+        };
+      },
+    },
+
+    assessStrength: (ctx: YogaContext, result: YogaDetectionResult) => {
+      const data = result.customData as { d9Dignity?: string } | undefined;
+      const akId = result.involvedPlanets[0];
+      if (akId === undefined) return 'Moderate';
+
+      const d1Dignity = ctx.dignity(akId);
+      const d9Exalted = data?.d9Dignity === 'exalted';
+
+      // Exalted in D9 + strong in D1 = very strong
+      if (d9Exalted && (d1Dignity === 'exalted' || d1Dignity === 'own')) return 'Strong';
+      if (d9Exalted) return 'Strong';
+      // Own sign in D9 = moderate to strong
+      if (d1Dignity === 'exalted' || d1Dignity === 'own') return 'Strong';
+      return 'Moderate';
+    },
+
+    affectedDomains: ['spiritual'],
+    domainImpactWeight: 2,
+
+    formationRule: {
+      en: 'Atmakaraka (planet with highest degree) in own or exalted sign in Navamsha (D9) — the soul\'s purpose is strongly supported',
+      hi: 'आत्मकारक (सबसे अधिक अंश वाला ग्रह) नवमांश (D9) में स्वराशि या उच्च राशि में — आत्मा का उद्देश्य दृढ़ता से समर्थित',
+    },
+    description: {
+      en: 'D9 Atmakaraka Strength indicates that the soul\'s deepest desire (represented by the Atmakaraka — the planet with the highest degree) is powerfully supported at the dharmic level. The Karakamsha (Atmakaraka\'s D9 sign) being strong means the native\'s spiritual evolution is well-directed. Life circumstances naturally align with the soul\'s purpose. This is particularly significant in Jaimini astrology where the Atmakaraka governs the soul\'s karmic journey.',
+      hi: 'D9 आत्मकारक बल दर्शाता है कि आत्मा की सबसे गहरी इच्छा (आत्मकारक — सबसे अधिक अंश वाला ग्रह) धार्मिक स्तर पर शक्तिशाली रूप से समर्थित है। कारकांश (आत्मकारक की D9 राशि) का बलवान होना जातक के आध्यात्मिक विकास की सुदिशा का संकेत देता है। जीवन की परिस्थितियां स्वाभाविक रूप से आत्मा के उद्देश्य के अनुरूप होती हैं।',
+    },
+  },
 ];

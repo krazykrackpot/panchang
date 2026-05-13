@@ -264,6 +264,8 @@ export interface PanditConfig {
   forceProvider?: 'self-hosted' | 'anthropic' | 'mock';
   /** Disable cache lookup (for testing). */
   skipCache?: boolean;
+  /** Inject a mock provider for testing. Used when forceProvider='mock'. */
+  _mockProvider?: LLMProvider;
   /** Hook for training data collection. Called after validation passes. */
   onValidatedResponse?: (data: {
     sac: StructuredAstrologicalContext;

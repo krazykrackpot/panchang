@@ -12,16 +12,10 @@
  */
 
 import type { YogaRule, YogaContext, YogaDetectionResult } from '../types';
+import { KENDRA_HOUSES, DUSTHANA_HOUSES, NATURAL_BENEFIC_IDS } from '../utils';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Constants
-// ─────────────────────────────────────────────────────────────────────────────
-
-const KENDRA_HOUSES = [1, 4, 7, 10];
-const DUSTHANA_HOUSES = [6, 8, 12];
-
-/** Natural benefic planet IDs: Moon(1), Mercury(3), Jupiter(4), Venus(5) */
-const NATURAL_BENEFICS = [1, 3, 4, 5];
+/** @deprecated Alias — use NATURAL_BENEFIC_IDS from utils.ts */
+const NATURAL_BENEFICS = NATURAL_BENEFIC_IDS;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Shared strength assessor

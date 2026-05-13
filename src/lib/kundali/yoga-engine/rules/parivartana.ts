@@ -16,14 +16,7 @@
  */
 
 import type { YogaRule, YogaContext, YogaDetectionResult, DomainType } from '../types';
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Constants
-// ─────────────────────────────────────────────────────────────────────────────
-
-const KENDRA_HOUSES = [1, 4, 7, 10];
-const TRIKONA_HOUSES = [1, 5, 9];
-const DUSTHANA_HOUSES = [6, 8, 12];
+import { KENDRA_HOUSES, TRIKONA_HOUSES, DUSTHANA_HOUSES } from '../utils';
 
 /**
  * House meanings for dynamic description generation.
@@ -445,5 +438,7 @@ export const PARIVARTANA_RULES: YogaRule[] = [
 function ordinalSuffix(n: number): string {
   const s = ['th', 'st', 'nd', 'rd'];
   const v = n % 100;
-  return s[Math.abs((v - 20) % 10)] || s[v] || s[0];
+  // No Math.abs — negative modulo yields undefined from s[], which falls through
+  // to s[v] or s[0]. Math.abs was a bug: Math.abs(-3)=3 → s[3]='rd' → "7rd".
+  return s[(v - 20) % 10] || s[v] || s[0];
 }

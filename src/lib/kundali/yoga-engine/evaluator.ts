@@ -307,7 +307,9 @@ function evaluateConsecutiveHouses(
     }
   }
 
-  // Find the longest chain of consecutive occupied houses (wrapping around 12→1)
+  // Find the longest chain of consecutive occupied houses (wrapping around 12→1).
+  // Note: reports only the FIRST longest chain found (scanning from house 1).
+  // If two chains of equal length exist, the earlier one wins.
   let bestChain = 0;
   let bestStart = 1;
   for (let start = 1; start <= 12; start++) {
@@ -336,8 +338,8 @@ function evaluateConsecutiveHouses(
       chainHouses.add(((bestStart - 1 + i) % 12) + 1);
     }
     filteredPlanets = involvedPlanets.filter(pid => {
-      const pHouse = ctx.planets.find(p => p.id === pid)?.house;
-      return pHouse !== undefined && chainHouses.has(pHouse);
+      const pHouse = ctx.planetHouse(pid); // O(1) lookup instead of O(n) find
+      return chainHouses.has(pHouse);
     });
   }
 

@@ -15,26 +15,7 @@
  */
 
 import type { YogaRule, YogaContext, YogaDetectionResult } from '../types';
-import { houseFrom } from '../utils';
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Helper: planets eligible for Veshi/Vasi/Obhayachari
-// ─────────────────────────────────────────────────────────────────────────────
-
-/**
- * Planets considered for Sun-neighbourhood yogas (Veshi, Vasi, Obhayachari).
- * Per Phaladeepika Ch.6: Moon, Rahu, and Ketu are excluded.
- * Only Mars (2), Mercury (3), Jupiter (4), Venus (5), Saturn (6) count.
- */
-const ELIGIBLE_PLANET_IDS = [2, 3, 4, 5, 6];
-
-/**
- * Get eligible planet IDs in a specific house.
- * Filters to ELIGIBLE_PLANET_IDS (excludes Sun, Moon, Rahu, Ketu).
- */
-function eligiblePlanetsInHouse(ctx: YogaContext, house: number): number[] {
-  return ctx.planetsInHouse(house).filter(id => ELIGIBLE_PLANET_IDS.includes(id));
-}
+import { houseFrom, eligiblePlanetsInHouse } from '../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. Budhaditya Yoga — Sun conjunct Mercury, Mercury NOT combust

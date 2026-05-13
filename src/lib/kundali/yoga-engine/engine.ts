@@ -235,17 +235,6 @@ function evaluateCancellations(
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Evaluate a specific list of yoga rules against a chart context.
- *
- * @param rules - Array of yoga rules to evaluate
- * @param ctx - The precomputed chart context
- * @returns Array of evaluated yogas (both present and absent)
- */
-export function evaluateYogaRules(rules: YogaRule[], ctx: YogaContext): EvaluatedYoga[] {
-  return rules.map(rule => evaluateYogaRule(rule, ctx));
-}
-
-/**
  * Evaluate a list of yoga rules against a chart context WITHOUT using the global registry.
  *
  * This is the PREFERRED entry point — it avoids the mutable global registry entirely,
@@ -257,6 +246,15 @@ export function evaluateYogaRules(rules: YogaRule[], ctx: YogaContext): Evaluate
  */
 export function evaluateWithRules(rules: YogaRule[], ctx: YogaContext): EvaluatedYoga[] {
   return rules.map(rule => evaluateYogaRule(rule, ctx));
+}
+
+/**
+ * Evaluate a specific list of yoga rules against a chart context.
+ *
+ * @deprecated Use evaluateWithRules instead — identical behaviour, clearer name.
+ */
+export function evaluateYogaRules(rules: YogaRule[], ctx: YogaContext): EvaluatedYoga[] {
+  return evaluateWithRules(rules, ctx);
 }
 
 /**
@@ -312,6 +310,8 @@ const GROUP_TO_CATEGORY: Record<string, YogaComplete['category']> = {
  *
  * The YogaComplete interface is defined in `@/lib/kundali/yogas-complete.ts`
  * and is referenced by `KundaliData.yogasComplete`.
+ *
+ * Note: sa (Sanskrit) locale not supported in old YogaComplete format — falls back to en.
  *
  * @param evaluated - The new-format evaluated yoga
  * @returns A YogaComplete object compatible with existing consumers

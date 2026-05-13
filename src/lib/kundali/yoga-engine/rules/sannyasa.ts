@@ -12,6 +12,7 @@
  */
 
 import type { YogaRule, YogaContext, YogaDetectionResult } from '../types';
+import { NATURAL_BENEFIC_IDS } from '../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Constants
@@ -20,8 +21,8 @@ import type { YogaRule, YogaContext, YogaDetectionResult } from '../types';
 /** Sun through Saturn — the 7 classical visible planets */
 const SUN_TO_SATURN = [0, 1, 2, 3, 4, 5, 6];
 
-/** Natural benefic planet IDs: Moon(1), Mercury(3), Jupiter(4), Venus(5) */
-const NATURAL_BENEFICS = [1, 3, 4, 5];
+/** @deprecated Alias — use NATURAL_BENEFIC_IDS from utils.ts */
+const NATURAL_BENEFICS = NATURAL_BENEFIC_IDS;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Shared strength assessors

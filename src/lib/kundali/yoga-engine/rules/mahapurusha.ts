@@ -174,7 +174,9 @@ const BHADRA: YogaRule = {
     type: 'and',
     conditions: [
       { type: 'planet_in_house', planetId: 3, houses: [1, 4, 7, 10], fromLagna: true },
-      { type: 'planet_dignity', planetId: 3, dignities: ['own', 'exalted', 'moolatrikona'] },
+      // No 'moolatrikona' needed — Mercury in Virgo moolatrikona range is already
+      // classified as 'own' by the context's computeDignity(). Matches other 4 yogas.
+      { type: 'planet_dignity', planetId: 3, dignities: ['own', 'exalted'] },
     ],
   },
 

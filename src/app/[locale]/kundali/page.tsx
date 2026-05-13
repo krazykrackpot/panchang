@@ -360,6 +360,7 @@ export default function KundaliPage() {
   const L3 = (en: string, hi: string, ta?: string) => isTamil ? (ta || en) : locale === 'en' ? en : hi;
 
   const [kundali, setKundali] = useState<KundaliData | null>(null);
+  const [newYogas, setNewYogas] = useState<EvaluatedYoga[]>([]);
   const [vedicProfile, setVedicProfile] = useState<VedicProfileType | null>(null);
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
   const [loading, setLoading] = useState(false);
@@ -529,11 +530,12 @@ export default function KundaliPage() {
             setKundali(data);
             try {
               // Compute yoga engine results from fresh kundali data
-              let engineYogas: typeof newYogas = [];
+              let engineYogas: EvaluatedYoga[] = [];
               try {
                 const yCtx = buildYogaContext(data);
                 engineYogas = evaluateWithRules(ALL_YOGA_RULES, yCtx);
               } catch (err) { console.error('[yoga-engine] evaluation failed:', err); }
+              setNewYogas(engineYogas);
               const reading = synthesizeReading(data, locale, undefined, engineYogas.length > 0 ? engineYogas : undefined);
               setPersonalReading(reading);
               setKeyDates(computeKeyDates({ kundali: data }));
@@ -605,16 +607,9 @@ export default function KundaliPage() {
   const tip = useMemo(() => kundali ? generateTippanni(kundali, locale) : null, [kundali, locale]);
 
   // New declarative yoga engine (95 rules across 13 groups)
-  const newYogas = useMemo<EvaluatedYoga[]>(() => {
-    if (!kundali) return [];
-    try {
-      const ctx = buildYogaContext(kundali);
-      return evaluateWithRules(ALL_YOGA_RULES, ctx);
-    } catch (err) {
-      console.error('[kundali-page] Yoga engine evaluation failed:', err);
-      return [];
-    }
-  }, [kundali]);
+  // Yogas are computed once in the URL-load and form-submit paths (where
+  // synthesizeReading needs them immediately), stored in state via setNewYogas,
+  // and passed to YogasTab. No useMemo needed — avoids a redundant 3rd evaluation.
 
   // Cosmic Blueprint  –  synthesized from Shadbala, Dasha, Yogas, Ascendant
   const cosmicBlueprint = useMemo<CosmicBlueprint | null>(() => {
@@ -802,11 +797,12 @@ export default function KundaliPage() {
       setKundali(data);
       // Compute Personal Pandit reading + Key Dates (synchronous, <500ms)
       try {
-        let engineYogas2: typeof newYogas = [];
+        let engineYogas2: EvaluatedYoga[] = [];
         try {
           const yCtx2 = buildYogaContext(data);
           engineYogas2 = evaluateWithRules(ALL_YOGA_RULES, yCtx2);
         } catch (err) { console.error('[yoga-engine] evaluation failed:', err); }
+        setNewYogas(engineYogas2);
         const reading = synthesizeReading(data, locale, undefined, engineYogas2.length > 0 ? engineYogas2 : undefined);
         setPersonalReading(reading);
         setKeyDates(computeKeyDates({ kundali: data }));

@@ -25,26 +25,7 @@
  */
 
 import type { YogaRule, YogaContext, YogaDetectionResult } from '../types';
-import { houseFrom } from '../utils';
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Helper: planets eligible for Sunapha/Anapha/Durdhara/Kemadruma
-// ─────────────────────────────────────────────────────────────────────────────
-
-/**
- * Planets considered for Moon-neighbourhood yogas (Sunapha, Anapha, Durdhara, Kemadruma).
- * Per Phaladeepika Ch.6: Sun, Rahu, and Ketu are excluded.
- * Only Mars (2), Mercury (3), Jupiter (4), Venus (5), Saturn (6) count.
- */
-const ELIGIBLE_PLANET_IDS = [2, 3, 4, 5, 6];
-
-/**
- * Get eligible planet IDs in a specific house.
- * Filters to ELIGIBLE_PLANET_IDS (excludes Sun, Moon, Rahu, Ketu).
- */
-function eligiblePlanetsInHouse(ctx: YogaContext, house: number): number[] {
-  return ctx.planetsInHouse(house).filter(id => ELIGIBLE_PLANET_IDS.includes(id));
-}
+import { houseFrom, eligiblePlanetsInHouse } from '../utils';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. Sunapha Yoga — planet(s) in 2nd from Moon
@@ -258,11 +239,13 @@ const KEMADRUMA: YogaRule = {
       }
 
       // Check kendras from Moon (1st/4th/7th/10th from Moon)
+      // Per Phaladeepika Ch.6 v.8: only Mars, Mercury, Jupiter, Venus, Saturn
+      // count for Kemadruma checks (not Sun, Rahu, Ketu).
       const kendraOffsets = [1, 4, 7, 10]; // offset 1 = Moon's own house
       for (const offset of kendraOffsets) {
         const kendraHouse = houseFrom(moonHouse, offset);
         const planets = ctx.planetsInHouse(kendraHouse)
-          .filter(id => id !== 1 && id !== 7 && id !== 8); // exclude Moon itself, Rahu, Ketu
+          .filter(id => id !== 0 && id !== 1 && id !== 7 && id !== 8); // exclude Sun, Moon itself, Rahu, Ketu
         if (planets.length > 0) {
           return { present: false, involvedPlanets: [] };
         }

@@ -13,18 +13,11 @@
  */
 
 import type { YogaRule, YogaContext, YogaDetectionResult } from '../types';
+import { KENDRA_HOUSES, TRIKONA_HOUSES, DUSTHANA_HOUSES, NATURAL_BENEFIC_IDS } from '../utils';
 import { EXALTATION_SIGNS, DEBILITATION_SIGNS, SIGN_LORDS } from '@/lib/constants/dignities';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Constants
-// ─────────────────────────────────────────────────────────────────────────────
-
-const KENDRA_HOUSES = [1, 4, 7, 10];
-const TRIKONA_HOUSES = [1, 5, 9];
-const DUSTHANA_HOUSES = [6, 8, 12];
-
-/** Natural benefic planet IDs: Moon(1), Mercury(3), Jupiter(4), Venus(5) */
-const NATURAL_BENEFICS = [1, 3, 4, 5];
+/** @deprecated Alias — use NATURAL_BENEFIC_IDS from utils.ts */
+const NATURAL_BENEFICS = NATURAL_BENEFIC_IDS;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Helpers
@@ -253,26 +246,26 @@ export const RAJA_RULES: YogaRule[] = [
         const variants: string[] = [];
         const involvedPlanets: number[] = [];
 
-        // Harsha: 6th lord in 6/8/12
+        // Harsha: 6th lord in OTHER dusthanas (8th or 12th), not in 6th itself
         const lord6 = ctx.houseLord(6);
         const lord6House = ctx.planetHouse(lord6);
-        if (DUSTHANA_HOUSES.includes(lord6House)) {
+        if (DUSTHANA_HOUSES.filter(h => h !== 6).includes(lord6House)) {
           variants.push('Harsha');
           involvedPlanets.push(lord6);
         }
 
-        // Sarala: 8th lord in 6/8/12
+        // Sarala: 8th lord in OTHER dusthanas (6th or 12th), not in 8th itself
         const lord8 = ctx.houseLord(8);
         const lord8House = ctx.planetHouse(lord8);
-        if (DUSTHANA_HOUSES.includes(lord8House)) {
+        if (DUSTHANA_HOUSES.filter(h => h !== 8).includes(lord8House)) {
           variants.push('Sarala');
           involvedPlanets.push(lord8);
         }
 
-        // Vimala: 12th lord in 6/8/12
+        // Vimala: 12th lord in OTHER dusthanas (6th or 8th), not in 12th itself
         const lord12 = ctx.houseLord(12);
         const lord12House = ctx.planetHouse(lord12);
-        if (DUSTHANA_HOUSES.includes(lord12House)) {
+        if (DUSTHANA_HOUSES.filter(h => h !== 12).includes(lord12House)) {
           variants.push('Vimala');
           involvedPlanets.push(lord12);
         }

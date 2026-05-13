@@ -73,6 +73,9 @@ function isBenefic(pid: number): boolean {
 
 // ---------------------------------------------------------------------------
 // Natural friendship (simplified)
+// Simplified natural friendship tables — canonical source: @/lib/tippanni/dignity
+// Kept inline to avoid circular imports. Must match canonical BPHS Ch.3 values.
+// Lesson Q acknowledged: if the canonical source changes, update here too.
 // ---------------------------------------------------------------------------
 
 const FRIENDS: Record<number, Set<number>> = {
@@ -99,6 +102,9 @@ const ENEMIES: Record<number, Set<number>> = {
   8: new Set([1]),
 };
 
+// NOTE: This simplified dignity function treats moolatrikona as 'own' (same tier).
+// Full moolatrikona with degree ranges is in yoga-engine/context.ts computeDignity().
+// For domain scoring, the tier difference between own and moolatrikona is zero.
 function getDignity(planetId: number, signNum: number): DignityLevel {
   if (EXALTATION_SIGN[planetId] === signNum) return 'exalted';
   if (DEBILITATION_SIGN[planetId] === signNum) return 'debilitated';

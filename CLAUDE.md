@@ -151,7 +151,31 @@ vercel logs                  # View production logs
 
 **Dev server notes**: Turbopack is unstable — if you see stale chunks, `MODULE_NOT_FOUND` for files that exist, or repeated OOM crashes, clear `.next` and fall back to webpack mode (`npx next dev` without `--turbopack`).
 
-## Deployment Workflow
+## Git & Deployment Workflow
+
+### Branch Strategy (Vercel cost control)
+
+**NEVER commit directly to `main` during a work session.** Every push to `main` triggers a Vercel production build (~9 min, costs compute quota). 20 small pushes = 180 min wasted.
+
+1. **Start every session** on a feature branch: `git checkout -b feat/<topic>` or `fix/<topic>`
+2. **Commit freely** on the branch — local commits are free
+3. **When the batch is done and tested** → squash-merge to `main` → ONE Vercel build
+4. Use `gh pr create` if review is wanted, or merge directly for autonomous work
+5. The `vercel-ignore-build.sh` script already skips builds for docs/scripts/markdown-only changes
+
+```bash
+# Start work
+git checkout -b feat/my-feature
+
+# Work, commit as needed
+git add ... && git commit -m "..."
+
+# Done — squash-merge to main (one build)
+git checkout main && git merge --squash feat/my-feature && git commit -m "feat: description"
+git push origin main
+```
+
+### Production Deployment
 
 1. `npx next build` → 2. `git push origin main` (Vercel auto-deploy) → 3. `vercel ls` (confirm Ready) → 4. Test auth/checkout/modified endpoints → 5. `vercel logs` (check runtime errors)
 

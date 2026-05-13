@@ -1009,12 +1009,12 @@ function evaluateSignificatorsHolistic(
     const benefic = isBenefic(p.planet.id);
     const hContext = houseContexts[p.house] ?? `${p.house}th house`;
 
-    // Occupant tier: benefic = madhyama-level boost (tier 2), malefic = adhama-level drag (tier 1).
-    // Classical reasoning: a single malefic in a house creates obstacles but doesn't annihilate
-    // the house's promise (that would require debilitated lord + malefic + dosha). Similarly, a
-    // single benefic improves things but doesn't guarantee uttama results on its own.
+    // Occupant tier: benefic = madhyama boost (tier 2), malefic = adhama drag (tier 1).
+    // Weight 0.5 (not 1): occupants colour a house's expression but the lord's condition
+    // is far more determinative. Without this, 2 malefic occupants can tank an otherwise
+    // strong domain from uttama to madhyama, which is not how classical Jyotish reads charts.
     const occupantTier = benefic ? 2 : 1;
-    tierValues.push({ tier: occupantTier, weight: 1 });
+    tierValues.push({ tier: occupantTier, weight: 0.5 });
 
     factors.push({
       label: { en: `${pNameStr} in ${ordinalEn(p.house)} house`, hi: `${graha?.name?.hi ?? pNameStr} ${ordinalHi(p.house)} भाव में` },
@@ -1039,29 +1039,51 @@ function evaluateSignificatorsHolistic(
     const inauspiciousYogas = domainYogas.filter(y => !y.isAuspicious);
 
     if (auspiciousYogas.length > 0) {
-      // Each auspicious yoga boosts using its own domainImpactWeight
-      for (const y of auspiciousYogas.slice(0, 3)) {
-        tierValues.push({ tier: 3, weight: y.domainImpactWeight });
+      // Yogas: each contributes tier 3 (uttama) at its own weight.
+      // Multiple yogas = genuinely strong domain — don't artificially cap.
+      // But diminishing returns: first 3 at full weight, rest at half weight.
+      for (let i = 0; i < auspiciousYogas.length; i++) {
+        const y = auspiciousYogas[i];
+        const w = i < 3 ? y.domainImpactWeight : y.domainImpactWeight * 0.5;
+        tierValues.push({ tier: 3, weight: w });
       }
-      const names = auspiciousYogas.slice(0, 3).map(y => y.name.en);
-      const more = auspiciousYogas.length > 3 ? ` (+${auspiciousYogas.length - 3} more)` : '';
+      // Extract first sentence of each yoga's description for the summary
+      const details = auspiciousYogas.map(y => ({
+        id: y.id,
+        name: y.name.en,
+        summary: (y.description.en ?? '').split(/[.।]/)[0].trim(),
+      }));
+      const names = details.slice(0, 3).map(d => d.name);
+      const more = details.length > 3 ? ` (+${details.length - 3} more)` : '';
       factors.push({
         label: { en: 'Active Yogas', hi: 'सक्रिय योग' },
         verdict: 'positive',
         value: `${names.join(', ')}${more}`,
+        yogaDetails: details,
       });
     }
 
     if (inauspiciousYogas.length > 0) {
-      for (const y of inauspiciousYogas.slice(0, 2)) {
-        tierValues.push({ tier: 0, weight: y.domainImpactWeight });
+      // Doshas: each contributes tier 0 (atyadhama). First 2 at full weight, rest at half.
+      // Multiple doshas compound but with diminishing effect — classical texts don't
+      // say 5 doshas = 5x worse than 1 dosha.
+      for (let i = 0; i < inauspiciousYogas.length; i++) {
+        const y = inauspiciousYogas[i];
+        const w = i < 2 ? y.domainImpactWeight : y.domainImpactWeight * 0.5;
+        tierValues.push({ tier: 0, weight: w });
       }
-      const names = inauspiciousYogas.slice(0, 2).map(y => y.name.en);
-      const more = inauspiciousYogas.length > 2 ? ` (+${inauspiciousYogas.length - 2} more)` : '';
+      const details = inauspiciousYogas.map(y => ({
+        id: y.id,
+        name: y.name.en,
+        summary: (y.description.en ?? '').split(/[.।]/)[0].trim(),
+      }));
+      const names = details.slice(0, 2).map(d => d.name);
+      const more = details.length > 2 ? ` (+${details.length - 2} more)` : '';
       factors.push({
         label: { en: 'Active Doshas', hi: 'सक्रिय दोष' },
         verdict: 'negative',
         value: `${names.join(', ')}${more}`,
+        yogaDetails: details,
       });
     }
   } else if (kundali.yogasComplete) {
@@ -1100,11 +1122,31 @@ function evaluateSignificatorsHolistic(
     }
   }
 
-  // ── Holistic tier: weighted average, rounded to nearest ──
-  const totalWeight = tierValues.reduce((s, v) => s + v.weight, 0);
-  const weightedSum = tierValues.reduce((s, v) => s + v.tier * v.weight, 0);
-  const avgTier = totalWeight > 0 ? weightedSum / totalWeight : 2;
-  const finalTierIndex = Math.max(0, Math.min(3, Math.round(avgTier)));
+  // ── Holistic tier: lord-anchored + yoga boost / dosha penalty ──
+  // Classical approach: the PRIMARY house lord's tier is THE verdict.
+  // Yogas upgrade it, doshas downgrade it, other significators inform but don't override.
+  //
+  // Why not weighted average? With 6+ significators, the average always regresses
+  // to madhyama regardless of chart strength. A chart with 11 auspicious yogas
+  // and one debilitated karaka would score madhyama — which no Jyotishi would say.
+  //
+  // The lord-anchored approach mirrors how a Jyotishi actually reads:
+  // "Your 2nd lord is strong — AND you have 11 wealth yogas — this is excellent."
+
+  // Step 1: Primary lord tier — use the FIRST lord entry (config.primaryHouses[0]).
+  // Not the max — the primary house lord is THE anchor per classical reading order.
+  // A strong secondary lord is noted in the commentary but doesn't override a weak primary.
+  const lordTiers = tierValues.filter(v => v.weight >= 2);
+  const primaryLordTier = lordTiers.length > 0 ? lordTiers[0].tier : 2;
+
+  // Step 2: Yoga boost — multiple auspicious yogas for this domain upgrade the tier
+  const yogaTiers = tierValues.filter(v => v.tier === 3 && v.weight < 2); // yoga entries
+  const doshaTiers = tierValues.filter(v => v.tier === 0 && v.weight < 2); // dosha entries
+  const yogaBoost = yogaTiers.length >= 3 ? 1 : 0;   // 3+ yogas → +1 tier
+  const doshaPenalty = doshaTiers.length >= 2 ? 1 : 0; // 2+ doshas → -1 tier
+
+  // Step 3: Combine
+  const finalTierIndex = Math.max(0, Math.min(3, primaryLordTier + yogaBoost - doshaPenalty));
   const finalTier = TIER_NAMES[finalTierIndex];
 
   return {

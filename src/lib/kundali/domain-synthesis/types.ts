@@ -46,6 +46,8 @@ export interface ScoringFactor {
   verdict: 'positive' | 'neutral' | 'negative';
   /** Short qualitative value, e.g. "Own Sign + Kendra", "Weak", "Yuva (Adult)" */
   value: string;
+  /** Structured yoga/dosha details for rich rendering (links, descriptions) */
+  yogaDetails?: { id: string; name: string; summary: string }[];
 }
 
 /** A fully resolved rating with score, human label and display colour. */

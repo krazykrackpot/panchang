@@ -3,7 +3,9 @@
 import type { DomainReading, Rating, ScoringFactor } from '@/lib/kundali/domain-synthesis/types';
 import { getDomainConfig } from '@/lib/kundali/domain-synthesis/config';
 import { GRAHAS } from '@/lib/constants/grahas';
+import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
 import { tl } from '@/lib/utils/trilingual';
+import { Link } from '@/lib/i18n/navigation';
 
 interface LayeredCommentaryProps {
   domain: DomainReading;
@@ -61,35 +63,10 @@ function generateNatalProse(
       ? [value.slice(0, lastDash), value.slice(lastDash + 3)]
       : [value, ''];
 
-    // ── Yoga factors — weave names into prose ──
-    if (enLabel === 'Active Yogas') {
-      const names = value.split(', ').map(n => n.replace(/\s*\(\+\d+ more\)/, ''));
-      const moreMatch = value.match(/\(\+(\d+) more\)/);
-      const more = moreMatch ? parseInt(moreMatch[1]) : 0;
-
-      if (names.length === 1) {
-        sentences.push(`${names[0]} is active in your chart, strengthening ${domainName}.`);
-      } else {
-        const listed = names.slice(0, 2).join(' and ');
-        const extra = more > 0 ? `, along with ${more} other yoga${more > 1 ? 's' : ''}` : '';
-        sentences.push(`Classical yogas including ${listed}${extra} support ${domainName}.`);
-      }
-      continue;
-    }
-
-    if (enLabel === 'Active Doshas') {
-      const names = value.split(', ').map(n => n.replace(/\s*\(\+\d+ more\)/, ''));
-      const moreMatch = value.match(/\(\+(\d+) more\)/);
-      const more = moreMatch ? parseInt(moreMatch[1]) : 0;
-
-      if (names.length === 1) {
-        sentences.push(`${names[0]} is present, creating challenges for ${domainName} — targeted remedies can mitigate its effects.`);
-      } else {
-        const listed = names.slice(0, 2).join(' and ');
-        const extra = more > 0 ? ` and ${more} other dosha${more > 1 ? 's' : ''}` : '';
-        sentences.push(`${listed}${extra} create pressure on ${domainName} — focused remedial measures are recommended.`);
-      }
-      continue;
+    // ── Yoga/Dosha factors — render with descriptions and links ──
+    // These are handled specially in the JSX below, not as prose sentences
+    if (enLabel === 'Active Yogas' || enLabel === 'Active Doshas') {
+      continue; // Skip — rendered as structured list in JSX
     }
 
     // ── Lord factors ──
@@ -255,22 +232,82 @@ export default function LayeredCommentary({ domain, locale }: LayeredCommentaryP
 
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
 
-  // ── Generate flowing prose from factors ──
-  // Weave the significator assessments into a Jyotishi-style narrative paragraph
+  // ── Generate flowing prose from non-yoga factors ──
   const prose = generateNatalProse(factors, domainName, rating, isHi);
+
+  // ── Extract yoga/dosha factors for structured rendering ──
+  const yogaFactor = factors.find(f => f.label.en === 'Active Yogas');
+  const doshaFactor = factors.find(f => f.label.en === 'Active Doshas');
+  const regularFactors = factors.filter(f => f.label.en !== 'Active Yogas' && f.label.en !== 'Active Doshas');
+
+  // Check which yoga IDs have detail pages
+  const hasDetailPage = (id: string) => !!YOGA_DETAIL_DATA[id];
 
   return (
     <div className="space-y-3 mt-3" style={bodyFont}>
       {/* Layer 1: Natal — factors first, then prose interpretation */}
       <div className="border-l-2 border-[#34d399]/50 pl-3">
         <p className="text-xs font-semibold text-text-primary mb-1.5">{natalHeadline}</p>
-        {/* Factor breakdown — the evidence */}
+        {/* Factor breakdown — lords, karakas, occupants */}
         <div className="space-y-1 mb-2">
-          {factors.map((f, i) => (
+          {regularFactors.map((f, i) => (
             <SignificatorLine key={i} factor={f} isHi={isHi} />
           ))}
         </div>
-        {/* Flowing prose — interpretation of the factors above */}
+
+        {/* Yoga details — each with description and optional link */}
+        {yogaFactor && yogaFactor.yogaDetails && yogaFactor.yogaDetails.length > 0 && (
+          <div className="mt-2 pt-2 border-t border-white/5">
+            <p className="text-[10px] font-bold text-emerald-400/80 uppercase tracking-wider mb-1">
+              {isHi ? 'सक्रिय शुभ योग' : 'Active Yogas'}
+            </p>
+            <div className="space-y-1">
+              {yogaFactor.yogaDetails.map((yd) => (
+                <div key={yd.id} className="flex items-start gap-1.5 text-xs leading-relaxed">
+                  <span className="text-emerald-400 font-bold shrink-0 mt-0.5">✦</span>
+                  <span className="text-text-secondary">
+                    {hasDetailPage(yd.id) ? (
+                      <Link href={`/learn/yoga/${yd.id}` as any} className="text-gold-primary hover:text-gold-light font-medium transition-colors">
+                        {yd.name}
+                      </Link>
+                    ) : (
+                      <span className="text-text-primary font-medium">{yd.name}</span>
+                    )}
+                    {yd.summary ? ` — ${yd.summary}` : ''}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Dosha details — each with description and optional link */}
+        {doshaFactor && doshaFactor.yogaDetails && doshaFactor.yogaDetails.length > 0 && (
+          <div className="mt-2 pt-2 border-t border-white/5">
+            <p className="text-[10px] font-bold text-red-400/80 uppercase tracking-wider mb-1">
+              {isHi ? 'सक्रिय दोष' : 'Active Doshas'}
+            </p>
+            <div className="space-y-1">
+              {doshaFactor.yogaDetails.map((yd) => (
+                <div key={yd.id} className="flex items-start gap-1.5 text-xs leading-relaxed">
+                  <span className="text-red-400/80 font-bold shrink-0 mt-0.5">⚠</span>
+                  <span className="text-text-secondary">
+                    {hasDetailPage(yd.id) ? (
+                      <Link href={`/learn/yoga/${yd.id}` as any} className="text-gold-primary hover:text-gold-light font-medium transition-colors">
+                        {yd.name}
+                      </Link>
+                    ) : (
+                      <span className="text-text-primary font-medium">{yd.name}</span>
+                    )}
+                    {yd.summary ? ` — ${yd.summary}` : ''}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Flowing prose — interpretation of all factors above */}
         <p className="text-sm leading-relaxed text-text-secondary pt-2 border-t border-white/5">
           {prose}
         </p>

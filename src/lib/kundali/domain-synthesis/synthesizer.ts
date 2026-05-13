@@ -22,11 +22,17 @@ import type {
   CurrentActivationBlock,
   Rating,
   RatingInfo,
+  ScoringFactor,
   CrossDomainLink,
 } from './types';
 
 import { DOMAIN_CONFIGS } from './config';
-import { scoreDomain, type ScorerInput } from './scorer';
+import {
+  TIER_NAMES as SCORER_TIER_NAMES,
+  TIER_LABELS_MAP as SCORER_TIER_LABELS_MAP,
+  TIER_SCORES_MAP as SCORER_TIER_SCORES_MAP,
+  TIER_COLORS_MAP as SCORER_TIER_COLORS_MAP,
+} from './scorer';
 import {
   narrateHouseLord,
   narrateOccupants,
@@ -273,186 +279,6 @@ function computeVargaDeliveryScore(
   // Average the scores; fall back to 50 if no charts were usable
   if (scores.length === 0) return 50;
   return Math.round(scores.reduce((sum, s) => sum + s, 0) / scores.length);
-}
-
-// ---------------------------------------------------------------------------
-// Helper: build ScorerInput for a domain
-// ---------------------------------------------------------------------------
-
-function buildScorerInput(
-  config: DomainConfig,
-  kundali: KundaliData,
-  data: ExtractedData,
-): ScorerInput {
-  const primaryHouses = new Set(config.primaryHouses);
-
-  // 1. houseBhavabala: average bhavabala of primary houses, normalised 0-10
-  let houseBhavabala = 5; // default
-  if (kundali.bhavabala) {
-    const bhavaResults = kundali.bhavabala;
-    const vals = bhavaResults
-      .filter(b => primaryHouses.has(b.bhava))
-      .map(b => b.total);
-    if (vals.length > 0) {
-      const avg = vals.reduce((s, v) => s + v, 0) / vals.length;
-      // Bhavabala total is typically 250-500 rupas. Midpoint ~350.
-      // Old formula: (avg - 200) / 40 → 350 = 3.75/10 (too harsh)
-      // New formula: (avg - 150) / 35 → 350 = 5.7/10, 450 = 8.6/10, 250 = 2.9/10
-      houseBhavabala = Math.min(10, Math.max(0, (avg - 150) / 35));
-    }
-  }
-
-  // 2. lordDignity: primary house lord's dignity
-  const primaryHouse = config.primaryHouses[0];
-  const primaryHouseSign = kundali.houses.find(h => h.house === primaryHouse)?.sign ?? 1;
-  const lordId = SIGN_LORD[primaryHouseSign] ?? 0;
-  const lordPos = data.planetMap.get(lordId);
-  const lordSign = lordPos?.sign ?? 1;
-  const lordDignity = getDignity(lordId, lordSign);
-
-  // 3. lordInKendra
-  const lordHouse = lordPos?.house ?? 0;
-  const lordInKendra = [1, 4, 7, 10].includes(lordHouse);
-
-
-  // 4. Count benefic/malefic occupants in primary houses
-  let beneficOccupants = 0;
-  let maleficOccupants = 0;
-  for (const p of kundali.planets) {
-    if (primaryHouses.has(p.house)) {
-      if (isBenefic(p.planet.id)) {
-        beneficOccupants++;
-      } else {
-        maleficOccupants++;
-      }
-    }
-  }
-
-  // 5. Aspects: if argala exists, use it; otherwise estimate
-  let beneficAspects = 0;
-  let maleficAspects = 0;
-  if (kundali.argala) {
-    const argalaResults = kundali.argala as {
-      house: number;
-      aspects?: { planetId: number; type: string }[];
-    }[];
-    for (const ar of argalaResults) {
-      if (primaryHouses.has(ar.house) && ar.aspects) {
-        for (const asp of ar.aspects) {
-          if (isBenefic(asp.planetId)) beneficAspects++;
-          else maleficAspects++;
-        }
-      }
-    }
-  } else {
-    // Estimate: Jupiter aspects houses 5, 7, 9 from its position; Saturn 3, 7, 10
-    const jupPos = data.planetMap.get(4);
-    const satPos = data.planetMap.get(6);
-    if (jupPos) {
-      const jupAspects = [5, 7, 9].map(off => ((jupPos.house - 1 + off) % 12) + 1);
-      for (const h of jupAspects) {
-        if (primaryHouses.has(h)) beneficAspects++;
-      }
-    }
-    if (satPos) {
-      const satAspects = [3, 7, 10].map(off => ((satPos.house - 1 + off) % 12) + 1);
-      for (const h of satAspects) {
-        if (primaryHouses.has(h)) maleficAspects++;
-      }
-    }
-  }
-
-  // 6. Relevant yoga count
-  let relevantYogaCount = 0;
-  if (kundali.yogasComplete) {
-    const yogas = kundali.yogasComplete;
-    relevantYogaCount = yogas.filter(
-      y => y.present && config.relevantYogaCategories.includes(y.category),
-    ).length;
-  }
-  // Implicit yoga: lord in own/exalted sign is itself a classical strength pattern
-  // (Swakshetra / Uchcha yoga). Count as 1 relevant yoga if not already detected.
-  const lordDignityScore = ({
-    exalted: 10, own: 8, friend: 6, neutral: 5, enemy: 3, debilitated: 1,
-  } as Record<string, number>)[lordDignity] ?? 5;
-  if (lordDignityScore >= 8 && relevantYogaCount === 0) {
-    relevantYogaCount = 1;
-  }
-
-  // 7. Relevant dosha count
-  let relevantDoshaCount = 0;
-  const cancelledDoshas = 0;
-  // Check from yogasComplete for dosha-category entries
-  if (kundali.yogasComplete) {
-    const yogas = kundali.yogasComplete;
-    for (const y of yogas) {
-      const nameStr = (y.name.en ?? '').toLowerCase().replace(/\s+/g, '_');
-      if (config.relevantDoshas.some(d => nameStr.includes(d))) {
-        if (y.present) {
-          relevantDoshaCount++;
-        }
-      }
-    }
-  }
-
-  // 8. Dasha activates house
-  const dashaActivatesHouse = (() => {
-    const mahaLordPos = data.planetMap.get(data.mahaLordId);
-    if (!mahaLordPos) return false;
-
-    // Check if maha lord occupies a primary house
-    if (primaryHouses.has(mahaLordPos.house)) return true;
-
-    // Check if maha lord lords a primary house
-    for (const h of config.primaryHouses) {
-      const houseSign = kundali.houses.find(c => c.house === h)?.sign ?? 0;
-      if (SIGN_LORD[houseSign] === data.mahaLordId) return true;
-    }
-
-    return false;
-  })();
-
-  // 9. Varga delivery score  –  computed from divisional charts
-  const vargaDeliveryScore = computeVargaDeliveryScore(config, kundali, data);
-
-  // 10. Shadbala strength ratio of the primary lord
-  let lordShadBalaRatio = 0;
-  if (kundali.fullShadbala) {
-    const sb = kundali.fullShadbala.find(s => s.planetId === lordId);
-    if (sb) lordShadBalaRatio = sb.strengthRatio;
-  } else if (kundali.shadbala) {
-    // Fallback: basic ShadBala has totalStrength in shashtiamsas but no strengthRatio.
-    // MIN_REQUIRED in shashtiamsas (= rupas × 60): Sun=390, Moon=360, Mars=300, Mercury=420, Jupiter=390, Venus=330, Saturn=300
-    // Canonical source: shadbala.ts MIN_REQUIRED (in rupas). Values here are × 60 for shashtiamsa units.
-    const MIN_REQUIRED: Record<number, number> = { 0: 390, 1: 360, 2: 300, 3: 420, 4: 390, 5: 330, 6: 300 };
-    const nameMap: Record<number, string> = { 0: 'Sun', 1: 'Moon', 2: 'Mars', 3: 'Mercury', 4: 'Jupiter', 5: 'Venus', 6: 'Saturn' };
-    const sb = kundali.shadbala.find(s => s.planet === nameMap[lordId]);
-    if (sb) lordShadBalaRatio = sb.totalStrength / (MIN_REQUIRED[lordId] ?? 360);
-  }
-
-  // 11. Baladi avastha strength of the primary lord (0–100)
-  let lordBaladiStrength = 0;
-  if (kundali.avasthas) {
-    const av = kundali.avasthas.find(a => a.planetId === lordId);
-    if (av) lordBaladiStrength = av.baladi.strength;
-  }
-
-  return {
-    houseBhavabala,
-    lordDignity,
-    lordInKendra,
-    beneficOccupants,
-    maleficOccupants,
-    beneficAspects,
-    maleficAspects,
-    relevantYogaCount,
-    relevantDoshaCount,
-    cancelledDoshas,
-    dashaActivatesHouse,
-    vargaDeliveryScore,
-    lordShadBalaRatio,
-    lordBaladiStrength,
-  };
 }
 
 // ---------------------------------------------------------------------------
@@ -926,6 +752,226 @@ function identifyWeakPlanets(
 }
 
 // ---------------------------------------------------------------------------
+// Multi-significator holistic evaluation
+// ---------------------------------------------------------------------------
+
+// House-meaning context per domain (what does each primary house MEAN for this domain)
+const HOUSE_CONTEXT: Record<string, Record<number, string>> = {
+  health:    { 1: 'body & constitution', 6: 'disease & immunity', 8: 'longevity' },
+  wealth:    { 2: 'accumulated wealth', 11: 'gains & income' },
+  career:    { 10: 'career & status', 6: 'service & competition' },
+  marriage:  { 7: 'marriage & partnerships' },
+  children:  { 5: 'children & progeny' },
+  family:    { 4: 'mother & home', 9: 'father & dharma' },
+  spiritual: { 9: 'dharma & guru', 12: 'moksha & renunciation' },
+  education: { 4: 'foundational education', 5: 'intelligence & higher learning' },
+};
+
+// Natural karaka roles per domain
+const KARAKA_ROLE: Record<string, Record<number, string>> = {
+  health:    { 0: 'vitality karaka', 1: 'mental health', 2: 'energy & immunity', 6: 'chronic conditions' },
+  wealth:    { 4: 'expansion karaka', 5: 'luxury karaka', 3: 'commerce karaka' },
+  career:    { 0: 'authority karaka', 6: 'profession karaka', 3: 'business karaka', 2: 'drive & ambition' },
+  marriage:  { 5: 'relationship karaka', 4: 'husband karaka', 1: 'emotional bond' },
+  children:  { 4: 'putra karaka', 5: 'fertility karaka', 1: 'nurturing karaka' },
+  family:    { 1: 'mother karaka', 0: 'father karaka', 2: 'property & siblings' },
+  spiritual: { 8: 'liberation karaka', 4: 'wisdom karaka', 1: 'inner mind' },
+  education: { 3: 'intellect karaka', 4: 'wisdom karaka' },
+};
+
+// Dignity tier for a single planet
+function dignityToTier(dignity: DignityLevel, inKendra: boolean): number {
+  if (dignity === 'exalted') return 3;
+  if (dignity === 'own') return 3;
+  if (dignity === 'friend') return inKendra ? 3 : 2;
+  if (dignity === 'neutral') return 2;
+  if (dignity === 'enemy') return 1;
+  return 0; // debilitated
+}
+
+// Avastha modifier
+function avasthaModifier(baladiStrength: number): number {
+  if (baladiStrength >= 90) return 1;   // Yuva: +1
+  if (baladiStrength <= 10) return -2;  // Mrita: -2
+  if (baladiStrength <= 25) return -1;  // Bala: -1
+  return 0;                             // Kumara/Vriddha: neutral
+}
+
+function baladiName(strength: number): string {
+  if (strength >= 90) return 'Yuva (Adult)';
+  if (strength >= 45) return 'Vriddha (Old)';
+  if (strength >= 35) return 'Kumara (Youth)';
+  if (strength >= 15) return 'Bala (Infant)';
+  return 'Mrita (Dead)';
+}
+
+const TIER_NAMES: Rating[] = ['atyadhama', 'adhama', 'madhyama', 'uttama'];
+const TIER_LABELS_MAP: Record<Rating, { en: string; hi: string }> = {
+  uttama:    { en: 'Strong (Uttama)',      hi: 'प्रबल (उत्तम)' },
+  madhyama:  { en: 'Moderate (Madhyama)',  hi: 'मध्यम (मध्यम)' },
+  adhama:    { en: 'Challenging (Adhama)', hi: 'चुनौतीपूर्ण (अधम)' },
+  atyadhama: { en: 'Critical (Atyadhama)', hi: 'गंभीर (अत्यधम)' },
+};
+const TIER_SCORES_MAP: Record<Rating, number> = { uttama: 8.5, madhyama: 6.0, adhama: 3.5, atyadhama: 1.5 };
+const TIER_COLORS_MAP: Record<Rating, string> = { uttama: 'text-emerald-400', madhyama: 'text-gold-primary', adhama: 'text-amber-400', atyadhama: 'text-red-400' };
+
+const DIGNITY_LABEL: Record<DignityLevel, string> = {
+  exalted: 'exalted', own: 'own sign', friend: 'friendly sign',
+  neutral: 'neutral sign', enemy: 'enemy sign', debilitated: 'debilitated',
+};
+
+/**
+ * Evaluate all significators for a domain holistically.
+ * Returns a RatingInfo with the holistic tier and factor breakdown showing
+ * each significator's individual assessment.
+ */
+function evaluateSignificatorsHolistic(
+  config: DomainConfig,
+  kundali: KundaliData,
+  data: ExtractedData,
+): RatingInfo {
+  const factors: ScoringFactor[] = [];
+  const tierValues: { tier: number; weight: number }[] = [];
+
+  const houseContexts = HOUSE_CONTEXT[config.id] ?? {};
+  const karakaRoles = KARAKA_ROLE[config.id] ?? {};
+
+  // ── Evaluate each primary house lord (weight: 2) ──
+  for (const h of config.primaryHouses) {
+    const hSign = kundali.houses.find(c => c.house === h)?.sign ?? 1;
+    const lordId = SIGN_LORD[hSign] ?? 0;
+    const lordPos = data.planetMap.get(lordId);
+    if (!lordPos) continue;
+
+    const graha = GRAHAS[lordId];
+    const lordName = graha?.name?.en ?? `Planet ${lordId}`;
+    const dignity = getDignity(lordId, lordPos.sign);
+    const inKendra = [1, 4, 7, 10].includes(lordPos.house);
+    const context = houseContexts[h] ?? `${h}th house`;
+
+    // Base tier from dignity
+    let tier = dignityToTier(dignity, inKendra);
+
+    // Avastha modifier
+    let avasthaNote = '';
+    if (kundali.avasthas) {
+      const av = kundali.avasthas.find(a => a.planetId === lordId);
+      if (av) {
+        const mod = avasthaModifier(av.baladi.strength);
+        tier = Math.max(0, Math.min(3, tier + mod));
+        if (mod !== 0) {
+          avasthaNote = mod < 0
+            ? `, ${baladiName(av.baladi.strength)} — reduces delivery`
+            : `, ${baladiName(av.baladi.strength)} — strengthens delivery`;
+        }
+      }
+    }
+
+    tier = Math.max(0, Math.min(3, tier));
+    tierValues.push({ tier, weight: 2 });
+
+    const kendraNote = inKendra ? ' + angular house' : '';
+    const verdictForTier = tier >= 3 ? 'positive' : tier >= 2 ? 'neutral' : 'negative';
+
+    const rashi = RASHIS[lordPos.sign - 1];
+    const signName = rashi?.name?.en ?? `sign ${lordPos.sign}`;
+    const inHouseNote = ` in ${ordinalEn(lordPos.house)} house (${signName})`;
+
+    factors.push({
+      label: { en: `${ordinalEn(h)} Lord ${lordName}`, hi: `${h}वें भाव स्वामी ${graha?.name?.hi ?? lordName}` },
+      verdict: verdictForTier,
+      value: `${DIGNITY_LABEL[dignity]}${inHouseNote}${kendraNote}${avasthaNote} — ${context}`,
+    });
+  }
+
+  // ── Evaluate each natural karaka (weight: 1) ──
+  for (const pid of config.primaryPlanets) {
+    // Skip if this planet is already evaluated as a house lord (avoid double-counting)
+    const alreadyEvaluated = config.primaryHouses.some(h => {
+      const hSign = kundali.houses.find(c => c.house === h)?.sign ?? 1;
+      return (SIGN_LORD[hSign] ?? -1) === pid;
+    });
+    if (alreadyEvaluated) continue;
+
+    const pos = data.planetMap.get(pid);
+    if (!pos) continue;
+
+    const graha = GRAHAS[pid];
+    const pName = graha?.name?.en ?? `Planet ${pid}`;
+    const dignity = getDignity(pid, pos.sign);
+    const inKendra = [1, 4, 7, 10].includes(pos.house);
+    const role = karakaRoles[pid] ?? 'significator';
+
+    let tier = dignityToTier(dignity, inKendra);
+    tier = Math.max(0, Math.min(3, tier));
+    tierValues.push({ tier, weight: 1 });
+
+    const verdictForTier = tier >= 3 ? 'positive' : tier >= 2 ? 'neutral' : 'negative';
+
+    factors.push({
+      label: { en: `${pName} (${role})`, hi: `${graha?.name?.hi ?? pName} (${role})` },
+      verdict: verdictForTier,
+      value: `${DIGNITY_LABEL[dignity]}${inKendra ? ' + angular house' : ''}`,
+    });
+  }
+
+  // ── Evaluate occupants of primary houses (weight: 1 each) ──
+  // Planets SITTING IN the primary houses influence the domain directly.
+  // Benefics protect and enrich; malefics create friction and challenges.
+  const primaryHouseSet = new Set(config.primaryHouses);
+  const evaluatedIds = new Set<number>(); // avoid double-listing lords/karakas
+  // Collect IDs already shown as lords or karakas
+  for (const h of config.primaryHouses) {
+    const hSign = kundali.houses.find(c => c.house === h)?.sign ?? 1;
+    evaluatedIds.add(SIGN_LORD[hSign] ?? -1);
+  }
+  for (const pid of config.primaryPlanets) evaluatedIds.add(pid);
+
+  for (const p of kundali.planets) {
+    if (!primaryHouseSet.has(p.house)) continue;
+    if (evaluatedIds.has(p.planet.id)) continue; // already shown as lord or karaka
+
+    const graha = GRAHAS[p.planet.id];
+    const pNameStr = graha?.name?.en ?? `Planet ${p.planet.id}`;
+    const benefic = isBenefic(p.planet.id);
+    const hContext = houseContexts[p.house] ?? `${p.house}th house`;
+
+    // Occupant tier: benefic in primary house = +1, malefic = -1
+    const occupantTier = benefic ? 3 : 0;
+    tierValues.push({ tier: occupantTier, weight: 1 });
+
+    factors.push({
+      label: { en: `${pNameStr} in ${ordinalEn(p.house)} house`, hi: `${graha?.name?.hi ?? pNameStr} ${p.house}वें भाव में` },
+      verdict: benefic ? 'positive' : 'negative',
+      value: benefic
+        ? `benefic occupant — enriches ${hContext}`
+        : `malefic occupant — creates friction in ${hContext}`,
+    });
+  }
+
+  // ── Holistic tier: weighted average, rounded to nearest ──
+  const totalWeight = tierValues.reduce((s, v) => s + v.weight, 0);
+  const weightedSum = tierValues.reduce((s, v) => s + v.tier * v.weight, 0);
+  const avgTier = totalWeight > 0 ? weightedSum / totalWeight : 2;
+  const finalTierIndex = Math.max(0, Math.min(3, Math.round(avgTier)));
+  const finalTier = TIER_NAMES[finalTierIndex];
+
+  return {
+    rating: finalTier,
+    score: TIER_SCORES_MAP[finalTier],
+    label: TIER_LABELS_MAP[finalTier],
+    color: TIER_COLORS_MAP[finalTier],
+    factors,
+  };
+}
+
+function ordinalEn(n: number): string {
+  const s = ['th', 'st', 'nd', 'rd'];
+  const v = n % 100;
+  return `${n}${s[(v - 20) % 10] || s[v] || s[0]}`;
+}
+
+// ---------------------------------------------------------------------------
 // Helper: build a single domain reading
 // ---------------------------------------------------------------------------
 
@@ -937,9 +983,10 @@ function buildDomainReading(
   nativeAge?: number,
   transitData?: TransitEntry[],
 ): DomainReading {
-  // 1. Score
-  const scorerInput = buildScorerInput(config, kundali, data);
-  const natalRating = scoreDomain(config, scorerInput);
+  // 1. Multi-significator holistic scoring.
+  // Each domain is assessed through ALL its primary house lords AND natural
+  // karakas. A Jyotishi evaluates every significator, not just one.
+  const natalRating = evaluateSignificatorsHolistic(config, kundali, data);
 
   // 2. Natal promise block
   const natalPromise = buildNatalPromise(config, kundali, data, natalRating, nativeAge);

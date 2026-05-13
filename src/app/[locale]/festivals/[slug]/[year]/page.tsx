@@ -231,8 +231,12 @@ export default async function FestivalCanonicalPage({
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     eventStatus: 'https://schema.org/EventScheduled',
     location: {
-      '@type': 'VirtualLocation',
-      url: `${BASE_URL}/${locale}/festivals/${slug}/${year}`,
+      '@type': 'Place',
+      name: 'India',
+      address: {
+        '@type': 'PostalAddress',
+        addressCountry: 'IN',
+      },
     },
     organizer: {
       '@type': 'Organization',

@@ -71,13 +71,13 @@ describe('Yoga Engine — Basics', () => {
     expect(Array.isArray(arjunChart.evaluatedYogas)).toBe(true);
   });
 
-  it(`total rules count is ${163}`, () => {
-    expect(ALL_YOGA_RULES.length).toBe(163);
+  it(`total rules count is ${179}`, () => {
+    expect(ALL_YOGA_RULES.length).toBe(179);
   });
 
-  it(`evaluatedYogas has exactly ${163} entries (one per rule)`, () => {
-    expect(arjunChart.evaluatedYogas!.length).toBe(163);
-    expect(vaibhaviChart.evaluatedYogas!.length).toBe(163);
+  it(`evaluatedYogas has exactly ${179} entries (one per rule)`, () => {
+    expect(arjunChart.evaluatedYogas!.length).toBe(179);
+    expect(vaibhaviChart.evaluatedYogas!.length).toBe(179);
   });
 
   it('present yogas count is > 0 for both charts', () => {
@@ -403,7 +403,7 @@ describe('Yoga Engine — Group classification', () => {
     }
   });
 
-  it('all 13 groups are represented in the rules', () => {
+  it('all groups are represented in the rules', () => {
     const groups = new Set(yogas.map(y => y.group));
     expect(groups.has('mahapurusha')).toBe(true);
     expect(groups.has('raja')).toBe(true);
@@ -418,5 +418,8 @@ describe('Yoga Engine — Group classification', () => {
     expect(groups.has('arishta')).toBe(true);
     expect(groups.has('sannyasa')).toBe(true);
     expect(groups.has('navamsha')).toBe(true);
+    expect(groups.has('tajika')).toBe(true);
+    // daridra rules use group 'dhana' (already checked above)
+    expect(groups.size).toBeGreaterThanOrEqual(14);
   });
 });

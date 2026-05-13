@@ -20,6 +20,7 @@
  * - Arishta: Health/longevity afflictions
  * - Sannyasa: Renunciation/spiritual yogas
  * - Navamsha: D9 divisional chart yogas
+ * - Tajika: Tajika Neelakanthi — annual chart / planetary relationship yogas
  */
 
 import type { YogaRule } from '../types';
@@ -38,9 +39,10 @@ import { SANNYASA_RULES } from './sannyasa';
 import { CONJUNCTION_RULES } from './conjunction';
 import { NAVAMSHA_RULES } from './navamsha';
 import { DARIDRA_RULES } from './daridra';
+import { TAJIKA_RULES } from './tajika';
 
 /**
- * All yoga rules from 15 groups. Pass to registerYogaRules() once per session.
+ * All yoga rules from 16 groups. Pass to registerYogaRules() once per session.
  * Order matches the recommended UI group display order.
  */
 export const ALL_YOGA_RULES: YogaRule[] = [
@@ -59,4 +61,5 @@ export const ALL_YOGA_RULES: YogaRule[] = [
   ...ARISHTA_RULES,
   ...SANNYASA_RULES,
   ...NAVAMSHA_RULES,
+  ...TAJIKA_RULES,
 ];

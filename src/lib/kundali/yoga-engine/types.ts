@@ -50,7 +50,7 @@ export type YogaGroup =
   | 'sannyasa'
   | 'conjunction'
   | 'navamsha'
-  | 'tajika'; // Planned — no rules yet
+  | 'tajika';
 
 /**
  * Nabhasa sub-groups — 4 categories of sky-pattern yogas (Phaladeepika Ch.7).

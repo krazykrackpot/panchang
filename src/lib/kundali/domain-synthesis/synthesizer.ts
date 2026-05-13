@@ -627,6 +627,9 @@ function buildNatalPromise(
         isRetrograde: primaryLordPos.isRetrograde,
         primaryHouse: primaryH,
         nativeAge,
+        domainName: config.name.en,
+        sourceHouseMeaning: HOUSE_CONTEXT[config.id]?.[primaryH] ?? undefined,
+        targetHouseMeaning: HOUSE_CONTEXT[config.id]?.[primaryLordPos.house] ?? undefined,
       }),
     );
   }
@@ -768,14 +771,37 @@ function identifyWeakPlanets(
  * Future i18n gap: to localise these, `ScoringFactor.value` would need to become `LocaleText`.
  */
 const HOUSE_CONTEXT: Record<string, Record<number, string>> = {
-  health:    { 1: 'body & constitution', 6: 'disease & immunity', 8: 'longevity' },
-  wealth:    { 2: 'accumulated wealth', 11: 'gains & income' },
-  career:    { 10: 'career & status', 6: 'service & competition' },
-  marriage:  { 7: 'marriage & partnerships' },
-  children:  { 5: 'children & progeny' },
-  family:    { 4: 'mother & home', 9: 'father & dharma' },
-  spiritual: { 9: 'dharma & guru', 12: 'moksha & renunciation' },
-  education: { 4: 'foundational education', 5: 'intelligence & higher learning' },
+  health:    {
+    1: 'body & constitution',          // Hindi: शरीर एवं संविधान
+    6: 'disease & immunity',           // Hindi: रोग एवं प्रतिरक्षा
+    8: 'longevity',                    // Hindi: दीर्घायु
+  },
+  wealth:    {
+    2: 'accumulated wealth',           // Hindi: संचित धन
+    11: 'gains & income',             // Hindi: लाभ एवं आय
+  },
+  career:    {
+    10: 'career & status',            // Hindi: कैरियर एवं प्रतिष्ठा
+    6: 'service & competition',        // Hindi: सेवा एवं प्रतिस्पर्धा
+  },
+  marriage:  {
+    7: 'marriage & partnerships',      // Hindi: विवाह एवं साझेदारी
+  },
+  children:  {
+    5: 'children & progeny',           // Hindi: संतान एवं सन्तति
+  },
+  family:    {
+    4: 'mother & home',                // Hindi: माता एवं गृह
+    9: 'father & dharma',             // Hindi: पिता एवं धर्म
+  },
+  spiritual: {
+    9: 'dharma & guru',                // Hindi: धर्म एवं गुरु
+    12: 'moksha & renunciation',      // Hindi: मोक्ष एवं त्याग
+  },
+  education: {
+    4: 'foundational education',       // Hindi: आधारभूत शिक्षा
+    5: 'intelligence & higher learning', // Hindi: बुद्धि एवं उच्च शिक्षा
+  },
 };
 
 /**
@@ -786,14 +812,47 @@ const HOUSE_CONTEXT: Record<string, Record<number, string>> = {
  * NOTE: Values are English-only strings — same i18n gap as HOUSE_CONTEXT above.
  */
 const KARAKA_ROLE: Record<string, Record<number, string>> = {
-  health:    { 0: 'vitality karaka', 1: 'mental health', 2: 'energy & immunity', 6: 'chronic conditions' },
-  wealth:    { 4: 'expansion karaka', 5: 'luxury karaka', 3: 'commerce karaka' },
-  career:    { 0: 'authority karaka', 6: 'profession karaka', 3: 'business karaka', 2: 'drive & ambition' },
-  marriage:  { 5: 'relationship karaka', 4: 'husband karaka', 1: 'emotional bond' },
-  children:  { 4: 'putra karaka', 5: 'fertility karaka', 1: 'nurturing karaka' },
-  family:    { 1: 'mother karaka', 0: 'father karaka', 2: 'property & siblings' },
-  spiritual: { 8: 'liberation karaka', 4: 'wisdom karaka', 1: 'inner mind' },
-  education: { 3: 'intellect karaka', 4: 'wisdom karaka' },
+  health:    {
+    0: 'vitality karaka',              // Hindi: जीवनशक्ति कारक
+    1: 'mental health',                // Hindi: मानसिक स्वास्थ्य
+    2: 'energy & immunity',            // Hindi: ऊर्जा एवं प्रतिरक्षा
+    6: 'chronic conditions',           // Hindi: दीर्घकालिक रोग
+  },
+  wealth:    {
+    4: 'expansion karaka',             // Hindi: विस्तार कारक
+    5: 'luxury karaka',                // Hindi: विलासिता कारक
+    3: 'commerce karaka',              // Hindi: वाणिज्य कारक
+  },
+  career:    {
+    0: 'authority karaka',             // Hindi: अधिकार कारक
+    6: 'profession karaka',            // Hindi: व्यवसाय कारक
+    3: 'business karaka',              // Hindi: व्यापार कारक
+    2: 'drive & ambition',             // Hindi: उत्साह एवं महत्वाकांक्षा
+  },
+  marriage:  {
+    5: 'relationship karaka',          // Hindi: सम्बन्ध कारक
+    4: 'husband karaka',               // Hindi: पति कारक
+    1: 'emotional bond',               // Hindi: भावनात्मक बन्धन
+  },
+  children:  {
+    4: 'putra karaka',                 // Hindi: पुत्र कारक
+    5: 'fertility karaka',             // Hindi: प्रजनन कारक
+    1: 'nurturing karaka',             // Hindi: पालन कारक
+  },
+  family:    {
+    1: 'mother karaka',                // Hindi: मातृ कारक
+    0: 'father karaka',                // Hindi: पितृ कारक
+    2: 'property & siblings',          // Hindi: सम्पत्ति एवं भ्रातृ
+  },
+  spiritual: {
+    8: 'liberation karaka',            // Hindi: मोक्ष कारक
+    4: 'wisdom karaka',                // Hindi: ज्ञान कारक
+    1: 'inner mind',                   // Hindi: अन्तर्मन
+  },
+  education: {
+    3: 'intellect karaka',             // Hindi: बुद्धि कारक
+    4: 'wisdom karaka',                // Hindi: ज्ञान कारक
+  },
 };
 
 /**

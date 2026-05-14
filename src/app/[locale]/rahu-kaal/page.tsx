@@ -190,3 +190,4 @@ export default async function RahuKaalPage({ params }: { params: Promise<{ local
     </main>
   );
 }
+

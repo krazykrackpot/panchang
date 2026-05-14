@@ -5,12 +5,12 @@
     "language": "hi",
     "estimatedDuration": 110,
     "style": "dramatic",
-    "voiceProfile": "Bill (pqHfZKP75CvOlQylNhV4) — stability=0.5, similarity=0.8, style=0.6",
+    "voiceProfile": "hi-IN-MadhurNeural (Edge TTS, free)",
     "musicTrack": "public/audio/sitar-darbari.mp3",
     "musicStartOffset": "4:30",
     "musicNotes": "Start at 4:30 (jor/jhala, skip alap). Mute at scene 5 for 2s. Resume scene 6 full crescendo.",
-    "pipeline": "FREE: Pexels stock + Google ImageFX stills + Hailuo free (5/day) + ElevenLabs voice + FFmpeg",
-    "estimatedCost": "$0.75 (voiceover only)"
+    "pipeline": "FREE: Pexels stock + Google ImageFX stills + Hailuo free (5/day) + Edge TTS (free) + FFmpeg",
+    "estimatedCost": "$0.00"
   },
   "scenes": [
     {
@@ -29,10 +29,26 @@
       "narration": "इसे शनि की कक्षा से भाग दो — 1,46,568। पूर्ण। बृहस्पति — 3,64,220। पूर्ण। चन्द्रमा — 5 करोड़ 77 लाख। पूर्ण। बुध — 1 करोड़ 79 लाख। पूर्ण। नौ के नौ खगोलीय पिण्ड — एक भी शेष नहीं।",
       "source": "pexels_multi",
       "clips": [
-        {"search": "saturn planet rings 4k", "duration": 4, "notes": "Saturn with PROMINENT RINGS — verify before downloading"},
-        {"search": "jupiter planet storm 4k", "duration": 4, "notes": "Jupiter with Great Red Spot"},
-        {"search": "full moon night 4k", "duration": 4, "notes": "Detailed Moon surface"},
-        {"search": "sun solar flare 4k", "duration": 5, "notes": "Sun with solar prominences, Mercury implied"}
+        {
+          "search": "saturn planet rings 4k",
+          "duration": 4,
+          "notes": "Saturn with PROMINENT RINGS — verify before downloading"
+        },
+        {
+          "search": "jupiter planet storm 4k",
+          "duration": 4,
+          "notes": "Jupiter with Great Red Spot"
+        },
+        {
+          "search": "full moon night 4k",
+          "duration": 4,
+          "notes": "Detailed Moon surface"
+        },
+        {
+          "search": "sun solar flare 4k",
+          "duration": 5,
+          "notes": "Sun with solar prominences, Mercury implied"
+        }
       ],
       "textOverlay": "÷ शनि = 1,46,568 ✓ | ÷ बृहस्पति = 3,64,220 ✓",
       "transition": "crossfade"
@@ -43,8 +59,18 @@
       "narration": "सटीकता? बुध — NASA से 66 सेकण्ड का अन्तर। शनि — साढ़े 29 साल की कक्षा में साढ़े 6 दिन। बिना दूरबीन। बिना उपग्रह। 1500 साल पहले।",
       "source": "google_imagefx + pexels",
       "clips": [
-        {"source": "google_imagefx", "prompt": "Ancient Indian stone observatory at night, Jantar Mantar style instruments, clear starry sky, oil lamp casting warm golden glow on stone astrolabe, photorealistic", "duration": 8, "notes": "Generate as still image, apply Ken Burns zoom-in"},
-        {"source": "pexels", "search": "NASA control room screens", "duration": 7, "notes": "Modern mission control contrast"}
+        {
+          "source": "google_imagefx",
+          "prompt": "Ancient Indian stone observatory at night, Jantar Mantar style instruments, clear starry sky, oil lamp casting warm golden glow on stone astrolabe, photorealistic",
+          "duration": 8,
+          "notes": "Generate as still image, apply Ken Burns zoom-in"
+        },
+        {
+          "source": "pexels",
+          "search": "NASA control room screens",
+          "duration": 7,
+          "notes": "Modern mission control contrast"
+        }
       ],
       "textOverlay": "बुध: 66 सेकण्ड | शनि: 6.5 दिन / 29.5 वर्ष",
       "transition": "crossfade"
@@ -76,8 +102,18 @@
       "narration": "और ये वही संख्या है जो युग दर्शन से निकलती है। 12 हज़ार दिव्य वर्ष गुणा 360 — बराबर 43 लाख 20 हज़ार। गणित और दर्शन — दो अलग रास्ते। एक ही उत्तर।",
       "source": "google_imagefx + hailuo",
       "clips": [
-        {"source": "google_imagefx", "prompt": "Majestic Lord Vishnu reclining on the cosmic serpent Shesha Naga floating on the milky cosmic ocean, golden crown and ornaments, blue skin, lotus growing from navel with Brahma seated on it, classical Indian temple art style rendered in rich photorealistic 3D, deep blue and gold color palette, divine cosmic scale", "duration": 10, "notes": "Generate as high-res still via Google ImageFX. Ken Burns slow zoom out to reveal full scene."},
-        {"source": "hailuo", "prompt": "Golden cosmic mandala with nine orbiting celestial spheres, sacred geometry, divine light emanating from center, dark space background", "duration": 10, "notes": "Hailuo free tier — 6 second clip, loop to 10s. Cover watermark with text overlay."}
+        {
+          "source": "google_imagefx",
+          "prompt": "Majestic Lord Vishnu reclining on the cosmic serpent Shesha Naga floating on the milky cosmic ocean, golden crown and ornaments, blue skin, lotus growing from navel with Brahma seated on it, classical Indian temple art style rendered in rich photorealistic 3D, deep blue and gold color palette, divine cosmic scale",
+          "duration": 10,
+          "notes": "Generate as high-res still via Google ImageFX. Ken Burns slow zoom out to reveal full scene."
+        },
+        {
+          "source": "hailuo",
+          "prompt": "Golden cosmic mandala with nine orbiting celestial spheres, sacred geometry, divine light emanating from center, dark space background",
+          "duration": 10,
+          "notes": "Hailuo free tier — 6 second clip, loop to 10s. Cover watermark with text overlay."
+        }
       ],
       "textOverlay": "गणित = 43,20,000 | दर्शन = 12,000 × 360 = 43,20,000",
       "transition": "crossfade"
@@ -88,16 +124,31 @@
       "narration": "1500 साल पुराना कोड। आज भी दीवाली की तारीख़ इसी से निकलती है। आपकी कुण्डली इसी से बनती है। ये इतिहास नहीं — ये अभी चल रहा है।",
       "source": "pexels_multi + google_imagefx",
       "clips": [
-        {"source": "pexels", "search": "diwali lamps celebration indian family", "duration": 5, "notes": "Warm Diwali scene with diyas"},
-        {"source": "google_imagefx", "prompt": "Hindu pandit's hands holding open a traditional Sanskrit panchangam almanac, weathered yellowed pages with Devanagari text and astronomical tables, warm candlelight, close-up photorealistic", "duration": 5, "notes": "Ken Burns slow zoom on the page"},
-        {"source": "pexels", "search": "person using phone astrology app night", "duration": 5, "notes": "Modern app usage — bridge to CTA"}
+        {
+          "source": "pexels",
+          "search": "diwali lamps celebration indian family",
+          "duration": 5,
+          "notes": "Warm Diwali scene with diyas"
+        },
+        {
+          "source": "google_imagefx",
+          "prompt": "Hindu pandit's hands holding open a traditional Sanskrit panchangam almanac, weathered yellowed pages with Devanagari text and astronomical tables, warm candlelight, close-up photorealistic",
+          "duration": 5,
+          "notes": "Ken Burns slow zoom on the page"
+        },
+        {
+          "source": "pexels",
+          "search": "person using phone astrology app night",
+          "duration": 5,
+          "notes": "Modern app usage — bridge to CTA"
+        }
       ],
       "textOverlay": "dekhopanchang.com — वही गणित, आधुनिक सटीकता",
       "transition": "fade_black"
     }
   ],
   "production_steps": [
-    "1. Generate voiceover: ElevenLabs Bill voice, Hindi, each scene as separate MP3",
+    "1. Generate voiceover: python3 -m edge_tts --voice hi-IN-MadhurNeural --rate=\"-5%\" --file scene-N.txt --write-media scene-N.mp3 --write-subtitles scene-N.vtt",
     "2. Download Pexels clips: scenes 1,2,4,5,7 — search queries listed above",
     "3. Generate Google ImageFX stills: scenes 3 (observatory), 6 (Vishnu), 7 (panchangam) — save as PNG",
     "4. Generate Hailuo clip: scene 6 (cosmic mandala) — 1 of 5 free daily clips",

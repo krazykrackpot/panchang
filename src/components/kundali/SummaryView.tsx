@@ -11,7 +11,7 @@
  * No new computations. No API calls. No engine changes.
  */
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, type ReactNode } from 'react';
 import dynamic from 'next/dynamic';
 import { BookOpen, ChevronDown, ChevronUp, Sparkles, Shield, TrendingUp, AlertTriangle, Printer, Link2, Check } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
@@ -32,6 +32,28 @@ const PersonalMonthCalendar = dynamic(() => import('./PersonalMonthCalendar'), {
 const QuestionAnswerPanel = dynamic(() => import('./QuestionAnswerPanel'), { ssr: false });
 const TrajectoryCard = dynamic(() => import('./TrajectoryCard'), { ssr: false });
 const ChartNorth = dynamic(() => import('./ChartNorth'), { ssr: false });
+
+// ── Collapsible section wrapper using native <details> ──
+function CollapsibleSection({ title, defaultOpen = true, children, headingFont }: {
+  title: string;
+  defaultOpen?: boolean;
+  children: ReactNode;
+  headingFont?: React.CSSProperties;
+}) {
+  return (
+    <details open={defaultOpen || undefined}>
+      <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden select-none group">
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg sm:text-xl text-gold-light font-bold" style={headingFont}>{title}</h2>
+          <ChevronDown className="w-4 h-4 text-gold-primary/50 transition-transform group-open:rotate-180" />
+        </div>
+      </summary>
+      <div className="mt-4">
+        {children}
+      </div>
+    </details>
+  );
+}
 
 // ── Thread theme → human-friendly labels ──
 const THREAD_LABELS: Record<string, { en: string; hi: string }> = {
@@ -241,6 +263,17 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
         <div className="max-w-md mx-auto">
           <ChartNorth data={kundali.chart} title={isHi ? 'जन्म कुण्डली' : 'Birth Chart'} size={380} />
         </div>
+      )}
+
+      {/* View Technical Analysis — link below chart */}
+      {onTechnical && (
+        <button
+          onClick={onTechnical}
+          className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all text-xs"
+        >
+          <Shield size={14} />
+          {isHi ? 'तकनीकी विश्लेषण देखें  –  चार्ट, ग्रह, भाव, अष्टकवर्ग' : 'View Technical Analysis  –  Charts, Planets, Houses, Ashtakavarga'}
+        </button>
       )}
 
       {/* ═══ Quick Stats Bar (Improvement #2) ═══ */}
@@ -465,9 +498,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
 
       {/* ═══ SECTION 5: Life Domains  –  the core reading (stronger bg  –  Improvement #10) ═══ */}
       <section className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 sm:p-6">
-        <h2 className="text-lg sm:text-xl text-gold-light font-bold mb-4" style={headingFont}>
-          {isHi ? 'आपके जीवन क्षेत्र' : 'Your Life Domains'}
-        </h2>
+        <CollapsibleSection title={isHi ? 'आपके जीवन क्षेत्र' : 'Your Life Domains'} defaultOpen={true} headingFont={headingFont}>
 
         {/* Technical analysis link — top */}
         {onTechnical && (
@@ -529,14 +560,13 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
             </div>
           </div>
         )}
+        </CollapsibleSection>
       </section>
 
       {/* ═══ YOUR PERSONAL MONTH  –  color-coded daily quality ═══ */}
       {kundali && (
         <section className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/35 via-[#1a1040]/45 to-[#0a0e27] border border-gold-primary/12 p-5 sm:p-6">
-          <h2 className="text-lg sm:text-xl text-gold-light font-bold mb-4" style={headingFont}>
-            {isHi ? 'आपका व्यक्तिगत मास' : 'Your Personal Month'}
-          </h2>
+          <CollapsibleSection title={isHi ? 'आपका व्यक्तिगत मास' : 'Your Personal Month'} defaultOpen={false} headingFont={headingFont}>
           <PersonalMonthCalendar
             snapshot={{
               moonSign: kundali.planets.find(p => p.planet.id === 1)?.sign || 1,
@@ -564,13 +594,16 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
             timezone={kundali.birthData.timezone}
             locale={locale}
           />
+          </CollapsibleSection>
         </section>
       )}
 
       {/* ═══ READING TRAJECTORY (logged-in users with history) ═══ */}
       {trajectory && isLoggedIn && trajectory.domains.some(d => d.sparkline.length >= 2) && (
-        <section>
-          <TrajectoryCard trajectory={trajectory} locale={locale} />
+        <section className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 p-5 sm:p-6">
+          <CollapsibleSection title={isHi ? 'आपके अंक' : 'Your Scores'} defaultOpen={false} headingFont={headingFont}>
+            <TrajectoryCard trajectory={trajectory} locale={locale} />
+          </CollapsibleSection>
         </section>
       )}
 
@@ -579,9 +612,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
       {/* ═══ SECTION 6: Where You Are Now (stronger bg  –  Improvement #10) ═══ */}
       {/* Key dates are rendered INSIDE SummaryCurrentPeriod via its keyDates prop (Improvement #4) */}
       <section className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 sm:p-6">
-        <h2 className="text-lg sm:text-xl text-gold-light font-bold mb-4" style={headingFont}>
-          {isHi ? 'आप अभी कहाँ हैं' : 'Where You Are Now'}
-        </h2>
+        <CollapsibleSection title={isHi ? 'आप अभी कहाँ हैं' : 'Where You Are Now'} defaultOpen={true} headingFont={headingFont}>
         <SummaryCurrentPeriod
           dashaInsight={tip.dashaInsight}
           yearPredictions={tip.yearPredictions}
@@ -590,21 +621,21 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
           dashaSynthesis={tip.dashaSynthesis}
           locale={locale}
         />
+        </CollapsibleSection>
       </section>
 
       <GoldDivider />
 
       {/* ═══ SECTION 7: What You Can Do  –  Remedies ═══ */}
       <section>
-        <h2 className="text-lg sm:text-xl text-gold-light font-bold mb-4" style={headingFont}>
-          {isHi ? 'आप क्या कर सकते हैं' : 'What You Can Do'}
-        </h2>
+        <CollapsibleSection title={isHi ? 'आप क्या कर सकते हैं' : 'What You Can Do'} defaultOpen={false} headingFont={headingFont}>
         <SummaryRemedies
           remedies={tip.remedies}
           domains={personalReading?.domains || []}
           remedyNote={tip.lifeStage?.remedyNote}
           locale={locale}
         />
+        </CollapsibleSection>
       </section>
 
       <GoldDivider />

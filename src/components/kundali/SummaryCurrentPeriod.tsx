@@ -580,11 +580,6 @@ export default function SummaryCurrentPeriod({
 }: SummaryCurrentPeriodProps) {
   return (
     <section className="space-y-5">
-      {/* Section header */}
-      <h2 className="text-xl font-bold text-gold-light">
-        {locale === 'hi' ? 'आप अभी कहाँ हैं' : 'Where You Are Now'}
-      </h2>
-
       {/* A: Current Dasha */}
       <CurrentDashaSection
         dashaInsight={dashaInsight}

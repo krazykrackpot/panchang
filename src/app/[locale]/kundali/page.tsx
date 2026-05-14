@@ -1373,8 +1373,6 @@ export default function KundaliPage() {
                   { key: 'sudarshana' as const, label: locale === 'en' || isTamil ? 'Sudarshana' : 'सुदर्शन' },
                   { key: 'nadi' as const, label: locale === 'en' || isTamil ? 'Nadi Amsha' : 'नाडी अंश' },
                   { key: 'patrika' as const, label: locale === 'en' || isTamil ? 'Patrika' : 'पत्रिका' },
-                  // Chat tab last — it's AI-powered, not core chart analysis
-                  { key: 'chat' as const, label: locale === 'en' || isTamil ? 'Ask Your Chart' : 'अपनी कुण्डली से पूछें' },
                 ]).map((tab) => (
                   <button
                     key={tab.key}
@@ -3265,25 +3263,6 @@ export default function KundaliPage() {
             <SphutasTab kundali={kundali} locale={locale as Locale} isDevanagari={isDevanagari} headingFont={headingFont} sphuataTransitData={sphuataTransitData} />
           )}
 
-          {/* ===== CHAT TAB ===== */}
-          {activeTab === 'chat' && (
-            <div className="space-y-4">
-              <div className="rounded-xl bg-gradient-to-br from-cyan-500/8 via-[#1a1040]/40 to-[#0a0e27] border border-cyan-500/15 p-4">
-                <h3 className="text-cyan-300 text-sm font-bold mb-2" style={headingFont}>
-                  {locale === 'en' || isTamil ? 'Ask the Rishi: AI Chart Consultation' : 'ऋषि से पूछें: AI कुण्डली परामर्श'}
-                </h3>
-                <p className="text-text-secondary text-xs leading-relaxed">
-                  {locale === 'en' || isTamil
-                    ? 'Ask any question about YOUR chart  –  the AI reads your actual planetary positions, dashas, and yogas to give personalized answers. Try: "When is my best period for career growth?", "What does my Moon-Jupiter conjunction mean?", or "Is this year good for starting a business?"'
-                    : 'अपनी कुण्डली के बारे में कोई भी प्रश्न पूछें  –  AI आपकी वास्तविक ग्रह स्थितियों, दशाओं और योगों को पढ़कर व्यक्तिगत उत्तर देता है। "कैरियर वृद्धि के लिए सर्वश्रेष्ठ अवधि कब है?", "मेरे चन्द्र-गुरु युति का क्या अर्थ है?" जैसे प्रश्न पूछें।'}
-                </p>
-              </div>
-              <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
-                <ChartChatTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />
-              </Suspense>
-            </div>
-          )}
-
           {/* ===== SADE SATI TAB ===== */}
           {activeTab === 'sadesati' && kundali.sadeSati && (
             <div className="space-y-6">
@@ -3589,6 +3568,27 @@ export default function KundaliPage() {
           )}
 
         </motion.div>
+      )}
+
+      {/* ═══ ASK YOUR CHART — AI consultation, always visible at bottom ═══ */}
+      {kundali && (
+        <details className="mt-8 rounded-2xl bg-gradient-to-br from-cyan-500/8 via-[#1a1040]/40 to-[#0a0e27] border border-cyan-500/15 overflow-hidden">
+          <summary className="p-5 cursor-pointer flex items-center justify-between hover:bg-cyan-500/5 transition-colors list-none [&::-webkit-details-marker]:hidden select-none">
+            <div>
+              <h3 className="text-cyan-300 text-base font-bold" style={headingFont}>
+                {locale === 'en' || isTamil ? 'Ask Your Chart \u2014 AI Consultation' : '\u0905\u092A\u0928\u0940 \u0915\u0941\u0923\u094D\u0921\u0932\u0940 \u0938\u0947 \u092A\u0942\u0926\u0947\u0902 \u2014 AI \u092A\u0930\u093E\u092E\u0930\u094D\u0936'}
+              </h3>
+              <p className="text-text-secondary text-xs mt-1">
+                {locale === 'en' || isTamil ? 'Ask any question about your planetary positions, dashas, and yogas' : '\u0905\u092A\u0928\u0940 \u0917\u094D\u0930\u0939 \u0938\u094D\u0925\u093F\u0924\u093F\u092F\u094B\u0902, \u0926\u0936\u093E\u0913\u0902 \u0914\u0930 \u092F\u094B\u0917\u094B\u0902 \u0915\u0947 \u092C\u093E\u0930\u0947 \u092E\u0947\u0902 \u0915\u094B\u0908 \u092D\u0940 \u092A\u094D\u0930\u0936\u094D\u0928 \u092A\u0942\u091B\u0947\u0902'}
+              </p>
+            </div>
+          </summary>
+          <div className="px-5 pb-5">
+            <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
+              <ChartChatTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />
+            </Suspense>
+          </div>
+        </details>
       )}
 
       {/* SEO cross-links */}

@@ -170,9 +170,9 @@ export default function YogasTab({ yogas, newYogas, locale, isDevanagari, headin
     if (!useNewEngine) return null;
 
     const filtered = newYogas.filter(y => {
-      if (filter === 'present') return y.present;
-      if (filter === 'auspicious') return y.present && y.isAuspicious;
-      if (filter === 'challenging') return y.present && !y.isAuspicious;
+      if (!y.present) return false; // Only show yogas present in this chart
+      if (filter === 'auspicious') return y.isAuspicious;
+      if (filter === 'challenging') return !y.isAuspicious;
       return true;
     });
 
@@ -191,7 +191,7 @@ export default function YogasTab({ yogas, newYogas, locale, isDevanagari, headin
     if (useNewEngine) return [];
     const deduped = deduplicateOld(yogas);
     return deduped.filter(y => {
-      if (filter === 'present') return y.present;
+      if (!y.present) return false; // Only show yogas/doshas present in this chart
       if (filter === 'auspicious') return y.isAuspicious;
       if (filter === 'challenging') return !y.isAuspicious;
       return true;
@@ -246,7 +246,6 @@ export default function YogasTab({ yogas, newYogas, locale, isDevanagari, headin
       <div className="flex items-center justify-center gap-2 flex-wrap">
         {([
           { key: 'all' as FilterMode, label: isEn ? 'All' : 'सभी' },
-          { key: 'present' as FilterMode, label: isEn ? 'Present' : 'उपस्थित' },
           { key: 'auspicious' as FilterMode, label: isEn ? 'Auspicious' : 'शुभ' },
           { key: 'challenging' as FilterMode, label: isEn ? 'Challenging' : 'अशुभ' },
         ]).map(f => (
@@ -283,7 +282,10 @@ export default function YogasTab({ yogas, newYogas, locale, isDevanagari, headin
                 >
                   {isEn ? 'All Groups' : 'सभी समूह'}
                 </button>
-                {GROUP_ORDER.map(g => (
+                {GROUP_ORDER.filter(g => {
+                  const gy = groupedYogas?.get(g.key);
+                  return gy && gy.some(y => y.present);
+                }).map(g => (
                   <button key={g.key}
                     onClick={() => { setGroupFilter(g.key); setShowGroupDropdown(false); }}
                     className={`w-full text-left px-3 py-2 text-xs hover:bg-gold-primary/10 ${groupFilter === g.key ? 'text-gold-light font-bold' : 'text-text-secondary'}`}
@@ -306,6 +308,7 @@ export default function YogasTab({ yogas, newYogas, locale, isDevanagari, headin
             if (!groupYogas || groupYogas.length === 0) return null;
 
             const presentInGroup = groupYogas.filter(y => y.present).length;
+            if (presentInGroup === 0) return null;
 
             return (
               <div key={groupMeta.key}>
@@ -327,10 +330,9 @@ export default function YogasTab({ yogas, newYogas, locale, isDevanagari, headin
                   </div>
                 </div>
 
-                {/* Yoga cards */}
+                {/* Yoga cards — only show yogas present in this chart */}
                 <div className="space-y-2">
-                  {/* Present yogas first, then absent */}
-                  {[...groupYogas].sort((a, b) => (b.present ? 1 : 0) - (a.present ? 1 : 0)).map(yoga => (
+                  {groupYogas.filter(y => y.present).map(yoga => (
                     <NewYogaCard
                       key={yoga.id}
                       yoga={yoga}

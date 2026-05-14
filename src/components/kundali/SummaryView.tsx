@@ -20,9 +20,10 @@ import LifeDomainsOverview from './LifeDomainsOverview';
 import SummaryCurrentPeriod, { KeyDatesSection } from './SummaryCurrentPeriod';
 import SummaryRemedies from './SummaryRemedies';
 import type { TippanniContent, YogaInsight, DoshaInsight } from '@/lib/kundali/tippanni-types';
-import type { PersonalReading } from '@/lib/kundali/domain-synthesis/types';
+import type { PersonalReading, Rating } from '@/lib/kundali/domain-synthesis/types';
 import type { KeyDate } from '@/lib/kundali/domain-synthesis/key-dates';
 import type { FullTrajectory } from '@/lib/kundali/domain-synthesis/trajectory';
+import { getDomainConfig } from '@/lib/kundali/domain-synthesis/config';
 import type { KundaliData } from '@/types/kundali';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
@@ -30,7 +31,7 @@ import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/loc
 const KeyDatesTimeline = dynamic(() => import('./KeyDatesTimeline'), { ssr: false });
 const PersonalMonthCalendar = dynamic(() => import('./PersonalMonthCalendar'), { ssr: false });
 const QuestionAnswerPanel = dynamic(() => import('./QuestionAnswerPanel'), { ssr: false });
-const TrajectoryCard = dynamic(() => import('./TrajectoryCard'), { ssr: false });
+// TrajectoryCard removed — user requested "Your Scores" section be deleted entirely
 const ChartNorth = dynamic(() => import('./ChartNorth'), { ssr: false });
 
 // ── Collapsible section wrapper using native <details> ──
@@ -76,6 +77,14 @@ const PLANET_AREA: Record<string, { en: string; hi: string }> = {
   Saturn: { en: 'discipline & longevity', hi: 'अनुशासन और दीर्घायु' },
   Rahu: { en: 'ambition', hi: 'महत्वाकांक्षा' },
   Ketu: { en: 'spirituality', hi: 'आध्यात्मिकता' },
+};
+
+// ── Rating tier labels for domain card summaries ──
+const RATING_TIER_LABELS: Record<Rating, { en: string; sa: string; color: string }> = {
+  uttama: { en: 'Excellent', sa: 'Uttama', color: 'text-emerald-400' },
+  madhyama: { en: 'Moderate', sa: 'Madhyama', color: 'text-gold-light' },
+  adhama: { en: 'Weak', sa: 'Adhama', color: 'text-orange-400' },
+  atyadhama: { en: 'Very Weak', sa: 'Atyadhama', color: 'text-red-400' },
 };
 
 // ── Domain key to Tippanni life area key mapping ──
@@ -522,15 +531,34 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
           {sortedDomains.map((domain, i) => {
             const tippanniKey = DOMAIN_TO_TIPPANNI[domain.domain];
             const tippanniArea = tippanniKey ? tip.lifeAreas[tippanniKey] : undefined;
+            const domainConfig = getDomainConfig(domain.domain);
+            const domainName = domainConfig ? tl(domainConfig.name, locale) : domain.domain;
+            const { rating } = domain.overallRating;
+            const tierInfo = RATING_TIER_LABELS[rating];
             return (
-              <SummaryDomainCard
-                key={domain.domain}
-                domain={domain}
-                tippanniArea={tippanniArea}
-                isTopPriority={i === 0 && !!tip.lifeStage}
-                locale={locale}
-                onDeepDive={onDeepDive ? () => onDeepDive(domain.domain) : undefined}
-              />
+              <details key={domain.domain} open={i < 3 || undefined}>
+                <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden select-none group">
+                  <div className="flex items-center justify-between rounded-xl border border-gold-primary/12 bg-gradient-to-r from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] px-4 py-3 hover:border-gold-primary/30 transition-colors">
+                    <div className="flex items-center gap-3">
+                      <span className="text-sm font-bold text-gold-light capitalize">{domainName}</span>
+                      <span className={`text-xs font-medium ${tierInfo.color}`}>{tierInfo.sa}</span>
+                      {i === 0 && !!tip.lifeStage && (
+                        <span className="text-[10px] font-semibold tracking-wide text-gold-primary bg-gold-primary/10 px-2 py-0.5 rounded-full">Priority</span>
+                      )}
+                    </div>
+                    <ChevronDown className="w-4 h-4 text-gold-primary/50 transition-transform group-open:rotate-180 shrink-0" />
+                  </div>
+                </summary>
+                <div className="mt-2">
+                  <SummaryDomainCard
+                    domain={domain}
+                    tippanniArea={tippanniArea}
+                    isTopPriority={i === 0 && !!tip.lifeStage}
+                    locale={locale}
+                    onDeepDive={onDeepDive ? () => onDeepDive(domain.domain) : undefined}
+                  />
+                </div>
+              </details>
             );
           })}
         </div>
@@ -560,6 +588,17 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
             </div>
           </div>
         )}
+        {/* Technical analysis link — bottom */}
+        {onTechnical && (
+          <button
+            onClick={onTechnical}
+            className="w-full mt-4 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all text-xs"
+          >
+            <Shield size={14} />
+            {isHi ? 'तकनीकी चार्ट विश्लेषण' : 'Advanced Technical Chart Analysis'}
+          </button>
+        )}
+
         </CollapsibleSection>
       </section>
 
@@ -597,17 +636,6 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
           </CollapsibleSection>
         </section>
       )}
-
-      {/* ═══ READING TRAJECTORY (logged-in users with history) ═══ */}
-      {trajectory && isLoggedIn && trajectory.domains.some(d => d.sparkline.length >= 2) && (
-        <section className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 p-5 sm:p-6">
-          <CollapsibleSection title={isHi ? 'आपके अंक' : 'Your Scores'} defaultOpen={false} headingFont={headingFont}>
-            <TrajectoryCard trajectory={trajectory} locale={locale} />
-          </CollapsibleSection>
-        </section>
-      )}
-
-      <GoldDivider />
 
       {/* ═══ SECTION 6: Where You Are Now (stronger bg  –  Improvement #10) ═══ */}
       {/* Key dates are rendered INSIDE SummaryCurrentPeriod via its keyDates prop (Improvement #4) */}

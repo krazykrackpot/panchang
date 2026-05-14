@@ -2,6 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import { useLocale } from 'next-intl';
+import Image from 'next/image';
 import { Link } from '@/lib/i18n/navigation';
 import { Star, Shield, AlertTriangle, BookOpen, Gem, Users, ArrowRight, CheckCircle2, XCircle, Info } from 'lucide-react';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -184,12 +185,14 @@ export default function YogaDetailPage() {
             const imageSlug = YOGA_IMAGE_MAP[slug] || CATEGORY_IMAGE_MAP[yoga.category];
             if (imageSlug) {
               return (
-                <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-2 border-gold-primary/30 shadow-[0_0_30px_rgba(212,168,83,0.2)]">
-                  <img
+                <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-2 border-gold-primary/30 shadow-[0_0_30px_rgba(212,168,83,0.2)]">
+                  <Image
                     src={`/images/yogas/${imageSlug}.jpg`}
                     alt={yoga.name.en}
-                    className="w-full h-full object-cover"
-                    loading="eager"
+                    fill
+                    sizes="(max-width: 768px) 160px, 192px"
+                    className="object-cover"
+                    priority
                   />
                 </div>
               );

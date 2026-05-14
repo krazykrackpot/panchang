@@ -197,6 +197,35 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
     return cycle;
   }, [hasBirthData, personalMode, birthNakshatra, panchang.nakshatra]);
 
+  // Forward lookup: when tara is unfavourable, find the next favourable one
+  const nextFavourableTara = useMemo(() => {
+    if (!personalBalam || personalBalam.tarabalam.favorable) return null;
+    if (!birthNakshatra || !panchang.nakshatra) return null;
+    const todayNak = panchang.nakshatra.id ?? 1;
+    // Walk forward through nakshatras to find the next favourable tara
+    for (let offset = 1; offset <= 4; offset++) {
+      const futureNak = ((todayNak - 1 + offset) % 27) + 1;
+      const futureTara = ((futureNak - birthNakshatra + 27) % 9) || 9;
+      if (FAVORABLE_TARAS.has(futureTara)) {
+        // Estimate when: each nakshatra lasts ~1 day (13h20m average)
+        // nakshatraTransition.endTime gives when current nakshatra ends
+        const transitionTime = panchang.nakshatraTransition?.endTime;
+        let timeHint = '';
+        if (offset === 1 && transitionTime) {
+          timeHint = ` (~${transitionTime})`;
+        } else {
+          timeHint = ` (~${offset} day${offset > 1 ? 's' : ''})`;
+        }
+        return {
+          taraName: TARA_NAMES[futureTara - 1],
+          offset,
+          timeHint,
+        };
+      }
+    }
+    return null;
+  }, [personalBalam, birthNakshatra, panchang.nakshatra, panchang.nakshatraTransition]);
+
   const handleActivitySelect = useCallback((id: string | undefined) => {
     setSelectedActivity(id);
     setShowMore(false);
@@ -449,6 +478,11 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
                   : personalBalam.tarabalam.tara === 1
                     ? (isHi ? 'जन्म नक्षत्र दिवस — मिश्र' : 'birth star day — mixed')
                     : (isHi ? 'स्थगित करने पर विचार करें' : 'consider postponing')}
+                {nextFavourableTara && (
+                  <span className="text-sky-400/70 text-[10px] ml-1">
+                    → {isHi ? 'अगला शुभ:' : 'Next favourable:'} {tl(nextFavourableTara.taraName, locale)} {isHi ? 'तारा' : 'Tara'}{nextFavourableTara.timeHint}
+                  </span>
+                )}
               </span>
             </div>
           )}
@@ -540,6 +574,9 @@ export default function BestWindowsCard({ panchang, locale, timezone, birthNaksh
                       : (isHi ? 'सावधान' : 'exercise caution')}
                   {personalCycle && personalCycle > 1 && (
                     <> · {personalCycle === 2 ? (isHi ? 'मध्यम' : 'moderate') : (isHi ? 'न्यून' : 'reduced')}</>
+                  )}
+                  {nextFavourableTara && !personalBalam.tarabalam.favorable && (
+                    <> · {isHi ? 'अगला:' : 'next:'} {tl(nextFavourableTara.taraName, locale)}{nextFavourableTara.timeHint}</>
                   )}
                 </span>
               </div>

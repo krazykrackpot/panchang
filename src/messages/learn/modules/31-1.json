@@ -13,7 +13,8 @@
   },
   "subtitle": {
     "en": "Advanced muhurta selection: Sarvartha Siddhi Yoga, Amrita Siddhi Yoga, Siddha Yoga, and deep-dive into Vivaha (marriage) muhurta with all classical conditions",
-    "hi": "उन्नत मुहूर्त चयन: सर्वार्थ सिद्धि योग, अमृत सिद्धि योग, सिद्ध योग, और सभी शास्त्रीय शर्तों के साथ विवाह मुहूर्त में गहरी अवगाहन"
+    "hi": "उन्नत मुहूर्त चयन: सर्वार्थ सिद्धि योग, अमृत सिद्धि योग, सिद्ध योग, और सभी शास्त्रीय शर्तों के साथ विवाह मुहूर्त में गहरी अवगाहन",
+    "mai": "उन्नत मुहूर्त चयन: सर्वार्थ सिद्धि योग, अमृत सिद्धि योग, सिद्ध योग, और सभी शास्त्रीय शर्तों के साथ विवाह मुहूर्त में गहरी अवगाहन"
   },
   "crossRefs": [
     {
@@ -76,10 +77,22 @@
         "hi": "सर्वार्थ सिद्धि योग तब होता है जब विशिष्ट वार विशिष्ट नक्षत्रों के साथ मिलते हैं  –  जैसे रविवार + पुष्य, सोमवार + हस्त, मंगलवार + अश्विनी आदि।"
       },
       "options": [
-        { "en": "A planetary yoga in the birth chart", "hi": "जन्म कुण्डली में एक ग्रहीय योग" },
-        { "en": "A weekday-nakshatra combination considered universally auspicious", "hi": "एक वार-नक्षत्र संयोजन जो सार्वभौमिक रूप से शुभ माना जाता है" },
-        { "en": "A special tithi that occurs once a year", "hi": "एक विशेष तिथि जो वर्ष में एक बार आती है" },
-        { "en": "The moment of sunrise", "hi": "सूर्योदय का क्षण" }
+        {
+          "en": "A planetary yoga in the birth chart",
+          "hi": "जन्म कुण्डली में एक ग्रहीय योग"
+        },
+        {
+          "en": "A weekday-nakshatra combination considered universally auspicious",
+          "hi": "एक वार-नक्षत्र संयोजन जो सार्वभौमिक रूप से शुभ माना जाता है"
+        },
+        {
+          "en": "A special tithi that occurs once a year",
+          "hi": "एक विशेष तिथि जो वर्ष में एक बार आती है"
+        },
+        {
+          "en": "The moment of sunrise",
+          "hi": "सूर्योदय का क्षण"
+        }
       ]
     },
     {
@@ -95,10 +108,22 @@
         "hi": "विवाह मुहूर्त के लिए एक साथ अनुकूलता चाहिए: तिथि, नक्षत्र, वार, योग, लग्न (सप्तम भाव पापमुक्त), और राहु काल/यमगण्ड से मुक्त समय।"
       },
       "options": [
-        { "en": "Only the tithi and nakshatra", "hi": "केवल तिथि और नक्षत्र" },
-        { "en": "Only the Lagna chart", "hi": "केवल लग्न कुण्डली" },
-        { "en": "Tithi, nakshatra, vara, yoga, lagna, and absence of Rahu Kala", "hi": "तिथि, नक्षत्र, वार, योग, लग्न, और राहु काल की अनुपस्थिति" },
-        { "en": "The bride's birth star only", "hi": "केवल वधू का जन्म नक्षत्र" }
+        {
+          "en": "Only the tithi and nakshatra",
+          "hi": "केवल तिथि और नक्षत्र"
+        },
+        {
+          "en": "Only the Lagna chart",
+          "hi": "केवल लग्न कुण्डली"
+        },
+        {
+          "en": "Tithi, nakshatra, vara, yoga, lagna, and absence of Rahu Kala",
+          "hi": "तिथि, नक्षत्र, वार, योग, लग्न, और राहु काल की अनुपस्थिति"
+        },
+        {
+          "en": "The bride's birth star only",
+          "hi": "केवल वधू का जन्म नक्षत्र"
+        }
       ]
     },
     {
@@ -114,10 +139,22 @@
         "hi": "अमृत सिद्धि योग तब होता है जब विशिष्ट वार विशिष्ट तिथियों के साथ मिलते हैं। 'अमृत' का अर्थ अमृत और 'सिद्धि' का अर्थ सफलता है।"
       },
       "options": [
-        { "en": "A weekday-tithi combination considered highly auspicious", "hi": "एक वार-तिथि संयोजन जो अत्यन्त शुभ माना जाता है" },
-        { "en": "The time of moonrise", "hi": "चन्द्रोदय का समय" },
-        { "en": "A rare planetary alignment", "hi": "एक दुर्लभ ग्रहीय संरेखण" },
-        { "en": "The festival of Amrit", "hi": "अमृत का त्योहार" }
+        {
+          "en": "A weekday-tithi combination considered highly auspicious",
+          "hi": "एक वार-तिथि संयोजन जो अत्यन्त शुभ माना जाता है"
+        },
+        {
+          "en": "The time of moonrise",
+          "hi": "चन्द्रोदय का समय"
+        },
+        {
+          "en": "A rare planetary alignment",
+          "hi": "एक दुर्लभ ग्रहीय संरेखण"
+        },
+        {
+          "en": "The festival of Amrit",
+          "hi": "अमृत का त्योहार"
+        }
       ]
     },
     {

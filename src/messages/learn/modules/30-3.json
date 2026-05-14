@@ -13,7 +13,8 @@
   },
   "subtitle": {
     "en": "Kalyana Varma's Saravali (9th century) and Vaidyanatha's Jataka Parijata (14th century)  –  two essential hora texts for comparative reading and deepening chart interpretation",
-    "hi": "कल्याण वर्मा की सारावली (9वीं शताब्दी) और वैद्यनाथ की जातक पारिजात (14वीं शताब्दी)  –  तुलनात्मक अध्ययन और कुण्डली व्याख्या को गहरा करने के लिए दो आवश्यक होरा ग्रन्थ"
+    "hi": "कल्याण वर्मा की सारावली (9वीं शताब्दी) और वैद्यनाथ की जातक पारिजात (14वीं शताब्दी)  –  तुलनात्मक अध्ययन और कुण्डली व्याख्या को गहरा करने के लिए दो आवश्यक होरा ग्रन्थ",
+    "mai": "कल्याण वर्मा की सारावली (9वीं शताब्दी) और वैद्यनाथ की जातक पारिजात (14वीं शताब्दी)  –  तुलनात्मक अध्ययन और कुण्डली व्याख्या को गहरा करने के लिए दो आवश्यक होरा ग्रन्थ"
   },
   "crossRefs": [
     {
@@ -61,10 +62,22 @@
         "hi": "कल्याण वर्मा, मध्य भारत के व्यल वंश के राजा, ने 9वीं शताब्दी में सारावली लिखी। नाम का अर्थ है 'सार (सार) संग्रह (आवली)।'"
       },
       "options": [
-        { "en": "Varahamihira", "hi": "वराहमिहिर" },
-        { "en": "Mantreshwara", "hi": "मन्त्रेश्वर" },
-        { "en": "Kalyana Varma", "hi": "कल्याण वर्मा" },
-        { "en": "Vaidyanatha Dikshita", "hi": "वैद्यनाथ दीक्षित" }
+        {
+          "en": "Varahamihira",
+          "hi": "वराहमिहिर"
+        },
+        {
+          "en": "Mantreshwara",
+          "hi": "मन्त्रेश्वर"
+        },
+        {
+          "en": "Kalyana Varma",
+          "hi": "कल्याण वर्मा"
+        },
+        {
+          "en": "Vaidyanatha Dikshita",
+          "hi": "वैद्यनाथ दीक्षित"
+        }
       ]
     },
     {
@@ -80,10 +93,22 @@
         "hi": "सारावली का अद्वितीय योगदान इसके विस्तृत ग्रह-राशि वर्णन हैं  –  108 विस्तृत फल (9 ग्रह x 12 राशि)।"
       },
       "options": [
-        { "en": "It focuses only on muhurta", "hi": "यह केवल मुहूर्त पर ध्यान देती है" },
-        { "en": "Exhaustive planet-in-sign descriptions (108 combinations)", "hi": "विस्तृत ग्रह-राशि वर्णन (108 संयोजन)" },
-        { "en": "It was written in Tamil", "hi": "यह तमिल में लिखी गई थी" },
-        { "en": "It covers only female horoscopy", "hi": "यह केवल स्त्री ज्योतिष कवर करती है" }
+        {
+          "en": "It focuses only on muhurta",
+          "hi": "यह केवल मुहूर्त पर ध्यान देती है"
+        },
+        {
+          "en": "Exhaustive planet-in-sign descriptions (108 combinations)",
+          "hi": "विस्तृत ग्रह-राशि वर्णन (108 संयोजन)"
+        },
+        {
+          "en": "It was written in Tamil",
+          "hi": "यह तमिल में लिखी गई थी"
+        },
+        {
+          "en": "It covers only female horoscopy",
+          "hi": "यह केवल स्त्री ज्योतिष कवर करती है"
+        }
       ]
     },
     {
@@ -99,10 +124,22 @@
         "hi": "वैद्यनाथ दीक्षित ने 14वीं शताब्दी में जातक पारिजात लिखी। शीर्षक का अर्थ है 'ज्योतिष का पारिजात वृक्ष।'"
       },
       "options": [
-        { "en": "Vaidyanatha Dikshita, 14th century", "hi": "वैद्यनाथ दीक्षित, 14वीं शताब्दी" },
-        { "en": "Parashara, 5th century BCE", "hi": "पाराशर, 5वीं शताब्दी ईसा पूर्व" },
-        { "en": "Varahamihira, 6th century", "hi": "वराहमिहिर, 6वीं शताब्दी" },
-        { "en": "Bhattotpala, 10th century", "hi": "भट्टोत्पल, 10वीं शताब्दी" }
+        {
+          "en": "Vaidyanatha Dikshita, 14th century",
+          "hi": "वैद्यनाथ दीक्षित, 14वीं शताब्दी"
+        },
+        {
+          "en": "Parashara, 5th century BCE",
+          "hi": "पाराशर, 5वीं शताब्दी ईसा पूर्व"
+        },
+        {
+          "en": "Varahamihira, 6th century",
+          "hi": "वराहमिहिर, 6वीं शताब्दी"
+        },
+        {
+          "en": "Bhattotpala, 10th century",
+          "hi": "भट्टोत्पल, 10वीं शताब्दी"
+        }
       ]
     }
   ]

@@ -1,0 +1,71 @@
+{
+  "title": "महायुग 43 लाख 20 हज़ार साल का क्यों है? #Shorts",
+  "duration": "90-120 seconds",
+  "format": "YouTube Short / Instagram Reel — 1080x1920 vertical",
+  "language": "Hindi",
+  "voice": "Bill (edge-tts Hindi male) or deep male AI voice",
+  "style": "Fast-paced, dramatic reveals, minimal filler",
+  "music": "Dark cinematic — Hans Zimmer style low drone building to reveal. Drop to SILENCE at the prime number reveal. Resume with emotional swell for closing.",
+  "sections": [
+    {
+      "id": "hook",
+      "timestamp": "0:00–0:08",
+      "visual": "Black screen. Number 4,320,000 slams onto screen in gold. Cracks spread from it like shattered glass.",
+      "narration": "43 लाख 20 हज़ार साल। ये संख्या धार्मिक नहीं है। ये गणित है। और NASA इससे सहमत है।",
+      "text_overlay": "43,20,000 साल = महायुग"
+    },
+    {
+      "id": "the_division",
+      "timestamp": "0:08–0:25",
+      "visual": "Calculator rapidly dividing 4,320,000 by each planet's period. Each result SLAMS in as a whole number — no decimals. Sound: metallic click with each result.",
+      "narration": "इसे शनि की कक्षा से भाग दो — 1,46,568। पूर्ण। बृहस्पति — 3,64,220। पूर्ण। चन्द्रमा — 5 करोड़ 77 लाख। पूर्ण। बुध — 1 करोड़ 79 लाख। पूर्ण। नौ के नौ खगोलीय पिण्ड — एक भी शेष नहीं।",
+      "text_overlay": "÷ शनि = 1,46,568 ✓ | ÷ बृहस्पति = 3,64,220 ✓"
+    },
+    {
+      "id": "accuracy",
+      "timestamp": "0:25–0:40",
+      "visual": "Split screen — ancient palm leaf manuscript vs NASA control room. Numbers appearing side by side. Accuracy percentages glowing: 99.999%, 99.94%",
+      "narration": "सटीकता? बुध — NASA से 66 सेकण्ड का अन्तर। शनि — साढ़े 29 साल की कक्षा में साढ़े 6 दिन। बिना दूरबीन। बिना उपग्रह। 1500 साल पहले।",
+      "text_overlay": "बुध: 66 सेकण्ड का अन्तर | शनि: 6.5 दिन / 29.5 वर्ष"
+    },
+    {
+      "id": "why_not_smaller",
+      "timestamp": "0:40–0:55",
+      "visual": "Seven planets orbiting, resetting at 1,080,000. Looks complete. Then Moon shown speeding up and slowing down — the illusion breaks. Text: 'अधूरा'",
+      "narration": "सात ग्रह 10 लाख 80 हज़ार साल में वापस आ जाते हैं। पर चन्द्रमा की गति बदलती रहती है — कभी 12 अंश प्रतिदिन, कभी 15। जब तक अपभू वापस नहीं आता — ये वही आकाश नहीं है।",
+      "text_overlay": "7 ग्रह = 10,80,000 वर्ष — पर अधूरा"
+    },
+    {
+      "id": "prime_reveal",
+      "timestamp": "0:55–1:20",
+      "visual": "MUSIC DROPS TO SILENCE. Number 488,203 appears alone on black screen. Factors tested: ÷2 ✗, ÷3 ✗, ÷5 ✗, ÷7 ✗... Word 'अभाज्य' stamps in red. Then 1,080,000 tries to fit it — fails. 2,160,000 — fails. 3,240,000 — fails. 4,320,000 — LOCKS. Gold explosion.",
+      "narration": "[SILENCE — 2 beats] ... चन्द्रमा की अपभू का भगण है — 4 लाख 88 हज़ार 203। ... ये अभाज्य है। इसके गुणनखण्ड सिर्फ़ 1 और ये स्वयं हैं। 10 लाख 80 हज़ार में फिट नहीं होता। 21 लाख 60 हज़ार में नहीं। 32 लाख 40 हज़ार में नहीं। पहली संख्या जहाँ सब कुछ मिलता है — [BEAT] — 43 लाख 20 हज़ार।",
+      "text_overlay": "4,88,203 = अभाज्य (PRIME)"
+    },
+    {
+      "id": "cosmic_convergence",
+      "timestamp": "1:20–1:40",
+      "visual": "Two paths shown converging: Left — mathematical LCM calculation. Right — 12,000 × 360 = 4,320,000 from Yuga cosmology. Both arrows hitting the same number. Explosion of golden light.",
+      "narration": "और ये वही संख्या है जो युग दर्शन से निकलती है। 12 हज़ार दिव्य वर्ष गुणा 360 — बराबर 43 लाख 20 हज़ार। गणित और दर्शन — दो अलग रास्ते। एक ही उत्तर।",
+      "text_overlay": "गणित: LCM = 43,20,000 | दर्शन: 12,000 × 360 = 43,20,000"
+    },
+    {
+      "id": "closing",
+      "timestamp": "1:40–1:55",
+      "visual": "Modern family checking panchang on phone. Pandit with almanac. Diwali celebrations. All connected by golden threads to 4,320,000 floating above. Fade to Dekho Panchang logo.",
+      "narration": "1500 साल पुराना कोड। आज भी दीवाली की तारीख़ इसी से निकलती है। आपकी कुण्डली इसी से बनती है। ये इतिहास नहीं — ये अभी चल रहा है।",
+      "text_overlay": "dekhopanchang.com — वही गणित, आधुनिक सटीकता"
+    }
+  ],
+  "audio_direction": {
+    "0:00-0:55": "Dark cinematic drone, building intensity. Tabla accent on each 'पूर्ण'.",
+    "0:55-0:57": "COMPLETE SILENCE. Two beats of nothing.",
+    "0:57-1:20": "Single sustained note (tanpura or cello). Voice slow and deliberate. Each 'नहीं' gets a low percussion hit.",
+    "1:20-1:55": "Full emotional swell — sitar + orchestral. Triumphant but not cheesy."
+  },
+  "thumbnail": {
+    "text": "43,20,000 क्यों?",
+    "subtext": "एक अभाज्य संख्या ने तय किया",
+    "visual": "Dark space background, gold number, prime symbol"
+  }
+}

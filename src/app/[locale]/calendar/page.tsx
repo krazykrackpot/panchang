@@ -1,829 +1,100 @@
-'use client';
+import Link from 'next/link';
+import CalendarClient from './Client';
 
-import { tl } from '@/lib/utils/trilingual';
-import { lt } from '@/lib/learn/translations';
-import MSG from '@/messages/pages/calendar.json';
-import { trackCalendarViewed } from '@/lib/analytics';
-import { useState, useEffect, useCallback } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, ChevronDown, MapPin, Loader2, Download, Sparkles } from 'lucide-react';
-import LocationSearch from '@/components/ui/LocationSearch';
-import { getUTCOffsetForDate } from '@/lib/utils/timezone';
-import { useAuthStore } from '@/stores/auth-store';
-import { useLocationStore } from '@/stores/location-store';
-import { getSupabase } from '@/lib/supabase/client';
-import { scoreFestivalRelevance } from '@/lib/personalization/festival-relevance';
-import PersonalRelevanceBadge, { computeRelevance, type PersonalRelevanceData, type RelevanceMatch } from '@/components/calendar/PersonalRelevanceBadge';
-import { useBirthDataStore } from '@/stores/birth-data-store';
-import GoldDivider from '@/components/ui/GoldDivider';
-import { ShareRow } from '@/components/ui/ShareButton';
-import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
+export const revalidate = 86400;
 
-const PUJA_SLUG_MAP: Record<string, string> = {
-  'vat-savitri-vrat': 'vat-savitri',
-  'amavasya': 'amavasya-tarpan',
-  'pradosham-shukla': 'pradosham',
-  'pradosham-krishna': 'pradosham',
-  'sankashti-chaturthi-shukla': 'sankashti-chaturthi',
-};
-function hasPujaVidhi(slug?: string): boolean {
-  if (!slug) return false;
-  return !!(PUJA_VIDHIS[slug] || PUJA_VIDHIS[PUJA_SLUG_MAP[slug] || '']);
-}
-import { MasaIcon } from '@/components/icons/PanchangIcons';
-import AdUnit from '@/components/ads/AdUnit';
-import FestivalDetailModal from '@/components/calendar/FestivalDetailModal';
-import { FESTIVAL_DETAILS, CATEGORY_DETAILS, EKADASHI_NAMES, getHinduMonth } from '@/lib/constants/festival-details';
-import type { FestivalDetail, EkadashiDetail } from '@/lib/constants/festival-details';
-import type { LocaleText, Locale} from '@/types/panchang';
-import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-import { CalendarDays } from 'lucide-react';
-import dynamic from 'next/dynamic';
-const TithiMonthGrid = dynamic(() => import('@/components/calendar/TithiMonthGrid'), { ssr: false });
-
-const msg = (key: string, locale: string) => lt((MSG as unknown as Record<string, LocaleText>)[key], locale);
-
-interface FestivalEntry {
-  name: LocaleText;
-  date: string;
-  tithi?: string;
-  masa?: { amanta: string; purnimanta: string; isAdhika: boolean };
-  paksha?: 'shukla' | 'krishna';
-  type: 'major' | 'vrat' | 'regional' | 'eclipse';
-  category: string;
-  description: LocaleText;
-  slug?: string;
-  // Parana
-  paranaDate?: string;
-  paranaStart?: string;
-  paranaEnd?: string;
-  paranaNote?: LocaleText;
-  paranaSunrise?: string;
-  paranaHariVasaraEnd?: string;
-  paranaDwadashiEnd?: string;
-  paranaEarlyEnd?: boolean;
-  paranaMadhyahnaStart?: string;
-  paranaMadhyahnaEnd?: string;
-  // Eclipse
-  eclipseType?: 'solar' | 'lunar';
-  eclipseMagnitude?: string;
-  eclipseMaxTime?: string;
-  sutakStart?: string;
-  sutakEnd?: string;
-  sutakApplicable?: boolean;
-  eclipsePhases?: { name: LocaleText; time: string }[];
-}
-
-const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-const MONTH_NAMES_HI = ['जनवरी','फरवरी','मार्च','अप्रैल','मई','जून','जुलाई','अगस्त','सितम्बर','अक्टूबर','नवम्बर','दिसम्बर'];
-
-const HINDU_MONTHS = [
-  { en: 'Chaitra', hi: 'चैत्र', sa: 'चैत्रः', mai: 'चैत', mr: 'चैत्र', ta: 'சித்திரை', te: 'చైత్రము', bn: 'চৈত্র', kn: 'ಚೈತ್ರ', gu: 'ચૈત્ર' }, { en: 'Vaishakha', hi: 'वैशाख', sa: 'वैशाखः', mai: 'बैसाख', mr: 'वैशाख', ta: 'வைகாசி', te: 'వైశాఖము', bn: 'বৈশাখ', kn: 'ವೈಶಾಖ', gu: 'વૈશાખ' },
-  { en: 'Jyeshtha', hi: 'ज्येष्ठ', sa: 'ज्येष्ठः', mai: 'जेठ', mr: 'ज्येष्ठ', ta: 'ஆனி', te: 'జ్యేష్ఠము', bn: 'জ্যৈষ্ঠ', kn: 'ಜ್ಯೇಷ್ಠ', gu: 'જેઠ' }, { en: 'Ashadha', hi: 'आषाढ़', sa: 'आषाढः', mai: 'आषाढ़', mr: 'आषाढ', ta: 'ஆடி', te: 'ఆషాఢము', bn: 'আষাঢ়', kn: 'ಆಷಾಢ', gu: 'અષાઢ' },
-  { en: 'Shravana', hi: 'श्रावण', sa: 'श्रावणः', mai: 'सावन', mr: 'श्रावण', ta: 'ஆவணி', te: 'శ్రావణము', bn: 'শ্রাবণ', kn: 'ಶ್ರಾವಣ', gu: 'શ્રાવણ' }, { en: 'Bhadrapada', hi: 'भाद्रपद', sa: 'भाद्रपदः', mai: 'भादो', mr: 'भाद्रपद', ta: 'புரட்டாசி', te: 'భాద్రపదము', bn: 'ভাদ্র', kn: 'ಭಾದ್ರಪದ', gu: 'ભાદરવો' },
-  { en: 'Ashwina', hi: 'आश्विन', sa: 'आश्विनः', mai: 'आश्विन', mr: 'अश्विन', ta: 'ஐப்பசி', te: 'ఆశ్వయుజము', bn: 'আশ্বিন', kn: 'ಆಶ್ವಿನ', gu: 'આસો' }, { en: 'Kartika', hi: 'कार्तिक', sa: 'कार्तिकः', mai: 'कातिक', mr: 'कार्तिक', ta: 'கார்த்திகை', te: 'కార్తీకము', bn: 'কার্তিক', kn: 'ಕಾರ್ತಿಕ', gu: 'કારતક' },
-  { en: 'Margashirsha', hi: 'मार्गशीर्ष', sa: 'मार्गशीर्षः', mai: 'अगहन', mr: 'मार्गशीर्ष', ta: 'மார்கழி', te: 'మార్గశిరము', bn: 'অগ্রহায়ণ', kn: 'ಮಾರ್ಗಶಿರ', gu: 'માગશર' }, { en: 'Pausha', hi: 'पौष', sa: 'पौषः', mai: 'पूस', mr: 'पौष', ta: 'தை', te: 'పుష్యము', bn: 'পৌষ', kn: 'ಪುಷ್ಯ', gu: 'પોષ' },
-  { en: 'Magha', hi: 'माघ', sa: 'माघः', mai: 'माघ', mr: 'माघ', ta: 'மாசி', te: 'మాఘము', bn: 'মাঘ', kn: 'ಮಾಘ', gu: 'મહા' }, { en: 'Phalguna', hi: 'फाल्गुन', sa: 'फाल्गुनः', mai: 'फागुन', mr: 'फाल्गुन', ta: 'பங்குனி', te: 'ఫాల్గుణము', bn: 'ফাল্গুন', kn: 'ಫಾಲ್ಗುಣ', gu: 'ફાગણ' },
+// Major Hindu festivals for 2026 with approximate dates — server-rendered for SEO
+const FESTIVALS_2026 = [
+  { name: 'Makar Sankranti', nameHi: 'मकर संक्रान्ति', date: '14 Jan 2026', desc: 'Sun enters Capricorn. Kite flying, til-gur sweets.', descHi: 'सूर्य का मकर राशि प्रवेश। पतंग उत्सव, तिल-गुड़।' },
+  { name: 'Vasant Panchami', nameHi: 'वसन्त पंचमी', date: '2 Feb 2026', desc: 'Saraswati Puja. Start of spring season.', descHi: 'सरस्वती पूजा। वसन्त ऋतु का आरम्भ।' },
+  { name: 'Maha Shivaratri', nameHi: 'महा शिवरात्रि', date: '16 Feb 2026', desc: 'Night of Lord Shiva. Fasting and night-long worship.', descHi: 'शिव की रात्रि। उपवास और रात्रि पूजन।' },
+  { name: 'Holi', nameHi: 'होली', date: '13 Mar 2026', desc: 'Festival of colours. Holika Dahan on the eve.', descHi: 'रंगों का त्योहार। पूर्व संध्या को होलिका दहन।' },
+  { name: 'Ugadi / Gudi Padwa', nameHi: 'उगादि / गुड़ी पड़वा', date: '29 Mar 2026', desc: 'Hindu New Year (lunisolar). Chaitra Shukla Pratipada.', descHi: 'हिन्दू नववर्ष। चैत्र शुक्ल प्रतिपदा।' },
+  { name: 'Ram Navami', nameHi: 'राम नवमी', date: '6 Apr 2026', desc: 'Birth of Lord Rama. Chaitra Shukla Navami.', descHi: 'भगवान राम का जन्मोत्सव। चैत्र शुक्ल नवमी।' },
+  { name: 'Hanuman Jayanti', nameHi: 'हनुमान जयन्ती', date: '12 Apr 2026', desc: 'Birth of Lord Hanuman. Chaitra Purnima.', descHi: 'हनुमान जयन्ती। चैत्र पूर्णिमा।' },
+  { name: 'Akshaya Tritiya', nameHi: 'अक्षय तृतीया', date: '30 Apr 2026', desc: 'Auspicious for new beginnings. Gold purchases.', descHi: 'नई शुरुआत के लिए शुभ। स्वर्ण खरीद।' },
+  { name: 'Buddha Purnima', nameHi: 'बुद्ध पूर्णिमा', date: '12 May 2026', desc: 'Birth of Gautama Buddha. Vaishakha Purnima.', descHi: 'गौतम बुद्ध का जन्मदिन। वैशाख पूर्णिमा।' },
+  { name: 'Guru Purnima', nameHi: 'गुरु पूर्णिमा', date: '10 Jul 2026', desc: 'Honouring spiritual teachers. Ashadha Purnima.', descHi: 'गुरु वन्दना। आषाढ़ पूर्णिमा।' },
+  { name: 'Raksha Bandhan', nameHi: 'रक्षा बन्धन', date: '8 Aug 2026', desc: 'Brother-sister bond. Shravana Purnima.', descHi: 'भाई-बहन का बन्धन। श्रावण पूर्णिमा।' },
+  { name: 'Janmashtami', nameHi: 'जन्माष्टमी', date: '23 Aug 2026', desc: 'Birth of Lord Krishna. Bhadrapada Krishna Ashtami.', descHi: 'श्री कृष्ण जन्मोत्सव। भाद्रपद कृष्ण अष्टमी।' },
+  { name: 'Ganesh Chaturthi', nameHi: 'गणेश चतुर्थी', date: '2 Sep 2026', desc: 'Birth of Lord Ganesha. 10-day celebration.', descHi: 'गणेश जन्मोत्सव। 10 दिवसीय उत्सव।' },
+  { name: 'Navaratri', nameHi: 'नवरात्रि', date: '12\u201321 Oct 2026', desc: 'Nine nights of Goddess Durga worship.', descHi: 'देवी दुर्गा की नौ रात्रियों का उत्सव।' },
+  { name: 'Dussehra', nameHi: 'दशहरा', date: '22 Oct 2026', desc: 'Victory of Rama over Ravana. Vijayadashami.', descHi: 'राम की रावण पर विजय। विजयादशमी।' },
+  { name: 'Diwali', nameHi: 'दीपावली', date: '10 Nov 2026', desc: 'Festival of lights. Kartika Amavasya.', descHi: 'दीपों का त्योहार। कार्तिक अमावस्या।' },
+  { name: 'Chhath Puja', nameHi: 'छठ पूजा', date: '14 Nov 2026', desc: 'Sun worship. Kartika Shukla Shashthi.', descHi: 'सूर्य पूजा। कार्तिक शुक्ल षष्ठी।' },
+  { name: 'Dev Diwali', nameHi: 'देव दीवाली', date: '25 Nov 2026', desc: 'Diwali of the Gods. Kartika Purnima.', descHi: 'देवताओं की दीपावली। कार्तिक पूर्णिमा।' },
 ];
 
-type Filter = 'all' | 'major' | 'ekadashi' | 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham' | 'vrat' | 'eclipse';
-type ViewMode = 'western' | 'lunar' | 'grid';
-
-interface LocationData { lat: number; lng: number; name: string; tz: number; timezone: string; }
-
-export default function CalendarPage() {
-  const t = useTranslations('calendar');
-  const locale = useLocale() as Locale;
-  const isTamil = String(locale) === 'ta';
-  const isDevanagari = isDevanagariLocale(locale);
-  const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-
-  const [year, setYear] = useState(new Date().getFullYear());
-  const [viewMode, setViewMode] = useState<ViewMode>('western');
-  const [festivals, setFestivals] = useState<FestivalEntry[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState<Filter>('all');
-  const [tithiGridData, setTithiGridData] = useState<import('@/components/calendar/TithiMonthGrid').TithiDayData[] | null>(null);
-  const [tithiGridLoading, setTithiGridLoading] = useState(false);
-  const [selectedMonth, setSelectedMonth] = useState<number | null>(null);
-
-  // Personalized festival recommendations
-  const calUser = useAuthStore(s => s.user);
-  const [recommendedSlugs, setRecommendedSlugs] = useState<Set<string>>(new Set());
-
-  // Personal relevance data from birth-data-store + snapshot
-  const birthDataStore = useBirthDataStore();
-  const [personalRelevance, setPersonalRelevance] = useState<PersonalRelevanceData | null>(null);
-
-  useEffect(() => {
-    if (!calUser || festivals.length === 0) return;
-    const supabase = getSupabase();
-    if (!supabase) return;
-    supabase.from('kundali_snapshots')
-      .select('moon_sign, moon_nakshatra, ascendant_sign, dasha_timeline, sade_sati')
-      .eq('user_id', calUser.id)
-      .maybeSingle()
-      .then(({ data }) => {
-        if (!data) return;
-        const snapshot = {
-          moonSign: data.moon_sign, moonNakshatra: data.moon_nakshatra,
-          moonNakshatraPada: 1, sunSign: 1, ascendantSign: data.ascendant_sign,
-          planetPositions: [], dashaTimeline: data.dasha_timeline || [], sadeSati: data.sade_sati || {},
-        };
-        const slugs = new Set<string>();
-        festivals.forEach(f => {
-          if (f.slug) {
-            const result = scoreFestivalRelevance(f.slug, f.category, snapshot);
-            if (result.isRecommended) slugs.add(f.slug);
-          }
-        });
-        setRecommendedSlugs(slugs);
-
-        // Build personal relevance data for badges
-        let currentDashaPlanet: string | undefined;
-        const timeline = data.dasha_timeline as Array<{ planet: string; startDate: string; endDate: string; subPeriods?: Array<{ planet: string; startDate: string; endDate: string }> }> | undefined;
-        if (timeline) {
-          const now = Date.now();
-          for (const maha of timeline) {
-            const mStart = new Date(maha.startDate).getTime();
-            const mEnd = new Date(maha.endDate).getTime();
-            if (now >= mStart && now <= mEnd) {
-              currentDashaPlanet = maha.planet;
-              break;
-            }
-          }
-        }
-        setPersonalRelevance({
-          birthNakshatra: data.moon_nakshatra || birthDataStore.birthNakshatra,
-          birthRashi: data.moon_sign || birthDataStore.birthRashi,
-          currentDashaPlanet,
-        });
-      });
-  }, [calUser, festivals, birthDataStore.birthNakshatra, birthDataStore.birthRashi]);
-
-  // For non-logged-in users, use birth-data-store
-  useEffect(() => {
-    birthDataStore.loadFromStorage();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
-    if (!calUser && birthDataStore.isSet && !personalRelevance) {
-      setPersonalRelevance({
-        birthNakshatra: birthDataStore.birthNakshatra,
-        birthRashi: birthDataStore.birthRashi,
-      });
-    }
-  }, [calUser, birthDataStore.isSet, birthDataStore.birthNakshatra, birthDataStore.birthRashi, personalRelevance]);
-
-  // Location  –  null until resolved (no hardcoded default)
-  const [location, setLocation] = useState<LocationData | null>(null);
-  const [detectingLocation, setDetectingLocation] = useState(true);
-  const [showLocationSearch, setShowLocationSearch] = useState(false);
-
-  // Modal state
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedFestival, setSelectedFestival] = useState<FestivalEntry | null>(null);
-  const [modalDetail, setModalDetail] = useState<FestivalDetail | null>(null);
-  const [modalEkadashi, setModalEkadashi] = useState<EkadashiDetail | null>(null);
-
-  // Auto-detect location on mount via the shared location store.
-  // The store handles ipapi.co calls + caching in localStorage — no duplicate API calls.
-  useEffect(() => {
-    const store = useLocationStore.getState();
-    if (store.confirmed && store.lat !== null && store.lng !== null && store.timezone) {
-      // Location store already has a cached location — use it directly
-      const browserTz = -new Date().getTimezoneOffset() / 60;
-      setLocation({ lat: store.lat, lng: store.lng, name: store.name, tz: browserTz, timezone: store.timezone });
-      setDetectingLocation(false);
-      return;
-    }
-
-    // Store hasn't detected yet — trigger detection and subscribe to changes
-    const unsubscribe = useLocationStore.subscribe((state) => {
-      if (state.confirmed && state.lat !== null && state.lng !== null && state.timezone) {
-        const browserTz = -new Date().getTimezoneOffset() / 60;
-        setLocation({ lat: state.lat, lng: state.lng, name: state.name, tz: browserTz, timezone: state.timezone });
-        setDetectingLocation(false);
-      } else if (!state.detecting && !state.confirmed) {
-        // Detection finished but no location found — user must enter manually
-        setDetectingLocation(false);
-      }
-    });
-
-    store.detect();
-    return () => unsubscribe();
-  }, []);
-
-
-  useEffect(() => {
-    if (!location) return; // Don't fetch until location is resolved
-    setLoading(true);
-    fetch(`/api/calendar?year=${year}&lat=${location.lat}&lon=${location.lng}&timezone=${encodeURIComponent(location.timezone)}`)
-      .then(res => {
-        if (!res.ok) throw new Error(`Calendar fetch failed: ${res.status}`);
-        return res.json();
-      })
-      .then(data => {
-        setFestivals(data.festivals || []);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error('[CalendarPage] festival fetch failed:', err);
-        setLoading(false);
-      });
-  }, [year, location]);
-
-  // Fetch tithi data for grid view
-  useEffect(() => {
-    if (viewMode !== 'grid' || !location || selectedMonth === null) return;
-    setTithiGridLoading(true);
-    setTithiGridData(null);
-    const gridMonth = selectedMonth + 1;
-    fetch(`/api/tithi-grid?year=${year}&month=${gridMonth}&lat=${location.lat}&lon=${location.lng}&timezone=${encodeURIComponent(location.timezone)}`)
-      .then(res => res.json())
-      .then(data => {
-        if (!data.days) { setTithiGridLoading(false); return; }
-        const todayStr = new Date().toISOString().split('T')[0];
-        // Merge festivals onto tithi days
-        const enriched = (data.days as { day: number; date: string; tithiNumber: number; tithiName: { en: string; hi: string; sa: string }; paksha: 'shukla' | 'krishna'; masa?: { amanta: string; purnimanta: string; isAdhika: boolean } }[]).map((td) => ({
-          ...td,
-          festivals: festivals
-            .filter(f => f.date === td.date)
-            .map(f => ({ name: f.name, type: f.type, slug: f.slug })),
-          isToday: td.date === todayStr,
-        }));
-        setTithiGridData(enriched);
-        setTithiGridLoading(false);
-      })
-      .catch(() => setTithiGridLoading(false));
-  }, [viewMode, selectedMonth, year, location, festivals]);
-
-  const filteredFestivals = festivals.filter(f => {
-    // Category filter
-    if (filter !== 'all') {
-      if (filter === 'major' && f.type !== 'major') return false;
-      if (filter !== 'major' && f.category !== filter) return false;
-    }
-    // Month filter
-    if (selectedMonth !== null) {
-      if (viewMode === 'western') {
-        const m = parseInt(f.date.split('-')[1]);
-        if (m !== selectedMonth + 1) return false;
-      } else {
-        // Lunar month filter  –  match against Purnimant month name
-        const hinduMonth = HINDU_MONTHS[selectedMonth]?.en.toLowerCase();
-        const festivalMasa = (f as { masa?: { purnimanta?: string } }).masa?.purnimanta;
-        if (!festivalMasa || festivalMasa !== hinduMonth) return false;
-      }
-    }
-    return true;
-  });
-
-  const handleFestivalClick = useCallback((festival: FestivalEntry) => {
-    setSelectedFestival(festival);
-
-    // Look up rich details
-    let detail: FestivalDetail | null = null;
-    let ekadashiDetail: EkadashiDetail | null = null;
-
-    if (festival.slug) {
-      // Check main festival details first
-      if (FESTIVAL_DETAILS[festival.slug]) {
-        detail = FESTIVAL_DETAILS[festival.slug];
-      }
-      // Check category details for vrats
-      else if (CATEGORY_DETAILS[festival.slug]) {
-        detail = CATEGORY_DETAILS[festival.slug];
-      }
-      // For ekadashi, also check category-level details
-      else if (festival.slug === 'ekadashi') {
-        detail = CATEGORY_DETAILS.ekadashi;
-      }
-      // Other category slugs
-      else if (CATEGORY_DETAILS[festival.category]) {
-        detail = CATEGORY_DETAILS[festival.category];
-      }
-    }
-
-    // For Ekadashis, also look up the specific Ekadashi detail by name
-    if (festival.category === 'ekadashi') {
-      // Try matching by festival name against all Ekadashi names
-      for (const month of Object.keys(EKADASHI_NAMES)) {
-        const monthData = EKADASHI_NAMES[month];
-        if (monthData.shukla.name.en === festival.name.en) {
-          ekadashiDetail = monthData.shukla;
-          break;
-        }
-        if (monthData.krishna.name.en === festival.name.en) {
-          ekadashiDetail = monthData.krishna;
-          break;
-        }
-      }
-    }
-
-    setModalDetail(detail);
-    setModalEkadashi(ekadashiDetail);
-    setModalOpen(true);
-  }, []);
-
-  const categoryColors: Record<string, string> = {
-    festival: 'text-gold-light bg-gold-primary/10 border-gold-primary/20',
-    ekadashi: 'text-blue-400 bg-blue-500/10 border-blue-500/20',
-    purnima: 'text-amber-300 bg-amber-500/10 border-amber-500/20',
-    amavasya: 'text-purple-400 bg-purple-500/10 border-purple-500/20',
-    chaturthi: 'text-orange-400 bg-orange-500/10 border-orange-500/20',
-    pradosham: 'text-indigo-400 bg-indigo-500/10 border-indigo-500/20',
-    sankranti: 'text-red-400 bg-red-500/10 border-red-500/20',
-    eclipse: 'text-red-300 bg-red-500/10 border-red-500/20',
-  };
-
-  const filterButtons: { key: Filter; label: string; labelHi: string }[] = [
-    { key: 'all', label: 'All', labelHi: 'सभी' },
-    { key: 'major', label: 'Festivals', labelHi: 'त्योहार' },
-    { key: 'ekadashi', label: 'Ekadashi', labelHi: 'एकादशी' },
-    { key: 'purnima', label: 'Purnima', labelHi: 'पूर्णिमा' },
-    { key: 'amavasya', label: 'Amavasya', labelHi: 'अमावस्या' },
-    { key: 'chaturthi', label: 'Chaturthi', labelHi: 'चतुर्थी' },
-    { key: 'pradosham', label: 'Pradosham', labelHi: 'प्रदोष' },
-    { key: 'vrat', label: 'Other Vrats', labelHi: 'अन्य व्रत' },
-    { key: 'eclipse', label: 'Eclipses', labelHi: 'ग्रहण' },
-  ];
+export default async function CalendarPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      {/* Header */}
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
-        <div className="flex justify-center mb-6"><MasaIcon size={80} /></div>
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={headingFont}>
-          <span className="text-gold-gradient">{t('title')}</span>
-        </h1>
-        <p className="text-text-secondary text-lg max-w-2xl mx-auto">{t('subtitle')}</p>
-        <div className="flex justify-center mt-4">
-          <ShareRow
-            pageTitle={msg('sharePageTitle', locale)}
-            shareText={locale === 'en'
-              ? 'Hindu Festival Calendar with Ekadashi, Purnima & Vrat details  –  Dekho Panchang'
-              : 'हिन्दू त्योहार पंचांग  –  एकादशी, पूर्णिमा और व्रत विवरण सहित  –  Dekho Panchang'}
-            locale={locale}
-          />
-        </div>
-      </motion.div>
+    <>
+      {/* ── Server-rendered SEO content ── */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
+        <article className="prose-sm text-text-secondary leading-relaxed space-y-4 mb-10">
+          {isHi ? (<>
+            <h2 className="text-gold-light text-xl font-bold">हिन्दू त्योहार कैलेंडर 2026</h2>
+            <p>हिन्दू कैलेंडर (पंचांग) चन्द्र-सौर प्रणाली पर आधारित है जिसमें मास, तिथि, नक्षत्र, योग और करण पाँच अंगों से मिलकर बनते हैं। प्रत्येक त्योहार और व्रत की तिथि चन्द्रमा की कला (तिथि) और मास (अमान्त या पूर्णिमान्त) से निर्धारित होती है। यही कारण है कि ग्रेगोरियन कैलेंडर पर तारीखें प्रतिवर्ष बदलती हैं।</p>
+            <p>यह कैलेंडर आपके स्थान के अनुसार सटीक तिथि, एकादशी पारण समय, पूर्णिमा, अमावस्या, चतुर्थी, प्रदोष और ग्रहण सहित सम्पूर्ण पंचांग प्रदान करता है। प्रत्येक त्योहार पर क्लिक करें &mdash; विस्तृत विधि, महत्व और पूजा पद्धति देखें।</p>
+          </>) : (<>
+            <h2 className="text-gold-light text-xl font-bold">Hindu Festival Calendar 2026</h2>
+            <p>The Hindu calendar (Panchang) follows a lunisolar system where months, tithis (lunar days), nakshatras (lunar mansions), yogas, and karanas form the five limbs of timekeeping. Every festival and vrat date is determined by the Moon&apos;s phase (tithi) and the lunar month (Amanta or Purnimanta convention), which is why Gregorian dates shift each year.</p>
+            <p>This calendar provides location-accurate dates for all major festivals, Ekadashi fasting days with Parana (fast-breaking) times, Purnima, Amavasya, Chaturthi, Pradosham, and eclipses. Click on any festival to see detailed puja vidhi, significance, and observance instructions.</p>
+          </>)}
 
-      {/* Year selector */}
-      <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-6 mb-8">
-        <button onClick={() => setYear(y => y - 1)} className="p-2 rounded-lg border border-gold-primary/20 hover:bg-gold-primary/10 transition-all">
-          <ChevronLeft className="w-5 h-5 text-gold-primary" />
-        </button>
-        <span className="text-4xl font-bold text-gold-gradient" style={headingFont}>{year}</span>
-        <button onClick={() => setYear(y => y + 1)} className="p-2 rounded-lg border border-gold-primary/20 hover:bg-gold-primary/10 transition-all">
-          <ChevronRight className="w-5 h-5 text-gold-primary" />
-        </button>
-      </div>
-
-      {/* Location  –  REQUIRED. If null and not detecting, force user to enter. */}
-      {detectingLocation ? (
-        <div className="flex flex-col items-center gap-3 mb-8 py-8">
-          <Loader2 className="w-8 h-8 text-gold-primary animate-spin" />
-          <p className="text-text-secondary text-sm">{msg('detectingLocation', locale)}</p>
-        </div>
-      ) : !location ? (
-        <div className="flex flex-col items-center gap-4 mb-8 py-8 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border-2 border-gold-primary/30 rounded-2xl max-w-lg mx-auto px-3 sm:px-4 md:px-6">
-          <MapPin className="w-10 h-10 text-gold-primary" />
-          <h3 className="text-gold-light font-bold text-lg" style={headingFont}>
-            {msg('locationRequired', locale)}
+          {/* 2026 festival table */}
+          <h3 className="text-gold-light text-lg font-bold mt-6">
+            {isHi ? '2026 के प्रमुख त्योहार' : 'Major Festivals in 2026'}
           </h3>
-          <p className="text-text-secondary text-sm text-center">
-            {locale === 'en'
-              ? 'All festival dates, tithi timings, and parana windows depend on your location. Please enter your city to see accurate data.'
-              : 'सभी त्यौहार तिथियाँ, तिथि समय और पारण समय आपके स्थान पर निर्भर हैं। सटीक डेटा के लिए अपना शहर दर्ज करें।'}
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse mt-3">
+              <thead>
+                <tr className="border-b border-gold-primary/15">
+                  <th className="text-left py-2 px-3 text-gold-dark font-bold">{isHi ? 'त्योहार' : 'Festival'}</th>
+                  <th className="text-left py-2 px-3 text-gold-dark font-bold">{isHi ? 'तिथि (अनुमानित)' : 'Date (Approx.)'}</th>
+                  <th className="text-left py-2 px-3 text-gold-dark font-bold">{isHi ? 'विवरण' : 'Description'}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {FESTIVALS_2026.map((f, i) => (
+                  <tr key={i} className="border-b border-gold-primary/5">
+                    <td className="py-1.5 px-3 text-gold-light font-medium whitespace-nowrap">{isHi ? f.nameHi : f.name}</td>
+                    <td className="py-1.5 px-3 text-text-primary whitespace-nowrap">{f.date}</td>
+                    <td className="py-1.5 px-3 text-text-secondary text-xs">{isHi ? f.descHi : f.desc}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {isHi ? (<>
+            <h3 className="text-gold-light text-lg font-bold mt-6">कैलेंडर की विशेषताएँ</h3>
+            <p>हमारा कैलेंडर स्थान-आधारित है &mdash; सभी तिथि समय, सूर्योदय/सूर्यास्त, और एकादशी पारण खिड़कियाँ आपके शहर के अनुसार गणना की जाती हैं। आप पश्चिमी मास (जनवरी-दिसम्बर), हिन्दू चन्द्र मास (चैत्र-फाल्गुन), या तिथि ग्रिड दृश्य में देख सकते हैं। फ़िल्टर करें: केवल त्योहार, एकादशी, पूर्णिमा, अमावस्या, चतुर्थी, प्रदोष, या ग्रहण। ICS निर्यात से अपने Apple/Google कैलेंडर में जोड़ें।</p>
+          </>) : (<>
+            <h3 className="text-gold-light text-lg font-bold mt-6">Calendar Features</h3>
+            <p>Our calendar is location-aware &mdash; all tithi timings, sunrise/sunset, and Ekadashi Parana windows are computed for your city. Switch between Western months (January&ndash;December), Hindu lunar months (Chaitra&ndash;Phalguna), or a visual Tithi Grid view. Filter by category: festivals only, Ekadashi, Purnima, Amavasya, Chaturthi, Pradosham, or eclipses. Export to your Apple or Google Calendar via ICS download.</p>
+          </>)}
+
+          <p className="text-xs text-text-secondary/60 mt-2">
+            {isHi
+              ? '* ऊपर दी गई तारीखें अनुमानित हैं। सटीक तिथि आपके स्थान पर निर्भर करती है। नीचे अपना शहर दर्ज करें।'
+              : '* Dates above are approximate. Exact dates depend on your location. Enter your city below for precise timings.'}
           </p>
-          <LocationSearch
-            value=""
-            placeholder={msg('enterCityPlaceholder', locale)}
-            className="w-full"
-            onSelect={(loc) => {
-              const now = new Date();
-              const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), loc.timezone);
-              setLocation({ lat: loc.lat, lng: loc.lng, name: loc.name, tz, timezone: loc.timezone });
-              setShowLocationSearch(false);
-            }}
-          />
-        </div>
-      ) : (
-        <div className="flex flex-col items-center gap-2 mb-6">
-          <button
-            onClick={() => setShowLocationSearch(v => !v)}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] hover:bg-gold-primary/10 transition-all text-sm"
-          >
-            <MapPin className="w-4 h-4 text-gold-primary" />
-            <span className="text-text-primary font-medium">{location.name}</span>
-            <span className="text-text-secondary text-xs">UTC{location.tz >= 0 ? '+' : ''}{location.tz}</span>
-            <ChevronDown className={`w-3 h-3 text-text-secondary transition-transform ${showLocationSearch ? 'rotate-180' : ''}`} />
-          </button>
-          {showLocationSearch && (
-            <LocationSearch
-              value=""
-              placeholder={msg('enterCityOrLocationPlaceholder', locale)}
-              className="w-full max-w-sm"
-              onSelect={(loc) => {
-                const now = new Date();
-                const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), loc.timezone);
-                setLocation({ lat: loc.lat, lng: loc.lng, name: loc.name, tz, timezone: loc.timezone });
-                setShowLocationSearch(false);
-              }}
-            />
-          )}
-        </div>
-      )}
 
-      {/* View mode toggle: Western / Hindu Lunar */}
-      <div className="flex justify-center gap-1 mb-4">
-        <button
-          onClick={() => { setViewMode('western'); setSelectedMonth(null); trackCalendarViewed({ view: 'western', month: selectedMonth ?? 0, year }); }}
-          className={`px-4 py-2.5 rounded-l-xl text-xs font-bold transition-all border ${
-            viewMode === 'western'
-              ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
-              : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
-          }`}
-        >
-          {msg('westernMonths', locale)}
-        </button>
-        <button
-          onClick={() => { setViewMode('lunar'); setSelectedMonth(null); trackCalendarViewed({ view: 'lunar', month: selectedMonth ?? 0, year }); }}
-          className={`px-4 py-2.5 text-xs font-bold transition-all border ${
-            viewMode === 'lunar'
-              ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
-              : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
-          }`}
-        >
-          {msg('hinduLunarMonths', locale)}
-        </button>
-        <button
-          onClick={() => { const m = new Date().getMonth(); setViewMode('grid'); setSelectedMonth(m); trackCalendarViewed({ view: 'grid', month: m, year }); }}
-          className={`px-4 py-2.5 rounded-r-xl text-xs font-bold transition-all border flex items-center gap-1.5 ${
-            viewMode === 'grid'
-              ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
-              : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
-          }`}
-        >
-          <CalendarDays className="w-3.5 h-3.5" />
-          {locale === 'en' || String(locale) === 'ta' ? 'Tithi Grid' : 'तिथि ग्रिड'}
-        </button>
-      </div>
-
-      {/* Month tabs */}
-      <div className="flex flex-wrap justify-center gap-2 mb-6">
-        <button
-          onClick={() => setSelectedMonth(null)}
-          className={`px-3 py-2.5 rounded-xl text-xs font-bold transition-all border ${
-            selectedMonth === null
-              ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
-              : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
-          }`}
-        >
-          {msg('filterAll', locale)}
-        </button>
-        {viewMode === 'western' ? (
-          MONTH_NAMES.map((name, i) => (
-            <button
-              key={i}
-              onClick={() => setSelectedMonth(selectedMonth === i ? null : i)}
-              className={`px-3 py-2.5 rounded-xl text-xs font-bold transition-all border ${
-                selectedMonth === i
-                  ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
-                  : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
-              }`}
-            >
-              {!isDevanagariLocale(locale) ? name.slice(0, 3) : MONTH_NAMES_HI[i].slice(0, 4)}
-            </button>
-          ))
-        ) : (
-          HINDU_MONTHS.map((hm, i) => (
-            <button
-              key={i}
-              onClick={() => setSelectedMonth(selectedMonth === i ? null : i)}
-              className={`px-3 py-2.5 rounded-xl text-xs font-bold transition-all border ${
-                selectedMonth === i
-                  ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
-                  : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
-              }`}
-            >
-              {!isDevanagariLocale(locale) ? hm.en : hm.hi}
-            </button>
-          ))
-        )}
-      </div>
-
-      {/* Filter tabs */}
-      <div className="flex flex-wrap justify-center gap-2 mb-10">
-        {filterButtons.map(f => (
-          <button
-            key={f.key}
-            onClick={() => setFilter(f.key)}
-            className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all border ${
-              filter === f.key
-                ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
-                : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
-            }`}
-          >
-            {!isDevanagariLocale(locale) ? f.label : f.labelHi}
-          </button>
-        ))}
-      </div>
-
-      {/* Calendar Export */}
-      {location && (
-        <div className="flex flex-wrap gap-2 justify-center mt-4 pt-4 border-t border-gold-primary/10">
-          <span className="text-text-secondary text-xs mr-2 self-center">{msg('subscribeLabel', locale)}</span>
-          {([
-            { cat: 'all', label: { en: 'All Events', hi: 'सभी', sa: 'सर्वाणि', mai: 'सभ', mr: 'सर्व', ta: 'அனைத்தும்', te: 'అన్నీ', bn: 'সব', kn: 'ಎಲ್ಲಾ', gu: 'બધા' } },
-            { cat: 'major', label: { en: 'Festivals', hi: 'त्योहार', sa: 'उत्सवाः', mai: 'पर्व', mr: 'सण', ta: 'பண்டிகைகள்', te: 'పండుగలు', bn: 'উৎসব', kn: 'ಹಬ್ಬಗಳು', gu: 'તહેવારો' } },
-            { cat: 'ekadashi', label: { en: 'Ekadashi', hi: 'एकादशी', sa: 'एकादशी', mai: 'एकादशी', mr: 'एकादशी', ta: 'ஏகாதசி', te: 'ఏకాదశి', bn: 'একাদশী', kn: 'ಏಕಾದಶಿ', gu: 'એકાદશી' } },
-            { cat: 'purnima', label: { en: 'Purnima', hi: 'पूर्णिमा', sa: 'पूर्णिमा', mai: 'पूर्णिमा', mr: 'पौर्णिमा', ta: 'பௌர்ணமி', te: 'పౌర్ణమి', bn: 'পূর্ণিমা', kn: 'ಹುಣ್ಣಿಮೆ', gu: 'પૂર્ણિમા' } },
-            { cat: 'amavasya', label: { en: 'Amavasya', hi: 'अमावस्या', sa: 'अमावास्या', mai: 'अमावस्या', mr: 'अमावास्या', ta: 'அமாவாசை', te: 'అమావాస్య', bn: 'অমাবস্যা', kn: 'ಅಮಾವಾಸ್ಯೆ', gu: 'અમાવાસ્યા' } },
-          ] as const).map(e => (
-            <a
-              key={e.cat}
-              href={`/api/calendar/export?year=${year}&category=${e.cat}&lat=${location.lat}&lon=${location.lng}&timezone=${encodeURIComponent(location.timezone)}&locale=${locale}`}
-              download
-              className="text-xs px-2.5 py-1 rounded-full border border-gold-primary/15 text-gold-dark hover:text-gold-light hover:border-gold-primary/30 transition-all flex items-center gap-1"
-            >
-              <Download className="w-3 h-3" />
-              {e.label[isDevanagariLocale(locale) ? 'hi' as const : 'en' as const]}
-            </a>
-          ))}
-        </div>
-      )}
-
-      <GoldDivider />
-
-      <AdUnit placement="leaderboard" className="max-w-4xl mx-auto" />
-
-      {/* Tithi Grid View */}
-      {viewMode === 'grid' && selectedMonth !== null && (
-        <div className="my-6">
-          <div className="flex items-center justify-between mb-5">
-            <button
-              onClick={() => {
-                if (selectedMonth === 0) { setYear(year - 1); setSelectedMonth(11); }
-                else setSelectedMonth(selectedMonth - 1);
-              }}
-              className="p-2.5 rounded-xl border border-gold-primary/20 text-gold-primary hover:bg-gold-primary/10 transition-colors"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <h3 className="text-gold-light text-xl font-bold" style={headingFont}>
-              {(isDevanagari ? MONTH_NAMES_HI : MONTH_NAMES)[selectedMonth]} {year}
-            </h3>
-            <button
-              onClick={() => {
-                if (selectedMonth === 11) { setYear(year + 1); setSelectedMonth(0); }
-                else setSelectedMonth(selectedMonth + 1);
-              }}
-              className="p-2.5 rounded-xl border border-gold-primary/20 text-gold-primary hover:bg-gold-primary/10 transition-colors"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
+          {/* Internal links */}
+          <div className="flex flex-wrap gap-3 mt-8 text-sm">
+            <Link href={`/${locale}/panchang`} className="text-gold-primary hover:text-gold-light transition-colors">{isHi ? 'आज का पंचांग \u2192' : "Today\u2019s Panchang \u2192"}</Link>
+            <Link href={`/${locale}/learn/tithis`} className="text-gold-primary hover:text-gold-light transition-colors">{isHi ? 'तिथियों के बारे में जानें \u2192' : 'Learn about Tithis \u2192'}</Link>
+            <Link href={`/${locale}/learn/muhurtas`} className="text-gold-primary hover:text-gold-light transition-colors">{isHi ? 'मुहूर्त सीखें \u2192' : 'Learn about Muhurtas \u2192'}</Link>
+            <Link href={`/${locale}/vedic-time`} className="text-gold-primary hover:text-gold-light transition-colors">{isHi ? 'वैदिक समय \u2192' : 'Vedic Time \u2192'}</Link>
           </div>
+        </article>
+      </section>
 
-          {/* Legend */}
-          <div className="flex flex-wrap items-center gap-4 mb-5 justify-center text-xs text-text-secondary">
-            <div className="flex items-center gap-1.5">
-              <div className="w-4 h-4 rounded-full bg-amber-400/80 shadow-sm shadow-amber-400/30" />
-              <span>{locale === 'en' || isTamil ? 'Purnima' : 'पूर्णिमा'}</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <div className="w-4 h-4 rounded-full bg-[#1a1040] border-2 border-violet-400/40" />
-              <span>{locale === 'en' || isTamil ? 'Amavasya' : 'अमावस्या'}</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <div className="w-4 h-4 rounded bg-emerald-500/20 border border-emerald-500/30" />
-              <span>{locale === 'en' || isTamil ? 'Ekadashi' : 'एकादशी'}</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <div className="w-4 h-3 rounded bg-gold-primary/20 border border-gold-primary/30" />
-              <span>{locale === 'en' || isTamil ? 'Festival' : 'त्योहार'}</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <div className="w-4 h-3 rounded bg-violet-500/15 border border-violet-500/25" />
-              <span>{locale === 'en' || isTamil ? 'Vrat' : 'व्रत'}</span>
-            </div>
-          </div>
-
-          {tithiGridLoading ? (
-            <div className="flex items-center justify-center py-20">
-              <div className="animate-spin rounded-full h-10 w-10 border-2 border-gold-primary border-t-transparent" />
-            </div>
-          ) : tithiGridData ? (
-            <TithiMonthGrid
-              year={year}
-              month={selectedMonth + 1}
-              days={tithiGridData}
-              locale={locale}
-              onDayClick={(date) => {
-                window.location.href = `/${locale}/panchang?date=${date}`;
-              }}
-            />
-          ) : !location ? (
-            <div className="text-center py-12 text-text-secondary">{locale === 'en' || isTamil ? 'Set your location to view the tithi calendar' : 'तिथि कैलेंडर देखने के लिए अपना स्थान सेट करें'}</div>
-          ) : null}
-        </div>
-      )}
-
-      {/* Festival & Vrat lists  –  separated */}
-      {viewMode !== 'grid' && loading ? (
-        <div className="flex items-center justify-center py-20">
-          <div className="animate-spin rounded-full h-12 w-12 border-2 border-gold-primary border-t-transparent" />
-        </div>
-      ) : viewMode !== 'grid' && (() => {
-        const festivalItems = filteredFestivals.filter(f => f.type === 'major' || f.type === 'eclipse');
-        const vratItems = filteredFestivals.filter(f => f.type === 'vrat');
-        const showFestivals = filter === 'all' || filter === 'major' || filter === 'eclipse';
-        const showVrats = filter === 'all' || !['major', 'eclipse'].includes(filter);
-
-        const renderCard = (f: FestivalEntry, i: number) => {
-            const dateObj = new Date(f.date + 'T00:00:00');
-            const dayStr = dateObj.getDate();
-            const monthStr = !isDevanagariLocale(locale) ? MONTH_NAMES[dateObj.getMonth()]?.slice(0, 3) : MONTH_NAMES_HI[dateObj.getMonth()]?.slice(0, 4);
-
-            const detailSlug = f.slug || f.category;
-            const dateParam = f.slug?.includes('ekadashi') || f.category === 'ekadashi' ? `?date=${f.date}` : '';
-            return (
-              <motion.a
-                key={`${f.date}-${f.name.en}-${i}`}
-                href={`/${locale}/calendar/${detailSlug}${dateParam}`}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: Math.min(i * 0.02, 0.5) }}
-                className={`w-full text-left bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 flex items-center gap-4 border cursor-pointer transition-all hover:scale-[1.01] hover:border-gold-primary/40 active:scale-[0.99] ${
-                  f.type === 'major' ? 'border-gold-primary/20' : f.type === 'eclipse' ? 'border-red-500/20' : 'border-gold-primary/5'
-                }`}
-              >
-                {/* Date badge */}
-                <div className="flex-shrink-0 w-14 h-14 rounded-lg bg-bg-tertiary/50 flex flex-col items-center justify-center">
-                  <span className="text-gold-light text-xl font-bold leading-none">{dayStr}</span>
-                  <span className="text-text-secondary text-xs uppercase">{monthStr}</span>
-                </div>
-
-                {/* Content */}
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className={`text-lg font-bold ${f.type === 'major' ? 'text-gold-light' : 'text-text-primary'}`}
-                      style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                      {f.name[locale] || f.name.en}
-                    </span>
-                    <span className={`text-xs px-2 py-0.5 rounded-full border font-bold ${categoryColors[f.category] || 'text-text-secondary bg-bg-tertiary/50 border-gold-primary/10'}`}>
-                      {f.category.toUpperCase()}
-                    </span>
-                    {f.masa && (
-                      <span className="text-xs px-2 py-0.5 rounded-full border border-gold-primary/10 text-gold-dark/60">
-                        {f.masa.purnimanta} {f.paksha || ''}
-                      </span>
-                    )}
-                    {/* Personal relevance badge */}
-                    {personalRelevance && (() => {
-                      const matches = computeRelevance(f.slug, f.category, undefined, personalRelevance);
-                      return matches.length > 0 ? <PersonalRelevanceBadge matches={matches} locale={locale} /> : null;
-                    })()}
-                  </div>
-                  <div className="text-text-secondary text-xs mt-1 line-clamp-1"
-                    style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                    {f.description[locale]}
-                  </div>
-                  {/* Parana info for ekadashis */}
-                  {f.paranaStart && f.paranaDate && (
-                    <div className="flex items-center gap-2 mt-1.5">
-                      <span className="text-xs font-bold text-amber-400">
-                        {msg('parana', locale)}:
-                      </span>
-                      <span className="font-mono text-xs font-bold text-gold-light">
-                        {f.paranaStart}  –  {f.paranaEnd}
-                      </span>
-                      <span className="text-xs font-bold text-gold-primary">
-                        {(() => {
-                          const [y, m, d] = f.paranaDate.split('-').map(Number);
-                          const date = new Date(y, m - 1, d);
-                          const months = !isDevanagariLocale(locale)
-                            ? ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-                            : ['जन.','फर.','मार्च','अप्रै.','मई','जून','जुला.','अग.','सित.','अक्टू.','नव.','दिस.'];
-                          return `${d} ${months[m - 1]}`;
-                        })()}
-                      </span>
-                    </div>
-                  )}
-                </div>
-
-                {/* Recommended for you */}
-                {f.slug && recommendedSlugs.has(f.slug) && (
-                  <span className="hidden sm:inline-flex items-center gap-1 text-xs px-1.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-bold shrink-0">
-                    <Sparkles className="w-3 h-3" />
-                    {msg('forYou', locale)}
-                  </span>
-                )}
-
-                {/* Puja Vidhi indicator */}
-                {hasPujaVidhi(f.slug) && (
-                  <span className="hidden sm:inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 font-bold shrink-0">
-                    {msg('pujaVidhi', locale)}
-                  </span>
-                )}
-
-                {/* Parana time indicator */}
-                {f.paranaStart && (
-                  <div className="text-right flex-shrink-0">
-                    <div className="text-text-secondary text-xs uppercase tracking-wider">{msg('parana', locale)}</div>
-                    <div className="text-emerald-400 text-xs font-mono">{f.paranaStart} – {f.paranaEnd}</div>
-                    {f.paranaDate && <div className="text-text-secondary/65 text-xs">{f.paranaDate}</div>}
-                  </div>
-                )}
-
-                {/* Tithi */}
-                {f.tithi && !f.paranaStart && (
-                  <div className="hidden sm:block text-right flex-shrink-0">
-                    <div className="text-text-secondary text-xs uppercase tracking-wider">{msg('tithi', locale)}</div>
-                    <div className="text-gold-dark text-xs font-mono">{f.tithi}</div>
-                  </div>
-                )}
-
-                {/* Click indicator */}
-                <ChevronDown className="w-4 h-4 text-gold-primary/40 flex-shrink-0 -rotate-90" />
-              </motion.a>
-            );
-          };
-
-        return (
-          <div className="my-10 space-y-10">
-            {filteredFestivals.length === 0 ? (
-              <div className="text-center py-12 text-text-secondary">
-                {msg('noFestivalsFound', locale)}
-              </div>
-            ) : (
-              <>
-                {/* ── Festivals Section ── */}
-                {showFestivals && festivalItems.length > 0 && (
-                  <div>
-                    <h3 className="text-xl font-bold text-gold-gradient mb-4" style={headingFont}>
-                      {`${tl({ en: 'Festivals', hi: 'त्योहार', sa: 'त्योहार', ta: 'Festivals', te: 'Festivals', bn: 'Festivals', kn: 'Festivals', gu: 'Festivals', mai: 'त्योहार', mr: 'त्योहार' }, locale)} (${festivalItems.length})`}
-                    </h3>
-                    <div className="space-y-3">
-                      {festivalItems.map((f, i) => renderCard(f, i))}
-                    </div>
-                  </div>
-                )}
-
-                {/* ── Vrats Section ── */}
-                {showVrats && vratItems.length > 0 && (
-                  <div>
-                    <h3 className="text-xl font-bold text-gold-gradient mb-4" style={headingFont}>
-                      {`${tl({ en: 'Vrats & Observances', hi: 'व्रत एवं अनुष्ठान', sa: 'व्रत एवं अनुष्ठान', ta: 'Vrats & Observances', te: 'Vrats & Observances', bn: 'Vrats & Observances', kn: 'Vrats & Observances', gu: 'Vrats & Observances', mai: 'व्रत एवं अनुष्ठान', mr: 'व्रत एवं अनुष्ठान' }, locale)} (${vratItems.length})`}
-                    </h3>
-                    <div className="space-y-3">
-                      {vratItems.map((f, i) => renderCard(f, i))}
-                    </div>
-                  </div>
-                )}
-
-                <div className="text-center text-text-secondary text-sm mt-6">
-                  {filteredFestivals.length} {msg('entries', locale)}
-                </div>
-              </>
-            )}
-          </div>
-        );
-      })()}
-
-      {/* Detail Modal */}
-      {selectedFestival && (
-        <FestivalDetailModal
-          isOpen={modalOpen}
-          onClose={() => { setModalOpen(false); setSelectedFestival(null); }}
-          locale={locale}
-          festivalName={selectedFestival.name}
-          festivalDate={selectedFestival.date}
-          festivalCategory={selectedFestival.category}
-          detail={modalDetail}
-          ekadashiDetail={modalEkadashi}
-          paranaDate={selectedFestival.paranaDate}
-          paranaStart={selectedFestival.paranaStart}
-          paranaEnd={selectedFestival.paranaEnd}
-          paranaNote={selectedFestival.paranaNote}
-          paranaSunrise={selectedFestival.paranaSunrise}
-          paranaHariVasaraEnd={selectedFestival.paranaHariVasaraEnd}
-          paranaDwadashiEnd={selectedFestival.paranaDwadashiEnd}
-          paranaEarlyEnd={selectedFestival.paranaEarlyEnd}
-          paranaMadhyahnaStart={selectedFestival.paranaMadhyahnaStart}
-          paranaMadhyahnaEnd={selectedFestival.paranaMadhyahnaEnd}
-          festivalSlug={selectedFestival.slug}
-          eclipseType={selectedFestival.eclipseType}
-          eclipseMagnitude={selectedFestival.eclipseMagnitude}
-          eclipseMaxTime={selectedFestival.eclipseMaxTime}
-          sutakStart={selectedFestival.sutakStart}
-          sutakEnd={selectedFestival.sutakEnd}
-          sutakApplicable={selectedFestival.sutakApplicable}
-          eclipsePhases={selectedFestival.eclipsePhases}
-        />
-      )}
-    </div>
+      {/* ── Interactive client component ── */}
+      <CalendarClient />
+    </>
   );
 }

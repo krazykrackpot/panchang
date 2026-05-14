@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { MapPin, Loader2, Clock, Sun, Moon, ChevronDown, ChevronUp, Compass, Calendar, Star, Bell, Sparkles, BookOpen } from 'lucide-react';
@@ -213,8 +214,7 @@ function DailyVideoCard({ videoId, title, thumbnail, isDevanagari }: { videoId: 
             className="absolute inset-0 w-full h-full group cursor-pointer"
             aria-label={`Play: ${title}`}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={thumbnail} alt={title} width={320} height={180} className="w-full h-full object-cover" loading="lazy" />
+            <Image src={thumbnail} alt={title} width={320} height={180} className="w-full h-full object-cover" unoptimized />
             {/* Play button overlay */}
             <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/20 transition-colors">
               <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
@@ -1598,6 +1598,22 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
             />
           </div>
 
+          {/* ═══ QUICK ACCESS — direct links to high-value time pages (SEO internal linking) ═══ */}
+          <div className="flex flex-wrap gap-2 mb-8 justify-center">
+            {[
+              { href: '/rahu-kaal', label: isDevanagari ? 'राहु काल' : 'Rahu Kaal Today', icon: '⚠' },
+              { href: '/choghadiya', label: isDevanagari ? 'चौघड़िया' : 'Choghadiya Today', icon: '◔' },
+              { href: '/hora', label: isDevanagari ? 'होरा' : 'Hora Chart', icon: '◐' },
+              { href: '/panchang/auspicious', label: isDevanagari ? 'शुभ-अशुभ काल' : 'Auspicious Times', icon: '✦' },
+              { href: '/calendar/regional/bengali', label: isDevanagari ? 'बंगाली पंचांग' : 'Bengali Calendar', icon: '📅' },
+            ].map(l => (
+              <Link key={l.href} href={l.href}
+                className="px-3 py-1.5 rounded-lg border border-gold-primary/15 bg-gold-primary/[0.04] text-gold-light/80 text-xs font-medium hover:border-gold-primary/40 hover:bg-gold-primary/[0.08] transition-all">
+                {l.icon} {l.label}
+              </Link>
+            ))}
+          </div>
+
           {/* ═══ MEGA CARD GRID  –  tarot-style cards linking to subpages ═══ */}
           {/* Row 1: 5 cards  –  reordered by locale */}
           <div className="grid grid-cols-1 min-[400px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-5 my-14 auto-rows-fr">
@@ -1735,7 +1751,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
 
           {/* ═══ BEST WINDOWS TODAY  –  verdict bar + conflict resolution ═══ */}
           <div className="mb-10">
-            <BestWindowsCard panchang={panchang} locale={locale} timezone={location.ianaTimezone} />
+            <BestWindowsCard panchang={panchang} locale={locale} timezone={location.ianaTimezone} birthNakshatra={birthNakshatra || undefined} birthRashi={birthRashi || undefined} />
           </div>
 
           {/* ═══ COMPACT DAY TIMELINE  –  Sacred Timings preview ═══ */}

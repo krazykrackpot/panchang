@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState, useEffect, useCallback, useRef } from 'react';
-import { Sparkles, Star, Clock, Sunrise, Sunset, Moon, AlertTriangle, ChevronDown } from 'lucide-react';
+import { Sparkles, Star, Clock, Sunrise, Sunset, Moon, AlertTriangle, ChevronDown, User } from 'lucide-react';
 import type { PanchangData } from '@/types/panchang';
 import type { DayVerdict, VerdictRating } from '@/lib/muhurta/verdict-types';
 import { computeDayVerdict } from '@/lib/muhurta/verdict-engine';
@@ -11,6 +11,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
 import { nowMinutesInTimezone } from '@/lib/utils/now-in-timezone';
 import { useLocationStore } from '@/stores/location-store';
+import { computeBalam, TARA_NAMES, FAVORABLE_TARAS } from '@/lib/panchang/balam';
 
 // ── Colours — solid hex for visibility on dark bg ──
 
@@ -114,6 +115,8 @@ interface BestWindowsCardProps {
   panchang: PanchangData;
   locale: string;
   timezone?: string;
+  birthNakshatra?: number;  // 1-27 (from saved kundali)
+  birthRashi?: number;      // 1-12 (Moon sign from saved kundali)
 }
 
 // ── Lane Bar sub-component ──
@@ -162,7 +165,7 @@ function LaneBar({ windows, label, labelHi, isHi, tlStart, tlSpan, emptyColour }
 
 // ── Main Component ──
 
-export default function BestWindowsCard({ panchang, locale, timezone }: BestWindowsCardProps) {
+export default function BestWindowsCard({ panchang, locale, timezone, birthNakshatra, birthRashi }: BestWindowsCardProps) {
   const isHi = isDevanagariLocale(locale);
   const storeTz = useLocationStore(s => s.timezone);
   const effectiveTz = timezone || storeTz || null;
@@ -171,6 +174,28 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
   const [selectedActivity, setSelectedActivity] = useState<string | undefined>(undefined);
   const [showMore, setShowMore] = useState(false);
   const moreRef = useRef<HTMLDivElement>(null);
+
+  // Personal tarabala overlay
+  const [personalMode, setPersonalMode] = useState(false);
+  const hasBirthData = birthNakshatra != null && birthRashi != null;
+
+  const personalBalam = useMemo(() => {
+    if (!hasBirthData || !personalMode) return null;
+    const todayNak = panchang.nakshatra?.id ?? 1;
+    // Approximate today's Moon rashi from nakshatra: each rashi spans 2.25 nakshatras
+    const todayMoonRashi = Math.ceil(todayNak / 2.25);
+    return computeBalam(birthNakshatra!, birthRashi!, todayNak, todayMoonRashi);
+  }, [hasBirthData, personalMode, birthNakshatra, birthRashi, panchang.nakshatra]);
+
+  // Cycle degradation: distance from birth nakshatra determines cycle 1/2/3
+  const personalCycle = useMemo(() => {
+    if (!hasBirthData || !personalMode || !panchang.nakshatra) return null;
+    const todayNak = panchang.nakshatra?.id ?? 1;
+    const distance = ((todayNak - birthNakshatra! + 27) % 27);
+    // distance 0 means same nakshatra = cycle 1
+    const cycle = distance === 0 ? 1 : Math.floor((distance - 1) / 9) + 1; // 1, 2, or 3
+    return cycle;
+  }, [hasBirthData, personalMode, birthNakshatra, panchang.nakshatra]);
 
   const handleActivitySelect = useCallback((id: string | undefined) => {
     setSelectedActivity(id);
@@ -245,12 +270,58 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
           <Sparkles className="w-5 h-5 text-gold-primary" />
           <h3 className="text-gold-light font-semibold text-base">{isHi ? 'आज की सर्वश्रेष्ठ अवधियाँ' : 'Best Windows Today'}</h3>
         </div>
-        {dayLevelYogas.length > 0 && (
-          <span className="text-gold-primary/70 text-[10px]">
-            ✦ {dayLevelYogas.map(y => isHi ? y.nameHi : y.name).join(', ')}
-          </span>
-        )}
+        <div className="flex items-center gap-3">
+          {dayLevelYogas.length > 0 && (
+            <span className="text-gold-primary/70 text-[10px]">
+              ✦ {dayLevelYogas.map(y => isHi ? y.nameHi : y.name).join(', ')}
+            </span>
+          )}
+          {/* Personal tarabala toggle */}
+          <button
+            onClick={() => hasBirthData && setPersonalMode(prev => !prev)}
+            disabled={!hasBirthData}
+            className={`flex items-center gap-1.5 px-2 py-1 rounded-full text-[10px] font-medium transition-all ${
+              !hasBirthData
+                ? 'opacity-40 cursor-not-allowed bg-white/[0.03] text-text-secondary border border-white/[0.06]'
+                : personalMode
+                  ? 'bg-sky-500/20 text-sky-300 border border-sky-400/40'
+                  : 'bg-white/[0.04] text-text-secondary border border-white/[0.06] hover:border-sky-400/30 hover:text-sky-300'
+            }`}
+            title={!hasBirthData ? (isHi ? 'व्यक्तिगत करने के लिए जन्म विवरण जोड़ें' : 'Sign in with birth data to personalise') : (isHi ? 'मेरा लग्न' : 'My Chart')}
+          >
+            <User className="w-3 h-3" />
+            <span>{isHi ? 'मेरा लग्न' : 'My Chart'}</span>
+            <span className={`w-3 h-3 rounded-full border transition-all ${
+              personalMode ? 'bg-sky-400 border-sky-300' : 'bg-transparent border-text-secondary/40'
+            }`} />
+          </button>
+        </div>
       </div>
+
+      {/* ── Personal Tarabala Summary (when toggled ON) ── */}
+      {personalMode && personalBalam && (
+        <div className="flex items-center gap-2 bg-sky-500/[0.06] rounded-lg px-3 py-2 border border-sky-500/10">
+          <User className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+          <p className="text-sky-300/90 text-[11px] leading-snug">
+            {tl(personalBalam.tarabalam.taraName, locale)} {isHi ? 'तारा' : 'Tara'}
+            {' — '}
+            {personalBalam.tarabalam.favorable
+              ? (isHi ? 'व्यक्तिगत रूप से शुभ' : 'personally auspicious today')
+              : personalBalam.tarabalam.tara === 1
+                ? (isHi ? 'जन्म नक्षत्र दिवस' : 'birth star day')
+                : (isHi ? 'सावधानी बरतें' : 'exercise caution')}
+            {personalCycle && (
+              <span className="text-sky-400/60 ml-1.5">
+                ({personalCycle === 1
+                  ? (isHi ? 'पूर्ण बल' : 'Full strength')
+                  : personalCycle === 2
+                    ? (isHi ? 'मध्यम बल' : 'Moderate strength')
+                    : (isHi ? 'न्यून बल' : 'Reduced strength')})
+              </span>
+            )}
+          </p>
+        </div>
+      )}
 
       {/* ── Activity Pill Selector ── */}
       <div className="flex items-center gap-1.5 flex-wrap">
@@ -364,6 +435,23 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
               ))}
             </span>
           </div>
+          {/* Personal note in best window callout */}
+          {personalMode && personalBalam && (
+            <div className="mt-2 flex items-start gap-1.5 pt-2 border-t border-sky-500/10">
+              <User className="w-3 h-3 text-sky-400 shrink-0 mt-0.5" />
+              <span className={`text-[10px] leading-snug ${
+                personalBalam.tarabalam.favorable ? 'text-sky-300/80' : personalBalam.tarabalam.tara === 1 ? 'text-amber-400/80' : 'text-indigo-300/80'
+              }`}>
+                {tl(personalBalam.tarabalam.taraName, locale)} {isHi ? 'तारा' : 'Tara'}
+                {' — '}
+                {personalBalam.tarabalam.favorable
+                  ? (isHi ? 'व्यक्तिगत रूप से आज शुभ' : 'personally auspicious today')
+                  : personalBalam.tarabalam.tara === 1
+                    ? (isHi ? 'जन्म नक्षत्र दिवस — मिश्र' : 'birth star day — mixed')
+                    : (isHi ? 'स्थगित करने पर विचार करें' : 'consider postponing')}
+              </span>
+            </div>
+          )}
         </div>
       )}
 
@@ -428,7 +516,38 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
           </div>
         </div>
 
-        {/* ── Vertical markers overlaid on ALL three lanes ── */}
+        {/* Lane 4: Personal Tarabala (when toggled ON) */}
+        {personalMode && personalBalam && (
+          <div>
+            <span className="text-[9px] text-text-secondary font-medium uppercase tracking-wider mb-0.5 block">
+              {isHi ? 'व्यक्तिगत' : 'Personal'}
+            </span>
+            <div className="relative h-7 rounded-md" style={{
+              backgroundColor: personalBalam.tarabalam.favorable
+                ? '#0ea5e9' // blue-green for favourable
+                : personalBalam.tarabalam.tara === 1
+                  ? '#d97706' // amber for Janma
+                  : '#6366f1' // indigo for unfavourable
+            }}>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-[8px] font-bold text-white/90 truncate px-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+                  {tl(personalBalam.tarabalam.taraName, locale)} {isHi ? 'तारा' : 'Tara'}
+                  {' — '}
+                  {personalBalam.tarabalam.favorable
+                    ? (isHi ? 'शुभ' : 'favourable')
+                    : personalBalam.tarabalam.tara === 1
+                      ? (isHi ? 'जन्म तारा' : 'birth star day')
+                      : (isHi ? 'सावधान' : 'exercise caution')}
+                  {personalCycle && personalCycle > 1 && (
+                    <> · {personalCycle === 2 ? (isHi ? 'मध्यम' : 'moderate') : (isHi ? 'न्यून' : 'reduced')}</>
+                  )}
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ── Vertical markers overlaid on ALL lanes ── */}
         {/* These are positioned relative to the lane container */}
 
         {/* Sunrise */}
@@ -488,6 +607,16 @@ export default function BestWindowsCard({ panchang, locale, timezone }: BestWind
           <span className="flex items-center gap-1 text-[9px] text-text-secondary">
             <span className="inline-block w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: '#d4a853' }} /> {isHi ? 'उत्तम' : 'Excellent'}
           </span>
+          {personalMode && (
+            <>
+              <span className="flex items-center gap-1 text-[9px] text-text-secondary">
+                <span className="inline-block w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: '#0ea5e9' }} /> {isHi ? 'व्यक्तिगत शुभ' : 'Personal +'}
+              </span>
+              <span className="flex items-center gap-1 text-[9px] text-text-secondary">
+                <span className="inline-block w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: '#6366f1' }} /> {isHi ? 'व्यक्तिगत सावधान' : 'Personal −'}
+              </span>
+            </>
+          )}
         </div>
         <div className="flex items-center gap-2">
           <Sunrise className="w-3 h-3" style={{ color: '#fbbf24' }} />

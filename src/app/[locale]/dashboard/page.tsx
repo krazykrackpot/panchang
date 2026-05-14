@@ -1493,7 +1493,7 @@ export default function DashboardPage() {
 
       {panchangData && (
         <div className="mt-6">
-          <BestWindowsCard panchang={panchangData} locale={locale} timezone={useLocationStore.getState().timezone || undefined} />
+          <BestWindowsCard panchang={panchangData} locale={locale} timezone={useLocationStore.getState().timezone || undefined} birthNakshatra={userMoonNakshatra || undefined} birthRashi={userMoonSign || undefined} />
         </div>
       )}
 

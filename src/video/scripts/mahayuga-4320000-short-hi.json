@@ -5,18 +5,21 @@
     "language": "hi",
     "estimatedDuration": 110,
     "style": "dramatic",
-    "musicMood": "cinematic_sitar",
-    "voiceProfile": "deep_male_hindi",
+    "voiceProfile": "Bill (pqHfZKP75CvOlQylNhV4) — stability=0.5, similarity=0.8, style=0.6",
     "musicTrack": "public/audio/sitar-darbari.mp3",
-    "musicNotes": "Start from 4:30 into the track (skip alap, use jor/jhala crescendo). Drop to silence at scene 5 (prime reveal). Resume at scene 6."
+    "musicStartOffset": "4:30",
+    "musicNotes": "Start at 4:30 (jor/jhala, skip alap). Mute at scene 5 for 2s. Resume scene 6 full crescendo.",
+    "pipeline": "FREE: Pexels stock + Google ImageFX stills + Hailuo free (5/day) + ElevenLabs voice + FFmpeg",
+    "estimatedCost": "$0.75 (voiceover only)"
   },
   "scenes": [
     {
       "id": 1,
       "duration": 8,
       "narration": "43 लाख 20 हज़ार साल। ये संख्या धार्मिक नहीं है। ये गणित है। और NASA इससे सहमत है।",
-      "visualType": "cosmic",
-      "videoPrompt": "Cinematic 4K dark space, camera slowly pushing through star field. A massive golden number '4,320,000' materialises from stardust particles, glowing with divine light. Cracks of golden energy spread from the number. No text, no people. Epic scale, Interstellar-style cinematography. Dark navy background with gold accents.",
+      "source": "pexels",
+      "searchQuery": "galaxy stars space dark 4k",
+      "notes": "Dark space fly-through. FFmpeg text overlay: '43,20,000' in gold Devanagari. Ken Burns slow zoom.",
       "textOverlay": "43,20,000 साल = महायुग",
       "transition": "cut"
     },
@@ -24,8 +27,13 @@
       "id": 2,
       "duration": 17,
       "narration": "इसे शनि की कक्षा से भाग दो — 1,46,568। पूर्ण। बृहस्पति — 3,64,220। पूर्ण। चन्द्रमा — 5 करोड़ 77 लाख। पूर्ण। बुध — 1 करोड़ 79 लाख। पूर्ण। नौ के नौ खगोलीय पिण्ड — एक भी शेष नहीं।",
-      "visualType": "planets",
-      "videoPrompt": "Cinematic 4K solar system view. Saturn with magnificent rings rotating slowly, then Jupiter with swirling storms, then the Moon with craters lit by sunlight, then tiny Mercury near the blazing Sun. Each planet glows as if being 'counted'. Camera moves between them in smooth orbital transitions. Deep space background, volumetric lighting, photorealistic. No text.",
+      "source": "pexels_multi",
+      "clips": [
+        {"search": "saturn planet rings 4k", "duration": 4, "notes": "Saturn with PROMINENT RINGS — verify before downloading"},
+        {"search": "jupiter planet storm 4k", "duration": 4, "notes": "Jupiter with Great Red Spot"},
+        {"search": "full moon night 4k", "duration": 4, "notes": "Detailed Moon surface"},
+        {"search": "sun solar flare 4k", "duration": 5, "notes": "Sun with solar prominences, Mercury implied"}
+      ],
       "textOverlay": "÷ शनि = 1,46,568 ✓ | ÷ बृहस्पति = 3,64,220 ✓",
       "transition": "crossfade"
     },
@@ -33,8 +41,11 @@
       "id": 3,
       "duration": 15,
       "narration": "सटीकता? बुध — NASA से 66 सेकण्ड का अन्तर। शनि — साढ़े 29 साल की कक्षा में साढ़े 6 दिन। बिना दूरबीन। बिना उपग्रह। 1500 साल पहले।",
-      "visualType": "comparison",
-      "videoPrompt": "Split composition: left side shows an ancient Indian observatory at night — stone instruments, a scholar in white robes observing the sky with naked eyes, oil lamp flickering. Right side shows NASA mission control with glowing screens and satellite data. Both scenes lit dramatically. The two worlds existing simultaneously. Cinematic 4K, warm golden light on ancient side, cool blue on modern side.",
+      "source": "google_imagefx + pexels",
+      "clips": [
+        {"source": "google_imagefx", "prompt": "Ancient Indian stone observatory at night, Jantar Mantar style instruments, clear starry sky, oil lamp casting warm golden glow on stone astrolabe, photorealistic", "duration": 8, "notes": "Generate as still image, apply Ken Burns zoom-in"},
+        {"source": "pexels", "search": "NASA control room screens", "duration": 7, "notes": "Modern mission control contrast"}
+      ],
       "textOverlay": "बुध: 66 सेकण्ड | शनि: 6.5 दिन / 29.5 वर्ष",
       "transition": "crossfade"
     },
@@ -42,8 +53,9 @@
       "id": 4,
       "duration": 15,
       "narration": "सात ग्रह 10 लाख 80 हज़ार साल में वापस आ जाते हैं। पर चन्द्रमा की गति बदलती रहती है — कभी 12 अंश प्रतिदिन, कभी 15। जब तक अपभू वापस नहीं आता — ये वही आकाश नहीं है।",
-      "visualType": "moon",
-      "videoPrompt": "Cinematic 4K Moon in extreme close-up, surface details visible, moving across a star field. The Moon visibly speeds up and slows down in its orbit — stretching and compressing its path. The elliptical orbit is shown as a glowing golden trail behind it, clearly not circular. Earth visible in the background. Dramatic side-lighting creating deep shadows on lunar craters.",
+      "source": "pexels",
+      "searchQuery": "moon close up craters 4k cinematic",
+      "notes": "Tight Moon shot. FFmpeg overlay: two arrows showing speed difference (12° vs 15°). Ken Burns slow pan across lunar surface.",
       "textOverlay": "7 ग्रह = 10,80,000 वर्ष — पर अधूरा",
       "transition": "cut"
     },
@@ -51,18 +63,22 @@
       "id": 5,
       "duration": 25,
       "narration": "[2 BEATS SILENCE] ... चन्द्रमा की अपभू का भगण है — 4 लाख 88 हज़ार 203। ... ये अभाज्य है। इसके गुणनखण्ड सिर्फ़ 1 और ये स्वयं हैं। 10 लाख 80 हज़ार में फिट नहीं होता। 21 लाख 60 हज़ार में नहीं। 32 लाख 40 हज़ार में नहीं। पहली संख्या जहाँ सब कुछ मिलता है — [BEAT] — 43 लाख 20 हज़ार।",
-      "visualType": "abstract",
-      "videoPrompt": "Dark void. A single point of golden light pulses in absolute darkness — alone, indivisible. Slowly, geometric patterns try to form around it — hexagons, grids, lattices — but each shatters on contact with the golden point. The point refuses to be divided. Finally, an enormous golden structure — like a cosmic mandala — descends and LOCKS perfectly around the point. Explosion of golden light filling the frame. Cinematic 4K, stark contrast, minimalist until the explosion.",
+      "source": "pexels + ffmpeg_text",
+      "searchQuery": "dark abstract particles black background minimal",
+      "notes": "CRITICAL SCENE. Dark minimal background. All drama is in the TEXT overlays and VOICE. FFmpeg animated text: '4,88,203' appears large, then 'अभाज्य' stamps in red/gold. Then '10,80,000 ✗' '21,60,000 ✗' '32,40,000 ✗' appearing and failing. Finally '43,20,000 ✓' with gold glow effect. Sitar MUTED for first 2 seconds.",
       "textOverlay": "4,88,203 = अभाज्य (PRIME)",
-      "audioDirection": "SILENCE for first 2 seconds. Single tanpura drone from second 2. Build slowly. FULL CRESCENDO at 'जहाँ सब कुछ मिलता है'.",
+      "audioDirection": "SILENCE 2 seconds. Single tanpura drone. Slow narration. CRESCENDO at '43 लाख 20 हज़ार'.",
       "transition": "flash_white"
     },
     {
       "id": 6,
       "duration": 20,
       "narration": "और ये वही संख्या है जो युग दर्शन से निकलती है। 12 हज़ार दिव्य वर्ष गुणा 360 — बराबर 43 लाख 20 हज़ार। गणित और दर्शन — दो अलग रास्ते। एक ही उत्तर।",
-      "visualType": "deity",
-      "videoPrompt": "Cinematic 4K Maha Vishnu reclining on Shesha Naga in the cosmic ocean. The serpent's coils form mathematical spirals. From Vishnu's navel, a golden lotus rises — and from the lotus, orbiting planets emerge as tiny golden spheres following elliptical paths. The cosmic ocean reflects starlight. Deep blues, rich golds, divine scale. Style of classical Indian temple art brought to photorealistic 3D life. No modern elements.",
+      "source": "google_imagefx + hailuo",
+      "clips": [
+        {"source": "google_imagefx", "prompt": "Majestic Lord Vishnu reclining on the cosmic serpent Shesha Naga floating on the milky cosmic ocean, golden crown and ornaments, blue skin, lotus growing from navel with Brahma seated on it, classical Indian temple art style rendered in rich photorealistic 3D, deep blue and gold color palette, divine cosmic scale", "duration": 10, "notes": "Generate as high-res still via Google ImageFX. Ken Burns slow zoom out to reveal full scene."},
+        {"source": "hailuo", "prompt": "Golden cosmic mandala with nine orbiting celestial spheres, sacred geometry, divine light emanating from center, dark space background", "duration": 10, "notes": "Hailuo free tier — 6 second clip, loop to 10s. Cover watermark with text overlay."}
+      ],
       "textOverlay": "गणित = 43,20,000 | दर्शन = 12,000 × 360 = 43,20,000",
       "transition": "crossfade"
     },
@@ -70,19 +86,24 @@
       "id": 7,
       "duration": 15,
       "narration": "1500 साल पुराना कोड। आज भी दीवाली की तारीख़ इसी से निकलती है। आपकी कुण्डली इसी से बनती है। ये इतिहास नहीं — ये अभी चल रहा है।",
-      "visualType": "modern",
-      "videoPrompt": "Cinematic 4K montage: A Hindu family lighting Diwali diyas at home, warm golden light. Cut to: a pandit's hands opening a traditional panchangam almanac, finger tracing a date. Cut to: a young woman checking her phone showing an astrology app with a kundali chart. Cut to: the golden number 4,320,000 floating in space, orbited by nine glowing celestial bodies. All scenes connected by golden thread-like light trails. Warm, emotional, intimate.",
-      "textOverlay": "dekhopanchang.com",
+      "source": "pexels_multi + google_imagefx",
+      "clips": [
+        {"source": "pexels", "search": "diwali lamps celebration indian family", "duration": 5, "notes": "Warm Diwali scene with diyas"},
+        {"source": "google_imagefx", "prompt": "Hindu pandit's hands holding open a traditional Sanskrit panchangam almanac, weathered yellowed pages with Devanagari text and astronomical tables, warm candlelight, close-up photorealistic", "duration": 5, "notes": "Ken Burns slow zoom on the page"},
+        {"source": "pexels", "search": "person using phone astrology app night", "duration": 5, "notes": "Modern app usage — bridge to CTA"}
+      ],
+      "textOverlay": "dekhopanchang.com — वही गणित, आधुनिक सटीकता",
       "transition": "fade_black"
     }
   ],
-  "production_notes": {
-    "model": "veo",
-    "aspect_ratio": "9:16",
-    "sitar_track": "Use sitar-darbari.mp3, start at ~4:30 (skip alap, enter at jor section for rhythmic energy). Mute sitar completely during scene 5 first 2 seconds. Bring back at scene 6 with full jhala crescendo.",
-    "voiceover": "edge-tts Hindi male voice. Slow and deliberate during scene 5 — each number gets its own beat. Fast and punchy during scenes 2-3.",
-    "text_overlays": "Gold text on semi-transparent dark strip at bottom. Devanagari font. Numbers in both Devanagari and Western numerals.",
-    "estimated_cost": "7 clips × 8-15s × $0.40/s (Veo) ≈ $30-40. Use Kling ($0.28/s) to halve cost.",
-    "run_command": "npx tsx scripts/generate-ai-clips.ts mahayuga-4320000-short-hi --model veo"
-  }
+  "production_steps": [
+    "1. Generate voiceover: ElevenLabs Bill voice, Hindi, each scene as separate MP3",
+    "2. Download Pexels clips: scenes 1,2,4,5,7 — search queries listed above",
+    "3. Generate Google ImageFX stills: scenes 3 (observatory), 6 (Vishnu), 7 (panchangam) — save as PNG",
+    "4. Generate Hailuo clip: scene 6 (cosmic mandala) — 1 of 5 free daily clips",
+    "5. FFmpeg compose: Ken Burns on stills (zoom 1.0→1.15 over duration), crop landscape→9:16",
+    "6. FFmpeg text overlays: gold Devanagari text, drawtext filter with font=NotoSansDevanagari",
+    "7. FFmpeg audio: layer sitar-darbari.mp3 (from 4:30) under voiceover, mute sitar during scene 5 silence",
+    "8. FFmpeg concat all scenes with transitions"
+  ]
 }

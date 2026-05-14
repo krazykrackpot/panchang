@@ -757,7 +757,7 @@ export const PAGE_META: Record<string, PageMeta> = {
   '/calendar/regional/bengali': {
     // Bengali script (বাংলা) in title makes this result stand out for Bangladeshi users searching in their script
     title: { en: 'Bengali Calendar (বাংলা পঞ্জিকা) 2026  –  Tithi, Festivals & Ekadashi', hi: 'बंगाली पंचांग (বাংলা পঞ্জিকা) 2026  –  तिथि, त्योहार और एकादशी', sa: 'বাংলা পঞ্জিকা 2026  –  बङ्गालपञ्जिका पर्वाणि च।' },
-    description: { en: 'Complete Bengali Panjika guide  –  12 months from Boishakh to Choitro, Durga Puja schedule, Poila Boishakh, Kali Puja, Saraswati Puja, and how Bengali calendar differs from other systems.', hi: 'सम्पूर्ण बंगाली पंजिका  –  बैशाख से चैत्र तक 12 मास, दुर्गा पूजा, पहला बैशाख, काली पूजा, सरस्वती पूजा।', sa: 'সম্পূর্ণ বাংলা পঞ্জিকা  –  বৈশাখ থেকে চৈত্র।' },
+    description: { en: 'Bengali Calendar 2026 (বাংলা পঞ্জিকা): Boishakh starts Apr 14. Durga Puja Oct 1-5, Kali Puja Oct 20, Poila Boishakh Apr 14. All 12 months with tithi, ekadashi & festival dates.', hi: 'बंगाली कैलेंडर 2026: बैशाख 14 अप्रैल से। दुर्गा पूजा 1-5 अक्टूबर, काली पूजा 20 अक्टूबर, पहला बैशाख 14 अप्रैल। सभी 12 मास, तिथि और त्योहार।', sa: 'বাংলা পঞ্জিকা ২০২৬: বৈশাখ ১৪ এপ্রিল। দুর্গাপূজা ১-৫ অক্টোবর, কালীপূজা ২০ অক্টোবর। ১২ মাসের তিথি ও উৎসব।' },
     keywords: ['bengali calendar', 'bangla panjika', 'bengali months', 'durga puja', 'poila boishakh', 'kali puja', 'saraswati puja', 'বাংলা পঞ্জিকা', 'বাংলা ক্যালেন্ডার'],
   },
   '/calendar/regional/gujarati': {

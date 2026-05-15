@@ -332,27 +332,29 @@ export const TOTAL_MODULES = CURRICULUM_MODULES.length;
 interface PhaseInfo {
   phase: number;
   title: Record<string, string>;
+  /** One-line English description for newcomers — displayed under the phase title */
+  subtitle?: string;
   count: number;
 }
 
 export const PHASE_INFO: PhaseInfo[] = [
-  { phase: 0,  title: { en: 'Pre-Foundation', hi: 'पूर्व-आधार', ta: 'முன்-அடித்தளம்', bn: 'প্রাক-ভিত্তি' },         count: CURRICULUM_MODULES.filter(m => m.phase === 0).length },
-  { phase: 1,  title: { en: "India's Contributions", hi: 'भारत का योगदान', ta: "இந்தியாவின் பங்களிப்புகள்", bn: "ভারতের অবদান" },    count: CURRICULUM_MODULES.filter(m => m.phase === 1).length },
-  { phase: 2,  title: { en: 'The Sky', hi: 'आकाश', ta: 'வானம்', bn: 'আকাশ' },               count: CURRICULUM_MODULES.filter(m => m.phase === 2).length },
-  { phase: 3,  title: { en: 'Pancha Anga', hi: 'पंच अंग', ta: 'பஞ்ச அங்கம்', bn: 'পঞ্চ অঙ্গ' },            count: CURRICULUM_MODULES.filter(m => m.phase === 3).length },
-  { phase: 4,  title: { en: 'The Chart', hi: 'कुण्डली', ta: 'ஜாதகம்', bn: 'জাতক' },            count: CURRICULUM_MODULES.filter(m => m.phase === 4).length },
-  { phase: 5,  title: { en: 'Applied Jyotish', hi: 'व्यावहारिक ज्योतिष', ta: 'பயன்பாட்டு ஜோதிடம்', bn: 'ব্যবহারিক জ্যোতিষ' }, count: CURRICULUM_MODULES.filter(m => m.phase === 5).length },
-  { phase: 6,  title: { en: 'Classical Knowledge', hi: 'शास्त्रीय ज्ञान', ta: 'சாஸ்திர ஞானம்', bn: 'শাস্ত্রীয় জ্ঞান' },   count: CURRICULUM_MODULES.filter(m => m.phase === 6).length },
-  { phase: 7,  title: { en: 'Jaimini System', hi: 'जैमिनी पद्धति', ta: 'ஜைமினி முறை', bn: 'জৈমিনী পদ্ধতি' },     count: CURRICULUM_MODULES.filter(m => m.phase === 7).length },
-  { phase: 8,  title: { en: 'KP System', hi: 'केपी पद्धति', ta: 'கேபி முறை', bn: 'কেপি পদ্ধতি' },        count: CURRICULUM_MODULES.filter(m => m.phase === 8).length },
-  { phase: 9,  title: { en: 'Varshaphal', hi: 'वर्षफल', ta: 'வர்ஷபலன்', bn: 'বর্ষফল' },             count: CURRICULUM_MODULES.filter(m => m.phase === 9).length },
-  { phase: 10, title: { en: 'Astronomy Engine', hi: 'खगोलीय गणना', ta: 'வானியல் கணிதம்', bn: 'জ্যোতির্বিদ্যা গণনা' },       count: CURRICULUM_MODULES.filter(m => m.phase === 10).length },
-  { phase: 11, title: { en: 'Advanced Prediction', hi: 'उन्नत भविष्यवाणी', ta: 'உயர்நிலை கணிப்பு', bn: 'উন্নত ভবিষ্যদ্বাণী' },  count: CURRICULUM_MODULES.filter(m => m.phase === 11).length },
-  { phase: 12, title: { en: 'Festival Calendar Science', hi: 'त्योहार कैलेंडर विज्ञान', ta: 'திருவிழா நாட்காட்டி அறிவியல்', bn: 'উৎসব পঞ্জিকা বিজ্ঞান' }, count: CURRICULUM_MODULES.filter(m => m.phase === 12).length },
-  { phase: 13, title: { en: 'Prashna & Medical Jyotish', hi: 'प्रश्न और चिकित्सा ज्योतिष', ta: 'பிரஷ்னம் & மருத்துவ ஜோதிடம்', bn: 'প্রশ্ন ও চিকিৎসা জ্যোতিষ' }, count: CURRICULUM_MODULES.filter(m => m.phase === 13).length },
-  { phase: 14, title: { en: 'Classical Mastery', hi: 'शास्त्रीय प्रवीणता', ta: 'சாஸ்திர தேர்ச்சி', bn: 'শাস্ত্রীয় দক্ষতা' }, count: CURRICULUM_MODULES.filter(m => m.phase === 14).length },
-  { phase: 15, title: { en: 'Rashi Deep Dives', hi: 'राशि गहन अध्ययन', ta: 'ராசி ஆழ்ந்த ஆய்வு', bn: 'রাশি গভীর অধ্যয়ন' }, count: CURRICULUM_MODULES.filter(m => m.phase === 15).length },
-  { phase: 16, title: { en: 'Special Topics', hi: 'विशेष विषय', ta: 'சிறப்பு தலைப்புகள்', bn: 'বিশেষ বিষয়' }, count: CURRICULUM_MODULES.filter(m => m.phase === 16).length },
+  { phase: 0,  title: { en: 'Pre-Foundation', hi: 'पूर्व-आधार', ta: 'முன்-அடித்தளம்', bn: 'প্রাক-ভিত্তি' },         subtitle: 'What is Jyotish? Start from zero.', count: CURRICULUM_MODULES.filter(m => m.phase === 0).length },
+  { phase: 1,  title: { en: "India's Contributions", hi: 'भारत का योगदान', ta: "இந்தியாவின் பங்களிப்புகள்", bn: "ভারতের অবদান" },    subtitle: 'The mathematical heritage behind this tradition', count: CURRICULUM_MODULES.filter(m => m.phase === 1).length },
+  { phase: 2,  title: { en: 'The Sky', hi: 'आकाश', ta: 'வானம்', bn: 'আকাশ' },               subtitle: 'Planets, signs, nakshatras — the building blocks', count: CURRICULUM_MODULES.filter(m => m.phase === 2).length },
+  { phase: 3,  title: { en: 'Pancha Anga', hi: 'पंच अंग', ta: 'பஞ்ச அங்கம்', bn: 'পঞ্চ অঙ্গ' },            subtitle: 'The five daily elements of the Vedic calendar', count: CURRICULUM_MODULES.filter(m => m.phase === 3).length },
+  { phase: 4,  title: { en: 'The Chart', hi: 'कुण्डली', ta: 'ஜாதகம்', bn: 'জাতক' },            subtitle: 'Reading a birth chart — houses, aspects, dignity', count: CURRICULUM_MODULES.filter(m => m.phase === 4).length },
+  { phase: 5,  title: { en: 'Applied Jyotish', hi: 'व्यावहारिक ज्योतिष', ta: 'பயன்பாட்டு ஜோதிடம்', bn: 'ব্যবহারিক জ্যোতিষ' }, subtitle: 'Matching, muhurta, transits — practical applications', count: CURRICULUM_MODULES.filter(m => m.phase === 5).length },
+  { phase: 6,  title: { en: 'Classical Knowledge', hi: 'शास्त्रीय ज्ञान', ta: 'சாஸ்திர ஞானம்', bn: 'শাস্ত্রীয় জ্ঞান' },   subtitle: 'BPHS, Phaladeepika — the original source texts', count: CURRICULUM_MODULES.filter(m => m.phase === 6).length },
+  { phase: 7,  title: { en: 'Jaimini System', hi: 'जैमिनी पद्धति', ta: 'ஜைமினி முறை', bn: 'জৈমিনী পদ্ধতি' },     subtitle: 'An alternative prediction framework using signs', count: CURRICULUM_MODULES.filter(m => m.phase === 7).length },
+  { phase: 8,  title: { en: 'KP System', hi: 'केपी पद्धति', ta: 'கேபி முறை', bn: 'কেপি পদ্ধতি' },        subtitle: 'Krishnamurti Paddhati — sub-lord based prediction', count: CURRICULUM_MODULES.filter(m => m.phase === 8).length },
+  { phase: 9,  title: { en: 'Varshaphal', hi: 'वर्षफल', ta: 'வர்ஷபலன்', bn: 'বর্ষফল' },             subtitle: 'Solar return — your annual horoscope', count: CURRICULUM_MODULES.filter(m => m.phase === 9).length },
+  { phase: 10, title: { en: 'Astronomy Engine', hi: 'खगोलीय गणना', ta: 'வானியல் கணிதம்', bn: 'জ্যোতির্বিদ্যা গণনা' },       subtitle: 'The maths behind the calculations', count: CURRICULUM_MODULES.filter(m => m.phase === 10).length },
+  { phase: 11, title: { en: 'Advanced Prediction', hi: 'उन्नत भविष्यवाणी', ta: 'உயர்நிலை கணிப்பு', bn: 'উন্নত ভবিষ্যদ্বাণী' },  subtitle: 'Shadbala, Ashtakavarga, Argala — expert techniques', count: CURRICULUM_MODULES.filter(m => m.phase === 11).length },
+  { phase: 12, title: { en: 'Festival Calendar Science', hi: 'त्योहार कैलेंडर विज्ञान', ta: 'திருவிழா நாட்காட்டி அறிவியல்', bn: 'উৎসব পঞ্জিকা বিজ্ঞান' }, subtitle: 'How Hindu festivals are astronomically determined', count: CURRICULUM_MODULES.filter(m => m.phase === 12).length },
+  { phase: 13, title: { en: 'Prashna & Medical Jyotish', hi: 'प्रश्न और चिकित्सा ज्योतिष', ta: 'பிரஷ்னம் & மருத்துவ ஜோதிடம்', bn: 'প্রশ্ন ও চিকিৎসা জ্যোতিষ' }, subtitle: 'Horary astrology and health indicators', count: CURRICULUM_MODULES.filter(m => m.phase === 13).length },
+  { phase: 14, title: { en: 'Classical Mastery', hi: 'शास्त्रीय प्रवीणता', ta: 'சாஸ்திர தேர்ச்சி', bn: 'শাস্ত্রীয় দক্ষতা' }, subtitle: 'Deep study of classical texts and commentaries', count: CURRICULUM_MODULES.filter(m => m.phase === 14).length },
+  { phase: 15, title: { en: 'Rashi Deep Dives', hi: 'राशि गहन अध्ययन', ta: 'ராசி ஆழ்ந்த ஆய்வு', bn: 'রাশি গভীর অধ্যয়ন' }, subtitle: 'Detailed analysis of each zodiac sign', count: CURRICULUM_MODULES.filter(m => m.phase === 15).length },
+  { phase: 16, title: { en: 'Special Topics', hi: 'विशेष विषय', ta: 'சிறப்பு தலைப்புகள்', bn: 'বিশেষ বিষয়' }, subtitle: 'Eclipses, Nadi, medical astrology, and more', count: CURRICULUM_MODULES.filter(m => m.phase === 16).length },
 ];
 
 // ── Internal index map for O(1) lookups ───────────────────────────────────────

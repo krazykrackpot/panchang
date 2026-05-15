@@ -114,7 +114,7 @@ describe('narrateOccupants', () => {
     });
     assertBilingual(result);
     expect(result.en).toContain('Saturn');
-    expect(result.en).toContain('challenging');
+    expect(result.en).toContain('tough placement');
   });
 
   it('handles mixed benefic/malefic', () => {

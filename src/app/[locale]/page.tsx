@@ -563,17 +563,26 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             {t('subtitle')}
           </p>
 
-          {/* Three bold CTAs  –  Panchang, Kundali, Muhurta AI */}
+          {/* Three bold CTAs — Birth Chart (primary), Today's Forecast, Auspicious Timing */}
           <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
-            <Link href="/panchang" className="px-8 py-3 rounded-xl bg-gold-primary/15 border border-gold-primary/30 text-gold-light font-bold text-sm hover:bg-gold-primary/25 transition-all hover:-translate-y-0.5">
-              {L({ en: "Today's Panchang", hi: 'आज का पञ्चाङ्ग', ta: 'இன்றைய பஞ்சாங்கம்', bn: 'আজকের পঞ্চাঙ্গ' }, locale)}
+            <Link href="/kundali" className="px-10 py-3.5 rounded-xl bg-gold-primary/20 border-2 border-gold-primary/50 text-gold-light font-bold text-base hover:bg-gold-primary/30 transition-all hover:-translate-y-0.5 shadow-lg shadow-gold-primary/10">
+              {L({ en: 'Generate Your Birth Chart', hi: 'अपनी जन्म कुण्डली बनाएं', ta: 'உங்கள் ஜாதகம் உருவாக்குங்கள்', bn: 'আপনার জাতক তৈরি করুন' }, locale)}
             </Link>
-            <Link href="/kundali" className="px-8 py-3 rounded-xl bg-[#2d1b69]/40 border border-[#a78bfa]/20 text-[#c4b5fd] font-bold text-sm hover:bg-[#2d1b69]/60 transition-all hover:-translate-y-0.5">
-              {L({ en: 'Generate Birth Chart', hi: 'जन्म कुण्डली बनाएं', ta: 'ஜாதகம் உருவாக்குங்கள்', bn: 'জাতক তৈরি করুন' }, locale)}
+            <Link href="/panchang" className="px-8 py-3 rounded-xl bg-gold-primary/10 border border-gold-primary/20 text-gold-light font-bold text-sm hover:bg-gold-primary/20 transition-all hover:-translate-y-0.5">
+              {L({ en: "Today's Forecast", hi: 'आज का पञ्चाङ्ग', ta: 'இன்றைய பஞ்சாங்கம்', bn: 'আজকের পঞ্চাঙ্গ' }, locale)}
             </Link>
             <Link href="/muhurta-ai" className="px-8 py-3 rounded-xl bg-emerald-900/30 border border-emerald-400/20 text-emerald-300 font-bold text-sm hover:bg-emerald-900/50 transition-all hover:-translate-y-0.5">
-              {L({ en: 'Find Shubh Muhurta', hi: 'शुभ मुहूर्त खोजें', ta: 'சுப முகூர்த்தம் கண்டறியுங்கள்', bn: 'শুভ মুহূর্ত খুঁজুন' }, locale)}
+              {L({ en: 'Find Auspicious Times', hi: 'शुभ मुहूर्त खोजें', ta: 'சுப முகூர்த்தம் கண்டறியுங்கள்', bn: 'শুভ মুহূর্ত খুঁজুন' }, locale)}
             </Link>
+          </div>
+
+          {/* Trust bar — immediate credibility for newcomers */}
+          <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-text-secondary/60 mb-4">
+            <span>100% Free</span>
+            <span className="hidden sm:inline">·</span>
+            <span>NASA-grade Accuracy</span>
+            <span className="hidden sm:inline">·</span>
+            <span>No Sign-up Required</span>
           </div>
 
           {/* Shloka  –  quiet, fading */}
@@ -584,11 +593,32 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </section>
 
+      {/* ═══ NEWCOMER CARD — gateway to learning ═══ */}
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
+        <Link href="/learn/modules/0-1" className="block rounded-2xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/15 p-5 hover:border-gold-primary/30 transition-all group">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-full bg-gold-primary/15 flex items-center justify-center shrink-0 text-gold-primary text-lg">?</div>
+            <div className="flex-1 min-w-0">
+              <p className="text-gold-light text-sm font-bold group-hover:text-gold-primary transition-colors">
+                {L({ en: 'New to Vedic Astrology? Start here', hi: 'वैदिक ज्योतिष में नए हैं? यहाँ से शुरू करें', ta: 'வேத ஜோதிடத்தில் புதியவரா?', bn: 'বৈদিক জ্যোতিষে নতুন?' }, locale)}
+              </p>
+              <p className="text-text-secondary text-xs mt-0.5">
+                {L({ en: 'Jyotish means "science of light" — not fortune-telling. A 10-minute introduction to India\'s oldest scientific tradition.', hi: 'ज्योतिष का अर्थ "प्रकाश का विज्ञान" — भविष्यवाणी नहीं। भारत की सबसे प्राचीन वैज्ञानिक परम्परा का 10 मिनट का परिचय।', ta: 'ஜோதிடம் என்றால் "ஒளியின் அறிவியல்" — குறிசொல்லுதல் அல்ல.', bn: 'জ্যোতিষ মানে "আলোর বিজ্ঞান" — ভবিষ্যৎবাণী নয়।' }, locale)}
+              </p>
+            </div>
+            <span className="text-gold-primary/40 group-hover:text-gold-primary transition-colors shrink-0">→</span>
+          </div>
+        </Link>
+      </section>
+
       {/* ═══ TODAY'S PANCHANG  –  immediately after hero ═══ */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-10 yantra-bg">
-        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8" style={hf}>
+        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-2" style={hf}>
           <span className="text-gold-gradient">{t('todayPanchang')}</span>
         </h2>
+        <p className="text-text-secondary text-sm text-center mb-8">
+          {L({ en: 'The five elements of today\'s Vedic astronomical calendar — computed for your location', hi: 'आज के वैदिक खगोलीय कालदर्शिका के पाँच अंग — आपके स्थान के लिए गणित', ta: 'இன்றைய வேத வானியல் நாட்காட்டியின் ஐந்து அங்கங்கள்', bn: 'আজকের বৈদিক জ্যোতির্বিদ্যা ক্যালেন্ডারের পাঁচটি উপাদান' }, locale)}
+        </p>
         {/* min-h prevents CLS when client widget hydrates and expands */}
         <div className="min-h-[400px] sm:min-h-[350px]">
           <HomeClientWidgets locale={locale} serverPanchang={serverPanchang} serverLocation={serverLocation} />

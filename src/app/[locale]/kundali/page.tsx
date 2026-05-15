@@ -24,7 +24,10 @@ export default async function KundaliPage({ params }: { params: Promise<{ locale
 
   return (
     <>
-      {/* ── Server-rendered SEO content ── */}
+      {/* ── Interactive client component FIRST — form must be above the fold ── */}
+      <KundaliClient />
+
+      {/* ── Server-rendered SEO content BELOW the form (crawlable but not blocking conversion) ── */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
         <article className="prose-sm text-text-secondary leading-relaxed space-y-4 mb-10">
           {isHi ? (<>
@@ -101,9 +104,6 @@ export default async function KundaliPage({ params }: { params: Promise<{ locale
           </div>
         </article>
       </section>
-
-      {/* ── Interactive client component ── */}
-      <KundaliClient />
     </>
   );
 }

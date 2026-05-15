@@ -197,6 +197,9 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
             required
             className="w-full bg-bg-tertiary/50 border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 transition-colors"
           />
+          <p className="text-text-secondary/50 text-xs mt-1">
+            {msg('birthTimeHelper', locale)}
+          </p>
         </div>
 
         {/* Place of Birth */}
@@ -220,6 +223,14 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
             <p className="text-red-400 text-xs mt-1">{msg('locationError', locale)}</p>
           )}
         </div>
+
+        {/* Advanced Options — hidden by default for newcomers */}
+        <details className="md:col-span-2">
+          <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden select-none text-gold-dark text-xs hover:text-gold-light transition-colors flex items-center gap-1">
+            <svg className="w-3 h-3 transition-transform [details[open]>&]:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            {msg('advancedOptions', locale)}
+          </summary>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
 
         {/* Ayanamsha */}
         <div>
@@ -278,6 +289,9 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
             </button>
           </div>
         </div>
+
+          </div>{/* end advanced grid */}
+        </details>
       </div>
 
       {/* Submit */}

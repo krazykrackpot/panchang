@@ -189,6 +189,9 @@ export default function LearningPath() {
                     >
                       {tl(phase.title, locale)}
                     </h3>
+                    {phase.subtitle && (
+                      <p className="text-xs text-text-secondary/50 mt-0.5">{phase.subtitle}</p>
+                    )}
 
                     {/* Module count + progress */}
                     <div className="flex items-center gap-3 mt-1">

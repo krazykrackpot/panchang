@@ -537,7 +537,12 @@ export default function KundaliClient() {
               setVedicProfile(generateVedicProfile(data, locale));
               resolveInitialView();
               // Trajectory sync handled by the dedicated useEffect that watches user + personalReading
-            } catch { setPersonalReading(null); setView('technical'); }
+            } catch (err) {
+              console.error('[kundali] personalReading computation failed:', err);
+              setPersonalReading(null);
+              // Stay on summary view — the tippanni narrative is still available.
+              // Never fall back to raw technical view for newcomers.
+            }
             try {
               sessionStorage.setItem('kundali_last_result', JSON.stringify({
                 kundali: data,
@@ -847,6 +852,29 @@ export default function KundaliClient() {
         <p className="text-text-secondary text-lg">{t('subtitle')}</p>
       </motion.div>
 
+      {/* "What you'll get" preview — only before chart generation */}
+      {!kundali && !editing && (
+        <div className="mb-8 rounded-2xl bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/10 p-5">
+          <p className="text-gold-light text-sm font-semibold mb-3" style={headingFont}>
+            {tl({ en: "Here's what you'll get", hi: 'आपको मिलेगा', ta: 'நீங்கள் பெறுவது', bn: 'আপনি যা পাবেন' }, locale)}
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {[
+              { icon: '◇', en: 'Birth Chart', hi: 'जन्म कुण्डली', desc_en: 'Your planetary positions at birth', desc_hi: 'जन्म के समय ग्रह स्थिति' },
+              { icon: '☉', en: 'Life Reading', hi: 'जीवन पाठ', desc_en: 'Career, health, marriage & wealth outlook', desc_hi: 'करियर, स्वास्थ्य, विवाह और धन' },
+              { icon: '⟳', en: 'Current Period', hi: 'वर्तमान दशा', desc_en: 'What phase of life you\'re in now', desc_hi: 'आप जीवन के किस चरण में हैं' },
+              { icon: '✦', en: 'Yogas & Remedies', hi: 'योग और उपाय', desc_en: 'Special combinations & practical advice', desc_hi: 'विशेष योग और व्यावहारिक सुझाव' },
+            ].map((item, i) => (
+              <div key={i} className="text-center">
+                <div className="text-gold-primary text-lg mb-1">{item.icon}</div>
+                <div className="text-text-primary text-xs font-semibold">{tl({ en: item.en, hi: item.hi }, locale)}</div>
+                <div className="text-text-secondary/60 text-[10px] mt-0.5">{tl({ en: item.desc_en, hi: item.desc_hi }, locale)}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Saved Charts Picker  –  shows when user has saved charts and no chart is loaded */}
       {!kundali && !editing && savedCharts.length > 0 && (
         <div className="mb-10">
@@ -1004,7 +1032,12 @@ export default function KundaliClient() {
                 {locale === 'en' || isTamil ? 'New Chart' : 'नया चार्ट'}
               </button>
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-3 mt-2">
+            {/* Secondary actions — collapsed on mobile, visible on desktop */}
+            <details className="sm:!open mt-2 [&[open]>summary]:mb-2">
+              <summary className="sm:hidden cursor-pointer list-none [&::-webkit-details-marker]:hidden select-none text-center text-xs text-gold-dark hover:text-gold-light transition-colors py-1">
+                {locale === 'en' || isTamil ? 'More actions ▾' : 'और विकल्प ▾'}
+              </summary>
+            <div className="flex flex-wrap items-center justify-center gap-3">
               <button
                 onClick={() => { setActiveTab('patrika'); setView('technical'); }}
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/40 text-gold-light bg-gold-primary/8 hover:bg-gold-primary/15 hover:border-gold-primary/70 transition-all duration-300"
@@ -1051,6 +1084,7 @@ export default function KundaliClient() {
                 {locale === 'en' || isTamil ? 'Western vs Vedic' : 'पश्चिमी बनाम वैदिक'}
               </Link>
             </div>
+            </details>
           </div>
 
           {/* ── Birth Poster Modal ── */}
@@ -1352,29 +1386,33 @@ export default function KundaliClient() {
             <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
               <div className="flex gap-1.5 sm:gap-2 min-w-max sm:flex-wrap sm:justify-center sm:min-w-0">
                 {([
+                  // ── Your Chart ──
                   { key: 'chart' as const, label: t('birthChart') },
                   { key: 'blueprint' as const, label: locale === 'en' || isTamil ? 'Blueprint' : 'ब्लूप्रिंट' },
                   { key: 'planets' as const, label: t('planetPositions') },
-                  { key: 'dasha' as const, label: t('dashaTimeline') },
-                  { key: 'ashtakavarga' as const, label: t('ashtakavarga') },
-                  { key: 'varga' as const, label: locale === 'en' || isTamil ? 'Varga Analysis' : 'वर्ग विश्लेषण' },
-                  { key: 'graha' as const, label: locale === 'en' || isTamil ? 'Graha' : 'ग्रह' },
-                  { key: 'yogas' as const, label: locale === 'en' || isTamil ? 'Yogas' : 'योग' },
-                  { key: 'avasthas' as const, label: locale === 'en' || isTamil ? 'Avasthas' : 'अवस्था' },
-                  { key: 'argala' as const, label: locale === 'en' || isTamil ? 'Argala' : 'अर्गला' },
-                  { key: 'sphutas' as const, label: locale === 'en' || isTamil ? 'Sphutas' : 'स्फुट' },
-                  { key: 'shadbala' as const, label: locale === 'en' || isTamil ? 'Shadbala' : 'षड्बल' },
-                  { key: 'bhavabala' as const, label: locale === 'en' || isTamil ? 'Bhavabala' : 'भावबल' },
-                  { key: 'bhavachalit' as const, label: locale === 'en' || isTamil ? 'Bhava Chalit' : 'भाव चलित' },
-                  { key: 'ayanamsha' as const, label: locale === 'en' || isTamil ? 'Ayanamsha' : 'अयनांश' },
-                  { key: 'kp' as const, label: locale === 'en' || isTamil ? 'KP System' : 'केपी पद्धति' },
-                  { key: 'sadesati' as const, label: locale === 'en' || isTamil ? 'Sade Sati' : 'साढ़े साती' },
-                  { key: 'jaimini' as const, label: locale === 'en' || isTamil ? 'Jaimini' : 'जैमिनी' },
                   { key: 'timeline' as const, label: locale === 'en' || isTamil ? 'Life Timeline' : 'जीवन-रेखा' },
                   { key: 'remedies' as const, label: locale === 'en' || isTamil ? 'Remedies' : 'उपाय' },
-                  { key: 'sudarshana' as const, label: locale === 'en' || isTamil ? 'Sudarshana' : 'सुदर्शन' },
-                  { key: 'nadi' as const, label: locale === 'en' || isTamil ? 'Nadi Amsha' : 'नाडी अंश' },
-                  { key: 'patrika' as const, label: locale === 'en' || isTamil ? 'Patrika' : 'पत्रिका' },
+                  // ── Analysis ──
+                  { key: 'dasha' as const, label: locale === 'en' || isTamil ? 'Dashas (Periods)' : 'दशा' },
+                  { key: 'yogas' as const, label: locale === 'en' || isTamil ? 'Yogas (Combinations)' : 'योग' },
+                  { key: 'graha' as const, label: locale === 'en' || isTamil ? 'Grahas (Planets)' : 'ग्रह' },
+                  { key: 'varga' as const, label: locale === 'en' || isTamil ? 'Vargas (Divisional)' : 'वर्ग विश्लेषण' },
+                  { key: 'sadesati' as const, label: locale === 'en' || isTamil ? 'Sade Sati (Saturn)' : 'साढ़े साती' },
+                  // ── Strength Scores ──
+                  { key: 'shadbala' as const, label: locale === 'en' || isTamil ? 'Shadbala (Strength)' : 'षड्बल' },
+                  { key: 'bhavabala' as const, label: locale === 'en' || isTamil ? 'Bhavabala (Houses)' : 'भावबल' },
+                  { key: 'avasthas' as const, label: locale === 'en' || isTamil ? 'Avasthas (States)' : 'अवस्था' },
+                  { key: 'ashtakavarga' as const, label: locale === 'en' || isTamil ? 'Ashtakavarga (Points)' : 'अष्टकवर्ग' },
+                  // ── Advanced Systems ──
+                  { key: 'argala' as const, label: locale === 'en' || isTamil ? 'Argala (Intervention)' : 'अर्गला' },
+                  { key: 'sphutas' as const, label: locale === 'en' || isTamil ? 'Sphutas (Longitudes)' : 'स्फुट' },
+                  { key: 'bhavachalit' as const, label: locale === 'en' || isTamil ? 'Bhava Chalit (Cusp)' : 'भाव चलित' },
+                  { key: 'ayanamsha' as const, label: locale === 'en' || isTamil ? 'Ayanamsha (Precession)' : 'अयनांश' },
+                  { key: 'kp' as const, label: locale === 'en' || isTamil ? 'KP System' : 'केपी पद्धति' },
+                  { key: 'jaimini' as const, label: locale === 'en' || isTamil ? 'Jaimini System' : 'जैमिनी' },
+                  { key: 'sudarshana' as const, label: locale === 'en' || isTamil ? 'Sudarshana (Triple)' : 'सुदर्शन' },
+                  { key: 'nadi' as const, label: locale === 'en' || isTamil ? 'Nadi Amsha (150th)' : 'नाडी अंश' },
+                  { key: 'patrika' as const, label: locale === 'en' || isTamil ? 'Patrika (Report)' : 'पत्रिका' },
                 ]).map((tab) => (
                   <button
                     key={tab.key}

@@ -481,6 +481,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
+  // Choghadiya date pages (next 14 days) — captures "choghadiya tomorrow", "choghadiya [date]" queries
+  const choghadiyaDateBase = new Date();
+  for (let i = 0; i <= 14; i++) {
+    const d = new Date(choghadiyaDateBase);
+    d.setDate(d.getDate() + i);
+    const dateStr = d.toISOString().slice(0, 10);
+    addEntries(entries, `/choghadiya/${dateStr}`, {
+      changeFrequency: 'daily',
+      priority: 0.6,
+    });
+  }
+
+  // Nakshatra baby name pages — 27 pages targeting "[nakshatra] baby names" queries
+  const babyNameNakshatras = [
+    'ashwini', 'bharani', 'krittika', 'rohini', 'mrigashira', 'ardra', 'punarvasu',
+    'pushya', 'ashlesha', 'magha', 'purva-phalguni', 'uttara-phalguni', 'hasta',
+    'chitra', 'swati', 'vishakha', 'anuradha', 'jyeshtha', 'mula', 'purva-ashadha',
+    'uttara-ashadha', 'shravana', 'dhanishta', 'shatabhisha', 'purva-bhadrapada',
+    'uttara-bhadrapada', 'revati',
+  ];
+  for (const nak of babyNameNakshatras) {
+    addEntries(entries, `/baby-names/${nak}`, {
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    });
+  }
+
   // Western-name horoscope aliases (/horoscope/aries etc.) are 301 redirects.
   // Removed from sitemap  –  redirects burn crawl budget without adding indexable content.
   // Google discovers these via internal links and follows the redirect chain naturally.

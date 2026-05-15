@@ -76,8 +76,10 @@ export function generateArticleLD(
   title: string,
   description: string,
 ): Record<string, unknown> | null {
-  const meta = ARTICLE_META[route];
-  if (!meta) return null;
+  // Only generate for learn pages
+  if (!route.startsWith('/learn')) return null;
+  // Use specific dates if available, otherwise default to site launch date
+  const meta = ARTICLE_META[route] ?? { datePublished: '2026-03-01', dateModified: '2026-05-01' };
 
   return {
     '@context': 'https://schema.org',

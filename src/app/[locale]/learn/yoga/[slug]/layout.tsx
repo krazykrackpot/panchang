@@ -64,10 +64,55 @@ export default async function Layout({ children, params }: { children: React.Rea
 
   const breadcrumbLD = generateBreadcrumbLD(`/${locale}/learn/yoga/${slug}`, locale);
 
+  // FAQ schema — captures "What is [yoga]?" featured snippets
+  const faqQuestions: { q: string; a: string }[] = [];
+  faqQuestions.push({
+    q: `What is ${name}?`,
+    a: desc.slice(0, 300),
+  });
+  faqQuestions.push({
+    q: `How is ${name} formed in a birth chart?`,
+    a: rule,
+  });
+  if (yoga.effects?.length > 0) {
+    const effectsSummary = yoga.effects.slice(0, 3).map(e => {
+      const area = locale === 'hi' ? e.area.hi : e.area.en;
+      const edesc = locale === 'hi' ? e.description.hi : e.description.en;
+      return `${area}: ${edesc}`;
+    }).join('. ');
+    faqQuestions.push({
+      q: `What are the effects of ${name}?`,
+      a: effectsSummary,
+    });
+  }
+  if (yoga.remedies) {
+    const parts: string[] = [];
+    if (yoga.remedies.mantra) parts.push(`Mantra: ${yoga.remedies.mantra}`);
+    if (yoga.remedies.gemstone) parts.push(`Gemstone: ${locale === 'hi' ? yoga.remedies.gemstone.hi : yoga.remedies.gemstone.en}`);
+    if (yoga.remedies.charity) parts.push(`Charity: ${locale === 'hi' ? yoga.remedies.charity.hi : yoga.remedies.charity.en}`);
+    if (parts.length > 0) {
+      faqQuestions.push({
+        q: `What are the remedies for ${name}?`,
+        a: parts.join('. '),
+      });
+    }
+  }
+
+  const faqLD = faqQuestions.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqQuestions.map(fq => ({
+      '@type': 'Question',
+      name: fq.q,
+      acceptedAnswer: { '@type': 'Answer', text: fq.a },
+    })),
+  } : null;
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(articleLD) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLD) }} />
+      {faqLD && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLD) }} />}
       {children}
     </>
   );

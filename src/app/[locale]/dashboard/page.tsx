@@ -94,6 +94,9 @@ const LABELS = {
     chandraBala: 'Chandra Bala',
     tara: 'Tara',
     houseFromMoon: 'House from Moon',
+    taraOf9: 'of 9',
+    moonHouse: 'Moon in',
+    houseOrdinal: 'house from natal Moon',
     favorable: 'Favorable',
     unfavorable: 'Unfavorable',
     currentDasha: 'Current Dasha',
@@ -154,6 +157,9 @@ const LABELS = {
     chandraBala: 'चन्द्र बल',
     tara: 'तारा',
     houseFromMoon: 'चन्द्र से भाव',
+    taraOf9: '/ 9',
+    moonHouse: 'चन्द्र',
+    houseOrdinal: 'भाव (जन्म चन्द्र से)',
     favorable: 'शुभ',
     unfavorable: 'अशुभ',
     currentDasha: 'वर्तमान दशा',
@@ -214,6 +220,9 @@ const LABELS = {
     chandraBala: 'चन्द्र बलम्',
     tara: 'तारा',
     houseFromMoon: 'चन्द्रात् भावः',
+    taraOf9: '/ 9',
+    moonHouse: 'चन्द्रः',
+    houseOrdinal: 'भावः (जन्मचन्द्रात्)',
     favorable: 'शुभम्',
     unfavorable: 'अशुभम्',
     currentDasha: 'वर्तमानदशा',
@@ -274,6 +283,9 @@ const LABELS = {
     chandraBala: 'சந்திர பலம்',
     tara: 'தாரா',
     houseFromMoon: 'சந்திரனிலிருந்து பாவம்',
+    taraOf9: '/ 9',
+    moonHouse: 'சந்திரன்',
+    houseOrdinal: 'பாவம் (ஜன்ம சந்திரனிலிருந்து)',
     favorable: 'சாதகமான',
     unfavorable: 'பாதகமான',
     currentDasha: 'தற்போதைய தசா',
@@ -334,6 +346,9 @@ const LABELS = {
     chandraBala: 'చంద్ర బలం',
     tara: 'తారా',
     houseFromMoon: 'చంద్రుని నుండి భావం',
+    taraOf9: '/ 9',
+    moonHouse: 'చంద్రుడు',
+    houseOrdinal: 'భావం (జన్మ చంద్రుని నుండి)',
     favorable: 'శుభం',
     unfavorable: 'అశుభం',
     currentDasha: 'ప్రస్తుత దశ',
@@ -394,6 +409,9 @@ const LABELS = {
     chandraBala: 'চন্দ্র বল',
     tara: 'তারা',
     houseFromMoon: 'চন্দ্র থেকে ভাব',
+    taraOf9: '/ ৯',
+    moonHouse: 'চন্দ্র',
+    houseOrdinal: 'ভাব (জন্ম চন্দ্র থেকে)',
     favorable: 'শুভ',
     unfavorable: 'অশুভ',
     currentDasha: 'বর্তমান দশা',
@@ -454,6 +472,9 @@ const LABELS = {
     chandraBala: 'ಚಂದ್ರ ಬಲ',
     tara: 'ತಾರಾ',
     houseFromMoon: 'ಚಂದ್ರನಿಂದ ಭಾವ',
+    taraOf9: '/ 9',
+    moonHouse: 'ಚಂದ್ರ',
+    houseOrdinal: 'ಭಾವ (ಜನ್ಮ ಚಂದ್ರನಿಂದ)',
     favorable: 'ಶುಭ',
     unfavorable: 'ಅಶುಭ',
     currentDasha: 'ಪ್ರಸ್ತುತ ದಶೆ',
@@ -514,6 +535,9 @@ const LABELS = {
     chandraBala: 'चंद्र बल',
     tara: 'तारा',
     houseFromMoon: 'चंद्रापासून भाव',
+    taraOf9: '/ 9',
+    moonHouse: 'चंद्र',
+    houseOrdinal: 'भाव (जन्म चंद्रापासून)',
     favorable: 'शुभ',
     unfavorable: 'अशुभ',
     currentDasha: 'सध्याची दशा',
@@ -574,6 +598,9 @@ const LABELS = {
     chandraBala: 'ચંદ્ર બળ',
     tara: 'તારા',
     houseFromMoon: 'ચંદ્રથી ભાવ',
+    taraOf9: '/ 9',
+    moonHouse: 'ચંદ્ર',
+    houseOrdinal: 'ભાવ (જન્મ ચંદ્રથી)',
     favorable: 'શુભ',
     unfavorable: 'અશુભ',
     currentDasha: 'વર્તમાન દશા',
@@ -634,6 +661,9 @@ const LABELS = {
     chandraBala: 'चंद्र बल',
     tara: 'तारा',
     houseFromMoon: 'चंद्रसँ भाव',
+    taraOf9: '/ 9',
+    moonHouse: 'चन्द्र',
+    houseOrdinal: 'भाव (जन्म चन्द्रसँ)',
     favorable: 'शुभ',
     unfavorable: 'अशुभ',
     currentDasha: 'वर्तमान दशा',
@@ -1520,8 +1550,9 @@ export default function DashboardPage() {
             <h3 className="text-lg font-semibold text-text-primary">{L.taraBala}</h3>
           </div>
           <div className="flex items-center gap-4 mb-3">
-            <div className="w-14 h-14 rounded-xl bg-bg-secondary/60 border border-gold-primary/10 flex items-center justify-center">
-              <span className="text-2xl font-bold text-gold-light">{pd.taraBala.taraNumber}</span>
+            <div className="w-14 h-14 rounded-xl bg-bg-secondary/60 border border-gold-primary/10 flex flex-col items-center justify-center">
+              <span className="text-2xl font-bold text-gold-light leading-none">{pd.taraBala.taraNumber}</span>
+              <span className="text-[9px] text-text-secondary/60 mt-0.5">{L.taraOf9}</span>
             </div>
             <div>
               <p className="text-gold-light font-semibold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
@@ -1548,11 +1579,12 @@ export default function DashboardPage() {
             <h3 className="text-lg font-semibold text-text-primary">{L.chandraBala}</h3>
           </div>
           <div className="flex items-center gap-4 mb-3">
-            <div className="w-14 h-14 rounded-xl bg-bg-secondary/60 border border-gold-primary/10 flex items-center justify-center">
-              <span className="text-2xl font-bold text-gold-light">{pd.chandraBala.houseFromMoon || ' – '}</span>
+            <div className="w-14 h-14 rounded-xl bg-bg-secondary/60 border border-gold-primary/10 flex flex-col items-center justify-center">
+              <span className="text-2xl font-bold text-gold-light leading-none">{pd.chandraBala.houseFromMoon || ' – '}</span>
+              <span className="text-[9px] text-text-secondary/60 mt-0.5">{L.houseFromMoon}</span>
             </div>
             <div>
-              <p className="text-text-secondary/75 text-xs">{L.houseFromMoon}</p>
+              <p className="text-text-secondary/75 text-xs">{L.moonHouse} {pd.chandraBala.houseFromMoon ? `${pd.chandraBala.houseFromMoon}` : ''} {L.houseOrdinal}</p>
               <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mt-1 ${pd.chandraBala.isFavorable ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}`}>
                 {pd.chandraBala.isFavorable ? L.favorable : L.unfavorable}
               </span>

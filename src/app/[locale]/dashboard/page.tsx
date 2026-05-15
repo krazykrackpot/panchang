@@ -74,13 +74,6 @@ interface SavedChart {
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { tl } from '@/lib/utils/trilingual';
 
-/** English ordinal: 1→"1st", 2→"2nd", 3→"3rd", 4→"4th"... Only used for houses 1-12. */
-function nth(n: number): string {
-  if (n >= 11 && n <= 13) return `${n}th`;
-  const s = ['th', 'st', 'nd', 'rd'];
-  return `${n}${s[n % 10] || s[0]}`;
-}
-
 // ---------------------------------------------------------------------------
 // Labels
 // ---------------------------------------------------------------------------
@@ -1494,9 +1487,8 @@ export default function DashboardPage() {
           <div className="mt-5 flex flex-wrap gap-3">
             <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border ${pd.taraBala.isFavorable ? 'bg-emerald-500/10 border-emerald-500/25 text-emerald-300' : 'bg-red-500/10 border-red-500/25 text-red-300'}`}>
               <Star className="w-3 h-3" />
-              {isHeroHi ? 'तारा बल' : 'Tara'}:&nbsp;
+              {isHeroHi ? 'तारा बल' : 'Tara Bala'}:&nbsp;
               {pd.taraBala.taraName[locale] || pd.taraBala.taraName.en}
-              <span className="opacity-60">({pd.taraBala.taraNumber}/9)</span>
               &nbsp;·&nbsp;
               {pd.taraBala.isFavorable
                 ? (isHeroHi ? 'शुभ' : 'Favorable')
@@ -1504,10 +1496,10 @@ export default function DashboardPage() {
             </span>
             <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border ${pd.chandraBala.isFavorable ? 'bg-emerald-500/10 border-emerald-500/25 text-emerald-300' : 'bg-amber-500/10 border-amber-500/25 text-amber-300'}`}>
               <Moon className="w-3 h-3" />
-              {isHeroHi ? 'चन्द्र बल' : 'Moon'}:&nbsp;
+              {isHeroHi ? 'चन्द्र बल' : 'Chandra Bala'}:&nbsp;
               {isHeroHi
-                ? `${pd.chandraBala.houseFromMoon || '–'}वाँ भाव · ${pd.chandraBala.isFavorable ? 'शुभ' : 'सामान्य'}`
-                : `${nth(pd.chandraBala.houseFromMoon || 0)} house · ${pd.chandraBala.isFavorable ? 'Favorable' : 'Neutral'}`}
+                ? (pd.chandraBala.isFavorable ? 'शुभ' : 'सामान्य')
+                : (pd.chandraBala.isFavorable ? 'Favorable' : 'Neutral')}
             </span>
           </div>
 
@@ -1548,84 +1540,60 @@ export default function DashboardPage() {
           Cosmic Weather hero, but these cards give more detail) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         {/* Tara Bala */}
-        {(() => {
-          const birthNakName = userMoonNakshatra > 0 ? tl(NAKSHATRAS[userMoonNakshatra - 1]?.name, locale) : null;
-          return (
-            <motion.div
-              {...fadeUp}
-              transition={{ delay: 0.2 }}
-              className="p-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
-            >
-              <div className="flex items-center gap-2 mb-4">
-                <Star className="w-5 h-5 text-gold-primary" />
-                <h3 className="text-lg font-semibold text-text-primary">{L.taraBala}</h3>
-              </div>
-              <div className="flex items-center gap-4 mb-3">
-                <div className="w-14 h-14 rounded-xl bg-bg-secondary/60 border border-gold-primary/10 flex flex-col items-center justify-center">
-                  <span className="text-2xl font-bold text-gold-light leading-none">{pd.taraBala.taraNumber}</span>
-                  <span className="text-[9px] text-text-secondary/60 mt-0.5">{L.taraOf9}</span>
-                </div>
-                <div>
-                  <p className="text-gold-light font-semibold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-                    {pd.taraBala.taraName[locale] || pd.taraBala.taraName.en}
-                  </p>
-                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mt-1 ${pd.taraBala.isFavorable ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}`}>
-                    {pd.taraBala.isFavorable ? L.favorable : L.unfavorable}
-                  </span>
-                </div>
-              </div>
-              {birthNakName && (
-                <p className="text-text-secondary/70 text-xs mb-2">
-                  {isHeroHi
-                    ? `आपका जन्म नक्षत्र: ${birthNakName}`
-                    : `Your birth nakshatra: ${birthNakName}`}
-                </p>
-              )}
-              <p className="text-text-secondary text-sm leading-relaxed">
-                {pd.taraBala.description[locale] || pd.taraBala.description.en}
+        <motion.div
+          {...fadeUp}
+          transition={{ delay: 0.2 }}
+          className="p-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <Star className="w-5 h-5 text-gold-primary" />
+            <h3 className="text-lg font-semibold text-text-primary">{L.taraBala}</h3>
+          </div>
+          <div className="flex items-center gap-4 mb-3">
+            <div className="w-14 h-14 rounded-xl bg-bg-secondary/60 border border-gold-primary/10 flex flex-col items-center justify-center">
+              <span className="text-2xl font-bold text-gold-light leading-none">{pd.taraBala.taraNumber}</span>
+              <span className="text-[9px] text-text-secondary/60 mt-0.5">{L.taraOf9}</span>
+            </div>
+            <div>
+              <p className="text-gold-light font-semibold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
+                {pd.taraBala.taraName[locale] || pd.taraBala.taraName.en}
               </p>
-            </motion.div>
-          );
-        })()}
+              <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mt-1 ${pd.taraBala.isFavorable ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}`}>
+                {pd.taraBala.isFavorable ? L.favorable : L.unfavorable}
+              </span>
+            </div>
+          </div>
+          <p className="text-text-secondary text-sm leading-relaxed">
+            {pd.taraBala.description[locale] || pd.taraBala.description.en}
+          </p>
+        </motion.div>
 
         {/* Chandra Bala */}
-        {(() => {
-          const birthRashiName = userMoonSign > 0 ? tl(RASHIS[userMoonSign - 1]?.name, locale) : null;
-          return (
-            <motion.div
-              {...fadeUp}
-              transition={{ delay: 0.25 }}
-              className="p-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
-            >
-              <div className="flex items-center gap-2 mb-4">
-                <Moon className="w-5 h-5 text-gold-primary" />
-                <h3 className="text-lg font-semibold text-text-primary">{L.chandraBala}</h3>
-              </div>
-              <div className="flex items-center gap-4 mb-3">
-                <div className="w-14 h-14 rounded-xl bg-bg-secondary/60 border border-gold-primary/10 flex flex-col items-center justify-center">
-                  <span className="text-2xl font-bold text-gold-light leading-none">{pd.chandraBala.houseFromMoon || ' – '}</span>
-                  <span className="text-[9px] text-text-secondary/60 mt-0.5">{L.houseFromMoon}</span>
-                </div>
-                <div>
-                  <p className="text-text-secondary/75 text-xs">{L.moonHouse} {pd.chandraBala.houseFromMoon ? `${pd.chandraBala.houseFromMoon}` : ''} {L.houseOrdinal}</p>
-                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mt-1 ${pd.chandraBala.isFavorable ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}`}>
-                    {pd.chandraBala.isFavorable ? L.favorable : L.unfavorable}
-                  </span>
-                </div>
-              </div>
-              {birthRashiName && (
-                <p className="text-text-secondary/70 text-xs mb-2">
-                  {isHeroHi
-                    ? `आपकी जन्म राशि: ${birthRashiName}`
-                    : `Your Moon sign: ${birthRashiName}`}
-                </p>
-              )}
-              <p className="text-text-secondary text-sm leading-relaxed">
-                {pd.chandraBala.description[locale] || pd.chandraBala.description.en}
-              </p>
-            </motion.div>
-          );
-        })()}
+        <motion.div
+          {...fadeUp}
+          transition={{ delay: 0.25 }}
+          className="p-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <Moon className="w-5 h-5 text-gold-primary" />
+            <h3 className="text-lg font-semibold text-text-primary">{L.chandraBala}</h3>
+          </div>
+          <div className="flex items-center gap-4 mb-3">
+            <div className="w-14 h-14 rounded-xl bg-bg-secondary/60 border border-gold-primary/10 flex flex-col items-center justify-center">
+              <span className="text-2xl font-bold text-gold-light leading-none">{pd.chandraBala.houseFromMoon || ' – '}</span>
+              <span className="text-[9px] text-text-secondary/60 mt-0.5">{L.houseFromMoon}</span>
+            </div>
+            <div>
+              <p className="text-text-secondary/75 text-xs">{L.moonHouse} {pd.chandraBala.houseFromMoon ? `${pd.chandraBala.houseFromMoon}` : ''} {L.houseOrdinal}</p>
+              <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mt-1 ${pd.chandraBala.isFavorable ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}`}>
+                {pd.chandraBala.isFavorable ? L.favorable : L.unfavorable}
+              </span>
+            </div>
+          </div>
+          <p className="text-text-secondary text-sm leading-relaxed">
+            {pd.chandraBala.description[locale] || pd.chandraBala.description.en}
+          </p>
+        </motion.div>
       </div>
 
       {/* Personalized Daily Horoscope */}

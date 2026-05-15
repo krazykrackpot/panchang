@@ -527,6 +527,8 @@ export default function KundaliClient() {
         .then(data => {
           if (data?.planets) {
             setKundali(data);
+            // Signal SignupPrompt — peak engagement moment for non-logged-in users
+            window.dispatchEvent(new CustomEvent('kundali:generated'));
             try {
               // Yoga engine already ran inside generateKundali() — results in data.evaluatedYogas
               const engineYogas = data.evaluatedYogas ?? [];

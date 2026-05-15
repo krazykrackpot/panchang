@@ -75,7 +75,13 @@ export default function SignupPrompt() {
 
     // Time trigger — 90 seconds on a single page (for deep readers)
     const timer = setTimeout(trigger, TIME_THRESHOLD_MS);
-    return () => clearTimeout(timer);
+
+    // Chart generation trigger — show immediately when user generates a kundali
+    // (peak engagement moment). The kundali Client dispatches 'kundali:generated'.
+    const onChartGenerated = () => setTimeout(trigger, 3_000); // 3s delay post-generation
+    window.addEventListener('kundali:generated', onChartGenerated);
+
+    return () => { clearTimeout(timer); window.removeEventListener('kundali:generated', onChartGenerated); };
   }, [initialized, user, pathname]);
 
   const dismiss = () => {

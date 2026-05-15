@@ -656,6 +656,65 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
         </CollapsibleSection>
       </section>
 
+      {/* ═══ TOP 3 TAKEAWAYS — actionable conclusion ═══ */}
+      {personalReading && sortedDomains.length > 0 && (
+        <section className="rounded-2xl bg-gradient-to-br from-emerald-900/20 via-[#1a1040]/40 to-[#0a0e27] border border-emerald-500/15 p-5 sm:p-6">
+          <h2 className="text-lg text-emerald-400 font-bold mb-4" style={headingFont}>
+            {isHi ? 'आपकी 3 मुख्य बातें' : 'Your 3 Key Takeaways'}
+          </h2>
+          <div className="space-y-3">
+            {/* Takeaway 1: Current period insight */}
+            {tip.dashaInsight && (
+              <div className="flex items-start gap-3">
+                <span className="shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold flex items-center justify-center">1</span>
+                <p className="text-sm text-text-secondary leading-relaxed">
+                  {isHi
+                    ? `आप अभी ${tip.dashaInsight.currentMaha} महादशा में हैं। ${tip.dashaInsight.currentMahaAnalysis?.split('.')[0] || ''}.`
+                    : `You're in ${tip.dashaInsight.currentMaha} Mahadasha. ${tip.dashaInsight.currentMahaAnalysis?.split('.')[0] || ''}.`
+                  }
+                </p>
+              </div>
+            )}
+            {/* Takeaway 2: Top priority domain */}
+            {(() => {
+              const topDomain = sortedDomains[0];
+              if (!topDomain) return null;
+              const domainConfig = getDomainConfig(topDomain.domain);
+              const dName = domainConfig ? tl(domainConfig.name, locale) : topDomain.domain;
+              return (
+                <div className="flex items-start gap-3">
+                  <span className="shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold flex items-center justify-center">2</span>
+                  <p className="text-sm text-text-secondary leading-relaxed">
+                    {isHi
+                      ? `${dName} अभी आपकी सबसे प्रासंगिक जीवन दिशा है — इस पर ध्यान दें।`
+                      : `${dName} is your most relevant life area right now — focus your attention here.`
+                    }
+                  </p>
+                </div>
+              );
+            })()}
+            {/* Takeaway 3: One practical remedy */}
+            {tip.remedies && (() => {
+              const firstGem = tip.remedies.gemstones?.[0];
+              const firstMantra = tip.remedies.mantras?.[0];
+              const topRemedy = firstGem || firstMantra;
+              if (!topRemedy) return null;
+              return (
+                <div className="flex items-start gap-3">
+                  <span className="shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold flex items-center justify-center">3</span>
+                  <p className="text-sm text-text-secondary leading-relaxed">
+                    {isHi
+                      ? `सबसे सरल उपाय: ${topRemedy.description || topRemedy.name}`
+                      : `Easiest remedy to start: ${topRemedy.description || topRemedy.name}`
+                    }
+                  </p>
+                </div>
+              );
+            })()}
+          </div>
+        </section>
+      )}
+
       <GoldDivider />
 
       {/* ═══ Improvement #8: Print / Share buttons ═══ */}

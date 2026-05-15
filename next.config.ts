@@ -61,6 +61,10 @@ const nextConfig: NextConfig = {
       'd3-shape',
       'd3-selection',
       '@supabase/supabase-js',
+      'three',
+      '@react-three/fiber',
+      '@react-three/drei',
+      'jspdf',
     ],
     // Optimize CSS chunking — splits CSS by route for smaller critical CSS
     cssChunking: 'strict',

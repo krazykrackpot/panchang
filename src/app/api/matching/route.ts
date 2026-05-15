@@ -44,13 +44,13 @@ export async function POST(request: Request) {
         { moonNakshatra: girl.moonNakshatra, moonRashi: girl.moonRashi },
       );
       return NextResponse.json(result, {
-        headers: { 'Cache-Control': 'private, max-age=3600' },
+        headers: { 'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=43200' },
       });
     }
 
     const result = computeAshtaKuta(boy, girl);
     return NextResponse.json(result, {
-      headers: { 'Cache-Control': 'private, max-age=3600' },
+      headers: { 'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=43200' },
     });
   } catch (err) {
     console.error('[matching] computation error:', err);

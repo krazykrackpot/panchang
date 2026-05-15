@@ -66,11 +66,11 @@ import { findDashaSandhiPeriods } from '@/lib/kundali/dasha-sandhi';
 import { assembleBirthPosterData } from '@/lib/shareable/birth-poster';
 import { generateCosmicBlueprint, type CosmicBlueprint } from '@/lib/kundali/archetype-engine';
 import { getNarayanaInterpretation } from '@/lib/constants/narayana-interpretations';
-import DownloadReportButton from '@/components/kundali/DownloadReportButton';
-
 // Dynamic imports  –  only loaded after chart generation or on specific tab activation
 const ChartNorth = dynamic(() => import('@/components/kundali/ChartNorth'), { ssr: false });
 const ChartSouth = dynamic(() => import('@/components/kundali/ChartSouth'), { ssr: false });
+// jspdf + html-to-image are ~300KB — lazy-load so they don't bloat the initial kundali bundle
+const DownloadReportButton = dynamic(() => import('@/components/kundali/DownloadReportButton'), { ssr: false });
 const AIReadingButton = dynamic(() => import('@/components/kundali/AIReadingButton'), { ssr: false });
 const JaiminiTab = dynamic(() => import('@/components/kundali/JaiminiTab'), { ssr: false });
 const SphutasTab = dynamic(() => import('@/components/kundali/SphutasTab'), { ssr: false });

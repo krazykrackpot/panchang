@@ -31,121 +31,219 @@ function ordinal(n: number, locale: string): string {
   return `${n}${s[(v - 20) % 10] || s[v] || s[0]}`;
 }
 
-// ─── Prose generator: weaves factors into flowing Jyotishi-style narrative ──
+// ─── Prose generator: synthesises factors into a Jyotishi-style reading ──────
 
-/**
- * Generates flowing Jyotishi-style prose from the factor breakdown.
- * Each factor type gets its own narrative treatment:
- * - Lords: "Your 4th lord Jupiter sits in own sign — strong foundation for education"
- * - Karakas: "Mercury, the natural intellect karaka, offers support from a friendly sign"
- * - Occupants: "Moon's presence in the 5th house enriches learning"
- * - Yogas: "Amala Yoga brings spotless reputation to your career"
- * - Doshas: "Mangal Dosha creates friction in partnerships — remedies can help"
- */
+/** Extract the planet name from a label like "4th Lord Jupiter" or "Mercury (intellect karaka)" */
+function extractPlanet(label: string): string {
+  // "4th Lord Jupiter" → "Jupiter"
+  const lordMatch = label.match(/Lord\s+(\w+)/);
+  if (lordMatch) return lordMatch[1];
+  // "Mercury (education karaka)" → "Mercury"
+  const karakaMatch = label.match(/^(\w+)\s*\(/);
+  if (karakaMatch) return karakaMatch[1];
+  // "Moon in 5th — benefic occupant" → "Moon"
+  const occupantMatch = label.match(/^(\w+)\s+in/);
+  if (occupantMatch) return occupantMatch[1];
+  return label.split(' ')[0];
+}
+
+/** Extract placement detail: "Own Sign in 4th house (Sagittarius)" → { dignity: "Own Sign", house: "4th", sign: "Sagittarius" } */
+function parsePlacement(value: string): { dignity: string; house: string; sign: string; avastha: string; context: string } {
+  const lastDash = value.lastIndexOf(' — ');
+  const raw = lastDash >= 0 ? value.slice(0, lastDash) : value;
+  const context = lastDash >= 0 ? value.slice(lastDash + 3) : '';
+  const houseMatch = raw.match(/in (\d+\w+) house/);
+  const signMatch = raw.match(/\(([A-Z][a-z]+)\)/);
+  const avMatch = raw.match(/(Mrita \(Dead\)|Bala \(Infant\)|Yuva \(Adult\)|Vriddha \(Old\)|Kumara \(Youth\))/);
+  const dignityParts = raw.split(/\s+in\s+\d/);
+  return {
+    dignity: dignityParts[0]?.trim() ?? raw,
+    house: houseMatch?.[1] ?? '',
+    sign: signMatch?.[1] ?? '',
+    avastha: avMatch?.[1] ?? '',
+    context,
+  };
+}
+
 function generateNatalProse(
   factors: ScoringFactor[],
   domainName: string,
   rating: Rating,
   isHi: boolean,
 ): string {
-  if (factors.length === 0) return '';
+  // Skip yogas/doshas — they're rendered as structured lists
+  const regular = factors.filter(f => f.label.en !== 'Active Yogas' && f.label.en !== 'Active Doshas');
+  if (regular.length === 0) return '';
 
-  const sentences: string[] = [];
+  // Group by verdict
+  const positives = regular.filter(f => f.verdict === 'positive');
+  const negatives = regular.filter(f => f.verdict === 'negative');
+  const neutrals = regular.filter(f => f.verdict === 'neutral');
 
-  for (const f of factors) {
-    const label = isHi ? f.label.hi : f.label.en;
-    const value = f.value;
-    const enLabel = f.label.en; // always check English label for type detection
+  if (isHi) return generateHindiProse(positives, negatives, neutrals, domainName, rating);
+  return generateEnglishProse(positives, negatives, neutrals, domainName, rating);
+}
 
-    // Split value on " — " to separate placement from context.
-    const lastDash = value.lastIndexOf(' — ');
-    const [placement, context] = lastDash >= 0
-      ? [value.slice(0, lastDash), value.slice(lastDash + 3)]
-      : [value, ''];
+function generateEnglishProse(
+  positives: ScoringFactor[],
+  negatives: ScoringFactor[],
+  neutrals: ScoringFactor[],
+  domain: string,
+  rating: Rating,
+): string {
+  const parts: string[] = [];
 
-    // ── Yoga/Dosha factors — render with descriptions and links ──
-    // These are handled specially in the JSX below, not as prose sentences
-    if (enLabel === 'Active Yogas' || enLabel === 'Active Doshas') {
-      continue; // Skip — rendered as structured list in JSX
-    }
-
-    // ── Lord factors ──
-    if (enLabel.includes('Lord')) {
-      if (f.verdict === 'positive') {
-        if (context) {
-          sentences.push(`${label} is placed in ${placement} — a position of strength for ${context}.`);
+  // ── Lead with dominant narrative ──
+  if (positives.length > 0 && positives.length >= negatives.length) {
+    // Strength-led narrative
+    if (positives.length === 1) {
+      const f = positives[0];
+      const p = parsePlacement(f.value);
+      const planet = extractPlanet(f.label.en);
+      const isLord = f.label.en.includes('Lord');
+      if (isLord) {
+        if (p.dignity.includes('Own Sign') || p.dignity.includes('Exalted')) {
+          parts.push(`${planet} rules this area and sits in ${p.dignity.toLowerCase()}${p.sign ? ` (${p.sign})` : ''} — like a king in his own court. This is the chart's anchor for ${domain}.`);
         } else {
-          sentences.push(`${label} is well-placed in ${placement}, supporting ${domainName}.`);
-        }
-      } else if (f.verdict === 'negative') {
-        if (value.includes('Mrita') || value.includes('Bala')) {
-          const avMatch = placement.match(/(Mrita \(Dead\)|Bala \(Infant\))/);
-          const avName = avMatch?.[1] ?? 'weak avastha';
-          sentences.push(`${label} is in ${placement.split(',')[0]}, but ${avName} significantly reduces delivery${context ? ` for ${context}` : ''}.`);
-        } else if (value.includes('enemy sign') || value.includes('debilitated')) {
-          sentences.push(`${label} is in ${placement} — an uncomfortable position${context ? ` that creates friction for ${context}` : ''}.`);
-        } else {
-          sentences.push(`${label} in ${placement} faces challenges${context ? ` for ${context}` : ''}.`);
+          parts.push(`${planet} rules this area from a position of comfort${p.sign ? ` in ${p.sign}` : ''}, lending dependable strength to ${domain}.`);
         }
       } else {
-        sentences.push(`${label} is in ${placement}${context ? ` — a steady influence on ${context}` : ''}.`);
+        parts.push(`${planet}, the natural significator, is well-placed${p.sign ? ` in ${p.sign}` : ''} — its influence supports ${domain} from a solid foundation.`);
       }
-      continue;
-    }
-
-    // ── Karaka factors ──
-    if (enLabel.includes('karaka') || enLabel.includes('Karaka')) {
-      if (f.verdict === 'positive') {
-        sentences.push(`${label}, placed in ${placement}, lends natural strength to ${domainName}.`);
-      } else if (f.verdict === 'negative') {
-        if (value.includes('Mrita') || value.includes('Bala')) {
-          sentences.push(`${label} is weakened by ${value.includes('Mrita') ? 'Mrita (dead) avastha' : 'Bala (infant) avastha'} — its natural support for ${domainName} is diminished.`);
-        } else {
-          sentences.push(`${label} in ${placement} struggles to fully support ${domainName}.`);
-        }
-      } else {
-        sentences.push(`${label} in ${placement} provides moderate natural support.`);
-      }
-      continue;
-    }
-
-    // ── Occupant factors ──
-    if (value.includes('benefic occupant')) {
-      sentences.push(`${label} — a benefic presence that enriches ${context || domainName}.`);
-      continue;
-    }
-    if (value.includes('malefic occupant')) {
-      sentences.push(`${label} — a malefic presence that creates friction in ${context || domainName}, but also builds resilience.`);
-      continue;
-    }
-
-    // ── Fallback for any unrecognised factor type ──
-    if (f.verdict === 'positive') {
-      sentences.push(`${label} in ${placement} supports ${domainName}.`);
-    } else if (f.verdict === 'negative') {
-      sentences.push(`${label} in ${placement} creates challenges for ${domainName}.`);
     } else {
-      sentences.push(`${label} is in ${placement} — a moderate influence.`);
+      // Multiple positive factors — synthesise
+      const planets = positives.map(f => extractPlanet(f.label.en));
+      const lords = positives.filter(f => f.label.en.includes('Lord'));
+      const karakas = positives.filter(f => f.label.en.includes('karaka'));
+      if (lords.length > 0 && karakas.length > 0) {
+        const lordPlanets = lords.map(f => extractPlanet(f.label.en));
+        const karakaPlanets = karakas.map(f => extractPlanet(f.label.en));
+        parts.push(`Both the house lord${lords.length > 1 ? 's' : ''} (${lordPlanets.join(', ')}) and natural significator${karakas.length > 1 ? 's' : ''} (${karakaPlanets.join(', ')}) are well-placed — when lord and karaka agree, the promise is reinforced from multiple directions.`);
+      } else {
+        parts.push(`${planets.join(' and ')} combine to give ${domain} a strong foundation — ${planets.length} of your significators are in positions of strength.`);
+      }
+    }
+  } else if (negatives.length > 0 && negatives.length > positives.length) {
+    // Challenge-led narrative
+    if (negatives.length === 1) {
+      const f = negatives[0];
+      const p = parsePlacement(f.value);
+      const planet = extractPlanet(f.label.en);
+      if (p.avastha.includes('Mrita')) {
+        parts.push(`${planet} governs this area but is in Mrita (dead) avastha — the potential exists but delivery is blocked, like a teacher who knows the subject but cannot speak.`);
+      } else if (p.dignity.includes('Debilitated')) {
+        parts.push(`${planet} rules this area from debilitation${p.sign ? ` in ${p.sign}` : ''} — it struggles to fulfil its promise, making ${domain} an area that requires conscious effort.`);
+      } else {
+        parts.push(`${planet} faces difficulty in delivering results for ${domain}${p.avastha ? ` (${p.avastha} reduces effectiveness)` : ''}.`);
+      }
+    } else {
+      const planets = negatives.map(f => extractPlanet(f.label.en));
+      const listStr = planets.length <= 3
+        ? planets.join(' and ')
+        : `${planets.slice(0, -1).join(', ')} and ${planets[planets.length - 1]}`;
+      parts.push(`Multiple significators for this area — ${listStr} — are under pressure. This doesn't block ${domain} entirely, but results come slowly and require sustained effort.`);
+    }
+  } else if (neutrals.length > 0 && positives.length === 0 && negatives.length === 0) {
+    parts.push(`The significators for ${domain} are in moderate positions — neither strongly supported nor afflicted. Outcomes here depend heavily on effort and timing.`);
+  }
+
+  // ── Contrast: mention the other side briefly ──
+  if (positives.length > 0 && negatives.length > 0) {
+    if (parts.length > 0) {
+      // Already wrote the lead, now contrast
+      if (negatives.length <= positives.length) {
+        const weakPlanets = negatives.map(f => {
+          const planet = extractPlanet(f.label.en);
+          const p = parsePlacement(f.value);
+          return p.avastha ? `${planet} (${p.avastha.split(' ')[0]})` : planet;
+        });
+        const weakStr = weakPlanets.length <= 2
+          ? weakPlanets.join(' and ')
+          : `${weakPlanets.slice(0, -1).join(', ')} and ${weakPlanets[weakPlanets.length - 1]}`;
+        parts.push(`However, ${weakStr} introduce${negatives.length === 1 ? 's' : ''} some friction — expect uneven progress rather than a smooth ride.`);
+      } else {
+        const strongPlanets = positives.map(f => extractPlanet(f.label.en));
+        const strongStr = strongPlanets.length <= 2
+          ? strongPlanets.join(' and ')
+          : `${strongPlanets.slice(0, -1).join(', ')} and ${strongPlanets[strongPlanets.length - 1]}`;
+        parts.push(`The saving grace: ${strongStr} provide${positives.length === 1 ? 's' : ''} a foothold of strength that prevents the difficulties from becoming overwhelming.`);
+      }
     }
   }
 
-  // Closing summary
-  const CLOSING: Record<Rating, string> = {
-    uttama: `Overall, the chart provides strong support for ${domainName}.`,
-    madhyama: `On balance, ${domainName} has moderate support — some strengths offset the challenges.`,
-    adhama: `Overall, ${domainName} faces headwinds — patience and remedial measures will help.`,
-    atyadhama: `${domainName} is under significant pressure — focused remedies are recommended.`,
-  };
-  const CLOSING_HI: Record<Rating, string> = {
-    uttama: `कुल मिलाकर, कुण्डली ${domainName} के लिए प्रबल सहयोग देती है।`,
-    madhyama: `संतुलन में, ${domainName} को मध्यम सहयोग है — कुछ बल चुनौतियों की भरपाई करते हैं।`,
-    adhama: `कुल मिलाकर, ${domainName} को चुनौतियाँ हैं — धैर्य और उपाय सहायक होंगे।`,
-    atyadhama: `${domainName} पर महत्वपूर्ण दबाव है — केन्द्रित उपायों की सिफारिश है।`,
-  };
+  // ── Closing: tier-appropriate one-liner (not generic) ──
+  const total = positives.length + negatives.length + neutrals.length;
+  if (total > 2) {
+    const CLOSING: Record<Rating, string> = {
+      uttama: 'The chart\'s promise here is clear and well-supported.',
+      madhyama: 'A workable picture — strengths and weaknesses roughly balance out.',
+      adhama: 'Patience and the right remedial measures can shift this trajectory.',
+      atyadhama: 'Focused remedies and timing awareness are strongly recommended here.',
+    };
+    parts.push(CLOSING[rating]);
+  }
 
-  sentences.push(isHi ? CLOSING_HI[rating] : CLOSING[rating]);
+  return parts.join(' ');
+}
 
-  return sentences.join(' ');
+function generateHindiProse(
+  positives: ScoringFactor[],
+  negatives: ScoringFactor[],
+  neutrals: ScoringFactor[],
+  domain: string,
+  rating: Rating,
+): string {
+  const parts: string[] = [];
+
+  if (positives.length > 0 && positives.length >= negatives.length) {
+    if (positives.length === 1) {
+      const planet = extractPlanet(positives[0].label.en);
+      const p = parsePlacement(positives[0].value);
+      if (p.dignity.includes('Own') || p.dignity.includes('Exalted')) {
+        parts.push(`${planet} इस क्षेत्र का स्वामी है और ${p.dignity.includes('Exalted') ? 'उच्च' : 'स्वगृह'} में बैठा है — यह ${domain} के लिए कुण्डली का मुख्य बल है।`);
+      } else {
+        parts.push(`${planet} इस क्षेत्र को अनुकूल स्थिति से सहारा दे रहा है।`);
+      }
+    } else {
+      const planets = positives.map(f => extractPlanet(f.label.en));
+      parts.push(`${planets.join(' और ')} दोनों सुदृढ़ स्थिति में हैं — जब स्वामी और कारक दोनों बली हों तो ${domain} का वादा और पुष्ट होता है।`);
+    }
+  } else if (negatives.length > 0 && negatives.length > positives.length) {
+    if (negatives.length === 1) {
+      const planet = extractPlanet(negatives[0].label.en);
+      const p = parsePlacement(negatives[0].value);
+      if (p.avastha.includes('Mrita')) {
+        parts.push(`${planet} इस क्षेत्र का स्वामी है पर मृत अवस्था में है — क्षमता है पर फलदायक नहीं हो पा रहा।`);
+      } else {
+        parts.push(`${planet} ${domain} के लिए चुनौतीपूर्ण स्थिति में है — प्रयास अधिक, फल धीरे।`);
+      }
+    } else {
+      parts.push(`${domain} में अनेक चुनौतियाँ हैं — पर यह असफलता नहीं, अधिक प्रयास और सही समय की आवश्यकता है।`);
+    }
+  } else if (neutrals.length > 0 && positives.length === 0 && negatives.length === 0) {
+    parts.push(`${domain} के कारक मध्यम स्थिति में हैं — फल प्रयास और समय पर निर्भर करेगा।`);
+  }
+
+  if (positives.length > 0 && negatives.length > 0) {
+    if (negatives.length <= positives.length) {
+      parts.push('कुछ बाधाएँ हैं — सम प्रगति की बजाय उतार-चढ़ाव रहेगा।');
+    } else {
+      parts.push('बलवान ग्रह सहारा देते हैं — कठिनाइयाँ पूर्ण रूप से हावी नहीं होंगी।');
+    }
+  }
+
+  const total = positives.length + negatives.length + neutrals.length;
+  if (total > 2) {
+    const CLOSING_HI: Record<Rating, string> = {
+      uttama: 'कुण्डली का वादा यहाँ स्पष्ट और सुदृढ़ है।',
+      madhyama: 'बल और दुर्बलता में लगभग सन्तुलन है।',
+      adhama: 'धैर्य और उचित उपाय इस दिशा को बदल सकते हैं।',
+      atyadhama: 'केन्द्रित उपाय और समय की सजगता यहाँ अत्यन्त आवश्यक है।',
+    };
+    parts.push(CLOSING_HI[rating]);
+  }
+
+  return parts.join(' ');
 }
 
 // ─── Significator factor line ───────────────────────────────────────────────

@@ -89,7 +89,7 @@ export default function LifeDomainsOverview({ domains, locale }: LifeDomainsOver
 
   return (
     <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 p-4 sm:p-5">
-      <div className="flex items-center justify-between mb-3">
+      <div className="flex flex-wrap items-center justify-between gap-y-1 mb-3">
         <h3 className="text-sm font-bold text-gold-light uppercase tracking-wider">
           {isHi ? 'जीवन क्षेत्र सारांश' : 'Life Domains at a Glance'}
         </h3>
@@ -107,7 +107,7 @@ export default function LifeDomainsOverview({ domains, locale }: LifeDomainsOver
         </div>
       </div>
 
-      <div className="flex justify-between gap-1 overflow-x-auto">
+      <div className="flex flex-wrap justify-center gap-x-1 gap-y-2">
         {domains.map(d => (
           <MiniDomainRing key={d.domain} domain={d} locale={locale} />
         ))}

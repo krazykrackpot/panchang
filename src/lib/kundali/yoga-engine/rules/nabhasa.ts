@@ -382,7 +382,7 @@ const ARDHA_CHANDRA: YogaRule = {
       const occupied = getOccupiedHouses(ctx);
       // Must be exactly 7 houses occupied AND they must be consecutive
       if (occupied.size !== 7) {
-        return { present: false, involvedPlanets: [] };
+        return { present: false, strength: 'Weak', involvedPlanets: [] };
       }
 
       // Check if all 7 are consecutive (wrap-around allowed)
@@ -402,7 +402,7 @@ const ARDHA_CHANDRA: YogaRule = {
         }
       }
 
-      return { present: false, involvedPlanets: [] };
+      return { present: false, strength: 'Weak', involvedPlanets: [] };
     },
   },
 
@@ -587,7 +587,7 @@ const DHANUSH: YogaRule = {
     detect: (ctx: YogaContext) => {
       const allowedHouses = new Set([4, 5, 6, 7, 8, 9, 10]);
       if (!allPlanetsInHouses(ctx, allowedHouses)) {
-        return { present: false, involvedPlanets: [] };
+        return { present: false, strength: 'Weak', involvedPlanets: [] };
       }
 
       // Stricter: require at least one planet in both tips (4th AND 10th)
@@ -745,7 +745,7 @@ const HALA: YogaRule = {
         }
       }
 
-      return { present: false, involvedPlanets: [] };
+      return { present: false, strength: 'Weak', involvedPlanets: [] };
     },
   },
 
@@ -792,10 +792,10 @@ const RAJJU: YogaRule = {
       const movableSigns = new Set([1, 4, 7, 10]);
       for (const pid of SUN_TO_SATURN) {
         if (!movableSigns.has(ctx.planetSign(pid))) {
-          return { present: false, involvedPlanets: [] };
+          return { present: false, strength: 'Weak', involvedPlanets: [] };
         }
       }
-      return { present: true, involvedPlanets: allSevenPlanets() };
+      return { present: true, strength: 'Moderate', involvedPlanets: allSevenPlanets() };
     },
   },
 
@@ -838,10 +838,10 @@ const MUSALA: YogaRule = {
       const fixedSigns = new Set([2, 5, 8, 11]);
       for (const pid of SUN_TO_SATURN) {
         if (!fixedSigns.has(ctx.planetSign(pid))) {
-          return { present: false, involvedPlanets: [] };
+          return { present: false, strength: 'Weak', involvedPlanets: [] };
         }
       }
-      return { present: true, involvedPlanets: allSevenPlanets() };
+      return { present: true, strength: 'Moderate', involvedPlanets: allSevenPlanets() };
     },
   },
 
@@ -884,10 +884,10 @@ const NALA: YogaRule = {
       const dualSigns = new Set([3, 6, 9, 12]);
       for (const pid of SUN_TO_SATURN) {
         if (!dualSigns.has(ctx.planetSign(pid))) {
-          return { present: false, involvedPlanets: [] };
+          return { present: false, strength: 'Weak', involvedPlanets: [] };
         }
       }
-      return { present: true, involvedPlanets: allSevenPlanets() };
+      return { present: true, strength: 'Moderate', involvedPlanets: allSevenPlanets() };
     },
   },
 
@@ -943,14 +943,14 @@ const MALA: YogaRule = {
       // All benefics must be in kendras
       for (const pid of benefics) {
         if (!kendras.has(ctx.planetHouse(pid))) {
-          return { present: false, involvedPlanets: [] };
+          return { present: false, strength: 'Weak', involvedPlanets: [] };
         }
       }
 
       // All malefics must be in 3/6/11
       for (const pid of malefics) {
         if (!upachaya3611.has(ctx.planetHouse(pid))) {
-          return { present: false, involvedPlanets: [] };
+          return { present: false, strength: 'Weak', involvedPlanets: [] };
         }
       }
 
@@ -1009,14 +1009,14 @@ const SARPA: YogaRule = {
       // All malefics must be in kendras
       for (const pid of malefics) {
         if (!kendras.has(ctx.planetHouse(pid))) {
-          return { present: false, involvedPlanets: [] };
+          return { present: false, strength: 'Weak', involvedPlanets: [] };
         }
       }
 
       // All benefics must be in 3/6/11
       for (const pid of benefics) {
         if (!upachaya3611.has(ctx.planetHouse(pid))) {
-          return { present: false, involvedPlanets: [] };
+          return { present: false, strength: 'Weak', involvedPlanets: [] };
         }
       }
 
@@ -1073,7 +1073,7 @@ const GADA: YogaRule = {
       const occupied = getOccupiedHouses(ctx);
       // Must be exactly 4 houses occupied
       if (occupied.size !== 4) {
-        return { present: false, involvedPlanets: [] };
+        return { present: false, strength: 'Weak', involvedPlanets: [] };
       }
 
       const houses = Array.from(occupied).sort((a, b) => a - b);
@@ -1119,7 +1119,7 @@ const GADA: YogaRule = {
         }
       }
 
-      return { present: false, involvedPlanets: [] };
+      return { present: false, strength: 'Weak', involvedPlanets: [] };
     },
   },
 
@@ -1231,11 +1231,344 @@ const CHAAMARA_NABHASA: YogaRule = {
   },
 };
 
+// ═══════════════════════════════════════════════════════════════════════════════
+// ADDITIONAL AKRITI (Shape) Sub-group — Classical missing types
+// ═══════════════════════════════════════════════════════════════════════════════
+
+/** Natural benefics: Jupiter (4), Venus (5), Mercury (3), Moon (1) — waxing Moon only, simplified to always */
+const NATURAL_BENEFICS = new Set([1, 3, 4, 5]);
+/** Natural malefics: Sun (0), Mars (2), Saturn (6) */
+const NATURAL_MALEFICS = new Set([0, 2, 6]);
+
+/**
+ * Yupa Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All 7 planets (Sun-Saturn) in 4 consecutive houses starting from a kendra (1/4/7/10).
+ * Named after the Vedic sacrificial post — signifies ritual purity and dharmic life.
+ *
+ * Results: Auspicious. The native is devoted to spiritual practices, charitable,
+ * learned in Vedic sciences, and respected for moral conduct.
+ */
+const YUPA: YogaRule = {
+  id: 'nabhasa-yupa',
+  name: { en: 'Yupa', hi: 'यूप', sa: 'यूपः' },
+  group: 'nabhasa',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika Ch.7 v.14',
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext): YogaDetectionResult => {
+      const occupied = getOccupiedHouses(ctx);
+      // Must start from a kendra: 1, 4, 7, or 10
+      for (const start of [1, 4, 7, 10]) {
+        const allowed = new Set([start, ((start) % 12) + 1, ((start + 1) % 12) + 1, ((start + 2) % 12) + 1]);
+        if (allPlanetsInHouses(ctx, allowed) && occupied.size <= 4) {
+          return { present: true, strength: 'Moderate', involvedPlanets: allSevenPlanets() };
+        }
+      }
+      return { present: false, strength: 'Weak', involvedPlanets: [] };
+    },
+  },
+  assessStrength: assessNabhasaStrength,
+  affectedDomains: ['spiritual'],
+  domainImpactWeight: 2,
+  formationRule: { en: 'All 7 planets in 4 consecutive houses starting from a kendra (1/4/7/10)', hi: 'सभी 7 ग्रह एक केन्द्र (1/4/7/10) से 4 लगातार भावों में' },
+  description: {
+    en: 'Yupa Yoga — "sacrificial post" — all planets concentrated in 4 houses from a kendra. The native is devoted to spiritual practices, charitable, learned in Vedic sciences, and respected for moral conduct.',
+    hi: 'यूप योग — "यज्ञ स्तंभ" — सभी ग्रह एक केन्द्र से 4 भावों में। जातक आध्यात्मिक साधनाओं में लीन, दानशील, वैदिक विद्याओं में पारंगत और नैतिक आचरण के लिए सम्मानित होता है।',
+  },
+};
+
+/**
+ * Ishu (Shara) Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All 7 planets in 4 consecutive houses starting from a panapara (2/5/8/11).
+ * Named after an arrow — indicates sharp focus and directedness.
+ *
+ * Results: Mixed. The native is connected with arms, prisons, or guard work;
+ * may be a jailer, soldier, or someone who enforces order.
+ */
+const ISHU: YogaRule = {
+  id: 'nabhasa-ishu',
+  name: { en: 'Ishu (Shara)', hi: 'इषु (शर)', sa: 'इषुः' },
+  group: 'nabhasa',
+  isAuspicious: false,
+  classicalRef: 'Phaladeepika Ch.7 v.14',
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext): YogaDetectionResult => {
+      const occupied = getOccupiedHouses(ctx);
+      for (const start of [2, 5, 8, 11]) {
+        const allowed = new Set([start, (start % 12) + 1, ((start + 1) % 12) + 1, ((start + 2) % 12) + 1]);
+        if (allPlanetsInHouses(ctx, allowed) && occupied.size <= 4) {
+          return { present: true, strength: 'Moderate', involvedPlanets: allSevenPlanets() };
+        }
+      }
+      return { present: false, strength: 'Weak', involvedPlanets: [] };
+    },
+  },
+  assessStrength: assessNabhasaStrength,
+  affectedDomains: ['career'],
+  domainImpactWeight: 1,
+  formationRule: { en: 'All 7 planets in 4 consecutive houses starting from a panapara (2/5/8/11)', hi: 'सभी 7 ग्रह एक पणफर (2/5/8/11) से 4 लगातार भावों में' },
+  description: {
+    en: 'Ishu (Shara) Yoga — "arrow" — all planets in 4 houses starting from a succedent house. The native may work in enforcement, security, or discipline-oriented fields. Sharp and focused personality.',
+    hi: 'इषु (शर) योग — "बाण" — सभी ग्रह एक पणफर भाव से 4 भावों में। जातक सुरक्षा, अनुशासन या प्रवर्तन क्षेत्र में कार्य कर सकता है। तीक्ष्ण और केन्द्रित व्यक्तित्व।',
+  },
+};
+
+/**
+ * Shakti Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All 7 planets in 4 consecutive houses starting from an apoklima (3/6/9/12).
+ * Named after power/energy — indicates latent strength.
+ *
+ * Results: Mixed-negative. The native may be lazy, poor, devoid of enterprise,
+ * defeated in battles. The apoklima start weakens the concentration of energy.
+ */
+const SHAKTI: YogaRule = {
+  id: 'nabhasa-shakti',
+  name: { en: 'Shakti', hi: 'शक्ति', sa: 'शक्तिः' },
+  group: 'nabhasa',
+  isAuspicious: false,
+  classicalRef: 'Phaladeepika Ch.7 v.14',
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext): YogaDetectionResult => {
+      const occupied = getOccupiedHouses(ctx);
+      for (const start of [3, 6, 9, 12]) {
+        const allowed = new Set([start, (start % 12) + 1, ((start + 1) % 12) + 1, ((start + 2) % 12) + 1]);
+        if (allPlanetsInHouses(ctx, allowed) && occupied.size <= 4) {
+          return { present: true, strength: 'Moderate', involvedPlanets: allSevenPlanets() };
+        }
+      }
+      return { present: false, strength: 'Weak', involvedPlanets: [] };
+    },
+  },
+  assessStrength: assessNabhasaStrength,
+  affectedDomains: ['career', 'wealth'],
+  domainImpactWeight: 1,
+  formationRule: { en: 'All 7 planets in 4 consecutive houses starting from an apoklima (3/6/9/12)', hi: 'सभी 7 ग्रह एक अपोक्लिम (3/6/9/12) से 4 लगातार भावों में' },
+  description: {
+    en: 'Shakti Yoga — "power" — all planets in 4 houses from a cadent position. Despite the name, this concentrates energy in weak houses, leading to unfulfilled potential and lack of enterprise.',
+    hi: 'शक्ति योग — "शक्ति" — सभी ग्रह एक अपोक्लिम भाव से 4 भावों में। नाम के बावजूद, यह ऊर्जा को दुर्बल भावों में केन्द्रित करता है, जिससे अपूर्ण क्षमता और उद्यम की कमी होती है।',
+  },
+};
+
+/**
+ * Danda Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All 7 planets in 4 consecutive houses starting from any house.
+ * The generic version of Yupa/Ishu/Shakti — if the start isn't kendra/panapara/apoklima
+ * specifically, or as a catch-all when all 7 are in a 4-house band.
+ *
+ * Results: Mixed. Depends on which houses are involved. Generally indicates
+ * loss of children, poverty, and servile existence per Phaladeepika.
+ */
+const DANDA: YogaRule = {
+  id: 'nabhasa-danda',
+  name: { en: 'Danda', hi: 'दण्ड', sa: 'दण्डः' },
+  group: 'nabhasa',
+  isAuspicious: false,
+  classicalRef: 'Phaladeepika Ch.7 v.14',
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext): YogaDetectionResult => {
+      const occupied = getOccupiedHouses(ctx);
+      if (occupied.size > 4) return { present: false, strength: 'Weak', involvedPlanets: [] };
+      // Check any 4 consecutive houses
+      for (let start = 1; start <= 12; start++) {
+        const allowed = new Set([start, (start % 12) + 1, ((start + 1) % 12) + 1, ((start + 2) % 12) + 1]);
+        if (allPlanetsInHouses(ctx, allowed)) {
+          // Skip if it's one of the specific subtypes (Yupa/Ishu/Shakti)
+          const kendras = new Set([1, 4, 7, 10]);
+          const panaparas = new Set([2, 5, 8, 11]);
+          const apoklimas = new Set([3, 6, 9, 12]);
+          if (kendras.has(start) || panaparas.has(start) || apoklimas.has(start)) continue;
+          return { present: true, strength: 'Moderate', involvedPlanets: allSevenPlanets() };
+        }
+      }
+      return { present: false, strength: 'Weak', involvedPlanets: [] };
+    },
+  },
+  assessStrength: assessNabhasaStrength,
+  affectedDomains: ['career', 'children'],
+  domainImpactWeight: 1,
+  formationRule: { en: 'All 7 planets in 4 consecutive houses (generic)', hi: 'सभी 7 ग्रह 4 लगातार भावों में (सामान्य)' },
+  description: {
+    en: 'Danda Yoga — "staff" — planets concentrated in a 4-house band. Indicates a constrained life with limited breadth of experience.',
+    hi: 'दण्ड योग — "डंडा" — ग्रह 4 भावों में केन्द्रित। सीमित अनुभव विस्तार के साथ एक बाधित जीवन इंगित करता है।',
+  },
+};
+
+/**
+ * Vajra Yoga — Phaladeepika Ch.7
+ *
+ * Formation: Benefics in 1st and 7th houses, malefics in 4th and 10th houses
+ * (or vice versa). Diamond-shaped pattern across the kendra axis.
+ *
+ * Results: Auspicious in the first form (benefics on lagna-7th axis).
+ * The native is handsome, happy in the beginning and end of life, but may
+ * face difficulties in middle age.
+ */
+const VAJRA: YogaRule = {
+  id: 'nabhasa-vajra',
+  name: { en: 'Vajra', hi: 'वज्र', sa: 'वज्रम्' },
+  group: 'nabhasa',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika Ch.7 v.17',
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext): YogaDetectionResult => {
+      // Check if benefics occupy 1st/7th AND malefics occupy 4th/10th
+      const h1 = ctx.planetsInHouse(1).filter(p => p <= 6);
+      const h7 = ctx.planetsInHouse(7).filter(p => p <= 6);
+      const h4 = ctx.planetsInHouse(4).filter(p => p <= 6);
+      const h10 = ctx.planetsInHouse(10).filter(p => p <= 6);
+
+      const beneficsIn1_7 = [...h1, ...h7].some(p => NATURAL_BENEFICS.has(p));
+      const maleficsIn4_10 = [...h4, ...h10].some(p => NATURAL_MALEFICS.has(p));
+      const noBeneficsIn4_10 = ![...h4, ...h10].some(p => NATURAL_BENEFICS.has(p));
+      const noMaleficsIn1_7 = ![...h1, ...h7].some(p => NATURAL_MALEFICS.has(p));
+
+      if (beneficsIn1_7 && maleficsIn4_10 && noBeneficsIn4_10 && noMaleficsIn1_7) {
+        const involved = [...h1, ...h7, ...h4, ...h10];
+        return { present: true, strength: 'Moderate', involvedPlanets: involved };
+      }
+      return { present: false, strength: 'Weak', involvedPlanets: [] };
+    },
+  },
+  assessStrength: assessNabhasaStrength,
+  affectedDomains: ['career', 'marriage'],
+  domainImpactWeight: 2,
+  formationRule: { en: 'Benefics in 1st/7th houses, malefics in 4th/10th houses', hi: 'शुभ ग्रह 1/7 भावों में, पाप ग्रह 4/10 भावों में' },
+  description: {
+    en: 'Vajra Yoga — "thunderbolt" — benefics across the lagna-7th axis, malefics on the 4th-10th axis. The native is happy in early and later life but may face adversity in the middle years.',
+    hi: 'वज्र योग — "वज्र" — शुभ ग्रह लग्न-7 अक्ष पर, पाप ग्रह 4-10 अक्ष पर। जातक प्रारंभिक और बाद के जीवन में सुखी, मध्य काल में कठिनाई संभव।',
+  },
+};
+
+/**
+ * Yava Yoga — Phaladeepika Ch.7
+ *
+ * Formation: Benefics in 4th and 10th houses, malefics in 1st and 7th houses.
+ * The inverse of Vajra — barley-grain shaped.
+ *
+ * Results: Mixed. The native faces difficulties in early and later life
+ * but enjoys prosperity during middle age.
+ */
+const YAVA: YogaRule = {
+  id: 'nabhasa-yava',
+  name: { en: 'Yava', hi: 'यव', sa: 'यवः' },
+  group: 'nabhasa',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika Ch.7 v.17',
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext): YogaDetectionResult => {
+      const h1 = ctx.planetsInHouse(1).filter(p => p <= 6);
+      const h7 = ctx.planetsInHouse(7).filter(p => p <= 6);
+      const h4 = ctx.planetsInHouse(4).filter(p => p <= 6);
+      const h10 = ctx.planetsInHouse(10).filter(p => p <= 6);
+
+      const beneficsIn4_10 = [...h4, ...h10].some(p => NATURAL_BENEFICS.has(p));
+      const maleficsIn1_7 = [...h1, ...h7].some(p => NATURAL_MALEFICS.has(p));
+      const noBeneficsIn1_7 = ![...h1, ...h7].some(p => NATURAL_BENEFICS.has(p));
+      const noMaleficsIn4_10 = ![...h4, ...h10].some(p => NATURAL_MALEFICS.has(p));
+
+      if (beneficsIn4_10 && maleficsIn1_7 && noBeneficsIn1_7 && noMaleficsIn4_10) {
+        const involved = [...h1, ...h7, ...h4, ...h10];
+        return { present: true, strength: 'Moderate', involvedPlanets: involved };
+      }
+      return { present: false, strength: 'Weak', involvedPlanets: [] };
+    },
+  },
+  assessStrength: assessNabhasaStrength,
+  affectedDomains: ['career', 'wealth'],
+  domainImpactWeight: 1,
+  formationRule: { en: 'Benefics in 4th/10th houses, malefics in 1st/7th houses', hi: 'शुभ ग्रह 4/10 भावों में, पाप ग्रह 1/7 भावों में' },
+  description: {
+    en: 'Yava Yoga — "barley grain" — inverse of Vajra. Benefics at the 4th-10th axis, malefics at 1st-7th. The native faces difficulties in youth and old age but prospers in middle life.',
+    hi: 'यव योग — "जौ" — वज्र का विपरीत। शुभ ग्रह 4-10 अक्ष पर, पाप ग्रह 1-7 पर। जातक को युवावस्था और वृद्धावस्था में कठिनाई, मध्य जीवन में समृद्धि।',
+  },
+};
+
+/**
+ * Kamala (Padma) Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All 7 planets in the 4 kendras (houses 1, 4, 7, 10) only.
+ * Named after the lotus — a rare and highly auspicious pattern.
+ *
+ * Results: Very auspicious. The native is virtuous, performs many meritorious deeds,
+ * enjoys lasting fame, is learned and wealthy.
+ */
+const KAMALA: YogaRule = {
+  id: 'nabhasa-kamala',
+  name: { en: 'Kamala', hi: 'कमल', sa: 'कमलम्' },
+  group: 'nabhasa',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika Ch.7 v.18',
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext): YogaDetectionResult => {
+      const kendras = new Set([1, 4, 7, 10]);
+      if (allPlanetsInHouses(ctx, kendras)) {
+        return { present: true, strength: 'Moderate', involvedPlanets: allSevenPlanets() };
+      }
+      return { present: false, strength: 'Weak', involvedPlanets: [] };
+    },
+  },
+  assessStrength: assessNabhasaStrength,
+  affectedDomains: ['career', 'wealth', 'spiritual'],
+  domainImpactWeight: 3,
+  formationRule: { en: 'All 7 planets in the 4 kendras (houses 1/4/7/10)', hi: 'सभी 7 ग्रह 4 केन्द्रों (1/4/7/10 भावों) में' },
+  description: {
+    en: 'Kamala (Padma) Yoga — "lotus" — all planets in kendras. Extremely rare and highly auspicious. The native is virtuous, famous, learned, wealthy, and performs many meritorious deeds.',
+    hi: 'कमल (पद्म) योग — "कमल" — सभी ग्रह केन्द्रों में। अत्यंत दुर्लभ और अत्यधिक शुभ। जातक गुणवान, प्रसिद्ध, विद्वान, धनी और अनेक पुण्य कर्म करता है।',
+  },
+};
+
+/**
+ * Vaapi Yoga — Phaladeepika Ch.7
+ *
+ * Formation: All 7 planets in panaparas (2/5/8/11) only OR in apoklimas (3/6/9/12) only.
+ * Named after a step-well — signifies accumulation.
+ *
+ * Results: Mixed-positive. The native accumulates wealth gradually, is happy,
+ * enjoys material comforts, but in a measured, step-by-step manner.
+ */
+const VAAPI: YogaRule = {
+  id: 'nabhasa-vaapi',
+  name: { en: 'Vaapi', hi: 'वापी', sa: 'वापी' },
+  group: 'nabhasa',
+  isAuspicious: true,
+  classicalRef: 'Phaladeepika Ch.7 v.18',
+  conditions: {
+    type: 'custom',
+    detect: (ctx: YogaContext): YogaDetectionResult => {
+      const panaparas = new Set([2, 5, 8, 11]);
+      const apoklimas = new Set([3, 6, 9, 12]);
+      if (allPlanetsInHouses(ctx, panaparas) || allPlanetsInHouses(ctx, apoklimas)) {
+        return { present: true, strength: 'Moderate', involvedPlanets: allSevenPlanets() };
+      }
+      return { present: false, strength: 'Weak', involvedPlanets: [] };
+    },
+  },
+  assessStrength: assessNabhasaStrength,
+  affectedDomains: ['wealth'],
+  domainImpactWeight: 2,
+  formationRule: { en: 'All 7 planets in panaparas (2/5/8/11) or apoklimas (3/6/9/12)', hi: 'सभी 7 ग्रह पणफर (2/5/8/11) या अपोक्लिम (3/6/9/12) में' },
+  description: {
+    en: 'Vaapi Yoga — "step-well" — all planets in succedent or cadent houses. The native accumulates wealth gradually, enjoys comforts in a measured way, and builds prosperity step by step.',
+    hi: 'वापी योग — "बावड़ी" — सभी ग्रह पणफर या अपोक्लिम भावों में। जातक धीरे-धीरे धन संचय करता है, क्रमबद्ध तरीके से सुखों का आनंद लेता है।',
+  },
+};
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Export
 // ─────────────────────────────────────────────────────────────────────────────
 
-/** All 23 Nabhasa yoga rules — Phaladeepika Ch.7 (4 sub-groups) */
+/** All 31 Nabhasa yoga rules — Phaladeepika Ch.7 (4 sub-groups) */
 export const NABHASA_RULES: YogaRule[] = [
   // Sankhya (Number) — mutually exclusive
   GOLA,
@@ -1258,6 +1591,15 @@ export const NABHASA_RULES: YogaRule[] = [
   GADA,
   SHAYANA,
   CHAAMARA_NABHASA,
+  // Additional Akriti (Phaladeepika Ch.7)
+  YUPA,
+  ISHU,
+  SHAKTI,
+  DANDA,
+  VAJRA,
+  YAVA,
+  KAMALA,
+  VAAPI,
   // Aashray (Sign quality)
   RAJJU,
   MUSALA,

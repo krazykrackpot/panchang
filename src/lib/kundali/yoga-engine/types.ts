@@ -594,10 +594,20 @@ export interface YogaRule {
   affectedDomains: DomainType[] | 'all';
 
   /**
-   * Impact weight on domain scoring.
+   * Impact weight on domain scoring (uniform across all affected domains).
    * 1 = mild influence, 2 = moderate influence, 3 = strong/defining influence.
    */
   domainImpactWeight: 1 | 2 | 3;
+
+  /**
+   * Per-domain weight override (G2). When set, these weights are used instead
+   * of the uniform domainImpactWeight for the specified domains. Domains not
+   * in this map fall back to domainImpactWeight.
+   *
+   * Example: Gajakesari primarily affects wealth (3) and career (3), but only
+   * mildly affects health (1). Without this, all three get weight 2.
+   */
+  domainWeights?: Partial<Record<DomainType, 1 | 2 | 3>>;
 
   // ── Interpretation ──
 
@@ -661,8 +671,11 @@ export interface EvaluatedYoga {
   /** Affected life domains */
   affectedDomains: DomainType[] | 'all';
 
-  /** Domain impact weight (1-3) */
+  /** Domain impact weight (1-3) — uniform fallback */
   domainImpactWeight: 1 | 2 | 3;
+
+  /** Per-domain weight overrides (G2). Falls back to domainImpactWeight. */
+  domainWeights?: Partial<Record<DomainType, 1 | 2 | 3>>;
 
   /** Cancellation status — only present if cancellations were checked */
   cancellationStatus?: {

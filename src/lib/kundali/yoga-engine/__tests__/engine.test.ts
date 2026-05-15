@@ -148,7 +148,9 @@ describe("Yoga Engine — Arjun's chart (Aquarius lagna)", () => {
     expect(present).toContain('chandra-mangala');
     const cm = findYoga(yogas, 'chandra-mangala')!;
     expect(cm.present).toBe(true);
-    expect(cm.strength).toBe('Strong');
+    // Moderate for Aquarius lagna: Moon (6th lord = func malefic) + Mars (3rd/10th = neutral).
+    // G3 lagna-aware modifier penalises when no involved planet is func benefic.
+    expect(cm.strength).toBe('Moderate');
   });
 
   it('Kendra-Trikona Raja present', () => {
@@ -355,9 +357,9 @@ describe('Yoga Engine — Strength assessment', () => {
     expect(ruchaka.strength).toBe('Moderate');
   });
 
-  it('Chandra-Mangala in Arjun chart is Strong', () => {
+  it('Chandra-Mangala in Arjun chart is Moderate (G3: no func benefic for Aquarius)', () => {
     const cm = findYoga(arjunChart.evaluatedYogas!, 'chandra-mangala')!;
-    expect(cm.strength).toBe('Strong');
+    expect(cm.strength).toBe('Moderate');
   });
 
   it('Kaal Sarpa in Arjun chart is Weak (planet conjunct node weakens)', () => {

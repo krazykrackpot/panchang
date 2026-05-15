@@ -135,6 +135,8 @@ const BUDHADITYA: YogaRule = {
 
   affectedDomains: ['education', 'career'],
   domainImpactWeight: 2,
+  // G2: Budhaditya primarily affects education/intellect (Saravali Ch.15), career secondary
+  domainWeights: { education: 3, career: 2 },
 
   formationRule: {
     en: 'Sun and Mercury are conjunct in the same house, with Mercury at least 3° from the Sun (not deeply combust).',

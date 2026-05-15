@@ -410,6 +410,8 @@ const GAJAKESARI: YogaRule = {
 
   affectedDomains: ['education', 'wealth', 'children', 'career'],
   domainImpactWeight: 3,
+  // G2: Gajakesari is primarily wealth/career (BPHS Ch.36), secondarily education/children
+  domainWeights: { wealth: 3, career: 3, education: 2, children: 2 },
 
   formationRule: {
     en: 'Jupiter is in a kendra (1st/4th/7th/10th) from Moon.',
@@ -459,6 +461,8 @@ const CHANDRA_MANGALA: YogaRule = {
 
   affectedDomains: ['wealth', 'marriage'],
   domainImpactWeight: 2,
+  // G2: Chandra-Mangala is primarily wealth (Phaladeepika Ch.4), secondarily marriage
+  domainWeights: { wealth: 3, marriage: 1 },
 
   formationRule: {
     en: 'Moon and Mars are conjunct (in the same house).',

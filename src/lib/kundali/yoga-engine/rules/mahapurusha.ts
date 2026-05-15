@@ -132,6 +132,7 @@ const RUCHAKA: YogaRule = {
 
   affectedDomains: ['career', 'health'],
   domainImpactWeight: 3,
+  domainWeights: { career: 3, health: 2 }, // G2: Ruchaka — Mars dominates career/courage
 
   formationRule: {
     en: 'Mars is in a kendra (1st/4th/7th/10th house) in its own sign (Aries/Scorpio) or exaltation (Capricorn).',
@@ -187,6 +188,7 @@ const BHADRA: YogaRule = {
 
   affectedDomains: ['education', 'career', 'wealth'],
   domainImpactWeight: 3,
+  domainWeights: { education: 3, career: 2, wealth: 2 }, // G2: Bhadra — Mercury dominates intellect
 
   formationRule: {
     en: 'Mercury is in a kendra (1st/4th/7th/10th house) in its own sign (Gemini/Virgo) or exaltation (Virgo).',
@@ -238,6 +240,7 @@ const HAMSA: YogaRule = {
 
   affectedDomains: ['spiritual', 'education', 'children'],
   domainImpactWeight: 3,
+  domainWeights: { spiritual: 3, education: 3, children: 2 }, // G2: Hamsa — Jupiter dominates wisdom/dharma
 
   formationRule: {
     en: 'Jupiter is in a kendra (1st/4th/7th/10th house) in its own sign (Sagittarius/Pisces) or exaltation (Cancer).',
@@ -289,6 +292,7 @@ const MALAVYA: YogaRule = {
 
   affectedDomains: ['marriage', 'wealth'],
   domainImpactWeight: 3,
+  domainWeights: { marriage: 3, wealth: 3 }, // G2: Malavya — Venus dominates love/luxury equally
 
   formationRule: {
     en: 'Venus is in a kendra (1st/4th/7th/10th house) in its own sign (Taurus/Libra) or exaltation (Pisces).',
@@ -340,6 +344,7 @@ const SHASHA: YogaRule = {
 
   affectedDomains: ['career', 'health'],
   domainImpactWeight: 3,
+  domainWeights: { career: 3, health: 1 }, // G2: Shasha — Saturn dominates career/longevity, health less direct
 
   formationRule: {
     en: 'Saturn is in a kendra (1st/4th/7th/10th house) in its own sign (Capricorn/Aquarius) or exaltation (Libra).',

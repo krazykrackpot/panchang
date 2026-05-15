@@ -139,7 +139,7 @@ export function evaluateYogaRule(rule: YogaRule, ctx: YogaContext): EvaluatedYog
   let anyCancelled = false;
 
   if (detection.present && rule.cancellations && rule.cancellations.length > 0) {
-    const details = evaluateCancellations(rule.cancellations, ctx);
+    const details = evaluateCancellations(rule.cancellations, ctx, detection.involvedPlanets);
     anyCancelled = details.some(d => d.cancelled && d.effect === 'cancel');
     cancellationStatus = { anyCancelled, details };
 
@@ -160,6 +160,38 @@ export function evaluateYogaRule(rule: YogaRule, ctx: YogaContext): EvaluatedYog
         detection.strength = 'Moderate';
       } else if (hasWeakening && detection.strength === 'Moderate') {
         detection.strength = 'Weak';
+      }
+    }
+
+    // ── Step 3b: Lagna-aware strength modifier (G3) ──
+    // For AUSPICIOUS yogas: yogakaraka involvement → boost, all-funcMalefic → penalise.
+    // For INAUSPICIOUS yogas (doshas): yogakaraka involvement → mitigate (planet's
+    //   benefic nature softens the dosha), funcMalefic → no change (already bad).
+    // This captures: "Ruchaka Yoga for Aries lagna (Mars = lagna lord) is far
+    // stronger than for Gemini lagna (Mars = 6th/11th lord)."
+    const classicalPlanets = detection.involvedPlanets.filter(pid => pid <= 6);
+    if (classicalPlanets.length > 0) {
+      const hasYogakaraka = classicalPlanets.some(pid => ctx.isYogakaraka(pid));
+      const hasFuncBenefic = classicalPlanets.some(pid => ctx.isFunctionalBenefic(pid));
+
+      if (rule.isAuspicious) {
+        // Auspicious yoga: yogakaraka → boost
+        if (hasYogakaraka && detection.strength === 'Moderate') {
+          detection.strength = 'Strong';
+        } else if (hasYogakaraka && detection.strength === 'Weak') {
+          detection.strength = 'Moderate';
+        }
+        // No func benefic at all → penalise (all involved planets are func malefic)
+        if (!hasFuncBenefic && !hasYogakaraka && detection.strength === 'Strong') {
+          detection.strength = 'Moderate';
+        }
+      } else {
+        // Inauspicious yoga (dosha): yogakaraka/funcBenefic involvement mitigates
+        if ((hasYogakaraka || hasFuncBenefic) && detection.strength === 'Strong') {
+          detection.strength = 'Moderate';
+        } else if ((hasYogakaraka || hasFuncBenefic) && detection.strength === 'Moderate') {
+          detection.strength = 'Weak';
+        }
       }
     }
   }
@@ -184,6 +216,7 @@ export function evaluateYogaRule(rule: YogaRule, ctx: YogaContext): EvaluatedYog
     involvedPlanets: detection.involvedPlanets,
     affectedDomains: rule.affectedDomains,
     domainImpactWeight: rule.domainImpactWeight,
+    domainWeights: rule.domainWeights,
     cancellationStatus,
   };
 
@@ -216,15 +249,67 @@ export function evaluateYogaRule(rule: YogaRule, ctx: YogaContext): EvaluatedYog
  * @param ctx - The chart context
  * @returns Array of cancellation check results
  */
+/** Planet ID → English name for dynamic interpolation in cancellation reasons. */
+const PLANET_EN: Record<number, string> = {
+  0: 'Sun', 1: 'Moon', 2: 'Mars', 3: 'Mercury', 4: 'Jupiter', 5: 'Venus', 6: 'Saturn', 7: 'Rahu', 8: 'Ketu',
+};
+
+/**
+ * Interpolate planet names and contextual details into a cancellation reason.
+ * Replaces generic "the yoga-forming planet" with "Jupiter" when possible.
+ */
+function enrichCancellationReason(
+  staticReason: string,
+  ctx: YogaContext,
+  involvedPlanets: number[],
+): string {
+  if (involvedPlanets.length === 0) return staticReason;
+
+  let reason = staticReason;
+
+  // Replace generic references with specific planet names
+  const planetNames = involvedPlanets.map(id => PLANET_EN[id] ?? `Planet ${id}`).join(', ');
+  reason = reason
+    .replace(/[Tt]he yoga-forming planet/g, planetNames)
+    .replace(/[Tt]he yoga planet/g, planetNames);
+
+  // Add combustion degree detail if the reason mentions combustion
+  if (reason.toLowerCase().includes('combust') && involvedPlanets.length > 0) {
+    const sunLong = ctx.planetLongitude(0);
+    for (const pid of involvedPlanets) {
+      if (pid === 0) continue; // Sun can't be combust
+      if (ctx.isCombust(pid)) {
+        const dist = Math.abs(ctx.planetLongitude(pid) - sunLong);
+        const normDist = dist > 180 ? 360 - dist : dist;
+        reason += ` (${PLANET_EN[pid]} is ${normDist.toFixed(1)}° from Sun)`;
+        break; // Only annotate the first combust planet
+      }
+    }
+  }
+
+  // Add retrograde detail if mentioned
+  if (reason.toLowerCase().includes('retrograde') && involvedPlanets.length > 0) {
+    const retroPlanets = involvedPlanets.filter(pid => ctx.isRetrograde(pid)).map(pid => PLANET_EN[pid]);
+    if (retroPlanets.length > 0) {
+      reason += ` (${retroPlanets.join(', ')} retrograde)`;
+    }
+  }
+
+  return reason;
+}
+
 function evaluateCancellations(
   cancellations: YogaCancellation[],
   ctx: YogaContext,
+  involvedPlanets: number[] = [],
 ): { cancelled: boolean; reason: string; effect: 'cancel' | 'weaken' }[] {
   return cancellations.map((cancel) => {
     const result = evaluateCondition(cancel.condition, ctx);
     return {
       cancelled: result.met,
-      reason: cancel.reason.en, // Use English for internal tracking
+      reason: result.met
+        ? enrichCancellationReason(cancel.reason.en, ctx, involvedPlanets)
+        : cancel.reason.en,
       effect: cancel.effect,
     };
   });
@@ -401,7 +486,9 @@ export function domainScore(yogas: EvaluatedYoga[], domain: DomainType): number 
 
     const sign = y.isAuspicious ? 1 : -1;
     const strengthMultiplier = y.strength === 'Strong' ? 1.5 : y.strength === 'Moderate' ? 1.0 : 0.5;
-    score += sign * y.domainImpactWeight * strengthMultiplier;
+    // G2: use per-domain weight if available, otherwise uniform domainImpactWeight
+    const weight = y.domainWeights?.[domain] ?? y.domainImpactWeight;
+    score += sign * weight * strengthMultiplier;
   }
   return score;
 }

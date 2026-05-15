@@ -575,8 +575,51 @@ function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetIns
 function generateYogas(kundali: KundaliData, locale: Locale, stageCtx?: LifeStageContext): YogaInsight[] {
   let yogaInsights: YogaInsight[];
 
-  // Use yogasComplete (150+ properly computed yogas) when available
-  if (kundali.yogasComplete && kundali.yogasComplete.length > 0) {
+  // Prefer evaluatedYogas (new engine: 210+ rules, cancellations, domains, involved planets)
+  // Falls back to yogasComplete (old format) → manual detection
+  if (kundali.evaluatedYogas && kundali.evaluatedYogas.length > 0) {
+    yogaInsights = kundali.evaluatedYogas
+      .filter(y => y.present)
+      .map(y => {
+        // y.name has { en, hi, sa } — use tl() pattern for safe locale fallback
+        const yogaName = (y.name as Record<string, string | undefined>)[locale] || y.name.en;
+        const yogaDesc = (y.description as Record<string, string | undefined>)[locale] || y.description.en;
+        const yogaRule = (y.formationRule as Record<string, string | undefined>)[locale] || y.formationRule.en;
+
+        const insight: YogaInsight = {
+          name: yogaName,
+          present: true,
+          type: y.group === 'raja' ? 'Raja' : y.group === 'dhana' ? 'Dhana' :
+                y.group === 'mahapurusha' ? 'Pancha Mahapurusha' : 'Other',
+          description: yogaDesc,
+          implications: yogaRule,
+          strength: y.strength,
+        };
+
+        // Enrich with classical reference if available
+        if (y.classicalRef) {
+          // Parse "BPHS Ch.36" → textName=BPHS, chapter=36
+          const refParts = y.classicalRef.match(/^(\S+)\s*Ch\.?(\d+)?/);
+          const textName = refParts?.[1] ?? 'BPHS';
+          const chapter = refParts?.[2] ? Number(refParts[2]) : null;
+          insight.classicalReferences = {
+            summary: y.classicalRef,
+            citations: [{
+              textName,
+              textFullName: textName === 'BPHS' ? 'Brihat Parashara Hora Shastra' : textName,
+              chapter,
+              verseRange: '',
+              sanskritExcerpt: null,
+              translationExcerpt: y.classicalRef,
+              relevanceNote: `Formation rule: ${y.formationRule.en}`,
+            }],
+            confidence: 'high',
+          };
+        }
+
+        return insight;
+      });
+  } else if (kundali.yogasComplete && kundali.yogasComplete.length > 0) {
     yogaInsights = kundali.yogasComplete
       .filter(y => y.present)
       .map(y => ({
@@ -691,7 +734,47 @@ function generateYogas(kundali: KundaliData, locale: Locale, stageCtx?: LifeStag
  * are attached to all doshas.
  */
 function generateDoshas(kundali: KundaliData, locale: Locale): DoshaInsight[] {
-  // Use yogasComplete dosha category when available
+  // Prefer evaluatedYogas (richer: cancellation details, involved planets, classical refs)
+  if (kundali.evaluatedYogas && kundali.evaluatedYogas.length > 0) {
+    const doshaYogas = kundali.evaluatedYogas.filter(y => y.group === 'dosha' && y.present);
+    if (doshaYogas.length > 0) {
+      return doshaYogas.map(y => {
+        const doshaName = (y.name as Record<string, string | undefined>)[locale] || y.name.en;
+        const doshaDesc = (y.description as Record<string, string | undefined>)[locale] || y.description.en;
+        const doshaRule = (y.formationRule as Record<string, string | undefined>)[locale] || y.formationRule.en;
+
+        // Cancellation note from the yoga engine
+        const weakenNotes = y.cancellationStatus?.details
+          .filter(d => d.cancelled)
+          .map(d => d.reason) ?? [];
+
+        return {
+          name: doshaName,
+          present: true,
+          severity: y.strength === 'Strong' ? 'severe' as const : y.strength === 'Moderate' ? 'moderate' as const : 'mild' as const,
+          description: doshaDesc + '\n\n' + t(locale, 'Formation: ', 'निर्माण: ') + doshaRule
+            + (weakenNotes.length > 0 ? '\n\n' + t(locale, 'Mitigations: ', 'शमन: ') + weakenNotes.join('. ') : ''),
+          remedies: '',
+          classicalReferences: y.classicalRef ? {
+            summary: y.classicalRef,
+            citations: [{
+              textName: y.classicalRef.match(/^(\S+)/)?.[1] ?? 'BPHS',
+              textFullName: y.classicalRef.includes('BPHS') ? 'Brihat Parashara Hora Shastra' : y.classicalRef.match(/^(\S+)/)?.[1] ?? '',
+              chapter: Number(y.classicalRef.match(/Ch\.?(\d+)/)?.[1]) || null,
+              verseRange: '',
+              sanskritExcerpt: null,
+              translationExcerpt: y.classicalRef,
+              relevanceNote: doshaRule,
+            }],
+            confidence: 'high' as const,
+          } : undefined,
+        };
+      });
+    }
+    return [];
+  }
+
+  // Fall back to yogasComplete (old format)
   if (kundali.yogasComplete && kundali.yogasComplete.length > 0) {
     const doshaYogas = kundali.yogasComplete.filter(y => y.category === 'dosha' && y.present);
     if (doshaYogas.length > 0) {

@@ -213,6 +213,10 @@ async function downloadAllPexels() {
   }
 }
 
+// ─── Wrap remaining steps in async main ─────────────────────────────────
+
+async function main() {
+
 await downloadAllPexels();
 
 // ─── Step 3: Check for Google ImageFX stills ───────────────────────────
@@ -432,3 +436,7 @@ console.log(`   Cost: $0.00\n`);
 // Print file size
 const stat = fs.statSync(finalPath);
 console.log(`   Size: ${(stat.size / 1024 / 1024).toFixed(1)}MB`);
+
+} // end main
+
+main().catch(err => { console.error('FATAL:', err); process.exit(1); });

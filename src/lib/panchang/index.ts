@@ -1,5 +1,4 @@
-export { calculatePanchang, calculateTithi, calculateNakshatra, calculateYoga, calculateKarana, calculateInauspiciousPeriods } from './calculator';
-export type { PanchangInput } from './calculator';
+// calculator.ts removed — was @deprecated, all callers use ephem/panchang-calc.ts
 export type {
   PanchangData, TithiInfo, NakshatraInfo, YogaInfo, KaranaInfo, RahuKalamInfo,
 } from './types';

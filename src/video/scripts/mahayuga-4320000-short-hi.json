@@ -3,117 +3,79 @@
     "topic": "Mahayuga 4,320,000 — Why This Number?",
     "type": "short",
     "language": "hi",
-    "estimatedDuration": 110,
+    "estimatedDuration": 120,
     "style": "dramatic",
-    "voiceProfile": "hi-IN-MadhurNeural (Edge TTS, free)",
+    "voiceProfile": "hi-IN-Wavenet-C (Google Cloud TTS, free tier)",
+    "voiceSettings": {"speakingRate": 0.9, "pitch": -2},
     "musicTrack": "public/audio/sitar-darbari.mp3",
     "musicStartOffset": "4:30",
     "musicNotes": "Start at 4:30 (jor/jhala, skip alap). Mute at scene 5 for 2s. Resume scene 6 full crescendo.",
-    "pipeline": "FREE: Pexels stock + Google ImageFX stills + Hailuo free (5/day) + Edge TTS (free) + FFmpeg",
+    "pipeline": "FREE: Pexels stock + Google ImageFX stills + Google Cloud TTS (free tier) + FFmpeg",
     "estimatedCost": "$0.00"
   },
   "scenes": [
     {
       "id": 1,
-      "duration": 8,
-      "narration": "43 लाख 20 हज़ार साल। ये संख्या धार्मिक नहीं है। ये गणित है। और NASA इससे सहमत है।",
+      "duration": 12,
+      "narration": "क्या आप जानते हैं कि एक महायुग 43 लाख 20 हज़ार साल का ही क्यों होता है? क्या इसके पीछे कोई वैज्ञानिक कारण है? या ये बस एक धार्मिक संख्या है? आइये, आज इसका रहस्य खोलते हैं।",
       "source": "pexels",
       "searchQuery": "galaxy stars space dark 4k",
-      "notes": "Dark space fly-through. FFmpeg text overlay: '43,20,000' in gold Devanagari. Ken Burns slow zoom.",
-      "textOverlay": "43,20,000 साल = महायुग",
+      "textOverlay": "महायुग = 43,20,000 वर्ष — क्यों?",
       "transition": "cut"
     },
     {
       "id": 2,
-      "duration": 17,
-      "narration": "इसे शनि की कक्षा से भाग दो — 1,46,568। पूर्ण। बृहस्पति — 3,64,220। पूर्ण। चन्द्रमा — 5 करोड़ 77 लाख। पूर्ण। बुध — 1 करोड़ 79 लाख। पूर्ण। नौ के नौ खगोलीय पिण्ड — एक भी शेष नहीं।",
+      "duration": 20,
+      "narration": "सूर्य सिद्धान्त में लिखा है कि 43 लाख 20 हज़ार साल में शनि ठीक 1 लाख 46 हज़ार 568 चक्कर लगाता है। बृहस्पति — 3 लाख 64 हज़ार 220। चन्द्रमा — 5 करोड़ 77 लाख। बुध — 1 करोड़ 79 लाख। हर ग्रह का उत्तर एक पूर्ण संख्या है। कोई दशमलव नहीं। कोई शेष नहीं।",
       "source": "pexels_multi",
       "clips": [
-        {
-          "search": "saturn planet rings 4k",
-          "duration": 4,
-          "notes": "Saturn with PROMINENT RINGS — verify before downloading"
-        },
-        {
-          "search": "jupiter planet storm 4k",
-          "duration": 4,
-          "notes": "Jupiter with Great Red Spot"
-        },
-        {
-          "search": "full moon night 4k",
-          "duration": 4,
-          "notes": "Detailed Moon surface"
-        },
-        {
-          "search": "sun solar flare 4k",
-          "duration": 5,
-          "notes": "Sun with solar prominences, Mercury implied"
-        }
+        {"search": "saturn planet rings 4k", "duration": 5, "notes": "Saturn with PROMINENT RINGS"},
+        {"search": "jupiter planet storm 4k", "duration": 5, "notes": "Jupiter"},
+        {"search": "full moon night 4k", "duration": 5, "notes": "Moon"},
+        {"search": "sun solar flare 4k", "duration": 5, "notes": "Sun/Mercury"}
       ],
-      "textOverlay": "÷ शनि = 1,46,568 ✓ | ÷ बृहस्पति = 3,64,220 ✓",
+      "textOverlay": "शनि = 1,46,568 ✓ | बृहस्पति = 3,64,220 ✓ | चन्द्रमा = 5,77,53,336 ✓",
       "transition": "crossfade"
     },
     {
       "id": 3,
       "duration": 15,
-      "narration": "सटीकता? बुध — NASA से 66 सेकण्ड का अन्तर। शनि — साढ़े 29 साल की कक्षा में साढ़े 6 दिन। बिना दूरबीन। बिना उपग्रह। 1500 साल पहले।",
+      "narration": "और ये संख्याएँ कितनी सटीक हैं? बुध का अन्तर NASA से सिर्फ़ 66 सेकण्ड है। शनि का — साढ़े 29 साल की कक्षा में मात्र साढ़े 6 दिन। ये सब बिना दूरबीन के, बिना कम्प्यूटर के, 1500 साल पहले।",
       "source": "google_imagefx + pexels",
       "clips": [
-        {
-          "source": "google_imagefx",
-          "prompt": "Ancient Indian stone observatory at night, Jantar Mantar style instruments, clear starry sky, oil lamp casting warm golden glow on stone astrolabe, photorealistic",
-          "duration": 8,
-          "notes": "Generate as still image, apply Ken Burns zoom-in"
-        },
-        {
-          "source": "pexels",
-          "search": "NASA control room screens",
-          "duration": 7,
-          "notes": "Modern mission control contrast"
-        }
+        {"source": "google_imagefx", "prompt": "observatory", "duration": 8, "notes": "scene-3-still-0.png"},
+        {"source": "pexels", "search": "NASA control room screens", "duration": 7, "notes": "contrast"}
       ],
       "textOverlay": "बुध: 66 सेकण्ड | शनि: 6.5 दिन / 29.5 वर्ष",
       "transition": "crossfade"
     },
     {
       "id": 4,
-      "duration": 15,
-      "narration": "सात ग्रह 10 लाख 80 हज़ार साल में वापस आ जाते हैं। पर चन्द्रमा की गति बदलती रहती है — कभी 12 अंश प्रतिदिन, कभी 15। जब तक अपभू वापस नहीं आता — ये वही आकाश नहीं है।",
+      "duration": 18,
+      "narration": "पर रुकिए। सिर्फ़ सात ग्रहों को देखें तो वो 10 लाख 80 हज़ार साल में वापस आ जाते हैं। तो 43 लाख 20 हज़ार क्यों? क्योंकि चन्द्रमा की कक्षा गोल नहीं है। वो कभी तेज़ चलता है, कभी धीमा। जब तक उसकी अपभू वापस नहीं आती — ये वही आकाश नहीं है। घड़ी की सुइयाँ वापस लाना काफ़ी नहीं — गियर भी वापस लाने पड़ते हैं।",
       "source": "pexels",
       "searchQuery": "moon close up craters 4k cinematic",
-      "notes": "Tight Moon shot. FFmpeg overlay: two arrows showing speed difference (12° vs 15°). Ken Burns slow pan across lunar surface.",
       "textOverlay": "7 ग्रह = 10,80,000 वर्ष — पर अधूरा",
       "transition": "cut"
     },
     {
       "id": 5,
-      "duration": 25,
-      "narration": "[2 BEATS SILENCE] ... चन्द्रमा की अपभू का भगण है — 4 लाख 88 हज़ार 203। ... ये अभाज्य है। इसके गुणनखण्ड सिर्फ़ 1 और ये स्वयं हैं। 10 लाख 80 हज़ार में फिट नहीं होता। 21 लाख 60 हज़ार में नहीं। 32 लाख 40 हज़ार में नहीं। पहली संख्या जहाँ सब कुछ मिलता है — [BEAT] — 43 लाख 20 हज़ार।",
+      "duration": 28,
+      "narration": "[2 BEATS SILENCE] और यहाँ कहानी में असली मोड़ आता है। चन्द्रमा की अपभू का भगण है — 4 लाख 88 हज़ार 203। और ये संख्या, अभाज्य है। प्राइम नम्बर। इसे किसी संख्या से भाग नहीं दे सकते। 10 लाख 80 हज़ार में फिट नहीं होता। 21 लाख 60 हज़ार में नहीं। 32 लाख 40 हज़ार में नहीं। पहली संख्या जहाँ ये फिट होता है — 43 लाख 20 हज़ार। एक अभाज्य संख्या ने पूरे महायुग का आकार तय कर दिया।",
       "source": "pexels + ffmpeg_text",
       "searchQuery": "dark abstract particles black background minimal",
-      "notes": "CRITICAL SCENE. Dark minimal background. All drama is in the TEXT overlays and VOICE. FFmpeg animated text: '4,88,203' appears large, then 'अभाज्य' stamps in red/gold. Then '10,80,000 ✗' '21,60,000 ✗' '32,40,000 ✗' appearing and failing. Finally '43,20,000 ✓' with gold glow effect. Sitar MUTED for first 2 seconds.",
       "textOverlay": "4,88,203 = अभाज्य (PRIME)",
-      "audioDirection": "SILENCE 2 seconds. Single tanpura drone. Slow narration. CRESCENDO at '43 लाख 20 हज़ार'.",
+      "audioDirection": "SILENCE 2 seconds. Single tanpura drone. Slow voice. CRESCENDO at '43 लाख 20 हज़ार'.",
       "transition": "flash_white"
     },
     {
       "id": 6,
-      "duration": 20,
-      "narration": "और ये वही संख्या है जो युग दर्शन से निकलती है। 12 हज़ार दिव्य वर्ष गुणा 360 — बराबर 43 लाख 20 हज़ार। गणित और दर्शन — दो अलग रास्ते। एक ही उत्तर।",
-      "source": "google_imagefx + hailuo",
+      "duration": 18,
+      "narration": "और सबसे चौंकाने वाली बात? ये वही संख्या है जो युग दर्शन से भी निकलती है। 12 हज़ार दिव्य वर्ष, गुणा 360 — बराबर 43 लाख 20 हज़ार। गणित और दर्शन — दो बिलकुल अलग रास्ते। मंज़िल एक।",
+      "source": "google_imagefx",
       "clips": [
-        {
-          "source": "google_imagefx",
-          "prompt": "Majestic Lord Vishnu reclining on the cosmic serpent Shesha Naga floating on the milky cosmic ocean, golden crown and ornaments, blue skin, lotus growing from navel with Brahma seated on it, classical Indian temple art style rendered in rich photorealistic 3D, deep blue and gold color palette, divine cosmic scale",
-          "duration": 10,
-          "notes": "Generate as high-res still via Google ImageFX. Ken Burns slow zoom out to reveal full scene."
-        },
-        {
-          "source": "hailuo",
-          "prompt": "Golden cosmic mandala with nine orbiting celestial spheres, sacred geometry, divine light emanating from center, dark space background",
-          "duration": 10,
-          "notes": "Hailuo free tier — 6 second clip, loop to 10s. Cover watermark with text overlay."
-        }
+        {"source": "google_imagefx", "prompt": "Vishnu with Brahma", "duration": 9, "notes": "scene-6-still-0.png — Ken Burns zoom out"},
+        {"source": "google_imagefx", "prompt": "Vishnu on Shesha Naga", "duration": 9, "notes": "scene-6-still-1.png — Ken Burns zoom in"}
       ],
       "textOverlay": "गणित = 43,20,000 | दर्शन = 12,000 × 360 = 43,20,000",
       "transition": "crossfade"
@@ -121,40 +83,24 @@
     {
       "id": 7,
       "duration": 15,
-      "narration": "1500 साल पुराना कोड। आज भी दीवाली की तारीख़ इसी से निकलती है। आपकी कुण्डली इसी से बनती है। ये इतिहास नहीं — ये अभी चल रहा है।",
+      "narration": "ये 1500 साल पुराना कोड है। और आज भी दीवाली की तारीख़, आपकी कुण्डली, हर ग्रहण — सब इन्हीं नौ संख्याओं से निकलता है। ये इतिहास नहीं — ये अभी चल रहा है। Dekho Panchang पर देखिये — लिंक description में है।",
       "source": "pexels_multi + google_imagefx",
       "clips": [
-        {
-          "source": "pexels",
-          "search": "diwali lamps celebration indian family",
-          "duration": 5,
-          "notes": "Warm Diwali scene with diyas"
-        },
-        {
-          "source": "google_imagefx",
-          "prompt": "Hindu pandit's hands holding open a traditional Sanskrit panchangam almanac, weathered yellowed pages with Devanagari text and astronomical tables, warm candlelight, close-up photorealistic",
-          "duration": 5,
-          "notes": "Ken Burns slow zoom on the page"
-        },
-        {
-          "source": "pexels",
-          "search": "person using phone astrology app night",
-          "duration": 5,
-          "notes": "Modern app usage — bridge to CTA"
-        }
+        {"source": "pexels", "search": "diwali lamps celebration indian family", "duration": 5, "notes": "Diwali"},
+        {"source": "google_imagefx", "prompt": "panchangam", "duration": 5, "notes": "scene-7-still-1.png"},
+        {"source": "pexels", "search": "person using phone astrology app night", "duration": 5, "notes": "CTA"}
       ],
       "textOverlay": "dekhopanchang.com — वही गणित, आधुनिक सटीकता",
       "transition": "fade_black"
     }
   ],
   "production_steps": [
-    "1. Generate voiceover: python3 -m edge_tts --voice hi-IN-MadhurNeural --rate=\"-5%\" --file scene-N.txt --write-media scene-N.mp3 --write-subtitles scene-N.vtt",
-    "2. Download Pexels clips: scenes 1,2,4,5,7 — search queries listed above",
-    "3. Generate Google ImageFX stills: scenes 3 (observatory), 6 (Vishnu), 7 (panchangam) — save as PNG",
-    "4. Generate Hailuo clip: scene 6 (cosmic mandala) — 1 of 5 free daily clips",
-    "5. FFmpeg compose: Ken Burns on stills (zoom 1.0→1.15 over duration), crop landscape→9:16",
-    "6. FFmpeg text overlays: gold Devanagari text, drawtext filter with font=NotoSansDevanagari",
-    "7. FFmpeg audio: layer sitar-darbari.mp3 (from 4:30) under voiceover, mute sitar during scene 5 silence",
-    "8. FFmpeg concat all scenes with transitions"
+    "1. Generate voiceover: Google Cloud TTS hi-IN-Wavenet-C, speakingRate=0.9, pitch=-2",
+    "2. Download Pexels clips: scenes 1,2,4,5,7",
+    "3. Google ImageFX stills already in /tmp/videos/mahayuga-short/stills/",
+    "4. FFmpeg compose: Ken Burns on stills, crop to 9:16",
+    "5. FFmpeg text overlays in gold Devanagari",
+    "6. FFmpeg audio: sitar-darbari.mp3 from 4:30, mute at scene 5",
+    "7. FFmpeg concat all scenes"
   ]
 }

@@ -9,7 +9,7 @@
  * Rahu Kaal order [8, 2, 7, 5, 6, 4, 3]  –  standard
  */
 
-import { calculateKarana } from '@/lib/ephem/astronomical';
+import { calculateKarana, calculateRahuKaal } from '@/lib/ephem/astronomical';
 import { RAHU_ORDER, YAMA_ORDER, GULIKA_ORDER } from '@/lib/constants/inauspicious-orders';
 import { DUR_MUHURTAM_A } from '@/lib/constants/dur-muhurtam';
 import { VARJYAM_GHATI, VARJYAM_GHATI_2 } from '@/lib/constants/varjyam';
@@ -20,13 +20,9 @@ interface TimeRange {
   end: number;
 }
 
+/** Delegate to canonical calculateRahuKaal in astronomical.ts (CLAUDE.md Lesson Q). */
 export function computeRahuKaal(sunriseUT: number, sunsetUT: number, weekday: number): TimeRange {
-  const duration = (sunsetUT - sunriseUT) / 8;
-  const segment = RAHU_ORDER[weekday] - 1;
-  return {
-    start: sunriseUT + segment * duration,
-    end: sunriseUT + (segment + 1) * duration,
-  };
+  return calculateRahuKaal(sunriseUT, sunsetUT, weekday);
 }
 
 export function computeYamaganda(sunriseUT: number, sunsetUT: number, weekday: number): TimeRange {

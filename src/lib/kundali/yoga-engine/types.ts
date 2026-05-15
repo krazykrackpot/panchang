@@ -625,6 +625,19 @@ export interface YogaRule {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Yoga interaction (G4) — yoga-to-yoga effects
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** A yoga-to-yoga interaction detected by the post-processing pass. */
+export interface YogaInteraction {
+  type: 'cluster_boost' | 'planet_conflict' | 'cross_cancellation';
+  relatedYogaIds: string[];
+  effect: 'amplified' | 'conflicted' | 'neutralised';
+  description: { en: string; hi: string };
+  strengthDelta: -1 | 0 | 1;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Evaluated yoga — output format for UI and scoring
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -688,6 +701,9 @@ export interface EvaluatedYoga {
       effect: 'cancel' | 'weaken';
     }[];
   };
+
+  /** Yoga-to-yoga interactions (G4 post-processing pass). */
+  interactions?: YogaInteraction[];
 
   /** For pattern yogas (Malika, Nabhasa Akriti) */
   patternData?: {

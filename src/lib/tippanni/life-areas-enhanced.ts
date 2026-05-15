@@ -115,19 +115,13 @@ export function analyzeCareerEnhanced(
   const signHi = tenthHouse?.signName.hi || '';
   const lordHouse = tenthLord ? tenthLord.house : 0;
 
-  const careerSummaryEn =
-    rating >= 9 ? `10th house in ${signEn} ruled by ${lordName}  –  a rare and powerful career signature. Multiple benefics fortify professional destiny. Authority, recognition, and lasting impact are written into this chart. Leadership positions and public influence come naturally.`
-    : rating >= 7 ? `10th house in ${signEn} with ${lordName} as career lord placed in house ${lordHouse}. Strong planetary support  –  career rises steadily with clear direction. Professional recognition and authority are well-supported.`
-    : rating >= 5 ? `10th house in ${signEn}. ${lordName} as career lord indicates steady professional growth when effort is applied consistently. Timing matters  –  dasha periods of the 10th lord bring breakthroughs.`
-    : rating >= 3 ? `10th house in ${signEn}. Career path faces headwinds from planetary affliction. Success comes through persistence, strategic pivots, and leveraging strong dasha periods.`
-    : `10th house in ${signEn}. Career area is significantly challenged. Remedial measures for ${lordName} and patience through difficult dasha periods are essential for professional stability.`;
+  // Factual summary — describes chart configuration without quality judgement.
+  // Domain synthesis provides the authoritative quality assessment (Lesson M).
+  const lordPlacementEn = tenthLord ? `${lordName} (10th lord) is placed in house ${lordHouse}${tenthLord.isExalted ? ' (exalted)' : tenthLord.isDebilitated ? ' (debilitated)' : tenthLord.isOwnSign ? ' (own sign)' : ''}.` : '';
+  const lordPlacementHi = tenthLord ? `${lordNameHi} (10वें भाव स्वामी) ${lordHouse}वें भाव में${tenthLord.isExalted ? ' (उच्च)' : tenthLord.isDebilitated ? ' (नीच)' : tenthLord.isOwnSign ? ' (स्वराशि)' : ''}।` : '';
 
-  const careerSummaryHi =
-    rating >= 9 ? `10वाँ भाव ${signHi} में, स्वामी ${lordNameHi}  –  दुर्लभ और शक्तिशाली कैरियर योग। अनेक शुभ ग्रह व्यावसायिक भाग्य को सुदृढ़ करते हैं। अधिकार, मान्यता और स्थायी प्रभाव इस कुण्डली में अंकित है।`
-    : rating >= 7 ? `10वाँ भाव ${signHi} में, कैरियर स्वामी ${lordNameHi} ${lordHouse}वें भाव में। मजबूत ग्रहीय समर्थन  –  स्पष्ट दिशा के साथ कैरियर में स्थिर उन्नति।`
-    : rating >= 5 ? `10वाँ भाव ${signHi} में। ${lordNameHi} कैरियर स्वामी  –  निरन्तर प्रयास से स्थिर व्यावसायिक विकास। 10वें स्वामी की दशा में सफलता आती है।`
-    : rating >= 3 ? `10वाँ भाव ${signHi} में। कैरियर पथ में ग्रहीय बाधाएँ। दृढ़ता और रणनीतिक बदलाव से सफलता।`
-    : `10वाँ भाव ${signHi} में। कैरियर क्षेत्र में चुनौतियाँ। ${lordNameHi} के उपचार और कठिन दशा में धैर्य आवश्यक।`;
+  const careerSummaryEn = `10th house in ${signEn}. ${lordPlacementEn}${jupAspects10 ? ' Jupiter aspects the 10th house.' : ''}${satAspects10 ? ' Saturn aspects the 10th house.' : ''} Career direction is shaped by the 10th lord's dasha periods and transit activations.`;
+  const careerSummaryHi = `10वाँ भाव ${signHi} में। ${lordPlacementHi}${jupAspects10 ? ' बृहस्पति की 10वें भाव पर दृष्टि।' : ''}${satAspects10 ? ' शनि की 10वें भाव पर दृष्टि।' : ''} कैरियर की दिशा 10वें स्वामी की दशा और गोचर पर निर्भर।`;
 
   return {
     label: t(locale, 'Career & Profession', 'कैरियर और पेशा', 'जीविका'),
@@ -166,19 +160,16 @@ export function analyzeWealthEnhanced(
     if (lord2?.isExalted || lord11?.isExalted) detailParts.push('धन स्वामी उच्च  –  मजबूत आर्थिक क्षमता।');
   }
 
-  const wealthSummaryEn =
-    rating >= 9 ? 'Exceptional wealth configuration. Multiple Dhana Yogas and strong 2nd/11th lord dignities indicate substantial and sustained prosperity. Wealth accumulation through multiple channels  –  this is one of the strongest financial signatures.'
-    : rating >= 7 ? 'Strong wealth indicators. Benefic aspects on the 2nd and 11th houses support steady income growth, assets, and financial security. Investments and savings grow reliably.'
-    : rating >= 5 ? 'Moderate financial potential. Wealth builds through disciplined effort and strategic decisions. Income is stable but major wealth requires leveraging favorable dasha periods.'
-    : rating >= 3 ? 'Financial sector faces challenges from planetary affliction. Careful budgeting, avoiding speculation, and remedial measures for wealth lords help stabilize income.'
-    : 'Wealth accumulation is significantly challenged. Focus on debt avoidance, conservative financial planning, and strengthening the 2nd lord through remedies.';
+  // Factual summary (Lesson M — domain synthesis provides quality assessment)
+  const lord2Name = houses.find(h => h.house === 2)?.lordName.en ?? '';
+  const lord11Name = houses.find(h => h.house === 11)?.lordName.en ?? '';
+  const lord2NameHi = houses.find(h => h.house === 2)?.lordName.hi ?? '';
+  const lord11NameHi = houses.find(h => h.house === 11)?.lordName.hi ?? '';
+  const lord2House = lord2 ? lord2.house : 0;
+  const lord11House = lord11 ? lord11.house : 0;
 
-  const wealthSummaryHi =
-    rating >= 9 ? 'असाधारण धन योग। अनेक धन योग और मजबूत 2/11वें स्वामी  –  पर्याप्त और निरन्तर समृद्धि। अनेक स्रोतों से धन संचय।'
-    : rating >= 7 ? 'मजबूत धन संकेत। 2/11वें भाव पर शुभ दृष्टि  –  स्थिर आय वृद्धि और वित्तीय सुरक्षा।'
-    : rating >= 5 ? 'मध्यम वित्तीय क्षमता। अनुशासित प्रयास से धन वृद्धि। शुभ दशा काल में बड़ी सफलता।'
-    : rating >= 3 ? 'वित्तीय क्षेत्र में चुनौतियाँ। सावधान बजट और धन स्वामी के उपचार से स्थिरता।'
-    : 'धन संचय में महत्वपूर्ण बाधाएँ। रूढ़िवादी वित्तीय नियोजन और उपचार आवश्यक।';
+  const wealthSummaryEn = `2nd house lord ${lord2Name} in house ${lord2House}${lord2?.isExalted ? ' (exalted)' : lord2?.isDebilitated ? ' (debilitated)' : ''}. 11th house lord ${lord11Name} in house ${lord11House}${lord11?.isExalted ? ' (exalted)' : lord11?.isDebilitated ? ' (debilitated)' : ''}. Wealth outcomes are shaped by the dasha periods of these two lords.`;
+  const wealthSummaryHi = `2वें भाव स्वामी ${lord2NameHi} ${lord2House}वें भाव में${lord2?.isExalted ? ' (उच्च)' : lord2?.isDebilitated ? ' (नीच)' : ''}। 11वें भाव स्वामी ${lord11NameHi} ${lord11House}वें भाव में${lord11?.isExalted ? ' (उच्च)' : lord11?.isDebilitated ? ' (नीच)' : ''}। इन दोनों स्वामियों की दशा काल में धन लाभ।`;
 
   return {
     label: t(locale, 'Wealth & Finance', 'धन और वित्त', 'धनम्'),
@@ -229,19 +220,10 @@ export function analyzeMarriageEnhanced(
   const lord7Name = seventhHouse?.lordName.en || '';
   const lord7NameHi = seventhHouse?.lordName.hi || '';
 
-  const marriageSummaryEn =
-    rating >= 9 ? `7th house in ${sign7En} ruled by ${lord7Name}  –  an exceptionally blessed partnership signature. Venus and Jupiter support creates deep harmony, loyalty, and mutual growth. Marriage brings both emotional fulfillment and worldly prosperity.`
-    : rating >= 7 ? `7th house in ${sign7En}. ${lord7Name} as 7th lord is well-placed. Favorable marriage prospects  –  the spouse is supportive and partnerships are fruitful. Emotional and practical compatibility run strong.`
-    : rating >= 5 ? `7th house in ${sign7En}. Marriage brings growth alongside lessons. Mutual effort and communication are the keys to lasting harmony. The 7th lord's dasha activates partnership milestones.`
-    : rating >= 3 ? `7th house in ${sign7En}. Relationships face periodic turbulence from afflicted planets. Patience, maturity, and conscious effort transform challenges into deeper bonds.`
-    : `7th house in ${sign7En}. Partnership area is significantly challenged. Delayed marriage may work better. Remedies for ${lord7Name} and the 7th house are strongly recommended.`;
-
-  const marriageSummaryHi =
-    rating >= 9 ? `7वाँ भाव ${sign7Hi} में, स्वामी ${lord7NameHi}  –  असाधारण रूप से शुभ साझेदारी योग। शुक्र और बृहस्पति का समर्थन गहन सामंजस्य और परस्पर विकास लाता है।`
-    : rating >= 7 ? `7वाँ भाव ${sign7Hi} में। ${lord7NameHi} शुभ स्थिति में। अनुकूल विवाह  –  जीवनसाथी सहायक और साझेदारी फलदायी।`
-    : rating >= 5 ? `7वाँ भाव ${sign7Hi} में। विवाह विकास और पाठ दोनों लाता है। परस्पर प्रयास और संवाद सामंजस्य की कुंजी।`
-    : rating >= 3 ? `7वाँ भाव ${sign7Hi} में। सम्बन्धों में ग्रहीय बाधाओं से अशान्ति। धैर्य और प्रयास से गहरे बन्धन।`
-    : `7वाँ भाव ${sign7Hi} में। साझेदारी में चुनौतियाँ। विलम्बित विवाह लाभदायक। ${lord7NameHi} के उपचार अनुशंसित।`;
+  // Factual summary (Lesson M)
+  const lord7House = lord7 ? lord7.house : 0;
+  const marriageSummaryEn = `7th house in ${sign7En}. ${lord7Name} (7th lord) in house ${lord7House}${lord7?.isExalted ? ' (exalted)' : lord7?.isDebilitated ? ' (debilitated)' : ''}.${isManglik ? ' Manglik placement present.' : ''}${ven && ven.house === 7 ? ' Venus in 7th house.' : ''} Marriage timing and quality are shaped by the 7th lord's dasha and transits.`;
+  const marriageSummaryHi = `7वाँ भाव ${sign7Hi} में। ${lord7NameHi} (7वें स्वामी) ${lord7House}वें भाव में${lord7?.isExalted ? ' (उच्च)' : lord7?.isDebilitated ? ' (नीच)' : ''}।${isManglik ? ' मांगलिक स्थिति।' : ''} विवाह समय और गुणवत्ता 7वें स्वामी की दशा पर निर्भर।`;
 
   return {
     label: t(locale, 'Marriage & Relationships', 'विवाह और सम्बन्ध', 'विवाहः'),
@@ -279,20 +261,15 @@ export function analyzeHealthEnhanced(
     detailParts.push(`ध्यान: ${element?.hi} तत्व स्वास्थ्य क्षेत्र।`);
   }
 
+  // Factual summary (Lesson M)
   const elemEn = element?.en || 'Water';
-  const healthSummaryEn =
-    rating >= 9 ? `Exceptional vitality. Lagna lord and 1st house are powerfully fortified  –  natural constitution is robust with strong recovery and immunity. ${elemEn} element dominates, giving inherent physical resilience. One of the strongest health signatures in Vedic astrology.`
-    : rating >= 7 ? `Strong vitality with benefic support to the ascendant. Natural resilience, good immunity, and steady energy levels. ${elemEn} element influences physical constitution  –  awareness of element-specific vulnerabilities prevents issues.`
-    : rating >= 5 ? `Generally good health with specific areas needing attention. ${elemEn} element constitution  –  monitor its associated vulnerabilities. Preventive care during malefic dasha transits is important.`
-    : rating >= 3 ? `Health requires conscious effort and regular monitoring. Affliction to the ascendant or 6th house creates vulnerabilities. Strengthen the lagna lord through remedies and lifestyle discipline.`
-    : `Health area is significantly challenged by planetary affliction. Regular medical checkups, strong preventive routine, and remedial measures for the lagna lord are essential.`;
+  const elemHi = element?.hi || 'जल';
+  const lagnaLordName = houses.find(h => h.house === 1)?.lordName.en ?? '';
+  const lagnaLordNameHi = houses.find(h => h.house === 1)?.lordName.hi ?? '';
+  const lagnaLordHouse = lagnaLord ? lagnaLord.house : 0;
 
-  const healthSummaryHi =
-    rating >= 9 ? `असाधारण जीवनशक्ति। लग्न स्वामी और प्रथम भाव शक्तिशाली  –  सुदृढ़ संरचना, मजबूत प्रतिरक्षा। ${element?.hi || 'जल'} तत्व प्रबल।`
-    : rating >= 7 ? `शुभ ग्रहीय समर्थन से सुदृढ़ जीवनशक्ति। अच्छी प्रतिरक्षा और स्थिर ऊर्जा। ${element?.hi || 'जल'} तत्व संरचना।`
-    : rating >= 5 ? `सामान्यतः अच्छा स्वास्थ्य, विशेष ध्यान आवश्यक। ${element?.hi || 'जल'} तत्व  –  सम्बन्धित कमजोरियों पर ध्यान दें।`
-    : rating >= 3 ? `स्वास्थ्य में सचेत प्रयास आवश्यक। लग्न स्वामी के उपचार और जीवनशैली अनुशासन से सुधार।`
-    : `स्वास्थ्य में ग्रहीय बाधाएँ। नियमित चिकित्सा जाँच और लग्न स्वामी के उपचार अनिवार्य।`;
+  const healthSummaryEn = `Lagna lord ${lagnaLordName} in house ${lagnaLordHouse}${lagnaLord?.isExalted ? ' (exalted)' : lagnaLord?.isDebilitated ? ' (debilitated)' : ''}. ${elemEn} element constitution. Health focus areas are determined by the 6th house condition and malefic transits over the 1st house.`;
+  const healthSummaryHi = `लग्न स्वामी ${lagnaLordNameHi} ${lagnaLordHouse}वें भाव में${lagnaLord?.isExalted ? ' (उच्च)' : lagnaLord?.isDebilitated ? ' (नीच)' : ''}। ${elemHi} तत्व संरचना। स्वास्थ्य 6वें भाव और प्रथम भाव पर पाप गोचर से प्रभावित।`;
 
   return {
     label: t(locale, 'Health & Wellbeing', 'स्वास्थ्य और कल्याण', 'स्वास्थ्यम्'),
@@ -330,20 +307,16 @@ export function analyzeEducationEnhanced(
     detailParts.push(`सीखने की शैली: ${element?.hi} तत्व।`);
   }
 
+  // Factual summary (Lesson M)
   const learnStyle = element?.en === 'Fire' ? 'experiential, hands-on' : element?.en === 'Earth' ? 'structured, practical' : element?.en === 'Air' ? 'conceptual, theoretical' : 'intuitive, absorptive';
-  const eduSummaryEn =
-    rating >= 9 ? `Exceptional intellectual configuration. Mercury and Jupiter are powerfully placed  –  scholarly brilliance, research aptitude, and mastery of complex subjects come naturally. ${learnStyle} learning style. One of the strongest education signatures  –  advanced degrees and intellectual recognition are strongly indicated.`
-    : rating >= 7 ? `Strong academic potential. Intellectual planets are well-supported  –  consistent academic success and depth of understanding. ${learnStyle} learning style. Higher education and specialized knowledge acquisition are favored.`
-    : rating >= 5 ? `Good learning ability with ${learnStyle} orientation. Academic success comes through sustained focus. Mercury's dasha periods bring intellectual breakthroughs and study milestones.`
-    : rating >= 3 ? `Education faces obstacles from planetary affliction. Academic success requires extra dedication, good teachers, and strategic timing of major study commitments.`
-    : `Education area is significantly challenged. Remedial measures for Mercury and the 4th/5th lords, along with strong mentorship, help overcome intellectual obstacles.`;
+  const learnStyleHi = element?.en === 'Fire' ? 'अनुभवात्मक' : element?.en === 'Earth' ? 'व्यवस्थित, व्यावहारिक' : element?.en === 'Air' ? 'वैचारिक, सैद्धान्तिक' : 'सहज, अनुभवात्मक';
+  const lord4Name = houses.find(h => h.house === 4)?.lordName.en ?? '';
+  const lord5Name = houses.find(h => h.house === 5)?.lordName.en ?? '';
+  const lord4NameHi = houses.find(h => h.house === 4)?.lordName.hi ?? '';
+  const lord5NameHi = houses.find(h => h.house === 5)?.lordName.hi ?? '';
 
-  const eduSummaryHi =
-    rating >= 9 ? `असाधारण बौद्धिक योग। बुध और बृहस्पति शक्तिशाली  –  विद्वत्ता, शोध क्षमता और जटिल विषयों में प्रवीणता स्वाभाविक। उन्नत उपाधियाँ और बौद्धिक मान्यता प्रबल।`
-    : rating >= 7 ? `मजबूत शैक्षिक क्षमता। बौद्धिक ग्रहों का शुभ समर्थन  –  निरन्तर शैक्षिक सफलता। उच्च शिक्षा अनुकूल।`
-    : rating >= 5 ? `अच्छी सीखने की क्षमता। निरन्तर ध्यान से शैक्षिक सफलता। बुध की दशा में बौद्धिक उपलब्धियाँ।`
-    : rating >= 3 ? `शिक्षा में बाधाएँ। अतिरिक्त समर्पण, अच्छे गुरु और सही समय से सफलता।`
-    : `शिक्षा क्षेत्र में चुनौतियाँ। बुध और 4/5वें स्वामी के उपचार तथा मार्गदर्शन आवश्यक।`;
+  const eduSummaryEn = `4th lord ${lord4Name} and 5th lord ${lord5Name} govern education. Mercury${merc ? ` in house ${merc.house}${merc.isExalted ? ' (exalted)' : merc.isDebilitated ? ' (debilitated)' : ''}` : ' not prominently placed'}. Jupiter${jup ? ` in house ${jup.house}${jup.isExalted ? ' (exalted)' : jup.isDebilitated ? ' (debilitated)' : ''}` : ' not prominently placed'}. Learning style: ${learnStyle}. Academic milestones align with Mercury and 5th lord dasha periods.`;
+  const eduSummaryHi = `4वें स्वामी ${lord4NameHi} और 5वें स्वामी ${lord5NameHi} शिक्षा का शासन करते हैं। बुध${merc ? ` ${merc.house}वें भाव में${merc.isExalted ? ' (उच्च)' : merc.isDebilitated ? ' (नीच)' : ''}` : ''}। बृहस्पति${jup ? ` ${jup.house}वें भाव में${jup.isExalted ? ' (उच्च)' : jup.isDebilitated ? ' (नीच)' : ''}` : ''}। सीखने की शैली: ${learnStyleHi}। शैक्षिक मील के पत्थर बुध और 5वें स्वामी की दशा में।`;
 
   return {
     label: t(locale, 'Education & Learning', 'शिक्षा और ज्ञान', 'शिक्षा'),

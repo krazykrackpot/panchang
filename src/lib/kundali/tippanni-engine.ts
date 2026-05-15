@@ -1114,19 +1114,11 @@ function generateLifeAreas(kundali: KundaliData, locale: Locale): LifeAreaSectio
       if (!bb || bbMax <= 0) return 5;
       return Math.max(1, Math.min(10, Math.round((bb.total / bbMax) * 10)));
     };
-    // Override crude rateHouse with real bhavabala-derived ratings + regenerate summary quality text
-    const fixRating = (area: LifeArea, r: number) => {
-      area.rating = r;
-      // Prepend bhavabala-derived quality label with score
-      const qualEn = r >= 9 ? 'Exceptional' : r >= 7 ? 'Strong' : r >= 5 ? 'Moderate' : r >= 3 ? 'Challenging' : 'Difficult';
-      const qualHi = r >= 9 ? 'असाधारण' : r >= 7 ? 'मजबूत' : r >= 5 ? 'मध्यम' : r >= 3 ? 'चुनौतीपूर्ण' : 'कठिन';
-      const qualLabel = locale === 'en' ? qualEn : qualHi;
-      // Strip any existing quality prefix (old or new format)
-      area.summary = area.summary
-        .replace(/^(?:Exceptional|Strong|Moderate|Excellent|Challenging|Difficult|Good|Favorable|मजबूत|मध्यम|उत्कृष्ट|चुनौतीपूर्ण|कठिन|असाधारण|अच्छी|अनुकूल)\s*(?:\(\d+\/\d+\)\.?\s*)?/i, '')
-        .replace(/^\[.*?\]\s*/, '');
-      area.summary = `${qualLabel} (${r}/10). ${area.summary}`;
-    };
+    // Override crude rateHouse with real bhavabala-derived ratings.
+    // NOTE: No quality label prepended — domain synthesis provides the authoritative
+    // quality assessment (Lesson M: single source of truth). The tippanni section
+    // shows factual house analysis, not a competing score.
+    const fixRating = (area: LifeArea, r: number) => { area.rating = r; };
     fixRating(enhancedCareer, bbRating(10));
     fixRating(enhancedWealth, Math.round((bbRating(2) + bbRating(11)) / 2));
     fixRating(enhancedMarriage, bbRating(7));

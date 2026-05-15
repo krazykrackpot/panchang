@@ -609,19 +609,9 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
           <PersonalMonthCalendar
             snapshot={{
               moonSign: kundali.planets.find(p => p.planet.id === 1)?.sign || 1,
-              moonNakshatra: (() => {
-                const moon = kundali.planets.find(p => p.planet.id === 1);
-                if (!moon) return 1;
-                const sidLng = ((moon.longitude - kundali.ayanamshaValue) % 360 + 360) % 360;
-                return Math.floor(sidLng / (360 / 27)) + 1;
-              })(),
-              moonNakshatraPada: (() => {
-                const moon = kundali.planets.find(p => p.planet.id === 1);
-                if (!moon) return 1;
-                const sidLng = ((moon.longitude - kundali.ayanamshaValue) % 360 + 360) % 360;
-                const nakDeg = sidLng % (360 / 27);
-                return Math.floor(nakDeg / (360 / 27 / 4)) + 1;
-              })(),
+              // Use stored nakshatra — NEVER re-derive from longitude (caused Dhanishtha/Purva Bhadrapada mismatch)
+              moonNakshatra: kundali.planets.find(p => p.planet.id === 1)?.nakshatra?.id || 1,
+              moonNakshatraPada: kundali.planets.find(p => p.planet.id === 1)?.nakshatra?.pada || 1,
               sunSign: kundali.planets.find(p => p.planet.id === 0)?.sign || 1,
               ascendantSign: kundali.ascendant.sign,
               planetPositions: kundali.planets,

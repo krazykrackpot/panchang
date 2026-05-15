@@ -191,12 +191,10 @@ export function buildChartNarrative(
   // ── Thread: Birth Nakshatra  –  character foundation ──
   const moon = kundali.planets.find(p => p.planet.id === 1);
   if (moon) {
-    // Moon's nakshatra is stored on the planet's grahaDetails or can be derived from longitude
-    // PlanetPosition doesn't have nakshatra directly  –  derive from sidereal longitude
-    // kundali.ayanamshaValue is the user's chosen ayanamsha system, set during computation
-    const moonSidLng = moon.longitude - kundali.ayanamshaValue;
-    const normalizedLng = ((moonSidLng % 360) + 360) % 360;
-    const nakId = Math.floor(normalizedLng / (360 / 27)) + 1;
+    // Use the Moon's nakshatra from the kundali computation — NEVER re-derive.
+    // Re-deriving from longitude/ayanamsha caused a 2-nakshatra discrepancy
+    // (showed Dhanishtha instead of Purva Bhadrapada for the same chart).
+    const nakId = moon.nakshatra?.id ?? Math.floor((((moon.longitude - kundali.ayanamshaValue) % 360 + 360) % 360) / (360 / 27)) + 1;
     const nak = NAKSHATRAS[nakId - 1];
     const nakDetails = NAKSHATRA_DETAILS.find(d => d.id === nakId);
     const nakName = nak ? nak.name.en : `Nakshatra ${nakId}`;

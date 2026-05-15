@@ -137,7 +137,9 @@ export function buildKotaChakra(birthNakshatra: number, planets: PlanetPosition[
     }
 
     const planetsInZone = planets.filter(p => {
-      const nak = Math.floor((p.longitude % 360) / (360 / 27)) + 1;
+      // Use stored nakshatra — never re-derive from longitude
+      const nak = (p as unknown as { nakshatra?: { id: number } }).nakshatra?.id
+        ?? Math.floor((p.longitude % 360) / (360 / 27)) + 1;
       return zoneNakshatras.has(nak);
     }).map(p => p.planet.id);
 

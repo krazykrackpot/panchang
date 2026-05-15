@@ -21,7 +21,7 @@ import ShareButton from '@/components/ui/ShareButton';
 // PrintButton removed  –  consolidated into DownloadReportButton (full HTML report via /api/kundali-report)
 import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
-import { Save, Check, ScrollText, Sparkles, Share2, X, ArrowRightLeft } from 'lucide-react';
+import { Save, Check, ScrollText, Sparkles, Share2, X, ArrowRightLeft, MessageCircle } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { generateKundaliPrintHtml } from '@/lib/pdf/kundali-pdf';
@@ -1383,51 +1383,71 @@ export default function KundaliClient() {
           <div className="relative mb-8">
             {/* Right fade gradient  –  hints at more tabs on mobile */}
             <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-bg-primary to-transparent z-10 pointer-events-none sm:hidden" />
-            <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
-              <div className="flex gap-1.5 sm:gap-2 min-w-max sm:flex-wrap sm:justify-center sm:min-w-0">
-                {([
-                  // ── Your Chart ──
+            {/* Grouped tab navigation — 4 categories with labels */}
+            {(() => {
+              const isEL = locale === 'en' || isTamil;
+              const TAB_GROUPS = [
+                { label: isEL ? 'Your Chart' : 'आपका चार्ट', tabs: [
                   { key: 'chart' as const, label: t('birthChart') },
-                  { key: 'blueprint' as const, label: locale === 'en' || isTamil ? 'Blueprint' : 'ब्लूप्रिंट' },
+                  { key: 'blueprint' as const, label: isEL ? 'Blueprint' : 'ब्लूप्रिंट' },
                   { key: 'planets' as const, label: t('planetPositions') },
-                  { key: 'timeline' as const, label: locale === 'en' || isTamil ? 'Life Timeline' : 'जीवन-रेखा' },
-                  { key: 'remedies' as const, label: locale === 'en' || isTamil ? 'Remedies' : 'उपाय' },
-                  // ── Analysis ──
-                  { key: 'dasha' as const, label: locale === 'en' || isTamil ? 'Dashas (Periods)' : 'दशा' },
-                  { key: 'yogas' as const, label: locale === 'en' || isTamil ? 'Yogas (Combinations)' : 'योग' },
-                  { key: 'graha' as const, label: locale === 'en' || isTamil ? 'Grahas (Planets)' : 'ग्रह' },
-                  { key: 'varga' as const, label: locale === 'en' || isTamil ? 'Vargas (Divisional)' : 'वर्ग विश्लेषण' },
-                  { key: 'sadesati' as const, label: locale === 'en' || isTamil ? 'Sade Sati (Saturn)' : 'साढ़े साती' },
-                  // ── Strength Scores ──
-                  { key: 'shadbala' as const, label: locale === 'en' || isTamil ? 'Shadbala (Strength)' : 'षड्बल' },
-                  { key: 'bhavabala' as const, label: locale === 'en' || isTamil ? 'Bhavabala (Houses)' : 'भावबल' },
-                  { key: 'avasthas' as const, label: locale === 'en' || isTamil ? 'Avasthas (States)' : 'अवस्था' },
-                  { key: 'ashtakavarga' as const, label: locale === 'en' || isTamil ? 'Ashtakavarga (Points)' : 'अष्टकवर्ग' },
-                  // ── Advanced Systems ──
-                  { key: 'argala' as const, label: locale === 'en' || isTamil ? 'Argala (Intervention)' : 'अर्गला' },
-                  { key: 'sphutas' as const, label: locale === 'en' || isTamil ? 'Sphutas (Longitudes)' : 'स्फुट' },
-                  { key: 'bhavachalit' as const, label: locale === 'en' || isTamil ? 'Bhava Chalit (Cusp)' : 'भाव चलित' },
-                  { key: 'ayanamsha' as const, label: locale === 'en' || isTamil ? 'Ayanamsha (Precession)' : 'अयनांश' },
-                  { key: 'kp' as const, label: locale === 'en' || isTamil ? 'KP System' : 'केपी पद्धति' },
-                  { key: 'jaimini' as const, label: locale === 'en' || isTamil ? 'Jaimini System' : 'जैमिनी' },
-                  { key: 'sudarshana' as const, label: locale === 'en' || isTamil ? 'Sudarshana (Triple)' : 'सुदर्शन' },
-                  { key: 'nadi' as const, label: locale === 'en' || isTamil ? 'Nadi Amsha (150th)' : 'नाडी अंश' },
-                  { key: 'patrika' as const, label: locale === 'en' || isTamil ? 'Patrika (Report)' : 'पत्रिका' },
-                ]).map((tab) => (
-                  <button
-                    key={tab.key}
-                    onClick={() => { setActiveTab(tab.key); setSelectedHouse(null); setSelectedPlanet(null); trackTabViewed({ tab: tab.key }); }}
-                    className={`px-3 py-2.5 sm:px-5 sm:py-2.5 min-h-[44px] rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap ${
-                      activeTab === tab.key
-                        ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border border-gold-primary/40 shadow-lg shadow-gold-primary/5'
-                        : 'text-text-secondary/70 hover:text-gold-light bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/8 hover:border-gold-primary/25 hover:bg-[#1a1040]/40'
-                    }`}
-                  >
-                    {tab.label}
-                  </button>
-                ))}
-              </div>
-            </div>
+                  { key: 'timeline' as const, label: isEL ? 'Life Timeline' : 'जीवन-रेखा' },
+                  { key: 'remedies' as const, label: isEL ? 'Remedies' : 'उपाय' },
+                ]},
+                { label: isEL ? 'Analysis' : 'विश्लेषण', tabs: [
+                  { key: 'dasha' as const, label: isEL ? 'Dashas (Periods)' : 'दशा' },
+                  { key: 'yogas' as const, label: isEL ? 'Yogas (Combinations)' : 'योग' },
+                  { key: 'graha' as const, label: isEL ? 'Grahas (Planets)' : 'ग्रह' },
+                  { key: 'varga' as const, label: isEL ? 'Vargas (Divisional)' : 'वर्ग विश्लेषण' },
+                  { key: 'sadesati' as const, label: isEL ? 'Sade Sati (Saturn)' : 'साढ़े साती' },
+                ]},
+                { label: isEL ? 'Strength' : 'बल', tabs: [
+                  { key: 'shadbala' as const, label: isEL ? 'Shadbala (Strength)' : 'षड्बल' },
+                  { key: 'bhavabala' as const, label: isEL ? 'Bhavabala (Houses)' : 'भावबल' },
+                  { key: 'avasthas' as const, label: isEL ? 'Avasthas (States)' : 'अवस्था' },
+                  { key: 'ashtakavarga' as const, label: isEL ? 'Ashtakavarga (Points)' : 'अष्टकवर्ग' },
+                ]},
+                { label: isEL ? 'Advanced' : 'उन्नत', tabs: [
+                  { key: 'argala' as const, label: isEL ? 'Argala (Intervention)' : 'अर्गला' },
+                  { key: 'sphutas' as const, label: isEL ? 'Sphutas (Longitudes)' : 'स्फुट' },
+                  { key: 'bhavachalit' as const, label: isEL ? 'Bhava Chalit (Cusp)' : 'भाव चलित' },
+                  { key: 'ayanamsha' as const, label: isEL ? 'Ayanamsha (Precession)' : 'अयनांश' },
+                  { key: 'kp' as const, label: isEL ? 'KP System' : 'केपी पद्धति' },
+                  { key: 'jaimini' as const, label: isEL ? 'Jaimini System' : 'जैमिनी' },
+                  { key: 'sudarshana' as const, label: isEL ? 'Sudarshana (Triple)' : 'सुदर्शन' },
+                  { key: 'nadi' as const, label: isEL ? 'Nadi Amsha (150th)' : 'नाडी अंश' },
+                  { key: 'patrika' as const, label: isEL ? 'Patrika (Report)' : 'पत्रिका' },
+                ]},
+              ];
+
+              const tabBtn = (tab: { key: typeof activeTab; label: string }) => (
+                <button
+                  key={tab.key}
+                  onClick={() => { setActiveTab(tab.key); setSelectedHouse(null); setSelectedPlanet(null); trackTabViewed({ tab: tab.key }); }}
+                  className={`px-3 py-2.5 sm:px-5 sm:py-2.5 min-h-[44px] rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap ${
+                    activeTab === tab.key
+                      ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border border-gold-primary/40 shadow-lg shadow-gold-primary/5'
+                      : 'text-text-secondary/70 hover:text-gold-light bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] border border-gold-primary/8 hover:border-gold-primary/25 hover:bg-[#1a1040]/40'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              );
+
+              return (
+                <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
+                  <div className="sm:space-y-3">
+                    {TAB_GROUPS.map((group, gi) => (
+                      <div key={gi} className="inline-flex sm:flex items-center gap-1.5 sm:gap-2 sm:flex-wrap sm:justify-center">
+                        <span className="hidden sm:inline text-[10px] text-text-secondary/40 uppercase tracking-widest font-bold w-16 shrink-0 text-right pr-2">{group.label}</span>
+                        {group.tabs.map(tabBtn)}
+                        {gi < TAB_GROUPS.length - 1 && <span className="sm:hidden mx-1 text-gold-primary/20">|</span>}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })()}
           </div>
 
           {/* ===== BLUEPRINT TAB ===== */}
@@ -3615,7 +3635,7 @@ export default function KundaliClient() {
 
       {/* ═══ ASK YOUR CHART — AI consultation, absolute bottom of page ═══ */}
       {kundali && (
-        <details className="mt-8 rounded-2xl bg-gradient-to-br from-cyan-500/8 via-[#1a1040]/40 to-[#0a0e27] border border-cyan-500/15 overflow-hidden">
+        <details id="ask-your-chart" className="mt-8 rounded-2xl bg-gradient-to-br from-cyan-500/8 via-[#1a1040]/40 to-[#0a0e27] border border-cyan-500/15 overflow-hidden">
           <summary className="p-5 cursor-pointer flex items-center justify-between hover:bg-cyan-500/5 transition-colors list-none [&::-webkit-details-marker]:hidden select-none">
             <div>
               <h3 className="text-cyan-300 text-base font-bold" style={headingFont}>
@@ -3632,6 +3652,25 @@ export default function KundaliClient() {
             </Suspense>
           </div>
         </details>
+      )}
+
+      {/* ═══ Floating "Ask Your Chart" button — visible after chart generation ═══ */}
+      {kundali && (
+        <button
+          type="button"
+          onClick={() => {
+            const el = document.getElementById('ask-your-chart') as HTMLDetailsElement | null;
+            if (el) {
+              el.open = true;
+              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }}
+          className="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-4 py-3 rounded-full bg-cyan-600/90 text-white text-sm font-semibold shadow-lg shadow-cyan-500/20 hover:bg-cyan-500 transition-all hover:scale-105 backdrop-blur-sm"
+          aria-label="Ask Your Chart"
+        >
+          <MessageCircle size={18} />
+          <span className="hidden sm:inline">{locale === 'en' || isTamil ? 'Ask Your Chart' : 'चार्ट से पूछें'}</span>
+        </button>
       )}
     </div>
   );

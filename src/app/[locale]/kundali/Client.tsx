@@ -75,6 +75,7 @@ const AIReadingButton = dynamic(() => import('@/components/kundali/AIReadingButt
 const JaiminiTab = dynamic(() => import('@/components/kundali/JaiminiTab'), { ssr: false });
 const SphutasTab = dynamic(() => import('@/components/kundali/SphutasTab'), { ssr: false });
 const ShareableKundaliCard = dynamic(() => import('@/components/kundali/ShareableKundaliCard'), { ssr: false });
+const ShareBirthPosterButton = dynamic(() => import('@/components/shareable/ShareBirthPosterButton'), { ssr: false });
 const TransitRadar = dynamic(() => import('@/components/kundali/TransitRadar'), { ssr: false });
 const ChartChatTab = dynamic(() => import('@/components/kundali/ChartChatTab'), { ssr: false });
 const LifeTimeline = dynamic(() => import('@/components/kundali/LifeTimeline'), { ssr: false });
@@ -1024,6 +1025,7 @@ export default function KundaliClient() {
                 locale={locale}
               />
               <ShareableKundaliCard kundali={kundali} locale={locale as Locale} />
+              <ShareBirthPosterButton kundali={kundali} locale={locale} />
               <ShareButton
                 title={`${kundali.birthData.name || 'Kundali'}  –  Birth Chart`}
                 text={`${kundali.birthData.name ? kundali.birthData.name + "'s Kundali" : 'Kundali'}  –  ${tl(kundali.ascendant.signName, locale)} ${locale === 'en' || isTamil ? 'Lagna' : 'लग्न'}, ${tl(kundali.planets.find(p => p.planet.id === 1)?.signName, locale) || ''} ${locale === 'en' || isTamil ? 'Moon' : 'चन्द्र'} | dekhopanchang.com`}

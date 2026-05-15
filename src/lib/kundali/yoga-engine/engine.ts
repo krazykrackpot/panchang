@@ -169,16 +169,24 @@ export function evaluateYogaRule(rule: YogaRule, ctx: YogaContext): EvaluatedYog
     //   benefic nature softens the dosha), funcMalefic → no change (already bad).
     // This captures: "Ruchaka Yoga for Aries lagna (Mars = lagna lord) is far
     // stronger than for Gemini lagna (Mars = 6th/11th lord)."
+    //
+    // IMPORTANT: Cancellation weakening (Step 3) is final — yogakaraka boost does
+    // NOT re-strengthen a cancellation-weakened yoga. This prevents oscillation.
+    const wasWeakenedByCancellation = cancellationStatus?.details.some(
+      d => d.cancelled && d.effect === 'weaken'
+    ) ?? false;
+    // Filter to classical planets (0-6). Rahu/Ketu (7-8) are excluded because
+    // they don't have functional benefic/malefic status per BPHS Ch.34.
     const classicalPlanets = detection.involvedPlanets.filter(pid => pid <= 6);
     if (classicalPlanets.length > 0) {
       const hasYogakaraka = classicalPlanets.some(pid => ctx.isYogakaraka(pid));
       const hasFuncBenefic = classicalPlanets.some(pid => ctx.isFunctionalBenefic(pid));
 
       if (rule.isAuspicious) {
-        // Auspicious yoga: yogakaraka → boost
-        if (hasYogakaraka && detection.strength === 'Moderate') {
+        // Auspicious yoga: yogakaraka → boost (unless cancellation already weakened)
+        if (hasYogakaraka && !wasWeakenedByCancellation && detection.strength === 'Moderate') {
           detection.strength = 'Strong';
-        } else if (hasYogakaraka && detection.strength === 'Weak') {
+        } else if (hasYogakaraka && !wasWeakenedByCancellation && detection.strength === 'Weak') {
           detection.strength = 'Moderate';
         }
         // No func benefic at all → penalise (all involved planets are func malefic)
@@ -277,7 +285,7 @@ function enrichCancellationReason(
   if (reason.toLowerCase().includes('combust') && involvedPlanets.length > 0) {
     const sunLong = ctx.planetLongitude(0);
     for (const pid of involvedPlanets) {
-      if (pid === 0) continue; // Sun can't be combust
+      if (pid === 0 || pid === 1 || pid >= 7) continue; // Only tara grahas (Mars-Saturn) can be combust
       if (ctx.isCombust(pid)) {
         const dist = Math.abs(ctx.planetLongitude(pid) - sunLong);
         const normDist = dist > 180 ? 360 - dist : dist;
@@ -289,7 +297,8 @@ function enrichCancellationReason(
 
   // Add retrograde detail if mentioned
   if (reason.toLowerCase().includes('retrograde') && involvedPlanets.length > 0) {
-    const retroPlanets = involvedPlanets.filter(pid => ctx.isRetrograde(pid)).map(pid => PLANET_EN[pid]);
+    // Exclude Rahu/Ketu (7,8) — they are always retrograde by definition (Lesson W)
+    const retroPlanets = involvedPlanets.filter(pid => pid <= 6 && ctx.isRetrograde(pid)).map(pid => PLANET_EN[pid]);
     if (retroPlanets.length > 0) {
       reason += ` (${retroPlanets.join(', ')} retrograde)`;
     }

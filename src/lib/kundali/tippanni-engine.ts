@@ -86,6 +86,7 @@ import type {
   TippanniContent, PersonalitySection, PlanetInsight, YogaInsight,
   DoshaInsight, LifeAreaSection, LifeArea, DashaInsightSection,
   RemedySection, RemedyItem, StrengthEntry,
+  ClassicalReferencesSection,
 } from './tippanni-types';
 
 // Enhanced tippanni modules
@@ -572,6 +573,27 @@ function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetIns
  *
  * @param stageCtx  –  life stage for age-relevance weighting
  */
+
+/** Parse "BPHS Ch.36 v.4" → structured ClassicalReferencesSection. Shared by yoga + dosha paths. */
+function parseClassicalRefToSection(ref: string, relevanceNote: string): ClassicalReferencesSection {
+  const textMatch = ref.match(/^(\S+)/);
+  const chapterMatch = ref.match(/Ch\.?(\d+)/);
+  const textName = textMatch?.[1] ?? 'BPHS';
+  return {
+    summary: ref,
+    citations: [{
+      textName,
+      textFullName: textName === 'BPHS' ? 'Brihat Parashara Hora Shastra' : textName,
+      chapter: chapterMatch?.[1] ? Number(chapterMatch[1]) : null,
+      verseRange: '',
+      sanskritExcerpt: null,
+      translationExcerpt: ref,
+      relevanceNote,
+    }],
+    confidence: 'high',
+  };
+}
+
 function generateYogas(kundali: KundaliData, locale: Locale, stageCtx?: LifeStageContext): YogaInsight[] {
   let yogaInsights: YogaInsight[];
 
@@ -598,23 +620,8 @@ function generateYogas(kundali: KundaliData, locale: Locale, stageCtx?: LifeStag
 
         // Enrich with classical reference if available
         if (y.classicalRef) {
-          // Parse "BPHS Ch.36" → textName=BPHS, chapter=36
-          const refParts = y.classicalRef.match(/^(\S+)\s*Ch\.?(\d+)?/);
-          const textName = refParts?.[1] ?? 'BPHS';
-          const chapter = refParts?.[2] ? Number(refParts[2]) : null;
-          insight.classicalReferences = {
-            summary: y.classicalRef,
-            citations: [{
-              textName,
-              textFullName: textName === 'BPHS' ? 'Brihat Parashara Hora Shastra' : textName,
-              chapter,
-              verseRange: '',
-              sanskritExcerpt: null,
-              translationExcerpt: y.classicalRef,
-              relevanceNote: `Formation rule: ${y.formationRule.en}`,
-            }],
-            confidence: 'high',
-          };
+          // Shared parser (Lesson Q — single source of truth)
+          insight.classicalReferences = parseClassicalRefToSection(y.classicalRef, `Formation rule: ${y.formationRule.en}`);
         }
 
         return insight;
@@ -755,23 +762,12 @@ function generateDoshas(kundali: KundaliData, locale: Locale): DoshaInsight[] {
           description: doshaDesc + '\n\n' + t(locale, 'Formation: ', 'निर्माण: ') + doshaRule
             + (weakenNotes.length > 0 ? '\n\n' + t(locale, 'Mitigations: ', 'शमन: ') + weakenNotes.join('. ') : ''),
           remedies: '',
-          classicalReferences: y.classicalRef ? {
-            summary: y.classicalRef,
-            citations: [{
-              textName: y.classicalRef.match(/^(\S+)/)?.[1] ?? 'BPHS',
-              textFullName: y.classicalRef.includes('BPHS') ? 'Brihat Parashara Hora Shastra' : y.classicalRef.match(/^(\S+)/)?.[1] ?? '',
-              chapter: Number(y.classicalRef.match(/Ch\.?(\d+)/)?.[1]) || null,
-              verseRange: '',
-              sanskritExcerpt: null,
-              translationExcerpt: y.classicalRef,
-              relevanceNote: doshaRule,
-            }],
-            confidence: 'high' as const,
-          } : undefined,
+          classicalReferences: y.classicalRef ? parseClassicalRefToSection(y.classicalRef, doshaRule) : undefined,
         };
       });
     }
-    return [];
+    // No doshas in evaluatedYogas — fall through to yogasComplete/manual detection
+    // (the yoga engine may not have dosha rules for all cases the manual path covers)
   }
 
   // Fall back to yogasComplete (old format)

@@ -171,14 +171,19 @@ function generateEnglishProse(
     }
   }
 
-  // ── Closing: tier-appropriate one-liner (not generic) ──
+  // ── Closing: must be coherent with what the bullets show ──
   const total = positives.length + negatives.length + neutrals.length;
   if (total > 2) {
+    const hasMix = positives.length > 0 && negatives.length > 0;
     const CLOSING: Record<Rating, string> = {
-      uttama: 'The chart\'s promise here is clear and well-supported.',
-      madhyama: 'A workable picture — strengths and weaknesses roughly balance out.',
-      adhama: 'Patience and the right remedial measures can shift this trajectory.',
-      atyadhama: 'Focused remedies and timing awareness are strongly recommended here.',
+      uttama: hasMix
+        ? `On balance, the positives outweigh the friction — but don't ignore the weaker placements. Address them and this becomes one of your chart's best domains.`
+        : `The chart's promise here is clear and well-supported.`,
+      madhyama: `Strengths and weaknesses roughly balance out — effort and timing will decide which side dominates.`,
+      adhama: hasMix
+        ? `The bright spots exist but the headwinds are real. Remedial measures for the afflicted planets will make the difference.`
+        : `Patience and the right remedial measures can shift this trajectory.`,
+      atyadhama: `This area requires conscious effort and remedies — but every chart has its challenging domain, and awareness is the first step.`,
     };
     parts.push(CLOSING[rating]);
   }

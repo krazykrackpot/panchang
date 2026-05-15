@@ -417,8 +417,8 @@ export function narrateOccupants(p: OccupantsParams): LocaleText {
     for (const m of malefics) {
       const natureEn = PLANET_NATURE_EN[m.planetId] ?? 'challenging energy';
       const natureHi = PLANET_NATURE_HI[m.planetId] ?? 'चुनौतीपूर्ण ऊर्जा';
-      parts_en.push(`${m.name.en} brings challenging energy to your ${ordinalEn(p.house)} house  –  ${natureEn} creates friction in ${domain} matters, but also builds resilience. The struggle this placement creates ultimately forges strength.`);
-      parts_hi.push(`${m.name.hi ?? m.name.en} आपके ${houseHi(p.house)} भाव में चुनौतीपूर्ण ऊर्जा लाता है  –  ${natureHi} ${domain} विषयों में घर्षण पैदा करता है, लेकिन लचीलापन भी देता है।`);
+      parts_en.push(`${m.name.en} in your ${ordinalEn(p.house)} house is a tough placement for ${domain}  –  expect resistance, but this is the kind that builds steel. Work with it, not against it.`);
+      parts_hi.push(`${m.name.hi ?? m.name.en} आपके ${houseHi(p.house)} भाव में ${domain} के लिए कठिन स्थिति है  –  प्रतिरोध होगा, पर यही प्रतिरोध मज़बूती देता है।`);
     }
   }
 

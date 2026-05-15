@@ -329,7 +329,7 @@ export default function SummaryDomainCard({
               className="flex w-full items-center justify-between rounded-lg border border-gold-dark/20 bg-gold-primary/5 px-3 py-2 text-left transition-colors hover:bg-gold-primary/10"
             >
               <span className="text-xs font-semibold uppercase tracking-wider text-text-secondary">
-                Classical Evidence
+                Ashtakavarga & House Analysis
               </span>
               {classicalExpanded ? (
                 <ChevronUp size={14} className="text-text-secondary" />
@@ -340,22 +340,19 @@ export default function SummaryDomainCard({
 
             {classicalExpanded && (
               <div className="mt-2 border-l-2 border-gold-dark/40 pl-4">
-                {/* Tippanni rating */}
-                <div className="mb-2 flex items-center gap-2">
-                  <span className="text-xs text-text-secondary">{tippanniArea.label}</span>
-                  <span className="text-xs font-medium text-gold-light">
-                    {tippanniArea.rating}/10
-                  </span>
+                {/* Tippanni label — no competing numeric score (Lesson M: single source of truth) */}
+                <div className="mb-2">
+                  <span className="text-xs font-medium text-gold-light">{tippanniArea.label}</span>
                 </div>
 
-                {/* Tippanni summary */}
+                {/* Tippanni summary — qualitative insight, not a score */}
                 {tippanniArea.summary && (
                   <p className="mb-2 text-sm leading-relaxed text-text-secondary" style={bodyStyle}>
                     {tippanniArea.summary}
                   </p>
                 )}
 
-                {/* Tippanni details */}
+                {/* Tippanni details — Ashtakavarga, learning style, etc. */}
                 {tippanniArea.details && (
                   <p className="text-xs leading-relaxed text-text-secondary/80" style={bodyStyle}>
                     {tippanniArea.details}

@@ -1,6 +1,7 @@
 import crypto from 'crypto';
 import type { LocaleText, PanchangData } from '@/types/panchang';
 import { NextResponse } from 'next/server';
+import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
@@ -31,12 +32,8 @@ const UJJAIN_LNG = 75.7885;
 const UJJAIN_TZ = 'Asia/Kolkata';
 
 export async function GET(request: Request) {
-  // Verify cron secret
-  const authHeader = request.headers.get('authorization');
-  const cronSecret = process.env.CRON_SECRET?.trim();
-  if (authHeader !== `Bearer ${cronSecret}`) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
+  const authError = verifyCronAuth(request);
+  if (authError) return authError;
 
   try {
     const now = new Date();

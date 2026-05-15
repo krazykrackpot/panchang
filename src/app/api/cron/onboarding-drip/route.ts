@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { sendEmail } from '@/lib/email/resend-client';
 import { getOnboardingEmail } from '@/lib/email/onboarding-templates';
@@ -8,10 +9,8 @@ import { getOnboardingEmail } from '@/lib/email/onboarding-templates';
  * Runs at 8 AM UTC (1:30 PM IST).
  */
 export async function GET(req: NextRequest) {
-  const authHeader = req.headers.get('authorization');
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET?.trim()}`) {
-    return new NextResponse('Unauthorized', { status: 401 });
-  }
+  const authError = verifyCronAuth(req);
+  if (authError) return authError;
 
   const supabase = getServerSupabase();
   if (!supabase) {

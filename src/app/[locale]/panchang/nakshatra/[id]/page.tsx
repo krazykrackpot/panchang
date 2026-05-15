@@ -86,7 +86,7 @@ export default function NakshatraDetailPage() {
               #{id} of 27 · {nak.startDeg.toFixed(1)}°  –  {nak.endDeg.toFixed(1)}°
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold mb-3" style={headingFont}>
-              <span className="text-gold-gradient">{nak.name[locale]}</span>
+              <span className="text-gold-gradient">{nak.name[locale] || nak.name.en}</span>
             </h1>
             {locale === 'en' && (
               <p className="text-gold-dark text-lg mb-2" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>
@@ -244,7 +244,7 @@ export default function NakshatraDetailPage() {
           <ArrowLeft className="w-5 h-5 text-gold-primary group-hover:-translate-x-1 transition-transform" />
           <div>
             <div className="text-gold-dark text-xs">{msg('previousLabel', locale)}</div>
-            <div className="text-gold-light font-semibold text-sm" style={bodyFont}>{prevNak.name[locale]}</div>
+            <div className="text-gold-light font-semibold text-sm" style={bodyFont}>{prevNak.name[locale] || prevNak.name.en}</div>
           </div>
         </Link>
         <Link
@@ -253,7 +253,7 @@ export default function NakshatraDetailPage() {
         >
           <div className="text-right">
             <div className="text-gold-dark text-xs">{msg('nextLabel', locale)}</div>
-            <div className="text-gold-light font-semibold text-sm" style={bodyFont}>{nextNak.name[locale]}</div>
+            <div className="text-gold-light font-semibold text-sm" style={bodyFont}>{nextNak.name[locale] || nextNak.name.en}</div>
           </div>
           <ArrowRight className="w-5 h-5 text-gold-primary group-hover:translate-x-1 transition-transform" />
         </Link>

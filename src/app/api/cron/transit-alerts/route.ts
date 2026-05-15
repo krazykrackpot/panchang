@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { computePersonalTransits, type PersonalTransit } from '@/lib/transit/personal-transits';
 import { sendPushToUser } from '@/lib/push/send-push';
@@ -77,10 +78,8 @@ function getTransitDomain(transit: PersonalTransit): { domain: DomainType; prima
 // ---------------------------------------------------------------------------
 
 export async function GET(req: NextRequest) {
-  const authHeader = req.headers.get('authorization');
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET?.trim()}`) {
-    return new NextResponse('Unauthorized', { status: 401 });
-  }
+  const authError = verifyCronAuth(req);
+  if (authError) return authError;
 
   const supabase = getServerSupabase();
   if (!supabase) {

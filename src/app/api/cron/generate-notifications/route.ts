@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { generateNotifications } from '@/lib/personalization/notification-engine';
 import type { UserSnapshot } from '@/lib/personalization/types';
@@ -13,11 +14,8 @@ import { sendPushToUser } from '@/lib/push/send-push';
 // ---------------------------------------------------------------------------
 
 export async function GET(req: NextRequest) {
-  // Verify cron secret to prevent unauthorized calls
-  const authHeader = req.headers.get('authorization');
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET?.trim()}`) {
-    return new NextResponse('Unauthorized', { status: 401 });
-  }
+  const authError = verifyCronAuth(req);
+  if (authError) return authError;
 
   const supabase = getServerSupabase();
   if (!supabase) {

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { generateDailyShort } from '@/lib/youtube/generate-short';
 import { uploadToYouTube } from '@/lib/youtube/upload';
 
@@ -21,12 +22,8 @@ import { uploadToYouTube } from '@/lib/youtube/upload';
  *   CRON_SECRET, YOUTUBE_CLIENT_ID, YOUTUBE_CLIENT_SECRET, YOUTUBE_REFRESH_TOKEN
  */
 export async function GET(request: Request) {
-  // Verify cron secret
-  const authHeader = request.headers.get('authorization');
-  const cronSecret = process.env.CRON_SECRET?.trim();
-  if (authHeader !== `Bearer ${cronSecret}`) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
+  const authError = verifyCronAuth(request);
+  if (authError) return authError;
 
   // Check YouTube credentials exist
   if (!process.env.YOUTUBE_CLIENT_ID?.trim() || !process.env.YOUTUBE_REFRESH_TOKEN?.trim()) {

@@ -245,7 +245,7 @@ function AnimatedZodiacWheel({
               dominantBaseline="middle"
               transform={`rotate(${startAngle + SECTOR / 2}, ${nameX}, ${nameY})`}
             >
-              {rashi.name[locale]}
+              {rashi.name[locale] || rashi.name.en}
             </text>
           </motion.g>
         );

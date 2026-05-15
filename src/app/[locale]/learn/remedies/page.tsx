@@ -213,7 +213,7 @@ function RemedyCard({ planet, locale }: { planet: PlanetRemedy; locale: Locale }
       style={{ borderColor: planet.color + '25', backgroundColor: planet.color + '05' }}
     >
       <h3 className="text-xl font-bold mb-4" style={{ color: planet.color, ...headingFont }}>
-        {planet.name[locale]}
+        {planet.name[locale] || planet.name.en}
       </h3>
 
       {/* Warning for Saturn */}
@@ -371,7 +371,7 @@ export default function RemediesPage() {
               }`}
               style={{ color: p.color, ...(selected === p.id ? { ringColor: p.color + '40' } : {}) }}
             >
-              {p.name[locale]}
+              {p.name[locale] || p.name.en}
             </button>
           ))}
         </div>

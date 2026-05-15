@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { synthesizeReading } from '@/lib/kundali/domain-synthesis/synthesizer';
 import type { KundaliData, DashaEntry } from '@/types/kundali';
@@ -39,11 +40,8 @@ function findActiveDasha(
 }
 
 export async function GET(req: NextRequest) {
-  // Auth check  –  same pattern as transit-alerts
-  const authHeader = req.headers.get('authorization');
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET?.trim()}`) {
-    return new NextResponse('Unauthorized', { status: 401 });
-  }
+  const authError = verifyCronAuth(req);
+  if (authError) return authError;
 
   const supabase = getServerSupabase();
   if (!supabase) {

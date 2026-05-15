@@ -11,6 +11,7 @@
  */
 
 import { NextResponse } from 'next/server';
+import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { submitUrlsToIndexNow } from '@/lib/seo/indexnow';
 
 // Only en + hi for IndexNow — these are the primary traffic locales.
@@ -18,11 +19,8 @@ import { submitUrlsToIndexNow } from '@/lib/seo/indexnow';
 const INDEXNOW_LOCALES = ['en', 'hi'] as const;
 
 export async function GET(request: Request) {
-  const authHeader = request.headers.get('authorization');
-  const cronSecret = process.env.CRON_SECRET?.trim();
-  if (authHeader !== `Bearer ${cronSecret}`) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
+  const authError = verifyCronAuth(request);
+  if (authError) return authError;
 
   try {
     const paths: string[] = [];

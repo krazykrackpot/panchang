@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { sendEmail } from '@/lib/email/resend-client';
 import { weeklyDigestEmail } from '@/lib/email/templates/weekly-digest';
@@ -10,10 +11,8 @@ import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 // Runs every Monday at 6 AM UTC
 export async function GET(req: Request) {
   try {
-  const authHeader = req.headers.get('authorization');
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET?.trim()}`) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
+  const authError = verifyCronAuth(req);
+  if (authError) return authError;
 
   const supabase = getServerSupabase();
   if (!supabase) return NextResponse.json({ error: 'DB not configured' }, { status: 503 });

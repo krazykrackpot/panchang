@@ -1,5 +1,6 @@
 import type { LocaleText } from '@/types/panchang';
 import { NextResponse } from 'next/server';
+import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { generateDailyPanchangEmail } from '@/lib/email/templates/daily-panchang';
 import { generateDailyHoroscope } from '@/lib/horoscope/daily-engine';
@@ -16,12 +17,8 @@ import { getVratType } from '@/lib/constants/vrat-types';
  * Protected by CRON_SECRET header.
  */
 export async function GET(request: Request) {
-  // Verify cron secret
-  const authHeader = request.headers.get('authorization');
-  const cronSecret = process.env.CRON_SECRET?.trim();
-  if (authHeader !== `Bearer ${cronSecret}`) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
+  const authError = verifyCronAuth(request);
+  if (authError) return authError;
 
   try {
     const supabase = getServerSupabase();

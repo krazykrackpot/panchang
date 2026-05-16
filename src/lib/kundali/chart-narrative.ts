@@ -194,7 +194,8 @@ export function buildChartNarrative(
     // Use the Moon's nakshatra from the kundali computation — NEVER re-derive.
     // Re-deriving from longitude/ayanamsha caused a 2-nakshatra discrepancy
     // (showed Dhanishtha instead of Purva Bhadrapada for the same chart).
-    const nakId = moon.nakshatra?.id ?? Math.floor((((moon.longitude - kundali.ayanamshaValue) % 360 + 360) % 360) / (360 / 27)) + 1;
+    // moon.longitude is ALREADY sidereal — never subtract ayanamsha again (caused 2-nak discrepancy)
+    const nakId = moon.nakshatra?.id ?? Math.floor(((moon.longitude % 360 + 360) % 360) / (360 / 27)) + 1;
     const nak = NAKSHATRAS[nakId - 1];
     const nakDetails = NAKSHATRA_DETAILS.find(d => d.id === nakId);
     const nakName = nak ? nak.name.en : `Nakshatra ${nakId}`;

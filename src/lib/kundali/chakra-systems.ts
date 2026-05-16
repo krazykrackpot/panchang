@@ -39,7 +39,7 @@ export function buildSudarsanaChakra(
     const houses = Array.from({ length: 12 }, (_, i) => {
       const sign = ((refSign - 1 + i) % 12) + 1;
       const planetsInHouse = planets.filter(p => {
-        const pSign = Math.floor(p.longitude / 30) + 1;
+        const pSign = p.sign; // Use stored sign — never re-derive
         return pSign === sign;
       }).map(p => p.planet.id);
       return {

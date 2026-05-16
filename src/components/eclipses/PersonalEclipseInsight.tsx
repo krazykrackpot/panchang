@@ -140,7 +140,7 @@ function computePersonalInsight(eclipse: EclipseInfo, kundali: KundaliData, loca
   const eclSignForAspect = Math.floor(eclipse.eclipseLongitude / 30) + 1;
 
   for (const p of kundali.planets) {
-    const pSign = Math.floor(p.longitude / 30) + 1;
+    const pSign = p.sign; // Use stored sign — never re-derive
     const signDiff = ((eclSignForAspect - pSign + 12) % 12); // houses away
 
     // Check Vedic aspects

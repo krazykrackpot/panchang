@@ -128,7 +128,7 @@ export default function PrashnaPage() {
         body: JSON.stringify({
           name: msg('prashnaChartName', locale),
           date: now.toISOString().split('T')[0],
-          time: `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`,
+          time: (() => { try { const parts = new Intl.DateTimeFormat('en-US', { timeZone: ianaTimezone || undefined, hour: 'numeric', minute: 'numeric', hour12: false }).formatToParts(now); const h = parts.find(p => p.type === 'hour')?.value ?? String(now.getHours()); const m = parts.find(p => p.type === 'minute')?.value ?? String(now.getMinutes()); return `${h.padStart(2, '0')}:${m.padStart(2, '0')}`; } catch { return `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`; } })(),
           place: locationStore.name || 'Current Location',
           lat: locationStore.lat,
           lng: locationStore.lng,

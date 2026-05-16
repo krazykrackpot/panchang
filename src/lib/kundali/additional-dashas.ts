@@ -32,7 +32,7 @@ function isOddSign(s: number): boolean { return s % 2 === 1; }
 
 function lordSign(pid: number, planets: PlanetPosition[]): number {
   const p = planets.find(p => p.planet.id === pid);
-  return p ? Math.floor(p.longitude / 30) + 1 : 1;
+  return p?.sign ?? 1; // Use stored sign — never re-derive from longitude
 }
 
 function addYears(date: Date, years: number): Date {
@@ -59,8 +59,8 @@ function fmt(d: Date): string { return d.toISOString().split('T')[0]; }
  */
 function strongerSign(sign1: number, sign2: number, planets: PlanetPosition[]): number {
   // Count planets in each sign
-  const count1 = planets.filter(p => Math.floor(p.longitude / 30) + 1 === sign1).length;
-  const count2 = planets.filter(p => Math.floor(p.longitude / 30) + 1 === sign2).length;
+  const count1 = planets.filter(p => p.sign === sign1).length;
+  const count2 = planets.filter(p => p.sign === sign2).length;
   if (count1 !== count2) return count1 > count2 ? sign1 : sign2;
 
   // Compare lord dignity
@@ -564,7 +564,7 @@ export function calculateDrigDasha(ascSign: number, planets: PlanetPosition[], b
     let aspecting = 0;
     for (const p of planets) {
       if (p.planet.id > 8) continue;
-      const pSign = Math.floor(p.longitude / 30) + 1;
+      const pSign = p.sign;
       const offset = ((pSign - sign + 12) % 12) + 1;
       // Jaimini aspects: signs in 1,5,9 from each other aspect (trine)
       if ([1, 5, 9].includes(offset)) aspecting++;

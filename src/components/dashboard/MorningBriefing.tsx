@@ -352,6 +352,8 @@ function isTimeInRange(nowHHMM: string, start: string, end: string): boolean {
   const n = toMin(nowHHMM);
   const s = toMin(start);
   const e = toMin(end);
+  // Midnight-crossing check (Lesson R)
+  if (e < s) return n >= s || n < e;
   return n >= s && n < e;
 }
 

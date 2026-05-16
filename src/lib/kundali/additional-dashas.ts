@@ -70,7 +70,7 @@ function strongerSign(sign1: number, sign2: number, planets: PlanetPosition[]): 
   function lordDignityScore(lordId: number): number {
     const lordP = planets.find(p => p.planet.id === lordId);
     if (!lordP) return 0;
-    const lSign = Math.floor(lordP.longitude / 30) + 1;
+    const lSign = lordP.sign;
     if (EXALTATION[lordId] === lSign) return 4;
     if ((OWN_SIGNS[lordId] || []).includes(lSign)) return 3;
     if (DEBILITATION[lordId] === lSign) return 1;
@@ -303,7 +303,7 @@ const SHOOLA_PLANET_NAMES: Tri[] = [
 
 function planetSign(pid: number, planets: PlanetPosition[]): number {
   const p = planets.find(x => x.planet.id === pid);
-  return p ? Math.floor(((p.longitude % 360) + 360) % 360 / 30) + 1 : 0;
+  return p?.sign ?? 0; // Use stored sign — never re-derive
 }
 
 function planetStrengthScore(pid: number, planets: PlanetPosition[]): number {
@@ -339,8 +339,7 @@ export function calculateShoolaLords(ascSign: number, planets: PlanetPosition[])
   const brahmaEligible: number[] = [];
   for (const p of planets) {
     if (p.planet.id >= 7) continue; // skip Rahu/Ketu
-    const sign = Math.floor(((p.longitude % 360) + 360) % 360 / 30) + 1;
-    if (brahmaSigns.includes(sign)) brahmaEligible.push(p.planet.id);
+    if (brahmaSigns.includes(p.sign)) brahmaEligible.push(p.planet.id);
   }
 
   let brahmaId = 4; // Jupiter as default Brahma

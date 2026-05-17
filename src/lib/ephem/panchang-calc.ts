@@ -1738,7 +1738,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
     let asc = Math.atan2(y, x) * 180 / Math.PI;
     return normalizeDeg(asc);
   }
-  const lagnaAyanamsha = userAyanamsha ?? getAyanamsha(jdSunrise);
+  const lagnaAyanamsha = ayanamsha; // Same as line 1429 — reuse, don't recompute
   const udayaLagna: { rashi: number; name: LocaleText; start: string; end: string }[] = [];
   const STEP = 10 / 60; // 10 minutes in hours
   let prevRashi = -1;

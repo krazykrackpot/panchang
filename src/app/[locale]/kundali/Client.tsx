@@ -113,6 +113,9 @@ const BhavaChalitTab = dynamic(() => import('@/components/kundali/BhavaChalitTab
 const ELI5Panel = dynamic(() => import('@/components/kundali/ELI5Panel'), { ssr: false });
 const AyanamshaComparison = dynamic(() => import('@/components/kundali/AyanamshaComparison'), { ssr: false });
 const KPTab = dynamic(() => import('@/components/kundali/KPTab'), { ssr: false });
+const KundaliSimple = dynamic(() => import('@/components/kundali/KundaliSimple'), { ssr: false });
+
+import ViewModeToggle from '@/components/kundali/simple/ViewModeToggle';
 
 // Planet colors for table highlights
 const PLANET_COLORS: Record<number, string> = {
@@ -364,6 +367,10 @@ export default function KundaliClient() {
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
   const [loading, setLoading] = useState(false);
   const [editing, setEditing] = useState(false);
+  const [viewMode, setViewMode] = useState<'simple' | 'expert'>(() => {
+    if (typeof window === 'undefined') return 'simple';
+    return (localStorage.getItem('kundali-view-mode') as 'simple' | 'expert') ?? 'simple';
+  });
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [showPoster, setShowPoster] = useState(false);
@@ -953,7 +960,18 @@ export default function KundaliClient() {
         />
       )}
 
-      {kundali && !editing && (
+      {kundali && !editing && viewMode === 'simple' && (
+        <KundaliSimple
+          kundali={kundali}
+          locale={locale}
+          onSwitchToExpert={() => {
+            localStorage.setItem('kundali-view-mode', 'expert');
+            setViewMode('expert');
+          }}
+        />
+      )}
+
+      {kundali && !editing && viewMode === 'expert' && (
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mt-16">
           <GoldDivider />
 
@@ -1001,6 +1019,13 @@ export default function KundaliClient() {
             })()}
             {/* Actions */}
             <div className="flex items-center justify-center gap-3 mt-4">
+              <ViewModeToggle
+                mode={viewMode}
+                onToggle={(m) => {
+                  localStorage.setItem('kundali-view-mode', m);
+                  setViewMode(m);
+                }}
+              />
               <button
                 onClick={() => setEditing(true)}
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"

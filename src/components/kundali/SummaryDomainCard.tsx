@@ -21,7 +21,7 @@ import {
 import type { DomainReading, DomainType, Rating, TimelineTrigger, DomainRemedy } from '@/lib/kundali/domain-synthesis/types';
 import type { LifeArea } from '@/lib/kundali/tippanni-types';
 import { tl } from '@/lib/utils/trilingual';
-import { getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
+import { getHeadingFont, getBodyFont, isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { getDomainConfig } from '@/lib/kundali/domain-synthesis/config';
 import DomainRings from './DomainRings';
 import LayeredCommentary from './LayeredCommentary';
@@ -70,6 +70,14 @@ const RATING_COLORS: Record<Rating, string> = {
   madhyama: 'text-gold-light',
   adhama: 'text-orange-400',
   atyadhama: 'text-red-400',
+};
+
+/** Hex colours matching DomainRings outer ring per rating tier */
+const RATING_RING_HEX: Record<Rating, string> = {
+  uttama: '#22c55e',
+  madhyama: '#60a5fa',
+  adhama: '#f59e0b',
+  atyadhama: '#ef4444',
 };
 
 const RATING_BG: Record<Rating, string> = {
@@ -238,7 +246,7 @@ export default function SummaryDomainCard({
           <DomainRings
             natalRating={rating}
             dashaScore={domain.currentActivation.dashaActivationScore}
-            currentIntensity={Math.min(1, (domain.currentActivation.overallActivationScore - domain.currentActivation.dashaActivationScore * 0.5) / 6)}
+            transitCount={domain.currentActivation.transitInfluences.length}
             icon={<Icon size={20} />}
             size={120}
           />
@@ -249,19 +257,19 @@ export default function SummaryDomainCard({
             <p className="text-xs text-text-secondary mb-1">
               {tl(domain.overallRating.label, locale)} · {RATING_LABELS[rating]?.sa}
             </p>
-            {/* Ring legend — compact, consistent colours */}
+            {/* Ring legend — matches unified DomainRings colours */}
             <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-1.5">
               <span className="flex items-center gap-1 text-[10px] text-text-secondary">
-                <span className="inline-block w-2 h-2 rounded-full bg-[#34d399]" />
-                Natal
+                <span className="inline-block w-2 h-2 rounded-full" style={{ backgroundColor: RATING_RING_HEX[rating] }} />
+                {isDevanagariLocale(locale) ? 'आपकी कुण्डली' : 'Your Chart'}
               </span>
               <span className="flex items-center gap-1 text-[10px] text-text-secondary">
-                <span className="inline-block w-2 h-2 rounded-full bg-[#818cf8]" />
-                Mahadasha
+                <span className="inline-block w-2 h-2 rounded-full bg-[#3b82f6]" />
+                {isDevanagariLocale(locale) ? 'जीवन चरण' : 'Life Phase'}
               </span>
               <span className="flex items-center gap-1 text-[10px] text-text-secondary">
-                <span className="inline-block w-2 h-2 rounded-full bg-[#22d3ee]" />
-                Current
+                <span className="inline-block w-2 h-2 rounded-full bg-[#f59e0b]" />
+                {isDevanagariLocale(locale) ? 'अभी' : 'Right Now'}
               </span>
             </div>
           </div>

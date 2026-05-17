@@ -994,6 +994,7 @@ export default function KundaliClient() {
         <KundaliSimple
           kundali={kundali}
           blueprint={cosmicBlueprint}
+          personalReading={personalReading}
           locale={locale}
           onSwitchToExpert={() => {
             localStorage.setItem('kundali-view-mode', 'expert');

@@ -6,6 +6,8 @@ import { sendPushToUser } from '@/lib/push/send-push';
 import type { KundaliData } from '@/types/kundali';
 import type { DomainType } from '@/lib/kundali/domain-synthesis/types';
 
+export const maxDuration = 30; // Cron job — email/notification/sync tasks
+
 // ---------------------------------------------------------------------------
 // GET /api/cron/domain-activations
 // Called by Vercel Cron monthly (1st of each month, 6 AM UTC).

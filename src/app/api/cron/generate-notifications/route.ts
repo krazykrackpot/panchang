@@ -7,6 +7,8 @@ import { scoreFestivalRelevance } from '@/lib/personalization/festival-relevance
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { sendPushToUser } from '@/lib/push/send-push';
 
+export const maxDuration = 30; // Cron job — email/notification/sync tasks
+
 // ---------------------------------------------------------------------------
 // GET /api/cron/generate-notifications
 // Called by Vercel Cron daily at 6 AM UTC.

@@ -14,6 +14,8 @@ import { NextResponse } from 'next/server';
 import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { submitUrlsToIndexNow } from '@/lib/seo/indexnow';
 
+export const maxDuration = 30; // Cron job — email/notification/sync tasks
+
 // Only en + hi for IndexNow — these are the primary traffic locales.
 // Other locales get discovered via sitemap, not daily pings.
 const INDEXNOW_LOCALES = ['en', 'hi'] as const;

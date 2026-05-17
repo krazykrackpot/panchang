@@ -1,4 +1,4 @@
-# E2E Bug Report — 17 May 2026
+# E2E Bug Report — 17 May 2026 (Round 1 + Round 2)
 
 Deep bug hunt across 4 user flows using Playwright E2E testing.
 Agents still running for kundali, homepage, and auth flows — this document will be updated.
@@ -187,3 +187,130 @@ Agents still running for kundali, homepage, and auth flows — this document wil
 - **Severity**: LOW (design gap)
 - **File**: `src/app/[locale]/kundali/Client.tsx` (line 1066)
 - **Actual**: Save button hidden with `{user && (...)}`. No "Sign in to save" prompt. Users don't know saving exists.
+
+---
+
+## ROUND 2 — PANCHANG, TOOLS, CALENDAR (15 bugs)
+
+### SYSTEMIC BUGS
+
+#### BUG S1: Hydration mismatch on ALL location-dependent pages (HIGH)
+- **Affected**: /panchang, /choghadiya, /hora, /vedic-time, /upagraha, /sade-sati, /muhurta-ai, /eclipses, /lunar-calendar, /learn (11+ pages)
+- **Root cause**: Client reads location from Zustand+localStorage. Server renders with null/default. React re-renders entire tree.
+- **Fix**: `suppressHydrationWarning` on location text, or defer location display to client-only pass.
+
+#### BUG S2: Double `<main>` elements on 6+ pages (MEDIUM)
+- **Affected**: /rahu-kaal, /choghadiya, /hora, /vedic-time, /upagraha, /lunar-calendar
+- **Root cause**: layout.tsx wraps in `<main>`, individual pages ALSO render `<main>`. Nested `<main>` is invalid HTML.
+- **Fix**: Replace `<main>` in individual pages with `<div>` or `<section>`.
+
+#### BUG S3: CSP missing ep2.adtrafficquality.google in script-src (LOW)
+- **Actual**: H5 fix added connect-src/img-src but script-src also needs `https://ep2.adtrafficquality.google`
+
+### PAGE-SPECIFIC BUGS
+
+#### BUG R1: Calendar location shows browser UTC offset, not location's (MEDIUM)
+- **Page**: /en/calendar
+- **Actual**: Shows "Mumbai, India UTC+2" — uses browser TZ (Europe/Zurich) not Mumbai's (+5:30)
+- **File**: `src/app/[locale]/calendar/Client.tsx` lines 196, 205
+
+#### BUG R2: Sade Sati Saturn degree discrepancy — server 16.7° vs client 11.6° (HIGH)
+- **Page**: /en/sade-sati
+- **Root cause**: Server uses `getCurrentSaturnSign()` at ISR time (possibly weeks stale). 5.1° gap is impossible for 24h ISR.
+
+#### BUG R3: Makar Sankranti shows 2027 from 2026 calendar (MEDIUM)
+- **Page**: /en/calendar/makar-sankranti
+- **Root cause**: Detail page calculates NEXT occurrence. Jan 14 2026 passed, so shows 2027. Calendar listed it under 2026.
+
+#### BUG R4: /en/learn/festival-rules is a dead link (MEDIUM)
+- **Referenced from**: Festival detail pages
+- **Actual**: Slug exists in module-sequence.ts but no page file exists. Silently shows Learn hub.
+
+#### BUG R5: Nakshatra SVG floating-point hydration mismatch (LOW)
+- **Page**: /en/panchang/nakshatra
+- **Root cause**: `cy` attribute differs by last digit between server/client JS engines
+
+#### BUG R6: Swiss Ephemeris `require()` error in Turbopack (LOW)
+- **Pages**: Deep-dive pages calling `computePanchang` in `generateMetadata`
+- **Actual**: `ReferenceError: require is not defined`. Falls back to Meeus gracefully.
+
+#### BUG R7: Learn page progress hydration mismatch (MEDIUM)
+- **Page**: /en/learn
+- **Root cause**: Progress in localStorage unavailable during SSR. LearningPath renders different HTML.
+
+#### BUG R8: Lunar calendar severe structural hydration mismatch (HIGH)
+- **Page**: /en/lunar-calendar
+- **Root cause**: Completely different element trees based on location availability (server=null, client=stored)
+
+## ROUND 2 — KUNDALI DEEP SECTIONS (6 bugs)
+
+### BUG KD1: Blueprint headline grammar — "in a The Warrior phase" (LOW)
+- **File**: `src/lib/kundali/archetype-engine.ts` (line 179-180)
+- **Actual**: Template uses `in a ${name} phase` but archetype names already include "The" prefix
+- **Fix**: Remove "a" from template or strip "The" from names in headline
+
+### BUG KD2: Duplicate `border` CSS class on planet cards (LOW)
+- **File**: `src/app/[locale]/kundali/Client.tsx` (line 2128)
+- **Actual**: Two `border` classes — `border-gold-primary/12` always applied even for unselected cards
+
+### BUG KD3: Vedic-time hydration mismatch — same root cause as S1 (MEDIUM)
+- **Page**: /en/vedic-time
+- **Actual**: Server renders "Europe/Zurich", client renders "Mumbai, India"
+
+### BUG KD4: Silent catch in kundali/[id]/page.tsx (LOW)
+- **File**: `src/app/[locale]/kundali/[id]/page.tsx` (line 75)
+- **Actual**: `catch { setError(...) }` — no console.error. Violates Lesson A.
+
+### BUG KD5: AdSense CSP script-src missing (duplicate of S3) (LOW)
+
+### BUG KD6: Turbopack HMR random navigation (dev only, duplicate of K6/L4) (DEV ONLY)
+
+### All 23 Expert tabs PASSED — zero application-level JS errors.
+### Edge cases PASSED: 1920 date, 2030 date, Reykjavik (64°N).
+
+---
+
+## FULL SUMMARY
+
+| Round | Bugs Found | Fixed | Open |
+|-------|-----------|-------|------|
+| Round 1 | 29 | 21 | 8 |
+| Round 2 — Panchang/Tools | 15 | 0 | 15 |
+| Round 2 — Kundali Deep | 6 | 0 | 6 |
+| **Total** | **50** | **21** | **29** |
+
+### Priority breakdown of remaining 29 open bugs:
+
+**HIGH (3):**
+- S1: Systemic hydration mismatch on 11+ location-dependent pages
+- R2: Sade Sati Saturn degree discrepancy (server ISR stale vs client real-time)
+- R8: Lunar calendar structural hydration mismatch
+
+**MEDIUM (11):**
+- S2: Double `<main>` on 6+ pages
+- R1: Calendar shows browser UTC offset instead of location's
+- R3: Festival detail shows next year from current year calendar
+- R4: /learn/festival-rules dead link
+- R7: Learn page progress hydration mismatch
+- K1: Truncated yoga text in Simple mode (partially fixed)
+- K4: Bottom elements overlap (partially fixed — moved Ask button up)
+- KD3: Vedic-time hydration mismatch (same root cause as S1)
+- L1: Sidebar CTA always "Continue Learning"
+- L2: Phase subtitles hardcoded English
+- L6: Learn landing inline strings only hi/en
+
+**LOW (10):**
+- S3/KD5: CSP script-src missing ep2.adtrafficquality.google
+- R5: Nakshatra SVG floating-point hydration
+- R6: Swiss Ephemeris require() in Turbopack
+- KD1: Blueprint "in a The Warrior" grammar
+- KD2: Duplicate border CSS class
+- KD4: Silent catch in kundali/[id]
+- H4: Hidden nav links a11y (already fixed in commit)
+- L5: Sidebar ta/bn (already fixed in commit)
+
+**DEV ONLY (2):**
+- K6/L4/KD6: Turbopack HMR random navigation
+
+**Already fixed in pending commit (3):**
+- H4, L5, H6 — included in the 9-bug fix commit

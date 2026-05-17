@@ -49,7 +49,37 @@ Agents still running for kundali, homepage, and auth flows — this document wil
 
 ---
 
-## KUNDALI FLOW (pending — agent running)
+## KUNDALI FLOW (6 bugs)
+
+### BUG K1: Truncated/garbled yoga text in Simple mode (OPEN)
+- **Severity**: MEDIUM
+- **Steps**: Generate kundali, stay in Simple mode, scroll to "Your Key Strengths"
+- **Actual**: "Per- Raja Yoga" (word "lagna" dropped), "(9th+)" truncated, empty parentheses
+- **Note**: Only in Simple mode — Expert mode shows full text. Likely CSS truncation or render issue.
+
+### BUG K2: "3th" ordinal instead of "3rd" — FIXED
+- **Severity**: LOW
+- **File**: `src/lib/kundali/domain-synthesis/current-period.ts` (line 456)
+- **Actual**: `${houseLabel}th house` always appends "th" — no ordinal logic
+- **Fixed**: Added `ordEn()` helper
+
+### BUG K3: "Mahadasha Mahadasha" in Key Takeaways — FIXED
+- **Severity**: LOW
+- **File**: `src/components/kundali/SummaryView.tsx`
+- **Actual**: `currentMaha` already contains "Moon Mahadasha", code appended "Mahadasha" again
+- **Fixed**: Removed extra "Mahadasha" / "महादशा"
+
+### BUG K4: Three fixed bottom elements overlap (Ask button + PWA + Signup) (OPEN)
+- **Severity**: MEDIUM
+- **Actual**: Ask Your Chart button, PWA install prompt, and signup banner all stack in bottom-right
+- **Fix needed**: Z-index management or dismiss one when another appears
+
+### BUG K5: No "Save" button for logged-out users (duplicate of A11) (OPEN)
+- **Severity**: MEDIUM
+
+### BUG K6: Sporadic auto-navigation away from pages (dev only) (OPEN)
+- **Severity**: HIGH (dev only)
+- **Note**: Turbopack HMR instability with accumulated localStorage page views. Not a production bug.
 
 ## HOMEPAGE + PANCHANG (6 bugs)
 

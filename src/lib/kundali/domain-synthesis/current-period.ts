@@ -8,6 +8,13 @@
  *             5=Venus, 6=Saturn, 7=Rahu, 8=Ketu
  */
 
+/** English ordinal: 1st, 2nd, 3rd, 4th... 11th, 12th, 13th, 21st, etc. */
+function ordEn(n: number): string {
+  const s = ['th', 'st', 'nd', 'rd'];
+  const v = n % 100;
+  return `${n}${s[(v - 20) % 10] || s[v] || s[0]}`;
+}
+
 import type { LocaleText } from '@/types/panchang';
 import type { DashaEntry, PlanetPosition } from '@/types/kundali';
 import type { CurrentPeriodReading, Rating, RatingInfo } from './types';
@@ -453,7 +460,7 @@ function computeKeyTransits(
       transitHouse,
       nature,
       summary: {
-        en: `${p.planet.name.en} transiting ${houseLabel}th house from Moon`,
+        en: `${p.planet.name.en} transiting ${ordEn(houseLabel)} house from Moon`,
         hi: `${p.planet.name.hi ?? p.planet.name.en} चन्द्र से ${houseLabel}वें भाव में गोचर`,
       },
     });

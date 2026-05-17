@@ -346,7 +346,7 @@ describe('generateActionPlan', () => {
       // Must be within 7 days of today
       const diffDays = (d.getTime() - new Date().getTime()) / (24 * 60 * 60 * 1000);
       expect(diffDays).toBeLessThanOrEqual(7);
-      expect(diffDays).toBeGreaterThanOrEqual(0);
+      expect(diffDays).toBeGreaterThanOrEqual(-1); // today is valid even if a few hours past midnight
     }
   });
 

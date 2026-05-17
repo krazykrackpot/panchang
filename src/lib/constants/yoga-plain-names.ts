@@ -16,6 +16,7 @@ export const YOGA_PLAIN_NAMES: Record<string, { en: string; hi: string }> = {
 
   // Budha (Mercury) Yogas
   'budhaditya': { en: 'Sharp Intellect & Communication', hi: 'तीव्र बुद्धि और संवाद कौशल' },
+  'budha-aditya-strong': { en: 'Exceptional Intellect & Oratory', hi: 'असाधारण बुद्धि और वक्तृत्व' },
 
   // Guru (Jupiter) Yogas
   'saraswati': { en: 'Eloquence, Arts & Scholarly Gifts', hi: 'वाक्पटुता, कला और विद्वत्ता के उपहार' },
@@ -42,6 +43,30 @@ export const YOGA_PLAIN_NAMES: Record<string, { en: string; hi: string }> = {
   'harsha': { en: 'Joy Through Challenges & Resilient Health', hi: 'चुनौतियों से आनन्द और लचीला स्वास्थ्य' },
   'sarala': { en: 'Straightforwardness & Fearless Living', hi: 'सरलता और निडर जीवन' },
 
+  // Raja sub-types
+  'dharma-karmadhipati': { en: 'Purpose Meets Career', hi: 'उद्देश्य और करियर का मिलन' },
+  'kendra-trikona-raja': { en: 'Natural Leadership & Luck', hi: 'स्वाभाविक नेतृत्व और भाग्य' },
+  'secondary-raja': { en: 'Supporting Influence & Connections', hi: 'सहायक प्रभाव और सम्पर्क' },
+
+  // Surya (Sun) Yogas
+  'veshi': { en: 'Social Status & Wealth', hi: 'सामाजिक प्रतिष्ठा और धन' },
+  'vashi': { en: 'Generous Nature & Comfort', hi: 'उदार स्वभाव और सुख' },
+  'ubhayachari': { en: 'Well-Rounded Success', hi: 'सर्वांगीण सफलता' },
+
+  // Nabhasa / Pattern Yogas
+  'chhatra': { en: 'Protective & Commanding Presence', hi: 'सुरक्षात्मक और प्रभावशाली उपस्थिति' },
+  'chaamara': { en: 'Scholarly Fame & Royal Honour', hi: 'विद्वत्ता की कीर्ति और सम्मान' },
+  'yuga': { en: 'Balanced Life & Inner Harmony', hi: 'संतुलित जीवन और आन्तरिक सामंजस्य' },
+  'gola': { en: 'Material Success & Resourcefulness', hi: 'भौतिक सफलता और साधन सम्पन्नता' },
+  'musala': { en: 'Stability & Fixed Determination', hi: 'स्थिरता और दृढ़ निश्चय' },
+  'nala': { en: 'Skilled Hands & Creative Talent', hi: 'कुशल हाथ और रचनात्मक प्रतिभा' },
+  'rajju': { en: 'Love of Travel & Exploration', hi: 'यात्रा और अन्वेषण का प्रेम' },
+  'kedara': { en: 'Prosperity Through Land & Agriculture', hi: 'भूमि और कृषि से समृद्धि' },
+
+  // Navamsha Yogas
+  'pushkara-navamsha': { en: 'Extra Planetary Nourishment', hi: 'अतिरिक्त ग्रह पोषण' },
+  'vargottama': { en: 'Double-Strength Planet', hi: 'दोहरी शक्ति वाला ग्रह' },
+
   // Panchanga-based Yogas (day-specific, included for completeness)
   'siddha': { en: 'Success & Auspicious Outcomes', hi: 'सफलता और शुभ परिणाम' },
   'amrita': { en: 'Nectarine Blessings & Long-Lasting Gains', hi: 'अमृत आशीर्वाद और दीर्घकालिक लाभ' },
@@ -49,9 +74,23 @@ export const YOGA_PLAIN_NAMES: Record<string, { en: string; hi: string }> = {
   'indra': { en: 'Royal Favour & Worldly Triumph', hi: 'राजकीय कृपा और सांसारिक विजय' },
 };
 
-/** Get plain name for a yoga. Falls back to first sentence of description. */
+/** Get plain name for a yoga. Falls back to a cleaned-up first sentence. */
 export function getYogaPlainName(yogaId: string, descriptionEn: string, locale: string): string {
   const plain = YOGA_PLAIN_NAMES[yogaId];
   if (plain) return locale === 'hi' ? plain.hi : plain.en;
-  return descriptionEn.split('.')[0] + '.';
+
+  // Also check partial matches (e.g., 'daridra-lagna-12' matches 'daridra')
+  for (const [key, val] of Object.entries(YOGA_PLAIN_NAMES)) {
+    if (yogaId.startsWith(key)) return locale === 'hi' ? val.hi : val.en;
+  }
+
+  // Fallback: first sentence, but strip technical jargon
+  let fallback = descriptionEn.split('.')[0];
+  // Remove house numbers, lord references, lagna mentions
+  fallback = fallback
+    .replace(/\b\d+(st|nd|rd|th)\s*(house|lord|bhava)/gi, '')
+    .replace(/\b(lagna|kendra|trikona|dusthana|upachaya)\b/gi, '')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+  return fallback || 'Special Combination';
 }

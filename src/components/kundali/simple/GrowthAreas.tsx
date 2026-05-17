@@ -1,12 +1,50 @@
 'use client';
 
+import { useState } from 'react';
 import type { EvaluatedYoga } from '@/lib/kundali/yoga-engine/types';
 import { getDoshaGentleText } from '@/lib/constants/dosha-gentle-text';
 import { tl } from '@/lib/utils/trilingual';
+import { ChevronDown } from 'lucide-react';
 
 interface Props {
   evaluatedYogas: EvaluatedYoga[] | undefined;
   locale: string;
+}
+
+const DOSHA_EMOJI: Record<string, string> = {
+  'mangal-dosha': '💛',
+  'kaal-sarpa': '🌀',
+  'pitra-dosha': '🕊️',
+};
+
+function GrowthRow({ yoga, locale }: { yoga: EvaluatedYoga; locale: string }) {
+  const [open, setOpen] = useState(false);
+  const gentle = getDoshaGentleText(yoga.id, locale);
+  const title = gentle?.title ?? tl(yoga.name, locale);
+  const body = gentle?.body ?? tl(yoga.description, locale).split('.')[0] + '.';
+  const emoji = DOSHA_EMOJI[yoga.id] ?? '🔄';
+
+  return (
+    <div>
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full text-left flex items-center gap-3 py-2.5 group"
+      >
+        <div className="text-lg leading-none">{emoji}</div>
+        <div className="flex-1 min-w-0">
+          <p className="text-amber-300 text-sm font-medium">{title}</p>
+          <p className="text-text-secondary text-xs mt-0.5">Tap to learn more</p>
+        </div>
+        <ChevronDown className={`w-3.5 h-3.5 text-text-secondary shrink-0 transition-transform ${open ? 'rotate-180' : ''}`} />
+      </button>
+
+      {open && (
+        <div className="ml-10 mb-2 text-sm text-text-primary leading-relaxed bg-amber-500/[0.04] border border-amber-500/10 rounded-lg px-3 py-2.5">
+          <p>{body}</p>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default function GrowthAreas({ evaluatedYogas, locale }: Props) {
@@ -14,37 +52,22 @@ export default function GrowthAreas({ evaluatedYogas, locale }: Props) {
     .filter((y) => y.present && !y.isAuspicious)
     .slice(0, 3);
 
-  if (doshas.length === 0) {
-    return (
-      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5">
-        <h3 className="text-gold-light font-semibold text-sm mb-3">Growth Areas</h3>
-        <p className="text-text-secondary text-sm">
-          Your chart shows a smooth path ahead. No significant growth patterns require attention at this time.
-        </p>
-      </div>
-    );
-  }
-
   return (
     <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5">
-      <h3 className="text-gold-light font-semibold text-sm mb-3">Growth Areas</h3>
-      <div className="space-y-3">
-        {doshas.map((yoga) => {
-          const gentle = getDoshaGentleText(yoga.id, locale);
-          const title = gentle?.title ?? tl(yoga.name, locale);
-          const body = gentle?.body ?? tl(yoga.description, locale).split('.')[0] + '. This pattern offers an opportunity for conscious growth.';
+      <h3 className="text-gold-light font-semibold text-sm mb-1">Growth Areas</h3>
+      <p className="text-text-secondary text-xs mb-3">Patterns to be aware of &mdash; not predictions, just tendencies</p>
 
-          return (
-            <div
-              key={yoga.id}
-              className="bg-amber-500/5 border border-amber-500/15 rounded-xl p-3.5"
-            >
-              <p className="text-amber-400 font-medium text-sm">{title}</p>
-              <p className="text-text-primary text-sm mt-1 leading-relaxed">{body}</p>
-            </div>
-          );
-        })}
-      </div>
+      {doshas.length === 0 ? (
+        <p className="text-text-secondary text-sm">
+          No significant growth patterns found. Your chart shows a smooth path ahead.
+        </p>
+      ) : (
+        <div className="divide-y divide-white/5">
+          {doshas.map((yoga) => (
+            <GrowthRow key={yoga.id} yoga={yoga} locale={locale} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

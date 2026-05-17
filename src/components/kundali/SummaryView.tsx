@@ -323,17 +323,7 @@ export default function SummaryView({ tip, personalReading, keyDates, trajectory
         )}
       </div>
 
-      {/* ═══ ASK YOUR CHART  –  Question Answering ═══ */}
-      {kundali && (
-        <section className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/35 via-[#1a1040]/45 to-[#0a0e27] border border-gold-primary/12 p-5 sm:p-6">
-          <QuestionAnswerPanel
-            kundali={kundali}
-            tippanni={tip}
-            personalReading={personalReading}
-            locale={locale}
-          />
-        </section>
-      )}
+      {/* Ask Your Chart removed — single instance at bottom of Client.tsx (expert mode) */}
 
       {/* Life Stage Banner */}
       {tip.lifeStage && (

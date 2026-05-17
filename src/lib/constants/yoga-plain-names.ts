@@ -76,9 +76,11 @@ export const YOGA_PLAIN_NAMES: Record<string, { en: string; hi: string }> = {
 
 /** Get plain name for a yoga. Falls back to a cleaned-up first sentence. */
 export function getYogaPlainName(yogaId: string, descriptionEn: string, locale: string): string {
+  const useHindi = locale === 'hi' || locale === 'sa';
+
   // 1. Exact match — fast path
   const plain = YOGA_PLAIN_NAMES[yogaId];
-  if (plain) return (locale === 'hi' || locale === 'sa') ? plain.hi : plain.en;
+  if (plain) return useHindi ? plain.hi : plain.en;
 
   // 2. Longest prefix match at a word boundary (hyphen or end of string).
   //    E.g. "raja-yoga-10th" matches "raja" only if no longer key like "raja-yoga" exists.
@@ -93,7 +95,7 @@ export function getYogaPlainName(yogaId: string, descriptionEn: string, locale: 
       }
     }
   }
-  if (bestVal) return (locale === 'hi' || locale === 'sa') ? bestVal.hi : bestVal.en;
+  if (bestVal) return useHindi ? bestVal.hi : bestVal.en;
 
   // 3. Fallback: first sentence with technical jargon stripped
   let fallback = descriptionEn.split('.')[0];
@@ -102,5 +104,5 @@ export function getYogaPlainName(yogaId: string, descriptionEn: string, locale: 
     .replace(/\b(lagna|kendra|trikona|dusthana|upachaya)\b/gi, '')
     .replace(/\s{2,}/g, ' ')
     .trim();
-  return fallback || ((locale === 'hi' || locale === 'sa') ? 'विशेष संयोजन' : 'Special Combination');
+  return fallback || (useHindi ? 'विशेष संयोजन' : 'Special Combination');
 }

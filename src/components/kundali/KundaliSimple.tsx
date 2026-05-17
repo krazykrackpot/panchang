@@ -58,6 +58,8 @@ function scoreToRating(score: number): RatingTier {
   return 'atyadhama';
 }
 
+const ratingNeedsHelp = (r: RatingTier) => r === 'adhama' || r === 'atyadhama';
+
 interface DomainScore {
   key: string;
   label: { en: string; hi: string; sa: string };
@@ -224,9 +226,7 @@ export default function KundaliSimple({ kundali, blueprint, locale, onSwitchToEx
             currentRating={d.currentRating}
             locale={locale}
             onViewRemedies={
-              d.rating === 'adhama' || d.rating === 'atyadhama'
-              || d.natalRating === 'adhama' || d.natalRating === 'atyadhama'
-              || d.currentRating === 'adhama' || d.currentRating === 'atyadhama'
+              ratingNeedsHelp(d.rating) || ratingNeedsHelp(d.natalRating) || ratingNeedsHelp(d.currentRating)
                 ? onSwitchToExpert : undefined
             }
           />

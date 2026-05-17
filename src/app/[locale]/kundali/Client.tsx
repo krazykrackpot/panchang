@@ -378,6 +378,28 @@ export default function KundaliClient() {
   const [savedCharts, setSavedCharts] = useState<Array<{ id: string; label: string; birth_data: { name?: string; date: string; time: string; place: string; lat: number; lng: number; timezone?: string; relationship?: string } }>>([]);
   const user = useAuthStore(s => s.user);
 
+  // Sync viewMode with user's experience_level from profile (if logged in)
+  useEffect(() => {
+    if (!user) return;
+    const supabase = getSupabase();
+    if (!supabase) return;
+    (async () => {
+      try {
+        const { data } = await supabase.from('user_profiles').select('experience_level').eq('id', user.id).single();
+        if (!data?.experience_level) return;
+        const mode = data.experience_level === 'advanced' ? 'expert' : 'simple';
+        // Only override if user hasn't explicitly toggled in this session
+        const manuallySet = sessionStorage.getItem('kundali-view-mode-manual');
+        if (!manuallySet) {
+          setViewMode(mode);
+          localStorage.setItem('kundali-view-mode', mode);
+        }
+      } catch (err) {
+        console.error('[Kundali] profile fetch failed:', err);
+      }
+    })();
+  }, [user]);
+
   const handleSaveChart = async () => {
     if (!user || !kundali) return;
     const supabase = getSupabase();
@@ -967,6 +989,7 @@ export default function KundaliClient() {
           locale={locale}
           onSwitchToExpert={() => {
             localStorage.setItem('kundali-view-mode', 'expert');
+            sessionStorage.setItem('kundali-view-mode-manual', '1');
             setViewMode('expert');
           }}
         />
@@ -1024,6 +1047,7 @@ export default function KundaliClient() {
                 mode={viewMode}
                 onToggle={(m) => {
                   localStorage.setItem('kundali-view-mode', m);
+                  sessionStorage.setItem('kundali-view-mode-manual', '1');
                   setViewMode(m);
                 }}
               />

@@ -36,6 +36,13 @@ const LABELS = {
     errorName: 'Please enter your name',
     errorPlace: 'Please select a birth place from the suggestions',
     errorNameMin: 'Please enter at least your name',
+    levelLabel: 'Your Astrology Experience',
+    levelBeginner: 'Beginner',
+    levelBeginnerDesc: 'New to Vedic astrology — show me the essentials',
+    levelIntermediate: 'Intermediate',
+    levelIntermediateDesc: 'I know my signs and dashas — show me more detail',
+    levelAdvanced: 'Advanced',
+    levelAdvancedDesc: 'I read charts — give me everything',
   },
   hi: {
     title: 'देखो पंचांग में आपका स्वागत है!',
@@ -55,6 +62,13 @@ const LABELS = {
     errorName: 'कृपया अपना नाम दर्ज करें',
     errorPlace: 'कृपया सुझावों से जन्म स्थान चुनें',
     errorNameMin: 'कृपया कम से कम अपना नाम दर्ज करें',
+    levelLabel: 'ज्योतिष अनुभव',
+    levelBeginner: 'शुरुआती',
+    levelBeginnerDesc: 'वैदिक ज्योतिष में नया — मुझे मूल बातें दिखाएं',
+    levelIntermediate: 'मध्यम',
+    levelIntermediateDesc: 'राशि और दशा जानता हूं — और विस्तार दिखाएं',
+    levelAdvanced: 'उन्नत',
+    levelAdvancedDesc: 'मैं कुंडली पढ़ता हूं — सब कुछ दिखाएं',
   },
   sa: {
     title: 'देखो पञ्चाङ्गे स्वागतम्!',
@@ -74,6 +88,13 @@ const LABELS = {
     errorName: 'कृपया स्वनाम लिखतु',
     errorPlace: 'कृपया सुझावों से जन्म स्थान चुनें',
     errorNameMin: 'कृपया न्यूनतम स्वनाम लिखतु',
+    levelLabel: 'ज्योतिषानुभवः',
+    levelBeginner: 'आरम्भकः',
+    levelBeginnerDesc: 'वैदिकज्योतिषे नवः — मूलतत्त्वानि दर्शयतु',
+    levelIntermediate: 'मध्यमः',
+    levelIntermediateDesc: 'राशिदशाज्ञानम् अस्ति — अधिकं दर्शयतु',
+    levelAdvanced: 'उन्नतः',
+    levelAdvancedDesc: 'कुण्डलीं पठामि — सर्वं दर्शयतु',
   },
 };
 
@@ -88,6 +109,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
   const [birthTime, setBirthTime] = useState('');
   const [birthPlace, setBirthPlace] = useState('');
   const [birthLocation, setBirthLocation] = useState<{ lat: number; lng: number; name: string; timezone: string } | null>(null);
+  const [experienceLevel, setExperienceLevel] = useState<'beginner' | 'intermediate' | 'advanced'>('beginner');
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
 
@@ -133,6 +155,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
       const profileData: Record<string, unknown> = {
         id: user.id,
         display_name: fullName.trim(),
+        experience_level: experienceLevel,
       };
 
       if (birthDate && birthLocation) {
@@ -200,6 +223,8 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
           birth_time: birthTime,
           location: birthLocation,
         }));
+        // Sync kundali view mode with experience level
+        localStorage.setItem('kundali-view-mode', experienceLevel === 'advanced' ? 'expert' : 'simple');
       } catch (storageErr) {
         console.error('[OnboardingModal] localStorage persist failed:', storageErr);
       }
@@ -246,6 +271,38 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
               required
               className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/70 focus:border-gold-primary/40 focus:outline-none text-sm"
             />
+          </div>
+
+          {/* Experience Level */}
+          <div>
+            <label className="block text-text-secondary text-xs font-medium mb-2">{L.levelLabel}</label>
+            <div className="grid grid-cols-3 gap-2">
+              {(['beginner', 'intermediate', 'advanced'] as const).map((level) => {
+                const labels = {
+                  beginner: { name: L.levelBeginner, desc: L.levelBeginnerDesc, icon: '✦' },
+                  intermediate: { name: L.levelIntermediate, desc: L.levelIntermediateDesc, icon: '✦✦' },
+                  advanced: { name: L.levelAdvanced, desc: L.levelAdvancedDesc, icon: '✦✦✦' },
+                };
+                const l = labels[level];
+                const isSelected = experienceLevel === level;
+                return (
+                  <button
+                    key={level}
+                    type="button"
+                    onClick={() => setExperienceLevel(level)}
+                    className={`flex flex-col items-center gap-1 p-3 rounded-xl border text-center transition-all duration-200 ${
+                      isSelected
+                        ? 'border-gold-primary/50 bg-gold-primary/10 text-gold-light'
+                        : 'border-gold-primary/10 bg-bg-secondary/30 text-text-secondary hover:border-gold-primary/25 hover:bg-gold-primary/5'
+                    }`}
+                  >
+                    <span className="text-xs opacity-60">{l.icon}</span>
+                    <span className="text-sm font-semibold">{l.name}</span>
+                    <span className="text-[10px] leading-tight opacity-70">{l.desc}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           {/* Date of Birth */}
@@ -320,7 +377,11 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
                   await supabase.from('user_profiles').upsert({
                     id: user.id,
                     display_name: fullName.trim(),
+                    experience_level: experienceLevel,
                   }, { onConflict: 'id' });
+                  try {
+                    localStorage.setItem('kundali-view-mode', experienceLevel === 'advanced' ? 'expert' : 'simple');
+                  } catch { /* non-critical */ }
                 }
                 onComplete();
               } catch (skipErr) {

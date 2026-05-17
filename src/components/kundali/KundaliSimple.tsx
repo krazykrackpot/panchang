@@ -1,12 +1,9 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import type { KundaliData } from '@/types/kundali';
-import type { CosmicBlueprint, BlueprintInput } from '@/lib/kundali/archetype-engine';
-import { generateCosmicBlueprint } from '@/lib/kundali/archetype-engine';
-import { synthesizeReading } from '@/lib/kundali/domain-synthesis/synthesizer';
-import type { DomainReading } from '@/lib/kundali/domain-synthesis/types';
+import type { CosmicBlueprint } from '@/lib/kundali/archetype-engine';
 import { tl } from '@/lib/utils/trilingual';
 
 import CosmicIdentityCard from './simple/CosmicIdentityCard';
@@ -18,18 +15,92 @@ import GrowthAreas from './simple/GrowthAreas';
 import ViewModeToggle from './simple/ViewModeToggle';
 
 // ---------------------------------------------------------------------------
-// Domain display config — 4 key life domains from the 8-domain engine
+// Domain config — maps life domains to their primary houses in the kundali.
+// Scores are derived from bhavabala (already computed), NOT recomputed.
 // ---------------------------------------------------------------------------
 
-const DISPLAY_DOMAINS: { key: string; label: { en: string; hi: string; sa: string } }[] = [
-  { key: 'career',   label: { en: 'Career',        hi: 'करियर',    sa: 'वृत्तिः' } },
-  { key: 'marriage', label: { en: 'Relationships',  hi: 'संबंध',    sa: 'सम्बन्धाः' } },
-  { key: 'health',   label: { en: 'Health',         hi: 'स्वास्थ्य', sa: 'आरोग्यम्' } },
-  { key: 'wealth',   label: { en: 'Wealth',         hi: 'धन',       sa: 'धनम्' } },
+interface SimpleDomain {
+  key: string;
+  label: { en: string; hi: string; sa: string };
+  /** Primary houses that indicate this domain (1-indexed) */
+  houses: number[];
+}
+
+const DOMAINS: SimpleDomain[] = [
+  { key: 'career',   label: { en: 'Career',        hi: 'करियर',    sa: 'वृत्तिः' },   houses: [10, 6, 2] },
+  { key: 'marriage', label: { en: 'Relationships',  hi: 'संबंध',    sa: 'सम्बन्धाः' }, houses: [7, 5, 11] },
+  { key: 'health',   label: { en: 'Health',         hi: 'स्वास्थ्य', sa: 'आरोग्यम्' },  houses: [1, 6, 8] },
+  { key: 'wealth',   label: { en: 'Wealth',         hi: 'धन',       sa: 'धनम्' },       houses: [2, 11, 5] },
 ];
 
 // ---------------------------------------------------------------------------
-// Section header component
+// Derive domain scores from already-computed kundali data
+// ---------------------------------------------------------------------------
+
+interface DomainScore {
+  key: string;
+  label: { en: string; hi: string; sa: string };
+  /** 0-10 score from bhavabala (natal promise) */
+  natalScore: number;
+  /** 0-10 score: is the dasha lord activating these houses now? */
+  currentScore: number;
+  /** Blended overall */
+  overallScore: number;
+  rating: 'uttama' | 'madhyama' | 'adhama' | 'atyadhama';
+}
+
+function deriveDomainScores(kundali: KundaliData): DomainScore[] {
+  const bhavabala = kundali.bhavabala;
+
+  // Find current mahadasha lord
+  const now = Date.now();
+  const currentMaha = kundali.dashas.find(d => {
+    if (d.level !== 'maha') return false;
+    return now >= new Date(d.startDate).getTime() && now < new Date(d.endDate).getTime();
+  });
+  const PLANET_NAME_TO_ID: Record<string, number> = {
+    Sun: 0, Moon: 1, Mars: 2, Mercury: 3, Jupiter: 4, Venus: 5, Saturn: 6, Rahu: 7, Ketu: 8,
+  };
+  const dashaLordId = currentMaha ? PLANET_NAME_TO_ID[currentMaha.planet] : null;
+  const dashaLordHouse = dashaLordId != null
+    ? kundali.planets.find(p => p.planet.id === dashaLordId)?.house
+    : null;
+
+  return DOMAINS.map(({ key, label, houses }) => {
+    // Natal score: average bhavabala strengthPercent of primary houses, scaled to 0-10
+    let natalScore = 5; // default if bhavabala unavailable
+    if (bhavabala && bhavabala.length > 0) {
+      const houseScores = houses.map(h => {
+        const bala = bhavabala.find(b => b.bhava === h);
+        return bala ? bala.strengthPercent : 50;
+      });
+      natalScore = Math.min(10, Math.max(0,
+        (houseScores.reduce((a, b) => a + b, 0) / houseScores.length) / 10
+      ));
+    }
+
+    // Current activation: does the dasha lord sit in or aspect one of these houses?
+    let currentScore = 5;
+    if (dashaLordHouse != null) {
+      currentScore = houses.includes(dashaLordHouse) ? 8 : 4;
+    }
+
+    // Overall: weighted blend (70% natal, 30% current)
+    const overallScore = Math.round((natalScore * 0.7 + currentScore * 0.3) * 10) / 10;
+
+    // Rating tier from overall score
+    let rating: DomainScore['rating'] = 'madhyama';
+    if (overallScore >= 7) rating = 'uttama';
+    else if (overallScore >= 5) rating = 'madhyama';
+    else if (overallScore >= 3) rating = 'adhama';
+    else rating = 'atyadhama';
+
+    return { key, label, natalScore: Math.round(natalScore * 10) / 10, currentScore, overallScore, rating };
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Section header
 // ---------------------------------------------------------------------------
 
 function SectionHeader({ title }: { title: string }) {
@@ -43,114 +114,21 @@ function SectionHeader({ title }: { title: string }) {
 }
 
 // ---------------------------------------------------------------------------
-// Shimmer placeholder
-// ---------------------------------------------------------------------------
-
-function ShimmerBlock({ className }: { className?: string }) {
-  return (
-    <div className={`animate-pulse bg-gradient-to-r from-[#2d1b69]/30 via-[#1a1040]/40 to-[#2d1b69]/30 rounded-2xl ${className ?? ''}`} />
-  );
-}
-
-function LoadingSkeleton() {
-  return (
-    <div className="mt-16 space-y-6">
-      <ShimmerBlock className="h-64 w-full" />
-      <ShimmerBlock className="h-24 w-full" />
-      <div className="grid grid-cols-2 gap-4">
-        <ShimmerBlock className="h-48" />
-        <ShimmerBlock className="h-48" />
-        <ShimmerBlock className="h-48" />
-        <ShimmerBlock className="h-48" />
-      </div>
-      <ShimmerBlock className="h-40 w-full" />
-      <ShimmerBlock className="h-32 w-full" />
-      <ShimmerBlock className="h-32 w-full" />
-    </div>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// BlueprintInput builder
-// ---------------------------------------------------------------------------
-
-function buildBlueprintInput(kundali: KundaliData): BlueprintInput {
-  const mahaDashas = kundali.dashas
-    .filter(d => d.level === 'maha')
-    .map(d => {
-      const start = new Date(d.startDate);
-      const end = new Date(d.endDate);
-      const years = (end.getTime() - start.getTime()) / (365.25 * 24 * 60 * 60 * 1000);
-      return { planet: d.planet, startDate: start, endDate: end, years };
-    });
-
-  const yogas = (kundali.evaluatedYogas ?? []).map(y => ({
-    id: y.id,
-    name: y.name,
-    present: y.present,
-    strength: y.strength,
-    isAuspicious: y.isAuspicious,
-  }));
-
-  return {
-    shadbala: kundali.fullShadbala ?? [],
-    dashas: mahaDashas,
-    yogas,
-    ascendantSign: kundali.ascendant.sign,
-    planets: kundali.planets.map(p => ({ id: p.planet.id, longitude: p.longitude })),
-    rahuLongitude: kundali.planets.find(p => p.planet.id === 7)?.longitude,
-    ketuLongitude: kundali.planets.find(p => p.planet.id === 8)?.longitude,
-    moonLongitude: kundali.planets.find(p => p.planet.id === 1)?.longitude,
-  };
-}
-
-// ---------------------------------------------------------------------------
-// Main component
+// Main component — READS from KundaliData, NEVER recomputes
 // ---------------------------------------------------------------------------
 
 interface Props {
   kundali: KundaliData;
+  /** Blueprint already computed by Client.tsx — same instance used by Expert mode's BlueprintTab */
+  blueprint: CosmicBlueprint | null;
   locale: string;
   onSwitchToExpert: () => void;
 }
 
-export default function KundaliSimple({ kundali, locale, onSwitchToExpert }: Props) {
-  const [loading, setLoading] = useState(true);
+export default function KundaliSimple({ kundali, blueprint, locale, onSwitchToExpert }: Props) {
+  // Domain scores derived from already-computed bhavabala + dasha data
+  const domainScores = useMemo(() => deriveDomainScores(kundali), [kundali]);
 
-  // Compute cosmic blueprint
-  const blueprint = useMemo<CosmicBlueprint | null>(() => {
-    try {
-      const input = buildBlueprintInput(kundali);
-      return generateCosmicBlueprint(input);
-    } catch (err) {
-      console.error('[KundaliSimple] Blueprint generation failed:', err);
-      return null;
-    }
-  }, [kundali]);
-
-  // Compute domain readings
-  const domainReadings = useMemo<DomainReading[]>(() => {
-    try {
-      const reading = synthesizeReading(kundali);
-      return reading.domains.filter(d =>
-        DISPLAY_DOMAINS.some(dd => dd.key === d.domain)
-      );
-    } catch (err) {
-      console.error('[KundaliSimple] Domain synthesis failed:', err);
-      return [];
-    }
-  }, [kundali]);
-
-  // Flip loading off after initial computation
-  useEffect(() => {
-    setLoading(false);
-  }, []);
-
-  if (loading) {
-    return <LoadingSkeleton />;
-  }
-
-  // Section title resolver
   const sectionTitle = (en: string, hi: string) =>
     locale === 'hi' ? hi : en;
 
@@ -187,25 +165,20 @@ export default function KundaliSimple({ kundali, locale, onSwitchToExpert }: Pro
       <SectionHeader title={sectionTitle('Your Life Domains', 'आपके जीवन क्षेत्र')} />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {DISPLAY_DOMAINS.map(({ key, label }) => {
-          const domain = domainReadings.find(d => d.domain === key);
-          if (!domain) return null;
-
-          return (
-            <DomainRingsCard
-              key={key}
-              domain={tl(label, locale)}
-              natalScore={domain.natalPromise.rating.score}
-              currentScore={domain.currentActivation.overallActivationScore}
-              overallScore={domain.overallRating.score}
-              rating={domain.overallRating.rating}
-              natalLabel={tl(domain.natalPromise.summary, locale).split('.')[0]}
-              currentLabel={tl(domain.currentActivation.summary, locale).split('.')[0]}
-              overallLabel={tl(domain.headline, locale)}
-              locale={locale}
-            />
-          );
-        })}
+        {domainScores.map((d) => (
+          <DomainRingsCard
+            key={d.key}
+            domain={tl(d.label, locale)}
+            natalScore={d.natalScore}
+            currentScore={d.currentScore}
+            overallScore={d.overallScore}
+            rating={d.rating}
+            natalLabel=""
+            currentLabel=""
+            overallLabel=""
+            locale={locale}
+          />
+        ))}
       </div>
 
       {/* ─── Life Timeline ─── */}
@@ -227,11 +200,9 @@ export default function KundaliSimple({ kundali, locale, onSwitchToExpert }: Pro
             type="button"
             className="text-gold-light hover:text-gold-primary transition-colors"
             onClick={() => {
-              // Placeholder — share functionality will be wired to birth poster
               if (typeof navigator !== 'undefined' && navigator.share) {
                 navigator.share({ title: kundali.birthData.name || 'My Kundali', url: window.location.href })
                   .catch((err) => {
-                    // AbortError = user cancelled, safe to ignore per Web Share API spec
                     if (err?.name !== 'AbortError') console.error('[KundaliSimple] Share failed:', err);
                   });
               }

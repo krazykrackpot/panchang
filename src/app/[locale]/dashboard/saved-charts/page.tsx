@@ -38,6 +38,7 @@ export default function SavedChartsPage() {
   const [placeName, setPlaceName] = useState('');
   const [placeLat, setPlaceLat] = useState<number | null>(null);
   const [placeLng, setPlaceLng] = useState<number | null>(null);
+  const [formError, setFormError] = useState('');
 
   const fetchCharts = () => {
     if (!user) { setLoading(false); return; }
@@ -58,7 +59,11 @@ export default function SavedChartsPage() {
   }, [user]);
 
   const handleSave = async () => {
-    if (!user || !label || !dob || !placeLat || !placeLng) return;
+    setFormError('');
+    if (!user || !label || !dob || !placeLat || !placeLng) {
+      setFormError(locale === 'hi' ? 'सभी फ़ील्ड भरें' : 'Please fill all fields');
+      return;
+    }
     const supabase = getSupabase();
     if (!supabase) return;
     setSaving(true);
@@ -85,12 +90,18 @@ export default function SavedChartsPage() {
       return;
     }
 
-    await supabase.from('saved_charts').insert({
+    const { error } = await supabase.from('saved_charts').insert({
       user_id: user.id,
       label,
       birth_data: { name: label, date: dob, time: tob, place: placeName, lat: placeLat, lng: placeLng },
       is_primary: false,
     });
+    if (error) {
+      console.error('[saved-charts] insert failed:', error);
+      setFormError(locale === 'hi' ? 'सहेजना विफल। पुनः प्रयास करें।' : 'Save failed. Please try again.');
+      setSaving(false);
+      return;
+    }
     setLabel(''); setDob(''); setTob('12:00'); setPlaceName(''); setPlaceLat(null); setPlaceLng(null);
     setShowForm(false);
     setSaving(false);
@@ -153,6 +164,7 @@ export default function SavedChartsPage() {
                   placeholder={tl({ en: 'Search city...', hi: 'शहर खोजें...', sa: 'नगरं मृगयतु...', ta: 'நகரம் தேடு...', te: 'నగరాన్ని శోధించండి...', bn: 'শহর অনুসন্ধান করুন...', kn: 'ನಗರ ಹುಡುಕಿ...', gu: 'શહેર શોધો...', mai: 'शहर खोजू...', mr: 'शहर शोधा...' }, locale)} />
               </div>
             </div>
+            {formError && <p className="text-red-400 text-xs mb-2">{formError}</p>}
             <button onClick={handleSave} disabled={saving || !label || !dob || !placeLat}
               className="w-full py-2.5 rounded-lg bg-gold-primary/20 border border-gold-primary/30 text-gold-light text-sm font-bold hover:bg-gold-primary/30 disabled:opacity-40 transition-all flex items-center justify-center gap-2">
               {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : null}

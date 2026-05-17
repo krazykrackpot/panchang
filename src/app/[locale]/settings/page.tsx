@@ -454,6 +454,7 @@ export default function SettingsPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
   const [notifPrefs, setNotifPrefs] = useState<Record<string, boolean>>({
     dasha_transition: true,
     transit_alert: true,
@@ -639,7 +640,10 @@ export default function SettingsPage() {
       setSuccessMsg(L.saved);
       setTimeout(() => setSuccessMsg(''), 4000);
     } catch (err) {
-      console.error('Save failed:', err);
+      console.error('[settings] save failed:', err);
+      setSuccessMsg('');
+      setErrorMsg(locale === 'hi' ? 'सहेजना विफल। पुनः प्रयास करें।' : 'Save failed. Please try again.');
+      setTimeout(() => setErrorMsg(''), 5000);
     } finally {
       setSaving(false);
     }
@@ -672,6 +676,8 @@ export default function SettingsPage() {
       router.push(`/${locale}`);
     } catch (err) {
       console.error('Delete account failed:', err);
+      setErrorMsg(locale === 'hi' ? 'खाता हटाना विफल। पुनः प्रयास करें।' : 'Account deletion failed. Please try again.');
+      setTimeout(() => setErrorMsg(''), 5000);
       setDeleting(false);
       setShowDeleteConfirm(false);
     }
@@ -997,6 +1003,15 @@ export default function SettingsPage() {
               className="text-center text-sm text-green-400 mt-3"
             >
               {successMsg}
+            </motion.p>
+          )}
+          {errorMsg && (
+            <motion.p
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center text-sm text-red-400 mt-3"
+            >
+              {errorMsg}
             </motion.p>
           )}
         </motion.div>

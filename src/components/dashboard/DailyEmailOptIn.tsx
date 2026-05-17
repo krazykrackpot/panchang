@@ -78,11 +78,13 @@ export default function DailyEmailOptIn({ locale }: { locale: string }) {
     if (!supabase) return;
 
     setSaving(true);
+    const { data: existing } = await supabase.from('user_profiles').select('notification_prefs').eq('id', user.id).single();
+    const currentPrefs = (existing?.notification_prefs as Record<string, boolean> | null) ?? {};
     const { error } = await supabase
       .from('user_profiles')
       .update({
         daily_panchang_email: true,
-        notification_prefs: { daily_panchang: true },
+        notification_prefs: { ...currentPrefs, daily_panchang: true },
       })
       .eq('id', user.id);
 

@@ -908,10 +908,10 @@ export default function DashboardPage() {
       // new features), bump CURRENT_COMPUTATION_VERSION in profile/route.ts.
       // Stale snapshots get re-computed transparently on next dashboard load.
       const CURRENT_COMPUTATION_VERSION = 2;
-      if ((snapshot.computation_version ?? 0) < CURRENT_COMPUTATION_VERSION && profile?.date_of_birth && session) {
-        // Fire-and-forget re-computation — don't block dashboard load
+      if ((snapshot.computation_version ?? 0) < CURRENT_COMPUTATION_VERSION && profile?.date_of_birth && profile?.birth_lat != null && profile?.birth_lng != null && session) {
+        // Fire-and-forget — profile POST re-computes and upserts snapshot
         fetch('/api/user/profile', {
-          method: 'PUT',
+          method: 'POST',
           headers: { Authorization: `Bearer ${session.access_token}`, 'Content-Type': 'application/json' },
           body: JSON.stringify({
             name: profile.display_name || '',
@@ -921,9 +921,8 @@ export default function DashboardPage() {
             birthLat: profile.birth_lat,
             birthLng: profile.birth_lng,
           }),
-        }).then(() => {
-          // Reload dashboard after re-computation completes
-          loadDashboard();
+        }).then(res => {
+          if (res.ok) loadDashboard();
         }).catch(err => console.error('[dashboard] snapshot recompute failed:', err));
       }
 

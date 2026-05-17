@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { Link } from '@/lib/i18n/navigation';
 import { tl } from '@/lib/utils/trilingual';
@@ -29,7 +29,12 @@ export default function LearningPath() {
     : { fontFamily: 'var(--font-heading)' };
   const bf = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
-  const { progress, hydrated, getPhaseProgress } = useLearningProgressStore();
+  const { progress, hydrated, hydrateFromStorage, getPhaseProgress } = useLearningProgressStore();
+
+  // Defensive self-hydration — in case parent didn't hydrate first
+  useEffect(() => {
+    if (!hydrated) hydrateFromStorage();
+  }, [hydrated, hydrateFromStorage]);
 
   const phases = useMemo(() => {
     return PHASE_INFO.map((pi) => {

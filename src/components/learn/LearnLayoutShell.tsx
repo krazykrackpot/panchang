@@ -5,8 +5,12 @@ import LearnSidebar from './LearnSidebar';
 import LearnSidebarMobile from './LearnSidebarMobile';
 import LearnToolLinks from './LearnToolLinks';
 import LearnPageNav from './LearnPageNav';
+import { useLearnPageProgress } from '@/hooks/useLearnPageProgress';
 
 export default function LearnLayoutShell({ children }: { children: React.ReactNode }) {
+  // Auto-track progress for standalone learn pages (no ModuleContainer)
+  useLearnPageProgress();
+
   return (
     <div className="flex min-h-[calc(100vh-80px)]">
       {/* Desktop sidebar  –  hidden on mobile */}

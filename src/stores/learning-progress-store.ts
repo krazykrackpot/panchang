@@ -49,6 +49,8 @@ interface LearningProgressStore {
   syncWithSupabase: (userId: string) => Promise<void>;
   markPageRead: (moduleId: string, pageIndex: number) => void;
   markQuizPassed: (moduleId: string, score: number) => void;
+  /** Mark a standalone page (no quiz) as mastered — used by pages without ModuleContainer */
+  markComplete: (moduleId: string) => void;
   checkAndUpdateStreak: () => void;
   toggleSidebar: () => void;
 
@@ -384,6 +386,26 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
       quizScore: bestScore,
       quizPassedAt: existing?.quizPassedAt ?? new Date().toISOString(),
       lastPageRead: existing?.lastPageRead ?? 0,
+      lastAccessedAt: new Date().toISOString(),
+    };
+
+    const next = { ...current, [moduleId]: updated };
+    set({ progress: next });
+    writeProgressToStorage(next);
+    upsertToSupabase(updated);
+    get().checkAndUpdateStreak();
+  },
+
+  markComplete: (moduleId: string) => {
+    const current = get().progress;
+    if (current[moduleId]?.status === 'mastered') return;
+
+    const updated: ModuleProgress = {
+      moduleId,
+      status: 'mastered',
+      quizScore: null,
+      quizPassedAt: new Date().toISOString(),
+      lastPageRead: 0,
       lastAccessedAt: new Date().toISOString(),
     };
 

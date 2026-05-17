@@ -71,8 +71,14 @@ export default function DomainRingsCard({
   currentLabel,
   overallLabel,
   rating,
-  locale: _locale,
+  locale,
 }: Props) {
+  const isHi = locale === 'hi' || locale === 'sa';
+  const L = {
+    natal: isHi ? 'जन्म' : 'Natal',
+    current: isHi ? 'वर्तमान' : 'Current',
+    overall: isHi ? 'समग्र' : 'Overall',
+  };
   const [expanded, setExpanded] = useState(false);
   const overallColour = RING_COLOURS[rating] ?? '#f59e0b';
 
@@ -112,15 +118,15 @@ export default function DomainRingsCard({
           <div className="mt-1.5 space-y-0.5 text-xs">
             <p className="text-blue-400 truncate">
               <span className="inline-block w-2 h-2 rounded-full bg-blue-500 mr-1.5" />
-              Natal
+              {L.natal}
             </p>
             <p className="text-amber-400 truncate">
               <span className="inline-block w-2 h-2 rounded-full bg-amber-500 mr-1.5" />
-              Current
+              {L.current}
             </p>
             <p style={{ color: overallColour }} className="truncate">
               <span className="inline-block w-2 h-2 rounded-full mr-1.5" style={{ backgroundColor: overallColour }} />
-              Overall
+              {L.overall}
             </p>
           </div>
         </div>
@@ -129,9 +135,9 @@ export default function DomainRingsCard({
       {/* Expanded labels */}
       {expanded && (
         <div className="mt-3 pt-3 border-t border-gold-primary/10 space-y-2 text-xs text-text-primary">
-          <p><span className="text-blue-400 font-medium">Natal:</span> {natalLabel}</p>
-          <p><span className="text-amber-400 font-medium">Current:</span> {currentLabel}</p>
-          <p><span className="font-medium" style={{ color: overallColour }}>Overall:</span> {overallLabel}</p>
+          <p><span className="text-blue-400 font-medium">{L.natal}:</span> {natalLabel}</p>
+          <p><span className="text-amber-400 font-medium">{L.current}:</span> {currentLabel}</p>
+          <p><span className="font-medium" style={{ color: overallColour }}>{L.overall}:</span> {overallLabel}</p>
         </div>
       )}
     </div>

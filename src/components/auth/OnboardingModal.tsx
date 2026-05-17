@@ -381,11 +381,14 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
                   }, { onConflict: 'id' });
                   try {
                     localStorage.setItem('kundali-view-mode', experienceLevel === 'advanced' ? 'expert' : 'simple');
-                  } catch { /* non-critical */ }
+                  } catch (lsErr) {
+                    console.error('[OnboardingModal] localStorage set failed:', lsErr);
+                  }
                 }
                 onComplete();
               } catch (skipErr) {
                 console.error('[OnboardingModal] skip save failed:', skipErr);
+                setSaving(false);
                 onComplete();
               }
             }}

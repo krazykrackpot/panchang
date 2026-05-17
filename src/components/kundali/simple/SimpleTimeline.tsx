@@ -32,6 +32,15 @@ function getChapterDescription(planetName: string): string {
 }
 
 export default function SimpleTimeline({ dashas, locale }: Props) {
+  const isHi = locale === 'hi' || locale === 'sa';
+  const L = {
+    title: isHi ? 'जीवन समयरेखा (विंशोत्तरी दशा)' : 'Life Timeline (Vimshottari Dasha)',
+    currentMaha: isHi ? 'वर्तमान महादशा' : 'Current Mahadasha',
+    mahadasha: isHi ? 'महादशा' : 'Mahadasha',
+    currentAntar: isHi ? 'वर्तमान अन्तर्दशा' : 'Current Antardasha',
+    antardasha: isHi ? 'अन्तर्दशा' : 'Antardasha',
+  };
+
   // Only maha-level entries
   const mahas = dashas.filter((d) => d.level === 'maha');
   const currentMaha = findCurrent(mahas);
@@ -45,7 +54,7 @@ export default function SimpleTimeline({ dashas, locale }: Props) {
 
   return (
     <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5">
-      <h3 className="text-gold-light font-semibold text-sm mb-3">Life Timeline (Vimshottari Dasha)</h3>
+      <h3 className="text-gold-light font-semibold text-sm mb-3">{L.title}</h3>
 
       {/* Progress bar */}
       <div className="relative h-3 rounded-full overflow-hidden bg-white/5">
@@ -77,9 +86,9 @@ export default function SimpleTimeline({ dashas, locale }: Props) {
       {/* Current Mahadasha */}
       {currentMaha && (
         <div className="mt-4">
-          <p className="text-text-secondary text-xs uppercase tracking-wide mb-1">Current Mahadasha</p>
+          <p className="text-text-secondary text-xs uppercase tracking-wide mb-1">{L.currentMaha}</p>
           <p className="text-gold-light font-semibold">
-            {tl(currentMaha.planetName, locale)} Mahadasha
+            {tl(currentMaha.planetName, locale)} {L.mahadasha}
           </p>
           <p className="text-text-secondary text-xs mt-0.5">
             {currentMaha.startDate} &ndash; {currentMaha.endDate}
@@ -93,9 +102,9 @@ export default function SimpleTimeline({ dashas, locale }: Props) {
       {/* Current Antardasha */}
       {currentAntar && (
         <div className="mt-3 pl-4 border-l-2 border-gold-primary/20">
-          <p className="text-text-secondary text-xs uppercase tracking-wide mb-1">Current Antardasha</p>
+          <p className="text-text-secondary text-xs uppercase tracking-wide mb-1">{L.currentAntar}</p>
           <p className="text-gold-light font-medium text-sm">
-            {tl(currentAntar.planetName, locale)} Antardasha
+            {tl(currentAntar.planetName, locale)} {L.antardasha}
           </p>
           <p className="text-text-secondary text-xs mt-0.5">
             {currentAntar.startDate} &ndash; {currentAntar.endDate}

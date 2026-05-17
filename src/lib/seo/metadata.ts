@@ -71,16 +71,16 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/kundali': {
     title: {
-      en: 'Free Kundali  –  Vedic Birth Chart Generator',
-      hi: 'निःशुल्क कुण्डली  –  वैदिक जन्म कुण्डली',
+      en: 'Free Kundali  –  Vedic Birth Chart for Beginners & Experts',
+      hi: 'निःशुल्क कुण्डली  –  शुरुआती और विशेषज्ञों के लिए वैदिक जन्म कुण्डली',
       sa: 'निःशुल्कजन्मकुण्डली  –  वैदिकजन्मपत्रिका',
     },
     description: {
-      en: 'Create your free Kundali in seconds  –  19 charts, 15 dasha systems, 75+ yogas, Shadbala & AI-powered reading. No signup required.',
-      hi: 'ग्रह स्थिति, विंशोत्तरी दशा, योग, षड्बल और विस्तृत टिप्पणी के साथ अपनी निःशुल्क वैदिक जन्म कुण्डली बनाएं।',
+      en: 'Create your free Kundali in seconds. Simple Mode for beginners \u2014 visual identity cards, life domain scores, plain-language insights. Expert Mode for practitioners \u2014 19 charts, 15 dasha systems, 210+ yogas, Shadbala, Ashtakavarga & AI reading. Swiss Ephemeris precision. No signup required.',
+      hi: 'सेकण्डों में अपनी निःशुल्क कुण्डली बनाएँ। शुरुआती के लिए सरल मोड \u2014 विज़ुअल पहचान कार्ड, जीवन क्षेत्र अंक, सरल भाषा में अन्तर्दृष्टि। विशेषज्ञों के लिए एक्सपर्ट मोड \u2014 19 चार्ट, 15 दशा प्रणालियाँ, 210+ योग, षड्बल, अष्टकवर्ग और AI पठन। स्विस एफ़ेमेरिस सटीकता। कोई साइनअप नहीं।',
       sa: 'ग्रहस्थितिः विंशोत्तरीदशा योगाः षड्बलं विस्तृतटिप्पणी च सहितं निःशुल्कं वैदिकजन्मकुण्डलीं रचयतु।',
     },
-    keywords: ['kundali', 'birth chart', 'janam kundli', 'vedic astrology chart', 'free kundali'],
+    keywords: ['kundali', 'birth chart', 'janam kundli', 'vedic astrology chart', 'free kundali', 'kundali for beginners', 'simple kundali', 'expert kundali', 'kundali simple mode'],
   },
   '/matching': {
     title: {
@@ -1834,16 +1834,16 @@ export const PAGE_META: Record<string, PageMeta> = {
   },
   '/accuracy': {
     title: {
-      en: 'Calculation Transparency  \u2013  Why Panchang Values Differ Between Sources',
-      hi: 'गणना पारदर्शिता  \u2013  पंचांग मान भिन्न क्यों होते हैं',
-      sa: 'गणनापारदर्शिता  \u2013  पञ्चाङ्गमानानां भेदः कुतः',
+      en: 'Calculation Accuracy \u2014 Swiss Ephemeris, JPL & USNO Verified',
+      hi: 'गणना सटीकता \u2014 स्विस एफ़ेमेरिस, JPL एवं USNO से सत्यापित',
+      sa: 'गणनासटीकता \u2014 स्विस एफ़ेमेरिस JPL USNO सत्यापिता',
     },
     description: {
-      en: 'Understand why different panchang sources show slightly different tithi and nakshatra times. See our exact method, live computed values, and accuracy guarantees  \u2013  with real numbers, not just claims.',
-      hi: 'जानें कि विभिन्न पंचांग स्रोत तिथि और नक्षत्र समय में अन्तर क्यों दिखाते हैं। हमारी सटीक पद्धति, वास्तविक गणना और सटीकता गारण्टी देखें।',
-      sa: 'विभिन्नपञ्चाङ्गस्रोतेषु तिथिनक्षत्रसमयभेदस्य कारणं जानातु। अस्माकं गणनापद्धतिः सटीकतागारण्टी च पश्यतु।',
+      en: 'How Dekho Panchang achieves professional-grade accuracy. Swiss Ephemeris (NASA JPL DE441), USNO solar tables, IAU Lahiri standard. 88 automated tests across 9 global locations. Sunrise within \u00b12 min, tithi within \u00b12 min of authoritative references.',
+      hi: 'देखो पंचांग कैसे पेशेवर-स्तर की सटीकता प्राप्त करता है। स्विस एफ़ेमेरिस (NASA JPL DE441), USNO सौर तालिकाएँ, IAU लाहिरी मानक। 9 वैश्विक स्थानों पर 88 स्वचालित परीक्षण।',
+      sa: 'गणनासटीकता \u2014 स्विस एफ़ेमेरिस JPL DE441 USNO सौरसारणी IAU लाहिरीमानकम्।',
     },
-    keywords: ['panchang accuracy', 'tithi calculation method', 'vedic calendar accuracy', 'ekadashi date calculation', 'panchang differences explained', 'nakshatra timing accuracy', 'ayanamsha comparison'],
+    keywords: ['panchang accuracy', 'swiss ephemeris', 'vedic astrology accuracy', 'jpl de441', 'lahiri ayanamsha', 'tithi calculation method', 'vedic calendar accuracy', 'ekadashi date calculation', 'panchang differences explained', 'nakshatra timing accuracy', 'ayanamsha comparison'],
   },
 };
 

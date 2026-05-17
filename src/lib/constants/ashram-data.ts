@@ -78,10 +78,13 @@ export const ASHRAMS: AshramInfo[] = [
 ];
 
 export function getAshram(birthDate: string): AshramInfo {
-  const birth = new Date(birthDate);
-  const today = new Date();
-  let age = today.getFullYear() - birth.getFullYear();
-  const m = today.getMonth() - birth.getMonth();
-  if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
-  return ASHRAMS.find(a => age >= a.ageMin && age < a.ageMax) ?? ASHRAMS[1]; // Default grihastha
+  // Parse birth date parts to avoid UTC vs local timezone mismatch (Lesson L)
+  const parts = birthDate.split('-').map(Number);
+  const birthYear = parts[0], birthMonth = parts[1], birthDay = parts[2];
+  const now = new Date();
+  let age = now.getFullYear() - birthYear;
+  const monthDiff = (now.getMonth() + 1) - birthMonth;
+  if (monthDiff < 0 || (monthDiff === 0 && now.getDate() < birthDay)) age--;
+  if (age < 0) age = 0; // Future birth dates → treat as newborn, not Grihastha
+  return ASHRAMS.find(a => age >= a.ageMin && age < a.ageMax) ?? ASHRAMS[0];
 }

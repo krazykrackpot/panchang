@@ -3,12 +3,12 @@
 import type { DashaEntry } from '@/types/kundali';
 import { tl } from '@/lib/utils/trilingual';
 import { ARCHETYPES } from '@/lib/constants/archetype-data';
+import { GRAHAS } from '@/lib/constants/grahas';
 
-// Map planet name (EN) to planet ID for archetype lookup
-const PLANET_NAME_TO_ID: Record<string, number> = {
-  Sun: 0, Moon: 1, Mars: 2, Mercury: 3, Jupiter: 4,
-  Venus: 5, Saturn: 6, Rahu: 7, Ketu: 8,
-};
+/** Planet English name → ID. Single source from GRAHAS constant. */
+const PLANET_NAME_TO_ID: Record<string, number> = Object.fromEntries(
+  GRAHAS.map(g => [g.name.en, g.id])
+);
 
 interface Props {
   dashas: DashaEntry[];

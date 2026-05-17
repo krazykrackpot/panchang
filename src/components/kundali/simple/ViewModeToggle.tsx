@@ -4,10 +4,12 @@ import { Sparkles, ScrollText } from 'lucide-react';
 
 interface Props {
   mode: 'simple' | 'expert';
+  locale?: string;
   onToggle: (mode: 'simple' | 'expert') => void;
 }
 
-export default function ViewModeToggle({ mode, onToggle }: Props) {
+export default function ViewModeToggle({ mode, locale, onToggle }: Props) {
+  const isHi = locale === 'hi' || locale === 'sa';
   return (
     <div className="inline-flex rounded-xl border border-gold-primary/40 overflow-hidden bg-bg-secondary/40 backdrop-blur-sm">
       <button
@@ -19,7 +21,7 @@ export default function ViewModeToggle({ mode, onToggle }: Props) {
         }`}
       >
         <Sparkles className="w-4 h-4" />
-        Simple
+        {isHi ? 'सरल' : 'Simple'}
       </button>
       <button
         onClick={() => onToggle('expert')}
@@ -30,7 +32,7 @@ export default function ViewModeToggle({ mode, onToggle }: Props) {
         }`}
       >
         <ScrollText className="w-4 h-4" />
-        Expert
+        {isHi ? 'विशेषज्ञ' : 'Expert'}
       </button>
     </div>
   );

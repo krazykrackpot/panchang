@@ -631,7 +631,7 @@ export default function KundaliClient() {
     if (showTransits && !transitData) {
       fetch('/api/panchang').then(r => r.json()).then(data => {
         if (data.planets) setTransitData({ planets: data.planets });
-      }).catch(() => {});
+      }).catch((err) => console.error('[Kundali] transit fetch failed:', err));
     }
   }, [showTransits, transitData]);
 
@@ -1004,6 +1004,7 @@ export default function KundaliClient() {
           <div className="flex justify-end mb-4">
             <ViewModeToggle
               mode={viewMode}
+              locale={locale}
               onToggle={(m) => {
                 localStorage.setItem('kundali-view-mode', m);
                 sessionStorage.setItem('kundali-view-mode-manual', '1');
@@ -1782,7 +1783,7 @@ export default function KundaliClient() {
                               console.error('[kundali] share image failed:', err);
                               // Final fallback: copy link
                               const linkUrl = `${window.location.origin}${cardUrl.replace('format=story', 'format=og')}`;
-                              navigator.clipboard.writeText(linkUrl).catch(() => {});
+                              navigator.clipboard.writeText(linkUrl).catch((clipErr) => console.error('[kundali] clipboard fallback failed:', clipErr));
                             }
                           }}
                           className="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-bold rounded-lg bg-gradient-to-r from-gold-primary/20 to-amber-500/20 border border-gold-primary/40 text-gold-light hover:from-gold-primary/30 hover:to-amber-500/30 hover:border-gold-primary/60 transition-all shadow-lg shadow-gold-primary/5"

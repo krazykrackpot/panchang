@@ -9,17 +9,18 @@ interface Props {
 
 export default function AshramStage({ birthDate, locale }: Props) {
   const ashram = getAshram(birthDate);
-  const isHi = locale === 'hi';
+  const isHi = locale === 'hi' || locale === 'sa';
 
   return (
     <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5">
-      {/* Header */}
+      {/* Header — show Sanskrit name for sa locale */}
       <h3 className="text-gold-light font-semibold text-lg">
         {ashram.nameEn}
-        {isHi && (
-          <span className="text-text-secondary text-sm ml-2">
-            ({ashram.nameHi})
-          </span>
+        {locale === 'sa' && (
+          <span className="text-text-secondary text-sm ml-2">({ashram.nameSa})</span>
+        )}
+        {locale === 'hi' && (
+          <span className="text-text-secondary text-sm ml-2">({ashram.nameHi})</span>
         )}
       </h3>
 

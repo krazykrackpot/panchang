@@ -10,13 +10,13 @@ interface Props {
   natalLabel: string;
   currentLabel: string;
   overallLabel: string;
-  rating: string; // 'uttama' | 'madhyama' | 'adhama' | 'atyadhama'
+  rating: 'uttama' | 'madhyama' | 'adhama' | 'atyadhama';
   locale: string;
 }
 
-const RING_COLOURS: Record<string, string> = {
+const RING_COLOURS: Record<'uttama' | 'madhyama' | 'adhama' | 'atyadhama', string> = {
   uttama: '#22c55e',
-  madhyama: '#22c55e',
+  madhyama: '#60a5fa',
   adhama: '#f59e0b',
   atyadhama: '#ef4444',
 };

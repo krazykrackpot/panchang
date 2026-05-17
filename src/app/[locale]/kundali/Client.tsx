@@ -369,7 +369,8 @@ export default function KundaliClient() {
   const [editing, setEditing] = useState(false);
   const [viewMode, setViewMode] = useState<'simple' | 'expert'>(() => {
     if (typeof window === 'undefined') return 'simple';
-    return (localStorage.getItem('kundali-view-mode') as 'simple' | 'expert') ?? 'simple';
+    const stored = localStorage.getItem('kundali-view-mode');
+    return stored === 'simple' || stored === 'expert' ? stored : 'simple';
   });
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);

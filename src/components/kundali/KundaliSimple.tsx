@@ -230,7 +230,10 @@ export default function KundaliSimple({ kundali, locale, onSwitchToExpert }: Pro
               // Placeholder — share functionality will be wired to birth poster
               if (typeof navigator !== 'undefined' && navigator.share) {
                 navigator.share({ title: kundali.birthData.name || 'My Kundali', url: window.location.href })
-                  .catch(() => { /* user cancelled share — safe to ignore per Web Share API spec */ });
+                  .catch((err) => {
+                    // AbortError = user cancelled, safe to ignore per Web Share API spec
+                    if (err?.name !== 'AbortError') console.error('[KundaliSimple] Share failed:', err);
+                  });
               }
             }}
           >

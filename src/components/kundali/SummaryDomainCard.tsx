@@ -72,6 +72,14 @@ const RATING_COLORS: Record<Rating, string> = {
   atyadhama: 'text-red-400',
 };
 
+/** Hex colours matching DomainRings outer ring per rating tier */
+const RATING_RING_HEX: Record<Rating, string> = {
+  uttama: '#22c55e',
+  madhyama: '#60a5fa',
+  adhama: '#f59e0b',
+  atyadhama: '#ef4444',
+};
+
 const RATING_BG: Record<Rating, string> = {
   uttama: 'bg-emerald-500/15 border-emerald-500/30',
   madhyama: 'bg-gold-primary/15 border-gold-primary/30',
@@ -238,7 +246,7 @@ export default function SummaryDomainCard({
           <DomainRings
             natalRating={rating}
             dashaScore={domain.currentActivation.dashaActivationScore}
-            currentIntensity={Math.min(1, (domain.currentActivation.overallActivationScore - domain.currentActivation.dashaActivationScore * 0.5) / 6)}
+            transitCount={domain.currentActivation.transitInfluences.length}
             icon={<Icon size={20} />}
             size={120}
           />
@@ -249,19 +257,19 @@ export default function SummaryDomainCard({
             <p className="text-xs text-text-secondary mb-1">
               {tl(domain.overallRating.label, locale)} · {RATING_LABELS[rating]?.sa}
             </p>
-            {/* Ring legend — compact, consistent colours */}
+            {/* Ring legend — matches unified DomainRings colours */}
             <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-1.5">
               <span className="flex items-center gap-1 text-[10px] text-text-secondary">
-                <span className="inline-block w-2 h-2 rounded-full bg-[#34d399]" />
-                Natal
+                <span className="inline-block w-2 h-2 rounded-full" style={{ backgroundColor: RATING_RING_HEX[rating] }} />
+                {locale === 'hi' ? 'कुण्डली' : 'Your Chart'}
               </span>
               <span className="flex items-center gap-1 text-[10px] text-text-secondary">
-                <span className="inline-block w-2 h-2 rounded-full bg-[#818cf8]" />
-                Mahadasha
+                <span className="inline-block w-2 h-2 rounded-full bg-[#3b82f6]" />
+                {locale === 'hi' ? 'जीवन चरण' : 'Life Phase'}
               </span>
               <span className="flex items-center gap-1 text-[10px] text-text-secondary">
-                <span className="inline-block w-2 h-2 rounded-full bg-[#22d3ee]" />
-                Current
+                <span className="inline-block w-2 h-2 rounded-full bg-[#f59e0b]" />
+                {locale === 'hi' ? 'अभी' : 'Right Now'}
               </span>
             </div>
           </div>

@@ -77,16 +77,25 @@ const PLANET_NAME_TO_ID: Record<string, number> = Object.fromEntries(
 function deriveDomainScores(kundali: KundaliData): DomainScore[] {
   const bhavabala = kundali.bhavabala;
 
-  // Find current mahadasha lord
+  // Find current mahadasha + antardasha lords and their houses
   const now = Date.now();
   const currentMaha = kundali.dashas.find(d => {
     if (d.level !== 'maha') return false;
     return now >= new Date(d.startDate).getTime() && now < new Date(d.endDate).getTime();
   });
-  const dashaLordId = currentMaha ? PLANET_NAME_TO_ID[currentMaha.planet] ?? null : null;
-  const dashaLordHouse = dashaLordId != null
-    ? kundali.planets.find(p => p.planet.id === dashaLordId)?.house
-    : null;
+  const currentAntar = currentMaha?.subPeriods?.find(d => {
+    return now >= new Date(d.startDate).getTime() && now < new Date(d.endDate).getTime();
+  });
+
+  function getPlanetHouse(planetName: string | undefined): number | null {
+    if (!planetName) return null;
+    const pid = PLANET_NAME_TO_ID[planetName] ?? null;
+    if (pid == null) return null;
+    return kundali.planets.find(p => p.planet.id === pid)?.house ?? null;
+  }
+
+  const mahaHouse = getPlanetHouse(currentMaha?.planet);
+  const antarHouse = getPlanetHouse(currentAntar?.planet);
 
   return DOMAINS.map(({ key, label, houses }) => {
     // Natal score: average bhavabala strengthPercent of primary houses, scaled to 0-10
@@ -101,11 +110,14 @@ function deriveDomainScores(kundali: KundaliData): DomainScore[] {
       ));
     }
 
-    // Current activation: dasha lord in domain houses = strong boost
-    let currentScore = 5;
-    if (dashaLordHouse != null) {
-      currentScore = houses.includes(dashaLordHouse) ? 8 : 5;
-    }
+    // Current activation: mahadasha lord (weight 60%) + antardasha lord (weight 40%)
+    // in domain houses = strong boost. Both matter — antardasha changes every few months.
+    const mahaActivates = mahaHouse != null && houses.includes(mahaHouse);
+    const antarActivates = antarHouse != null && houses.includes(antarHouse);
+    let currentScore: number;
+    if (mahaActivates && antarActivates) currentScore = 9;       // Both lords activate this domain
+    else if (mahaActivates || antarActivates) currentScore = 7;  // One lord activates
+    else currentScore = 5;                                       // Neither — neutral, not weak
 
     const overallScore = Math.round((natalScore * 0.7 + currentScore * 0.3) * 10) / 10;
 

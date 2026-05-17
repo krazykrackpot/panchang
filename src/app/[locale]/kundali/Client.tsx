@@ -65,6 +65,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { findDashaSandhiPeriods } from '@/lib/kundali/dasha-sandhi';
 import { assembleBirthPosterData } from '@/lib/shareable/birth-poster';
 import { generateCosmicBlueprint, type CosmicBlueprint } from '@/lib/kundali/archetype-engine';
+import { SIGN_LORDS as SIGN_LORDS_MAP } from '@/lib/constants/dignities';
 import { getNarayanaInterpretation } from '@/lib/constants/narayana-interpretations';
 // Dynamic imports  –  only loaded after chart generation or on specific tab activation
 const ChartNorth = dynamic(() => import('@/components/kundali/ChartNorth'), { ssr: false });
@@ -367,19 +368,23 @@ export default function KundaliClient() {
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
   const [loading, setLoading] = useState(false);
   const [editing, setEditing] = useState(false);
-  const [viewMode, setViewMode] = useState<'simple' | 'expert'>(() => {
-    if (typeof window === 'undefined') return 'simple';
-    const stored = localStorage.getItem('kundali-view-mode');
-    return stored === 'simple' || stored === 'expert' ? stored : 'simple';
-  });
+  // Always SSR as 'simple' to avoid hydration mismatch. Client reads localStorage on mount.
+  const [viewMode, setViewMode] = useState<'simple' | 'expert'>('simple');
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [showPoster, setShowPoster] = useState(false);
   const [savedCharts, setSavedCharts] = useState<Array<{ id: string; label: string; birth_data: { name?: string; date: string; time: string; place: string; lat: number; lng: number; timezone?: string; relationship?: string } }>>([]);
   const user = useAuthStore(s => s.user);
 
-  // Sync viewMode with user's experience_level from profile (if logged in)
+  // On mount: read localStorage, then optionally override from profile
   useEffect(() => {
+    // 1. Read localStorage (immediate, synchronous)
+    const stored = localStorage.getItem('kundali-view-mode');
+    if (stored === 'simple' || stored === 'expert') {
+      setViewMode(stored);
+    }
+
+    // 2. If logged in, sync from profile (async, overrides localStorage unless manual toggle)
     if (!user) return;
     const supabase = getSupabase();
     if (!supabase) return;
@@ -388,7 +393,6 @@ export default function KundaliClient() {
         const { data } = await supabase.from('user_profiles').select('experience_level').eq('id', user.id).single();
         if (!data?.experience_level) return;
         const mode = data.experience_level === 'advanced' ? 'expert' : 'simple';
-        // Only override if user hasn't explicitly toggled in this session
         const manuallySet = sessionStorage.getItem('kundali-view-mode-manual');
         if (!manuallySet) {
           setViewMode(mode);
@@ -666,9 +670,8 @@ export default function KundaliClient() {
       const rahuP = kundali.planets.find(p => p.planet.id === 7);
       const ketuP = kundali.planets.find(p => p.planet.id === 8);
       const moonP = kundali.planets.find(p => p.planet.id === 1);
-      // Lagna lord: lord of the ascendant sign
-      const SIGN_LORDS: Record<number, number> = { 1:2, 2:5, 3:3, 4:1, 5:0, 6:3, 7:5, 8:2, 9:4, 10:6, 11:6, 12:4 };
-      const lagnaLordId = SIGN_LORDS[kundali.ascendant.sign];
+      // Lagna lord: lord of the ascendant sign (from canonical dignities.ts)
+      const lagnaLordId = SIGN_LORDS_MAP[kundali.ascendant.sign];
       return generateCosmicBlueprint({
         shadbala: kundali.fullShadbala,
         dashas: dashasWithDates,

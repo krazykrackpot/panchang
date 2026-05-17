@@ -3,12 +3,7 @@
 import type { DashaEntry } from '@/types/kundali';
 import { tl } from '@/lib/utils/trilingual';
 import { ARCHETYPES } from '@/lib/constants/archetype-data';
-import { GRAHAS } from '@/lib/constants/grahas';
-
-/** Planet English name → ID. Single source from GRAHAS constant. */
-const PLANET_NAME_TO_ID: Record<string, number> = Object.fromEntries(
-  GRAHAS.map(g => [g.name.en, g.id])
-);
+import { PLANET_NAME_TO_ID } from '@/lib/constants/grahas';
 
 interface Props {
   dashas: DashaEntry[];

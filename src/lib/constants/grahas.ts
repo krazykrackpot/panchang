@@ -12,6 +12,11 @@ export const GRAHAS: Graha[] = [
   { id: 8, name: { en: 'Ketu', hi: 'केतु', sa: 'केतुः', ta: 'கேது', te: 'కేతు', bn: 'কেতু', kn: 'ಕೇತು', mr: 'केतु', gu: 'કેતુ', mai: 'केतु' }, symbol: '☋', color: '#95a5a6' },
 ];
 
+/** Planet English name → numeric ID. Single source of truth for all name-to-ID lookups. */
+export const PLANET_NAME_TO_ID: Record<string, number> = Object.fromEntries(
+  GRAHAS.map(g => [g.name.en, g.id])
+);
+
 export const GRAHA_ABBREVIATIONS: Record<number, string> = {
   0: 'Su', 1: 'Mo', 2: 'Ma', 3: 'Me', 4: 'Ju', 5: 'Ve', 6: 'Sa', 7: 'Ra', 8: 'Ke',
 };

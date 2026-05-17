@@ -80,7 +80,7 @@ export default function CosmicIdentityCard({ blueprint, kundali, locale }: Props
       oneLiner: risingArchetype
         ? oneLinePick(risingArchetype.oneLineEn, risingArchetype.oneLineHi)
         : '',
-      glowColor: '#ef4444',
+      glowColor: risingArchetype?.glowColor ?? '#ef4444',
       elevated: false,
     },
     {
@@ -92,7 +92,7 @@ export default function CosmicIdentityCard({ blueprint, kundali, locale }: Props
       oneLiner: moonArchetype
         ? oneLinePick(moonArchetype.oneLineEn, moonArchetype.oneLineHi)
         : '',
-      glowColor: '#22c55e',
+      glowColor: moonArchetype?.glowColor ?? '#22c55e',
       elevated: true,
     },
     {
@@ -104,7 +104,7 @@ export default function CosmicIdentityCard({ blueprint, kundali, locale }: Props
       oneLiner: nakshatraArchetype
         ? oneLinePick(nakshatraArchetype.oneLineEn, nakshatraArchetype.oneLineHi)
         : '',
-      glowColor: '#d4a853',
+      glowColor: '#d4a853', // Nakshatra archetypes don't have glowColor — gold is always correct
       elevated: false,
     },
   ];
@@ -180,7 +180,7 @@ export default function CosmicIdentityCard({ blueprint, kundali, locale }: Props
         className="flex gap-4 sm:gap-5
           overflow-x-auto snap-x snap-mandatory pb-2
           sm:overflow-x-visible sm:snap-none
-          scrollbar-none"
+          scrollbar-hide"
       >
         {faces.map((face) => (
           <div

@@ -29,7 +29,7 @@ export default function LearningPath() {
     : { fontFamily: 'var(--font-heading)' };
   const bf = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
-  const { progress, hydrated, hydrateFromStorage, getPhaseProgress } = useLearningProgressStore();
+  const { progress, hydrated, hydrateFromStorage, getPhaseProgress, getModuleStatus } = useLearningProgressStore();
 
   // Defensive self-hydration — in case parent didn't hydrate first
   useEffect(() => {
@@ -43,7 +43,7 @@ export default function LearningPath() {
 
       // Find the first uncompleted module in this phase for the "Continue" link
       const firstUncompleted = modules.find(
-        (m) => progress[m.id]?.status !== 'mastered'
+        (m) => getModuleStatus(m.id) !== 'mastered'
       );
       const continueModule = firstUncompleted ?? modules[0];
       const continueModuleId = continueModule?.id ?? '0-1';
@@ -53,7 +53,7 @@ export default function LearningPath() {
       let status: 'completed' | 'in-progress' | 'not-started' = 'not-started';
       if (mastered === total && total > 0) {
         status = 'completed';
-      } else if (mastered > 0 || modules.some((m) => progress[m.id])) {
+      } else if (mastered > 0 || modules.some((m) => getModuleStatus(m.id) !== 'not_started')) {
         status = 'in-progress';
       }
 

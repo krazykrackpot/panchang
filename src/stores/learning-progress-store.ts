@@ -68,6 +68,19 @@ interface LearningProgressStore {
 
 // ── localStorage keys ─────────────────────────────────────────────────────────
 
+/**
+ * Module pages use `mod_0_1` IDs, MODULE_SEQUENCE uses `0-1`.
+ * This normaliser checks both forms when looking up progress.
+ */
+function progressForModule(progress: Record<string, ModuleProgress>, seqId: string): ModuleProgress | undefined {
+  // Direct match first (standalone pages write bare IDs like 'grahas')
+  if (progress[seqId]) return progress[seqId];
+  // Module pages write with mod_ prefix and underscores: '0-1' → 'mod_0_1'
+  const modKey = `mod_${seqId.replace(/-/g, '_')}`;
+  if (progress[modKey]) return progress[modKey];
+  return undefined;
+}
+
 const PROGRESS_KEY = 'dekho-panchang-learn-progress';
 const SIDEBAR_KEY = 'dekho-panchang-sidebar-state';
 const STREAK_KEY = 'dekho-panchang-learn-streak';
@@ -537,7 +550,7 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
   // ── Computed ─────────────────────────────────────────────────────────────────
 
   getModuleStatus: (moduleId: string) => {
-    const entry = get().progress[moduleId];
+    const entry = progressForModule(get().progress, moduleId);
     if (!entry) return 'not_started';
     return entry.status;
   },
@@ -546,7 +559,7 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
     const { progress } = get();
     // Only curriculum modules (not ref: articles) count for progression
     for (const mod of CURRICULUM_MODULES) {
-      if (progress[mod.id]?.status !== 'mastered') {
+      if (progressForModule(progress, mod.id)?.status !== 'mastered') {
         return mod.id;
       }
     }
@@ -558,7 +571,7 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
     // Only curriculum modules count toward phase progress
     const modules = getPhaseModules(phase).filter(m => !m.id.startsWith('ref:'));
     const total = modules.length;
-    const mastered = modules.filter((m) => progress[m.id]?.status === 'mastered').length;
+    const mastered = modules.filter((m) => progressForModule(progress, m.id)?.status === 'mastered').length;
     const percent = total > 0 ? Math.round((mastered / total) * 100) : 0;
     return { mastered, total, percent };
   },
@@ -566,7 +579,7 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
   getOverallProgress: () => {
     const { progress } = get();
     const total = CURRICULUM_MODULES.length;
-    const mastered = CURRICULUM_MODULES.filter((m) => progress[m.id]?.status === 'mastered').length;
+    const mastered = CURRICULUM_MODULES.filter((m) => progressForModule(progress, m.id)?.status === 'mastered').length;
     const percent = total > 0 ? Math.round((mastered / total) * 100) : 0;
     return { mastered, total, percent };
   },

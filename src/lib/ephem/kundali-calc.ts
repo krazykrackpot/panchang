@@ -915,7 +915,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
   // Graha Details (with RA, Declination)
   const grahaDetails: GrahaDetail[] = planets.map(p => {
     const coords = computeFullCoordinates(p.planet.id, p.longitude, jd);
-    const nakData = NAKSHATRAS[getNakshatraNumber(p.longitude) - 1];
+    const nakData = NAKSHATRAS[(p.nakshatra?.id ?? getNakshatraNumber(p.longitude)) - 1];
     return {
       planetId: p.planet.id,
       planetName: p.planet.name,
@@ -925,7 +925,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
       signDegree: p.degree,
       sign: p.sign,
       signName: p.signName,
-      nakshatra: getNakshatraNumber(p.longitude),
+      nakshatra: p.nakshatra?.id ?? getNakshatraNumber(p.longitude),
       nakshatraName: p.nakshatra.name,
       nakshatraLord: nakData.rulerName,
       nakshatraPada: p.pada,
@@ -1119,7 +1119,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
   });
   const sadeSati = analyzeSadeSati({
     moonSign: moonP?.sign || 1,
-    moonNakshatra: moonP ? getNakshatraNumber(moonP.longitude) : undefined,
+    moonNakshatra: moonP?.nakshatra?.id ?? (moonP ? getNakshatraNumber(moonP.longitude) : undefined),
     moonDegree: moonP?.longitude,
     ascendantSign: ascSign,
     saturnSign: saturnP?.sign,

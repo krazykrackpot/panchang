@@ -76,7 +76,8 @@ export const useSubscriptionStore = create<SubscriptionState>((set, get) => ({
         isLoading: false,
         initialized: true,
       });
-    } catch {
+    } catch (err) {
+      console.error('[subscription] fetch failed:', err);
       set({ tier: 'free', status: 'inactive', isLoading: false, initialized: true });
     }
   },
@@ -107,8 +108,9 @@ export const useSubscriptionStore = create<SubscriptionState>((set, get) => ({
           },
         });
       }
-    } catch {
-      // silently fail  –  usage will default to 0
+    } catch (err) {
+      console.error('[subscription] usage fetch failed:', err);
+      // usage defaults to 0
     }
   },
 

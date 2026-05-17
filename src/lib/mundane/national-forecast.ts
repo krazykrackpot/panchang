@@ -173,7 +173,7 @@ export function computeNationalForecast(
   const natalPlanets = kundali.planets.slice(0, 9).map((p) => ({
     planetId: p.planet.id as number,
     planetName: (p.planet as { id: number; name?: { en: string } }).name?.en ?? `Planet ${p.planet.id}`,
-    sign: Math.floor(normalizeDeg(p.longitude) / 30) + 1,
+    sign: p.sign,
     house: p.house,
     longitude: Math.round(p.longitude * 100) / 100,
   }));

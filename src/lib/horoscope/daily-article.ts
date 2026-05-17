@@ -191,7 +191,7 @@ ${panchang.tithi.name.hi} और ${panchang.nakshatra.name.hi} का संय�
     description,
     body,
     date: dateStr,
-    publishedAt: new Date(year, month - 1, day, 0, 30).toISOString(),
+    publishedAt: new Date(Date.UTC(year, month - 1, day, 0, 30)).toISOString(),
     cityName: city ? c.name : undefined,
   };
 }

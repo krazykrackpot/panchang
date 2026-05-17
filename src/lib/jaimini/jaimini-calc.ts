@@ -179,7 +179,7 @@ export function calculateArudhaPadas(ascSign: number, planets: PlanetPosition[])
     const lord = SIGN_LORD[houseSign];
     // Find lord's sign position
     const lordPlanet = planets.find(p => p.planet.id === lord);
-    const lordSign = lordPlanet ? Math.floor(lordPlanet.longitude / 30) + 1 : houseSign;
+    const lordSign = lordPlanet?.sign ?? houseSign;
     // Count from house sign to lord sign
     const countForward = ((lordSign - houseSign + 12) % 12);
     // Arudha = count same distance from lord sign
@@ -225,7 +225,7 @@ export function calculateCharaDasha(ascSign: number, planets: PlanetPosition[], 
     const sign = ((ascSign - 1 + i) % 12) + 1;
     const lord = SIGN_LORD[sign];
     const lordPlanet = planets.find(p => p.planet.id === lord);
-    const lordSign = lordPlanet ? Math.floor(lordPlanet.longitude / 30) + 1 : sign;
+    const lordSign = lordPlanet?.sign ?? sign;
 
     let years: number;
     if (isOddSign(sign)) {
@@ -266,10 +266,10 @@ export function calculateGrahaArudhas(planets: PlanetPosition[]): GrahaArudha[] 
 
   for (const p of planets) {
     if (p.planet.id >= 7) continue; // Skip Rahu/Ketu
-    const planetSign = Math.floor(p.longitude / 30) + 1;
+    const planetSign = p.sign;
     const lord = SIGN_LORD[planetSign];
     const lordPlanet = planets.find(pl => pl.planet.id === lord);
-    const lordSign = lordPlanet ? Math.floor(lordPlanet.longitude / 30) + 1 : planetSign;
+    const lordSign = lordPlanet?.sign ?? planetSign;
 
     const countForward = ((lordSign - planetSign + 12) % 12);
     let arudhaSign = ((lordSign - 1 + countForward) % 12) + 1;
@@ -328,10 +328,10 @@ export function calculateJaiminiRajayogas(
   const yogas: JaiminiRajayoga[] = [];
   const km = karakamsha.sign;
 
-  // Helper: find planet sign
+  // Helper: find planet sign — use stored .sign, never re-derive from longitude
   const pSign = (id: number) => {
     const p = planets.find(pl => pl.planet.id === id);
-    return p ? Math.floor(p.longitude / 30) + 1 : null;
+    return p?.sign ?? null;
   };
 
   // Get AK and AmK planet ids

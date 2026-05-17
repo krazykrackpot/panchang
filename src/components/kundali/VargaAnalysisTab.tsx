@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { tl } from '@/lib/utils/trilingual';
+import { EXALTATION_SIGNS, DEBILITATION_SIGNS, OWN_SIGNS } from '@/lib/constants/dignities';
 import { lt } from '@/lib/learn/translations';
 import KMSG from '@/messages/pages/kundali-inline.json';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -383,9 +384,7 @@ export default function VargaAnalysisTab({ kundali, locale, headingFont }: {
           vargottama: { en: 'Vargottama  –  same sign in D1 and D9. Considered equal to exaltation strength. This planet\'s results are doubly confirmed.', hi: 'वर्गोत्तम  –  D1 और D9 में एक ही राशि। उच्च बल के समान। इस ग्रह के परिणाम दोहरे निश्चित।' },
         };
 
-        const EXALTATION_SIGNS: Record<number, number> = { 0: 1, 1: 2, 2: 10, 3: 6, 4: 4, 5: 12, 6: 7 };
-        const DEBILITATION_SIGNS: Record<number, number> = { 0: 7, 1: 8, 2: 4, 3: 12, 4: 10, 5: 6, 6: 1 };
-        const OWN_SIGNS: Record<number, number[]> = { 0: [5], 1: [4], 2: [1, 8], 3: [3, 6], 4: [9, 12], 5: [2, 7], 6: [10, 11] };
+        // EXALTATION_SIGNS, DEBILITATION_SIGNS, OWN_SIGNS imported from @/lib/constants/dignities
 
         function getDignity(pid: number, sign: number, isVgm: boolean): string | null {
           if (isVgm) return 'vargottama';

@@ -46,7 +46,8 @@ function getSweph() {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     sweph = eval('require')('sweph');
     sweph.set_sid_mode(sweph.constants.SE_SIDM_LAHIRI, 0, 0);
-  } catch {
+  } catch (err) {
+    console.error('[sweph] Swiss Ephemeris load failed — falling back to Meeus:', err);
     sweph = null;
   }
   return sweph;

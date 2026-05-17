@@ -71,7 +71,7 @@ export function generateVarshaphal(birthData: BirthData, year: number): Varshaph
 
   // 9. Mudda Dasha
   const moonPlanet = varshaphalChart.planets.find(p => p.planet.id === 1)!;
-  const moonNak = getNakshatraNumber(moonPlanet.longitude);
+  const moonNak = moonPlanet.nakshatra?.id ?? getNakshatraNumber(moonPlanet.longitude);
   const nakshatraSpan = 360 / 27;
   const moonDegInNak = moonPlanet.longitude % nakshatraSpan;
   const muddaDasha = calculateMuddaDasha(moonNak, moonDegInNak, srDate);

@@ -4,6 +4,10 @@ import type { LocaleText } from '@/types/panchang';
 
 import type { MetaRule, MatchedPattern, ConvergenceInput, MetaInsight } from './types';
 
+// Module-level name lookups — avoid duplicating inside methods (Lesson Q)
+const _PLANET_NAMES = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu'];
+const _RASHI_NAMES = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
+
 // ─── Helper: Pattern sets by theme ───────────────────────────────────────────
 
 const POSITIVE_PATTERNS: Record<string, string[]> = {
@@ -306,8 +310,8 @@ export const META_RULES: MetaRule[] = [
       return false;
     },
     generate(_patterns, input, _locale): MetaInsight | null {
-      const PLANET_NAMES = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu'];
-      const RASHI_NAMES = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
+      const PLANET_NAMES = _PLANET_NAMES;
+      const RASHI_NAMES = _RASHI_NAMES;
       const transitPlanetIds = getTransitPlanetIds(input);
       for (const planetId of transitPlanetIds) {
         const sav = getSAVForPlanetTransit(input, planetId);
@@ -342,8 +346,8 @@ export const META_RULES: MetaRule[] = [
       return false;
     },
     generate(_patterns, input, _locale): MetaInsight | null {
-      const PLANET_NAMES = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu'];
-      const RASHI_NAMES = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
+      const PLANET_NAMES = _PLANET_NAMES;
+      const RASHI_NAMES = _RASHI_NAMES;
       const transitPlanetIds = getTransitPlanetIds(input);
       for (const planetId of transitPlanetIds) {
         const sav = getSAVForPlanetTransit(input, planetId);

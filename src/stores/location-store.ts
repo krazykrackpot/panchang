@@ -139,7 +139,16 @@ export const useLocationStore = create<LocationState>((set, get) => ({
       async (pos) => {
         const { latitude, longitude } = pos.coords;
         const name = await reverseGeocode(latitude, longitude);
-        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        // Resolve timezone from coordinates, NOT browser — browser TZ can differ from
+        // physical location (VPN, travel, OS misconfiguration). Fallback to browser only
+        // if coordinate-based resolution fails.
+        let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        try {
+          const { resolveCurrentLocationTimezone } = await import('@/lib/utils/timezone');
+          timezone = await resolveCurrentLocationTimezone(latitude, longitude);
+        } catch {
+          // Coordinate-based resolution failed — keep browser fallback
+        }
         saveToStorage(latitude, longitude, name, timezone);
         set({ lat: latitude, lng: longitude, name, timezone, confirmed: true, detecting: false });
       },

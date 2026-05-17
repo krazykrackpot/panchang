@@ -1485,8 +1485,8 @@ export function synthesizeReading(
   let transitData: TransitEntry[] | undefined;
   try {
     transitData = computeCurrentTransits(data.ascendantSign);
-  } catch {
-    // Fall back to natal positions if transit computation fails
+  } catch (err) {
+    console.error('[synthesizer] transit computation failed:', err);
     transitData = undefined;
   }
 
@@ -1570,7 +1570,8 @@ export function synthesizeDomainDeepDive(
   let transitData: TransitEntry[] | undefined;
   try {
     transitData = computeCurrentTransits(data.ascendantSign);
-  } catch {
+  } catch (err) {
+    console.error('[synthesizer] transit computation failed for deep dive:', err);
     transitData = undefined;
   }
 

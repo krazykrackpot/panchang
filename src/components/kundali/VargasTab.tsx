@@ -94,10 +94,8 @@ const VISESHA_LABELS: Record<VargaVisesha, { en: string; hi: string } | null> = 
   none: null,
 };
 
-// Exaltation / debilitation / own sign lookups for dignity checks
-const EXALTATION_SIGNS: Record<number, number> = { 0: 1, 1: 2, 2: 10, 3: 6, 4: 4, 5: 12, 6: 7 };
-const DEBILITATION_SIGNS: Record<number, number> = { 0: 7, 1: 8, 2: 4, 3: 12, 4: 10, 5: 6, 6: 1 };
-const OWN_SIGNS: Record<number, number[]> = { 0: [5], 1: [4], 2: [1, 8], 3: [3, 6], 4: [9, 12], 5: [2, 7], 6: [10, 11] };
+// Import dignity constants — single source of truth (Lesson Q: never duplicate)
+import { EXALTATION_SIGNS, DEBILITATION_SIGNS, OWN_SIGNS } from '@/lib/constants/dignities';
 
 interface VargasTabProps {
   kundali: KundaliData;

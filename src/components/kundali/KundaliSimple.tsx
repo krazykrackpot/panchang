@@ -1,11 +1,11 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import type { KundaliData } from '@/types/kundali';
 import type { CosmicBlueprint } from '@/lib/kundali/archetype-engine';
 import { tl } from '@/lib/utils/trilingual';
-import { GRAHAS } from '@/lib/constants/grahas';
+import { PLANET_NAME_TO_ID } from '@/lib/constants/grahas';
 
 import CosmicIdentityCard from './simple/CosmicIdentityCard';
 import AshramStage from './simple/AshramStage';
@@ -68,11 +68,6 @@ interface DomainScore {
   natalRating: RatingTier;
   currentRating: RatingTier;
 }
-
-/** Planet English name → ID. Uses GRAHAS constant as source of truth. */
-const PLANET_NAME_TO_ID: Record<string, number> = Object.fromEntries(
-  GRAHAS.map(g => [g.name.en, g.id])
-);
 
 function deriveDomainScores(kundali: KundaliData): DomainScore[] {
   const bhavabala = kundali.bhavabala;
@@ -182,6 +177,8 @@ interface Props {
 export default function KundaliSimple({ kundali, blueprint, locale, onSwitchToExpert }: Props) {
   const domainScores = useMemo(() => deriveDomainScores(kundali), [kundali]);
   const [copied, setCopied] = useState(false);
+  const copyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => { if (copyTimerRef.current) clearTimeout(copyTimerRef.current); }, []);
 
   return (
     <motion.div
@@ -228,6 +225,8 @@ export default function KundaliSimple({ kundali, blueprint, locale, onSwitchToEx
             locale={locale}
             onViewRemedies={
               d.rating === 'adhama' || d.rating === 'atyadhama'
+              || d.natalRating === 'adhama' || d.natalRating === 'atyadhama'
+              || d.currentRating === 'adhama' || d.currentRating === 'atyadhama'
                 ? onSwitchToExpert : undefined
             }
           />
@@ -263,7 +262,7 @@ export default function KundaliSimple({ kundali, blueprint, locale, onSwitchToEx
               } else if (typeof navigator !== 'undefined' && navigator.clipboard) {
                 navigator.clipboard.writeText(window.location.href).then(() => {
                   setCopied(true);
-                  setTimeout(() => setCopied(false), 2000);
+                  copyTimerRef.current = setTimeout(() => setCopied(false), 2000);
                 }).catch((err) => {
                   console.error('[KundaliSimple] Clipboard copy failed:', err);
                 });

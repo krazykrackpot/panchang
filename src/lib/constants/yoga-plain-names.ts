@@ -93,7 +93,7 @@ export function getYogaPlainName(yogaId: string, descriptionEn: string, locale: 
       }
     }
   }
-  if (bestVal) return locale === 'hi' ? bestVal.hi : bestVal.en;
+  if (bestVal) return (locale === 'hi' || locale === 'sa') ? bestVal.hi : bestVal.en;
 
   // 3. Fallback: first sentence with technical jargon stripped
   let fallback = descriptionEn.split('.')[0];
@@ -102,5 +102,5 @@ export function getYogaPlainName(yogaId: string, descriptionEn: string, locale: 
     .replace(/\b(lagna|kendra|trikona|dusthana|upachaya)\b/gi, '')
     .replace(/\s{2,}/g, ' ')
     .trim();
-  return fallback || (locale === 'hi' ? 'विशेष संयोजन' : 'Special Combination');
+  return fallback || ((locale === 'hi' || locale === 'sa') ? 'विशेष संयोजन' : 'Special Combination');
 }

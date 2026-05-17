@@ -45,7 +45,10 @@ export default function LearningPath() {
       const firstUncompleted = modules.find(
         (m) => progress[m.id]?.status !== 'mastered'
       );
-      const continueModuleId = firstUncompleted?.id ?? modules[0]?.id ?? '0-1';
+      const continueModule = firstUncompleted ?? modules[0];
+      const continueModuleId = continueModule?.id ?? '0-1';
+      // Standalone pages have href (/learn/grahas), module pages use /learn/modules/X-Y
+      const continueHref = continueModule?.href ?? `/learn/modules/${continueModuleId}`;
 
       let status: 'completed' | 'in-progress' | 'not-started' = 'not-started';
       if (mastered === total && total > 0) {
@@ -61,6 +64,7 @@ export default function LearningPath() {
         percent,
         status,
         continueModuleId,
+        continueHref,
       };
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -235,7 +239,7 @@ export default function LearningPath() {
                   {/* Action button  –  always visible, every phase is accessible */}
                   <div className="flex-shrink-0">
                     <Link
-                      href={`/learn/modules/${phase.continueModuleId}`}
+                      href={phase.continueHref as any}
                       className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${
                         isCompleted
                           ? 'text-emerald-400/70 hover:text-emerald-400 hover:bg-emerald-500/10'

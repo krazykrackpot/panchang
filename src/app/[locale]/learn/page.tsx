@@ -21,7 +21,7 @@ import LearningPath from '@/components/learn/LearningPath';
 import ReviewSession from '@/components/learn/ReviewSession';
 
 // MUST match module-sequence.ts  –  never hardcode these numbers
-import { TOTAL_MODULES, PHASE_INFO } from '@/lib/learn/module-sequence';
+import { TOTAL_MODULES, PHASE_INFO, MODULE_SEQUENCE } from '@/lib/learn/module-sequence';
 const STATS = { modules: TOTAL_MODULES, references: 68, labs: 6, phases: PHASE_INFO.length };
 
 export default function LearnPage() {
@@ -37,7 +37,7 @@ export default function LearnPage() {
   const [showRefs, setShowRefs] = useState(false);
 
   // Item 4: Streak counter from learning progress store
-  const { streak, hydrated, hydrateFromStorage } = useLearningProgressStore();
+  const { streak, hydrated, hydrateFromStorage, getNextModule, progress } = useLearningProgressStore();
   useEffect(() => { hydrateFromStorage(); }, [hydrateFromStorage]);
 
   // Labs
@@ -205,13 +205,29 @@ export default function LearnPage() {
               : 'From the mathematics of planetary orbits to the philosophy of karma and consciousness  –  Jyotish is the eye of the Veda, and this course teaches you to see.'}
           </p>
 
-          {/* Item 1: Start Learning CTA + Item 4: Streak badge */}
+          {/* Item 1: Progress-aware CTA + Item 4: Streak badge */}
           <div className="flex flex-wrap items-center gap-4 mb-8">
-            <Link href="/learn/modules/0-1" className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gold-primary/20 border-2 border-gold-primary/40 text-gold-light text-lg font-bold hover:bg-gold-primary/30 hover:border-gold-primary/60 transition-all">
-              <Sparkles className="w-6 h-6" />
-              {locale === 'hi' ? 'सीखना शुरू करें  –  मॉड्यूल 0.1' : locale === 'ta' ? 'கற்றலைத் தொடங்குங்கள்' : locale === 'bn' ? 'শেখা শুরু করুন' : 'Start Learning  –  Module 0.1'}
-              <ArrowRight className="w-5 h-5" />
-            </Link>
+            {(() => {
+              const nextId = hydrated ? getNextModule() : '0-1';
+              const nextMod = nextId ? MODULE_SEQUENCE.find(m => m.id === nextId) : null;
+              const nextHref = nextMod?.href ?? `/learn/modules/${nextId ?? '0-1'}`;
+              const nextTitle = nextMod ? tl(nextMod.title, locale) : '';
+              const hasMastered = hydrated && Object.values(progress).some(p => p.status === 'mastered');
+              const isEn = locale === 'en' || locale === 'ta' || locale === 'bn';
+              return (
+                <Link href={nextHref as any} className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gold-primary/20 border-2 border-gold-primary/40 text-gold-light text-lg font-bold hover:bg-gold-primary/30 hover:border-gold-primary/60 transition-all">
+                  <Sparkles className="w-6 h-6" />
+                  <span>
+                    {hasMastered
+                      ? (locale === 'hi' ? 'सीखना जारी रखें' : 'Continue Learning')
+                      : (locale === 'hi' ? 'सीखना शुरू करें' : 'Start Learning')
+                    }
+                    {nextTitle && <span className="text-sm font-normal opacity-70 ml-2">— {nextTitle}</span>}
+                  </span>
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+              );
+            })()}
             {hydrated && streak.streakDays > 0 && (
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-400 font-bold">
                 <Flame className="w-5 h-5" />

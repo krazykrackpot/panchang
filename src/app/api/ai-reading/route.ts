@@ -121,6 +121,8 @@ async function extractUserId(
 
 // ─── POST handler ───────────────────────────────────────────────────────────
 
+export const maxDuration = 30; // LLM inference
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();

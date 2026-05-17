@@ -131,6 +131,8 @@ const chatSchema = z.object({
   lng: z.number().optional(),
 });
 
+export const maxDuration = 30; // LLM streaming response
+
 export async function POST(request: Request) {
   // --- Auth (requires valid Supabase session) ---
   const supabase = getServerSupabase();

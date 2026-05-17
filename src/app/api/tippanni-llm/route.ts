@@ -161,6 +161,8 @@ async function extractAuthContext(req: NextRequest): Promise<{ userId: string | 
   return { userId, tier };
 }
 
+export const maxDuration = 30; // LLM inference
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();

@@ -5,32 +5,6 @@
       "destination": "/_next/:asset*"
     }
   ],
-  "functions": {
-    "src/app/api/kundali-report/route.ts": {
-      "maxDuration": 30
-    },
-    "src/app/api/chart-chat/route.ts": {
-      "maxDuration": 30
-    },
-    "src/app/api/tippanni-llm/route.ts": {
-      "maxDuration": 30
-    },
-    "src/app/api/ai-reading/route.ts": {
-      "maxDuration": 30
-    },
-    "src/app/api/panchang-pdf/route.ts": {
-      "maxDuration": 15
-    },
-    "src/app/api/cron/**/*.ts": {
-      "maxDuration": 30
-    },
-    "src/app/api/**/*.ts": {
-      "maxDuration": 10
-    },
-    "src/app/api/**/*.tsx": {
-      "maxDuration": 10
-    }
-  },
   "crons": [
     {
       "path": "/api/cron/generate-notifications",

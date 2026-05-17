@@ -21,6 +21,8 @@ const reportSchema = z.object({
   place: z.string().max(200).optional(),
 });
 
+export const maxDuration = 30; // Heavy HTML report generation
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
 

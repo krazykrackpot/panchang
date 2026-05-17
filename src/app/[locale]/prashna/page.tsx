@@ -143,8 +143,8 @@ export default function PrashnaPage() {
       setKundali(data);
       setAnalysis(analyzePrashna(data, category));
     } catch (e) {
-      console.error('Prashna generation failed:', e);
-      setError(locale === 'hi' ? 'प्रश्न कुण्डली बनाने में त्रुटि। पुनः प्रयास करें।' : 'Failed to generate Prashna chart. Please try again.');
+      console.error('[prashna] generation failed:', e);
+      setError(tl({ en: 'Failed to generate Prashna chart. Please try again.', hi: 'प्रश्न कुण्डली बनाने में त्रुटि। पुनः प्रयास करें।', sa: 'प्रश्नकुण्डलीनिर्माणे त्रुटिः। पुनः प्रयासं कुरुत।' }, locale));
     }
     setLoading(false);
   }, [locale, category, locationStore.lat, locationStore.lng, locationStore.name]);

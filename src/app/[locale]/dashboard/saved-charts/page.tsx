@@ -61,7 +61,7 @@ export default function SavedChartsPage() {
   const handleSave = async () => {
     setFormError('');
     if (!user || !label || !dob || !placeLat || !placeLng) {
-      setFormError(locale === 'hi' ? 'सभी फ़ील्ड भरें' : 'Please fill all fields');
+      setFormError(tl({ en: 'Please fill all fields', hi: 'सभी फ़ील्ड भरें', sa: 'सर्वाणि क्षेत्राणि पूरयतु' }, locale));
       return;
     }
     const supabase = getSupabase();
@@ -98,7 +98,7 @@ export default function SavedChartsPage() {
     });
     if (error) {
       console.error('[saved-charts] insert failed:', error);
-      setFormError(locale === 'hi' ? 'सहेजना विफल। पुनः प्रयास करें।' : 'Save failed. Please try again.');
+      setFormError(tl({ en: 'Save failed. Please try again.', hi: 'सहेजना विफल। पुनः प्रयास करें।', sa: 'सञ्चयनं विफलम्। पुनः प्रयासं कुरुत।' }, locale));
       setSaving(false);
       return;
     }

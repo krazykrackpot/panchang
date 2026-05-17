@@ -41,6 +41,37 @@ self.addEventListener('message', function(event) {
   if (event.data === 'SKIP_WAITING') {
     self.skipWaiting();
   }
+  // PWA offline panchang: prefetch 7 days of panchang for the user's location
+  if (event.data && event.data.type === 'PREFETCH_PANCHANG') {
+    var lat = event.data.lat;
+    var lng = event.data.lng;
+    var tz = event.data.timezone || 'Asia/Kolkata';
+    if (!lat || !lng) return;
+    var today = new Date();
+    var urls = [];
+    for (var i = 0; i < 7; i++) {
+      var d = new Date(today);
+      d.setDate(d.getDate() + i);
+      var y = d.getFullYear(), m = d.getMonth() + 1, day = d.getDate();
+      urls.push('/api/panchang?year=' + y + '&month=' + m + '&day=' + day + '&lat=' + lat + '&lng=' + lng + '&timezone=' + encodeURIComponent(tz));
+    }
+    // Prefetch in background — don't block the main thread
+    caches.open(CPANCH).then(function(cache) {
+      urls.forEach(function(url) {
+        cache.match(new Request(url)).then(function(existing) {
+          if (existing) return; // Already cached, skip
+          fetch(url).then(function(res) {
+            if (res.ok) {
+              var headers = new Headers(res.headers);
+              headers.set('sw-cached-at', String(Date.now()));
+              var cached = new Response(res.body, { status: res.status, statusText: res.statusText, headers: headers });
+              cache.put(new Request(url), cached);
+            }
+          }).catch(function() { /* Prefetch failed silently — not critical */ });
+        });
+      });
+    });
+  }
 });
 
 self.addEventListener('fetch', function(e) {

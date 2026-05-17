@@ -14,9 +14,34 @@ export default function ServiceWorkerRegistrar() {
       window.location.reload();
     };
 
+    // Prefetch 7 days of panchang for offline access once we have a location
+    const triggerPanchangPrefetch = () => {
+      try {
+        const stored = localStorage.getItem('location-store');
+        if (!stored) return;
+        const state = JSON.parse(stored)?.state;
+        if (!state?.lat || !state?.lng) return;
+        navigator.serviceWorker.controller?.postMessage({
+          type: 'PREFETCH_PANCHANG',
+          lat: state.lat,
+          lng: state.lng,
+          timezone: state.timezone || 'Asia/Kolkata',
+        });
+      } catch {
+        // localStorage not available or parse error — not critical
+      }
+    };
+
     navigator.serviceWorker.register('/sw.js').then((reg) => {
       // Check for updates periodically (every 60 min)
       intervalId = setInterval(() => reg.update(), 60 * 60 * 1000);
+
+      // PWA offline panchang: prefetch 7 days once SW is active and we have a location
+      if (navigator.serviceWorker.controller) {
+        triggerPanchangPrefetch();
+      } else {
+        navigator.serviceWorker.addEventListener('controllerchange', triggerPanchangPrefetch, { once: true });
+      }
 
       reg.addEventListener('updatefound', () => {
         const newWorker = reg.installing;

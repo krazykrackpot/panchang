@@ -1743,6 +1743,67 @@ export async function GET(
 
   // ── Placeholder for other card types ────────────────────────────────────────
 
+  // ── Daily Vibe Card ─────────────────────────────────────────────────────
+  if (type === 'daily-vibe') {
+    const vibeTitle = searchParams.get('vibeTitle') ?? 'Cosmic Pulse';
+    const date = searchParams.get('date') ?? new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+    const keyTransit = searchParams.get('keyTransit') ?? '';
+    const energyScore = parseInt(searchParams.get('energyScore') ?? '65', 10);
+    const bestFor = (searchParams.get('bestFor') ?? '').split(',').filter(Boolean).slice(0, 3);
+    const avoid = (searchParams.get('avoid') ?? '').split(',').filter(Boolean).slice(0, 2);
+    const dominantEnergy = searchParams.get('dominantEnergy') ?? 'Balanced';
+
+    const energyColor = energyScore >= 75 ? '#22c55e' : energyScore >= 50 ? '#d4a853' : energyScore >= 30 ? '#f59e0b' : '#ef4444';
+    const isStory = format === 'story';
+
+    return new ImageResponse(
+      (
+        <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: CARD_COLORS.navy, backgroundImage: `radial-gradient(circle at 50% 20%, #1a1f4d 0%, ${CARD_COLORS.navy} 70%)`, padding: isStory ? '60px 40px' : '40px', fontFamily: 'sans-serif', position: 'relative', overflow: 'hidden' }}>
+          {/* Decorative circle */}
+          <div style={{ position: 'absolute', top: -60, right: -60, width: 250, height: 250, borderRadius: '50%', border: `1px solid ${CARD_COLORS.goldDark}22`, display: 'flex' }} />
+
+          {/* Date */}
+          <div style={{ fontSize: 16, color: '#8a8478', letterSpacing: 2, marginBottom: 16, display: 'flex' }}>{date.toUpperCase()}</div>
+
+          {/* Vibe title */}
+          <div style={{ fontSize: isStory ? 52 : 44, fontWeight: 800, color: CARD_COLORS.gold, marginBottom: 12, display: 'flex', textAlign: 'center' }}>{vibeTitle}</div>
+
+          {/* Dominant energy */}
+          <div style={{ fontSize: 20, color: CARD_COLORS.text, marginBottom: 24, display: 'flex' }}>{dominantEnergy} Energy</div>
+
+          {/* Energy bar */}
+          <div style={{ width: '70%', height: 8, backgroundColor: `${CARD_COLORS.goldDark}33`, borderRadius: 4, marginBottom: 8, display: 'flex', position: 'relative' }}>
+            <div style={{ width: `${energyScore}%`, height: '100%', backgroundColor: energyColor, borderRadius: 4, display: 'flex' }} />
+          </div>
+          <div style={{ fontSize: 14, color: energyColor, marginBottom: 28, display: 'flex' }}>{energyScore}% Energy</div>
+
+          {/* Key transit */}
+          {keyTransit && (
+            <div style={{ fontSize: 16, color: '#8a8478', marginBottom: 20, display: 'flex' }}>☽ {keyTransit}</div>
+          )}
+
+          {/* Best for / Avoid */}
+          {bestFor.length > 0 && (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 12 }}>
+              <div style={{ fontSize: 12, color: CARD_COLORS.goldDark, letterSpacing: 1, marginBottom: 6, display: 'flex' }}>BEST FOR</div>
+              <div style={{ fontSize: 16, color: '#22c55e', display: 'flex' }}>{bestFor.join(' · ')}</div>
+            </div>
+          )}
+          {avoid.length > 0 && (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 12 }}>
+              <div style={{ fontSize: 12, color: CARD_COLORS.goldDark, letterSpacing: 1, marginBottom: 6, display: 'flex' }}>AVOID</div>
+              <div style={{ fontSize: 16, color: '#ef4444', display: 'flex' }}>{avoid.join(' · ')}</div>
+            </div>
+          )}
+
+          {/* Watermark */}
+          <div style={{ position: 'absolute', bottom: 20, fontSize: 12, color: '#8a847880', display: 'flex' }}>dekhopanchang.com</div>
+        </div>
+      ),
+      { width, height, headers: { 'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=43200' } }
+    );
+  }
+
   // Human-readable type label for the placeholder
   const typeLabel = type
     .split('-')
@@ -1844,11 +1905,8 @@ export async function GET(
       width,
       height,
       headers: {
-        // Cache birth-poster indefinitely, daily-vibe for 24h, yoga-badge indefinitely
-        'Cache-Control':
-          type === 'daily-vibe'
-            ? 'public, max-age=86400, s-maxage=86400'
-            : 'public, max-age=604800, s-maxage=604800',
+        // Only yoga-badge reaches this fallback now (daily-vibe handled above)
+        'Cache-Control': 'public, max-age=604800, s-maxage=604800',
       },
     }
   );

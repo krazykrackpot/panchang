@@ -192,6 +192,10 @@ const routes = [
   '/calendar/regional/tamil',
   '/calendar/regional/bengali',
   '/calendar/regional/mithila',
+  '/calendar/regional/telugu',
+  '/calendar/regional/malayalam',
+  '/calendar/regional/gujarati',
+  '/calendar/regional/kannada',
   // Tools
   '/tools',
   '/medical-astrology',

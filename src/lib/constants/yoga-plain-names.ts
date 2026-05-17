@@ -76,21 +76,31 @@ export const YOGA_PLAIN_NAMES: Record<string, { en: string; hi: string }> = {
 
 /** Get plain name for a yoga. Falls back to a cleaned-up first sentence. */
 export function getYogaPlainName(yogaId: string, descriptionEn: string, locale: string): string {
+  // 1. Exact match — fast path
   const plain = YOGA_PLAIN_NAMES[yogaId];
   if (plain) return locale === 'hi' ? plain.hi : plain.en;
 
-  // Also check partial matches (e.g., 'daridra-lagna-12' matches 'daridra')
+  // 2. Longest prefix match at a word boundary (hyphen or end of string).
+  //    E.g. "raja-yoga-10th" matches "raja" only if no longer key like "raja-yoga" exists.
+  //    "bhadra-mangala" does NOT match "bhadra" because '-m' is not a match boundary.
+  let bestKey = '';
+  let bestVal: { en: string; hi: string } | null = null;
   for (const [key, val] of Object.entries(YOGA_PLAIN_NAMES)) {
-    if (yogaId.startsWith(key)) return locale === 'hi' ? val.hi : val.en;
+    if (yogaId === key || (yogaId.startsWith(key) && yogaId[key.length] === '-')) {
+      if (key.length > bestKey.length) {
+        bestKey = key;
+        bestVal = val;
+      }
+    }
   }
+  if (bestVal) return locale === 'hi' ? bestVal.hi : bestVal.en;
 
-  // Fallback: first sentence, but strip technical jargon
+  // 3. Fallback: first sentence with technical jargon stripped
   let fallback = descriptionEn.split('.')[0];
-  // Remove house numbers, lord references, lagna mentions
   fallback = fallback
     .replace(/\b\d+(st|nd|rd|th)\s*(house|lord|bhava)/gi, '')
     .replace(/\b(lagna|kendra|trikona|dusthana|upachaya)\b/gi, '')
     .replace(/\s{2,}/g, ' ')
     .trim();
-  return fallback || 'Special Combination';
+  return fallback || (locale === 'hi' ? 'विशेष संयोजन' : 'Special Combination');
 }

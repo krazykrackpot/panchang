@@ -44,7 +44,7 @@ A full-width TarotCard-style card (ornate gold borders, corner flourishes, celes
 
 **Shareability:** This card is designed to be screenshotted. The archetype name ("The Pioneering Sage") becomes the user's identity anchor — shareable on WhatsApp/Instagram stories. The `/api/card/blueprint` endpoint already generates a PNG version of this.
 
-**Data source:** `generateCosmicBlueprint(kundali)` — already computed, currently shown only in the Blueprint tab.
+**Data source:** `generateCosmicBlueprint(kundali)` — already computed, currently shown only in the Blueprint tab. Requires `kundali.fullShadbala` for strength-based archetype selection. If `fullShadbala` is unavailable (simplified chart), falls back to dignity-based archetype (exalted planet → primary archetype).
 
 ### 3.3 Three Individual Tarot Cards — "Your Three Faces"
 
@@ -67,6 +67,8 @@ Each card shows:
 **Archetype sub-names:** Derived from sign characteristics. A lookup table of 12 rashi archetypes + 27 nakshatra archetypes. Not computed — static data, curated for emotional resonance.
 
 **Shareability:** Three-card spread is inherently shareable. Users photograph this layout for Instagram stories. The visual hierarchy (elevated centre card) draws the eye.
+
+**Mobile layout:** On screens <480px, the three cards use a horizontal scroll (swipeable carousel) with snap points — each card snaps to centre. Moon card is the initial scroll position. On desktop, all three are visible side-by-side with the Moon card elevated. The cards must be at least 140px wide (matching existing TarotCard minimum) to remain readable.
 
 ### 3.4 Ashram Stage
 
@@ -96,7 +98,7 @@ Below the rings: domain name, verdict label, and a 3-line explanation:
 - `●` Current: one-line dasha/transit observation
 - `●` Overall: one-line synthesis
 
-**Data source:** `DomainReading.natalPromise.rating`, `DomainReading.currentActivation.overallActivationScore`, `DomainReading.overallRating` — all from the existing domain synthesis engine.
+**Data source:** Domain verdicts computed on mount via `buildDomainVerdicts()` from the AI Pandit context builder (already proven on raw `KundaliData` — no `PersonalReading` dependency). Falls back to the lightweight scorer if the full domain synthesis is unavailable. NOTE: `synthesizePersonalReading()` is NOT available on `KundaliData` — it's computed separately in the dashboard. Simple mode must NOT depend on it.
 
 **Tap interaction:** Tapping a domain card expands it to show the full domain reading (headline, narrative, remedies) inline — no page navigation. This is a lightweight version of the existing Domain Deep Dive.
 
@@ -180,7 +182,7 @@ The only change to `Client.tsx`: none. The parent page (`page.tsx` or a wrapper)
 |---|---|
 | `src/lib/constants/rashi-archetypes.ts` | 12 rashi archetype names + one-liners |
 | `src/lib/constants/nakshatra-archetypes.ts` | 27 nakshatra archetype names + one-liners |
-| `src/lib/constants/yoga-plain-names.ts` | Yoga name → plain language mapping |
+| `src/lib/constants/yoga-plain-names.ts` | Top ~30 yoga name → plain language mapping. Remaining 180+ use generic pattern: yoga description first sentence. |
 | `src/lib/constants/dosha-gentle-text.ts` | Dosha → gentle growth-area text |
 | `src/lib/constants/ashram-data.ts` | 4 ashrams with descriptions + focus areas |
 
@@ -252,15 +254,24 @@ The synthesis card and three-card spread are sized for mobile screenshot (full-w
 
 ---
 
-## 11. Self-Review
+## 11. Loading State
+
+Simple mode computes `generateCosmicBlueprint()` and `buildDomainVerdicts()` on mount (~50-100ms on mobile). During computation, render a skeleton shimmer matching the card layout — gold-gradient pulse on dark background. The shimmer layout mirrors the final layout (hero card shape, three card shapes, four ring shapes) so there's no layout shift when data arrives.
+
+---
+
+## 12. Self-Review
 
 1. **Placeholder scan:** No TBDs. All sections fully specified. Data sources identified for every component.
-2. **Internal consistency:** Simple mode renders from the same `KundaliData` that Expert mode uses. No new computation needed — all data (archetypes, domain synthesis, dashas, yogas, doshas) is already computed by `generateKundali()`.
+2. **Internal consistency:** Simple mode renders from `KundaliData` (same as Expert). Domain verdicts use `buildDomainVerdicts()` from AI Pandit context builder — does NOT depend on `PersonalReading` (which is dashboard-only). Archetype uses `generateCosmicBlueprint()` with `fullShadbala` fallback documented.
 3. **Scope check:** Focused on Simple mode only. Dashboard is explicitly deferred. Expert mode is explicitly untouched.
 4. **Ambiguity check:**
-   - "Archetype sub-names for rashis/nakshatras" — these are static curated strings in lookup tables, not computed. Clear.
-   - "Plain language yoga names" — static mapping table, not dynamic translation. Clear.
-   - "Age-based ashram" — simple arithmetic from birth date. No edge cases (0-25, 25-50, 50-75, 75+). Clear.
+   - "Archetype sub-names for rashis/nakshatras" — static curated strings in lookup tables, not computed. Clear.
+   - "Plain language yoga names" — top 30 mapped explicitly, rest use first sentence of description. Clear.
+   - "Age-based ashram" — simple arithmetic from birth date. Clear.
+   - "Three-card mobile layout" — swipeable carousel on <480px, side-by-side on desktop. Clear.
 5. **Risk check:** The only modification to existing code is the conditional render in the parent page. If Simple mode has bugs, toggling to Expert gives the user the full working page immediately. Zero regression risk.
 6. **Engagement check:** Every section has a clear engagement purpose — identity anchoring (hero card), emotional resonance (three cards), actionable guidance (ashram), visual comprehension (rings), temporal orientation (timeline), positive reinforcement (strengths), and growth framing (not-scary doshas).
 7. **Shareability check:** The hero card and three-card spread are explicitly designed for mobile screenshot sharing. Gold-on-dark aesthetic is OLED-optimised. Archetype names are identity labels users will adopt ("I'm a Pioneering Sage").
+8. **Loading state:** Skeleton shimmer specified (§11) — prevents layout shift, matches final card shapes.
+9. **Data dependency check:** No dependency on `PersonalReading`, `synthesizePersonalReading()`, or any dashboard-only computation. Simple mode works with raw `KundaliData` from `generateKundali()` alone.

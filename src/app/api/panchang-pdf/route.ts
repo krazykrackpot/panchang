@@ -39,6 +39,8 @@ interface DayRow {
   isPanchak: boolean;
 }
 
+export const maxDuration = 15; // PDF generation
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
 

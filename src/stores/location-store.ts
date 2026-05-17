@@ -21,7 +21,13 @@ interface LocationState {
   setLocation: (lat: number, lng: number, name: string, timezone?: string) => void;
   setTimezone: (tz: string) => void;
   setDetecting: (v: boolean) => void;
+  resolveNameIfNeeded: () => void;
   detect: () => void;
+}
+
+/** Check if a name looks like raw coordinates (e.g. "46.47°, 6.83°") rather than a place name */
+function isCoordinateName(name: string): boolean {
+  return /^\d+\.\d+°?\s*,\s*\d+\.\d+°?$/.test(name.trim());
 }
 
 function loadFromStorage(): StoredLocation | null {
@@ -73,6 +79,29 @@ export const useLocationStore = create<LocationState>((set, get) => ({
   },
 
   setDetecting: (v) => set({ detecting: v }),
+
+  /** Re-resolve a coordinate-style name to a proper place name */
+  resolveNameIfNeeded: () => {
+    const state = get();
+    if (!state.confirmed || state.lat === null || state.lng === null) return;
+    if (!isCoordinateName(state.name)) return;
+    // Name looks like raw coords — re-resolve via Nominatim
+    (async () => {
+      try {
+        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${state.lat}&lon=${state.lng}&zoom=10`);
+        const data = await res.json();
+        const city = data.address?.city || data.address?.town || data.address?.village || '';
+        const country = data.address?.country || '';
+        const name = [city, country].filter(Boolean).join(', ');
+        if (name) {
+          saveToStorage(state.lat!, state.lng!, name, state.timezone);
+          set({ name });
+        }
+      } catch (err) {
+        console.error('[location-store] re-resolve failed:', err);
+      }
+    })();
+  },
 
   detect: () => {
     if (get().confirmed || get().detecting) return;

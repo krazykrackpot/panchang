@@ -90,7 +90,10 @@ export default function Navbar() {
   useEffect(() => { setHydrated(true); }, []);
 
   // Auto-detect location on mount (skip if already set  –  detect() also guards internally)
-  useEffect(() => { if (!locationStore.lat) locationStore.detect(); }, []);
+  useEffect(() => {
+    if (!locationStore.lat) locationStore.detect();
+    else locationStore.resolveNameIfNeeded(); // fix stale coordinate-style names
+  }, []);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {

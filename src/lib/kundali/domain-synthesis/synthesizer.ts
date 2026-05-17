@@ -1116,14 +1116,16 @@ function evaluateSignificatorsHolistic(
     const auspiciousYogas = domainYogas.filter(y => y.isAuspicious);
     const inauspiciousYogas = domainYogas.filter(y => !y.isAuspicious);
 
+    // Strength → tier mapping
+    const YOGA_STR_TIER: Record<string, number> = { Strong: 3, Moderate: 2, Weak: 1 };
+
     if (auspiciousYogas.length > 0) {
       // Phase 4-5: Yoga tier varies by strength (not always tier 3).
       // Strong yoga = tier 3, Moderate = tier 2, Weak = tier 1.
       // Diminishing returns: first 3 at full weight, rest at half.
-      const YOGA_STRENGTH_TIER: Record<string, number> = { Strong: 3, Moderate: 2, Weak: 1 };
       for (let i = 0; i < auspiciousYogas.length; i++) {
         const y = auspiciousYogas[i];
-        const tier = YOGA_STRENGTH_TIER[y.strength] ?? 2;
+        const tier = YOGA_STR_TIER[y.strength] ?? 2;
         const w = i < 3 ? y.domainImpactWeight : y.domainImpactWeight * 0.5;
         tierValues.push({ tier, weight: w });
       }
@@ -1154,23 +1156,25 @@ function evaluateSignificatorsHolistic(
     }
 
     if (inauspiciousYogas.length > 0) {
-      // Phase 4-5: Dosha tier varies by strength.
-      // Strong dosha = tier 0, Moderate = tier 0, Weak = tier 1 (mild).
-      // Diminishing returns: first 2 at full weight, rest at half.
-      for (let i = 0; i < inauspiciousYogas.length; i++) {
-        const y = inauspiciousYogas[i];
+      // Phase 4-5: Split into active vs cancelled doshas FIRST.
+      // Cancelled doshas should NOT contribute to tierValues at all.
+      const activeDoshas = inauspiciousYogas.filter(y => !y.cancellationStatus?.anyCancelled);
+      const cancelledDoshas = inauspiciousYogas.filter(y => y.cancellationStatus?.anyCancelled);
+
+      // Only active (non-cancelled) doshas affect the score.
+      // Strong/Moderate dosha = tier 0, Weak = tier 1 (mild).
+      for (let i = 0; i < activeDoshas.length; i++) {
+        const y = activeDoshas[i];
         const tier = y.strength === 'Weak' ? 1 : 0;
         const w = i < 2 ? y.domainImpactWeight : y.domainImpactWeight * 0.5;
         tierValues.push({ tier, weight: w });
       }
-      // Phase 5: Context-aware summaries with cancellation reporting
-      const details = inauspiciousYogas.map(y => {
+
+      // Phase 5: Context-aware summaries for active doshas
+      const activeDetails = activeDoshas.map(y => {
         const baseSummary = (y.description.en ?? '').split(/[.।]/)[0].trim();
         const parts: string[] = [baseSummary];
-        // Cancellation/mitigation reporting
-        if (y.cancellationStatus?.anyCancelled) {
-          parts.push('— CANCELLED (conditions met, no longer active)');
-        } else if (y.cancellationStatus?.details.some(d => d.effect === 'weaken' && d.cancelled)) {
+        if (y.cancellationStatus?.details.some(d => d.effect === 'weaken' && d.cancelled)) {
           const reasons = y.cancellationStatus.details
             .filter(d => d.effect === 'weaken' && d.cancelled)
             .map(d => d.reason).join('; ');
@@ -1179,8 +1183,7 @@ function evaluateSignificatorsHolistic(
         if (y.strength === 'Weak') parts.push('(mild)');
         return { id: y.id, name: y.name.en, summary: parts.join(' ') };
       });
-      // Filter out fully cancelled doshas from the display
-      const activeDetails = details.filter(d => !d.summary.includes('CANCELLED'));
+
       if (activeDetails.length > 0) {
         const names = activeDetails.slice(0, 2).map(d => d.name);
         const more = activeDetails.length > 2 ? ` (+${activeDetails.length - 2} more)` : '';
@@ -1189,6 +1192,16 @@ function evaluateSignificatorsHolistic(
           verdict: 'negative',
           value: `${names.join(', ')}${more}`,
           yogaDetails: activeDetails,
+        });
+      }
+
+      // Note cancelled doshas as positive (they're neutralised)
+      if (cancelledDoshas.length > 0) {
+        const cancelNames = cancelledDoshas.map(y => y.name.en);
+        factors.push({
+          label: { en: 'Cancelled Doshas', hi: 'निरस्त दोष' },
+          verdict: 'positive',
+          value: `${cancelNames.join(', ')} — conditions for cancellation are met`,
         });
       }
     }
@@ -1245,11 +1258,14 @@ function evaluateSignificatorsHolistic(
   const lordTiers = tierValues.filter(v => v.weight >= 2);
   const primaryLordTier = lordTiers.length > 0 ? lordTiers[0].tier : 2;
 
-  // Step 2: Yoga boost — multiple auspicious yogas for this domain upgrade the tier
-  const yogaTiers = tierValues.filter(v => v.tier === 3 && v.weight < 2); // yoga entries
-  const doshaTiers = tierValues.filter(v => v.tier === 0 && v.weight < 2); // dosha entries
-  const yogaBoost = yogaTiers.length >= 3 ? 1 : 0;   // 3+ yogas → +1 tier
-  const doshaPenalty = doshaTiers.length >= 2 ? 1 : 0; // 2+ doshas → -1 tier
+  // Step 2: Yoga boost / dosha penalty.
+  // Yoga entries: tier >= 1 and weight < 2 (lords have weight >= 2).
+  // Only count Strong/Moderate yogas (tier >= 2) for the boost — Weak yogas don't boost.
+  // Dosha entries: tier <= 1 and weight < 2.
+  const yogaEntries = tierValues.filter(v => v.tier >= 2 && v.weight < 2);
+  const doshaEntries = tierValues.filter(v => v.tier <= 1 && v.weight < 2);
+  const yogaBoost = yogaEntries.length >= 3 ? 1 : 0;    // 3+ strong/moderate yogas → +1 tier
+  const doshaPenalty = doshaEntries.length >= 2 ? 1 : 0; // 2+ active doshas → -1 tier
 
   // Step 3: Combine.
   // Dosha penalty cannot push below Adhama (tier 1). Atyadhama is reserved

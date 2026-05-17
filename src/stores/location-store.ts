@@ -21,13 +21,7 @@ interface LocationState {
   setLocation: (lat: number, lng: number, name: string, timezone?: string) => void;
   setTimezone: (tz: string) => void;
   setDetecting: (v: boolean) => void;
-  resolveNameIfNeeded: () => void;
   detect: () => void;
-}
-
-/** Check if a name looks like raw coordinates (e.g. "46.47°, 6.83°") rather than a place name */
-function isCoordinateName(name: string): boolean {
-  return /^\d+\.\d+°?\s*,\s*\d+\.\d+°?$/.test(name.trim());
 }
 
 function loadFromStorage(): StoredLocation | null {
@@ -51,6 +45,26 @@ function saveToStorage(lat: number, lng: number, name: string, timezone: string 
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ lat, lng, name, timezone }));
   } catch {
     // ignore storage errors
+  }
+}
+
+/**
+ * Reverse geocode lat/lng to a human-readable place name.
+ * Returns a proper name ("Vevey, Switzerland") or empty string on failure.
+ * NEVER returns coordinates as a name — that was the root cause of the
+ * "46.47°, 6.83°" bug in the navbar.
+ */
+async function reverseGeocode(lat: number, lng: number): Promise<string> {
+  try {
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=10`
+    );
+    const data = await res.json();
+    const city = data.address?.city || data.address?.town || data.address?.village || '';
+    const country = data.address?.country || '';
+    return [city, country].filter(Boolean).join(', ');
+  } catch {
+    return '';
   }
 }
 
@@ -80,52 +94,33 @@ export const useLocationStore = create<LocationState>((set, get) => ({
 
   setDetecting: (v) => set({ detecting: v }),
 
-  /** Re-resolve a coordinate-style name to a proper place name */
-  resolveNameIfNeeded: () => {
-    const state = get();
-    if (!state.confirmed || state.lat === null || state.lng === null) return;
-    if (!isCoordinateName(state.name)) return;
-    // Name looks like raw coords — re-resolve via Nominatim
-    (async () => {
-      try {
-        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${state.lat}&lon=${state.lng}&zoom=10`);
-        const data = await res.json();
-        const city = data.address?.city || data.address?.town || data.address?.village || '';
-        const country = data.address?.country || '';
-        const name = [city, country].filter(Boolean).join(', ');
+  detect: () => {
+    if (get().detecting) return;
+
+    // If we already have lat/lng but name is missing or looks like raw
+    // coordinates (e.g. "46.47°, 6.83°" from a previous geocode failure),
+    // re-resolve via Nominatim
+    const current = get();
+    const nameIsMissing = !current.name || /^\d+\.\d+°?\s*,\s*\d+\.\d+°?$/.test(current.name.trim());
+    if (current.confirmed && current.lat !== null && current.lng !== null && nameIsMissing) {
+      (async () => {
+        const name = await reverseGeocode(current.lat!, current.lng!);
         if (name) {
-          saveToStorage(state.lat!, state.lng!, name, state.timezone);
+          saveToStorage(current.lat!, current.lng!, name, current.timezone);
           set({ name });
         }
-      } catch (err) {
-        console.error('[location-store] re-resolve failed:', err);
-      }
-    })();
-  },
+      })();
+      return;
+    }
 
-  detect: () => {
-    if (get().confirmed || get().detecting) return;
+    if (current.confirmed) return;
     set({ detecting: true });
-
-    const reverseGeocode = async (lat: number, lng: number): Promise<string> => {
-      try {
-        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=10`);
-        const data = await res.json();
-        const city = data.address?.city || data.address?.town || data.address?.village || '';
-        const country = data.address?.country || '';
-        return [city, country].filter(Boolean).join(', ') || `${lat.toFixed(2)}°, ${lng.toFixed(2)}°`;
-      } catch {
-        return `${lat.toFixed(2)}°, ${lng.toFixed(2)}°`;
-      }
-    };
 
     const fromIP = async () => {
       try {
         const res = await fetch('https://ipapi.co/json/');
         const data = await res.json();
         if (data.latitude && data.longitude) {
-          // Use reverseGeocode on the actual coordinates  –  IP data.city often mismatches
-          // the lat/lng (ISP routing points can be hundreds of km from the user's city)
           const name = await reverseGeocode(data.latitude, data.longitude);
           const timezone = data.timezone || (typeof window !== 'undefined' ? Intl.DateTimeFormat().resolvedOptions().timeZone : null);
           saveToStorage(data.latitude, data.longitude, name, timezone);
@@ -149,7 +144,7 @@ export const useLocationStore = create<LocationState>((set, get) => ({
         set({ lat: latitude, lng: longitude, name, timezone, confirmed: true, detecting: false });
       },
       () => fromIP(),
-      { timeout: 8000 }
+      { timeout: 8000 },
     );
   },
 }));

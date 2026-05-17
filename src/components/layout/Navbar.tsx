@@ -89,11 +89,9 @@ export default function Navbar() {
   // Mark as hydrated after mount to avoid SSR/client mismatch
   useEffect(() => { setHydrated(true); }, []);
 
-  // Auto-detect location on mount (skip if already set  –  detect() also guards internally)
-  useEffect(() => {
-    if (!locationStore.lat) locationStore.detect();
-    else locationStore.resolveNameIfNeeded(); // fix stale coordinate-style names
-  }, []);
+  // Auto-detect location on mount — detect() handles both fresh detection
+  // and re-resolving empty/missing names for already-confirmed locations
+  useEffect(() => { locationStore.detect(); }, []);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {

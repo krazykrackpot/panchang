@@ -35,7 +35,8 @@ const LABELS = {
 
 function t(key: keyof typeof LABELS, locale: Locale): string {
   const entry = LABELS[key];
-  return !isDevanagariLocale(locale) ? entry.en : entry.hi;
+  // Use the locale's own key if present; fall back to English
+  return (entry as Record<string, string>)[locale] ?? entry.en;
 }
 
 // ── Streak fire icons ─────────────────────────────────────────────────────────

@@ -12,7 +12,7 @@ interface AuthState {
   initialize: () => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<{ error?: string }>;
   signUpWithEmail: (email: string, password: string, name?: string) => Promise<{ error?: string }>;
-  signInWithGoogle: () => Promise<void>;
+  signInWithGoogle: () => Promise<{ error?: string }>;
   resetPassword: (email: string) => Promise<{ error?: string }>;
   signOut: () => Promise<void>;
 }
@@ -95,8 +95,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   signInWithGoogle: async () => {
     const supabase = getSupabase();
     if (!supabase) {
-      console.error('Supabase not configured');
-      return;
+      console.error('[Auth] signInWithGoogle: Supabase not configured');
+      return { error: 'Auth not configured' };
     }
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
@@ -105,12 +105,13 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       },
     });
     if (error) {
-      console.error('Google sign-in error:', error.message);
-      return;
+      console.error('[Auth] signInWithGoogle failed:', error.message);
+      return { error: error.message };
     }
     if (data?.url) {
       window.location.href = data.url;
     }
+    return {};
   },
 
   signOut: async () => {

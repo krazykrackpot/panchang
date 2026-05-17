@@ -1068,7 +1068,7 @@ export default function KundaliClient() {
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
                 {locale === 'en' || isTamil ? 'Edit Details' : isDevanagari ? 'विवरण सम्पादित करें' : 'विवरणं सम्पादयतु'}
               </button>
-              {user && (
+              {user ? (
                 <button
                   onClick={handleSaveChart}
                   disabled={saving || saved}
@@ -1085,6 +1085,14 @@ export default function KundaliClient() {
                       ? (locale === 'en' || isTamil ? 'Saving...' : 'सहेज रहे...')
                       : (locale === 'en' || isTamil ? 'Save Chart' : 'चार्ट सहेजें')
                   }
+                </button>
+              ) : (
+                <button
+                  onClick={() => { window.dispatchEvent(new CustomEvent('open-auth-modal')); }}
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
+                >
+                  <Save className="w-4 h-4" />
+                  {locale === 'en' || isTamil ? 'Sign in to Save' : 'सहेजने के लिए साइन इन करें'}
                 </button>
               )}
               <button
@@ -1124,7 +1132,7 @@ export default function KundaliClient() {
               <ShareButton
                 title={`${kundali.birthData.name || 'Kundali'}  –  Birth Chart`}
                 text={`${kundali.birthData.name ? kundali.birthData.name + "'s Kundali" : 'Kundali'}  –  ${tl(kundali.ascendant.signName, locale)} ${locale === 'en' || isTamil ? 'Lagna' : 'लग्न'}, ${tl(kundali.planets.find(p => p.planet.id === 1)?.signName, locale) || ''} ${locale === 'en' || isTamil ? 'Moon' : 'चन्द्र'} | dekhopanchang.com`}
-                url={`https://dekhopanchang.com/${locale}/kundali`}
+                url={`https://dekhopanchang.com/${locale}/kundali?n=${encodeURIComponent(kundali.birthData.name || '')}&d=${encodeURIComponent(kundali.birthData.date)}&t=${encodeURIComponent(kundali.birthData.time)}&lat=${kundali.birthData.lat}&lng=${kundali.birthData.lng}&tz=${encodeURIComponent(kundali.birthData.timezone)}&p=${encodeURIComponent(kundali.birthData.place || '')}`}
                 locale={locale as Locale}
               />
               <button
@@ -3727,7 +3735,7 @@ export default function KundaliClient() {
               el.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
           }}
-          className="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-4 py-3 rounded-full bg-cyan-600/90 text-white text-sm font-semibold shadow-lg shadow-cyan-500/20 hover:bg-cyan-500 transition-all hover:scale-105 backdrop-blur-sm"
+          className="fixed bottom-20 right-6 z-40 flex items-center gap-2 px-4 py-3 rounded-full bg-cyan-600/90 text-white text-sm font-semibold shadow-lg shadow-cyan-500/20 hover:bg-cyan-500 transition-all hover:scale-105 backdrop-blur-sm"
           aria-label="Ask Your Chart"
         >
           <MessageCircle size={18} />

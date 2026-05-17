@@ -99,7 +99,11 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         {mode !== 'forgot' && (
           <>
             <button
-              onClick={signInWithGoogle}
+              onClick={async () => {
+                setError('');
+                const result = await signInWithGoogle();
+                if (result?.error) setError(result.error);
+              }}
               className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gold-primary/20 rounded-xl text-text-primary hover:bg-gold-primary/10 transition-all mb-6"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">

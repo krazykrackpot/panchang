@@ -158,12 +158,14 @@ export default function Navbar() {
                     <Link
                       href="/dashboard"
                       className={`text-gold-light hover:text-gold-primary transition-all duration-200 text-sm font-semibold whitespace-nowrap ${hydrated && user ? 'opacity-100' : 'opacity-0 pointer-events-none w-0 overflow-hidden'}`}
+                      {...(!(hydrated && user) ? { 'aria-hidden': true, tabIndex: -1 } : {})}
                     >
                       {locale === 'sa' ? 'मम पटलम्' : msg('dashboard', locale)}
                     </Link>
                     <Link
                       href="/dashboard/family"
                       className={`text-gold-light/70 hover:text-gold-primary transition-all duration-200 text-sm whitespace-nowrap ${hydrated && user ? 'opacity-100' : 'opacity-0 pointer-events-none w-0 overflow-hidden'}`}
+                      {...(!(hydrated && user) ? { 'aria-hidden': true, tabIndex: -1 } : {})}
                     >
                       {tl({ en: 'Family', hi: 'परिवार', sa: 'कुटुम्बम्', ta: 'குடும்பம்', bn: 'পরিবার', te: 'కుటుంబం', gu: 'કુટુંબ', kn: 'ಕುಟುಂಬ', mr: 'कुटुंब', mai: 'परिवार' }, locale)}
                     </Link>

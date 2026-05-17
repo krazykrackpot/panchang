@@ -13,12 +13,10 @@ interface Props {
 
 const STRENGTH_ORDER: Record<string, number> = { Strong: 0, Moderate: 1, Weak: 2 };
 
-/** Strip house numbers, lord references, and heavy jargon from descriptions */
+/** Keep first 2 sentences but don't strip technical terms — they appear in proper names */
 function simplifyDescription(desc: string): string {
   return desc
     .split('.').slice(0, 2).join('.')
-    .replace(/\b\d+(st|nd|rd|th)\s*(house|lord|bhava)/gi, '')
-    .replace(/\b(lagna|kendra|trikona|dusthana|upachaya)\s*(lord)?/gi, '')
     .replace(/\s{2,}/g, ' ')
     .trim() + '.';
 }

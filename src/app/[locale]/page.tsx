@@ -10,7 +10,7 @@ import { getHeadingFont, getBodyFont, isDevanagariLocale } from '@/lib/utils/loc
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { generateDailyNarrative } from '@/lib/panchang/daily-narrative';
-import { CheckCircle, XCircle, Clock, Zap } from 'lucide-react';
+import { CheckCircle, XCircle, Clock, Zap, BookOpen } from 'lucide-react';
 import type { PanchangData } from '@/types/panchang';
 
 // NO revalidate here  –  page uses headers() for geo-location.
@@ -597,7 +597,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
         <Link href="/learn/modules/0-1" className="block rounded-2xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/15 p-5 hover:border-gold-primary/30 transition-all group">
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full bg-gold-primary/15 flex items-center justify-center shrink-0 text-gold-primary text-lg">?</div>
+            <div className="w-10 h-10 rounded-full bg-gold-primary/15 flex items-center justify-center shrink-0 text-gold-primary"><BookOpen size={20} /></div>
             <div className="flex-1 min-w-0">
               <p className="text-gold-light text-sm font-bold group-hover:text-gold-primary transition-colors">
                 {L({ en: 'New to Vedic Astrology? Start here', hi: 'वैदिक ज्योतिष में नए हैं? यहाँ से शुरू करें', ta: 'வேத ஜோதிடத்தில் புதியவரா?', bn: 'বৈদিক জ্যোতিষে নতুন?' }, locale)}

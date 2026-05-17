@@ -6,12 +6,6 @@
     }
   ],
   "functions": {
-    "src/app/api/**/*.ts": {
-      "maxDuration": 10
-    },
-    "src/app/api/**/*.tsx": {
-      "maxDuration": 10
-    },
     "src/app/api/kundali-report/route.ts": {
       "maxDuration": 30
     },
@@ -29,6 +23,12 @@
     },
     "src/app/api/cron/**/*.ts": {
       "maxDuration": 30
+    },
+    "src/app/api/**/*.ts": {
+      "maxDuration": 10
+    },
+    "src/app/api/**/*.tsx": {
+      "maxDuration": 10
     }
   },
   "crons": [

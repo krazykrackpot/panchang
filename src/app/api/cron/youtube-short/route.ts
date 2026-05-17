@@ -3,6 +3,8 @@ import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { generateDailyShort } from '@/lib/youtube/generate-short';
 import { uploadToYouTube } from '@/lib/youtube/upload';
 
+export const maxDuration = 30; // Cron job — email/notification/sync tasks
+
 /**
  * Cron endpoint: generates and uploads a daily panchang YouTube Short.
  *

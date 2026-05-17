@@ -5,6 +5,8 @@ import { computePersonalTransits, type PersonalTransit } from '@/lib/transit/per
 import { sendPushToUser } from '@/lib/push/send-push';
 import type { DomainType } from '@/lib/kundali/domain-synthesis/types';
 
+export const maxDuration = 30; // Cron job — email/notification/sync tasks
+
 // ---------------------------------------------------------------------------
 // House → Domain mapping (which Personal Pandit domain each house activates)
 // A house can map to multiple domains; listed in priority order.

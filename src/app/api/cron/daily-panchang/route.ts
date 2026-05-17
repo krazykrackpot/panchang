@@ -11,6 +11,8 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { getVratType } from '@/lib/constants/vrat-types';
 
+export const maxDuration = 30; // Cron job — email/notification/sync tasks
+
 /**
  * Cron endpoint: sends daily panchang email to all opted-in users.
  * Triggered by Vercel Cron or external scheduler.

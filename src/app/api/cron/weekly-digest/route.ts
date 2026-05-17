@@ -8,6 +8,8 @@ import { computeTransitAlerts } from '@/lib/personalization/transit-alerts';
 import type { UserSnapshot } from '@/lib/personalization/types';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 
+export const maxDuration = 30; // Cron job — email/notification/sync tasks
+
 // Runs every Monday at 6 AM UTC
 export async function GET(req: Request) {
   try {

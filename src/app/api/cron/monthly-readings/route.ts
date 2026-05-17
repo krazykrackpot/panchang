@@ -4,6 +4,8 @@ import { getServerSupabase } from '@/lib/supabase/server';
 import { synthesizeReading } from '@/lib/kundali/domain-synthesis/synthesizer';
 import type { KundaliData, DashaEntry } from '@/types/kundali';
 
+export const maxDuration = 30; // Cron job — email/notification/sync tasks
+
 // ---------------------------------------------------------------------------
 // GET /api/cron/monthly-readings
 // Called by Vercel Cron on the 1st of each month at 2 AM UTC.

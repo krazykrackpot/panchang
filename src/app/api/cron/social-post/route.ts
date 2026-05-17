@@ -10,6 +10,8 @@ import { YOGAS } from '@/lib/constants/yogas';
 import { TRANSIT_ARTICLES } from '@/lib/content/transit-articles';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 
+export const maxDuration = 30; // Cron job — email/notification/sync tasks
+
 /**
  * Cron endpoint: posts daily panchang to Twitter/X.
  * Triggered by Vercel Cron at 00:30 UTC (06:00 IST).

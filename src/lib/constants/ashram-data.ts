@@ -78,9 +78,19 @@ export const ASHRAMS: AshramInfo[] = [
 ];
 
 export function getAshram(birthDate: string): AshramInfo {
-  // Parse birth date parts to avoid UTC vs local timezone mismatch (Lesson L)
+  // Parse YYYY-MM-DD without new Date() to avoid UTC vs local mismatch (Lesson L).
+  // Guard against non-standard formats: if split produces NaN, fall back to Date parsing.
+  let birthYear: number, birthMonth: number, birthDay: number;
   const parts = birthDate.split('-').map(Number);
-  const birthYear = parts[0], birthMonth = parts[1], birthDay = parts[2];
+  if (parts.length >= 3 && !parts.some(isNaN)) {
+    [birthYear, birthMonth, birthDay] = parts;
+  } else {
+    // Fallback for ISO datetime strings or other formats
+    const d = new Date(birthDate);
+    birthYear = d.getUTCFullYear();
+    birthMonth = d.getUTCMonth() + 1;
+    birthDay = d.getUTCDate();
+  }
   const now = new Date();
   let age = now.getFullYear() - birthYear;
   const monthDiff = (now.getMonth() + 1) - birthMonth;

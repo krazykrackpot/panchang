@@ -78,7 +78,7 @@ export const YOGA_PLAIN_NAMES: Record<string, { en: string; hi: string }> = {
 export function getYogaPlainName(yogaId: string, descriptionEn: string, locale: string): string {
   // 1. Exact match — fast path
   const plain = YOGA_PLAIN_NAMES[yogaId];
-  if (plain) return locale === 'hi' ? plain.hi : plain.en;
+  if (plain) return (locale === 'hi' || locale === 'sa') ? plain.hi : plain.en;
 
   // 2. Longest prefix match at a word boundary (hyphen or end of string).
   //    E.g. "raja-yoga-10th" matches "raja" only if no longer key like "raja-yoga" exists.

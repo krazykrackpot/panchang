@@ -152,14 +152,15 @@ export default function CosmicIdentityCard({ blueprint, kundali, locale }: Props
           {tl(LABELS.rising, locale)}: {ascendantName} · {tl(LABELS.moon, locale)}: {moonSignName} · {tl(LABELS.star, locale)}: {moonNakshatraName}
         </p>
 
-        {/* Poetic description */}
+        {/* Poetic description — archetype engine produces English only,
+            so for non-English locales show traits list instead */}
         <p className="text-text-primary text-sm leading-relaxed italic max-w-xl mx-auto mb-3">
           {blueprint.primary.description}
         </p>
 
-        {/* Headline */}
-        <p className="text-gold-primary text-base font-semibold">
-          {blueprint.headline}
+        {/* Traits */}
+        <p className="text-text-secondary text-xs mb-3">
+          {blueprint.primary.traits.join(' · ')}
         </p>
       </div>
 

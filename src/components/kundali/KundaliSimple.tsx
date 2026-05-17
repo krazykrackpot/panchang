@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import type { KundaliData } from '@/types/kundali';
 import type { CosmicBlueprint } from '@/lib/kundali/archetype-engine';
@@ -29,15 +29,13 @@ interface SimpleDomain {
 }
 
 const DOMAINS: SimpleDomain[] = [
-  { key: 'career',   label: { en: 'Career',        hi: 'करियर',    sa: 'वृत्तिः' },   houses: [10, 6, 2] },
-  { key: 'marriage', label: { en: 'Relationships',  hi: 'संबंध',    sa: 'सम्बन्धाः' }, houses: [7, 5, 11] },
-  { key: 'health',   label: { en: 'Health',         hi: 'स्वास्थ्य', sa: 'आरोग्यम्' },  houses: [1, 8, 12] },
-  { key: 'wealth',   label: { en: 'Wealth',         hi: 'धन',       sa: 'धनम्' },       houses: [2, 11, 9] },
+  // No house appears in more than one domain — prevents double-counting bhavabala.
+  // BPHS primary houses per domain:
+  { key: 'career',   label: { en: 'Career',        hi: 'करियर',    sa: 'वृत्तिः' },   houses: [10, 6, 3] },  // 10=Karma, 6=service/daily work, 3=skills/effort
+  { key: 'marriage', label: { en: 'Relationships',  hi: 'संबंध',    sa: 'सम्बन्धाः' }, houses: [7, 5, 4] },   // 7=partnerships, 5=romance, 4=domestic happiness
+  { key: 'health',   label: { en: 'Health',         hi: 'स्वास्थ्य', sa: 'आरोग्यम्' },  houses: [1, 8, 12] },  // 1=body, 8=longevity, 12=hospitalisation
+  { key: 'wealth',   label: { en: 'Wealth',         hi: 'धन',       sa: 'धनम्' },       houses: [2, 11, 9] },  // 2=dhana, 11=gains, 9=fortune
 ];
-// Note: house 6 is Career (daily work/service), NOT Health.
-// Health uses 1 (body), 8 (longevity), 12 (hospitalisation).
-// House 11 appears in both Marriage (social gains) and Wealth (income) —
-// acceptable since 11th serves both domains classically (Labha bhava).
 
 // ---------------------------------------------------------------------------
 // Locale helper — handles hi + sa (Devanagari) vs everything else
@@ -171,6 +169,7 @@ interface Props {
 
 export default function KundaliSimple({ kundali, blueprint, locale, onSwitchToExpert }: Props) {
   const domainScores = useMemo(() => deriveDomainScores(kundali), [kundali]);
+  const [copied, setCopied] = useState(false);
 
   return (
     <motion.div
@@ -251,15 +250,17 @@ export default function KundaliSimple({ kundali, blueprint, locale, onSwitchToEx
                   });
               } else if (typeof navigator !== 'undefined' && navigator.clipboard) {
                 navigator.clipboard.writeText(window.location.href).then(() => {
-                  // Brief visual feedback would be nice but keeping it simple
-                  alert(L(locale, 'Link copied to clipboard!', 'लिंक क्लिपबोर्ड पर कॉपी किया गया!'));
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 2000);
                 }).catch((err) => {
                   console.error('[KundaliSimple] Clipboard copy failed:', err);
                 });
               }
             }}
           >
-            {L(locale, 'Share My Chart', 'मेरा चार्ट शेयर करें')}
+            {copied
+              ? L(locale, 'Link copied!', 'लिंक कॉपी हुआ!')
+              : L(locale, 'Share My Chart', 'मेरा चार्ट शेयर करें')}
           </button>
         </div>
 

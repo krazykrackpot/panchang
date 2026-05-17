@@ -83,7 +83,12 @@ export default function SimpleTimeline({ dashas, locale }: Props) {
         })}
       </div>
 
-      {/* Current Mahadasha */}
+      {/* Current Mahadasha — fallback if no dasha covers today */}
+      {!currentMaha && mahas.length > 0 && (
+        <p className="mt-4 text-text-secondary text-sm">
+          {isHi ? 'वर्तमान दशा अवधि उपलब्ध नहीं है।' : 'Current dasha period not available for this date range.'}
+        </p>
+      )}
       {currentMaha && (
         <div className="mt-4">
           <p className="text-text-secondary text-xs uppercase tracking-wide mb-1">{L.currentMaha}</p>

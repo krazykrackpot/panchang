@@ -80,7 +80,7 @@ export function getDoshaGentleText(doshaId: string, locale: string): { title: st
   const entry = DOSHA_GENTLE[doshaId];
   if (!entry) return null;
   return {
-    title: locale === 'hi' ? entry.titleHi : entry.titleEn,
-    body: locale === 'hi' ? entry.bodyHi : entry.bodyEn,
+    title: (locale === 'hi' || locale === 'sa') ? entry.titleHi : entry.titleEn,
+    body: (locale === 'hi' || locale === 'sa') ? entry.bodyHi : entry.bodyEn,
   };
 }

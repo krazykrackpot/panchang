@@ -151,6 +151,42 @@ export function muhurtaCityDesc(
 }
 
 // ═══════════════════════════════════════════════
+// HELPER: Today's panchang for SEO metadata
+// ═══════════════════════════════════════════════
+
+import { computePanchang } from '@/lib/ephem/panchang-calc';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+
+// Ujjain — reference city for India-wide SEO metadata
+const SEO_REF_LAT = 23.1765;
+const SEO_REF_LNG = 75.7885;
+const SEO_REF_TZ = 'Asia/Kolkata';
+
+/**
+ * Compute today's panchang (Ujjain reference) for SEO metadata injection.
+ * Returns null on failure — callers should fall back to static metadata.
+ */
+export function todayPanchangForSEO(locale: string) {
+  try {
+    const now = new Date();
+    const tzOffset = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), SEO_REF_TZ);
+    const istMs = now.getTime() + tzOffset * 3600 * 1000;
+    const istDate = new Date(istMs);
+    const year = istDate.getUTCFullYear();
+    const month = istDate.getUTCMonth() + 1;
+    const day = istDate.getUTCDate();
+
+    const p = computePanchang({ year, month, day, lat: SEO_REF_LAT, lng: SEO_REF_LNG, tzOffset, timezone: SEO_REF_TZ });
+    const dateStr = istDate.toLocaleDateString(locale === 'hi' ? 'hi-IN' : 'en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+    const isHi = locale === 'hi' || locale === 'sa';
+
+    return { p, dateStr, isHi, year, month, day };
+  } catch {
+    return null;
+  }
+}
+
+// ═══════════════════════════════════════════════
 // HELPER: Find next future date from a sorted array
 // ═══════════════════════════════════════════════
 

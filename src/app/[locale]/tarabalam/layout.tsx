@@ -3,12 +3,28 @@ import { getPageMetadata } from '@/lib/seo/metadata';
 import { generateFAQLD } from '@/lib/seo/faq-data';
 import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
+import { todayPanchangForSEO } from '@/lib/seo/ctr-config';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  return getPageMetadata('/tarabalam', locale);
+  const base = getPageMetadata('/tarabalam', locale);
+  const seo = todayPanchangForSEO(locale);
+  if (!seo) return base;
+
+  const { p, dateStr, isHi } = seo;
+  const nak = isHi ? p.nakshatra.name.hi : p.nakshatra.name.en;
+
+  const title = isHi
+    ? `आज का तारबल ${dateStr} – चन्द्र ${nak} में`
+    : `Tarabalam Today ${dateStr} – Moon in ${nak}`;
+
+  const desc = isHi
+    ? `${dateStr} तारबल: चन्द्रमा ${nak} नक्षत्र में। सभी 27 नक्षत्रों के लिए 9-तारा चक्र से शुभ/अशुभ जानें।`
+    : `${dateStr} Tarabalam: Moon in ${nak}. Check star strength for all 27 nakshatras using the 9-tara cycle. Free, updated daily.`;
+
+  return { ...base, title, description: desc };
 }
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {

@@ -89,9 +89,11 @@ function deriveDomainScores(kundali: KundaliData): DomainScore[] {
     }
 
     // Current activation: does the dasha lord sit in or aspect one of these houses?
+    // Dasha lord in domain houses = strong boost (8). Otherwise neutral (5) — NOT weak.
+    // "Not activated" ≠ "needs attention". Only malefic transits would genuinely weaken.
     let currentScore = 5;
     if (dashaLordHouse != null) {
-      currentScore = houses.includes(dashaLordHouse) ? 8 : 4;
+      currentScore = houses.includes(dashaLordHouse) ? 8 : 5;
     }
 
     // Overall: weighted blend (70% natal, 30% current)
@@ -186,7 +188,12 @@ export default function KundaliSimple({ kundali, blueprint, locale, onSwitchToEx
             natalRating={d.natalRating}
             currentRating={d.currentRating}
             locale={locale}
-            onViewRemedies={d.rating === 'adhama' || d.rating === 'atyadhama' ? onSwitchToExpert : undefined}
+            onViewRemedies={
+              d.rating === 'adhama' || d.rating === 'atyadhama'
+              || d.natalRating === 'adhama' || d.natalRating === 'atyadhama'
+              || d.currentRating === 'adhama' || d.currentRating === 'atyadhama'
+                ? onSwitchToExpert : undefined
+            }
           />
         ))}
       </div>

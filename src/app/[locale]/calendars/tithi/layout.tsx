@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { locales } from '@/lib/i18n/config';
 
@@ -5,6 +6,7 @@ const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   const isHi = locale === 'hi';
 
   const title = isHi ? 'तिथि पंचांग  –  मासिक तिथि, नक्षत्र, चन्द्र राशि कैलेंडर' : 'Tithi Calendar  –  Monthly Tithi, Nakshatra & Moon Sign Grid';

@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -32,6 +33,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; nakshatra: string }> }): Promise<Metadata> {
   const { locale, nakshatra: slug } = await params;
+  setRequestLocale(locale);
   const nakId = SLUG_TO_ID[slug];
   if (!nakId) return { title: 'Baby Names — Dekho Panchang' };
 
@@ -64,6 +66,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function NakshatraBabyNamePage({ params }: { params: Promise<{ locale: string; nakshatra: string }> }) {
   const { locale, nakshatra: slug } = await params;
+  setRequestLocale(locale);
   const nakId = SLUG_TO_ID[slug];
   if (!nakId) notFound();
 

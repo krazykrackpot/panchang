@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { generateEclipseCalendar, type EclipseEvent } from '@/lib/calendar/eclipses';
 import { RASHIS } from '@/lib/constants/rashis';
 import Link from 'next/link';
@@ -46,6 +47,7 @@ interface EclipseRow {
 
 export default async function EclipsesPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
 
   // Generate eclipses for 2026 and 2027

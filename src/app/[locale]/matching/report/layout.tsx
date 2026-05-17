@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
@@ -15,6 +16,7 @@ const META = {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   const m = locale === 'hi' ? META.hi : META.en;
   return {
     title: m.title,
@@ -31,6 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const toolLD = generateToolLD(
     'Detailed Compatibility Report  –  Vedic Marriage Analysis',
     'In-depth cross-chart compatibility analysis including Manglik, Nadi, aspects, 7th house, and Venus analysis.',

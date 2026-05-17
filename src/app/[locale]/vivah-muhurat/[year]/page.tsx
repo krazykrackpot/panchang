@@ -9,6 +9,7 @@
  * The static content is what Google indexes. The client island hydrates with real data.
  */
 
+import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Link } from '@/lib/i18n/navigation';
 import { Calendar, Sparkles, ArrowRight, AlertTriangle, Info } from 'lucide-react';
@@ -97,6 +98,7 @@ export default async function VivahMuhuratPage({
   params: Promise<{ locale: string; year: string }>;
 }) {
   const { locale, year: yearStr } = await params;
+  setRequestLocale(locale);
   const year = parseInt(yearStr, 10);
 
   if (!VALID_YEARS.includes(year)) {

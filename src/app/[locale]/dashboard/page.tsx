@@ -911,7 +911,7 @@ export default function DashboardPage() {
       if ((snapshot.computation_version ?? 0) < CURRENT_COMPUTATION_VERSION && profile?.date_of_birth && session) {
         // Fire-and-forget re-computation — don't block dashboard load
         fetch('/api/user/profile', {
-          method: 'PUT',
+          method: 'POST',
           headers: { Authorization: `Bearer ${session.access_token}`, 'Content-Type': 'application/json' },
           body: JSON.stringify({
             name: profile.display_name || '',
@@ -921,9 +921,8 @@ export default function DashboardPage() {
             birthLat: profile.birth_lat,
             birthLng: profile.birth_lng,
           }),
-        }).then(() => {
-          // Reload dashboard after re-computation completes
-          loadDashboard();
+        }).then(res => {
+          if (res.ok) loadDashboard();
         }).catch(err => console.error('[dashboard] snapshot recompute failed:', err));
       }
 

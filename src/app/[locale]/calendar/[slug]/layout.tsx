@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -56,6 +57,7 @@ function fmt12h(hhmm: string): string {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const festival = FESTIVAL_DETAILS[slug];
 
   if (!festival) {
@@ -137,6 +139,7 @@ export default async function CalendarSlugLayout({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const festival = FESTIVAL_DETAILS[slug];
 
   if (!festival) return <>{children}</>;

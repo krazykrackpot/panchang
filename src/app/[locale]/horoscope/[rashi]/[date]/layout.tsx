@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { RASHIS } from '@/lib/constants/rashis';
 import { getRashiBySlug } from '@/lib/constants/rashi-slugs';
@@ -25,6 +26,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; rashi: string; date: string }> }): Promise<Metadata> {
   const { locale, rashi: slug, date } = await params;
+  setRequestLocale(locale);
   const r = getRashiBySlug(slug);
   if (!r) return {};
 
@@ -82,6 +84,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function DateLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string; rashi: string; date: string }> }) {
   const { locale, rashi: slug, date } = await params;
+  setRequestLocale(locale);
   const breadcrumbLD = generateBreadcrumbLD(`/${locale}/horoscope/${slug}/${date}`, locale);
 
   return (

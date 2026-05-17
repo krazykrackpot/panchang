@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { getDevotionalItem, TYPE_LABELS } from '@/lib/content/devotional-content';
 import type { DevotionalType } from '@/lib/content/devotional-content';
@@ -13,6 +14,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, type, slug } = await params;
+  setRequestLocale(locale);
   const item = getDevotionalItem(type as DevotionalType, slug);
 
   if (!item) {
@@ -70,6 +72,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string; type: string; slug: string }> }) {
   const { locale, type, slug } = await params;
+  setRequestLocale(locale);
   const item = getDevotionalItem(type as DevotionalType, slug);
 
   if (!item) return children;

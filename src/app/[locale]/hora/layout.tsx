@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { generateFAQLD } from '@/lib/seo/faq-data';
@@ -9,6 +10,7 @@ const PLANET_NAMES_HI = ['सूर्य', 'चन्द्र', 'मंगल'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   const base = getPageMetadata('/hora', locale);
   const seo = todayPanchangForSEO(locale);
   if (!seo) return base;
@@ -30,6 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const faqLD = generateFAQLD('/hora', locale);
   return (
     <>

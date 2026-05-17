@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { TRANSIT_ARTICLES } from '@/lib/content/transit-articles';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
@@ -12,6 +13,7 @@ type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const article = TRANSIT_ARTICLES[slug];
   if (!article) return { title: 'Transit Article  –  Dekho Panchang' };
 
@@ -46,6 +48,7 @@ export default async function TransitArticleLayout({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const article = TRANSIT_ARTICLES[slug];
   if (!article) return <>{children}</>;
 

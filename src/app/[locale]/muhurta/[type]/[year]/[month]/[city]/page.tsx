@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { CITIES } from '@/lib/constants/cities';
 import { getCityBySlugExtended, getCitiesByTier, getNearbyCities } from '@/lib/constants/cities-extended';
 import { scanDateRangeV2 } from '@/lib/muhurta/time-window-scanner';
@@ -51,6 +52,7 @@ interface PageProps {
 
 export default async function MuhurtaActivityPage({ params }: PageProps) {
   const { locale, type: activitySlug, year: yearStr, month: monthStr, city: citySlug } = await params;
+  setRequestLocale(locale);
 
   const activityId = ACTIVITY_SLUGS[activitySlug];
   const monthNum = MONTH_MAP[monthStr.toLowerCase()];

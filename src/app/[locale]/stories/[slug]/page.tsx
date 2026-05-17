@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { notFound } from 'next/navigation';
@@ -18,6 +19,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const story = getStoryBySlug(slug);
   if (!story) return {};
 
@@ -48,6 +50,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function StoryPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const story = getStoryBySlug(slug);
   if (!story) notFound();
 

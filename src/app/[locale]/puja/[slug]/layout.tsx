@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -12,6 +13,7 @@ type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const puja = PUJA_VIDHIS[slug];
 
   if (!puja) {
@@ -58,6 +60,7 @@ export default async function PujaSlugLayout({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const puja = PUJA_VIDHIS[slug];
 
   if (!puja) return <>{children}</>;

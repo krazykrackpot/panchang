@@ -1,9 +1,11 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   const title = locale === 'hi' ? 'मेरा सीखने का डैशबोर्ड' :
                 locale === 'ta' ? 'என் கற்றல் டாஷ்போர்ட்' :
                 locale === 'bn' ? 'আমার শেখার ড্যাশবোর্ড' :

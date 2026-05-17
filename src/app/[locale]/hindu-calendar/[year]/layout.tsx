@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
@@ -10,6 +11,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string; year: string }>;
 }): Promise<Metadata> {
   const { locale, year } = await params;
+  setRequestLocale(locale);
   return getPageMetadata(`/hindu-calendar/${year}`, locale);
 }
 
@@ -27,6 +29,7 @@ export default async function Layout({
   params: Promise<{ locale: string; year: string }>;
 }) {
   const { locale, year } = await params;
+  setRequestLocale(locale);
 
   const toolLD = generateToolLD(
     `Hindu Calendar ${year}  –  Complete Festival, Vrat & Eclipse Dates`,

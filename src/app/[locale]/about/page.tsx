@@ -1,4 +1,4 @@
-import { getLocale } from 'next-intl/server';
+import { getLocale, setRequestLocale } from 'next-intl/server';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { generatePersonLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
@@ -111,6 +111,7 @@ function getIcon(icon: string) {
 
 export default async function AboutPage() {
   const locale = await getLocale();
+  setRequestLocale(locale);
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const l = (CONTENT as unknown as Record<string, typeof CONTENT.en>)[locale] || CONTENT.en;

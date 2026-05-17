@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { tl } from '@/lib/utils/trilingual';
 import { generateDailyArticle } from '@/lib/horoscope/daily-article';
 import type { Metadata } from 'next';
@@ -8,6 +9,7 @@ const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   const isHi = isDevanagariLocale(locale);
   return {
     title: tl({ en: 'Daily Panchang Articles  –  Dekho Panchang', hi: 'दैनिक पंचांग लेख  –  देखो पंचांग', sa: 'दैनिक पंचांग लेख  –  देखो पंचांग' }, locale),
@@ -21,6 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function DailyIndexPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const isHi = isDevanagariLocale(locale);
 
   // Generate articles for last 7 days + today

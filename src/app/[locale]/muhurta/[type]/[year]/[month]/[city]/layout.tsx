@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { CITIES } from '@/lib/constants/cities';
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
@@ -6,6 +7,7 @@ import { ACTIVITY_SLUGS, MONTH_MAP, MONTH_NAMES } from './shared';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; type: string; year: string; month: string; city: string }> }): Promise<Metadata> {
   const { locale, type: activitySlug, year, month: monthStr, city: citySlug } = await params;
+  setRequestLocale(locale);
 
   const activityId = ACTIVITY_SLUGS[activitySlug];
   const cityData = CITIES.find(c => c.slug === citySlug);

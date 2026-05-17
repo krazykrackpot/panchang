@@ -1,4 +1,4 @@
-import { getLocale } from 'next-intl/server';
+import { getLocale, setRequestLocale } from 'next-intl/server';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
@@ -292,6 +292,7 @@ function RichText({ text, bodyFont }: { text: string; bodyFont?: React.CSSProper
 
 export default async function MethodologyPage() {
   const locale = await getLocale();
+  setRequestLocale(locale);
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }

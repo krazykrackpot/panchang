@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
@@ -98,6 +99,7 @@ const sectionCard = 'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0
 
 export default async function KeralaSchoolPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params as { locale: Locale };
+  setRequestLocale(locale);
   const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);

@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
@@ -5,11 +6,13 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   return getPageMetadata('/nadi-jyotish', locale);
 }
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const toolLD = generateToolLD(
     'Nadi Jyotish  –  BNN Planet Reading',
     'Bhrigu Nandi Nadi reading: planet-in-sign predictions, aspect modifiers, karmic profile, and life themes from your Vedic birth chart.',

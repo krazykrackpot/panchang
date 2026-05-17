@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import CalendarClient from './Client';
 
@@ -27,6 +28,7 @@ const FESTIVALS_2026 = [
 
 export default async function CalendarPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
 
   return (

@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { CITIES } from '@/lib/constants/cities';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -21,6 +22,7 @@ function fmt12(hhmm: string): string {
 
 export default async function RahuKaalPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const now = new Date();
   const year = now.getUTCFullYear();
   const month = now.getUTCMonth() + 1;

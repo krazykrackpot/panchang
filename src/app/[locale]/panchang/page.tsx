@@ -8,6 +8,7 @@
  * for the user's approximate location  –  same pattern as the home page.
  */
 
+import { setRequestLocale } from 'next-intl/server';
 import { headers } from 'next/headers';
 import { Link } from '@/lib/i18n/navigation';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
@@ -171,6 +172,7 @@ function PanchangSEOBlock({
 
 export default async function PanchangPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const { panchang, location: serverLocation } = await getServerPanchang();
 
   // Fetch latest YouTube video (RSS feed, cached 1h) for VideoObject schema + embed

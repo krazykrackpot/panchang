@@ -1,9 +1,11 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { MODULE_SEQUENCE } from '@/lib/learn/module-sequence';
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 const MOD_ID = '5-2';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   const mod = MODULE_SEQUENCE.find(m => m.id === MOD_ID);
   const loc = locale as 'en' | 'hi' | 'sa';
   const title = mod ? `${((mod.title as Record<string, string>)[loc] || mod.title.en)}  –  Learn Jyotish` : `Module ${MOD_ID}  –  Learn Jyotish`;

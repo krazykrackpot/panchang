@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { getVratKatha, getAllVratKathaSlugs } from '@/lib/content/vrat-kathas';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
@@ -8,6 +9,7 @@ const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const katha = getVratKatha(slug);
   if (!katha) return {};
 
@@ -58,6 +60,7 @@ export async function generateStaticParams() {
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string; slug: string }> }) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const katha = getVratKatha(slug);
 
   if (!katha) return <>{children}</>;

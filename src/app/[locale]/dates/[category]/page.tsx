@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { loadPrecomputedTable, buildYearlyTithiTable, lookupAllTithiByNumber, type TithiEntry } from '@/lib/calendar/tithi-table';
 import Link from 'next/link';
 import DateCategoryClient from './Client';
@@ -242,6 +243,7 @@ const EXPLANATIONS: Record<Category, { en: string[]; hi: string[] }> = {
 
 export default async function DateCategoryPage({ params }: { params: Promise<{ locale: string; category: string }> }) {
   const { locale, category: rawCategory } = await params;
+  setRequestLocale(locale);
   const category = (VALID_CATEGORIES.includes(rawCategory as Category) ? rawCategory : 'ekadashi') as Category;
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
   const year = 2026;

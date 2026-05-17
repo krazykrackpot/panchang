@@ -1,8 +1,10 @@
+import { setRequestLocale } from 'next-intl/server';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import type { Metadata } from 'next';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   return getPageMetadata('/glossary', locale);
 }
 

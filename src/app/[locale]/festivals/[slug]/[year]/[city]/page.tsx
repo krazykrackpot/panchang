@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { CITIES } from '@/lib/constants/cities';
 import { getCityBySlugExtended, getNearbyCities } from '@/lib/constants/cities-extended';
 import { MAJOR_FESTIVALS, type MuhurtaRule } from '@/lib/calendar/festival-defs';
@@ -151,6 +152,7 @@ export default async function FestivalCityPage({
   params: Promise<{ locale: string; slug: string; year: string; city: string }>;
 }) {
   const { locale, slug, year: yearStr, city: citySlug } = await params;
+  setRequestLocale(locale);
 
   // Validate year
   const year = parseInt(yearStr, 10);

@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { CITIES } from '@/lib/constants/cities';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -45,6 +46,7 @@ interface SSRSlot {
 
 export default async function ChoghadiyaPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const now = new Date();
   const year = now.getUTCFullYear();
   const month = now.getUTCMonth() + 1;

@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
@@ -13,6 +14,7 @@ const REF_TZ = 'Asia/Kolkata';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   const base = getPageMetadata('/rahu-kaal', locale);
 
   try {
@@ -44,6 +46,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const faqLD = generateFAQLD('/rahu-kaal', locale);
   const toolLD = generateToolLD(
     'Rahu Kaal Calculator',

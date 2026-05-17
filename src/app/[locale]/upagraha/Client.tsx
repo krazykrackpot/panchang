@@ -383,7 +383,7 @@ export default function UpagrahaClient() {
       </div>
 
       {/* Personalized Synthesis */}
-      {hasBirthData ? (() => {
+      {(hasBirthData && upagrahas) ? (() => {
         const moonName = RASHIS[birthRashi - 1]?.name;
         // Compute house positions for all upagrahas
         const housePlacements = upagrahas.map(u => ({
@@ -558,7 +558,7 @@ export default function UpagrahaClient() {
 
       {/* Upagraha Cards with interpretation */}
       <div className="space-y-5 my-10">
-        {upagrahas.map((u, i) => {
+        {(upagrahas ?? []).map((u, i) => {
           const isExpanded = expanded === u.key;
           const signEffect = u.info.signEffects[u.sign];
           const house = hasBirthData ? getHouseFromMoon(birthRashi, u.sign) : 0;

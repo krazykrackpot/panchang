@@ -1,5 +1,5 @@
 import { headers } from 'next/headers';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Link } from '@/lib/i18n/navigation';
 import GoldDivider from '@/components/ui/GoldDivider';
 import TarotCard from '@/components/ui/TarotCard';
@@ -508,6 +508,7 @@ const SECONDARY_TOOLS: { href: string; label: { en: string; hi: string; ta: stri
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'home' });
 
   // ─── Server-side panchang via Vercel geo headers (eliminates LCP waterfall) ───

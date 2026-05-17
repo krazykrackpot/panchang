@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 
 export async function generateMetadata({
@@ -6,6 +7,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
 
   const titles: Record<string, string> = {
     en: 'Eclipse Simulator  –  Interactive Solar & Lunar Eclipse Visualizer',

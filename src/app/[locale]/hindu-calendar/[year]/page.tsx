@@ -9,6 +9,7 @@
  * ISR with daily revalidation (set in layout.tsx).
  */
 
+import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Link } from '@/lib/i18n/navigation';
 import { generateFestivalCalendarV2, type FestivalEntry } from '@/lib/calendar/festival-generator';
@@ -189,6 +190,7 @@ export default async function HinduCalendarPage({
   params: Promise<{ locale: string; year: string }>;
 }) {
   const { locale, year: yearStr } = await params;
+  setRequestLocale(locale);
   const year = parseInt(yearStr, 10);
 
   if (!VALID_YEARS.includes(year)) {

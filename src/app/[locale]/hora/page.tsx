@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { CITIES } from '@/lib/constants/cities';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -51,6 +52,7 @@ const HORA_ACTIVITIES_HI: Record<number, string> = {
 
 export default async function HoraPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const now = new Date();
   const year = now.getUTCFullYear();
   const month = now.getUTCMonth() + 1;

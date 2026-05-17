@@ -112,10 +112,12 @@ export default function PrashnaPage() {
   const [analysis, setAnalysis] = useState<PrashnaAnalysis | null>(null);
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [castTime, setCastTime] = useState('');
 
   const castPrashna = useCallback(async () => {
     if (locationStore.lat === null || locationStore.lng === null) return;
+    setError(null);
     setLoading(true);
     const now = new Date();
     setCastTime(now.toLocaleString(msg('localeDateLocale', locale)));
@@ -142,6 +144,7 @@ export default function PrashnaPage() {
       setAnalysis(analyzePrashna(data, category));
     } catch (e) {
       console.error('Prashna generation failed:', e);
+      setError(locale === 'hi' ? 'प्रश्न कुण्डली बनाने में त्रुटि। पुनः प्रयास करें।' : 'Failed to generate Prashna chart. Please try again.');
     }
     setLoading(false);
   }, [locale, category, locationStore.lat, locationStore.lng, locationStore.name]);
@@ -259,6 +262,7 @@ export default function PrashnaPage() {
                 </span>
               )}
             </motion.button>
+            {error && (<p className="text-red-400 text-sm mt-3">{error}</p>)}
           </div>
         </motion.div>
       )}

@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { getHeadingFont } from '@/lib/utils/locale-fonts';
 import { Code, Globe, Clock, Shield, Zap, MonitorSmartphone } from 'lucide-react';
 import WidgetConfigurator from './WidgetConfigurator';
@@ -8,6 +9,7 @@ export default async function WidgetPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const headingFont = getHeadingFont(locale);
 
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mai' || locale === 'mr';

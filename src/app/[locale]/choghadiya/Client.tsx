@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Clock, Sun, Moon, MapPin, ArrowLeft, Sparkles } from 'lucide-react';
@@ -22,6 +22,11 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 // ─── City selector list ────────────────────────────────────────
 const CITY_SLUGS = ['delhi', 'mumbai', 'bangalore', 'chennai', 'kolkata', 'hyderabad', 'pune', 'ahmedabad', 'jaipur', 'varanasi'] as const;
 const SELECTOR_CITIES = CITY_SLUGS.map(s => CITIES.find(c => c.slug === s)!).filter(Boolean);
+
+// Static default used for the initial render — must match the server's render to avoid
+// hydration mismatches. Delhi is what getDefaultCityForLocale() returns for en/hi/sa.
+// We update from the user's stored location in useEffect after mount.
+const DEFAULT_CITY: CityData = CITIES.find(c => c.slug === 'delhi')!;
 
 // ─── Nature color mapping ──────────────────────────────────────
 const NATURE_STYLES: Record<string, { bg: string; border: string; badge: string; text: string }> = {
@@ -115,21 +120,26 @@ export default function ChoghadiyaClient() {
     : { fontFamily: 'var(--font-heading)' };
   const L = LABELS[locale] || LABELS.en;
 
-  // Default to user's current location if available, otherwise fall back to locale-based city
-  const locationStore = useLocationStore();
-  const initialCity = (): CityData => {
-    if (locationStore.lat !== null && locationStore.lng !== null) {
-      return {
+  // Static default keeps server and client initial renders identical (no hydration mismatch).
+  // After mount we update from the user's stored location if available.
+  const [selectedCity, setSelectedCity] = useState<CityData>(DEFAULT_CITY);
+
+  useEffect(() => {
+    const store = useLocationStore.getState();
+    if (store.lat !== null && store.lng !== null) {
+      setSelectedCity({
         slug: 'current',
-        name: { en: locationStore.name || 'Current Location', hi: locationStore.name || 'वर्तमान स्थान', sa: locationStore.name || 'वर्तमानस्थानम्' },
-        lat: locationStore.lat,
-        lng: locationStore.lng,
-        timezone: locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC',
-      };
+        // URL params take priority over cached state — none here, so store wins
+        name: { en: store.name || 'Current Location', hi: store.name || 'वर्तमान स्थान', sa: store.name || 'वर्तमानस्थानम्' },
+        lat: store.lat,
+        lng: store.lng,
+        timezone: store.timezone || 'UTC',
+      });
+    } else {
+      const localeCity = getDefaultCityForLocale(locale);
+      if (localeCity) setSelectedCity(localeCity);
     }
-    return getDefaultCityForLocale(locale) || SELECTOR_CITIES[0];
-  };
-  const [selectedCity, setSelectedCity] = useState<CityData>(initialCity);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const now = new Date();
   const year = now.getFullYear();
@@ -228,12 +238,12 @@ export default function ChoghadiyaClient() {
           transition={{ duration: 0.5, ease: 'easeOut' as const }}
           className="mb-8"
         >
-          <h1
+          <h2
             className="text-3xl sm:text-4xl font-bold text-gold-light mb-2"
             style={headingFont}
           >
             {L.title}
-          </h1>
+          </h2>
           <p className="text-text-secondary text-lg">{dateStr}</p>
           <p className="text-text-secondary flex items-center gap-1.5 mt-1" suppressHydrationWarning>
             <MapPin size={14} className="text-gold-primary" />

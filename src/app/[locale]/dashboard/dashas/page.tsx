@@ -55,20 +55,23 @@ export default function DashasPage() {
     const supabase = getSupabase();
     if (!supabase) { setLoading(false); return; }
 
-    supabase.from('kundali_snapshots')
-      .select('dasha_timeline')
-      .eq('user_id', user.id)
-      .maybeSingle()
-      .then(({ data }) => {
-        if (data?.dasha_timeline) {
-          setDashas(data.dasha_timeline as DashaEntry[]);
-          // Auto-expand current maha
-          const now = new Date();
-          const current = (data.dasha_timeline as DashaEntry[]).find(d => new Date(d.startDate) <= now && now <= new Date(d.endDate));
-          if (current) setExpandedMaha(current.planet);
-        }
-        setLoading(false);
-      });
+    Promise.resolve(
+      supabase.from('kundali_snapshots')
+        .select('dasha_timeline')
+        .eq('user_id', user.id)
+        .maybeSingle()
+        .then(({ data }) => {
+          if (data?.dasha_timeline) {
+            setDashas(data.dasha_timeline as DashaEntry[]);
+            // Auto-expand current maha
+            const now = new Date();
+            const current = (data.dasha_timeline as DashaEntry[]).find(d => new Date(d.startDate) <= now && now <= new Date(d.endDate));
+            if (current) setExpandedMaha(current.planet);
+          }
+        })
+    ).catch((err: unknown) => {
+      console.error('[dashas] snapshot fetch failed:', err);
+    }).finally(() => setLoading(false));
   }, [user]);
 
   if (!user) {

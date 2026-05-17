@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { CITIES, getCityBySlug } from '@/lib/constants/cities';
 import { MAJOR_FESTIVALS } from '@/lib/calendar/festival-defs';
@@ -28,6 +29,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug, year } = await params;
+  setRequestLocale(locale);
 
   const detail = FESTIVAL_DETAILS[slug];
   const def = MAJOR_FESTIVALS.find(f => f.slug === slug);

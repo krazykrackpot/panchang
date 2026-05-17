@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import VedicTimeClient from './Client';
 
@@ -71,6 +72,7 @@ const MUHURTAS_30: MuhurtaInfo[] = [
 
 export default async function VedicTimePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const today = new Date().toISOString().slice(0, 10);
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
 

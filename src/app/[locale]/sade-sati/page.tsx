@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import { getCurrentSaturnSign } from '@/lib/kundali/sade-sati-analysis';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -8,6 +9,7 @@ export const revalidate = 86400;
 
 export default async function SadeSatiPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
 
   // Pre-compute Saturn's current position for SSR

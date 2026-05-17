@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { generateDailyArticle } from '@/lib/horoscope/daily-article';
 import { generateDailyHoroscope } from '@/lib/horoscope/daily-engine';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -22,6 +23,7 @@ const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; date: string }> }): Promise<Metadata> {
   const { locale, date } = await params;
+  setRequestLocale(locale);
   const parsed = parseDate(date);
   if (!parsed) return {};
   const article = generateDailyArticle(parsed);
@@ -65,6 +67,7 @@ function parseDate(dateStr: string): Date | null {
 
 export default async function DailyPanchangArticle({ params }: { params: Promise<{ locale: string; date: string }> }) {
   const { locale, date } = await params;
+  setRequestLocale(locale);
   const parsed = parseDate(date);
   if (!parsed) notFound();
 

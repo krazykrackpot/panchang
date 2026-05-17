@@ -51,6 +51,8 @@ export default function ActivityGuidePage() {
           setLoading(false);
         }
       );
+    } else {
+      setLoading(false);
     }
   }, [lat, lng, fetchPanchang, setLocation]);
 

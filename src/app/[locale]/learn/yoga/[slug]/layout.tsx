@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
 import { generateYogaArticleLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
@@ -8,6 +9,7 @@ const ACTIVE_LOCALES = ['en', 'hi', 'ta', 'bn'] as const;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const yoga = YOGA_DETAIL_DATA[slug];
   if (!yoga) return { title: 'Yoga — Dekho Panchang' };
 
@@ -45,6 +47,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string; slug: string }> }) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const yoga = YOGA_DETAIL_DATA[slug];
 
   if (!yoga) return <>{children}</>;

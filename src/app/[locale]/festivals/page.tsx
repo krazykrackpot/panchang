@@ -1,4 +1,4 @@
-import { getLocale } from 'next-intl/server';
+import { getLocale, setRequestLocale } from 'next-intl/server';
 import { Link } from '@/lib/i18n/navigation';
 import { Calendar, Sparkles, MapPin, ChevronRight } from 'lucide-react';
 
@@ -165,6 +165,7 @@ const NEXT_YEAR = 2027;
 
 export default async function FestivalsHubPage() {
   const locale = await getLocale();
+  setRequestLocale(locale);
   const isHindi = locale === 'hi';
 
   const label = {

@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { getLocale } from 'next-intl/server';
+import { getLocale, setRequestLocale } from 'next-intl/server';
 import { MUHURTA_TYPES, getMuhurtaType } from '@/lib/constants/muhurta-types';
 import type { MuhurtaTypeInfo } from '@/lib/constants/muhurta-types';
 import { getHeadingFont, getBodyFont, isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -72,6 +72,7 @@ function tName(obj: { en: string; hi: string; sa: string }, locale: string): str
 export default async function MuhurtaTypePage({ params }: { params: Promise<{ locale: string; type: string }> }) {
   const { type } = await params;
   const locale = await getLocale();
+  setRequestLocale(locale);
   const info = getMuhurtaType(type);
   if (!info) notFound();
 

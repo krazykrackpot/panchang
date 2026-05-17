@@ -1,9 +1,11 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { todayPanchangForSEO } from '@/lib/seo/ctr-config';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   const base = getPageMetadata('/panchang/inauspicious', locale);
   const seo = todayPanchangForSEO(locale);
   if (!seo) return base;

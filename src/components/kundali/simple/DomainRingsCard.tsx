@@ -11,6 +11,7 @@ interface Props {
   natalRating: RatingTier;
   currentRating: RatingTier;
   locale: string;
+  onViewRemedies?: () => void;
 }
 
 const RING_COLOURS: Record<RatingTier, string> = {
@@ -55,10 +56,11 @@ function Ring({ radius, score, colour, trackOpacity = 0.15 }: {
 
 export default function DomainRingsCard({
   domain, natalScore, currentScore, overallScore,
-  rating, natalRating, currentRating, locale,
+  rating, natalRating, currentRating, locale, onViewRemedies,
 }: Props) {
   const isHi = locale === 'hi' || locale === 'sa';
   const overallColour = RING_COLOURS[rating];
+  const needsHelp = rating === 'adhama' || rating === 'atyadhama';
 
   return (
     <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4">
@@ -72,10 +74,8 @@ export default function DomainRingsCard({
 
         <div className="flex-1 min-w-0">
           <h4 className="text-gold-light font-semibold text-sm">{domain}</h4>
-          {/* Overall as a word, not a number */}
           <p className="text-xs font-medium mt-0.5" style={{ color: overallColour }}>{ratingWord(rating, locale)}</p>
 
-          {/* Natal + Current with rating words derived from parent (no re-derivation) */}
           <div className="mt-2 space-y-1 text-[11px]">
             <div className="flex items-center gap-1.5">
               <span className="inline-block w-2 h-2 rounded-full bg-blue-500" />
@@ -88,6 +88,16 @@ export default function DomainRingsCard({
               <span className="text-amber-400">{ratingWord(currentRating, locale)}</span>
             </div>
           </div>
+
+          {/* Nudge to remedies when domain needs attention */}
+          {needsHelp && onViewRemedies && (
+            <button
+              onClick={onViewRemedies}
+              className="mt-2.5 text-[11px] text-gold-primary hover:text-gold-light transition-colors flex items-center gap-1"
+            >
+              {isHi ? 'उपाय देखें →' : 'View remedies →'}
+            </button>
+          )}
         </div>
       </div>
     </div>

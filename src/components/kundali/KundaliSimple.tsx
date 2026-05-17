@@ -186,6 +186,7 @@ export default function KundaliSimple({ kundali, blueprint, locale, onSwitchToEx
             natalRating={d.natalRating}
             currentRating={d.currentRating}
             locale={locale}
+            onViewRemedies={d.rating === 'adhama' || d.rating === 'atyadhama' ? onSwitchToExpert : undefined}
           />
         ))}
       </div>

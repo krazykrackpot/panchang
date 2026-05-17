@@ -124,6 +124,16 @@ export default function CosmicIdentityCard({ blueprint, kundali, locale }: Props
           style={{ background: 'radial-gradient(circle, #d4a853 0%, transparent 70%)' }}
         />
 
+        {/* Person's name + birth details */}
+        {kundali.birthData.name && (
+          <p className="text-text-primary text-lg font-semibold mb-1" style={devanagariStyle}>
+            {kundali.birthData.name}
+          </p>
+        )}
+        <p className="text-text-secondary text-xs mb-4">
+          {kundali.birthData.date} · {kundali.birthData.time} · {kundali.birthData.place}
+        </p>
+
         {/* Archetype Icon */}
         <div className="relative mx-auto mb-4 flex justify-center">
           <ArchetypeIcon archetype={blueprint.primary.archetype} size={128} />

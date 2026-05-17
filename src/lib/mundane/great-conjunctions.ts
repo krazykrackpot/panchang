@@ -13,7 +13,7 @@ import {
   dateToJD,
   getPlanetaryPositions,
   toSidereal,
-  lahiriAyanamsha,
+  getAyanamsha,
   normalizeDeg,
 } from '@/lib/ephem/astronomical';
 import {
@@ -37,7 +37,7 @@ export interface GreatConjunction {
 /** Get sidereal longitude for Jupiter (id=4) and Saturn (id=6) at a given JD */
 function getJupiterSaturn(jd: number): { jupLng: number; satLng: number } {
   const planets = getPlanetaryPositions(jd);
-  const ayanamsha = lahiriAyanamsha(jd);
+  const ayanamsha = getAyanamsha(jd);
 
   const jup = planets.find((p) => p.id === 4);
   const sat = planets.find((p) => p.id === 6);

@@ -11,7 +11,7 @@
  */
 
 import { dateToJD } from '@/lib/astronomy/julian';
-import { lahiriAyanamsha } from '@/lib/ephem/astronomical';
+import { getAyanamsha } from '@/lib/ephem/astronomical';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -80,7 +80,7 @@ export function currentSiderealLong(pid: number, jd: number): number {
   const tropicalLong = epoch.long0 + epoch.rate * days;
 
   // Lahiri ayanamsha for the given date (canonical polynomial, not linear approx)
-  const ayanamsha = lahiriAyanamsha(jd);
+  const ayanamsha = getAyanamsha(jd);
 
   // Sidereal longitude, normalised to [0, 360)
   return ((tropicalLong - ayanamsha) % 360 + 360) % 360;

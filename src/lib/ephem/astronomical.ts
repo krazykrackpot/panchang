@@ -318,11 +318,13 @@ function _meeusMoonLongitude(jd: number): number {
  * Based on IAU precession with Spica (Chitra) at 180° sidereal.
  * Accuracy: ~1 arcsecond for dates 1900-2100.
  */
+/**
+ * @deprecated Use `getAyanamsha(jd, 'lahiri')` instead. This function exists
+ * only for backward compatibility during migration. All new code should use
+ * `getAyanamsha()` as the single entry point for all ayanamsha systems.
+ */
 export function lahiriAyanamsha(jd: number): number {
-  if (isSwissEphAvailable()) {
-    return swissAyanamsha(jd);
-  }
-  return _meeeusLahiriAyanamsha(jd);
+  return getAyanamsha(jd, 'lahiri');
 }
 
 /**
@@ -425,7 +427,7 @@ export const AYANAMSHA_OPTIONS: { value: AyanamshaType; label: LocaleText }[] = 
  *   elements (tithi, nakshatra, yoga).
  */
 export function toSidereal(tropicalLong: number, jd: number, ayanamshaValue?: number): number {
-  const aya = ayanamshaValue ?? lahiriAyanamsha(jd);
+  const aya = ayanamshaValue ?? getAyanamsha(jd);
   return normalizeDeg(tropicalLong - aya);
 }
 
@@ -514,7 +516,7 @@ export function calculateTithi(jd: number): { number: number; degree: number } {
  *   ayanamsha (KP, Raman, etc.) get consistent results.  Defaults to Lahiri.
  */
 export function calculateYoga(jd: number, ayanamshaValue?: number): number {
-  const aya = ayanamshaValue ?? lahiriAyanamsha(jd);
+  const aya = ayanamshaValue ?? getAyanamsha(jd);
   const sunSid = normalizeDeg(sunLongitude(jd) - aya);
   const moonSid = normalizeDeg(moonLongitude(jd) - aya);
   const sum = normalizeDeg(sunSid + moonSid);

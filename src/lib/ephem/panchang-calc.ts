@@ -5,7 +5,7 @@ import {
   approximateSunrise, approximateSunriseSafe, formatTime,
   calculateRahuKaal, getPlanetaryPositions,
   getMasa, MASA_NAMES, RITU_NAMES, SAMVATSARA_NAMES,
-  getSamvatsara, getRitu, getAyana, lahiriAyanamsha, normalizeDeg,
+  getSamvatsara, getRitu, getAyana, getAyanamsha, normalizeDeg,
 } from './astronomical';
 import { getSunTimes } from '@/lib/astronomy/sunrise';
 import { swissSunrise, swissSunset, swissSunriseJD, swissMoonrise, swissMoonset, isSwissEphAvailable } from './swiss-ephemeris';
@@ -1426,7 +1426,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
   }
 
   // Ayanamsha value
-  const ayanamsha = userAyanamsha ?? lahiriAyanamsha(jdSunrise);
+  const ayanamsha = userAyanamsha ?? getAyanamsha(jdSunrise);
 
   // Sun sign and nakshatra
   const sunSidLong = toSidereal(sunLongitude(jdSunrise), jdSunrise, userAyanamsha);
@@ -1738,7 +1738,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
     let asc = Math.atan2(y, x) * 180 / Math.PI;
     return normalizeDeg(asc);
   }
-  const lagnaAyanamsha = userAyanamsha ?? lahiriAyanamsha(jdSunrise);
+  const lagnaAyanamsha = userAyanamsha ?? getAyanamsha(jdSunrise);
   const udayaLagna: { rashi: number; name: LocaleText; start: string; end: string }[] = [];
   const STEP = 10 / 60; // 10 minutes in hours
   let prevRashi = -1;

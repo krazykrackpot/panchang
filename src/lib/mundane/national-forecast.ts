@@ -15,7 +15,7 @@ import {
   dateToJD,
   getPlanetaryPositions,
   toSidereal,
-  lahiriAyanamsha,
+  getAyanamsha,
   normalizeDeg,
 } from '@/lib/ephem/astronomical';
 import {
@@ -182,7 +182,7 @@ export function computeNationalForecast(
   const [fy, fm, fd] = dateISO.split('-').map(Number);
   const transitJd = dateToJD(fy, fm, fd, 12); // noon UT
   const transitPlanets = getPlanetaryPositions(transitJd);
-  const ayanamsha = lahiriAyanamsha(transitJd);
+  const ayanamsha = getAyanamsha(transitJd);
 
   // We track: Sun(0), Mars(2), Jupiter(4), Saturn(6), Rahu(7), Ketu(8)
   const TRACKED_PLANETS = [0, 2, 4, 6, 7, 8];

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { dateToJD, sunLongitude, moonLongitude, calculateYoga, lahiriAyanamsha, normalizeDeg } from '@/lib/ephem/astronomical';
+import { dateToJD, sunLongitude, moonLongitude, calculateYoga, getAyanamsha, normalizeDeg } from '@/lib/ephem/astronomical';
 import { YOGAS } from '@/lib/constants/yogas';
 
 function formatDate(d: Date): string {
@@ -24,7 +24,7 @@ export default function TryYogaCalc() {
     const [y, m, d] = dateStr.split('-').map(Number);
     if (!y || !m || !d) return null;
     const jd = dateToJD(y, m, d, 12);
-    const aya = lahiriAyanamsha(jd);
+    const aya = getAyanamsha(jd);
     const sunTrop = sunLongitude(jd);
     const moonTrop = moonLongitude(jd);
     const sunSid = normalizeDeg(sunTrop - aya);

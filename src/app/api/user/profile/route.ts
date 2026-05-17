@@ -38,7 +38,7 @@ export async function GET(req: NextRequest) {
 
   const { data: snapshot } = await supabase
     .from('kundali_snapshots')
-    .select('ascendant_sign, moon_sign, moon_nakshatra, moon_nakshatra_pada, sun_sign, chart_data, sade_sati, dasha_timeline, computed_at')
+    .select('ascendant_sign, moon_sign, moon_nakshatra, moon_nakshatra_pada, sun_sign, chart_data, sade_sati, dasha_timeline, computed_at, computation_version')
     .eq('user_id', user.id)
     .single();
 
@@ -225,8 +225,9 @@ export async function POST(req: NextRequest) {
     user_id: user.id,
     ascendant_sign: kundali.ascendant.sign,
     moon_sign: moonPlanet?.sign || 1,
-    moon_nakshatra: getNakshatraNumber(moonLong),
-    moon_nakshatra_pada: getNakshatraPada(moonLong),
+    // Use stored nakshatra from kundali — NEVER re-derive from longitude (see Lesson: double-ayanamsha bug)
+    moon_nakshatra: moonPlanet?.nakshatra?.id ?? getNakshatraNumber(moonLong),
+    moon_nakshatra_pada: moonPlanet?.nakshatra?.pada ?? getNakshatraPada(moonLong),
     sun_sign: sunPlanet?.sign || 1,
     planet_positions: kundali.planets,
     house_cusps: kundali.houses,
@@ -238,6 +239,8 @@ export async function POST(req: NextRequest) {
     sade_sati: kundali.sadeSati || {},
     full_kundali: kundali,
     computed_at: new Date().toISOString(),
+    // Bump this when computation logic changes — triggers re-computation on next login
+    computation_version: 2,
   };
 
   const { error: upsertError } = await supabase

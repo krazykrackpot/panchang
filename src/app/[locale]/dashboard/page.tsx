@@ -903,6 +903,30 @@ export default function DashboardPage() {
         setLoading(false);
         return;
       }
+
+      // Auto-recompute stale snapshots: when computation logic changes (bug fixes,
+      // new features), bump CURRENT_COMPUTATION_VERSION in profile/route.ts.
+      // Stale snapshots get re-computed transparently on next dashboard load.
+      const CURRENT_COMPUTATION_VERSION = 2;
+      if ((snapshot.computation_version ?? 0) < CURRENT_COMPUTATION_VERSION && profile?.date_of_birth && session) {
+        // Fire-and-forget re-computation — don't block dashboard load
+        fetch('/api/user/profile', {
+          method: 'PUT',
+          headers: { Authorization: `Bearer ${session.access_token}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: profile.display_name || '',
+            dateOfBirth: profile.date_of_birth,
+            timeOfBirth: profile.time_of_birth || '12:00',
+            birthPlace: profile.birth_place || '',
+            birthLat: profile.birth_lat,
+            birthLng: profile.birth_lng,
+          }),
+        }).then(() => {
+          // Reload dashboard after re-computation completes
+          loadDashboard();
+        }).catch(err => console.error('[dashboard] snapshot recompute failed:', err));
+      }
+
       setHasBirthData(true);
       setAscendantSign(snapshot.ascendant_sign || 0);
       setUserMoonSign(snapshot.moon_sign || 0);

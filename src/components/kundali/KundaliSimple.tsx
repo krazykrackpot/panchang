@@ -37,16 +37,25 @@ const DOMAINS: SimpleDomain[] = [
 // Derive domain scores from already-computed kundali data
 // ---------------------------------------------------------------------------
 
+type RatingTier = 'uttama' | 'madhyama' | 'adhama' | 'atyadhama';
+
+/** Score (0-10) → rating tier. Single source of truth — used for natal, current, AND overall. */
+function scoreToRating(score: number): RatingTier {
+  if (score >= 7) return 'uttama';
+  if (score >= 5) return 'madhyama';
+  if (score >= 3) return 'adhama';
+  return 'atyadhama';
+}
+
 interface DomainScore {
   key: string;
   label: { en: string; hi: string; sa: string };
-  /** 0-10 score from bhavabala (natal promise) */
   natalScore: number;
-  /** 0-10 score: is the dasha lord activating these houses now? */
   currentScore: number;
-  /** Blended overall */
   overallScore: number;
-  rating: 'uttama' | 'madhyama' | 'adhama' | 'atyadhama';
+  rating: RatingTier;
+  natalRating: RatingTier;
+  currentRating: RatingTier;
 }
 
 function deriveDomainScores(kundali: KundaliData): DomainScore[] {
@@ -88,14 +97,15 @@ function deriveDomainScores(kundali: KundaliData): DomainScore[] {
     // Overall: weighted blend (70% natal, 30% current)
     const overallScore = Math.round((natalScore * 0.7 + currentScore * 0.3) * 10) / 10;
 
-    // Rating tier from overall score
-    let rating: DomainScore['rating'] = 'madhyama';
-    if (overallScore >= 7) rating = 'uttama';
-    else if (overallScore >= 5) rating = 'madhyama';
-    else if (overallScore >= 3) rating = 'adhama';
-    else rating = 'atyadhama';
-
-    return { key, label, natalScore: Math.round(natalScore * 10) / 10, currentScore, overallScore, rating };
+    return {
+      key, label,
+      natalScore: Math.round(natalScore * 10) / 10,
+      currentScore,
+      overallScore,
+      rating: scoreToRating(overallScore),
+      natalRating: scoreToRating(natalScore),
+      currentRating: scoreToRating(currentScore),
+    };
   });
 }
 
@@ -173,9 +183,8 @@ export default function KundaliSimple({ kundali, blueprint, locale, onSwitchToEx
             currentScore={d.currentScore}
             overallScore={d.overallScore}
             rating={d.rating}
-            natalLabel=""
-            currentLabel=""
-            overallLabel=""
+            natalRating={d.natalRating}
+            currentRating={d.currentRating}
             locale={locale}
           />
         ))}

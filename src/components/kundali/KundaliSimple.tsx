@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import type { KundaliData } from '@/types/kundali';
 import type { CosmicBlueprint } from '@/lib/kundali/archetype-engine';
 import { tl } from '@/lib/utils/trilingual';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { PLANET_NAME_TO_ID } from '@/lib/constants/grahas';
 
 import CosmicIdentityCard from './simple/CosmicIdentityCard';
@@ -38,11 +39,15 @@ const DOMAINS: SimpleDomain[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// Locale helper — handles hi + sa (Devanagari) vs everything else
+// Locale helper — uses shared isDevanagariLocale for consistency
 // ---------------------------------------------------------------------------
 
 function L(locale: string, en: string, hi: string): string {
-  return locale === 'hi' || locale === 'sa' ? hi : en;
+  return isDevanagariLocale(locale) ? hi : en;
+}
+
+function ratingNeedsHelp(r: string): boolean {
+  return r === 'adhama' || r === 'atyadhama';
 }
 
 // ---------------------------------------------------------------------------
@@ -147,7 +152,7 @@ function SectionHeader({ title }: { title: string }) {
 // ---------------------------------------------------------------------------
 
 function BlueprintUnavailable({ locale }: { locale: string }) {
-  const isHi = locale === 'hi' || locale === 'sa';
+  const isHi = isDevanagariLocale(locale);
   return (
     <div className="rounded-2xl border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-6 text-center">
       <p className="text-gold-light text-lg font-semibold mb-2">
@@ -224,9 +229,7 @@ export default function KundaliSimple({ kundali, blueprint, locale, onSwitchToEx
             currentRating={d.currentRating}
             locale={locale}
             onViewRemedies={
-              d.rating === 'adhama' || d.rating === 'atyadhama'
-              || d.natalRating === 'adhama' || d.natalRating === 'atyadhama'
-              || d.currentRating === 'adhama' || d.currentRating === 'atyadhama'
+              [d.rating, d.natalRating, d.currentRating].some(ratingNeedsHelp)
                 ? onSwitchToExpert : undefined
             }
           />

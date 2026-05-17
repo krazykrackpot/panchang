@@ -1840,7 +1840,7 @@ export const PAGE_META: Record<string, PageMeta> = {
     },
     description: {
       en: 'How Dekho Panchang achieves professional-grade accuracy. Swiss Ephemeris (NASA JPL DE441), USNO solar tables, IAU Lahiri standard. 88 automated tests across 9 global locations. Sunrise within \u00b12 min, tithi within \u00b12 min of authoritative references.',
-      hi: 'देखो पंचांग कैसे पेशेवर-स्तर की सटीकता प्राप्त करता है। स्विस एफ़ेमेरिस (NASA JPL DE441), USNO सौर तालिकाएँ, IAU लाहिरी मानक। 9 वैश्विक स्थानों पर 88 स्वचालित परीक्षण।',
+      hi: 'देखो पंचांग कैसे पेशेवर-स्तर की सटीकता प्राप्त करता है। स्विस एफ़ेमेरिस (NASA JPL DE441), USNO सौर तालिकाएँ, IAU लाहिरी मानक। 9 वैश्विक स्थानों पर 88 स्वचालित परीक्षण। सूर्योदय \u00b12 मिनट के भीतर, तिथि \u00b12 मिनट के भीतर प्रामाणिक सन्दर्भों के अनुसार।',
       sa: 'गणनासटीकता \u2014 स्विस एफ़ेमेरिस JPL DE441 USNO सौरसारणी IAU लाहिरीमानकम्।',
     },
     keywords: ['panchang accuracy', 'swiss ephemeris', 'vedic astrology accuracy', 'jpl de441', 'lahiri ayanamsha', 'tithi calculation method', 'vedic calendar accuracy', 'ekadashi date calculation', 'panchang differences explained', 'nakshatra timing accuracy', 'ayanamsha comparison'],

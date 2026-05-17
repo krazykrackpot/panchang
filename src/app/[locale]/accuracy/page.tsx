@@ -106,6 +106,7 @@ const LABELS = {
     s4bTitle: 'Verified Against Authoritative Sources',
     s4bIntro:
       'Our calculations are validated against the same primary sources that professional almanacs and observatories use \u2014 not derived from other panchang websites.',
+    s4bHeaders: ['Source', 'What It Covers', 'Accuracy'],
     s4bSources: [
       { name: 'Swiss Ephemeris (JPL DE441)', what: 'Planetary longitudes, latitudes, speeds', accuracy: 'Sub-arcsecond (< 0.001\u00b0)', note: 'Same ephemeris used by professional observatories and NASA spacecraft navigation' },
       { name: 'USNO Solar Tables', what: 'Sunrise, sunset, twilight times', accuracy: '\u00b11\u20132 minutes', note: 'Upper limb convention with standard atmospheric refraction (34\u2032)' },
@@ -183,6 +184,7 @@ const LABELS = {
     s4bTitle: 'प्रामाणिक स्रोतों से सत्यापित',
     s4bIntro:
       'हमारी गणनाएँ उन्हीं प्राथमिक स्रोतों से सत्यापित हैं जिनका उपयोग पेशेवर पंचांग और वेधशालाएँ करती हैं \u2014 अन्य पंचांग वेबसाइटों से नहीं।',
+    s4bHeaders: ['स्रोत', 'क्या सत्यापित', 'सटीकता'],
     s4bSources: [
       { name: 'स्विस एफ़ेमेरिस (JPL DE441)', what: 'ग्रह देशान्तर, अक्षांश, गति', accuracy: 'उप-आर्क-सेकंड (< 0.001\u00b0)', note: 'वही एफ़ेमेरिस जो पेशेवर वेधशालाएँ और NASA अन्तरिक्ष यान नेविगेशन उपयोग करते हैं' },
       { name: 'USNO सौर तालिकाएँ', what: 'सूर्योदय, सूर्यास्त, सन्ध्या समय', accuracy: '\u00b11\u20132 मिनट', note: 'ऊपरी किनारा पद्धति + मानक वायुमण्डलीय अपवर्तन (34\u2032)' },
@@ -531,19 +533,19 @@ export default async function AccuracyPage() {
               <thead>
                 <tr className="border-b border-gold-primary/30">
                   <th className="text-left py-3 pr-4 text-gold-light font-semibold text-xs uppercase tracking-wider">
-                    {locale === 'hi' ? 'स्रोत' : 'Source'}
+                    {l.s4bHeaders[0]}
                   </th>
                   <th className="text-left py-3 pr-4 text-gold-light font-semibold text-xs uppercase tracking-wider">
-                    {locale === 'hi' ? 'क्या सत्यापित' : 'What It Covers'}
+                    {l.s4bHeaders[1]}
                   </th>
                   <th className="text-left py-3 pr-4 text-gold-light font-semibold text-xs uppercase tracking-wider">
-                    {locale === 'hi' ? 'सटीकता' : 'Accuracy'}
+                    {l.s4bHeaders[2]}
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {l.s4bSources.map((src, i) => (
-                  <tr key={i} className="border-b border-white/5">
+                {l.s4bSources.map((src) => (
+                  <tr key={src.name} className="border-b border-white/5">
                     <td className="py-3 pr-4 text-text-primary font-medium whitespace-nowrap align-top">
                       {src.name}
                     </td>
@@ -561,8 +563,8 @@ export default async function AccuracyPage() {
 
           {/* Source notes */}
           <div className="space-y-3 mb-6">
-            {l.s4bSources.map((src, i) => (
-              <div key={i} className="border-l-2 border-gold-primary/20 pl-4">
+            {l.s4bSources.map((src) => (
+              <div key={src.name} className="border-l-2 border-gold-primary/20 pl-4">
                 <span className="text-gold-light text-xs font-semibold">{src.name}</span>
                 <p className="text-text-secondary/70 text-xs leading-relaxed mt-0.5" style={bodyFont}>
                   {src.note}

@@ -1117,20 +1117,32 @@ function evaluateSignificatorsHolistic(
     const inauspiciousYogas = domainYogas.filter(y => !y.isAuspicious);
 
     if (auspiciousYogas.length > 0) {
-      // Yogas: each contributes tier 3 (uttama) at its own weight.
-      // Multiple yogas = genuinely strong domain — don't artificially cap.
-      // But diminishing returns: first 3 at full weight, rest at half weight.
+      // Phase 4-5: Yoga tier varies by strength (not always tier 3).
+      // Strong yoga = tier 3, Moderate = tier 2, Weak = tier 1.
+      // Diminishing returns: first 3 at full weight, rest at half.
+      const YOGA_STRENGTH_TIER: Record<string, number> = { Strong: 3, Moderate: 2, Weak: 1 };
       for (let i = 0; i < auspiciousYogas.length; i++) {
         const y = auspiciousYogas[i];
+        const tier = YOGA_STRENGTH_TIER[y.strength] ?? 2;
         const w = i < 3 ? y.domainImpactWeight : y.domainImpactWeight * 0.5;
-        tierValues.push({ tier: 3, weight: w });
+        tierValues.push({ tier, weight: w });
       }
-      // Extract first sentence of each yoga's description for the summary
-      const details = auspiciousYogas.map(y => ({
-        id: y.id,
-        name: y.name.en,
-        summary: (y.description.en ?? '').split(/[.।]/)[0].trim(),
-      }));
+      // Phase 5: Context-aware summaries with cancellation + strength reporting
+      const details = auspiciousYogas.map(y => {
+        const baseSummary = (y.description.en ?? '').split(/[.।]/)[0].trim();
+        const parts: string[] = [baseSummary];
+        // Strength qualifier
+        if (y.strength === 'Strong') parts.push('(strong)');
+        else if (y.strength === 'Weak') parts.push('(weak — limited effect)');
+        // Cancellation reporting
+        if (y.cancellationStatus?.details.some(d => d.effect === 'weaken' && d.cancelled) && !y.cancellationStatus.anyCancelled) {
+          const reasons = y.cancellationStatus.details
+            .filter(d => d.effect === 'weaken' && d.cancelled)
+            .map(d => d.reason).join('; ');
+          if (reasons) parts.push(`— weakened: ${reasons}`);
+        }
+        return { id: y.id, name: y.name.en, summary: parts.join(' ') };
+      });
       const names = details.slice(0, 3).map(d => d.name);
       const more = details.length > 3 ? ` (+${details.length - 3} more)` : '';
       factors.push({
@@ -1142,27 +1154,43 @@ function evaluateSignificatorsHolistic(
     }
 
     if (inauspiciousYogas.length > 0) {
-      // Doshas: each contributes tier 0 (atyadhama). First 2 at full weight, rest at half.
-      // Multiple doshas compound but with diminishing effect — classical texts don't
-      // say 5 doshas = 5x worse than 1 dosha.
+      // Phase 4-5: Dosha tier varies by strength.
+      // Strong dosha = tier 0, Moderate = tier 0, Weak = tier 1 (mild).
+      // Diminishing returns: first 2 at full weight, rest at half.
       for (let i = 0; i < inauspiciousYogas.length; i++) {
         const y = inauspiciousYogas[i];
+        const tier = y.strength === 'Weak' ? 1 : 0;
         const w = i < 2 ? y.domainImpactWeight : y.domainImpactWeight * 0.5;
-        tierValues.push({ tier: 0, weight: w });
+        tierValues.push({ tier, weight: w });
       }
-      const details = inauspiciousYogas.map(y => ({
-        id: y.id,
-        name: y.name.en,
-        summary: (y.description.en ?? '').split(/[.।]/)[0].trim(),
-      }));
-      const names = details.slice(0, 2).map(d => d.name);
-      const more = details.length > 2 ? ` (+${details.length - 2} more)` : '';
-      factors.push({
-        label: { en: 'Active Doshas', hi: 'सक्रिय दोष' },
-        verdict: 'negative',
-        value: `${names.join(', ')}${more}`,
-        yogaDetails: details,
+      // Phase 5: Context-aware summaries with cancellation reporting
+      const details = inauspiciousYogas.map(y => {
+        const baseSummary = (y.description.en ?? '').split(/[.।]/)[0].trim();
+        const parts: string[] = [baseSummary];
+        // Cancellation/mitigation reporting
+        if (y.cancellationStatus?.anyCancelled) {
+          parts.push('— CANCELLED (conditions met, no longer active)');
+        } else if (y.cancellationStatus?.details.some(d => d.effect === 'weaken' && d.cancelled)) {
+          const reasons = y.cancellationStatus.details
+            .filter(d => d.effect === 'weaken' && d.cancelled)
+            .map(d => d.reason).join('; ');
+          if (reasons) parts.push(`— partially mitigated: ${reasons}`);
+        }
+        if (y.strength === 'Weak') parts.push('(mild)');
+        return { id: y.id, name: y.name.en, summary: parts.join(' ') };
       });
+      // Filter out fully cancelled doshas from the display
+      const activeDetails = details.filter(d => !d.summary.includes('CANCELLED'));
+      if (activeDetails.length > 0) {
+        const names = activeDetails.slice(0, 2).map(d => d.name);
+        const more = activeDetails.length > 2 ? ` (+${activeDetails.length - 2} more)` : '';
+        factors.push({
+          label: { en: 'Active Doshas', hi: 'सक्रिय दोष' },
+          verdict: 'negative',
+          value: `${names.join(', ')}${more}`,
+          yogaDetails: activeDetails,
+        });
+      }
     }
   } else if (kundali.yogasComplete) {
     // Fallback: old category-matching approach

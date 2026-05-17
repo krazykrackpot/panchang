@@ -7,7 +7,7 @@ const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   return {
-    title: 'Jyotish Tools  –  20 Vedic Astrology Calculators | Dekho Panchang',
+    title: 'Jyotish Tools  –  20 Vedic Astrology Calculators',
     description:
       'Free Vedic astrology tools: Rahu Kaal, Choghadiya, Hora, Sade Sati, Kaal Sarpa Dosha, Mangal Dosha, Prashna, Sarvatobhadra Chakra, and more.',
     alternates: {

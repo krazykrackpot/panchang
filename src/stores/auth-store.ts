@@ -87,7 +87,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     const supabase = getSupabase();
     if (!supabase) return { error: 'Auth not configured' };
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/en/settings`,
+      redirectTo: `${window.location.origin}/${window.location.pathname.split('/')[1] || 'en'}/settings`,
     });
     return error ? { error: error.message } : {};
   },

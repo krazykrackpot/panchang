@@ -27,9 +27,26 @@ export default function SignupPrompt() {
   const [show, setShow] = useState(false);
   const triggered = useRef(false);
   const pathname = usePathname();
+  const prevPathname = useRef(pathname);
 
   useEffect(() => { initialize(); }, [initialize]);
 
+  // Page view counter — only increment when pathname ACTUALLY changes (Bug A1 fix)
+  useEffect(() => {
+    if (!initialized || user) return;
+    if (prevPathname.current === pathname) return; // skip re-fires from initialized changing
+    prevPathname.current = pathname;
+
+    try {
+      const stored = localStorage.getItem(VIEWS_KEY);
+      const views = (stored ? parseInt(stored, 10) || 0 : 0) + 1;
+      localStorage.setItem(VIEWS_KEY, views.toString());
+    } catch {
+      console.error('[SignupPrompt] localStorage views tracking failed');
+    }
+  }, [initialized, user, pathname]);
+
+  // Trigger logic — separate from counter to avoid double-counting
   useEffect(() => {
     if (!initialized) return;
     if (user) { setShow(false); return; }
@@ -44,20 +61,8 @@ export default function SignupPrompt() {
         }
       }
     } catch {
-      // localStorage unavailable — don't block
       console.error('[SignupPrompt] localStorage read failed');
       return;
-    }
-
-    // Increment page view count
-    let views = 0;
-    try {
-      const stored = localStorage.getItem(VIEWS_KEY);
-      views = stored ? parseInt(stored, 10) || 0 : 0;
-      views += 1;
-      localStorage.setItem(VIEWS_KEY, views.toString());
-    } catch {
-      console.error('[SignupPrompt] localStorage views tracking failed');
     }
 
     const trigger = () => {
@@ -66,22 +71,31 @@ export default function SignupPrompt() {
       setShow(true);
     };
 
-    // Page view trigger — show if they've visited 3+ pages (never on first visit)
+    // Page view trigger
+    let views = 0;
+    try {
+      const stored = localStorage.getItem(VIEWS_KEY);
+      views = stored ? parseInt(stored, 10) || 0 : 0;
+    } catch { /* already logged above */ }
+
     if (views >= PAGE_VIEW_THRESHOLD) {
-      // Small delay so the page renders first, not instant popup
       const viewTimer = setTimeout(trigger, 2_000);
       return () => clearTimeout(viewTimer);
     }
 
-    // Time trigger — 90 seconds on a single page (for deep readers)
+    // Time trigger — 90 seconds on a single page
     const timer = setTimeout(trigger, TIME_THRESHOLD_MS);
 
-    // Chart generation trigger — show immediately when user generates a kundali
-    // (peak engagement moment). The kundali Client dispatches 'kundali:generated'.
-    const onChartGenerated = () => setTimeout(trigger, 3_000); // 3s delay post-generation
+    // Chart generation trigger (Bug A3 fix: store timer ID for cleanup)
+    let chartTimer: ReturnType<typeof setTimeout> | null = null;
+    const onChartGenerated = () => { chartTimer = setTimeout(trigger, 3_000); };
     window.addEventListener('kundali:generated', onChartGenerated);
 
-    return () => { clearTimeout(timer); window.removeEventListener('kundali:generated', onChartGenerated); };
+    return () => {
+      clearTimeout(timer);
+      if (chartTimer) clearTimeout(chartTimer);
+      window.removeEventListener('kundali:generated', onChartGenerated);
+    };
   }, [initialized, user, pathname]);
 
   const dismiss = () => {

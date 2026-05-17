@@ -198,7 +198,7 @@ export default function ModuleIndexPage() {
           <div className="text-gold-light font-bold text-lg" style={hf}>{lt(LI.startLearning as LocaleText, locale)}</div>
           <p className="text-text-secondary text-xs mt-1">{lt(LI.startSubtitle as LocaleText, locale)}</p>
         </div>
-        <Link href="/learn/modules/1-1" className="shrink-0 px-6 py-2.5 rounded-xl bg-gold-primary text-bg-primary font-semibold text-sm hover:bg-gold-light transition-colors">
+        <Link href="/learn/modules/0-1" className="shrink-0 px-6 py-2.5 rounded-xl bg-gold-primary text-bg-primary font-semibold text-sm hover:bg-gold-light transition-colors">
           {lt(LI.begin as LocaleText, locale)}
         </Link>
       </div>

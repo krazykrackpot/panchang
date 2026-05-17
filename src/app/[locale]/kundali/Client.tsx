@@ -822,11 +822,14 @@ export default function KundaliClient() {
       });
       const data = await res.json();
       if (!res.ok || data.error || !data.planets) {
-        console.error('Kundali API error:', data.error || `HTTP ${res.status}`);
+        console.error('[kundali] API error:', data.error || `HTTP ${res.status}`);
+        alert(locale === 'hi' ? 'कुण्डली बनाने में त्रुटि। कृपया पुनः प्रयास करें।' : 'Failed to generate chart. Please check your inputs and try again.');
         setLoading(false);
         return;
       }
       setKundali(data);
+      // Signal signup prompt — peak engagement for non-logged-in users
+      window.dispatchEvent(new CustomEvent('kundali:generated'));
       // Compute Personal Pandit reading + Key Dates (synchronous, <500ms)
       try {
         // Yoga engine already ran inside generateKundali() — results in data.evaluatedYogas
@@ -839,13 +842,13 @@ export default function KundaliClient() {
         resolveInitialView();
         if (user) trajectoryHook.syncTrajectory(reading, locale);
       } catch (synthErr) {
-        console.error('Personal reading synthesis failed  –  falling back to technical view:', synthErr);
+        console.error('[kundali] Personal reading synthesis failed:', synthErr);
         setPersonalReading(null);
-        setView('technical');
+        // Stay on summary — tippanni narrative is still available. Never dump newcomers into raw technical view.
       }
       try {
         sessionStorage.setItem('kundali_last_result', JSON.stringify({ kundali: data, chartStyle: style, sig: `${birthData.lat}|${birthData.lng}|${birthData.date}|${birthData.time}|${birthData.timezone}` }));
-      } catch { /* quota exceeded or private browsing */ }
+      } catch (storageErr) { console.warn('[kundali] sessionStorage write failed:', storageErr); }
       trackKundaliGenerated({ location: birthData.place || 'unknown', hasBirthTime: !!birthData.time });
       // Persist Moon nakshatra & rashi ONLY for self charts  –  not for family members.
       // This data drives horoscope auto-select and Chandrabalam/Tarabalam on panchang page.
@@ -857,7 +860,8 @@ export default function KundaliClient() {
         }
       }
     } catch (e) {
-      console.error('Kundali generation failed:', e);
+      console.error('[kundali] Generation failed:', e);
+      alert(locale === 'hi' ? 'कुण्डली बनाने में त्रुटि। कृपया पुनः प्रयास करें।' : 'Failed to generate chart. Please try again.');
     }
     setLoading(false);
   };

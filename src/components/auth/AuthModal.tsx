@@ -70,7 +70,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
       } else {
         onClose();
       }
-    } catch {
+    } catch (err) {
+      console.error('[AuthModal] Auth failed:', err);
       setError('Authentication service is not configured. Please try again later.');
     }
   }

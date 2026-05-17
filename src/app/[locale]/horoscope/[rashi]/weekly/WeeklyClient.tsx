@@ -294,7 +294,7 @@ export function WeeklyClient({ rashi, locale }: WeeklyClientProps) {
             {L.weekly}
           </div>
           <Link
-            href={`/${locale}/horoscope/${rashi.slug}/monthly`}
+            href={`/horoscope/${rashi.slug}/monthly` as any}
             className="px-4 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-white/5 transition-all"
             style={bodyFont}
           >

@@ -317,7 +317,7 @@ function PopularCitiesSection({ locale }: { locale: string }) {
         {indianCities.map(city => (
           <Link
             key={city.slug}
-            href={`/${locale}/panchang/${city.slug}`}
+            href={`/panchang/${city.slug}` as any}
             className="rounded-xl border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] px-4 py-3 text-center hover:border-gold-primary/40 hover:bg-gold-primary/5 transition-all group"
           >
             <div className="text-gold-light text-sm font-medium group-hover:text-gold-primary transition-colors">
@@ -337,7 +337,7 @@ function PopularCitiesSection({ locale }: { locale: string }) {
         {diasporaCities.map(city => (
           <Link
             key={city.slug}
-            href={`/${locale}/panchang/${city.slug}`}
+            href={`/panchang/${city.slug}` as any}
             className="rounded-xl border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] px-4 py-3 text-center hover:border-gold-primary/40 hover:bg-gold-primary/5 transition-all group"
           >
             <div className="text-gold-light text-sm font-medium group-hover:text-gold-primary transition-colors">
@@ -351,7 +351,7 @@ function PopularCitiesSection({ locale }: { locale: string }) {
       {/* Link to full locations page */}
       <div className="text-center">
         <Link
-          href={`/${locale}/panchang/locations`}
+          href={'/panchang/locations' as any}
           className="inline-flex items-center gap-2 text-gold-primary hover:text-gold-light text-sm font-medium transition-colors"
         >
           {isHi ? 'सभी 800+ शहर देखें →' : 'View all 800+ cities →'}

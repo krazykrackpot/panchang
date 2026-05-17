@@ -382,7 +382,7 @@ export default async function HinduCalendarPage({
             subtext={locale === 'hi'
               ? 'मुफ़्त खाता बनाएँ  –  सूर्योदय पर ईमेल से दैनिक पंचांग प्राप्त करें'
               : 'Free account  –  daily panchang delivered to your inbox at sunrise'}
-            href={`/${locale}/dashboard`}
+            href={'/dashboard' as any}
             buttonLabel={locale === 'hi' ? 'डैशबोर्ड देखें' : 'View Dashboard'}
             triggerAuth
           />

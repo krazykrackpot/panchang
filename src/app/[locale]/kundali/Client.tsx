@@ -1000,6 +1000,18 @@ export default function KundaliClient() {
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mt-16">
           <GoldDivider />
 
+          {/* View mode toggle — prominent, above everything */}
+          <div className="flex justify-end mb-4">
+            <ViewModeToggle
+              mode={viewMode}
+              onToggle={(m) => {
+                localStorage.setItem('kundali-view-mode', m);
+                sessionStorage.setItem('kundali-view-mode-manual', '1');
+                setViewMode(m);
+              }}
+            />
+          </div>
+
           {/* Birth details header */}
           <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 mb-8 text-center">
             <h2 className="text-gold-light text-2xl font-semibold mb-2" style={headingFont}>
@@ -1044,14 +1056,6 @@ export default function KundaliClient() {
             })()}
             {/* Actions */}
             <div className="flex items-center justify-center gap-3 mt-4">
-              <ViewModeToggle
-                mode={viewMode}
-                onToggle={(m) => {
-                  localStorage.setItem('kundali-view-mode', m);
-                  sessionStorage.setItem('kundali-view-mode-manual', '1');
-                  setViewMode(m);
-                }}
-              />
               <button
                 onClick={() => setEditing(true)}
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"

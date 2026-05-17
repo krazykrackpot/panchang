@@ -163,11 +163,12 @@ export default function CosmicIdentityCard({ blueprint, kundali, locale }: Props
         </h3>
       </div>
 
-      {/* Desktop: flex row. Mobile: horizontal scroll with snap. */}
+      {/* Desktop: equal-width row filling container. Mobile: horizontal scroll with snap. */}
       <div
         ref={scrollRef}
-        className="flex gap-4 sm:gap-6 sm:justify-center
+        className="flex gap-4 sm:gap-5
           overflow-x-auto snap-x snap-mandatory pb-2
+          sm:overflow-x-visible sm:snap-none
           scrollbar-none"
       >
         {faces.map((face) => (
@@ -175,7 +176,8 @@ export default function CosmicIdentityCard({ blueprint, kundali, locale }: Props
             key={face.label}
             className={`
               snap-center flex-shrink-0
-              min-w-[200px] w-[220px] sm:w-[240px]
+              min-w-[200px] w-[220px]
+              sm:w-auto sm:flex-1
               rounded-xl border border-gold-primary/20
               bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]
               p-5 text-center

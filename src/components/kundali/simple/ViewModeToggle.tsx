@@ -1,5 +1,7 @@
 'use client';
 
+import { Sparkles, ScrollText } from 'lucide-react';
+
 interface Props {
   mode: 'simple' | 'expert';
   onToggle: (mode: 'simple' | 'expert') => void;
@@ -7,25 +9,27 @@ interface Props {
 
 export default function ViewModeToggle({ mode, onToggle }: Props) {
   return (
-    <div className="inline-flex rounded-full border border-gold-primary/30 overflow-hidden text-xs">
+    <div className="inline-flex rounded-xl border border-gold-primary/40 overflow-hidden bg-bg-secondary/40 backdrop-blur-sm">
       <button
         onClick={() => onToggle('simple')}
-        className={`px-4 py-1.5 font-semibold transition-colors ${
+        className={`flex items-center gap-2 px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${
           mode === 'simple'
-            ? 'bg-gold-primary/20 text-gold-light'
-            : 'text-text-secondary hover:text-gold-light'
+            ? 'bg-gold-primary/20 text-gold-light border-r border-gold-primary/30 shadow-inner shadow-gold-primary/10'
+            : 'text-text-secondary hover:text-gold-light hover:bg-gold-primary/5 border-r border-gold-primary/15'
         }`}
       >
+        <Sparkles className="w-4 h-4" />
         Simple
       </button>
       <button
         onClick={() => onToggle('expert')}
-        className={`px-4 py-1.5 font-semibold transition-colors ${
+        className={`flex items-center gap-2 px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${
           mode === 'expert'
-            ? 'bg-gold-primary/20 text-gold-light'
-            : 'text-text-secondary hover:text-gold-light'
+            ? 'bg-gold-primary/20 text-gold-light shadow-inner shadow-gold-primary/10'
+            : 'text-text-secondary hover:text-gold-light hover:bg-gold-primary/5'
         }`}
       >
+        <ScrollText className="w-4 h-4" />
         Expert
       </button>
     </div>

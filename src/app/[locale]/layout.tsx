@@ -95,9 +95,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export function generateStaticParams() {
-  // Pre-build only production locales to reduce CPU quota usage.
-  // Other locales still render on-demand via SSR.
-  return visibleLocales.map((locale: string) => ({ locale }));
+  // Pre-build only the 4 primary locales to keep deploy under 10 min.
+  // Other locales (te, gu, kn, mai) still render on-demand via ISR.
+  // With 430+ pages × 8 locales, Vercel hits stack overflow at 18K+ pages.
+  return ['en', 'hi', 'ta', 'bn'].map(locale => ({ locale }));
 }
 
 export default async function LocaleLayout({

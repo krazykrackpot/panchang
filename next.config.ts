@@ -153,7 +153,7 @@ const nextConfig: NextConfig = {
             value: [
               // Scripts: self + inline (Next.js requirement) + Google AdSense + Vercel Analytics
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://www.googletagservices.com https://adservice.google.com https://va.vercel-scripts.com",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://www.googletagservices.com https://adservice.google.com https://ep2.adtrafficquality.google https://va.vercel-scripts.com",
               // Styles: self + inline (Tailwind + Next.js) + Google Fonts
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               // Fonts: self + Google Fonts CDN

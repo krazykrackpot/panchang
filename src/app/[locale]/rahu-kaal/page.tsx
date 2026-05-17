@@ -67,7 +67,7 @@ export default async function RahuKaalPage({ params }: { params: Promise<{ local
   const delhiData = cityData.find(c => c.name === 'Delhi' || c.name === 'New Delhi');
 
   return (
-    <main className="min-h-screen bg-bg-primary">
+    <div className="min-h-screen bg-bg-primary">
       {/* ═══ SSR SEO Content — visible to Google, renders without JS ═══ */}
       <div className="max-w-4xl mx-auto px-4 pt-10 pb-6 sm:px-6 lg:px-8">
         <h1
@@ -187,7 +187,7 @@ export default async function RahuKaalPage({ params }: { params: Promise<{ local
 
       {/* ═══ Client Island: interactive city selector, timeline, countdown ═══ */}
       <RahuKaalClient />
-    </main>
+    </div>
   );
 }
 

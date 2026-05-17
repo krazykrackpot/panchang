@@ -91,7 +91,7 @@ export default async function HoraPage({ params }: { params: Promise<{ locale: s
   const weekdayName = isHi ? WEEKDAYS_HI[weekday] : WEEKDAYS_EN[weekday];
 
   return (
-    <main className="min-h-screen bg-bg-primary">
+    <div className="min-h-screen bg-bg-primary">
       {/* ═══ SSR SEO Content — visible to Google, renders without JS ═══ */}
       <div className="max-w-4xl mx-auto px-4 pt-10 pb-6 sm:px-6 lg:px-8">
         <h1
@@ -225,6 +225,6 @@ export default async function HoraPage({ params }: { params: Promise<{ locale: s
 
       {/* ═══ Client Island: interactive hora timeline, current hora, best-for table ═══ */}
       <HoraClient />
-    </main>
+    </div>
   );
 }

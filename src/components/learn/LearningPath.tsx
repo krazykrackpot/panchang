@@ -220,9 +220,10 @@ export default function LearningPath() {
                             <div
                               className="h-full rounded-full bg-gold-primary/70 transition-all duration-500"
                               style={{ width: `${phase.percent}%` }}
+                              suppressHydrationWarning
                             />
                           </div>
-                          <span className="text-[10px] text-gold-primary/60 font-medium">
+                          <span className="text-[10px] text-gold-primary/60 font-medium" suppressHydrationWarning>
                             {phase.mastered}/{phase.total}
                           </span>
                         </div>

@@ -135,7 +135,7 @@ export default async function ChoghadiyaPage({ params }: { params: Promise<{ loc
   );
 
   return (
-    <main className="min-h-screen bg-bg-primary">
+    <div className="min-h-screen bg-bg-primary">
       {/* ═══ SSR SEO Content — visible to Google, renders without JS ═══ */}
       <div className="max-w-4xl mx-auto px-4 pt-10 pb-6 sm:px-6 lg:px-8">
         <h1
@@ -224,6 +224,6 @@ export default async function ChoghadiyaPage({ params }: { params: Promise<{ loc
 
       {/* ═══ Client Island: interactive city selector, day/night slots, educational content ═══ */}
       <ChoghadiyaClient />
-    </main>
+    </div>
   );
 }

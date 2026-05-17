@@ -174,7 +174,7 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
           ) : locationStore.confirmed || panchang ? (
             <>
               <MapPin className="w-4 h-4 text-gold-primary" />
-              <span className="text-gold-light text-sm font-medium">{locationStore.name || serverLocation?.name || ''}</span>
+              <span className="text-gold-light text-sm font-medium" suppressHydrationWarning>{locationStore.name || serverLocation?.name || ''}</span>
               <button onClick={() => setShowSearch(true)}
                 className="text-gold-primary/70 text-xs hover:text-gold-light ml-2 underline underline-offset-2">
                 {msg('change', locale)}

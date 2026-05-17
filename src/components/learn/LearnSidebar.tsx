@@ -22,6 +22,7 @@ import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 const LABELS = {
   yourJourney:    { en: 'Your Journey', hi: 'आपकी यात्रा', sa: 'भवदीया यात्रा', mai: 'अहाँक यात्रा', mr: 'तुमचा प्रवास', ta: 'உங்கள் பயணம்', te: 'మీ ప్రయాణం', bn: 'আপনার যাত্রা', kn: 'ನಿಮ್ಮ ಪ್ರಯಾಣ', gu: 'તમારી યાત્રા' },
   modulesOf:      { en: 'modules mastered', hi: 'मॉड्यूल पूर्ण', sa: 'पाठाः सम्पूर्णाः', mai: 'मॉड्यूल पूर्ण', mr: 'मॉड्यूल पूर्ण', ta: 'பாடங்கள் தேர்ச்சி', te: 'మాడ్యూల్స్ నేర్చుకున్నవి', bn: 'মডিউল সম্পন্ন', kn: 'ಮಾಡ್ಯೂಲ್ ಪೂರ್ಣ', gu: 'મોડ્યુલ પૂર્ણ' },
+  startLearning:   { en: 'Start Learning', hi: 'सीखना शुरू करें', sa: 'अध्ययनम् आरभत', mai: 'सीखब शुरू करू', mr: 'शिकायला सुरुवात करा', ta: 'கற்கத் தொடங்குங்கள்', te: 'నేర్చుకోవడం ప్రారంభించండి', bn: 'শেখা শুরু করুন', kn: 'ಕಲಿಯಲು ಪ್ರಾರಂಭಿಸಿ', gu: 'શીખવાનું શરૂ કરો' },
   continueLearning:{ en: 'Continue Learning', hi: 'आगे बढ़ें', sa: 'अध्ययनं चालयतु', mai: 'आगाँ बढ़ू', mr: 'शिकत राहा', ta: 'தொடர்ந்து கற்கவும்', te: 'నేర్చుకోవడం కొనసాగించండి', bn: 'শিখতে থাকুন', kn: 'ಕಲಿಕೆ ಮುಂದುವರಿಸಿ', gu: 'શીખવાનું ચાલુ રાખો' },
   allMastered:    { en: 'All Mastered!', hi: 'सब पूर्ण!', sa: 'सर्वं सम्पूर्णम्!', mai: 'सभ पूर्ण!', mr: 'सर्व पूर्ण!', ta: 'அனைத்தும் தேர்ச்சி!', te: 'అన్నీ నేర్చుకున్నారు!', bn: 'সব সম্পন্ন!', kn: 'ಎಲ್ಲವೂ ಪೂರ್ಣ!', gu: 'બધું પૂર્ણ!' },
   allMasteredSub: { en: "You've completed the full curriculum.", hi: 'आपने पूरा पाठ्यक्रम पूर्ण किया।', sa: 'भवता सम्पूर्णः पाठ्यक्रमः समाप्तः।', mai: 'अहाँ पूरा पाठ्यक्रम पूर्ण केलहुँ।', mr: 'तुम्ही संपूर्ण अभ्यासक्रम पूर्ण केला.', ta: 'முழு பாடத்திட்டத்தையும் நிறைவு செய்தீர்கள்.', te: 'మీరు పూర్తి పాఠ్యప్రణాళిక పూర్తి చేసారు.', bn: 'আপনি সম্পূর্ণ পাঠ্যক্রম শেষ করেছেন।', kn: 'ನೀವು ಸಂಪೂರ್ಣ ಪಠ್ಯಕ್ರಮ ಪೂರ್ಣಗೊಳಿಸಿದ್ದೀರಿ.', gu: 'તમે સંપૂર્ણ અભ્યાસક્રમ પૂર્ણ કર્યો.' },
@@ -365,11 +366,11 @@ export default function LearnSidebar() {
       ) : nextModuleId && nextModuleRef ? (
         <div className="mx-3 mt-3">
           <Link
-            href={`/learn/modules/${nextModuleId}`}
+            href={(nextModuleRef?.href ?? `/learn/modules/${nextModuleId}`) as any}
             className="block p-3 rounded-lg border border-emerald-500/30 bg-emerald-500/8 hover:bg-emerald-500/15 hover:border-emerald-500/50 transition-colors group"
           >
             <p className="text-[10px] font-medium text-emerald-400 uppercase tracking-widest mb-1">
-              {t('continueLearning', locale)}
+              {Object.values(progress).some(p => p.status === 'mastered') ? t('continueLearning', locale) : t('startLearning', locale)}
             </p>
             <p className="text-xs font-semibold text-text-primary group-hover:text-white transition-colors leading-snug">
               {isHi ? nextModuleRef.title.hi : nextModuleRef.title.en}

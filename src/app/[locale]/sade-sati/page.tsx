@@ -3,6 +3,7 @@ import { getCurrentSaturnSign } from '@/lib/kundali/sade-sati-analysis';
 import { RASHIS } from '@/lib/constants/rashis';
 import SadeSatiClient from './Client';
 
+// Saturn moves ~0.03°/day — revalidate daily to keep SSR position fresh
 export const revalidate = 86400;
 
 export default async function SadeSatiPage({ params }: { params: Promise<{ locale: string }> }) {

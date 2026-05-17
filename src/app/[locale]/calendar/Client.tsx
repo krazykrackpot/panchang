@@ -192,9 +192,12 @@ export default function CalendarClient() {
   useEffect(() => {
     const store = useLocationStore.getState();
     if (store.confirmed && store.lat !== null && store.lng !== null && store.timezone) {
-      // Location store already has a cached location — use it directly
-      const browserTz = -new Date().getTimezoneOffset() / 60;
-      setLocation({ lat: store.lat, lng: store.lng, name: store.name, tz: browserTz, timezone: store.timezone });
+      // Location store already has a cached location — use it directly.
+      // Resolve UTC offset from the STORED IANA timezone (e.g. "Asia/Kolkata" → +5.5),
+      // NOT from the browser's timezone. Display only — not used for computation.
+      const now = new Date();
+      const utcOff = store.timezone ? getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), store.timezone) : -now.getTimezoneOffset() / 60;
+      setLocation({ lat: store.lat, lng: store.lng, name: store.name, tz: utcOff, timezone: store.timezone });
       setDetectingLocation(false);
       return;
     }
@@ -202,8 +205,9 @@ export default function CalendarClient() {
     // Store hasn't detected yet — trigger detection and subscribe to changes
     const unsubscribe = useLocationStore.subscribe((state) => {
       if (state.confirmed && state.lat !== null && state.lng !== null && state.timezone) {
-        const browserTz = -new Date().getTimezoneOffset() / 60;
-        setLocation({ lat: state.lat, lng: state.lng, name: state.name, tz: browserTz, timezone: state.timezone });
+        const now = new Date();
+        const locTz = state.timezone ? getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), state.timezone) : -now.getTimezoneOffset() / 60;
+        setLocation({ lat: state.lat, lng: state.lng, name: state.name, tz: locTz, timezone: state.timezone });
         setDetectingLocation(false);
       } else if (!state.detecting && !state.confirmed) {
         // Detection finished but no location found — user must enter manually
@@ -417,8 +421,8 @@ export default function CalendarClient() {
             className="flex items-center gap-2 px-4 py-2 rounded-xl border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] hover:bg-gold-primary/10 transition-all text-sm"
           >
             <MapPin className="w-4 h-4 text-gold-primary" />
-            <span className="text-text-primary font-medium">{location.name}</span>
-            <span className="text-text-secondary text-xs">UTC{location.tz >= 0 ? '+' : ''}{location.tz}</span>
+            <span className="text-text-primary font-medium" suppressHydrationWarning>{location.name}</span>
+            <span className="text-text-secondary text-xs" suppressHydrationWarning>UTC{location.tz >= 0 ? '+' : ''}{location.tz}</span>
             <ChevronDown className={`w-3 h-3 text-text-secondary transition-transform ${showLocationSearch ? 'rotate-180' : ''}`} />
           </button>
           {showLocationSearch && (

@@ -2125,7 +2125,7 @@ export default function KundaliClient() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: p.planet.id * 0.04 }}
                   onClick={() => handleSelectPlanet(p.planet.id)}
-                  className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 cursor-pointer transition-all border ${
+                  className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-4 cursor-pointer transition-all border ${
                     selectedPlanet === p.planet.id
                       ? 'border-gold-primary/40 bg-gold-primary/5'
                       : 'border-transparent hover:border-gold-primary/20'

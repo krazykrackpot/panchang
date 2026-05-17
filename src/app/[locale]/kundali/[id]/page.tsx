@@ -72,7 +72,8 @@ export default function SharedKundaliPage() {
         if (!response.ok) throw new Error('Failed to generate chart');
         const data = await response.json();
         setKundali(data);
-      } catch {
+      } catch (err) {
+        console.error('[kundali/[id]] Chart generation from shared link failed:', err);
         setError('Failed to generate chart from shared link.');
       } finally {
         setLoading(false);

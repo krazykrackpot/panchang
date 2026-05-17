@@ -350,7 +350,7 @@ export default function VedicTimeClient() {
             ? 'The ancient Indian time system  –  Ghati, Pala, Vipala'
             : 'प्राचीन भारतीय समय पद्धति  –  घटी, पल, विपल'}
         </p>
-        {locationName && <p className="text-text-secondary/70 text-sm mt-2">{locationName}</p>}
+        {locationName && <p className="text-text-secondary/70 text-sm mt-2" suppressHydrationWarning>{locationName}</p>}
       </motion.div>
 
       {/* Static educational content for SEO */}

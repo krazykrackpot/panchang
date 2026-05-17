@@ -546,7 +546,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
           {/* Location */}
           <div className="flex items-center gap-2 rounded-lg border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] px-3 py-2">
             <MapPin className="w-3.5 h-3.5 text-gold-primary shrink-0" />
-            <span className="text-text-primary text-sm font-medium max-w-[180px] truncate">
+            <span className="text-text-primary text-sm font-medium max-w-[180px] truncate" suppressHydrationWarning>
               {detectingLocation ? (
                 <span className="flex items-center gap-1 text-text-secondary text-xs"><Loader2 className="w-3 h-3 animate-spin" />{msg('detecting', locale)}</span>
               ) : location.name}

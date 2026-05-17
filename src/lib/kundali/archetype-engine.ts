@@ -176,8 +176,8 @@ export function generateCosmicBlueprint(input: BlueprintInput): CosmicBlueprint 
     .slice(0, 3);
 
   // --- Headline ---
-  const headline = `${primaryDef.name.en} soul in a ${currentChapterDef.name.en} phase${
-    nextDasha ? `, approaching a ${nextChapterDef.name.en} shift in ${nextDasha.startDate.getFullYear()}` : ''
+  const headline = `${primaryDef.name.en} soul in ${currentChapterDef.name.en} phase${
+    nextDasha ? `, approaching ${nextChapterDef.name.en} shift in ${nextDasha.startDate.getFullYear()}` : ''
   }`;
 
   return {

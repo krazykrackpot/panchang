@@ -75,7 +75,7 @@ export default async function VedicTimePage({ params }: { params: Promise<{ loca
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
 
   return (
-    <main className="min-h-screen bg-bg-primary">
+    <div className="min-h-screen bg-bg-primary">
       {/* ═══ SSR SEO Content ═══ */}
       <div className="max-w-4xl mx-auto px-4 pt-10 pb-6 sm:px-6 lg:px-8">
         <h1
@@ -261,6 +261,6 @@ export default async function VedicTimePage({ params }: { params: Promise<{ loca
 
       {/* ═══ Client Island: live clock, gauges, prahar/muhurta display ═══ */}
       <VedicTimeClient />
-    </main>
+    </div>
   );
 }

@@ -242,7 +242,7 @@ export default function HoraClient() {
             />
           </div>
           {confirmed && locationName && (
-            <span className="text-text-secondary text-sm">{locationName}</span>
+            <span className="text-text-secondary text-sm" suppressHydrationWarning>{locationName}</span>
           )}
         </div>
 

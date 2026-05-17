@@ -235,7 +235,7 @@ export default function ChoghadiyaClient() {
             {L.title}
           </h1>
           <p className="text-text-secondary text-lg">{dateStr}</p>
-          <p className="text-text-secondary flex items-center gap-1.5 mt-1">
+          <p className="text-text-secondary flex items-center gap-1.5 mt-1" suppressHydrationWarning>
             <MapPin size={14} className="text-gold-primary" />
             {tl(selectedCity.name, locale)}
           </p>

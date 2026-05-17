@@ -11,7 +11,9 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { getVratType } from '@/lib/constants/vrat-types';
 
-export const maxDuration = 30; // Cron job — email/notification/sync tasks
+// Batch email send — scales with subscriber count. At ~50 users 30s is fine.
+// If this starts timing out: switch to Vercel Queue or chunk into batches of 50.
+export const maxDuration = 60;
 
 /**
  * Cron endpoint: sends daily panchang email to all opted-in users.

@@ -4,7 +4,9 @@ import { getServerSupabase } from '@/lib/supabase/server';
 import { synthesizeReading } from '@/lib/kundali/domain-synthesis/synthesizer';
 import type { KundaliData, DashaEntry } from '@/types/kundali';
 
-export const maxDuration = 30; // Cron job — email/notification/sync tasks
+// Synthesises domain readings per user — O(N). At ~50 users 60s is fine.
+// If this starts timing out: chunk into batches or move to Hetzner cron.
+export const maxDuration = 60;
 
 // ---------------------------------------------------------------------------
 // GET /api/cron/monthly-readings

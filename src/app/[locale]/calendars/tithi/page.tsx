@@ -119,7 +119,7 @@ export default function TithiCalendarPage() {
           )}
           {showLocationSearch && (
             <div className="w-full max-w-sm">
-              <LocationSearch value="" onSelect={(loc) => { setLocation({ lat: loc.lat, lng: loc.lng, name: loc.name, timezone: loc.timezone || 'UTC' }); setShowLocationSearch(false); }}
+              <LocationSearch value="" onSelect={(loc) => { setLocation({ lat: loc.lat, lng: loc.lng, name: loc.name, timezone: loc.timezone || 'UTC' }); useLocationStore.getState().setLocation(loc.lat, loc.lng, loc.name, loc.timezone || 'UTC'); setShowLocationSearch(false); }}
                 placeholder={isEn ? 'Search city...' : 'शहर खोजें...'} />
             </div>
           )}

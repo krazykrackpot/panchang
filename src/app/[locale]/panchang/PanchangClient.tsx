@@ -253,6 +253,14 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
   const [panchang, setPanchang] = useState<PanchangData | null>(serverPanchang ?? null);
   const [loading, setLoading] = useState(!serverPanchang);
   const [location, setLocation] = useState<LocationData>(() => {
+    // Priority: location store (user's explicit choice) > server geo > empty
+    // This ensures locale switches don't lose the user's selected city
+    if (typeof window !== 'undefined') {
+      const store = useLocationStore.getState();
+      if (store.confirmed && store.lat !== null && store.lng !== null && store.timezone) {
+        return { lat: store.lat, lng: store.lng, name: store.name, tz: 0, ianaTimezone: store.timezone };
+      }
+    }
     if (serverLocation) {
       return { lat: serverLocation.lat, lng: serverLocation.lng, name: serverLocation.name, tz: 0, ianaTimezone: serverLocation.timezone };
     }
@@ -311,9 +319,11 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
     return { ianaTimezone, tz };
   }
 
-  // Location detection: URL params take priority over geolocation (Lesson C).
+  // Location detection: URL params > persisted store > geolocation > IP (Lesson C).
   // When a link passes ?lat=...&lng=...&name=..., use those coordinates.
-  // Only fall back to browser geolocation / IP when no URL params are present.
+  // If the location store has a confirmed location (user previously selected a city,
+  // or detected on a prior page load), use that — don't re-trigger geolocation.
+  // Only fall back to browser geolocation / IP when nothing is available.
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const urlLat = params.get('lat');
@@ -334,7 +344,17 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
       }
     }
 
-    // No URL params  –  detect from browser geolocation / IP
+    // Check persisted location store (survives locale switches, page navigations)
+    const locStore = useLocationStore.getState();
+    if (locStore.confirmed && locStore.lat !== null && locStore.lng !== null && locStore.timezone) {
+      // Store has a confirmed location — resolve timezone and use it, no geolocation needed
+      resolveLocationTimezone(locStore.lat, locStore.lng).then(({ ianaTimezone, tz }) => {
+        setLocation({ lat: locStore.lat!, lng: locStore.lng!, name: locStore.name, tz, ianaTimezone });
+      });
+      return;
+    }
+
+    // No URL params, no persisted location  –  detect from browser geolocation / IP
     if ('geolocation' in navigator) {
       setDetectingLocation(true);
       navigator.geolocation.getCurrentPosition(
@@ -549,6 +569,8 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
                 const now = new Date();
                 const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), loc.timezone);
                 setLocation({ lat: loc.lat, lng: loc.lng, name: loc.name, tz, ianaTimezone: loc.timezone });
+                // Persist to location store so it survives locale switches / remounts
+                useLocationStore.getState().setLocation(loc.lat, loc.lng, loc.name, loc.timezone);
                 setShowLocationSearch(false);
               }}
             />

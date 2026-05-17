@@ -1,4 +1,4 @@
-import { normalizeDeg, lahiriAyanamsha, sunLongitude, toSidereal, dateToJD } from '@/lib/ephem/astronomical';
+import { normalizeDeg, getAyanamsha, sunLongitude, toSidereal, dateToJD } from '@/lib/ephem/astronomical';
 import { getSunTimes } from '@/lib/astronomy/sunrise';
 import {
   MOOLATRIKONA,
@@ -641,7 +641,7 @@ function computeKalaBala(
   const mb = masaBala(p, input.birthDateObj, planets, input.julianDay);
   const vb = varaBala(p, input.julianDay);
   const hb = horaBala(p, birthHour, input.julianDay, sunriseHour);
-  const ayanamsha = input.ayanamshaValue ?? lahiriAyanamsha(input.julianDay);
+  const ayanamsha = input.ayanamshaValue ?? getAyanamsha(input.julianDay);
   const ay = ayanaBala(p, ayanamsha);
   const yb = yuddhaBalaMap[p.id] ?? 0;
 
@@ -815,7 +815,7 @@ export function calculateFullShadbala(input: ShadBalaInput, options?: ShadBalaOp
     const sthana = computeSthanaBala(p);
     const digBala = r2(computeDigBala(p, input.ascendantDeg));
     const kala = computeKalaBala(p, input, planets, yuddhaBalaMap);
-    const ayanamsha = input.ayanamshaValue ?? lahiriAyanamsha(input.julianDay);
+    const ayanamsha = input.ayanamshaValue ?? getAyanamsha(input.julianDay);
     const ay = ayanaBala(p, ayanamsha);
     const cheshtaBala = r2(computeCheshtaBala(p, ay, planets, options?.cheshtaBalaMode || 'bphs_strict'));
     const naisargikaBala = NAISARGIKA[p.id];

@@ -44,7 +44,7 @@ import type { LocaleText } from '@/types/panchang';
 import {
   dateToJD, sunLongitude, moonLongitude, toSidereal,
   getRashiNumber, getNakshatraNumber, getNakshatraPada,
-  getPlanetaryPositions, lahiriAyanamsha, getAyanamsha, normalizeDeg, formatDegrees, approximateSunriseSafe, approximateSunsetSafe,
+  getPlanetaryPositions, getAyanamsha, normalizeDeg, formatDegrees, approximateSunriseSafe, approximateSunsetSafe,
 } from './astronomical';
 import { computeFullCoordinates, computeCombust } from './coordinates';
 import { isSwissEphAvailable } from './swiss-ephemeris';

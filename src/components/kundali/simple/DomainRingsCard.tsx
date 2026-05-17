@@ -15,13 +15,6 @@ interface Props {
 }
 
 /** Human-friendly rating labels for the legend */
-const RATING_WORD: Record<Rating, { en: string; hi: string }> = {
-  uttama: { en: 'Strong', hi: 'प्रबल' },
-  madhyama: { en: 'Moderate', hi: 'मध्यम' },
-  adhama: { en: 'Needs attention', hi: 'ध्यान आवश्यक' },
-  atyadhama: { en: 'Challenging', hi: 'चुनौतीपूर्ण' },
-};
-
 /** Outer ring colour per rating — must match DomainRings.tsx */
 const RATING_HEX: Record<Rating, string> = {
   uttama: '#22c55e',
@@ -57,7 +50,7 @@ export default function DomainRingsCard({
           <div className="mt-2 space-y-1 text-[11px]">
             <div className="flex items-center gap-1.5">
               <span className="inline-block w-2 h-2 rounded-full" style={{ backgroundColor: RATING_HEX[natalRating] }} />
-              <span className="text-text-secondary">{isHi ? 'कुण्डली' : 'Your Chart'}</span>
+              <span className="text-text-secondary">{isHi ? 'आपकी कुण्डली' : 'Your Chart'}</span>
             </div>
             <div className="flex items-center gap-1.5">
               <span className="inline-block w-2 h-2 rounded-full bg-blue-500" />

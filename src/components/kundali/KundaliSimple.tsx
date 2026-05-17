@@ -120,10 +120,10 @@ export default function KundaliSimple({ kundali, blueprint, personalReading, loc
       {/* ─── Ashram Stage ─── */}
       <AshramStage birthDate={kundali.birthData.date} locale={locale} />
 
-      {/* ─── Life Domains ─── */}
-      <SectionHeader title={L(locale, 'Your Life Domains', 'आपके जीवन क्षेत्र')} />
-
-      {domainScores.length > 0 ? (
+      {/* ─── Life Domains — hidden entirely when personalReading is null ─── */}
+      {domainScores.length > 0 && (
+        <>
+        <SectionHeader title={L(locale, 'Your Life Domains', 'आपके जीवन क्षेत्र')} />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {domainScores.map((d) => {
             const config = getDomainConfig(d.domain);
@@ -146,7 +146,8 @@ export default function KundaliSimple({ kundali, blueprint, personalReading, loc
             );
           })}
         </div>
-      ) : null}
+        </>
+      )}
 
       {/* ─── Life Timeline ─── */}
       <SectionHeader title={L(locale, 'Your Life Timeline', 'आपकी जीवन समयरेखा')} />

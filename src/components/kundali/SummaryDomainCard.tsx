@@ -21,7 +21,7 @@ import {
 import type { DomainReading, DomainType, Rating, TimelineTrigger, DomainRemedy } from '@/lib/kundali/domain-synthesis/types';
 import type { LifeArea } from '@/lib/kundali/tippanni-types';
 import { tl } from '@/lib/utils/trilingual';
-import { getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
+import { getHeadingFont, getBodyFont, isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { getDomainConfig } from '@/lib/kundali/domain-synthesis/config';
 import DomainRings from './DomainRings';
 import LayeredCommentary from './LayeredCommentary';
@@ -261,15 +261,15 @@ export default function SummaryDomainCard({
             <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-1.5">
               <span className="flex items-center gap-1 text-[10px] text-text-secondary">
                 <span className="inline-block w-2 h-2 rounded-full" style={{ backgroundColor: RATING_RING_HEX[rating] }} />
-                {locale === 'hi' ? 'कुण्डली' : 'Your Chart'}
+                {isDevanagariLocale(locale) ? 'आपकी कुण्डली' : 'Your Chart'}
               </span>
               <span className="flex items-center gap-1 text-[10px] text-text-secondary">
                 <span className="inline-block w-2 h-2 rounded-full bg-[#3b82f6]" />
-                {locale === 'hi' ? 'जीवन चरण' : 'Life Phase'}
+                {isDevanagariLocale(locale) ? 'जीवन चरण' : 'Life Phase'}
               </span>
               <span className="flex items-center gap-1 text-[10px] text-text-secondary">
                 <span className="inline-block w-2 h-2 rounded-full bg-[#f59e0b]" />
-                {locale === 'hi' ? 'अभी' : 'Right Now'}
+                {isDevanagariLocale(locale) ? 'अभी' : 'Right Now'}
               </span>
             </div>
           </div>

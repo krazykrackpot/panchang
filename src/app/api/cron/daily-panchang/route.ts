@@ -122,12 +122,14 @@ export async function GET(request: Request) {
           continue;
         }
 
-        // Use the subscriber's timezone for "today" — not server UTC (Lesson L).
-        // Cron runs at 00:30 UTC. For UTC-5 users that's 19:30 previous day.
-        const localNow = new Date(new Date().toLocaleString('en-US', { timeZone: tz }));
-        const year = localNow.getFullYear();
-        const month = localNow.getMonth() + 1;
-        const day = localNow.getDate();
+        // Use Intl.DateTimeFormat for reliable timezone-aware date extraction (Lesson L).
+        // new Date(toLocaleString(...)) is implementation-dependent and can break across Node versions.
+        const dateParts = new Intl.DateTimeFormat('en-US', {
+          timeZone: tz, year: 'numeric', month: 'numeric', day: 'numeric',
+        }).formatToParts(new Date());
+        const year = parseInt(dateParts.find(p => p.type === 'year')!.value);
+        const month = parseInt(dateParts.find(p => p.type === 'month')!.value);
+        const day = parseInt(dateParts.find(p => p.type === 'day')!.value);
         const tzOffset = getUTCOffsetForDate(year, month, day, tz);
 
         const panchang = computePanchang({

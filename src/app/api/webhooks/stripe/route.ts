@@ -46,18 +46,11 @@ export async function POST(req: Request) {
         const tier = session.metadata?.tier;
 
         if (userId && tier && session.subscription && session.customer) {
-          // Retrieve the full subscription to get period dates from items
-          const subId = typeof session.subscription === 'string' ? session.subscription : session.subscription.id;
-          let periodStart: string | null = null;
-          let periodEnd: string | null = null;
-          try {
-            const fullSub = await getStripe().subscriptions.retrieve(subId);
-            const item = fullSub.items?.data?.[0];
-            if (item?.current_period_start) periodStart = new Date(item.current_period_start * 1000).toISOString();
-            if (item?.current_period_end) periodEnd = new Date(item.current_period_end * 1000).toISOString();
-          } catch (err) {
-            console.error('[stripe-webhook] Failed to retrieve subscription for period dates:', err);
-          }
+          // Retrieve full subscription for period dates. Let errors propagate
+          // so Stripe retries the webhook (returns 500 via outer catch).
+          const subId = getStripeId(session.subscription)!;
+          const fullSub = await getStripe().subscriptions.retrieve(subId);
+          const item = fullSub.items?.data?.[0];
 
           await supabase.from('subscriptions').upsert({
             user_id: userId,
@@ -65,9 +58,9 @@ export async function POST(req: Request) {
             status: 'active',
             tier,
             provider_subscription_id: subId,
-            provider_customer_id: typeof session.customer === 'string' ? session.customer : session.customer.id,
-            current_period_start: periodStart,
-            current_period_end: periodEnd,
+            provider_customer_id: getStripeId(session.customer)!,
+            current_period_start: item?.current_period_start ? new Date(item.current_period_start * 1000).toISOString() : null,
+            current_period_end: item?.current_period_end ? new Date(item.current_period_end * 1000).toISOString() : null,
             updated_at: new Date().toISOString(),
           }, { onConflict: 'user_id' });
 

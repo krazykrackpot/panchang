@@ -181,7 +181,8 @@ export function todayPanchangForSEO(locale: string) {
     const isHi = locale === 'hi' || locale === 'sa';
 
     return { p, dateStr, isHi, year, month, day };
-  } catch {
+  } catch (err) {
+    console.error('[seo] todayPanchangForSEO failed:', err);
     return null;
   }
 }

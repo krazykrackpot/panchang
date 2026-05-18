@@ -7,7 +7,8 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 
 export function generateStaticParams() {
-  return Object.keys(FESTIVAL_DETAILS).map(slug => ({ slug }));
+  // ISR: rendered on-demand, not pre-built (keeps deploy under 10 min)
+  return [];
 }
 
 type Props = { params: Promise<{ locale: string; slug: string }> };

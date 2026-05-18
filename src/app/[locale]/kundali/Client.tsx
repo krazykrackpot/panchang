@@ -599,9 +599,39 @@ export default function KundaliClient() {
       return;
     }
 
-    // No URL params  –  show saved chart picker (if logged in) or the birth form.
-    // Don't auto-restore from sessionStorage on bare /kundali navigation so
-    // users with multiple saved charts can pick which one to open.
+    // No URL params — check if this is a locale switch (should restore state)
+    // vs a fresh /kundali navigation (should show form/picker).
+    try {
+      const isLocaleSwitch = sessionStorage.getItem('locale-switch');
+      if (isLocaleSwitch) {
+        sessionStorage.removeItem('locale-switch');
+        const cached = sessionStorage.getItem('kundali_last_result');
+        if (cached) {
+          const { kundali: cachedData, chartStyle: cachedStyle } = JSON.parse(cached);
+          if (cachedData?.planets) {
+            setKundali(cachedData);
+            setChartStyle(cachedStyle || 'north');
+            // Re-run synthesis for the new locale
+            try {
+              const engineYogas = cachedData.evaluatedYogas ?? [];
+              setNewYogas(engineYogas);
+              const reading = synthesizeReading(cachedData, locale, undefined, engineYogas.length > 0 ? engineYogas : undefined);
+              setPersonalReading(reading);
+              setKeyDates(computeKeyDates({ kundali: cachedData }));
+              setVedicProfile(generateVedicProfile(cachedData, locale));
+              resolveInitialView();
+            } catch (err) {
+              console.error('[kundali] Locale-switch re-synthesis failed:', err);
+              setPersonalReading(null);
+            }
+            setLoading(false);
+            return;
+          }
+        }
+      }
+    } catch (err) {
+      console.warn('[kundali] sessionStorage restore on locale switch failed:', err);
+    }
   }, []);
 
   // Fetch saved charts for the picker when user is logged in and no chart is loaded

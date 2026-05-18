@@ -225,8 +225,8 @@ function computeGana(boy: MatchInput, girl: MatchInput): number {
   const gg = NAKSHATRA_GANA[girl.moonNakshatra - 1];
 
   if (bg === gg) return 6;
-  // Deva-Manushya = 6 (some traditions) or 5
-  if ((bg === 0 && gg === 1) || (bg === 1 && gg === 0)) return 5;
+  // Deva-Manushya = 6 per BPHS Ch.18 (same as same-gana)
+  if ((bg === 0 && gg === 1) || (bg === 1 && gg === 0)) return 6;
   // Deva-Rakshasa = 1
   if ((bg === 0 && gg === 2) || (bg === 2 && gg === 0)) return 1;
   // Manushya-Rakshasa = 0

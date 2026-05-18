@@ -142,8 +142,9 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Name */}
         <div className="md:col-span-2">
-          <label className="block text-gold-dark text-sm mb-2">{t('name')}</label>
+          <label htmlFor="birth-name" className="block text-gold-dark text-sm mb-2">{t('name')}</label>
           <input
+            id="birth-name"
             type="text"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -177,8 +178,9 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
 
         {/* Date of Birth */}
         <div>
-          <label className="block text-gold-dark text-sm mb-2">{t('dateOfBirth')}</label>
+          <label htmlFor="birth-date" className="block text-gold-dark text-sm mb-2">{t('dateOfBirth')}</label>
           <input
+            id="birth-date"
             type="date"
             value={formData.date}
             onChange={(e) => setFormData({ ...formData, date: e.target.value })}
@@ -189,8 +191,9 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
 
         {/* Time of Birth */}
         <div>
-          <label className="block text-gold-dark text-sm mb-2">{t('timeOfBirth')}</label>
+          <label htmlFor="birth-time" className="block text-gold-dark text-sm mb-2">{t('timeOfBirth')}</label>
           <input
+            id="birth-time"
             type="time"
             value={formData.time}
             onChange={(e) => setFormData({ ...formData, time: e.target.value })}

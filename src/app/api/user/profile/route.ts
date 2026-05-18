@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { generateKundali } from '@/lib/ephem/kundali-calc';
 import { getNakshatraNumber, getNakshatraPada, getMasa, dateToJD, sunLongitude, toSidereal, calculateTithi, calculateYoga, MASA_NAMES } from '@/lib/ephem/astronomical';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { TITHIS } from '@/lib/constants/tithis';
@@ -55,22 +56,8 @@ export async function GET(req: NextRequest) {
 
       // ALWAYS resolve timezone from birth coordinates  –  never use stored birth_timezone
       const birthTzIana = await resolveBirthTimezone(Number(profile.birth_lat), Number(profile.birth_lng));
-      let tzOffsetHours = 0;
-      try {
-        const refDate = new Date(year, month - 1, day, hour, minute);
-        const tzFormatter = new Intl.DateTimeFormat('en-US', {
-          timeZone: birthTzIana,
-          timeZoneName: 'longOffset',
-        });
-        const formatted = tzFormatter.format(refDate);
-        const gmtMatch = formatted.match(/GMT([+-])(\d{1,2}):?(\d{2})?/);
-        if (gmtMatch) {
-          const sign = gmtMatch[1] === '-' ? -1 : 1;
-          const hrs = parseInt(gmtMatch[2], 10);
-          const mins = parseInt(gmtMatch[3] || '0', 10);
-          tzOffsetHours = sign * (hrs + mins / 60);
-        }
-      } catch { /* fallback to 0 */ }
+      // Use the shared utility — single source of truth for TZ offset (Lesson M)
+      const tzOffsetHours = getUTCOffsetForDate(year, month, day, birthTzIana);
 
       const utHour = hour + minute / 60 - tzOffsetHours;
       const jd = dateToJD(year, month, day, utHour);

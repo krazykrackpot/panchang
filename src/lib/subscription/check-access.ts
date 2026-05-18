@@ -46,7 +46,8 @@ export async function getUserTier(userId: string): Promise<TierResult> {
     return result;
   }
 
-  const activeTiers = ['active', 'trialing'];
+  // 'cancelling' = user scheduled cancel but still has time remaining on billing period
+  const activeTiers = ['active', 'trialing', 'cancelling'];
   const tier: Tier = activeTiers.includes(data.status) ? (data.tier as Tier) : 'free';
   const result: TierResult = { tier, status: data.status };
   tierCache.set(userId, { data: result, expiry: Date.now() + 60000 });

@@ -46,14 +46,11 @@ export default function UserMenu() {
         if (error || !data) {
           // No profile at all  –  show onboarding
           setShowOnboarding(true);
-        } else if (!data.date_of_birth && !data.default_location) {
-          // Profile exists but no birth data  –  could be skipped onboarding
-          if (!data.display_name) {
-            setShowOnboarding(true);
-          } else {
-            // Has name but no birth data  –  show nudge, not onboarding
-            setProfileIncomplete(true);
-          }
+        } else if (!data.date_of_birth) {
+          // Profile exists but no birth data — show onboarding regardless of
+          // whether they have a display_name (Google OAuth sets it automatically,
+          // but that doesn't mean they completed birth data entry).
+          setShowOnboarding(true);
         }
       });
   }, [user, profileChecked]);

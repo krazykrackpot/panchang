@@ -148,11 +148,16 @@ export async function recomputeSnapshotDirect(
     };
 
     // Upsert + select in one call — avoids extra network round-trip
-    const { data: fresh } = await supabase
+    const { data: fresh, error } = await supabase
       .from('kundali_snapshots')
       .upsert(row, { onConflict: 'user_id' })
       .select()
       .single();
+
+    if (error) {
+      console.error(`[recomputeSnapshotDirect] upsert failed for user ${userId}:`, error.message);
+      return null;
+    }
 
     return fresh as FreshSnapshot | null;
   } catch (err) {

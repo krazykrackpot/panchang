@@ -8,7 +8,8 @@ name: Scheduled Cron Jobs
 on:
   schedule:
     # ── Daily ──
-    - cron: '30 0 * * *'   # 00:30 UTC = 06:00 IST — daily panchang email + social post + index URLs
+    - cron: '5 0 * * *'    # 00:05 UTC — index URLs (original schedule)
+    - cron: '30 0 * * *'   # 00:30 UTC = 06:00 IST — daily panchang email + social post
     - cron: '0 6 * * *'    # 06:00 UTC = 11:30 IST — notifications
     - cron: '0 7 * * *'    # 07:00 UTC = 12:30 IST — email alerts
     - cron: '0 8 * * *'    # 08:00 UTC = 13:30 IST — onboarding drip
@@ -45,8 +46,11 @@ jobs:
           fi
 
           case "$CRON_SCHEDULE" in
+            "5 0 * * *")
+              echo "endpoints=index-urls" >> $GITHUB_OUTPUT
+              ;;
             "30 0 * * *")
-              echo "endpoints=daily-panchang social-post index-urls" >> $GITHUB_OUTPUT
+              echo "endpoints=daily-panchang social-post" >> $GITHUB_OUTPUT
               ;;
             "0 6 * * *")
               echo "endpoints=generate-notifications" >> $GITHUB_OUTPUT

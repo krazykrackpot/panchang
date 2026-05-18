@@ -34,7 +34,7 @@ export async function POST(req: Request) {
     }
 
     const authHeader = req.headers.get('authorization');
-    const token = authHeader?.replace('Bearer ', '');
+    const token = authHeader?.slice(7).trim();
     if (!token) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -73,11 +73,13 @@ export async function POST(req: Request) {
 
       // Reuse existing Stripe customer to avoid duplicates on resubscribe
       let customerId: string | undefined;
-      try {
-        const existing = await stripe.customers.list({ email: user.email!, limit: 1 });
-        if (existing.data.length > 0) customerId = existing.data[0].id;
-      } catch (err) {
-        console.error('[checkout] Stripe customer lookup failed:', err);
+      if (user.email) {
+        try {
+          const existing = await stripe.customers.list({ email: user.email, limit: 1 });
+          if (existing.data.length > 0) customerId = existing.data[0].id;
+        } catch (err) {
+          console.error('[checkout] Stripe customer lookup failed:', err);
+        }
       }
 
       const session = await stripe.checkout.sessions.create({

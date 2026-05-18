@@ -70,12 +70,22 @@ export async function POST(req: Request) {
       }
 
       const origin = req.headers.get('origin') || (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
+
+      // Reuse existing Stripe customer to avoid duplicates on resubscribe
+      let customerId: string | undefined;
+      try {
+        const existing = await stripe.customers.list({ email: user.email!, limit: 1 });
+        if (existing.data.length > 0) customerId = existing.data[0].id;
+      } catch (err) {
+        console.error('[checkout] Stripe customer lookup failed:', err);
+      }
+
       const session = await stripe.checkout.sessions.create({
         mode: 'subscription',
         line_items: [{ price: priceId, quantity: 1 }],
         success_url: `${origin}/pricing?session_id={CHECKOUT_SESSION_ID}&status=success`,
         cancel_url: `${origin}/pricing?status=cancelled`,
-        customer_email: user.email,
+        ...(customerId ? { customer: customerId } : { customer_email: user.email }),
         metadata: { user_id: user.id, tier },
       });
 

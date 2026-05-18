@@ -116,6 +116,14 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
   const [mounted, setMounted] = useState(false);
   const portalRef = useRef<HTMLElement | null>(null);
 
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (!isOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = prev; };
+  }, [isOpen]);
+
   useEffect(() => {
     portalRef.current = document.body;
     setMounted(true);
@@ -389,7 +397,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
               } catch (skipErr) {
                 console.error('[OnboardingModal] skip save failed:', skipErr);
                 setSaving(false);
-                onComplete();
+                setError('Save failed. Please try again.');
               }
             }}
             disabled={saving}

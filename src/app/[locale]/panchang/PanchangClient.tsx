@@ -84,8 +84,10 @@ function hasTransitionPassed(
   selectedDate: string,
   timezone: string
 ): boolean {
-  const now = new Date();
-  const todayStr = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
+  // Use the panchang location's timezone for "today" check, not browser TZ (Lesson L).
+  // A user in US Pacific viewing Delhi panchang should grey out based on Delhi's clock.
+  const locNow = new Date(new Date().toLocaleString('en-US', { timeZone: timezone }));
+  const todayStr = `${locNow.getFullYear()}-${(locNow.getMonth() + 1).toString().padStart(2, '0')}-${locNow.getDate().toString().padStart(2, '0')}`;
   if (selectedDate !== todayStr) return false;
 
   // If end is on a future date, it hasn't passed

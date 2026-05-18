@@ -45,7 +45,7 @@ self.addEventListener('message', function(event) {
   if (event.data && event.data.type === 'PREFETCH_PANCHANG') {
     var lat = event.data.lat;
     var lng = event.data.lng;
-    var tz = event.data.timezone || 'Asia/Kolkata';
+    var tz = event.data.timezone || 'UTC'; // No hardcoded IST — user's timezone must be passed
     if (!lat || !lng) return;
     var today = new Date();
     var urls = [];

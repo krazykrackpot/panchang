@@ -164,6 +164,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
         id: user.id,
         display_name: fullName.trim(),
         experience_level: experienceLevel,
+        onboarding_completed: true,
       };
 
       if (birthDate && birthLocation) {
@@ -386,6 +387,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
                     id: user.id,
                     display_name: fullName.trim(),
                     experience_level: experienceLevel,
+                    onboarding_completed: true,
                   }, { onConflict: 'id' });
                   try {
                     localStorage.setItem('kundali-view-mode', experienceLevel === 'advanced' ? 'expert' : 'simple');

@@ -13,7 +13,8 @@ export async function getUserTier(userId: string): Promise<TierResult> {
   const cached = tierCache.get(userId);
   if (cached && cached.expiry > Date.now()) return cached.data;
 
-  const supabase = getServerSupabase()!;
+  const supabase = getServerSupabase();
+  if (!supabase) return { tier: 'free', status: 'active' }; // Fail safe, not crash
   const { data } = await supabase
     .from('subscriptions')
     .select('tier, status, current_period_end, trial_end')
@@ -46,7 +47,8 @@ export async function getUserTier(userId: string): Promise<TierResult> {
     return result;
   }
 
-  const activeTiers = ['active', 'trialing'];
+  // 'cancelling' = user scheduled cancel but still has time remaining on billing period
+  const activeTiers = ['active', 'trialing', 'cancelling'];
   const tier: Tier = activeTiers.includes(data.status) ? (data.tier as Tier) : 'free';
   const result: TierResult = { tier, status: data.status };
   tierCache.set(userId, { data: result, expiry: Date.now() + 60000 });
@@ -61,7 +63,8 @@ export async function checkAndIncrementUsage(
   const { limit, period } = getUsageLimit(feature, tier);
   if (limit === -1) return { allowed: true, remaining: -1, limit: -1 };
 
-  const supabase = getServerSupabase()!;
+  const supabase = getServerSupabase();
+  if (!supabase) return { allowed: false, remaining: 0, limit };
 
   if (period === 'daily') {
     const { data } = await supabase

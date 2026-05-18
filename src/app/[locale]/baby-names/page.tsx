@@ -74,7 +74,7 @@ export default function BabyNamesPage() {
         setSelectedNak(b.moonNakshatra);
         setSelectedPada(b.moonPada);
       })
-      .catch(() => { /* timezone invalid or server error */ });
+      .catch((err) => console.error('[baby-names] Birth sign computation failed:', err));
     return () => { cancelled = true; };
   }, [birthDate, birthTime, birthLat, birthLng, birthTz]);
 

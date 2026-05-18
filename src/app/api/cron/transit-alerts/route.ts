@@ -4,6 +4,7 @@ import { getServerSupabase } from '@/lib/supabase/server';
 import { computePersonalTransits, type PersonalTransit } from '@/lib/transit/personal-transits';
 import { sendPushToUser } from '@/lib/push/send-push';
 import type { DomainType } from '@/lib/kundali/domain-synthesis/types';
+import { isSnapshotStale } from '@/lib/supabase/get-fresh-snapshot';
 
 export const maxDuration = 30; // Cron job — email/notification/sync tasks
 
@@ -91,7 +92,7 @@ export async function GET(req: NextRequest) {
   // Get all users with stored chart data containing SAV table
   const { data: snapshots, error: snapError } = await supabase
     .from('kundali_snapshots')
-    .select('user_id, chart_data, ascendant_sign');
+    .select('user_id, chart_data, ascendant_sign, computation_version');
 
   if (snapError || !snapshots) {
     return NextResponse.json({ error: snapError?.message || 'No snapshots found' }, { status: 500 });
@@ -102,6 +103,10 @@ export async function GET(req: NextRequest) {
 
   for (const snap of snapshots) {
     try {
+      if (isSnapshotStale(snap)) {
+        console.warn(`[cron/transit-alerts] Stale snapshot for user ${snap.user_id} — skipping (will recompute on next login)`);
+        continue;
+      }
       let chartData;
       try {
         chartData = typeof snap.chart_data === 'string'

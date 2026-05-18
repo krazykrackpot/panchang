@@ -3,6 +3,7 @@ import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { sendEmail } from '@/lib/email/resend-client';
 import { alertEmail } from '@/lib/email/templates/alert';
+import { isSnapshotStale } from '@/lib/supabase/get-fresh-snapshot';
 
 export const maxDuration = 30; // Cron job — email/notification/sync tasks
 

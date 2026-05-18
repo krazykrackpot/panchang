@@ -6,6 +6,7 @@ import type { UserSnapshot } from '@/lib/personalization/types';
 import { scoreFestivalRelevance } from '@/lib/personalization/festival-relevance';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { sendPushToUser } from '@/lib/push/send-push';
+import { isSnapshotStale } from '@/lib/supabase/get-fresh-snapshot';
 
 export const maxDuration = 30; // Cron job — email/notification/sync tasks
 
@@ -36,7 +37,8 @@ export async function GET(req: NextRequest) {
       ascendant_sign: ascendant_sign,
       planet_positions,
       dasha_timeline,
-      sade_sati
+      sade_sati,
+      computation_version
     `);
 
   if (usersError || !users) {
@@ -63,6 +65,10 @@ export async function GET(req: NextRequest) {
   let totalUsers = 0;
 
   for (const row of users) {
+    if (isSnapshotStale(row)) {
+      console.warn(`[cron/generate-notifications] Stale snapshot for user ${row.user_id} — skipping (will recompute on next login)`);
+      continue;
+    }
     const prefs = prefsMap.get(row.user_id) || {};
     const snapshot: UserSnapshot = {
       moonSign: row.moon_sign,

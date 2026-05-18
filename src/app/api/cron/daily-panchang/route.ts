@@ -1,6 +1,7 @@
 import type { LocaleText } from '@/types/panchang';
 import { NextResponse } from 'next/server';
 import { verifyCronAuth } from '@/lib/api/cron-auth';
+import { isSnapshotStale } from '@/lib/supabase/get-fresh-snapshot';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { generateDailyPanchangEmail } from '@/lib/email/templates/daily-panchang';
 import { generateDailyHoroscope } from '@/lib/horoscope/daily-engine';
@@ -67,12 +68,16 @@ export async function GET(request: Request) {
     // moon_sign (1-12) and moon_nakshatra (1-27) enable personalized horoscope
     const { data: snapshots } = await supabase
       .from('kundali_snapshots')
-      .select('user_id, moon_sign, moon_nakshatra')
+      .select('user_id, moon_sign, moon_nakshatra, computation_version')
       .in('user_id', userIds);
 
     const snapshotMap = new Map<string, { moonSign: number; moonNakshatra: number }>();
     if (snapshots) {
       for (const s of snapshots) {
+        if (isSnapshotStale(s)) {
+          console.warn(`[cron/daily-panchang] Stale snapshot for user ${s.user_id} — skipping horoscope (will recompute on next login)`);
+          continue;
+        }
         snapshotMap.set(s.user_id, { moonSign: s.moon_sign, moonNakshatra: s.moon_nakshatra });
       }
     }

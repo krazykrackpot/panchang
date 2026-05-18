@@ -1098,6 +1098,10 @@ export default function DashboardPage() {
       loadDashboard();
     } else if (initialized && !user) {
       setLoading(false);
+    } else if (initialized && user && !freshSnapshot) {
+      // User is logged in but has no birth data (or snapshot fetch failed)
+      // Terminate loading so the "enter birth data" prompt renders
+      setLoading(false);
     }
   }, [initialized, user, freshSnapshot, snapshotLoading, loadDashboard]);
 

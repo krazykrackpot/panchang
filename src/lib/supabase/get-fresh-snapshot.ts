@@ -83,3 +83,82 @@ export async function getFreshSnapshot(
 export function isSnapshotStale(snapshot: { computation_version?: string | null }): boolean {
   return (snapshot.computation_version ?? '') !== ENGINE_VERSION;
 }
+
+/**
+ * Recompute a stale snapshot directly using service-role client.
+ * For cron jobs that don't have user access tokens.
+ *
+ * @returns Fresh snapshot or null if recompute fails / user has no birth data.
+ */
+export async function recomputeSnapshotDirect(
+  supabase: SupabaseClient,
+  userId: string,
+): Promise<FreshSnapshot | null> {
+  try {
+    // Fetch birth data from profile
+    const { data: profile } = await supabase
+      .from('user_profiles')
+      .select('date_of_birth, time_of_birth, birth_place, birth_lat, birth_lng')
+      .eq('id', userId)
+      .single();
+
+    if (!profile?.date_of_birth || profile?.birth_lat == null || profile?.birth_lng == null) {
+      return null; // No birth data — can't recompute
+    }
+
+    // Lazy imports to keep module lightweight for non-recompute consumers
+    const { generateKundali } = await import('@/lib/ephem/kundali-calc');
+    const { resolveBirthTimezone } = await import('@/lib/utils/timezone');
+    const { getNakshatraNumber, getNakshatraPada } = await import('@/lib/ephem/astronomical');
+
+    const resolvedTz = await resolveBirthTimezone(Number(profile.birth_lat), Number(profile.birth_lng));
+    const kundali = generateKundali({
+      name: 'User',
+      date: String(profile.date_of_birth),
+      time: String(profile.time_of_birth || '12:00'),
+      place: String(profile.birth_place || ''),
+      lat: Number(profile.birth_lat),
+      lng: Number(profile.birth_lng),
+      timezone: resolvedTz,
+      ayanamsha: 'lahiri',
+    });
+
+    const moonP = kundali.planets.find((p: { planet: { id: number } }) => p.planet.id === 1);
+    const sunP = kundali.planets.find((p: { planet: { id: number } }) => p.planet.id === 0);
+    const mLong = moonP?.longitude ?? 0;
+
+    const row = {
+      user_id: userId,
+      ascendant_sign: kundali.ascendant.sign,
+      moon_sign: moonP?.sign || 1,
+      moon_nakshatra: moonP?.nakshatra?.id ?? getNakshatraNumber(mLong),
+      moon_nakshatra_pada: moonP?.nakshatra?.pada ?? getNakshatraPada(mLong),
+      sun_sign: sunP?.sign || 1,
+      planet_positions: kundali.planets,
+      house_cusps: kundali.houses,
+      chart_data: kundali.chart,
+      navamsha_chart: kundali.navamshaChart,
+      dasha_timeline: kundali.dashas,
+      yogas: kundali.yogasComplete || [],
+      shadbala: kundali.fullShadbala || kundali.shadbala,
+      sade_sati: kundali.sadeSati || {},
+      full_kundali: kundali,
+      computed_at: new Date().toISOString(),
+      computation_version: ENGINE_VERSION,
+    };
+
+    await supabase.from('kundali_snapshots').upsert(row, { onConflict: 'user_id' });
+
+    // Re-fetch to get clean typed data
+    const { data: fresh } = await supabase
+      .from('kundali_snapshots')
+      .select('*')
+      .eq('user_id', userId)
+      .single();
+
+    return fresh as FreshSnapshot | null;
+  } catch (err) {
+    console.error(`[recomputeSnapshotDirect] failed for user ${userId}:`, err);
+    return null;
+  }
+}

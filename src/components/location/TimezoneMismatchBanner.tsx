@@ -8,30 +8,22 @@ import { MapPin, AlertTriangle, X } from 'lucide-react';
  * location has a timezone mismatch with the browser (user may have travelled).
  *
  * Manual selections (source === 'manual') NEVER trigger this banner.
- * The store's detect() sets `stale: true` instead of nuking the location,
- * giving the user a choice.
+ * The store's detect() sets `stale: true` only after verifying the TZ
+ * mismatch is genuine (not an alias like Europe/Berlin ≈ Europe/Zurich).
  */
 export default function TimezoneMismatchBanner() {
   const { timezone: locationTz, name: locationName, stale, confirmCurrent, clearAndRedetect } = useLocationStore();
 
   if (!stale || !locationTz) return null;
 
-  const browserTz = typeof window !== 'undefined' ? Intl.DateTimeFormat().resolvedOptions().timeZone : null;
-  if (!browserTz) return null;
-
-  // Check if same UTC offset right now (handles aliases like Europe/Berlin ≈ Europe/Zurich)
+  let browserTz: string | null = null;
   try {
-    const now = new Date();
-    const getOffset = (tz: string) =>
-      new Intl.DateTimeFormat('en-US', { timeZone: tz, timeZoneName: 'shortOffset' })
-        .formatToParts(now)
-        .find(p => p.type === 'timeZoneName')?.value;
-    if (getOffset(browserTz) === getOffset(locationTz)) {
-      // Same offset — false alarm (aliases). Clear stale flag silently.
-      confirmCurrent();
-      return null;
-    }
-  } catch { /* show banner on error */ }
+    browserTz = typeof window !== 'undefined' ? Intl.DateTimeFormat().resolvedOptions().timeZone : null;
+  } catch {
+    // Browser timezone detection failed — can't show a meaningful banner
+    return null;
+  }
+  if (!browserTz) return null;
 
   const browserCity = browserTz.replace(/_/g, ' ').split('/').pop() || browserTz;
   const locationCity = locationName || locationTz.replace(/_/g, ' ').split('/').pop() || locationTz;

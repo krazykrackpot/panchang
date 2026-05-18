@@ -120,7 +120,7 @@ export const useLocationStore = create<LocationState>((set, get) => ({
   confirmCurrent: () => {
     const state = get();
     if (state.lat !== null && state.lng !== null) {
-      saveToStorage(state.lat, state.lng, state.name, state.timezone, 'manual');
+      saveToStorage(state.lat!, state.lng!, state.name, state.timezone, 'manual');
     }
     set({ stale: false, source: 'manual' });
   },
@@ -128,7 +128,7 @@ export const useLocationStore = create<LocationState>((set, get) => ({
   // User wants to re-detect → clear everything and run fresh detection
   clearAndRedetect: () => {
     try { localStorage.removeItem(STORAGE_KEY); } catch { /* ignore */ }
-    set({ confirmed: false, lat: null, lng: null, name: '', timezone: null, source: 'auto', stale: false });
+    set({ confirmed: false, lat: null, lng: null, name: '', timezone: null, source: 'auto', stale: false, detecting: false });
     // Trigger detection after clearing
     setTimeout(() => get().detect(), 0);
   },
@@ -161,7 +161,17 @@ export const useLocationStore = create<LocationState>((set, get) => ({
     if (current.confirmed && current.source === 'auto' && current.timezone) {
       const browserTz = typeof window !== 'undefined' ? Intl.DateTimeFormat().resolvedOptions().timeZone : null;
       if (browserTz && browserTz !== current.timezone) {
-        // TZ mismatch — don't clear, just flag as stale.
+        // Check if same UTC offset right now (handles aliases like Europe/Berlin ≈ Europe/Zurich)
+        try {
+          const now = new Date();
+          const getOffset = (tz: string) =>
+            new Intl.DateTimeFormat('en-US', { timeZone: tz, timeZoneName: 'shortOffset' })
+              .formatToParts(now)
+              .find(p => p.type === 'timeZoneName')?.value;
+          if (getOffset(browserTz) === getOffset(current.timezone!)) return; // Same offset — not a real mismatch
+        } catch { /* proceed to flag as stale */ }
+
+        // Genuine TZ mismatch — don't clear, just flag as stale.
         // TimezoneMismatchBanner will offer the user a choice.
         console.info(`[location] Auto-detected TZ ${current.timezone} ≠ browser ${browserTz} — flagging stale`);
         set({ stale: true });

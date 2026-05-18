@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
+import { getFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot';
 import { buildPlanetarySnapshot } from '@/lib/journal/snapshot';
 import type { DashaEntry } from '@/types/kundali';
 
@@ -132,11 +133,8 @@ export async function POST(req: NextRequest) {
   }
 
   // --- Fetch dasha timeline ---
-  const { data: snapshot } = await supabase
-    .from('kundali_snapshots')
-    .select('dasha_timeline, sade_sati')
-    .eq('user_id', user.id)
-    .single();
+  const baseUrl = process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : 'http://localhost:3000';
+  const snapshot = await getFreshSnapshot(supabase, user.id, token, baseUrl);
 
   const dashaTimeline = (snapshot?.dasha_timeline ?? null) as DashaEntry[] | null;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -4,7 +4,7 @@ import { getServerSupabase } from '@/lib/supabase/server';
 import { computePersonalTransits, type PersonalTransit } from '@/lib/transit/personal-transits';
 import { sendPushToUser } from '@/lib/push/send-push';
 import type { DomainType } from '@/lib/kundali/domain-synthesis/types';
-import { isSnapshotStale } from '@/lib/supabase/get-fresh-snapshot';
+import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
 
 export const maxDuration = 30; // Cron job — email/notification/sync tasks
 
@@ -104,8 +104,9 @@ export async function GET(req: NextRequest) {
   for (const snap of snapshots) {
     try {
       if (isSnapshotStale(snap)) {
-        console.warn(`[cron/transit-alerts] Stale snapshot for user ${snap.user_id} — skipping (will recompute on next login)`);
-        continue;
+        const fresh = await recomputeSnapshotDirect(supabase, snap.user_id);
+        if (!fresh) { console.warn(`[cron/transit-alerts] Could not recompute for ${snap.user_id}`); continue; }
+        Object.assign(snap, fresh);
       }
       let chartData;
       try {

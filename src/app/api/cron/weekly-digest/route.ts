@@ -7,7 +7,7 @@ import { computePersonalizedDay } from '@/lib/personalization/personal-panchang'
 import { computeTransitAlerts } from '@/lib/personalization/transit-alerts';
 import type { UserSnapshot } from '@/lib/personalization/types';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
-import { isSnapshotStale } from '@/lib/supabase/get-fresh-snapshot';
+import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
 
 export const maxDuration = 30; // Cron job — email/notification/sync tasks
 
@@ -34,9 +34,9 @@ export async function GET(req: Request) {
 
   for (const snap of users) {
     if (isSnapshotStale(snap)) {
-      console.warn(`[cron/weekly-digest] Stale snapshot for user ${snap.user_id} — skipping (will recompute on next login)`);
-      skipped++;
-      continue;
+      const fresh = await recomputeSnapshotDirect(supabase, snap.user_id);
+      if (!fresh) { console.warn(`[cron/weekly-digest] Could not recompute for ${snap.user_id}`); skipped++; continue; }
+      Object.assign(snap, fresh);
     }
     // Get user profile + email + panchang location for festival computation
     const { data: profile } = await supabase

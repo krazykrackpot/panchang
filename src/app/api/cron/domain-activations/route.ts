@@ -5,7 +5,7 @@ import { synthesizeReading } from '@/lib/kundali/domain-synthesis/synthesizer';
 import { sendPushToUser } from '@/lib/push/send-push';
 import type { KundaliData } from '@/types/kundali';
 import type { DomainType } from '@/lib/kundali/domain-synthesis/types';
-import { isSnapshotStale } from '@/lib/supabase/get-fresh-snapshot';
+import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
 
 export const maxDuration = 30; // Cron job — email/notification/sync tasks
 
@@ -120,8 +120,9 @@ export async function GET(req: NextRequest) {
   for (const snap of snapshots) {
     try {
       if (isSnapshotStale(snap)) {
-        console.warn(`[cron/domain-activations] Stale snapshot for user ${snap.user_id} — skipping (will recompute on next login)`);
-        continue;
+        const fresh = await recomputeSnapshotDirect(supabase, snap.user_id);
+        if (!fresh) { console.warn(`[cron/domain-activations] Could not recompute for ${snap.user_id}`); continue; }
+        Object.assign(snap, fresh);
       }
       const lastScores = lastScoresByUser.get(snap.user_id);
       if (!lastScores) continue;

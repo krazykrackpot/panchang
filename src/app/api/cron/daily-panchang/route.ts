@@ -1,7 +1,7 @@
 import type { LocaleText } from '@/types/panchang';
 import { NextResponse } from 'next/server';
 import { verifyCronAuth } from '@/lib/api/cron-auth';
-import { isSnapshotStale } from '@/lib/supabase/get-fresh-snapshot';
+import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { generateDailyPanchangEmail } from '@/lib/email/templates/daily-panchang';
 import { generateDailyHoroscope } from '@/lib/horoscope/daily-engine';
@@ -75,8 +75,9 @@ export async function GET(request: Request) {
     if (snapshots) {
       for (const s of snapshots) {
         if (isSnapshotStale(s)) {
-          console.warn(`[cron/daily-panchang] Stale snapshot for user ${s.user_id} — skipping horoscope (will recompute on next login)`);
-          continue;
+          const fresh = await recomputeSnapshotDirect(supabase, s.user_id);
+          if (!fresh) { console.warn(`[cron/daily-panchang] Could not recompute for ${s.user_id}`); continue; }
+          Object.assign(s, fresh);
         }
         snapshotMap.set(s.user_id, { moonSign: s.moon_sign, moonNakshatra: s.moon_nakshatra });
       }

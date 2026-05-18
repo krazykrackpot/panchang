@@ -3,7 +3,7 @@ import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { sendEmail } from '@/lib/email/resend-client';
 import { alertEmail } from '@/lib/email/templates/alert';
-import { isSnapshotStale } from '@/lib/supabase/get-fresh-snapshot';
+import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
 
 export const maxDuration = 30; // Cron job — email/notification/sync tasks
 
@@ -30,8 +30,9 @@ export async function GET(req: Request) {
 
   for (const snap of users) {
     if (isSnapshotStale(snap)) {
-      console.warn(`[cron/email-alerts] Stale snapshot for user ${snap.user_id} — skipping (will recompute on next login)`);
-      continue;
+      const fresh = await recomputeSnapshotDirect(supabase, snap.user_id);
+      if (!fresh) { console.warn(`[cron/email-alerts] Could not recompute for ${snap.user_id}`); continue; }
+      Object.assign(snap, fresh);
     }
     const { data: profile } = await supabase
       .from('user_profiles')

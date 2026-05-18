@@ -6,7 +6,7 @@ import type { UserSnapshot } from '@/lib/personalization/types';
 import { scoreFestivalRelevance } from '@/lib/personalization/festival-relevance';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { sendPushToUser } from '@/lib/push/send-push';
-import { isSnapshotStale } from '@/lib/supabase/get-fresh-snapshot';
+import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
 
 export const maxDuration = 30; // Cron job — email/notification/sync tasks
 
@@ -66,8 +66,9 @@ export async function GET(req: NextRequest) {
 
   for (const row of users) {
     if (isSnapshotStale(row)) {
-      console.warn(`[cron/generate-notifications] Stale snapshot for user ${row.user_id} — skipping (will recompute on next login)`);
-      continue;
+      const fresh = await recomputeSnapshotDirect(supabase, row.user_id);
+      if (!fresh) { console.warn(`[cron/generate-notifications] Could not recompute for ${row.user_id}`); continue; }
+      Object.assign(row, fresh);
     }
     const prefs = prefsMap.get(row.user_id) || {};
     const snapshot: UserSnapshot = {

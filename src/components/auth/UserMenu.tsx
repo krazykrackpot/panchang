@@ -38,19 +38,21 @@ export default function UserMenu() {
     if (!supabase) return;
 
     supabase.from('user_profiles')
-      .select('default_location, date_of_birth, display_name')
+      .select('date_of_birth, onboarding_completed')
       .eq('id', user.id)
       .maybeSingle()
       .then(({ data, error }) => {
         setProfileChecked(true);
         if (error || !data) {
-          // No profile at all  –  show onboarding
           setShowOnboarding(true);
         } else if (!data.date_of_birth) {
-          // Profile exists but no birth data — show onboarding regardless of
-          // whether they have a display_name (Google OAuth sets it automatically,
-          // but that doesn't mean they completed birth data entry).
-          setShowOnboarding(true);
+          if (!data.onboarding_completed) {
+            // Never completed onboarding — show full modal
+            setShowOnboarding(true);
+          } else {
+            // Completed onboarding but skipped birth data — show nudge
+            setProfileIncomplete(true);
+          }
         }
       });
   }, [user, profileChecked]);

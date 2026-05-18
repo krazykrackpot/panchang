@@ -12,6 +12,7 @@ import NakshatraShareButton from '@/components/shareable/NakshatraShareButton';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale, getHeadingFont, getBodyFont, dataLocale } from '@/lib/utils/locale-fonts';
 import { useBirthDataStore } from '@/stores/birth-data-store';
+import { useLocationStore } from '@/stores/location-store';
 import { trackHoroscopeViewed } from '@/lib/analytics';
 import CrossSellCTA from '@/components/cta/CrossSellCTA';
 import type { Locale } from '@/types/panchang';
@@ -250,6 +251,7 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
 
   // Birth data store (localStorage)  –  only available client-side
   const { birthRashi, birthNakshatra, birthName, loadFromStorage } = useBirthDataStore();
+  const locationStore = useLocationStore();
   useEffect(() => { loadFromStorage(); }, [loadFromStorage]);
 
   // True when the user is viewing their own sign page
@@ -324,8 +326,8 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         chart: snapshot,
-        lat: 0,
-        lng: 0,
+        lat: locationStore.lat ?? 0,
+        lng: locationStore.lng ?? 0,
         locale,
       }),
     })

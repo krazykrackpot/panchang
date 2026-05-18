@@ -215,7 +215,8 @@ export default function SadeSatiClient() {
       try { localStorage.setItem(cacheKey, JSON.stringify(result)); } catch { /* storage full  –  fine */ }
 
       return result;
-    } catch {
+    } catch (err) {
+      console.error('[sade-sati] Saved chart computation failed:', err);
       return null;
     }
   }, []);
@@ -324,8 +325,8 @@ export default function SadeSatiClient() {
       const result = analyzeSadeSati(input);
       setAnalysis(result);
       setIsFullMode(true);
-    } catch {
-      // Silently handle  –  could add error state
+    } catch (err) {
+      console.error('[sade-sati] Full analysis failed:', err);
     } finally {
       setLoading(false);
     }

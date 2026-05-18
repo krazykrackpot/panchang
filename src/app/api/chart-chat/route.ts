@@ -151,14 +151,31 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  // IP-based rate limiting (kept as secondary defence)
+  // Usage gate — ai_chat daily limit (2/day free, unlimited pro)
+  const { getUserTier, checkAndIncrementUsage } = await import('@/lib/subscription/check-access');
+  const { tier } = await getUserTier(user.id);
+  const usage = await checkAndIncrementUsage(user.id, 'ai_chat_count', tier);
+  if (!usage.allowed) {
+    return NextResponse.json({
+      error: 'Daily AI chat limit reached',
+      remaining: 0,
+      limit: usage.limit,
+    }, { status: 429 });
+  }
+
+  // IP-based rate limiting (secondary defence against bursts)
   const ip = getClientIP(request);
   const { allowed } = checkRateLimit(ip, { maxRequests: 30, windowMs: 60000 });
   if (!allowed) {
     return NextResponse.json({ error: 'Rate limit exceeded' }, { status: 429 });
   }
 
-  const body = await request.json();
+  let body: unknown;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
+  }
   const parsed = chatSchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json({ error: 'Invalid input', details: parsed.error.flatten().fieldErrors }, { status: 400 });

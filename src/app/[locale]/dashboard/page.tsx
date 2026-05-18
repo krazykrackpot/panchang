@@ -905,11 +905,11 @@ export default function DashboardPage() {
         return;
       }
 
-      // Auto-recompute stale snapshots: when computation logic changes (bug fixes,
-      // new features), bump CURRENT_COMPUTATION_VERSION in profile/route.ts.
-      // Stale snapshots get re-computed transparently on next dashboard load.
-      const CURRENT_COMPUTATION_VERSION = 2;
-      const isStale = (snapshot.computation_version ?? 0) < CURRENT_COMPUTATION_VERSION;
+      // Auto-recompute stale snapshots: ENGINE_VERSION is a hash of all computation
+      // pipeline files. It changes automatically when any calc logic changes — no
+      // manual version bumping needed.
+      const { ENGINE_VERSION } = await import('@/lib/kundali/engine-version');
+      const isStale = (snapshot.computation_version ?? '') !== ENGINE_VERSION;
       if (isStale && profile?.date_of_birth && profile?.birth_lat != null && profile?.birth_lng != null && session) {
         // Fire-and-forget — profile POST re-computes and upserts snapshot.
         // birthTimezone is required by the route — resolve from coordinates.

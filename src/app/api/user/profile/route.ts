@@ -245,8 +245,8 @@ export async function POST(req: NextRequest) {
     sade_sati: kundali.sadeSati || {},
     full_kundali: kundali,
     computed_at: new Date().toISOString(),
-    // Bump this when computation logic changes — triggers re-computation on next login
-    computation_version: 2,
+    // Auto-derived from computation pipeline file hashes — changes when any calc logic changes
+    computation_version: (await import('@/lib/kundali/engine-version')).ENGINE_VERSION,
   };
 
   const { error: upsertError } = await supabase

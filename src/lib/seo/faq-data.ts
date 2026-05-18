@@ -1986,6 +1986,346 @@ export const FAQ_DATA: Record<string, FAQEntry[]> = {
       },
     },
   ],
+
+  // ─── /baby-names ───────────────────────────────────────────
+  '/baby-names': [
+    {
+      question: {
+        en: 'How do I find a baby name based on nakshatra?',
+        hi: 'नक्षत्र के आधार पर शिशु का नाम कैसे खोजें?',
+      },
+      answer: {
+        en: 'Enter the birth date, time, and location. The tool computes the Moon\'s nakshatra at birth, determines the starting syllable (akshar) prescribed by Vedic tradition, and suggests names beginning with that syllable. Each of the 27 nakshatras has four assigned syllables corresponding to its four padas.',
+        hi: 'जन्म तिथि, समय और स्थान दर्ज करें। यह उपकरण जन्म के समय चन्द्रमा के नक्षत्र की गणना करता है, वैदिक परम्परा द्वारा निर्धारित आरम्भिक अक्षर ज्ञात करता है, और उस अक्षर से आरम्भ होने वाले नाम सुझाता है।',
+      },
+    },
+    {
+      question: {
+        en: 'What if I don\'t know the exact birth time for baby naming?',
+        hi: 'यदि शिशु नामकरण के लिए सही जन्म समय न पता हो तो?',
+      },
+      answer: {
+        en: 'If the exact birth time is unavailable, the tool can still suggest names based on the nakshatra active for most of that day. However, the Moon changes nakshatra roughly every 24 hours, so an approximate time within a few hours is usually sufficient to identify the correct syllable.',
+        hi: 'यदि सही जन्म समय उपलब्ध नहीं है, तो उपकरण उस दिन के अधिकांश समय सक्रिय नक्षत्र के आधार पर नाम सुझा सकता है। चन्द्रमा लगभग हर 24 घण्टे में नक्षत्र बदलता है, इसलिए कुछ घण्टों का अनुमानित समय सामान्यतः पर्याप्त है।',
+      },
+    },
+    {
+      question: {
+        en: 'Why is the nakshatra syllable important for naming a baby?',
+        hi: 'शिशु के नामकरण में नक्षत्र अक्षर क्यों महत्वपूर्ण है?',
+      },
+      answer: {
+        en: 'Vedic tradition holds that the sound vibration of a name influences the child\'s temperament and fortune. The nakshatra at birth connects the child to a specific cosmic energy, and the prescribed syllable is believed to harmonise the name with that energy. This practice is documented in Brihat Parashara Hora Shastra and remains widely followed across India.',
+        hi: 'वैदिक परम्परा के अनुसार नाम की ध्वनि तरंग बच्चे के स्वभाव और भाग्य को प्रभावित करती है। जन्म नक्षत्र बच्चे को एक विशिष्ट ब्रह्माण्डीय ऊर्जा से जोड़ता है, और निर्धारित अक्षर उस ऊर्जा के साथ नाम का सामंजस्य स्थापित करता है।',
+      },
+    },
+  ],
+
+  // ─── /shraddha ─────────────────────────────────────────────
+  '/shraddha': [
+    {
+      question: {
+        en: 'What is Shraddha and when is it performed?',
+        hi: 'श्राद्ध क्या है और यह कब किया जाता है?',
+      },
+      answer: {
+        en: 'Shraddha is a Vedic ritual performed to honour deceased ancestors. It is observed on the tithi (lunar day) of the ancestor\'s death, particularly during Pitru Paksha — the 16-day dark fortnight in the month of Bhadrapada (September–October). Annual shraddha is also performed on the death anniversary tithi throughout the year.',
+        hi: 'श्राद्ध दिवंगत पूर्वजों के सम्मान में किया जाने वाला वैदिक अनुष्ठान है। यह पूर्वज की मृत्यु तिथि पर मनाया जाता है, विशेषकर पितृ पक्ष के दौरान — भाद्रपद मास (सितम्बर-अक्टूबर) के 16 दिवसीय कृष्ण पक्ष में।',
+      },
+    },
+    {
+      question: {
+        en: 'How do I find the correct tithi for my ancestor\'s Shraddha?',
+        hi: 'अपने पूर्वज के श्राद्ध के लिए सही तिथि कैसे खोजें?',
+      },
+      answer: {
+        en: 'Enter the date of death and the tool determines the corresponding tithi. Each year, the Shraddha is performed when that same tithi recurs in Pitru Paksha. For example, if the ancestor passed on Panchami, their Shraddha falls on Krishna Panchami of Bhadrapada. The tool accounts for Kshaya (skipped) tithis and leap adjustments.',
+        hi: 'मृत्यु की तारीख दर्ज करें और उपकरण संबंधित तिथि निर्धारित करेगा। प्रतिवर्ष पितृ पक्ष में उसी तिथि पर श्राद्ध किया जाता है। उदाहरणार्थ, यदि पूर्वज पंचमी तिथि पर गए, तो उनका श्राद्ध भाद्रपद कृष्ण पंचमी को पड़ता है।',
+      },
+    },
+    {
+      question: {
+        en: 'What are the dates of Pitru Paksha in 2026?',
+        hi: '2026 में पितृ पक्ष की तिथियाँ क्या हैं?',
+      },
+      answer: {
+        en: 'Pitru Paksha dates shift each year based on the lunar calendar. The tool computes the exact start and end dates for any year by finding the Krishna Paksha of Bhadrapada masa. Enter your location to get precise local dates, as Pitru Paksha timing can differ by a day depending on your timezone and local sunrise.',
+        hi: 'पितृ पक्ष की तिथियाँ चान्द्र पंचांग के अनुसार प्रतिवर्ष बदलती हैं। यह उपकरण भाद्रपद मास के कृष्ण पक्ष के आधार पर किसी भी वर्ष की सटीक आरम्भ और समाप्ति तिथियाँ गणना करता है।',
+      },
+    },
+  ],
+
+  // ─── /vedic-time ───────────────────────────────────────────
+  '/vedic-time': [
+    {
+      question: {
+        en: 'What is Vedic time and how does it differ from modern time?',
+        hi: 'वैदिक समय क्या है और यह आधुनिक समय से कैसे भिन्न है?',
+      },
+      answer: {
+        en: 'Vedic time divides the day into units based on sunrise rather than midnight. The primary units are Ghati (24 minutes), Pala (24 seconds), and Vipala (0.4 seconds). A Vedic day contains 60 Ghatis from one sunrise to the next. This system also defines 30 Muhurtas per day, each lasting 48 minutes.',
+        hi: 'वैदिक समय दिन को मध्यरात्रि के बजाय सूर्योदय के आधार पर विभाजित करता है। प्रमुख इकाइयाँ हैं — घटी (24 मिनट), पल (24 सेकण्ड) और विपल (0.4 सेकण्ड)। एक वैदिक दिन में एक सूर्योदय से अगले तक 60 घटियाँ होती हैं।',
+      },
+    },
+    {
+      question: {
+        en: 'What is a Muhurta in Vedic timekeeping?',
+        hi: 'वैदिक कालगणना में मुहूर्त क्या है?',
+      },
+      answer: {
+        en: 'A Muhurta is a 48-minute time window in the Vedic system. There are 30 Muhurtas in each day, 15 during daytime and 15 at night. Each Muhurta has a specific name and quality — some are auspicious (like Abhijit Muhurta around midday) and others are inauspicious. The tool shows which Muhurta is currently active at your location.',
+        hi: 'मुहूर्त वैदिक पद्धति में 48 मिनट की समय खिड़की है। प्रत्येक दिन में 30 मुहूर्त होते हैं — 15 दिन में और 15 रात्रि में। प्रत्येक मुहूर्त का विशिष्ट नाम और गुण है — कुछ शुभ हैं (जैसे मध्याह्न के आसपास अभिजित मुहूर्त) और कुछ अशुभ।',
+      },
+    },
+    {
+      question: {
+        en: 'How do I convert modern clock time to Vedic Ghati-Pala?',
+        hi: 'आधुनिक घड़ी के समय को वैदिक घटी-पल में कैसे बदलें?',
+      },
+      answer: {
+        en: 'Calculate the minutes elapsed since local sunrise, then divide by 24 to get Ghatis. The remainder, divided by 24 again, gives Palas. For example, if sunrise is at 06:00 and the current time is 10:00, that is 240 minutes or 10 Ghatis exactly. The tool performs this conversion automatically for your location and current time.',
+        hi: 'स्थानीय सूर्योदय के बाद बीते मिनटों की गणना करें, फिर 24 से भाग दें — यह घटी है। शेष को पुनः 24 से भाग दें — यह पल है। उदाहरणार्थ, यदि सूर्योदय 06:00 पर है और वर्तमान समय 10:00 है, तो 240 मिनट अर्थात् ठीक 10 घटी हुई।',
+      },
+    },
+  ],
+
+  // ─── /upagraha ─────────────────────────────────────────────
+  '/upagraha': [
+    {
+      question: {
+        en: 'What are Upagrahas in Vedic astrology?',
+        hi: 'वैदिक ज्योतिष में उपग्रह क्या हैं?',
+      },
+      answer: {
+        en: 'Upagrahas are shadow sub-planets used in Vedic chart analysis. The five primary upagrahas are Dhuma, Vyatipata, Parivesha, Indrachapa (Kodanda), and Upaketu. They are mathematically derived from the Sun\'s longitude rather than observed celestial bodies, and they refine predictions by indicating hidden influences and karmic patterns.',
+        hi: 'उपग्रह वैदिक कुण्डली विश्लेषण में प्रयुक्त छाया उपग्रह हैं। पाँच प्रमुख उपग्रह हैं — धूम, व्यतीपात, परिवेश, इन्द्रचाप (कोदण्ड) और उपकेतु। ये सूर्य के रेखांश से गणितीय रूप से व्युत्पन्न होते हैं और छिपे प्रभावों तथा कार्मिक पैटर्न को दर्शाते हैं।',
+      },
+    },
+    {
+      question: {
+        en: 'How are Upagraha positions calculated?',
+        hi: 'उपग्रहों की स्थिति की गणना कैसे की जाती है?',
+      },
+      answer: {
+        en: 'Upagraha longitudes are derived by adding fixed offsets to the Sun\'s sidereal longitude. For example, Dhuma = Sun + 133°20\', Vyatipata = 360° − Dhuma, Parivesha = Vyatipata + 180°, Indrachapa = 360° − Parivesha, and Upaketu = Indrachapa + 16°40\'. These formulae come from Brihat Parashara Hora Shastra.',
+        hi: 'उपग्रहों के रेखांश सूर्य के सायन रेखांश में निश्चित मान जोड़कर प्राप्त किये जाते हैं। उदाहरणार्थ, धूम = सूर्य + 133°20\', व्यतीपात = 360° − धूम, परिवेश = व्यतीपात + 180°, इन्द्रचाप = 360° − परिवेश, और उपकेतु = इन्द्रचाप + 16°40\'।',
+      },
+    },
+    {
+      question: {
+        en: 'Do Upagrahas affect my birth chart predictions?',
+        hi: 'क्या उपग्रह मेरी जन्म कुण्डली की भविष्यवाणियों को प्रभावित करते हैं?',
+      },
+      answer: {
+        en: 'Yes, Upagrahas add a supplementary layer of analysis. When an upagraha occupies a sensitive house (1st, 7th, or 10th) or conjoins key planets, it can amplify malefic tendencies or indicate hidden karmic debts. Classical texts recommend examining upagrahas for a more complete picture, though they carry less weight than the nine main grahas.',
+        hi: 'हाँ, उपग्रह विश्लेषण की एक अतिरिक्त परत जोड़ते हैं। जब कोई उपग्रह संवेदनशील भाव (प्रथम, सप्तम या दशम) में हो या प्रमुख ग्रहों के साथ युति करे, तो यह पापी प्रवृत्तियों को बढ़ा सकता है या छिपे कार्मिक ऋणों को दर्शा सकता है।',
+      },
+    },
+  ],
+
+  // ─── /devotional ───────────────────────────────────────────
+  '/devotional': [
+    {
+      question: {
+        en: 'What daily puja rituals does Vedic tradition recommend?',
+        hi: 'वैदिक परम्परा में दैनिक पूजा के कौन से अनुष्ठान सुझाये जाते हैं?',
+      },
+      answer: {
+        en: 'The core daily practice includes Sandhya Vandana (prayers at sunrise, noon, and sunset), lighting a lamp (deepa), offering flowers and incense to the family deity, and reciting a stotram or mantra. The specific deity and mantra vary by day of the week — for example, Monday is associated with Lord Shiva, Tuesday with Hanuman, and Thursday with Vishnu or Brihaspati.',
+        hi: 'मूल दैनिक अभ्यास में सन्ध्या वन्दना (सूर्योदय, मध्याह्न और सूर्यास्त पर प्रार्थना), दीप प्रज्वलन, कुलदेवता को पुष्प और धूप अर्पित करना, तथा स्तोत्र या मन्त्र पाठ शामिल है। विशिष्ट देवता और मन्त्र सप्ताह के दिन के अनुसार भिन्न होते हैं।',
+      },
+    },
+    {
+      question: {
+        en: 'Which deity should I worship on which day of the week?',
+        hi: 'सप्ताह के किस दिन किस देवता की पूजा करनी चाहिए?',
+      },
+      answer: {
+        en: 'The traditional weekly deity associations are: Sunday — Surya (Sun God), Monday — Shiva, Tuesday — Hanuman or Kartikeya, Wednesday — Ganesha or Budha, Thursday — Vishnu or Brihaspati (Guru), Friday — Lakshmi or Durga, and Saturday — Shani or Hanuman. The tool provides deity-specific mantras and puja vidhi for each day.',
+        hi: 'पारम्परिक साप्ताहिक देवता सम्बन्ध हैं: रविवार — सूर्य, सोमवार — शिव, मंगलवार — हनुमान या कार्तिकेय, बुधवार — गणेश या बुध, गुरुवार — विष्णु या बृहस्पति, शुक्रवार — लक्ष्मी या दुर्गा, शनिवार — शनि या हनुमान।',
+      },
+    },
+    {
+      question: {
+        en: 'What rituals are performed during major Hindu festivals?',
+        hi: 'प्रमुख हिन्दू त्योहारों में कौन से अनुष्ठान किये जाते हैं?',
+      },
+      answer: {
+        en: 'Major festivals have specific rituals: Diwali includes Lakshmi Puja, Ganesh Puja, and lamp lighting; Navaratri involves nine nights of Durga worship with different forms each day; Maha Shivaratri centres on night-long Shiva abhisheka; and Ganesh Chaturthi features Ganesh installation and visarjan. The tool provides festival-specific puja vidhi and mantras.',
+        hi: 'प्रमुख त्योहारों के विशिष्ट अनुष्ठान हैं: दीवाली में लक्ष्मी पूजा, गणेश पूजा और दीप प्रज्वलन; नवरात्रि में नौ रातों तक दुर्गा की विभिन्न रूपों में पूजा; महाशिवरात्रि में रात्रिभर शिव अभिषेक; और गणेश चतुर्थी में गणेश स्थापना और विसर्जन।',
+      },
+    },
+  ],
+
+  // ─── /varshaphal ───────────────────────────────────────────
+  '/varshaphal': [
+    {
+      question: {
+        en: 'What is Varshaphal (solar return chart) in Vedic astrology?',
+        hi: 'वैदिक ज्योतिष में वर्षफल (सौर प्रत्यागमन कुण्डली) क्या है?',
+      },
+      answer: {
+        en: 'Varshaphal is a Vedic annual horoscope chart cast for the exact moment when the Sun returns to its natal sidereal position each year. It uses the Tajika system of interpretation — distinct from classical Parashari methods — to predict the year\'s themes across career, relationships, health, and finances. It includes tools like Muntha, Sahams (sensitive points), and Mudda Dasha.',
+        hi: 'वर्षफल प्रत्येक वर्ष सूर्य के अपनी जन्मकालीन सायन स्थिति पर लौटने के सटीक क्षण के लिए बनायी गयी वैदिक वार्षिक कुण्डली है। यह ताजिक पद्धति का उपयोग करता है और वर्ष के विषयों — करियर, सम्बन्ध, स्वास्थ्य और वित्त — की भविष्यवाणी करता है।',
+      },
+    },
+    {
+      question: {
+        en: 'What is Muntha in Varshaphal and why does it matter?',
+        hi: 'वर्षफल में मुन्था क्या है और यह क्यों महत्वपूर्ण है?',
+      },
+      answer: {
+        en: 'Muntha is a mathematical point that advances one sign per year from the Ascendant of the birth chart. Its position in the annual chart indicates the overarching tone of the year. A well-placed Muntha (in a benefic house, aspected by Jupiter or Venus) signals a favourable year, while Muntha in the 6th, 8th, or 12th house suggests challenges requiring caution.',
+        hi: 'मुन्था एक गणितीय बिन्दु है जो जन्म कुण्डली के लग्न से प्रत्येक वर्ष एक राशि आगे बढ़ता है। वार्षिक कुण्डली में इसकी स्थिति वर्ष के समग्र स्वर को दर्शाती है। शुभ भाव में अच्छी स्थिति वाला मुन्था अनुकूल वर्ष का संकेत देता है।',
+      },
+    },
+    {
+      question: {
+        en: 'How does Varshaphal differ from Vimshottari Dasha predictions?',
+        hi: 'वर्षफल विम्शोत्तरी दशा भविष्यवाणियों से कैसे भिन्न है?',
+      },
+      answer: {
+        en: 'Vimshottari Dasha spans the entire lifetime with planetary periods lasting years, providing a broad karmic timeline. Varshaphal focuses on a single year with its own dasha system (Mudda Dasha) where planetary periods last days to weeks. The two systems complement each other — Varshaphal gives granular annual detail, while Vimshottari sets the overarching life context.',
+        hi: 'विम्शोत्तरी दशा सम्पूर्ण जीवनकाल में वर्षों तक चलने वाली ग्रह अवधियों के साथ व्यापक कार्मिक समयरेखा प्रदान करती है। वर्षफल अपनी स्वयं की दशा पद्धति (मुद्दा दशा) के साथ एक वर्ष पर केन्द्रित होता है जहाँ ग्रह अवधियाँ दिनों से सप्ताहों तक चलती हैं।',
+      },
+    },
+  ],
+
+  // ─── /prashna-ashtamangala ─────────────────────────────────
+  '/prashna-ashtamangala': [
+    {
+      question: {
+        en: 'What is Ashtamangala Prashna and how does it work?',
+        hi: 'अष्टमंगल प्रश्न क्या है और यह कैसे काम करता है?',
+      },
+      answer: {
+        en: 'Ashtamangala Prashna is a Kerala-tradition horary divination method that answers specific questions without requiring the querent\'s birth data. The querent selects numbers associated with eight auspicious items (mirror, vessel, gold ornament, lamp, throne, bull, flag, and fan), and the astrologer constructs a prashna chart from the moment the question is asked.',
+        hi: 'अष्टमंगल प्रश्न केरल परम्परा की एक प्रश्न ज्योतिष पद्धति है जो प्रश्नकर्ता के जन्म डेटा के बिना विशिष्ट प्रश्नों का उत्तर देती है। प्रश्नकर्ता आठ शुभ वस्तुओं (दर्पण, पात्र, स्वर्णाभूषण, दीप, सिंहासन, वृषभ, ध्वज और पंखा) से सम्बद्ध संख्याएँ चुनता है।',
+      },
+    },
+    {
+      question: {
+        en: 'What are the eight auspicious items in Ashtamangala?',
+        hi: 'अष्टमंगल में आठ शुभ वस्तुएँ कौन सी हैं?',
+      },
+      answer: {
+        en: 'The eight Mangala Dravyas are: Darpana (mirror), Kumbha (full vessel/pot), Swarna (gold ornament), Deepa (lamp), Simhasana (throne/seat), Vrishabha (bull), Dhwaja (flag/banner), and Vyajana (fan/chamara). Each item is mapped to a number, and the querent\'s chosen numbers are used to derive the rashi, nakshatra, and planetary influences for the prashna chart.',
+        hi: 'आठ मंगल द्रव्य हैं: दर्पण, कुम्भ (भरा पात्र), स्वर्ण (आभूषण), दीप, सिंहासन, वृषभ, ध्वज, और व्यजन (पंखा/चामर)। प्रत्येक वस्तु एक संख्या से जुड़ी है, और प्रश्नकर्ता द्वारा चुनी गयी संख्याओं से प्रश्न कुण्डली में राशि, नक्षत्र और ग्रह प्रभाव निर्धारित किये जाते हैं।',
+      },
+    },
+    {
+      question: {
+        en: 'Can Ashtamangala Prashna be used without knowing my birth time?',
+        hi: 'क्या अष्टमंगल प्रश्न मेरे जन्म समय को जाने बिना उपयोग किया जा सकता है?',
+      },
+      answer: {
+        en: 'Yes, that is one of the key advantages of Prashna astrology. The chart is cast for the moment the question is posed, not from birth data. This makes it especially useful when birth details are unknown or uncertain. The accuracy depends on the sincerity of the question and the precision of the moment it is asked.',
+        hi: 'हाँ, यह प्रश्न ज्योतिष का एक प्रमुख लाभ है। कुण्डली प्रश्न पूछे जाने के क्षण के लिए बनायी जाती है, न कि जन्म डेटा से। यह विशेष रूप से तब उपयोगी है जब जन्म विवरण अज्ञात या अनिश्चित हों।',
+      },
+    },
+  ],
+
+  // ─── /eclipses ─────────────────────────────────────────────
+  '/eclipses': [
+    {
+      question: {
+        en: 'When is the next solar or lunar eclipse?',
+        hi: 'अगला सूर्य या चन्द्र ग्रहण कब है?',
+      },
+      answer: {
+        en: 'The eclipse calendar shows upcoming solar and lunar eclipses with exact dates, times, and visibility regions. Eclipse frequency varies — typically 2 to 5 solar eclipses and 0 to 3 lunar eclipses occur each year. The tool computes eclipse circumstances for your specific location, including partial and total phases.',
+        hi: 'ग्रहण पंचांग आगामी सूर्य और चन्द्र ग्रहणों की सटीक तिथियाँ, समय और दृश्यता क्षेत्र दिखाता है। प्रत्येक वर्ष सामान्यतः 2 से 5 सूर्य ग्रहण और 0 से 3 चन्द्र ग्रहण होते हैं। यह उपकरण आपके विशिष्ट स्थान के लिए ग्रहण परिस्थितियों की गणना करता है।',
+      },
+    },
+    {
+      question: {
+        en: 'What is Sutak period during an eclipse?',
+        hi: 'ग्रहण के दौरान सूतक काल क्या है?',
+      },
+      answer: {
+        en: 'Sutak is the inauspicious period preceding an eclipse during which certain activities are traditionally avoided. For a solar eclipse, Sutak begins 12 hours before; for a lunar eclipse, it begins 9 hours before. During Sutak, eating, cooking, and starting new ventures are typically avoided. The tool calculates Sutak start and end times for your location.',
+        hi: 'सूतक ग्रहण से पूर्व का अशुभ काल है जिसमें कुछ गतिविधियाँ परम्परागत रूप से वर्जित होती हैं। सूर्य ग्रहण के लिए सूतक 12 घण्टे पहले आरम्भ होता है; चन्द्र ग्रहण के लिए 9 घण्टे पहले। सूतक में भोजन, पाक और नये कार्य सामान्यतः वर्जित हैं।',
+      },
+    },
+    {
+      question: {
+        en: 'How do eclipses affect my birth chart in Vedic astrology?',
+        hi: 'वैदिक ज्योतिष में ग्रहण मेरी जन्म कुण्डली को कैसे प्रभावित करते हैं?',
+      },
+      answer: {
+        en: 'In Vedic astrology, an eclipse falling on or near a sensitive point in your birth chart (Ascendant, Moon, or natal Rahu-Ketu axis) is considered significant. Solar eclipses can trigger career or identity shifts, while lunar eclipses often relate to emotional or relationship changes. The effect is strongest when the eclipse degree is within 3 degrees of a natal planet.',
+        hi: 'वैदिक ज्योतिष में, जब ग्रहण आपकी जन्म कुण्डली के संवेदनशील बिन्दु (लग्न, चन्द्र, या जन्मकालीन राहु-केतु अक्ष) पर या निकट पड़ता है, तो इसे महत्वपूर्ण माना जाता है। सूर्य ग्रहण करियर या पहचान में परिवर्तन ला सकते हैं, जबकि चन्द्र ग्रहण प्रायः भावनात्मक या सम्बन्ध परिवर्तनों से जुड़े होते हैं।',
+      },
+    },
+  ],
+
+  // ─── /transits ─────────────────────────────────────────────
+  '/transits': [
+    {
+      question: {
+        en: 'What are planetary transits (Gochar) in Vedic astrology?',
+        hi: 'वैदिक ज्योतिष में ग्रह गोचर क्या हैं?',
+      },
+      answer: {
+        en: 'Gochar refers to the current real-time positions of planets as they move through the zodiac signs. In Vedic astrology, transits are analysed relative to your Moon sign (Janma Rashi) to predict their impact on different areas of life. Slow-moving planets like Jupiter (1 year per sign) and Saturn (2.5 years per sign) carry the most weight in transit analysis.',
+        hi: 'गोचर राशियों में ग्रहों की वर्तमान वास्तविक समय स्थिति को दर्शाता है। वैदिक ज्योतिष में गोचर का विश्लेषण आपकी जन्म राशि (चन्द्र राशि) के सापेक्ष किया जाता है। बृहस्पति (प्रति राशि 1 वर्ष) और शनि (प्रति राशि 2.5 वर्ष) जैसे मन्द ग्रह गोचर विश्लेषण में सर्वाधिक महत्वपूर्ण हैं।',
+      },
+    },
+    {
+      question: {
+        en: 'Which planets are most important for transit predictions?',
+        hi: 'गोचर भविष्यवाणियों के लिए कौन से ग्रह सबसे महत्वपूर्ण हैं?',
+      },
+      answer: {
+        en: 'Jupiter, Saturn, and the Rahu-Ketu axis are the most influential transiting planets because they remain in each sign for months to years. Jupiter\'s transit brings expansion and opportunity to the house it occupies; Saturn brings discipline and restructuring; Rahu-Ketu trigger karmic shifts. Faster planets like the Moon, Mercury, and Venus provide daily nuance.',
+        hi: 'बृहस्पति, शनि और राहु-केतु अक्ष सर्वाधिक प्रभावशाली गोचर ग्रह हैं क्योंकि ये प्रत्येक राशि में महीनों से वर्षों तक रहते हैं। बृहस्पति का गोचर विस्तार और अवसर लाता है; शनि अनुशासन और पुनर्संरचना लाता है; राहु-केतु कार्मिक परिवर्तन प्रेरित करते हैं।',
+      },
+    },
+    {
+      question: {
+        en: 'How do I check current planetary positions for my chart?',
+        hi: 'अपनी कुण्डली के लिए वर्तमान ग्रह स्थिति कैसे देखें?',
+      },
+      answer: {
+        en: 'The transits page displays the live sidereal positions of all nine Vedic planets (Sun through Ketu) computed using astronomical algorithms. If you have a saved birth chart, the tool overlays the current transits on your natal chart, highlighting which houses the transiting planets occupy relative to your Ascendant and Moon sign.',
+        hi: 'गोचर पृष्ठ खगोलीय एल्गोरिदम का उपयोग करके सभी नौ वैदिक ग्रहों (सूर्य से केतु तक) की वास्तविक सायन स्थिति प्रदर्शित करता है। यदि आपकी जन्म कुण्डली सहेजी हुई है, तो उपकरण आपकी जन्म कुण्डली पर वर्तमान गोचर को आरोपित करता है।',
+      },
+    },
+  ],
+
+  // ─── /retrograde ───────────────────────────────────────────
+  '/retrograde': [
+    {
+      question: {
+        en: 'What does it mean when a planet is retrograde?',
+        hi: 'जब कोई ग्रह वक्री होता है तो इसका क्या अर्थ है?',
+      },
+      answer: {
+        en: 'Retrograde is an apparent backward motion of a planet as seen from Earth, caused by differences in orbital speeds. In Vedic astrology, a retrograde planet is considered stronger in certain respects — it turns its energy inward, encouraging reflection and revisiting past matters. Retrograde does not mean the planet is actually moving backwards; it is a geometric illusion.',
+        hi: 'वक्री गति पृथ्वी से देखने पर ग्रह की पीछे की ओर जाती हुई प्रतीत होने वाली गति है, जो कक्षीय गति में अन्तर के कारण होती है। वैदिक ज्योतिष में वक्री ग्रह को कुछ मामलों में अधिक बलवान माना जाता है — यह अपनी ऊर्जा को अन्तर्मुखी करता है।',
+      },
+    },
+    {
+      question: {
+        en: 'Which planets are currently retrograde?',
+        hi: 'इस समय कौन से ग्रह वक्री हैं?',
+      },
+      answer: {
+        en: 'The retrograde tracker shows real-time retrograde status for all planets. Mercury retrogrades 3–4 times per year for about 3 weeks each; Venus retrogrades once every 18 months for about 6 weeks; Mars every 2 years for about 2.5 months; Jupiter and Saturn each retrograde once a year for 4–5 months. Rahu and Ketu are perpetually retrograde by nature.',
+        hi: 'वक्री ट्रैकर सभी ग्रहों की वास्तविक समय वक्री स्थिति दिखाता है। बुध वर्ष में 3-4 बार लगभग 3 सप्ताह के लिए वक्री होता है; शुक्र प्रत्येक 18 माह में एक बार लगभग 6 सप्ताह के लिए; मंगल हर 2 वर्ष में लगभग 2.5 माह के लिए; बृहस्पति और शनि प्रत्येक वर्ष में एक बार 4-5 माह के लिए।',
+      },
+    },
+    {
+      question: {
+        en: 'Does Mercury retrograde really cause communication problems?',
+        hi: 'क्या बुध वक्री वास्तव में संचार समस्याएँ उत्पन्न करता है?',
+      },
+      answer: {
+        en: 'In Vedic astrology, Mercury governs communication, commerce, and intellect. When retrograde, its significations may manifest as delays in contracts, misunderstandings, or technology glitches — though the actual impact depends heavily on Mercury\'s placement in your birth chart. If Mercury is well-placed natally, its retrograde may bring beneficial review and revision rather than disruption.',
+        hi: 'वैदिक ज्योतिष में बुध संचार, वाणिज्य और बुद्धि का कारक है। वक्री होने पर अनुबन्धों में विलम्ब, गलतफहमी या तकनीकी समस्याएँ हो सकती हैं — हालाँकि वास्तविक प्रभाव आपकी जन्म कुण्डली में बुध की स्थिति पर बहुत निर्भर करता है।',
+      },
+    },
+  ],
 };
 
 /**

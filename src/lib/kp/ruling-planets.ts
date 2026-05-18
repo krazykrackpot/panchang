@@ -96,7 +96,7 @@ export function getRulingPlanets(
   const moonStarLordId = NAKSHATRA_LORDS_BY_ID[moonNk - 1];
 
   // Weekday lord
-  const weekday = Math.floor(jd + 1.5) % 7; // 0=Mon .. 6=Sun
+  const weekday = Math.floor(jd + 1.5) % 7; // 0=Sun .. 6=Sat (Lesson O)
   const dayLordId = WEEKDAY_LORD_IDS[weekday];
 
   return {

@@ -37,9 +37,11 @@ export interface ArticleCityConfig {
   timezone: string;
 }
 
-const DELHI_DEFAULT: ArticleCityConfig = {
-  name: 'Delhi', nameHi: 'दिल्ली',
-  lat: 28.6139, lng: 77.2090, timezone: 'Asia/Kolkata',
+// Ujjain — the traditional Hindu prime meridian (Surya Siddhanta), used as reference
+// when no city-specific context is available. NOT Delhi (CLAUDE.md: no Delhi assumption).
+const UJJAIN_DEFAULT: ArticleCityConfig = {
+  name: 'Ujjain', nameHi: 'उज्जैन',
+  lat: 23.1765, lng: 75.7885, timezone: 'Asia/Kolkata',
 };
 
 interface DailyArticle {
@@ -53,10 +55,11 @@ interface DailyArticle {
 }
 
 export function generateDailyArticle(date: Date, city?: ArticleCityConfig): DailyArticle {
-  const c = city || DELHI_DEFAULT;
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
+  const c = city || UJJAIN_DEFAULT;
+  // Use UTC accessors — avoid server-timezone off-by-one near midnight (Lesson L)
+  const year = date.getUTCFullYear();
+  const month = date.getUTCMonth() + 1;
+  const day = date.getUTCDate();
   const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
   const tzOffset = getUTCOffsetForDate(year, month, day, c.timezone);
 

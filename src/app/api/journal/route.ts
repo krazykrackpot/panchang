@@ -230,5 +230,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: fetchError.message }, { status: 500 });
   }
 
-  return NextResponse.json({ entries: entries ?? [], total: count ?? 0 });
+  return NextResponse.json({ entries: entries ?? [], total: count ?? 0 }, {
+    headers: { 'Cache-Control': 'private, no-store' },
+  });
 }

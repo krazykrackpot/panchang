@@ -105,12 +105,12 @@ export default function Navbar() {
 
   const ritualsLabel = msg('rituals', locale);
 
+  // Trimmed to 6 items — logo IS home, Rituals folded into Tools.
+  // Keeps navbar under ~800px to leave room for right-side controls.
   const navItems: NavItem[] = [
-    { href: '/', label: t('home') },
     { href: '/panchang', label: t('panchang') },
     { href: '/horoscope', label: t('horoscope') },
     { href: '/charts', label: t('kundali') },
-    { href: '/rituals', label: ritualsLabel },
     { href: '/calendars', label: t('calendars') },
     { href: '/tools', label: t('tools') },
     { href: '/learn', label: t('learn') },
@@ -137,7 +137,7 @@ export default function Navbar() {
           <div className="min-w-6 lg:min-w-10" />
 
           {/* Center  –  Nav links */}
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-4">
             {navItems.map((item, i) => {
               const rendered = item.children ? (
                 <NavDropdown key={i} label={item.label} items={item.children} />
@@ -183,7 +183,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-2 shrink-0">
             <div className={`flex items-center gap-1.5 text-text-secondary text-xs transition-opacity duration-150 ${hydrated && locationStore.confirmed && locationStore.name ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
               <MapPin className="w-3.5 h-3.5 text-gold-primary" />
-              <span className="max-w-[120px] truncate" suppressHydrationWarning>{hydrated ? (locationStore.name || '\u00A0') : '\u00A0'}</span>
+              <span className="max-w-[80px] truncate" suppressHydrationWarning>{hydrated ? (locationStore.name || '\u00A0') : '\u00A0'}</span>
             </div>
             {hydrated && user && <NotificationBell />}
             <SearchModal />

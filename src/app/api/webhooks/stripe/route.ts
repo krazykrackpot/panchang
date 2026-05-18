@@ -71,9 +71,9 @@ export async function POST(req: Request) {
           const status = subscription.cancel_at_period_end ? 'cancelling' : subscription.status;
           const item = subscription.items?.data?.[0];
           // Period dates: prefer subscription-level, fall back to item-level
-          const sub = subscription as unknown as Record<string, unknown>;
-          const periodStart = (sub.current_period_start as number | undefined) ?? item?.current_period_start;
-          const periodEnd = (sub.current_period_end as number | undefined) ?? item?.current_period_end;
+          const stripeSub = subscription as unknown as Record<string, unknown>;
+          const periodStart = (stripeSub.current_period_start as number | undefined) ?? item?.current_period_start;
+          const periodEnd = (stripeSub.current_period_end as number | undefined) ?? item?.current_period_end;
           const updateData: Record<string, string> = {
             status,
             updated_at: new Date().toISOString(),

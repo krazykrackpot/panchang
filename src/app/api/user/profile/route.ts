@@ -39,7 +39,7 @@ export async function GET(req: NextRequest) {
 
   const { data: snapshot } = await supabase
     .from('kundali_snapshots')
-    .select('ascendant_sign, moon_sign, moon_nakshatra, moon_nakshatra_pada, sun_sign, chart_data, sade_sati, dasha_timeline, computed_at, computation_version')
+    .select('ascendant_sign, moon_sign, moon_nakshatra, moon_nakshatra_pada, sun_sign, chart_data, sade_sati, dasha_timeline, planet_positions, full_kundali, computed_at, computation_version')
     .eq('user_id', user.id)
     .single();
 
@@ -177,7 +177,7 @@ export async function GET(req: NextRequest) {
       // Re-fetch the full enriched snapshot (same query as above)
       const { data: freshSnap } = await supabase
         .from('kundali_snapshots')
-        .select('ascendant_sign, moon_sign, moon_nakshatra, moon_nakshatra_pada, sun_sign, chart_data, sade_sati, dasha_timeline, computed_at, computation_version')
+        .select('ascendant_sign, moon_sign, moon_nakshatra, moon_nakshatra_pada, sun_sign, chart_data, sade_sati, dasha_timeline, planet_positions, full_kundali, computed_at, computation_version')
         .eq('user_id', user.id)
         .single();
 

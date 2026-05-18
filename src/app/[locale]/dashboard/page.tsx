@@ -15,6 +15,7 @@ import { useLocationStore } from '@/stores/location-store';
 import AuthModal from '@/components/auth/AuthModal';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { getSupabase } from '@/lib/supabase/client';
+import { useFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot-client';
 import { computePersonalizedDay } from '@/lib/personalization/personal-panchang';
 import { computeGochar } from '@/lib/personalization/gochar';
 import { computeTransitAlerts } from '@/lib/personalization/transit-alerts';
@@ -879,47 +880,43 @@ export default function DashboardPage() {
   const [planetPositions, setPlanetPositions] = useState<unknown[]>([]);
   const [savTable, setSavTable] = useState<number[]>([]);
 
+  // Single source of truth for snapshot data — useFreshSnapshot() calls
+  // /api/user/profile internally and caches at module level.
+  const { snapshot: freshSnapshot, loading: snapshotLoading } = useFreshSnapshot();
+
   const loadDashboard = useCallback(async () => {
     const supabase = getSupabase();
-    if (!supabase || !user) return;
+    if (!supabase || !user || !freshSnapshot) return;
 
     setLoading(true);
     try {
+      // Fetch profile for display_name / birth coords (lightweight — snapshot is from hook)
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) { setLoading(false); return; }
-
-      // Fetch profile + snapshot
-      const res = await fetch('/api/user/profile', {
+      const profileRes = await fetch('/api/user/profile', {
         headers: { Authorization: `Bearer ${session.access_token}` },
       });
-      if (!res.ok) { setLoading(false); return; }
+      if (profileRes.ok) {
+        const { profile } = await profileRes.json();
+        setDisplayName(profile?.display_name || user.user_metadata?.name || '');
+        if (profile?.birth_lat != null) setBirthLat(profile.birth_lat);
+        if (profile?.birth_lng != null) setBirthLng(profile.birth_lng);
+      }
 
-      const { profile, snapshot } = await res.json();
-      setDisplayName(profile?.display_name || user.user_metadata?.name || '');
-      if (profile?.birth_lat != null) setBirthLat(profile.birth_lat);
-      if (profile?.birth_lng != null) setBirthLng(profile.birth_lng);
+      // Use snapshot from hook — already has all JSONB fields (planet_positions,
+      // dasha_timeline, sade_sati, chart_data, full_kundali).
+      const snapshot = freshSnapshot;
 
-      if (!snapshot || !snapshot.moon_sign) {
+      if (!snapshot.moon_sign) {
         setHasBirthData(false);
         setLoading(false);
         return;
       }
 
-      // Staleness detection is now handled by GET /api/user/profile itself.
-      // If the snapshot's computation_version doesn't match ENGINE_VERSION,
-      // the API auto-recomputes before returning. No client-side check needed.
-
       setHasBirthData(true);
       setAscendantSign(snapshot.ascendant_sign || 0);
       setUserMoonSign(snapshot.moon_sign || 0);
       setUserMoonNakshatra(snapshot.moon_nakshatra || 0);
-
-      // Fetch full snapshot (with JSONB fields) for dasha + chart
-      const { data: fullSnap } = await supabase
-        .from('kundali_snapshots')
-        .select('planet_positions, dasha_timeline, sade_sati, chart_data, full_kundali')
-        .eq('user_id', user.id)
-        .single();
 
       // Fetch today's panchang  –  uses CURRENT location (where the user is now),
       // NOT birth location. Panchang elements (sunrise, Rahu Kaal, etc.) are location-dependent.
@@ -970,8 +967,8 @@ export default function DashboardPage() {
               tz: tzOffset,
               windowMinutes: 90,
               maxResults: 1,
-              birthNakshatra: snapshot?.moon_nakshatra,
-              birthRashi: snapshot?.moon_sign,
+              birthNakshatra: snapshot.moon_nakshatra,
+              birthRashi: snapshot.moon_sign,
             });
             if (windows.length > 0 && windows[0].score >= 30) {
               muhurtaResults.push({
@@ -989,16 +986,16 @@ export default function DashboardPage() {
         }
       }
 
-      // Build UserSnapshot
+      // Build UserSnapshot — all JSONB fields now come from the hook's snapshot
       const userSnapshot: UserSnapshot = {
         moonSign: snapshot.moon_sign,
         moonNakshatra: snapshot.moon_nakshatra,
         moonNakshatraPada: snapshot.moon_nakshatra_pada,
         sunSign: snapshot.sun_sign,
         ascendantSign: snapshot.ascendant_sign,
-        planetPositions: fullSnap?.planet_positions || [],
-        dashaTimeline: fullSnap?.dasha_timeline || [],
-        sadeSati: fullSnap?.sade_sati || {},
+        planetPositions: (snapshot.planet_positions || []) as UserSnapshot['planetPositions'],
+        dashaTimeline: (snapshot.dasha_timeline || []) as UserSnapshot['dashaTimeline'],
+        sadeSati: (snapshot.sade_sati || {}) as UserSnapshot['sadeSati'],
       };
 
       // Compute personalized day
@@ -1006,19 +1003,19 @@ export default function DashboardPage() {
       setPersonalizedDay(result);
 
       // Set planet positions for remedy spotlight
-      if (fullSnap?.planet_positions) {
-        setPlanetPositions(fullSnap.planet_positions as unknown[]);
+      if (snapshot.planet_positions) {
+        setPlanetPositions(snapshot.planet_positions as unknown[]);
       }
 
       // Set chart data + compute key dates
-      if (fullSnap?.chart_data) {
-        setChartData(fullSnap.chart_data as ChartData);
+      if (snapshot.chart_data) {
+        setChartData(snapshot.chart_data as ChartData);
         // Build minimal KundaliData for key dates from snapshot
         try {
           const kd = computeKeyDates({
             kundali: {
-              planets: fullSnap.planet_positions || [],
-              dashas: fullSnap.dasha_timeline || [],
+              planets: snapshot.planet_positions || [],
+              dashas: snapshot.dasha_timeline || [],
               ascendant: { sign: snapshot.ascendant_sign },
               houses: Array.from({ length: 12 }, (_, i) => ({
                 house: i + 1,
@@ -1031,8 +1028,8 @@ export default function DashboardPage() {
       }
 
       // Extract SAV table from full kundali snapshot for transit countdown
-      if (fullSnap?.full_kundali) {
-        const fk = fullSnap.full_kundali as Record<string, unknown>;
+      if (snapshot.full_kundali) {
+        const fk = snapshot.full_kundali as Record<string, unknown>;
         const ashtakavarga = fk.ashtakavarga as { savTable?: number[] } | undefined;
         if (ashtakavarga?.savTable && Array.isArray(ashtakavarga.savTable)) {
           setSavTable(ashtakavarga.savTable);
@@ -1040,8 +1037,8 @@ export default function DashboardPage() {
       }
 
       // Set dasha timeline for transition alerts
-      if (fullSnap?.dasha_timeline) {
-        setDashaTimeline(fullSnap.dasha_timeline as DashaEntry[]);
+      if (snapshot.dasha_timeline) {
+        setDashaTimeline(snapshot.dasha_timeline as DashaEntry[]);
       }
 
       // Compute Gochar (transit overlay)
@@ -1093,15 +1090,16 @@ export default function DashboardPage() {
     } finally {
       setLoading(false);
     }
-  }, [user]);
+  }, [user, freshSnapshot]);
 
   useEffect(() => {
-    if (initialized && user) {
+    if (snapshotLoading) return;
+    if (initialized && user && freshSnapshot) {
       loadDashboard();
     } else if (initialized && !user) {
       setLoading(false);
     }
-  }, [initialized, user, loadDashboard]);
+  }, [initialized, user, freshSnapshot, snapshotLoading, loadDashboard]);
 
   // Delete a saved chart inline (used by the Saved Kundalis section).
   const handleDeleteSavedChart = async (id: string) => {

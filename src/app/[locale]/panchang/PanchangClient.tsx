@@ -33,7 +33,7 @@ import { useLocationStore } from '@/stores/location-store';
 import { getUTCOffsetForDate, resolveCurrentLocationTimezone } from '@/lib/utils/timezone';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { useAuthStore } from '@/stores/auth-store';
-import { getSupabase } from '@/lib/supabase/client';
+import { useFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot-client';
 import { CITIES } from '@/lib/constants/cities';
 import { computePersonalizedDay } from '@/lib/personalization/personal-panchang';
 import { getRashiNumber } from '@/lib/ephem/astronomical';
@@ -280,6 +280,7 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
 
   // Personal overlay state
   const authUser = useAuthStore(s => s.user);
+  const { snapshot: freshSnap } = useFreshSnapshot();
   const [personalDay, setPersonalDay] = useState<PersonalizedDay | null>(null);
 
   // Hindu months computation removed  –  now on /panchang/masa subpage
@@ -462,33 +463,24 @@ export default function PanchangClient({ serverPanchang, serverLocation, latestV
 
   // Muhurta index tracking removed  –  now on /panchang/muhurta subpage
 
-  // Personal overlay  –  fetch snapshot and compute personalized day
+  // Personal overlay  –  use snapshot from hook and compute personalized day
   useEffect(() => {
-    if (!authUser || !panchang) return;
-    const supabase = getSupabase();
-    if (!supabase) return;
-    supabase.from('kundali_snapshots')
-      .select('moon_sign, moon_nakshatra, moon_nakshatra_pada, ascendant_sign, dasha_timeline, sade_sati')
-      .eq('user_id', authUser.id)
-      .maybeSingle()
-      .then(({ data }) => {
-        if (!data) return;
-        const todayNak = panchang.nakshatra?.id || 1;
-        const moonPlanet = panchang.planets?.find((p: { id: number }) => p.id === 1);
-        const todayMoonSign = moonPlanet?.rashi || 1;
-        const pd = computePersonalizedDay({
-          moonSign: data.moon_sign,
-          moonNakshatra: data.moon_nakshatra,
-          moonNakshatraPada: data.moon_nakshatra_pada,
-          sunSign: 1,
-          ascendantSign: data.ascendant_sign,
-          planetPositions: [],
-          dashaTimeline: data.dasha_timeline || [],
-          sadeSati: data.sade_sati || {},
-        }, todayNak, todayMoonSign);
-        setPersonalDay(pd);
-      });
-  }, [authUser, panchang]);
+    if (!authUser || !panchang || !freshSnap || !freshSnap.moon_sign) return;
+    const todayNak = panchang.nakshatra?.id || 1;
+    const moonPlanet = panchang.planets?.find((p: { id: number }) => p.id === 1);
+    const todayMoonSign = moonPlanet?.rashi || 1;
+    const pd = computePersonalizedDay({
+      moonSign: freshSnap.moon_sign,
+      moonNakshatra: freshSnap.moon_nakshatra,
+      moonNakshatraPada: freshSnap.moon_nakshatra_pada,
+      sunSign: freshSnap.sun_sign || 1,
+      ascendantSign: freshSnap.ascendant_sign,
+      planetPositions: (freshSnap.planet_positions || []) as UserSnapshot['planetPositions'],
+      dashaTimeline: (freshSnap.dasha_timeline || []) as UserSnapshot['dashaTimeline'],
+      sadeSati: (freshSnap.sade_sati || {}) as UserSnapshot['sadeSati'],
+    }, todayNak, todayMoonSign);
+    setPersonalDay(pd);
+  }, [authUser, panchang, freshSnap]);
 
   // Compute balam when birth data changes  –  also persist manual selections
   useEffect(() => {

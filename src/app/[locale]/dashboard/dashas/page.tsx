@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, ChevronDown } from 'lucide-react';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { useAuthStore } from '@/stores/auth-store';
-import { getSupabase } from '@/lib/supabase/client';
+import { useFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot-client';
 import type { DashaEntry } from '@/types/kundali';
 import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -46,33 +46,18 @@ export default function DashasPage() {
   const hf = (isDevanagariLocale(locale)) ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = (isDevanagariLocale(locale)) ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const user = useAuthStore(s => s.user);
-  const [dashas, setDashas] = useState<DashaEntry[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { snapshot, loading: snapshotLoading } = useFreshSnapshot();
+  const dashas = snapshot?.dasha_timeline ? (snapshot.dasha_timeline as DashaEntry[]) : [];
+  const loading = snapshotLoading;
   const [expandedMaha, setExpandedMaha] = useState<string | null>(null);
 
+  // Auto-expand current mahadasha when data arrives
   useEffect(() => {
-    if (!user) { setLoading(false); return; }
-    const supabase = getSupabase();
-    if (!supabase) { setLoading(false); return; }
-
-    Promise.resolve(
-      supabase.from('kundali_snapshots')
-        .select('dasha_timeline')
-        .eq('user_id', user.id)
-        .maybeSingle()
-        .then(({ data }) => {
-          if (data?.dasha_timeline) {
-            setDashas(data.dasha_timeline as DashaEntry[]);
-            // Auto-expand current maha
-            const now = new Date();
-            const current = (data.dasha_timeline as DashaEntry[]).find(d => new Date(d.startDate) <= now && now <= new Date(d.endDate));
-            if (current) setExpandedMaha(current.planet);
-          }
-        })
-    ).catch((err: unknown) => {
-      console.error('[dashas] snapshot fetch failed:', err);
-    }).finally(() => setLoading(false));
-  }, [user]);
+    if (!dashas.length) return;
+    const now = new Date();
+    const current = dashas.find(d => new Date(d.startDate) <= now && now <= new Date(d.endDate));
+    if (current) setExpandedMaha(current.planet);
+  }, [dashas]);
 
   if (!user) {
     return <div className="max-w-2xl mx-auto px-4 py-20 text-center"><p className="text-text-secondary">{tl({ en: 'Sign in to view your dashas', hi: 'दशा देखने के लिए साइन इन करें', sa: 'दशाः द्रष्टुं प्रवेशं करोतु', ta: 'உங்கள் தசாக்களை பார்க்க உள்நுழையவும்', te: 'మీ దశలు చూడటానికి సైన్ ఇన్ చేయండి', bn: 'আপনার দশা দেখতে সাইন ইন করুন', kn: 'ನಿಮ್ಮ ದಶೆಗಳನ್ನು ನೋಡಲು ಸೈನ್ ಇನ್ ಮಾಡಿ', gu: 'તમારી દશા જોવા સાઇન ઇન કરો', mai: 'दशा देखबाक लेल साइन इन करू', mr: 'दशा पाहण्यासाठी साइन इन करा' }, locale)}</p></div>;

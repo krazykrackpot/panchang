@@ -18,7 +18,7 @@ export async function GET(req: Request) {
 
   const { data: users } = await supabase
     .from('kundali_snapshots')
-    .select('user_id, dasha_timeline, sade_sati');
+    .select('user_id, dasha_timeline, sade_sati, computation_version');
 
   if (!users || users.length === 0) {
     return NextResponse.json({ sent: 0 });
@@ -29,6 +29,10 @@ export async function GET(req: Request) {
   const thirtyDaysFromNow = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
 
   for (const snap of users) {
+    if (isSnapshotStale(snap)) {
+      console.warn(`[cron/email-alerts] Stale snapshot for user ${snap.user_id} — skipping (will recompute on next login)`);
+      continue;
+    }
     const { data: profile } = await supabase
       .from('user_profiles')
       .select('display_name, notification_prefs')

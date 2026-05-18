@@ -1,19 +1,19 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Loader2, ArrowLeft, Globe, AlertTriangle } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import { useAuthStore } from '@/stores/auth-store';
-import { getSupabase } from '@/lib/supabase/client';
+import { useFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot-client';
 import { computeGochar } from '@/lib/personalization/gochar';
 import { analyzeGochara, analyzeDoubleTransit } from '@/lib/transit/gochara-engine';
 import type { GocharaResult, DoubleTransitResult, TransitInput } from '@/lib/transit/gochara-engine';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import type { Locale } from '@/types/panchang';
-import type { UserSnapshot } from '@/lib/personalization/types';
+
 import type { GocharResult } from '@/lib/personalization/gochar';
 
 // ---------------------------------------------------------------------------
@@ -336,6 +336,7 @@ export default function TransitsPage() {
   const L = LABELS[locale] || LABELS.en;
   const { user, initialized } = useAuthStore();
 
+  const { snapshot, loading: snapshotLoading } = useFreshSnapshot();
   const [loading, setLoading] = useState(true);
   const [gocharResults, setGocharResults] = useState<GocharResult[]>([]);
   const [classicalGochara, setClassicalGochara] = useState<GocharaResult[]>([]);
@@ -343,34 +344,16 @@ export default function TransitsPage() {
   const [sadeSati, setSadeSati] = useState<{ isActive?: boolean; phase?: string } | null>(null);
   const [hasBirthData, setHasBirthData] = useState(false);
 
-  const loadTransits = useCallback(async () => {
-    const supabase = getSupabase();
-    if (!supabase || !user) return;
+  useEffect(() => {
+    if (snapshotLoading) return;
+    if (!snapshot || !snapshot.moon_sign) {
+      setHasBirthData(false);
+      setLoading(false);
+      return;
+    }
 
-    setLoading(true);
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) return;
-
-      const res = await fetch('/api/user/profile', {
-        headers: { Authorization: `Bearer ${session.access_token}` },
-      });
-      if (!res.ok) return;
-
-      const { snapshot } = await res.json();
-      if (!snapshot || !snapshot.moon_sign) {
-        setHasBirthData(false);
-        setLoading(false);
-        return;
-      }
       setHasBirthData(true);
-
-      // Fetch full snapshot
-      const { data: fullSnap } = await supabase
-        .from('kundali_snapshots')
-        .select('sade_sati')
-        .eq('user_id', user.id)
-        .single();
 
       // Compute gochar using existing engine
       const results = computeGochar(snapshot.ascendant_sign, snapshot.moon_sign);
@@ -395,24 +378,16 @@ export default function TransitsPage() {
         }
       }
 
-      // Sade Sati
-      if (fullSnap?.sade_sati && typeof fullSnap.sade_sati === 'object') {
-        setSadeSati(fullSnap.sade_sati as { isActive?: boolean; phase?: string });
+      // Sade Sati — now available directly from the snapshot hook
+      if (snapshot.sade_sati && typeof snapshot.sade_sati === 'object') {
+        setSadeSati(snapshot.sade_sati as { isActive?: boolean; phase?: string });
       }
     } catch (err) {
-      console.error('Transit load error:', err);
+      console.error('[transits] computation error:', err);
     } finally {
       setLoading(false);
     }
-  }, [user]);
-
-  useEffect(() => {
-    if (initialized && user) {
-      loadTransits();
-    } else if (initialized && !user) {
-      setLoading(false);
-    }
-  }, [initialized, user, loadTransits]);
+  }, [snapshot, snapshotLoading]);
 
   // Not signed in
   if (initialized && !user) {

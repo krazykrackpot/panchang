@@ -45,8 +45,8 @@ export async function POST(req: Request) {
             provider: 'stripe',
             status: 'active',
             tier,
-            provider_subscription_id: String(session.subscription),
-            provider_customer_id: String(session.customer),
+            provider_subscription_id: typeof session.subscription === 'string' ? session.subscription : session.subscription.id,
+            provider_customer_id: typeof session.customer === 'string' ? session.customer : session.customer.id,
             updated_at: new Date().toISOString(),
           }, { onConflict: 'user_id' });
 

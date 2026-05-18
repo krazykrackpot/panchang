@@ -122,10 +122,12 @@ export async function GET(request: Request) {
           continue;
         }
 
-        const now = new Date();
-        const year = now.getUTCFullYear();
-        const month = now.getUTCMonth() + 1;
-        const day = now.getUTCDate();
+        // Use the subscriber's timezone for "today" — not server UTC (Lesson L).
+        // Cron runs at 00:30 UTC. For UTC-5 users that's 19:30 previous day.
+        const localNow = new Date(new Date().toLocaleString('en-US', { timeZone: tz }));
+        const year = localNow.getFullYear();
+        const month = localNow.getMonth() + 1;
+        const day = localNow.getDate();
         const tzOffset = getUTCOffsetForDate(year, month, day, tz);
 
         const panchang = computePanchang({

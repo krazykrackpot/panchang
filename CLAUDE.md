@@ -534,3 +534,26 @@ Run this checklist BEFORE shipping any change to computation code:
 - Heavy widgets lazy-loaded via `next/dynamic` with `ssr: false`; Suspense boundaries with meaningful fallbacks
 - `optimizePackageImports` for `framer-motion` + `lucide-react`; all fonts use `next/font/google` with `display: 'swap'`
 - Server-side panchang via Vercel geo headers; home page uses CSS stagger animations (no framer-motion)
+
+## Kundali Snapshot Architecture (CRITICAL — no parallel paths)
+
+**Single source of truth for all kundali/birth chart data:**
+
+```
+                  ┌──────────────────────────────┐
+                  │  GET /api/user/profile        │
+                  │  (auto-recomputes if stale)   │
+                  └──────────────┬───────────────┘
+                                 │
+     ┌───────────────────────────┼───────────────────────────┐
+     │                           │                           │
+  Server routes              Client pages               Cron jobs
+  getFreshSnapshot()        useFreshSnapshot()        isSnapshotStale()
+```
+
+### Rules:
+1. **NEVER query `kundali_snapshots` directly from client components.** Use `useFreshSnapshot()` hook from `src/lib/supabase/get-fresh-snapshot-client.ts`.
+2. **NEVER query `kundali_snapshots` directly from API routes.** Use `getFreshSnapshot()` from `src/lib/supabase/get-fresh-snapshot.ts`.
+3. **Cron jobs** may read directly but MUST check `isSnapshotStale()` and skip/flag stale entries.
+4. **ENGINE_VERSION** (`src/lib/kundali/engine-version.ts`) is auto-generated at build time from a hash of 22 computation pipeline files. When any calc file changes, all stale snapshots auto-recompute on next access.
+5. **After editing ANY file in the computation pipeline**, run `npx tsx scripts/compute-engine-hash.ts` to update the hash locally (build script does this automatically).

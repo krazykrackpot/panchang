@@ -34,7 +34,7 @@ export async function POST(req: Request) {
     }
 
     const authHeader = req.headers.get('authorization');
-    const token = authHeader?.slice(7).trim();
+    const token = authHeader?.startsWith('Bearer ') ? authHeader.slice(7).trim() : undefined;
     if (!token) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }

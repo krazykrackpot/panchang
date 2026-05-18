@@ -905,31 +905,9 @@ export default function DashboardPage() {
         return;
       }
 
-      // Auto-recompute stale snapshots: ENGINE_VERSION is a hash of all computation
-      // pipeline files. It changes automatically when any calc logic changes — no
-      // manual version bumping needed.
-      const { ENGINE_VERSION } = await import('@/lib/kundali/engine-version');
-      const isStale = (snapshot.computation_version ?? '') !== ENGINE_VERSION;
-      if (isStale && profile?.date_of_birth && profile?.birth_lat != null && profile?.birth_lng != null && session) {
-        // Fire-and-forget — profile POST re-computes and upserts snapshot.
-        // birthTimezone is required by the route — resolve from coordinates.
-        fetch('/api/user/profile', {
-          method: 'POST',
-          headers: { Authorization: `Bearer ${session.access_token}`, 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: profile.display_name || '',
-            dateOfBirth: profile.date_of_birth,
-            timeOfBirth: profile.time_of_birth || '12:00',
-            birthPlace: profile.birth_place || '',
-            birthLat: profile.birth_lat,
-            birthLng: profile.birth_lng,
-            birthTimezone: profile.birth_timezone || 'Asia/Kolkata',
-          }),
-        }).then(res => {
-          if (res.ok) loadDashboard();
-          else console.error('[dashboard] snapshot recompute returned', res.status);
-        }).catch(err => console.error('[dashboard] snapshot recompute failed:', err));
-      }
+      // Staleness detection is now handled by GET /api/user/profile itself.
+      // If the snapshot's computation_version doesn't match ENGINE_VERSION,
+      // the API auto-recomputes before returning. No client-side check needed.
 
       setHasBirthData(true);
       setAscendantSign(snapshot.ascendant_sign || 0);

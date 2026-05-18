@@ -3,6 +3,12 @@ import Stripe from 'stripe';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { invalidateTierCache } from '@/lib/subscription/check-access';
 
+/** Safely extract an ID from a Stripe field that may be a string or expanded object. */
+function getStripeId(data: string | { id: string } | null | undefined): string | undefined {
+  if (!data) return undefined;
+  return typeof data === 'string' ? data : data.id;
+}
+
 function getStripe() {
   return new Stripe((process.env.STRIPE_SECRET_KEY || '').trim(), {
     apiVersion: '2025-03-31.basil' as Stripe.LatestApiVersion,
@@ -57,7 +63,8 @@ export async function POST(req: Request) {
 
       case 'customer.subscription.updated': {
         const subscription = event.data.object as Stripe.Subscription;
-        const customerId = subscription.customer as string;
+        const customerId = getStripeId(subscription.customer);
+        if (!customerId) break;
 
         const { data: sub } = await supabase
           .from('subscriptions')
@@ -87,7 +94,8 @@ export async function POST(req: Request) {
 
       case 'customer.subscription.deleted': {
         const subscription = event.data.object as Stripe.Subscription;
-        const customerId = subscription.customer as string;
+        const customerId = getStripeId(subscription.customer);
+        if (!customerId) break;
 
         const { data: sub } = await supabase
           .from('subscriptions')
@@ -108,7 +116,8 @@ export async function POST(req: Request) {
 
       case 'invoice.payment_failed': {
         const invoice = event.data.object as Stripe.Invoice;
-        const customerId = invoice.customer as string;
+        const customerId = getStripeId(invoice.customer);
+        if (!customerId) break;
 
         const { data: sub } = await supabase
           .from('subscriptions')

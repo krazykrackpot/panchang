@@ -512,10 +512,27 @@ export default function KundaliClient() {
 
   /** After synthesizing a reading, check if user previously chose a focus domain. */
   const resolveInitialView = useCallback(() => {
-    // Unified reading is always the default  –  no question entry needed
     setView('summary');
     setQuestionAnswered(true);
   }, []);
+
+  /** Shared synthesis helper — computes personalReading, keyDates, vedicProfile from kundali data.
+   *  Used by: URL-param restore, locale-switch restore, form submission. Single source of truth. */
+  const runSynthesis = useCallback((data: KundaliData) => {
+    try {
+      const engineYogas = data.evaluatedYogas ?? [];
+      setNewYogas(engineYogas);
+      const reading = synthesizeReading(data, locale, undefined, engineYogas.length > 0 ? engineYogas : undefined);
+      setPersonalReading(reading);
+      setKeyDates(computeKeyDates({ kundali: data }));
+      setVedicProfile(generateVedicProfile(data, locale));
+      resolveInitialView();
+    } catch (err) {
+      console.error('[kundali] Synthesis failed:', err);
+      setPersonalReading(null);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [locale]);
 
   // On mount: URL query params take priority over sessionStorage. This lets
   // saved-kundali cards on the dashboard open the correct chart  –  previously
@@ -563,22 +580,7 @@ export default function KundaliClient() {
             setKundali(data);
             // Signal SignupPrompt — peak engagement moment for non-logged-in users
             window.dispatchEvent(new CustomEvent('kundali:generated'));
-            try {
-              // Yoga engine already ran inside generateKundali() — results in data.evaluatedYogas
-              const engineYogas = data.evaluatedYogas ?? [];
-              setNewYogas(engineYogas);
-              const reading = synthesizeReading(data, locale, undefined, engineYogas.length > 0 ? engineYogas : undefined);
-              setPersonalReading(reading);
-              setKeyDates(computeKeyDates({ kundali: data }));
-              setVedicProfile(generateVedicProfile(data, locale));
-              resolveInitialView();
-              // Trajectory sync handled by the dedicated useEffect that watches user + personalReading
-            } catch (err) {
-              console.error('[kundali] personalReading computation failed:', err);
-              setPersonalReading(null);
-              // Stay on summary view — the tippanni narrative is still available.
-              // Never fall back to raw technical view for newcomers.
-            }
+            runSynthesis(data);
             try {
               sessionStorage.setItem('kundali_last_result', JSON.stringify({
                 kundali: data,
@@ -604,30 +606,23 @@ export default function KundaliClient() {
     try {
       const isLocaleSwitch = sessionStorage.getItem('locale-switch');
       if (isLocaleSwitch) {
-        sessionStorage.removeItem('locale-switch');
+        // Remove flag AFTER successful restore (safe under React 18 Strict Mode
+        // where effects run twice — second run still finds the flag).
         const cached = sessionStorage.getItem('kundali_last_result');
         if (cached) {
-          const { kundali: cachedData, chartStyle: cachedStyle } = JSON.parse(cached);
+          const parsed = JSON.parse(cached);
+          const cachedData = parsed?.kundali;
+          const cachedStyle = parsed?.chartStyle;
           if (cachedData?.planets) {
+            sessionStorage.removeItem('locale-switch');
             setKundali(cachedData);
             setChartStyle(cachedStyle || 'north');
-            // Re-run synthesis for the new locale
-            try {
-              const engineYogas = cachedData.evaluatedYogas ?? [];
-              setNewYogas(engineYogas);
-              const reading = synthesizeReading(cachedData, locale, undefined, engineYogas.length > 0 ? engineYogas : undefined);
-              setPersonalReading(reading);
-              setKeyDates(computeKeyDates({ kundali: cachedData }));
-              setVedicProfile(generateVedicProfile(cachedData, locale));
-              resolveInitialView();
-            } catch (err) {
-              console.error('[kundali] Locale-switch re-synthesis failed:', err);
-              setPersonalReading(null);
-            }
+            runSynthesis(cachedData);
             setLoading(false);
             return;
           }
         }
+        sessionStorage.removeItem('locale-switch');
       }
     } catch (err) {
       console.warn('[kundali] sessionStorage restore on locale switch failed:', err);
@@ -864,21 +859,7 @@ export default function KundaliClient() {
       // Signal signup prompt — peak engagement for non-logged-in users
       window.dispatchEvent(new CustomEvent('kundali:generated'));
       // Compute Personal Pandit reading + Key Dates (synchronous, <500ms)
-      try {
-        // Yoga engine already ran inside generateKundali() — results in data.evaluatedYogas
-        const engineYogas2 = data.evaluatedYogas ?? [];
-        setNewYogas(engineYogas2);
-        const reading = synthesizeReading(data, locale, undefined, engineYogas2.length > 0 ? engineYogas2 : undefined);
-        setPersonalReading(reading);
-        setKeyDates(computeKeyDates({ kundali: data }));
-        setVedicProfile(generateVedicProfile(data, locale));
-        resolveInitialView();
-        if (user) trajectoryHook.syncTrajectory(reading, locale);
-      } catch (synthErr) {
-        console.error('[kundali] Personal reading synthesis failed:', synthErr);
-        setPersonalReading(null);
-        // Stay on summary — tippanni narrative is still available. Never dump newcomers into raw technical view.
-      }
+      runSynthesis(data);
       try {
         sessionStorage.setItem('kundali_last_result', JSON.stringify({ kundali: data, chartStyle: style, sig: `${birthData.lat}|${birthData.lng}|${birthData.date}|${birthData.time}|${birthData.timezone}` }));
       } catch (storageErr) { console.warn('[kundali] sessionStorage write failed:', storageErr); }

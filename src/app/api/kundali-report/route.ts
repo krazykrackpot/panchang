@@ -24,6 +24,14 @@ const reportSchema = z.object({
 export const maxDuration = 30; // Heavy HTML report generation
 
 export async function GET(request: Request) {
+  // Rate limit — CPU-heavy report generation, no auth required
+  const { checkRateLimit, getClientIP } = await import('@/lib/api/rate-limit');
+  const ip = getClientIP(request);
+  const { allowed } = checkRateLimit(ip, { maxRequests: 10, windowMs: 3600000 }); // 10/hour
+  if (!allowed) {
+    return new Response('Rate limit exceeded', { status: 429 });
+  }
+
   const { searchParams } = new URL(request.url);
 
   const parsed = reportSchema.safeParse({

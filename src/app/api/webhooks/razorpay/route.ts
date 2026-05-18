@@ -34,7 +34,10 @@ export async function POST(req: Request) {
     }
 
     const expected = crypto.createHmac('sha256', webhookSecret).update(body).digest('hex');
-    if (sig !== expected) {
+    // Timing-safe comparison to prevent signature forgery via timing analysis
+    const sigBuf = Buffer.from(sig);
+    const expectedBuf = Buffer.from(expected);
+    if (sigBuf.length !== expectedBuf.length || !crypto.timingSafeEqual(sigBuf, expectedBuf)) {
       return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
     }
 

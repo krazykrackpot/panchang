@@ -46,13 +46,28 @@ export async function POST(req: Request) {
         const tier = session.metadata?.tier;
 
         if (userId && tier && session.subscription && session.customer) {
+          // Retrieve the full subscription to get period dates from items
+          const subId = typeof session.subscription === 'string' ? session.subscription : session.subscription.id;
+          let periodStart: string | null = null;
+          let periodEnd: string | null = null;
+          try {
+            const fullSub = await getStripe().subscriptions.retrieve(subId);
+            const item = fullSub.items?.data?.[0];
+            if (item?.current_period_start) periodStart = new Date(item.current_period_start * 1000).toISOString();
+            if (item?.current_period_end) periodEnd = new Date(item.current_period_end * 1000).toISOString();
+          } catch (err) {
+            console.error('[stripe-webhook] Failed to retrieve subscription for period dates:', err);
+          }
+
           await supabase.from('subscriptions').upsert({
             user_id: userId,
             provider: 'stripe',
             status: 'active',
             tier,
-            provider_subscription_id: typeof session.subscription === 'string' ? session.subscription : session.subscription.id,
+            provider_subscription_id: subId,
             provider_customer_id: typeof session.customer === 'string' ? session.customer : session.customer.id,
+            current_period_start: periodStart,
+            current_period_end: periodEnd,
             updated_at: new Date().toISOString(),
           }, { onConflict: 'user_id' });
 

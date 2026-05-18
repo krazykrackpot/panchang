@@ -18,16 +18,34 @@ import { TITHIS } from '@/lib/constants/tithis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 
 /** Check if a panchang transition time has already passed (local time comparison) */
+/**
+ * Check if a panchang time has passed. Times are in the LOCATION's timezone
+ * (not the browser's), so we must compare using the same timezone.
+ * Uses the location store's IANA timezone for correct comparison.
+ */
 function isTimePassed(timeStr: string, dateStr?: string): boolean {
-  const now = new Date();
+  // Get current time in the LOCATION's timezone (not browser TZ)
+  const locationTz = useLocationStore.getState().timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const nowInLocationTz = new Date(new Date().toLocaleString('en-US', { timeZone: locationTz }));
+  const nowH = nowInLocationTz.getHours();
+  const nowM = nowInLocationTz.getMinutes();
+  const nowDay = nowInLocationTz.getDate();
+  const nowMonth = nowInLocationTz.getMonth() + 1;
+  const nowYear = nowInLocationTz.getFullYear();
+
   const [h, m] = timeStr.split(':').map(Number);
   if (dateStr) {
     const [y, mo, d] = dateStr.split('-').map(Number);
-    const target = new Date(y, mo - 1, d, h, m);
-    return now >= target;
+    // Compare date first, then time — all in location timezone
+    if (nowYear > y) return true;
+    if (nowYear < y) return false;
+    if (nowMonth > mo) return true;
+    if (nowMonth < mo) return false;
+    if (nowDay > d) return true;
+    if (nowDay < d) return false;
+    return nowH > h || (nowH === h && nowM >= m);
   }
-  const todayTarget = new Date(now.getFullYear(), now.getMonth(), now.getDate(), h, m);
-  return now >= todayTarget;
+  return nowH > h || (nowH === h && nowM >= m);
 }
 
 interface Props {

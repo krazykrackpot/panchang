@@ -14,6 +14,9 @@ export default function LocaleSwitcher() {
   const ref = useRef<HTMLDivElement>(null);
 
   const switchLocale = (locale: Locale) => {
+    // Signal to stateful pages (kundali, etc.) that this is a locale switch,
+    // not a fresh navigation. They should restore from sessionStorage.
+    try { sessionStorage.setItem('locale-switch', '1'); } catch { /* private browsing */ }
     router.replace(pathname, { locale });
     setOpen(false);
   };

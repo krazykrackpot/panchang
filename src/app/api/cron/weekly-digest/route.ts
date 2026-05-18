@@ -7,6 +7,7 @@ import { computePersonalizedDay } from '@/lib/personalization/personal-panchang'
 import { computeTransitAlerts } from '@/lib/personalization/transit-alerts';
 import type { UserSnapshot } from '@/lib/personalization/types';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
+import { isSnapshotStale } from '@/lib/supabase/get-fresh-snapshot';
 
 export const maxDuration = 30; // Cron job — email/notification/sync tasks
 
@@ -22,7 +23,7 @@ export async function GET(req: Request) {
   // Fetch all users with snapshots who want weekly digests
   const { data: users } = await supabase
     .from('kundali_snapshots')
-    .select('user_id, moon_sign, moon_nakshatra, moon_nakshatra_pada, sun_sign, ascendant_sign, dasha_timeline, sade_sati');
+    .select('user_id, moon_sign, moon_nakshatra, moon_nakshatra_pada, sun_sign, ascendant_sign, dasha_timeline, sade_sati, computation_version');
 
   if (!users || users.length === 0) {
     return NextResponse.json({ sent: 0, message: 'No users with snapshots' });
@@ -32,6 +33,11 @@ export async function GET(req: Request) {
   let skipped = 0;
 
   for (const snap of users) {
+    if (isSnapshotStale(snap)) {
+      console.warn(`[cron/weekly-digest] Stale snapshot for user ${snap.user_id} — skipping (will recompute on next login)`);
+      skipped++;
+      continue;
+    }
     // Get user profile + email + panchang location for festival computation
     const { data: profile } = await supabase
       .from('user_profiles')

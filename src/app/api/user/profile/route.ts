@@ -129,6 +129,37 @@ export async function GET(req: NextRequest) {
     };
   }
 
+  // Auto-recompute stale snapshots before returning.
+  // ENGINE_VERSION is a hash of all 22 computation pipeline files — changes
+  // automatically when any calc logic changes. No manual version bumping.
+  const { ENGINE_VERSION } = await import('@/lib/kundali/engine-version');
+  const isStale = snapshot && (snapshot.computation_version ?? '') !== ENGINE_VERSION;
+  if (isStale && profile?.date_of_birth && profile?.birth_lat != null && profile?.birth_lng != null) {
+    try {
+      const birthTz = profile.birth_timezone || 'Asia/Kolkata';
+      const recomputeBody = JSON.stringify({
+        name: profile.display_name || '',
+        dateOfBirth: profile.date_of_birth,
+        timeOfBirth: profile.time_of_birth || '12:00',
+        birthPlace: profile.birth_place || '',
+        birthLat: profile.birth_lat,
+        birthLng: profile.birth_lng,
+        birthTimezone: birthTz,
+      });
+      const internalRes = await POST(new NextRequest(new URL(req.url), {
+        method: 'POST',
+        headers: { Authorization: req.headers.get('Authorization') || '', 'Content-Type': 'application/json' },
+        body: recomputeBody,
+      }));
+      if (internalRes.ok) {
+        const fresh = await internalRes.json();
+        return NextResponse.json({ profile: fresh.profile, snapshot: fresh.snapshot, birthPanchang: fresh.birthPanchang ?? birthPanchang, recomputed: true });
+      }
+    } catch (err) {
+      console.error('[profile GET] auto-recompute failed, returning stale:', err);
+    }
+  }
+
   return NextResponse.json({ profile, snapshot: snapshotEnriched, birthPanchang });
 }
 

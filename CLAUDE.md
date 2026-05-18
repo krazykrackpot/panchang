@@ -557,3 +557,23 @@ Run this checklist BEFORE shipping any change to computation code:
 3. **Cron jobs** may read directly but MUST check `isSnapshotStale()` and skip/flag stale entries.
 4. **ENGINE_VERSION** (`src/lib/kundali/engine-version.ts`) is auto-generated at build time from a hash of 22 computation pipeline files. When any calc file changes, all stale snapshots auto-recompute on next access.
 5. **After editing ANY file in the computation pipeline**, run `npx tsx scripts/compute-engine-hash.ts` to update the hash locally (build script does this automatically).
+
+## Static Page Budget (CRITICAL — deploy time)
+
+**Maximum static pages: ~2,000.** Beyond this, Vercel builds exceed 10 min or stack overflow.
+
+### Routes that MUST return `[]` from `generateStaticParams`:
+- `horoscope/[rashi]/[date]` — dates are infinite, use ISR
+- `horoscope/[rashi]/weekly` — ISR with revalidate
+- `horoscope/[rashi]/monthly` — ISR with revalidate
+- `calendar/[slug]` — festivals use ISR
+- `choghadiya/[date]` — dates use ISR
+- `muhurta/[type]/[year]/[month]/[city]` — combos use ISR
+- `panchang/[city]` — 800+ cities use ISR
+- `festivals/[slug]/[year]` — ISR
+- `festivals/[slug]/[year]/[city]` — ISR
+
+### `generateStaticParams` in `[locale]/layout.tsx` returns ONLY 4 locales:
+`['en', 'hi', 'ta', 'bn']` — not all 8 visible locales.
+
+**If a PR adds params back to any of these routes, the build WILL fail.** This has happened 3 times from PR merges reverting the empty returns. Check after every merge.

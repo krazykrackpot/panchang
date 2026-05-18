@@ -113,7 +113,23 @@ export const useLocationStore = create<LocationState>((set, get) => ({
       return;
     }
 
-    if (current.confirmed) return;
+    // If the stored timezone doesn't match the browser's timezone, the user
+    // may have moved (e.g. Mumbai stored but browser says Europe/Zurich).
+    // Prompt re-detection instead of silently using stale location.
+    if (current.confirmed && current.timezone) {
+      const browserTz = typeof window !== 'undefined' ? Intl.DateTimeFormat().resolvedOptions().timeZone : null;
+      if (browserTz && browserTz !== current.timezone) {
+        // Timezone mismatch — clear stored location, force re-detect
+        console.warn(`[location] Stored timezone ${current.timezone} ≠ browser ${browserTz} — re-detecting`);
+        set({ confirmed: false, lat: null, lng: null, name: '', timezone: null });
+        try { localStorage.removeItem(STORAGE_KEY); } catch { /* ignore */ }
+        // Fall through to detection below
+      } else {
+        return; // Stored location matches browser TZ — keep it
+      }
+    } else if (current.confirmed) {
+      return;
+    }
     set({ detecting: true });
 
     const fromIP = async () => {

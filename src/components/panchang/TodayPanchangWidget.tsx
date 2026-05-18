@@ -103,7 +103,7 @@ export default function TodayPanchangWidget({ serverPanchang, serverLocation }: 
   // If we have server panchang but no stored location, auto-set from server geo
   useEffect(() => {
     if (serverPanchang && serverLocation && !locationStore.confirmed && !locationStore.detecting) {
-      locationStore.setLocation(serverLocation.lat, serverLocation.lng, serverLocation.name);
+      locationStore.setLocationAuto(serverLocation.lat, serverLocation.lng, serverLocation.name, Intl.DateTimeFormat().resolvedOptions().timeZone);
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 

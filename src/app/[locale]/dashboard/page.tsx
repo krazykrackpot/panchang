@@ -885,13 +885,13 @@ export default function DashboardPage() {
     setLoading(true);
     try {
       const { data: { session } } = await supabase.auth.getSession();
-      if (!session) return;
+      if (!session) { setLoading(false); return; }
 
       // Fetch profile + snapshot
       const res = await fetch('/api/user/profile', {
         headers: { Authorization: `Bearer ${session.access_token}` },
       });
-      if (!res.ok) return;
+      if (!res.ok) { setLoading(false); return; }
 
       const { profile, snapshot } = await res.json();
       setDisplayName(profile?.display_name || user.user_metadata?.name || '');
@@ -908,8 +908,10 @@ export default function DashboardPage() {
       // new features), bump CURRENT_COMPUTATION_VERSION in profile/route.ts.
       // Stale snapshots get re-computed transparently on next dashboard load.
       const CURRENT_COMPUTATION_VERSION = 2;
-      if ((snapshot.computation_version ?? 0) < CURRENT_COMPUTATION_VERSION && profile?.date_of_birth && session) {
-        // Fire-and-forget re-computation — don't block dashboard load
+      const isStale = (snapshot.computation_version ?? 0) < CURRENT_COMPUTATION_VERSION;
+      if (isStale && profile?.date_of_birth && profile?.birth_lat != null && profile?.birth_lng != null && session) {
+        // Fire-and-forget — profile POST re-computes and upserts snapshot.
+        // birthTimezone is required by the route — resolve from coordinates.
         fetch('/api/user/profile', {
           method: 'POST',
           headers: { Authorization: `Bearer ${session.access_token}`, 'Content-Type': 'application/json' },
@@ -920,9 +922,11 @@ export default function DashboardPage() {
             birthPlace: profile.birth_place || '',
             birthLat: profile.birth_lat,
             birthLng: profile.birth_lng,
+            birthTimezone: profile.birth_timezone || 'Asia/Kolkata',
           }),
         }).then(res => {
           if (res.ok) loadDashboard();
+          else console.error('[dashboard] snapshot recompute returned', res.status);
         }).catch(err => console.error('[dashboard] snapshot recompute failed:', err));
       }
 

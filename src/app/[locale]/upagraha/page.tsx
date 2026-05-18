@@ -1,3 +1,4 @@
+import { headers } from 'next/headers';
 import { setRequestLocale } from 'next-intl/server';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { CITIES } from '@/lib/constants/cities';
@@ -7,7 +8,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import Link from 'next/link';
 import UpagrahaClient from './Client';
 
-export const revalidate = 86400;
+// Dynamic rendering — no ISR cache (time-dependent content).
 
 // ─── Upagraha Definitions ──────────────────────────────────────
 interface UpagrahaRow {
@@ -103,6 +104,7 @@ function formatDeg(deg: number): string {
 export default async function UpagrahaPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  await headers(); // Force dynamic rendering
   const now = new Date();
   const year = now.getUTCFullYear();
   const month = now.getUTCMonth() + 1;

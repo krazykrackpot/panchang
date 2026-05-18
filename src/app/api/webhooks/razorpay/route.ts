@@ -11,6 +11,7 @@ interface RazorpayWebhookPayload {
         id: string;
         plan_id: string;
         status: string;
+        customer_id?: string;
         current_start: number | null;
         current_end: number | null;
         notes: {
@@ -59,6 +60,7 @@ export async function POST(req: Request) {
           status: 'active',
           tier: tier || 'pro',
           provider_subscription_id: entity.id,
+          provider_customer_id: entity.customer_id || null,
           current_period_start: entity.current_start
             ? new Date(entity.current_start * 1000).toISOString()
             : null,

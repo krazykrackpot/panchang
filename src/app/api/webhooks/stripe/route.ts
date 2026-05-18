@@ -39,14 +39,14 @@ export async function POST(req: Request) {
         const userId = session.metadata?.user_id;
         const tier = session.metadata?.tier;
 
-        if (userId && tier) {
+        if (userId && tier && session.subscription && session.customer) {
           await supabase.from('subscriptions').upsert({
             user_id: userId,
             provider: 'stripe',
             status: 'active',
             tier,
-            provider_subscription_id: session.subscription as string,
-            provider_customer_id: session.customer as string,
+            provider_subscription_id: String(session.subscription),
+            provider_customer_id: String(session.customer),
             updated_at: new Date().toISOString(),
           }, { onConflict: 'user_id' });
 

@@ -54,6 +54,7 @@ import FamilyDoshaStrip from '@/components/dashboard/FamilyDoshaStrip';
 import JournalCheckinCard from '@/components/journal/JournalCheckinCard';
 import TodaysReading from '@/components/dashboard/TodaysReading';
 import { computeDailyEnergy } from '@/lib/panchang/energy-score';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { getNakshatraActivity } from '@/lib/constants/nakshatra-activities';
 import NakshatraShareButton from '@/components/shareable/NakshatraShareButton';
 import { usePrakritiStore } from '@/stores/prakriti-store';
@@ -965,7 +966,9 @@ export default function DashboardPage() {
         try {
           const today = new Date().toISOString().split('T')[0];
           const tz = locStore.timezone || 'UTC';
-          const tzOffset = new Date().getTimezoneOffset() / -60;
+          // Compute offset from the LOCATION's IANA timezone, not browser TZ
+          const [tY, tM, tD] = today.split('-').map(Number);
+          const tzOffset = getUTCOffsetForDate(tY, tM, tD, tz);
           const activities = [
             { id: 'business', label: 'Business', hi: 'व्यापार' },
             { id: 'marriage', label: 'Marriage', hi: 'विवाह' },

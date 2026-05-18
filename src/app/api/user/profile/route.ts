@@ -33,7 +33,8 @@ export async function GET(req: NextRequest) {
     .single();
 
   if (profileError) {
-    return NextResponse.json({ error: profileError.message }, { status: 500 });
+    console.error('[user/profile] GET failed:', profileError.message);
+    return NextResponse.json({ error: 'Failed to load profile' }, { status: 500 });
   }
 
   const { data: snapshot } = await supabase
@@ -148,7 +149,12 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const body = await req.json();
+  let body: Record<string, unknown>;
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
+  }
   const {
     name,
     dateOfBirth,

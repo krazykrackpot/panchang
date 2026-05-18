@@ -147,13 +147,11 @@ export async function recomputeSnapshotDirect(
       computation_version: ENGINE_VERSION,
     };
 
-    await supabase.from('kundali_snapshots').upsert(row, { onConflict: 'user_id' });
-
-    // Re-fetch to get clean typed data
+    // Upsert + select in one call — avoids extra network round-trip
     const { data: fresh } = await supabase
       .from('kundali_snapshots')
-      .select('*')
-      .eq('user_id', userId)
+      .upsert(row, { onConflict: 'user_id' })
+      .select()
       .single();
 
     return fresh as FreshSnapshot | null;

@@ -107,7 +107,7 @@ export default function SamagriList({ items, slug, locale }: SamagriListProps) {
 
   const handleShare = useCallback(async () => {
     const text = items
-      .map((it, i) => `${checked[i] ? '[x]' : '[ ]'} ${it.name[locale]}${it.quantity ? ` (${it.quantity})` : ''}`)
+      .map((it, i) => `${checked[i] ? '[x]' : '[ ]'} ${tl(it.name, locale)}${it.quantity ? ` (${it.quantity})` : ''}`)
       .join('\n');
 
     if (typeof navigator !== 'undefined' && navigator.share) {
@@ -234,7 +234,7 @@ export default function SamagriList({ items, slug, locale }: SamagriListProps) {
                             }`}
                             style={bodyFont ? { fontFamily: bodyFont } : undefined}
                           >
-                            {item.name[locale]}
+                            {tl(item.name, locale)}
                           </span>
                           {item.essential === false && (
                             <span className="text-xs px-1.5 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 font-medium">

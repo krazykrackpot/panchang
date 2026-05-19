@@ -79,7 +79,7 @@ export default function RashiNakshatraWheel({ locale }: Props) {
                 <text x={labelPos.x} y={labelPos.y - 4} textAnchor="middle" dominantBaseline="middle"
                   fill={RASHI_BORDER[i]} fontSize={isHovered ? 11 : 9} fontWeight={isHovered ? 700 : 500} opacity={isHovered ? 1 : 0.7}
                   style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {r.name[locale]}
+                  {tl(r.name, locale)}
                 </text>
                 <text x={labelPos.x} y={labelPos.y + 8} textAnchor="middle" dominantBaseline="middle"
                   fill="rgba(255,255,255,0.25)" fontSize={7}>
@@ -114,7 +114,7 @@ export default function RashiNakshatraWheel({ locale }: Props) {
                 <text x={labelPos.x} y={labelPos.y} textAnchor="middle" dominantBaseline="middle"
                   fill={isHovered ? '#f0d48a' : 'rgba(212,168,83,0.5)'} fontSize={isHovered ? 8 : 6.5} fontWeight={isHovered ? 700 : 400}
                   style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {(n.name[locale] || n.name.en).length > 8 ? (n.name[locale] || n.name.en).substring(0, 7) + '…' : (n.name[locale] || n.name.en)}
+                  {tl(n.name, locale).length > 8 ? tl(n.name, locale).substring(0, 7) + '…' : tl(n.name, locale)}
                 </text>
               </g>
             );
@@ -145,13 +145,13 @@ export default function RashiNakshatraWheel({ locale }: Props) {
                 <rect x={cx - 110} y={cy - 55} width={220} height={70} rx={8} fill="rgba(10,14,39,0.95)" stroke="rgba(212,168,83,0.3)" strokeWidth={1} />
                 <text x={cx} y={cy - 36} textAnchor="middle" fill="#f0d48a" fontSize={12} fontWeight={700}
                   style={isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                  {n.name[locale]}
+                  {tl(n.name, locale)}
                 </text>
                 <text x={cx} y={cy - 20} textAnchor="middle" fill="rgba(255,255,255,0.5)" fontSize={9}>
-                  {startDeg.toFixed(1)}° – {endDeg.toFixed(1)}° | {tl({ en: 'Lord', hi: 'स्वामी', sa: 'अधिपतिः' }, locale)}: {n.rulerName[locale]}
+                  {startDeg.toFixed(1)}° – {endDeg.toFixed(1)}° | {tl({ en: 'Lord', hi: 'स्वामी', sa: 'अधिपतिः' }, locale)}: {tl(n.rulerName, locale)}
                 </text>
                 <text x={cx} y={cy - 6} textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize={9}>
-                  {tl({ en: 'Rashi', hi: 'राशि', sa: 'राशिः' }, locale)}: {RASHIS[rashi1].name[locale]}{spans ? ` → ${RASHIS[rashi2].name[locale]}` : ''}
+                  {tl({ en: 'Rashi', hi: 'राशि', sa: 'राशिः' }, locale)}: {tl(RASHIS[rashi1].name, locale)}{spans ? ` → ${tl(RASHIS[rashi2].name, locale)}` : ''}
                 </text>
               </g>
             );
@@ -166,13 +166,13 @@ export default function RashiNakshatraWheel({ locale }: Props) {
                 <rect x={cx - 110} y={cy - 55} width={220} height={70} rx={8} fill="rgba(10,14,39,0.95)" stroke={RASHI_BORDER[hoveredRashi]} strokeWidth={1} strokeOpacity={0.5} />
                 <text x={cx} y={cy - 36} textAnchor="middle" fill={RASHI_BORDER[hoveredRashi]} fontSize={12} fontWeight={700}
                   style={isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                  {r.name[locale]}
+                  {tl(r.name, locale)}
                 </text>
                 <text x={cx} y={cy - 20} textAnchor="middle" fill="rgba(255,255,255,0.5)" fontSize={9}>
                   {hoveredRashi * 30}° – {(hoveredRashi + 1) * 30}° | {tl({ en: 'Element', hi: 'तत्व', sa: 'तत्त्वम्' }, locale)}: {isHi ? ELEMENT_HI[hoveredRashi] : ELEMENTS[hoveredRashi]}
                 </text>
                 <text x={cx} y={cy - 6} textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize={9}>
-                  {tl({ en: 'Nakshatras', hi: 'नक्षत्र', sa: 'नक्षत्राणि' }, locale)}: {NAKSHATRAS[startNak].name[locale]} – {NAKSHATRAS[endNak].name[locale]}
+                  {tl({ en: 'Nakshatras', hi: 'नक्षत्र', sa: 'नक्षत्राणि' }, locale)}: {tl(NAKSHATRAS[startNak].name, locale)} – {tl(NAKSHATRAS[endNak].name, locale)}
                 </text>
               </g>
             );

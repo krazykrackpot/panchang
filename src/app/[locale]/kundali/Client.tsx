@@ -3737,7 +3737,7 @@ export default function KundaliClient() {
       {/* SEO cross-links */}
       <RelatedLinks type="learn" links={getLearnLinksForTool('/kundali')} locale={locale} />
 
-      {/* ═══ ASK YOUR CHART — expert mode only, bottom of page ═══ */}
+      {/* ═══ ASK YOUR CHART — AI consultation, expert mode only, absolute bottom ═══ */}
       {kundali && viewMode === 'expert' && (
         <details id="ask-your-chart" className="mt-8 rounded-2xl bg-gradient-to-br from-cyan-500/8 via-[#1a1040]/40 to-[#0a0e27] border border-cyan-500/15 overflow-hidden">
           <summary className="p-5 cursor-pointer flex items-center justify-between hover:bg-cyan-500/5 transition-colors list-none [&::-webkit-details-marker]:hidden select-none">

@@ -24,7 +24,7 @@ import ViewModeToggle from './simple/ViewModeToggle';
 const SIMPLE_DOMAIN_KEYS = new Set(['career', 'marriage', 'health', 'wealth']);
 
 // ---------------------------------------------------------------------------
-// Locale helper
+// Locale helper — uses shared isDevanagariLocale for consistency
 // ---------------------------------------------------------------------------
 
 function L(locale: string, en: string, hi: string): string {

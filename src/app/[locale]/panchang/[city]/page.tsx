@@ -1,4 +1,5 @@
 import { setRequestLocale } from 'next-intl/server';
+import { headers } from 'next/headers';
 import { tl } from '@/lib/utils/trilingual';
 import type { Metadata } from 'next';
 import Link from 'next/link';
@@ -21,20 +22,10 @@ const msg = (key: string, locale: string) => tl((M as unknown as Record<string, 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
 // ──────────────────────────────────────────────────────────────
-// ISR  –  Tier 2/3 cities generated on first visit, cached 1 hour
-// ──────────────────────────────────────────────────────────────
-
-export const revalidate = 86400;
+// Dynamic rendering — no ISR cache. "Today's panchang" must reflect the actual
+// current date. ISR bakes tithi/nakshatra into HTML that goes stale in Google's
+// cache (showed "May 6" on May 19). Same approach as /panchang and /rahu-kaal.
 export const dynamicParams = true;
-
-export function generateStaticParams() {
-  // Only pre-render Tier 1 cities (existing 55) × en/hi to keep build time fast
-  const tier1Slugs = getCitiesByTier(1).map(c => c.slug);
-  const locales = ['en', 'hi'];
-  return locales.flatMap(locale =>
-    tier1Slugs.map((city: string) => ({ locale, city }))
-  );
-}
 
 // ──────────────────────────────────────────────────────────────
 // Metadata
@@ -56,7 +47,10 @@ export async function generateMetadata({
   const year = today.getFullYear();
   const month = today.getMonth() + 1;
   const day = today.getDate();
-  // Compute actual Tithi and Nakshatra for the meta title (no date — avoids stale Google snippets)
+  // Date is safe in title now — page is dynamic (no ISR cache), so always fresh
+  const dateStr = today.toLocaleDateString(msg('localeId', locale), {
+    day: 'numeric', month: 'long', year: 'numeric',
+  });
   const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
   const metaPanchang = computePanchang({
     year, month, day,
@@ -88,13 +82,11 @@ export async function generateMetadata({
   const isDiaspora = city.timezone !== 'Asia/Kolkata';
   const tzShort = isDiaspora ? TZ_SHORT[city.timezone] : null;
 
-  // Evergreen title — no date, so Google's cached snippet never shows a stale date.
-  // ISR revalidates every 24h but Google may not re-crawl for days/weeks.
-  // Tithi + Nakshatra still included — they change daily so returning users see freshness.
+  // Date + tithi + nakshatra in title — always fresh because page is dynamic (no ISR).
   const titleEn = tzShort
-    ? `${city.name.en} Panchang Today (${tzShort}) — ${metaTithi}, ${metaNakshatra}`
-    : `${city.name.en} Panchang Today — ${metaTithi}, ${metaNakshatra}`;
-  const titleHi = `${cityName} पंचांग आज — ${metaTithi}, ${metaNakshatra}`;
+    ? `${city.name.en} Panchang Today (${tzShort}) — ${metaTithi}, ${metaNakshatra} | ${dateStr}`
+    : `${city.name.en} Panchang Today — ${metaTithi}, ${metaNakshatra} | ${dateStr}`;
+  const titleHi = `${cityName} पंचांग आज — ${metaTithi}, ${metaNakshatra} | ${dateStr}`;
 
   const title = tl({ en: titleEn, hi: titleHi, sa: titleHi }, locale);
 
@@ -157,6 +149,7 @@ export default async function CityPanchangPage({
 }) {
   const { locale, city: citySlug } = await params;
   setRequestLocale(locale);
+  await headers(); // Force dynamic rendering — no ISR cache
   const city = getCityBySlugExtended(citySlug);
   if (!city) notFound();
 

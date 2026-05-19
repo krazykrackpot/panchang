@@ -142,6 +142,8 @@ const FESTIVALS = [
 // ═══════════════════════════════════════════════════════════════════════════
 
 const FESTIVAL_DATES_2026 = [
+  { en: 'Makar Sankranti (Poush Sankranti)', hi: 'মকর সংক্রান্তি (পৌষ সংক্রান্তি)', date: 'Wed, 14 Jan 2026', tithi: 'Paush Krishna Pratipada', nakshatra: 'Uttara Ashadha' },
+  { en: 'Saraswati Puja (Vasant Panchami)', hi: 'সরস্বতী পূজা (বসন্ত পঞ্চমী)', date: 'Mon, 23 Feb 2026', tithi: 'Magha Shukla Panchami', nakshatra: 'Shravana' },
   { en: 'Poila Boishakh (Bengali New Year)', hi: 'পয়লা বৈশাখ (বাংলা নববর্ষ)', date: 'Tue, 14 Apr 2026', tithi: 'Chaitra Krishna Amavasya', nakshatra: 'Revati' },
   { en: 'Rath Yatra', hi: 'রথযাত্রা', date: 'Mon, 29 Jun 2026', tithi: 'Ashadha Shukla Dwitiya', nakshatra: 'Pushya' },
   { en: 'Janmashtami', hi: 'জন্মাষ্টমী', date: 'Sat, 15 Aug 2026', tithi: 'Shravana Krishna Ashtami', nakshatra: 'Rohini' },
@@ -153,8 +155,6 @@ const FESTIVAL_DATES_2026 = [
   { en: 'Lakshmi Puja', hi: 'লক্ষ্মী পূজা', date: 'Sat, 24 Oct 2026', tithi: 'Ashwin Purnima', nakshatra: 'Ashwini' },
   { en: 'Kali Puja / Diwali', hi: 'কালী পূজা / দীপাবলি', date: 'Sun, 8 Nov 2026', tithi: 'Kartik Krishna Amavasya', nakshatra: 'Swati' },
   { en: 'Chhath Puja', hi: 'ছঠ পূজা', date: 'Wed, 11 Nov 2026', tithi: 'Kartik Shukla Shashthi', nakshatra: 'Mula' },
-  { en: 'Saraswati Puja (Vasant Panchami)', hi: 'সরস্বতী পূজা (বসন্ত পঞ্চমী)', date: 'Mon, 23 Feb 2026', tithi: 'Magha Shukla Panchami', nakshatra: 'Shravana' },
-  { en: 'Makar Sankranti (Poush Sankranti)', hi: 'মকর সংক্রান্তি (পৌষ সংক্রান্তি)', date: 'Wed, 14 Jan 2026', tithi: 'Paush Krishna Pratipada', nakshatra: 'Uttara Ashadha' },
 ];
 
 const FESTIVAL_DATES_2027 = [
@@ -183,10 +183,10 @@ const MONTH_CONVERSION = [
   { bengali: 'Ashwin', bangla: 'আশ্বিন', start2026: '16 Sep 2026', end2026: '15 Oct 2026', start2027: '16 Sep 2027', end2027: '15 Oct 2027' },
   { bengali: 'Kartik', bangla: 'কার্তিক', start2026: '16 Oct 2026', end2026: '14 Nov 2026', start2027: '16 Oct 2027', end2027: '14 Nov 2027' },
   { bengali: 'Ogrohayon', bangla: 'অগ্রহায়ণ', start2026: '15 Nov 2026', end2026: '14 Dec 2026', start2027: '15 Nov 2027', end2027: '14 Dec 2027' },
-  { bengali: 'Poush', bangla: 'পৌষ', start2026: '15 Dec 2025', end2026: '13 Jan 2026', start2027: '15 Dec 2026', end2027: '13 Jan 2027' },
-  { bengali: 'Magh', bangla: 'মাঘ', start2026: '14 Jan 2026', end2026: '12 Feb 2026', start2027: '14 Jan 2027', end2027: '12 Feb 2027' },
-  { bengali: 'Falgun', bangla: 'ফাল্গুন', start2026: '13 Feb 2026', end2026: '14 Mar 2026', start2027: '13 Feb 2027', end2027: '14 Mar 2027' },
-  { bengali: 'Choitro', bangla: 'চৈত্র', start2026: '15 Mar 2026', end2026: '13 Apr 2026', start2027: '15 Mar 2027', end2027: '13 Apr 2027' },
+  { bengali: 'Poush', bangla: 'পৌষ', start2026: '15 Dec 2026', end2026: '13 Jan 2027', start2027: '15 Dec 2027', end2027: '13 Jan 2028' },
+  { bengali: 'Magh', bangla: 'মাঘ', start2026: '14 Jan 2027', end2026: '12 Feb 2027', start2027: '14 Jan 2028', end2027: '12 Feb 2028' },
+  { bengali: 'Falgun', bangla: 'ফাল্গুন', start2026: '13 Feb 2027', end2026: '14 Mar 2027', start2027: '13 Feb 2028', end2027: '14 Mar 2028' },
+  { bengali: 'Choitro', bangla: 'চৈত্র', start2026: '15 Mar 2027', end2026: '13 Apr 2027', start2027: '15 Mar 2028', end2027: '13 Apr 2028' },
 ];
 
 // FAQ data for structured data
@@ -485,8 +485,8 @@ export default function BengaliCalendarPage() {
             {isHi ? 'अक्सर पूछे जाने वाले प्रश्न (FAQ)' : 'Frequently Asked Questions (FAQ)'}
           </h2>
           <div className="space-y-4">
-            {FAQ_DATA.map((faq, i) => (
-              <details key={i} className="group bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl overflow-hidden">
+            {FAQ_DATA.map((faq) => (
+              <details key={faq.q.en} className="group bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl overflow-hidden">
                 <summary className="cursor-pointer px-5 py-4 text-gold-light font-medium text-sm flex items-center justify-between hover:border-gold-primary/30">
                   <span>{isHi ? faq.q.hi : faq.q.en}</span>
                   <span className="ml-3 text-gold-primary/50 group-open:rotate-180 transition-transform">▼</span>

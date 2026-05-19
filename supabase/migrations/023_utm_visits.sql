@@ -22,3 +22,6 @@ create index idx_utm_visits_campaign on public.utm_visits (utm_campaign);
 create index idx_utm_visits_created on public.utm_visits (created_at);
 
 alter table public.utm_visits enable row level security;
+-- No RLS policies defined intentionally. Only the service_role key (used by
+-- /api/track-utm) can insert/read. If an admin dashboard needs to query this
+-- table, add a policy for the authenticated role with admin check.

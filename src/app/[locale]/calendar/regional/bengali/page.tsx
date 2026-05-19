@@ -1,7 +1,8 @@
 import { tl } from '@/lib/utils/trilingual';
-import { useLocale } from 'next-intl';
+import { setRequestLocale } from 'next-intl/server';
 import type { Locale, LocaleText } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { Link } from '@/lib/i18n/navigation';
 
 const LABELS = {
   title: {
@@ -226,8 +227,10 @@ const RELATED_LINKS = [
   { slug: 'makar-sankranti', en: 'Makar Sankranti / Poush Parbon', hi: 'मकर संक्रान्ति / पौष पर्व' },
 ];
 
-export default function BengaliCalendarPage() {
-  const locale = useLocale() as Locale;
+export default async function BengaliCalendarPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: localeParam } = await params;
+  setRequestLocale(localeParam);
+  const locale = localeParam as Locale;
   const isHi = isDevanagariLocale(locale);
   const L = (key: keyof typeof LABELS) => tl(LABELS[key] as LocaleText, locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
@@ -525,26 +528,26 @@ export default function BengaliCalendarPage() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {RELATED_LINKS.map((link) => (
-              <a
+              <Link
                 key={link.slug}
-                href={`/${locale}/puja/${link.slug}`}
+                href={`/puja/${link.slug}`}
                 className="block bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl px-4 py-3 text-gold-light hover:text-gold-primary hover:border-gold-primary/30 transition-colors text-sm font-medium"
               >
                 {isHi ? link.hi : link.en}
-              </a>
+              </Link>
             ))}
-            <a
-              href={`/${locale}/calendar`}
+            <Link
+              href="/calendar"
               className="block bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl px-4 py-3 text-gold-light hover:text-gold-primary hover:border-gold-primary/30 transition-colors text-sm font-medium"
             >
               {tl({ en: 'Festival Calendar 2026', hi: 'त्योहार कैलेंडर 2026', sa: 'त्योहार कैलेंडर 2026' }, locale)}
-            </a>
-            <a
-              href={`/${locale}/calendar/regional/tamil`}
+            </Link>
+            <Link
+              href="/calendar/regional/tamil"
               className="block bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl px-4 py-3 text-gold-light hover:text-gold-primary hover:border-gold-primary/30 transition-colors text-sm font-medium"
             >
               {tl({ en: 'Tamil Calendar (Panchangam)', hi: 'तमिल कैलेंडर (पंचांगम्)', sa: 'तमिल कैलेंडर (पंचांगम्)' }, locale)}
-            </a>
+            </Link>
           </div>
         </section>
 

@@ -75,10 +75,17 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Missing chart data' }, { status: 400 });
     }
 
-    // Use client-provided date if valid, otherwise fall back to today
+    // Use client-provided date if valid, otherwise fall back to today.
+    // Parse via Date UTC to reject invalid calendar dates like 2023-02-30.
     let year: number, month: number, day: number;
-    if (dateStr && /^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
-      [year, month, day] = dateStr.split('-').map(Number);
+    const parsedDate = (dateStr && /^\d{4}-\d{2}-\d{2}$/.test(dateStr))
+      ? new Date(`${dateStr}T00:00:00.000Z`)
+      : null;
+
+    if (parsedDate && !isNaN(parsedDate.getTime())) {
+      year = parsedDate.getUTCFullYear();
+      month = parsedDate.getUTCMonth() + 1;
+      day = parsedDate.getUTCDate();
     } else {
       const now = new Date();
       year = now.getFullYear();

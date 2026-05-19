@@ -10,6 +10,7 @@
 import { useMemo } from 'react';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
+import { scoreLabel as sharedScoreLabel, scoreColor as sharedScoreColor } from '@/lib/horoscope/score-utils';
 import SparklineChart from './SparklineChart';
 import type { FullTrajectory, DomainTrajectory } from '@/lib/kundali/domain-synthesis/trajectory';
 import type { DomainType } from '@/lib/kundali/domain-synthesis/types';

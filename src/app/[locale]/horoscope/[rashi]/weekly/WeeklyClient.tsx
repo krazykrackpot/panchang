@@ -13,6 +13,7 @@ import ShareButton from '@/components/ui/ShareButton';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale, getHeadingFont, getBodyFont, dataLocale } from '@/lib/utils/locale-fonts';
 import { trackHoroscopeViewed } from '@/lib/analytics';
+import { scoreLabel, scoreColor as scoreBgColor, barColor as scoreTextColor } from '@/lib/horoscope/score-utils';
 import type { Locale, Rashi } from '@/types/panchang';
 import type { DailyHoroscope } from '@/lib/horoscope/daily-engine';
 
@@ -119,24 +120,7 @@ function getOrdinalSuffix(n: number): string {
   return 'th';
 }
 
-function scoreColor(score: number): string {
-  if (score >= 7) return 'text-emerald-400';
-  if (score >= 4) return 'text-amber-400';
-  return 'text-red-400';
-}
-
-function barColor(score: number): string {
-  if (score >= 7) return 'bg-emerald-500';
-  if (score >= 4) return 'bg-amber-500';
-  return 'bg-red-500';
-}
-
-function scoreLabel(score: number, locale: string): string {
-  if (score >= 8) return tl({ en: 'Excellent', hi: 'उत्कृष्ट', sa: 'उत्कृष्ट' }, locale);
-  if (score >= 6.5) return tl({ en: 'Good', hi: 'शुभ', sa: 'शुभ' }, locale);
-  if (score >= 4) return tl({ en: 'Mixed', hi: 'मिश्रित', sa: 'मिश्रित' }, locale);
-  return tl({ en: 'Challenging', hi: 'चुनौतीपूर्ण', sa: 'कठिनः' }, locale);
-}
+// scoreLabel, scoreBgColor (bg-*), scoreTextColor (text-*) imported from '@/lib/horoscope/score-utils'
 
 function formatDate(dateStr: string): string {
   const d = new Date(dateStr + 'T12:00:00');
@@ -356,18 +340,18 @@ export function WeeklyClient({ rashi, locale }: WeeklyClientProps) {
                         className="text-white/5" strokeWidth="6" />
                       <circle cx="40" cy="40" r="34" fill="none"
                         strokeWidth="6" strokeLinecap="round"
-                        className={scoreColor(agg.avgScore)}
+                        className={scoreTextColor(agg.avgScore)}
                         stroke="currentColor"
                         strokeDasharray={`${(agg.avgScore / 10) * 213.6} 213.6`} />
                     </svg>
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <span className={`text-3xl font-bold ${scoreColor(agg.avgScore)}`}>
+                      <span className={`text-3xl font-bold ${scoreTextColor(agg.avgScore)}`}>
                         {agg.avgScore}
                       </span>
                       <span className="text-[10px] text-text-secondary">/10</span>
                     </div>
                   </div>
-                  <p className={`text-sm font-medium mt-2 ${scoreColor(agg.avgScore)}`}>
+                  <p className={`text-sm font-medium mt-2 ${scoreTextColor(agg.avgScore)}`}>
                     {scoreLabel(agg.avgScore, locale)}
                   </p>
                 </div>
@@ -424,10 +408,10 @@ export function WeeklyClient({ rashi, locale }: WeeklyClientProps) {
                             initial={{ width: 0 }}
                             animate={{ width: `${h.overallScore * 10}%` }}
                             transition={{ duration: 0.6, delay: idx * 0.05, ease: 'easeOut' as const }}
-                            className={`h-full rounded-full ${barColor(h.overallScore)}`}
+                            className={`h-full rounded-full ${scoreBgColor(h.overallScore)}`}
                           />
                         </div>
-                        <span className={`text-sm font-bold min-w-[32px] text-right ${scoreColor(h.overallScore)}`}>
+                        <span className={`text-sm font-bold min-w-[32px] text-right ${scoreTextColor(h.overallScore)}`}>
                           {h.overallScore}
                         </span>
                       </div>
@@ -464,7 +448,7 @@ export function WeeklyClient({ rashi, locale }: WeeklyClientProps) {
                         <span className="text-text-primary text-sm font-semibold flex-1" style={bodyFont}>
                           {L[area]}
                         </span>
-                        <span className={`text-sm font-bold ${scoreColor(avg)}`}>
+                        <span className={`text-sm font-bold ${scoreTextColor(avg)}`}>
                           {avg}
                         </span>
                       </div>
@@ -473,10 +457,10 @@ export function WeeklyClient({ rashi, locale }: WeeklyClientProps) {
                           initial={{ width: 0 }}
                           animate={{ width: `${avg * 10}%` }}
                           transition={{ duration: 0.8, ease: 'easeOut' as const }}
-                          className={`h-full rounded-full ${barColor(avg)}`}
+                          className={`h-full rounded-full ${scoreBgColor(avg)}`}
                         />
                       </div>
-                      <p className={`text-xs mt-2 ${scoreColor(avg)}`}>
+                      <p className={`text-xs mt-2 ${scoreTextColor(avg)}`}>
                         {scoreLabel(avg, locale)}
                       </p>
                     </div>

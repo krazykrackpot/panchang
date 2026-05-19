@@ -74,7 +74,8 @@ async function reverseGeocode(lat: number, lng: number): Promise<string> {
     const city = data.address?.city || data.address?.town || data.address?.village || '';
     const country = data.address?.country || '';
     return [city, country].filter(Boolean).join(', ');
-  } catch {
+  } catch (err) {
+    console.error('[location] Reverse geocode failed:', err);
     return '';
   }
 }

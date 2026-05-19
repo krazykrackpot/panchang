@@ -36,4 +36,11 @@ describe('parseUtmFromUrl', () => {
     const result = parseUtmFromUrl(url);
     expect(result?.utm_source).toBe('devto');
   });
+
+  it('truncates values longer than 200 chars', () => {
+    const long = 'a'.repeat(300);
+    const url = `https://dekhopanchang.com/?utm_source=${long}`;
+    const result = parseUtmFromUrl(url);
+    expect(result?.utm_source?.length).toBe(200);
+  });
 });

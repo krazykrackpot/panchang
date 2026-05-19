@@ -10,6 +10,7 @@ import ShareButton from '@/components/ui/ShareButton';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale, getHeadingFont, getBodyFont, dataLocale } from '@/lib/utils/locale-fonts';
 import { trackHoroscopeViewed } from '@/lib/analytics';
+import { scoreLabel, scoreColor as scoreBgColor, barColor as scoreTextColor } from '@/lib/horoscope/score-utils';
 import type { Locale, Rashi } from '@/types/panchang';
 import type { DailyHoroscope } from '@/lib/horoscope/daily-engine';
 
@@ -101,29 +102,13 @@ const AREA_COLORS: Record<string, string> = {
   spirituality: 'from-purple-400 to-violet-600',
 };
 
-function scoreColor(score: number): string {
-  if (score >= 7) return 'text-emerald-400';
-  if (score >= 5) return 'text-amber-400';
-  return 'text-red-400';
-}
+// scoreLabel, scoreBgColor (bg-*), scoreTextColor (text-*) imported from '@/lib/horoscope/score-utils'
+// MonthlyClient previously used >= 5 thresholds for Mixed — fixed to >= 4 via shared utility.
 
 function scoreBg(score: number): string {
   if (score >= 7) return 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30';
-  if (score >= 5) return 'bg-amber-500/20 text-amber-400 border-amber-500/30';
+  if (score >= 4) return 'bg-amber-500/20 text-amber-400 border-amber-500/30';
   return 'bg-red-500/20 text-red-400 border-red-500/30';
-}
-
-function barColor(score: number): string {
-  if (score >= 7) return 'bg-emerald-500';
-  if (score >= 5) return 'bg-amber-500';
-  return 'bg-red-500';
-}
-
-function scoreLabel(score: number, locale: string): string {
-  if (score >= 8) return tl({ en: 'Excellent', hi: 'उत्कृष्ट', sa: 'उत्कृष्ट' }, locale);
-  if (score >= 6.5) return tl({ en: 'Good', hi: 'शुभ', sa: 'शुभ' }, locale);
-  if (score >= 5) return tl({ en: 'Mixed', hi: 'मिश्रित', sa: 'मिश्रित' }, locale);
-  return tl({ en: 'Challenging', hi: 'चुनौतीपूर्ण', sa: 'कठिनः' }, locale);
 }
 
 function fmtDate(d: Date): string {
@@ -387,10 +372,10 @@ export function MonthlyClient({ rashi, locale }: MonthlyClientProps) {
               <div className="flex items-center justify-between mb-4">
                 <div>
                   <p className="text-text-secondary text-xs uppercase tracking-wider mb-1">{L.overallScore}</p>
-                  <p className={`text-4xl font-bold ${scoreColor(overallMonthlyScore)}`}>
+                  <p className={`text-4xl font-bold ${scoreTextColor(overallMonthlyScore)}`}>
                     {overallMonthlyScore}<span className="text-lg text-text-secondary">/10</span>
                   </p>
-                  <p className={`text-sm font-medium mt-1 ${scoreColor(overallMonthlyScore)}`}>
+                  <p className={`text-sm font-medium mt-1 ${scoreTextColor(overallMonthlyScore)}`}>
                     {scoreLabel(overallMonthlyScore, locale)}
                   </p>
                 </div>
@@ -401,12 +386,12 @@ export function MonthlyClient({ rashi, locale }: MonthlyClientProps) {
                       className="text-white/5" strokeWidth="6" />
                     <circle cx="40" cy="40" r="34" fill="none"
                       strokeWidth="6" strokeLinecap="round"
-                      className={scoreColor(overallMonthlyScore)}
+                      className={scoreTextColor(overallMonthlyScore)}
                       stroke="currentColor"
                       strokeDasharray={`${(overallMonthlyScore / 10) * 213.6} 213.6`} />
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className={`text-2xl font-bold ${scoreColor(overallMonthlyScore)}`}>
+                    <span className={`text-2xl font-bold ${scoreTextColor(overallMonthlyScore)}`}>
                       {overallMonthlyScore}
                     </span>
                     <span className="text-[10px] text-text-secondary">/10</span>
@@ -571,7 +556,7 @@ export function MonthlyClient({ rashi, locale }: MonthlyClientProps) {
                           <span className="text-text-primary text-sm font-semibold flex-1" style={bodyFont}>
                             {L[area]}
                           </span>
-                          <span className={`text-sm font-bold ${scoreColor(areaData.score)}`}>
+                          <span className={`text-sm font-bold ${scoreTextColor(areaData.score)}`}>
                             {areaData.score}/10
                           </span>
                         </div>
@@ -581,7 +566,7 @@ export function MonthlyClient({ rashi, locale }: MonthlyClientProps) {
                             initial={{ width: 0 }}
                             animate={{ width: `${areaData.score * 10}%` }}
                             transition={{ duration: 0.8, ease: 'easeOut' as const }}
-                            className={`h-full rounded-full ${barColor(areaData.score)}`}
+                            className={`h-full rounded-full ${scoreBgColor(areaData.score)}`}
                           />
                         </div>
                         <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>

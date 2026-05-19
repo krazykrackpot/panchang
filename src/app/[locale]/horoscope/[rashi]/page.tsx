@@ -7,13 +7,10 @@ import { getRashiBySlug } from '@/lib/constants/rashi-slugs';
 import { generateDailyHoroscope } from '@/lib/horoscope/daily-engine';
 import { HoroscopeClient } from './HoroscopeClient';
 import { RashiArticle } from './RashiArticle';
-import type { LocaleText } from '@/types/panchang';
+import { tl } from '@/lib/utils/trilingual';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { scoreLabel, scoreColor } from '@/lib/horoscope/score-utils';
 import { Link } from '@/lib/i18n/navigation';
-
-function tl(obj: LocaleText | undefined, locale: string): string {
-  if (!obj) return '';
-  return (obj as Record<string, string>)[locale] || obj.en || '';
-}
 
 function ordinal(n: number): string {
   const j = n % 10, k = n % 100;
@@ -21,21 +18,6 @@ function ordinal(n: number): string {
   if (j === 2 && k !== 12) return `${n}nd`;
   if (j === 3 && k !== 13) return `${n}rd`;
   return `${n}th`;
-}
-
-// Score bar colour based on value (1-10)
-function scoreColor(score: number): string {
-  if (score >= 7) return 'bg-emerald-500';
-  if (score >= 4) return 'bg-amber-500';
-  return 'bg-red-500';
-}
-
-// Thresholds + strings MUST match HoroscopeClient.tsx scoreLabel exactly (including sa locale)
-function scoreLabel(score: number, locale: string): string {
-  if (score >= 8) return tl({ en: 'Excellent', hi: 'उत्कृष्ट', sa: 'उत्कृष्ट' }, locale);
-  if (score >= 6.5) return tl({ en: 'Good', hi: 'शुभ', sa: 'शुभ' }, locale);
-  if (score >= 4) return tl({ en: 'Mixed', hi: 'मिश्रित', sa: 'मिश्रित' }, locale);
-  return tl({ en: 'Challenging', hi: 'चुनौतीपूर्ण', sa: 'कठिनः' }, locale);
 }
 
 export default async function RashiPage({ params }: { params: Promise<{ locale: string; rashi: string }> }) {
@@ -52,7 +34,7 @@ export default async function RashiPage({ params }: { params: Promise<{ locale: 
   const westernName = rashi.name.en;
   const localeName = tl(rashi.name, locale);
 
-  const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
+  const isHi = isDevanagariLocale(locale);
   const ruler = tl(rashi.rulerName, locale);
   const element = tl(rashi.element, locale);
 

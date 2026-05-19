@@ -24,7 +24,7 @@ export function parseUtmFromUrl(url: string): UtmParams | null {
     let found = false;
 
     for (const key of UTM_KEYS) {
-      const val = parsed.searchParams.get(key)?.trim();
+      const val = parsed.searchParams.get(key)?.trim().slice(0, 200);
       if (val) {
         params[key] = val;
         found = true;

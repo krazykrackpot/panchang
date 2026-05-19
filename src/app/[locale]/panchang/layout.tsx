@@ -28,19 +28,19 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     const day = istDate.getUTCDate();
 
     const p = computePanchang({ year, month, day, lat: REF_LAT, lng: REF_LNG, tzOffset, timezone: REF_TZ, locationName: 'Ujjain' });
-    const dateStr = istDate.toLocaleDateString(locale === 'hi' ? 'hi-IN' : 'en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
-
     const isHi = locale === 'hi' || locale === 'sa';
     const tithi = isHi ? p.tithi.name.hi : p.tithi.name.en;
     const nak = isHi ? p.nakshatra.name.hi : p.nakshatra.name.en;
 
+    // Evergreen title — no date string, so Google's cached snippet never shows stale dates.
+    // Tithi + Nakshatra still change daily, giving returning users a freshness signal.
     const title = isHi
-      ? `आज का पंचांग ${dateStr} — ${tithi}, ${nak}`
-      : `Today's Panchang ${dateStr} — ${tithi}, ${nak}`;
+      ? `आज का पंचांग — ${tithi}, ${nak}`
+      : `Today's Panchang — ${tithi}, ${nak}`;
 
     const desc = isHi
-      ? `${dateStr} पंचांग: ${tithi}, ${nak}, राहु काल ${p.rahuKaal.start}–${p.rahuKaal.end}। सूर्योदय ${p.sunrise}। सटीक गणना, निःशुल्क।`
-      : `${dateStr} panchang: ${tithi}, ${nak}. Rahu Kaal ${p.rahuKaal.start}–${p.rahuKaal.end}. Sunrise ${p.sunrise}. Accurate, free.`;
+      ? `पंचांग आज: ${tithi}, ${nak}, राहु काल ${p.rahuKaal.start}–${p.rahuKaal.end}। सूर्योदय ${p.sunrise}। सटीक वैदिक गणना, निःशुल्क।`
+      : `Panchang today: ${tithi}, ${nak}. Rahu Kaal ${p.rahuKaal.start}–${p.rahuKaal.end}. Sunrise ${p.sunrise}. Accurate Vedic calculation, free.`;
 
     return { ...base, title, description: desc };
   } catch {

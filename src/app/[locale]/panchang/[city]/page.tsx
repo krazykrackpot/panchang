@@ -56,14 +56,7 @@ export async function generateMetadata({
   const year = today.getFullYear();
   const month = today.getMonth() + 1;
   const day = today.getDate();
-  const dateStr = today.toLocaleDateString(msg('localeId', locale), {
-    day: 'numeric', month: 'long', year: 'numeric',
-  });
-  // Short date for compact title (e.g. "Apr 27")
-  const shortDateStr = today.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-
-  // Compute actual Tithi and Nakshatra for the dynamic meta title
-  // This gives users a preview of today's panchang right in the search result
+  // Compute actual Tithi and Nakshatra for the meta title (no date — avoids stale Google snippets)
   const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
   const metaPanchang = computePanchang({
     year, month, day,
@@ -95,12 +88,13 @@ export async function generateMetadata({
   const isDiaspora = city.timezone !== 'Asia/Kolkata';
   const tzShort = isDiaspora ? TZ_SHORT[city.timezone] : null;
 
-  // Diaspora title: "New York Panchang Today (EST)  –  Dvitiya, Ashwini | Apr 27 | Dekho Panchang"
-  // Indian title:   "Delhi Panchang Today  –  Dvitiya, Ashwini | Apr 27, 2026 | Dekho Panchang"
+  // Evergreen title — no date, so Google's cached snippet never shows a stale date.
+  // ISR revalidates every 24h but Google may not re-crawl for days/weeks.
+  // Tithi + Nakshatra still included — they change daily so returning users see freshness.
   const titleEn = tzShort
-    ? `${city.name.en} Panchang Today (${tzShort})  –  ${metaTithi}, ${metaNakshatra} | ${shortDateStr} | Dekho Panchang`
-    : `${city.name.en} Panchang Today  –  ${metaTithi}, ${metaNakshatra} | ${dateStr} | Dekho Panchang`;
-  const titleHi = `${cityName} पंचांग आज  –  ${metaTithi}, ${metaNakshatra} | ${dateStr} | Dekho Panchang`;
+    ? `${city.name.en} Panchang Today (${tzShort}) — ${metaTithi}, ${metaNakshatra}`
+    : `${city.name.en} Panchang Today — ${metaTithi}, ${metaNakshatra}`;
+  const titleHi = `${cityName} पंचांग आज — ${metaTithi}, ${metaNakshatra}`;
 
   const title = tl({ en: titleEn, hi: titleHi, sa: titleHi }, locale);
 

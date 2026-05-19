@@ -142,35 +142,35 @@ const FESTIVALS = [
 // ═══════════════════════════════════════════════════════════════════════════
 
 const FESTIVAL_DATES_2026 = [
-  { en: 'Makar Sankranti (Poush Sankranti)', hi: 'মকর সংক্রান্তি (পৌষ সংক্রান্তি)', date: 'Wed, 14 Jan 2026', tithi: 'Paush Krishna Pratipada', nakshatra: 'Uttara Ashadha' },
-  { en: 'Saraswati Puja (Vasant Panchami)', hi: 'সরস্বতী পূজা (বসন্ত পঞ্চমী)', date: 'Mon, 23 Feb 2026', tithi: 'Magha Shukla Panchami', nakshatra: 'Shravana' },
-  { en: 'Poila Boishakh (Bengali New Year)', hi: 'পয়লা বৈশাখ (বাংলা নববর্ষ)', date: 'Tue, 14 Apr 2026', tithi: 'Chaitra Krishna Amavasya', nakshatra: 'Revati' },
-  { en: 'Rath Yatra', hi: 'রথযাত্রা', date: 'Mon, 29 Jun 2026', tithi: 'Ashadha Shukla Dwitiya', nakshatra: 'Pushya' },
-  { en: 'Janmashtami', hi: 'জন্মাষ্টমী', date: 'Sat, 15 Aug 2026', tithi: 'Shravana Krishna Ashtami', nakshatra: 'Rohini' },
-  { en: 'Durga Puja (Shashti)', hi: 'দুর্গা পূজা (ষষ্ঠী)', date: 'Tue, 13 Oct 2026', tithi: 'Ashwin Shukla Shashthi', nakshatra: 'Uttara Phalguni' },
-  { en: 'Durga Puja (Saptami)', hi: 'দুর্গা পূজা (সপ্তমী)', date: 'Wed, 14 Oct 2026', tithi: 'Ashwin Shukla Saptami', nakshatra: 'Hasta' },
-  { en: 'Durga Puja (Ashtami)', hi: 'দুর্গা পূজা (অষ্টমী)', date: 'Thu, 15 Oct 2026', tithi: 'Ashwin Shukla Ashtami', nakshatra: 'Chitra' },
-  { en: 'Durga Puja (Navami)', hi: 'দুর্গা পূজা (নবমী)', date: 'Fri, 16 Oct 2026', tithi: 'Ashwin Shukla Navami', nakshatra: 'Swati' },
-  { en: 'Vijaya Dashami (Bisarjan)', hi: 'বিজয়া দশমী (বিসর্জন)', date: 'Sat, 17 Oct 2026', tithi: 'Ashwin Shukla Dashami', nakshatra: 'Vishakha' },
-  { en: 'Lakshmi Puja', hi: 'লক্ষ্মী পূজা', date: 'Sat, 24 Oct 2026', tithi: 'Ashwin Purnima', nakshatra: 'Ashwini' },
-  { en: 'Kali Puja / Diwali', hi: 'কালী পূজা / দীপাবলি', date: 'Sun, 8 Nov 2026', tithi: 'Kartik Krishna Amavasya', nakshatra: 'Swati' },
-  { en: 'Chhath Puja', hi: 'ছঠ পূজা', date: 'Wed, 11 Nov 2026', tithi: 'Kartik Shukla Shashthi', nakshatra: 'Mula' },
+  { en: 'Makar Sankranti (Poush Sankranti)', hi: 'मकर संक्रान्ति (पौष संक्रान्ति)', bn: 'মকর সংক্রান্তি (পৌষ সংক্রান্তি)', date: 'Wed, 14 Jan 2026', tithi: 'Paush Krishna Pratipada', nakshatra: 'Uttara Ashadha' },
+  { en: 'Saraswati Puja (Vasant Panchami)', hi: 'सरस्वती पूजा (वसन्त पंचमी)', bn: 'সরস্বতী পূজা (বসন্ত পঞ্চমী)', date: 'Mon, 23 Feb 2026', tithi: 'Magha Shukla Panchami', nakshatra: 'Shravana' },
+  { en: 'Poila Boishakh (Bengali New Year)', hi: 'पहला बैशाख (बंगाली नव वर्ष)', bn: 'পয়লা বৈশাখ (বাংলা নববর্ষ)', date: 'Tue, 14 Apr 2026', tithi: 'Chaitra Krishna Amavasya', nakshatra: 'Revati' },
+  { en: 'Rath Yatra', hi: 'रथ यात्रा', bn: 'রথযাত্রা', date: 'Mon, 29 Jun 2026', tithi: 'Ashadha Shukla Dwitiya', nakshatra: 'Pushya' },
+  { en: 'Janmashtami', hi: 'जन्माष्टमी', bn: 'জন্মাষ্টমী', date: 'Sat, 15 Aug 2026', tithi: 'Shravana Krishna Ashtami', nakshatra: 'Rohini' },
+  { en: 'Durga Puja (Shashti)', hi: 'दुर्गा पूजा (षष्ठी)', bn: 'দুর্গা পূজা (ষষ্ঠী)', date: 'Tue, 13 Oct 2026', tithi: 'Ashwin Shukla Shashthi', nakshatra: 'Uttara Phalguni' },
+  { en: 'Durga Puja (Saptami)', hi: 'दुर्गा पूजा (सप्तमी)', bn: 'দুর্গা পূজা (সপ্তমী)', date: 'Wed, 14 Oct 2026', tithi: 'Ashwin Shukla Saptami', nakshatra: 'Hasta' },
+  { en: 'Durga Puja (Ashtami)', hi: 'दुर्गा पूजा (अष्टमी)', bn: 'দুর্গা পূজা (অষ্টমী)', date: 'Thu, 15 Oct 2026', tithi: 'Ashwin Shukla Ashtami', nakshatra: 'Chitra' },
+  { en: 'Durga Puja (Navami)', hi: 'दुर्गा पूजा (नवमी)', bn: 'দুর্গা পূজা (নবমী)', date: 'Fri, 16 Oct 2026', tithi: 'Ashwin Shukla Navami', nakshatra: 'Swati' },
+  { en: 'Vijaya Dashami (Bisarjan)', hi: 'विजया दशमी (बिसर्जन)', bn: 'বিজয়া দশমী (বিসর্জন)', date: 'Sat, 17 Oct 2026', tithi: 'Ashwin Shukla Dashami', nakshatra: 'Vishakha' },
+  { en: 'Lakshmi Puja', hi: 'लक्ष्मी पूजा', bn: 'লক্ষ্মী পূজা', date: 'Sat, 24 Oct 2026', tithi: 'Ashwin Purnima', nakshatra: 'Ashwini' },
+  { en: 'Kali Puja / Diwali', hi: 'काली पूजा / दीवाली', bn: 'কালী পূজা / দীপাবলি', date: 'Sun, 8 Nov 2026', tithi: 'Kartik Krishna Amavasya', nakshatra: 'Swati' },
+  { en: 'Chhath Puja', hi: 'छठ पूजा', bn: 'ছঠ পূজা', date: 'Wed, 11 Nov 2026', tithi: 'Kartik Shukla Shashthi', nakshatra: 'Mula' },
 ];
 
 const FESTIVAL_DATES_2027 = [
-  { en: 'Makar Sankranti (Poush Sankranti)', hi: 'মকর সংক্রান্তি (পৌষ সংক্রান্তি)', date: 'Thu, 14 Jan 2027', tithi: 'Paush Shukla Dashami', nakshatra: 'Shravana' },
-  { en: 'Saraswati Puja (Vasant Panchami)', hi: 'সরস্বতী পূজা (বসন্ত পঞ্চমী)', date: 'Thu, 11 Feb 2027', tithi: 'Magha Shukla Panchami', nakshatra: 'Shravana' },
-  { en: 'Poila Boishakh (Bengali New Year)', hi: 'পয়লা বৈশাখ (বাংলা নববর্ষ)', date: 'Wed, 14 Apr 2027', tithi: 'Chaitra Krishna Amavasya', nakshatra: 'Revati' },
-  { en: 'Rath Yatra', hi: 'রথযাত্রা', date: 'Fri, 18 Jun 2027', tithi: 'Ashadha Shukla Dwitiya', nakshatra: 'Pushya' },
-  { en: 'Janmashtami', hi: 'জন্মাষ্টমী', date: 'Thu, 5 Aug 2027', tithi: 'Shravana Krishna Ashtami', nakshatra: 'Rohini' },
-  { en: 'Durga Puja (Shashti)', hi: 'দুর্গা পূজা (ষষ্ঠী)', date: 'Sat, 2 Oct 2027', tithi: 'Ashwin Shukla Shashthi', nakshatra: 'Uttara Phalguni' },
-  { en: 'Durga Puja (Saptami)', hi: 'দুর্গা পূজা (সপ্তমী)', date: 'Sun, 3 Oct 2027', tithi: 'Ashwin Shukla Saptami', nakshatra: 'Hasta' },
-  { en: 'Durga Puja (Ashtami)', hi: 'দুর্গা পূজা (অষ্টমী)', date: 'Mon, 4 Oct 2027', tithi: 'Ashwin Shukla Ashtami', nakshatra: 'Chitra' },
-  { en: 'Durga Puja (Navami)', hi: 'দুর্গা পূজা (নবমী)', date: 'Tue, 5 Oct 2027', tithi: 'Ashwin Shukla Navami', nakshatra: 'Swati' },
-  { en: 'Vijaya Dashami (Bisarjan)', hi: 'বিজয়া দশমী (বিসর্জন)', date: 'Wed, 6 Oct 2027', tithi: 'Ashwin Shukla Dashami', nakshatra: 'Vishakha' },
-  { en: 'Lakshmi Puja', hi: 'লক্ষ্মী পূজা', date: 'Wed, 13 Oct 2027', tithi: 'Ashwin Purnima', nakshatra: 'Ashwini' },
-  { en: 'Kali Puja / Diwali', hi: 'কালী পূজা / দীপাবলি', date: 'Thu, 28 Oct 2027', tithi: 'Kartik Krishna Amavasya', nakshatra: 'Chitra' },
-  { en: 'Chhath Puja', hi: 'ছঠ পূজা', date: 'Mon, 1 Nov 2027', tithi: 'Kartik Shukla Shashthi', nakshatra: 'Mula' },
+  { en: 'Makar Sankranti (Poush Sankranti)', hi: 'मकर संक्रान्ति (पौष संक्रान्ति)', bn: 'মকর সংক্রান্তি (পৌষ সংক্রান্তি)', date: 'Thu, 14 Jan 2027', tithi: 'Paush Shukla Dashami', nakshatra: 'Shravana' },
+  { en: 'Saraswati Puja (Vasant Panchami)', hi: 'सरस्वती पूजा (वसन्त पंचमी)', bn: 'সরস্বতী পূজা (বসন্ত পঞ্চমী)', date: 'Thu, 11 Feb 2027', tithi: 'Magha Shukla Panchami', nakshatra: 'Shravana' },
+  { en: 'Poila Boishakh (Bengali New Year)', hi: 'पहला बैशाख (बंगाली नव वर्ष)', bn: 'পয়লা বৈশাখ (বাংলা নববর্ষ)', date: 'Wed, 14 Apr 2027', tithi: 'Chaitra Krishna Amavasya', nakshatra: 'Revati' },
+  { en: 'Rath Yatra', hi: 'रथ यात्रा', bn: 'রথযাত্রা', date: 'Fri, 18 Jun 2027', tithi: 'Ashadha Shukla Dwitiya', nakshatra: 'Pushya' },
+  { en: 'Janmashtami', hi: 'जन्माष्टमी', bn: 'জন্মাষ্টমী', date: 'Thu, 5 Aug 2027', tithi: 'Shravana Krishna Ashtami', nakshatra: 'Rohini' },
+  { en: 'Durga Puja (Shashti)', hi: 'दुर्गा पूजा (षष्ठी)', bn: 'দুর্গা পূজা (ষষ্ঠী)', date: 'Sat, 2 Oct 2027', tithi: 'Ashwin Shukla Shashthi', nakshatra: 'Uttara Phalguni' },
+  { en: 'Durga Puja (Saptami)', hi: 'दुर्गा पूजा (सप्तमी)', bn: 'দুর্গা পূজা (সপ্তমী)', date: 'Sun, 3 Oct 2027', tithi: 'Ashwin Shukla Saptami', nakshatra: 'Hasta' },
+  { en: 'Durga Puja (Ashtami)', hi: 'दुर्गा पूजा (अष्टमी)', bn: 'দুর্গা পূজা (অষ্টমী)', date: 'Mon, 4 Oct 2027', tithi: 'Ashwin Shukla Ashtami', nakshatra: 'Chitra' },
+  { en: 'Durga Puja (Navami)', hi: 'दुर्गा पूजा (नवमी)', bn: 'দুর্গা পূজা (নবমী)', date: 'Tue, 5 Oct 2027', tithi: 'Ashwin Shukla Navami', nakshatra: 'Swati' },
+  { en: 'Vijaya Dashami (Bisarjan)', hi: 'विजया दशमी (बिसर्जन)', bn: 'বিজয়া দশমী (বিসর্জন)', date: 'Wed, 6 Oct 2027', tithi: 'Ashwin Shukla Dashami', nakshatra: 'Vishakha' },
+  { en: 'Lakshmi Puja', hi: 'लक्ष्मी पूजा', bn: 'লক্ষ্মী পূজা', date: 'Wed, 13 Oct 2027', tithi: 'Ashwin Purnima', nakshatra: 'Ashwini' },
+  { en: 'Kali Puja / Diwali', hi: 'काली पूजा / दीवाली', bn: 'কালী পূজা / দীপাবলি', date: 'Thu, 28 Oct 2027', tithi: 'Kartik Krishna Amavasya', nakshatra: 'Chitra' },
+  { en: 'Chhath Puja', hi: 'छठ पूजा', bn: 'ছঠ পূজা', date: 'Mon, 1 Nov 2027', tithi: 'Kartik Shukla Shashthi', nakshatra: 'Mula' },
 ];
 
 // Bengali Month → Gregorian conversion table for 2026–2027
@@ -352,7 +352,7 @@ export default function BengaliCalendarPage() {
               <tbody>
                 {FESTIVAL_DATES_2026.map((f, i) => (
                   <tr key={f.en} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
-                    <td className="px-4 py-2.5 text-text-primary font-medium">{isHi ? f.hi : f.en}</td>
+                    <td className="px-4 py-2.5 text-text-primary font-medium">{locale === 'bn' ? f.bn : isHi ? f.hi : f.en}</td>
                     <td className="px-4 py-2.5 text-amber-400/80">{f.date}</td>
                     <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
                     <td className="px-4 py-2.5 text-text-secondary">{f.nakshatra}</td>
@@ -386,7 +386,7 @@ export default function BengaliCalendarPage() {
               <tbody>
                 {FESTIVAL_DATES_2027.map((f, i) => (
                   <tr key={f.en} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
-                    <td className="px-4 py-2.5 text-text-primary font-medium">{isHi ? f.hi : f.en}</td>
+                    <td className="px-4 py-2.5 text-text-primary font-medium">{locale === 'bn' ? f.bn : isHi ? f.hi : f.en}</td>
                     <td className="px-4 py-2.5 text-amber-400/80">{f.date}</td>
                     <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
                     <td className="px-4 py-2.5 text-text-secondary">{f.nakshatra}</td>

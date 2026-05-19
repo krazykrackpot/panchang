@@ -320,13 +320,14 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
     const snapshot = extractSnapshot(kundali);
     setPersonalLoading(true);
 
+    let active = true;
     (async () => {
       try {
         // Get auth token — API requires Bearer auth
         const supabase = (await import('@/lib/supabase/client')).getSupabase();
         const session = await supabase?.auth.getSession();
         const token = session?.data.session?.access_token;
-        if (!token) { setPersonalLoading(false); return; } // not logged in
+        if (!token || !active) return;
 
         const res = await fetch('/api/horoscope/personalized', {
           method: 'POST',
@@ -344,13 +345,14 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data: PersonalizedForecast = await res.json();
-        setPersonalForecast(data);
+        if (active) setPersonalForecast(data);
       } catch (err) {
-        console.error('[horoscope/personalized] Failed to fetch personalized forecast:', err);
+        if (active) console.error('[horoscope/personalized] Failed to fetch personalized forecast:', err);
       } finally {
-        setPersonalLoading(false);
+        if (active) setPersonalLoading(false);
       }
     })();
+    return () => { active = false; };
   // Run after isOwnSign is stable; re-run if location changes (detected after mount)
   }, [isOwnSign, locale, locationStore.lat, locationStore.lng, locationStore.timezone]);
 

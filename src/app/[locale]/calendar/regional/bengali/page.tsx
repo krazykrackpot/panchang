@@ -151,7 +151,7 @@ const FESTIVAL_DATES_2026 = [
   { en: 'Durga Puja (Saptami)', hi: 'दुर्गा पूजा (सप्तमी)', bn: 'দুর্গা পূজা (সপ্তমী)', date: 'Wed, 14 Oct 2026', tithi: 'Ashwin Shukla Saptami', nakshatra: 'Hasta' },
   { en: 'Durga Puja (Ashtami)', hi: 'दुर्गा पूजा (अष्टमी)', bn: 'দুর্গা পূজা (অষ্টমী)', date: 'Thu, 15 Oct 2026', tithi: 'Ashwin Shukla Ashtami', nakshatra: 'Chitra' },
   { en: 'Durga Puja (Navami)', hi: 'दुर्गा पूजा (नवमी)', bn: 'দুর্গা পূজা (নবমী)', date: 'Fri, 16 Oct 2026', tithi: 'Ashwin Shukla Navami', nakshatra: 'Swati' },
-  { en: 'Vijaya Dashami (Bisarjan)', hi: 'विजया दशमी (बिसर्जन)', bn: 'বিজয়া দশমী (বিসর্জন)', date: 'Sat, 17 Oct 2026', tithi: 'Ashwin Shukla Dashami', nakshatra: 'Vishakha' },
+  { en: 'Vijaya Dashami (Bisarjan)', hi: 'विजया दशमी (विसर्जन)', bn: 'বিজয়া দশমী (বিসর্জন)', date: 'Sat, 17 Oct 2026', tithi: 'Ashwin Shukla Dashami', nakshatra: 'Vishakha' },
   { en: 'Lakshmi Puja', hi: 'लक्ष्मी पूजा', bn: 'লক্ষ্মী পূজা', date: 'Sat, 24 Oct 2026', tithi: 'Ashwin Purnima', nakshatra: 'Ashwini' },
   { en: 'Kali Puja / Diwali', hi: 'काली पूजा / दीवाली', bn: 'কালী পূজা / দীপাবলি', date: 'Sun, 8 Nov 2026', tithi: 'Kartik Krishna Amavasya', nakshatra: 'Swati' },
   { en: 'Chhath Puja', hi: 'छठ पूजा', bn: 'ছঠ পূজা', date: 'Wed, 11 Nov 2026', tithi: 'Kartik Shukla Shashthi', nakshatra: 'Mula' },
@@ -167,7 +167,7 @@ const FESTIVAL_DATES_2027 = [
   { en: 'Durga Puja (Saptami)', hi: 'दुर्गा पूजा (सप्तमी)', bn: 'দুর্গা পূজা (সপ্তমী)', date: 'Sun, 3 Oct 2027', tithi: 'Ashwin Shukla Saptami', nakshatra: 'Hasta' },
   { en: 'Durga Puja (Ashtami)', hi: 'दुर्गा पूजा (अष्टमी)', bn: 'দুর্গা পূজা (অষ্টমী)', date: 'Mon, 4 Oct 2027', tithi: 'Ashwin Shukla Ashtami', nakshatra: 'Chitra' },
   { en: 'Durga Puja (Navami)', hi: 'दुर्गा पूजा (नवमी)', bn: 'দুর্গা পূজা (নবমী)', date: 'Tue, 5 Oct 2027', tithi: 'Ashwin Shukla Navami', nakshatra: 'Swati' },
-  { en: 'Vijaya Dashami (Bisarjan)', hi: 'विजया दशमी (बिसर्जन)', bn: 'বিজয়া দশমী (বিসর্জন)', date: 'Wed, 6 Oct 2027', tithi: 'Ashwin Shukla Dashami', nakshatra: 'Vishakha' },
+  { en: 'Vijaya Dashami (Bisarjan)', hi: 'विजया दशमी (विसर्जन)', bn: 'বিজয়া দশমী (বিসর্জন)', date: 'Wed, 6 Oct 2027', tithi: 'Ashwin Shukla Dashami', nakshatra: 'Vishakha' },
   { en: 'Lakshmi Puja', hi: 'लक्ष्मी पूजा', bn: 'লক্ষ্মী পূজা', date: 'Wed, 13 Oct 2027', tithi: 'Ashwin Purnima', nakshatra: 'Ashwini' },
   { en: 'Kali Puja / Diwali', hi: 'काली पूजा / दीवाली', bn: 'কালী পূজা / দীপাবলি', date: 'Thu, 28 Oct 2027', tithi: 'Kartik Krishna Amavasya', nakshatra: 'Chitra' },
   { en: 'Chhath Puja', hi: 'छठ पूजा', bn: 'ছঠ পূজা', date: 'Mon, 1 Nov 2027', tithi: 'Kartik Shukla Shashthi', nakshatra: 'Mula' },
@@ -193,11 +193,11 @@ const MONTH_CONVERSION = [
 const FAQ_DATA = [
   {
     q: { en: 'When is Durga Puja 2026?', hi: 'दुर्गा पूजा 2026 कब है?' },
-    a: { en: 'Durga Puja 2026 runs from Shashti (Tuesday, 13 October) to Dashami/Bisarjan (Saturday, 17 October). Mahalaya falls on Saturday, 3 October 2026. The main five days of worship span Shashti through Dashami in the month of Ashwin.', hi: 'दुर्गा पूजा 2026 षष्ठी (मंगलवार, 13 अक्टूबर) से दशमी/बिसर्जन (शनिवार, 17 अक्टूबर) तक चलेगी। महालया शनिवार, 3 अक्टूबर 2026 को पड़ती है।' },
+    a: { en: 'Durga Puja 2026 runs from Shashti (Tuesday, 13 October) to Dashami/Bisarjan (Saturday, 17 October). Mahalaya falls on Saturday, 3 October 2026. The main five days of worship span Shashti through Dashami in the month of Ashwin.', hi: 'दुर्गा पूजा 2026 षष्ठी (मंगलवार, 13 अक्टूबर) से दशमी/विसर्जन (शनिवार, 17 अक्टूबर) तक चलेगी। महालया शनिवार, 3 अक्टूबर 2026 को पड़ती है।' },
   },
   {
     q: { en: 'When is Durga Puja 2027?', hi: 'दुर्गा पूजा 2027 कब है?' },
-    a: { en: 'Durga Puja 2027 runs from Shashti (Saturday, 2 October) to Dashami/Bisarjan (Wednesday, 6 October). The five-day celebration during Ashwin Shukla Paksha features Saptami on 3 Oct, Maha Ashtami on 4 Oct, and Navami on 5 Oct.', hi: 'दुर्गा पूजा 2027 षष्ठी (शनिवार, 2 अक्टूबर) से दशमी/बिसर्जन (बुधवार, 6 अक्टूबर) तक चलेगी।' },
+    a: { en: 'Durga Puja 2027 runs from Shashti (Saturday, 2 October) to Dashami/Bisarjan (Wednesday, 6 October). The five-day celebration during Ashwin Shukla Paksha features Saptami on 3 Oct, Maha Ashtami on 4 Oct, and Navami on 5 Oct.', hi: 'दुर्गा पूजा 2027 षष्ठी (शनिवार, 2 अक्टूबर) से दशमी/विसर्जन (बुधवार, 6 अक्टूबर) तक चलेगी।' },
   },
   {
     q: { en: 'What is Poila Boishakh?', hi: 'पहला बैशाख क्या है?' },

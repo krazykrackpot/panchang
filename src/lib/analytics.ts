@@ -109,6 +109,7 @@ export function trackUtmEvent(
   fetch('/api/track-utm', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
+    keepalive: true, // Ensure request completes even on page unload/navigation
     body: JSON.stringify({
       event,
       sessionId: ctx.sessionId,

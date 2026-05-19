@@ -246,7 +246,7 @@ export default function SummaryDomainCard({
           <DomainRings
             natalRating={rating}
             dashaScore={domain.currentActivation.dashaActivationScore}
-            transitCount={domain.currentActivation.transitInfluences.length}
+            nowScore={domain.currentActivation.overallActivationScore}
             icon={<Icon size={20} />}
             size={120}
           />

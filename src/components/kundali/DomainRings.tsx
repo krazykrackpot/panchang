@@ -11,8 +11,9 @@ interface DomainRingsProps {
   natalRating: Rating;
   /** Dasha activation score 0-10 (maha=5 + antar=3 max). Middle ring fill. */
   dashaScore: number;
-  /** Number of active transits affecting this domain. Inner ring fill = min(1, count/4). */
-  transitCount: number;
+  /** Combined dasha+transit activation score 0-10. Inner ring fill = score/10.
+   *  Always > 0 because dasha always contributes — no empty "Now" rings. */
+  nowScore: number;
   /** Optional centre icon (used in Expert mode, omitted in Simple). */
   icon?: ReactNode;
   /** Size in px. Default 80. */
@@ -58,13 +59,13 @@ function circ(r: number) { return 2 * Math.PI * r; }
 export default function DomainRings({
   natalRating,
   dashaScore,
-  transitCount,
+  nowScore,
   icon,
   size = 80,
 }: DomainRingsProps) {
   const natalFill = NATAL_FILL[natalRating];
   const dashaFill = Math.min(1, Math.max(0, dashaScore / 10));
-  const transitFill = Math.min(1, Math.max(0, transitCount / 4));
+  const transitFill = Math.min(1, Math.max(0, nowScore / 10));
 
   const fills = [natalFill, dashaFill, transitFill];
   const colours = [NATAL_COLOURS[natalRating], DASHA_COLOUR, TRANSIT_COLOUR];
@@ -72,7 +73,7 @@ export default function DomainRings({
   return (
     <div className="relative flex-shrink-0" style={{ width: size, height: size }}>
       <svg viewBox="0 0 100 100" width={size} height={size} role="img"
-        aria-label={`Your Chart: ${natalRating === 'uttama' ? 'Strong' : natalRating === 'madhyama' ? 'Moderate' : natalRating === 'adhama' ? 'Needs attention' : 'Challenging'}, Life Phase: ${Math.round(dashaFill * 100)}% active, Right Now: ${transitCount} transit${transitCount !== 1 ? 's' : ''}`}
+        aria-label={`Your Chart: ${natalRating === 'uttama' ? 'Strong' : natalRating === 'madhyama' ? 'Moderate' : natalRating === 'adhama' ? 'Needs attention' : 'Challenging'}, Life Phase: ${Math.round(dashaFill * 100)}% active, Right Now: ${Math.round(transitFill * 100)}% active`}
       >
         {RINGS.map((ring, i) => {
           const c = circ(ring.radius);

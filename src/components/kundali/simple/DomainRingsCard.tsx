@@ -8,7 +8,7 @@ interface Props {
   domain: string;
   natalRating: Rating;
   dashaScore: number;
-  transitCount: number;
+  nowScore: number;
   ratingLabel: string;
   locale: string;
   onViewRemedies?: () => void;
@@ -24,7 +24,7 @@ const RATING_HEX: Record<Rating, string> = {
 };
 
 export default function DomainRingsCard({
-  domain, natalRating, dashaScore, transitCount, ratingLabel, locale, onViewRemedies,
+  domain, natalRating, dashaScore, nowScore, ratingLabel, locale, onViewRemedies,
 }: Props) {
   const isHi = isDevanagariLocale(locale);
   const needsHelp = natalRating === 'adhama' || natalRating === 'atyadhama';
@@ -36,7 +36,7 @@ export default function DomainRingsCard({
         <DomainRings
           natalRating={natalRating}
           dashaScore={dashaScore}
-          transitCount={transitCount}
+          nowScore={nowScore}
           size={80}
         />
 

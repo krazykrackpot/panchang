@@ -135,7 +135,7 @@ export default function KundaliSimple({ kundali, blueprint, personalReading, loc
                 domain={domainName}
                 natalRating={rating}
                 dashaScore={d.currentActivation.dashaActivationScore}
-                transitCount={d.currentActivation.transitInfluences.length}
+                nowScore={d.currentActivation.overallActivationScore}
                 ratingLabel={tl(d.overallRating.label, locale)}
                 locale={locale}
                 onViewRemedies={

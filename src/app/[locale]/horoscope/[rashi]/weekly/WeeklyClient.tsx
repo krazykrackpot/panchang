@@ -13,7 +13,7 @@ import ShareButton from '@/components/ui/ShareButton';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale, getHeadingFont, getBodyFont, dataLocale } from '@/lib/utils/locale-fonts';
 import { trackHoroscopeViewed } from '@/lib/analytics';
-import { scoreLabel, scoreColor as scoreBgColor, barColor as scoreTextColor } from '@/lib/horoscope/score-utils';
+import { scoreLabel, getScoreBgClass as scoreBgColor, getScoreTextClass as scoreTextColor } from '@/lib/horoscope/score-utils';
 import type { Locale, Rashi } from '@/types/panchang';
 import type { DailyHoroscope } from '@/lib/horoscope/daily-engine';
 

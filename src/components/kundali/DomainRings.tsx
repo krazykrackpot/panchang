@@ -76,7 +76,7 @@ export default function DomainRings({
   return (
     <div className="relative flex-shrink-0" style={{ width: size, height: size }}>
       <svg viewBox="0 0 100 100" width={size} height={size} role="img"
-        aria-label={ariaLabel || `Natal: ${natalRating}, Life phase: ${Math.round(dashaFill * 100)}%, Now: ${Math.round(transitFill * 100)}%`}
+        aria-label={ariaLabel || `Your Chart: ${natalRating === 'uttama' ? 'Strong' : natalRating === 'madhyama' ? 'Moderate' : natalRating === 'adhama' ? 'Needs attention' : 'Challenging'}, Life Phase: ${Math.round(dashaFill * 100)}%, Right Now: ${Math.round(transitFill * 100)}%`}
       >
         {RINGS.map((ring, i) => {
           const c = circ(ring.radius);

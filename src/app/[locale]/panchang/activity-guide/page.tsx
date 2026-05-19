@@ -13,7 +13,7 @@ export default function ActivityGuidePage() {
   const locale = useLocale();
   const isDevanagari = isDevanagariLocale(locale);
   const headingFont = getHeadingFont(locale);
-  const { lat, lng, name: locationName, setLocation } = useLocationStore();
+  const { lat, lng, name: locationName, setLocationAuto } = useLocationStore();
 
   const [panchang, setPanchang] = useState<PanchangData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -43,7 +43,8 @@ export default function ActivityGuidePage() {
     } else if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (pos) => {
-          setLocation(pos.coords.latitude, pos.coords.longitude, 'Current Location');
+          const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+          setLocationAuto(pos.coords.latitude, pos.coords.longitude, 'Current Location', tz);
           fetchPanchang(pos.coords.latitude, pos.coords.longitude);
         },
         () => {
@@ -54,7 +55,7 @@ export default function ActivityGuidePage() {
     } else {
       setLoading(false);
     }
-  }, [lat, lng, fetchPanchang, setLocation]);
+  }, [lat, lng, fetchPanchang, setLocationAuto]);
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">

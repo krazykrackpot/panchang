@@ -11,6 +11,7 @@ import StarField from '@/components/layout/StarField';
 import { Analytics } from '@vercel/analytics/react';
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import ClientShell from '@/components/layout/ClientShell';
+import { UtmCapture } from '@/components/layout/UtmCapture';
 import { generateSoftwareApplicationLD, generateOrganizationLD, generateWebSiteLD } from '@/lib/seo/structured-data';
 import { inter, cinzel, cormorant, notoDevanagari, notoTamil, notoTelugu, notoBengali, notoKannada, notoGujarati } from '@/lib/fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
@@ -95,9 +96,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export function generateStaticParams() {
-  // Pre-build only production locales to reduce CPU quota usage.
-  // Other locales still render on-demand via SSR.
-  return visibleLocales.map((locale: string) => ({ locale }));
+  // Pre-build only the 4 primary locales to keep deploy under 10 min.
+  // Other locales (te, gu, kn, mai) still render on-demand via ISR.
+  // With 430+ pages × 8 locales, Vercel hits stack overflow at 18K+ pages.
+  return ['en', 'hi', 'ta', 'bn'].map(locale => ({ locale }));
 }
 
 export default async function LocaleLayout({
@@ -127,6 +129,7 @@ export default async function LocaleLayout({
         <meta name="google-adsense-account" content="ca-pub-4787764488539456" />
         <link rel="alternate" type="application/rss+xml" title="Dekho Panchang" href="/api/feed" />
         <link rel="author" href="/llms.txt" />
+        <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLM Full Context" />
       </head>
       <body className={`${inter.variable} ${cinzel.variable} ${cormorant.variable} ${notoDevanagari.variable} ${notoTamil.variable} ${notoTelugu.variable} ${notoBengali.variable} ${notoKannada.variable} ${notoGujarati.variable} min-h-screen bg-bg-primary text-text-primary antialiased`} suppressHydrationWarning>
         <Script id="theme-init" strategy="beforeInteractive">{`try{localStorage.removeItem('theme');document.documentElement.classList.remove('light');document.documentElement.classList.add('dark')}catch(e){}`}</Script>
@@ -169,6 +172,7 @@ export default async function LocaleLayout({
           <Footer />
           <ClientShell locale={locale} />
           <Analytics />
+          <UtmCapture />
           {/* AdSense script removed from global layout  –  loaded on-demand by AdUnit component
              only on pages that actually render ads. Saves 356KB+ on ad-free pages. */}
         </NextIntlClientProvider>

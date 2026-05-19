@@ -8,7 +8,7 @@ import type { LocaleText } from '@/types/panchang';
  * Reference: Surya Siddhanta, Indian Calendar Reform Committee (1956)
  */
 
-import { dateToJD, sunLongitude, moonLongitude, lahiriAyanamsha } from '@/lib/ephem/astronomical';
+import { dateToJD, sunLongitude, moonLongitude, getAyanamsha } from '@/lib/ephem/astronomical';
 
 interface HinduMonth {
   n: number;
@@ -164,17 +164,17 @@ export function computePurnimantMonths(year: number): HinduMonth[] {
     const { date: nextFmDate, jd: nextFmJD } = fullMoons[i + 1];
 
     // Sankranti detection
-    const startSunSid = ((sunLongitude(fmJD) - lahiriAyanamsha(fmJD)) % 360 + 360) % 360;
+    const startSunSid = ((sunLongitude(fmJD) - getAyanamsha(fmJD)) % 360 + 360) % 360;
     let prevSign = Math.floor(startSunSid / 30) + 1;
     let sankrantiSign = -1;
     for (let jd = fmJD + 0.5; jd <= nextFmJD; jd += 1.0) {
-      const sunSid = ((sunLongitude(jd) - lahiriAyanamsha(jd)) % 360 + 360) % 360;
+      const sunSid = ((sunLongitude(jd) - getAyanamsha(jd)) % 360 + 360) % 360;
       const sign = Math.floor(sunSid / 30) + 1;
       if (sign !== prevSign) { sankrantiSign = sign; break; }
       prevSign = sign;
     }
     if (sankrantiSign === -1) {
-      const endSunSid = ((sunLongitude(nextFmJD) - lahiriAyanamsha(nextFmJD)) % 360 + 360) % 360;
+      const endSunSid = ((sunLongitude(nextFmJD) - getAyanamsha(nextFmJD)) % 360 + 360) % 360;
       sankrantiSign = Math.floor(endSunSid / 30) + 1;
     }
 
@@ -185,9 +185,9 @@ export function computePurnimantMonths(year: number): HinduMonth[] {
       const { jd: nmJD } = newMoons[n];
       const { jd: nextNmJD } = newMoons[n + 1];
       if (nmJD > fmJD && nmJD < nextFmJD) {
-        const nmSunSid = ((sunLongitude(nmJD) - lahiriAyanamsha(nmJD)) % 360 + 360) % 360;
+        const nmSunSid = ((sunLongitude(nmJD) - getAyanamsha(nmJD)) % 360 + 360) % 360;
         const nmSign = Math.floor(nmSunSid / 30) + 1;
-        const nextNmSunSid = ((sunLongitude(nextNmJD) - lahiriAyanamsha(nextNmJD)) % 360 + 360) % 360;
+        const nextNmSunSid = ((sunLongitude(nextNmJD) - getAyanamsha(nextNmJD)) % 360 + 360) % 360;
         const nextNmSign = Math.floor(nextNmSunSid / 30) + 1;
         if (nmSign === nextNmSign) {
           isAdhika = true;
@@ -301,14 +301,14 @@ export function computeHinduMonths(year: number): HinduMonth[] {
     // (e.g., Jun 15 2026), noon gives Gemini but the actual New Moon at 03:00 UT
     // has Sun still in Taurus. This difference determines Adhika month detection.
     const tropSun = sunLongitude(nmJD);
-    const ayanamsha = lahiriAyanamsha(nmJD);
+    const ayanamsha = getAyanamsha(nmJD);
     const sidSun = ((tropSun - ayanamsha) + 360) % 360;
     const sunSign = Math.floor(sidSun / 30) + 1; // 1-12
 
     // Adhika = Sun is in the same sidereal sign at both this and the next New Moon
     // (no Sankranti occurred during this lunar month)
     const nextTropSun = sunLongitude(nextNmJD);
-    const nextAya = lahiriAyanamsha(nextNmJD);
+    const nextAya = getAyanamsha(nextNmJD);
     const nextSidSun = ((nextTropSun - nextAya) + 360) % 360;
     const nextSunSign = Math.floor(nextSidSun / 30) + 1;
     const isAdhika = sunSign === nextSunSign;

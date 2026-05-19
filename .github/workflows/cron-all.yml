@@ -1,0 +1,111 @@
+name: Scheduled Cron Jobs
+
+# All cron jobs run from GitHub Actions instead of Vercel Crons.
+# This saves Vercel function invocations ($$$).
+# Each job just curls the API endpoint on the production site.
+# The API routes still handle all logic — GH Actions is just the scheduler.
+
+on:
+  schedule:
+    # ── Daily ──
+    - cron: '5 0 * * *'    # 00:05 UTC — index URLs (original schedule)
+    - cron: '30 0 * * *'   # 00:30 UTC = 06:00 IST — daily panchang email + social post
+    - cron: '0 6 * * *'    # 06:00 UTC = 11:30 IST — notifications
+    - cron: '0 7 * * *'    # 07:00 UTC = 12:30 IST — email alerts
+    - cron: '0 8 * * *'    # 08:00 UTC = 13:30 IST — onboarding drip
+
+    # ── Weekly (offset from daily 0 6 to avoid GH Actions schedule collision) ──
+    - cron: '10 6 * * 1'   # Monday 06:10 UTC — weekly digest
+    - cron: '15 6 * * 0'   # Sunday 06:15 UTC — transit alerts
+
+    # ── Monthly (offset from daily 0 6 to avoid collision) ──
+    - cron: '0 2 1 * *'    # 1st of month 02:00 UTC — monthly readings
+    - cron: '20 6 1 * *'   # 1st of month 06:20 UTC — domain activations
+
+  workflow_dispatch:
+    inputs:
+      endpoint:
+        description: 'Specific endpoint to trigger (e.g. daily-panchang). Leave empty for scheduled behaviour.'
+        required: false
+
+jobs:
+  run-cron:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Determine endpoints to call
+        id: endpoints
+        env:
+          CRON_SCHEDULE: ${{ github.event.schedule }}
+          MANUAL_ENDPOINT: ${{ github.event.inputs.endpoint }}
+        run: |
+          if [ -n "$MANUAL_ENDPOINT" ]; then
+            echo "endpoints=$MANUAL_ENDPOINT" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          case "$CRON_SCHEDULE" in
+            "5 0 * * *")
+              echo "endpoints=index-urls" >> $GITHUB_OUTPUT
+              ;;
+            "30 0 * * *")
+              echo "endpoints=daily-panchang social-post" >> $GITHUB_OUTPUT
+              ;;
+            "0 6 * * *")
+              echo "endpoints=generate-notifications" >> $GITHUB_OUTPUT
+              ;;
+            "0 7 * * *")
+              echo "endpoints=email-alerts" >> $GITHUB_OUTPUT
+              ;;
+            "0 8 * * *")
+              echo "endpoints=onboarding-drip" >> $GITHUB_OUTPUT
+              ;;
+            "10 6 * * 1")
+              echo "endpoints=weekly-digest" >> $GITHUB_OUTPUT
+              ;;
+            "15 6 * * 0")
+              echo "endpoints=transit-alerts" >> $GITHUB_OUTPUT
+              ;;
+            "0 2 1 * *")
+              echo "endpoints=monthly-readings" >> $GITHUB_OUTPUT
+              ;;
+            "20 6 1 * *")
+              echo "endpoints=domain-activations" >> $GITHUB_OUTPUT
+              ;;
+            *)
+              echo "::warning::Unknown schedule: $CRON_SCHEDULE"
+              echo "endpoints=" >> $GITHUB_OUTPUT
+              ;;
+          esac
+
+      - name: Call API endpoints
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
+          ENDPOINTS: ${{ steps.endpoints.outputs.endpoints }}
+        run: |
+          BASE="${SITE_URL:-https://dekhopanchang.com}"
+          FAILED=0
+
+          for EP in $ENDPOINTS; do
+            URL="$BASE/api/cron/$EP"
+            echo "→ Calling $URL"
+            RESPONSE=$(curl -s -w "\n%{http_code}" --max-time 120 -H "Authorization: Bearer $CRON_SECRET" "$URL")
+            HTTP_CODE=$(echo "$RESPONSE" | tail -1)
+            BODY=$(echo "$RESPONSE" | sed '$d')
+            echo "  Status: $HTTP_CODE"
+            echo "  Response: $BODY"
+
+            if [ "$HTTP_CODE" != "200" ]; then
+              echo "::error::$EP failed with status $HTTP_CODE"
+              FAILED=1
+            else
+              echo "  ✓ $EP succeeded"
+            fi
+            echo ""
+          done
+
+          if [ "$FAILED" = "1" ]; then
+            exit 1
+          fi

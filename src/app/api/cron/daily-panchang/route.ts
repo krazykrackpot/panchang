@@ -1,6 +1,7 @@
 import type { LocaleText } from '@/types/panchang';
 import { NextResponse } from 'next/server';
 import { verifyCronAuth } from '@/lib/api/cron-auth';
+import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { generateDailyPanchangEmail } from '@/lib/email/templates/daily-panchang';
 import { generateDailyHoroscope } from '@/lib/horoscope/daily-engine';
@@ -11,7 +12,9 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { getVratType } from '@/lib/constants/vrat-types';
 
-export const maxDuration = 30; // Cron job — email/notification/sync tasks
+// Batch email send — scales with subscriber count. At ~50 users 30s is fine.
+// If this starts timing out: switch to Vercel Queue or chunk into batches of 50.
+export const maxDuration = 60;
 
 /**
  * Cron endpoint: sends daily panchang email to all opted-in users.
@@ -65,12 +68,17 @@ export async function GET(request: Request) {
     // moon_sign (1-12) and moon_nakshatra (1-27) enable personalized horoscope
     const { data: snapshots } = await supabase
       .from('kundali_snapshots')
-      .select('user_id, moon_sign, moon_nakshatra')
+      .select('user_id, moon_sign, moon_nakshatra, computation_version')
       .in('user_id', userIds);
 
     const snapshotMap = new Map<string, { moonSign: number; moonNakshatra: number }>();
     if (snapshots) {
       for (const s of snapshots) {
+        if (isSnapshotStale(s)) {
+          const fresh = await recomputeSnapshotDirect(supabase, s.user_id);
+          if (!fresh) { console.warn(`[cron/daily-panchang] Could not recompute for ${s.user_id}`); continue; }
+          Object.assign(s, fresh);
+        }
         snapshotMap.set(s.user_id, { moonSign: s.moon_sign, moonNakshatra: s.moon_nakshatra });
       }
     }
@@ -115,10 +123,14 @@ export async function GET(request: Request) {
           continue;
         }
 
-        const now = new Date();
-        const year = now.getUTCFullYear();
-        const month = now.getUTCMonth() + 1;
-        const day = now.getUTCDate();
+        // Use Intl.DateTimeFormat for reliable timezone-aware date extraction (Lesson L).
+        // new Date(toLocaleString(...)) is implementation-dependent and can break across Node versions.
+        const dateParts = new Intl.DateTimeFormat('en-US', {
+          timeZone: tz, year: 'numeric', month: 'numeric', day: 'numeric',
+        }).formatToParts(new Date());
+        const year = parseInt(dateParts.find(p => p.type === 'year')!.value);
+        const month = parseInt(dateParts.find(p => p.type === 'month')!.value);
+        const day = parseInt(dateParts.find(p => p.type === 'day')!.value);
         const tzOffset = getUTCOffsetForDate(year, month, day, tz);
 
         const panchang = computePanchang({

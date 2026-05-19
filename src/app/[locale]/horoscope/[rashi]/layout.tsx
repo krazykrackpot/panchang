@@ -33,15 +33,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   const isHi = isDevanagariLocale(locale);
 
+  // Root layout template appends " | Dekho Panchang" — don't include it here.
+  // Keep titles short and query-focused for CTR ("तुला राशिफल आज", "tula rashifal today").
   const title = tl({
-    en: `${vedicName} (${hindiName}) Today  –  ${westernName} Vedic Horoscope | Dekho Panchang`,
-    hi: `${hindiName} (${westernName}) राशिफल आज  –  वैदिक दैनिक भविष्यवाणी | Dekho Panchang`,
-    sa: `${hindiName} (${westernName}) राशिफल आज  –  वैदिक दैनिक भविष्यवाणी | Dekho Panchang`,
-    // Native-script titles for regional locales  –  improves CTR for searchers using their own script
-    gu: `${guName} રાશિફળ આજ  –  ${westernName} વૈદિક જ્યોતિષ | Dekho Panchang`,
-    kn: `${knName} ರಾಶಿಫಲ ಇಂದು  –  ${westernName} ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ | Dekho Panchang`,
-    te: `${teName} రాశిఫలం నేడు  –  ${westernName} వైదిక జ్యోతిష్యం | Dekho Panchang`,
-    bn: `${bnName} রাশিফল আজ  –  ${westernName} বৈদিক জ্যোতিষ | Dekho Panchang`,
+    en: `${westernName} (${hindiName}) Horoscope Today — Daily Vedic Rashifal`,
+    hi: `${hindiName} राशिफल आज — ${westernName} दैनिक भविष्यफल`,
+    sa: `${hindiName} राशिफल आज — ${westernName} दैनिक भविष्यफल`,
+    gu: `${guName} રાશિફળ આજ — ${westernName} દૈનિક ભવિષ્યફળ`,
+    kn: `${knName} ರಾಶಿಫಲ ಇಂದು — ${westernName} ದೈನಿಕ ಭವಿಷ್ಯ`,
+    te: `${teName} రాశిఫలం నేడు — ${westernName} దైనిక భవిష్యం`,
+    bn: `${bnName} রাশিফল আজ — ${westernName} দৈনিক ভবিষ্যৎফল`,
   }, locale);
 
   const description = tl({

@@ -3,13 +3,13 @@
  * using Lahiri ayanamsha and enriches with rashi/nakshatra/pada metadata.
  *
  * NOTE: All date construction uses Date.UTC to avoid local-timezone bias (Lesson L).
- * NOTE: getPlanetaryPositions() returns tropical longitudes; we apply lahiriAyanamsha
+ * NOTE: getPlanetaryPositions() returns tropical longitudes; we apply getAyanamsha
  *       + toSidereal() here to get sidereal values for Vedic display.
  */
 
 import {
   getPlanetaryPositions,
-  lahiriAyanamsha,
+  getAyanamsha,
   toSidereal,
   normalizeDeg,
   getNakshatraPada,
@@ -66,7 +66,7 @@ function dateToJDSafe(date: Date): number {
 export function getCurrentSkyPositions(date?: Date, ayanamshaValue?: number): SkyPlanetPosition[] {
   const d = date ?? new Date();
   const jd = dateToJDSafe(d);
-  const ayanamsha = ayanamshaValue ?? lahiriAyanamsha(jd);
+  const ayanamsha = ayanamshaValue ?? getAyanamsha(jd);
 
   const tropicalPositions = getPlanetaryPositions(jd);
 

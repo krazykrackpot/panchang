@@ -11,7 +11,7 @@ import { useAuthStore } from '@/stores/auth-store';
 import { useSubscription } from '@/hooks/useSubscription';
 import { useLocationStore } from '@/stores/location-store';
 import type { Locale } from '@/types/panchang';
-import { trackSubscriptionStarted, trackCheckoutStarted, trackCheckoutCompleted } from '@/lib/analytics';
+import { trackSubscriptionStarted, trackCheckoutStarted, trackCheckoutCompleted, trackUtmEvent } from '@/lib/analytics';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const PLANS = [
@@ -170,6 +170,7 @@ export default function PricingPage() {
     const status = searchParams.get('status');
     if (status === 'success') {
       trackCheckoutCompleted({ tier: currentTier, provider: 'stripe' });
+      trackUtmEvent('checkout_completed', { tier: currentTier, provider: 'stripe' });
     }
   }, [searchParams, currentTier]);
 
@@ -198,6 +199,7 @@ export default function PricingPage() {
       }
 
       trackCheckoutStarted({ tier, billing, currency: currency.toLowerCase() as 'usd' | 'inr' });
+      trackUtmEvent('checkout_started', { tier, billing, currency: currency.toLowerCase() });
       const res = await fetch('/api/checkout', {
         method: 'POST',
         headers: {

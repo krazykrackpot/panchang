@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Clock, AlertTriangle, MapPin, ArrowLeft, Shield, ShieldAlert, ShieldOff } from 'lucide-react';
+import { nowMinutesInTimezone } from '@/lib/utils/now-in-timezone';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { Link } from '@/lib/i18n/navigation';
 import { computePanchang, type PanchangInput } from '@/lib/ephem/panchang-calc';
@@ -121,6 +122,14 @@ export default function RahuKaalClient() {
     return getDefaultCityForLocale(locale) || SELECTOR_CITIES[0];
   };
   const [selectedCity, setSelectedCity] = useState<CityData>(initialCity);
+
+  // Track current time in the LOCATION's timezone for NOW highlighting
+  const [nowMin, setNowMin] = useState(() => nowMinutesInTimezone(selectedCity.timezone));
+  useEffect(() => {
+    setNowMin(nowMinutesInTimezone(selectedCity.timezone));
+    const iv = setInterval(() => setNowMin(nowMinutesInTimezone(selectedCity.timezone)), 60_000);
+    return () => clearInterval(iv);
+  }, [selectedCity.timezone]);
 
   const now = new Date();
   const year = now.getFullYear();
@@ -259,6 +268,12 @@ export default function RahuKaalClient() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
           {timeCards.map((card, i) => {
             const Icon = card.icon;
+            const startMin = timeToMinutes(card.start);
+            const endMin = timeToMinutes(card.end);
+            // Midnight-wrapping comparison (Lesson R)
+            const isActive = endMin < startMin
+              ? nowMin >= startMin || nowMin < endMin
+              : nowMin >= startMin && nowMin < endMin;
             return (
               <motion.div
                 key={card.label}
@@ -266,7 +281,7 @@ export default function RahuKaalClient() {
                 initial="hidden"
                 animate="visible"
                 variants={fadeUp}
-                className={`rounded-xl border p-5 ${card.colorClass}`}
+                className={`rounded-xl border p-5 ${card.colorClass} ${isActive ? 'ring-2 ring-gold-primary/60' : ''}`}
               >
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
@@ -275,9 +290,16 @@ export default function RahuKaalClient() {
                       {card.label}
                     </h2>
                   </div>
-                  <span className={`text-xs px-2 py-0.5 rounded-full ${card.badgeColor}`}>
-                    {card.badgeText}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    {isActive && (
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-gold-primary/30 text-gold-light font-bold animate-pulse" suppressHydrationWarning>
+                        NOW
+                      </span>
+                    )}
+                    <span className={`text-xs px-2 py-0.5 rounded-full ${card.badgeColor}`}>
+                      {card.badgeText}
+                    </span>
+                  </div>
                 </div>
                 <p className="text-2xl font-bold text-text-primary tracking-wide">
                   {card.start}  –  {card.end}

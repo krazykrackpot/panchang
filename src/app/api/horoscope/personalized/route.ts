@@ -62,8 +62,9 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { chart, lat, lng, timezone, locale = 'en' } = body as {
+    const { chart, date: dateStr, lat, lng, timezone, locale = 'en' } = body as {
       chart: PersonalChartSnapshot;
+      date?: string; // YYYY-MM-DD from the client date picker
       lat: number;
       lng: number;
       timezone?: string;
@@ -74,13 +75,23 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Missing chart data' }, { status: 400 });
     }
 
-    const now = new Date();
+    // Use client-provided date if valid, otherwise fall back to today
+    let year: number, month: number, day: number;
+    if (dateStr && /^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+      [year, month, day] = dateStr.split('-').map(Number);
+    } else {
+      const now = new Date();
+      year = now.getFullYear();
+      month = now.getMonth() + 1;
+      day = now.getDate();
+    }
+
     const tz = timezone
-      ? getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), timezone)
+      ? getUTCOffsetForDate(year, month, day, timezone)
       : 0;
 
     const panchang = computePanchang({
-      year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate(),
+      year, month, day,
       lat: lat || 0, lng: lng || 0, tzOffset: tz, locationName: '',
     });
 
@@ -112,7 +123,7 @@ export async function POST(request: Request) {
       forecast = buildPersonalizedFallback(personalData, locale);
     }
 
-    const today = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
+    const today = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 
     return NextResponse.json({
       date: today,

@@ -34,7 +34,7 @@ import { TITHIS } from '@/lib/constants/tithis';
 import { YOGAS } from '@/lib/constants/yogas';
 import { resolveBirthTimezone } from '@/lib/utils/timezone';
 import { generateTippanni } from '@/lib/kundali/tippanni-engine';
-import { trackKundaliGenerated, trackTabViewed } from '@/lib/analytics';
+import { trackKundaliGenerated, trackTabViewed, trackUtmEvent } from '@/lib/analytics';
 import type { TippanniContent, PlanetInsight } from '@/lib/kundali/tippanni-types';
 import type { MahadashaOverview, AntardashaSynthesis, PratyantardashaSynthesis, PeriodAssessment } from '@/lib/tippanni/dasha-synthesis-types';
 import { detectAfflictedPlanets, type AfflictedPlanet } from '@/lib/puja/affliction-detector';
@@ -512,10 +512,27 @@ export default function KundaliClient() {
 
   /** After synthesizing a reading, check if user previously chose a focus domain. */
   const resolveInitialView = useCallback(() => {
-    // Unified reading is always the default  –  no question entry needed
     setView('summary');
     setQuestionAnswered(true);
   }, []);
+
+  /** Shared synthesis helper — computes personalReading, keyDates, vedicProfile from kundali data.
+   *  Used by: URL-param restore, locale-switch restore, form submission. Single source of truth. */
+  const runSynthesis = useCallback((data: KundaliData) => {
+    try {
+      const engineYogas = data.evaluatedYogas ?? [];
+      setNewYogas(engineYogas);
+      const reading = synthesizeReading(data, locale, undefined, engineYogas.length > 0 ? engineYogas : undefined);
+      setPersonalReading(reading);
+      setKeyDates(computeKeyDates({ kundali: data }));
+      setVedicProfile(generateVedicProfile(data, locale));
+      resolveInitialView();
+    } catch (err) {
+      console.error('[kundali] Synthesis failed:', err);
+      setPersonalReading(null);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [locale]);
 
   // On mount: URL query params take priority over sessionStorage. This lets
   // saved-kundali cards on the dashboard open the correct chart  –  previously
@@ -563,22 +580,7 @@ export default function KundaliClient() {
             setKundali(data);
             // Signal SignupPrompt — peak engagement moment for non-logged-in users
             window.dispatchEvent(new CustomEvent('kundali:generated'));
-            try {
-              // Yoga engine already ran inside generateKundali() — results in data.evaluatedYogas
-              const engineYogas = data.evaluatedYogas ?? [];
-              setNewYogas(engineYogas);
-              const reading = synthesizeReading(data, locale, undefined, engineYogas.length > 0 ? engineYogas : undefined);
-              setPersonalReading(reading);
-              setKeyDates(computeKeyDates({ kundali: data }));
-              setVedicProfile(generateVedicProfile(data, locale));
-              resolveInitialView();
-              // Trajectory sync handled by the dedicated useEffect that watches user + personalReading
-            } catch (err) {
-              console.error('[kundali] personalReading computation failed:', err);
-              setPersonalReading(null);
-              // Stay on summary view — the tippanni narrative is still available.
-              // Never fall back to raw technical view for newcomers.
-            }
+            runSynthesis(data);
             try {
               sessionStorage.setItem('kundali_last_result', JSON.stringify({
                 kundali: data,
@@ -599,9 +601,32 @@ export default function KundaliClient() {
       return;
     }
 
-    // No URL params  –  show saved chart picker (if logged in) or the birth form.
-    // Don't auto-restore from sessionStorage on bare /kundali navigation so
-    // users with multiple saved charts can pick which one to open.
+    // No URL params — check if this is a locale switch (should restore state)
+    // vs a fresh /kundali navigation (should show form/picker).
+    try {
+      const isLocaleSwitch = sessionStorage.getItem('locale-switch');
+      if (isLocaleSwitch) {
+        // Remove flag AFTER successful restore (safe under React 18 Strict Mode
+        // where effects run twice — second run still finds the flag).
+        const cached = sessionStorage.getItem('kundali_last_result');
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          const cachedData = parsed?.kundali;
+          const cachedStyle = parsed?.chartStyle;
+          if (cachedData?.planets) {
+            sessionStorage.removeItem('locale-switch');
+            setKundali(cachedData);
+            setChartStyle(cachedStyle || 'north');
+            runSynthesis(cachedData);
+            setLoading(false);
+            return;
+          }
+        }
+        sessionStorage.removeItem('locale-switch');
+      }
+    } catch (err) {
+      console.warn('[kundali] sessionStorage restore on locale switch failed:', err);
+    }
   }, []);
 
   // Fetch saved charts for the picker when user is logged in and no chart is loaded
@@ -834,25 +859,12 @@ export default function KundaliClient() {
       // Signal signup prompt — peak engagement for non-logged-in users
       window.dispatchEvent(new CustomEvent('kundali:generated'));
       // Compute Personal Pandit reading + Key Dates (synchronous, <500ms)
-      try {
-        // Yoga engine already ran inside generateKundali() — results in data.evaluatedYogas
-        const engineYogas2 = data.evaluatedYogas ?? [];
-        setNewYogas(engineYogas2);
-        const reading = synthesizeReading(data, locale, undefined, engineYogas2.length > 0 ? engineYogas2 : undefined);
-        setPersonalReading(reading);
-        setKeyDates(computeKeyDates({ kundali: data }));
-        setVedicProfile(generateVedicProfile(data, locale));
-        resolveInitialView();
-        if (user) trajectoryHook.syncTrajectory(reading, locale);
-      } catch (synthErr) {
-        console.error('[kundali] Personal reading synthesis failed:', synthErr);
-        setPersonalReading(null);
-        // Stay on summary — tippanni narrative is still available. Never dump newcomers into raw technical view.
-      }
+      runSynthesis(data);
       try {
         sessionStorage.setItem('kundali_last_result', JSON.stringify({ kundali: data, chartStyle: style, sig: `${birthData.lat}|${birthData.lng}|${birthData.date}|${birthData.time}|${birthData.timezone}` }));
       } catch (storageErr) { console.warn('[kundali] sessionStorage write failed:', storageErr); }
       trackKundaliGenerated({ location: birthData.place || 'unknown', hasBirthTime: !!birthData.time });
+      trackUtmEvent('kundali_generated', { location: birthData.place || 'unknown', hasBirthTime: !!birthData.time });
       // Persist Moon nakshatra & rashi ONLY for self charts  –  not for family members.
       // This data drives horoscope auto-select and Chandrabalam/Tarabalam on panchang page.
       if (data.planets && (!birthData.relationship || birthData.relationship === 'self')) {
@@ -946,7 +958,7 @@ export default function KundaliClient() {
                   className="rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-4 hover:border-gold-primary/40 transition-all text-left cursor-pointer"
                 >
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-gold-light font-bold text-sm truncate" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                    <span className="text-gold-light font-bold text-sm truncate flex-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                       {cName}
                     </span>
                     {rel && rel !== 'self' && (
@@ -954,6 +966,24 @@ export default function KundaliClient() {
                         {rel}
                       </span>
                     )}
+                    <span
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`Delete ${cName}`}
+                      className="shrink-0 text-red-400/40 hover:text-red-400 transition-colors p-1 -mr-1"
+                      onClick={async (e) => {
+                        e.stopPropagation();
+                        if (!confirm(locale === 'en' || isTamil ? `Delete "${cName}"?` : `"${cName}" हटाएं?`)) return;
+                        const sb = getSupabase();
+                        if (!sb) return;
+                        const { error: delErr } = await sb.from('saved_charts').delete().eq('id', c.id);
+                        if (delErr) { console.error('[kundali] delete chart failed:', delErr); return; }
+                        setSavedCharts(prev => prev.filter(sc => sc.id !== c.id));
+                      }}
+                      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') (e.target as HTMLElement).click(); }}
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                    </span>
                   </div>
                   <p className="text-text-secondary text-xs font-mono">{c.birth_data.date} | {c.birth_data.time}</p>
                   <p className="text-text-secondary/60 text-xs truncate">{c.birth_data.place}</p>
@@ -3707,7 +3737,7 @@ export default function KundaliClient() {
       {/* SEO cross-links */}
       <RelatedLinks type="learn" links={getLearnLinksForTool('/kundali')} locale={locale} />
 
-      {/* ═══ ASK YOUR CHART — expert mode only, bottom of page ═══ */}
+      {/* ═══ ASK YOUR CHART — AI consultation, expert mode only, absolute bottom ═══ */}
       {kundali && viewMode === 'expert' && (
         <details id="ask-your-chart" className="mt-8 rounded-2xl bg-gradient-to-br from-cyan-500/8 via-[#1a1040]/40 to-[#0a0e27] border border-cyan-500/15 overflow-hidden">
           <summary className="p-5 cursor-pointer flex items-center justify-between hover:bg-cyan-500/5 transition-colors list-none [&::-webkit-details-marker]:hidden select-none">

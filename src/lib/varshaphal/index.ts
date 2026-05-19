@@ -48,7 +48,8 @@ export function generateVarshaphal(birthData: BirthData, year: number): Varshaph
   );
 
   // 6. Varsheshvara (Year Lord)
-  const srWeekday = srDate.getDay();
+  // Use getUTCDay() — srDate was constructed with Date.UTC (local-time values baked in)
+  const srWeekday = srDate.getUTCDay(); // 0=Sun (Lesson O)
   const varsheshvara = determineVarsheshvara(srWeekday, varshaphalChart.planets);
 
   // 7. Sahams  –  use actual sunrise/sunset for day/night determination

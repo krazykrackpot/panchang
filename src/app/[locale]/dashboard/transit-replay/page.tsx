@@ -21,7 +21,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, Search, Loader2, AlertTriangle, RotateCcw } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import { useAuthStore } from '@/stores/auth-store';
-import { getSupabase } from '@/lib/supabase/client';
+import { useFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot-client';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -247,7 +247,7 @@ export default function TransitReplayPage() {
     : {};
 
   const user = useAuthStore((s) => s.user);
-  const session = useAuthStore((s) => s.session);
+  const { snapshot: freshSnapshot, loading: snapshotLoading } = useFreshSnapshot();
 
   const [selectedDate, setSelectedDate] = useState<string>(() => {
     const today = new Date();
@@ -260,40 +260,31 @@ export default function TransitReplayPage() {
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<ReplayResult | null>(null);
 
-  // --- Auto-load birth data from saved kundali_snapshot ---
+  // --- Auto-load birth data from full_kundali in snapshot ---
   useEffect(() => {
-    if (!user || !session) return;
-    const supabase = getSupabase();
-    if (!supabase) return;
-
-    supabase
-      .from('kundali_snapshots')
-      .select('birth_data')
-      .eq('user_id', user.id)
-      .maybeSingle()
-      .then(({ data, error: err }) => {
-        if (err) {
-          console.error('[transit-replay] snapshot fetch failed:', err);
-          return;
-        }
-        if (data?.birth_data) {
-          const bd = data.birth_data as Partial<BirthForm & { ayanamsha?: string }>;
-          setForm({
-            name: bd.name ?? '',
-            date: bd.date ?? '',
-            time: bd.time ?? '',
-            place: bd.place ?? '',
-            lat: String(bd.lat ?? ''),
-            lng: String(bd.lng ?? ''),
-            timezone: bd.timezone ?? '',
-          });
-          setAutoLoaded(true);
-          setLoadNote(L.signedInNote);
-        } else {
-          setLoadNote(L.noSavedChart);
-        }
+    if (snapshotLoading || !user) return;
+    if (!freshSnapshot?.full_kundali) {
+      setLoadNote(L.noSavedChart);
+      return;
+    }
+    const fk = freshSnapshot.full_kundali as Record<string, unknown>;
+    const bd = fk.birthData as Partial<BirthForm & { ayanamsha?: string }> | undefined;
+    if (bd) {
+      setForm({
+        name: bd.name ?? '',
+        date: bd.date ?? '',
+        time: bd.time ?? '',
+        place: bd.place ?? '',
+        lat: String(bd.lat ?? ''),
+        lng: String(bd.lng ?? ''),
+        timezone: bd.timezone ?? '',
       });
-  }, [user, session, L.signedInNote, L.noSavedChart]);
+      setAutoLoaded(true);
+      setLoadNote(L.signedInNote);
+    } else {
+      setLoadNote(L.noSavedChart);
+    }
+  }, [user, freshSnapshot, snapshotLoading, L.signedInNote, L.noSavedChart]);
 
   const handleField = useCallback(
     (field: keyof BirthForm) => (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -5,10 +5,9 @@
 
 import { describe, it, expect } from 'vitest';
 import {
-  dateToJD, sunLongitude, moonLongitude, lahiriAyanamsha,
+  dateToJD, sunLongitude, moonLongitude, getAyanamsha,
   normalizeDeg, approximateSunrise, approximateSunset,
   calculateTithi, calculateYoga, getRashiNumber, getNakshatraNumber,
-  getAyanamsha,
 } from '../astronomical';
 import type { AyanamshaType } from '../astronomical';
 
@@ -56,12 +55,12 @@ describe('Moon Longitude', () => {
 
 describe('Lahiri Ayanamsha', () => {
   it('Ayanamsha at J2000 ~23.85°', () => {
-    expect(lahiriAyanamsha(2451545.0)).toBeCloseTo(23.85, 1);
+    expect(getAyanamsha(2451545.0)).toBeCloseTo(23.85, 1);
   });
 
   it('Ayanamsha in 2025 ~24.0-24.5°', () => {
     const jd2025 = dateToJD(2025, 1, 1, 0);
-    const ayanamsha = lahiriAyanamsha(jd2025);
+    const ayanamsha = getAyanamsha(jd2025);
     expect(ayanamsha).toBeGreaterThanOrEqual(24.0);
     expect(ayanamsha).toBeLessThanOrEqual(24.5);
   });

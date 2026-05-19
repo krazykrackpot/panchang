@@ -3,6 +3,12 @@ import Stripe from 'stripe';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { invalidateTierCache } from '@/lib/subscription/check-access';
 
+/** Safely extract an ID from a Stripe field that may be a string or expanded object. */
+function getStripeId(data: string | { id: string } | null | undefined): string | undefined {
+  if (!data) return undefined;
+  return typeof data === 'string' ? data : data.id;
+}
+
 function getStripe() {
   return new Stripe((process.env.STRIPE_SECRET_KEY || '').trim(), {
     apiVersion: '2025-03-31.basil' as Stripe.LatestApiVersion,
@@ -39,14 +45,22 @@ export async function POST(req: Request) {
         const userId = session.metadata?.user_id;
         const tier = session.metadata?.tier;
 
-        if (userId && tier) {
+        if (userId && tier && session.subscription && session.customer) {
+          // Retrieve full subscription for period dates. Let errors propagate
+          // so Stripe retries the webhook (returns 500 via outer catch).
+          const subId = getStripeId(session.subscription)!;
+          const fullSub = await getStripe().subscriptions.retrieve(subId);
+          const item = fullSub.items?.data?.[0];
+
           await supabase.from('subscriptions').upsert({
             user_id: userId,
             provider: 'stripe',
             status: 'active',
             tier,
-            provider_subscription_id: session.subscription as string,
-            provider_customer_id: session.customer as string,
+            provider_subscription_id: subId,
+            provider_customer_id: getStripeId(session.customer)!,
+            current_period_start: item?.current_period_start ? new Date(item.current_period_start * 1000).toISOString() : null,
+            current_period_end: item?.current_period_end ? new Date(item.current_period_end * 1000).toISOString() : null,
             updated_at: new Date().toISOString(),
           }, { onConflict: 'user_id' });
 
@@ -57,7 +71,8 @@ export async function POST(req: Request) {
 
       case 'customer.subscription.updated': {
         const subscription = event.data.object as Stripe.Subscription;
-        const customerId = subscription.customer as string;
+        const customerId = getStripeId(subscription.customer);
+        if (!customerId) break;
 
         const { data: sub } = await supabase
           .from('subscriptions')
@@ -93,7 +108,8 @@ export async function POST(req: Request) {
 
       case 'customer.subscription.deleted': {
         const subscription = event.data.object as Stripe.Subscription;
-        const customerId = subscription.customer as string;
+        const customerId = getStripeId(subscription.customer);
+        if (!customerId) break;
 
         const { data: sub } = await supabase
           .from('subscriptions')
@@ -114,7 +130,8 @@ export async function POST(req: Request) {
 
       case 'invoice.payment_failed': {
         const invoice = event.data.object as Stripe.Invoice;
-        const customerId = invoice.customer as string;
+        const customerId = getStripeId(invoice.customer);
+        if (!customerId) break;
 
         const { data: sub } = await supabase
           .from('subscriptions')

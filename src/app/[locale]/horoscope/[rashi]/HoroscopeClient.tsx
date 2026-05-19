@@ -12,6 +12,7 @@ import NakshatraShareButton from '@/components/shareable/NakshatraShareButton';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale, getHeadingFont, getBodyFont, dataLocale } from '@/lib/utils/locale-fonts';
 import { useBirthDataStore } from '@/stores/birth-data-store';
+import { useLocationStore } from '@/stores/location-store';
 import { trackHoroscopeViewed } from '@/lib/analytics';
 import CrossSellCTA from '@/components/cta/CrossSellCTA';
 import type { Locale } from '@/types/panchang';
@@ -192,11 +193,10 @@ function extractSnapshot(kundali: KundaliData): ChartSnapshot {
 }
 
 function getOrdinalSuffix(n: number): string {
-  if (n >= 11 && n <= 13) return 'th';
-  const lastDigit = n % 10;
-  if (lastDigit === 1) return 'st';
-  if (lastDigit === 2) return 'nd';
-  if (lastDigit === 3) return 'rd';
+  const j = n % 10, k = n % 100;
+  if (j === 1 && k !== 11) return 'st';
+  if (j === 2 && k !== 12) return 'nd';
+  if (j === 3 && k !== 13) return 'rd';
   return 'th';
 }
 
@@ -238,8 +238,8 @@ interface Props {
 }
 
 export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }: Props) {
-  const lk = dataLocale(locale as Locale);
-  const isHi = lk === 'hi';
+  const isHi = isDevanagariLocale(locale as Locale);
+  const lk = isHi ? 'hi' : 'en';
   const headingFont = getHeadingFont(locale as Locale);
   const bodyFont = getBodyFont(locale as Locale);
   const L = isHi ? LABELS.hi : LABELS.en;
@@ -250,6 +250,7 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
 
   // Birth data store (localStorage)  –  only available client-side
   const { birthRashi, birthNakshatra, birthName, loadFromStorage } = useBirthDataStore();
+  const locationStore = useLocationStore();
   useEffect(() => { loadFromStorage(); }, [loadFromStorage]);
 
   // True when the user is viewing their own sign page
@@ -319,25 +320,42 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
     const snapshot = extractSnapshot(kundali);
     setPersonalLoading(true);
 
-    fetch('/api/horoscope/personalized', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chart: snapshot,
-        lat: 0,
-        lng: 0,
-        locale,
-      }),
-    })
-      .then(res => {
-        if (res.ok) return res.json();
-        throw new Error(`HTTP ${res.status}`);
-      })
-      .then((data: PersonalizedForecast) => setPersonalForecast(data))
-      .catch(err => console.error('[horoscope/personalized] Failed to fetch personalized forecast:', err))
-      .finally(() => setPersonalLoading(false));
-  // Run after isOwnSign is stable (depends on birthRashi store being loaded)
-  }, [isOwnSign, locale]);
+    let active = true;
+    (async () => {
+      try {
+        // Get auth token — API requires Bearer auth
+        const supabase = (await import('@/lib/supabase/client')).getSupabase();
+        const session = await supabase?.auth.getSession();
+        const token = session?.data.session?.access_token;
+        if (!token || !active) return;
+
+        const res = await fetch('/api/horoscope/personalized', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            chart: snapshot,
+            date,
+            lat: locationStore.lat ?? 0,
+            lng: locationStore.lng ?? 0,
+            timezone: locationStore.timezone ?? undefined,
+            locale: lk,
+          }),
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data: PersonalizedForecast = await res.json();
+        if (active) setPersonalForecast(data);
+      } catch (err) {
+        if (active) console.error('[horoscope/personalized] Failed to fetch personalized forecast:', err);
+      } finally {
+        if (active) setPersonalLoading(false);
+      }
+    })();
+    return () => { active = false; };
+  // Run after isOwnSign is stable; re-run if location or date changes
+  }, [isOwnSign, locale, locationStore.lat, locationStore.lng, locationStore.timezone, date]);
 
   const otherRashis = RASHIS.filter(r => r.id !== rashi.id);
 

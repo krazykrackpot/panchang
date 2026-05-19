@@ -46,40 +46,54 @@ export function fmtDayHi(dateStr: string): string {
 // ═══════════════════════════════════════════════
 
 /**
- * English: "Ganesh Chaturthi 2027 Date: Sep 4 (Saturday) – Puja Muhurat"
- * ≤60 chars target. Brand suffix added by root layout template.
+ * English title with puja time when available:
+ * WITH time:    "Ganesh Chaturthi 2027: Sep 4 | Puja Time 11:04 AM–1:36 PM"
+ * WITHOUT time: "Ganesh Chaturthi 2027: Sep 4 (Saturday) – Puja Muhurat"
+ * ≤65 chars target. Brand suffix added by root layout template.
  */
 export function festivalCanonicalTitle(
-  name: string, year: string, dateStr: string, hasMuhurat: boolean
+  name: string, year: string, dateStr: string, hasMuhurat: boolean,
+  pujaTimeStr?: string | null
 ): string {
   const short = fmtShort(dateStr);
   const day = fmtDay(dateStr);
+  if (pujaTimeStr) {
+    // Compact format with actual puja time — high CTR for "time" queries
+    return `${name} ${year}: ${short} | Puja Time ${pujaTimeStr}`;
+  }
   const suffix = hasMuhurat ? 'Puja Muhurat' : 'Date & Muhurat';
   return `${name} ${year} Date: ${short} (${day}) – ${suffix}`;
 }
 
 /**
- * Hindi: "गणेश चतुर्थी 2027 तिथि: 4 सितम्बर (शनिवार) – पूजा मुहूर्त"
+ * Hindi title with puja time when available:
+ * WITH time:    "गणेश चतुर्थी 2027: 4 सितम्बर | पूजा समय 11:04 AM–1:36 PM"
+ * WITHOUT time: "गणेश चतुर्थी 2027 तिथि: 4 सितम्बर (शनिवार) – पूजा मुहूर्त"
  */
 export function festivalCanonicalTitleHi(
-  name: string, year: string, dateStr: string, hasMuhurat: boolean
+  name: string, year: string, dateStr: string, hasMuhurat: boolean,
+  pujaTimeStr?: string | null
 ): string {
   const short = fmtShortHi(dateStr);
   const day = fmtDayHi(dateStr);
+  if (pujaTimeStr) {
+    return `${name} ${year}: ${short} | पूजा समय ${pujaTimeStr}`;
+  }
   const suffix = hasMuhurat ? 'पूजा मुहूर्त' : 'तिथि व मुहूर्त';
   return `${name} ${year} तिथि: ${short} (${day}) – ${suffix}`;
 }
 
 /**
- * English description: "Ganesh Chaturthi is on Sep 4, 2027 (Saturday). Puja muhurat: 11:22 AM–1:52 PM. Complete vidhi, mantras, samagri. City-wise timings for 12+ cities."
+ * English description with day of week, puja time, and CTA:
+ * "Ganesh Chaturthi 2027 is on Saturday, Sep 4. Puja muhurat: 11:22 AM–1:52 PM. Vidhi, mantras & samagri checklist. Free city-wise timings for 800+ cities."
  */
 export function festivalCanonicalDesc(
-  name: string, dateStr: string, pujaTime: string | null, cityCount: number
+  name: string, dateStr: string, pujaTime: string | null
 ): string {
   const long = fmtLong(dateStr);
   const day = fmtDay(dateStr);
   const puja = pujaTime ? ` Puja muhurat: ${pujaTime}.` : '';
-  return `${name} is on ${long} (${day}).${puja} Complete vidhi, mantras, samagri list. City-wise timings for ${cityCount}+ cities.`.slice(0, 155);
+  return `${name} is on ${day}, ${long}.${puja} Vidhi, mantras & samagri checklist. Free city-wise timings for 800+ cities.`.slice(0, 160);
 }
 
 // ═══════════════════════════════════════════════

@@ -13,7 +13,7 @@ const DEFAULT_LOCALE = 'en';
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Redirect retired locales (sa, mr, mai) → /en/ equivalent with 301
+  // Redirect retired locales (sa, mr) → /en/ equivalent with 301
   const retiredLocale = RETIRED_LOCALES.find(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );

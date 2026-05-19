@@ -129,6 +129,11 @@ export default function HoraClient() {
   const devFont = isDevanagariLocale(locale) ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const { lat, lng, name: locationName, timezone, confirmed, detect, detecting } = useLocationStore();
 
+  // Defer location-dependent rendering to avoid hydration mismatch.
+  // Server renders with empty store (no location); client hydrates with stored location.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   // Date picker state
   const [selectedDate, setSelectedDate] = useState(() => {
     const now = new Date();
@@ -241,13 +246,13 @@ export default function HoraClient() {
               className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 rounded-lg px-3 py-2 text-text-primary text-sm focus:outline-none focus:border-gold-primary/50"
             />
           </div>
-          {confirmed && locationName && (
-            <span className="text-text-secondary text-sm" suppressHydrationWarning>{locationName}</span>
+          {mounted && confirmed && locationName && (
+            <span className="text-text-secondary text-sm">{locationName}</span>
           )}
         </div>
 
-        {/* No location state */}
-        {!confirmed && (
+        {/* No location state (only after mount to avoid hydration mismatch) */}
+        {mounted && !confirmed && (
           <div className="text-center py-16">
             <Clock className="w-12 h-12 text-gold-primary/30 mx-auto mb-4" />
             <p className="text-text-secondary mb-4">{L('noLocation', locale)}</p>
@@ -262,7 +267,7 @@ export default function HoraClient() {
         )}
 
         {/* Main content */}
-        {confirmed && horaData && (
+        {mounted && confirmed && horaData && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4, delay: 0.1 }}>
             {/* Day info bar */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">

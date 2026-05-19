@@ -34,7 +34,7 @@ import { TITHIS } from '@/lib/constants/tithis';
 import { YOGAS } from '@/lib/constants/yogas';
 import { resolveBirthTimezone } from '@/lib/utils/timezone';
 import { generateTippanni } from '@/lib/kundali/tippanni-engine';
-import { trackKundaliGenerated, trackTabViewed } from '@/lib/analytics';
+import { trackKundaliGenerated, trackTabViewed, trackUtmEvent } from '@/lib/analytics';
 import type { TippanniContent, PlanetInsight } from '@/lib/kundali/tippanni-types';
 import type { MahadashaOverview, AntardashaSynthesis, PratyantardashaSynthesis, PeriodAssessment } from '@/lib/tippanni/dasha-synthesis-types';
 import { detectAfflictedPlanets, type AfflictedPlanet } from '@/lib/puja/affliction-detector';
@@ -864,6 +864,7 @@ export default function KundaliClient() {
         sessionStorage.setItem('kundali_last_result', JSON.stringify({ kundali: data, chartStyle: style, sig: `${birthData.lat}|${birthData.lng}|${birthData.date}|${birthData.time}|${birthData.timezone}` }));
       } catch (storageErr) { console.warn('[kundali] sessionStorage write failed:', storageErr); }
       trackKundaliGenerated({ location: birthData.place || 'unknown', hasBirthTime: !!birthData.time });
+      trackUtmEvent('kundali_generated', { location: birthData.place || 'unknown', hasBirthTime: !!birthData.time });
       // Persist Moon nakshatra & rashi ONLY for self charts  –  not for family members.
       // This data drives horoscope auto-select and Chandrabalam/Tarabalam on panchang page.
       if (data.planets && (!birthData.relationship || birthData.relationship === 'self')) {
@@ -957,7 +958,7 @@ export default function KundaliClient() {
                   className="rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-4 hover:border-gold-primary/40 transition-all text-left cursor-pointer"
                 >
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-gold-light font-bold text-sm truncate" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                    <span className="text-gold-light font-bold text-sm truncate flex-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                       {cName}
                     </span>
                     {rel && rel !== 'self' && (
@@ -965,6 +966,24 @@ export default function KundaliClient() {
                         {rel}
                       </span>
                     )}
+                    <span
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`Delete ${cName}`}
+                      className="shrink-0 text-red-400/40 hover:text-red-400 transition-colors p-1 -mr-1"
+                      onClick={async (e) => {
+                        e.stopPropagation();
+                        if (!confirm(locale === 'en' || isTamil ? `Delete "${cName}"?` : `"${cName}" हटाएं?`)) return;
+                        const sb = getSupabase();
+                        if (!sb) return;
+                        const { error: delErr } = await sb.from('saved_charts').delete().eq('id', c.id);
+                        if (delErr) { console.error('[kundali] delete chart failed:', delErr); return; }
+                        setSavedCharts(prev => prev.filter(sc => sc.id !== c.id));
+                      }}
+                      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') (e.target as HTMLElement).click(); }}
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                    </span>
                   </div>
                   <p className="text-text-secondary text-xs font-mono">{c.birth_data.date} | {c.birth_data.time}</p>
                   <p className="text-text-secondary/60 text-xs truncate">{c.birth_data.place}</p>

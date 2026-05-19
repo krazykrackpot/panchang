@@ -1,6 +1,16 @@
 /**
- * Simple in-memory rate limiter for API routes
- * Limits requests per IP address within a time window
+ * Simple in-memory rate limiter for API routes.
+ *
+ * LIMITATION: On Vercel serverless, each container has its own Map.
+ * Cold starts get a fresh Map, so the rate limit is per-container, not global.
+ * This provides partial protection (hot containers do enforce limits) but is
+ * NOT a hard security boundary. For strict rate limiting, use Upstash Redis
+ * or Vercel Edge Middleware with KV.
+ *
+ * The in-memory approach still helps because:
+ * 1. Hot containers (Fluid Compute reuses instances) DO accumulate counts
+ * 2. It prevents accidental infinite loops from a single client
+ * 3. It's zero-cost (no external service needed)
  */
 
 interface RateLimitEntry {
@@ -10,13 +20,15 @@ interface RateLimitEntry {
 
 const store = new Map<string, RateLimitEntry>();
 
-// Cleanup old entries every 5 minutes
-setInterval(() => {
-  const now = Date.now();
-  for (const [key, entry] of store.entries()) {
-    if (entry.resetAt < now) store.delete(key);
+// Lazy cleanup: evict stale entries on each check, not via setInterval.
+// setInterval leaks on serverless (prevents container recycling).
+function evictStale(now: number) {
+  if (store.size > 500) {
+    for (const [key, entry] of store.entries()) {
+      if (entry.resetAt < now) store.delete(key);
+    }
   }
-}, 5 * 60 * 1000);
+}
 
 export interface RateLimitConfig {
   maxRequests: number;   // Max requests per window
@@ -28,6 +40,8 @@ export function checkRateLimit(
   config: RateLimitConfig = { maxRequests: 60, windowMs: 60000 }
 ): { allowed: boolean; remaining: number; resetAt: number } {
   const now = Date.now();
+  evictStale(now);
+
   const key = ip;
   let entry = store.get(key);
 

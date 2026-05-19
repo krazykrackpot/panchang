@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
+import { getFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot';
 import { generateKundali } from '@/lib/ephem/kundali-calc';
 import { computeFamilyReading } from '@/lib/kundali/family-synthesis';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
@@ -30,13 +31,10 @@ export async function POST(req: NextRequest) {
 
   try {
     // 1. Get user's primary kundali snapshot
-    const { data: snapshot, error: snapError } = await supabase
-      .from('kundali_snapshots')
-      .select('full_kundali')
-      .eq('user_id', user.id)
-      .single();
+    const baseUrl = process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : 'http://localhost:3000';
+    const snapshot = await getFreshSnapshot(supabase, user.id, token, baseUrl);
 
-    if (snapError || !snapshot?.full_kundali) {
+    if (!snapshot?.full_kundali) {
       return NextResponse.json(
         { error: 'No primary kundali found. Generate your birth chart first.' },
         { status: 404 },

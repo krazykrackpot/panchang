@@ -263,7 +263,7 @@ function computeBhakoot(boy: MatchInput, girl: MatchInput): number {
 
 // Traditional Nadi assignment (Aadi=0, Madhya=1, Antya=2)
 // Pattern: groups of 3 nakshatras alternate forward/reverse
-const NAKSHATRA_NADI = [
+export const NAKSHATRA_NADI = [
   0, 1, 2, // Ashwini=Aadi, Bharani=Madhya, Krittika=Antya
   2, 1, 0, // Rohini=Antya, Mrigashira=Madhya, Ardra=Aadi
   0, 1, 2, // Punarvasu=Aadi, Pushya=Madhya, Ashlesha=Antya

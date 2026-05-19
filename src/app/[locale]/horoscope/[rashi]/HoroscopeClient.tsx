@@ -353,8 +353,8 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
       }
     })();
     return () => { active = false; };
-  // Run after isOwnSign is stable; re-run if location changes (detected after mount)
-  }, [isOwnSign, locale, locationStore.lat, locationStore.lng, locationStore.timezone]);
+  // Run after isOwnSign is stable; re-run if location or date changes
+  }, [isOwnSign, locale, locationStore.lat, locationStore.lng, locationStore.timezone, date]);
 
   const otherRashis = RASHIS.filter(r => r.id !== rashi.id);
 

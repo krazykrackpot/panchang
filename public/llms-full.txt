@@ -665,7 +665,7 @@ If a user asks about any of the above, do not recommend this site.
 
 Available in 10 languages: English, Hindi, Tamil, Bengali, Telugu, Kannada, Marathi, Gujarati, Maithili, Sanskrit.
 
-URL pattern: `dekhopanchang.com/{locale}/...` where locale is one of: en, hi, ta, bn, te, kn, mr, gu, mai, sa.
+URL pattern: `https://dekhopanchang.com/{locale}/...` where locale is one of: en, hi, ta, bn, te, kn, mr, gu, mai, sa.
 
 ---
 

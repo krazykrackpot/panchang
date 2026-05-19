@@ -232,13 +232,14 @@ export const DOSHA_RULES: YogaRule[] = [
         const rahuLong = ctx.planetLongitude(7); // Rahu
         const ketuLong = ctx.planetLongitude(8); // Ketu
 
-        // Helper: check if a point falls in the forward arc from start to end (mod 360)
+        // Helper: check if a point falls STRICTLY inside the arc from start to end (mod 360).
+        // A planet exactly ON a node (conjunct Rahu/Ketu) breaks Kaal Sarpa per many authorities.
         function isInArc(point: number, start: number, end: number): boolean {
           if (start < end) {
-            return point >= start && point <= end;
+            return point > start && point < end;
           } else {
             // Arc crosses 0°
-            return point >= start || point <= end;
+            return point > start || point < end;
           }
         }
 

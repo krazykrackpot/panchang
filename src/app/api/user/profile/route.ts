@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { generateKundali } from '@/lib/ephem/kundali-calc';
 import { getNakshatraNumber, getNakshatraPada, getMasa, dateToJD, sunLongitude, toSidereal, calculateTithi, calculateYoga, MASA_NAMES } from '@/lib/ephem/astronomical';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { TITHIS } from '@/lib/constants/tithis';
@@ -33,12 +34,13 @@ export async function GET(req: NextRequest) {
     .single();
 
   if (profileError) {
-    return NextResponse.json({ error: profileError.message }, { status: 500 });
+    console.error('[user/profile] GET failed:', profileError.message);
+    return NextResponse.json({ error: 'Failed to load profile' }, { status: 500 });
   }
 
   const { data: snapshot } = await supabase
     .from('kundali_snapshots')
-    .select('ascendant_sign, moon_sign, moon_nakshatra, moon_nakshatra_pada, sun_sign, chart_data, sade_sati, dasha_timeline, computed_at, computation_version')
+    .select('ascendant_sign, moon_sign, moon_nakshatra, moon_nakshatra_pada, sun_sign, chart_data, sade_sati, dasha_timeline, planet_positions, full_kundali, computed_at, computation_version')
     .eq('user_id', user.id)
     .single();
 
@@ -55,22 +57,8 @@ export async function GET(req: NextRequest) {
 
       // ALWAYS resolve timezone from birth coordinates  –  never use stored birth_timezone
       const birthTzIana = await resolveBirthTimezone(Number(profile.birth_lat), Number(profile.birth_lng));
-      let tzOffsetHours = 0;
-      try {
-        const refDate = new Date(year, month - 1, day, hour, minute);
-        const tzFormatter = new Intl.DateTimeFormat('en-US', {
-          timeZone: birthTzIana,
-          timeZoneName: 'longOffset',
-        });
-        const formatted = tzFormatter.format(refDate);
-        const gmtMatch = formatted.match(/GMT([+-])(\d{1,2}):?(\d{2})?/);
-        if (gmtMatch) {
-          const sign = gmtMatch[1] === '-' ? -1 : 1;
-          const hrs = parseInt(gmtMatch[2], 10);
-          const mins = parseInt(gmtMatch[3] || '0', 10);
-          tzOffsetHours = sign * (hrs + mins / 60);
-        }
-      } catch { /* fallback to 0 */ }
+      // Use the shared utility — single source of truth for TZ offset (Lesson M)
+      const tzOffsetHours = getUTCOffsetForDate(year, month, day, birthTzIana);
 
       const utHour = hour + minute / 60 - tzOffsetHours;
       const jd = dateToJD(year, month, day, utHour);
@@ -128,6 +116,70 @@ export async function GET(req: NextRequest) {
     };
   }
 
+  // Auto-recompute stale snapshots before returning.
+  // ENGINE_VERSION is a hash of all 22 computation pipeline files — changes
+  // automatically when any calc logic changes. No manual version bumping.
+  // NOTE: Does NOT call POST internally (that would trigger welcome emails
+  // and return a summary subset). Recomputes directly and re-fetches full row.
+  const { ENGINE_VERSION } = await import('@/lib/kundali/engine-version');
+  const isStale = snapshot && (snapshot.computation_version ?? '') !== ENGINE_VERSION;
+  if (isStale && profile?.date_of_birth && profile?.birth_lat != null && profile?.birth_lng != null) {
+    try {
+      const resolvedTz = await resolveBirthTimezone(Number(profile.birth_lat), Number(profile.birth_lng));
+      const kundali = generateKundali({
+        name: profile.display_name || 'User',
+        date: String(profile.date_of_birth),
+        time: String(profile.time_of_birth || '12:00'),
+        place: String(profile.birth_place || ''),
+        lat: Number(profile.birth_lat),
+        lng: Number(profile.birth_lng),
+        timezone: resolvedTz,
+        ayanamsha: 'lahiri',
+      });
+
+      const moonP = kundali.planets.find((p: { planet: { id: number } }) => p.planet.id === 1);
+      const sunP = kundali.planets.find((p: { planet: { id: number } }) => p.planet.id === 0);
+      const mLong = moonP?.longitude ?? 0;
+
+      await supabase.from('kundali_snapshots').upsert({
+        user_id: user.id,
+        ascendant_sign: kundali.ascendant.sign,
+        moon_sign: moonP?.sign || 1,
+        moon_nakshatra: moonP?.nakshatra?.id ?? getNakshatraNumber(mLong),
+        moon_nakshatra_pada: moonP?.nakshatra?.pada ?? getNakshatraPada(mLong),
+        sun_sign: sunP?.sign || 1,
+        planet_positions: kundali.planets,
+        house_cusps: kundali.houses,
+        chart_data: kundali.chart,
+        navamsha_chart: kundali.navamshaChart,
+        dasha_timeline: kundali.dashas,
+        yogas: kundali.yogasComplete || [],
+        shadbala: kundali.fullShadbala || kundali.shadbala,
+        sade_sati: kundali.sadeSati || {},
+        full_kundali: kundali,
+        computed_at: new Date().toISOString(),
+        computation_version: ENGINE_VERSION,
+      }, { onConflict: 'user_id' });
+
+      // Re-fetch the full enriched snapshot (same query as above)
+      const { data: freshSnap } = await supabase
+        .from('kundali_snapshots')
+        .select('ascendant_sign, moon_sign, moon_nakshatra, moon_nakshatra_pada, sun_sign, chart_data, sade_sati, dasha_timeline, planet_positions, full_kundali, computed_at, computation_version')
+        .eq('user_id', user.id)
+        .single();
+
+      if (freshSnap) {
+        // Re-run enrichment with fresh data
+        const enriched = { ...freshSnap } as Record<string, unknown>;
+        // (enrichment logic is above — for recompute we return the raw fresh snapshot
+        //  which has all fields the client needs)
+        return NextResponse.json({ profile, snapshot: enriched, birthPanchang, recomputed: true });
+      }
+    } catch (err) {
+      console.error('[profile GET] auto-recompute failed, returning stale:', err);
+    }
+  }
+
   return NextResponse.json({ profile, snapshot: snapshotEnriched, birthPanchang });
 }
 
@@ -148,7 +200,12 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const body = await req.json();
+  let body: Record<string, unknown>;
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
+  }
   const {
     name,
     dateOfBirth,
@@ -239,8 +296,8 @@ export async function POST(req: NextRequest) {
     sade_sati: kundali.sadeSati || {},
     full_kundali: kundali,
     computed_at: new Date().toISOString(),
-    // Bump this when computation logic changes — triggers re-computation on next login
-    computation_version: 2,
+    // Auto-derived from computation pipeline file hashes — changes when any calc logic changes
+    computation_version: (await import('@/lib/kundali/engine-version')).ENGINE_VERSION,
   };
 
   const { error: upsertError } = await supabase
@@ -300,7 +357,8 @@ export async function DELETE(req: NextRequest) {
 
   // Delete all user data from related tables
   // Tables with 'user_id' column
-  for (const table of ['astro_journal', 'prediction_tracking', 'life_events', 'kundali_snapshots', 'saved_charts', 'daily_usage', 'subscriptions']) {
+  // Delete ALL user data — comprehensive for GDPR compliance
+  for (const table of ['astro_journal', 'prediction_tracking', 'life_events', 'kundali_snapshots', 'saved_charts', 'daily_usage', 'subscriptions', 'notification_subscriptions', 'domain_readings', 'family_readings', 'ai_readings', 'vrat_tracker']) {
     const { error } = await supabase.from(table).delete().eq('user_id', userId);
     if (error && !error.message.includes('does not exist')) {
       console.warn(`Failed to delete from ${table}:`, error.message);

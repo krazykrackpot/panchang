@@ -17,6 +17,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
+import { getFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot';
 import { generateDashaPrompt } from '@/lib/personalization/dasha-prompts';
 import type { DashaEntry } from '@/types/kundali';
 
@@ -129,17 +130,14 @@ export async function GET(req: NextRequest) {
 
   try {
     // Fetch snapshot
-    const { data: snapshot, error: snapErr } = await supabase
-      .from('kundali_snapshots')
-      .select('dasha_timeline, ascendant_sign, planetary_snapshot')
-      .eq('user_id', user.id)
-      .maybeSingle();
+    const baseUrl = process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : 'http://localhost:3000';
+    const snapshot = await getFreshSnapshot(supabase, user.id, token, baseUrl);
 
-    if (snapErr) {
-      console.error('[dasha-diary] snapshot fetch failed:', snapErr);
+    if (!snapshot) {
+      console.error('[dasha-diary] snapshot fetch failed: null result');
       return NextResponse.json({ error: 'Failed to load snapshot' }, { status: 500 });
     }
-    if (!snapshot?.dasha_timeline) {
+    if (!snapshot.dasha_timeline) {
       return NextResponse.json({ error: 'No dasha timeline found. Generate your kundali first.' }, { status: 404 });
     }
 
@@ -155,7 +153,8 @@ export async function GET(req: NextRequest) {
     const periodLabel = antar ? 'Antardasha' : 'Mahadasha';
 
     const ascSign: number = snapshot.ascendant_sign ?? 1;
-    const planetarySnapshot = (snapshot.planetary_snapshot ?? {}) as Record<string, unknown>;
+    // planet_positions holds the natal planet array (same shape as the old planetary_snapshot field)
+    const planetarySnapshot = (snapshot.planet_positions ?? {}) as Record<string, unknown>;
     const pSign = signOfPlanet(activePlanet, planetarySnapshot);
     const pHouse = houseOfPlanet(activePlanet, ascSign, pSign);
     const ruled = housesRuled(activePlanet, ascSign);

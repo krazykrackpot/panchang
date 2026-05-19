@@ -18,6 +18,7 @@ import { getLatestVideo } from '@/lib/youtube/latest-video';
 import { MapPin } from 'lucide-react';
 import { getCitiesByTier } from '@/lib/constants/cities-extended';
 import type { PanchangData } from '@/types/panchang';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import PanchangClient from './PanchangClient';
 
 // NO revalidate here  –  page uses headers() for geo-location.
@@ -224,7 +225,7 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
 
       {/* Dynamic FAQ JSON-LD for featured snippet capture */}
       {faqLd && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLd) }} />
       )}
 
       {/* SEO block: server-rendered, fully crawlable by Google */}

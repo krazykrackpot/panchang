@@ -14,13 +14,13 @@ on:
     - cron: '0 7 * * *'    # 07:00 UTC = 12:30 IST — email alerts
     - cron: '0 8 * * *'    # 08:00 UTC = 13:30 IST — onboarding drip
 
-    # ── Weekly ──
-    - cron: '0 6 * * 1'    # Monday 06:00 UTC — weekly digest
-    - cron: '0 6 * * 0'    # Sunday 06:00 UTC — transit alerts
+    # ── Weekly (offset from daily 0 6 to avoid GH Actions schedule collision) ──
+    - cron: '10 6 * * 1'   # Monday 06:10 UTC — weekly digest
+    - cron: '15 6 * * 0'   # Sunday 06:15 UTC — transit alerts
 
-    # ── Monthly ──
+    # ── Monthly (offset from daily 0 6 to avoid collision) ──
     - cron: '0 2 1 * *'    # 1st of month 02:00 UTC — monthly readings
-    - cron: '0 6 1 * *'    # 1st of month 06:00 UTC — domain activations
+    - cron: '20 6 1 * *'   # 1st of month 06:20 UTC — domain activations
 
   workflow_dispatch:
     inputs:
@@ -61,16 +61,16 @@ jobs:
             "0 8 * * *")
               echo "endpoints=onboarding-drip" >> $GITHUB_OUTPUT
               ;;
-            "0 6 * * 1")
+            "10 6 * * 1")
               echo "endpoints=weekly-digest" >> $GITHUB_OUTPUT
               ;;
-            "0 6 * * 0")
+            "15 6 * * 0")
               echo "endpoints=transit-alerts" >> $GITHUB_OUTPUT
               ;;
             "0 2 1 * *")
               echo "endpoints=monthly-readings" >> $GITHUB_OUTPUT
               ;;
-            "0 6 1 * *")
+            "20 6 1 * *")
               echo "endpoints=domain-activations" >> $GITHUB_OUTPUT
               ;;
             *)

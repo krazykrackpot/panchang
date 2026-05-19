@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
@@ -9,7 +9,7 @@ import ChartSouth from '@/components/kundali/ChartSouth';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { useAuthStore } from '@/stores/auth-store';
-import { getSupabase } from '@/lib/supabase/client';
+import { useFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot-client';
 import type { KundaliData, ChartStyle } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -20,24 +20,9 @@ export default function ChartPage() {
   const hf = (isDevanagariLocale(locale)) ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = (isDevanagariLocale(locale)) ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const user = useAuthStore(s => s.user);
-  const [kundali, setKundali] = useState<KundaliData | null>(null);
+  const { snapshot, loading } = useFreshSnapshot();
+  const kundali = snapshot?.full_kundali ? (snapshot.full_kundali as KundaliData) : null;
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (!user) { setLoading(false); return; }
-    const supabase = getSupabase();
-    if (!supabase) { setLoading(false); return; }
-
-    supabase.from('kundali_snapshots')
-      .select('full_kundali')
-      .eq('user_id', user.id)
-      .maybeSingle()
-      .then(({ data }) => {
-        if (data?.full_kundali) setKundali(data.full_kundali as KundaliData);
-        setLoading(false);
-      });
-  }, [user]);
 
   if (!user) {
     return <div className="max-w-2xl mx-auto px-4 py-20 text-center"><p className="text-text-secondary">{tl({ en: 'Sign in to view your chart', hi: 'चार्ट देखने के लिए साइन इन करें', sa: 'चक्रं द्रष्टुं प्रवेशं करोतु', ta: 'உங்கள் விளக்கப்படத்தை பார்க்க உள்நுழையவும்', te: 'మీ చార్ట్ చూడటానికి సైన్ ఇన్ చేయండి', bn: 'আপনার চার্ট দেখতে সাইন ইন করুন', kn: 'ನಿಮ್ಮ ಚಾರ್ಟ್ ನೋಡಲು ಸೈನ್ ಇನ್ ಮಾಡಿ', gu: 'તમારો ચાર્ટ જોવા માટે સાઇન ઇન કરો', mai: 'चार्ट देखबाक लेल साइन इन करू', mr: 'चार्ट पाहण्यासाठी साइन इन करा' }, locale)}</p></div>;

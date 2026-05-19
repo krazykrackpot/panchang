@@ -642,7 +642,7 @@ export default function SettingsPage() {
     } catch (err) {
       console.error('[settings] save failed:', err);
       setSuccessMsg('');
-      setErrorMsg(locale === 'hi' ? 'सहेजना विफल। पुनः प्रयास करें।' : 'Save failed. Please try again.');
+      setErrorMsg(tl({ en: 'Save failed. Please try again.', hi: 'सहेजना विफल। पुनः प्रयास करें।', sa: 'सञ्चयनं विफलम्।' }, locale));
       setTimeout(() => setErrorMsg(''), 5000);
     } finally {
       setSaving(false);
@@ -676,7 +676,7 @@ export default function SettingsPage() {
       router.push(`/${locale}`);
     } catch (err) {
       console.error('Delete account failed:', err);
-      setErrorMsg(locale === 'hi' ? 'खाता हटाना विफल। पुनः प्रयास करें।' : 'Account deletion failed. Please try again.');
+      setErrorMsg(tl({ en: 'Account deletion failed. Please try again.', hi: 'खाता हटाना विफल। पुनः प्रयास करें।', sa: 'खातविलोपनं विफलम्।' }, locale));
       setTimeout(() => setErrorMsg(''), 5000);
       setDeleting(false);
       setShowDeleteConfirm(false);

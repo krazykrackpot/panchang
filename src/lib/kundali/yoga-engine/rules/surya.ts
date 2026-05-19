@@ -61,7 +61,9 @@ const BUDHADITYA: YogaRule = {
       // Handle wrap-around at 0°/360°
       if (separation > 180) separation = 360 - separation;
 
-      if (separation < 3) {
+      // Classical condition: Sun and Mercury in the same sign (any separation).
+      // The cancellation + assessStrength handle close-combustion gracefully.
+      if (ctx.planetSign(0) !== ctx.planetSign(3)) {
         return { present: false, involvedPlanets: [] };
       }
 

@@ -105,9 +105,9 @@ export default function NakshatraDashaSpiral({ locale }: Props) {
                       className={`text-[9px] font-medium leading-tight ${isHighlighted ? 'text-gold-light' : 'text-text-secondary/75'}`}
                       style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
                     >
-                      {(a.nakshatra.name[locale] || a.nakshatra.name.en)!.length > 9
-                        ? (a.nakshatra.name[locale] || a.nakshatra.name.en)!.substring(0, 8) + '…'
-                        : (a.nakshatra.name[locale] || a.nakshatra.name.en)}
+                      {tl(a.nakshatra.name, locale).length > 9
+                        ? tl(a.nakshatra.name, locale).substring(0, 8) + '…'
+                        : tl(a.nakshatra.name, locale)}
                     </div>
                     {/* Planet name */}
                     <div
@@ -153,7 +153,7 @@ export default function NakshatraDashaSpiral({ locale }: Props) {
                     <span key={ni} className="flex items-center gap-1 whitespace-nowrap">
                       <span className="text-text-secondary/65 text-[9px]">#{pi + ni * 9 + 1}</span>
                       <span className="text-text-primary text-xs font-medium" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                        {n.name[locale]}
+                        {tl(n.name, locale)}
                       </span>
                       {ni < 2 && <span className="text-gold-primary/20 mx-1">→</span>}
                     </span>

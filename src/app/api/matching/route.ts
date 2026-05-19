@@ -24,9 +24,10 @@ export async function POST(request: Request) {
   try {
     const { boy, girl, system } = body as { boy: MatchInput; girl: MatchInput; system?: 'ashta-kuta' | 'dasha-koota' };
 
+    const isValidInt = (n: unknown): n is number => typeof n === 'number' && Number.isInteger(n);
     if (
-      !boy?.moonNakshatra || !boy?.moonRashi ||
-      !girl?.moonNakshatra || !girl?.moonRashi ||
+      !isValidInt(boy?.moonNakshatra) || !isValidInt(boy?.moonRashi) ||
+      !isValidInt(girl?.moonNakshatra) || !isValidInt(girl?.moonRashi) ||
       boy.moonNakshatra < 1 || boy.moonNakshatra > 27 ||
       girl.moonNakshatra < 1 || girl.moonNakshatra > 27 ||
       boy.moonRashi < 1 || boy.moonRashi > 12 ||

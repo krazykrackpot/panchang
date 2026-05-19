@@ -8,11 +8,20 @@ import { generateDailyHoroscope } from '@/lib/horoscope/daily-engine';
 import { HoroscopeClient } from './HoroscopeClient';
 import { RashiArticle } from './RashiArticle';
 import type { LocaleText } from '@/types/panchang';
-import Link from 'next/link';
+import { Link } from '@/lib/i18n/navigation';
 
 function tl(obj: LocaleText | undefined, locale: string): string {
   if (!obj) return '';
   return (obj as Record<string, string>)[locale] || obj.en || '';
+}
+
+function ordinal(n: number): string {
+  if (n === 11 || n === 12 || n === 13) return `${n}th`;
+  const last = n % 10;
+  if (last === 1) return `${n}st`;
+  if (last === 2) return `${n}nd`;
+  if (last === 3) return `${n}rd`;
+  return `${n}th`;
 }
 
 // Score bar colour based on value (1-10)
@@ -22,10 +31,11 @@ function scoreColor(score: number): string {
   return 'bg-red-500';
 }
 
+// Thresholds aligned with HoroscopeClient.tsx scoreLabel to prevent hydration mismatch
 function scoreLabel(score: number, isHi: boolean): string {
-  if (score >= 7) return isHi ? 'उत्तम' : 'Excellent';
-  if (score >= 5) return isHi ? 'मध्यम' : 'Moderate';
-  if (score >= 3) return isHi ? 'साधारण' : 'Below Average';
+  if (score >= 8) return isHi ? 'उत्कृष्ट' : 'Excellent';
+  if (score >= 6.5) return isHi ? 'शुभ' : 'Good';
+  if (score >= 4) return isHi ? 'मिश्रित' : 'Mixed';
   return isHi ? 'चुनौतीपूर्ण' : 'Challenging';
 }
 
@@ -122,28 +132,28 @@ export default async function RashiPage({ params }: { params: Promise<{ locale: 
               <div className="text-text-secondary text-xs">{isHi ? 'चन्द्र' : 'Moon'}</div>
               <div className="text-gold-light text-sm font-semibold mt-1">{moonTransit}</div>
               <div className="text-text-secondary/60 text-xs mt-0.5">
-                {isHi ? `${ts.moonHouseFromNatal}वाँ भाव` : `${ts.moonHouseFromNatal}${ts.moonHouseFromNatal === 1 ? 'st' : ts.moonHouseFromNatal === 2 ? 'nd' : ts.moonHouseFromNatal === 3 ? 'rd' : 'th'} house`}
+                {isHi ? `${ts.moonHouseFromNatal}वाँ भाव` : `${ordinal(ts.moonHouseFromNatal)} house`}
               </div>
             </div>
             <div className="text-center p-3 bg-white/[0.03] rounded-xl">
               <div className="text-text-secondary text-xs">{isHi ? 'गुरु' : 'Jupiter'}</div>
               <div className="text-gold-light text-sm font-semibold mt-1">{jupTransit}</div>
               <div className="text-text-secondary/60 text-xs mt-0.5">
-                {isHi ? `${ts.jupiterHouse}वाँ भाव` : `${ts.jupiterHouse}${ts.jupiterHouse === 1 ? 'st' : ts.jupiterHouse === 2 ? 'nd' : ts.jupiterHouse === 3 ? 'rd' : 'th'} house`}
+                {isHi ? `${ts.jupiterHouse}वाँ भाव` : `${ordinal(ts.jupiterHouse)} house`}
               </div>
             </div>
             <div className="text-center p-3 bg-white/[0.03] rounded-xl">
               <div className="text-text-secondary text-xs">{isHi ? 'शनि' : 'Saturn'}</div>
               <div className="text-gold-light text-sm font-semibold mt-1">{satTransit}</div>
               <div className="text-text-secondary/60 text-xs mt-0.5">
-                {isHi ? `${ts.saturnHouse}वाँ भाव` : `${ts.saturnHouse}${ts.saturnHouse === 1 ? 'st' : ts.saturnHouse === 2 ? 'nd' : ts.saturnHouse === 3 ? 'rd' : 'th'} house`}
+                {isHi ? `${ts.saturnHouse}वाँ भाव` : `${ordinal(ts.saturnHouse)} house`}
               </div>
             </div>
             <div className="text-center p-3 bg-white/[0.03] rounded-xl">
               <div className="text-text-secondary text-xs">{isHi ? 'राहु' : 'Rahu'}</div>
               <div className="text-gold-light text-sm font-semibold mt-1">{tl(ts.rahuSignName, locale)}</div>
               <div className="text-text-secondary/60 text-xs mt-0.5">
-                {isHi ? `${ts.rahuHouse}वाँ भाव` : `${ts.rahuHouse}${ts.rahuHouse === 1 ? 'st' : ts.rahuHouse === 2 ? 'nd' : ts.rahuHouse === 3 ? 'rd' : 'th'} house`}
+                {isHi ? `${ts.rahuHouse}वाँ भाव` : `${ordinal(ts.rahuHouse)} house`}
               </div>
             </div>
           </div>

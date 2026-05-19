@@ -7,6 +7,7 @@ import { RashiIconById } from '@/components/icons/RashiIcons';
 import { Link } from '@/lib/i18n/navigation';
 import type { DailyHoroscope } from '@/lib/horoscope/daily-engine';
 import { isDevanagariLocale, getHeadingFont, getBodyFont, dataLocale } from '@/lib/utils/locale-fonts';
+import { getScoreBgClass, getScoreTextClass } from '@/lib/horoscope/score-utils';
 
 // ---------------------------------------------------------------------------
 // Props & Labels
@@ -70,17 +71,9 @@ const AREA_ICONS: Record<string, typeof Briefcase> = {
   spirituality: Sparkles,
 };
 
-function scoreColor(score: number): string {
-  if (score >= 7) return 'text-emerald-400';
-  if (score >= 4) return 'text-amber-400';
-  return 'text-red-400';
-}
-
-function barBg(score: number): string {
-  if (score >= 7) return 'bg-emerald-500';
-  if (score >= 4) return 'bg-amber-500';
-  return 'bg-red-500';
-}
+// Use shared thresholds from score-utils (aligned at 6.5 with scoreLabel)
+const scoreColor = getScoreTextClass;
+const barBg = getScoreBgClass;
 
 // ---------------------------------------------------------------------------
 // Component

@@ -99,6 +99,9 @@ import { applyFullShodhana } from '@/lib/kundali/ashtakavarga-shodhana';
  * @returns Tropical longitude of the ascendant in degrees [0, 360)
  */
 export function calculateAscendant(jd: number, lat: number, lng: number): number {
+  // Guard against extreme latitudes where tan(lat) approaches infinity
+  // Clamp to ±66.5° (Arctic/Antarctic circle) — beyond this, ascendant calculation is undefined
+  lat = Math.max(-66.5, Math.min(66.5, lat));
   // Local Sidereal Time (see astronomical.ts calcAscendant for detailed notes)
   const T = (jd - 2451545.0) / 36525.0;
   const gmst = 280.46061837 + 360.98564736629 * (jd - 2451545.0)

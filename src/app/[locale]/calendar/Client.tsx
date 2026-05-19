@@ -12,7 +12,7 @@ import LocationSearch from '@/components/ui/LocationSearch';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { useAuthStore } from '@/stores/auth-store';
 import { useLocationStore } from '@/stores/location-store';
-import { getSupabase } from '@/lib/supabase/client';
+import { useFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot-client';
 import { scoreFestivalRelevance } from '@/lib/personalization/festival-relevance';
 import PersonalRelevanceBadge, { computeRelevance, type PersonalRelevanceData, type RelevanceMatch } from '@/components/calendar/PersonalRelevanceBadge';
 import { useBirthDataStore } from '@/stores/birth-data-store';
@@ -116,51 +116,48 @@ export default function CalendarClient() {
   const birthDataStore = useBirthDataStore();
   const [personalRelevance, setPersonalRelevance] = useState<PersonalRelevanceData | null>(null);
 
-  useEffect(() => {
-    if (!calUser || festivals.length === 0) return;
-    const supabase = getSupabase();
-    if (!supabase) return;
-    supabase.from('kundali_snapshots')
-      .select('moon_sign, moon_nakshatra, ascendant_sign, dasha_timeline, sade_sati')
-      .eq('user_id', calUser.id)
-      .maybeSingle()
-      .then(({ data }) => {
-        if (!data) return;
-        const snapshot = {
-          moonSign: data.moon_sign, moonNakshatra: data.moon_nakshatra,
-          moonNakshatraPada: 1, sunSign: 1, ascendantSign: data.ascendant_sign,
-          planetPositions: [], dashaTimeline: data.dasha_timeline || [], sadeSati: data.sade_sati || {},
-        };
-        const slugs = new Set<string>();
-        festivals.forEach(f => {
-          if (f.slug) {
-            const result = scoreFestivalRelevance(f.slug, f.category, snapshot);
-            if (result.isRecommended) slugs.add(f.slug);
-          }
-        });
-        setRecommendedSlugs(slugs);
+  // Fetch snapshot via the shared hook (handles staleness + caching)
+  const { snapshot: freshSnap } = useFreshSnapshot();
 
-        // Build personal relevance data for badges
-        let currentDashaPlanet: string | undefined;
-        const timeline = data.dasha_timeline as Array<{ planet: string; startDate: string; endDate: string; subPeriods?: Array<{ planet: string; startDate: string; endDate: string }> }> | undefined;
-        if (timeline) {
-          const now = Date.now();
-          for (const maha of timeline) {
-            const mStart = new Date(maha.startDate).getTime();
-            const mEnd = new Date(maha.endDate).getTime();
-            if (now >= mStart && now <= mEnd) {
-              currentDashaPlanet = maha.planet;
-              break;
-            }
-          }
+  useEffect(() => {
+    if (!calUser || festivals.length === 0 || !freshSnap) return;
+
+    const snapshotInput = {
+      moonSign: freshSnap.moon_sign, moonNakshatra: freshSnap.moon_nakshatra,
+      moonNakshatraPada: 1, sunSign: 1, ascendantSign: freshSnap.ascendant_sign,
+      planetPositions: [],
+      dashaTimeline: (freshSnap.dasha_timeline as unknown[]) || [],
+      sadeSati: (freshSnap.sade_sati as Record<string, unknown>) || {},
+    };
+    const slugs = new Set<string>();
+    festivals.forEach(f => {
+      if (f.slug) {
+        const result = scoreFestivalRelevance(f.slug, f.category, snapshotInput);
+        if (result.isRecommended) slugs.add(f.slug);
+      }
+    });
+    setRecommendedSlugs(slugs);
+
+    // Build personal relevance data for badges
+    let currentDashaPlanet: string | undefined;
+    const timeline = freshSnap.dasha_timeline as Array<{ planet: string; startDate: string; endDate: string; subPeriods?: Array<{ planet: string; startDate: string; endDate: string }> }> | undefined;
+    if (timeline) {
+      const now = Date.now();
+      for (const maha of timeline) {
+        const mStart = new Date(maha.startDate).getTime();
+        const mEnd = new Date(maha.endDate).getTime();
+        if (now >= mStart && now <= mEnd) {
+          currentDashaPlanet = maha.planet;
+          break;
         }
-        setPersonalRelevance({
-          birthNakshatra: data.moon_nakshatra || birthDataStore.birthNakshatra,
-          birthRashi: data.moon_sign || birthDataStore.birthRashi,
-          currentDashaPlanet,
-        });
-      });
-  }, [calUser, festivals, birthDataStore.birthNakshatra, birthDataStore.birthRashi]);
+      }
+    }
+    setPersonalRelevance({
+      birthNakshatra: freshSnap.moon_nakshatra || birthDataStore.birthNakshatra,
+      birthRashi: freshSnap.moon_sign || birthDataStore.birthRashi,
+      currentDashaPlanet,
+    });
+  }, [calUser, festivals, freshSnap, birthDataStore.birthNakshatra, birthDataStore.birthRashi]);
 
   // For non-logged-in users, use birth-data-store
   useEffect(() => {

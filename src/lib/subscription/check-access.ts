@@ -13,7 +13,8 @@ export async function getUserTier(userId: string): Promise<TierResult> {
   const cached = tierCache.get(userId);
   if (cached && cached.expiry > Date.now()) return cached.data;
 
-  const supabase = getServerSupabase()!;
+  const supabase = getServerSupabase();
+  if (!supabase) return { tier: 'free', status: 'active' }; // Fail safe, not crash
   const { data } = await supabase
     .from('subscriptions')
     .select('tier, status, current_period_end, trial_end')
@@ -46,8 +47,12 @@ export async function getUserTier(userId: string): Promise<TierResult> {
     return result;
   }
 
-  const activeTiers = ['active', 'trialing'];
-  const tier: Tier = activeTiers.includes(data.status) ? (data.tier as Tier) : 'free';
+  // Cancelled users keep their tier until current_period_end passes
+  const isActive = data.status === 'active' || data.status === 'trialing';
+  const isCancelledButStillPaid = data.status === 'cancelled'
+    && data.current_period_end
+    && new Date(data.current_period_end) > new Date();
+  const tier: Tier = (isActive || isCancelledButStillPaid) ? (data.tier as Tier) : 'free';
   const result: TierResult = { tier, status: data.status };
   tierCache.set(userId, { data: result, expiry: Date.now() + 60000 });
   return result;
@@ -61,7 +66,8 @@ export async function checkAndIncrementUsage(
   const { limit, period } = getUsageLimit(feature, tier);
   if (limit === -1) return { allowed: true, remaining: -1, limit: -1 };
 
-  const supabase = getServerSupabase()!;
+  const supabase = getServerSupabase();
+  if (!supabase) return { allowed: false, remaining: 0, limit };
 
   if (period === 'daily') {
     const { data } = await supabase
@@ -80,16 +86,15 @@ export async function checkAndIncrementUsage(
     return { allowed: true, remaining: limit - currentCount - 1, limit };
   }
 
-  // Monthly
-  const monthStart = new Date();
-  monthStart.setDate(1);
-  monthStart.setHours(0, 0, 0, 0);
+  // Monthly — use UTC explicitly (Vercel runs UTC, but be safe)
+  const now = new Date();
+  const monthStartStr = `${now.getUTCFullYear()}-${String(now.getUTCMonth() + 1).padStart(2, '0')}-01`;
 
   const { data: rows } = await supabase
     .from('daily_usage')
     .select(feature)
     .eq('user_id', userId)
-    .gte('usage_date', monthStart.toISOString().split('T')[0]);
+    .gte('usage_date', monthStartStr);
 
   const totalUsed = (rows || []).reduce((sum, r) => sum + ((r as Record<string, number>)[feature] ?? 0), 0);
   if (totalUsed >= limit) {

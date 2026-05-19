@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { Heart, Briefcase, Plane, GraduationCap, Home, Stethoscope, Car, Sun, DollarSign, Scale, Check, X, ArrowLeft } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
 import { useLocationStore } from '@/stores/location-store';
-import { getSupabase } from '@/lib/supabase/client';
+import { useFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot-client';
 import { computePersonalMuhurta, type PersonalMuhurta } from '@/lib/personalization/personal-muhurta';
 import type { Locale , LocaleText} from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -39,6 +39,7 @@ export default function MuhurtaPage() {
   const user = useAuthStore(s => s.user);
   // Panchang data depends on WHERE the user is NOW  –  use current location, not birth location
   const locationStore = useLocationStore();
+  const { snapshot, loading: snapshotLoading } = useFreshSnapshot();
   const [muhurtas, setMuhurtas] = useState<PersonalMuhurta[]>([]);
   const [loading, setLoading] = useState(true);
   const [birthNak, setBirthNak] = useState(0);
@@ -47,9 +48,8 @@ export default function MuhurtaPage() {
   useEffect(() => { locationStore.detect(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    if (!user) { setLoading(false); return; }
-    const supabase = getSupabase();
-    if (!supabase) { setLoading(false); return; }
+    if (snapshotLoading) return;
+    if (!user || !snapshot || !snapshot.moon_sign) { setLoading(false); return; }
 
     // Wait for location detection before fetching panchang
     const lat = locationStore.lat;
@@ -62,19 +62,21 @@ export default function MuhurtaPage() {
 
     const tz = locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-    Promise.all([
-      supabase.from('kundali_snapshots').select('moon_sign, moon_nakshatra').eq('user_id', user.id).maybeSingle(),
-      fetch(`/api/panchang?year=${new Date().getFullYear()}&month=${new Date().getMonth() + 1}&day=${new Date().getDate()}&lat=${lat}&lng=${lng}&timezone=${encodeURIComponent(tz)}`).then(r => r.json()),
-    ]).then(([{ data: snap }, panchang]) => {
-      if (!snap) { setLoading(false); return; }
-      const tNak = panchang?.nakshatra?.id || 1;
-      const tMoon = panchang?.moonSign || 1;
-      setBirthNak(snap.moon_nakshatra);
-      setTodayNak(tNak);
-      setMuhurtas(computePersonalMuhurta(snap.moon_nakshatra, snap.moon_sign, tNak, tMoon));
-      setLoading(false);
-    }).catch(() => setLoading(false));
-  }, [user, locationStore.lat, locationStore.lng, locationStore.timezone, locationStore.detecting]);
+    fetch(`/api/panchang?year=${new Date().getFullYear()}&month=${new Date().getMonth() + 1}&day=${new Date().getDate()}&lat=${lat}&lng=${lng}&timezone=${encodeURIComponent(tz)}`)
+      .then(r => r.json())
+      .then((panchang) => {
+        const tNak = panchang?.nakshatra?.id || 1;
+        const tMoon = panchang?.moonSign || 1;
+        setBirthNak(snapshot.moon_nakshatra);
+        setTodayNak(tNak);
+        setMuhurtas(computePersonalMuhurta(snapshot.moon_nakshatra, snapshot.moon_sign, tNak, tMoon));
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error('[muhurta] panchang fetch failed:', err);
+        setLoading(false);
+      });
+  }, [user, snapshot, snapshotLoading, locationStore.lat, locationStore.lng, locationStore.timezone, locationStore.detecting]);
 
   if (!user) {
     return (

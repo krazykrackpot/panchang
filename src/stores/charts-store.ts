@@ -64,6 +64,7 @@ export const useChartsStore = create<ChartsState>((set, get) => ({
   },
 
   deleteChart: async (id) => {
+    // RLS on saved_charts enforces user_id = auth.uid(), so delete-by-id is scoped to the current user.
     await getSupabase()!.from('saved_charts').delete().eq('id', id);
     set({ charts: get().charts.filter((c) => c.id !== id) });
   },

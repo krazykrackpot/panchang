@@ -25,7 +25,7 @@ import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { ShareCardButton } from '@/components/shareable/ShareCardButton';
 import { selectHighlightKutas, getKutaInsight, getOverallVerdict } from '@/lib/constants/kuta-insights';
-import { trackMatchingComputed } from '@/lib/analytics';
+import { trackMatchingComputed, trackUtmEvent } from '@/lib/analytics';
 
 const L = {
   en: {
@@ -192,11 +192,13 @@ export default function MatchingClient() {
         setDashaResult(dr);
         setResult(null);
         trackMatchingComputed({ system: matchSystem, score: dr.totalScored, verdict: dr.verdict });
+        trackUtmEvent('matching_computed', { system: matchSystem, score: dr.totalScored });
       } else {
         const mr = data as MatchResult;
         setResult(mr);
         setDashaResult(null);
         trackMatchingComputed({ system: matchSystem, score: mr.totalScore, verdict: mr.verdict });
+        trackUtmEvent('matching_computed', { system: matchSystem, score: mr.totalScore });
       }
 
       // Generate kundalis for both partners in parallel (non-blocking)

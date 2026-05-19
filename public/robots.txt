@@ -4,6 +4,10 @@ Crawl-delay: 2
 
 Sitemap: https://dekhopanchang.com/sitemap.xml
 
+# AI model context files
+Allow: /llms.txt
+Allow: /llms-full.txt
+
 # Disallow API routes
 Disallow: /api/
 
@@ -65,6 +69,7 @@ Allow: /*/learn/holashtak
 Allow: /*/learn/planet-in-house
 Allow: /*/learn/transits
 Allow: /llms.txt
+Allow: /llms-full.txt
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/
 
@@ -110,6 +115,7 @@ Allow: /*/learn/holashtak
 Allow: /*/learn/planet-in-house
 Allow: /*/learn/transits
 Allow: /llms.txt
+Allow: /llms-full.txt
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/
 
@@ -155,6 +161,7 @@ Allow: /*/learn/holashtak
 Allow: /*/learn/planet-in-house
 Allow: /*/learn/transits
 Allow: /llms.txt
+Allow: /llms-full.txt
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/
 
@@ -203,6 +210,7 @@ Allow: /*/learn/holashtak
 Allow: /*/learn/planet-in-house
 Allow: /*/learn/transits
 Allow: /llms.txt
+Allow: /llms-full.txt
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/
 
@@ -248,6 +256,7 @@ Allow: /*/learn/holashtak
 Allow: /*/learn/planet-in-house
 Allow: /*/learn/transits
 Allow: /llms.txt
+Allow: /llms-full.txt
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/
 
@@ -293,6 +302,7 @@ Allow: /*/learn/holashtak
 Allow: /*/learn/planet-in-house
 Allow: /*/learn/transits
 Allow: /llms.txt
+Allow: /llms-full.txt
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/
 
@@ -326,5 +336,6 @@ Allow: /*/learn/sade-sati
 Allow: /*/learn/planet-in-house
 Allow: /*/learn/transits
 Allow: /llms.txt
+Allow: /llms-full.txt
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/

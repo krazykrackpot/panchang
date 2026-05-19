@@ -9,7 +9,7 @@ export async function GET(req: Request) {
     }
 
     const authHeader = req.headers.get('authorization');
-    const token = authHeader?.replace('Bearer ', '');
+    const token = authHeader?.slice(7).trim();
     if (!token) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -48,7 +48,7 @@ export async function POST(req: Request) {
     }
 
     const authHeader = req.headers.get('authorization');
-    const token = authHeader?.replace('Bearer ', '');
+    const token = authHeader?.slice(7).trim();
     if (!token) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }

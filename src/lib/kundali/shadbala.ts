@@ -584,8 +584,9 @@ function yuddhaBala(planets: PlanetInput[]): Record<number, number> {
         const bLat = b.eclipticLatitude;
         let aWins: boolean;
         if (aLat !== undefined && bLat !== undefined) {
-          // Lower absolute latitude = more northerly (less deviated) = wins
-          aWins = Math.abs(aLat) <= Math.abs(bLat);
+          // Higher NORTHERN (positive) latitude wins per BPHS Ch.3 / Lesson Y
+          // NOT lower absolute value — that gives wrong result when both are positive
+          aWins = aLat >= bLat;
         } else {
           // Legacy fallback: higher longitude (graceful degradation only)
           aWins = normalizeDeg(a.longitude) >= normalizeDeg(b.longitude);
@@ -778,10 +779,12 @@ function computeDrikBala(p: PlanetInput, allPlanets: PlanetInput[]): number {
     // House distance from other planet to target planet p (1-based, 1-12)
     const houseDistance = ((p.house - other.house + 12) % 12) || 12;
 
-    // Get the fractional aspect strength for this planet at this distance
-    // Rahu/Ketu use Jupiter-style aspects (5th, 7th, 9th) but as malefics
-    const effectiveId = (other.id === 7 || other.id === 8) ? 4 : other.id;
-    const strength = getAspectStrength(effectiveId, houseDistance);
+    // Get the fractional aspect strength for this planet at this distance.
+    // Rahu/Ketu: 7th house aspect only (conservative interpretation per context.ts:226-228).
+    // No special aspects — consistent with the yoga engine's aspect model.
+    const strength = (other.id === 7 || other.id === 8)
+      ? (houseDistance === 7 ? 1.0 : 0)
+      : getAspectStrength(other.id, houseDistance);
 
     if (strength > 0) {
       const contribution = BASE_SCORE * strength;

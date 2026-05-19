@@ -26,9 +26,9 @@ function decodeChartParams(params: URLSearchParams): { name: string; date: strin
   const place = params.get('p');
   const tz = params.get('tz');
   if (!name || !date || !time || !lat || !lng) return null;
-  // Fallback timezone: estimate from longitude (~15° per hour) if not provided
-  const fallbackTz = String(Math.round(parseFloat(lng) / 15 * 10) / 10);
-  return { name: decodeURIComponent(name), date, time, lat: parseFloat(lat), lng: parseFloat(lng), place: place ? decodeURIComponent(place) : '', timezone: tz ? decodeURIComponent(tz) : fallbackTz };
+  // Fallback: 'UTC' — the /api/kundali route resolves IANA timezone from lat/lng coordinates.
+  // Never use numeric offset strings — they break dasha computation (Lesson L).
+  return { name: decodeURIComponent(name), date, time, lat: parseFloat(lat), lng: parseFloat(lng), place: place ? decodeURIComponent(place) : '', timezone: tz ? decodeURIComponent(tz) : 'UTC' };
 }
 
 export default function SharedKundaliPage() {

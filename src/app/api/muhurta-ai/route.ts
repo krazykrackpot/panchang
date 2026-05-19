@@ -15,8 +15,8 @@ export async function POST(request: Request) {
       activity,
       startDate,
       endDate,
-      lat = 0, // DEPRECATED fallback: client should always provide location
-      lng = 0, // DEPRECATED fallback: client should always provide location
+      lat,
+      lng,
       tz: tzFallback = 0,
       timezone,
       birthNakshatra,
@@ -43,6 +43,13 @@ export async function POST(request: Request) {
     if (!activity || !startDate || !endDate) {
       return NextResponse.json(
         { error: 'Missing required fields: activity, startDate, endDate' },
+        { status: 400 },
+      );
+    }
+
+    if (lat == null || lng == null) {
+      return NextResponse.json(
+        { error: 'Missing required fields: lat, lng (location coordinates)' },
         { status: 400 },
       );
     }

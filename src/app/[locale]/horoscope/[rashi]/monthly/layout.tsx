@@ -34,7 +34,8 @@ function getMonthRange(): { start: string; end: string; label: string; labelHi: 
 }
 
 export function generateStaticParams() {
-  return RASHIS.map(r => ({ rashi: r.slug }));
+  // ISR: rendered on-demand, not pre-built (keeps deploy under 10 min)
+  return [];
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; rashi: string }> }): Promise<Metadata> {

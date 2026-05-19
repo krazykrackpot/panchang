@@ -12,6 +12,7 @@ import { useState, useEffect, useRef, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { Search, X, ArrowRight } from 'lucide-react';
 import { useLocale } from 'next-intl';
+import { useRouter } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
@@ -128,6 +129,7 @@ const SEARCH_INDEX: SearchItem[] = [
 
 export default function SearchModal() {
   const locale = useLocale() as Locale;
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [selectedIdx, setSelectedIdx] = useState(0);
@@ -179,7 +181,7 @@ export default function SearchModal() {
       e.preventDefault();
       setSelectedIdx(prev => Math.max(prev - 1, 0));
     } else if (e.key === 'Enter' && results[selectedIdx]) {
-      window.location.href = `/${locale}${results[selectedIdx].href}`;
+      router.push(results[selectedIdx].href as any);
       setOpen(false);
     }
   }

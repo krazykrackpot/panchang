@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Loader2, ArrowLeft, Shield, Gem, HandHeart, Calendar } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import { useAuthStore } from '@/stores/auth-store';
-import { getSupabase } from '@/lib/supabase/client';
+import { useFreshSnapshot } from '@/lib/supabase/get-fresh-snapshot-client';
 import { computePersonalRemedies } from '@/lib/personalization/remedies';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import type { Locale } from '@/types/panchang';
@@ -320,38 +320,21 @@ export default function RemediesPage() {
   const L = LABELS[locale] || LABELS.en;
   const { user, initialized } = useAuthStore();
 
+  const { snapshot, loading: snapshotLoading } = useFreshSnapshot();
   const [loading, setLoading] = useState(true);
   const [remedies, setRemedies] = useState<PersonalRemedy[]>([]);
   const [hasBirthData, setHasBirthData] = useState(false);
 
-  const loadRemedies = useCallback(async () => {
-    const supabase = getSupabase();
-    if (!supabase || !user) return;
+  useEffect(() => {
+    if (snapshotLoading) return;
+    if (!snapshot || !snapshot.moon_sign) {
+      setHasBirthData(false);
+      setLoading(false);
+      return;
+    }
 
-    setLoading(true);
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) return;
-
-      const res = await fetch('/api/user/profile', {
-        headers: { Authorization: `Bearer ${session.access_token}` },
-      });
-      if (!res.ok) return;
-
-      const { snapshot } = await res.json();
-      if (!snapshot || !snapshot.moon_sign) {
-        setHasBirthData(false);
-        setLoading(false);
-        return;
-      }
       setHasBirthData(true);
-
-      // Fetch full snapshot with JSONB fields
-      const { data: fullSnap } = await supabase
-        .from('kundali_snapshots')
-        .select('planet_positions, dasha_timeline, sade_sati')
-        .eq('user_id', user.id)
-        .single();
 
       const userSnapshot: UserSnapshot = {
         moonSign: snapshot.moon_sign,
@@ -359,27 +342,19 @@ export default function RemediesPage() {
         moonNakshatraPada: snapshot.moon_nakshatra_pada,
         sunSign: snapshot.sun_sign,
         ascendantSign: snapshot.ascendant_sign,
-        planetPositions: fullSnap?.planet_positions || [],
-        dashaTimeline: fullSnap?.dasha_timeline || [],
-        sadeSati: fullSnap?.sade_sati || {},
+        planetPositions: (snapshot.planet_positions || []) as UserSnapshot['planetPositions'],
+        dashaTimeline: (snapshot.dasha_timeline || []) as UserSnapshot['dashaTimeline'],
+        sadeSati: (snapshot.sade_sati || {}) as UserSnapshot['sadeSati'],
       };
 
       const result = computePersonalRemedies(userSnapshot);
       setRemedies(result);
     } catch (err) {
-      console.error('Remedies load error:', err);
+      console.error('[remedies] computation error:', err);
     } finally {
       setLoading(false);
     }
-  }, [user]);
-
-  useEffect(() => {
-    if (initialized && user) {
-      loadRemedies();
-    } else if (initialized && !user) {
-      setLoading(false);
-    }
-  }, [initialized, user, loadRemedies]);
+  }, [snapshot, snapshotLoading]);
 
   // Not signed in
   if (initialized && !user) {

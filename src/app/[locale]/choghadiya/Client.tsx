@@ -9,6 +9,7 @@ import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import { Link } from '@/lib/i18n/navigation';
 import { tl } from '@/lib/utils/trilingual';
+import { nowMinutesInTimezone } from '@/lib/utils/now-in-timezone';
 import { computePanchang, type PanchangInput } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { CITIES, type CityData } from '@/lib/constants/cities';
@@ -102,6 +103,12 @@ const LABELS: Record<string, Record<string, string>> = {
   },
 };
 
+// ─── Helpers ──────────────────────────────────────────────────
+function timeToMinutes(t: string): number {
+  const [h, m] = t.split(':').map(Number);
+  return h * 60 + m;
+}
+
 // ─── Animation variants ────────────────────────────────────────
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -140,6 +147,14 @@ export default function ChoghadiyaClient() {
       if (localeCity) setSelectedCity(localeCity);
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Track current time in the LOCATION's timezone for NOW highlighting
+  const [nowMin, setNowMin] = useState(() => nowMinutesInTimezone(selectedCity.timezone));
+  useEffect(() => {
+    setNowMin(nowMinutesInTimezone(selectedCity.timezone));
+    const iv = setInterval(() => setNowMin(nowMinutesInTimezone(selectedCity.timezone)), 60_000);
+    return () => clearInterval(iv);
+  }, [selectedCity.timezone]);
 
   const now = new Date();
   const year = now.getFullYear();
@@ -189,6 +204,12 @@ export default function ChoghadiyaClient() {
 
   const renderSlotCard = (slot: ChoghadiyaSlot, i: number) => {
     const style = NATURE_STYLES[slot.nature] || NATURE_STYLES.neutral;
+    const startMin = timeToMinutes(slot.startTime);
+    const endMin = timeToMinutes(slot.endTime);
+    // Midnight-wrapping comparison (Lesson R)
+    const isActive = endMin < startMin
+      ? nowMin >= startMin || nowMin < endMin
+      : nowMin >= startMin && nowMin < endMin;
     return (
       <motion.div
         key={`${slot.period}-${i}`}
@@ -196,15 +217,22 @@ export default function ChoghadiyaClient() {
         initial="hidden"
         animate="visible"
         variants={fadeUp}
-        className={`rounded-xl border p-4 ${style.bg} ${style.border}`}
+        className={`rounded-xl border p-4 ${style.bg} ${style.border} ${isActive ? 'ring-2 ring-gold-primary/60' : ''}`}
       >
         <div className="flex items-center justify-between mb-2">
           <h3 className={`font-semibold ${style.text}`} style={headingFont}>
             {tl(slot.name, locale)}
           </h3>
-          <span className={`text-xs px-2 py-0.5 rounded-full ${style.badge}`}>
-            {natureLabel(slot.nature)}
-          </span>
+          <div className="flex items-center gap-2">
+            {isActive && (
+              <span className="text-xs px-2 py-0.5 rounded-full bg-gold-primary/30 text-gold-light font-bold animate-pulse" suppressHydrationWarning>
+                NOW
+              </span>
+            )}
+            <span className={`text-xs px-2 py-0.5 rounded-full ${style.badge}`}>
+              {natureLabel(slot.nature)}
+            </span>
+          </div>
         </div>
         <p className="text-lg font-bold text-text-primary tracking-wide">
           {slot.startTime}  –  {slot.endTime}

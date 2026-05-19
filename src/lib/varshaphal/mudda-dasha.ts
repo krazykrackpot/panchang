@@ -108,6 +108,7 @@ export function calculateMuddaDasha(
   return periods;
 }
 
+// Use UTC accessors — Date was constructed with Date.UTC (local-time values baked in)
 function formatDate(d: Date): string {
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`;
 }

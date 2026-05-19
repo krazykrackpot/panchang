@@ -48,7 +48,7 @@ const LABELS = {
   },
   durgaPujaText: {
     en: 'Durga Puja is not merely a festival in Bengal  –  it is the defining cultural event of the year, a 10-day celebration that transforms cities, towns, and villages into open-air art galleries and communal gathering spaces. The observances begin with Mahalaya (the Amavasya of Ashwin), when Bengalis wake before dawn to listen to Birendra Krishna Bhadra\'s legendary All India Radio recitation of "Mahishasura Mardini"  –  a tradition since 1931 that remains unchanged. Mahalaya marks the end of Pitru Paksha and the invocation of Goddess Durga to descend to Earth. The main puja spans Shashti through Dashami: Shashti (day 6) features the "Bodhon" or awakening of the deity; Saptami (day 7) begins with "Nabapatrika" (nine plants representing nine forms of Durga) being bathed in the Ganges; Ashtami (day 8) is the most sacred day with "Kumari Puja" (worshipping a young girl as the living Goddess) and "Sandhi Puja" at the junction of Ashtami and Navami (the precise 48-minute window when Durga slew the demons Chanda and Munda); Navami (day 9) continues with elaborate rituals; and Dashami (day 10) concludes with "Sindoor Khela" (married women apply vermillion to the Goddess and each other) and the emotional "Bisarjan" (immersion of the idol in water), accompanied by the cry "Asche bochor abar hobe!" (It will happen again next year!). Thousands of themed pandals (temporary structures) across Kolkata compete for artistic excellence, some replicating famous buildings, others showcasing social commentary through innovative installations.',
-    hi: 'दुर्गा पूजा बंगाल में केवल एक त्योहार नहीं  –  यह वर्ष की सबसे परिभाषित सांस्कृतिक घटना है, एक 10-दिवसीय उत्सव जो शहरों और गांवों को खुली कला दीर्घाओं में बदल देता है। उत्सव महालया (आश्विन अमावस्या) से आरम्भ होता है, जब बंगाली भोर से पहले जागकर बीरेन्द्र कृष्ण भद्र की "महिषासुर मर्दिनी" सुनते हैं  –  1931 से अपरिवर्तित परम्परा। मुख्य पूजा षष्ठी से दशमी तक होती है: षष्ठी में "बोधन", सप्तमी में "नबपत्रिका" स्नान, अष्टमी में "कुमारी पूजा" और "सन्धि पूजा", और दशमी में "सिन्दूर खेला" और भावुक "बिसर्जन"। कोलकाता भर में हज़ारों थीमयुक्त पंडाल कलात्मक उत्कृष्टता के लिए प्रतिस्पर्धा करते हैं।',
+    hi: 'दुर्गा पूजा बंगाल में केवल एक त्योहार नहीं  –  यह वर्ष की सबसे परिभाषित सांस्कृतिक घटना है, एक 10-दिवसीय उत्सव जो शहरों और गांवों को खुली कला दीर्घाओं में बदल देता है। उत्सव महालया (आश्विन अमावस्या) से आरम्भ होता है, जब बंगाली भोर से पहले जागकर बीरेन्द्र कृष्ण भद्र की "महिषासुर मर्दिनी" सुनते हैं  –  1931 से अपरिवर्तित परम्परा। मुख्य पूजा षष्ठी से दशमी तक होती है: षष्ठी में "बोधन", सप्तमी में "नबपत्रिका" स्नान, अष्टमी में "कुमारी पूजा" और "सन्धि पूजा", और दशमी में "सिन्दूर खेला" और भावुक "विसर्जन"। कोलकाता भर में हज़ारों थीमयुक्त पंडाल कलात्मक उत्कृष्टता के लिए प्रतिस्पर्धा करते हैं।',
     sa: 'दुर्गापूजा बङ्गाले केवलं पर्व नास्ति  –  वर्षस्य परिभाषितसांस्कृतिकघटना अस्ति, दशदिनात्मकम् उत्सवः। महालयातः (आश्विनामावस्यायाः) दशमीपर्यन्तम् उत्सवः प्रचलति।',
     ta: 'துர்கா பூஜை வங்காளத்தில் வெறும் திருவிழா அல்ல  –  இது ஆண்டின் மிகச் சிறந்த கலாசார நிகழ்வு, நகரங்களையும் கிராமங்களையும் திறந்தவெளி கலைக் கூடங்களாக மாற்றும் 10 நாள் கொண்டாட்டம். மகாலயா (அஸ்வின் அமாவாசை) அன்று தொடங்கி, பீரேந்திர கிருஷ்ண பத்ராவின் "மகிஷாசுர மர்தினி" ஒலிபரப்பை வங்காளிகள் விடியலுக்கு முன் எழுந்து கேட்கிறார்கள்  –  1931 முதல் மாறாத பாரம்பரியம். முக்கிய பூஜை ஷஷ்டி முதல் தசமி வரை: ஷஷ்டியில் "போதன்", சப்தமியில் "நவபத்ரிகா" நீராட்டு, அஷ்டமியில் "குமாரி பூஜை" மற்றும் "சந்தி பூஜை", தசமியில் "சிந்தூர் கேலா" மற்றும் உணர்ச்சிகரமான "பிசர்ஜன்". கொல்கத்தா முழுவதும் ஆயிரக்கணக்கான கருப்பொருள் பந்தல்கள் கலைத் திறனுக்காகப் போட்டியிடுகின்றன.',
   },
@@ -134,6 +134,87 @@ const FESTIVALS = [
   { month: 'Magh', en: 'Saraswati Puja (Vasant Panchami  –  students worship Goddess of learning, dress in yellow, place books at her feet), Maghi Purnima', hi: 'सरस्वती पूजा (वसन्त पंचमी  –  छात्र विद्या की देवी की पूजा, पीले वस्त्र), माघी पूर्णिमा' },
   { month: 'Falgun', en: 'Dol Yatra / Holi (festival of colors  –  Dol Purnima when Radha-Krishna idols are placed on swings), Maha Shivaratri', hi: 'दोल यात्रा / होली (राधा-कृष्ण झूला), महा शिवरात्रि' },
   { month: 'Choitro', en: 'Chaitra Sankranti (last day of Bengali year  –  Charak Puja with hook-swinging rituals), Basanti Puja (spring Durga Puja  –  the original timing of Durga worship before Rama\'s "Akal Bodhan")', hi: 'चैत्र संक्रान्ति (बंगाली वर्ष का अन्तिम दिन  –  चड़क पूजा), बासन्ती पूजा (वसन्त दुर्गा पूजा)' },
+];
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 2026–2027 Bengali Festival Dates with Tithi & Nakshatra
+// Sources: Prokerala / Shubh Panchang reference for Kolkata
+// ═══════════════════════════════════════════════════════════════════════════
+
+const FESTIVAL_DATES_2026 = [
+  { en: 'Makar Sankranti (Poush Sankranti)', hi: 'मकर संक्रान्ति (पौष संक्रान्ति)', bn: 'মকর সংক্রান্তি (পৌষ সংক্রান্তি)', date: 'Wed, 14 Jan 2026', tithi: 'Paush Krishna Pratipada', nakshatra: 'Uttara Ashadha' },
+  { en: 'Saraswati Puja (Vasant Panchami)', hi: 'सरस्वती पूजा (वसन्त पंचमी)', bn: 'সরস্বতী পূজা (বসন্ত পঞ্চমী)', date: 'Mon, 23 Feb 2026', tithi: 'Magha Shukla Panchami', nakshatra: 'Shravana' },
+  { en: 'Poila Boishakh (Bengali New Year)', hi: 'पहला बैशाख (बंगाली नव वर्ष)', bn: 'পয়লা বৈশাখ (বাংলা নববর্ষ)', date: 'Tue, 14 Apr 2026', tithi: 'Chaitra Krishna Amavasya', nakshatra: 'Revati' },
+  { en: 'Rath Yatra', hi: 'रथ यात्रा', bn: 'রথযাত্রা', date: 'Mon, 29 Jun 2026', tithi: 'Ashadha Shukla Dwitiya', nakshatra: 'Pushya' },
+  { en: 'Janmashtami', hi: 'जन्माष्टमी', bn: 'জন্মাষ্টমী', date: 'Sat, 15 Aug 2026', tithi: 'Shravana Krishna Ashtami', nakshatra: 'Rohini' },
+  { en: 'Durga Puja (Shashti)', hi: 'दुर्गा पूजा (षष्ठी)', bn: 'দুর্গা পূজা (ষষ্ঠী)', date: 'Tue, 13 Oct 2026', tithi: 'Ashwin Shukla Shashthi', nakshatra: 'Uttara Phalguni' },
+  { en: 'Durga Puja (Saptami)', hi: 'दुर्गा पूजा (सप्तमी)', bn: 'দুর্গা পূজা (সপ্তমী)', date: 'Wed, 14 Oct 2026', tithi: 'Ashwin Shukla Saptami', nakshatra: 'Hasta' },
+  { en: 'Durga Puja (Ashtami)', hi: 'दुर्गा पूजा (अष्टमी)', bn: 'দুর্গা পূজা (অষ্টমী)', date: 'Thu, 15 Oct 2026', tithi: 'Ashwin Shukla Ashtami', nakshatra: 'Chitra' },
+  { en: 'Durga Puja (Navami)', hi: 'दुर्गा पूजा (नवमी)', bn: 'দুর্গা পূজা (নবমী)', date: 'Fri, 16 Oct 2026', tithi: 'Ashwin Shukla Navami', nakshatra: 'Swati' },
+  { en: 'Vijaya Dashami (Bisarjan)', hi: 'विजया दशमी (विसर्जन)', bn: 'বিজয়া দশমী (বিসর্জন)', date: 'Sat, 17 Oct 2026', tithi: 'Ashwin Shukla Dashami', nakshatra: 'Vishakha' },
+  { en: 'Lakshmi Puja', hi: 'लक्ष्मी पूजा', bn: 'লক্ষ্মী পূজা', date: 'Sat, 24 Oct 2026', tithi: 'Ashwin Purnima', nakshatra: 'Ashwini' },
+  { en: 'Kali Puja / Diwali', hi: 'काली पूजा / दीवाली', bn: 'কালী পূজা / দীপাবলি', date: 'Sun, 8 Nov 2026', tithi: 'Kartik Krishna Amavasya', nakshatra: 'Swati' },
+  { en: 'Chhath Puja', hi: 'छठ पूजा', bn: 'ছঠ পূজা', date: 'Wed, 11 Nov 2026', tithi: 'Kartik Shukla Shashthi', nakshatra: 'Mula' },
+];
+
+const FESTIVAL_DATES_2027 = [
+  { en: 'Makar Sankranti (Poush Sankranti)', hi: 'मकर संक्रान्ति (पौष संक्रान्ति)', bn: 'মকর সংক্রান্তি (পৌষ সংক্রান্তি)', date: 'Thu, 14 Jan 2027', tithi: 'Paush Shukla Dashami', nakshatra: 'Shravana' },
+  { en: 'Saraswati Puja (Vasant Panchami)', hi: 'सरस्वती पूजा (वसन्त पंचमी)', bn: 'সরস্বতী পূজা (বসন্ত পঞ্চমী)', date: 'Thu, 11 Feb 2027', tithi: 'Magha Shukla Panchami', nakshatra: 'Shravana' },
+  { en: 'Poila Boishakh (Bengali New Year)', hi: 'पहला बैशाख (बंगाली नव वर्ष)', bn: 'পয়লা বৈশাখ (বাংলা নববর্ষ)', date: 'Wed, 14 Apr 2027', tithi: 'Chaitra Krishna Amavasya', nakshatra: 'Revati' },
+  { en: 'Rath Yatra', hi: 'रथ यात्रा', bn: 'রথযাত্রা', date: 'Fri, 18 Jun 2027', tithi: 'Ashadha Shukla Dwitiya', nakshatra: 'Pushya' },
+  { en: 'Janmashtami', hi: 'जन्माष्टमी', bn: 'জন্মাষ্টমী', date: 'Thu, 5 Aug 2027', tithi: 'Shravana Krishna Ashtami', nakshatra: 'Rohini' },
+  { en: 'Durga Puja (Shashti)', hi: 'दुर्गा पूजा (षष्ठी)', bn: 'দুর্গা পূজা (ষষ্ঠী)', date: 'Sat, 2 Oct 2027', tithi: 'Ashwin Shukla Shashthi', nakshatra: 'Uttara Phalguni' },
+  { en: 'Durga Puja (Saptami)', hi: 'दुर्गा पूजा (सप्तमी)', bn: 'দুর্গা পূজা (সপ্তমী)', date: 'Sun, 3 Oct 2027', tithi: 'Ashwin Shukla Saptami', nakshatra: 'Hasta' },
+  { en: 'Durga Puja (Ashtami)', hi: 'दुर्गा पूजा (अष्टमी)', bn: 'দুর্গা পূজা (অষ্টমী)', date: 'Mon, 4 Oct 2027', tithi: 'Ashwin Shukla Ashtami', nakshatra: 'Chitra' },
+  { en: 'Durga Puja (Navami)', hi: 'दुर्गा पूजा (नवमी)', bn: 'দুর্গা পূজা (নবমী)', date: 'Tue, 5 Oct 2027', tithi: 'Ashwin Shukla Navami', nakshatra: 'Swati' },
+  { en: 'Vijaya Dashami (Bisarjan)', hi: 'विजया दशमी (विसर्जन)', bn: 'বিজয়া দশমী (বিসর্জন)', date: 'Wed, 6 Oct 2027', tithi: 'Ashwin Shukla Dashami', nakshatra: 'Vishakha' },
+  { en: 'Lakshmi Puja', hi: 'लक्ष्मी पूजा', bn: 'লক্ষ্মী পূজা', date: 'Wed, 13 Oct 2027', tithi: 'Ashwin Purnima', nakshatra: 'Ashwini' },
+  { en: 'Kali Puja / Diwali', hi: 'काली पूजा / दीवाली', bn: 'কালী পূজা / দীপাবলি', date: 'Thu, 28 Oct 2027', tithi: 'Kartik Krishna Amavasya', nakshatra: 'Chitra' },
+  { en: 'Chhath Puja', hi: 'छठ पूजा', bn: 'ছঠ পূজা', date: 'Mon, 1 Nov 2027', tithi: 'Kartik Shukla Shashthi', nakshatra: 'Mula' },
+];
+
+// Bengali Month → Gregorian conversion table for 2026–2027
+const MONTH_CONVERSION = [
+  { bengali: 'Boishakh 1433', bangla: 'বৈশাখ ১৪৩৩', start2026: '14 Apr 2026', end2026: '14 May 2026', start2027: '14 Apr 2027', end2027: '14 May 2027', bangabda2027: '১৪৩৪' },
+  { bengali: 'Joishto', bangla: 'জ্যৈষ্ঠ', start2026: '15 May 2026', end2026: '14 Jun 2026', start2027: '15 May 2027', end2027: '14 Jun 2027' },
+  { bengali: 'Asharh', bangla: 'আষাঢ়', start2026: '15 Jun 2026', end2026: '15 Jul 2026', start2027: '15 Jun 2027', end2027: '15 Jul 2027' },
+  { bengali: 'Shrabon', bangla: 'শ্রাবণ', start2026: '16 Jul 2026', end2026: '15 Aug 2026', start2027: '16 Jul 2027', end2027: '15 Aug 2027' },
+  { bengali: 'Bhadro', bangla: 'ভাদ্র', start2026: '16 Aug 2026', end2026: '15 Sep 2026', start2027: '16 Aug 2027', end2027: '15 Sep 2027' },
+  { bengali: 'Ashwin', bangla: 'আশ্বিন', start2026: '16 Sep 2026', end2026: '15 Oct 2026', start2027: '16 Sep 2027', end2027: '15 Oct 2027' },
+  { bengali: 'Kartik', bangla: 'কার্তিক', start2026: '16 Oct 2026', end2026: '14 Nov 2026', start2027: '16 Oct 2027', end2027: '14 Nov 2027' },
+  { bengali: 'Ogrohayon', bangla: 'অগ্রহায়ণ', start2026: '15 Nov 2026', end2026: '14 Dec 2026', start2027: '15 Nov 2027', end2027: '14 Dec 2027' },
+  { bengali: 'Poush', bangla: 'পৌষ', start2026: '15 Dec 2026', end2026: '13 Jan 2027', start2027: '15 Dec 2027', end2027: '13 Jan 2028' },
+  { bengali: 'Magh', bangla: 'মাঘ', start2026: '14 Jan 2027', end2026: '12 Feb 2027', start2027: '14 Jan 2028', end2027: '12 Feb 2028' },
+  { bengali: 'Falgun', bangla: 'ফাল্গুন', start2026: '13 Feb 2027', end2026: '14 Mar 2027', start2027: '13 Feb 2028', end2027: '14 Mar 2028' },
+  { bengali: 'Choitro', bangla: 'চৈত্র', start2026: '15 Mar 2027', end2026: '13 Apr 2027', start2027: '15 Mar 2028', end2027: '13 Apr 2028' },
+];
+
+// FAQ data for structured data
+const FAQ_DATA = [
+  {
+    q: { en: 'When is Durga Puja 2026?', hi: 'दुर्गा पूजा 2026 कब है?' },
+    a: { en: 'Durga Puja 2026 runs from Shashti (Tuesday, 13 October) to Dashami/Bisarjan (Saturday, 17 October). Mahalaya falls on Saturday, 3 October 2026. The main five days of worship span Shashti through Dashami in the month of Ashwin.', hi: 'दुर्गा पूजा 2026 षष्ठी (मंगलवार, 13 अक्टूबर) से दशमी/विसर्जन (शनिवार, 17 अक्टूबर) तक चलेगी। महालया शनिवार, 3 अक्टूबर 2026 को पड़ती है।' },
+  },
+  {
+    q: { en: 'When is Durga Puja 2027?', hi: 'दुर्गा पूजा 2027 कब है?' },
+    a: { en: 'Durga Puja 2027 runs from Shashti (Saturday, 2 October) to Dashami/Bisarjan (Wednesday, 6 October). The five-day celebration during Ashwin Shukla Paksha features Saptami on 3 Oct, Maha Ashtami on 4 Oct, and Navami on 5 Oct.', hi: 'दुर्गा पूजा 2027 षष्ठी (शनिवार, 2 अक्टूबर) से दशमी/विसर्जन (बुधवार, 6 अक्टूबर) तक चलेगी।' },
+  },
+  {
+    q: { en: 'What is Poila Boishakh?', hi: 'पहला बैशाख क्या है?' },
+    a: { en: 'Poila Boishakh (also written Pahela Baishakh) is the Bengali New Year, celebrated on 1 Boishakh — always 14 April in the reformed Saha calendar. It marks the start of the Bangabda era. In West Bengal, it is celebrated with Halkhata (opening new account books), Mangal Shobhajatra processions, and feasting on Ilish Maach (Hilsa fish). In Bangladesh, the Mangal Shobhajatra at Dhaka University is a UNESCO Intangible Cultural Heritage.', hi: 'पहला बैशाख (पोइला बोइशाख) बंगाली नव वर्ष है, जो सदैव 14 अप्रैल को मनाया जाता है। पश्चिम बंगाल में हालखाता, मंगल शोभायात्रा और इलिश माछ के साथ उत्सव होता है।' },
+  },
+  {
+    q: { en: 'How does the Bengali calendar differ from the Hindu calendar?', hi: 'बंगाली कैलेंडर हिंदू कैलेंडर से कैसे भिन्न है?' },
+    a: { en: 'The Bengali calendar (Bangabda) is a solar calendar reformed in 1966 by the Meghnad Saha committee, whereas most North Indian Hindu calendars are lunisolar. Key differences: (1) Fixed month lengths — the first five months have 31 days, the remaining seven have 30 days. (2) The year starts on a fixed Gregorian date (14 April) rather than a shifting lunar tithi. (3) Leap years are synchronised with the Gregorian calendar. (4) Despite the solar structure, Bengali festivals still follow lunar tithis for religious observances like Durga Puja, Kali Puja, and Saraswati Puja.', hi: 'बंगाली कैलेंडर (बंगाब्द) 1966 में मेघनाद साहा समिति द्वारा सुधारित सौर कैलेंडर है, जबकि अधिकांश उत्तर भारतीय हिंदू कैलेंडर चांद्रसौर हैं। मुख्य अंतर: निश्चित मास लंबाई, ग्रेगोरियन लीप वर्ष के साथ समन्वय, और 14 अप्रैल को निश्चित वर्षारम्भ।' },
+  },
+  {
+    q: { en: 'When is Kali Puja 2026?', hi: 'काली पूजा 2026 कब है?' },
+    a: { en: 'Kali Puja 2026 falls on Sunday, 8 November 2026, on the Amavasya (new moon) of Kartik month. In Bengal, Kali Puja is observed alongside Diwali but with distinct rituals centred on Goddess Kali. The puja is performed at midnight (Nishi Puja), and thousands of illuminated pandals are set up across Kolkata.', hi: 'काली पूजा 2026 रविवार, 8 नवम्बर 2026 को कार्तिक अमावस्या पर पड़ती है। बंगाल में दीवाली के साथ-साथ काली पूजा अलग अनुष्ठानों के साथ मनाई जाती है।' },
+  },
+  {
+    q: { en: 'What is the current Bengali year (Bangabda)?', hi: 'वर्तमान बंगाली वर्ष (बंगाब्द) क्या है?' },
+    a: { en: 'The current Bengali year is Bangabda 1433 (from 14 April 2026 to 13 April 2027). The Bangabda era began in 594 CE and is calculated as Gregorian year minus 593 (before 14 April) or minus 594 (after 14 April). Bangabda 1434 begins on 14 April 2027.', hi: 'वर्तमान बंगाली वर्ष बंगाब्द 1433 है (14 अप्रैल 2026 से 13 अप्रैल 2027 तक)। बंगाब्द 1434 14 अप्रैल 2027 से आरम्भ होगा।' },
+  },
 ];
 
 const RELATED_LINKS = [
@@ -245,6 +326,197 @@ export default function BengaliCalendarPage() {
             {L('panjikaText')}
           </p>
         </section>
+
+        {/* ══════════════════════════════════════════════════ */}
+        {/* 2026 Bengali Festival Dates with Tithi & Nakshatra */}
+        {/* ══════════════════════════════════════════════════ */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {isHi ? 'बंगाली त्योहार 2026 — तिथि, नक्षत्र और दिनांक' : 'Bengali Festival Dates 2026 — Tithi, Nakshatra & Exact Dates'}
+          </h2>
+          <p className="text-text-secondary text-sm leading-relaxed mb-5">
+            {isHi
+              ? 'कोलकाता सन्दर्भ के साथ 2026 के प्रमुख बंगाली त्योहारों की सटीक तिथियां, तिथि और नक्षत्र। अपने पूजा की योजना इन सत्यापित तिथियों के साथ बनाएं।'
+              : 'Exact dates for all major Bengali festivals in 2026 with tithi (lunar day) and nakshatra (lunar mansion) computed for Kolkata. Plan your puja schedules with these verified dates from the Bengali Panjika.'}
+          </p>
+          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isHi ? 'त्योहार' : 'Festival'}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isHi ? 'दिनांक' : 'Date'}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isHi ? 'तिथि' : 'Tithi'}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isHi ? 'नक्षत्र' : 'Nakshatra'}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {FESTIVAL_DATES_2026.map((f, i) => (
+                  <tr key={f.en} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                    <td className="px-4 py-2.5 text-text-primary font-medium">{locale === 'bn' ? f.bn : isHi ? f.hi : f.en}</td>
+                    <td className="px-4 py-2.5 text-amber-400/80">{f.date}</td>
+                    <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
+                    <td className="px-4 py-2.5 text-text-secondary">{f.nakshatra}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* 2027 Bengali Festival Dates */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {isHi ? 'बंगाली त्योहार 2027 — तिथि, नक्षत्र और दिनांक' : 'Bengali Festival Dates 2027 — Tithi, Nakshatra & Exact Dates'}
+          </h2>
+          <p className="text-text-secondary text-sm leading-relaxed mb-5">
+            {isHi
+              ? '2027 में प्रमुख बंगाली त्योहार। बंगाब्द 1434 14 अप्रैल 2027 से आरम्भ होगा।'
+              : 'Major Bengali festival dates for 2027. Bangabda 1434 begins on 14 April 2027. All dates computed for Kolkata with tithi and nakshatra from the Bengali Panjika.'}
+          </p>
+          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isHi ? 'त्योहार' : 'Festival'}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isHi ? 'दिनांक' : 'Date'}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isHi ? 'तिथि' : 'Tithi'}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isHi ? 'नक्षत्र' : 'Nakshatra'}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {FESTIVAL_DATES_2027.map((f, i) => (
+                  <tr key={f.en} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                    <td className="px-4 py-2.5 text-text-primary font-medium">{locale === 'bn' ? f.bn : isHi ? f.hi : f.en}</td>
+                    <td className="px-4 py-2.5 text-amber-400/80">{f.date}</td>
+                    <td className="px-4 py-2.5 text-text-secondary">{f.tithi}</td>
+                    <td className="px-4 py-2.5 text-text-secondary">{f.nakshatra}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* Bengali Month to Gregorian Conversion Table */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {isHi ? 'बंगाली मास से ग्रेगोरियन रूपान्तरण तालिका (2026–2027)' : 'Bengali Month to Gregorian Conversion Table (2026–2027)'}
+          </h2>
+          <p className="text-text-secondary text-sm leading-relaxed mb-5">
+            {isHi
+              ? 'प्रत्येक बंगाली मास की ग्रेगोरियन प्रारम्भ और समाप्ति तिथियां। साहा सुधार के बाद, बैशाख से भाद्र तक 31 दिन और आश्विन से चैत्र तक 30 दिन निश्चित हैं।'
+              : 'Start and end dates in the Gregorian calendar for each Bengali month. After the Saha reform, Boishakh through Bhadro have 31 days and Ashwin through Choitro have 30 days. The Bengali year (Bangabda) runs from mid-April to mid-April.'}
+          </p>
+          <div className="overflow-x-auto rounded-2xl border border-gold-primary/12">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{isHi ? 'बंगाली मास' : 'Bengali Month'}</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">বাংলা</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">2026</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">2027</th>
+                </tr>
+              </thead>
+              <tbody>
+                {MONTH_CONVERSION.map((m, i) => (
+                  <tr key={m.bengali} className={i % 2 === 0 ? 'bg-bg-secondary/20' : 'bg-bg-secondary/40'}>
+                    <td className="px-4 py-2.5 text-text-primary font-medium">{m.bengali}</td>
+                    <td className="px-4 py-2.5 text-amber-400/80">{m.bangla}</td>
+                    <td className="px-4 py-2.5 text-text-secondary text-xs">{m.start2026} — {m.end2026}</td>
+                    <td className="px-4 py-2.5 text-text-secondary text-xs">{m.start2027} — {m.end2027}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* Bengali Calendar History & Significance (SEO long-form) */}
+        <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {isHi ? 'बंगाली कैलेंडर का इतिहास और महत्व' : 'History & Significance of the Bengali Calendar'}
+          </h2>
+          <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
+            <p>
+              {isHi
+                ? 'बंगाब्द संवत् की उत्पत्ति विवादास्पद है। कुछ विद्वान इसे 594 ई. में राजा शशांक द्वारा स्थापित मानते हैं, जबकि अन्य इसे मुगल सम्राट अकबर के 1556 ई. में फसली कैलेंडर सुधार से जोड़ते हैं। 1966 में डॉ. मेघनाद साहा के नेतृत्व में कैलेंडर सुधार समिति ने आधुनिक बंगाली कैलेंडर तैयार किया।'
+                : 'The origin of the Bangabda era is debated. Some scholars attribute it to King Shashanka of the Gauda Kingdom in 594 CE, while others connect it to Mughal Emperor Akbar\'s Fasli calendar reform of 1556 CE. Regardless of its origin, the calendar was used throughout Bengal for centuries in its unreformed sidereal form, with months of variable length tied to the Sun\'s transit through the zodiac signs. The landmark reform came in 1966 when the Calendar Reform Committee led by the renowned astrophysicist Dr. Meghnad Saha (known for the Saha ionization equation) standardised the month lengths and synchronised leap years with the Gregorian system.'}
+            </p>
+            <p>
+              {isHi
+                ? 'बंगाली पंजिका केवल एक कैलेंडर नहीं, बल्कि बंगाली संस्कृति का अभिन्न अंग है। गुप्त प्रेस (1875 से) और बिशुद्ध सिद्धान्त पंजिका जैसे प्रकाशन गृह प्रतिवर्ष विस्तृत पंजिका प्रकाशित करते हैं जिनमें दैनिक तिथि, नक्षत्र, योग, करण, ग्रह स्थिति, विवाह मुहूर्त, कृषि परामर्श और शुभ-अशुभ समय शामिल होते हैं। बंगाली परिवारों के लिए वार्षिक पंजिका खरीदना एक अनिवार्य परम्परा है।'
+                : 'The Bengali Panjika is far more than a calendar — it is an integral part of Bengali cultural identity. Publishing houses like Gupta Press (established 1875) and the Bishudha Siddhanta Panjika release comprehensive almanacs each year containing daily tithi, nakshatra, yoga, karana, planetary positions, marriage muhurtas, agricultural advice, and auspicious/inauspicious timings. For Bengali families, the annual Panjika purchase is as essential as buying new clothes for Poila Boishakh. The Panjika also serves as a historical record — notable events, eclipses, and cultural milestones are annotated year after year, creating a continuous chronicle of Bengali life.'}
+            </p>
+            <p>
+              {isHi
+                ? 'बंगाली कैलेंडर की अनूठी विशेषता यह है कि यह सौर कैलेंडर होते हुए भी त्योहारों के लिए चांद्र तिथियों का उपयोग करता है। दुर्गा पूजा, काली पूजा, सरस्वती पूजा और अन्य प्रमुख त्योहार आश्विन शुक्ल षष्ठी, कार्तिक अमावस्या और माघ शुक्ल पंचमी जैसी चांद्र तिथियों पर निर्भर करते हैं। यह द्वैत प्रणाली — नागरिक जीवन के लिए सौर और धार्मिक जीवन के लिए चांद्र — बंगाली कैलेंडर को भारत के अन्य कैलेंडरों से विशिष्ट बनाती है।'
+                : 'A unique feature of the Bengali calendar is its dual nature: while civil dates follow the reformed solar system, all religious festivals are determined by lunar tithis. Durga Puja is fixed to Ashwin Shukla Shashthi through Dashami, Kali Puja falls on Kartik Amavasya, and Saraswati Puja is observed on Magha Shukla Panchami. This dual system — solar for civil life, lunar for sacred life — makes the Bengali calendar distinctive among Indian calendrical traditions. The Panjika astronomers compute the exact moment of each tithi transition to determine festival timings, which is why different Panjika publishers sometimes prescribe slightly different observance dates.'}
+            </p>
+          </div>
+        </section>
+
+        {/* Bangabda Era Explanation */}
+        <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+          <h2 className="text-2xl font-bold text-gold-light mb-3" style={hf}>
+            {isHi ? 'बंगाब्द संवत् — बंगाली वर्ष गणना' : 'The Bangabda Era — Bengali Year Numbering'}
+          </h2>
+          <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
+            <p>
+              {isHi
+                ? 'बंगाब्द (बंगाली संवत्) 594 ई. से गणना की जाती है। वर्तमान बंगाली वर्ष बंगाब्द 1433 (14 अप्रैल 2026 से 13 अप्रैल 2027) है। गणना सूत्र: ग्रेगोरियन वर्ष − 593 (14 अप्रैल के बाद) या ग्रेगोरियन वर्ष − 594 (14 अप्रैल से पहले)।'
+                : 'The Bangabda (Bengali era) counts from 594 CE. The current Bengali year is Bangabda 1433 (14 April 2026 to 13 April 2027). The formula is: Gregorian year minus 593 (after 14 April) or minus 594 (before 14 April). Bangabda 1434 begins on 14 April 2027. This era predates the Mughal period and is one of the oldest continuously used calendar eras in South Asia, alongside the Saka era (78 CE) and the Vikram Samvat (57 BCE).'}
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+              <div className="bg-bg-primary/40 border border-gold-primary/8 rounded-xl p-4">
+                <div className="text-gold-light font-semibold text-lg mb-1">1433</div>
+                <div className="text-text-secondary text-xs">{isHi ? 'बंगाब्द (14 अप्रैल 2026 – 13 अप्रैल 2027)' : 'Bangabda (14 Apr 2026 – 13 Apr 2027)'}</div>
+              </div>
+              <div className="bg-bg-primary/40 border border-gold-primary/8 rounded-xl p-4">
+                <div className="text-gold-light font-semibold text-lg mb-1">1434</div>
+                <div className="text-text-secondary text-xs">{isHi ? 'बंगाब्द (14 अप्रैल 2027 – 13 अप्रैल 2028)' : 'Bangabda (14 Apr 2027 – 13 Apr 2028)'}</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section (visible + structured data) */}
+        <section>
+          <h2 className="text-2xl font-bold text-gold-light mb-5" style={hf}>
+            {isHi ? 'अक्सर पूछे जाने वाले प्रश्न (FAQ)' : 'Frequently Asked Questions (FAQ)'}
+          </h2>
+          <div className="space-y-4">
+            {FAQ_DATA.map((faq) => (
+              <details key={faq.q.en} className="group bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl overflow-hidden">
+                <summary className="cursor-pointer px-5 py-4 text-gold-light font-medium text-sm flex items-center justify-between hover:border-gold-primary/30">
+                  <span>{isHi ? faq.q.hi : faq.q.en}</span>
+                  <span className="ml-3 text-gold-primary/50 group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <div className="px-5 pb-4 text-text-secondary text-sm leading-relaxed border-t border-gold-primary/8 pt-3">
+                  {isHi ? faq.a.hi : faq.a.en}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        {/* JSON-LD FAQ Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: FAQ_DATA.map((faq) => ({
+                '@type': 'Question',
+                name: faq.q.en,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: faq.a.en,
+                },
+              })),
+            }),
+          }}
+        />
 
         {/* Related Links */}
         <section>

@@ -337,6 +337,7 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
           },
           body: JSON.stringify({
             chart: snapshot,
+            date,
             lat: locationStore.lat ?? 0,
             lng: locationStore.lng ?? 0,
             timezone: locationStore.timezone ?? undefined,

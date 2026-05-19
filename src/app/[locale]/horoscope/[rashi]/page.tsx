@@ -16,11 +16,10 @@ function tl(obj: LocaleText | undefined, locale: string): string {
 }
 
 function ordinal(n: number): string {
-  if (n === 11 || n === 12 || n === 13) return `${n}th`;
-  const last = n % 10;
-  if (last === 1) return `${n}st`;
-  if (last === 2) return `${n}nd`;
-  if (last === 3) return `${n}rd`;
+  const j = n % 10, k = n % 100;
+  if (j === 1 && k !== 11) return `${n}st`;
+  if (j === 2 && k !== 12) return `${n}nd`;
+  if (j === 3 && k !== 13) return `${n}rd`;
   return `${n}th`;
 }
 
@@ -31,12 +30,12 @@ function scoreColor(score: number): string {
   return 'bg-red-500';
 }
 
-// Thresholds aligned with HoroscopeClient.tsx scoreLabel to prevent hydration mismatch
-function scoreLabel(score: number, isHi: boolean): string {
-  if (score >= 8) return isHi ? 'उत्कृष्ट' : 'Excellent';
-  if (score >= 6.5) return isHi ? 'शुभ' : 'Good';
-  if (score >= 4) return isHi ? 'मिश्रित' : 'Mixed';
-  return isHi ? 'चुनौतीपूर्ण' : 'Challenging';
+// Thresholds + strings MUST match HoroscopeClient.tsx scoreLabel exactly (including sa locale)
+function scoreLabel(score: number, locale: string): string {
+  if (score >= 8) return tl({ en: 'Excellent', hi: 'उत्कृष्ट', sa: 'उत्कृष्ट' }, locale);
+  if (score >= 6.5) return tl({ en: 'Good', hi: 'शुभ', sa: 'शुभ' }, locale);
+  if (score >= 4) return tl({ en: 'Mixed', hi: 'मिश्रित', sa: 'मिश्रित' }, locale);
+  return tl({ en: 'Challenging', hi: 'चुनौतीपूर्ण', sa: 'कठिनः' }, locale);
 }
 
 export default async function RashiPage({ params }: { params: Promise<{ locale: string; rashi: string }> }) {
@@ -88,7 +87,7 @@ export default async function RashiPage({ params }: { params: Promise<{ locale: 
               <span className="text-3xl font-bold text-gold-light">{horoscope.overallScore}</span>
               <span className="text-text-secondary text-sm">/10</span>
               <span className={`text-xs px-2 py-0.5 rounded-full ${horoscope.overallScore >= 7 ? 'bg-emerald-500/20 text-emerald-400' : horoscope.overallScore >= 4 ? 'bg-amber-500/20 text-amber-400' : 'bg-red-500/20 text-red-400'}`}>
-                {scoreLabel(horoscope.overallScore, isHi)}
+                {scoreLabel(horoscope.overallScore, locale)}
               </span>
             </div>
           </div>

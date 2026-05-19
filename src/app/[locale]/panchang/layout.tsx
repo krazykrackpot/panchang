@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     const day = istDate.getUTCDate();
 
     const p = computePanchang({ year, month, day, lat: REF_LAT, lng: REF_LNG, tzOffset, timezone: REF_TZ, locationName: 'Ujjain' });
-    const dateStr = istDate.toLocaleDateString(locale === 'hi' ? 'hi-IN' : 'en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+    const dateStr = istDate.toLocaleDateString((locale === 'hi' || locale === 'sa') ? 'hi-IN' : 'en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
     const isHi = locale === 'hi' || locale === 'sa';
     const tithi = isHi ? p.tithi.name.hi : p.tithi.name.en;
     const nak = isHi ? p.nakshatra.name.hi : p.nakshatra.name.en;

@@ -21,6 +21,20 @@ const msg = (key: string, locale: string) => tl((M as unknown as Record<string, 
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
+/** Convert server UTC time to a city's local date components.
+ *  Vercel runs UTC — new Date() gives wrong date for cities ahead of UTC after midnight. */
+function getCityLocalDate(timezone: string) {
+  const nowUtc = new Date();
+  const tzOff = getUTCOffsetForDate(nowUtc.getUTCFullYear(), nowUtc.getUTCMonth() + 1, nowUtc.getUTCDate(), timezone);
+  const shifted = new Date(nowUtc.getTime() + tzOff * 3600_000);
+  return {
+    date: shifted,
+    year: shifted.getUTCFullYear(),
+    month: shifted.getUTCMonth() + 1,
+    day: shifted.getUTCDate(),
+  };
+}
+
 // ──────────────────────────────────────────────────────────────
 // Dynamic rendering — no ISR cache. "Today's panchang" must reflect the actual
 // current date. ISR bakes tithi/nakshatra into HTML that goes stale in Google's
@@ -43,15 +57,7 @@ export async function generateMetadata({
 
   const isHi = isDevanagariLocale(locale);
   const cityName = isHi ? city.name.hi : city.name.en;
-  // Convert server UTC time to the city's local date — Vercel runs UTC,
-  // so new Date() would show yesterday for cities ahead of UTC after midnight.
-  const nowUtc = new Date();
-  const tzOffsetPreview = getUTCOffsetForDate(nowUtc.getUTCFullYear(), nowUtc.getUTCMonth() + 1, nowUtc.getUTCDate(), city.timezone);
-  const cityMs = nowUtc.getTime() + tzOffsetPreview * 3600_000;
-  const cityDate = new Date(cityMs);
-  const year = cityDate.getUTCFullYear();
-  const month = cityDate.getUTCMonth() + 1;
-  const day = cityDate.getUTCDate();
+  const { date: cityDate, year, month, day } = getCityLocalDate(city.timezone);
   const dateStr = cityDate.toLocaleDateString(msg('localeId', locale), {
     day: 'numeric', month: 'long', year: 'numeric',
     timeZone: 'UTC', // cityDate is already shifted — interpret as UTC to avoid double-shift
@@ -162,15 +168,7 @@ export default async function CityPanchangPage({
   const isHi = isDevanagariLocale(loc);
   const cityName = isHi ? city.name.hi : city.name.en;
 
-  // Convert server UTC time to the city's local date — Vercel runs UTC,
-  // so new Date() would show yesterday for cities ahead of UTC after midnight.
-  const nowUtc = new Date();
-  const tzOffsetPreview = getUTCOffsetForDate(nowUtc.getUTCFullYear(), nowUtc.getUTCMonth() + 1, nowUtc.getUTCDate(), city.timezone);
-  const cityMs = nowUtc.getTime() + tzOffsetPreview * 3600_000;
-  const now = new Date(cityMs);  // city-local time as UTC fields
-  const year = now.getUTCFullYear();
-  const month = now.getUTCMonth() + 1;
-  const day = now.getUTCDate();
+  const { date: now, year, month, day } = getCityLocalDate(city.timezone);
   const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
 
   const input: PanchangInput = {

@@ -1,5 +1,6 @@
 # Dekho Panchang — Vedic Astrology Platform
 # https://dekhopanchang.com
+# For full context with example outputs, see /llms-full.txt
 
 > Dekho Panchang is a free, computation-first Vedic astrology platform built on Swiss Ephemeris (NASA JPL DE441 planetary ephemeris) with Lahiri Ayanamsha (Chitrapaksha — Indian government standard). It provides daily Panchang, complete Kundali with 25+ analysis modules, AI-powered Muhurta search, compatibility matching, and personalized Jyotish interpretation — all computed from first principles, no external APIs.
 

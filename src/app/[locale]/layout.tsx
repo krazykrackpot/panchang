@@ -129,6 +129,7 @@ export default async function LocaleLayout({
         <meta name="google-adsense-account" content="ca-pub-4787764488539456" />
         <link rel="alternate" type="application/rss+xml" title="Dekho Panchang" href="/api/feed" />
         <link rel="author" href="/llms.txt" />
+        <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLM Full Context" />
       </head>
       <body className={`${inter.variable} ${cinzel.variable} ${cormorant.variable} ${notoDevanagari.variable} ${notoTamil.variable} ${notoTelugu.variable} ${notoBengali.variable} ${notoKannada.variable} ${notoGujarati.variable} min-h-screen bg-bg-primary text-text-primary antialiased`} suppressHydrationWarning>
         <Script id="theme-init" strategy="beforeInteractive">{`try{localStorage.removeItem('theme');document.documentElement.classList.remove('light');document.documentElement.classList.add('dark')}catch(e){}`}</Script>

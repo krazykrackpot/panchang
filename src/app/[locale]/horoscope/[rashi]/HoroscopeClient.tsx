@@ -193,11 +193,10 @@ function extractSnapshot(kundali: KundaliData): ChartSnapshot {
 }
 
 function getOrdinalSuffix(n: number): string {
-  if (n >= 11 && n <= 13) return 'th';
-  const lastDigit = n % 10;
-  if (lastDigit === 1) return 'st';
-  if (lastDigit === 2) return 'nd';
-  if (lastDigit === 3) return 'rd';
+  const j = n % 10, k = n % 100;
+  if (j === 1 && k !== 11) return 'st';
+  if (j === 2 && k !== 12) return 'nd';
+  if (j === 3 && k !== 13) return 'rd';
   return 'th';
 }
 
@@ -240,7 +239,7 @@ interface Props {
 
 export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }: Props) {
   const lk = dataLocale(locale as Locale);
-  const isHi = lk === 'hi';
+  const isHi = isDevanagariLocale(locale as Locale);
   const headingFont = getHeadingFont(locale as Locale);
   const bodyFont = getBodyFont(locale as Locale);
   const L = isHi ? LABELS.hi : LABELS.en;

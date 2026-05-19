@@ -893,12 +893,11 @@ export default function DashboardPage() {
       const profileRes = await fetch('/api/user/profile', {
         headers: { Authorization: `Bearer ${session.access_token}` },
       });
-      if (profileRes.ok) {
-        const { profile } = await profileRes.json();
-        setDisplayName(profile?.display_name || user.user_metadata?.name || '');
-        if (profile?.birth_lat != null) setBirthLat(profile.birth_lat);
-        if (profile?.birth_lng != null) setBirthLng(profile.birth_lng);
-      }
+      if (!profileRes.ok) { setLoading(false); return; }
+      const { profile } = await profileRes.json();
+      setDisplayName(profile?.display_name || user.user_metadata?.name || '');
+      if (profile?.birth_lat != null) setBirthLat(profile.birth_lat);
+      if (profile?.birth_lng != null) setBirthLng(profile.birth_lng);
 
       // Use snapshot from hook — already has all JSONB fields (planet_positions,
       // dasha_timeline, sade_sati, chart_data, full_kundali).
@@ -908,6 +907,31 @@ export default function DashboardPage() {
         setHasBirthData(false);
         setLoading(false);
         return;
+      }
+
+      // Auto-recompute stale snapshots: when computation logic changes (bug fixes,
+      // new features), bump CURRENT_COMPUTATION_VERSION in profile/route.ts.
+      // Stale snapshots get re-computed transparently on next dashboard load.
+      const CURRENT_COMPUTATION_VERSION = 2;
+      const isStale = (Number(snapshot.computation_version) || 0) < CURRENT_COMPUTATION_VERSION;
+      if (isStale && profile?.date_of_birth && profile?.birth_lat != null && profile?.birth_lng != null && session) {
+        // Fire-and-forget — profile POST re-computes and upserts snapshot.
+        fetch('/api/user/profile', {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${session.access_token}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: profile.display_name || '',
+            dateOfBirth: profile.date_of_birth,
+            timeOfBirth: profile.time_of_birth || '12:00',
+            birthPlace: profile.birth_place || '',
+            birthLat: profile.birth_lat,
+            birthLng: profile.birth_lng,
+            birthTimezone: profile.birth_timezone || 'Asia/Kolkata',
+          }),
+        }).then(recomputeRes => {
+          if (recomputeRes.ok) loadDashboard();
+          else console.error('[dashboard] snapshot recompute returned', recomputeRes.status);
+        }).catch(err => console.error('[dashboard] snapshot recompute failed:', err));
       }
 
       setHasBirthData(true);

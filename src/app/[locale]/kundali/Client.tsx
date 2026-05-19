@@ -34,7 +34,7 @@ import { TITHIS } from '@/lib/constants/tithis';
 import { YOGAS } from '@/lib/constants/yogas';
 import { resolveBirthTimezone } from '@/lib/utils/timezone';
 import { generateTippanni } from '@/lib/kundali/tippanni-engine';
-import { trackKundaliGenerated, trackTabViewed } from '@/lib/analytics';
+import { trackKundaliGenerated, trackTabViewed, trackUtmEvent } from '@/lib/analytics';
 import type { TippanniContent, PlanetInsight } from '@/lib/kundali/tippanni-types';
 import type { MahadashaOverview, AntardashaSynthesis, PratyantardashaSynthesis, PeriodAssessment } from '@/lib/tippanni/dasha-synthesis-types';
 import { detectAfflictedPlanets, type AfflictedPlanet } from '@/lib/puja/affliction-detector';
@@ -864,6 +864,7 @@ export default function KundaliClient() {
         sessionStorage.setItem('kundali_last_result', JSON.stringify({ kundali: data, chartStyle: style, sig: `${birthData.lat}|${birthData.lng}|${birthData.date}|${birthData.time}|${birthData.timezone}` }));
       } catch (storageErr) { console.warn('[kundali] sessionStorage write failed:', storageErr); }
       trackKundaliGenerated({ location: birthData.place || 'unknown', hasBirthTime: !!birthData.time });
+      trackUtmEvent('kundali_generated', { location: birthData.place || 'unknown', hasBirthTime: !!birthData.time });
       // Persist Moon nakshatra & rashi ONLY for self charts  –  not for family members.
       // This data drives horoscope auto-select and Chandrabalam/Tarabalam on panchang page.
       if (data.planets && (!birthData.relationship || birthData.relationship === 'self')) {

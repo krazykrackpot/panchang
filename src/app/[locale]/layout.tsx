@@ -11,6 +11,7 @@ import StarField from '@/components/layout/StarField';
 import { Analytics } from '@vercel/analytics/react';
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import ClientShell from '@/components/layout/ClientShell';
+import { UtmCapture } from '@/components/layout/UtmCapture';
 import { generateSoftwareApplicationLD, generateOrganizationLD, generateWebSiteLD } from '@/lib/seo/structured-data';
 import { inter, cinzel, cormorant, notoDevanagari, notoTamil, notoTelugu, notoBengali, notoKannada, notoGujarati } from '@/lib/fonts';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
@@ -170,6 +171,7 @@ export default async function LocaleLayout({
           <Footer />
           <ClientShell locale={locale} />
           <Analytics />
+          <UtmCapture />
           {/* AdSense script removed from global layout  –  loaded on-demand by AdUnit component
              only on pages that actually render ads. Saves 356KB+ on ad-free pages. */}
         </NextIntlClientProvider>

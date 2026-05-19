@@ -11,7 +11,7 @@ import WhatsAppShareBanner from '@/components/ui/WhatsAppShareBanner';
 import NakshatraShareButton from '@/components/shareable/NakshatraShareButton';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale, getHeadingFont, getBodyFont, dataLocale } from '@/lib/utils/locale-fonts';
-import { scoreLabel, scoreColor as scoreBgColor, barColor as scoreTextColor } from '@/lib/horoscope/score-utils';
+import { scoreLabel, getScoreBgClass as scoreBgColor, getScoreTextClass as scoreTextColor } from '@/lib/horoscope/score-utils';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import { useLocationStore } from '@/stores/location-store';
 import { trackHoroscopeViewed } from '@/lib/analytics';
@@ -202,8 +202,6 @@ function getOrdinalSuffix(n: number): string {
 }
 
 // scoreLabel imported from '@/lib/horoscope/score-utils'
-// scoreColor (bg-*) imported as scoreBgColor from '@/lib/horoscope/score-utils'
-// barColor (text-*) imported as scoreTextColor from '@/lib/horoscope/score-utils'
 
 interface PersonalizedForecast {
   date: string;
@@ -297,8 +295,8 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
     try {
       const raw = sessionStorage.getItem('kundali-data');
       if (raw) kundali = JSON.parse(raw) as KundaliData;
-    } catch {
-      // sessionStorage unavailable or parse error  –  skip personalization
+    } catch (err) {
+      console.error('[horoscope/personalized] sessionStorage parse failed:', err);
     }
 
     if (!kundali) return;

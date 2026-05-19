@@ -10,7 +10,7 @@
 import { useMemo } from 'react';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
-import { scoreLabel as sharedScoreLabel, scoreColor as sharedScoreColor } from '@/lib/horoscope/score-utils';
+import { scoreLabel, getScoreBgClass, getScoreTextClass } from '@/lib/horoscope/score-utils';
 import SparklineChart from './SparklineChart';
 import type { FullTrajectory, DomainTrajectory } from '@/lib/kundali/domain-synthesis/trajectory';
 import type { DomainType } from '@/lib/kundali/domain-synthesis/types';
@@ -97,33 +97,7 @@ function deltaClass(delta: number): string {
   return 'text-text-secondary';
 }
 
-/** Score colour: green for high, amber for mid, red for low. */
-function scoreColor(score: number): string {
-  if (score >= 7) return 'text-emerald-400';
-  if (score >= 4) return 'text-amber-400';
-  return 'text-red-400';
-}
-
-/** Score bar fill colour. */
-function scoreBarColor(score: number): string {
-  if (score >= 7) return 'bg-emerald-400';
-  if (score >= 4) return 'bg-amber-400';
-  return 'bg-red-400';
-}
-
-/** Qualitative score label. */
-function scoreLabel(score: number, locale: string): string {
-  if (locale === 'hi' || locale === 'sa') {
-    if (score >= 8) return 'उत्तम';
-    if (score >= 6) return 'अच्छा';
-    if (score >= 4) return 'मध्यम';
-    return 'कमज़ोर';
-  }
-  if (score >= 8) return 'Excellent';
-  if (score >= 6) return 'Good';
-  if (score >= 4) return 'Moderate';
-  return 'Weak';
-}
+// scoreLabel, getScoreBgClass, getScoreTextClass imported from score-utils
 
 // ---------------------------------------------------------------------------
 // Props
@@ -206,13 +180,13 @@ export default function TrajectoryCard({ trajectory, locale, compact = false }: 
               {/* Score bar */}
               <div className="flex-1 h-2 rounded-full bg-white/[0.06] overflow-hidden">
                 <div
-                  className={`h-full rounded-full ${scoreBarColor(dt.current)} transition-all`}
+                  className={`h-full rounded-full ${getScoreBgClass(dt.current)} transition-all`}
                   style={{ width: `${(dt.current / 10) * 100}%` }}
                 />
               </div>
 
               {/* Score + label */}
-              <span className={`text-xs font-mono font-medium w-20 text-right shrink-0 ${scoreColor(dt.current)}`}>
+              <span className={`text-xs font-mono font-medium w-20 text-right shrink-0 ${getScoreTextClass(dt.current)}`}>
                 {dt.current.toFixed(1)}{' '}
                 <span className="text-text-secondary font-sans text-[10px]">
                   {scoreLabel(dt.current, locale)}

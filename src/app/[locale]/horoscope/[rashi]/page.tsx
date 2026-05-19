@@ -9,7 +9,7 @@ import { HoroscopeClient } from './HoroscopeClient';
 import { RashiArticle } from './RashiArticle';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-import { scoreLabel, scoreColor } from '@/lib/horoscope/score-utils';
+import { scoreLabel, getScoreBgClass } from '@/lib/horoscope/score-utils';
 import { Link } from '@/lib/i18n/navigation';
 
 function ordinal(n: number): string {
@@ -91,7 +91,7 @@ export default async function RashiPage({ params }: { params: Promise<{ locale: 
                     <span className="text-gold-light text-sm font-semibold">{area.score}/10</span>
                   </div>
                   <div className="h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
-                    <div className={`h-full rounded-full ${scoreColor(area.score)}`} style={{ width: `${area.score * 10}%` }} />
+                    <div className={`h-full rounded-full ${getScoreBgClass(area.score)}`} style={{ width: `${area.score * 10}%` }} />
                   </div>
                   {/* Full area prediction text — this is the SEO-critical content */}
                   <p className="text-text-secondary text-sm mt-1.5 leading-relaxed">

@@ -238,8 +238,8 @@ interface Props {
 }
 
 export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }: Props) {
-  const lk = dataLocale(locale as Locale);
   const isHi = isDevanagariLocale(locale as Locale);
+  const lk = isHi ? 'hi' : 'en';
   const headingFont = getHeadingFont(locale as Locale);
   const bodyFont = getBodyFont(locale as Locale);
   const L = isHi ? LABELS.hi : LABELS.en;

@@ -69,6 +69,7 @@ Allow: /*/learn/holashtak
 Allow: /*/learn/planet-in-house
 Allow: /*/learn/transits
 Allow: /llms.txt
+Allow: /llms-full.txt
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/
 
@@ -114,6 +115,7 @@ Allow: /*/learn/holashtak
 Allow: /*/learn/planet-in-house
 Allow: /*/learn/transits
 Allow: /llms.txt
+Allow: /llms-full.txt
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/
 
@@ -159,6 +161,7 @@ Allow: /*/learn/holashtak
 Allow: /*/learn/planet-in-house
 Allow: /*/learn/transits
 Allow: /llms.txt
+Allow: /llms-full.txt
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/
 
@@ -207,6 +210,7 @@ Allow: /*/learn/holashtak
 Allow: /*/learn/planet-in-house
 Allow: /*/learn/transits
 Allow: /llms.txt
+Allow: /llms-full.txt
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/
 
@@ -252,6 +256,7 @@ Allow: /*/learn/holashtak
 Allow: /*/learn/planet-in-house
 Allow: /*/learn/transits
 Allow: /llms.txt
+Allow: /llms-full.txt
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/
 
@@ -297,6 +302,7 @@ Allow: /*/learn/holashtak
 Allow: /*/learn/planet-in-house
 Allow: /*/learn/transits
 Allow: /llms.txt
+Allow: /llms-full.txt
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/
 
@@ -330,5 +336,6 @@ Allow: /*/learn/sade-sati
 Allow: /*/learn/planet-in-house
 Allow: /*/learn/transits
 Allow: /llms.txt
+Allow: /llms-full.txt
 Disallow: /*/learn/modules/
 Disallow: /*/learn/dashboard/

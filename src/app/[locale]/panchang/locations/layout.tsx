@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
@@ -10,6 +11,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   const url = `${BASE_URL}/${locale}/panchang/locations`;
 
   const title =
@@ -50,6 +52,7 @@ export default async function LocationsLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  setRequestLocale(locale);
 
   const breadcrumbLd = {
     '@context': 'https://schema.org',

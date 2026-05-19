@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { NAKSHATRA_PADA_PROFILES, type NakshatraPadaProfile } from '@/lib/constants/nakshatra-pada-profiles';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -39,6 +40,7 @@ export function generateStaticParams() {
 
 export default async function NakshatraPadaPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const parsed = parseSlug(slug);
   if (!parsed) notFound();
 

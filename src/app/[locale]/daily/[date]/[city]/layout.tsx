@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { tl } from '@/lib/utils/trilingual';
 import type { Metadata } from 'next';
 import { getCityBySlug } from '@/lib/constants/cities';
@@ -7,6 +8,7 @@ const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; date: string; city: string }> }): Promise<Metadata> {
   const { locale, date, city } = await params;
+  setRequestLocale(locale);
   const cityData = getCityBySlug(city);
   const cityName = cityData ? (isDevanagariLocale(locale) ? cityData.name.hi : cityData.name.en) : city;
   return {

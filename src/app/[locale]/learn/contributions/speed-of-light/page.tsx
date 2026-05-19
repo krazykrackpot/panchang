@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { tl } from '@/lib/utils/trilingual';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
@@ -69,6 +70,7 @@ const TIMELINE = [
 
 export default async function SpeedOfLightPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params as { locale: Locale };
+  setRequestLocale(locale);
   const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);

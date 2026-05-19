@@ -367,8 +367,8 @@ export default function RegionalCalendarsPage() {
         </h1>
         <p className="text-text-secondary text-lg max-w-3xl mx-auto">
           {locale === 'en'
-            ? 'India\'s diverse calendar traditions  –  Tamil, Telugu, Kannada, Bengali, and Gujarati  –  each with unique month names, new year dates, and regional festivals'
-            : 'भारत की विविध पंचांग परम्पराएँ  –  तमिल, तेलुगु, कन्नड़, बंगाली और गुजराती  –  प्रत्येक की अपनी मास नाम, नववर्ष तिथि और क्षेत्रीय उत्सव'}
+            ? 'India\'s diverse calendar traditions  –  Tamil, Telugu, Kannada, Bengali, Gujarati, Odia, and Mithila  –  each with unique month names, new year dates, and regional festivals'
+            : 'भारत की विविध पंचांग परम्पराएँ  –  तमिल, तेलुगु, कन्नड़, बंगाली, गुजराती, ओड़िया और मिथिला  –  प्रत्येक की अपनी मास नाम, नववर्ष तिथि और क्षेत्रीय उत्सव'}
         </p>
       </motion.div>
 
@@ -480,6 +480,15 @@ export default function RegionalCalendarsPage() {
                     </div>
                   ))}
                 </div>
+
+                {/* Link to full detail page */}
+                <Link
+                  href={`/calendar/regional/${cal.id}`}
+                  className="mt-4 inline-flex items-center gap-2 text-gold-primary hover:text-gold-light transition-colors text-sm font-semibold group"
+                >
+                  {isDevanagari ? 'पूर्ण कैलेंडर देखें' : `View Full ${tl(cal.name, 'en')} Calendar`}
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </div>
             </motion.div>
           );
@@ -509,6 +518,8 @@ export default function RegionalCalendarsPage() {
                 { name: 'Kannada', type: 'Lunisolar', era: 'Shalivahana Shaka', start: 'Chaitra Sh. Pratipada', first: 'Chaitra' },
                 { name: 'Bengali', type: 'Solar', era: 'Bangabda', start: 'Boishakh (Apr 14)', first: 'Boishakh' },
                 { name: 'Gujarati', type: 'Lunisolar', era: 'Vikram Samvat', start: 'Day after Diwali', first: 'Kartik' },
+                { name: 'Odia', type: 'Solar', era: 'Amli / Odia Era', start: 'Pana Sankranti (Apr 14)', first: 'Baisakha' },
+                { name: 'Mithila', type: 'Lunisolar (Purnimant)', era: 'Vikram Samvat', start: 'Chaitra Sh. Pratipada', first: 'Chaitra' },
               ].map((row, i) => (
                 <tr key={i} className="border-b border-gold-primary/5 hover:bg-gold-primary/5 transition-colors">
                   <td className="px-4 py-3 text-gold-light font-bold">{row.name}</td>

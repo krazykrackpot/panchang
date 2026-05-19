@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { getPageMetadata } from '@/lib/seo/metadata';
@@ -13,6 +14,7 @@ const REF_TZ = 'Asia/Kolkata';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   const base = getPageMetadata('/panchang', locale);
 
   // Compute today's panchang for Ujjain to inject live values into title
@@ -48,6 +50,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function PanchangLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
 
   const today = new Date().toISOString().split('T')[0];
 

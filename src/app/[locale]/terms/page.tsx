@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
@@ -271,6 +272,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   const l = isDevanagariLocale(locale) ? LABELS.hi : LABELS.en;
   return {
     title: l.title,
@@ -291,6 +293,7 @@ export default async function TermsOfServicePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const l = isDevanagariLocale(locale) ? LABELS.hi : LABELS.en;
 
   return (

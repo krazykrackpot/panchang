@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { CITIES } from '@/lib/constants/cities';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -73,6 +74,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; date: string }> }): Promise<Metadata> {
   const { locale, date: dateStr } = await params;
+  setRequestLocale(locale);
   const parsed = parseDate(dateStr);
   if (!parsed) return { title: 'Choghadiya — Dekho Panchang' };
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
@@ -99,6 +101,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function ChoghadiyaDatePage({ params }: { params: Promise<{ locale: string; date: string }> }) {
   const { locale, date: dateStr } = await params;
+  setRequestLocale(locale);
   const parsed = parseDate(dateStr);
   if (!parsed) notFound();
 

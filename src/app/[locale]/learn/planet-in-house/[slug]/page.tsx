@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { PLANET_HOUSE_VERSES, type PlanetHouseVerse } from '@/lib/constants/planet-in-house-verses';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { tl } from '@/lib/utils/trilingual';
@@ -86,6 +87,7 @@ export default async function PlanetInHouseDetailPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
 
   const parsed = parseSlug(slug);
   if (!parsed) notFound();

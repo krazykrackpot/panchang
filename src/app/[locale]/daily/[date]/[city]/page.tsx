@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { generateDailyArticle, type ArticleCityConfig } from '@/lib/horoscope/daily-article';
 import { generateDailyHoroscope } from '@/lib/horoscope/daily-engine';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -33,6 +34,7 @@ function parseDate(dateStr: string): Date | null {
 
 export default async function CityDailyPanchangArticle({ params }: { params: Promise<{ locale: string; date: string; city: string }> }) {
   const { locale, date, city } = await params;
+  setRequestLocale(locale);
   const parsed = parseDate(date);
   if (!parsed) notFound();
 

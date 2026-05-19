@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { setRequestLocale } from 'next-intl/server';
 import { isValidCardType, CARD_DIMENSIONS } from '@/lib/shareable/card-base';
 import { Link } from '@/lib/i18n/navigation';
 
@@ -17,7 +18,8 @@ export async function generateMetadata({
 }: {
   params: Promise<PageParams>;
 }): Promise<Metadata> {
-  const { type, id } = await params;
+  const { locale, type, id } = await params;
+  setRequestLocale(locale);
 
   const typeLabel = type
     .split('-')
@@ -60,7 +62,8 @@ export default async function ShareableCardPage({
 }: {
   params: Promise<PageParams>;
 }) {
-  const { type, id } = await params;
+  const { locale, type, id } = await params;
+  setRequestLocale(locale);
 
   if (!isValidCardType(type)) {
     return (

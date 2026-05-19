@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { tl } from '@/lib/utils/trilingual';
 import type { Metadata } from 'next';
 
@@ -9,6 +10,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
 
   const title = tl(
     {

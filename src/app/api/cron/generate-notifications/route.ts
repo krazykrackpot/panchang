@@ -6,6 +6,9 @@ import type { UserSnapshot } from '@/lib/personalization/types';
 import { scoreFestivalRelevance } from '@/lib/personalization/festival-relevance';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { sendPushToUser } from '@/lib/push/send-push';
+import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
+
+export const maxDuration = 30; // Cron job — email/notification/sync tasks
 
 // ---------------------------------------------------------------------------
 // GET /api/cron/generate-notifications
@@ -34,7 +37,8 @@ export async function GET(req: NextRequest) {
       ascendant_sign: ascendant_sign,
       planet_positions,
       dasha_timeline,
-      sade_sati
+      sade_sati,
+      computation_version
     `);
 
   if (usersError || !users) {
@@ -61,6 +65,11 @@ export async function GET(req: NextRequest) {
   let totalUsers = 0;
 
   for (const row of users) {
+    if (isSnapshotStale(row)) {
+      const fresh = await recomputeSnapshotDirect(supabase, row.user_id);
+      if (!fresh) { console.warn(`[cron/generate-notifications] Could not recompute for ${row.user_id}`); continue; }
+      Object.assign(row, fresh);
+    }
     const prefs = prefsMap.get(row.user_id) || {};
     const snapshot: UserSnapshot = {
       moonSign: row.moon_sign,

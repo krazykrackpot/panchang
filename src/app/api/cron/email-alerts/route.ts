@@ -3,6 +3,9 @@ import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { sendEmail } from '@/lib/email/resend-client';
 import { alertEmail } from '@/lib/email/templates/alert';
+import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
+
+export const maxDuration = 30; // Cron job — email/notification/sync tasks
 
 // Runs daily at 6 AM UTC  –  checks for dasha transitions and festival reminders
 export async function GET(req: Request) {
@@ -15,7 +18,7 @@ export async function GET(req: Request) {
 
   const { data: users } = await supabase
     .from('kundali_snapshots')
-    .select('user_id, dasha_timeline, sade_sati');
+    .select('user_id, dasha_timeline, sade_sati, computation_version');
 
   if (!users || users.length === 0) {
     return NextResponse.json({ sent: 0 });
@@ -26,6 +29,11 @@ export async function GET(req: Request) {
   const thirtyDaysFromNow = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
 
   for (const snap of users) {
+    if (isSnapshotStale(snap)) {
+      const fresh = await recomputeSnapshotDirect(supabase, snap.user_id);
+      if (!fresh) { console.warn(`[cron/email-alerts] Could not recompute for ${snap.user_id}`); continue; }
+      Object.assign(snap, fresh);
+    }
     const { data: profile } = await supabase
       .from('user_profiles')
       .select('display_name, notification_prefs')

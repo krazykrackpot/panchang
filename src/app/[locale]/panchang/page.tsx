@@ -8,6 +8,7 @@
  * for the user's approximate location  –  same pattern as the home page.
  */
 
+import { setRequestLocale } from 'next-intl/server';
 import { headers } from 'next/headers';
 import { Link } from '@/lib/i18n/navigation';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
@@ -17,6 +18,7 @@ import { getLatestVideo } from '@/lib/youtube/latest-video';
 import { MapPin } from 'lucide-react';
 import { getCitiesByTier } from '@/lib/constants/cities-extended';
 import type { PanchangData } from '@/types/panchang';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import PanchangClient from './PanchangClient';
 
 // NO revalidate here  –  page uses headers() for geo-location.
@@ -171,6 +173,7 @@ function PanchangSEOBlock({
 
 export default async function PanchangPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const { panchang, location: serverLocation } = await getServerPanchang();
 
   // Fetch latest YouTube video (RSS feed, cached 1h) for VideoObject schema + embed
@@ -222,7 +225,7 @@ export default async function PanchangPage({ params }: { params: Promise<{ local
 
       {/* Dynamic FAQ JSON-LD for featured snippet capture */}
       {faqLd && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqLd) }} />
       )}
 
       {/* SEO block: server-rendered, fully crawlable by Google */}

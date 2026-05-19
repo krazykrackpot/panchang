@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
@@ -6,11 +7,13 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   return getPageMetadata('/kp-system', locale);
 }
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const toolLD = generateToolLD(
     'KP System  –  Krishnamurti Paddhati',
     'KP astrology chart with Placidus houses, sub-lords, and significator analysis.',

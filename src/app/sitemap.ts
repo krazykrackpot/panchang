@@ -196,6 +196,7 @@ const routes = [
   '/calendar/regional/malayalam',
   '/calendar/regional/gujarati',
   '/calendar/regional/kannada',
+  '/calendar/regional/odia',
   // Tools
   '/tools',
   '/medical-astrology',

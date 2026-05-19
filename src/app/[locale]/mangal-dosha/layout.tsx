@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { generateToolLD, generateBreadcrumbLD, generateExpertiseArticleLD } from '@/lib/seo/structured-data';
@@ -6,11 +7,13 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   return getPageMetadata('/mangal-dosha', locale);
 }
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const toolLD = generateToolLD(
     'Mangal Dosha Calculator',
     'Free Mangal Dosha (Kuja Dosha) calculator. Check Mars placement in houses 1, 2, 4, 7, 8, 12 from Lagna, Moon, and Venus.',

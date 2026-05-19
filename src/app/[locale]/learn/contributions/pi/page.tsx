@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/contributions-pi.json';
@@ -39,6 +40,7 @@ const SANSKRIT_TERMS = [
    ═══════════════════════════════════════════════════════════════ */
 export default async function PiPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params as { locale: Locale };
+  setRequestLocale(locale);
   const hi = isDevanagariLocale(locale);
   const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 

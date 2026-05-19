@@ -88,7 +88,11 @@ export default function ShareableKundaliCard({ kundali, locale }: Props) {
   const nakEn = moonP?.nakshatra?.name?.en || '';
   const dashaEn = mahadasha ? `${mahadasha.planetName}` : '';
   const shareText = `${kundali.birthData.name ? kundali.birthData.name + "'s " : ''}Vedic Chart: ${ascName} Ascendant, ${moonSignEn} Moon, ${nakEn} Nakshatra${dashaEn ? `, ${dashaEn} Mahadasha` : ''}. Generate yours`;
-  const shareUrl = typeof window !== 'undefined' ? `${window.location.origin}/${locale}/kundali` : 'https://dekhopanchang.com/kundali';
+  // Build share URL with birth data so recipient sees the actual chart, not a blank form
+  const bd = kundali.birthData;
+  const shareParams = bd.name ? `?n=${encodeURIComponent(bd.name)}&d=${bd.date}&t=${bd.time}&la=${bd.lat}&lo=${bd.lng}&p=${encodeURIComponent(bd.place)}&tz=${encodeURIComponent(bd.timezone)}` : '';
+  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://dekhopanchang.com';
+  const shareUrl = `${origin}/${locale}/kundali/shared${shareParams}`;
 
   const isDevanagari = isDevanagariLocale(locale);
   const bodyFont = getBodyFont(locale);

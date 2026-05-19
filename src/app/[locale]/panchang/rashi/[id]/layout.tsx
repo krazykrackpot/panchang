@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { RASHIS } from '@/lib/constants/rashis';
 import { getPageMetadata } from '@/lib/seo/metadata';
@@ -10,6 +11,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string; id: string }>;
 }): Promise<Metadata> {
   const { locale, id } = await params;
+  setRequestLocale(locale);
 
   // Try to resolve slug to a rashi for richer metadata
   const rashi = RASHIS.find(r => r.slug === id);

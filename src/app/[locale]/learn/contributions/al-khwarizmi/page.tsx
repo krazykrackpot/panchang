@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
@@ -50,6 +51,7 @@ const SANSKRIT_TERMS = [
    ═══════════════════════════════════════════════════════════════ */
 export default async function AlKhwarizmiPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params as { locale: Locale };
+  setRequestLocale(locale);
   const hi = isDevanagariLocale(locale);
   const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 

@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
@@ -7,11 +8,13 @@ const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   return getPageMetadata('/calendar/regional/iskcon', locale);
 }
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const toolLD = generateToolLD(
     'ISKCON Vaishnava Calendar 2026',
     'Complete ISKCON Gaudiya Vaishnava calendar for 2026 with festivals, Ekadashi, and acharya appearance/disappearance days.',

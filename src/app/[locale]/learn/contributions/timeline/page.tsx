@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { lt } from '@/lib/learn/translations';
 import type { LocaleText } from '@/lib/learn/translations';
 import L from '@/messages/learn/contributions-timeline.json';
@@ -436,6 +437,7 @@ function TimelineCardMobile({
    ════════════════════════════════════════════════════════════════ */
 export default async function TimelinePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const loc = locale as Locale;
   const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);
 

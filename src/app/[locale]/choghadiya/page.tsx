@@ -1,10 +1,12 @@
+import { headers } from 'next/headers';
+import { setRequestLocale } from 'next-intl/server';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { CITIES } from '@/lib/constants/cities';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import Link from 'next/link';
 import ChoghadiyaClient from './Client';
 
-export const revalidate = 86400;
+// Dynamic rendering — no ISR cache (time-dependent content).
 
 const SEO_CITY = 'delhi';
 
@@ -45,6 +47,8 @@ interface SSRSlot {
 
 export default async function ChoghadiyaPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
+  await headers(); // Force dynamic rendering
   const now = new Date();
   const year = now.getUTCFullYear();
   const month = now.getUTCMonth() + 1;

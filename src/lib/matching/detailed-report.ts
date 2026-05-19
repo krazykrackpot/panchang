@@ -11,7 +11,7 @@
  */
 
 import type { KundaliData, PlanetPosition } from '@/types/kundali';
-import type { MatchResult } from './ashta-kuta';
+import { NAKSHATRA_NADI, type MatchResult } from './ashta-kuta';
 import { analyzeMangalDoshaForMatching, type MangalDoshaResult } from '@/lib/kundali/mangal-dosha-engine';
 import { analyzeRajjuDosha, type RajjuDoshaResult } from './rajju-dosha';
 
@@ -92,22 +92,7 @@ const PLANET_NAMES: Record<number, string> = {
 // 0=Sun,1=Moon,2=Mars,3=Mercury,4=Jupiter,5=Venus,6=Saturn
 const RASHI_LORD: number[] = [2, 5, 3, 1, 0, 3, 5, 2, 4, 6, 6, 4];
 
-// Nadi pattern: traditional zigzag assignment
-// The ashta-kuta.ts already has NAKSHATRA_NADI with the zigzag pattern.
-// We re-derive using the cyclic pattern from the spec, but actually the
-// traditional nadi mapping is the zigzag pattern, not simple modulo.
-// Re-use the same mapping as ashta-kuta.ts for consistency.
-const NAKSHATRA_NADI: number[] = [
-  0, 1, 2, // Ashwini=Aadi, Bharani=Madhya, Krittika=Antya
-  2, 1, 0, // Rohini=Antya, Mrigashira=Madhya, Ardra=Aadi
-  0, 1, 2, // Punarvasu=Aadi, Pushya=Madhya, Ashlesha=Antya
-  2, 1, 0, // Magha=Antya, P.Phalguni=Madhya, U.Phalguni=Aadi
-  0, 1, 2, // Hasta=Aadi, Chitra=Madhya, Swati=Antya
-  2, 1, 0, // Vishakha=Antya, Anuradha=Madhya, Jyeshtha=Aadi
-  0, 1, 2, // Mula=Aadi, P.Ashadha=Madhya, U.Ashadha=Antya
-  2, 1, 0, // Shravana=Antya, Dhanishtha=Madhya, Shatabhisha=Aadi
-  0, 1, 2, // P.Bhadrapada=Aadi, U.Bhadrapada=Madhya, Revati=Antya
-];
+// NAKSHATRA_NADI imported from ashta-kuta.ts (single source of truth  –  Lesson Q)
 
 const NADI_NAMES: Record<number, 'aadi' | 'madhya' | 'antya'> = {
   0: 'aadi', 1: 'madhya', 2: 'antya',
@@ -451,23 +436,25 @@ function get7thHouseCompatibility(h1: SeventhHouseInfo, h2: SeventhHouseInfo): s
   const parts: string[] = [];
 
   // Check if 7th lords are friends
-  const GRAHA_MAITRI: Record<number, Set<number>> = {
-    0: new Set([1, 2, 4]), // Sun friends
-    1: new Set([0, 3]),     // Moon friends
-    2: new Set([0, 1, 4]),  // Mars friends
-    3: new Set([0, 5]),     // Mercury friends
-    4: new Set([0, 1, 2]),  // Jupiter friends
-    5: new Set([3, 6]),     // Venus friends
-    6: new Set([3, 5]),     // Saturn friends
+  // Derived from GRAHA_MAITRI in ashta-kuta.ts (entries where value === 2)
+  // Single conceptual source  –  Lesson Q/S
+  const GRAHA_MAITRI_FRIENDS: Record<number, Set<number>> = {
+    0: new Set([1, 2, 4]), // Sun friends: Moon, Mars, Jupiter
+    1: new Set([0, 3]),     // Moon friends: Sun, Mercury (BPHS Ch.3)
+    2: new Set([0, 1, 4]),  // Mars friends: Sun, Moon, Jupiter
+    3: new Set([0, 5]),     // Mercury friends: Sun, Venus
+    4: new Set([0, 1, 2]),  // Jupiter friends: Sun, Moon, Mars
+    5: new Set([3, 6]),     // Venus friends: Mercury, Saturn
+    6: new Set([3, 5]),     // Saturn friends: Mercury, Venus
   };
 
   const l1 = h1.lord;
   const l2 = h2.lord;
   if (l1 === l2) {
     parts.push('Both 7th houses share the same lord  –  a unifying factor for marriage compatibility.');
-  } else if (GRAHA_MAITRI[l1]?.has(l2) && GRAHA_MAITRI[l2]?.has(l1)) {
+  } else if (GRAHA_MAITRI_FRIENDS[l1]?.has(l2) && GRAHA_MAITRI_FRIENDS[l2]?.has(l1)) {
     parts.push('The 7th house lords are mutual friends  –  supportive for partnership harmony.');
-  } else if (GRAHA_MAITRI[l1]?.has(l2) || GRAHA_MAITRI[l2]?.has(l1)) {
+  } else if (GRAHA_MAITRI_FRIENDS[l1]?.has(l2) || GRAHA_MAITRI_FRIENDS[l2]?.has(l1)) {
     parts.push('The 7th house lords share a partial friendship  –  generally supportive with some differences.');
   } else {
     parts.push('The 7th house lords are neutral or unfriendly  –  extra effort needed to align partnership expectations.');

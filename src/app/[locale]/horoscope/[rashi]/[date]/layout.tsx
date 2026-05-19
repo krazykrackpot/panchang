@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { RASHIS } from '@/lib/constants/rashis';
 import { getRashiBySlug } from '@/lib/constants/rashi-slugs';
@@ -11,20 +12,13 @@ const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com
 export const revalidate = 86400; // ISR: daily — content is deterministic per date
 
 export function generateStaticParams() {
-  const rashiSlugs = RASHIS.map(r => r.slug);
-  // Pre-generate next 7 days  –  ISR handles older/future dates on-demand
-  const dates: string[] = [];
-  const now = new Date();
-  for (let i = 0; i < 7; i++) {
-    const d = new Date(now);
-    d.setDate(d.getDate() + i);
-    dates.push(d.toISOString().slice(0, 10));
-  }
-  return rashiSlugs.flatMap(rashi => dates.map(date => ({ rashi, date })));
+  // ISR: rendered on-demand, not pre-built (keeps deploy under 10 min)
+  return [];
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; rashi: string; date: string }> }): Promise<Metadata> {
   const { locale, rashi: slug, date } = await params;
+  setRequestLocale(locale);
   const r = getRashiBySlug(slug);
   if (!r) return {};
 
@@ -82,6 +76,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function DateLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string; rashi: string; date: string }> }) {
   const { locale, rashi: slug, date } = await params;
+  setRequestLocale(locale);
   const breadcrumbLD = generateBreadcrumbLD(`/${locale}/horoscope/${slug}/${date}`, locale);
 
   return (

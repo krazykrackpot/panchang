@@ -1,7 +1,9 @@
+import { headers } from 'next/headers';
+import { setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import VedicTimeClient from './Client';
 
-export const revalidate = 86400;
+// Dynamic rendering — no ISR cache (time-dependent content).
 
 // Vedic time conversion constants (used for the reference table)
 interface TimeUnit {
@@ -71,6 +73,8 @@ const MUHURTAS_30: MuhurtaInfo[] = [
 
 export default async function VedicTimePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
+  await headers(); // Force dynamic rendering
   const today = new Date().toISOString().slice(0, 10);
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
 

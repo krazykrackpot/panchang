@@ -4,9 +4,10 @@ import { useMemo, useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import type { KundaliData } from '@/types/kundali';
 import type { CosmicBlueprint } from '@/lib/kundali/archetype-engine';
+import type { PersonalReading } from '@/lib/kundali/domain-synthesis/types';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
-import { PLANET_NAME_TO_ID } from '@/lib/constants/grahas';
+import { getDomainConfig } from '@/lib/kundali/domain-synthesis/config';
 
 import CosmicIdentityCard from './simple/CosmicIdentityCard';
 import AshramStage from './simple/AshramStage';
@@ -17,26 +18,10 @@ import GrowthAreas from './simple/GrowthAreas';
 import ViewModeToggle from './simple/ViewModeToggle';
 
 // ---------------------------------------------------------------------------
-// Domain config — maps life domains to their primary houses in the kundali.
-// Scores are derived from bhavabala (already computed), NOT recomputed.
-// House assignments per BPHS — no house appears in two domains.
+// Simple mode shows 4 key domains from the same synthesiser data as Expert
 // ---------------------------------------------------------------------------
 
-interface SimpleDomain {
-  key: string;
-  label: { en: string; hi: string; sa: string };
-  /** Primary houses that indicate this domain (1-indexed). No overlaps. */
-  houses: number[];
-}
-
-const DOMAINS: SimpleDomain[] = [
-  // No house appears in more than one domain — prevents double-counting bhavabala.
-  // BPHS primary houses per domain:
-  { key: 'career',   label: { en: 'Career',        hi: 'करियर',    sa: 'वृत्तिः' },   houses: [10, 6, 3] },  // 10=Karma, 6=service/daily work, 3=skills/effort
-  { key: 'marriage', label: { en: 'Relationships',  hi: 'संबंध',    sa: 'सम्बन्धाः' }, houses: [7, 5, 4] },   // 7=partnerships, 5=romance, 4=domestic happiness
-  { key: 'health',   label: { en: 'Health',         hi: 'स्वास्थ्य', sa: 'आरोग्यम्' },  houses: [1, 8, 12] },  // 1=body, 8=longevity, 12=hospitalisation
-  { key: 'wealth',   label: { en: 'Wealth',         hi: 'धन',       sa: 'धनम्' },       houses: [2, 11, 9] },  // 2=dhana, 11=gains, 9=fortune
-];
+const SIMPLE_DOMAIN_KEYS = new Set(['career', 'marriage', 'health', 'wealth']);
 
 // ---------------------------------------------------------------------------
 // Locale helper — uses shared isDevanagariLocale for consistency
@@ -46,92 +31,8 @@ function L(locale: string, en: string, hi: string): string {
   return isDevanagariLocale(locale) ? hi : en;
 }
 
-function ratingNeedsHelp(r: string): boolean {
-  return r === 'adhama' || r === 'atyadhama';
-}
-
-// ---------------------------------------------------------------------------
-// Derive domain scores from already-computed kundali data
-// ---------------------------------------------------------------------------
-
-type RatingTier = 'uttama' | 'madhyama' | 'adhama' | 'atyadhama';
-
-function scoreToRating(score: number): RatingTier {
-  if (score >= 7) return 'uttama';
-  if (score >= 5) return 'madhyama';
-  if (score >= 3) return 'adhama';
-  return 'atyadhama';
-}
-
-interface DomainScore {
-  key: string;
-  label: { en: string; hi: string; sa: string };
-  natalScore: number;
-  currentScore: number;
-  overallScore: number;
-  rating: RatingTier;
-  natalRating: RatingTier;
-  currentRating: RatingTier;
-}
-
-function deriveDomainScores(kundali: KundaliData): DomainScore[] {
-  const bhavabala = kundali.bhavabala;
-
-  // Find current mahadasha + antardasha lords and their houses
-  const now = Date.now();
-  const currentMaha = kundali.dashas.find(d => {
-    if (d.level !== 'maha') return false;
-    return now >= new Date(d.startDate).getTime() && now < new Date(d.endDate).getTime();
-  });
-  const currentAntar = currentMaha?.subPeriods?.find(d => {
-    return now >= new Date(d.startDate).getTime() && now < new Date(d.endDate).getTime();
-  });
-
-  function getPlanetHouse(planetName: string | undefined): number | null {
-    if (!planetName) return null;
-    const pid = PLANET_NAME_TO_ID[planetName] ?? null;
-    if (pid == null) return null;
-    return kundali.planets.find(p => p.planet.id === pid)?.house ?? null;
-  }
-
-  const mahaHouse = getPlanetHouse(currentMaha?.planet);
-  const antarHouse = getPlanetHouse(currentAntar?.planet);
-
-  return DOMAINS.map(({ key, label, houses }) => {
-    // Natal score: average bhavabala strengthPercent of primary houses, scaled to 0-10
-    let natalScore = 5;
-    if (bhavabala && bhavabala.length > 0) {
-      const houseScores = houses.map(h => {
-        const bala = bhavabala.find(b => b.bhava === h);
-        return bala ? bala.strengthPercent : 50;
-      });
-      natalScore = Math.min(10, Math.max(0,
-        (houseScores.reduce((a, b) => a + b, 0) / houseScores.length) / 10
-      ));
-    }
-
-    // Current activation: mahadasha lord (weight 60%) + antardasha lord (weight 40%)
-    // in domain houses = strong boost. Both matter — antardasha changes every few months.
-    const mahaActivates = mahaHouse != null && houses.includes(mahaHouse);
-    const antarActivates = antarHouse != null && houses.includes(antarHouse);
-    let currentScore: number;
-    if (mahaActivates && antarActivates) currentScore = 9;       // Both lords activate this domain
-    else if (mahaActivates || antarActivates) currentScore = 7;  // One lord activates
-    else currentScore = 5;                                       // Neither — neutral, not weak
-
-    const overallScore = Math.round((natalScore * 0.7 + currentScore * 0.3) * 10) / 10;
-
-    return {
-      key, label,
-      natalScore: Math.round(natalScore * 10) / 10,
-      currentScore,
-      overallScore,
-      rating: scoreToRating(overallScore),
-      natalRating: scoreToRating(natalScore),
-      currentRating: scoreToRating(currentScore),
-    };
-  });
-}
+// deriveDomainScores REMOVED — Simple now consumes personalReading
+// (same data as Expert mode). Single source of truth.
 
 // ---------------------------------------------------------------------------
 // Section header
@@ -175,12 +76,18 @@ interface Props {
   kundali: KundaliData;
   /** Blueprint already computed by Client.tsx — same instance used by Expert mode's BlueprintTab */
   blueprint: CosmicBlueprint | null;
+  /** Same personalReading used by Expert mode — single source of truth */
+  personalReading: PersonalReading | null;
   locale: string;
   onSwitchToExpert: () => void;
 }
 
-export default function KundaliSimple({ kundali, blueprint, locale, onSwitchToExpert }: Props) {
-  const domainScores = useMemo(() => deriveDomainScores(kundali), [kundali]);
+export default function KundaliSimple({ kundali, blueprint, personalReading, locale, onSwitchToExpert }: Props) {
+  // Filter to 4 key domains from the same data Expert mode uses
+  const domainScores = useMemo(() => {
+    if (!personalReading) return [];
+    return personalReading.domains.filter(d => SIMPLE_DOMAIN_KEYS.has(d.domain));
+  }, [personalReading]);
   const [copied, setCopied] = useState(false);
   const copyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => { if (copyTimerRef.current) clearTimeout(copyTimerRef.current); }, []);
@@ -213,28 +120,34 @@ export default function KundaliSimple({ kundali, blueprint, locale, onSwitchToEx
       {/* ─── Ashram Stage ─── */}
       <AshramStage birthDate={kundali.birthData.date} locale={locale} />
 
-      {/* ─── Life Domains ─── */}
-      <SectionHeader title={L(locale, 'Your Life Domains', 'आपके जीवन क्षेत्र')} />
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {domainScores.map((d) => (
-          <DomainRingsCard
-            key={d.key}
-            domain={tl(d.label, locale)}
-            natalScore={d.natalScore}
-            currentScore={d.currentScore}
-            overallScore={d.overallScore}
-            rating={d.rating}
-            natalRating={d.natalRating}
-            currentRating={d.currentRating}
-            locale={locale}
-            onViewRemedies={
-              [d.rating, d.natalRating, d.currentRating].some(ratingNeedsHelp)
-                ? onSwitchToExpert : undefined
-            }
-          />
-        ))}
-      </div>
+      {/* ─── Life Domains — hidden entirely when personalReading is null ─── */}
+      {domainScores.length > 0 && (
+        <>
+        <SectionHeader title={L(locale, 'Your Life Domains', 'आपके जीवन क्षेत्र')} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {domainScores.map((d) => {
+            const config = getDomainConfig(d.domain);
+            const domainName = config ? tl(config.name, locale) : d.domain;
+            const rating = d.overallRating.rating;
+            return (
+              <DomainRingsCard
+                key={d.domain}
+                domain={domainName}
+                natalRating={rating}
+                dashaScore={d.currentActivation.dashaActivationScore}
+                transitCount={d.currentActivation.transitInfluences.length}
+                ratingLabel={tl(d.overallRating.label, locale)}
+                locale={locale}
+                onViewRemedies={
+                  rating === 'adhama' || rating === 'atyadhama'
+                    ? onSwitchToExpert : undefined
+                }
+              />
+            );
+          })}
+        </div>
+        </>
+      )}
 
       {/* ─── Life Timeline ─── */}
       <SectionHeader title={L(locale, 'Your Life Timeline', 'आपकी जीवन समयरेखा')} />

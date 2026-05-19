@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { YOGA_DETAIL_DATA } from '@/lib/constants/yoga-details';
 import { generateYogaCollectionLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
@@ -9,6 +10,7 @@ const YOGA_COUNT = Object.keys(YOGA_DETAIL_DATA).length;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   const url = `${BASE_URL}/${locale}/learn/yoga`;
 
   const title = locale === 'hi'
@@ -48,6 +50,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
 
   const collectionLD = generateYogaCollectionLD(locale, YOGA_COUNT);
   const breadcrumbLD = generateBreadcrumbLD(`/${locale}/learn/yoga`, locale);

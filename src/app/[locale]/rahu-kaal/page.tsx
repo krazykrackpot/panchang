@@ -1,10 +1,14 @@
+import { setRequestLocale } from 'next-intl/server';
+import { headers } from 'next/headers';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { CITIES } from '@/lib/constants/cities';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import Link from 'next/link';
 import RahuKaalClient from './Client';
 
-export const revalidate = 86400;
+// Dynamic rendering — no ISR cache. The page shows "today's" data which
+// changes daily and depends on the server clock. Caching UTC-computed dates
+// caused hydration mismatch #418 when client timezone differed from UTC.
 
 // Top 6 cities for SEO table — highest search volume for "rahu kaal today {city}"
 const SEO_CITIES = ['delhi', 'mumbai', 'bangalore', 'chennai', 'kolkata', 'hyderabad'];
@@ -21,6 +25,8 @@ function fmt12(hhmm: string): string {
 
 export default async function RahuKaalPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
+  await headers(); // Force dynamic rendering — no ISR cache
   const now = new Date();
   const year = now.getUTCFullYear();
   const month = now.getUTCMonth() + 1;

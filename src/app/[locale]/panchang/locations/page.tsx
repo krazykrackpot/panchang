@@ -1,4 +1,4 @@
-import { getLocale } from 'next-intl/server';
+import { getLocale, setRequestLocale } from 'next-intl/server';
 import { MapPin, Globe, ChevronRight } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import { type CityData } from '@/lib/constants/cities';
@@ -166,6 +166,7 @@ function InternationalCard({
 
 export default async function LocationsPage() {
   const locale = await getLocale();
+  setRequestLocale(locale);
 
   const headingFont = getHeadingFont(locale);
   const isDevanagari = isDevanagariLocale(locale);

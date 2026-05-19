@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { generateToolLD, generateBreadcrumbLD, generateExpertiseArticleLD } from '@/lib/seo/structured-data';
@@ -6,11 +7,13 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   return getPageMetadata('/kaal-sarp', locale);
 }
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const toolLD = generateToolLD(
     'Kaal Sarp Dosha Calculator',
     'Free Kaal Sarp Dosha checker. Check all 12 types based on Rahu-Ketu axis in your birth chart.',

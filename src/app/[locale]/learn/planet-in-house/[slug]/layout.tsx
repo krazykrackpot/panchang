@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { PLANET_HOUSE_VERSES } from '@/lib/constants/planet-in-house-verses';
 
@@ -37,6 +38,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const parsed = parseSlug(slug);
 
   if (!parsed) {

@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import { RASHIS } from '@/lib/constants/rashis';
 import { HubClient } from './HubClient';
@@ -10,6 +11,7 @@ function tl(obj: LocaleText | undefined, locale: string): string {
 
 export default async function HoroscopePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const today = new Date().toISOString().slice(0, 10);
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
 

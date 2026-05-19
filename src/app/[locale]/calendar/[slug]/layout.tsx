@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
@@ -6,7 +7,8 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 
 export function generateStaticParams() {
-  return Object.keys(FESTIVAL_DETAILS).map(slug => ({ slug }));
+  // ISR: rendered on-demand, not pre-built (keeps deploy under 10 min)
+  return [];
 }
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
@@ -56,6 +58,7 @@ function fmt12h(hhmm: string): string {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const festival = FESTIVAL_DETAILS[slug];
 
   if (!festival) {
@@ -137,6 +140,7 @@ export default async function CalendarSlugLayout({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const festival = FESTIVAL_DETAILS[slug];
 
   if (!festival) return <>{children}</>;

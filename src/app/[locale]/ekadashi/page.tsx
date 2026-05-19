@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { EKADASHI_NAMES, type EkadashiDetail } from '@/lib/constants/festival-details';
 import { tl } from '@/lib/utils/trilingual';
@@ -254,6 +255,7 @@ function EkadashiCardComponent({
 
 export default async function EkadashiPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const ekadashis = getEkadashiData();
   const grouped = groupByMonth(ekadashis);
 

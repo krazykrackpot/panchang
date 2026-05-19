@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import { getMuhurtaType } from '@/lib/constants/muhurta-types';
@@ -5,6 +6,7 @@ import { findNextFutureDate, muhurtaTitle, muhurtaTitleHi, muhurtaDesc } from '@
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; type: string }> }): Promise<Metadata> {
   const { locale, type } = await params;
+  setRequestLocale(locale);
 
   const info = getMuhurtaType(type);
   if (info) {

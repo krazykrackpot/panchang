@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { getPageMetadata } from '@/lib/seo/metadata';
@@ -9,11 +10,13 @@ const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   return getPageMetadata('/kundali', locale);
 }
 
 export default async function KundaliLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
 
   const softwareJsonLd = {
     '@context': 'https://schema.org',

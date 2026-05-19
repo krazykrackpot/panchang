@@ -1,8 +1,10 @@
+import { setRequestLocale } from 'next-intl/server';
 import { getAllVideos } from '@/lib/youtube/latest-video';
 
 
 export default async function VideosPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const videos = await getAllVideos();
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
 

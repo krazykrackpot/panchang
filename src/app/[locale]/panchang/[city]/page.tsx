@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { tl } from '@/lib/utils/trilingual';
 import type { Metadata } from 'next';
 import Link from 'next/link';
@@ -45,6 +46,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string; city: string }>;
 }): Promise<Metadata> {
   const { locale, city: citySlug } = await params;
+  setRequestLocale(locale);
   const city = getCityBySlugExtended(citySlug);
   if (!city) return {};
 
@@ -160,6 +162,7 @@ export default async function CityPanchangPage({
   params: Promise<{ locale: string; city: string }>;
 }) {
   const { locale, city: citySlug } = await params;
+  setRequestLocale(locale);
   const city = getCityBySlugExtended(citySlug);
   if (!city) notFound();
 

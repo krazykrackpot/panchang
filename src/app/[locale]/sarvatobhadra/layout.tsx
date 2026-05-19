@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
@@ -7,6 +8,7 @@ const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   const titleMap: Record<string, string> = {
     hi: 'सर्वतोभद्र चक्र | देखो पंचांग',
     sa: 'सर्वतोभद्रचक्रम् | देखो पंचांग',
@@ -32,6 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function SarvatobhadraLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const toolLD = generateToolLD(
     'Sarvatobhadra Chakra',
     'Interactive 9x9 Vedic astrology vedha analysis tool for transit evaluation using the Sarvatobhadra Chakra grid.',

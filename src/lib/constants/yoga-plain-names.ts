@@ -1,3 +1,5 @@
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+
 export const YOGA_PLAIN_NAMES: Record<string, { en: string; hi: string }> = {
   // 5 Pancha Mahapurusha Yogas
   'hamsa': { en: 'Noble Character & Spiritual Wisdom', hi: 'उत्तम चरित्र और आध्यात्मिक ज्ञान' },
@@ -76,9 +78,10 @@ export const YOGA_PLAIN_NAMES: Record<string, { en: string; hi: string }> = {
 
 /** Get plain name for a yoga. Falls back to a cleaned-up first sentence. */
 export function getYogaPlainName(yogaId: string, descriptionEn: string, locale: string): string {
+  const useHindi = isDevanagariLocale(locale);
+
   // 1. Exact match — fast path
   const plain = YOGA_PLAIN_NAMES[yogaId];
-  const useHindi = locale === 'hi' || locale === 'sa';
   if (plain) return useHindi ? plain.hi : plain.en;
 
   // 2. Longest prefix match at a word boundary (hyphen or end of string).

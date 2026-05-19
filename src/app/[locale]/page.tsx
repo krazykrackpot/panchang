@@ -1,5 +1,5 @@
 import { headers } from 'next/headers';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Link } from '@/lib/i18n/navigation';
 import GoldDivider from '@/components/ui/GoldDivider';
 import TarotCard from '@/components/ui/TarotCard';
@@ -508,6 +508,7 @@ const SECONDARY_TOOLS: { href: string; label: { en: string; hi: string; ta: stri
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'home' });
 
   // ─── Server-side panchang via Vercel geo headers (eliminates LCP waterfall) ───
@@ -525,15 +526,23 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       const lng = parseFloat(geoLng);
       const locationName = [geoCity ? decodeURIComponent(geoCity) : '', geoCountry || ''].filter(Boolean).join(', ');
       const timezone = geoTz || 'UTC';
-      const now = new Date();
-      const year = now.getFullYear();
-      const month = now.getMonth() + 1;
-      const day = now.getDate();
+      // Use the user's timezone to determine "today" — not server UTC (Lesson L).
+      // On Vercel (UTC), new Date() at 02:00 IST would give yesterday's date for Indian users.
+      const localNow = new Date(new Date().toLocaleString('en-US', { timeZone: timezone }));
+      const year = localNow.getFullYear();
+      const month = localNow.getMonth() + 1;
+      const day = localNow.getDate();
       const tzOffset = getUTCOffsetForDate(year, month, day, timezone);
       serverPanchang = computePanchang({ year, month, day, lat, lng, tzOffset, timezone, locationName });
       serverLocation = { lat, lng, name: locationName };
     }
-  } catch { /* geo headers unavailable (local dev)  –  widget falls back to client fetch */ }
+  } catch (err) {
+    // Geo headers unavailable (local dev) — widget falls back to client fetch.
+    // Log computation errors (not just missing headers) so they show in Vercel logs.
+    if (err instanceof Error && !err.message.includes('header')) {
+      console.error('[home] SSR panchang failed:', err);
+    }
+  }
   const isDevanagari = isDevanagariLocale(locale);
   const hf = getHeadingFont(locale);
   const bf = getBodyFont(locale) || {};

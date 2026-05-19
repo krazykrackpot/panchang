@@ -1,10 +1,12 @@
+import { setRequestLocale } from 'next-intl/server';
+import { headers } from 'next/headers';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { CITIES } from '@/lib/constants/cities';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import Link from 'next/link';
 import HoraClient from './Client';
 
-export const revalidate = 86400;
+// Dynamic rendering — no ISR cache. See rahu-kaal/page.tsx comment.
 
 const SEO_CITY = 'delhi';
 
@@ -51,6 +53,8 @@ const HORA_ACTIVITIES_HI: Record<number, string> = {
 
 export default async function HoraPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
+  await headers(); // Force dynamic rendering — no ISR cache
   const now = new Date();
   const year = now.getUTCFullYear();
   const month = now.getUTCMonth() + 1;

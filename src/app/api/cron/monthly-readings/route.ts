@@ -3,6 +3,11 @@ import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { synthesizeReading } from '@/lib/kundali/domain-synthesis/synthesizer';
 import type { KundaliData, DashaEntry } from '@/types/kundali';
+import { isSnapshotStale, recomputeSnapshotDirect } from '@/lib/supabase/get-fresh-snapshot';
+
+// Synthesises domain readings per user — O(N). At ~50 users 60s is fine.
+// If this starts timing out: chunk into batches or move to Hetzner cron.
+export const maxDuration = 60;
 
 // ---------------------------------------------------------------------------
 // GET /api/cron/monthly-readings
@@ -51,7 +56,7 @@ export async function GET(req: NextRequest) {
   // 1. Get all users with chart snapshots
   const { data: snapshots, error: snapError } = await supabase
     .from('kundali_snapshots')
-    .select('user_id, chart_data');
+    .select('user_id, chart_data, computation_version');
 
   if (snapError) {
     return NextResponse.json({ error: snapError.message }, { status: 500 });
@@ -80,6 +85,12 @@ export async function GET(req: NextRequest) {
     if (alreadyDone.has(snap.user_id)) {
       skipped++;
       continue;
+    }
+
+    if (isSnapshotStale(snap)) {
+      const fresh = await recomputeSnapshotDirect(supabase, snap.user_id);
+      if (!fresh) { console.warn(`[cron/monthly-readings] Could not recompute for ${snap.user_id}`); skipped++; continue; }
+      Object.assign(snap, fresh);
     }
 
     try {

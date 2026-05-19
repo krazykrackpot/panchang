@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Clock, Sun, Moon, MapPin, ArrowLeft, Sparkles } from 'lucide-react';
@@ -9,6 +9,7 @@ import RelatedLinks from '@/components/ui/RelatedLinks';
 import { getLearnLinksForTool } from '@/lib/seo/cross-links';
 import { Link } from '@/lib/i18n/navigation';
 import { tl } from '@/lib/utils/trilingual';
+import { nowMinutesInTimezone } from '@/lib/utils/now-in-timezone';
 import { computePanchang, type PanchangInput } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { CITIES, type CityData } from '@/lib/constants/cities';
@@ -22,6 +23,11 @@ import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 // ─── City selector list ────────────────────────────────────────
 const CITY_SLUGS = ['delhi', 'mumbai', 'bangalore', 'chennai', 'kolkata', 'hyderabad', 'pune', 'ahmedabad', 'jaipur', 'varanasi'] as const;
 const SELECTOR_CITIES = CITY_SLUGS.map(s => CITIES.find(c => c.slug === s)!).filter(Boolean);
+
+// Static default used for the initial render — must match the server's render to avoid
+// hydration mismatches. Delhi is what getDefaultCityForLocale() returns for en/hi/sa.
+// We update from the user's stored location in useEffect after mount.
+const DEFAULT_CITY: CityData = CITIES.find(c => c.slug === 'delhi')!;
 
 // ─── Nature color mapping ──────────────────────────────────────
 const NATURE_STYLES: Record<string, { bg: string; border: string; badge: string; text: string }> = {
@@ -97,6 +103,12 @@ const LABELS: Record<string, Record<string, string>> = {
   },
 };
 
+// ─── Helpers ──────────────────────────────────────────────────
+function timeToMinutes(t: string): number {
+  const [h, m] = t.split(':').map(Number);
+  return h * 60 + m;
+}
+
 // ─── Animation variants ────────────────────────────────────────
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -115,21 +127,34 @@ export default function ChoghadiyaClient() {
     : { fontFamily: 'var(--font-heading)' };
   const L = LABELS[locale] || LABELS.en;
 
-  // Default to user's current location if available, otherwise fall back to locale-based city
-  const locationStore = useLocationStore();
-  const initialCity = (): CityData => {
-    if (locationStore.lat !== null && locationStore.lng !== null) {
-      return {
+  // Static default keeps server and client initial renders identical (no hydration mismatch).
+  // After mount we update from the user's stored location if available.
+  const [selectedCity, setSelectedCity] = useState<CityData>(DEFAULT_CITY);
+
+  useEffect(() => {
+    const store = useLocationStore.getState();
+    if (store.lat !== null && store.lng !== null) {
+      setSelectedCity({
         slug: 'current',
-        name: { en: locationStore.name || 'Current Location', hi: locationStore.name || 'वर्तमान स्थान', sa: locationStore.name || 'वर्तमानस्थानम्' },
-        lat: locationStore.lat,
-        lng: locationStore.lng,
-        timezone: locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC',
-      };
+        // URL params take priority over cached state — none here, so store wins
+        name: { en: store.name || 'Current Location', hi: store.name || 'वर्तमान स्थान', sa: store.name || 'वर्तमानस्थानम्' },
+        lat: store.lat,
+        lng: store.lng,
+        timezone: store.timezone || 'UTC',
+      });
+    } else {
+      const localeCity = getDefaultCityForLocale(locale);
+      if (localeCity) setSelectedCity(localeCity);
     }
-    return getDefaultCityForLocale(locale) || SELECTOR_CITIES[0];
-  };
-  const [selectedCity, setSelectedCity] = useState<CityData>(initialCity);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Track current time in the LOCATION's timezone for NOW highlighting
+  const [nowMin, setNowMin] = useState(() => nowMinutesInTimezone(selectedCity.timezone));
+  useEffect(() => {
+    setNowMin(nowMinutesInTimezone(selectedCity.timezone));
+    const iv = setInterval(() => setNowMin(nowMinutesInTimezone(selectedCity.timezone)), 60_000);
+    return () => clearInterval(iv);
+  }, [selectedCity.timezone]);
 
   const now = new Date();
   const year = now.getFullYear();
@@ -179,6 +204,12 @@ export default function ChoghadiyaClient() {
 
   const renderSlotCard = (slot: ChoghadiyaSlot, i: number) => {
     const style = NATURE_STYLES[slot.nature] || NATURE_STYLES.neutral;
+    const startMin = timeToMinutes(slot.startTime);
+    const endMin = timeToMinutes(slot.endTime);
+    // Midnight-wrapping comparison (Lesson R)
+    const isActive = endMin < startMin
+      ? nowMin >= startMin || nowMin < endMin
+      : nowMin >= startMin && nowMin < endMin;
     return (
       <motion.div
         key={`${slot.period}-${i}`}
@@ -186,15 +217,22 @@ export default function ChoghadiyaClient() {
         initial="hidden"
         animate="visible"
         variants={fadeUp}
-        className={`rounded-xl border p-4 ${style.bg} ${style.border}`}
+        className={`rounded-xl border p-4 ${style.bg} ${style.border} ${isActive ? 'ring-2 ring-gold-primary/60' : ''}`}
       >
         <div className="flex items-center justify-between mb-2">
           <h3 className={`font-semibold ${style.text}`} style={headingFont}>
             {tl(slot.name, locale)}
           </h3>
-          <span className={`text-xs px-2 py-0.5 rounded-full ${style.badge}`}>
-            {natureLabel(slot.nature)}
-          </span>
+          <div className="flex items-center gap-2">
+            {isActive && (
+              <span className="text-xs px-2 py-0.5 rounded-full bg-gold-primary/30 text-gold-light font-bold animate-pulse" suppressHydrationWarning>
+                NOW
+              </span>
+            )}
+            <span className={`text-xs px-2 py-0.5 rounded-full ${style.badge}`}>
+              {natureLabel(slot.nature)}
+            </span>
+          </div>
         </div>
         <p className="text-lg font-bold text-text-primary tracking-wide">
           {slot.startTime}  –  {slot.endTime}
@@ -228,12 +266,12 @@ export default function ChoghadiyaClient() {
           transition={{ duration: 0.5, ease: 'easeOut' as const }}
           className="mb-8"
         >
-          <h1
+          <h2
             className="text-3xl sm:text-4xl font-bold text-gold-light mb-2"
             style={headingFont}
           >
             {L.title}
-          </h1>
+          </h2>
           <p className="text-text-secondary text-lg">{dateStr}</p>
           <p className="text-text-secondary flex items-center gap-1.5 mt-1" suppressHydrationWarning>
             <MapPin size={14} className="text-gold-primary" />

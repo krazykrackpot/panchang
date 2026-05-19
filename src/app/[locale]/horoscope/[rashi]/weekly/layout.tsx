@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { RASHIS } from '@/lib/constants/rashis';
 import { getRashiBySlug, VEDIC_TO_WESTERN } from '@/lib/constants/rashi-slugs';
@@ -33,11 +34,13 @@ function getWeekRange(): { start: string; end: string; label: string } {
 }
 
 export function generateStaticParams() {
-  return RASHIS.map(r => ({ rashi: r.slug }));
+  // ISR: rendered on-demand, not pre-built (keeps deploy under 10 min)
+  return [];
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; rashi: string }> }): Promise<Metadata> {
   const { locale, rashi } = await params;
+  setRequestLocale(locale);
   const r = getRashiBySlug(rashi);
   if (!r) return {};
 
@@ -93,6 +96,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string; rashi: string }> }) {
   const { locale, rashi } = await params;
+  setRequestLocale(locale);
   const r = getRashiBySlug(rashi);
   const name = r ? r.name.en : rashi;
   const vedicName = r ? tl(r.name, locale) : rashi;

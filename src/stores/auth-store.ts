@@ -32,12 +32,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       return;
     }
 
-    // Check if we have an OAuth hash in the URL  –  give Supabase time to process it
-    if (typeof window !== 'undefined' && window.location.hash.includes('access_token')) {
-      await new Promise(r => setTimeout(r, 1000));
-    }
-
-    // Listen for auth changes
+    // Listen for auth changes (must register BEFORE getSession so OAuth hash exchange is caught)
     supabase.auth.onAuthStateChange((event, session) => {
       set({ session, user: session?.user ?? null });
       if (event === 'SIGNED_IN' && session) {
@@ -47,7 +42,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       }
     });
 
-    // Check existing session
+    // getSession triggers the OAuth hash exchange if present — no setTimeout needed.
+    // The onAuthStateChange callback above fires when the exchange completes.
     const { data } = await supabase.auth.getSession();
     set({
       session: data.session,

@@ -1,5 +1,5 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
-import Script from 'next/script';
 import { locales } from '@/lib/i18n/config';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
@@ -11,6 +11,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
 
   const title = 'Hindu Festival Calendar 2026-2029  –  Exact Muhurta Times for 55 Cities | Dekho Panchang';
   const description =
@@ -59,6 +60,7 @@ export default async function FestivalsLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  setRequestLocale(locale);
 
   const breadcrumbLd = {
     '@context': 'https://schema.org',
@@ -96,12 +98,8 @@ export default async function FestivalsLayout({
 
   return (
     <>
-      <Script id="festivals-breadcrumb-ld" type="application/ld+json" strategy="afterInteractive">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLd) }} />
-      </Script>
-      <Script id="festivals-collection-ld" type="application/ld+json" strategy="afterInteractive">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(collectionLd) }} />
-      </Script>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(collectionLd) }} />
       {children}
     </>
   );

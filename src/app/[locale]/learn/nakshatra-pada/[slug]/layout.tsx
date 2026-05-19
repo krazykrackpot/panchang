@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { NAKSHATRA_PADA_PROFILES } from '@/lib/constants/nakshatra-pada-profiles';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
@@ -18,6 +19,7 @@ function parseSlug(slug: string): { nakshatraId: number; pada: number } | null {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const parsed = parseSlug(slug);
   if (!parsed) return {};
   const profile = NAKSHATRA_PADA_PROFILES.find(p => p.nakshatraId === parsed.nakshatraId && p.pada === parsed.pada);

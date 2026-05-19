@@ -24,7 +24,7 @@
  *   - Surya Siddhanta Ch. 2 (planetary motion and retrograde)
  */
 
-import { dateToJD, getPlanetaryPositions, toSidereal, lahiriAyanamsha, normalizeDeg } from '@/lib/ephem/astronomical';
+import { dateToJD, getPlanetaryPositions, toSidereal, getAyanamsha, normalizeDeg } from '@/lib/ephem/astronomical';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { RASHIS } from '@/lib/constants/rashis';
 import type { LocaleText} from '@/types/panchang';
@@ -165,7 +165,7 @@ export function generateRetrogradeCalendar(year: number): RetroPeriod[] {
       const speed = getDailySpeed(pid, jd);
       const isRetro = speed < 0;
       // Compute sidereal longitude for rashi determination
-      const ayan = lahiriAyanamsha(jd);
+      const ayan = getAyanamsha(jd);
 
       if (isRetro && !wasRetro) {
         // State transition: direct → retrograde (station retrograde)
@@ -197,7 +197,7 @@ export function generateRetrogradeCalendar(year: number): RetroPeriod[] {
 
     // If still retrograde at year end, close the period
     if (wasRetro) {
-      const ayan = lahiriAyanamsha(endJD);
+      const ayan = getAyanamsha(endJD);
       const pos = getPlanetaryPositions(endJD);
       const sidLong = normalizeDeg(pos[pid].longitude - ayan);
       const endSign = Math.floor(sidLong / 30) + 1;

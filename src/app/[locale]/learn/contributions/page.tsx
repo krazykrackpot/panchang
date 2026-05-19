@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { Link } from '@/lib/i18n/navigation';
 import { ArrowLeft, BookOpen, ChevronRight } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
@@ -115,6 +116,7 @@ const ARTICLES: { slug: string; title: LocaleText; description: LocaleText; icon
 
 export default async function ContributionsIndexPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params as { locale: Locale };
+  setRequestLocale(locale);
   const isDevanagari = isDevanagariLocale(locale);
   const hf = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const t = (key: string) => lt(LABELS[key], locale);

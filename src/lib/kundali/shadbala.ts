@@ -1,4 +1,4 @@
-import { normalizeDeg, lahiriAyanamsha, sunLongitude, toSidereal, dateToJD } from '@/lib/ephem/astronomical';
+import { normalizeDeg, getAyanamsha, sunLongitude, toSidereal, dateToJD } from '@/lib/ephem/astronomical';
 import { getSunTimes } from '@/lib/astronomy/sunrise';
 import {
   MOOLATRIKONA,
@@ -584,8 +584,9 @@ function yuddhaBala(planets: PlanetInput[]): Record<number, number> {
         const bLat = b.eclipticLatitude;
         let aWins: boolean;
         if (aLat !== undefined && bLat !== undefined) {
-          // Lower absolute latitude = more northerly (less deviated) = wins
-          aWins = Math.abs(aLat) <= Math.abs(bLat);
+          // Higher NORTHERN (positive) latitude wins per BPHS Ch.3 / Lesson Y
+          // NOT lower absolute value — that gives wrong result when both are positive
+          aWins = aLat >= bLat;
         } else {
           // Legacy fallback: higher longitude (graceful degradation only)
           aWins = normalizeDeg(a.longitude) >= normalizeDeg(b.longitude);
@@ -641,7 +642,7 @@ function computeKalaBala(
   const mb = masaBala(p, input.birthDateObj, planets, input.julianDay);
   const vb = varaBala(p, input.julianDay);
   const hb = horaBala(p, birthHour, input.julianDay, sunriseHour);
-  const ayanamsha = input.ayanamshaValue ?? lahiriAyanamsha(input.julianDay);
+  const ayanamsha = input.ayanamshaValue ?? getAyanamsha(input.julianDay);
   const ay = ayanaBala(p, ayanamsha);
   const yb = yuddhaBalaMap[p.id] ?? 0;
 
@@ -778,10 +779,12 @@ function computeDrikBala(p: PlanetInput, allPlanets: PlanetInput[]): number {
     // House distance from other planet to target planet p (1-based, 1-12)
     const houseDistance = ((p.house - other.house + 12) % 12) || 12;
 
-    // Get the fractional aspect strength for this planet at this distance
-    // Rahu/Ketu use Jupiter-style aspects (5th, 7th, 9th) but as malefics
-    const effectiveId = (other.id === 7 || other.id === 8) ? 4 : other.id;
-    const strength = getAspectStrength(effectiveId, houseDistance);
+    // Get the fractional aspect strength for this planet at this distance.
+    // Rahu/Ketu: 7th house aspect only (conservative interpretation per context.ts:226-228).
+    // No special aspects — consistent with the yoga engine's aspect model.
+    const strength = (other.id === 7 || other.id === 8)
+      ? (houseDistance === 7 ? 1.0 : 0)
+      : getAspectStrength(other.id, houseDistance);
 
     if (strength > 0) {
       const contribution = BASE_SCORE * strength;
@@ -815,7 +818,7 @@ export function calculateFullShadbala(input: ShadBalaInput, options?: ShadBalaOp
     const sthana = computeSthanaBala(p);
     const digBala = r2(computeDigBala(p, input.ascendantDeg));
     const kala = computeKalaBala(p, input, planets, yuddhaBalaMap);
-    const ayanamsha = input.ayanamshaValue ?? lahiriAyanamsha(input.julianDay);
+    const ayanamsha = input.ayanamshaValue ?? getAyanamsha(input.julianDay);
     const ay = ayanaBala(p, ayanamsha);
     const cheshtaBala = r2(computeCheshtaBala(p, ay, planets, options?.cheshtaBalaMode || 'bphs_strict'));
     const naisargikaBala = NAISARGIKA[p.id];

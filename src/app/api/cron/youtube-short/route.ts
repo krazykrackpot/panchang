@@ -3,6 +3,11 @@ import { verifyCronAuth } from '@/lib/api/cron-auth';
 import { generateDailyShort } from '@/lib/youtube/generate-short';
 import { uploadToYouTube } from '@/lib/youtube/upload';
 
+// This route requires ffmpeg — it CANNOT run on Vercel serverless.
+// Run locally or via GitHub Actions instead. maxDuration is irrelevant here
+// but set to prevent accidental Vercel CPU burn if someone adds it to crons.
+export const maxDuration = 10;
+
 /**
  * Cron endpoint: generates and uploads a daily panchang YouTube Short.
  *

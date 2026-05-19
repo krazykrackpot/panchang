@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { tl } from '@/lib/utils/trilingual';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
@@ -43,6 +44,7 @@ const SQRT2_COMPARISON = [
 
 export default async function PythagorasPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params as { locale: Locale };
+  setRequestLocale(locale);
   const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const t = (key: string) => lt((L as unknown as Record<string, LocaleText>)[key], locale);

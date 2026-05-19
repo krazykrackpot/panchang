@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import MatchingClient from './Client';
 
@@ -5,6 +6,7 @@ export const revalidate = 86400;
 
 export default async function MatchingPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const isHi = locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
 
   const KUTAS = [

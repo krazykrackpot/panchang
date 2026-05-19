@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Calculator, Calendar, Sun, Moon, Sparkles, ArrowRight, ArrowLeft, ChevronRight, CheckCircle2 } from 'lucide-react';
 import LocationSearch from '@/components/ui/LocationSearch';
 import {
-  dateToJD, sunLongitude, moonLongitude, toSidereal, lahiriAyanamsha,
+  dateToJD, sunLongitude, moonLongitude, toSidereal, getAyanamsha,
   calculateTithi, calculateYoga, calculateKarana, getNakshatraNumber,
   getRashiNumber, normalizeDeg
 } from '@/lib/ephem/astronomical';
@@ -420,7 +420,7 @@ export default function PanchangLabPage() {
     const jd = dateToJD(y, m, d, hourUT);
 
     const sunTrop = sunLongitude(jd);
-    const ayan = lahiriAyanamsha(jd);
+    const ayan = getAyanamsha(jd);
     const sunSid = toSidereal(sunTrop, jd);
     const sunRashi = RASHIS[getRashiNumber(sunSid) - 1];
 

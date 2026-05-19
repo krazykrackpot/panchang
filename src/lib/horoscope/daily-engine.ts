@@ -15,7 +15,7 @@ import type { LocaleText } from '@/types/panchang';
 import {
   dateToJD, sunLongitude, moonLongitude, toSidereal,
   getRashiNumber, getNakshatraNumber, calculateTithi,
-  calculateYoga, getPlanetaryPositions, lahiriAyanamsha,
+  calculateYoga, calculateKarana, getPlanetaryPositions, getAyanamsha,
 } from '@/lib/ephem/astronomical';
 import { RASHIS } from '@/lib/constants/rashis';
 import { computeEnergyFromComponents } from '@/lib/panchang/energy-score';
@@ -412,7 +412,7 @@ export function generateDailyHoroscope(input: DailyEngineInput): DailyHoroscope 
 
   // Planetary positions (tropical -> sidereal for slow planets)
   const planets = getPlanetaryPositions(jd);
-  const ayanamsha = input.ayanamshaValue ?? lahiriAyanamsha(jd);
+  const ayanamsha = input.ayanamshaValue ?? getAyanamsha(jd);
 
   const getSiderealSign = (planetId: number): number => {
     const p = planets.find(pl => pl.id === planetId);
@@ -496,7 +496,7 @@ export function generateDailyHoroscope(input: DailyEngineInput): DailyHoroscope 
     paksha: tithiResult.number <= 15 ? 'shukla' : 'krishna',
     nakshatraId: currentNakshatraId,
     yogaNumber: yogaNum,
-    karanaNumber: Math.ceil(tithiResult.number / 2) % 7 + 1, // approximate karana from tithi
+    karanaNumber: calculateKarana(jd), // canonical 60-karana cycle (not approximate)
     dayOfWeek: weekday,
   });
   const energyCap = energyScore / 10; // 0-100 → 0-10

@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { generateToolLD, generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { safeJsonLd } from '@/lib/seo/safe-jsonld';
@@ -6,6 +7,7 @@ const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   return {
     title: 'Jyotish Tools  –  20 Vedic Astrology Calculators',
     description:
@@ -24,6 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function ToolsLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
 
   const toolLD = generateToolLD(
     'Dekho Panchang  –  Jyotish Tools',

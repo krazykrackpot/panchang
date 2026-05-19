@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { CITIES, getCityBySlug } from '@/lib/constants/cities';
 import { MAJOR_FESTIVALS, type MuhurtaRule } from '@/lib/calendar/festival-defs';
 import { FESTIVAL_DETAILS, type FestivalDetail } from '@/lib/constants/festival-details';
@@ -155,6 +156,7 @@ export default async function FestivalCanonicalPage({
   params: Promise<{ locale: string; slug: string; year: string }>;
 }) {
   const { locale, slug, year: yearStr } = await params;
+  setRequestLocale(locale);
 
   // Validate year
   const year = parseInt(yearStr, 10);

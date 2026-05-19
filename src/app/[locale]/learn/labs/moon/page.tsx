@@ -5,7 +5,7 @@ import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Moon, ArrowRight, ArrowLeft, ChevronRight, CheckCircle2 } from 'lucide-react';
 import LocationSearch from '@/components/ui/LocationSearch';
-import { dateToJD, normalizeDeg, toRad, toSidereal, lahiriAyanamsha, getNakshatraNumber, getRashiNumber } from '@/lib/ephem/astronomical';
+import { dateToJD, normalizeDeg, toRad, toSidereal, getAyanamsha, getNakshatraNumber, getRashiNumber } from '@/lib/ephem/astronomical';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -280,7 +280,7 @@ export default function MoonLabPage() {
     const totalCorr = sumL + venusCorr + flatCorr + jupCorr;
 
     const tropLong = normalizeDeg(Lp + totalCorr / 1e6);
-    const ayan = lahiriAyanamsha(jd);
+    const ayan = getAyanamsha(jd);
     const sidLong = toSidereal(tropLong, jd);
 
     const rashiNum = getRashiNumber(sidLong);

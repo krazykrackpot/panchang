@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { getAllPairSlugs, getRashiBySlug, canonicalPairSlug } from '@/lib/constants/rashi-slugs';
@@ -14,6 +15,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; pair: string }> }): Promise<Metadata> {
   const { locale, pair } = await params;
+  setRequestLocale(locale);
   const parts = pair.split('-and-');
   if (parts.length !== 2) return {};
   const r1 = getRashiBySlug(parts[0]);
@@ -63,6 +65,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string; pair: string }> }) {
   const { locale, pair } = await params;
+  setRequestLocale(locale);
   const parts = pair.split('-and-');
   const r1 = getRashiBySlug(parts[0]);
   const r2 = getRashiBySlug(parts[1]);

@@ -4,6 +4,8 @@ import { getServerSupabase } from '@/lib/supabase/server';
 import { sendEmail } from '@/lib/email/resend-client';
 import { getOnboardingEmail } from '@/lib/email/onboarding-templates';
 
+export const maxDuration = 30; // Cron job — email/notification/sync tasks
+
 /**
  * Daily cron: sends 7-day onboarding drip emails to new users.
  * Runs at 8 AM UTC (1:30 PM IST).

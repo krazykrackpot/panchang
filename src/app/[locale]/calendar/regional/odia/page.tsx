@@ -145,9 +145,8 @@ const FESTIVAL_DATES_2026 = [
   { en: 'Suna Besha (Golden Attire)', or: 'ସୁନା ବେଶ', date: 'Wed, 8 Jul 2026', tithi: 'Ashadha Shukla Ekadashi', nakshatra: 'Anuradha' },
   { en: 'Kumar Purnima', or: 'କୁମାର ପୂର୍ଣ୍ଣିମା', date: 'Sat, 24 Oct 2026', tithi: 'Ashwin Purnima', nakshatra: 'Ashwini' },
   { en: 'Diwali (Kali Puja)', or: 'ଦୀପାବଳୀ (କାଳୀ ପୂଜା)', date: 'Sun, 8 Nov 2026', tithi: 'Kartik Krishna Amavasya', nakshatra: 'Swati' },
-  { en: 'Prathamastami', or: 'ପ୍ରଥମାଷ୍ଟମୀ', date: 'Thu, 26 Nov 2026', tithi: 'Margasira Krishna Ashtami', nakshatra: 'Pushya' },
   { en: 'Manabasa Gurubar (1st Thursday)', or: 'ମାଣବସା ଗୁରୁବାର', date: 'Thu, 19 Nov 2026', tithi: 'Margasira Krishna Pratipada', nakshatra: 'Uttara Phalguni' },
-  { en: 'Dhanu Sankranti', or: 'ଧନୁ ସଂକ୍ରାନ୍ତି', date: 'Wed, 14 Jan 2026', tithi: 'Paush Krishna Pratipada', nakshatra: 'Uttara Ashadha' },
+  { en: 'Prathamastami', or: 'ପ୍ରଥମାଷ୍ଟମୀ', date: 'Thu, 26 Nov 2026', tithi: 'Margasira Krishna Ashtami', nakshatra: 'Pushya' },
 ];
 
 const FESTIVAL_DATES_2027 = [
@@ -163,7 +162,6 @@ const FESTIVAL_DATES_2027 = [
   { en: 'Kumar Purnima', or: 'କୁମାର ପୂର୍ଣ୍ଣିମା', date: 'Wed, 13 Oct 2027', tithi: 'Ashwin Purnima', nakshatra: 'Ashwini' },
   { en: 'Diwali', or: 'ଦୀପାବଳୀ', date: 'Thu, 28 Oct 2027', tithi: 'Kartik Krishna Amavasya', nakshatra: 'Chitra' },
   { en: 'Prathamastami', or: 'ପ୍ରଥମାଷ୍ଟମୀ', date: 'Mon, 15 Nov 2027', tithi: 'Margasira Krishna Ashtami', nakshatra: 'Pushya' },
-  { en: 'Dhanu Sankranti', or: 'ଧନୁ ସଂକ୍ରାନ୍ତି', date: 'Thu, 14 Jan 2027', tithi: 'Paush Shukla Dashami', nakshatra: 'Shravana' },
 ];
 
 // FAQ data for structured data

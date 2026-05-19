@@ -11,6 +11,7 @@ import WhatsAppShareBanner from '@/components/ui/WhatsAppShareBanner';
 import NakshatraShareButton from '@/components/shareable/NakshatraShareButton';
 import { tl } from '@/lib/utils/trilingual';
 import { isDevanagariLocale, getHeadingFont, getBodyFont, dataLocale } from '@/lib/utils/locale-fonts';
+import { scoreLabel, scoreColor as scoreBgColor, barColor as scoreTextColor } from '@/lib/horoscope/score-utils';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import { useLocationStore } from '@/stores/location-store';
 import { trackHoroscopeViewed } from '@/lib/analytics';
@@ -200,24 +201,9 @@ function getOrdinalSuffix(n: number): string {
   return 'th';
 }
 
-function scoreColor(score: number): string {
-  if (score >= 7) return 'text-emerald-400';
-  if (score >= 4) return 'text-amber-400';
-  return 'text-red-400';
-}
-
-function barColor(score: number): string {
-  if (score >= 7) return 'bg-emerald-500';
-  if (score >= 4) return 'bg-amber-500';
-  return 'bg-red-500';
-}
-
-function scoreLabel(score: number, locale: string): string {
-  if (score >= 8) return tl({ en: 'Excellent', hi: 'उत्कृष्ट', sa: 'उत्कृष्ट' }, locale);
-  if (score >= 6.5) return tl({ en: 'Good', hi: 'शुभ', sa: 'शुभ' }, locale);
-  if (score >= 4) return tl({ en: 'Mixed', hi: 'मिश्रित', sa: 'मिश्रित' }, locale);
-  return tl({ en: 'Challenging', hi: 'चुनौतीपूर्ण', sa: 'कठिनः' }, locale);
-}
+// scoreLabel imported from '@/lib/horoscope/score-utils'
+// scoreColor (bg-*) imported as scoreBgColor from '@/lib/horoscope/score-utils'
+// barColor (text-*) imported as scoreTextColor from '@/lib/horoscope/score-utils'
 
 interface PersonalizedForecast {
   date: string;
@@ -444,10 +430,10 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
               <div className="flex items-center justify-between mb-5">
                 <div>
                   <p className="text-text-secondary text-xs uppercase tracking-wider mb-1">{L.overallScore}</p>
-                  <p className={`text-4xl font-bold ${scoreColor(horoscope.overallScore)}`}>
+                  <p className={`text-4xl font-bold ${scoreTextColor(horoscope.overallScore)}`}>
                     {horoscope.overallScore}<span className="text-lg text-text-secondary">/10</span>
                   </p>
-                  <p className={`text-sm font-medium mt-1 ${scoreColor(horoscope.overallScore)}`}>
+                  <p className={`text-sm font-medium mt-1 ${scoreTextColor(horoscope.overallScore)}`}>
                     {scoreLabel(horoscope.overallScore, locale)}
                   </p>
                 </div>
@@ -458,12 +444,12 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
                       className="text-white/5" strokeWidth="6" />
                     <circle cx="40" cy="40" r="34" fill="none"
                       strokeWidth="6" strokeLinecap="round"
-                      className={scoreColor(horoscope.overallScore)}
+                      className={scoreTextColor(horoscope.overallScore)}
                       stroke="currentColor"
                       strokeDasharray={`${(horoscope.overallScore / 10) * 213.6} 213.6`} />
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className={`text-2xl font-bold ${scoreColor(horoscope.overallScore)}`}>
+                    <span className={`text-2xl font-bold ${scoreTextColor(horoscope.overallScore)}`}>
                       {horoscope.overallScore}
                     </span>
                     <span className="text-[10px] text-text-secondary">/10</span>
@@ -537,7 +523,7 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
                       <span className="text-text-primary text-sm font-semibold flex-1" style={bodyFont}>
                         {L[area]}
                       </span>
-                      <span className={`text-sm font-bold ${scoreColor(areaData.score)}`}>
+                      <span className={`text-sm font-bold ${scoreTextColor(areaData.score)}`}>
                         {areaData.score}/10
                       </span>
                     </div>
@@ -547,7 +533,7 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
                         initial={{ width: 0 }}
                         animate={{ width: `${areaData.score * 10}%` }}
                         transition={{ duration: 0.8, ease: 'easeOut' as const }}
-                        className={`h-full rounded-full ${barColor(areaData.score)}`}
+                        className={`h-full rounded-full ${scoreBgColor(areaData.score)}`}
                       />
                     </div>
                     <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>

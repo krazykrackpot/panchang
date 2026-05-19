@@ -4,6 +4,11 @@
 ALTER TABLE public.user_profiles
   ADD COLUMN IF NOT EXISTS onboarding_drip_day integer DEFAULT 0;
 
+-- Backfill NULLs before applying NOT NULL (handles manual edits or edge cases)
+UPDATE public.user_profiles
+  SET onboarding_drip_day = 0
+  WHERE onboarding_drip_day IS NULL;
+
 ALTER TABLE public.user_profiles
   ALTER COLUMN onboarding_drip_day SET NOT NULL,
   ALTER COLUMN onboarding_drip_day SET DEFAULT 0;

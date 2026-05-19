@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLocale } from 'next-intl';
 import { GLOSSARY, type GlossaryEntry } from '@/lib/constants/glossary';
 import { tl } from '@/lib/utils/trilingual';
+import { safeJsonLd } from '@/lib/seo/safe-jsonld';
 
 type Category = GlossaryEntry['category'] | 'all';
 
@@ -78,7 +79,7 @@ export default function GlossaryPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
       />
 
       <div className="min-h-screen bg-[#0a0e27] text-[#e6e2d8] py-12 px-4">

@@ -6,6 +6,7 @@ import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 import { smartMuhurtaSearch, type MuhurtaWindow } from '@/lib/muhurta/smart-search';
 import type { ExtendedActivityId } from '@/types/muhurta-ai';
 import { getServerSupabase } from '@/lib/supabase/server';
+import { getUserTier, checkAndIncrementUsage } from '@/lib/subscription/check-access';
 
 // ─── Timing Question Detection ─────────────────────────────────
 

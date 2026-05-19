@@ -81,21 +81,27 @@ export async function POST(req: Request) {
           .single();
 
         if (sub) {
-          const status = subscription.cancel_at_period_end ? 'cancelled' : subscription.status;
+          // 'cancelling' = scheduled to cancel at period end but still active until then.
+          // check-access.ts treats 'cancelling' as active. Only 'cancelled' = actually expired.
+          const status = subscription.cancel_at_period_end ? 'cancelling' : subscription.status;
           const item = subscription.items?.data?.[0];
+          // Period dates: prefer subscription-level, fall back to item-level
+          const stripeSub = subscription as unknown as Record<string, unknown>;
+          const periodStart = (stripeSub.current_period_start as number | undefined) ?? item?.current_period_start;
+          const periodEnd = (stripeSub.current_period_end as number | undefined) ?? item?.current_period_end;
           const updateData: Record<string, string> = {
             status,
             updated_at: new Date().toISOString(),
           };
-          if (item?.current_period_start) {
-            updateData.current_period_start = new Date(item.current_period_start * 1000).toISOString();
+          if (periodStart) {
+            updateData.current_period_start = new Date(periodStart * 1000).toISOString();
           }
-          if (item?.current_period_end) {
-            updateData.current_period_end = new Date(item.current_period_end * 1000).toISOString();
+          if (periodEnd) {
+            updateData.current_period_end = new Date(periodEnd * 1000).toISOString();
           }
           await supabase.from('subscriptions').update(updateData).eq('user_id', sub.user_id);
 
-          invalidateTierCache(sub.user_id);
+          invalidateTierCache(sub.user_id as string);
         }
         break;
       }
@@ -117,7 +123,7 @@ export async function POST(req: Request) {
             updated_at: new Date().toISOString(),
           }).eq('user_id', sub.user_id);
 
-          invalidateTierCache(sub.user_id);
+          invalidateTierCache(sub.user_id as string);
         }
         break;
       }
@@ -139,7 +145,7 @@ export async function POST(req: Request) {
             updated_at: new Date().toISOString(),
           }).eq('user_id', sub.user_id);
 
-          invalidateTierCache(sub.user_id);
+          invalidateTierCache(sub.user_id as string);
         }
         break;
       }

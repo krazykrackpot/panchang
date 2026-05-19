@@ -249,6 +249,9 @@ export default function SummaryDomainCard({
             nowScore={domain.currentActivation.overallActivationScore}
             icon={<Icon size={20} />}
             size={120}
+            ariaLabel={isDevanagariLocale(locale)
+              ? `${domainName}: ${tl(domain.overallRating.label, locale)}, दशा ${Math.round(domain.currentActivation.dashaActivationScore * 10)}%, अभी ${Math.round(domain.currentActivation.overallActivationScore * 10)}%`
+              : `${domainName}: ${tl(domain.overallRating.label, locale)}, Life phase ${Math.round(domain.currentActivation.dashaActivationScore * 10)}%, Now ${Math.round(domain.currentActivation.overallActivationScore * 10)}%`}
           />
           <div className="flex-1 min-w-0 pt-1">
             <h3 className="text-lg font-bold text-gold-light" style={headingStyle}>

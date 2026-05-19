@@ -42,7 +42,7 @@ export function captureUtm(): void {
 
   const utm = parseUtmFromUrl(window.location.href);
   if (utm) {
-    document.cookie = `${COOKIE_NAME}=${encodeURIComponent(JSON.stringify(utm))}; path=/; max-age=${COOKIE_MAX_AGE}; SameSite=Lax`;
+    document.cookie = `${COOKIE_NAME}=${encodeURIComponent(JSON.stringify(utm))}; path=/; max-age=${COOKIE_MAX_AGE}; SameSite=Lax; Secure`;
   }
 
   if (!sessionStorage.getItem(SESSION_KEY)) {

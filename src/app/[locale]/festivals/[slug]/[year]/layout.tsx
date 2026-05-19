@@ -79,10 +79,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   // Build description using ctr-config formula
-  const TOP_CITY_COUNT = 6;
   let description: string;
   if (festivalDate) {
-    description = festivalCanonicalDesc(festivalNameEn, festivalDate, pujaMuhuratStr, TOP_CITY_COUNT);
+    description = festivalCanonicalDesc(festivalNameEn, festivalDate, pujaMuhuratStr);
   } else {
     description = `${festivalNameEn} ${year}: exact date, puja muhurat & time. Vidhi, mantras & samagri checklist. Free city-wise timings for 800+ cities.`.slice(0, 160);
   }

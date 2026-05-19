@@ -11,7 +11,15 @@ const VALID_EVENTS = [
   'tool_used',
 ] as const;
 
-// Simple in-memory rate limit: max 20 events per session per minute
+// Module-level Supabase client — reused across invocations within the same
+// Fluid Compute instance. Avoids creating a new client per request.
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
+const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabaseKey) : null;
+
+// In-memory rate limit: best-effort in serverless (not shared across instances,
+// lost on cold start). Acceptable for analytics — prevents abuse within a single
+// warm instance without requiring a Redis dependency.
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 
 function isRateLimited(sessionId: string): boolean {
@@ -46,16 +54,10 @@ export async function POST(req: NextRequest) {
       return new NextResponse(null, { status: 429 });
     }
 
-    // Insert via service role (bypasses RLS)
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
-
-    if (!supabaseUrl || !supabaseKey) {
+    if (!supabase) {
       console.error('[track-utm] Missing Supabase env vars');
       return new NextResponse(null, { status: 500 });
     }
-
-    const supabase = createClient(supabaseUrl, supabaseKey);
 
     const { error } = await supabase.from('utm_visits').insert({
       session_id: sessionId,

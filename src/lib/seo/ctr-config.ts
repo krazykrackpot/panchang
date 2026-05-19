@@ -88,7 +88,7 @@ export function festivalCanonicalTitleHi(
  * "Ganesh Chaturthi 2027 is on Saturday, Sep 4. Puja muhurat: 11:22 AM–1:52 PM. Vidhi, mantras & samagri checklist. Free city-wise timings for 800+ cities."
  */
 export function festivalCanonicalDesc(
-  name: string, dateStr: string, pujaTime: string | null, _cityCount: number
+  name: string, dateStr: string, pujaTime: string | null
 ): string {
   const long = fmtLong(dateStr);
   const day = fmtDay(dateStr);

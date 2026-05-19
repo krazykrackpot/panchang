@@ -4,6 +4,10 @@ Crawl-delay: 2
 
 Sitemap: https://dekhopanchang.com/sitemap.xml
 
+# AI model context files
+Allow: /llms.txt
+Allow: /llms-full.txt
+
 # Disallow API routes
 Disallow: /api/
 

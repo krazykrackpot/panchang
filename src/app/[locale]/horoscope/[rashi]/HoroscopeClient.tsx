@@ -327,7 +327,7 @@ export function HoroscopeClient({ rashi, locale, initialHoroscope, initialDate }
         chart: snapshot,
         lat: locationStore.lat ?? 0,
         lng: locationStore.lng ?? 0,
-        locale,
+        locale: lk,
       }),
     })
       .then(res => {

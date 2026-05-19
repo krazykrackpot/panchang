@@ -18,6 +18,8 @@ interface DomainRingsProps {
   icon?: ReactNode;
   /** Size in px. Default 80. */
   size?: number;
+  /** Pre-formatted accessible label from parent (localised). Falls back to English. */
+  ariaLabel?: string;
 }
 
 // ─── Colours ────────────────────────────────────────────────────────────────
@@ -62,6 +64,7 @@ export default function DomainRings({
   nowScore,
   icon,
   size = 80,
+  ariaLabel,
 }: DomainRingsProps) {
   const natalFill = NATAL_FILL[natalRating];
   const dashaFill = Math.min(1, Math.max(0, dashaScore / 10));
@@ -73,7 +76,7 @@ export default function DomainRings({
   return (
     <div className="relative flex-shrink-0" style={{ width: size, height: size }}>
       <svg viewBox="0 0 100 100" width={size} height={size} role="img"
-        aria-label={`Your Chart: ${natalRating === 'uttama' ? 'Strong' : natalRating === 'madhyama' ? 'Moderate' : natalRating === 'adhama' ? 'Needs attention' : 'Challenging'}, Life Phase: ${Math.round(dashaFill * 100)}% active, Right Now: ${Math.round(transitFill * 100)}% active`}
+        aria-label={ariaLabel || `Your Chart: ${natalRating === 'uttama' ? 'Strong' : natalRating === 'madhyama' ? 'Moderate' : natalRating === 'adhama' ? 'Needs attention' : 'Challenging'}, Life Phase: ${Math.round(dashaFill * 100)}%, Right Now: ${Math.round(transitFill * 100)}%`}
       >
         {RINGS.map((ring, i) => {
           const c = circ(ring.radius);

@@ -38,6 +38,9 @@ export default function DomainRingsCard({
           dashaScore={dashaScore}
           nowScore={nowScore}
           size={80}
+          ariaLabel={isHi
+            ? `${domain}: ${ratingLabel}, जीवन चरण ${Math.round(dashaScore * 10)}%, अभी ${Math.round(nowScore * 10)}%`
+            : `${domain}: ${ratingLabel}, Life Phase ${Math.round(dashaScore * 10)}%, Right Now ${Math.round(nowScore * 10)}%`}
         />
 
         <div className="flex-1 min-w-0">

@@ -43,13 +43,18 @@ export async function generateMetadata({
 
   const isHi = isDevanagariLocale(locale);
   const cityName = isHi ? city.name.hi : city.name.en;
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = today.getMonth() + 1;
-  const day = today.getDate();
-  // Date is safe in title now — page is dynamic (no ISR cache), so always fresh
-  const dateStr = today.toLocaleDateString(msg('localeId', locale), {
+  // Convert server UTC time to the city's local date — Vercel runs UTC,
+  // so new Date() would show yesterday for cities ahead of UTC after midnight.
+  const nowUtc = new Date();
+  const tzOffsetPreview = getUTCOffsetForDate(nowUtc.getUTCFullYear(), nowUtc.getUTCMonth() + 1, nowUtc.getUTCDate(), city.timezone);
+  const cityMs = nowUtc.getTime() + tzOffsetPreview * 3600_000;
+  const cityDate = new Date(cityMs);
+  const year = cityDate.getUTCFullYear();
+  const month = cityDate.getUTCMonth() + 1;
+  const day = cityDate.getUTCDate();
+  const dateStr = cityDate.toLocaleDateString(msg('localeId', locale), {
     day: 'numeric', month: 'long', year: 'numeric',
+    timeZone: 'UTC', // cityDate is already shifted — interpret as UTC to avoid double-shift
   });
   const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
   const metaPanchang = computePanchang({
@@ -157,11 +162,15 @@ export default async function CityPanchangPage({
   const isHi = isDevanagariLocale(loc);
   const cityName = isHi ? city.name.hi : city.name.en;
 
-  // Compute today's panchang for this city
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = now.getMonth() + 1;
-  const day = now.getDate();
+  // Convert server UTC time to the city's local date — Vercel runs UTC,
+  // so new Date() would show yesterday for cities ahead of UTC after midnight.
+  const nowUtc = new Date();
+  const tzOffsetPreview = getUTCOffsetForDate(nowUtc.getUTCFullYear(), nowUtc.getUTCMonth() + 1, nowUtc.getUTCDate(), city.timezone);
+  const cityMs = nowUtc.getTime() + tzOffsetPreview * 3600_000;
+  const now = new Date(cityMs);  // city-local time as UTC fields
+  const year = now.getUTCFullYear();
+  const month = now.getUTCMonth() + 1;
+  const day = now.getUTCDate();
   const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
 
   const input: PanchangInput = {
@@ -190,6 +199,7 @@ export default async function CityPanchangPage({
   // Date display
   const dateDisplay = now.toLocaleDateString(msg('localeId', locale), {
     weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
+    timeZone: 'UTC', // `now` is already shifted to city TZ — interpret as UTC to avoid double-shift
   });
 
   // Tithi / Nakshatra / Yoga / Karana names
@@ -216,9 +226,9 @@ export default async function CityPanchangPage({
     url: `${BASE_URL}/${locale}/panchang/${citySlug}`,
     mainEntity: {
       '@type': 'Event',
-      name: `Panchang  –  ${city.name.en}  –  ${now.toISOString().split('T')[0]}`,
-      startDate: now.toISOString().split('T')[0],
-      endDate: now.toISOString().split('T')[0],
+      name: `Panchang  –  ${city.name.en}  –  ${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`,
+      startDate: `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`,
+      endDate: `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`,
       location: {
         '@type': 'Place',
         name: `${city.name.en}, ${city.state}`,

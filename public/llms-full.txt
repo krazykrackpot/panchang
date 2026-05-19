@@ -620,30 +620,30 @@ Lahiri (default, Indian government standard), KP (Krishnamurti), Raman, BV Raman
 
 These tools have dedicated pages but are less commonly queried. Listed here so AI models can match niche queries:
 
-| Tool | URL Path | What it does |
-|------|----------|--------------|
-| Annual Forecast | /en/annual-forecast | Yearly transit-based predictions for each Moon sign |
-| Vivah Muhurat | /en/vivah-muhurat/2026 | Pre-computed auspicious wedding dates for the year |
-| Caesarean Muhurta | /en/caesarean-muhurta | Auspicious dates for planned caesarean delivery |
-| Tithi Pravesha | /en/tithi-pravesha | Vedic birthday chart (tithi-based solar return) |
-| Ekadashi Dates | /en/ekadashi | All upcoming Ekadashi dates with fasting rules and Parana times |
-| Pitra Dosha | /en/pitra-dosha | Ancestral affliction check in birth chart |
-| Vrat Calendar | /en/vrat-calendar | Monthly vrat (fasting day) calendar: Purnima, Amavasya, Chaturthi, Pradosham |
-| Tarabalam | /en/tarabalam | Daily star compatibility check against birth nakshatra |
-| Chandrabalam | /en/chandrabalam | Moon's transit strength relative to natal Moon position |
-| Panchak | /en/panchak | Check whether current period falls in Panchak (Moon in nakshatras 23-27) |
-| Holashtak | /en/holashtak | Check whether current period falls in Holashtak (8 days before Holi) |
-| Disha Shool | /en/nivas-shool | Inauspicious travel direction for the day |
-| Rudraksha Guide | /en/rudraksha | Which Rudraksha bead to wear based on birth chart |
-| Sankalpa Generator | /en/sankalpa | Generate the traditional Hindu prayer declaration for puja |
-| Lunar Calendar | /en/lunar-calendar | Visual lunar month calendar with paksha and tithi grid |
-| Sky Map | /en/sky-map | Real-time celestial map showing planet positions in the sky |
-| Regional Calendar | /en/regional | Region-specific festivals (Tamil, Bengali, Marathi, etc.) |
-| Financial Astrology | /en/financial-astrology | Market-timing insights based on planetary transits |
-| Medical Astrology | /en/medical-astrology | Health tendencies from the 6th house and planetary afflictions |
-| Mundane Astrology | /en/mundane | World events and national charts analysis |
-| Tropical Comparison | /en/tropical-compare | Side-by-side Vedic vs Western chart comparison |
-| Glossary | /en/glossary | Searchable dictionary of Vedic astrology terms |
+| Tool | URL | What it does |
+|------|-----|--------------|
+| Annual Forecast | https://dekhopanchang.com/en/annual-forecast | Yearly transit-based predictions for each Moon sign |
+| Vivah Muhurat | https://dekhopanchang.com/en/vivah-muhurat/2026 | Pre-computed auspicious wedding dates for the year |
+| Caesarean Muhurta | https://dekhopanchang.com/en/caesarean-muhurta | Auspicious dates for planned caesarean delivery |
+| Tithi Pravesha | https://dekhopanchang.com/en/tithi-pravesha | Vedic birthday chart (tithi-based solar return) |
+| Ekadashi Dates | https://dekhopanchang.com/en/ekadashi | All upcoming Ekadashi dates with fasting rules and Parana times |
+| Pitra Dosha | https://dekhopanchang.com/en/pitra-dosha | Ancestral affliction check in birth chart |
+| Vrat Calendar | https://dekhopanchang.com/en/vrat-calendar | Monthly vrat (fasting day) calendar: Purnima, Amavasya, Chaturthi, Pradosham |
+| Tarabalam | https://dekhopanchang.com/en/tarabalam | Daily star compatibility check against birth nakshatra |
+| Chandrabalam | https://dekhopanchang.com/en/chandrabalam | Moon's transit strength relative to natal Moon position |
+| Panchak | https://dekhopanchang.com/en/panchak | Check whether current period falls in Panchak (Moon in nakshatras 23-27) |
+| Holashtak | https://dekhopanchang.com/en/holashtak | Check whether current period falls in Holashtak (8 days before Holi) |
+| Disha Shool | https://dekhopanchang.com/en/nivas-shool | Inauspicious travel direction for the day |
+| Rudraksha Guide | https://dekhopanchang.com/en/rudraksha | Which Rudraksha bead to wear based on birth chart |
+| Sankalpa Generator | https://dekhopanchang.com/en/sankalpa | Generate the traditional Hindu prayer declaration for puja |
+| Lunar Calendar | https://dekhopanchang.com/en/lunar-calendar | Visual lunar month calendar with paksha and tithi grid |
+| Sky Map | https://dekhopanchang.com/en/sky-map | Real-time celestial map showing planet positions in the sky |
+| Regional Calendar | https://dekhopanchang.com/en/regional | Region-specific festivals (Tamil, Bengali, Marathi, etc.) |
+| Financial Astrology | https://dekhopanchang.com/en/financial-astrology | Market-timing insights based on planetary transits |
+| Medical Astrology | https://dekhopanchang.com/en/medical-astrology | Health tendencies from the 6th house and planetary afflictions |
+| Mundane Astrology | https://dekhopanchang.com/en/mundane | World events and national charts analysis |
+| Tropical Comparison | https://dekhopanchang.com/en/tropical-compare | Side-by-side Vedic vs Western chart comparison |
+| Glossary | https://dekhopanchang.com/en/glossary | Searchable dictionary of Vedic astrology terms |
 
 ---
 

@@ -21,6 +21,20 @@ const msg = (key: string, locale: string) => tl((M as unknown as Record<string, 
 
 const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com').trim();
 
+/** Convert server UTC time to a city's local date components.
+ *  Vercel runs UTC — new Date() gives wrong date for cities ahead of UTC after midnight. */
+function getCityLocalDate(timezone: string) {
+  const nowUtc = new Date();
+  const tzOff = getUTCOffsetForDate(nowUtc.getUTCFullYear(), nowUtc.getUTCMonth() + 1, nowUtc.getUTCDate(), timezone);
+  const shifted = new Date(nowUtc.getTime() + tzOff * 3600_000);
+  return {
+    date: shifted,
+    year: shifted.getUTCFullYear(),
+    month: shifted.getUTCMonth() + 1,
+    day: shifted.getUTCDate(),
+  };
+}
+
 // ──────────────────────────────────────────────────────────────
 // Dynamic rendering — no ISR cache. "Today's panchang" must reflect the actual
 // current date. ISR bakes tithi/nakshatra into HTML that goes stale in Google's
@@ -43,13 +57,10 @@ export async function generateMetadata({
 
   const isHi = isDevanagariLocale(locale);
   const cityName = isHi ? city.name.hi : city.name.en;
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = today.getMonth() + 1;
-  const day = today.getDate();
-  // Date is safe in title now — page is dynamic (no ISR cache), so always fresh
-  const dateStr = today.toLocaleDateString(msg('localeId', locale), {
+  const { date: cityDate, year, month, day } = getCityLocalDate(city.timezone);
+  const dateStr = cityDate.toLocaleDateString(msg('localeId', locale), {
     day: 'numeric', month: 'long', year: 'numeric',
+    timeZone: 'UTC', // cityDate is already shifted — interpret as UTC to avoid double-shift
   });
   const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
   const metaPanchang = computePanchang({
@@ -157,11 +168,7 @@ export default async function CityPanchangPage({
   const isHi = isDevanagariLocale(loc);
   const cityName = isHi ? city.name.hi : city.name.en;
 
-  // Compute today's panchang for this city
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = now.getMonth() + 1;
-  const day = now.getDate();
+  const { date: now, year, month, day } = getCityLocalDate(city.timezone);
   const tzOffset = getUTCOffsetForDate(year, month, day, city.timezone);
 
   const input: PanchangInput = {
@@ -190,6 +197,7 @@ export default async function CityPanchangPage({
   // Date display
   const dateDisplay = now.toLocaleDateString(msg('localeId', locale), {
     weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
+    timeZone: 'UTC', // `now` is already shifted to city TZ — interpret as UTC to avoid double-shift
   });
 
   // Tithi / Nakshatra / Yoga / Karana names
@@ -216,9 +224,9 @@ export default async function CityPanchangPage({
     url: `${BASE_URL}/${locale}/panchang/${citySlug}`,
     mainEntity: {
       '@type': 'Event',
-      name: `Panchang  –  ${city.name.en}  –  ${now.toISOString().split('T')[0]}`,
-      startDate: now.toISOString().split('T')[0],
-      endDate: now.toISOString().split('T')[0],
+      name: `Panchang  –  ${city.name.en}  –  ${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`,
+      startDate: `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`,
+      endDate: `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`,
       location: {
         '@type': 'Place',
         name: `${city.name.en}, ${city.state}`,

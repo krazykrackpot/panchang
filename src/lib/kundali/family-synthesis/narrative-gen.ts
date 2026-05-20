@@ -218,25 +218,25 @@ export function generateMonthlyForecast(
   const contextEn = context === 'marriage' ? 'relationship' : 'parent-child bond';
   const contextHi = context === 'marriage' ? 'संबंध' : 'माता-पिता-संतान बंधन';
 
-  const toneDescEn = transit.overallTone === 'supportive' ? 'favourable'
-    : transit.overallTone === 'challenging' ? 'testing'
-    : transit.overallTone === 'mixed' ? 'mixed -- some growth, some friction'
-    : 'calm and steady';
-  const toneDescHi = transit.overallTone === 'supportive' ? 'अनुकूल'
-    : transit.overallTone === 'challenging' ? 'परीक्षापूर्ण'
-    : transit.overallTone === 'mixed' ? 'मिश्रित -- कुछ वृद्धि, कुछ घर्षण'
-    : 'शांत और स्थिर';
+  // Build month forecast from specific transits rather than generic tone labels
+  const totalHits = transit.yourTransits.length + transit.theirTransits.length;
+  let en = `${month}: `;
+  let hi = `${month}: `;
 
-  let en = `${month} outlook for your ${contextEn}: ${toneDescEn}. `;
-  let hi = `${month} में आपके ${contextHi} का दृष्टिकोण: ${toneDescHi}। `;
-
-  if (dashaSync.inSync) {
-    en += 'Dasha alignment amplifies the bond. ';
-    hi += 'दशा संरेखण बंधन को बढ़ाता है। ';
+  if (totalHits === 0) {
+    en += `No major slow-planet transits are pressuring your ${contextEn} this month  –  a stable, low-drama period. `;
+    hi += `इस माह आपके ${contextHi} पर कोई प्रमुख धीमे ग्रह दबाव नहीं  –  स्थिर, शांत अवधि। `;
+  } else {
+    // Lead with the most impactful transit hit, not a generic tone word
+    const allHits = [...transit.yourTransits, ...transit.theirTransits].slice(0, 3);
+    en += allHits.map(h => h.effect.en).join(' ') + ' ';
+    hi += allHits.map(h => h.effect.hi ?? h.effect.en).join(' ') + ' ';
   }
 
-  en += transit.narrative.en;
-  hi += transit.narrative.hi ?? transit.narrative.en;
+  if (dashaSync.inSync) {
+    en += 'Dasha alignment amplifies the bond  –  growth feels natural this period. ';
+    hi += 'दशा संरेखण बंधन को बढ़ाता है  –  इस अवधि में विकास स्वाभाविक लगता है। ';
+  }
 
   return { en, hi };
 }

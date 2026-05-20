@@ -63,6 +63,65 @@ function mapSynastryHighlights(chartA: KundaliData, chartB: KundaliData): Synast
   }
 }
 
+// Element index: 0=Fire (1,5,9), 1=Earth (2,6,10), 2=Air (3,7,11), 3=Water (4,8,12)
+const ELEMENT_NAMES = {
+  en: ['Fire', 'Earth', 'Air', 'Water'] as const,
+  hi: ['अग्नि', 'पृथ्वी', 'वायु', 'जल'] as const,
+};
+
+// Specific dynamics for each element pair (parent element → child element)
+// 4×4 = 16 combinations, minus 4 same-element = 12 cross-element pairs
+const CROSS_ELEMENT_DYNAMICS: Record<string, { en: string; hi: string }> = {
+  '0-1': { // Fire parent, Earth child
+    en: 'Your fiery enthusiasm meets their grounded patience. You inspire ambition; they need steady encouragement rather than intensity. Slow down to match their pace  –  they process emotions through routine and security.',
+    hi: 'आपका अग्नि उत्साह उनकी पृथ्वी-जैसी धैर्य से मिलता है। आप महत्वाकांक्षा जगाते हैं; उन्हें तीव्रता की नहीं, स्थिर प्रोत्साहन की आवश्यकता है। उनकी गति से चलें  –  वे दिनचर्या और सुरक्षा से भावनाएँ संसाधित करते हैं।',
+  },
+  '0-2': { // Fire parent, Air child
+    en: 'Both of you are active and expressive  –  conversations flow easily. But you act on impulse while they need to talk things through. Give them space to articulate before you jump to solutions.',
+    hi: 'आप दोनों सक्रिय और अभिव्यक्तिशील हैं  –  संवाद सहज है। लेकिन आप आवेग से कार्य करते हैं जबकि वे बातचीत से समझना चाहते हैं। समाधान पर कूदने से पहले उन्हें बोलने का अवसर दें।',
+  },
+  '0-3': { // Fire parent, Water child
+    en: 'Your directness can overwhelm their sensitive nature. This child absorbs your energy deeply  –  what feels casual to you may feel intense to them. Soften your tone when emotions run high.',
+    hi: 'आपकी सीधी शैली उनकी संवेदनशील प्रकृति को अभिभूत कर सकती है। यह बच्चा आपकी ऊर्जा गहराई से अवशोषित करता है  –  जो आपको सामान्य लगे, उन्हें तीव्र लग सकता है। भावनाएँ उठने पर स्वर कोमल रखें।',
+  },
+  '1-0': { // Earth parent, Fire child
+    en: 'You provide stability; they crave adventure. This child needs room to explore and fail  –  your natural caution helps keep them safe, but too much restriction dims their spark. Balance structure with freedom.',
+    hi: 'आप स्थिरता देते हैं; वे रोमांच चाहते हैं। इस बच्चे को खोजने और गिरने की जगह चाहिए  –  आपकी सावधानी उन्हें सुरक्षित रखती है, लेकिन अधिक प्रतिबंध उनकी चमक धुँधली करता है। संरचना और स्वतंत्रता में संतुलन रखें।',
+  },
+  '1-2': { // Earth parent, Air child
+    en: 'You show love through actions and providing; they show it through ideas and words. This child may seem scattered to you, but they think best when allowed to explore multiple interests. Patience with their changeability strengthens your bond.',
+    hi: 'आप प्यार कर्मों और देखभाल से दिखाते हैं; वे विचारों और शब्दों से। यह बच्चा आपको बिखरा लग सकता है, लेकिन वे कई रुचियों में स्वतंत्रता से सर्वश्रेष्ठ सोचते हैं। उनकी परिवर्तनशीलता के प्रति धैर्य बंधन मजबूत करता है।',
+  },
+  '1-3': { // Earth parent, Water child
+    en: 'A naturally harmonious pair  –  you provide the security they crave, and they bring emotional depth to your practical world. This child thrives on physical affection and consistent routine from you.',
+    hi: 'एक स्वाभाविक रूप से सामंजस्यपूर्ण जोड़ी  –  आप वह सुरक्षा देते हैं जिसकी उन्हें लालसा है, और वे आपकी व्यावहारिक दुनिया में भावनात्मक गहराई लाते हैं। यह बच्चा आपसे शारीरिक स्नेह और निरंतर दिनचर्या पर फलता-फूलता है।',
+  },
+  '2-0': { // Air parent, Fire child
+    en: 'You understand each other\'s need for independence. This child responds to intellectual stimulation  –  explain the "why" and they engage fully. Challenge: you may rationalise when they need passionate affirmation.',
+    hi: 'आप दोनों एक-दूसरे की स्वतंत्रता की आवश्यकता समझते हैं। यह बच्चा बौद्धिक उत्तेजना से जुड़ता है  –  "क्यों" समझाएँ और वे पूरी तरह जुड़ जाएँगे। चुनौती: जब उन्हें भावनात्मक पुष्टि चाहिए तब आप तर्कसंगत बना सकते हैं।',
+  },
+  '2-1': { // Air parent, Earth child
+    en: 'You live in ideas; they live in tangible reality. This child needs concrete examples, not abstract reasoning. Show them rather than tell them  –  hands-on activities build your connection better than long explanations.',
+    hi: 'आप विचारों में रहते हैं; वे ठोस वास्तविकता में। इस बच्चे को अमूर्त तर्क नहीं, ठोस उदाहरण चाहिए। बताने की बजाय दिखाएँ  –  व्यावहारिक गतिविधियाँ लंबे स्पष्टीकरणों से बेहतर जुड़ाव बनाती हैं।',
+  },
+  '2-3': { // Air parent, Water child
+    en: 'You approach feelings intellectually; they feel them viscerally. When this child is upset, they need a hug before a discussion. Resist the urge to "fix" their emotions with logic  –  just being present is what they need.',
+    hi: 'आप भावनाओं को बौद्धिक रूप से देखते हैं; वे उन्हें गहराई से महसूस करते हैं। जब यह बच्चा परेशान हो, तो चर्चा से पहले गले लगाना ज़रूरी है। तर्क से भावनाएँ "ठीक" करने की इच्छा रोकें  –  बस उपस्थित रहना ही उनकी ज़रूरत है।',
+  },
+  '3-0': { // Water parent, Fire child
+    en: 'You feel deeply; they act boldly. This child\'s fearlessness may trigger your protective instincts. They need you to believe in their courage rather than shield them. Your emotional intelligence is their anchor  –  when they burn too bright, you help them cool down.',
+    hi: 'आप गहराई से महसूस करते हैं; वे साहस से कार्य करते हैं। इस बच्चे की निडरता आपकी सुरक्षात्मक प्रवृत्ति को जगा सकती है। उन्हें ढालने की बजाय उनके साहस पर विश्वास करें। आपकी भावनात्मक बुद्धिमत्ता उनका लंगर है  –  जब वे बहुत तेज चमकें, आप उन्हें शांत करते हैं।',
+  },
+  '3-1': { // Water parent, Earth child
+    en: 'A naturally nurturing pair. You intuit what they need; they appreciate your care without needing grand gestures. This child may not express emotions openly  –  watch for subtle signs rather than expecting verbal affirmation.',
+    hi: 'एक स्वाभाविक रूप से पोषणकारी जोड़ी। आप सहज रूप से समझते हैं उन्हें क्या चाहिए; वे बिना भव्य इशारों के आपकी देखभाल की सराहना करते हैं। यह बच्चा भावनाएँ खुलकर व्यक्त नहीं कर सकता  –  मौखिक पुष्टि की अपेक्षा से बेहतर है सूक्ष्म संकेत देखें।',
+  },
+  '3-2': { // Water parent, Air child
+    en: 'You process through feeling; they process through talking. This child may seem emotionally detached, but they express care differently  –  through curiosity and sharing ideas. Don\'t mistake their need for space as rejection.',
+    hi: 'आप भावना से संसाधित करते हैं; वे बातचीत से। यह बच्चा भावनात्मक रूप से अलग लग सकता है, लेकिन वे अलग तरीके से देखभाल व्यक्त करते हैं  –  जिज्ञासा और विचार साझा करके। उनकी अकेलेपन की ज़रूरत को अस्वीकृति न समझें।',
+  },
+};
+
 function analyzeMoonConnection(parent: KundaliData, child: KundaliData): { en: string; hi: string } {
   const planetsP = parent.planets as unknown as Array<Record<string, unknown>>;
   const planetsC = child.planets as unknown as Array<Record<string, unknown>>;
@@ -75,29 +134,36 @@ function analyzeMoonConnection(parent: KundaliData, child: KundaliData): { en: s
 
   const moonSignP = moonP.sign as number;
   const moonSignC = moonC.sign as number;
-  const sameSigns = moonSignP === moonSignC;
 
-  // Compatible = same element (fire 1,5,9 / earth 2,6,10 / air 3,7,11 / water 4,8,12)
+  // Element: Fire=0 (signs 1,5,9), Earth=1 (2,6,10), Air=2 (3,7,11), Water=3 (4,8,12)
   const elementP = ((moonSignP - 1) % 4);
   const elementC = ((moonSignC - 1) % 4);
-  const compatibleElement = elementP === elementC;
 
-  if (sameSigns) {
+  if (moonSignP === moonSignC) {
     return {
       en: 'Your Moons share the same sign  –  a natural emotional resonance. You intuitively understand this child\'s feelings.',
       hi: 'आपके चंद्रमा एक ही राशि में हैं  –  प्राकृतिक भावनात्मक अनुनाद। आप सहज रूप से इस बच्चे की भावनाओं को समझते हैं।',
     };
   }
-  if (compatibleElement) {
+
+  if (elementP === elementC) {
+    const elemEn = ELEMENT_NAMES.en[elementP];
+    const elemHi = ELEMENT_NAMES.hi[elementP];
     return {
-      en: 'Your Moons are in compatible signs, supporting emotional understanding between parent and child.',
-      hi: 'आपके चंद्रमा अनुकूल राशियों में हैं, माता-पिता और बच्चे के बीच भावनात्मक समझ का समर्थन करते हैं।',
+      en: `Both Moons are in ${elemEn} signs  –  you share an emotional wavelength. Communication feels natural and misunderstandings resolve quickly.`,
+      hi: `दोनों चंद्रमा ${elemHi} राशियों में हैं  –  आप एक भावनात्मक तरंगदैर्ध्य साझा करते हैं। संवाद स्वाभाविक है और गलतफहमियाँ जल्दी दूर होती हैं।`,
     };
   }
 
+  // Cross-element: use specific pair dynamics
+  const key = `${elementP}-${elementC}`;
+  const specific = CROSS_ELEMENT_DYNAMICS[key];
+  if (specific) return specific;
+
+  // Fallback (should never reach here, but safety)
   return {
-    en: 'Your Moons are in different elements  –  emotional expression styles may differ. Conscious effort in understanding helps bridge this gap.',
-    hi: 'आपके चंद्रमा अलग-अलग तत्वों में हैं  –  भावनात्मक अभिव्यक्ति शैली भिन्न हो सकती है। समझने में सचेत प्रयास इस अंतर को पाटने में मदद करता है।',
+    en: `Your Moon (${ELEMENT_NAMES.en[elementP]}) and theirs (${ELEMENT_NAMES.en[elementC]}) process emotions differently. Understanding these differences strengthens your bond.`,
+    hi: `आपका चंद्र (${ELEMENT_NAMES.hi[elementP]}) और उनका (${ELEMENT_NAMES.hi[elementC]}) भावनाओं को अलग-अलग संसाधित करते हैं। इन अंतरों को समझना बंधन मजबूत करता है।`,
   };
 }
 
@@ -178,21 +244,29 @@ export function computeChildDynamics(
   const actionItems = generateChildActionItems(transitImpact, dashaSynchronicity, childName);
   const monthlyForecast = generateMonthlyForecast(transitImpact, dashaSynchronicity, 'children');
 
-  // Build current dynamic narrative
-  const toneEn = transitImpact.overallTone === 'supportive' ? 'nurturing'
-    : transitImpact.overallTone === 'challenging' ? 'requiring patience'
-    : transitImpact.overallTone === 'mixed' ? 'mixed' : 'steady';
-  const toneHi = transitImpact.overallTone === 'supportive' ? 'पोषणकारी'
-    : transitImpact.overallTone === 'challenging' ? 'धैर्य की आवश्यकता'
-    : transitImpact.overallTone === 'mixed' ? 'मिश्रित' : 'स्थिर';
+  // Build current dynamic narrative — specific, not generic
+  let enDynamic = `Your bond with ${childName}: `;
+  let hiDynamic = `${childName} के साथ आपका बंधन: `;
 
-  let enDynamic = `Your bond with ${childName} is in a ${toneEn} phase. `;
-  let hiDynamic = `${childName} के साथ आपका बंधन ${toneHi} चरण में है। `;
+  // Lead with the most specific signal: transit details
+  const totalHits = transitImpact.yourTransits.length + transitImpact.theirTransits.length;
+  if (totalHits > 0) {
+    const topHit = transitImpact.yourTransits[0] ?? transitImpact.theirTransits[0];
+    enDynamic += topHit.effect.en + ' ';
+    hiDynamic += (topHit.effect.hi ?? topHit.effect.en) + ' ';
+  }
+
+  // Moon element connection — specific per element pair
   enDynamic += moonConnection.en + ' ';
   hiDynamic += moonConnection.hi + ' ';
+
+  // Dasha sync adds concrete actionable insight
   if (dashaSynchronicity.inSync) {
-    enDynamic += `Your dasha periods are aligned with ${childName}'s developmental cycle.`;
-    hiDynamic += `आपकी दशाएँ ${childName} के विकास चक्र के साथ संरेखित हैं।`;
+    enDynamic += `Your dasha periods are aligned with ${childName}'s developmental cycle  –  parenting decisions come more naturally now.`;
+    hiDynamic += `आपकी दशाएँ ${childName} के विकास चक्र के साथ संरेखित हैं  –  पालन-पोषण के निर्णय अभी अधिक स्वाभाविक आते हैं।`;
+  } else if (totalHits === 0) {
+    enDynamic += `No major planetary pressure on this bond right now  –  a stable period for building connection.`;
+    hiDynamic += `इस बंधन पर अभी कोई बड़ा ग्रह दबाव नहीं  –  जुड़ाव बनाने का स्थिर समय।`;
   }
 
   return {

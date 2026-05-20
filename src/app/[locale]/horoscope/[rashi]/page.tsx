@@ -63,12 +63,12 @@ export default async function RashiPage({ params }: { params: Promise<{ locale: 
         <div className="mt-6 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 sm:p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-gold-light text-lg font-semibold" style={{ fontFamily: 'var(--font-heading)' }}>
-              {isHi ? 'आज का स्कोर' : "Today's Score"}
+              {isHi ? `${vedicName} राशि — आज का स्कोर` : `${westernName} — Today's Score`}
             </h2>
             <div className="flex items-baseline gap-2">
               <span className="text-3xl font-bold text-gold-light">{horoscope.overallScore}</span>
               <span className="text-text-secondary text-sm">/10</span>
-              <span className={`text-xs px-2 py-0.5 rounded-full ${horoscope.overallScore >= 7 ? 'bg-emerald-500/20 text-emerald-400' : horoscope.overallScore >= 4 ? 'bg-amber-500/20 text-amber-400' : 'bg-red-500/20 text-red-400'}`}>
+              <span className={`text-xs px-2 py-0.5 rounded-full ${horoscope.overallScore >= 6.5 ? 'bg-emerald-500/20 text-emerald-400' : horoscope.overallScore >= 4 ? 'bg-amber-500/20 text-amber-400' : 'bg-red-500/20 text-red-400'}`}>
                 {scoreLabel(horoscope.overallScore, locale)}
               </span>
             </div>
@@ -106,7 +106,7 @@ export default async function RashiPage({ params }: { params: Promise<{ locale: 
         {/* ═══ SSR: Transit Summary — rich astro context ═══ */}
         <div className="mt-6 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 sm:p-6">
           <h2 className="text-gold-light text-lg font-semibold mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isHi ? 'आज का ग्रह गोचर' : "Today's Planetary Transits"}
+            {isHi ? `${vedicName} — आज का ग्रह गोचर` : `${westernName} — Today's Planetary Transits`}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <div className="text-center p-3 bg-white/[0.03] rounded-xl">
@@ -173,7 +173,7 @@ export default async function RashiPage({ params }: { params: Promise<{ locale: 
         {/* ═══ SSR: Lucky Items + Remedy ═══ */}
         <div className="mt-6 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 sm:p-6">
           <h2 className="text-gold-light text-lg font-semibold mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isHi ? 'शुभ संकेत और उपाय' : 'Lucky Indicators & Remedy'}
+            {isHi ? `${vedicName} — शुभ संकेत और उपाय` : `${westernName} — Lucky Indicators & Remedy`}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
             <div className="text-center p-3 bg-white/[0.03] rounded-xl">

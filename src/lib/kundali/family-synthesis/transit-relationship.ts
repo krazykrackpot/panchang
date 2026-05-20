@@ -94,6 +94,20 @@ const TRANSIT_COMMENTARY_GENERAL: Record<string, TransitText> = {
   '8-1': { beneficEn: 'Inner clarity through detachment. Spiritual inclination grows.', beneficHi: 'वैराग्य से आंतरिक स्पष्टता। आध्यात्मिक झुकाव बढ़ रहा है।', maleficEn: 'A period of letting go. What feels like loss is making space for what matters.', maleficHi: 'छोड़ने का समय। जो हानि लगती है वह मायने रखने वाली चीज़ों के लिए जगह बना रही है।' },
 };
 
+// Fallback house labels — keyed by context + house number
+const HOUSE_LABELS: Record<Context, Record<number, { en: string; hi: string }>> = {
+  marriage: {
+    7: { en: 'partnership', hi: 'साझेदारी' },
+    1: { en: 'self-expression', hi: 'आत्म-अभिव्यक्ति' },
+    2: { en: 'shared finances', hi: 'साझा वित्त' },
+  },
+  children: {
+    5: { en: 'your bond with children', hi: 'बच्चों के साथ आपके बंधन' },
+    1: { en: 'their sense of identity', hi: 'उनकी पहचान की भावना' },
+    4: { en: 'home and emotional security', hi: 'घर और भावनात्मक सुरक्षा' },
+  },
+};
+
 /** Build specific transit commentary for monthly forecast. */
 function buildTransitEffect(
   pid: number, house: number, context: Context, isBenefic: boolean,
@@ -115,10 +129,8 @@ function buildTransitEffect(
       hi: `${pName.hi} ${rName.hi} में: ${isBenefic ? general.beneficHi : general.maleficHi}`,
     };
   }
-  // Last resort — single bilingual map, oblique case for Hindi postpositions (आपके not आपका before को/की)
-  const label = context === 'marriage'
-    ? (house === 7 ? { en: 'partnership', hi: 'साझेदारी' } : house === 1 ? { en: 'self-expression', hi: 'आत्म-अभिव्यक्ति' } : { en: 'shared finances', hi: 'साझा वित्त' })
-    : (house === 5 ? { en: 'your bond with children', hi: 'बच्चों के साथ आपके बंधन' } : house === 1 ? { en: 'their sense of identity', hi: 'उनकी पहचान की भावना' } : { en: 'home and emotional security', hi: 'घर और भावनात्मक सुरक्षा' });
+  // Last resort — lookup map (oblique Hindi for postpositions)
+  const label = HOUSE_LABELS[context]?.[house] ?? { en: 'this area', hi: 'इस क्षेत्र' };
   return {
     en: isBenefic ? `${pName.en} in ${rName.en} is easing ${label.en} this period.` : `${pName.en} in ${rName.en} is testing ${label.en} this period — stay patient and present.`,
     hi: isBenefic ? `${pName.hi} ${rName.hi} में इस अवधि में ${label.hi} को सहज बना रहा है।` : `${pName.hi} ${rName.hi} में इस अवधि में ${label.hi} की परीक्षा ले रहा है — धैर्य और उपस्थिति बनाये रखें।`,

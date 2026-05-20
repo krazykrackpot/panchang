@@ -27,6 +27,8 @@ import FestivalCountdown from '@/components/dashboard/FestivalCountdown';
 import MorningBriefing from '@/components/dashboard/MorningBriefing';
 import PushPermission from '@/components/notifications/PushPermission';
 import PersonalizedHoroscope from '@/components/dashboard/PersonalizedHoroscope';
+import ProfileProgressBar from '@/components/dashboard/ProfileProgressBar';
+import ArchetypeRevealModal from '@/components/auth/ArchetypeRevealModal';
 import DailyHoroscopeWidget from '@/components/dashboard/DailyHoroscopeWidget';
 import WeekAhead from '@/components/dashboard/WeekAhead';
 import DashaTransitionAlert from '@/components/dashboard/DashaTransitionAlert';
@@ -865,6 +867,9 @@ export default function DashboardPage() {
   const [recommendedFestivals, setRecommendedFestivals] = useState<PersonalFestival[]>([]);
   const [displayName, setDisplayName] = useState('');
   const [hasBirthData, setHasBirthData] = useState(false);
+  const [showArchetypeReveal, setShowArchetypeReveal] = useState(false);
+  const [profileHasTime, setProfileHasTime] = useState(false);
+  const [profileHasPlace, setProfileHasPlace] = useState(false);
   const [ascendantSign, setAscendantSign] = useState<number>(0);
   const [panchangData, setPanchangData] = useState<PanchangData | null>(null);
   const [todayMuhurtaWindows, setTodayMuhurtaWindows] = useState<{ activity: string; label: string; labelHi: string; time: string; score: number }[]>([]);
@@ -936,6 +941,8 @@ export default function DashboardPage() {
 
       setHasBirthData(true);
       setAscendantSign(snapshot.ascendant_sign || 0);
+      setProfileHasTime(!!profile?.time_of_birth && profile.time_of_birth !== '12:00');
+      setProfileHasPlace(!!profile?.birth_place);
       setUserMoonSign(snapshot.moon_sign || 0);
       setUserMoonNakshatra(snapshot.moon_nakshatra || 0);
 
@@ -1392,8 +1399,27 @@ export default function DashboardPage() {
 
   const isHeroHi = locale === 'hi';
 
+  // Profile progress bar — shown when profile is incomplete
+  const profileProgress = (
+    <ProfileProgressBar
+      hasName={!!displayName}
+      hasDob={hasBirthData}
+      hasTime={profileHasTime}
+      hasPlace={profileHasPlace}
+      locale={locale}
+      onComplete={() => {
+        // Trigger archetype reveal when user just completed their profile
+        if (ascendantSign > 0) setShowArchetypeReveal(true);
+      }}
+    />
+  );
+
   const todayTabContent = (
     <>
+      {/* Profile completion nudge */}
+      {hasBirthData && (!profileHasTime || !profileHasPlace) && (
+        <div className="mb-6">{profileProgress}</div>
+      )}
       {/* ── COSMIC WEATHER HERO ── */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
@@ -2305,6 +2331,15 @@ export default function DashboardPage() {
           </div>
         </motion.div>
       </div>
-    </main>
+    
+      {/* Archetype Reveal — triggered when profile reaches 100% */}
+      <ArchetypeRevealModal
+        isOpen={showArchetypeReveal}
+        onClose={() => setShowArchetypeReveal(false)}
+        lagnaSignId={ascendantSign}
+        locale={locale}
+        chartUrl={`/${locale}/dashboard/chart`}
+      />
+</main>
   );
 }

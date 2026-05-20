@@ -87,20 +87,24 @@ function formatDate(dateStr: string, locale: string): string {
   });
 }
 
+// BCP 47 locale tag from app locale — covers all 10 supported languages
+const LOCALE_TO_BCP47: Record<string, string> = {
+  en: 'en-US', hi: 'hi-IN', sa: 'hi-IN', ta: 'ta-IN', bn: 'bn-IN',
+  te: 'te-IN', kn: 'kn-IN', mr: 'mr-IN', gu: 'gu-IN', mai: 'hi-IN',
+};
+
 /** Returns just the weekday name for a YYYY-MM-DD string */
 function getWeekday(dateStr: string, locale: string): string {
   const [y, m, d] = dateStr.split('-').map(Number);
   const date = new Date(Date.UTC(y, m - 1, d));
-  const loc = locale === 'hi' || locale === 'sa' ? 'hi-IN' : 'en-US';
-  return date.toLocaleDateString(loc, { weekday: 'long', timeZone: 'UTC' });
+  return date.toLocaleDateString(LOCALE_TO_BCP47[locale] || 'en-US', { weekday: 'long', timeZone: 'UTC' });
 }
 
 /** Returns "14 January" style date (no year, no weekday) for prominent display */
 function formatDateShort(dateStr: string, locale: string): string {
   const [y, m, d] = dateStr.split('-').map(Number);
   const date = new Date(Date.UTC(y, m - 1, d));
-  const loc = locale === 'hi' || locale === 'sa' ? 'hi-IN' : 'en-US';
-  return date.toLocaleDateString(loc, { month: 'long', day: 'numeric', timeZone: 'UTC' });
+  return date.toLocaleDateString(LOCALE_TO_BCP47[locale] || 'en-US', { month: 'long', day: 'numeric', timeZone: 'UTC' });
 }
 
 function formatTimeHHMM(date: Date): string {
@@ -338,11 +342,11 @@ export default async function FestivalCanonicalPage({
       {/* ── Quick Answer Box — "Position Zero" featured snippet target ── */}
       <div className="mb-8 rounded-2xl border-2 border-gold-primary/40 bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] p-6 sm:p-8 text-center space-y-3 shadow-[0_0_40px_rgba(212,168,83,0.08)]">
         <p className="text-gold-primary text-xs sm:text-sm uppercase tracking-[0.2em] font-bold">
-          {tl({ en: `${festivalNameEn} ${year}`, hi: `${festivalNameLocale} ${year}` }, locale)}
+          {festivalNameLocale} {year}
         </p>
         <p
           className="text-3xl sm:text-5xl font-black text-gold-light leading-tight"
-          style={{ fontFamily: 'var(--font-heading)' }}
+          style={{ fontFamily: isHi ? 'var(--font-devanagari-heading)' : 'var(--font-heading)' }}
         >
           {formatDateShort(festivalDate, locale)}
         </p>
@@ -353,12 +357,14 @@ export default async function FestivalCanonicalPage({
           <p className="text-gold-primary text-sm sm:text-base font-medium">
             <Clock className="inline-block w-4 h-4 mr-1.5 -mt-0.5" />
             {refRow.pujaMuhurat.name}: {fmt12h(refRow.pujaMuhurat.start)} – {fmt12h(refRow.pujaMuhurat.end)}
-            <span className="text-text-secondary ml-1 text-xs">({tl({ en: 'Delhi', hi: 'दिल्ली' }, locale)})</span>
+            <span className="text-text-secondary ml-1 text-xs">({tl({ en: 'Delhi', hi: 'दिल्ली', ta: 'தில்லி', bn: 'দিল্লি', te: 'ఢిల్లీ', gu: 'દિલ્હી', kn: 'ದೆಹಲಿ' }, locale)})</span>
           </p>
         )}
-        <p className="text-text-secondary text-sm max-w-md mx-auto" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-          {tl(detail.significance, locale).slice(0, 150)}{tl(detail.significance, locale).length > 150 ? '...' : ''}
-        </p>
+        {(() => { const sig = tl(detail.significance, locale); return (
+          <p className="text-text-secondary text-sm max-w-md mx-auto" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+            {sig.length > 150 ? `${sig.slice(0, 150)}...` : sig}
+          </p>
+        ); })()}
       </div>
 
       <article className="space-y-8">

@@ -474,7 +474,7 @@ export default async function TamilCalendarPage({ params }: { params: Promise<{ 
               <thead>
                 <tr className="bg-bg-secondary/60 border-b border-gold-primary/12">
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">{isTamil ? 'தமிழ் மாதம்' : isHi ? 'तमिल मास' : 'Tamil Month'}</th>
-                  <th className="text-left px-4 py-3 text-gold-light font-semibold">தமிழ்</th>
+                  <th className="text-left px-4 py-3 text-gold-light font-semibold">{tl({ en: "Tamil", hi: "तमिल", ta: "தமிழ்" }, locale)}</th>
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">2026</th>
                   <th className="text-left px-4 py-3 text-gold-light font-semibold">2027</th>
                 </tr>
@@ -572,10 +572,10 @@ export default async function TamilCalendarPage({ params }: { params: Promise<{ 
               '@type': 'FAQPage',
               mainEntity: FAQ_DATA.map((faq) => ({
                 '@type': 'Question',
-                name: faq.q.en,
+                name: tl(faq.q, locale),
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: faq.a.en,
+                  text: tl(faq.a, locale),
                 },
               })),
             }),

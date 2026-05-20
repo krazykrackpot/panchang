@@ -941,7 +941,7 @@ export default function DashboardPage() {
 
       setHasBirthData(true);
       setAscendantSign(snapshot.ascendant_sign || 0);
-      setProfileHasTime(!!profile?.time_of_birth && profile.time_of_birth !== '12:00');
+      setProfileHasTime(!!profile?.time_of_birth);
       setProfileHasPlace(!!profile?.birth_place);
       setUserMoonSign(snapshot.moon_sign || 0);
       setUserMoonNakshatra(snapshot.moon_nakshatra || 0);
@@ -1399,6 +1399,17 @@ export default function DashboardPage() {
 
   const isHeroHi = locale === 'hi';
 
+  // Trigger archetype reveal when profile reaches 100% for the first time
+  useEffect(() => {
+    if (displayName && hasBirthData && profileHasTime && profileHasPlace && ascendantSign > 0) {
+      const shown = sessionStorage.getItem('archetype_revealed');
+      if (!shown) {
+        setShowArchetypeReveal(true);
+        sessionStorage.setItem('archetype_revealed', '1');
+      }
+    }
+  }, [displayName, hasBirthData, profileHasTime, profileHasPlace, ascendantSign]);
+
   // Profile progress bar — shown when profile is incomplete
   const profileProgress = (
     <ProfileProgressBar
@@ -1407,10 +1418,7 @@ export default function DashboardPage() {
       hasTime={profileHasTime}
       hasPlace={profileHasPlace}
       locale={locale}
-      onComplete={() => {
-        // Trigger archetype reveal when user just completed their profile
-        if (ascendantSign > 0) setShowArchetypeReveal(true);
-      }}
+
     />
   );
 

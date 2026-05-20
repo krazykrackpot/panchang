@@ -12,12 +12,10 @@ interface ProfileProgressBarProps {
   hasTime: boolean;
   hasPlace: boolean;
   locale: string;
-  /** Hide when 100% complete after a delay */
-  onComplete?: () => void;
 }
 
 export default function ProfileProgressBar({
-  hasName, hasDob, hasTime, hasPlace, locale, onComplete,
+  hasName, hasDob, hasTime, hasPlace, locale,
 }: ProfileProgressBarProps) {
   const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
@@ -32,11 +30,7 @@ export default function ProfileProgressBar({
   const completed = steps.filter(s => s.done).length;
   const percent = Math.round((completed / steps.length) * 100);
 
-  if (percent === 100) {
-    // Fire onComplete callback after a brief delay
-    if (onComplete) setTimeout(onComplete, 500);
-    return null; // Don't show when fully complete
-  }
+  if (percent === 100) return null;
 
   const nextStep = steps.find(s => !s.done);
 

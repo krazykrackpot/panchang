@@ -258,15 +258,15 @@ export default function FamilyCommandCenter() {
         });
       }));
 
-      const statuses: MemberStatus[] = [];
-      for (let i = 0; i < statusResults.length; i++) {
-        const result = statusResults[i];
+      const statuses = statusResults.reduce<MemberStatus[]>((acc, result, i) => {
         if (result.status === 'fulfilled') {
-          statuses.push(result.value);
+          acc.push(result.value);
         } else {
-          console.error(`[FamilyCommand] Error computing status for chart ${savedCharts[i].id}:`, result.reason);
+          const chart = savedCharts[i];
+          console.error(`[FamilyCommand] Error computing status for ${chart.label} (${chart.id}):`, result.reason);
         }
-      }
+        return acc;
+      }, []);
 
       // Sort by attention level: critical > watch > stable > favorable
       const ORDER: Record<string, number> = { critical: 0, watch: 1, stable: 2, favorable: 3 };

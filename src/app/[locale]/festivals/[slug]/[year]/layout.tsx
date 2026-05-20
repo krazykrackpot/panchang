@@ -86,9 +86,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? festivalCanonicalDescHi(festivalNameHi, year, festivalDate, pujaMuhuratStr)
       : festivalCanonicalDesc(festivalNameEn, festivalDate, pujaMuhuratStr);
   } else {
-    description = isHi
-      ? `${festivalNameHi} ${year}: तिथि, पूजा मुहूर्त व समय। विधि, मंत्र व 800+ शहरों के समय।`.slice(0, 160)
-      : `${festivalNameEn} ${year}: exact date, puja muhurat & time. Vidhi, mantras & samagri checklist. Free city-wise timings for 800+ cities.`.slice(0, 160);
+    description = (isHi
+      ? `${festivalNameHi} ${year}: तिथि, पूजा मुहूर्त व समय। विधि, मंत्र व 800+ शहरों के समय।`
+      : `${festivalNameEn} ${year}: exact date, puja muhurat & time. Vidhi, mantras & samagri checklist. Free city-wise timings for 800+ cities.`
+    ).slice(0, 160);
   }
 
   const url = `${BASE_URL}/${locale}/festivals/${slug}/${year}`;
